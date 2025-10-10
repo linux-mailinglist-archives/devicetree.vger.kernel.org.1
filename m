@@ -1,144 +1,190 @@
-Return-Path: <devicetree+bounces-225404-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225405-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 209B6BCD795
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 16:19:11 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A799BCD80B
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 16:23:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id D9D90355D54
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 14:18:49 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 22892541439
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 14:20:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAF742F7471;
-	Fri, 10 Oct 2025 14:16:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BB7E287268;
+	Fri, 10 Oct 2025 14:19:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="AD9QMaiM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Gkl6NKmR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BF1A2F6599
-	for <devicetree@vger.kernel.org>; Fri, 10 Oct 2025 14:16:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D04F61E0DFE;
+	Fri, 10 Oct 2025 14:19:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760105819; cv=none; b=p2dLRWbt9WlNKsvrqs/XeUiyVU0ODK1l4E6wDctd1X70KK+myLhzdGgCgQnGWgf1lkfkqIhMEnoMM0bCasljJMtsqaUr/LfCLtLD2EeUaRy+LMSi3Pd/tzO82HYU+VZutiGgbx9t3HPYa4JY4FXns17/dYmp2rqsW8CiEsbxC9w=
+	t=1760105996; cv=none; b=saD1Zr3SBKCi5uYWmvKkwlQLK2/lkwH1IHNryOXaiVDdcAVO5iRiuVq0HJwiwhKYpwiEFngQlIqFiQNY98bo9CSxElg/CMadGj+y4DKYEU7KDBkUr6dhHuZcZReMqoiZLbUVDD+X4kmqxzoV3HvdyDEooszdS8ZSGPMSm0XY5G0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760105819; c=relaxed/simple;
-	bh=qAfkS0FALkninDpobPdDXMtt67Z25RcuAR5Qg6PQot4=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=MbqAMDowZvqvuaRtEGNaW29Ycac5TdnzDivZGx6qDIM7APgvzcs4jpsGewpfSgq1EfFQfanegiic024lpYBU9Dw1chuN53s2PxbhMGVjGJ3a2XuFtp8bOzJVRE87GltgsD13TR57lGh4F+u0cZLOX43d1CtNMmr4E2HrMtKczfk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=AD9QMaiM; arc=none smtp.client-ip=209.85.218.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-b3ee18913c0so334770366b.3
-        for <devicetree@vger.kernel.org>; Fri, 10 Oct 2025 07:16:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1760105816; x=1760710616; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=9ETTSmzMEMLXYvaO7iiXW2H9dZ8Hr5VPzXraeMoXOYA=;
-        b=AD9QMaiMR2R8edJNlxM5EiPgUp01Z+D755TSj9KpQxVuD9640FQX9bsaLo7sqobeuu
-         vuJRu+11YdJVJhXfI99dYwyKq0KFQa+uavwKfARP79LiyRO4aroQMWT9XrLTSPIg9+Ev
-         FN8jZZhyfZkDJWOogq2lpLsKlgGGwcVQsQyjVyfXYK0u0hd/bIFKN5ixzLWWLboU5/PY
-         WRd3Lx9mbKLPdMpkNKlWH2Gl7cC2nIJelAffmIktbTQfB0I7IEGmT+v3v6x7VCnNiS9s
-         nbQXgrvD96F3TQqi5HY5z2scs2EI4lzVNRzi26rOZAGC2cDfZy02KaIOxWGN6sq9H1Z2
-         chVg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760105816; x=1760710616;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=9ETTSmzMEMLXYvaO7iiXW2H9dZ8Hr5VPzXraeMoXOYA=;
-        b=SOMNKNBIPDiAilWG+OIhT4vvCcxiPXLPYhjc8Fmz8kFe2ik0U8HnFpGvk3+UvYVF5V
-         C5JGxZpU2bMeLtDV/xkSqWBi+T5WLWbcsMJ9Fuy7yei37vuKgHPEMmqRC6wsAU8aSrDm
-         RDbAyRL3N6HpWuYfctM7e2JW5TeHKiDT2O/h9Fb9Rf1tz6SVJrQxZtNMsd1Jr4xPZ8d8
-         DpkyKVg/8+rkNxqiJwCRzdoOx36Rpbw6wn3Giw6oRlK7RcMBjaUiJ9gRNoQfyx5CT20m
-         MG0bAEnmNwR4XKjAaqzfhxQ0z0oKDXAPx7WEmO4Yl1LkgIC94uM435yZ27A6ItgA9NfO
-         qY9Q==
-X-Forwarded-Encrypted: i=1; AJvYcCW3u4C0TVPOTLPNPcqpvtY1LzBxlQXHoz8Q5ebWP1W/RrZYkmgF64uojfeM8xzaJSDjUAX/l/7nirrf@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywbtw5sGxvrD4poUYKkVzmyd1GNKy6tMvd8huN96BRaRSPAD85c
-	E8ASIoqmaZrJADofbNtZMwW3Q9KYrvMfAOC6G5iefoTLjsqQfQKHp1dSlLfwY5Ggm0k=
-X-Gm-Gg: ASbGncuv1aQleA8h2N2oG1HOwh8V5FC/PKyk7TNQd1AKKC8vNw8KrNLpl3ukt/d8Iy2
-	v3PKsUVVUH8JtQij01ppJZ17LcDqDBRU5swOmECmAfZ0fqcJJI0fnka96Zn+ExFHDngrND7aakH
-	Nvua0XFa+HZAS+wyrABuq89qf+51pBF+7teLfsnIOU+hwfEtv0/QKnvcExlp5CFAafkxglw/ECm
-	TZRq1RUn/7WglSHxiApJ3+yjszabWUlWZkjg4yqkMsN/yjiU4piUXM+t6h9jOu9I5JL7pGQbWT/
-	YvkCElIhnvOa2TaYP7/vgLtbZIXN2IcoxhPoOlbaJUflpceImuePRtv/ZB1c79bQLA1SRB2DVIs
-	9p0qQr8gazhX1K5JxKdNclPRjls79bdC7dGe7BT9U5aNYrekL
-X-Google-Smtp-Source: AGHT+IHEAsH6ZcFu+OEyw3ew5Qe/YQEPpYcPrHdEy87KxK9nyj76/ZCLGpnuNV/60Jx9Jzca5xe2iQ==
-X-Received: by 2002:a17:906:4795:b0:b41:1657:2b1d with SMTP id a640c23a62f3a-b50abfcc8dbmr1274289566b.50.1760105815884;
-        Fri, 10 Oct 2025 07:16:55 -0700 (PDT)
-Received: from draszik.lan ([80.111.64.44])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b55d66cc4b8sm247352066b.30.2025.10.10.07.16.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Oct 2025 07:16:55 -0700 (PDT)
-Message-ID: <ccd3c985a202f3fdbead41fcb3f0ba45950f74f6.camel@linaro.org>
-Subject: Re: [PATCH v2 02/10] dt-bindings: soc: samsung: exynos-pmu: move
- gs101-pmu into separate binding
-From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Peter Griffin <peter.griffin@linaro.org>, Ulf Hansson	
- <ulf.hansson@linaro.org>, kernel-team@android.com, 
-	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org, Krzysztof
- Kozlowski <krzk@kernel.org>, linux-arm-kernel@lists.infradead.org, Marek
- Szyprowski	 <m.szyprowski@samsung.com>, linux-kernel@vger.kernel.org, Conor
- Dooley	 <conor+dt@kernel.org>, linux-pm@vger.kernel.org, Tudor Ambarus	
- <tudor.ambarus@linaro.org>, Will McVicker <willmcvicker@google.com>, Alim
- Akhtar <alim.akhtar@samsung.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>
-Date: Fri, 10 Oct 2025 15:16:54 +0100
-In-Reply-To: <176009895995.7689.883182155048414797.robh@kernel.org>
-References: <20251009-gs101-pd-v2-0-3f4a6db2af39@linaro.org>
-	 <20251009-gs101-pd-v2-2-3f4a6db2af39@linaro.org>
-	 <176009895995.7689.883182155048414797.robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-2 
+	s=arc-20240116; t=1760105996; c=relaxed/simple;
+	bh=cnxpNF5oAzC3psAy/x0fBmyQxHTFD0K4Zk1GsmPaKTQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=b79pUXzoREWaBrT+rW/RjkX+YAAA1pIJaXk5YnUwdhoM0RKlXNE1eGJe3QyBp8I+3mqOmNJfEy+oJ6hWGonRPufXzijBvk1X05MTtERj1tKpjf0LXWLsoBqzuC4JRLB4bOzsATgSlZXJIZRHuoybiwt1xORGuZ4UvcWwIq5ohaE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Gkl6NKmR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A2DD6C4CEF1;
+	Fri, 10 Oct 2025 14:19:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1760105996;
+	bh=cnxpNF5oAzC3psAy/x0fBmyQxHTFD0K4Zk1GsmPaKTQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Gkl6NKmRfM0ydP8448tgSAq6xZcm51b9wSgot4Td4X9iEAywhU4bM7VS79h+GBm1b
+	 eKg9z4+XiMs/Pzh5LiAxhFM1wkq9rmQRuH4fWM6uJ2Z8KbFKStek27Bk7Dz1FU73bH
+	 TZGLR3gOSyZhuckvVryxUZUfB6eiXl4lMtbMovqx7hTI6qkFf41LAywJ7L0uahg0e7
+	 dh+OP96RKt5Nfbf9o2Az83jlvt0tRVUrA8B0hdCttHbdRUVi60w0EpX/Gk2MQ/HYu6
+	 X3XZHbTmINxAaStbO6OKxpyCxFQbgP7AxR/iaKa20MGLkgw9a5MqSHveLpwQrIVVMG
+	 jv76II99NprhQ==
+Date: Fri, 10 Oct 2025 15:19:51 +0100
+From: Conor Dooley <conor@kernel.org>
+To: "Shen Jianping (ME-SE/EAD2)" <Jianping.Shen@de.bosch.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>,
+	"jic23@kernel.org" <jic23@kernel.org>,
+	"lars@metafoo.de" <lars@metafoo.de>,
+	"robh@kernel.org" <robh@kernel.org>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"dima.fedrau@gmail.com" <dima.fedrau@gmail.com>,
+	"marcelo.schmitt1@gmail.com" <marcelo.schmitt1@gmail.com>,
+	"linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"Lorenz Christian (ME-SE/EAD2)" <Christian.Lorenz3@de.bosch.com>,
+	"Frauendorf Ulrike (ME/PJ-SW3 M/PJ-AIP)" <Ulrike.Frauendorf@de.bosch.com>,
+	"Dolde Kai (ME-SE/PAE-A3)" <Kai.Dolde@de.bosch.com>
+Subject: Re: AW: [PATCH v5 1/2] dt-bindings: iio: imu: smi330: Add binding
+Message-ID: <20251010-purse-lunar-66f7209afb83@spud>
+References: <20251009153149.5162-1-Jianping.Shen@de.bosch.com>
+ <20251009153149.5162-2-Jianping.Shen@de.bosch.com>
+ <20251009-squishy-poem-ddb0fdd9583d@spud>
+ <b4436b4f-a54b-4294-8dd9-7a4b95711dc4@kernel.org>
+ <AM8PR10MB472118D128FC27000C09C49ACDEFA@AM8PR10MB4721.EURPRD10.PROD.OUTLOOK.COM>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="lBYu72WoRi+kMI37"
+Content-Disposition: inline
+In-Reply-To: <AM8PR10MB472118D128FC27000C09C49ACDEFA@AM8PR10MB4721.EURPRD10.PROD.OUTLOOK.COM>
 
-On Fri, 2025-10-10 at 07:23 -0500, Rob Herring (Arm) wrote:
->=20
-> On Thu, 09 Oct 2025 16:25:04 +0100, Andr=C3=A9 Draszik wrote:
-> > The gs101-pmu binding is going to acquire various additional (pattern)
-> > properties that don't apply to other PMUs supported by this binding.
-> >=20
-> > To enable this, move google,gs101-pmu into a separate binding.
-> >=20
-> > Signed-off-by: Andr=C3=A9 Draszik <andre.draszik@linaro.org>
-> > ---
-> > =C2=A0.../bindings/soc/google/google,gs101-pmu.yaml=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 | 67 ++++++++++++++++++++++
-> > =C2=A0.../bindings/soc/samsung/exynos-pmu.yaml=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 20 -------
-> > =C2=A0MAINTAINERS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 1 +
-> > =C2=A03 files changed, 68 insertions(+), 20 deletions(-)
-> >=20
->=20
-> My bot found errors running 'make dt_binding_check' on your patch:
->=20
-> yamllint warnings/errors:
->=20
-> dtschema/dtc warnings/errors:
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/s=
-oc/google/google,gs101-pmu.yaml: $id: Cannot determine base
-> path from $id, relative path/filename doesn't match actual path or filena=
-me
-> =C2=A0	 $id: http://devicetree.org/schemas/soc/samsung/google,gs101-pmu.y=
-aml
-> =C2=A0	file: /builds/robherring/dt-review-ci/linux/Documentation/devicetr=
-ee/bindings/soc/google/google,gs101-pmu.yaml
 
-I moved the file ultimately but had restricted to samsung using DT_SCHEMA_F=
-ILES=3D
-during my binding check run :-(
+--lBYu72WoRi+kMI37
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-A.
+On Fri, Oct 10, 2025 at 08:13:12AM +0000, Shen Jianping (ME-SE/EAD2) wrote:
+> Hello Conor and Krzysztof,
+>=20
+> Sorry for that. The patch is automatically generated. The ack shall be au=
+tomatically added to patch. For some reason the ack was not properly handel=
+ed in the automatic generation. This will not happen again.
+
+I don't care if the patch is automatically generated, it is still
+your responsibility to do these things correctly - doubly so I would say
+if you are using some AI or automatic assistance to create the patch.
+
+You signed off on it, you need to make sure it is right.
+
+> We have a kernel test robot finding in v4.   [jic23-iio:testing 119/122] =
+smi330_core.c:undefined reference to `ffs'.  The patch v5 is to fix this fi=
+nding.
+
+Given the patch has been applied, the typical thing to do is to send a
+follow-up patch fixing the issue.
+
+Maybe you automatic patch generator should also tell you not to top
+post, but since it hasn't: don't top post. Also don't use whatever tool
+is mangling links.
+
+Thanks,
+Conor.
+
+>=20
+> Best regards
+> Jianping
+>=20
+> >>> From: Jianping Shen <Jianping.Shen@de.bosch.com>
+> >>>
+> >>> Add devicetree binding for Bosch imu smi330.
+> >>> The smi330 is a combined three axis angular rate and three axis
+> >>> acceleration sensor module.
+> >>>
+> >>> Signed-off-by: Jianping Shen <Jianping.Shen@de.bosch.com>
+> >>
+> >> https://lore/
+> >> .kernel.org%2Fall%2F20250916-henna-rinsing-32a18a4d30b9%40spud%2F&data
+> >>
+> >=3D05%7C02%7CJianping.Shen%40de.bosch.com%7Cb16bd41f74b6439328e908de0
+> >7a0
+> >>
+> >6a33%7C0ae51e1907c84e4bbb6d648ee58410f4%7C0%7C0%7C63895658272275205
+> >1%7
+> >>
+> >CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwM
+> >CIsIlA
+> >>
+> >iOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=3DdA
+> >%2F
+> >> lUR6HfaamYwPotYUdUrHiaG2LgGJm8LEcmRth%2FjQ%3D&reserved=3D0
+> >>
+> >> Why did you ignore my ack?
+> >> Didn't Jonathan already apply v4 of this two weeks ago, why is there
+> >> even a v5 to begin with?
+> >
+> >Not only v4, but also v2 and reminder in v3:
+> >
+> >https://lore.kernel.or/
+> >g%2Fall%2F20250514-deserve-marina-
+> >224bef5b2db3%40spud%2F&data=3D05%7C02%7CJianping.Shen%40de.bosch.com
+> >%7Cb16bd41f74b6439328e908de07a06a33%7C0ae51e1907c84e4bbb6d648ee58410
+> >f4%7C0%7C0%7C638956582722772435%7CUnknown%7CTWFpbGZsb3d8eyJFbXB
+> >0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIld
+> >UIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=3D7lgke1m7JvcNjIKigI4ugH4fffFSZBZgZ
+> >PQvClYsAsk%3D&reserved=3D0
+> >
+> >
+> >and here I exactly reminded what has to be done:
+> >https://lore.kernel.or/
+> >g%2Fall%2F1196da81-ecd7-487c-8afc-
+> >e0d3660fa158%40kernel.org%2F&data=3D05%7C02%7CJianping.Shen%40de.bosch.c
+> >om%7Cb16bd41f74b6439328e908de07a06a33%7C0ae51e1907c84e4bbb6d648ee58
+> >410f4%7C0%7C0%7C638956582722786576%7CUnknown%7CTWFpbGZsb3d8eyJF
+> >bXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCI
+> >sIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=3DtoM%2BhpSCP6sNu8PU7Ed8iDG
+> >sQIRm6IvdYiWV8sdGjmo%3D&reserved=3D0
+> >
+> >which was completely ignored.
+> >
+> >So I can write detailed instructions and Jianping will just ignore it, b=
+ecause who am I
+> >to say anything?
+> >
+> >I will ignore future contributions from Jianping in such case. It is was=
+te of our time.
+> >
+> >Best regards,
+> >Krzysztof
+
+--lBYu72WoRi+kMI37
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaOkWAwAKCRB4tDGHoIJi
+0nJFAQD0cyo80Sf5z/EG9yOUsLaQRNWs4bPCvpd2CWJIAaJS+wEA5706LQ/85jfb
+gtQd6shYF5jJHlYUzVK3+8IbOiBwYAQ=
+=EvaS
+-----END PGP SIGNATURE-----
+
+--lBYu72WoRi+kMI37--
 
