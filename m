@@ -1,117 +1,85 @@
-Return-Path: <devicetree+bounces-225413-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225414-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61FC8BCD898
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 16:33:00 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78CC7BCD8A1
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 16:33:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 5A8184E71EE
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 14:32:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 32F50427D8D
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 14:33:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DCCD2367B0;
-	Fri, 10 Oct 2025 14:32:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAA4E257821;
+	Fri, 10 Oct 2025 14:33:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ae0M31rd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rudQa4Cw"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 436C91DE8A4;
-	Fri, 10 Oct 2025 14:32:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B0422367B0;
+	Fri, 10 Oct 2025 14:33:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760106776; cv=none; b=kN9z7yxmlkt1V8vp5oSuTDSr3WF/3Himv6cQjWraQBSjDnE6JUn9V4go6aAEABqEeRb/Jcg7lN1zKfyMALRU0PinSnUJp1GPV8tWy3TDSwlkviuhkStSsaaKT8/94eJ/Z98R3ekZ5JXkOAcCnKjMYlNboMSNOY8fKpmDegLUd6w=
+	t=1760106797; cv=none; b=i+0QaUTgB917asxhHFpiWWuHxUqWRzCuMPz7YYSVzortl2xUfbwoJLS7v8KmzsxZNjL9wBeXoZutrsOBdaknZYXb/umRHoJ5Iv2058GCKeNzItx+FQsE8BI4/KeD93+tMFR2vak7Mbf7uoNZNkTnMGNsNy+pjNG5ofcGBW3wo3M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760106776; c=relaxed/simple;
-	bh=T+LRS+QiugIh4I2/N14G4GgJQJfwQzir1ldoMUFkfQo=;
+	s=arc-20240116; t=1760106797; c=relaxed/simple;
+	bh=m2PXNXrLebhFa6++1XBL2y98d/eheP7r5cvfGNR8yVA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Lppg/PBPBX9Kqkud3j8rVz3ZYUyNrr8fMxDB1s3z5FLPGem1uE2naB9dX21rzF71lyCoASGRL3AjyB+BbO5gH2BJ7o+GvIQuPKS/R4veaBfTC9UUqewl7ScL/TuHWQcURStEPKoHjzITjzxYJyMw1yck0FoayWVF6fwMSLW9KSA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ae0M31rd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AED75C4CEF1;
-	Fri, 10 Oct 2025 14:32:55 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=KxdUVMHBb5Ixq/KXoh5jHs4cojRIfMlT0MF4/HE94/XCgS5Abe8WFsi7VCDxZwqUUT6O2Tb7lxCGYf8CsVo8/Ip+Aaf19vPlHrlfb8HuExQT7ukAaKZbmEu1Uin1gG/DuUAyixJwg25AGfU0MozQL8kLgIvM6/93IW3ersSK+ls=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rudQa4Cw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C0E5AC4CEF1;
+	Fri, 10 Oct 2025 14:33:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760106775;
-	bh=T+LRS+QiugIh4I2/N14G4GgJQJfwQzir1ldoMUFkfQo=;
+	s=k20201202; t=1760106796;
+	bh=m2PXNXrLebhFa6++1XBL2y98d/eheP7r5cvfGNR8yVA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ae0M31rdci3aj6qUaCrf/DOdMKMknXBkNkP5tIQEF0xiq05gWmp8FEoP7XxXQlK7G
-	 bO5nmWAj6TwciNjW006Q2Ai8Es2lNlQfhzME0fwVnjkqAACxqRAovNT8pedYIw5W1z
-	 Dyl3ZDKmzfJTFbBzKpC4M1cBxDBkD3avOlWm/BbMNndVRpha8+iC/kvC5VP5+vjlTC
-	 9UlBnZycnqYcwbGZMuy6qghXRPAVFtdj0erNhMCISRQptl+FzTPCNuCKRLK5FSUPl+
-	 a9s3650zvUXziCPlY29NvhTMb5jbqGc6dc/7CTIg1yKXol3HvYYdAmF+r5NAHveqlZ
-	 Gxv8r5jB1uVKQ==
-Date: Fri, 10 Oct 2025 09:32:54 -0500
+	b=rudQa4CwjZPlcEyIjZSD/meAC8K/kcQSLFWXk+zb4u95bUz0GkUzdYbVvZxn0i3bP
+	 JsHQPldNp8xjCqCXHwe4gn+Yig8oSdETZUtZjXjnS1BykzpxNxjZdrPiI7pbSxeJdD
+	 b9kUcTCTcofCNkeoNMS+rFsRqfP83/CvcX+IIbqqFjk6awPJ2d8u0Y8OaqlG/BVfFx
+	 wy8TTmZsckSy+RkniV4NZzLz8MP+vXJL5tX5a/u2dihQaIT5VBCMyBlw5h4UgA3Esh
+	 wdnWpHqe7EMBbdR9kfTWOE+5HrAB/JjxULpRjeyjwks44VNfm1Hv+MarEzwhPx7NN2
+	 exDyON92tAnCw==
+Date: Fri, 10 Oct 2025 09:33:14 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Shubhi Garg <shgarg@nvidia.com>
-Cc: devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+To: =?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	Peter Griffin <peter.griffin@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org, linux-rtc@vger.kernel.org,
-	Jonathan Hunter <jonathanh@nvidia.com>, Lee Jones <lee@kernel.org>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>
-Subject: Re: [PATCH v7 1/4] dt-bindings: rtc: Document NVIDIA VRS RTC
-Message-ID: <176010677341.249054.11003330189373181817.robh@kernel.org>
-References: <20251007135738.487694-1-shgarg@nvidia.com>
- <20251007135738.487694-2-shgarg@nvidia.com>
+	linux-samsung-soc@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, kernel-team@android.com,
+	Tudor Ambarus <tudor.ambarus@linaro.org>,
+	linux-arm-kernel@lists.infradead.org,
+	Will McVicker <willmcvicker@google.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	linux-clk@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: clock: google,gs101-clock: add power-domains
+Message-ID: <176010679359.249518.14445454979945020127.robh@kernel.org>
+References: <20251007-power-domains-clock-google-gs101-clock-v1-1-1ee73c453ba8@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20251007135738.487694-2-shgarg@nvidia.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20251007-power-domains-clock-google-gs101-clock-v1-1-1ee73c453ba8@linaro.org>
 
 
-On Tue, 07 Oct 2025 13:57:35 +0000, Shubhi Garg wrote:
-> Add device tree bindings for NVIDIA VRS (Voltage Regulator Specification)
-> RTC device. NVIDIA VRS is a Power Management IC (PMIC) that implements a
-> power sequencing solution with I2C interface. The device includes RTC
-> which provides functionality to get/set system time, retain system
-> time across boot, wake system from suspend and shutdown state.
+On Tue, 07 Oct 2025 17:03:10 +0100, André Draszik wrote:
+> The CMU can be part of a power domain, so we need to allow the relevant
+> property 'power-domains'.
 > 
-> Supported platforms:
-> - NVIDIA Jetson AGX Orin Developer Kit
-> - NVIDIA IGX Orin Development Kit
-> - NVIDIA Jetson Orin NX Developer Kit
-> - NVIDIA Jetson Orin Nano Developer Kit
-> 
-> Signed-off-by: Shubhi Garg <shgarg@nvidia.com>
+> Signed-off-by: André Draszik <andre.draszik@linaro.org>
 > ---
-> 
-> v7:
-> - dt binding file name fix to keep same as compatible
-> 
-> v6:
-> - compatible name fixes to "nvidia,vrs-10"
-> - changed dtb node name to pmic@3c
-> 
-> v5:
-> - moved device tree bindings from mfd to rtc
-> - changed dtb node name to rtc@3c
-> - changed compatible string to "nvidia,vrs10-rtc"
-> 
-> v4:
-> - no changes
-> 
-> v3:
-> - fixed device tree node name to generic "pmic@3c"
-> - fixed indentation
-> 
-> v2:
-> - fixed copyrights
-> - updated description with RTC information
-> - added status node in dtb node example
-> 
->  .../bindings/rtc/nvidia,vrs-10.yaml           | 59 +++++++++++++++++++
->  1 file changed, 59 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/rtc/nvidia,vrs-10.yaml
+>  Documentation/devicetree/bindings/clock/google,gs101-clock.yaml | 3 +++
+>  1 file changed, 3 insertions(+)
 > 
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
 
