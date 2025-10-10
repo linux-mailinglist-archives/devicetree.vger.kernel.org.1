@@ -1,58 +1,62 @@
-Return-Path: <devicetree+bounces-225465-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225466-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21DD9BCE4C1
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 20:51:44 +0200 (CEST)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD33DBCE4EE
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 20:56:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 1934C4EC049
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 18:51:43 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 58ABF3569D4
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 18:56:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FBEE2C08B2;
-	Fri, 10 Oct 2025 18:51:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C77E2FE066;
+	Fri, 10 Oct 2025 18:56:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OIQGNbCx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OSYGnCab"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6522620A5DD;
-	Fri, 10 Oct 2025 18:51:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D6571DFD8F;
+	Fri, 10 Oct 2025 18:56:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760122280; cv=none; b=lxsqfqC27VCg9ZvzOeTgu4G9GLNqySjmYRxz2REJPpApyJ7Wjjfw3P9GS6B4cW+lpzDtQxI6v4undF7AzclHKkznYGOlyAx49BlvcknD9D6mioH2eO/1NBxZpwBPy8wkrLwlqG/gkPVMCMA6Lcw5VKM+1Jm5ynBEX9pZ+TDnM7w=
+	t=1760122587; cv=none; b=Tun1+nmcgywmZKmWidNzpzkh4MffMC/7EeDgQem94MZcSkziWYWzIxLYnIpZHRbLWsAlGArA+eVw123IbmrTxVaWn51K/kn2sP22cs8+U+DQ0FCe1OkUSC/PXA7dFR8cLf/UW8vUvx2vXybLegoVj6U3H6ZwX7hZb8xe4f9sV18=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760122280; c=relaxed/simple;
-	bh=RlcjMZ3VmHH4RMawLNJUGxUZjR33UrE1qzxFtUSZDdI=;
+	s=arc-20240116; t=1760122587; c=relaxed/simple;
+	bh=sFXQ+M87qqrW6E3ybEnLSe49i0qbSE5OdfOw9RtTlvs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LC18LWlwt8cl2FgHUZgbq+6QjPIaZMLFA77nGQNzIcx1J8mtKIDeRTP0Jyb8jmtQcxGXE4klwl9r4lFTY45g+x/l/0/OnZ1moIo2tJhFvEhe7BzZtRnvBxkA2hSFIx/2YjsR0mQn0i4zislEFjknPsUW0Mq76Dw7Es/OoaH9ZEA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OIQGNbCx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A637C4CEFE;
-	Fri, 10 Oct 2025 18:51:20 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=DLsCxZdjoVEJdjnRm45YcfnF4PHviWW2SXpCNwgIIPfbbRB8dP6SeE3lZWkucxxcqTlXaj+B4hcUtEm/xDddtJe/XAVM8QkNLfvhlJk4c7eLlzAVx06PzYLxYQJpwnBOT9gNhK02PWHXK4Po3X03P9tEIDD4+3dIQrYLBpzHSpE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OSYGnCab; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E021CC4CEF1;
+	Fri, 10 Oct 2025 18:56:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760122280;
-	bh=RlcjMZ3VmHH4RMawLNJUGxUZjR33UrE1qzxFtUSZDdI=;
+	s=k20201202; t=1760122587;
+	bh=sFXQ+M87qqrW6E3ybEnLSe49i0qbSE5OdfOw9RtTlvs=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=OIQGNbCx5DQPVYNCQ6vp03KRhopixn3/01Nspp+IRCLyCNjXO0R2zUJjbkzYDuiEm
-	 vvmPpghle7ECaPjL+HG+zJ+cMHbHJsM4x1Ct20xw4V5q0HvHU7qGfMWmDABQ7ss51q
-	 J1Zt/3LgVgGkwUhBMMO0q705XWivbuflj4qfesgA21SCw5eKFCND0u+DCioxJf95Zu
-	 h1f7yXCg6nYHb/4yaefYbO0AQvKJ2A6TnHPakQXBtcJSDp0o0zRySxR9OW9PSwcAGR
-	 6wklolVm3ihtPnMA0pNVIFPoiamNWFmYg9ua/iM7IXMkCupsyIWzh/8+7NAC4r7IS/
-	 9f8zbF9z5+6aQ==
-Date: Fri, 10 Oct 2025 13:51:18 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Magnus Damm <magnus.damm@gmail.com>
-Subject: Re: [PATCH v3] dt-bindings: bus: renesas-bsc: allow additional
- properties
-Message-ID: <176012227577.709483.4239787634293287864.robh@kernel.org>
-References: <20251009183630.5451-2-wsa+renesas@sang-engineering.com>
+	b=OSYGnCabgES32RoI0V09lLgiiElnUWix1Xn33WTj26kaHl2vj+xKrMKF9eF17PmtE
+	 OCAPZPBY5mhLpFODwkVm6MHcY6K2FXQ/EUi3SAQZ3/OZvSEetdZpf2TZCeCFTDfnLv
+	 uPEuZRgNyOkXHcJf88qXxGQqIpeSUTehRZzImZK9BgcAhJ7XvMyCIvepImha0oPovi
+	 3eq/BYQ04YL3/kqabJH+PhPgvr2HL2kSRSqNMsRfhcTQM3x49aWPEoP9tE3QcOpe2W
+	 LNS3HPpKB1oknlDai87NAoL1bTWJVVm4FtXwcz9QJUkKgaMfHh3s9B+7bWn8XYPq+f
+	 6RE8ybzpXtN5g==
+Date: Fri, 10 Oct 2025 13:56:24 -0500
+From: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Baojun Xu <baojun.xu@ti.com>, broonie@kernel.org, tiwai@suse.de,
+	andriy.shevchenko@linux.intel.com, 13916275206@139.com,
+	shenghao-ding@ti.com, linux-sound@vger.kernel.org,
+	linux-kernel@vger.kernel.org, lgirdwood@gmail.com,
+	krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
+	k-yi@ti.com, henry.lo@ti.com, robinchen@ti.com, jesse-ji@ti.com,
+	will-wang@ti.com, jim.shil@goertek.com, toastcheng@google.com,
+	chinkaiting@google.com
+Subject: Re: [PATCH v6 1/2] ASoC: tas2781: Support more newly-released
+ amplifiers tas5802, tas5815, and tas5828 in the driver
+Message-ID: <20251010185624.GA713043-robh@kernel.org>
+References: <20251010022951.51581-1-baojun.xu@ti.com>
+ <46346003-603a-48a8-8359-eaca77c8cd63@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,28 +65,25 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251009183630.5451-2-wsa+renesas@sang-engineering.com>
+In-Reply-To: <46346003-603a-48a8-8359-eaca77c8cd63@kernel.org>
 
+On Fri, Oct 10, 2025 at 04:33:47AM +0200, Krzysztof Kozlowski wrote:
+> On 10/10/2025 04:29, Baojun Xu wrote:
+> > TAS5802/TAS5815/TAS5828 has on-chip DSP without current/voltage feedback.
+> > 
+> > Signed-off-by: Baojun Xu <baojun.xu@ti.com>
+> 
+> You clearly do not want to follow what we ask... subject is still wrong,
+> but in different way. I do not understand why simple comment from Rob in
+> v4 has to be done in three versions.
+> 
+> Your subject is too long, contains redundant data and references driver
+> which is for sure wrong. See writing bindings.
+> 
+> Please read again Rob's comment.
 
-On Thu, 09 Oct 2025 20:34:53 +0200, Wolfram Sang wrote:
-> Allow additional properties to enable devices attached to the bus.
-> Fixes warnings like these:
-> 
-> arch/arm/boot/dts/renesas/sh73a0-kzm9g.dtb: bus@fec10000 (renesas,bsc-sh73a0): Unevaluated properties are not allowed ('ethernet@10000000' was unexpected)
-> arch/arm/boot/dts/renesas/r8a73a4-ape6evm.dtb: bus@fec10000 (renesas,bsc-r8a73a4): Unevaluated properties are not allowed ('ethernet@8000000', 'flash@0' were unexpected)
-> 
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
-> ---
-> 
-> Changes since v1:
-> * added tag from Geert, thanks!
-> * dropped superfluous '^.*' from the regex
-> 
->  .../devicetree/bindings/bus/renesas,bsc.yaml         | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
-> 
+You are looking at the wrong patch. Not that the driver patch subject 
+couldn't use some improvement too.
 
-Applied, thanks!
-
+Rob
 
