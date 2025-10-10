@@ -1,116 +1,130 @@
-Return-Path: <devicetree+bounces-225522-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225523-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB420BCEA6F
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 23:56:56 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6EA6BCEA86
+	for <lists+devicetree@lfdr.de>; Sat, 11 Oct 2025 00:04:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 85E5D188715F
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 21:57:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 952325455EE
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 22:03:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F144304BDF;
-	Fri, 10 Oct 2025 21:56:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JjIavNT6"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C54A926AA98;
+	Fri, 10 Oct 2025 22:03:56 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from cstnet.cn (smtp84.cstnet.cn [159.226.251.84])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 754CB304BDD;
-	Fri, 10 Oct 2025 21:56:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F40B264614;
+	Fri, 10 Oct 2025 22:03:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.84
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760133363; cv=none; b=D/ZUyqtw89w7sl7r1VApMMus1qCrlfKKOAGN3tLxvbs0Ikjq4UWWrHmSJJ55GCWautETk0Ket+fMJ4up4jShA/LBlxcLgitU/T++X+A20gxuz/kLyHCEO72iMMPgpYAQVC+e+myCGgiCF2UK0tkVwppS/HsN+VNazl/g1531GNA=
+	t=1760133836; cv=none; b=PgcRW/16Vs31Bgh8flFu+F7+e1Aruwv3jqhQDOXnm0qmidCOBias8WvwlBa0S7h51MLua3CGI95SaG9Lnkh7z1Gdz5HoRiL0bMDyx3AXfsTPUdTvbInT27CPAvE3Es5qiIkyE+MBbFIGXM4+uv+SIkZNYVO2rSg2ub1JvWSaWlY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760133363; c=relaxed/simple;
-	bh=t46kjDiMah/zekXRjDSdXOUOoGpyx+/Cr/l+MUXLY2g=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=J+kME6KmdZCpbMGba0rHfWSJeiEbbnyMZylXDFyhqUpHS1lAq6b3pWDy+aQpKOyjKNFsQwZ7sDQG13FcCDdT8FXQZW7OE0arfo4O+sQPmCevJt0fQ1+RfH5IhosaN3uTC87rBGrvJKAhc74zmzF+5nf9JB+HblC/Fy42pMoqOYY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JjIavNT6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B3BB6C116B1;
-	Fri, 10 Oct 2025 21:56:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760133362;
-	bh=t46kjDiMah/zekXRjDSdXOUOoGpyx+/Cr/l+MUXLY2g=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=JjIavNT6UwXft3fPGYaDZegvMKYz7k1JTExmOJxuY2GHFkxK3+P1IF43CEAgpsW8r
-	 B9vhEvi8TGbAcG2tlmWcIvRf0JDg5Da9goDcUmaqveQx1c8JPyqYojIXAHjpIRdKUR
-	 nsKDBzD/vYVXCxfJ1nin7+bADQwh1MO8lWoSqp6SVgbNhdDtMrZuIAT6wC0czf9rP1
-	 LJazopt5R6e0qzH9j1ETdj1Db2ig1vzyozO7zToh3qL2QUDQf52M13GMRfLqcZvkZA
-	 fGcsyhxLrid9YbehH7WfhnQOQb9udnaBlMsQf6BkC2ShRCY9S9dGNqX8+NB0SriV+O
-	 W2FnDW5kd7cGQ==
-Date: Fri, 10 Oct 2025 14:56:00 -0700
-From: Drew Fustini <fustini@kernel.org>
-To: yunhui cui <cuiyunhui@bytedance.com>
-Cc: Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Kornel =?utf-8?Q?Dul=C4=99ba?= <mindal@semihalf.com>,
-	Adrien Ricciardi <aricciardi@baylibre.com>,
-	James Morse <james.morse@arm.com>,
-	Atish Kumar Patra <atishp@rivosinc.com>,
-	Atish Patra <atish.patra@linux.dev>,
-	Vasudevan Srinivasan <vasu@rivosinc.com>,
-	Conor Dooley <conor.dooley@microchip.com>, guo.wenjia23@zte.com.cn,
-	liu.qingtao2@zte.com.cn, linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [External] [PATCH v4 0/3] RISC-V: Detect Ssqosid extension and
- handle srmcfg CSR
-Message-ID: <aOmA8DNt/y+WxT97@x1>
-References: <20251007-ssqosid-v4-0-e8b57e59d812@kernel.org>
- <CAEEQ3w=3pte5=CR9-R3rmCGFZ9ErJ9YcWS9i=JwPUb1Ty3ipwQ@mail.gmail.com>
+	s=arc-20240116; t=1760133836; c=relaxed/simple;
+	bh=WAQH2h36TSL7hjHlp7jybFBleTDmQfIXfTTqppPG6/I=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=p4zbfHIZ3ioEVNXE22AzR9RgxRnqB6Ie/2MSx7rw7kZH67jqSs8lOXzBRmIo95/nLLmFeylTXsoBQ5s3Tl0AU2K+bbjaAgJOodKUkWiXuR7pgwZsoPrwaFh/tfFLRgtPvRW3Bz2/tXgU2kgMPl4FBDk7y36fRdQpcsTCj4AfAmA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.84
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
+Received: from [192.168.0.106] (unknown [114.241.81.247])
+	by APP-05 (Coremail) with SMTP id zQCowAAXfRa2gulo4BSFDQ--.31232S2;
+	Sat, 11 Oct 2025 06:03:35 +0800 (CST)
+Message-ID: <0d50502a-0709-49ea-b412-927c17f15b60@iscas.ac.cn>
+Date: Sat, 11 Oct 2025 06:03:34 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAEEQ3w=3pte5=CR9-R3rmCGFZ9ErJ9YcWS9i=JwPUb1Ty3ipwQ@mail.gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/3] dt-bindings: interrupt-controller: add UltraRISC
+ DP1000 PLIC
+To: Lucas Zampieri <lzampier@redhat.com>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-riscv@lists.infradead.org, Charles Mirabile <cmirabil@redhat.com>,
+ Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
+ Samuel Holland <samuel.holland@sifive.com>,
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Alexandre Ghiti <alex@ghiti.fr>, Krzysztof Kozlowski <krzk@kernel.org>
+References: <20251009082013.1331361-1-lzampier@redhat.com>
+ <20251009082013.1331361-3-lzampier@redhat.com>
+ <9ae53c6d-613b-4a25-b672-88ffabfef4fa@kernel.org>
+ <CAOOg__BTJw53uTK4h_o4GK6x2D0XutTSQMpb-BDXh22Ac0-q-A@mail.gmail.com>
+Content-Language: en-US
+From: Vivian Wang <wangruikang@iscas.ac.cn>
+In-Reply-To: <CAOOg__BTJw53uTK4h_o4GK6x2D0XutTSQMpb-BDXh22Ac0-q-A@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:zQCowAAXfRa2gulo4BSFDQ--.31232S2
+X-Coremail-Antispam: 1UD129KBjvJXoWxJr4UAF43WFyxCrW8Jr4rGrg_yoW8ur4UpF
+	ZruFyqyF4vvF13u3yIqa10kayI9FsxJF9rKrs0qw45CF1qgr1rXFW2ga15CFn2vrs2qrWj
+	yF4I934fJa42vr7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUUvGb7Iv0xC_tr1lb4IE77IF4wAFF20E14v26r4j6ryUM7CY07I2
+	0VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rw
+	A2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Jr0_JF4l84ACjcxK6xII
+	jxv20xvEc7CjxVAFwI0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVW8Jr0_Cr1UM28EF7xvwV
+	C2z280aVCY1x0267AKxVW8Jr0_Cr1UM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVAC
+	Y4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r1j6r18McIj6I8E87Iv67AKxVWUJV
+	W8JwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IY64vIr41lFIxGxcIEc7CjxVA2Y2ka0xkI
+	wI1lc7CjxVAaw2AFwI0_Jw0_GFyl42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr
+	0_Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY
+	17CE14v26r1q6r43MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcV
+	C0I7IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY
+	6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWIevJa
+	73UjIFyTuYvjxU2wIDUUUUU
+X-CM-SenderInfo: pzdqw2pxlnt03j6l2u1dvotugofq/
 
-On Fri, Oct 10, 2025 at 08:23:50PM +0800, yunhui cui wrote:
-> Hi Drew,
-[snip]
-> > I think it makes sense to first focus on the detection of Ssqosid and
-> > handling of srmcfg when switching tasks. It has been tested against a
-> > QEMU branch that implements Ssqosid and CBQRI [6]. A test driver [7]
-> > was used to set srmcfg for the current process. This allows switch_to
-> > to be tested without resctrl.
-> 
-> Could we consider submitting the entire QoS functionality as a single
-> integrated patchset (indicating the upstream branch that the patchset
-> is based on)? This should include the content from
-> https://lore.kernel.org/linux-riscv/20230419111111.477118-1-dfustini@baylibre.com/
 
-Thanks for the feedback. I had thought that submitting Ssqosid
-separately would streamline the review of the parts that most affects
-existing arch/riscv code (like switch_to.h) before adding code for CBQRI
-and resctrl integration.
+On 10/10/25 21:57, Lucas Zampieri wrote:
+> On Thu, Oct 9, 2025 at 9:39 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>> On 09/10/2025 17:20, Lucas Zampieri wrote:
+>>> From: Charles Mirabile <cmirabil@redhat.com>
+>>>
+>>> Add a new compatible string for UltraRISC DP1000 PLIC.
+>>>
+>>> Signed-off-by: Charles Mirabile <cmirabil@redhat.com>
+>>> ---
+>>>  .../bindings/interrupt-controller/sifive,plic-1.0.0.yaml        | 2 ++
+>>>  1 file changed, 2 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml b/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
+>>> index 5b827bc24301..a419de50f5a8 100644
+>>> --- a/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
+>>> +++ b/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
+>>> @@ -74,6 +74,8 @@ properties:
+>>>                - sophgo,sg2044-plic
+>>>                - thead,th1520-plic
+>>>            - const: thead,c900-plic
+>>> +      - items:
+>>
+>> Missing SoC specific front compatible, me thinks.
+> Right, if I'm understanding this correctly, I would need to add the
+> sifive,plic-1.0.0 fallback compatible to indicate register layout
+> compatibility. However, the DP1000 PLIC has a claim register hardware
+> bug that breaks interrupt handling without the driver quirk. Should we
+> still include the fallback even though the generic driver doesn't
+> work?
 
-But I have gotten similar feedback from another person too. I can post a
-complete series that adds Ssqosid and CBQRI support including the
-resctrl interface. I have a cbqri branch [1] on top of riscv/for-next.
-I need to clean up some of the code, and then I can send a series with
-ssqosid+cbqri.
+See what the thead,c900-plic thing is doing. The PLIC compatible should
+be SoC-associated model, and then CPU-core-associated model.
 
-That cbqri branch just has device tree support in order to demonstrate
-the resctrl functionality. However, I did also work on support for the
-ACPI RQSC table earlier this year for a proof of concept [2]. I have
-been thinking that I will hold back the ACPI support until after Ssqosid
-and CBQRI support is reviewed. It also depends on some improvements
-regarding the ACPI PPTT table that James Morse is currently working on for
-ARM MPAM support [3].
+(I guess *theoretically* the PLIC could be external to the CPU but it
+doesn't really make sense to design a core this way.)
 
-Thanks,
-Drew
+Supposedly [1] the cores are called UR-CP100, so it should be
 
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/fustini/linux.git/log/?h=b4/cbqri
-[2] https://lf-rise.atlassian.net/wiki/spaces/HOME/pages/433291272/ACPI+RQSC+Proof+of+Concept
-[3] https://lore.kernel.org/all/20250910204309.20751-1-james.morse@arm.com/
+    compatible = "ultrarisc,dp1000-plic", "ultrarisc,cp100-plic";
+
+And the driver should match on ultrarisc,cp100-plic instead.
+
+Vivian "dramforever" Wang
+
+[1]: https://ultrarisc.github.io/ultrarisc-devblog/2025/06/18/dp1000-spec/
+
 
