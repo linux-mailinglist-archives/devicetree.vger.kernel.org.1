@@ -1,130 +1,203 @@
-Return-Path: <devicetree+bounces-225523-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225524-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6EA6BCEA86
-	for <lists+devicetree@lfdr.de>; Sat, 11 Oct 2025 00:04:02 +0200 (CEST)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A896BCEAA2
+	for <lists+devicetree@lfdr.de>; Sat, 11 Oct 2025 00:05:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 952325455EE
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 22:03:58 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 9CC0E351D7D
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 22:05:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C54A926AA98;
-	Fri, 10 Oct 2025 22:03:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EB2C26E6F8;
+	Fri, 10 Oct 2025 22:05:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ftpshqaQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from cstnet.cn (smtp84.cstnet.cn [159.226.251.84])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F40B264614;
-	Fri, 10 Oct 2025 22:03:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.84
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 665BB26D4DE
+	for <devicetree@vger.kernel.org>; Fri, 10 Oct 2025 22:05:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760133836; cv=none; b=PgcRW/16Vs31Bgh8flFu+F7+e1Aruwv3jqhQDOXnm0qmidCOBias8WvwlBa0S7h51MLua3CGI95SaG9Lnkh7z1Gdz5HoRiL0bMDyx3AXfsTPUdTvbInT27CPAvE3Es5qiIkyE+MBbFIGXM4+uv+SIkZNYVO2rSg2ub1JvWSaWlY=
+	t=1760133922; cv=none; b=BfEZvETCnKvsTF2yXuMxpU2+0xSRD8xFnqfThQgvC2WSXJ4k1iv+vcRUURiH0U7Wd5UcO3h1U5DMSmal5HFnM3+3X4Zp4xyCWDeADrhvy6cS5Gw+6iD4gkgGHbj7gECbiqae5gIAHWu4glInEWHcar6RC48qTfDbD+o4NdOoIjQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760133836; c=relaxed/simple;
-	bh=WAQH2h36TSL7hjHlp7jybFBleTDmQfIXfTTqppPG6/I=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=p4zbfHIZ3ioEVNXE22AzR9RgxRnqB6Ie/2MSx7rw7kZH67jqSs8lOXzBRmIo95/nLLmFeylTXsoBQ5s3Tl0AU2K+bbjaAgJOodKUkWiXuR7pgwZsoPrwaFh/tfFLRgtPvRW3Bz2/tXgU2kgMPl4FBDk7y36fRdQpcsTCj4AfAmA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.84
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
-Received: from [192.168.0.106] (unknown [114.241.81.247])
-	by APP-05 (Coremail) with SMTP id zQCowAAXfRa2gulo4BSFDQ--.31232S2;
-	Sat, 11 Oct 2025 06:03:35 +0800 (CST)
-Message-ID: <0d50502a-0709-49ea-b412-927c17f15b60@iscas.ac.cn>
-Date: Sat, 11 Oct 2025 06:03:34 +0800
+	s=arc-20240116; t=1760133922; c=relaxed/simple;
+	bh=ULkcu+ErWUDnM+0yG/yzCIlYRGPz4NooEguavSIe4VI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ak+KXMGFUvY9nY7HvR1+S8SqEcuVW4T7v78ij34QYyq1Hhc9V3sn4j4NF8bT0Jt5jeku0UoY3IbARP+KOy05d6DB3mjMCNqIM8tCmb/TFlBRnFI/LRJrrBX60/IQ/w70HPTNFrPwpfWWDjx6OQ9d1S73CMoO8ddafaNgZsvh7Kk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ftpshqaQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 07F84C116D0
+	for <devicetree@vger.kernel.org>; Fri, 10 Oct 2025 22:05:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1760133922;
+	bh=ULkcu+ErWUDnM+0yG/yzCIlYRGPz4NooEguavSIe4VI=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=ftpshqaQR+MKSoyq2LrMNvppCPHDo4+mvS503i3vArOetgTOzPb9pmDZxTRFQo0pd
+	 7uJ2PilMQxRneN9/uTkAcJ4hmoG4bAccEViWk9uFLL+BCjs8ATJfHqdANwprBaoQTI
+	 kUPaLbCtZ1JUplpr92fW7HMnbmZpJeyA3W75IySLAtEWfneEt5N5XCUU8uiLUv6sfh
+	 33avqC/ziB+l9bUDyosz2Zad5PLP/uopVe8D+H57UZcvbBQ6XRRNV2bGAx81XAKQ3B
+	 /nhpQSh4xNg+alcZZGa+V2315VHqp0X/SiTBjvpiTuaInGaSW2Qcrtrwlqs5Z6j5Vx
+	 q167V+a+kR3Fw==
+Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-b3e9d633b78so425130866b.1
+        for <devicetree@vger.kernel.org>; Fri, 10 Oct 2025 15:05:21 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCX79s1An47aAuleekJuCMSdKbsw8q1wWRAu3YHtHYOrrB6k4iXoPb45k4669iisbc1ghw5yu+Ikw6WS@vger.kernel.org
+X-Gm-Message-State: AOJu0YwtJe26VDfxo3sWQCD7kolF8HyMx6r0MWqEBHm6jnjHLN8tNlKf
+	OvUzD9ZoiANQO/eKNa1TPkVv/I3XbhfMhsb0/FybcnpZpxmB7XpxTGhYBZ8V0jlJ8orJP917Fkr
+	HPxiD3pMPJ7jmR1CPLPo4yC3l/d8Dtw==
+X-Google-Smtp-Source: AGHT+IFuxZcfGuyDGnYvmRipLMVeDwsutLoA5afsi1To0UHAb/F8Wkp4QQcADLcPiJYb4k/lngw3miLIFLMhQgfvXPY=
+X-Received: by 2002:a17:907:7213:b0:b38:49a6:583a with SMTP id
+ a640c23a62f3a-b50bf2bcc2amr1295183566b.23.1760133920590; Fri, 10 Oct 2025
+ 15:05:20 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] dt-bindings: interrupt-controller: add UltraRISC
- DP1000 PLIC
-To: Lucas Zampieri <lzampier@redhat.com>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-riscv@lists.infradead.org, Charles Mirabile <cmirabil@redhat.com>,
- Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
- Samuel Holland <samuel.holland@sifive.com>,
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Alexandre Ghiti <alex@ghiti.fr>, Krzysztof Kozlowski <krzk@kernel.org>
-References: <20251009082013.1331361-1-lzampier@redhat.com>
- <20251009082013.1331361-3-lzampier@redhat.com>
- <9ae53c6d-613b-4a25-b672-88ffabfef4fa@kernel.org>
- <CAOOg__BTJw53uTK4h_o4GK6x2D0XutTSQMpb-BDXh22Ac0-q-A@mail.gmail.com>
-Content-Language: en-US
-From: Vivian Wang <wangruikang@iscas.ac.cn>
-In-Reply-To: <CAOOg__BTJw53uTK4h_o4GK6x2D0XutTSQMpb-BDXh22Ac0-q-A@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:zQCowAAXfRa2gulo4BSFDQ--.31232S2
-X-Coremail-Antispam: 1UD129KBjvJXoWxJr4UAF43WFyxCrW8Jr4rGrg_yoW8ur4UpF
-	ZruFyqyF4vvF13u3yIqa10kayI9FsxJF9rKrs0qw45CF1qgr1rXFW2ga15CFn2vrs2qrWj
-	yF4I934fJa42vr7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUUvGb7Iv0xC_tr1lb4IE77IF4wAFF20E14v26r4j6ryUM7CY07I2
-	0VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rw
-	A2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Jr0_JF4l84ACjcxK6xII
-	jxv20xvEc7CjxVAFwI0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVW8Jr0_Cr1UM28EF7xvwV
-	C2z280aVCY1x0267AKxVW8Jr0_Cr1UM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVAC
-	Y4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r1j6r18McIj6I8E87Iv67AKxVWUJV
-	W8JwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IY64vIr41lFIxGxcIEc7CjxVA2Y2ka0xkI
-	wI1lc7CjxVAaw2AFwI0_Jw0_GFyl42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr
-	0_Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY
-	17CE14v26r1q6r43MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcV
-	C0I7IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY
-	6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWIevJa
-	73UjIFyTuYvjxU2wIDUUUUU
-X-CM-SenderInfo: pzdqw2pxlnt03j6l2u1dvotugofq/
+References: <20250811163749.47028-2-ziyao@disroot.org> <20250811163749.47028-3-ziyao@disroot.org>
+ <20250818175827.GA1507697-robh@kernel.org> <aKRh8M0szWKfpPF9@pie>
+In-Reply-To: <aKRh8M0szWKfpPF9@pie>
+From: Rob Herring <robh@kernel.org>
+Date: Fri, 10 Oct 2025 17:05:09 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+8U75kYFADTNnMONxrLy9H7YHukXNdtPpp20yG-HEyng@mail.gmail.com>
+X-Gm-Features: AS18NWBAJg1X1PNJxas_Z_phPDWL6QAMLHfZflRShgSUFengE_WoLreRmG5ombg
+Message-ID: <CAL_Jsq+8U75kYFADTNnMONxrLy9H7YHukXNdtPpp20yG-HEyng@mail.gmail.com>
+Subject: Re: [PATCH 1/3] dt-binding: pinctrl: Document Loongson 2K0300 pin controller
+To: Yao Zi <ziyao@disroot.org>, Linus Walleij <linus.walleij@linaro.org>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Huacai Chen <chenhuacai@kernel.org>, WANG Xuerui <kernel@xen0n.name>, linux-gpio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	loongarch@lists.linux.dev, Mingcong Bai <jeffbai@aosc.io>, 
+	Kexy Biscuit <kexybiscuit@aosc.io>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Tue, Aug 19, 2025 at 6:37=E2=80=AFAM Yao Zi <ziyao@disroot.org> wrote:
+>
+> On Mon, Aug 18, 2025 at 12:58:27PM -0500, Rob Herring wrote:
+> > On Mon, Aug 11, 2025 at 04:37:48PM +0000, Yao Zi wrote:
+> > > The pincontroller integarted in Loongson 2K0300 is able to configure
+> > > function multiplexing for all the pins. It could also configure drive
+> > > strength on basis of functions, which means all pins set to the same
+> > > function share drive-strength setting. Drive-strength configuration
+> > > isn't available for all functions, either.
+> > >
+> > > This binding utilizes two levels of subnodes, where the outer represe=
+nts
+> > > function and the inner represents groups. Drive-strength is allowed i=
+n
+> > > the outer since it's shared among all groups configured to the functi=
+on.
+> > >
+> > > Signed-off-by: Yao Zi <ziyao@disroot.org>
+> > > ---
+> > >  .../pinctrl/loongson,ls2k0300-pinctrl.yaml    | 92 +++++++++++++++++=
+++
+> > >  MAINTAINERS                                   |  6 ++
+> > >  2 files changed, 98 insertions(+)
+> > >  create mode 100644 Documentation/devicetree/bindings/pinctrl/loongso=
+n,ls2k0300-pinctrl.yaml
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/pinctrl/loongson,ls2k0=
+300-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/loongson,ls2k0=
+300-pinctrl.yaml
+> > > new file mode 100644
+> > > index 000000000000..cbd74cb45342
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/pinctrl/loongson,ls2k0300-pin=
+ctrl.yaml
+> > > @@ -0,0 +1,92 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/pinctrl/loongson,ls2k0300-pinctrl=
+.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: Loongson-2K0300 SoC Pinctrl Controller
+> > > +
+> > > +maintainers:
+> > > +  - Yao Zi <ziyao@disroot.org>
+> > > +
+> > > +allOf:
+> > > +  - $ref: pinctrl.yaml#
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    const: loongson,ls2k0300-pinctrl
+> > > +
+> > > +  reg:
+> > > +    items:
+> > > +      - description: Pin function-multiplexing configuration registe=
+rs
+> > > +      - description: Pin drive-strength configuration registers
+> > > +
+> > > +  reg-names:
+> > > +    items:
+> > > +      - const: mux
+> > > +      - const: drive
+> > > +
+> > > +patternProperties:
+> > > +  '^func-':
+> > > +    type: object
+> > > +
+> > > +    $ref: pincfg-node.yaml#
+> > > +
+> > > +    properties:
+> > > +      drive-strength:
+> > > +        description:
+> > > +          Maximum sink or source current as defined in pincfg-node.y=
+aml. Note
+> > > +          that drive strength could only be configured on function b=
+asis, i.e.,
+> > > +          all pins multiplexed to the same function share the same
+> > > +          configuration.
+> > > +
+> > > +          This could only be configured for several functions, inclu=
+ding jtag,
+> > > +          dvo, uart, gmac, sdio, spi, i2s, timer, usb and emmc.
+> > > +        enum: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+> >
+> > How do you know what pin this drive strength corresponds to without any
+> > other properties? Node names generally aren't important, so you
+> > shouldn't be using that.
+>
+> Thanks for the hint... yes I'm matching the node name to identify
+> functions in this revision of driver. Could I introduce a "function"
+> property to the outer node for identification of the function?
 
-On 10/10/25 21:57, Lucas Zampieri wrote:
-> On Thu, Oct 9, 2025 at 9:39 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
->> On 09/10/2025 17:20, Lucas Zampieri wrote:
->>> From: Charles Mirabile <cmirabil@redhat.com>
->>>
->>> Add a new compatible string for UltraRISC DP1000 PLIC.
->>>
->>> Signed-off-by: Charles Mirabile <cmirabil@redhat.com>
->>> ---
->>>  .../bindings/interrupt-controller/sifive,plic-1.0.0.yaml        | 2 ++
->>>  1 file changed, 2 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml b/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
->>> index 5b827bc24301..a419de50f5a8 100644
->>> --- a/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
->>> +++ b/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
->>> @@ -74,6 +74,8 @@ properties:
->>>                - sophgo,sg2044-plic
->>>                - thead,th1520-plic
->>>            - const: thead,c900-plic
->>> +      - items:
->>
->> Missing SoC specific front compatible, me thinks.
-> Right, if I'm understanding this correctly, I would need to add the
-> sifive,plic-1.0.0 fallback compatible to indicate register layout
-> compatibility. However, the DP1000 PLIC has a claim register hardware
-> bug that breaks interrupt handling without the driver quirk. Should we
-> still include the fallback even though the generic driver doesn't
-> work?
+Yes, that should be defined somewhere.
 
-See what the thead,c900-plic thing is doing. The PLIC compatible should
-be SoC-associated model, and then CPU-core-associated model.
+> > > +
+> > > +    additionalProperties: false
+> > > +
+> > > +    patternProperties:
+> > > +      '-pins$':
+> > > +        type: object
+> > > +        $ref: pinmux-node.yaml#
+> >
+> > Generally the pin config and muxing are in 1 node if you can control
+> > both.
+>
+> On 2K0300, drive-strength could only be configured for each function,
+> not each pin, i.e. all pins configured to the same function share the
+> same drive-strength configuration.
+>
+> Putting the driver-strength property in the outer node describes the
+> situation: a property in the outer node is function-specific and shared
+> between all groups (represented by inner nodes) configured to this
+> function.
+>
+> Do you think it's better to move pin config (the driver-strength
+> property) to the inner node in this case? If so, should the new
+> "function" property for identifying functions reliably be in the inner
+> node or the outer node? Thanks for your explanation,
 
-(I guess *theoretically* the PLIC could be external to the CPU but it
-doesn't really make sense to design a core this way.)
+I don't know. I'll defer to Linus on this one who is more familiar
+with the variations of h/w out there.
 
-Supposedly [1] the cores are called UR-CP100, so it should be
-
-    compatible = "ultrarisc,dp1000-plic", "ultrarisc,cp100-plic";
-
-And the driver should match on ultrarisc,cp100-plic instead.
-
-Vivian "dramforever" Wang
-
-[1]: https://ultrarisc.github.io/ultrarisc-devblog/2025/06/18/dp1000-spec/
-
+Rob
 
