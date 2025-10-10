@@ -1,116 +1,212 @@
-Return-Path: <devicetree+bounces-225400-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225401-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29942BCD66E
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 16:10:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 05C62BCD6B3
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 16:12:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 2368F4EA123
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 14:10:01 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 459334FE7D7
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 14:11:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF4FF2F39D7;
-	Fri, 10 Oct 2025 14:09:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E838D2F549A;
+	Fri, 10 Oct 2025 14:11:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sddgdCJy"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="PlPJApLg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from DB3PR0202CU003.outbound.protection.outlook.com (mail-northeuropeazon11010013.outbound.protection.outlook.com [52.101.84.13])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA76036124;
-	Fri, 10 Oct 2025 14:09:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760105396; cv=none; b=QSbUbkIMFVkjuJzIoCknj3mV7ccpZf42I9X0Kd10qYvVksXrBkF0nbFiP4zAaqk622ILV3EkEP+gcxuXClfDQ7y9gdXSsnMedY5Y5MdiLBr3xMdQfkdm1spICLIMMdR/TO0aRQ0BtTzvUk3HwSCZ0Au1R/XfcjdzFeKZFJ2XC4Q=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760105396; c=relaxed/simple;
-	bh=MJ/XTs/xRIZjpCaFnEFWN9AdmuOs8luescrHAQRcVDo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=R9pJlHqIMCXOzBSC+6tGrfoi0YsQLYIIDx9SroVKgcYbI5bq/0ENlICQW92/7Ygp4lRdUJj7mrOInn+UfImgV5yYX/M7sRtxcSTCbYJGIj0h+Y6sauEypr+wIi3KF9LaR7BTWC6dJKw+noX3MEv+kyMlgCwdA3oc0Jz/jHKZbUU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sddgdCJy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EF2C7C4CEF1;
-	Fri, 10 Oct 2025 14:09:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760105396;
-	bh=MJ/XTs/xRIZjpCaFnEFWN9AdmuOs8luescrHAQRcVDo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=sddgdCJy4ffkyEWBzieZwW2GSxvSjAqL21K+ylmSi/0/m2z4bWsByIOxWJbzK+Yvs
-	 O2X+j3QazvxML/91MmrnmJNv8MunlEe4RWdPhR+6OFRD3+eeMK9uKn6andO/nQaV7q
-	 cd59zEqSpiYGKlSJRSKRQS1EiymgyJj4TGZeYh1ikMu6PA+Y6kUM6VVGacdz8boqT1
-	 67D2nHhmomdC3AvW19VTfbXzpE9lGSsYURyWHd6JCji7nyxwyjx8dQP7fo+r6/qTlj
-	 F96KcrVoOxjg0iCpqMz9HKMC1vvg2W5SOwGb/V67PHfGfW5v8bBMSBuYl3w+r3zgix
-	 b2J+USz9rbGSw==
-Date: Fri, 10 Oct 2025 09:09:54 -0500
-From: Rob Herring <robh@kernel.org>
-To: =?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Conor Dooley <conor+dt@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06C282F3C20;
+	Fri, 10 Oct 2025 14:11:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.84.13
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1760105477; cv=fail; b=nSy9uQSgo/dKW7QYbR24N3qNX9psqK9YzVXP+5iUPkupm6Bh1TYdUjwRpDFZxTtynK42judOTb5gcB1f7qJ35P9crEcXAul3Z5spFd0ncb1HXqeUYGYW914ZA1+QxVBGTpbaGkzi9mqy2iFJOWW9+2M3ouplSe2vP3q54FW7oWw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1760105477; c=relaxed/simple;
+	bh=VB6cjx4cEWqlP3omVBfvIQoD8ngOcgbbllGwKy5L0SQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=UTzVYxgurd8C24//zXGs7lFKuwMR4+1tXcO4cYpyKpNy0ORW12o0RYsiGZ/9M0eIeVh5r5FTSTdWTVAAd7dSK8J8H15LTjcJib0E2f6pVOCzbilASR62YzHm1bWBwNsFWeR2Mut84Q7RFdpPj9VHiyFO8PvIA0iyUQenugJ+udw=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=PlPJApLg; arc=fail smtp.client-ip=52.101.84.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=qJzhMRY2ZHBugfvdrVPaRl88Sxa2eF4O0SvB47Fo3QXwkr13tF6ErB8ulgk/7jwVuzhLgFkGU861rBYEYbMPvin92vDdyhd6QIqCsbsAQ2NudtkE/BjVznjxOjVutau3QpxjK234V/E7HyDnhggoI5VY9IASXxni6Qo8yOM1cVGVvZk5+rYaX7KtpQaOwPm/X20H3sN/A/pv87l1nO6OJAaogcoWV64SGroEpYKwcuIL5ebkeMpJMOf0PjebhpaIaLLsMDA3V7RhMlRgAPaR6dX072gL4+BuG06zKkEtAi9Xr1Sd2x6snluG85pW87qaNjG1E0qpICAe62m0SoxVKg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=UF8g8BgypRT4kO/uQTmYO1qxZNQILjkyhUutjT28ZwE=;
+ b=KWBp7LexsEmATT9d9TkTrQqfBryqbcUK0g3u8uRZpc+7GVzJhmlzQcbniP999D8KCiSin8QGhrnp7qVTOCc3pyvOxzRSpG+6xSH8WydKCyu/Z+RCdNw0wcfJ8feZv/fy9IrEMLE+JBWwqg+jLUJTZCZQlMiHXK19JqkZLEZMT6nRMC/YNI1dGcrF1Gj7JDpLlC6/igzEWDq1ioLzEc3nyUafd94SpeV6eWqSnrIhmJKSc1a8btdjkuRtO+5VBltkxYo4Tb4huUU893alv8VS0lEFIrn6qi1FctAIu4nx1eJ2DHq2XPBGRjlSfPSU52Xdpd+kbapSU8lRMXBEhqf8Vw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=UF8g8BgypRT4kO/uQTmYO1qxZNQILjkyhUutjT28ZwE=;
+ b=PlPJApLgr6PVl5Eh4i64r5RJXRl8REdzuZ6j9mdZ9rtC31zNoLNIqD3XcVbO/M7097nT3VLG+3ATguRJOicy8SaT44kewSGsz9u4bXdc4tZWX18075aGEish4ffgZz/lFM8CORfH8wCaInleMHdZjRwdGtffHuMh/VbnVw1n9Gc4j4G1ZJhwItZpaWbnMbIBYxbPsU/g49AyBDOjy+cUvhWdFP0KJdVPFrkZv4uLJDQpWIuDE5ioziDPJzjX9G6Nq8aRTEW4bVvSTBLZSAgw1bwhYmHbezqguLYZwBJlzGX68lbPL8PUZUnGW0WyBiLUMqu7C/cYcn10InDi1VzE5Q==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXSPRMB0053.eurprd04.prod.outlook.com (2603:10a6:102:23f::21)
+ by AS8PR04MB7671.eurprd04.prod.outlook.com (2603:10a6:20b:299::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9203.10; Fri, 10 Oct
+ 2025 14:11:13 +0000
+Received: from PAXSPRMB0053.eurprd04.prod.outlook.com
+ ([fe80::504f:2a06:4579:5f15]) by PAXSPRMB0053.eurprd04.prod.outlook.com
+ ([fe80::504f:2a06:4579:5f15%6]) with mapi id 15.20.9203.007; Fri, 10 Oct 2025
+ 14:11:13 +0000
+Date: Fri, 10 Oct 2025 10:11:02 -0400
+From: Frank Li <Frank.li@nxp.com>
+To: Xu Yang <xu.yang_2@nxp.com>
+Cc: Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Ulf Hansson <ulf.hansson@linaro.org>,
-	Marek Szyprowski <m.szyprowski@samsung.com>,
-	Peter Griffin <peter.griffin@linaro.org>,
-	Tudor Ambarus <tudor.ambarus@linaro.org>,
-	Will McVicker <willmcvicker@google.com>, kernel-team@android.com,
-	linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
-Subject: Re: [PATCH v2 02/10] dt-bindings: soc: samsung: exynos-pmu: move
- gs101-pmu into separate binding
-Message-ID: <20251010140954.GA217599-robh@kernel.org>
-References: <20251009-gs101-pd-v2-0-3f4a6db2af39@linaro.org>
- <20251009-gs101-pd-v2-2-3f4a6db2af39@linaro.org>
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Li Jun <jun.li@nxp.com>,
+	Abel Vesa <abelvesa@kernel.org>, Peng Fan <peng.fan@nxp.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-clk@vger.kernel.org
+Subject: Re: [PATCH v2 1/4] dt-bindings: phy: imx8mq-usb: add alternate
+ reference clock
+Message-ID: <aOkT9kisv054Tbuh@lizhi-Precision-Tower-5810>
+References: <20251010-usb-phy-alt-clk-support-v2-0-af4b78bb4ae8@nxp.com>
+ <20251010-usb-phy-alt-clk-support-v2-1-af4b78bb4ae8@nxp.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251010-usb-phy-alt-clk-support-v2-1-af4b78bb4ae8@nxp.com>
+X-ClientProxiedBy: PH7PR10CA0005.namprd10.prod.outlook.com
+ (2603:10b6:510:23d::11) To PAXSPRMB0053.eurprd04.prod.outlook.com
+ (2603:10a6:102:23f::21)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20251009-gs101-pd-v2-2-3f4a6db2af39@linaro.org>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXSPRMB0053:EE_|AS8PR04MB7671:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9555db7b-9c90-4c3c-a7d1-08de0806de88
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|19092799006|366016|376014|7416014|52116014|1800799024|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?0ngRMA4HhDqiwxGc8Q1okjtrKlw4Bgs7Rr5lQje8b9iH74HZjTWPjvasl7zn?=
+ =?us-ascii?Q?uTmowKyw/altyuDvr4QQ9S+SYp7aR3zIWssfKFj2ME7ep+fRKDg06BVmasfn?=
+ =?us-ascii?Q?KLiAdsUKm+QTzHM8Sk6rqd+3dM1Mn2zrweV3RMUmDA8RFI7HKnbmtK91DmiA?=
+ =?us-ascii?Q?1/MoKGjAiQJTnDt68T/5qTfRZbsZ4fIsU0kBHvlRYOM4rdUBebXfqZsUQL3N?=
+ =?us-ascii?Q?veNC6rc4Dc05w222iQ6Dl2dT7e/CHOEd7u9LhFcesu3z1JCVNTjs/1kPD1Fb?=
+ =?us-ascii?Q?fx5MKosfW7d1OST1xZwdi0ZAzk10WRLNdgYVwStH/2LcW7RQCcHztebp0kWJ?=
+ =?us-ascii?Q?eW10STDfVSrhzft+l7mvQJVWGeHKZw7iLmGyQA2Sj7ETcPzq7rUujTEhqpLc?=
+ =?us-ascii?Q?6gz4llddeTkCggBFbfWxPYmT8rDDieKm3PsTgGOBTqENHoSi0bwV7JyjVCXu?=
+ =?us-ascii?Q?eJ2w6RfsQNTW30LaE6IQPbGRUpooO61I0uzS4pkR1BlDd9ldFuFv1ZKkdkvY?=
+ =?us-ascii?Q?xzwjqsdKltA4y0gfvVRzy25tNAKG6fs3l9vQoqIiicBO6uZ1ASypHsxUwzef?=
+ =?us-ascii?Q?pfcek3+D4d/oM2B7783OYSUFm7/qxAeRJ2ElkdYrSSW71hrX8IPbK0QoEnKA?=
+ =?us-ascii?Q?nsiAMKjqaWZ4bPbJ/6apXRbZ9hGXFRMc6Z+x7L69EfwNzrzVf5I1aSkqrmbu?=
+ =?us-ascii?Q?y+MfrRXztZlQIIAbcjqu6EX+5tX0DJbYGLpBGoJxUMCI1EhEKpu5UUoLvoqj?=
+ =?us-ascii?Q?naL4fQgGCgkgmJZTlIQUbOfTkz4qwi8ugUGwsKQvqQqlDP07/e5WMcu2wvHJ?=
+ =?us-ascii?Q?OWZ6Vd5OIWKjQxnqT2g/UJGqiHsMyRTrNtp/sn8WVlHQ/lk2IyqofzDzCROq?=
+ =?us-ascii?Q?juVC+FeuofmgWRQmomBTHChebV/Cvv/K6tJWAbe6yOjYD/C5jfFmlgmpZ9Ss?=
+ =?us-ascii?Q?4kBk1isWAXSTzx/eZ8VIRoCR8K2jcrlbyIkYkVvESpYBQJnVwDCv2pIlDtk4?=
+ =?us-ascii?Q?7mdXv1RkzpQwru/c7IV8LWJXMIYkXLm6CpwA/laLMgJFQ1+aDIe7mqhSFG9q?=
+ =?us-ascii?Q?uikzL1s4kP+54Bu5OqxGvEP1bRSzeH84+6QSPkTTM/HPuVH2LCrnV7sySiHu?=
+ =?us-ascii?Q?Fw+z8I1YVgDPNaAS7NafXDFqB8pOLfmFnsijS18xe1ah3EAeeaEujFVfcWQf?=
+ =?us-ascii?Q?ksqR/ZHIIiDyJdoHkcNd7sgrLE1irqlf78JrkPNT51G/ryIrEoJjLWp55g3+?=
+ =?us-ascii?Q?vTGQDNMJvpH1/fGqCva5SblHLtcEOFgLRkpQEC68BkbDFX4MBt4aESRGuNMR?=
+ =?us-ascii?Q?d7FBm9bMog0v7ocGOaywxudBS+Yvs9ARCi7tcJ6H556hJ/Mlxsv/hVMlb/U9?=
+ =?us-ascii?Q?34CVKrE0V5z0eEwF+in3AokAUDFYuGsWYMffCCCRsqYqTvoYsS0pceT1qGvV?=
+ =?us-ascii?Q?TyoNhi4b6d42CDtjk9rDR/rdMeDU1xVu/eHTJVjWPieOS1dwjgpYhAJhLppc?=
+ =?us-ascii?Q?6FrE9udYrlbQB/bDFzAYjCWTznvEKFYPWdkq?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXSPRMB0053.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(366016)(376014)(7416014)(52116014)(1800799024)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?phGpCB5aeRVrb81K4Dgf+TAo2fF5jnGS5YFMLaKhFiT3Zleow/wCEF8YOyAQ?=
+ =?us-ascii?Q?FHZldXsZNcj7LzhZz6sd+mJdx6R4RaexCfLL5R/iCWR2TLs5KxVyXkpqojGg?=
+ =?us-ascii?Q?0UGfg4WFuipmgetUsrbAUrp6DInqVKynV/oyjtB3tFPekFLIoUpoz73T6lcV?=
+ =?us-ascii?Q?Rw2YKbjasevk1Gy10ZyH/HnUEG7Usf14hh9pauV1ylFL14bPNX3lEo7BOJGd?=
+ =?us-ascii?Q?PCJB6epoO8wqWaxkj44ZU1OxXR+RqqGxMwP4d7zkkILddOcw6MKTadCHukSc?=
+ =?us-ascii?Q?48hSJuSkXM6PLL/XhgVmCAD/i7ZLIB2skqiVbBOtFc4KeRJbAzNnycQ2v0n7?=
+ =?us-ascii?Q?i9mcV/Z5x9cchbOmr7Laex6l58Q4sjMoH1OAoe+zJtMCQ1jwyz5BTmLGMjTL?=
+ =?us-ascii?Q?9VxT6e6CJqGWCHjXzNEt1ZBsInJbB3cNtxmUkNdjY/GNrXESlGQ1MAgjwly/?=
+ =?us-ascii?Q?Jp/JaoBwJ8JMwp0N8vVl7wu8xQhzHJsDPivA4zUHoPpfOeY/xViRmnXFAljY?=
+ =?us-ascii?Q?ip880a94ez54wiPM3FsI4JLdTb0Px0kK4S6auuDqNlh0m3WS/R2dRag/xY78?=
+ =?us-ascii?Q?qlKCir0YWa2jLadXy7axJmNwgWr4aVXTjichnfg9xho6RNLQiyfAnGe/rVVm?=
+ =?us-ascii?Q?aYMaD4lm6bnWTNNhsBGmeeZ9Y1vXjszfsA/0RFDtUvYqMuaGtprF828gIfat?=
+ =?us-ascii?Q?sG70E99Ha2LFoYfNvhVyKZ1lfhXA15Uv1ZYWYY6NLAq7VAUA/OvMqT2Bd/6q?=
+ =?us-ascii?Q?gN6QH0rRCzHBHISjXb8D/vMm+LokeZGAPdNWPhcBg29l9Xd/j33EGhW4A0BU?=
+ =?us-ascii?Q?Nie5hr/Q7NI7TfzXgKH0RA/j4tcb9S9zqAVuyc9cqHVS+zbDJbxRQsh0CpiU?=
+ =?us-ascii?Q?1emrvSvaWIuvMAlEdqOQc18EAkIJsjkWRPWUgcq2HieRHFgpzUEUINBmioG0?=
+ =?us-ascii?Q?c8xI/0Ov2wXGWVlTyScGrC5oWixt4ICKX6p5995GNMwD0ya5weuY6gp5ddFl?=
+ =?us-ascii?Q?YVXn4JuYTl0jLuFysD4NcVIRfngiKPZVKu6LmqL/wkhui4dbrzwa+6LAbHPb?=
+ =?us-ascii?Q?iY85bL1zNTyArVUwVWD+NGY+3jfVJeUR9JZ/9HMm1TirRLyoCveUi7EBmbcL?=
+ =?us-ascii?Q?kDMbxX3c0oIqwU48h+gDYpbuqcbvNtvEZurfzl9OUQvPUbszOvfEbHqrUlqS?=
+ =?us-ascii?Q?T85UGTL1WOm6Aqy1WyLvtMAYWgZ0hiZM4auuEGaFTHFx8BxG13MCKXdLq4Qc?=
+ =?us-ascii?Q?nT7mZKkekw79O/sMrkEu1pGxSSwzHSMDks+RCavSi5BECcymJmQZ2L1/RzMA?=
+ =?us-ascii?Q?OWj09yY7NP7zZI1TosTHzgTsa7JO7M45yyaXaiajxQTgZBHKVy+E3IHd/qoE?=
+ =?us-ascii?Q?Tz20cpF0Hk1LA3C1phNN2x6ac19n8VhUuHbsQviCV4zmUXgsa9dzhPPF9VWa?=
+ =?us-ascii?Q?27Ebd8AKKysGEVClDoIVbcbnRofnX+pWc4o5gbttB2Y+O/f6fwXeW/CiO4+6?=
+ =?us-ascii?Q?iQvlJCaF5Du8t1o5q/FIuUoRCOH2/E5qsKUZa9togi+AapvC9Y6ypIconbH2?=
+ =?us-ascii?Q?jzDKqaZWJ5vEYfQXKRI=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9555db7b-9c90-4c3c-a7d1-08de0806de88
+X-MS-Exchange-CrossTenant-AuthSource: PAXSPRMB0053.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Oct 2025 14:11:13.1144
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 9v3wJi8+svpBMJFInBWIutRH+ngJ3+TxOKrRJ8LoxMhsQ6Rt2RxgZ9lvTukpiMNzoS8uYNRtVx1cliwHUcCVQw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB7671
 
-On Thu, Oct 09, 2025 at 04:25:04PM +0100, André Draszik wrote:
-> The gs101-pmu binding is going to acquire various additional (pattern)
-> properties that don't apply to other PMUs supported by this binding.
-> 
-> To enable this, move google,gs101-pmu into a separate binding.
-> 
-> Signed-off-by: André Draszik <andre.draszik@linaro.org>
+On Fri, Oct 10, 2025 at 07:01:10PM +0800, Xu Yang wrote:
+> Beside default 24MHz clock input, there is an optional additional 100Mhz
+> clock input 'alt' for USB PHY reference clock.
+>
+> Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
+
+Reviewed-by: Frank Li <Frank.Li@nxp.com>
+
+>
 > ---
->  .../bindings/soc/google/google,gs101-pmu.yaml      | 67 ++++++++++++++++++++++
->  .../bindings/soc/samsung/exynos-pmu.yaml           | 20 -------
->  MAINTAINERS                                        |  1 +
->  3 files changed, 68 insertions(+), 20 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/soc/google/google,gs101-pmu.yaml b/Documentation/devicetree/bindings/soc/google/google,gs101-pmu.yaml
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..209ee2f80d449c3eec568188898b3c6f7ae0ddd4
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/soc/google/google,gs101-pmu.yaml
-> @@ -0,0 +1,67 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/soc/samsung/google,gs101-pmu.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Google GS101 Power Management Unit (PMU)
-> +
-> +maintainers:
-> +  - André Draszik <andre.draszik@linaro.org>
-> +
-> +# Custom select to avoid matching all nodes with 'syscon'
-
-That's not necessary.
-
-> +select:
-> +  properties:
-> +    compatible:
-> +      contains:
-> +        const: google,gs101-pmu
-> +  required:
-> +    - compatible
+> Changes in v2:
+>  - improve commit message
+> ---
+>  Documentation/devicetree/bindings/phy/fsl,imx8mq-usb-phy.yaml | 7 ++++++-
+>  1 file changed, 6 insertions(+), 1 deletion(-)
+>
+> diff --git a/Documentation/devicetree/bindings/phy/fsl,imx8mq-usb-phy.yaml b/Documentation/devicetree/bindings/phy/fsl,imx8mq-usb-phy.yaml
+> index 6a47e08e0e97b286538798190225ca2966a7ab34..081deb502e21308970a9495528bd745b9085f2f0 100644
+> --- a/Documentation/devicetree/bindings/phy/fsl,imx8mq-usb-phy.yaml
+> +++ b/Documentation/devicetree/bindings/phy/fsl,imx8mq-usb-phy.yaml
+> @@ -27,11 +27,16 @@ properties:
+>      const: 0
+>
+>    clocks:
+> -    maxItems: 1
+> +    minItems: 1
+> +    items:
+> +      - description: PHY configuration clock
+> +      - description: Alternate PHY reference clock
+>
+>    clock-names:
+> +    minItems: 1
+>      items:
+>        - const: phy
+> +      - const: alt
+>
+>    power-domains:
+>      maxItems: 1
+>
+> --
+> 2.34.1
+>
 
