@@ -1,139 +1,111 @@
-Return-Path: <devicetree+bounces-225313-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225314-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 280F7BCC61C
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 11:39:19 +0200 (CEST)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 44A92BCC622
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 11:39:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 64BE54FAE61
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 09:38:59 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id A78D83551C7
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 09:39:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5E342C08BA;
-	Fri, 10 Oct 2025 09:38:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2629F2C15A0;
+	Fri, 10 Oct 2025 09:39:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="fVreBwo8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from zg8tmja2lje4os4yms4ymjma.icoremail.net (zg8tmja2lje4os4yms4ymjma.icoremail.net [206.189.21.223])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE0B928CF49;
-	Fri, 10 Oct 2025 09:38:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=206.189.21.223
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 757BD2C21EA
+	for <devicetree@vger.kernel.org>; Fri, 10 Oct 2025 09:39:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760089133; cv=none; b=MKqKiQG4UHElAFSQA4vqYhqeQd9/2dzUZ3w6Ni5rYTPwYIub4R9x+WflYOqGj85X4d/kU56DOQ9fgtiCmoulnYlHnpUG8rvz977AbG5l4Z08LyrpsAg2O/XfuojbQZFqDt14LmgYynV6QqHphbX4uyAQdeeOY8WvCCNVpiebqYU=
+	t=1760089173; cv=none; b=DvUazcb6aQeAAiScFxvhAtQm1vveD5zT8wBJcSoBYzHfCJL4rotXATm2Jvy0g99cjoXyJSLHvjIygfR5Hhn1C+lGDPTC29xlzHNNzZ1sqerldTO4wa7cEzflEmT7go+UyLtEhfNJvaBUJzt+Pemcv8BjvpjfDosrrlLeh5JOgao=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760089133; c=relaxed/simple;
-	bh=FtvEdaOVNeBt36y5xmuBmQSNskj9JHUU5VbtV9PuJdY=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=lJI99UJRKvgySjPkiilG/AiPB9Hx3Qwcldk2FBqd/l/jZu7uynUeW4ayqu03DxJZwP0qXr25HXobCTL7b642FozXB5+yBgYvwV5nBOhvumJFrSyu1Yaglk/xm6Qcq+WybEJ8aWsxWaOk1ALBBv1P+NrdZVU219BgU9o654WL7AY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=206.189.21.223
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
-Received: from E0005154LT.eswin.cn (unknown [10.12.96.103])
-	by app1 (Coremail) with SMTP id TAJkCgAXOxED1OhodEIDAQ--.1303S2;
-	Fri, 10 Oct 2025 17:38:13 +0800 (CST)
-From: hehuan1@eswincomputing.com
-To: ulf.hansson@linaro.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	jszhang@kernel.org,
-	adrian.hunter@intel.com,
-	p.zabel@pengutronix.de,
-	linux-mmc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: ningyu@eswincomputing.com,
-	linmin@eswincomputing.com,
-	pinkesh.vaghela@einfochips.com,
-	xuxiang@eswincomputing.com,
-	luyulin@eswincomputing.com,
-	dongxuyang@eswincomputing.com,
-	zhangsenchuan@eswincomputing.com,
-	weishangjuan@eswincomputing.com,
-	lizhi2@eswincomputing.com,
-	caohang@eswincomputing.com,
-	hehuan1@eswincomputing.com
-Subject: [PATCH v3 0/2] Add support for Eswin EIC7700 SD/eMMC controller
-Date: Fri, 10 Oct 2025 17:38:07 +0800
-Message-ID: <20251010093807.1579-1-hehuan1@eswincomputing.com>
-X-Mailer: git-send-email 2.49.0.windows.1
+	s=arc-20240116; t=1760089173; c=relaxed/simple;
+	bh=jwwLTlSIOxZ+tS+AqgvoMGh/OzcO2GPaaZEphPQEDy4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qVqh6kCLNvW544pCyKABBKn0GATFUD1/5AFZmLaBacxv2RUgDvwcz8QkOCvlTxh5nbj8wIslpiWXZ1ZEpaKhmsc3evcuLVL3cZGrhpBtsOyBF5k/aLxi6OlQjnlg4tNnWMCaj00M4MCcnJtIYEKblq75C9pUts2kIGNRIz7j6RM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=fVreBwo8; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=date:from:to:cc:subject:message-id
+	:references:mime-version:content-type:in-reply-to; s=k1; bh=jwwL
+	TlSIOxZ+tS+AqgvoMGh/OzcO2GPaaZEphPQEDy4=; b=fVreBwo8cTB+vDD7ObkK
+	rKIazpVaUWNqzhxZbVZdBPQjo+3UWjZ/81t4/KPCbWgFOan4Jjql4e6gPBelvIZO
+	/PcvVkAN3ZdZBIg9pHQqH1m2ezr1/FzholWqbGFx6ShANJoE6MYwRvLzcHsUR4ek
+	Bn95MRbYl3fuJkr5ojVqxyvz1OavNrT3TJP15E0I56QDVj3PQR8QDYHoivVmhwDx
+	gCVBNLFe2/y1G0Pyl39GNT0w/+rcLYM7FIYj4YYPnBOiH/8yimYPcVzIWVkRJYXf
+	mOpYUJoqdVkWqSP5sSdxi83Fh6qOPQQFd/8So060ssQzcHdRzxGpnO7MaCDnVxMM
+	Bg==
+Received: (qmail 1417896 invoked from network); 10 Oct 2025 11:39:07 +0200
+Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 10 Oct 2025 11:39:07 +0200
+X-UD-Smtp-Session: l3s3148p1@st9jsMpAXpggAwDPXwQHAL/S9V79e5yL
+Date: Fri, 10 Oct 2025 11:39:07 +0200
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: Rob Herring <robh@kernel.org>
+Cc: linux-renesas-soc@vger.kernel.org, Andy Shevchenko <andy@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	David Lechner <dlechner@baylibre.com>, devicetree@vger.kernel.org,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>, linux-iio@vger.kernel.org,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>
+Subject: Re: [RFC PATCH 0/2] another 'interrupts-extended' replacement needed?
+Message-ID: <aOjUO9BV3UlhEhL7@shikoro>
+References: <20251006172119.2888-1-wsa+renesas@sang-engineering.com>
+ <20251009203509.GA3296392-robh@kernel.org>
+ <CAL_JsqKYqw0podCR7rQefg5c1-1-Z5xN9H7zGVrZzCTunmdRUw@mail.gmail.com>
+ <aOgtdqUKePXIjRNs@shikoro>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:TAJkCgAXOxED1OhodEIDAQ--.1303S2
-X-Coremail-Antispam: 1UD129KBjvJXoW7CrWfGFykCF4rWFWfKw4kWFg_yoW8tw1kpF
-	W5G34fGr1YyryxZan3Ka4v9a4fXws7Wryjgw13Jw1UX3yqva4jqrWIka4YkFW5Jr1xXws0
-	9ay2qF13C3WavrJanT9S1TB71UUUUUJqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUUPa14x267AKxVW5JVWrJwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
-	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
-	1l84ACjcxK6xIIjxv20xvE14v26w1j6s0DM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4U
-	JVWxJr1l84ACjcxK6I8E87Iv67AKxVW0oVCq3wA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gc
-	CE3s1ln4kS14v26r1Y6r17M2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI64kE
-	6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r1Y6r17McIj6I8E87Iv67AKxVWUJVW8JwAm72
-	CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IYc2Ij64vIr41lF7I21c0EjII2zVCS5cI20VAGYxC7
-	M4IIrI8v6xkF7I0E8cxan2IY04v7M4kE6xkIj40Ew7xC0wCY1x0262kKe7AKxVW8ZVWrXw
-	CY02Avz4vE-syl42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1lx2IqxVAq
-	x4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r4a6r
-	W5MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF
-	7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxV
-	WUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWIevJa73UjIFyTuYvjTR
-	ZqXHDUUUU
-X-CM-SenderInfo: 5khk3tzqr6v25zlqu0xpsx3x1qjou0bp/
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="9UNNoxyP/HyoHDGQ"
+Content-Disposition: inline
+In-Reply-To: <aOgtdqUKePXIjRNs@shikoro>
 
-From: Huan He <hehuan1@eswincomputing.com>
 
-Updates:
+--9UNNoxyP/HyoHDGQ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-  Changes in v3:
-  - Update snps,dwcmshc-sdhci.yaml
-    - Delete clock-output-names, '#clock-cells' and eswin,syscrg-csr
-    - Update description for eswin,hsp-sp-csr
-    - Update drive-impedance-ohm
-    - Update the item of reset-names
-  - Update sdhci-of-dwcmshc.c
-    - Add descriptions for PHY registers
-    - Simplify clock management(remove custom clock provider, use
-      standard clk API)
-    - Replace magic numbers with GENMASK() or FIELD_PREP() macros
-    - Add comments explaining HSP stability assertion writes
-    - Adjust line wrapping to fit within 100-column
-    - Delete forward declarations by moving function definitions
-    - Rename variable is_sdio to is_sd
-    - Replace unclear macros with meaningful alternatives
-  - Link to v2: https://lore.kernel.org/all/20250912093451.125-1-hehuan1@eswincomputing.com/
 
-  Changes in v2:
-  - Delete the previous separate driver and yaml binding file
-  - Update snps,dwcmshc-sdhci.yaml to add support for Eswin EIC7700
-    - Add the new compautible string: "eswin,eic7700-dwcmshc"
-    - Add new properties: clock-output-names, '#clock-cells',
-      drive-impedance-ohm, eswin,hsp-sp-csr and eswin,syscrg-csr
-    - Add customized reset-names for EIC7700 platform
-  - Update sdhci-of-dwcmshc.c to add support for Eswin EIC7700
-    - Add a new struct eic7700_priv to hold Eswin-specific data,
-      including clock phases, register mappings, and drive
-      impedance configuration
-    - Implement EIC7700-specific sdhci_ops
-      - set_clock: support core clock configuration with phase delay
-      - reset: add PHY reset and configuration
-      - set_uhs_signaling: support HS400 DLL lock
-      - platform_execute_tuning: implement delay line tuning and phase
-        code adjustment
-    - Add initialization routine (eic7700_init)
-    - Integrate the new platform data and ops into the driver's match table
-  - Link to v1: https://lore.kernel.org/all/20250516091259.774-1-dongxuyang@eswincomputing.com/
+> So, even after your fix, the above dependency needs to stay in this
+> binding document? Did I get this right?
 
-Huan He (2):
-  dt-bindings: mmc: sdhci-of-dwcmshc: Add Eswin EIC7700
-  mmc: sdhci-of-dwcmshc: Add support for Eswin EIC7700
+Keeping the dependency and using your improved dt-schema makes all
+warnings go away. Thank you!
 
- .../bindings/mmc/snps,dwcmshc-sdhci.yaml      |  57 +-
- drivers/mmc/host/sdhci-of-dwcmshc.c           | 526 +++++++++++++++++-
- 2 files changed, 555 insertions(+), 28 deletions(-)
 
--- 
-2.25.1
+--9UNNoxyP/HyoHDGQ
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmjo1DcACgkQFA3kzBSg
+KbYICBAApXpu5AJZn0mTIwQkX/gJe/nQvO7+2KegYhn5U9OZcB0yoy0RtkdKzCzM
+lfLm5J3Uu9g1oN3zHbty0v/bOdX0h42dB7JjRriofERnEtB4tv49bUSL0ufpDO/b
+aPyXd6VRYruY5oI4u8gAiHnjGiIVxZZDabupK6guhuRXroRT7jYNONFmBprpgOt+
+SVSk7CojO4QY7OpoyNG0HvPJpp3wK2pL3glWijgTCUIWl2JBjn9ddd07gIufTrRg
+9GXQYi5cY0o90qeaT7kq0+sr0Q5p899/0JUFnx3cfBvUxZ7oVRI1V5nRIJHLKdsu
+F8GmuCkqv6nAuLLLQgOHQaocyozt0fpqWRgFGjutnOJFkeYRubgUFJqSXe+EJbeQ
+WGTuogqllEixI0BZSUHEgns5EfL57RXUaDAaQJMqxWWXtO4sGu6x0IpTrsS6BKZJ
+ZOepcrEZmwYlNA3DuAj1fZzYMmw8CaHaKCpyZFzcPwcIUzwUbjaTKuSVkX51eXvf
+I8r35XSpJF9R2eVcVt9FO09AAqEAaCY0XxGGwjvaO+cykGfOaUjQNJk7pDJifdJX
+UpqlfQFRU7fWzqJjnEULfKOX0sXU8eEwQFOZ7FGs4FKrg4MFJ56Q8B4LHIELDQBG
+aFyR5mU2H3Unj6vZFPBtX+9Dztm2oWVifZqP0xy6G/CLsoyZKZM=
+=zW6y
+-----END PGP SIGNATURE-----
+
+--9UNNoxyP/HyoHDGQ--
 
