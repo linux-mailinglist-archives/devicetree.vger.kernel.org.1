@@ -1,143 +1,96 @@
-Return-Path: <devicetree+bounces-225178-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225179-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89D78BCB519
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 03:12:57 +0200 (CEST)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6432FBCB525
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 03:16:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9ED681A627A4
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 01:13:20 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id CF586351A87
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 01:16:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04AD5213E89;
-	Fri, 10 Oct 2025 01:12:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BAF51DE8AD;
+	Fri, 10 Oct 2025 01:16:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SGsbsvB4"
+	dkim=pass (1024-bit key) header.d=linux-foundation.org header.i=@linux-foundation.org header.b="vKsenpAg"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC1D5DDC5;
-	Fri, 10 Oct 2025 01:12:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 659C319E97B;
+	Fri, 10 Oct 2025 01:16:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760058771; cv=none; b=JGc92AJnP8vSM94ixcJj9dBiD2D9PNC0qUJou5ouW6jN+dXD3lCqNbBR2CG8zeq310Cq/8nnPYTJa0xr7JBHtiPYe+f1+O1sHPWQ7nDQ1d93/ftfY2IVmwZceoMgq9ioV1qvnmTf7V0ToXgbBTVNnsMzXOtTKobPYs5nFV7N4IA=
+	t=1760058961; cv=none; b=gOq48c7yFWehQmWyNkNnvgmkWmA+cudGNcdPOaUcu+AdaVlSR/adgGzxkZF3P7HQN7xnrIk/qSUP3JyuMk79mkTIVkBi4YKFLcGJ5jA5x8dq2n+5HG+QHD5/tlHWCC9UtBgX2nVEVW4SMW+D1DICSuFI4bjOZ8TITpzqoavwIKg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760058771; c=relaxed/simple;
-	bh=9RFb0ITLXdY5UcNja///NRHXOHieonf4kWFfDq+78Yg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=GzJHiIFgtYep7CBbU3Oz9gFOEBN4nsIoio9m5Inig2iv/4a3LXgdaYukI5KEMaxY88eC2G7iFsbksan5bomkRnZjEx5+NhbRHz+8U3O29OKxY5ycjXCS1GIadL7iruKpLsZHBhCW2QYb8Y3pTAvNPyuypOj9WHTLFhv5sgCP/BI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SGsbsvB4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 76FE3C4CEE7;
-	Fri, 10 Oct 2025 01:12:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760058771;
-	bh=9RFb0ITLXdY5UcNja///NRHXOHieonf4kWFfDq+78Yg=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=SGsbsvB44u8HFEhvE3uue6zJpFCve0eRmFwITbHhWfyXenj9OmrlVmjMuMPcjBp3O
-	 Jo5Pv9R+dJtVgzogHZrg/PcfSuQUNdjC//oYRBT/9YmyElhvC6hEoPits7KB4R4keT
-	 fAm0RlS0FNRYpeMsD63K+lt6vSgCUYt3VNb4S1hdVI8n78tDGSzovM2C3DZuLjpSDW
-	 xrwlSYYyRLQP/r46gYVJMMD/rZ+nGpRbypiJTD6IWZSUQOyJd2v7QTWBc8aRD8M7/B
-	 hdaHAZWuGkHpXz/YyAH0XQkoXVkpS/vXvi2B3dt9cFTNmGFNUWaMdTtbDMNtRLoLM8
-	 tOT36dIUNh7lw==
-Message-ID: <3118e300-f6de-42af-bd1b-ad13dc80537d@kernel.org>
-Date: Fri, 10 Oct 2025 03:12:44 +0200
+	s=arc-20240116; t=1760058961; c=relaxed/simple;
+	bh=RmFN50/tFdDWu0Lu1oLgK6Ek0UwcaDtGkskQjflrkSU=;
+	h=Date:From:To:Cc:Subject:Message-Id:In-Reply-To:References:
+	 Mime-Version:Content-Type; b=VOlBiuN/TJomNaYrUgWcQ81HnY5Qb3oVHBApTTyDygpougOYETmMdqMK42XiUgGgA1875DMjbFxp5M88FyNa4wN5GO3QpqswZrDx6INv6OQ4lJBZjRJQ09Gu49Z9B0+p4o9x/shklzlCU+ry3TdZX1MTNwIDoFRej0rf071nBiM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linux-foundation.org header.i=@linux-foundation.org header.b=vKsenpAg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7EF5FC4CEE7;
+	Fri, 10 Oct 2025 01:16:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linux-foundation.org;
+	s=korg; t=1760058960;
+	bh=RmFN50/tFdDWu0Lu1oLgK6Ek0UwcaDtGkskQjflrkSU=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=vKsenpAgWw4PdXzyPEvRPTtM55CEkmIuOB06QpIL1HFkJaREveyrGwluU/V2fuGGi
+	 q5TX7S4AkHAZd7NNOwoSKw4Q9atEptf5m3QREyryBOZ6qV8TyjDyjvN90WleZ6Id1/
+	 W86zK2v0N2lj5WYbHcSmtpC+EsAstPuLctnj85O0=
+Date: Thu, 9 Oct 2025 18:15:59 -0700
+From: Andrew Morton <akpm@linux-foundation.org>
+To: Samuel Holland <samuel.holland@sifive.com>
+Cc: Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <pjw@kernel.org>,
+ linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-mm@kvack.org, Conor Dooley
+ <conor@kernel.org>, Alexandre Ghiti <alex@ghiti.fr>, Emil Renner Berthing
+ <kernel@esmil.dk>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>
+Subject: Re: [PATCH v2 00/18] riscv: Memory type control for platforms with
+ physical memory aliases
+Message-Id: <20251009181559.7bfa3dce6cb7265822b2d5c5@linux-foundation.org>
+In-Reply-To: <20251009015839.3460231-1-samuel.holland@sifive.com>
+References: <20251009015839.3460231-1-samuel.holland@sifive.com>
+X-Mailer: Sylpheed 3.8.0beta1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH v1 1/2] dt-bindings: gpio: add gpio-split controller
-To: Jonas Jelonek <jelonek.jonas@gmail.com>,
- Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski
- <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20251009223501.570949-1-jelonek.jonas@gmail.com>
- <20251009223501.570949-2-jelonek.jonas@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20251009223501.570949-2-jelonek.jonas@gmail.com>
-Content-Type: text/plain; charset=UTF-8
+Mime-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On 10/10/2025 07:35, Jonas Jelonek wrote:
-> diff --git a/Documentation/devicetree/bindings/gpio/gpio-split.yaml b/Documentation/devicetree/bindings/gpio/gpio-split.yaml
-> new file mode 100644
-> index 000000000000..9a58c81da4fa
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/gpio/gpio-split.yaml
-> @@ -0,0 +1,77 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/gpio/gpio-split.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: GPIO split
-> +
-> +maintainers:
-> +  - Jonas Jelonek <jelonek.jonas@gmail.com>
-> +
-> +description:
-> +  A virtual GPIO controller to provide virtual GPIOs backed by a single real
-> +  GPIO and a multiplexer. This controller may be used in case a real GPIO is
-> +  connected to multiple inputs/outputs and controlled by a multiplexer, and
-> +  another subsystem/driver is not able to work with multiplexer subsystem.
+On Wed,  8 Oct 2025 18:57:36 -0700 Samuel Holland <samuel.holland@sifive.com> wrote:
 
-Instead, please fix the subsystem driver?
+> On some RISC-V platforms, including StarFive JH7100 and ESWIN EIC7700,
+> DRAM is mapped to multiple physical address ranges, with each alias
+> having a different set of statically-determined Physical Memory
+> Attributes (PMAs), such as cacheability. Software can alter the PMAs for
+> a page by selecting a PFN from the corresponding physical address range.
+> On these platforms, this is the only way to allocate noncached memory
+> for use with noncoherent DMA.
 
-I have also doubts we actually want it in DT, because we tie the
-limitation of Linux drivers to bindings.
+Well that's weird.
 
+> --- a/mm/ptdump.c
+> +++ b/mm/ptdump.c
+> @@ -31,7 +31,7 @@ static int ptdump_pgd_entry(pgd_t *pgd, unsigned long addr,
+>  			    unsigned long next, struct mm_walk *walk)
+>  {
+>  	struct ptdump_state *st = walk->private;
+> -	pgd_t val = READ_ONCE(*pgd);
+> +	pgd_t val = pgdp_get(pgd);
+>  
+>  #if CONFIG_PGTABLE_LEVELS > 4 && \
+>  		(defined(CONFIG_KASAN_GENERIC) || defined(CONFIG_KASAN_SW_TAGS))
 
-Best regards,
-Krzysztof
+OK, but how are we to maintain this?  Will someone be running
+grep/coccinelle/whatever on each kernel release?
+
+Please give some thought to finding a way to break the build if someone
+uses a plain dereference or a READ_ONCE().  Or add a checkpatch rule. 
+Or something.  Let's not rely upon the whole world knowing about this.
+
 
