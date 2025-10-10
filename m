@@ -1,587 +1,547 @@
-Return-Path: <devicetree+bounces-225368-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225370-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6593BCCE4F
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 14:29:39 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id E0B29BCCE6D
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 14:30:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 1B2FA355305
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 12:29:39 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 71AA44FB00E
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 12:30:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2135528935C;
-	Fri, 10 Oct 2025 12:29:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFE0F2EFDBB;
+	Fri, 10 Oct 2025 12:29:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ZH92PC/e"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lxaIit+F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33331247284
-	for <devicetree@vger.kernel.org>; Fri, 10 Oct 2025 12:29:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84B602EF64F
+	for <devicetree@vger.kernel.org>; Fri, 10 Oct 2025 12:29:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760099373; cv=none; b=A6mDvd9u8B93BdQa9czKUT71WpwqkdhOO4oSiKpDsZqrLz7HW8VZMFyYVhb/FIEReWnWHLoBx2R1wGtn1OO+jnHV/nRWguZkBTjymNlXDSatoCBglJXakXsixbEGlH5Z6bjhSju1vYS6F0sOIhdw9hOYYSlf+fa5l9/k/p4XlXc=
+	t=1760099383; cv=none; b=C6pyCe5JGzef42ApSQYVFCh42+Z3T1/ZA0DdnEW86ha4qk1tB9LGzlmq3XCQtSTe7eZ8b/n5h2KgczVKI7WTQymgoh23RCAi9ug3YG6XJJkv7T4H+C6WraZrI73dTXe2QKihaS5KxXkjRlCOtJWw1MKAhNgRb27glN0Es9e4AC0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760099373; c=relaxed/simple;
-	bh=cT6ZvqBVD/D8IQOgCHSwTn6NYbayJueOAv5t24HimWY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Lv29M1Z3VMYg0FtI14dHTbGISJIBPbjqeuJgRWlpA4XGvxCu65xxT1/EUqQdSajVgRIuxkqFD7cdTVPDV2CUIBC4vWrDAoOuOLL1n/80rvfOqv4cKYrItl+X75Yul4gmGjBtH0WoW7sKz4RE0TJObZRvPhhyMXvJhkqPZHf0FJc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ZH92PC/e; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59A6Wnoo008198
-	for <devicetree@vger.kernel.org>; Fri, 10 Oct 2025 12:29:30 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=QF1LCWZ7o2I4/kgoswe5lA0f
-	Npob/JHWxWB1T8GiLZs=; b=ZH92PC/efiibFtSAKcdeB0aGO0KlblkrH20NiB9o
-	wAwrCieUXIVnoacwPH0TnnGV/7NbGBAYCDiINGWkRtvfYeFNBRvKRQpUUQdcKdg4
-	rkzMagfAVZWEtMr5LkBKV8hsl+G9PH+hdhNXZAwzkGcX0H90b3pHbD7CAv0EyEFQ
-	mQ7jipYzVrhiSTJwgKIVzVRNyzicXoYyqEj3BAqx5bLodqvUePGIA06ikD8dtarm
-	OoZS4PXYxzmvkMlzHxLr81Sog5yF02IwMEjHOIZGPoHvy3AiYJci+98Si7S7b6G5
-	6CtFOrfcHk3KyLrp54tErDuW3zSSiM5TAGLjDH7EDQZkCA==
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49nv4kpce3-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 10 Oct 2025 12:29:30 +0000 (GMT)
-Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4d6a41b5b66so93178391cf.1
-        for <devicetree@vger.kernel.org>; Fri, 10 Oct 2025 05:29:29 -0700 (PDT)
+	s=arc-20240116; t=1760099383; c=relaxed/simple;
+	bh=jawKExZuXN7gMNSEPeCsrhjUTIg/62JzW0z6n7tGIzw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=VaVDrwUzLNCXK4tQXR8h/YOe0G4P0ZjMNqLAH2FeHO+WnxxkyVqfEveu8F7/wRqkSDehsxtTS0nBkLjCpJngSJPIW/pxh0Z5Ihq725tU2w16u9TB6mpFZxzwvWMtapIdkZEWNjs57m6xpfafpoqep+jwX/fWBfbOU1U/L6tswRQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=lxaIit+F; arc=none smtp.client-ip=209.85.128.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-46e430494ccso11991865e9.1
+        for <devicetree@vger.kernel.org>; Fri, 10 Oct 2025 05:29:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1760099379; x=1760704179; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=3w1QySXOxE83J1koPTF0hVjdJ+1GJgOp9gN4Amawo6s=;
+        b=lxaIit+FV7ZkZPpb1RONoxFMvk2E47SJ8NiyysDUzG22vnFpw5sjvhnWK5TQP+4Eot
+         RzwvRE5eE6gYgxDUjdr7I+1x2pX34bJxte+EW2eqvPmVu+ah5S8TUUDYGTSvj4uJrOxl
+         eZp4WFIVO2zVL1zRAj045ZyO3dcMaSDJn0lB5lC4eZzosguGh7vNB96gOiYruX6eDqWT
+         YBpJ3gy1GZhxK9dNY41bbuhGbTPhsa0HVp/PRQcvfdMYXaYWqf01dRqGJzXwLrdp88Jy
+         L++xA2EvWaPQ59oA66myUglbFh3Gc9gSqsB9Tf52t044usAsxI0O/F7oh/a0tg/4kFiR
+         9U3g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760099369; x=1760704169;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=QF1LCWZ7o2I4/kgoswe5lA0fNpob/JHWxWB1T8GiLZs=;
-        b=hY1od6gD5xIVbHXJ+rj25TUz1MHpyWExxWaLcoK+1MxIDjL91DUwvv6d5Fw/GeaY7c
-         t81ExWmxCc+itoTf31gbeQ2fpdt8PcqYudS+79KEwPC6PTMOirPPvRxiFwW7Y/VUMpBg
-         jrySWupP4/r0o3cKbgP1KogcX9Mof2VOVP348wcxGN86PBV8IKMGm3tuZxMNwX1v/BgM
-         X+iEzRH09B37Qh4xk52+3NtLiI13cDTHP3+d/itCBAq/flYqcGhILm/NMOBrPUA+nmaw
-         RZNqbCdkliG9cgOBj6ey5vx+htClhgMGDPSm0Kd6k/iz04MA0WmkW2JubvJ/WUewaoLV
-         FhTQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXuQ1bHuvK4s0cTcDsLTJhwt2Bq23C9CxOghqYhzgwMmf9M50MWhWLhymgTcqiIGWJPMTnjYxj8cr7p@vger.kernel.org
-X-Gm-Message-State: AOJu0YxDT8R5ZvO7G5lwaiVXLwqn3N+SbGdyh4IC/B4ulSfna0zThAUi
-	VDAv8Vs23VETQA5RTKUoMpvD9xHVwz3ezP2O6/KaHHrJ/21Ih+WdB/kDiOp2o34L+CcPQ26wJH8
-	P/o+OQSU1Rb9zv4Pn8LWTY+/WFJcGGuP1EXt2E3p2QSVkt8AOXPDDqh/HjFAKKeVH
-X-Gm-Gg: ASbGncs6AfZRFIXW61DMBXQT56w/WAp0Cn5P/Ysr0eF5b73k5G1/kdnIY4hGYh1+urD
-	v2QlZ1IvFIvhL8YWXh5KsiN8Ku26kq8iwYHStp9/bMscPt3zRjAtl1sYnvQBOBrGHDCvSdsUblV
-	CNItEfXCSqPj2I8WL09NZ0e/XHqd7ChZ96tnB5s1VEFBP8HExyFQh8MzzTPaoBPpzAuL1rOc1Ov
-	D4684pSDf86+U87D/4ieLLTL0E+S3ZMm7rBB255XhUzNdqxNykaq0N6jfxS5iTqe/AMTDOA3T8l
-	FpySoHvmOoLbsqLkYhbbN72NPYHZTl+m1Y5a+UohHgYM4WgS3vNnebu4LzZiLwHo/8yFZog1XH3
-	3X99NGyt15N4wA2fwGsVgfCgVrnF+5hZZG81sebdhoO8Yi/et0uY+
-X-Received: by 2002:a05:622a:5889:b0:4d7:df9a:ee60 with SMTP id d75a77b69052e-4e6eaceba97mr157154051cf.29.1760099368556;
-        Fri, 10 Oct 2025 05:29:28 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGV3B8k5DizM201gFV+CcWBFvlDAiV9V446D58E7Th6jRZxc+76CNwjo7AV1LWg7IhxRUybgg==
-X-Received: by 2002:a05:622a:5889:b0:4d7:df9a:ee60 with SMTP id d75a77b69052e-4e6eaceba97mr157153401cf.29.1760099368013;
-        Fri, 10 Oct 2025 05:29:28 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-590881e4f26sm847059e87.9.2025.10.10.05.29.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Oct 2025 05:29:27 -0700 (PDT)
-Date: Fri, 10 Oct 2025 15:29:25 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Langyan Ye <yelangyan@huaqin.corp-partner.google.com>
-Cc: neil.armstrong@linaro.org, jessica.zhang@oss.qualcomm.com,
-        airlied@gmail.com, simona@ffwll.ch, maarten.lankhorst@linux.intel.com,
-        mripard@kernel.org, tzimmermann@suse.de, robh@kernel.org,
-        krzk+dt@kernel.org, conor+dt@kernel.org, dianders@chromium.org,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] drm/panel: Add driver for Ilitek IL79900A-based
- panels
-Message-ID: <g7vgqpqjhen74fzgs3k3git33bmb6fa553ndsslu3chuqh267w@uwtuutrnuue5>
-References: <20251010093751.2793492-1-yelangyan@huaqin.corp-partner.google.com>
- <20251010093751.2793492-3-yelangyan@huaqin.corp-partner.google.com>
+        d=1e100.net; s=20230601; t=1760099379; x=1760704179;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=3w1QySXOxE83J1koPTF0hVjdJ+1GJgOp9gN4Amawo6s=;
+        b=PkTjobnH6Uf943PyeUooMt47hmN4oaF1D3aFohytBA9tSQ4/7UNvTEsYS2E1qd6DCu
+         A2LdaUXQkTmMVeHsNelllzX0WXwpC+oCpAwC4PaqmmSpOMd9UVRrFd1el6D2+LJuRlnD
+         gStiRTdugO/RKe4x1xHN94+h4nFpAw1jG/OSelQBN8+vys+sO1MDL7MtdkML+Dk4KxRL
+         Qmej0Dfli2CCD7TKmB+XmPL+X7wNUwxKDdVwGY/G9Ws/eenySNY/xccUIH4U1dOWeK3u
+         CvEomFHTvGZWaBYeU26bcE3Y11huvF8+WsLXBkz41nt6wvl3ev/EptPgwgFfv31Elf+t
+         dPiw==
+X-Forwarded-Encrypted: i=1; AJvYcCXxuRxIxpWGpkduVCj3MJAJRP4wvcnrPn9zNSkgryiWJJzbKicfzrq/Gc1S6O8ucjPoIDItp8JSaG7w@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz9SsZyOQKJ2xWjYO1b9bVf5QzjFbKa1caC25oQQ6XGBN+rimWJ
+	+2fXb9gGYPV8fqYu2Djw1nAjPcSGvJoIq47U4xHWVFzwKHMYGgC+Lu4J1hmcTLgoXpA=
+X-Gm-Gg: ASbGncuV1nXNFzEDU4K8YRPMVeRXTepnOgHpE46K7l29FozXUfCs+Qme9WPk5xgbKc2
+	yohFutrM6QdvXvFU8bt6l52qLIH25XDZWFwqonp5/wN2lAH417dX3fRIraGq3ClH6J5qY8SVqHg
+	t7TrXu404w40mp/HkyIC4gWJ9oRPJ7nBLjyoA8F93qTlzU1+b4+5F2HgamCA35i9KM4vECR9s3k
+	eELSlkHhqD59Utqlz3mSEf8NQztgn8ffwScPqYjmbO/G6u3fqi2CZJ8SJ98Pn9Dv0oONF73uzvl
+	ls1aQ7rIuh/tWK3Rkah8q7QxcjMN4dQ+7uZjlIhrkSdzcyrQyIcPz/CTifsmwMd8EkFa5fowYcT
+	2HFUUOXn4gNuI+2L0jZcrhLtFPhacIwevhkz/KwYAPkEXXj21gNKshkiLaT6jnrLSQVf1ZmmAMf
+	u2dN6h0klRMEM=
+X-Google-Smtp-Source: AGHT+IEsmJvk1TuMXpoF/rJEyUw87VcT0HAXOJZSIzYvKCNNpSch1dQqLO+7LaTWng/7o1RmEwIb4g==
+X-Received: by 2002:a05:600c:698c:b0:46e:6d5f:f68 with SMTP id 5b1f17b1804b1-46fb405319amr30820345e9.12.1760099378806;
+        Fri, 10 Oct 2025 05:29:38 -0700 (PDT)
+Received: from [192.168.0.19] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-46fab3e3520sm62462375e9.2.2025.10.10.05.29.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 10 Oct 2025 05:29:38 -0700 (PDT)
+Message-ID: <7c563a39-cdec-487b-afc5-c88d94475aad@linaro.org>
+Date: Fri, 10 Oct 2025 13:29:36 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251010093751.2793492-3-yelangyan@huaqin.corp-partner.google.com>
-X-Authority-Analysis: v=2.4 cv=dojWylg4 c=1 sm=1 tr=0 ts=68e8fc2a cx=c_pps
- a=WeENfcodrlLV9YRTxbY/uA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=x6icFKpwvdMA:10 a=1XWaLZrsAAAA:8 a=wy7oPuJDPKlYPVI7QQcA:9 a=CjuIK1q_8ugA:10
- a=kacYvNCVWA4VmyqE58fU:22
-X-Proofpoint-GUID: 3mARWwbBY8l2XWgJ5c0Iy9x993QWtVCI
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDA4MDEyMSBTYWx0ZWRfXzrVg4nbMDXI+
- 3t6VbUyjGmdOhnrH22D9SbtsBZUW1N14hNuGOfQs2U8XM3fu4RW5BbIkA9UprbQdrbzw1uyqBXf
- 77NZCOqSfpjqlQ+SJVyylMvSS4s7ojyDTZp2vVVTCmi4dJKtRw6S7ssbjHcwwweQmwm3mTzf9ET
- o3VTBU2fZAXdS24/HUn8gb+RWQkvs17Ndh84+qwpEsmd/IFsjrq+1Q1Qu4qXN6nmVQkxkD33INU
- NgF18sNMz47sddmhUi5sHK6aH5BrlfJPjkApMWwAsBmTDJoECGyUeDlxr4fFwCnI1bRLMaSj1vn
- grkhWVwXbkI0qqXK+fVolo+ffqoe+LwGPCtuMYm4XHQsraUHH1q+yySxvUXMgVk7wcvnsEcEe18
- oQmCsFG6wPDV50Iaeznh+1ClsuMpTQ==
-X-Proofpoint-ORIG-GUID: 3mARWwbBY8l2XWgJ5c0Iy9x993QWtVCI
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-10-10_02,2025-10-06_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 impostorscore=0 suspectscore=0 lowpriorityscore=0 adultscore=0
- bulkscore=0 spamscore=0 priorityscore=1501 phishscore=0 malwarescore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2510020000 definitions=main-2510080121
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v11 07/17] media: rockchip: add driver for the rockchip
+ camera interface
+To: michael.riesch@collabora.com, Mehdi Djait <mehdi.djait@linux.intel.com>,
+ Maxime Chevallier <maxime.chevallier@bootlin.com>,
+ =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ Gerald Loacker <gerald.loacker@wolfvision.net>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Markus Elfring <Markus.Elfring@web.de>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Kever Yang <kever.yang@rock-chips.com>,
+ Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Collabora Kernel Team <kernel@collabora.com>,
+ Paul Kocialkowski <paulk@sys-base.io>,
+ Alexander Shiyan <eagle.alexander923@gmail.com>,
+ Val Packett <val@packett.cool>, Rob Herring <robh@kernel.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org
+References: <20240220-rk3568-vicap-v11-0-af0eada54e5d@collabora.com>
+ <GTZBnEB6M3avDjHcPfe-Xk1msGrNz3ak2dcuD9K66qXTkJ82qAfdO76PxK5HjR8bbrH6s_OXa9GwefBJAYsxPQ==@protonmail.internalid>
+ <20240220-rk3568-vicap-v11-7-af0eada54e5d@collabora.com>
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Content-Language: en-US
+In-Reply-To: <20240220-rk3568-vicap-v11-7-af0eada54e5d@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Fri, Oct 10, 2025 at 05:37:51PM +0800, Langyan Ye wrote:
-> Add a DRM panel driver for the Ilitek IL79900A MIPI-DSI LCD controller.
+On 17/09/2025 16:38, Michael Riesch via B4 Relay wrote:
+> From: Michael Riesch <michael.riesch@collabora.com>
 > 
-> The controller is used in panels such as the Tianma TL121BVMS07-00.
-> It requires multiple power supplies (AVDD, AVEE, 1.8V logic), an enable
-> GPIO, and a backlight device.
+> Add the skeleton for a media controller centric V4L2 driver for the
+> Rockchip Camera Interface (CIF).
+> The skeleton features support for the PX30 Video Input Processor (VIP)
+> and the RK3568 Video Capture (VICAP) unit.
 > 
-> Signed-off-by: Langyan Ye <yelangyan@huaqin.corp-partner.google.com>
+> Signed-off-by: Michael Riesch <michael.riesch@collabora.com>
 > ---
->  drivers/gpu/drm/panel/panel-ilitek-il79900a.c | 394 ++++++++++++++++++
->  1 file changed, 394 insertions(+)
->  create mode 100644 drivers/gpu/drm/panel/panel-ilitek-il79900a.c
+>   MAINTAINERS                                        |   1 +
+>   drivers/media/platform/rockchip/Kconfig            |   1 +
+>   drivers/media/platform/rockchip/Makefile           |   1 +
+>   drivers/media/platform/rockchip/rkcif/Kconfig      |  18 ++
+>   drivers/media/platform/rockchip/rkcif/Makefile     |   4 +
+>   .../media/platform/rockchip/rkcif/rkcif-common.h   |  54 +++++
+>   drivers/media/platform/rockchip/rkcif/rkcif-dev.c  | 260 +++++++++++++++++++++
+>   7 files changed, 339 insertions(+)
 > 
-> diff --git a/drivers/gpu/drm/panel/panel-ilitek-il79900a.c b/drivers/gpu/drm/panel/panel-ilitek-il79900a.c
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 4a18421a53a1..6c023dc54ece 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -21770,6 +21770,7 @@ S:	Maintained
+>   F:	Documentation/admin-guide/media/rkcif*
+>   F:	Documentation/devicetree/bindings/media/rockchip,px30-vip.yaml
+>   F:	Documentation/devicetree/bindings/media/rockchip,rk3568-vicap.yaml
+> +F:	drivers/media/platform/rockchip/rkcif/
+> 
+>   ROCKCHIP CRYPTO DRIVERS
+>   M:	Corentin Labbe <clabbe@baylibre.com>
+> diff --git a/drivers/media/platform/rockchip/Kconfig b/drivers/media/platform/rockchip/Kconfig
+> index 2f6f77afecfc..54b698c4cd2c 100644
+> --- a/drivers/media/platform/rockchip/Kconfig
+> +++ b/drivers/media/platform/rockchip/Kconfig
+> @@ -3,6 +3,7 @@
+>   comment "Rockchip media platform drivers"
+> 
+>   source "drivers/media/platform/rockchip/rga/Kconfig"
+> +source "drivers/media/platform/rockchip/rkcif/Kconfig"
+>   source "drivers/media/platform/rockchip/rkcsi/Kconfig"
+>   source "drivers/media/platform/rockchip/rkisp1/Kconfig"
+>   source "drivers/media/platform/rockchip/rkvdec/Kconfig"
+> diff --git a/drivers/media/platform/rockchip/Makefile b/drivers/media/platform/rockchip/Makefile
+> index 33e24b47735c..522a7d3e30b0 100644
+> --- a/drivers/media/platform/rockchip/Makefile
+> +++ b/drivers/media/platform/rockchip/Makefile
+> @@ -1,5 +1,6 @@
+>   # SPDX-License-Identifier: GPL-2.0-only
+>   obj-y += rga/
+> +obj-y += rkcif/
+>   obj-y += rkcsi/
+>   obj-y += rkisp1/
+>   obj-y += rkvdec/
+> diff --git a/drivers/media/platform/rockchip/rkcif/Kconfig b/drivers/media/platform/rockchip/rkcif/Kconfig
 > new file mode 100644
-> index 000000000000..2134f8af673e
+> index 000000000000..efd82ac35bd8
 > --- /dev/null
-> +++ b/drivers/gpu/drm/panel/panel-ilitek-il79900a.c
-> @@ -0,0 +1,394 @@
+> +++ b/drivers/media/platform/rockchip/rkcif/Kconfig
+> @@ -0,0 +1,18 @@
+> +config VIDEO_ROCKCHIP_CIF
+> +	tristate "Rockchip Camera Interface (CIF)"
+> +	depends on VIDEO_DEV
+> +	depends on ARCH_ROCKCHIP || COMPILE_TEST
+> +	depends on V4L_PLATFORM_DRIVERS
+> +	depends on PM && COMMON_CLK
+> +	select MEDIA_CONTROLLER
+> +	select VIDEOBUF2_DMA_CONTIG
+> +	select V4L2_FWNODE
+> +	select VIDEO_V4L2_SUBDEV_API
+> +	help
+> +	  This is a driver for Rockchip Camera Interface (CIF). It is featured
+> +	  in many Rockchips SoCs in different variations, such as the PX30
+> +	  Video Input Processor (VIP, one Digital Video Port (DVP)) or the
+> +	  RK3568 Video Capture (VICAP, one DVP, one MIPI CSI-2 receiver) unit.
+> +
+> +	  To compile this driver as a module, choose M here: the module
+> +	  will be called rockchip-cif.
+> diff --git a/drivers/media/platform/rockchip/rkcif/Makefile b/drivers/media/platform/rockchip/rkcif/Makefile
+> new file mode 100644
+> index 000000000000..c6837ed2f65c
+> --- /dev/null
+> +++ b/drivers/media/platform/rockchip/rkcif/Makefile
+> @@ -0,0 +1,4 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +obj-$(CONFIG_VIDEO_ROCKCHIP_CIF) += rockchip-cif.o
+> +
+> +rockchip-cif-objs += rkcif-dev.o
+> diff --git a/drivers/media/platform/rockchip/rkcif/rkcif-common.h b/drivers/media/platform/rockchip/rkcif/rkcif-common.h
+> new file mode 100644
+> index 000000000000..43a9390526d8
+> --- /dev/null
+> +++ b/drivers/media/platform/rockchip/rkcif/rkcif-common.h
+> @@ -0,0 +1,54 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +/*
+> + * Rockchip Camera Interface (CIF) Driver
+> + *
+> + * Copyright (C) 2018 Rockchip Electronics Co., Ltd.
+> + * Copyright (C) 2023 Mehdi Djait <mehdi.djait@bootlin.com>
+> + * Copyright (C) 2025 Michael Riesch <michael.riesch@wolfvision.net>
+> + */
+> +
+> +#ifndef _RKCIF_COMMON_H
+> +#define _RKCIF_COMMON_H
+> +
+> +#include <linux/clk.h>
+> +#include <linux/mutex.h>
+> +#include <linux/regmap.h>
+> +
+> +#include <media/media-device.h>
+> +#include <media/media-entity.h>
+> +#include <media/v4l2-common.h>
+> +#include <media/v4l2-device.h>
+> +#include <media/v4l2-fwnode.h>
+> +#include <media/v4l2-mc.h>
+> +#include <media/v4l2-subdev.h>
+> +#include <media/videobuf2-v4l2.h>
+> +
+> +#define RKCIF_DRIVER_NAME "rockchip-cif"
+> +#define RKCIF_CLK_MAX	  4
+> +
+> +struct rkcif_remote {
+> +	struct v4l2_async_connection async_conn;
+> +	struct v4l2_subdev *sd;
+> +};
+> +
+> +struct rkcif_match_data {
+> +	const char *const *clks;
+> +	unsigned int clks_num;
+> +};
+> +
+> +struct rkcif_device {
+> +	struct device *dev;
+> +
+> +	const struct rkcif_match_data *match_data;
+> +	struct clk_bulk_data clks[RKCIF_CLK_MAX];
+> +	unsigned int clks_num;
+> +	struct regmap *grf;
+> +	struct reset_control *reset;
+> +	void __iomem *base_addr;
+> +
+> +	struct media_device media_dev;
+> +	struct v4l2_device v4l2_dev;
+> +	struct v4l2_async_notifier notifier;
+> +};
+> +
+> +#endif
+> diff --git a/drivers/media/platform/rockchip/rkcif/rkcif-dev.c b/drivers/media/platform/rockchip/rkcif/rkcif-dev.c
+> new file mode 100644
+> index 000000000000..a8514e7d3249
+> --- /dev/null
+> +++ b/drivers/media/platform/rockchip/rkcif/rkcif-dev.c
+> @@ -0,0 +1,260 @@
 > +// SPDX-License-Identifier: GPL-2.0
 > +/*
-> + * Panels based on the Ilitek IL79900A display controller.
+> + * Rockchip Camera Interface (CIF) Driver
+> + *
+> + * Copyright (C) 2018 Rockchip Electronics Co., Ltd.
+> + * Copyright (C) 2020 Maxime Chevallier <maxime.chevallier@bootlin.com>
+> + * Copyright (C) 2023 Mehdi Djait <mehdi.djait@bootlin.com>
+> + * Copyright (C) 2025 Michael Riesch <michael.riesch@wolfvision.net>
 > + */
+> +
+> +#include <linux/clk.h>
 > +#include <linux/delay.h>
-> +#include <linux/gpio/consumer.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/mfd/syscon.h>
 > +#include <linux/module.h>
 > +#include <linux/of.h>
-> +#include <linux/regulator/consumer.h>
+> +#include <linux/of_graph.h>
+> +#include <linux/of_platform.h>
+> +#include <linux/pm_runtime.h>
+> +#include <linux/reset.h>
 > +
-> +#include <drm/drm_connector.h>
-> +#include <drm/drm_crtc.h>
-> +#include <drm/drm_mipi_dsi.h>
-> +#include <drm/drm_panel.h>
+> +#include <media/v4l2-fwnode.h>
+> +#include <media/v4l2-mc.h>
 > +
-> +#include <video/mipi_display.h>
+> +#include "rkcif-common.h"
 > +
-> +struct il79900a;
-> +
-> +/*
-> + * Use this descriptor struct to describe different panels using the
-> + * Ilitek IL79900A display controller.
-> + */
-> +struct panel_desc {
-> +	const struct drm_display_mode *modes;
-> +	unsigned int bpc;
-> +
-> +	/**
-> +	 * @width_mm: width of the panel's active display area
-> +	 * @height_mm: height of the panel's active display area
-> +	 */
-> +	struct {
-> +		unsigned int width_mm;
-> +		unsigned int height_mm;
-> +	} size;
-
-
-Move these to the mode
-
-> +
-> +	unsigned long mode_flags;
-> +	enum mipi_dsi_pixel_format format;
-> +	int (*init)(struct il79900a *boe);
-> +	unsigned int lanes;
+> +static const char *const px30_vip_clks[] = {
+> +	"aclk",
+> +	"hclk",
+> +	"pclk",
 > +};
 > +
-> +struct il79900a {
-> +	struct drm_panel base;
-> +	struct mipi_dsi_device *dsi;
-> +
-> +	const struct panel_desc *desc;
-> +
-> +	enum drm_panel_orientation orientation;
-> +	struct regulator *pp1800;
-> +	struct regulator *avee;
-> +	struct regulator *avdd;
-> +	struct gpio_desc *enable_gpio;
+> +static const struct rkcif_match_data px30_vip_match_data = {
+> +	.clks = px30_vip_clks,
+> +	.clks_num = ARRAY_SIZE(px30_vip_clks),
 > +};
 > +
-> +/* IL79900A-specific commands, add new commands as you decode them */
-> +#define IL79900A_DCS_SWITCH_PAGE	0xFF
-> +
-> +#define il79900a_switch_page(ctx, page) \
-> +	mipi_dsi_dcs_write_seq_multi(ctx, IL79900A_DCS_SWITCH_PAGE, \
-> +				     0x5a, 0xa5, (page))
-> +
-> +static int tianma_il79900a_init(struct il79900a *ili)
-> +{
-> +	struct mipi_dsi_multi_context ctx = { .dsi = ili->dsi };
-> +
-> +	usleep_range(5000, 5100);
-
-mipi_dsi_usleep_range
-
-> +
-> +	il79900a_switch_page(&ctx, 0x06);
-> +	mipi_dsi_dcs_write_seq_multi(&ctx, 0x3e, 0x62);
-> +
-> +	il79900a_switch_page(&ctx, 0x02);
-> +	mipi_dsi_dcs_write_seq_multi(&ctx, 0x1b, 0x20);
-> +	mipi_dsi_dcs_write_seq_multi(&ctx, 0x5d, 0x00);
-> +	mipi_dsi_dcs_write_seq_multi(&ctx, 0x5e, 0x40);
-> +
-> +	il79900a_switch_page(&ctx, 0x07);
-> +	mipi_dsi_dcs_write_seq_multi(&ctx, 0X29, 0x00);
-> +
-> +	il79900a_switch_page(&ctx, 0x06);
-> +	mipi_dsi_dcs_write_seq_multi(&ctx, 0x92, 0x22);
-> +
-> +	il79900a_switch_page(&ctx, 0x00);
-> +	mipi_dsi_dcs_write_seq_multi(&ctx, MIPI_DCS_EXIT_SLEEP_MODE);
-> +	if (ctx.accum_err)
-> +		return ctx.accum_err;
-
-Drop
-
-> +
-> +	msleep(120);
-
-mipi_dsi_msleep
-
-> +
-> +	mipi_dsi_dcs_write_seq_multi(&ctx, MIPI_DCS_SET_DISPLAY_ON);
-> +	if (ctx.accum_err)
-> +		return ctx.accum_err;
-
-drop
-
-> +
-> +	msleep(80);
-
-mipi_dsi_msleep
-> +
-> +	return 0;
+> +static const char *const rk3568_vicap_clks[] = {
+> +	"aclk",
+> +	"hclk",
+> +	"dclk",
+> +	"iclk",
 > +};
 > +
-> +static inline struct il79900a *to_il79900a(struct drm_panel *panel)
+> +static const struct rkcif_match_data rk3568_vicap_match_data = {
+> +	.clks = rk3568_vicap_clks,
+> +	.clks_num = ARRAY_SIZE(rk3568_vicap_clks),
+> +};
+> +
+> +static const struct of_device_id rkcif_plat_of_match[] = {
+> +	{
+> +		.compatible = "rockchip,px30-vip",
+> +		.data = &px30_vip_match_data,
+> +	},
+> +	{
+> +		.compatible = "rockchip,rk3568-vicap",
+> +		.data = &rk3568_vicap_match_data,
+> +	},
+> +	{}
+> +};
+> +MODULE_DEVICE_TABLE(of, rkcif_plat_of_match);
+> +
+> +static int rkcif_register(struct rkcif_device *rkcif)
 > +{
-> +	return container_of(panel, struct il79900a, base);
+> +	return 0;
 > +}
 > +
-> +static int il79900a_enter_sleep_mode(struct il79900a *ili)
+> +static void rkcif_unregister(struct rkcif_device *rkcif)
 > +{
-> +	struct mipi_dsi_device *dsi = ili->dsi;
-> +	int ret;
+> +}
 > +
-> +	dsi->mode_flags &= ~MIPI_DSI_MODE_LPM;
+> +static int rkcif_notifier_bound(struct v4l2_async_notifier *notifier,
+> +				struct v4l2_subdev *sd,
+> +				struct v4l2_async_connection *asd)
+> +{
+> +	struct rkcif_remote *remote =
+> +		container_of(asd, struct rkcif_remote, async_conn);
 > +
-> +	ret = mipi_dsi_dcs_set_display_off(dsi);
-
-_multi
-
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	ret = mipi_dsi_dcs_enter_sleep_mode(dsi);
-
-_multi
-
-> +	if (ret < 0)
-> +		return ret;
+> +	remote->sd = sd;
 > +
 > +	return 0;
 > +}
 > +
-> +static int il79900a_disable(struct drm_panel *panel)
+> +static int rkcif_notifier_complete(struct v4l2_async_notifier *notifier)
 > +{
-> +	struct il79900a *ili = to_il79900a(panel);
-> +	struct mipi_dsi_multi_context ctx = { .dsi = ili->dsi };
-> +	int ret;
+> +	struct rkcif_device *rkcif =
+> +		container_of(notifier, struct rkcif_device, notifier);
 > +
-> +	il79900a_switch_page(&ctx, 0x00);
-> +	if (ctx.accum_err)
-> +		return ctx.accum_err;
-> +
-> +	ret = il79900a_enter_sleep_mode(ili);
-
-Pass context to that function
-
-> +	if (ret < 0) {
-> +		dev_err(panel->dev, "failed to set panel off: %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	msleep(150);
-
-mipi_dsi_msleep
-
-> +
-> +	return 0;
+> +	return v4l2_device_register_subdev_nodes(&rkcif->v4l2_dev);
 > +}
 > +
-> +static int il79900a_unprepare(struct drm_panel *panel)
+> +static const struct v4l2_async_notifier_operations rkcif_notifier_ops = {
+> +	.bound = rkcif_notifier_bound,
+> +	.complete = rkcif_notifier_complete,
+> +};
+> +
+> +static irqreturn_t rkcif_isr(int irq, void *ctx)
 > +{
-> +	struct il79900a *ili = to_il79900a(panel);
-> +
-> +	gpiod_set_value(ili->enable_gpio, 0);
-> +	usleep_range(1000, 2000);
-> +	regulator_disable(ili->avee);
-> +	regulator_disable(ili->avdd);
-> +	usleep_range(5000, 7000);
-> +	regulator_disable(ili->pp1800);
-> +
-> +	return 0;
-> +}
-> +
-> +static int il79900a_prepare(struct drm_panel *panel)
-> +{
-> +	struct il79900a *ili = to_il79900a(panel);
-> +	int ret;
-> +
-> +	gpiod_set_value(ili->enable_gpio, 0);
-> +	usleep_range(1000, 1500);
-> +
-> +	ret = regulator_enable(ili->pp1800);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	usleep_range(3000, 5000);
-> +
-> +	ret = regulator_enable(ili->avdd);
-> +	if (ret < 0)
-> +		goto poweroff1v8;
-> +	ret = regulator_enable(ili->avee);
-> +	if (ret < 0)
-> +		goto poweroffavdd;
-> +
-> +	usleep_range(10000, 11000);
-> +
-> +	// MIPI needs to keep the LP11 state before the lcm_reset pin is pulled high
-> +	ret = mipi_dsi_dcs_nop(ili->dsi);
-> +	if (ret < 0) {
-> +		dev_err(&ili->dsi->dev, "Failed to send NOP: %d\n", ret);
-> +		goto poweroff;
-> +	}
-> +	usleep_range(1000, 2000);
-> +
-> +	gpiod_set_value(ili->enable_gpio, 1);
-> +	usleep_range(1000, 2000);
-> +	gpiod_set_value(ili->enable_gpio, 0);
-> +	usleep_range(10000, 11000);
-> +	gpiod_set_value(ili->enable_gpio, 1);
-> +	usleep_range(20000, 21000);
-> +
-> +	ret = ili->desc->init(ili);
-> +	if (ret < 0)
-> +		goto poweroff;
-> +
-> +	return 0;
-> +
-> +poweroff:
-> +	gpiod_set_value(ili->enable_gpio, 0);
-> +	regulator_disable(ili->avee);
-> +poweroffavdd:
-> +	regulator_disable(ili->avdd);
-> +poweroff1v8:
-> +	usleep_range(5000, 7000);
-> +	regulator_disable(ili->pp1800);
+> +	irqreturn_t ret = IRQ_NONE;
 > +
 > +	return ret;
 > +}
 > +
-> +static int il79900a_enable(struct drm_panel *panel)
+> +static int rkcif_probe(struct platform_device *pdev)
 > +{
-> +	msleep(130);
-
-Why?
-
-> +	return 0;
-> +}
+> +	struct device *dev = &pdev->dev;
+> +	struct rkcif_device *rkcif;
+> +	int ret, irq;
 > +
-> +static const struct drm_display_mode tianma_il79900a_default_mode = {
-> +	.clock = 264355,
-> +	.hdisplay = 1600,
-> +	.hsync_start = 1600 + 20,
-> +	.hsync_end = 1600 + 20 + 4,
-> +	.htotal = 1600 + 20 + 4 + 20,
-> +	.vdisplay = 2560,
-> +	.vsync_start = 2560 + 82,
-> +	.vsync_end = 2560 + 82 + 2,
-> +	.vtotal = 2560 + 82 + 2 + 36,
-> +};
-> +
-> +static const struct panel_desc tianma_il79900a_desc = {
-> +	.modes = &tianma_il79900a_default_mode,
-> +	.bpc = 8,
-> +	.size = {
-> +		.width_mm = 163,
-> +		.height_mm = 260,
-> +	},
-> +	.lanes = 3,
-> +	.format = MIPI_DSI_FMT_RGB888,
-> +	.mode_flags = MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_VIDEO_SYNC_PULSE |
-> +		      MIPI_DSI_MODE_LPM,
-> +	.init = tianma_il79900a_init,
-> +};
-> +
-> +static int il79900a_get_modes(struct drm_panel *panel,
-> +			      struct drm_connector *connector)
-> +{
-> +	struct il79900a *ili = to_il79900a(panel);
-> +	const struct drm_display_mode *m = ili->desc->modes;
-> +	struct drm_display_mode *mode;
-> +
-> +	mode = drm_mode_duplicate(connector->dev, m);
-> +	if (!mode) {
-> +		dev_err(panel->dev, "failed to add mode %ux%u@%u\n",
-> +			m->hdisplay, m->vdisplay, drm_mode_vrefresh(m));
-> +		return -ENOMEM;
-> +	}
-> +
-> +	mode->type = DRM_MODE_TYPE_DRIVER | DRM_MODE_TYPE_PREFERRED;
-> +	drm_mode_set_name(mode);
-> +	drm_mode_probed_add(connector, mode);
-> +
-> +	connector->display_info.width_mm = ili->desc->size.width_mm;
-> +	connector->display_info.height_mm = ili->desc->size.height_mm;
-
-drm_connector_helper_get_modes_fixed()
-
-> +	connector->display_info.bpc = ili->desc->bpc;
-> +
-> +	return 1;
-> +}
-> +
-> +static enum drm_panel_orientation il79900a_get_orientation(struct drm_panel *panel)
-> +{
-> +	struct il79900a *ili = to_il79900a(panel);
-> +
-> +	return ili->orientation;
-> +}
-> +
-> +static const struct drm_panel_funcs il79900a_funcs = {
-> +	.disable = il79900a_disable,
-> +	.unprepare = il79900a_unprepare,
-> +	.prepare = il79900a_prepare,
-> +	.enable = il79900a_enable,
-> +	.get_modes = il79900a_get_modes,
-> +	.get_orientation = il79900a_get_orientation,
-> +};
-> +
-> +static int il79900a_add(struct il79900a *ili)
-> +{
-> +	struct device *dev = &ili->dsi->dev;
-> +	int err;
-> +
-> +	ili->avdd = devm_regulator_get(dev, "avdd");
-> +	if (IS_ERR(ili->avdd))
-> +		return PTR_ERR(ili->avdd);
-> +
-> +	ili->avee = devm_regulator_get(dev, "avee");
-> +	if (IS_ERR(ili->avee))
-> +		return PTR_ERR(ili->avee);
-> +
-> +	ili->pp1800 = devm_regulator_get(dev, "pp1800");
-> +	if (IS_ERR(ili->pp1800))
-> +		return PTR_ERR(ili->pp1800);
-> +
-> +	ili->enable_gpio = devm_gpiod_get(dev, "enable", GPIOD_OUT_LOW);
-> +	if (IS_ERR(ili->enable_gpio)) {
-> +		dev_err(dev, "cannot get reset-gpios %ld\n",
-> +			PTR_ERR(ili->enable_gpio));
-> +		return PTR_ERR(ili->enable_gpio);
-> +	}
-> +
-> +	gpiod_set_value(ili->enable_gpio, 0);
-> +
-> +	drm_panel_init(&ili->base, dev, &il79900a_funcs,
-> +		       DRM_MODE_CONNECTOR_DSI);
-> +	err = of_drm_get_panel_orientation(dev->of_node, &ili->orientation);
-> +	if (err < 0) {
-> +		dev_err(dev, "%pOF: failed to get orientation %d\n", dev->of_node, err);
-> +		return err;
-> +	}
-> +
-> +	err = drm_panel_of_backlight(&ili->base);
-> +	if (err)
-> +		return err;
-> +
-> +	ili->base.funcs = &il79900a_funcs;
-> +	ili->base.dev = &ili->dsi->dev;
-> +
-> +	drm_panel_add(&ili->base);
-> +
-> +	return 0;
-> +}
-> +
-> +static int il79900a_probe(struct mipi_dsi_device *dsi)
-> +{
-> +	struct il79900a *ili;
-> +	int ret;
-> +	const struct panel_desc *desc;
-> +
-> +	ili = devm_kzalloc(&dsi->dev, sizeof(*ili), GFP_KERNEL);
-> +	if (!ili)
+> +	rkcif = devm_kzalloc(dev, sizeof(*rkcif), GFP_KERNEL);
+> +	if (!rkcif)
 > +		return -ENOMEM;
 > +
-> +	desc = of_device_get_match_data(&dsi->dev);
-> +	dsi->lanes = desc->lanes;
-> +	dsi->format = desc->format;
-> +	dsi->mode_flags = desc->mode_flags;
-> +	ili->desc = desc;
-> +	ili->dsi = dsi;
-> +	ret = il79900a_add(ili);
-> +	if (ret < 0)
-> +		return ret;
+> +	rkcif->match_data = of_device_get_match_data(dev);
+> +	if (!rkcif->match_data)
+> +		return -ENODEV;
 > +
-> +	mipi_dsi_set_drvdata(dsi, ili);
+> +	dev_set_drvdata(dev, rkcif);
+> +	rkcif->dev = dev;
 > +
-> +	ret = mipi_dsi_attach(dsi);
+> +	rkcif->base_addr = devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(rkcif->base_addr))
+> +		return PTR_ERR(rkcif->base_addr);
+> +
+> +	irq = platform_get_irq(pdev, 0);
+> +	if (irq < 0)
+> +		return irq;
+> +
+> +	ret = devm_request_irq(dev, irq, rkcif_isr, IRQF_SHARED,
+> +			       dev_driver_string(dev), dev);
 > +	if (ret)
-> +		drm_panel_remove(&ili->base);
+> +		return dev_err_probe(dev, ret, "failed to request irq\n");
 > +
+> +	if (rkcif->match_data->clks_num > RKCIF_CLK_MAX)
+> +		return dev_err_probe(dev, -EINVAL, "invalid number of clocks\n");
+
+\n
+
+> +	rkcif->clks_num = rkcif->match_data->clks_num;
+
+\n ?
+
+> +	for (unsigned int i = 0; i < rkcif->clks_num; i++)
+> +		rkcif->clks[i].id = rkcif->match_data->clks[i];
+> +	ret = devm_clk_bulk_get(dev, rkcif->clks_num, rkcif->clks);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "failed to get clocks\n");
+> +
+> +	rkcif->reset = devm_reset_control_array_get_exclusive(dev);
+> +	if (IS_ERR(rkcif->reset))
+> +		return PTR_ERR(rkcif->reset);
+> +
+> +	rkcif->grf = syscon_regmap_lookup_by_phandle(dev->of_node,
+> +						     "rockchip,grf");
+> +	if (IS_ERR(rkcif->grf))
+> +		rkcif->grf = NULL;
+> +
+> +	pm_runtime_enable(&pdev->dev);
+> +
+> +	rkcif->media_dev.dev = dev;
+> +	strscpy(rkcif->media_dev.model, RKCIF_DRIVER_NAME,
+> +		sizeof(rkcif->media_dev.model));
+> +	media_device_init(&rkcif->media_dev);
+> +
+> +	rkcif->v4l2_dev.mdev = &rkcif->media_dev;
+> +	ret = v4l2_device_register(dev, &rkcif->v4l2_dev);
+> +	if (ret)
+> +		goto err_media_dev_cleanup;
+> +
+> +	ret = media_device_register(&rkcif->media_dev);
+> +	if (ret < 0) {
+> +		dev_err(dev, "failed to register media device: %d\n", ret);
+> +		goto err_v4l2_dev_unregister;
+> +	}
+> +
+> +	v4l2_async_nf_init(&rkcif->notifier, &rkcif->v4l2_dev);
+> +	rkcif->notifier.ops = &rkcif_notifier_ops;
+> +
+> +	ret = rkcif_register(rkcif);
+> +	if (ret) {
+> +		dev_err(dev, "failed to register media entities: %d\n", ret);
+> +		goto err_notifier_cleanup;
+> +	}
+> +
+> +	ret = v4l2_async_nf_register(&rkcif->notifier);
+> +	if (ret)
+> +		goto err_rkcif_unregister;
+> +
+> +	return 0;
+> +
+> +err_rkcif_unregister:
+> +	rkcif_unregister(rkcif);
+> +err_notifier_cleanup:
+> +	v4l2_async_nf_cleanup(&rkcif->notifier);
+> +	media_device_unregister(&rkcif->media_dev);
+> +err_v4l2_dev_unregister:
+> +	v4l2_device_unregister(&rkcif->v4l2_dev);
+> +err_media_dev_cleanup:
+> +	media_device_cleanup(&rkcif->media_dev);
+> +	pm_runtime_disable(&pdev->dev);
 > +	return ret;
 > +}
 > +
-> +static void il79900a_remove(struct mipi_dsi_device *dsi)
+> +static void rkcif_remove(struct platform_device *pdev)
 > +{
-> +	struct il79900a *ili = mipi_dsi_get_drvdata(dsi);
-> +	int ret;
+> +	struct rkcif_device *rkcif = platform_get_drvdata(pdev);
 > +
-> +	ret = mipi_dsi_detach(dsi);
-> +	if (ret < 0)
-> +		dev_err(&dsi->dev, "failed to detach from DSI host: %d\n", ret);
-> +
-> +	if (ili->base.dev)
-> +		drm_panel_remove(&ili->base);
+> +	v4l2_async_nf_unregister(&rkcif->notifier);
+> +	rkcif_unregister(rkcif);
+> +	v4l2_async_nf_cleanup(&rkcif->notifier);
+> +	media_device_unregister(&rkcif->media_dev);
+> +	v4l2_device_unregister(&rkcif->v4l2_dev);
+> +	media_device_cleanup(&rkcif->media_dev);
+> +	pm_runtime_disable(&pdev->dev);
 > +}
 > +
-> +static const struct of_device_id il79900a_of_match[] = {
-> +	{ .compatible = "tianma,il79900a",
-> +	  .data = &tianma_il79900a_desc
-> +	},
-
-Single line
-
-> +	{ /* sentinel */ }
-> +};
-> +MODULE_DEVICE_TABLE(of, il79900a_of_match);
+> +static int rkcif_runtime_suspend(struct device *dev)
+> +{
+> +	struct rkcif_device *rkcif = dev_get_drvdata(dev);
 > +
-> +static struct mipi_dsi_driver il79900a_driver = {
+> +	/*
+> +	 * Reset CIF (CRU, DMA, FIFOs) to allow a clean resume.
+> +	 * Since this resets the IOMMU too, we cannot issue this reset when
+> +	 * resuming.
+> +	 */
+> +	reset_control_assert(rkcif->reset);
+> +	udelay(5);
+> +	reset_control_deassert(rkcif->reset);
+> +
+> +	clk_bulk_disable_unprepare(rkcif->clks_num, rkcif->clks);
+> +
+> +	return 0;
+> +}
+> +
+> +static int rkcif_runtime_resume(struct device *dev)
+> +{
+> +	struct rkcif_device *rkcif = dev_get_drvdata(dev);
+> +	int ret;
+> +
+> +	ret = clk_bulk_prepare_enable(rkcif->clks_num, rkcif->clks);
+> +	if (ret) {
+> +		dev_err(dev, "failed to enable clocks\n");
+> +		return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct dev_pm_ops rkcif_plat_pm_ops = {
+> +	.runtime_suspend = rkcif_runtime_suspend,
+> +	.runtime_resume = rkcif_runtime_resume,
+> +};
+> +
+> +static struct platform_driver rkcif_plat_drv = {
 > +	.driver = {
-> +		.name = "panel-il79900a",
-> +		.of_match_table = il79900a_of_match,
+> +		   .name = RKCIF_DRIVER_NAME,
+> +		   .of_match_table = rkcif_plat_of_match,
+> +		   .pm = &rkcif_plat_pm_ops,
 > +	},
-> +	.probe = il79900a_probe,
-> +	.remove = il79900a_remove,
+> +	.probe = rkcif_probe,
+> +	.remove = rkcif_remove,
 > +};
-> +module_mipi_dsi_driver(il79900a_driver);
+> +module_platform_driver(rkcif_plat_drv);
 > +
-> +MODULE_AUTHOR("Langyan Ye <yelangyan@huaqin.corp-partner.google.com>");
-> +MODULE_DESCRIPTION("Ilitek IL79900A-based panels driver");
+> +MODULE_DESCRIPTION("Rockchip Camera Interface (CIF) platform driver");
 > +MODULE_LICENSE("GPL");
-> -- 
-> 2.34.1
 > 
-
--- 
-With best wishes
-Dmitry
+> --
+> 2.39.5
+> 
+> 
+> 
+Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 
