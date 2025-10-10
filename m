@@ -1,178 +1,154 @@
-Return-Path: <devicetree+bounces-225438-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225439-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 344E9BCE085
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 19:04:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E1EC0BCE111
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 19:17:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id BB7D94E991A
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 17:04:25 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id CDC4A4EF883
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 17:17:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EFB21E32A2;
-	Fri, 10 Oct 2025 17:04:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6183A218AB0;
+	Fri, 10 Oct 2025 17:17:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (4096-bit key) header.d=canonical.com header.i=@canonical.com header.b="cjEU8dfS"
+	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="F/IYXQ0w"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-il1-f179.google.com (mail-il1-f179.google.com [209.85.166.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7772718EAB
-	for <devicetree@vger.kernel.org>; Fri, 10 Oct 2025 17:04:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.188.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAE28217F55
+	for <devicetree@vger.kernel.org>; Fri, 10 Oct 2025 17:17:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760115861; cv=none; b=itiqHln0/2q4rf0eFZUjzULkIjc9UxnAYHCFETmpEsaWYdVgva6OA42Z7YAKWCM4lTYUHoyNbH2Y2keTnNtzvaJRFRmT1N02yRrHZfmANi/wmO+EQ4rM9myGNg4GgF2V8L/Oqe61n8f+boMwLZpZYzJpEWJ9QWXFYct8HeQAGRM=
+	t=1760116663; cv=none; b=OlMDtPwZxnCWB0o0WQMWGR4H9uDvs332JaJjlwPsiDC4t3lvTFQ99VvYxnhWUuYn+9LTXW0DeqmcmB0EF5eGwcwdn7Z6OX9p/ZwaOacpmPYYhZj188x2CQjQJQl1ylZZyZevyruzNcI3LfPoBjvqb4a1k25PkbsVDiwYpcMoYgE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760115861; c=relaxed/simple;
-	bh=gRT5PU7wDGh7GtgloUvjUMgoKi1g6w1VadZgRBEHa0I=;
-	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=bYG0KmXMi5Gir8O4aS76e35T/780hccO+D1HsKMHsFfnDYOf7IIg3VN9z+LymgnduzSypYVE+1kmYTdK1FBj0xhXWkv0gc+6hDug0IkZp9GmJbqJFWMixbcn4z420D1CwRt50JbDJM714zYD2cckNdSjii3onGXJPJp3fJqwYAs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com; spf=pass smtp.mailfrom=canonical.com; dkim=pass (4096-bit key) header.d=canonical.com header.i=@canonical.com header.b=cjEU8dfS; arc=none smtp.client-ip=185.125.188.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
-Received: from mail-ua1-f72.google.com (mail-ua1-f72.google.com [209.85.222.72])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 192EB3F856
-	for <devicetree@vger.kernel.org>; Fri, 10 Oct 2025 17:04:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-	s=20251003; t=1760115857;
-	bh=VMMsbHNHQlUNowhauDzTqGTgCrfFH9KMpRorSuBG4rw=;
-	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
-	 To:Cc:Content-Type;
-	b=cjEU8dfSgbQdCjsvjCE78yq3Tp3DybP5Idnqx/PCly4b1maQZyP14A7qQSgkpSOOC
-	 2aTY/c24NoHqH1xqR+e54lClosbA8GbL20kV+Wxbkbm1LR5v14xZVx4x8j/psJCnsy
-	 +tXt5RYChx3zGJrcGNWyOr/kIo7XdtGJpr1lGQ9cUp4HTqfgo6UaO3lpOS9VCAXEDW
-	 cdYyhBORSjA2EDg9esRmZGcWgfeq7q/JROGJKFO9ArOI1Y6PbcUk0C7ZgllXg9GLTR
-	 MTAvAxLV10qRAGK5RUI5MyVjUTUP3/BvQYf0ibnShKdPYACngsLzX0EnDfOLhkd8GD
-	 Rdhq3U/ng1PWv+ztb/GDp3PZeCiCy71tfqX/n2VcDkvUlXLHf9UAS7c1+7N6mIW0rI
-	 dR8p/NBn2N0MbFX/1yIWvB4d4cinfTkVSGs9Jx+cGfJbafeDN1x/NI9au8sbuuJRz+
-	 dswM3Ozz3i4oiIesBxVb15z3HqTJVMtETpSBK/uC4jMqbgFLOSLuWK0zRIzdsIbQv7
-	 2YdTs0Fc5jYPp3WdJtB94VGBpCi0snHXbcOOtI9lfFbdr45qUm4q268+DWwLlY1tq6
-	 l+pQQKZjkzEX8wigx6Xe0nWIn/uCP8XgyxcEES5FxKLURdc6xL/RPTTQJ0KfoXoda3
-	 R9xWtWWmF7V//1XavCj0Awxs=
-Received: by mail-ua1-f72.google.com with SMTP id a1e0cc1a2514c-92eb7ac6c06so5067071241.3
-        for <devicetree@vger.kernel.org>; Fri, 10 Oct 2025 10:04:16 -0700 (PDT)
+	s=arc-20240116; t=1760116663; c=relaxed/simple;
+	bh=I1Jv1K8pMlHzgbwxs+yw/rgUKNnWjuy0CuTLkQH3qMA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=T+Yo1cGbsviF6fE9TTl1AZN9oRkQi+M0/GzQrx1IFYkUoi7Kclo8Z7OJ/h48skCz8nOjP/f7yIS3PFbE4EfBu39zTtRsIfiM4VkgNmCyU769qD042Wjh3duXyw8e1NKpf3VjLPKc1U6VpEesAPlNSzpfDCRw4MEeZ+d0oOJCON4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=F/IYXQ0w; arc=none smtp.client-ip=209.85.166.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
+Received: by mail-il1-f179.google.com with SMTP id e9e14a558f8ab-42f8d7f116eso8906145ab.2
+        for <devicetree@vger.kernel.org>; Fri, 10 Oct 2025 10:17:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google; t=1760116661; x=1760721461; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=6G/IEc8eQi80LISFTxnAaN67mBaGX3+NUViuwGCrxp8=;
+        b=F/IYXQ0wDEkphwVhN9FpeTOmpHkHAESbjdpgzqq7rh4b3JpQy2QqHM99R2dW2rNFsB
+         87SY4fOH3evNwOIoscuM2k9FvVNmCe+PKvqMwBoGnto+e03+sznD1QZcKnipoxWoEFN5
+         WdCT8np3E3KyOCu1G89JwdGNMN9bieuJTrKPWG6UPTxH3mZO1rPFGDh9j99b7qUoJ+4T
+         A4wWRc3SMi3HBt8SF7Env1DzhMxKNk1i39ZmMNHnA+/HFqgXotygCgv0vCNugICgwwvp
+         S9EMp29ZrTfgp32Sq0okO56AyDJzpy2rMPCGT+dIR8r7Z1wV0eukAxVYZ4dnt5Bv6DKy
+         2utA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760115854; x=1760720654;
-        h=cc:to:subject:message-id:date:mime-version:references:in-reply-to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=VMMsbHNHQlUNowhauDzTqGTgCrfFH9KMpRorSuBG4rw=;
-        b=myWYiOIvM2s2ewqB0XLhB4y1AY8J21UbfMDpcZT9onsOgdo0vgrjgbXNA9Y/xuBZgg
-         /UaT9ibRuDhQbhMUrjTD1phdh6Qob5nfH/odeQ2UjSCIf1zTtUMu14lgOHqJvt0IsLzx
-         zb9Cq5u27I3pYeo4Xeknl4+n9uDh5h/aCUjcerpcX0m5W7WuS6MHFYhJUFjWJMQ3uD9m
-         jBctdkVHBifX5lPTI353OzPz/t6gB2e091UTsuYoVnZ83ZSFkd4thjcGbuRy7M44nDaM
-         0tbwiH4+3kJbkiIvRWVNqXB/6bD+YI6BhKTS2/quIEMbjvZqoQjb4XZSkq96g4RN9Lxb
-         fIqw==
-X-Gm-Message-State: AOJu0Yx3ymoQi4K/wofAiB6addGpkCnqQJXYmaEd6u2Ynf3rxf4bNW2O
-	crJWclr18yBFr1bHo/Uo7rQfcbZZBuPwEYxdjKMwTbGDeA+3OTFbS+tKf+nFggLOcy7KedpSslT
-	zTOK4c4KZMn1fcB0dDzyA6MzBgUi0Kec5RY7ybSETx+bnrr/LMIlb+cbDbZMiBDNU+NT+Je544h
-	9I0M8Fz5QHvxQxQHR/mOooCjXjY3V09nG/YT4TSsArYcMBZlJS55m2Kw==
-X-Gm-Gg: ASbGnctVCLbXQ8AXn5tUcJmi2/GHmaUVX1DM1KJQ/t5dLpsQhOK7Rn0Y8lXg266dRxB
-	HyTNTsBQM/kk0SMOB0gc2fnnT/ub2ybkgboKNjrapm3glp9SGJ3ni/rtFG3H1SkJnPkOj4N7TID
-	eGDinuP88tA0k0jFNdjxY=
-X-Received: by 2002:a05:6102:3310:b0:555:56e0:f357 with SMTP id ada2fe7eead31-5d5e2351acamr6103879137.23.1760115853731;
-        Fri, 10 Oct 2025 10:04:13 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFBv28DNHJQ5jnD7uIITRjtmxvXAZjjFTFMwrxw+yeFjdrVbwveu4Y97WaEPytCYr30o/zb78JpBxe+rPRUAWY=
-X-Received: by 2002:a05:6102:3310:b0:555:56e0:f357 with SMTP id
- ada2fe7eead31-5d5e2351acamr6103795137.23.1760115853023; Fri, 10 Oct 2025
- 10:04:13 -0700 (PDT)
-Received: from 348282803490 named unknown by gmailapi.google.com with
- HTTPREST; Fri, 10 Oct 2025 10:04:12 -0700
-Received: from 348282803490 named unknown by gmailapi.google.com with
- HTTPREST; Fri, 10 Oct 2025 10:04:11 -0700
-From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-In-Reply-To: <6fa3c728-5048-4d26-9b6f-21757320caad@sifive.com>
-References: <20251009015839.3460231-1-samuel.holland@sifive.com>
- <20251009015839.3460231-17-samuel.holland@sifive.com> <CAJM55Z9kRpc53s3Kip=U-CcDxAX0UZD5AbTBy_owU8xPEYH5MA@mail.gmail.com>
- <6fa3c728-5048-4d26-9b6f-21757320caad@sifive.com>
+        d=1e100.net; s=20230601; t=1760116661; x=1760721461;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=6G/IEc8eQi80LISFTxnAaN67mBaGX3+NUViuwGCrxp8=;
+        b=HncNr5dg8y7G+DvFTsv36rYPHoCinBzRwqOKq1uR/g9CnyEbqy0H3MOQHsyqb4JlNg
+         Z26sJPuJfqaZXqTdl+H/iUqDjitBOxQoRYBjNCUE8kBWZ33U8rmwEoC7mbbYynXEa3XP
+         VhQZ3LyqCQWUGwO/D1YJlmi20W3EtNbJkOb2onWT0QhYDSeXSEAbbCsb2dxV9QyvxMh1
+         r4pNqzPLHRqYJb+7bOI+SOfw+2TekQ3LWMpVpXgHQWe8277IKBWVFhJaIOVoTPjA0DbB
+         aL4J1yvDZQDJnCwyfs9igWvGvDv8NwCq5uYeBqyUkbAQ2xQLTEQdB/2PayWiOb/nB7AN
+         /eOQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXKVd2Q8tX1zivPiploW/EzfVMS/0aAgG2uT6qlJ17VUnonXp4v9kIRULwDM7udIWnO9euI1A7Rr2rK@vger.kernel.org
+X-Gm-Message-State: AOJu0YycuIbKciHikN6epQ730QZceQW/znZGL1wkxWNNgmWs2Qj7KXGu
+	ywK8CytikF4gtOl4jlRhBFPTFSGlppgTFYLvcYgo8IY1ZZ3r6dNfRs5f8f/NI2ryCUc=
+X-Gm-Gg: ASbGnctA29nPzWMRdLInvIpuRPxTC6fWG3+YfIjLeWZkFrJ764NXz0euN13xq9WmB5E
+	ZSyv29hYSElnlqDqzCVOJkzlO89roROYiodiW5SlRnwPdzSWewkP+9VcFtXI60aOivCn0zRmvty
+	hjCOxthWWDC1c1H3C0HT/msvMxQ7jmHRShvi9zhymgqzva9mYzs6QKF1f1FVIS75vFrBF38rpMm
+	uPNV0gSzinf2c86ENinF1WmG8jnTwb4SqO7fEDCgC6/w+77M+YkYDam8OkJUCwnoRxnSl3XQiyT
+	A7WOTyTZpQxAhS6gyELeiIK2D3U7tXDiXZUj2P1wwb3Rg5l5rBb/jFN43k1LxhT1FzceaIJgMIW
+	c9+OS0o3r591rfuF9hdJi4XpUmLFOFN0y0hGIMiokOKZTlYo+KqT6CiPskw==
+X-Google-Smtp-Source: AGHT+IFf3Dfk1VAV0Y7S/J8epFVv9DK6aEZ68GWSHSQhqH0ufWaX/0UhdYSoDg68NQQ/vOlVIsMBKA==
+X-Received: by 2002:a05:6e02:1a8f:b0:427:b642:235 with SMTP id e9e14a558f8ab-42f87374f3bmr135463955ab.10.1760116660354;
+        Fri, 10 Oct 2025 10:17:40 -0700 (PDT)
+Received: from [100.64.0.1] ([170.85.6.207])
+        by smtp.gmail.com with ESMTPSA id e9e14a558f8ab-42f902962fbsm23231445ab.18.2025.10.10.10.17.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 10 Oct 2025 10:17:39 -0700 (PDT)
+Message-ID: <126d2381-c913-4815-bd9f-b6e9fe3cf5d8@sifive.com>
+Date: Fri, 10 Oct 2025 12:17:38 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Date: Fri, 10 Oct 2025 10:04:11 -0700
-X-Gm-Features: AS18NWCTcud7R14NP1QO40mHS3XWKKbNmY-Wviavp42FX96J5d0QmbVlv50GxHg
-Message-ID: <CAJM55Z8masgGn4vVe_2g1e9WXnLu0Vf5oGxbiniGpsbOhYPLRw@mail.gmail.com>
-Subject: Re: [PATCH v2 16/18] riscv: mm: Use physical memory aliases to apply PMAs
-To: Samuel Holland <samuel.holland@sifive.com>, 
-	Emil Renner Berthing <emil.renner.berthing@canonical.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Paul Walmsley <pjw@kernel.org>, linux-riscv@lists.infradead.org
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-mm@kvack.org, Conor Dooley <conor@kernel.org>, Alexandre Ghiti <alex@ghiti.fr>, 
-	Emil Renner Berthing <kernel@esmil.dk>, Andrew Morton <akpm@linux-foundation.org>, 
-	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 00/18] riscv: Memory type control for platforms with
+ physical memory aliases
+To: Andrew Morton <akpm@linux-foundation.org>
+Cc: Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <pjw@kernel.org>,
+ linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-mm@kvack.org,
+ Conor Dooley <conor@kernel.org>, Alexandre Ghiti <alex@ghiti.fr>,
+ Emil Renner Berthing <kernel@esmil.dk>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ David Hildenbrand <david@redhat.com>
+References: <20251009015839.3460231-1-samuel.holland@sifive.com>
+ <20251009181559.7bfa3dce6cb7265822b2d5c5@linux-foundation.org>
+From: Samuel Holland <samuel.holland@sifive.com>
+Content-Language: en-US
+In-Reply-To: <20251009181559.7bfa3dce6cb7265822b2d5c5@linux-foundation.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Samuel Holland wrote:
-> Hi Emil,
->
-> Thanks for testing!
->
-> On 2025-10-10 10:06 AM, Emil Renner Berthing wrote:
-> > Samuel Holland wrote:
-[ .. ]
-> >> +
-> >> +void __init riscv_init_memory_alias(void)
-> >> +{
-> >> +	int na = of_n_addr_cells(of_root);
-> >> +	int ns = of_n_size_cells(of_root);
-> >> +	int nc = na + ns + 2;
-> >> +	const __be32 *prop;
-> >> +	int pairs = 0;
-> >> +	int len;
-> >> +
-> >> +	prop = of_get_property(of_root, "riscv,physical-memory-regions", &len);
-> >> +	if (!prop)
-> >> +		return;
-> >> +
-> >> +	len /= sizeof(__be32);
-> >> +	for (int i = 0; len >= nc; i++, prop += nc, len -= nc) {
-> >> +		unsigned long base = of_read_ulong(prop, na);
-> >> +		unsigned long size = of_read_ulong(prop + na, ns);
-> >> +		unsigned long flags = be32_to_cpup(prop + na + ns);
-> >> +		struct memory_alias_pair *pair;
-> >> +		int alias;
-> >> +
-> >> +		/* We only care about non-coherent memory. */
-> >> +		if ((flags & PMA_ORDER_MASK) != PMA_ORDER_MEMORY || (flags & PMA_COHERENT))
-> >> +			continue;
-> >> +
-> >> +		/* The cacheable alias must be usable memory. */
-> >> +		if ((flags & PMA_CACHEABLE) &&
-> >> +		    !memblock_overlaps_region(&memblock.memory, base, size))
-> >> +			continue;
-> >> +
-> >> +		alias = FIELD_GET(PMR_ALIAS_MASK, flags);
-> >> +		if (alias) {
-> >> +			pair = NULL;
-> >> +			for (int j = 0; j < pairs; j++) {
-> >> +				if (alias == memory_alias_pairs[j].index) {
-> >> +					pair = &memory_alias_pairs[j];
-> >> +					break;
-> >> +				}
-> >> +			}
-> >> +			if (!pair)
-> >> +				continue;
-> >> +		} else {
-> >> +			/* Leave room for the null sentinel. */
-> >> +			if (pairs == ARRAY_SIZE(memory_alias_pairs) - 1)
-> >> +				continue;
-> >> +			pair = &memory_alias_pairs[pairs++];
-> >> +			pair->index = i;
-> >
-> > I think this needs to be pair->index = i + 1, so PMA_ALIAS(1) can refer to the
-> > first entry (i = 0).
->
-> The code here is as intended. It's the PMA_ALIAS(1) in the DT that I should have
-> changed to PMA_ALIAS(0) after I removed the special first entry from the
-> riscv,physical-memory-regions property. Patch 18 also needs this fix.
+On 2025-10-09 8:15 PM, Andrew Morton wrote:
+> On Wed,  8 Oct 2025 18:57:36 -0700 Samuel Holland <samuel.holland@sifive.com> wrote:
+> 
+>> On some RISC-V platforms, including StarFive JH7100 and ESWIN EIC7700,
+>> DRAM is mapped to multiple physical address ranges, with each alias
+>> having a different set of statically-determined Physical Memory
+>> Attributes (PMAs), such as cacheability. Software can alter the PMAs for
+>> a page by selecting a PFN from the corresponding physical address range.
+>> On these platforms, this is the only way to allocate noncached memory
+>> for use with noncoherent DMA.
+> 
+> Well that's weird.
+> 
+>> --- a/mm/ptdump.c
+>> +++ b/mm/ptdump.c
+>> @@ -31,7 +31,7 @@ static int ptdump_pgd_entry(pgd_t *pgd, unsigned long addr,
+>>  			    unsigned long next, struct mm_walk *walk)
+>>  {
+>>  	struct ptdump_state *st = walk->private;
+>> -	pgd_t val = READ_ONCE(*pgd);
+>> +	pgd_t val = pgdp_get(pgd);
+>>  
+>>  #if CONFIG_PGTABLE_LEVELS > 4 && \
+>>  		(defined(CONFIG_KASAN_GENERIC) || defined(CONFIG_KASAN_SW_TAGS))
+> 
+> OK, but how are we to maintain this?  Will someone be running
+> grep/coccinelle/whatever on each kernel release?
+> 
+> Please give some thought to finding a way to break the build if someone
+> uses a plain dereference or a READ_ONCE().  Or add a checkpatch rule. 
+> Or something.  Let's not rely upon the whole world knowing about this.
 
-Hmm.. that doesn't quite work for me though. Then the "if (alias)" above won't
-trigger with PMR_ALIAS(0) right?
+My initial plan was to add a script to scripts/coccinelle so `make coccicheck`
+would catch any new instances. This would require some way to avoid false
+positives in the few places where these pointers are safe to dereference (like
+the ptentp and pmdvalp mentioned in commit message), such as a separate typedef
+or a naming convention.
 
-/Emil
+I had also explored using sparse to annotate pte_t and friends as noderef. This
+would require changes to the sparse tool to allow noderef to work with a
+non-pointer type (and get inherited by any pointers to that type), or else each
+pointer parameter/variable would need to be annotated in the source code
+(equivalent to __user). Neither seems ideal.
+
+I hadn't considered a checkpatch rule. That's probably the most straightforward
+solution, to warn on any instances of "\*(vmf(\.|->))?(pte|p[mu4g]d)p?", along
+with a coccinelle script that could be run occasionally.
+
+Regards,
+Samuel
+
 
