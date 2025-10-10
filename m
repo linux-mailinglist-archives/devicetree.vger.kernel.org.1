@@ -1,149 +1,116 @@
-Return-Path: <devicetree+bounces-225487-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225488-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19AB2BCE63E
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 21:30:43 +0200 (CEST)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 93D6DBCE662
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 21:32:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BFA553B0508
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 19:30:41 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 41880356C6C
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 19:32:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A842254AE1;
-	Fri, 10 Oct 2025 19:30:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 684EA30146F;
+	Fri, 10 Oct 2025 19:32:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RkNCtU8Q"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="27QRfO0E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA1EC212B3D
-	for <devicetree@vger.kernel.org>; Fri, 10 Oct 2025 19:30:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8218E270EBA;
+	Fri, 10 Oct 2025 19:32:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760124638; cv=none; b=agR0xdxzWVDXOfzPC+oI+evqhl6PCxhIN0orGF3HPy+v2Ozf13wuJewoWjq6lcuGSOONJBuAXbbW0yDVLaAASB6MsbNdmgIqM+FIScRGwI7xAKloRTz8zLnUlJxK00yHEAV/0pLDdHPJNdJaGcPRngiBLSQ6fj6qObpuwb5VQGc=
+	t=1760124725; cv=none; b=V1LwM5g63BzUluzSV2zOi5PgLSJswROmXl1XLzv44+vsSRiOXaBsqjiObD1LoMbK2UJNnlNSq1W5b1fa/tUfe2OEakp8SdvpnQRId3tgyifbYZxbIJGJTiy0Ujji9Py0GGx1j442F7pu3UXfqKSnwziQtP57yuUURytpG7hoyFo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760124638; c=relaxed/simple;
-	bh=UO7tWaC1D06ILgslhIE6Vp+GGNOSccu5h6NsvDEB6bI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=sXLxM6PEwee44JPOmPjv2bGknBxL4J2OVbdFL1GOGnRT94+Hp1sdqT+t4rUVfEBSMBPn1H0w9jU52gxQYJw90TZCOZTeUBLvvn39YTl0R01mh1OZVtz/U/IdcKDe7rOoeXSOMQ1GgUqmna0Bc094uM5MW7VyPRK6TTkPjln99k4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RkNCtU8Q; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 95A74C2BCAF
-	for <devicetree@vger.kernel.org>; Fri, 10 Oct 2025 19:30:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760124637;
-	bh=UO7tWaC1D06ILgslhIE6Vp+GGNOSccu5h6NsvDEB6bI=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=RkNCtU8QTeCBdWpLHhNr8JvrU3SuLc+1RKV/B5DWkkchSXpVbewLPEGu9PteSIC59
-	 3QdUV0p1QZHp+XhVjKliK0wvXSdB1RU5a+CyZxjimdAkkEp5C2xHmsIcspGs72E0Lk
-	 cyObdDJQL2lwFThzP/75aTtYq1Rg+WwTXzxuf5I/WZflCtsZ6JwrjI1V1vO6mFvs05
-	 WXMcevad9JypeFhT7/uwXWjFcL+u+BZQ80FRHRXSyCarsMyxQ97kXJWkBlv02hVeDW
-	 nUw04T6EMyGqqoQYGxSvUHP+TG9k6oSLAKGh4+rIvWYp5GUXc/FJOhGX6qNXxLvulc
-	 NRaGMKALZ1/8g==
-Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-63994113841so4310292a12.3
-        for <devicetree@vger.kernel.org>; Fri, 10 Oct 2025 12:30:37 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCV8l3ztR1axrPGIsYwA01i8+nh52G+L+T2ND7Tux0dDC87+bXwOoc71WgMXUjuHDjlvnlPmqhf7o/bH@vger.kernel.org
-X-Gm-Message-State: AOJu0YwGuEGc9yXR1ttMaypeXR2bkKWTmcpgRBLuLbmzqu77EenofBDg
-	j0CfSxX2vEn+66t7VzjFFqVbabHz0KKU4krLCU1V4joQv0MuQv6XqSGuG7cZTjclA/p4kWAv3Lu
-	nUXL+T/ydiOvOdr1usDLjXN2POfcVZg==
-X-Google-Smtp-Source: AGHT+IFrGZS8VdfbsjL7y3HXA+QaopPkTmxI0XGy8rPLFJbEh/CBDAxBRtvMMLAceU+RXRafaXg83rsGiK6CrH/c2zI=
-X-Received: by 2002:a17:907:3e8c:b0:b48:4966:91a5 with SMTP id
- a640c23a62f3a-b50aba9e585mr1400916466b.30.1760124635939; Fri, 10 Oct 2025
- 12:30:35 -0700 (PDT)
+	s=arc-20240116; t=1760124725; c=relaxed/simple;
+	bh=qtnSzonR6W0Cv1rX5Y6WVUNsvtka5ChSZBJBbqU7rgo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=f43/xHohgA60uh2goaf6sqOxlY+aP8VKYs7FA7MJFBcIAkFEEOHphCDzTPEHTaKT9DiMF5V24mFNzMcm9twQAMtb4w6+muEG7qoSmU+xU4i2v6tWoqZ6lcfEfBM+zNvG9m1S4hsIZ88Xqi8YiXATSMEWe8MyZ/Ks5rLfztlo88w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=27QRfO0E; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=sPg6tFmE44GO59Osmm6OJOsXJFjD9dOzK+Pou3aQd1c=; b=27QRfO0Egr4ssojusmNF/vvsXi
+	6sPZztKOfe+I3ZeGlmigAgpjzzSxVViZTvdyVqzi/1WpBAAreUqrl3eg8oRMEhWk15NhHNVnoeOkf
+	RavLSNw0COOTLc0bZ9h1DoJ/+no6V6J5tmj/zYPBaWJv40C9NRS57bCzvQ8XS7R6edmU=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1v7IqJ-00Acyl-Qt; Fri, 10 Oct 2025 21:31:55 +0200
+Date: Fri, 10 Oct 2025 21:31:55 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Shenwei Wang <shenwei.wang@nxp.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Mathieu Poirier <mathieu.poirier@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>,
+	"linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"imx@lists.linux.dev" <imx@lists.linux.dev>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	dl-linux-imx <linux-imx@nxp.com>
+Subject: Re: [PATCH v3 3/4] gpio: imx-rpmsg: add imx-rpmsg GPIO driver
+Message-ID: <6025be80-7007-48bb-bdd1-c8198e951400@lunn.ch>
+References: <20251009222716.394806-1-shenwei.wang@nxp.com>
+ <20251009222716.394806-4-shenwei.wang@nxp.com>
+ <eb99d9a8-eb96-445d-899a-6e1d9b6f6c69@lunn.ch>
+ <PAXPR04MB9185A829534963B22D1C49FD89EFA@PAXPR04MB9185.eurprd04.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250926-ethos-v3-0-6bd24373e4f5@kernel.org> <20250926-ethos-v3-1-6bd24373e4f5@kernel.org>
- <aNrVwn1ibQmB/rKJ@lizhi-Precision-Tower-5810>
-In-Reply-To: <aNrVwn1ibQmB/rKJ@lizhi-Precision-Tower-5810>
-From: Rob Herring <robh@kernel.org>
-Date: Fri, 10 Oct 2025 14:30:24 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJkOVOVNvnePGE5G0HmbxxXPK1a=1qjOEk-G4ZZ3wf6Ew@mail.gmail.com>
-X-Gm-Features: AS18NWBBQSTOplEO26OgX73Pts2y8G-I5Seb0FzonJgu4d7oZEgcPiz1tLe4anM
-Message-ID: <CAL_JsqJkOVOVNvnePGE5G0HmbxxXPK1a=1qjOEk-G4ZZ3wf6Ew@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: npu: Add Arm Ethos-U65/U85
-To: Frank Li <Frank.li@nxp.com>
-Cc: Tomeu Vizoso <tomeu@tomeuvizoso.net>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Oded Gabbay <ogabbay@kernel.org>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Sumit Semwal <sumit.semwal@linaro.org>, =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
-	Robin Murphy <robin.murphy@arm.com>, Steven Price <steven.price@arm.com>, 
-	Daniel Stone <daniel@fooishbar.org>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
-	linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <PAXPR04MB9185A829534963B22D1C49FD89EFA@PAXPR04MB9185.eurprd04.prod.outlook.com>
 
-On Mon, Sep 29, 2025 at 1:54=E2=80=AFPM Frank Li <Frank.li@nxp.com> wrote:
->
-> On Fri, Sep 26, 2025 at 03:00:48PM -0500, Rob Herring (Arm) wrote:
-> > Add a binding schema for Arm Ethos-U65/U85 NPU. The Arm Ethos-U NPUs ar=
-e
-> > designed for edge AI inference applications.
-> >
-> > Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
-> > ---
-> >  .../devicetree/bindings/npu/arm,ethos.yaml         | 79 ++++++++++++++=
-++++++++
-> >  1 file changed, 79 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/npu/arm,ethos.yaml b/Doc=
-umentation/devicetree/bindings/npu/arm,ethos.yaml
-> > new file mode 100644
-> > index 000000000000..716c4997f976
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/npu/arm,ethos.yaml
-> > @@ -0,0 +1,79 @@
-> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/npu/arm,ethos.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Arm Ethos U65/U85
-> > +
-> > +maintainers:
-> > +  - Rob Herring <robh@kernel.org>
-> > +
-> > +description: >
-> > +  The Arm Ethos-U NPUs are designed for IoT inference applications. Th=
-e NPUs
-> > +  can accelerate 8-bit and 16-bit integer quantized networks:
-> > +
-> > +    Transformer networks (U85 only)
-> > +    Convolutional Neural Networks (CNN)
-> > +    Recurrent Neural Networks (RNN)
-> > +
-> > +  Further documentation is available here:
-> > +
-> > +    U65 TRM: https://developer.arm.com/documentation/102023/
-> > +    U85 TRM: https://developer.arm.com/documentation/102685/
-> > +
-> > +properties:
-> > +  compatible:
-> > +    oneOf:
-> > +      - items:
-> > +          - enum:
-> > +              - fsl,imx93-npu
-> > +          - const: arm,ethos-u65
-> > +      - items:
-> > +          - {}
->
-> what's means {} here ?, just not allow arm,ethos-u85 alone?
+> The only platform-specific part is the message format exchanged between Linux and the remote processors.
+> As long as the remote processor follows the same message protocol, the driver should work as expected.
+> 
+> Here's the layout of the message packets:
+> 
+> +--------+--------+--------+--------+--------+----------------+--------+--------+---------------+---------------+
+> |0x00    |0x01    |0x02    |0x03    |0x04    |0x05..0x09      |0x0A    |0x0B    |0x0C           |0x0D           |
+> |cate    |major   |minor   |type    |cmd     |reserved[5]     |pin_idx |port_idx|out:{evt/rc/v} |in:{wkup/val}  |
+> +--------+--------+--------+--------+--------+----------------+--------+--------+---------------+---------------+
+> 
+> Cate (Category field ): can be GPIO /I2C/PMIC/AUDIO ... etc
+> Major : Major version number
+> Minor: Minor version number
+> Type (Message Type): Can be SETUP / REPLY /NOTIFY for GPIO category
+> Cmd (Command): Can be Input INIT / Output INIT / Input GET for GPIO category
+> Pin_idx: The GPIO line index
+> Port_idx: The GPIO controller index
+> 
+> For Out packet:  
+> 	if it is OUPUT INIT, the out field value is the gpio output level.
+> 	If it is INPUT INIT, the out filed is 0.
+> 
+> For In packet:
+> 	If it is a REPLY message, the out field is return code. 0 means success.  
+> 	If it is a REPLY of INPUT GET, the in field is the value of GPIO line level.
+> 	If it is an NOTIFY type of message, it simulates an interrupt event from the remote processor.
+> 
+> I can add above comments in the commit log or the beginning of the driver source file.
 
-Yes, u85 support is currently on a FVP model. The naming for it isn't
-really clear yet nor is it clear if it ever will be. So really just a
-placeholder until there is a chip using it. It keeps folks from using
-just the fallback.
+Maybe Documentation/admin-guide/gpio-rpmsg.rst would be better.  You
+should also document how to handle features the device does not
+support. e.g. i _think_ your hardware supports all 4 interrupt
+types. But maybe other hardware needs to return something meaning
+-EOPNOTSUP?
 
->
-> Reviewed-by: Frank Li <Frank.Li@nxp.com>
-
-Thanks,
-Rob
+	Andrew
 
