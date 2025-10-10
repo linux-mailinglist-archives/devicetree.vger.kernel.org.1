@@ -1,72 +1,60 @@
-Return-Path: <devicetree+bounces-225446-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225447-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7824BCE294
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 19:51:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D600BCE2A6
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 19:54:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E04D23A9FDD
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 17:50:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B35525446FD
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 17:54:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C6C12FC894;
-	Fri, 10 Oct 2025 17:50:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D94DA22652D;
+	Fri, 10 Oct 2025 17:54:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RYSntg7k"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YlARGstR"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 387142FC881;
-	Fri, 10 Oct 2025 17:50:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A87AC2222D1;
+	Fri, 10 Oct 2025 17:54:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760118602; cv=none; b=ng83Vpj1Aq9ERTqFA02LNqMyrLgav6Rvi203+QP58U7UaVbJdupvH839jrFZlzvm/mqH3KdgeORXKtgNzlsWCqMiitFIwBPL8Fa3lNOSzHIGCajjrLtP61PmJF9WCMjcgOtQjDqEo3YJLW/tyR1AeJ4ldMgv9+++oDAuOF8I0WY=
+	t=1760118854; cv=none; b=EG4BvJEXwxDSFJRt9mbnR/rfHHiChm4EnhVfXbIKj4csufFPz9yrGGnIAc3ZDu+Dgc29FzlvRYNbrbEISQlMSrtcfnHgHoSzHB7yiJiCkjemzxOed0xAX9vyNcbgRLqYC9Ok8MMBNz2m/70p/I1l57JQ+BoW8oSN+7jIYnSKIq4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760118602; c=relaxed/simple;
-	bh=dMh8GBD4EAIQyzaGwyEd2ZtNzCl7oE20APdIRhgCkgM=;
+	s=arc-20240116; t=1760118854; c=relaxed/simple;
+	bh=Zr0cuYuUnGaKMo/4+E1jCt7zk7lWX8ZFj/PMeVWvQf0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qcRrbdQLuHiCqb/9yb04+j7i950eXvx+pRRsuiZa547bOy9iEXLTKa/9uAo/uxhqEQBZ6uDlobprYc1Ff+WeZBStZVrJzQTUefwnRllF3ZJ/fYTB6e7R/2JJUod8AcKD+rVuBiyMfm7QQWN+7XA3u23vgyO9Z/kyX/sdKBZ0cgY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RYSntg7k; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 92498C116C6;
-	Fri, 10 Oct 2025 17:50:01 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Q/DC9vv83fW2WymzeiwbBHmOyZoCOQOZwduwRLUkl4nEXOUYO58zEQ8UQKF0jMmTpWvVd/diIDuHN7KZ+Xsu/TSekQhrTr/a8hOn/bowFIQhg0XvIiDpfBzLTBDmMtVaFTyfDAvfYPUQB+qPkNiK7RYOgUKitXyJ49/sJDQuU/A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YlARGstR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E38B8C4CEF1;
+	Fri, 10 Oct 2025 17:54:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760118601;
-	bh=dMh8GBD4EAIQyzaGwyEd2ZtNzCl7oE20APdIRhgCkgM=;
+	s=k20201202; t=1760118854;
+	bh=Zr0cuYuUnGaKMo/4+E1jCt7zk7lWX8ZFj/PMeVWvQf0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=RYSntg7krxRyForxuUI1r3H41ecE3Iq3vwl3eTPg581hTVTOgAfGnum8VXzSmfr4V
-	 jSvMhAAxNj/TpSoXZeZHOZ9DVDgiV0ffpEWSqTy/2QTQ5pBgZdjCJBYcuP4SPK1boA
-	 FXB32PHfjCXbPgw36axYILpbGouI9kslTYsgBLu39Tpgt4cx0CCo3Gq+T58FduLVzY
-	 PULLq5xKcNDSXDwj/41sy8SuiljheHTAyEEaUWn5hT65z8yV8/9IrGRvWL3nhMQlxA
-	 /LQrzxJY8z8N21wD2JceFIeuuTW64mbNgM+UovCvMsLtFeVXTVLxCbKq4+iIdw+c0H
-	 DjsfedyCQPJ7A==
-Date: Fri, 10 Oct 2025 12:49:59 -0500
-From: Rob Herring <robh@kernel.org>
-To: Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Richard Cochran <richardcochran@gmail.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Vinod Koul <vkoul@kernel.org>,
-	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-	Jose Abreu <joabreu@synopsys.com>, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: Re: [PATCH v2 1/8] dt-bindings: net: qcom: document the ethqos
- device for SCMI-based systems
-Message-ID: <20251010174959.GA502249-robh@kernel.org>
-References: <20251008-qcom-sa8255p-emac-v2-0-92bc29309fce@linaro.org>
- <20251008-qcom-sa8255p-emac-v2-1-92bc29309fce@linaro.org>
+	b=YlARGstRZsJF3VIGuqcFQH0bLwR/rG+egAAwori6HyBXNsvPhhygNNk5Iz4dv/W+Z
+	 2o05jC1AwC6TlUU/4nAcPzzw5PQLBvNc1QHeUeCjXU6oithDFLERbn/ugFoYBkLUao
+	 EO9/WT9i/fxxV8zuZE/gKtxwPwFxPhYfId63X01TGO/n9nP4j7jH0yhH9LjD0fij+C
+	 1kjWTJAQeNEkdMYDHXGSNSBBPUBeGZIIEFMWEZjJVPyVSVfqCzb3yDuib6TKo2OcPr
+	 wWTpixFW8UzMoP0OaZDjGgvf9hytRrUi6BPqMjbl+7KS4Gu7mWcuDPchBqBaCTQqq0
+	 68CqBvi4Q13sA==
+Date: Fri, 10 Oct 2025 12:54:12 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Jameson Thies <jthies@google.com>
+Cc: tzungbi@kernel.org, akuchynski@chromium.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-usb@vger.kernel.org, krzk+dt@kernel.org,
+	chrome-platform@lists.linux.dev, bleung@chromium.org,
+	abhishekpandit@chromium.org, heikki.krogerus@linux.intel.com,
+	ukaszb@chromium.org
+Subject: Re: [PATCH v3 1/3] dt-bindings: chrome: Add cros-ec-ucsi
+ compatibility to typec binding
+Message-ID: <176011885172.573621.9898510592268600053.robh@kernel.org>
+References: <20251009010312.2203812-1-jthies@google.com>
+ <20251009010312.2203812-2-jthies@google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,82 +63,27 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251008-qcom-sa8255p-emac-v2-1-92bc29309fce@linaro.org>
+In-Reply-To: <20251009010312.2203812-2-jthies@google.com>
 
-On Wed, Oct 08, 2025 at 10:17:48AM +0200, Bartosz Golaszewski wrote:
-> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+
+On Thu, 09 Oct 2025 01:03:06 +0000, Jameson Thies wrote:
+> Chrome OS devices with discrete power delivery controllers (PDCs) allow
+> the host to read port status and control port behavior through a USB
+> Type-C Connector System Software (UCSI) interface with the embedded
+> controller (EC). This uses a separate interface driver than other
+> Chrome OS devices with a Type-C port manager in the EC FW. Those use
+> a host command interface supported by cros-ec-typec. Add a cros-ec-ucsi
+> compatibility string to the existing cros-ec-typec binding.
 > 
-> Describe the firmware-managed variant of the QCom DesignWare MAC. As the
-> properties here differ a lot from the HLOS-managed variant, lets put it
-> in a separate file.
+> Additionally, update maintainer list to reflect cros-ec-ucsi and
+> cros-ec-typec driver maintainers.
 > 
-> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> Signed-off-by: Jameson Thies <jthies@google.com>
 > ---
->  .../devicetree/bindings/net/qcom,ethqos-scmi.yaml  | 101 +++++++++++++++++++++
->  .../devicetree/bindings/net/snps,dwmac.yaml        |   5 +-
->  MAINTAINERS                                        |   1 +
->  3 files changed, 106 insertions(+), 1 deletion(-)
+>  .../bindings/chrome/google,cros-ec-typec.yaml | 19 +++++++++++++++----
+>  1 file changed, 15 insertions(+), 4 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/net/qcom,ethqos-scmi.yaml b/Documentation/devicetree/bindings/net/qcom,ethqos-scmi.yaml
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..0a9cc789085e8bc94d44adc9da982b66071d1e79
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/qcom,ethqos-scmi.yaml
-> @@ -0,0 +1,101 @@
-> +# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/net/qcom,ethqos-scmi.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm Ethernet ETHQOS device (firmware managed)
-> +
-> +maintainers:
-> +  - Bjorn Andersson <andersson@kernel.org>
-> +  - Konrad Dybcio <konradybcio@kernel.org>
-> +  - Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> +
-> +description:
-> +  dwmmac based Qualcomm ethernet devices which support Gigabit
-> +  ethernet (version v2.3.0 and onwards) with clocks, interconnects, etc.
-> +  managed by firmware
-> +
-> +allOf:
-> +  - $ref: snps,dwmac.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: qcom,sa8255p-ethqos
-> +
-> +  reg:
-> +    maxItems: 2
-> +
-> +  reg-names:
-> +    items:
-> +      - const: stmmaceth
-> +      - const: rgmii
-> +
-> +  interrupts:
-> +    items:
-> +      - description: Combined signal for various interrupt events
-> +      - description: The interrupt that occurs when HW safety error triggered
-> +
-> +  interrupt-names:
-> +    items:
-> +      - const: macirq
-> +      - const: sfty
-> +
-> +  power-domains:
-> +    minItems: 3
-> +
-> +  power-domain-names:
-> +    items:
-> +      - const: power_core
-> +      - const: power_mdio
-> +      - const: perf_serdes
 
-I would drop power and perf. I don't want to know about the abusing of 
-the power-domain binding.
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
-Rob
 
