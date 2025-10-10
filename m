@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-225327-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225328-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id B2C0DBCC844
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 12:24:58 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B14F3BCC94B
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 12:40:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 604B54E15DE
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 10:24:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 73F4A426460
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 10:38:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0834283129;
-	Fri, 10 Oct 2025 10:24:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E943A2EF664;
+	Fri, 10 Oct 2025 10:37:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="glXvUSWg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CDNcyktC"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1C0B222587;
-	Fri, 10 Oct 2025 10:24:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B71832EF652;
+	Fri, 10 Oct 2025 10:37:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760091894; cv=none; b=J0abNd33m8nGJMAgI+3A8g5WZMj4ZmdNHAspoEeOALN5LANFu1HerOV2zpvqbirO7EXCa4xu3pHrM4/FOgPANBvDtqZsR28zC0NAYaen6P+8oIm7CFrmK98gV6PSbYRxWKp1GxPSV+SXKA/cQTlnllnon1Heu+J7IDcxaVh+OzQ=
+	t=1760092666; cv=none; b=Km7nnbGa6IEPbe7iRmBP+XGMpi44zsFY2R/nNCyDr3b/w+KuvELwHKT7RjiQPyNPBiP4GRy3L9RIe1rmGjrQpvb/zXhK8hhwhLk8HFj8gkeY6jPXf5yIuD+w2uHLq/f5b95g2Ke2sAOVBPqp1Yhxm7IuSTEbqn4qZDnhmWR/dVc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760091894; c=relaxed/simple;
-	bh=lkp7nBjKgabSK8PsTTWM8Xy19DTPV1PKwluvMWdpwEc=;
+	s=arc-20240116; t=1760092666; c=relaxed/simple;
+	bh=/RsO6zhpXsjT5hZlKGAHidOsvcBCxOgofzhj5oS7dGE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=GHAPjvSEvZI9gQt5KzKlj0MniKuIyscWywHKFRaJkqPrZWK2rfFZsbyNeqCUJBIPNciBzJI8JR3TpTPONNq8sl6Zys7qeuDs5p+Bq7x+BPV+wl1k3wfJLKCLmlogV8biDRn2Dl5Ylw4OmUPXZZfTEQCrbbHtVgCoPOLz3h/pH8w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=glXvUSWg; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8B87FC4CEF5;
-	Fri, 10 Oct 2025 10:24:45 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=qPS4QviKE49WjKzPvnFpBEeusY4fAFIcsKX8Fa84ITdzMytjzqh5n/HttRrhE+SQLHVc10vKoyFJ82p3J8ghBn+1kbl4lSY/caBGrOuHpAt2dMTEbzC+vkHZVLIrPTzttUPTvKzbP12pppB+jQFljY4oH1NJH4tao22GGi78AlY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CDNcyktC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9965CC4CEF8;
+	Fri, 10 Oct 2025 10:37:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760091894;
-	bh=lkp7nBjKgabSK8PsTTWM8Xy19DTPV1PKwluvMWdpwEc=;
+	s=k20201202; t=1760092666;
+	bh=/RsO6zhpXsjT5hZlKGAHidOsvcBCxOgofzhj5oS7dGE=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=glXvUSWgFb1yy1sTSCRyN9iSvA8I4MMK1MojB6Cl+mX/H78DqWicqILYkwFz8lcSs
-	 L3ci45itZ004KXLa6WwpdO1qQjF6u88xKKYW/JFyh5Up2hbx88imcMPV2p2XMPn/mb
-	 M2szSqlAKW5JEqynQ4z/y+VVe1vlvNi3Yb29GFPiSas+CAPuWo0orwSeLG8Q4uyyT0
-	 RG3xNkc3IwX2JYHMgInkwq3iQy/7NRohVEEElJgbp+n/o/kDyFRowzJX6TOGpop9ZS
-	 j8NDUJp2En1dsq1gBKQ8V3msZ+y+xaNUDCDroZ+Qo7JaIMPW76YKz/+QQ9j4Ou+H4/
-	 AfSFuJ+WVjEAw==
-Message-ID: <a4a7f625-a276-4534-983c-15560dee350c@kernel.org>
-Date: Fri, 10 Oct 2025 12:24:43 +0200
+	b=CDNcyktCz6IHR4bgGvbajdhLeyfrme7xwlPzHEoq+4IeFcAB7yFvXUCv9lywaYa1Y
+	 K0ZhlWBIO0/hx7PbFLeVOvFCfZ2juBpjaloGJ3xkjzgeoAtiy7CQIA11RSujs6e8/d
+	 twEH35ksI/KI+VcdwOTvX9hsXi89Ir0uOGI+7EJ4h5W0oJpQrIR/FlEinjdpICuiWU
+	 pQRXEowIIJ2KiHGBjoHSdZCUX2lMF3VbvzGypWC0Emp15kP17PnSDVlz16m1Kj6clq
+	 2WXZN2Ajj8MSbMc9dz+GL6sByqQlthOT59HBdI7kt0fujJP6uYQnU70sH3K/9xftm1
+	 slfzuE8cqCAtA==
+Message-ID: <1afebd44-aa1e-4d14-a750-0be862579ca3@kernel.org>
+Date: Fri, 10 Oct 2025 12:37:40 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,25 +50,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 03/15] arm64: dts: allwinner: h616: add NAND controller
-To: Richard GENOUD <richard.genoud@bootlin.com>,
- Miquel Raynal <miquel.raynal@bootlin.com>,
- Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
+Subject: Re: [PATCH v3] dt-bindings: mfd: Add Renesas R2A11302FT PMIC
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ linux-renesas-soc@vger.kernel.org
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>, Lee Jones <lee@kernel.org>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>
-Cc: Wentao Liang <vulab@iscas.ac.cn>,
- =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
- linux-kernel@vger.kernel.org
-References: <20251010084042.341224-1-richard.genoud@bootlin.com>
- <20251010084042.341224-4-richard.genoud@bootlin.com>
- <82bcd40f-7e94-43ca-99c9-234458011b9b@kernel.org>
- <00f6ec33-bd86-4f57-8011-1c067e9321b4@bootlin.com>
+ Conor Dooley <conor+dt@kernel.org>, Magnus Damm <magnus.damm@gmail.com>,
+ devicetree@vger.kernel.org
+References: <20251010094734.10487-2-wsa+renesas@sang-engineering.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -114,28 +103,37 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <00f6ec33-bd86-4f57-8011-1c067e9321b4@bootlin.com>
+In-Reply-To: <20251010094734.10487-2-wsa+renesas@sang-engineering.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 10/10/2025 12:22, Richard GENOUD wrote:
->>> Signed-off-by: Richard Genoud <richard.genoud@bootlin.com>
->>> ---
->>
->> Confusing order of patches. Driver code cannot depend on DTS.
->>
->> See submitting patches in DT. It is VERY explicit about it. Please also
->> read maintainer soc profile.
-> Indeed, it's quite explicit in
-> Documentation/devicetree/bindings/submitting-patches.rst
-> Sorry for that.
+On 10/10/2025 11:43, Wolfram Sang wrote:
+> This PMIC is referenced in upstream DTs for the Renesas Lager and
+> Koelsch boards. Sadly, there is no documentation available. This minimal
+> binding description states the facts that we do know.
 > 
-> But I don't know what you are referring to as "maintainer soc profile"
-> I guess soc here doesn't stand for system on chip :)
+> Fixes:
+> arch/arm/boot/dts/renesas/r8a7790-lager.dtb: /soc/spi@e6e10000/pmic@0: failed to match any schema with compatible: ['renesas,r2a11302ft']
+> arch/arm/boot/dts/renesas/r8a7791-koelsch.dtb: /soc/spi@e6e20000/pmic@0: failed to match any schema with compatible: ['renesas,r2a11302ft']
+> 
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+> ---
+> 
+> Changes since last version:
+> * switched to b4-style patch version counting
+> * added unevaluatedProperties
+> * fixed whitespaces in example
+> * added description stating that the binding is incomplete
+> * reworded commit message to state the reason for incompleteness
+> 
+> Thanks Krzysztof for all the input!
+> 
+>  .../bindings/mfd/renesas,r2a11302ft.yaml      | 58 +++++++++++++++++++
+>  1 file changed, 58 insertions(+)
 
-Here:
 
-Documentation/process/maintainer-soc.rst
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
