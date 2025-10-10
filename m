@@ -1,134 +1,322 @@
-Return-Path: <devicetree+bounces-225519-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225520-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id BAFB2BCE916
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 22:56:42 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id E3133BCE996
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 23:18:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 727D14E040B
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 20:56:41 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 094A94E1A72
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 21:18:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5D5D25F78F;
-	Fri, 10 Oct 2025 20:56:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36D00223DCE;
+	Fri, 10 Oct 2025 21:18:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="iFLkQlRf"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="AOo3a5/L"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f180.google.com (mail-oi1-f180.google.com [209.85.167.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4B02256C91
-	for <devicetree@vger.kernel.org>; Fri, 10 Oct 2025 20:56:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C59242AA3;
+	Fri, 10 Oct 2025 21:18:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760129796; cv=none; b=BdjyAfBSyPyRfJBzP80l2sE5TigRVLQDKoWTonzey9Ov+ACFyNQ0CkL7UiB49cz8SWHPWxP9KDUUqfIiwZZWpqs/m9aBblm6SqOEtj6C5e2hKxO+AYFExctvpLqK4DZ9nd9DAq2QpAIBNVPdUuUlvBJhImbmR0HXvkOPi8cup/M=
+	t=1760131115; cv=none; b=dqzqT1bH/U2ob+lWWVoZFz+awniGbSt0G5ZkjP1ExCWYIF3p8ojPrOffVyjij0ALHF2xyiyntp0H7pEos4Mdt2lOG1D3qWU4ElXvuFBU3f/+WyEyHFBxJGYwoMm18k0MLiI5Zx5UoxtHnZpVrQTh0+2l3Vm5Kgq1G+wo3vDBS5w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760129796; c=relaxed/simple;
-	bh=CCuYNuIIVsY7FaNQiEz2s+18rwWUhIG0BCeJOEXr7Zc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=qM8jbcwHHfOmVn0AqD/nc0/mjnT6J07mNl/MTd0dKJZdZcRHYiNrPIQhZsdo+CdmWAsiUiJz8Zu7lxgJZpGAotUwNAPxAXadzC8gebf7aaZ9S9mx9IPQ3JDM0aKuXs93e60MO9hZ3Qiv/kawds/9z3b8TYVGtLAyd4SehouyD4E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=iFLkQlRf; arc=none smtp.client-ip=209.85.167.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oi1-f180.google.com with SMTP id 5614622812f47-43f8116a163so1162094b6e.1
-        for <devicetree@vger.kernel.org>; Fri, 10 Oct 2025 13:56:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1760129794; x=1760734594; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=EpaXFAs8jrvhj5Iwajcw+7el/YiNtrh4pH3E6yC24YI=;
-        b=iFLkQlRfKAxRQ6MLGsgDryfgmis9DO4UmlLwTj6IOitWDT2N6udOwDK2I/b8wr4h3z
-         6NCYAIBWqfrZL3cFwJRP+F0xb6t0r/HpWQcAvdhMaOK6jo+1+NvLyLkqN3iSv/WjATSl
-         qPX3xdlR1sT23/gRer7D0dis1yu1iw02luV8hQSgmAs6N9SmykQpZLEv4PPuXoj3sb8m
-         NZ+8x1dvsyafeR0GyvVLlB5AjsQhwfPP21eRS5CZLVywWn3PmNxq2WG4wxaIu+sJdoph
-         y/FV8l9+RSWWLv3/rmRArBgB2LBfvhCh2vwTr1YuPPlynT0oVzaE4k/TmVCNMpUMOf2Y
-         3lfg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760129794; x=1760734594;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=EpaXFAs8jrvhj5Iwajcw+7el/YiNtrh4pH3E6yC24YI=;
-        b=h4gBED1yp4UMNhA3MOLPrHsJ53n0hrJ3pz8bDGsh21T6tzXmP3Ersq9oief1g+/DSS
-         oXNklSpM6Ts/aXF4REAcmBJCpDYZrH/yC4S31YAObwT6Gmgg0coF9f122FTIqVmylP7a
-         4EvuXZA4tNMjkyIEWxsbhyl8AGx1W3s+kF9UdY4zs7KC/xz2AY6afkj294C6HcwviuN8
-         0pR9EQvDr7/6MYkPgT92p3cUoVNCP8adod6iRFEjuPBzLUh7g2JibpR4nA/ZOo3TWGBw
-         jcHX+Fl+3SI/MRDoWOOClrZelpbNhYfw4vM0nXx68msKenlmgoOq++61vd1rdmj3ye5R
-         vWnQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUutHJhbdCdQR4+vP+m5MPMSHRHAi72BJtbvJkLDK2HoorjZp8bRJueH2Ij8wiU18ROfrA64Nbh8R7W@vger.kernel.org
-X-Gm-Message-State: AOJu0YwZfkgXajD7BOV2Obrtfn4VRc8011I3wVSmc/V23K6VbWINW8sx
-	6mZYQJ7w1Wz9Bvl+4RZixbfeu8YK3L259ozXgpWt5xscPWl1fpgqwA3iRYOZv2QlDxQ=
-X-Gm-Gg: ASbGncvq64SyULGZOpAYsgNjA+9lNBOXLebpMQFVrXrBDefQWNl9Nj/ogA+FqyB7Cj9
-	/bm4A/q4H6GK5Jum3b889XKbw+6/5SUMnPD64/Ax8iwShUnK00eI5EyuRtnzq84zKof5wDAXwxl
-	vvTJyiXgmwGgfS7HI+gFF7xPC7LQJ8KMPv/XMkjyZiAnruWosVRItH3Ir6WgLB/obSSbs7ouSdp
-	Agbhe4h8nTwTl3npJveNQhAMcLkZDJZt/YgmbvvB4+ipHR+pQzDRGjADqkFXrM/FsP2vC8rXPEx
-	siiAhmzwoJV0TdE8sQQjvAqCS8CeNPmtFlbVC9uvvAA78gaWfao3a+9Umf1MiaxJcidcW0s3pZI
-	TVS6/PrPSjqkT6/OIWHNsHdOo5oBidJ7dUgPR983C8n0HQDE517valxeWCIcx8K8D0NctSsfSU/
-	P8O4uXLWmyvsgqLVZhloHUL4nuPg==
-X-Google-Smtp-Source: AGHT+IFDRZYD0tvp0ZMbppnD3D1rHut3LIprbR5X32btFAwVwdld60PTV7/IdSY1ynz2HldpOFeF3Q==
-X-Received: by 2002:a05:6808:4f4f:b0:43f:7940:69bf with SMTP id 5614622812f47-4417b3acf95mr6013690b6e.26.1760129793687;
-        Fri, 10 Oct 2025 13:56:33 -0700 (PDT)
-Received: from ?IPV6:2600:8803:e7e4:500:8a0c:c02d:81d3:2e7f? ([2600:8803:e7e4:500:8a0c:c02d:81d3:2e7f])
-        by smtp.gmail.com with ESMTPSA id 006d021491bc7-65018200761sm952285eaf.19.2025.10.10.13.56.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 10 Oct 2025 13:56:33 -0700 (PDT)
-Message-ID: <c770c799-4318-4c40-bd62-3cefbbbef731@baylibre.com>
-Date: Fri, 10 Oct 2025 15:56:32 -0500
+	s=arc-20240116; t=1760131115; c=relaxed/simple;
+	bh=ZB7gTALx625QNqK16XpJCnVnzCKeZXqVUYR+15Tq6Eo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=EcVq/Hsb+ru31+Iap8D/i5ej2f32TWFJzWm8NCQVS+F/Ub9oruikGm8sSm0SlOsOTDGTDGvO36s7JMI7ZWoZS6ywU7gRe+lAzJ6XcjxxiBP/dTei6Ome+CWspLhcSRwsZVtQokP6uF/ma31606KZ1ya4bqHACpIMSt8wxNqVPgc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=AOo3a5/L; arc=none smtp.client-ip=192.198.163.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1760131113; x=1791667113;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=ZB7gTALx625QNqK16XpJCnVnzCKeZXqVUYR+15Tq6Eo=;
+  b=AOo3a5/LM8ePuokxOpekkeWfmv18wEKdv6sN6kietaqkJuMM1SX9ypUh
+   LQMvHa8f74TrTF7adjs/asuDtIpsiGZ2XZaiWad5ySR6jDc2XaWPqiSuo
+   Nt5OnOleWDWrG0IUFA6C4Mh/rO0MBCf8nWEGBDn+91oOB3bsF07dniFsH
+   b0y8FotE2QADy3+nZvA55SZL93Q3Qi59n1Hab726qXxNCx0hE3vigEWx1
+   cck5FqV0wSmtSAUWU22+5dT5QyFUx2oS/zzy1EZj+rr+C6UI9HW55LhY8
+   FHZa3v9Bv3TJXcQwDshMuOc3Avaz3nhinhQp8DG39lwt7uijzQV0k93sN
+   w==;
+X-CSE-ConnectionGUID: ZlF5GpHJQaewYQxlysOspg==
+X-CSE-MsgGUID: da7uLEcVQwCUsZgtvxb1pw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11578"; a="62386908"
+X-IronPort-AV: E=Sophos;i="6.19,220,1754982000"; 
+   d="scan'208";a="62386908"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Oct 2025 14:18:31 -0700
+X-CSE-ConnectionGUID: fA3MzUJ8R5W/zcSKv2QBPQ==
+X-CSE-MsgGUID: rr8eFiMJT5eYgQ8vSm6kFw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,220,1754982000"; 
+   d="scan'208";a="180653184"
+Received: from lkp-server01.sh.intel.com (HELO 6a630e8620ab) ([10.239.97.150])
+  by orviesa009.jf.intel.com with ESMTP; 10 Oct 2025 14:18:26 -0700
+Received: from kbuild by 6a630e8620ab with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1v7KVM-0003BB-16;
+	Fri, 10 Oct 2025 21:18:24 +0000
+Date: Sat, 11 Oct 2025 05:17:56 +0800
+From: kernel test robot <lkp@intel.com>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	linux-mediatek@lists.infradead.org
+Cc: oe-kbuild-all@lists.linux.dev, lee@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, matthias.bgg@gmail.com,
+	angelogioacchino.delregno@collabora.com, lgirdwood@gmail.com,
+	broonie@kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	kernel@collabora.com, wenst@chromium.org,
+	igor.belwon@mentallysanemainliners.org
+Subject: Re: [PATCH v8 2/9] regulator: Add support for MediaTek MT6316 SPMI
+ PMIC Regulators
+Message-ID: <202510110504.A2lR6quW-lkp@intel.com>
+References: <20251003091158.26748-3-angelogioacchino.delregno@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC 0/6] Battery temperature ADC plumbing on Qualcomm
- platforms
-To: Luca Weiss <luca.weiss@fairphone.com>, Jonathan Cameron
- <jic23@kernel.org>, =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
- Andy Shevchenko <andy@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
- Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>,
- Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Laxman Dewangan <ldewangan@nvidia.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Hans de Goede <hansg@kernel.org>,
- Jens Reidel <adrian@mainlining.org>,
- Casey Connolly <casey.connolly@linaro.org>
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, linux-iio@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20251010-bat-temp-adc-v1-0-d51ec895dac6@fairphone.com>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <20251010-bat-temp-adc-v1-0-d51ec895dac6@fairphone.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251003091158.26748-3-angelogioacchino.delregno@collabora.com>
 
-On 10/10/25 6:21 AM, Luca Weiss wrote:
-> This is an RFC which implements a potential solution to get battery
-> temperature readings working on for example smartphones with Qualcomm
-> SoCs.
-> 
+Hi AngeloGioacchino,
 
-...
+kernel test robot noticed the following build errors:
 
-> 3. Add temperature-lookup-table as property to simple-battery
-> 
-> Since the NTC is a part of the battery pack, adding a
-> temperature-lookup-table property to simple-battery would make sense
-> instead of having this lookup table be standalone in the
-> generic-adc-thermal node. However being able to re-use the existing code
-> in generic-adc-thermal lead me to the current proposal.
-> 
-Did you consider creating a specific compatible string for the battery pack?
-Then the battery node could have the io-channels property for the ADC
-connected to the temperature sensor. Then a specific battery driver could
-handle the conversion as needed rather than filling the devicetree with
-conversion tables.
+[auto build test ERROR on broonie-regulator/for-next]
+[also build test ERROR on lee-mfd/for-mfd-next jic23-iio/togreg lee-leds/for-leds-next lee-mfd/for-mfd-fixes linus/master v6.17 next-20251010]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-The simple-battery bindings are already far from simple! So I would not
-be inclined to add more to it.
+url:    https://github.com/intel-lab-lkp/linux/commits/AngeloGioacchino-Del-Regno/dt-bindings-regulator-Document-MediaTek-MT6316-PMIC-Regulators/20251003-171606
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
+patch link:    https://lore.kernel.org/r/20251003091158.26748-3-angelogioacchino.delregno%40collabora.com
+patch subject: [PATCH v8 2/9] regulator: Add support for MediaTek MT6316 SPMI PMIC Regulators
+config: alpha-randconfig-r073-20251009 (https://download.01.org/0day-ci/archive/20251011/202510110504.A2lR6quW-lkp@intel.com/config)
+compiler: alpha-linux-gcc (GCC) 11.5.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251011/202510110504.A2lR6quW-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202510110504.A2lR6quW-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   `xe_configfs_exit' referenced in section `.data.rel.ro' of drivers/gpu/drm/xe/xe_module.o: defined in discarded section `.exit.text' of drivers/gpu/drm/xe/xe_configfs.o
+   alpha-linux-ld: drivers/base/regmap/regmap-spmi.o: in function `regmap_spmi_base_read':
+>> drivers/base/regmap/regmap-spmi.c:26:(.text+0x11c): undefined reference to `spmi_register_read'
+>> alpha-linux-ld: drivers/base/regmap/regmap-spmi.c:26:(.text+0x124): undefined reference to `spmi_register_read'
+   alpha-linux-ld: drivers/base/regmap/regmap-spmi.o: in function `regmap_spmi_base_gather_write':
+>> drivers/base/regmap/regmap-spmi.c:46:(.text+0x1f0): undefined reference to `spmi_register_zero_write'
+>> alpha-linux-ld: drivers/base/regmap/regmap-spmi.c:46:(.text+0x1f4): undefined reference to `spmi_register_zero_write'
+>> alpha-linux-ld: drivers/base/regmap/regmap-spmi.c:56:(.text+0x220): undefined reference to `spmi_register_write'
+   alpha-linux-ld: drivers/base/regmap/regmap-spmi.c:56:(.text+0x228): undefined reference to `spmi_register_write'
+   alpha-linux-ld: drivers/base/regmap/regmap-spmi.o: in function `regmap_spmi_ext_read':
+>> drivers/base/regmap/regmap-spmi.c:124:(.text+0x3f0): undefined reference to `spmi_ext_register_read'
+>> alpha-linux-ld: drivers/base/regmap/regmap-spmi.c:124:(.text+0x404): undefined reference to `spmi_ext_register_read'
+>> alpha-linux-ld: drivers/base/regmap/regmap-spmi.c:136:(.text+0x444): undefined reference to `spmi_ext_register_readl'
+   alpha-linux-ld: drivers/base/regmap/regmap-spmi.c:136:(.text+0x458): undefined reference to `spmi_ext_register_readl'
+   alpha-linux-ld: drivers/base/regmap/regmap-spmi.o: in function `regmap_spmi_ext_gather_write':
+>> drivers/base/regmap/regmap-spmi.c:164:(.text+0x528): undefined reference to `spmi_ext_register_write'
+>> alpha-linux-ld: drivers/base/regmap/regmap-spmi.c:164:(.text+0x53c): undefined reference to `spmi_ext_register_write'
+>> alpha-linux-ld: drivers/base/regmap/regmap-spmi.c:176:(.text+0x57c): undefined reference to `spmi_ext_register_writel'
+   alpha-linux-ld: drivers/base/regmap/regmap-spmi.c:176:(.text+0x590): undefined reference to `spmi_ext_register_writel'
+
+Kconfig warnings: (for reference only)
+   WARNING: unmet direct dependencies detected for REGMAP_SPMI
+   Depends on [n]: SPMI [=n]
+   Selected by [y]:
+   - REGULATOR_MT6316 [=y] && REGULATOR [=y] && (SPMI [=n] || COMPILE_TEST [=y])
+
+
+vim +26 drivers/base/regmap/regmap-spmi.c
+
+a01779f89fc8a2 Josh Cartwright 2013-10-28   15  
+c9afbb05a9ffbe Josh Cartwright 2014-02-12   16  static int regmap_spmi_base_read(void *context,
+a01779f89fc8a2 Josh Cartwright 2013-10-28   17  				 const void *reg, size_t reg_size,
+a01779f89fc8a2 Josh Cartwright 2013-10-28   18  				 void *val, size_t val_size)
+a01779f89fc8a2 Josh Cartwright 2013-10-28   19  {
+c9afbb05a9ffbe Josh Cartwright 2014-02-12   20  	u8 addr = *(u8 *)reg;
+c9afbb05a9ffbe Josh Cartwright 2014-02-12   21  	int err = 0;
+c9afbb05a9ffbe Josh Cartwright 2014-02-12   22  
+c9afbb05a9ffbe Josh Cartwright 2014-02-12   23  	BUG_ON(reg_size != 1);
+c9afbb05a9ffbe Josh Cartwright 2014-02-12   24  
+c9afbb05a9ffbe Josh Cartwright 2014-02-12   25  	while (val_size-- && !err)
+c9afbb05a9ffbe Josh Cartwright 2014-02-12  @26  		err = spmi_register_read(context, addr++, val++);
+c9afbb05a9ffbe Josh Cartwright 2014-02-12   27  
+c9afbb05a9ffbe Josh Cartwright 2014-02-12   28  	return err;
+c9afbb05a9ffbe Josh Cartwright 2014-02-12   29  }
+c9afbb05a9ffbe Josh Cartwright 2014-02-12   30  
+c9afbb05a9ffbe Josh Cartwright 2014-02-12   31  static int regmap_spmi_base_gather_write(void *context,
+c9afbb05a9ffbe Josh Cartwright 2014-02-12   32  					 const void *reg, size_t reg_size,
+c9afbb05a9ffbe Josh Cartwright 2014-02-12   33  					 const void *val, size_t val_size)
+c9afbb05a9ffbe Josh Cartwright 2014-02-12   34  {
+c9afbb05a9ffbe Josh Cartwright 2014-02-12   35  	const u8 *data = val;
+c9afbb05a9ffbe Josh Cartwright 2014-02-12   36  	u8 addr = *(u8 *)reg;
+c9afbb05a9ffbe Josh Cartwright 2014-02-12   37  	int err = 0;
+c9afbb05a9ffbe Josh Cartwright 2014-02-12   38  
+c9afbb05a9ffbe Josh Cartwright 2014-02-12   39  	BUG_ON(reg_size != 1);
+c9afbb05a9ffbe Josh Cartwright 2014-02-12   40  
+c9afbb05a9ffbe Josh Cartwright 2014-02-12   41  	/*
+c9afbb05a9ffbe Josh Cartwright 2014-02-12   42  	 * SPMI defines a more bandwidth-efficient 'Register 0 Write' sequence,
+c9afbb05a9ffbe Josh Cartwright 2014-02-12   43  	 * use it when possible.
+c9afbb05a9ffbe Josh Cartwright 2014-02-12   44  	 */
+c9afbb05a9ffbe Josh Cartwright 2014-02-12   45  	if (addr == 0 && val_size) {
+c9afbb05a9ffbe Josh Cartwright 2014-02-12  @46  		err = spmi_register_zero_write(context, *data);
+c9afbb05a9ffbe Josh Cartwright 2014-02-12   47  		if (err)
+c9afbb05a9ffbe Josh Cartwright 2014-02-12   48  			goto err_out;
+c9afbb05a9ffbe Josh Cartwright 2014-02-12   49  
+c9afbb05a9ffbe Josh Cartwright 2014-02-12   50  		data++;
+c9afbb05a9ffbe Josh Cartwright 2014-02-12   51  		addr++;
+c9afbb05a9ffbe Josh Cartwright 2014-02-12   52  		val_size--;
+c9afbb05a9ffbe Josh Cartwright 2014-02-12   53  	}
+c9afbb05a9ffbe Josh Cartwright 2014-02-12   54  
+c9afbb05a9ffbe Josh Cartwright 2014-02-12   55  	while (val_size) {
+c9afbb05a9ffbe Josh Cartwright 2014-02-12  @56  		err = spmi_register_write(context, addr, *data);
+c9afbb05a9ffbe Josh Cartwright 2014-02-12   57  		if (err)
+c9afbb05a9ffbe Josh Cartwright 2014-02-12   58  			goto err_out;
+c9afbb05a9ffbe Josh Cartwright 2014-02-12   59  
+c9afbb05a9ffbe Josh Cartwright 2014-02-12   60  		data++;
+c9afbb05a9ffbe Josh Cartwright 2014-02-12   61  		addr++;
+c9afbb05a9ffbe Josh Cartwright 2014-02-12   62  		val_size--;
+c9afbb05a9ffbe Josh Cartwright 2014-02-12   63  	}
+c9afbb05a9ffbe Josh Cartwright 2014-02-12   64  
+c9afbb05a9ffbe Josh Cartwright 2014-02-12   65  err_out:
+c9afbb05a9ffbe Josh Cartwright 2014-02-12   66  	return err;
+c9afbb05a9ffbe Josh Cartwright 2014-02-12   67  }
+c9afbb05a9ffbe Josh Cartwright 2014-02-12   68  
+c9afbb05a9ffbe Josh Cartwright 2014-02-12   69  static int regmap_spmi_base_write(void *context, const void *data,
+c9afbb05a9ffbe Josh Cartwright 2014-02-12   70  				  size_t count)
+c9afbb05a9ffbe Josh Cartwright 2014-02-12   71  {
+c9afbb05a9ffbe Josh Cartwright 2014-02-12   72  	BUG_ON(count < 1);
+c9afbb05a9ffbe Josh Cartwright 2014-02-12   73  	return regmap_spmi_base_gather_write(context, data, 1, data + 1,
+c9afbb05a9ffbe Josh Cartwright 2014-02-12   74  					     count - 1);
+c9afbb05a9ffbe Josh Cartwright 2014-02-12   75  }
+c9afbb05a9ffbe Josh Cartwright 2014-02-12   76  
+9c2e5cb38da220 Julia Lawall    2017-08-11   77  static const struct regmap_bus regmap_spmi_base = {
+c9afbb05a9ffbe Josh Cartwright 2014-02-12   78  	.read				= regmap_spmi_base_read,
+c9afbb05a9ffbe Josh Cartwright 2014-02-12   79  	.write				= regmap_spmi_base_write,
+c9afbb05a9ffbe Josh Cartwright 2014-02-12   80  	.gather_write			= regmap_spmi_base_gather_write,
+c9afbb05a9ffbe Josh Cartwright 2014-02-12   81  	.reg_format_endian_default	= REGMAP_ENDIAN_NATIVE,
+c9afbb05a9ffbe Josh Cartwright 2014-02-12   82  	.val_format_endian_default	= REGMAP_ENDIAN_NATIVE,
+c9afbb05a9ffbe Josh Cartwright 2014-02-12   83  };
+c9afbb05a9ffbe Josh Cartwright 2014-02-12   84  
+3cfe7a74d42b7e Nicolas Boichat 2015-07-08   85  struct regmap *__regmap_init_spmi_base(struct spmi_device *sdev,
+3cfe7a74d42b7e Nicolas Boichat 2015-07-08   86  				       const struct regmap_config *config,
+3cfe7a74d42b7e Nicolas Boichat 2015-07-08   87  				       struct lock_class_key *lock_key,
+3cfe7a74d42b7e Nicolas Boichat 2015-07-08   88  				       const char *lock_name)
+c9afbb05a9ffbe Josh Cartwright 2014-02-12   89  {
+3cfe7a74d42b7e Nicolas Boichat 2015-07-08   90  	return __regmap_init(&sdev->dev, &regmap_spmi_base, sdev, config,
+3cfe7a74d42b7e Nicolas Boichat 2015-07-08   91  			     lock_key, lock_name);
+c9afbb05a9ffbe Josh Cartwright 2014-02-12   92  }
+3cfe7a74d42b7e Nicolas Boichat 2015-07-08   93  EXPORT_SYMBOL_GPL(__regmap_init_spmi_base);
+c9afbb05a9ffbe Josh Cartwright 2014-02-12   94  
+3cfe7a74d42b7e Nicolas Boichat 2015-07-08   95  struct regmap *__devm_regmap_init_spmi_base(struct spmi_device *sdev,
+3cfe7a74d42b7e Nicolas Boichat 2015-07-08   96  					    const struct regmap_config *config,
+3cfe7a74d42b7e Nicolas Boichat 2015-07-08   97  					    struct lock_class_key *lock_key,
+3cfe7a74d42b7e Nicolas Boichat 2015-07-08   98  					    const char *lock_name)
+c9afbb05a9ffbe Josh Cartwright 2014-02-12   99  {
+3cfe7a74d42b7e Nicolas Boichat 2015-07-08  100  	return __devm_regmap_init(&sdev->dev, &regmap_spmi_base, sdev, config,
+3cfe7a74d42b7e Nicolas Boichat 2015-07-08  101  				  lock_key, lock_name);
+c9afbb05a9ffbe Josh Cartwright 2014-02-12  102  }
+3cfe7a74d42b7e Nicolas Boichat 2015-07-08  103  EXPORT_SYMBOL_GPL(__devm_regmap_init_spmi_base);
+c9afbb05a9ffbe Josh Cartwright 2014-02-12  104  
+c9afbb05a9ffbe Josh Cartwright 2014-02-12  105  static int regmap_spmi_ext_read(void *context,
+c9afbb05a9ffbe Josh Cartwright 2014-02-12  106  				const void *reg, size_t reg_size,
+c9afbb05a9ffbe Josh Cartwright 2014-02-12  107  				void *val, size_t val_size)
+c9afbb05a9ffbe Josh Cartwright 2014-02-12  108  {
+c9afbb05a9ffbe Josh Cartwright 2014-02-12  109  	int err = 0;
+c9afbb05a9ffbe Josh Cartwright 2014-02-12  110  	size_t len;
+c9afbb05a9ffbe Josh Cartwright 2014-02-12  111  	u16 addr;
+c9afbb05a9ffbe Josh Cartwright 2014-02-12  112  
+a01779f89fc8a2 Josh Cartwright 2013-10-28  113  	BUG_ON(reg_size != 2);
+c9afbb05a9ffbe Josh Cartwright 2014-02-12  114  
+c9afbb05a9ffbe Josh Cartwright 2014-02-12  115  	addr = *(u16 *)reg;
+c9afbb05a9ffbe Josh Cartwright 2014-02-12  116  
+c9afbb05a9ffbe Josh Cartwright 2014-02-12  117  	/*
+c9afbb05a9ffbe Josh Cartwright 2014-02-12  118  	 * Split accesses into two to take advantage of the more
+c9afbb05a9ffbe Josh Cartwright 2014-02-12  119  	 * bandwidth-efficient 'Extended Register Read' command when possible
+c9afbb05a9ffbe Josh Cartwright 2014-02-12  120  	 */
+c9afbb05a9ffbe Josh Cartwright 2014-02-12  121  	while (addr <= 0xFF && val_size) {
+c9afbb05a9ffbe Josh Cartwright 2014-02-12  122  		len = min_t(size_t, val_size, 16);
+c9afbb05a9ffbe Josh Cartwright 2014-02-12  123  
+c9afbb05a9ffbe Josh Cartwright 2014-02-12 @124  		err = spmi_ext_register_read(context, addr, val, len);
+c9afbb05a9ffbe Josh Cartwright 2014-02-12  125  		if (err)
+c9afbb05a9ffbe Josh Cartwright 2014-02-12  126  			goto err_out;
+c9afbb05a9ffbe Josh Cartwright 2014-02-12  127  
+c9afbb05a9ffbe Josh Cartwright 2014-02-12  128  		addr += len;
+c9afbb05a9ffbe Josh Cartwright 2014-02-12  129  		val += len;
+c9afbb05a9ffbe Josh Cartwright 2014-02-12  130  		val_size -= len;
+a01779f89fc8a2 Josh Cartwright 2013-10-28  131  	}
+a01779f89fc8a2 Josh Cartwright 2013-10-28  132  
+c9afbb05a9ffbe Josh Cartwright 2014-02-12  133  	while (val_size) {
+c9afbb05a9ffbe Josh Cartwright 2014-02-12  134  		len = min_t(size_t, val_size, 8);
+c9afbb05a9ffbe Josh Cartwright 2014-02-12  135  
+dec8e8f6e6504a Jack Pham       2016-04-14 @136  		err = spmi_ext_register_readl(context, addr, val, len);
+c9afbb05a9ffbe Josh Cartwright 2014-02-12  137  		if (err)
+c9afbb05a9ffbe Josh Cartwright 2014-02-12  138  			goto err_out;
+c9afbb05a9ffbe Josh Cartwright 2014-02-12  139  
+c9afbb05a9ffbe Josh Cartwright 2014-02-12  140  		addr += len;
+c9afbb05a9ffbe Josh Cartwright 2014-02-12  141  		val += len;
+c9afbb05a9ffbe Josh Cartwright 2014-02-12  142  		val_size -= len;
+c9afbb05a9ffbe Josh Cartwright 2014-02-12  143  	}
+c9afbb05a9ffbe Josh Cartwright 2014-02-12  144  
+c9afbb05a9ffbe Josh Cartwright 2014-02-12  145  err_out:
+c9afbb05a9ffbe Josh Cartwright 2014-02-12  146  	return err;
+c9afbb05a9ffbe Josh Cartwright 2014-02-12  147  }
+c9afbb05a9ffbe Josh Cartwright 2014-02-12  148  
+c9afbb05a9ffbe Josh Cartwright 2014-02-12  149  static int regmap_spmi_ext_gather_write(void *context,
+a01779f89fc8a2 Josh Cartwright 2013-10-28  150  					const void *reg, size_t reg_size,
+a01779f89fc8a2 Josh Cartwright 2013-10-28  151  					const void *val, size_t val_size)
+a01779f89fc8a2 Josh Cartwright 2013-10-28  152  {
+c9afbb05a9ffbe Josh Cartwright 2014-02-12  153  	int err = 0;
+c9afbb05a9ffbe Josh Cartwright 2014-02-12  154  	size_t len;
+c9afbb05a9ffbe Josh Cartwright 2014-02-12  155  	u16 addr;
+c9afbb05a9ffbe Josh Cartwright 2014-02-12  156  
+a01779f89fc8a2 Josh Cartwright 2013-10-28  157  	BUG_ON(reg_size != 2);
+c9afbb05a9ffbe Josh Cartwright 2014-02-12  158  
+c9afbb05a9ffbe Josh Cartwright 2014-02-12  159  	addr = *(u16 *)reg;
+c9afbb05a9ffbe Josh Cartwright 2014-02-12  160  
+c9afbb05a9ffbe Josh Cartwright 2014-02-12  161  	while (addr <= 0xFF && val_size) {
+c9afbb05a9ffbe Josh Cartwright 2014-02-12  162  		len = min_t(size_t, val_size, 16);
+c9afbb05a9ffbe Josh Cartwright 2014-02-12  163  
+c9afbb05a9ffbe Josh Cartwright 2014-02-12 @164  		err = spmi_ext_register_write(context, addr, val, len);
+c9afbb05a9ffbe Josh Cartwright 2014-02-12  165  		if (err)
+c9afbb05a9ffbe Josh Cartwright 2014-02-12  166  			goto err_out;
+c9afbb05a9ffbe Josh Cartwright 2014-02-12  167  
+c9afbb05a9ffbe Josh Cartwright 2014-02-12  168  		addr += len;
+c9afbb05a9ffbe Josh Cartwright 2014-02-12  169  		val += len;
+c9afbb05a9ffbe Josh Cartwright 2014-02-12  170  		val_size -= len;
+a01779f89fc8a2 Josh Cartwright 2013-10-28  171  	}
+a01779f89fc8a2 Josh Cartwright 2013-10-28  172  
+c9afbb05a9ffbe Josh Cartwright 2014-02-12  173  	while (val_size) {
+c9afbb05a9ffbe Josh Cartwright 2014-02-12  174  		len = min_t(size_t, val_size, 8);
+c9afbb05a9ffbe Josh Cartwright 2014-02-12  175  
+c9afbb05a9ffbe Josh Cartwright 2014-02-12 @176  		err = spmi_ext_register_writel(context, addr, val, len);
+c9afbb05a9ffbe Josh Cartwright 2014-02-12  177  		if (err)
+c9afbb05a9ffbe Josh Cartwright 2014-02-12  178  			goto err_out;
+c9afbb05a9ffbe Josh Cartwright 2014-02-12  179  
+c9afbb05a9ffbe Josh Cartwright 2014-02-12  180  		addr += len;
+c9afbb05a9ffbe Josh Cartwright 2014-02-12  181  		val += len;
+c9afbb05a9ffbe Josh Cartwright 2014-02-12  182  		val_size -= len;
+c9afbb05a9ffbe Josh Cartwright 2014-02-12  183  	}
+c9afbb05a9ffbe Josh Cartwright 2014-02-12  184  
+c9afbb05a9ffbe Josh Cartwright 2014-02-12  185  err_out:
+c9afbb05a9ffbe Josh Cartwright 2014-02-12  186  	return err;
+c9afbb05a9ffbe Josh Cartwright 2014-02-12  187  }
+c9afbb05a9ffbe Josh Cartwright 2014-02-12  188  
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
