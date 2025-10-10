@@ -1,48 +1,55 @@
-Return-Path: <devicetree+bounces-225393-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225395-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 785D9BCD0ED
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 15:12:29 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 28042BCD523
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 15:46:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 700684EF720
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 13:12:28 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 188E84EA712
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 13:46:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56A232F1FC7;
-	Fri, 10 Oct 2025 13:12:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5CF02EFDA6;
+	Fri, 10 Oct 2025 13:46:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KOahLxCd"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="nlVtMYQS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2023053A7;
-	Fri, 10 Oct 2025 13:12:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FB20748F;
+	Fri, 10 Oct 2025 13:46:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760101945; cv=none; b=CcUe+O7r5KUaSYMj7I/4Nv9J7EXShZkgMhETATu6OaRnLylMf66Wra9aV2P1zMVbzTikewTD/T1V6gR5WrDu+cah2eZQaLOzjqzzrSfa8HQlco4cWYPV1oJQSaGfdY+cA5gq+FU+dq1FhOjTu8VrNam71M+BI4gx0F8h2yChiQU=
+	t=1760104004; cv=none; b=Rvg0BH4gNrOfsA7GWrHYOYJQQtUzkX1Rta57ZEC9hYszb+G5juK8FNxlEz7uMVCyKCXxe0/2BvrdBqXqKJnv6xWLOUq6GOsn9vnsfUkTjE65u8JLk1+WiHXQsmq+ePsRQ33VC2r6y29/ToZu6naZ0sgGV2Hx2sUZ6ftPGEd+5iw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760101945; c=relaxed/simple;
-	bh=pruHw9/kUby5mwqKpt9tdx97guU3tM0R6qKJsdo0Y8w=;
+	s=arc-20240116; t=1760104004; c=relaxed/simple;
+	bh=j+7Q50v1WcbolonU2FwjWi93Z0/pQgPtjDDj72dphGs=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=P3FkOLLOD3fUjTRl2W0BYZZA1lMAWBDEu3xBruxyyhsbhMDokUiMauUxS2BZx5blWDL5F3K0h7waIhPBglLjcKaTiXcw9OtErfe8O1xjSBpYoCN2+jOAPSRovG9StzBd0uQSWOdAMp2sv0ZkpABSX/vXKYNcLMN3bjXMkcLM1NU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KOahLxCd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B7071C4CEF8;
-	Fri, 10 Oct 2025 13:12:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760101944;
-	bh=pruHw9/kUby5mwqKpt9tdx97guU3tM0R6qKJsdo0Y8w=;
+	 In-Reply-To:Content-Type; b=ajB1lrz0MrVdm/+j7llbNqAjLrsHtAEQnBrVZyln8fWhOLzb2vij0TjfQw8gsX7qxqEvUVh94f2IsWikSQRC3vMifirDNnDRMYwHM7xY3kdmX+Efm49Xc+jmzi0cQQguI3kcoLso/slBj1IiHb+7VOYe6IbpsD7fEwptd94f1h4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=nlVtMYQS; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1760103999;
+	bh=j+7Q50v1WcbolonU2FwjWi93Z0/pQgPtjDDj72dphGs=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=KOahLxCdmHOcxXpftHn+FT27Iz5bHFaVmf00/LRNoBhEzszgFuwmtpjEEKWhBsh0c
-	 rlKk8trl/mk2Pu6HRRB0EJmvW5TYanbhPS2r4l8KUjCVpVY3S5q5ICLu2oaTQAR+64
-	 TRfarE4myEdwRifRvZAS1rWloUcbWZKXUXNoZf5fsNJ44PRrDYgiiykuvr0tC9/f8M
-	 QVOgcisXb66ck8uZjo5BaflYrF/aLSwkSggbjzcgC1w0xdJoYlTwq4O2vHEnAyGgcx
-	 b7Mi+ZrNB+6LY6CexiWZUw4m4CcXYaOBI+esDBK0TqUyerWyGe4gD6ZDkGkk25KrHY
-	 enTzHEVWSFogw==
-Message-ID: <b3c40a8c-fe35-45a3-9702-2d9b1c555d4e@kernel.org>
-Date: Fri, 10 Oct 2025 15:12:15 +0200
+	b=nlVtMYQSaBTbBqEzskyVDW3uqVSg0BCrNtKS6VAG5QXDRwNiNzeITlsWwvFtu4i3P
+	 1WRK4yb5kYm82Yr9g+ZWRTiMYKA1C2CFvEQExtAob4eMz7/oxBRsVGvVig9gHxGKMv
+	 cJSGz3ReDwM9SWWa8y+iywpSRmJai4H3rrgzGKXFCus8YGZpxDf9uFdiL+/4cb5E5b
+	 6hIufXoENtW3maZaVUrwwSUfRJF5THUFM2+GEB48Z+bumAxZYvvx0LffQJ0FIApPkP
+	 eomBRxbnJvZwqdTuQ7/SGm8xuhJzx2yjDb9rj2VAeCU02C1h2PcEySLiBEYWVBK6uV
+	 OS+TrbwZCsFLg==
+Received: from [10.40.0.100] (185-67-175-126.lampert.tv [185.67.175.126])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: mriesch)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id C8D8017E01F5;
+	Fri, 10 Oct 2025 15:46:38 +0200 (CEST)
+Message-ID: <de1a1dce-f60e-48a1-9945-d2c91b328df5@collabora.com>
+Date: Fri, 10 Oct 2025 15:46:38 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,91 +57,147 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 4/7] mfd: sec: add support for s2mps16 pmic
-To: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>,
- =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
- Sylwester Nawrocki <s.nawrocki@samsung.com>,
- Chanwoo Choi <cw00.choi@samsung.com>, Alim Akhtar <alim.akhtar@samsung.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc: linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-clk@vger.kernel.org, linux-rtc@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250914124227.2619925-1-ivo.ivanov.ivanov1@gmail.com>
- <20250914124227.2619925-5-ivo.ivanov.ivanov1@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v11 00/17] media: rockchip: add a driver for the rockchip
+ camera interface
+To: Bryan O'Donoghue <bod@kernel.org>,
+ Mehdi Djait <mehdi.djait@linux.intel.com>,
+ Maxime Chevallier <maxime.chevallier@bootlin.com>,
+ =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ Gerald Loacker <gerald.loacker@wolfvision.net>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Markus Elfring <Markus.Elfring@web.de>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Kever Yang <kever.yang@rock-chips.com>,
+ Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Collabora Kernel Team <kernel@collabora.com>,
+ Paul Kocialkowski <paulk@sys-base.io>,
+ Alexander Shiyan <eagle.alexander923@gmail.com>,
+ Val Packett <val@packett.cool>, Rob Herring <robh@kernel.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, Mehdi Djait <mehdi.djait@bootlin.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+References: <HSTnNzc6MTLHGWih5qjlI2nvVECP8FVdcQVeBON4KlWYLtEaWIlNmEpKTU_vlqitbIIHMpabKnvnmpEQFqHYxQ==@protonmail.internalid>
+ <20240220-rk3568-vicap-v11-0-af0eada54e5d@collabora.com>
+ <88b1dcda-be2d-4c57-b042-c1809ef1dc97@kernel.org>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250914124227.2619925-5-ivo.ivanov.ivanov1@gmail.com>
+From: Michael Riesch <michael.riesch@collabora.com>
+In-Reply-To: <88b1dcda-be2d-4c57-b042-c1809ef1dc97@kernel.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 14/09/2025 14:42, Ivaylo Ivanov wrote:
->  enum s2mpu02_irq {
->  	S2MPU02_IRQ_PWRONF,
->  	S2MPU02_IRQ_PWRONR,
-> diff --git a/include/linux/mfd/samsung/s2mps16.h b/include/linux/mfd/samsung/s2mps16.h
-> new file mode 100644
-> index 000000000..d4394b054
-> --- /dev/null
-> +++ b/include/linux/mfd/samsung/s2mps16.h
-> @@ -0,0 +1,195 @@
-> +/* SPDX-License-Identifier: GPL-2.0+ */
+Hi Bryan,
 
+On 10/10/25 14:15, Bryan O'Donoghue wrote:
+> On 17/09/2025 16:38, Michael Riesch via B4 Relay wrote:
+>> Habidere,
+>>
+>> This series introduces support for the Rockchip Camera Interface (CIF),
+>> which is featured in many Rockchip SoCs in different variations.
+>> For example, the PX30 Video Input Processor (VIP) is able to receive
+>> video data via the Digital Video Port (DVP, a parallel data interface)
+>> and transfer it into system memory using a double-buffering mechanism
+>> called ping-pong mode.
+>> The RK3568 Video Capture (VICAP) unit, on the other hand, features a
+>> DVP and a MIPI CSI-2 receiver that can receive video data independently
+>> (both using the ping-pong scheme).
+>> The different variants may have additional features, such as scaling
+>> and/or cropping.
+>> Finally, the RK3588 VICAP unit constitutes an essential piece of the
+>> camera interface with one DVP, six MIPI CSI-2 receivers, scale/crop
+>> units, and a data path multiplexer (to scaler units, to ISP, ...).
+>>
+>> The v11 of the series adds a media controller centric V4L2 device driver
+>> for the Rockchip CIF with
+>>   - support for the PX30 VIP (not tested, though, due to the lack of HW)
+>>   - support for the RK3568 VICAP, including
+>>      - capturing frames from the DVP
+>>      - capturing frames from the MIPI CSI-2 receiver
+>>   - abstraction for the ping-pong scheme to allow for future extensions
+>>   - abstraction for the INTERFACE and CROP parts to allow for future
+>>     extensions
+>>   - initial support for different virtual channels (not tested, though,
+>>     due to the lack of HW)
+>> and a V4L2 subdevice driver for the Rockchip MIPI CSI-2 Receiver.
+>>
+>> The driver can be readily extended to provide support for the RK3588
+>> VICAP variant. In order to keep things simple, however, this extension
+>> shall be submitted separately.
+>>
+>> Looking forward to your comments!
+>>
+>> To: Mehdi Djait<mehdi.djait@linux.intel.com>
+>> To: Maxime Chevallier<maxime.chevallier@bootlin.com>
+>> To: Théo Lebrun<theo.lebrun@bootlin.com>
+>> To: Thomas Petazzoni<thomas.petazzoni@bootlin.com>
+>> To: Gerald Loacker<gerald.loacker@wolfvision.net>
+>> To: Bryan O'Donoghue<bryan.odonoghue@linaro.org>
+>> To: Markus Elfring<Markus.Elfring@web.de>
+>> To: Sakari Ailus<sakari.ailus@iki.fi>
+>> To: Laurent Pinchart<laurent.pinchart@ideasonboard.com>
+>> To: Mauro Carvalho Chehab<mchehab@kernel.org>
+>> To: Rob Herring<robh+dt@kernel.org>
+>> To: Krzysztof Kozlowski<krzk+dt@kernel.org>
+>> To: Conor Dooley<conor+dt@kernel.org>
+>> To: Heiko Stuebner<heiko@sntech.de>
+>> To: Kever Yang<kever.yang@rock-chips.com>
+>> To: Nicolas Dufresne<nicolas.dufresne@collabora.com>
+>> To: Sebastian Reichel<sebastian.reichel@collabora.com>
+>> To: Collabora Kernel Team<kernel@collabora.com>
+>> To: Paul Kocialkowski<paulk@sys-base.io>
+>> To: Alexander Shiyan<eagle.alexander923@gmail.com>
+>> To: Val Packett<val@packett.cool>
+>> To: Rob Herring<robh@kernel.org>
+>> To: Philipp Zabel<p.zabel@pengutronix.de>
+>> Cc:linux-media@vger.kernel.org
+>> Cc:devicetree@vger.kernel.org
+>> Cc:linux-kernel@vger.kernel.org
+>> Cc:linux-arm-kernel@lists.infradead.org
+>> Cc:linux-rockchip@lists.infradead.org
+>> Signed-off-by: Michael Riesch<michael.riesch@wolfvision.net>
+>> Signed-off-by: Michael Riesch<michael.riesch@collabora.com>
+>>
+>> Changes in v11:
+>> - rkcif: split large driver patch (6/13 of v10) into smaller
+>>    patches (6-11/17 of v11) (Bryan)
+>> - rkcsi: replaced devm_reset_control_array_get_exclusive with
+>>    devm_reset_control_get_exclusive (Philipp)
+>> - Link to v10:https://lore.kernel.org/r/20240220-rk3568-vicap-
+>> v10-0-62d8a7b209b4@collabora.com
+> 
+> I believe it is the case and please feel free to correct me if I'm wrong
+> that you've dropped a long list of sob/co-develop-by, I think we
+> discussed that too, because of the level of change, it seems reasonable
+> too.
 
-Does the license 2.0+ (so 3.0 and so one) come from the downstream you
-copied it? Or from other upstream? If not, thus it is your invention,
-please keep only 2.0.
+Correct. The tag list used to be quite complicated [0] due to the
+complicated history of this driver. Maxime worked on the driver up to
+v5, Mehdi up to v14, I added RK3568 support on top of Mehdi's v14 (with
+some valuable contributions from Gerald) and submitted that as v1. v2 of
+my work incorporated Mehdi's v14, and here we are, after several rounds
+of feedback, at soon-to-be v12 (or, in fact, v25).
 
-Anyway:
+> On question on that, are these people aware of the change and cc'd on
+> the list of recipients/contactable/agreeable to the change ?
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+I announced this plan as a response to your comment to v10 [1] with
+Maxime, Mehdi and Gerald on Cc: and did not hear any objections.
+
+Hope that this is still OK for everybody!
 
 Best regards,
-Krzysztof
+Michael
+
+[0]
+https://lore.kernel.org/linux-media/20240220-rk3568-vicap-v10-6-62d8a7b209b4@collabora.com/
+[1]
+https://lore.kernel.org/linux-media/23ccc744-745d-4a31-a79c-2d64bf1ed43d@collabora.com/
+
 
