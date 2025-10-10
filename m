@@ -1,178 +1,80 @@
-Return-Path: <devicetree+bounces-225266-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225267-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44D0DBCC03B
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 10:01:46 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 51DA5BCC0BC
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 10:03:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7076A1A6428E
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 08:02:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8440242346E
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 08:03:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D14A2749F2;
-	Fri, 10 Oct 2025 08:01:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16C75275B1A;
+	Fri, 10 Oct 2025 08:03:20 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from azure-sdnproxy.icoremail.net (azure-sdnproxy.icoremail.net [4.193.249.245])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 408EA1D63E4;
-	Fri, 10 Oct 2025 08:01:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=4.193.249.245
+Received: from TWMBX01.aspeed.com (mail.aspeedtech.com [211.20.114.72])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E720326E6F8;
+	Fri, 10 Oct 2025 08:03:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.20.114.72
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760083302; cv=none; b=MPS4pP0ludEs5C2FBOMXKU+Yxek6QXHowWBQpPEBqnPTOZaZMxXRTHb15hp9x4Kd35P/At+7ILAlfHe1I2peVg0h2NVYTPte4STJ/lB37+SImN9MBMS6gxx2E+cL1ZJfAL6juF+u+e4Wy26XAvIzwBcVn7kbsHk158O/Of9Yq8Q=
+	t=1760083400; cv=none; b=Tu3tVa71i7DFEKB09ULOLrezUCJg5BoiqWCPx9Fk0Ft9RNLVsFCvUSkz1bmgT+g0RtVHNK9NwJrSCfgoXzYMpB/PPh+Berta9F+HFFZOWmI9YJbzaGQRbIzrL8bo/9WGNTFNKD7eb576YymqtD7pbJ6HDaJiUcqDB3ZARAoIllU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760083302; c=relaxed/simple;
-	bh=ELBJLST1RDB/j/4hubt1QnzhMzOP0q8NqmpIPqn/DIs=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
-	 MIME-Version:Message-ID; b=WJhl2tLO0oNMD+d1ov4GxhI+RdMvvR7MrAN4wt+VhASVZ0kGxXWK8rVZzvFBB2M6YZ57udmlpVIH4pd5+2mvVW89mqb/pPWIO0J/mBn3Kuyfg8juRycGQPU+2I0sKWX2RoFCcmOZWsxK8Q+uW1UTNoNFJ6+NScpDXQYzSOZTaDQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=4.193.249.245
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
-Received: from zhangsenchuan$eswincomputing.com ( [10.12.96.83] ) by
- ajax-webmail-app2 (Coremail) ; Fri, 10 Oct 2025 16:01:10 +0800 (GMT+08:00)
-Date: Fri, 10 Oct 2025 16:01:10 +0800 (GMT+08:00)
-X-CM-HeaderCharset: UTF-8
-From: zhangsenchuan <zhangsenchuan@eswincomputing.com>
-To: "Bjorn Helgaas" <helgaas@kernel.org>
-Cc: bhelgaas@google.com, lpieralisi@kernel.org, kwilczynski@kernel.org,
-	mani@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	p.zabel@pengutronix.de, johan+linaro@kernel.org,
-	quic_schintav@quicinc.com, shradha.t@samsung.com, cassel@kernel.org,
-	thippeswamy.havalige@amd.com, mayank.rana@oss.qualcomm.com,
-	inochiama@gmail.com, ningyu@eswincomputing.com,
-	linmin@eswincomputing.com, pinkesh.vaghela@einfochips.com,
-	"Yanghui Ou" <ouyanghui@eswincomputing.com>
-Subject: Re: Re: Re: [PATCH v3 2/2] PCI: EIC7700: Add Eswin PCIe host
- controller driver
-X-Priority: 3
-X-Mailer: Coremail Webmail Server Version 2024.2-cmXT6 build
- 20241203(6b039d88) Copyright (c) 2002-2025 www.mailtech.cn
- mispb-72143050-eaf5-4703-89e0-86624513b4ce-eswincomputing.com
-In-Reply-To: <27516921.17f2.1997bb2a498.Coremail.zhangsenchuan@eswincomputing.com>
-References: <20250923163254.GA2042659@bhelgaas>
- <27516921.17f2.1997bb2a498.Coremail.zhangsenchuan@eswincomputing.com>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset=UTF-8
+	s=arc-20240116; t=1760083400; c=relaxed/simple;
+	bh=e/EXtZWCi3iK9z1nOSESHp1p8RxHwCt8mI82MrXSiuY=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Il0+KNPFyGiQjV8x1uDJwlw+rx//5fnqKqj+R+dIDAu3ezaFxUpuJaC/7pSZr3st33ALXR21V9sPH8OO+fbSMZOS7FgRbDYMj+2NRlwOJ+do4PZqidk3SiIUwu0DRoqNeossr+AdMLLRawrg2rHMcvcHcZIG9sE+Ix9utOGXezs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; arc=none smtp.client-ip=211.20.114.72
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
+Received: from TWMBX01.aspeed.com (192.168.0.62) by TWMBX01.aspeed.com
+ (192.168.0.62) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Fri, 10 Oct
+ 2025 16:03:15 +0800
+Received: from aspeedtech.com (192.168.10.13) by TWMBX01.aspeed.com
+ (192.168.0.62) with Microsoft SMTP Server id 15.2.1748.10 via Frontend
+ Transport; Fri, 10 Oct 2025 16:03:15 +0800
+From: Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>
+To: <wim@linux-watchdog.org>, <linux@roeck-us.net>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <joel@jms.id.au>,
+	<andrew@codeconstruct.com.au>, <linux-watchdog@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-aspeed@lists.ozlabs.org>, <linux-kernel@vger.kernel.org>,
+	<BMC-SW@aspeedtech.com>
+Subject: [PATCH v2 0/3] watchdog: aspeed: Add AST2700 support
+Date: Fri, 10 Oct 2025 16:03:12 +0800
+Message-ID: <20251010080315.816628-1-chin-ting_kuo@aspeedtech.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <41a980b8.1d1b.199cd23599d.Coremail.zhangsenchuan@eswincomputing.com>
-X-Coremail-Locale: en_US
-X-CM-TRANSID:TQJkCgAXt5VGvehoQCQDAQ--.27271W
-X-CM-SenderInfo: x2kd0wpvhquxxxdqqvxvzl0uprps33xlqjhudrp/1tbiAgELBmjn4
-	9YXZAAAsH
-X-Coremail-Antispam: 1Ur529EdanIXcx71UUUUU7IcSsGvfJ3iIAIbVAYjsxI4VWxJw
-	CS07vEb4IE77IF4wCS07vE1I0E4x80FVAKz4kxMIAIbVAFxVCaYxvI4VCIwcAKzIAtYxBI
-	daVFxhVjvjDU=
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-CgoKPiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2VzLS0tLS0KPiBGcm9tOiB6aGFuZ3NlbmNodWFuIDx6
-aGFuZ3NlbmNodWFuQGVzd2luY29tcHV0aW5nLmNvbT4KPiBTZW5kIHRpbWU6V2VkbmVzZGF5LCAy
-NC8wOS8yMDI1IDIwOjI4OjQ5Cj4gVG86ICJCam9ybiBIZWxnYWFzIiA8aGVsZ2Fhc0BrZXJuZWwu
-b3JnPgo+IENjOiBiaGVsZ2Fhc0Bnb29nbGUuY29tLCBscGllcmFsaXNpQGtlcm5lbC5vcmcsIGt3
-aWxjenluc2tpQGtlcm5lbC5vcmcsIG1hbmlAa2VybmVsLm9yZywgcm9iaEBrZXJuZWwub3JnLCBr
-cnprK2R0QGtlcm5lbC5vcmcsIGNvbm9yK2R0QGtlcm5lbC5vcmcsIGxpbnV4LXBjaUB2Z2VyLmtl
-cm5lbC5vcmcsIGRldmljZXRyZWVAdmdlci5rZXJuZWwub3JnLCBsaW51eC1rZXJuZWxAdmdlci5r
-ZXJuZWwub3JnLCBwLnphYmVsQHBlbmd1dHJvbml4LmRlLCBqb2hhbitsaW5hcm9Aa2VybmVsLm9y
-ZywgcXVpY19zY2hpbnRhdkBxdWljaW5jLmNvbSwgc2hyYWRoYS50QHNhbXN1bmcuY29tLCBjYXNz
-ZWxAa2VybmVsLm9yZywgdGhpcHBlc3dhbXkuaGF2YWxpZ2VAYW1kLmNvbSwgbWF5YW5rLnJhbmFA
-b3NzLnF1YWxjb21tLmNvbSwgaW5vY2hpYW1hQGdtYWlsLmNvbSwgbmluZ3l1QGVzd2luY29tcHV0
-aW5nLmNvbSwgbGlubWluQGVzd2luY29tcHV0aW5nLmNvbSwgcGlua2VzaC52YWdoZWxhQGVpbmZv
-Y2hpcHMuY29tLCAiWWFuZ2h1aSBPdSIgPG91eWFuZ2h1aUBlc3dpbmNvbXB1dGluZy5jb20+Cj4g
-U3ViamVjdDogUmU6IFJlOiBbUEFUQ0ggdjMgMi8yXSBQQ0k6IEVJQzc3MDA6IEFkZCBFc3dpbiBQ
-Q0llIGhvc3QgY29udHJvbGxlciBkcml2ZXIKPiAKPiAKPiAKPiAKPiA+IC0tLS0tT3JpZ2luYWwg
-TWVzc2FnZXMtLS0tLQo+ID4gRnJvbTogIkJqb3JuIEhlbGdhYXMiIDxoZWxnYWFzQGtlcm5lbC5v
-cmc+Cj4gPiBTZW5kIHRpbWU6V2VkbmVzZGF5LCAyNC8wOS8yMDI1IDAwOjMyOjU0Cj4gPiBUbzog
-emhhbmdzZW5jaHVhbkBlc3dpbmNvbXB1dGluZy5jb20KPiA+IENjOiBiaGVsZ2Fhc0Bnb29nbGUu
-Y29tLCBscGllcmFsaXNpQGtlcm5lbC5vcmcsIGt3aWxjenluc2tpQGtlcm5lbC5vcmcsIG1hbmlA
-a2VybmVsLm9yZywgcm9iaEBrZXJuZWwub3JnLCBrcnprK2R0QGtlcm5lbC5vcmcsIGNvbm9yK2R0
-QGtlcm5lbC5vcmcsIGxpbnV4LXBjaUB2Z2VyLmtlcm5lbC5vcmcsIGRldmljZXRyZWVAdmdlci5r
-ZXJuZWwub3JnLCBsaW51eC1rZXJuZWxAdmdlci5rZXJuZWwub3JnLCBwLnphYmVsQHBlbmd1dHJv
-bml4LmRlLCBqb2hhbitsaW5hcm9Aa2VybmVsLm9yZywgcXVpY19zY2hpbnRhdkBxdWljaW5jLmNv
-bSwgc2hyYWRoYS50QHNhbXN1bmcuY29tLCBjYXNzZWxAa2VybmVsLm9yZywgdGhpcHBlc3dhbXku
-aGF2YWxpZ2VAYW1kLmNvbSwgbWF5YW5rLnJhbmFAb3NzLnF1YWxjb21tLmNvbSwgaW5vY2hpYW1h
-QGdtYWlsLmNvbSwgbmluZ3l1QGVzd2luY29tcHV0aW5nLmNvbSwgbGlubWluQGVzd2luY29tcHV0
-aW5nLmNvbSwgcGlua2VzaC52YWdoZWxhQGVpbmZvY2hpcHMuY29tLCAiWWFuZ2h1aSBPdSIgPG91
-eWFuZ2h1aUBlc3dpbmNvbXB1dGluZy5jb20+Cj4gPiBTdWJqZWN0OiBSZTogW1BBVENIIHYzIDIv
-Ml0gUENJOiBFSUM3NzAwOiBBZGQgRXN3aW4gUENJZSBob3N0IGNvbnRyb2xsZXIgZHJpdmVyCj4g
-PiAKPiA+IE9uIFR1ZSwgU2VwIDIzLCAyMDI1IGF0IDA4OjEyOjI3UE0gKzA4MDAsIHpoYW5nc2Vu
-Y2h1YW5AZXN3aW5jb21wdXRpbmcuY29tIHdyb3RlOgo+ID4gPiBBZGQgZHJpdmVyIGZvciB0aGUg
-RXN3aW4gRUlDNzcwMCBQQ0llIGhvc3QgY29udHJvbGxlcix0aGUgY29udHJvbGxlciBpcwo+ID4g
-PiBiYXNlZCBvbiB0aGUgRGVzaWduV2FyZSBQQ0llIGNvcmUsIElQIHJldmlzaW9uIDYuMDBhIFRo
-ZSBQQ0llIEdlbi4zCj4gPiA+IGNvbnRyb2xsZXIgc3VwcG9ydHMgYSBkYXRhIHJhdGUgb2YgOCBH
-VC9zIGFuZCA0IGNoYW5uZWxzLCBzdXBwb3J0IElOVFgKPiA+ID4gYW5kIE1TSSBpbnRlcnJ1cHRz
-Lgo+ID4gCj4gPiBzL2hvc3QgY29udHJvbGxlcix0aGUgY29udHJvbGxlciBpcy9ob3N0IGNvbnRy
-b2xsZXIsIHdoaWNoIGlzLwo+ID4gCj4gPiBBZGQgcGVyaW9kIGF0IGVuZCBvZiBmaXJzdCBzZW50
-ZW5jZS4KPiA+IAo+ID4gPiArKysgYi9kcml2ZXJzL3BjaS9jb250cm9sbGVyL2R3Yy9LY29uZmln
-Cj4gPiA+IEBAIC0zNzUsNiArMzc1LDE3IEBAIGNvbmZpZyBQQ0lfRVhZTk9TCj4gPiA+ICAJICBo
-YXJkd2FyZSBhbmQgdGhlcmVmb3JlIHRoZSBkcml2ZXIgcmUtdXNlcyB0aGUgRGVzaWduV2FyZSBj
-b3JlCj4gPiA+ICAJICBmdW5jdGlvbnMgdG8gaW1wbGVtZW50IHRoZSBkcml2ZXIuCj4gPiA+ICAK
-PiA+ID4gCj4gPiA+ICtzdGF0aWMgaW50IGVzd2luX3BjaWVfc3VzcGVuZChzdHJ1Y3QgZGV2aWNl
-ICpkZXYpCj4gPiA+ICt7Cj4gPiA+ICsJc3RydWN0IGVzd2luX3BjaWUgKnBjaWUgPSBkZXZfZ2V0
-X2RydmRhdGEoZGV2KTsKPiA+ID4gKwlzdHJ1Y3QgZXN3aW5fcGNpZV9wb3J0ICpwb3J0Owo+ID4g
-PiArCj4gPiA+ICsJLyoKPiA+ID4gKwkgKiBGb3IgY29udHJvbGxlcnMgd2l0aCBhY3RpdmUgZGV2
-aWNlcywgcmVzb3VyY2VzIGFyZSByZXRhaW5lZCBhbmQKPiA+ID4gKwkgKiBjYW5ub3QgYmUgdHVy
-bmVkIG9mZi4KPiA+ID4gKwkgKi8KPiA+ID4gKwlpZiAoIWR3X3BjaWVfbGlua191cCgmcGNpZS0+
-cGNpKSkgewo+ID4gPiArCQlsaXN0X2Zvcl9lYWNoX2VudHJ5KHBvcnQsICZwY2llLT5wb3J0cywg
-bGlzdCkKPiA+ID4gKwkJCXJlc2V0X2NvbnRyb2xfYXNzZXJ0KHBvcnQtPnBlcnN0KTsKPiA+ID4g
-KwkJZXN3aW5fcGNpZV9hc3NlcnQocGNpZSk7Cj4gPiA+ICsJCWNsa19idWxrX2Rpc2FibGVfdW5w
-cmVwYXJlKHBjaWUtPm51bV9jbGtzLCBwY2llLT5jbGtzKTsKPiA+ID4gKwkJcGNpZS0+c3VzcGVu
-ZGVkID0gdHJ1ZTsKPiA+IAo+ID4gSSdtIGEgbGl0dGxlIGR1YmlvdXMgYWJvdXQgdGhpcyBzaW5j
-ZSBub25lIG9mIHRoZSBvdGhlciBkcml2ZXJzIGNoZWNrCj4gPiBkd19wY2llX2xpbmtfdXAoKS4K
-PiAKPiBkZWFyIEJqb3JuCj4gCj4gVGhhbmsgeW91IHZlcnkgbXVjaCBmb3IgeW91ciByZXZpZXcu
-Cj4gQ2xhcmlmaWNhdGlvbu+8mgo+IFRoZSBwcmV2aW91cyBwYXRjaCwgTWFuaSBnYXZlIG1lIGFk
-dmljZTogIlNvIHlvdSB3YW50IHRvIHBvd2VyIG9mZiB0aGUgCj4gZGV2aWNlIGV2ZW4gaWYgaXQg
-aW50ZW5kcyB0byBiZSBpbiBEMD8iIExpa2UgTlZNZS4iCj4gCj4gSSByZWZlcnJlZCB0byB0aGUg
-aW1wbGVtZW50YXRpb24gb2YgInBjaWUtcWNvbS5jIiBhbmQgYWRkZWQgdGhlIAo+IGp1ZGdtZW50
-IG9mIHRoZSBkd19wY2llX2xpbmtfdXAgZnVuY3Rpb24uCj4gCj4gVGhlIGZvbGxvd2luZyBhcmUg
-bWFuaSdzIGNvbW1lbnRzIG9uIGZpeGluZyB0aGlzIGlzc3Vl77yaCj4gLyoKPiAgKiBUdXJuIE9G
-RiB0aGUgcmVzb3VyY2VzIG9ubHkgZm9yIGNvbnRyb2xsZXJzIHdpdGhvdXQgYWN0aXZlIFBDSWUK
-PiAgKiBkZXZpY2VzLiBGb3IgY29udHJvbGxlcnMgd2l0aCBhY3RpdmUgZGV2aWNlcywgdGhlIHJl
-c291cmNlcyBhcmUga2VwdAo+ICAqIE9OIGFuZCB0aGUgbGluayBpcyBleHBlY3RlZCB0byBiZSBp
-biBMMC9MMSAoc3ViKXN0YXRlcy4KPiAgKgo+ICAqIFR1cm5pbmcgT0ZGIHRoZSByZXNvdXJjZXMg
-Zm9yIGNvbnRyb2xsZXJzIHdpdGggYWN0aXZlIFBDSWUgZGV2aWNlcwo+ICAqIHdpbGwgdHJpZ2dl
-ciBhY2Nlc3MgdmlvbGF0aW9uIGR1cmluZyB0aGUgZW5kIG9mIHRoZSBzdXNwZW5kIGN5Y2xlLAo+
-ICAqIGFzIGtlcm5lbCB0cmllcyB0byBhY2Nlc3MgdGhlIFBDSWUgZGV2aWNlcyBjb25maWcgc3Bh
-Y2UgZm9yIG1hc2tpbmcKPiAgKiBNU0lzLgo+ICAqCj4gICogQWxzbywgaXQgaXMgbm90IGRlc2ly
-YWJsZSB0byBwdXQgdGhlIGxpbmsgaW50byBMMi9MMyBzdGF0ZSBhcyB0aGF0Cj4gICogaW1wbGll
-cyBWREQgc3VwcGx5IHdpbGwgYmUgcmVtb3ZlZCBhbmQgdGhlIGRldmljZXMgbWF5IGdvIGludG8K
-PiAgKiBwb3dlcmRvd24gc3RhdGUuIFRoaXMgd2lsbCBhZmZlY3QgdGhlIGxpZmV0aW1lIG9mIHRo
-ZSBzdG9yYWdlIGRldmljZXMKPiAgKiBsaWtlIE5WTWUuCj4gICovCj4gCj4gPiAKPiA+IEl0IGFs
-c28gc2VlbXMgYSBsaXR0bGUgYml0IHJhY3kgc2luY2UgZHdfcGNpZV9saW5rX3VwKCkgY2FuIGFs
-d2F5cwo+ID4gY2hhbmdlIGFmdGVyIGl0J3MgY2FsbGVkLgoKU3VwcGxlbWVudO+8mgpTaW5jZSBo
-b3QgcGx1Z2dpbmcgaXMgbm90IHN1cHBvcnRlZCBhbmQgdGhlIGRldmljZSBkb2VzIG5vdCBzdXBw
-b3J0IAplbnRlcmluZyBMMi9MMyBzdGF0ZXMsIG9uY2UgdGhlIGRldmljZSdzIGluaXRpYWwgbGlu
-ayBpcyBlc3RhYmxpc2hlZCwgCml0IHdpbGwgbm90IGJlIGRpc2Nvbm5lY3RlZC4gZHdfcGNpZV9s
-aW5rX3VwKCkgd2lsbCBub3QgY2hhbmdlLiBPbmx5CndoZW4gdGhlIGRldmljZSBpcyBub3QgaW5z
-ZXJ0ZWQgd2lsbCB0aGUgbGluayBiZSBkaXNjb25uZWN0ZWQsIGFuZCAKYXQgdGhpcyB0aW1lLCB0
-aGUgcmVzb3VyY2UgY2FuIGJlIHR1cm5lZCBvZmYuCgo+ID4gCj4gPiBBbmQgdHJhY2tpbmcgcGNp
-ZS0+c3VzcGVuZGVkIGlzIGFsc28gdW51c3VhbCBpZiBub3QgdW5pcXVlLgoKU3VwcGxlbWVudO+8
-mgpJIHNhdyBzdWNoIHVzYWdlIGluIHRoZSBmdW5jdGlvbnMgZHdfcGNpZV9zdXNwZW5kX25vaXJx
-KCkgYW5kIApkd19wY2llX3Jlc3VtZV9ub2lycSgpLCBhbmQgdGhlbiByZWZlcnJlZCB0byBpdC4K
-Cj4gPiAKPiA+IFNob3VsZCBkd19wY2llX3N1c3BlbmRfbm9pcnEoKSBhbmQgZHdfcGNpZV9yZXN1
-bWVfbm9pcnEoKSBiZSB1c2VkCj4gPiBoZXJlPwo+IAo+IENsYXJpZmljYXRpb27vvJoKPiBUaGUg
-ZHdfcGNpZV9zdXNwZW5kX25vaXJxIGFuZCBkd19wY2llX3Jlc3VtZV9ub2lycSBjb2RlIGlzIGEg
-bmljZSB3cmFwcGVkIAo+IGNvbGxlY3Rpb24gZnVuY3Rpb24sIGJ1dCB0aGUgZHdfcGNpZV9zdXNw
-ZW5kX25vaXJxIGZ1bmN0aW9uIGltcGxlbWVudHMgCj4gc2VuZGluZyB0aGUgUE1FX1R1cm5fT2Zm
-IG1lc3NhZ2UuIE5vdGlmeSB0aGUgZGV2aWNlIHRvIGVudGVyIGxvdyBwb3dlciAKPiBjb25zdW1w
-dGlvbiBhbmQgd2FpdCBmb3IgaXQgdG8gZW50ZXIgdGhlIExUU1NNX0wyIHN0YXRlLiBPdXIgaGFy
-ZHdhcmUgb25seQo+IHN1cHBvcnRzIGVudGVyaW5nIHRoZSBMMC9MMSBzdGF0ZSBhbmQgZG9lcyBu
-b3Qgc3VwcG9ydCBlbnRlcmluZyB0aGUgRDNjb2RlIAo+IGFuZCBMMi9MMyBzdGF0ZXMuIEl0IHdp
-bGwgY2F1c2UgbWlzdGFrZXMgYW5kIGNhbid0IHJlc3VtZS4gVGhlcmVmb3JlLCBJIAo+IGNhbm5v
-dCBkaXJlY3RseSBjYWxsIHRoZSBkd19wY2llX3N1c3BlbmRfbm9pcnEgZnVuY3Rpb24gaGVyZS4K
-CkJlc3QgUmVnYXJkcywKU2VuY2h1YW4gWmhhbmcKCj4gCj4gPiAKPiA+ID4gKwl9Cj4gPiA+ICsK
-PiA+ID4gKwlyZXR1cm4gMDsKPiA+ID4gK30KPiA+ID4gKwo+ID4gPiArc3RhdGljIGludCBlc3dp
-bl9wY2llX3Jlc3VtZShzdHJ1Y3QgZGV2aWNlICpkZXYpCj4gPiA+ICt7Cj4gPiA+ICsJc3RydWN0
-IGVzd2luX3BjaWUgKnBjaWUgPSBkZXZfZ2V0X2RydmRhdGEoZGV2KTsKPiA+ID4gKwlpbnQgcmV0
-Owo+ID4gPiArCj4gPiA+ICsJaWYgKCFwY2llLT5zdXNwZW5kZWQpCj4gPiA+ICsJCXJldHVybiAw
-Owo+ID4gPiArCj4gPiA+ICsJcmV0ID0gZXN3aW5fcGNpZV9ob3N0X2luaXQoJnBjaWUtPnBjaS5w
-cCk7Cj4gPiA+ICsJaWYgKHJldCkgewo+ID4gPiArCQlkZXZfZXJyKGRldiwgIkZhaWxlZCB0byBp
-bml0IGhvc3Q6ICVkXG4iLCByZXQpOwo+ID4gPiArCQlyZXR1cm4gcmV0Owo+ID4gPiArCX0KPiA+
-ID4gKwo+ID4gPiArCWR3X3BjaWVfc2V0dXBfcmMoJnBjaWUtPnBjaS5wcCk7Cj4gPiA+ICsJZXN3
-aW5fcGNpZV9zdGFydF9saW5rKCZwY2llLT5wY2kpOwo+ID4gPiArCWR3X3BjaWVfd2FpdF9mb3Jf
-bGluaygmcGNpZS0+cGNpKTsKPiA+ID4gKwo+ID4gPiArCXBjaWUtPnN1c3BlbmRlZCA9IGZhbHNl
-Owo+ID4gPiArCj4gPiA+ICsJcmV0dXJuIDA7Cj4gPiA+ICt9Cgo=
+This patch series improves the ASPEED watchdog driver to support newer
+AST2700 SoC. It enhances reset mask handling to accommodate platforms
+with multiple registers, adds AST2700-specific configuration, and
+updates the device tree bindings accordingly.
+
+Changes in v2:
+  - Removed 'num_reset_masks' field from AST2400 platform configuration.
+  - Simplify 'if' contional statement for platforms after AST2400.
+
+Chin-Ting Kuo (3):
+  dt-bindings: watchdog: aspeed,ast2400-wdt: Add support for AST2700
+  watchdog: aspeed: Support variable number of reset mask registers
+  watchdog: aspeed: Add support for AST2700 platform
+
+ .../bindings/watchdog/aspeed,ast2400-wdt.yaml |   8 +-
+ drivers/watchdog/aspeed_wdt.c                 |  30 +++-
+ include/dt-bindings/watchdog/aspeed-wdt.h     | 138 ++++++++++++++++++
+ 3 files changed, 167 insertions(+), 9 deletions(-)
+
+-- 
+2.34.1
+
 
