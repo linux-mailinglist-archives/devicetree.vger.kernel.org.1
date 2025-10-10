@@ -1,649 +1,525 @@
-Return-Path: <devicetree+bounces-225425-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225426-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42B12BCDB85
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 17:10:20 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 901D0BCDC7F
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 17:23:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E5B504FE530
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 15:06:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 999693A674C
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 15:17:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE3F12F7AB9;
-	Fri, 10 Oct 2025 15:06:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DEB92F83DF;
+	Fri, 10 Oct 2025 15:17:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (4096-bit key) header.d=canonical.com header.i=@canonical.com header.b="OIhyWEaM"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="fAT4tEwZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+Received: from DU2PR03CU002.outbound.protection.outlook.com (mail-northeuropeazon11011014.outbound.protection.outlook.com [52.101.65.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BE752ED854
-	for <devicetree@vger.kernel.org>; Fri, 10 Oct 2025 15:06:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.188.123
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760108817; cv=none; b=WKRC24GxJtK9lKasH45pm8pY84q0Hu7FQg/FO2vLFPVHYRQbazuMt6ea/vSMe3tmWeDqC53S7RWICCpGJk7LM8QR+4Rp81LRe/OFA8+bMMoaOUht6opBlYdFSuDoy2MxxPyT5QofAbDTjF5PhFiYHvANVNJMzvz800AzuUZTP8w=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760108817; c=relaxed/simple;
-	bh=Z/US3KEjSyL2RakCwrRggAzKKr2eC1u/4LViCW5viWs=;
-	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=J3fohUV151GVoZbxduo5W1tZNham3Tqqs/Q5DI2iR+SDA0jPTYcbJsGjwJv5+vuKQVIAmUtsnNHXsZbzjirQ9+00Q392OrBBvVt06L1S41yF1NnmgSMlF3rV3irzqr7ZQnCrb1fR9Ae9VIh73UEzQ48eUxVGwuERXB3OUtaQENo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com; spf=pass smtp.mailfrom=canonical.com; dkim=pass (4096-bit key) header.d=canonical.com header.i=@canonical.com header.b=OIhyWEaM; arc=none smtp.client-ip=185.125.188.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
-Received: from mail-ua1-f71.google.com (mail-ua1-f71.google.com [209.85.222.71])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 658EB3F857
-	for <devicetree@vger.kernel.org>; Fri, 10 Oct 2025 15:06:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-	s=20251003; t=1760108813;
-	bh=/kPIzBIlnP8+1ybJlUvaj1s1A7p0aMMG8FHoaD+8GCA=;
-	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
-	 To:Cc:Content-Type;
-	b=OIhyWEaMUR0lIPmwfyN5higdI8JFnTGRocQu96UaBDUouwNOSppBUsef8Dd6aS813
-	 RQ/DqZg50kDSkzulH39zbkb7fAi0nTDA6INCDIB+7s5l7a9DlKHyCaKkJL8+si59sP
-	 HAly7ytCO+wvtK7aJSUW8e7YwXh4cVfY0Z+I9rCW3AQQfcgLOTuRULcWZFlPTdxeRd
-	 WDLXhq2QOcw5UuTCf4JI63UvKjSN5/ZVmto4qJNPM7k0IclaE4pK7Szx/XMCdnebSo
-	 B3vgq27g2j3xnVHoiJZhFSTK9ALIkgSt0IQknyM7FP9x0R7jy8PxTft/B00LwRUhI1
-	 2nHWgVJmkpI5Cw2xn2PMqYo8HIHVcX/ob/TtwwJdBXE6QqgS+FC3bKDJ7Y+wtmNk8Y
-	 yNXcwNfqxA8SANEvVGq5KEIo7ki0T94N9+1J1heANxayMaGkExzrC7gAnARC7OdiQK
-	 s7Lwqs7Ocduyya/uj6Ii5boRdWzd9h5d8s+BU0LTRC+JGSfkJ3lbDVIx/lducaPqJN
-	 pDcYMPMZMJuMZC/JwR4r/2AYixvJMOrKHOosx9n8eEoguxr+nS9wgHIe9M9mZfLral
-	 ZgMYoJZEktEWtVnGHWcdiQuJAMBliwSgLVBVig09FhSWLR2wXf+ZA++OVasfPD/t0v
-	 QyqV0XmpqoLvU1A9flHZdi7Q=
-Received: by mail-ua1-f71.google.com with SMTP id a1e0cc1a2514c-8fb6fe3893aso3745082241.1
-        for <devicetree@vger.kernel.org>; Fri, 10 Oct 2025 08:06:53 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760108812; x=1760713612;
-        h=cc:to:subject:message-id:date:mime-version:references:in-reply-to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/kPIzBIlnP8+1ybJlUvaj1s1A7p0aMMG8FHoaD+8GCA=;
-        b=DnpGKmx2MRDIN8rUdxg/ZI7wjpcxwbkrZm9B9H9Bw6SoaF2RUW146pGLSKDM980CvQ
-         y1FKH3d6fswbBRn/wvZBEn/kqbT+sKp1cWc+MYSkVew70yvsT9B1Wr8FVkHCEddHYTql
-         OrMDrZ9HSQIlJliViIQUEj72SMEb0XXqOHOfJJSmgrv8uM2kuVjqddByJEdjHIplIHf+
-         OgbZciXHudozBmvsxbi7Xcmbh69Dh+l1HRXb0+fW9xzI9CZNF4vEUWgBAVnR4WUF9Q5B
-         m5Jo6rcVq/yzONxKTMWTZ/qpiPh67zOfwswrFKR9tVy5xyFJ11BF3qrd/vzOsopsII5b
-         aKRQ==
-X-Gm-Message-State: AOJu0YzZv8FEGWlKZiFHlgWiwP+BFuZCX+d8GfCAausioD6YgWRr1OLW
-	PRKUehtZu+FVgyMFS7gRO+FjNeMZRWXIBqKPl114B87EQErfvfRnbovUVF1g1gFuANN24e+aSX6
-	dNMgpB0+YlrWvOtXaad4Ce7DeIWz2yT1Eswhfxx9e50FcE7aTpEDNqXsZaIGT4ILnMh9XsGbq07
-	nOsYppWyNJnNwz0Z+0s0MVd5hen18CFL4hG/n4s8xcerfH512VoWbaig==
-X-Gm-Gg: ASbGnctBIqlIsiJr97lxG3AxeIDHekhXlKUzf1GkzyeMcxvPRrQiTYbiiZJVAZjNK6U
-	xJA58jMgLUa9FNaQxcUxXiNcaFC4mx3u5piswV0ZGz6V53lkpJ6wVkSe2yBTfnIv4WiFOuRqVcd
-	QNW/oWb79lHIFLQwQ7fcE=
-X-Received: by 2002:a05:6102:161f:b0:5a8:4256:1f14 with SMTP id ada2fe7eead31-5d5e23b356cmr5382839137.35.1760108811246;
-        Fri, 10 Oct 2025 08:06:51 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEGGxqoC9NIMUGHrVAplkcsAF8m0rf0JwIpMe7PyyU6GFTWwXti7Eg/qNqaS38xQ8bVTw0CwzCSy2BbFGw+jpI=
-X-Received: by 2002:a05:6102:161f:b0:5a8:4256:1f14 with SMTP id
- ada2fe7eead31-5d5e23b356cmr5382761137.35.1760108810640; Fri, 10 Oct 2025
- 08:06:50 -0700 (PDT)
-Received: from 348282803490 named unknown by gmailapi.google.com with
- HTTPREST; Fri, 10 Oct 2025 10:06:50 -0500
-Received: from 348282803490 named unknown by gmailapi.google.com with
- HTTPREST; Fri, 10 Oct 2025 10:06:50 -0500
-From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-In-Reply-To: <20251009015839.3460231-17-samuel.holland@sifive.com>
-References: <20251009015839.3460231-1-samuel.holland@sifive.com> <20251009015839.3460231-17-samuel.holland@sifive.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90D402F60D5;
+	Fri, 10 Oct 2025 15:16:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.65.14
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1760109422; cv=fail; b=QzKq5oxG+tdW3sE0P8MKNSUsExMNTDtYNSbIlDU96qsl4fN8YrywNfnIf2xG8Z8VGKitxaG6ZejT3ZQx7Pes63td7fYUV6sPfMdS1Z0wMoQrRPkjypEUitE3iV38xBWz6dsaE1wRCbPmoXgME1g8qx9yJ8fCuxlwIuQfcEYK0dc=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1760109422; c=relaxed/simple;
+	bh=IoNttQ/QJp2UV3iUfuxuHAF15O9dXllVCURFrThFYC0=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=mUAfaJk2AixFATlWRZkLQQS/27Kgn0GbQ9I3rHrO6+hCXPXfZWzToG/RgGYjIFv9mrAmmJz0+OJU4WzDP06d16OphseNH0iSm5NK5SN827tWvIRNMbU2sFODcZ5hXFcWPEJKnQbl9K6bLMePsFPvi4V2/1qOOMYaHA/SpLGgChw=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=fAT4tEwZ; arc=fail smtp.client-ip=52.101.65.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=nPlsA5i40VLsX9DoBGqf3iFd2UIrg4Ameultn//jmMMckzj2OscRMypy73SY6Eu8ZQgTOKCZcUAMYrfgdzhDwtxgsUxPiP1N0BiGycP3KldQN0c/af23/WnG+2nFYv8eU3euk7807p2qBQSDl0Szs8xppB1G/M5zdSjr6CC5jjQOg4mSyOr01xYBAEWeP+gCD7Dcuc50V3Ix0gobjCbysWQoTzFz/yvYm+bEuK7zvGO3RxFsyZzI/G8NalSfeV0ti9wZrBDPXWUsjRZzZCQOrTlgLkLja3YFGzyFCqu/IGiNGrEt6BdGt0X7PhtSbjsel0DK3U9U2Oo+hA5mN8bRCg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=2xZDPoMO1Rcd5G2MPQR9OdcP0HjFgh3iXuP6VCXSdbE=;
+ b=Ro5Io2kyA5S67GBcIbZWj/tlTJEcPAwTMddqohdLYLP2m/UnIZnJcd4rR3vwqhLnucDs4pLuUJH8g/N1bqcySGHIFDWoGihBhB4Ezqry8CzBHaizd3FA6qFdCQ4EplriWtGzgkvcDxmvaZ9TjHJOjF+yYm/AIYHUfwggG6lHKHCX9GE8UAkLEiAZGSub5UAUU+M6CW3iFgOJl2TGQeUpm/0bUIc+vFCSeYt6U4V/DxiGEdM7TtnvPflT/KuSJN9dM8xTJZ553s0zjA4JJiYD448TuqsJUlJoHTaVSPb1Ney/PiOKCb8zZs6DyAayJfp+enN0bb+0vVxgEUyIMTegsw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=2xZDPoMO1Rcd5G2MPQR9OdcP0HjFgh3iXuP6VCXSdbE=;
+ b=fAT4tEwZmKFq0c39+5HAWJtQHH1md5TYcbqPn7+aEPUoIlO3fP/nHTdVSGvxSpODXnhxlN/zl4cSmde+wIShnixzlfT2qHTuA4+8x4JQKuU+pORVqplclLd4vVch7UykKfpmDc+A+3IpvY5WBnf3IGllQ0lQRyxwQYTDE/2KpfJ49oUnxVOiqwYQgPHnHFkdnPA5w7nlQ6j+V4pDlVqBKDJ5FrloC6M8hWh3FVR+PkaW9qRyzqagMnC18EJJIVjmk1H0T9dgCKsDRvFKfZOeg1wXvCLtSggmeZKByMyK3neaSGis6BmYcCICOXaBC6J5gTZHpzCCI50sdNDqgPljvg==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXSPRMB0053.eurprd04.prod.outlook.com (2603:10a6:102:23f::21)
+ by AS1PR04MB9310.eurprd04.prod.outlook.com (2603:10a6:20b:4de::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9203.10; Fri, 10 Oct
+ 2025 15:16:56 +0000
+Received: from PAXSPRMB0053.eurprd04.prod.outlook.com
+ ([fe80::504f:2a06:4579:5f15]) by PAXSPRMB0053.eurprd04.prod.outlook.com
+ ([fe80::504f:2a06:4579:5f15%6]) with mapi id 15.20.9203.007; Fri, 10 Oct 2025
+ 15:16:56 +0000
+From: Frank Li <Frank.Li@nxp.com>
+To: Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Tim Harvey <tharvey@gateworks.com>,
+	linux-media@vger.kernel.org (open list:MEDIA INPUT INFRASTRUCTURE (V4L/DVB)),
+	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
+	linux-kernel@vger.kernel.org (open list)
+Cc: imx@lists.linux.dev
+Subject: [PATCH 1/1] dt-bindings: media: convert nxp,tda1997x.txt to yaml format
+Date: Fri, 10 Oct 2025 11:16:23 -0400
+Message-Id: <20251010151637.2061727-1-Frank.Li@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: BYAPR11CA0104.namprd11.prod.outlook.com
+ (2603:10b6:a03:f4::45) To PAXSPRMB0053.eurprd04.prod.outlook.com
+ (2603:10a6:102:23f::21)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Date: Fri, 10 Oct 2025 10:06:50 -0500
-X-Gm-Features: AS18NWC85wr5LPFdQ30yGTpH1oaZISDOQtHh6ERozqIwMWLKZ5iEv8WG8yTbPdI
-Message-ID: <CAJM55Z9kRpc53s3Kip=U-CcDxAX0UZD5AbTBy_owU8xPEYH5MA@mail.gmail.com>
-Subject: Re: [PATCH v2 16/18] riscv: mm: Use physical memory aliases to apply PMAs
-To: Samuel Holland <samuel.holland@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Paul Walmsley <pjw@kernel.org>, linux-riscv@lists.infradead.org
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-mm@kvack.org, Conor Dooley <conor@kernel.org>, Alexandre Ghiti <alex@ghiti.fr>, 
-	Emil Renner Berthing <kernel@esmil.dk>, Andrew Morton <akpm@linux-foundation.org>, 
-	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXSPRMB0053:EE_|AS1PR04MB9310:EE_
+X-MS-Office365-Filtering-Correlation-Id: 766665cd-9483-44d0-1636-08de08100cf9
+X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+ BCL:0;ARA:13230040|19092799006|366016|376014|52116014|1800799024|38350700014;
+X-Microsoft-Antispam-Message-Info:
+ =?us-ascii?Q?W5VPVQpmjg7FTxnDjEhqavSRfYavEy7UswQn+FzOWoQgH2fQ/jMn9m0Y3d7h?=
+ =?us-ascii?Q?DD4iUwERRMzb5NRmOS0vT31OoQInaPMPDFE/3vVHQGmce/+VFDxCamVLVvf8?=
+ =?us-ascii?Q?fbPjE0SwblSSaXERC9YscS5/6ndugx528GotQgzI7SRf+Mus+t81sUoWRuK/?=
+ =?us-ascii?Q?gSg7ah9xf4AHUN6uIeydnwIN8mdUKcIZbl5g0fmfmHSaOtAvCO4TkbqTvgP8?=
+ =?us-ascii?Q?JoUxxlj4S0u7HJgxBB40ch7usJSVK93HXvK3+HwUUTWORnt5bkUifeADnWPK?=
+ =?us-ascii?Q?UK2gZjeqDuJqRYaLzBQdNB+l+qjdWoULKM+61niXV4Kuacx2KMcSdItxOS19?=
+ =?us-ascii?Q?38+dvc3lH7ewzFyzLHaATjVIENfgvltbK6Fwqp7yfEcOEyVsmFLaoF1ie/C2?=
+ =?us-ascii?Q?TdhwSu+BatEMJFMBotjqb1mbyyJ/BYps1d+HWgpFc9guhsn24LckNNndYnAr?=
+ =?us-ascii?Q?dwuvXiGUJnUybZZ8CgGJINaYQLx0y6Kfzv11Li8GWsJSOPnOHa8MsyJOYia8?=
+ =?us-ascii?Q?JE7INTvZqrBkHFC4eK1HbgBNiiKN/hdrc5w0LCsGOt8bcSe3viiqYzSGCfuc?=
+ =?us-ascii?Q?UMlKXgjUqIyTInYNjRX8tQ96wg+gNSyL95E5rH5TF73Ai4xNlwHxw4WSUVXS?=
+ =?us-ascii?Q?V489vT62spS/7mnds3LaiAyoWbFFgjGH/04F/W6WlN40KvCj4AN7av/dwshH?=
+ =?us-ascii?Q?e+VfEJLwlprPINQPAJJClVj0o7tDtA1+JkbyZinzRHyeGsGPACXlVnrRwxHJ?=
+ =?us-ascii?Q?ubbb1CG3ocNkmWOe8dg/MSsqsg5kkUkr5YWvnOGOmXlM37nun3jJaeLaRfal?=
+ =?us-ascii?Q?X7lPiE/vPLrTMfVzl+Ka7edwDyPMnEwdeegkQQSE4tWJdXjemT2fTKseM0c5?=
+ =?us-ascii?Q?/qJ1H0P2T4WdjwuUFuJyzwtWlviXwQXuIes8t1lW3PKHaeSanOjVsYK+9TcP?=
+ =?us-ascii?Q?8nf8GiyaqEVib7+aUejU9R3eGr9Y6+1Mf757mJpTksrMBY4+bORcUtq33w+W?=
+ =?us-ascii?Q?Ek98FMtTA25vjJ1gRbLspLqt4o4OANxTdLCp8G2Lh8W+vjjhn/oC02kGhVNT?=
+ =?us-ascii?Q?NTUDtVwDlwlY9bdCSgoKPF/yyS6w3YJsfTPqbW4/LSTot6FVLIECyj+6WNg0?=
+ =?us-ascii?Q?76ssAzD6P+8u9Z3aMUO/vbgZgcH4kVGdXSTY/08pt3eg78wqQQZDzy3MzA+x?=
+ =?us-ascii?Q?xYxTlGfT1KhRdhMpXmZTpSiqMZEn116SNH5gIzYJnrwg6ef+BibScneZ1s8L?=
+ =?us-ascii?Q?BZHgtSEDaFwKbXzcdd4ndZaXOGstQD/csB1gslzS4+CpGir3bu9JX9nxo1uN?=
+ =?us-ascii?Q?JHxmcoB+TDBXh+6hKa61AdbGT7KCGbDYBLe0T7eOjo9WWaJkSnAYXsKaUjSj?=
+ =?us-ascii?Q?9G0ydnEmlbiC7ZADvou1lz6UW2JF6kesUPXi+crcJTOsaAj+DU381CweKYSW?=
+ =?us-ascii?Q?qJugme/fYyaPMoozpF+QITJ8C5IpdNdy8rDrVnV64rP9UNdDtbWyDQ=3D=3D?=
+X-Forefront-Antispam-Report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXSPRMB0053.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(366016)(376014)(52116014)(1800799024)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+ =?us-ascii?Q?U8a0YywIHpVo6W0dDYqAHXUbot7TBPtGhmg5lFqxn4FdZ56CGkaV94a4looh?=
+ =?us-ascii?Q?exVEOyTb9NOddXte/1DHFAUw+vAfNGF/IGzKUv5FdojFRPeEJMzQN2DS7C5z?=
+ =?us-ascii?Q?2UwTzwEyxdeDv6HhsZ/G9bB2e4zKPiOAISHLtlOlZFldB/xQPZfYfOfbJRl+?=
+ =?us-ascii?Q?BLot9+DBg2cJ4EQw0ixS5ckeXVlpy52j4bZo3ubAVqFDocZLIv88Pnpcnsgj?=
+ =?us-ascii?Q?9RbxRWXmIHOVVeU97WPGQI9O2hKEc1TCCQ+hMvnHeV2rQS1W3esuus/fzIX/?=
+ =?us-ascii?Q?FjL24M+Hp/wdd9mvAZIB4Vz9jn9pcq6c4cEisp8MjKhZ0Yg19x8kEmccndKk?=
+ =?us-ascii?Q?bDS5vIZfdXTqiEUbc9F//bzdsr35+OL8KM2y2VelvEg0mJY3aIat3GAvhH7Y?=
+ =?us-ascii?Q?NKnAeuOHpKWiNMaewmwfw3uVRuboI+5Va1Ozcz4v1+aHkoNYV/xOkKNROmK0?=
+ =?us-ascii?Q?Wr8kPSKDmVOwz9WFG8kaHneFOA857+v9HEzKuOgPIu1HuulM4D3VbuzWDXuS?=
+ =?us-ascii?Q?6nvrp1NLslgv7Z6az6+lW1uYj3TiRR2HEBatKlg2kzRzMYe7KsFv8vgqpPPm?=
+ =?us-ascii?Q?DwZOQGyJJBljilFSGtXWU0kG5N2yzpmCe/l0NjN4mjYD/dIBkJ01KVog3Vn1?=
+ =?us-ascii?Q?mO/YNuuhzepx6EnLYFDQ5pWlRR5QipG9rvNpOvsyCnXkXq+LMzJ/NOB/QZi1?=
+ =?us-ascii?Q?yUPgE6Fy5Xq5pGzN4GBK/n1vQuat9R0T1kpc7SNIicMpgYJXjN4weQwgi4z2?=
+ =?us-ascii?Q?6Jtr9I4/InYMEJuzCzt5iVcLqXbAX7jAHPXA6qX9+8r9Vf0cX6PqPAABJSeL?=
+ =?us-ascii?Q?n1ia7ke5NsXGMsa34AVbSfgcJLLf7itHgPO5MeFmYZKdyjwpq8hCaGcvv5p8?=
+ =?us-ascii?Q?Ryfu/+Y5VFi3ZImmA4xwVEk0n2wyhw6M51706l/s0jP6E6RuDpq9LEhLoeuQ?=
+ =?us-ascii?Q?X8BjsorPMyi12sPOtx5nSlWNYudFnwmWZdyr6/Xm1ZHAbzrIw9zV/jg31d0o?=
+ =?us-ascii?Q?FBy8qCBuKBwIb6Oig1Uv7DqXoDxt9EjP5a2sy23cr2nctjxT2pSm4vLe//ik?=
+ =?us-ascii?Q?Pdg7Pb0Ad7vcJB52wTFSsOC2u5I8//jHWVWkRwcbl2l7m8EeEzWfIt7eCyup?=
+ =?us-ascii?Q?VgBJ5ctlwCFP6wjKmTzdkBzpjXoSCNbJL4+F6zIOiB1vdZXeaex7OGrKIDSq?=
+ =?us-ascii?Q?GqOgFv6rjTjY76XrRh3wZ8LLs1f1f4irjH+v86OszbEXL80fl3xL5DcoURfo?=
+ =?us-ascii?Q?HjP3x4J7UirE34UsUbZ6WiG23S0tGBFiZPBI8r0di0ndcNPdeKCQDQR1qxQU?=
+ =?us-ascii?Q?P/ARULM8La698ImAlZr55oJC0tdUGSXfziNCJif/e4/UBrM9vH/+iUTLE1SY?=
+ =?us-ascii?Q?Ce6rAE52OU8CDQlylKH8NkwQlTS69eWcG38n/APCqJ8ZKRfeHjqfJc3dykYJ?=
+ =?us-ascii?Q?Q5k02nbwF9FsfNPGaTERK9IoRLkVFzyKPMkYBjmUK3Q4etxXidOdLGK0Q+IX?=
+ =?us-ascii?Q?FWHbWb/vYQ0unKBf+tqmxkFveMv13CMRbvU/JkJVN7Dnc5Riqli4EhwkhOxo?=
+ =?us-ascii?Q?bCAVG+miiiFIOkWI+mI=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 766665cd-9483-44d0-1636-08de08100cf9
+X-MS-Exchange-CrossTenant-AuthSource: PAXSPRMB0053.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Oct 2025 15:16:56.5579
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: KAu6gFkD3E1EmpcW8l86fVfgB8j7gLW7IKYmN3T09tJTFC7emvNtcROVZpju+QhREDG4gWF8sN52zgZi/JB7xQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS1PR04MB9310
 
-Samuel Holland wrote:
-> On some RISC-V platforms, RAM is mapped simultaneously to multiple
-> physical address ranges, with each alias having a different set of
-> statically-determined Physical Memory Attributes (PMAs). Software alters
-> the PMAs for a particular page at runtime by selecting a PFN from among
-> the aliases of that page's physical address.
->
-> Implement this by transforming the PFN when writing page tables. If the
-> memory type field is nonzero, replace the PFN with the corresponding PFN
-> from the noncached alias. Similarly, when reading from the page tables,
-> if the PFN is found in a noncached alias, replace it with the PFN from
-> the normal memory alias, and insert _PAGE_NOCACHE.
->
-> The rest of the kernel sees only PFNs from normal memory and
-> _PAGE_MTMASK values as if Svpbmt was implemented.
->
-> Memory alias pairs are determined from the devicetree. A Linux custom
-> ISA extension is added to trigger the alternative patching, as
-> alternatives must be linked to an extension or a vendor erratum, and
-> this behavior is not associated with any particular processor vendor.
->
-> Signed-off-by: Samuel Holland <samuel.holland@sifive.com>
-> ---
->
-> Changes in v2:
->  - Put new code behind a new Kconfig option RISCV_ISA_XLINUXMEMALIAS
->  - Document the calling convention of riscv_fixup/unfix_memory_alias()
->  - Do not transform !pte_present() (e.g. swap) PTEs
->  - Export riscv_fixup/unfix_memory_alias() to fix module compilation
->
->  arch/riscv/Kconfig                    |  16 ++++
->  arch/riscv/include/asm/hwcap.h        |   1 +
->  arch/riscv/include/asm/pgtable-64.h   |  44 +++++++--
->  arch/riscv/include/asm/pgtable-bits.h |   5 +-
->  arch/riscv/include/asm/pgtable.h      |   8 ++
->  arch/riscv/kernel/cpufeature.c        |   6 ++
->  arch/riscv/kernel/setup.c             |   1 +
->  arch/riscv/mm/Makefile                |   1 +
->  arch/riscv/mm/memory-alias.S          | 123 ++++++++++++++++++++++++++
->  arch/riscv/mm/pgtable.c               |  91 +++++++++++++++++++
->  arch/riscv/mm/ptdump.c                |   6 +-
->  11 files changed, 290 insertions(+), 12 deletions(-)
->  create mode 100644 arch/riscv/mm/memory-alias.S
->
-> diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
-> index 51dcd8eaa2435..72c60fa94c0d7 100644
-> --- a/arch/riscv/Kconfig
-> +++ b/arch/riscv/Kconfig
-> @@ -890,6 +890,22 @@ config TOOLCHAIN_NEEDS_OLD_ISA_SPEC
->  	  versions of clang and GCC to be passed to GAS, which has the same result
->  	  as passing zicsr and zifencei to -march.
->
-> +config RISCV_ISA_XLINUXMEMALIAS
-> +	bool "Use physical memory aliases to emulate page-based memory types"
-> +	depends on 64BIT && MMU
-> +	depends on RISCV_ALTERNATIVE
-> +	default y
-> +	help
-> +	  Add support for the kernel to alter the Physical Memory Attributes
-> +	  (PMAs) of a page at runtime by selecting from among the aliases of
-> +	  that page in the physical address space.
-> +
-> +	  On systems where physical memory aliases are present, this option
-> +	  is required in order to mark pages as non-cacheable for use with
-> +	  non-coherent DMA devices.
-> +
-> +	  If you don't know what to do here, say Y.
-> +
->  config FPU
->  	bool "FPU support"
->  	default y
-> diff --git a/arch/riscv/include/asm/hwcap.h b/arch/riscv/include/asm/hwcap.h
-> index affd63e11b0a3..6c6349fe15a77 100644
-> --- a/arch/riscv/include/asm/hwcap.h
-> +++ b/arch/riscv/include/asm/hwcap.h
-> @@ -107,6 +107,7 @@
->  #define RISCV_ISA_EXT_ZALRSC		98
->  #define RISCV_ISA_EXT_ZICBOP		99
->
-> +#define RISCV_ISA_EXT_XLINUXMEMALIAS	126
->  #define RISCV_ISA_EXT_XLINUXENVCFG	127
->
->  #define RISCV_ISA_EXT_MAX		128
-> diff --git a/arch/riscv/include/asm/pgtable-64.h b/arch/riscv/include/asm/pgtable-64.h
-> index 60c2615e46724..34b6f4ef3aad8 100644
-> --- a/arch/riscv/include/asm/pgtable-64.h
-> +++ b/arch/riscv/include/asm/pgtable-64.h
-> @@ -95,7 +95,8 @@ enum napot_cont_order {
->  #define HUGE_MAX_HSTATE		2
->  #endif
->
-> -#if defined(CONFIG_RISCV_ISA_SVPBMT) || defined(CONFIG_ERRATA_THEAD_MAE)
-> +#if defined(CONFIG_RISCV_ISA_SVPBMT) || defined(CONFIG_RISCV_ISA_XLINUXMEMALIAS) || \
-> +	defined(CONFIG_ERRATA_THEAD_MAE)
->
->  /*
->   * ALT_FIXUP_MT
-> @@ -105,6 +106,9 @@ enum napot_cont_order {
->   *
->   * On systems that support Svpbmt, the memory type bits are left alone.
->   *
-> + * On systems that support XLinuxMemalias, PTEs with a nonzero memory type have
-> + * the memory type bits cleared and the PFN replaced with the matching alias.
-> + *
->   * On systems that support XTheadMae, a Svpbmt memory type is transformed
->   * into the corresponding XTheadMae memory type.
->   *
-> @@ -127,22 +131,35 @@ enum napot_cont_order {
->   */
->
->  #define ALT_FIXUP_MT(_val)								\
-> -	asm(ALTERNATIVE_2("addi	t0, zero, 0x3\n\t"					\
-> +	asm(ALTERNATIVE_3("addi	t0, zero, 0x3\n\t"					\
->  			  "slli	t0, t0, 61\n\t"						\
->  			  "not	t0, t0\n\t"						\
->  			  "and	%0, %0, t0\n\t"						\
->  			  "nop\n\t"							\
->  			  "nop\n\t"							\
-> +			  "nop\n\t"							\
->  			  "nop",							\
-> -			  __nops(7),							\
-> +			  __nops(8),							\
->  			  0, RISCV_ISA_EXT_SVPBMT, CONFIG_RISCV_ISA_SVPBMT,		\
-> +			  "addi	t0, zero, 0x3\n\t"					\
-> +			  "slli	t0, t0, 61\n\t"						\
-> +			  "and	t0, %0, t0\n\t"						\
-> +			  "beqz	t0, 2f\n\t"						\
-> +			  "xor	t1, %0, t0\n\t"						\
-> +			  "1: auipc t0, %%pcrel_hi(riscv_fixup_memory_alias)\n\t"	\
-> +			  "jalr	t0, t0, %%pcrel_lo(1b)\n\t"				\
-> +			  "mv	%0, t1\n"						\
-> +			  "2:",								\
-> +			  0, RISCV_ISA_EXT_XLINUXMEMALIAS,				\
-> +				CONFIG_RISCV_ISA_XLINUXMEMALIAS,			\
->  			  "srli	t0, %0, 59\n\t"						\
->  			  "seqz	t1, t0\n\t"						\
->  			  "slli	t1, t1, 1\n\t"						\
->  			  "or	t0, t0, t1\n\t"						\
->  			  "xori	t0, t0, 0x5\n\t"					\
->  			  "slli	t0, t0, 60\n\t"						\
-> -			  "xor	%0, %0, t0",						\
-> +			  "xor	%0, %0, t0\n\t"						\
-> +			  "nop",							\
->  			  THEAD_VENDOR_ID, ERRATA_THEAD_MAE, CONFIG_ERRATA_THEAD_MAE)	\
->  			  : "+r" (_val) :: "t0", "t1")
->
-> @@ -150,9 +167,9 @@ enum napot_cont_order {
->
->  #define ALT_FIXUP_MT(_val)
->
-> -#endif /* CONFIG_RISCV_ISA_SVPBMT || CONFIG_ERRATA_THEAD_MAE */
-> +#endif /* CONFIG_RISCV_ISA_SVPBMT || CONFIG_RISCV_ISA_XLINUXMEMALIAS || CONFIG_ERRATA_THEAD_MAE */
->
-> -#if defined(CONFIG_ERRATA_THEAD_MAE)
-> +#if defined(CONFIG_RISCV_ISA_XLINUXMEMALIAS) || defined(CONFIG_ERRATA_THEAD_MAE)
->
->  /*
->   * ALT_UNFIX_MT
-> @@ -160,6 +177,9 @@ enum napot_cont_order {
->   * On systems that support Svpbmt, or do not support any form of page-based
->   * memory type configuration, the memory type bits are left alone.
->   *
-> + * On systems that support XLinuxMemalias, PTEs with an aliased PFN have the
-> + * matching memory type set and the PFN replaced with the normal memory alias.
-> + *
->   * On systems that support XTheadMae, the XTheadMae memory type (or zero) is
->   * transformed back into the corresponding Svpbmt memory type.
->   *
-> @@ -170,7 +190,15 @@ enum napot_cont_order {
->   */
->
->  #define ALT_UNFIX_MT(_val)								\
-> -	asm(ALTERNATIVE(__nops(6),							\
-> +	asm(ALTERNATIVE_2(__nops(6),							\
-> +			  "mv	t1, %0\n\t"						\
-> +			  "1: auipc t0, %%pcrel_hi(riscv_unfix_memory_alias)\n\t"	\
-> +			  "jalr	t0, t0, %%pcrel_lo(1b)\n\t"				\
-> +			  "mv	%0, t1\n\t"						\
-> +			  "nop\n\t"							\
-> +			  "nop",							\
-> +			  0, RISCV_ISA_EXT_XLINUXMEMALIAS,				\
-> +				CONFIG_RISCV_ISA_XLINUXMEMALIAS,			\
->  			  "srli	t0, %0, 60\n\t"						\
->  			  "andi	t0, t0, 0xd\n\t"					\
->  			  "srli	t1, t0, 1\n\t"						\
-> @@ -234,7 +262,7 @@ static inline pgd_t pgdp_get(pgd_t *pgdp)
->
->  #define ALT_UNFIX_MT(_val)
->
-> -#endif /* CONFIG_ERRATA_THEAD_MAE */
-> +#endif /* CONFIG_RISCV_ISA_XLINUXMEMALIAS || CONFIG_ERRATA_THEAD_MAE */
->
->  static inline int pud_present(pud_t pud)
->  {
-> diff --git a/arch/riscv/include/asm/pgtable-bits.h b/arch/riscv/include/asm/pgtable-bits.h
-> index 18c50cbd78bf5..4586917b2d985 100644
-> --- a/arch/riscv/include/asm/pgtable-bits.h
-> +++ b/arch/riscv/include/asm/pgtable-bits.h
-> @@ -38,7 +38,8 @@
->  #define _PAGE_PFN_MASK		GENMASK(31, 10)
->  #endif /* CONFIG_64BIT */
->
-> -#if defined(CONFIG_RISCV_ISA_SVPBMT) || defined(CONFIG_ERRATA_THEAD_MAE)
-> +#if defined(CONFIG_RISCV_ISA_SVPBMT) || defined(CONFIG_RISCV_ISA_XLINUXMEMALIAS) || \
-> +	defined(CONFIG_ERRATA_THEAD_MAE)
->  /*
->   * [62:61] Svpbmt Memory Type definitions:
->   *
-> @@ -54,7 +55,7 @@
->  #define _PAGE_NOCACHE		0
->  #define _PAGE_IO		0
->  #define _PAGE_MTMASK		0
-> -#endif /* CONFIG_RISCV_ISA_SVPBMT || CONFIG_ERRATA_THEAD_MAE */
-> +#endif /* CONFIG_RISCV_ISA_SVPBMT || CONFIG_RISCV_ISA_XLINUXMEMALIAS || CONFIG_ERRATA_THEAD_MAE */
->
->  #ifdef CONFIG_RISCV_ISA_SVNAPOT
->  #define _PAGE_NAPOT_SHIFT	63
-> diff --git a/arch/riscv/include/asm/pgtable.h b/arch/riscv/include/asm/pgtable.h
-> index 03b5623f9107c..f96b0bd043c6d 100644
-> --- a/arch/riscv/include/asm/pgtable.h
-> +++ b/arch/riscv/include/asm/pgtable.h
-> @@ -1110,6 +1110,14 @@ extern u64 satp_mode;
->  void paging_init(void);
->  void misc_mem_init(void);
->
-> +#ifdef CONFIG_RISCV_ISA_XLINUXMEMALIAS
-> +bool __init riscv_have_memory_alias(void);
-> +void __init riscv_init_memory_alias(void);
-> +#else
-> +static inline bool riscv_have_memory_alias(void) { return false; }
-> +static inline void riscv_init_memory_alias(void) {}
-> +#endif /* CONFIG_RISCV_ISA_XLINUXMEMALIAS */
-> +
->  /*
->   * ZERO_PAGE is a global shared page that is always zero,
->   * used for zero-mapped memory areas, etc.
-> diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeature.c
-> index 743d53415572e..1449c43eab726 100644
-> --- a/arch/riscv/kernel/cpufeature.c
-> +++ b/arch/riscv/kernel/cpufeature.c
-> @@ -1093,6 +1093,12 @@ void __init riscv_fill_hwcap(void)
->  		riscv_v_setup_vsize();
->  	}
->
-> +	/* Vendor-independent alternatives require a bit in the ISA bitmap. */
-> +	if (riscv_have_memory_alias()) {
-> +		set_bit(RISCV_ISA_EXT_XLINUXMEMALIAS, riscv_isa);
-> +		pr_info("Using physical memory alias for noncached mappings\n");
-> +	}
-> +
->  	memset(print_str, 0, sizeof(print_str));
->  	for (i = 0, j = 0; i < NUM_ALPHA_EXTS; i++)
->  		if (riscv_isa[0] & BIT_MASK(i))
-> diff --git a/arch/riscv/kernel/setup.c b/arch/riscv/kernel/setup.c
-> index f90cce7a3acea..00569c4fef494 100644
-> --- a/arch/riscv/kernel/setup.c
-> +++ b/arch/riscv/kernel/setup.c
-> @@ -353,6 +353,7 @@ void __init setup_arch(char **cmdline_p)
->  	}
->
->  	riscv_init_cbo_blocksizes();
-> +	riscv_init_memory_alias();
->  	riscv_fill_hwcap();
->  	apply_boot_alternatives();
->  	init_rt_signal_env();
-> diff --git a/arch/riscv/mm/Makefile b/arch/riscv/mm/Makefile
-> index b916a68d324ad..b4d757226efbf 100644
-> --- a/arch/riscv/mm/Makefile
-> +++ b/arch/riscv/mm/Makefile
-> @@ -33,3 +33,4 @@ endif
->  obj-$(CONFIG_DEBUG_VIRTUAL) += physaddr.o
->  obj-$(CONFIG_RISCV_DMA_NONCOHERENT) += dma-noncoherent.o
->  obj-$(CONFIG_RISCV_NONSTANDARD_CACHE_OPS) += cache-ops.o
-> +obj-$(CONFIG_RISCV_ISA_XLINUXMEMALIAS) += memory-alias.o
-> diff --git a/arch/riscv/mm/memory-alias.S b/arch/riscv/mm/memory-alias.S
-> new file mode 100644
-> index 0000000000000..e37b83d115911
-> --- /dev/null
-> +++ b/arch/riscv/mm/memory-alias.S
-> @@ -0,0 +1,123 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only */
-> +/*
-> + * Copyright (C) 2024 SiFive
-> + */
-> +
-> +#include <linux/bits.h>
-> +#include <linux/linkage.h>
-> +#include <asm/asm.h>
-> +#include <asm/pgtable.h>
-> +
-> +#define CACHED_BASE_OFFSET	(0 * RISCV_SZPTR)
-> +#define NONCACHED_BASE_OFFSET	(1 * RISCV_SZPTR)
-> +#define SIZE_OFFSET		(2 * RISCV_SZPTR)
-> +
-> +#define SIZEOF_PAIR		(4 * RISCV_SZPTR)
-> +
-> +/*
-> + * Called from ALT_FIXUP_MT with a non-standard calling convention:
-> + *	t0 => return address
-> + *	t1 => page table entry
-> + *	all other registers are callee-saved
-> + */
-> +SYM_CODE_START(riscv_fixup_memory_alias)
-> +	addi	sp, sp, -4 * SZREG
-> +	REG_S	t2, (0 * SZREG)(sp)
-> +	REG_S	t3, (1 * SZREG)(sp)
-> +	REG_S	t4, (2 * SZREG)(sp)
-> +#ifdef CONFIG_RISCV_ISA_SVNAPOT
-> +	REG_S	t5, (3 * SZREG)(sp)
-> +
-> +	/* Save and mask off _PAGE_NAPOT if present. */
-> +	li	t5, _PAGE_NAPOT
-> +	and	t5, t1, t5
-> +	xor	t1, t1, t5
-> +#endif
-> +
-> +	/* Ignore !pte_present() PTEs, including swap PTEs. */
-> +	andi	t2, t1, (_PAGE_PRESENT | _PAGE_PROT_NONE)
-> +	beqz	t2, .Lfixup_end
-> +
-> +	lla	t2, memory_alias_pairs
-> +.Lfixup_loop:
-> +	REG_L	t3, SIZE_OFFSET(t2)
-> +	beqz	t3, .Lfixup_end
-> +	REG_L	t4, CACHED_BASE_OFFSET(t2)
-> +	sub	t4, t1, t4
-> +	bltu	t4, t3, .Lfixup_found
-> +	addi	t2, t2, SIZEOF_PAIR
-> +	j	.Lfixup_loop
-> +
-> +.Lfixup_found:
-> +	REG_L	t3, NONCACHED_BASE_OFFSET(t2)
-> +	add	t1, t3, t4
-> +
-> +.Lfixup_end:
-> +#ifdef CONFIG_RISCV_ISA_SVNAPOT
-> +	xor	t1, t1, t5
-> +
-> +	REG_L	t5, (3 * SZREG)(sp)
-> +#endif
-> +	REG_L	t4, (2 * SZREG)(sp)
-> +	REG_L	t3, (1 * SZREG)(sp)
-> +	REG_L	t2, (0 * SZREG)(sp)
-> +	addi	sp, sp, 4 * SZREG
-> +	jr	t0
-> +SYM_CODE_END(riscv_fixup_memory_alias)
-> +EXPORT_SYMBOL(riscv_fixup_memory_alias)
-> +
-> +/*
-> + * Called from ALT_UNFIX_MT with a non-standard calling convention:
-> + *	t0 => return address
-> + *	t1 => page table entry
-> + *	all other registers are callee-saved
-> + */
-> +SYM_CODE_START(riscv_unfix_memory_alias)
-> +	addi	sp, sp, -4 * SZREG
-> +	REG_S	t2, (0 * SZREG)(sp)
-> +	REG_S	t3, (1 * SZREG)(sp)
-> +	REG_S	t4, (2 * SZREG)(sp)
-> +#ifdef CONFIG_RISCV_ISA_SVNAPOT
-> +	REG_S	t5, (3 * SZREG)(sp)
-> +
-> +	/* Save and mask off _PAGE_NAPOT if present. */
-> +	li	t5, _PAGE_NAPOT
-> +	and	t5, t1, t5
-> +	xor	t1, t1, t5
-> +#endif
-> +
-> +	/* Ignore !pte_present() PTEs, including swap PTEs. */
-> +	andi	t2, t1, (_PAGE_PRESENT | _PAGE_PROT_NONE)
-> +	beqz	t2, .Lunfix_end
-> +
-> +	lla	t2, memory_alias_pairs
-> +.Lunfix_loop:
-> +	REG_L	t3, SIZE_OFFSET(t2)
-> +	beqz	t3, .Lunfix_end
-> +	REG_L	t4, NONCACHED_BASE_OFFSET(t2)
-> +	sub	t4, t1, t4
-> +	bltu	t4, t3, .Lunfix_found
-> +	addi	t2, t2, SIZEOF_PAIR
-> +	j	.Lunfix_loop
-> +
-> +.Lunfix_found:
-> +	REG_L	t3, CACHED_BASE_OFFSET(t2)
-> +	add	t1, t3, t4
-> +
-> +	/* PFN was in the noncached alias, so mark it as such. */
-> +	li	t2, _PAGE_NOCACHE
-> +	or	t1, t1, t2
-> +
-> +.Lunfix_end:
-> +#ifdef CONFIG_RISCV_ISA_SVNAPOT
-> +	xor	t1, t1, t5
-> +
-> +	REG_L	t5, (3 * SZREG)(sp)
-> +#endif
-> +	REG_L	t4, (2 * SZREG)(sp)
-> +	REG_L	t3, (1 * SZREG)(sp)
-> +	REG_L	t2, (0 * SZREG)(sp)
-> +	addi	sp, sp, 4 * SZREG
-> +	jr	t0
-> +SYM_CODE_END(riscv_unfix_memory_alias)
-> +EXPORT_SYMBOL(riscv_unfix_memory_alias)
-> diff --git a/arch/riscv/mm/pgtable.c b/arch/riscv/mm/pgtable.c
-> index 604744d6924f5..de79a2dc9926f 100644
-> --- a/arch/riscv/mm/pgtable.c
-> +++ b/arch/riscv/mm/pgtable.c
-> @@ -1,8 +1,12 @@
->  // SPDX-License-Identifier: GPL-2.0
->
->  #include <asm/pgalloc.h>
-> +#include <dt-bindings/riscv/physical-memory.h>
-> +#include <linux/bitfield.h>
->  #include <linux/gfp.h>
->  #include <linux/kernel.h>
-> +#include <linux/memblock.h>
-> +#include <linux/of.h>
->  #include <linux/pgtable.h>
->
->  int ptep_set_access_flags(struct vm_area_struct *vma,
-> @@ -160,3 +164,90 @@ pud_t pudp_invalidate(struct vm_area_struct *vma, unsigned long address,
->  	return old;
->  }
->  #endif /* CONFIG_TRANSPARENT_HUGEPAGE */
-> +
-> +#ifdef CONFIG_RISCV_ISA_XLINUXMEMALIAS
-> +struct memory_alias_pair {
-> +	unsigned long cached_base;
-> +	unsigned long noncached_base;
-> +	unsigned long size;
-> +	int index;
-> +} memory_alias_pairs[5];
-> +
-> +bool __init riscv_have_memory_alias(void)
-> +{
-> +	return memory_alias_pairs[0].size;
-> +}
-> +
-> +void __init riscv_init_memory_alias(void)
-> +{
-> +	int na = of_n_addr_cells(of_root);
-> +	int ns = of_n_size_cells(of_root);
-> +	int nc = na + ns + 2;
-> +	const __be32 *prop;
-> +	int pairs = 0;
-> +	int len;
-> +
-> +	prop = of_get_property(of_root, "riscv,physical-memory-regions", &len);
-> +	if (!prop)
-> +		return;
-> +
-> +	len /= sizeof(__be32);
-> +	for (int i = 0; len >= nc; i++, prop += nc, len -= nc) {
-> +		unsigned long base = of_read_ulong(prop, na);
-> +		unsigned long size = of_read_ulong(prop + na, ns);
-> +		unsigned long flags = be32_to_cpup(prop + na + ns);
-> +		struct memory_alias_pair *pair;
-> +		int alias;
-> +
-> +		/* We only care about non-coherent memory. */
-> +		if ((flags & PMA_ORDER_MASK) != PMA_ORDER_MEMORY || (flags & PMA_COHERENT))
-> +			continue;
-> +
-> +		/* The cacheable alias must be usable memory. */
-> +		if ((flags & PMA_CACHEABLE) &&
-> +		    !memblock_overlaps_region(&memblock.memory, base, size))
-> +			continue;
-> +
-> +		alias = FIELD_GET(PMR_ALIAS_MASK, flags);
-> +		if (alias) {
-> +			pair = NULL;
-> +			for (int j = 0; j < pairs; j++) {
-> +				if (alias == memory_alias_pairs[j].index) {
-> +					pair = &memory_alias_pairs[j];
-> +					break;
-> +				}
-> +			}
-> +			if (!pair)
-> +				continue;
-> +		} else {
-> +			/* Leave room for the null sentinel. */
-> +			if (pairs == ARRAY_SIZE(memory_alias_pairs) - 1)
-> +				continue;
-> +			pair = &memory_alias_pairs[pairs++];
-> +			pair->index = i;
+Convert nxp,tda1997x.txt to yaml format
 
-I think this needs to be pair->index = i + 1, so PMA_ALIAS(1) can refer to the
-first entry (i = 0).
+Additional changes:
+- update audio width to 8, 16, 24, 32.
+- keep one example only.
 
-> +		}
-> +
-> +		/* Align the address and size with the page table PFN field. */
-> +		base >>= PAGE_SHIFT - _PAGE_PFN_SHIFT;
-> +		size >>= PAGE_SHIFT - _PAGE_PFN_SHIFT;
-> +
-> +		if (flags & PMA_CACHEABLE)
-> +			pair->cached_base = base;
-> +		else
-> +			pair->noncached_base = base;
-> +		pair->size = min_not_zero(pair->size, size);
-> +	}
-> +
-> +	/* Remove any unmatched pairs. */
-> +	for (int i = 0; i < pairs; i++) {
-> +		struct memory_alias_pair *pair = &memory_alias_pairs[i];
-> +
-> +		if (pair->cached_base && pair->noncached_base && pair->size)
-> +			continue;
-> +
-> +		for (int j = i + 1; j < pairs; j++)
-> +			memory_alias_pairs[j - 1] = memory_alias_pairs[j];
-> +		memory_alias_pairs[--pairs].size = 0;
-> +	}
-> +}
-> +#endif /* CONFIG_RISCV_ISA_XLINUXMEMALIAS */
-> diff --git a/arch/riscv/mm/ptdump.c b/arch/riscv/mm/ptdump.c
-> index ed57926ecd585..ba5f33a2c2178 100644
-> --- a/arch/riscv/mm/ptdump.c
-> +++ b/arch/riscv/mm/ptdump.c
-> @@ -140,7 +140,8 @@ static const struct prot_bits pte_bits[] = {
->  		.clear = ".",
->  	}, {
->  #endif
-> -#if defined(CONFIG_RISCV_ISA_SVPBMT) || defined(CONFIG_ERRATA_THEAD_MAE)
-> +#if defined(CONFIG_RISCV_ISA_SVPBMT) || defined(CONFIG_RISCV_ISA_XLINUXMEMALIAS) || \
-> +	defined(CONFIG_ERRATA_THEAD_MAE)
->  		.mask = _PAGE_MTMASK,
->  		.set = "MT(%s)",
->  		.clear = "  ..  ",
-> @@ -216,7 +217,8 @@ static void dump_prot(struct pg_state *st)
->  		if (val) {
->  			if (pte_bits[i].mask == _PAGE_SOFT)
->  				sprintf(s, pte_bits[i].set, val >> 8);
-> -#if defined(CONFIG_RISCV_ISA_SVPBMT) || defined(CONFIG_ERRATA_THEAD_MAE)
-> +#if defined(CONFIG_RISCV_ISA_SVPBMT) || defined(CONFIG_RISCV_ISA_XLINUXMEMALIAS) || \
-> +	defined(CONFIG_ERRATA_THEAD_MAE)
->  			else if (pte_bits[i].mask == _PAGE_MTMASK) {
->  				if (val == _PAGE_NOCACHE)
->  					sprintf(s, pte_bits[i].set, "NC");
-> --
-> 2.47.2
->
+Signed-off-by: Frank Li <Frank.Li@nxp.com>
+---
+ .../bindings/media/i2c/nxp,tda19971.yaml      | 158 ++++++++++++++++
+ .../bindings/media/i2c/nxp,tda1997x.txt       | 178 ------------------
+ 2 files changed, 158 insertions(+), 178 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/nxp,tda19971.yaml
+ delete mode 100644 Documentation/devicetree/bindings/media/i2c/nxp,tda1997x.txt
+
+diff --git a/Documentation/devicetree/bindings/media/i2c/nxp,tda19971.yaml b/Documentation/devicetree/bindings/media/i2c/nxp,tda19971.yaml
+new file mode 100644
+index 0000000000000..7624391e1c1e8
+--- /dev/null
++++ b/Documentation/devicetree/bindings/media/i2c/nxp,tda19971.yaml
+@@ -0,0 +1,158 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/media/i2c/nxp,tda19971.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: NXP TDA1997x HDMI receiver
++
++maintainers:
++  - Frank Li <Frank.Li@nxp.com>
++
++description: |
++  The TDA19971/73 are HDMI video receivers.
++
++  The TDA19971 Video port output pins can be used as follows:
++   - RGB 8bit per color (24 bits total): R[11:4] B[11:4] G[11:4]
++   - YUV444 8bit per color (24 bits total): Y[11:4] Cr[11:4] Cb[11:4]
++   - YUV422 semi-planar 8bit per component (16 bits total): Y[11:4] CbCr[11:4]
++   - YUV422 semi-planar 10bit per component (20 bits total): Y[11:2] CbCr[11:2]
++   - YUV422 semi-planar 12bit per component (24 bits total): - Y[11:0] CbCr[11:0]
++   - YUV422 BT656 8bit per component (8 bits total): YCbCr[11:4] (2-cycles)
++   - YUV422 BT656 10bit per component (10 bits total): YCbCr[11:2] (2-cycles)
++   - YUV422 BT656 12bit per component (12 bits total): YCbCr[11:0] (2-cycles)
++
++  The TDA19973 Video port output pins can be used as follows:
++   - RGB 12bit per color (36 bits total): R[11:0] B[11:0] G[11:0]
++   - YUV444 12bit per color (36 bits total): Y[11:0] Cb[11:0] Cr[11:0]
++   - YUV422 semi-planar 12bit per component (24 bits total): Y[11:0] CbCr[11:0]
++   - YUV422 BT656 12bit per component (12 bits total): YCbCr[11:0] (2-cycles)
++
++  The Video port output pins are mapped via 4-bit 'pin groups' allowing
++  for a variety of connection possibilities including swapping pin order within
++  pin groups. The video_portcfg device-tree property consists of register mapping
++  pairs which map a chip-specific VP output register to a 4-bit pin group. If
++  the pin group needs to be bit-swapped you can use the *_S pin-group defines.
++
++properties:
++  compatible:
++    enum:
++      - nxp,tda19971
++      - nxp,tda19973
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  DOVDD-supply: true
++
++  DVDD-supply: true
++
++  AVDD-supply: true
++
++  '#sound-dai-cells':
++    const: 0
++
++  port:
++    $ref: /schemas/graph.yaml#/$defs/port-base
++    unevaluatedProperties: false
++
++    properties:
++      endpoint:
++        $ref: /schemas/media/video-interfaces.yaml#
++        unevaluatedProperties: false
++
++  nxp,vidout-portcfg:
++    $ref: /schemas/types.yaml#/definitions/uint32-matrix
++    minItems: 1
++    maxItems: 4
++    items:
++      items:
++        maxItems: 2
++
++    description:
++      array of pairs mapping VP output pins to pin groups.
++
++  nxp,audout-format:
++    enum:
++      - i2s
++      - spdif
++
++  nxp,audout-width:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum: [8, 16, 24, 32]
++    description:
++      width of audio output data bus.
++
++  nxp,audout-layout:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum: [0, 1]
++    description:
++      data layout (0=AP0 used, 1=AP0/AP1/AP2/AP3 used).
++
++  nxp,audout-mclk-fs:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      Multiplication factor between stream rate and codec mclk.
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - DOVDD-supply
++  - AVDD-supply
++  - DVDD-supply
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    #include <dt-bindings/media/tda1997x.h>
++
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        hdmi-receiver@48 {
++            compatible = "nxp,tda19971";
++            reg = <0x48>;
++            pinctrl-names = "default";
++            pinctrl-0 = <&pinctrl_tda1997x>;
++            interrupt-parent = <&gpio1>;
++            interrupts = <7 IRQ_TYPE_LEVEL_LOW>;
++            DOVDD-supply = <&reg_3p3v>;
++            AVDD-supply = <&reg_1p8v>;
++            DVDD-supply = <&reg_1p8v>;
++            /* audio */
++            #sound-dai-cells = <0>;
++            nxp,audout-format = "i2s";
++            nxp,audout-layout = <0>;
++            nxp,audout-width = <16>;
++            nxp,audout-mclk-fs = <128>;
++            /*
++             * The 8bpp YUV422 semi-planar mode outputs CbCr[11:4]
++             * and Y[11:4] across 16bits in the same pixclk cycle.
++             */
++            nxp,vidout-portcfg =
++                /* Y[11:8]<->VP[15:12]<->CSI_DATA[19:16] */
++                < TDA1997X_VP24_V15_12 TDA1997X_G_Y_11_8 >,
++                /* Y[7:4]<->VP[11:08]<->CSI_DATA[15:12] */
++                < TDA1997X_VP24_V11_08 TDA1997X_G_Y_7_4 >,
++                /* CbCc[11:8]<->VP[07:04]<->CSI_DATA[11:8] */
++                < TDA1997X_VP24_V07_04 TDA1997X_R_CR_CBCR_11_8 >,
++                /* CbCr[7:4]<->VP[03:00]<->CSI_DATA[7:4] */
++                < TDA1997X_VP24_V03_00 TDA1997X_R_CR_CBCR_7_4 >;
++
++            port {
++                endpoint {
++                    remote-endpoint = <&ipu1_csi0_mux_from_parallel_sensor>;
++                    bus-width = <16>;
++                    hsync-active = <1>;
++                    vsync-active = <1>;
++                    data-active = <1>;
++                };
++            };
++        };
++    };
+diff --git a/Documentation/devicetree/bindings/media/i2c/nxp,tda1997x.txt b/Documentation/devicetree/bindings/media/i2c/nxp,tda1997x.txt
+deleted file mode 100644
+index e76167999d76c..0000000000000
+--- a/Documentation/devicetree/bindings/media/i2c/nxp,tda1997x.txt
++++ /dev/null
+@@ -1,178 +0,0 @@
+-Device-Tree bindings for the NXP TDA1997x HDMI receiver
+-
+-The TDA19971/73 are HDMI video receivers.
+-
+-The TDA19971 Video port output pins can be used as follows:
+- - RGB 8bit per color (24 bits total): R[11:4] B[11:4] G[11:4]
+- - YUV444 8bit per color (24 bits total): Y[11:4] Cr[11:4] Cb[11:4]
+- - YUV422 semi-planar 8bit per component (16 bits total): Y[11:4] CbCr[11:4]
+- - YUV422 semi-planar 10bit per component (20 bits total): Y[11:2] CbCr[11:2]
+- - YUV422 semi-planar 12bit per component (24 bits total): - Y[11:0] CbCr[11:0]
+- - YUV422 BT656 8bit per component (8 bits total): YCbCr[11:4] (2-cycles)
+- - YUV422 BT656 10bit per component (10 bits total): YCbCr[11:2] (2-cycles)
+- - YUV422 BT656 12bit per component (12 bits total): YCbCr[11:0] (2-cycles)
+-
+-The TDA19973 Video port output pins can be used as follows:
+- - RGB 12bit per color (36 bits total): R[11:0] B[11:0] G[11:0]
+- - YUV444 12bit per color (36 bits total): Y[11:0] Cb[11:0] Cr[11:0]
+- - YUV422 semi-planar 12bit per component (24 bits total): Y[11:0] CbCr[11:0]
+- - YUV422 BT656 12bit per component (12 bits total): YCbCr[11:0] (2-cycles)
+-
+-The Video port output pins are mapped via 4-bit 'pin groups' allowing
+-for a variety of connection possibilities including swapping pin order within
+-pin groups. The video_portcfg device-tree property consists of register mapping
+-pairs which map a chip-specific VP output register to a 4-bit pin group. If
+-the pin group needs to be bit-swapped you can use the *_S pin-group defines.
+-
+-Required Properties:
+- - compatible          :
+-  - "nxp,tda19971" for the TDA19971
+-  - "nxp,tda19973" for the TDA19973
+- - reg                 : I2C slave address
+- - interrupts          : The interrupt number
+- - DOVDD-supply        : Digital I/O supply
+- - DVDD-supply         : Digital Core supply
+- - AVDD-supply         : Analog supply
+- - nxp,vidout-portcfg  : array of pairs mapping VP output pins to pin groups.
+-
+-Optional Properties:
+- - nxp,audout-format   : DAI bus format: "i2s" or "spdif".
+- - nxp,audout-width    : width of audio output data bus (1-4).
+- - nxp,audout-layout   : data layout (0=AP0 used, 1=AP0/AP1/AP2/AP3 used).
+- - nxp,audout-mclk-fs  : Multiplication factor between stream rate and codec
+-                         mclk.
+-
+-The port node shall contain one endpoint child node for its digital
+-output video port, in accordance with the video interface bindings defined in
+-Documentation/devicetree/bindings/media/video-interfaces.txt.
+-
+-Optional Endpoint Properties:
+-  The following three properties are defined in video-interfaces.txt and
+-  are valid for the output parallel bus endpoint:
+-  - hsync-active: Horizontal synchronization polarity. Defaults to active high.
+-  - vsync-active: Vertical synchronization polarity. Defaults to active high.
+-  - data-active: Data polarity. Defaults to active high.
+-
+-Examples:
+- - VP[15:0] connected to IMX6 CSI_DATA[19:4] for 16bit YUV422
+-   16bit I2S layout0 with a 128*fs clock (A_WS, AP0, A_CLK pins)
+-	hdmi-receiver@48 {
+-		compatible = "nxp,tda19971";
+-		pinctrl-names = "default";
+-		pinctrl-0 = <&pinctrl_tda1997x>;
+-		reg = <0x48>;
+-		interrupt-parent = <&gpio1>;
+-		interrupts = <7 IRQ_TYPE_LEVEL_LOW>;
+-		DOVDD-supply = <&reg_3p3v>;
+-		AVDD-supply = <&reg_1p8v>;
+-		DVDD-supply = <&reg_1p8v>;
+-		/* audio */
+-		#sound-dai-cells = <0>;
+-		nxp,audout-format = "i2s";
+-		nxp,audout-layout = <0>;
+-		nxp,audout-width = <16>;
+-		nxp,audout-mclk-fs = <128>;
+-		/*
+-		 * The 8bpp YUV422 semi-planar mode outputs CbCr[11:4]
+-		 * and Y[11:4] across 16bits in the same pixclk cycle.
+-		 */
+-		nxp,vidout-portcfg =
+-			/* Y[11:8]<->VP[15:12]<->CSI_DATA[19:16] */
+-			< TDA1997X_VP24_V15_12 TDA1997X_G_Y_11_8 >,
+-			/* Y[7:4]<->VP[11:08]<->CSI_DATA[15:12] */
+-			< TDA1997X_VP24_V11_08 TDA1997X_G_Y_7_4 >,
+-			/* CbCc[11:8]<->VP[07:04]<->CSI_DATA[11:8] */
+-			< TDA1997X_VP24_V07_04 TDA1997X_R_CR_CBCR_11_8 >,
+-			/* CbCr[7:4]<->VP[03:00]<->CSI_DATA[7:4] */
+-			< TDA1997X_VP24_V03_00 TDA1997X_R_CR_CBCR_7_4 >;
+-
+-		port {
+-			tda1997x_to_ipu1_csi0_mux: endpoint {
+-				remote-endpoint = <&ipu1_csi0_mux_from_parallel_sensor>;
+-				bus-width = <16>;
+-				hsync-active = <1>;
+-				vsync-active = <1>;
+-				data-active = <1>;
+-			};
+-		};
+-	};
+- - VP[15:8] connected to IMX6 CSI_DATA[19:12] for 8bit BT656
+-   16bit I2S layout0 with a 128*fs clock (A_WS, AP0, A_CLK pins)
+-	hdmi-receiver@48 {
+-		compatible = "nxp,tda19971";
+-		pinctrl-names = "default";
+-		pinctrl-0 = <&pinctrl_tda1997x>;
+-		reg = <0x48>;
+-		interrupt-parent = <&gpio1>;
+-		interrupts = <7 IRQ_TYPE_LEVEL_LOW>;
+-		DOVDD-supply = <&reg_3p3v>;
+-		AVDD-supply = <&reg_1p8v>;
+-		DVDD-supply = <&reg_1p8v>;
+-		/* audio */
+-		#sound-dai-cells = <0>;
+-		nxp,audout-format = "i2s";
+-		nxp,audout-layout = <0>;
+-		nxp,audout-width = <16>;
+-		nxp,audout-mclk-fs = <128>;
+-		/*
+-		 * The 8bpp YUV422 semi-planar mode outputs CbCr[11:4]
+-		 * and Y[11:4] across 16bits in the same pixclk cycle.
+-		 */
+-		nxp,vidout-portcfg =
+-			/* Y[11:8]<->VP[15:12]<->CSI_DATA[19:16] */
+-			< TDA1997X_VP24_V15_12 TDA1997X_G_Y_11_8 >,
+-			/* Y[7:4]<->VP[11:08]<->CSI_DATA[15:12] */
+-			< TDA1997X_VP24_V11_08 TDA1997X_G_Y_7_4 >,
+-			/* CbCc[11:8]<->VP[07:04]<->CSI_DATA[11:8] */
+-			< TDA1997X_VP24_V07_04 TDA1997X_R_CR_CBCR_11_8 >,
+-			/* CbCr[7:4]<->VP[03:00]<->CSI_DATA[7:4] */
+-			< TDA1997X_VP24_V03_00 TDA1997X_R_CR_CBCR_7_4 >;
+-
+-		port {
+-			tda1997x_to_ipu1_csi0_mux: endpoint {
+-				remote-endpoint = <&ipu1_csi0_mux_from_parallel_sensor>;
+-				bus-width = <16>;
+-				hsync-active = <1>;
+-				vsync-active = <1>;
+-				data-active = <1>;
+-			};
+-		};
+-	};
+- - VP[15:8] connected to IMX6 CSI_DATA[19:12] for 8bit BT656
+-   16bit I2S layout0 with a 128*fs clock (A_WS, AP0, A_CLK pins)
+-	hdmi-receiver@48 {
+-		compatible = "nxp,tda19971";
+-		pinctrl-names = "default";
+-		pinctrl-0 = <&pinctrl_tda1997x>;
+-		reg = <0x48>;
+-		interrupt-parent = <&gpio1>;
+-		interrupts = <7 IRQ_TYPE_LEVEL_LOW>;
+-		DOVDD-supply = <&reg_3p3v>;
+-		AVDD-supply = <&reg_1p8v>;
+-		DVDD-supply = <&reg_1p8v>;
+-		/* audio */
+-		#sound-dai-cells = <0>;
+-		nxp,audout-format = "i2s";
+-		nxp,audout-layout = <0>;
+-		nxp,audout-width = <16>;
+-		nxp,audout-mclk-fs = <128>;
+-		/*
+-		 * The 8bpp BT656 mode outputs YCbCr[11:4] across 8bits over
+-		 * 2 pixclk cycles.
+-		 */
+-		nxp,vidout-portcfg =
+-			/* YCbCr[11:8]<->VP[15:12]<->CSI_DATA[19:16] */
+-			< TDA1997X_VP24_V15_12 TDA1997X_R_CR_CBCR_11_8 >,
+-			/* YCbCr[7:4]<->VP[11:08]<->CSI_DATA[15:12] */
+-			< TDA1997X_VP24_V11_08 TDA1997X_R_CR_CBCR_7_4 >,
+-
+-		port {
+-			tda1997x_to_ipu1_csi0_mux: endpoint {
+-				remote-endpoint = <&ipu1_csi0_mux_from_parallel_sensor>;
+-				bus-width = <16>;
+-				hsync-active = <1>;
+-				vsync-active = <1>;
+-				data-active = <1>;
+-			};
+-		};
+-	};
+-- 
+2.34.1
+
 
