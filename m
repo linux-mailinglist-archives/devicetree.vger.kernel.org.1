@@ -1,199 +1,215 @@
-Return-Path: <devicetree+bounces-225251-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225252-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7D6DBCBE29
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 09:13:34 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id BDFA4BCBE81
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 09:25:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9CFF83B0F2E
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 07:13:33 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id A7FDF4EB4AB
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 07:25:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF3EB270EA5;
-	Fri, 10 Oct 2025 07:13:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="SABTPONg"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94B0F271A7C;
+	Fri, 10 Oct 2025 07:25:52 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from TWMBX01.aspeed.com (mail.aspeedtech.com [211.20.114.72])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 395121991D2
-	for <devicetree@vger.kernel.org>; Fri, 10 Oct 2025 07:13:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9DAD24466D;
+	Fri, 10 Oct 2025 07:25:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.20.114.72
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760080410; cv=none; b=kfz0YYtl/gSOzjA33IQX5z9rTJf0dQ8u33tbeAfirYzphXPg9S2I3hZIa+xVneuENxgM+cm1kcLHyOpYDgiFzMNRIIWz5N1+t3DHzG80hG1cJqt4k72wpA19XV2y9iO3ABq2AyWOrNK6pGyHX0rXkBRNOAlfbEbsYBPZEF9kP88=
+	t=1760081152; cv=none; b=SPnH5ASFa1d3VZtPpPpR6RE0XCf/21YLxV1ORmWEwGgGK+wAVLZ4Y5G0xnNyLN+OXt2wuCP8WpfmSXLtpMD4dhO6GoPsYNDTpnGhXGYuziXlKxJytAJgqz+M0MNHzwmCrlkPPS1ZM68So7BjgZ0bbIpMZka5ggFMQfXohfhfDFo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760080410; c=relaxed/simple;
-	bh=ts9kOQV52xX2ipkuJDjIaYy4QbG40eTx4UG+9BV7Wxc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VmQuVBNu1DCxfRslPBUM1KBI+W/FdeDgYUvBeisF+7W82biAgLdDR0PPVzz5rHuXaoZDwaU/sFqmhopCwhcN6VHPoiw6zfbk4shkFWgSX510Djc44B1khL5WLkAGlvY/wnSFZSq9iWpVwCxSyauN3/npethuoHet0D0K0j36Ygw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=SABTPONg; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59A6XMsE009406
-	for <devicetree@vger.kernel.org>; Fri, 10 Oct 2025 07:13:28 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=KR/Ios316oNkK2GJ5MYH0w1E
-	L7QWbrsGiZOp+JqAuJE=; b=SABTPONg6XJeCij2J5BfYfXwx+rYlvoIyOjXwfay
-	h2M6Y5GAmx8to10ygS2uH9EzQhp2qsbWU3wf2EF9++qhsNaAEc7hLto+3FgQPEti
-	v3IyZK4QKThOmgKLq0zDuf42DO4xBKc5Tr4BVbuMBcNyaKFdzP6eSegBxspSnJYW
-	s+hhBHWb43B6O4Krdf8XaLuwywdkMr6yGwAR7Odn9OKyUbER10lycwq8aORZetV7
-	YyibFS+AubM9r/EqqymE8UNtxrqU1VrqzCmMnLT/WHxs3/valwN0BaiGW/x2/zLQ
-	P6l4jDoZSW+uLZmJVM8DG2cMxyC84JFZMwzEvEH1k7zt3Q==
-Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com [209.85.214.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49nv4knf7f-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 10 Oct 2025 07:13:28 +0000 (GMT)
-Received: by mail-pl1-f199.google.com with SMTP id d9443c01a7336-28c58e009d1so58986835ad.3
-        for <devicetree@vger.kernel.org>; Fri, 10 Oct 2025 00:13:28 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760080408; x=1760685208;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=KR/Ios316oNkK2GJ5MYH0w1EL7QWbrsGiZOp+JqAuJE=;
-        b=eS1fq6GQCVu/biq/NKRlwnnWBspbcDc+qpS3bDg/EklhFvFwkMtER2n6/CjAMrSpvV
-         P+YjWwqRZpyrPK6FuF5e2tslmL8r36MvK1oX/LTuqro7fO4OWmgaRmHH7JQ474W0TmIO
-         I/hUM9M+Uk55RqrK0gtWx3IuClgCsUGXJnFMI6XGcbMfmBKfs5aORrGQlzTwThgyYIcR
-         RGzfWMmhuYHCCKbM9LjLGwv3gXmhD8lYeTwkN+v/jcX0ek72uWUrA1nhK1ZUqGdquvkG
-         CYwWK6d1X4ZfKRGPZoCPCCGhZlW79D+G9GlX30NvA9JXkAC7uistyBtoM8z7at1Sz/Hq
-         +Fuw==
-X-Forwarded-Encrypted: i=1; AJvYcCUVzp6iPvLV5/7IcbQ9mjn1pcIYZI9glClvXo89ZLR8O6Gwgcq5sx2XnmO3iZOa4HVKVQZBFJeZW+x0@vger.kernel.org
-X-Gm-Message-State: AOJu0YxDtfWnrdBQ7Ikc6+TTOdWZo/j02qU9YnQtmD+gAgVebTMbvBtb
-	tt4ibUlI8l7VbLxuvM4JegXK1DyMyCpqrSH4gNazdorkqlJEf7UqdZWnQbBIO2taLo4umPx0CBN
-	nCxKvqsz6z3akiaObr5KpU3DB/keMrrGV4/Z/Ong9NUDXv7su9Xthc5NhfVsSFdGC
-X-Gm-Gg: ASbGncv6wl1HuheTySEuC+hulR8GrtxWR9ajsj7+74JQR/Laq35H53ltFHmJboE4mVz
-	0TCUileKJV8CH3jtWTaIq2KVrqsR5PShcQ6cIDnOmKBuUHwTpKGpmjgQdhMBCR52akp1TZBlHjC
-	V06nJlYHY0ZEyzV/ppp0Q0JW40FtFT7SMWVF+574McYAWOAlw7jDaDXvMLGtmx0ly9wryr+W8n5
-	Yq5yA7Cb/OIxJfOwORgCuSzJUjPrgU7KJV8ML72no7JmILtiI4bIs13dJmWbLHr0aFI6m/bbtGh
-	py7gOLv9T+aniPtowTJtnqqhl+RCw5nuaS/91Cv+eG2X3gpaKxTm/oG/V3EhqKWAXbiZSebD2cR
-	207WpyhXKUNA=
-X-Received: by 2002:a17:902:e94e:b0:26f:7db2:3e1e with SMTP id d9443c01a7336-290273ffbe6mr131256135ad.47.1760080407484;
-        Fri, 10 Oct 2025 00:13:27 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGZomklByII8D+XieFuJ2V77oyKee3Dzlu5Ztu8yLBuVQK2BdzUtqGP5w8pf/EdEOpW5U1eww==
-X-Received: by 2002:a17:902:e94e:b0:26f:7db2:3e1e with SMTP id d9443c01a7336-290273ffbe6mr131255795ad.47.1760080407019;
-        Fri, 10 Oct 2025 00:13:27 -0700 (PDT)
-Received: from hu-qianyu-lv.qualcomm.com (Global_NAT1.qualcomm.com. [129.46.96.20])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29034e45568sm48077925ad.55.2025.10.10.00.13.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Oct 2025 00:13:26 -0700 (PDT)
-Date: Fri, 10 Oct 2025 00:13:24 -0700
-From: Qiang Yu <qiang.yu@oss.qualcomm.com>
-To: Abel Vesa <abel.vesa@linaro.org>
-Cc: Pankaj Patil <pankaj.patil@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 20/24] arm64: dts: qcom: glymur-crd: Add power supply and
- sideband signal for pcie5
-Message-ID: <aOiyFI0gBDh8YwLL@hu-qianyu-lv.qualcomm.com>
-References: <20250925-v3_glymur_introduction-v1-0-24b601bbecc0@oss.qualcomm.com>
- <20250925-v3_glymur_introduction-v1-20-24b601bbecc0@oss.qualcomm.com>
- <qudnwwle62rekkuaeriqhvkvk5xukl4fmkhkzjse5zud37vlxl@gek6nmscgvgs>
+	s=arc-20240116; t=1760081152; c=relaxed/simple;
+	bh=ErVaIYB7OO/399hP8USL2y0yj6zVoDwaao+2O3iylYk=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=hyMNsnTjnNpbmNfufYebK2OeTnjPl1opK224zpY/rzWUkYJb6Q7BqXdQtkqONO5Ki+k96ztpB/xeSS/LSe7A7FIQ5xBmFKEqXSZLhrkINy9YSqTGj3N8TAlrJf+ZiD44dfaUre43bqEEkwlWDjUEXXz+e6t9aSHrAz3TQ9M55y8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; arc=none smtp.client-ip=211.20.114.72
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
+Received: from TWMBX01.aspeed.com (192.168.0.62) by TWMBX01.aspeed.com
+ (192.168.0.62) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Fri, 10 Oct
+ 2025 15:25:40 +0800
+Received: from twmbx02.aspeed.com (192.168.10.13) by TWMBX01.aspeed.com
+ (192.168.0.62) with Microsoft SMTP Server id 15.2.1748.10 via Frontend
+ Transport; Fri, 10 Oct 2025 15:25:40 +0800
+From: Ryan Chen <ryan_chen@aspeedtech.com>
+To: ryan_chen <ryan_chen@aspeedtech.com>, Brian Masney <bmasney@redhat.com>,
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>, Joel Stanley <joel@jms.id.au>,
+	"Andrew Jeffery" <andrew@codeconstruct.com.au>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, <linux-clk@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-aspeed@lists.ozlabs.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>, Mo Elbadry
+	<elbadrym@google.com>, "Rom Lemarchand" <romlem@google.com>, William
+ Kennington <wak@google.com>, "Yuxiao Zhang" <yuxiaozhang@google.com>,
+	<wthai@nvidia.com>, <leohu@nvidia.com>, <dkodihalli@nvidia.com>,
+	<spuranik@nvidia.com>
+Subject: [PATCH v15 0/3] Add support for AST2700 clk driver
+Date: Fri, 10 Oct 2025 15:25:37 +0800
+Message-ID: <20251010072540.666673-1-ryan_chen@aspeedtech.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <qudnwwle62rekkuaeriqhvkvk5xukl4fmkhkzjse5zud37vlxl@gek6nmscgvgs>
-X-Authority-Analysis: v=2.4 cv=dojWylg4 c=1 sm=1 tr=0 ts=68e8b218 cx=c_pps
- a=JL+w9abYAAE89/QcEU+0QA==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=kj9zAlcOel0A:10 a=x6icFKpwvdMA:10 a=EUspDBNiAAAA:8 a=CFs5gaHkoshYMbNuCBMA:9
- a=CjuIK1q_8ugA:10 a=324X-CrmTo6CU4MGRt3R:22
-X-Proofpoint-GUID: HkPRFxtX2H7-jvJqQxDzwjj8CzD-ebID
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDA4MDEyMSBTYWx0ZWRfX2Cr91qvmZqQ1
- enLDVG/Flmek6Wn86LONbP+fjFKxPIFUJf1qFMaglCPsp6Om5VjQID6poZ5ScGZKW3PyaxrDs2j
- FIeK2QMGHKQmYT+w3T61KNQvK0Q8c+N+rtJ29oC07TGMwRxhb58EfZT/rbmADfj2sXQ7KY5oV8M
- xZtxCV6bFrW2uj9co29KOuCy2e4/aqbB/JhMKBdTzAw1/ajElxeb6Jwfvzy/JiTyyb5O5suAg5t
- lAM9g8rqCB03uQ5j4c3JlYVCzCFTvbz/cylXYLO+oTaVWXQNVjBBVRVwxSmY5q52dRo0LvXLP9P
- EQqZKB5rhIt3tPVx2UTm7TW6RrrBoBdnZ1Oma3XEeQznf3R0RHS6Vf0OtmnG8kSriQrvn3r84aF
- Typbi12+LLUReQLsVPvMF3BundZguQ==
-X-Proofpoint-ORIG-GUID: HkPRFxtX2H7-jvJqQxDzwjj8CzD-ebID
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-10-10_01,2025-10-06_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 impostorscore=0 suspectscore=0 lowpriorityscore=0 adultscore=0
- bulkscore=0 spamscore=0 priorityscore=1501 phishscore=0 malwarescore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2510020000 definitions=main-2510080121
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-On Thu, Oct 09, 2025 at 12:53:24PM +0300, Abel Vesa wrote:
-> On 25-09-25 12:02:28, Pankaj Patil wrote:
-> > From: Qiang Yu <qiang.yu@oss.qualcomm.com>
-> > 
-> > Add perst, wake and clkreq sideband signals and required regulators in
-> > PCIe5 controller and PHY device tree node.
-> > 
-> > Signed-off-by: Qiang Yu <qiang.yu@oss.qualcomm.com>
-> > Signed-off-by: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
-> > ---
-> >  arch/arm64/boot/dts/qcom/glymur-crd.dts | 68 +++++++++++++++++++++++++++++++++
-> >  1 file changed, 68 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/qcom/glymur-crd.dts b/arch/arm64/boot/dts/qcom/glymur-crd.dts
-> > index 3f94bdf8b3ccfdff182005d67b8b3f84f956a430..03aacdb1dd7e2354fe31e63183519e53fa022829 100644
-> > --- a/arch/arm64/boot/dts/qcom/glymur-crd.dts
-> > +++ b/arch/arm64/boot/dts/qcom/glymur-crd.dts
-> > @@ -107,6 +107,20 @@ port@1 {
-> >  			};
-> >  		};
-> >  	};
-> > +
-> > +	vreg_nvme: regulator-nvme {
-> > +		compatible = "regulator-fixed";
-> > +
-> > +		regulator-name = "VREG_NVME_3P3";
-> > +		regulator-min-microvolt = <3300000>;
-> > +		regulator-max-microvolt = <3300000>;
-> > +
-> > +		gpio = <&pmh0101_gpios 14 GPIO_ACTIVE_HIGH>;
-> > +		enable-active-high;
-> > +
-> > +		pinctrl-0 = <&nvme_reg_en>;
-> > +		pinctrl-names = "default";
-> > +	};
-> >  };
-> >  
-> >  &tlmm {
-> 
-> so tlmm already exists in here, but ...
-> 
-> > @@ -461,3 +475,57 @@ vreg_l4h_e0_1p2: ldo4 {
-> >  &pmk8850_rtc {
-> >  	no-alarm;
-> >  };
-> > +
-> > +&pmh0101_gpios {
-> > +	nvme_reg_en: nvme-reg-en-state {
-> > +		pins = "gpio14";
-> > +		function = "normal";
-> > +		bias-disable;
-> > +	};
-> > +};
-> > +
-> > +&tlmm {
-> 
-> you add it here again.
+This patch series is add clk driver for AST2700.
 
-Will move this part to above tlmm node.
+AST2700 is the 8th generation of Integrated Remote Management Processor
+introduced by ASPEED Technology Inc. Which is Board Management controller
+(BMC) SoC family. AST2700 have two SoC connected, one is SoC0, another
+is SoC1, it has it's own scu, this driver inlcude SCU0 and SCU1 driver.
 
-- Qiang Yu
-> 
-> > +	pcie5_default: pcie5-default-state {
-> > +		clkreq-n-pins {
-> > +			pins = "gpio153";
-> > +			function = "pcie5_clk_req_n";
-> > +			drive-strength = <2>;
-> > +			bias-pull-up;
-> > +		};
-> > +
+v15:
+- clk-ast2700.c
+ - remove #include <linux/of_platform.h>.
+ - use inline 12MHZ, 24MHZ, 25MHZ, 192MHZ define.
+ - use clk_hw pointers, index member instead of .fw_name and .name members.
+ - use module_platform_driver().
+
+v14:
+- patch (3/3) : remove duplcate Signed-off-by.
+
+v13:
+- clk-ast2700.c
+ - remove unnecessary ().
+ - refine ast2700_soc1_configure_i3c_clk to be easy readable.
+
+v12:
+-fix mistakes commit message Acked-by:Krzysztof Kozlowski
+<krzysztof.kozloski@linaro.org> to Acked-by: Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org>
+
+v11:
+-update patch(1/3) commit message subject prefix dt-binding: to dt-bindings:
+
+v10:
+-aspeed,ast2700-scu.h:
+-add SOC0_CLK_AHBMUX, SOC0_CLK_MPHYSRC, SOC0_CLK_U2PHY_REFCLKSRC,
+ SOC1_CLK_I3C.
+-clk-ast2700.c
+-add #include <linux/auxiliary_bus.h>
+-remove #include <soc/aspeed/reset-aspeed.h>
+-use devm_auxiliary_device_create replace aspeed_reset_controller_register
+-reset-aspeed.c:
+-remove aspeed_reset_unregister_adev, aspeed_reset_adev_release,
+ aspeed_reset_controller_register.
+-compatible name change reset_aspeed.reset0/1 -> clk_ast2700.reset0/1
+-remove reset-aspeed.h
+
+v9:
+-aspeed,ast2700-scu.h: no change.
+add more clear commit description.
+-clk-ast2700.c:
+add inlcude bitfield.h
+remove redundant clk_parent_data soc0_mpll_div8/soc0_ahb/uart13clk/
+uart14clk/uart15clk/uart16clk/soc1_ahb/d_clk_sels
+
+v8:
+-aspeed,ast2700-scu.h: remove no use soc0 clock, add new clock
+-clk-ast2700.c: remove include <linux/auxiliary_bus.h>,
+include <linux/clk-provider.h>, include <linux/of_address.h>
+-clk-ast2700.c: add include <linux/mod_devicetable.h>
+-clk-ast2700.c: modify include <soc/aspeed/reset-aspeed.h> order before
+dt-bindings
+-clk-ast2700.c: modify define to be tabbed out space
+-clk-ast2700.c: add union struct for each clk type
+	union {
+		struct ast2700_clk_fixed_factor_data factor;
+		struct ast2700_clk_fixed_rate_data rate;
+		struct ast2700_clk_gate_data gate;
+		struct ast2700_clk_div_data div;
+		struct ast2700_clk_pll_data pll;
+		struct ast2700_clk_mux_data mux;
+	} data;
+-clk-ast2700.c: modify clk_data = device_get_match_data(dev);
+-clk-ast2700.c: modify builtin_platform_driver_probe to 
+arch_initcall(clk_ast2700_init)
+-clk-ast2700.c: ast2700_clk_hw_register_hpll explain: scu010[4:2],
+scu010[4:2] = 010, hpll force 1.8Ghz
+scu010[4:2] = 011, hpll force 1.7Ghz
+scu010[4:2] = 110, hpll force 1.2Ghz
+scu010[4:2] = 111, hpll force 800Mhz
+others depend on hpll parameter register setting.
+
+v7:
+-reset-aspeed.h: fix declare static inline aspeed_reset_controller_register
+if the function is not used.
+
+v6:
+-patch-2: add reset-aspeed.h
+-reset-aspeed: add include cleanup.h for guard()
+-reset-aspeed: change ids name clk_aspeed to reset_aspeed
+-reset-aspeed: move aspeed_reset_controller_register,
+aspeed_reset_adev_release, aspeed_reset_unregister_adev from clk-ast2700.c
+-reset-aspeed: drop base check, since it check in clk-ast2700.c
+-clk-ast2700: sync each gate name from *clk to *clk-gate name.
+-clk-ast2700: add CLK_GATE_ASPEED to diff clk_hw_register_gate and
+ast2700_clk_hw_register_gate.
+
+v5:
+-patch-2 Kconfig: add select AUXILIARY_BUS
+-reset-aspeed: #define to_aspeed_reset(p) turn into static inline function.
+-reset-aspeed: modify spin_lock_irqsave to guard(spinlock_irqsave)
+-reset-aspeed: remove unnecessary parentheses.
+-clk-ast2700: use <linux/units.h> and refrain from define clk
+
+v4:
+-yaml: keep size-cells=<1>.
+-merge clk,reset dt binding header with yaml the same patch.
+-rename clk,reset dt binding header to aspeed,ast2700-scu.h
+-reset-aspeed: update tables tabs sapces to consistent spaces.
+-reset-aspeed: remove no use dev_set_drvdata.
+-clk-ast2700: modify reset_name to const int scu in struct clk_data.
+-clk-ast2700: use scu number in clk_data generate reset_name for reset
+ driver register.
+-clk-ast2700: fix pll number mix up scu0,scu1.
+-clk-ast2700: update dt-binding clock include file.
+
+v3:
+-yaml: v2 missing send yaml patch, v3 add.
+-yaml: drop 64bits address example.
+-yaml: add discription about soc0 and soc1
+-dt-bindings: remove (), *_NUMS, reserved.
+-dt-bindings: remove dulipated define number.
+-dt-bindings: merge clk and reset to be one patch.
+-reset-aspeed: add auxiliary device for reset driver.
+-clk-ast2700: modify reset to be auxiliary add.
+-clk-ast2700: modify to be platform driver.
+-clk-ast2700: modify each clk to const clk array.
+
+v2:
+-yaml: drop 64bits address example.
+-yaml: add discription about soc0 and soc1
+-dt-bindings: remove (), *_NUMS, reserved.
+-dt-bindings: remove dulipated define number
+-clk-ast2700: drop WARN_ON, weird comment.
+
+Ryan Chen (3):
+  dt-bindings: clock: ast2700: modify soc0/1 clock define
+  reset: aspeed: register AST2700 reset auxiliary bus device
+  clk: aspeed: add AST2700 clock driver
+
+ drivers/clk/Kconfig                           |    8 +
+ drivers/clk/Makefile                          |    1 +
+ drivers/clk/clk-ast2700.c                     | 1055 +++++++++++++++++
+ drivers/reset/Kconfig                         |    7 +
+ drivers/reset/Makefile                        |    1 +
+ drivers/reset/reset-aspeed.c                  |  253 ++++
+ .../dt-bindings/clock/aspeed,ast2700-scu.h    |    4 +
+ 7 files changed, 1329 insertions(+)
+ create mode 100644 drivers/clk/clk-ast2700.c
+ create mode 100644 drivers/reset/reset-aspeed.c
+
+-- 
+2.34.1
+
 
