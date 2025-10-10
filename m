@@ -1,124 +1,123 @@
-Return-Path: <devicetree+bounces-225220-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225221-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A5DDBCB9E6
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 06:09:55 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E2EDBCBA25
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 06:22:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E872D4074AC
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 04:09:50 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 55C9D4E4D4C
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 04:22:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1B441F63CD;
-	Fri, 10 Oct 2025 04:09:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12C261F2382;
+	Fri, 10 Oct 2025 04:22:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nDuL5tqL"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="DyAy+Jo4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yx1-f50.google.com (mail-yx1-f50.google.com [74.125.224.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1F251494CC
-	for <devicetree@vger.kernel.org>; Fri, 10 Oct 2025 04:09:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.224.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E5D136B;
+	Fri, 10 Oct 2025 04:22:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760069383; cv=none; b=INUeXCcT00XeF9U4uEIFTbQsLVcwBeURWBvToIXSY+O9wHZUWM1Rqc8IhEL7cb2QUWLjHKKr7xboa/oUdoDAP3NpgfQ8AESdCN+HY0S2BdDfH55cEilTF8HeDOhT1f6RgSFoVPwhm5xdMGUdnIs0xADUpSd7iBpl7GRHPdbG+fQ=
+	t=1760070122; cv=none; b=JkqQuyjef9KwjnJ+Gsm5Ng2x9xWutpbvxrBxIdljCuajadhBR8QTii5WLBREv58iR63jz9D0ZvgEzyBwEZC4gvvm9VP4uaE1UTYvTtKJ7JWe7gfk3tMXEuteWmhSKoprKCtR0AhcFrclduIpiLsQ0Qe0RSzOjqJykxWWtb7zXLo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760069383; c=relaxed/simple;
-	bh=QekwWSNZM13jRboBgI+VcoYsXugGuoxwasNpiteDkcg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=CAzb1aUX5x1pklch6k0egCX9K+higcPLyBu9M3v6ERGUAfM6ui/NBLi1o034Yxu8OMDTyyeKUG4tk5J0nYavs+rM0v2lXxbAIKByWAUcugqJ/sL1EyAuW9qSMNG8zWLa2bEkN4k8Jc/6hAMlUuq1Sl2boRnHTlotbmXyEPtMH+s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nDuL5tqL; arc=none smtp.client-ip=74.125.224.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yx1-f50.google.com with SMTP id 956f58d0204a3-63605f6f64eso1461988d50.1
-        for <devicetree@vger.kernel.org>; Thu, 09 Oct 2025 21:09:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1760069379; x=1760674179; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=QekwWSNZM13jRboBgI+VcoYsXugGuoxwasNpiteDkcg=;
-        b=nDuL5tqLs6F/bqWcdATCSw3q6sR4xH9PojO9qOD+5CVFhCKnIdXYLqb6N9qP3a90AK
-         XcWKwh2rGBNpBKIw4DXxov8U2qs0Dzy6gXk8vFfvDusYiZmPGdnri/OyTQj/4/Q9hjBA
-         AP9cRpfxElOVTqf47iRfDxq23HPr72skNOU/r2V/uYwO0u5rdlLaDJlfE0FHTHhwxXRY
-         CxV+l2MjGbd2BdsN32iKqGDmRkhB4tNQBtMagkevAiwpNidXH4OagDZ/3oHz+Ju9tDVq
-         V/7yZAk0s3YGeHhlLGi653f8C0CT7tXpjc3Ab8zbhGaCEogKGwXedDHs/+NW7Be9ThrK
-         SjAg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760069379; x=1760674179;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=QekwWSNZM13jRboBgI+VcoYsXugGuoxwasNpiteDkcg=;
-        b=XnMlVZvH+Pp/20l+uIQEcnxf+UlxHuo+Z/e2VTc/jf+QbNcZ1N4fB14Zjz2dc1S0Cl
-         kHbKo55eYs8Vj+bXqtFE6n1e7uGf0ODStSL5Cnrz1oY4sS/YKqFk8oKHdNh/R2u8i12Z
-         ZYvB0gP6/ZYk4X3mCX8pqS2waRb5+NfnuX9JqsXbRubwdtPhb9qcjStxPgDILAKD2Q3W
-         +rfksnNmQjUUUaNWGmYuuH4Dv2hyAeFmO/UtSVivXW4K+iq+CuAx8Q5TOxD3dK/r2YSS
-         DzlKHhPg54RzU58IcPLMrGk/YRNSFM92Npdz5oeTIp0hDRW5gYwENEObHAws8ALQQhv/
-         bCgQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUQrXzurbMdddrCe9uPEliMcoDVIHdd1nw2eO/Al+gObheiazfcT8KXtjq1B7nmutwt5rOGHXCGphfl@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy7LWdfAC6perXyqxh0jPiTJYAAmiVT4N4nK8sUvzrX/LRxZHNR
-	6dgm0PEs2meY0X5R8K/aDLk3tHpDS4ULDrEEmmlGbDINgPdmupgd9yJiOuJzHj44bjKZDvE4lHm
-	8z0+J+zjsq8G4HUGC8B1yoc9BO5fQBK0=
-X-Gm-Gg: ASbGncsuUMT+OXcs2Q66KoEk4v7rur4Btd4MnSKVCKx5I7xdwQgPjUvPrpVNzu1HzkV
-	P7lTxseWpGEBTUo9zRd+1mTsA88s3ZMkxy7INrdl7wxNpvfSyPgT1tvQgnIVfSqt9c8LDsH7FyE
-	/4zGmHwbXFPAuuARJXlDO4xoTyToarbOsHndjHOphKhkk08O6qCSrsSox0i3UFjYCqCuxFutLZA
-	REi4KEVHmBKrJu5vFqdbQI/ptJ5XwfwPFLN
-X-Google-Smtp-Source: AGHT+IEKzDZJ3mg1FFWOqowFJqWLj/+dmJPdM199pmmtVcavFH/YLuoH0hEdsvn7dHSOiTNw/3Aomiv0DcOjJivXzrY=
-X-Received: by 2002:a53:e946:0:b0:636:17d6:a30 with SMTP id
- 956f58d0204a3-63ccb82410bmr7618496d50.15.1760069378763; Thu, 09 Oct 2025
- 21:09:38 -0700 (PDT)
+	s=arc-20240116; t=1760070122; c=relaxed/simple;
+	bh=V8lVhg40i6i3dzj7FEuSEzfEDeikzBVx4RlBJVsKO+g=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tP1AuWvq/r7vfZDagGbfi6HRvM3Agp+1wgmk29Y47y/2ITIL5cuM64VIpcyN5+z51J1MGOhN2VMpYAcysC6LFRLtG1SSOyj+saTXNKCMJmi+3A5eS5VjTyJ7mmSBz349/VmM6ZkW5BWi7oT43hr2Mhf+pkEegJiL/Cn8KfbTeEc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=DyAy+Jo4; arc=none smtp.client-ip=192.198.163.8
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1760070120; x=1791606120;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=V8lVhg40i6i3dzj7FEuSEzfEDeikzBVx4RlBJVsKO+g=;
+  b=DyAy+Jo4mSgYOR5KmbPibrOkd2rPrfTgo324XWTlKgGM39bhTU1t9Xgf
+   wDAGaFJzzQ8/0ew4Dl5T72D7Gk2vDneAJylkNYu4Tp6uiHm8PrQLP1e0l
+   +c1O8zZSpAqoBaFC0nkSv7Z42XG9xcyyHBHaNKpslXaffL43/CtzaXz3m
+   /5jtg+Aaysg8YJF7HDnG13dxbKDQtygcSE35yG42/9mlDxNePnp6K1YzC
+   YXxLBlrIbFxzMHGg/3NbOwZQ+Wrf6DGJO0QLIwMf0jGBDj6H3O1cC58G0
+   3rPrH5oyvJZR+C70ms06LqCEy6tWrJlW99sHqvGln30AAMvlKhEnAYez3
+   w==;
+X-CSE-ConnectionGUID: j3IirToxQp2zN138eR+cqg==
+X-CSE-MsgGUID: 69Cj8YqdTzqg0jyxSxA7uQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11577"; a="79931635"
+X-IronPort-AV: E=Sophos;i="6.19,218,1754982000"; 
+   d="scan'208";a="79931635"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Oct 2025 21:22:00 -0700
+X-CSE-ConnectionGUID: 7bOHdkV+SSOVseicgkDGvw==
+X-CSE-MsgGUID: Ilpw6yfLTLq+oUU9z57IIA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,218,1754982000"; 
+   d="scan'208";a="180572606"
+Received: from lkp-server01.sh.intel.com (HELO 6a630e8620ab) ([10.239.97.150])
+  by fmviesa007.fm.intel.com with ESMTP; 09 Oct 2025 21:21:56 -0700
+Received: from kbuild by 6a630e8620ab with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1v74dd-00028h-2m;
+	Fri, 10 Oct 2025 04:21:53 +0000
+Date: Fri, 10 Oct 2025 12:21:07 +0800
+From: kernel test robot <lkp@intel.com>
+To: Chuan Liu via B4 Relay <devnull+chuan.liu.amlogic.com@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	Xianwei Zhao <xianwei.zhao@amlogic.com>,
+	Chuan Liu <chuan.liu@amlogic.com>
+Subject: Re: [PATCH 11/19] arm64: dts: amlogic: A4: Add peripherals clock
+ controller node
+Message-ID: <202510101124.3xwn3STp-lkp@intel.com>
+References: <20250930-a4_a5_add_clock_driver-v1-11-a9acf7951589@amlogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250913003842.41944-1-safinaskar@gmail.com> <A08066E1-A57E-4980-B15A-8FB00AC747CC@jrtc27.com>
-In-Reply-To: <A08066E1-A57E-4980-B15A-8FB00AC747CC@jrtc27.com>
-From: Askar Safin <safinaskar@gmail.com>
-Date: Fri, 10 Oct 2025 07:09:02 +0300
-X-Gm-Features: AS18NWDxe32nrD4BfQQFhIe3tEEfxrwgJsYQo_BWhSUPsy5CceSv7QOcZ20roI0
-Message-ID: <CAPnZJGAKmgySY_RK0kmGTgwUh9hw4FSrVR+LoJCbD_RmJZe6RA@mail.gmail.com>
-Subject: Re: [PATCH RESEND 00/62] initrd: remove classic initrd support
-To: Jessica Clarke <jrtc27@jrtc27.com>
-Cc: linux-fsdevel@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Linus Torvalds <torvalds@linux-foundation.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Christian Brauner <brauner@kernel.org>, 
-	Al Viro <viro@zeniv.linux.org.uk>, Jan Kara <jack@suse.cz>, Christoph Hellwig <hch@lst.de>, 
-	Jens Axboe <axboe@kernel.dk>, Andy Shevchenko <andy.shevchenko@gmail.com>, 
-	Aleksa Sarai <cyphar@cyphar.com>, =?UTF-8?Q?Thomas_Wei=C3=9Fschuh?= <thomas.weissschuh@linutronix.de>, 
-	Julian Stecklina <julian.stecklina@cyberus-technology.de>, 
-	Gao Xiang <hsiangkao@linux.alibaba.com>, Art Nikpal <email2tema@gmail.com>, 
-	Andrew Morton <akpm@linux-foundation.org>, Eric Curtin <ecurtin@redhat.com>, 
-	Alexander Graf <graf@amazon.com>, Rob Landley <rob@landley.net>, 
-	Lennart Poettering <mzxreary@0pointer.de>, linux-arch@vger.kernel.org, 
-	linux-alpha@vger.kernel.org, linux-snps-arc@lists.infradead.org, 
-	linux-arm-kernel@lists.infradead.org, linux-csky@vger.kernel.org, 
-	linux-hexagon@vger.kernel.org, loongarch@lists.linux.dev, 
-	linux-m68k@lists.linux-m68k.org, linux-mips@vger.kernel.org, 
-	linux-openrisc@vger.kernel.org, linux-parisc@vger.kernel.org, 
-	linuxppc-dev@lists.ozlabs.org, linux-riscv@lists.infradead.org, 
-	linux-s390@vger.kernel.org, linux-sh@vger.kernel.org, 
-	sparclinux@vger.kernel.org, linux-um@lists.infradead.org, x86@kernel.org, 
-	Ingo Molnar <mingo@redhat.com>, linux-block@vger.kernel.org, initramfs@vger.kernel.org, 
-	linux-api@vger.kernel.org, linux-doc@vger.kernel.org, 
-	linux-efi@vger.kernel.org, linux-ext4@vger.kernel.org, 
-	"Theodore Y . Ts'o" <tytso@mit.edu>, linux-acpi@vger.kernel.org, Michal Simek <monstr@monstr.eu>, 
-	devicetree@vger.kernel.org, Luis Chamberlain <mcgrof@kernel.org>, Kees Cook <kees@kernel.org>, 
-	Thorsten Blum <thorsten.blum@linux.dev>, Heiko Carstens <hca@linux.ibm.com>, patches@lists.linux.dev
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250930-a4_a5_add_clock_driver-v1-11-a9acf7951589@amlogic.com>
 
-On Tue, Sep 16, 2025 at 8:08=E2=80=AFPM Jessica Clarke <jrtc27@jrtc27.com> =
-wrote:
-> I strongly suggest picking different names given __builtin_foo is the
-> naming scheme used for GNU C builtins/intrinsics. I leave you and
-> others to bikeshed that one.
+Hi Chuan,
 
-Thank you! I will fix this.
+kernel test robot noticed the following build errors:
 
---=20
-Askar Safin
+[auto build test ERROR on 01f3a6d1d59b8e25a6de243b0d73075cf0415eaf]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Chuan-Liu-via-B4-Relay/dt-bindings-clock-Add-Amlogic-A4-SCMI-clock-controller/20250930-174011
+base:   01f3a6d1d59b8e25a6de243b0d73075cf0415eaf
+patch link:    https://lore.kernel.org/r/20250930-a4_a5_add_clock_driver-v1-11-a9acf7951589%40amlogic.com
+patch subject: [PATCH 11/19] arm64: dts: amlogic: A4: Add peripherals clock controller node
+config: arm64-allmodconfig (https://download.01.org/0day-ci/archive/20251010/202510101124.3xwn3STp-lkp@intel.com/config)
+compiler: clang version 19.1.7 (https://github.com/llvm/llvm-project cd708029e0b2869e80abe31ddb175f7c35361f90)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251010/202510101124.3xwn3STp-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202510101124.3xwn3STp-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   Error: arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi:119.19-20 syntax error
+>> FATAL ERROR: Unable to parse input tree
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
