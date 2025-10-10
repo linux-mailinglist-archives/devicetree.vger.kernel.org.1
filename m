@@ -1,203 +1,171 @@
-Return-Path: <devicetree+bounces-225524-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225525-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A896BCEAA2
-	for <lists+devicetree@lfdr.de>; Sat, 11 Oct 2025 00:05:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C85DDBCEB1D
+	for <lists+devicetree@lfdr.de>; Sat, 11 Oct 2025 00:30:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 9CC0E351D7D
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 22:05:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3E5ED3A55B6
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 22:30:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EB2C26E6F8;
-	Fri, 10 Oct 2025 22:05:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB1EF2773D2;
+	Fri, 10 Oct 2025 22:30:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ftpshqaQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o1eYd7dH"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 665BB26D4DE
-	for <devicetree@vger.kernel.org>; Fri, 10 Oct 2025 22:05:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A48C42765ED
+	for <devicetree@vger.kernel.org>; Fri, 10 Oct 2025 22:30:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760133922; cv=none; b=BfEZvETCnKvsTF2yXuMxpU2+0xSRD8xFnqfThQgvC2WSXJ4k1iv+vcRUURiH0U7Wd5UcO3h1U5DMSmal5HFnM3+3X4Zp4xyCWDeADrhvy6cS5Gw+6iD4gkgGHbj7gECbiqae5gIAHWu4glInEWHcar6RC48qTfDbD+o4NdOoIjQ=
+	t=1760135425; cv=none; b=O7CML9hpzLiKaOUQxjHQUcIEJVU5v44CprVgiAlDUjcxiYmVjrDBrDLd2/vR5O3II4F2/yvmEL4QXoFdf8zxFLZ1Pod1B2WGiFo1n4cG2hLIPXUrnpFfxIw/YeDtBi8YXSpOOGutMquMOUKJDOfwpKFsamSMaWx2ETWU2TFmBJI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760133922; c=relaxed/simple;
-	bh=ULkcu+ErWUDnM+0yG/yzCIlYRGPz4NooEguavSIe4VI=;
+	s=arc-20240116; t=1760135425; c=relaxed/simple;
+	bh=sx8RlxKZpctnoFBweJS6xvncbNrY1voIIKFf38weEJU=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ak+KXMGFUvY9nY7HvR1+S8SqEcuVW4T7v78ij34QYyq1Hhc9V3sn4j4NF8bT0Jt5jeku0UoY3IbARP+KOy05d6DB3mjMCNqIM8tCmb/TFlBRnFI/LRJrrBX60/IQ/w70HPTNFrPwpfWWDjx6OQ9d1S73CMoO8ddafaNgZsvh7Kk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ftpshqaQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 07F84C116D0
-	for <devicetree@vger.kernel.org>; Fri, 10 Oct 2025 22:05:21 +0000 (UTC)
+	 To:Cc:Content-Type; b=QjBQSI4aMZh4ZPKkeM8q/LHxEKzxM/uhjV73CyDJ7VzxCFQTrDl1Cm01uiQEAZaQYFZuJfgJmvvHZH5Mm6fOIt8jWjbBjl/2J/qrmOucmcuOcYq9UqwvSMoD9zr0LhmG4yb9hzVPfQFXPOHacO8CrXh8Cw/7UWV8qhOk+U2Y9y8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o1eYd7dH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 569BCC4CEF9
+	for <devicetree@vger.kernel.org>; Fri, 10 Oct 2025 22:30:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760133922;
-	bh=ULkcu+ErWUDnM+0yG/yzCIlYRGPz4NooEguavSIe4VI=;
+	s=k20201202; t=1760135425;
+	bh=sx8RlxKZpctnoFBweJS6xvncbNrY1voIIKFf38weEJU=;
 	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=ftpshqaQR+MKSoyq2LrMNvppCPHDo4+mvS503i3vArOetgTOzPb9pmDZxTRFQo0pd
-	 7uJ2PilMQxRneN9/uTkAcJ4hmoG4bAccEViWk9uFLL+BCjs8ATJfHqdANwprBaoQTI
-	 kUPaLbCtZ1JUplpr92fW7HMnbmZpJeyA3W75IySLAtEWfneEt5N5XCUU8uiLUv6sfh
-	 33avqC/ziB+l9bUDyosz2Zad5PLP/uopVe8D+H57UZcvbBQ6XRRNV2bGAx81XAKQ3B
-	 /nhpQSh4xNg+alcZZGa+V2315VHqp0X/SiTBjvpiTuaInGaSW2Qcrtrwlqs5Z6j5Vx
-	 q167V+a+kR3Fw==
-Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-b3e9d633b78so425130866b.1
-        for <devicetree@vger.kernel.org>; Fri, 10 Oct 2025 15:05:21 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCX79s1An47aAuleekJuCMSdKbsw8q1wWRAu3YHtHYOrrB6k4iXoPb45k4669iisbc1ghw5yu+Ikw6WS@vger.kernel.org
-X-Gm-Message-State: AOJu0YwtJe26VDfxo3sWQCD7kolF8HyMx6r0MWqEBHm6jnjHLN8tNlKf
-	OvUzD9ZoiANQO/eKNa1TPkVv/I3XbhfMhsb0/FybcnpZpxmB7XpxTGhYBZ8V0jlJ8orJP917Fkr
-	HPxiD3pMPJ7jmR1CPLPo4yC3l/d8Dtw==
-X-Google-Smtp-Source: AGHT+IFuxZcfGuyDGnYvmRipLMVeDwsutLoA5afsi1To0UHAb/F8Wkp4QQcADLcPiJYb4k/lngw3miLIFLMhQgfvXPY=
-X-Received: by 2002:a17:907:7213:b0:b38:49a6:583a with SMTP id
- a640c23a62f3a-b50bf2bcc2amr1295183566b.23.1760133920590; Fri, 10 Oct 2025
- 15:05:20 -0700 (PDT)
+	b=o1eYd7dHZIXngemP67EIzsgbqIA0L3klykBwdyF6/bIPZbplABgEjsmZ/9NcBEvGi
+	 eLJSlaczmFYktWp1kIZKiDYsW+QF1mq/6Ys/PGAfsdOocOXHkB+hZQKlvE9rq3bIjD
+	 kozFm5JTqkqKPLBE9Qtd13pOdxy2b+S/hqmupQsrKSpdDju1gOnbQfS31FNzLXarUO
+	 CyaIrF+/V/dnzgD7jB12p6ZO30rOEXp1U21RphIuuQPFGj/cz3ItnvjHGsyaP+VfYb
+	 fSVwe4lf+k0hZS71b9u5GvZ+3Z13YaPl/ifDug/hdQWwsZeNtFifS+Tkm696qMVGqo
+	 dCtJjv5yakJGQ==
+Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-62fb48315ddso3728991a12.2
+        for <devicetree@vger.kernel.org>; Fri, 10 Oct 2025 15:30:25 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCX7lpWb3mTeSJ0qQ9aIquKpB/d2mKOWpYRlJVhHwZd0TlU84X+e8CAYcWBFdc1ZiIlXbSY7037lCWGV@vger.kernel.org
+X-Gm-Message-State: AOJu0YzNNvnOx5Zs0Impou7LmlihFgHtSXyijP8FCNhHwmIaJjVXtL0l
+	a83swsiELQvMrrrU5ZmQOwFhvRhJcuul3nViDrBMOG4P59xtt5+XvoPbKX9uPuMjeBOf70GPNjv
+	dbGkhP2Jb1ifQZsmK5jMQ2XB1VW/t6A==
+X-Google-Smtp-Source: AGHT+IGdYPfHL1gnUujQzCp8M6WogUc1LbdE4xIMlDxV2yOAQw/4MfeeyPV2JzMy1aQ4kJRIZ9ePrEIFshlr8zpVXxg=
+X-Received: by 2002:a17:907:a909:b0:b3e:5f20:888d with SMTP id
+ a640c23a62f3a-b50aa7a1685mr1585501166b.27.1760135423725; Fri, 10 Oct 2025
+ 15:30:23 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250811163749.47028-2-ziyao@disroot.org> <20250811163749.47028-3-ziyao@disroot.org>
- <20250818175827.GA1507697-robh@kernel.org> <aKRh8M0szWKfpPF9@pie>
-In-Reply-To: <aKRh8M0szWKfpPF9@pie>
+References: <20250928171718.436440-1-charan.kalla@oss.qualcomm.com>
+ <aec0f40a-8346-4194-8b18-1022fe3366bb@arm.com> <0d0560cc-9757-4c7b-8de4-170148d99481@oss.qualcomm.com>
+ <ead7cf8b-fbc4-4242-a9da-b313dded1abc@arm.com> <nzqte4glwtpjs5bhkxz43yhdufelxvqvzmg5tepudxwetimir3@bvlw5csjizsh>
+ <9d3eeb9f-b8ea-48e5-a1d9-0865f63ef991@arm.com> <fhb4woejzh3r6v5dxvdiopnsbuwstucfuuzbiymxg4wrxrjc7t@dt3z3utq6lwd>
+ <c863f6a7-b117-4444-ae6d-1d525b572be2@oss.qualcomm.com>
+In-Reply-To: <c863f6a7-b117-4444-ae6d-1d525b572be2@oss.qualcomm.com>
 From: Rob Herring <robh@kernel.org>
-Date: Fri, 10 Oct 2025 17:05:09 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+8U75kYFADTNnMONxrLy9H7YHukXNdtPpp20yG-HEyng@mail.gmail.com>
-X-Gm-Features: AS18NWBAJg1X1PNJxas_Z_phPDWL6QAMLHfZflRShgSUFengE_WoLreRmG5ombg
-Message-ID: <CAL_Jsq+8U75kYFADTNnMONxrLy9H7YHukXNdtPpp20yG-HEyng@mail.gmail.com>
-Subject: Re: [PATCH 1/3] dt-binding: pinctrl: Document Loongson 2K0300 pin controller
-To: Yao Zi <ziyao@disroot.org>, Linus Walleij <linus.walleij@linaro.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Huacai Chen <chenhuacai@kernel.org>, WANG Xuerui <kernel@xen0n.name>, linux-gpio@vger.kernel.org, 
+Date: Fri, 10 Oct 2025 17:30:11 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+LPpJxVRUP4b9Gt40t=Wr=2B+697Jv2sjtDqTpqwGezQ@mail.gmail.com>
+X-Gm-Features: AS18NWAgf_96UGCOZLypid2OePxqb7YT8CX9tJwVzXdlzHqYAmMGtDO6SoLnFQ8
+Message-ID: <CAL_Jsq+LPpJxVRUP4b9Gt40t=Wr=2B+697Jv2sjtDqTpqwGezQ@mail.gmail.com>
+Subject: Re: [RFC PATCH 0/3] Introduce iommu-map-masked for platform devices
+To: Charan Teja Kalla <charan.kalla@oss.qualcomm.com>
+Cc: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, Robin Murphy <robin.murphy@arm.com>, 
+	joro@8bytes.org, will@kernel.org, saravanak@google.com, conor+dt@kernel.org, 
+	mchehab@kernel.org, bod@kernel.org, krzk+dt@kernel.org, 
+	abhinav.kumar@linux.dev, vikash.garodia@oss.qualcomm.com, 
+	dikshita.agarwal@oss.qualcomm.com, 
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, bjorn.andersson@oss.qualcomm.com, 
+	linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	loongarch@lists.linux.dev, Mingcong Bai <jeffbai@aosc.io>, 
-	Kexy Biscuit <kexybiscuit@aosc.io>
+	iommu@lists.linux.dev
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Aug 19, 2025 at 6:37=E2=80=AFAM Yao Zi <ziyao@disroot.org> wrote:
+On Fri, Oct 10, 2025 at 2:53=E2=80=AFPM Charan Teja Kalla
+<charan.kalla@oss.qualcomm.com> wrote:
 >
-> On Mon, Aug 18, 2025 at 12:58:27PM -0500, Rob Herring wrote:
-> > On Mon, Aug 11, 2025 at 04:37:48PM +0000, Yao Zi wrote:
-> > > The pincontroller integarted in Loongson 2K0300 is able to configure
-> > > function multiplexing for all the pins. It could also configure drive
-> > > strength on basis of functions, which means all pins set to the same
-> > > function share drive-strength setting. Drive-strength configuration
-> > > isn't available for all functions, either.
-> > >
-> > > This binding utilizes two levels of subnodes, where the outer represe=
-nts
-> > > function and the inner represents groups. Drive-strength is allowed i=
+>
+>
+> On 10/9/2025 11:55 PM, Dmitry Baryshkov wrote:
+> >>> I really don't like the idea of extending the #iommu-cells. The ARM S=
+MMU
+> >>> has only one cell, which is correct even for our platforms. The fact
+> >>> that we need to identify different IOMMU SIDs (and handle them in a
+> >>> differnt ways) is internal to the video device (and several other
+> >>> devices). There is nothing to be handled on the ARM SMMU side.
+> >> Huh? So if you prefer not to change anything, are you suggesting this =
+series
+> >> doesn't need to exist at all? Now I'm thoroughly confused...
+> > Hmm. We need changes, but I don't feel like adding the FUNCTION_ID to
+> > #iommu-cells is the best idea.
+> >
+> >> If you want to use SMR masks, then you absolutely need #iommu-cells =
+=3D 2,
+> >> because that is the SMMU binding for using SMR masks. It would definit=
+ely
+> > I'm sorry. Yes, we have #iommu-cells =3D <2>.
+> >
+> >> not be OK to have some magic property trying to smuggle
+> >> IOMMU-driver-specific data contrary to what the IOMMU node itself says=
+. As
+> >> for iommu-map, I don't see what would be objectionable about improving=
+ the
+> >> parsing to respect a real #iommu-cells value rather than hard-coding a=
 n
-> > > the outer since it's shared among all groups configured to the functi=
-on.
-> > >
-> > > Signed-off-by: Yao Zi <ziyao@disroot.org>
-> > > ---
-> > >  .../pinctrl/loongson,ls2k0300-pinctrl.yaml    | 92 +++++++++++++++++=
-++
-> > >  MAINTAINERS                                   |  6 ++
-> > >  2 files changed, 98 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/pinctrl/loongso=
-n,ls2k0300-pinctrl.yaml
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/pinctrl/loongson,ls2k0=
-300-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/loongson,ls2k0=
-300-pinctrl.yaml
-> > > new file mode 100644
-> > > index 000000000000..cbd74cb45342
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/pinctrl/loongson,ls2k0300-pin=
-ctrl.yaml
-> > > @@ -0,0 +1,92 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/pinctrl/loongson,ls2k0300-pinctrl=
-.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Loongson-2K0300 SoC Pinctrl Controller
-> > > +
-> > > +maintainers:
-> > > +  - Yao Zi <ziyao@disroot.org>
-> > > +
-> > > +allOf:
-> > > +  - $ref: pinctrl.yaml#
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    const: loongson,ls2k0300-pinctrl
-> > > +
-> > > +  reg:
-> > > +    items:
-> > > +      - description: Pin function-multiplexing configuration registe=
-rs
-> > > +      - description: Pin drive-strength configuration registers
-> > > +
-> > > +  reg-names:
-> > > +    items:
-> > > +      - const: mux
-> > > +      - const: drive
-> > > +
-> > > +patternProperties:
-> > > +  '^func-':
-> > > +    type: object
-> > > +
-> > > +    $ref: pincfg-node.yaml#
-> > > +
-> > > +    properties:
-> > > +      drive-strength:
-> > > +        description:
-> > > +          Maximum sink or source current as defined in pincfg-node.y=
-aml. Note
-> > > +          that drive strength could only be configured on function b=
-asis, i.e.,
-> > > +          all pins multiplexed to the same function share the same
-> > > +          configuration.
-> > > +
-> > > +          This could only be configured for several functions, inclu=
-ding jtag,
-> > > +          dvo, uart, gmac, sdio, spi, i2s, timer, usb and emmc.
-> > > +        enum: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+> >> assumption. Yes, we'd probably need to forbid entries with length > 1
+> >> targeting IOMMUs with #iommu-cells > 1, since the notion of a linear
+> > This will break e.g. PCIe on Qualcomm platforms:
 > >
-> > How do you know what pin this drive strength corresponds to without any
-> > other properties? Node names generally aren't important, so you
-> > shouldn't be using that.
->
-> Thanks for the hint... yes I'm matching the node name to identify
-> functions in this revision of driver. Could I introduce a "function"
-> property to the outer node for identification of the function?
-
-Yes, that should be defined somewhere.
-
-> > > +
-> > > +    additionalProperties: false
-> > > +
-> > > +    patternProperties:
-> > > +      '-pins$':
-> > > +        type: object
-> > > +        $ref: pinmux-node.yaml#
+> >                         iommu-map =3D <0x0   &apps_smmu 0x1400 0x1>,
+> >                                     <0x100 &apps_smmu 0x1401 0x1>;
 > >
-> > Generally the pin config and muxing are in 1 node if you can control
-> > both.
+> >
+> > But this seems unlogical anyway wrt. apps_smmu having #iommu-cells =3D
+> > <2>. It depends on ARM SMMU ignoring the second cell when it's not
+> > present.
+> >
+> >> relationship between the input ID and the output specifier falls apart=
+ when
+> >> the specifier is complex, but that seems simple enough to implement an=
+d
+> >> document (even if it's too fiddly to describe in the schema itself), a=
+nd
+> >> still certainly no worse than having another property that *is* just
+> >> iommu-map with implicit length =3D 1.
+> >>
+> >> And if you want individual StreamIDs for logical functions to be attac=
+hable
+> >> to distinct contexts then those functions absolutely must be visible t=
+o the
+> >> IOMMU layer and the SMMU driver as independent devices with their own =
+unique
+> >> properties, which means either they come that way from the DT as of_pl=
+atform
+> >> devices in the first place, or you implement a full bus_type abstracti=
+on
 >
-> On 2K0300, drive-strength could only be configured for each function,
-> not each pin, i.e. all pins configured to the same function share the
-> same drive-strength configuration.
+> I don't want to dilute what Dmitry is saying here, but the below is what
+> i can make out of Robin comments, please CMIW:
 >
-> Putting the driver-strength property in the outer node describes the
-> situation: a property in the outer node is function-specific and shared
-> between all groups (represented by inner nodes) configured to this
-> function.
+> iommu {
+>         #iommu-cells =3D <2>;
+> }
 >
-> Do you think it's better to move pin config (the driver-strength
-> property) to the inner node in this case? If so, should the new
-> "function" property for identifying functions reliably be in the inner
-> node or the outer node? Thanks for your explanation,
+> video {
+>    iommu =3D <iommu sid1 mask1>, <iommu sid2 mask2>;
+>    #iommu-map-cells =3D 2; /* does it look weird to define here, even if
+> it is SMMU property? */
 
-I don't know. I'll defer to Linus on this one who is more familiar
-with the variations of h/w out there.
+No, not weird. interrupt-map similarly requires #interrupt-cells. So
+it would be just #iommu-cells here.
+
+>    iommu-map =3D <0 smmu sid3 mask3>,
+>                <0 smmu sid4 mask4>;
+
+But you only have 1 cell, not 2 here. The #iommu-cells in this node
+would define the number of cells before 'smmu'. The #iommu-cells in
+the &smmu node is the number of cells after the &smmu phandle.
 
 Rob
 
