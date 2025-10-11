@@ -1,116 +1,92 @@
-Return-Path: <devicetree+bounces-225588-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225589-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 696E8BCF3DE
-	for <lists+devicetree@lfdr.de>; Sat, 11 Oct 2025 12:52:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 82551BCF3EA
+	for <lists+devicetree@lfdr.de>; Sat, 11 Oct 2025 12:53:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D2A003B00C1
-	for <lists+devicetree@lfdr.de>; Sat, 11 Oct 2025 10:52:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 40F8B406394
+	for <lists+devicetree@lfdr.de>; Sat, 11 Oct 2025 10:53:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38B8C25B312;
-	Sat, 11 Oct 2025 10:52:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8471725D218;
+	Sat, 11 Oct 2025 10:53:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LNbkR+2+"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="fve4MErz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f68.google.com (mail-ed1-f68.google.com [209.85.208.68])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C147D2517B9
-	for <devicetree@vger.kernel.org>; Sat, 11 Oct 2025 10:52:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.68
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E96323AE93
+	for <devicetree@vger.kernel.org>; Sat, 11 Oct 2025 10:53:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.161
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760179968; cv=none; b=UUY/yTF/h4kKDxt4jyVLYzu9oD3WxIHwMZZzkC1b4sp4B7XSIiITswcTLd1vzk+6wI2KzU02+dE3vXTg+1yJcHEiF0O1amDAnAwyOhRlJ9Pac5Keey2OGC25WoC4M+NTV3W3v6GMsttePAyaT0VMfUbbSWHds0BlV8JqKxt9erQ=
+	t=1760180031; cv=none; b=p9Zn8nODMqtgs4T7LI0FD8scIt8BeEBv3bqj26LI8KSE31s4RMAZKquJrm9Dyeu94o6Q4YzzX4VlCnGRb0lgdhhpyYP8/YqfmOhrj11E0VRBCs7ipj5pnXqW8U2M+FSrpZ8BZ5dHtQJbDu9WshqmBhjRA7k0qQG7bvVHQsQD31k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760179968; c=relaxed/simple;
-	bh=8OWEI2Ve7zxoRahlmtY7dTeIvWnJ28oqpstjc7JIgvI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=tQGyd9vgLk7oLl7cl76ekstCa8lHdV7v3LREPGRWWt81542VHk8S4iQ59CO/W073u0MtZWry15+PIt6VkzxVArkspDUFWDCagdxL8D3ml7aVYK5oJyOJD8fZSHlR4qz7jvIwoAKClGOLY3f8JPUhC2DDnSOmtOevi8LKWjTgU3o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LNbkR+2+; arc=none smtp.client-ip=209.85.208.68
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f68.google.com with SMTP id 4fb4d7f45d1cf-639fe77bb29so4255371a12.1
-        for <devicetree@vger.kernel.org>; Sat, 11 Oct 2025 03:52:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1760179961; x=1760784761; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=8OWEI2Ve7zxoRahlmtY7dTeIvWnJ28oqpstjc7JIgvI=;
-        b=LNbkR+2+EOwh+dWGVtLKonqwwWU35Q1VNDtkY8THOFaW2Cb8OiSrqaaVhXQmIAgNoo
-         GlWyk5qwq2VM7tjWJwWNuotmIAkFUfwN4YKIbVJTiQQUgtHIVIXXIQWpuur4n+LSymjg
-         LZ+bg3fZxKUyIt9EcvByg9d1PlKLYQ2+X54woo5idX6zxGO8MnHC108n2rRbaomzVcBr
-         IyLhHM7zutKcAmlZYldGah6Vj6UojasFV8/ji+myUIyyENQ+z501lfsh5FS474usuEbD
-         Fh+bSwMtvmNlkcR9R/VtvJPYHKUHh0iR8Xu3H0j9l586rZ/zIJ4TJn/mlXySHbdJhTKX
-         1GZg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760179961; x=1760784761;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=8OWEI2Ve7zxoRahlmtY7dTeIvWnJ28oqpstjc7JIgvI=;
-        b=G5aeSTUqJdW70DdVNKllQAoTi7EJQXXMd1dHF0WFvkwMmYWD+B+77B2zdqvRA4rqZy
-         l5XMo6wHi8suYV2a04oGhLIOtRzTkGxnHXjKpuOY/GZPs+GPP/utFepcloBKwUDdDUed
-         hbI7Rq638UHrcTj5TA3j1qI36Opk+dW39BsQfTh8DNPdHdFvRWN2pUl0w+4D0Gv+iNPL
-         JOVOpCjTtLK84oTGiAhoc5+8aW6PEpjMM9dQZDXbd1ZQ59htfonqkWAi9gh+bsHxorFy
-         sSucf723r2lueAx0Wma3itnQ9kcjQqKVB+l7gCPNUKPmXQyPFZY2i2aOT0o/zsD6B/Au
-         1udg==
-X-Forwarded-Encrypted: i=1; AJvYcCX9d6NGXHBIWsow64fJoDjZSbFR/0jSrX+bP/dlqHu/zkGie2qGJTY9JBNZzZgYiTsRBTV1rXnDOfcA@vger.kernel.org
-X-Gm-Message-State: AOJu0YxtE/cjsqulDccSJ1PO1hhTRv5YBAN6qnETm8x34BuWgR5zn5H5
-	cRvpPql3S3cxGsIAxagm31Vm3BSrncZxmk7+mNOF97Fq/Hc7FsQSO1dUSEEFlJYSl8CqTbruvuy
-	xsPAXwmtdqeyd7A8emmJa2nZogJ7HZWY=
-X-Gm-Gg: ASbGnctOgPZ/XF/bzqrSrUD6zST7bMjxtVdnHTHVqtBXpEhHNSTaY27fi30PWHVhdUf
-	RhlA33T3B1crpYbRUxHb5etPe1jAdfxLYCpyeUzntK8y4HEaV6puImHUCjcuXXyTbCn8z6XqM5a
-	+hei5PkKSJXp/GsT/i2vCVxPbyP6uKusM9IuafezzC/r9W3u4nUqvfMQSr0/m6OMZcYGqSNlvtZ
-	wCoF6tyiSwEzGoPIpPnRueZguj6AkQa16NsvJi88MqhejY=
-X-Google-Smtp-Source: AGHT+IF6QH0ZvGGeu7syJtGwnYam98YA7aQ4YBC4SL91FthZsg1FL7JABmIcldVJaVFWBD3dXjjVorqgK2JB9+CSoXA=
-X-Received: by 2002:a17:906:6a1f:b0:b41:660:13b8 with SMTP id
- a640c23a62f3a-b50aba9ebf7mr1660189466b.31.1760179960946; Sat, 11 Oct 2025
- 03:52:40 -0700 (PDT)
+	s=arc-20240116; t=1760180031; c=relaxed/simple;
+	bh=y1b7IAbiLV52Hl+0zyTvcYHhXq6w8X1vzm7DP4fLDT0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=DsrpUwveAUn+5JUlXf2AefAAkOOiHYiuz237XkF3UXlj8sggy4E8eB0qEah8GLhWSFN4SUF28QRo689GIRXxISEcLcZ/BK+DszBaKOS/MjR4oVzUKWYh1PhZjBRdaVdiu11Xm59WtvQNIXnNO+xDDzH5OijeRwXELR3GfLzZdcA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=fve4MErz; arc=none smtp.client-ip=80.241.56.161
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp202.mailbox.org (smtp202.mailbox.org [10.196.197.202])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4ckL7h05P2z9tCk;
+	Sat, 11 Oct 2025 12:53:36 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1760180016;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=cET2HC+7vrNrLy9D4JAd65Kczd4lwCNYCnv06jKL71s=;
+	b=fve4MErzyatUtq4fK/pZqeWJ0IROlfMPj0YUTLVH196Q2qB2w7aQS+J10BzZkfO23zwPsS
+	WgXM+f7G7O4P6JLDn8yqeJciIKYYrSTqM4nsTwSgd4EWDoT53twVL/eO8yDHR3m8fPOs6a
+	/iGLCp2/5y6MeJdtreqJGlzb+1BRw0e9KY9ak50T0heKE+vvMYz7YzP2TfgcSOMSeSA6Fu
+	2+GAZFBUaxfiPrOUcVT+rc2zsJu/DC3pnxAJ2ippOLF6Voz7bl+54irST5A3YSaWBxKmLM
+	qVljdkOdy8HrdAaS8bqSTm2JFsTBjnXiu6JLV8qyyO5ligdSjOkwIp5fbojbYA==
+Message-ID: <ba95487c-ada7-48a4-90b7-fd99a0278f51@mailbox.org>
+Date: Sat, 11 Oct 2025 12:53:29 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251008031737.7321-1-raskar.shree97@gmail.com>
- <20251008031737.7321-2-raskar.shree97@gmail.com> <9970e8f6-8b8c-4d9d-97ce-f89b948d6c97@kernel.org>
-In-Reply-To: <9970e8f6-8b8c-4d9d-97ce-f89b948d6c97@kernel.org>
-From: Shrikant <raskar.shree97@gmail.com>
-Date: Sat, 11 Oct 2025 16:22:29 +0530
-X-Gm-Features: AS18NWCeqmbWUT9hRBS5hR7tp38w-hhCaezVQ74ixvOjKVU1p9A72eXYN3wOTVU
-Message-ID: <CAHc1_P7PDOMqrBxvXx-fO3GkncapOsqkxVs9HyZdwReCQFn9jw@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: iio: max30100: Add pulse-width property
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: jic23@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org, matt@ranostay.sg, 
-	skhan@linuxfoundation.org, david.hunter.linux@gmail.com, 
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-kernel-mentees@lists.linux.dev
-Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [PATCH v3 2/2] arm64: dts: imx95: Describe Mali G310 GPU
+To: linux-arm-kernel@lists.infradead.org
+Cc: Boris Brezillon <boris.brezillon@collabora.com>,
+ Conor Dooley <conor+dt@kernel.org>, David Airlie <airlied@gmail.com>,
+ Fabio Estevam <festevam@gmail.com>, "Jiyu Yang (OSS)"
+ <jiyu.yang@oss.nxp.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Liviu Dudau <liviu.dudau@arm.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>, Sebastian Reichel <sre@kernel.org>,
+ Shawn Guo <shawnguo@kernel.org>, Simona Vetter <simona@ffwll.ch>,
+ Steven Price <steven.price@arm.com>, Thomas Zimmermann
+ <tzimmermann@suse.de>, Xianzhong Li <xianzhong.li@nxp.com>,
+ devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ imx@lists.linux.dev
+References: <20250925203938.169880-1-marek.vasut@mailbox.org>
+ <20250925203938.169880-2-marek.vasut@mailbox.org>
+Content-Language: en-US
+From: Marek Vasut <marek.vasut@mailbox.org>
+In-Reply-To: <20250925203938.169880-2-marek.vasut@mailbox.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-MBO-RS-ID: 308735b9ca49f66d617
+X-MBO-RS-META: 7yn9f7gznupwzzxdktpfnnjhbjkkresu
 
-> > Signed-off-by: Shrikant Raskar <raskar.shree97@gmail.com>
-> >
-> > Changes since v1:
-> > Add unit suffix.
-> > Drop redundant description.
-> >
-> > Link to v1:
-> > https://lore.kernel.org/all/20251004015623.7019-2-raskar.shree97@gmail.com/
->
-> This does not belong to commit msg but to changelog under ---.
->
-> See submitting patches.
->
-> You need to also start testing your patches BEFORE you send them.
->
-Hello Krzysztof ,
-Thanks for reviewing the patch and sharing your feedback.
-I have removed the changelog from the commit message and added under ---.
-I will test and will share the updated version of the patch shortly.
-
-Thanks for your guidance.
-Regards,
-Shrikant
+On 9/25/25 10:38 PM, Marek Vasut wrote:
+> The instance of the GPU populated in i.MX95 is the G310, describe this
+> GPU in the DT. Include dummy GPU voltage regulator and OPP tables.
+Is there still anything that should be changed with this patchset, or 
+can it be applied ?
 
