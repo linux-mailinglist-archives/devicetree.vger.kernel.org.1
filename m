@@ -1,281 +1,176 @@
-Return-Path: <devicetree+bounces-225612-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225613-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D64A4BCF679
-	for <lists+devicetree@lfdr.de>; Sat, 11 Oct 2025 16:11:40 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 69178BCF7FC
+	for <lists+devicetree@lfdr.de>; Sat, 11 Oct 2025 17:57:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D9318189AA61
-	for <lists+devicetree@lfdr.de>; Sat, 11 Oct 2025 14:12:03 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id F0E434E138F
+	for <lists+devicetree@lfdr.de>; Sat, 11 Oct 2025 15:57:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E14CC27AC54;
-	Sat, 11 Oct 2025 14:11:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40E5927A919;
+	Sat, 11 Oct 2025 15:56:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fy3010KF"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="MStmPpZ4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CECE277CA5
-	for <devicetree@vger.kernel.org>; Sat, 11 Oct 2025 14:11:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99E1D23D7E8
+	for <devicetree@vger.kernel.org>; Sat, 11 Oct 2025 15:56:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760191898; cv=none; b=f5l5f9uBQp6vsP0DOmfyDAsCaoZ76b5se+WzFkZfW4r3UBPjyughTYukesGIDw1cLXEwMz+DG8KBZCk09mJhMwFcbbcQdu/k3MyHGiG8yC4G7DeQDzdO3baNI8ICXoF1LJ3SgHaJ3m7AwWHPx8z0L+/oxQNGX+mrKmYWjGoCKzs=
+	t=1760198217; cv=none; b=gZLyCPTEJ77/4gMn9MMb1owEzZnI068hTMxuetDYBSFBylmPCTu8ttgalN+zG0Wup2MHATO0t0P5OFK/rPYQGIHTVSCSun8/TKy4zPqDuP6rNDFL3CcoZiy8Q0iQ0TFmFCmIPBAytz/qzsJOevQTGaZ+DXklbo0ub1zHj3Kp00g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760191898; c=relaxed/simple;
-	bh=8wvRyvMl7jbmibuSMl9finBX9MZefBMDP35JDHA7Rgo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=aYg9wMoXSjWoLFSKV0blKbR2tF8OQpTp6itU119Lhiwz5whB0KZXkEgd5NYT077zk+TfBys1iiclUSkGLZsbmofDFLS9C0XSC/zXnMpukOjFD3YcWkU9M7O+/GwrShUC8deY2ia7qkxqaYfwH0jDdl4iv3HspUNh20UHmTrpLZo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fy3010KF; arc=none smtp.client-ip=209.85.218.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-b3d196b7eeeso469063466b.0
-        for <devicetree@vger.kernel.org>; Sat, 11 Oct 2025 07:11:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1760191895; x=1760796695; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=fiqYX67a29+7/BrGLoUqx9B7lcR7QhRetducBf0jPIs=;
-        b=fy3010KFEbIIQPVKIE+dQ8ImUPrfV8Gsnbx1JCwulIr0Wn25ne8xu4FRV2qHVNOIcm
-         RLpiao1T/mrJShlehDWPu0+Fu/6fmpDbyplbi5GOqfCXu50OGNgCqQAtPncfBQvuzK5h
-         aHCMmJmFBSsD2xeB+e0SxdVOjGx/ATJVnpvrwENEIMP/DcrxbFS/Fegs1k/pnhJqvuSS
-         Y+cZ/kL7TVJnGsOIpJyLNWx7y2P2tHvDKUIj4pWZSnJcmdycdumOGVE3zLd0DUawo7aa
-         pHeVkod4zAyLx5wmQlpgAbT7isDhksG6hSL6Zcw7JKsLiLqDFJxywew4UbtvsATBkbsq
-         MrWQ==
+	s=arc-20240116; t=1760198217; c=relaxed/simple;
+	bh=kLZpOY3n1Z/K7XxdlSQiFTduuS6/5SC0CiM8PVE2Bv0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=NaUMZGNjrzymOkEd11/syp70+bR/7DM6EdxI3VhKPQFkmaa2qKHipGgeYEJmTuiv0pXpgbPdz3Boq/1fBssNkxGSf5mYNGXRblLshtJAop6bv3GoXC24IS+WTuMq2QJSQWgU+m23Dd9vE0II7/wMZ6FTPSZSu8JcyppwY078yjc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=MStmPpZ4; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59BFTfLU023463
+	for <devicetree@vger.kernel.org>; Sat, 11 Oct 2025 15:56:49 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=SgSlMXYO2I/LhunZZinSNKre
+	mdE+cTsZbKFJGYD8eac=; b=MStmPpZ4xur+UfapQ7+BbFWX4nOGFBIMNQWzt9jz
+	SJPBQT/MaZTIJghdLTHBznPz7a4lkgfzhPiy48NWxcNhmNYQT8IvgWb6VzjLEEIX
+	t+zv4BUVFX2i8Y+ugkhv0YgVFzO0ePnr5OCxBKny1G286ovvgeI4vFnadjKjAq6E
+	7UHjiFJDUQW9M99Sgpg7Mt50uwhfQIMGe6QoMTLI2PNuIUCXOD8pBxWyui67xaVa
+	NnWjmu93AWjihJF0UIOvC9jfJwuKT5KzpsJMkI3d7KinJys5w+ny6Dwuj7ojdgEp
+	YqPGJ7G6fG34YYrnEPUEeLApwyO4hJByFh4/SIb4ywK2cg==
+Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49qgh60s5p-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Sat, 11 Oct 2025 15:56:49 +0000 (GMT)
+Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-856c1aa079bso1714852285a.0
+        for <devicetree@vger.kernel.org>; Sat, 11 Oct 2025 08:56:49 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760191895; x=1760796695;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=fiqYX67a29+7/BrGLoUqx9B7lcR7QhRetducBf0jPIs=;
-        b=EiMni4BEsQAcdPvK8EjUcj6L5CIxLDmkgBXgcyE3b1RisjCktZSGMxyilENoVFeePE
-         NmWVFT04bvArxUp75Ad4X9gNa/fRE8zCPAreKKxQ7JfXJIWyx4sIekIwNU9vbiGv/lJZ
-         1eoRAAby0hPKulhqJxWg/RtjpmVb3VKpFTI9AUDp8U8Jzn3Oh2IbmAu+IBAO6Kw4SD/e
-         xjafLg/k8mpZG/VUm2I+2BdphWiVozzw9BhvvakxA+DAZUV/UwFpWGZ94IE3tgLLDHaq
-         Px+70TfDcNkZ9nDVnqLFN3iCANzMVCQR7MpZqPmRyqLb9E1ZNgVHYLDCtMhsInwGfRUu
-         TPdQ==
-X-Forwarded-Encrypted: i=1; AJvYcCX2OU8FNJWhV1r51z6XtQ0vi1tcwtiu/jMpfsSbXWdgza0ui2aVV4MV1mqF5m7NE62+bONGOp9QPW4W@vger.kernel.org
-X-Gm-Message-State: AOJu0YyfntqSgZzGIvmr7f3uP1XRjtserZPrVHivd+KEzscEMP5vnXyq
-	8stVhj2u022jxLupD5eSYdMr9UCNBn3htsmPl2Iw1FIJY23u29H18okk7fSLIGzHBW3J2Q7RtQp
-	jx8rtrDVRg6FCStp48qAWV4MC8c4NeUg=
-X-Gm-Gg: ASbGncv2SQV88xwoNxCIJQIsZbyprJpIfXAYAyhczy/TwDEE3qy/XFto3/1aylqeo/W
-	RhZuKcXJv+qQpjO2z6uP5NeWUQNzCDwt7rt3FyxFI0dOIaM4JRLk/BHyS3EAeYu3knlXLTmsX+Q
-	qQKtyDU61l53sgb9AhJkg09U6xiD0cIvSvpg7EqpRsTretb4xGAOcwKYfKtc4vWxawuN5MYnIxB
-	dOTG7pLHp2dJTph0Y1VHQJuGBcxERQDHFv0
-X-Google-Smtp-Source: AGHT+IF8pjchv/mLl7+6Bq4644/t2EFee/ZuJaS1F0ES+A/Y0PgYXqbc3bUen3DrJjpCgXHVWfuyFd4izNg1Swfe2yE=
-X-Received: by 2002:a17:906:6a1f:b0:b41:660:13b8 with SMTP id
- a640c23a62f3a-b50aba9ebf7mr1710587566b.31.1760191895287; Sat, 11 Oct 2025
- 07:11:35 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1760198207; x=1760803007;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=SgSlMXYO2I/LhunZZinSNKremdE+cTsZbKFJGYD8eac=;
+        b=nYwrcsiPudaKrUjjG3+QK9kQiUzQgADzJSvM9gkPSNeNP4BIx74RqWel2tyLMAHAc+
+         hOKKNqXqhtnjtk1L+9OveIXVepYh/2e6IghDpL6BjXANOPJjZrT4hO5AfJKWzHU15SwF
+         gObNjtOLwDRvMTaqTjYFLpMOCn0aS+Vj1iMMesF6JUp1PHy9s6yuAxqVhxmHlrIG/RTg
+         yfWo7+vvF2YzjlxBGJJFGyZzfdW0izCmrb9nHgy4EuCl/ZE9APvh9Id0JS+V5wtvzZae
+         ZlGu1XSPKS27M74+0ybJqpPWZGRT6eml6BvRVxqTCcd+cMCvqtX7q1xa+FBx0x9sHCcG
+         srtw==
+X-Forwarded-Encrypted: i=1; AJvYcCWziBdVa2Qe/2weVedD29YS9UDcY1PfGgGR+82RxiWpIqzn9R7Rc92J8zacXVRfkHY4S8GSHy36nnDF@vger.kernel.org
+X-Gm-Message-State: AOJu0YwbxsXfdSX/hBeetab2MMpzzzDxQzTcJLQceOT4bsGZfdo8IUIk
+	JAw8UfpBqNZKWrH3+PJ67UB0WTSnijQYJ5rk3oKTYL1lebk0el/xrkCegIaCSqXm4to/CGWWzQk
+	2dOwQvBIhcf+HQ/6goMXq4YpMHjizQt9FJvtGJoOMpt6X8LbLiGCABVcGlzqwZyCpmKZXwOo/
+X-Gm-Gg: ASbGnctWNPuvjk+wdTduiwnUceRDTXlTOz80Z7lbhc41Lentv+NztFl5qi/nI90SGlV
+	peiJt/Md8ooPIxKbV1EGq+tdH6qcl8vA7O3fqivsdA5u/lfri+ZR5BpnC+wl8KwNc4j/CQ7kzAM
+	TDtMBtQuUh99AGKESrKmrF6w6U9+RIOu64xSU1Q3tXYK5+ZnhB+8C8cClCGDLinDBSgq8INyLBz
+	g4uX1o1YwyaxbY3A1h8G21ta1lCWuKvuXo/fxpGnYZ5SqPr+dpIGFK2F2Q/z6xH9z5gr+Xqkkz0
+	9lPlcanwv8B+eUKF4Q9b37TZeoRpxejjxPn5Ts9YV87fTjjtfnrPRUKcIBxXavZKaFW8ecuSsZr
+	Xaz8xlTWx0KUTiDxmiXLiEm3kZ/1BUFmrNdfT0HKn6rYBRc8q+E9G
+X-Received: by 2002:a05:620a:7085:b0:858:9d54:e899 with SMTP id af79cd13be357-8820d18e381mr2693140585a.32.1760198207505;
+        Sat, 11 Oct 2025 08:56:47 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGF4e8oE9a8ZlZe6MjQVUbFU5Qz1czZ4lPLXspIfK2RqqFUrTfptrIWkI6x337JAbepIphv4Q==
+X-Received: by 2002:a05:620a:7085:b0:858:9d54:e899 with SMTP id af79cd13be357-8820d18e381mr2693137785a.32.1760198206913;
+        Sat, 11 Oct 2025 08:56:46 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5908856dfe0sm2024644e87.91.2025.10.11.08.56.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 11 Oct 2025 08:56:46 -0700 (PDT)
+Date: Sat, 11 Oct 2025 18:56:44 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Abel Vesa <abel.vesa@linaro.org>
+Cc: Pankaj Patil <pankaj.patil@oss.qualcomm.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
+Subject: Re: [PATCH 09/24] arm64: dts: qcom: glymur-crd: Add RPMH regulator
+ rails
+Message-ID: <jszx4ztfjbjdxgpslfqbpl6urnvnqqp2l32v2dcrez4j4ngdi4@y5nsco67e5gb>
+References: <20250925-v3_glymur_introduction-v1-0-24b601bbecc0@oss.qualcomm.com>
+ <20250925-v3_glymur_introduction-v1-9-24b601bbecc0@oss.qualcomm.com>
+ <sean5dkqku4norpl5llaps6wd3qjcxbb5kodjgvh4dshjkqvt2@jtlqhser6hsn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1760184859.git.akhilesh@ee.iitb.ac.in> <8c202e7ccd332b26217d529a7a73b7a3ef0726ea.1760184859.git.akhilesh@ee.iitb.ac.in>
-In-Reply-To: <8c202e7ccd332b26217d529a7a73b7a3ef0726ea.1760184859.git.akhilesh@ee.iitb.ac.in>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Sat, 11 Oct 2025 17:10:58 +0300
-X-Gm-Features: AS18NWCfBEuMNLlSQQ2bxdbOxJ7GeYu7t2Z-7mVT0pXpifK-ZyZxhMOzIQzkjfU
-Message-ID: <CAHp75VdGJfMALGOFvkOW=JZ0yHE2QbRSzNs2Xd42-Weec1GmQw@mail.gmail.com>
-Subject: Re: [PATCH 2/2] iio: pressure: adp810: Add driver for adp810 sensor
-To: Akhilesh Patil <akhilesh@ee.iitb.ac.in>
-Cc: jic23@kernel.org, dlechner@baylibre.com, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, nuno.sa@analog.com, andy@kernel.org, 
-	marcelo.schmitt1@gmail.com, vassilisamir@gmail.com, salah.triki@gmail.com, 
-	skhan@linuxfoundation.org, linux-iio@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	akhileshpatilvnit@gmail.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <sean5dkqku4norpl5llaps6wd3qjcxbb5kodjgvh4dshjkqvt2@jtlqhser6hsn>
+X-Authority-Analysis: v=2.4 cv=H/zWAuYi c=1 sm=1 tr=0 ts=68ea7e41 cx=c_pps
+ a=50t2pK5VMbmlHzFWWp8p/g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=x6icFKpwvdMA:10 a=gEfo2CItAAAA:8 a=EUspDBNiAAAA:8 a=7HhUDsceNTqC75YT8XgA:9
+ a=CjuIK1q_8ugA:10 a=IoWCM6iH3mJn3m4BftBB:22 a=sptkURWiP4Gy88Gu7hUp:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDExMDAyNiBTYWx0ZWRfX/nx/o0Q+3a0p
+ M2C6myDMgBG1a/pMhoyrvj2zbwwNGtx2zbxlBGb++dsPD8jccwD2BxbYKxP4BnnK66820tC5wTI
+ h4mJ+7KYvkCJC+v53i3atB70desNBEhyR1AoqV+ik+eQGAVWfnhov1fl4txnY8ZRryZe4wo5tpw
+ dXnoWJoxXZ8Hjx8Y848lXrzrJy8gDHKAtYTPw+CrX5ykCGHMeV7jcTRFQoFYcvMxudv3s9HALpf
+ +uzqrKYIYdMGO6AEAUXhed+t8UlkeHkP2tXoFbSQWPfIo09q9gR3tDCdF4AV8t1A2kHOYr/Vji2
+ 0/Lbp6+gQf4Kg6A+7Tgyrf25COsBNN7GrzVRcGQGeLY92OqoRsr+Xqi720xXpDjlxOv9KVEYxut
+ 3DUGDaJ8Z4ATH5710SPQGYyYkmxIhA==
+X-Proofpoint-ORIG-GUID: YVpUyaC1MArVRJyhqIHHdsRJk6gevhLW
+X-Proofpoint-GUID: YVpUyaC1MArVRJyhqIHHdsRJk6gevhLW
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-10-11_03,2025-10-06_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 adultscore=0 priorityscore=1501 bulkscore=0 malwarescore=0
+ clxscore=1015 impostorscore=0 spamscore=0 lowpriorityscore=0 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2510020000 definitions=main-2510110026
 
-On Sat, Oct 11, 2025 at 3:25=E2=80=AFPM Akhilesh Patil <akhilesh@ee.iitb.ac=
-.in> wrote:
->
-> Add driver for Aosong adp810 differential pressure and
-> temperature sensor. This sensor provides I2C interface for
+On Sat, Oct 11, 2025 at 02:31:27PM +0300, Abel Vesa wrote:
+> On 25-09-25 12:02:17, Pankaj Patil wrote:
+> > From: Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
+> > 
+> > Add RPMH regulator rails for Glymur CRD.
+> > 
+> > Signed-off-by: Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
+> > Signed-off-by: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
+> > ---
+> >  arch/arm64/boot/dts/qcom/glymur-crd.dts | 332 ++++++++++++++++++++++++++++++++
+> >  1 file changed, 332 insertions(+)
+> > 
+> > diff --git a/arch/arm64/boot/dts/qcom/glymur-crd.dts b/arch/arm64/boot/dts/qcom/glymur-crd.dts
+> > index 4561c0b87b017cba0a1db8814123a070b37fd434..e89b81dcb4f47b78307fa3ab6831657cf6491c89 100644
+> > --- a/arch/arm64/boot/dts/qcom/glymur-crd.dts
+> > +++ b/arch/arm64/boot/dts/qcom/glymur-crd.dts
+> > @@ -6,6 +6,7 @@
+> >  /dts-v1/;
+> >  
+> >  #include "glymur.dtsi"
+> > +#include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+> >  
+> >  / {
+> >  	model = "Qualcomm Technologies, Inc. Glymur CRD";
+> > @@ -66,3 +67,334 @@ chosen {
+> >  &tlmm {
+> >  	gpio-reserved-ranges = <4 4>, <10 2>, <44 4>; /*Security SPI (TPM)*/
+> >  };
+> > +
+> > +&apps_rsc {
+> > +
+> > +	vph_pwr: vph-pwr-regulator {
+> 
+> dtbs_check gives this:
+> 
+> arch/arm64/boot/dts/qcom/glymur-crd.dtb: rsc@18900000 (qcom,rpmh-rsc): 'vph-pwr-regulator' does not match any of the regexes: '^pinctrl-[0-9]+$', '^regulators(-[0-9])?$'
+>         from schema $id: http://devicetree.org/schemas/soc/qcom/qcom,rpmh-rsc.yaml#
+> 
+> so node name needs to be regulator-vph-pwr instead.
 
-an I=C2=B2C
+Actually not just that. VPH-PWR is not a part of the apps-rsc (why is it
+even there??). It should be a part of the board DTS.
 
-> reading data. Calculate CRC of the data received using standard
-> crc8 library to verify data integrity.
->
-> Tested on TI am62x sk board with sensor connected at i2c-2
-
-Missing period at the end.
-
-...
-
-> +AOSONG ADP810 DIFFERENTIAL PRESSURE SENSOR DRIVER
-> +M:     Akhilesh Patil <akhilesh@ee.iitb.ac.in>
-> +L:     linux-iio@vger.kernel.org
-> +S:     Maintained
-> +F:     Documentation/devicetree/bindings/iio/pressure/aosong,adp810.yaml
-> +F:     drivers/iio/pressure/adp810.c
-
-Some tools will report an orphaned yaml file if you apply patch 1
-without patch 2.
-
-...
-
-> +config ADP810
-> +       tristate "Aosong adp810 differential pressure and temperature sen=
-sor"
-> +       depends on I2C
-> +       select CRC8
-> +       help
-> +         Say yes here to build adp810 differential pressure and temperat=
-ure
-> +         sensor driver. ADP810 can measure pressure range up to 500Pa.
-> +         It supports I2C interface for data communication.
-
-Same as in the commit message.
-
-> +         To compile this driver as a module, choose M here: the module w=
-ill
-> +         be called adp810
-
-...
-
->  obj-$(CONFIG_IIO_ST_PRESS_I2C) +=3D st_pressure_i2c.o
->  obj-$(CONFIG_IIO_ST_PRESS_SPI) +=3D st_pressure_spi.o
-> +obj-$(CONFIG_ADP810) +=3D adp810.o
-
-Is Makefile ordered in terms of files and/or configuration options?
-
-
-> +#include <linux/module.h>
-> +#include <linux/delay.h>
-> +#include <linux/i2c.h>
-> +#include <linux/iio/iio.h>
-> +#include <linux/iio/sysfs.h>
-> +#include <linux/crc8.h>
-
-Please,
-1) keep it alphabetically ordered;
-2) follow the IWYU (Include What You Use) principle.
-
-...
-
-> +/* Time taken in ms by sensor to do measurements after triggering.
-
-/*
- * Wrong multi-line comment format. You
- * may use this as a reference.
- */
-
-> + * As per datahseet, 10ms is sufficient but we define 30 for better marg=
-in
-
-datasheet
-
-Please, respect grammar and punctuation, i.e. again as in the commit
-message you made a mistake.
-
-...
-
-> +#define ADP810_MEASURE_LATENCY         30
-
-What's the unit of this value?
-
-...
-
-This needs a comment to explain the choice of this. E.g., reference to
-the Datasheet section / chapter.
-
-> +#define ADP810_CRC8_POLYNOMIAL         0x31
-
-...
-
-> +struct adp810_read_buf {
-> +       u8 dp_msb;
-> +       u8 dp_lsb;
-> +       u8 dp_crc;
-> +       u8 tmp_msb;
-> +       u8 tmp_lsb;
-> +       u8 tmp_crc;
-> +       u8 sf_msb;
-> +       u8 sf_lsb;
-> +       u8 sf_crc;
-> +} __packed;
-
-Why __packed?
-
-...
-
-> +struct adp810_data {
-> +       struct i2c_client *client;
-> +       /* Use lock to synchronize access to device during read sequence =
-*/
-> +       struct mutex lock;
-> +};
-
-Is there a deliberate choice to not use regmap I=C2=B2C APIs?
-
-...
-
-> +       /* Wait for sensor to aquire data */
-
-Spell-check. Also the comment is semi-useless, add the reference to
-the datasheet or even cite a part of it to explain this.
-
-> +       msleep(ADP810_MEASURE_LATENCY);
-
-...
-
-> +       mutex_lock(&data->lock);
-> +       ret =3D adp810_measure(data, &buf);
-> +       mutex_unlock(&data->lock);
-> +
-> +       if (ret) {
-> +               dev_err(&indio_dev->dev, "Failed to read from device\n");
-> +               return ret;
-> +       }
-
-Instead, include cleanup,h and use scoped_guard() (and possible
-guard()() in some other places, but first answer why not regmap).
-
-...
-
-> +       case IIO_CHAN_INFO_RAW:
-> +               switch (chan->type) {
-> +               case IIO_PRESSURE:
-> +                       *val =3D buf.dp_msb << 8 | buf.dp_lsb;
-
-Those have to be properly defined to begin with, i.e. __be16. With
-that done, use existing conversion helpers from asm/byteorder.h.
-
-> +                       return IIO_VAL_INT;
-> +               case IIO_TEMP:
-> +                       *val =3D buf.tmp_msb << 8 | buf.tmp_lsb;
-
-Ditto and so on...
-
-> +                       return IIO_VAL_INT;
-> +               default:
-> +                       return -EINVAL;
-> +               }
-
-...
-
-> +       default:
-> +               return -EINVAL;
-> +       }
-> +
-> +       return -EINVAL;
-
-Why is dead code required?
-
-...
-
-> +       mutex_init(&data->lock);
-
-devm
-
---=20
-With Best Regards,
-Andy Shevchenko
+-- 
+With best wishes
+Dmitry
 
