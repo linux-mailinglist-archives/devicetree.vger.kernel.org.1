@@ -1,154 +1,123 @@
-Return-Path: <devicetree+bounces-225581-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225582-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71E17BCF352
-	for <lists+devicetree@lfdr.de>; Sat, 11 Oct 2025 11:52:55 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id A6CD7BCF37A
+	for <lists+devicetree@lfdr.de>; Sat, 11 Oct 2025 12:20:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 4EB9A4E1853
-	for <lists+devicetree@lfdr.de>; Sat, 11 Oct 2025 09:52:54 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 4B46F4E233A
+	for <lists+devicetree@lfdr.de>; Sat, 11 Oct 2025 10:20:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6485C23E342;
-	Sat, 11 Oct 2025 09:52:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C6DC2571B8;
+	Sat, 11 Oct 2025 10:20:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HKIp3WXP"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VebE0nXN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28D1723B62C;
-	Sat, 11 Oct 2025 09:52:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88530142E83
+	for <devicetree@vger.kernel.org>; Sat, 11 Oct 2025 10:20:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760176371; cv=none; b=XtbTuOG12BssWPGSj5Yc0p3N17emZf2jKhcVgGTrrH3v9nop3ajYu+4CT71U5tiIjOh4RnjTVvqcBFr61oEqFlZBGE3oTfYanen7TGe6SCI0h5aBHed5PXZxA8kFR9xm8C9Qgvombvctwucofxuf7wcNE5aaqU8BzJ+uLkWxlfo=
+	t=1760178023; cv=none; b=o2LMRlzqpD7za/ZGmaIHi1Rmv07LwWQwPaODZ371iySzM/dthWZWgD+6qFGwH3cfgHHjPRytYCtiyHAAimWuVX79ZzQvUMUTN8IQuKyqqvjTG4CN32qOSmmwXryc9okzXm8LgVxORAdfhYuh10PxVRS+OFc85Al9tIc8nU5OQJI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760176371; c=relaxed/simple;
-	bh=jc9YZsle3WLAtfJzis9aeE92ql/1xDWBDtwmj5gNJAA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fig4F6yQuHU5qOTW3pUXvu4SZUFZCZpwfVqedPbA183eQ7QcSUfLrAyRlHjJ6qnq4Wm7lR3Navg4d0mMuCpbwuTrv97B5eA463UVCOw70Umpcwbd5Dc4YMJT9g+JxsMpuu5OZALjnQ2q02oDK4x3V8fAN2wiiWPxGaV/JO+toLU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HKIp3WXP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A29EEC4CEF8;
-	Sat, 11 Oct 2025 09:52:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760176370;
-	bh=jc9YZsle3WLAtfJzis9aeE92ql/1xDWBDtwmj5gNJAA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=HKIp3WXPyfB84fp5zyGifttUxZkr0IRSM8nxihrtsvt7E6XHkmbbAnNWInWsXujB5
-	 qEjcRPqrWHlTRdfwShTF9rntiupGS24f4CZPNQqT3U9OqDxsZch6q6dYr9Wy+XICyt
-	 QVa2XvBCsQwYGtHpwTpvyFTr2d4dMZ5VBQ6l4yfUkirsva0UBaOg9TRE5UNdCDx7ua
-	 Dqq6nYx46JrPIF2RBClntQI1JNg0e5R7RWuKKiPWOIVrM7JdaFYuWcWGx2Mkwzs5Jt
-	 dMQA9xuobUFlt7sfiatKA8LtVFFAQ9+Y9zOmfn8IJ4QXK/q5S3BpWt0SbWZYYWo/J+
-	 NYexfH06tu+xg==
-Message-ID: <0beae4dd-2feb-4891-b7b0-0f63db8f5615@kernel.org>
-Date: Sat, 11 Oct 2025 11:52:43 +0200
+	s=arc-20240116; t=1760178023; c=relaxed/simple;
+	bh=kH6m3q9Go+WlNJw/7g8dG1h/aaEJpSAxzZprEUvs9Nc=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=qmvS7FishRgMD9j7bz529NjfHkCONkLW2BwahtRx5AwLy5gF2FJmT6G3aNlHX4CABpm5cA2O7ed/Jhq4EwdIw087wjMF+TBZkbMzPk60nQuTWWNUC8m0++5fOTm++tSlkdtPYhFpS+htBUlARL1BLaMm5vZp29qHhgUtVAlk8OI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VebE0nXN; arc=none smtp.client-ip=209.85.218.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-b3c2c748bc8so390123766b.2
+        for <devicetree@vger.kernel.org>; Sat, 11 Oct 2025 03:20:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1760178017; x=1760782817; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=kH6m3q9Go+WlNJw/7g8dG1h/aaEJpSAxzZprEUvs9Nc=;
+        b=VebE0nXNeIr2YNLJhPwkR7q+thpqkMZoXp6Cjwa451Zw5JlqfiLSuEQ/ltSVXPMp+O
+         Ac10saPyWFjLjiBF9Cq9f0Q1cutGOEhnND+PLDeYRIKRhtH3X/PiaADd9pIxLwIw5Vnt
+         6v+o5KwjmyDw9bzfSHzYnUsyP4n3OrMCqDicYj/wTpp7loC4MEiPlr1W5V72mOrYbBHz
+         lZ9QzfDcLqvRCbz+IGgKYsSt6RwiEntKR1DtQ5z8StmF/ogXIYJvS/UrL5F1BeY8wr1T
+         uv79TCQW5rbAswOmdnyho5Cm55FIrS1xoBl3WCaPW5SEq2xIP5RDaW/HtkxKPOe0CIl0
+         IaBA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1760178017; x=1760782817;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=kH6m3q9Go+WlNJw/7g8dG1h/aaEJpSAxzZprEUvs9Nc=;
+        b=i6ErREAOZJ2U85jUCCGSUdGiPzF5xGRr3VI1Zy5YGQxVZuy2F16TwZ1s+OOn8IQoAC
+         as0VFMEQ9pQDdmR+uNTTDAS/b7fK4iDYKkOIOnn78epCc2z3llr2jl1rrDIVSuK1QzV4
+         txNEoty6K8XecI64K4SDaAc2BMioWgrw9G20/AAbFM0Rbtrzq3goLmdEpAwUFsne7bn7
+         O+k6oZT0L7St3Ra1k6ql1SoMRh6s/oB2o4YAuKU1BqOpBloBu7j0Px46ccGgr67rYbhL
+         DISyw/I/YD/3kdt/53p7IrwJq98F75egkT1jq6Ux8ebBVPmftgbTkX54AZJkbnR9Z2th
+         HpvQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWLlrCsfUltRRrusStt6dvvJ3HeqoDjYr646U9mRHI5RRGbBjjWWofRjHObHP4WrvElsW2S4kTco9ba@vger.kernel.org
+X-Gm-Message-State: AOJu0YzRd4yv/EEgxtQCB3fdS4PJsGIK8paC2JJxwUcltaMzM0Ac5O84
+	33Xv4DAGtY6Po0XYNarMck+JKciw7Ku8TU1bMNiV8akd/KRcyxjTJvaO
+X-Gm-Gg: ASbGncv4Jmc8bNEFvAdWdSW65BgAQRtxzthdoVriq/MoxdUuM/zUNN5fefbhexUqOMV
+	3V/XL9YbMb/NDwBKTipbpj94T6D48mWY25eJyb8taP3i8xj+DfuEKoTVBKWEimTwXJ1axR/4nxk
+	obT0aPias1/UAOBJAYP5KzVok2XHuTdYcLVZBi6XtbDdOoBbSbDplNBmQxMy24Zq1MF8DFnM12x
+	OkMRRW63LbT+QDQFLfbtjRB73W05mTZxxgDy91BY74GsEF8QUeX3N7mt8BBPDt95f3iURHbXAZe
+	gO8vYNme6qv2nlSdEjuEj6ez4LEowhO/hH9OkQ1LseKw2jnFO/+jEt1HQANhIIWQ1ARjYPqinwF
+	DS2wNv7WXT66vyaFoISs7+jZtFcsEvgy/+FNokoYkxIq+paCdi45Hd7kg/FWNT18=
+X-Google-Smtp-Source: AGHT+IHolFmrbsPL01Gij9mDgcL6wtIFQuNZ62CxZG1hurbWV+WEoYmcgYDEtNQjTwVOdmXwqzHL9A==
+X-Received: by 2002:a17:907:6d25:b0:b40:52:19c2 with SMTP id a640c23a62f3a-b50aaa9c937mr1500673066b.20.1760178016637;
+        Sat, 11 Oct 2025 03:20:16 -0700 (PDT)
+Received: from jernej-laptop.localnet ([188.159.248.16])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b55d8c12a8esm454077866b.42.2025.10.11.03.20.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 11 Oct 2025 03:20:16 -0700 (PDT)
+From: Jernej =?UTF-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To: Miquel Raynal <miquel.raynal@bootlin.com>,
+ Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+ Samuel Holland <samuel@sholland.org>,
+ Richard Genoud <richard.genoud@bootlin.com>
+Cc: Wentao Liang <vulab@iscas.ac.cn>,
+ Uwe =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?= <u.kleine-koenig@baylibre.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+ linux-kernel@vger.kernel.org, Richard Genoud <richard.genoud@bootlin.com>
+Subject:
+ Re: [PATCH 01/15] mtd: rawnand: sunxi: Remove superfluous register readings
+Date: Sat, 11 Oct 2025 12:15:03 +0200
+Message-ID: <12756386.O9o76ZdvQC@jernej-laptop>
+In-Reply-To: <20251010084042.341224-2-richard.genoud@bootlin.com>
+References:
+ <20251010084042.341224-1-richard.genoud@bootlin.com>
+ <20251010084042.341224-2-richard.genoud@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC 0/6] Battery temperature ADC plumbing on Qualcomm
- platforms
-To: David Lechner <dlechner@baylibre.com>,
- Luca Weiss <luca.weiss@fairphone.com>, Jonathan Cameron <jic23@kernel.org>,
- =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
- Andy Shevchenko <andy@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
- Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>,
- Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Laxman Dewangan <ldewangan@nvidia.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Jens Reidel <adrian@mainlining.org>,
- Casey Connolly <casey.connolly@linaro.org>
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, linux-iio@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20251010-bat-temp-adc-v1-0-d51ec895dac6@fairphone.com>
- <c770c799-4318-4c40-bd62-3cefbbbef731@baylibre.com>
-From: Hans de Goede <hansg@kernel.org>
-Content-Language: en-US, nl
-In-Reply-To: <c770c799-4318-4c40-bd62-3cefbbbef731@baylibre.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 
-Hi All,
+Dne petek, 10. oktober 2025 ob 10:40:28 Srednjeevropski poletni =C4=8Das je=
+ Richard Genoud napisal(a):
+> The register NFC_REG_ECC_CTL was read twice and the result was not used,
+> then a third time with a mask applied.
+> Removing those calls didn't change the behavior.
+>=20
+> Tested on H616 SoC, scrambling enabled.
+>=20
+> Signed-off-by: Richard Genoud <richard.genoud@bootlin.com>
 
-Luca thank you for Cc-ing me.
+Reviewed-by: Jernej Skrabec <jernej.skrabec@gmail.com>
 
-On 10-Oct-25 10:56 PM, David Lechner wrote:
-> On 10/10/25 6:21 AM, Luca Weiss wrote:
->> This is an RFC which implements a potential solution to get battery
->> temperature readings working on for example smartphones with Qualcomm
->> SoCs.
->>
-> 
-> ...
-> 
->> 3. Add temperature-lookup-table as property to simple-battery
->>
->> Since the NTC is a part of the battery pack, adding a
->> temperature-lookup-table property to simple-battery would make sense
->> instead of having this lookup table be standalone in the
->> generic-adc-thermal node. However being able to re-use the existing code
->> in generic-adc-thermal lead me to the current proposal.
->>
-> Did you consider creating a specific compatible string for the battery pack?
-> Then the battery node could have the io-channels property for the ADC
-> connected to the temperature sensor. Then a specific battery driver could
-> handle the conversion as needed rather than filling the devicetree with
-> conversion tables.
-
-That will require a driver update, filling the driver (and thus memory)
-with conversion tables each time a new battery model (one model phone
-can have multiple battery revisions) comes out.
-
-That seems undesirable. To me these conversion tables are very much
-something which belongs in DT rather then being hardcoded in
-the driver.
-
-Also contrast this to ACPI where there actually is a mechanism defined
-for thermal lookup tables and there all these things typically just
-work when the ACPI tables are written properly. IMHO we want to move
-more towards this direction where things just work without requiring
-kernel code changes for every new model.
-
-And we already have a mechanism in DT to map an ADC voltage to
-a temperature in the generic-adc-thermal driver.
-
-So all that is left to do really is to come up with a clean way
-to export the temperature from the generic-adc-thermal driver
-to the generic-adc-battery driver.
-
-> The simple-battery bindings are already far from simple! So I would not
-> be inclined to add more to it.
-
-I think we all agree on this and we also don't want to duplicate
-the generic-adc-thermal bindings + code implementing that functionality.
-
-IMHO not wanting to duplicate the bindings + functionality applies to
-both: a) directly exporting an IIO temp channel from the ADC driver and
-b) adding volt -> temp mapping functionality to the simple-battery bindings.
-
-So that basically leaves us with coming up with a way for
-the generic-adc-battery code to consume the temperature coming out of
-the generic-adc-thermal code and there are 2 ways to do this:
-
-1. Modify the generic-adc-thermal driver to export an IIO channel
-2. Modify the thermal-zone core to allow referencing to a thermal-zone
-   with a phandle *and* modify generic-adc-battery to be able to
-   optionally get the temperature from a thermal-zone instead of
-   from an IIO-channel
-
-Of these two options 1. clear is the most KISS option. SO I agree with
-Luca that 1. as implemented in this series is the best way forward.
-
-Regards,
-
-Hans
+Best regards,
+Jernej
 
 
 
