@@ -1,207 +1,158 @@
-Return-Path: <devicetree+bounces-225584-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225585-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57753BCF3A7
-	for <lists+devicetree@lfdr.de>; Sat, 11 Oct 2025 12:34:14 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D9AEBCF3B3
+	for <lists+devicetree@lfdr.de>; Sat, 11 Oct 2025 12:38:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6DF6719A0DCF
-	for <lists+devicetree@lfdr.de>; Sat, 11 Oct 2025 10:34:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3467B401505
+	for <lists+devicetree@lfdr.de>; Sat, 11 Oct 2025 10:38:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24342223DFD;
-	Sat, 11 Oct 2025 10:34:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4390925C80E;
+	Sat, 11 Oct 2025 10:38:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="H23lmt7v"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YiMyerF+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
+Received: from mail-ej1-f66.google.com (mail-ej1-f66.google.com [209.85.218.66])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3690825A2B4
-	for <devicetree@vger.kernel.org>; Sat, 11 Oct 2025 10:34:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B49B3255F52
+	for <devicetree@vger.kernel.org>; Sat, 11 Oct 2025 10:38:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.66
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760178848; cv=none; b=EjVpxhINXNGOAWjFzakTBz77r/I+K2JrHD/zM0ftQg1UDI87LBrS7J+jNAmrXp35ny6huX5GFtbXh7ISiMSEsRAi5aSmo8MI5nUZScZpqivO31LSKqHv46vTldmok5tzdvdD8hw+ra0EhfxgvELHy+bY7qEQ+ysko8bY2OQvKHA=
+	t=1760179113; cv=none; b=UVeP6iu2fhgvi4w2gbHaw6Fq3cy7M5uj7xLHWFg8us6N/eh4L/5tmyf0uwfWpXdgxYzNnWNU2B6aaFpvJKF8R0hDZZ+hKjt36jgA2kkQvKh1DSqPHPpIYI1Ci5VRDjvJdebf0AUs+mXZPCcBmP0QyOQMXA8nLmrl2HF8iy9C19Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760178848; c=relaxed/simple;
-	bh=/RHuJN8mBmn1rPV1anCMzCvuwIBWUCVFFlaXjDz3/8Y=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=HvF98hdvTkdMfI5FdInx8HiuG7l/UGfhZpeOLkW/rhqGM+8j93X2CTwZhl+nRpc0GB5Ne2gQ3AcLmGDbOJ6cjTvKmbItDV0Rin8BQWZO1wo+3gpVHYWCdZpl4PGFSBxIp0/BGxmTaZnL+uariZSfmF99QVgGpUevlwpBKHx9Q2c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=H23lmt7v; arc=none smtp.client-ip=209.85.218.45
+	s=arc-20240116; t=1760179113; c=relaxed/simple;
+	bh=ZM6gK8/ptNL07x+/PAG3f+iZfMJySGfBm2OlXDFCx6k=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=CdlQBIDdCfqk20TBjkVm2T5r4pBpA9punRNe+vFIWKcbBl6/CSk51pfXljWs3JN4kBrB81b5GhagJiUJQVxN3l2ldVhzMmd7CPjgmlezQ423Xb6HOfHaRalGjlPhrBSC8/7r7LKCIn2CZ1Vx0dsL9JoIuEp3i2GgMr+q8J3/4Hk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YiMyerF+; arc=none smtp.client-ip=209.85.218.66
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-b4c89df6145so464675566b.3
-        for <devicetree@vger.kernel.org>; Sat, 11 Oct 2025 03:34:01 -0700 (PDT)
+Received: by mail-ej1-f66.google.com with SMTP id a640c23a62f3a-afcb78ead12so449334366b.1
+        for <devicetree@vger.kernel.org>; Sat, 11 Oct 2025 03:38:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1760178840; x=1760783640; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1760179104; x=1760783904; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=HYAPdYV4D3yX5RzlvX7A+6gcHuPHfoEYTyIdk9OJfZs=;
-        b=H23lmt7vPaMBrmmhxmfu7aO3Pf6xce8xW0JdzLYcsp1FkYYOQdFUe9PaVJFnqxhtgO
-         0UzcLp0KBBlXKsHXsAzDHQh500IapVlOeHH/XcQliJPkduuefld2T2OOAj38frn7sWaQ
-         TgihW9plxBbQxKXJCqK/NM4cmIWmcyiTVX8RbdvKpiWWTSox0enTpJGjAfz1n7TZN5eq
-         7TIJVybPpjgTpSbNxezxox07LqA9rM4SClRDCbJsE0lo+XIcJbKsjlPT47BZB5cTymUv
-         VXsO1XaQ7YDwqUaxaFyxFk+U20gGjEdeqkxXK8xokfoRGJl5G25JwgOQFFCD7hZ0tHfG
-         JGCA==
+        bh=Xny2m3uhM/SxXH2HjS7Fl5XTjSKvXRs2Du0+aNtpjtY=;
+        b=YiMyerF+Ci5i4X30bpQRx6Ef7bP9jro3kTE1spZMla6EroksOqX2stYaQKh95Dj1pH
+         TPkEvDNiCP9uJoMxsDStJuCa3KDg29cogpL80yYZtBwRQ3cpxnKpfJgwQQ0kDuWLjoxn
+         NcRCxSSGodwQpoyKu1Zopi/gtpHSouaUUAfTbE8AhRwMjAMzRx6NROWU1zY0/7kLjXJk
+         TxB4Bw4dawK6lO5XVzDAEBbCP6hjt0XNv7znZxDic94Jg5eMWOHq/eF6j9JCj8JTpbJk
+         iAcAog+GhRzpn08Nv0MaLXvDP614G256LtpWWKHP67hWGk2mf9ML/iCrRhsEJ0W1h8er
+         daGQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760178840; x=1760783640;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1760179104; x=1760783904;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=HYAPdYV4D3yX5RzlvX7A+6gcHuPHfoEYTyIdk9OJfZs=;
-        b=GP21lrFzMzPrSSi6yz2tQCdYGGHd/ykcgPkxRD+exBAXL48PjZkqRb7c5pyNbDlGs/
-         SAfIDDcPrFzzA4ue4QUTekZycRRaRhBRFbG+vqGONZC/ItfFuew6fNZNj/9vEMV+Zs1f
-         1ne+MWyRlM4FSljYpNIwKAcABOAR/0XUwEe6+Ivye7mr2xELl8xGTGVnxTZd1fR+P6wy
-         3cIdz4WC5rQ07WwpjqHOtyiTGmv8QulhPwVshFX1BbmRl9dxEBU02BuPL37v7QVs+y5F
-         uHMq6mVBFwsRa1jloMpgpFHOMfeKM7bmFjjK/nRc2yg5L6ta4zN0QZyki0VO2u3q5XLi
-         5tJQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVQajlxQBYWlZZ2bwWEzOsfc+o0QIYI8iOX7ZdJ7LTpIXw7B72Zl9ojGxQB1INCwQRSoGn0cfz+3WZh@vger.kernel.org
-X-Gm-Message-State: AOJu0YwqWA42P5ZQycraWjE/U1vqEEqk+84Fdny54J7+1ENopoxJjxlP
-	r3V4uQ6AMOPDsJf6wuamrQXfm5M0q6UAurQ1lrzKd9hSaxgqFRugytmF
-X-Gm-Gg: ASbGncsF3ifcqzyF3dGJi+q3A7lvq42Zc2Vmi7Dy0RKDoBIt36OJunUV3mbkuONwb63
-	rgQQ/Eo/+Q/kvGWqdzTk14sZ7QhYK0Sr/04TNl6hv8FBHbwaXnw5Pb13f4dXYM5PyuXF2eKhwxU
-	a4gjQSnBH5EVRtLZ64geEzDkDoO6juq7eKkLXzmczSbl607tlYbh0MEoAee1Z8UsQWvbcOvuzxl
-	eSoMu8ujzwc+gHbkeLr2Rg5TOnsg8e/xtyLmyd5EJb3MDAt7ggYtnSg6cvVM41+zKs0nVcPWSdn
-	I6SSKa6pMMer1LcgvSJNsKJxU38tNBIORtI5IIq2eHmiGOS97TO0/BVTQDZFmRGEAAM9iWNnZNC
-	/1HrEcCttHQh6YklRNc5YYMVBOwBr6+aqgsmjXZoUo+7Zshz6t7KQNDeXpnbDbf3WCjSNX7oJGQ
-	==
-X-Google-Smtp-Source: AGHT+IFFycSQY4Q0kx0MQ3fB8e1/4xrhlffbTRZSX2gxi2804bwlqcuj20iB5WX1bDTyi44c3l+bjA==
-X-Received: by 2002:a17:907:6d07:b0:b41:79ff:250c with SMTP id a640c23a62f3a-b50aaa96ba5mr1457625766b.23.1760178840185;
-        Sat, 11 Oct 2025 03:34:00 -0700 (PDT)
-Received: from jernej-laptop.localnet ([188.159.248.16])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b55d8c124a8sm454690166b.51.2025.10.11.03.33.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 11 Oct 2025 03:33:59 -0700 (PDT)
-From: Jernej =?UTF-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To: Miquel Raynal <miquel.raynal@bootlin.com>,
- Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
- Samuel Holland <samuel@sholland.org>,
- Richard Genoud <richard.genoud@bootlin.com>
-Cc: Wentao Liang <vulab@iscas.ac.cn>,
- Uwe =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?= <u.kleine-koenig@baylibre.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
- linux-kernel@vger.kernel.org, Richard Genoud <richard.genoud@bootlin.com>
-Subject: Re: [PATCH 03/15] arm64: dts: allwinner: h616: add NAND controller
-Date: Sat, 11 Oct 2025 12:33:58 +0200
-Message-ID: <4682810.LvFx2qVVIh@jernej-laptop>
-In-Reply-To: <20251010084042.341224-4-richard.genoud@bootlin.com>
-References:
- <20251010084042.341224-1-richard.genoud@bootlin.com>
- <20251010084042.341224-4-richard.genoud@bootlin.com>
+        bh=Xny2m3uhM/SxXH2HjS7Fl5XTjSKvXRs2Du0+aNtpjtY=;
+        b=c5oIvjEdSCQsNLIlPdohAt4AvvXveSVEjC3dpzSTi12H8zQcuVM74HNO0jOLxOe928
+         sZFW45qw/edpXMZXeLXajv+6nh3xKBk8Ifx2j9n499kRgls9gqPsDSYLwL5owpiAuiYV
+         zecnHQU5cz78KgnCR34AIDKb7YB2pz/mTDzyduDZn3LwD5vrtwgqD+050xiOPby4fpC0
+         K2A+ne8wYHfWZskPMHydv1rSnAQuQCtk8Jf5xdcK37zsynGueb+584G2Gz3EqlIMDMY2
+         Q/V4PHg9zQHpuTsDlzwtCJSrkubXffzNW4RmuND0GYI4CCmcgW0aH3pUkMyKbTm7kF+P
+         7wJg==
+X-Forwarded-Encrypted: i=1; AJvYcCUfy0NccNEZsJBs/DSBhf+DSCYpRX73WejGK/N5OGMoJ/ktOj+a2fHnq2KBx0w7a3MRf1II6S1Bwczn@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywz/7dqBPc0sQLzoheUZR+8lYHWbKJKC1pAKMwXWgYVUlJuyWc3
+	fFqYX+eXO25xISN4X6ivOVGg363UXx/WVijOW31EdlnifwJGnZUl7OVTdU+2WmQeEkUkhXWfG0E
+	DkPg5BWrlCaOOcF8oyWCXDkAZzsHIrmA=
+X-Gm-Gg: ASbGncs8QmCyFOXStiNFGNkMUd/XhRrGTxgyij5iOApimhgc6IJ0te34cyx51DF4cM1
+	FxybR3bHBTEil1nIj0kxY7LFXdX/wqu3nNlRIOM1naE8+IlNaZh2zkODUkJILK4QiOUZUgCkvf/
+	POqjasYeq+v/em6vGjwe1s5bUJe9ZAh0CliKCwfiAvKyj3xij0+irw1NIL0h/fW9BNoCYPpVvJX
+	3nLG6j+5Km3aeNnJGUoa7y77Q==
+X-Google-Smtp-Source: AGHT+IE7l5xvIFgT9i4m7mh7Oy/v5NjT9bqTFYELpGCEXyYpZaEcHvHT3oTtVXEc7bXN+PyntmQrK0WQUm7ynfY+S08=
+X-Received: by 2002:a17:907:3e13:b0:b40:a71b:152e with SMTP id
+ a640c23a62f3a-b50ac1cc39emr1445899966b.40.1760179103638; Sat, 11 Oct 2025
+ 03:38:23 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+References: <20251008031737.7321-1-raskar.shree97@gmail.com>
+ <20251008031737.7321-2-raskar.shree97@gmail.com> <175992812188.3371104.5716471946724146308.robh@kernel.org>
+In-Reply-To: <175992812188.3371104.5716471946724146308.robh@kernel.org>
+From: Shrikant <raskar.shree97@gmail.com>
+Date: Sat, 11 Oct 2025 16:08:12 +0530
+X-Gm-Features: AS18NWAnttKcW-sKW8_JBGa9qUMRxmLzTjvvzFAZDNvf13qm3vN4yW9SF_3ub_k
+Message-ID: <CAHc1_P6xDS1kec8mScCGHfPiVYbBBK8Hr8rgve5xSsLk=2Keyg@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: iio: max30100: Add pulse-width property
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: nuno.sa@analog.com, dlechner@baylibre.com, linux-kernel@vger.kernel.org, 
+	andy@kernel.org, linux-iio@vger.kernel.org, matt@ranostay.sg, 
+	linux-kernel-mentees@lists.linux.dev, krzk+dt@kernel.org, 
+	devicetree@vger.kernel.org, skhan@linuxfoundation.org, jic23@kernel.org, 
+	conor+dt@kernel.org, david.hunter.linux@gmail.com
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
 
-Dne petek, 10. oktober 2025 ob 10:40:30 Srednjeevropski poletni =C4=8Das je=
- Richard Genoud napisal(a):
-> The H616 has a NAND controller quite similar to the A10/A23 ones, but
-> with some register differences, more clocks (for ECC and MBUS), more ECC
-> strengths, so this requires a new compatible string.
->=20
-> This patch adds the NAND controller node and pins in the device tree.
->=20
-> Signed-off-by: Richard Genoud <richard.genoud@bootlin.com>
-> ---
->  .../arm64/boot/dts/allwinner/sun50i-h616.dtsi | 50 +++++++++++++++++++
->  1 file changed, 50 insertions(+)
->=20
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi b/arch/arm64/=
-boot/dts/allwinner/sun50i-h616.dtsi
-> index ceedae9e399b..60626eba7f7c 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-> @@ -278,6 +278,37 @@ ir_rx_pin: ir-rx-pin {
->  				function =3D "ir_rx";
->  			};
-> =20
-> +			nand_pins: nand-pins {
-> +				pins =3D "PC0", "PC1", "PC2", "PC5", "PC8", "PC9",
-> +				       "PC10", "PC11", "PC12", "PC13", "PC14",
-> +				       "PC15", "PC16";
-> +				function =3D "nand0";
-> +			};
-> +
-> +			nand_cs0_pin: nand-cs0-pin {
-> +				pins =3D "PC4";
-> +				function =3D "nand0";
-> +				bias-pull-up;
-> +			};
-> +
-> +			nand_cs1_pin: nand-cs1-pin {
-> +				pins =3D "PC3";
-> +				function =3D "nand0";
-> +				bias-pull-up;
-> +			};
-> +
-> +			nand_rb0_pin: nand-rb0-pin {
-> +				pins =3D "PC6";
-> +				function =3D "nand0";
-> +				bias-pull-up;
-> +			};
-> +
-> +			nand_rb1_pin: nand-rb1-pin {
-> +				pins =3D "PC7";
-> +				function =3D "nand0";
-> +				bias-pull-up;
-> +			};
-> +
->  			mmc0_pins: mmc0-pins {
->  				pins =3D "PF0", "PF1", "PF2", "PF3",
->  				       "PF4", "PF5";
-> @@ -440,6 +471,25 @@ mmc2: mmc@4022000 {
->  			#size-cells =3D <0>;
->  		};
-> =20
-> +		nfc: nand-controller@4011000 {
+> My bot found errors running 'make dt_binding_check' on your patch:
+>
+> yamllint warnings/errors:
+>
+> dtschema/dtc warnings/errors:
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/i=
+io/health/maxim,max30100.yaml: properties:maxim,pulse-width-us: 'enum' shou=
+ld not be valid under {'enum': ['const', 'enum', 'exclusiveMaximum', 'exclu=
+siveMinimum', 'minimum', 'maximum', 'multipleOf', 'pattern']}
+>         hint: Scalar and array keywords cannot be mixed
+>         from schema $id: http://devicetree.org/meta-schemas/keywords.yaml=
+#
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/i=
+io/health/maxim,max30100.yaml: properties:maxim,pulse-width-us: 'anyOf' con=
+ditional failed, one must be fixed:
+>         'enum' is not one of ['maxItems', 'description', 'deprecated']
+>                 hint: Only "maxItems" is required for a single entry if t=
+here are no constraints defined for the values.
+>         Additional properties are not allowed ('enum' was unexpected)
+>                 hint: Arrays must be described with a combination of minI=
+tems/maxItems/items
+>         'maxItems' is not one of ['description', 'deprecated', 'const', '=
+enum', 'minimum', 'maximum', 'multipleOf', 'default', '$ref', 'oneOf']
+>         1 is less than the minimum of 2
+>                 hint: Arrays must be described with a combination of minI=
+tems/maxItems/items
+>         hint: cell array properties must define how many entries and what=
+ the entries are when there is more than one entry.
+>         from schema $id: http://devicetree.org/meta-schemas/core.yaml#
+>
+> doc reference errors (make refcheckdocs):
+>
+> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/202510=
+08031737.7321-2-raskar.shree97@gmail.com
+>
+> The base for the series is generally the latest rc1. A different dependen=
+cy
+> should be noted in *this* patch.
+>
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> date:
+>
+> pip3 install dtschema --upgrade
+>
+> Please check and re-submit after running the above command yourself. Note
+> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+> your schema. However, it must be unset to test all examples with your sch=
+ema.
+>
+Hi Rob,
+Thank you for reviewing my patch and pointing out the dt-binding schema iss=
+ues.
+I=E2=80=99ve updated the YAML to fix the reported warnings. I=E2=80=99ll ve=
+rify with
+yamllint and dtschema
+to confirm there are no remaining errors and submit a corrected v3
+patch shortly.
 
-Nodes are sorted by memory address. So this one should be moved before
-mmc2 and possibly others.
+Thanks for your guidance.
 
-> +			compatible =3D "allwinner,sun50i-h616-nand-controller";
-> +			reg =3D <0x04011000 0x1000>;
-> +			interrupts =3D <GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks =3D <&ccu CLK_BUS_NAND>, <&ccu CLK_NAND0>,
-> +				<&ccu CLK_NAND1>, <&ccu CLK_MBUS_NAND>;
-> +			clock-names =3D "ahb", "mod", "ecc", "mbus";
-> +			resets =3D <&ccu RST_BUS_NAND>;
-> +			reset-names =3D "ahb";
-> +			dmas =3D <&dma 10>;
-> +			dma-names =3D "rxtx";
-> +			pinctrl-names =3D "default";
-> +			pinctrl-0 =3D <&nand_pins>, <&nand_cs0_pin>,
-> +				<&nand_cs1_pin>, <&nand_rb0_pin>,
-> +				<&nand_rb1_pin>;
-
-Are you sure that each nand device will use exactly this pin configuration?
-IIUC, not all chips will have two CS and two RB pins. If so, pinctrl nodes
-should be moved to device DT and pins subnodes should be marked with
-/omit-if-no-ref/.
-
-Best regards,
-Jernej
-
-> +			#address-cells =3D <1>;
-> +			#size-cells =3D <0>;
-> +		};
-> +
->  		uart0: serial@5000000 {
->  			compatible =3D "snps,dw-apb-uart";
->  			reg =3D <0x05000000 0x400>;
->=20
-
-
-
-
+Regards,
+Shrikant
 
