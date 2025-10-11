@@ -1,216 +1,130 @@
-Return-Path: <devicetree+bounces-225556-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225557-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8E7ABCEE83
-	for <lists+devicetree@lfdr.de>; Sat, 11 Oct 2025 04:16:49 +0200 (CEST)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2742ABCEEB1
+	for <lists+devicetree@lfdr.de>; Sat, 11 Oct 2025 05:05:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9C3364052BB
-	for <lists+devicetree@lfdr.de>; Sat, 11 Oct 2025 02:16:48 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id A09C734EE63
+	for <lists+devicetree@lfdr.de>; Sat, 11 Oct 2025 03:05:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6204126BF1;
-	Sat, 11 Oct 2025 02:16:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A175172618;
+	Sat, 11 Oct 2025 03:05:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="ebUxo0uN"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="BcG4JDpH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from MA0PR01CU012.outbound.protection.outlook.com (mail-southindiaazolkn19011032.outbound.protection.outlook.com [52.103.67.32])
+Received: from mail-m3292.qiye.163.com (mail-m3292.qiye.163.com [220.197.32.92])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEAE4184
-	for <devicetree@vger.kernel.org>; Sat, 11 Oct 2025 02:16:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.103.67.32
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760149005; cv=fail; b=GAVn/GS3xkOJJKw/GAUQ+b8eSeEBQd6+zEW5YOtHIAMoQCvagP1Ktbq0NkT1xBuXjySpffLHbMhijUa3hoN6Xv8+LcOLrA4Ey44Cs5CeRK8LGkDoRbrKaXiDKLamsUZtWdeepL4DJzuQ2rHwxx142RMbJrwGzKogKIFYsiDWA08=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760149005; c=relaxed/simple;
-	bh=55N69M/BrCym7Bhjdl9WlZWu6xVoN2b1FanYrV8G9wg=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=U6kQOUoHXz+BU1BVMQPAXetohkp0r8YyozmNtCHB9Y4DMG28YO88dP4xt8qA6YkILhyx0K2y1Cv2t64QbQm495QRLVfTjbLObXHwbeKfGrO2p+X9AWcxTSO1lDdu0AI9gMdUJx/xSTjrsHrhL4QuEAGqoPdAWsVpFi3qdzrTFuY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=ebUxo0uN; arc=fail smtp.client-ip=52.103.67.32
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=HHBSek20yDB2JyBROv9SVzt3Cipyo2hZHEjcb5VjIfr+Oi2BpnnZP0N+1Mh3Mviva8xoU1lBo1D2h5b8MYT8BpU29Bp9QeFzWuqyqoep3PcIFRTxRsRcyT46/yMmS11apvIBEHv6nTk7DJitApPutEy/EzU1TkOa6fgbh5bvzsZ0JuhmbsazhVt/ENRkIq8k0R47yfTvf6I4ulprXhPdiS+d2Z/7sahiksq9Sn/eYI+9usyeFt8X+H5HHRJ+YbHhFiyu+AvISHD9crLPZJVN9RaAr5bOlal75vaaT3L0s8Mq28Xon/A0UMYnib6gODw+Ld+La7qEVyFtyd40Tztysw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=s3AbeAAmH0cxnvpNFKHLRp/KHoz23KXUZgA1Vysod4E=;
- b=oHmvQx5cbdHHPDeWpVF9QK7E/pHI6UcnNcz/VP/gqJkBnmJUOKnIBaEJC/1QDjXEy5KhTuOZUNUcbgdSz1vpcnhnDsP142YPa0EljRGTfNgEr9we5uat4leF7+sr6siQYTquq909WBLCIubDXP6GxpkaD9QhvJR+Y8Yg/fZVG/v0xs3CWNykyPQzR19bo/N8tuGu3toipRwGlL5xQfE2Iv0GGaF2zppLJpo67mCsaOBwvdV5YCfYFJ8dfQ5YeyRDVClBVXTlxJss4bthDfaLlc6jCD7I37UnZi9GhRaQQfUqMc9okLMebwySceaS05N6W0t+96pc27Ytwx5InSEezA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=s3AbeAAmH0cxnvpNFKHLRp/KHoz23KXUZgA1Vysod4E=;
- b=ebUxo0uNSVcrmHbV38GHpoqnBX0eX+i4n8tiH47Hwcta98m6IOVzyNbbZZVvNXKKg5rPxxUpO109EJ2uqgJsExBco6z/LqLF9qBDy3zGR4Gp9ikOhoWjl4P+dpKUbMBU9sbocwgFynVRtripguTW3ELoeLFdpjl+4f0KEOdaJvxztzSh/bCAc1EVF99z4OdvYehZpSRsL0U2xIB3rLVYgG9sYxziMU+DPcfpMBf1oQ3F9J1wdtXgLOFx634hF7t56985HUrojoYnEDFMi71qnUr/9fm9rhxGBwYRB0tkDV28Psd0HkRlVnXzypEXG3ecXxpKhsa/4a0zViXKrRkBkA==
-Received: from PN6PR01MB11717.INDPRD01.PROD.OUTLOOK.COM (2603:1096:c01:2f1::8)
- by MAZPR01MB7215.INDPRD01.PROD.OUTLOOK.COM (2603:1096:a01:41::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9203.10; Sat, 11 Oct
- 2025 02:16:36 +0000
-Received: from PN6PR01MB11717.INDPRD01.PROD.OUTLOOK.COM
- ([fe80::2e35:fc95:ee3:bf0f]) by PN6PR01MB11717.INDPRD01.PROD.OUTLOOK.COM
- ([fe80::2e35:fc95:ee3:bf0f%6]) with mapi id 15.20.9203.009; Sat, 11 Oct 2025
- 02:16:36 +0000
-Message-ID:
- <PN6PR01MB117179F3E93FF4EA3AEFAD0E9FEECA@PN6PR01MB11717.INDPRD01.PROD.OUTLOOK.COM>
-Date: Sat, 11 Oct 2025 10:16:28 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/3] Add initial Milk-V Duo S board support
-To: Joshua Milas <josh.milas@gmail.com>, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, inochiama@gmail.com, paul.walmsley@sifive.com,
- palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr,
- alexander.sverdlin@gmail.com, rabenda.cn@gmail.com,
- thomas.bonnefille@bootlin.com, chao.wei@sophgo.com,
- liujingqi@lanxincomputing.com
-Cc: devicetree@vger.kernel.org, sophgo@lists.linux.dev,
- linux-riscv@lists.infradead.org
-References: <20251011014811.28521-1-josh.milas@gmail.com>
-From: Chen Wang <unicorn_wang@outlook.com>
-In-Reply-To: <20251011014811.28521-1-josh.milas@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: TPYP295CA0057.TWNP295.PROD.OUTLOOK.COM (2603:1096:7d0:8::8)
- To PN6PR01MB11717.INDPRD01.PROD.OUTLOOK.COM (2603:1096:c01:2f1::8)
-X-Microsoft-Original-Message-ID:
- <f49d47d6-8b93-4d54-a128-7f5741413cd4@outlook.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5BBE3FC2;
+	Sat, 11 Oct 2025 03:05:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.92
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1760151923; cv=none; b=i4X9bT5FRvhWOtvK2J5oaCx2nBiVg1ARCZ62ZqxXYeyrhccBCi7rR62o1hUwYVUzy8iRbpeHoPRhSJfhMUqcSCemAEZb3q6b5H99LA82yMjJ5muCaYrq5LZyI81yGlbuRRdwyZ+i9g2lrYV6oCP5f3/wbkudN8b+6n8fZBnWOj8=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1760151923; c=relaxed/simple;
+	bh=IjSGK6tISxai0JQVwUngNoeu6jw5RLorQnjtddZIBu0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=dVIjYXFqCWPy3gJOlivjEQ3BcqIsywJAM0XJZNF/n+fgps0i1c0ypdIrlKkMrnlCMapi/J28a3LQbCenyKGifqe2cURdMzgTX4lG3jLWmule3OS1Ut0HIqHf0kxS6Ap7O6Sao4n1cUCT7wAk/ruHezRqTw73PHy4qRqykg0BJmY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=BcG4JDpH; arc=none smtp.client-ip=220.197.32.92
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from [172.16.12.26] (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 258448df5;
+	Sat, 11 Oct 2025 11:05:09 +0800 (GMT+08:00)
+Message-ID: <7a0e519b-40ac-4b43-8b9d-f553f12149ab@rock-chips.com>
+Date: Sat, 11 Oct 2025 11:05:09 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PN6PR01MB11717:EE_|MAZPR01MB7215:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4eeaa133-0a7a-42e2-3108-08de086c32c6
-X-Microsoft-Antispam:
-	BCL:0;ARA:14566002|12121999013|15080799012|19110799012|23021999003|461199028|6090799003|8060799015|5072599009|1602099012|40105399003|53005399003|3412199025|10035399007|4302099013|440099028;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?Zk96RzZOWkZTMHc0T3FnWmY1a3Zha3ZZMzIxdjh4d0ZHR0YwTmlYVXArQnd2?=
- =?utf-8?B?bXZIbkFtek80NjZvTm9uaG94S0JLYjYxRDZHYXVyb1BWK3BkSk0xVlhkSGhP?=
- =?utf-8?B?UmtLWlo3M2lwZjVDdjRILzFiTSthMzRUeSswVlNFUlQ2RFFUYmh0MWJjZS9p?=
- =?utf-8?B?eW44Z2hSQURhN3AySisvQXhybHFNSTRCdHVaaUgrUkpabE54ek1UbW9PVEdk?=
- =?utf-8?B?QUhVZTdKd1k3bmdvYXdRS3czbVZYZHRkTGYrWHlvRS81WjhuejhRa0lpWWVq?=
- =?utf-8?B?UTdBNnhJOEY5eTduSjM3c0hKTVFmT1d0ckY1bDVMOXhnQW9pNGV5R3d4V0pB?=
- =?utf-8?B?U2dEY2hjQmhwa3kvL1FQN2ZDR1NBQlZyMkZvS2NHK3ViMyttM1dHb3h6WTBE?=
- =?utf-8?B?ZkFmTzJhVVpaLzB1UExsQkJ5SlRQd1VwTkdtSlorbmVhUUNtNFl5cnVlUklk?=
- =?utf-8?B?alZEajNqMzdwbGcrcmFtd2h5NitJSmxJbnpwNkNqVGE4OWl4emdyVCtxWXh2?=
- =?utf-8?B?eG0rWXBBV0tzL0lleWlJUlNnVWQzK3FSV24velY1V1ZHcVNTcmUwVGlvaXBD?=
- =?utf-8?B?QkxONHVjRU94R3ZLbnJZYXVGZEpCeW1GVVg1bHNOUkk3bE96VS9oTnBsOVNC?=
- =?utf-8?B?dWQvU2xUTEVla1pzdWJTMXhrWkFtWDlqNElRdmxtV0NOc25sV0Y1elRxMXVw?=
- =?utf-8?B?WUJDc3J0K0RPRERiQS9RU2xvMTczMzVSR1BaSGtJL1A2T0F2TDB2UzVta2c5?=
- =?utf-8?B?QUlQWXREOTRpTzkrMDF6ZGRvVlUrUjFGaERIajdGWGJyblBZRXd3Mlh3U0dw?=
- =?utf-8?B?Z0FNTlVWSFdKRE1tSFI1aGdyNms1UnZhRlB2bXE2UFpqa1BGWm1WdDFWSXlT?=
- =?utf-8?B?Qk4wL1N5Q0dXMVV5Tm5wL2VYSmdaYWZOUng4MXBFWjk2RVFoN3lWdllGeGs1?=
- =?utf-8?B?ZEZETjNkMFBpNHlFTkIrYzEyS1J1UEUxZTU5YUJ0aW5RUDRGUUdlY2pZcjlN?=
- =?utf-8?B?Y2RWS0pjdllLSGZ4a2Y2a0F0SDVKVnJxWHJpSmdtMytzWGR5czJ0Z1VBN1Ux?=
- =?utf-8?B?SnhOZlM4L1QxVjRScU5jM2pDVlU2Vm5ibjN5MFVpSWVsbDZTTE1YTUg5R2NK?=
- =?utf-8?B?VkJodGFTYWRYZWJKcjVWYWo1VHZBTkdnejZoM1JLeTIwdkNVaGpUcjNhd1g2?=
- =?utf-8?B?YWpNR2ZSSUwveFkyeUQyN0J6enVzWU83ZWFhMTREbHI2K1A5R2FqekZmY3Jz?=
- =?utf-8?B?OURXRjc0R1JsRVhhSWNzWlZWVUo1Mks1RDNmWWx0TGYzTG9LT3NHb05OMjk5?=
- =?utf-8?B?aE9tZk9sT3BrdVBkai82SHY2SXFyWGROWGxhQ08rRzl6ZHczWVNHTHFoN0Vm?=
- =?utf-8?B?UkxsT1ZXUWdSUWYvVFlwajRHdFpnYUIra05pbkcvTjkzVHNoRjBlSGpWME4v?=
- =?utf-8?B?STN5ZXNyWmFkUVkyNk1qbVp2VldBTThBVW1pVGgwbUtEWTlZUHcxQ3gvUkhy?=
- =?utf-8?B?dnJ3Y3ZSWk1KRVoxL1p2ZDdBWldUcXlFdVIwV2xSZ2o1MEU4YjhFb1dxZUx6?=
- =?utf-8?B?RFZqK05US0NwUDhKUmdISVFXL2IyZDJickFvdXZsbC83QjVLRHVoVG9wb1da?=
- =?utf-8?B?N3BwblZxanhxd3kzclRLcUZTVHhyRE1hcUdRY2FVeWxjY0lqWHRWVXE1dENN?=
- =?utf-8?B?TDduQW95SlpBYkRwVmFoRXZpVGpmMC9Sa1RNRVQ2WFp3M2NURWlVdVZSYmlR?=
- =?utf-8?Q?7iPBF4wgFEReyVpWGRnB6Fd0A7oH15yq2ttEK+C?=
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?b2svZTRQSDlsRVhJOXRrS2d0QUpOWC9xZGdTeGI2cUpla0dwaFk5emdPeTkr?=
- =?utf-8?B?bzQ3N2dUWjgzTFhpRm05ZlNvRnhOTjcvNEprbThlQ1NSNzVOZ1REc0svcll6?=
- =?utf-8?B?YTZmSktHYXgwRU1ZL1IvMkl2MDBpNkRCcW1PNzR5bm5Db0NZUXNxRThHMzdJ?=
- =?utf-8?B?MXZWNkxRT3BKTmYzL2lDNGszUmgzdEZjNUIzRk1kenJmQlplU0tnZ2JpY0RW?=
- =?utf-8?B?RHFMTkVjWk8xblpLZWh2V2dxVWpNM05ldW5DQkRUVGIxY2tOVGJqTjJ6cUxo?=
- =?utf-8?B?cXQ1bEg4MkxVUXVTcHQ1TmNkdzVjOGdXWFdJdW9yNkdrV2FkMk1ueFhqL0w5?=
- =?utf-8?B?Y2VQdHBXOGVHTWVocGxvRE9TSVduZnFIUjJSbzBhSVdiSkRtOWpHbFNyWW1w?=
- =?utf-8?B?b1dZMGxnSzZXY2ZkUFRrakFNem9INitaMlIzZDM2U0sxalJyUlFIaGF5eWF5?=
- =?utf-8?B?cGJiclVOWlFZZE5RcXo1bE5OUnpZTXNGS2YvTTNaOTZGMVNUWi80RUhLQTl4?=
- =?utf-8?B?a2svUHkrY1hiT1l5cWZiMitCb1hSMUZ1Z002WFBWYnJWOWc1WDdydG0vdmw0?=
- =?utf-8?B?emg3eXI3aDV4ZE52dStJRXZaaWFkRjRxNzVNZzVMbER1TWVIVFNMK1NQZEVy?=
- =?utf-8?B?WmplYU5UVWYzV3FkOFZVbVNLRElFcWxvbFkvd2dDR0c1Y2dPQTJDNmM1VE9H?=
- =?utf-8?B?d0RUNlR4d3NEK09kOW4xZ1dYYmFjYTM4d3JJZ1RwbWNOcFpiZElJMnNOUlU2?=
- =?utf-8?B?L3Mvb1ByOEpNdVYwajVoNlg1UWN0ZlhKamtpTSthTXJXZlhiVExDQ3V3S1pm?=
- =?utf-8?B?bmRYK2FrZTFHcW1VaHRQalArQWRMK0hKcFE1elhRanhzVmZOQmwxaE1GUUpE?=
- =?utf-8?B?UExsaU9HOUltdkJPWitPYnVTaWFCZHZ3VE02bEJUV1cwMTNLUCt3NzJUTXgv?=
- =?utf-8?B?bW1TaDJOd0puYzRWbDM4YlNzeHVCQVAvYkNheWxQTy80TVVLYlhlcG5USXFR?=
- =?utf-8?B?RVNqMCtqb1FaM3ErSnd6OC9yeXFwZzNodVVMSWVvNVRDVU14OHlwT2hWTE9j?=
- =?utf-8?B?aDJZVUlqajlKTmtkaGp1S3VDY21WWC8zRXAzcnNBL1I1aWcvMG0zUzlUM2t5?=
- =?utf-8?B?MmhxVmFyeExXNjJvY1FGOGVIbHNnSjVZaGZtUHdzV0pieWVJNFMzV3hnS082?=
- =?utf-8?B?SzVTbGNNd1RUSC9TeThzNXVDSUFpOWV0MTdBSzFmMGhtUS9BSmxqS0Ezakpv?=
- =?utf-8?B?R1hnMDd5MWNCRnJuSGg2eldIMXVBaG85QVZWUlUxbmxUb3NKYnRTM25JOENw?=
- =?utf-8?B?Vy9FTVQ3bkhFQ1lWMEVaNkJ3WHFkUHZxNitvMEs2SGU3aTBFUHFVWFd1OW5l?=
- =?utf-8?B?MmJWT2JzVHY0NjV1TjljenpPR2diRW5LN3MxZDMySVE2NUhydTdYckJMWUc5?=
- =?utf-8?B?bVNMa1VyazlXdCtlSVQzT3cxRjdFb3ZXdWhtSllzM3NrSlFLdG9leTAyZFJh?=
- =?utf-8?B?TTQyZEd2MDVyTVhTN1FUMlJXblN2bjd3RHNXcnRhNUFwUGRYaUpMWWlTcE9l?=
- =?utf-8?B?ZGFROGJLV0dxV3dYeUt4Wk1UNVNpTjYwK2pOcE1tQ3UwVWoxQkEyT2VFYU5v?=
- =?utf-8?B?L3hlaVFXaUczYXVsUkJRTlM2QXNlR0VKSXZEL2srQ1VjL0MrbUpuak9BSGNv?=
- =?utf-8?B?cUFEU01PRHdoRm56eXpZSEVkUUQ3OWpjUHZOZXRsUGM5RXI2YXU0UGN4dWQ0?=
- =?utf-8?Q?nrGAwm1Mi45ih4L3fF2f8ltZ28CvIzXT+X0HlSS?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4eeaa133-0a7a-42e2-3108-08de086c32c6
-X-MS-Exchange-CrossTenant-AuthSource: PN6PR01MB11717.INDPRD01.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Oct 2025 02:16:33.8106
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MAZPR01MB7215
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] arm64: dts: rockchip: add RK3588 DP carrier from
+ Theobroma Systems
+To: Quentin Schulz <quentin.schulz@cherry.de>,
+ Heiko Stuebner <heiko@sntech.de>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Heiko Stuebner <heiko.stuebner@cherry.de>
+References: <20250723190904.37792-1-heiko@sntech.de>
+ <20250723190904.37792-3-heiko@sntech.de>
+ <0582b7bc-e5b2-4b5e-821e-8d2c4301579f@cherry.de>
+Content-Language: en-US
+From: Damon Ding <damon.ding@rock-chips.com>
+In-Reply-To: <0582b7bc-e5b2-4b5e-821e-8d2c4301579f@cherry.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-HM-Tid: 0a99d13ab5e803a3kunmd5ed0f611cf2f8
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGRgdTVZDGR9ISxgdS05MTRhWFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
+	hVSktLVUpCS0tZBg++
+DKIM-Signature: a=rsa-sha256;
+	b=BcG4JDpHNH8v0B4VgRuWcBKp5Y0HoHiVdkW0aQ0sem1Laa/IbTNu7NbRpVErCbTBGKlINOF02NVd6bq8nOwYlmjqwfWzrHCawRddnNsSe71Ib8WxSaWhAw33Q+c7CHL3++68jO1O071FK4IIyiTo1yYhitwDBGsB9j0f6LtEpso=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
+	bh=JciJ+fW3A6ZS6ImbDuDBfmOW2HRfOeNCg82yAvl2wII=;
+	h=date:mime-version:subject:message-id:from;
 
-Hi, Joshua,
+Hi Quentin,
 
-You should add "v2" in the title of this patchset, pleaes run git 
-format-patch with "-v 2".
+On 7/25/2025 8:29 PM, Quentin Schulz wrote:
+> Hi Heiko,
+> 
+> On 7/23/25 9:09 PM, Heiko Stuebner wrote:
+>> From: Heiko Stuebner <heiko.stuebner@cherry.de>
+>>
+>> The DisplayPort carrier is a very simple baseboard only providing serial,
+>> ethernet and a displayport output.
+>>
+>> But its main functionality is that it routes the Analogix eDP controller
+>> to this DisplayPort output, which allows to test that controller simply
+>> by hooking it up to a suitable monitor.
+>>
+>> The Analogix-DP controller supports eDP 1.3 and DP 1.2, so can drive
+>> both eDP displays as well as full DP monitors. It does not support DP+
+>> so passive DP-to-HDMI adapters won't work.
+>>
+> 
+> I tested this on master (2942242dde896) + v2 of the eDP driver as listed 
+> in the cover letter, or with v3 of the eDP driver + 
+> 48f05c3b4b701ae7687fd44d462c88b7ac67e952 and in both cases I have weird 
+> behaviors.
+> 
+> First, `reboot` is stuck for a very long time before actually rebooting. 
+> I think you have a stacktrace when you tried yourself, I don't so cannot 
+> send one.
+> 
+> Also, I tested on two different DP displays, one has a green tint, the 
+> other one purple. When trying out other resolutions with modetest, the 
+> kernel would often crash (no trace, just nothing on console, SSH dead). 
+> Note that the same HW setup with downstream kernel from https:// 
+> git.theobroma-systems.com/tiger-linux.git/log/?h=linux-6.1-stan-rkr3.2- 
+> tiger works just fine. I would assume this has nothing to do with this 
+> Device Tree patch here but rather the eDP patches missing some bits maybe?
+> 
+> @Damon do you have some idea?
+> 
 
-Please do this in next v3.
+Apologies for the delayed reply. :-)
 
-Thanks,
+Since the patch series has been updated to v6, could you please rebase 
+these patches? I will then conduct further investigation into this issue.
 
-Chen
+> The display with green tint is a Iiyama ProLite XU2294HSU and the one 
+> with the purple tint is a Dell P2319H if that helps.
+> 
+> modetest output: https://paste.debian.net/1387797/.
+> modetest output with downstream kernel: https://paste.debian.net/1387798/
+> 
+> The Device Tree looks good to me otherwise.
+> 
 
-On 10/11/2025 9:48 AM, Joshua Milas wrote:
-> This adds an initial device tree for the Milk-V Duo S board
-> with support for reading from the SD card and network over
-> ethernet. This is continued work from Michael Opdenacker's
-> v6 series [1] on the ARM64 and RISCV side. It has been tested
-> with both ARM64 and RISCV64.
->
-> ---
->
-> v2
-> - Made new entry in docs to avoid DTC check error
-> - "Milk-V DuoS" -> "Milk-V Duo S"
-> - Sorting of aliases
-> - Added uart*, emmc, mdio, gmac0, i2c*, spi*, dmac, saradc
->    to device tree matching what is available on the pinout [2]
->    and available in the device tree includes
-> - Removal of 'no-mmc' and 'no-sdio' for sdhci0 as it works
->    without
-> - Added riscv device tree
->
-> Link: https://lore.kernel.org/linux-riscv/20240421055710.143617-1-michael.opdenacker@bootlin.com/ [1]
-> Link: https://milkv.io/duo-s/duos-pinout.webp [2]
->
-> Joshua Milas (3):
->    dt-bindings: soc: sophgo: add Milk-V Duo S board compatibles
->    arm64: dts: sophgo: add initial Milk-V Duo S board support
->    riscv64: dts: sophgo: add initial Milk-V Duo S board support
->
->   .../bindings/soc/sophgo/sophgo.yaml           |   5 +
->   arch/arm64/boot/dts/sophgo/Makefile           |   1 +
->   .../boot/dts/sophgo/sg2000-milkv-duo-s.dts    | 110 ++++++++++++++++++
->   arch/riscv/boot/dts/sophgo/Makefile           |   1 +
->   .../boot/dts/sophgo/cv1812h-milkv-duo-s.dts   | 110 ++++++++++++++++++
->   5 files changed, 227 insertions(+)
->   create mode 100644 arch/arm64/boot/dts/sophgo/sg2000-milkv-duo-s.dts
->   create mode 100644 arch/riscv/boot/dts/sophgo/cv1812h-milkv-duo-s.dts
->
->
-> base-commit: 0251a1deaec78252cb311fc8305d3670bc5eee0e
+Best regards,
+Damon
+
 
