@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-225532-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225534-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64BDFBCEC56
-	for <lists+devicetree@lfdr.de>; Sat, 11 Oct 2025 01:42:53 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA54DBCEC82
+	for <lists+devicetree@lfdr.de>; Sat, 11 Oct 2025 02:02:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 4551C4E2896
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 23:42:52 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 98F6D4E2635
+	for <lists+devicetree@lfdr.de>; Sat, 11 Oct 2025 00:02:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B8992D0C60;
-	Fri, 10 Oct 2025 23:42:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F1C6A59;
+	Sat, 11 Oct 2025 00:02:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LPmDZKwK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gkTaRb9G"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EECC52C2376;
-	Fri, 10 Oct 2025 23:42:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A296111A8;
+	Sat, 11 Oct 2025 00:02:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760139770; cv=none; b=jOfYKjpnAstRD6cRFuyDXV08lRZ9YQxbNDuXgZU10oTgi1FYLR6znodosgtZAmSK5oV+Ht+8Lz6dGTDaqZ8SOMOZu92PjyUAVxc9+Aapv6IXUShVyYB0MeqBLLddkB0Q0jQQhfgwr2ik3gr/NEIZfVBLsYVlrsx8tAqmfK2zxyk=
+	t=1760140923; cv=none; b=Bp2wFTgH0UFIHLdElTYQ5L6GsNdaLlZ2uZ44lcHcJGvzCc4r5vvF2Ze1eDsfAV6zhtl7GEVV7Sr0IBo+vDB/Ph8u9KSUDilWGvHA2U8dnPxskx8WfDBXxA2RAE4dtrhraCbhNXbML1HfdwEkSR9sC1oDZqQ9N+Rj5tM4Ynx3r6E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760139770; c=relaxed/simple;
-	bh=Gt1x3imbV6jcLgkZzBXfLwvbQ/cseYt83qP67KAvdlc=;
+	s=arc-20240116; t=1760140923; c=relaxed/simple;
+	bh=97luAzmYrWuVvl8+wQcQMdNLrZMIJtCogPvCBYkvxDE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Ba/60RCx8UugZj6PewZE+g7fUDs8ppL5W+SI4H0wtCEx74Vm9GfE4cuGhFVw7XTwa30hhJ0EUHawdU73V3UTbuaPz+TWse4GWk/zfbHf/cbIoxUnTAleMRB1Lme5cacbHopa0jANsSesVYzYxVXTPgsvOtkNnBiOlNCkAUMU9xQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LPmDZKwK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9BD68C4CEF1;
-	Fri, 10 Oct 2025 23:42:42 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=p0QZ/pxds+YcWuk6UuuY3uaD3voxxxC0XU3SDK41yLgKy6xYA5LBpme0cpWnFFo7SgMRuwPzPsYH0n4L5OUanXVnUK5BlVgtxA35cZ7L8a8wR0CKACI5WFr/KA8X3dNuo4/pPMQx4dskV34QKs8NsSOJQ3vClvLj0VZIZB+alZs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gkTaRb9G; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9E35AC4CEF1;
+	Sat, 11 Oct 2025 00:01:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760139769;
-	bh=Gt1x3imbV6jcLgkZzBXfLwvbQ/cseYt83qP67KAvdlc=;
+	s=k20201202; t=1760140922;
+	bh=97luAzmYrWuVvl8+wQcQMdNLrZMIJtCogPvCBYkvxDE=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=LPmDZKwKtvXIT40FxesW7WQRB+PpSPN8IqiDwf52In2Iv1qWe8sizc6mEaclalFu2
-	 3qY9e1FxHswLfRDePXYP08Gfd3ZsFewukKeesm7qhyjOd+Ofd9VJuFvJEQgKQqvRto
-	 oRU0DZP/l2E0StN/nmmwjH3LaazgGdyn/JqdMuedtMlfbbqdthdcEku6qppSleKxLA
-	 3cilyImEnjEH++rkaFuwP1drOgeEVs6Zm8Lt/NXehiquIBeV4MK730+iv5HjTwV4LF
-	 AK/muE4T+9vglHwNJ+sPsW1xhd24uk9p3LudcwXfrtbOW8Av2P9kIVcQi8M3YFHBNv
-	 KIgoWN4ZGi9vw==
-Message-ID: <34899379-9788-4ac8-8b62-e9f47b4d49d9@kernel.org>
-Date: Sat, 11 Oct 2025 01:42:39 +0200
+	b=gkTaRb9GM6iP6MptnJB+GK5jSM3ndtkcIDuBC0irctDFE9qHkuXhHhmQ3PlV60DBO
+	 LbWJlfFkwzZuqn3VmF/k6FftaXISXA08GM1m6auro+bK8kdKbkvhkj36hfwWtO5YWz
+	 GjlK2SJFhV4ECBhn8V14ulwLYMFxJ/vVIjAWG4wtr9jHBtcv1bwwLix9MF086OSkAG
+	 GK8ydz3Cld8B3drv7N+q3SX8NxYegeB3BNqbe5SKMXC9XN5O6ufqT5LFI7cYnuH4jI
+	 1Qe0SGyMgIaCoorhcoyP76tIK7wyqzopLwLpbw7Vpv7h3yYw5UCEMCE2pMMu3FmvnP
+	 EE5+X70/ohf4A==
+Message-ID: <cae78078-e8f8-402c-a9f5-f9a9731e4a0a@kernel.org>
+Date: Sat, 11 Oct 2025 02:01:51 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,19 +50,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 15/15] arm: dts: airoha: en7523: add SNAND node
-To: Mikhail Kshevetskiy <mikhail.kshevetskiy@iopsys.eu>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Lorenzo Bianconi <lorenzo@kernel.org>,
- Ray Liu <ray.liu@airoha.com>, Mark Brown <broonie@kernel.org>,
- Andy Shevchenko <andy@kernel.org>, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org
-Cc: Andreas Gnau <andreas.gnau@iopsys.eu>
-References: <20251010204500.1625215-1-mikhail.kshevetskiy@iopsys.eu>
- <20251010204500.1625215-16-mikhail.kshevetskiy@iopsys.eu>
+Subject: Re: [PATCH v5 03/10] dt-bindings: phy: qcom-m31-eusb2: Add Glymur
+ compatible
+To: Wesley Cheng <wesley.cheng@oss.qualcomm.com>, krzk+dt@kernel.org,
+ conor+dt@kernel.org, konrad.dybcio@oss.qualcomm.com,
+ dmitry.baryshkov@oss.qualcomm.com, kishon@kernel.org, vkoul@kernel.org,
+ gregkh@linuxfoundation.org, robh@kernel.org
+Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+ linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20251006222002.2182777-1-wesley.cheng@oss.qualcomm.com>
+ <20251006222002.2182777-4-wesley.cheng@oss.qualcomm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -108,35 +106,28 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20251010204500.1625215-16-mikhail.kshevetskiy@iopsys.eu>
+In-Reply-To: <20251006222002.2182777-4-wesley.cheng@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 10/10/2025 22:45, Mikhail Kshevetskiy wrote:
-> Add SNAND node to enable support of attached SPI-NAND on the EN7523 SoC.
-> 
-> Signed-off-by: Mikhail Kshevetskiy <mikhail.kshevetskiy@iopsys.eu>
-> ---
->  arch/arm/boot/dts/airoha/en7523.dtsi | 21 +++++++++++++++++++++
->  1 file changed, 21 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/airoha/en7523.dtsi b/arch/arm/boot/dts/airoha/en7523.dtsi
-> index b523a868c4ad..78e351eb787a 100644
-> --- a/arch/arm/boot/dts/airoha/en7523.dtsi
-> +++ b/arch/arm/boot/dts/airoha/en7523.dtsi
-> @@ -203,4 +203,25 @@ pcie_intc1: interrupt-controller {
->  			#interrupt-cells = <1>;
->  		};
->  	};
-> +
-> +	spi_ctrl: spi@1fa10000 {
-> +		compatible = "airoha,en7581-snand";
+On 07/10/2025 00:19, Wesley Cheng wrote:
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          const: qcom,sm8750-m31-eusb2-phy
+> +    then:
+> +      required:
+> +        - clocks
+> +        - clock-names
 
-NAK, now I found this... Respond to comments instead of ignoring them.
+Nothing in commit msg explains why the new phy can run magically without
+any clock. Seems unlikely, hardware does not work like that, so this
+seems wrong.
 
-Three versions within few hours, that's not acceptable. Outside of the
-merge window the expectation is minimum 24h difference. Within merge
-window this is just spamming.
+
+Also, don't combine USB patches into other subsystems. I already asked
+about this qcom few times.
 
 Best regards,
 Krzysztof
