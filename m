@@ -1,145 +1,157 @@
-Return-Path: <devicetree+bounces-225592-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225593-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CF64BCF41A
-	for <lists+devicetree@lfdr.de>; Sat, 11 Oct 2025 13:11:29 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D975BCF429
+	for <lists+devicetree@lfdr.de>; Sat, 11 Oct 2025 13:12:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 3AE114E6794
-	for <lists+devicetree@lfdr.de>; Sat, 11 Oct 2025 11:11:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 872B33B01CB
+	for <lists+devicetree@lfdr.de>; Sat, 11 Oct 2025 11:12:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69BB4263F49;
-	Sat, 11 Oct 2025 11:11:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 968AB266B66;
+	Sat, 11 Oct 2025 11:11:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="D1f/+Ssv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from zg8tmja2lje4os4yms4ymjma.icoremail.net (zg8tmja2lje4os4yms4ymjma.icoremail.net [206.189.21.223])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 185C933F6;
-	Sat, 11 Oct 2025 11:11:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=206.189.21.223
+Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF69F261B96
+	for <devicetree@vger.kernel.org>; Sat, 11 Oct 2025 11:11:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760181085; cv=none; b=Ywtwz7DfKuA4Vqnhh4fIcKyPscw+eArarxmFFaAzb+Xar0LG/drKTilqB9nx62QaWRWkMKSdMQ9C7sx91sVkziCahCE7KuTVO0/W7ZwmSXkdyF31S4jaUF54AeNh9Td79FmCNgUR27w9fjoHZ/aCaru857qjjqjRCWJj702/FZE=
+	t=1760181119; cv=none; b=EHvr/2w6l2mi7EuGm7NTDYI5SHwhNWYyRSfpMdFeEuK1WC9pMwBqkBqviQR+6+swLdT8LK/u95AcO99yX932+RERQ9w1578rQ0XzOhbhbiq9hxVUpCzde/THw6xHlzVAQ+IfY7ui07FkAf9t+OeJTgJwtC/YYbMhjdsY9rAAky0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760181085; c=relaxed/simple;
-	bh=V3PxO90ix5Arwq53CQB519eznTSh0+i9HBUEfamTvOU=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=dI9lf/gFY6uVr7rcHHHP3+d2OEAFxX5tqnm7Kq9x4C2D3U7juQCP+O2d8DnVS1SfWnLoj2f4rZob9CdN6zAivLlfO6Cm3qivfqh6YeMO1EGCXjLyvDHl3kYlHO4RBGlBH2s8/d5gFKegDpOTiP+KCXn7YXMEJtFnjFQ1wshmdKg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=206.189.21.223
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
-Received: from E0005154LT.eswin.cn (unknown [10.12.96.103])
-	by app2 (Coremail) with SMTP id TQJkCgD3lZQyO+poD_IDAQ--.56190S2;
-	Sat, 11 Oct 2025 19:10:44 +0800 (CST)
-From: hehuan1@eswincomputing.com
-To: ulf.hansson@linaro.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	jszhang@kernel.org,
-	adrian.hunter@intel.com,
-	p.zabel@pengutronix.de,
-	linux-mmc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: ningyu@eswincomputing.com,
-	linmin@eswincomputing.com,
-	pinkesh.vaghela@einfochips.com,
-	xuxiang@eswincomputing.com,
-	luyulin@eswincomputing.com,
-	dongxuyang@eswincomputing.com,
-	zhangsenchuan@eswincomputing.com,
-	weishangjuan@eswincomputing.com,
-	lizhi2@eswincomputing.com,
-	caohang@eswincomputing.com,
-	hehuan1@eswincomputing.com
-Subject: [PATCH v4 0/2] Add support for Eswin EIC7700 SD/eMMC controller
-Date: Sat, 11 Oct 2025 19:10:38 +0800
-Message-ID: <20251011111039.533-1-hehuan1@eswincomputing.com>
-X-Mailer: git-send-email 2.49.0.windows.1
+	s=arc-20240116; t=1760181119; c=relaxed/simple;
+	bh=VLNehFa+74G6ouliisMmWydo212BwNFmsaIJWfmT1OY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pi9ZczS4ihgnz1/K9Lu7sPmlh6YwKMxFAdEDXkmyT1dd2rIey4leVhIQ23RivdcZ6EcBKCl5JyO/7/nt4ZzmNNDG1rAA9CqY3zbqTFJW1TrlzRzaJV2AJ8OcnasUNShv9evd4qPUphlBYbxQ5XbiXrX1Q5yBP2KpV+WFhGok4kg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=D1f/+Ssv; arc=none smtp.client-ip=209.85.221.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-3ed20bdfdffso2482103f8f.2
+        for <devicetree@vger.kernel.org>; Sat, 11 Oct 2025 04:11:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1760181111; x=1760785911; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=BNDhaIuD7OLkGqc/qEfwOdLoM3WbuTz3vo+ZGfTaAzo=;
+        b=D1f/+SsvcoGN/DOnJT9cNhyLHomqqSBs6nP58pFDgoUVJ90QwiGz4Fu9PymoEBxmYb
+         dBICfJt4l5K03bYhpoBF43SiHUnbhWIxPEVmC6eEYQ/GGYSBSt2oz47uD9RyORj9MGty
+         GrU5RnZWaPAOUJwzVK9v/6WbCl0zPInNx5GebblMjIv3Q+39U6OJFWBA0DTs49vxJF/c
+         nwZBzsfIX/REvrgEZabdPRWzh8lQJTggXKYPm5UYxR3IYbnp2oZYMa4bLrD0uPd7NdDW
+         F9ggExgc+GUK8JK4/JbNmojSm19FnewyzGMqPD9feT3r4Y79aILFGYAQG3bqtrbf8yl5
+         RSJw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1760181111; x=1760785911;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=BNDhaIuD7OLkGqc/qEfwOdLoM3WbuTz3vo+ZGfTaAzo=;
+        b=s0IZoSUa/p4T1b4E1YD3nbvcuLQxNlmPbnYqAS81cIUACVJKyNtYTR7ogAB0q/oYjp
+         zem7LG+p9HjoAu322UE+/uH8PpGjv+VgwHBaQtGG0UYcn1tibpbwzuMM8ecQtjn96+Cu
+         uwy6brw1mGCPW4nsyGi12D9qWKz6bKuQqLjIrpU9mffb/bvwa+eEcE/LlfoAsgJLU7SG
+         lMh68Y3ZkBhnIS/qEeXt/pKxxzbvii6wHCqNCo5Ljor7yiMrWh7uRmMOamb3Z9Eh+jfX
+         qg0mmI04CeaXZSbJDLrSx/xD4zLKcZsuuFekgit3tWM9xQP6wUFWKwwZrcgLeEAW27XB
+         UELw==
+X-Forwarded-Encrypted: i=1; AJvYcCXCmqIwElJfc4aqilhM2rxgbKjMOTlqtSG0S4Q8P+W/vlJMKfcpRbM7lj2cxK5xyuSUOz/JFgaSI7Jp@vger.kernel.org
+X-Gm-Message-State: AOJu0YyAL0JuJqh39vvaLHEO0XrRHFq8/qBjdju51uin9gPwRBS3pwG3
+	q1IigAczpbGcK76lqkt8mKTJKX1lo83Jpn1yYuDSrSK8HNlzLZiHEmvwoPs1Kpd2lvU=
+X-Gm-Gg: ASbGncuJ3//kHO328JSwgcuhwxibr7cSU6a1zqPYfrLBPQ1wBoOxKRS9dP+R566E8uJ
+	CxCHe8nP4vdC1NBYKV+6fGdgUrBf7Ey7/bHPbA7pdCRUE+GXeD2qFYRKSY5flwSbcC7ICSDAloS
+	TciHn74yHCMZakStAMRZNsVMVlxCkErrVOWI/3+NNKd40pXyjAOIZiT4nWRXm91GNQO4FHK5rMP
+	azV9dmI8FgAizGnnVZMGkcd1svGf4KtqjjBlfw6UgGrHqqrAd2gBmhMDNhWV/9f8FbmACxrDjaa
+	C5gijng3QEU9rz45sAmv4lPc0zjyhahPpayekQt7FXIHIyJnJeYgTwWJiPivDX9hO/UPjIDmPJ0
+	wgmA9b9KJoKTzfQvKzRkab34FDFYQPhU5MVGHz5EcGjB8ulOEdA72
+X-Google-Smtp-Source: AGHT+IG+Po5fydvrqlUM2RboMwUIiJXKPtq/u/N57XLVk2dGSAzVv03PCDsidqqc+aLMpsY6TSwuaQ==
+X-Received: by 2002:a05:6000:603:b0:407:77f9:949e with SMTP id ffacd0b85a97d-42666ac7026mr9133286f8f.21.1760181110654;
+        Sat, 11 Oct 2025 04:11:50 -0700 (PDT)
+Received: from linaro.org ([86.121.7.169])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-426ce582b44sm8555148f8f.16.2025.10.11.04.11.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 11 Oct 2025 04:11:49 -0700 (PDT)
+Date: Sat, 11 Oct 2025 14:11:48 +0300
+From: Abel Vesa <abel.vesa@linaro.org>
+To: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Jyothi Kumar Seerapu <jyothi.seerapu@oss.qualcomm.com>
+Subject: Re: [PATCH 04/24] arm64: dts: qcom: glymur: Add QUPv3 configuration
+ for serial engines
+Message-ID: <odjto4fjqoi5ct33unring22s3p6vwnbrafyrcmrppwcdnm4zq@aabot4m6q2rm>
+References: <20250925-v3_glymur_introduction-v1-0-24b601bbecc0@oss.qualcomm.com>
+ <20250925-v3_glymur_introduction-v1-4-24b601bbecc0@oss.qualcomm.com>
+ <3af57kktkwevbxkno4o54w3o2qajoco5x7dlj3ckepcutlzmdh@2bnqqxndbvf3>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:TQJkCgD3lZQyO+poD_IDAQ--.56190S2
-X-Coremail-Antispam: 1UD129KBjvJXoWxAr48Cw4xWF15Gr1kXr4ktFb_yoW5GFW8pF
-	W5K34xGr4ayryxZFsYga4v9a43Xws7Wry7Kr13J3W5Xw4qva4qqrWIka4YgFW5AryxXws0
-	v3y2qF15C3Wavr7anT9S1TB71UUUUUDqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUUBq14x267AKxVW5JVWrJwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
-	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
-	1l84ACjcxK6xIIjxv20xvE14v26ryj6F1UM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26F4j
-	6r4UJwA2z4x0Y4vEx4A2jsIE14v26rxl6s0DM28EF7xvwVC2z280aVCY1x0267AKxVW0oV
-	Cq3wAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0
-	I7IYx2IY67AKxVWUXVWUAwAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S6xCaFVCjc4AY6r1j6r
-	4UM4x0Y48IcxkI7VAKI48JM4x0x7Aq67IIx4CEVc8vx2IErcIFxwACI402YVCY1x02628v
-	n2kIc2xKxwAKzVCY07xG64k0F24lc7CjxVAaw2AFwI0_GFv_Wrylc2xSY4AK6svPMxAIw2
-	8IcxkI7VAKI48JMxC20s026xCaFVCjc4AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4l
-	x2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVW8ZVWrXwCIc40Y0x0EwIxGrw
-	CI42IY6xIIjxv20xvE14v26r1j6r1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwCI
-	42IY6xAIw20EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z2
-	80aVCY1x0267AKxVW8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa7sRiBT5PUUUUU==
-X-CM-SenderInfo: 5khk3tzqr6v25zlqu0xpsx3x1qjou0bp/
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <3af57kktkwevbxkno4o54w3o2qajoco5x7dlj3ckepcutlzmdh@2bnqqxndbvf3>
 
-From: Huan He <hehuan1@eswincomputing.com>
+On 25-10-11 14:06:44, Abel Vesa wrote:
+> On 25-09-25 12:02:12, Pankaj Patil wrote:
+> > From: Jyothi Kumar Seerapu <jyothi.seerapu@oss.qualcomm.com>
+> > 
+> > Add device tree support for QUPv3 serial engine protocols on Glymur.
+> > Glymur has 24 QUP serial engines across 3 QUP wrappers, each with
+> > support of GPI DMA engines.
+> > 
+> > Signed-off-by: Jyothi Kumar Seerapu <jyothi.seerapu@oss.qualcomm.com>
+> > Signed-off-by: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
+> > ---
+> >  arch/arm64/boot/dts/qcom/glymur-crd.dts |   43 +
+> >  arch/arm64/boot/dts/qcom/glymur.dtsi    | 3041 +++++++++++++++++++++++++++++--
+> >  2 files changed, 2936 insertions(+), 148 deletions(-)
+> > 
+> > diff --git a/arch/arm64/boot/dts/qcom/glymur.dtsi b/arch/arm64/boot/dts/qcom/glymur.dtsi
+> > index f1c5a0cb483670e9f8044e250950693b4a015479..8674465b22707207523caa8ad635d95a3396497a 100644
+> > --- a/arch/arm64/boot/dts/qcom/glymur.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/glymur.dtsi
+> > @@ -707,6 +707,32 @@ gcc: clock-controller@100000 {
+> >  			#power-domain-cells = <1>;
+> >  		};
+> >  
+> > +		gpi_dma2: dma-controller@800000 {
+> > +			compatible = "qcom,glymur-gpi-dma", "qcom,sm6350-gpi-dma";
+> > +			reg = <0 0x00800000 0 0x60000>;
+> > +			interrupts = <GIC_SPI 588 IRQ_TYPE_LEVEL_HIGH>,
+> > +				     <GIC_SPI 589 IRQ_TYPE_LEVEL_HIGH>,
+> > +				     <GIC_SPI 590 IRQ_TYPE_LEVEL_HIGH>,
+> > +				     <GIC_SPI 591 IRQ_TYPE_LEVEL_HIGH>,
+> > +				     <GIC_SPI 592 IRQ_TYPE_LEVEL_HIGH>,
+> > +				     <GIC_SPI 593 IRQ_TYPE_LEVEL_HIGH>,
+> > +				     <GIC_SPI 594 IRQ_TYPE_LEVEL_HIGH>,
+> > +				     <GIC_SPI 595 IRQ_TYPE_LEVEL_HIGH>,
+> > +				     <GIC_SPI 596 IRQ_TYPE_LEVEL_HIGH>,
+> > +				     <GIC_SPI 597 IRQ_TYPE_LEVEL_HIGH>,
+> > +				     <GIC_SPI 598 IRQ_TYPE_LEVEL_HIGH>,
+> > +				     <GIC_SPI 599 IRQ_TYPE_LEVEL_HIGH>,
+> > +				     <GIC_ESPI 129 IRQ_TYPE_LEVEL_HIGH>,
+> > +				     <GIC_ESPI 130 IRQ_TYPE_LEVEL_HIGH>,
+> > +				     <GIC_ESPI 131 IRQ_TYPE_LEVEL_HIGH>,
+> > +				     <GIC_ESPI 132 IRQ_TYPE_LEVEL_HIGH>;
+> > +			dma-channels = <16>;
+> > +			dma-channel-mask = <0x3f>;
+> > +			#dma-cells = <3>;
+> > +			iommus = <&apps_smmu 0xd76 0x0>;
+> > +			status = "ok";
+> 
+> s/ok/okay/
+> 
+> Everywhere actually.
+> 
 
-Updates:
+Actually no. Maybe drop entirely like Konrad already suggested.
 
-  Changes in v4:
-  - Update sdhci-of-dwcmshc.c
-    - Address the compile error from kernel test robot
-      - Remove duplicate implementation of dwcmshc_enable_card_clk()
-      - Add missing dwcmshc_disable_card_clk() function implementation
-  - Link to v3: https://lore.kernel.org/all/20251010093807.1579-1-hehuan1@eswincomputing.com/
-
-  Changes in v3:
-  - Update snps,dwcmshc-sdhci.yaml
-    - Delete clock-output-names, '#clock-cells' and eswin,syscrg-csr
-    - Update description for eswin,hsp-sp-csr
-    - Update drive-impedance-ohm
-    - Update the item of reset-names
-  - Update sdhci-of-dwcmshc.c
-    - Add descriptions for PHY registers
-    - Simplify clock management(remove custom clock provider, use
-      standard clk API)
-    - Replace magic numbers with GENMASK() or FIELD_PREP() macros
-    - Add comments explaining HSP stability assertion writes
-    - Adjust line wrapping to fit within 100-column
-    - Delete forward declarations by moving function definitions
-    - Rename variable is_sdio to is_sd
-    - Replace unclear macros with meaningful alternatives
-  - Link to v2: https://lore.kernel.org/all/20250912093451.125-1-hehuan1@eswincomputing.com/
-
-  Changes in v2:
-  - Delete the previous separate driver and yaml binding file
-  - Update snps,dwcmshc-sdhci.yaml to add support for Eswin EIC7700
-    - Add the new compautible string: "eswin,eic7700-dwcmshc"
-    - Add new properties: clock-output-names, '#clock-cells',
-      drive-impedance-ohm, eswin,hsp-sp-csr and eswin,syscrg-csr
-    - Add customized reset-names for EIC7700 platform
-  - Update sdhci-of-dwcmshc.c to add support for Eswin EIC7700
-    - Add a new struct eic7700_priv to hold Eswin-specific data,
-      including clock phases, register mappings, and drive
-      impedance configuration
-    - Implement EIC7700-specific sdhci_ops
-      - set_clock: support core clock configuration with phase delay
-      - reset: add PHY reset and configuration
-      - set_uhs_signaling: support HS400 DLL lock
-      - platform_execute_tuning: implement delay line tuning and phase
-        code adjustment
-    - Add initialization routine (eic7700_init)
-    - Integrate the new platform data and ops into the driver's match table
-  - Link to v1: https://lore.kernel.org/all/20250516091259.774-1-dongxuyang@eswincomputing.com/
-
-Huan He (2):
-  dt-bindings: mmc: sdhci-of-dwcmshc: Add Eswin EIC7700
-  mmc: sdhci-of-dwcmshc: Add support for Eswin EIC7700
-
- .../bindings/mmc/snps,dwcmshc-sdhci.yaml      |  57 +-
- drivers/mmc/host/sdhci-of-dwcmshc.c           | 526 +++++++++++++++++-
- 2 files changed, 555 insertions(+), 28 deletions(-)
-
--- 
-2.25.1
+But then everywhere else you do "ok" please replace with "okay",
+otherwise dtbs_check complains.
 
 
