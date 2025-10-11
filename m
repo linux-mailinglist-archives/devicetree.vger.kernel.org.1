@@ -1,185 +1,244 @@
-Return-Path: <devicetree+bounces-225614-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225617-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F11DBBCF808
-	for <lists+devicetree@lfdr.de>; Sat, 11 Oct 2025 17:58:14 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5CF7CBCF89E
+	for <lists+devicetree@lfdr.de>; Sat, 11 Oct 2025 19:03:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 698DA3B51E2
-	for <lists+devicetree@lfdr.de>; Sat, 11 Oct 2025 15:58:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 43059189ADDA
+	for <lists+devicetree@lfdr.de>; Sat, 11 Oct 2025 17:03:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF3FF27E1B1;
-	Sat, 11 Oct 2025 15:58:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DA37231A30;
+	Sat, 11 Oct 2025 17:03:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="bX0M0XzY"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="v17tz+tJ";
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="fOf3IvO2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12A9D2797BD
-	for <devicetree@vger.kernel.org>; Sat, 11 Oct 2025 15:58:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 755BB27FB0E;
+	Sat, 11 Oct 2025 17:02:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.151
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760198289; cv=none; b=mUEnxLBRsXkU4qykE0oH3eoCxxZ7hbNCWn9lGI+1//mppJwHsmNyha0aC9kcyUm5cUq835PcNp5zOmaTxGvCo1RGfz8pft32hD7uTXKqFLSR99OetEV5cOggtuu6IK4jKUkT25ib72AlfYGvyD76zZc4pR/s/ldb/CbTMJBg+do=
+	t=1760202182; cv=none; b=B0xVZqkJUmEO9B0dypGsR9h3fdA3Zcybd14hjxPIeGQs0jvZub3dSpmbH2L4J5b5m7NPyrYJ3uiBZNBod4EJ8L46js3lVQm9Zpzk6CaPoSwElYnZ7kVQ8CtNHQ+BttQuQpmkqq2e3/pZ4V+VWjNQifcT4v6mG7Sgfz+zBxLn85o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760198289; c=relaxed/simple;
-	bh=QrFNimHkmBUitC0NhobSk0gO8m8J2JE3xLAa/9ZchMo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dZxCrjbwVJdVsN1t4PHBQfgesy7GgP6BU7So+7jA4nJHlqT35woyLRIFAvd6JLPgOcv5NRaDcIS1ISfi4reK/3H52xI+EtR+SWfthnL4Apxy/zzkGFWNb+xzzPYpSDL1vkJCyO+VPWm781YBeu92guXbxjuUoNgqSOXWaiMZ0r8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=bX0M0XzY; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59B70cWn012410
-	for <devicetree@vger.kernel.org>; Sat, 11 Oct 2025 15:58:00 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=cM/ZSWfIMQPPzbu9K7XPKBar
-	oba+VrIv+X2/BKJAmw4=; b=bX0M0XzY2Z+sf3v64/PypxcJ6qR8iw+sIsProsBN
-	6iTtfACpMfsALyEIAkiBBK2hPeDaFtCpGOreEkQgv9uJ856YE16+GxsUzVjMIDlL
-	SwXRQH32NxfWbKZsA5kEqm8tyTQe+HcArfvVs3Q7SVG9+tJblFJ/0yqviw2VXO61
-	i0oB+3VdZX4TAAr9F7IBa/Z01XWQa1z4okDqSuAN2n74FYShAjkho7m9M+9CRZVF
-	rPBxd13j/G533vK4+W2FP4eguadai1WRCLGHXyDKAmroq0lDnEGc7ENsD/q0rTSh
-	TIjCjpk69OOELXTL8trkrcZu4WCTNU8l4fE/nQHa0+Im3g==
-Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49qfdk0uwt-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Sat, 11 Oct 2025 15:58:00 +0000 (GMT)
-Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-85dd8633b1bso2171868785a.1
-        for <devicetree@vger.kernel.org>; Sat, 11 Oct 2025 08:58:00 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760198280; x=1760803080;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=cM/ZSWfIMQPPzbu9K7XPKBaroba+VrIv+X2/BKJAmw4=;
-        b=eeDV9+9iUy0TZvGfT8Zy3lbVLQK7vvrQUetuYsmN87cGAgg7UYPPLDo44kn9SgAa4S
-         KXJoZyevQvVI9vmQeRFEwMv/B5FSGyqsT8ZAsA53tB4BgxIf+nc6+Yyyozo9zu0fvp71
-         l0twguAVHTiqG1IGFkpoSpylGiLc9O/JHrK6l41n4UX8j/BTEYRLdnHZJRheVsp1uVFn
-         a5C+fHwEiPG21vYiV7FpnIh5naCuh7ZFXvRm2/ekcbGqhKalBMz1xxdZvw9QdBl76IeZ
-         YKDiKwSQ22yolySIcDqan8uOI0s9HRD1utdOqHHIdB35D+NKEErYUxgZyicWSd/fTz/X
-         DXzg==
-X-Forwarded-Encrypted: i=1; AJvYcCXwoWxIWyyRDq/kv+W+Ezl7XCxqN0hZEquylhF7NzmGTW7rNzwnSTKnqMPyzSx26tWwLXvG0evnjTiL@vger.kernel.org
-X-Gm-Message-State: AOJu0YwZ0FZJIuryg5IbFEy+6loyCo+xW0jTUb9na0ESu+lS20Z1VgrE
-	EZcFQEt9BBrrOJur0niVvWlLURYJAZ3M3kttIA5Z1cMTHojI1c3BBjJ3XZNAErTI3NDqkOK8Q4K
-	sfV+/S71ykUNAvBR7ZyL2jpUfDGJkN0MQgZuq9M0f8eD4OTB5TXp/TsAdfXay6q6y
-X-Gm-Gg: ASbGncsz7WEL8myR2x0aD5Ao6SvcRe9/3MFhY+er0uxUkU/eyCveElAZroYZ7i31TIZ
-	8C7mML8keMTZIqkn2ni6UjjgogBqJ9cEbTCYeNEBnilTD9m902y3Q0aPpBj3t6KChtkmb5k317I
-	LcJ3ZWFQGwv1VGMOOd+gkBRG2BGzqXHMWQMjh/2fLhcnLgNS0PyHY16EjDsTqMq2v/Je+nyoy0z
-	54Nj1BFm7X+2BAvsR9/XKxMNizmJb/sO11JnNYLSunia+aETCzbTDZCKyZszPqeLonB+AkiSMlT
-	0qaTo5NmYRCTtagg2fzvLYjC4OWFKYOZpvzRwm9X0FHUrGTngdKoVq3CvIAlVhDWUjKIPxEWmLd
-	A4UbD6VYsh/rfxpD0395LTuSgUo1ep0ngPoZwy5WICgyW3WZVxQyF
-X-Received: by 2002:ac8:758e:0:b0:4d6:c73f:de88 with SMTP id d75a77b69052e-4e6f396e281mr159605251cf.3.1760198279622;
-        Sat, 11 Oct 2025 08:57:59 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGKBCQ8VLuqm+YCoAg6hZ6hNnnm6OhLtm7zHiupmtWpKVZOf1M08JlLk7WABuseyTLvzmjuiA==
-X-Received: by 2002:ac8:758e:0:b0:4d6:c73f:de88 with SMTP id d75a77b69052e-4e6f396e281mr159605001cf.3.1760198279171;
-        Sat, 11 Oct 2025 08:57:59 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-59088563bf6sm2022640e87.71.2025.10.11.08.57.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 11 Oct 2025 08:57:58 -0700 (PDT)
-Date: Sat, 11 Oct 2025 18:57:56 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Abel Vesa <abel.vesa@linaro.org>
-Cc: Qiang Yu <qiang.yu@oss.qualcomm.com>,
-        Pankaj Patil <pankaj.patil@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Prudhvi Yarlagadda <quic_pyarlaga@quicinc.com>
-Subject: Re: [PATCH 19/24] arm64: dts: qcom: glymur: Add support for PCIe5
-Message-ID: <a75ndv2mzwy3niihi3o2ux7lrkue7h5avj2vcxgqhs3hasunfg@cosy2knsveey>
-References: <20250925-v3_glymur_introduction-v1-0-24b601bbecc0@oss.qualcomm.com>
- <20250925-v3_glymur_introduction-v1-19-24b601bbecc0@oss.qualcomm.com>
- <da2vvejbqdteaszzwyktczqivjblyawzh2k2giyoxdxlxcdrcb@fkuqivjmaggf>
- <aOiw75D0RhDNLZLQ@hu-qianyu-lv.qualcomm.com>
- <ilr7iaasabiwynzdu4ca6bhcyu5ubznc4yw4chfa3hkqsxjauw@2y6smgstv624>
+	s=arc-20240116; t=1760202182; c=relaxed/simple;
+	bh=LECoISrbAUXZ1zTG2XB1ICW01bCWNc5clDi08W+52Fc=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=qaNJhjnejakA1TYSMNHG9u46Ts+C5JnT34hV7GpJ1zRmvxCiY9G7V//h526cjVonCZVoN9Fxj3JzTBuxme4gbMZJy8S/xhcOvQ7X3XyAtbKdnY6zyCl4itq9UEpuzuQ7rANG/7p6C7DZOSSV0Ja+kDHUq0CL/kZBnLZWFsGy3qg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=v17tz+tJ; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=fOf3IvO2; arc=none smtp.client-ip=80.241.56.151
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp102.mailbox.org (smtp102.mailbox.org [10.196.197.102])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4ckVKm1Lvnz9t8r;
+	Sat, 11 Oct 2025 19:02:52 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1760202172;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=mL1+Jl7MA/4qoWAJdJa7Mwpah/QL/KBofTWVwpT9vcQ=;
+	b=v17tz+tJ4Qd2MFf5nMyiML7pzfojjVnwMlVGf8YZXLnmCNdiV6kKloKsx/Cy3k1xpDbJlO
+	2kAMjXrPo02ZKS65uG+KuIMey6tCA20VVnbSlE/su/6H1fbq2ReJ9lvhwhmgBNlVN5Aov2
+	fE762fqdNpdt0xbjaz1qFqFA2DpdIigssugTTtE31oqZeiRu1NUeoVgxWNxHPUXVKqcAAD
+	WfUk2vebvtAMOejZ11+tREEcXN9LZjz5DNT5Ze9hi80ueP6iZ+tYZTrqeeP4rwnyi9XKdG
+	CttMdmpYKRkTJUFx+FHa7kN61mrqrc8R1BkpviVISC9mavHy14mnHNndiWmnVw==
+From: Marek Vasut <marek.vasut@mailbox.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1760202170;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=mL1+Jl7MA/4qoWAJdJa7Mwpah/QL/KBofTWVwpT9vcQ=;
+	b=fOf3IvO2feDe+e8hnSxNLxlH3hILMtTs5FU4j9NwAOvSzaD5bmd/zkR7MkHSicKr1CASif
+	v9kJwCIxGljdV0I/HpqKoYNzIGpOluun+FOmmIAarOyRXQEv3VSNaCLW6TEUhTw/5sJQ30
+	1LsCwmnjVk50O6gp4Oyogd+gjT96SrGKmlkN7070/Zs0iQf7vIsC+GHvD3fxpEVXrb/5F7
+	vNUN7bsQVKNT/iPawQdzUWBxHG475I7k0IcwpUP+uleVATOk+xs8f3+idJHY+AEzMKny/k
+	ziCzErMXp/BfSGjDh4g/X64PTrfH8PyRP3OrGw/qDIe9TwUyFNJ/6xlfBWxRiA==
+To: dri-devel@lists.freedesktop.org
+Cc: Marek Vasut <marek.vasut@mailbox.org>,
+	Abel Vesa <abelvesa@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Fabio Estevam <festevam@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Liu Ying <victor.liu@nxp.com>,
+	Lucas Stach <l.stach@pengutronix.de>,
+	Peng Fan <peng.fan@nxp.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-clk@vger.kernel.org
+Subject: [PATCH 00/39] Add i.MX95 DPU/DSI/LVDS support
+Date: Sat, 11 Oct 2025 18:51:15 +0200
+Message-ID: <20251011170213.128907-1-marek.vasut@mailbox.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ilr7iaasabiwynzdu4ca6bhcyu5ubznc4yw4chfa3hkqsxjauw@2y6smgstv624>
-X-Proofpoint-ORIG-GUID: BX8FraZXzjKMrqB5g74x5sUCGVGzw-_D
-X-Authority-Analysis: v=2.4 cv=MrNfKmae c=1 sm=1 tr=0 ts=68ea7e88 cx=c_pps
- a=HLyN3IcIa5EE8TELMZ618Q==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=x6icFKpwvdMA:10 a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8 a=gVcGzzVyn95359E6DnkA:9
- a=CjuIK1q_8ugA:10 a=bTQJ7kPSJx9SKPbeHEYW:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-GUID: BX8FraZXzjKMrqB5g74x5sUCGVGzw-_D
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDExMDAxOCBTYWx0ZWRfXwJRSiW7Ym/jx
- vtPDuKjEsKyzobHipeKYtSE0AmlZQJLvHZPLnjiN7HdPFTKL7mPd9hdicK9ESR6kG1PwZQycraI
- UkZIdYKgTwOVHXBbo5Qf6yXFRgAqEQkLM0PpW5dAXYm2dvEuGnpjbF9Uep2gsn+d/IVq2yBzoS0
- 2fXybsrqIV6PjHs2LtASIHN0dy6sajmEh/+DxQxays7IQAQCi0Z4CcamvFbrFX2xW4uhto93AhV
- R6rdijucm0eJ0laZX9wEaiUr7c5P9mXq2qXjjLzBfJdUwJv/5SfmZ+JFh+wa3BXT8w7T7IYxKGt
- DzSakNu9ujGdJK2Uydmbr+F3+TRB5uOqaz0FDJIVzL48cZtyN4kQjxeL2IxSHJdYL4ZPSDO/NbR
- 70MkLHfa2h3iW+xJH/EDxQ6edC74Kw==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-10-11_03,2025-10-06_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 bulkscore=0 clxscore=1015 adultscore=0 phishscore=0
- impostorscore=0 priorityscore=1501 malwarescore=0 lowpriorityscore=0
- suspectscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2510020000
- definitions=main-2510110018
+Content-Transfer-Encoding: 8bit
+X-MBO-RS-META: x47qkkhta4xd3ewnu1awe5y7riujfwoj
+X-MBO-RS-ID: 238e2e9e1fd66030e55
 
-On Sat, Oct 11, 2025 at 02:43:14PM +0300, Abel Vesa wrote:
-> On 25-10-10 00:08:31, Qiang Yu wrote:
-> > On Wed, Oct 08, 2025 at 04:36:59PM +0300, Abel Vesa wrote:
-> > > On 25-09-25 12:02:27, Pankaj Patil wrote:
-> > > > From: Prudhvi Yarlagadda <quic_pyarlaga@quicinc.com>
-> > > > 
-> > > > Describe PCIe5 controller and PHY. Also add required system resources like
-> > > > regulators, clocks, interrupts and registers configuration for PCIe5.
-> > > > 
-> > > > Signed-off-by: Prudhvi Yarlagadda <quic_pyarlaga@quicinc.com>
-> > > > Signed-off-by: Qiang Yu <qiang.yu@oss.qualcomm.com>
-> > > > Signed-off-by: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
-> > > > ---
-> > > >  arch/arm64/boot/dts/qcom/glymur.dtsi | 208 ++++++++++++++++++++++++++++++++++-
-> > > >  1 file changed, 207 insertions(+), 1 deletion(-)
-> > > > 
-> > > > diff --git a/arch/arm64/boot/dts/qcom/glymur.dtsi b/arch/arm64/boot/dts/qcom/glymur.dtsi
-> > > > index e6e001485747785fd29c606773cba7793bbd2a5c..17a07d33b9396dba00e61a3b4260fa1a535600f2 100644
-> > > > --- a/arch/arm64/boot/dts/qcom/glymur.dtsi
-> > > > +++ b/arch/arm64/boot/dts/qcom/glymur.dtsi
-> > > > @@ -951,7 +951,7 @@ gcc: clock-controller@100000 {
-> > > >  				 <0>,
-> > > >  				 <0>,
-> > > >  				 <0>,
-> > > > -				 <0>;
-> > > > +				 <&pcie5_phy>;
-> > > >  			#clock-cells = <1>;
-> > > >  			#reset-cells = <1>;
-> > > >  			#power-domain-cells = <1>;
-> > > > @@ -2511,6 +2511,212 @@ pcie_west_slv_noc: interconnect@1920000 {
-> > > >  			#interconnect-cells = <2>;
-> > > >  		};
-> > > >  
-> > > > +		pcie5: pci@1b40000 {
-> > > > +			device_type = "pci";
-> > > > +			compatible = "qcom,glymur-pcie", "qcom,pcie-x1e80100";
-> > > 
-> > > The first compatible is definitely "qcom,pcie-glymur".
-> > 
-> > According to Documentation/devicetree/bindings/arm/qcom-soc.yaml
-> > the preferred order is qcom,socname-ipblock.
-> 
-> Fair enough.
-> 
-> Now I wonder what happened when we added the one for x1e80100.
+This large series adds support for the i.MX95 display pipeline, including
+DPU, DSI and LVDS support. Most of the components extend existin drivers,
+DPU is added into DC driver, DSI into iMX93 DSI driver, LVDS into iMX8MP
+LDB. Pixel link and pixel interleaver drivers are reworked to work as two
+independent channels, since there seems to be no dependency between their
+two channels. The i.MX95 DTSI changes are also included.
 
-Our PCIe hosts mostly follow the legacy approach and nobody wanted to
-change it up to now.
+Since the DPU chapter is missing from the i.MX95 RM, this is based on the
+NXP downstream kernel fork code and there might be issues.
+
+Majority of this series are DPU patches on top of the DC driver, I tried
+to keep them separate and easy to review. Later part adds LVDS and DSI
+support, this can be split into separate series.
+
+Both DSI-to-HDMI path using LT8912 bridge and LVDS single-lane with Logic
+Techno LT170410-2WHC panel were tested on Toradex i.MX95 Verdin EVK v1.2 .
+
+Liu Ying (2):
+  drm/bridge: imx: Add NXP i.MX95 pixel interleaver support
+  drm/bridge: imx: Add NXP i.MX95 pixel link support
+
+Marek Vasut (36):
+  dt-bindings: display: imx: Document i.MX95 Display Controller
+    DomainBlend
+  drm/imx: Add i.MX95 Display Controller DomainBlend
+  dt-bindings: display: imx: Document i.MX95 Display Controller
+    processing units
+  drm/imx: dc: Use bulk clock
+  drm/imx: dc: Rework dc_subdev_get_id() to drop ARRAY_SIZE() use
+  drm/imx: dc: Rename i.MX8QXP specific Link IDs
+  drm/imx: dc: cf: Pass struct dc_subdev_info via OF match data
+  drm/imx: dc: de: Pass struct dc_de_subdev_match_data via OF match data
+  drm/imx: dc: ed: Rework dc_ed_pec_src_sel() to drop ARRAY_SIZE() use
+  drm/imx: dc: ed: Pass struct dc_ed_subdev_match_data via OF match data
+  drm/imx: dc: fg: Parametrize register access
+  drm/imx: dc: ed: Pass struct dc_fg_subdev_match_data via OF match data
+  drm/imx: dc: fu: Describe remaining register offsets
+  drm/imx: dc: fu: Inline FRAC_OFFSET into FetchLayer and FetchWrap
+  drm/imx: dc: fu: Pass struct dc_fu_subdev_match_data via OF match data
+  drm/imx: dc: lb: Pass struct dc_lb_subdev_match_data via OF match data
+  drm/imx: dc: tc: Pass struct dc_tc_subdev_match_data via OF match data
+  drm/imx: dc: ic: Pass struct dc_ic_subdev_match_data via OF match data
+  drm/imx: dc: ic: Use DT node as interrupt controller name
+  drm/imx: dc: Configure display CSR clock feed select
+  drm/imx: dc: crtc: Do not check disabled CRTCs
+  drm/imx: dc: Keep FU unit running on i.MX95
+  drm/imx: dc: Add OF match data for i.MX95
+  drm/imx: Add more RGB swizzling options
+  dt-bindings: display: bridge: Document NXP i.MX95 pixel interleaver
+    support
+  dt-bindings: display: bridge: Document NXP i.MX95 pixel link support
+  dt-bindings: display: bridge: Document Freescale i.MX95 MIPI DSI
+  drm/bridge: imx93-mipi-dsi: Add i.MX95 PLL initialization
+  dt-bindings: clock: Split support for i.MX95 LVDS CSR
+  dt-bindings: display: bridge: Document i.MX95 LVDS display bridge
+    binding
+  dt-bindings: display: bridge: ldb: Add an i.MX95 entry
+  drm/bridge: fsl-ldb: Parse register offsets from DT
+  drm/bridge: fsl-ldb: Add i.MX95 support
+  dt-bindings: interrupt-controller: fsl,irqsteer: Add i.MX95 support
+  dt-bindings: clock: support i.MX95 Display Stream CSR module
+  arm64: dts: imx95: Describe display pipeline
+
+Sandor Yu (1):
+  drm: bridge: imx: Add i.MX95 LVDS Display Bridge (LDB) driver
+
+ .../bindings/clock/nxp,imx95-blk-ctl.yaml     |   1 -
+ .../clock/nxp,imx95-lvds-blk-ctl.yaml         |  80 ++
+ .../display/bridge/fsl,imx93-mipi-dsi.yaml    |  48 +-
+ .../display/bridge/fsl,imx95-lvds.yaml        | 140 ++++
+ .../bridge/fsl,imx95-pixel-interleaver.yaml   |  85 +++
+ .../display/bridge/fsl,imx95-pixel-link.yaml  | 101 +++
+ .../bindings/display/bridge/fsl,ldb.yaml      |   2 +
+ .../imx/fsl,imx8qxp-dc-constframe.yaml        |   4 +-
+ .../imx/fsl,imx8qxp-dc-display-engine.yaml    |  45 +-
+ .../display/imx/fsl,imx8qxp-dc-extdst.yaml    |   4 +-
+ .../display/imx/fsl,imx8qxp-dc-fetchunit.yaml |   1 +
+ .../display/imx/fsl,imx8qxp-dc-framegen.yaml  |  13 +-
+ .../imx/fsl,imx8qxp-dc-layerblend.yaml        |   4 +-
+ .../imx/fsl,imx8qxp-dc-pixel-engine.yaml      |  52 +-
+ .../display/imx/fsl,imx8qxp-dc-tcon.yaml      |   5 +-
+ .../bindings/display/imx/fsl,imx8qxp-dc.yaml  |  53 +-
+ .../display/imx/fsl,imx95-dc-domainblend.yaml |  32 +
+ .../imx/nxp,imx95-display-stream-csr.yaml     |  41 +
+ .../interrupt-controller/fsl,irqsteer.yaml    |   2 +
+ arch/arm64/boot/dts/freescale/imx95.dtsi      | 710 ++++++++++++++++++
+ drivers/gpu/drm/bridge/fsl-ldb.c              |  65 +-
+ drivers/gpu/drm/bridge/imx/Kconfig            |  28 +
+ drivers/gpu/drm/bridge/imx/Makefile           |   3 +
+ drivers/gpu/drm/bridge/imx/imx-ldb-helper.h   |   2 +
+ drivers/gpu/drm/bridge/imx/imx93-mipi-dsi.c   | 612 ++++++++++++++-
+ drivers/gpu/drm/bridge/imx/imx95-ldb.c        | 470 ++++++++++++
+ .../drm/bridge/imx/imx95-pixel-interleaver.c  | 217 ++++++
+ drivers/gpu/drm/bridge/imx/imx95-pixel-link.c | 184 +++++
+ drivers/gpu/drm/imx/dc/Kconfig                |   4 +-
+ drivers/gpu/drm/imx/dc/Makefile               |   2 +-
+ drivers/gpu/drm/imx/dc/dc-cf.c                |  41 +-
+ drivers/gpu/drm/imx/dc/dc-crtc.c              |   6 +
+ drivers/gpu/drm/imx/dc/dc-db.c                | 227 ++++++
+ drivers/gpu/drm/imx/dc/dc-de.c                |  83 +-
+ drivers/gpu/drm/imx/dc/dc-de.h                |  14 +
+ drivers/gpu/drm/imx/dc/dc-drv.c               |  45 +-
+ drivers/gpu/drm/imx/dc/dc-drv.h               |  11 +-
+ drivers/gpu/drm/imx/dc/dc-ed.c                |  67 +-
+ drivers/gpu/drm/imx/dc/dc-fg.c                | 157 ++--
+ drivers/gpu/drm/imx/dc/dc-fl.c                | 145 +++-
+ drivers/gpu/drm/imx/dc/dc-fu.c                |  46 +-
+ drivers/gpu/drm/imx/dc/dc-fu.h                |   7 +-
+ drivers/gpu/drm/imx/dc/dc-fw.c                |  54 +-
+ drivers/gpu/drm/imx/dc/dc-ic.c                | 192 +++--
+ drivers/gpu/drm/imx/dc/dc-kms.h               |   6 +
+ drivers/gpu/drm/imx/dc/dc-lb.c                | 109 ++-
+ drivers/gpu/drm/imx/dc/dc-pe.c                |  12 +-
+ drivers/gpu/drm/imx/dc/dc-pe.h                |  41 +-
+ drivers/gpu/drm/imx/dc/dc-plane.c             |  18 +-
+ drivers/gpu/drm/imx/dc/dc-tc.c                |  55 +-
+ 50 files changed, 4000 insertions(+), 346 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/nxp,imx95-lvds-blk-ctl.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/fsl,imx95-lvds.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/fsl,imx95-pixel-interleaver.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/fsl,imx95-pixel-link.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx95-dc-domainblend.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/imx/nxp,imx95-display-stream-csr.yaml
+ create mode 100644 drivers/gpu/drm/bridge/imx/imx95-ldb.c
+ create mode 100644 drivers/gpu/drm/bridge/imx/imx95-pixel-interleaver.c
+ create mode 100644 drivers/gpu/drm/bridge/imx/imx95-pixel-link.c
+ create mode 100644 drivers/gpu/drm/imx/dc/dc-db.c
+
+---
+Cc: Abel Vesa <abelvesa@kernel.org>
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: Fabio Estevam <festevam@gmail.com>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
+Cc: Liu Ying <victor.liu@nxp.com>
+Cc: Lucas Stach <l.stach@pengutronix.de>
+Cc: Peng Fan <peng.fan@nxp.com>
+Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
+Cc: Rob Herring <robh@kernel.org>
+Cc: Shawn Guo <shawnguo@kernel.org>
+Cc: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: devicetree@vger.kernel.org
+Cc: dri-devel@lists.freedesktop.org
+Cc: imx@lists.linux.dev
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-clk@vger.kernel.org
 
 -- 
-With best wishes
-Dmitry
+2.51.0
+
 
