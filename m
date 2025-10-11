@@ -1,192 +1,208 @@
-Return-Path: <devicetree+bounces-225615-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225646-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA7E6BCF86E
-	for <lists+devicetree@lfdr.de>; Sat, 11 Oct 2025 18:51:53 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 20060BCF997
+	for <lists+devicetree@lfdr.de>; Sat, 11 Oct 2025 19:04:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D12461898ACB
-	for <lists+devicetree@lfdr.de>; Sat, 11 Oct 2025 16:52:16 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id F334A4E58D2
+	for <lists+devicetree@lfdr.de>; Sat, 11 Oct 2025 17:04:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E42DE27A919;
-	Sat, 11 Oct 2025 16:51:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6AA7280329;
+	Sat, 11 Oct 2025 17:04:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="EvAdmvm6"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="YD7lKh4Z";
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="fpp2uCXH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 623FD1531F9
-	for <devicetree@vger.kernel.org>; Sat, 11 Oct 2025 16:51:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F55D280CC9;
+	Sat, 11 Oct 2025 17:04:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760201509; cv=none; b=Hraz4C0+g0ev7qaf1nqpm3l5C6i32hsWC7DO8IU9bVqy8OvRyzPPtqjmkuQgUdqNUsYOTbldNDRsvMYIz0/S6VjUtb4fOjcJ/R6zDbaUvmBNMTNLCDGLoCNG8ewrgi8cYwRR2u0Ve6+aRCugmxv0ZdgXVi+pQK6GZ2evjJf1ghQ=
+	t=1760202258; cv=none; b=hArshicO0cFv+pSlF03TtVMin2s//tCzfsCof45mZkrN4nhqUDk8aVEPWsOIzMzG14CiTuU/dDJn3LJT66qBQYlFcLVr6llYBDwf33Zu9icMIKX2REqZOQc0l3mPIZVedg7jUaPaBwPxGWFaKQ5KLepWM2Eksr7r2EoP65GP2Z0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760201509; c=relaxed/simple;
-	bh=756nAZI2HsvJeu3L8Lk2/V/v6E2LwBB2KcFEklPlkNs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DFOo29UPLvr41rX9nXsmouWuQOZ50rC2+Rq7hsCYpWA6xWwijZ5EjNerLt62g2R/jIZyFQOvkq2GaeIjy4xGlFG3WyM39gmuDJQI1YlbOQsaDbDdEqnijafbur0XzvVg5CeRC7a3udzcwWVUEllMG+I6gT1z0rcJnlH61RZnlRw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=EvAdmvm6; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59BBJCYM009709
-	for <devicetree@vger.kernel.org>; Sat, 11 Oct 2025 16:51:47 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=xDql/hmPHmbhLyPjNWGht0Ir
-	lePqDSoVlgpyDaLxB/g=; b=EvAdmvm6JMiBwFtspv0DVRebMaZ0aXzHvBjDTmh6
-	Pl60vwPGKB0cy3LVeUlVVjqCfimlC7XL7NnbIhmMZ5worXFZG91+Siul6cbVZs0L
-	/tYDYwhfev7fPrgJq8VIpAhQ7xY1tndC7UIOZzQNtAtgIOpFU9lLhrlSlZ/tMh00
-	G4rXeTkQIwVKyC9ovm5cMzFOzx94tfTYYTPcIji09/iwL63WTS2Gd45X9PBAW6MA
-	YYde0awJMTCsglI/bbJwhzW00Y2bz+0MQmivyjvX1rPJD0xqfMcU8RutgBgNGbY1
-	HiCWWxsnlZUDXyE/g5bcjD72dU2gQvJZLDvITIxdLDojUg==
-Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49qff0gwy1-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Sat, 11 Oct 2025 16:51:47 +0000 (GMT)
-Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-856c1aa079bso1725566585a.0
-        for <devicetree@vger.kernel.org>; Sat, 11 Oct 2025 09:51:47 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760201506; x=1760806306;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=xDql/hmPHmbhLyPjNWGht0IrlePqDSoVlgpyDaLxB/g=;
-        b=ADVul6WjzpkKjLoQzErHI6tGcoVVvuVNq28AN7J+8FUEen/WCN2sgkmTlTRHHqSXoU
-         /X+LIJn6EUGnnzamK9Pj4jkJyOt78U7rtdbN7KQ3lQGw09/6Gq8jdm4rCeWXVo9xy91s
-         1+m+zIfY/Gvs2SJt02nhWJp3EH9jYk+KgnJ/cY7CGJCvF3K6EwPDG5v2tcUnC+fiJJgI
-         kgR99+T/mWSFe7EfLCRAa/sKdbbNgA29ltFrmUFBzMt+ONKgUEPu02FNvaydZuoaom3o
-         6NU+bnAScr1KOELjau1xRW7M+5w1OSH3VaZPR3KMN3KwVMuKO1ev3ZLBfu2gJiUGmxHf
-         WfPA==
-X-Forwarded-Encrypted: i=1; AJvYcCWDOaHuvGGJrJq6Ka3aiABHP4oJPTQCIs8RJRBJAskFk47V1mpzEnnQuWyYTO3Xf59JSDyMOP8T2TTJ@vger.kernel.org
-X-Gm-Message-State: AOJu0YxP7tQEJMyUuRc6gtUl9DKT7bvoWnub1way+Icq+oRbnpJOc/ph
-	bdqo3HT05YswThODtYXoCqBhYnZTBiKeuSTpJxlmNbE4P2fj+g768cRwAw9sNJnwF+Kwp6hZNzG
-	cF99GJW4rUEwvzIUmMN2q8UjPVj4xLFw+NtsEqqdOqXOEyCd8y7rGVUcpuYGSoQKZ
-X-Gm-Gg: ASbGnct/7kvo7SXuBFRWBu/3NBJY5toaH+UIWNpT1yX2kJjhOb8oYQ8lv1d1WGgKVXS
-	LwPZ8pWxkfEumtN9B8cWf03Y+dZDxDm4YN4IlNFhYf/lzguyYDv20mEZPTvsUlBP1oUtgqO7/IT
-	Mw/u56/I5v0OQ2pf0xllp43WPWDlOsL01aBxKiwn7IwfXAxYsKsIqy6GEOf6K0RdNwi6Kh/R5Jw
-	q9Lah1ytnuI+VbNN0VKofFxOsm2SmQKNBXqtZGCthkJInDMj0ELXZWgWFFrmpHCP6bFh86nlaTt
-	Ni3AjEPZ3nvjw0b65P5b5mg15XClHGslKVvn8ud4ngUfZygoLWnKFJrEOpMWdSSzMXTDKVIxSot
-	rNOHAJ7L/K36NMqptnX0vkYwmiaJRosAnEFqgKf7iqKDM/FXGJZPB
-X-Received: by 2002:a05:620a:690f:b0:878:7b3e:7bc4 with SMTP id af79cd13be357-8820b47d5cemr2727436585a.11.1760201506231;
-        Sat, 11 Oct 2025 09:51:46 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IG1knLg1ejAD4VBlbVpVAYhUPHuhDgVtfBnPSvgk3VxA9bjqCPn8ECh/NUyGL80y7radiIDxw==
-X-Received: by 2002:a05:620a:690f:b0:878:7b3e:7bc4 with SMTP id af79cd13be357-8820b47d5cemr2727433485a.11.1760201505751;
-        Sat, 11 Oct 2025 09:51:45 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5908856394bsm2060654e87.66.2025.10.11.09.51.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 11 Oct 2025 09:51:44 -0700 (PDT)
-Date: Sat, 11 Oct 2025 19:51:43 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Chaoyi Chen <kernel@airkyi.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>, Sandy Huang <hjc@rock-chips.com>,
-        Andy Yan <andy.yan@rock-chips.com>,
-        Yubing Zhang <yubing.zhang@rock-chips.com>,
-        Frank Wang <frank.wang@rock-chips.com>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Amit Sunil Dhamne <amitsd@google.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Chaoyi Chen <chaoyi.chen@rock-chips.com>,
-        Dragan Simic <dsimic@manjaro.org>, Johan Jonker <jbx6244@gmail.com>,
-        Diederik de Haas <didi.debian@cknow.org>,
-        Peter Robinson <pbrobinson@gmail.com>, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH v5 1/8] usb: typec: Add default HPD device when register
- DisplayPort altmode
-Message-ID: <4eizpzejw43gqt5jauvkeij65rracols2voa2osflwyjrwbvun@sovgqfuhg6mc>
-References: <20251011033233.97-1-kernel@airkyi.com>
- <20251011033233.97-2-kernel@airkyi.com>
+	s=arc-20240116; t=1760202258; c=relaxed/simple;
+	bh=MWMemIt4FQtnun7bsU5nckdMCZ0ZIChwEQpWjiJUJtk=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=co1VnP+FId9GPuYL7YEJY5PcuvWgbky9jE1YDB+GVx8kRJkIkt59aaesqG3zwIPLfRz8AkYUOLDY7hXoPbHiDFBmGyYNEkyX8IAl9gvvYqjuxeQWtDjqEN0P9QO17+SjKnsTpmzHL+KRJEyQ0V429cDq7h31jam65dPe9vseINw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=YD7lKh4Z; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=fpp2uCXH; arc=none smtp.client-ip=80.241.56.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp102.mailbox.org (smtp102.mailbox.org [IPv6:2001:67c:2050:b231:465::102])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4ckVML5Ssxz9tH5;
+	Sat, 11 Oct 2025 19:04:14 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1760202254;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=xPiyri8B7k2bct+4e5c5xnBcOdZcRZjBPgHNHY8UKtw=;
+	b=YD7lKh4Zdf76nSMCJAStIiM4bNPfP83U5mHSGc7jOe8IoG7sEJjLs/hUyPsc28E1gdMCdw
+	aSUz5TVuvEwk/5NNlLD3wDiBC6DdB+g5GN3W7x3WBJBCG4hMoWDKuhL9mC1viULyKjOg1/
+	xfH2Ncz6xbELzrH13+MUci1zwASXsZjLN3RRsJPBD/mXOOJu+QOj9HIYMTqD5LPJ/rf1Xv
+	UqPXHNcFzQ5rD8bOP2d9pwvgmiXeqxALuqiuCqDAWWzXH1WuTM5vqy4HPblLGxz4Zl71cJ
+	1KZG1LPu0M0tURJ3uMbjOXZvh20jPE52r8bnpcz8GlVmINHVzCP8Uu7NFRauUQ==
+Authentication-Results: outgoing_mbo_mout;
+	dkim=pass header.d=mailbox.org header.s=mail20150812 header.b=fpp2uCXH;
+	spf=pass (outgoing_mbo_mout: domain of marek.vasut@mailbox.org designates 2001:67c:2050:b231:465::102 as permitted sender) smtp.mailfrom=marek.vasut@mailbox.org
+From: Marek Vasut <marek.vasut@mailbox.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1760202252;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=xPiyri8B7k2bct+4e5c5xnBcOdZcRZjBPgHNHY8UKtw=;
+	b=fpp2uCXHh9XD4JyA5nrRXLCt89JMZD68UW2GptC0MJOAZzUetKaPCyrUniPt6MAQkkeRzF
+	nOP85GjwcWMHFAYxLsSlhe2rrwCwC+KDSsj8hWpP/AGPxqwVhNmo/KCBRYqPcA2UaPRBd4
+	WEj8An3sdIo22BNhCfL6oe54ng0C0cPNpY/MeWMQseG/NrRtZ+Xqc1nWD5FzxYsg1EU0Hi
+	ko7Gw/vc9o5DaoYkWaPwfW/K8Wzl+Cohn9cVSplZiIvwuGQ+aQy6C/CPxv3exPlM7TXgJp
+	9MEg+Xsxap9B/jZcP28e4M4SfCf1a0T0gsaC67G7lpipBzv2pXL4EW1rMKgOcQ==
+To: dri-devel@lists.freedesktop.org
+Cc: Marek Vasut <marek.vasut@mailbox.org>,
+	Abel Vesa <abelvesa@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Fabio Estevam <festevam@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Liu Ying <victor.liu@nxp.com>,
+	Lucas Stach <l.stach@pengutronix.de>,
+	Peng Fan <peng.fan@nxp.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-clk@vger.kernel.org
+Subject: [PATCH 29/39] dt-bindings: display: bridge: Document Freescale i.MX95 MIPI DSI
+Date: Sat, 11 Oct 2025 18:51:44 +0200
+Message-ID: <20251011170213.128907-30-marek.vasut@mailbox.org>
+In-Reply-To: <20251011170213.128907-1-marek.vasut@mailbox.org>
+References: <20251011170213.128907-1-marek.vasut@mailbox.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251011033233.97-2-kernel@airkyi.com>
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDExMDAxOCBTYWx0ZWRfX8/MGlyomETrU
- ohRC/KssZUudgHkl2J5La+UA/klDUTQztLMknj5EUKTozVNuRggPWqO8AB2w7YysWlajvy7b2HU
- 96npNBeMQVCcirQ/246niLG2DM2WpfghXw8CJeR50VeNe0p26XxTtg5JoXjMs72HG3yaBbgqBiD
- H2L/1pQc4p62GzwxJzVknSg9NpVT0TgSdiarlVqcc7foGE2Q4CFIPji30OcqMydobn5BH6JDVFp
- ZuoU21xSZss4k6Ud0Qf5Y7vg+TuQcTQpCTezrUpMVkKjf6UpXb/+H5rBq/V/yUQ2VahfBzvlH2E
- Zw/ivOg18UnNnwcw2v1Mu3+xQ2c7T/qV2GP6fP/KIWJevVhcAqxIWslfnFJTwi0Hmx3r+kJzdud
- jflfPz/KvUWEegCyrMV5xJLwCCgD+Q==
-X-Proofpoint-GUID: Otob9Yo3SH843cesEZ6gxSTuC407UuZm
-X-Authority-Analysis: v=2.4 cv=PriergM3 c=1 sm=1 tr=0 ts=68ea8b23 cx=c_pps
- a=HLyN3IcIa5EE8TELMZ618Q==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=x6icFKpwvdMA:10 a=s8YR1HE3AAAA:8 a=RXhTPAuaP42idGtAG2cA:9 a=CjuIK1q_8ugA:10
- a=bTQJ7kPSJx9SKPbeHEYW:22 a=jGH_LyMDp9YhSvY-UuyI:22
-X-Proofpoint-ORIG-GUID: Otob9Yo3SH843cesEZ6gxSTuC407UuZm
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-10-11_03,2025-10-06_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 adultscore=0 clxscore=1015 bulkscore=0 phishscore=0
- lowpriorityscore=0 spamscore=0 suspectscore=0 impostorscore=0
- priorityscore=1501 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2510020000
- definitions=main-2510110018
+Content-Transfer-Encoding: 8bit
+X-MBO-RS-META: 85zz6hyigpakz4rsiia6ykwknitchfqo
+X-MBO-RS-ID: a8076b6bb914c6c52ba
+X-Rspamd-Queue-Id: 4ckVML5Ssxz9tH5
 
-On Sat, Oct 11, 2025 at 11:32:26AM +0800, Chaoyi Chen wrote:
-> From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
-> 
-> Add default DRM AUX HPD bridge device when register DisplayPort
-> altmode. That makes it redundant for each Type-C driver to implement
-> a similar registration process in embedded scenarios.
-> 
-> Signed-off-by: Chaoyi Chen <chaoyi.chen@rock-chips.com>
-> ---
-> 
-> Changes in v5:
-> - Remove the calls related to `drm_aux_hpd_bridge_notify()`.
-> - Place the helper functions in the same compilation unit.
-> - Add more comments about parent device.
-> 
->  drivers/usb/typec/class.c         | 26 ++++++++++++++++++++++++++
->  include/linux/usb/typec_altmode.h |  2 ++
->  2 files changed, 28 insertions(+)
-> 
->  
-> +static void dp_altmode_hpd_device_register(struct typec_altmode *alt)
-> +{
-> +	if (alt->svid != USB_TYPEC_DP_SID)
-> +		return;
-> +
-> +	/*
-> +	 * alt->dev.parent->parent : USB-C controller device
-> +	 * alt->dev.parent         : USB-C connector device
-> +	 */
-> +	alt->hpd_dev = drm_dp_hpd_bridge_register(alt->dev.parent->parent,
-> +						  to_of_node(alt->dev.parent->fwnode));
+Freescale i.MX95 SoC embeds a Synopsys Designware MIPI DSI host
+controller and a Synopsys Designware MIPI DPHY. Unlike the i.MX93
+PHY, the i.MX95 PHY uses more syscon interfaces to configure the
+PHY.
 
-You can not do this, unless you make TYPEC core:
+Signed-off-by: Marek Vasut <marek.vasut@mailbox.org>
+---
+Cc: Abel Vesa <abelvesa@kernel.org>
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: Fabio Estevam <festevam@gmail.com>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
+Cc: Liu Ying <victor.liu@nxp.com>
+Cc: Lucas Stach <l.stach@pengutronix.de>
+Cc: Peng Fan <peng.fan@nxp.com>
+Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
+Cc: Rob Herring <robh@kernel.org>
+Cc: Shawn Guo <shawnguo@kernel.org>
+Cc: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: devicetree@vger.kernel.org
+Cc: dri-devel@lists.freedesktop.org
+Cc: imx@lists.linux.dev
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-clk@vger.kernel.org
+---
+ .../display/bridge/fsl,imx93-mipi-dsi.yaml    | 48 +++++++++++++++++--
+ 1 file changed, 43 insertions(+), 5 deletions(-)
 
-depends on DRM || DRM=n
-select DRM_AUX_HPD_BRIDGE if DRM_BRIDGE && OF
-
-> +	if (IS_ERR(alt->hpd_dev))
-> +		alt->hpd_dev = NULL;
-> +}
-> +
->  static struct typec_altmode *
->  typec_register_altmode(struct device *parent,
->  		       const struct typec_altmode_desc *desc)
-
+diff --git a/Documentation/devicetree/bindings/display/bridge/fsl,imx93-mipi-dsi.yaml b/Documentation/devicetree/bindings/display/bridge/fsl,imx93-mipi-dsi.yaml
+index d6e51d0cf5464..388301c4f95c1 100644
+--- a/Documentation/devicetree/bindings/display/bridge/fsl,imx93-mipi-dsi.yaml
++++ b/Documentation/devicetree/bindings/display/bridge/fsl,imx93-mipi-dsi.yaml
+@@ -14,12 +14,11 @@ description: |
+   Designware MIPI DPHY embedded in Freescale i.MX93 SoC.  Some configurations
+   and extensions to them are controlled by i.MX93 media blk-ctrl.
+ 
+-allOf:
+-  - $ref: snps,dw-mipi-dsi.yaml#
+-
+ properties:
+   compatible:
+-    const: fsl,imx93-mipi-dsi
++    enum:
++      - fsl,imx93-mipi-dsi
++      - fsl,imx95-mipi-dsi
+ 
+   clocks:
+     items:
+@@ -46,13 +45,52 @@ properties:
+       controller and MIPI DPHY PLL related configurations through PLL SoC
+       interface.
+ 
++  fsl,disp-master-csr:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description:
++      i.MX95 Display Master CSR is a syscon which includes registers to
++      control DSI clock settings, clock gating, and pixel link select.
++
++  fsl,disp-stream-csr:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description:
++      i.MX95 Display Stream CSR is a syscon which includes configuration
++      and status registers for the DSI host.
++
++  fsl,mipi-combo-phy-csr:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description:
++      i.MX95 Display Stream CSR is a syscon which configuration and status
++      registers for the MIPI Tx DPHY module in the Camera domain.
++
+   power-domains:
+     maxItems: 1
+ 
++allOf:
++  - $ref: snps,dw-mipi-dsi.yaml#
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: fsl,imx93-mipi-dsi
++    then:
++      required:
++        - fsl,media-blk-ctrl
++
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: fsl,imx95-mipi-dsi
++    then:
++      required:
++        - fsl,disp-master-csr
++        - fsl,disp-stream-csr
++        - fsl,mipi-combo-phy-csr
++
+ required:
+   - compatible
+   - interrupts
+-  - fsl,media-blk-ctrl
+   - power-domains
+ 
+ unevaluatedProperties: false
 -- 
-With best wishes
-Dmitry
+2.51.0
+
 
