@@ -1,185 +1,123 @@
-Return-Path: <devicetree+bounces-225567-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225568-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42253BCEF4B
-	for <lists+devicetree@lfdr.de>; Sat, 11 Oct 2025 05:40:22 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5FFE5BCEFAB
+	for <lists+devicetree@lfdr.de>; Sat, 11 Oct 2025 06:09:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E4C6A4E1E9F
-	for <lists+devicetree@lfdr.de>; Sat, 11 Oct 2025 03:40:20 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D48E44E28A9
+	for <lists+devicetree@lfdr.de>; Sat, 11 Oct 2025 04:09:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D43DE1EB5FD;
-	Sat, 11 Oct 2025 03:40:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB029FC1D;
+	Sat, 11 Oct 2025 04:09:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="d3lxvNWI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qJUcnssh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 238631DF963;
-	Sat, 11 Oct 2025 03:40:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB28034BA49;
+	Sat, 11 Oct 2025 04:09:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760154012; cv=none; b=mzCtvqOHLmQKULytC5hg9szHiWJrmEHtfExuyYDK4iGFOeFdYq1dw1sKIhxEMdFog+J8IeKjtO3BL6XwCSnnrwoV3X2F9cTOPI7OdXX4ONqO426vN+/ilfiBTEQnTMkGwzUxwDKsaxZbcA09X8iMqHUXz7nABB+Mh85faZNOVw4=
+	t=1760155749; cv=none; b=A61+gvd9PKTqJVpsV48vYHNIVW2s0TKLcN6w6qzfHFcO4KMw3aWjVHmw77wMH5uk/e51D//IsFwxkLRDlgSum9II5wUyO4PHLb5MkReZ30la8bY21fLne9OcyOlmAq4dp5k2/V5GxsHBvt1gvopZwQEalva5RjB5rGyKIAMu6a8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760154012; c=relaxed/simple;
-	bh=p/Sw6hsNG/Asjp0JRAo06u1WUs6i3eDXjAUi4btbFE4=;
+	s=arc-20240116; t=1760155749; c=relaxed/simple;
+	bh=dHJoTvSQpgNLs9J0VBG50JGYREfFLnhm8Clc1KzA8OY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cmhR5gkkHnC9TDJkqxG4Z8Fatoh95IyBQtL59QcDPWG49+Nm/xVIDTyqKCa6c5QHmC02RXjnTqjZXKbEOY8cII3Lb89BrRdceKCQDZsy3P5aE8rRzeImdWylSZYrGuvzzS/cS82oNasmhpgxDladEixDS70LtmZsIRjOUcLVuv0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=d3lxvNWI; arc=none smtp.client-ip=198.175.65.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1760154012; x=1791690012;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=p/Sw6hsNG/Asjp0JRAo06u1WUs6i3eDXjAUi4btbFE4=;
-  b=d3lxvNWI85fwFg1oPznrC2VJeL2c1YqhGLuGgKOcppIVC/tCZwxT0R2b
-   p14OnxYM3SmFr8vkN9IuFaFNemw1Hkg8bycM2AOMeXF4VWAhR4lwqhYBW
-   rQvhRyzdrXPXAiThwgmXmQ40Gf3NdoTHmqgfLB3Ih/p4mFesPOHueVksU
-   1EOuW25HOXqSRENHPcmA2LFGyepqdrBOthq4IK6sv0jk4em6+iJQj+NmA
-   E2nXKJ5QC/TTB7N1burHZHOJiJ+mn3/DpL8W+EdANzPWBf8hEorPON6Em
-   cIWdqmSnr2p5cotoZ5NPT15tk97WE9VyZ2ObLfZHmPBr90CHpXBC5H3q4
-   Q==;
-X-CSE-ConnectionGUID: LXDx0pBURa2rrXlvENz4UQ==
-X-CSE-MsgGUID: 6pILyeEkQ+idl1n3WfkaXQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11578"; a="73476873"
-X-IronPort-AV: E=Sophos;i="6.19,220,1754982000"; 
-   d="scan'208";a="73476873"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
-  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Oct 2025 20:40:11 -0700
-X-CSE-ConnectionGUID: SsZEgcbATqSz7rgWvti7/A==
-X-CSE-MsgGUID: oc8A357CSaCUSoyqDnPI5A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,220,1754982000"; 
-   d="scan'208";a="180236749"
-Received: from lkp-server01.sh.intel.com (HELO 6a630e8620ab) ([10.239.97.150])
-  by orviesa006.jf.intel.com with ESMTP; 10 Oct 2025 20:40:06 -0700
-Received: from kbuild by 6a630e8620ab with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1v7QSh-0003UX-1s;
-	Sat, 11 Oct 2025 03:40:03 +0000
-Date: Sat, 11 Oct 2025 11:39:41 +0800
-From: kernel test robot <lkp@intel.com>
-To: Roy Luo <royluo@google.com>, Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Peter Griffin <peter.griffin@linaro.org>,
-	=?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>,
-	Tudor Ambarus <tudor.ambarus@linaro.org>
-Cc: oe-kbuild-all@lists.linux.dev, Joy Chakraborty <joychakr@google.com>,
-	Naveen Kumar <mnkumar@google.com>, Roy Luo <royluo@google.com>,
-	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org
-Subject: Re: [PATCH v1 1/4] usb: dwc3: Add Google SoC DWC3 glue driver
-Message-ID: <202510111335.oyOAs9MB-lkp@intel.com>
-References: <20251006232125.1833979-2-royluo@google.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=fHgeMUVnjJGvctTm1rifYOjOHIbeowKXIMK2+smHBQ8eVuWCM7wyAlF32daqjKBcii/YJ80Tm9awrp7LqViG5H3gWYqYhoSq4dn+Wibjbw+DieUYGNBf0SvpLO8B08JNgHbTS+m9xeThz2woUCc0Z3cwW8hY09y9/HBkDYmuF/k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qJUcnssh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D4FD2C4CEF4;
+	Sat, 11 Oct 2025 04:09:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1760155749;
+	bh=dHJoTvSQpgNLs9J0VBG50JGYREfFLnhm8Clc1KzA8OY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=qJUcnssh/jCWmnQvUxU6X3P4t3+WJ6ozh9bGPNhEoneyXLgQLZWkPu46OyGcbUd6v
+	 NMZxQkdZOZgZwVUrOe8uE+k84j25q92oEEjjQwJ9ICenMhIWhgdY8TijZOB7y+YEkM
+	 q7eDoauifGfrWHpjO1BTtz5ncSPorlL9d9EKr6hLAutzc78rhQV8ReWDf564wp68Ek
+	 4ZqHguKadPwx8Qme0Md+OjQ2xqhvy+dEZ3sD4O/iQYSfABXtahwzFbbZqKxWosZ11J
+	 Kbx+SPzK7/6dEZFuLRi/W0/Ua62QHIs0U89YX4UQ90jIoZ+NoOm/09uudAxMLF5i/d
+	 dqvH8Kdpv7Ztg==
+Date: Fri, 10 Oct 2025 21:09:06 -0700
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
+	linus.walleij@linaro.org, brgl@bgdev.pl
+Cc: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>, 
+	Bjorn Helgaas <bhelgaas@google.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Abraham I <kishon@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+	Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Subject: Re: [PATCH 3/3] PCI: qcom: Treat PHY and PERST# as optional for the
+ new binding
+Message-ID: <yvbghnxttchfvte3nxr4ru62wqilceil2n7x7dgpa5gnm57ywu@ljrbw3c44qpw>
+References: <20251010-pci-binding-v1-0-947c004b5699@oss.qualcomm.com>
+ <20251010-pci-binding-v1-3-947c004b5699@oss.qualcomm.com>
+ <4532e2e6-51bd-4443-ad51-41fc02065a7d@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20251006232125.1833979-2-royluo@google.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <4532e2e6-51bd-4443-ad51-41fc02065a7d@oss.qualcomm.com>
 
-Hi Roy,
++ GPIO folks for the below API query
 
-kernel test robot noticed the following build warnings:
+On Fri, Oct 10, 2025 at 08:32:51PM +0200, Konrad Dybcio wrote:
+> On 10/10/25 8:25 PM, Manivannan Sadhasivam wrote:
+> > Even for the new DT binding where the PHY and PERST# properties are
+> > specified in the Root Port, both are optional. Hence, treat them as
+> > optional in the driver too.
+> 
+> I suppose this makes sense if the PHY is transparent to the OS
+> or otherwise pre-programmed and PERST# is hardwired or otherwise
+> unnecessary.. both of which I suppose aren't totally impossible..
+> 
 
-[auto build test WARNING on e5f0a698b34ed76002dc5cff3804a61c80233a7a]
+PERST# is by definition an optional signal, but I'm not sure about why PHY is
+not used by the controller driver.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Roy-Luo/usb-dwc3-Add-Google-SoC-DWC3-glue-driver/20251010-092651
-base:   e5f0a698b34ed76002dc5cff3804a61c80233a7a
-patch link:    https://lore.kernel.org/r/20251006232125.1833979-2-royluo%40google.com
-patch subject: [PATCH v1 1/4] usb: dwc3: Add Google SoC DWC3 glue driver
-config: s390-randconfig-002-20251011 (https://download.01.org/0day-ci/archive/20251011/202510111335.oyOAs9MB-lkp@intel.com/config)
-compiler: s390-linux-gcc (GCC) 15.1.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251011/202510111335.oyOAs9MB-lkp@intel.com/reproduce)
+> > 
+> > If both properties are not specified, then fall back to parsing the legacy
+> > binding for backwards compatibility.
+> > 
+> > Fixes: a2fbecdbbb9d ("PCI: qcom: Add support for parsing the new Root Port binding")
+> > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+> > ---
+> >  drivers/pci/controller/dwc/pcie-qcom.c | 11 +++++++++--
+> >  1 file changed, 9 insertions(+), 2 deletions(-)
+> > 
+> > diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
+> > index 805edbbfe7eba496bc99ca82051dee43d240f359..d380981cf3ad78f549de3dc06bd2f626f8f53920 100644
+> > --- a/drivers/pci/controller/dwc/pcie-qcom.c
+> > +++ b/drivers/pci/controller/dwc/pcie-qcom.c
+> > @@ -1720,13 +1720,20 @@ static int qcom_pcie_parse_port(struct qcom_pcie *pcie, struct device_node *node
+> >  
+> >  	reset = devm_fwnode_gpiod_get(dev, of_fwnode_handle(node),
+> >  				      "reset", GPIOD_OUT_HIGH, "PERST#");
+> > -	if (IS_ERR(reset))
+> > +	if (IS_ERR(reset) && PTR_ERR(reset) != -ENOENT)
+> >  		return PTR_ERR(reset);
+> 
+> Please introduce an _optional variant instead
+> 
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202510111335.oyOAs9MB-lkp@intel.com/
+Linus, Bartosz, are you OK with devm_fwnode_gpiod_get_optional() API? Just
+wanted to confirm before I go ahead as there are existing users checking for
+-ENOENT explicitly. Not sure if they are doing it for a reason other than the
+absence of the _optional variant or not.
 
-All warnings (new ones prefixed by >>):
-
->> drivers/usb/dwc3/dwc3-google.c:467:12: warning: 'dwc3_google_resume' defined but not used [-Wunused-function]
-     467 | static int dwc3_google_resume(struct dwc3_google *google, pm_message_t msg)
-         |            ^~~~~~~~~~~~~~~~~~
->> drivers/usb/dwc3/dwc3-google.c:441:12: warning: 'dwc3_google_suspend' defined but not used [-Wunused-function]
-     441 | static int dwc3_google_suspend(struct dwc3_google *google, pm_message_t msg)
-         |            ^~~~~~~~~~~~~~~~~~~
-
-
-vim +/dwc3_google_resume +467 drivers/usb/dwc3/dwc3-google.c
-
-   440	
- > 441	static int dwc3_google_suspend(struct dwc3_google *google, pm_message_t msg)
-   442	{
-   443		if (pm_runtime_suspended(google->dev))
-   444			return 0;
-   445	
-   446		if (google->dwc.current_dr_role == DWC3_GCTL_PRTCAP_HOST) {
-   447			/*
-   448			 * Follow dwc3_suspend_common() guidelines for deciding between
-   449			 * a full teardown and hibernation.
-   450			 */
-   451			if (PMSG_IS_AUTO(msg) || device_may_wakeup(google->dev)) {
-   452				dev_dbg(google->dev, "enter hibernation");
-   453				pm_runtime_get_sync(google->usb_top_pd);
-   454				device_wakeup_enable(google->usb_top_pd);
-   455				dwc3_google_enable_pme_irq(google);
-   456				google->is_hibernation = true;
-   457				return 0;
-   458			}
-   459		}
-   460	
-   461		reset_control_bulk_assert(google->num_rsts, google->rsts);
-   462		clk_bulk_disable_unprepare(google->num_clks, google->clks);
-   463	
-   464		return 0;
-   465	}
-   466	
- > 467	static int dwc3_google_resume(struct dwc3_google *google, pm_message_t msg)
-   468	{
-   469		int ret;
-   470	
-   471		if (google->is_hibernation) {
-   472			dev_dbg(google->dev, "exit hibernation");
-   473			dwc3_google_disable_pme_irq(google);
-   474			device_wakeup_disable(google->usb_top_pd);
-   475			pm_runtime_put_sync(google->usb_top_pd);
-   476			google->is_hibernation = false;
-   477			return 0;
-   478		}
-   479	
-   480		ret = clk_bulk_prepare_enable(google->num_clks, google->clks);
-   481		if (ret)
-   482			return ret;
-   483	
-   484		ret = reset_control_bulk_deassert(google->num_rsts, google->rsts);
-   485		if (ret) {
-   486			clk_bulk_disable_unprepare(google->num_clks, google->clks);
-   487			return ret;
-   488		}
-   489	
-   490		return 0;
-   491	}
-   492	
+- Mani
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+மணிவண்ணன் சதாசிவம்
 
