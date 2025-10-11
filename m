@@ -1,227 +1,154 @@
-Return-Path: <devicetree+bounces-225580-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225581-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9CA8BCF29C
-	for <lists+devicetree@lfdr.de>; Sat, 11 Oct 2025 10:52:39 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71E17BCF352
+	for <lists+devicetree@lfdr.de>; Sat, 11 Oct 2025 11:52:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 952283E2885
-	for <lists+devicetree@lfdr.de>; Sat, 11 Oct 2025 08:52:38 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 4EB9A4E1853
+	for <lists+devicetree@lfdr.de>; Sat, 11 Oct 2025 09:52:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBA31231A30;
-	Sat, 11 Oct 2025 08:52:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6485C23E342;
+	Sat, 11 Oct 2025 09:52:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JTGoklak"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HKIp3WXP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A54F5221FAC
-	for <devicetree@vger.kernel.org>; Sat, 11 Oct 2025 08:52:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28D1723B62C;
+	Sat, 11 Oct 2025 09:52:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760172754; cv=none; b=sv5rjHMD5k6Gq6PMMSld6LbfP7ZyOPvgUQrfsjQp1YMdf/vION60+c/T8CB+N+o8UyfTNBhbmLkjhP4XfRyNN5RTA2j3sdFb0ez7jVz0m8twzvla4WCIoyJpMTadd+tvkSy0HxGHX5EnFGoNGZ9XGDTS0Ycn4cYImAynH4RKtRs=
+	t=1760176371; cv=none; b=XtbTuOG12BssWPGSj5Yc0p3N17emZf2jKhcVgGTrrH3v9nop3ajYu+4CT71U5tiIjOh4RnjTVvqcBFr61oEqFlZBGE3oTfYanen7TGe6SCI0h5aBHed5PXZxA8kFR9xm8C9Qgvombvctwucofxuf7wcNE5aaqU8BzJ+uLkWxlfo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760172754; c=relaxed/simple;
-	bh=5NLvSnyuZikWYjbw37TkUeYgoM4N/stus6HiUzrLy9Y=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=BpKshCg3JCTSZg4G0Jo5AT83Z0d+BpylL3lIBXJpLq8J1N3SEsaPhM3vwRh1gngc0mAyaTCP9ELFjhufl8shTdkrPdP9b4QmsCv90Z4l2rcbs0cC7Zr5U8qz2BZREQ+QWiztMGlAWQ8e4aOgfumeceo1Vha8kQ6ZJtD0D3ZBrXM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JTGoklak; arc=none smtp.client-ip=209.85.214.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-26e68904f0eso27688925ad.0
-        for <devicetree@vger.kernel.org>; Sat, 11 Oct 2025 01:52:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1760172749; x=1760777549; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=yiLmG63RpnkdfX+sUpwnDjdHi9WgZXbqCQLxRB/gE0k=;
-        b=JTGoklakaz4tu0inAECC4pENcTb12em6AIM8EAkA/ZHcNNw4cJTPzk9qfpVZjJLxX8
-         yahHRTT/DuSkJttspnpWb9zi8yT6m4IYG4xTU0hJARVfJZZ4KlojK2P5NxcVtLogT/lL
-         hod+PjFZUJf7JiRZgBKWRR4Wpa8uoOdLlEZ2BjH1VYYuKd3n9jHoT10Ruaq3heGs/e08
-         Opeo8kTCyXWyL0eu47agcWt38nTpbt0q6olIDPDOWVFfivJrGttqyuAiUqljpk+OpBFq
-         ftCe/dE9FZsCoBFDekKIFV0X6Ckk41yht0Wt2QRAmiWScxmIgfCgkEvyuC4jd1UMU71j
-         7Vnw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760172749; x=1760777549;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=yiLmG63RpnkdfX+sUpwnDjdHi9WgZXbqCQLxRB/gE0k=;
-        b=vNfulIZzHtoItAQxH/oAF7jLs6HnOhfacV0xgGymF9zVheAwtVJ/Iazf9N6Ch+J+te
-         O6EPQoS9W7E9IYW/scpsoXN8ln1WDw7Zuk6eTiC9CETLYWc0GV44a5Q/UovgJnEqx6he
-         c/GsdKy6h4tooJqtKwhSSZRFMiy9kE2t0rnw0ufvkSMhan9pfoKaLsZxQDhxT4fRb8l8
-         JIwMNbpmQEDkNXBu4IeBOPJGLLKm9lWSVmihl9v446BhIEPFWquYlRIzf7QGPAXDu4ne
-         yctSVCpFpIaP8ehOxGjZP8brQ2euGczfk0Jvqz2xacexH1EHoIM8g4JMe7GUaoGhBvTh
-         TJsA==
-X-Forwarded-Encrypted: i=1; AJvYcCU5hVrcWn0rmcKqSwptIWutVHd0AZZOKxkLDpXQwr9YtiJP7SSp5FhyBvP+MczXEX5aB71AA6dCfoxq@vger.kernel.org
-X-Gm-Message-State: AOJu0YySlYq5pR14f4nUXGq9RZfasK59u8t4md7Jha18tV5zPFBibHKy
-	gMftL4iPlan98hrf6nOwJgXDNfhNgB+uUHPwUNi8RbKMlrfbKsB1AapfLnDT3w==
-X-Gm-Gg: ASbGncsoB2Y4ouun5zVbCS0jYDvdpl46+vzBsXhYFrU8TqBnSu7QP7U1moULQgUAhRE
-	9ChEn7C0cjaq7RRXnaNuNbTDdpwNEFf4DFIMzD+cErtDhPf+0EO0VsYGo1///uC3uu45H2qAwmn
-	aNoFDTB6XbEvsOmtrFQ9F1hNvSARmcShW3umAHb4vRkC2BKOjax2Y+pkGThDQYtMtlVECS179IH
-	4hU+wt/KQrO1cYYYlIKoQSxiJyiE/Qt/M2Fswj8+0kLWCaKQi/Ra6EQi5TLblAdvcLlfdl9MwNT
-	cwT1nJofY0/ccbXsUbgREGev1n5cqqa0k6iACfKw3QUcQoaIazQwD76vSLQSF+NKMcfgxdfW+zG
-	X7sBIMqJdsaxHXDf6t+i7cfm8it0drCldbPNSLKvHRF/tYGa1RgNykztff4YtXIBzn3z0
-X-Google-Smtp-Source: AGHT+IGrw5WjnkHFl8FT4pPAuJqjzVUuVNOVKVnaUJHLbVr1wlbjuCd2icribCshUIxZPAy3fsFyKg==
-X-Received: by 2002:a17:903:1a2b:b0:268:5892:6a2e with SMTP id d9443c01a7336-290272ff539mr193038375ad.56.1760172748788;
-        Sat, 11 Oct 2025 01:52:28 -0700 (PDT)
-Received: from Black-Pearl.localdomain ([157.50.164.155])
-        by smtp.googlemail.com with ESMTPSA id d9443c01a7336-29034f95bd3sm79050495ad.119.2025.10.11.01.52.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 11 Oct 2025 01:52:28 -0700 (PDT)
-From: Charan Pedumuru <charan.pedumuru@gmail.com>
-Date: Sat, 11 Oct 2025 08:52:07 +0000
-Subject: [PATCH v2] dt-bindings: mmc: ti,da830-mmc: convert to DT schema
+	s=arc-20240116; t=1760176371; c=relaxed/simple;
+	bh=jc9YZsle3WLAtfJzis9aeE92ql/1xDWBDtwmj5gNJAA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=fig4F6yQuHU5qOTW3pUXvu4SZUFZCZpwfVqedPbA183eQ7QcSUfLrAyRlHjJ6qnq4Wm7lR3Navg4d0mMuCpbwuTrv97B5eA463UVCOw70Umpcwbd5Dc4YMJT9g+JxsMpuu5OZALjnQ2q02oDK4x3V8fAN2wiiWPxGaV/JO+toLU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HKIp3WXP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A29EEC4CEF8;
+	Sat, 11 Oct 2025 09:52:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1760176370;
+	bh=jc9YZsle3WLAtfJzis9aeE92ql/1xDWBDtwmj5gNJAA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=HKIp3WXPyfB84fp5zyGifttUxZkr0IRSM8nxihrtsvt7E6XHkmbbAnNWInWsXujB5
+	 qEjcRPqrWHlTRdfwShTF9rntiupGS24f4CZPNQqT3U9OqDxsZch6q6dYr9Wy+XICyt
+	 QVa2XvBCsQwYGtHpwTpvyFTr2d4dMZ5VBQ6l4yfUkirsva0UBaOg9TRE5UNdCDx7ua
+	 Dqq6nYx46JrPIF2RBClntQI1JNg0e5R7RWuKKiPWOIVrM7JdaFYuWcWGx2Mkwzs5Jt
+	 dMQA9xuobUFlt7sfiatKA8LtVFFAQ9+Y9zOmfn8IJ4QXK/q5S3BpWt0SbWZYYWo/J+
+	 NYexfH06tu+xg==
+Message-ID: <0beae4dd-2feb-4891-b7b0-0f63db8f5615@kernel.org>
+Date: Sat, 11 Oct 2025 11:52:43 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFC 0/6] Battery temperature ADC plumbing on Qualcomm
+ platforms
+To: David Lechner <dlechner@baylibre.com>,
+ Luca Weiss <luca.weiss@fairphone.com>, Jonathan Cameron <jic23@kernel.org>,
+ =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
+ Andy Shevchenko <andy@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>,
+ Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Laxman Dewangan <ldewangan@nvidia.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Jens Reidel <adrian@mainlining.org>,
+ Casey Connolly <casey.connolly@linaro.org>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, linux-iio@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20251010-bat-temp-adc-v1-0-d51ec895dac6@fairphone.com>
+ <c770c799-4318-4c40-bd62-3cefbbbef731@baylibre.com>
+From: Hans de Goede <hansg@kernel.org>
+Content-Language: en-US, nl
+In-Reply-To: <c770c799-4318-4c40-bd62-3cefbbbef731@baylibre.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20251011-davinci-mmc-v2-1-355da3e25123@gmail.com>
-X-B4-Tracking: v=1; b=H4sIALYa6mgC/23Myw7CIBCF4VdpZi2GcomXle9husBhbCcRMGCIp
- uHdxa5d/ic53wqFMlOB87BCpsqFU+yhdgPg4uJMgn1vUFJZaZUW3lWOyCIEFHiQxhiJ2nsJ/fH
- MdOf3pl2n3guXV8qfDa/jb/3v1FGMAolu/qit8ie8zMHxY48pwNRa+wKgU4mupgAAAA==
-X-Change-ID: 20250523-davinci-mmc-c704440c3dd0
-To: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Charan Pedumuru <charan.pedumuru@gmail.com>
-X-Mailer: b4 0.14.2
 
-Convert TI Highspeed MMC host controller binding to YAML format. Define
-'clocks' and 'interrupts' properties to resolve errors identified by
-'dt_check' and 'dtb_check'.
+Hi All,
 
-Signed-off-by: Charan Pedumuru <charan.pedumuru@gmail.com>
----
-Changes in v2:
-- Modified the commit message.
-- Removed 'interrupts' from required properties following the old binding.
-- Changed the maintainer for the binding to "Conor Dooley".
-- Link to v1: https://lore.kernel.org/r/20250523-davinci-mmc-v1-1-ceebd8352d9c@gmail.com
----
- .../devicetree/bindings/mmc/davinci_mmc.txt        | 32 ------------
- .../devicetree/bindings/mmc/ti,da830-mmc.yaml      | 61 ++++++++++++++++++++++
- 2 files changed, 61 insertions(+), 32 deletions(-)
+Luca thank you for Cc-ing me.
 
-diff --git a/Documentation/devicetree/bindings/mmc/davinci_mmc.txt b/Documentation/devicetree/bindings/mmc/davinci_mmc.txt
-deleted file mode 100644
-index 516fb0143d4c21d1c8e44a8846d55ea5458d7b74..0000000000000000000000000000000000000000
---- a/Documentation/devicetree/bindings/mmc/davinci_mmc.txt
-+++ /dev/null
-@@ -1,32 +0,0 @@
--* TI Highspeed MMC host controller for DaVinci
--
--The Highspeed MMC Host Controller on TI DaVinci family
--provides an interface for MMC, SD and SDIO types of memory cards.
--
--This file documents the properties used by the davinci_mmc driver.
--
--Required properties:
--- compatible:
-- Should be "ti,da830-mmc": for da830, da850, dm365
-- Should be "ti,dm355-mmc": for dm355, dm644x
--
--Optional properties:
--- bus-width: Number of data lines, can be <1>, <4>, or <8>, default <1>
--- max-frequency: Maximum operating clock frequency, default 25MHz.
--- dmas: List of DMA specifiers with the controller specific format
--	as described in the generic DMA client binding. A tx and rx
--	specifier is required.
--- dma-names: RX and TX  DMA request names. These strings correspond
--	1:1 with the DMA specifiers listed in dmas.
--
--Example:
--mmc0: mmc@1c40000 {
--	compatible = "ti,da830-mmc",
--	reg = <0x40000 0x1000>;
--	interrupts = <16>;
--	bus-width = <4>;
--	max-frequency = <50000000>;
--	dmas = <&edma 16
--		&edma 17>;
--	dma-names = "rx", "tx";
--};
-diff --git a/Documentation/devicetree/bindings/mmc/ti,da830-mmc.yaml b/Documentation/devicetree/bindings/mmc/ti,da830-mmc.yaml
-new file mode 100644
-index 0000000000000000000000000000000000000000..1a97c3e447fd10f14bfe0af9e22f9479304f0f26
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mmc/ti,da830-mmc.yaml
-@@ -0,0 +1,61 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mmc/ti,da830-mmc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: TI Highspeed MMC host controller for DaVinci
-+
-+description:
-+  The Highspeed MMC Host Controller on TI DaVinci family
-+  provides an interface for MMC, SD and SDIO types of memory cards.
-+
-+allOf:
-+  - $ref: mmc-controller.yaml
-+
-+maintainers:
-+  - Conor Dooley <conor+dt@kernel.org>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - ti,da830-mmc
-+      - ti,dm355-mmc
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 2
-+
-+  dmas:
-+    maxItems: 2
-+
-+  dma-names:
-+    items:
-+      - const: rx
-+      - const: tx
-+
-+required:
-+  - compatible
-+  - reg
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    mmc@1c40000 {
-+        compatible = "ti,da830-mmc";
-+        reg = <0x40000 0x1000>;
-+        interrupts = <16 IRQ_TYPE_LEVEL_HIGH>,
-+                     <17 IRQ_TYPE_LEVEL_HIGH>;
-+        bus-width = <4>;
-+        max-frequency = <50000000>;
-+        dmas = <&edma 16>, <&edma 17>;
-+        dma-names = "rx", "tx";
-+    };
-+...
+On 10-Oct-25 10:56 PM, David Lechner wrote:
+> On 10/10/25 6:21 AM, Luca Weiss wrote:
+>> This is an RFC which implements a potential solution to get battery
+>> temperature readings working on for example smartphones with Qualcomm
+>> SoCs.
+>>
+> 
+> ...
+> 
+>> 3. Add temperature-lookup-table as property to simple-battery
+>>
+>> Since the NTC is a part of the battery pack, adding a
+>> temperature-lookup-table property to simple-battery would make sense
+>> instead of having this lookup table be standalone in the
+>> generic-adc-thermal node. However being able to re-use the existing code
+>> in generic-adc-thermal lead me to the current proposal.
+>>
+> Did you consider creating a specific compatible string for the battery pack?
+> Then the battery node could have the io-channels property for the ADC
+> connected to the temperature sensor. Then a specific battery driver could
+> handle the conversion as needed rather than filling the devicetree with
+> conversion tables.
 
----
-base-commit: 7bac2c97af4078d7a627500c9bcdd5b033f97718
-change-id: 20250523-davinci-mmc-c704440c3dd0
+That will require a driver update, filling the driver (and thus memory)
+with conversion tables each time a new battery model (one model phone
+can have multiple battery revisions) comes out.
 
-Best regards,
--- 
-Charan Pedumuru <charan.pedumuru@gmail.com>
+That seems undesirable. To me these conversion tables are very much
+something which belongs in DT rather then being hardcoded in
+the driver.
+
+Also contrast this to ACPI where there actually is a mechanism defined
+for thermal lookup tables and there all these things typically just
+work when the ACPI tables are written properly. IMHO we want to move
+more towards this direction where things just work without requiring
+kernel code changes for every new model.
+
+And we already have a mechanism in DT to map an ADC voltage to
+a temperature in the generic-adc-thermal driver.
+
+So all that is left to do really is to come up with a clean way
+to export the temperature from the generic-adc-thermal driver
+to the generic-adc-battery driver.
+
+> The simple-battery bindings are already far from simple! So I would not
+> be inclined to add more to it.
+
+I think we all agree on this and we also don't want to duplicate
+the generic-adc-thermal bindings + code implementing that functionality.
+
+IMHO not wanting to duplicate the bindings + functionality applies to
+both: a) directly exporting an IIO temp channel from the ADC driver and
+b) adding volt -> temp mapping functionality to the simple-battery bindings.
+
+So that basically leaves us with coming up with a way for
+the generic-adc-battery code to consume the temperature coming out of
+the generic-adc-thermal code and there are 2 ways to do this:
+
+1. Modify the generic-adc-thermal driver to export an IIO channel
+2. Modify the thermal-zone core to allow referencing to a thermal-zone
+   with a phandle *and* modify generic-adc-battery to be able to
+   optionally get the temperature from a thermal-zone instead of
+   from an IIO-channel
+
+Of these two options 1. clear is the most KISS option. SO I agree with
+Luca that 1. as implemented in this series is the best way forward.
+
+Regards,
+
+Hans
+
 
 
