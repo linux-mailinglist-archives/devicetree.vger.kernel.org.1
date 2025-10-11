@@ -1,92 +1,181 @@
-Return-Path: <devicetree+bounces-225589-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225590-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82551BCF3EA
-	for <lists+devicetree@lfdr.de>; Sat, 11 Oct 2025 12:53:56 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id DAE05BCF3F3
+	for <lists+devicetree@lfdr.de>; Sat, 11 Oct 2025 12:56:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 40F8B406394
-	for <lists+devicetree@lfdr.de>; Sat, 11 Oct 2025 10:53:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DF674189BAB5
+	for <lists+devicetree@lfdr.de>; Sat, 11 Oct 2025 10:57:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8471725D218;
-	Sat, 11 Oct 2025 10:53:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A17B25DD07;
+	Sat, 11 Oct 2025 10:56:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="fve4MErz"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="X1f3Vrv3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
+Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E96323AE93
-	for <devicetree@vger.kernel.org>; Sat, 11 Oct 2025 10:53:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.161
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDB9F2253A1;
+	Sat, 11 Oct 2025 10:56:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760180031; cv=none; b=p9Zn8nODMqtgs4T7LI0FD8scIt8BeEBv3bqj26LI8KSE31s4RMAZKquJrm9Dyeu94o6Q4YzzX4VlCnGRb0lgdhhpyYP8/YqfmOhrj11E0VRBCs7ipj5pnXqW8U2M+FSrpZ8BZ5dHtQJbDu9WshqmBhjRA7k0qQG7bvVHQsQD31k=
+	t=1760180197; cv=none; b=ly1SyL/FONGF2LQCw6o2RM287Y59tq2HR7DCVRxr1Lkjlig/v8ueuTCixBWB0uOtpoCE50W0nHMd46ZChLjeDbsI0NXEpVS+KQlKVogbDKFXjTsAbXcsd+MP3etGIDMM25MWdEYeEVRg3uQQPuASI8DN5g2+GbYMCr2b0aOh9Q4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760180031; c=relaxed/simple;
-	bh=y1b7IAbiLV52Hl+0zyTvcYHhXq6w8X1vzm7DP4fLDT0=;
+	s=arc-20240116; t=1760180197; c=relaxed/simple;
+	bh=u0GrzsxZ5xneQUO9cG+wrZy59SAQcDG3WwePM64zvbA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=DsrpUwveAUn+5JUlXf2AefAAkOOiHYiuz237XkF3UXlj8sggy4E8eB0qEah8GLhWSFN4SUF28QRo689GIRXxISEcLcZ/BK+DszBaKOS/MjR4oVzUKWYh1PhZjBRdaVdiu11Xm59WtvQNIXnNO+xDDzH5OijeRwXELR3GfLzZdcA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=fve4MErz; arc=none smtp.client-ip=80.241.56.161
+	 In-Reply-To:Content-Type; b=dqSWcPSRdje6UKR0Tn9T4EKwamcWmr0Vxdkoz02jhR5crRlkMJzRRFfVinFAC06EgAGVNPMk1BYe1ENH7Ke8bYekUdzXz/bO/oT6c/CKM5pyA0x8ztW37s0PDFH7QUyGGDZHsmp33YemnNkHGprcSe5h5dBxTqcTNacREFX6McQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=X1f3Vrv3; arc=none smtp.client-ip=80.241.56.171
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
 Received: from smtp202.mailbox.org (smtp202.mailbox.org [10.196.197.202])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
-	by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4ckL7h05P2z9tCk;
-	Sat, 11 Oct 2025 12:53:36 +0200 (CEST)
+	by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4ckLBt5lpbz9tVW;
+	Sat, 11 Oct 2025 12:56:22 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1760180016;
+	t=1760180182;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=cET2HC+7vrNrLy9D4JAd65Kczd4lwCNYCnv06jKL71s=;
-	b=fve4MErzyatUtq4fK/pZqeWJ0IROlfMPj0YUTLVH196Q2qB2w7aQS+J10BzZkfO23zwPsS
-	WgXM+f7G7O4P6JLDn8yqeJciIKYYrSTqM4nsTwSgd4EWDoT53twVL/eO8yDHR3m8fPOs6a
-	/iGLCp2/5y6MeJdtreqJGlzb+1BRw0e9KY9ak50T0heKE+vvMYz7YzP2TfgcSOMSeSA6Fu
-	2+GAZFBUaxfiPrOUcVT+rc2zsJu/DC3pnxAJ2ippOLF6Voz7bl+54irST5A3YSaWBxKmLM
-	qVljdkOdy8HrdAaS8bqSTm2JFsTBjnXiu6JLV8qyyO5ligdSjOkwIp5fbojbYA==
-Message-ID: <ba95487c-ada7-48a4-90b7-fd99a0278f51@mailbox.org>
-Date: Sat, 11 Oct 2025 12:53:29 +0200
+	bh=VlD2P0vh4QctxwHfq2M6FdIuQFnDksvOeT2RgNmErfA=;
+	b=X1f3Vrv31VGri0Z6FGxkPdP5J7eAfFCyaidp+0O9tyPB+QRlnjPuiZE0OLaoc2pkXabqxx
+	aBoI2NvWS9ZspjF/smBrgY+54n/CN1W338BD9T5A6Qrh3Dhf0AVNUcdCd6ALNio3dHFSgn
+	HE/u/0V3Z1DBIFSP4FJD2EPEqaefW/VTGP8W6MUvQm3I29uV7irxwqJ4c5YTNiZevza5ba
+	NZcpQVW/y7e55Jh9HTBhxpf1LtitaDntIACqUhs3oHp01IGtH/n7XadsQUwbA7FXZ8YRrI
+	yDjW8+ZytcQfT41dM2nvEgZpdARVH/p8dpp7yzzG+aGgo1bbFVKXcTsw/jZ+jQ==
+Message-ID: <2c431e9a-9e2f-4583-bf03-142b56439a47@mailbox.org>
+Date: Sat, 11 Oct 2025 12:56:17 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH v3 2/2] arm64: dts: imx95: Describe Mali G310 GPU
-To: linux-arm-kernel@lists.infradead.org
-Cc: Boris Brezillon <boris.brezillon@collabora.com>,
- Conor Dooley <conor+dt@kernel.org>, David Airlie <airlied@gmail.com>,
- Fabio Estevam <festevam@gmail.com>, "Jiyu Yang (OSS)"
- <jiyu.yang@oss.nxp.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Liviu Dudau <liviu.dudau@arm.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>, Sebastian Reichel <sre@kernel.org>,
- Shawn Guo <shawnguo@kernel.org>, Simona Vetter <simona@ffwll.ch>,
- Steven Price <steven.price@arm.com>, Thomas Zimmermann
- <tzimmermann@suse.de>, Xianzhong Li <xianzhong.li@nxp.com>,
- devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
- imx@lists.linux.dev
-References: <20250925203938.169880-1-marek.vasut@mailbox.org>
- <20250925203938.169880-2-marek.vasut@mailbox.org>
+Subject: Re: [EXT] Re: [PATCH v2 0/8] Add support for Wave6 video codec driver
+To: Ming Qian <ming.qian@nxp.com>, Nicolas Dufresne <nicolas@ndufresne.ca>,
+ Nas Chung <nas.chung@chipsnmedia.com>,
+ "mchehab@kernel.org" <mchehab@kernel.org>,
+ "hverkuil@xs4all.nl" <hverkuil@xs4all.nl>,
+ "sebastian.fricke@collabora.com" <sebastian.fricke@collabora.com>,
+ "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
+ <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>
+Cc: "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ dl-linux-imx <linux-imx@nxp.com>,
+ "jackson.lee@chipsnmedia.com" <jackson.lee@chipsnmedia.com>,
+ "lafley.kim@chipsnmedia.com" <lafley.kim@chipsnmedia.com>
+References: <20250422093119.595-1-nas.chung@chipsnmedia.com>
+ <f03d0ae0-d28b-4b06-8f63-9d06f15c0522@mailbox.org>
+ <fcfa00b5ae102d76b02ce1667d27822e6d2c3c81.camel@ndufresne.ca>
+ <472aac3c-9d3e-4892-8d6c-665fa6793464@mailbox.org>
+ <59e87d8e346bb16b225382b9a4500e1b16bbf776.camel@ndufresne.ca>
+ <PAXPR04MB825499BA447B4000AB8329A6E703A@PAXPR04MB8254.eurprd04.prod.outlook.com>
 Content-Language: en-US
 From: Marek Vasut <marek.vasut@mailbox.org>
-In-Reply-To: <20250925203938.169880-2-marek.vasut@mailbox.org>
+In-Reply-To: <PAXPR04MB825499BA447B4000AB8329A6E703A@PAXPR04MB8254.eurprd04.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-MBO-RS-ID: 308735b9ca49f66d617
-X-MBO-RS-META: 7yn9f7gznupwzzxdktpfnnjhbjkkresu
+Content-Transfer-Encoding: 8bit
+X-MBO-RS-ID: 3fbf18e32a64d5ad371
+X-MBO-RS-META: fgs43jn9dqyou4fmp6oizdaezrust547
 
-On 9/25/25 10:38 PM, Marek Vasut wrote:
-> The instance of the GPU populated in i.MX95 is the G310, describe this
-> GPU in the DT. Include dummy GPU voltage regulator and OPP tables.
-Is there still anything that should be changed with this patchset, or 
-can it be applied ?
+On 9/5/25 3:22 AM, Ming Qian wrote:
+
+Hello everyone,
+
+>>>> Le mercredi 03 septembre 2025 à 23:47 +0200, Marek Vasut a écrit :
+>>>>> On 4/22/25 11:31 AM, Nas Chung wrote:
+>>>>>> This patch series introduces support for the Chips&Media Wave6
+>>>>>> video codec IP, a completely different hardware architecture compared
+>> to Wave5.
+>>>>>>
+>>>>>> The wave6 driver is a M2M stateful encoder/decoder driver.
+>>>>>> It supports various video formats, including H.264 and H.265,
+>>>>>> for both encoding and decoding.
+>>>>>> While other versions of the Wave6 IP may support VP9 decoding
+>>>>>> and
+>>>>>> AV1 decoding and encoding those formats are not implemented or
+>>>>>> validated in this driver at this time.
+>>>>>>
+>>>>>> On NXP i.MX SoCs, the Wave6 IP functionality is split between two
+>> regions:
+>>>>>> VPU Control region, Manages shared resources such as firmware
+>> memory.
+>>>>>> VPU Core region, Provides encoding and decoding capabilities.
+>>>>>> The VPU core cannot operate independently without the VPU control
+>> region.
+>>>>>>
+>>>>>> This driver has been tested with GStreamer on:
+>>>>>> - NXP i.MX95 board
+>>>>>> - pre-silicon FPGA environment
+>>>>>>
+>>>>>> Test results for decoder fluster:
+>>>>>> - JVT-AVC_V1, Ran 77/135 tests successfully              in
+>>>>>> 35.519 secs
+>>>>>> - JVT-FR-EXT, Ran 25/69 tests successfully               in
+>>>>>> 17.725 secs
+>>>>>> - JCT-VC-HEVC_V1, Ran 132/147 tests successfully         in
+>>>>>> 81.549 secs
+>>>>>> - All failures are due to unsupported hardware features:
+>>>>>> -- 10bit, Resolutions higher than 4K, FMO, MBAFF
+>>>>>> -- Extended profile, Field encoding and High422 sreams.
+>>>>>>
+>>>>>> Test results for v4l2-compliance:
+>>>>>> v4l2-compliance 1.29.0-5359, 64 bits, 64-bit time_t
+>>>>>> v4l2-compliance SHA: 2a91a869eb8a 2025-04-12 11:35:53
+>>>>>>
+>>>>>> Compliance test for wave6-dec device /dev/video0:
+>>>>>>                    fail:
+>>>>>> ../utils/v4l2-compliance/v4l2-test-controls.cpp(1180):
+>>>>>> !have_source_change || !have_eos
+>>>>>>            test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: FAIL Total
+>>>>>> for wave6-dec device /dev/video0: 48, Succeeded: 47, Failed: 1,
+>>>>>> Warnings: 0
+>>>>>>
+>>>>>> Compliance test for wave6-enc device /dev/video1:
+>>>>>>                    fail:
+>>>>>> ../utils/v4l2-compliance/v4l2-test-controls.cpp(1169):
+>>>>>> node->codec_mask & STATEFUL_ENCODER
+>>>>>>            test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: FAIL Total
+>>>>>> for wave6-enc device /dev/video1: 48, Succeeded: 47, Failed: 1,
+>>>>>> Warnings: 0
+>>>>>>
+>>>>>> Note: the failures are all related with the eos event.
+>>>>>
+>>>>> For what its worth, the whole series:
+>>>>>
+>>>>> Tested-by: Marek Vasut <marek.vasut@mailbox.org> # NXP i.MX95 rev.
+>>>>> A0
+>>>>
+>>>> Do you mind sharing what tests you have done ? Are you confirming
+>>>> the same fluster and compliance results, have you done more ? Since
+>>>> this is largely inspired on Wave5, I'd like to see people testing
+>>>> real-world playback, with seeks, dynamic resolution changes, data
+>>>> lost. On Wave5, latest performance patches leads to crash or hangs.
+>>> I did not use fluster this time, I used h264 decode of 1920x1080 60
+>>> FPS stream. The pipeline was very basic, something along the lines of:
+>>>
+>>> gst-launch-1.0 -v filesrc location=/test.mp4 ! qtdemux ! h264parse !
+>>> v4l2h264dec ! fpsdisplaysink text-overlay=false video-sink=waylandsink
+>>
+>> Thanks for the detail. Since you have a running setup, perhaps consider testing
+>> with the following, left/right keyboard arrow will let you jump around in the
+>> media.
+>>
+>>   gst-play-1.0 --audiosink=fakeaudiosink --videosink=waylandsink /test.mp4
+>>
+>> That would at least cover seeking use cases. I provided Nas a stream that
+>> aggressively do resolution changes to reproduce a Wave5 crash, I would expect
+>> him to test and report against Wave6 too. If you'd like to have that sample, let
+>> me know, its not very big, and free, but I'd rather not do attachements over the
+>> mailing list.
+> 
+> Would you please share the stream to me? I want to test this resolution-change case too.
+How can we proceed with the wave6 driver upstreaming ?
 
