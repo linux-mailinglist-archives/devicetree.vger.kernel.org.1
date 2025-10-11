@@ -1,551 +1,136 @@
-Return-Path: <devicetree+bounces-225599-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225600-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60F67BCF456
-	for <lists+devicetree@lfdr.de>; Sat, 11 Oct 2025 13:22:14 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB441BCF477
+	for <lists+devicetree@lfdr.de>; Sat, 11 Oct 2025 13:31:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 94F304E9284
-	for <lists+devicetree@lfdr.de>; Sat, 11 Oct 2025 11:22:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E708F1887A3D
+	for <lists+devicetree@lfdr.de>; Sat, 11 Oct 2025 11:32:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB724267B02;
-	Sat, 11 Oct 2025 11:22:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE769220F5C;
+	Sat, 11 Oct 2025 11:31:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lNiMk2+L"
 X-Original-To: devicetree@vger.kernel.org
-Received: from FR6P281CU001.outbound.protection.outlook.com (mail-germanywestcentralazon11020137.outbound.protection.outlook.com [52.101.171.137])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F372261B78;
-	Sat, 11 Oct 2025 11:21:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.171.137
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760181724; cv=fail; b=XyuxdivIZtNOPfUD7qD3XgWrLr/E04ILKYwyZFUDhZ1myeOSFq3fawMwL6VH9AZtBdQZOKC5KzeN4x11wNqY0lf30M6V4QIR7QAlKblxTX7coTDszWpyMhS5sIHLSkQFumpJwK7b3rc8smgT51KSDJYajgWbxnJgrCJbquK77tU=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760181724; c=relaxed/simple;
-	bh=I8mdl7nlJ5KwfHM7SpO4FkZ5Ott6pjcKwPKKvP9GYBI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=N7ekbwPrhc63Uuhl1oYaKTbLrtcn6Civ4jKCpExpCZV82rH9IIPsJl0WPJdc1FJO2RwU2bE9+TOwL9WW4w4OZw2JWwVPor/IEHV5ZcpLv7PNYLVQAs29j8tIX3cHMONYN+4ggqJ7TdH5ZriO1S3SXHkefbrSN0flDh8BaPxXOcA=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=siewert.io; spf=pass smtp.mailfrom=siewert.io; arc=fail smtp.client-ip=52.101.171.137
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=siewert.io
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=siewert.io
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=OYpVNhAw8sLrgruFdxAghXVxsn1DKbHoP6VyabxVJB6j6I7nmprWbZDXqca1mjlHKpNZN0uFtUvLW1/aM4aEt9DtvZ4aSoyPCslqmhIexkJKYLeiMnEYlGff/r977tNvWt71H4SyaeapwphHCQIn+jGCN4pxuOAomvXhbIAiHxVwew7JNYFupMRcTqShMGuu/jlbhe+lR4YFd1rvViU2AOW47olxmV9lvyeog826UuiiVA3KmRu0/wtn/nARfKdOpPgkv1VNZjXielZ2+DzRzQSh4hWUgM5jzdgv1FsXKQNSaIX7NFwAiswsb1hgLNzEkQL4fzlEa5JIFbqekYNY7A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=FNwuec+egzTMAt4u8OuvcYNN4ipnw/5BgqNRUShweDQ=;
- b=JHOS6NwW0TJUa44UEm0nbg8vQjAWYLgi2UuUcqinogLAXLL4VhpLcBVnBEERnWOUebCQ+j8XLfixbFdZasqN/nSo6cbYtfE9ITp5/72mJWhu33FteSEsjWt07ovMToXkIsykcQxuql/z3kAI36/407Srkdq4P3e7cQsiUrCeQ9fzceYRD0ctydkIXH7eom32lSZan/E3q0QHCXeb+ANC0dTQZsEdoenJ/mb/RZPEVmKhRH9pFTm2ZU/1GeXQYJ7YYGsbj18tLheeKovdZO0KI6Lr8Ny8CRkpuAZW6bFdkZ555+rzoBY4nuLOF90XT66YMmLHk3dwxiRIlcZx2AFlFQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=siewert.io; dmarc=pass action=none header.from=siewert.io;
- dkim=pass header.d=siewert.io; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=siewert.io;
-Received: from FR3PPFB3D0CF1D2.DEUP281.PROD.OUTLOOK.COM (2603:10a6:d18:2::182)
- by FR5P281MB5421.DEUP281.PROD.OUTLOOK.COM (2603:10a6:d10:1ab::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9203.11; Sat, 11 Oct
- 2025 11:21:49 +0000
-Received: from FR3PPFB3D0CF1D2.DEUP281.PROD.OUTLOOK.COM
- ([fe80::ac8:ee5e:7e24:98a9]) by FR3PPFB3D0CF1D2.DEUP281.PROD.OUTLOOK.COM
- ([fe80::ac8:ee5e:7e24:98a9%8]) with mapi id 15.20.9203.009; Sat, 11 Oct 2025
- 11:21:49 +0000
-From: Tan Siewert <tan@siewert.io>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Joel Stanley <joel@jms.id.au>,
-	Andrew Jeffery <andrew@codeconstruct.com.au>
-Cc: Tan Siewert <tan@siewert.io>,
-	Zev Weiss <zev@bewilderbeest.net>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 2/2] ARM: dts: aspeed: add asrock x470d4u bmc
-Date: Sat, 11 Oct 2025 13:21:20 +0200
-Message-ID: <20251011112124.17588-3-tan@siewert.io>
-X-Mailer: git-send-email 2.50.1
-In-Reply-To: <20251011112124.17588-1-tan@siewert.io>
-References: <20251011112124.17588-1-tan@siewert.io>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: FR4P281CA0435.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:d1::14) To FR3PPFB3D0CF1D2.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d18:2::182)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F82479CD
+	for <devicetree@vger.kernel.org>; Sat, 11 Oct 2025 11:31:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1760182298; cv=none; b=cTkLhFlyQOMpF/2IuIXpGlS0Y8lgRS3dhmm0gbTRfrAXWYm9GQtENhcQzzvf5kQD6rhS/D+fmEesIw6AnAqgqvjsh8TZd2vINjT3po00oKC+PePrOBDoHP4CYISyr64GWrvSlhmo3VNbSazDXVGmOB1+cWW39ZrtMvkXUyZckTM=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1760182298; c=relaxed/simple;
+	bh=5RI+zDeyw3XTRljWW1rsNdQl1VRKEKQFrpl8fx9pYt8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=lu9ACQ32a5m70zBmpTscBNmE87K9e+1IzRdVSPleGQG9aDBP3NqbGX2GhOXPDh6juIcaijZeRk2tC0Q/NkezPbtO0fY+JQeHCMKJQxfJ7jcWp5ToVWahNCntTua05/vKAstkgt7eAxI1Af6V7koou6Haz/aqHrh82UYWpCgjpnQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=lNiMk2+L; arc=none smtp.client-ip=209.85.221.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-42557c5cedcso1589187f8f.0
+        for <devicetree@vger.kernel.org>; Sat, 11 Oct 2025 04:31:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1760182292; x=1760787092; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=mNTGbfmugn5jBn7rCYmZzAG7du6mX8yV8hZzW+D5Gyc=;
+        b=lNiMk2+LNE09jjuUfwBiCAjb+yGdyW1G4D+glgpbl4ggbxVNED30YsEmhQrXmijbLS
+         yXfqEJn9QD5slBHBywuCTDA096QY1C6JjoVWcaV7TQBNf0VCUEGKkUP9qBv4QUaxP5Ph
+         kEQDsNk+elcUXmYEuaiNsa9Chkv3q+Eb1QJIF3VW54xdMKyAOL8uhNzLYYK91DvQqCrr
+         5Cdvg/f3qVi0vgAsYG3Ix3gvlXFi5/Qa5Z8wGYgeusIFvN7EtCo5dw5tapmAJVwUsRKi
+         I+xeV3PKrZMAfInLzaxn3lo7py3jmpTnMB8NhFlmVYl1X+FQA9NysyfXgqgr6eUErdEW
+         OCmg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1760182292; x=1760787092;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=mNTGbfmugn5jBn7rCYmZzAG7du6mX8yV8hZzW+D5Gyc=;
+        b=W0cWPMenYnrQuSQCL+Zjuyw9+lmmcrR8gQtihXVP33eXswHpapckH1c4OHg1jqF8ZD
+         rnPJ9alxV6HWaEeQuknn4+EBvRnx9UoXxCGwkMPoq5ReCsVJV1LLXAs42nA+EGyMx6dw
+         koYXDae/GBvCtQ6XkdSOZcShJ6vPlKf9l2CX3ea2g7rnEaQAIUWklhfDWfuM1ilN/791
+         Yzjo5LzzQFGTOWs5JfRoBIs3ONFhBx65AW9aSRsByB1vMVlA8EeCQFuSGRPgyYwdLN6G
+         no7aZatM8DQCnmTQ9+dLV7fF8hku/l8F7pqVNbelCfHY2aIih6Y1MBulXQZH9y5bwxhR
+         ourQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUYKSjY7/TrA4V2zi3qo2RXEYd5m4UaFVs3qd4XnUWxZ+43p0VYloxBHILRFEXhk1jQM9oIrcJaIfA5@vger.kernel.org
+X-Gm-Message-State: AOJu0YzeZl1I1iUPvmqxiYxENhQ4SExyPtjN/ccbAIQaP1tUqGocZJ0S
+	8ck5ykQNBwLCWBUJUpGpbqTyixVEGICdjYnYk8gVwF0tfE2sbdD6SZvWdzuzVd/LJjM=
+X-Gm-Gg: ASbGncth9U2f9xTZgbV/FVJxhbrFcyiXwipsovlsmrG8FMT3fEhsqh69tNjPf27xHBr
+	ROtCbvMPrUlXHlsAY4qCA4cjKwSfT4cgC3IhSmoIEMZffIHkU8n8XJpnijH4MAiKJrKIXYpbdzO
+	nWNDBI9kWx7/r6RgvSn1+MBdlj0MNAGSTpVvgMm+4Yt27naSF/JBnLon/It0vXZhgDrwwRmURIX
+	GkWVsxGo6U1LFOY9ebk6+bLBvPk1FghRSf4+YK6kqdqkD3FjJMwtfMZ6kqwDQUkw7hUAnAfTIMF
+	TfCE+uA2CS9EZCN5x21PFS+MGtMa/K5eWCzjG/XAN23sutQLeLhhsUVICZ9QWU+/Txjrhm/Qin+
+	JVwB/4YTt3CGTl97y1z58bngjxaN2VbcA66HuAdFTZQ==
+X-Google-Smtp-Source: AGHT+IFCjuGBYnCDqcmxB9IrSM+BqDe9Q2x6ToeA46ZBK1ltHn2SzcZl6eRhCx5sKgenvc7B4y15cw==
+X-Received: by 2002:a05:6000:4305:b0:3c8:d236:26bd with SMTP id ffacd0b85a97d-42666ac2ce9mr9301019f8f.11.1760182291588;
+        Sat, 11 Oct 2025 04:31:31 -0700 (PDT)
+Received: from linaro.org ([86.121.7.169])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-426ce57d4bbsm8686681f8f.2.2025.10.11.04.31.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 11 Oct 2025 04:31:28 -0700 (PDT)
+Date: Sat, 11 Oct 2025 14:31:27 +0300
+From: Abel Vesa <abel.vesa@linaro.org>
+To: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
+Subject: Re: [PATCH 09/24] arm64: dts: qcom: glymur-crd: Add RPMH regulator
+ rails
+Message-ID: <sean5dkqku4norpl5llaps6wd3qjcxbb5kodjgvh4dshjkqvt2@jtlqhser6hsn>
+References: <20250925-v3_glymur_introduction-v1-0-24b601bbecc0@oss.qualcomm.com>
+ <20250925-v3_glymur_introduction-v1-9-24b601bbecc0@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: FR3PPFB3D0CF1D2:EE_|FR5P281MB5421:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0546d157-6f25-48ae-bf02-08de08b85edb
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|1800799024|7416014|376014|10070799003|52116014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?UIzDDE9kj2GZbklrRaIKe6buikkGnvyynHuh1sEAPVX7Q2zPZY8E35/lP5Eo?=
- =?us-ascii?Q?r9EdTcY1RlnSENEzkaF3uXAFOypZxsc7ZcszmZcgqjzu9WiBuLeaUai8dwzY?=
- =?us-ascii?Q?aCqMRDlBj9nNCle/i8ZDcqJwjRI2raMEv4Q3GglrJ6txeZls+WQWE6FAJQ8k?=
- =?us-ascii?Q?xGf4WPC63b5sfbLHnPCOS+zOzDj5Q2dq2+o+N6XZdCY+CEGhQ3Y+CGdDUT1A?=
- =?us-ascii?Q?BeGD784JxF9SXBAn0WEixzrd3t1pm40SRqXAlAEOHITNgLXpiiEzrav7Hw7d?=
- =?us-ascii?Q?kEMMlL7amc3jKzzWBeYtSI1obsMQYdTLtMh5jjI7IIYoIG9C76AkE90TBDne?=
- =?us-ascii?Q?sLDoPKSr137CPB4Um8Sce2M1gmzesKtXJFvxhQlw55/Zl3ktHSC4drhWqPLL?=
- =?us-ascii?Q?Fyq6Gsr0OVNZ1XcoWkJ40hU6+yVuB3clS33A9qjCqNvKK2qMUO10EVRjmga/?=
- =?us-ascii?Q?pkw6hru8p1elb9SBQibmnm/BuRXMMK75DHERnJwjosTNKLshaDu3takI1t4y?=
- =?us-ascii?Q?t9NmwIbg91N/MsQ0aUiHNxtp6Z8SrJMp+s6nTDmUcgztSchxR/8qEgyS9nKe?=
- =?us-ascii?Q?npBSmF9AZHO9HeycLNtvI7tqYqwHcTFU9x4BMXzMBx9/uKBBioEdUqiCDpj6?=
- =?us-ascii?Q?S5ut8QBwlxZsecWJV0WGGWWvmGz3VPVlZj4PQ0SAQJ13TJEAINoB8uVVEMEc?=
- =?us-ascii?Q?KidEH9UM5H3Fzhyzg+edwbKixe0mmKsMxIlTPi/OM6gRFrY3Ykxc2YcavMsH?=
- =?us-ascii?Q?Ii3/3Jf0fRAntw6j85t/miufH9LZcXvX3t818FHauijm/Jl0K6ojmmaSMooT?=
- =?us-ascii?Q?wgJ5/hE8Bz9xTTkOU0KJhLFiFHuljFp+KJGg2A/aqg8weO6hDCgT2rPAWgz5?=
- =?us-ascii?Q?OlVDeGwF3t2KjU+GK6nQ+6jaG21Ly6qd9g9fi/2begG1WbqEnfvtM3LsGg63?=
- =?us-ascii?Q?pMVMvISCM04dyaHpH/JGFFzlsUdmlonQ4Zp0QovuHYrJo2VbsEiNJ9d4vGbs?=
- =?us-ascii?Q?xycZ6TwLqoQqYOcZYKR78jBquMr4Yhx2FjkTaARGvLuX0bDmezjRBTjL8fMP?=
- =?us-ascii?Q?UY5FLq3qLtwWECAldISNok14ss+eN+5DgJHpbAwou+ed+HvqOs26ceEJOK+z?=
- =?us-ascii?Q?MT0Tem5WPKT29G73ddtbZcpg6wGxTXOGYBvBslhfc4Z6rH104lifjsgTcg8R?=
- =?us-ascii?Q?q2LgThInxN2b5SVhtP01FmT2RRAmONoZvg6OBnKiK+TL3Sv8Hschm79IOm/f?=
- =?us-ascii?Q?63ynjonE9CUAiRdi4vng8nNVPdYVo8FO1W4mhvllTzB5jgo3Otx0pWjvcR7t?=
- =?us-ascii?Q?RxYSKmZE6QqmXjHbJmVgt8uFWzDX7sDgWhlCtjIHznpzymUirM0B27TNOrcz?=
- =?us-ascii?Q?NGDZQ99gKJ/cCuOYRUBtLPuS1JzZc4kuLsVzrlzWtOh1IcjzHifQvcP8jpBQ?=
- =?us-ascii?Q?bQrS+6rZQk7opnI/WPI7IEe+HzL77LCQ?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:FR3PPFB3D0CF1D2.DEUP281.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(7416014)(376014)(10070799003)(52116014);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?CmKx/5vKQDVx9zVizBtuWuuN7id0X2tay+8OWHwot4uIkL+ZCM1eSPAQC+4h?=
- =?us-ascii?Q?m8cJVTKRbM3vIW1X/bX+aHqC5vxr/kOsJO5/7bJX/vmFsnxYjm/9QOi95fb5?=
- =?us-ascii?Q?PsAMrhk/Z24w0vWDAY/1qBkABQ2vFwO8Uy5DBh0dCV3rleVc2/+5k3XnaklK?=
- =?us-ascii?Q?b/JbuZTlLLwNzI0qlsmG0ndRNGggV0UNl1GswUu8+YzhX3wPfJbYSKnXsp52?=
- =?us-ascii?Q?mQ/0DwVe7/En+nH6V5Ayd8uRtJwFwjIWgklv/vMYVwkx/Z3BVrSUGitxZfY7?=
- =?us-ascii?Q?CC7gsxaSiLKZ8o4YNs2F/qhrVhfHfuLptsHINWhMokJKT76UUcjldhV/UDVc?=
- =?us-ascii?Q?UByEHpGYQOc8u+X84lBvLRciEJ6KEQNdTLps8w9Ac1g5j6GZGTREjoS42V8+?=
- =?us-ascii?Q?tS5HtYCCG2zSc96kb6aSYBItV0hvVEQgR3q+vFGtO+AbA9e/Jok1P6gwvWvi?=
- =?us-ascii?Q?Twb/BuCKQScN5kpLgdwjzwmzqbFGsFj4MESkJH1PVgDJg/RSRvt1XKgXUFvn?=
- =?us-ascii?Q?pbaCukFuqEg9l/Hiu77YKRz0AYyG6YC8cswhDC0z9lvTk7JUhDYlq6xnQH78?=
- =?us-ascii?Q?rJbt/mtr7hKEcgxqHahp7K6T7n77iQv/SGtAxL90YnsXFrh5mUYkIeNkqYqv?=
- =?us-ascii?Q?BJDCebhd97DcY830tvZQR+OJcuV+r3jnWh9g90U0YdAZtjdm2dEuf0OH+dgr?=
- =?us-ascii?Q?mH/H4Crw5xRVSwbGmgRctCCF665McUmekE1VKkeTHtp9ao4UgWYQnvVRMerM?=
- =?us-ascii?Q?hhgLaSgxKpAubviMdd+4T28ev1SluI3vPcnDiNRAfYherZwCIU7z6XRePo9C?=
- =?us-ascii?Q?E41pTF9+pr+dSdpMbQzbS7ITBWIhUR4JVnPubDP9O0giDEh7xf1GYsRd8GI8?=
- =?us-ascii?Q?apnheUuMgHpb/zMlHslBXb9LLfUOa7Tm5Ico6GWWHFuc4HOqcOQ0Na0FGYzb?=
- =?us-ascii?Q?4YKbj7khLouDoxYYv10QnECQE/itqqfR2PvoxeXX5/AWMsBOvses2MdFHSvy?=
- =?us-ascii?Q?ZVda9kpMsn/86sJxOwTj1Iu4JSTt0MofwodNnms7OoKBgaPdwAFMrD88BiXs?=
- =?us-ascii?Q?hBYgfxkQy3Y9SXpGIvywO33RFYws91iA9qZI4rxXlE+hyoafmN/jIjtSCGFY?=
- =?us-ascii?Q?XfsEGOCHKJPYWI3AuA+RcGVTLRNn41p8oz8zZaoTy4C91/92xmvUsdN2C+9a?=
- =?us-ascii?Q?5AB4Wtz+bI8lvlcd2SFbS1dLouO7LDfu1SiNCLDFTGnnNmhOzndBbHPMuoja?=
- =?us-ascii?Q?kpqO+67p62OZeY0EdRPxllVhSd7YuGtl5F85gzNU5DUqhV/VQIPVYdIioVxx?=
- =?us-ascii?Q?sYJFPhN63Adc4qaETH79GZd17WnuKN/FdFwpKwmlCcS4EImuDxVd5Kx53n4B?=
- =?us-ascii?Q?+Ja0bt8W1SDuIw/3XJP97CdvJRDPt1hg8erKWDqZCxAmNxCP7KfUAqQ30MqP?=
- =?us-ascii?Q?xovrb+EGqXltYSUd/4Wf+TCSzUPphFRweICr7zhFqOGkgzOh/1K5MvVud4cC?=
- =?us-ascii?Q?FW8fImzu0+2PfzNsiNg+EmlI/JZImGqIjHsM0YC7R1DMk0ZCm00F2mHu61yP?=
- =?us-ascii?Q?2ta7K44ba0otylVk/XYPK8l0ZTeB/kc2Pbv5W8y7oEwsXLrTfWV+3iE5WfL1?=
- =?us-ascii?Q?0K8bEpTyp8McHTu/MNWk2o4=3D?=
-X-OriginatorOrg: siewert.io
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0546d157-6f25-48ae-bf02-08de08b85edb
-X-MS-Exchange-CrossTenant-AuthSource: FR3PPFB3D0CF1D2.DEUP281.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Oct 2025 11:21:49.2830
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: e8b4abbe-444b-4835-b8fd-87ac97451a7e
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ffleH74OOMQ0qcH8gH68c3YMqYImqaCUh2BJWxsKM8+gBwXNuxFxyT8TRgnvTxdY
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: FR5P281MB5421
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250925-v3_glymur_introduction-v1-9-24b601bbecc0@oss.qualcomm.com>
 
-The ASRock Rack X470D4U X470D4U is a single-socket X470-based microATX
-motherboard for Ryzen processors with an AST2500 BMC and either 32MB or
-64MB SPI flash.
+On 25-09-25 12:02:17, Pankaj Patil wrote:
+> From: Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
+> 
+> Add RPMH regulator rails for Glymur CRD.
+> 
+> Signed-off-by: Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
+> Signed-off-by: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
+> ---
+>  arch/arm64/boot/dts/qcom/glymur-crd.dts | 332 ++++++++++++++++++++++++++++++++
+>  1 file changed, 332 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/glymur-crd.dts b/arch/arm64/boot/dts/qcom/glymur-crd.dts
+> index 4561c0b87b017cba0a1db8814123a070b37fd434..e89b81dcb4f47b78307fa3ab6831657cf6491c89 100644
+> --- a/arch/arm64/boot/dts/qcom/glymur-crd.dts
+> +++ b/arch/arm64/boot/dts/qcom/glymur-crd.dts
+> @@ -6,6 +6,7 @@
+>  /dts-v1/;
+>  
+>  #include "glymur.dtsi"
+> +#include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+>  
+>  / {
+>  	model = "Qualcomm Technologies, Inc. Glymur CRD";
+> @@ -66,3 +67,334 @@ chosen {
+>  &tlmm {
+>  	gpio-reserved-ranges = <4 4>, <10 2>, <44 4>; /*Security SPI (TPM)*/
+>  };
+> +
+> +&apps_rsc {
+> +
+> +	vph_pwr: vph-pwr-regulator {
 
-This mainboard exists in three known "flavors" which only differ in the
-used host NIC, the BMC SPI size and some parts that may be un-populated.
+dtbs_check gives this:
 
-To keep the complexity low with the BMC SPI, use the 32MB layout
-regardless of the used SPI or mainboard flavor.
+arch/arm64/boot/dts/qcom/glymur-crd.dtb: rsc@18900000 (qcom,rpmh-rsc): 'vph-pwr-regulator' does not match any of the regexes: '^pinctrl-[0-9]+$', '^regulators(-[0-9])?$'
+        from schema $id: http://devicetree.org/schemas/soc/qcom/qcom,rpmh-rsc.yaml#
 
-Signed-off-by: Tan Siewert <tan@siewert.io>
----
-v2:
-  - fix led node names [robh]
-  - fix missing gfx memory region and other offenses [Tan]
----
- arch/arm/boot/dts/aspeed/Makefile             |   1 +
- .../dts/aspeed/aspeed-bmc-asrock-x470d4u.dts  | 350 ++++++++++++++++++
- 2 files changed, 351 insertions(+)
- create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-x470d4u.dts
-
-diff --git a/arch/arm/boot/dts/aspeed/Makefile b/arch/arm/boot/dts/aspeed/Makefile
-index 0f0b5b707654..c601af36915e 100644
---- a/arch/arm/boot/dts/aspeed/Makefile
-+++ b/arch/arm/boot/dts/aspeed/Makefile
-@@ -13,6 +13,7 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
- 	aspeed-bmc-asrock-e3c256d4i.dtb \
- 	aspeed-bmc-asrock-romed8hm3.dtb \
- 	aspeed-bmc-asrock-spc621d8hm3.dtb \
-+	aspeed-bmc-asrock-x470d4u.dtb \
- 	aspeed-bmc-asrock-x570d4u.dtb \
- 	aspeed-bmc-asus-x4tf.dtb \
- 	aspeed-bmc-bytedance-g220a.dtb \
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-x470d4u.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-x470d4u.dts
-new file mode 100644
-index 000000000000..e9804b0ace9f
---- /dev/null
-+++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-x470d4u.dts
-@@ -0,0 +1,350 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/dts-v1/;
-+
-+#include "aspeed-g5.dtsi"
-+#include <dt-bindings/gpio/aspeed-gpio.h>
-+#include <dt-bindings/leds/common.h>
-+#include <dt-bindings/interrupt-controller/irq.h>
-+
-+/ {
-+	model = "Asrock Rack X470D4U-series BMC";
-+	compatible = "asrock,x470d4u-bmc", "aspeed,ast2500";
-+
-+	aliases {
-+		serial4 = &uart5;
-+	};
-+
-+	chosen {
-+		stdout-path = &uart5;
-+	};
-+
-+	iio-hwmon {
-+		compatible = "iio-hwmon";
-+		io-channels = <&adc 0>, <&adc 1>, <&adc 2>, <&adc 3>, <&adc 4>,
-+			<&adc 5>, <&adc 6>, <&adc 7>, <&adc 8>, <&adc 9>,
-+			<&adc 10>, <&adc 11>, <&adc 12>;
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		led-heartbeat {
-+			/* led-heartbeat-n */
-+			gpios = <&gpio ASPEED_GPIO(H, 6) GPIO_ACTIVE_LOW>;
-+			color = <LED_COLOR_ID_GREEN>;
-+			function = LED_FUNCTION_HEARTBEAT;
-+			linux,default-trigger = "timer";
-+		};
-+
-+		led-systemfault {
-+			/* led-fault-n */
-+			gpios = <&gpio ASPEED_GPIO(Z, 2) GPIO_ACTIVE_LOW>;
-+			color = <LED_COLOR_ID_AMBER>;
-+			function = LED_FUNCTION_FAULT;
-+			panic-indicator;
-+		};
-+
-+		led-identify {
-+			/* led-identify-n */
-+			gpios = <&gpio ASPEED_GPIO(D, 6) GPIO_ACTIVE_LOW>;
-+		};
-+	};
-+
-+	memory@80000000 {
-+		reg = <0x80000000 0x20000000>;
-+	};
-+
-+	reserved-memory {
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		ranges;
-+
-+		pci_memory: region@9a000000 {
-+			no-map;
-+			reg = <0x9a000000 0x00010000>; /* 64K */
-+		};
-+
-+		video_engine_memory: jpegbuffer {
-+			size = <0x02800000>;	/* 40M */
-+			alignment = <0x01000000>;
-+			compatible = "shared-dma-pool";
-+			reusable;
-+		};
-+
-+		gfx_memory: framebuffer {
-+			size = <0x01000000>;
-+			alignment = <0x01000000>;
-+			compatible = "shared-dma-pool";
-+			reusable;
-+		};
-+	};
-+};
-+
-+&adc {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_adc0_default		/* 3VSB */
-+			&pinctrl_adc1_default		/* 5VSB */
-+			&pinctrl_adc2_default		/* VCPU */
-+			&pinctrl_adc3_default		/* VSOC */
-+			&pinctrl_adc4_default		/* VCCM */
-+			&pinctrl_adc5_default		/* APU-VDDP */
-+			&pinctrl_adc6_default		/* 1V05-PROM-S5 */
-+			&pinctrl_adc7_default		/* 2V5-PROM */
-+			&pinctrl_adc8_default		/* 1V05-PROM-RUN */
-+			&pinctrl_adc9_default		/* VBAT */
-+			&pinctrl_adc10_default		/* 3V */
-+			&pinctrl_adc11_default		/* 5V */
-+			&pinctrl_adc12_default>;	/* 12V */
-+};
-+
-+&ehci1 {
-+	status = "okay";
-+};
-+
-+/*
-+ * Although some board flavors have a 64MB SPI, use the
-+ * 32MB SPI layout to be compatible with all boards.
-+ */
-+&fmc {
-+	status = "okay";
-+	flash@0 {
-+		status = "okay";
-+		label = "bmc";
-+		m25p,fast-read;
-+		spi-max-frequency = <10000000>;
-+#include "openbmc-flash-layout.dtsi"
-+	};
-+};
-+
-+&gfx {
-+	status = "okay";
-+	memory-region = <&gfx_memory>;
-+};
-+
-+&gpio {
-+	status = "okay";
-+	gpio-line-names =
-+	/*  A */ "input-locatorled-n", "", "", "", "", "", "", "",
-+	/*  B */ "input-bios-post-cmplt-n", "", "", "", "", "", "", "",
-+	/*  C */ "", "", "", "", "", "", "", "",
-+	/*  D */ "button-power-n", "control-power-n", "button-reset-n",
-+		 "control-reset-n", "", "", "", "",
-+	/*  E */ "", "", "", "", "", "", "", "",
-+	/*  F */ "", "", "", "", "", "", "", "",
-+	/*  G */ "output-hwm-vbat-enable", "input-id0-n", "input-id1-n",
-+		 "input-id2-n", "input-aux-smb-alert-n", "",
-+		 "input-psu-smb-alert-n", "",
-+	/*  H */ "", "", "", "", "input-mfg-mode-n", "",
-+		 "led-heartbeat-n", "input-case-open-n",
-+	/*  I */ "", "", "", "", "", "", "", "",
-+	/*  J */ "output-bmc-ready-n", "output-bios-cs-n", "", "", "", "",
-+		 "", "",
-+	/*  K */ "", "", "", "", "", "", "", "",
-+	/*  L */ "", "", "", "", "", "", "", "",
-+	/*  M */ "", "", "", "", "", "", "", "",
-+	/*  N */ "", "", "", "", "", "", "", "",
-+	/*  O */ "", "", "", "", "", "", "", "",
-+	/*  P */ "", "", "", "", "", "", "", "",
-+	/*  Q */ "", "", "", "", "input-bmc-smb-present-n", "", "",
-+		 "input-pcie-wake-n",
-+	/*  R */ "", "", "", "", "", "", "", "",
-+	/*  S */ "input-bmc-pchhot-n", "", "", "", "", "", "", "",
-+	/*  T */ "", "", "", "", "", "", "", "",
-+	/*  U */ "", "", "", "", "", "", "", "",
-+	/*  V */ "", "", "", "", "", "", "", "",
-+	/*  W */ "", "", "", "", "", "", "", "",
-+	/*  X */ "", "", "", "", "", "", "", "",
-+	/*  Y */ "input-sleep-s3-n", "input-sleep-s5-n", "", "", "", "",
-+		 "", "",
-+	/*  Z */ "", "", "led-fault-n", "output-bmc-throttle-n", "", "",
-+		 "", "",
-+	/* AA */ "input-cpu1-thermtrip-latch-n", "",
-+		 "input-cpu1-prochot-n", "", "", "", "", "",
-+	/* AB */ "", "input-power-good", "", "hard-power-off", "", "", "", "",
-+	/* AC */ "", "", "", "", "", "", "", "";
-+};
-+
-+&i2c0 {
-+	/* SMBus on auxiliary panel header (AUX_PANEL1) */
-+	status = "okay";
-+};
-+
-+&i2c1 {
-+	/* Hardware monitoring SMBus */
-+	status = "okay";
-+
-+	w83773g@4c {
-+		compatible = "nuvoton,w83773g";
-+		reg = <0x4c>;
-+	};
-+};
-+
-+&i2c2 {
-+	/* PSU SMBus (PSU_SMB1) */
-+	status = "okay";
-+};
-+
-+&i2c3 {
-+	status = "okay";
-+};
-+
-+&i2c4 {
-+	status = "okay";
-+};
-+
-+&i2c6 {
-+	/* SMBus on BMC connector (BMC_SMB_1) */
-+	status = "okay";
-+};
-+
-+&i2c7 {
-+	/* FRU EEPROM */
-+	status = "okay";
-+
-+	eeprom@57 {
-+		compatible = "st,24c128", "atmel,24c128";
-+		reg = <0x57>;
-+		pagesize = <16>;
-+
-+		nvmem-layout {
-+			compatible = "fixed-layout";
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+
-+			eth0_macaddress: macaddress@3f80 {
-+				reg = <0x3f80 6>;
-+			};
-+
-+			eth1_macaddress: macaddress@3f88 {
-+				reg = <0x3f88 6>;
-+			};
-+		};
-+	};
-+};
-+
-+&i2c8 {
-+	/* SMBus on intelligent platform management bus header (IPMB_1) */
-+	status = "okay";
-+};
-+
-+&kcs3 {
-+	status = "okay";
-+	aspeed,lpc-io-reg = <0xca2>;
-+};
-+
-+&lpc_ctrl {
-+	status = "okay";
-+};
-+
-+&lpc_snoop {
-+	status = "okay";
-+	snoop-ports = <0x80>;
-+};
-+
-+&mac0 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_rgmii1_default &pinctrl_mdio1_default>;
-+
-+	nvmem-cells = <&eth0_macaddress>;
-+	nvmem-cell-names = "mac-address";
-+};
-+
-+&mac1 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_rmii2_default &pinctrl_mdio2_default>;
-+	use-ncsi;
-+
-+	nvmem-cells = <&eth1_macaddress>;
-+	nvmem-cell-names = "mac-address";
-+};
-+
-+&pwm_tacho {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_pwm0_default
-+				&pinctrl_pwm1_default
-+				&pinctrl_pwm2_default
-+				&pinctrl_pwm3_default
-+				&pinctrl_pwm4_default
-+				&pinctrl_pwm5_default>;
-+
-+	fan@0 {
-+		/* FAN1 (4-pin) */
-+		reg = <0x00>;
-+		aspeed,fan-tach-ch = /bits/ 8 <0x00>;
-+	};
-+
-+	fan@1 {
-+		/* FAN2 (4-pin) */
-+		reg = <0x01>;
-+		aspeed,fan-tach-ch = /bits/ 8 <0x01>;
-+	};
-+
-+	fan@2 {
-+		/* FAN3 (4-pin) */
-+		reg = <0x02>;
-+		aspeed,fan-tach-ch = /bits/ 8 <0x02>;
-+	};
-+
-+	fan@3 {
-+		/* FAN4 (6-pin) */
-+		reg = <0x03>;
-+		aspeed,fan-tach-ch = /bits/ 8 <0x03 0x0b>;
-+	};
-+
-+	fan@4 {
-+		/* FAN5 (6-pin) */
-+		reg = <0x04>;
-+		aspeed,fan-tach-ch = /bits/ 8 <0x04 0x0d>;
-+	};
-+
-+	fan@5 {
-+		/* FAN6 (6-pin) */
-+		reg = <0x05>;
-+		aspeed,fan-tach-ch = /bits/ 8 <0x05 0x0e>;
-+	};
-+};
-+
-+&p2a {
-+	status = "okay";
-+	memory-region = <&pci_memory>;
-+};
-+
-+&spi1 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_spi1_default>;
-+	flash@0 {
-+		status = "okay";
-+		label = "bios";
-+		m25p,fast-read;
-+		/* Frequency extracted from original ROM */
-+		spi-max-frequency = <24000000>; /* 24 MHz */
-+	};
-+};
-+
-+&uhci {
-+	status = "okay";
-+};
-+
-+&vhub {
-+	status = "okay";
-+};
-+
-+&video {
-+	status = "okay";
-+	memory-region = <&video_engine_memory>;
-+};
-+
-+&vuart {
-+	status = "okay";
-+	aspeed,lpc-io-reg = <0x2f8>;
-+	aspeed,lpc-interrupts = <3 IRQ_TYPE_LEVEL_HIGH>;
-+};
-+
-+&uart5 {
-+	status = "okay";
-+};
--- 
-2.50.1
-
+so node name needs to be regulator-vph-pwr instead.
 
