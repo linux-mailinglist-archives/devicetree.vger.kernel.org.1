@@ -1,60 +1,79 @@
-Return-Path: <devicetree+bounces-225664-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225665-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17B13BCFCDF
-	for <lists+devicetree@lfdr.de>; Sat, 11 Oct 2025 23:24:09 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB7F3BCFD44
+	for <lists+devicetree@lfdr.de>; Sun, 12 Oct 2025 00:39:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AB2624034B6
-	for <lists+devicetree@lfdr.de>; Sat, 11 Oct 2025 21:24:07 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id ADA744E2778
+	for <lists+devicetree@lfdr.de>; Sat, 11 Oct 2025 22:39:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E34FA23E23C;
-	Sat, 11 Oct 2025 21:24:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FE592441A0;
+	Sat, 11 Oct 2025 22:39:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="A1sueLFH"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="Yik7e1N1";
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="U0Q1a1ZM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F21041F30AD
-	for <devicetree@vger.kernel.org>; Sat, 11 Oct 2025 21:24:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51619239E8B;
+	Sat, 11 Oct 2025 22:39:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760217845; cv=none; b=rXcLhCSaybAYwSmDBQDp3aK9Qn5RQFxcTwVRlHZAa2rVRolJr+aWyoeO7PR/UMJosuOcDSbcbXGv2E0zJxVa8N3eWJgQSd1kPCFw2EzwEgi0lcZU8tz29b9oGKXi1RM9O1jqFLJLEBEUuqaLqt9qdH8iMPnY84urCm9Iun661vU=
+	t=1760222359; cv=none; b=tC/igjrWN/pVue0H2bWaj3AzGLKQ1NV9VLHw4RAlmoFDmEFgz+0offzgorAj+iGu+ug2wvb2ySq6A85uUvhHgea6wsFBVTxsnad6Mi2A091fJ2w4T/X7ssql5sced3Lqbfb8J9/xhWsxud0icevsTwhA4/u1bZPkU5Gd9sHwTdI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760217845; c=relaxed/simple;
-	bh=iVLUfaBdRxe6BtYySc0Vi+hSvDLbp71t0vV+DHbm14Q=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=hbK6CxCMu3539soN8KhO3g6Cs+t4TvrMd9kzX7N8zE0/JFE2cDY8xyWpX9TSipGXKN3TUL5FGu58KUdk9bUwNQRRc2C4qaVYyzr6WwYj2lqX8hEJCfeekQu2vIoRJgIVa5UKDD6E/122jXuMCLAyBKZPFhooTFrXjLCpoDFaObw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=A1sueLFH; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=from:to:cc:subject:date:message-id
-	:mime-version:content-transfer-encoding; s=k1; bh=GsE2heXY50Yjd1
-	5nri88gwUGP5IkW19TD/huxovLP2M=; b=A1sueLFHOOIFMDWzUfKPuQ6yvm2/PW
-	yVEjWW5Di/+oiJQosYvJxIZxPZhhfRDveOBt67pibm4pxrX4oPI9XjT3ggVr7Lhu
-	yh6ozrdMm9yUe4oknR2JnbHSUgtRrbZFBSgx7XkuCU+Ycxd/dH1oCOIYWJOd/pMi
-	sfi+vfcNgcndxcsRz5zUOturepg1FSWOxEvtE6tGWu4toq69Dzl0nkVKs+1sDVzu
-	XKMkJi8/vD8aNEFP5t7A4AdZMzJy5IBr09hylVpm/4pnvEZSDoypHu3u7vce9AxH
-	0Pvz+78egbxXvcfAB2o6ZlqB0/KvT9O17UhSqkLhXGGmpjzpJIPiVupw==
-Received: (qmail 1930986 invoked from network); 11 Oct 2025 23:24:02 +0200
-Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 11 Oct 2025 23:24:02 +0200
-X-UD-Smtp-Session: l3s3148p1@YAoup+hAOLEujntw
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: linux-renesas-soc@vger.kernel.org
-Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	s=arc-20240116; t=1760222359; c=relaxed/simple;
+	bh=Ire0SEM1n4sStZPmB5F6KBjBZX9zBv051O23Ok5loSE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=e7sgr5VvXrBK9oy/4nMDU5afbSKmoulU3TahRTa3rMlfsQ2C3t++r2xCytMOj/FRA56xXP8Tza4dOIIatt3uvv5X62KUFA5V67iUxkmb+SQHf89nUjqxX9XvfFJHqUY/GjMCEHp3Vo1NygQQk3qn45P4x3t+XfTi3aHw1boIkBU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=Yik7e1N1; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=U0Q1a1ZM; arc=none smtp.client-ip=80.241.56.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp1.mailbox.org (smtp1.mailbox.org [IPv6:2001:67c:2050:b231:465::1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4ckdnv16Jvz9slx;
+	Sun, 12 Oct 2025 00:39:15 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1760222355;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=hTHxUTPK4PXa1n3rmLg9JAn1+iiklLkUzRB2ctLXbmw=;
+	b=Yik7e1N17tsOwWcqOQyS4Ce8GWq0AEJ+fBM1ajVQ7ijzDcHvaLRQUwIu/pTPCwdKzgKQrC
+	dMkxCm6HcV4G+ww/NuBxFP+UflpW0og5+QS1g2ROMCrdfHQq7XyxY20VS8EGC9kg2XwnLc
+	kDujHw7fk6kpKGBovw4YLVGwPt2IqbRq7oaqzHpo2MbAhHD6Z/voLA4jjrgQE4qP4g4jwQ
+	D9EC3EeBE7bYdAumVKVceMZPCI8U5IosV/d0Yxhau5u827ebVhgF/zsxASPDJI8aiSx4Km
+	/DREyKB+amfQEbLEds6FO61VVqLo0L4kbKM9XzAHuC0ekUBdS3Rz72/ZN56cGg==
+Authentication-Results: outgoing_mbo_mout;
+	dkim=pass header.d=mailbox.org header.s=mail20150812 header.b=U0Q1a1ZM;
+	spf=pass (outgoing_mbo_mout: domain of marek.vasut@mailbox.org designates 2001:67c:2050:b231:465::1 as permitted sender) smtp.mailfrom=marek.vasut@mailbox.org
+From: Marek Vasut <marek.vasut@mailbox.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1760222353;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=hTHxUTPK4PXa1n3rmLg9JAn1+iiklLkUzRB2ctLXbmw=;
+	b=U0Q1a1ZMfGCz0EzEvdvxVi5KZBkuLyKMbycR26j6bH/z+/PZfz2jHB87edyjLkumLaWhGZ
+	HJ6cB5u33Z6vwRQBsrhZx3+YrV6AgAV6ymLfrINSvXvfU+vutF/72hY7HraNy3ze4ojHQJ
+	QYVweEvioWoJtNJNHtiupDEP/0ZF6XAWDHMjaQgT7jTrSYCJuSeGLmfV4LB+OJ4zIU4mC5
+	g2OgAbB2D0TXJcMaGHoTUWR8s9rxij8WA+VG0ihOnhGfxf9aY3lG1wv2MSGeLt0EmreH1G
+	erj5hV4Hltio9jtnB9ifkTYNI/stY+B9rR9xhQtwUMqYXI4JHd7ydTK/0uTQww==
+To: linux-clk@vger.kernel.org
+Cc: Marek Vasut <marek.vasut@mailbox.org>,
 	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Rob Herring <robh@kernel.org>,
+	Stephen Boyd <sboyd@kernel.org>,
 	devicetree@vger.kernel.org
-Subject: [PATCH v2] ARM: dts: renesas: kzm9g: name interrupts for accelerometer
-Date: Sat, 11 Oct 2025 23:06:06 +0200
-Message-ID: <20251011212358.3347-2-wsa+renesas@sang-engineering.com>
-X-Mailer: git-send-email 2.47.2
+Subject: [PATCH 1/2] dt-bindings: clk: si522xx: Clock driver for Skyworks Si522xx I2C PCIe clock generators
+Date: Sun, 12 Oct 2025 00:35:59 +0200
+Message-ID: <20251011223846.261652-1-marek.vasut@mailbox.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,38 +81,119 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-MBO-RS-ID: 7973c2b98d5d9c188fe
+X-MBO-RS-META: i8jfhtjdm1548zbzz9e6sdq1ags3ds9j
+X-Rspamd-Queue-Id: 4ckdnv16Jvz9slx
 
-Name the interrupts to make them descriptive.
+Document the Skyworks Si522xx PCIe clock generators. Supported models are
+Si52202/Si52204/Si52208/Si52212. While chip is similar to Si521xx, it also
+contains many subtle differences to justify separate driver.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+The Si522xx has different register and bit layout, supports spread spectrum
+clocking and slew rate settings, and no longer contains the old BC Byte Count
+configuration register. Instead, the I2C protocol is yet again very slightly
+different, but this time at least compatible with regmap.
+
+Signed-off-by: Marek Vasut <marek.vasut@mailbox.org>
 ---
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Michael Turquette <mturquette@baylibre.com>
+Cc: Rob Herring <robh@kernel.org>
+Cc: Stephen Boyd <sboyd@kernel.org>
+Cc: devicetree@vger.kernel.org
+Cc: linux-clk@vger.kernel.org
+---
+ .../bindings/clock/skyworks,si522xx.yaml      | 79 +++++++++++++++++++
+ 1 file changed, 79 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/skyworks,si522xx.yaml
 
-Changes since v1 RFC:
-* reworded commit message
-* added tag from Geert, thanks!
-
-I'd think we can apply this before my binding update patch goes in.
-Because this DT already causes a warning before the update (2 interrupts
-not supported). And it will cause a wanring after the binding update
-(interrupt-names are required). Or?
-
- arch/arm/boot/dts/renesas/sh73a0-kzm9g.dts | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/arch/arm/boot/dts/renesas/sh73a0-kzm9g.dts b/arch/arm/boot/dts/renesas/sh73a0-kzm9g.dts
-index 1ce07d0878dc..0a9cd61bcb5f 100644
---- a/arch/arm/boot/dts/renesas/sh73a0-kzm9g.dts
-+++ b/arch/arm/boot/dts/renesas/sh73a0-kzm9g.dts
-@@ -209,6 +209,7 @@ accelerometer@1d {
- 		reg = <0x1d>;
- 		interrupts-extended = <&irqpin3 2 IRQ_TYPE_LEVEL_HIGH>,
- 				      <&irqpin3 3 IRQ_TYPE_LEVEL_HIGH>;
-+		interrupt-names = "INT1", "INT2";
- 	};
- 
- 	rtc@32 {
+diff --git a/Documentation/devicetree/bindings/clock/skyworks,si522xx.yaml b/Documentation/devicetree/bindings/clock/skyworks,si522xx.yaml
+new file mode 100644
+index 0000000000000..6ad26543f9d21
+--- /dev/null
++++ b/Documentation/devicetree/bindings/clock/skyworks,si522xx.yaml
+@@ -0,0 +1,79 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/clock/skyworks,si522xx.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Skyworks Si522xx I2C PCIe clock generators
++
++description: |
++  The Skyworks Si522xx are I2C PCIe clock generators providing
++  from 2 to 12 output clocks.
++
++maintainers:
++  - Marek Vasut <marek.vasut@mailbox.org>
++
++properties:
++  compatible:
++    enum:
++      - skyworks,si52202
++      - skyworks,si52204
++      - skyworks,si52208
++      - skyworks,si52212
++
++  reg:
++    const: 0x6a
++
++  '#clock-cells':
++    const: 1
++
++  clocks:
++    items:
++      - description: XTal input clock
++
++  skyworks,out-amplitude-microvolt:
++    enum: [ 600000, 650000, 700000, 750000, 800000, 850000 ]
++    description: Output clock signal amplitude
++
++  skyworks,out-spread-spectrum:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum: [ 100000, 99750, 99500 ]
++    description: Output clock down spread in pcm (1/1000 of percent)
++
++patternProperties:
++  "^DIFF[0-11]$":
++    type: object
++    description:
++      Description of one of the outputs (DIFF0..DIF11).
++
++    properties:
++      skyworks,slew-rate:
++        $ref: /schemas/types.yaml#/definitions/uint32
++        enum: [ 1900000, 2400000 ]
++        description: Output clock slew rate select in V/ns
++
++    additionalProperties: false
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - '#clock-cells'
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        clock-generator@6a {
++            compatible = "skyworks,si52202";
++            reg = <0x6a>;
++            #clock-cells = <1>;
++            clocks = <&ref25m>;
++        };
++    };
++
++...
 -- 
-2.47.2
+2.51.0
 
 
