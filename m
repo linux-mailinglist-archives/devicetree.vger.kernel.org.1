@@ -1,234 +1,202 @@
-Return-Path: <devicetree+bounces-225740-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225741-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CCC87BD07D3
-	for <lists+devicetree@lfdr.de>; Sun, 12 Oct 2025 18:42:59 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 36FD1BD07F4
+	for <lists+devicetree@lfdr.de>; Sun, 12 Oct 2025 18:53:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 87BD63A9186
-	for <lists+devicetree@lfdr.de>; Sun, 12 Oct 2025 16:42:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 419A01893112
+	for <lists+devicetree@lfdr.de>; Sun, 12 Oct 2025 16:53:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4168C2EC541;
-	Sun, 12 Oct 2025 16:42:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 440EE1C5F27;
+	Sun, 12 Oct 2025 16:53:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="egD7CSrT"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BR6XTV9T"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f67.google.com (mail-ej1-f67.google.com [209.85.218.67])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47C3A2D6E78;
-	Sun, 12 Oct 2025 16:42:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 867F3749C
+	for <devicetree@vger.kernel.org>; Sun, 12 Oct 2025 16:52:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.67
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760287371; cv=none; b=T0CpnbdUCvK26cCKRmF5Tat+3s5q+hLAFvAs1BiKFdVhmLH3xBpYtW0qoVOycckoN1w4ZrL7QIW5N4pZKBouJ5BHg+f62MTiDclouvKyQdSIPGK7Eerub6pz4jCPF2TmMA4oqPRPu8a1kIz9ewdvWAuG5Nuo5ZSPAN0B/yKKX4M=
+	t=1760287981; cv=none; b=GU0iuY0QY9MYL1qhDddoY+lru8qX4vKg2SRYhO74nbAeGQWHYy33U/mnaWjet7fG6XAcSYH6rdCDa3vVYH76v+OtRQnKv6BnyK9oUdrnxMyuhr4N9ok6S2ehD5epnNBEI7sNDCKlEWqDn8fCYTsBPY+DSA5yKiMT+1ETzRvq8Xg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760287371; c=relaxed/simple;
-	bh=KH1K6ed429b0tgcVstjVozYrLhXWSiiDpvnYePJS+qI=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=eDU679qtu4PI1xW1X691o3Ov71vG42iOmKCLMeXyv8w2CYk31S2ZIAAjBiWnEFOZKubuBlXkrqmBleAc2HOon4Ja2TlZ5QoMzr5MeY0KIM8uUFwlwLp1y0c8aTD/2iS33HFIk5RVFAa3LkXrH/WfcTei82l3tAvulfjMzKNq7oM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=egD7CSrT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 22AEAC4CEE7;
-	Sun, 12 Oct 2025 16:42:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760287370;
-	bh=KH1K6ed429b0tgcVstjVozYrLhXWSiiDpvnYePJS+qI=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=egD7CSrTFrc+EwKLx9PSMYud/pjrIQqbs4uWHjwNgMTqEa9M+PTPOg1VRzFyuoC5u
-	 /7+80LVkxl5pWKyRGMOwg90b30f2stlE2eeue0vQHwt6j6PBiocWVgd+h4/hLVmbnz
-	 0UUTl3/OLyJMfB2mDBww/KCZGq4hxa3UzXTWCYQswZVB3rbMOzWIMql7qvrN8+IjPa
-	 +GRCpPGQ88Dxo9MqEqQt8cRVEgouWHMY6OZ2gCAoQSoKs6/IS9t9bQ7QnxihAAnkhQ
-	 /NEoLtdr7aMD2pmyo1G0yhZ8ECQrwBEP9kxTogK62zAHdOFxRgneLei4qhoFaFgoVr
-	 G4dvKwbe9kHbg==
-Date: Sun, 12 Oct 2025 17:42:40 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Remi Buisson via B4 Relay <devnull+remi.buisson.tdk.com@kernel.org>
-Cc: remi.buisson@tdk.com, David Lechner <dlechner@baylibre.com>, Nuno
- =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v7 0/9] iio: imu: new inv_icm45600 driver
-Message-ID: <20251012174240.24ad54df@jic23-huawei>
-In-Reply-To: <20251007-add_newport_driver-v7-0-137223a1f79e@tdk.com>
-References: <20251007-add_newport_driver-v7-0-137223a1f79e@tdk.com>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1760287981; c=relaxed/simple;
+	bh=is6hqOlUkMzHTcnRZLMTBo5nWV2BPzV5Tey9TxfEm6U=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=YisALlH6T9kUo09ELctRjPPvrZK6I49IoYZPrTFXmbo6ZBI4yhSQ0j2v+iy8DCp5bjvSGH4l9DMDkK1ltfF65azA+gcCr8PPE1hHAqPwVP9nY00l1o26aFQMkYQaWcHYVSnF04onlMsB2QtDGlHaV4gWQ0QWf0fh79alqwpzxis=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BR6XTV9T; arc=none smtp.client-ip=209.85.218.67
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f67.google.com with SMTP id a640c23a62f3a-b3e44f22f15so506010466b.2
+        for <devicetree@vger.kernel.org>; Sun, 12 Oct 2025 09:52:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1760287978; x=1760892778; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=9JZxGJaBIG3WMNgOZk70IosVrcFGLTtGDI3zyIQtP54=;
+        b=BR6XTV9TPGsCSsCXhUaHq2QW0sq08dFwDbXfd7zBz8v7PFy5s9Kq8fXSv5565AOn4Y
+         5XT1yRKB7IYwmBtUOC97BjgfqeECAG3KWJ96JYaGUtyiLv6fSDIwYKhY+LR7DeoJjQeQ
+         fNSYAgdLvjekMdhlULKceP3kCIbbYx1vc7VV3okYYHsNZPd/2qd5wZ3MakJwg1opjKBt
+         D+JXY/YWFzXJO4G3LB17sjS5PFbwLiYB46aQQMMKXL7Gk8ZgZo6V/LnFWxBi+OTnpe06
+         w1Vq4nRziatDjwJCmca1G+5niaNMATm5GRSwmZC6gfSrYi8XnpiL8jDdQL4cc5md+x1n
+         Hxiw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1760287978; x=1760892778;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=9JZxGJaBIG3WMNgOZk70IosVrcFGLTtGDI3zyIQtP54=;
+        b=XacG5yHV88N52OEOL5xuIC8S5wSSi4MK0b7wxL0IU6xbKhSQYyq7ku0k5NPvv2cCCj
+         RMCwhHM+Qhpxem1npRAqiSbSk6EK2EIuTY6lLxEYJ4O7tVEpq8QOSqwB6hXLlG+Fd9UZ
+         IOuuJilQna/jQf8WSdaAw5DotmclpTGXLk6cJu2aEFWYa1QWKBLI+xgbj6sMIgnCUFtk
+         DDxVWdmKt1Nc7P8qwYWeI9vnoGmpbeQ8Tzkqhqgon0Qs1BRTzGo4BF7+adOB79HpwoeQ
+         tx4xrvRLI+yRNiYjirFW/gZY+jku6Q/MiN77gyzXv/nDvpDMabCHTOobkfjscVWPU1ml
+         en4Q==
+X-Forwarded-Encrypted: i=1; AJvYcCVIZe/iQCGN7HRgZnTHBlzBksNvdfs1cX5lgEVuMZm4IOs2VbPOwZHUIvK7i1rbbb6BnGaSyfndVwhQ@vger.kernel.org
+X-Gm-Message-State: AOJu0YztsBNsks+fZGSXBVZePl8EThlcW8LMhTvY+B1C5NtynZ+aRMH6
+	/x0Eczi2sTq5wtj3JYDaQynQfIs9397wKRQWA/S6iPkFArUM5zNHr2V2RnUYgPulD3S7/phn8ua
+	clhD8Zm1x/XlDSMRb/cG3A2k5bcPXmSo=
+X-Gm-Gg: ASbGncsBo3MMFGkdEYQA8q33aPBxeEwoULASjncokHb9vMAFhO17A4qkN2kbB4C66sy
+	lVyuTUvbQZMwimCI0IJju1SFWGi5O5V1IVSyQO8n5cousBtr7INIrGNgUxZByb+SiT+J3uZLw8B
+	g02xrs/Hvfp+1F+UfFg46vPG+Q/9jye6DxoXffqhMxH1f/i9fBSpRv/iob3CXDIcwY7gWwn9WRS
+	PPp809TvURq8BTrgaeOCpKFHKjfb8VKeymP6w4m1v6j8VA=
+X-Google-Smtp-Source: AGHT+IHYC6gZQ7sVGps73WqhA1pssx5WiOdWA9NawCEncOKl23yyV6N76hIZIr600VGaUVKRCSjt6piNcz8DHQRfwsg=
+X-Received: by 2002:a17:907:7f8a:b0:b46:897b:d759 with SMTP id
+ a640c23a62f3a-b50abaa3309mr2018683466b.40.1760287977711; Sun, 12 Oct 2025
+ 09:52:57 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+References: <20251004015623.7019-1-raskar.shree97@gmail.com>
+ <20251004015623.7019-2-raskar.shree97@gmail.com> <20251004141231.632c311d@jic23-huawei>
+ <CAHc1_P7MU=BYf_8sbZqikpXpfuvAtLNJ2E_hmi-50ohoh+gQcg@mail.gmail.com> <20251012151130.797450e3@jic23-huawei>
+In-Reply-To: <20251012151130.797450e3@jic23-huawei>
+From: Shrikant <raskar.shree97@gmail.com>
+Date: Sun, 12 Oct 2025 22:22:46 +0530
+X-Gm-Features: AS18NWB6k3kWKKLVTx0bu_UemQDkCkAOaqI3qRe-tlwz4EjAekbo6ZOk5wZIcpw
+Message-ID: <CAHc1_P7heCXwgH1tnqKTPAg0RpTPEM9Q4NUsGoOJMk6gqyXnmA@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: iio: max30100: Add pulse-width property
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org, matt@ranostay.sg, 
+	skhan@linuxfoundation.org, david.hunter.linux@gmail.com, 
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-kernel-mentees@lists.linux.dev
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, 07 Oct 2025 07:20:01 +0000
-Remi Buisson via B4 Relay <devnull+remi.buisson.tdk.com@kernel.org> wrote:
+On Sun, Oct 12, 2025 at 7:41=E2=80=AFPM Jonathan Cameron <jic23@kernel.org>=
+ wrote:
+>
+> On Mon, 6 Oct 2025 08:34:03 +0530
+> Shrikant <raskar.shree97@gmail.com> wrote:
+>
+> > On Sat, Oct 4, 2025 at 6:42=E2=80=AFPM Jonathan Cameron <jic23@kernel.o=
+rg> wrote:
+> > >
+> > > On Sat,  4 Oct 2025 07:26:22 +0530
+> > > Shrikant Raskar <raskar.shree97@gmail.com> wrote:
+> > >
+> > > > The MAX30100 sensor supports multiple LED pulse widths (200us, 400u=
+s,
+> > > > 800us, 1600us). These settings affect measurement resolution and po=
+wer
+> > > > consumption. Until now, the driver always defaulted to 1600us.
+> > > >
+> > > > Introduce a new device tree property `maxim,pulse-width` that allow=
+s
+> > > > users to select the desired pulse width in microseconds from device
+> > > > tree.
+> > > >
+> > > > Valid values are: 200, 400, 800, 1600.
+> > > >
+> > > > This prepares for driver changes that read this property and config=
+ure
+> > > > the SPO2 register accordingly.
+> > > >
+> > > > Signed-off-by: Shrikant Raskar <raskar.shree97@gmail.com>
+> > > Hi Shrikant,
+> > >
+> > > Explain why this is in some way related to characteristics of how the
+> > > system containing this chip is built (wiring, lenses etc).  Otherwise
+> > > this might instead be something that should be controlled from usersp=
+ace
+> > > not firmware.
+> > >
+> > > Also, give a little more on why we care about controlling it at all.
+> > > Is there a usecase where power use of this chip matters?  Mostly I'd =
+expect
+> > > it to be in measurement equipment with relatively short measuring per=
+iods.
+> > >
+> > > Jonathan
+> > Hi Jonathan,
+> >
+> > Thanks for the feedback.
+> >
+> > The pulse width configuration is indeed dependent on the hardware integ=
+ration
+> > of the MAX30100. It affects how much optical energy the LEDs emit per s=
+ample,
+> > which in turn depends on physical factors such as:
+> >
+> >  - The type and thickness of the optical window or lens covering the se=
+nsor
+> >  - The distance between the LED and photodiode
+> >  - The reflectivity of the skin/contact surface
+> >
+> > For example:
+> >  - A smartwatch/wearable ring with a thin glass window can operate
+> > with 200=E2=80=93400 =C2=B5s pulses to
+> >    save power, while
+> >  - A medical-grade pulse oximeter or a sensor mounted behind a thicker
+> >    protective layer may require 800=E2=80=931600 =C2=B5s for reliable s=
+ignal amplitude.
+> >
+> > I believe it would be appropriate to describe these fixed,
+> > board-specific characteristics in the Device Tree,
+> > since they are determined by the hardware design rather than being
+> > runtime or user-controlled parameters.
+> >
+> > Would it be okay if I send v2 of the patch with the above explanation
+> > included in the commit message?
+> Hi Shrikant,
+>
+> I'd have this excellent detail + examples summarised in the patch descrip=
+tion
+> and also a small amount of description in the actual binding even if that=
+ just says
+> something like
+>    Description:
+>      Pulse width in... . Appropriate pulse width is dependant on factors
+>      such as optical window absorption, distances and expected reflectivi=
+ty
+>      of skin / contact surface.
+> That's just a quick mash up of what you have above, feel free to not use =
+this
+> particular text!
+>
+Thanks for your response. Sure, I will update the description in the
+binding and will
+update the commit message describing the details and examples. I will share=
+ the
+updated version of the patch shortly.
+> The inclusion of target surface reflectivity in there makes me thing that
+> for some applications we may also need userspace tweaking or some algorit=
+hmic
+> way to increase or decrease the value according to skin characteristics. =
+However
+> I guess maybe it isn't that sensitive.
+Need to check on this point.
 
-> This series add a new driver for managing InvenSense ICM-456xx 6-axis IMUs.
-> This next generation of chips includes new generations of 3-axis gyroscope
-> and 3-axis accelerometer, support of I3C in addition to I2C and SPI, and
-> intelligent MotionTracking features like pedometer, tilt detection, and
-> tap detection.
-> 
-> This series is delivering a driver supporting gyroscope, accelerometer and
-> temperature data, with polling and buffering using hwfifo and watermark,
-> on I2C, SPI and I3C busses.
-> 
-> Gyroscope and accelerometer sensors are completely independent and can have
-> different ODRs. Since there is only a single FIFO a specific value is used
-> to mark invalid data. To keep the device standard we are de-multiplexing
-> data from the FIFO to 2 IIO devices with 2 buffers, 1 for the accelerometer
-> and 1 for the gyroscope. This architecture also enables to easily turn each
-> sensor on/off without impacting the other. The device interrupt is used to
-> read the FIFO and launch parsing of accelerometer and gyroscope data.
-> This driver relies on the common Invensense timestamping mechanism to
-> handle correctly FIFO watermark and dynamic changes of settings.
-> 
-> The structure of the driver is quite similar to the inv_icm42600 driver,
-> however there are significant reasons for adding a different driver for
-> inv_icm45600, such as:
-> - A completely different register map.
-> - Different FIFO management, based on number of samples instead of bytes.
-> - Different indirect register access mechanism.
-> 
-> Note that regmap cache will be added in a dedicated patch set, to avoid
-> increasing too much this one.
-> 
-> Signed-off-by: Remi Buisson <remi.buisson@tdk.com>
-I fixed up the patch 1 tags thing. b4 did it for me - though it
-found both an Ack and a RB from Conor. I dropped the RB as that
-combination makes no sense and didn't come from the same reply from Conor.
-
-Please be careful about picking up such tags for future series.
-
-Series applied to the testing branch of iio.git. That will get some brief
-testing by 0-day. I'll rebase that on rc1 once available and then push it
-out as the togreg branch which gets picked up by linux-next.
-
-Nice work.
-
-Thanks,
-
-Jonathan
-
-> ---
-> Changes in v7:
-> - Fix SPI module missing header.
-> - Add comments on sub-field for fifo structure.
-> - Use designated initializers in odr_to_period table.
-> - Fix typo.
-> - Rework regmap usage in inv_icm45600_buffer_set_fifo_en.
-> - Added a comment to explain why we dont use fallbacks in DT.
-> - Link to v6: https://lore.kernel.org/r/20250924-add_newport_driver-v6-0-76687b9d8a6e@tdk.com
-> 
-> Changes in v6:
-> - Reviewed headers inclusion
-> - Formatting (line too short, ...)
-> - moving code to patch it belongs
-> - kernel doc fixes
-> - Comments reviewed and simplified
-> - removed dev_error_probe with ENOMEM
-> - fixed useless ssize_t to size_t
-> - removed useless pack attribute
-> - Fixed unclear or malformed if
-> - Removed useless fifo_is_data_valid wrapper
-> - Use available macros instead of hardcoded values
-> - Link to v5: https://lore.kernel.org/r/20250820-add_newport_driver-v5-0-2fc9f13dddee@tdk.com
-> 
-> Changes in v5:
-> - Simplified device tree, removed interrupts from mandatory param list
-> - Allocated regmap_bulk_read/write buffers to dma-capable memory (for indirect reg accesses)
-> - Use min/max to simplify code
-> - Reordered some code/include/prototypes to the patch they belong
-> - Updated to latest iio_push_to_buffers_with_ts API
-> - Fix build warning with clang 18.1.8
-> - Fixed some alignements
-> - Avoiding irq_type silly assignation
-> - Simplified fwnode_irq_get_byname error management
-> - Re-ordered suspend/resume process to match + comments
-> - Reverted VDDIO init to make it work without PM
-> - Avoid PM underflow on VDDIO when removing inv_icm456000 module, by checking suspend state
-> - Link to v4: https://lore.kernel.org/r/20250814-add_newport_driver-v4-0-4464b6600972@tdk.com
-> 
-> Changes in v4:
-> - Introduce gyro and accel in different patches.
-> - Move IRQ probe to next patch.
-> - Allocate fifo memory instead of static definition.
-> - Rework VDDIO management to avoid underflow.
-> - Rework suspend/resume using force suspend/resume API.
-> - Use helper min, clamp and sizeof instead of custom implementation.
-> - Re-scoping some variables, using reverse xmas tree for declarations.
-> - Fix formatting: end of list, end of file, spaces, alignments.
-> - Use dev_err_probe for I3C errors.
-> - Factorizing default config code.
-> - Link to v3: https://lore.kernel.org/r/20250717-add_newport_driver-v3-0-c6099e02c562@tdk.com
-> 
-> Changes in v3:
-> - Macros renamed and added to the patch using it.
-> - Using unsigned for sensor configuration parameters.
-> - Using sizeof instead of raw values.
-> - Using fsleep instead of usleep.
-> - Simplified dt-bindings examples, setting supplies as mandatory
-> - Fix bad or useless casts.
-> - Partially aligned power management following 20250709-icm42pmreg-v1-0-3d0e793c99b2@geanix.com
-> - Fix "uninitialized symbols" warnings.
-> - Link to v2: https://lore.kernel.org/r/20250710-add_newport_driver-v2-0-bf76d8142ef2@tdk.com
-> 
-> Changes in v2:
-> - Reworked patches order and content to ease review and make sure everything compiles
-> - Reworked gyro and accel FSR as 2D arrays
-> - Moved temperature processed sensor to core module
-> - Use latest API to claim/release device
-> - Implemented chip_info structure instead of relying on an enum
-> - Removed power-mode ABI, only relying on ODR to switch power_mode
-> - Reworked regulator control to use devm_ API where relevant
-> - Reworked inv_icm45600_state.buffer as a union to avoid casts, using getter/setter instead of memcpy
-> - Fixed dt-binding error and moved patch at the beginning of the patch-set
-> - Reworked macros to use FIELD_PREP inline instead of inside the header
-> - Fixed comment's grammar
-> - Removed extra blank lines
-> - Reordered part numbers alphanumerically
-> - Removed useless default/error fallbacks
-> - Typed accel, gyro and timestamp data when parsing FIFO
-> - Fixed I2C module return code
-> - Use Linux types instead of C standard
-> - Reviewed headers inclusion to remove useless #include and to add missing ones
-> - Link to v1: https://lore.kernel.org/r/20250411-add_newport_driver-v1-0-15082160b019@tdk.com
-> 
-> ---
-> Remi Buisson (9):
->       dt-bindings: iio: imu: Add inv_icm45600
->       iio: imu: inv_icm45600: add new inv_icm45600 driver
->       iio: imu: inv_icm45600: add buffer support in iio devices
->       iio: imu: inv_icm45600: add IMU IIO gyroscope device
->       iio: imu: inv_icm45600: add IMU IIO accelerometer device
->       iio: imu: inv_icm45600: add I2C driver for inv_icm45600 driver
->       iio: imu: inv_icm45600: add SPI driver for inv_icm45600 driver
->       iio: imu: inv_icm45600: add I3C driver for inv_icm45600 driver
->       MAINTAINERS: add entry for inv_icm45600 6-axis imu sensor
-> 
->  .../bindings/iio/imu/invensense,icm45600.yaml      |  90 ++
->  MAINTAINERS                                        |   8 +
->  drivers/iio/imu/Kconfig                            |   1 +
->  drivers/iio/imu/Makefile                           |   1 +
->  drivers/iio/imu/inv_icm45600/Kconfig               |  70 ++
->  drivers/iio/imu/inv_icm45600/Makefile              |  16 +
->  drivers/iio/imu/inv_icm45600/inv_icm45600.h        | 385 ++++++++
->  drivers/iio/imu/inv_icm45600/inv_icm45600_accel.c  | 782 ++++++++++++++++
->  drivers/iio/imu/inv_icm45600/inv_icm45600_buffer.c | 557 ++++++++++++
->  drivers/iio/imu/inv_icm45600/inv_icm45600_buffer.h | 101 +++
->  drivers/iio/imu/inv_icm45600/inv_icm45600_core.c   | 988 +++++++++++++++++++++
->  drivers/iio/imu/inv_icm45600/inv_icm45600_gyro.c   | 791 +++++++++++++++++
->  drivers/iio/imu/inv_icm45600/inv_icm45600_i2c.c    |  98 ++
->  drivers/iio/imu/inv_icm45600/inv_icm45600_i3c.c    |  78 ++
->  drivers/iio/imu/inv_icm45600/inv_icm45600_spi.c    | 108 +++
->  15 files changed, 4074 insertions(+)
-> ---
-> base-commit: 411e8b72c181e4f49352c12ced0fd8426eb683aa
-> change-id: 20250411-add_newport_driver-529cf5b71ea8
-> 
-> Best regards,
-
+Thanks and regards,
+ Shrikant
 
