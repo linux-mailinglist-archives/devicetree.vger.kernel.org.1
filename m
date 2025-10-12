@@ -1,77 +1,77 @@
-Return-Path: <devicetree+bounces-225670-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225671-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64864BCFEA4
-	for <lists+devicetree@lfdr.de>; Sun, 12 Oct 2025 04:26:28 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 371A6BCFEB0
+	for <lists+devicetree@lfdr.de>; Sun, 12 Oct 2025 04:26:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 2B4CC4E1430
-	for <lists+devicetree@lfdr.de>; Sun, 12 Oct 2025 02:26:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6D8643AFA96
+	for <lists+devicetree@lfdr.de>; Sun, 12 Oct 2025 02:26:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D0731DB375;
-	Sun, 12 Oct 2025 02:26:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13E401A2392;
+	Sun, 12 Oct 2025 02:26:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YQJ/v6Ya"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Y2L1oUqF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com [209.85.210.170])
+Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com [209.85.210.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C7CC17B43F
-	for <devicetree@vger.kernel.org>; Sun, 12 Oct 2025 02:26:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F6E1143C69
+	for <devicetree@vger.kernel.org>; Sun, 12 Oct 2025 02:26:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760235981; cv=none; b=BZVsnYcNXfSlm92ORCFUeTsS8j4lFbX/TAEmhP8FvWRTaXIykyPUlaNhgsRicj7Lk+63FfvZEsOTNuO6ELbaIFzaUTi1Bj7O6XaQ0/olQ9s70h1Tr9OTeHpeIcjVzbBj33vxdWYJ03q33+cZGcf7FmKfN07Au6zkQFq5zekdsfE=
+	t=1760235988; cv=none; b=Uj7V2Aoskp8U1HOuQmX1/8k1F1plpRKFIiaKH3wcnMKLaYpO/3l4uUZK4hj5V52qZKTzi/XoIXUBWeRjWxmB7e4Ixja7uRP/37RdukSF5R0eDkBpr5e97o3pLSaajyE68buhaVKpcI7udzxSXZMVOVNSe4VXujrLSXITCNHVlZ8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760235981; c=relaxed/simple;
-	bh=Eqt79fSlOJq/HqDwqQJC4lZ1h3nSfxXHoYjtimE2BTM=;
+	s=arc-20240116; t=1760235988; c=relaxed/simple;
+	bh=PFIur9yyt6yU7rC5ueBW+ZogapM3+73LNvnZQ9/MQtY=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=B7cwSPzRxDMBcz2TYc6nKFu3T2dQP3CE165lWG/6HKKYkX+EwG6BMWzzS+lkAB61kI+3HQyZiBDrcMg6Ppd87SPTYtXwRQFpGQy+Th6bc6fLcoEEkEQf2d/nem3e4RHWwCLlURcntwiiOClS+vf0y1CvtQ6vb93zSzjK9QWJuoA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YQJ/v6Ya; arc=none smtp.client-ip=209.85.210.170
+	 MIME-Version; b=Mmyh1C4SqVkQrRoSCO7S9cwxO8P+90nNLSKimhzS8KIsTBCQeCTXl3YlIk4T4/mInk0BX74YVj+vY21qr9xNJHG8fQwwSeFUHj3lAM8VdoCU3QjpgPEpRx3h9Z6e5GaIaSBED6hSg4Lyo0ajwWQRICDbfNRy3PfLwPgO7NqeycI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Y2L1oUqF; arc=none smtp.client-ip=209.85.210.171
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f170.google.com with SMTP id d2e1a72fcca58-781010ff051so2243347b3a.0
-        for <devicetree@vger.kernel.org>; Sat, 11 Oct 2025 19:26:18 -0700 (PDT)
+Received: by mail-pf1-f171.google.com with SMTP id d2e1a72fcca58-77f5d497692so4045302b3a.1
+        for <devicetree@vger.kernel.org>; Sat, 11 Oct 2025 19:26:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1760235978; x=1760840778; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1760235986; x=1760840786; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=xYj9BHj7cwVf87n8ZMWQnat/cLLuDjVQjaIpUr5Z/nc=;
-        b=YQJ/v6YajXGk6UkeTA9z1P7NMS54SMnCDvMb43povPCX/2SoHwxyzvWjBsDLWgtQm0
-         Mt8gDw354JPfTRk7k/R5D3rIXLL8dXrReOQBz6xgwsIDHHRvx/g3Pe91C/NZuWNwOMtT
-         5uf/1XDQQTT3kEGfb86UlCfVaV0khFpyf/XfWqCqU7GuCtNsCe0vhTgfE0aMRRqv5ZrP
-         sVAIEJDwMrS/HnoTpUFIukaXvinA1bXngZEsBVLoNL6w1Ybu/0g28npcdmOlaUwhW7zs
-         UH/TvfgSvi2C8Lfb1NxLw/Y+YfKbZilXmA5p4krgLErYkIZ84vSQckH71SJyohuQBtgD
-         a+KQ==
+        bh=7oeNoAqAwXapHedMDzgCFy5RYkdc7bA8wxszUU7mEjE=;
+        b=Y2L1oUqF0hrF0PPkuwMLN5/KqhvftGm9tPfiNSYPdxh0jBX4cFb25UP/06d6FmD6lw
+         tqCNlMJNoKuI89Ko6/1YpVPlXUHzWWai6i93dnlRRSf5tBOzpR9mxT7lTCQEWlifXfRR
+         QcNBkjeKmeNXM5+dLzIyQ65dEEVqdyI8CoBiA3R6xQ0DZwTCjlfu/Da8jVeD2ydBzhJD
+         wVYG1CqfFMpB0dmNPmpxRj8WYQGXBlwcjA8Ol4UZC2ukyuzgA0sk27smVIBsC8nJik5a
+         ZrsbYFzLGhM6mrJnA4SZ3seiWd5hlNjIEF28wPH2GkhsDE3fT80/Lk4mMYX3JZfhXfYw
+         sQAw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760235978; x=1760840778;
+        d=1e100.net; s=20230601; t=1760235986; x=1760840786;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=xYj9BHj7cwVf87n8ZMWQnat/cLLuDjVQjaIpUr5Z/nc=;
-        b=anmLGTmb69qM8uucE6pfKDSFmbVJvMqvDHgNFDjjsDO58+sxTMn2M8C2CyIdQQyPsk
-         ZO9T41hygdrGC7Aptu+ID0uypGCIdNFxZB0NNFIMGwOzR7d0S5bJe8FtBlrPqOE0EjsL
-         QVF/ztIsFR2NhQwSxr7ZZjTKKIJ1NRL7FWEeibvHQ1LFu5cT95y19F7YZWW3aIpL+pV9
-         C7rH7MhQdskg1Dw26OcWt0BlJQgWwgXdAqlqjQc22YaRWIe+FRHmpFJ32xcXaquRlRGg
-         kyVBU/2qa/K3kEJvNOx+nRe4bP4V8N67fUMH1m0lGvbHCzsCt5EKjURsm+oQOQtrVBxP
-         wumg==
-X-Gm-Message-State: AOJu0Yxe0o1zw+XZMa1yu02IeZXnrtOObaBb5aaa1M1YFYvyOGNmRK9Z
-	TnaVt5gXg+y2lJA4JJEHVR7sTjRkfNq9/Mo6AAQPX5UXh7DsRV4ie0k4
-X-Gm-Gg: ASbGncupYhzPdkpPUTibQTezSjGKcwmpUsmhF4pF7iRd6qSvfK+IpqomcOAEdrM9SMV
-	IxEB1SSWM/PNyxI28jefHE2vq1Ze4vCgpOssoXauKXdoyZnFqpOiJr0WImzfVvN4kRTN67xnpja
-	WF4A4j7o4KAdKj5TOV90h+P2X1KJ3uHw/InwQTNTTsQtZBQyOiKzHkQBz/KW8Ex+l14jPigmnT/
-	hQjjlvc3ENP8mxdGz1gv0137mCbJhCODZPFbne/AjE/S2vAlg6qf238VUjy62wJ1tpWEEZ9vQqV
-	rjJnkhNsPyN/tdIvsmG36o9AeZze+qm93B5v2LCt2YGu7m7wQDBimMNzWZJkO5O/Ie3K3rUQs5Y
-	cSxhFKy/LUfWM1jfkLaEJgKtO26PejuTu2/3cDYdAEtKHv+mPaPzBcyXEDtCFf9A3nw07
-X-Google-Smtp-Source: AGHT+IHkPmQUQfunFHahd09uFFipzQG8nUYJ4jLN6bvERJ5STyPU28/LTOdCiOsyRzsvL6DNxvTF7A==
-X-Received: by 2002:a05:6a00:1394:b0:792:574d:b1d with SMTP id d2e1a72fcca58-79385703ba7mr22526012b3a.14.1760235978345;
-        Sat, 11 Oct 2025 19:26:18 -0700 (PDT)
+        bh=7oeNoAqAwXapHedMDzgCFy5RYkdc7bA8wxszUU7mEjE=;
+        b=hsJk0aJSZaarAfO8K0sqHLHRgI6AXKa1JwiSSCsueeyQlq9SUCrXwOLvTgAUJjoG5W
+         +5CFM5OhGNDAYAfQSrFAH6K/AEBjDlzF8qEehhAgYVSgRDQryXuWje4eThmWU1ThEVi4
+         B8vVTGlke4RhOew/zhp3kPCXbpdo5tW7Dch4O+k8UxmMKVN7iA6H141Bag5RJwFuDdBY
+         n2V/ki1zjLNTajp9hKaPQ2qcjE9Yvr2ko/4nf8NMbA0GOggURO1qpxsWE9IF4y/cCBaR
+         tMYWX/3h/w0RMBQU8xy6CHe3ofBV03KoT4lDeldTnLfvehTxXlZQBQXklJtB/8gCBWTa
+         0rWQ==
+X-Gm-Message-State: AOJu0Yzli7ylmPVr7ny+1AMf+UJY5IikfY/RdBsyGzYb6ngdLlt1SzUT
+	XeK7xlWxK2dHLfW64sSCdhKQFCuUetgMVCLaKab2zQ8mwqHRDTCJd123
+X-Gm-Gg: ASbGncu7K2NFBNx1B7k+R6Y1f9/o8gT98OQVVDFIJUsg5UkgNJ7djy06hX6/Xcq5Q/u
+	H4s+IoitDugFCbor+pQ3L34+wCwN2lKpgWH80y0ycxfFrhd3y2xloclWsRKBngzhMLIwPD14lVB
+	Wm63t7KyUZnT8B/mUJxk2watNqgNfxa2VSfjeuKdY6/yPFIdNhNHh6IZ2DxAAhuuq4BRmFxPisi
+	49RTmeGQV4PqwqH3RiMdCUp4WE55RDomKyMYQeqVqzyWKTsyKpujfb/L8FME8FMwFsCjRyky0r1
+	zFhw94+Cg95qnj9baG85jLmWgMByAvgOO9km19gLP5eZiG+hpJVcgZDJgsHBv3KOD500QCfSjy/
+	lRRRLpc/vNdcPI+m2yMZd7xlx/THJGO8YpnGs1C7iBqAPIPKVetlRJYmrwA==
+X-Google-Smtp-Source: AGHT+IE2GiIjqdXwdPD/DjVNY5FvlpNDYD6mAOE9DF+isXGRIky0pgWxkfR4Ic5vWRPwpbzzqM4c1A==
+X-Received: by 2002:aa7:8892:0:b0:771:e4c6:10cc with SMTP id d2e1a72fcca58-79385324d9bmr21779339b3a.6.1760235986084;
+        Sat, 11 Oct 2025 19:26:26 -0700 (PDT)
 Received: from localhost.localdomain ([2001:19f0:ac00:4eb8:5400:5ff:fe30:7df3])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7992d9992ddsm7180489b3a.80.2025.10.11.19.26.11
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7992d9992ddsm7180489b3a.80.2025.10.11.19.26.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 11 Oct 2025 19:26:17 -0700 (PDT)
+        Sat, 11 Oct 2025 19:26:25 -0700 (PDT)
 From: Longbin Li <looong.bin@gmail.com>
 To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -91,9 +91,9 @@ Cc: devicetree@vger.kernel.org,
 	sophgo@lists.linux.dev,
 	linux-kernel@vger.kernel.org,
 	linux-riscv@lists.infradead.org
-Subject: [PATCH v1 1/3] dt-bindings: soc: sophgo: add TOP syscon for CV18XX/SG200X series SoC
-Date: Sun, 12 Oct 2025 10:25:52 +0800
-Message-ID: <20251012022555.6240-2-looong.bin@gmail.com>
+Subject: [PATCH v1 2/3] riscv: dts: sophgo: Add syscon node for cv18xx
+Date: Sun, 12 Oct 2025 10:25:53 +0800
+Message-ID: <20251012022555.6240-3-looong.bin@gmail.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20251012022555.6240-1-looong.bin@gmail.com>
 References: <20251012022555.6240-1-looong.bin@gmail.com>
@@ -105,82 +105,51 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The Sophgo CV1800/SG2000 SoC top misc system controller provides register
-access to configure related modules. It includes a usb2 phy and a dma
-multiplexer.
+Add top syscon node and all subdevice nodes for cv18xx series SoC.
 
 Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
 Signed-off-by: Longbin Li <looong.bin@gmail.com>
 ---
- .../soc/sophgo/sophgo,cv1800b-top-syscon.yaml | 59 +++++++++++++++++++
- 1 file changed, 59 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/soc/sophgo/sophgo,cv1800b-top-syscon.yaml
+ arch/riscv/boot/dts/sophgo/cv180x.dtsi | 26 ++++++++++++++++++++++++++
+ 1 file changed, 26 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/soc/sophgo/sophgo,cv1800b-top-syscon.yaml b/Documentation/devicetree/bindings/soc/sophgo/sophgo,cv1800b-top-syscon.yaml
-new file mode 100644
-index 000000000000..d1993f2156b4
---- /dev/null
-+++ b/Documentation/devicetree/bindings/soc/sophgo/sophgo,cv1800b-top-syscon.yaml
-@@ -0,0 +1,59 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/soc/sophgo/sophgo,cv1800b-top-syscon.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+diff --git a/arch/riscv/boot/dts/sophgo/cv180x.dtsi b/arch/riscv/boot/dts/sophgo/cv180x.dtsi
+index ccdb45498653..42303acb2b39 100644
+--- a/arch/riscv/boot/dts/sophgo/cv180x.dtsi
++++ b/arch/riscv/boot/dts/sophgo/cv180x.dtsi
+@@ -25,6 +25,32 @@ soc {
+ 		#size-cells = <1>;
+ 		ranges;
+
++		syscon: syscon@3000000 {
++			compatible = "sophgo,cv1800b-top-syscon",
++				     "syscon", "simple-mfd";
++			reg = <0x03000000 0x1000>;
++			#address-cells = <1>;
++			#size-cells = <1>;
 +
-+title: Sophgo CV18XX/SG200X SoC top system controller
++			usbphy: phy@48 {
++				compatible = "sophgo,cv1800b-usb2-phy";
++				reg = <0x48 0x4>;
++				#phy-cells = <0>;
++				clocks = <&clk CLK_USB_125M>,
++					 <&clk CLK_USB_33K>,
++					 <&clk CLK_USB_12M>;
++				clock-names = "app", "stb", "lpm";
++				resets = <&rst RST_COMBO_PHY0>;
++			};
 +
-+maintainers:
-+  - Inochi Amaoto <inochiama@outlook.com>
++			dmamux: dma-router@154 {
++				compatible = "sophgo,cv1800b-dmamux";
++				reg = <0x154 0x8>, <0x298 0x4>;
++				#dma-cells = <2>;
++				dma-masters = <&dmac>;
++			};
++		};
 +
-+description:
-+  The Sophgo CV18XX/SG200X SoC top misc system controller provides
-+  register access to configure related modules.
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - items:
-+          - const: sophgo,cv1800b-top-syscon
-+          - const: syscon
-+          - const: simple-mfd
-+
-+  reg:
-+    maxItems: 1
-+
-+  "#address-cells":
-+    const: 1
-+
-+  "#size-cells":
-+    const: 1
-+
-+patternProperties:
-+  "dma-router@154":
-+    $ref: /schemas/dma/sophgo,cv1800b-dmamux.yaml#
-+    unevaluatedProperties: false
-+
-+  "phy@48":
-+    $ref: /schemas/phy/sophgo,cv1800b-usb2-phy.yaml#
-+    unevaluatedProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+  - "#address-cells"
-+  - "#size-cells"
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    syscon@3000000 {
-+      compatible = "sophgo,cv1800b-top-syscon", "syscon", "simple-mfd";
-+      reg = <0x03000000 0x1000>;
-+      #address-cells = <1>;
-+      #size-cells = <1>;
-+    };
-+
-+...
+ 		rst: reset-controller@3003000 {
+ 			compatible = "sophgo,cv1800b-reset";
+ 			reg = <0x3003000 0x1000>;
 --
 2.51.0
 
