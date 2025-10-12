@@ -1,177 +1,101 @@
-Return-Path: <devicetree+bounces-225738-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225739-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CFF6BD064F
-	for <lists+devicetree@lfdr.de>; Sun, 12 Oct 2025 17:44:30 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 67121BD067C
+	for <lists+devicetree@lfdr.de>; Sun, 12 Oct 2025 17:52:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 200F74EB57F
-	for <lists+devicetree@lfdr.de>; Sun, 12 Oct 2025 15:44:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 20B073B9F11
+	for <lists+devicetree@lfdr.de>; Sun, 12 Oct 2025 15:52:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 847722D6E43;
-	Sun, 12 Oct 2025 15:44:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F0ED2EBDFA;
+	Sun, 12 Oct 2025 15:52:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="I61ilg8x"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="uNz2uPcJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9EC61EF091;
-	Sun, 12 Oct 2025 15:44:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E97A41F1534;
+	Sun, 12 Oct 2025 15:52:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.152
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760283864; cv=none; b=WLq4IWvggCffY6wDnx2R2rAykXC9kK+vnu++4DQ6jnZrpdIjoU8/y9CDbt5ar7FBYZ+4JStJsDD0Q2MZbGHVIDTMEOcK1H88AiXYYhdeDOpq8qPLdrGwdbNdtpol98B4SyPy4GXM6pG7j3jebL1HUymNN8V1Wg1R9x+pvq3SYG4=
+	t=1760284348; cv=none; b=h39A/3fgFlITnFJ0sUDpCBPLn2nOvPp8rAxOiS7IHkG0dbEWcctQp5fJDl/e9WsoqV9vXP429aGLvhFCvJ1lfsPWvibVJpL0E5F6GOzzPS89dz3a757Ve4pYPf7xqPCwmJ1ElBpkngUywDcfrVlPVBFheJZB6iwQPTZolDqPvw0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760283864; c=relaxed/simple;
-	bh=jvMiToE63eManCA44zRL5tk+r48YRGBD/0Ye03AuOng=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Gaz9dZ5N/3yCI1KJECC6QTaJUIX80jK4iksVzOWGxOmTTVPSXIXufZPg7v3NdCPLru9aFRlxg+rGHGhOwn8j357L9jllU2RaLOCs4AGNdEY3DI+3LT5yOYA+oepO0MtpgfiBbEkDeOSSR8TEIeK1inH+/MY+Vpy4e9PVeZC0w3M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=I61ilg8x; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 73342C4CEFE;
-	Sun, 12 Oct 2025 15:44:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760283863;
-	bh=jvMiToE63eManCA44zRL5tk+r48YRGBD/0Ye03AuOng=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=I61ilg8xv9CdF3M06RRH1H/pC9Dmkl+FaWbiZ4+MMijkNvFZP9u4ZafOUDCwHyfXf
-	 Wu44t9dXC8O3CLY3v5Kv1VOqm1bsR2fHhkRgYc201n8yFgdGtQRbW5ejP40g6JizBf
-	 aMUZxBxQ2Q9SGzPpOyKlhw0Mb7qlOefuqJAUn/2NFqw4B/bbFLrsZjZpG4ze3u47Wj
-	 +PD1amoGpp4UMY21U4lvctO3duF+dOi7IPCd/PfRO6Inmgh8UP0vcuXJ/Qin10h2wM
-	 I+nCRd44qu+JJt6vTacuoYVTSNVAPL8UXZ/JMBpZZuKxFs5cMbdZsRSjRhGLG4hPpt
-	 9A/ki0jGD/13g==
-Date: Sun, 12 Oct 2025 16:44:13 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Eddie James <eajames@linux.ibm.com>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, conor+dt@kernel.org, krzk+dt@kernel.org,
- robh@kernel.org, andy@kernel.org, nuno.sa@analog.com, dlechner@baylibre.com
-Subject: Re: [PATCH v9] dt-bindings: iio: Add Infineon DPS310 sensor
- documentation
-Message-ID: <20251012164413.0084ad6d@jic23-huawei>
-In-Reply-To: <20251007191612.80164-1-eajames@linux.ibm.com>
-References: <20251007191612.80164-1-eajames@linux.ibm.com>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1760284348; c=relaxed/simple;
+	bh=vAgiogqYavtLK4gE6vtKryr1y4ryKsEWd3KwGk2DZLQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=k6lH90a97tEw+ebBUD/K8TgiW8CnAt7HdtlItz2SkyPxvQ8KT8mg5opUB417Fvg0pXudGFpIGXOrMIwqk4zAuTGt1ARArbAIY02GvWBn7mvz2GYBS5BezrF1X6e/dOugxvhgXfRPkbEHYce2KdQeH1j4iPbefrAZnipfB3jvcVY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=uNz2uPcJ; arc=none smtp.client-ip=80.241.56.152
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp202.mailbox.org (smtp202.mailbox.org [10.196.197.202])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4cl4jw3qzSz9tTK;
+	Sun, 12 Oct 2025 17:52:20 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1760284340;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=neqAsnNDMRMx/Htt8KicS7vRg22+z4O6QaJ/GuwKbVA=;
+	b=uNz2uPcJLJj6s7WPnyG5MmAhgwf6gm4X6hmhd7pVscNphAAKTMjYodc5Lcz/UeY6MhlI2K
+	+bSsD01hmma5iMH2Qr3O0MNrbIWrvzYpeuR0F+xbXnV7W+wUfy7T1OskTWn288aUDLsmEW
+	kP5BSbYXsTr0u4GPQAA9iwnRdUAXdSAp8Klmtplp/mjrbJKOZ2w97JVO/yJgaXUlEpQGeD
+	30pOc22qfNM38LanlVuHU8ptm4E9IP3ra3PxaTkBXXcw7HC5N6XZu5O1BRymWP6Hi4wwph
+	uQ9qc2/Iy/73mBWQb2/Xt3T3gOR83D/7DrYe98Z1zoJjfn9QbofaGPRUwUA/Qw==
+Message-ID: <c0e6abf1-9800-451d-bbc4-a070253a3d66@mailbox.org>
+Date: Sun, 12 Oct 2025 17:52:16 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Subject: Re: [PATCH] drm/panel: ilitek-ili9881c: Turn ILI9881C_COMMAND_INSTR()
+ parameters lowercase
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+ dri-devel@lists.freedesktop.org
+Cc: Conor Dooley <conor+dt@kernel.org>,
+ Dave Stevenson <dave.stevenson@raspberrypi.com>,
+ David Airlie <airlied@gmail.com>,
+ Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Rob Herring <robh@kernel.org>,
+ Simona Vetter <simona@ffwll.ch>, Thomas Zimmermann <tzimmermann@suse.de>,
+ devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+References: <20250904205541.186001-1-marek.vasut+renesas@mailbox.org>
+ <175930287176.425863.10274979935592534719.b4-ty@linaro.org>
+Content-Language: en-US
+From: Marek Vasut <marek.vasut@mailbox.org>
+In-Reply-To: <175930287176.425863.10274979935592534719.b4-ty@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
+X-MBO-RS-META: etqeq58q81jsjnxamdrsrxwm46zuer8c
+X-MBO-RS-ID: c5f8110e907efe1075d
 
-On Tue,  7 Oct 2025 14:16:12 -0500
-Eddie James <eajames@linux.ibm.com> wrote:
+On 10/1/25 9:14 AM, Neil Armstrong wrote:
 
-> The DPS310 is a barometric pressure and temperature sensor with
-> an I2C interface. Remove it from trivial-devices.yaml and add its
-> own documentation to allow for consumers of this device such as
-> the iio/hwmon bridge.
+Hello Neil,
+
+> On Thu, 04 Sep 2025 22:55:15 +0200, Marek Vasut wrote:
+>> Make all ILI9881C_COMMAND_INSTR() parameters consistently lowercase.
+>> No functional change.
+>>
+>>
 > 
-> Signed-off-by: Eddie James <eajames@linux.ibm.com>
-> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-LGTM
-
-Applied to the testing branch of iio.git. I'll rebase that on rc1 once available
-and then push out as togreg which is the one linux-next picks up.
-
-Thanks,
-
-Jonathan
-
-> ---
->  .../iio/pressure/infineon,dps310.yaml         | 54 +++++++++++++++++++
->  .../devicetree/bindings/trivial-devices.yaml  |  2 -
->  MAINTAINERS                                   |  1 +
->  3 files changed, 55 insertions(+), 2 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/iio/pressure/infineon,dps310.yaml
+> Thanks, Applied to https://gitlab.freedesktop.org/drm/misc/kernel.git (drm-misc-next)
 > 
-> diff --git a/Documentation/devicetree/bindings/iio/pressure/infineon,dps310.yaml b/Documentation/devicetree/bindings/iio/pressure/infineon,dps310.yaml
-> new file mode 100644
-> index 0000000000000..e5d1e6c489393
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/pressure/infineon,dps310.yaml
-> @@ -0,0 +1,54 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/pressure/infineon,dps310.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Infineon DPS310 barometric pressure and temperature sensor
-> +
-> +maintainers:
-> +  - Eddie James <eajames@linux.ibm.com>
-> +
-> +description:
-> +  The DPS310 is a barometric pressure and temperature sensor with an I2C
-> +  interface.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - infineon,dps310
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  "#io-channel-cells":
-> +    const: 0
-> +
-> +  vdd-supply:
-> +    description:
-> +      Voltage supply for the chip's analog blocks.
-> +
-> +  vddio-supply:
-> +    description:
-> +      Digital voltage supply for the chip's digital blocks and I/O interface.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        dps: pressure-sensor@76 {
-> +          compatible = "infineon,dps310";
-> +          reg = <0x76>;
-> +          #io-channel-cells = <0>;
-> +          vdd-supply = <&vref1>;
-> +          vddio-supply = <&vref2>;
-> +        };
-> +    };
-> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
-> index 58ff948d93c96..a76c58f3b1de4 100644
-> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
-> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-> @@ -127,8 +127,6 @@ properties:
->            - ibm,cffps2
->              # IBM On-Chip Controller hwmon device
->            - ibm,p8-occ-hwmon
-> -            # Infineon barometric pressure and temperature sensor
-> -          - infineon,dps310
->              # Infineon IR36021 digital POL buck controller
->            - infineon,ir36021
->              # Infineon IRPS5401 Voltage Regulator (PMIC)
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 3773c74b31d6d..bde80ddb99e9d 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -12217,6 +12217,7 @@ INFINEON DPS310 Driver
->  M:	Eddie James <eajames@linux.ibm.com>
->  L:	linux-iio@vger.kernel.org
->  S:	Maintained
-> +F:	Documentation/devicetree/bindings/iio/pressure/infineon,dps310.yaml
->  F:	drivers/iio/pressure/dps310.c
->  
->  INFINEON PEB2466 ASoC CODEC
+> [1/1] drm/panel: ilitek-ili9881c: Turn ILI9881C_COMMAND_INSTR() parameters lowercase
+>        https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/02b6babf22eb60d86b4030f08204f6e7853da4e0
+Please pardon my ignorance. Is this supposed to be in linux-next by now, 
+or will this show up after rc1 is out ?
 
+Thank you
 
