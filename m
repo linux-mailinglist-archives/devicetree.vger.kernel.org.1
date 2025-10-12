@@ -1,173 +1,119 @@
-Return-Path: <devicetree+bounces-225761-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225768-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 600DABD0C22
-	for <lists+devicetree@lfdr.de>; Sun, 12 Oct 2025 22:44:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 239A5BD0C73
+	for <lists+devicetree@lfdr.de>; Sun, 12 Oct 2025 23:01:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B73651894C38
-	for <lists+devicetree@lfdr.de>; Sun, 12 Oct 2025 20:45:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7837F1892E0C
+	for <lists+devicetree@lfdr.de>; Sun, 12 Oct 2025 21:01:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7BB822CBF1;
-	Sun, 12 Oct 2025 20:44:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11DF122259D;
+	Sun, 12 Oct 2025 21:01:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FTI0f5z3"
+	dkim=pass (2048-bit key) header.d=subdimension.ro header.i=@subdimension.ro header.b="zYQI60mt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.subdimension.ro (nalicastle.subdimension.ro [172.105.74.154])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D712214204;
-	Sun, 12 Oct 2025 20:44:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A6FA1509A0;
+	Sun, 12 Oct 2025 21:01:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=172.105.74.154
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760301892; cv=none; b=U76TIyd+BT1YcRlJDSfc0XnoKQjmZEWCp+tt76j1XZnWzU45luPPwdoW1HvRMCtighlXzAlnYp9oE+rxCcEgbh3hu1PISFDmT6UYGL+hL69PMWu5QE2KwF0dDKVU0NA2fHc6IauMfQHoxtMoKrW8mXTJNz8nlutUzgf5mTn+iaE=
+	t=1760302887; cv=none; b=NpjGBgS2VDskwGrFEC64jtY1sX2WBmH42RO0bW5SvXArlC2U5L4Ipk+qej4x7Pdy4bb/kCbV7yziARG+w+akzgtpgr6GD847o/1TK4ikXIuev40lSxuqGnD4rEySsV9xKaCMirp5KDhpZS/rpv9N2UNnRWqacrPddIY81TOPrls=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760301892; c=relaxed/simple;
-	bh=d/vNpme0tbgody0yNnwPtQwOUw1cH14ElX7Rodm/NMg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PtId9uB0/V0KBKqJ6DQfZr/EM5g1/URkuFiIhEJ75Z6ImDgdenswC6S/SvWPimK1y9TM8nfJKGIWXBqMcEV+K8u9LPf/yfImHoMmSR0GP7DVOxD/rRyzuD0SFNOrgDlBVWgofdQ6Kf+sXrh8gKXhXRFbapbmAne8Cal/U/4gjT8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FTI0f5z3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B6EE8C4CEE7;
-	Sun, 12 Oct 2025 20:44:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760301891;
-	bh=d/vNpme0tbgody0yNnwPtQwOUw1cH14ElX7Rodm/NMg=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=FTI0f5z3Z1KfTrV0mm2jA5mdCci0eZSQitoS7vCVOkW2zr+18VyfzI079X5F/fmEJ
-	 mTt8DX+wBehsQkOKzp3I4oUT0dcZRTNdwAhOpKpN6wNJWR3ou1L9PL3JnJ9ygqU+cd
-	 0yt1xZUG0cYl2SpVd4Ld6nOTbPtlEHUG39qyAOB/OaskKxIoxk95EPFMBkZqOm29SA
-	 9h9mizSuAPsAZPF5iK+3+EjkNiu8wnJSfcOdXbocgCLSmLifOIV6CXD2bGzjFP5Sja
-	 xsMkYUm3Q3kfeHqfV/A3KzeBrjOPCM2/vYE7EiumsBNHmbCuPHQXRw8Ph2K3LIsr/K
-	 5vAz2pILFsKTg==
-Message-ID: <3c1eb276-abde-4af4-ab39-c934c30aa447@kernel.org>
-Date: Sun, 12 Oct 2025 21:44:43 +0100
+	s=arc-20240116; t=1760302887; c=relaxed/simple;
+	bh=IopoeBmhJ6Zxp/5pqFewt8TcZWeComBYBrSDx2hjHNo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Nqvi3/pIBVK7jBEC0LYM+C2jyxpAbKIszm0XmEyJ4bu6wRl/rzUNZWnQTBfAiMIfGmj6xxKcNiDtAFcflWy4V0XhlXkOQfvrCsJVmNM5xjzdPS37TZ49HX31Amtce0d/+wHLGS6yGyrX/baHZFAKs4GrnGwmXu7qhHa8rj0+pWM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=subdimension.ro; spf=pass smtp.mailfrom=subdimension.ro; dkim=pass (2048-bit key) header.d=subdimension.ro header.i=@subdimension.ro header.b=zYQI60mt; arc=none smtp.client-ip=172.105.74.154
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=subdimension.ro
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=subdimension.ro
+Received: from lipo (unknown [IPv6:2a02:2f0e:3e0c:5b00:f1e0:3f4b:286c:9ddb])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	by mail.subdimension.ro (Postfix) with ESMTPSA id 72A7D173BE2;
+	Sun, 12 Oct 2025 23:54:21 +0300 (EEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=subdimension.ro;
+	s=mail; t=1760302462;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=IopoeBmhJ6Zxp/5pqFewt8TcZWeComBYBrSDx2hjHNo=;
+	b=zYQI60mtI/7Na+Mz9UUtb1q2OG7/qa7hrZhJYUD5X272yISJiLj5KxLcCP65f4GXeso5Nw
+	NP7g4EcZ9CIIG8oxI0ulhedreaXyJW+zLR33MyYyXGdgJpk/kYmpkP7yI6eJhkyeaKPf9q
+	4Rgy0bOJuFPSvA21Lvrp3o3J+4UaonA/Z0ZPP2fZZcU/6PZD+xZQpg5T/H6dcpUil3dk5j
+	TFNirqfzNhA6ynRrE2UceWNGf9fYiM66EunmYLl0X8ipIiyYs/WJt9G0IMFRWAAgaAdVIu
+	bap5GD46YL9JkutOAD4txKYeI1ca5ewBQj04lpX6HXMDf8On71GQsXnK3isWLw==
+Date: Sun, 12 Oct 2025 23:54:17 +0300
+From: Petre Rodan <petre.rodan@subdimension.ro>
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 12/19] iio: accel: bma220: populate buffer ts in
+ trigger handler
+Message-ID: <aOwVefTE3O_BEuW5@lipo>
+References: <20251005-b4-bma220_improvements-v4-0-0f449ba31585@subdimension.ro>
+ <20251005-b4-bma220_improvements-v4-12-0f449ba31585@subdimension.ro>
+ <20251012160618.4cd15ad3@jic23-huawei>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH 0/3] Introduce iommu-map-masked for platform devices
-To: Charan Teja Kalla <charan.kalla@oss.qualcomm.com>,
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
- Robin Murphy <robin.murphy@arm.com>
-Cc: joro@8bytes.org, will@kernel.org, saravanak@google.com,
- conor+dt@kernel.org, robh@kernel.org, mchehab@kernel.org,
- krzk+dt@kernel.org, abhinav.kumar@linux.dev,
- vikash.garodia@oss.qualcomm.com, dikshita.agarwal@oss.qualcomm.com,
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- bjorn.andersson@oss.qualcomm.com, linux-media@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, iommu@lists.linux.dev
-References: <20250928171718.436440-1-charan.kalla@oss.qualcomm.com>
- <aec0f40a-8346-4194-8b18-1022fe3366bb@arm.com>
- <0d0560cc-9757-4c7b-8de4-170148d99481@oss.qualcomm.com>
- <ead7cf8b-fbc4-4242-a9da-b313dded1abc@arm.com>
- <nzqte4glwtpjs5bhkxz43yhdufelxvqvzmg5tepudxwetimir3@bvlw5csjizsh>
- <9d3eeb9f-b8ea-48e5-a1d9-0865f63ef991@arm.com>
- <fhb4woejzh3r6v5dxvdiopnsbuwstucfuuzbiymxg4wrxrjc7t@dt3z3utq6lwd>
- <0zcQcB2YYWH_ufElq3ptqtLsGDsxvMEAkHCt_jYaSpwV597VFc22pFWzyMz0rSY-DKqWCQgOCiKpsIRNA0Fisw==@protonmail.internalid>
- <c863f6a7-b117-4444-ae6d-1d525b572be2@oss.qualcomm.com>
-From: Bryan O'Donoghue <bod@kernel.org>
-Content-Language: en-US
-In-Reply-To: <c863f6a7-b117-4444-ae6d-1d525b572be2@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-
-On 10/10/2025 20:53, Charan Teja Kalla wrote:
-> I don't want to dilute what Dmitry is saying here, but the below is what
-> i can make out of Robin comments, please CMIW:
-> 
-> iommu {
-> 	#iommu-cells = <2>;
-> }
-> 
-> video {
->     iommu = <iommu sid1 mask1>, <iommu sid2 mask2>;
->     #iommu-map-cells = 2; /* does it look weird to define here, even if
-> it is SMMU property? */
->     iommu-map = <0 smmu sid3 mask3>,
-> 	       <0 smmu sid4 mask4>;
-> };
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="l8n4bOJUmFl/Vpvd"
+Content-Disposition: inline
+In-Reply-To: <20251012160618.4cd15ad3@jic23-huawei>
 
 
-This whole iommu-map thing is a wrong direction, its a workaround.
+--l8n4bOJUmFl/Vpvd
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-It stems from here:
 
-1. Vikash posted a series adding a platform device
-  
-https://lore.kernel.org/linux-media/20250627-video_cb-v3-0-51e18c0ffbce@quicinc.com/
+Hello Jonathan.
 
-    The two objectives of this are
+I was a bit worried and I hope you've fully recovered from the flu.
 
-    a. Allow Linux, the APPS as qcom calls it,@ EL1 or EL2
-       to setup iommu entries for function_ids that are
-       not the APPS @ EL1/EL2.
-       For example the APPS running in TEE or one of the
-       various co-processors - like say the Compute DSP cDSP.
+And yes, it also had to restart the rebase multiple times because either I forgot to add bma220.h or I tweaked a few innocent lines in the 4-th patch and they had a ripple effect on everything that followed. Thank you for adding the finishing touches.
 
-    b. Allowing for each device to have a full IOVA range.
+> Applied.
 
-2. Krzysztof queried about changing _existing_ entries e.g.
-  
-https://lore.kernel.org/linux-media/6fd3fa34-69e1-484f-ad6f-8caa852f1a6c@kernel.org/
+I promise to test these out quickly, but please do a push on your testing branch (the last commit I can see is the previous patch).
 
-    The point about ABI breakage.
+best regards,
+peter
 
-3. This proposal to introduce iommu-map as a workaround
-    Gets the FUNCTION_ID APPS v cDSP v TZ into the DT
+--l8n4bOJUmFl/Vpvd
+Content-Type: application/pgp-signature; name=signature.asc
 
-    So it solves 1/a I'm not sure it solves 1/b
+-----BEGIN PGP SIGNATURE-----
 
-    However if you were designing from scratch you wouldn't
-    have a motivation to assign this additional property.
+iQIzBAABCgAdFiEEGiKYHD4NvFCkTqJ3dCsnp2M6SWMFAmjsFXEACgkQdCsnp2M6
+SWOzKw/8DFDlWj3d5oizUG/EuaKSF1Rzhw2rXkK0h5CQYyJC50jpVDzl8WXmmoK9
+G0WV92qBkz9L6GUyv719llOviVGsjsxINl8s8De0SQ0ImRDr9iW0eZ1bhT2t1vKX
+eytslm7KO17FSV+nOZjLc/Wb4xEu3gdMWiX/jO5xCV8uw5FOF+zTL3iH6DDYJ99O
+idp3c8GdHQqgpgVZIgZEVyIWMCtabWpgf9XCFkHg5tFNED+g3YuN6iQAsRrxcKdx
+Y2YpShzXpUNIeDRMoRxiwKF9J+TpBqa57f/NSauY9EpirmkeychQdIYNW+2j8Jg6
+LUgeRA3WDzkbhEGFCjoULgGTlrTIF3k7xx0AF8Pkb2TDycboEuSxX0bU/vL0HC/5
+4ugsBAVJ0I0KXy4ZOydjvNBSLoXrxODrIV9YxhGvJqlOU0NLNm7fvX4NIYFIKtAE
+b6X65Fpm0g6rpG3sjrOwM5zD+UABxCpWfXvUIg0v1wFktOtCR5C/9XxSpDj5oVHQ
+cmpByxF4k4mywsjzbEc46OqXD4+9eZcb58gblm0ganTz8vxiZ2A7aBSH8yYXTrNi
+B4ToQJ7wIsbafupeuCWj9GQgwlhAFNyehlCCDxmW0LKGwJCaML5z6p2UYk2SmvIJ
+/As8xI5mizWjWPFbzZlCRYPzXkZzyVLugEtBe6iKhAGyyGvbo7Q=
+=/qZn
+-----END PGP SIGNATURE-----
 
-    The motivation is to not break the ABI I think.
-
-4. Robin said
-
-    "And if you want individual StreamIDs for logical functions to be
-     attachable to distinct contexts then those functions absolutely
-     must be visible to the IOMMU layer and the SMMU driver as
-     independent devices"
-
-5. If you think about this, its actually the right long term solution
-
-    - Individual devices means something like:
-
-      video-codec@aa00000 {
-          /* Any SID mapping to S1_VIDEO_HLOS belongs here */
-          compatible = "qcom,sm8550-iris";
-          iommus = <&apps_smmu 0x1947 0x0000>;
-      };
-
-      video-codec-non-pixel {
-          /* Any SID mapping to S1_VIDEO_HLOS_P belongs here */
-          compatible = "qcom,sm8550-iris-non-pixel";
-          iommus = <&apps_smmu 0x1940 0x0000>;
-      };
-
-    - Or do something like that above again in platform code.
-
-6. We should on introduction of a new SoC
-
-    - Fix the iommus = <> for "qcom,newsoc-iris" to contain
-      only what is pertinent to S1_VIDEO_HLOS
-
-    - Make new devices in the DT for each FUNCTION_ID
-
-    - Then look at how - if - that fix can be brought back to Lemans
-
-My problem with introducing the iommu-map is that it bakes into the 
-video codec definitions a fixup which then gets carried forward.
-
-But the right thing to do is individual devices so, let's do that and 
-worry about how to back-port that fix to older SoCs once done.
-
----
-bod
+--l8n4bOJUmFl/Vpvd--
 
