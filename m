@@ -1,76 +1,79 @@
-Return-Path: <devicetree+bounces-225762-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225763-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 753CABD0C34
-	for <lists+devicetree@lfdr.de>; Sun, 12 Oct 2025 22:59:14 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 274A4BD0C43
+	for <lists+devicetree@lfdr.de>; Sun, 12 Oct 2025 22:59:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 910544E13DF
-	for <lists+devicetree@lfdr.de>; Sun, 12 Oct 2025 20:59:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4856E189074B
+	for <lists+devicetree@lfdr.de>; Sun, 12 Oct 2025 20:59:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B5D922D4F1;
-	Sun, 12 Oct 2025 20:59:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9AD8241679;
+	Sun, 12 Oct 2025 20:59:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="I+2PfeNE"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="d+6ty8NE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFAA22AEE4
-	for <devicetree@vger.kernel.org>; Sun, 12 Oct 2025 20:59:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E64D7238C2A
+	for <devicetree@vger.kernel.org>; Sun, 12 Oct 2025 20:59:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760302750; cv=none; b=YZFvcLHXfnmESh0xv5kYJDeK1nv/dE/MAjQinm3xzQhUT2871sakS3Zp3gWCdbfERz+OXZGRfad2NE1tROYGHS0Rwg7qwPGCzFclqJ5kuCbC33IJctNwI3TCp+jO6efR7Giu0ymoYEUcFKaxo6NWW+lf+3RmvdlRVTNn5AAAzQA=
+	t=1760302754; cv=none; b=cBNWH1GmCL7S+iEDjSyYGEI4ETqVo4ugrmZ7fYs/4nd2J3L9ZPJKo/J0e4fhulRS/tk8iXUVYNZ4PgepOwxucQehB+o4Ul/YeX6W3Y9te73veDxak1R70dePV8vRzfeRWMIlWI5hxq/+zcTwFqoNXdVbsRnJPELjiCXeqidQ1bo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760302750; c=relaxed/simple;
-	bh=38374wR4c1uJvSMVvXDQmPhGU/CBaVy3CSGhgrzIsnU=;
-	h=From:To:Subject:Date:Message-ID:MIME-Version; b=hVwCFnXLQqGVvoJGwgwTHY9xyNVoOf0/IxM6W5mIFObIx1V7Kwi0rDVmzhVlUudUdMf1FPQsr59e/N3uegBKbXpgguXlF/3iiQjkbzLM1WeuaSf2ttOjgNxxcOlnBgOOsPy3yCOlCDkKyxJnKm9gpbHCHUwW7VCCxZ6LR0Kjxf8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=I+2PfeNE; arc=none smtp.client-ip=209.85.221.43
+	s=arc-20240116; t=1760302754; c=relaxed/simple;
+	bh=6sa4dBlIVtXXSWxWD+PhcdWd6PIrRysSNnN6dDj8eWM=;
+	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=kG5h5jFt2/QUm3dvZCZNQRAD42WPtwmscRVHElNJtCHzwEIbJL8ztMmLN7hSePb+/6gNSIXASjXVX1pyudog4yi6HlORkI7CYOBZgQvOcgzfaTHcab+CHZabzx+xLJA5kt4ipLdTxTifieWNKc2lSl/j/ghRVTNObiGGRIlJkwU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=d+6ty8NE; arc=none smtp.client-ip=209.85.221.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-3ee12807d97so2096330f8f.0
-        for <devicetree@vger.kernel.org>; Sun, 12 Oct 2025 13:59:08 -0700 (PDT)
+Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-3ee1221ceaaso2680488f8f.3
+        for <devicetree@vger.kernel.org>; Sun, 12 Oct 2025 13:59:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1760302747; x=1760907547; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=yet0G9q2Nul7wE7O4WOA4//yyR5OUJOrXfjDFK6H1h8=;
-        b=I+2PfeNESCDWUCa/bN/jjqKtA0NawJg1vUNerkC0l2WTkHDtKsuaEPc+I37Kg/eq+F
-         YBjltuvaL4u69GPQj7KF2JLTZYbhA9Yq7LSVQ8J99Ws0g+1+8khNsOxhp/zWKdEPCVCr
-         VPKl8DL0UxHQNF5hi0kHHsx/JFlU/k52Xvr5cofR4NQ0wjb3hTzaukpKxoI8WF8hRQsc
-         rCVZLfIxwiyIivm8eUbeYaH9UNwBzH2sBXtQvYIb5M1OWEYQG4OH2ka36Gq9JxKO1Xd3
-         5362a6BHlR1MO9M/x8NY+dwRMGA7KOioihs+eitnfsmbAyxOlC4fvy9NRdUpq76bmvKR
-         uKmA==
+        d=gmail.com; s=20230601; t=1760302749; x=1760907549; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=FV+6yoKv/P9OgvlWPQKcQD99p3mLWnHYMK2iXPsZM3o=;
+        b=d+6ty8NEJ9SIn8PG2grgbLKg8UgW2mfoRDM7bEePjYVwOqD+wMQMakeMDC+b43zlRQ
+         4zdWQDSU+p2ryzkr/3kHXfX04kS4So5mBIgx9E4gSQg9wK//27EjnOkr79Zud6JUKOXs
+         Lp//2gpP+V7F5/KiHC3GvpTZekiWy8wlO/V58YETmnWmXRmziaHY6sUDaMqNmV/DTQxs
+         yI8wSRqckSuRTtIJdldJTDBB7YTbnFELPzUIr6ZjxvXVJj8VaOx+wHJ8Ip0qte7UxWuq
+         TXLTVKAPx93hzkqsJ2xdtOta9FFMzw2oFhy1hFK3UrT2KyF7oLJhkPhIvIJtSFciycTK
+         5QTg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760302747; x=1760907547;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=yet0G9q2Nul7wE7O4WOA4//yyR5OUJOrXfjDFK6H1h8=;
-        b=LgHiOdF52ZVXaKHRfgDbbFwMm6Pu/UP/tx8yWTF9bZWY6XidJT9faCP+qKr1xPVIXm
-         /bkguqelLY3hbuZMHiHCy6ziCYSZebJsgd4uEgFKJ3Q5RUfJF7ckqad/Gv+0nuwPJdQ1
-         Tay0L7q9bX39fVLXpzFseblPS88q9s+B1VkMyqEQJwzy0//Xh0+D816yiIFSw0fE7Mkh
-         elHoRLQrjLAti3JDUlsRCLpOmCE9zjIaNUHwcGnLQlFTLz6JJKKIIzxFczVjDRTBkgC3
-         6fh7lhJEgts7wL7odMLORUmGQtLsTBUaP6YNpbScVQh4sCQYYO2rgmlKmJtv9h9NUl0Z
-         zRzA==
-X-Forwarded-Encrypted: i=1; AJvYcCVQr3iOpbOjMtT2z7f80m8gssfMxG5eALLL+gVm9Ze/OkNEjFFQeQkwFywNeEdOjFJr87xO6IIc8kW9@vger.kernel.org
-X-Gm-Message-State: AOJu0YwizaMk44oexJBkDHtA2pdqnNXRf84dWR5qZ7kvzDFBcrdmPOIY
-	nr2lohj2DF5ndPS4xM5BgGTpyP079ngaF4icZ5BRELhOkG9KLNGSKE3W
-X-Gm-Gg: ASbGncsvtGfW9LWlYg+nTFrz8jXm9b2NDorRPOB6pSO6zvk5GILvDtpSQWcsjzM1Dsx
-	/GX3sLIMH1qGeLjQoryTK6AbOmjCspKG3tzPxSGDjWxMuJfet4a/jwZXMRII8SlBAdCTta1tjoP
-	v5+drNAEiy96ysdFjcCHjrX5OJtZQr61bJBbpYJ5uVa0Y5abcqukAQ1csY35jtcIkVQ69+UxBjK
-	BCO9B3FTF5FPQHJgez5RLQ08ey7PkAYRIYWwCrXuNivBFKymwGM4EEHZ30Mjiwvv4cnxFiuE7Fn
-	lI/Wl+PDBJ2buF5AWshe56OW8C6cjvhNIUo8r6LJDUpH9tssxdTHSeNhdy6gCxL+EsdiJ47TE5E
-	KRkpiaYyDKx9bLGyi9KZIpDyPvg+ep5iD7tdqTca2VzaN6oBt55OhMdak6p3jTS84LYR0d0YLkQ
-	==
-X-Google-Smtp-Source: AGHT+IHM3xVI82jB6xdjQEkijldoJ7njelHhMDYQ3r3ZtWre4CsPi70ME2++am1YX6QlYz5/89FVBg==
-X-Received: by 2002:a05:6000:2505:b0:3ee:1279:6e68 with SMTP id ffacd0b85a97d-42672425b82mr11691189f8f.47.1760302746815;
-        Sun, 12 Oct 2025 13:59:06 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1760302749; x=1760907549;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=FV+6yoKv/P9OgvlWPQKcQD99p3mLWnHYMK2iXPsZM3o=;
+        b=YfL2CEuf7N0ULBA4gHpwBbfaFPzUgppQz/z2y20/Tv4N19ctntApnJq6tB269/Yt4p
+         p/HD/OpR9cNdXkRasqse0YfOGxx2zkITk+B9RgKmtrMvo9XcWW3lIwmKsSM5X5PJJpob
+         Ylkq2j6IyoAxCVHYckVXcCeCsMAf6gGF3Ema2v03u67A4Fm0fVso/LPVY6tyKHls4GnP
+         4f0Km1zhQd8YXRry/vES1UMTf+S+HDJHvYJwyW/2O+tIRVGwR3uvaqLkWoTK95zukdw0
+         //9dgf7X0uUDx9wP/L9hGTp3umUxcQEiwQqoA8+PrnMW3hd/9t308Mfae29sGKLkxSmC
+         ++2w==
+X-Forwarded-Encrypted: i=1; AJvYcCWkmT8br6YH6RIhnkF/7JlVAiPGh36jWisQdMhANthwVN7ufXYtuHrCbqfz01wsAD8OTYKo9T5v3qk2@vger.kernel.org
+X-Gm-Message-State: AOJu0YyGQemw50f9BsXqBospD7nTlzRVUoGdTAs6d74iUP/UgPUfHtof
+	tj3Ma2jr22voZpkdWO7C2uFE3M1fIPADOtYlhTyaHxpVQY9sc21ol2IbydCMMg==
+X-Gm-Gg: ASbGncs4SwbyZSdS7sKLqqs86CmHkeyhEWr/xYgAryDeb0MJnqYU5NleH3MY5Kl09Td
+	ONRf0Q48BJhN8FMRcn9F1GMpGjvZ/YlE5JEOTDQF1M2hkE+iLTr1g3Aub/KRBQ9sf4cp7fiFrE5
+	urTxyoy52hmGMls/WrAXq2Rl5b2Z/xIojbo5y18hbuf1q4/VyxgtbpViEzFOL5HoD1ugG5Xcnms
+	vbvrseSTxkAYw4BWV4GNoaON9y5MdrD0++CY0nuNndaDTw1iAFvOITwBERu38KoR55FDzBLBZfN
+	bCYVWkt0jQP51JHzV8RHvJGGcjG6Rku9ih31qYjQq6Gfkgj1nK9rxpYnFO/1gc89WRQUF/+TAnf
+	pDWgoGIGQfxtMutzJaTqAXly7nkO/cMvzqfqf23QOYLV1s8cg+iktqAt5ZPL+EkiADRnJFs3u/9
+	zDPadKfSOM
+X-Google-Smtp-Source: AGHT+IHtY+2+uH13hhyazhLdneYWQO5n0wlug1GAYN01XwbK9r5lScGjBtdQeUGHDHf1GNUaqgMf6Q==
+X-Received: by 2002:a05:6000:3111:b0:40e:31a2:7efe with SMTP id ffacd0b85a97d-42667177d9fmr12401174f8f.14.1760302749069;
+        Sun, 12 Oct 2025 13:59:09 -0700 (PDT)
 Received: from Ansuel-XPS24 (93-34-92-177.ip49.fastwebnet.it. [93.34.92.177])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-46fb489197dsm156506505e9.10.2025.10.12.13.59.05
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-46fb489197dsm156506505e9.10.2025.10.12.13.59.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 12 Oct 2025 13:59:06 -0700 (PDT)
+        Sun, 12 Oct 2025 13:59:08 -0700 (PDT)
 From: Christian Marangi <ansuelsmth@gmail.com>
 To: Ryder Lee <ryder.lee@mediatek.com>,
 	Jianjun Wang <jianjun.wang@mediatek.com>,
@@ -90,10 +93,12 @@ To: Ryder Lee <ryder.lee@mediatek.com>,
 	linux-kernel@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	upstream@airoha.com
-Subject: [PATCH v5 0/5] PCI: mediatek: add support AN7583 + YAML rework
-Date: Sun, 12 Oct 2025 22:56:54 +0200
-Message-ID: <20251012205900.5948-1-ansuelsmth@gmail.com>
+Subject: [PATCH v5 1/5] ARM: dts: mediatek: drop wrong syscon hifsys compatible for MT2701/7623
+Date: Sun, 12 Oct 2025 22:56:55 +0200
+Message-ID: <20251012205900.5948-2-ansuelsmth@gmail.com>
 X-Mailer: git-send-email 2.51.0
+In-Reply-To: <20251012205900.5948-1-ansuelsmth@gmail.com>
+References: <20251012205900.5948-1-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -102,45 +107,51 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-This little series convert the PCIe GEN2 Documentation to YAML schema
-and adds support for Airoha AN7583 GEN2 PCIe Controller.
+The syscon compatible for the hifsys node for Mediatek MT2701/MT7623 SoC
+was wrongly added following the pattern of other clock node but it's
+actually not needed as the register are not used by other device on the
+SoC.
 
-Changes v5:
-- Drop redudant entry from AN7583 patch
-- Fix YAML error for AN7583 patch (sorry)
-Changes v4:
-- Additional fix/improvement for YAML conversion
-- Add review tag
-- Fix wording on hifsys patch
-- Rework PCI driver to flags and improve PBus logic
-Changes v3:
-- Rework patch 1 to drop syscon compatible
-Changes v2:
-- Add cover letter
-- Describe skip_pcie_rstb variable
-- Fix hifsys schema (missing syscon)
-- Address comments on the YAML schema for PCIe GEN2
-- Keep alphabetical order for AN7583
+On top of this it's against the schema for hifsys YAML and causes a
+dtbs_check warning.
 
-Christian Marangi (5):
-  ARM: dts: mediatek: drop wrong syscon hifsys compatible for
-    MT2701/7623
-  dt-bindings: PCI: mediatek: Convert to YAML schema
-  dt-bindings: PCI: mediatek: Add support for Airoha AN7583
-  PCI: mediatek: convert bool to single flags entry and bitmap
-  PCI: mediatek: add support for Airoha AN7583 SoC
+Drop the "syscon" compatible to mute the warning and reflect the
+compatible property described in the mediatek,mt2701-hifsys.yaml schema.
 
- .../bindings/pci/mediatek-pcie-mt7623.yaml    | 164 +++++++
- .../devicetree/bindings/pci/mediatek-pcie.txt | 289 ------------
- .../bindings/pci/mediatek-pcie.yaml           | 438 ++++++++++++++++++
- arch/arm/boot/dts/mediatek/mt2701.dtsi        |   2 +-
- arch/arm/boot/dts/mediatek/mt7623.dtsi        |   3 +-
- drivers/pci/controller/pcie-mediatek.c        | 120 +++--
- 6 files changed, 690 insertions(+), 326 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/pci/mediatek-pcie-mt7623.yaml
- delete mode 100644 Documentation/devicetree/bindings/pci/mediatek-pcie.txt
- create mode 100644 Documentation/devicetree/bindings/pci/mediatek-pcie.yaml
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+---
+ arch/arm/boot/dts/mediatek/mt2701.dtsi | 2 +-
+ arch/arm/boot/dts/mediatek/mt7623.dtsi | 3 +--
+ 2 files changed, 2 insertions(+), 3 deletions(-)
 
+diff --git a/arch/arm/boot/dts/mediatek/mt2701.dtsi b/arch/arm/boot/dts/mediatek/mt2701.dtsi
+index ce6a4015fed5..128b87229f3d 100644
+--- a/arch/arm/boot/dts/mediatek/mt2701.dtsi
++++ b/arch/arm/boot/dts/mediatek/mt2701.dtsi
+@@ -597,7 +597,7 @@ larb1: larb@16010000 {
+ 	};
+ 
+ 	hifsys: syscon@1a000000 {
+-		compatible = "mediatek,mt2701-hifsys", "syscon";
++		compatible = "mediatek,mt2701-hifsys";
+ 		reg = <0 0x1a000000 0 0x1000>;
+ 		#clock-cells = <1>;
+ 		#reset-cells = <1>;
+diff --git a/arch/arm/boot/dts/mediatek/mt7623.dtsi b/arch/arm/boot/dts/mediatek/mt7623.dtsi
+index fd7a89cc337d..4b1685b93989 100644
+--- a/arch/arm/boot/dts/mediatek/mt7623.dtsi
++++ b/arch/arm/boot/dts/mediatek/mt7623.dtsi
+@@ -744,8 +744,7 @@ vdecsys: syscon@16000000 {
+ 
+ 	hifsys: syscon@1a000000 {
+ 		compatible = "mediatek,mt7623-hifsys",
+-			     "mediatek,mt2701-hifsys",
+-			     "syscon";
++			     "mediatek,mt2701-hifsys";
+ 		reg = <0 0x1a000000 0 0x1000>;
+ 		#clock-cells = <1>;
+ 		#reset-cells = <1>;
 -- 
 2.51.0
 
