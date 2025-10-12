@@ -1,202 +1,204 @@
-Return-Path: <devicetree+bounces-225741-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225742-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36FD1BD07F4
-	for <lists+devicetree@lfdr.de>; Sun, 12 Oct 2025 18:53:06 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CDDEBD080E
+	for <lists+devicetree@lfdr.de>; Sun, 12 Oct 2025 19:01:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 419A01893112
-	for <lists+devicetree@lfdr.de>; Sun, 12 Oct 2025 16:53:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B6C763B9F68
+	for <lists+devicetree@lfdr.de>; Sun, 12 Oct 2025 17:01:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 440EE1C5F27;
-	Sun, 12 Oct 2025 16:53:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD0B228D850;
+	Sun, 12 Oct 2025 17:01:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BR6XTV9T"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bw8DY+5P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f67.google.com (mail-ej1-f67.google.com [209.85.218.67])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 867F3749C
-	for <devicetree@vger.kernel.org>; Sun, 12 Oct 2025 16:52:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.67
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 970BD19258E;
+	Sun, 12 Oct 2025 17:01:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760287981; cv=none; b=GU0iuY0QY9MYL1qhDddoY+lru8qX4vKg2SRYhO74nbAeGQWHYy33U/mnaWjet7fG6XAcSYH6rdCDa3vVYH76v+OtRQnKv6BnyK9oUdrnxMyuhr4N9ok6S2ehD5epnNBEI7sNDCKlEWqDn8fCYTsBPY+DSA5yKiMT+1ETzRvq8Xg=
+	t=1760288490; cv=none; b=kikj0EDJLlKMosKGZ5ovetQUvZUfI/9ilp0verFUK2KvQAy65pHPKybXqs4i1pyKqtd6vqlxmSdzULEkKxmEF+3PZvO5122uMvYnS+yG3TPxR5qvowXOqiujNs28Ku/xBKMVohWqCTtVEUyyF79z6fsmcO6kGgF5MJPStpm2NFQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760287981; c=relaxed/simple;
-	bh=is6hqOlUkMzHTcnRZLMTBo5nWV2BPzV5Tey9TxfEm6U=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=YisALlH6T9kUo09ELctRjPPvrZK6I49IoYZPrTFXmbo6ZBI4yhSQ0j2v+iy8DCp5bjvSGH4l9DMDkK1ltfF65azA+gcCr8PPE1hHAqPwVP9nY00l1o26aFQMkYQaWcHYVSnF04onlMsB2QtDGlHaV4gWQ0QWf0fh79alqwpzxis=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BR6XTV9T; arc=none smtp.client-ip=209.85.218.67
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f67.google.com with SMTP id a640c23a62f3a-b3e44f22f15so506010466b.2
-        for <devicetree@vger.kernel.org>; Sun, 12 Oct 2025 09:52:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1760287978; x=1760892778; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9JZxGJaBIG3WMNgOZk70IosVrcFGLTtGDI3zyIQtP54=;
-        b=BR6XTV9TPGsCSsCXhUaHq2QW0sq08dFwDbXfd7zBz8v7PFy5s9Kq8fXSv5565AOn4Y
-         5XT1yRKB7IYwmBtUOC97BjgfqeECAG3KWJ96JYaGUtyiLv6fSDIwYKhY+LR7DeoJjQeQ
-         fNSYAgdLvjekMdhlULKceP3kCIbbYx1vc7VV3okYYHsNZPd/2qd5wZ3MakJwg1opjKBt
-         D+JXY/YWFzXJO4G3LB17sjS5PFbwLiYB46aQQMMKXL7Gk8ZgZo6V/LnFWxBi+OTnpe06
-         w1Vq4nRziatDjwJCmca1G+5niaNMATm5GRSwmZC6gfSrYi8XnpiL8jDdQL4cc5md+x1n
-         Hxiw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760287978; x=1760892778;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=9JZxGJaBIG3WMNgOZk70IosVrcFGLTtGDI3zyIQtP54=;
-        b=XacG5yHV88N52OEOL5xuIC8S5wSSi4MK0b7wxL0IU6xbKhSQYyq7ku0k5NPvv2cCCj
-         RMCwhHM+Qhpxem1npRAqiSbSk6EK2EIuTY6lLxEYJ4O7tVEpq8QOSqwB6hXLlG+Fd9UZ
-         IOuuJilQna/jQf8WSdaAw5DotmclpTGXLk6cJu2aEFWYa1QWKBLI+xgbj6sMIgnCUFtk
-         DDxVWdmKt1Nc7P8qwYWeI9vnoGmpbeQ8Tzkqhqgon0Qs1BRTzGo4BF7+adOB79HpwoeQ
-         tx4xrvRLI+yRNiYjirFW/gZY+jku6Q/MiN77gyzXv/nDvpDMabCHTOobkfjscVWPU1ml
-         en4Q==
-X-Forwarded-Encrypted: i=1; AJvYcCVIZe/iQCGN7HRgZnTHBlzBksNvdfs1cX5lgEVuMZm4IOs2VbPOwZHUIvK7i1rbbb6BnGaSyfndVwhQ@vger.kernel.org
-X-Gm-Message-State: AOJu0YztsBNsks+fZGSXBVZePl8EThlcW8LMhTvY+B1C5NtynZ+aRMH6
-	/x0Eczi2sTq5wtj3JYDaQynQfIs9397wKRQWA/S6iPkFArUM5zNHr2V2RnUYgPulD3S7/phn8ua
-	clhD8Zm1x/XlDSMRb/cG3A2k5bcPXmSo=
-X-Gm-Gg: ASbGncsBo3MMFGkdEYQA8q33aPBxeEwoULASjncokHb9vMAFhO17A4qkN2kbB4C66sy
-	lVyuTUvbQZMwimCI0IJju1SFWGi5O5V1IVSyQO8n5cousBtr7INIrGNgUxZByb+SiT+J3uZLw8B
-	g02xrs/Hvfp+1F+UfFg46vPG+Q/9jye6DxoXffqhMxH1f/i9fBSpRv/iob3CXDIcwY7gWwn9WRS
-	PPp809TvURq8BTrgaeOCpKFHKjfb8VKeymP6w4m1v6j8VA=
-X-Google-Smtp-Source: AGHT+IHYC6gZQ7sVGps73WqhA1pssx5WiOdWA9NawCEncOKl23yyV6N76hIZIr600VGaUVKRCSjt6piNcz8DHQRfwsg=
-X-Received: by 2002:a17:907:7f8a:b0:b46:897b:d759 with SMTP id
- a640c23a62f3a-b50abaa3309mr2018683466b.40.1760287977711; Sun, 12 Oct 2025
- 09:52:57 -0700 (PDT)
+	s=arc-20240116; t=1760288490; c=relaxed/simple;
+	bh=K5u3yiOfDjFXa37+LYFs7qYjcwjZgMOR4ZuK/iED6As=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=oZ08jnSUKaeQJA79+spo4A7AkMTFz+NnRNwj3+EGLbBfpJiMuL4iz9wc9IIAfSWsHWQYKxEku5U8+Di+2GsjzUmSg6OqfPwKJwhzasDN/0j9MASyHCKzDIZdaZFmxHsh7JSqjrCe+pu+qOO4bw7WmWl563elJ/cwjew3P5XaKKo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bw8DY+5P; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D16CAC4CEE7;
+	Sun, 12 Oct 2025 17:01:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1760288489;
+	bh=K5u3yiOfDjFXa37+LYFs7qYjcwjZgMOR4ZuK/iED6As=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=bw8DY+5Pfpg1R8UcoCM122hWFKDBhgU/9yRH5uMR2xTdxsTiAHJYzlsRP3MBuKA+A
+	 1vC8hsLHvHS8Y9CKurr179lLopG66hDKWRvayvIVlenefGSmSmolBu6NvD0wFa2g2P
+	 tHsRtrKTcpYKgf3fhYOBTXjeSH7oyPUpYmBgxd7J4TCyAzOIaUViw03aT+zDxMQQ7R
+	 2uIIGrC+43oI46R6FK5ilRpWBwiHowZmi4KWxMWqCaYfqExkzK7BBY6QXjESm/+AxQ
+	 T8IiRBgRG52FACaeaTCQm5qqw76XYtgo4lbx1AhpkBuaS/geUgQiSZqeHCRHeNSlAi
+	 EH8Z4I6ygOE2Q==
+Date: Sun, 12 Oct 2025 18:01:19 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>, Miquel Raynal
+ <miquel.raynal@bootlin.com>, David Lechner <dlechner@baylibre.com>, Nuno
+ =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-i3c@lists.infradead.org,
+ linux-kernel@vger.kernel.org, imx@lists.linux.dev,
+ linux-iio@vger.kernel.org, joshua.yeong@starfivetech.com,
+ devicetree@vger.kernel.org, Carlos Song <carlos.song@nxp.com>, Adrian
+ Fluturel <fluturel.adrian@gmail.com>
+Subject: Re: [PATCH v5 5/5] iio: magnetometer: Add mmc5633 sensor
+Message-ID: <20251012180119.312191fd@jic23-huawei>
+In-Reply-To: <20251007-i3c_ddr-v5-5-444184f7725e@nxp.com>
+References: <20251007-i3c_ddr-v5-0-444184f7725e@nxp.com>
+	<20251007-i3c_ddr-v5-5-444184f7725e@nxp.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251004015623.7019-1-raskar.shree97@gmail.com>
- <20251004015623.7019-2-raskar.shree97@gmail.com> <20251004141231.632c311d@jic23-huawei>
- <CAHc1_P7MU=BYf_8sbZqikpXpfuvAtLNJ2E_hmi-50ohoh+gQcg@mail.gmail.com> <20251012151130.797450e3@jic23-huawei>
-In-Reply-To: <20251012151130.797450e3@jic23-huawei>
-From: Shrikant <raskar.shree97@gmail.com>
-Date: Sun, 12 Oct 2025 22:22:46 +0530
-X-Gm-Features: AS18NWB6k3kWKKLVTx0bu_UemQDkCkAOaqI3qRe-tlwz4EjAekbo6ZOk5wZIcpw
-Message-ID: <CAHc1_P7heCXwgH1tnqKTPAg0RpTPEM9Q4NUsGoOJMk6gqyXnmA@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: iio: max30100: Add pulse-width property
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org, matt@ranostay.sg, 
-	skhan@linuxfoundation.org, david.hunter.linux@gmail.com, 
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-kernel-mentees@lists.linux.dev
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Sun, Oct 12, 2025 at 7:41=E2=80=AFPM Jonathan Cameron <jic23@kernel.org>=
- wrote:
->
-> On Mon, 6 Oct 2025 08:34:03 +0530
-> Shrikant <raskar.shree97@gmail.com> wrote:
->
-> > On Sat, Oct 4, 2025 at 6:42=E2=80=AFPM Jonathan Cameron <jic23@kernel.o=
-rg> wrote:
-> > >
-> > > On Sat,  4 Oct 2025 07:26:22 +0530
-> > > Shrikant Raskar <raskar.shree97@gmail.com> wrote:
-> > >
-> > > > The MAX30100 sensor supports multiple LED pulse widths (200us, 400u=
-s,
-> > > > 800us, 1600us). These settings affect measurement resolution and po=
-wer
-> > > > consumption. Until now, the driver always defaulted to 1600us.
-> > > >
-> > > > Introduce a new device tree property `maxim,pulse-width` that allow=
-s
-> > > > users to select the desired pulse width in microseconds from device
-> > > > tree.
-> > > >
-> > > > Valid values are: 200, 400, 800, 1600.
-> > > >
-> > > > This prepares for driver changes that read this property and config=
-ure
-> > > > the SPO2 register accordingly.
-> > > >
-> > > > Signed-off-by: Shrikant Raskar <raskar.shree97@gmail.com>
-> > > Hi Shrikant,
-> > >
-> > > Explain why this is in some way related to characteristics of how the
-> > > system containing this chip is built (wiring, lenses etc).  Otherwise
-> > > this might instead be something that should be controlled from usersp=
-ace
-> > > not firmware.
-> > >
-> > > Also, give a little more on why we care about controlling it at all.
-> > > Is there a usecase where power use of this chip matters?  Mostly I'd =
-expect
-> > > it to be in measurement equipment with relatively short measuring per=
-iods.
-> > >
-> > > Jonathan
-> > Hi Jonathan,
-> >
-> > Thanks for the feedback.
-> >
-> > The pulse width configuration is indeed dependent on the hardware integ=
-ration
-> > of the MAX30100. It affects how much optical energy the LEDs emit per s=
-ample,
-> > which in turn depends on physical factors such as:
-> >
-> >  - The type and thickness of the optical window or lens covering the se=
-nsor
-> >  - The distance between the LED and photodiode
-> >  - The reflectivity of the skin/contact surface
-> >
-> > For example:
-> >  - A smartwatch/wearable ring with a thin glass window can operate
-> > with 200=E2=80=93400 =C2=B5s pulses to
-> >    save power, while
-> >  - A medical-grade pulse oximeter or a sensor mounted behind a thicker
-> >    protective layer may require 800=E2=80=931600 =C2=B5s for reliable s=
-ignal amplitude.
-> >
-> > I believe it would be appropriate to describe these fixed,
-> > board-specific characteristics in the Device Tree,
-> > since they are determined by the hardware design rather than being
-> > runtime or user-controlled parameters.
-> >
-> > Would it be okay if I send v2 of the patch with the above explanation
-> > included in the commit message?
-> Hi Shrikant,
->
-> I'd have this excellent detail + examples summarised in the patch descrip=
-tion
-> and also a small amount of description in the actual binding even if that=
- just says
-> something like
->    Description:
->      Pulse width in... . Appropriate pulse width is dependant on factors
->      such as optical window absorption, distances and expected reflectivi=
-ty
->      of skin / contact surface.
-> That's just a quick mash up of what you have above, feel free to not use =
-this
-> particular text!
->
-Thanks for your response. Sure, I will update the description in the
-binding and will
-update the commit message describing the details and examples. I will share=
- the
-updated version of the patch shortly.
-> The inclusion of target surface reflectivity in there makes me thing that
-> for some applications we may also need userspace tweaking or some algorit=
-hmic
-> way to increase or decrease the value according to skin characteristics. =
-However
-> I guess maybe it isn't that sensitive.
-Need to check on this point.
+On Tue, 07 Oct 2025 16:06:17 -0400
+Frank Li <Frank.Li@nxp.com> wrote:
 
-Thanks and regards,
- Shrikant
+> Add mmc5633 sensor basic support.
+> - Support read 20 bits X/Y/Z magnetic.
+> - Support I3C HDR mode to send start measurememt command.
+> - Support I3C HDR mode to read all sensors data by one command.
+> 
+> Co-developed-by: Carlos Song <carlos.song@nxp.com>
+> Signed-off-by: Carlos Song <carlos.song@nxp.com>
+> Co-developed-by: Adrian Fluturel <fluturel.adrian@gmail.com>
+> Signed-off-by: Adrian Fluturel <fluturel.adrian@gmail.com>
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+
+Until now I missed the ACPI IDs that look to be almost certainly invalid.
+See below.
+
+
+> ---
+> Change in V4
+> - use { 1, 2000 }
+> - Add _US for timeout
+> - Use GEN_MASK for MMC5633_CTRL1_BW_MASK
+> - Use { } for terminator.
+> - remove !!
+> - fix mix tab and space
+> - add mmc5603 (merge https://lore.kernel.org/all/20251003000731.22927-1-fluturel.adrian@gmail.com/)
+> - add tempature measure support
+> 
+> Change in v3
+> - remove mmc5633_hw_set
+> - make -> Make
+> - change indention for mmc5633_samp_freq
+> - use u8 arrary to handle dword data
+> - get_unaligned_be16() to get raw data
+> - add helper function to check if i3c support hdr
+> - use read_avail() callback
+> 
+> change in v2
+> - new patch
+
+> diff --git a/drivers/iio/magnetometer/mmc5633.c b/drivers/iio/magnetometer/mmc5633.c
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..9b04cba6dbf633b7e0d136629a5aebffd072a68d
+> --- /dev/null
+> +++ b/drivers/iio/magnetometer/mmc5633.c
+
+
+> +static int mmc5633_write_raw(struct iio_dev *indio_dev,
+> +			     struct iio_chan_spec const *chan, int val,
+> +			     int val2, long mask)
+> +{
+> +	struct mmc5633_data *data = iio_priv(indio_dev);
+> +	int i, ret;
+> +
+> +	switch (mask) {
+> +	case IIO_CHAN_INFO_SAMP_FREQ:
+> +		i = mmc5633_get_samp_freq_index(data, val, val2);
+> +		if (i < 0)
+> +			return -EINVAL;
+> +
+> +		scoped_guard(mutex, &data->mutex) {
+> +			ret = regmap_update_bits(data->regmap, MMC5633_REG_CTRL1,
+> +						 MMC5633_CTRL1_BW_MASK,
+> +						 FIELD_PREP(MMC5633_CTRL1_BW_MASK, i));
+> +			if (ret)
+> +				return ret;
+> +		};
+> +		return ret;
+
+Trivial but to get here it must be 0 so make that apparent via
+		return 0;
+Then everyone can see the 'good' exit really easily.
+
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +}
+
+> +static const struct i2c_device_id mmc5633_i2c_id[] = {
+> +	{ "mmc5603" },
+> +	{ "mmc5633" },
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(i2c, mmc5633_i2c_id);
+> +
+> +static const struct acpi_device_id mmc5633_acpi_match[] = {
+
+Guess I missed these in previous versions. Sorry about that!
+
+Where do these come from? 
+
+MMC is not a registered PNP ID according to
+https://uefi.org/PNP_ID_List?pnp_search=mmc
+
+So are these in the wild? If they are provide the DSDT snippet
+and a reference for where.  Also add a comment after the ID to provide
+one device on which it is used.
+
+ACPI IDs can take two valid forms. (1)   A 4 letter prefix that is
+a registered ACPI ID.  e.g. HISI is the HiSilicon one I use for
+the day job. And 4 digits that must be unique.  Typically each company
+has a tracker for this and a process to get one assigned.
+(2) A 3 letter PNP ID.  Similar otherwise.  Memsic has neither
+unless issued very recently. 
+
+So if these turn up on a device that uses ACPI either the manufacturer
+of that should get MEMSIC to follow process to get an ID or use their
+own.  It's common to find random sensors with IDs from device manufacturers
+for this reason.  Here NXP could use their own ID for example.
+They have a registered PNP ID which is the obvious NXP.  To do that
+though you need to make sure you get a unique ID.
+
+
+
+> +	{ "MMC5603", 0 },
+> +	{ "mmc5633", 0 },
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(acpi, mmc5633_acpi_match);
+> +
+> +static struct i2c_driver mmc5633_i2c_driver = {
+> +	.driver = {
+> +		.name = "mmc5633_i2c",
+> +		.of_match_table = mmc5633_of_match,
+> +		.acpi_match_table = mmc5633_acpi_match,
+> +		.pm = pm_sleep_ptr(&mmc5633_pm_ops),
+> +	},
+> +	.probe = mmc5633_i2c_probe,
+> +	.id_table =  mmc5633_i2c_id,
+
+Really trivial but there is a extra space after the =
+
 
