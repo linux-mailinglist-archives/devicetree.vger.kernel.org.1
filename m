@@ -1,63 +1,60 @@
-Return-Path: <devicetree+bounces-225772-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225773-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1EFD1BD0D3F
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 00:49:43 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id A6023BD0D5D
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 01:00:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 726541891C00
-	for <lists+devicetree@lfdr.de>; Sun, 12 Oct 2025 22:50:06 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id F01CE4E0ECE
+	for <lists+devicetree@lfdr.de>; Sun, 12 Oct 2025 23:00:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 368D823BCE3;
-	Sun, 12 Oct 2025 22:49:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56AAE2701C3;
+	Sun, 12 Oct 2025 23:00:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=packett.cool header.i=@packett.cool header.b="KUEdOK6f"
+	dkim=pass (2048-bit key) header.d=packett.cool header.i=@packett.cool header.b="d7BEYUEs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-179.mta1.migadu.com (out-179.mta1.migadu.com [95.215.58.179])
+Received: from out-189.mta0.migadu.com (out-189.mta0.migadu.com [91.218.175.189])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43EFA21D596
-	for <devicetree@vger.kernel.org>; Sun, 12 Oct 2025 22:49:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3007026E712;
+	Sun, 12 Oct 2025 23:00:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.189
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760309379; cv=none; b=gduvcW/Qbt6nZv78U46/o+Ricqe5RvLhpELkEv5aAUEZEH3bxXw7+3CbL0ww2HyDyp9Cs1brl5kL3WJFG3nULxWNCk4aLtK2JlQTDoTZIb2VH7DbfLNmowVMpyXIzgrTPMsFTX/R/bElF8IMX+CqHczsnagqZDBpsc6sBCDI+8Y=
+	t=1760310038; cv=none; b=uDqlrXsV+bBUBrNs+mGoyS5iNSTRX8ee6T4kP9Ai0T10GVuUtlGsanr2Bnk0IMfrC0c0neTKovhBkY4CpAkUxaeBTJ9G3Pl4peIPXmcMchfO7llNmR5fX/Pj/nJNyCtyZ/Qo0bf/T0pqVc97cXevnHYUZqqh6vKuNp8MIov1adg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760309379; c=relaxed/simple;
-	bh=++W517G07PbsPHf8tLIEwPk8Hn5slItVC8zFHbBE7D8=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=RO4L/9Hl07WHj/pB9GaWGer9+0IxwHth+WNLYtHg+kbUpr3otEiAtbB6PMJGXoOrLSot+AXMMODZAiBvPesMjjARSTcCbVONsXEZ1aiZw8NAkviuLwYU8XfXtkFcCU5BRJxEMo+rMBNZA/MmMnjkpSEsbhS8PByiMSNtxlyrDoM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=packett.cool; spf=pass smtp.mailfrom=packett.cool; dkim=pass (2048-bit key) header.d=packett.cool header.i=@packett.cool header.b=KUEdOK6f; arc=none smtp.client-ip=95.215.58.179
+	s=arc-20240116; t=1760310038; c=relaxed/simple;
+	bh=xBxOL6GSKm0r8z1iwoA7xEGS2FmKZDzoECqzDmPVf3o=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=nRXwL+qXTiWfAFEZcAcUyYQNnTnUAA7cMFurko/WMyNUyeRGgZYsZPv/exKdvcxxd5VweLq716yRnYVR3u3ZrLcYkXL4z4qNp2Z5bzgQT5SMiLl+8LBMeBgb1EPKTOWKgURfq9UZmQykyJlE5GmEBoOFX7bldLUYE783U4gqXiY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=packett.cool; spf=pass smtp.mailfrom=packett.cool; dkim=pass (2048-bit key) header.d=packett.cool header.i=@packett.cool header.b=d7BEYUEs; arc=none smtp.client-ip=91.218.175.189
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=packett.cool
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=packett.cool
 X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=packett.cool;
-	s=key1; t=1760309372;
+	s=key1; t=1760310023;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding;
-	bh=pOzTHT5kWtnB8D7OyyyQQ79h5DZ+AVxhYATw2T0aDTc=;
-	b=KUEdOK6f+Yl4blhQv4Ex4+6YS6XI8k0d3Iqp2tRoWBowRUSI5tYonsekiQCk1Xm4+sjsM6
-	pBrmggp200WxegO93WazNz8LkNemU8NBrr3QPlJzX4wrmPoOl1/8ntcyyJuwfD73MYI+vW
-	k9ReI1yTFu5y4gH8gTssrYU0m1CDVf+Oj73+cdqfLxYMWZ/o3UHI7laY2OOcls+kjjQEOQ
-	AI+/YZD2ADudtMz5jELo+oL8VryBo+AfIvsPYZ7Od3K+ztT2GV5gf8isEDHi/c3xeKA1Tm
-	zKZkUSHBHO3mpD2Ri/tTyrMfmI+HN06CwDLyracAKvhW1Qbjpy+lk+wWxkEI8A==
+	bh=qIoVkGj2UHyWzPI843jLHd2BzKmlHU2zQ8mu8tlxYAE=;
+	b=d7BEYUEsstX8rorULLNw/MCWuvPOTUiNIZwd6jbMbHJ8rAMfCCtPTIEloF5J1u0dKkg0SO
+	DD8VpHwX6Km98cF554Y79U8az/OTHUi+4D8NtoLh/J2DoYUiLezgNYk45eSCL9pqacZsoS
+	XDH3neFtSuGJR15qalzfg60JdE4G4rd+9eErRHTyNabgp+2gR/jKQg5a3QHQwMeHWN3Ovt
+	YmzEDta6g6uXoNsdTdygqlA2vRhIQlrOodG5H75HbPEv6WvnAHodPfBJED0j+P4+gFtT3/
+	X935d7EXHw8sI9iGq9Tzpy3BB6R7T5xyxkIGpdwirYWbPTGv1LwFb0mrd1hxFQ==
 From: Val Packett <val@packett.cool>
 To: Bjorn Andersson <andersson@kernel.org>,
 	Konrad Dybcio <konradybcio@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"Bryan O'Donoghue" <bryan.odonoghue@linaro.org>,
-	Laurentiu Tudor <laurentiu.tudor1@dell.com>,
-	Val Packett <val@packett.cool>
-Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Val Packett <val@packett.cool>,
 	linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v2] arm64: dts: qcom: x1-dell-thena: remove dp data-lanes
-Date: Sun, 12 Oct 2025 19:48:07 -0300
-Message-ID: <20251012224909.14988-1-val@packett.cool>
+Subject: [PATCH] arm64: dts: qcom: x1e80100: add system power domain SS3 state
+Date: Sun, 12 Oct 2025 19:54:12 -0300
+Message-ID: <20251012225950.15475-1-val@packett.cool>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,41 +64,50 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Migadu-Flow: FLOW_OUT
 
-The commit 458de584248a ("arm64: dts: qcom: x1e80100: move dp0/1/2
-data-lanes to SoC dtsi") has landed before this file was added, so
-the data-lanes lines here remained.
+Add the same PSCI state as seen on other Oryon-based SoCs like SM8750
+and Glymur, seems to work fine on Hamoa as well.
 
-Remove them to enable 4-lane DP on the X1E Dell Inspiron/Latitude.
-
-Fixes: e7733b42111c ("arm64: dts: qcom: Add support for Dell Inspiron 7441 / Latitude 7455")
-Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 Signed-off-by: Val Packett <val@packett.cool>
 ---
-v2: fixed commit msg style, pulled R-b
-v1: https://lore.kernel.org/all/20250927032240.20759-1-val@packett.cool/
----
- arch/arm64/boot/dts/qcom/x1-dell-thena.dtsi | 2 --
- 1 file changed, 2 deletions(-)
+Tested on a Dell Latitude 7455:
 
-diff --git a/arch/arm64/boot/dts/qcom/x1-dell-thena.dtsi b/arch/arm64/boot/dts/qcom/x1-dell-thena.dtsi
-index d71b67824a99..ef83e87e1b7a 100644
---- a/arch/arm64/boot/dts/qcom/x1-dell-thena.dtsi
-+++ b/arch/arm64/boot/dts/qcom/x1-dell-thena.dtsi
-@@ -1090,7 +1090,6 @@ &mdss_dp0 {
- };
+/sys/kernel/debug/pm_genpd/power-domain-system/idle_states:
+State          Time Spent(ms) Usage      Rejected   Above      Below
+S0             69476          23006      195        21562      0
+
+Seems to mostly be used in system suspend, though I've occasionally seen
+the counter increment a little bit during runtime as well.
+---
+ arch/arm64/boot/dts/qcom/x1e80100.dtsi | 10 +++++++++-
+ 1 file changed, 9 insertions(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+index 3cf2568def3f..fab8104147bd 100644
+--- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
++++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+@@ -303,6 +303,14 @@ cluster_cl5: cluster-sleep-1 {
+ 				exit-latency-us = <4000>;
+ 				min-residency-us = <7000>;
+ 			};
++
++			domain_ss3: domain-sleep-0 {
++				compatible = "domain-idle-state";
++				arm,psci-suspend-param = <0x0200c354>;
++				entry-latency-us = <2800>;
++				exit-latency-us = <4400>;
++				min-residency-us = <10150>;
++			};
+ 		};
+ 	};
  
- &mdss_dp0_out {
--	data-lanes = <0 1>;
- 	link-frequencies = /bits/ 64 <1620000000 2700000000 5400000000 8100000000>;
- };
+@@ -449,7 +457,7 @@ cluster_pd2: power-domain-cpu-cluster2 {
  
-@@ -1099,7 +1098,6 @@ &mdss_dp1 {
- };
- 
- &mdss_dp1_out {
--	data-lanes = <0 1>;
- 	link-frequencies = /bits/ 64 <1620000000 2700000000 5400000000 8100000000>;
- };
+ 		system_pd: power-domain-system {
+ 			#power-domain-cells = <0>;
+-			/* TODO: system-wide idle states */
++			domain-idle-states = <&domain_ss3>;
+ 		};
+ 	};
  
 -- 
 2.51.0
