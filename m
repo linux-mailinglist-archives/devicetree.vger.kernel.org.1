@@ -1,121 +1,228 @@
-Return-Path: <devicetree+bounces-225710-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225711-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C58E8BD026B
-	for <lists+devicetree@lfdr.de>; Sun, 12 Oct 2025 14:33:48 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3112DBD02CC
+	for <lists+devicetree@lfdr.de>; Sun, 12 Oct 2025 15:36:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 177C818948BC
-	for <lists+devicetree@lfdr.de>; Sun, 12 Oct 2025 12:34:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D71683B8723
+	for <lists+devicetree@lfdr.de>; Sun, 12 Oct 2025 13:36:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB04772612;
-	Sun, 12 Oct 2025 12:33:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA3DA1DCB09;
+	Sun, 12 Oct 2025 13:35:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RvqtIVzZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pAECxGU9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26937E552
-	for <devicetree@vger.kernel.org>; Sun, 12 Oct 2025 12:33:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9C861ACECE;
+	Sun, 12 Oct 2025 13:35:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760272425; cv=none; b=rBBt00jhSu1Flvqksnx64AjJ1m/ByrjWS6SfeCVL9dmjwaNpOqs9JJjElFWkb4NglC6AZ4Qbp1SqXAJWe29DcD9qpreGEZcNdOJJ4P2yWWhjbI9Gay8NUMTxg5HgGeYQwpVcwFDMTEKVeFqT/4tHBKq1gOvIrLwVTyYSFmikqLM=
+	t=1760276158; cv=none; b=JQV//WF4jYy6epQ3vIWhxtdVQkMJJU+oTsQLEApJx0y5EBIolx597EOxLsbOddykb4iuzFh+CbIfCNSqfg2cPXeEiO6enyXixSfGcZKD7FXU3qz5u0I9zpBbShX8Jwygvnr+O4StXvZJzkyaU5qqNhygcnK4MG9bYjTde81b9W4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760272425; c=relaxed/simple;
-	bh=DX/Aa4ev/+yOT9IfQP723DHSs0GHO8dh8ul7Eh1RJbU=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=eYprwJVv6/xO/gbYrFvs4emPDM4RdwKDtUMR4hfec6ikQqP0xOoT1qL/MjWG5p5T4heP5I3MMYd0U/4nksgCQC9BuixtVAbDyppTJRbgw8KOHUQw0QRKQ7Fqjl/2Jvdj2xCptm7DmsrgZFNtl0pIm3enrnvmOJmox6iE6lKEcCY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RvqtIVzZ; arc=none smtp.client-ip=209.85.218.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-b3b27b50090so624466266b.0
-        for <devicetree@vger.kernel.org>; Sun, 12 Oct 2025 05:33:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1760272422; x=1760877222; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=pFLLYdbkRgAZWnhHmXH7fo0GfkcQe5REoGIKDLet53o=;
-        b=RvqtIVzZSTjdFqICYbVCfkIVWAgfp0qUfkYVWpTR9AYagP8FdAK+zQ9Mf/Rc52fT00
-         NcVh14P3lelj5A3aV3IUpV2jFjMeBbh5EkRPyeXm9VoXZ6S8p27g4ntj7UiiyyXtEbRS
-         Szg32E5HwxIAIQJvUHnCVP9MMWHeWTlmZqQCVCntlhlQnIR2p0l88R83S+lIZNhYLkWU
-         XdXpkJzMrWXiwGROpDwCC2auGsIGDAlApKyJAxkpLUYw1LMxX68vh3ppj8k04MWA6n1X
-         cbbiPKMwJNcsqjwQzF13TThKUaJwaaXFID/Dnsg8GmqQDT7SK5uHY81eFJ+JhejrpAVo
-         KGMQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760272422; x=1760877222;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=pFLLYdbkRgAZWnhHmXH7fo0GfkcQe5REoGIKDLet53o=;
-        b=kV1E+JwNfWMmQQn2cBmmqrL5pOxdIBPQtmtEZitLPqxgED9Ydnwl8p7jSN4bLrAwOd
-         nZcaRLFQRcOWqJoucSXFi6oHfqPNH38VT/T+JelLBUQ0An5xtdU9LQzGlt2X//l9M/EJ
-         5CBmIWeFh2FzVsP0hkR+T9w3z0eN9iYIF4jC8EQymkOCOgm/PZFtw4sGKF3q0vbNWpNE
-         mrtk62lptWGE0OIhcIwdLcRErdBfpQGN6ASmt93kTBlIjYMvNgEOCi68ElDyrErAgNBA
-         pGo+Jbk4V3UPIU1OZaiFuUXR710QzphnySrcrUdWQ+9EWEfPTVxPwUgerl2kcCTOTlJy
-         jBkQ==
-X-Gm-Message-State: AOJu0YzHFTIYU0EJt3MQbf1K7IyNEmIqMwbzgoPm++umEU5+axEKG2/+
-	1rRunUscg4k15o/GaEM1NrPSL3AH1eRdK1H1fbMUlGwYGOiSTUwxixDLbaPGBIKgrM4=
-X-Gm-Gg: ASbGnctTQd9tTB23PzYJ+y43v3VWEHoWi9hR3j4R1v4KnxBoE879g5R+daZj0eZYj9E
-	eSxd0Gbd6lrgekauvG7W6iM054TK9HzV9uWs9jSawlqvjboBc6fucbRddcOpDr/AwWXfVe4O2au
-	B6dGiLjCMrSc3EA4sIelwkhcK4aCjf2PL3Sm1kNJsildPzVKuiWfk24i6cXzwfSndFSAD/QA3Iw
-	ukKi69O90ANqC7B3H5LvrQV8Js5H9O2q9CkHH+dOtMb5tgvuGHYH9EHwW3XTo5GuQ8xYSM/uMe3
-	FxmZAo3b8ANEOriIZrzq8ojX+UbrVthCrZS666A4bAgyPqdh9CcnzmbrIv1muBQ6dEJTnZq5Kni
-	ZlfdxMkQblMzwv+PDXZZRIB1llyzSurCH5nku9wf0hupqR04HTZAet/j3yQuq3JaCnSx/JuuEcB
-	bw
-X-Google-Smtp-Source: AGHT+IFAjyDvaV3oWT4PWZK+4NQ4+mKhqPinNjTBXV2nObp2QaUZEx9ZFWF36Ui7VatYnmT32IIKmg==
-X-Received: by 2002:a17:906:f989:b0:b57:1f86:b30f with SMTP id a640c23a62f3a-b571f86b72amr448630366b.24.1760272421798;
-        Sun, 12 Oct 2025 05:33:41 -0700 (PDT)
-Received: from HomePC (89-67-214-154.dynamic.play.pl. [89.67.214.154])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b55d8c12a8esm708449266b.42.2025.10.12.05.33.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 12 Oct 2025 05:33:41 -0700 (PDT)
-From: Andrey Leonchikov <andreil499@gmail.com>
-To: devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org
-Cc: Andrey Leonchikov <andreil499@gmail.com>,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	heiko@sntech.de
-Subject: [PATCH v2] arm64: dts: rockchip: Fix PCIe power enable pin for BTT CB2 and Pi2
-Date: Sun, 12 Oct 2025 14:33:36 +0200
-Message-ID: <20251012123338.344271-1-andreil499@gmail.com>
-X-Mailer: git-send-email 2.51.0
+	s=arc-20240116; t=1760276158; c=relaxed/simple;
+	bh=GghfE5YM8TPbJhlO+2xIBisZv3B2f12hUO1Bx8PrXLw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WkIC9dSeR8MvYeTAsmU0TVbQ7heIcQXC0iyyQl63/4Z/mTAq6oyjtxLDFUTSFntc2c3/TT2Ehn1bvqKsavx1aKo+7VEjuHUGeMk9fZeLfLgWtOPSuavUbTGEpz1j5VzNQy8icNtjfnDDbfJ0bANHspiXBvV4rs/hUfM1dho+nk4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pAECxGU9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 898D3C4CEE7;
+	Sun, 12 Oct 2025 13:35:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1760276158;
+	bh=GghfE5YM8TPbJhlO+2xIBisZv3B2f12hUO1Bx8PrXLw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=pAECxGU9OkQcPU+8dyn7p2VwNKW9t1u2RPkZCjYkeF3DWqa97ZmnU+4SbDQSbdRd/
+	 x0MndA1vj1z9/Vz3kx9X4rA227OseTyfTZpYX4rTBcAZw9JANEFhwqXd+rx/vTdeKT
+	 STd2eGaLORGUkqgoN/dg95hBcK1rfLmIjGUwGzF0iGYHPRNmFp3iprjacZoAiUOyzq
+	 SSJs7hq8Rfo8yrYewA8t6zNi7Pk7MMJ+BcIC9o5uyKcWbF/0HUgv4VAej33lMtI0uR
+	 lpLRcdxeDNXtuJwH7jbAmcfLLKSSmNVPvrnFVaedhsjOaV+iwn74DSJlOP3nSXkVZN
+	 J45esfaTvGLdA==
+Date: Sun, 12 Oct 2025 14:35:54 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Charan Pedumuru <charan.pedumuru@gmail.com>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-mmc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] dt-bindings: mmc: ti,da830-mmc: convert to DT schema
+Message-ID: <20251012-nickname-morale-e1e21796f1f1@spud>
+References: <20251011-davinci-mmc-v2-1-355da3e25123@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="PY52Dy33OnbvwAen"
+Content-Disposition: inline
+In-Reply-To: <20251011-davinci-mmc-v2-1-355da3e25123@gmail.com>
 
-Fix typo into regulator GPIO definition. With current
- definition - PCIe don't up. Valid definition have on
- "pinctrl" section, "pcie_drv" (gpio4, RK_PB1).
 
-Fixes: bfbc663d2733a ("arm64: dts: rockchip: Add BigTreeTech CB2 and Pi2")
-Signed-off-by: Andrey Leonchikov <andreil499@gmail.com>
----
- arch/arm64/boot/dts/rockchip/rk3566-bigtreetech-cb2.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+--PY52Dy33OnbvwAen
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3566-bigtreetech-cb2.dtsi b/arch/arm64/boot/dts/rockchip/rk3566-bigtreetech-cb2.dtsi
-index 7f578c50b4ad..f74590af7e33 100644
---- a/arch/arm64/boot/dts/rockchip/rk3566-bigtreetech-cb2.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3566-bigtreetech-cb2.dtsi
-@@ -120,7 +120,7 @@ vcc3v3_pcie: regulator-vcc3v3-pcie {
- 		compatible = "regulator-fixed";
- 		regulator-name = "vcc3v3_pcie";
- 		enable-active-high;
--		gpios = <&gpio0 RK_PB1 GPIO_ACTIVE_HIGH>;
-+		gpios = <&gpio4 RK_PB1 GPIO_ACTIVE_HIGH>;
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&pcie_drv>;
- 		regulator-always-on;
--- 
-2.51.0
+On Sat, Oct 11, 2025 at 08:52:07AM +0000, Charan Pedumuru wrote:
+> Convert TI Highspeed MMC host controller binding to YAML format. Define
+> 'clocks' and 'interrupts' properties to resolve errors identified by
+> 'dt_check' and 'dtb_check'.
+>=20
+> Signed-off-by: Charan Pedumuru <charan.pedumuru@gmail.com>
+> ---
+> Changes in v2:
+> - Modified the commit message.
+> - Removed 'interrupts' from required properties following the old binding.
+> - Changed the maintainer for the binding to "Conor Dooley".
 
+Bro, what? Where did that come from? I know nothing about this device at
+all. Find someone from TI to put there.
+
+Conor.
+
+
+> - Link to v1: https://lore.kernel.org/r/20250523-davinci-mmc-v1-1-ceebd83=
+52d9c@gmail.com
+> ---
+>  .../devicetree/bindings/mmc/davinci_mmc.txt        | 32 ------------
+>  .../devicetree/bindings/mmc/ti,da830-mmc.yaml      | 61 ++++++++++++++++=
+++++++
+>  2 files changed, 61 insertions(+), 32 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/mmc/davinci_mmc.txt b/Docu=
+mentation/devicetree/bindings/mmc/davinci_mmc.txt
+> deleted file mode 100644
+> index 516fb0143d4c21d1c8e44a8846d55ea5458d7b74..0000000000000000000000000=
+000000000000000
+> --- a/Documentation/devicetree/bindings/mmc/davinci_mmc.txt
+> +++ /dev/null
+> @@ -1,32 +0,0 @@
+> -* TI Highspeed MMC host controller for DaVinci
+> -
+> -The Highspeed MMC Host Controller on TI DaVinci family
+> -provides an interface for MMC, SD and SDIO types of memory cards.
+> -
+> -This file documents the properties used by the davinci_mmc driver.
+> -
+> -Required properties:
+> -- compatible:
+> - Should be "ti,da830-mmc": for da830, da850, dm365
+> - Should be "ti,dm355-mmc": for dm355, dm644x
+> -
+> -Optional properties:
+> -- bus-width: Number of data lines, can be <1>, <4>, or <8>, default <1>
+> -- max-frequency: Maximum operating clock frequency, default 25MHz.
+> -- dmas: List of DMA specifiers with the controller specific format
+> -	as described in the generic DMA client binding. A tx and rx
+> -	specifier is required.
+> -- dma-names: RX and TX  DMA request names. These strings correspond
+> -	1:1 with the DMA specifiers listed in dmas.
+> -
+> -Example:
+> -mmc0: mmc@1c40000 {
+> -	compatible =3D "ti,da830-mmc",
+> -	reg =3D <0x40000 0x1000>;
+> -	interrupts =3D <16>;
+> -	bus-width =3D <4>;
+> -	max-frequency =3D <50000000>;
+> -	dmas =3D <&edma 16
+> -		&edma 17>;
+> -	dma-names =3D "rx", "tx";
+> -};
+> diff --git a/Documentation/devicetree/bindings/mmc/ti,da830-mmc.yaml b/Do=
+cumentation/devicetree/bindings/mmc/ti,da830-mmc.yaml
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..1a97c3e447fd10f14bfe0af9e=
+22f9479304f0f26
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mmc/ti,da830-mmc.yaml
+> @@ -0,0 +1,61 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mmc/ti,da830-mmc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: TI Highspeed MMC host controller for DaVinci
+> +
+> +description:
+> +  The Highspeed MMC Host Controller on TI DaVinci family
+> +  provides an interface for MMC, SD and SDIO types of memory cards.
+> +
+> +allOf:
+> +  - $ref: mmc-controller.yaml
+> +
+> +maintainers:
+> +  - Conor Dooley <conor+dt@kernel.org>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - ti,da830-mmc
+> +      - ti,dm355-mmc
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 2
+> +
+> +  dmas:
+> +    maxItems: 2
+> +
+> +  dma-names:
+> +    items:
+> +      - const: rx
+> +      - const: tx
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    mmc@1c40000 {
+> +        compatible =3D "ti,da830-mmc";
+> +        reg =3D <0x40000 0x1000>;
+> +        interrupts =3D <16 IRQ_TYPE_LEVEL_HIGH>,
+> +                     <17 IRQ_TYPE_LEVEL_HIGH>;
+> +        bus-width =3D <4>;
+> +        max-frequency =3D <50000000>;
+> +        dmas =3D <&edma 16>, <&edma 17>;
+> +        dma-names =3D "rx", "tx";
+> +    };
+> +...
+>=20
+> ---
+> base-commit: 7bac2c97af4078d7a627500c9bcdd5b033f97718
+> change-id: 20250523-davinci-mmc-c704440c3dd0
+>=20
+> Best regards,
+> --=20
+> Charan Pedumuru <charan.pedumuru@gmail.com>
+>=20
+
+--PY52Dy33OnbvwAen
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaOuutgAKCRB4tDGHoIJi
+0h/IAP0WtzbV+IXLwg7uVoHCeHVViaX/soKA93a6GBGYZf3TXAD/U+kDgIw5N/cW
+C7kCChsy3b48ylOjF6m55Qm37cnz7Qk=
+=dLIn
+-----END PGP SIGNATURE-----
+
+--PY52Dy33OnbvwAen--
 
