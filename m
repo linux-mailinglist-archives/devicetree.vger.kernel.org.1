@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-225674-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225675-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D6A1BCFEC8
-	for <lists+devicetree@lfdr.de>; Sun, 12 Oct 2025 04:48:58 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1EF9DBCFED4
+	for <lists+devicetree@lfdr.de>; Sun, 12 Oct 2025 04:59:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 35C4C4E2263
-	for <lists+devicetree@lfdr.de>; Sun, 12 Oct 2025 02:48:57 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id C9DD44E2263
+	for <lists+devicetree@lfdr.de>; Sun, 12 Oct 2025 02:59:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F07EA78F51;
-	Sun, 12 Oct 2025 02:48:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A88AB1D6DB5;
+	Sun, 12 Oct 2025 02:59:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="J8jKIF0O"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UrfB6O7X"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF5DA34BA41;
-	Sun, 12 Oct 2025 02:48:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C83A1C4A17;
+	Sun, 12 Oct 2025 02:59:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760237332; cv=none; b=tthbVpWMLfePN8yV41UHBd6vZsp1+tz4PnCWsUCL/eLpOXkD2ktewE0UGVSEFQdnVAVNZO/19WBYM8UynzhC3PvE5NHGvScz6K4+GNt3lkoIOUBJuvxYcRtcsfk3Gyy20rq0r7tm9ahOIUQJZWJ0Lal252PI0tM4YutRcKy7v6E=
+	t=1760237991; cv=none; b=Q9QuuYfN+IOjzGtiJZ3HYg69uk5TiC5WJ2RbCQX/zNT655TocXQcCt1cyRsvSsAeBFuS0krdxc2DRNp7t7v/JZ24FT2C43RD/PeyPXlstzTGVor5yzk51egj2b5D/lFo2inXQ9T9es0pW9YNGgmrvrMi4ouhtoK55rJA1t/2ySQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760237332; c=relaxed/simple;
-	bh=kPDBhwA9avKqp5qDWVWZtY+bRRHa1f3G/FsLBM160tM=;
+	s=arc-20240116; t=1760237991; c=relaxed/simple;
+	bh=IvEzWQUAaOjHPdpMdQxvqQ47OP9HAP40IF4mX3YtluQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=LX3Jm7/P2zGFoI0TUqmgx+HKyNI95JrC7J14jLgxaZNua8TEbWev0rJveFwBrsZak1s40XzUh8XU0EatnctmBmWUDD5lvjAWXXoVTo24MhmczcYyFlUgyYOMalI++MeobqoXF5Ila/8rkwWcttJusXNHBtpL9nGKju+ZkZIKLIA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=J8jKIF0O; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DC476C4CEF4;
-	Sun, 12 Oct 2025 02:48:43 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=dc2us6i3fWXqNG0ewjmUouWN9s3sKS09b5y9uUUaPIQX8olhuPGXleASq+p3aSYlMhc7TbrSYNYrSn8H4F1I2ukSxcWnAWCsoGBEGtImsB2wRXx0Zb1hcOgvs4WbEjSBKCV8BdkDIiPMOUBazF6L9oefdxG5VUI3Oiykpsw/fOI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UrfB6O7X; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5D10DC4CEF4;
+	Sun, 12 Oct 2025 02:59:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760237331;
-	bh=kPDBhwA9avKqp5qDWVWZtY+bRRHa1f3G/FsLBM160tM=;
+	s=k20201202; t=1760237991;
+	bh=IvEzWQUAaOjHPdpMdQxvqQ47OP9HAP40IF4mX3YtluQ=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=J8jKIF0OStEzqRcUMQ0zCRK8NRv4RTZgAOPEWCn76XP/Bb5XwwkB+PUu0gIovEuJd
-	 LvD6z2G2IUdmJgXQXLifNsS5g/AT6/bxUb/BJaOmTCkvJdWrMXo/8bbZQGWC18Lk87
-	 L3TtE7Jmdv0Hwa5JAH8R9Pr29/WtH64g+d87xHZ9I9SrWbnlNmpG07EEb5JHbPpVQV
-	 T4F6+Gte0HGt7L7nx/O1jkbJ8yj9QWebvWkLwkrIn63LUA8MgH1XW+5YW7uqCoCN+A
-	 N1aM5rG40JxaOVj8ms763QUfEdKGx8i0RvfoI3wVKlSYZpOkp+9ei4ygmluybe72KS
-	 1McB3OM2Z9SHg==
-Message-ID: <9746976a-ade4-4551-920c-ffbb914a4e10@kernel.org>
-Date: Sun, 12 Oct 2025 04:48:41 +0200
+	b=UrfB6O7XiK5fq5J9VkQFVx9DlsWObF9naDdGobkS51OZAz/jsx3R9ihwg0PLnMCZn
+	 JrKUbGanIvovfFOqUpavv8i68LSXB5gYwPhxZQEvgJa3RGqaADbQQ7AjIK8ZETL/AI
+	 k2ksov7/j4uHzLq/D9T2NltgotoXlVkvFworT2mf+35iUUKslWRUBPKWb+f/UxYUtm
+	 pjZgzEcIbrTYbk7whs72knHyaZuiftVsYOq9GBojVzE1FjE3WyTCH6gjtrRMpfcfgt
+	 iSD03Kbjtal01DVcL/7u3l9L+Byxbye1FM8aF/SHnk+m6dkbH6QV/3RD5PHD48okUk
+	 KR4Whw1jdA+Lg==
+Message-ID: <50eb3618-4ce0-44b4-91fb-561207fe7554@kernel.org>
+Date: Sun, 12 Oct 2025 04:59:41 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,21 +50,26 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 15/15] arm: dts: airoha: en7523: add SNAND node
-To: Mikhail Kshevetskiy <mikhail.kshevetskiy@iopsys.eu>,
- Matthias Brugger <matthias.bgg@gmail.com>,
+Subject: Re: [PATCH v8 1/2] dt-bindings: mailbox: mediatek,mt8196-vcp-mbox:
+ add mtk vcp-mbox document
+To: =?UTF-8?B?SmppYW4gWmhvdSAo5ZGo5bu6KQ==?= <Jjian.Zhou@mediatek.com>,
+ "jassisinghbrar@gmail.com" <jassisinghbrar@gmail.com>,
+ "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
+ <krzk+dt@kernel.org>, "wenst@chromium.org" <wenst@chromium.org>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
  AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Lorenzo Bianconi <lorenzo@kernel.org>,
- Ray Liu <ray.liu@airoha.com>, Mark Brown <broonie@kernel.org>,
- Andy Shevchenko <andy@kernel.org>, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org
-Cc: Andreas Gnau <andreas.gnau@iopsys.eu>
-References: <20251010204500.1625215-1-mikhail.kshevetskiy@iopsys.eu>
- <20251010204500.1625215-16-mikhail.kshevetskiy@iopsys.eu>
- <34899379-9788-4ac8-8b62-e9f47b4d49d9@kernel.org>
- <10802039-ca65-41c0-88fa-51db6d86aabd@iopsys.eu>
+ "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>
+Cc: "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+ "krzysztof.kozlowski@linaro.org" <krzysztof.kozlowski@linaro.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ Project_Global_Chrome_Upstream_Group
+ <Project_Global_Chrome_Upstream_Group@mediatek.com>
+References: <20251010091549.21325-1-jjian.zhou@mediatek.com>
+ <20251010091549.21325-2-jjian.zhou@mediatek.com>
+ <9a7d9264fe4914ce58031e08710dfd2453678653.camel@mediatek.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -110,50 +115,30 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <10802039-ca65-41c0-88fa-51db6d86aabd@iopsys.eu>
+In-Reply-To: <9a7d9264fe4914ce58031e08710dfd2453678653.camel@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 11/10/2025 07:01, Mikhail Kshevetskiy wrote:
-> On 11.10.2025 02:42, Krzysztof Kozlowski wrote:
->> On 10/10/2025 22:45, Mikhail Kshevetskiy wrote:
->>> Add SNAND node to enable support of attached SPI-NAND on the EN7523 SoC.
->>>
->>> Signed-off-by: Mikhail Kshevetskiy <mikhail.kshevetskiy@iopsys.eu>
->>> ---
->>>  arch/arm/boot/dts/airoha/en7523.dtsi | 21 +++++++++++++++++++++
->>>  1 file changed, 21 insertions(+)
->>>
->>> diff --git a/arch/arm/boot/dts/airoha/en7523.dtsi b/arch/arm/boot/dts/airoha/en7523.dtsi
->>> index b523a868c4ad..78e351eb787a 100644
->>> --- a/arch/arm/boot/dts/airoha/en7523.dtsi
->>> +++ b/arch/arm/boot/dts/airoha/en7523.dtsi
->>> @@ -203,4 +203,25 @@ pcie_intc1: interrupt-controller {
->>>  			#interrupt-cells = <1>;
->>>  		};
->>>  	};
->>> +
->>> +	spi_ctrl: spi@1fa10000 {
->>> +		compatible = "airoha,en7581-snand";
->> NAK, now I found this... Respond to comments instead of ignoring them.
+On 11/10/2025 08:51, Jjian Zhou (周建) wrote:
+> On Fri, 2025-10-10 at 17:15 +0800, Jjian Zhou wrote:
+>> The MTK VCP mailbox enables the SoC to communicate with the VCP by
+>> passing
+>> messages through 64 32-bit wide registers. It has 32 interrupt
+>> vectors in
+>> either direction for signalling purposes.
 >>
->> Three versions within few hours, that's not acceptable. Outside of the
->> merge window the expectation is minimum 24h difference. Within merge
->> window this is just spamming.
-> 
-> 
-> I already lost any hope to merge this to linux-3.18, so no problem.
-> 
-> Could you and Rob explain me this compatible issue? I got a feeling that
-> Rob telling me to keep "airoha,en7581-snand" compatible while you are
-> telling the opposite. As for me the use of "airoha,en7523-snand" or
-> maybe "airoha,en75xx-snand" for both en7523 & en7581 chips is the best.
-> 
-> Is there any policy? Could you provide a link?
+>> This adds a binding for Mediatek VCP mailbox.
+>>
+>> Signed-off-by: Jjian Zhou <jjian.zhou@mediatek.com>
+>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
+> I forgot to add "AngeloGioacchino Del Regno <
+> angelogioacchino.delregno@collabora.com>".
+> Do I need to resubmit it?
 
-The policy is described in writing bindings. I also explained it in
-greater details in my recent OSSEU introductory talk. You need two
-compatibles.
+Yes.
+
+You also should use b4, so you won't be making such mistakes.
 
 Best regards,
 Krzysztof
