@@ -1,156 +1,102 @@
-Return-Path: <devicetree+bounces-226000-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226001-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5AE18BD2D28
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 13:44:24 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A72F7BD2DA9
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 13:52:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F18213B6A0F
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 11:44:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EDD1F189D8CA
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 11:53:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D28FA25DD07;
-	Mon, 13 Oct 2025 11:44:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 012532638AF;
+	Mon, 13 Oct 2025 11:52:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="OEU6fTew"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 158E52566D2
-	for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 11:44:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E145426056A;
+	Mon, 13 Oct 2025 11:52:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760355859; cv=none; b=jmLdXQ+QFuz548wDamlNMBxaJYBqQqn+ezLdOFVBoi5dcCiK0Xl4oDRUQda3TTk4RH90orrdV8qhBbkk3hIh9C0tqt1Oc3JxJxfagUg0AF7JeX/KgNiG/gkKebyF7nFpARnINVzMhJvFIlwmajG3yckebDrrzBnlOFqm3LfsA2E=
+	t=1760356373; cv=none; b=gGINHxZzGsW4oLzMV9oVfVLDxSXujeFqN5kmN3rL+ta9LhWMRtOisSsOXO+FwmNS2GexPBSrr8wT1VBqnhRLroAPkmxIY7meVrS7042D9/GN/lBi2KKDL0sNzBTg2Y9fD2wIJ7oj8IbpOQF+k8QZbatBiv9ZJfQx8V9qDZ12WzQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760355859; c=relaxed/simple;
-	bh=8eC1BSK/uBIfeMwtMf/eRDAxHcCKFEYEtghB3gXrNbM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WfHh3MVQpvYOG54bFnE/q8/HSxTxhQYuxaHgnr8zgrgHyGor4fxGSpUzh0KX1DFVmqNz3Vp4ALmUVvMPWqKGFU4qUMVOOdywt8g2+89v6fw/x0b2oV7ZvKxxDliH3CdB/fK8GC+vqCA8rcnZMO3hLawSvtBJNrm6J25JYHe/psA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1v8GyA-0004Pm-QG; Mon, 13 Oct 2025 13:44:02 +0200
-Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1v8Gy9-003NPs-2b;
-	Mon, 13 Oct 2025 13:44:01 +0200
-Received: from pengutronix.de (p54b152ce.dip0.t-ipconnect.de [84.177.82.206])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	(Authenticated sender: mkl-all@blackshift.org)
-	by smtp.blackshift.org (Postfix) with ESMTPSA id 77709484B87;
-	Mon, 13 Oct 2025 11:44:01 +0000 (UTC)
-Date: Mon, 13 Oct 2025 13:44:00 +0200
-From: Marc Kleine-Budde <mkl@pengutronix.de>
-To: Dimitri Fedrau <dima.fedrau@gmail.com>
-Cc: Dimitri Fedrau via B4 Relay <devnull+dimitri.fedrau.liebherr.com@kernel.org>, 
-	Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Dimitri Fedrau <dimitri.fedrau@liebherr.com>, 
-	linux-can@vger.kernel.org
-Subject: Re: [PATCH v3 2/2] phy: add basic support for NXPs TJA1145 CAN
- transceiver
-Message-ID: <20251013-burrowing-elk-of-coffee-210990-mkl@pengutronix.de>
-References: <20251013-tja1145-support-v3-0-4a9d245fe067@liebherr.com>
- <20251013-tja1145-support-v3-2-4a9d245fe067@liebherr.com>
- <20251013-unyielding-turquoise-mamba-76a0ea-mkl@pengutronix.de>
- <20251013113605.GA177845@legfed1>
+	s=arc-20240116; t=1760356373; c=relaxed/simple;
+	bh=6K9CgUrOuseZjzIwdmVR7JuCIt1g4fknM+We2b3Dog8=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=fZCOMO3++QqXEfwHHbye9tBh9v2E4h3aenzIP0LoF1kjrWD6uH+T3ZPUE9f2tBcZcyKb5n8fwYDijwA390F8LHiBothir4wOJpO/VmlWLL4DXiajeK3R6cue5dQZ1NaRj1Ew1qWnFmq80UjfkSq6IkE7PAxgki+cDjdlBmIyjjA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=OEU6fTew; arc=none smtp.client-ip=198.47.19.245
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
+	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTP id 59DBqi3l813850;
+	Mon, 13 Oct 2025 06:52:44 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1760356364;
+	bh=4aLM17aUH7GWbLr4Ba8AhRL9yXc7ouny2cE8vrnnVfQ=;
+	h=From:To:CC:Subject:Date;
+	b=OEU6fTeweMMaCQu+ND4oUiFvtbHebEQjazHFOhn4sXPotcwRdbltf8u0B6C+daE2G
+	 8HfWkWpJ8c4x5Fl2cdRK/7KsczZAACScQBy0AHH1/eJVQAi/dLJU/YZ60bBGMzGPKH
+	 LrGB+nbDtkieu9FHwg8y8mSLGfkDTOtuvC4CU/dU=
+Received: from DFLE210.ent.ti.com (dfle210.ent.ti.com [10.64.6.68])
+	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 59DBqi4e3157528
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 13 Oct 2025 06:52:44 -0500
+Received: from DFLE201.ent.ti.com (10.64.6.59) by DFLE210.ent.ti.com
+ (10.64.6.68) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 13 Oct
+ 2025 06:52:44 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE201.ent.ti.com
+ (10.64.6.59) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Mon, 13 Oct 2025 06:52:44 -0500
+Received: from uda0498651.dhcp.ti.com (uda0498651.dhcp.ti.com [172.24.233.117])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 59DBqeYe1998445;
+	Mon, 13 Oct 2025 06:52:41 -0500
+From: Sai Sree Kartheek Adivi <s-adivi@ti.com>
+To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC: <s-adivi@ti.com>
+Subject: [PATCH] arm64: dts: ti: k3-am642-evm: Add DMA support for tscadc
+Date: Mon, 13 Oct 2025 17:22:25 +0530
+Message-ID: <20251013115225.3668641-1-s-adivi@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="7p5ebwh66hrkwuao"
-Content-Disposition: inline
-In-Reply-To: <20251013113605.GA177845@legfed1>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
+Add dma support for tscadc0
 
---7p5ebwh66hrkwuao
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v3 2/2] phy: add basic support for NXPs TJA1145 CAN
- transceiver
-MIME-Version: 1.0
+Signed-off-by: Sai Sree Kartheek Adivi <s-adivi@ti.com>
+---
+ arch/arm64/boot/dts/ti/k3-am642-evm.dts | 3 +++
+ 1 file changed, 3 insertions(+)
 
-On 13.10.2025 13:36:05, Dimitri Fedrau wrote:
-> Am Mon, Oct 13, 2025 at 11:51:51AM +0200 schrieb Marc Kleine-Budde:
-> > On 13.10.2025 11:19:19, Dimitri Fedrau via B4 Relay wrote:
-> > > Add basic driver support for NXPs TJA1145 CAN transceiver which bring=
-s the
-> > > PHY up/down by switching to normal/standby mode using SPI commands.
-> >=20
-> > The PHY supports standby and sleep mode. Does the PHY framework provide
-> > a way to configure this?
-> >=20
->=20
-> Didn't find anything related.
->=20
-> > Why do you put the transceiver into standby not in sleep mode?
-> >=20
-> Datasheet states:
->=20
-> Standby mode is the first-level power-saving mode of the TJA1145A,
-> featuring low current consumption. The transceiver is unable to transmit
-> or receive data in Standby mode, but the INH pin remains active so voltage
-> regulators controlled by this pin will be active.
->=20
-> Sleep mode is the second-level power saving mode of the TJA1145A. In Sleep
-> mode, the transceiver behaves as in Standby Mode with the exception that
-> pin INH is set to a high-ohmic state. Voltage regulators controlled by th=
-is
-> pin will be switched off, and the current into pin BAT will be reduced to=
- a
-> minimum.
->=20
-> I'm assuming that the sleep state would fit into some suspend,
-> power-off, ... scenario, because the INH pin maybe used to control
-> regulators.
+diff --git a/arch/arm64/boot/dts/ti/k3-am642-evm.dts b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
+index 85dcff1049360..52bdf7102192c 100644
+--- a/arch/arm64/boot/dts/ti/k3-am642-evm.dts
++++ b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
+@@ -608,6 +608,9 @@ &tscadc0 {
+ 	/* ADC is reserved for R5 usage */
+ 	status = "reserved";
+ 
++	dmas = <&main_bcdma 0 0x440f 0>, <&main_bcdma 0 0x4410 0>;
++	dma-names = "fifo0", "fifo1";
++
+ 	adc {
+ 		ti,adc-channels = <0 1 2 3 4 5 6 7>;
+ 	};
+-- 
+2.34.1
 
-That makes sense, and I think it depends heavily on the use case of the
-system. This can be implemented as soon as the need arises.
-
-For the whole series:
-
-Reviewed-by: Marc Kleine-Budde <mkl@pengutronix.de>
-
-regards,
-Marc
-
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
-
---7p5ebwh66hrkwuao
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEn/sM2K9nqF/8FWzzDHRl3/mQkZwFAmjs5f0ACgkQDHRl3/mQ
-kZyjqggArjAF75JX1jsP6Oh6UDJKXTCUtRYB0X1u1QmOgNOCdkMtH44l59g81+nW
-5Vm1QYld8NkdmyPu3FugSdCDDxDnVFLX2v9Bwake5eRSHm9RSQFZ1hSblqVZQ0Bx
-ULlWXPZrS+QdhCmtdSAbi7iEbvZtxYcf9M/qjH8vRdpSJ+5BRZ/vIyfwMxJPJgms
-BM6jflWj7zTTFR9EM/9vwlnRc7Hrfe+woZ0BM7aYYjY8ibmWe9Xe6R5m6QQBtDUv
-5PILzA2mxoUkZ/LGXi0OgExuwZp+1LdrLRat+4ZsLTGQqSMHKypuwrB89Z0qMkIv
-/izuJx1+Sy5HQFcgLMVZYdkB9hOKpg==
-=tHfi
------END PGP SIGNATURE-----
-
---7p5ebwh66hrkwuao--
 
