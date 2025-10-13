@@ -1,125 +1,217 @@
-Return-Path: <devicetree+bounces-226216-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226217-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74847BD6038
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 21:55:17 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2912BBD6054
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 22:00:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 33E7D406BE6
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 19:55:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D59273A62D1
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 20:00:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64A7C2D9ED1;
-	Mon, 13 Oct 2025 19:55:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2FC124A046;
+	Mon, 13 Oct 2025 20:00:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="tSMPaCM3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Sxe1mwX5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4982E2D7385;
-	Mon, 13 Oct 2025 19:55:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA9CA1D618E;
+	Mon, 13 Oct 2025 20:00:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760385314; cv=none; b=F9uhjpJ5WtAZY8im2oGs1G4XHpjiJTKD+2DC1S+LWIBaJtGu/9CHkZge5K6+5QRYyL07H8Yzm6m3xT/HBFgzkywtPLMBp7fSCwTTCML8dPRwdwn98m7/ZLXR6yRffpoPoeLBZXu1szOYUAX01QT9B4CxWcCfYmwtsVlX9H9XynQ=
+	t=1760385643; cv=none; b=A8x5ElWGCsmI2kw/ZkFkn7tG+8ngLBUDPrT9FPytkNwucwhW1GrpDIm1PMTjtbWf7al+/PHzkQ8xjofKpgHFgPL4SbQ15KQEiw6iDcZSBQnC7KqXRlVOILhKfpgKR99ii4L5esB1TLYyfGD2imQnkjUXcuLjij7tjA7iA6Dg3Ho=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760385314; c=relaxed/simple;
-	bh=p04emB7EWJKdYHfPdfNWI5BlN1aHWFazFo2EChhEZhw=;
+	s=arc-20240116; t=1760385643; c=relaxed/simple;
+	bh=Pp/wUQvCcGY/kK52Ly1VfDofH1MmCFpfDv4Y9TLAeac=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=R4RGoAawFQUXINQlaUPi5fb/xzWOGECYVnaQP/teZSHghHV/fG64lGRuhEFelTeCQEyxjyKGRcFB22qjIRJY9okUiIgyN5YxdFp0F+RDSNaUxFsM686Dr2HPVg7wxbM4JpC6Rsy91VpmqZe/eCQ6Qm1RJn+KXrBgA2XcZ7VEVpg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=tSMPaCM3; arc=none smtp.client-ip=185.246.84.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id 805B71A134E;
-	Mon, 13 Oct 2025 19:55:06 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 45DA66067B;
-	Mon, 13 Oct 2025 19:55:06 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 10BD9102F227A;
-	Mon, 13 Oct 2025 21:54:55 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1760385305; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 in-reply-to:references; bh=ueA4Mw4ZvAdPduByR8LCFz7NV7MIajA8VN4BjDi+iYc=;
-	b=tSMPaCM3u/5AMWi6C2uaGeO7nteYc8EWKCbf8Atx+55xMokblB8D7uyqQUIN5UN0VCyf8M
-	92rSu2RHAMygLwiTzDHbfNr6o39la14ofppeSKWml+FP2LeSBi+tMVaA9t21CfewwODbPY
-	O2iuzUWMZ9m3sdCASDH/6F85ruQDAszHZA2BlFfDdR01oDoTOGJcZVTzMKsl+PR7xrtB/u
-	kCvU5b6eyw7dGzYrzu/ZYfz+585J2Rmp3YyycCPmvrqpkvXzI4JJICjnHtrTPDlVVxjYUD
-	8Lnbu5vdBtJDAqrcnk19G+o0IESLUGkvny+JXMAEGdeZnfZ8WdPwOeSuFhLf8w==
-Date: Mon, 13 Oct 2025 21:54:55 +0200
-From: Alexandre Belloni <alexandre.belloni@bootlin.com>
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Frank Li <Frank.Li@nxp.com>, Miquel Raynal <miquel.raynal@bootlin.com>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=EX6/TEmA1JnJvsOb27TVdipM4/u2WA6MiqEbX0ZbczSmM3oojNFG3SBir8NvfkZFsi5RgvK+p/yHy/oS65L18rW+znQEKaSwv8T+BRA2gGjDfodDX0Ke20/6kq4OVFtKIqfZmSL6FT8ORXq4Cg1qriE0qLCRqOpKA3YXcCY7ll8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Sxe1mwX5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82542C4CEE7;
+	Mon, 13 Oct 2025 20:00:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1760385643;
+	bh=Pp/wUQvCcGY/kK52Ly1VfDofH1MmCFpfDv4Y9TLAeac=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Sxe1mwX5fbLJATXzJ2JuuwYg7tu1htDS2VKhlzgTry3nglfBTH/yGASCB2FoDzAw/
+	 U24HyDuLbH81n6eJkTqiz7oZaf9eVclaM0F4g1GAOQM81ombjqD8O3tN11D31+9VHd
+	 OKFriDi6hluF8ZmrtdeXCpbBvJqkpDIB6BSOUv1qhfXDJtcSYiSE/nUfzPbRWpH4l2
+	 S6AISM5QX1fqv6k9lm6R4uvVsGx93RTo8hoUX16ww6/yhMlkUREYrxAB0vy1W+0Una
+	 CNkhfiTcHeBlR/P62rvd1ItsfRHSJEEvQUauBC5vhe8EDR2gFdzZ2VpFrdmRuwljfq
+	 lwkdbFTO+nEkQ==
+Date: Mon, 13 Oct 2025 21:00:39 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Marek Vasut <marek.vasut@mailbox.org>
+Cc: linux-clk@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-i3c@lists.infradead.org,
-	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
-	linux-iio@vger.kernel.org, joshua.yeong@starfivetech.com,
-	devicetree@vger.kernel.org, Carlos Song <carlos.song@nxp.com>,
-	Adrian Fluturel <fluturel.adrian@gmail.com>
-Subject: Re: [PATCH v5 0/5] i3c: Add basic HDR mode support
-Message-ID: <2025101319545551cfb399@mail.local>
-References: <20251007-i3c_ddr-v5-0-444184f7725e@nxp.com>
- <20251012180327.5d94dda2@jic23-huawei>
+	Michael Turquette <mturquette@baylibre.com>,
+	Rob Herring <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: clk: si522xx: Clock driver for Skyworks
+ Si522xx I2C PCIe clock generators
+Message-ID: <20251013-finally-stopped-7f5ebac801b3@spud>
+References: <20251011223846.261652-1-marek.vasut@mailbox.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="fePTil87fCsJXjR+"
+Content-Disposition: inline
+In-Reply-To: <20251011223846.261652-1-marek.vasut@mailbox.org>
+
+
+--fePTil87fCsJXjR+
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251012180327.5d94dda2@jic23-huawei>
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Transfer-Encoding: quoted-printable
 
-On 12/10/2025 18:03:27+0100, Jonathan Cameron wrote:
-> On Tue, 07 Oct 2025 16:06:12 -0400
-> Frank Li <Frank.Li@nxp.com> wrote:
-> 
-> > Add basic HDR mode support, only support private transfer, not support
-> > CCC command.
-> > 
-> > Update i3c framework API to allow pass down mode and extend driver callback
-> > function.
-> > 
-> > Implement HDR transfer in svc i3c master driver.
-> > 
-> > Simplifed HDR flow is (ref i3c spec line 5514) Figure 129
-> > 
-> > <--              SDR            ---> | <--- HDR
-> > START 0x7E RnW(0) ACK CCC(ENTHDR0) T   HDR-CMD(00-7f write, 80--ff read)
-> > 
-> >                                     ----> |  
-> > HDR-DATA HDR-CRC HDR-RESTART .... HDR-EXIT
-> > 
-> > Note: HDR-CMD is 16bit data, which included 7bit slave address and 8bit
-> > read/write command.
-> > 
-> > svc hardware can auto issue SDR part.
-> > 
-> > Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> 
-> Whilst there will probably have to be a v6 for the ACPI ID issue in patch 5,
-> I'd like to ask the question of how are we planning to merge this?
-> 
-> Maybe an immutable branch either in IIO or I3C trees that the other one picks up?
-> 
-> It's a new driver so could gamble on taking the IIO driver the I3C tree but even
-> then I'd like a topic / immutable branch in case any IIO wide refactors or similar
-> hit this cycle.
-> 
+On Sun, Oct 12, 2025 at 12:35:59AM +0200, Marek Vasut wrote:
+> Document the Skyworks Si522xx PCIe clock generators. Supported models are
+> Si52202/Si52204/Si52208/Si52212. While chip is similar to Si521xx, it also
+> contains many subtle differences to justify separate driver.
+>=20
+> The Si522xx has different register and bit layout, supports spread spectr=
+um
+> clocking and slew rate settings, and no longer contains the old BC Byte C=
+ount
+> configuration register. Instead, the I2C protocol is yet again very sligh=
+tly
+> different, but this time at least compatible with regmap.
+>=20
+> Signed-off-by: Marek Vasut <marek.vasut@mailbox.org>
+> ---
+> Cc: Conor Dooley <conor+dt@kernel.org>
+> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+> Cc: Michael Turquette <mturquette@baylibre.com>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: Stephen Boyd <sboyd@kernel.org>
+> Cc: devicetree@vger.kernel.org
+> Cc: linux-clk@vger.kernel.org
+> ---
+>  .../bindings/clock/skyworks,si522xx.yaml      | 79 +++++++++++++++++++
+>  1 file changed, 79 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/skyworks,si52=
+2xx.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/clock/skyworks,si522xx.yam=
+l b/Documentation/devicetree/bindings/clock/skyworks,si522xx.yaml
+> new file mode 100644
+> index 0000000000000..6ad26543f9d21
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/skyworks,si522xx.yaml
 
-I can definitively provide an immutable branch once this goes in or if
-you are more comfortable with this, I guess there is no urgency and we
-could apply this over two cycles, first the I3C part and then you can
-take the driver.
+Can you just pick one of the compatibles here?
 
+> @@ -0,0 +1,79 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/skyworks,si522xx.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Skyworks Si522xx I2C PCIe clock generators
+> +
+> +description: |
+> +  The Skyworks Si522xx are I2C PCIe clock generators providing
+> +  from 2 to 12 output clocks.
+> +
+> +maintainers:
+> +  - Marek Vasut <marek.vasut@mailbox.org>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - skyworks,si52202
+> +      - skyworks,si52204
+> +      - skyworks,si52208
+> +      - skyworks,si52212
+> +
+> +  reg:
+> +    const: 0x6a
+> +
+> +  '#clock-cells':
+> +    const: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: XTal input clock
+> +
+> +  skyworks,out-amplitude-microvolt:
+> +    enum: [ 600000, 650000, 700000, 750000, 800000, 850000 ]
+> +    description: Output clock signal amplitude
+> +
+> +  skyworks,out-spread-spectrum:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [ 100000, 99750, 99500 ]
+> +    description: Output clock down spread in pcm (1/1000 of percent)
+> +
+> +patternProperties:
+> +  "^DIFF[0-11]$":
+> +    type: object
+> +    description:
+> +      Description of one of the outputs (DIFF0..DIF11).
 
--- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+typo, DIFF11.
+Does this regex actually work? I don't think it allows anything other
+than DIFF0 and DIFF1, since it evaluates 0-1 as a range and 1 as another
+range.
+
+Cheers,
+Conor.
+
+pw-bot: changes-requested
+
+> +
+> +    properties:
+> +      skyworks,slew-rate:
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        enum: [ 1900000, 2400000 ]
+> +        description: Output clock slew rate select in V/ns
+> +
+> +    additionalProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - '#clock-cells'
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +        #address-cells =3D <1>;
+> +        #size-cells =3D <0>;
+> +
+> +        clock-generator@6a {
+> +            compatible =3D "skyworks,si52202";
+> +            reg =3D <0x6a>;
+> +            #clock-cells =3D <1>;
+> +            clocks =3D <&ref25m>;
+> +        };
+> +    };
+> +
+> +...
+> --=20
+> 2.51.0
+>=20
+
+--fePTil87fCsJXjR+
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaO1aZwAKCRB4tDGHoIJi
+0mlSAP9yVVaqkRVqRNtkZ0Ycq/6I3Siw6V3YOMRYt0faimhBrQEAy5EcD1KzGWPb
+sYjW7qxLujaalJf2kI+EwvHMmzyqmAY=
+=UoBZ
+-----END PGP SIGNATURE-----
+
+--fePTil87fCsJXjR+--
 
