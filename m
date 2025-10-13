@@ -1,394 +1,224 @@
-Return-Path: <devicetree+bounces-226158-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226159-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5A9EBD5602
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 19:09:27 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id E4FDDBD5680
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 19:13:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 831CE3E3BA8
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 17:02:53 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id AE6DF4F7A58
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 17:06:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBA4A2BD5BC;
-	Mon, 13 Oct 2025 17:02:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AAF22C0F79;
+	Mon, 13 Oct 2025 17:06:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=iitb.ac.in header.i=@iitb.ac.in header.b="KZKEfVbi"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="RQvsbm9l"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp1.iitb.ac.in (smtpd9.iitb.ac.in [103.21.126.64])
+Received: from GVXPR05CU001.outbound.protection.outlook.com (mail-swedencentralazon11013029.outbound.protection.outlook.com [52.101.83.29])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4992F29993A
-	for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 17:02:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.21.126.64
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760374971; cv=none; b=jtwxxCRThmvK9pDur//vPuk7yQSpGhGokTJUiAXDDrzYdjjM3yatrGXuN9/DkqqCfMkItex2zhKBik/evDcxcW0/X7ZLMyrEKer5kPXUM1UXAd0J4DnFG5a2z7JnJ705eZgdw0xBImrtUKfb2dWIltP+QnbcRxkPfeH8pfJICu8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760374971; c=relaxed/simple;
-	bh=3vo9DsN8zJZWL9FKSrzbwvpmYcFnCG4RDZ2i5yOwu38=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PuG7FChA3PK3SXz0EKtka6cOPI6ieKewR6NwmOplaR5NjgwnTcS+te1r7Fgpt2fbJXRJ1huOvg7rPQ2mzEDSrHM9BhaFClNItqqpTErLt5izkX6T7VdcK+G8bYZKVgD//isWvgCIS4pdN9k9E05ukZ8mMpmk5pZi6A33KoQKhkA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ee.iitb.ac.in; spf=pass smtp.mailfrom=ee.iitb.ac.in; dkim=pass (1024-bit key) header.d=iitb.ac.in header.i=@iitb.ac.in header.b=KZKEfVbi; arc=none smtp.client-ip=103.21.126.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ee.iitb.ac.in
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ee.iitb.ac.in
-Received: from ldns2.iitb.ac.in (ldns2.iitb.ac.in [10.200.12.2])
-	by smtp1.iitb.ac.in (Postfix) with SMTP id 84B65103847D
-	for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 22:32:46 +0530 (IST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.iitb.ac.in 84B65103847D
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=iitb.ac.in; s=mail;
-	t=1760374966; bh=3vo9DsN8zJZWL9FKSrzbwvpmYcFnCG4RDZ2i5yOwu38=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=KZKEfVbipddZsLdK4OGECh+p5xDEsGyrb1SYwBO/3xomEhQqVXPNyEnjsaDCv0PRH
-	 c12XMQf98BXPkmvYEcZOkcxZ6eya9PSkeihjJPK2BwZKld1RUJqQzxJquJfZskebFB
-	 p5Hb/0+BzfjcR2EJmKCmQEEeEHC/VeWRZU3lc8vc=
-Received: (qmail 13359 invoked by uid 510); 13 Oct 2025 22:32:46 +0530
-X-Qmail-Scanner-Diagnostics: from 10.200.1.25 by ldns2 (envelope-from <akhilesh@ee.iitb.ac.in>, uid 501) with qmail-scanner-2.11
- spamassassin: 3.4.1. mhr: 1.0. {clamdscan: 0.100.0/26337} 
- Clear:RC:1(10.200.1.25):SA:0(0.0/7.0):. Processed in 5.645337 secs; 13 Oct 2025 22:32:46 +0530
-X-Spam-Level: 
-X-Spam-Pyzor: Reported 0 times.
-X-Envelope-From: akhilesh@ee.iitb.ac.in
-X-Qmail-Scanner-Mime-Attachments: |
-X-Qmail-Scanner-Zip-Files: |
-Received: from unknown (HELO ldns2.iitb.ac.in) (10.200.1.25)
-  by ldns2.iitb.ac.in with SMTP; 13 Oct 2025 22:32:40 +0530
-Received: from bhairav.ee.iitb.ac.in (bhairav.ee.iitb.ac.in [10.107.1.1])
-	by ldns2.iitb.ac.in (Postfix) with ESMTP id 01C7F3414FF;
-	Mon, 13 Oct 2025 22:32:40 +0530 (IST)
-Received: from bhairav-test.ee.iitb.ac.in (bhairav.ee.iitb.ac.in [10.107.1.1])
-	(Authenticated sender: akhilesh)
-	by bhairav.ee.iitb.ac.in (Postfix) with ESMTPSA id D028A1E8152E;
-	Mon, 13 Oct 2025 22:32:39 +0530 (IST)
-Date: Mon, 13 Oct 2025 22:32:35 +0530
-From: Akhilesh Patil <akhilesh@ee.iitb.ac.in>
-To: jic23@kernel.org, dlechner@baylibre.com, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, nuno.sa@analog.com,
-	andy@kernel.org, marcelo.schmitt1@gmail.com, vassilisamir@gmail.com,
-	salah.triki@gmail.com
-Cc: skhan@linuxfoundation.org, linux-iio@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	akhileshpatilvnit@gmail.com
-Subject: [PATCH v2 2/2] iio: pressure: adp810: Add driver for adp810 sensor
-Message-ID: <0b72866f4e5ac28c78f6d683a1ca659a4239b68e.1760374257.git.akhilesh@ee.iitb.ac.in>
-References: <cover.1760374257.git.akhilesh@ee.iitb.ac.in>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C18A2989B5;
+	Mon, 13 Oct 2025 17:06:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.83.29
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1760375168; cv=fail; b=b3c37Ht7QjeHmiPVEy3MSEOp2T582ZLY4G5G9BQ1/Epa9vJeql6s0yvyRl4myOuCg/bcnpdCahAz4a2Bz6S49iHQewHD4/pNr+KYHWF5cVg/Alpj5rJbZzxZlJVxllwXk9VtslUu5isBTWbn4e/Jm3+F4N47XF40qsFVIZE9wxc=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1760375168; c=relaxed/simple;
+	bh=VWHHTmxP3nfxJJ81CTh62OMSpxoXXUPCDEWs7/TS3xg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=T2F6qlll3rmtVoadvKRj5qqO5u3HXTXDZZumiExM8fP9HwlvKoxMpyJ+udAb424smVyyZj1yEZgzU0e67hWwqFXRyG9g4TYosZwzNOSruKi1haU4HDzz3TJPfCdN6mmCVUxue4A1RrvnwsE/HwFKgoiuoJV8JEhdb/1SJf0iTH8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=RQvsbm9l; arc=fail smtp.client-ip=52.101.83.29
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=CwHiWuwJVS2etjKmSTcnTHtJjGHosKtghgIbrlNTNcLLtO1z6spc/LXeG3DEsvlekNKYzBr/7vjVmbp1qnYs3riM3u/E6wSkA/PgERoCZjN2XpmOI8/hstQQexpeKn4O4Y7oD12+2a89LZQv5qX1egLhOIvBF2E9pADgp2ULVb7MIV4lBgI/OMFhYGIoe1D7+GoeNz0vcdNxlsqqXzXYWSJVmfBCoy938htDkhDXa4zo3alSBnmkguOAjgw5u99kSqoq9XRAWm5sBlgPLfeGVAbBo3jqEkGgAuQ8bdJBKaR/AnLLO0YDsJrcy3yUoZw4EMW/CuLoAaEn5VvvF5ynDA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ygf9JTPodTZ5YUnmkVxjIKHm5lwK+9auDCnz68qc7Kw=;
+ b=yQQE/yvDdquhy4YmFYoC83n6JMlfAQAhd5bZL85TH97466OmX6xH3hXZX/PcoV+tqEriYUnAM81bGYQNM9ZC6TqFUMjJQzgsynd6XDK0bOHKvr0lSrxDhLnBWcbvIQ7vL5xPfrs7Qrh3dmaEVRI2Qs1vwsGtqBii8jv4gHWZlS884bq023q+JnV9j7fQuTkIeutb/XSKN0jiigdwMxva6VT9B0PsvljREpQVVgoYfJ7at4WCr/omBFWtml9eOExbAVQfUWwJ9PCCMnUPvOiLBA8dK2K1/Sk5gEKyNHIc83bBR0leGZeqlEf6PHBOgrOOO9lxY6MxhGQlephvEK6CSw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ygf9JTPodTZ5YUnmkVxjIKHm5lwK+9auDCnz68qc7Kw=;
+ b=RQvsbm9lWohMx8vl1d0tTMa7y6TJs/dtGp/ZRVF9k2GAA/MWb3f/Z/2v0OVqjH60Ngt7QrWrsRucjzT8G1A8gyvxLaeioDPXQgPxyVNEcT2vxT5SOvwEkwUtZQWJphupDZqBU3FeyNYHtjoE1DevuS2Q0fp3qHQTkUsrap3OmVJz0RvTD2//HBCm+AFwSD0VuqbBhOWITGNWkBOt6FBMzbaiNN5TYVN7h/F/+XuWzcHOQ8aSAu30EugKSFosIxknL1n4KFKbBS6Yr1tzkWfk5mxB6OridYPrm6bFzPb4HVHC9fkmaL4LJyNxCKUQOCLnDDxxbgp+ZL+3Uw+ZrdQn1Q==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AS4PR04MB9621.eurprd04.prod.outlook.com (2603:10a6:20b:4ff::22)
+ by VI0PR04MB10590.eurprd04.prod.outlook.com (2603:10a6:800:264::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9203.12; Mon, 13 Oct
+ 2025 17:06:01 +0000
+Received: from AS4PR04MB9621.eurprd04.prod.outlook.com
+ ([fe80::a84d:82bf:a9ff:171e]) by AS4PR04MB9621.eurprd04.prod.outlook.com
+ ([fe80::a84d:82bf:a9ff:171e%4]) with mapi id 15.20.9203.009; Mon, 13 Oct 2025
+ 17:06:00 +0000
+Date: Mon, 13 Oct 2025 13:05:51 -0400
+From: Frank Li <Frank.li@nxp.com>
+To: Marek Vasut <marek.vasut@mailbox.org>
+Cc: dri-devel@lists.freedesktop.org, Abel Vesa <abelvesa@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Fabio Estevam <festevam@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Liu Ying <victor.liu@nxp.com>, Lucas Stach <l.stach@pengutronix.de>,
+	Peng Fan <peng.fan@nxp.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-clk@vger.kernel.org
+Subject: Re: [PATCH 08/39] drm/imx: dc: de: Pass struct
+ dc_de_subdev_match_data via OF match data
+Message-ID: <aO0xb8jkahZiSV2a@lizhi-Precision-Tower-5810>
+References: <20251011170213.128907-1-marek.vasut@mailbox.org>
+ <20251011170213.128907-9-marek.vasut@mailbox.org>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251011170213.128907-9-marek.vasut@mailbox.org>
+X-ClientProxiedBy: SJ0PR13CA0192.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c3::17) To AS4PR04MB9621.eurprd04.prod.outlook.com
+ (2603:10a6:20b:4ff::22)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cover.1760374257.git.akhilesh@ee.iitb.ac.in>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AS4PR04MB9621:EE_|VI0PR04MB10590:EE_
+X-MS-Office365-Filtering-Correlation-Id: eae8e9b9-4c9c-4f7d-18cf-08de0a7ac8dc
+X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+ BCL:0;ARA:13230040|366016|1800799024|19092799006|7416014|376014|52116014|7053199007|38350700014;
+X-Microsoft-Antispam-Message-Info:
+ =?us-ascii?Q?6Id13xfHxzsFdZN98ijRICBny2dTkXZ9pSR/431NZ0RtgRK8kWZuO/Bd44GO?=
+ =?us-ascii?Q?JFTdz50aKGgyweubiiFrsqv7wlbrbRXE/+m13QqKR9WI0IPG3yZzXC2lYINu?=
+ =?us-ascii?Q?i8Sl8qfNerLnSpRmrT8pRmlZ6Ej4gk3q76paG73+PxvGC3/U9r4ILPDfENm2?=
+ =?us-ascii?Q?jlq+fbZDXM/U4560LXjNVsVMCDekWzRZJ1iCnZv3f22v48wbFq1j6h4wXCPz?=
+ =?us-ascii?Q?Ce1Ospov/40jfkndVrCjRh+SV0RI6AZ8bs8MN7UCwhVIUy5lFB+xpuDYh5Rb?=
+ =?us-ascii?Q?ZJ0vc5v+KildStIoGp48d5edFfvSYllsiD2b05ghAtj8ECni94qHGDWfT7og?=
+ =?us-ascii?Q?S03XwkqmWU1nKvpFTgwId4nDB6UN+0p1kyFc5YN9hPQG59QztvcLc9b/vft6?=
+ =?us-ascii?Q?ddSz01WI6ecoNcS2YHhx0ps1y6wqDPmNuR1BQ4lb9aoWYMSPUl6i0ubB3ZPu?=
+ =?us-ascii?Q?fWaCbMcZMqv/dOaV+DDQiS5Urf+b7YztYkM80dfm5f4W4VSOVtSDj7+kQn2q?=
+ =?us-ascii?Q?5ErIjlpCc7HkWs93BmSliQG3HOtEOKjRzlA+dvBBTx0yZhldO4GYghO2Ey1T?=
+ =?us-ascii?Q?HXHUBooEEU5SccHaiA9oxj9BKGWr1ZBKKFbqKfBFtfIcFZ/W5r79E1xWMVV0?=
+ =?us-ascii?Q?ma7nMDbmC2drv5DLjXT6x6uHTznIvlCLX1XRYP1WqKJmfcRnoRYimUTQjoKz?=
+ =?us-ascii?Q?LcZRbbeR4PzXyL298rOKDdrbr9ayB1W1TGuRgmiN7+KvhTFYJnzLQTj/tUlK?=
+ =?us-ascii?Q?8hwib4Iz+VAjVIMyKAgKPq4xaj/e9SeFuWrNjJr5ftHBsli0O52FjwwPNhhu?=
+ =?us-ascii?Q?UgInrtMC8SQtWRyge118PPzVHx8s9QbZn3pTv3rFk50Cb9Ia+2qiujne4iOH?=
+ =?us-ascii?Q?ug4fWuCEff8KqiohIHLkNTnLZOYb5y9kBxROhT8etFq8C/r94j/ojk8mUR3p?=
+ =?us-ascii?Q?EPs8/DYFWexgYHu7crSypqjZR1ZRI6q3+mfdPN8YkNFHu4AfPzYnQxW2Da2P?=
+ =?us-ascii?Q?PvKheFnZmlZHDLvJmyA+I8qw3ikmJTyB0QZX39e3NagVzLGrB1EOw5c7lkho?=
+ =?us-ascii?Q?FhDxqqGAHe4w7zCkRrlUqJTD/iaXrPsejSmRv7Z4DM2Gijy1bPg+O9YiahoE?=
+ =?us-ascii?Q?Y1sJC8NW3VVrwez1sSDrCevJb5797WZGaNs+85m59zztkNFUuVzjJEZlBC8G?=
+ =?us-ascii?Q?N0rnMSwRssHHV9/CaUiFxaBEP3JeX8XXo34nkDQjRsNva2nv5NvqraxD0Phl?=
+ =?us-ascii?Q?jQrkkSP5NAo9a9gin79wMNPjfGpFE/VRyh3K9y7pYP2nGAbEElqG89qXsG1+?=
+ =?us-ascii?Q?5Xt3/K2RGchgV5QHPmme8NvXr0zJ2pNSC3wRu+NNDYzHyI9q65sU2ndrwcxE?=
+ =?us-ascii?Q?r6Bqj8paouE6tJ4koOJuY3n4wJZMRiqxnbOIqHMo2vnWcTojj6l1IuJ7jsNv?=
+ =?us-ascii?Q?/efsuAu4c9tnsSqXxBt4G9r4Yo9XfQGEX1YzqotD1JzO2/FcfEOngCcVzQka?=
+ =?us-ascii?Q?X0zGtPU3Kmv0AcgkXgtlmSMRC92foU1/X6rl?=
+X-Forefront-Antispam-Report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS4PR04MB9621.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(19092799006)(7416014)(376014)(52116014)(7053199007)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+ =?us-ascii?Q?fc28F31/nnEOXlA4Eb0R2wLM8KtmjziLTleWcRYPV/68ozLMGJllhIonTUtg?=
+ =?us-ascii?Q?dW/U5VC8fJP3iet0fmY8LJYlbLFeoJaAIksyJWWqBi0GNOlpkryAiIbNYtVr?=
+ =?us-ascii?Q?eFeXctWCUQ5lVsaAO6Jy/vrIhe4noouBRQ3HebZDCWo0LkloDUze6W6JmPsw?=
+ =?us-ascii?Q?44PHn4hkvL4zpjCzNoiJpXkKfi66EbN1Z6GvZ+kCY3aJb4sEJIaIN1hDxtL0?=
+ =?us-ascii?Q?fOnXaYmDnDrDa6rUQIeZIyM1z/ncoThdvpbTENthlvtDfV8GpnTjTdt385n/?=
+ =?us-ascii?Q?HULjKOHshzZMU3sYi+gin/q4ieiihLrw+/vCoZMeYfpeDxHd7TDTLsUBWZBd?=
+ =?us-ascii?Q?JVqjCKKONtmSkAR1QWN2TRe8zJakVt9zPeC0uDgHXlQcA+VU6QUvTBsCOjxd?=
+ =?us-ascii?Q?lKg8NkqcrNuE5Cd9xgTP796cpGRJcKSYssJpGdlGQHvQMqkZpyv9iS5ROKN1?=
+ =?us-ascii?Q?/GkOobbXWhd72jIrmzDnxt4VtVjNcNbQofQM6otbuVnmxXo/fwVoI397Svcm?=
+ =?us-ascii?Q?QpYb/ztxiCtdbhJVmzLCkiYGCCHF8rFgK1flAtkKyYJrbTHLuiUfWuPVFyiH?=
+ =?us-ascii?Q?eEfpuWvCX/+Rt+ZII9csEjqQy7WTxtswNm0CoXw8Tz60PIg9DLVJFMr4W6pi?=
+ =?us-ascii?Q?ZeXIOWa5uRWtifJG3O7M7h3CVAZluZhddAn1BkegO+FBgICpQMt/o8KlONXQ?=
+ =?us-ascii?Q?g3LbbA8rwuG9JwFkS6A3ScgTtW/pSJXlycYHkv9DpkJWNfqSuuj6l8Z2G8yx?=
+ =?us-ascii?Q?tRdVGbAX41WZ+zeYvt4XvjfIoPkt/r9QxSvugeh83AjK2ZjfSuq2mEwyH17t?=
+ =?us-ascii?Q?DL5Kt6+vWt9mxnpXAf6VGxRAkNJ9Kjd7vzQMewJZi4F3l+abdHtpbdb0hm3a?=
+ =?us-ascii?Q?zCjdR/MADBrOrsr06ZKMbTLeWOoiHTOmW4MyMQWAkXkRhrNoOyePcJ+1oZca?=
+ =?us-ascii?Q?Ni4qv1rAYIvP8I+3QVo+jhGEMvr+holULx0ghPTIcLJArgNiQe/2h25XAla6?=
+ =?us-ascii?Q?5YEmk6Cd8ma1MzcG1W+D2+pj1G+CVEavxSy+1t58K3DtCegxvqMtdkY7S+D3?=
+ =?us-ascii?Q?/fpQFRe9ikS96+n3ed/TYnH6CExAvob/1k0DGuqCG06L/QvCmZgUGBLbE9xM?=
+ =?us-ascii?Q?hJf9XPLf3rRGOwVD8zia+tR0Dpz9mV/HUhWTpSHb7kz4+xDItjnRjpAtagXF?=
+ =?us-ascii?Q?VF63gGRy+inR7201irp2ZrYiCzDOkjKNB4wUfNWjG9CcnqEJzaJJQtcK9WdN?=
+ =?us-ascii?Q?PByVhE6bFGS/1OEW7R7Jqk+JKIzytqQrZ4Mzl7wf2YTidC3zb3VoU6UQ7/44?=
+ =?us-ascii?Q?8bfdCYG/coCxVLfLMlcHXWEo/I5kERTwscGuNoMVg5QmGBWdzQ4kBOJpLAk7?=
+ =?us-ascii?Q?UL66b0c6RbM72FCK7mQwLgLZTC1cWw/llaTaGe2B+hmoCE+DzGf5Kw7utlXl?=
+ =?us-ascii?Q?szlSaOJLsqCi16dwB/LMrd0Lta4kfDxNyLgNMpyntYfx3WxuRHU4LFWEd+Xy?=
+ =?us-ascii?Q?sBgbQCFGeYfMR4mHmXEfffbwcKqnS6Ax5tlmWqMCnvV/eENiz18qvPv4pcak?=
+ =?us-ascii?Q?lxOgaotOzy4ulYLOQa8=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: eae8e9b9-4c9c-4f7d-18cf-08de0a7ac8dc
+X-MS-Exchange-CrossTenant-AuthSource: AS4PR04MB9621.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Oct 2025 17:06:00.8650
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: kGL0fM3XHj7fMe610U9oRpGjqLwaOJXyF2c1KoxmFQh8Ty2FFA/lYGS4gtxGPzQUTsNnjw5ukiZsv2X4s5xkyA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI0PR04MB10590
 
-Add driver for Aosong adp810 differential pressure and temperature sensor.
-This sensor provides an I2C interface for reading data.
-Calculate CRC of the data received using standard crc8 library to verify
-data integrity.
+On Sat, Oct 11, 2025 at 06:51:23PM +0200, Marek Vasut wrote:
+> Introduce struct dc_de_subdev_match_data which describes the differences
+> between i.MX8QXP and i.MX95, which in this case is one register offset
+> and address space offsets, and pass it as OF match data into the driver,
+> so the driver can use the match data to correctly access Display Engine
+> polarity control register on each SoC. This is a preparatory patch for
+> i.MX95 addition. No functional change.
+>
+> Signed-off-by: Marek Vasut <marek.vasut@mailbox.org>
+> ---
+> Cc: Abel Vesa <abelvesa@kernel.org>
+> Cc: Conor Dooley <conor+dt@kernel.org>
+> Cc: Fabio Estevam <festevam@gmail.com>
+> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+> Cc: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
+> Cc: Liu Ying <victor.liu@nxp.com>
+> Cc: Lucas Stach <l.stach@pengutronix.de>
+> Cc: Peng Fan <peng.fan@nxp.com>
+> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: Shawn Guo <shawnguo@kernel.org>
+> Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: devicetree@vger.kernel.org
+> Cc: dri-devel@lists.freedesktop.org
+> Cc: imx@lists.linux.dev
+> Cc: linux-arm-kernel@lists.infradead.org
+> Cc: linux-clk@vger.kernel.org
+> ---
+>  drivers/gpu/drm/imx/dc/dc-de.c | 44 +++++++++++++++++++++++-----------
+>  drivers/gpu/drm/imx/dc/dc-de.h |  1 +
+>  2 files changed, 31 insertions(+), 14 deletions(-)
+>
+...
 
-Tested on TI am62x sk board with sensor connected at i2c-2.
+> diff --git a/drivers/gpu/drm/imx/dc/dc-de.h b/drivers/gpu/drm/imx/dc/dc-de.h
+> index 1ac70b4f6276f..e054ad88190e1 100644
+> --- a/drivers/gpu/drm/imx/dc/dc-de.h
+> +++ b/drivers/gpu/drm/imx/dc/dc-de.h
+> @@ -42,6 +42,7 @@ struct dc_de {
+>  	int irq_shdload;
+>  	int irq_framecomplete;
+>  	int irq_seqcomplete;
+> +	unsigned int reg_polarityctrl;
 
-Signed-off-by: Akhilesh Patil <akhilesh@ee.iitb.ac.in>
----
- MAINTAINERS                   |   7 ++
- drivers/iio/pressure/Kconfig  |  12 ++
- drivers/iio/pressure/Makefile |   8 +-
- drivers/iio/pressure/adp810.c | 212 ++++++++++++++++++++++++++++++++++
- 4 files changed, 235 insertions(+), 4 deletions(-)
- create mode 100644 drivers/iio/pressure/adp810.c
+suggest add pointer to dc_de_subdev_match_data, in case need more in future
+and avoid copy data again.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 46126ce2f968..bb30f7b31cb7 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -3745,6 +3745,13 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/iio/chemical/aosong,ags02ma.yaml
- F:	drivers/iio/chemical/ags02ma.c
- 
-+AOSONG ADP810 DIFFERENTIAL PRESSURE SENSOR DRIVER
-+M:	Akhilesh Patil <akhilesh@ee.iitb.ac.in>
-+L:	linux-iio@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/iio/pressure/aosong,adp810.yaml
-+F:	drivers/iio/pressure/adp810.c
-+
- ASC7621 HARDWARE MONITOR DRIVER
- M:	George Joseph <george.joseph@fairview5.com>
- L:	linux-hwmon@vger.kernel.org
-diff --git a/drivers/iio/pressure/Kconfig b/drivers/iio/pressure/Kconfig
-index d2cb8c871f6a..2fe9dc90cceb 100644
---- a/drivers/iio/pressure/Kconfig
-+++ b/drivers/iio/pressure/Kconfig
-@@ -339,4 +339,16 @@ config ZPA2326_SPI
- 	tristate
- 	select REGMAP_SPI
- 
-+config ADP810
-+	tristate "Aosong adp810 differential pressure and temperature sensor"
-+	depends on I2C
-+	select CRC8
-+	help
-+	  Say yes here to build adp810 differential pressure and temperature
-+	  sensor driver. ADP810 can measure pressure range up to 500Pa.
-+	  It supports an I2C interface for data communication.
-+
-+	  To compile this driver as a module, choose M here: the module will
-+	  be called adp810
-+
- endmenu
-diff --git a/drivers/iio/pressure/Makefile b/drivers/iio/pressure/Makefile
-index 6482288e07ee..a21443e992b9 100644
---- a/drivers/iio/pressure/Makefile
-+++ b/drivers/iio/pressure/Makefile
-@@ -5,6 +5,7 @@
- 
- # When adding new entries keep the list in alphabetical order
- obj-$(CONFIG_ABP060MG) += abp060mg.o
-+obj-$(CONFIG_ADP810) += adp810.o
- obj-$(CONFIG_ROHM_BM1390) += rohm-bm1390.o
- obj-$(CONFIG_BMP280) += bmp280.o
- bmp280-objs := bmp280-core.o bmp280-regmap.o
-@@ -15,6 +16,7 @@ obj-$(CONFIG_DPS310) += dps310.o
- obj-$(CONFIG_IIO_CROS_EC_BARO) += cros_ec_baro.o
- obj-$(CONFIG_HID_SENSOR_PRESS)   += hid-sensor-press.o
- obj-$(CONFIG_HP03) += hp03.o
-+obj-$(CONFIG_HP206C) += hp206c.o
- obj-$(CONFIG_HSC030PA) += hsc030pa.o
- obj-$(CONFIG_HSC030PA_I2C) += hsc030pa_i2c.o
- obj-$(CONFIG_HSC030PA_SPI) += hsc030pa_spi.o
-@@ -34,11 +36,9 @@ obj-$(CONFIG_SDP500) += sdp500.o
- obj-$(CONFIG_IIO_ST_PRESS) += st_pressure.o
- st_pressure-y := st_pressure_core.o
- st_pressure-$(CONFIG_IIO_BUFFER) += st_pressure_buffer.o
-+obj-$(CONFIG_IIO_ST_PRESS_I2C) += st_pressure_i2c.o
-+obj-$(CONFIG_IIO_ST_PRESS_SPI) += st_pressure_spi.o
- obj-$(CONFIG_T5403) += t5403.o
--obj-$(CONFIG_HP206C) += hp206c.o
- obj-$(CONFIG_ZPA2326) += zpa2326.o
- obj-$(CONFIG_ZPA2326_I2C) += zpa2326_i2c.o
- obj-$(CONFIG_ZPA2326_SPI) += zpa2326_spi.o
--
--obj-$(CONFIG_IIO_ST_PRESS_I2C) += st_pressure_i2c.o
--obj-$(CONFIG_IIO_ST_PRESS_SPI) += st_pressure_spi.o
-diff --git a/drivers/iio/pressure/adp810.c b/drivers/iio/pressure/adp810.c
-new file mode 100644
-index 000000000000..c2f3b5f7a1f9
---- /dev/null
-+++ b/drivers/iio/pressure/adp810.c
-@@ -0,0 +1,212 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (c) 2025 Akhilesh Patil <akhilesh@ee.iitb.ac.in>
-+ *
-+ * Driver for adp810 pressure and temperature sensor
-+ * Datasheet:
-+ *   https://aosong.com/userfiles/files/media/Datasheet%20ADP810-Digital.pdf
-+ */
-+
-+#include <linux/crc8.h>
-+#include <linux/delay.h>
-+#include <linux/i2c.h>
-+#include <linux/module.h>
-+#include <linux/unaligned.h>
-+
-+#include <linux/iio/iio.h>
-+
-+/*
-+ * Time taken in ms by sensor to do measurements after triggering.
-+ * As per datasheet 10ms is sufficient but we define 30ms for better margin.
-+ */
-+#define ADP810_MEASURE_LATENCY_MS	30
-+/* Trigger command to send to start measurement by the sensor */
-+#define ADP810_TRIGGER_COMMAND		0x2d37
-+/*
-+ * Refer section 5.4 checksum calculation from datasheet.
-+ * This sensor uses CRC polynomial x^8 + x^5 + x^4 + 1 (0x31)
-+ */
-+#define ADP810_CRC8_POLYNOMIAL		0x31
-+
-+DECLARE_CRC8_TABLE(crc_table);
-+
-+struct adp810_read_buf {
-+	__be16 dp;
-+	u8 dp_crc;
-+	__be16 tmp;
-+	u8 tmp_crc;
-+	__be16 sf;
-+	u8 sf_crc;
-+} __packed;
-+
-+struct adp810_data {
-+	struct i2c_client *client;
-+	/* Use lock to synchronize access to device during read sequence */
-+	struct mutex lock;
-+};
-+
-+static int adp810_measure(struct adp810_data *data, struct adp810_read_buf *buf)
-+{
-+	struct i2c_client *client = data->client;
-+	struct device *dev = &client->dev;
-+	int ret;
-+	u16 trig_cmd = ADP810_TRIGGER_COMMAND;
-+
-+	/* Send trigger to the sensor for measurement */
-+	ret = i2c_master_send(client, (char *)&trig_cmd, sizeof(u16));
-+	if (ret < 0) {
-+		dev_err(dev, "Error sending trigger command\n");
-+		return ret;
-+	}
-+
-+	/*
-+	 * Wait for the sensor to acquire data. As per datasheet section 5.3.1,
-+	 * wait for at least 10ms before reading measurements from the sensor.
-+	 */
-+	msleep(ADP810_MEASURE_LATENCY_MS);
-+
-+	/* Read sensor values */
-+	ret = i2c_master_recv(client, (char *)buf, sizeof(*buf));
-+	if (ret < 0) {
-+		dev_err(dev, "Error reading from sensor\n");
-+		return ret;
-+	}
-+
-+	/* CRC checks */
-+	crc8_populate_msb(crc_table, ADP810_CRC8_POLYNOMIAL);
-+	if (buf->dp_crc != crc8(crc_table, (u8 *)&buf->dp, 0x2, CRC8_INIT_VALUE)) {
-+		dev_err(dev, "CRC error for pressure\n");
-+		return -EIO;
-+	}
-+
-+	if (buf->tmp_crc != crc8(crc_table, (u8 *)&buf->tmp, 0x2, CRC8_INIT_VALUE)) {
-+		dev_err(dev, "CRC error for temperature\n");
-+		return -EIO;
-+	}
-+
-+	if (buf->sf_crc != crc8(crc_table, (u8 *)&buf->sf, 0x2, CRC8_INIT_VALUE)) {
-+		dev_err(dev, "CRC error for scale\n");
-+		return -EIO;
-+	}
-+
-+	return 0;
-+}
-+
-+static int adp810_read_raw(struct iio_dev *indio_dev,
-+			   struct iio_chan_spec const *chan,
-+			   int *val, int *val2, long mask)
-+{
-+	struct adp810_data *data = iio_priv(indio_dev);
-+	struct device *dev = &data->client->dev;
-+	struct adp810_read_buf buf = {0};
-+	int ret;
-+
-+	scoped_guard(mutex, &data->lock) {
-+		ret = adp810_measure(data, &buf);
-+		if (ret) {
-+			dev_err(dev, "Failed to read from device\n");
-+			return ret;
-+		}
-+	}
-+
-+	switch (mask) {
-+	case IIO_CHAN_INFO_RAW:
-+		switch (chan->type) {
-+		case IIO_PRESSURE:
-+			*val = get_unaligned_be16(&buf.dp);
-+			return IIO_VAL_INT;
-+		case IIO_TEMP:
-+			*val = get_unaligned_be16(&buf.tmp);
-+			return IIO_VAL_INT;
-+		default:
-+			return -EINVAL;
-+		}
-+	case IIO_CHAN_INFO_SCALE:
-+		switch (chan->type) {
-+		case IIO_PRESSURE:
-+			*val = get_unaligned_be16(&buf.sf);
-+			return IIO_VAL_INT;
-+		case IIO_TEMP:
-+			*val = 200;
-+			return IIO_VAL_INT;
-+		default:
-+			return -EINVAL;
-+		}
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static const struct iio_info adp810_info = {
-+	.read_raw	= adp810_read_raw,
-+};
-+
-+static const struct iio_chan_spec adp810_channels[] = {
-+	{
-+		.type = IIO_PRESSURE,
-+		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),
-+		.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE),
-+	},
-+	{
-+		.type = IIO_TEMP,
-+		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),
-+		.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE),
-+	},
-+};
-+
-+static int adp810_probe(struct i2c_client *client)
-+{
-+	struct device *dev = &client->dev;
-+	struct iio_dev *indio_dev;
-+	struct adp810_data *data;
-+	int ret;
-+
-+	indio_dev = devm_iio_device_alloc(dev, sizeof(*data));
-+	if (!indio_dev)
-+		return -ENOMEM;
-+
-+	data = iio_priv(indio_dev);
-+	data->client = client;
-+
-+	ret = devm_mutex_init(dev, &data->lock);
-+	if (ret)
-+		return ret;
-+
-+	indio_dev->name = "adp810";
-+	indio_dev->channels = adp810_channels;
-+	indio_dev->num_channels = ARRAY_SIZE(adp810_channels);
-+	indio_dev->info = &adp810_info;
-+	indio_dev->modes = INDIO_DIRECT_MODE;
-+
-+	ret = devm_iio_device_register(dev, indio_dev);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to register IIO device\n");
-+
-+	return 0;
-+}
-+
-+static const struct i2c_device_id adp810_id_table[] = {
-+	{ "adp810" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(i2c, adp810_id_table);
-+
-+static const struct of_device_id adp810_of_table[] = {
-+	{ .compatible = "aosong,adp810" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, adp810_of_table);
-+
-+static struct i2c_driver adp810_driver = {
-+	.driver = {
-+		.name = "adp810",
-+		.of_match_table = adp810_of_table,
-+	},
-+	.probe	= adp810_probe,
-+	.id_table = adp810_id_table,
-+};
-+module_i2c_driver(adp810_driver);
-+
-+MODULE_AUTHOR("Akhilesh Patil <akhilesh@ee.iitb.ac.in>");
-+MODULE_DESCRIPTION("Driver for Aosong ADP810 sensor");
-+MODULE_LICENSE("GPL");
--- 
-2.34.1
+Frank
 
+>  };
+>
+>  /* Domain Blend Unit */
+> --
+> 2.51.0
+>
 
