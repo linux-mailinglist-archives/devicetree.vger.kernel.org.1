@@ -1,166 +1,220 @@
-Return-Path: <devicetree+bounces-226028-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226029-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22E41BD3058
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 14:40:54 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id F3C9BBD3077
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 14:46:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id DDA754F0EB4
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 12:40:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1540B189C29B
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 12:46:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0460823F431;
-	Mon, 13 Oct 2025 12:40:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B827269D06;
+	Mon, 13 Oct 2025 12:46:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ibG1wdZh"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="aHP6RLDw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com [209.85.208.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E01B259CA9
-	for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 12:40:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 022E7242D6C
+	for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 12:46:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760359239; cv=none; b=XRY35ddMbC+TrVfDLIMaMflOyhQkXkuv071lxgbVTriCKwF+JcLtpaOn55LdY95hdDki8MYCjN4SstPkWH9UIemyoeDcOt2I/Zm/tYhiEQgA6P/wxMgA4Dd7AKkM2qRnkPjdxc5TDsErBE93wYeGvhUmsuysmf/Qg2YSu/DIzio=
+	t=1760359566; cv=none; b=HIMWQkKDHQ1UYPm1Y4ZNa1fZXh4RKQcQkjw5zeAWctQv7Zq0pJtt6HUR+8kMxqvalm39rr1JaMdEpV+C+nxjsVBQcn78Ei2wrfO2TMCRcJWyzmbVTg6CowZNRiWE80EkA/ihcZ4sBSlPrPTXy+NepjJH/tC9PI19R77h9yinNCQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760359239; c=relaxed/simple;
-	bh=dZx1FG/WcIlbQOgcXxuWDW5+YDqYBZQhGx5Hx6dPiIE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=K7MSK/VAjILgkl6fotHWO0FrDbJ6mA5r5Eb1ltLfrK77top/ClL20GEq7xKDkDWQw49hemp+TeXGqCSS/RszU9Sa34QKu9U3fhhCJ2GAgJBmBcEdddbnmDoya3gPpKrP0CePRFdb415dsUzCo9j00YwTdtJa5ETm7fiDakxdVLI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ibG1wdZh; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59DA5dIW016551
-	for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 12:40:36 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=f6scyOM+ahva9+uwhw48pxSb
-	yDQ+LPEwq5/UOfcG8bo=; b=ibG1wdZh8jBFjAAr/HF2MKezLDCDoQs9U+AgU1E+
-	gsv1WjshXlYEN9CVA1E5jrdrhhJ6K7/zPyVZqvMENNAU/tCyIKuRxCus6Jc5tetA
-	a6rPPK+TO2BnfR38pazxRS7lrCik4W5lChA57gij0xGAxeev/Yl1GjWFyr9HS0nR
-	l2fHx/xpO+WjXOHdNhSY1nFy8+H6qGYESv19zRsJl63y/BExMozlu7ORp7RC9c4l
-	siWH/7eZgiUEdQnb/G4twJJ4YbPKpXQ0MOFG0iJRvYn+xVIVfDBB/ZAX74srez0Z
-	OSrcURx02nSd3it8vowRjjgF1swAg2wZTvtQ1POWLIVZdw==
-Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49qfbhvjuy-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 12:40:36 +0000 (GMT)
-Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-87561645c1cso2408255485a.1
-        for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 05:40:36 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760359235; x=1760964035;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+	s=arc-20240116; t=1760359566; c=relaxed/simple;
+	bh=JpkIi/+vhaU0BNI9/P+j1qfp8E4UfRVJu5ZcRjrM5jA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=oIIoIlso0EHaRLShrpcUJv/Ykjl4u5Ul9OfPjE/gMG7XZ4Yh+fCgLi/3t9AupNNBDLuguU89TWrFCnQFxfKCo5P/McQjARCDIiXm729U9nUQKKHFyBIEjTp2iT4UG8ejK5SpXTAPcuwTXjIO1Ry+GfA+kboHkpSl26aG8BG5rcA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=aHP6RLDw; arc=none smtp.client-ip=209.85.208.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-3637d6e9923so37251081fa.3
+        for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 05:46:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1760359562; x=1760964362; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=f6scyOM+ahva9+uwhw48pxSbyDQ+LPEwq5/UOfcG8bo=;
-        b=mNCVU7WpSEf2wC5y65oMPvlGGgqEcCT75kOFKcEErY7mc6GZOKHP754erIrqyMkzaW
-         19HayZyfBixTep4oCEt05nfofBxdkOp0euHrkfozOu7U4YkjHejp1C5KJWWsz+Fs47Fq
-         w6DKg3XNO42XY/vo8JhY/68VPyRJ6RLC7ADsAtWDyekUNR86hXUA7sokPYrqSz3byPx3
-         XScmzTaCexyxln2j6SOnIKMVdB41xWtb4q72/ETkuEFBYnDthM5/i1n4BQpRQIw4ErQI
-         2rRgIWTIFnKh2DodpxpDfF/QFI/wgji03Zba2okIYQkA3sLkpgF3qZwM0gdFixN/2h4J
-         03uA==
-X-Forwarded-Encrypted: i=1; AJvYcCWI2Txb1Q1w2/82ux+lOWbvUfed1X0hAJrYtH2ugMZx8hqSu9kBgicRBGd3X1XiEWNgRiwAh1l1mtZB@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy7eCR92g5HbtBSJTXgNxKkGe7KpDIGQIhhtcTLMPFTes4Pvpw0
-	/EcnCPnr79VzEH69ffJ8mF3KqryWYRilYC7JADk02YB/HMvobiTwhI2yHvce0X/qYZEIKC141YW
-	U9QZ6SUcbMflY985d8dIr5R1kdKhhmSVMILgB/zcUD+YivM/DlSvuUcUtyzBw+G2I
-X-Gm-Gg: ASbGncu7e6UuP3vuqKgLUmAN3OYrLAtcYEFBM7tHWbj4LOKFGPSdwQ7L9yQX/c/yeFv
-	9XQcjvdmrfFFmCLhOnK0s7MkuBrkVf6MLJA2BNxYOxkXrHYoA2xyru8TZjA2SFedMDf1Pkgy2Ru
-	mYq3Y5KXyPG0jli9KZ2BnnBrSIR51ecTvTYn11NNr7PEw68E/IjJQkPBVH4dfStBO/vkqsWCQuR
-	phQdcQA7aRBFynwa0UUoJ9bGdx4DEQVOCTmcwtotobZglkBcd9/mt8p6Aaty4HPx5V8R8kpRovx
-	njxdVsGh4RdelyN3LfRSvi5D8Of23ItRNXJ3BZgte+OfbxdwEnrtGQie53FtsVYXo0SeBmjbPfX
-	2AaZNVyxExicExCLC62alkqd1AXxigH1s/20Vp4CGZrdPxfSXbs5L
-X-Received: by 2002:a05:620a:458c:b0:868:54ba:7c42 with SMTP id af79cd13be357-88352f83d61mr2871641685a.25.1760359235458;
-        Mon, 13 Oct 2025 05:40:35 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGkvZQ+8ZJnIwC2hIgs/DILNFhHouXWRCw0k5tWWtya0oIkN3txK/mV8/TSZwSq7k0H8FX0lg==
-X-Received: by 2002:a05:620a:458c:b0:868:54ba:7c42 with SMTP id af79cd13be357-88352f83d61mr2871637585a.25.1760359234973;
-        Mon, 13 Oct 2025 05:40:34 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5908857792dsm4081471e87.105.2025.10.13.05.40.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Oct 2025 05:40:34 -0700 (PDT)
-Date: Mon, 13 Oct 2025 15:40:32 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Qiang Yu <qiang.yu@oss.qualcomm.com>
-Cc: Jingyi Wang <jingyi.wang@oss.qualcomm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
-        Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org, aiqun.yu@oss.qualcomm.com,
-        tingwei.zhang@oss.qualcomm.com, trilok.soni@oss.qualcomm.com,
-        yijie.yang@oss.qualcomm.com
-Subject: Re: [PATCH 3/6] phy: qcom-qmp: qserdes-txrx: Add QMP PCIe PHY
- v8-specific register offsets
-Message-ID: <x2443gg3bj37j7qxjk3ocol4xzcly2vandob5j46bp5c6akqb3@zgwrl7qhl2y6>
-References: <20250924-knp-pcie-v1-0-5fb59e398b83@oss.qualcomm.com>
- <20250924-knp-pcie-v1-3-5fb59e398b83@oss.qualcomm.com>
- <fw5hf4p2mjybvfo756dhdm6wwlgnkzks4uwgo7k3dy7hyjhzyr@bv4p7msxapcb>
- <aOzSnxuuAb4gFCkk@hu-qianyu-lv.qualcomm.com>
+        bh=yr0CAioySbg+winRW7SfP2+jGITybsbqsD8lEteT+kw=;
+        b=aHP6RLDwb0UG2uPMFu+XHDG3kF+N7eCxd/Ka/asDGgCNbHTIKKuXZSEMQW63BQP5+J
+         3Fm3A8yjdNcygmUxPD0dxoBPCRBFCkdQHaIHUNd4JKIu+KlodAf2i8fNXSdsx5WDnfUQ
+         ibmWCNbjVfzi9LjChJ/HBXACzVLhWJH7YUypITyzjf0ewOmsgJ1zqTN8R9EHXOK83hvD
+         QmEMqLweAgmok12WakNdVjOBQA6AzLEZsHo21wM1PmKh9XgpqQ5RjHHgH7vp5z1TaZDQ
+         rWTBZfkyh3L4Spo0aXEFXaJTzAY8C1DU3xjrjlpMIs4U5bxeHGSh+dxJj+9aIbcz2kr6
+         XNVQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1760359562; x=1760964362;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=yr0CAioySbg+winRW7SfP2+jGITybsbqsD8lEteT+kw=;
+        b=rsNRZQh248KRkSCiRVM3jvK3dqGDUtTSsnE1dI/G1Tbi0UGbOBM/krJrf8UXNUBLzS
+         W7In+ye90mN2duxpOx2M5dkEEWL9+cqUuKzC6UCghriKQ8zuC96JB9tCcopchR05//C+
+         ilz/5Ic4+ccW/IG02mUJid2OqIcR+6UP16x6Vf+4K7193QdSpghd6eXyHNcUgKfMTjWP
+         sRfujeOr/sidAyl9VmRiPPoRLg8fOJBmljFgookYw/8OHdIYsXtdRN86pqYrbPVh/yVi
+         501zhdhQqQwbkqv07oW0zIyngy7g6Y6xyr0v8mZBvBi4a9Bers1OR5TjhWh37LRywTYw
+         o7HQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXYnU9jvONtby2KNvQiLm5gKJ/joeyFlqAUmTsAR4NJ/Q53mHKLUJFYcIERUayx+XeiNnjMZjixBEpD@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyw7+vjoL75qUZLp0j94hRWdw7osv/8HLmB2PklmcURj3tOFhuV
+	0uGxutcT8/xwDvtGgnF/B5gJ6YS4zZ3YEQdPJjG3TP1mEqfkVVHh9ksvgSME6fe3jvIYZnTS3m8
+	evUnJaUxr85gv7YGpewkYj/lW4hADl4MQ+lRcu1tZHA==
+X-Gm-Gg: ASbGncta+dCnAdTW7kNa5fjW6HhWqSxt9049QxyiMjUC6EtdVdAKtNE573LWp6I/BUa
+	YsUekML+dHvcfeIpKmWUtKBFqHWU0+lw/fwR/LAbGlu1AUtdpg2obJR95BAJt+3vjoHpVpdkP72
+	QJgtqE8w6Vq0fzioCARkWlVaN1Imqlcv3d6OIfRNoX+LAm6+JZIPjUCW8XTjdUCJxzDY++EMqMF
+	OCPcVFWIHuOOpOYXQcYrZgHbAxq6Chlc+H+aJgr
+X-Google-Smtp-Source: AGHT+IECEgvwWZ6twWsaItTnYS8HV/K8Xbz+foZN6OXGOnnvuhf5OIE7J2dBzITkBTeCj2Oicn8ol15+IVgCGD9o8F8=
+X-Received: by 2002:a2e:9a10:0:b0:36a:a401:628a with SMTP id
+ 38308e7fff4ca-37609cf85d9mr54890731fa.6.1760359562017; Mon, 13 Oct 2025
+ 05:46:02 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aOzSnxuuAb4gFCkk@hu-qianyu-lv.qualcomm.com>
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDExMDAxOCBTYWx0ZWRfXzEefbiwrvBbz
- xiSurfIBV5Tatltw7/7R/88lfJrRdMjqwuDc7lt4Z873USxZYOammtNAp+VYhtRzAAJAWmTj81Y
- LAk4W+mIqZiutzDM8CCzufixPAoDLKvXF+mLAAWkkB8wXEpR1s8F9u535JluDZEVGP1Ofr5pdty
- A/nOONLXTiqN0QBBCsi9lTKQVpPu2EglBynN6wmWAqLpM/zzUTqRDBO8aV3oGuzg2kES1hR4NID
- epfFkreBtDiUACcajMp1S4v5ai+BuMbI8LeO2WdiSrG6zya2KwL4Z4hF7ZNlNR/kkiHr7IYKwUw
- ZZysoqJVm2f9invpMmPoE/SC9CgxfyLBP8b9oD2DdqbfoAeuznk2+yGz3xCBaFJNIavJ5LIbmxn
- bkQ8o6EemUSr6m4t3oNXu14EgWjdHA==
-X-Proofpoint-ORIG-GUID: ctoCheAY30m6gE_NESUwNvZzmTNowSvJ
-X-Authority-Analysis: v=2.4 cv=bodBxUai c=1 sm=1 tr=0 ts=68ecf344 cx=c_pps
- a=HLyN3IcIa5EE8TELMZ618Q==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=x6icFKpwvdMA:10 a=EUspDBNiAAAA:8 a=SRHymB3k53h_HzVQ3XsA:9 a=CjuIK1q_8ugA:10
- a=bTQJ7kPSJx9SKPbeHEYW:22
-X-Proofpoint-GUID: ctoCheAY30m6gE_NESUwNvZzmTNowSvJ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-10-13_04,2025-10-06_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 lowpriorityscore=0 adultscore=0 impostorscore=0 suspectscore=0
- bulkscore=0 priorityscore=1501 clxscore=1015 malwarescore=0 spamscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2510020000 definitions=main-2510110018
+References: <cover.1759824376.git.mazziesaccount@gmail.com> <19d537f9920cae5fa849b649e5bc42ba0b8e52f8.1759824376.git.mazziesaccount@gmail.com>
+In-Reply-To: <19d537f9920cae5fa849b649e5bc42ba0b8e52f8.1759824376.git.mazziesaccount@gmail.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Mon, 13 Oct 2025 14:45:50 +0200
+X-Gm-Features: AS18NWBXkMvQX4UMEqrcFAQn-COI9GhJKLnUY40gmxEPa8GpJstGMsxg8s5ctP8
+Message-ID: <CACRpkdbHBQQnnTUrUzOrYxzQKCzDyy8aNK7w8OEFz-ic8ic1FQ@mail.gmail.com>
+Subject: Re: [RFC PATCH 03/13] dt-bindings: power: supply: BD72720 managed battery
+To: Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>, Lee Jones <lee@kernel.org>, 
+	Pavel Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Sebastian Reichel <sre@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, Andreas Kemnade <andreas@kemnade.info>, linux-leds@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-pm@vger.kernel.org, linux-gpio@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Oct 13, 2025 at 03:21:19AM -0700, Qiang Yu wrote:
-> On Thu, Sep 25, 2025 at 05:28:15AM +0300, Dmitry Baryshkov wrote:
-> > On Wed, Sep 24, 2025 at 04:33:19PM -0700, Jingyi Wang wrote:
-> > > From: Qiang Yu <qiang.yu@oss.qualcomm.com>
-> > > 
-> > > Kaanapali SoC uses QMP PHY with version v8 for PCIe Gen3 x2, but its
-> > > qserdes-txrx register offsets differ from the existing v8 offsets. To
-> > > accommodate these differences, add the qserdes-txrx specific offsets in
-> > > a dedicated header file.
-> > 
-> > With this approach it's not obvious, which register names are shared
-> > with the existing header and which fields are unique. Please provide a
-> > full set of defines in this header.
-> 
-> Sorry, I didn't get you. Do you mean we need to add defines for all PCIe
-> qserdes-txrx registers? I don't understand how this makes which register
-> names are shared and which fields are unique more obvious.
+Hi Matti,
 
-From your commit message it feels like
-phy-qcom-qmp-qserdes-txrx-pcie-v8.h is an extension over some other
-"base" header file (likely phy-qcom-qmp-qserdes-txrx-v8.h. It makes it
-harder to follow the logic and harder to compare the values. Please
-define all used register names inside the new header.
+thanks for your patch!
 
+On Tue, Oct 7, 2025 at 10:33=E2=80=AFAM Matti Vaittinen
+<mazziesaccount@gmail.com> wrote:
 
--- 
-With best wishes
-Dmitry
+> The BD72720 PMIC has a battery charger + coulomb counter block. These
+> can be used to manage charging of a lithium-ion battery and to do fuel
+> gauging.
+>
+> ROHM has developed a so called "zero-correction" -algotihm to improve
+
+algorithm?
+
+> the fuel-gauging accuracy close to the point where battery is depleted.
+> This relies on battery specific "VDR" tables, which are measured from
+> the battery, and which describe the voltage drop rate. More thorough
+> explanation about the "zero correction" and "VDR" parameters is here:
+> https://lore.kernel.org/all/676253b9-ff69-7891-1f26-a8b5bb5a421b@fi.rohme=
+urope.com/
+>
+> Document the VDR zero-correction specific battery properties used by the
+> BD72720 and some other ROHM chargers.
+>
+> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+
+> The parameters are describing the battery voltage drop rates - so they
+> are properties of the battery, not the charger. Thus they do not belong
+> in the charger node.
+
+Right!
+
+> The right place for them is the battery node, which is described by the
+> generic "battery.yaml". I was not comfortable with adding these
+> properties to the generic battery.yaml because they are:
+>   - Meaningful only for those charger drivers which have the VDR
+>     algorithm implemented. (And even though the algorithm is not charger
+>     specific, AFAICS, it is currently only used by some ROHM PMIC
+>     drivers).
+>   - Technique of measuring the VDR tables for a battery is not widely
+>     known. AFAICS, only folks at ROHM are measuring those for some
+>     customer products. We do have those tables available for some of the
+>     products though (Kobo?).
+
+It would be sad if we later on have to convert it to a standard property
+because it turns out to be wider used than we know.
+
+But I buy your reasoning!
+
+> +properties:
+> +  rohm,voltage-vdr-thresh-microvolt:
+> +    description: Threshold for starting the VDR correction
+> +
+> +  rohm,volt-drop-soc:
+> +    description: Table of capacity values matching the values in VDR tab=
+les.
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+
+Which unit is this? Seems to be capacity in % *10?
+
+> +  rohm,volt-drop-high-temp-microvolt:
+> +    description: VDR table for high temperature
+> +
+> +  rohm,volt-drop-normal-temp-microvolt:
+> +    description: VDR table for normal temperature
+> +
+> +  rohm,volt-drop-low-temp-microvolt:
+> +    description: VDR table for low temperature
+> +
+> +  rohm,volt-drop-very-low-temp-microvolt:
+> +    description: VDR table for very low temperature
+
+Doesn't the four last properties require to be defined as uint32-array?
+
+> +        rohm,volt-drop-soc =3D <1000 1000 950 900 850 800 750 700 650 60=
+0 550 500
+> +          450 400 350 300 250 200 150 100 50 00 (-50)>;
+
+This one makes a lot of sense.
+
+> +        rohm,volt-drop-high-temp-microvolt =3D  <100 100 102 104 106 109=
+ 114 124
+> +          117 107 107 109 112 116 117 108 109 109 108 109 122 126 130>;
+> +
+> +        rohm,volt-drop-normal-temp-microvolt =3D <100 100 102 105 98 100=
+ 105 102
+> +          101 99 98 100 103 105 109 117 111 109 110 114 128 141 154>;
+> +
+> +        rohm,volt-drop-low-temp-microvolt =3D <100 100 98 107 112 114 11=
+8 118 112
+> +          108 108 110 111 113 117 123 131 144 157 181 220 283 399>;
+> +
+> +        rohm,volt-drop-very-low-temp-microvolt =3D <86 86 105 109 114 11=
+0 115 115
+> +          110 108 110 112 114 118 124 134 136 160 177 201 241 322 403>;
+
+I would have expected something like this, to avoid the a bit fuzzy definit=
+ions
+of high, normal, low and very low temperature either:
+
+Provide an array of temperatures in millicentigrades (I just guessed
+these temperatures, you will know the real ones!):
+
+rohm,vold-drop-temperatures-millicelsius =3D <500, 250, 100, (-50)>;
+rohm,volt-drop-microvolt-0 =3D <...>;
+rohm,volt-drop-microvolt-1 =3D <...>;
+rohm,volt-drop-microvolt-2 =3D <...>;
+rohm,volt-drop-microvolt-3 =3D <...>;
+
+Where each array correspond to the temperature, or if you wanna
+go all-out custom:
+
+rohm,volt-drop-50-celsius-microvolt =3D <...>;
+(...)
+
+So we get the actual temperature in there one way or the other.
+
+> +        rohm,voltage-vdr-thresh-microvolt =3D <4150000>;
+
+This property seems to be missing from the bindings?
+
+Yours,
+Linus Walleij
 
