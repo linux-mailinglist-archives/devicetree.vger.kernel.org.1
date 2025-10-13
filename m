@@ -1,168 +1,107 @@
-Return-Path: <devicetree+bounces-225898-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225899-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97E37BD1FDA
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 10:19:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 79E44BD2084
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 10:24:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 9E29F4ED93E
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 08:19:19 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 1BAD84EE0C0
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 08:24:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF3C72F3C0C;
-	Mon, 13 Oct 2025 08:19:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D17822F28F6;
+	Mon, 13 Oct 2025 08:24:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="V6L3jrBT"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="LErpJSxn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D12C2F28EE
-	for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 08:19:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF1642EAD10;
+	Mon, 13 Oct 2025 08:24:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760343550; cv=none; b=uX6xpeltDDgV271BvwscTmIN0BYrCHku2p6JtF0U9ddPtSbL9i2IMmp/GAbCOmkKUu5I4nt6IEgxPgQ0uN26BGRHJ/5qOEKYLO+0AcxFpMcdWrrAU8YPE9x8TBtj9+wyCWFcs3Em2bPWFm5xk/NEYwNwVmX4m1UdMsJcsnJMxBc=
+	t=1760343872; cv=none; b=Vu4V0uT/NgKm7eKq6kIfTwPM/IeNkY80X4S8MUHp/xpFwQ59ePTj8qJOFuKZerUiCo8fCLmyw/4JYzZxUwYGVQz/Cal++bUtV+0YqR1yg4zr2KUsVb/1tNlrKqvrYKal0L5/Cx9A6uOk6Kzt/+m4uHZIyyzAEB2ZtOtYxzNgC7k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760343550; c=relaxed/simple;
-	bh=l71zOi8Iii2rT5j9IBt2SrlxYshazF9y0u6uvVNTzAk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kX2Qt1F6u0czpcX47kPNDtU35zrV9ysnBf90FcZF1Y5yVB0G2ZBlDjNpKzEfO1EzaNWHUL1By0a75QwK2XxUFeqbBSPZ0AND2Kz7slqiwvGQr+HZfyuAXDRGv7dS+nudV9UlGzBrKTtGACZCD5f9SfZ7Ew2jqnQGqlyzwiVNhmg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=V6L3jrBT; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59D2nBoD029362
-	for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 08:19:08 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	CnjUTiX3FGPPzQybFpvUaFsk3SaXgmCmOsQbRYEOBOo=; b=V6L3jrBTbTvHHEKo
-	qD5U4eFHTxnbpsqXc4cOpzkuMCTQ5epNY9DjJjkGLJL1qr6r0S4OFd5EdlW4yKCJ
-	WAgbjSG5zqOQzCbAlZaLfx2fgKrZnyWU+pe1FW+xPMm7zYUVcOgdInhv2VqIb1YE
-	/8spKAq0l2LlOD9R/8xSGLcz+mrsa40WnUDOPuUFFaQf3Ot9tdR7CKRQMlJm9mEn
-	F1LJmDAFnsYKeaU2FFa4xBj5MdtSGdU9dDsVNnLbD8CdNcWqDqVuiSzP0gCs0uuZ
-	bJhuaktE8ndnYcXHi0xu6Klfu6NXf7VeX39SjgEj+cfOzKXJfxzJcj7ggFw+6AUZ
-	TM5Rlg==
-Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49qfm5bsja-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 08:19:08 +0000 (GMT)
-Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-853f011da26so282664085a.0
-        for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 01:19:08 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760343547; x=1760948347;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=CnjUTiX3FGPPzQybFpvUaFsk3SaXgmCmOsQbRYEOBOo=;
-        b=AvT7QumYm5AvRlu/qjg/xvvefriuaSb4axPMv2uCzTdEj0BSH3eDBWUmGLBuEbVjaA
-         UkGT36r9MhR+FMw42tZe/J/ve6vqllh/BXQprcd3u7VN5BCvcSVpPnoLVf46ODV9+Nxg
-         tMbzxf0quGzxRPUeuHQkAeq9HAMIKJ+RZXDTWv7/ELIpK+aeHmo37Z5TRWdqsink+OGd
-         01h0t5zB1d9AQI6Ki34D96CTh0tyDbDOWA+CBZM0zeKJSH/eSvc3CZCXCrAsIUqT0RUc
-         dIUtihuXioEkCfFIgBQGaACgjGyjj38wyojzweaz6PT8TVuxA27f3uZh4wHYTmmFi8RQ
-         i0dA==
-X-Forwarded-Encrypted: i=1; AJvYcCWheMRllyR6EGWnkM/r9TG756Dt+YtwuZBbIjJm47j/OXT3tGxjQc5TSqCcbgg040fAWkJ5gBHFyQTh@vger.kernel.org
-X-Gm-Message-State: AOJu0YyhSy249AESPRwSQXd4kNW2BtiBn9lBOS8lq7UauOKCWl4XIQqy
-	JzrPwTuBztVDQRtxbrnXYFNA89nERoncDZHChvoYjIKaYmCZNTAk61JHO6WWQhZY+zyZ5H22y4P
-	VoFFAI0Zp4RqW7FJ9PlEcrWUdePD+GkXLy4quIHuTF4HiH3c/GyI/vAHOGFIir5kZ
-X-Gm-Gg: ASbGncvzlWubYCly5AifdSYbeHeSC6lGtTXCb6aDWTD5QwRrWxBFoNGbrqlXVs22CK5
-	WiZ8QHQQfq9Pa1yw/xGfkiYIWA20YLY85R+gzvRtN50TXZYqC8REwuPn3eWYP9VzVe/4ZA1DaEr
-	XdUnJMYLQ9VdCHOjba2wJSdj39yoF9jFWzbKtO26J8KWYLxoZn/U41GEVhZ75AY8nQT6+eXQSkZ
-	I0b1x1OLCV1cUb/FKFT16adYTxW3E1Qcp8nYafdKBw/YKjvROROU+Jn/E2V0ChTKP32WPKGh1Sf
-	FR1wIw28ovU3MRpsXlHWs8aVFxXaxTRo5Qum4R/3MKgJnigTr53liNRFIdRMBIarY/Q7EL8YhhM
-	cMd4Asiwfb9DnjgyiwnWStw==
-X-Received: by 2002:a05:620a:711c:b0:85f:a278:78bf with SMTP id af79cd13be357-8834ff909f1mr2008313885a.3.1760343547284;
-        Mon, 13 Oct 2025 01:19:07 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IG4znKrO6qzvVeWk9uZKKfQVBsm8qhDDyjnyj9kOQFewTkZRDPaivS5qv0Ack9eGJHz4piu7Q==
-X-Received: by 2002:a05:620a:711c:b0:85f:a278:78bf with SMTP id af79cd13be357-8834ff909f1mr2008311885a.3.1760343546780;
-        Mon, 13 Oct 2025 01:19:06 -0700 (PDT)
-Received: from [192.168.149.223] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b55d67d5c2bsm873147966b.37.2025.10.13.01.19.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 13 Oct 2025 01:19:06 -0700 (PDT)
-Message-ID: <01122bf2-7f8c-4d93-9557-c625b4eac631@oss.qualcomm.com>
-Date: Mon, 13 Oct 2025 10:19:03 +0200
+	s=arc-20240116; t=1760343872; c=relaxed/simple;
+	bh=1egDBRrXkRyh0ACRCIqrOHesPouWqjXhzUBX+oR2Tlw=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=YFZOraxv6hNeeTmYrIeHekIrd3PuIcWj/U7KREchVm+Uo02wr9rZlY0i77AP8cuE03oaQ319gYSF29uB7dGqB+5jUGpr2BFEc0Pf2VgEzudqxiiLSpMh57EG79TEZN25GFZZj4ttD0mW8LQ+PwqxoL84QAj1DW2v2PikgFd5IKM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=LErpJSxn; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from mail01.disroot.lan (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id A9A3F25D1F;
+	Mon, 13 Oct 2025 10:24:22 +0200 (CEST)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id 8GP6qBm2WuGF; Mon, 13 Oct 2025 10:24:21 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1760343861; bh=1egDBRrXkRyh0ACRCIqrOHesPouWqjXhzUBX+oR2Tlw=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References;
+	b=LErpJSxn8tsVKOqLfH7Y+IdptbnzQNlD6f7DVm1B8TDWQ0uQlJzlnVwObNLI8yjs2
+	 bEWKw0DnRKbIVBOqAI9HfeEMV755eG+PHhERWO7awh9+Q/CWPJ2Qd/Tnf37nnPZXWr
+	 kSxQfFxHhpzN3a4OL+1AGC5SVe1R+NEe/DFIbh8xdVrwvqprUhyNFCuwrUjx9x9uDV
+	 TobK8B/7ga9wUg0CqWy1GOUurweBEa/OXUzi50oZW5awVxOlt+ZkqJOJer7qA49zAn
+	 sNpEtBGoJwLPEfwJFoVQY+gWejU25hqRPvMwMPo3I8CK2ol0JFx5TQMyHn5L2vT5/3
+	 NVBo0UwqbuUWg==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/9] arm64: dts: qcom: ipq5424: Add QPIC SPI NAND
- controller support
-To: Md Sadre Alam <quic_mdalam@quicinc.com>, broonie@kernel.org,
-        robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-        andersson@kernel.org, konradybcio@kernel.org, vkoul@kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-spi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dmaengine@vger.kernel.org
-Cc: quic_varada@quicinc.com
-References: <20251008090413.458791-1-quic_mdalam@quicinc.com>
- <20251008090413.458791-5-quic_mdalam@quicinc.com>
- <c7848ee9-dc00-48c1-a9b9-a0650238e3a1@oss.qualcomm.com>
- <911ee444-25a9-a645-d14f-72fc239e5eb7@quicinc.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <911ee444-25a9-a645-d14f-72fc239e5eb7@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
+Date: Mon, 13 Oct 2025 08:24:20 +0000
+From: Kaustabh Chakraborty <kauschluss@disroot.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/7] arm64: dts: exynos7870: relocate ${x}-names property
+ after ${x}
+In-Reply-To: <8a3b5248-ff46-4aaf-9797-202f85ef9b23@kernel.org>
+References: <20250928-exynos7870-dt-fixes-v1-0-a40e77a73f16@disroot.org>
+ <20250928-exynos7870-dt-fixes-v1-1-a40e77a73f16@disroot.org>
+ <CAJKOXPf+fASV2WP+ix_6qb+L-0WqsqLAG7K7FxeQgscsbOUsOA@mail.gmail.com>
+ <6dff1e8256f3d0932d1f5ad941e129db@disroot.org>
+ <8a3b5248-ff46-4aaf-9797-202f85ef9b23@kernel.org>
+Message-ID: <44a87cd90f09c442a2967944d4b0e498@disroot.org>
+X-Sender: kauschluss@disroot.org
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-GUID: v-Z7SILU0-wpywXyFps01qe9fC7hSdZU
-X-Proofpoint-ORIG-GUID: v-Z7SILU0-wpywXyFps01qe9fC7hSdZU
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDExMDAyMCBTYWx0ZWRfX7KI6fvk5TWXN
- IZ5wzTqrNldj9hVnO5gP5wlyaajBEEfOGZ+WfQD4qaUDZq3paQ+B7IDhf+7A/+Bm36wnq3+SOFn
- xjmt3YU2ydKkdHDFlEyVSyWWfRIF4vjcel8kpmu2be0OnXZedN4oSs85DuJnFlwuxpgHSNAemoS
- Fm0aOuDwowpnqhlDcvesyicww9OOu1PBsbSbi6TJjd0jzjwMYVMtzjIpbdPLmRcyfsq2/9fF/7q
- sjV9wH/6CWHW+J6IliIRrhPZzXOmeoR+faMk8Je8qf8lLR2LWLmE73fR5J42zjqgvdnCuS53icq
- IV7kUwoMHccBEpIo4FJAvRdgSkSxz2+GQwcl/8VsRfwABs1ZxlG8om+Y22IkcYLfsaKR8m8BBvS
- GcoE1MDnuC1r6vICfTqZAi657RikWA==
-X-Authority-Analysis: v=2.4 cv=V71wEOni c=1 sm=1 tr=0 ts=68ecb5fc cx=c_pps
- a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=COk6AnOGAAAA:8 a=OlpJZY4RW8OWQeam8GsA:9
- a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=PEH46H7Ffwr30OY-TuGO:22
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-10-13_03,2025-10-06_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 malwarescore=0 spamscore=0 adultscore=0 suspectscore=0
- impostorscore=0 phishscore=0 clxscore=1015 lowpriorityscore=0
- priorityscore=1501 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2510020000
- definitions=main-2510110020
 
-On 10/13/25 8:10 AM, Md Sadre Alam wrote:
+On 2025-10-07 01:22, Krzysztof Kozlowski wrote:
+> On 29/09/2025 19:01, Kaustabh Chakraborty wrote:
+>> On 2025-09-28 21:56, Krzysztof Kozlowski wrote:
+>>> On Mon, 29 Sept 2025 at 01:44, Kaustabh Chakraborty
+>>> <kauschluss@disroot.org> wrote:
+>>>> 
+>>>> All ${x}-names properties are conventionally placed after their
+>>>> corresponding ${x} properties. For instance, 'clock-names' must 
+>>>> follow
+>>>> 'clocks', 'interrupt-names' must follow 'interrupts'. Make necessary
+>>>> changes to follow said convention. No functional changes made.
+>>>> 
+>>> 
+>>> I don't intend to take such cosmetic changes, because they interfere
+>>> with stable back porting, unless we have a tool for such cleanup. Did
+>>> you use my prototype tool for that or some other tool?
+>> 
+>> No, I did it manually. This is due to your first remark in [1] and
+>> my corresponding reply in [2]. What do I do here then?
 > 
 > 
-> On 10/8/2025 6:00 PM, Konrad Dybcio wrote:
->> On 10/8/25 11:04 AM, Md Sadre Alam wrote:
->>> Add device tree nodes for QPIC SPI NAND flash controller support
->>> on IPQ5424 SoC.
->>>
->>> The IPQ5424 SoC includes a QPIC controller that supports SPI NAND flash
->>> devices with hardware ECC capabilities and DMA support through BAM
->>> (Bus Access Manager).
->>>
->>> Signed-off-by: Md Sadre Alam <quic_mdalam@quicinc.com>
->>> ---
+> I asked for the new code to follow this style, but I don't want to fix
+> yet existing code - before we come with a tool doing it.
 
-[...]
+Well it would stay inconsistent until then – fine, I'll drop these.
 
->>
->>> +            dmas = <&qpic_bam 0>,
->>> +                   <&qpic_bam 1>,
->>> +                   <&qpic_bam 2>;
->>> +            dma-names = "tx", "rx", "cmd";
->>> +            status = "disabled";
->>
->> Is there anything preventing us from enabling both these nodes by
->> default on all boards (maybe secure configuration or required
->> regulators)?
-> We can't enable NAND by default in the common DTSI because the GPIOs are shared between eMMC and NAND.The decision to enable NAND must be made at the board-specific level, depending on the flash type used on that
-> particular board or RDP.Enabling it globally could lead to conflicts on platforms where eMMC is present.
-
-Right, thanks
-
-Konrad
+> 
+> 
+> Best regards,
+> Krzysztof
 
