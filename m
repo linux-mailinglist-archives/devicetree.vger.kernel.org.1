@@ -1,228 +1,307 @@
-Return-Path: <devicetree+bounces-226142-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226143-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09E9FBD555A
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 19:03:57 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 00AB8BD5539
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 19:03:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 2A3D04FFF14
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 16:18:21 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 6C27C562C28
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 16:18:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADE0230E0C6;
-	Mon, 13 Oct 2025 16:05:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 580D628D83E;
+	Mon, 13 Oct 2025 16:07:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="J9eTMJ2W"
+	dkim=pass (1024-bit key) header.d=iitb.ac.in header.i=@iitb.ac.in header.b="neASAnre"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DUZPR83CU001.outbound.protection.outlook.com (mail-northeuropeazon11012045.outbound.protection.outlook.com [52.101.66.45])
+Received: from smtp1.iitb.ac.in (smtpd9.iitb.ac.in [103.21.126.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E06E3081D6;
-	Mon, 13 Oct 2025 16:04:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.66.45
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760371501; cv=fail; b=lf31kb5KBmHJok4LU3RsNTv/oH3D2aA3kk7m1vPXOgY+SV6VRAjiv8cbwa9EIMuKwRmVe0OyIUMmFdfl6RcfYxUXR+FL9l6PNEglVuZCuEa3mvI2QFWMQDtvyfp/4bz/qU8YsS1MvoiDDq76V0UI91m6HdqlpMny/AHaK1mp1E4=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760371501; c=relaxed/simple;
-	bh=+rR4T3aU7SDaJmNlCWGQWoBgZIT+Wjtmxn7qEOrx8j0=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=crRHY6sJKm57biizx6VoOkVzW8v8AMs3nT78/QDqiATD1kPoLDTxrhyCwmgxA+dTtNtNa+CR9zFtd3cggLUuPlmqoRiOa0T5kpNaYjtBbvi7vFHCNpGEPt9olbbNZ0mMmKExpj2nbF/vaumv7FnLxZ26FOd+HZMAkb3LZ6b9eHk=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=J9eTMJ2W; arc=fail smtp.client-ip=52.101.66.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=W98clfQ21T0rTDDhV6y+tUWUDnAWYbJvLsf8CkMusMrM1hG/tC9e4q/rH17IJ6fALAiSPhh6HwMQJxquSY3bmC8YOWE43cArOZ3xI+1uTMVWNdJLAJdOW79i4FwpmWg76PEc8SmOBfCkKjVGI/U9JmULL1eIspb5oPlQCVHVKH64JZRK+uUSjA4YNdzVsgTGLaziP/tggwIzvCj6dQiyd+wauMkdCkMUB85Mtg1ieAxZBI+9SaNlZ9ASIeVAy6atYWDdWu238KDUnZZRIYAXCSzF4wEo8Lxe15UuU/ZSLxloXurBjvq0Qejqulrlw+Bo2rONYewxxl4p9QIW/6VhSA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=gXE0KKCJnPBhWOAi2INIxBeMTjZc73PTP6vLWnW3ALI=;
- b=MYzH1gfr6c1d6iNrDDLJ8QaJLpOAd+6YWch7VajA2wn8lChUVRQjoxVzyN+xBbDRRxCuZjcbMa/CWQs63Wab2OtAfkatAEl/6IeOr3NcR1EoNt8gZcORwUp9gHhV2iUvaBRhBa9G69AbWxAc4KTGloJ5hD/nnw3A3G+0FCIlrkedWAhAEP5XXaQFxXnWQWCuk+UgEG7iY67cmEGkmm7CoQmSVkAO+99QFTBUsDDT0pD3vLgOoIYM5Sn6F4S8bRhQVUPGUpMyP394KqSlT7LdH0Yik1mncKGeCa+W5lr7i8hDi70UNfMgKPnOW4nMl7CJ4gOLyqlbQwhgr6xBxzdOEQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=gXE0KKCJnPBhWOAi2INIxBeMTjZc73PTP6vLWnW3ALI=;
- b=J9eTMJ2WPChUqncBF9UKfFh2LABLq7OA9SNa6ufcYL+9qQ2u96MrW/IPFcYD+eyq+SFJS6RCEwuq2aHRmKHthMg/Kr3+vsvyOPIPG5xCa/xCOSmWiEW6/bTe8+8FyrouNttobCMGUurjhr6iMDJN0q2i3ay3no1/AJ7OzNlAsTOqTb2m52yj8YtkwQV+RUZBuS8rp5J77RG+wVfJXeqZlcLYv06iJNOl0VXJ39WCxKIG80ifCkTXf0kjxJQV3ugCPZ1VfdK4CkdLbAjFXPnT9iY/MfA3B4IC1UsHz1/8mozD0bRhULHUTplkAFnnyE4waHrayZ+ylOIsawyHqJ8WfA==
-Received: from PAXPR04MB9185.eurprd04.prod.outlook.com (2603:10a6:102:231::11)
- by PAXPR04MB8205.eurprd04.prod.outlook.com (2603:10a6:102:1c2::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9203.12; Mon, 13 Oct
- 2025 16:04:56 +0000
-Received: from PAXPR04MB9185.eurprd04.prod.outlook.com
- ([fe80::21bf:975e:f24d:1612]) by PAXPR04MB9185.eurprd04.prod.outlook.com
- ([fe80::21bf:975e:f24d:1612%4]) with mapi id 15.20.9203.009; Mon, 13 Oct 2025
- 16:04:56 +0000
-From: Shenwei Wang <shenwei.wang@nxp.com>
-To: Andrew Lunn <andrew@lunn.ch>
-CC: Bjorn Andersson <andersson@kernel.org>, Mathieu Poirier
-	<mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo
-	<shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Linus Walleij
-	<linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, Pengutronix
- Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Peng
- Fan <peng.fan@nxp.com>, "linux-remoteproc@vger.kernel.org"
-	<linux-remoteproc@vger.kernel.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "imx@lists.linux.dev" <imx@lists.linux.dev>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, dl-linux-imx <linux-imx@nxp.com>
-Subject: Re: [PATCH v3 3/4] gpio: imx-rpmsg: add imx-rpmsg GPIO driver
-Thread-Topic: [PATCH v3 3/4] gpio: imx-rpmsg: add imx-rpmsg GPIO driver
-Thread-Index: AQHcPFseaqLDV5jXpkKppzwlfIiIgA==
-Date: Mon, 13 Oct 2025 16:04:55 +0000
-Message-ID:
- <PAXPR04MB9185A0A5494A00280F97676C89EAA@PAXPR04MB9185.eurprd04.prod.outlook.com>
-References: <20251009222716.394806-1-shenwei.wang@nxp.com>
- <20251009222716.394806-4-shenwei.wang@nxp.com>
- <eb99d9a8-eb96-445d-899a-6e1d9b6f6c69@lunn.ch>
- <PAXPR04MB9185A829534963B22D1C49FD89EFA@PAXPR04MB9185.eurprd04.prod.outlook.com>
- <6025be80-7007-48bb-bdd1-c8198e951400@lunn.ch>
- <PAXPR04MB918524EAA74F72D64AE0ACA489EAA@PAXPR04MB9185.eurprd04.prod.outlook.com>
- <f5b15eeb-a183-40bc-993a-49736739c0f5@lunn.ch>
-In-Reply-To: <f5b15eeb-a183-40bc-993a-49736739c0f5@lunn.ch>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: PAXPR04MB9185:EE_|PAXPR04MB8205:EE_
-x-ms-office365-filtering-correlation-id: c6790db7-84fc-46bf-bc5e-08de0a7240a6
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|1800799024|366016|19092799006|7416014|376014|38070700021;
-x-microsoft-antispam-message-info:
- =?us-ascii?Q?1nGZS0NEDtd5go/OGmPibAdFKqLHOkTQumICLSg8YD36f/Lll735zcpnZvJM?=
- =?us-ascii?Q?iaLGQH9MYK0EQP18AKomvsMH9h/QeoLIRqaPqvfCYxNKvnW2CvigKrhD1ZoJ?=
- =?us-ascii?Q?3syqEDUCcrjnIjKj5ToixBh6sJRXgcZDOPryb11NOxg1T7AmGk6sl3UcBZTN?=
- =?us-ascii?Q?QyPiDIHiH6/kO+GhKtN/2kQEa67t6Cld7Z4UW4+Q/m5csOyhINLPDzdKQ8Pk?=
- =?us-ascii?Q?B5UFozV/d1u9YJhb7BHzI+j/M9gr6uoytRYQHiFC+HLOw9M+LSdr3QpaH7pO?=
- =?us-ascii?Q?0SEoNdgOEkpmmBxiSawHotlZ9YBH3IzjMeczhEKLpQtdXFWAYuLYHVwCHAO7?=
- =?us-ascii?Q?uKeqDt4PdqS1LkpdaEDgSaBXaeWBtY4Fuqb4Weux9SttA4trtpHymgm7VRgt?=
- =?us-ascii?Q?rq7MEYxiQ1s0ZAfr8NzJuxh+tJ4cpi8FWdkieF/zFd6LZQImHKWilIK8vLJi?=
- =?us-ascii?Q?/0Xh+H8HHX2gHqg5Jh14P1BUjI0kQO+GbS9n+xoRbmDyq3VdwdN5jC67lDIR?=
- =?us-ascii?Q?r16bFjcCdkuT6Q+jAUW5YSxn7BjtUGM9MvKKjxitwLh5AassPltrdAGUrA58?=
- =?us-ascii?Q?BUxsK6+pJFK5A9o9I/TPlJnubB0ciDgVfKPaUC0MQQSj1ZhYZjB/+2kNNQ98?=
- =?us-ascii?Q?pDydIocP/9r7Q/JG0L9x0KPRBEHlcLuwcPzsE+O5ui4XbFXaxDNzcf0cvSnG?=
- =?us-ascii?Q?r+bRxewH7frdkE4uItHcGC99xbIfi7dl4J9ikkekxMRzG0X9sq1q/l5mz5XS?=
- =?us-ascii?Q?kNmqkf2la04VpCNWwN9Vveabv0pMbclpHf8X82uMJ8bpaN7ecF9nJ2TFzeJV?=
- =?us-ascii?Q?+psKfwmAXdqP46KGjzXRQM+v+4SoCEXFS6z1ZB7nX0HLCnQfHONPZvR8aKmk?=
- =?us-ascii?Q?V2WTApown0OdJSOV+DGAWR4zmWWZBhsno4KMSGvon//Ty8G4JmIK2y0C4BWC?=
- =?us-ascii?Q?bVrIyQ6HtBQlfmd84olKPo8fVA2iCQ0flErXPAD/g/f4DSHnUItOinoPWfdP?=
- =?us-ascii?Q?CbyL8NZu2RNoKCXk4+9hnaOFWVUdy52mSoYt4qsgDlS4EKD7mrNCEjJpHKy9?=
- =?us-ascii?Q?Dy61TthAttLDnrUETuC/lvUyCSIyj46uAb+Djr76P0lUYlYriJ8iPpBtEeYo?=
- =?us-ascii?Q?HmUIyFMp10MDSLJTvh9OKefPwq4zq+i/pcgWuIBnm16jH/PRbB6AO0ejrklV?=
- =?us-ascii?Q?cWicBRW84BtJZjc9v8p6AQxvOmgb/znY7H3mzoVY3fZpdjl9WgUqyFeA5CUQ?=
- =?us-ascii?Q?kGB/b20hVqo4DsrgvlxLOE9VJsOQo9uKiUu96dH6LIOfvpkCg5UOz34dmtYm?=
- =?us-ascii?Q?T0Q1/ELkJLXB55RaxzpgePIfOfd8omgd4njxLkEcuM10BNbnjTLqlRTOKfL7?=
- =?us-ascii?Q?Fcfr4y+ZN2a8RJGpkT/Nd5r00GwbA9CnjHOxLvAeiW+ySdziRwO41oJavxZb?=
- =?us-ascii?Q?qpdLLtyzk5atlzXyB+CyoPNo+7Dm8rrx?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9185.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(19092799006)(7416014)(376014)(38070700021);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?ake2ysEMT0SkFYDAFtlmXyHoLNek6WYI1Fshrc7IO16cUsknvxGxW/nJ7IP0?=
- =?us-ascii?Q?YB5QJ+KWS+VsUbcNxy1d1/fj70TGlCT6TknBl3ZtphYU+mhY0tMnhFNju5iP?=
- =?us-ascii?Q?+FYIgT4Bbg3Ox29loyPL5vBCWhnU8jUgPylOzcqa0UULxx4dJAoJ3IE6+KoJ?=
- =?us-ascii?Q?+oUkyCvL9ao8QjtjHQTGukaolbgrYUsjfM7NnEHALAQOU0BaFOgDmc+ZXSJt?=
- =?us-ascii?Q?qSA5v5c9Mw+VEgzeRrBgMnEyw+vOPd3mQOZMqXR0KK4pCTSyX6n6U/Zn95mO?=
- =?us-ascii?Q?KhC9jt4Z7UtmHLJ6R1wLBpTzmDrxK53Gj24/bY7GMe+I1esl6otkmDDquIq6?=
- =?us-ascii?Q?o7alZOTk88W6/JazhlvJFrt/b78ekPY9xgEAY3/om4U0f/N7muPqRiUgyb9s?=
- =?us-ascii?Q?ROFXDqrytb6Nx4wKvi5EOj0cJUmRCC/PJTZGPM00huqn/kqhd5DpJvCBZhqU?=
- =?us-ascii?Q?V+bB77zEvE0Nc1W3XhuP6b2olmIiOFlzoKuCiKIJ5BXyGLvGWHYYNrAF7/Ed?=
- =?us-ascii?Q?xF+PjVyNbZr4nIdo9iaaxrIzgRRI1915CDGQrJow650tkt5lzTWoj+/nkrIO?=
- =?us-ascii?Q?7SzAYOwAoYblGtFYOJLh+3nLkjQ8tKOorYVx5Yy8347sT7jWewathRl5QbNm?=
- =?us-ascii?Q?ZcBA8FcndZFxGUEKXweB3bjYP4JupxeozhWMsabUvdsrtXpscjaYpRyQ/3Zv?=
- =?us-ascii?Q?UNroQJFxf5rRm/8E22ZNYD+2V1rxZ3QL5yB4+h+SdTDpKlZGnTau9rcYQLj9?=
- =?us-ascii?Q?kCD+soz7vNALZBET5KKCorn5SanW6hr8efQcRBmHc6zFIlkjf1NX4WbUB3XR?=
- =?us-ascii?Q?HHV0ptyj3vt7hbqFQgXdvfFTA/zsKrcowf98EMs3r96PwvrcdzV2DfpXRtKt?=
- =?us-ascii?Q?J4xv+WReAgbOcQ6mgWz83LsuwbR88F8eO7qbDSNFgtdWU0JzA9wyo5u+XWri?=
- =?us-ascii?Q?MT55n/wEqg0R8SOwZQznD9MPR/pMPsrx8hF+41fmIokmASGkjVwvQcLMDujn?=
- =?us-ascii?Q?XAx0e/W7N7EgdlD4LNP909A5t2NB1DbOr/ZQWjOxkvXslKD+vCoDVeMO87A9?=
- =?us-ascii?Q?1NOV7I0pXe/sfRXy2/ZrCdzlZ4JSR0ASreRxEXtHAeoWvAGxfUwD9zd2GXFB?=
- =?us-ascii?Q?Dhpfj4NHrImLJra2w046p/3CrkfAOILYuLQ7zOlrz0z1c7SaTTDGURQILD+Z?=
- =?us-ascii?Q?nqpjAeByTDjmWwUEH5PLSAmtVi3ospMsygv82QG8mYuwAXe/9Vy3b9bWC+AL?=
- =?us-ascii?Q?SlIr+SlWaSzEQ9h4k7NkXCEoYyfXHGeYaq2PtORuRTmSUb4x4uRSYhij1kw2?=
- =?us-ascii?Q?C4qUxfmQqcrlVGZ1Fyx7QESLFoZsZPb08PHXNLkssgPkB1QjOEasgxZpvi6r?=
- =?us-ascii?Q?QBnD7p/oNxemVSRJhmJ5sV0kSFPN5eo8G26JfmlpdkPaUsBBaBsQOWxdDAh0?=
- =?us-ascii?Q?YPviGSQ+OU888iK5hgzr8k7HML+cwgVVVCBmTNUU414AKu/u8rMJwqp1CCmH?=
- =?us-ascii?Q?+eDbRTJO45CENEyp94XX3koDK6a8eWR1+u8jneChD/YKkjccmACD2qruxesr?=
- =?us-ascii?Q?iAaUAz0HsgsR+dHdWAw=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7240E26E6F2
+	for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 16:06:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.21.126.64
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1760371621; cv=none; b=jpjpJsfsKN7Fw3ACkZ+UHRHGO+npYPwBZHpVMV4QdLJktQ91o6H1501l706Gs1CXFQ/d7IbBjpTEoyLUWcTUx7Z7yUwU6PeESosK1rnkfmYdvDQIo2DYkZaMlFKzhrhY++tWjPY8Oqw90jWQD2+O1sdc1craU5v0412GW10NGwQ=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1760371621; c=relaxed/simple;
+	bh=lWg9ZBhqyOPthQ75n8I93YLiXjllq4HChSc1fq/PwWw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=GJty/kamDnBy90lrdrje6wWqRmhZgyAIZLNSnoI9R5LKr/hy1mgawg/z5lDeIMNNERi97OJLLwNsLPbF1CHwj4ygofw2WwH0hhKR07rsJWrs1O90M0qwx4Qt01NRKeeu1TvgAme+PXqAE/LpQDIA+ksklUT1azCS1S6kiGBolJs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ee.iitb.ac.in; spf=pass smtp.mailfrom=ee.iitb.ac.in; dkim=pass (1024-bit key) header.d=iitb.ac.in header.i=@iitb.ac.in header.b=neASAnre; arc=none smtp.client-ip=103.21.126.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ee.iitb.ac.in
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ee.iitb.ac.in
+Received: from ldns2.iitb.ac.in (ldns2.iitb.ac.in [10.200.12.2])
+	by smtp1.iitb.ac.in (Postfix) with SMTP id 1A01B1038483
+	for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 21:36:52 +0530 (IST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.iitb.ac.in 1A01B1038483
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=iitb.ac.in; s=mail;
+	t=1760371612; bh=lWg9ZBhqyOPthQ75n8I93YLiXjllq4HChSc1fq/PwWw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=neASAnreaEY9vsTtKzfd4YABFgykxjxC1NNz6fjwZ9dEcc5NcQpFpDaDAtlJ50jKR
+	 psUvCzzctvZvzx7cEgO7gO+riLEIYQBl0qj+FPcSyT0BMNoNYK4krIHgBYcNg8lJoX
+	 UHD+IHfhPLx6Ny6Zpf2G89Kybd+CBK1tTAM1Bfhc=
+Received: (qmail 30567 invoked by uid 510); 13 Oct 2025 21:36:52 +0530
+X-Qmail-Scanner-Diagnostics: from 10.200.1.25 by ldns2 (envelope-from <akhilesh@ee.iitb.ac.in>, uid 501) with qmail-scanner-2.11
+ spamassassin: 3.4.1. mhr: 1.0. {clamdscan: 0.100.0/26337} 
+ Clear:RC:1(10.200.1.25):SA:0(0.0/7.0):. Processed in 3.533514 secs; 13 Oct 2025 21:36:52 +0530
+X-Spam-Level: 
+X-Spam-Pyzor: Reported 0 times.
+X-Envelope-From: akhilesh@ee.iitb.ac.in
+X-Qmail-Scanner-Mime-Attachments: |
+X-Qmail-Scanner-Zip-Files: |
+Received: from unknown (HELO ldns2.iitb.ac.in) (10.200.1.25)
+  by ldns2.iitb.ac.in with SMTP; 13 Oct 2025 21:36:48 +0530
+Received: from bhairav.ee.iitb.ac.in (bhairav.ee.iitb.ac.in [10.107.1.1])
+	by ldns2.iitb.ac.in (Postfix) with ESMTP id AA1B6341504;
+	Mon, 13 Oct 2025 21:36:47 +0530 (IST)
+Received: from bhairav-test.ee.iitb.ac.in (bhairav.ee.iitb.ac.in [10.107.1.1])
+	(Authenticated sender: akhilesh)
+	by bhairav.ee.iitb.ac.in (Postfix) with ESMTPSA id 6BCD71E8155F;
+	Mon, 13 Oct 2025 21:36:47 +0530 (IST)
+Date: Mon, 13 Oct 2025 21:36:42 +0530
+From: Akhilesh Patil <akhilesh@ee.iitb.ac.in>
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: dlechner@baylibre.com, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, nuno.sa@analog.com, andy@kernel.org,
+	marcelo.schmitt1@gmail.com, vassilisamir@gmail.com,
+	salah.triki@gmail.com, skhan@linuxfoundation.org,
+	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, akhileshpatilvnit@gmail.com
+Subject: Re: [PATCH 2/2] iio: pressure: adp810: Add driver for adp810 sensor
+Message-ID: <20251013-16642-1563944@bhairav-test.ee.iitb.ac.in>
+References: <cover.1760184859.git.akhilesh@ee.iitb.ac.in>
+ <8c202e7ccd332b26217d529a7a73b7a3ef0726ea.1760184859.git.akhilesh@ee.iitb.ac.in>
+ <20251012203658.167f3362@jic23-huawei>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9185.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c6790db7-84fc-46bf-bc5e-08de0a7240a6
-X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Oct 2025 16:04:55.9896
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 2xjkm2ETOcZzvZXwQsnlSnqWK+vbitbzpw8DBNtiJQfnaSSVMcdPmRcU+xykT61Y4ICuHFbv4Q3ugGvXweoPdg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB8205
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251012203658.167f3362@jic23-huawei>
+
+On Sun, Oct 12, 2025 at 08:36:58PM +0100, Jonathan Cameron wrote:
+> On Sat, 11 Oct 2025 17:55:28 +0530
+> Akhilesh Patil <akhilesh@ee.iitb.ac.in> wrote:
+> 
+> Hi Akhilesh, 
+> 
+> Thanks for sending this and a late welcome to IIO.
+
+Hi Jonathan, Thanks for the review.
+Addressing the comments and suggestions in v2.
+
+> 
+> > Add driver for Aosong adp810 differential pressure and
+> > temperature sensor. This sensor provides I2C interface for
+> > reading data. Calculate CRC of the data received using standard
+> > crc8 library to verify data integrity.
+> > 
+> Wrap commit messages to 75 chars.
+
+I think it is already wrapped to 75. 
+Still, I will recheck and fix if required.
+
+> 
+> > Tested on TI am62x sk board with sensor connected at i2c-2
+> > 
+> > Signed-off-by: Akhilesh Patil <akhilesh@ee.iitb.ac.in>
+> 
+> Where I've remembered Andy commenting on something I've not duplicated
+> (assuming I even noticed the same thing!)
+> 
+> A few things may contradict or provide alternative suggestions though!
+> 
+> Jonathan
+
+Okay.
+
+> 
+> 
+> > diff --git a/drivers/iio/pressure/adp810.c b/drivers/iio/pressure/adp810.c
+> > new file mode 100644
+> > index 000000000000..ff73330b34fc
+> > --- /dev/null
+> > +++ b/drivers/iio/pressure/adp810.c
+> > @@ -0,0 +1,205 @@
+> > +/* Trigger command to send to start measurement by the sensor */
+> > +#define ADP810_TRIGGER_COMMAND		0x2d37
+> > +#define ADP810_CRC8_POLYNOMIAL		0x31
+> > +
+> > +DECLARE_CRC8_TABLE(crc_table);
+> > +
+> > +struct adp810_read_buf {
+> > +	u8 dp_msb;
+> > +	u8 dp_lsb;
+> 
+> __be16 dp;
+> or u8 dp[2]; 
+> 
+> > +	u8 dp_crc;
+> > +	u8 tmp_msb;
+> > +	u8 tmp_lsb;
+> 
+> __be16_tmp;
+> 
+> > +	u8 tmp_crc;
+> > +	u8 sf_msb;
+> > +	u8 sf_lsb;
+> 
+> __be16 sf;
+> 
+> > +	u8 sf_crc;
+> > +} __packed;
+> With packed (which you didn't need previously).
+> (more below)
+
+Yes. Used __be16 to indicate big endian.
+
+> 
+> > +
+> > +struct adp810_data {
+> > +	struct i2c_client *client;
+> > +	/* Use lock to synchronize access to device during read sequence */
+> > +	struct mutex lock;
+> > +};
+> > +
+> > +static int adp810_measure(struct adp810_data *data, struct adp810_read_buf *buf)
+> > +{
+> > +	struct i2c_client *client = data->client;
+> > +	int ret;
+> Not sure what ordering you are using for declarations but this looks a bit
+> odd.  If nothing else makes more sense go with reverse xmas tree.
+
+okay. I will use "reverse xmas tree" wherever applicable.
+
+> > +	if (buf->tmp_crc != crc8(crc_table, &buf->tmp_msb, 0x2, CRC8_INIT_VALUE)) {
+> > +		dev_err(&client->dev, "CRC error for temperature\n");
+> > +		return -EIO;
+> > +	}
+> > +
+> > +	if (buf->sf_crc != crc8(crc_table, &buf->sf_msb, 0x2, CRC8_INIT_VALUE)) {
+> > +		dev_err(&client->dev, "CRC error for scale\n");
+> > +		return -EIO;
+> > +	}
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static int adp810_read_raw(struct iio_dev *indio_dev,
+> > +			   struct iio_chan_spec const *chan,
+> > +			   int *val, int *val2, long mask)
+> > +{
+> > +	struct adp810_data *data = iio_priv(indio_dev);
+> > +	struct adp810_read_buf buf = {0};
+> > +	int ret;
+> > +
+> > +	mutex_lock(&data->lock);
+> > +	ret = adp810_measure(data, &buf);
+> > +	mutex_unlock(&data->lock);
+> > +
+> > +	if (ret) {
+> > +		dev_err(&indio_dev->dev, "Failed to read from device\n");
+> It's normally more informative to use the parent dev for error messages.
+> data->client->dev here.
+> Probably add a local variable struct device *dev, to avoid making the dev_err() lines
+> even longer.
+
+Agree. Will use parent dev in all dev_err() calls.
+
+> 
+> > +		return ret;
+> > +	}
+> > +
+> > +	switch (mask) {
+> > +	case IIO_CHAN_INFO_RAW:
+> > +		switch (chan->type) {
+> > +		case IIO_PRESSURE:
+> > +			*val = buf.dp_msb << 8 | buf.dp_lsb;
+> 
+> They are next to each other so either treating them as a small array or
+> I think you can even make the be16 you can use
+> 			*val = get_unaligned_be16(buf.dp);
+> for all 3 similar cases.  1st and 3rd are actually aligned but
+> lets not rely on that.
+
+ACK. Used __be16 along with helpers get_unalinged_be16() to handle
+endianess in clean and portable way.
+
+> 
+> > +			return IIO_VAL_INT;
+> > +		case IIO_TEMP:
+> > +			*val = buf.tmp_msb << 8 | buf.tmp_lsb;
+> > +			return IIO_VAL_INT;
+> > +		default:
+> > +			return -EINVAL;
+> > +		}
+> > +	case IIO_CHAN_INFO_SCALE:
+> > +		switch (chan->type) {
+> > +		case IIO_PRESSURE:
+> > +			*val = buf.sf_msb << 8 | buf.sf_lsb;
+> > +			return IIO_VAL_INT;
+> > +		case IIO_TEMP:
+> 
+> > +static int adp810_probe(struct i2c_client *client)
+> > +{
+> > +	const struct i2c_device_id *dev_id = i2c_client_get_device_id(client);
+> > +	struct device *dev = &client->dev;
+> > +	struct iio_dev *indio_dev;
+> > +	struct adp810_data *data;
+> > +	int ret;
+> > +
+> > +	indio_dev = devm_iio_device_alloc(dev, sizeof(*data));
+> > +	if (!indio_dev)
+> > +		return -ENOMEM;
+> > +
+> > +	data = iio_priv(indio_dev);
+> > +	data->client = client;
+> > +	mutex_init(&data->lock);
+> Andy mentioned this.  I used not to care about mutex debugging in IIO drivers
+> as in most cases lifetimes of the containing structure are so closely aligned
+> to the mutex it wasn't worth the extra debugging provided by mutex_destroy().
+> 
+> Now we can do
+> 	ret = devm_mutex_init(&data->lock);
+> 	if (ret)
+> 		return ret;
+> 
+> It's so easy I would like to see it used in all new code even when the
+> gain is very small.
+
+Okay. Using resource managed mutex_init : devm_mutex_init()
+
+> 
+> > +
+> > +	indio_dev->name = dev_id->name;
+> 
+> Just set it to "adp810" here.  We can add more complex handling when the driver
+> supports additional parts.  The advantage of an explicit string for now is
+> we don't have to think about what it can be.
+> 
+
+Sure. Directly using string : indio_dev->name = "adp810";
+
+> > +	indio_dev->channels = adp810_channels;
+> > +	indio_dev->num_channels = ARRAY_SIZE(adp810_channels);
+> > +	indio_dev->info = &adp810_info;
+> > +	indio_dev->modes = INDIO_DIRECT_MODE;
+> > +
+> > +	ret = devm_iio_device_register(dev, indio_dev);
+> > +	if (ret)
+> > +		return dev_err_probe(dev, ret, "Failed to register IIO device\n");
+> > +
+> > +	return ret;
+> return 0; 
+> 
+> As that clearly indicates to the reader that you can't get here in an error case.
+
+Yes. Fixed.
+
+Regards,
+Akhilesh
 
 
-
-> -----Original Message-----
-> From: Andrew Lunn <andrew@lunn.ch>
-> Sent: Monday, October 13, 2025 9:56 AM
-> To: Shenwei Wang <shenwei.wang@nxp.com>
-> Cc: Bjorn Andersson <andersson@kernel.org>; Mathieu Poirier
-> <mathieu.poirier@linaro.org>; Rob Herring <robh@kernel.org>; Krzysztof
-> Kozlowski <krzk+dt@kernel.org>; Conor Dooley <conor+dt@kernel.org>; Shawn
-> Guo <shawnguo@kernel.org>; Sascha Hauer <s.hauer@pengutronix.de>; Linus
-> Walleij <linus.walleij@linaro.org>; Bartosz Golaszewski <brgl@bgdev.pl>;
-> Pengutronix Kernel Team <kernel@pengutronix.de>; Fabio Estevam
-> <festevam@gmail.com>; Peng Fan <peng.fan@nxp.com>; linux-
-> remoteproc@vger.kernel.org; devicetree@vger.kernel.org; imx@lists.linux.d=
-ev;
-> linux-arm-kernel@lists.infradead.org; linux-kernel@vger.kernel.org; dl-li=
-nux-imx
-> <linux-imx@nxp.com>
-> Subject: [EXT] Re: [PATCH v3 3/4] gpio: imx-rpmsg: add imx-rpmsg GPIO dri=
-ver
-> > > Maybe Documentation/admin-guide/gpio-rpmsg.rst would be better.  You
-> > > should also document how to handle features the device does not
-> > > support. e.g. i _think_ your hardware supports all 4 interrupt
-> > > types. But maybe other hardware needs to return something meaning -
-> EOPNOTSUP?
-> > >
-> >
-> > That should be one type of the error return code in the out field of RE=
-PLY
-> message.
-> > The return code of 0 means success, and the others are error codes.
->
-> You need to be careful of architecture code:
->
-> https://elixir.bootl/
-> in.com%2Flinux%2Fv6.17.1%2FA%2Fident%2FEOPNOTSUPP&data=3D05%7C02%7
-> Cshenwei.wang%40nxp.com%7Ce2c6c89bb8cb41882a5208de0a68aa7b%7C686
-> ea1d3bc2b4c6fa92cd99c5c301635%7C0%7C0%7C638959641921284557%7CUn
-> known%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIs
-> IlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata
-> =3DLx%2B8iM3d8flgUq8kn8bnaDmxZDea8pPp2wL5V7JT%2BDM%3D&reserved=3D0
->
-> Notice how ENOPNOTSUPP can be 45, 122, 223, or 95. Returning EL2NSYNC or
-> EDQUOT to user space is going to cause confusion...
->
-
-I think we should just follow the definitions in include/uapi/asm-generic/e=
-rrno.h, right?
-
-Thanks,
-Shenwei
-
->        Andrew
 
