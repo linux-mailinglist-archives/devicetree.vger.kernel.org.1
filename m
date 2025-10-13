@@ -1,60 +1,53 @@
-Return-Path: <devicetree+bounces-225893-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225894-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80A3CBD1D41
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 09:35:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 437BFBD1E0A
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 09:53:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 7049F4EB1F3
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 07:35:45 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 0C4134EBA7D
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 07:53:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C9482E266C;
-	Mon, 13 Oct 2025 07:35:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dONLhkKO"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D2F32EA46F;
+	Mon, 13 Oct 2025 07:53:16 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BEAD27F01E;
-	Mon, 13 Oct 2025 07:35:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03D1BEADC;
+	Mon, 13 Oct 2025 07:53:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760340942; cv=none; b=ThPuNbomnujLXFDHB89wEhdweP4tS8PbJVDrtg3oPXt8ucw7SE9/khQqxN6SbKyrfxHWq2qjn4yk4qdsSfRpw4n5vK3fFhwsw8pY3/7kxEAi7YP/3EJiwDwL6gGvhamrxax4AgkVlyXLTbSxlPtl8w4Gu7Br0NHZhL4XUcVm7fM=
+	t=1760341996; cv=none; b=IxoD/cJrEnYZUt7jl8Cb7OaTxhThzS7WF8/2xZpF+WjwKsqFg+D3BTDTidiGVF7Fo0o+q1JKBXZTDa6AvX+kkQCmOXDxYgxXTZFB/hkLWro9gUQppuQDYT3TZpBj/E0r1JVtC7XKy+u/ALE2kx+8VXUVI2TH/N9r8Sk/ZgUhWXs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760340942; c=relaxed/simple;
-	bh=iEUdbvJi3pvRf67skvtGxBMrtqXcvV211k+jm08OGhU=;
+	s=arc-20240116; t=1760341996; c=relaxed/simple;
+	bh=RVbSqysug34SR/SVpuf7+x3DtGwk+rjgK3h3fV/4w4A=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=O40XBN8LabfGVijzAh83ca6ssqJPF1VOJsmR/ftkPr67ZH/59GgObXDKDfuutGbyVQo840I4VHJ6wxAMQgZuyvSmr0AZRl2BZyHDVKO2Wb6hCa15vz3h64aB4J9PqM0EV+CH5DJhl/wqTuxen198/BrHxUXVD7yc1HWeMnh/V+A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dONLhkKO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 821B8C4CEE7;
-	Mon, 13 Oct 2025 07:35:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760340941;
-	bh=iEUdbvJi3pvRf67skvtGxBMrtqXcvV211k+jm08OGhU=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=dONLhkKOkRfQ1gfZWRMsLMyO+WZ55No0e2fE/1IaDDXtWKE0bVuZEH5nEx0Q7qLhZ
-	 hL4ylUxEic8jlcihASCKXPZwhYeSOwA+v0mbsE1C6w8srDGqpqIU9JZBn7ysVJrToH
-	 XJxJ7guXu7obEE1UUR24KabvyEjIXYT3NiHjW3RJ/Pc3T4QaiSjAILHSZUlHzo9ub/
-	 m1G5v4bkhuxV3zJoX7LvYjCbXYTZiq/LUTZEjmt7MwjwAarBvKxrAWuT14Hz4TveT3
-	 gnzNw7Wo4dXxmvnjb5vLovYWukW18YYWn7FYjP09qSMpz33jDZUNLi2+gJB/chkRCO
-	 uHsmVds/S9Brg==
-From: Niklas Cassel <cassel@kernel.org>
-To: dlemoal@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
- conor+dt@kernel.org, linux-ide@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, vkoul@kernel.org, kishon@kernel.org, 
- linux-phy@lists.infradead.org, Yulin Lu <luyulin@eswincomputing.com>
-Cc: ningyu@eswincomputing.com, zhengyu@eswincomputing.com, 
- linmin@eswincomputing.com, huangyifeng@eswincomputing.com, 
- fenglin@eswincomputing.com, lianghujun@eswincomputing.com
-In-Reply-To: <20250930083754.15-1-luyulin@eswincomputing.com>
-References: <20250930083754.15-1-luyulin@eswincomputing.com>
-Subject: Re: (subset) [PATCH v5 0/3] Add driver support for Eswin EIC7700
- SoC SATA Controller and PHY
-Message-Id: <176034093826.2889433.376970186266993861.b4-ty@kernel.org>
-Date: Mon, 13 Oct 2025 09:35:38 +0200
+	 MIME-Version:Content-Type; b=GRkmD21fqe+JGCwgKrJaSCB4DKG1+wZQNmTuudvNH/AQaL0B3pGmV6dMlSlTFpYM4YZGI+S7unq0X5mQI8BJ1kHWVKl6/QFBv8W4Lm1rSQ7fIv72bJW0+clt+sM2vSwdhLepnx4kF9s+tUusC/HOfUI5U3qHXZqB0pDs5d9LcFQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 54617C4CEE7;
+	Mon, 13 Oct 2025 07:53:15 +0000 (UTC)
+Received: from wens.tw (localhost [127.0.0.1])
+	by wens.tw (Postfix) with ESMTP id D4A8E5FA42;
+	Mon, 13 Oct 2025 15:53:12 +0800 (CST)
+From: Chen-Yu Tsai <wens@csie.org>
+To: Andrew Lunn <andrew+netdev@lunn.ch>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Jernej Skrabec <jernej@kernel.org>, 
+ Samuel Holland <samuel@sholland.org>, Chen-Yu Tsai <wens@kernel.org>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
+ linux-kernel@vger.kernel.org, Andre Przywara <andre.przywara@arm.com>
+In-Reply-To: <20250923140247.2622602-1-wens@kernel.org>
+References: <20250923140247.2622602-1-wens@kernel.org>
+Subject: Re: (subset) [PATCH net-next v7 0/6] net: stmmac: Add support for
+ Allwinner A523 GMAC200
+Message-Id: <176034199282.234636.10650174207490097271.b4-ty@csie.org>
+Date: Mon, 13 Oct 2025 15:53:12 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,26 +58,29 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.14.2
 
-On Tue, 30 Sep 2025 16:37:54 +0800, Yulin Lu wrote:
-> This series depends on the config option patch [1].
+On Tue, 23 Sep 2025 22:02:40 +0800, Chen-Yu Tsai wrote:
+> From: Chen-Yu Tsai <wens@csie.org>
 > 
-> [1] Https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?h=next-20250929&id=ce2d00c6e192b588ddc3d1efb72b0ea00ab5538f
+> Hi everyone,
 > 
-> Updates:
->   v5 -> v4:
->     - eswin,eic7700-ahci.yaml
->       - Add "dt-bindings: ata:" prefix to the subject.
->       - Wrap at 80 characters in the YAML description field.
->     - Link to v4: https://lore.kernel.org/lkml/20250915125902.375-1-luyulin@eswincomputing.com/
+> This is v7 of my Allwinner A523 GMAC200 support series. This is based on
+> next-20250922.
 > 
 > [...]
 
-Applied to libata/linux.git (for-6.19), thanks!
+Applied to sunxi/dt-for-6.19 in local tree, thanks!
 
-[1/3] dt-bindings: ata: eswin: Document for EIC7700 SoC ahci
-      https://git.kernel.org/libata/linux/c/c9d869fb
+[3/6] arm64: dts: allwinner: a523: Add GMAC200 ethernet controller
+      commit: 460a71b5642a60574809032f0a21afff0f942474
+[4/6] arm64: dts: allwinner: a527: cubie-a5e: Enable second Ethernet port
+      commit: 7076938d20d22d5f75641f417f11edeee192e3cf
+[5/6] arm64: dts: allwinner: t527: avaota-a1: enable second Ethernet port
+      commit: 2e5d147ba90e887271297f69721d2d88122c7c4f
+[6/6] arm64: dts: allwinner: t527: orangepi-4a: Enable Ethernet port
+      commit: a3606e8a7819534026b46e2b8c7b0e156e292f13
 
-Kind regards,
-Niklas
+Best regards,
+-- 
+Chen-Yu Tsai <wens@csie.org>
 
 
