@@ -1,197 +1,127 @@
-Return-Path: <devicetree+bounces-226043-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226044-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id AEC5FBD32A0
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 15:18:40 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD3D7BD32A9
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 15:19:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 75C0A4F145E
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 13:18:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4241D3C5C39
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 13:19:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB8F6257AD3;
-	Mon, 13 Oct 2025 13:18:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78ED8269B1C;
+	Mon, 13 Oct 2025 13:19:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jjkak5kN"
+	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="yPRCbj3w"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f65.google.com (mail-ed1-f65.google.com [209.85.208.65])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1F297262D
-	for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 13:18:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.65
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B108A1FDA;
+	Mon, 13 Oct 2025 13:19:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760361514; cv=none; b=CRpw2DgYW+IMHouLZQSvziUaGz8t+XsG9en3uskxFk3la7Gq1Z+FdvZzXL3K84pqqmQrHRSHdzQ6YSiVDDAtneQewR6f4I7KWhUumElFwZN04I6SngyJQ2Znh5hpyjaZOgu0sOWpCIgfuvGQnnpIJj3XDjzbMZpKDfO931EUrLo=
+	t=1760361559; cv=none; b=tB65P+t61kuxRcbFzyPvONoPIAqd4SqpJ6HBQt95aEDe/ZsfYFb23fBJLRNyimWZx28WcLTUx0T86CA+wShzVAdnraIfMWXeBYzx2d4+FFZuoLd50tFDlFGPke3p9dwzlOOgc0DXRWzwQiPBuOWLz+SADPwV5yKxAvP3FjMLiJM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760361514; c=relaxed/simple;
-	bh=XATrkBbENj2WWue2qtMkrJM0HdkQdLuq3HBs+91K598=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=s2yieDLtxd1VIY+hoSu/2+wgRmF1HsEopCZ1XLZEtIkIEqAPoU3tBmO6JQ+9CTuO8BpsutpnphFypF65W1vJXM7Huivx2GPChfumN7ZAvofn3rxI425PjO2tQZ5bxtiIyGviZMYQJfOT4B29ObstI2RxehPBJwA9ZQexs1USX+k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jjkak5kN; arc=none smtp.client-ip=209.85.208.65
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f65.google.com with SMTP id 4fb4d7f45d1cf-6318855a83fso9519153a12.2
-        for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 06:18:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1760361511; x=1760966311; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=W9AiQH+p3Zc9JwwBJl7QXYeZboD0M4kQBWEkieM2TAA=;
-        b=jjkak5kNId9EdTiHW57STf68uKURxy1S3HdTL+pBU9sZeqH8FbaQcjklRF0Umbhhht
-         U2MUVJOyQ3N1LzPCz2ceLD7SiULWm63vaZ3pCIkmF8ZZlTmaf0aMIjcMCaCxcqdBTSaL
-         gHcHZPCo8WuHj4AirbFEcHlwWkFZubl4dJ/UajiBzZGrxaWowmCj8JTCPj/xJtk9e6+w
-         vsrX4Zhi7ty+4YczQiFWa00E7hbYf5KKqkuYx/OiwmSdiWrcAZ8EepG/4db+w5y40Tzc
-         9rmE1rbkYnNMYJ2N8t/yQ+BzDm2uEPpC/CjsQO+FOGKUUsPvyZPhBL0Lcz6HqvRMICvN
-         w8HA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760361511; x=1760966311;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=W9AiQH+p3Zc9JwwBJl7QXYeZboD0M4kQBWEkieM2TAA=;
-        b=ZJbKW+wXzhWWLUnTmJVN6XzIWQvBv8zLWEzRGMxY+drN3NAq9bNoKrfb4htYZ4TUFQ
-         yGooJHVTD3grAgjoSvK6VWychL50DgZ/CKW1jX+TFT2p5j7ztjNCxA6UjJo5XqZMptmK
-         RTXpSP10U5HHlFWLcx89irO7wymmuNkAMbHgdplxiB7G0nAInJPRxhWOhNI1mza/VmhN
-         ok3oiyUwlHAoISgHvL/fuyXFcTsHzyXEX/L+oOneQWBmS0zV8UzJJf1nOcGeK2sWUugY
-         zg/iDXumi0QCV3bFBeQxgbozodjsGOgIk2IFIvl29OEO9b5XkCPuGINYwo0AsOHy9t0Y
-         tjiQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWS71wzjIr+j6QbAXBULD3rniFut3LtNj4Q1LPH7EydyvXm9xwvc64so4Iq9kOdb9iUEQyl40IGMRLq@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz/fPhUBTnLzVY7oGyJyPjDN2n1lCarYs+pCJECMhPHhoBci7IA
-	PD6kFshcmbgLGYQT7xcNfXZuFef7KtJxlUvZouuIfxhHBYKwsjKgEWi6CS8Af2EJLyQozPc6ima
-	WkBjSIbSPY3N8Y/FRDXJ5xFZDQ6PwC18=
-X-Gm-Gg: ASbGncsAjegGFIZuvVjnCGvnLuNkRP7IQgJL4KK3EPSX2veGo5bzukmMY5w6VsQeTiK
-	bbszsqsPvBdZie8UkVO7PDkj3gh/gYjvGjvQ4h0pvNB0SyTAlOfjSNlGhhIZMeSzI6dz3MBb3EI
-	ry+IzSOleUr09HQGvdwLJz1Q/aWweOklu8H9gw67Y9YfQiZX5wR8/fDzb3B6XdHiwZ+mqCs+cFN
-	uemRIGGFVlA7l8di/xfSKEuPTgTPZf6aKbj
-X-Google-Smtp-Source: AGHT+IHv7bID+xbm7RowzwKtepEJM2QOtT7nCXsATO274uCHhG9AaqRttSiuceRtheBHXIXQGcJxOUqKR8B8nZHeuYE=
-X-Received: by 2002:a05:6402:3554:b0:639:fb11:9935 with SMTP id
- 4fb4d7f45d1cf-639fb119b08mr13930852a12.4.1760361510947; Mon, 13 Oct 2025
- 06:18:30 -0700 (PDT)
+	s=arc-20240116; t=1760361559; c=relaxed/simple;
+	bh=b+tLPeMD1Z5B1winxVP0fpDzZ4Ft1DgcmZYnxUfJFCU=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=g0qvyUYZSDw6kiKEKWATmi1y64bQ7Y4DmPC9432WmwxxDjnQH+DAjrq4cbl37Cyg4jhMhQPdO0LI+cAkWozZzQbYbnxXB5csZpDNsKcxmsuf/t/tHD+TlX3lhIPZ0apxiuiZB9AsKAJuqtEWQjXjQO2M/xw2TPZvoEqNbEf+ya8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=yPRCbj3w; arc=none smtp.client-ip=178.238.236.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=kemnade.info; s=20220719; h=References:In-Reply-To:Cc:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=cpFL1cZfIfuJbSy7oDZfLNOPydM7RMbiykjJfKLFtHQ=; b=yPRCbj3w+JzG2CxEWEcVvcjBza
+	hkRNX7lqUR5By+Cmgf8/uqmkX24qVNgDoa3x8PbKuUv6UjeNsOJxDSx5yciVVNZbfExnzKfJI0GGT
+	Y7hg2WN5XBcJqLyWQPP04Ru9M8Z0eepchHT+D9spikwHkELmqnNxbvbAAJyz7NPDJ+jybyHA+8wku
+	2pRjIZ9FPfgP+6ywNrFskufsFV4Jh0uSzKcEN8P88dFmNqBAIqhkpHAKzwboeFW3JLXmJcqmYy+cG
+	sABRGdGAF7n1+NvMYbqvXXcvveoBG/Th5A3Bo1FqRKmvIir+JuI0nOIKMoUdfGX99g4uIhFDS6MK/
+	XROuw62A==;
+Date: Mon, 13 Oct 2025 15:19:00 +0200
+From: Andreas Kemnade <andreas@kemnade.info>
+To: Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: Lee Jones <lee@kernel.org>, Matti Vaittinen
+ <matti.vaittinen@fi.rohmeurope.com>, Pavel Machek <pavel@kernel.org>, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>, Sebastian Reichel <sre@kernel.org>, Liam
+ Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Linus
+ Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
+ linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+ linux-gpio@vger.kernel.org
+Subject: Re: [RFC PATCH 06/13] mfd: bd71828: Support ROHM BD72720
+Message-ID: <20251013151900.3e4cc69f@kemnade.info>
+In-Reply-To: <d2295506-bf70-4142-8537-0fdf9cb04a30@gmail.com>
+References: <cover.1759824376.git.mazziesaccount@gmail.com>
+	<93142a80d90a0ac80b27090d0c83914675aad94d.1759824376.git.mazziesaccount@gmail.com>
+	<20251009161847.GE2890766@google.com>
+	<8ea507eb-f78c-4a16-882b-112e277fa1b6@gmail.com>
+	<20251010150317.07bfdbe8@kemnade.info>
+	<d2295506-bf70-4142-8537-0fdf9cb04a30@gmail.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; aarch64-unknown-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251001135914.13754-1-caojunjie650@gmail.com>
- <20251001135914.13754-3-caojunjie650@gmail.com> <cwgn24f6tnmytd4omr2tul4e5jjin3ijji3ff3qkumqm2xe3t3@ntayu3m5kai3>
- <CAK6c68jBwykcWZm3ckm3nwab-X9Are4rD-eauE4rXA2+XvuX1w@mail.gmail.com>
- <9cafccd5-35d4-46c5-aa57-1b0b8ec116e8@oss.qualcomm.com> <CAK6c68iV=n3BvMMa30FuehbMs7-U01s0saZnsYwPVoiyw0VTrg@mail.gmail.com>
- <icj24ghckurcunjormsfhhscng4wfcxiyadl2z5xduitxxqqmp@iws3pssew5dx>
-In-Reply-To: <icj24ghckurcunjormsfhhscng4wfcxiyadl2z5xduitxxqqmp@iws3pssew5dx>
-From: Junjie Cao <caojunjie650@gmail.com>
-Date: Mon, 13 Oct 2025 21:17:04 +0800
-X-Gm-Features: AS18NWACwn3Ejqy7Cy6CMtpi1wwkfKvIy2-Q1E725iHTCiZTeN8KHYUSRZ_-JDg
-Message-ID: <CAK6c68hZq2o9YXxzd2dv5AXw5-UfKv_58MoUrQfGyfPiONArEg@mail.gmail.com>
-Subject: Re: [PATCH 2/3] drm/msm/dsi: support DSC configurations with
- slice_per_pkt > 1
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, 
-	Jessica Zhang <jessica.zhang@oss.qualcomm.com>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Rob Clark <robin.clark@oss.qualcomm.com>, Dmitry Baryshkov <lumag@kernel.org>, 
-	Abhinav Kumar <abhinav.kumar@linux.dev>, Sean Paul <sean@poorly.run>, 
-	Marijn Suijten <marijn.suijten@somainline.org>, Antonino Maniscalco <antomani103@gmail.com>, 
-	Jonathan Marek <jonathan@marek.ca>, Eugene Lepshy <fekz115@gmail.com>, Jun Nie <jun.nie@linaro.org>, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	freedreno@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com> =E4=BA=8E2025=E5=B9=B4=
-10=E6=9C=8813=E6=97=A5=E5=91=A8=E4=B8=80 20:31=E5=86=99=E9=81=93=EF=BC=9A
-> On Mon, Oct 13, 2025 at 07:04:43PM +0800, Junjie Cao wrote:
-> > Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com> =E4=BA=8E2025=E5=
-=B9=B410=E6=9C=8813=E6=97=A5=E5=91=A8=E4=B8=80 17:39=E5=86=99=E9=81=93=EF=
-=BC=9A
-> > > On 13/10/2025 04:52, =E6=9B=B9=E4=BF=8A=E6=9D=B0 wrote:
-> > > >  >Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com
-> > > > <mailto:dmitry.baryshkov@oss.qualcomm.com>> =E4=BA=8E2025=E5=B9=B41=
-0=E6=9C=882=E6=97=A5=E5=91=A8=E5=9B=9B 10:04=E5=86=99=E9=81=93=EF=BC=9A
-> > > >  >On Wed, Oct 01, 2025 at 09:59:13PM +0800, Junjie Cao wrote:
-> > > >  >> From: Jun Nie <jun.nie@linaro.org <mailto:jun.nie@linaro.org>>
-> > > >  >>
-> > > >  >> Some panels support multiple slice to be sent in a single DSC
-> > > > packet. And
-> > > >  >> this feature is a must for specific panels, such as JDI LPM026M=
-648C.
-> > > > Add a
-> > > >  >> dsc_slice_per_pkt member into struct mipi_dsi_device and suppor=
-t the
-> > > >  >> feature in msm mdss driver.
-> > > >  >>
-> > > >  >> Co-developed-by: Jonathan Marek <jonathan@marek.ca
-> > > > <mailto:jonathan@marek.ca>>
-> > > >  >> Signed-off-by: Jonathan Marek <jonathan@marek.ca
-> > > > <mailto:jonathan@marek.ca>>
-> > > >  >> Signed-off-by: Jun Nie <jun.nie@linaro.org <mailto:jun.nie@lina=
-ro.org>>
-> > > >  >> Signed-off-by: Junjie Cao <caojunjie650@gmail.com
-> > > > <mailto:caojunjie650@gmail.com>>
-> > > >  >> ---
-> > > >  >>  drivers/gpu/drm/msm/dsi/dsi_host.c | 25 ++++++++++------------=
----
-> > > >  >>  include/drm/drm_mipi_dsi.h         |  2 ++
-> > > >  >>  2 files changed, 12 insertions(+), 15 deletions(-)
-> > > >  >
-> > > >  >Please extract the generic part, so that it can be merged through=
- a
-> > > >  >generic tree.
-> > > >  >
-> > > >
-> > > > Sorry, I don't get it.  The generic part, generic tree? Do you mean
-> > > > the drm tree? `slice_per_pkt >=3D 2` is seen on the panels of these
-> > > > tablets that are equipped with qcom chips. I don't know if these
-> > > > panels are used on other platforms, and if it is necessary to do it
-> > > > in drm.
-> > >
-> > > There are two changes here:
-> > > - MIPI DSI header change
-> > > - msm DSI driver
-> > >
-> > > I've asked to split it to those two commits so that he change for
-> > > drm_mipi_dsi.h is more obvious for reviewers and so that it can be
-> > > merged through a drm-misc tree (or through drm-msm tree provided it g=
-ets
-> > > a necessary ack).
-> > >
-> >
-> > Thanks for your clear explanation.
-> >
-> > I don't mind to add the field separately. But should I submit it
-> > with the panel driver together? Otherwise, this field is unused
-> > for a while.
-> >
-> > However, as you mentioned, this is not a part of standard, neither
-> > mipi dsi nor VESA DSC. Recently, only Qualcomm devices require it
-> > to calculate parameters, then we use them to program registers. Why
-> > don't we parse the field from devicetree?
->
-> Because the value is uniquelly identified by the panel's compat string.
->
+On Mon, 13 Oct 2025 12:27:33 +0300
+Matti Vaittinen <mazziesaccount@gmail.com> wrote:
 
-Yes, it is panel specified.
-But can we set it for every panel like
+> Hi Andreas!
+> 
+> First of all, thanks for taking a look at this!
+> 
+> On 10/10/2025 16:03, Andreas Kemnade wrote:
+> > On Fri, 10 Oct 2025 15:09:07 +0300
+> > Matti Vaittinen <mazziesaccount@gmail.com> wrote:
+> >   
+> >>>> +static int bd72720_get_secondary_regmap(struct i2c_client *i2c,  
+> >>>
+> >>> Does this 'secondary' have a specific purpose or a better name?  
+> >>
+> >> I am not entirely sure. When I asked this from the designers they just
+> >> told me that they needed more than 255 registers so they added another
+> >> slave address... (I'm not sure what would have been wrong with using a
+> >> page register). So, I assume they just placed stuff that didn't fit in
+> >> first 255 register there. But yeah, it looks like most of the registers
+> >> there are related to the charger. So, perhaps it isn't completely
+> >> misleading to use "charger regmap"? The data-sheet seems to be just
+> >> using "Register map 1" and "Register map 2" in the tables listing these
+> >> registers. I kind of like using something which maps easily to the
+> >> data-sheet, but I really have no strong opinion on this.  
+> > 
+> > just another idea: What about one regmap with custom functions covering
+> > both these adresses? Maybe that could even be added to the regmap
+> > functionality, maybe with a 0x100 offset for the second range.
+> > That way the rest of the code only needs to real with one regmap
+> > and properly defined registers.  
+> 
+> Interesting idea.
+> 
+> I suppose you mean something like implementing custom remap_read() and 
+> regmap_write() - which would practically select the I2C adapter to use 
+> based on the register address - and then doing same thing as the 
+> regmap_i2c_smbus_i2c_write() / regmap_i2c_smbus_i2c_read() do?
+> 
+> I suppose this would mean duplicating the functionality provided by the 
+> regmap_i2c_smbus_i2c_write() and the regmap_i2c_smbus_i2c_read(), which 
+> are static. It'd also mean we'll lose the 1 to 1 mapping between the 
+> register addresses in driver and addresses in the data-sheet. I agree 
+> this wouldn't be such a huge thing if we used offset like 0x100 though.
+> 
+Well, you could also stack regmaps like ntxec.c is doing (but there
+for some very weird reason). That would avoid duplicating code.
 
-&mdss_dsi0 {
-    qcom,mdss-dsc-slice-per-pkt =3D <2>;
+I have no strong opinion here.
 
-    status =3D "okay";
-
-    panel: panel@0 {
-        compatible =3D "foo,bar";
-        reg =3D <0>;
-    };
-};
-
-or moving the property to panel node? We access it from child node.
-
-> --
-> With best wishes
-> Dmitry
+Regards,
+Andreas
 
