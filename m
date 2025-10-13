@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-226287-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226288-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35264BD6C5C
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 01:47:01 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 981FFBD6C80
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 01:50:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 3330E4ECE24
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 23:47:00 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 3C4AD4EB4A7
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 23:50:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B3032C0F79;
-	Mon, 13 Oct 2025 23:46:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 031032C0F79;
+	Mon, 13 Oct 2025 23:50:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mWHRghjG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YlFFURt+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED635271459;
-	Mon, 13 Oct 2025 23:46:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF587EADC;
+	Mon, 13 Oct 2025 23:50:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760399212; cv=none; b=ETa6Ur92kXAehEpzDrtQZrJioGxk7wGkvvax8FU/blGZlKeH4D4dYkIL0h+E3A2AEAGgbkQtrAt/2pElSDGnZhyBz7GvvS4toipSOXwnsXlI9bCeZ/s+bV5A8cSNHZXNgaNvQOozSupQsIDptmQcHbCa0i+Zc/EA6E1bNRJpFzU=
+	t=1760399438; cv=none; b=hdNF+SXwaWhFbj/dJbomLsvvUyTF+HE3YzW1/xVL6zRxA5OK98J2o6lVyt2vU5BjWZTMgcNZ5B7WIV4aD9MDwQvMvUfbwn9ubt3YRZBT0q9ypPOls3oKcHsSHJfrcX05Gp53VOnzTw2pBZIGPxVUu9IJoraHaGGXIYnjAahVDo4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760399212; c=relaxed/simple;
-	bh=ln7BOLkb6G8W4wmeA7gbrLOv0Exevns6isZBbKKN2j0=;
+	s=arc-20240116; t=1760399438; c=relaxed/simple;
+	bh=dE/OPRA38TANTsV/6O2RDPzvqKfmEzP4hxgn+9uMLO4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=GCcxT8LNSd2bDBzAjz3gkyAHmHiSA0Ho8agMzMHN96TnW18iTPjTuJGpKC9SGTh23Xo/ZpsNW0pwCKOckOX+DCqFBoH608QKxd5gSoyGjZ7w7v7YXyOsfu20KWycus4926rgG4NFeG6iqVL9TQrU6bDZUd2ZIFbe30ZJP9XT/QQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mWHRghjG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E1D56C4CEFE;
-	Mon, 13 Oct 2025 23:46:44 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=tJ1OWnCJq7MIC1ob1FQuJ0D2Mmgg5fL5qpXv+RFC5QKQ+JwBcIGG564C3EbpZ78TQwoI3juWdzNqBPW8BQNK+4jw4gF9KZMwnqtVdCPaybI5iYUCEGE3o0G0sLy+FrNWVVIpY5CqRmrrz/ECxxICdPzawnNYW1KPuzB2XHSFQ6s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YlFFURt+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B49D5C4CEE7;
+	Mon, 13 Oct 2025 23:50:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760399211;
-	bh=ln7BOLkb6G8W4wmeA7gbrLOv0Exevns6isZBbKKN2j0=;
+	s=k20201202; t=1760399438;
+	bh=dE/OPRA38TANTsV/6O2RDPzvqKfmEzP4hxgn+9uMLO4=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=mWHRghjGb/kak6uxuwjIH0NYYUo36BhOWJwpEiKKFtAXc7ZtEzG2vtmZqE3uBV9Nx
-	 Kun3CfjUXTNB/knXSmZZIbnBZORHfmCoNMZ6cYVws5sJ4TNmrZjiWR2mWC8kE8pUMo
-	 OrR3AthJdZWRp321CNNSDhf/yRB0yz3l5Esk6xRt2sydnbbMlXzomANzmEj5wDcJCc
-	 GEY9LQZxEX86iaQsOXPVbYghClbpSYmuCM6P7hg59b6xvWt4WpM8o4ZCLoKjbp9JfD
-	 pay9kbo+tY4kVfb7sNvd4bZ+omi3qbTX5I+hryVjY8YUooAB8xGOABaNrgSoYSsxzR
-	 GMEQYLPKDCxPw==
-Message-ID: <0f75ad16-e1b0-430e-bf0c-4c386d401d13@kernel.org>
-Date: Tue, 14 Oct 2025 01:46:42 +0200
+	b=YlFFURt+FaJfOzGYPiyY+Zbp4gZ19FFkWlOP3tOvAIqcOWGimcUwLzXneBRFqkbBv
+	 CuuyswiV4TooREsqKvergSwdcbhtYdWd8JOkEy5Fg2FzTMJjn3SckJndf4jJ4FZF3o
+	 v844p1rIa9H3wuDuovEdfMsoHCIVUf8Cezk7fA+l0XNSx33pX6O809BAYDjAgvtz/X
+	 kO4BAOdi1L7r+/tJouK9eiNVmNzqlpAi4aMjYolpDD8jq2Qr1kjTk5JA1OOYpNJr7v
+	 49w8cQP1hi4q6qDE3CSkRRD/2LaQ7ZG57E8CXMk5Y8sIX7SjClsuE1NnptyoLJI6Kk
+	 Vc+Q1JaK5A1sA==
+Message-ID: <387c707e-613d-433b-a76d-16ef10dabc59@kernel.org>
+Date: Tue, 14 Oct 2025 01:50:28 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,21 +50,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/7] dt-bindings: clock: document 8ULP's SIM LPAV
-To: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
-Cc: Abel Vesa <abelvesa@kernel.org>, Peng Fan <peng.fan@nxp.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Fabio Estevam <festevam@gmail.com>, Philipp Zabel <p.zabel@pengutronix.de>,
- linux-clk@vger.kernel.org, imx@lists.linux.dev, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- Pengutronix Kernel Team <kernel@pengutronix.de>
-References: <20250804155407.285353-1-laurentiumihalcea111@gmail.com>
- <20250804155407.285353-4-laurentiumihalcea111@gmail.com>
- <20250805-stereotyped-precise-vicugna-1c78ff@kuoka>
- <1ad36baf-83af-4ab7-9f47-dd7f74d4749f@gmail.com>
+Subject: Re: [PATCH v5 02/10] dt-bindings: phy: qcom,qmp-usb: Add Glymur USB
+ UNI PHY compatible
+To: Wesley Cheng <wesley.cheng@oss.qualcomm.com>, krzk+dt@kernel.org,
+ conor+dt@kernel.org, konrad.dybcio@oss.qualcomm.com,
+ dmitry.baryshkov@oss.qualcomm.com, kishon@kernel.org, vkoul@kernel.org,
+ gregkh@linuxfoundation.org, robh@kernel.org
+Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+ linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20251006222002.2182777-1-wesley.cheng@oss.qualcomm.com>
+ <20251006222002.2182777-3-wesley.cheng@oss.qualcomm.com>
+ <f5e4ae02-b8fa-4406-b2e0-3602b07b7e23@kernel.org>
+ <00408896-2e25-2dd1-6e6e-2195317ee7fb@oss.qualcomm.com>
+ <14bc2a85-0f1d-3834-9b9c-32654348603a@oss.qualcomm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -110,35 +109,60 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <1ad36baf-83af-4ab7-9f47-dd7f74d4749f@gmail.com>
+In-Reply-To: <14bc2a85-0f1d-3834-9b9c-32654348603a@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 13/10/2025 14:48, Laurentiu Mihalcea wrote:
->>> +
->>> +  mux-controller:
->>> +    $ref: /schemas/mux/reg-mux.yaml#
->>> +
->>> +required:
->>> +  - compatible
->>> +  - reg
->>> +  - clocks
->>> +  - clock-names
->>> +  - '#clock-cells'
->> reset cells and mux controller.
+On 14/10/2025 01:46, Wesley Cheng wrote:
+>>>>     "#clock-cells":
+>>>>       const: 0
+>>>> @@ -157,6 +160,25 @@ allOf:
+>>>>           compatible:
+>>>>             contains:
+>>>>               enum:
+>>>> +              - qcom,glymur-qmp-usb3-uni-phy
+>>>> +    then:
+>>>> +      properties:
+>>>> +        clocks:
+>>>
+>>> Missing minItems.
+>>>
+>>
+>> Hi Krzysztof,
+>>
+>> Won't the minItems be inherited by the base definition?
+>>
 > 
-> 
-> I'd say the mux-controller child can stay optional since the driver allows it?
-> 
-> 
-> As for "#reset-cells": unless CONFIG_RESET_CONTROLLER is enabled, the driver allows
-> 
-> this property to not be specified. The whole idea was to try and make the driver more
+> Ah...are you saying to define minItems to 5 as well, since we need to 
+> have all 5 clocks handles defined to work?
 
 
-I don't talk here about driver, but hardware. How is it possible to
-create a board with imx8ulp which sometimes have this mux and sometimes
-does not have?
+You need the minItems constraint as well, to define the dimension
+accurately.
+
+> 
+> Thanks
+> Wesley Cheng
+> 
+>>>> +          maxItems: 5
+>>>> +        clock-names:
+>>>> +          items:
+>>>> +            - const: aux
+>>>> +            - const: clkref
+>>>> +            - const: ref
+>>>
+>>> What is the difference between these two? Which block INPUTs
+>>> (important!) they represent?
+>>>
+>>
+>> clkref is the TCSR reference clock switch, and the ref is the actual CXO 
+>> handle.
+
+
+Then this should be named somehow differently. CXO is clock. Reference
+clock is clock... To me it feels like you are describing the same clock,
+just missing some gate in TCSR. But in case these are not the same
+clocks, you need to name it accurately.
 
 
 Best regards,
