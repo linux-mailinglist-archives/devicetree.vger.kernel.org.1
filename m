@@ -1,150 +1,128 @@
-Return-Path: <devicetree+bounces-226032-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226036-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21958BD3152
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 14:53:00 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 11D97BD31A9
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 14:55:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D0FA43A8C3C
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 12:52:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 65BB9189E125
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 12:55:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C95B028C87D;
-	Mon, 13 Oct 2025 12:52:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7999B2E1EE0;
+	Mon, 13 Oct 2025 12:55:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="V7iQBH7z"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Okjf1fVl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
+Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14E8128D8F1
-	for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 12:52:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A89F92DFA24
+	for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 12:55:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760359974; cv=none; b=P8W1CnsUX+7IByQE46Zu94pGTzOjzrCkWl3EASYPPhE10JKBit7N6YljJcB0izHq2X86bk2EQ6DN7VW/CP+BD6E8rPLmj9xqseTDKppzgemkHvhLRWQRdYv/0mY0ByLGpYBgAJS32gtuqLq/98PF379vJIITTkNbJJi6FqJ4jY4=
+	t=1760360104; cv=none; b=WjcgRxf7f1FCY0vgH0moRFrlNZM474QFgdeFhLexT+JblnIdNm+sgdB4ERB91TYYhgh/Klc8/zPhkYvz0bBUOayceUoEtkDbiJtM8ruwH1Kp/aeLERobanEo9FidbdjzLv7zoskiKYtnHbpHuhPvJ1qLYo734+Ze/0vsCtawYxM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760359974; c=relaxed/simple;
-	bh=veB2ekC+v+jOvBRwKgJpVvI2Ki/SBVYFi1JBEeYd+Dw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gxJJwM/eBv8nBwzndQeLDRq2j18o6IP939pul+lM/lu/EootCiy+rRMcAFysIZKpV2f5gyXRfn9jIcaBiTL59oUhimVa35/TOrDmE4q+rYF/Yy7UzOVVCp3+PxFXKZJJNEVsPpC9WDUM4fxpORx9/99zGMAG2ytXwK4I3ayQOmI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=V7iQBH7z; arc=none smtp.client-ip=209.85.218.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-b48d8deaef9so750943066b.2
-        for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 05:52:52 -0700 (PDT)
+	s=arc-20240116; t=1760360104; c=relaxed/simple;
+	bh=zt5hEVCNrevPsGcQxcV2hsOEGoKsyrOWbNv+dHo88K0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=S7JyKTIjD9F+zE3FVu7fICVTB3sgT+xpsxf5SJYcMAsAdCIhyA35sGgIdyIiT+1+d0JKcCqil+j1alDy43Yg6B8KF+ZTPZdjLNWbnyccBroNl4wV24nkLkswfek/CHMiqEfIiYvBdUCrscN30QHtjeHswLoRa4WtfEw1IBAM0Kk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Okjf1fVl; arc=none smtp.client-ip=209.85.208.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-371e4858f74so49466191fa.1
+        for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 05:55:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1760359971; x=1760964771; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=RGTQzqOpqmdFB4gV3HPPWK1ZwdyzuxlpeMip3GTHBhA=;
-        b=V7iQBH7zsKGQy995T4R2WkgNgku82vaDfEA8pEuYev7FQAQcHDnt4gWtdd9gLsAtC1
-         G1NVaF9FIh6ypFgliNGkd2uCiwzf32kdOTeKupZbxXGhwpWbjQeqT8e/FCstePPLKBSl
-         ZB8r/RvnheKPhmFMIHczAx0H8GJV2iGv1vyvamdBPrY6o1h1LlzL9xiJjJPTkKy4+nsk
-         efpElqcHyXhdtmsk8DtUmTMnp7m9LBVCE8LFU8z9V0Eq2TFyzF8SHRbu+LsBiC4XMXlz
-         GkaIkG5MymXEPU/tb+TlZcuFQEuvRben+cF6WPjQ8+ujbbVLZS+42XuAO1xZrJbZdLSi
-         E67Q==
+        d=linaro.org; s=google; t=1760360101; x=1760964901; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=zt5hEVCNrevPsGcQxcV2hsOEGoKsyrOWbNv+dHo88K0=;
+        b=Okjf1fVloCuwHYEltROxYnd2pFlknVZ7B7amVFMf0TvT29v/ZiaAu6yGqj5UhRkVsn
+         ldb1ZANPVDzhdk/9R+GUouwe+TNHn+3l0DK3VyNfmWYTMntT0PHCCSd69gP4bNqIRdwg
+         vsqql6iGaU5+sQMlqO+LgXskAmil8/7G41ybn9gB10A0EhvSmglVy/1d2tvwzF3eRqnc
+         6vGgrM89ZkpYHBlb76aFnODpgWdWmx41QDNzf/VQ3itHnWcyyaGOK/iwp/ZVlKvU98Pm
+         2iw4Wd5j4GFnUQCt8OQqkyENvX2EtsDnsjQ/GuWzUeGWpeLQ8ll73tc2PHzwjCYtNlK0
+         jF6g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760359971; x=1760964771;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=RGTQzqOpqmdFB4gV3HPPWK1ZwdyzuxlpeMip3GTHBhA=;
-        b=LBAifvUNCVfvGUOF767uh/TCdF76FtWHf+Pa0XqI9UppuN2q+f1ircDtdYmmf+l4yK
-         ln7WL0rU4UE3rNM6OPZ3NJCqMrQIBpyxf6XLK03ayNpIVx0Ve+X46XZ6fSrwJ539KrV8
-         Izb3OQDefmcTa1KUc+KfngQMxwbU/DYyyeWKLoSL9uV2OX2tuKsctcusRgXu33BUPSui
-         6QRHA0E2KsqO10YjMQzudxG7tAlyKAkXHuXDkSRWBV6UtahJYTCcxw/bDqyxpqMy6Re/
-         D/9EpGBgSPg/fIBvYTeHG/1U06ek7Mee8xSVJe7uKs+I8G3jEW3PCzt+KPGh7YuCcdDy
-         OqDA==
-X-Forwarded-Encrypted: i=1; AJvYcCVwdYySlGoeb+XtiblmEObhOe7acs1h0VWzw9vl1Q49bFu4Mmqr4QVfYkYAOL8XcP4WGKj3hHZ+x4ag@vger.kernel.org
-X-Gm-Message-State: AOJu0YyuArlNckl1WGmlp+NxJ65cdkkG62Cz7/GhWHfNG0tpjEp3wXUZ
-	MMCF2c8AqzcdgDiklCJlH72uJ6BlV2euPFl+DaghqvGT/lS8iqE7yhm3
-X-Gm-Gg: ASbGncsGu0otMvhElVCeg/5rf6VgZO6aJ84Pm1AZyvxTtDJIohHEe7B3kbszJ/lSWkw
-	QRcI2d0gYtRAUFi3cX6bM7446UsuoEQps7daA93piROrw+JgVvuCqHPIWZ3yaRdHjrRwnkC0ywp
-	WvCaAAidMCnbgklrcoMERdmvC2EmdUduChkIsfcZM1/uIa/fmTcxx0+SJURn2gFLMTIcihqflg8
-	VbQbC1F4eTA620MV0Nh2ktwVSLiJnjbylHme4LxD8Yj1U4kt6bQtIDbC7oerOD7K4lDeW07CDdb
-	L/1v1Eusj3L5oUtzvLVpDckg5LknIwAtl0TnECT1rOWTiJ5RcLwY/ztmo7Iiy1IzivOBDAvYWrh
-	Jdwm2rE+jrsVvQHQGmYy4a3TqR66pSsoZ5Mpts0gtsScPAAPtikkxlJDibx2joNLda/MqTVHHGr
-	EmiHXO
-X-Google-Smtp-Source: AGHT+IFmmG7MUY5yB4mZ2FFQqWGfn+1ow8HKXXWlks0nW+FmPuADWQrKCGGjfAyKnyrLWQQf+T1dkg==
-X-Received: by 2002:a17:907:7290:b0:b45:a03f:d172 with SMTP id a640c23a62f3a-b50acc2f5bemr2364136766b.57.1760359970930;
-        Mon, 13 Oct 2025 05:52:50 -0700 (PDT)
-Received: from [192.168.4.55] ([92.120.5.12])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b55d95257c8sm920389866b.77.2025.10.13.05.52.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 13 Oct 2025 05:52:50 -0700 (PDT)
-Message-ID: <27b2e692-ecff-483f-bb88-392f6ce87574@gmail.com>
-Date: Mon, 13 Oct 2025 15:52:49 +0300
+        d=1e100.net; s=20230601; t=1760360101; x=1760964901;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=zt5hEVCNrevPsGcQxcV2hsOEGoKsyrOWbNv+dHo88K0=;
+        b=chZ+cdmG4IaW37ZMKdqaMep+Fszi+IkcoR3yja/pgO7KEtqJzDn8XvleqatipDpYWL
+         ESBKNf8Ow0eFMnrp1BqK3EGQ12a7RiF4Lo35g7qc6qXUhLWZhmUaD/rDIvYxJrI+8igR
+         OWNKIzHI9B/ppeqxyRa/ma2CgoV/CcKoICfUerbU4hXJ+sxWvLQ68ZY3GYEVS0+oYchP
+         8kwpslRr12U5wtjCJ0tghC4UKj1BCr8GstCxoOvV5FlBpIx/I0n30nl3Z0LSclvwulnh
+         6Dvjq1UbUU2RXmq341SidQhlFT+yF688ZDbQxK3H0pSyP5W+2YD6METfxGyA0NHwwBgW
+         2n8A==
+X-Forwarded-Encrypted: i=1; AJvYcCVIDTiM++zIrpGD9KCwv0KgVaMgfUKD/01y6jeBIsQaEystmqJq6LK2301sGjxA8GNdaorYcl6ZntMs@vger.kernel.org
+X-Gm-Message-State: AOJu0Yze74ZjvL8Vw6lo0YhSad1kmQ6TC6p4Shv2WHc2L9txPKNSDFZ0
+	iC8bXZmqZEve0piOP34imZE3y0k8rUqyElpsyKqfqgQCp01hPM+gTEDJwH4szfXkyiGGZdP3bkA
+	cWYmr2/4Fgj0hHSBaN1rw+ieyLs7CrvHmN1V3dHn4Xw==
+X-Gm-Gg: ASbGncui66Q7tzvQh0ycpm99ikn7Tn2zvYw3xRqMlJv1C6ucis33iNaI0LRFGI9gnQ/
+	cp3mdj2DJ4B15ie6N6RMNgg3S7K8OzOamkcv39QXQxXfENx+s93jhxGvYSIYHRuzwspdI9bPlHI
+	OQnmeSDMTUT329X1edV4qHzECjJYr/HXodgFfYT8jB0P2GV2PYm2RiInBlzh+6OUXr+mHZi9vpb
+	Xbrj2bUgUEO/gT8FqwRVEEVrivYqr2eEMMc63yH
+X-Google-Smtp-Source: AGHT+IEMJbNvilXOpoOIRQel6Q25owiZoIco1Kl5SF8iRX9hi7hR5hiR4i5XlKv+PrII6XXrbQ676HBjigByg+VgGMM=
+X-Received: by 2002:a2e:b88e:0:b0:36c:2899:7a33 with SMTP id
+ 38308e7fff4ca-3760a29e503mr52205261fa.5.1760360100831; Mon, 13 Oct 2025
+ 05:55:00 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/7] dt-bindings: clock: imx8ulp: add SIM LPAV clock gate
- ID definitions
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Abel Vesa <abelvesa@kernel.org>, Peng Fan <peng.fan@nxp.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Fabio Estevam <festevam@gmail.com>, Philipp Zabel <p.zabel@pengutronix.de>,
- linux-clk@vger.kernel.org, imx@lists.linux.dev, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- Pengutronix Kernel Team <kernel@pengutronix.de>
-References: <20250804155407.285353-1-laurentiumihalcea111@gmail.com>
- <20250804155407.285353-3-laurentiumihalcea111@gmail.com>
- <20250805-natural-vulture-of-glamour-5fac8d@kuoka>
-Content-Language: en-US
-From: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
-In-Reply-To: <20250805-natural-vulture-of-glamour-5fac8d@kuoka>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <cover.1759824376.git.mazziesaccount@gmail.com> <ed65074dbedaf2b503d789b38bd9710926d08a55.1759824376.git.mazziesaccount@gmail.com>
+In-Reply-To: <ed65074dbedaf2b503d789b38bd9710926d08a55.1759824376.git.mazziesaccount@gmail.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Mon, 13 Oct 2025 14:54:49 +0200
+X-Gm-Features: AS18NWAwGCk0eH0iAHoOmmcayEjfv4yeRrMRzIvsPRl7tRPyzzsktlv39DuLW9c
+Message-ID: <CACRpkdZSiZ_74Ar+tRzVSwRW=6XoUpODyxqZDFyrc-0pcHkaPg@mail.gmail.com>
+Subject: Re: [RFC PATCH 09/13] gpio: Support ROHM BD72720 gpios
+To: Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>, Lee Jones <lee@kernel.org>, 
+	Pavel Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Sebastian Reichel <sre@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, Andreas Kemnade <andreas@kemnade.info>, linux-leds@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-pm@vger.kernel.org, linux-gpio@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Tue, Oct 7, 2025 at 10:34=E2=80=AFAM Matti Vaittinen
+<mazziesaccount@gmail.com> wrote:
 
-On 8/5/2025 10:02 AM, Krzysztof Kozlowski wrote:
-> On Mon, Aug 04, 2025 at 11:54:02AM -0400, Laurentiu Mihalcea wrote:
->> From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
->>
->> Add ID definitions for the clock gates managed by the SIM LPAV module.
->>
->> Signed-off-by: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
->> ---
->>  include/dt-bindings/clock/imx8ulp-clock.h | 7 +++++++
->>  1 file changed, 7 insertions(+)
-> This is part of bindings patch.
-
-
-ACK. Again, sorry for the easily avoidable mistakes.....
-
-
+> The ROHM BD72720 has 6 pins which may be configured as GPIOs. The
+> GPIO1 ... GPIO5 and EPDEN pins. The configuration is done to OTP at the
+> manufacturing, and it can't be read at runtime. The device-tree is
+> required to tell the software which of the pins are used as GPIOs.
 >
+> Keep the pin mapping static regardless the OTP. This way the user-space
+> can always access the BASE+N for GPIO(N+1) (N =3D 0 to 4), and BASE + 5
+> for the EPDEN pin. Do this by setting always the number of GPIOs to 6,
+> and by using the valid-mask to invalidate the pins which aren't configure=
+d
+> as GPIOs.
 >
->> diff --git a/include/dt-bindings/clock/imx8ulp-clock.h b/include/dt-bindings/clock/imx8ulp-clock.h
->> index 827404fadf5c..ebebb4831761 100644
->> --- a/include/dt-bindings/clock/imx8ulp-clock.h
->> +++ b/include/dt-bindings/clock/imx8ulp-clock.h
->> @@ -255,4 +255,11 @@
->>  
->>  #define IMX8ULP_CLK_PCC5_END		56
->>  
->> +/* LPAV SIM */
->> +#define IMX8ULP_CLK_SIM_LPAV_HIFI_CORE		0
->> +#define IMX8ULP_CLK_SIM_LPAV_HIFI_PBCLK		1
->> +#define IMX8ULP_CLK_SIM_LPAV_HIFI_PLAT		2
->> +
->> +#define IMX8ULP_CLK_SIM_LPAV_END		3
-> Drop. Not a binding (see other discussions for many SoCs why).
-
-
-these definitions are being used by the clock driver we're introducing here
-
-
+> First two pins can be set to be either input or output by OTP. Direction
+> can't be changed by software. Rest of the pins can be set as outputs
+> only. All of the pins support generating interrupts.
 >
-> Best regards,
-> Krzysztof
+> Support the Input/Output state getting/setting and the output mode
+> configuration (open-drain/push-pull).
 >
+> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+
+Nice use of valid-mask here!
+I don't know about the special pin binding but the driver
+looks good.
+
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+
+Yours,
+Linus Walleij
 
