@@ -1,412 +1,467 @@
-Return-Path: <devicetree+bounces-226127-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226128-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA837BD5440
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 18:54:04 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 974F7BD4EA0
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 18:19:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 9ADAC5659D2
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 15:55:51 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 88CB65800F9
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 16:02:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72D1831B105;
-	Mon, 13 Oct 2025 15:35:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B13CB31CA4E;
+	Mon, 13 Oct 2025 15:40:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="XB1W3/4Y"
+	dkim=pass (1024-bit key) header.d=weissschuh.net header.i=@weissschuh.net header.b="TrhEZU72"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f180.google.com (mail-il1-f180.google.com [209.85.166.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from todd.t-8ch.de (todd.t-8ch.de [159.69.126.157])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EAD831AF06
-	for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 15:35:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 448A23126B7;
+	Mon, 13 Oct 2025 15:39:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.69.126.157
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760369749; cv=none; b=oAcLG/y0RMgm3AKbBzttQWXZgCRTVrpIPoepaYcUxylKLUnxGopabh6qcaoEr0P+pVY8yom6T8qbqUA4sEng1jcMQgE5OFA1j/diSlcuohOGPCvqvcD0Zcn8jwQvsIC5XixTXEXMBHl7tXTk4X9Dr6JnnrQrxcmaKm1QJJCSaco=
+	t=1760370002; cv=none; b=Cyfe1ZDU5OvX3KEaVxmKrJCwB3ffRnUXoXxCh6bEFoGyZk7GEqtCt7kL53vEnOISi56amM4rWF/hqZ5SxXyx+QHNdelgCiDfvzAmihrsQduzBK4OHcN/AQ62KxhY+czPX3Fo1eTAbrb5lLT96eJTSusaq2QzWsUq4ie65Iwwfuk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760369749; c=relaxed/simple;
-	bh=4aZka/RAU4QYbrbCdQ/ULFAxcWVzlo5Q0/JoKZooWf0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=EoWdNlQP/jjmN39hjkbw2INCOUOa1SuMKHzUkovqf/0E+zBUINH0CYl78FHtqpGn7yqE+AO2ZMjVPNFQ7nZ5dSY+hczMD1iv9bpEgxhC/XHj0mte9D8aTZ1E9KHfv1FNGLGiNaEZOqyHB6tYK9oY8a4P41AAau3mdfKj1vh8oUQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=XB1W3/4Y; arc=none smtp.client-ip=209.85.166.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-il1-f180.google.com with SMTP id e9e14a558f8ab-42f91d225c9so17699845ab.0
-        for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 08:35:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1760369745; x=1760974545; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=IC7TMG3lk59s+A7a4ImbP9PPZe+ugMZHmrnVEzsSLBc=;
-        b=XB1W3/4YXfKWBN7N8PXR5JDV8WMyWgKcUjwcsdPrgY3tRzgQHMu/rJwOs1ltkB6F6N
-         N5tLw1oQY6kfu7NZlggWYegFYU79szF1kEjW1pBwJ3UoJL9zCywV3YITk9VQlXasp/Nl
-         JhM13S33p6Lj/MudxFuZYEuSYvHdqx6lQAatnIKdKIDpezy1eckO8q/rvEv4ehxXGDOy
-         +kbXv/Wmq43FjKU6rXe6mtEaKBzXpw2yBVJE0CHsX7FPD+uxy4AF6MFBBm6DQU8ZHrww
-         JeKcse3k1zLEbanEEv8upLaRzAh6gla2rYRznl25m6yg0Eo5A6JwftjS59oRUhEbdO7H
-         pitg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760369745; x=1760974545;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=IC7TMG3lk59s+A7a4ImbP9PPZe+ugMZHmrnVEzsSLBc=;
-        b=anQ5h7rGxgomZdvQjbead7Gx7d6VsTiQbRNF5Wi9ek3oaEcfh8RpnAaoATe383OT71
-         nHvvtuzpY/eVHO/BaZHZ2VmeoS7ay5AXtO7LMIDI5zjutHeV88OwNKtQa0pMGs53+6ez
-         NxWMILM4pwcNULNLzb0NZRgTyqmN37H56iZqkHZjTirEcnoGiFxNKxGu4IOfr3uqOadg
-         AXsOW57v42haivrrxXRIQrJQftOHbSknWTjNOPVaAj+W5QxF9ubZplGqbIxdYAp0cNhg
-         nIgSUP/CwcYvWzQzDMlpucd+v4HP2KqKCm1DKCjW/TU+5bsYDa41QHUzlQaTxhcRREOn
-         eAvQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWBCBZRxIW6UgR9BuJByZNRAWGcDfENUOt+rrkYgg1KO3ZD4VEaC5/My+G0zQ2wPyTk9naTDGaFGFe6@vger.kernel.org
-X-Gm-Message-State: AOJu0YxgRdZ2evoIEen2ABHxxQf6sOr4VSXaEh78vfnL/gtIcFYv6OBy
-	DNKDLp60MIxrm3slQlpMgIZiWMcivvovZgT6GNlsARm9KAShHkVfGeoc0JtoSdxHeaM=
-X-Gm-Gg: ASbGncvVUq4pkCtdkrv8TEbNemtJemDHa7kBX4pf1VjjL3ypAawts4IIS0QRgtsU3iL
-	f9f+7pdL4uwduh4nXet5x9QYcXidT+ZivC4gC55/JnHo/Y9VXDyMVeR78czpGPXHCfISxfaLSGI
-	XJtDdyDLaHAdAvljjKlHya/U1iXUlsW4rEdr7P7CA9Srlb8fCzYlGhFAGC1YxPavGkV+cutIpzS
-	/P+20me4GCM+aE78PapWKrZXB6iE46fQzN95q5Xb5Sg44IE4ZqzIh+2reKPEb3j06Gs65OywPOA
-	G+/LdvugcBIEacGYPtcRtfva3fG/VhE3S2eLsW1PGTmJD7Gide7jFCyhU3d4DwsKgGwUODDRK9B
-	UWUojCdcAxUaEn/NCIXsTHoeUPo00r8isdMKnPwZ7pOJ2q8BFyFX0J4dozmeICNg1Ok1uZ7aWwK
-	FhXoW7659QN7EFGycVCWc=
-X-Google-Smtp-Source: AGHT+IHjDpApPK7L1lugdyMLdu/ALrQ3dDMp82iS7o9Xm0eHdrN9XhJaFVaUZhe9AQe+NVGfsh4gKw==
-X-Received: by 2002:a05:6e02:1545:b0:42f:8d6c:f502 with SMTP id e9e14a558f8ab-42f8d6cf905mr216933655ab.0.1760369745223;
-        Mon, 13 Oct 2025 08:35:45 -0700 (PDT)
-Received: from zippy.localdomain (c-75-72-117-212.hsd1.mn.comcast.net. [75.72.117.212])
-        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-58f6c49b522sm3910266173.1.2025.10.13.08.35.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Oct 2025 08:35:44 -0700 (PDT)
-From: Alex Elder <elder@riscstar.com>
-To: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	bhelgaas@google.com,
-	lpieralisi@kernel.org,
-	kwilczynski@kernel.org,
-	mani@kernel.org,
-	vkoul@kernel.org,
-	kishon@kernel.org
-Cc: dlan@gentoo.org,
-	guodong@riscstar.com,
-	pjw@kernel.org,
-	palmer@dabbelt.com,
-	aou@eecs.berkeley.edu,
-	alex@ghiti.fr,
-	p.zabel@pengutronix.de,
-	christian.bruel@foss.st.com,
-	shradha.t@samsung.com,
-	krishna.chundru@oss.qualcomm.com,
-	qiang.yu@oss.qualcomm.com,
-	namcao@linutronix.de,
-	thippeswamy.havalige@amd.com,
-	inochiama@gmail.com,
-	devicetree@vger.kernel.org,
-	linux-pci@vger.kernel.org,
-	linux-phy@lists.infradead.org,
-	spacemit@lists.linux.dev,
-	linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 7/7] riscv: dts: spacemit: PCIe and PHY-related updates
-Date: Mon, 13 Oct 2025 10:35:24 -0500
-Message-ID: <20251013153526.2276556-8-elder@riscstar.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20251013153526.2276556-1-elder@riscstar.com>
-References: <20251013153526.2276556-1-elder@riscstar.com>
+	s=arc-20240116; t=1760370002; c=relaxed/simple;
+	bh=sQALxnqWnyeSEMQQ0RYyI6aibdSYc8AEXRbsUuo2WO0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Thz+z5bhAIew6LuJpz+wglocBNlT5Mv5o8EhNtlXOHdsVbAp/du0se8/h7AxNp95KLdBdxHTgmxlrkFdGcNLOH8ahHXPoav34sjGTbYWtnql/+EuXvTAym5MBTpflyiXM70JCHKfhvOmJWORZk3LPTCG9vbqxdJ5+LLpae8l/YY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=weissschuh.net; spf=pass smtp.mailfrom=weissschuh.net; dkim=pass (1024-bit key) header.d=weissschuh.net header.i=@weissschuh.net header.b=TrhEZU72; arc=none smtp.client-ip=159.69.126.157
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=weissschuh.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=weissschuh.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=weissschuh.net;
+	s=mail; t=1760369997;
+	bh=sQALxnqWnyeSEMQQ0RYyI6aibdSYc8AEXRbsUuo2WO0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=TrhEZU72r/+nrE6r5eTBIaHb02eYruhwh/6Kfwag28zUhjbGvS7gY2J9HguMBB2zx
+	 yzxbwurE7SgZ32uIjUCOySMxKV2vEZSnJOPMgRzz65f9DaYC+yJQa/wsGRZp6akLo1
+	 UGg4prMxS4fcOdQpnYTNEf5NH1AmClZs5XCMwzDM=
+Date: Mon, 13 Oct 2025 17:39:55 +0200
+From: Thomas =?utf-8?Q?Wei=C3=9Fschuh?= <linux@weissschuh.net>
+To: Jonathan Brophy <professorjonny98@gmail.com>
+Cc: lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>, 
+	Jonathan Brophy <professor_jonny@hotmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Radoslav Tsvetkov <rtsvetkov@gradotech.eu>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-leds@vger.kernel.org
+Subject: Re: [PATCH v2 4/4] leds: Add Virtual Color LED Group driver
+Message-ID: <7175bcaf-f588-41ec-afe6-117eceffc28d@t-8ch.de>
+References: <20251013120955.227572-1-professorjonny98@gmail.com>
+ <20251013120955.227572-5-professorjonny98@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251013120955.227572-5-professorjonny98@gmail.com>
 
-Define PCIe and PHY-related Device Tree nodes for the SpacemiT K1 SoC.
+On 2025-10-14 01:09:48+1300, Jonathan Brophy wrote:
+> From: Jonathan Brophy <professor_jonny@hotmail.com>
+> 
+> Introduces a new driver that implements virtual LED groups,
+> aggregating multiple monochromatic LEDs into virtual groups and providing
+> priority-based control for concurrent state management.
+> 
+> Author: Radoslav Tsvetkov <rtsvetkov@gradotech.eu>
+> Co Author: Jonathan Brophy <professor_jonny@hotmail.com>
+> Copyright (C) 2024 Jonathan Brophy <professor_jonny@hotmail.com>
+> 
+> Co-developed-by: Radoslav Tsvetkov <rtsvetkov@gradotech.eu>
+> Signed-off-by: Radoslav Tsvetkov <rtsvetkov@gradotech.eu>
+> Tested-by: Jonathan Brophy <professor_jonny@hotmail.com>
+> Signed-off-by: Jonathan Brophy <professor_jonny@hotmail.com>
+> ---
+>  drivers/leds/rgb/Kconfig                   |  17 +
+>  drivers/leds/rgb/Makefile                  |   1 +
+>  drivers/leds/rgb/leds-group-virtualcolor.c | 439 +++++++++++++++++++++
+>  3 files changed, 457 insertions(+)
+>  create mode 100644 drivers/leds/rgb/leds-group-virtualcolor.c
+> 
+(...)
 
-Enable the combo PHY and the two PCIe-only PHYs on the Banana Pi BPI-F3
-board.  The combo PHY is used for USB on this board, and that will be
-enabled when USB 3 support is accepted.
+> diff --git a/drivers/leds/rgb/leds-group-virtualcolor.c b/drivers/leds/rgb/leds-group-virtualcolor.c
+> new file mode 100644
+> index 000000000000..e11ad155d3b4
+> --- /dev/null
+> +++ b/drivers/leds/rgb/leds-group-virtualcolor.c
+> @@ -0,0 +1,439 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later
+> +/*
+> + * Virtual LED Group Driver with Priority Control
+> + *
+> + * Implements virtual LED groups by aggregating multiple
+> + * monochromatic LEDs. Provides priority-based control for managing
+> + * concurrent LED activation requests, ensuring only the highest-priority
+> + * LED state is active at any given time.
+> + *
+> + * Code created by Radoslav Tsvetkov <rtsvetkov@gradotech.eu>
+> + * Copyright (C) 2024 Jonathan Brophy <professor_jonny@hotmail.com>
+> + *
+> + */
+> +
+> +#include <linux/gpio/consumer.h>
 
-The combo PHY must perform a calibration step to determine configuration
-values used by the PCIe-only PHYs.  As a result, it must be enabled if
-either of the other two PHYs is enabled.
+Looks unnecessary.
 
-Signed-off-by: Alex Elder <elder@riscstar.com>
----
-v2: - Added vpcie3v3-supply nodes to PCIe ports
-    - Combo PHY node is now defined earlier in the file (alphabetized)
+> +#include <linux/leds.h>
 
- .../boot/dts/spacemit/k1-bananapi-f3.dts      |  30 ++++
- arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi  |  33 ++++
- arch/riscv/boot/dts/spacemit/k1.dtsi          | 151 ++++++++++++++++++
- 3 files changed, 214 insertions(+)
+#include <linux/list.h>
 
-diff --git a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-index 046ad441b7b4e..6d566780aed9d 100644
---- a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-+++ b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-@@ -40,6 +40,12 @@ pcie_vcc_3v3: pcie-vcc3v3 {
- 	};
- };
- 
-+&combo_phy {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pcie0_3_cfg>;
-+	status = "okay";
-+};
-+
- &emmc {
- 	bus-width = <8>;
- 	mmc-hs400-1_8v;
-@@ -100,6 +106,30 @@ &pdma {
- 	status = "okay";
- };
- 
-+&pcie1_phy {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pcie1_3_cfg>;
-+	status = "okay";
-+};
-+
-+&pcie2_phy {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pcie2_4_cfg>;
-+	status = "okay";
-+};
-+
-+&pcie1 {
-+	phys = <&pcie1_phy>;
-+	vpcie3v3-supply = <&pcie_vcc_3v3>;
-+	status = "okay";
-+};
-+
-+&pcie2 {
-+	phys = <&pcie2_phy>;
-+	vpcie3v3-supply = <&pcie_vcc_3v3>;
-+	status = "okay";
-+};
-+
- &uart0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&uart0_2_cfg>;
-diff --git a/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi b/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi
-index aff19c86d5ff3..5bacb6aff23f8 100644
---- a/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi
-+++ b/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi
-@@ -69,6 +69,39 @@ uart0-2-pins {
- 		};
- 	};
- 
-+	pcie0_3_cfg: pcie0-3-cfg {
-+		pcie0-3-pins {
-+			pinmux = <K1_PADCONF(54, 3)>,	/* PERST# */
-+				 <K1_PADCONF(55, 3)>,	/* WAKE# */
-+				 <K1_PADCONF(53, 3)>;	/* CLKREQ# */
-+
-+			bias-pull-up = <0>;
-+			drive-strength = <21>;
-+		};
-+	};
-+
-+	pcie1_3_cfg: pcie1-3-cfg {
-+		pcie1-3-pins {
-+			pinmux = <K1_PADCONF(59, 4)>,	/* PERST# */
-+				 <K1_PADCONF(60, 4)>,	/* WAKE# */
-+				 <K1_PADCONF(61, 4)>;	/* CLKREQ# */
-+
-+			bias-pull-up = <0>;
-+			drive-strength = <21>;
-+		};
-+	};
-+
-+	pcie2_4_cfg: pcie2-4-cfg {
-+		pcie2-4-pins {
-+			pinmux = <K1_PADCONF(62, 4)>,	/* PERST# */
-+				 <K1_PADCONF(112, 3)>,	/* WAKE# */
-+				 <K1_PADCONF(117, 4)>;	/* CLKREQ# */
-+
-+			bias-pull-up = <0>;
-+			drive-strength = <21>;
-+		};
-+	};
-+
- 	pwm14_1_cfg: pwm14-1-cfg {
- 		pwm14-1-pins {
- 			pinmux = <K1_PADCONF(44, 4)>;
-diff --git a/arch/riscv/boot/dts/spacemit/k1.dtsi b/arch/riscv/boot/dts/spacemit/k1.dtsi
-index 6cdcd80a7c83b..a38c578f24004 100644
---- a/arch/riscv/boot/dts/spacemit/k1.dtsi
-+++ b/arch/riscv/boot/dts/spacemit/k1.dtsi
-@@ -4,6 +4,7 @@
-  */
- 
- #include <dt-bindings/clock/spacemit,k1-syscon.h>
-+#include <dt-bindings/phy/phy.h>
- 
- /dts-v1/;
- / {
-@@ -358,6 +359,48 @@ syscon_rcpu2: system-controller@c0888000 {
- 			#reset-cells = <1>;
- 		};
- 
-+		combo_phy: phy@c0b10000 {
-+			compatible = "spacemit,k1-combo-phy";
-+			reg = <0x0 0xc0b10000 0x0 0x1000>;
-+			clocks = <&vctcxo_24m>,
-+				 <&syscon_apmu CLK_PCIE0_DBI>,
-+				 <&syscon_apmu CLK_PCIE0_MASTER>,
-+				 <&syscon_apmu CLK_PCIE0_SLAVE>;
-+			clock-names = "refclk",
-+				      "dbi",
-+				      "mstr",
-+				      "slv";
-+			resets = <&syscon_apmu RESET_PCIE0_DBI>,
-+				 <&syscon_apmu RESET_PCIE0_MASTER>,
-+				 <&syscon_apmu RESET_PCIE0_SLAVE>,
-+				 <&syscon_apmu RESET_PCIE0_GLOBAL>;
-+			reset-names = "dbi",
-+				      "mstr",
-+				      "slv",
-+				      "phy";
-+			#phy-cells = <1>;
-+			spacemit,apmu = <&syscon_apmu>;
-+			status = "disabled";
-+		};
-+
-+		pcie1_phy: phy@c0c10000 {
-+			compatible = "spacemit,k1-pcie-phy";
-+			reg = <0x0 0xc0c10000 0x0 0x1000>;
-+			clocks = <&vctcxo_24m>;
-+			clock-names = "refclk";
-+			#phy-cells = <0>;
-+			status = "disabled";
-+		};
-+
-+		pcie2_phy: phy@c0d10000 {
-+			compatible = "spacemit,k1-pcie-phy";
-+			clocks = <&vctcxo_24m>;
-+			clock-names = "refclk";
-+			reg = <0x0 0xc0d10000 0x0 0x1000>;
-+			#phy-cells = <0>;
-+			status = "disabled";
-+		};
-+
- 		syscon_apbc: system-controller@d4015000 {
- 			compatible = "spacemit,k1-syscon-apbc";
- 			reg = <0x0 0xd4015000 0x0 0x1000>;
-@@ -847,6 +890,114 @@ pcie-bus {
- 			#size-cells = <2>;
- 			dma-ranges = <0x0 0x00000000 0x0 0x00000000 0x0 0x80000000>,
- 				     <0x0 0xb8000000 0x1 0x38000000 0x3 0x48000000>;
-+			pcie0: pcie@ca000000 {
-+				compatible = "spacemit,k1-pcie";
-+				reg = <0x0 0xca000000 0x0 0x00001000>,
-+				      <0x0 0xca300000 0x0 0x0001ff24>,
-+				      <0x0 0x8f000000 0x0 0x00002000>,
-+				      <0x0 0xc0b20000 0x0 0x00001000>;
-+				reg-names = "dbi",
-+					    "atu",
-+					    "config",
-+					    "link";
-+				#address-cells = <3>;
-+				#size-cells = <2>;
-+				ranges = <0x01000000 0x0 0x00000000 0x0 0x8f002000 0x0 0x00100000>,
-+					 <0x02000000 0x0 0x80000000 0x0 0x80000000 0x0 0x0f000000>;
-+				interrupts = <141>;
-+				interrupt-names = "msi";
-+				clocks = <&syscon_apmu CLK_PCIE0_DBI>,
-+					 <&syscon_apmu CLK_PCIE0_MASTER>,
-+					 <&syscon_apmu CLK_PCIE0_SLAVE>;
-+				clock-names = "dbi",
-+					      "mstr",
-+					      "slv";
-+				resets = <&syscon_apmu RESET_PCIE0_DBI>,
-+					 <&syscon_apmu RESET_PCIE0_MASTER>,
-+					 <&syscon_apmu RESET_PCIE0_SLAVE>,
-+					 <&syscon_apmu RESET_PCIE0_GLOBAL>;
-+				reset-names = "dbi",
-+					      "mstr",
-+					      "slv",
-+					      "phy";
-+				device_type = "pci";
-+				num-viewport = <8>;
-+				spacemit,apmu = <&syscon_apmu 0x03cc>;
-+				status = "disabled";
-+			};
-+
-+			pcie1: pcie@ca400000 {
-+				compatible = "spacemit,k1-pcie";
-+				reg = <0x0 0xca400000 0x0 0x00001000>,
-+				      <0x0 0xca700000 0x0 0x0001ff24>,
-+				      <0x0 0x9f000000 0x0 0x00002000>,
-+				      <0x0 0xc0c20000 0x0 0x00001000>;
-+				reg-names = "dbi",
-+					    "atu",
-+					    "config",
-+					    "link";
-+				#address-cells = <3>;
-+				#size-cells = <2>;
-+				ranges = <0x01000000 0x0 0x00000000 0x0 0x9f002000 0x0 0x00100000>,
-+					 <0x02000000 0x0 0x90000000 0x0 0x90000000 0x0 0x0f000000>;
-+				interrupts = <142>;
-+				interrupt-names = "msi";
-+				clocks = <&syscon_apmu CLK_PCIE1_DBI>,
-+					 <&syscon_apmu CLK_PCIE1_MASTER>,
-+					 <&syscon_apmu CLK_PCIE1_SLAVE>;
-+				clock-names = "dbi",
-+					      "mstr",
-+					      "slv";
-+				resets = <&syscon_apmu RESET_PCIE1_DBI>,
-+					 <&syscon_apmu RESET_PCIE1_MASTER>,
-+					 <&syscon_apmu RESET_PCIE1_SLAVE>,
-+					 <&syscon_apmu RESET_PCIE1_GLOBAL>;
-+				reset-names = "dbi",
-+					      "mstr",
-+					      "slv",
-+					      "phy";
-+				device_type = "pci";
-+				num-viewport = <8>;
-+				spacemit,apmu = <&syscon_apmu 0x3d4>;
-+				status = "disabled";
-+			};
-+
-+			pcie2: pcie@ca800000 {
-+				compatible = "spacemit,k1-pcie";
-+				reg = <0x0 0xca800000 0x0 0x00001000>,
-+				      <0x0 0xcab00000 0x0 0x0001ff24>,
-+				      <0x0 0xb7000000 0x0 0x00002000>,
-+				      <0x0 0xc0d20000 0x0 0x00001000>;
-+				reg-names = "dbi",
-+					    "atu",
-+					    "config",
-+					    "link";
-+				#address-cells = <3>;
-+				#size-cells = <2>;
-+				ranges = <0x01000000 0x0 0x00000000 0x0 0xb7002000 0x0 0x00100000>,
-+					 <0x42000000 0x0 0xa0000000 0x0 0xa0000000 0x0 0x10000000>,
-+					 <0x02000000 0x0 0xb0000000 0x0 0xb0000000 0x0 0x07000000>;
-+				interrupts = <143>;
-+				interrupt-names = "msi";
-+				clocks = <&syscon_apmu CLK_PCIE2_DBI>,
-+					 <&syscon_apmu CLK_PCIE2_MASTER>,
-+					 <&syscon_apmu CLK_PCIE2_SLAVE>;
-+				clock-names = "dbi",
-+					      "mstr",
-+					      "slv";
-+				resets = <&syscon_apmu RESET_PCIE2_DBI>,
-+					 <&syscon_apmu RESET_PCIE2_MASTER>,
-+					 <&syscon_apmu RESET_PCIE2_SLAVE>,
-+					 <&syscon_apmu RESET_PCIE2_GLOBAL>;
-+				reset-names = "dbi",
-+					      "mstr",
-+					      "slv",
-+					      "phy";
-+				device_type = "pci";
-+				num-viewport = <8>;
-+				spacemit,apmu = <&syscon_apmu 0x3dc>;
-+				status = "disabled";
-+			};
- 		};
- 
- 		storage-bus {
--- 
-2.48.1
+> +#include <linux/module.h>
+> +#include <linux/mutex.h>
+> +#include <linux/of.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/slab.h>
+> +
+> +struct virtual_led {
+> +	struct led_classdev cdev;
+> +	struct led_classdev **monochromatics;
+> +	struct leds_virtualcolor *vc_data;
+> +	int num_monochromatics;
+> +	int priority;
+> +	unsigned long blink_delay_on;
+> +	unsigned long blink_delay_off;
+> +	struct list_head list;
+> +};
+> +
+> +struct leds_virtualcolor {
+> +	struct virtual_led *vleds;
+> +	int num_vleds;
+> +	struct list_head active_leds;
+> +	struct mutex lock; // Protects access to active LEDs
+> +};
+> +
+> +static void virtual_set_monochromatic_brightness(struct virtual_led *vled,
+> +						 enum led_brightness brightness)
+> +{
+> +	int i;
+> +
+> +	if (vled->blink_delay_on || vled->blink_delay_off) {
+> +		unsigned long blink_mask = (BIT(LED_BLINK_SW) | BIT(LED_BLINK_ONESHOT) |
+> +					    BIT(LED_SET_BLINK));
+> +
+> +		/*
+> +		 * Make sure the LED is not already blinking.
+> +		 * We don't want to call led_blink_set multiple times.
+> +		 */
+> +		if (!(vled->cdev.work_flags & blink_mask))
 
+work_flags don't look they are meant to be used by drivers.
+
+> +			led_blink_set(&vled->cdev, &vled->blink_delay_on, &vled->blink_delay_off);
+> +
+> +		/* Update the blink delays if they have changed */
+> +		if (vled->blink_delay_on != vled->cdev.blink_delay_on ||
+> +		    vled->blink_delay_off != vled->cdev.blink_delay_off) {
+> +			vled->cdev.blink_delay_on = vled->blink_delay_on;
+> +			vled->cdev.blink_delay_off = vled->blink_delay_off;
+> +		}
+> +	}
+> +
+> +	for (i = 0; i < vled->num_monochromatics; i++)
+> +		led_set_brightness(vled->monochromatics[i], brightness);
+> +}
+> +
+> +static ssize_t priority_show(struct device *dev, struct device_attribute *attr, char *buf)
+> +{
+> +	struct virtual_led *vled = dev_get_drvdata(dev);
+> +
+> +	return sprintf(buf, "%d\n", vled->priority);
+
+sysfs_emit();
+
+> +}
+> +
+> +static ssize_t priority_store(struct device *dev, struct device_attribute *attr, const char *buf,
+> +			      size_t count)
+> +{
+> +	struct virtual_led *vled = dev_get_drvdata(dev);
+> +	int new_priority;
+> +	int ret;
+> +
+> +	ret = kstrtoint(buf, 10, &new_priority);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	vled->priority = new_priority;
+
+No locking?
+
+> +	return count;
+> +}
+> +
+> +static DEVICE_ATTR_RW(priority);
+> +
+> +static ssize_t blink_delay_on_show(struct device *dev, struct device_attribute *attr, char *buf)
+> +{
+> +	struct virtual_led *vled = dev_get_drvdata(dev);
+> +
+> +	return sprintf(buf, "%lu\n", vled->blink_delay_on);
+> +}
+
+Why does this have a custom blinking UAPI?
+Shouldn't it be generic?
+
+(...)
+
+> +static int leds_virtualcolor_init_vled(struct device *dev, struct device_node *child,
+> +				       struct virtual_led *vled, struct leds_virtualcolor *vc_data)
+> +{
+> +	struct led_init_data init_data = {};
+> +	u32 blink_interval;
+> +	u32 phandle_count;
+> +	u32 max_brightness;
+> +	int ret;
+> +	int i;
+
+INIT_LIST_HEAD(&vled->list);
+
+> +
+> +	ret = of_property_read_u32(child, "priority", &vled->priority);
+> +	if (ret)
+> +		vled->priority = 0;
+> +
+> +	ret = of_property_read_u32(child, "blink", &blink_interval);
+> +	if (!ret) {
+> +		vled->blink_delay_on = blink_interval;
+> +		vled->blink_delay_off = blink_interval;
+> +	}
+> +
+> +	phandle_count = of_property_count_elems_of_size(child, "leds", sizeof(u32));
+> +	if (phandle_count <= 0) {
+> +		dev_err(dev, "No monochromatic LEDs specified for virtual LED %s\n",
+> +			vled->cdev.name);
+> +		return -EINVAL;
+> +	}
+> +
+> +	vled->num_monochromatics = phandle_count;
+> +	vled->monochromatics = devm_kcalloc(dev, vled->num_monochromatics,
+> +					    sizeof(*vled->monochromatics), GFP_KERNEL);
+> +	if (!vled->monochromatics)
+> +		return -ENOMEM;
+> +
+> +	for (i = 0; i < vled->num_monochromatics; i++) {
+> +		struct led_classdev *led_cdev;
+> +
+> +		led_cdev = devm_of_led_get_optional(dev, i);
+> +		if (IS_ERR(led_cdev)) {
+> +			/*
+> +			 * If the LED is not available yet, defer the probe.
+> +			 * The probe will be retried when it becomes available.
+> +			 */
+> +			if (PTR_ERR(led_cdev) == -EPROBE_DEFER)
+> +				return -EPROBE_DEFER;
+> +
+> +			ret = PTR_ERR(led_cdev);
+> +			dev_err(dev, "Failed to get monochromatic LED for %s, error %d\n",
+> +				vled->cdev.name, ret);
+> +			return ret;
+> +		}
+
+Just use dev_err_probe(), it will properly handle -EPROBE_DEFER.
+
+> +
+> +		vled->monochromatics[i] = led_cdev;
+> +	}
+> +
+> +	ret = of_property_read_u32(child, "max-brightness", &max_brightness);
+> +	if (ret)
+> +		vled->cdev.max_brightness = LED_FULL;
+> +	else
+> +		vled->cdev.max_brightness = max_brightness;
+> +
+> +	vled->cdev.brightness_set_blocking = virtual_led_brightness_set;
+> +	vled->cdev.flags = LED_CORE_SUSPENDRESUME;
+> +
+> +	init_data.fwnode = NULL; // Use OF, not fwnode
+
+Why?
+
+> +	ret = devm_led_classdev_register_ext(dev, &vled->cdev, &init_data);
+> +	if (ret) {
+> +		dev_err(dev, "Failed to register virtual LED %s\n", vled->cdev.name);
+> +		return ret;
+> +	}
+
+if (ret)
+	return dev_err_probe() ...
+
+> +
+> +	ret = device_create_file(vled->cdev.dev, &dev_attr_priority);
+> +	if (ret) {
+> +		dev_err(dev, "Failed to create sysfs attribute for priority\n");
+> +		return ret;
+> +	}
+
+Use 'struct platform_driver::driver::dev_groups' to let the driver core
+manage your sysfs attributes instead of doing it manually.
+
+> +
+> +	ret = device_create_file(vled->cdev.dev, &dev_attr_blink_delay_on);
+> +	if (ret) {
+> +		dev_err(dev, "Failed to create sysfs attribute for blink_delay_on\n");
+> +		return ret;
+> +	}
+> +
+> +	ret = device_create_file(vled->cdev.dev, &dev_attr_blink_delay_off);
+> +	if (ret) {
+> +		dev_err(dev, "Failed to create sysfs attribute for blink_delay_off\n");
+> +		return ret;
+> +	}
+> +
+> +	vled->vc_data = vc_data;
+> +
+> +	return 0;
+> +}
+> +
+> +static int leds_virtualcolor_disable_sysfs_access(struct device *dev, struct virtual_led *vled)
+> +{
+> +	int i;
+> +
+> +	for (i = 0; i < vled->num_monochromatics; i++) {
+> +		struct led_classdev *led_cdev = vled->monochromatics[i];
+> +
+> +		mutex_lock(&led_cdev->led_access);
+
+This mutex looks unnecessary.
+
+> +		led_sysfs_disable(led_cdev);
+> +		mutex_unlock(&led_cdev->led_access);
+> +
+> +		devm_add_action_or_reset(dev, restore_sysfs_write_access, led_cdev);
+
+Check for errors.
+
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int leds_virtualcolor_probe(struct platform_device *pdev)
+> +{
+> +	struct leds_virtualcolor *vc_data;
+> +	struct device *dev = &pdev->dev;
+> +	struct device_node *child;
+> +	int count = 0;
+> +	int ret;
+> +
+> +	vc_data = devm_kzalloc(dev, sizeof(*vc_data), GFP_KERNEL);
+> +	if (!vc_data)
+> +		return -ENOMEM;
+> +
+> +	mutex_init(&vc_data->lock);
+
+Use devm_mutex_init(), then you can get rid of all the mutex_destroy()
+calls below.
+
+> +	INIT_LIST_HEAD(&vc_data->active_leds);
+> +
+> +	vc_data->num_vleds = of_get_child_count(dev->of_node);
+> +	if (vc_data->num_vleds == 0) {
+> +		dev_err(dev, "No virtual LEDs defined in device tree\n");
+
+return dev_err_probe();
+
+> +		ret = -EINVAL;
+> +		goto err_mutex_destroy;
+> +	}
+> +
+> +	vc_data->vleds = devm_kcalloc(dev, vc_data->num_vleds, sizeof(*vc_data->vleds), GFP_KERNEL);
+> +	if (!vc_data->vleds) {
+> +		ret = -ENOMEM;
+> +		goto err_mutex_destroy;
+> +	}
+> +
+> +	for_each_child_of_node(dev->of_node, child) {
+
+for_each_child_of_node_scoped() should be nicer.
+Also I think you should check for available, or better yet use
+for_each_available_child_of_node_scoped().
+
+> +		struct virtual_led *vled = &vc_data->vleds[count];
+> +
+> +		ret = leds_virtualcolor_init_vled(dev, child, vled, vc_data);
+> +		if (ret) {
+> +			if (ret != -EPROBE_DEFER)
+> +				dev_err(dev, "Failed to initialize virtual LED %d\n", count);
+> +
+> +			of_node_put(child);
+> +			goto err_node_put;
+> +		}
+> +
+> +		count++;
+> +	}
+> +
+> +	platform_set_drvdata(pdev, vc_data);
+> +
+> +	if (of_property_read_bool(dev->of_node, "monochromatics-ro")) {
+
+The property should be documented.
+
+> +		int i;
+> +
+> +		for (i = 0; i < count; i++) {
+> +			struct virtual_led *vled = &vc_data->vleds[i];
+> +
+> +			ret = leds_virtualcolor_disable_sysfs_access(dev, vled);
+> +			if (ret)
+> +				goto err_node_put;
+> +		}
+> +	}
+> +
+> +	return 0;
+> +
+> +err_node_put:
+> +	mutex_destroy(&vc_data->lock);
+> +	return ret;
+> +
+> +err_mutex_destroy:
+
+Both labels have the same code behind them.
+
+> +	mutex_destroy(&vc_data->lock);
+> +
+> +	return ret;
+> +}
+> +
+> +static void leds_virtualcolor_remove(struct platform_device *pdev)
+> +{
+> +	struct leds_virtualcolor *vc_data = platform_get_drvdata(pdev);
+> +	int i, j;
+> +
+> +	for (i = 0; i < vc_data->num_vleds; i++) {
+> +		struct virtual_led *vled = &vc_data->vleds[i];
+> +
+> +		device_remove_file(vled->cdev.dev, &dev_attr_priority);
+> +		device_remove_file(vled->cdev.dev, &dev_attr_blink_delay_on);
+> +		device_remove_file(vled->cdev.dev, &dev_attr_blink_delay_off);
+
+No need to clean up sysfs files, they will be cleaned up automatically.
+
+> +
+> +		for (j = 0; j < vled->num_monochromatics; j++) {
+> +			if (vled->monochromatics[j]) {
+> +				led_put(vled->monochromatics[j]);
+
+This is dropping the reference acquired by devm_of_led_get_optional(),
+correct? Then it is unnecessary, as the reference will be dropped
+automatically by the devres framework.
+
+> +				vled->monochromatics[j] = NULL;
+
+This looks unnecessary, the memory is going to be freed anyways.
+
+> +			}
+> +		}
+> +	}
+> +
+> +	mutex_destroy(&vc_data->lock);
+> +}
+
+(...)
 
