@@ -1,76 +1,79 @@
-Return-Path: <devicetree+bounces-226160-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226161-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BB89BD5846
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 19:36:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C9AE6BD584F
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 19:36:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D741F4E1F93
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 17:36:08 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 920B84E1D16
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 17:36:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1576306483;
-	Mon, 13 Oct 2025 17:36:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93FD23081AE;
+	Mon, 13 Oct 2025 17:36:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Vm+OdI0O"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="i8Pt2m+j"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com [209.85.210.171])
+Received: from mail-pf1-f180.google.com (mail-pf1-f180.google.com [209.85.210.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E3943019C3
-	for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 17:36:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0E933081D0
+	for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 17:36:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760376964; cv=none; b=LyjI6T8iLFdVjgMlto81ZgMMZ5zQqZKeWbxemxaMIB2k/lluLOrxDv5LRQ+TzfmEBY0BvuPK5y3gfIG750JFzsQWZ57IMkdttQRYgnKQUeeUP+i4Rz8b+OPqPngIJmxkBoZKucX+b1IvN+5WZPXCPEstZmAuec0AVqbmYbQClPA=
+	t=1760376969; cv=none; b=qmnCQaEtrxaiY57M+d7nefJeq2PBtZZlxhIPz/E7iohFOgm1D5jczWWDuZoDLbXcsOjvFt0OBx679w2eyPApRwK0dJcOftTdMBMINebOOlqiIy6FSTVzvdzudcLphdV25TfhOYeVEikn/VHtLHm0hFzqCjPgnlf/rTjpsXF3wAg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760376964; c=relaxed/simple;
-	bh=vGLsoOK0P6diATKf+pAvRXu++XmUkvxZt/aFULFDuZw=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=Hz4Yj03rCx70NyAfYUhpCaHY6uBEOaJR2fxsM2JDidEvKppqpYsyt8rj23Wlyir8gXKP5Ykn6d8azJQdNXRHkHzWWneq5MpEaiRWwPW3tOP0s/RNP3FtgNJ2jGziNcxXWRHwxd32c2rHes8RobHbhrNNJ35JRliUbj5Xj6eWVXA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Vm+OdI0O; arc=none smtp.client-ip=209.85.210.171
+	s=arc-20240116; t=1760376969; c=relaxed/simple;
+	bh=lo7mAUqB3EMezneUxb5oCt+PWOGA81u/1DzHUg4ukfc=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=QjDoKGEwjYrBjEBt4iEvcD+0zEC2wXYo9f1kF9EtN7O4kokZ+6lvOg+aO7wKzFApJmxsqT9mTkVeb15Uj9OQEy70kGgRwkEt/Pf6Bl5wcM4ty3tbVjnCHArUOVFzh2VM9RyE6M7v3Z20liLSSaXo1qMl9pWcclGpl1AvNXLJi+I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=i8Pt2m+j; arc=none smtp.client-ip=209.85.210.180
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f171.google.com with SMTP id d2e1a72fcca58-782bfd0a977so3814630b3a.3
-        for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 10:36:02 -0700 (PDT)
+Received: by mail-pf1-f180.google.com with SMTP id d2e1a72fcca58-782a77b5ec7so3974211b3a.1
+        for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 10:36:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1760376962; x=1760981762; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=G4QFWdHKHTnFU+rEHq1C51fLR8IiJ3bf0ABGeNJDUlc=;
-        b=Vm+OdI0Ojnwriq7a9iKN4RGGCFsrFRa6SFwQzP4Ni9hKYdtOrdsvM9+oDQmT5KxGpY
-         Us5p8J+BWfEiFNPHmwP1xojP125NhqEWmR3EUAPBPctmAi3ZuFd8iWbgL35P9enqonVq
-         9jrEqlE+T0O8IrYLoqXR673IIoHjlkdWhMAZM6QR8mx8x8Z+xNeV/DAPdxPxTJ9Nkpmt
-         WtgjtDRqBaWF2MRlLQI18vLIC5yIr44iSM9oqGK7H/ER8wqP22sVsnw9oxyDmURmcIu3
-         JMxRtCC+XRQMCT7cncT4XV3WSJIlUea3sOMrPy4hRDU4FLFGjQeqNYxf2eCMrHEyNY0u
-         GI5Q==
+        d=gmail.com; s=20230601; t=1760376967; x=1760981767; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=bYeaFtjHFhiyM2JZ1YDXKq+J4MgMl7+YBzxeolg0MsM=;
+        b=i8Pt2m+js3aaLSez6Zi1TuJGAQtR/Mau4BCk3wHWiB5lj+BKWCO7HQS2Mujggi9gga
+         5bN0cklZUHULob5Gl7mqIz5wrNKVndilTgrMcj4HgZ1+3pjI4IvZn7H+WdTGYMGKJKtR
+         iSb/WIpSpJAdxM8DucKKJUMdgXhadNNxVPt6VgjQ4RQzFQFwX1xJ/DynaiMD3j77g9Jz
+         goVp5632TZxfw+7cOH3HYijVgzzH1zVBRRa9EmFX4C+jAr+7QWmmLeDT1Q6S9TwhUQZy
+         42Yek5nMGhNBXPc07Fkr2r/Q5IqUqS1Jvfj3gbos0e8Pfx8kJCcXlPcnCPPFiWhAhXv+
+         hzqw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760376962; x=1760981762;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=G4QFWdHKHTnFU+rEHq1C51fLR8IiJ3bf0ABGeNJDUlc=;
-        b=C1wZqWGFE1OTdcBp/82Of8Gq7IwT87Es6Wgcg4QwITZ8YAffilJKOtRGBp0ZLfq1N2
-         O07FgTUrPoNF1o3wkWVJw7V1z+AJViqcNAWjQAIFeqeCeSf19IVeAA4/tMW70gq36/uc
-         OnS0XAaV9W7pBPJhK4a9ZyvVKkbfEDl9HmpjHkc3/2YDrWyVQZoPgo5+2E5ugd9MPzU1
-         sqIzibO2DqourqjODy5DMGYXNq6nc1BM51m4AERnLrYwyasIVOoMuW3Dy1RlwhG5eII1
-         cy/xYXiwZQc8p5/D4ovXTVepIF+6jHOMD9TVdGg55nO0RXXSxqGl6hiQdxkYlATvlUeL
-         8ywQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWHEfxBAp2g9YP50nJcPWZFRf9BNODVf5iBVqLqGRiC5KjxwCu3BCVPV3fLNRA5i2DQ3tLZDJlAp9P5@vger.kernel.org
-X-Gm-Message-State: AOJu0YzgV/gaFHhDiIt39RulVSkdSCkD5oTcPi2EzBMdOQNloCSCkWL6
-	Ppx5HuxzqNpsvaAzCVUl5wR3bn7Z60lIB/IigMse9e+pht48jBQHqIBi
-X-Gm-Gg: ASbGncu2BIrvJXnTmi86ptaCP13lDeJZzMKkoTq+XQoBM5DlvWVLJDNh6XswGm9cENk
-	m8MCevbjgiQ1j8B3KYUoBDGVjdxg2lWwd1jRObs63GBExRSDMs3C/dsUrI6Unlx8GoaUMnEWbjb
-	j63gFZqxk8hWdr8hD2q/GUJS1jhyGbLtmysF2N5DOvXAQchGUr1Kz8+MmNM0G3Q4UOZg0FIQIoO
-	jfez4/K2ehJLEStHaEYs2hyri5ueD4qYPxQiw32FJEczjU/k6iDQXcK0xCfSG2MxQbxvfp/Cl+E
-	QzpEG/p30qxML5Lczb2qrGdtHZ8hJ9m1uehvvRpi1oIdPJpDOs9qV9PqYEmxhz0aIbXFwAircO0
-	xwDV/Y8Ke4gMfqGg8Pg5Qg/F9MAUo2vcyVsqG62W9FxU3SXLISeg0
-X-Google-Smtp-Source: AGHT+IEAIw/36vkJM/mQO5Iq/Y6COxiOYo5Py9lE8ISg7NUXOpBiJoFEAm9NFEYdd5Xpth4c7zEDfA==
-X-Received: by 2002:a05:6a00:1883:b0:77f:4a83:8f9 with SMTP id d2e1a72fcca58-793859f34c4mr26412272b3a.2.1760376961509;
-        Mon, 13 Oct 2025 10:36:01 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1760376967; x=1760981767;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=bYeaFtjHFhiyM2JZ1YDXKq+J4MgMl7+YBzxeolg0MsM=;
+        b=jhd04R9Cr560eb1GVVoIJzpQv5mL/fomTu93DpTdekG+rTYbQyMBfLxgeTn9dTZkPB
+         Nqefcg+EwxWJzq3L/fGMMfupquq5p0UsCUoVhLtZzWXx95llzz4BhOKb8uRL/RzcKETh
+         D+dvcd4p3NkMWjYs6euaQB3dB4DTwDXjs9oHBrEo7sZo8BPekwdbOxa7VAp7N/Mh/gm/
+         9f71w5MmEgp+FO1glyqrGfQNyn7NRrVEBRGBnZ0X4SzgvE9EdV0VHHI+7lculfeS1Rya
+         0JtfB5Em8WgKQIcyl/ZxGv/ejg7lL3Mg9HWE3wRoClDCzqB3pkyDsccLhx8Fv9hMStOV
+         y36g==
+X-Forwarded-Encrypted: i=1; AJvYcCXsIAXgMjQG5N8ZvKBqDoJ9hb8GVm5Q3+z/KiDSMIva0QcFygBeHtdfz/KY3ygUghoarWj14HvB76YM@vger.kernel.org
+X-Gm-Message-State: AOJu0YzFtIV1TtJ+RV05BwR+BZdeRWUDO5/V3jXnE5qWZG2n6zup99ZE
+	RzIiv4SRyMrZssY/V5Bo2XrIJDcvGf0NlfrNpHOpAY2xMfaqd5skGpN8
+X-Gm-Gg: ASbGncufUAVdmgo+J+xS1z09I729ZcR6TWDR3nx49BRZMkrPjgL8tiMc8dGxti8BCB+
+	zEUSjVejaWYOcPqZXjMFuUN/5QWYqvN1TieHMD0sRdSO3GsninsunaeYL0aES5tMKnYi90fcvJ4
+	wphyBVWWYLOqB2HM7JMiFJ/FWJ3734p+Vaek99S+M64/jOFOWvZdwf2yzJsaVgpXAKH/CdZCaOo
+	5d3RqzSOo41J7Lzzj8OeXq882tufUxGP/E1vouEYqWlJGXW0PubHqP54/KfpqSDqCmnBajN+saZ
+	yXaONNo9/k7LPYoRXY2BtEyh/gufJWei3GgGNEon+UHMTD2M28Z5RgVevG+JyylI8rdW/TsAg/e
+	DhtUkQ9royOuDKRu+3EomTNpgXCGKfQ09vsE5wPIes6AcFX/jLXRooqOWaVAwX+IDIoj0rK5Wdg
+	==
+X-Google-Smtp-Source: AGHT+IE3eujAZOISjflFxdMwam8D2MOe599RLbEmQYKnIgM2jmAubEvEpNjX2Tw4hT+C5+eL4xsb3g==
+X-Received: by 2002:a05:6a00:1492:b0:772:4319:e7ed with SMTP id d2e1a72fcca58-793881eb9c5mr26389026b3a.29.1760376966596;
+        Mon, 13 Oct 2025 10:36:06 -0700 (PDT)
 Received: from DESKTOP-P76LG1N.lan ([42.118.149.214])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7992b060754sm12424546b3a.13.2025.10.13.10.35.57
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7992b060754sm12424546b3a.13.2025.10.13.10.36.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Oct 2025 10:36:00 -0700 (PDT)
+        Mon, 13 Oct 2025 10:36:06 -0700 (PDT)
 From: Nam Tran <trannamatk@gmail.com>
 To: lee@kernel.org
 Cc: pavel@kernel.org,
@@ -86,10 +89,12 @@ Cc: pavel@kernel.org,
 	devicetree@vger.kernel.org,
 	linux-doc@vger.kernel.org,
 	Nam Tran <trannamatk@gmail.com>
-Subject: [PATCH v16 0/3] leds: add new LED driver for TI LP5812
-Date: Tue, 14 Oct 2025 00:35:48 +0700
-Message-Id: <20251013173551.108205-1-trannamatk@gmail.com>
+Subject: [PATCH v16 1/3] dt-bindings: leds: add TI/National Semiconductor LP5812 LED Driver
+Date: Tue, 14 Oct 2025 00:35:49 +0700
+Message-Id: <20251013173551.108205-2-trannamatk@gmail.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20251013173551.108205-1-trannamatk@gmail.com>
+References: <20251013173551.108205-1-trannamatk@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -98,151 +103,290 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-This patch series adds initial support for the TI LP5812,
-a 4x3 matrix RGB LED driver with autonomous engine control.
-This version provides a minimal, clean implementation focused
-on core functionality only. The goal is to upstream a solid
-foundation, with the expectation that additional features can
-be added incrementally in future patches.
-
-The driver integrates with the LED multicolor framework and
-supports a set of basic sysfs interfaces for LED control and
-chip management.
+The LP5812 is a 4x3 RGB LED driver with an autonomous animation
+engine and time-cross-multiplexing (TCM) support for up to 12 LEDs
+or 4 RGB LEDs. It supports both analog (256 levels) and PWM (8-bit)
+dimming, including exponential PWM for smooth brightness control.
 
 Signed-off-by: Nam Tran <trannamatk@gmail.com>
 ---
-Changes in v16:
-- Renamed property 'ti,operation-mode' to 'ti,scan-mode'.
-- Simplified allowed values using regex pattern instead of long enum list.
-- Updated description accordingly and noted 'direct_mode' as default.
-- Updated core driver to match the binding change.
-- Link to v15: https://lore.kernel.org/linux-leds/20251005153337.94025-1-trannamatk@gmail.com/
-
-Changes in v15:
-- Removed all custom sysfs attributes; driver now fully relies on standard LED multicolor class interfaces.
-- Added new device tree property `ti,operation-mode` to configure direct, TCM, and mix scan modes.
-- Dropped previous Reviewed-by tag from the binding patch due to property addition.
-- Removed ABI documentation since no new sysfs entries are created.
-- Updated lp5812.rst documentation accordingly.
-- Link to v14: https://lore.kernel.org/linux-leds/20250907160944.149104-1-trannamatk@gmail.com/
-
-Changes in v14:
-- Replaced inline constants with proper macros for readability and maintainability.
-- Refactored lp5812_read() and lp5812_write() to simplify logic and improve clarity.
-- Updated lp5812_fault_clear() to use switch() instead of if/else chain.
-- Refactored parse_drive_mode() for cleaner logic, removed string parsing of concatenated data.
-- Updated activate_store() and led_current_store() to replace strsep()/kstrtoint() parsing with sscanf().
-- Removed redundant comments and renamed variables for better clarity.
-- Link to v13: https://lore.kernel.org/lkml/20250818012654.143058-1-trannamatk@gmail.com/
-
-Changes in v13:
-- Fixes build warnings reported by kernel test robot:
-  - Inconsistent indent in lp5812_probe()
-  - Uninitialized variable 'ret' in lp5812_multicolor_brightness()
-- Drop of_match_ptr() and directly assign of_match_table, as the driver is DT-only.
-- Link to v12: https://lore.kernel.org/lkml/20250728065814.120769-1-trannamatk@gmail.com/
-
-Changes in v12:
-- Reordered helper functions above lp5812_probe() for better structure.
-- Clarified DT-only support by removing fallback paths and i2c_device_id table.
-- Directly assign platform_data to the correct pointer instead of relying on
-  string comparisons (LP5812_SC_LED, LP5812_MC_LED) and container_of() casting.
-  This simplifies the logic and avoids unnecessary type checks.
-- Removed redundant messages.
-- Update ABI documentation to reflect reduced feature set.
-- Link to v11: https://lore.kernel.org/lkml/20250714172355.84609-1-trannamatk@gmail.com/
-
-Changes in v11:
-- Drop autonomous animation and other advanced features; reduce driver to core functionality only.
-- Simplify LED parsing to use a unified path.
-- Clean up and streamline code
-  - Use alphabetically ordered includes
-  - Remove redundant comments
-  - Fix style issues (e.g., comment capitalization, code placement)
-- Update ABI documentation to reflect reduced feature set.
-- Link to v10: https://lore.kernel.org/lkml/20250618183205.113344-1-trannamatk@gmail.com/
-
-Changes in v10:
-- Address feedback on v9 regarding missing Reviewed-by tag
-- Added explanation: binding structure changed significantly to integrate
-  with the standard leds-class-multicolor.yaml schema and support multi-led@
-  nodes with nested led@ subnodes. This change introduced a new patternProperties
-  hierarchy and removed the previous flat led@ layout used in the earlier versions.
-  So the Reviewed-by tag was dropped out of caution.
-- Address binding document feedback
-  - Use consistent quotes
-  - Replace 'max-cur' with the standard 'led-max-microamp'
-  - Remove 'led-cur' property
-  - Fix mixed indentation
-- Updated core driver to align with the updated binding schema.
-- Address core driver feedback
-  - Use for_each_available_child_of_node_scoped() to simplify the code
-  - Add a return checks for lp5812_write() and lp5812_read()
-  - Remove unneeded trailing commas
-  - Fix unsafe usage of stack-allocated strings
-- Link to v9: https://lore.kernel.org/lkml/20250617154020.7785-1-trannamatk@gmail.com/
-
-Changes in v9:
-- Move driver back to drivers/leds/rgb/
-- Integrate with LED multicolor framework
-- Refactor and simplify custom sysfs handling
-- Extend Device Tree binding to support multi-led@ nodes using leds-class-multicolor.yaml
-- Update documentation to reflect the updated sysfs.
-- Link to v8: https://lore.kernel.org/lkml/20250427082447.138359-1-trannamatk@gmail.com/
-
-Changes in v8:
-- Move driver to drivers/auxdisplay/ instead of drivers/leds/.
-- Rename files from leds-lp5812.c/.h to lp5812.c/.h.
-- Move ti,lp5812.yaml binding to auxdisplay/ directory,
-  and update the title and $id to match new path.
-- No functional changes to the binding itself (keep Reviewed-by).
-- Update commit messages and patch titles to reflect the move.
-- Link to v7: https://lore.kernel.org/linux-leds/20250422190121.46839-1-trannamatk@gmail.com/
-
-Changes in v7:
-- Mark `chip_leds_map` as const.
-- Use consistent `ret` initialization.
-- Simplify the function `set_mix_sel_led()`.
-- Refactor `dev_config_show()` and `led_auto_animation_show()` to avoid temp buffer, malloc/free.
-- Simplify the code and ensure consistent use of mutex lock/unlock in show/store functions.
-- Remove `total_leds` and `total_aeu`.
-- Link to v6: https://lore.kernel.org/linux-leds/20250419184333.56617-1-trannamatk@gmail.com/
-
-Changes in v6:
-- Add `vcc-supply` property to describe the LP5812 power supply.
-- Remove `chan-name` property and entire LED subnodes, as they are not needed.
-- Update LP5812 LED driver node to Raspberry Pi 4 B Device Tree, based on updated binding.
-- Link to v5: https://lore.kernel.org/linux-leds/20250414145742.35713-1-trannamatk@gmail.com/
-
-Changes in v5:
-- Rebase on v6.15-rc2
-- Removed unused functions (lp5812_dump_regs, lp5812_update_bit).
-- Address Krzysztof's review comments
-- Link to v4: https://lore.kernel.org/linux-leds/20250405183246.198568-1-trannamatk@gmail.com/
----
-
-Nam Tran (3):
-  dt-bindings: leds: add TI/National Semiconductor LP5812 LED Driver
-  leds: add basic support for TI/National Semiconductor LP5812 LED
-    Driver
-  docs: leds: Document TI LP5812 LED driver
-
- .../devicetree/bindings/leds/ti,lp5812.yaml   | 249 ++++++
- Documentation/leds/index.rst                  |   1 +
- Documentation/leds/leds-lp5812.rst            |  50 ++
- MAINTAINERS                                   |  11 +
- drivers/leds/rgb/Kconfig                      |  13 +
- drivers/leds/rgb/Makefile                     |   1 +
- drivers/leds/rgb/leds-lp5812.c                | 726 ++++++++++++++++++
- drivers/leds/rgb/leds-lp5812.h                | 197 +++++
- 8 files changed, 1248 insertions(+)
+ .../devicetree/bindings/leds/ti,lp5812.yaml   | 249 ++++++++++++++++++
+ MAINTAINERS                                   |   6 +
+ 2 files changed, 255 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/leds/ti,lp5812.yaml
- create mode 100644 Documentation/leds/leds-lp5812.rst
- create mode 100644 drivers/leds/rgb/leds-lp5812.c
- create mode 100644 drivers/leds/rgb/leds-lp5812.h
 
-
-base-commit: 3a8660878839faadb4f1a6dd72c3179c1df56787
+diff --git a/Documentation/devicetree/bindings/leds/ti,lp5812.yaml b/Documentation/devicetree/bindings/leds/ti,lp5812.yaml
+new file mode 100644
+index 000000000000..5208ddb3bdac
+--- /dev/null
++++ b/Documentation/devicetree/bindings/leds/ti,lp5812.yaml
+@@ -0,0 +1,249 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/leds/ti,lp5812.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: TI LP5812 4x3 Matrix RGB LED Driver with Autonomous Control
++
++maintainers:
++  - Nam Tran <trannamatk@gmail.com>
++
++description: |
++  The LP5812 is a 4x3 matrix RGB LED driver with I2C interface
++  and autonomous animation engine control.
++  For more product information please see the link below:
++  https://www.ti.com/product/LP5812#tech-docs
++
++properties:
++  compatible:
++    const: ti,lp5812
++
++  reg:
++    maxItems: 1
++
++  ti,scan-mode:
++    description: |
++      Selects the LED scan mode of the LP5812. The device supports
++      three modes:
++        - Direct-drive mode ("direct_mode") drives up to 4 LEDs directly
++        by internal current sinks (LED0-LED3).
++        - TCM-drive mode ("tcm:<n>:<order...>") drives up to 12 LEDs
++        (4 RGB) using 1-4 scan multiplexing. The <n> specifies the number
++        of scans (1-4), and <order...> defines the scan order of the outputs.
++        - Mix-drive mode ("mix:<n>:<direct>:<order...>") combines
++        direct-drive and TCM-drive outputs. The <n> specifies the number
++        of scans, <direct> selects the direct-drive outputs, and <order...>
++        defines the scan order.
++    $ref: /schemas/types.yaml#/definitions/string
++    oneOf:
++      - const: direct_mode
++      - pattern: '^(tcm|mix):[1-4](:[0-3]){1,4}$'
++
++  vcc-supply:
++    description: Regulator providing power to the 'VCC' pin.
++
++  "#address-cells":
++    const: 1
++
++  "#size-cells":
++    const: 0
++
++patternProperties:
++  "^led@[0-3]$":
++    type: object
++    $ref: common.yaml#
++    unevaluatedProperties: false
++
++    properties:
++      reg:
++        minimum: 0
++        maximum: 3
++
++    required:
++      - reg
++
++  "^multi-led@[4-7]$":
++    type: object
++    $ref: leds-class-multicolor.yaml#
++    unevaluatedProperties: false
++
++    properties:
++      reg:
++        minimum: 4
++        maximum: 7
++
++      "#address-cells":
++        const: 1
++
++      "#size-cells":
++        const: 0
++
++    patternProperties:
++      "^led@[4-9a-f]$":
++        type: object
++        $ref: common.yaml#
++        unevaluatedProperties: false
++
++        properties:
++          reg:
++            minimum: 4
++            maximum: 15
++
++        required:
++          - reg
++
++required:
++  - compatible
++  - reg
++  - ti,scan-mode
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/leds/common.h>
++
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        led-controller@1b {
++            #address-cells = <1>;
++            #size-cells = <0>;
++            compatible = "ti,lp5812";
++            reg = <0x1b>;
++            ti,scan-mode = "tcm:4:0:1:2:3";
++            vcc-supply = <&vdd_3v3_reg>;
++
++            led@0 {
++                reg = <0x0>;
++                label = "LED0";
++                led-max-microamp = <25500>;
++            };
++
++            led@1 {
++                reg = <0x1>;
++                label = "LED1";
++                led-max-microamp = <25500>;
++            };
++
++            led@2 {
++                reg = <0x2>;
++                label = "LED2";
++                led-max-microamp = <25500>;
++            };
++
++            led@3 {
++                reg = <0x3>;
++                label = "LED3";
++                led-max-microamp = <25500>;
++            };
++
++            multi-led@4 {
++                #address-cells = <1>;
++                #size-cells = <0>;
++                reg = <0x4>;
++                color = <LED_COLOR_ID_RGB>;
++                label = "LED_A";
++
++                led@4 {
++                    reg = <0x4>;
++                    color = <LED_COLOR_ID_GREEN>;
++                    led-max-microamp = <25500>;
++                };
++
++                led@5 {
++                    reg = <0x5>;
++                    color = <LED_COLOR_ID_RED>;
++                    led-max-microamp = <25500>;
++                };
++
++                led@6 {
++                    reg = <0x6>;
++                    color = <LED_COLOR_ID_BLUE>;
++                    led-max-microamp = <25500>;
++                };
++            };
++
++            multi-led@5 {
++                #address-cells = <1>;
++                #size-cells = <0>;
++                reg = <0x5>;
++                color = <LED_COLOR_ID_RGB>;
++                label = "LED_B";
++
++                led@7 {
++                    reg = <0x7>;
++                    color = <LED_COLOR_ID_GREEN>;
++                    led-max-microamp = <25500>;
++                };
++
++                led@8 {
++                    reg = <0x8>;
++                    color = <LED_COLOR_ID_RED>;
++                    led-max-microamp = <25500>;
++                };
++
++                led@9 {
++                    reg = <0x9>;
++                    color = <LED_COLOR_ID_BLUE>;
++                    led-max-microamp = <25500>;
++                };
++            };
++
++            multi-led@6 {
++                #address-cells = <1>;
++                #size-cells = <0>;
++                reg = <0x6>;
++                color = <LED_COLOR_ID_RGB>;
++                label = "LED_C";
++
++                led@a {
++                    reg = <0xa>;
++                    color = <LED_COLOR_ID_GREEN>;
++                    led-max-microamp = <25500>;
++                };
++
++                led@b {
++                    reg = <0xb>;
++                    color = <LED_COLOR_ID_RED>;
++                    led-max-microamp = <25500>;
++                };
++
++                led@c {
++                    reg = <0xc>;
++                    color = <LED_COLOR_ID_BLUE>;
++                    led-max-microamp = <25500>;
++                };
++            };
++
++            multi-led@7 {
++                #address-cells = <1>;
++                #size-cells = <0>;
++                reg = <0x7>;
++                color = <LED_COLOR_ID_RGB>;
++                label = "LED_D";
++
++                led@d {
++                    reg = <0xd>;
++                    color = <LED_COLOR_ID_GREEN>;
++                    led-max-microamp = <25500>;
++                };
++
++                led@e {
++                    reg = <0xe>;
++                    color = <LED_COLOR_ID_RED>;
++                    led-max-microamp = <25500>;
++                };
++
++                led@f {
++                    reg = <0xf>;
++                    color = <LED_COLOR_ID_BLUE>;
++                    led-max-microamp = <25500>;
++                };
++            };
++        };
++    };
++
++...
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 46126ce2f968..f94aa363e3a9 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -25413,6 +25413,12 @@ S:	Supported
+ F:	Documentation/devicetree/bindings/iio/dac/ti,dac7612.yaml
+ F:	drivers/iio/dac/ti-dac7612.c
+ 
++TEXAS INSTRUMENTS' LP5812 RGB LED DRIVER
++M:	Nam Tran <trannamatk@gmail.com>
++L:	linux-leds@vger.kernel.org
++S:	Maintained
++F:	Documentation/devicetree/bindings/leds/ti,lp5812.yaml
++
+ TEXAS INSTRUMENTS' LB8864 LED BACKLIGHT DRIVER
+ M:	Alexander Sverdlin <alexander.sverdlin@siemens.com>
+ L:	linux-leds@vger.kernel.org
 -- 
 2.25.1
 
