@@ -1,127 +1,111 @@
-Return-Path: <devicetree+bounces-226044-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226045-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD3D7BD32A9
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 15:19:23 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9CD03BD3345
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 15:28:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4241D3C5C39
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 13:19:22 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 53FD84F22AD
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 13:28:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78ED8269B1C;
-	Mon, 13 Oct 2025 13:19:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D00102FF175;
+	Mon, 13 Oct 2025 13:28:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="yPRCbj3w"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gv9plx17"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com [209.85.208.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B108A1FDA;
-	Mon, 13 Oct 2025 13:19:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDAAD306480
+	for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 13:28:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760361559; cv=none; b=tB65P+t61kuxRcbFzyPvONoPIAqd4SqpJ6HBQt95aEDe/ZsfYFb23fBJLRNyimWZx28WcLTUx0T86CA+wShzVAdnraIfMWXeBYzx2d4+FFZuoLd50tFDlFGPke3p9dwzlOOgc0DXRWzwQiPBuOWLz+SADPwV5yKxAvP3FjMLiJM=
+	t=1760362092; cv=none; b=tPunp5CahRJPyrqoT7lMgCJo513sSEhyE7PmXnq1ohC1Ks7dOcMpksAKTjrPhIWoSJXcoKmCHL+Eogs7BDz5ByEXl7qV5K+Mny9+fB1mEraMiFVBiFav+jKR9opQFRgaS24+XTue2e33xQXj79Euz7cUaK/TQj+KY4rl2AmToWc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760361559; c=relaxed/simple;
-	bh=b+tLPeMD1Z5B1winxVP0fpDzZ4Ft1DgcmZYnxUfJFCU=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=g0qvyUYZSDw6kiKEKWATmi1y64bQ7Y4DmPC9432WmwxxDjnQH+DAjrq4cbl37Cyg4jhMhQPdO0LI+cAkWozZzQbYbnxXB5csZpDNsKcxmsuf/t/tHD+TlX3lhIPZ0apxiuiZB9AsKAJuqtEWQjXjQO2M/xw2TPZvoEqNbEf+ya8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=yPRCbj3w; arc=none smtp.client-ip=178.238.236.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=kemnade.info; s=20220719; h=References:In-Reply-To:Cc:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=cpFL1cZfIfuJbSy7oDZfLNOPydM7RMbiykjJfKLFtHQ=; b=yPRCbj3w+JzG2CxEWEcVvcjBza
-	hkRNX7lqUR5By+Cmgf8/uqmkX24qVNgDoa3x8PbKuUv6UjeNsOJxDSx5yciVVNZbfExnzKfJI0GGT
-	Y7hg2WN5XBcJqLyWQPP04Ru9M8Z0eepchHT+D9spikwHkELmqnNxbvbAAJyz7NPDJ+jybyHA+8wku
-	2pRjIZ9FPfgP+6ywNrFskufsFV4Jh0uSzKcEN8P88dFmNqBAIqhkpHAKzwboeFW3JLXmJcqmYy+cG
-	sABRGdGAF7n1+NvMYbqvXXcvveoBG/Th5A3Bo1FqRKmvIir+JuI0nOIKMoUdfGX99g4uIhFDS6MK/
-	XROuw62A==;
-Date: Mon, 13 Oct 2025 15:19:00 +0200
-From: Andreas Kemnade <andreas@kemnade.info>
-To: Matti Vaittinen <mazziesaccount@gmail.com>
-Cc: Lee Jones <lee@kernel.org>, Matti Vaittinen
- <matti.vaittinen@fi.rohmeurope.com>, Pavel Machek <pavel@kernel.org>, Rob
- Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
- Dooley <conor+dt@kernel.org>, Sebastian Reichel <sre@kernel.org>, Liam
- Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Linus
- Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
- linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
- linux-gpio@vger.kernel.org
-Subject: Re: [RFC PATCH 06/13] mfd: bd71828: Support ROHM BD72720
-Message-ID: <20251013151900.3e4cc69f@kemnade.info>
-In-Reply-To: <d2295506-bf70-4142-8537-0fdf9cb04a30@gmail.com>
-References: <cover.1759824376.git.mazziesaccount@gmail.com>
-	<93142a80d90a0ac80b27090d0c83914675aad94d.1759824376.git.mazziesaccount@gmail.com>
-	<20251009161847.GE2890766@google.com>
-	<8ea507eb-f78c-4a16-882b-112e277fa1b6@gmail.com>
-	<20251010150317.07bfdbe8@kemnade.info>
-	<d2295506-bf70-4142-8537-0fdf9cb04a30@gmail.com>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; aarch64-unknown-linux-gnu)
+	s=arc-20240116; t=1760362092; c=relaxed/simple;
+	bh=TCpcJBzt3HXWbE0TqPgkXkphc3fKiTL00tff0CRSHVQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=kQlAosBseaF6EPZIj+iQHaac6evV40t/xTCVADMOj5N9qCRLxE1bdqn0tjmGBWkzGxILHZ+xJ/NNgeTLvGEFcfoPBWexeG9lMNe194xbQg8BzIeMhJgaZmLxhJPGqE5Vb/ql/iPjKkOZbaF3mbjT4EmnULLh0Xt0lAJpbF7qPR8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=gv9plx17; arc=none smtp.client-ip=209.85.208.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-36295d53a10so33497451fa.0
+        for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 06:28:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1760362089; x=1760966889; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=TCpcJBzt3HXWbE0TqPgkXkphc3fKiTL00tff0CRSHVQ=;
+        b=gv9plx17pEiS+EkBGJpZ/SyeAHmUfIlBigKhPUbxCyqRcCoeXIjPdp+hY2aXZQ3Eex
+         G46nxphidg3ABVP7Uv+V6wlrtMdi45WHRewTnMkQ8kdwvQrkKN9CdAEO7BIWMraV8OMn
+         TqxBLz9tkl9kakYhOGU4+j2FlT8Wk4f9Bb8S2ExlnTKEHhia4zFDJttMyuus4xT3NQI4
+         +RXh7W1tpPFpC3r2zNwOtxBuQ0LPPrsy8Rc56YigshKDETudRTyF3L3nuG0wJK4mYc9I
+         c6qLbVaF0T/samWllup0AvOSa4XgPwuWMOG/J2dxJbQJb/rOmvFrZkfzQv0jUx9c6GXU
+         NLSg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1760362089; x=1760966889;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=TCpcJBzt3HXWbE0TqPgkXkphc3fKiTL00tff0CRSHVQ=;
+        b=sEjtNXIfdchxFJnU5GH+xwbVvc+QND1ViZoOyC38NglEbGGwvhQOvjVolhcU847u+r
+         +GT+Q+Xe+KNAGcL9Cz3tdwM9lCxp66GRn0fOXE5F22horLm5BSiKfhqveLP3S34h1KZz
+         hD3XZTsMabVIKVqQjle5ybxkHCgBtGkd7rqbGGaQ0bbbCnx1di+3dUdRQjEZ/vEa5GX2
+         7vAZczR8UxrY/E/bSrWkvySrjdxvzb0AGz5zgwjm3Mn4y6YaKVF94Wk4OADQ8Ve48vjD
+         d5NtsoR9Yr4ioxq9lwOA9PSmj6OZRc5T3Z4PrMeEldEXQ7Ly0WQZDqGZGQEYvTNLbn0G
+         DlEw==
+X-Forwarded-Encrypted: i=1; AJvYcCXMv8KVekKH9PRZTMG/tICVe3fdbj65/wMFKkl/UpFt/MIlSr23QPo1A+vzywZAi4HjzmSVXR1NZtOc@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy6W7ZVjTY3CCN4oyRVDYVrhhnKyb8ogQTzm7GT0XSwu+Ai9NgF
+	u6NrtvQIll1KBprYJ9vhCpAo8O2IGe9QCTNm72jAZbgAu3aIpgPKr/i19fUG7SWh8K8MEdklpRz
+	+7+gMHM3xV2A2307FEhBSBOlDDeOigQ/HrtULjbopHg==
+X-Gm-Gg: ASbGnctqwIloxB1EDTOtAepCLrIlSOnP7J6QeC+4Z1z3BoW1kMbL42/9nnKfkDOvSHE
+	dyCXuA87DpGnlB9Jx2cPAcekTkJp3dFms5ZzPaEj5dSkvKSx0apL1kwvLvmBaobtGJqxDGT0s95
+	DelWyrvOVyEnRAfckKnqNZD2vRtm6/9ZPPdOe1fHLjZEVf9dg6SiFGGngMmEK1J6YGQILJjTZ23
+	oApgunuIhm+D9tP4JYP2isxQ+agQw==
+X-Google-Smtp-Source: AGHT+IEuC3uWreohj3S+OBKmbdTWmAhPpTphQzDPpWDlJpvqlnw78r/6/iGnmmf8C9Fpr4YtuqStpXMM8FvmbRHGKAY=
+X-Received: by 2002:a05:651c:1992:b0:336:72be:3339 with SMTP id
+ 38308e7fff4ca-37609e64b9dmr56919791fa.28.1760362088862; Mon, 13 Oct 2025
+ 06:28:08 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+References: <20250926-manpower-glacial-e9756c82b427@spud> <CACRpkdYXh2MCs=vAif7BpxfYVRuDTkYYNwpV2t=J_ZRW+N4Vyg@mail.gmail.com>
+ <20251001-unfreeze-ludicrous-9d744548bf65@spud> <20251009-amendable-trimming-da31551d730b@spud>
+In-Reply-To: <20251009-amendable-trimming-da31551d730b@spud>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Mon, 13 Oct 2025 15:27:57 +0200
+X-Gm-Features: AS18NWCthi_sQuhnDEU35_vHT-Z7ycwcOA1ZjAB9Zqs6xKIeB40fACBw2G4Dpcw
+Message-ID: <CACRpkdYssH8zObJTUH2VVB7FrVFmJUd+Ea7etTGbicQgkuU=CA@mail.gmail.com>
+Subject: Re: [RFC 0/5] microchip mpfs/pic64gx pinctrl questions
+To: Conor Dooley <conor@kernel.org>
+Cc: Conor Dooley <conor.dooley@microchip.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-kernel@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, 13 Oct 2025 12:27:33 +0300
-Matti Vaittinen <mazziesaccount@gmail.com> wrote:
+On Thu, Oct 9, 2025 at 5:55=E2=80=AFPM Conor Dooley <conor@kernel.org> wrot=
+e:
 
-> Hi Andreas!
-> 
-> First of all, thanks for taking a look at this!
-> 
-> On 10/10/2025 16:03, Andreas Kemnade wrote:
-> > On Fri, 10 Oct 2025 15:09:07 +0300
-> > Matti Vaittinen <mazziesaccount@gmail.com> wrote:
-> >   
-> >>>> +static int bd72720_get_secondary_regmap(struct i2c_client *i2c,  
-> >>>
-> >>> Does this 'secondary' have a specific purpose or a better name?  
-> >>
-> >> I am not entirely sure. When I asked this from the designers they just
-> >> told me that they needed more than 255 registers so they added another
-> >> slave address... (I'm not sure what would have been wrong with using a
-> >> page register). So, I assume they just placed stuff that didn't fit in
-> >> first 255 register there. But yeah, it looks like most of the registers
-> >> there are related to the charger. So, perhaps it isn't completely
-> >> misleading to use "charger regmap"? The data-sheet seems to be just
-> >> using "Register map 1" and "Register map 2" in the tables listing these
-> >> registers. I kind of like using something which maps easily to the
-> >> data-sheet, but I really have no strong opinion on this.  
-> > 
-> > just another idea: What about one regmap with custom functions covering
-> > both these adresses? Maybe that could even be added to the regmap
-> > functionality, maybe with a 0x100 offset for the second range.
-> > That way the rest of the code only needs to real with one regmap
-> > and properly defined registers.  
-> 
-> Interesting idea.
-> 
-> I suppose you mean something like implementing custom remap_read() and 
-> regmap_write() - which would practically select the I2C adapter to use 
-> based on the register address - and then doing same thing as the 
-> regmap_i2c_smbus_i2c_write() / regmap_i2c_smbus_i2c_read() do?
-> 
-> I suppose this would mean duplicating the functionality provided by the 
-> regmap_i2c_smbus_i2c_write() and the regmap_i2c_smbus_i2c_read(), which 
-> are static. It'd also mean we'll lose the 1 to 1 mapping between the 
-> register addresses in driver and addresses in the data-sheet. I agree 
-> this wouldn't be such a huge thing if we used offset like 0x100 though.
-> 
-Well, you could also stack regmaps like ntxec.c is doing (but there
-for some very weird reason). That would avoid duplicating code.
+> So, what I ended up doing is moving the "gpio2" stuff to use
+> functions/groups as your gemini stuff does, so each function contains
+> one group containing all the pins it needs - except for the gpio
+> function which contains analogues for each of the function's groups.
 
-I have no strong opinion here.
+I don't know exactly what you mean by this, but if it entails any
+entanglement of the GPIO function with another function, then
+there is the recent patch from Bartosz in commit
+11aa02d6a9c222260490f952d041dec6d7f16a92
+which makes it possible to give the pin control framework
+an awareness of what a GPIO function is by reading hardware
+properties, and that it is sometimes separate from other functions.
 
-Regards,
-Andreas
+Yours,
+Linus Walleij
 
