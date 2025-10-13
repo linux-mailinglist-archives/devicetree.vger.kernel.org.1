@@ -1,123 +1,126 @@
-Return-Path: <devicetree+bounces-226057-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226058-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9ECFABD348C
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 15:50:29 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C31ABD34C9
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 15:55:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 4B21834C200
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 13:50:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 45B0B3A80CF
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 13:55:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1176F21C19D;
-	Mon, 13 Oct 2025 13:50:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9767722A7E9;
+	Mon, 13 Oct 2025 13:55:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="dVtZyAq1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DLLcCoCg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 719EE18C31;
-	Mon, 13 Oct 2025 13:50:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6ADFC20458A;
+	Mon, 13 Oct 2025 13:55:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760363424; cv=none; b=t/s2qcJw0PXjitnlBRAiU0qr79YAdGeeSM7Xun6QfH+hnu8t6/SQwLo/SJDKMmtAXLJLRIwsYSnwCbc9kDmD3CwdOuPdVQ67koiyPLPcQ87Mp7UPjR+Cb65aHyy9gkUWVlPtdIMx4Gevhq8VgJjbY/ylT67r3GFE08akvVe3B+s=
+	t=1760363739; cv=none; b=RljcObv+aZHwEHJ6nfJJ77YUAQWei61kqLWulmosy5eL9nbQrILxnD8TbDwciqWQax4bdAGm+CwZCeq6ttSoWXsZVyuCjdEsnLmxyfkbtKTbv2OPdAqkPNEswUyvrFsuz1kBVCCgb4+UfEL8aHln1JhmhJzS3KyZxTRdyn6gR9E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760363424; c=relaxed/simple;
-	bh=Q1QOICvmAitfhNSSpxLWIdiy9m6p1xYa1acRvITCss4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=PTrt43gkt3mNMY8Ac5w/NFFIobSmpRqJ0DGdYiWrFSIGnOYCg04ZFp3vqza0dNSoHNfTID4dOyM3tnk0XrYC3Zuc2btPnkUWpxjoF7L8w0aYytQK89a+Yx04eMA+P2ueSDrZ1+HQ9zRY++r2ummp+lkGs+MtPr+FmkJlQbyAnic=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=dVtZyAq1; arc=none smtp.client-ip=198.47.19.245
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllvem-sh03.itg.ti.com ([10.64.41.86])
-	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTP id 59DDm9DC832787;
-	Mon, 13 Oct 2025 08:48:09 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1760363289;
-	bh=7lzWZwfkN6yG0zACVDnwclYhAVKYL7d1CxREgFPfD4Q=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=dVtZyAq1KAobqo9m+n3m7U/Tj+uw0cZzSPKchAgVfJCg7pjWwG0F3QSGB8YIQZaHI
-	 fxNNZV4fORQTBwkgYlsTzALTerl3iOmVGOALkt5kLt+K7TH5esw296npr1G7EErxrA
-	 P4c9HeXTXR2VzZauhIWmDZOyw2fBMhewiVzwI4Ec=
-Received: from DLEE204.ent.ti.com (dlee204.ent.ti.com [157.170.170.84])
-	by fllvem-sh03.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 59DDm9OH224766
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 13 Oct 2025 08:48:09 -0500
-Received: from DLEE211.ent.ti.com (157.170.170.113) by DLEE204.ent.ti.com
- (157.170.170.84) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 13 Oct
- 2025 08:48:08 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE211.ent.ti.com
- (157.170.170.113) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Mon, 13 Oct 2025 08:48:08 -0500
-Received: from [10.249.130.74] ([10.249.130.74])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 59DDlrST2144220;
-	Mon, 13 Oct 2025 08:47:54 -0500
-Message-ID: <463668d1-a6a7-4606-af05-25384eb97caa@ti.com>
-Date: Mon, 13 Oct 2025 19:17:52 +0530
+	s=arc-20240116; t=1760363739; c=relaxed/simple;
+	bh=Xdbch9NHZYMJEpq/uRrya74shnx/1YmhdwzB4a9Mcxs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qFbnOsKYWiAWHBJoaXrXA+5dQEK4Wl2dZrmnYWOOmyT5S/Q+yVr7C9bULtusATrazqn9c1S3buPcWZISWJlMC/b4gysDekVQoAhfezb3eqGYQHiOB7c9gXr6Ei/XkUQEaCL/4haUaE3juVHe2lNAFSKVPurvdyLYl1PqEsftcRc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DLLcCoCg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 692C5C4CEE7;
+	Mon, 13 Oct 2025 13:55:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1760363737;
+	bh=Xdbch9NHZYMJEpq/uRrya74shnx/1YmhdwzB4a9Mcxs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=DLLcCoCgng3m89B2OEXBV39QABBwxxv5OZBa+LRU63ik6oFlNvmQs2WaOJ6mxSGKN
+	 XNCsnVco2/KnURndMPIJC9EmnuOTYj2e6UTi0iMntH/5hhFRm6PNe17yQNVry//6QR
+	 jtymX8oZbR1ReD9ab2HKQ1uhVQUKMPa8TQvBZBMgI1LRhZv/kjC8nQ/uLwcCrb/W8g
+	 hfmtxdfX+VWwkxipWJlHuIzrfZPsdtkAcEIJA9S7RXAvBBtSE70bH50/3dI3eaYI42
+	 rfqqCGWOizA2PIP4JKnj8Twgy4ZkIqRqkcEkgQQl14/SnS6chBm3Cxg3IO4cL4JY3/
+	 1T1IciFQZmG+Q==
+Date: Mon, 13 Oct 2025 14:55:34 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Linus Walleij <linus.walleij@linaro.org>
+Cc: Conor Dooley <conor.dooley@microchip.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [RFC 0/5] microchip mpfs/pic64gx pinctrl questions
+Message-ID: <20251013-prune-deflector-b10b84425a33@spud>
+References: <20250926-manpower-glacial-e9756c82b427@spud>
+ <CACRpkdYXh2MCs=vAif7BpxfYVRuDTkYYNwpV2t=J_ZRW+N4Vyg@mail.gmail.com>
+ <20251001-unfreeze-ludicrous-9d744548bf65@spud>
+ <20251009-amendable-trimming-da31551d730b@spud>
+ <CACRpkdYssH8zObJTUH2VVB7FrVFmJUd+Ea7etTGbicQgkuU=CA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] arm: dts: ti: Adds device tree nodes for PRU Cores,
- IEP and eCAP modules of PRU-ICSS2 Instance.
-To: Parvathi Pudi <parvathi@couthit.com>, <tony@atomide.com>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <richardcochran@gmail.com>
-CC: <linux-omap@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <netdev@vger.kernel.org>,
-        <danishanwar@ti.com>, <pratheesh@ti.com>, <prajith@ti.com>,
-        <vigneshr@ti.com>, <praneeth@ti.com>, <srk@ti.com>, <rogerq@ti.com>,
-        <krishna@couthit.com>, <mohan@couthit.com>, <pmohan@couthit.com>,
-        <basharath@couthit.com>, "Andrew F . Davis" <afd@ti.com>,
-        Murali Karicheri
-	<m-karicheri2@ti.com>
-References: <20251013125401.1435486-1-parvathi@couthit.com>
- <20251013125401.1435486-2-parvathi@couthit.com>
-Content-Language: en-US
-From: "Anwar, Md Danish" <a0501179@ti.com>
-In-Reply-To: <20251013125401.1435486-2-parvathi@couthit.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="B0CMDnHp19mviuJL"
+Content-Disposition: inline
+In-Reply-To: <CACRpkdYssH8zObJTUH2VVB7FrVFmJUd+Ea7etTGbicQgkuU=CA@mail.gmail.com>
 
 
+--B0CMDnHp19mviuJL
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 10/13/2025 6:22 PM, Parvathi Pudi wrote:
-> From: Roger Quadros <rogerq@ti.com>
-> 
-> The TI Sitara AM57xx series of devices consists of 2 PRU-ICSS instances
-> (PRU-ICSS1 and PRU-ICSS2). This patch adds the device tree nodes for the
-> PRU-ICSS2 instance to support DUAL-MAC mode of operation.
-> 
-> Each PRU-ICSS instance consists of two PRU cores along with various
-> peripherals such as the Interrupt Controller (PRU_INTC), the Industrial
-> Ethernet Peripheral(IEP), the Real Time Media Independent Interface
-> controller (MII_RT), and the Enhanced Capture (eCAP) event module.
-> 
-> am57-pruss.dtsi - Adds IEP and eCAP peripheral as child nodes of
-> the PRUSS subsystem node.
-> 
-> am57xx-idk-common.dtsi - Adds PRU-ICSS2 instance node along with
-> PRU eth port information and corresponding port configuration. It includes
-> interrupt mapping for packet reception, HW timestamp collection, and
-> PRU Ethernet ports in MII mode.
-> 
-> am571x-idk.dts, am572x-idk.dts and am574x-idk.dts - GPIO configuration
-> along with delay configuration for individual PRU Ethernet port.
-> 
-> Reviewed-by: Mohan Reddy Putluru <pmohan@couthit.com>
+On Mon, Oct 13, 2025 at 03:27:57PM +0200, Linus Walleij wrote:
+> On Thu, Oct 9, 2025 at 5:55=E2=80=AFPM Conor Dooley <conor@kernel.org> wr=
+ote:
+>=20
+> > So, what I ended up doing is moving the "gpio2" stuff to use
+> > functions/groups as your gemini stuff does, so each function contains
+> > one group containing all the pins it needs - except for the gpio
+> > function which contains analogues for each of the function's groups.
+>=20
+> I don't know exactly what you mean by this, but if it entails any
 
-Please don't carry internal review tags in upstream patches.
+All I meant is that the functions for non-gpio things contain a group
+with the pins they need, up to 10 groups for 10 non-gpio functions, and
+that the gpio function, since each pin can do gpio and exactly one other
+function, contains 10 groups, all of which are identical to a group
+already defined for the non-gpio function. That's instead of having one
+huge group with all 32 pins.
 
--- 
-Thanks and Regards,
-Md Danish Anwar
+> entanglement of the GPIO function with another function, then
+> there is the recent patch from Bartosz in commit
+> 11aa02d6a9c222260490f952d041dec6d7f16a92
+> which makes it possible to give the pin control framework
+> an awareness of what a GPIO function is by reading hardware
+> properties, and that it is sometimes separate from other functions.
 
+That is unrelated, but interesting. What I don't really understand from
+the commit message itself is whether this is useful if the pinctrl
+driver is not also acting as a gpiochip driver. In my case, the pinctrl
+hardware is not capable of doing anything more than muxing functions,
+and the gpio function I talk about means routing a "real" gpio
+controller's IO to the pins controlled by the driver I am talking about.
+The 2 in "gpio 2" refers to the specific controller.
+The rest of that thread makes it seem like this is intended for some
+qcom devices where the pinctrl hardware is also a gpiochip.
+
+Cheers,
+Conor.
+
+--B0CMDnHp19mviuJL
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaO0EwAAKCRB4tDGHoIJi
+0vQDAQCV4pltI9IR+yTitYsiAGw3E2j8OAkihYWyHe3i4cwdiAEAor61XC06ylaj
+RcCy0q7R8JTUIrtu5Onbjoq84aHpnwA=
+=TVMB
+-----END PGP SIGNATURE-----
+
+--B0CMDnHp19mviuJL--
 
