@@ -1,171 +1,232 @@
-Return-Path: <devicetree+bounces-225819-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225820-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BE84BD13EB
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 04:45:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B09DBD1545
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 05:43:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 3F4114E247A
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 02:45:16 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E43EB4E16B2
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 03:43:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47B0A2EC56F;
-	Mon, 13 Oct 2025 02:45:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E92C1A8F97;
+	Mon, 13 Oct 2025 03:43:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="AdWLh2Zx"
+	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="MMXPlJPG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m19731101.qiye.163.com (mail-m19731101.qiye.163.com [220.197.31.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 879562EB878;
-	Mon, 13 Oct 2025 02:45:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C80C17A305
+	for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 03:43:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760323514; cv=none; b=mJ0CovML1UvzQ0Es1NNFnl/tjm2eqDUHk7AI5UQAdpwB1CbkdARZ8qS1l6x62OU4AuL304sG5TluhVp/Yll2jRad3oyO0OAkPZfkb9jDg0K8nQ8+hLkFnsBWZGN8uSQlucGzn309/wIFk4nN5h69KuvqKSPafUvODDtxL67MQHs=
+	t=1760327000; cv=none; b=tqS4TdcmCfO5p0bcjKoqzTyKTqPgv9ENBqBwlqJPb1in8FoWqilgJem0cHXmkzyNJQy83fJldssMbhaM+fsTH1GUkpV7FNIWwwAktDDay5c5n8FbsexMayINarhovi4/d0glSvA7Jg5JuTUK0eedsGN12MVLKaPD/xK3oeAAx08=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760323514; c=relaxed/simple;
-	bh=j+eYq0ONyL/EDb4wrBYDsyUoircdy+3fCu305WH7zMQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=g4/7CgzPt+UG/gbia2Og/AEY1q9j5TAZOv5PnH3VjPVohdqg1rwo8ilLeQ2OQ+/vwKGhudDIsDivpivZG6/GGpLnwBxFL6rRUWLELB5SufaEYgs7AWLRZRsVdDJ/KUvfY7KT4a3xrCDX9WbP94Xg91MIVePFCrPDNPKzu/9nEso=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=AdWLh2Zx; arc=none smtp.client-ip=220.197.31.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from [127.0.0.1] (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 25a6fe6cd;
-	Mon, 13 Oct 2025 10:44:59 +0800 (GMT+08:00)
-Message-ID: <ca57d854-efd1-42b8-9c25-33b01aaf1065@rock-chips.com>
-Date: Mon, 13 Oct 2025 10:44:53 +0800
+	s=arc-20240116; t=1760327000; c=relaxed/simple;
+	bh=wygU0sZqrk4vXYgg8gA9XwdSmbzeq0efQTw0qU1MWP4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=BIIEMZBmxwwcBWLDfzGQxWVJCGYIVvLxsvIOWIrTn47Sc2YCHfQuICcEhKq8L0SikCsmDVUbWA8H2Z2KrpRkt9Taar7NC78JNuskyBVdPk1izb+Pz/uU39gf2+n2qRlKGD7UAlHcZr9z8iVTE+kMPg+Dvdg7MxEZSfCYXUUyT8Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=MMXPlJPG; arc=none smtp.client-ip=209.85.167.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
+Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-58afb2f42e3so4458972e87.2
+        for <devicetree@vger.kernel.org>; Sun, 12 Oct 2025 20:43:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ventanamicro.com; s=google; t=1760326996; x=1760931796; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=24h7Itp/dXPzmSzIwKkei5mOBek1A1O1faMcM0/pAdU=;
+        b=MMXPlJPGTGOkhyQvDffsXW4u9m74yG9FcZ7QFm4HMH3L9ek3/9sBtzz0NP4nwwy2S/
+         A3MrN6DwhKFwueXTG0E4tGYDpGjIjxgeK5Fd+asKyy1vE1g/JGNHuF9teBiV/dxwhGy1
+         22fiu2L3COj4UFYV6Eo+KP4GPasljCJ7MlTG/4keXLbtJvhlUPjlau5ZsknI3hdPY4yT
+         eLIBQu8WVNzAa4cXD15IlmjLE4YufFVQDuUE85G7xwU2odwZKYKMBoXUKYA079mzQCN7
+         nawIJ3o+5y703L46lOZ1HfsjactwbbC3Hu2Npsd/QiXyvh8jrf3Ia5dgfrx/V9tiDcgv
+         f/PQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1760326996; x=1760931796;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=24h7Itp/dXPzmSzIwKkei5mOBek1A1O1faMcM0/pAdU=;
+        b=r4ShP85NBPGXFh/diWfUg+jo0Yo05kkEnLIkcJRVvR+yVnk9HUcGsHyV7leWimphrW
+         Lbx/o3qJxHQLd7YhS7oaOx7oIEY7Nz9YiI8ZREXCyiO5SuDoTPtpxV3qXX4WZzhtLYU6
+         /hUXSpNdzzYgVe93/SXuYrW0YiX9YNYhhFS1bwhJIkiAlWOLWtomCOVMVYGf/y838UGF
+         cDIVybuor7YsGLqamcxl9/e79pJM2GhMkAV3vOSRrC2rC2Mq7hFMUXt3u5nuHhPzV+hO
+         l/0tBzzyz3ix/jh6rhmK48UTVegJZQbT+iEWzIMZ/XB8b1yMVroAsoUelKnv1P5lmvdE
+         tQpQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXIeaZgoABhw3vYYbb6XzySQiu5FzZl2wTvbG+cV9J4esywMcOOs3JW4dVlMK+4ax2vrZO3ww6CxMvT@vger.kernel.org
+X-Gm-Message-State: AOJu0Yze5LVEvq1xNLNqGHcD7KXEXh7vKvOQj0sPJ+39nscl9y29yILQ
+	yqMnV7g4R3xq8sduxcj2Ke/OftbcPWYcOlqH4v+jEb+Y4d/w/U9payxabe461ErrZFBmnzAPCBc
+	WXWPP6Rpo6ALRZ6Qe2j2VBuGVcTwXXvxJBZ5pFOZtIw==
+X-Gm-Gg: ASbGncuLEmuMl484Lxg37l73CgCauCp9zIS+3Tgz9gkHG/dEpWHqa3Qw/HnBqfk3tBa
+	3LuVSEP6krmK2NEePuJ9HppkD0DgJ8BahSyh/n+bwyhzSXDcXe6VC7xxUBYY/i0jsH1lrC/PaiF
+	4SbOCye/MYRqtgQs4LRMHsIQOYWgmTTbdApqnWmzfuilAOuxHzQXZutZiKdd4PO1soU3HA0Ad7I
+	Gt3m0Wp8NH+hsT6/D92HybkMNLBNKebsuiu
+X-Google-Smtp-Source: AGHT+IFLqPt8lp2H0oOk51fM7RvIbA2F2cktgwpcZz8FTkw5EO3QcLCoIP5IHjV7wl0Kp6w858X4FeLBGSsd7rTYW5k=
+X-Received: by 2002:a05:6512:238d:b0:579:f273:190 with SMTP id
+ 2adb3069b0e04-5906dd5472bmr4972531e87.33.1760326996352; Sun, 12 Oct 2025
+ 20:43:16 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 6/8] drm/rockchip: cdn-dp: Add multiple bridges to
- support PHY port selection
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Chaoyi Chen <kernel@airkyi.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>, Heiko Stuebner
- <heiko@sntech.de>, Sandy Huang <hjc@rock-chips.com>,
- Andy Yan <andy.yan@rock-chips.com>,
- Yubing Zhang <yubing.zhang@rock-chips.com>,
- Frank Wang <frank.wang@rock-chips.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Amit Sunil Dhamne <amitsd@google.com>,
- Heikki Krogerus <heikki.krogerus@linux.intel.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Dragan Simic <dsimic@manjaro.org>, Johan Jonker <jbx6244@gmail.com>,
- Diederik de Haas <didi.debian@cknow.org>,
- Peter Robinson <pbrobinson@gmail.com>, linux-usb@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-phy@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, dri-devel@lists.freedesktop.org
-References: <20251011033233.97-1-kernel@airkyi.com>
- <20251011033233.97-7-kernel@airkyi.com>
- <qzcdulyj2enho7l6vyvad7ln46zk2u4z7rnsjv2nv4tbw5j6jf@6oenbixoh3sp>
- <08eb7560-c13e-462f-8110-d4ce5ccbd687@rock-chips.com>
- <6hilafgpdbsppeeib75b5uamwf22kbu4likcp64ahb4u7zehhw@c3mtlzwx7qcp>
-Content-Language: en-US
-From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
-In-Reply-To: <6hilafgpdbsppeeib75b5uamwf22kbu4likcp64ahb4u7zehhw@c3mtlzwx7qcp>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0a99db74f55503abkunm46b4331dfb5aa5
-X-HM-MType: 1
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGU9DT1ZLSh9DGB5DSU1PHRhWFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSEpOTE
-	5VSktLVUpCS0tZBg++
-DKIM-Signature: a=rsa-sha256;
-	b=AdWLh2ZxxKiOLp3FP40kGgGqVwvx1gdP7V9lKWIjP1uZ1bP1cVXxZBe7R674SimMp6W9XjTp3k1sL4Y4mC1b2Tjon4D2FK/n3+hxe4yewtMaYcMzx4TUe2PVgFCMh/I3Y2biNL2Oxw6oAAzt8A4GFeVT1kuJjMutM7t4ZkQC9pY=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
-	bh=HvpR+5epSgdAGZf25SgOvURV9dCVLjxkFsGadPU1WfE=;
-	h=date:mime-version:subject:message-id:from;
+References: <20251002060732.100213-1-apatel@ventanamicro.com>
+ <20251002060732.100213-5-apatel@ventanamicro.com> <20edc3a9-2efe-4431-b198-f00b3940777c@gmail.com>
+In-Reply-To: <20edc3a9-2efe-4431-b198-f00b3940777c@gmail.com>
+From: Anup Patel <apatel@ventanamicro.com>
+Date: Mon, 13 Oct 2025 09:13:02 +0530
+X-Gm-Features: AS18NWCkpL-Tj809xBCjmV9NdJPyzSgVvYHUUVV9e4EHlC9UmnJAO9LfIK-j1SY
+Message-ID: <CAK9=C2U+H5xZaK6g5qcytESyC9H8gkU_jEUDJanEs1qzcGgYCQ@mail.gmail.com>
+Subject: Re: [PATCH 04/11] rvtrace: Add functions to start/stop tracing on a
+ component path
+To: Bo Gan <ganboing@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Greg KH <gregkh@linuxfoundation.org>, 
+	Alexander Shishkin <alexander.shishkin@linux.intel.com>, Ian Rogers <irogers@google.com>, 
+	Alexandre Ghiti <alex@ghiti.fr>, Peter Zijlstra <peterz@infradead.org>, Ingo Molnar <mingo@redhat.com>, 
+	Namhyung Kim <namhyung@kernel.org>, Mark Rutland <mark.rutland@arm.com>, Jiri Olsa <jolsa@kernel.org>, 
+	Adrian Hunter <adrian.hunter@intel.com>, Liang Kan <kan.liang@linux.intel.com>, 
+	Mayuresh Chitale <mchitale@gmail.com>, Anup Patel <anup@brainfault.org>, 
+	Atish Patra <atish.patra@linux.dev>, Andrew Jones <ajones@ventanamicro.com>, 
+	Sunil V L <sunilvl@ventanamicro.com>, linux-riscv@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Mayuresh Chitale <mchitale@ventanamicro.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 10/13/2025 10:11 AM, Dmitry Baryshkov wrote:
-
-> On Mon, Oct 13, 2025 at 09:26:06AM +0800, Chaoyi Chen wrote:
->> On 10/12/2025 2:52 AM, Dmitry Baryshkov wrote:
->>
->>> On Sat, Oct 11, 2025 at 11:32:31AM +0800, Chaoyi Chen wrote:
->>>> From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
->>>>
->>>> The RK3399 has two USB/DP combo PHY and one CDN-DP controller. And
->>>> the CDN-DP can be switched to output to one of the PHYs. If both ports
->>>> are plugged into DP, DP will select the first port for output.
->>>>
->>>> This patch adds support for multiple bridges, enabling users to flexibly
->>>> select the output port. For each PHY port, a separate encoder and bridge
->>>> are registered.
->>>>
->>>> The change is based on the DRM AUX HPD bridge, rather than the
->>>> extcon approach. This requires the DT to correctly describe the
->>>> connections between the first bridge in bridge chain and DP
->>>> controller. For example, the bridge chain may be like this:
->>>>
->>>> PHY aux birdge -> fsa4480 analog audio switch bridge ->
->>>> onnn,nb7vpq904m USB reminder bridge -> USB-C controller AUX HPD bridge
->>>>
->>>> In this case, the connection relationships among the PHY aux bridge
->>>> and the DP contorller need to be described in DT.
->>>>
->>>> In addition, the cdn_dp_parse_hpd_bridge_dt() will parses it and
->>>> determines whether to register one or two bridges.
->>>>
->>>> Since there is only one DP controller, only one of the PHY ports can
->>>> output at a time. The key is how to switch between different PHYs,
->>>> which is handled by cdn_dp_switch_port() and cdn_dp_enable().
->>>>
->>>> There are two cases:
->>>>
->>>> 1. Neither bridge is enabled. In this case, both bridges can
->>>> independently read the EDID, and the PHY port may switch before
->>>> reading the EDID.
->>>>
->>>> 2. One bridge is already enabled. In this case, other bridges are not
->>>> allowed to read the EDID. So we will try to return the cached EDID.
->>>>
->>>> Since the scenario of two ports plug in at the same time is rare,
->>>> I don't have a board which support two TypeC connector to test this.
->>>> Therefore, I tested forced switching on a single PHY port, as well as
->>>> output using a fake PHY port alongside a real PHY port.
->>>>
->>>> Signed-off-by: Chaoyi Chen <chaoyi.chen@rock-chips.com>
->>>> ---
->>>>
->>>> +	/* One endpoint may correspond to one HPD bridge. */
->>>> +	for_each_of_graph_port_endpoint(port, dp_ep) {
->>>> +		struct device_node *phy_bridge_node __free(device_node) =
->>>> +			of_graph_get_remote_port_parent(dp_ep);
->>>> +
->>>> +		bridge = of_drm_find_bridge(phy_bridge_node);
->>>> +		if (!bridge) {
->>>> +			ret = -EPROBE_DEFER;
->>>> +			goto out;
->>>> +		}
->>>> +
->>>> +		dp->hpd_bridge_valid = true;
->>>> +		dp->hpd_bridge_list[count].bridge = bridge;
->>>> +		dp->hpd_bridge_list[count].parent = dp;
->>>> +		dp->hpd_bridge_list[count].id = count;
->>> This looks misnamed. They are not necessarily HPD bridges. There can be
->>> a random chain between your controller and the actual output / connector
->>> /etc.
->> Yes, and more precisely, this should be `pervious_bridge_list` . Will fix in v6.
-> I think the typical convention is around next_bridge, not previous.
-
-Oh, that's true.  Will fix this in v6.
-
-
+On Wed, Oct 8, 2025 at 2:45=E2=80=AFPM Bo Gan <ganboing@gmail.com> wrote:
 >
+> On 10/1/25 23:07, Anup Patel wrote:
+> > From: Mayuresh Chitale <mchitale@ventanamicro.com>
+> >
+> > The perf driver framework needs to be able to start / stop all componen=
+ts
+> > in a trace component path during its operation. Add rvtrace_path_start(=
+)
+> > and rvtrace_path_stop() functions for this purpose.
+> >
+> > Co-developed-by: Anup Patel <apatel@ventanamicro.com>
+> > Signed-off-by: Anup Patel <apatel@ventanamicro.com>
+> > Signed-off-by: Mayuresh Chitale <mchitale@ventanamicro.com>
+> > ---
+> >   drivers/hwtracing/rvtrace/rvtrace-core.c | 44 +++++++++++++++++++++++=
++
+> >   include/linux/rvtrace.h                  |  6 ++++
+> >   2 files changed, 50 insertions(+)
+> >
+> > diff --git a/drivers/hwtracing/rvtrace/rvtrace-core.c b/drivers/hwtraci=
+ng/rvtrace/rvtrace-core.c
+> > index 7013d50ca569..109be40d4b24 100644
+> > --- a/drivers/hwtracing/rvtrace/rvtrace-core.c
+> > +++ b/drivers/hwtracing/rvtrace/rvtrace-core.c
+> > @@ -614,6 +614,50 @@ static void rvtrace_release_path_nodes(struct rvtr=
+ace_path *path)
+> >       }
+> >   }
+> >
+> > +int rvtrace_path_start(struct rvtrace_path *path)
+> > +{
+> > +     const struct rvtrace_driver *rtdrv;
+> > +     struct rvtrace_component *comp;
+> > +     struct rvtrace_path_node *node;
+> > +     int ret;
+> > +
+> > +     list_for_each_entry(node, &path->comp_list, head) {
+> > +             comp =3D node->comp;
+> > +             rtdrv =3D to_rvtrace_driver(comp->dev.driver);
+> > +             if (!rtdrv->start)
+> > +                     continue;
+> > +
+> > +             ret =3D rtdrv->start(comp);
+> > +             if (ret)
+> > +                     return ret;
+> > +     }
+> > +
+> > +     return 0;
+> > +}
+> > +EXPORT_SYMBOL_GPL(rvtrace_path_start);
+> > +
+> > +int rvtrace_path_stop(struct rvtrace_path *path)
+> > +{
+> > +     const struct rvtrace_driver *rtdrv;
+> > +     struct rvtrace_component *comp;
+> > +     struct rvtrace_path_node *node;
+> > +     int ret;
+> > +
+> > +     list_for_each_entry(node, &path->comp_list, head) {
+> > +             comp =3D node->comp;
+> > +             rtdrv =3D to_rvtrace_driver(comp->dev.driver);
+> > +             if (!rtdrv->stop)
+> > +                     continue;
+> > +
+> > +             ret =3D rtdrv->stop(comp);
+> > +             if (ret)
+> > +                     return ret;
+> > +     }
+> > +
+> > +     return 0;
+> > +}
+> > +EXPORT_SYMBOL_GPL(rvtrace_path_stop);
+> > +
+> >   struct rvtrace_path *rvtrace_create_path(struct rvtrace_component *so=
+urce,
+> >                                        struct rvtrace_component *sink,
+> >                                        enum rvtrace_component_mode mode=
+)
+> > diff --git a/include/linux/rvtrace.h b/include/linux/rvtrace.h
+> > index f2174f463a69..e7bd335d388f 100644
+> > --- a/include/linux/rvtrace.h
+> > +++ b/include/linux/rvtrace.h
+> > @@ -273,10 +273,14 @@ struct rvtrace_path *rvtrace_create_path(struct r=
+vtrace_component *source,
+> >                                        struct rvtrace_component *sink,
+> >                                        enum rvtrace_component_mode mode=
+);
+> >   void rvtrace_destroy_path(struct rvtrace_path *path);
+> > +int rvtrace_path_start(struct rvtrace_path *path);
+> > +int rvtrace_path_stop(struct rvtrace_path *path);
+> >
+> >   /**
+> >    * struct rvtrace_driver - Representation of a RISC-V trace driver
+> >    * id_table: Table to match components handled by the driver
+> > + * start:        Callback to start tracing
+> > + * stop:         Callback to stop tracing
+> >    * probe:        Driver probe() function
+> >    * remove:       Driver remove() function
+> >    * get_trace_id: Get/allocate a trace ID
+> > @@ -285,6 +289,8 @@ void rvtrace_destroy_path(struct rvtrace_path *path=
+);
+> >    */
+> >   struct rvtrace_driver {
+> >       const struct rvtrace_component_id *id_table;
+> > +     int                     (*start)(struct rvtrace_component *comp);
+> > +     int                     (*stop)(struct rvtrace_component *comp);
+> >       int                     (*probe)(struct rvtrace_component *comp);
+> >       void                    (*remove)(struct rvtrace_component *comp)=
+;
+> >       int                     (*get_trace_id)(struct rvtrace_component =
+*comp,
 >
--- 
-Best,
-Chaoyi
+> I'd suggest add another function (*quiesce) or something like that. Trace
+> components have a tr??Empty bit that indicates trace has been all flushed
+> out. Also along the path when you do rvtrace_path_stop, you need to ensur=
+e
+> the source has stopped and quiescent before beginning to stop the sink.
+> Otherwise you'll get partial or corrupted trace. In essence, follow Contr=
+ol
+> Interface Spec 11.3 Enabling and Disabling. FYI: my userspace driver:
+> https://github.com/ganboing/riscv-trace-umd/blob/master/rvtrace/funnel.py=
+#L223
 
+It's better to add functions on a need basis rather than adding
+it now without any potential user.
+
+Regards,
+Anu
 
