@@ -1,80 +1,111 @@
-Return-Path: <devicetree+bounces-226118-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226120-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE0FDBD507A
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 18:28:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 94B0BBD5131
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 18:33:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 357B85021AA
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 15:46:32 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 1B28954694B
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 15:54:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 910CC3191A8;
-	Mon, 13 Oct 2025 15:28:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E933D30FC3F;
+	Mon, 13 Oct 2025 15:35:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Jzq0aJ7Y"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="em/ywoou"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-il1-f196.google.com (mail-il1-f196.google.com [209.85.166.196])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2AD12727E3
-	for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 15:28:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9813930FC24
+	for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 15:35:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.196
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760369286; cv=none; b=ozTbKCgs/x4J11zVJW1TxdWNBDhgeXT0ZCL4DfIy3ctdaWpoPUBYyosX6dHacABRgIfenSRMuovVlfEk8TMph55bNcDfUPuTghXYckD6qEXBla7AYY5f4RiG+qTZn4IBtltfulvmHta6XdPHeQwMrMWTWQu4s8YlnNwej8ggw4I=
+	t=1760369733; cv=none; b=f7M9cnr5zT3s2smKUQRDnnucdKnTQ/GEJ4K4DdqfszQunl8wewkh3Z/CvjP5+nLc+EFaYBccZQo+8JBo5EDhW/W/UrCrnd0KNiCL0LhPrRdQAjohfJXLkFqlNcZR+mTCVZ51lctdu5/Kq0lYChBJimxX0XvN6QpCN/z6ZV6T17M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760369286; c=relaxed/simple;
-	bh=LPpFGckQlGu41PWKhM1jFADnk8iS1JnOVJ7LQRpoM1U=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=aOrIwhpuZp/1M8VAdCaKZUkSOx/EWyh4R2r4azdypcoKQJ854kg4CdBAbE8dcnLDgyGTCBOHV06ZtmTON7z5M/i64bUEca6WRoPf8Ln3luVnAecCDTk+x5Z80zi9VSyF0ekOHey6A2c3b442kGW8ChpQ+TgY1mReoV0PkPBt33U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Jzq0aJ7Y; arc=none smtp.client-ip=185.171.202.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 6D9E7C093AF;
-	Mon, 13 Oct 2025 15:27:44 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 61D4C6067B;
-	Mon, 13 Oct 2025 15:28:03 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 7AAB7102F2272;
-	Mon, 13 Oct 2025 17:27:59 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1760369282; h=from:subject:date:message-id:to:cc:mime-version:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=4Yv2LZrhSOd4vz0gQ7eWw6e3151d7qoUhYTKCe+tu2E=;
-	b=Jzq0aJ7YVOV0T7gPWEGHQR0fG3brxvbm4L4mbuRxWs89F0KraZg/NoyQM5VhfPvN70PrLe
-	NS/Q+5D1YIETc/xpwfclqv0boO379ZPq62kbeKL6BT57GRpQ0ojWaeiQoLI30CI3rsixc0
-	U99Ot2ZKQcc1UI7V7i86UhcdSxPHUn9ny5sCWh9Eu9WbMYKkoOzPQ/2xGvsaJoC6QWHZW2
-	XZ06I+inc5R9XUoIY0WdakuTeNlJwyVXBVEF3eKySBd0sjCy1xIPAlp+b3TvrmwLNofthI
-	IG0GNG2LN6ff9jbHHlTxUJAPcVObnQlUxJQqIDMZP/cTi6CgPuK/B5R08sv60w==
-From: Richard Genoud <richard.genoud@bootlin.com>
-To: Miquel Raynal <miquel.raynal@bootlin.com>,
-	Richard Weinberger <richard@nod.at>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>
-Cc: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>,
-	Wentao Liang <vulab@iscas.ac.cn>,
-	Johan Hovold <johan@kernel.org>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	linux-mtd@lists.infradead.org,
+	s=arc-20240116; t=1760369733; c=relaxed/simple;
+	bh=lQE08uJWLPHhEhaQeR1D11dMTBylx7XRz2HfPMzk03o=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=q439IC9gt2WiMjgfE3bINi/I1xnvfZWd9YaI3vu/hD2iNA7wvMLgfjdBAQxWDfFsQ7cPdBZzuTIe7jkdpwkjyZsYyUxwP6+E0xVnICOozN0ITC/bXdgjmlngejzrA1DcWPMrkDM1dnJYVu7AwX3+Yxzz+Cw+nsap08n7An5Q66Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=em/ywoou; arc=none smtp.client-ip=209.85.166.196
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
+Received: by mail-il1-f196.google.com with SMTP id e9e14a558f8ab-42d8ad71a51so48759185ab.1
+        for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 08:35:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1760369731; x=1760974531; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=nbeq8htIVJsgPcvnZy6FQgEdm/DTZPuXtXg2N0Ndwqo=;
+        b=em/ywoouTQlRiHcO01bobHWg5o6vVu/Kx8gKCLRKBM7DP7ABkKc1JJ1XXmv4VpbBX1
+         6ZzYXXxNNxevfkTrpWjGom1snIISdJRCASbiEJZV5h/3LewOo+0V+B41dzAIkgmUwDXE
+         74avfdHDCBLZ67B7SewmeKI03EmeY+9MXb0VX9wkxvoVYI9tYs/hepk33SCWkccfncKe
+         TOFuH6fSaWEAKKBv2gQwWy82Fay25vTieN+Wx/ovAAIoNLPLZGivJz1LppGXMWu1TENh
+         QLhBsXdWgkrPAxqselIhxnN3otqaOVa7vHncaH9E38VGlJZdUddmkTHZOnL5qJ8ggJ1o
+         zaBg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1760369731; x=1760974531;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=nbeq8htIVJsgPcvnZy6FQgEdm/DTZPuXtXg2N0Ndwqo=;
+        b=qsQeEc2oTsTn9fcG/4M+5TwelCXMaJRtPsjBLCinRG0c8/qG/7gFMS9CqynLtd0M4t
+         Kmo0nOSBfASCmcu+yUWdgMIYhTO5NmEMnr2D3LvdEo6IS2dJdy+ycVHPg2/Q7R2bAwvM
+         SVQR4pJp8+qEfAr063MOD+PBrxJhYVOh7RH3HIJ19DofriHPbbHiav9IqURJEJJFKFWR
+         jU9OZYbYnD5J4JvolKIElqHDBz1zZcxH/4Wt2nkvEBilQK/PZyGvN5F7idL5Ud+OmKY5
+         5vCqklAosF/x+fePZJlbs48QDh+9VojM/+dx3/i3G1FKccdoWMLQ6VtKVi+AqMAbprTZ
+         xZKg==
+X-Forwarded-Encrypted: i=1; AJvYcCXySBvE6UjYS1ZpS6Ez5T0arP6WdyvRr07Y9YYik5IkkXpxQTHQkS6IMqkqzVwmNODR4okcU1hpkSaG@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyk0fi/KrooWbJu56Ylw91jRjJfei09LaVAWjISnpVT3RWiA0wL
+	58SEv5j1a8V1kH6o6YTkHjywAUWlv5xZavZJoy9kkGI0X21mrXDpwH/Bzrg+rSO3pFg=
+X-Gm-Gg: ASbGncuVtvX/xAoo89AnM/Ymt066YdRf3aS14kIBiwWfdL2q5N1CtH2AZT7/z6uDXTW
+	Zo2m/O2CsF2W1mxBiF+xF3px+1OVTkq/up7vrYVxeeZNTpDi95uPvOUdG8FNmK3TcV8/NVNgA70
+	84Ydzp/hsQlSFsDmtZ4cbY02EXdXM96RBTgVOH50GnK6+S/8BR08Nbnz2JXmCxAimRrtvO+/+GX
+	PiFpszo/qQp81fI1KO8luLByevk/RmZ+3kC39+Pg1i06/3KFCzprmQbMIyr2BSaTTNtwJEuL+2N
+	6yhJq+l1SDMy6uqpOiW2dYWAbQWlLgdNcGddRQkc0Eqvp5m6RnGpMk/p2/zlqBPEyXmmRxMpGUG
+	yxzIYoZbJAOr0psiNZA6Ydy57o+uOufyFMjxYHwR4gqz8SOi5TMAXC71FkQ/PAs2qp4GPkYDqj9
+	aasDI2KHUP
+X-Google-Smtp-Source: AGHT+IGwhDgY1adEE+rYfro+kFlaDS5/FvDMA4RAEoQjxWvr5pWNWNsa0mX7bl3S4p/in4/RNtqUig==
+X-Received: by 2002:a05:6e02:1608:b0:42e:7a5d:d7d6 with SMTP id e9e14a558f8ab-42f87346ffcmr235225235ab.2.1760369730674;
+        Mon, 13 Oct 2025 08:35:30 -0700 (PDT)
+Received: from zippy.localdomain (c-75-72-117-212.hsd1.mn.comcast.net. [75.72.117.212])
+        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-58f6c49b522sm3910266173.1.2025.10.13.08.35.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 13 Oct 2025 08:35:30 -0700 (PDT)
+From: Alex Elder <elder@riscstar.com>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	bhelgaas@google.com,
+	lpieralisi@kernel.org,
+	kwilczynski@kernel.org,
+	mani@kernel.org,
+	vkoul@kernel.org,
+	kishon@kernel.org
+Cc: dlan@gentoo.org,
+	guodong@riscstar.com,
+	pjw@kernel.org,
+	palmer@dabbelt.com,
+	aou@eecs.berkeley.edu,
+	alex@ghiti.fr,
+	p.zabel@pengutronix.de,
+	christian.bruel@foss.st.com,
+	shradha.t@samsung.com,
+	krishna.chundru@oss.qualcomm.com,
+	qiang.yu@oss.qualcomm.com,
+	namcao@linutronix.de,
+	thippeswamy.havalige@amd.com,
+	inochiama@gmail.com,
 	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-sunxi@lists.linux.dev,
-	linux-kernel@vger.kernel.org,
-	Richard Genoud <richard.genoud@bootlin.com>
-Subject: [PATCH v2 14/15] dt-bindings: mtd: sunxi: Add H616 compatible
-Date: Mon, 13 Oct 2025 17:26:44 +0200
-Message-ID: <20251013152645.1119308-15-richard.genoud@bootlin.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20251013152645.1119308-1-richard.genoud@bootlin.com>
-References: <20251013152645.1119308-1-richard.genoud@bootlin.com>
+	linux-pci@vger.kernel.org,
+	linux-phy@lists.infradead.org,
+	spacemit@lists.linux.dev,
+	linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/7] Introduce SpacemiT K1 PCIe phy and host controller
+Date: Mon, 13 Oct 2025 10:35:17 -0500
+Message-ID: <20251013153526.2276556-1-elder@riscstar.com>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,108 +113,115 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
 
-The H616 NAND controller is quite different from the A10 and A23 ones,
-some registers offset changed, and some new one are introduced.
-Also, the DMA handling is different (it uses chained descriptors)
+This series introduces a PHY driver and a PCIe driver to support PCIe
+on the SpacemiT K1 SoC.  The PCIe implementation is derived from a
+Synopsys DesignWare PCIe IP.  The PHY driver supports one combination
+PCIe/USB PHY as well as two PCIe-only PHYs.  The combo PHY port uses
+one PCIe lane, and the other two ports each have two lanes.  All PCIe
+ports operate at 5 GT/second.
 
-So, introduce a new compatible to represent this version of the IP.
+The PCIe PHYs must be configured using a value that can only be
+determined using the combo PHY, operating in PCIe mode.  To allow
+that PHY to be used for USB, the calibration step is performed by
+the PHY driver automatically at probe time.  Once this step is done,
+the PHY can be used for either PCIe or USB.
 
-Signed-off-by: Richard Genoud <richard.genoud@bootlin.com>
----
- .../mtd/allwinner,sun4i-a10-nand.yaml         | 57 ++++++++++++++++---
- 1 file changed, 48 insertions(+), 9 deletions(-)
+Version 2 of this series incorporates suggestions made during the
+review of version 1.  Specific highlights are detailed below.
 
-diff --git a/Documentation/devicetree/bindings/mtd/allwinner,sun4i-a10-nand.yaml b/Documentation/devicetree/bindings/mtd/allwinner,sun4i-a10-nand.yaml
-index 054b6b8bf9b9..4b82de9fae17 100644
---- a/Documentation/devicetree/bindings/mtd/allwinner,sun4i-a10-nand.yaml
-+++ b/Documentation/devicetree/bindings/mtd/allwinner,sun4i-a10-nand.yaml
-@@ -6,9 +6,6 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
- 
- title: Allwinner A10 NAND Controller
- 
--allOf:
--  - $ref: nand-controller.yaml
--
- maintainers:
-   - Chen-Yu Tsai <wens@csie.org>
-   - Maxime Ripard <mripard@kernel.org>
-@@ -18,6 +15,8 @@ properties:
-     enum:
-       - allwinner,sun4i-a10-nand
-       - allwinner,sun8i-a23-nand-controller
-+      - allwinner,sun50i-h616-nand-controller
-+
-   reg:
-     maxItems: 1
- 
-@@ -25,14 +24,12 @@ properties:
-     maxItems: 1
- 
-   clocks:
--    items:
--      - description: Bus Clock
--      - description: Module Clock
-+    minItems: 2
-+    maxItems: 4
- 
-   clock-names:
--    items:
--      - const: ahb
--      - const: mod
-+    minItems: 2
-+    maxItems: 4
- 
-   resets:
-     maxItems: 1
-@@ -85,6 +82,48 @@ required:
- 
- unevaluatedProperties: false
- 
-+allOf:
-+  - $ref: nand-controller.yaml
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - allwinner,sun4i-a10-nand
-+              - allwinner,sun8i-a23-nand-controller
-+    then:
-+      properties:
-+        clocks:
-+          items:
-+            - description: Bus Clock
-+            - description: Module Clock
-+        clock-names:
-+          items:
-+            - const: ahb
-+            - const: mod
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - allwinner,sun50i-h616-nand-controller
-+    then:
-+      properties:
-+        clocks:
-+          items:
-+            - description: Bus Clock
-+            - description: Module Clock
-+            - description: ECC Clock
-+            - description: MBus Clock
-+        clock-names:
-+          items:
-+            - const: ahb
-+            - const: mod
-+            - const: ecc
-+            - const: mbus
-+
- examples:
-   - |
-     #include <dt-bindings/interrupt-controller/arm-gic.h>
+					-Alex
+
+This series is available here:
+  https://github.com/riscstar/linux/tree/outgoing/pcie-v2
+
+Between version 1 and version 2:
+  - General
+    - VENDOR ID 0x201f is now registered with PCI SIG: "SpacemiT
+      (Hangzhou) Technology Co. Ltd"
+        https://pcisig.com/membership/member-companies?combine=201f
+    - The PCIe host compatible string is now "spacemit,k1-pcie"
+    - Reimplemented the PHY PLL as a clock registered with the
+      common clock framework, driven by an external oscillator
+    - Added the external oscillator clock to the PHY binding
+    - Renamed the PCIe driver source file "pcie-spacemit-k1.c"
+  - Kconfig
+    - Renamed the PCIe driver Kconfig option PCIE_SPACEMIT_K1
+    - The PCIe driver is now defined as tristate, not Boolean
+    - Updated the PCIe host Kconfig based on Bjorn H's feedback
+  - DT Bindings
+    - Corrected PCIe node ranges properties
+    - Replaced "interrupts-extended" property with just "interrupts"
+      in the PCIe host binding
+    - Named the single PCIe interrupt "msi" to clarify its purpose
+    - Added a new vpcie3v3-supply property for PCIe ports
+    - Renamed a syscon property to align with other SpacemiT bindings
+    - Removed labels and status properties in DT binding examples
+    - Added a '>' to DT binding descriptions to preserve formatting
+    - Consistently ended DT binding descriptions with no period
+    - Dropped ".yaml" from the PCIe host compatible string
+    - Dropped unneeded max-link-speed property from PCIe binding,
+      relying on the hardware default value instead
+    - No longer require the bus-ranges PCIe property; if not
+      provided, the default value used is exactly what's desired
+  - Code
+    - Renamed the symbols representing the PCI vendor and device IDs
+      to align with <linux/pci_ids.h>
+    - Use PCIE_T_PVPERL_MS rather than 100 to represent a standard
+      delay period.
+    - Use platform (not dev) driver-data access functions; assignment
+      is done only after the private structure is initialized
+    - Deleted some unneeded includes in the PCIe driver.
+    - Dropped error checking when operating on MMIO-backed regmaps
+    - Added a regmap_read() call in two places, to ensure a specified
+      delay occurs *after* the a MMIO write has reached its target.
+    - Used ARRAY_SIZE() (not a local variable value) in a few spots
+    - Now use readl_relaxed()/writel_relaxed() when operating on
+      the "link" I/O memory space in the PCIe driver
+    - Updated a few error messages for consistency
+    - No longer specify suppress_bind_attrs in the PCIe driver
+    - Now specify PCIe driver probe type as PROBE_PREFER_ASYNCHRONOUS
+  - Miscellany
+    - Subject on the PCIe host binding includes "pci", not "phy"
+    - Clarified that the DesignWare built-in MSI controller is used
+    - Use "PCIe gen2" terminology (rather than "PCIe v2")
+    - No longer use (void) cast to indicate ignored return values
+
+Here is version 1 of this series:
+  https://lore.kernel.org/lkml/20250813184701.2444372-1-elder@riscstar.com/
+
+
+Alex Elder (7):
+  dt-bindings: phy: spacemit: add SpacemiT PCIe/combo PHY
+  dt-bindings: phy: spacemit: introduce PCIe PHY
+  dt-bindings: pci: spacemit: introduce PCIe host controller
+  phy: spacemit: introduce PCIe/combo PHY
+  PCI: spacemit: introduce SpacemiT PCIe host driver
+  riscv: dts: spacemit: add a PCIe regulator
+  riscv: dts: spacemit: PCIe and PHY-related updates
+
+ .../bindings/pci/spacemit,k1-pcie-host.yaml   | 156 ++++
+ .../bindings/phy/spacemit,k1-combo-phy.yaml   | 114 +++
+ .../bindings/phy/spacemit,k1-pcie-phy.yaml    |  59 ++
+ .../boot/dts/spacemit/k1-bananapi-f3.dts      |  38 +
+ arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi  |  33 +
+ arch/riscv/boot/dts/spacemit/k1.dtsi          | 151 ++++
+ drivers/pci/controller/dwc/Kconfig            |  10 +
+ drivers/pci/controller/dwc/Makefile           |   1 +
+ drivers/pci/controller/dwc/pcie-spacemit-k1.c | 319 +++++++++
+ drivers/phy/Kconfig                           |  11 +
+ drivers/phy/Makefile                          |   1 +
+ drivers/phy/phy-spacemit-k1-pcie.c            | 672 ++++++++++++++++++
+ 12 files changed, 1565 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pci/spacemit,k1-pcie-host.yaml
+ create mode 100644 Documentation/devicetree/bindings/phy/spacemit,k1-combo-phy.yaml
+ create mode 100644 Documentation/devicetree/bindings/phy/spacemit,k1-pcie-phy.yaml
+ create mode 100644 drivers/pci/controller/dwc/pcie-spacemit-k1.c
+ create mode 100644 drivers/phy/phy-spacemit-k1-pcie.c
+
+
+base-commit: 3a8660878839faadb4f1a6dd72c3179c1df56787
+-- 
+2.48.1
+
 
