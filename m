@@ -1,180 +1,166 @@
-Return-Path: <devicetree+bounces-225875-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225876-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA085BD1ABE
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 08:28:10 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB5E9BD1AEB
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 08:32:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 826853A7DAE
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 06:27:02 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 35A964E33D1
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 06:32:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E607B2E1C55;
-	Mon, 13 Oct 2025 06:26:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA2772264CF;
+	Mon, 13 Oct 2025 06:31:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EFKDIrPY"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="WojJ90OZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B605C1D618E;
-	Mon, 13 Oct 2025 06:26:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CFC134BA46;
+	Mon, 13 Oct 2025 06:31:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760336819; cv=none; b=VH9cUG78GgVU9pFGBo99VGeGnkp7FHMTcd0IbpGZqpPGvm2A3ATOfJ+wRv+kVHb4TlpwlcrrShBWIAEc/v+KmTdaEUcZINyTTiQJb+GLifSUHNygwEYP1F0/leb1b9ug6fjf4DnBmomRfWt6GaNjAYJJxdAfyYv+t+mQOc+U7PM=
+	t=1760337117; cv=none; b=hP6e2jmISFZnBTgTofkmNFDmW5Jj20CW1y+e5GRTsZg9ifIbfwj5P/kLrC9EipIAZj6vCXyv7evy38nVWBND4YaEBM49PIStMDp2l8G5/WH094Fp7qunCkiqyfrok72T5HI6E3/L0H9/1G/8V0S1tZbulDPexWLSBD5DJdfDVjc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760336819; c=relaxed/simple;
-	bh=W44OX3A6p6SRHvj91/XjFugrVwP4yz2hxtwlKgaGagY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ME0UuXTPfpmp7Ifq4KhjECH0rX2rdPC4D5UARNd8uTc1s85Qm5Klln2QrTQuCStKelL6CVANIb93FnOKQOuhEmp/8Ct7oCTuBnk5I9UXdFOTD7omS5O0Pp+0GnDbzwt8tRcCUAeQhok5tXlkeZDSejpyzMbX2RPfPdgNYApGnS4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EFKDIrPY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A9004C4CEE7;
-	Mon, 13 Oct 2025 06:26:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760336819;
-	bh=W44OX3A6p6SRHvj91/XjFugrVwP4yz2hxtwlKgaGagY=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=EFKDIrPYrbFPZwWBmj9KmGF/w2X4ZfbrefO3TsRU7fZ715tZ8PjcBEqMVoxaKvBqn
-	 DuJseXgthDsF3i3tmxy3RwrFsfx5dgTf5zp4mhQKpF3T6GTpl66cDQ8jMpgIiiTUkl
-	 Xw402/kDbKtw8HLSMXXO6AvKag+AjxfuIF7XXN73fmpu7LqGpry7Yj9BUmCxuWhk1N
-	 FGcfepFtwZJKpNxsoP1EWdrVukm1Y//BSwk0KUyVMuEhixpO9r3aQbk7RY07cc4r9T
-	 iylQ2VyJv8dyHT+OS2/iBuPL+YFVUbOG/d9uu4aOZ8UO0Yp91ym6/vn5vl2X35OPvf
-	 dUVzQlD+G2eUg==
-Message-ID: <3038fee4-f2a2-4fba-a1a1-d7ec00128d8c@kernel.org>
-Date: Mon, 13 Oct 2025 08:26:50 +0200
+	s=arc-20240116; t=1760337117; c=relaxed/simple;
+	bh=7RTRckvGIAosXW1+ZC+A3KnR+M5s09eAlnkaWEsJUnM=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=C3m8igyLEopPOmNjLJ7zJ17TiiHQzbL8ADGYI7j5nPXPxq1MLgEMRbiN4d0XtI/KptxESjYKlP7bpi0TOXhxzzXHpoDfEjzJlkZn9xwIDmic+Mh+07TGb7vJ9nSlun9Xr3YAHKRqln3nW6dbEEaH6AV9S9k2GK8zOWFvuK/j2xI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=WojJ90OZ; arc=none smtp.client-ip=60.244.123.138
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: 4d12cb78a7fe11f08d9e1119e76e3a28-20251013
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=zC07w80GvXeFMdo5HvJjX18kMmXIYryOs3kZSDvhMnE=;
+	b=WojJ90OZJyY7gKwUE9++0j+Z9h5Ce2BUBdhJg9k581HiKq/WPO2OQ5UAotaFUaG2mmmvrb6kTFKeCOoMRBaKBHYGPni7NDsrPfGDf7AMNp5JgipO6J2YDM3Y2hUt9E8xNRj2FmjtgpKSJ03MhHkRQy4rIRyKn7PZW78gY5E0QdA=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.3.6,REQID:3700f11e-2716-4f0c-b0f1-16c93d595744,IP:0,UR
+	L:0,TC:0,Content:100,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
+	:release,TS:100
+X-CID-META: VersionHash:a9d874c,CLOUDID:a934fd50-c509-4cf3-8dc0-fcdaad49a6d3,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102|836|888|898,TC:-5,Content:3|15|5
+	0,EDM:-3,IP:nil,URL:99|1,File:130,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI
+	:0,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 2,SSN|SDN
+X-CID-BAS: 2,SSN|SDN,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULS
+X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
+X-UUID: 4d12cb78a7fe11f08d9e1119e76e3a28-20251013
+Received: from mtkmbs13n1.mediatek.inc [(172.21.101.193)] by mailgw01.mediatek.com
+	(envelope-from <jjian.zhou@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 156023309; Mon, 13 Oct 2025 14:31:50 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ MTKMBS09N2.mediatek.inc (172.21.101.94) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.10; Mon, 13 Oct 2025 14:31:46 +0800
+Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
+ mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1748.10 via Frontend Transport; Mon, 13 Oct 2025 14:31:46 +0800
+From: Jjian Zhou <jjian.zhou@mediatek.com>
+To: Jassi Brar <jassisinghbrar@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>, Jjian Zhou
+	<Jjian.Zhou@mediatek.com>, Chen-Yu Tsai <wenst@chromium.org>
+CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>,
+	<Project_Global_Chrome_Upstream_Group@mediatek.com>, Jjian Zhou
+	<jjian.zhou@mediatek.com>
+Subject: [PATCH v9 0/2] add VCP mailbox driver
+Date: Mon, 13 Oct 2025 14:31:34 +0800
+Message-ID: <20251013063146.17919-1-jjian.zhou@mediatek.com>
+X-Mailer: git-send-email 2.46.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V3 4/5] dt-bindings: media: ti: vpe: Add support for Video
- Input Port
-To: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>, mchehab@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- hverkuil+cisco@kernel.org
-Cc: sakari.ailus@linux.intel.com, bparrot@ti.com,
- jai.luthra@ideasonboard.com, dale@farnsworth.org,
- linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, u-kumar1@ti.com,
- Sukrut Bellary <sbellary@baylibre.com>
-References: <20250909080718.1381758-1-y-abhilashchandra@ti.com>
- <20250909080718.1381758-5-y-abhilashchandra@ti.com>
- <56a961c4-d11b-448c-81a6-a3a970627dda@kernel.org>
- <7d183747-af9e-4607-8219-e89ddcb79654@ti.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <7d183747-af9e-4607-8219-e89ddcb79654@ti.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK: N
 
-On 13/10/2025 08:21, Yemike Abhilash Chandra wrote:
->>> +examples:
->>> +  - |
->>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
->>> +    #include <dt-bindings/interrupt-controller/irq.h>
->>> +
->>> +    vip1: video@48970000 {
->>> +        compatible = "ti,dra7-vip";
->>> +        reg = <0x48970000 0x114>,
->>> +              <0x48975500 0xD8>,
->>> +              <0x48975700 0x18>,
->>> +              <0x48975800 0x80>,
->>> +              <0x48975a00 0xD8>,
->>> +              <0x48975c00 0x18>,
->>> +              <0x48975d00 0x80>,
->>
->> Are you really, REALLY sure these are separate address spaces? Some
->> people thing that gaps means address space finishes...
->>
->>
->> How does your datasheet define these?
->>
-> 
-> These are not separate address spaces. The datasheet defines them as a
-> single address region: VIP1 (0x4897_0000 –> 0x4897_FFFF, 64 KiB).
-> 
-> We created three common libraries sc.c (scalar), csc.c (color space 
-> converter),
-> and vpdma.c, which are used by both VPE and VIP drivers. The helper 
-> functions
-> in these libraries were originally written in a way that assumes sc0, csc0,
-> sc1, and csc1 are separate address spaces. Since VPE has already been
-> upstreamed using this approach. I have tried to use the same kind of 
-> approach.
-> But I now understand that, this might not be correct to define these as 
-> separate
-> address spaces.
+Hi everyone,
+
+This is v9 of my VCP mailbox driver.
+
+Changes since v9:
+- Add "Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>"
+
+Changes since v8:
+- Rebase onto next-20251008 and fixed build breaks.
+
+Changes since v7:
+- mtk-vcp-mailbox.c:
+  - Change type u32 to u16.
+  - Change BIT(ipi_info->index) to if.
+  - Put the platform_set_drvdata between "of_device_get_match_data"
+    and "platform_get_irq".
+- mtk-vcp-mailbox.h
+  - Modify the definition to MTK_VCP_MBOX_SLOT_MAX_SIZE.
+
+Changes since v6:
+- mtk-vcp-mailbox.c:
+  - Replace mtk_vcp_mbox_priv with mtk_vcp_mbox.
+  - Move mbox_controller to the first member.
+  - Define "struct mbox_chan chan"; Remove allocate one during the probe.
+  - Remove API get_mtk_vcp_mbox_priv.
+  - Pass the private data since there's only one mailbox.
+  - Modify mtk_vcp_mbox_xlate "return &mbox->chans[0]".
+
+Changes since v5:
+- binding:
+  - Patch 1 fix 'make dt_binding_check' errors.
+  - Link to v5
+    https://patchwork.kernel.org/project/linux-mediatek/patch/20250822021217.1598-2-jjian.zhou@mediatek.com/
+
+Changes since v4:
+- binding:
+  - Match the binding file name and compatible.
+- mtk-vcp-mailbox.c:
+  - Drop 'dev_dbg(dev, "MTK VCP mailbox initialized\n")'.
+- Since the reviewer hopes to combine the VCP IPC driver and
+  the VCP driver for a unified review, the original three patches
+  have been split into two parts: the VCP mailbox driver and
+  the binding remain together, while the VCP IPC driver is merged
+  with the VCP driver and submitted as one.
+- Link to v4
+  https://lore.kernel.org/all/20250820094545.23821-1-jjian.zhou@mediatek.com/
+
+Changes since v3:
+- binding:
+  - Remove unused lable '|' and 'vcp_mailbox0'.
+- Link to v3
+  https://lore.kernel.org/all/20250317110331.2776-1-jjian.zhou@mediatek.com/
+
+Changes since v1:
+- Link to v1
+  https://lore.kernel.org/all/20250305082047.15746-1-jjian.zhou@mediatek.com/
+
+In the v2 version, there is ongoing discussion about whether the VCP's
+IPC should use mailbox or rpmsg. To prevent the discussion records
+from being lost, the previous discussion link is attached.
+https://lore.kernel.org/all/CAGXv+5FXqZb_v2dQNgCKbFpJrLhbVk3f0sWrrMCVk3jaWwoBqA@mail.gmail.com/
 
 
-Your previous driver choices should not matter. You are describing here
-hardware, not drivers. Especially not previous drivers.
+Jjian Zhou (2):
+  dt-bindings: mailbox: mediatek,mt8196-vcp-mbox: add mtk vcp-mbox
+    document
+  mailbox: mediatek: Add mtk-vcp-mailbox driver
 
-> 
-> One solution would be to rewrite these helpers and update both VPE and
-> VIP accordingly, but changing these helpers now may risk breaking backward
-> compatibility for VPE.
+ .../mailbox/mediatek,mt8196-vcp-mbox.yaml     |  49 +++++
+ drivers/mailbox/Kconfig                       |   9 +
+ drivers/mailbox/Makefile                      |   2 +
+ drivers/mailbox/mtk-vcp-mailbox.c             | 170 ++++++++++++++++++
+ include/linux/mailbox/mtk-vcp-mailbox.h       |  32 ++++
+ 5 files changed, 262 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mailbox/mediatek,mt8196-vcp-mbox.yaml
+ create mode 100644 drivers/mailbox/mtk-vcp-mailbox.c
+ create mode 100644 include/linux/mailbox/mtk-vcp-mailbox.h
 
-Don't care. Describe properly hardware.
+--
+2.46.0
 
-> 
-> Alternatively, we could make the VIP driver standalone by avoiding the 
-> use of these
-> helpers. I was able to achieve this for csc.c and sc.c, but for vpdma.c, 
-> I had to
-> export a specific function from vpdma.c, since the VIP driver no longer 
-> relies on the
-> helpers provided by vpdma.c (In the previous approach the helper would 
-> call this function)
-
-Again, describe hardware, not drivers.
-
-
-Best regards,
-Krzysztof
 
