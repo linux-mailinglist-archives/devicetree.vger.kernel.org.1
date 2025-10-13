@@ -1,78 +1,108 @@
-Return-Path: <devicetree+bounces-226143-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226145-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00AB8BD5539
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 19:03:00 +0200 (CEST)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E725BD4F09
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 18:21:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 6C27C562C28
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 16:18:54 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id F4117350F33
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 16:21:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 580D628D83E;
-	Mon, 13 Oct 2025 16:07:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A66F21B9DE;
+	Mon, 13 Oct 2025 16:21:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=iitb.ac.in header.i=@iitb.ac.in header.b="neASAnre"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="hSqeZGLi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp1.iitb.ac.in (smtpd9.iitb.ac.in [103.21.126.64])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7240E26E6F2
-	for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 16:06:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.21.126.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E0F42BCFB
+	for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 16:21:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760371621; cv=none; b=jpjpJsfsKN7Fw3ACkZ+UHRHGO+npYPwBZHpVMV4QdLJktQ91o6H1501l706Gs1CXFQ/d7IbBjpTEoyLUWcTUx7Z7yUwU6PeESosK1rnkfmYdvDQIo2DYkZaMlFKzhrhY++tWjPY8Oqw90jWQD2+O1sdc1craU5v0412GW10NGwQ=
+	t=1760372507; cv=none; b=H2196aPDBfjrvdfoYOginFfItNMU4d0jdUEIl6r6nExB8Jl51gKUyWMw7wIVWulWJzvYmyfpDUsd+SXIg9IBEjzud4NfK3WaWWfrMITXwxLozIqGOI5EupR2jxiXMQmXYVz7S0THN7+r3jQFiN5/3ntdSVMDRFJLtJXsmW+powE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760371621; c=relaxed/simple;
-	bh=lWg9ZBhqyOPthQ75n8I93YLiXjllq4HChSc1fq/PwWw=;
+	s=arc-20240116; t=1760372507; c=relaxed/simple;
+	bh=23Shb4sqcAbXl4rBz7JfMREc4p2HRG65ZfJkn4LZVm0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GJty/kamDnBy90lrdrje6wWqRmhZgyAIZLNSnoI9R5LKr/hy1mgawg/z5lDeIMNNERi97OJLLwNsLPbF1CHwj4ygofw2WwH0hhKR07rsJWrs1O90M0qwx4Qt01NRKeeu1TvgAme+PXqAE/LpQDIA+ksklUT1azCS1S6kiGBolJs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ee.iitb.ac.in; spf=pass smtp.mailfrom=ee.iitb.ac.in; dkim=pass (1024-bit key) header.d=iitb.ac.in header.i=@iitb.ac.in header.b=neASAnre; arc=none smtp.client-ip=103.21.126.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ee.iitb.ac.in
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ee.iitb.ac.in
-Received: from ldns2.iitb.ac.in (ldns2.iitb.ac.in [10.200.12.2])
-	by smtp1.iitb.ac.in (Postfix) with SMTP id 1A01B1038483
-	for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 21:36:52 +0530 (IST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.iitb.ac.in 1A01B1038483
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=iitb.ac.in; s=mail;
-	t=1760371612; bh=lWg9ZBhqyOPthQ75n8I93YLiXjllq4HChSc1fq/PwWw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=neASAnreaEY9vsTtKzfd4YABFgykxjxC1NNz6fjwZ9dEcc5NcQpFpDaDAtlJ50jKR
-	 psUvCzzctvZvzx7cEgO7gO+riLEIYQBl0qj+FPcSyT0BMNoNYK4krIHgBYcNg8lJoX
-	 UHD+IHfhPLx6Ny6Zpf2G89Kybd+CBK1tTAM1Bfhc=
-Received: (qmail 30567 invoked by uid 510); 13 Oct 2025 21:36:52 +0530
-X-Qmail-Scanner-Diagnostics: from 10.200.1.25 by ldns2 (envelope-from <akhilesh@ee.iitb.ac.in>, uid 501) with qmail-scanner-2.11
- spamassassin: 3.4.1. mhr: 1.0. {clamdscan: 0.100.0/26337} 
- Clear:RC:1(10.200.1.25):SA:0(0.0/7.0):. Processed in 3.533514 secs; 13 Oct 2025 21:36:52 +0530
-X-Spam-Level: 
-X-Spam-Pyzor: Reported 0 times.
-X-Envelope-From: akhilesh@ee.iitb.ac.in
-X-Qmail-Scanner-Mime-Attachments: |
-X-Qmail-Scanner-Zip-Files: |
-Received: from unknown (HELO ldns2.iitb.ac.in) (10.200.1.25)
-  by ldns2.iitb.ac.in with SMTP; 13 Oct 2025 21:36:48 +0530
-Received: from bhairav.ee.iitb.ac.in (bhairav.ee.iitb.ac.in [10.107.1.1])
-	by ldns2.iitb.ac.in (Postfix) with ESMTP id AA1B6341504;
-	Mon, 13 Oct 2025 21:36:47 +0530 (IST)
-Received: from bhairav-test.ee.iitb.ac.in (bhairav.ee.iitb.ac.in [10.107.1.1])
-	(Authenticated sender: akhilesh)
-	by bhairav.ee.iitb.ac.in (Postfix) with ESMTPSA id 6BCD71E8155F;
-	Mon, 13 Oct 2025 21:36:47 +0530 (IST)
-Date: Mon, 13 Oct 2025 21:36:42 +0530
-From: Akhilesh Patil <akhilesh@ee.iitb.ac.in>
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: dlechner@baylibre.com, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, nuno.sa@analog.com, andy@kernel.org,
-	marcelo.schmitt1@gmail.com, vassilisamir@gmail.com,
-	salah.triki@gmail.com, skhan@linuxfoundation.org,
-	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, akhileshpatilvnit@gmail.com
-Subject: Re: [PATCH 2/2] iio: pressure: adp810: Add driver for adp810 sensor
-Message-ID: <20251013-16642-1563944@bhairav-test.ee.iitb.ac.in>
-References: <cover.1760184859.git.akhilesh@ee.iitb.ac.in>
- <8c202e7ccd332b26217d529a7a73b7a3ef0726ea.1760184859.git.akhilesh@ee.iitb.ac.in>
- <20251012203658.167f3362@jic23-huawei>
+	 Content-Type:Content-Disposition:In-Reply-To; b=jo0bw0502jVcDjp6h40OK4inCGTO28tPUX/dHv6DloZZiwbMWgr+fH1uWbN84fZa/sB6JDlqgIshh3F1etp2/WEC692hEdqSNMAiAb73bpuPLR7Q/Qll6MTXNUcvXruCRCtOsJnLksq3lLSJTagDLGsGYLEHiosHKy4fv+ahFDw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=hSqeZGLi; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59DFPsmP013172
+	for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 16:21:39 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=cjuhVx56CMX8TkJhi8OBmvB3
+	cYhwrv+WHNiyc57sauE=; b=hSqeZGLimGpKXYmwqWjW0TjrT1lNG9kvOubS0AcR
+	uHkwqBD08e2XGxX2fWBZSmkjhcq9x94fEkt/7g1RCiqZkO/q78wCGKkfYvjhByE1
+	gDruDrZ2yLzV0lEwz1Uz1Mxj8DP+HOr/Q4I0dzSm8B7nh3QtVsP1S9vRyjzt041M
+	WuIopkQqouZrWXKt1w0Pdvy8iIEqVI/P1empSYhjXuSfZyjOaF1l4fyRpkAix7wM
+	6IjuqEjRenROiCpMvcqTKBKfqVw+sfcg2iKp0FUM45e1UiFDQ/VW4OOUq+WCBSnN
+	ZUGXFKNVIWvrX8VHNpkIV1XuodAzzEYTATVpe/+smvjfgQ==
+Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49rw1a9p41-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 16:21:38 +0000 (GMT)
+Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-286a252bfc2so78895875ad.1
+        for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 09:21:38 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1760372498; x=1760977298;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=cjuhVx56CMX8TkJhi8OBmvB3cYhwrv+WHNiyc57sauE=;
+        b=sjbDcCZQeWHsjbhyuFhSdbosZdWLpUO6B68GtDKVbrj3zNRqxs1nM5b5Wd52gpHgMu
+         NnXc687v4fwCAr+/hSVUKaimrdzJTwp7v+8GYcqSea9eD5NpseRudUr0NwDT2SLIsPRh
+         l94eQRUwRT2A7nxylQTpkckGgBPHNToFlLnWPobCjfObrOs+ZOzgexM69aJ2GOr4qqz5
+         aQywIuXr9yIMgIf2r10ujcOrBnaWladgh1CTdR2+3Gislp+MwNe1zxwGRruSL+GvsZhU
+         4pG7VsJ86Fu9SuI8cQRWy1tlwRK3VJgw4pRWQbfTi4SR7BWFUDxc22sdtlvWFN/tVKLH
+         kRVw==
+X-Forwarded-Encrypted: i=1; AJvYcCUI/uh2uM/oDUUoIKBaHFZwEglmQaDpCf89lP4tZzYgqI+6HU9wAt1YNYXOMpWvePQcwLmlOVEaQqoM@vger.kernel.org
+X-Gm-Message-State: AOJu0YyPwfhwefVRdvzRyM7+crM6hzRmbACah425etxJrSjJvI5m9fLK
+	hGwbxWX3ujP/g5JVjCzWk2jrTkHao8K5lKWbmOACLVmMAooCTugEM7M5ZU9YNCZmnkO3mMhfNva
+	PYSb5Ndcd3IhlOQ4nQAs2gdSnm7YVfdkw/YmrKfg2h0hK9ELow8+Wa9BYz0Bfqgr0
+X-Gm-Gg: ASbGnctADzStOk9N5Go4XN1M/JNGcdXeGA3Dp1WKBLlcsyvuBpxEwdQoct3ZurY9ASK
+	0lz2g43TRg2thX5OoTO5G/C1l/Mc7D2sPyqUPynV5O4X26hzR7D14m91WdTp0mJbI0YI+/UHewX
+	BUdMM70I3uT6l9WGxLAkfPkkYq38HhMyQpGW3FPNKSKd8TYiYNDVr+Wmq365J37GZRtuHPXxwgB
+	verNUPoEyB3SF8rAc8D4cAusg5k5hioy1B+xZZfHuMMIyH7m9MV0fQHQJj3rx4INoTKlOk+kaVr
+	RPn7tirw0Wm5xH70qTuRc/TaN42LOY6cPK2eVjm4hHnJENGgIszQ2aRnOhhXg9Ua5TZ7JkVT/fL
+	mClkK5H64qICbCJY+s2Wq7JbC4g==
+X-Received: by 2002:a17:903:faf:b0:28e:873d:8a with SMTP id d9443c01a7336-29027f0cd0cmr267137645ad.15.1760372497842;
+        Mon, 13 Oct 2025 09:21:37 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEY7avCTIn+ZGl00LYiW1gogaa0NR4HQO/Pc90cQphYy2WnDRQOknJKL/h5/tvef7cizIn+0Q==
+X-Received: by 2002:a17:903:faf:b0:28e:873d:8a with SMTP id d9443c01a7336-29027f0cd0cmr267137195ad.15.1760372497259;
+        Mon, 13 Oct 2025 09:21:37 -0700 (PDT)
+Received: from hu-kamalw-hyd.qualcomm.com ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29034e2062fsm137908795ad.48.2025.10.13.09.21.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 13 Oct 2025 09:21:36 -0700 (PDT)
+Date: Mon, 13 Oct 2025 21:51:30 +0530
+From: Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
+To: Eugen Hristev <eugen.hristev@linaro.org>
+Cc: Jingyi Wang <jingyi.wang@oss.qualcomm.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        aiqun.yu@oss.qualcomm.com, tingwei.zhang@oss.qualcomm.com,
+        trilok.soni@oss.qualcomm.com, yijie.yang@oss.qualcomm.com,
+        kamal.wadhwa@oss.qualcomm.com
+Subject: Re: [PATCH 14/20] arm64: dts: qcom: kaanapali-mtp: Enable more
+ features
+Message-ID: <20251013162130.2z22aqhx3fbcxbsq@hu-kamalw-hyd.qualcomm.com>
+References: <20250924-knp-dts-v1-0-3fdbc4b9e1b1@oss.qualcomm.com>
+ <20250924-knp-dts-v1-14-3fdbc4b9e1b1@oss.qualcomm.com>
+ <588a7b68-2e2e-4e65-9249-fe8b18b67927@linaro.org>
+ <831f6fd7-b81f-4d6f-b9bd-5a8fe514befb@oss.qualcomm.com>
+ <0c9ca026-9986-4347-a86d-8bf65e2d12e6@linaro.org>
+ <kocj7sf6jgj4uynvlxvbsojc4bykyj2ipb4ex56fagjqoxwcie@2trytltkhd4a>
+ <dd4d4fa3-abd4-476f-a37e-c44cb6c83fb0@oss.qualcomm.com>
+ <f255b8f0-4d9f-44c6-91e1-f706d86f7dba@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,227 +111,213 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251012203658.167f3362@jic23-huawei>
+In-Reply-To: <f255b8f0-4d9f-44c6-91e1-f706d86f7dba@linaro.org>
+X-Authority-Analysis: v=2.4 cv=K88v3iWI c=1 sm=1 tr=0 ts=68ed2712 cx=c_pps
+ a=cmESyDAEBpBGqyK7t0alAg==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=kj9zAlcOel0A:10 a=x6icFKpwvdMA:10 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
+ a=9dPAZrIY8zlYopoQr9cA:9 a=CjuIK1q_8ugA:10 a=1OuFwYUASf3TG4hYMiVC:22
+ a=HhbK4dLum7pmb74im6QT:22
+X-Proofpoint-GUID: eedkLMSOj7VESZIUHHXMfQNOLTbVqMwi
+X-Proofpoint-ORIG-GUID: eedkLMSOj7VESZIUHHXMfQNOLTbVqMwi
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDEzMDAzNSBTYWx0ZWRfXwPCCStedDDf9
+ XuGAfhUBB+1tnQUE/cMaY0eyi6nezeMyd6qM6xQsPRAp3msGU3TNfM7zeJ2RM/h5v50yYg8oevy
+ Bz41KXEhKQ4QAhy5M6ILWez6sapwGL3GCmAnk1fm9jLLDhp30rly8FS+h6d4ZxuA7YVbM+Bb/xs
+ /YsKjtxu+p8hx+pia/rE2mWh/yPhgOzWBR0Wk9G6EXuxoRgOL4lHrrEbFe3kK3Nw6Ru+sim0Vjm
+ v8hs3Cw6h676/Rjl1fPSPTqm4YHWXvfbrvxe83BQ7EE5A6fxyFLyDMoOXv6++vLtviBY4zzJzan
+ QBMu3wn71CA6MQ4CiuvVth5FlzXKq4vSvnHkqbCj3lrINQr1+KLcSLGqGiaevkVae0Yx5vnNqEe
+ +CCliQpRpzBC4adSkwAbTZfyjLIulg==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-10-13_06,2025-10-06_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 spamscore=0 impostorscore=0 priorityscore=1501 phishscore=0
+ adultscore=0 clxscore=1015 bulkscore=0 suspectscore=0 lowpriorityscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2510020000 definitions=main-2510130035
 
-On Sun, Oct 12, 2025 at 08:36:58PM +0100, Jonathan Cameron wrote:
-> On Sat, 11 Oct 2025 17:55:28 +0530
-> Akhilesh Patil <akhilesh@ee.iitb.ac.in> wrote:
-> 
-> Hi Akhilesh, 
-> 
-> Thanks for sending this and a late welcome to IIO.
+Hi Eugen,
 
-Hi Jonathan, Thanks for the review.
-Addressing the comments and suggestions in v2.
-
+On Fri, Oct 10, 2025 at 05:02:54PM +0300, Eugen Hristev wrote:
 > 
-> > Add driver for Aosong adp810 differential pressure and
-> > temperature sensor. This sensor provides I2C interface for
-> > reading data. Calculate CRC of the data received using standard
-> > crc8 library to verify data integrity.
+> 
+> On 10/10/25 13:54, Jishnu Prakash wrote:
+> > Hi Dmitry and Eugen,
 > > 
-> Wrap commit messages to 75 chars.
-
-I think it is already wrapped to 75. 
-Still, I will recheck and fix if required.
-
-> 
-> > Tested on TI am62x sk board with sensor connected at i2c-2
+> > On 10/9/2025 9:58 PM, Dmitry Baryshkov wrote:
+> >> On Thu, Oct 09, 2025 at 05:58:03PM +0300, Eugen Hristev wrote:
+> >>>
+> >>>
+> >>> On 10/9/25 16:54, Jishnu Prakash wrote:
+> >>>> Hi Eugen,
+> >>>>
+> >>>> On 9/25/2025 1:33 PM, Eugen Hristev wrote:
+> >>>>>
+> >>>>>
+> >>>>> On 9/25/25 03:17, Jingyi Wang wrote:
+> >>>>>> Enable more features on Kaanapali MTP boards including PMIC peripherals,
+> >>>>>> bus, SDHCI, remoteprocs, USB, PCIE, WLAN and Bluetooth.
+> >>>>>>
+> >>>>>> Written with help from Jyothi Kumar Seerapu(added bus), Ronak Raheja
+> >>>>>> (added USB), Manish Pandey(added SDHCI), Jishnu Prakash(added PMIC),
+> >>>>>> Qiang Yu(added PCIE), Yijie Yang(Added WLAN) and Zijun Hu(Added Bluetooth).
+> >>>>>>
+> >>>>>> Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+> >>>>>> ---
+> >>>>>>  arch/arm64/boot/dts/qcom/kaanapali-mtp.dts | 663 +++++++++++++++++++++++++++++
+> >>>>>>  1 file changed, 663 insertions(+)
+> >>>>>>
+> >>>>>> diff --git a/arch/arm64/boot/dts/qcom/kaanapali-mtp.dts b/arch/arm64/boot/dts/qcom/kaanapali-mtp.dts
+> >>>>>> index 9cf3158e2712..2949579481a9 100644
+> >>>>>> --- a/arch/arm64/boot/dts/qcom/kaanapali-mtp.dts
+> >>>>>> +++ b/arch/arm64/boot/dts/qcom/kaanapali-mtp.dts
+> >>>>>> @@ -5,9 +5,23 @@
+> >>>>>>  
+> >>>>
+> >>>> ...
+> >>>>
+> >>>>>> +
+> >>>>>> +&spmi_bus1 {
+> >>>>>> +	pmd8028: pmic@4 {
+> >>>>>> +		compatible = "qcom,pmd8028", "qcom,spmi-pmic";
+> >>>>>> +		reg = <0x4 SPMI_USID>;
+> >>>>>> +		#address-cells = <1>;
+> >>>>>> +		#size-cells = <0>;
+> >>>>>> +
+> >>>>>> +		pmd8028_temp_alarm: temp-alarm@a00 {
+> >>>>>> +			compatible = "qcom,spmi-temp-alarm";
+> >>>>>> +			reg = <0xa00>;
+> >>>>>> +			interrupts = <0x4 0xa 0x0 IRQ_TYPE_EDGE_BOTH>;
+> >>>>>> +			#thermal-sensor-cells = <0>;
+> >>>>>> +		};
+> >>>>>> +
+> >>>>>> +		pmd8028_gpios: gpio@8800 {
+> >>>>>> +			compatible = "qcom,pmd8028-gpio", "qcom,spmi-gpio";
+> >>>>>> +			reg = <0x8800>;
+> >>>>>> +			gpio-controller;
+> >>>>>> +			gpio-ranges = <&pmd8028_gpios 0 0 4>;
+> >>>>>> +			#gpio-cells = <2>;
+> >>>>>> +			interrupt-controller;
+> >>>>>> +			#interrupt-cells = <2>;
+> >>>>>> +		};
+> >>>>>> +	};
+> >>>>>> +
+> >>>>>> +	pmih0108: pmic@7 {
+> >>>>>> +		compatible = "qcom,pmih0108", "qcom,spmi-pmic";
+> >>>>>> +		reg = <0x7 SPMI_USID>;
+> >>>>>> +		#address-cells = <1>;
+> >>>>>> +		#size-cells = <0>;
+> >>>>>> +
+> >>>>>> +		pmih0108_temp_alarm: temp-alarm@a00 {
+> >>>>>> +			compatible = "qcom,spmi-temp-alarm";
+> >>>>>> +			reg = <0xa00>;
+> >>>>>> +			interrupts = <0x7 0xa 0x0 IRQ_TYPE_EDGE_BOTH>;
+> >>>>>> +			#thermal-sensor-cells = <0>;
+> >>>>>> +		};
+> >>>>>> +
+> >>>>>> +		pmih0108_gpios: gpio@8800 {
+> >>>>>> +			compatible = "qcom,pmih0108-gpio", "qcom,spmi-gpio";
+> >>>>>> +			reg = <0x8800>;
+> >>>>>> +			gpio-controller;
+> >>>>>> +			gpio-ranges = <&pmih0108_gpios 0 0 18>;
+> >>>>>> +			#gpio-cells = <2>;
+> >>>>>> +			interrupt-controller;
+> >>>>>> +			#interrupt-cells = <2>;
+> >>>>>> +		};
+> >>>>>> +
+> >>>>>> +		pmih0108_eusb2_repeater: phy@fd00 {
+> >>>>>> +			compatible = "qcom,pm8550b-eusb2-repeater";
+> >>>>>> +			reg = <0xfd00>;
+> >>>>>> +			#phy-cells = <0>;
+> >>>>>> +			vdd18-supply = <&vreg_l15b_1p8>;
+> >>>>>> +			vdd3-supply = <&vreg_l5b_3p1>;
+> >>>>>> +		};
+> >>>>>> +	};
+> >>>>>> +
+> >>>>>> +	pmr735d: pmic@a {
+> >>>>>
+> >>>>> Hi,
+> >>>>>
+> >>>>> The PMR735D is available in pmr735d_a.dtsi
+> >>>>>
+> >>>>> Can we find a way to reuse that include file instead of duplicating it
+> >>>>> here ?
+> >>>>
+> >>>> In pmr735d_a.dtsi, the peripherals are added under the parent phandle
+> >>>> "spmi_bus", which was commonly used in older SoCs having only a single
+> >>>> bus under the PMIC arbiter, but in Kaanapali, there are two buses
+> >>>> present under the PMIC arbiter, with phandles "spmi_bus0" and "spmi_bus1",
+> >>>> so we cannot include the file as it is.
+> >>>>
+> >>>
+> >>> I know the problem. I disagree with using include files in one case, and
+> >>> having the PMIC in the dts in the other case.
+> >>>
+> >>> So there has to be a unified way to handle this in all cases.
+> >>
+> >> Rework SPMI PMICs to follow the approach started by Johan for PM8008. I
+> >> think this is the way to go.
+> >>
 > > 
-> > Signed-off-by: Akhilesh Patil <akhilesh@ee.iitb.ac.in>
+> > We got a recommendation from Krzysztof recently here for Glymur: 
+> > https://lore.kernel.org/all/b784387b-5744-422e-92f5-3d575a24d01c@kernel.org/
+> > 
+> > For PMH0110, he suggested we could keep different DTSI files per SoC,
+> > like pmh0110-kaanapali.dtsi and pmh0110-glymur.dtsi.
+> > 
+> > We could follow a similar approach on Kaanapali, to 
+> > #include the following files in the .dts file:
+> > 
+> > pmk8850.dtsi
+> > pmh0101.dtsi
+> > pmh0110-kaanapali.dtsi
+> > pmh0104-kaanapali.dtsi
+> > pmd8028-kaanapali.dtsi
+> > pmih0108-kaanapali.dtsi
+> > pmr735d-kaanapali.dtsi
+> > pm8010-kaanapali.dtsi
+> > 
+> > The first two files are new and common with Glymur,so they
+> > do not have the SoC name suffix.
+> > 
+> > Hope this is fine, please let us know if you see any issue.
 > 
-> Where I've remembered Andy commenting on something I've not duplicated
-> (assuming I even noticed the same thing!)
+> I would like it to be consistent, you would have to rename the old
+> pmr735d.dtsi into pmr735d-whatever-soc-was-using-it.dtsi in another
+> patch, and then create pmr735d-kaanpali.dtsi for kaanapali.
 > 
-> A few things may contradict or provide alternative suggestions though!
-> 
-> Jonathan
+> Does this look good ?
 
-Okay.
+Currently we were thinking to name PMIC dtsi based on below criteria:
+- pmic.dtsi can be used `as-is` (common bus-id/spmi-id) for more than
+   one SoC -> use filename without SoC suffix.
+- If there is a delta between two SoCs (old existing pmic file mismatch
+   busid/spmi-ids) for same PMIC -> have SoC-specific PMIC files.
 
-> 
-> 
-> > diff --git a/drivers/iio/pressure/adp810.c b/drivers/iio/pressure/adp810.c
-> > new file mode 100644
-> > index 000000000000..ff73330b34fc
-> > --- /dev/null
-> > +++ b/drivers/iio/pressure/adp810.c
-> > @@ -0,0 +1,205 @@
-> > +/* Trigger command to send to start measurement by the sensor */
-> > +#define ADP810_TRIGGER_COMMAND		0x2d37
-> > +#define ADP810_CRC8_POLYNOMIAL		0x31
-> > +
-> > +DECLARE_CRC8_TABLE(crc_table);
-> > +
-> > +struct adp810_read_buf {
-> > +	u8 dp_msb;
-> > +	u8 dp_lsb;
-> 
-> __be16 dp;
-> or u8 dp[2]; 
-> 
-> > +	u8 dp_crc;
-> > +	u8 tmp_msb;
-> > +	u8 tmp_lsb;
-> 
-> __be16_tmp;
-> 
-> > +	u8 tmp_crc;
-> > +	u8 sf_msb;
-> > +	u8 sf_lsb;
-> 
-> __be16 sf;
-> 
-> > +	u8 sf_crc;
-> > +} __packed;
-> With packed (which you didn't need previously).
-> (more below)
+IMO, This will be sligtly better to identify
+- which pmic dtsi is older and have common placement on bus, sid and
+  other properties for multiple targets.
+- Which pmic's have deviated away and landed late on the upstream
 
-Yes. Used __be16 to indicate big endian.
+NOTE: We have good number of examples where pmics are re-used as-is
+with same bus-id and spmi-id eg- pmk8550, pmk8350 etc. So we want to
+suffix the target only if the target is not first one to use it and
+deviated from the first version, where reuse is not possible.
 
-> 
-> > +
-> > +struct adp810_data {
-> > +	struct i2c_client *client;
-> > +	/* Use lock to synchronize access to device during read sequence */
-> > +	struct mutex lock;
-> > +};
-> > +
-> > +static int adp810_measure(struct adp810_data *data, struct adp810_read_buf *buf)
-> > +{
-> > +	struct i2c_client *client = data->client;
-> > +	int ret;
-> Not sure what ordering you are using for declarations but this looks a bit
-> odd.  If nothing else makes more sense go with reverse xmas tree.
+On the other hand, to align to your request we may have to fix this
+retrospectively for all pmics as lot of older pmic.dtsi also will fall
+in same catagory, then just simply adding a SoC specific pmic version.
 
-okay. I will use "reverse xmas tree" wherever applicable.
+And also losing this (above described) understanding of the `history
+and common design` of each pmic.dtsi file.
 
-> > +	if (buf->tmp_crc != crc8(crc_table, &buf->tmp_msb, 0x2, CRC8_INIT_VALUE)) {
-> > +		dev_err(&client->dev, "CRC error for temperature\n");
-> > +		return -EIO;
-> > +	}
-> > +
-> > +	if (buf->sf_crc != crc8(crc_table, &buf->sf_msb, 0x2, CRC8_INIT_VALUE)) {
-> > +		dev_err(&client->dev, "CRC error for scale\n");
-> > +		return -EIO;
-> > +	}
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static int adp810_read_raw(struct iio_dev *indio_dev,
-> > +			   struct iio_chan_spec const *chan,
-> > +			   int *val, int *val2, long mask)
-> > +{
-> > +	struct adp810_data *data = iio_priv(indio_dev);
-> > +	struct adp810_read_buf buf = {0};
-> > +	int ret;
-> > +
-> > +	mutex_lock(&data->lock);
-> > +	ret = adp810_measure(data, &buf);
-> > +	mutex_unlock(&data->lock);
-> > +
-> > +	if (ret) {
-> > +		dev_err(&indio_dev->dev, "Failed to read from device\n");
-> It's normally more informative to use the parent dev for error messages.
-> data->client->dev here.
-> Probably add a local variable struct device *dev, to avoid making the dev_err() lines
-> even longer.
+Does this justification works? Please let us know if you still see
+any problems with this naming critria, or we can improve it still?
 
-Agree. Will use parent dev in all dev_err() calls.
-
-> 
-> > +		return ret;
-> > +	}
-> > +
-> > +	switch (mask) {
-> > +	case IIO_CHAN_INFO_RAW:
-> > +		switch (chan->type) {
-> > +		case IIO_PRESSURE:
-> > +			*val = buf.dp_msb << 8 | buf.dp_lsb;
-> 
-> They are next to each other so either treating them as a small array or
-> I think you can even make the be16 you can use
-> 			*val = get_unaligned_be16(buf.dp);
-> for all 3 similar cases.  1st and 3rd are actually aligned but
-> lets not rely on that.
-
-ACK. Used __be16 along with helpers get_unalinged_be16() to handle
-endianess in clean and portable way.
-
-> 
-> > +			return IIO_VAL_INT;
-> > +		case IIO_TEMP:
-> > +			*val = buf.tmp_msb << 8 | buf.tmp_lsb;
-> > +			return IIO_VAL_INT;
-> > +		default:
-> > +			return -EINVAL;
-> > +		}
-> > +	case IIO_CHAN_INFO_SCALE:
-> > +		switch (chan->type) {
-> > +		case IIO_PRESSURE:
-> > +			*val = buf.sf_msb << 8 | buf.sf_lsb;
-> > +			return IIO_VAL_INT;
-> > +		case IIO_TEMP:
-> 
-> > +static int adp810_probe(struct i2c_client *client)
-> > +{
-> > +	const struct i2c_device_id *dev_id = i2c_client_get_device_id(client);
-> > +	struct device *dev = &client->dev;
-> > +	struct iio_dev *indio_dev;
-> > +	struct adp810_data *data;
-> > +	int ret;
-> > +
-> > +	indio_dev = devm_iio_device_alloc(dev, sizeof(*data));
-> > +	if (!indio_dev)
-> > +		return -ENOMEM;
-> > +
-> > +	data = iio_priv(indio_dev);
-> > +	data->client = client;
-> > +	mutex_init(&data->lock);
-> Andy mentioned this.  I used not to care about mutex debugging in IIO drivers
-> as in most cases lifetimes of the containing structure are so closely aligned
-> to the mutex it wasn't worth the extra debugging provided by mutex_destroy().
-> 
-> Now we can do
-> 	ret = devm_mutex_init(&data->lock);
-> 	if (ret)
-> 		return ret;
-> 
-> It's so easy I would like to see it used in all new code even when the
-> gain is very small.
-
-Okay. Using resource managed mutex_init : devm_mutex_init()
-
-> 
-> > +
-> > +	indio_dev->name = dev_id->name;
-> 
-> Just set it to "adp810" here.  We can add more complex handling when the driver
-> supports additional parts.  The advantage of an explicit string for now is
-> we don't have to think about what it can be.
-> 
-
-Sure. Directly using string : indio_dev->name = "adp810";
-
-> > +	indio_dev->channels = adp810_channels;
-> > +	indio_dev->num_channels = ARRAY_SIZE(adp810_channels);
-> > +	indio_dev->info = &adp810_info;
-> > +	indio_dev->modes = INDIO_DIRECT_MODE;
-> > +
-> > +	ret = devm_iio_device_register(dev, indio_dev);
-> > +	if (ret)
-> > +		return dev_err_probe(dev, ret, "Failed to register IIO device\n");
-> > +
-> > +	return ret;
-> return 0; 
-> 
-> As that clearly indicates to the reader that you can't get here in an error case.
-
-Yes. Fixed.
+> > 
+> > Thanks,
+> > Jishnu
+> > 
 
 Regards,
-Akhilesh
-
-
+Kamal 
 
