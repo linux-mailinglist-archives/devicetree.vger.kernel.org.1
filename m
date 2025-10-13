@@ -1,604 +1,252 @@
-Return-Path: <devicetree+bounces-226012-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226013-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D72C0BD2ECC
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 14:11:27 +0200 (CEST)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1AB99BD2EEF
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 14:15:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7B8D73A7643
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 12:11:15 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 907FA34B864
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 12:15:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F06626F45A;
-	Mon, 13 Oct 2025 12:10:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18D5026E706;
+	Mon, 13 Oct 2025 12:15:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OhDV7UBC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bCAoPb2w"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com [209.85.210.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 128422749ED
-	for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 12:10:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2D7825E44D;
+	Mon, 13 Oct 2025 12:15:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760357445; cv=none; b=Eqfx5gLn8A77mLmbhe9rdJUOtPm/FsZnvDfIzZO6xzEwUH/zrUUAqRnb7/H/r1QdayZeKOVbhyxB8Q00+gtpa6axNSuucEni1HAoL8Vyqbvd/+ODShs0qBXcgzRtprPF/LtG5re0Q9rC7zY+6ZiTRTeSYMXALx5zDiXzZsfr2hQ=
+	t=1760357754; cv=none; b=kfChkUHVGKujF3V0P2SWLETgHPSv4auKBj+hUALvoc9jkTorSG1oxbRc7nvMjrxHumiSrVxX7ShnFPipO5THR4Sxu71VImnLSYB0JbEafN4DRril2qkb48/awgPgylicRH5ynddUhVvFrIMd5qQzYPCdEBe54bxrggDSyaYuFFo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760357445; c=relaxed/simple;
-	bh=iV7dZN2zQM89gv73tquq9E0hkymmZBrU9u+MMIBTFjY=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=ObMqJWy4gohMA6dXIQdv4bx0bkcPNcHQ53UA3/mXaLi/tN9E4Gni+Pk9qYHv9sOFRSO9YfMydn/LL20W2MKhNwkW39fp+AravFEqxgnLySMJw9lp44pNJLrTNy/chJ1PLuXAeifNuJOMXpepl/pDPHuvPpX4jDGvftgcjISAE+k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OhDV7UBC; arc=none smtp.client-ip=209.85.210.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f178.google.com with SMTP id d2e1a72fcca58-781997d195aso2926117b3a.3
-        for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 05:10:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1760357441; x=1760962241; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Acgc74CjfZTp6MYYUhLSeaFHzttZXGEcLRcNsc8GaGo=;
-        b=OhDV7UBCald3sVwzGuBbBOjK/uycq0PxNMJAlKGdrP1S30Wq0z0vI6K0TtWDyoeQiy
-         nvBXD4rA4N8/dikYii51nvSzqcsdBypoomj4EuWV8O9xygxp2t42ZanQ3e1a5FUiDmdD
-         rz8ULa5MiRq1C+EhJCE6uKQPVMpB2GXSvWGPjpDjuLCbe8Aj0VPXbExENBvCtdLFUXQk
-         BAdKxhxPQVOnxXHcp8YHIzsRj4kV/2OrpKbIuOmCA7epodX98UmNocEDoGCyzZXP5FaE
-         xjUX3DmzMNppx+LbW0Ja+d9/w3qOob04MWpaY+/t4tJ9HNaTZnHeYL9cG8lqXkNKSJmh
-         XmJg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760357441; x=1760962241;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Acgc74CjfZTp6MYYUhLSeaFHzttZXGEcLRcNsc8GaGo=;
-        b=PPIlQQIZC44CodFBOycAdcT+EGnIIfI6iaIFAcabMZhdX5Cm9B9T8jIREPNYXYcw4D
-         wbHKChM39NPwyXt/PBrnRnU1AKFz50svxe3TshNYbOQ2yScgMDosiO8fo04lzUdw9Wxs
-         ctUurFjwik7WkRW6lJoTczRdZrE8RbhEZY/Y6Q0Ato7bN0SZ1nfJs+soKUI019aguYxR
-         dZqJnJX1YQl94qPTtxwamNeJrtZQ54/iw8BZ0t/H6Yi2VDzzQ0RUXsvWt6Jg0+H8lQXm
-         ths8vsYFEJmfR7pVbgr7+Kqvv7SxtYdzAXK+UOpxeTzQvWie5/GI8EXf2NMKgljD3VkH
-         SIPw==
-X-Gm-Message-State: AOJu0YwjpshR0+d+j52+suU67wE31tWq4IgsJaQ3ExTiDupj51Ai+CM9
-	sIOdb2qda/3QkXE0r/JmR1/A5Jvv4vuNF0KK7HLpozai5YhY2eVrz/G5
-X-Gm-Gg: ASbGncv+w/bBj3SZho/DZE+YzJK3O5nbWBsBPvWvMQedUUdrQEkcasFJT11XP+H+/wd
-	gU2b74iMzV08QzJ9T5c+J7LYtTm70kGP9sZRqDiXRp94KZ949okgLoNBreB5o7+oGMY5D/02t+K
-	xWBmZeLPhipnJNr6ypCOCyp2hS7LR+UnVb9w3S2xNoMFjCXS/Fqyh9qa+XEbuJGHVI9CH67Iq3p
-	rQ99aGmF0Czfw3tSoYZyb/sNu7PpBuNmmd0HLfM0OSOQvaDqptvV43KjmSio9rN5kTXK+Eetdgs
-	lW7Y1WOwoPet8QDxCOD/gufsNDzh8P5FbF6Mpv93ALYwA5YkxrUqjgvTpd000AYnIpGexNvmdcZ
-	XtpZ4Uh4DDrMkKh/fAuyJ1zM7yYw32H9+qjvsjwTLgzHL7EK6HXc64+d5WxKz
-X-Google-Smtp-Source: AGHT+IG1l95bYyByQDcEFgmzemofFZK+KCRGebeyQgiv1fQZrrpkj8XV9Ak8diBAriChOrSnAL/M0w==
-X-Received: by 2002:a05:6a21:9993:b0:2c6:85b9:1df5 with SMTP id adf61e73a8af0-32da8134b33mr27183606637.3.1760357441241;
-        Mon, 13 Oct 2025 05:10:41 -0700 (PDT)
-Received: from MRSPARKLE.localdomain ([206.83.98.89])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b678df48a83sm9633354a12.31.2025.10.13.05.10.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Oct 2025 05:10:40 -0700 (PDT)
-From: Jonathan Brophy <professorjonny98@gmail.com>
-To: lee Jones <lee@kernel.org>,
-	Pavel Machek <pavel@kernel.org>,
-	Jonathan Brophy <professor_jonny@hotmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Radoslav Tsvetkov <rtsvetkov@gradotech.eu>
-Cc: devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-leds@vger.kernel.org
-Subject: [PATCH v2 4/4] leds: Add Virtual Color LED Group driver
-Date: Tue, 14 Oct 2025 01:09:48 +1300
-Message-ID: <20251013120955.227572-5-professorjonny98@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20251013120955.227572-1-professorjonny98@gmail.com>
-References: <20251013120955.227572-1-professorjonny98@gmail.com>
+	s=arc-20240116; t=1760357754; c=relaxed/simple;
+	bh=BH73D8X4Lo6g3RTcuSv+XHBu00phhwmp0nmSDlsT/Hw=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=p+PvPfPxdN/dpsiBhmTFov9euw17NDm90ue86hrJT9NSmj2Pys8CwIsT6pvE5k0nwYw7H2JV4qyQwYkyJ5q0YwlrBoCTDPK4GuYGBHs37UGsGa45c3pK8GwWRpiKMfKXXZ1uq70L5OQXn2iazQBYNghTwDmppitCe8aua0FOhrI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bCAoPb2w; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 38C43C4CEE7;
+	Mon, 13 Oct 2025 12:15:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1760357753;
+	bh=BH73D8X4Lo6g3RTcuSv+XHBu00phhwmp0nmSDlsT/Hw=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=bCAoPb2wmQVllBkskusRuCmqyz2kDC8Jaoo1062znpmdkN1yu1bQxmUXI9fQVawBJ
+	 qQfvUhTSxML5b9XP1pUXNJJJcso6G+8v+kVYY7X3iirUO90b/H3mBjtGYBNEculco/
+	 VDIB2CIWyVqnXjq4f7tJTcqihpx7DdtKSRO/0wdfg0BdOTe0SC2pgsGaim3Nvl2Vja
+	 WNwwmt72ZM8PGrs1GAS7V2SU8gbr1g4i6trHqKmPWaoT6lLJAe14XPnEjXIAr3sldr
+	 QzNqh0hxF89o+xixA6x0J/Ebg4HeYY+wan3Y2EiMzZeJg/Pa1dlugHKNb6T2Vr/tzW
+	 dEznpQR7SlL3w==
+Date: Mon, 13 Oct 2025 07:15:51 -0500
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Heiko Stuebner <heiko@sntech.de>, Sandy Huang <hjc@rock-chips.com>, 
+ Andy Yan <andy.yan@rock-chips.com>, linux-rockchip@lists.infradead.org, 
+ Kishon Vijay Abraham I <kishon@kernel.org>, 
+ Amit Sunil Dhamne <amitsd@google.com>, linux-phy@lists.infradead.org, 
+ David Airlie <airlied@gmail.com>, linux-arm-kernel@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, Yubing Zhang <yubing.zhang@rock-chips.com>, 
+ Dragan Simic <dsimic@manjaro.org>, devicetree@vger.kernel.org, 
+ Frank Wang <frank.wang@rock-chips.com>, 
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Johan Jonker <jbx6244@gmail.com>, 
+ dri-devel@lists.freedesktop.org, Diederik de Haas <didi.debian@cknow.org>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Chaoyi Chen <chaoyi.chen@rock-chips.com>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, Maxime Ripard <mripard@kernel.org>, 
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
+ Conor Dooley <conor+dt@kernel.org>, linux-usb@vger.kernel.org, 
+ Vinod Koul <vkoul@kernel.org>, Simona Vetter <simona@ffwll.ch>, 
+ Peter Robinson <pbrobinson@gmail.com>
+To: Chaoyi Chen <kernel@airkyi.com>
+In-Reply-To: <20251011033233.97-1-kernel@airkyi.com>
+References: <20251011033233.97-1-kernel@airkyi.com>
+Message-Id: <176035740777.2901291.16736462870856416206.robh@kernel.org>
+Subject: Re: [PATCH v5 0/8] Add Type-C DP support for RK3399 EVB IND board
 
-From: Jonathan Brophy <professor_jonny@hotmail.com>
 
-Introduces a new driver that implements virtual LED groups,
-aggregating multiple monochromatic LEDs into virtual groups and providing
-priority-based control for concurrent state management.
+On Sat, 11 Oct 2025 11:32:25 +0800, Chaoyi Chen wrote:
+> From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+> 
+> This series focuses on adding Type-C DP support for USBDP PHY and DP
+> driver. The USBDP PHY and DP will perceive the changes in cable status
+> based on the USB PD and Type-C state machines provided by TCPM. Before
+> this, the USBDP PHY and DP controller of RK3399 sensed cable state
+> changes through extcon, and devices such as the RK3399 Gru-Chromebook
+> rely on them. This series should not break them.
+> 
+> ====
+> 1. DisplayPort HPD status notify
+> 
+> Before v4, I implemented a variety of DP HPD status notify. However,
+> they all had various problems and it was difficult to become a common
+> solution.
+> 
+> Under Dmitry's guidance, I try to add default DRM AUX HPD device when
+> register DisplayPort altmode in patch 1. That makes it redundant for
+> each Type-C chip driver to implement a similar registration process
+> in embedded scenarios.
+> 
+> ====
+> 2. Altmode switching and orientation switching for USBDP PHY
+> 
+> For USB Type-C interfaces, an external Type-C controller chip assists
+> by detecting cable attachment, determining plug orientation, and
+> reporting USB PD message. The USB/DP combo PHY supports software
+> configurable pin mapping and DisplayPort lane assignment. Based on
+> these message, the combo PHY can perform both altmode switching and
+> orientation switching via software.
+> 
+> The RK3399 EVB IND board has a Type-C interface DisplayPort. It use
+> fusb302 chip as Type-C controller. The connection diagram is shown below:
+> 
+> fusb302 chip +---> USB2.0 PHY ----> DWC3 USB controller
+>              |
+>              +---> USB/DP PHY0 +--> CDN-DP controller
+>                                |
+>                                +--> DWC3 USB controller
+> 
+> ====
+> 3. Multiple bridge model for RK3399 CDN-DP
+> 
+> The RK3399 has two USB/DP combo PHY and one CDN-DP controller. And
+> the CDN-DP can be switched to output to one of the PHYs.
+> 
+> USB/DP PHY0 ---+
+>                | <----> CDN-DP controller
+> USB/DP PHY1 ---+
+> 
+> In previous versions, if both PHY ports were connected to DP,
+> the CDN-DP driver would select the first PHY port for output.
+> 
+> On Dmitry's suggestion, we introduced a multi-bridge model to support
+> flexible selection of the output PHY port. For each PHY port, a
+> separate encoder and bridge are registered.
+> 
+> The change is based on the DRM AUX HPD bridge, rather than the
+> extcon approach. This requires the DT to correctly describe the
+> connections between the first bridge in bridge chain and DP
+> controller. And Once the first bridge is obtained, we can get the
+> last bridge corresponding to the USB-C connector, and then set the
+> DRM connector's fwnode to the corresponding one to enable HPD
+> notification.
+> 
+> ====
+> Patch1 add default HPD device when register Displayport altmode.
+> Patch2 add new Type-C mode switch for RK3399 USBDP phy binding.
+> Patch3 add typec_mux and typec_switch for RK3399 USBDP PHY.
+> Patch4 add DRM AUX bridge support for RK3399 USBDP PHY.
+> Patch5 drops CDN-DP's extcon dependency when Type-C is present.
+> Patch6 add multiple bridges to support PHY port selection.
+> Patch7 add missing dp_out port for RK3399 CDN-DP.
+> Patch8 add Type-C DP support for RK3399 EVB IND board.
+> 
+> Changes in v5:
+> - Link to V4: https://lore.kernel.org/all/20250922012039.323-1-kernel@airkyi.com/
+> - Remove the calls related to `drm_aux_hpd_bridge_notify()`.
+> - Place the helper functions in the same compilation unit.
+> - Add more comments about parent device.
+> - Add DRM AUX bridge support for RK3399 USBDP PHY
+> - By parsing the HPD bridge chain, set the connector's of_node to the
+> of_node corresponding to the USB-C connector.
+> - Return EDID cache when other port is already enabled.
+> 
+> Changes in v4:
+> - Link to V3: https://lore.kernel.org/all/20250729090032.97-1-kernel@airkyi.com/
+> - Add default HPD device for DisplayPort altmode.
+> - Introduce multiple bridges for CDN-DP.
+> - ...
+> 
+> Changes in v3:
+> - Link to V2: https://lore.kernel.org/all/20250718062619.99-1-kernel@airkyi.com/
+> - Add more descriptions to clarify the role of the PHY in switching.
+> - Fix wrong vdo value.
+> - Fix port node in usb-c-connector.
+> 
+> Changes in v2:
+> - Link to V1: https://lore.kernel.org/all/20250715112456.101-1-kernel@airkyi.com/
+> - Reuse dp-port/usb3-port in rk3399-typec-phy binding.
+> - Fix compile error when CONFIG_TYPEC is not enabled.
+> - Notify DP HPD state by USB/DP PHY.
+> - Ignore duplicate HPD events.
+> - Add endpoint to link DP PHY and DP controller.
+> - Fix devicetree coding style.
+> 
+> Chaoyi Chen (8):
+>   usb: typec: Add default HPD device when register DisplayPort altmode
+>   dt-bindings: phy: rockchip: rk3399-typec-phy: Support mode-switch
+>   phy: rockchip: phy-rockchip-typec: Add typec_mux/typec_switch support
+>   phy: rockchip: phy-rockchip-typec: Add DRM AUX bridge
+>   drm/rockchip: cdn-dp: Support handle lane info without extcon
+>   drm/rockchip: cdn-dp: Add multiple bridges to support PHY port
+>     selection
+>   arm64: dts: rockchip: Add missing dp_out port for RK3399 CDN-DP
+>   arm64: dts: rockchip: rk3399-evb-ind: Add support for DisplayPort
+> 
+>  .../phy/rockchip,rk3399-typec-phy.yaml        |   6 +
+>  arch/arm64/boot/dts/rockchip/rk3399-base.dtsi |  10 +-
+>  .../boot/dts/rockchip/rk3399-evb-ind.dts      | 146 ++++++
+>  drivers/gpu/drm/rockchip/Kconfig              |   2 +
+>  drivers/gpu/drm/rockchip/cdn-dp-core.c        | 380 +++++++++++++---
+>  drivers/gpu/drm/rockchip/cdn-dp-core.h        |  24 +-
+>  drivers/phy/rockchip/phy-rockchip-typec.c     | 417 +++++++++++++++++-
+>  drivers/usb/typec/class.c                     |  26 ++
+>  include/linux/usb/typec_altmode.h             |   2 +
+>  9 files changed, 931 insertions(+), 82 deletions(-)
+> 
+> --
+> 2.49.0
+> 
+> 
+> 
 
-Author: Radoslav Tsvetkov <rtsvetkov@gradotech.eu>
-Co Author: Jonathan Brophy <professor_jonny@hotmail.com>
-Copyright (C) 2024 Jonathan Brophy <professor_jonny@hotmail.com>
 
-Co-developed-by: Radoslav Tsvetkov <rtsvetkov@gradotech.eu>
-Signed-off-by: Radoslav Tsvetkov <rtsvetkov@gradotech.eu>
-Tested-by: Jonathan Brophy <professor_jonny@hotmail.com>
-Signed-off-by: Jonathan Brophy <professor_jonny@hotmail.com>
----
- drivers/leds/rgb/Kconfig                   |  17 +
- drivers/leds/rgb/Makefile                  |   1 +
- drivers/leds/rgb/leds-group-virtualcolor.c | 439 +++++++++++++++++++++
- 3 files changed, 457 insertions(+)
- create mode 100644 drivers/leds/rgb/leds-group-virtualcolor.c
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
 
-diff --git a/drivers/leds/rgb/Kconfig b/drivers/leds/rgb/Kconfig
-index 222d943d826a..70a80fd46b9c 100644
---- a/drivers/leds/rgb/Kconfig
-+++ b/drivers/leds/rgb/Kconfig
-@@ -75,4 +75,21 @@ config LEDS_MT6370_RGB
- 	  This driver can also be built as a module. If so, the module
- 	  will be called "leds-mt6370-rgb".
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
 
-+config LEDS_GROUP_VIRTUALCOLOR
-+	tristate "Virtual LED Group Driver with Priority Control"
-+	depends on OF || COMPILE_TEST
-+	help
-+	  This option enables support for virtual LED groups that aggregate
-+	  multiple monochromatic LEDs with priority-based control. It allows
-+	  managing concurrent LED activation requests by ensuring only the
-+	  highest-priority LED state is active at any given time.
-+
-+	  Multiple LEDs can be grouped together and controlled as a single
-+	  virtual LED with priority levels and blinking support. This is
-+	  useful for systems that need to manage multiple LED indicators
-+	  with different priority levels.
-+
-+	  To compile this driver as a module, choose M here: the module
-+	  will be called leds-group-virtualcolor.
-+
- endif # LEDS_CLASS_MULTICOLOR
-diff --git a/drivers/leds/rgb/Makefile b/drivers/leds/rgb/Makefile
-index a501fd27f179..693fd300b849 100644
---- a/drivers/leds/rgb/Makefile
-+++ b/drivers/leds/rgb/Makefile
-@@ -6,3 +6,4 @@ obj-$(CONFIG_LEDS_NCP5623)		+= leds-ncp5623.o
- obj-$(CONFIG_LEDS_PWM_MULTICOLOR)	+= leds-pwm-multicolor.o
- obj-$(CONFIG_LEDS_QCOM_LPG)		+= leds-qcom-lpg.o
- obj-$(CONFIG_LEDS_MT6370_RGB)		+= leds-mt6370-rgb.o
-+obj-$(CONFIG_LEDS_GROUP_VIRTUALCOLOR)	+= leds-group-virtualcolor.o
-diff --git a/drivers/leds/rgb/leds-group-virtualcolor.c b/drivers/leds/rgb/leds-group-virtualcolor.c
-new file mode 100644
-index 000000000000..e11ad155d3b4
---- /dev/null
-+++ b/drivers/leds/rgb/leds-group-virtualcolor.c
-@@ -0,0 +1,439 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/*
-+ * Virtual LED Group Driver with Priority Control
-+ *
-+ * Implements virtual LED groups by aggregating multiple
-+ * monochromatic LEDs. Provides priority-based control for managing
-+ * concurrent LED activation requests, ensuring only the highest-priority
-+ * LED state is active at any given time.
-+ *
-+ * Code created by Radoslav Tsvetkov <rtsvetkov@gradotech.eu>
-+ * Copyright (C) 2024 Jonathan Brophy <professor_jonny@hotmail.com>
-+ *
-+ */
-+
-+#include <linux/gpio/consumer.h>
-+#include <linux/leds.h>
-+#include <linux/module.h>
-+#include <linux/mutex.h>
-+#include <linux/of.h>
-+#include <linux/platform_device.h>
-+#include <linux/slab.h>
-+
-+struct virtual_led {
-+	struct led_classdev cdev;
-+	struct led_classdev **monochromatics;
-+	struct leds_virtualcolor *vc_data;
-+	int num_monochromatics;
-+	int priority;
-+	unsigned long blink_delay_on;
-+	unsigned long blink_delay_off;
-+	struct list_head list;
-+};
-+
-+struct leds_virtualcolor {
-+	struct virtual_led *vleds;
-+	int num_vleds;
-+	struct list_head active_leds;
-+	struct mutex lock; // Protects access to active LEDs
-+};
-+
-+static void virtual_set_monochromatic_brightness(struct virtual_led *vled,
-+						 enum led_brightness brightness)
-+{
-+	int i;
-+
-+	if (vled->blink_delay_on || vled->blink_delay_off) {
-+		unsigned long blink_mask = (BIT(LED_BLINK_SW) | BIT(LED_BLINK_ONESHOT) |
-+					    BIT(LED_SET_BLINK));
-+
-+		/*
-+		 * Make sure the LED is not already blinking.
-+		 * We don't want to call led_blink_set multiple times.
-+		 */
-+		if (!(vled->cdev.work_flags & blink_mask))
-+			led_blink_set(&vled->cdev, &vled->blink_delay_on, &vled->blink_delay_off);
-+
-+		/* Update the blink delays if they have changed */
-+		if (vled->blink_delay_on != vled->cdev.blink_delay_on ||
-+		    vled->blink_delay_off != vled->cdev.blink_delay_off) {
-+			vled->cdev.blink_delay_on = vled->blink_delay_on;
-+			vled->cdev.blink_delay_off = vled->blink_delay_off;
-+		}
-+	}
-+
-+	for (i = 0; i < vled->num_monochromatics; i++)
-+		led_set_brightness(vled->monochromatics[i], brightness);
-+}
-+
-+static ssize_t priority_show(struct device *dev, struct device_attribute *attr, char *buf)
-+{
-+	struct virtual_led *vled = dev_get_drvdata(dev);
-+
-+	return sprintf(buf, "%d\n", vled->priority);
-+}
-+
-+static ssize_t priority_store(struct device *dev, struct device_attribute *attr, const char *buf,
-+			      size_t count)
-+{
-+	struct virtual_led *vled = dev_get_drvdata(dev);
-+	int new_priority;
-+	int ret;
-+
-+	ret = kstrtoint(buf, 10, &new_priority);
-+	if (ret < 0)
-+		return ret;
-+
-+	vled->priority = new_priority;
-+	return count;
-+}
-+
-+static DEVICE_ATTR_RW(priority);
-+
-+static ssize_t blink_delay_on_show(struct device *dev, struct device_attribute *attr, char *buf)
-+{
-+	struct virtual_led *vled = dev_get_drvdata(dev);
-+
-+	return sprintf(buf, "%lu\n", vled->blink_delay_on);
-+}
-+
-+static ssize_t blink_delay_on_store(struct device *dev, struct device_attribute *attr,
-+				    const char *buf, size_t count)
-+{
-+	struct virtual_led *vled = dev_get_drvdata(dev);
-+	unsigned long new_delay;
-+	int ret;
-+
-+	ret = kstrtoul(buf, 10, &new_delay);
-+	if (ret < 0)
-+		return ret;
-+
-+	/* Apply new delay immediately */
-+	vled->blink_delay_on = new_delay;
-+	virtual_set_monochromatic_brightness(vled, vled->cdev.brightness);
-+
-+	return count;
-+}
-+
-+static ssize_t blink_delay_off_show(struct device *dev, struct device_attribute *attr, char *buf)
-+{
-+	struct virtual_led *vled = dev_get_drvdata(dev);
-+
-+	return sprintf(buf, "%lu\n", vled->blink_delay_off);
-+}
-+
-+static ssize_t blink_delay_off_store(struct device *dev, struct device_attribute *attr,
-+				     const char *buf, size_t count)
-+{
-+	struct virtual_led *vled = dev_get_drvdata(dev);
-+	unsigned long new_delay;
-+	int ret;
-+
-+	ret = kstrtoul(buf, 10, &new_delay);
-+	if (ret < 0)
-+		return ret;
-+
-+	/* Apply new delay immediately */
-+	vled->blink_delay_off = new_delay;
-+	virtual_set_monochromatic_brightness(vled, vled->cdev.brightness);
-+
-+	return count;
-+}
-+
-+static DEVICE_ATTR_RW(blink_delay_on);
-+static DEVICE_ATTR_RW(blink_delay_off);
-+
-+static void restore_sysfs_write_access(void *data)
-+{
-+	struct led_classdev *led_cdev = data;
-+
-+	mutex_lock(&led_cdev->led_access);
-+	led_sysfs_enable(led_cdev);
-+	mutex_unlock(&led_cdev->led_access);
-+}
-+
-+static bool virtual_led_is_active(struct list_head *head, struct virtual_led *vled)
-+{
-+	struct virtual_led *entry;
-+
-+	list_for_each_entry(entry, head, list) {
-+		if (entry == vled)
-+			return true;
-+	}
-+
-+	return false;
-+}
-+
-+static int virtual_led_brightness_set(struct led_classdev *cdev, enum led_brightness brightness)
-+{
-+	struct virtual_led *vled = container_of(cdev, struct virtual_led, cdev);
-+	struct leds_virtualcolor *vc_data = vled->vc_data;
-+	struct virtual_led *active;
-+
-+	mutex_lock(&vc_data->lock);
-+
-+	active = list_first_entry_or_null(&vc_data->active_leds, struct virtual_led, list);
-+	if (active) {
-+		/*
-+		 * If the currently active LED has a higher priority,
-+		 * ignore the new request.
-+		 */
-+		if (active->priority > vled->priority)
-+			goto out_unlock;
-+
-+		/*
-+		 * The currently active LED is going to be replaced,
-+		 * turn off its monochromatic LEDs.
-+		 */
-+		virtual_set_monochromatic_brightness(active, LED_OFF);
-+	}
-+
-+	if (brightness == LED_OFF) {
-+		/*
-+		 * If the LED is already active, remove it from the active list
-+		 * and update the brightness of the next highest priority LED.
-+		 */
-+		if (virtual_led_is_active(&vc_data->active_leds, vled))
-+			list_del(&vled->list);
-+
-+		active = list_first_entry_or_null(&vc_data->active_leds, struct virtual_led, list);
-+		if (active)
-+			virtual_set_monochromatic_brightness(active, active->cdev.brightness);
-+	} else {
-+		/* Add the LED to the active list and update the brightness */
-+		if (!virtual_led_is_active(&vc_data->active_leds, vled))
-+			list_add(&vled->list, &vc_data->active_leds);
-+
-+		active = list_first_entry_or_null(&vc_data->active_leds, struct virtual_led, list);
-+		if (active)
-+			virtual_set_monochromatic_brightness(active, brightness);
-+	}
-+
-+out_unlock:
-+	mutex_unlock(&vc_data->lock);
-+
-+	return 0;
-+}
-+
-+static int leds_virtualcolor_init_vled(struct device *dev, struct device_node *child,
-+				       struct virtual_led *vled, struct leds_virtualcolor *vc_data)
-+{
-+	struct led_init_data init_data = {};
-+	u32 blink_interval;
-+	u32 phandle_count;
-+	u32 max_brightness;
-+	int ret;
-+	int i;
-+
-+	ret = of_property_read_u32(child, "priority", &vled->priority);
-+	if (ret)
-+		vled->priority = 0;
-+
-+	ret = of_property_read_u32(child, "blink", &blink_interval);
-+	if (!ret) {
-+		vled->blink_delay_on = blink_interval;
-+		vled->blink_delay_off = blink_interval;
-+	}
-+
-+	phandle_count = of_property_count_elems_of_size(child, "leds", sizeof(u32));
-+	if (phandle_count <= 0) {
-+		dev_err(dev, "No monochromatic LEDs specified for virtual LED %s\n",
-+			vled->cdev.name);
-+		return -EINVAL;
-+	}
-+
-+	vled->num_monochromatics = phandle_count;
-+	vled->monochromatics = devm_kcalloc(dev, vled->num_monochromatics,
-+					    sizeof(*vled->monochromatics), GFP_KERNEL);
-+	if (!vled->monochromatics)
-+		return -ENOMEM;
-+
-+	for (i = 0; i < vled->num_monochromatics; i++) {
-+		struct led_classdev *led_cdev;
-+
-+		led_cdev = devm_of_led_get_optional(dev, i);
-+		if (IS_ERR(led_cdev)) {
-+			/*
-+			 * If the LED is not available yet, defer the probe.
-+			 * The probe will be retried when it becomes available.
-+			 */
-+			if (PTR_ERR(led_cdev) == -EPROBE_DEFER)
-+				return -EPROBE_DEFER;
-+
-+			ret = PTR_ERR(led_cdev);
-+			dev_err(dev, "Failed to get monochromatic LED for %s, error %d\n",
-+				vled->cdev.name, ret);
-+			return ret;
-+		}
-+
-+		vled->monochromatics[i] = led_cdev;
-+	}
-+
-+	ret = of_property_read_u32(child, "max-brightness", &max_brightness);
-+	if (ret)
-+		vled->cdev.max_brightness = LED_FULL;
-+	else
-+		vled->cdev.max_brightness = max_brightness;
-+
-+	vled->cdev.brightness_set_blocking = virtual_led_brightness_set;
-+	vled->cdev.flags = LED_CORE_SUSPENDRESUME;
-+
-+	init_data.fwnode = NULL; // Use OF, not fwnode
-+	ret = devm_led_classdev_register_ext(dev, &vled->cdev, &init_data);
-+	if (ret) {
-+		dev_err(dev, "Failed to register virtual LED %s\n", vled->cdev.name);
-+		return ret;
-+	}
-+
-+	ret = device_create_file(vled->cdev.dev, &dev_attr_priority);
-+	if (ret) {
-+		dev_err(dev, "Failed to create sysfs attribute for priority\n");
-+		return ret;
-+	}
-+
-+	ret = device_create_file(vled->cdev.dev, &dev_attr_blink_delay_on);
-+	if (ret) {
-+		dev_err(dev, "Failed to create sysfs attribute for blink_delay_on\n");
-+		return ret;
-+	}
-+
-+	ret = device_create_file(vled->cdev.dev, &dev_attr_blink_delay_off);
-+	if (ret) {
-+		dev_err(dev, "Failed to create sysfs attribute for blink_delay_off\n");
-+		return ret;
-+	}
-+
-+	vled->vc_data = vc_data;
-+
-+	return 0;
-+}
-+
-+static int leds_virtualcolor_disable_sysfs_access(struct device *dev, struct virtual_led *vled)
-+{
-+	int i;
-+
-+	for (i = 0; i < vled->num_monochromatics; i++) {
-+		struct led_classdev *led_cdev = vled->monochromatics[i];
-+
-+		mutex_lock(&led_cdev->led_access);
-+		led_sysfs_disable(led_cdev);
-+		mutex_unlock(&led_cdev->led_access);
-+
-+		devm_add_action_or_reset(dev, restore_sysfs_write_access, led_cdev);
-+	}
-+
-+	return 0;
-+}
-+
-+static int leds_virtualcolor_probe(struct platform_device *pdev)
-+{
-+	struct leds_virtualcolor *vc_data;
-+	struct device *dev = &pdev->dev;
-+	struct device_node *child;
-+	int count = 0;
-+	int ret;
-+
-+	vc_data = devm_kzalloc(dev, sizeof(*vc_data), GFP_KERNEL);
-+	if (!vc_data)
-+		return -ENOMEM;
-+
-+	mutex_init(&vc_data->lock);
-+	INIT_LIST_HEAD(&vc_data->active_leds);
-+
-+	vc_data->num_vleds = of_get_child_count(dev->of_node);
-+	if (vc_data->num_vleds == 0) {
-+		dev_err(dev, "No virtual LEDs defined in device tree\n");
-+		ret = -EINVAL;
-+		goto err_mutex_destroy;
-+	}
-+
-+	vc_data->vleds = devm_kcalloc(dev, vc_data->num_vleds, sizeof(*vc_data->vleds), GFP_KERNEL);
-+	if (!vc_data->vleds) {
-+		ret = -ENOMEM;
-+		goto err_mutex_destroy;
-+	}
-+
-+	for_each_child_of_node(dev->of_node, child) {
-+		struct virtual_led *vled = &vc_data->vleds[count];
-+
-+		ret = leds_virtualcolor_init_vled(dev, child, vled, vc_data);
-+		if (ret) {
-+			if (ret != -EPROBE_DEFER)
-+				dev_err(dev, "Failed to initialize virtual LED %d\n", count);
-+
-+			of_node_put(child);
-+			goto err_node_put;
-+		}
-+
-+		count++;
-+	}
-+
-+	platform_set_drvdata(pdev, vc_data);
-+
-+	if (of_property_read_bool(dev->of_node, "monochromatics-ro")) {
-+		int i;
-+
-+		for (i = 0; i < count; i++) {
-+			struct virtual_led *vled = &vc_data->vleds[i];
-+
-+			ret = leds_virtualcolor_disable_sysfs_access(dev, vled);
-+			if (ret)
-+				goto err_node_put;
-+		}
-+	}
-+
-+	return 0;
-+
-+err_node_put:
-+	mutex_destroy(&vc_data->lock);
-+	return ret;
-+
-+err_mutex_destroy:
-+	mutex_destroy(&vc_data->lock);
-+
-+	return ret;
-+}
-+
-+static void leds_virtualcolor_remove(struct platform_device *pdev)
-+{
-+	struct leds_virtualcolor *vc_data = platform_get_drvdata(pdev);
-+	int i, j;
-+
-+	for (i = 0; i < vc_data->num_vleds; i++) {
-+		struct virtual_led *vled = &vc_data->vleds[i];
-+
-+		device_remove_file(vled->cdev.dev, &dev_attr_priority);
-+		device_remove_file(vled->cdev.dev, &dev_attr_blink_delay_on);
-+		device_remove_file(vled->cdev.dev, &dev_attr_blink_delay_off);
-+
-+		for (j = 0; j < vled->num_monochromatics; j++) {
-+			if (vled->monochromatics[j]) {
-+				led_put(vled->monochromatics[j]);
-+				vled->monochromatics[j] = NULL;
-+			}
-+		}
-+	}
-+
-+	mutex_destroy(&vc_data->lock);
-+}
-+
-+static const struct of_device_id leds_virtualcolor_of_match[] = {
-+	{ .compatible = "leds-group-virtualcolor" },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, leds_virtualcolor_of_match);
-+
-+static struct platform_driver leds_virtualcolor_driver = {
-+	.probe  = leds_virtualcolor_probe,
-+	.remove = leds_virtualcolor_remove,
-+	.driver = {
-+		.name           = "leds_virtualcolor",
-+		.of_match_table = leds_virtualcolor_of_match,
-+	},
-+};
-+
-+module_platform_driver(leds_virtualcolor_driver);
-+
-+MODULE_AUTHOR("Radoslav Tsvetkov <rtsvetkov@gradotech.eu>");
-+MODULE_DESCRIPTION("LEDs Virtual Color Driver with Priority Handling");
-+MODULE_LICENSE("GPL");
-\ No newline at end of file
---
-2.43.0
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
+
+  pip3 install dtschema --upgrade
+
+
+This patch series was applied (using b4) to base:
+ Base: attempting to guess base-commit...
+ Base: tags/next-20251010 (best guess, 8/9 blobs matched)
+ Base: tags/next-20251010 (use --merge-base to override)
+
+If this is not the correct base, please add 'base-commit' tag
+(or use b4 which does this automatically)
+
+New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/rockchip/' for 20251011033233.97-1-kernel@airkyi.com:
+
+arch/arm64/boot/dts/rockchip/rk3399-evb-ind.dtb: syscon@ff770000 (rockchip,rk3399-grf): usb2phy@e450: 'port' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/soc/rockchip/grf.yaml#
+arch/arm64/boot/dts/rockchip/rk3399-evb-ind.dtb: syscon@ff770000 (rockchip,rk3399-grf): usb2phy@e450: Unevaluated properties are not allowed ('port' was unexpected)
+	from schema $id: http://devicetree.org/schemas/soc/rockchip/grf.yaml#
+arch/arm64/boot/dts/rockchip/rk3399-evb-ind.dtb: usb2phy@e450 (rockchip,rk3399-usb2phy): 'port' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/phy/rockchip,inno-usb2phy.yaml#
+arch/arm64/boot/dts/rockchip/rk3399-evb-ind.dtb: /sound: failed to match any schema with compatible: ['rockchip,rk3399-gru-sound']
+
+
+
+
+
 
