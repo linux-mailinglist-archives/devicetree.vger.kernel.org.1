@@ -1,240 +1,112 @@
-Return-Path: <devicetree+bounces-226014-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226015-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A965BD2F59
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 14:28:39 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A1A9CBD2F83
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 14:30:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6FF12189DB73
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 12:29:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AB22D3C54D2
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 12:30:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B64F3271443;
-	Mon, 13 Oct 2025 12:28:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A612228504D;
+	Mon, 13 Oct 2025 12:30:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LS35QxNN"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WuHyV48c"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com [209.85.210.178])
+Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E435927055D
-	for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 12:28:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3B67271443
+	for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 12:30:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760358514; cv=none; b=DFRJ3TJ8PHFMLVEty3ehmptf8zdaNK3teRJs+NoiwU+HTLsfeyMKmJySJ9ntLpVo42VUTxDNcZe7lmJqGzg0vkrav70M9dzVUG2VoTyy0FX18+SXGgX/qUBv3EFY7JxtSk/LbePhOyaiSCVvwybBt6aUsYp6tcnd1aap1k7ZaPA=
+	t=1760358604; cv=none; b=qGZcykaWkoCnF9O8yVrQlwS7HQ/FOZF1eUR6wqf9gpxzCvlleZF/pfN0s3YmF96U6PTW3Rz6FCITiZ4U2pn0X1E8bsw7B17mkUNWRrcoaMbJBfj7JExEQ+F4kAc/NY5wtE7yoVbpTe3wK0myHX/1ppRhYmJlmTyGIuy7e0bk1s0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760358514; c=relaxed/simple;
-	bh=+vbyFrZcBnFsvtcYalRuaDry0I2W4DKDBtFCjWgAn4s=;
+	s=arc-20240116; t=1760358604; c=relaxed/simple;
+	bh=1MOmeyqog4OM7BYJL2ULZOdWEH0/3arI6omm4yBQqNE=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=JEk0LWmayeI/aK5Wu8aU4Y0gVOgBYeuhESqx6dGkzIQI+zuR8JhQaD4G26BZU6ACy6zDoeem+v9v3qhi9Fk/TDg4nGkHL13oPlhs9ZtDBrLbmPCVuA86tyNIigdB9aEVxTgke/0nUausSs05GxEhkgP5S8S8Io5xE2oxP7UkRUE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LS35QxNN; arc=none smtp.client-ip=209.85.210.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f178.google.com with SMTP id d2e1a72fcca58-780fc3b181aso2403355b3a.2
-        for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 05:28:32 -0700 (PDT)
+	 To:Cc:Content-Type; b=ZLbfOO3uSxhbvG4/cRIYXcJggq897xhnOLcWk1hEEtzdIXw1F/dxlu33HnadQHgVZ6A/ZGgt5W6n4Zv/aEIPFreSxnYD59/MUU4stKi11b1EirMPEeKfXq3UdX7vt05tDnHJY79kaDHKka1bii5xWr/VA6Kbj45OOBt2VIkKqRw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=WuHyV48c; arc=none smtp.client-ip=209.85.167.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-59093250a7bso2646293e87.3
+        for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 05:30:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1760358512; x=1760963312; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=1Hfyx/yKH/qoWr47V08+NxngS+OiO3dtYiWQ1I4tci4=;
-        b=LS35QxNNN7opFVYyh8O4P9rQdZ9CqGR3yVgFC7mjkECcxzHNUNKjXSiJ7ZSKU08l83
-         igDPm3dC6FFruydFC8u7gR4crJyetjjLEUfXNYDJrWgJcfWorYrrMngX/X40CuX/7Sd6
-         ylEMH9TPytKsYqQa3oAlekfumKxw77aNvZDbf2fiVG7Wj0T3lBTU5puof1vNvbLqsNKM
-         ni211UaKq7dJyuN4lahewAbzfNPvWFcD4wH2yx4C0rjFSO+90L+s4QnoRogRqBEXfJBY
-         hprX7gfP8zeUV8SYeYVXU72/fPOnrgrxFGaa7MT2rFN3QoyI99oWKR+q8MeYythMe6mj
-         wgZw==
+        d=linaro.org; s=google; t=1760358600; x=1760963400; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=1MOmeyqog4OM7BYJL2ULZOdWEH0/3arI6omm4yBQqNE=;
+        b=WuHyV48cutS3BFuIeIUDZMPcLa6tMnyBbtcxK3rif3mfMAQ8/KPy23tjOczWdZwsOA
+         pM7W7HYN7Is3DwRnSLIdWGYpbyL6yYwOoSTyHH4ty5cMcpkR4O3R1fFSfhY6ProapXL0
+         c0YnntQczYeTnH6jS3oG4RUimeMHmcLW2HbYOmM9HXqNY5fSv+DmH12+vmzJ62E+/4uJ
+         QPPGCDpNAZ2BHfBnyyqq4XppsF6skzr0cUoZzM2Nh0iQGnu0TVH5rhnO3S9kT9E+gKw/
+         NExo/fyCqnnOezgrh+c0EREEKaZtYThXFgCuHGwnx6DciKiin7I7JfuFwJpXjUOGxFuU
+         ZKXQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760358512; x=1760963312;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=1Hfyx/yKH/qoWr47V08+NxngS+OiO3dtYiWQ1I4tci4=;
-        b=Cv6uN/9Rj3tGYmbDnN/NZ5pWQASBWFVmw53vAwRnbgKRq43lxdzHiDdW3KuBIg56Kx
-         qmTxAIPrfzzWw4jJIuwXfMa7soY0EiURZ8g6YC2Inz5WLLbZIIcFDUC6Rf/H7Nfyzxrm
-         N/0SCCWdyYzjSUHCaF96yfYX/wkK8YZMXMis5PHSM3XvvEDXWa+i1pxpdptPTBy8QkXG
-         3jGOPYzx3RSl/glAdNMDmwhMXbAxtBKdNLaExS6R/ewmWKAJysdVUvznvnoUvIO0qOms
-         dfd9SLFl7ttyv4SArXKssPKWqMYOkbq/HqOPiXADj9fGjtLyP58S3zaV+lQ36nYgnPln
-         Pa9Q==
-X-Forwarded-Encrypted: i=1; AJvYcCW2V0vn/jQuVZnZlUXPysb9etQvH+dH64Xxnl794suN3r4t8KIZk2VNjgdz8C1TCoGCMUStsYVGtmLL@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw6Qj6hn3lrSCwF7UXcKIzQf48aAZL6Xx+5GwgCiqlWbH9S/bRB
-	Y1mHC8oZPpxDXlHL8juArFZ2XhhltYCc5MgpzzhVx4EFcvBfKiaIGkm7AvHyLaYmjSGduzM1RRX
-	MG+HEFpBXMVarNRrZ3ZUqcl3xMAWZkJI=
-X-Gm-Gg: ASbGncteeVvT9Pe63mQ+LThkWBooB/FRuvF0/R8mb9JHNeGlKOeUWeh/E6kR5YZDxZc
-	GTAFp5TE85C1cJQjXs0UqJEWqJ20eZ0oKG82FpKxET/l2gfHLDRg5rV6XvuTCWCHFL06FIYbPW7
-	LFeFUEaeoQtzIoJDN+x0beQYHxvH3FfgYrxuKr12gorP3JifK3FzuzhkGeeM1U+rQPD3cB2RKBb
-	FoW2yH1fmuw/gc1JJDUP109qEVzPDbRnjZwmVIUmvGsfNo4FASyQn4T0lfG
-X-Google-Smtp-Source: AGHT+IFDFAOFmZ461XoI5RW9YuCzah5zLExPQE6vCScxrqfd5twVWI97u4O0yepFXgRtTULwZnxCG8cuEBCFsRqZlPE=
-X-Received: by 2002:a17:90b:38cc:b0:32e:f1c:e778 with SMTP id
- 98e67ed59e1d1-33b51105f5dmr28620196a91.3.1760358511952; Mon, 13 Oct 2025
- 05:28:31 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1760358600; x=1760963400;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=1MOmeyqog4OM7BYJL2ULZOdWEH0/3arI6omm4yBQqNE=;
+        b=RpM3Zh741V15gujmOwoXAoA0iHMmWzK9AXSwz2D5C1FuuTGDw/50qYxiyWTcF3wNXr
+         WABVw9PK9TvO6tt/grh/1OKPT3LUTN0O7FvZlhEdKNaZhLCYcyXF0q627Axbegsry2Zj
+         kOvwJRyNaxYa8E8WqMredtgc+mhXLksKdqU1jR/sEhYDypQ4l+oRnQrO95MGHQPr61tk
+         COdNZIletT8JtSMfz1qh6DQk3W3DaJG9Iwrd5oZW85BIvkZIevQYEIUnRKS1brpo+GKW
+         wLOS03xa/97opFgNoSiOQd9cWyuMIHNVukayhbqMK9RlRzSP8TEkaiQvIlJoJZYtPV9p
+         nJVw==
+X-Forwarded-Encrypted: i=1; AJvYcCU18EHop9km8WJZ1QzuIrNZLzCBFk0AL1eXktF6PYz/Mgc83124SYei1YsuMH0set/yoTvAjIOsM+uB@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx4pcJQ8IyQyoz4mrcQGs8MV8yv3/bKPp/LOFQknhPgQIMtaVCR
+	OED9EIwAR5EtTWRKQ65wYFgVqHwWs4sqGlfDSStAIyGDHcbHXXFRk0aavR9VS4Z9QC/BDogTURG
+	e/3A/expcnbWa6PQdQs64/2FEmyFXFLOYANwVXK9f3jKWMjaI6Xri
+X-Gm-Gg: ASbGncsX95TzeTt+Q+Z6d7c4n1TW+JAJCuWe+XpNpnCNd87xccYg4JHtXITx5sCKOUV
+	LMFlXfT6vEqPzcdtcbpeOMSP6uSViatJT/JnqNE1I3n1tQ0g4wSjCknL89KuA+/2gwKUiR71t+8
+	Jp4sbbXzWqqPEOwD+SBemT4Iqz1jZeo/d1fxsVc+b+K2oU38HI7D+2MHPyvPUiBUfSLkVr654jR
+	uzMtzXJUtrEuOm4e2McbOE/swrIWd7pKMHn6U7a
+X-Google-Smtp-Source: AGHT+IHDziq/3pEjSE34Vb9xc10xnYDJuQK7aFT0KnwS0eJY8GRc+vGU1CYOsUeevL8U5VlYG6e//6jV5rAnbmRrIB8=
+X-Received: by 2002:a2e:bd0d:0:b0:336:5d33:c394 with SMTP id
+ 38308e7fff4ca-37609ea5185mr56779601fa.33.1760358599989; Mon, 13 Oct 2025
+ 05:29:59 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1759824376.git.mazziesaccount@gmail.com>
- <93142a80d90a0ac80b27090d0c83914675aad94d.1759824376.git.mazziesaccount@gmail.com>
- <20251009161847.GE2890766@google.com> <8ea507eb-f78c-4a16-882b-112e277fa1b6@gmail.com>
- <20251010144515.GI2988639@google.com>
-In-Reply-To: <20251010144515.GI2988639@google.com>
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-Date: Mon, 13 Oct 2025 15:28:20 +0300
-X-Gm-Features: AS18NWD7Fn8K61uYpxry40G4lSMSR38Hgj7AfijgSk6lHd0n6-E_snhITV5UyEs
-Message-ID: <CANhJrGMEN0QRLoBzntVnaYgfFDyre=Yfw-dNdmi226p6pnpgHw@mail.gmail.com>
-Subject: Re: [RFC PATCH 06/13] mfd: bd71828: Support ROHM BD72720
-To: Lee Jones <lee@kernel.org>
-Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>, Pavel Machek <pavel@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Sebastian Reichel <sre@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, 
-	Andreas Kemnade <andreas@kemnade.info>, linux-leds@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-pm@vger.kernel.org, linux-gpio@vger.kernel.org
+References: <20251007-rb1_hdmi_audio-v2-0-821b6a705e4c@linaro.org> <20251007-rb1_hdmi_audio-v2-1-821b6a705e4c@linaro.org>
+In-Reply-To: <20251007-rb1_hdmi_audio-v2-1-821b6a705e4c@linaro.org>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Mon, 13 Oct 2025 14:29:48 +0200
+X-Gm-Features: AS18NWAyQHOstCpKlOfzZTMdQhypcq3gyuY9Qq5Lmp_pCYAjRMed25BVKMqEClM
+Message-ID: <CACRpkdapDastXAED4YhKAXQ9byvMH6SHqt3zHHniGRJzuXhDRQ@mail.gmail.com>
+Subject: Re: [PATCH v2 1/4] dt-bindings: pinctrl: qcom,sm6115-lpass-lpi: add
+ QCM2290 compatible
+To: Alexey Klimov <alexey.klimov@linaro.org>
+Cc: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Srinivas Kandagatla <srini@kernel.org>, 
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, linux-arm-msm@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-sound@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-pe 10.10.2025 klo 17.45 Lee Jones (lee@kernel.org) kirjoitti:
->
-> On Fri, 10 Oct 2025, Matti Vaittinen wrote:
->
-> > Hi deee Ho Lee,
-> >
-> > And Thanks for the review!
-> >
-> > On 09/10/2025 19:18, Lee Jones wrote:
-> > > On Tue, 07 Oct 2025, Matti Vaittinen wrote:
-> > >
-> > > > The ROHM BD72720 is a power management IC which continues the BD71828
-> > > > family of PMICs. Similarly to the BD71815 and BD71828, the BD72720
-> > > > integrates regulators, charger, RTC, clock gate and GPIOs.
-> > > >
-> > > > The main difference to the earlier PMICs is that the BD72720 has two
-> > > > different I2C slave addresses. In addition to the registers behind the
-> > > > 'main I2C address', most of the charger (and to some extent LED) control
-> > > > is done via registers behind a 'secondary I2C slave address', 0x4c.
-> > > >
-> > > > Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+On Tue, Oct 7, 2025 at 4:03=E2=80=AFAM Alexey Klimov <alexey.klimov@linaro.=
+org> wrote:
 
-// snip
-
-> > > > +
-> > > > +static struct regmap *bd72720_secondary_regmap;
-> > >
-> > > Dynamically allocate this and add it to .platform_data once it's
-> > > populated.
-> > >
-> >
-> > This can be done but I suppose it's unnecessary churn. This driver does not
-> > (at the moment) support more than one instance of the PMIC anyways. (The
-> > button data is not alloacted).
-> >
-> > This is not really a problem as typically there is only 1 of these PMICs to
-> > be controlled.
+> Add a compatible for the LPASS LPI pin controller on QCM2290. It seems
+> to be compatible with sm6115 LPASS pinctrl.
 >
-> I'd take a few lines of extra code over a globally defined variable any
-> day of the week.
+> Cc: Konrad Dybcio <konradybcio@kernel.org>
+> Cc: Srinivas Kandagatla <srini@kernel.org>
+> Acked-by: Rob Herring (Arm) <robh@kernel.org>
+> Signed-off-by: Alexey Klimov <alexey.klimov@linaro.org>
 
-Even though that'll require us to drop the const from the
-bd72720_mfd_cells MFD cell array? Which, in turn, will probably
-require us to drop the const from the MFD cell pointer in probe as
-well. Additionally, this will require us to skim through the MFD cell
-array in probe, so we locate the power cell, adding one more spot for
-errors. I think this is quite a cost just a princible of dropping a
-global, which is accessed from one function only. I'd definitely agree
-if it was driver data which gets used in a variety of functions, but
-here we really just need a memory location for a pointer so MFD can
-copy it when kicking the 'sub drivers'. Do you think you can still
-reconsider?
-
->
-> > // snip
-> >
-> > > > +/*
-> > > > + * The BD72720 is an odd beast in that it contains two separate sets of
-> > > > + * registers, both starting from address 0x0. The twist is that these "pages"
-> > > > + * are behind different I2C slave addresses. Most of the registers are behind
-> > > > + * a slave address 0x4b, which will be used as the "main" address for this
-> > > > + * device.
-> > > > + * Most of the charger related registers are located behind slave address 0x4c.
-> > > > + * It is tempting to push the dealing with the charger registers and the extra
-> > > > + * 0x4c device in power-supply driver - but perhaps it's better for the sake of
-> > > > + * the cleaner re-use to deal with setting up all of the regmaps here.
-> > > > + * Furthermore, the LED stuff may need access to both of these devices.
-> > > > + */
-> > > > +#define BD72720_SECONDARY_I2C_SLAVE 0x4c
-> > > > +static const struct regmap_range bd72720_volatile_ranges_4b[] = {
-> > > > + {
-> > > > +         /* RESETSRC1 and 2 are write '1' to clear */
-> > > > +         .range_min = BD72720_REG_RESETSRC_1,
-> > > > +         .range_max = BD72720_REG_RESETSRC_2,
-> > >
-> > > regmap_reg_range()?
-> >
-> > Ah, thanks. Out of the curiosity - do you know why this macro is written on
-> > lowercase?
->
-> Signed-off-by: Laxman Dewangan <ldewangan@nvidia.com>
-> Signed-off-by: Mark Brown <broonie@linaro.org>
->
-> =:-)
-
-Yeah. I just thought that maybe you knew :)
-
->
-> > // snip
-> > > > +static int bd72720_set_type_config(unsigned int **buf, unsigned int type,
-> > > > +                            const struct regmap_irq *irq_data,
-> > > > +                            int idx, void *irq_drv_data)
-> > > > +{
-> > > > + const struct regmap_irq_type *t = &irq_data->type;
-> > > > +
-> > > > + /*
-> > > > +  * The regmap IRQ ecpects IRQ_TYPE_EDGE_BOTH to be written to register
-> > > > +  * as logical OR of the type_falling_val and type_rising_val. This is
-> > > > +  * not how the BD72720 implements this configuration, hence we need
-> > > > +  * to handle this specific case separately.
-> > > > +  */
-> > > > + if (type == IRQ_TYPE_EDGE_BOTH) {
-> > > > +         buf[0][idx] &= ~t->type_reg_mask;
-> > > > +         buf[0][idx] |= BD72720_GPIO_IRQ_TYPE_BOTH;
-> > > > +
-> > > > +         return 0;
-> > > > + }
-> > > > +
-> > > > + return regmap_irq_set_type_config_simple(buf, type, irq_data, idx,
-> > > > +                                          irq_drv_data);
-> > >
-> > > Use 100-chars to avoid these pointless wraps please.
-> >
-> > gnarl. I think we have discussed this before :)
-> > I would love to keep the lines short - closer to 80 chars - because that way
-> > I can fit 3 terminals on my screen. All the years spent staring at the
-> > monitor are taking their toll, and my vision isn't as good as it used to be.
-> > Frightening thing being that it seems I will only need to increase the font
-> > in the future :/
-> >
-> > Well, sure the lines can be split if you feel strongly about it - but I have
-> > a real reason (other than the usual - "they have always been like that") to
-> > try keep them short...
->
-> Welcome to the year 2000 when 32" monitors are super affordable.
-
-I know. But work rooms where I can fit larger table aren't. Not even
-in Finland which should have plenty of space. And my table is really
-packed.
+This patch 1/4 applied to the pinctrl tree,
+please funnel the rest through the SoC tree.
 
 Yours,
-    -- Matti
-
--- 
-
-Matti Vaittinen
-Linux kernel developer at ROHM Semiconductors
-Oulu Finland
-
-~~ When things go utterly wrong vim users can always type :help! ~~
-
-Discuss - Estimate - Plan - Report and finally accomplish this:
-void do_work(int time) __attribute__ ((const));
+Linus Walleij
 
