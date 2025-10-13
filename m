@@ -1,122 +1,90 @@
-Return-Path: <devicetree+bounces-225892-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225893-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8FBFBD1D1C
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 09:34:46 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 80A3CBD1D41
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 09:35:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 862E33A49D9
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 07:34:45 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 7049F4EB1F3
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 07:35:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55D8E2E8B68;
-	Mon, 13 Oct 2025 07:34:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C9482E266C;
+	Mon, 13 Oct 2025 07:35:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="HBoiU0Zy"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dONLhkKO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C514145B3E;
-	Mon, 13 Oct 2025 07:34:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BEAD27F01E;
+	Mon, 13 Oct 2025 07:35:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760340883; cv=none; b=MXZoZ3Bk/ygSJ0bIymFchLd3rcx6f12M1M6FoOb+JhHAItlKNKJG+Y7+uDp7PLwlvHuklqQn/J6Vq3m8YLSRWUK/jPpaBpFFjSShFzP5R8dspJ8J3GudM+p66/XeUCXNwSfQaaA33VMBNGHnwdUFVeFusOm1udd3k4LPUDU3Vl0=
+	t=1760340942; cv=none; b=ThPuNbomnujLXFDHB89wEhdweP4tS8PbJVDrtg3oPXt8ucw7SE9/khQqxN6SbKyrfxHWq2qjn4yk4qdsSfRpw4n5vK3fFhwsw8pY3/7kxEAi7YP/3EJiwDwL6gGvhamrxax4AgkVlyXLTbSxlPtl8w4Gu7Br0NHZhL4XUcVm7fM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760340883; c=relaxed/simple;
-	bh=jELERBOJppm25MX9y7DHHg/4rSErHwNgm6Itxp2BQsI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WOof0fasjjU0P/tdfgUMlBQTy5e31vdGy0+oygRbslHn9xZ1J3P3ugEiNYpUSidfeqDx+r/oB8hNJJjORWaHTEvrQISCTF6DDcAq2YTBVjD0BtNf+tkeMiLyyqFhXHp4nureuW4tl/tTbAGWSosAOqDCWpUVH6FryXszCH1lAa0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=HBoiU0Zy; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1760340879;
-	bh=jELERBOJppm25MX9y7DHHg/4rSErHwNgm6Itxp2BQsI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=HBoiU0ZybLiP+XO19r6eDNk2iMlwQruWbY1at5TfKuTa0fj6ztBSG2C0+l2CH3woE
-	 GW2KIL/hXMcDUAfecrht99owWFT2o7aDnZpYf8SAywaRD7W1Cvn08sdMcXiWOHUJJf
-	 raURBuovOs89E/5azvgJbL73/IONu/cKE1CPuwffbZ+hjAvS9RqIX65DZIMBQttWaq
-	 b0Qp+Ko6awAJcyWQXuFD6/7Cd8NXQmuPumCNjON8M9d4UUsnZukIGhEZsZbB0L9HeK
-	 Ib3Ry1+cQqbQMmEUHe4+ZKM4ZAqIHkVZjR7VPb7K/BepAlnhvU4s5/XwfFB4ptRKuC
-	 tOpZhyn6GGEjg==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 9EA7317E1292;
-	Mon, 13 Oct 2025 09:34:38 +0200 (CEST)
-Message-ID: <11e3c3f0-005e-4ef6-9edd-136c1b956638@collabora.com>
-Date: Mon, 13 Oct 2025 09:34:37 +0200
+	s=arc-20240116; t=1760340942; c=relaxed/simple;
+	bh=iEUdbvJi3pvRf67skvtGxBMrtqXcvV211k+jm08OGhU=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=O40XBN8LabfGVijzAh83ca6ssqJPF1VOJsmR/ftkPr67ZH/59GgObXDKDfuutGbyVQo840I4VHJ6wxAMQgZuyvSmr0AZRl2BZyHDVKO2Wb6hCa15vz3h64aB4J9PqM0EV+CH5DJhl/wqTuxen198/BrHxUXVD7yc1HWeMnh/V+A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dONLhkKO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 821B8C4CEE7;
+	Mon, 13 Oct 2025 07:35:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1760340941;
+	bh=iEUdbvJi3pvRf67skvtGxBMrtqXcvV211k+jm08OGhU=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=dONLhkKOkRfQ1gfZWRMsLMyO+WZ55No0e2fE/1IaDDXtWKE0bVuZEH5nEx0Q7qLhZ
+	 hL4ylUxEic8jlcihASCKXPZwhYeSOwA+v0mbsE1C6w8srDGqpqIU9JZBn7ysVJrToH
+	 XJxJ7guXu7obEE1UUR24KabvyEjIXYT3NiHjW3RJ/Pc3T4QaiSjAILHSZUlHzo9ub/
+	 m1G5v4bkhuxV3zJoX7LvYjCbXYTZiq/LUTZEjmt7MwjwAarBvKxrAWuT14Hz4TveT3
+	 gnzNw7Wo4dXxmvnjb5vLovYWukW18YYWn7FYjP09qSMpz33jDZUNLi2+gJB/chkRCO
+	 uHsmVds/S9Brg==
+From: Niklas Cassel <cassel@kernel.org>
+To: dlemoal@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+ conor+dt@kernel.org, linux-ide@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, vkoul@kernel.org, kishon@kernel.org, 
+ linux-phy@lists.infradead.org, Yulin Lu <luyulin@eswincomputing.com>
+Cc: ningyu@eswincomputing.com, zhengyu@eswincomputing.com, 
+ linmin@eswincomputing.com, huangyifeng@eswincomputing.com, 
+ fenglin@eswincomputing.com, lianghujun@eswincomputing.com
+In-Reply-To: <20250930083754.15-1-luyulin@eswincomputing.com>
+References: <20250930083754.15-1-luyulin@eswincomputing.com>
+Subject: Re: (subset) [PATCH v5 0/3] Add driver support for Eswin EIC7700
+ SoC SATA Controller and PHY
+Message-Id: <176034093826.2889433.376970186266993861.b4-ty@kernel.org>
+Date: Mon, 13 Oct 2025 09:35:38 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v10 16/16] arm: dts: airoha: en7523: add SNAND node
-To: Mikhail Kshevetskiy <mikhail.kshevetskiy@iopsys.eu>,
- Lorenzo Bianconi <lorenzo@kernel.org>, Ray Liu <ray.liu@airoha.com>,
- Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
- Andy Shevchenko <andy@kernel.org>, linux-arm-kernel@lists.infradead.org,
- linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
-Cc: Andreas Gnau <andreas.gnau@iopsys.eu>
-References: <20251012121707.2296160-1-mikhail.kshevetskiy@iopsys.eu>
- <20251012121707.2296160-17-mikhail.kshevetskiy@iopsys.eu>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20251012121707.2296160-17-mikhail.kshevetskiy@iopsys.eu>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14.2
 
-Il 12/10/25 14:17, Mikhail Kshevetskiy ha scritto:
-> Add SNAND node to enable support of attached SPI-NAND on the EN7523 SoC.
+On Tue, 30 Sep 2025 16:37:54 +0800, Yulin Lu wrote:
+> This series depends on the config option patch [1].
 > 
-> Signed-off-by: Mikhail Kshevetskiy <mikhail.kshevetskiy@iopsys.eu>
-> ---
->   arch/arm/boot/dts/airoha/en7523.dtsi | 20 ++++++++++++++++++++
->   1 file changed, 20 insertions(+)
+> [1] Https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?h=next-20250929&id=ce2d00c6e192b588ddc3d1efb72b0ea00ab5538f
 > 
-> diff --git a/arch/arm/boot/dts/airoha/en7523.dtsi b/arch/arm/boot/dts/airoha/en7523.dtsi
-> index b523a868c4ad..31191b8d1430 100644
-> --- a/arch/arm/boot/dts/airoha/en7523.dtsi
-> +++ b/arch/arm/boot/dts/airoha/en7523.dtsi
-> @@ -203,4 +203,24 @@ pcie_intc1: interrupt-controller {
->   			#interrupt-cells = <1>;
->   		};
->   	};
-> +
-> +	spi_ctrl: spi@1fa10000 {
-> +		compatible = "airoha,en7523-snand", "airoha,en7581-snand";
-> +		reg = <0x1fa10000 0x140>,
-> +		      <0x1fa11000 0x160>;
+> Updates:
+>   v5 -> v4:
+>     - eswin,eic7700-ahci.yaml
+>       - Add "dt-bindings: ata:" prefix to the subject.
+>       - Wrap at 80 characters in the YAML description field.
+>     - Link to v4: https://lore.kernel.org/lkml/20250915125902.375-1-luyulin@eswincomputing.com/
+> 
+> [...]
 
-reg fits in one line, but in any case:
+Applied to libata/linux.git (for-6.19), thanks!
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+[1/3] dt-bindings: ata: eswin: Document for EIC7700 SoC ahci
+      https://git.kernel.org/libata/linux/c/c9d869fb
 
-> +
-> +		clocks = <&scu EN7523_CLK_SPI>;
-> +		clock-names = "spi";
-> +
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		nand: nand@0 {
-> +			compatible = "spi-nand";
-> +			reg = <0>;
-> +			spi-max-frequency = <50000000>;
-> +			spi-tx-bus-width = <1>;
-> +			spi-rx-bus-width = <2>;
-> +		};
-> +	};
->   };
-
+Kind regards,
+Niklas
 
 
