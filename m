@@ -1,147 +1,202 @@
-Return-Path: <devicetree+bounces-226129-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226130-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71507BD50C2
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 18:30:42 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E95BBBD4BF4
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 18:06:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CDCD5546AFD
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 16:04:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 14E9518A5F57
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 16:06:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D901314A8E;
-	Mon, 13 Oct 2025 15:42:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 805723093AE;
+	Mon, 13 Oct 2025 15:43:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FGvPhjr6"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JPch/fN5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60D3D314A7D
-	for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 15:42:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5CFE2F3C31
+	for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 15:43:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760370177; cv=none; b=rQxtoP6AhAUZxurPB0jeXZogQwsAbYOv0k+4c3Gflihmt4mZBIDNysey/WCYeSrKl0yhg9HbR+7IhtBhR7njzVrcqEClnusBGIAkrUop0GL5lGyIVCmL5FoBzLMr7pgEgAI/db2CDKKmKRmCOSZsvaZtvD23j3RlyREDx3CK6Vs=
+	t=1760370227; cv=none; b=gKCVOGyDvqUS1Qbf53WmjnjtlM4WqyCQ1ExVfchYg+LD78vUO/XAD0EzHAbQBUOAdbHOYASyfgAQPz22//NqdkIaUVEaGDKbD+8unDtZxyqwy2P/cluETSj1MnASxa8llHBO5dxgn5w7QOAysDgBC8xwO143D6p6FF+Q/qvl3Gg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760370177; c=relaxed/simple;
-	bh=zHUy7XXGMyXFLXpNE2q0vIraquILzGwKPNK5Is7w658=;
-	h=Mime-Version:Content-Type:Date:Message-Id:From:To:Cc:Subject:
-	 References:In-Reply-To; b=ixNKcaykhNyDM7hrX6fhbh0HXgRHGm8AoAZfH6dkiNEbQLw31LeRN6Y//uz2OxYEb7VFqydZafe5qtSeT0V46WG+PLzIeYL0BhDh+4AKV50qW8SbSUkl8Usv3Jct2Ct2Vs3yhrFaywPlgs2uGbBezB76zJV7Uo8pjKpm8LlKfs4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=FGvPhjr6; arc=none smtp.client-ip=209.85.128.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-46e37d10ed2so40357585e9.2
-        for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 08:42:55 -0700 (PDT)
+	s=arc-20240116; t=1760370227; c=relaxed/simple;
+	bh=yN4I19Z/Zxa0OAvQeCoXidtC7w6Fi4uf1d42DNqijxI=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=BRx32m36y9SCcsKZRoaZTSjsu5Yh/Z1rIaOV6tEfxvd6XBx5X/rlDMnQGZb8sdrvKFdAoqloVYMPILXYWs72/wpLy8KVayF3/2NdY1SoQJWRTqAxaXIVSFcAAJQYRlcnKb7rz0Zc3BBOHpYzLFgsh8S9b/coBQQnqBv847gKr4s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JPch/fN5; arc=none smtp.client-ip=209.85.208.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-62fa062a1abso8173815a12.2
+        for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 08:43:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1760370174; x=1760974974; darn=vger.kernel.org;
-        h=in-reply-to:references:subject:cc:to:from:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1760370223; x=1760975023; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=lHEv1j+HHd283A1HRLwWHl44uhnMzzIL2eUu93Oc5+0=;
-        b=FGvPhjr6UjrQemq9uVjTCWMt1jW95zRG6vTdHtVOLu3Qe8cIXWAvtLc1zMh9SWkzzc
-         Q/+RYL01YTFTc1fsH2M05V8cak11kyK2QyZ+eVMIwBhof+iLVACweRvaX9gLXoGEW7nU
-         uSmfO8lipm81YqHAoiCDpmUGaiLPs1kKrp9I0zRAXxm9NT63LZ4c/KxJWBw2oZGTBFxl
-         aM0NDyQdWHhh5HdhryvGTdNxLm3tWhxP/AW6hMgmsmNA+ILQJCr3bgCK1LwcywmOFA9n
-         0W7YWBA7yfNOBF8pDRI9Rc+2s7PQJjg9mboCaANZc3V4VxmBbHwtk6r6yqzzfvmZTEjo
-         u7cQ==
+        bh=YJ71KTvKAMUC1AACHaaj8OA3SEI5NusmyGpJc9+nnWQ=;
+        b=JPch/fN5S5ALTM0I5JzuDz5zpGdFXQ3WUqsbkS5quVLAs/NCpUqBC2FiWg+3xv73Yp
+         2C5VNBU9ZiuDFJ7Dsq0Xs3a8EUy45qhTE3wfL9LyKLxh3gmhxW32/HIy/1u/EpRSi3Pa
+         agoJDtGrbyvsKWaFDF8d6T/MScLLUujMUvjvven/IyjRty9EThn4fKTi2HzvGar6gEU2
+         OoPz5q9mmO7XDGh7BskYvOPNPieXaqN09pZS+/+XSqOE6ghNRLwO/RgYy24JmuwcFDNW
+         SsJiczMliJGMcEQ/EZYsgqHvFbMA/KOjvmBuzXQ5EcHjb46j4GmwsG7Ho7rpgolhMUgp
+         Hfmg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760370174; x=1760974974;
-        h=in-reply-to:references:subject:cc:to:from:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=lHEv1j+HHd283A1HRLwWHl44uhnMzzIL2eUu93Oc5+0=;
-        b=UxHWj95FEbIR6UX9gumhFKUWeYItK/Z1QvLuW05uyx3qLrIJgKSzZew5piAjNro5RT
-         bU8Yr1KER9y9reHfhmS9ICuDTNay0FVa8oJi4YkTSWce1ZHCWmgPx+bpZwhlHvfddvst
-         hiSddBzo5LCOH8QdQvJhnV0gryGEQ0qUURSw4cDH0vT6zrBVH4CH8seXMlOUUYMfFmIm
-         I3UbMX3z7QhQpkBUhyQvduMStBL7s0WI/i4Yl9B6xpfIZB9vRguSsRZbJ/Eb1kaNIg+U
-         AJ9YzIl2R7pr8gkgb3AiUNsoA1isATIKWoyZA+9Ut7HlEWnCumRBzqQRZjvBq5f1XKyk
-         4qjg==
-X-Forwarded-Encrypted: i=1; AJvYcCVbcGstoL4UV9XS+aKTQ/jAv6Orq5wTbxd3fFK3Hv9Z12iLCRCUlMV9XEtjqHoxiq2PmZpQs7mJl8/G@vger.kernel.org
-X-Gm-Message-State: AOJu0YxQkWy3eajnCrsc+UUGY86gjKqwxaaV3vxRVy9JspPuo9cZAweu
-	5n4ZVEGai2fjHTox6NGgqC4D4X8RLO0OMJmAx7FLR/QrsQgRrcL51y9w0ZH0hTwmTXo=
-X-Gm-Gg: ASbGnctHyJBFeNrOFky5fqJRaYCyUfdJqqAywWQ2ebW4g8RXZm6CE+a3oFQRbApjmOf
-	+MrSxZHJkvfYPKVig8dLsVeAZBVRuGSC06OXCKwWeO1PiJMyq8KOjy9Ne+nOMBU9zsTmDqZmgef
-	7dRR2pYql31GX27crTgZlvKC8Sy6VRYN23ncDRkfkJRds5Tp6X7XuGS/bH6huejHrHrQw8TDYtB
-	ZxkgOyKlOyV0Znl2LTezotuu2DLbfhdr4EGdAno5uNUgTZosxNaVaWwNWxuYYmJfu43RjxjNem1
-	frXne+dvn/kUf094ig2YYGk4n2kyC7GeTmOqq4ZKmXieByWSWsZZPN1xFI0k7FWq1gb2ws5m1t5
-	zwRM3B7QD/XltVwpKVkBRmdxJSRMgc2utdO84/cp3AQ5KvGNllw==
-X-Google-Smtp-Source: AGHT+IENs+5e8LKBfLhRT9P70/UD8KqfOPC4WFoR5uKqHSevkq3rY6VCRH7NruUPqe4xFx0PkJgS6w==
-X-Received: by 2002:a05:600c:548d:b0:46e:49fd:5e30 with SMTP id 5b1f17b1804b1-46fa9a8f4e3mr158026495e9.6.1760370173692;
-        Mon, 13 Oct 2025 08:42:53 -0700 (PDT)
-Received: from localhost ([2a02:c7c:7259:a00:4e8d:2e2d:48a3:9e4a])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-46fb48a6069sm192562845e9.20.2025.10.13.08.42.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 13 Oct 2025 08:42:53 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1760370223; x=1760975023;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=YJ71KTvKAMUC1AACHaaj8OA3SEI5NusmyGpJc9+nnWQ=;
+        b=e3PbQv6J/QG8/iNXFjUnkMLz6k2zb+dIg/RaQNayWwkOaqBnni+Q9GmM985ufjlz3/
+         lOuN/sp9/x0HY6pFHnB55aGCm6lc36BMzSuRtNF1nXedLkL9+JDq8xxypPtao0hIExh+
+         nOjtFJq8Aq7XvSo4gnIwHPxL6HyFR8T2xMh/PVgYta34Fq5+niKo9YW55ylDDT9v+wL1
+         7m4nIh2T53eOfeYQGAuphDvBWBrFUbByeazmhk8FeD8WzGTKY2GaSzQlpT0dXfz1ys4a
+         nvFvtiVHchc0Jf2yTrakUz6OW/wfpn/N66BLhqb2AR+927xw1X4nYlky9g/dUju87ZJl
+         g8Kg==
+X-Forwarded-Encrypted: i=1; AJvYcCUBWqOQmAgtvtbyxTLjEtWveuKs/WKlBr5EvHgoTyRX8QT5DsxlAkjpiZbnjmFxmaLEFC/gcZmAF4mJ@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx/+eQg/N/EYSptAInOUqy7QdRZW8YLwRJByfNDMsabTNG2PK1E
+	79gqqlyJRIDBUZMG8cPldHeQLge04HUOZtWJbrusu1S9dbbFQUnEP4mQ
+X-Gm-Gg: ASbGncsNeD1cmjk1Fr0SC8qclamjJ9su7lv4/CvKHyPyoREUsR2mQnxr3GVI4wxbteh
+	CZXBwob4GCzoqDmzY4+7WY5Trjz758eGMWyCYrQfWNdUYeGLl9+kwwweqxolkgJIa2FAWtAnQ+1
+	lCZj+Wm3b/2SEQGVjzrGSjgeE4oOqad6Tdp3zjhP+ivi8k/lKD1Z9P1FJvawFIh/Sku1b61dTGq
+	jtxB+YMLLN/VXV1G5iSly9kj2lb1e2x9glCQ/hZBsglRvCv2EXemnwW6NNbGR/c1XzE2dWn1f9W
+	7tqJD3M0TD+wqh0VMUlSeZeDKHsBIJY69YunRm2wP1oFmlTQ77N9P1AcM7eb0AnyB9VBF3eYLe4
+	6sWsCA8nTjdq+H26IkuFdf2unuVzcanetfc6Hm9T7h2YTynN24nHK5DloClyx/nQyBpeTaUrVqi
+	noMJM2xH1B/DN4dz6pMPxbMx0=
+X-Google-Smtp-Source: AGHT+IG3FRsw4wCBnmi9CngEI7WoVxEvQAt2WNJU3I/XEDcpUDTwP0J77KuXRMbbHoTA+pSwJQSXNw==
+X-Received: by 2002:a05:6402:b28:b0:634:6d87:1d28 with SMTP id 4fb4d7f45d1cf-639d5c74a9fmr13775050a12.35.1760370222659;
+        Mon, 13 Oct 2025 08:43:42 -0700 (PDT)
+Received: from jernej-laptop.localnet (178-79-73-218.dynamic.telemach.net. [178.79.73.218])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-63a5c133f58sm9091983a12.30.2025.10.13.08.43.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 13 Oct 2025 08:43:42 -0700 (PDT)
+From: Jernej =?UTF-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To: Miquel Raynal <miquel.raynal@bootlin.com>,
+ Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+ Samuel Holland <samuel@sholland.org>,
+ Richard Genoud <richard.genoud@bootlin.com>
+Cc: Uwe =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?= <u.kleine-koenig@baylibre.com>,
+ Wentao Liang <vulab@iscas.ac.cn>, Johan Hovold <johan@kernel.org>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+ linux-kernel@vger.kernel.org, Richard Genoud <richard.genoud@bootlin.com>
+Subject: Re: [PATCH v2 15/15] arm64: dts: allwinner: h616: add NAND controller
+Date: Mon, 13 Oct 2025 17:43:39 +0200
+Message-ID: <2800174.mvXUDI8C0e@jernej-laptop>
+In-Reply-To: <20251013152645.1119308-16-richard.genoud@bootlin.com>
+References:
+ <20251013152645.1119308-1-richard.genoud@bootlin.com>
+ <20251013152645.1119308-16-richard.genoud@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
+MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Mon, 13 Oct 2025 16:42:52 +0100
-Message-Id: <DDHB5915QELQ.38GN91PJ6ZO68@linaro.org>
-From: "Alexey Klimov" <alexey.klimov@linaro.org>
-To: "Srinivas Kandagatla" <srinivas.kandagatla@oss.qualcomm.com>,
- <robh@kernel.org>, <krzk+dt@kernel.org>, <vkoul@kernel.org>
-Cc: <conor+dt@kernel.org>, <srini@kernel.org>,
- <yung-chuan.liao@linux.intel.com>, <pierre-louis.bossart@linux.dev>,
- <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-sound@vger.kernel.org>
-Subject: Re: [PATCH v4 0/7] soundwire: qcom: add support for v3.1.0
-X-Mailer: aerc 0.20.0
-References: <20250912083225.228778-1-srinivas.kandagatla@oss.qualcomm.com>
-In-Reply-To: <20250912083225.228778-1-srinivas.kandagatla@oss.qualcomm.com>
+Content-Type: text/plain; charset="utf-8"
 
-On Fri Sep 12, 2025 at 9:32 AM BST, Srinivas Kandagatla wrote:
-> This patch series adds support for Qualcomm Soundwire Controller
-> version v3.1.0.
-> As part for adding this support, a new macro of_property_read_u8_index()
-> is added so that we can remove the qcom,din-ports and qcom,dout-ports.
-> As v3.1.0 supports more than 17 soundwire ports. Also due to change in
-> the register offsets, new entries are added to the variant data.
->
-> Tested this patchset on T14s and Glymur reference platform.
-> Alexey also tested this on SM8550
->
-> Merge strategy:
->
-> I think the patches can go via soundwire tree given that Rob has
-> provided Reviewed-by on the of_property patch.
-> Vinod are you okay with this?
->
-> Changes since v3:
-> 	- added bit more flexiblity to driver with a missmatch message
-> 	to address incorrectly specified dt-entires.
->
-> Thanks,
-> Srini
->
-> Srinivas Kandagatla (7):
->   of: base: Add of_property_read_u8_index
->   soundwire: qcom: remove unused rd_fifo_depth
->   dt-bindings: soundwire: qcom: deprecate qcom,din/out-ports
->   soundwire: qcom: deprecate qcom,din/out-ports
->   soundwire: qcom: prepare for v3.x
->   dt-bindings: soundwire: qcom: Document v3.1.0 version of IP block
->   soundwire: qcom: adding support for v3.1.0
->
->  .../bindings/soundwire/qcom,soundwire.yaml    |   8 +-
->  drivers/of/property.c                         |  33 +++
->  drivers/soundwire/qcom.c                      | 257 +++++++++++-------
->  include/linux/of.h                            |   9 +
->  4 files changed, 199 insertions(+), 108 deletions(-)
+Dne ponedeljek, 13. oktober 2025 ob 17:26:45 Srednjeevropski poletni =C4=8D=
+as je Richard Genoud napisal(a):
+> The H616 has a NAND controller quite similar to the A10/A23 ones, but
+> with some register differences, more clocks (for ECC and MBUS), more ECC
+> strengths, so this requires a new compatible string.
+>=20
+> Add the NAND controller node and pins in the device tree.
+>=20
+> Signed-off-by: Richard Genoud <richard.genoud@bootlin.com>
+> ---
+>  .../arm64/boot/dts/allwinner/sun50i-h616.dtsi | 51 +++++++++++++++++++
+>  1 file changed, 51 insertions(+)
+>=20
+> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi b/arch/arm64/=
+boot/dts/allwinner/sun50i-h616.dtsi
+> index ceedae9e399b..bb53c6c63836 100644
+> --- a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
+> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
+> @@ -304,6 +304,42 @@ mmc2_pins: mmc2-pins {
+>  				bias-pull-up;
+>  			};
+> =20
+> +			/omit-if-no-ref/
+> +			nand_pins: nand-pins {
+> +				pins =3D "PC0", "PC1", "PC2", "PC5", "PC8", "PC9",
+> +				       "PC10", "PC11", "PC12", "PC13", "PC14",
+> +				       "PC15", "PC16";
+> +				function =3D "nand0";
+> +			};
+> +
+> +			/omit-if-no-ref/
+> +			nand_cs0_pin: nand-cs0-pin {
+> +				pins =3D "PC4";
+> +				function =3D "nand0";
+> +				bias-pull-up;
+> +			};
+> +
+> +			/omit-if-no-ref/
+> +			nand_cs1_pin: nand-cs1-pin {
+> +				pins =3D "PC3";
+> +				function =3D "nand0";
+> +				bias-pull-up;
+> +			};
+> +
+> +			/omit-if-no-ref/
+> +			nand_rb0_pin: nand-rb0-pin {
+> +				pins =3D "PC6";
+> +				function =3D "nand0";
+> +				bias-pull-up;
+> +			};
+> +
+> +			/omit-if-no-ref/
+> +			nand_rb1_pin: nand-rb1-pin {
+> +				pins =3D "PC7";
+> +				function =3D "nand0";
+> +				bias-pull-up;
+> +			};
+> +
+>  			/omit-if-no-ref/
+>  			spi0_pins: spi0-pins {
+>  				pins =3D "PC0", "PC2", "PC4";
+> @@ -377,6 +413,21 @@ iommu: iommu@30f0000 {
+>  			#iommu-cells =3D <1>;
+>  		};
+> =20
+> +		nfc: nand-controller@4011000 {
+> +			compatible =3D "allwinner,sun50i-h616-nand-controller";
+> +			reg =3D <0x04011000 0x1000>;
+> +			interrupts =3D <GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks =3D <&ccu CLK_BUS_NAND>, <&ccu CLK_NAND0>,
+> +				<&ccu CLK_NAND1>, <&ccu CLK_MBUS_NAND>;
+> +			clock-names =3D "ahb", "mod", "ecc", "mbus";
+> +			resets =3D <&ccu RST_BUS_NAND>;
+> +			reset-names =3D "ahb";
+> +			dmas =3D <&dma 10>;
+> +			dma-names =3D "rxtx";
+> +			#address-cells =3D <1>;
+> +			#size-cells =3D <0>;
+> +		};
 
-I just tested the whole series on sm8550 and it boots, playback works.
-If it is needed to provided tested-by tag for each individual patch, please
-let me know.
+Sorry, forgot to mention. This should be marked as disabled, as most of
+the boards don't have NAND connected.
 
-For the whole series:
+Best regards,
+Jernej
 
-Tested-by: Alexey Klimov <alexey.klimov@linaro.org> # sm8550
+> +
+>  		mmc0: mmc@4020000 {
+>  			compatible =3D "allwinner,sun50i-h616-mmc",
+>  				     "allwinner,sun50i-a100-mmc";
+>=20
 
-Thanks,
-Alexey
+
+
+
 
