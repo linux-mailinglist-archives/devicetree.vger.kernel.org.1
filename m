@@ -1,244 +1,131 @@
-Return-Path: <devicetree+bounces-226174-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226175-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9FAC7BD5B1B
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 20:24:29 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 39DF6BD5B30
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 20:26:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 82C724EC6A7
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 18:24:28 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 5E08E4EF01C
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 18:26:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B04492D3EC0;
-	Mon, 13 Oct 2025 18:24:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 307E72D5951;
+	Mon, 13 Oct 2025 18:26:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="IeL/toz3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aRURLY3C"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DB3PR0202CU003.outbound.protection.outlook.com (mail-northeuropeazon11010023.outbound.protection.outlook.com [52.101.84.23])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98D9A26D4D4;
-	Mon, 13 Oct 2025 18:24:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.84.23
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760379864; cv=fail; b=GOvs8i6VKjue1G3xB8WtI1jvCyBXxxiwmp4wJAp/9eMsyPKa+YK8nucj1h3ctM8Vb/BMANp/VzBEC7LzHa3jtIYKIQXDrV1wchGnuuxNx1GE7Zr8QthkQifCIpoYZEdGegtAU1qzUbZlCZd5nZrwfNCPx/B4O4XygxdwUPyGCBU=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760379864; c=relaxed/simple;
-	bh=AbKsGz+FBq7en2/YIKKrmP39LnEoT5yes+NCz256/UY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=ZZ6s9hIhzNDGE0EwgMHVG8J5BRAHswJsBXxaS1qAsTbu3QjD989K5ERhdoc26DU6qLKbodslpM/wiGljiAxd5bkuhVc5sYbbl2U3LZBUT/YtygGzVNBFiU2rMSfuH4RGLBsSsg0jur5h1JVwJzlwjXEo6lmgzUFqKk+fTcoR+Fg=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=IeL/toz3; arc=fail smtp.client-ip=52.101.84.23
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ZuopUDI6MmpikG13of0osT9tJvLI8PbppZSU02OZImsTrSxo68aejLYkbe6H2D5qWF+4nCFCeHG6mTdcPrTICJDF2XzrPvEzHfjJyam4lffxtS4Bi+c4mUNSLHTKDCbzXlQZ4TPC7bKsEHSV1ixJbaiJT/fMavpFgkDdOug8rC6XoIy7t067AJ2w5vZMhlEjKC/T0q81upiEPr9x+LM27Br74M+wMwbGpmRyiJeyogsB1D1C1OQm8a2EjX3n2sGaSzEo6xCzsqUGZdYgTGAbvXg8S7AOEyOzb7PFYOMxN+1ykBzcoZ019VtyNIOapgsRKrwsWfS94aSDFV0GXrL9dA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Slm7r/nMVDRbwJ5zzCwVq5bt4H0M+Nem7jZhx5Dt1BE=;
- b=xdvodFxC/U60D9x1zrQNV63nTVfFU7JhkNY8JfwjNocSSQQMZefVFI9jX7sgEisZ0VQeGtGMmgSI8DWfv5QYkdJz3+taf78Hlrju/hUkb8UJECgVjrPJHdwGuc1v3jwWby605ZzHhHP6YMJ4llFGoA2bK3sVw0Qr5Ok87i1AaR1JEHaSFuw9F8Mgqr2TosdITqEAOMYhSrNmro/Hww+1oXZhZr0k9yOx934Hg+l+/q4a1zF2ac0dxTOKZHFwIVaV0wN9VP1ObpuiLEi6Y7ake4RK0FR/918fQR6HP4sS0lQXBtkJuVbaMqQ2nWSLaHnLSkGzYSw3MjYUkVHBJS9gCw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Slm7r/nMVDRbwJ5zzCwVq5bt4H0M+Nem7jZhx5Dt1BE=;
- b=IeL/toz3WZyU5x23uNk2tVCbI2wo/WSf7jrcTom6r5y7MlzmHcszqTYTPTYCxNZY/IwZZE55pN2D9xgN+1/5+CVNiQCHWOqBohigIMWtc5Fj3wW+ap3S/fjvTggAe+iJW/NsVzRQYpRi4POlo8SleQLGLbeZIf9tzYlMlIpYOCySAKS0tOO//aFVosvZ+r9JzgeaCwIaBhSxpucAmtIiA6Y1xQlppxSrBnfUVEPob9gjKT2Pnf+p5qQo+QewoZt29HmaTM3bQeTjK9olwnLFSS0Cp37FFbetQFgXCbZopRZLmw/7u12hE5Kh+60w9zCdMwdX5GpbhzrVyFI1csWjgg==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AS4PR04MB9621.eurprd04.prod.outlook.com (2603:10a6:20b:4ff::22)
- by DBAPR04MB7272.eurprd04.prod.outlook.com (2603:10a6:10:1ad::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9203.12; Mon, 13 Oct
- 2025 18:24:19 +0000
-Received: from AS4PR04MB9621.eurprd04.prod.outlook.com
- ([fe80::a84d:82bf:a9ff:171e]) by AS4PR04MB9621.eurprd04.prod.outlook.com
- ([fe80::a84d:82bf:a9ff:171e%4]) with mapi id 15.20.9203.009; Mon, 13 Oct 2025
- 18:24:19 +0000
-Date: Mon, 13 Oct 2025 14:24:10 -0400
-From: Frank Li <Frank.li@nxp.com>
-To: Marek Vasut <marek.vasut@mailbox.org>
-Cc: dri-devel@lists.freedesktop.org, Abel Vesa <abelvesa@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 078502D4B5E;
+	Mon, 13 Oct 2025 18:25:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1760379960; cv=none; b=q2eLQE+aqls4P201OOJADZKswGzoDsh05dDRhPct35amb9sXajKQt+44JIGvlE1M+oZyvD2x6Peg+kUEU5qTkZsV86R4wGvxKfoFUZ12UIPaIhlIIrt8kVy0TRTZbroXvHSEgEHoQwGUpJ9Hs+bqXAAqtn2CjvMn/SrFwYOfMII=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1760379960; c=relaxed/simple;
+	bh=fp7n/OOANDDliKGGy2ySxRmFqBsywUsfLoN+oaMFd0k=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hCiFtPOWjHTCkaXT0exLm3Rrre1ieoTSRvC5+g2inezNvT7hqagt7/kAP4uLRGfaZWNALg6xfBKf/YN2uH0PL66UXjUdsGyjrI0+9+MFFMNHViLlncAXZWB4EY7h+d7ospRPw8Sct9L2j2Xrynkg7lYSeRfzIajnBw41h2n+bSU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aRURLY3C; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CA8C8C4CEE7;
+	Mon, 13 Oct 2025 18:25:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1760379959;
+	bh=fp7n/OOANDDliKGGy2ySxRmFqBsywUsfLoN+oaMFd0k=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=aRURLY3C9C8FjB3TlBWIqqo3yWGvkrvJmuPRgQ+pKDdL05ZQApdR3TtgFSNrjvmIS
+	 TphiU/sdUT2P9f2gcv/tHfNFyHyzuUZMTrBdjXna0qFPlwr34iCTO+SvMjvHlWeKj7
+	 hXVep5z8Bjm3mnQXg9aqhr2v5zefiOGlhpwke1Jfg2Nyex4U8Fu+LW+MSNDEYTJWT3
+	 4oSrN2RKwSqoPZ5nO9Xe/LZzCvYgV0nlXru5eEiYDfAlrBDTxQkVS0+6iG1+fI8pEJ
+	 sqnqDsMR0YjHSrn2+u4VE1HvByz9tl8ed925A0TrBeLkljJrB4eTgw0vahqq7EmQGk
+	 Y+TZxGzUvnNWg==
+Date: Mon, 13 Oct 2025 19:25:54 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Lucas Zampieri <lzampier@redhat.com>
+Cc: devicetree@vger.kernel.org, Charles Mirabile <cmirabil@redhat.com>,
+	Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Liu Ying <victor.liu@nxp.com>, Lucas Stach <l.stach@pengutronix.de>,
-	Peng Fan <peng.fan@nxp.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-clk@vger.kernel.org
-Subject: Re: [PATCH 09/39] drm/imx: dc: ed: Rework dc_ed_pec_src_sel() to
- drop ARRAY_SIZE() use
-Message-ID: <aO1Dyo3O8FwdkZXo@lizhi-Precision-Tower-5810>
-References: <20251011170213.128907-1-marek.vasut@mailbox.org>
- <20251011170213.128907-10-marek.vasut@mailbox.org>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251011170213.128907-10-marek.vasut@mailbox.org>
-X-ClientProxiedBy: PH0PR07CA0097.namprd07.prod.outlook.com
- (2603:10b6:510:4::12) To AS4PR04MB9621.eurprd04.prod.outlook.com
- (2603:10a6:20b:4ff::22)
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Vivian Wang <dramforever@live.com>, linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/3] dt-bindings: interrupt-controller: add UltraRISC
+ DP1000 PLIC
+Message-ID: <20251013-commute-bountiful-208ade035c86@spud>
+References: <20251013111539.2206477-1-lzampier@redhat.com>
+ <20251013111539.2206477-3-lzampier@redhat.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AS4PR04MB9621:EE_|DBAPR04MB7272:EE_
-X-MS-Office365-Filtering-Correlation-Id: e03d2dce-b6b7-4591-7c6b-08de0a85b96b
-X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
- BCL:0;ARA:13230040|7416014|52116014|1800799024|19092799006|366016|376014|7053199007|38350700014;
-X-Microsoft-Antispam-Message-Info:
- =?us-ascii?Q?sN4T9jfG0elEm2TWtMrrx9+QoB0wALfuOj4ETAoMWim4U3c9cKzJMAg9Fc7G?=
- =?us-ascii?Q?Tki8p9v+Pz6IWWIB43ffnrOGVcBaGleWUDI5glGynoENdAN64kqW8M8XOqub?=
- =?us-ascii?Q?gRw4rq4wjD6I5BVJRWmTSQ/o++ujiPyd1z96qwFjzl0934f3wUBm/zgJFw48?=
- =?us-ascii?Q?FBk5DUGjT6HdYGOekLpIM2UP3ulP6QiyHsvspABYN1t0VrUfDcq9iYJQ57pR?=
- =?us-ascii?Q?x0CX0WrBHPRfAejA1bUYvuuFC3xAe0LRPyL2tWPcuEUgjpnKbsQA7B/PvZB3?=
- =?us-ascii?Q?N/FlBX6JewvickHAlBNRsTG22mrEaJ6fpJWVFtW+/B4aOLfQjTEqWzSerN63?=
- =?us-ascii?Q?QqX+yTx2hNiSjE72j/6yU5cxV8I6xNRtRDzARlPbvnnrEHW+/a3MtVxW0gxt?=
- =?us-ascii?Q?Cw/7Wp5EkFFURBLIY5buwm4O+bjSQmzdymiIKE7HxbawRgLponitqVbFyJ48?=
- =?us-ascii?Q?lpQS0QP6BdGYIPP2jmMbkBiQF/cVgjqwUXUruujRCCdikEzbTSioFVE+NfK9?=
- =?us-ascii?Q?uYC7jUqYChNA15/OX3jxyl7wS2NEqveQ+enu5HGNYiTBw5yo3B1dN2pOYS96?=
- =?us-ascii?Q?DwbNZd8xYibyC8khxkOzch7VkIKTnHs7clA3Dw3TEmABQM0oWhaKW6unYK/1?=
- =?us-ascii?Q?TDD+WNrTQC35TibumBl/baOJyIhRpk3Rz/TeEeOjzugfYvKkrh5rnpxQNU+F?=
- =?us-ascii?Q?XbVMRFsBkdGAuTuSWR6n025GGKP4HgxBexwg3+91WnGa3/3Zlf4h5iKGwuA2?=
- =?us-ascii?Q?ogw6YMavBIsi9awktEtgwJhRRDy+Eq7yURI/QwtCnzUbIIn2pSppFzDi/up9?=
- =?us-ascii?Q?d4lMvAfpaMEZCE29ULKmjvpDJLNvzSiyqg8FQ5YkQz+SRHVavP0R5U7t2Z/G?=
- =?us-ascii?Q?fWGWBjgIb72yef5rQ+UO4x5lMugytt2PDXj/RAM1PQENjLpRGxKHdwvLltml?=
- =?us-ascii?Q?cDHjwId57gTtFbcfZ04Qr+picOmoAiKY37lpZSRy1/EXj3ThsOYmNZfQ7+FS?=
- =?us-ascii?Q?dr+rA2koBi976DG6CqK0mwTZjTDA2xCxHDPTrAoGw+wEO2UADqb/fuledFmd?=
- =?us-ascii?Q?9rfPKGt7W2HaF/YXoiCpRBuz2HLu9+bXRRtULiJ4HiNeqqyXEm9i+/fiKeOq?=
- =?us-ascii?Q?DFPBKT98RQyXluQm0b1gjQiuH+/oZQjLs5vyCBkaRuiBAS4ACfHKsjAMiAa9?=
- =?us-ascii?Q?tkwbalDDXyspbBwIJuCK7NrmRgNzIQuEP0PSEK5P0SRs3j1LGeK61whbpIvL?=
- =?us-ascii?Q?mkOpM0CcYDiDIW4BAFv3sWuOigZroEIlGiXOTYFIam+v26WdmVL4LQoM1LBA?=
- =?us-ascii?Q?Mugo37n4jrANNafP41LaMHX1xBvf63qLYiNcMkIQMClqceJSEaZjZ5DFHa3n?=
- =?us-ascii?Q?V8i3r3/6FOzWVmCMnpJDDe3Yw5bzbwjhuJ3TTlZnOW3SHPHzVZ6hQeLHXxtY?=
- =?us-ascii?Q?BDahoF1RqZC+63ZvLGDOYpL8AASxC4oWxrZZKZ5qODPSKgjR0yIbAhzAXFlG?=
- =?us-ascii?Q?vT9ALFK5/gyNzfN1CtmPV8vetr2eDj9ipTIa?=
-X-Forefront-Antispam-Report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS4PR04MB9621.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(52116014)(1800799024)(19092799006)(366016)(376014)(7053199007)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
- =?us-ascii?Q?2b94fQnLKfC09HTy5eerEnSUk8cYo+cmkR4euCbVvBJSjojihsmRHk3LlXhn?=
- =?us-ascii?Q?w12iIrgQ0LubF96QEsBdE22U0b7XP122fSZva42z975vGkLuWt7kuNohvsJI?=
- =?us-ascii?Q?Er/vNYNVpBUpb7d40j+EYWgV1Ue+TdpJIIOaPN0dLx5xI2b3RyBG/VEt5Shq?=
- =?us-ascii?Q?FEyIQEzgDnV3Qtlnx5IRYZENcSV33dduk4aSFNapW3JeyqWfRo9EUdanElgI?=
- =?us-ascii?Q?h0Q9YFM5/d7YwtHEgEUxp8DHnBxGDIj9DFFCa2CshgFinKUxnpoPvQ3ei+11?=
- =?us-ascii?Q?CtZNogxgP3uorCVSBZL1E/co4oN3cJ/nKECBSw8uqlgzuayhq287EMv91oDJ?=
- =?us-ascii?Q?D/YrKvACy5HLq4mRBS5kpt+/xr/BgWoOUmfzpP+jz5Q+U6Pxbk4z8jJ/HNE0?=
- =?us-ascii?Q?mZgThuwsiDaz+q1/bjTWe8T6Dflj1K6lFj80Hb33gOLkk90ZAg50rFHrKOEt?=
- =?us-ascii?Q?MDeSLNaRZOisLa9P1vlBsS0DUo8Y6gd3P+1ePv6zterkudHBwspuK7sRwDcg?=
- =?us-ascii?Q?9MRuTRN1pvlhU9mblq7F5reHN1RQqtBtrm9CdBWBa95eJZHYO0U5CxKpZ9go?=
- =?us-ascii?Q?6DRH9Pdyjx5PZeqo9Fd9pYrlKhMfEU8svSSdVyij2zsXgOszXAz23S2iWgRw?=
- =?us-ascii?Q?lwyDE2JOVM7+vm9sZJnFEn6DilUw7zgW1xjHsY/IlAEDptzitq8Ya63mduLT?=
- =?us-ascii?Q?IVbFZbOqgQyWkwCm8mRNtPq8Lr35A4FWCzApsMPV4UgSyti7Xc4O4/GOp30B?=
- =?us-ascii?Q?ft+PgC8uM3zUXuFMVPbEESsaaYC3IPcZ6rvjK6qmppdznZW5KCrw4sV9XYB8?=
- =?us-ascii?Q?lJs04iSr7U47FAKCzDl8vQucE0llIV6Pl6QLEMsP/UTc7A/qcb2EW88Zsjm4?=
- =?us-ascii?Q?xcmP6UVLr9DNPn6U8qriHxITijCWWUROvMaCFX/4wAvdR2cfFMkkDryudk32?=
- =?us-ascii?Q?1Niv3fvpJWa8EfZq2Tp0H4ZLvGlc5RZtZ8u7BK8fnsKSkZD3vwbqYzF5+QFj?=
- =?us-ascii?Q?7DVmaCvQ4C+PUAE21stH/7GD+6hkXxqHPvbnXF1e3e9V7JHseZsTpfFS6fAT?=
- =?us-ascii?Q?CuHwZYd/Uk/K8Cp+PWvgSdCPF1vkKa+2JHsEu3dOf5nu7xNvX4xDES7DAPOH?=
- =?us-ascii?Q?eMd+wll0OtEzjGoTH4VXeFaCNjPSbaP56JOx6B7553WocP/28AXW/8sPZGuz?=
- =?us-ascii?Q?7WTOebGxX9khv8QaGhcx2Ge2UEdN1ZpguPA4kL4r+TgbfVzOeVoCuj1R9t3g?=
- =?us-ascii?Q?LHW0PU8popawBfVwVtbq2SR1jornAYH6R2kLF+fxHv6ZRdC3Sg9X9As//PO1?=
- =?us-ascii?Q?oIKYbBPs+QDMf9GYqslMuHQIJ08QpnmmlkfQZalF0lfxHdpq8kelcUnBUTp2?=
- =?us-ascii?Q?BYAylfDgDvHaw/3/W9TvOoRXFLmQ2vrJ1T7fT7/nN4YeVJCbe20skmOl0TDX?=
- =?us-ascii?Q?IsPtDyA1i7R7hMi1X8D6xClEAiUoN6JECDWxhDieGk7LX4b/BjF9cq47LVob?=
- =?us-ascii?Q?vGRNtea1k7aoPZSGrqD9yyjfnsyP8h3Lev4ec8si2isa8JRNh9qnc+rKFbJQ?=
- =?us-ascii?Q?8we/oygq8l/K0lU360U=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e03d2dce-b6b7-4591-7c6b-08de0a85b96b
-X-MS-Exchange-CrossTenant-AuthSource: AS4PR04MB9621.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Oct 2025 18:24:19.5337
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ErVtCTVqmE11LC/0xsRwDREchD4cSV8t/35SXC0PlzYZYU7ypI2XDsJgMs73aTdP/kbJVVpoP19MHqAU5CoGFQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBAPR04MB7272
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="wFtD2X/HwE536WvW"
+Content-Disposition: inline
+In-Reply-To: <20251013111539.2206477-3-lzampier@redhat.com>
 
-On Sat, Oct 11, 2025 at 06:51:24PM +0200, Marek Vasut wrote:
-> Rework dc_ed_pec_src_sel() to drop ARRAY_SIZE() use and use new sentinel
-> trailing entry LINK_ID_LAST to stop iterating over src_sels array instead.
-> This allows passing of this array around as OF match data, which will be
-> useful when using this pipeline on i.MX95, which has different src_sels
-> array.
->
-> Signed-off-by: Marek Vasut <marek.vasut@mailbox.org>
+
+--wFtD2X/HwE536WvW
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Mon, Oct 13, 2025 at 12:15:37PM +0100, Lucas Zampieri wrote:
+> From: Charles Mirabile <cmirabil@redhat.com>
+>=20
+> Add a new compatible string for UltraRISC DP1000 PLIC.
+>=20
+> Signed-off-by: Charles Mirabile <cmirabil@redhat.com>
+> Signed-off-by: Lucas Zampieri <lzampier@redhat.com>
 > ---
+>  .../bindings/interrupt-controller/sifive,plic-1.0.0.yaml        | 3 +++
+>  1 file changed, 3 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/interrupt-controller/sifiv=
+e,plic-1.0.0.yaml b/Documentation/devicetree/bindings/interrupt-controller/=
+sifive,plic-1.0.0.yaml
+> index 5b827bc24301..a419de50f5a8 100644
+> --- a/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-=
+1.0.0.yaml
+> +++ b/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-=
+1.0.0.yaml
+> @@ -74,6 +74,8 @@ properties:
+>                - sophgo,sg2044-plic
+>                - thead,th1520-plic
+>            - const: thead,c900-plic
+> +      - items:
+> +          - const: ultrarisc,dp1000-plic
+> +          - const: ultrarisc,cp100-plic
 
-Reviewed-by: Frank Li <Frank.Li@nxp.com>
+Based on your cover letter, this is problem not incorrect, but this fails
+the eye test and looks wrong. Please mention in your commit message that
+dp1000 is an soc and cp100 is a purchasable IP core.
 
-> Cc: Abel Vesa <abelvesa@kernel.org>
-> Cc: Conor Dooley <conor+dt@kernel.org>
-> Cc: Fabio Estevam <festevam@gmail.com>
-> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> Cc: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
-> Cc: Liu Ying <victor.liu@nxp.com>
-> Cc: Lucas Stach <l.stach@pengutronix.de>
-> Cc: Peng Fan <peng.fan@nxp.com>
-> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: Shawn Guo <shawnguo@kernel.org>
-> Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: devicetree@vger.kernel.org
-> Cc: dri-devel@lists.freedesktop.org
-> Cc: imx@lists.linux.dev
-> Cc: linux-arm-kernel@lists.infradead.org
-> Cc: linux-clk@vger.kernel.org
-> ---
->  drivers/gpu/drm/imx/dc/dc-ed.c | 7 ++++---
->  drivers/gpu/drm/imx/dc/dc-pe.h | 1 +
->  2 files changed, 5 insertions(+), 3 deletions(-)
->
-> diff --git a/drivers/gpu/drm/imx/dc/dc-ed.c b/drivers/gpu/drm/imx/dc/dc-ed.c
-> index 9a141c6aa0812..2fdd22a903dec 100644
-> --- a/drivers/gpu/drm/imx/dc/dc-ed.c
-> +++ b/drivers/gpu/drm/imx/dc/dc-ed.c
-> @@ -116,6 +116,7 @@ static const enum dc_link_id src_sels[] = {
->  	LINK_ID_LAYERBLEND2_MX8QXP,
->  	LINK_ID_LAYERBLEND1_MX8QXP,
->  	LINK_ID_LAYERBLEND0_MX8QXP,
-> +	LINK_ID_LAST	/* sentinel */
->  };
->
->  static inline void dc_ed_pec_enable_shden(struct dc_ed *ed)
-> @@ -141,10 +142,10 @@ static inline void dc_ed_pec_div_reset(struct dc_ed *ed)
->
->  void dc_ed_pec_src_sel(struct dc_ed *ed, enum dc_link_id src)
->  {
-> -	int i;
-> +	int i = 0;
->
-> -	for (i = 0; i < ARRAY_SIZE(src_sels); i++) {
-> -		if (src_sels[i] == src) {
-> +	while (src_sels[i] != LINK_ID_LAST) {
-> +		if (src_sels[i++] == src) {
->  			regmap_write(ed->reg_pec, PIXENGCFG_DYNAMIC, src);
->  			return;
->  		}
-> diff --git a/drivers/gpu/drm/imx/dc/dc-pe.h b/drivers/gpu/drm/imx/dc/dc-pe.h
-> index 866859403a79d..1e1e04cc39d4b 100644
-> --- a/drivers/gpu/drm/imx/dc/dc-pe.h
-> +++ b/drivers/gpu/drm/imx/dc/dc-pe.h
-> @@ -33,6 +33,7 @@ enum dc_link_id {
->  	LINK_ID_LAYERBLEND1_MX8QXP	= 0x22,
->  	LINK_ID_LAYERBLEND2_MX8QXP	= 0x23,
->  	LINK_ID_LAYERBLEND3_MX8QXP	= 0x24,
-> +	LINK_ID_LAST			= 0xffffffff, /* sentinel */
->  };
->
->  enum dc_lb_mode {
+pw-bot: changes-requested
+
+>        - items:
+>            - const: sifive,plic-1.0.0
+>            - const: riscv,plic0
 > --
 > 2.51.0
->
+>=20
+
+--wFtD2X/HwE536WvW
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaO1EMgAKCRB4tDGHoIJi
+0tGzAP0dGNd0JliXtDwRb8D0K4PzFMBq3ub1ejdol4QlhY6Z7wEA3xBHPIr6Yi17
+qe/9vOFHNa0ggaottW5iXQNZoRx2twc=
+=1jAl
+-----END PGP SIGNATURE-----
+
+--wFtD2X/HwE536WvW--
 
