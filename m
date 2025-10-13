@@ -1,124 +1,163 @@
-Return-Path: <devicetree+bounces-226103-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226104-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1097BD4F18
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 18:22:03 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A304BD4CF9
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 18:11:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id B8900545B06
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 15:37:35 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E33F84FE414
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 15:43:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA58F30BB97;
-	Mon, 13 Oct 2025 15:25:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 251723090E0;
+	Mon, 13 Oct 2025 15:27:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=iitb.ac.in header.i=@iitb.ac.in header.b="cGmoK95N"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="QGFbD/jC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp1.iitb.ac.in (smtpd9.iitb.ac.in [103.21.126.64])
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCC943081B1
-	for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 15:25:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.21.126.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B2282F3C31
+	for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 15:27:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760369138; cv=none; b=kepNiwAURBB4ywcVVEhFBwU2oxkLCA55pagpT+q47mN7ZpHtbuMzOS4QRwEBMbJ/4oIBC1Rx8pbj1lAyW3bwbutZZrbl22fW6bvPkHlHh5x5ZGGbwhWrogmOObYM0S/oT5nAeeR6Pq9d/lq4vpOkCs5NNIbZozZ9mxWn6TiT2jI=
+	t=1760369249; cv=none; b=NO8WqNZhZhgHrIr+b2rqqFqj5mEctxUNhqotgudn4s+sZe2vMjoYdrm6iPw8iayHMvjoE/jT5IzU90EB2xIDQQUADpv+KTXYWhb3x5QJZqXvTCzaG/xfrUvlknqV79bWpCCYIXODYMBva0LBg8FwO0blcj6oO8xADF7/MA5doEE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760369138; c=relaxed/simple;
-	bh=VH/jjwDLkiSGiAr4JG89l4anPAc3ygJofrUXtkBMnrI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=eBdCMLm20NGV3fvhd6xo6U3U5nFcKJhZGEeW6IRx3B6yxeIFCm4t/NwPA21ETWC8AcbXrC3asp8dSfNoNLO6d1qTPMuSkfHpFxIVhA/fSs5oG0OxYHZLKZKC4CO0FxFNpxMZk7xWUMy86+QhTi3/sGeNjN240cGZIzk+63pbRTk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ee.iitb.ac.in; spf=pass smtp.mailfrom=ee.iitb.ac.in; dkim=pass (1024-bit key) header.d=iitb.ac.in header.i=@iitb.ac.in header.b=cGmoK95N; arc=none smtp.client-ip=103.21.126.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ee.iitb.ac.in
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ee.iitb.ac.in
-Received: from ldns2.iitb.ac.in (ldns2.iitb.ac.in [10.200.12.2])
-	by smtp1.iitb.ac.in (Postfix) with SMTP id A0D5F104CBCC
-	for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 20:55:30 +0530 (IST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.iitb.ac.in A0D5F104CBCC
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=iitb.ac.in; s=mail;
-	t=1760369130; bh=VH/jjwDLkiSGiAr4JG89l4anPAc3ygJofrUXtkBMnrI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=cGmoK95NAv8CM1VB0uMl3a2sfWTHQGZGw0gqZtp1vXMgyLaqVXz3l8kr5IDoekCQW
-	 Ed+msU3LxHDMDydJm1VmBQ56oLJ8zbviPnJzxsa86iqMv4ImrXL723N3U5u4/paXm7
-	 9FmNBKYblzlvU6d0Ro6CUcdg/vATJG5DETvCyXW0=
-Received: (qmail 23344 invoked by uid 510); 13 Oct 2025 20:55:30 +0530
-X-Qmail-Scanner-Diagnostics: from 10.200.1.25 by ldns2 (envelope-from <akhilesh@ee.iitb.ac.in>, uid 501) with qmail-scanner-2.11
- spamassassin: 3.4.1. mhr: 1.0. {clamdscan: 0.100.0/26337} 
- Clear:RC:1(10.200.1.25):SA:0(0.0/7.0):. Processed in 4.394388 secs; 13 Oct 2025 20:55:30 +0530
-X-Spam-Level: 
-X-Spam-Pyzor: Reported 0 times.
-X-Envelope-From: akhilesh@ee.iitb.ac.in
-X-Qmail-Scanner-Mime-Attachments: |
-X-Qmail-Scanner-Zip-Files: |
-Received: from unknown (HELO ldns2.iitb.ac.in) (10.200.1.25)
-  by ldns2.iitb.ac.in with SMTP; 13 Oct 2025 20:55:26 +0530
-Received: from bhairav.ee.iitb.ac.in (bhairav.ee.iitb.ac.in [10.107.1.1])
-	by ldns2.iitb.ac.in (Postfix) with ESMTP id 3F13A341504;
-	Mon, 13 Oct 2025 20:55:25 +0530 (IST)
-Received: from bhairav-test.ee.iitb.ac.in (bhairav.ee.iitb.ac.in [10.107.1.1])
-	(Authenticated sender: akhilesh)
-	by bhairav.ee.iitb.ac.in (Postfix) with ESMTPSA id F0F151E81581;
-	Mon, 13 Oct 2025 20:55:24 +0530 (IST)
-Date: Mon, 13 Oct 2025 20:55:20 +0530
-From: Akhilesh Patil <akhilesh@ee.iitb.ac.in>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: jic23@kernel.org, dlechner@baylibre.com, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, nuno.sa@analog.com,
-	andy@kernel.org, marcelo.schmitt1@gmail.com, vassilisamir@gmail.com,
-	salah.triki@gmail.com, skhan@linuxfoundation.org,
-	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, akhileshpatilvnit@gmail.com
-Subject: Re: [PATCH 1/2] dt-bindings: iio: pressure: Add Aosong adp810
-Message-ID: <20251013-152520-1561165@bhairav-test.ee.iitb.ac.in>
-References: <cover.1760184859.git.akhilesh@ee.iitb.ac.in>
- <5ddfc7d318a7d3a42cfce4a33ad62f3d2be91a11.1760184859.git.akhilesh@ee.iitb.ac.in>
- <aa5d7fb2-2143-43b1-8780-87b69479a17b@kernel.org>
+	s=arc-20240116; t=1760369249; c=relaxed/simple;
+	bh=0/9WuBOtVzbwvasIhv2yl9J8bXpAkxeZj97IdX6gANQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=C04ZNhuBmAbRG7g8U1I2gB8DhNePhXLUvK1U7sLX2kn5dTRzBkZt6BG1Jmpv5+S9glaU6UKB+zkAn3VfInL9VYllxjX92Ngnoa3g9BX+IIZW/kmKdNqFCl198NWM7ZLjDY1NQMLduRgKx5Xz1V6z62ORsmKKlI4fHP4cF0Kdu3A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=QGFbD/jC; arc=none smtp.client-ip=185.246.84.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-02.galae.net (Postfix) with ESMTPS id BF0681A12FC;
+	Mon, 13 Oct 2025 15:27:24 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 923B86067B;
+	Mon, 13 Oct 2025 15:27:24 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id DA7AF102F226E;
+	Mon, 13 Oct 2025 17:27:05 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1760369243; h=from:subject:date:message-id:to:cc:mime-version:
+	 content-transfer-encoding; bh=IWdsfjj5jpQbVUBEF3JNVK8XtUjBuYa8SUR1XN8C/40=;
+	b=QGFbD/jCtgA18dea4eicPYCp27fIQfV28kOkO5geNkZtVwVYY/OtySER9JAODMiCs2Wz8a
+	pJJlYjsBDG4xCNGm6rh4j5VOXDoVAXJa0FbeoHIULkVsP7kd8BqFMdU8UAd9u7Nu26UsFG
+	nhscsQS+FI5wQbqC+fYoPAPsc28qzFcUR127lQrWRH7ucpqjEvSViNfSyf13xTJmxh0rCW
+	PWZH4DycrEAv5VS6+cuJOtPTfc8Kxx6GW4ZaRAAW4wGK909H+aBm5sDX6+iyQLWsaTkzuu
+	5mHVVq2Yj/oKRwqMKfEW7U9C0s3ug5mFFj5Rb5Ch7j9OjIvIHYoj21mgd4h7fw==
+From: Richard Genoud <richard.genoud@bootlin.com>
+To: Miquel Raynal <miquel.raynal@bootlin.com>,
+	Richard Weinberger <richard@nod.at>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>
+Cc: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>,
+	Wentao Liang <vulab@iscas.ac.cn>,
+	Johan Hovold <johan@kernel.org>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	linux-mtd@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-sunxi@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	Richard Genoud <richard.genoud@bootlin.com>
+Subject: [PATCH v2 00/15] Introduce Allwinner H6/H616 NAND controller support
+Date: Mon, 13 Oct 2025 17:26:30 +0200
+Message-ID: <20251013152645.1119308-1-richard.genoud@bootlin.com>
+X-Mailer: git-send-email 2.47.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aa5d7fb2-2143-43b1-8780-87b69479a17b@kernel.org>
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-On Sun, Oct 12, 2025 at 05:13:53AM +0200, Krzysztof Kozlowski wrote:
-> On 11/10/2025 14:25, Akhilesh Patil wrote:
-> > +---
-> > +$id: http://devicetree.org/schemas/iio/pressure/aosong,adp810.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: aosong adp810 differential pressure sensor
-> > +
-> > +maintainers:
-> > +  - Akhilesh Patil <akhilesh@ee.iitb.ac.in>
-> > +
-> > +description: |
-> 
-> If there is going to be any new version, drop |.
+Hi everyone,
 
-Sure. Fixed in v2.
+This patch series introduce H6/H616 NAND controller support (but not yet
+the DMA/MDMA part).
 
-> 
-> 
-> > +  ADP810 is differential pressure and temperature sensor. It has I2C bus interface
-> 
-> Wrap at 80 (see coding style).
+All the work was done on a H616 board with a Kioxia TC58NVG1S3HTA00 NAND
+chip.
+ECC is supported, as well as scrambling.
 
-Fixed.
+H6 SoC has not been tested, but it shares all registers with H616, plus
+some registers dedicated to Embedded Crypto Engine that H616 lacks.
 
-> 
-> 
-> 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> Best regards,
-> Krzysztof
+This IP has quite some register fields modified from the A10/A23, but in
+the end, it works more or less the same.
+Main differences with A10/A23 are:
+- The need for 2 more clocks (for ECC and MBUS)
+- The use of a new USER_DATA_LEN register
+- More ECC strengths (44, 52, 68, 72, 76 and 80 bits / 1KB)
+- MDMA based on chained buffers
+- some registers layouts have changed (mainly due do the stronger ECC)
 
-Hi Krzysztof, Thanks for the review.
+Patch 1 removes a superfluous call, and is independent from the others.
+
+Patches 2-12 are paving the way to the introduction of H616 NAND
+controller support.
+They are small, without functional change and easier to review than a
+big patch.
+They move a fixed value (register offset, field mask, SRAM size) into
+the struct sunxi_nfc_caps when this value is different on H6/H616.
+
+Patch 13 introduces the support for H6/H616 NAND controller.
+
+Patch 14 introduces allwinner,sun50i-h616-nand-controller compatible
+in order to differentiate from the A10 and A23.
+
+Patch 15 adds the NAND controller node to sun50i-h616.dtsi
+
+Changes from V1:
+- reorder patches to have dtsi/bindings patches at the end.
+- reorder nand-controller and pins nodes to respect the order.
+- add /omit-if-no-ref/ on pins that may be unused.
+- remove pinctrl from nand controller node (this should be added to device
+ DT).
+- rework dt binding.
+- fix H616 comment on chained descriptors support.
+- add missing mbus_clk description.
+- make ECC clock mandatory for H6 (because it's indeed mandatory).
+- harmonize new clock retrieving error messages with older ones.
+- harmonize commits subjects (mtd: rawnand: sunxi).
+- reword commit messages to use imperative mood.
+
+Thanks Krzysztof and Jernej for the reviews!
 
 Regards,
-Akhilesh
+Richard
 
+Richard Genoud (15):
+  mtd: rawnand: sunxi: Remove superfluous register readings
+  mtd: rawnand: sunxi: move ECC strenghts in sunxi_nfc_caps
+  mtd: rawnand: sunxi: introduce reg_ecc_err_cnt in sunxi_nfc_caps
+  mtd: rawnand: sunxi: introduce reg_user_data in sunxi_nfc_caps
+  mtd: rawnand: sunxi: rework pattern found registers
+  mtd: rawnand: sunxi: add has_ecc_block_512 capability
+  mtd: rawnand: sunxi: introduce ecc_mode_mask in sunxi_nfc_caps
+  mtd: rawnand: sunxi: introduce random en/dir in sunxi_nfc_caps
+  mtd: rawnand: sunxi: introduce reg_pat_id in sunxi_nfc_caps
+  mtd: rawnand: sunxi: introduce reg_spare_area in sunxi_nfc_caps
+  mtd: rawnand: sunxi: introduce ecc_err_mask in sunxi_nfc_caps
+  mtd: rawnand: sunxi: introduce sram_size in sunxi_nfc_caps
+  mtd: rawnand: sunxi: Add support for H616 nand controller
+  dt-bindings: mtd: sunxi: Add H616 compatible
+  arm64: dts: allwinner: h616: add NAND controller
+
+ .../mtd/allwinner,sun4i-a10-nand.yaml         |  57 ++-
+ .../arm64/boot/dts/allwinner/sun50i-h616.dtsi |  51 +++
+ drivers/mtd/nand/raw/sunxi_nand.c             | 350 +++++++++++++++---
+ 3 files changed, 404 insertions(+), 54 deletions(-)
+
+
+base-commit: 3a8660878839faadb4f1a6dd72c3179c1df56787
 
