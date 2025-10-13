@@ -1,86 +1,158 @@
-Return-Path: <devicetree+bounces-225894-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225919-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 437BFBD1E0A
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 09:53:20 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9679EBD2458
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 11:23:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 0C4134EBA7D
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 07:53:19 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 14C504EF221
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 09:23:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D2F32EA46F;
-	Mon, 13 Oct 2025 07:53:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E10EC2FD1D9;
+	Mon, 13 Oct 2025 09:23:42 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail-m49197.qiye.163.com (mail-m49197.qiye.163.com [45.254.49.197])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03D1BEADC;
-	Mon, 13 Oct 2025 07:53:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E340C2F28EF;
+	Mon, 13 Oct 2025 09:23:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760341996; cv=none; b=IxoD/cJrEnYZUt7jl8Cb7OaTxhThzS7WF8/2xZpF+WjwKsqFg+D3BTDTidiGVF7Fo0o+q1JKBXZTDa6AvX+kkQCmOXDxYgxXTZFB/hkLWro9gUQppuQDYT3TZpBj/E0r1JVtC7XKy+u/ALE2kx+8VXUVI2TH/N9r8Sk/ZgUhWXs=
+	t=1760347422; cv=none; b=Hi19Jr/6tU5DvzbbykTcnsWut45MqSA6LgNSQuiVIFP4y9u1ztOzFq1R+2R8saRQpCqWM9vqwxJ3N6PXXnssSSxHzHWEGDqnhLX2/4FmSAQyzZo3AVsTQmw2ih3kcj6oZuDrKR6RxRTa3Utp3AV7vpYGV9BJihm4CUA8DpxHeH4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760341996; c=relaxed/simple;
-	bh=RVbSqysug34SR/SVpuf7+x3DtGwk+rjgK3h3fV/4w4A=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=GRkmD21fqe+JGCwgKrJaSCB4DKG1+wZQNmTuudvNH/AQaL0B3pGmV6dMlSlTFpYM4YZGI+S7unq0X5mQI8BJ1kHWVKl6/QFBv8W4Lm1rSQ7fIv72bJW0+clt+sM2vSwdhLepnx4kF9s+tUusC/HOfUI5U3qHXZqB0pDs5d9LcFQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 54617C4CEE7;
-	Mon, 13 Oct 2025 07:53:15 +0000 (UTC)
-Received: from wens.tw (localhost [127.0.0.1])
-	by wens.tw (Postfix) with ESMTP id D4A8E5FA42;
-	Mon, 13 Oct 2025 15:53:12 +0800 (CST)
-From: Chen-Yu Tsai <wens@csie.org>
-To: Andrew Lunn <andrew+netdev@lunn.ch>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Jernej Skrabec <jernej@kernel.org>, 
- Samuel Holland <samuel@sholland.org>, Chen-Yu Tsai <wens@kernel.org>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
- linux-kernel@vger.kernel.org, Andre Przywara <andre.przywara@arm.com>
-In-Reply-To: <20250923140247.2622602-1-wens@kernel.org>
-References: <20250923140247.2622602-1-wens@kernel.org>
-Subject: Re: (subset) [PATCH net-next v7 0/6] net: stmmac: Add support for
- Allwinner A523 GMAC200
-Message-Id: <176034199282.234636.10650174207490097271.b4-ty@csie.org>
-Date: Mon, 13 Oct 2025 15:53:12 +0800
+	s=arc-20240116; t=1760347422; c=relaxed/simple;
+	bh=XU5ZmPKC8+pr2IZ7+FXw3w0ys0RSsYms3cTEpv3ws6Q=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=QuB9pqa0CqkStIo4Twh7XbRni/EUN8+r2WlYIvlpBGFpyb++MuvMw9KFBZ1Mw3BtYZ4nH6WG4CJL6DjLuhyZK/GUpa9QJ2XmmVsk1H+pPNPyAKDNwLhb5oYl3jSlF/8G3zYIZaCGBz/NICohnUtsIXvtXX+dbDR15CJ1s5p87fs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=45.254.49.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
+Received: from localhost.localdomain (unknown [116.25.94.88])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 25b01d132;
+	Mon, 13 Oct 2025 15:01:11 +0800 (GMT+08:00)
+From: Chukun Pan <amadeus@jmu.edu.cn>
+To: jjm2473@gmail.com
+Cc: conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	heiko@sntech.de,
+	krzk+dt@kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	Chukun Pan <amadeus@jmu.edu.cn>
+Subject: Re: [PATCH v5 3/3] arm64: dts: rockchip: add LinkEase EasePi R1
+Date: Mon, 13 Oct 2025 15:00:36 +0800
+Message-Id: <20251013070036.66901-1-amadeus@jmu.edu.cn>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20251009084416.45542-4-jjm2473@gmail.com>
+References: <20251009084416.45542-4-jjm2473@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.2
+Content-Transfer-Encoding: 8bit
+X-HM-Tid: 0a99dc5f845b03a2kunm65153ab079944d
+X-HM-MType: 10
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVkaGE5IVhpJSkJNS0JITE4dH1YeHw5VEwETFhoSFy
+	QUDg9ZV1kYEgtZQVlKSk1VSU5VQk9VQ0NZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0tVSktLVUtZBg
+	++
 
-On Tue, 23 Sep 2025 22:02:40 +0800, Chen-Yu Tsai wrote:
-> From: Chen-Yu Tsai <wens@csie.org>
-> 
-> Hi everyone,
-> 
-> This is v7 of my Allwinner A523 GMAC200 support series. This is based on
-> next-20250922.
-> 
-> [...]
+Hi,
 
-Applied to sunxi/dt-for-6.19 in local tree, thanks!
+> +	regulator-vdd0v95-25glan {
+> +		compatible = "regulator-fixed";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pwr_25g_pin>;
+> +		enable-active-high;
+> +		gpio = <&gpio3 RK_PB1 GPIO_ACTIVE_HIGH>;
+> +		regulator-name = "vdd0v95_25glan";
+> +		regulator-min-microvolt = <950000>;
+> +		regulator-max-microvolt = <950000>;
+> +		regulator-boot-on;
+> +		regulator-always-on;
 
-[3/6] arm64: dts: allwinner: a523: Add GMAC200 ethernet controller
-      commit: 460a71b5642a60574809032f0a21afff0f942474
-[4/6] arm64: dts: allwinner: a527: cubie-a5e: Enable second Ethernet port
-      commit: 7076938d20d22d5f75641f417f11edeee192e3cf
-[5/6] arm64: dts: allwinner: t527: avaota-a1: enable second Ethernet port
-      commit: 2e5d147ba90e887271297f69721d2d88122c7c4f
-[6/6] arm64: dts: allwinner: t527: orangepi-4a: Enable Ethernet port
-      commit: a3606e8a7819534026b46e2b8c7b0e156e292f13
+The property order should be consistent with other nodes.
 
-Best regards,
--- 
-Chen-Yu Tsai <wens@csie.org>
+> +		vin-supply = <&vcc3v3_sys>;
+> +	};
+> +
+> +	vcc3v3_nvme: regulator-vcc3v3-nvme {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vcc3v3_nvme";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		enable-active-high;
+> +		gpio = <&gpio0 RK_PA5 GPIO_ACTIVE_HIGH>;
+> +		vin-supply = <&dc_12v>;
 
+Same here, keep alphabetical order.
+
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&vcc3v3_nvme_en>;
+> +	};
+
+> +		status_led: led-status {
+> +			gpios = <&gpio2 RK_PD7 GPIO_ACTIVE_HIGH>;
+> +			color = <LED_COLOR_ID_GREEN>;
+> +			function = LED_FUNCTION_STATUS;
+> +			label = "green:status";
+
+The "label" property is deprecated.
+
+> +&pcie2x1 {
+> +	reset-gpios = <&gpio3 RK_PA4 GPIO_ACTIVE_HIGH>;
+
+vpcie3v3-supply is missing.
+
+> +	status = "okay";
+> +};
+
+> +&pcie3x1 {
+> +	num-lanes = <1>;
+> +	reset-gpios = <&gpio3 RK_PA3 GPIO_ACTIVE_HIGH>;
+
+vpcie3v3-supply is missing.
+
+> +	status = "okay";
+> +};
+
+> +&sdmmc0 {
+> +	max-frequency = <150000000>;
+
+max-frequency has been defined in rk356x-base.dtsi
+
+> +	no-sdio;
+> +	no-mmc;
+
+no-mmc and cap-mmc-highspeed are mutually exclusive.
+
+> +	bus-width = <4>;
+> +	cap-mmc-highspeed;
+
+> +/* Micro SD card slot is not populated */
+> +/* Wifi module is not populated */
+
+Why would you define them if they aren't on the board?
+
+> +&sdmmc2 {
+> +	max-frequency = <150000000>;
+
+max-frequency has been defined in rk356x-base.dtsi
+
+> +	bus-width = <4>;
+> +	disable-wp;
+
+disable-wp does not work with sdio
+
+> +&usb2phy0_otg {
+
+phy-supply is missing.
+
+> +	status = "okay";
+> +};
 
