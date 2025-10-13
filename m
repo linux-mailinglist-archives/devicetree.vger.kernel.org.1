@@ -1,234 +1,200 @@
-Return-Path: <devicetree+bounces-226283-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226284-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E60EBD6C20
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 01:42:00 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F0D5BD6C29
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 01:44:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 55E4718A3B1D
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 23:42:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0E9183B3E70
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 23:44:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D66A2C0F79;
-	Mon, 13 Oct 2025 23:41:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58FD62DAFC3;
+	Mon, 13 Oct 2025 23:44:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ozpJdtU8"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="j6w1NkH1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E5C21E5B9A;
-	Mon, 13 Oct 2025 23:41:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADAAC1E9B37
+	for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 23:44:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760398915; cv=none; b=WwwAWcYW3c/0cjuJ8Z8zXPSDZxmtgpIzZhlB4bLUZTKjh1fwRELNaxMsmF6bYgcVlpYvx1u56LIu4JujyYCaPUgVmvznPRgRxBJKW6sZBcBevx2KxrV+nv6zzazXZDcoyF6QnoI6jkqeOu0Ky2pl2vRB1iyAit3ACpuPCv+d5xg=
+	t=1760399065; cv=none; b=onFhbMvGMp5xOv4UMBc//rXXIzdU01CibPYA1orz8qGZavHiUSKVNoE8qBpSDVaOieacBdvAxd8PJHG2OPSo5ES1oeSI09Iy1m2r/ARW9m56gF/FYGUu13fHPgKIaLU14iabgWC9fDwJyDljz3TuOBy7cmlxRSwQd8OtiedeT6s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760398915; c=relaxed/simple;
-	bh=FhA+6MxVpX+XMIRb8hFgV90i2r+GLcJffFBtki8AwNw=;
+	s=arc-20240116; t=1760399065; c=relaxed/simple;
+	bh=Nzt8647+EKTBB+laQsBzzYVQ9BNxTkISTr1GK3EeIQY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=X8hjWv6KwoNKBHqAjGWyVBK5d2eg+gxGq9G7AH8g0QNTXdwi0JbmxSEc96cGsk1p2OCuFJ5Ud0Ob3A4n1YoIeEZbCJTBosnQoifJFn7zKVbiGxKRT9O8LLKBtKGXcIrb+HFazXeG+fN0VhiTQLcrmJJgGs7/6VuCSRE7NNUlnb0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ozpJdtU8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 03226C4CEE7;
-	Mon, 13 Oct 2025 23:41:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760398914;
-	bh=FhA+6MxVpX+XMIRb8hFgV90i2r+GLcJffFBtki8AwNw=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ozpJdtU865OPdmLHrJQy7zkChQZnUN0H/PpkJrMeSzqgh2tF/MhYxxpNiELgeY4Lb
-	 wUfwDnBet/TuufQXDz/I+OSwzdHbpHVsV5/B5BoXFoaPQTwWFO30HHASiQ1X8Grva8
-	 9dOP3g4HevCSVzEuVklVsasbeB2nIytTJnTbFf95YMftuV2l/kw/aafGau7A+cL/fh
-	 VHSVEUxkmysJa+3Ahn8U2XU8eojPIvB9xBJkBOuRorJiTaNMxwVNqdtKQp6DRrW1DD
-	 UDlr4m5FmgXsDuvTmTbJzWdA587DKBJIgY19X4i8kk1DF/x8UGKxLCKdFu7S9KuP7M
-	 aIkHBST3OWLGw==
-Message-ID: <8c3796eb-63d0-4650-b296-60894461a806@kernel.org>
-Date: Tue, 14 Oct 2025 01:41:47 +0200
+	 In-Reply-To:Content-Type; b=OndmwWhnIetuyGWkUuxNQJAH+8lDx0PmV7PNmeqh76epUF/g9AFbBqjR3XfLG4B+usOpd/O0+ePwtI+m9PixED/v+5LHWtAxDSuwMz8uLJfVAS7len0yQVAdsjgCwhb3LrbMLY+mNKkKpdGmmd5uvm9DkwAxLR93zADrRJ1PNlA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=j6w1NkH1; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59DIMMpP024035
+	for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 23:44:23 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	R+2pANyzcoM3DHg5TppGmIvwYCz/hBBmCZ5ALOha+JY=; b=j6w1NkH1mgOKp4/B
+	VdoN/dg0uOwEnc45wHa5bk9aHMp0qBqaKGCfZ/KaWhXswW1nJu+IOo+SjYKucdzY
+	hfy8ORdaHqhN4dlobKfPym3HVxRsIqZhHUFZVzLMyt9f/llBJFF5e4eZ+NCw6y99
+	VbSyS31hqh7uf4vMrR4CVwqsIh9aOUVVZAHpLb7qrufRK34OrHDw4y2UP518dDKB
+	hCKctlc6ArdAU7hg9MYZJX67cGooNdHvD06BIa+RdJAsgncPnDh/rh4L/nYCgMh/
+	AnyFeWa4ivZxPWjyUU5aEux/7SX6TqpwgQKnSrER8nEjeKF7USAli2W+qCsv2y1A
+	mgiG2g==
+Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com [209.85.214.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49s6mwgsrx-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 23:44:22 +0000 (GMT)
+Received: by mail-pl1-f199.google.com with SMTP id d9443c01a7336-269880a7bd9so105408175ad.3
+        for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 16:44:22 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1760399062; x=1761003862;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=R+2pANyzcoM3DHg5TppGmIvwYCz/hBBmCZ5ALOha+JY=;
+        b=LrGDDhQKGqmCLTxsedjL0Ens4yBp71MzkK9kvJFR4nOFdkxtCx/uc6m2KlePxDUx7T
+         yYmtg1R2UxPjZIWxeuZEwx0tTFo6T5kQ8vUrAxvm1J1f1rVag/8FnersXxME32D/SOay
+         /yJnEy+i/0D+2N0uBPbf3vTE3g0WqwxoFh3mLiYx2yy5fGlpItqtD9/oNGPSgn2gYPr/
+         OoXV5rj/Kygu1fm8MGAdxQuP49x/aJcohsqU+92BGg5pfCm5Y8YYk++r/486ZDcHcXAo
+         r+mrWy8oBcXJU1PgX7guYKuaevodD8yWAqI/Rxs4Z4zmcj14weaJJAXkpjKaQNg9jj0a
+         ZFOw==
+X-Forwarded-Encrypted: i=1; AJvYcCVxExKio8NO2/YLLXDdhopOfVxfsEwRW/B1oZSDoEVrU2K13wKOhKSGclAjs9jwWGGRiMm68S4QUla5@vger.kernel.org
+X-Gm-Message-State: AOJu0YxrRsS6cTNkaFJ/eqpPCseuKuB4RRiUHEDzXQJZbQ+t0Rv1HEpK
+	HFWr32aq+y5Nk64xu3KcFWxoWB1N4zDpuXe2MKGV7g2Z2rhMeXXKot+Bwu8YSAd3qj78WsufXXi
+	+zRabHLcidL/oIv5PLCE1P/b/dQ0dgIVjrB6x/T+2aVNbTAxeDe5YvpZEq65FJ4G+
+X-Gm-Gg: ASbGncvuWKYWDSZoWnu8RP7DGVSZXxEdeL9JuAFk1qilx94s4+8fbLDZ/DMDjam7UNW
+	0rhjjCoRWk2TRDkKZ5AVkK5eIzdMV+SsyaNyZnDb3FZjjOrR2GkBctDgUgfnPeJV58/DNe4KbRs
+	d3b1p7BmqHwkTlrmQztd1r5SKmKkrbJnCjOtyaTnCtSLN/wU7NMjaqy3z0FlnTLYr/AUpFHBgLJ
+	1c4tv3XgKoiOVIHrhSjbwoNw9tPgb6LIMkoOEqqj5jAZ2DgeECKm3QQHKWMfMsXOZRAtl1DltRK
+	dK39h3SyaFnMSoZrBCeirBVNdMtblNum4r84TakLxjw9ph1KoNsMv4bDPEp8xgrbF6i3NHMT/Rw
+	RXDa7Cw==
+X-Received: by 2002:a17:902:cf08:b0:275:c2f:1b41 with SMTP id d9443c01a7336-290274193camr291358365ad.53.1760399062095;
+        Mon, 13 Oct 2025 16:44:22 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGtJmEqw1slbxjdy+zH5RnzE9u3uG80gq0Z6ZZBCc/1hYMquagduloVtbdhakKZwb9AVAeUjw==
+X-Received: by 2002:a17:902:cf08:b0:275:c2f:1b41 with SMTP id d9443c01a7336-290274193camr291358065ad.53.1760399061633;
+        Mon, 13 Oct 2025 16:44:21 -0700 (PDT)
+Received: from [10.73.53.19] (pat_11.qualcomm.com. [192.35.156.11])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29034e1cc53sm144884885ad.46.2025.10.13.16.44.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 13 Oct 2025 16:44:20 -0700 (PDT)
+Message-ID: <00408896-2e25-2dd1-6e6e-2195317ee7fb@oss.qualcomm.com>
+Date: Mon, 13 Oct 2025 16:44:19 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/4] dt-bindings: leds: Add YAML bindings for Virtual
- Color LED Group driver
-To: Jonathan Brophy <professorjonny98@gmail.com>, lee Jones <lee@kernel.org>,
- Pavel Machek <pavel@kernel.org>,
- Jonathan Brophy <professor_jonny@hotmail.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Radoslav Tsvetkov <rtsvetkov@gradotech.eu>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-leds@vger.kernel.org
-References: <20251013120955.227572-1-professorjonny98@gmail.com>
- <20251013120955.227572-2-professorjonny98@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH v5 02/10] dt-bindings: phy: qcom,qmp-usb: Add Glymur USB
+ UNI PHY compatible
+To: Krzysztof Kozlowski <krzk@kernel.org>, krzk+dt@kernel.org,
+        conor+dt@kernel.org, konrad.dybcio@oss.qualcomm.com,
+        dmitry.baryshkov@oss.qualcomm.com, kishon@kernel.org, vkoul@kernel.org,
+        gregkh@linuxfoundation.org, robh@kernel.org
+Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20251006222002.2182777-1-wesley.cheng@oss.qualcomm.com>
+ <20251006222002.2182777-3-wesley.cheng@oss.qualcomm.com>
+ <f5e4ae02-b8fa-4406-b2e0-3602b07b7e23@kernel.org>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20251013120955.227572-2-professorjonny98@gmail.com>
-Content-Type: text/plain; charset=UTF-8
+From: Wesley Cheng <wesley.cheng@oss.qualcomm.com>
+In-Reply-To: <f5e4ae02-b8fa-4406-b2e0-3602b07b7e23@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDEzMDA4MyBTYWx0ZWRfX55fKRsCo/dXu
+ jbF18Vko5svwwkqbCS9fIL1hCiWJSfeIdMYB4o6zNhbTIn7Dybc3voEMKT+m18xCoyjK5OlNZvq
+ xuQBunpvxNiGjwWzvmq8UnU6TawDPdomh/IbEZCk4GiNuJUhZ9mX5ZNVN3uIN9dN5qQLBM4oHaz
+ I25m65nV37smIzF6l6PnqGfUrbyUfI7Te+/IJvbJk0FGcI7FmlrQR9tNgEbMLql6xPvCyGw4fk9
+ wMbFiKpeNuSrvDOs0T+KjPhzUD171K/p7vfZDEjzB0TCIWYsz+Uyky56obe5rj9Ry01axSSs1s4
+ Nz17QcgB8pAWRiTzUUnc2F+/vM3Y36xyfbDgX7IwMNkUNqCj2nz6UOyemoYKxQahVwXXHCqRkH/
+ lI/ekIT/Wm44eX2FaQa3c1TUadj8nw==
+X-Authority-Analysis: v=2.4 cv=Fr4IPmrq c=1 sm=1 tr=0 ts=68ed8ed7 cx=c_pps
+ a=JL+w9abYAAE89/QcEU+0QA==:117 a=ZdW6uxA9NKXbfdqeeS2OGA==:17
+ a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=EUspDBNiAAAA:8 a=mLeorRv-Xii_F4RM4uAA:9 a=QEXdDO2ut3YA:10
+ a=324X-CrmTo6CU4MGRt3R:22
+X-Proofpoint-GUID: qseN9mia9Omz0gnjf6jepqrpwM07_XuM
+X-Proofpoint-ORIG-GUID: qseN9mia9Omz0gnjf6jepqrpwM07_XuM
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-10-13_08,2025-10-13_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 impostorscore=0 spamscore=0 phishscore=0 malwarescore=0
+ adultscore=0 lowpriorityscore=0 bulkscore=0 suspectscore=0 clxscore=1015
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2510020000 definitions=main-2510130083
 
-On 13/10/2025 14:09, Jonathan Brophy wrote:
-> From: Jonathan Brophy <professor_jonny@hotmail.com>
+
+
+On 10/10/2025 5:04 PM, Krzysztof Kozlowski wrote:
+> On 07/10/2025 00:19, Wesley Cheng wrote:
+>> The Glymur USB subsystem contains a multiport controller, which utilizes
+>> two QMP UNI PHYs.  Add the proper compatible string for the Glymur SoC, and
+>> the required clkref clock name.
+>>
+>> Signed-off-by: Wesley Cheng <wesley.cheng@oss.qualcomm.com>
+>> ---
+>>   .../phy/qcom,sc8280xp-qmp-usb3-uni-phy.yaml   | 35 +++++++++++++++++++
+>>   1 file changed, 35 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb3-uni-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb3-uni-phy.yaml
+>> index a1b55168e050..b0ce803d2b49 100644
+>> --- a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb3-uni-phy.yaml
+>> +++ b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb3-uni-phy.yaml
+>> @@ -16,6 +16,7 @@ description:
+>>   properties:
+>>     compatible:
+>>       enum:
+>> +      - qcom,glymur-qmp-usb3-uni-phy
+>>         - qcom,ipq5424-qmp-usb3-phy
+>>         - qcom,ipq6018-qmp-usb3-phy
+>>         - qcom,ipq8074-qmp-usb3-phy
+>> @@ -62,6 +63,8 @@ properties:
+>>   
+>>     vdda-pll-supply: true
+>>   
+>> +  refgen-supply: true
+>> +
+>>     "#clock-cells":
+>>       const: 0
+>>   
+>> @@ -157,6 +160,25 @@ allOf:
+>>           compatible:
+>>             contains:
+>>               enum:
+>> +              - qcom,glymur-qmp-usb3-uni-phy
+>> +    then:
+>> +      properties:
+>> +        clocks:
 > 
-> Document Virtual Color device tree bindings.
-
-I don't see how you answered my comment about missing justification.
-
-Rob's questions also were not answered.
-
-Few minor things follow up, but considering missing reasoning I did not
-perform full review.
-
-A nit, subject: drop second/last, redundant "YAML bindings for". The
-"dt-bindings" prefix is already stating that these are bindings.
-See also:
-https://elixir.bootlin.com/linux/v6.17-rc3/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
-
-... and driver. Again - explain the hardware. Bindings are not for driver.
-
+> Missing minItems.
 > 
-> Co-developed-by: Radoslav Tsvetkov <rtsvetkov@gradotech.eu>
-> Signed-off-by: Radoslav Tsvetkov <rtsvetkov@gradotech.eu>
-> Signed-off-by: Jonathan Brophy <professor_jonny@hotmail.com>
-> ---
->  .../leds/leds-group-virtualcolor.yaml         | 100 ++++++++++++++++++
->  1 file changed, 100 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/leds/leds-group-virtualcolor.yaml
+
+Hi Krzysztof,
+
+Won't the minItems be inherited by the base definition?
+
+>> +          maxItems: 5
+>> +        clock-names:
+>> +          items:
+>> +            - const: aux
+>> +            - const: clkref
+>> +            - const: ref
 > 
-> diff --git a/Documentation/devicetree/bindings/leds/leds-group-virtualcolor.yaml b/Documentation/devicetree/bindings/leds/leds-group-virtualcolor.yaml
-> new file mode 100644
-> index 000000000000..bafdd8fb9557
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/leds/leds-group-virtualcolor.yaml
-> @@ -0,0 +1,100 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/leds/leds-group-virtualcolor.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Common properties for virtualcolor led class
-> +
-> +maintainers:
-> +  - Radoslav Tsvetkov <rtsvetkov@gradotech.eu>
-> +
-> +description: |
-> +  Bindings to show how to achieve logically grouped virtual LEDs.
-> +  The nodes and properties defined in this document are unique to the
-> +  virtualcolor LED class.
+> What is the difference between these two? Which block INPUTs
+> (important!) they represent?
+> 
 
-That's completely redundant statement.
+clkref is the TCSR reference clock switch, and the ref is the actual CXO 
+handle.
 
-> +  Common LED nodes and properties are inherited from the common.yaml
-> +  within this documentation directory
-
-As well drop. Your description is pretty obvious and does not help at all.
-
-> +
-> +allOf:
-> +  - $ref: common.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: leds-group-virtualcolor
-> +
-> +  '#address-cells':
-> +    const: 1
-> +
-> +  '#size-cells':
-> +    const: 0
-> +
-> +required:
-> +  - compatible
-> +
-> +patternProperties:
-> +  '^led@[0-9a-f]$':
-> +    type: object
-> +    $ref: common.yaml#
-
-Missing unevaluatedProperties: false.
-
-> +    properties:
-> +      reg:
-> +        maxItems: 1
-> +        description: Virtual LED number
-> +
-> +      leds:
-> +        $ref: /schemas/types.yaml#/definitions/phandle-array
-> +        description: List of phandles to the monochromatic LEDs to group
-> +
-> +      function:
-> +        description: |
-> +          For virtualcolor LEDs this property should be defined as
-> +          LED_FUNCTION_VIRTUAL_STATUS as outlined in:
-> +          include/dt-bindings/leds/common.h.
-> +
-> +      priority:
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        description: Priority level for LED activation
-> +          (higher value means higher priority)
-> +
-> +      blink-delay-on:
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        description: Time in milliseconds the LED is on during blink
-> +
-> +      blink-delay-off:
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        description: Time in milliseconds the LED is off during blink
-> +        note: Setting just one of the blink delays to a valid value while
-> +          setting the other to null will cause the LED to operate with a one-shot
-> +          on or off delay instead of a repeat cycle.
-
-
-And drop all above, except reg and leds. If these are new properties,
-then you need to use proper unit suffixes.
-
-https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/property-units.yaml
-
-Best regards,
-Krzysztof
+Thanks
+Wesley Cheng
 
