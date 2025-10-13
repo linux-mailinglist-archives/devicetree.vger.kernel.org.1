@@ -1,122 +1,226 @@
-Return-Path: <devicetree+bounces-225957-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225958-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE537BD27D6
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 12:14:02 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id F1792BD2849
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 12:18:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8F9EB3A62A3
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 10:14:01 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 3F79A4F0294
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 10:18:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 798442FE57F;
-	Mon, 13 Oct 2025 10:13:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96A822FE576;
+	Mon, 13 Oct 2025 10:18:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ZKZfhagI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EnXlRhX8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com [209.85.208.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7EE22EBDF9
-	for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 10:13:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E5C628000A;
+	Mon, 13 Oct 2025 10:18:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760350439; cv=none; b=PAABkceM33Z7lxpgiY/suQHL7emNF8UxzpYnuMzne7b0giPLHHnaYdrciZYl1LbskALUM/WkoZQC9dkzGNxc7q3YSS6uHeIxe8OXOlNg7hlTmlpVrvmw2RpyXgMULl7kSDxzQPDhaqUjnWyPZY4kr1z7V5jKddOvmIblNBqK7U8=
+	t=1760350691; cv=none; b=nvHI3g8DMafaDzp/uThoI34cQ9VMqJbQgcsMHPNoN4XjGO6f5ZNMzXShL/TCGFje1kUyzkkPsG3/lqfPRDeUfqnTjDXv11q+pmIx+0Lodt0yb+A448hZnf16AY4rYKXF3cpItOGUJCETGbKCTLsQajB+wubYykjmOLFTIplRpAE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760350439; c=relaxed/simple;
-	bh=IGEdbdnaRYWKvG+bGlTd3zUjiAzrtQYQYYulGQBXPVQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Omv+wfGlhHUEKPBPlxvpWKs9WXkSJknMfFh4/NEA7Frdi1d/xW1oBXFE2dEucPPK+YQOP4kVziLg9da7g4CbpbU4EWsELqMBjc7Ti3MbuJVIjaBloFjnAS3acobtMwczw8DZL1OMluY/Anh8MMXUtTT0ArvNNNFnO3h+XhuyDtc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ZKZfhagI; arc=none smtp.client-ip=209.85.208.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-36bf096b092so41175701fa.1
-        for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 03:13:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1760350436; x=1760955236; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=IGEdbdnaRYWKvG+bGlTd3zUjiAzrtQYQYYulGQBXPVQ=;
-        b=ZKZfhagIj4u6LFe1ocgaUTzSTxvFJFATTfnN1c9c/AdjypBb1UGUbP09Fx3EnBE+V+
-         ARQcg4e8vFVK7pMSIDZnYie6DolRBozXlWhK/IRYGJiAPlBofRDR6aylXeYBnpoEuhGv
-         iseiSIp6IXmb5/RLAHGKdNmtne2KJEtCyfTYZ0GQx29OIoLNNzHbgbSiteZThI+1fWuy
-         6iQ2tqxonukRqZd0+JyuVUslzM7a580S0vPXua/SUOhzrz1GTRaZIO//KZYPFxh0sZ0B
-         acM7pGN9n0B7kTv0eVLtIP4kLr/o/6MnJ/hKYZViZoR0nzeRLFC72GSOAZE8q7uqRi95
-         bVLQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760350436; x=1760955236;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=IGEdbdnaRYWKvG+bGlTd3zUjiAzrtQYQYYulGQBXPVQ=;
-        b=LO8O9dA+uh47yCUwY4mKNshP44BZRTqo8Ead6Mu1/uxgiVZTbU44XVecJ3XWin014y
-         ADxCis7Jqj9yBVDM+8zHqZlGoZG7tD663mE79NVgp9qYeRPSMffPb52rgNbyOV+qjyiu
-         AjJk7iqz27T/QE5imQmTh2rFiPngp1OQ2WnLZKAxEBsI2NTyC8fPG/CP0ZpwNE0g22CA
-         Q8gUsBxa57b2xS3r77uVOAFw42247VC2kCbzl7HkBqMZT6JKnkV3bUWyRVepRxgcoBXM
-         Acw+LvzjCxJMJzxgerxnXuOBg6f+YWoERDozi5do+ziURml/5VNzsyPwareo1vF6J87x
-         tDLw==
-X-Forwarded-Encrypted: i=1; AJvYcCUnDW86PzpeZG97pAbzkSx/XqGvyPlJr4FGFYW4tx5No+9OwsvG24o7Gh/6oVdKR97sOPB407jthVSs@vger.kernel.org
-X-Gm-Message-State: AOJu0YyhxiOlSWRdw/xokp/kIkGYaRr6nrBduLn4SLotSX7rtyNsL4LW
-	X+Koto7cFhrFSe+w/nJZN3M9Gy7hgduxAQH2S6lgpMReAE4B2xfZY+rdVSsfjLu9wwaVlTxZMxe
-	ok+MNL5BxdSk9v3yIVrHX4SnWt0KENxgotT01KAJLoA==
-X-Gm-Gg: ASbGnct+Brnt5uBiWdhRTWxwMr8jHgriZ8nrnsSzxIw6nOqvDHs52JFfIwDooL4xw/A
-	7VgAisXcBJIuRQDmb9giiOVK5w2vMUHVbGk5pFPdGj10kaPEvRZqDlZqOG7DvbFLSM54UxiepBE
-	1xkSV4tGHlWroDbX4mqvZfTDB0p/EjbvUD+fpdoMper/L/UI5PStLBcmUOxoc4khdmArIPoSti9
-	RB7KWWERpHkmpmbLvh81j0/JeNemQ==
-X-Google-Smtp-Source: AGHT+IEyXfMASnDudG0S7N/mc330ju/Ch5pEVZ3V2N1dVue3s7gHw8dguHiupRcJCaA2bDWHDzkge7BrzB3mH+HUM10=
-X-Received: by 2002:a2e:bcc7:0:b0:368:6a3f:35e9 with SMTP id
- 38308e7fff4ca-37609e4d4c3mr49784771fa.36.1760350435755; Mon, 13 Oct 2025
- 03:13:55 -0700 (PDT)
+	s=arc-20240116; t=1760350691; c=relaxed/simple;
+	bh=YthDpkR+oLWgZls0ALfZLAM7hGcGSvH5hlnAbWxBnjw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=rW5B63EpuQCKOW+McpXgzGTrsYbxs/iVC/bfispVqeQ7m2adPyg89ZZBf04pQSNn2qbcA83Wq38HNvc3ECNcCMttR3lZrCSipNrCzX9Ks/fZLNasx1ESQV7uTkvHwaxVcpi/1zWkZ+TuIe8azvKoY+lDd9JliYip1TEizLCynUE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EnXlRhX8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E29D9C4CEF8;
+	Mon, 13 Oct 2025 10:18:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1760350688;
+	bh=YthDpkR+oLWgZls0ALfZLAM7hGcGSvH5hlnAbWxBnjw=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=EnXlRhX8sw9r8Eas+JakkwrvLXvw39f8en3ub8q2m/JAsTD6u8qkc9L8qTFAbhwDY
+	 w9/3zDRUC4kpkJfNVNtFmLRMwjk+zYzJyBtr3vzu1CnYD1pJudxQ2VlLmqF2bfiyB8
+	 DiaGPKgL0dqatbCMpmbx0c9jLLF+jAqMcQ+Bu5oF5Dddm2ZoLfmIfFGmmu4tUQ5r5h
+	 zy0nZA1jO0ob7DjsM1LrSvCx66YzghMtXXfmLlFiD1kfAyAhGFupC1QlAM0bmP7nIs
+	 s/kjrpVuz2VVLNlBM+3yckQeilU1KDVWtHso3PNbppyuBkHY/gi8WWa5dAyLUj8qJ4
+	 ZZhLWpCM64WpQ==
+Message-ID: <452c8af1-7ec0-4bc3-9d85-8993c0773c86@kernel.org>
+Date: Mon, 13 Oct 2025 11:18:01 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250915-msm8960-reorder-v1-0-84cadcd7c6e3@smankusors.com>
- <20250915-msm8960-reorder-v1-5-84cadcd7c6e3@smankusors.com> <o23idwppfthjoivpyzjojmoakdorr43gpmo5opmeet6oeud742@qhk2j5bjg5aa>
-In-Reply-To: <o23idwppfthjoivpyzjojmoakdorr43gpmo5opmeet6oeud742@qhk2j5bjg5aa>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Mon, 13 Oct 2025 12:13:43 +0200
-X-Gm-Features: AS18NWBAyKKP7WpPbwzZSRGYCjWy0-gOfocVoYTqFPcgneZRB7ljrZVj7GcZyxg
-Message-ID: <CACRpkdZ8kQ4AKLtXpUXPu31DKAGZ45dtzPA=-moBQDtXsY4Wdg@mail.gmail.com>
-Subject: Re: [PATCH 5/6] dt-bindings: pinctrl: qcom: msm8960: rename msmgpio
- node to tlmm
-To: Bjorn Andersson <andersson@kernel.org>
-Cc: Antony Kurniawan Soemardi <linux@smankusors.com>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, linux-gpio@vger.kernel.org, 
-	David Heidelberg <david@ixit.cz>, Max Shevchenko <wctrl@proton.me>, Rudraksha Gupta <guptarud@gmail.com>, 
-	Shinjo Park <peremen@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH 0/3] Introduce iommu-map-masked for platform devices
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Charan Teja Kalla <charan.kalla@oss.qualcomm.com>,
+ Robin Murphy <robin.murphy@arm.com>, joro@8bytes.org, will@kernel.org,
+ saravanak@google.com, conor+dt@kernel.org, robh@kernel.org,
+ mchehab@kernel.org, krzk+dt@kernel.org, abhinav.kumar@linux.dev,
+ vikash.garodia@oss.qualcomm.com, dikshita.agarwal@oss.qualcomm.com,
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ bjorn.andersson@oss.qualcomm.com, linux-media@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, iommu@lists.linux.dev
+References: <20250928171718.436440-1-charan.kalla@oss.qualcomm.com>
+ <aec0f40a-8346-4194-8b18-1022fe3366bb@arm.com>
+ <0d0560cc-9757-4c7b-8de4-170148d99481@oss.qualcomm.com>
+ <ead7cf8b-fbc4-4242-a9da-b313dded1abc@arm.com>
+ <nzqte4glwtpjs5bhkxz43yhdufelxvqvzmg5tepudxwetimir3@bvlw5csjizsh>
+ <9d3eeb9f-b8ea-48e5-a1d9-0865f63ef991@arm.com>
+ <fhb4woejzh3r6v5dxvdiopnsbuwstucfuuzbiymxg4wrxrjc7t@dt3z3utq6lwd>
+ <0zcQcB2YYWH_ufElq3ptqtLsGDsxvMEAkHCt_jYaSpwV597VFc22pFWzyMz0rSY-DKqWCQgOCiKpsIRNA0Fisw==@protonmail.internalid>
+ <c863f6a7-b117-4444-ae6d-1d525b572be2@oss.qualcomm.com>
+ <3c1eb276-abde-4af4-ab39-c934c30aa447@kernel.org>
+ <4yMPpVuyUWPNYEAfCpYtZnf3fgFlbDavEA9cqVIJTTOufoxdbJmQ8sWMiK5afpKXUwLZMQGhm1UbHtBaAnV5Iw==@protonmail.internalid>
+ <mtt7x2fqvuotwko6ztczosiep5ofyaupayumyggch6e2piqxmr@4v5tb5u2a5u3>
+From: Bryan O'Donoghue <bod@kernel.org>
+Content-Language: en-US
+In-Reply-To: <mtt7x2fqvuotwko6ztczosiep5ofyaupayumyggch6e2piqxmr@4v5tb5u2a5u3>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Tue, Sep 16, 2025 at 5:11=E2=80=AFPM Bjorn Andersson <andersson@kernel.o=
-rg> wrote:
-> On Sun, Sep 14, 2025 at 06:34:59PM +0000, Antony Kurniawan Soemardi wrote=
-:
-> > Rename the GPIO controller node from "msmgpio" to "tlmm" to match the
-> > convention used by other Qualcomm SoCs.
-> >
-> > Suggested-by: Shinjo Park <peremen@gmail.com>
-> > Signed-off-by: Antony Kurniawan Soemardi <linux@smankusors.com>
->
-> Reviewed-by: Bjorn Andersson <andersson@kernel.org>
->
-> Note that this patch is in a different subsystem and is picked up by a
-> different maintainer and there are no dependencies with the other
-> patches. It would therefor have been preferable if you sent this patch
-> alone.
->
-> No need to do anything this time though, I expect Linus to fish out this
-> patch from the series.
+On 12/10/2025 23:47, Dmitry Baryshkov wrote:
+> On Sun, Oct 12, 2025 at 09:44:43PM +0100, Bryan O'Donoghue wrote:
+>> On 10/10/2025 20:53, Charan Teja Kalla wrote:
+>>> I don't want to dilute what Dmitry is saying here, but the below is what
+>>> i can make out of Robin comments, please CMIW:
+>>>
+>>> iommu {
+>>> 	#iommu-cells = <2>;
+>>> }
+>>>
+>>> video {
+>>>      iommu = <iommu sid1 mask1>, <iommu sid2 mask2>;
+>>>      #iommu-map-cells = 2; /* does it look weird to define here, even if
+>>> it is SMMU property? */
+>>>      iommu-map = <0 smmu sid3 mask3>,
+>>> 	       <0 smmu sid4 mask4>;
+>>> };
+>>
+>>
+>> This whole iommu-map thing is a wrong direction, its a workaround.
+>>
+>> It stems from here:
+>>
+>> 1. Vikash posted a series adding a platform device
+>> https://lore.kernel.org/linux-media/20250627-video_cb-v3-0-51e18c0ffbce@quicinc.com/
+>>
+>>     The two objectives of this are
+>>
+>>     a. Allow Linux, the APPS as qcom calls it,@ EL1 or EL2
+>>        to setup iommu entries for function_ids that are
+>>        not the APPS @ EL1/EL2.
+> 
+> No.
+> 
+> Up to now we were talking only about the non-pixel bitstreams and secure
+> en-/decoding data.  None of that is related to anything except Linux
+> running in EL1/EL2. Only Linux consumes / provides normal non-pixel
+> data. Only Linux handles decoded secure buffers. Only Linux sets up the
+> video decoding of secure data and then blending of that data inside DPU.
 
-I fished out this patch and applied it to the pin control tree :D
+As I understand some of these >>        For example the APPS running in 
+TEE or one of the
+>>        various co-processors - like say the Compute DSP cDSP.
+> 
+> How did CDSP or TEE get into the picture?
 
-Yours,
-Linus Walleij
+Hypothetical examples of the non-HLOS VMID. Call these AC_VM_CP_BITSREAM 
+or AC_VM_CP_NON_PIXEL to use values from the documentation.
+
+>>
+>>     b. Allowing for each device to have a full IOVA range.
+>>
+>> 2. Krzysztof queried about changing _existing_ entries e.g.
+>> https://lore.kernel.org/linux-media/6fd3fa34-69e1-484f-ad6f-8caa852f1a6c@kernel.org/
+>>
+>>     The point about ABI breakage.
+>>
+>> 3. This proposal to introduce iommu-map as a workaround
+>>     Gets the FUNCTION_ID APPS v cDSP v TZ into the DT
+> 
+> It's neither CDSP nor TZ. The source or the consumer of the data might
+> be crypto core or just Linux process. For non-secured non-pixel data it
+> _is_ Linux process.
+> 
+>>
+>>     So it solves 1/a I'm not sure it solves 1/b
+>>
+>>     However if you were designing from scratch you wouldn't
+>>     have a motivation to assign this additional property.
+>>
+>>     The motivation is to not break the ABI I think.
+>>
+>> 4. Robin said
+>>
+>>     "And if you want individual StreamIDs for logical functions to be
+>>      attachable to distinct contexts then those functions absolutely
+>>      must be visible to the IOMMU layer and the SMMU driver as
+>>      independent devices"
+> 
+> Correct. But it doesn't require separate OF device nodes. See
+> host1x_memory_context_list_init().
+
+Fine could be platform code too.
+
+
+>>
+>> 5. If you think about this, its actually the right long term solution
+>>
+>>     - Individual devices means something like:
+>>
+>>       video-codec@aa00000 {
+>>           /* Any SID mapping to S1_VIDEO_HLOS belongs here */
+>>           compatible = "qcom,sm8550-iris";
+>>           iommus = <&apps_smmu 0x1947 0x0000>;
+>>       };
+>>
+>>       video-codec-non-pixel {
+>>           /* Any SID mapping to S1_VIDEO_HLOS_P belongs here */
+>>           compatible = "qcom,sm8550-iris-non-pixel";
+>>           iommus = <&apps_smmu 0x1940 0x0000>;
+>>       };
+> 
+> Which piece of hardware is described by this node? Why is it separate
+> from the main video-codec? The IOMMU stream doesn't have any specifics,
+> it's just a part of the video codec core.
+
+You could conceivably start associating /dev/video entries with a device 
+that maps to AC_VM_CP_PIXEL - the protected video stream.
+
+There may be data other than SID/FUNCTION_ID that we would want to 
+associate with those devices, I'll stipulate to further discussion there.
+>>
+>>     - Or do something like that above again in platform code.
+>>
+>> 6. We should on introduction of a new SoC
+>>
+>>     - Fix the iommus = <> for "qcom,newsoc-iris" to contain
+>>       only what is pertinent to S1_VIDEO_HLOS
+>>
+>>     - Make new devices in the DT for each FUNCTION_ID
+>>
+>>     - Then look at how - if - that fix can be brought back to Lemans
+>>
+>> My problem with introducing the iommu-map is that it bakes into the video
+>> codec definitions a fixup which then gets carried forward.
+>>
+>> But the right thing to do is individual devices so, let's do that and worry
+>> about how to back-port that fix to older SoCs once done.
+
+So really whether we end up representing these devices in DT or platform 
+code, separate devices are the answer - both for the FUNCTION_ID mapping 
+and the IOVA range.
+
+You just need to carefully think about what ends up being a device if 
+the IOVA range is a concern.
+
+Its unfortunate that sm8550 has an addtional iommu entry that wants to 
+live in a different device - but, that's a problem for sm8550.
+
+Perhaps something we can backport to Lanai, Lemans and friends once we 
+get the new submissions right..
+
+---
+bod
 
