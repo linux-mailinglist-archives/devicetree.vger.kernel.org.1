@@ -1,142 +1,204 @@
-Return-Path: <devicetree+bounces-226063-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226064-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2488BD3527
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 16:03:20 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C11AEBD3596
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 16:07:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8BA583C4009
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 14:03:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E104B189B211
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 14:07:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10F2D242D66;
-	Mon, 13 Oct 2025 14:03:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F29512475C2;
+	Mon, 13 Oct 2025 14:07:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eJFtRhjt"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MM6YjOnd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f42.google.com (mail-qv1-f42.google.com [209.85.219.42])
+Received: from mail-qk1-f172.google.com (mail-qk1-f172.google.com [209.85.222.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F9C5233D85
-	for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 14:03:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 414B224A044
+	for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 14:07:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760364197; cv=none; b=TYn46mFYPTpHRMsXq16sA+p8jd2frzXXgOOWv76yRjyT7hP7EYl9wtxVpVzmEFUqkmhb7pPxbpN6POuJXJE46dbByhfQ6y7CnTrtjRolFSJRcVWLued8UIDtLfevb4s3x+te74YMLeIQWTm0NIuQVXi4omay+XmudKvQ/itAyAg=
+	t=1760364437; cv=none; b=cplGTA2Mzgg/mKWCQjpAsuX9jxrVDS9gj91mkeNwnYS1TZtzDtfySDVX+tdL43XGwq1iHgGHloWWLzfScoilOOZW75MxV1c74nxd0Ef2dPTKmX7HP8u+FMtoG+GNc/mlGciBF7cdfdwu9TECok79pBX7JRYFBwEBB9tqmcoOvSU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760364197; c=relaxed/simple;
-	bh=0pa4lQo6WdcD3iZoUXfVz3eROSCmrkBGjXHPB2KVS+U=;
+	s=arc-20240116; t=1760364437; c=relaxed/simple;
+	bh=il9BEy5z5fP/2XDjNY94SwIxeYHfSV12vEIzVfaLz4I=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=p4kQhfHoDdhFkfG65oC4bU81vbZnpn4WPz3C/17zVS39edWySHa4fK6EL4AcTvEmwNS9ixOd/QlqwHm/74UN28uF94XIwmjuREoy9xQM+Ka1lf+SgiBv3SUtvDBQTCNrRYYJApVHMEA2EW8TTU6z4BQAgaQY+OhTZPMOCrXO34g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eJFtRhjt; arc=none smtp.client-ip=209.85.219.42
+	 To:Cc:Content-Type; b=AKSGImrWcVpqmaaGC2XWK2doMcrnsMUcduvf9TLYz2Rsw3Eu7ecVtcDnCNTp+6iyCTv0gFxEiVA1E3QZUlFcAPnCo9LRkmlGYBdrdfC6lEWSTT5NG5O3IsIci3YiehhC7QnV8Zo6WPeQj0UEsGvh/QPNL3Di78dpG/IG6+oXqac=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MM6YjOnd; arc=none smtp.client-ip=209.85.222.172
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qv1-f42.google.com with SMTP id 6a1803df08f44-8738c6fdbe8so67944946d6.1
-        for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 07:03:15 -0700 (PDT)
+Received: by mail-qk1-f172.google.com with SMTP id af79cd13be357-85a4ceb4c3dso518494885a.3
+        for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 07:07:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1760364194; x=1760968994; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1760364435; x=1760969235; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=EsvwD+Fi4syTXky3R6aiFFqllKikijYJhVHTrHzkF44=;
-        b=eJFtRhjt3Zu3BT7C7gTzBbfuwYP4T3t12VTDyTENXFsbjBUzQRN02xvsZezeG6cGIm
-         ry/e1bPXyoDK3XeRjqKPchiL52018EvQKKfBzuYmE5ZujY0dV0oxxl/iuXHDwPjD0s8I
-         SxqmTws10Xa64PcqVAIRA+e72Zr7QDGiDN6biP59eYn3tYuTRLsdMqH94KBn6cPvmukg
-         bL9qr1DXzWF5fHDXyUm+GgLoipLyKYZ+A5lAckwftMWbwwvW3AUjIhaeZi9MiCl1ZL6P
-         7gH5tXWzJQC3OUXwjoKXejXeom+ZgMTNTusogEAVpyEoucnaYNAoqeHmlBj8ygCnoJHr
-         8OQw==
+        bh=B3fxFMnHvhHYZxkU89prvgFn6OmHBSMeJm9YGzPYMJU=;
+        b=MM6YjOndHEe2uGDPWFKgEvw9uMggMkjD7xKLU6C9TZYVi4rRwzH+RkljfTCysGrOiL
+         g1DEh5ZYSq7CJ2d49IuBzLy/IDvkB07FQ6h8rdjGuQeqOklCeE+e8uK6HS33kTS+xbBV
+         LqfPaN8rc4TT/tdWBhbvXPMtPMnJJN0yHjWfJWwkTkkoZl+uiTkc81aElRsz3CqoPdLZ
+         u3IMmSK+hHVzZrZWxX+kaM64TryKaKfGCX8pBpRhfNxKmc3bjSL7ZyYlhrhBsIaUqhRA
+         ZvFKoOXrc2QzsPSWvBwzUfL7yXeDQkhRxKKkU5Q2Qcmsb+hkMhiqnH7z1jeHaOdNQ83k
+         aH6g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760364194; x=1760968994;
+        d=1e100.net; s=20230601; t=1760364435; x=1760969235;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=EsvwD+Fi4syTXky3R6aiFFqllKikijYJhVHTrHzkF44=;
-        b=qScRRK++eU8MRI/zmNEzILFrN1Q3e/rx8wR2MfALqiC4Ou4tuiJiUkhNg0AvEry/UF
-         WGVbW7li3gURAQgy9wiM4UEx0OBkSmpi4lLcfnMwQl3+b/DpOD4nYXDTPqlRhOukwGkT
-         laAS4lWRtclohm846ecJS+n6j0btYisfT5skiouFYzjnn0I06+BAv229/w67bTR0QrBL
-         kIqfdt+DkWUAVrFTnEO84ueWvJ7PlSqESj9dsjalsmYDbDJgNV6ve98iQPYbkq3tJtZd
-         gWRwlNV8PfKTLSUjO7fQKdxzJpgwCvb4mIMEbzLyzTdBXocwwPBQ4Ww10kcBth0BwHK+
-         ATgg==
-X-Forwarded-Encrypted: i=1; AJvYcCUjCJsoS0FMFBQahto6e8qR8sI1BHFwI/+u7dfO+HLHzCS3JU4MA/iNsQhufH7iB63DWGfQ4ZJzXaQp@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy9dAIxD+S32qoprPc8ET8wpI9++ZD0rUsi0vjJ0Vl4XwnTiCH9
-	f/76u0zVm3y/7BrlbaZ/ckP05ntTEN3VsVmUKrr90IIPIARFDTHbWYAuQVnOS+uvuRO5hNY9EKP
-	3gDZYFsmwQgx6c64mb4tnKZiNUTAPA9g=
-X-Gm-Gg: ASbGncsZ0Qnl31AlTU3hzCMTtO4IlZVsf0VoaQ+w5Ooz6J/YRvSRdAKmu/boTwV12s+
-	/+mLr+lreD7/m0N33cG0SwaXH/V0UDKNYSzPRJePxacTn3gncN9YYkj7SW0wdGR6tcR/D991GX2
-	z3k/TGCMCwXZkuNBGGTizN2U4RIXwh2tW6TotUrHQUVTA2/Uf6BoEkmAkjaICoavbaMbb54Awdt
-	xK1OA9JmrSEPiLePuYqYfFMvCsRYyvk8QwTCA==
-X-Google-Smtp-Source: AGHT+IFvq5k1EuebtHjH8NtC18O9Z9IQYxbVQCJ9hJgUzNYb51sqTyvtRgLwUZEROHyWBv2AmHidhVXrKQI11wj9UYk=
-X-Received: by 2002:a05:6214:5018:b0:7e6:7392:f7df with SMTP id
- 6a1803df08f44-87b3a784170mr279102566d6.6.1760364194107; Mon, 13 Oct 2025
- 07:03:14 -0700 (PDT)
+        bh=B3fxFMnHvhHYZxkU89prvgFn6OmHBSMeJm9YGzPYMJU=;
+        b=hlLcSRRHSxOQBm2vk2tFtyHHWuOnVmpEDRLcJ7HAk+Y7LEcf3eMhAvk7NpddLq996o
+         tN80ur1qh4Fn0TkZtYb9P2PPYkJckGwNcFx3lS/sQqjDSdmCWfHNOeGBIRT4CwrWtU7W
+         A44Mfpf9Yg24kl7H4C2EauUjdjMdW2GPBWhge/loTlZ8m7cCwWaVHq7L8w8mu9/PPRaW
+         2SLGxzUn8tc+nQ+F1BZ3H+zhLLPw/QkjC6D67vQaGU+XNBNEnaxYjBZK2zBWv7T8v/e9
+         kswyZcjxiqGwH0Pq6ACFyeUc/4CR6j9hxNH/IMoXIhcyIGe3su7k5jQTM3ZmdRY3ifzg
+         ieeQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWNTYz/EVtS0kIygUAfo3qHQx1lFBGXML2WOHm6akwgxs3nMWoOlCvCDnv5mvt5W2ho/VCap3HFQQdI@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz8C4FhPW1PMU8MMpR+hpifAQ1OvlqZ10Wr9UHgvVjyUowfvdrw
+	KmpUc3uuaP6DwMX2QHAE1Czfk9PtHQWUhY5N5Pp3T1zpDW74ctjBMFOe4AVtYK5QaPxLftQaBBc
+	DbbCC0CdiPUuUgD9psYUpSxcJ/3PVUEM=
+X-Gm-Gg: ASbGncv33CYi3/NczTuEE6P0IJJacAzmP/0Ye5JThMAb5wXXmXzZjPD8HBIYImtHkkf
+	zgzL2bNzv9QSsazXvwn/jxTmO2Ae/uLSbp18CfSIkGeD/ipSFFT6QZ6OrW7+XaD80TeMrUQIq6X
+	8viftsn90LyuDcg+Zg8JMutCMG86fdYTNktbJpYDvtOV5sj497bvychPihwUh3bQ49U3q/G8xsL
+	CkpldemVaevL7DpDdEr8j2bLbuLKl+Dc/r/pg==
+X-Google-Smtp-Source: AGHT+IFJyxN0Hv1Y4GUd/peF3juYf0BASxuDUqSk2KfDDUExhxmcAVmPSatg4At2Xmntps9WxQl2SPNothq8SpuZzXY=
+X-Received: by 2002:a05:622a:4c6:b0:4b5:eb7b:2789 with SMTP id
+ d75a77b69052e-4e6ead4825emr307845311cf.49.1760364434713; Mon, 13 Oct 2025
+ 07:07:14 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <CAP_9mL5=GmtJF3nSbfX6gRzPc=fAMrTOfMuOLyWFwq5D4OYUFw@mail.gmail.com>
- <20251013130010.143271-1-amadeus@jmu.edu.cn>
-In-Reply-To: <20251013130010.143271-1-amadeus@jmu.edu.cn>
+References: <20251009084416.45542-1-jjm2473@gmail.com> <20251009084416.45542-4-jjm2473@gmail.com>
+ <aOe_0EufouURu7R2@shell.armlinux.org.uk> <CAP_9mL4MfzagxiMD1VdOu=jBuN_XsOrvPQT=XTVgu2+G=+nD9A@mail.gmail.com>
+ <aOz1SzpzGLDQjiYQ@shell.armlinux.org.uk>
+In-Reply-To: <aOz1SzpzGLDQjiYQ@shell.armlinux.org.uk>
 From: Liangbin Lian <jjm2473@gmail.com>
-Date: Mon, 13 Oct 2025 22:03:01 +0800
-X-Gm-Features: AS18NWAoIMYqp_P27rsiPm63GVautCNYpIalpnf8xGliTTm_E7ySNqCl1fUxC1Y
-Message-ID: <CAP_9mL7eaDBtVE-VUEMojG9wz34Cfa+N4Ekorj165M=_4zpPbQ@mail.gmail.com>
+Date: Mon, 13 Oct 2025 22:07:02 +0800
+X-Gm-Features: AS18NWC2KWpOjrIZRCNJ-njN7lopgvdR9BZGhK7C99VWUiJOF3JdegyR1Tmc-SU
+Message-ID: <CAP_9mL6x=p169y026nNycZsHK6UMHqJ+o-M_k0MqnvpB2fPzJg@mail.gmail.com>
 Subject: Re: [PATCH v5 3/3] arm64: dts: rockchip: add LinkEase EasePi R1
-To: Chukun Pan <amadeus@jmu.edu.cn>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, heiko@sntech.de, 
-	krzk+dt@kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org
+To: "Russell King (Oracle)" <linux@armlinux.org.uk>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, heiko@sntech.de, 
+	quentin.schulz@cherry.de, kever.yang@rock-chips.com, naoki@radxa.com, 
+	honyuenkwun@gmail.com, inindev@gmail.com, ivan8215145640@gmail.com, 
+	neil.armstrong@linaro.org, mani@kernel.org, dsimic@manjaro.org, 
+	pbrobinson@gmail.com, alchark@gmail.com, didi.debian@cknow.org, 
+	jbx6244@gmail.com, andrew@lunn.ch, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Chukun Pan <amadeus@jmu.edu.cn> =E4=BA=8E2025=E5=B9=B410=E6=9C=8813=E6=97=
-=A5=E5=91=A8=E4=B8=80 21:00=E5=86=99=E9=81=93=EF=BC=9A
+Russell King (Oracle) <linux@armlinux.org.uk> =E4=BA=8E2025=E5=B9=B410=E6=
+=9C=8813=E6=97=A5=E5=91=A8=E4=B8=80 20:49=E5=86=99=E9=81=93=EF=BC=9A
 >
-> Hi,
+> On Fri, Oct 10, 2025 at 11:20:08AM +0800, Liangbin Lian wrote:
+> > Russell King (Oracle) <linux@armlinux.org.uk> =E4=BA=8E2025=E5=B9=B410=
+=E6=9C=889=E6=97=A5=E5=91=A8=E5=9B=9B 21:59=E5=86=99=E9=81=93=EF=BC=9A
+> > >
+> > > On Thu, Oct 09, 2025 at 04:44:16PM +0800, Liangbin Lian wrote:
+> > > > +&gmac0 {
+> > > > +     phy-mode =3D "rgmii-id";
+> > > > +     clock_in_out =3D "input";
+> > > ...
+> > > > +&gmac1 {
+> > > > +     phy-mode =3D "rgmii-id";
+> > > > +     clock_in_out =3D "input";
+> > >
+> > > I am fine with what is being proposed here, but I think this
+> > > clock_in_out property needs fixing. The description for it is thus:
+> > >
+> > >   clock_in_out:
+> > >     description:
+> > >       For RGMII, it must be "input", means main clock(125MHz)
+> > >       is not sourced from SoC's PLL, but input from PHY.
+> > >       For RMII, "input" means PHY provides the reference clock(50MHz)=
+,
+> > >       "output" means GMAC provides the reference clock.
+> > >     $ref: /schemas/types.yaml#/definitions/string
+> > >     enum: [input, output]
+> > >     default: input
+> > >
+> > > The problems that I have here are:
+> > >
+> > > 1) the description states that the only possible value for this when =
+in
+> > >    RGMII mode is "input" which is reasonable, because it's due to the
+> > >    RGMII specification. The driver code is perfectly able to determin=
+e
+> > >    whether RGMII has been specified, and set bsp_priv->clock_input
+> > >    itself, relieving DT of this need.
+> > >
+> > > 2) bsp_priv->clock_input is only used in gmac_clk_enable() when calli=
+ng
+> > >    the SoC specific set_clock_selection() method. Only RK3528, RK3576=
+,
+> > >    and RK3588 populate this method. Every other SoC supported by this
+> > >    driver still requires the property:
+> ...
+> > >   clock_in_out:
+> > >     description:
+> > >       For RGMII, it must be "input"
+> >
+> > This description does not match the actual situation,
+> > there are many dts using 'output':
+> > https://elixir.bootlin.com/linux/v6.17/source/arch/arm64/boot/dts/rockc=
+hip/rk3568-bpi-r2-pro.dts#L235
+> > https://elixir.bootlin.com/linux/v6.17/source/arch/arm64/boot/dts/rockc=
+hip/rk3568-evb1-v10.dts#L241
+> > https://elixir.bootlin.com/linux/v6.17/source/arch/arm64/boot/dts/rockc=
+hip/rk3568-fastrhino-r68s.dts#L33
+> > https://elixir.bootlin.com/linux/v6.17/source/arch/arm64/boot/dts/rockc=
+hip/rk3568-nanopi-r5s.dts#L78
 >
-> > +&pinctrl {
-> > +     gmac0 {
-> > +             eth_phy0_reset_pin: eth-phy0-reset-pin {
-> > +                     rockchip,pins =3D <2 RK_PD3 RK_FUNC_GPIO &pcfg_pu=
-ll_up>;
-> > +             };
-> > +     };
+> For all of the above, whether it is "input" or "output" has no effect
+> as these are all rk3568, and rk3568 does not implement the
+> set_clock_selection() method.
 >
-> Leave a blank line.
+> static const struct rk_gmac_ops rk3568_ops =3D {
+>         .set_phy_intf_sel =3D rk3568_set_phy_intf_sel,
+>         .set_to_rgmii =3D rk3568_set_to_rgmii,
+>         .set_to_rmii =3D rk3568_set_to_rmii,
+>         .set_speed =3D rk_set_clk_mac_speed,
+>         .regs_valid =3D true,
+>         .regs =3D {
+>                 0xfe2a0000, /* gmac0 */
+>                 0xfe010000, /* gmac1 */
+>                 0x0, /* sentinel */
+>         },
+> };
 >
-> > +     gmac1 {
-> > +             eth_phy1_reset_pin: eth-phy1-reset-pin {
-> > +                     rockchip,pins =3D <2 RK_PD1 RK_FUNC_GPIO &pcfg_pu=
-ll_up>;
-> > +             };
-> > +     };
+> I'm going to propose:
 >
-> > +     gpio-leds {
-> > +             status_led_pin: status-led-pin {
-> > +                     rockchip,pins =3D
+> 1) that the driver should only print an error if "clock_in_out" is
+> missing _and_ the SoC implements the required function.
 >
-> No line break required here.
+> 2) that the driver should print a non-fatal error if this property is
+> specified in DT _and_ the SoC does not implement the function to
+> discourage its use.
 >
-> > +                             <2 RK_PD7 RK_FUNC_GPIO &pcfg_pull_none>;
-> > +             };
-> > +     };
+> 3) [tr]x_delay should not print an error for non-RGMII phy interface
+> modes.
 >
-> > VBUS on usb2phy0_otg is floating, this USB port only works on
-> > device (peripheral) mode.
-> > phy-supply is optional, so this should be fine, right?
+> I consider it a bug that a driver prints errors for properties that
+> have not been specified that it does not actually require. By doing
+> so, it encourages people to add useless properties to their DT
+> description that will never ever be used (e.g. because they are not
+> relevant for hardware the operating mode that the board is setup
+> for.)
 >
-> Yes, if there is no log like this:
-> supply phy not found, using dummy regulator
-...
+> --
+> RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+> FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
-> > VBUS on usb2phy0_otg is floating, this USB port only works on
-> > device (peripheral) mode.
-> > phy-supply is optional, so this should be fine, right?
->
-> Yes, if there is no log like this:
-> supply phy not found, using dummy regulator
-
-I have checked the log, 'supply phy not found, using dummy regulator'
-not present on usb, but present on gmac.
+I will remove clock_in_out, its default value is 'input'.
+After removing it, there will only be an error log, which will not
+affect the function.
 
