@@ -1,144 +1,124 @@
-Return-Path: <devicetree+bounces-226102-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226103-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1782CBD4C99
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 18:09:17 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id C1097BD4F18
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 18:22:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7B75E4060C7
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 15:33:37 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id B8900545B06
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 15:37:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E05B930F52C;
-	Mon, 13 Oct 2025 15:20:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA58F30BB97;
+	Mon, 13 Oct 2025 15:25:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KsWEYKve"
+	dkim=pass (1024-bit key) header.d=iitb.ac.in header.i=@iitb.ac.in header.b="cGmoK95N"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp1.iitb.ac.in (smtpd9.iitb.ac.in [103.21.126.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB22430EF9F
-	for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 15:20:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCC943081B1
+	for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 15:25:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.21.126.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760368826; cv=none; b=s+oSUWr1h0nNlCoQIbobrbgMEOcLWDa/Zp2desIwVvQcoq4zKUN5R17Dnx1ulul2QGhMfDBXJwiqKynKOKksUCYK8V/Ega6aCkMJnCkKYog73YeM0/quAi3890omB2KvZjgMHhuSIknKoqrjv/OAXYB4v+Jn3f8aGTSqxyXx1hM=
+	t=1760369138; cv=none; b=kepNiwAURBB4ywcVVEhFBwU2oxkLCA55pagpT+q47mN7ZpHtbuMzOS4QRwEBMbJ/4oIBC1Rx8pbj1lAyW3bwbutZZrbl22fW6bvPkHlHh5x5ZGGbwhWrogmOObYM0S/oT5nAeeR6Pq9d/lq4vpOkCs5NNIbZozZ9mxWn6TiT2jI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760368826; c=relaxed/simple;
-	bh=K8AAoiZgUUO3ges/u/HpnwBtA9qJAuWVHK8IuNIXlO0=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=VBjshjMocJ86ry4kheuqajB5gf9lMyMcPjjfbv0beGVzNAPaYHkZzAfcYQk2IoqaIa+6qxwYpuTMgR+715HoqIQHECS6dyJWe2yB+PamkGjdEMX5RI9CHXT/+o/LFl6IBaKnakrqoVMZIFeCVff6ebVzUf++CTNYRlBUdgTWTmQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KsWEYKve; arc=none smtp.client-ip=209.85.214.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-28e7cd6dbc0so49708395ad.0
-        for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 08:20:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1760368824; x=1760973624; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=nWw3pYmfnmGvB+YkCO3yexV5qTzE3+kQSnnpQTIm/9c=;
-        b=KsWEYKve4jnlMMghMmCdHKeR6bPWaFg9Rie1liX6xmaqEy5hZipoUD7epP1zwOB8Qz
-         u/55EWfveLK6Coiwqw0QrGC5g+/d6w2z/pP4+oGHUiGebaMLTm+FUGgpb2fpcIwEK7Mu
-         Cd2SQzZHtQEVV/DUgXJdzxxvkGb5wRUFm41sLNY7FJO0GYdJCNdjs9Ijel+qHh+lFVFW
-         zApu47h2JP3DatNadGziTJ9DGpcaLXBqUt8oKtrXw4NH8c22WBkxhl7Vf8LtIXTvbO2N
-         z/opr0sBlO4ZIIeh0e8rYzSitv/TuaRTuL5PtnvKu8PertUf8uyt7DgNFonSNqOxtLlA
-         JIuw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760368824; x=1760973624;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=nWw3pYmfnmGvB+YkCO3yexV5qTzE3+kQSnnpQTIm/9c=;
-        b=hUlNxUY9S91f44w+nXa36KB49zViqtkcMvNEnx2EN48fF/rR62HUYxBAJi/OJsiPQJ
-         hq7g330vQGGnLhH4Ea+uE3WX4kJX+cVHvQthjlmh1IJUBWZH9n4p/6+VIEXIBf4e6t4b
-         omLImm1M4N1v3pas4sCednfmLAhbU1VLpJwOBiaNSmHQdPTHDO2OfrzhcueFlKwpF5CU
-         pgY5lUSWx6dSbkh0/SY/D7bi+k6FGhm7ahDPWKiPF5EHSVJyKR+0YVRgOkf1TBpakFRG
-         Pho8RXoF0+ZMGDQ1rKpEjvZ0oeGlrcgHE+93F46O5RZZBXDo3+PlEfsF9wlO79qnD24o
-         LTDQ==
-X-Forwarded-Encrypted: i=1; AJvYcCV5/OGzTY6AUI4BlPmVsK7sBM+QBDltIzJa2YsyuUao5PT+QHaEaTaEC9+7b9+7O37orKLVcgoBNKMY@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz9gf7eGK8vETDSIhK9xYxEEliJCkz3lnvk+KBDvkKqnd+FmzTy
-	WMeFNZZyab9G+kCB+fYrG4JfqmeqoBgqMqsPxZEbHDAgewVcDpOBiYGH
-X-Gm-Gg: ASbGncsLi+Owk36LrGCVjmiOO5YuOBMR3pdBhfbx6Eq4BjpVmFLE2wBjYYoar20QWKC
-	pg9Enenbsy2qBml+j6YhY0JApkriMvtVwMrfx0ZfAsKE2P8MYVhuf5r2efCj/rW0vdb9GqTZPAr
-	vbEL6UUa/iRTtqdsox61o+2R7orI8cM5csiNQ5fdKQSUMGEzL+yjyS/AkZV3fBnZ0XB3ay0yD2u
-	ZjCZUycAmVS/Q8CayGXaykd32ng62lpvBDdB/yOvl7PI5wXvqE/XgGEzP3zyFLEShSji6Wc0igX
-	gM5tOVJRIL+RpyU6nlFQiE/z6XneLUjqZqU9oth2zTZ7j3JzsiOMv1q+wG88l5m00fhTqNt2fjn
-	eW5kl3pL6dB2y0SrPTh5l0uYXR8ON4VrSGGmVFLE0pfTCiYwLnA==
-X-Google-Smtp-Source: AGHT+IED5HSARgZp3w1i5vJ/5lba5zHCV8vbpThYRazELMLhgYDV4CSz/po8MO0H+ROXoU4f3DVC/w==
-X-Received: by 2002:a17:903:3b86:b0:28e:7567:3c4b with SMTP id d9443c01a7336-29027373b18mr314146635ad.16.1760368823921;
-        Mon, 13 Oct 2025 08:20:23 -0700 (PDT)
-Received: from rockpi-5b ([45.112.0.108])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29034f05bcasm136560245ad.84.2025.10.13.08.20.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Oct 2025 08:20:23 -0700 (PDT)
-From: Anand Moon <linux.amoon@gmail.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Johan Jonker <jbx6244@gmail.com>,
-	Dragan Simic <dsimic@manjaro.org>,
-	Diederik de Haas <didi.debian@cknow.org>,
-	Aurelien Jarno <aurelien@aurel32.net>,
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
-	linux-arm-kernel@lists.infradead.org (moderated list:ARM/Rockchip SoC support),
-	linux-rockchip@lists.infradead.org (open list:ARM/Rockchip SoC support),
-	linux-kernel@vger.kernel.org (open list)
-Cc: Anand Moon <linux.amoon@gmail.com>
-Subject: [PATCH v1] arm64: dts: rockchip: odroid-m1: Add pinctrl for I2S1 8ch TX path
-Date: Mon, 13 Oct 2025 20:50:03 +0530
-Message-ID: <20251013152011.131118-1-linux.amoon@gmail.com>
-X-Mailer: git-send-email 2.50.1
+	s=arc-20240116; t=1760369138; c=relaxed/simple;
+	bh=VH/jjwDLkiSGiAr4JG89l4anPAc3ygJofrUXtkBMnrI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=eBdCMLm20NGV3fvhd6xo6U3U5nFcKJhZGEeW6IRx3B6yxeIFCm4t/NwPA21ETWC8AcbXrC3asp8dSfNoNLO6d1qTPMuSkfHpFxIVhA/fSs5oG0OxYHZLKZKC4CO0FxFNpxMZk7xWUMy86+QhTi3/sGeNjN240cGZIzk+63pbRTk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ee.iitb.ac.in; spf=pass smtp.mailfrom=ee.iitb.ac.in; dkim=pass (1024-bit key) header.d=iitb.ac.in header.i=@iitb.ac.in header.b=cGmoK95N; arc=none smtp.client-ip=103.21.126.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ee.iitb.ac.in
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ee.iitb.ac.in
+Received: from ldns2.iitb.ac.in (ldns2.iitb.ac.in [10.200.12.2])
+	by smtp1.iitb.ac.in (Postfix) with SMTP id A0D5F104CBCC
+	for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 20:55:30 +0530 (IST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.iitb.ac.in A0D5F104CBCC
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=iitb.ac.in; s=mail;
+	t=1760369130; bh=VH/jjwDLkiSGiAr4JG89l4anPAc3ygJofrUXtkBMnrI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=cGmoK95NAv8CM1VB0uMl3a2sfWTHQGZGw0gqZtp1vXMgyLaqVXz3l8kr5IDoekCQW
+	 Ed+msU3LxHDMDydJm1VmBQ56oLJ8zbviPnJzxsa86iqMv4ImrXL723N3U5u4/paXm7
+	 9FmNBKYblzlvU6d0Ro6CUcdg/vATJG5DETvCyXW0=
+Received: (qmail 23344 invoked by uid 510); 13 Oct 2025 20:55:30 +0530
+X-Qmail-Scanner-Diagnostics: from 10.200.1.25 by ldns2 (envelope-from <akhilesh@ee.iitb.ac.in>, uid 501) with qmail-scanner-2.11
+ spamassassin: 3.4.1. mhr: 1.0. {clamdscan: 0.100.0/26337} 
+ Clear:RC:1(10.200.1.25):SA:0(0.0/7.0):. Processed in 4.394388 secs; 13 Oct 2025 20:55:30 +0530
+X-Spam-Level: 
+X-Spam-Pyzor: Reported 0 times.
+X-Envelope-From: akhilesh@ee.iitb.ac.in
+X-Qmail-Scanner-Mime-Attachments: |
+X-Qmail-Scanner-Zip-Files: |
+Received: from unknown (HELO ldns2.iitb.ac.in) (10.200.1.25)
+  by ldns2.iitb.ac.in with SMTP; 13 Oct 2025 20:55:26 +0530
+Received: from bhairav.ee.iitb.ac.in (bhairav.ee.iitb.ac.in [10.107.1.1])
+	by ldns2.iitb.ac.in (Postfix) with ESMTP id 3F13A341504;
+	Mon, 13 Oct 2025 20:55:25 +0530 (IST)
+Received: from bhairav-test.ee.iitb.ac.in (bhairav.ee.iitb.ac.in [10.107.1.1])
+	(Authenticated sender: akhilesh)
+	by bhairav.ee.iitb.ac.in (Postfix) with ESMTPSA id F0F151E81581;
+	Mon, 13 Oct 2025 20:55:24 +0530 (IST)
+Date: Mon, 13 Oct 2025 20:55:20 +0530
+From: Akhilesh Patil <akhilesh@ee.iitb.ac.in>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: jic23@kernel.org, dlechner@baylibre.com, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, nuno.sa@analog.com,
+	andy@kernel.org, marcelo.schmitt1@gmail.com, vassilisamir@gmail.com,
+	salah.triki@gmail.com, skhan@linuxfoundation.org,
+	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, akhileshpatilvnit@gmail.com
+Subject: Re: [PATCH 1/2] dt-bindings: iio: pressure: Add Aosong adp810
+Message-ID: <20251013-152520-1561165@bhairav-test.ee.iitb.ac.in>
+References: <cover.1760184859.git.akhilesh@ee.iitb.ac.in>
+ <5ddfc7d318a7d3a42cfce4a33ad62f3d2be91a11.1760184859.git.akhilesh@ee.iitb.ac.in>
+ <aa5d7fb2-2143-43b1-8780-87b69479a17b@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aa5d7fb2-2143-43b1-8780-87b69479a17b@kernel.org>
 
-Enable proper pin multiplexing for the I2S1 8-channel transmit interface by
-adding the default pinctrl configuration which esures correct signal routing
-and avoids pinmux conflicts during audio playback.
+On Sun, Oct 12, 2025 at 05:13:53AM +0200, Krzysztof Kozlowski wrote:
+> On 11/10/2025 14:25, Akhilesh Patil wrote:
+> > +---
+> > +$id: http://devicetree.org/schemas/iio/pressure/aosong,adp810.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: aosong adp810 differential pressure sensor
+> > +
+> > +maintainers:
+> > +  - Akhilesh Patil <akhilesh@ee.iitb.ac.in>
+> > +
+> > +description: |
+> 
+> If there is going to be any new version, drop |.
 
-Changes fix the error
-[  116.856643] [    T782] rockchip-pinctrl pinctrl: pin gpio1-10 already requested by affinity_hint; cannot claim for fe410000.i2s
-[  116.857567] [    T782] rockchip-pinctrl pinctrl: error -EINVAL: pin-42 (fe410000.i2s)
-[  116.857618] [    T782] rockchip-pinctrl pinctrl: error -EINVAL: could not request pin 42 (gpio1-10) from group i2s1m0-sdi1 on device rockchip-pinctrl
-[  116.857659] [    T782] rockchip-i2s-tdm fe410000.i2s: Error applying setting, reverse things back
+Sure. Fixed in v2.
 
-Fixes: 78f858447cb7 ("arm64: dts: rockchip: Add analog audio on ODROID-M1")
-Cc: Aurelien Jarno <aurelien@aurel32.net>
-Signed-off-by: Anand Moon <linux.amoon@gmail.com>
----
-$ aplay -l
-**** List of PLAYBACK Hardware Devices ****
-card 0: HDMI [HDMI], device 0: fe400000.i2s-i2s-hifi i2s-hifi-0 [fe400000.i2s-i2s-hifi i2s-hifi-0]
-  Subdevices: 1/1
-  Subdevice #0: subdevice #0
-card 1: RK817 [Analog RK817], device 0: fe410000.i2s-rk817-hifi rk817-hifi-0 [fe410000.i2s-rk817-hifi rk817-hifi-0]
-  Subdevices: 1/1
-  Subdevice #0: subdevice #0
----
- arch/arm64/boot/dts/rockchip/rk3568-odroid-m1.dts | 2 ++
- 1 file changed, 2 insertions(+)
+> 
+> 
+> > +  ADP810 is differential pressure and temperature sensor. It has I2C bus interface
+> 
+> Wrap at 80 (see coding style).
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3568-odroid-m1.dts b/arch/arm64/boot/dts/rockchip/rk3568-odroid-m1.dts
-index 0f844806ec54..442a2bc43ba8 100644
---- a/arch/arm64/boot/dts/rockchip/rk3568-odroid-m1.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3568-odroid-m1.dts
-@@ -482,6 +482,8 @@ &i2s0_8ch {
- };
- 
- &i2s1_8ch {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2s1m0_sclktx &i2s1m0_lrcktx &i2s1m0_sdi0 &i2s1m0_sdo0>;
- 	rockchip,trcm-sync-tx-only;
- 	status = "okay";
- };
+Fixed.
 
-base-commit: 3a8660878839faadb4f1a6dd72c3179c1df56787
--- 
-2.50.1
+> 
+> 
+> 
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> Best regards,
+> Krzysztof
+
+Hi Krzysztof, Thanks for the review.
+
+Regards,
+Akhilesh
 
 
