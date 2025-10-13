@@ -1,62 +1,64 @@
-Return-Path: <devicetree+bounces-225825-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225826-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 110F8BD1650
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 06:52:09 +0200 (CEST)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 61095BD1656
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 06:52:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id C81E94E26FB
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 04:52:07 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id DD9533477AF
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 04:52:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BAC22C1584;
-	Mon, 13 Oct 2025 04:52:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E518A2C15A0;
+	Mon, 13 Oct 2025 04:52:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=posteo.de header.i=@posteo.de header.b="YSXy7hse"
+	dkim=pass (2048-bit key) header.d=posteo.de header.i=@posteo.de header.b="DsIhr/Cj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout02.posteo.de (mout02.posteo.de [185.67.36.66])
+Received: from mout01.posteo.de (mout01.posteo.de [185.67.36.65])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D1F92C11ED
-	for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 04:52:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.67.36.66
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 506E6283FDB
+	for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 04:52:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.67.36.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760331125; cv=none; b=tvvfB35uBz0UlC/YSQpGyriDJDeJKjXx/aZ+Kg0nVX8y/xD7ydyOIzvQADNDC82Wtt0RbdEN6tY/xu4Rcl67AWLNzFU3EAEnZ2fIr1Get+yuc4lNKIMs20k7w4lEEdo3MbuFxfEqDrgXvmkic/HOgSxmm07/qhvEnEfRZNxeyHo=
+	t=1760331130; cv=none; b=MhXwiz9KFNLCxHxCLOKJ8GRgfRw2S9fcynuEdRX/ioVjYZwV9imNNOgbFBrwQyaGQcZpVnEV0hS0KvNIgNKUAJFvi/ypjIIPhnYaDU3kXlQFEXC1QuZvOp8atovmQw55gCC3ZgJKM2Z4uArpIiHECjc6XHQjhhXZNTBQIuCFKUM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760331125; c=relaxed/simple;
-	bh=IOVJPSQB9UddTgT2CSM8tZBiTnGv5I7cQsEI2Mnqx5Y=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Wb2iDZPwqhhLn6VeQxuDdvw+bTeNJjTFTD8KnzIlPHgZ70Qn+TBekBJIZ4fPlDpRX77JdwQ/9je7Cd7GWqzI6Q2Pd+n9NECnmaYDiN80SmB2CvjdT4l1Q/riZLsDpu5F2vUorh2GvjATxFcTGjj5taKcCeMFUua27EU51krLPX4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.de; spf=pass smtp.mailfrom=posteo.de; dkim=pass (2048-bit key) header.d=posteo.de header.i=@posteo.de header.b=YSXy7hse; arc=none smtp.client-ip=185.67.36.66
+	s=arc-20240116; t=1760331130; c=relaxed/simple;
+	bh=TGijnfP63bLoEEIa+F0axtF4nYIOHU+yJpAd4E0PVds=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=YtS/bKxMtvENAu91FMnHcRqqrGOIIHQQYWAqP5RaJfO8dagWJ/V5T8vPzWR3eSO3lBh51S5X3krsww232HdBjdwtubvin7V5gGe3GbgbuwWFHTOLkl1ljk5HQ/xPqeRSNnRxNCc2eqnOGuGYV6CakIAL+nsES6ITEmj2H3Hajaw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.de; spf=pass smtp.mailfrom=posteo.de; dkim=pass (2048-bit key) header.d=posteo.de header.i=@posteo.de header.b=DsIhr/Cj; arc=none smtp.client-ip=185.67.36.65
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=posteo.de
 Received: from submission (posteo.de [185.67.36.169]) 
-	by mout02.posteo.de (Postfix) with ESMTPS id 61ED4240101
+	by mout01.posteo.de (Postfix) with ESMTPS id D3081240028
 	for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 06:52:01 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=posteo.de; s=2017;
-	t=1760331121; bh=A8xy5GX94lG82ROmOcYX5881JUaslKSWPPxTNb/G74Q=;
+	t=1760331121; bh=KYSb2eVGrP9QZN+RqCt8LieU27WuvxR5OzqhlsJwvk0=;
 	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type:
 	 Content-Transfer-Encoding:From;
-	b=YSXy7hserwtI7UiH0sGS/4G5zVA4AbKpXSYEUwWGz1EsNKYBXMDabJbtQu6fQvoSZ
-	 /dMnywy5hO0EpTiDGjqEk8EzFepmGoLmuHdiG9Gm1C2QwmjmpmTEUZAfRUrKSfVfrs
-	 TSDfvOCE6qrFrj1c3Yy0U/Lea7syq9Z9iM8qLcqNzFtx49WAjo8T65frx8hn+JyCRp
-	 w/2AfxRElupbxWKVvDkWqmTrsIc0AGQBqTvfYQ2YE/l1KynzUrdGLWsaF6yT2bTUyY
-	 h8KDFplSXyz6m4kPqXiTE44Oe4d5EBDEhZ+ULyBpbmtP0Hi2DEl7VraL2Jb71amnHp
-	 xH5PMHlD017Rw==
+	b=DsIhr/Cj0VMA8nRL7EDNsVn5xguW06shVQ1B45z0r6lA1a3tv5/0xongKWcIX9A1X
+	 fEj9Qj17EumfmQcrVGqWxAGxFciY2FGeXO1QkoiHKGNUdVTxrUZhAtT9C/xZimsO3+
+	 TSO/t0rniubdjo37IPSz7nEdasNQj540CFzpsIU5Zz4+JFsTE+iY2lSBfQMuroeHMD
+	 A+stkNJBgerY5vC/KwgF4un6zqs/HzsfAwRElUuAVbKlGKyQGnhCUtdCTwLwDYknwA
+	 MLkysJLjANnO1PeaOmRhUEL81ngj9e8lJQAKEAdxcw/U+N32ABJeNzzd1Ob7VU7x0R
+	 y6/pil0kFEYwg==
 Received: from customer (localhost [127.0.0.1])
-	by submission (posteo.de) with ESMTPSA id 4clQ1X2yfHz6v0X;
-	Mon, 13 Oct 2025 06:52:00 +0200 (CEST)
+	by submission (posteo.de) with ESMTPSA id 4clQ1Y1bczz6v1B;
+	Mon, 13 Oct 2025 06:52:01 +0200 (CEST)
 From: =?UTF-8?q?Martin=20Kepplinger-Novakovi=C4=87?= <martink@posteo.de>
 To: robh@kernel.org,
 	krzk+dt@kernel.org,
 	conor+dt@kernel.org
 Cc: devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	=?UTF-8?q?Martin=20Kepplinger-Novakovi=C4=87?= <martink@posteo.de>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v2 1/2] dt-bindings: iio: accel: update Martin's contact information
+	=?UTF-8?q?Martin=20Kepplinger-Novakovi=C4=87?= <martink@posteo.de>
+Subject: [PATCH v2 2/2] dt-bindings: media: update Martin's contact information
 Date: Mon, 13 Oct 2025 04:52:01 +0000
-Message-ID: <20251013045152.14555-1-martink@posteo.de>
+Message-ID: <20251013045152.14555-2-martink@posteo.de>
+In-Reply-To: <20251013045152.14555-1-martink@posteo.de>
+References: <20251013045152.14555-1-martink@posteo.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,35 +68,40 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-Update surname and email address in order to be reachable.
+Update Martin's surname and email address in order to be reachable.
 
 Signed-off-by: Martin Kepplinger-Novaković <martink@posteo.de>
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
+ Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml    | 2 +-
+ .../devicetree/bindings/media/nxp,imx8mq-mipi-csi2.yaml         | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-v2: thank you, Krzysztof for reviewing v1
-- squash the 2 media subsystem patches
-
-v1:
-https://lore.kernel.org/linux-devicetree/c38e8b8c-34cd-4894-aa9b-fa47cdc7cb65@kernel.org/T/#t
-
-
- Documentation/devicetree/bindings/iio/accel/fsl,mma8452.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/Documentation/devicetree/bindings/iio/accel/fsl,mma8452.yaml b/Documentation/devicetree/bindings/iio/accel/fsl,mma8452.yaml
-index b0dd2b4e116a..91f73872ff60 100644
---- a/Documentation/devicetree/bindings/iio/accel/fsl,mma8452.yaml
-+++ b/Documentation/devicetree/bindings/iio/accel/fsl,mma8452.yaml
-@@ -9,7 +9,7 @@ title:
-   triaxial accelerometer
+diff --git a/Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml b/Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml
+index 1a57f2aa1982..0a715081d271 100644
+--- a/Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml
++++ b/Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml
+@@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ title: SK Hynix Hi-846 1/4" 8M Pixel MIPI CSI-2 sensor
  
  maintainers:
--  - Martin Kepplinger <martin.kepplinger@theobroma-systems.com>
+-  - Martin Kepplinger <martin.kepplinger@puri.sm>
 +  - Martin Kepplinger-Novakovic <martink@posteo.de>
  
- properties:
-   compatible:
+ description: |-
+   The Hi-846 is a raw image sensor with an MIPI CSI-2 image data
+diff --git a/Documentation/devicetree/bindings/media/nxp,imx8mq-mipi-csi2.yaml b/Documentation/devicetree/bindings/media/nxp,imx8mq-mipi-csi2.yaml
+index 3389bab266a9..9d9b697e936a 100644
+--- a/Documentation/devicetree/bindings/media/nxp,imx8mq-mipi-csi2.yaml
++++ b/Documentation/devicetree/bindings/media/nxp,imx8mq-mipi-csi2.yaml
+@@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ title: NXP i.MX8MQ MIPI CSI-2 receiver
+ 
+ maintainers:
+-  - Martin Kepplinger <martin.kepplinger@puri.sm>
++  - Martin Kepplinger-Novakovic <martink@posteo.de>
+ 
+ description: |-
+   This binding covers the CSI-2 RX PHY and host controller included in the
 -- 
 2.47.3
 
