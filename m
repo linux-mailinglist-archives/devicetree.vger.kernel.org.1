@@ -1,189 +1,214 @@
-Return-Path: <devicetree+bounces-226100-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226101-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22DC8BD4585
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 17:37:57 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B7A4BD4297
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 17:27:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8C26D40779E
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 15:14:17 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 1991B4F6BE3
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 15:15:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04A3B3081D6;
-	Mon, 13 Oct 2025 14:57:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36366284880;
+	Mon, 13 Oct 2025 14:59:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WTk8n4Fz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A51227A10D
-	for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 14:57:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1D322248A5;
+	Mon, 13 Oct 2025 14:59:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760367473; cv=none; b=JHbm8zL8l85OJus5RwSte/GbrzL2rLcvLii661p8ok/qY4Cozx5Qa0XXiKMy97AgHGfY+j4+XayQLprMjVyNB6eIwBMLpx5rU54RkF6EsrJWUw7jpOW27YRc4AoHREiOG/Rn4W+5lVpDrgBu/90uqcwLFlPNKhu0Y7xRY3HBR8o=
+	t=1760367579; cv=none; b=dnsae1FrYPD/LZnFw6HF/lC8SqXH2fc/e5OobcwqP+OYByez5m/OSIV4s/ENbNA3rLJqyLyOKL+fwiP1HmtWGydTGBZSnlVPsU73g+PhhvxSi1eZsc2BlmmLqygUFUNtDsbNV8PoqMx64lENxOKpo1I20wq114sE9dZbxe+bWgA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760367473; c=relaxed/simple;
-	bh=KRcwaq+/XU7W8rFBdjsmHKaeEjcYfHLbae4GLMSZ7FE=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=f905JZX7J6GA4IwgW63mudozfpcvNDzExHR9HOJp6FfsM2lEe0SmbUTlxhf7bOj8nzw7E7bQyTunJyj7Mr2oeCkwjQYmm52YzU2JdgpfEn4Mu28TaH1eSghlsyB44Aoyv40TCWnbpinzTvNF9Kqax0mzEtA1rwyNHTyDv4WxOSI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1v8JzO-0003Bb-Ux; Mon, 13 Oct 2025 16:57:30 +0200
-Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e] helo=lupine)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1v8JzN-003Ovy-2v;
-	Mon, 13 Oct 2025 16:57:29 +0200
-Received: from pza by lupine with local (Exim 4.98.2)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1v8JzN-00000000CO2-3Ql5;
-	Mon, 13 Oct 2025 16:57:29 +0200
-Message-ID: <c1099a8e422abbc5d12bf3f325cb9f2140c8c006.camel@pengutronix.de>
-Subject: Re: [PATCH v7 4/7] reset: rzg2l-usbphy-ctrl: Add support for USB
- PWRRDY
-From: Philipp Zabel <p.zabel@pengutronix.de>
-To: Claudiu Beznea <claudiu.beznea@tuxon.dev>, vkoul@kernel.org, 
-	kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, 	geert+renesas@glider.be, magnus.damm@gmail.com,
- yoshihiro.shimoda.uh@renesas.com, 	biju.das.jz@bp.renesas.com
-Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, Claudiu
- Beznea	 <claudiu.beznea.uj@bp.renesas.com>, Wolfram Sang	
- <wsa+renesas@sang-engineering.com>
-Date: Mon, 13 Oct 2025 16:57:29 +0200
-In-Reply-To: <6d4bc69c-1571-4d98-b0d4-214c68be118e@tuxon.dev>
-References: <20250925100302.3508038-1-claudiu.beznea.uj@bp.renesas.com>
-	 <20250925100302.3508038-5-claudiu.beznea.uj@bp.renesas.com>
-	 <c7fc31f1247332196516394a22f6feef9733a0b4.camel@pengutronix.de>
-	 <66d85e70-efb8-4a45-9164-55b123691b70@tuxon.dev>
-	 <bcf6113b0025777db1cb2ace1618fed8fac2dfc6.camel@pengutronix.de>
-	 <cca1061e-df67-4b5b-99bd-9721c72a0f88@tuxon.dev>
-	 <6d4bc69c-1571-4d98-b0d4-214c68be118e@tuxon.dev>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.1-1 
+	s=arc-20240116; t=1760367579; c=relaxed/simple;
+	bh=Q4amGCgEx94K8om8pN467kDbQql6OA0eh29fHknE5Fw=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=aZ+jas0OTgc0rEiGGeSvTi/dYegz3x7AmdEn3Ab/6681rFcn20EIoaLKejIQXAVTmNq0c1w+0pCS39p98+AbgLcZrzXNuMm0W2bhGUlZGslF6cvAwR/tsMfgf1k91D+SpIYQj2MqoDKU01DYZWaBaDsImHrqluWCPG/tlEmUUd4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WTk8n4Fz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 87EC5C4CEE7;
+	Mon, 13 Oct 2025 14:59:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1760367578;
+	bh=Q4amGCgEx94K8om8pN467kDbQql6OA0eh29fHknE5Fw=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
+	b=WTk8n4FzwfU+JNjoGVR3OOl9hk+bHZHl0+w5GZRjNYV4kcGnUqw90e8JkiIMYKBVG
+	 NcRsWksnrwcNhPIi5h+FE6/w7V49pHEpvBJWDcfp0XXxUphNZwlLcwqTdOS2Xv5h7H
+	 Ul0xhpRLHAp0v3U+9tWebDkckBTJyEpUQ7VkzJRTjJ7rMvZEqDE56NUEyhKX1KF1zu
+	 LtNnj2IWLDizfR5k0EAVLhiypzbKxwaeEPrWlIC63tsQcyvoiy5YWWAZ6X69XXqsee
+	 FAkG/CwJmqtbCg+OysuPgKOrseEsQDQlXtHMNhTe2lx3PAI0wJ8StKBXuFCzGviqs2
+	 SmK2gwrIbAo8g==
+From: Pratyush Yadav <pratyush@kernel.org>
+To: Breno Leitao <leitao@debian.org>
+Cc: Changyuan Lyu <changyuanl@google.com>,  rppt@kernel.org,
+  akpm@linux-foundation.org,  linux-kernel@vger.kernel.org,
+  anthony.yznaga@oracle.com,  arnd@arndb.de,  ashish.kalra@amd.com,
+  benh@kernel.crashing.org,  bp@alien8.de,  catalin.marinas@arm.com,
+  corbet@lwn.net,  dave.hansen@linux.intel.com,
+  devicetree@vger.kernel.org,  dwmw2@infradead.org,  ebiederm@xmission.com,
+  graf@amazon.com,  hpa@zytor.com,  jgowans@amazon.com,
+  kexec@lists.infradead.org,  krzk@kernel.org,
+  linux-arm-kernel@lists.infradead.org,  linux-doc@vger.kernel.org,
+  linux-mm@kvack.org,  luto@kernel.org,  mark.rutland@arm.com,
+  mingo@redhat.com,  pasha.tatashin@soleen.com,  pbonzini@redhat.com,
+  peterz@infradead.org,  robh@kernel.org,  rostedt@goodmis.org,
+  saravanak@google.com,  skinsburskii@linux.microsoft.com,
+  tglx@linutronix.de,  thomas.lendacky@amd.com,  will@kernel.org,
+  x86@kernel.org
+Subject: Re: [PATCH v8 01/17] memblock: add MEMBLOCK_RSRV_KERN flag
+In-Reply-To: <ef6wfr72set5wa5el3wbbu4yd5tnc4p2rhtjpb5kpmncv3xs5d@i3c5v3ciioi3>
+	(Breno Leitao's message of "Fri, 10 Oct 2025 02:33:59 -0700")
+References: <20250509074635.3187114-1-changyuanl@google.com>
+	<20250509074635.3187114-2-changyuanl@google.com>
+	<ef6wfr72set5wa5el3wbbu4yd5tnc4p2rhtjpb5kpmncv3xs5d@i3c5v3ciioi3>
+Date: Mon, 13 Oct 2025 16:59:32 +0200
+Message-ID: <mafs0wm4yluej.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain
 
-Hi Claudiu,
+On Fri, Oct 10 2025, Breno Leitao wrote:
 
-On Fr, 2025-10-10 at 14:26 +0300, Claudiu Beznea wrote:
-> Hi, Philipp,
->=20
-> On 10/8/25 15:16, Claudiu Beznea wrote:
-> > Hi, Philipp,
-> >=20
-> > On 10/8/25 13:23, Philipp Zabel wrote:
-> > > Hi Claudiu,
-> > >=20
-> > > On Mi, 2025-10-08 at 12:29 +0300, Claudiu Beznea wrote:
-> > > > Hi, Philipp,
-> > > >=20
-> > > > On 10/8/25 11:34, Philipp Zabel wrote:
-> > > > > Hi Claudiu,
-> > > > >=20
-> > > > > On Do, 2025-09-25 at 13:02 +0300, Claudiu wrote:
-> > > > > > From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> > > > > >=20
-> > > > > > On the Renesas RZ/G3S SoC, the USB PHY block has an input signa=
-l called
-> > > > > > PWRRDY. This signal is managed by the system controller and mus=
-t be
-> > > > > > de-asserted after powering on the area where USB PHY resides an=
-d asserted
-> > > > > > before powering it off.
-> > > > > >=20
-> > > > > > On power-on the USB PWRRDY signal need to be de-asserted before=
- enabling
-> > > > > > clock and switching the module to normal state (through MSTOP s=
-upport). The
-> > > > > > power-on configuration sequence
-> > > > > The wording makes me wonder, have you considered implementing thi=
-s as a
-> > > > > power sequencing driver?
-> > > > No, haven't tried as power sequencing. At the moment this was start=
-ed I
-> > > > think the power sequencing support wasn't merged.
-> > > >=20
-> > > > The approaches considered were:
-> > > > a/ power domain
-> > > Letting a power domain control a corresponding power ready signal wou=
-ld
-> > > have been my first instinct as well.
-> > >=20
-> > > > b/ regulator
-> > > > c/ as a reference counted bit done through regmap read/writes APIs
-> > > >=20
-> > > > a and b failed as a result of discussions in the previous posted ve=
-rsions.
-> > > Could you point me to the discussion related to a?
-> > It's this one
-> > https://lore.kernel.org/all/
-> > CAPDyKFrS4Dhd7DZa2zz=3DoPro1TiTJFix0awzzzp8Qatm-8Z2Ug@mail.gmail.com/
+> Hello Chanyuan, Mike,
+>
+> On Fri, May 09, 2025 at 12:46:19AM -0700, Changyuan Lyu wrote:
+>> --- a/mm/memblock.c
+>> +++ b/mm/memblock.c
+>> @@ -492,7 +492,7 @@ static int __init_memblock memblock_double_array(struct memblock_type *type,
+>>  	 * needn't do it
+>>  	 */
+>>  	if (!use_slab)
+>> -		BUG_ON(memblock_reserve(addr, new_alloc_size));
+>> +		BUG_ON(memblock_reserve_kern(addr, new_alloc_size));
+>>  
+>>  	/* Update slab flag */
+>>  	*in_slab = use_slab;
+>> @@ -642,7 +642,7 @@ static int __init_memblock memblock_add_range(struct memblock_type *type,
+>>  #ifdef CONFIG_NUMA
+>>  			WARN_ON(nid != memblock_get_region_node(rgn));
+>>  #endif
+>> -			WARN_ON(flags != rgn->flags);
+>> +			WARN_ON(flags != MEMBLOCK_NONE && flags != rgn->flags);
+>
+> I am hitting some sporadic warnings at early boot on a production kernel
+> (6.16). Unfortunately this issue is not easily reproduce for me to test on
+> upstream.
+>
+> 	09:14:44  BIOS-provided physical RAM map:
+> 	09:14:44  BIOS-e820: [mem 0x0000000000000000-0x000000000009ffff] usable
+> 	09:14:44  BIOS-e820: [mem 0x00000000000a0000-0x00000000000fffff] reserved
+> 	09:14:44  BIOS-e820: [mem 0x0000000000100000-0x0000000064cb7fff] usable
+> 	09:14:44  BIOS-e820: [mem 0x0000000064cb8000-0x0000000064dc3fff] reserved
+> 	09:14:44  BIOS-e820: [mem 0x0000000064dc4000-0x0000000065b13fff] usable
+> 	09:14:44  BIOS-e820: [mem 0x0000000065b14000-0x0000000065b61fff] reserved
+> 	09:14:44  BIOS-e820: [mem 0x0000000065b62000-0x0000000065ed0fff] usable
+> 	09:14:44  BIOS-e820: [mem 0x0000000065ed1000-0x0000000065f2bfff] reserved
+> 	09:14:44  BIOS-e820: [mem 0x0000000065f2c000-0x0000000066621fff] usable
+> 	09:14:44  BIOS-e820: [mem 0x0000000066622000-0x0000000066630fff] reserved
+> 	09:14:44  BIOS-e820: [mem 0x0000000066631000-0x0000000068107fff] usable
+> 	09:14:44  BIOS-e820: [mem 0x0000000068108000-0x000000006819dfff] ACPI data
+> 	09:14:44  BIOS-e820: [mem 0x000000006819e000-0x000000006a48cfff] usable
+> 	09:14:44  BIOS-e820: [mem 0x000000006a48d000-0x000000006c58cfff] reserved
+> 	09:14:44  BIOS-e820: [mem 0x000000006c58d000-0x000000006c5dcfff] ACPI data
+> 	09:14:44  BIOS-e820: [mem 0x000000006c5dd000-0x000000006cfdcfff] ACPI NVS
+> 	09:14:44  BIOS-e820: [mem 0x000000006cfdd000-0x000000006e9fcfff] reserved
+> 	09:14:44  BIOS-e820: [mem 0x000000006e9fd000-0x000000006fffffff] usable
+> 	09:14:44  BIOS-e820: [mem 0x0000000070000000-0x000000008fffffff] reserved
+> 	09:14:44  BIOS-e820: [mem 0x00000000fd000000-0x00000000fe7fffff] reserved
+> 	09:14:44  BIOS-e820: [mem 0x00000000fed20000-0x00000000fed44fff] reserved
+> 	09:14:44  BIOS-e820: [mem 0x00000000ff000000-0x00000000ffffffff] reserved
+> 	09:14:44  BIOS-e820: [mem 0x0000000100000000-0x000000107fff655f] usable
+> 	09:14:44  BIOS-e820: [mem 0x000000107fff6560-0x000000107fff656f] type 128
+> 	09:14:44  BIOS-e820: [mem 0x000000107fff6570-0x000000107fffffff] usable
+> 	09:14:44  random: crng init done
+> 	09:14:44  ------------[ cut here ]------------
+> 	09:14:44 WARNING: CPU: 0 PID: 0 at mm/memblock.c:668 memblock_add_range (mm/memblock.c:668)
+> 	09:14:44  Modules linked in:
+> 	09:14:44  Tainted: [S]=CPU_OUT_OF_SPEC
+> 	09:14:44 RIP: 0010:memblock_add_range (mm/memblock.c:668)
+> 	09:14:44 Code: 28 80 3c 01 00 0f 84 04 fd ff ff 4c 89 ef e8 6c 77 09 00 e9 f7 fc ff ff 0f 0b 83 7c 24 1c 00 0f 85 9c fd ff ff e9 c5 fd ff ff <0f> 0b e9 be fd ff ff 44 89 f1 80 e1 07 80 c1 03 38 c1 0f 8c 6b fd
+> 	All code
+> 	========
+> 	0:    28 80 3c 01 00 0f        sub    %al,0xf00013c(%rax)
+> 	6:    84 04 fd ff ff 4c 89     test   %al,-0x76b30001(,%rdi,8)
+> 	d:    ef                       out    %eax,(%dx)
+> 	e:    e8 6c 77 09 00           call   0x9777f
+> 	13:    e9 f7 fc ff ff           jmp    0xfffffffffffffd0f
+> 	18:    0f 0b                    ud2
+> 	1a:    83 7c 24 1c 00           cmpl   $0x0,0x1c(%rsp)
+> 	1f:    0f 85 9c fd ff ff        jne    0xfffffffffffffdc1
+> 	25:    e9 c5 fd ff ff           jmp    0xfffffffffffffdef
+> 	2a:*    0f 0b                    ud2            <-- trapping instruction
+> 	2c:    e9 be fd ff ff           jmp    0xfffffffffffffdef
+> 	31:    44 89 f1                 mov    %r14d,%ecx
+> 	34:    80 e1 07                 and    $0x7,%cl
+> 	37:    80 c1 03                 add    $0x3,%cl
+> 	3a:    38 c1                    cmp    %al,%cl
+> 	3c:    0f                       .byte 0xf
+> 	3d:    8c 6b fd                 mov    %gs,-0x3(%rbx)
+>
+> 	Code starting with the faulting instruction
+> 	===========================================
+> 	0:    0f 0b                    ud2
+> 	2:    e9 be fd ff ff           jmp    0xfffffffffffffdc5
+> 	7:    44 89 f1                 mov    %r14d,%ecx
+> 	a:    80 e1 07                 and    $0x7,%cl
+> 	d:    80 c1 03                 add    $0x3,%cl
+> 	10:    38 c1                    cmp    %al,%cl
+> 	12:    0f                       .byte 0xf
+> 	13:    8c 6b fd                 mov    %gs,-0x3(%rbx)
+> 	09:14:44  RSP: 0000:ffffffff85e07d48 EFLAGS: 00010083 ORIG_RAX: 0000000000000000
+> 	09:14:44  RAX: 0000000000000020 RBX: 0000000000001c00 RCX: dffffc0000000000
+> 	09:14:44  RDX: 000000000009f000 RSI: 000000000009d000 RDI: ffffffff8685ebf8
+> 	09:14:44  RBP: 0000000000000002 R08: 0000000000000020 R09: 0000000000000000
+> 	09:14:44  R10: ffffffffff200570 R11: fffffbffffe400b2 R12: 000000000009d000
+> 	09:14:44  R13: 0000000000100000 R14: ffffffff8edf5ce4 R15: ffffffff8edf5ce0
+> 	09:14:44  FS:  0000000000000000(0000) GS:0000000000000000(0000) knlGS:0000000000000000
+> 	09:14:44  CR2: ffff888059e2dff8 CR3: 000000005bc1d000 CR4: 00000000000000b0
+> 	09:14:44  Call Trace:
+> 	09:14:44   <TASK>
+> 	09:14:44 ? __memblock_reserve (mm/memblock.c:936)
+> 	09:14:44 ? add_early_ima_buffer (arch/x86/kernel/setup.c:413)
+> 	09:14:44 ? parse_setup_data (arch/x86/kernel/setup.c:500)
+> 	09:14:44 ? setup_arch (arch/x86/kernel/setup.c:245 arch/x86/kernel/setup.c:958)
+> 	09:14:44 ? start_kernel (init/main.c:922)
+> 	09:14:44 ? x86_64_start_reservations (arch/x86/kernel/ebda.c:57)
+> 	09:14:44 ? x86_64_start_kernel (arch/x86/kernel/head64.c:231)
+> 	09:14:44 ? common_startup_64 (arch/x86/kernel/head_64.S:419)
+> 	09:14:44   </TASK>
+> 	....
+> 	Memory: 49640988K/66772816K available (54946K kernel code, 19058K rwdata, 22636K rodata, 2940K init, 120968K bss, 10650188K reserved, 6291456K cma-reserved)
+>
+> So, there is a memory override, and I am curious about it. Do you think it
 
-Thank you! From this discussion it still isn't clear to me whether
-Ulf's suggestion of using genpd on/off notifiers was considered and why
-it was dismissed.
+Yeah, it seems IMA is reserving a region that overlaps a region reserved
+by something else that doesn't use memblock_reserve_kern().
 
-From the DT patches it looks like there is no actual separate power
-domain for USB, just the single always-on CPG power domain (in rzg2l-
-cpg.c). Is that correct? In the thread it sounded like there were
-multiple domains.
+> would be useful to expand this warning to dump more information about the
+> issue? (only compiled tested)
+>
+> 	if (flags != MEMBLOCK_NONE && flags != rgn->flags) {
+> 		pr_warn("memblock: Flag mismatch at region [%pa-%pa]\n",
+> 			&rgn->base, &rend);
+> 		pr_warn("  Existing region flags: %#x\n", rgn->flags);
+> 		pr_warn("  New range flags: %#x\n", flags);
+> 		pr_warn("  New range: [%pa-%pa]\n", &base, &end);
+> 		WARN_ON_ONCE(1);
+> 	}
 
-Is the issue that you need the PWRRDY signal to be (de)asserted
-independently from the CPG power domain enable/disable? (Why?)
+I suppose this would be useful. I think enabling memblock debug prints
+would also be helpful (using the "memblock=debug" commandline parameter)
+if it doesn't impact your production environment too much.
 
-Why can't the power domain provider (cpg) have the renesas,sysc-pwrrdy
-property and set the signal together with the power domain?
-
-> > > I see v2 and v3 tried to control the bit from the PHY drivers, and in
-> > > v4 we were are already back to the reset driver.
-> > v2 passed the system controller (SYSC) phandle to the USB PHYs only (th=
-ough
-> > renesas,sysc-signals DT property) where the PWRRDY bit was set. The PWR=
-RDY
-> > bit was referenced counted in the SYSC driver though regmap APIs.
-> >=20
-> > v3 used the approach from v2 but passed the renesas,sysc-signals to all=
- the
-> > USB related drivers.
-> >=20
-> > Then, in v4, the PWRRDY refcounting was dropped and passed
-> > renesas,sysc-signals only to the USB PHY CTRL DT node in the idea that =
-this
-> > is the node that will always be probed first as all the other USB block=
-s
-> > need it and request resets from it.
-> >=20
-> > v5 and v6 kept the approach from v4 and only addressed misc comments or
-> > things that I noticed.
->=20
-> Could you please let me know if you are OK with the approach proposed in
-> v7, so that I can start preparing a new version addressing your comments?
-
-If the PWRRDY signal is an input to the USB2PHY control block, and not
-only to the PHY blocks, I have no issue with this being handled in the
-usb2phy reset driver - iff it is not sensible to just control the
-signal from the power domain driver.
-
-If we have to handle it in the reset driver, I'd prefer to see this
-controlled with a dev_pm_genpd_add_notifier(). If that is not possible,
-I'd like to understand why.
-
-regards
-Philipp
+-- 
+Regards,
+Pratyush Yadav
 
