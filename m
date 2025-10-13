@@ -1,177 +1,234 @@
-Return-Path: <devicetree+bounces-226282-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226283-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B7ABBD6A99
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 00:48:52 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E60EBD6C20
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 01:42:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 268804E7746
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 22:48:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 55E4718A3B1D
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 23:42:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA3E52C1788;
-	Mon, 13 Oct 2025 22:48:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D66A2C0F79;
+	Mon, 13 Oct 2025 23:41:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="sdT/5tyw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ozpJdtU8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E208E22DA1C
-	for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 22:48:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E5C21E5B9A;
+	Mon, 13 Oct 2025 23:41:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760395726; cv=none; b=tneDL+UGncWud+QwBdyuQboFVIGyD4YGAmuZrsehxqmKrar0pGh/puHzYupW7kwi3fOkbZrGWTUUwdS30Fn44bL9UN8sMNFvk6zgl4P3saPeywMHUdEdoCdj3Mos7FUEPPRX7nz/S0hYvJkAnyLMTqtoSwJB4HIkhWD32iyX86k=
+	t=1760398915; cv=none; b=WwwAWcYW3c/0cjuJ8Z8zXPSDZxmtgpIzZhlB4bLUZTKjh1fwRELNaxMsmF6bYgcVlpYvx1u56LIu4JujyYCaPUgVmvznPRgRxBJKW6sZBcBevx2KxrV+nv6zzazXZDcoyF6QnoI6jkqeOu0Ky2pl2vRB1iyAit3ACpuPCv+d5xg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760395726; c=relaxed/simple;
-	bh=G+fhFzn3s185dsLph643rDU+nKHMFhMOKr/tuS3LLxU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=suvWE5i8cehl/A7JHEX0njgQLMbiB/FgFe3SGpZkQfv5bNWHrSvGKuG4K5j4trVO23/5VofTHlFyZLM/E89DTnF2Kf+ekoXBtPmf64ieaEp0nSj1w9KZ15ROmsBq598qgl4JO833NkMIXZWlF7teRQVDMo7KioQvw9iwXM41tdU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=sdT/5tyw; arc=none smtp.client-ip=209.85.167.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-57b8fc6097fso1710388e87.1
-        for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 15:48:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1760395723; x=1761000523; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9VhD+CaTAnFEGvX8NVAnmhYkSF8vQCH/ncHAiaKEl7w=;
-        b=sdT/5tyw6ZQ2aQi2Ko67Zf1ZMAnORoogPW1ADDthbj3a2ar1hzGGKQHkiq7xuRoiUG
-         mQ5vxWyTO7ZGNALLwCkJbEIdOwzSe3K6qsPUJ/Udj4L5uBQ7LSDonB9j7Oiii87lSESy
-         ArgNtlx+hFDF7DtSBuIU/sW+58pXOBhoTaT6BEP10a8JB+qX37AQzfHrUp3my2AuUlE7
-         DcuzNDqOLvbmHu5329SviE9vLgGOdi/Lpn6DKHfp8zCaWLsOhaQE4Ls5TDrmLbUv6uhp
-         UlDSpjLPydiaRXor0U2eY4LfJqwfhe5MFy83FNT3mD/i8N16iZrh+lgFn/83Pm3uVTsC
-         IA6g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760395723; x=1761000523;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=9VhD+CaTAnFEGvX8NVAnmhYkSF8vQCH/ncHAiaKEl7w=;
-        b=SljeTVgq6pam5dA+JW/dltCE2ur3omadIKgCvnC+E4xkXKtw1iSc3DeY8N7wjf4VO9
-         qlBY7Lf0SqBZeSS+C57BJpBGs32r0z9eHTc3e6j/gwifv7AxoP2lJNgfclBWouvSVksb
-         QKCehBHkiqf2IAlriWwZGk21XChqs3ZFY7xYW1Tl/jAPI3F1iwjyl0q6dY2fC6dq2VjH
-         2JV5jMcmvU+fXt5jOJRU79huPfYI0QOxFuDb6Fbp+uascrRPcsxrHJ9DkhZV9Y9eYUOo
-         ztMWHkG/tyBzQEv56bWZFrvGgp5Gu9NlyS/ifWAIBwNRWB4f+H3dxUPJBOYAYhfmqeS1
-         iHvA==
-X-Forwarded-Encrypted: i=1; AJvYcCWD6JZPy/SBh1iOGBLAI+DgngDdLoH9EAbFESk0CCa+axFN6ah/ZAnFXLTNDG4zqfqrxTw0AhjlExWy@vger.kernel.org
-X-Gm-Message-State: AOJu0YzFZI/Qoj1uTCsV1s54FUSRLXxcVSKHpoA1vHMTj7j8kTitKdOV
-	ehqrbC9dt4szAEtXDgMSO/w+QebRl5KgYbku1YuAP5uOodaEXGOYuxDz2FvIHv4V19Nn7BVlnR7
-	bzyarxkWVDpw0cfozPOMxuYzJXyByud1b7tQRxEyHWw==
-X-Gm-Gg: ASbGncuLNEsmn+DJKKRDV9MxQSeBBjNEG6M7wExqEK67R3mNyWL89IrZF4ZydFm9QWC
-	ikkqffvP13pZk5kePrXVjpRak5j2td/qHT+ALgFaDg9fbfb2HcyQsjww4Wves011+w9eFrl9ssS
-	2irPgIEAVx1iveWlLrcZoz3DxkaohzwBi8LfwnBbBoQ4yu7m3drB4jzS1wDT8LhjxFbywlNYqoh
-	Dm6couKWUu/8QJP1S8D+TGBmaDjiw==
-X-Google-Smtp-Source: AGHT+IFl74NSqW15IsNzPl0t9dfL86nU+K1sLMERr5mtjLBBOxObParOztphix/LcxuJdowoYR/BS+BlcXi+vhVMOq4=
-X-Received: by 2002:a05:651c:1b96:b0:36d:ec4c:f476 with SMTP id
- 38308e7fff4ca-37609d39ce3mr60243551fa.11.1760395722422; Mon, 13 Oct 2025
- 15:48:42 -0700 (PDT)
+	s=arc-20240116; t=1760398915; c=relaxed/simple;
+	bh=FhA+6MxVpX+XMIRb8hFgV90i2r+GLcJffFBtki8AwNw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=X8hjWv6KwoNKBHqAjGWyVBK5d2eg+gxGq9G7AH8g0QNTXdwi0JbmxSEc96cGsk1p2OCuFJ5Ud0Ob3A4n1YoIeEZbCJTBosnQoifJFn7zKVbiGxKRT9O8LLKBtKGXcIrb+HFazXeG+fN0VhiTQLcrmJJgGs7/6VuCSRE7NNUlnb0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ozpJdtU8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 03226C4CEE7;
+	Mon, 13 Oct 2025 23:41:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1760398914;
+	bh=FhA+6MxVpX+XMIRb8hFgV90i2r+GLcJffFBtki8AwNw=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=ozpJdtU865OPdmLHrJQy7zkChQZnUN0H/PpkJrMeSzqgh2tF/MhYxxpNiELgeY4Lb
+	 wUfwDnBet/TuufQXDz/I+OSwzdHbpHVsV5/B5BoXFoaPQTwWFO30HHASiQ1X8Grva8
+	 9dOP3g4HevCSVzEuVklVsasbeB2nIytTJnTbFf95YMftuV2l/kw/aafGau7A+cL/fh
+	 VHSVEUxkmysJa+3Ahn8U2XU8eojPIvB9xBJkBOuRorJiTaNMxwVNqdtKQp6DRrW1DD
+	 UDlr4m5FmgXsDuvTmTbJzWdA587DKBJIgY19X4i8kk1DF/x8UGKxLCKdFu7S9KuP7M
+	 aIkHBST3OWLGw==
+Message-ID: <8c3796eb-63d0-4650-b296-60894461a806@kernel.org>
+Date: Tue, 14 Oct 2025 01:41:47 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250811163749.47028-2-ziyao@disroot.org> <20250811163749.47028-3-ziyao@disroot.org>
-In-Reply-To: <20250811163749.47028-3-ziyao@disroot.org>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Tue, 14 Oct 2025 00:48:31 +0200
-X-Gm-Features: AS18NWA8SFvTqHrsvJetzuHren0gSb2rt-z-TJ-P_Xe_tgvYSWiLVp_doY2Zbk4
-Message-ID: <CACRpkdYC6ueVGngC=KMqh9aW8DiMKWyxoa8dqb4N3sEEkpdsFg@mail.gmail.com>
-Subject: Re: [PATCH 1/3] dt-binding: pinctrl: Document Loongson 2K0300 pin controller
-To: Yao Zi <ziyao@disroot.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Huacai Chen <chenhuacai@kernel.org>, 
-	WANG Xuerui <kernel@xen0n.name>, linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, loongarch@lists.linux.dev, 
-	Mingcong Bai <jeffbai@aosc.io>, Kexy Biscuit <kexybiscuit@aosc.io>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/4] dt-bindings: leds: Add YAML bindings for Virtual
+ Color LED Group driver
+To: Jonathan Brophy <professorjonny98@gmail.com>, lee Jones <lee@kernel.org>,
+ Pavel Machek <pavel@kernel.org>,
+ Jonathan Brophy <professor_jonny@hotmail.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Radoslav Tsvetkov <rtsvetkov@gradotech.eu>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-leds@vger.kernel.org
+References: <20251013120955.227572-1-professorjonny98@gmail.com>
+ <20251013120955.227572-2-professorjonny98@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20251013120955.227572-2-professorjonny98@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Mon, Aug 11, 2025 at 6:39=E2=80=AFPM Yao Zi <ziyao@disroot.org> wrote:
+On 13/10/2025 14:09, Jonathan Brophy wrote:
+> From: Jonathan Brophy <professor_jonny@hotmail.com>
+> 
+> Document Virtual Color device tree bindings.
 
-> The pincontroller integarted in Loongson 2K0300 is able to configure
-> function multiplexing for all the pins. It could also configure drive
-> strength on basis of functions, which means all pins set to the same
-> function share drive-strength setting. Drive-strength configuration
-> isn't available for all functions, either.
->
-> This binding utilizes two levels of subnodes, where the outer represents
-> function and the inner represents groups. Drive-strength is allowed in
-> the outer since it's shared among all groups configured to the function.
->
-> Signed-off-by: Yao Zi <ziyao@disroot.org>
-(...)
+I don't see how you answered my comment about missing justification.
+
+Rob's questions also were not answered.
+
+Few minor things follow up, but considering missing reasoning I did not
+perform full review.
+
+A nit, subject: drop second/last, redundant "YAML bindings for". The
+"dt-bindings" prefix is already stating that these are bindings.
+See also:
+https://elixir.bootlin.com/linux/v6.17-rc3/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
+
+... and driver. Again - explain the hardware. Bindings are not for driver.
+
+> 
+> Co-developed-by: Radoslav Tsvetkov <rtsvetkov@gradotech.eu>
+> Signed-off-by: Radoslav Tsvetkov <rtsvetkov@gradotech.eu>
+> Signed-off-by: Jonathan Brophy <professor_jonny@hotmail.com>
+> ---
+>  .../leds/leds-group-virtualcolor.yaml         | 100 ++++++++++++++++++
+>  1 file changed, 100 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/leds/leds-group-virtualcolor.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/leds/leds-group-virtualcolor.yaml b/Documentation/devicetree/bindings/leds/leds-group-virtualcolor.yaml
+> new file mode 100644
+> index 000000000000..bafdd8fb9557
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/leds/leds-group-virtualcolor.yaml
+> @@ -0,0 +1,100 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/leds/leds-group-virtualcolor.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Common properties for virtualcolor led class
+> +
+> +maintainers:
+> +  - Radoslav Tsvetkov <rtsvetkov@gradotech.eu>
+> +
+> +description: |
+> +  Bindings to show how to achieve logically grouped virtual LEDs.
+> +  The nodes and properties defined in this document are unique to the
+> +  virtualcolor LED class.
+
+That's completely redundant statement.
+
+> +  Common LED nodes and properties are inherited from the common.yaml
+> +  within this documentation directory
+
+As well drop. Your description is pretty obvious and does not help at all.
+
+> +
+> +allOf:
+> +  - $ref: common.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: leds-group-virtualcolor
+> +
+> +  '#address-cells':
+> +    const: 1
+> +
+> +  '#size-cells':
+> +    const: 0
+> +
+> +required:
+> +  - compatible
+> +
 > +patternProperties:
-> +  '^func-':
+> +  '^led@[0-9a-f]$':
 > +    type: object
-> +
-> +    $ref: pincfg-node.yaml#
-> +
+> +    $ref: common.yaml#
+
+Missing unevaluatedProperties: false.
+
 > +    properties:
-> +      drive-strength:
-> +        description:
-> +          Maximum sink or source current as defined in pincfg-node.yaml.=
- Note
-> +          that drive strength could only be configured on function basis=
-, i.e.,
-> +          all pins multiplexed to the same function share the same
-> +          configuration.
+> +      reg:
+> +        maxItems: 1
+> +        description: Virtual LED number
 > +
-> +          This could only be configured for several functions, including=
- jtag,
-> +          dvo, uart, gmac, sdio, spi, i2s, timer, usb and emmc.
-> +        enum: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+> +      leds:
+> +        $ref: /schemas/types.yaml#/definitions/phandle-array
+> +        description: List of phandles to the monochromatic LEDs to group
+> +
+> +      function:
+> +        description: |
+> +          For virtualcolor LEDs this property should be defined as
+> +          LED_FUNCTION_VIRTUAL_STATUS as outlined in:
+> +          include/dt-bindings/leds/common.h.
+> +
+> +      priority:
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        description: Priority level for LED activation
+> +          (higher value means higher priority)
+> +
+> +      blink-delay-on:
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        description: Time in milliseconds the LED is on during blink
+> +
+> +      blink-delay-off:
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        description: Time in milliseconds the LED is off during blink
+> +        note: Setting just one of the blink delays to a valid value while
+> +          setting the other to null will cause the LED to operate with a one-shot
+> +          on or off delay instead of a repeat cycle.
 
-As Rob points out this is really odd, or rather the first time I see
-something like this.
 
-It is clear from the driver that these are all set by writing bits
-in a 32bit register, with 2 or 3 bits dedicated to each function.
+And drop all above, except reg and leds. If these are new properties,
+then you need to use proper unit suffixes.
 
-Its a bit weird, like each function has driver totempoles/stages
-before the mux instead of after (which is the normal). But
-I guess it is engineered like that then!
+https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/property-units.yaml
 
-It now looks like this:
-
-+        func-uart {
-+            drive-strength =3D <2>;
-+
-+            uart0-pins {
-+                pinmux =3D <((40 << 8) | 0x3)>, <((41 << 8) | 0x3)>;
-+            };
-
-I think this is better:
-
-uart0_default: uart0-pins {
-     function =3D "uart0";
-     drive-strength =3D <2>;
-     pinmux =3D <((40 << 8) | 0x3)>, <((41 << 8) | 0x3)>;
- };
-
-This is consistent with the bindings if you include both
-$ref: pinmux-node.yaml#
-$ref: pincfg-node.yaml#
-
-And will configure it all in one go.
-
-Sure you need a lookup for the function strings in the driver
-but it's OK.
-
-It's odd to have "function" without "group" but it seems legal
-and works fine for your usecase. The normal would be to
-skip pinmux, have just pins =3D <40, 41>; and look up the
-function value for each function for a pin from a table that
-cross-reference in this case "uart0" to 3. But I
-guess you don't wanna do that so pinmux is fine too.
-
-<((40 << 8) | 0x3)>, <((41 << 8) | 0x3)> is a bit odd, maybe
-you want to also include an explanatory macro in the bindings.
-
-Yours,
-Linus Walleij
+Best regards,
+Krzysztof
 
