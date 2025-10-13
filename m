@@ -1,139 +1,238 @@
-Return-Path: <devicetree+bounces-225992-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225993-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C264ABD2C09
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 13:16:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EC391BD2C25
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 13:21:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7971D3B650F
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 11:16:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A0E703AE00A
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 11:21:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF0A42609D9;
-	Mon, 13 Oct 2025 11:16:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="eg9qG0qd"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA7CE24DD15;
+	Mon, 13 Oct 2025 11:21:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2082925B1FF
-	for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 11:16:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C850222587;
+	Mon, 13 Oct 2025 11:21:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760354167; cv=none; b=mgdVMfEdmuDbQV/owsKSBJvFcXLx9YyfCoW3jn57ApwNrAAER7NiwnXyfg0iQPRlYhxy+VZO5DQcXTbgotM1/g05BnIgwB59H4fsWjYtfLNRxQit4azwDOoaNRe1Xp2gB5g1ZatZly/qnRXPUhHlR+Zv/2aCRRkFcJxhcwtF7uk=
+	t=1760354466; cv=none; b=liC2R/ERi4PdyCxgC2yKnei1f2idFVhgNZGLlTn/L15qVmHrSAVbzRNXoJJda6f9t20bvC2rGSR5Mnk7JlhQdzLp42w9HLGM23CpHEfZGbIgMovpniLKsxmpsjfm7b9Hiz+bD7gqWf5aQYJAjh5426EfPsQLMA7929vKcoPKwZc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760354167; c=relaxed/simple;
-	bh=mh4KQfHpTRyfwbrzSn7QR9HBsuPqnWl2zeRlyQz9EUI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=mmGo1JZNNSu6LJVKbutkhTihbrjnscjCunaZSFGVIPFz4FwFfd+aGrvjrxG90Mn35AJ7BJ3Nll9kkk6hTyeidOPo6wE8lNNkD4GPcF4eS6Lswo7yiFUQW4Dmz0BsTbnlqke5iCl0aafGpBJq2Fpnjp08iTfbgGeZBOuSF7UCP24=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=eg9qG0qd; arc=none smtp.client-ip=170.10.129.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1760354163;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=PXbaRxtuztYp/s40WDhl1rowOsrsCdyuZCaCXhLX8Gw=;
-	b=eg9qG0qdhC2R9lqyiRi151xz6qLOrUQyjhirS0WinhSokY5WTsAStGnNQip3Iz5KH2qcax
-	KSvnvKArOb73Yk9E7kkJWDJqsCxMgkMbNjfxKR9lRI9iY9T8BLYx+XR+C/TSzo8r+U+w04
-	+mw20hbzyOHwg6rnbhkdNQRtAvHOELo=
-Received: from mail-ej1-f69.google.com (mail-ej1-f69.google.com
- [209.85.218.69]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-385-BVOut7kYN3eEBM1UnfOpSQ-1; Mon, 13 Oct 2025 07:16:01 -0400
-X-MC-Unique: BVOut7kYN3eEBM1UnfOpSQ-1
-X-Mimecast-MFC-AGG-ID: BVOut7kYN3eEBM1UnfOpSQ_1760354160
-Received: by mail-ej1-f69.google.com with SMTP id a640c23a62f3a-b3d73e1ed87so566411466b.1
-        for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 04:16:01 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760354160; x=1760958960;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=PXbaRxtuztYp/s40WDhl1rowOsrsCdyuZCaCXhLX8Gw=;
-        b=p2vCXMlzXSHXReSMNMvRKHm5mFe9nRWiwOU7d5S3UIdO3OdKBuVv2JLJ1SD1lnZ1v1
-         HcYMhfVUe/E+qiXp5Z7T1Z5NhFwXMfarIhObzGUfHParXDb6C91SCjWHONbZ+kx8Nd6Z
-         zHi7fc6Tib6OSS9CdBtHjxK9R8S6Lm7/CC/rhxYR2GiIqXeqZprj+YAr+dv3yVxUVRq7
-         XWt5Z8fSGtfUGsh+FQobQdqC6YIj4ZPJx8TDUPOJ9kmXkporrj5gWNMBKoWBaFtKRH98
-         0uGbSWcIU3ahmQ4lspJdgGQYv0KTGadBmCYdmYPDF8CUhklhXdK2hvmRLB5ekkmMvqHk
-         L4jw==
-X-Gm-Message-State: AOJu0YwUjrSW8uf+gV7mp0dwFd8QbYBz9Km8Tvp134AWY/fy1ON9vVyd
-	Ik8w9WNEzKHTvYxA8MTKF4yN4Iu1t/gBS479fP8RYSTPokWPZnTahE+vi5iY9wCGm5Psofb0VWH
-	ms4w5Rif2lrgJOX7m6xiNJcdmeIoSlTLZsFLoJWFHO7aSC7v+hyLFw/2/kd2QFHBf6banfbcgqC
-	/pVJQG7mnDSP3MvMDdJS8MHkz+LrRj3CTl4tJ4j5Hu6jXmAZsDbg==
-X-Gm-Gg: ASbGnctOoHHlF3ClZYWz+Oj4sNzsEwMddOCYcn8rjh5PRCs7+W7i+LDPXKyV/cjIfzi
-	RuFdMIT1STLM6xUCqtBf4M5LMtf3vNyMw1gj12MzQhiHeo88F+WqqcUe9TmgK8F5eMfZoHmI5sm
-	ioO7x9/e6idlqbsutFLkM9o9iTbEpWZ6w9lNRNBq+p/SLKRtaG3PTDqudmjnYwkseuJeMMYOPMK
-	ipQVqXUiM9Cz6sPZUKrxOcGuSpYJT8JeJxtQhBMcwaRPtx4Z/6YPAJzjyqmU1QrS1uG167rpNSL
-	a57yYViqK146rRexGqeNE9Q83QSktQJfVfQlV2eQ5vwT
-X-Received: by 2002:a17:907:3e14:b0:b0e:83e7:f6e1 with SMTP id a640c23a62f3a-b50bedbf399mr141599566b.15.1760354160012;
-        Mon, 13 Oct 2025 04:16:00 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHuUdQXqYYYnB0IxjzxM4QXupFhWiFIY6GmjbzKu7BcvIGOI8cjNpSplnLC3KbMobuV7VWnOg==
-X-Received: by 2002:a17:907:3e14:b0:b0e:83e7:f6e1 with SMTP id a640c23a62f3a-b50bedbf399mr141594866b.15.1760354159482;
-        Mon, 13 Oct 2025 04:15:59 -0700 (PDT)
-Received: from holism.Home ([2a06:5900:814a:ab00:c1c7:2e09:633d:e94e])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b55d5cad8adsm917336966b.7.2025.10.13.04.15.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Oct 2025 04:15:59 -0700 (PDT)
-From: Lucas Zampieri <lzampier@redhat.com>
-To: devicetree@vger.kernel.org
-Cc: Charles Mirabile <cmirabil@redhat.com>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Samuel Holland <samuel.holland@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>,
-	Vivian Wang <dramforever@live.com>,
-	linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Lucas Zampieri <lzampier@redhat.com>
-Subject: [PATCH v2 2/3] dt-bindings: interrupt-controller: add UltraRISC DP1000 PLIC
-Date: Mon, 13 Oct 2025 12:15:37 +0100
-Message-ID: <20251013111539.2206477-3-lzampier@redhat.com>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20251013111539.2206477-1-lzampier@redhat.com>
-References: <20251013111539.2206477-1-lzampier@redhat.com>
+	s=arc-20240116; t=1760354466; c=relaxed/simple;
+	bh=tQje5bDbSj9y1kcqNgldXUREwqU4Y0MJp/r7D9wd3RA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=I4Dzs4yoMXmYYiRMnypCyEs634TgJj242LWsJzU7lHKz0Yp+t70SmX3henegqm3lqonukkefj4uQbRC4/wIEUshdDAMTXzSyPNum8BORaAAV5hbrQZ/BOYfZeM5ISWGdpE/wJpTp4EWoAPSALwyI92xmiJLLKX7OiGFEwbaXVTg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 531BF113E;
+	Mon, 13 Oct 2025 04:20:55 -0700 (PDT)
+Received: from [10.57.5.235] (unknown [10.57.5.235])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 90BB03F6A8;
+	Mon, 13 Oct 2025 04:20:57 -0700 (PDT)
+Message-ID: <8d88cd9d-16e8-43f9-8eb3-89862da1d0c1@arm.com>
+Date: Mon, 13 Oct 2025 12:20:54 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH 0/3] Introduce iommu-map-masked for platform devices
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Charan Teja Kalla <charan.kalla@oss.qualcomm.com>, joro@8bytes.org,
+ will@kernel.org, saravanak@google.com, conor+dt@kernel.org, robh@kernel.org,
+ mchehab@kernel.org, bod@kernel.org, krzk+dt@kernel.org,
+ abhinav.kumar@linux.dev, vikash.garodia@oss.qualcomm.com,
+ dikshita.agarwal@oss.qualcomm.com,
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ bjorn.andersson@oss.qualcomm.com, linux-media@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, iommu@lists.linux.dev
+References: <20250928171718.436440-1-charan.kalla@oss.qualcomm.com>
+ <aec0f40a-8346-4194-8b18-1022fe3366bb@arm.com>
+ <0d0560cc-9757-4c7b-8de4-170148d99481@oss.qualcomm.com>
+ <ead7cf8b-fbc4-4242-a9da-b313dded1abc@arm.com>
+ <nzqte4glwtpjs5bhkxz43yhdufelxvqvzmg5tepudxwetimir3@bvlw5csjizsh>
+ <9d3eeb9f-b8ea-48e5-a1d9-0865f63ef991@arm.com>
+ <fhb4woejzh3r6v5dxvdiopnsbuwstucfuuzbiymxg4wrxrjc7t@dt3z3utq6lwd>
+From: Robin Murphy <robin.murphy@arm.com>
+Content-Language: en-GB
+In-Reply-To: <fhb4woejzh3r6v5dxvdiopnsbuwstucfuuzbiymxg4wrxrjc7t@dt3z3utq6lwd>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-From: Charles Mirabile <cmirabil@redhat.com>
+On 2025-10-09 7:25 pm, Dmitry Baryshkov wrote:
+> On Thu, Oct 09, 2025 at 06:03:29PM +0100, Robin Murphy wrote:
+>> On 2025-10-09 2:19 pm, Dmitry Baryshkov wrote:
+>>> On Thu, Oct 09, 2025 at 11:46:55AM +0100, Robin Murphy wrote:
+>>>> On 2025-10-08 8:10 pm, Charan Teja Kalla wrote:
+>>>>>
+>>>>> On 9/29/2025 3:50 PM, Robin Murphy wrote:
+>>>>>>> USECASE [1]:
+>>>>>>> -----------
+>>>>>>> Video IP, 32bit, have 2 hardware sub blocks(or can be called as
+>>>>>>> functions) called as pixel and nonpixel blocks, that does decode and
+>>>>>>> encode of the video stream. These sub blocks are __configured__ to
+>>>>>>> generate different stream IDs.
+>>>>>>
+>>>>>> So please clarify why you can't:
+>>>>>>
+>>>>>> a) Describe the sub-blocks as individual child nodes each with their own
+>>>>>> distinct "iommus" property
+>>>>>>
+>>>>>
+>>>>> Thanks Robin for your time. Sorry for late reply as I really didn't have
+>>>>> concrete answer for this question.
+>>>>>
+>>>>> First let me clarify the word "sub blocks" -- This is just the logical
+>>>>> separation with no separate address space to really able to define them
+>>>>> as sub devices. Think of it like a single video IP with 2 dma
+>>>>> engines(used for pixel and non-pixel purpose).
+>>>>>
+>>>>> I should agree that the child-nodes in the device tree is the easy one
+>>>>> and infact, it is how being used in downstream.
+>>>>>
+>>>>> For upstream -- Since there is no real address space to interact with
+>>>>> these sub-blocks(or logical blocks), does it really qualify to define as
+>>>>> child nodes in the device tree? I see there is some push back[1].
+>>>>
+>>>> Who says you need an address space? Child nodes without "reg" properties,
+>>>> referenced by name, compatible or phandle, exist all over the place for all
+>>>> manner of reasons. If there are distinct logical functions with their own
+>>>> distinct hardware properties, then I would say having child nodes to
+>>>> describe and associate those properties with their respective functions is
+>>>> entirely natural and appropriate. The first example that comes to mind of
+>>>> where this is a well-established practice is PMICs - to pick one at random:
+>>>> Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml
+>>>
+>>> Logical function, that's correct. And also note, for PMICs that practice
+>>> has bitten us back. For PM8008 we switched back to a non-subdevice
+>>> representation.
+>>>
+>>>> For bonus irony, you can't take the other approaches without inherently
+>>>> *introducing* a notional address space in the form of your logical function
+>>>> IDs anyway.
+>>>>
+>>>>>      > or:
+>>>>>>
+>>>>>> b) Use standard "iommu-map" which already supports mapping a masked
+>>>>>> input ID to an arbitrary IOMMU specifier
+>>>>>>
+>>>>>
+>>>>> I think clients is also required to program non-zero smr mask, where as
+>>>>> iommu-map just maps the id to an IOMMU specifier(sid). Please LMK if I
+>>>>> am unable to catch your thought here.
+>>>> An IOMMU specifier is whatever the target IOMMU node's #iommu-cells says it
+>>>> is. The fact that Linux's parsing code only works properly for #iommu-cells
+>>>> = 1 is not really a DT binding problem (other than it stemming from a loose
+>>>> assumption stated in the PCI binding's use of the property).
+>>>
+>>> I really don't like the idea of extending the #iommu-cells. The ARM SMMU
+>>> has only one cell, which is correct even for our platforms. The fact
+>>> that we need to identify different IOMMU SIDs (and handle them in a
+>>> differnt ways) is internal to the video device (and several other
+>>> devices). There is nothing to be handled on the ARM SMMU side.
+>>
+>> Huh? So if you prefer not to change anything, are you suggesting this series
+>> doesn't need to exist at all? Now I'm thoroughly confused...
+> 
+> Hmm. We need changes, but I don't feel like adding the FUNCTION_ID to
+> #iommu-cells is the best idea.
 
-Add a new compatible string for UltraRISC DP1000 PLIC.
+What? No, any function ID would be an *input* to a map, not part of the 
+output specifier; indeed it should never go anywhere near the IOMMU, I 
+don't think anyone suggested that.
 
-Signed-off-by: Charles Mirabile <cmirabil@redhat.com>
-Signed-off-by: Lucas Zampieri <lzampier@redhat.com>
----
- .../bindings/interrupt-controller/sifive,plic-1.0.0.yaml        | 3 +++
- 1 file changed, 3 insertions(+)
+>> If you want to use SMR masks, then you absolutely need #iommu-cells = 2,
+>> because that is the SMMU binding for using SMR masks. It would definitely
+> 
+> I'm sorry. Yes, we have #iommu-cells = <2>.
+> 
+>> not be OK to have some magic property trying to smuggle
+>> IOMMU-driver-specific data contrary to what the IOMMU node itself says. As
+>> for iommu-map, I don't see what would be objectionable about improving the
+>> parsing to respect a real #iommu-cells value rather than hard-coding an
+>> assumption. Yes, we'd probably need to forbid entries with length > 1
+>> targeting IOMMUs with #iommu-cells > 1, since the notion of a linear
+> 
+> This will break e.g. PCIe on Qualcomm platforms:
+> 
+>                          iommu-map = <0x0   &apps_smmu 0x1400 0x1>,
+>                                      <0x100 &apps_smmu 0x1401 0x1>;
+> 
+> 
+> But this seems unlogical anyway wrt. apps_smmu having #iommu-cells =
+> <2>. It depends on ARM SMMU ignoring the second cell when it's not
+> present.
 
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml b/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
-index 5b827bc24301..a419de50f5a8 100644
---- a/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
-+++ b/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
-@@ -74,6 +74,8 @@ properties:
-               - sophgo,sg2044-plic
-               - thead,th1520-plic
-           - const: thead,c900-plic
-+      - items:
-+          - const: ultrarisc,dp1000-plic
-+          - const: ultrarisc,cp100-plic
-       - items:
-           - const: sifive,plic-1.0.0
-           - const: riscv,plic0
---
-2.51.0
+Urgh, yes, that's just broken already :(
 
+At least they all seem to be a sufficiently consistent pattern that a 
+targeted workaround to detect old DTBs looks feasible (I'm thinking, if 
+iommu-map size % 4 == 0 and cells n*4 + 3 are all 1 and cells n*4 + 1 
+are all the same phandle to an IOMMU with #iommu-cells == 2, then parse 
+as if #iommu-cells == 1)
+
+>> relationship between the input ID and the output specifier falls apart when
+>> the specifier is complex, but that seems simple enough to implement and
+>> document (even if it's too fiddly to describe in the schema itself), and
+>> still certainly no worse than having another property that *is* just
+>> iommu-map with implicit length = 1.
+>>
+>> And if you want individual StreamIDs for logical functions to be attachable
+>> to distinct contexts then those functions absolutely must be visible to the
+>> IOMMU layer and the SMMU driver as independent devices with their own unique
+>> properties, which means either they come that way from the DT as of_platform
+>> devices in the first place, or you implement a full bus_type abstraction
+> 
+> Not necessarily. Tegra display driver creates a device for each context
+> on its own.
+No, the *display* driver does not; the host1x bus driver does, which is 
+the point I was making - that has a proper bus abstraction tied into the 
+IOMMU layer, such that the devices are correctly configured long before 
+the actual DRM driver(s) get anywhere near them.
+
+> In fact, using OF to create context devices is _less_
+> robust, because now the driver needs to sync, checking that there is a
+> subdevice, that it has probed, etc. Using manually created devices seems
+> better from my POV.
+
+Huh? A simple call to of_platform_populate() is somehow less robust than 
+open-coding much of the same logic that of_platform_populate() does plus 
+a bunch of hackery to try to fake up an of_node to make the new device 
+appear to own the appropriate properties?
+
+Having entire sub-*drivers* for child devices or not is an orthogonal 
+issue regardless of whichever way they are created.
+>> which will have to be hooked up to the IOMMU layer. You cannot make IOMMU
+>> configuration "internal" to the actual client driver which is only allowed
+>> to bind *after* said IOMMU configuration has already been made.
+> 
+> I'm not sure I follow this, I'm sorry.
+I mean IOMMU configuration is designed to happen at device_add() time, 
+and client drivers must not assume otherwise (the mechanisms for 
+handling IOMMU drivers registering "late" from modules are internal 
+details that can and will change). If you're under the impression that a 
+straightforward platform driver for the video codec itself would be able 
+to invoke IOMMU configuration for the video codec platform device 
+(without unacceptable levels of hackery) then you are mistaken, sorry.
+
+Again, to be able to assign StreamIDs to different contexts, those 
+StreamIDs must uniquely belong to different struct devices. Thus in 
+terms of how you get to those struct devices from a DT representation, 
+either they come from distinct DT nodes with standard "iommus" 
+properties that the generic of_platform code can create and configure 
+accordingly, or you're doing a non-trivial amount of work to implement 
+your own bus layer like host1x_context_bus to manage your own type of 
+sub-device. There is no valid middle ground of trying to stuff 
+driver-specific knowledge of arbitrarily made-up function IDs into the 
+generic platform bus code.
+
+Thanks,
+Robin.
 
