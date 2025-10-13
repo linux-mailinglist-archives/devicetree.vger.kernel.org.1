@@ -1,148 +1,222 @@
-Return-Path: <devicetree+bounces-225811-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225812-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF8D4BD1321
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 04:11:57 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 95284BD132D
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 04:12:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 1927A4EC7B4
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 02:11:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4EA6B3B346C
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 02:12:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DEC5284880;
-	Mon, 13 Oct 2025 02:09:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E55227FD7C;
+	Mon, 13 Oct 2025 02:12:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SrQ4iNdT"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="DgBt1V/4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f68.google.com (mail-ed1-f68.google.com [209.85.208.68])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DF0E2D594A
-	for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 02:09:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.68
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CED1035965
+	for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 02:12:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760321388; cv=none; b=jS8uNLdFwVgKqsia/BAZjw8QvdAt2Xh4Vpjzq+ABkMa28fzSbXq4C/KK/nul3ijZ/zcA7bDqap1tFavbWK80b+TFZJgdPfV0LClJRITDpysepjZWY7riPbIsT12hp7i1GXWROUKQoLqljjAmR2dwOZKYicBW1VhiQQ4iGJcEadE=
+	t=1760321528; cv=none; b=GxoRdN2kvXOTDmQYhyiEjE3zQA2WRWQ7YPRJ/DO0Ncp1M+XD05ArDF+crv97ttWfH9tWNb/Y63e5/vffcfXAu5G0K4jVF03h+G3QNuf1093Pd/D8wnx1yc6I6ziD4badSi1eGoWDRI+ax8tz3mIctazyUMma4p2tSjwtdK1GDpA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760321388; c=relaxed/simple;
-	bh=FkhTO/czN9dofNzglJcnz28mMXp59FfI5fzYQN4S4kc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=BUOR8kz2MEymBuBlURtWYOGSt/fGxgwcH+9lw0MLK+S/ecC5etNfl3zsSAHSUkVbySPdqwDfl16/G2RFPiz8wy3mLuTrdvjEcAwfxOhF8hhTQvyEoeCEzRu0c995O+Cv8jxrVw7IgH6mwPxaDIDjla4zt7ZwPyZwQi+FaeaLUc4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SrQ4iNdT; arc=none smtp.client-ip=209.85.208.68
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f68.google.com with SMTP id 4fb4d7f45d1cf-63963066fb0so7690873a12.3
-        for <devicetree@vger.kernel.org>; Sun, 12 Oct 2025 19:09:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1760321384; x=1760926184; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wN9WKZXYO2Nmb+YIelwARSerR3E1lKOGfH0FqHzn+JU=;
-        b=SrQ4iNdT4nG40VHPXbi+zLCcO4HFG8jR5gOMH9D5ZMC3P142Zkx3LzYXg+8vHG7dnt
-         a+l3irMChyLPCPVb4lijKbAoPCB7z/IWpqTyE/0gyXl6OUkJiWVOgGoOhoGETithmEue
-         uQ933uQikE9b+NCfx5otAcE1UmGBmPTz47kF11PyBMdA7iXxZCNtbg0SEVzgtTNwGs4Z
-         /fB73rzMXg0Zx7iB6PLf16H7+dPio6MnqTvpLuBkiFzM5msLNhUKykzSt31Yw5EgdSna
-         7Z47e7hBGg1JY9m2raFKNoGzDvcUBVLj7SrEEhaTAX5TVkr7lt87wwKsz6f64FazMbGk
-         O6HA==
+	s=arc-20240116; t=1760321528; c=relaxed/simple;
+	bh=x0LwWrdaES//1++J0BCHAr5V+/KFaqAOh04QCmwHVD0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=paTV/W7t+/cDb+DEmJBgcDCZOTKzbD9Jd3wgtEiqD2SlG/qNIR5UgZP/aVHIKzOU4ZHJrk1JYRBHzHfp19nboLW4rUFY6ugH/ZiyupGyrRPi9VTVFP6WqP7rd51rM81bavs+JY5yVz0pu2RCRO7UP7wnbkpggDjOmDC/fJVYLug=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=DgBt1V/4; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59CLlcKs031478
+	for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 02:12:05 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=86ZWYyPnzwyBT1SEdx2OYD4Y
+	N65eSOUUs/UhqpCdnLU=; b=DgBt1V/4SL91g2tYdnkd8pnKY7IuVA+EB+yRk0Vq
+	v8PHbqTD0VzuzZyY21lKErYPzBoXYywy+s4e9jCOvA3kPBADojpuhoAXBxGvmtgc
+	BT4BG9IFTTf8n2dEjw2F/8FWrtb31sviYrI5Se30CpVvFpocz165YwzJHDEKo1fX
+	frSI4/nEPXQqFlP2+MjVLT7S48x0lOc+kmYEdEaEKYzGPP5zSJxvf65fBjKr1EPQ
+	38PCMSI5I4C9C61Kd9DqFv0aJrFSHpfv19sw9sqCiu1xKoh27NK5iv8bqgbbvXIi
+	YOqcZu0byPqYfQcYHIC/NJIBC6pMoZTkbHOFEA7f67qLwQ==
+Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49qfm5axxg-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 02:12:05 +0000 (GMT)
+Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-859b89cd3f2so2144054685a.1
+        for <devicetree@vger.kernel.org>; Sun, 12 Oct 2025 19:12:05 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760321384; x=1760926184;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=wN9WKZXYO2Nmb+YIelwARSerR3E1lKOGfH0FqHzn+JU=;
-        b=Y49SZW9q5F9VOVA1KUtJybpX1CqavMDOFgorDn2nmnmmNYdDuDrvEAVJRSBkyFY4jT
-         0lsEg6qRKd/3FBr6ghhTDuLwdxsKveFAzgaf3orQqEtjPB+XikShK1IZjcOgFMk+Sgys
-         LFrVskTGOqEvoK/+kxtKY6CT616tRGA5oiNBS/HNpuC0aZhT9jruTWVKIaaMdH1a+2Fz
-         +t0US7BdDiDzi0qVGFDmj1t4NabYfGHdW64R2oOJK5MTHSflTsCKFvQJTlC1/iY5E3/r
-         0T/l9TM3966X3/zV1IPdyD++fqKcV/PxNpvJHZPZZpxq9/Bh6iS1uuW3UIypeeT5Elzg
-         Xf4w==
-X-Forwarded-Encrypted: i=1; AJvYcCVVRvFSAATCbUL57hbrD9VAVpGE5DUU/uRYdS32NPKAii/Xla4KDc2fIsCdj1f95DuDdJYoFP8TXAte@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyy2oUByLUVmdkmMLh0ZEu1Uy4HM4S1Rjy2LFaCnJua0VRovpYi
-	DYLzLhFF4e/XJFVCHETZ447PgFJ7P3Ja9oe0f4OtgqALLq2co/RS6+8e7nwYj04KyZbxIr7RcSR
-	ohLexXqexkTSOuDOnOdjLYzMowyeZmvI=
-X-Gm-Gg: ASbGncuQvwCL/beioHb2YYhqBL7CB4fAARSxmO64En3iW3dFKaKkf5BHR5Gjx8sFyHF
-	ru/gs+TPVcxHy4e7U9HeIADVU4QAKOopm84vao2b8uHdZsfYISVIgm96NbsJF9ZKQorx1hwTAOc
-	bHrPCCtiWh5b1/9VcLPSQBJW3TJeunr0UZzicaRF4ekDMOCUyfMitNFCpX2fPa7ShckD3t6MGBU
-	78hYYWcCf4k8Z/Z5axQY/AiJS2bNIjbHLFd
-X-Google-Smtp-Source: AGHT+IHSJMTE42FzCsgTGmPKRezFnzYeGwD48gJLrMiPETpubu6LIUbFJ/YFNHidT3rkFndsTeRCcQITlZmFIhHHLUY=
-X-Received: by 2002:a05:6402:5106:b0:638:e8af:35d9 with SMTP id
- 4fb4d7f45d1cf-639d5c3e994mr18251877a12.23.1760321384245; Sun, 12 Oct 2025
- 19:09:44 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1760321524; x=1760926324;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=86ZWYyPnzwyBT1SEdx2OYD4YN65eSOUUs/UhqpCdnLU=;
+        b=SrBRyOe3Viqh228yukqWooVTUC9QxThpByekz005t3N169RAnO9xCmHQ4IcNEXZ1A3
+         P57AucAVZiHa/RbGw+p9vVmpmUIfNCcPm+sKOo4bpaQOnb5lVPmefAAAcBulJeHCHey2
+         LLI3lAjo4ObrBEG6lMbXpNv62VVEYIw5Vo8BWQCUnWYStbMcHzs7YFgv+1umFAiCKcAj
+         KYZ4tTTnwuWP2W6qGzlUgDI/pdG92YOGaRH1/LML8/Ss+rZRc2frnekaiK0mtk3VIfKX
+         A4pARe2P9m9FMf724fk8FjYS4KYa2SWEpZIcdsEBkhJ2p2/84Ow7W1oA0Ez7a0yD4NTq
+         Vdxg==
+X-Forwarded-Encrypted: i=1; AJvYcCUZK4APZjJkiVBYR9ylZ/auFAjPmKShBBRs0fHu8dPXXLGyMA6nOihjxQgXm9/wG3zSp4UcT+fmlLfx@vger.kernel.org
+X-Gm-Message-State: AOJu0YzP11vCHwi9kYbNchLRMZE0NhXj0tS3X2UE3Z3MJWTIAG9h9yT+
+	aU56A/+2dX+NPwS4XL+BaDssEQT9vfCmUzPphBegnCyMa9R6XEnhHOsgFlu2YMex08MMd4TPRYl
+	6ktHHpFlUQPJWc6wUMcbgV6Vl9oJt+M1gXYNSfbyjQ+ygnYRvfkyeayH+/ish1GDX
+X-Gm-Gg: ASbGncv0uZwKcKat0VwDbgiEC2sbJE0EVZs3FXQDI1Nsel01Ka4EYgjJDAh0u8V7rLr
+	nZw7v+wKtA+ZMBi0tSmC1oohFJ8AwYcq6FWESeFSYisgWFEHm6OtnSJTiAFc45sBiRpkTswwevr
+	Zmz0pKV6zEmVo2T1bOlmSAB1BZpoAXYH1wxlw/fC7PoykJbs3HpPpEkqpgsW43a8F+GpuiAg+K1
+	HmPWrJgeAPzwSS9iAFBAMssH196FE6GvjICUETMqdyTzVqZQLRQbOvz4AgQOSBmf8G8O7nhArfG
+	+Y4ByLWV2DUThnU1nUgJOnnsVzmJKZs6ZktSWDUKgdsYWAu6kKHa6AR5vxB4LIoBQQ9xigZXvYy
+	zDIsTQ/H0JuLHsD2ZJmemC0hFcBnvo5Mt4E98iBfyKbyvcTmrMZHV
+X-Received: by 2002:a05:620a:1aa7:b0:863:42ea:d687 with SMTP id af79cd13be357-88352d9a142mr2371625585a.78.1760321524303;
+        Sun, 12 Oct 2025 19:12:04 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHMoQF7op5MF9g/GW/8bpQeNO9MGh0k/WN4mxk7m/kz0sYWr+GEzFx7kK0Z0muN7KMj1v1Eng==
+X-Received: by 2002:a05:620a:1aa7:b0:863:42ea:d687 with SMTP id af79cd13be357-88352d9a142mr2371624385a.78.1760321523808;
+        Sun, 12 Oct 2025 19:12:03 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5909a119fdbsm2285439e87.112.2025.10.12.19.12.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 12 Oct 2025 19:12:01 -0700 (PDT)
+Date: Mon, 13 Oct 2025 05:11:58 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+Cc: Chaoyi Chen <kernel@airkyi.com>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>, Sandy Huang <hjc@rock-chips.com>,
+        Andy Yan <andy.yan@rock-chips.com>,
+        Yubing Zhang <yubing.zhang@rock-chips.com>,
+        Frank Wang <frank.wang@rock-chips.com>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Amit Sunil Dhamne <amitsd@google.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Dragan Simic <dsimic@manjaro.org>, Johan Jonker <jbx6244@gmail.com>,
+        Diederik de Haas <didi.debian@cknow.org>,
+        Peter Robinson <pbrobinson@gmail.com>, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-phy@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH v5 6/8] drm/rockchip: cdn-dp: Add multiple bridges to
+ support PHY port selection
+Message-ID: <6hilafgpdbsppeeib75b5uamwf22kbu4likcp64ahb4u7zehhw@c3mtlzwx7qcp>
+References: <20251011033233.97-1-kernel@airkyi.com>
+ <20251011033233.97-7-kernel@airkyi.com>
+ <qzcdulyj2enho7l6vyvad7ln46zk2u4z7rnsjv2nv4tbw5j6jf@6oenbixoh3sp>
+ <08eb7560-c13e-462f-8110-d4ce5ccbd687@rock-chips.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251001135914.13754-1-caojunjie650@gmail.com>
- <20251001135914.13754-4-caojunjie650@gmail.com> <lfdhib6a7ct36nmj3of2setjft7ydrf6sfgtx7qued7qd56nhc@2xol3grm5re7>
-In-Reply-To: <lfdhib6a7ct36nmj3of2setjft7ydrf6sfgtx7qued7qd56nhc@2xol3grm5re7>
-From: =?UTF-8?B?5pu55L+K5p2w?= <caojunjie650@gmail.com>
-Date: Mon, 13 Oct 2025 10:09:32 +0800
-X-Gm-Features: AS18NWB68269yeiTzdACPvm7V3NMKR_y0HxD4z4iqSVQM-VjCZQP0WcUwHJ0Wsc
-Message-ID: <CAK6c68h307fRVR=QKJG1pRJuDi1oCSrSYXBamwpAMx_jUgX7fg@mail.gmail.com>
-Subject: Re: [PATCH 3/3] drm/panel: Add Novatek NT36532 panel driver
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, 
-	Jessica Zhang <jessica.zhang@oss.qualcomm.com>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Rob Clark <robin.clark@oss.qualcomm.com>, Dmitry Baryshkov <lumag@kernel.org>, 
-	Abhinav Kumar <abhinav.kumar@linux.dev>, Sean Paul <sean@poorly.run>, 
-	Marijn Suijten <marijn.suijten@somainline.org>, Antonino Maniscalco <antomani103@gmail.com>, 
-	Jonathan Marek <jonathan@marek.ca>, Eugene Lepshy <fekz115@gmail.com>, Jun Nie <jun.nie@linaro.org>, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	freedreno@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <08eb7560-c13e-462f-8110-d4ce5ccbd687@rock-chips.com>
+X-Proofpoint-GUID: PIccQE-Px5gSN6CH0vq7bYjeYcfJiDUy
+X-Proofpoint-ORIG-GUID: PIccQE-Px5gSN6CH0vq7bYjeYcfJiDUy
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDExMDAyMCBTYWx0ZWRfXwc5/Hf0+VF8p
+ WlvjqvN8eFuskTqHxmUsSvHlXu7dAA3L9jJLNIoML1+vE71Y664mzoEHXYYpb9/oHbtEmUrWkFv
+ ZosDGsLWo+G09NgS9ol1DDEllcNS7FCqsOEhDvnoQ4kCxyefI7evLJ8n1sDNHP6P+GedIKbLfXd
+ VFV20R7Km6nrEcE4FxaQ+xxgZGVl9TfkELrCYvxQuO54DaAYamV3zQZHloSQAu3qzKMx1jWfy9z
+ oNZDF3ieaWe32kVt8Z/xorrBza38DWzPz4//OgTG2Mw4cGRBOKLfMFA2G3KdDHyiaB77lLoNsrL
+ Zr0Z2Yb6hsGvKOKkfTC7pWZ+RnkbVNSNv0g+JAAFCeEw/j1sG5IodPGyda+JbWbhuAokoFxSrf/
+ KgMceGXTFLBEIXIlrzFMrY28x58aVg==
+X-Authority-Analysis: v=2.4 cv=V71wEOni c=1 sm=1 tr=0 ts=68ec5ff5 cx=c_pps
+ a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=x6icFKpwvdMA:10 a=s8YR1HE3AAAA:8 a=46buKmVFnKFTYA1G4KoA:9 a=CjuIK1q_8ugA:10
+ a=PEH46H7Ffwr30OY-TuGO:22 a=jGH_LyMDp9YhSvY-UuyI:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-10-13_01,2025-10-06_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 malwarescore=0 spamscore=0 adultscore=0 suspectscore=0
+ impostorscore=0 phishscore=0 clxscore=1015 lowpriorityscore=0
+ priorityscore=1501 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2510020000
+ definitions=main-2510110020
 
-Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com> =E4=BA=8E2025=E5=B9=B4=
-10=E6=9C=882=E6=97=A5=E5=91=A8=E5=9B=9B 10:05=E5=86=99=E9=81=93=EF=BC=9A
->On Wed, Oct 01, 2025 at 09:59:14PM +0800, Junjie Cao wrote:
->> Add a driver for panels using the Novatek NT36532 Display Driver IC,
->> including support for the CSOT PPC100HB1-1, found in the OnePlus Pad 2
->> tablets.
->>
->> Signed-off-by: Junjie Cao <caojunjie650@gmail.com>
->> ---
->>  MAINTAINERS                                   |   7 +
->>  drivers/gpu/drm/panel/Kconfig                 |  10 +
->>  drivers/gpu/drm/panel/Makefile                |   1 +
->>  drivers/gpu/drm/panel/panel-novatek-nt36532.c | 437 ++++++++++++++++++
->>  4 files changed, 455 insertions(+)
->>  create mode 100644 drivers/gpu/drm/panel/panel-novatek-nt36532.c
->>
->> +
->> +static const struct panel_info csot_panel_info =3D {
->> +     .width_mm =3D 250,
->> +     .height_mm =3D 177,
->> +     .lanes =3D 4,
->> +     .format =3D MIPI_DSI_FMT_RGB888,
->> +     .mode_flags =3D MIPI_DSI_MODE_VIDEO | MIPI_DSI_CLOCK_NON_CONTINUOU=
-S |
->> +                   MIPI_DSI_MODE_LPM,
->> +     .display_mode =3D csot_display_mode,
->> +     .dsc_slice_per_pkt =3D 2,
->
->As this is not a part of the standard, what if the DSI host doesn't
->support this feature?
->
+On Mon, Oct 13, 2025 at 09:26:06AM +0800, Chaoyi Chen wrote:
+> On 10/12/2025 2:52 AM, Dmitry Baryshkov wrote:
+> 
+> > On Sat, Oct 11, 2025 at 11:32:31AM +0800, Chaoyi Chen wrote:
+> > > From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+> > > 
+> > > The RK3399 has two USB/DP combo PHY and one CDN-DP controller. And
+> > > the CDN-DP can be switched to output to one of the PHYs. If both ports
+> > > are plugged into DP, DP will select the first port for output.
+> > > 
+> > > This patch adds support for multiple bridges, enabling users to flexibly
+> > > select the output port. For each PHY port, a separate encoder and bridge
+> > > are registered.
+> > > 
+> > > The change is based on the DRM AUX HPD bridge, rather than the
+> > > extcon approach. This requires the DT to correctly describe the
+> > > connections between the first bridge in bridge chain and DP
+> > > controller. For example, the bridge chain may be like this:
+> > > 
+> > > PHY aux birdge -> fsa4480 analog audio switch bridge ->
+> > > onnn,nb7vpq904m USB reminder bridge -> USB-C controller AUX HPD bridge
+> > > 
+> > > In this case, the connection relationships among the PHY aux bridge
+> > > and the DP contorller need to be described in DT.
+> > > 
+> > > In addition, the cdn_dp_parse_hpd_bridge_dt() will parses it and
+> > > determines whether to register one or two bridges.
+> > > 
+> > > Since there is only one DP controller, only one of the PHY ports can
+> > > output at a time. The key is how to switch between different PHYs,
+> > > which is handled by cdn_dp_switch_port() and cdn_dp_enable().
+> > > 
+> > > There are two cases:
+> > > 
+> > > 1. Neither bridge is enabled. In this case, both bridges can
+> > > independently read the EDID, and the PHY port may switch before
+> > > reading the EDID.
+> > > 
+> > > 2. One bridge is already enabled. In this case, other bridges are not
+> > > allowed to read the EDID. So we will try to return the cached EDID.
+> > > 
+> > > Since the scenario of two ports plug in at the same time is rare,
+> > > I don't have a board which support two TypeC connector to test this.
+> > > Therefore, I tested forced switching on a single PHY port, as well as
+> > > output using a fake PHY port alongside a real PHY port.
+> > > 
+> > > Signed-off-by: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+> > > ---
+> > > 
+> > > +	/* One endpoint may correspond to one HPD bridge. */
+> > > +	for_each_of_graph_port_endpoint(port, dp_ep) {
+> > > +		struct device_node *phy_bridge_node __free(device_node) =
+> > > +			of_graph_get_remote_port_parent(dp_ep);
+> > > +
+> > > +		bridge = of_drm_find_bridge(phy_bridge_node);
+> > > +		if (!bridge) {
+> > > +			ret = -EPROBE_DEFER;
+> > > +			goto out;
+> > > +		}
+> > > +
+> > > +		dp->hpd_bridge_valid = true;
+> > > +		dp->hpd_bridge_list[count].bridge = bridge;
+> > > +		dp->hpd_bridge_list[count].parent = dp;
+> > > +		dp->hpd_bridge_list[count].id = count;
+> > This looks misnamed. They are not necessarily HPD bridges. There can be
+> > a random chain between your controller and the actual output / connector
+> > /etc.
+> 
+> Yes, and more precisely, this should be `pervious_bridge_list` . Will fix in v6.
 
-Without it, parameters will not be calculated correctly, garbled then.
+I think the typical convention is around next_bridge, not previous.
 
->> +     .dsc_cfg =3D &csot_dsc_cfg,
->> +     .init_sequence =3D csot_init_sequence,
->> +     .is_dual_dsi =3D true,
->> +};
->> +
->
->--
->With best wishes
->Dmitry
 
-Regards,
-Junjie
+-- 
+With best wishes
+Dmitry
 
