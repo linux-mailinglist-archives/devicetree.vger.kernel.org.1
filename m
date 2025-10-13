@@ -1,98 +1,239 @@
-Return-Path: <devicetree+bounces-226039-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226040-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11FF9BD31F4
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 15:00:30 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB924BD3200
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 15:01:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5A62A189CEA3
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 13:00:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1550D189E3BF
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 13:01:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E948612E1E9;
-	Mon, 13 Oct 2025 13:00:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C1A82749C4;
+	Mon, 13 Oct 2025 13:00:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GZUXheY5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m49198.qiye.163.com (mail-m49198.qiye.163.com [45.254.49.198])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50F6111CA9;
-	Mon, 13 Oct 2025 13:00:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.198
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7694D4C6E
+	for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 13:00:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760360425; cv=none; b=hlleB3iBggo9OH8zG6nDGgnrOVLhmGbnVAG8h0ltyklZoScjVT9STuc1RRJndmNDKo6oHrNRULQqti35dW4Nk0Wb4/IDPlwQqorMfcY2xW9h2Yz6xH121lUWpqP/kuV74Kn3v1l0WDY04cj1n+m2BFRbB7S/nXG5eW8CReifcMw=
+	t=1760360457; cv=none; b=lzhjYUNuL255/dqzkn+egSQoGMrvBkpwO5xUZKrrIli6St1hg+WSaXjr0Rr9i4ztZiAbYO+VjQrNW9oqZoDOQcJpn7RfePn5JWrY2cbssNg6u/DzYleZAEv++dg+uG6cghHtzxltRdEd2Ij+HFNgcMHMhGhf7l5+MzKE0jH2VIU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760360425; c=relaxed/simple;
-	bh=vEfTWo7zWY3pPoa8E6MG3IBuWPCn42p0TYn1oxbgU7s=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=bdb/rcJXXWSCTuWmSK/4Q9v8TFttG+sL6+TAKXgVf6Nn8vbkpuMkH53xPrikdXPng1Y+h6YxosgqNOphOH+RGU9bkh3TiwQ/Vtjv8lwXl9xd91i/3ktIlopaxQ/4vqUCnkXxt77jhFPcJ1855u47CIqN+XsLzl7RRG6NmS09x7E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=45.254.49.198
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
-Received: from localhost.localdomain (unknown [116.25.94.88])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 25bc09e05;
-	Mon, 13 Oct 2025 21:00:17 +0800 (GMT+08:00)
-From: Chukun Pan <amadeus@jmu.edu.cn>
-To: jjm2473@gmail.com
-Cc: amadeus@jmu.edu.cn,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	heiko@sntech.de,
-	krzk+dt@kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH v5 3/3] arm64: dts: rockchip: add LinkEase EasePi R1
-Date: Mon, 13 Oct 2025 21:00:10 +0800
-Message-Id: <20251013130010.143271-1-amadeus@jmu.edu.cn>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <CAP_9mL5=GmtJF3nSbfX6gRzPc=fAMrTOfMuOLyWFwq5D4OYUFw@mail.gmail.com>
-References: <CAP_9mL5=GmtJF3nSbfX6gRzPc=fAMrTOfMuOLyWFwq5D4OYUFw@mail.gmail.com>
+	s=arc-20240116; t=1760360457; c=relaxed/simple;
+	bh=i9iJGo0KJ+KjP0rOALL8y9Ze3unbPpntnRn8FZ5ZXLo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=dGR8fQpVVgKJZx6OgyTr7j4gjrMGuMNG64ucDqWx13jRsaD6Wr23uiYWmDTZDZRnkMAJQ2m7AeSV5J2U+qPqYlNL9tCMYqDsuvruN5OnJ98kAzyRG6ob2rxHEqYToUzO+hH//JazqlTCxrJQh5QzlKzepiYpp4xxD/xKSzC35Us=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GZUXheY5; arc=none smtp.client-ip=209.85.208.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-373ac916b35so41004841fa.0
+        for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 06:00:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1760360454; x=1760965254; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=RwPM/Z5O0yHOLH9LwU+Zo7JSbbUS2MnSJ7z2h3tfSbk=;
+        b=GZUXheY5g16g+NcrpryYGGM/s9f9xN6ZFJVkK1cKl9cIZ6S7zhv6f0U38d1PRNqfO+
+         ihKAqQtBSRVcLRwwKK2L0iPgY16fracELTQznMg9Ws7AdgoJ8laNGfR0uOJEEjR6pbl+
+         n2Xvbcd3tMv6p4RZQg13Iqun1nOiKfVtXxToMw5bRRxdYALFy4HVS3Z4qUDoKNnSsvMf
+         O0SmaAdghKGRZDuV2vjT6XE6NDuoZDvoAsgSBtjGaIQuwHHMn+5BESZhG/nNqioqqSxf
+         iBQW64XUDL0babWe/AjkiQWL9WYAVivQa+pyPFTJ7I/3ycdXV2nKxUFYdq9kzpf5Zytg
+         JbVA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1760360454; x=1760965254;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=RwPM/Z5O0yHOLH9LwU+Zo7JSbbUS2MnSJ7z2h3tfSbk=;
+        b=bbmgMB+xC6STXt6+hFEEKQEM4q4E+5tXmd0RTbeCnI4x4prYrI7CG40c1rMKDcr3as
+         gnTDDwVOwFia4fQ/7jFy2pXJIaEvSm/ITunHx1Z4UdxUuZL4pi8sxKlVpLnGCVy6zUKC
+         jvLUVG7yHkCiRZ7o5dtqmlMS1N4e33G8mSFj4WaNuPkBTMc00WSAWo0VtGwqMuDhrCSU
+         6yB8pDWqMAKRe5MwsZB7HD2/jgTIfMr98pcpXR0FlQwVm8mXKHyC3SGHlqmQJC+Z8pef
+         8uGEtC+5r6KGGXt7jnxAc6PSWNAVg4+p4jj3WMxaUpFuIXM6OC07OKxAe1598JHVDPKh
+         mJ8w==
+X-Forwarded-Encrypted: i=1; AJvYcCUujzxFFi3RHNV8w2kUUo6EZdywgJSfnpFqLHwfUfhhqsrtd8WtdZ5G4jwAxWVrAt5G2moVFB0e5R1A@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx1bDgHgHkKR3XjLF3xfULtfpzW8pfyuRVks3QrrtkYuClfXpxl
+	qsyGNkC3EAlNvaqFNOvb9e1mEwIAYKbz/UTISteHNnCw8n0D0skKB4NJ
+X-Gm-Gg: ASbGncs96ApHmuTdnusrnSsHfzxgncyYOPX+zhp2CkYfof5+Uz3gET1FtXCkxYKsIoF
+	IC9lR+5HUgS4W/bK6CHglQqwtBRKJgRwIjCy1eI+GkxvvEz047r77fnTxcm1vs1/+AFBtsSZ/AV
+	ZbA7mFFtG1PHpcNDh0Z0bRHXnir1JbRqgVzjklm5ABjT7GpAaHFoxaLMrCdCpcnoF9U3uis3iEN
+	Vh/EkxrfCJBJOEyvxZXdn5ppC2ACvpYiCKJx30EgYXXaAoHR1PZO0wl4yy70FtynVuA10Rtu/eA
+	0Sbsgo8aEn53+7UPlDHZY1S39SAUbjLGQzf8S50ErUHD1bK3C0woFrvdg0gTYMzVjMKkP7FjdtD
+	D7zupVvmwP/0BiwRh/Iqu+sMSY4OQtzXptjHmxzaO1OoVH32ipv5WXIZl/jl1NLw0/sAH5nAbpR
+	Uu5Ir6IlbLti6HtVeWdGGQ/1eSUUM6Hf9Ucw==
+X-Google-Smtp-Source: AGHT+IEaz0DBFlUyV6gGttivlYi+polxLg5u2E3jx0S0U111cfv9lqTIiGXjrdbkq2K8MBx4IO/Dbg==
+X-Received: by 2002:a2e:be27:0:b0:352:7dce:2e15 with SMTP id 38308e7fff4ca-375f50b8a2dmr76806371fa.5.1760360453227;
+        Mon, 13 Oct 2025 06:00:53 -0700 (PDT)
+Received: from ?IPV6:2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703? ([2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-3762eb6a98esm31283941fa.59.2025.10.13.06.00.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 13 Oct 2025 06:00:52 -0700 (PDT)
+Message-ID: <f2e6f0eb-b412-4cf6-8615-d669b8066393@gmail.com>
+Date: Mon, 13 Oct 2025 16:00:50 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH 03/13] dt-bindings: power: supply: BD72720 managed
+ battery
+To: Linus Walleij <linus.walleij@linaro.org>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+ Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Sebastian Reichel <sre@kernel.org>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Bartosz Golaszewski <brgl@bgdev.pl>, Andreas Kemnade <andreas@kemnade.info>,
+ linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+ linux-gpio@vger.kernel.org
+References: <cover.1759824376.git.mazziesaccount@gmail.com>
+ <19d537f9920cae5fa849b649e5bc42ba0b8e52f8.1759824376.git.mazziesaccount@gmail.com>
+ <CACRpkdbHBQQnnTUrUzOrYxzQKCzDyy8aNK7w8OEFz-ic8ic1FQ@mail.gmail.com>
+Content-Language: en-US, en-AU, en-GB, en-BW
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+In-Reply-To: <CACRpkdbHBQQnnTUrUzOrYxzQKCzDyy8aNK7w8OEFz-ic8ic1FQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0a99dda846df03a2kunmd8d8089cbf42
-X-HM-MType: 10
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlDQhhCVklJSxoYTU5DQ0tMTVYeHw5VEwETFhoSFy
-	QUDg9ZV1kYEgtZQVlKSk1VSU5VQk9VQ0NZV1kWGg8SFR0UWUFZT0tIVUpLSUJNS0pVSktLVUtZBg
-	++
 
-Hi,
+On 13/10/2025 15:45, Linus Walleij wrote:
+> Hi Matti,
+> 
+> thanks for your patch!
+> 
+> On Tue, Oct 7, 2025 at 10:33 AM Matti Vaittinen
+> <mazziesaccount@gmail.com> wrote:
+> 
+>> The BD72720 PMIC has a battery charger + coulomb counter block. These
+>> can be used to manage charging of a lithium-ion battery and to do fuel
+>> gauging.
+>>
+>> ROHM has developed a so called "zero-correction" -algotihm to improve
+> 
+> algorithm?
 
-> +&pinctrl {
-> +	gmac0 {
-> +		eth_phy0_reset_pin: eth-phy0-reset-pin {
-> +			rockchip,pins = <2 RK_PD3 RK_FUNC_GPIO &pcfg_pull_up>;
-> +		};
-> +	};
+Indeed :)
 
-Leave a blank line.
+> 
+>> the fuel-gauging accuracy close to the point where battery is depleted.
+>> This relies on battery specific "VDR" tables, which are measured from
+>> the battery, and which describe the voltage drop rate. More thorough
+>> explanation about the "zero correction" and "VDR" parameters is here:
+>> https://lore.kernel.org/all/676253b9-ff69-7891-1f26-a8b5bb5a421b@fi.rohmeurope.com/
+>>
+>> Document the VDR zero-correction specific battery properties used by the
+>> BD72720 and some other ROHM chargers.
+>>
+>> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+> 
+>> The parameters are describing the battery voltage drop rates - so they
+>> are properties of the battery, not the charger. Thus they do not belong
+>> in the charger node.
+> 
+> Right!
+> 
+>> The right place for them is the battery node, which is described by the
+>> generic "battery.yaml". I was not comfortable with adding these
+>> properties to the generic battery.yaml because they are:
+>>    - Meaningful only for those charger drivers which have the VDR
+>>      algorithm implemented. (And even though the algorithm is not charger
+>>      specific, AFAICS, it is currently only used by some ROHM PMIC
+>>      drivers).
+>>    - Technique of measuring the VDR tables for a battery is not widely
+>>      known. AFAICS, only folks at ROHM are measuring those for some
+>>      customer products. We do have those tables available for some of the
+>>      products though (Kobo?).
+> 
+> It would be sad if we later on have to convert it to a standard property
+> because it turns out to be wider used than we know.
+> 
+> But I buy your reasoning!
+> 
+>> +properties:
+>> +  rohm,voltage-vdr-thresh-microvolt:
+>> +    description: Threshold for starting the VDR correction
+>> +
+>> +  rohm,volt-drop-soc:
+>> +    description: Table of capacity values matching the values in VDR tables.
+>> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> 
+> Which unit is this? Seems to be capacity in % *10?
 
-> +	gmac1 {
-> +		eth_phy1_reset_pin: eth-phy1-reset-pin {
-> +			rockchip,pins = <2 RK_PD1 RK_FUNC_GPIO &pcfg_pull_up>;
-> +		};
-> +	};
+Ah, right. Should've documented this! Thanks.
 
-> +	gpio-leds {
-> +		status_led_pin: status-led-pin {
-> +			rockchip,pins =
+>> +  rohm,volt-drop-high-temp-microvolt:
+>> +    description: VDR table for high temperature
+>> +
+>> +  rohm,volt-drop-normal-temp-microvolt:
+>> +    description: VDR table for normal temperature
+>> +
+>> +  rohm,volt-drop-low-temp-microvolt:
+>> +    description: VDR table for low temperature
+>> +
+>> +  rohm,volt-drop-very-low-temp-microvolt:
+>> +    description: VDR table for very low temperature
+> 
+> Doesn't the four last properties require to be defined as uint32-array?
 
-No line break required here.
+I have been under impression that the "-microvolt" ending suffices, but 
+I may be wrong. At last the 'make dt_binding_check' didn't give me a shout.
 
-> +				<2 RK_PD7 RK_FUNC_GPIO &pcfg_pull_none>;
-> +		};
-> +	};
+> 
+>> +        rohm,volt-drop-soc = <1000 1000 950 900 850 800 750 700 650 600 550 500
+>> +          450 400 350 300 250 200 150 100 50 00 (-50)>;
+> 
+> This one makes a lot of sense.
+> 
+>> +        rohm,volt-drop-high-temp-microvolt =  <100 100 102 104 106 109 114 124
+>> +          117 107 107 109 112 116 117 108 109 109 108 109 122 126 130>;
+>> +
+>> +        rohm,volt-drop-normal-temp-microvolt = <100 100 102 105 98 100 105 102
+>> +          101 99 98 100 103 105 109 117 111 109 110 114 128 141 154>;
+>> +
+>> +        rohm,volt-drop-low-temp-microvolt = <100 100 98 107 112 114 118 118 112
+>> +          108 108 110 111 113 117 123 131 144 157 181 220 283 399>;
+>> +
+>> +        rohm,volt-drop-very-low-temp-microvolt = <86 86 105 109 114 110 115 115
+>> +          110 108 110 112 114 118 124 134 136 160 177 201 241 322 403>;
+> 
+> I would have expected something like this, to avoid the a bit fuzzy definitions
+> of high, normal, low and very low temperature either:
+> 
+> Provide an array of temperatures in millicentigrades (I just guessed
+> these temperatures, you will know the real ones!):
+> 
+> rohm,vold-drop-temperatures-millicelsius = <500, 250, 100, (-50)>;
+> rohm,volt-drop-microvolt-0 = <...>;
+> rohm,volt-drop-microvolt-1 = <...>;
+> rohm,volt-drop-microvolt-2 = <...>;
+> rohm,volt-drop-microvolt-3 = <...>;
+> 
+> Where each array correspond to the temperature, or if you wanna
+> go all-out custom:
+> 
+> rohm,volt-drop-50-celsius-microvolt = <...>;
+> (...)
+> 
+> So we get the actual temperature in there one way or the other.
 
-> VBUS on usb2phy0_otg is floating, this USB port only works on
-> device (peripheral) mode.
-> phy-supply is optional, so this should be fine, right?
+I agree. This is a good idea. I'll try one of these :)
 
-Yes, if there is no log like this:
-supply phy not found, using dummy regulator
+> 
+>> +        rohm,voltage-vdr-thresh-microvolt = <4150000>;
+> 
+> This property seems to be missing from the bindings?
+
+I think it is the first binding in the file :)
+
+Yours,
+	-- Matti
+
 
