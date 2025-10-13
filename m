@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-225787-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225788-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08276BD100F
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 02:49:43 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F96FBD1015
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 02:56:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B172F3B8D89
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 00:49:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BDD313B5CF7
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 00:56:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3165313D2B2;
-	Mon, 13 Oct 2025 00:49:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D2B01DED42;
+	Mon, 13 Oct 2025 00:56:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="j6Fr8/6Q"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ucrJpZ1c"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08F54288D2;
-	Mon, 13 Oct 2025 00:49:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9CFC4C97;
+	Mon, 13 Oct 2025 00:56:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760316578; cv=none; b=C71GoMZPu3EJvZMsJCM7CM9QXuKqEAK7w/YuRXSUCqNlKpF1AlzhC958uZZPHMkvCVUPYqb413my4ee2zr0LRaQBa6PBXvzMoPA40I18bHpfCe8YGsBkM4ZsDYgqDUY6gB//0QVZJcms4sBH9AiOF6OTJPKLqzzlXTpZE4sPe2Q=
+	t=1760316974; cv=none; b=KnVQYxuHwVRUd6Bd336WWfP0XuRxHuL1i3B9rbNzrnSmG4936OD+x3KnDaITOKQiWZXf32kbIATZq2IdRR6ny6SA2VYPe85FhifH16L1rofcLmdM7hvR54R9XocgrwxVtaOD2Kh2b6+iPtK7nXSU4ZCOS+i2/GwgqSkujBgd8eg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760316578; c=relaxed/simple;
-	bh=FGB6BYMVPhQ/hYCQayEyJB/dp4We5LeBAzkhwvNKtAM=;
+	s=arc-20240116; t=1760316974; c=relaxed/simple;
+	bh=8AH/YAwV6Ow+rah0ODKB3C0tyUjbxu/O2GLHtVd/hYg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=uFIBgqESn+y7xl7F1kjgM5g6Z2G8+arcRIrYX0UXfXED9upCVGPPhpmHolOowXAN2XCZQxHgCLJVsPPDsicHXX9nG+HxrCul5dD1lTkap8Rvz/PfvFCPjobfl8wsrpl3qSB6VUyCxsL6X46KAb89MsyWK/XJi3/yX8wK5GGbsco=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=j6Fr8/6Q; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A8DEBC4CEE7;
-	Mon, 13 Oct 2025 00:49:33 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=k3L+XLlP/IPohyhxEOHhxXXHOTR6YhaAUJwjQBhr6t3tPD+Ey2tYKiMuCkhNG67ZoiCAJdm04tvQPtSBNH4TJG59otAXYW4XqAK/o/LBQQY0DBj40lv1772WLnWXjN/prwz4PkV+f8aSHhqn7STTiaXpFjxI4RbFtuPlRGQeXWc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ucrJpZ1c; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 80BB8C4CEE7;
+	Mon, 13 Oct 2025 00:56:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760316577;
-	bh=FGB6BYMVPhQ/hYCQayEyJB/dp4We5LeBAzkhwvNKtAM=;
+	s=k20201202; t=1760316974;
+	bh=8AH/YAwV6Ow+rah0ODKB3C0tyUjbxu/O2GLHtVd/hYg=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=j6Fr8/6Q3VC96EEkLHpyNYwhYgErPbn31EYMApQdLu6fDs5s8AeuZYWzMhVJHgD0e
-	 44Y7EZBghD5dAWpvm0ZdoIBsmHpS8sA4x8ca8f70tQrglqn7eJVjgoQDW168b7ZC4R
-	 KUazHaqYye6pkM6xhxFB+S+av8BABeBYrUEGhUiTUQxLh8XE2xYq/GT3+w4XlNY27s
-	 /bhsIStMejwRnuvVQCwK5ufL6yHAlUgMZF0UiP3U1L5WBJCJ/suQEimXBBx7uAiHb6
-	 OGuUjSanMLIHGGCUOYa6o8yGJLWD2+vsWRAqFapkby0N+25tgCDflk3kRypR3l3QVx
-	 IBL4RYNzv8uhg==
-Message-ID: <5f291995-82f1-4b37-b939-8f1c9b7b2ee1@kernel.org>
-Date: Mon, 13 Oct 2025 02:49:32 +0200
+	b=ucrJpZ1cKQQUNXnCR892h16VSVOjkH12PYPW5eVq4FTVxbfCcSs6lTth7sRuaEwaR
+	 9DDhIJt7cipJ2GZGRchNdoKo8DjAUMRxkPauPIirVrG+p5YcudBOi2yvfQfgFmdmop
+	 djXvAoEm5RWg6yB+9ytJxcB0llCU7M23XocpWPt8py6ifjcphIm2HGNe2jSQDWP5+J
+	 r5eV1AEI7vwjnGbnHjqkPZDVbMlT83RhUmSPIy1ZGU4DEVa/4W37k7LFf7IRqDTOhL
+	 zTQIcDn/YFfZ9vr/hDkDGsGQpuu4TBlqs3x9OMLVWgqkaKmu3gwbyh1WsNdOwkuqxP
+	 DrHHNryzw8MUg==
+Message-ID: <7e537b24-486d-4060-aa75-d69e95966aaf@kernel.org>
+Date: Mon, 13 Oct 2025 02:56:07 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,17 +50,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: media: i2c: Add Samsung S5K3M5 image
- sensor
-To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH v3 3/7] dt-bindings: soc: samsung: Add Exynos990 USI
+ compatible
+To: Denzeel Oliva <wachiturroxd150@gmail.com>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Sakari Ailus <sakari.ailus@linux.intel.com>,
- Hans Verkuil <hverkuil@kernel.org>, Hans de Goede <hansg@kernel.org>
-Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- linux-media@vger.kernel.org, devicetree@vger.kernel.org
-References: <20251012231102.1797408-1-vladimir.zapolskiy@linaro.org>
- <20251012231102.1797408-2-vladimir.zapolskiy@linaro.org>
+ <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
+ Sam Protsenko <semen.protsenko@linaro.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jiri Slaby <jirislaby@kernel.org>, Andi Shyti <andi.shyti@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-serial@vger.kernel.org, linux-i2c@vger.kernel.org
+References: <20250917-perics-add-usinodes-v3-0-a3629e4666ef@gmail.com>
+ <20250917-perics-add-usinodes-v3-3-a3629e4666ef@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -106,17 +108,30 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20251012231102.1797408-2-vladimir.zapolskiy@linaro.org>
+In-Reply-To: <20250917-perics-add-usinodes-v3-3-a3629e4666ef@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 13/10/2025 01:11, Vladimir Zapolskiy wrote:
-> Add device tree bindings documentation for Samsung S5K3M5 image sensor.
+On 17/09/2025 23:04, Denzeel Oliva wrote:
+> Add samsung,exynos990-usi compatible string to the
+> Universal Serial Interface (USI) bindings.
 > 
-> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+> Signed-off-by: Denzeel Oliva <wachiturroxd150@gmail.com>
 > ---
+>  Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml b/Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml
+> index c694926e56ef991965153b94d704fd53addb5cbe..4a719cea81f9d3c3b5296ba2d45b05dd014a1d9d 100644
+> --- a/Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml
+> +++ b/Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml
+> @@ -39,6 +39,7 @@ properties:
+>                - samsung,exynos2200-usi
+>                - samsung,exynosautov9-usi
+>                - samsung,exynosautov920-usi
+> +              - samsung,exynos990-usi
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Keep the order, numbers were before "auto" part.
 
 Best regards,
 Krzysztof
