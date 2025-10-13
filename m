@@ -1,83 +1,83 @@
-Return-Path: <devicetree+bounces-226230-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226231-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0EFCEBD642E
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 22:52:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BDC65BD6445
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 22:52:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 36C7834F9BB
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 20:52:18 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 4409235052C
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 20:52:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0D342F5320;
-	Mon, 13 Oct 2025 20:51:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA2002FABEE;
+	Mon, 13 Oct 2025 20:51:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Esyqn8mv"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fpdoigWP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA7A32F1FDD
-	for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 20:51:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE4072F6164
+	for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 20:51:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760388711; cv=none; b=LNvX+2MB8d04RwCsho+vYS5uVjve91FJZcfpIOjIgwXVjHt0Yb+r89jY4f5Qwzx1ynYaPsqpp7YoSVDmHwvgzo2T7UiDIjJWAEFIQ+i95h8/aYyUk534l8t+yov2BHj3qZGmwweI0ZIhDXqRi8mMM1WUqfMy4yBLpXe9aLMqOAc=
+	t=1760388714; cv=none; b=kGmXpHHgV2RinvHBAte/RexxkGkrkI0tLnZ41vpMxv7mB6sOK3EUquGp9VglC61ZuyERUZoCt9biUCIRdj6ZHELFlNM1f4HtX//Q25wdN02exIsSKWML/SbN+GSseIAeihuh+BQH1IkgQBm7IkDyz8IDlEhTUtFQumSXMfEBGTw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760388711; c=relaxed/simple;
-	bh=HHhcCaMHTmvzw7CLfISLI4i5MO1lY0C65c6w0STPYPU=;
+	s=arc-20240116; t=1760388714; c=relaxed/simple;
+	bh=HcBB/oM5Ltz/b5+IlSDZKmKzoXnPjplO+rzlk0nxCpU=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=bfCjjLPbXAU5OT7zJsbU8yvlgVi+0y/J8Nlcj3c5S/1Q38Z/tuQJeg1xlQxD3H/YRJkcdPE98n8xkd+ujq2fYHvJLYKTw+QRdzbhxGeMytcM59xAk1xWQf4BtpSdQwwl3na5WcDBvX6RocuJ+BmVvBbF7RozS/F9rH/W4Eec8PY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Esyqn8mv; arc=none smtp.client-ip=209.85.128.54
+	 In-Reply-To:To:Cc; b=moomgAzKPTLK1A1PFSkBVw6MA/W/4SRV6tCzgPWwjP4JzVHUlUWeBt0YxeLqdsnKzHanmOO2N3lXe4JeI2OK3SgP5vgPHlJuxVO9xFAfPdq/usAIjMghKdZa+AgOWRv2AD2tsTeJiRL45LZUs8Ctm/kNN6ZAW9WYEzRwSHGhwtI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=fpdoigWP; arc=none smtp.client-ip=209.85.221.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-46fcf9f63b6so4138825e9.2
-        for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 13:51:49 -0700 (PDT)
+Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-3f0134ccc0cso3528506f8f.1
+        for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 13:51:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1760388708; x=1760993508; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1760388711; x=1760993511; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=6DDgLAiuTXzY8R6BOnFwxchMXmp9+zPBlIoePYb2/ig=;
-        b=Esyqn8mvrJIzXaioxfdj/rnne4vBTj/TGlW+91WzSqnyCINqhAkSr3SSdLf8gIO8wg
-         LHAbbgeplB0FnZ8c5hQ8hYoJSz7u0VkOwQ/OOIXxVjmgH89j8vtsOSq22MPO0lpZFbkq
-         5lE2p7LgjKmKi1AYdfnpQQpQAIyFlEDIWa8/mHP0+Fzekbyb9XHxIugCRcsXhD1OMfT5
-         AppE6xUxlcpZW4JwBWdEMj463T9Y63Qoi1To+W5zmMcLyCd9PkDAQG+OOQ/tPy5be+qG
-         NU0+1V1A1ek8eropf0KRoAKt83M1r4PdeUYxZDVCOde0mY8k9F6+KO21/CvpX168zDzE
-         SXlg==
+        bh=LcidvqHM0DTpowb0GHOMB/24jrUCyn/KdoJtskIHTFY=;
+        b=fpdoigWPKSXX3iCTQeO6SotdgCqAR4V9OdJ2DQaI/y5sKQvwM5cnWSVWj6Mt6Mh3GK
+         2UA1s7FoRfFsthfphrj1+TvQxfJt3+C4LCWltQBsm704FY0761qp28jW4rrDWqTPOiVE
+         9ZxKhhCGqOSSOQNsuZ8hS94Z9gx5gURaFGf++Tcy3uR54uJaxJ2uPrU6dxooXGg6pGwB
+         tG2jwOEtlHxWLcTbsiCPH6d9B2mW6JB0v+Q/JvySEFwGAqSrGtRbv4kuTw+aesrVciAl
+         agc8gDKE/eo7a7g5dMo2XpDv6I0BPkvfLo1Qf/bannJukVqFSXCBzqYHE1ouNAlxqF1U
+         4F2w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760388708; x=1760993508;
+        d=1e100.net; s=20230601; t=1760388711; x=1760993511;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=6DDgLAiuTXzY8R6BOnFwxchMXmp9+zPBlIoePYb2/ig=;
-        b=fne/xx1fkmvzNczBcjQ/Noy51lnBdZg44nzPw8rm+bpxNAwbx3s6A/Y0Rs15QPFyEM
-         K0tD0lwI2W3Z6wbi/m6lODp1+GI2YMiTz5+GMmTYUdCw4JhVSBnBgxm7Pb5KYXcOk5yf
-         G0it2iuO29sOJkBO7pd8vdZQBfTq6WQIei3Bk/vyfwnT0+EHifUvR211IQ7CqOrak+36
-         m/OEkRhfSs5k5/ewX1WLndxCf5uQkj2V4o44YtFbIxy34+z4BBZx31bgLZvsvxp1H5BI
-         zXwzK4NuMd58A7oemQuymg71XJ5bOp6NZKv4xQJMjrgnRMF7edeiunVZNfdBCoch2cir
-         JvlA==
-X-Forwarded-Encrypted: i=1; AJvYcCVXH+p4x95FIvMgW+pB0oniDsvo1JdfEpq1AuffJC1H13582vmfptrIO0wHj7gB/DuKpZgUMDrieIFV@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxo7PwIhvgVRBeBVq1Bqd9Eu2ZyIZ/ulE4RnNlBFjZhqwypVM7e
-	ZpR/WDw4Rn1mTmbDalzbrbL9IhWc3oxZleAfpWD1agN7s44O30cLn2xvwtb9De04BvU=
-X-Gm-Gg: ASbGncuNwLWwgVu6oveeONY+44frNxpzlgP0OX/OPeENd6s/c2T0M/LV4/L7T+kfjfE
-	8iYjkRopLJKPSA6hWoHoteli8l3g4oBP4I0GuQ3gjFBJBg2gzGDnq//VCWDq9JOaUFGFy2BA7ox
-	85nXKoF0Sm1jSrhd2rnLhzmvquG4DjY2b5/ZHkDSb6lajBOiFh2u1ack65BEWA5POj+2MC+4zIc
-	YocruvB1+ylMLLSjDEyFsrs7OEIv3Of1gkJL5XHT+1nKOHnB5WkiBiigD2z8MayII+0tKNksHyx
-	MZQ1bGrAzc4FbhYh7ASdtQXZgmzza3sbiuf6zJKmAdSRGgWz+ccOpgEaRbezxbLtodRyVIYbZty
-	3XbldUk7hyRwoPwaWVtZKvf0WoB1thIsc573xzNcxSTZ5uygSMUy9ZQSAEXlWbrbvQ2Xvx4icN8
-	XrQpXCh08/Bw==
-X-Google-Smtp-Source: AGHT+IELN9yhf47V0yQ/Ag6le4K4Ap2z1yQxwUo/woxIruFIJKIX9OJVJMb+D4gfvG/a7yKD5FReRA==
-X-Received: by 2002:a05:600c:540d:b0:46e:32f5:2d4b with SMTP id 5b1f17b1804b1-46fa9b19f3emr157010075e9.37.1760388708141;
-        Mon, 13 Oct 2025 13:51:48 -0700 (PDT)
+        bh=LcidvqHM0DTpowb0GHOMB/24jrUCyn/KdoJtskIHTFY=;
+        b=NtMXU4YzOed0rGRKx9gPsfMV1x+UWQmXjMsYB+A4lVYNv98AWfYALbQrKXIwsnMbOS
+         20SB0ICtWPV+puALpUFS/99rWwSj1BS6ZnCf7XZrAdr88L5ieucoyJCQ7/b8SNn/8XEN
+         3uiuPQe2gWigTddmbGkbLPAVUjQcBeQvJwsoMDisZiiGP6yyTH2PcQB11BrFt0k2UM+N
+         KnnrHCz2n61YBofJf9NtYULa4QeZfPl458sPoSOd79BLKTEXD2Z3go7xlE8tH2MADvW1
+         UWN5SQ/gjVaX2HrSzBBtTIY5vaqY2P5dBS70l2UZVA55tdOTpzEaYBQKegY4QuEEjebF
+         yE0g==
+X-Forwarded-Encrypted: i=1; AJvYcCVoUWyL/ziX9wEYaUGBcQPOyYa91wAG1wEwjUkDKn22pAcAjuqcViaX3D21JKAseHrjdrFlTKj1ql3f@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw/XvmHIgXKdV8CGS+mGWBvDcBsKcDho2S8UUhBZo+2Hnt5H0Ru
+	UtG6TOjMYgJtQLB/dArnCEljPV0Y0XSmV7yUabJKi9gZ2ZmVeb0EUe9pw8Wrlsur/PU=
+X-Gm-Gg: ASbGncueSDTCWUOMmxyO5kZeEzbndI0+fWfz4Vjss7CS5WF+3dxqSJ36M4ng9vMMP0m
+	xNutgA/RKitX/nDML0kLSGfKNMQxEs5H33q4/11Fr2Mhqs8fV8w1gyMfONnDZt5/OL8bJ28yw76
+	iQVjGvvZZi/8zEVVtRO3dpBJ4X3cp1dJAvnhLQ6mm9CskW3sIe8Gd+ID/SEEVp4x2R5roi5Wk71
+	X6AbrsPKpEbs3NlAkeIhn3GOvWjUYsqulhSKrHGxuw4tj2Sj/dLq6QoIg/Dz7Wm7Wlso3WDiVhg
+	s6if3oy2bg9IgGYU9MqgZuXXF4LdExObULlaLVOeR5XuGdJSWgQqJzn1DRvB8MHzyhCihXIGcnl
+	9HNEO2Zcijsna2EkSi4uK4If4a3sphIyB7dOrdnwoGO6ATps9U2yYj9JQjd3CAFNUY1HNQG1S3v
+	f6Rh7rvZ/23g==
+X-Google-Smtp-Source: AGHT+IGR7na4kqfqbnnRja9gaL+GPCruM+aq2vYMgg3ZztoY/GsoH+Vl1WubHAu4JJbPtq9P4Dwh1g==
+X-Received: by 2002:a05:6000:2010:b0:3e8:ee5d:f31e with SMTP id ffacd0b85a97d-42667177f63mr13981151f8f.25.1760388711219;
+        Mon, 13 Oct 2025 13:51:51 -0700 (PDT)
 Received: from gpeter-l.roam.corp.google.com ([145.224.67.171])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-46fab3e3206sm133512615e9.4.2025.10.13.13.51.46
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-46fab3e3206sm133512615e9.4.2025.10.13.13.51.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Oct 2025 13:51:47 -0700 (PDT)
+        Mon, 13 Oct 2025 13:51:49 -0700 (PDT)
 From: Peter Griffin <peter.griffin@linaro.org>
-Date: Mon, 13 Oct 2025 21:51:32 +0100
-Subject: [PATCH 3/9] arm64: dts: exynos: gs101: add sysreg_misc and
- sysreg_hsi0 nodes
+Date: Mon, 13 Oct 2025 21:51:33 +0100
+Subject: [PATCH 4/9] arm64: dts: exynos: gs101: fix clock module unit reg
+ sizes
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -86,7 +86,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20251013-automatic-clocks-v1-3-72851ee00300@linaro.org>
+Message-Id: <20251013-automatic-clocks-v1-4-72851ee00300@linaro.org>
 References: <20251013-automatic-clocks-v1-0-72851ee00300@linaro.org>
 In-Reply-To: <20251013-automatic-clocks-v1-0-72851ee00300@linaro.org>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -104,62 +104,106 @@ Cc: Will McVicker <willmcvicker@google.com>,
  Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
  kernel-team@android.com, Peter Griffin <peter.griffin@linaro.org>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1436;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3223;
  i=peter.griffin@linaro.org; h=from:subject:message-id;
- bh=HHhcCaMHTmvzw7CLfISLI4i5MO1lY0C65c6w0STPYPU=;
- b=owEBbQKS/ZANAwAKAc7ouNYCNHK6AcsmYgBo7WZYm77RM/chRNqrctG1CL2KsrX4TP79II7qR
- R3dx+knfF6JAjMEAAEKAB0WIQQO/I5vVXh1DVa1SfzO6LjWAjRyugUCaO1mWAAKCRDO6LjWAjRy
- utatEACGzMI7+hTvOKj04raOT4wlY2U+PRycjfuwd+1VMl0oIAbw3TC/BR0ikypgLW9GWBz524R
- fqNhVFX0FvtX9bZYy/DT1/jWQgFweq1++m4ei9OGJUvw0F2svuRkzavreEkhwJTHPI8Mh6Bvq7a
- +scuI9cEB93BBxm3d2NwGUYjKiw6ORSFWd01j53P+H38XTql0mL0Gfy/wbTQv3hrlFU0KdFUmxl
- g1f/e64ZDx+yle2K/p8cpPUpLMjjSetpeMsrVGOaCW38m3VnMADs2fux6kkClx8JJAaEORkocki
- ECM++yXPexJ8pNSa8PemcY1TD4VHEnEkudMjMBRChWc4sjduGoW5Lkq7ZzRT3Q3yFNp59J3MXBu
- MaWJGJDvC1X5qhcr2BTwUGWCB3TAs6+LY2YDibxlQqHyLofpeMibhSER0Gmc48n3jyTZBdY9TpZ
- 25wvMBJKP2kCKSg6KhS1YqLRfiHSnLoroU8chpZKolUjsFHyOcFsxM01eu46ybegt0EWuQeJ5vO
- NjlmWPuuxTroAFCqnNbaxaZqbSjvGoDm7pmxCBaFViSDrL0h/4h2pb1N8pbLIoBBUoiu7lydBqk
- A0ZgWq5uP88ZVFSXZzjqlb1/i/tk78rYlVf/dZS9rzz2mcKxavpOFtS2+PgzNJplMYRp78pF3hd
- mUu54unij+I1hjw==
+ bh=HcBB/oM5Ltz/b5+IlSDZKmKzoXnPjplO+rzlk0nxCpU=;
+ b=owEBbQKS/ZANAwAKAc7ouNYCNHK6AcsmYgBo7WZYfzLRdL8VJOj7ItKK0VzjwnPjmQkF16AAH
+ EN/3nR0woKJAjMEAAEKAB0WIQQO/I5vVXh1DVa1SfzO6LjWAjRyugUCaO1mWAAKCRDO6LjWAjRy
+ uoxdD/44noFGVAg6H/7t8IFFPSjfN+O063aUxB39GsQU6dPSmhatkdJzGV8lDDFiiYjGFaqPh0I
+ IuZJX11glmxeVQx9aDqlgiBbHSsm+Xy91xkNhkB/KiTxCywWz4m+NBcY/x3/2bF4UkKSC/1Xwgm
+ XPLBWejL5wGuXpcWfTIcouVM/rn6wV1alCTTovdVfDaNNv8p+FL0lNAp++yZ0ds1cZsy5pM+yTi
+ yMDQvEaI2SxuM7+zrrg1424YtvrWlGQQDUpRV1YoR+Z+v6mVvZ9/WLUJDasiTD23mKjXAyRyHgE
+ AngzcWNnqWf0/Rdn95v4cnEfG62y5MHNIJSyNSGAURkAWT1PAg1/KbaoGBYcxTVG7cy3vY65cBN
+ 5azh4Egd/9JJBmiz3Uu9zu1TQ7El2hXtUEDYS1/l8cO+uh4PbZ3M1nuJRnjEtISs7RVA2d4a770
+ gVeeMgK03WU2FjN1oxD3D5V0ImspjGS5GbqMnc5qsGJ2ke4oqyq0E70BjhTCuT/lWjq1YIKF5fc
+ xHH4r2EGa1yJBXGwFqu4Exsahn+QcKRg6qsAcOVsRm5XWqK0ChbTG2FRiPAhDHkhIvQq7RsdDxj
+ Vt4MF09WvjQje8CY/aUrzvj4EdLctignBH+l9lz8ZZhJJ+Ftv91R9PTobZp5MRV4ehYmvC0Q/Li
+ ViqnyfmXgo8kBQw==
 X-Developer-Key: i=peter.griffin@linaro.org; a=openpgp;
  fpr=0EFC8E6F5578750D56B549FCCEE8B8D6023472BA
 
-Add syscon DT node for the hsi0 and misc sysreg controllers. These will be
-referenced by their respective CMU nodes in future patchs.
+The memory map lists each clock module unit as having a size of
+0x10000. Additionally there are some undocumented registers in this region
+that need to be used for automatic clock gating mode. Some of those
+registers also need to be saved/restored on suspend & resume.
 
+Fixes: 86124c76683e ("arm64: dts: exynos: gs101: enable cmu-hsi2 clock controller")
+Fixes: 4982a4a2092e ("arm64: dts: exynos: gs101: enable cmu-hsi0 clock controller")
+Fixes: 7d66d98b5bf3 ("arm64: dts: exynos: gs101: enable cmu-peric1 clock controller")
+Fixes: e62c706f3aa0 ("arm64: dts: exynos: gs101: enable cmu-peric0 clock controller")
+Fixes: ea89fdf24fd9 ("arm64: dts: exynos: google: Add initial Google gs101 SoC support")
 Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
 ---
- arch/arm64/boot/dts/exynos/google/gs101.dtsi | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+ arch/arm64/boot/dts/exynos/google/gs101.dtsi | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
 
 diff --git a/arch/arm64/boot/dts/exynos/google/gs101.dtsi b/arch/arm64/boot/dts/exynos/google/gs101.dtsi
-index 31c99526470d0bb946d498f7546e70c84ed4845b..d1e3226da6472bb9db766926100a6b9855d7a30c 100644
+index d1e3226da6472bb9db766926100a6b9855d7a30c..1ae965e456665bf05aa1b08269b5dd66b46d200b 100644
 --- a/arch/arm64/boot/dts/exynos/google/gs101.dtsi
 +++ b/arch/arm64/boot/dts/exynos/google/gs101.dtsi
-@@ -295,6 +295,12 @@ cmu_misc: clock-controller@10010000 {
- 			clock-names = "bus", "sss";
- 		};
+@@ -288,7 +288,7 @@ soc: soc@0 {
  
-+		sysreg_misc: syscon@10030000 {
-+			compatible = "google,gs101-misc-sysreg", "syscon";
-+			reg = <0x10030000 0x10000>;
-+			clocks = <&cmu_misc CLK_GOUT_MISC_SYSREG_MISC_PCLK>;
-+		};
-+
- 		timer@10050000 {
- 			compatible = "google,gs101-mct",
- 				     "samsung,exynos4210-mct";
-@@ -1277,6 +1283,12 @@ cmu_hsi0: clock-controller@11000000 {
- 				      "usbdpdbg";
- 		};
+ 		cmu_misc: clock-controller@10010000 {
+ 			compatible = "google,gs101-cmu-misc";
+-			reg = <0x10010000 0x8000>;
++			reg = <0x10010000 0x10000>;
+ 			#clock-cells = <1>;
+ 			clocks = <&cmu_top CLK_DOUT_CMU_MISC_BUS>,
+ 				 <&cmu_top CLK_DOUT_CMU_MISC_SSS>;
+@@ -371,7 +371,7 @@ ppi_cluster2: interrupt-partition-2 {
  
-+		sysreg_hsi0: syscon@11020000 {
-+			compatible = "google,gs101-hsi0-sysreg", "syscon";
-+			reg = <0x11020000 0x10000>;
-+			clocks = <&cmu_hsi0 CLK_GOUT_HSI0_SYSREG_HSI0_PCLK>;
-+		};
-+
- 		usbdrd31_phy: phy@11100000 {
- 			compatible = "google,gs101-usb31drd-phy";
- 			reg = <0x11100000 0x0200>,
+ 		cmu_peric0: clock-controller@10800000 {
+ 			compatible = "google,gs101-cmu-peric0";
+-			reg = <0x10800000 0x4000>;
++			reg = <0x10800000 0x10000>;
+ 			#clock-cells = <1>;
+ 			clocks = <&ext_24_5m>,
+ 				 <&cmu_top CLK_DOUT_CMU_PERIC0_BUS>,
+@@ -917,7 +917,7 @@ spi_14: spi@10a20000 {
+ 
+ 		cmu_peric1: clock-controller@10c00000 {
+ 			compatible = "google,gs101-cmu-peric1";
+-			reg = <0x10c00000 0x4000>;
++			reg = <0x10c00000 0x10000>;
+ 			#clock-cells = <1>;
+ 			clocks = <&ext_24_5m>,
+ 				 <&cmu_top CLK_DOUT_CMU_PERIC1_BUS>,
+@@ -1271,7 +1271,7 @@ spi_13: spi@10d60000 {
+ 
+ 		cmu_hsi0: clock-controller@11000000 {
+ 			compatible = "google,gs101-cmu-hsi0";
+-			reg = <0x11000000 0x4000>;
++			reg = <0x11000000 0x10000>;
+ 			#clock-cells = <1>;
+ 
+ 			clocks = <&ext_24_5m>,
+@@ -1344,7 +1344,7 @@ pinctrl_hsi1: pinctrl@11840000 {
+ 
+ 		cmu_hsi2: clock-controller@14400000 {
+ 			compatible = "google,gs101-cmu-hsi2";
+-			reg = <0x14400000 0x4000>;
++			reg = <0x14400000 0x10000>;
+ 			#clock-cells = <1>;
+ 			clocks = <&ext_24_5m>,
+ 				 <&cmu_top CLK_DOUT_CMU_HSI2_BUS>,
+@@ -1407,7 +1407,7 @@ ufs_0_phy: phy@14704000 {
+ 
+ 		cmu_apm: clock-controller@17400000 {
+ 			compatible = "google,gs101-cmu-apm";
+-			reg = <0x17400000 0x8000>;
++			reg = <0x17400000 0x10000>;
+ 			#clock-cells = <1>;
+ 
+ 			clocks = <&ext_24_5m>;
+@@ -1509,7 +1509,7 @@ pinctrl_gsacore: pinctrl@17a80000 {
+ 
+ 		cmu_top: clock-controller@1e080000 {
+ 			compatible = "google,gs101-cmu-top";
+-			reg = <0x1e080000 0x8000>;
++			reg = <0x1e080000 0x10000>;
+ 			#clock-cells = <1>;
+ 
+ 			clocks = <&ext_24_5m>;
 
 -- 
 2.51.0.760.g7b8bcc2412-goog
