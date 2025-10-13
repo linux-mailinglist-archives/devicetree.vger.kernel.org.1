@@ -1,88 +1,41 @@
-Return-Path: <devicetree+bounces-225808-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225816-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 004DCBD119D
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 03:35:30 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A095BD1385
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 04:31:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 6EE563474C1
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 01:35:30 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 059764E25CC
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 02:31:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32C6B2609C5;
-	Mon, 13 Oct 2025 01:35:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A49A1E500C;
+	Mon, 13 Oct 2025 02:31:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="oeZsKP7a"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="Bxg8VLDz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mail-m49203.qiye.163.com (mail-m49203.qiye.163.com [45.254.49.203])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7BD9223DE9
-	for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 01:35:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D6892AF00;
+	Mon, 13 Oct 2025 02:31:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.203
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760319320; cv=none; b=ReaGIskOhLQnVOh1/y4eOOuS4hMPBiZNj/SvUPt6JQUjgfcW9UbYO5sTW/RSdDUQTPYt+JB49BhtwslZTPtfSxlZhsJzCc1qS5NRSxMb+77L+S6pBfNHOxnkD3JkhPrDNSDf6UoNpu3GxYoCVNzh0Nj6xHkakuqT8+83Sbjzt78=
+	t=1760322670; cv=none; b=VtOfowuLtZclWJAfG5DIZ+tvmm8K0wJrYuvxJnau254L/L0rfts/w2voMZAFbGJSxxN1uQQn/t1lzMNMEVBx7PiPd60Io5XTcrCGE2SPqFDzvLV6+6DF6NxMb95YdNiOvGt++ZkdlIU0VaKp9Ltv0MoPpay6fij0uLWEFDwMatE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760319320; c=relaxed/simple;
-	bh=TLIifmYXZsoUZDQIMzAr9TVJTrPPzSLPCVver0Z+1XQ=;
+	s=arc-20240116; t=1760322670; c=relaxed/simple;
+	bh=o2JCMnzH629eM8sVRiJl0jK9wfTP/MeHkDbW6MKojLs=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Lt1R1DWG/h/23brFKnRfkHMPjyOBXqryTJBQiEKV/yANW46CdErlbEOy2mXNzwGuwCVgo59yXFLf7gUGdflmWaYgykxMhIa8u8n0cBtXupbTqLOl+uAeRovuXYSp+oWUmNQmKs0XZqgByR7lY+6wVrnG70Nv/3iLEff/BdRc0ts=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=oeZsKP7a; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59CLUrVw003816
-	for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 01:35:18 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	pvRZtGa1EAqu/s2cU1tyWSgB4EnX39XSZObMDz+e5Ig=; b=oeZsKP7aV7qBxP6N
-	7BXiJMdcvYgsw5degXI71w8R1X2FFb/0EDYMkCjMXjUNwxhgQH0/Q8tcxBmjJc2n
-	BDyiXpmtHZucJpK+ysWtMN9q1PRWseYCuwyYBj9ZfXWpmz9a8vb5B4OwQpqw6JrV
-	YbLYQAE/UNvfw/9h5S5s9rimPRBaJMO3p51X6hXmYyFEeiL3xw1IHwpQ1Cv0TxSQ
-	RRdlKaIRA1AIcz5lzvZHXZY63YmaLZnpan0NG7QNjC6Skuuwjq6lNMFTrEnFeZ18
-	RfXvAaQEuj8u9T23Qtew2FaKEAyfksNmviKFjqrCyYbh26qJX8gatk+YlnU1aNMp
-	jM9fBQ==
-Received: from mail-pf1-f199.google.com (mail-pf1-f199.google.com [209.85.210.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49qfd8tvq8-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 01:35:17 +0000 (GMT)
-Received: by mail-pf1-f199.google.com with SMTP id d2e1a72fcca58-77b73bddbdcso5946673b3a.1
-        for <devicetree@vger.kernel.org>; Sun, 12 Oct 2025 18:35:17 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760319315; x=1760924115;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=pvRZtGa1EAqu/s2cU1tyWSgB4EnX39XSZObMDz+e5Ig=;
-        b=FhpmTgY1P6RLVzRcKU0AyNmVgNFOQUi+15Ec9v+WD4UVyVhzUg+MN9Z9trxY/dQhiJ
-         jhrwfAHfbyyF/bbC/zI/9I++SunavSxDAJZOr8SdnKPMk0FPNj5bwxtNpx16fyU76qgT
-         0lP0gB+NM98hvnjL0pomenlyKjkndYxHNQeBrqqQdDRvSfLSLS8J9Zz2gi0kA9Gkmuj7
-         USrV0js1hrcaTlltjDWsMFdH7ySwA1X9XyIUUlmg0Yhs089WlpEvbRQERdd8RiEYF3if
-         B/GCdSFETs8DOgNLwbRI2bXmwyHd1EAisewDnqTy3zjfCKtpd6ysBx1oC8g3j33mYyMK
-         LtUQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWH2X9xKwXhS5Iq+sqsBVGkJ1Tpi9RD9ZwGf+1WaXqc8wZ0K1pPwowd1J+RiDNLIY+goHBmVTTbQCKF@vger.kernel.org
-X-Gm-Message-State: AOJu0YwgvNrQQLKie+01LyM/yRajlJ/Pun3Tss68SYteUVlSY8KsXLoq
-	bmh4at3c84YJ20syVpGU71fWa5Zk015mPNUx+UR7QRxE8O4p9hSOzB/55TgaHEN8Bq4CKqZlOIu
-	FV9smwijMm750ajEXS6CFUO4pdKpnGB9CBS+Lb58hY/+3bz76Ronh+xymYQ3+IVqd
-X-Gm-Gg: ASbGncvT5MlgToJhP87ZXIwBEaSuERbjJfwPzB2FgowZZMqpDAwAxwQmo9TbhkD1Dma
-	E0f7FApkBHg+kpil+5w7CuKtHFwzWxIzPp8MESiOTL2psNXwnfLj8mVMYbcDIsNCKUDRH/EDA+Z
-	NpDYvs8uicR4NEs36WU9mLGNYddGPXoD11Dc6XAq9W28ceJMQXWpOX+Fb6Vf/8NatTMdT6aNst2
-	Bn9Rx5T1o+6170ojd2x7dQTmHZvVi2ZcjMnzgGeo1kK/Ds4HG/KHA88lNzLg9+8dI2g/QqcGZ/F
-	Xvi2E6ImnfjC47FhkHFOkBoqR/rr5BPqS/uaIs8YjUZ7vf09OHxjRslwaABA/CYFM/HdTJ2qbWs
-	o
-X-Received: by 2002:a05:6a00:3998:b0:770:4753:b984 with SMTP id d2e1a72fcca58-793998483b7mr24733195b3a.16.1760319315159;
-        Sun, 12 Oct 2025 18:35:15 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGH9hfoH8Q4uLbRfuw74qI/5V0wKxXaXaZlksargHLpNt/wRLK8+zJYUZKvoOuGl9lpjVTwsA==
-X-Received: by 2002:a05:6a00:3998:b0:770:4753:b984 with SMTP id d2e1a72fcca58-793998483b7mr24733171b3a.16.1760319314749;
-        Sun, 12 Oct 2025 18:35:14 -0700 (PDT)
-Received: from [192.168.1.3] ([122.164.228.230])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7992d9932edsm9522670b3a.73.2025.10.12.18.35.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 12 Oct 2025 18:35:14 -0700 (PDT)
-Message-ID: <f1b5caae-8544-4027-9669-7c92a33f7c61@oss.qualcomm.com>
-Date: Mon, 13 Oct 2025 07:05:08 +0530
+	 In-Reply-To:Content-Type; b=R6dhlU/MRvZUhptymgIRIULnA4y8kNNJ8SO91vpD3+vtE4QzQct491M2NeUP+7p+MxbLNpYQjtpo4f3EujQSZ2DdJCotGOdgDh741pHDcrdJXQqhck6qULg/aO+feOUemNGasEVJnguuRzB0AhdopXWV4b20SirTBQ9OdMeI9lE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=Bxg8VLDz; arc=none smtp.client-ip=45.254.49.203
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from [127.0.0.1] (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 25a39ad8a;
+	Mon, 13 Oct 2025 09:15:19 +0800 (GMT+08:00)
+Message-ID: <83281501-8957-4ca1-8e0e-0b72ddd74b43@rock-chips.com>
+Date: Mon, 13 Oct 2025 09:15:13 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,69 +43,171 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: usb: qcom,snps-dwc3: Fix bindings for
- X1E80100
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org,
-        Wesley Cheng <wesley.cheng@oss.qualcomm.com>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Rob Herring <robh@kernel.org>, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Greg Kroah-Hartman
- <gregkh@linuxfoundation.org>,
-        Conor Dooley <conor+dt@kernel.org>
-References: <20251013011357.732151-1-krishna.kurapati@oss.qualcomm.com>
- <b9befe47-b0c8-4536-83c0-311dd16f2e83@kernel.org>
+Subject: Re: [PATCH v5 3/8] phy: rockchip: phy-rockchip-typec: Add
+ typec_mux/typec_switch support
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ Chaoyi Chen <kernel@airkyi.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>, Heiko Stuebner
+ <heiko@sntech.de>, Sandy Huang <hjc@rock-chips.com>,
+ Andy Yan <andy.yan@rock-chips.com>,
+ Yubing Zhang <yubing.zhang@rock-chips.com>,
+ Frank Wang <frank.wang@rock-chips.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Amit Sunil Dhamne <amitsd@google.com>,
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Dragan Simic <dsimic@manjaro.org>, Johan Jonker <jbx6244@gmail.com>,
+ Diederik de Haas <didi.debian@cknow.org>,
+ Peter Robinson <pbrobinson@gmail.com>, linux-usb@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-phy@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, dri-devel@lists.freedesktop.org
+References: <20251011033233.97-1-kernel@airkyi.com>
+ <20251011033233.97-4-kernel@airkyi.com>
+ <xbblw4jfte7re2pyroanvzqv4ddwhxbgcui5ubpnw7rwuo4s4d@gkph7jqzf33o>
 Content-Language: en-US
-From: Krishna Kurapati PSSNV <krishna.kurapati@oss.qualcomm.com>
-In-Reply-To: <b9befe47-b0c8-4536-83c0-311dd16f2e83@kernel.org>
+From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+In-Reply-To: <xbblw4jfte7re2pyroanvzqv4ddwhxbgcui5ubpnw7rwuo4s4d@gkph7jqzf33o>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: l2ADj5aawyk-ddnt8T258wUfQFGXOw7x
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDExMDAxOCBTYWx0ZWRfX7bobRbtDe+Mc
- IBqxXtn75yteCb6vZnDQoriBPN9byYtVxPfWYlnl4hNAoJ6PFwwWsonGONAHTgYnTg8NfmoJAPl
- gG2K8tjsx2t/O0l212cimyireGRPnh/rlweLB8GXpKm94+PuX8p1PeTx2Ak+eyEtE+a45+tNb/w
- F1RBPl6FJkmupgbpoRS8CsVpLsiubAfOb6jtGEQFkEJ0SNuDRNiLEP04zEI3KKZVbEZ7ZWxCo9K
- APt/rqmjVAWIu/Rgk798Ko8reK6WAR/nbdHDHtJmtx4JyXr+JVJ2eGrwCK7DLsDqDWwfWCM23/S
- 3QeLcNb4rjfIgYGhqQa6N+yPMQfkj7dIgUfgGgG+HNDhbzjQhxpLrQqZh5mtjFhXZRxywl0sWsF
- Y5f6vkI4u/rwOxBrdLDSGCbjbO+I6g==
-X-Proofpoint-GUID: l2ADj5aawyk-ddnt8T258wUfQFGXOw7x
-X-Authority-Analysis: v=2.4 cv=PdTyRyhd c=1 sm=1 tr=0 ts=68ec5755 cx=c_pps
- a=WW5sKcV1LcKqjgzy2JUPuA==:117 a=8YinarrYfdS0Dhyguhy4yQ==:17
- a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=snNKEbK5PTu-mnxKcGYA:9
- a=QEXdDO2ut3YA:10 a=zZCYzV9kfG8A:10 a=OpyuDcXvxspvyRM73sMx:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-10-13_01,2025-10-06_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 phishscore=0 bulkscore=0 clxscore=1015 adultscore=0
- lowpriorityscore=0 impostorscore=0 priorityscore=1501 spamscore=0
- suspectscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2510020000
- definitions=main-2510110018
+X-HM-Tid: 0a99db22dcf303abkunm0713f548f8facb
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGU0dQ1YaGklOTEIaHR4YH0xWFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSEpPSE
+	xVSktLVUpCS0tZBg++
+DKIM-Signature: a=rsa-sha256;
+	b=Bxg8VLDz1S1QU32Fy2HDcfvislNrJJ0uqNay+meHZQFma6Tad3Sto7NFGOCh3TqmeUBj54gnStcWhE8/KozzYBg4GvmPcV4rMFPnEgs/h30WSTTKCT8WXZx4iN3GJGmO7W3qhPHRjXv3jiF2QOrzKOBxLX8bcko/TH9ZA5Yh5p8=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=cvq/ACMwX3OnpD71UH1+PwfyZlhDdznUFw1/2vndRWE=;
+	h=date:mime-version:subject:message-id:from;
 
+On 10/12/2025 12:57 AM, Dmitry Baryshkov wrote:
 
-
-On 10/13/2025 6:49 AM, Krzysztof Kozlowski wrote:
-> On 13/10/2025 03:13, Krishna Kurapati wrote:
->> Add the missing multiport controller binding to target list.
+> On Sat, Oct 11, 2025 at 11:32:28AM +0800, Chaoyi Chen wrote:
+>> From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
 >>
->> Fix minItems for interrupt-names to avoid the following error on High
->> Speed controller:
+>> This patch add support for Type-C Port Controller Manager. Each PHY
+>> will register typec_mux and typec_switch when external Type-C
+>> controller is present. Type-C events are handled by TCPM without
+>> extcon.
 >>
->> usb@a200000: interrupt-names: ['dwc_usb3', 'pwr_event',
->> 'dp_hs_phy_irq', 'dm_hs_phy_irq'] is too short
-> 
-> Don't wrap error messages.
-> 
+>> The extcon device should still be supported.
 >>
-> 
-> Missing Fixes tag.
-> 
-> 
+>> Signed-off-by: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+>> ---
+>>
+>> (no changes since v5)
+>>
+>> Changes in v4:
+>> - Remove notify DP HPD state by USB/DP PHY.
+>>
+>> (no changes since v3)
+>>
+>> Changes in v2:
+>> - Fix compile error when CONFIG_TYPEC is not enabled.
+>> - Notify DP HPD state by USB/DP PHY.
+>>
+>>   drivers/phy/rockchip/phy-rockchip-typec.c | 365 +++++++++++++++++++++-
+>>   1 file changed, 349 insertions(+), 16 deletions(-)
+>>
+>> @@ -850,6 +998,72 @@ static int tcphy_get_mode(struct rockchip_typec_phy *tcphy)
+>>   	return mode;
+>>   }
+>>   
+>> +#if IS_ENABLED(CONFIG_TYPEC)
+>> +static int tcphy_orien_sw_set(struct typec_switch_dev *sw,
+>> +			      enum typec_orientation orien)
+>> +{
+>> +	struct rockchip_typec_phy *tcphy = typec_switch_get_drvdata(sw);
+>> +
+>> +	mutex_lock(&tcphy->lock);
+>> +
+>> +	if (orien == TYPEC_ORIENTATION_NONE) {
+>> +		tcphy->new_mode = MODE_DISCONNECT;
+>> +		goto unlock_ret;
+>> +	}
+>> +
+>> +	tcphy->flip = (orien == TYPEC_ORIENTATION_REVERSE) ? true : false;
+>> +	tcphy->new_mode = MODE_DFP_USB;
+> Carrying over unanswered(!) comment from the previous series:
+>
+> I don't think it is correct. Orientation defines only the cable (plug)
+> orientation. You should be getting the mux events for the mode
+> selection.
 
-Thanks for the review Krzysztof. Will update and send v2.
+Sorry for that, I forgot to modify this part. Will fix in v6.
 
-Regards,
-Krishna,
+
+>
+>> +
+>> +unlock_ret:
+>> +	mutex_unlock(&tcphy->lock);
+>> +	return 0;
+>> +}
+>> +
+>> +static void udphy_orien_switch_unregister(void *data)
+>> +{
+>> +	struct rockchip_typec_phy *tcphy = data;
+>> +
+>> +	typec_switch_unregister(tcphy->sw);
+>> +}
+>> +
+>> @@ -1037,6 +1251,89 @@ static const struct phy_ops rockchip_dp_phy_ops = {
+>>   	.owner		= THIS_MODULE,
+>>   };
+>>   
+>> +#if IS_ENABLED(CONFIG_TYPEC)
+>> +static int tcphy_typec_mux_set(struct typec_mux_dev *mux, struct typec_mux_state *state)
+>> +{
+>> +	struct rockchip_typec_phy *tcphy = typec_mux_get_drvdata(mux);
+>> +	struct typec_displayport_data *data;
+>> +	int hpd = 0;
+>> +
+>> +	mutex_lock(&tcphy->lock);
+>> +
+>> +	switch (state->mode) {
+>> +	case TYPEC_STATE_SAFE:
+>> +		fallthrough;
+>> +	case TYPEC_STATE_USB:
+>> +		tcphy->new_mode = MODE_DFP_USB;
+>> +		phy_set_bus_width(tcphy->phys[TYPEC_PHY_DP], 0);
+>> +		break;
+>> +	case TYPEC_DP_STATE_C:
+>> +	case TYPEC_DP_STATE_E:
+> You need to check that altmode->svid is DP before checking for these
+> modes.
+
+Okay, will fix in v6.
+
+
+>
+>> +		tcphy->new_mode = MODE_DFP_DP;
+>> +		data = state->data;
+>> +		hpd = !!(data->status & DP_STATUS_HPD_STATE);
+>> +		phy_set_bus_width(tcphy->phys[TYPEC_PHY_DP], hpd ? 4 : 0);
+>> +		break;
+>> +	case TYPEC_DP_STATE_D:
+>> +		tcphy->new_mode = MODE_DFP_DP | MODE_DFP_USB;
+>> +		data = state->data;
+>> +		hpd = !!(data->status & DP_STATUS_HPD_STATE);
+>> +		phy_set_bus_width(tcphy->phys[TYPEC_PHY_DP], hpd ? 2 : 0);
+>> +		break;
+>> +	default:
+>> +		break;
+>> +	}
+>> +
+>> +	mutex_unlock(&tcphy->lock);
+>> +
+>> +	return 0;
+>> +}
+>> +
+
+-- 
+Best,
+Chaoyi
+
 
