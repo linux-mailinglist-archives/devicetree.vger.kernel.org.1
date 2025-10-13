@@ -1,136 +1,316 @@
-Return-Path: <devicetree+bounces-226066-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226067-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7AF55BD386D
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 16:32:18 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD17FBD386A
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 16:32:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id EB6274F41F2
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 14:30:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 685333AD064
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 14:32:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 586162566FC;
-	Mon, 13 Oct 2025 14:30:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6AFF719C556;
+	Mon, 13 Oct 2025 14:32:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="F4t1aghJ"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="DVEoF61l"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91669221FCB
-	for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 14:30:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 598EA611E;
+	Mon, 13 Oct 2025 14:32:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760365842; cv=none; b=U/4t94ZbTpgt996DRIbqdEBPA4shJ1tl+0TOMiluGKkEbPcbivSaqJrsnoHg9UTgMycocqaP/fDAcpx/aXrSChuhRXm7MTlXf082gaYv2zswI2+ZNzybMvL79md42/8pgTx5IhNA4M1VsPUBh3EXnpIFK/Za1BUr7Z2e+OsvP1o=
+	t=1760365932; cv=none; b=E30QywTGjwEMbuad1PsQ5gTArATW/TFEVK5PQTrpLWe6X5gpnHipy4lc3mxrqHYvlqQiV+LaNeLy4ju9WbkkuOHB/+RJ/yqQ2Q9iSMVmBdxv5jlsMREcxvNQiRBoSqBvpiamkh2K8McfaPfvUKd0ep/R42hNVUQcB+ev2zBjFIo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760365842; c=relaxed/simple;
-	bh=p7OPEdJE5ToR35hajbcxBsZGseYV7ErRLMU40tXYi4w=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=LQuMgglM+ni4mbSJmUJBGm6TXlNndUYIPuMoBEneVfEXX102uu/gF5lYwBtIzGVOOe+seEqju9iCoDf/wqgv7XH9VlcSSP5xqGS40eLhRfa4t753+UQN40zgZHZYTorzATiZl0Ir+BxNn2aE4onp1GFBWWUQMpXzavCybaX+JsM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=F4t1aghJ; arc=none smtp.client-ip=170.10.133.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1760365839;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=BTlu2d/OCa7smgTdfnf6rps6xmzbDobGt8v/NuBgfVM=;
-	b=F4t1aghJapE8qT8Adcr0ertm0dbgDrBF5OVS0vVyGXDBGUMDdqyQpXZCqSMfi8roY67ADb
-	j2gAZyExJItvGlBNJi1eTn3BFUgqQFt+xJ6IKnceKbpJJ0kFY0pIdhoiKhTQnf/8dbUhvZ
-	h7cebgfl42CdKIYa+zLtiIQkzhaWLJg=
-Received: from mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-542-WHoEOy0QNoS_DHwHLaA70A-1; Mon,
- 13 Oct 2025 10:30:37 -0400
-X-MC-Unique: WHoEOy0QNoS_DHwHLaA70A-1
-X-Mimecast-MFC-AGG-ID: WHoEOy0QNoS_DHwHLaA70A_1760365832
-Received: from mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.17])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id AAB3019560A7;
-	Mon, 13 Oct 2025 14:30:29 +0000 (UTC)
-Received: from fweimer-oldenburg.csb.redhat.com (unknown [10.44.32.50])
-	by mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 414E01954107;
-	Mon, 13 Oct 2025 14:30:12 +0000 (UTC)
-From: Florian Weimer <fweimer@redhat.com>
-To: Deepak Gupta <debug@rivosinc.com>
-Cc: Charles Mirabile <cmirabil@redhat.com>,  pjw@kernel.org,
-  Liam.Howlett@oracle.com,  a.hindborg@kernel.org,
-  akpm@linux-foundation.org,  alex.gaynor@gmail.com,
-  alexghiti@rivosinc.com,  aliceryhl@google.com,  alistair.francis@wdc.com,
-  andybnac@gmail.com,  aou@eecs.berkeley.edu,  arnd@arndb.de,
-  atishp@rivosinc.com,  bjorn3_gh@protonmail.com,  boqun.feng@gmail.com,
-  bp@alien8.de,  brauner@kernel.org,  broonie@kernel.org,
-  charlie@rivosinc.com,  cleger@rivosinc.com,  conor+dt@kernel.org,
-  conor@kernel.org,  corbet@lwn.net,  dave.hansen@linux.intel.com,
-  david@redhat.com,  devicetree@vger.kernel.org,  ebiederm@xmission.com,
-  evan@rivosinc.com,  gary@garyguo.net,  hpa@zytor.com,  jannh@google.com,
-  jim.shu@sifive.com,  kees@kernel.org,  kito.cheng@sifive.com,
-  krzk+dt@kernel.org,  linux-arch@vger.kernel.org,
-  linux-doc@vger.kernel.org,  linux-fsdevel@vger.kernel.org,
-  linux-kernel@vger.kernel.org,  linux-kselftest@vger.kernel.org,
-  linux-mm@kvack.org,  linux-riscv@lists.infradead.org,
-  lorenzo.stoakes@oracle.com,  lossin@kernel.org,  mingo@redhat.com,
-  ojeda@kernel.org,  oleg@redhat.com,  palmer@dabbelt.com,
-  paul.walmsley@sifive.com,  peterz@infradead.org,
-  richard.henderson@linaro.org,  rick.p.edgecombe@intel.com,
-  robh@kernel.org,  rust-for-linux@vger.kernel.org,
-  samitolvanen@google.com,  shuah@kernel.org,  tglx@linutronix.de,
-  tmgross@umich.edu,  vbabka@suse.cz,  x86@kernel.org,  zong.li@sifive.com
-Subject: Re: [PATCH v19 00/27] riscv control-flow integrity for usermode
-In-Reply-To: <aN6sNFBzx8NPU3Th@debug.ba.rivosinc.com> (Deepak Gupta's message
-	of "Thu, 2 Oct 2025 09:45:40 -0700")
-References: <f953ee7b-91b3-f6f5-6955-b4a138f16dbc@kernel.org>
-	<20250926192919.349578-1-cmirabil@redhat.com>
-	<aNbwNN_st4bxwdwx@debug.ba.rivosinc.com>
-	<CABe3_aE4+06Um2x3e1D=M6Z1uX4wX8OjdcT48FueXRp+=KD=-w@mail.gmail.com>
-	<aNcAela5tln5KTUI@debug.ba.rivosinc.com>
-	<lhu3484i9en.fsf@oldenburg.str.redhat.com>
-	<aNxsWYYnj22G5xuX@debug.ba.rivosinc.com>
-	<lhuwm5dh6hf.fsf@oldenburg.str.redhat.com>
-	<aN6sNFBzx8NPU3Th@debug.ba.rivosinc.com>
-Date: Mon, 13 Oct 2025 16:30:09 +0200
-Message-ID: <lhujz0yoowe.fsf@oldenburg.str.redhat.com>
-User-Agent: Gnus/5.13 (Gnus v5.13)
+	s=arc-20240116; t=1760365932; c=relaxed/simple;
+	bh=jtkv5uUv3fzUubS3v5xLsVISwYcJ0joMxFHam6v3Gb8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=mWqixwVK2nD3aKRF5z7tB/hD6s4RxjmcQD/c2ZuIo/SwtgHX4leCRRjYQBTK5lCFBBxn7qCVEiOJ7M+PFhhw5mGbb2Ve1swke0Aa7ckQPduE22aFXgzMhwl/5Kp2oOfJvMyaYLXsLniYou7YuHzcLkCs6Zf1C29tfFLY8y8gWTM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=DVEoF61l; arc=none smtp.client-ip=185.246.85.4
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-03.galae.net (Postfix) with ESMTPS id 9CAE84E41064;
+	Mon, 13 Oct 2025 14:32:08 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 6EBEB606C6;
+	Mon, 13 Oct 2025 14:32:08 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 937A4102F226C;
+	Mon, 13 Oct 2025 16:31:53 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1760365926; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding; bh=UWn6kXTAdR+D+vQWd2cXocFPL03xYUbw4dHFxypUpKc=;
+	b=DVEoF61lK0d78O3it45rbGyKdfg4bbKMFSBJvBNwifCTzVo7zmnSuaecgr+1LKm1HjnBAH
+	UEFNtBMRkWvsnyNovJ+e0H3HMOEmZFMh3YNQ+VsYMu0OsIQu+2RaVfTAfz3Y55eITQyvhg
+	dPyafpVk/TWcBpl6xjKyedk9IzYx9mqJp7H9X4M8CJug0U60TsZCVYbwAmVLZUQIHiJJA/
+	sPv9in3IRzErRUIzZUEVbli/P5uv//iqQA8a5eB91N1tX2cBQZRBFxudHWT5JmtDjSri4w
+	Pa1pKyEVzCVfTQtF+8sfWrHrH0sSwJzKgDpbH+iOFnv1VW8qXByLxuO82aD1qQ==
+From: Maxime Chevallier <maxime.chevallier@bootlin.com>
+To: davem@davemloft.net
+Cc: Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	netdev@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org,
+	thomas.petazzoni@bootlin.com,
+	Andrew Lunn <andrew@lunn.ch>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Eric Dumazet <edumazet@google.com>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Russell King <linux@armlinux.org.uk>,
+	linux-arm-kernel@lists.infradead.org,
+	Christophe Leroy <christophe.leroy@csgroup.eu>,
+	Herve Codina <herve.codina@bootlin.com>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Vladimir Oltean <vladimir.oltean@nxp.com>,
+	=?UTF-8?q?K=C3=B6ry=20Maincent?= <kory.maincent@bootlin.com>,
+	=?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>,
+	Oleksij Rempel <o.rempel@pengutronix.de>,
+	=?UTF-8?q?Nicol=C3=B2=20Veronese?= <nicveronese@gmail.com>,
+	Simon Horman <horms@kernel.org>,
+	mwojtas@chromium.org,
+	Antoine Tenart <atenart@kernel.org>,
+	devicetree@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Romain Gantois <romain.gantois@bootlin.com>,
+	Daniel Golle <daniel@makrotopia.org>,
+	Dimitri Fedrau <dimitri.fedrau@liebherr.com>
+Subject: [PATCH net-next v14 00/16] net: phy: Introduce PHY ports representation
+Date: Mon, 13 Oct 2025 16:31:26 +0200
+Message-ID: <20251013143146.364919-1-maxime.chevallier@bootlin.com>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Scanned-By: MIMEDefang 3.0 on 10.30.177.17
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-* Deepak Gupta:
+Hi everyone,
 
-> How will they contribute to CFI bringup without having a CFI compiled
-> usersapce?
+Here is a V14 for the phy_port work, aiming at representing the
+connectors and outputs of PHY devices.
 
-Build glibc themselves and then proceed one library at the time.
+Since V13, some kdoc warnings were fixed and the SFP code was rewritten
+based on Russell's recent SFP module caps work.
 
->>Another use case would be running container images with CFI on a
->>distribution kernel which supports pre-RVA23 hardware.
->
-> Container image with CFI will have glibc and ld (and all other
-> userspace) also compiled with shadow stack instructions in it. As soon
-> as you take this container image to a pre-RVA23 hardware, you won't
-> even reach vDSO. It'll break much before that, unless kernel is taking
-> a trap on all sspush/sspopchk instructions in prologue/epilogue of
-> functions in userspace (glibc, ld, etc)
+This series is back to 16 patches, thanks to Russell's work on
+simplifying SFP interface selection.
 
-The idea is that you can use a stock distribution kernel to run CFI
-images (potentially form a different distribution or version of the
-distribution).
+I know this is a lot to digest, but if any PHY maintainer would like to take
+a look though I'd be very happy about that :)
 
-But maybe none of this really matters.  How far out is CFI-checking
-hardware?  Is it going to arrive much later than the RVA23 flag day
-that people are suggesting?
+As a remainder, a few important notes :
 
-Thanks,
-Florian
+ - This is only a first phase. It instantiates the port, and leverage
+   that to make the MAC <-> PHY <-> SFP usecase simpler.
+
+ - Next phase will deal with controlling the port state, as well as the
+   netlink uAPI for that.
+
+ - The end-goal is to enable support for complex port MUX. This
+   preliminary work focuses on PHY-driven ports, but this will be
+   extended to support muxing at the MII level (Multi-phy, or compo PHY
+   + SFP as found on Turris Omnia for example).
+
+ - The naming is definitely not set in stone. I named that "phy_port",
+   but this may convey the false sense that this is phylib-specific.
+   Even the word "port" is not that great, as it already has several
+   different meanings in the net world (switch port, devlink port,
+   etc.). I used the term "connector" in the binding.
+
+A bit of history on that work :
+
+The end goal that I personnaly want to achieve is :
+
+            + PHY - RJ45
+            | 
+ MAC - MUX -+ PHY - RJ45
+
+After many discussions here on netdev@, but also at netdevconf[1] and
+LPC[2], there appears to be several analoguous designs that exist out
+there.
+
+[1] : https://netdevconf.info/0x17/sessions/talk/improving-multi-phy-and-multi-port-interfaces.html
+[2] : https://lpc.events/event/18/contributions/1964/ (video isn't the
+right one)
+
+Take the MAchiatobin, it has 2 interfaces that looks like this :
+
+ MAC - PHY -+ RJ45
+            |
+	    + SFP - Whatever the module does
+
+Now, looking at the Turris Omnia, we have :
+
+
+ MAC - MUX -+ PHY - RJ45
+            |
+	    + SFP - Whatever the module does
+
+We can find more example of this kind of designs, the common part is
+that we expose multiple front-facing media ports. This is what this
+current work aims at supporting. As of right now, it does'nt add any
+support for muxing, but this will come later on.
+
+This first phase focuses on phy-driven ports only, but there are already
+quite some challenges already. For one, we can't really autodetect how
+many ports are sitting behind a PHY. That's why this series introduces a
+new binding. Describing ports in DT should however be a last-resort
+thing when we need to clear some ambiguity about the PHY media-side.
+
+The only use-cases that we have today for multi-port PHYs are combo PHYs
+that drive both a Copper port and an SFP (the Macchiatobin case). This
+in itself is challenging and this series only addresses part of this
+support, by registering a phy_port for the PHY <-> SFP connection. The
+SFP module should in the end be considered as a port as well, but that's
+not yet the case.
+
+However, because now PHYs can register phy_ports for every media-side
+interface they have, they can register the capabilities of their ports,
+which allows making the PHY-driver SFP case much more generic.
+
+Let me know what you think, I'm all in for discussions :)
+
+Regards,
+
+Changes in V14:
+ - Fixed kdoc
+ - Use the sfp module_caps feature.
+
+Changes in V13:
+ - Added phy_caps support for interface selection
+ - Aggregated tested-by tags
+
+Changes in V12:
+ - Moved some of phylink's internal helpers to phy_caps for reuse in
+   phylib
+ - Fixed SFP interface selection
+ - Added Rob's review and changes in patch 6
+
+Changes in V11:
+ - The ti,fiber-mode property was deprecated in favor of the
+   ethernet-connector binding
+ - The .attach_port was split into an MDI and an MII version
+ - I added the warning back in the AR8031 PHY driver
+ - There is now an init-time check on the number of lanes associated to
+   every linkmode, making sure the number of lanes is above or equal to
+   the minimum required
+ - Various typos were fixed all around
+ - We no longer use sfp_select_interface() for SFP interface validation
+
+Changes in V10:
+ - Rebase on net-next
+ - Fix a typo reported by Köry
+ - Aggregate all reviews
+ - Fix the conflict on the qcom driver
+
+Changes in V9:
+ - Removed maxItems and items from the connector binding
+ - Fixed a typo in the binding
+
+Changes in V8:
+ - Added maxItems on the connector media binding
+ - Made sure we parse a single medium
+ - Added a missing bitwise macro
+
+Changes in V7:
+ - Move ethtool_medium_get_supported to phy_caps
+ - support combo-ports, each with a given set of supported modes
+ - Introduce the notion of 'not-described' ports
+
+Changes in V6:
+
+ - Fixed kdoc on patch 3
+ - Addressed a missing port-ops registration for the Marvell 88x2222
+   driver
+ - Addressed a warning reported by Simon on the DP83822 when building
+   without CONFIG_OF_MDIO
+
+Changes in V5 :
+
+ - renamed the bindings to use the term "connector" instead of "port"
+ - Rebased, and fixed some issues reported on the 83822 driver
+ - Use phy_caps
+
+Changes in V4 :
+
+ - Introduced a kernel doc
+ - Reworked the mediums definitions in patch 2
+ - QCA807x now uses the generic SFP support
+ - Fixed some implementation bugs to build the support list based on the
+   interfaces supported on a port
+
+V13: https://lore.kernel.org/netdev/20250921160419.333427-1-maxime.chevallier@bootlin.com/
+V12: https://lore.kernel.org/netdev/20250909152617.119554-1-maxime.chevallier@bootlin.com/
+V11: https://lore.kernel.org/netdev/20250814135832.174911-1-maxime.chevallier@bootlin.com/
+V10: https://lore.kernel.org/netdev/20250722121623.609732-1-maxime.chevallier@bootlin.com/
+V9: https://lore.kernel.org/netdev/20250717073020.154010-1-maxime.chevallier@bootlin.com/
+V8: https://lore.kernel.org/netdev/20250710134533.596123-1-maxime.chevallier@bootlin.com/
+v7: https://lore.kernel.org/netdev/20250630143315.250879-1-maxime.chevallier@bootlin.com/
+V6: https://lore.kernel.org/netdev/20250507135331.76021-1-maxime.chevallier@bootlin.com/
+V5: https://lore.kernel.org/netdev/20250425141511.182537-1-maxime.chevallier@bootlin.com/
+V4: https://lore.kernel.org/netdev/20250213101606.1154014-1-maxime.chevallier@bootlin.com/
+V3: https://lore.kernel.org/netdev/20250207223634.600218-1-maxime.chevallier@bootlin.com/
+RFC V2: https://lore.kernel.org/netdev/20250122174252.82730-1-maxime.chevallier@bootlin.com/
+RFC V1: https://lore.kernel.org/netdev/20241220201506.2791940-1-maxime.chevallier@bootlin.com/
+
+Maxime
+
+Maxime Chevallier (16):
+  dt-bindings: net: Introduce the ethernet-connector description
+  net: ethtool: common: Indicate that BaseT works on up to 4 lanes
+  net: ethtool: Introduce ETHTOOL_LINK_MEDIUM_* values
+  net: phy: Introduce PHY ports representation
+  net: phy: dp83822: Add support for phy_port representation
+  dt-bindings: net: dp83822: Deprecate ti,fiber-mode
+  net: phy: Create a phy_port for PHY-driven SFPs
+  net: phy: Introduce generic SFP handling for PHY drivers
+  net: phy: marvell-88x2222: Support SFP through phy_port interface
+  net: phy: marvell: Support SFP through phy_port interface
+  net: phy: marvell10g: Support SFP through phy_port
+  net: phy: at803x: Support SFP through phy_port interface
+  net: phy: qca807x: Support SFP through phy_port interface
+  net: phy: Only rely on phy_port for PHY-driven SFP
+  net: phy: dp83822: Add SFP support through the phy_port interface
+  Documentation: networking: Document the phy_port infrastructure
+
+ .../bindings/net/ethernet-connector.yaml      |  45 +++
+ .../devicetree/bindings/net/ethernet-phy.yaml |  18 +
+ .../devicetree/bindings/net/ti,dp83822.yaml   |  10 +-
+ Documentation/networking/index.rst            |   1 +
+ Documentation/networking/phy-port.rst         | 111 ++++++
+ MAINTAINERS                                   |   3 +
+ drivers/net/phy/Makefile                      |   2 +-
+ drivers/net/phy/dp83822.c                     |  79 +++--
+ drivers/net/phy/marvell-88x2222.c             |  94 ++---
+ drivers/net/phy/marvell.c                     |  92 ++---
+ drivers/net/phy/marvell10g.c                  |  52 +--
+ drivers/net/phy/phy-caps.h                    |   5 +
+ drivers/net/phy/phy-core.c                    |   6 +
+ drivers/net/phy/phy_caps.c                    |  64 ++++
+ drivers/net/phy/phy_device.c                  | 332 +++++++++++++++++-
+ drivers/net/phy/phy_port.c                    | 194 ++++++++++
+ drivers/net/phy/qcom/at803x.c                 |  77 ++--
+ drivers/net/phy/qcom/qca807x.c                |  72 ++--
+ include/linux/ethtool.h                       |  44 ++-
+ include/linux/phy.h                           |  63 +++-
+ include/linux/phy_port.h                      |  99 ++++++
+ include/uapi/linux/ethtool.h                  |  20 ++
+ net/ethtool/common.c                          | 267 ++++++++------
+ 23 files changed, 1368 insertions(+), 382 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/ethernet-connector.yaml
+ create mode 100644 Documentation/networking/phy-port.rst
+ create mode 100644 drivers/net/phy/phy_port.c
+ create mode 100644 include/linux/phy_port.h
+
+-- 
+2.49.0
 
 
