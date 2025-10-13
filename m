@@ -1,151 +1,191 @@
-Return-Path: <devicetree+bounces-226224-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226225-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BCFBBD62BC
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 22:40:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E0401BD63DF
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 22:47:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id EFB874F5FEC
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 20:38:22 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 636C04FAE45
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 20:44:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53C6530F545;
-	Mon, 13 Oct 2025 20:34:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C15630B522;
+	Mon, 13 Oct 2025 20:40:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="bMO52PQz"
+	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="Wkplw5YO";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="CwPTgwHj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f202.google.com (mail-yw1-f202.google.com [209.85.128.202])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fhigh-a8-smtp.messagingengine.com (fhigh-a8-smtp.messagingengine.com [103.168.172.159])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 341F030EF7F
-	for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 20:34:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.202
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3F9530AD14;
+	Mon, 13 Oct 2025 20:40:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.159
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760387663; cv=none; b=OTnpiHuAkUNKD0noXvl9hsWJciZYyXVEBUR7lEJRZmKV4R5cSPDxgGT9xrEVnUogiSYMGC0QekdBAwHO4dG1mL+gp0egMgc7TVem5cgrj1D9t5lDRhEBQaC1GR1XGuZkDl2nDiDOwLqk+kZoA5jctS0bOY5S+56GgoLHajD+uNU=
+	t=1760388055; cv=none; b=jjG0SL8b8WspoQUk4aQIVIkv6HhB/mqo686JO7gvydtXU7+BBjudEsH40IR2DvEugQshxIUfrPsGBbyd0sE0JHb7OAqayUEKfd712jXLSQbf0ls5F5/bM71MoRAGbQ9AWSwQTjP/xO9iqwb4SmaB1QCSkHCbfDniAaou8FTd7m0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760387663; c=relaxed/simple;
-	bh=R1YnFh8aXUGKuVVtnPClepvt/LVUGJ/UtnMqEulZIYo=;
-	h=Date:In-Reply-To:Mime-Version:References:Message-ID:Subject:From:
-	 To:Cc:Content-Type; b=dUFwHb6GPtDWxiW4cSGWH83XoGLQx+kpy60zRVKn3U6qN3UD7tiFBI7uUMpySaT2tey78u33q0psgn7JVMX3GnI3WlilJS6ifs9j2Oa0J7MC9uqpAQnpDJgocswqeMQpKDEktLmO9BjtFJT+jQvqEsPqWIFw/mii02resk4l0y8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=flex--jthies.bounces.google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=bMO52PQz; arc=none smtp.client-ip=209.85.128.202
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flex--jthies.bounces.google.com
-Received: by mail-yw1-f202.google.com with SMTP id 00721157ae682-77facc9ef7dso73822337b3.2
-        for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 13:34:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1760387660; x=1760992460; darn=vger.kernel.org;
-        h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
-         :date:from:to:cc:subject:date:message-id:reply-to;
-        bh=GFnB74J1pAvDm1nl6YVxkFp2KLUlGXZiPBf1NrkOorI=;
-        b=bMO52PQzI4F9dPx84r//NPWVXxaBOt65XYRWH9LDhdRM7bXFtZStQCFKaejRJhfSlS
-         OQr9g6hDIBxLYdnioYiARYTbaxVzMeBwdhU7ELfWZMgScGo2JrGUCwXWky8qDrcDaBPU
-         SnCMo5/9alVda50NLSfhgeblc94Nb4NkQSO8rzGm+CZ5gldUd04tQp/WMU4+hYyC9Rha
-         MoWgdQsvzv6eEzhFeqahauHedOUl9E8y/T7WtB2jbbYcUpqo92hJssxkD6zG2ZnfXccf
-         YuUH5Q98qKN6joDtJ3EwZ3w/f5xDidnCDT40rTwBvJ6nrP5mYhT6rDbPYqrkF99cJvhU
-         YbFA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760387660; x=1760992460;
-        h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
-         :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=GFnB74J1pAvDm1nl6YVxkFp2KLUlGXZiPBf1NrkOorI=;
-        b=V5tCR5xS6mLTIO/Y0iamzordVZo+Q0fhdNsV+B7cNx1VkYhfJ0Dm4Q6G6VHCjOFbTj
-         Zi19h0WshsPtYei22J5trH0Do2PhU9GXPAEOmW73kzue1BgmAZrliJdziZXg2061pgSn
-         x/lR7+d9z7hFsULKZBs/6+4idZLxS5aLq17COSMYCsScGGaclT0eZ5lYmUyfFsUOdpaQ
-         B8F21rH9TpdRwCNudu3nkRTK4lsUV/938krknjIUZJXFkR/D5fWIE3Gfrm36LJCUuO8o
-         UX1iaRbuL+LVs4UF0LUhV+KjRv1QT2aBaVQx5srW5MhRGJf+Q3e5X2D85WRVmwuwz7QH
-         5uJQ==
-X-Gm-Message-State: AOJu0YwXdBnGYTVDLPoauL/lQ1tlEI1FX0CB5YbzAGBnBIvoeFQykhNJ
-	12l6Mg64RvIH2uQAYfHWfp6WnkU9g6udM0knhA9Nlk2YpraHV7OZORduJqMv2pqpuo7LUQZk5GB
-	mzQZzEg==
-X-Google-Smtp-Source: AGHT+IEjUm82raEjN7d+M3tvikmOo78EaMWdJ4VaMRN5Im1/+9AxanQNq/18YLWj74gbMAzsjUUto92DYFo=
-X-Received: from ywbjh10.prod.google.com ([2002:a05:690c:710a:b0:780:e432:6fc7])
- (user=jthies job=prod-delivery.src-stubby-dispatcher) by 2002:a05:690c:7487:b0:781:64f:3145
- with SMTP id 00721157ae682-781064f72ecmr131650497b3.67.1760387660244; Mon, 13
- Oct 2025 13:34:20 -0700 (PDT)
-Date: Mon, 13 Oct 2025 20:33:27 +0000
-In-Reply-To: <20251013203331.398517-1-jthies@google.com>
+	s=arc-20240116; t=1760388055; c=relaxed/simple;
+	bh=DcVuVJp7HSiPvZDba2BpyATvzPUakSy82swwD6F23Vk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LaRx23bzdGON9O2nlQ7FkS1P7kT9DJJ7DYZChZO+mX8rVrmgnn08E+5HFW0jFD2w2/TuYsgnPdtbYLsjFtMOdxhxRHO+DFT7NLjQPKVGaK8oVQYbLR0Mo+0/PSeYdZSLjgCpb10OEuQkoAWNtWhE5pHeJpxo5XxHUtJb3f63cqM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=Wkplw5YO; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=CwPTgwHj; arc=none smtp.client-ip=103.168.172.159
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
+Received: from phl-compute-06.internal (phl-compute-06.internal [10.202.2.46])
+	by mailfhigh.phl.internal (Postfix) with ESMTP id 061BC1400165;
+	Mon, 13 Oct 2025 16:40:52 -0400 (EDT)
+Received: from phl-mailfrontend-01 ([10.202.2.162])
+  by phl-compute-06.internal (MEProxy); Mon, 13 Oct 2025 16:40:52 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ragnatech.se; h=
+	cc:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm1; t=1760388052;
+	 x=1760474452; bh=1E3qnV2NvPsWuGT/7V3vu79n4mHMpSOWaib+n5zXDNc=; b=
+	Wkplw5YOJDNZKrfuXqyqCoNc5CWl6u81ReXoq3SzKU0+ui+56v14Lkw2FYwmd0x6
+	jelQnqB6dAKpXwtazGhZz7QIYVKNAv3QDs5f6QR1Fm0RXuL9ZJeikaqv4dU3Oz0i
+	g/TTWBUqYsrEdPvxz9ZyUbXSfOm6pzWUXPL594np9nOPVX/B6oaWPSeR3jySmdzJ
+	/pniFEYr7W7VGn5RCkj0UJPMflaIsTbLlF3RHq5XTQ4G2wECnfM8Vtb8XUxXfiWD
+	wNqedlLtVNjDYGXYvgU60aJnxA8WIxyJd1K9j+UdiAulaJjXDe3/Bl4DHTrnEUcj
+	K4eh/0UXpzk+hAvDZMJUew==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1760388052; x=
+	1760474452; bh=1E3qnV2NvPsWuGT/7V3vu79n4mHMpSOWaib+n5zXDNc=; b=C
+	wPTgwHjog83Jz4ZsTFIyZI0F6LqKOKKKDAv2KVXwcSXRnj2TfVb5szMCHHRCVl+E
+	paezqZUDulk2/ljV5pw4xaKnlgRHLIKemN9tmieQnmOrOSXurMSEIvCuLXmxtH5l
+	YOguEVuLdKWYJuSv3V3k5+90XMId55JZ15HTIeN3d7STs3s3QE5Vabv7MA7uX1to
+	g+2LD2rNnnMFgNDAfrbuNUnl2jgAaRMP9dWGoqK9RTabY2QLVZ+E3/7cHgzKh58n
+	EBP1ExdQsjQr3PBLpNVR2P9Rq5lLIFT1hhwVDifuVGOxeQ2cCNdN+/Uf0b7PXOfg
+	rav4sq5Si7/5X9huuOsEg==
+X-ME-Sender: <xms:0mPtaDGG9kM0bBzX36DWmHjgZs1amQq-LJ-zT6rKLm2izWJ8PJt18A>
+    <xme:0mPtaPlgacTABIUfqqx3KGFp9Pr4ZG2XUuF_H-dWN1NTJfvtq2loFD7tcOFWl7oWZ
+    VVVvTAVqMGUNyFxM8s9wLoFYcq_RmVX4tzcutBO1hPgDiRdgcUuoew>
+X-ME-Received: <xmr:0mPtaH_06LuxLiWI0JuAe3kVJRqcwim1wpQacux0BAUtbmT5gZBk-OqfL-N_t7EAIaSTXF4XDTLoIFFpApO4fbfNMuKmQKI>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdeggdduudekieefucetufdoteggodetrf
+    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceu
+    rghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujf
+    gurhepfffhvfevuffkfhggtggugfgjsehtkeertddttdejnecuhfhrohhmpefpihhklhgr
+    shcuufpnuggvrhhluhhnugcuoehnihhklhgrshdrshhouggvrhhluhhnugesrhgrghhnrg
+    htvggthhdrshgvqeenucggtffrrghtthgvrhhnpeevteegtddvvdfhtdekgefhfeefheet
+    heekkeegfeejudeiudeuleegtdehkeekteenucevlhhushhtvghrufhiiigvpedtnecurf
+    grrhgrmhepmhgrihhlfhhrohhmpehnihhklhgrshdrshhouggvrhhluhhnugesrhgrghhn
+    rghtvggthhdrshgvpdhnsggprhgtphhtthhopeduledpmhhouggvpehsmhhtphhouhhtpd
+    hrtghpthhtohepmhgrrhgvkhdrvhgrshhuthdorhgvnhgvshgrshesmhgrihhlsghogidr
+    ohhrghdprhgtphhtthhopehlihhnuhigqdgrrhhmqdhkvghrnhgvlheslhhishhtshdrih
+    hnfhhrrgguvggrugdrohhrghdprhgtphhtthhopegrfhhorhguudejfeesghhmrghilhdr
+    tghomhdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpth
+    htoheprghirhhlihgvugesghhmrghilhdrtghomhdprhgtphhtthhopehfrhgrnhhkrdgs
+    ihhnnhhssehimhhgthgvtgdrtghomhdprhgtphhtthhopehgvggvrhhtodhrvghnvghsrg
+    hssehglhhiuggvrhdrsggvpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdho
+    rhhgpdhrtghpthhtohepkhhunhhinhhorhhirdhmohhrihhmohhtohdrghigsehrvghnvg
+    hsrghsrdgtohhm
+X-ME-Proxy: <xmx:0mPtaIkLwFH1mkzzgNNUxblJGSbIee9pZAN_ztgfC6ec8B5UBjFjbA>
+    <xmx:0mPtaNlHuvw7f6WXdtarydE6tRd8eVSSZg3b9LuHH5IryDh3JIhdKA>
+    <xmx:0mPtaEvc7D3STaqX7beMFPlXX3BNk49_mundccdHWKBs0cIRGGF0hA>
+    <xmx:0mPtaPIU_VMDQzN0WgiYRgjeNF9H0kTc-kEM55Hz3M_YG_IgUCJFEQ>
+    <xmx:02PtaN4fSmNnbYw_CZzDSY87rvy0-Bj2E--O_yBohRgBbbyx6gZBIzXB>
+Feedback-ID: i80c9496c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
+ 13 Oct 2025 16:40:50 -0400 (EDT)
+Date: Mon, 13 Oct 2025 22:40:48 +0200
+From: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>
+To: Marek Vasut <marek.vasut+renesas@mailbox.org>
+Cc: linux-arm-kernel@lists.infradead.org, Adam Ford <aford173@gmail.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	David Airlie <airlied@gmail.com>,
+	Frank Binns <frank.binns@imgtec.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Matt Coster <matt.coster@imgtec.com>,
+	Maxime Ripard <mripard@kernel.org>, Rob Herring <robh@kernel.org>,
+	Simona Vetter <simona@ffwll.ch>,
+	Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org,
+	dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH 2/3] arm64: dts: renesas: r8a77960: Add GX6250 GPU node
+Message-ID: <20251013204048.GA4091728@ragnatech.se>
+References: <20251013190210.142436-1-marek.vasut+renesas@mailbox.org>
+ <20251013190210.142436-2-marek.vasut+renesas@mailbox.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-References: <20251013203331.398517-1-jthies@google.com>
-X-Mailer: git-send-email 2.51.0.858.gf9c4a03a3a-goog
-Message-ID: <20251013203331.398517-4-jthies@google.com>
-Subject: [PATCH v4 3/3] mfd: cros_ec: Don't add cros_ec_ucsi if it is defined
- in OF or ACPI
-From: Jameson Thies <jthies@google.com>
-To: dmitry.baryshkov@oss.qualcomm.com, akuchynski@chromium.org, 
-	abhishekpandit@chromium.org, krzk+dt@kernel.org, robh@kernel.org, 
-	bleung@chromium.org, heikki.krogerus@linux.intel.com, ukaszb@chromium.org, 
-	tzungbi@kernel.org
-Cc: devicetree@vger.kernel.org, chrome-platform@lists.linux.dev, 
-	linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Jameson Thies <jthies@google.com>
-Content-Type: text/plain; charset="UTF-8"
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20251013190210.142436-2-marek.vasut+renesas@mailbox.org>
 
-On devices with a UCSI PPM in the EC, check for cros_ec_ucsi to be
-defined in the OF device tree or an ACPI node. If it is defined by
-either OF or ACPI, it does not need to be added as a subdevice of
-cros_ec_dev mfd. cros_ec_ucsi will load from the OF or ACPI node.
+Hi Marek,
 
-Signed-off-by: Jameson Thies <jthies@google.com>
-Reviewed-by: Benson Leung <bleung@chromium.org>
----
- drivers/mfd/cros_ec_dev.c | 23 ++++++++++++++++++-----
- 1 file changed, 18 insertions(+), 5 deletions(-)
+On 2025-10-13 21:01:18 +0200, Marek Vasut wrote:
+> Describe Imagination Technologies PowerVR Rogue GX6250 BNVC 4.45.2.58
+> present in Renesas R-Car R8A77960 M3-W SoC.
+> 
+> Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
 
-diff --git a/drivers/mfd/cros_ec_dev.c b/drivers/mfd/cros_ec_dev.c
-index dc80a272726b..1928c2ea2b8f 100644
---- a/drivers/mfd/cros_ec_dev.c
-+++ b/drivers/mfd/cros_ec_dev.c
-@@ -5,6 +5,7 @@
-  * Copyright (C) 2014 Google, Inc.
-  */
- 
-+#include <linux/acpi.h>
- #include <linux/dmi.h>
- #include <linux/kconfig.h>
- #include <linux/mfd/core.h>
-@@ -131,11 +132,6 @@ static const struct cros_feature_to_cells cros_subdevices[] = {
- 		.mfd_cells	= cros_ec_rtc_cells,
- 		.num_cells	= ARRAY_SIZE(cros_ec_rtc_cells),
- 	},
--	{
--		.id		= EC_FEATURE_UCSI_PPM,
--		.mfd_cells	= cros_ec_ucsi_cells,
--		.num_cells	= ARRAY_SIZE(cros_ec_ucsi_cells),
--	},
- 	{
- 		.id		= EC_FEATURE_HANG_DETECT,
- 		.mfd_cells	= cros_ec_wdt_cells,
-@@ -264,6 +260,23 @@ static int ec_device_probe(struct platform_device *pdev)
- 		}
- 	}
- 
-+	/*
-+	 * FW nodes can load cros_ec_ucsi, but early PDC devices did not define
-+	 * the required nodes. On PDC systems without FW nodes for cros_ec_ucsi,
-+	 * the driver should be added as an mfd subdevice.
-+	 */
-+	if (cros_ec_check_features(ec, EC_FEATURE_USB_PD) &&
-+	    cros_ec_check_features(ec, EC_FEATURE_UCSI_PPM) &&
-+	    !acpi_dev_found("GOOG0021") &&
-+	    !of_find_compatible_node(NULL, NULL, "google,cros-ec-ucsi")) {
-+		retval = mfd_add_hotplug_devices(ec->dev,
-+						 cros_ec_ucsi_cells,
-+						 ARRAY_SIZE(cros_ec_ucsi_cells));
-+
-+		if (retval)
-+			dev_warn(ec->dev, "failed to add cros_ec_ucsi: %d\n", retval);
-+	}
-+
- 	/*
- 	 * UCSI provides power supply information so we don't need to separately
- 	 * load the cros_usbpd_charger driver.
+Really cool seeing this.
+
+Reviewed-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+
+> ---
+> Cc: Adam Ford <aford173@gmail.com>
+> Cc: Conor Dooley <conor+dt@kernel.org>
+> Cc: David Airlie <airlied@gmail.com>
+> Cc: Frank Binns <frank.binns@imgtec.com>
+> Cc: Geert Uytterhoeven <geert+renesas@glider.be>
+> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+> Cc: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Cc: Magnus Damm <magnus.damm@gmail.com>
+> Cc: Matt Coster <matt.coster@imgtec.com>
+> Cc: Maxime Ripard <mripard@kernel.org>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: Simona Vetter <simona@ffwll.ch>
+> Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: devicetree@vger.kernel.org
+> Cc: dri-devel@lists.freedesktop.org
+> Cc: linux-renesas-soc@vger.kernel.org
+> ---
+>  arch/arm64/boot/dts/renesas/r8a77960.dtsi | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/renesas/r8a77960.dtsi b/arch/arm64/boot/dts/renesas/r8a77960.dtsi
+> index 6d039019905de..4f7b2e838c026 100644
+> --- a/arch/arm64/boot/dts/renesas/r8a77960.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/r8a77960.dtsi
+> @@ -2565,6 +2565,18 @@ gic: interrupt-controller@f1010000 {
+>  			resets = <&cpg 408>;
+>  		};
+>  
+> +		gpu: gpu@fd000000 {
+> +			compatible = "renesas,r8a77960-gpu",
+> +				     "img,img-gx6250",
+> +				     "img,img-rogue";
+> +			reg = <0 0xfd000000 0 0x40000>;
+> +			interrupts = <GIC_SPI 119 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&cpg CPG_MOD 112>;
+> +			clock-names = "core";
+> +			power-domains = <&sysc R8A7796_PD_3DG_B>;
+> +			resets = <&cpg 112>;
+> +		};
+> +
+>  		pciec0: pcie@fe000000 {
+>  			compatible = "renesas,pcie-r8a7796",
+>  				     "renesas,pcie-rcar-gen3";
+> -- 
+> 2.51.0
+> 
+> 
+
 -- 
-2.51.0.858.gf9c4a03a3a-goog
-
+Kind Regards,
+Niklas Söderlund
 
