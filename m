@@ -1,113 +1,161 @@
-Return-Path: <devicetree+bounces-225959-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225960-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B5C1BD2852
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 12:18:53 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id C2D2EBD285E
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 12:19:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D9A903B28F0
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 10:18:51 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 61AA04E8EEC
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 10:18:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C1252FE57B;
-	Mon, 13 Oct 2025 10:18:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D77F12FF15B;
+	Mon, 13 Oct 2025 10:18:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="iOYeIodv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="a6V6XmT8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4663228000A
-	for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 10:18:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E4C72FF154;
+	Mon, 13 Oct 2025 10:18:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760350730; cv=none; b=MkBd2CCZ+T7yPKb/lHRhzcm79WOoU2ByhPIDoOA3y2EnTJgCcY/gVpX4MoK8a0aUZPyzybg4xJiQ3IZtqQWlCoAlzZaKCEfuAEWnOEYxG5B0ZcFpKLm7/rYSvvIDzgRYgScoIbbNsn9xvDZPo1RRIZS/d/0st96BEbgTX+tP46o=
+	t=1760350732; cv=none; b=NG4C+DJ7Zt9KQRBPQgflKn11jx8AOCw6ajnAqNOQZzxjwyvhye8y+G2YxEDMiln4tAXZhtlIp9bjGQZEClvI55TMKBu9a9ricQrB5Gg6P8AQ+eIIAZ8/Bz7ALbZ+MJLOL1Qw1fu/5Pr/mwa5K0ap5azOsRBLdhMGuztdGC7oJ/M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760350730; c=relaxed/simple;
-	bh=KFlkKhsToSNiIVYTfCINycSlYKnfIJUcU3TZviU7e8s=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Ce3jb2T97FZfe3BjUTpbm/WCBq8B8Rn74kxaYcUxBOhs0xDN7Ba6DQqVrRz7ZkhgUam+4qHAK0zhn8/+kID6hMMu8gzftq7AKdkPfWALXiWw2xc05Rre0Bf7MgV6b8bP0WTn/j3yFOICCLeWA2uUV96zWLTcf2bnCNNZBVwHY9s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=iOYeIodv; arc=none smtp.client-ip=209.85.167.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-57f0aa38aadso4694730e87.2
-        for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 03:18:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1760350726; x=1760955526; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=KFlkKhsToSNiIVYTfCINycSlYKnfIJUcU3TZviU7e8s=;
-        b=iOYeIodvXtyaDUddlGM3xY01yXtcs4HazKQJXzb7o04o2e+Kpc92Ho1TVxyKcXNhFB
-         eOau02nQeA7e1WlcsHmrBVIUA8efKRqzGfzkUjMnPCjv2FBSPWOZyHlGs0bVCVkmg2Mx
-         kK7T16uivR7cXXl4Y+H0zQqI0vySyTNuLZAPSNYweaS0MqUkpF6dsCsxFgsRqUKwCWB4
-         4zoFW43ef7+wSOMasn8lqZKpeMWZBcx14JRNJoHtt+aUiTSuiVms05MQWNq/AxYQYEyw
-         aQ+ft//IRDU2OXVJQd9cHvgmpWMqjEK6b3leILKyem3Rhg57l3ieCIys7lEpeHwQE6FI
-         4sAg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760350726; x=1760955526;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=KFlkKhsToSNiIVYTfCINycSlYKnfIJUcU3TZviU7e8s=;
-        b=RC6rW5CV7ThK5V4YoOQbItWU1tMPTwcvhwoPc1bdlev8k8kWPhW0oKrZT6Oet3UuN6
-         Hui3JkCqp15PgeGlDhiVXNfhjFNMN4a6MjtLIk58hNGAfZjxSdfLBN0GelZIBwKqh1iw
-         496L3lfqD+lZCPyRC1S19kubE5J6ed9WKd6YLk1RfF67AG9uYTuO75y+MXRtx5Gc3XgW
-         sKBoBw9RWXoL8FieGUyMwjUBHOtRhKaKglzUxKNblC/iAyXWEZ9DAJEH/PuKTY8NBZ3n
-         H4w2e3b3z2qCdenxpPUM6J62zQbskyjQ2mSI8PU+Gu5Tk8I8uELVyq1JDboiEoDdEZS2
-         Tupg==
-X-Forwarded-Encrypted: i=1; AJvYcCXamQfic2P/iPTW/V3b/OI9JYkMTMz3WmDZiENIMjRMBmR7ZXlJ7i8BSAbEbJnmsqknI+R6jtcHRPKY@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx3LpDqezOu/K2A+EHWLfgKBWCQW67kI6jQfVQXmT14sA/u+Atf
-	+S87L+6eLv1g3JH1dMW3Wn/mghsJmLUYUyM2dw3HHIgHyhrMBF5oLEGnUWUhM3KDoKUG5FQXyIY
-	tbV9WmONxWpkThSXD1c+ToqxAkRTBI/8mlb40kKj+Zg==
-X-Gm-Gg: ASbGncubRvcIAfQc3FheDsVnxBx2PsDwIt5mN7/etSO0uel+6SDMA2z1YPjV7e+sM8r
-	F7u9KphdYK6A93VLO0f0q0Vp52kFSaka1HpR3C3oJ0BV1q7xZuyFsRowCAQosoFdVCIvbFzQjYm
-	yWNrIZXpPWHvU8dbbNr5rj50jsouktDajxUMewcxAkDx/+g2SzVnaGE4BDk73WKKfZsjzdW31X2
-	oU7m7y/w5MLytUBktsuRnu6VUVSzM9722s1qL1Q
-X-Google-Smtp-Source: AGHT+IHH9tVr2y31C2s758P1Y1iCzf5CBBO+mUKp+b25MmlZjZZyEk+h30As98u2vagbtvUMjxHrZsPQPtd3jW6D2mg=
-X-Received: by 2002:a05:6512:3c87:b0:58b:23e:5ec with SMTP id
- 2adb3069b0e04-5906d8e5b43mr5753879e87.26.1760350726407; Mon, 13 Oct 2025
- 03:18:46 -0700 (PDT)
+	s=arc-20240116; t=1760350732; c=relaxed/simple;
+	bh=ouuqUBDWHlhYA/UeSBYZG7v0qdrIikgKeIsUG354HMU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Vpk2H6RaJhH6sjtTXzIkHSRUMtgj70xBppEODWRhC/8u/z+WgPi3ClY5FifGHalcfTEXa+SYwqmc4GicdzXCkJvGC45/hx8/3CEts+Vt94+gFoDMU6o08AvbS5ZWAUwCcrofHjY2oizE5k9t65b0gyqFgrdlrF/GT5lQrGfSYbk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=a6V6XmT8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EB8F4C4CEFE;
+	Mon, 13 Oct 2025 10:18:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1760350731;
+	bh=ouuqUBDWHlhYA/UeSBYZG7v0qdrIikgKeIsUG354HMU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=a6V6XmT8AMmRZZZjj2K4xW3xsCtRTlPQe7+ISoXf1jIQEH1gwGfqLRnYn4ZuVlldt
+	 2aLtgi4gPMC+zQIQXSdOaEB5WC12V2nVf6nSVYTzfF2aiK7HAyu2ZseeMS9SXfgwUn
+	 7+ywyxXqdM+hwoVzZBzUut5uvpgLItDxre++xuX347u3G6P7vjZtoSAkfZRX00IXt/
+	 edKxQo8yBatMkh27B14Eja+/yFHtK4K0UydSWCAHer8YqK5i01rLTPvOrFdt9UfSFe
+	 XuUsDjrV+gnqENRIpcTlP0hil9vHzVcG8H2sGQ9zbwv0PZQgsixp74DLgxBUN3G9ee
+	 k9epFFO3Si0gw==
+Date: Mon, 13 Oct 2025 12:18:46 +0200
+From: Lorenzo Pieralisi <lpieralisi@kernel.org>
+To: linux-kernel@vger.kernel.org, Thomas Gleixner <tglx@linutronix.de>
+Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	Sascha Bischoff <sascha.bischoff@arm.com>,
+	Rob Herring <robh@kernel.org>, Marc Zyngier <maz@kernel.org>
+Subject: Re: [PATCH] irqchip/gic-v5: Add PCI bus msi-parent property handling
+Message-ID: <aOzSBlTUdN6sLQds@lpieralisi>
+References: <20250922142610.80200-1-lpieralisi@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250921-msm8960-sdcard-dtbindings-v1-1-5a2455a30a06@smankusors.com>
-In-Reply-To: <20250921-msm8960-sdcard-dtbindings-v1-1-5a2455a30a06@smankusors.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Mon, 13 Oct 2025 12:18:35 +0200
-X-Gm-Features: AS18NWAFBvRQlnNgwdeWFM-KX-enH6YfuOQVQqYG2hxpjoeevDbWK0MYvNQNYmo
-Message-ID: <CACRpkdYJPjf7VX_b3u74UhNQz-kTzmvEkdo-YWYNn9fF7+T0ZQ@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: pinctrl: qcom: msm8960: rename msmgpio node
- to tlmm
-To: Antony Kurniawan Soemardi <linux@smankusors.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, linux-arm-msm@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, David Heidelberg <david@ixit.cz>, 
-	Max Shevchenko <wctrl@proton.me>, Rudraksha Gupta <guptarud@gmail.com>, Shinjo Park <peremen@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250922142610.80200-1-lpieralisi@kernel.org>
 
-On Sun, Sep 21, 2025 at 5:26=E2=80=AFAM Antony Kurniawan Soemardi
-<linux@smankusors.com> wrote:
-
-> Rename the GPIO controller node from "msmgpio" to "tlmm" to match the
-> convention used by other Qualcomm SoCs.
->
-> Suggested-by: Shinjo Park <peremen@gmail.com>
-> Signed-off-by: Antony Kurniawan Soemardi <linux@smankusors.com>
+On Mon, Sep 22, 2025 at 04:26:10PM +0200, Lorenzo Pieralisi wrote:
+> In some legacy platforms the MSI controller for a PCI host bridge is
+> identified by an msi-parent property whose phandle points at an MSI
+> controller node with no #msi-cells property, that implicitly
+> means #msi-cells == 0.
+> 
+> For such platforms, mapping a device ID and retrieving the MSI controller
+> node becomes simply a matter of checking whether in the device hierarchy
+> there is an msi-parent property pointing at an MSI controller node with
+> such characteristics.
+> 
+> Add a helper function to its_v5_pci_msi_prepare() to check the msi-parent
+> property in addition to msi-map and retrieve the MSI controller node (with
+> a 1:1 ID deviceID-IN<->deviceID-OUT mapping) to provide support for
+> deviceID mapping and MSI controller node retrieval for such platforms.
+> 
+> Fixes: 57d72196dfc8 ("irqchip/gic-v5: Add GICv5 ITS support")
+> Signed-off-by: Lorenzo Pieralisi <lpieralisi@kernel.org>
+> Cc: Sascha Bischoff <sascha.bischoff@arm.com>
+> Cc: Thomas Gleixner <tglx@linutronix.de>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: Marc Zyngier <maz@kernel.org>
 > ---
-> This patch was originally part of msm8960 cleanup series [1], but as
-> Bjorn pointed out, dt-bindings live in a different subsystem and should
-> be submitted independently.
+> Follow-up to [1] in that it is a fix and too risky to fix generic OF code at
+> this stage of development since it might affect other platforms.
+> 
+> Apply a fix to GIC ITS v5 MSI parent code - follow-up will clean up
+> the msi-parent parsing in the kernel tree.
+> 
+> [1] https://lore.kernel.org/lkml/20250916091858.257868-1-lpieralisi@kernel.org/
 
-I already applied the other one, but thanks!
+Hi Thomas,
 
-Yours,
-Linus Walleij
+just asking you please to ignore this patch, I will carry on fixing the issue
+with the core OF approach in [1] above, sorry for the noise, it is better
+to fix it in generic OF code rather than a temporary plaster as this one.
+
+Thanks,
+Lorenzo
+
+>  drivers/irqchip/irq-gic-its-msi-parent.c | 34 ++++++++++++++++++++++--
+>  1 file changed, 32 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/irqchip/irq-gic-its-msi-parent.c b/drivers/irqchip/irq-gic-its-msi-parent.c
+> index eb1473f1448a..198fb4e9a22d 100644
+> --- a/drivers/irqchip/irq-gic-its-msi-parent.c
+> +++ b/drivers/irqchip/irq-gic-its-msi-parent.c
+> @@ -101,6 +101,33 @@ static int its_pci_msi_prepare(struct irq_domain *domain, struct device *dev,
+>  	return msi_info->ops->msi_prepare(domain->parent, dev, nvec, info);
+>  }
+>  
+> +static int its_v5_get_msi_parent(struct device *dev, struct device_node **msi_np)
+> +{
+> +	struct of_phandle_args out_msi;
+> +	struct device *parent_dev;
+> +	int ret;
+> +
+> +	/*
+> +	 * Walk up the device parent links looking for one with a
+> +	 *  "msi-parent" property.
+> +	 */
+> +	for (parent_dev = dev; parent_dev; parent_dev = parent_dev->parent) {
+> +		ret = of_parse_phandle_with_optional_args(parent_dev->of_node, "msi-parent",
+> +							  "#msi-cells",
+> +							  0, &out_msi);
+> +		if (!ret) {
+> +			if (!out_msi.args_count) {
+> +				/* Return with a node reference held */
+> +				*msi_np = out_msi.np;
+> +				return 0;
+> +			}
+> +			of_node_put(out_msi.np);
+> +		}
+> +	}
+> +
+> +	return -ENODEV;
+> +}
+> +
+>  static int its_v5_pci_msi_prepare(struct irq_domain *domain, struct device *dev,
+>  				  int nvec, msi_alloc_info_t *info)
+>  {
+> @@ -117,8 +144,11 @@ static int its_v5_pci_msi_prepare(struct irq_domain *domain, struct device *dev,
+>  	pdev = to_pci_dev(dev);
+>  
+>  	rid = pci_msi_map_rid_ctlr_node(pdev, &msi_node);
+> -	if (!msi_node)
+> -		return -ENODEV;
+> +	if (!msi_node) {
+> +		ret = its_v5_get_msi_parent(&pdev->dev, &msi_node);
+> +		if (ret)
+> +			return ret;
+> +	}
+>  
+>  	ret = its_translate_frame_address(msi_node, &pa);
+>  	if (ret)
+> -- 
+> 2.48.0
+> 
 
