@@ -1,153 +1,122 @@
-Return-Path: <devicetree+bounces-226239-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226240-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5D6BBD6499
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 22:54:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E0096BD6584
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 23:18:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 6FA204F36F0
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 20:54:01 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E46B04EBD5D
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 21:18:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C41E2F1FDB;
-	Mon, 13 Oct 2025 20:52:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5558F2BE041;
+	Mon, 13 Oct 2025 21:18:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="V2FZp66b"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="JQg7UOcP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f50.google.com (mail-pj1-f50.google.com [209.85.216.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46B272F49FE
-	for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 20:52:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4E751A9F9B;
+	Mon, 13 Oct 2025 21:18:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760388748; cv=none; b=b71G892zBr/Z0ILMywbEhBW12It0MsrQJxjhkTBaynD1Z6aWjnJUopoJukK3hpniKu8t9N18L2DFau/LnipKcyMfOWpEzD6Gwbum2bONGpEngfI3Ql3egls4CC62stDP5YiNem1EWedwAES1e/tvSM9vHEo0X8VcxAJGhQzmmso=
+	t=1760390307; cv=none; b=bghPMhV13/ZsnbB2AfeyJEONo1ayAUU+WRZYQKPj2QHQE4te9hrfLgbvpkQJxZRMr6zznpGCQxs77v855brwhRgaB/GTNYb8P4sTH3wcxsyjZorxTlhuKl42JPlGUlzobkHqVOj+x7GdYBmux2S/7HdWgFwPG231pxHwr56Ntxk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760388748; c=relaxed/simple;
-	bh=xDInXmxrDtG5u5Nw6FmUJ4lbWM39+ecdSdVKA/N4PpU=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=j6/cOBQinotVeeVDaMySAFE09Jmm7bsg+HWqaK7poCKaI11ATcl3z41593+XUmSf0ALAxqIsVMiO29FU09iiPKbai8l8BkG2zrCZOpdHknGTuobqxppVEE3KLfHJ6zTuv1+b0g+E5suLZBKT94bgSoHovpJWY45fnKNlGiVhO30=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=V2FZp66b; arc=none smtp.client-ip=209.85.216.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f50.google.com with SMTP id 98e67ed59e1d1-32ed19ce5a3so4079286a91.0
-        for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 13:52:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1760388745; x=1760993545; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=PRJbkM4wepO56t2Jx9Mj/0XBiWzZWPdz2VVmdtIvIJA=;
-        b=V2FZp66baMYtLRgfIOXXqjnCkI5qij/qrRZZClM3Af0B71haC4M0CUZ8cW3NVu9lzB
-         vGBghcSABPB5qtn+z59qtqjuDYWnZsQqFlxcVIXBJLAe9ISZxZoXvh2wMtmT0fd5+wQh
-         q1aJxAN6BrJAaIYBidmIP5NzqySJMouItz6RfwdfHWbONGkEiQiFVn/cEz8EPu2je+x6
-         NAljcbMJoYYkak9QKYfbAGv0/9ZAV38mBNtyzs1/xsd8tL1uSqBlMONtBF60s28Y9KyP
-         oPt+pSEV18PlwDNlEbX99guf0NCxfOJDboPMfFB9aKMs17XEJsEe6yhe2IwWP0AjCR1l
-         I/fg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760388745; x=1760993545;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=PRJbkM4wepO56t2Jx9Mj/0XBiWzZWPdz2VVmdtIvIJA=;
-        b=iTtGkUpcZWMoYjedFrZKHfaMcq2zARrij+V1hE2u+HoFmyN//NEpviyvC/WOxaO0ZQ
-         O6e6m9rjryFvq1OH68SF7FpO9mqGQXy14PirGpxPQnf3oiE5Q66JxeKsqf2Ff64Di7+K
-         zK6IsOkBuiAxemD64ac2Ld8hX3QrwnVI8QDf2YwIaMmgl2TEinSkAQVhrsnOe+6/FUk/
-         iynY8oH/Y+vNIAOux1+/lhjb/PSrUJUH/TM7yo37fw1+oTytSGB8CkPeEqc+2JvFM+wT
-         mwH0R1kOPEDIxsLhh2yj2FBe4PGi3hGWWsnjy5ygZ0P0B5khvcWoA3oL2d2NN3kMTjZH
-         o2qw==
-X-Forwarded-Encrypted: i=1; AJvYcCWNQXS5jO8zsHuU+ykAnLD1/q+gTWwdRoSnVx1L78biDsL9hZj1S8hdgOGr0wtAsqtpbiXaeYziJsAY@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx6fqU4Q7QhDQtsaYpJkuJ5/FLJjWamEhtqh5bdeRsfLeteHzxj
-	H4y4S/nt0jit6DQsn0M2+edOmfVAjN70XlSm9C5IfbX7DhOLWEVeCYfFqc3iUA==
-X-Gm-Gg: ASbGncsrnMmQy6/JMQ3EQFHoWeVN05eYTmPmhTICFkr8oaHU70DR2RLLQNhgn22CBaW
-	prRE121jEmwjQrJvDjjC40+ePqb5kr2SzueSIe5XZIhh0PNWWtgLA5ZXJ0F79K3R85jXwHe1EH/
-	2zPbH/JU3UWLHZIsRGa1RwN/5ykW/wZqpNeMY7hGzknnuTk/VOtmdpO8t7e4bfOtB6bPS1rdGCH
-	A4kiXGa3xRctkFPnHV7djrIpO/v0c1Kczjd3sm3zAUZ+17NYSzgqBgHcgYCyBYcU7qMd5r3AfKY
-	3ew/amVzhKRfjYAPyfc11zBIytIUAlRVNuDXlT1xHuAwWFtM2hXS7sgXjk5BERBP4FnLbVSJehT
-	GgyGv2gAKxLyaKDUFggu+m1o4VEzpk1ylLoz/ncm6gX+Jea3FbdVxfAw=
-X-Google-Smtp-Source: AGHT+IEbc0HqY8CLIHs2k8aq/yJ+qGsFrnOrDj32getTUXol/oijADm5b/7xs/AL3ljfJbDbndG3kw==
-X-Received: by 2002:a17:90b:4b04:b0:32e:8c14:5d09 with SMTP id 98e67ed59e1d1-33b51105bbfmr33280515a91.7.1760388745433;
-        Mon, 13 Oct 2025 13:52:25 -0700 (PDT)
-Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:cc82:37a1:ecfc:e51c])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-33b61acc413sm13445147a91.20.2025.10.13.13.52.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Oct 2025 13:52:25 -0700 (PDT)
-From: Fabio Estevam <festevam@gmail.com>
-To: victor.liu@nxp.com
-Cc: marex@denx.de,
-	stefan@agner.ch,
-	airlied@gmail.com,
-	simona@ffwll.ch,
-	maarten.lankhorst@linux.intel.com,
-	mripard@kernel.org,
-	tzimmermann@suse.de,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	dri-devel@lists.freedesktop.org,
+	s=arc-20240116; t=1760390307; c=relaxed/simple;
+	bh=uXXDGa1owQP24cyB5MLZe1wz0OCG8r5FaFOJi2R4CKo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=drwjuYkhYvg5M9MHKulXszqN2HGw+m3BSEE4EzHQKJT2rXSpgrx3VWfnNRmvPOJ0wpBXJcET6y0a6EvvW+0rD1XxCbn2CsQ6EuH0b498TNG7VzSdXl5oLJ9glG0RX1sI3n+OczZiEfYatFEMobh0GqjlBQ0pzFApff/dtGfgmqw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=JQg7UOcP; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
+	Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
+	Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
+	In-Reply-To:References; bh=52Il5H6NJOzRW4MLc6CVrFe1BNlv8DrhxyPngZJSTT4=; b=JQ
+	g7UOcP1bSPR5/N4Lr7BdxKe++6n3JhL6Nc1WUgPtrTbiz6swJdfh8wnOo5LaHn0IMncR3Q9XodtYf
+	KUQbiOQ0jBm51nE+Yjq3WwnyLfDFQtduqIADALn+x8O7VWUX5dk/W50a9mCcprJkfD+Ni1bqDTbvE
+	DzZ5V5Rb7AfVPz0=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1v8Pvs-00Aq9L-65; Mon, 13 Oct 2025 23:18:16 +0200
+Date: Mon, 13 Oct 2025 23:18:16 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S . Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	shawnguo@kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	Fabio Estevam <festevam@gmail.com>,
-	Ahmad Fatoum <a.fatoum@pengutronix.de>
-Subject: [PATCH RESEND v4 3/3] ARM: dts: imx6sl: Provide a more specific lcdif compatible
-Date: Mon, 13 Oct 2025 17:51:55 -0300
-Message-Id: <20251013205155.1187947-3-festevam@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20251013205155.1187947-1-festevam@gmail.com>
-References: <20251013205155.1187947-1-festevam@gmail.com>
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+Subject: Re: [PATCH net-next 1/2] dt-bindings: net: brcm,bcm54xx: add binding
+ for Broadcom Ethernet PHYs
+Message-ID: <6eb4e9ba-51ad-4ee4-af74-49a9bea617f0@lunn.ch>
+References: <20251013202944.14575-1-zajec5@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20251013202944.14575-1-zajec5@gmail.com>
 
-The LCDIF IP on i.MX6SL and i.MX6SLL is compatible with i.MX6SX.
+On Mon, Oct 13, 2025 at 10:29:43PM +0200, Rafał Miłecki wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
+> 
+> Some network devices (e.g. access points) come with BCM54210E PHY that
+> requires being set into master mode to work properly.
+> 
+> Add binding for BCM54210E as found in Luxul AP devices (600d:84a6) and
+> the "brcm,master-mode" property.
 
-Provide a more specific "fsl,imx6sx-lcdif" compatible and still keep
-"fsl,imx28-lcdif" for DT compatibility.
+Is there anything broadcom about master mode? I assume this is just
+the usual prefer master:
 
-Signed-off-by: Fabio Estevam <festevam@gmail.com>
-Reviewed-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
-Reviewed-by: Frank Li <Frank.Li@nxp.com
+ethtool -s eth42 [master-slave preferred-master|preferred-slave|forced-master|forced-slave]
+
+Also, is this preferred-master or forced-master?
+
+Humm, also how does this differ to ethernet-phy.yaml:
+
+ timing-role:
+    $ref: /schemas/types.yaml#/definitions/string
+    enum:
+      - forced-master
+      - forced-slave
+      - preferred-master
+      - preferred-slave
+    description: |
+      Specifies the timing role of the PHY in the network link. This property is
+      required for setups where the role must be explicitly assigned via the
+      device tree due to limitations in hardware strapping or incorrect strap
+      configurations.
+      It is applicable to Single Pair Ethernet (1000/100/10Base-T1) and other
+      PHY types, including 1000Base-T, where it controls whether the PHY should
+      be a master (clock source) or a slave (clock receiver).
+
+      - 'forced-master': The PHY is forced to operate as a master.
+      - 'forced-slave': The PHY is forced to operate as a slave.
+      - 'preferred-master': Prefer the PHY to be master but allow negotiation.
+      - 'preferred-slave': Prefer the PHY to be slave but allow negotiation.
+
+	Andrew
+
+    Andrew
+
 ---
- arch/arm/boot/dts/nxp/imx/imx6sl.dtsi  | 3 ++-
- arch/arm/boot/dts/nxp/imx/imx6sll.dtsi | 3 ++-
- 2 files changed, 4 insertions(+), 2 deletions(-)
-
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6sl.dtsi b/arch/arm/boot/dts/nxp/imx/imx6sl.dtsi
-index 7381fb7f8912..074c48b04519 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6sl.dtsi
-+++ b/arch/arm/boot/dts/nxp/imx/imx6sl.dtsi
-@@ -776,7 +776,8 @@ epdc: epdc@20f4000 {
- 			};
- 
- 			lcdif: lcdif@20f8000 {
--				compatible = "fsl,imx6sl-lcdif", "fsl,imx28-lcdif";
-+				compatible = "fsl,imx6sl-lcdif", "fsl,imx6sx-lcdif",
-+					     "fsl,imx28-lcdif";
- 				reg = <0x020f8000 0x4000>;
- 				interrupts = <0 39 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&clks IMX6SL_CLK_LCDIF_PIX>,
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6sll.dtsi b/arch/arm/boot/dts/nxp/imx/imx6sll.dtsi
-index 8c5ca4f9b87f..745f3640e114 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6sll.dtsi
-+++ b/arch/arm/boot/dts/nxp/imx/imx6sll.dtsi
-@@ -657,7 +657,8 @@ pxp: pxp@20f0000 {
- 			};
- 
- 			lcdif: lcd-controller@20f8000 {
--				compatible = "fsl,imx6sll-lcdif", "fsl,imx28-lcdif";
-+				compatible = "fsl,imx6sll-lcdif", "fsl,imx6sx-lcdif",
-+					     "fsl,imx28-lcdif";
- 				reg = <0x020f8000 0x4000>;
- 				interrupts = <GIC_SPI 39 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&clks IMX6SLL_CLK_LCDIF_PIX>,
--- 
-2.34.1
-
+pw-bot: cr
 
