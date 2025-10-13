@@ -1,442 +1,196 @@
-Return-Path: <devicetree+bounces-226085-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226087-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80313BD3BAF
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 16:55:48 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 677D6BD3B1F
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 16:53:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D6E783E6920
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 14:47:24 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 1A9594F9172
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 14:48:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 007FF25DAF0;
-	Mon, 13 Oct 2025 14:37:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C980A279DAF;
+	Mon, 13 Oct 2025 14:40:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=topic.nl header.i=@topic.nl header.b="muJO2YD+"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="EEdFL5TA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DUZPR83CU001.outbound.protection.outlook.com (mail-northeuropeazon11022129.outbound.protection.outlook.com [52.101.66.129])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 649F725F797;
-	Mon, 13 Oct 2025 14:37:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.66.129
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760366237; cv=fail; b=qkTNDKmzP7pFqA6mavyWyNdTdDrnD2LlJg94MkzQrTEBi5k0MjGKS3rg8qhxMX5sb/GbOsWOsuK29gAyp52crT2LLaHQSWl8htjeSPdu+d6cktQE3tOx0NVqh07ODTjnUKpiXocwKsikI3e1q92f2+ERdoGxpl8upFVsX0/+F+4=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760366237; c=relaxed/simple;
-	bh=9wmXKjNdMmpPP5ITYhheuRRrmA9qrK1YA1BxOxGHI+8=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=LAaRIlZBxUE102Z7BGsQNWFrOvBVMCJKoalQcEbH+4iPAVEllJh1Kr+Ap1G275qqj4ouPbY6onc3rBuvc07tt9oecLhj/MF6aEdicofcTPQvVnekLTa1j7lu7lAt+O3Uqn7T8b7mBkpYApW4LdJrsANzCys6zWbqSBstbqAhHKA=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=topic.nl; spf=pass smtp.mailfrom=topic.nl; dkim=pass (2048-bit key) header.d=topic.nl header.i=@topic.nl header.b=muJO2YD+; arc=fail smtp.client-ip=52.101.66.129
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=topic.nl
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=topic.nl
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=s0GPl07CVINhP+GrF5320XwJKATmtlCfjzVUrt28I65te7Ipi4/KxWzv3UqDsg3XMXqcdH7YQLN7PRGP0YCwVwdnPa4fjp3UILLNx3MGCc2BuHMphSGp5NPjsOIhdHYB7WB+MCOY+W7z6kTtPxV2jJUPRAMl9eLyy2mPnAorv9SQmciGr2aDzIB4i81OYVp5pDyJfoaAnNh7Fjiej9YRr5a8R/PxLi0XDvPfsIA+JriFaTs1BlcB+Og3RzJPAoRcVMBzVR0z0zRusbhZL88iHjC9YvMVVEC55VmcC7yuuojPzECkGKlVfRLcrtUSznA80J9m80Eck0kO/OxcM8rxmw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=FoH7rEqkfMgvYHIbRXaXJ3OakwA/k683+EYu6LAstYs=;
- b=Gg8MFicKbpm5R3SrqKFaktvk5MbQUdAA40lx+FW58YFGwzuL/1nGd7hpCjBx2mXrbteWPXAFS1LcV1sFSVdWL1eI1M7EHNAYuRtS4LkxwGEYgy97cAwrkQwQtei1/iriFzU7wT9kLgc50WAfPsvbdSkzcDz0UqxD0di+Fah01irq7J1A3r8XatkxTpRIZimeWw9GsgQLEUEh8COBJ6A2r5ceslysZs9lKFNpD/MqLox2i22W4AU90BLrMVNs/HIg6WBudLApQX627qB+DXdJbev1OK9oH5ml+Tqg3cZXHeHMtuP86nDJTzP78IadCMGisFRs/4saq4g2RnWAQklbmA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 13.93.42.39) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=topic.nl;
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=topic.nl; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=topic.nl; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=FoH7rEqkfMgvYHIbRXaXJ3OakwA/k683+EYu6LAstYs=;
- b=muJO2YD+69PZpc8Jj/Gjq+AjAXFG6mbNRy1P5LnGETIDZckWtcBlObRPZ/iMbUa0Fq7D0Dnj6Hh7XsYKOnyNHUK8AcrpU6oYWxvOAfJOD2fpBN0q061BdT50BdzPD8JrUNuwPjyHkH2MfPq1J37DMCXtvee27i2XSIAgdHFKaxKwT4uRRTkoMOpGNE20+CPEpJg3pA/6hiA5NShsABwlGKQhnJyb8PP0uH6aDGJ/LI0qq1SNgAa5BISEfB9mFOp59EBotZ7xnnePJhxITNuZZ+B5/6FkdSoM3FJnwz9qg9zsmSJaSV889IJYkB6ZhdtEx1iuMtOyq/vn2SWRdqovkg==
-Received: from DU7P194CA0030.EURP194.PROD.OUTLOOK.COM (2603:10a6:10:553::21)
- by DB8PR04MB6826.eurprd04.prod.outlook.com (2603:10a6:10:11d::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9203.12; Mon, 13 Oct
- 2025 14:37:12 +0000
-Received: from DU2PEPF0001E9C0.eurprd03.prod.outlook.com
- (2603:10a6:10:553:cafe::d3) by DU7P194CA0030.outlook.office365.com
- (2603:10a6:10:553::21) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9203.11 via Frontend Transport; Mon,
- 13 Oct 2025 14:37:08 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 13.93.42.39)
- smtp.mailfrom=topic.nl; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=topic.nl;
-Received-SPF: Pass (protection.outlook.com: domain of topic.nl designates
- 13.93.42.39 as permitted sender) receiver=protection.outlook.com;
- client-ip=13.93.42.39; helo=westeu12-emailsignatures-cloud.codetwo.com; pr=C
-Received: from westeu12-emailsignatures-cloud.codetwo.com (13.93.42.39) by
- DU2PEPF0001E9C0.mail.protection.outlook.com (10.167.8.69) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9228.7 via Frontend Transport; Mon, 13 Oct 2025 14:37:11 +0000
-Received: from AS8PR07CU003.outbound.protection.outlook.com (40.93.65.52) by westeu12-emailsignatures-cloud.codetwo.com with CodeTwo SMTP Server (TLS12) via SMTP; Mon, 13 Oct 2025 14:37:10 +0000
-Authentication-Results-Original: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=topic.nl;
-Received: from AM8PR04MB7779.eurprd04.prod.outlook.com (2603:10a6:20b:24b::14)
- by GV1PR04MB10195.eurprd04.prod.outlook.com (2603:10a6:150:1a8::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9203.12; Mon, 13 Oct
- 2025 14:37:05 +0000
-Received: from AM8PR04MB7779.eurprd04.prod.outlook.com
- ([fe80::b067:7ceb:e3d7:6f93]) by AM8PR04MB7779.eurprd04.prod.outlook.com
- ([fe80::b067:7ceb:e3d7:6f93%5]) with mapi id 15.20.9203.009; Mon, 13 Oct 2025
- 14:37:05 +0000
-From: Mike Looijmans <mike.looijmans@topic.nl>
-To: dri-devel@lists.freedesktop.org
-CC: Mike Looijmans <mike.looijmans@topic.nl>,
-	Rob Herring <robh@kernel.org>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	David Airlie <airlied@gmail.com>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <rfoss@kernel.org>,
-	Simona Vetter <simona@ffwll.ch>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v7 1/2] dt-bindings: drm/bridge: ti-tmds181: Add TI TMDS181 and SN65DP159 bindings
-Date: Mon, 13 Oct 2025 16:36:49 +0200
-Message-ID: <20251013143658.25243-2-mike.looijmans@topic.nl>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20251013143658.25243-1-mike.looijmans@topic.nl>
-References: <20251013143658.25243-1-mike.looijmans@topic.nl>
- <1b153bce-a66a-45ee-a5c6-963ea6fb1c82.949ef384-8293-46b8-903f-40a477c056ae.a4ff037a-0de3-4531-a2a7-8d13aa9ee036@emailsignatures365.codetwo.com>
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain
-X-ClientProxiedBy: AM8P190CA0002.EURP190.PROD.OUTLOOK.COM
- (2603:10a6:20b:219::7) To AM8PR04MB7779.eurprd04.prod.outlook.com
- (2603:10a6:20b:24b::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2AC8625D546
+	for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 14:40:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1760366447; cv=none; b=Mn2ZImq1PzK+rgxdMPmNlGHj+s/kGJDvqX/zqHgjLJALTOhrUErfp16EuQTGuIKmdxF85wcuTMUFmUbNLlvYPRjHP24okAtheCotWENGMJlXIUTZUsG0pfWZw4QeghSaxJgmm21MwVHFLwMwEtBvhHSu/xa1Zr2EQRvi3qgtDOw=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1760366447; c=relaxed/simple;
+	bh=uFSEibwg15Yfs4Ful0TZVaUJugUCpioGWaNDWPNh0BA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=h/4zom6kj3X+h8XjX5Yy80txh7e/UoROFyx3QABGafZ7dJp6LdDlRhadjAIQ8dK7hNWyj5nkw0HQAqf+rduYpsaDQ+kihC4zW4RCaUYHRvg5pOFoOUQr1zcPCu0Y++kntaVDLCvNaINPj1DrAVQs1ndgVXeSryfB6T9FCN6nZv8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=EEdFL5TA; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59DAkAHU001858
+	for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 14:40:45 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	VbizHHKsV7jcegOvOnMjuJPidY+Lis3OqZISqAQQ7K4=; b=EEdFL5TAtwBQskTh
+	dns/10JANGZ8/7GFXAXsDjfcXKsmJN4VUpB4BmXQDQeEUPTR9hXwSRb2jiUOsbz+
+	TzYrQ1DVhfizX+RVuI8SmPIs2LjNTdF8qF3mC2zRIjH7EC5TFcRjw9ezBMA/8Vvh
+	/YMRk3nsXeoEIDlCKu1ZEQXfk7y3/7avrzrO8F/VpimphzTkQRccletcAannMQaD
+	q8A6lTaiZrVDZm511gVweiY2Kcf/gVHNPv/q8xhnRC794fgGbS1Kr1rRsxORIuD3
+	UMs8VHU+17qdnLrt2sSib8s+YPmd6R1Uuq5QGcoc/aNhaVgc5e7LP8TnT3WBf2wg
+	L8Bl3A==
+Received: from mail-pj1-f69.google.com (mail-pj1-f69.google.com [209.85.216.69])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49qfd8w1ev-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 14:40:45 +0000 (GMT)
+Received: by mail-pj1-f69.google.com with SMTP id 98e67ed59e1d1-339b704e2e3so9596295a91.2
+        for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 07:40:45 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1760366444; x=1760971244;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=VbizHHKsV7jcegOvOnMjuJPidY+Lis3OqZISqAQQ7K4=;
+        b=eXgBqpjrxSl6DfA70OdTIxh/6tjxjjOlBv0uJGc0RLg//Tqxr3ghE2evd3MlqUJ4qk
+         BL1QhFKSI39yFwoXu1r/2k6LKWS++Fg0dh7G09rSfwr5t0R8GJHyyiKBVM5zthRKoFKS
+         JiZUOfyvaj7CfEvUIwxSCh9kaEXgPH9hnJBI8knHueWc3H4+8kzgxCGzC5wg1TUrreM/
+         fKoYscP37KFSYo0WShEoed1EhFxArvid++e2UQPqkRQpGUcLYqDuc1GO1rVjoUCpSvxa
+         hnAdijRB2e4ARqFBbfbikV8jsB5urD1xVv6G3a0oDoTPLxWCQ1D7sv1jM0m5esAzIy6+
+         WA9w==
+X-Forwarded-Encrypted: i=1; AJvYcCXvhhyTAqO4p1AZfrGB7AUuq6vBAjip7GBRcY+ZUCSTYUH9y2nMY2CiNtS/HjR+NSAHjtG62QajSYfz@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzfrpc8qr+dO8anrtoFMe6xb1Vi1F5W5GkDVJxYf8KOkjQFYg5H
+	kb9crzUr7dVY0AtU66vuNoEJhZtNAi6I948rFmDZ06m4paGuMDAe7rVWznUlVH9O9HT9a34Zzuu
+	Y7orEGxWGHirsD41Qz9kj18uWPNj1LiHCRdeqDdsE6TIBBwtrZwbgZfqgkKGY/M1T
+X-Gm-Gg: ASbGnctETyy8BsPo3rMrIkfGXA0jW9fxPVVtCOg+wewH4jNoHcuTaUq1hrAJMpZ5RcF
+	WnZrLbzbdPFYTlMgNvUAlfBDIdHoXSLPCR/0xYoOkkkvUaRjLyomr2+qqUvqUo1pcWpF/qe6lff
+	iM7O14WlNpeLGXT6rvExOOeD9ebuDN6pOMgO7RLZF1aqJZd12yvQxMmrXvGFNQOYOke81KZizzG
+	ZJ1AGPMuDqtvH2PUvRdJywYd9NtiyrB/nSlhaJYpWLgdYx2EQiK5Eut37GSjybK78w+o7fHNR8L
+	XdWu//eh6A2OFoWICy6KYu5fXOVbsapLCE8lqUEE3o//Y3aG+677C+FWb7b3QORl5e60zA2MXUY
+	=
+X-Received: by 2002:a17:90b:1a8a:b0:32e:8931:b59c with SMTP id 98e67ed59e1d1-33b5139a212mr30108806a91.27.1760366444502;
+        Mon, 13 Oct 2025 07:40:44 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFdBaAuEByPv3+L1OwSYtyIG6j/FbVOk9pX+s4HIIh/tSLS9uGYDZU004sWiinorIJt51OSjA==
+X-Received: by 2002:a17:90b:1a8a:b0:32e:8931:b59c with SMTP id 98e67ed59e1d1-33b5139a212mr30108753a91.27.1760366443988;
+        Mon, 13 Oct 2025 07:40:43 -0700 (PDT)
+Received: from [192.168.29.113] ([49.43.227.99])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-33b626e8bf5sm12228174a91.23.2025.10.13.07.40.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 13 Oct 2025 07:40:43 -0700 (PDT)
+Message-ID: <91e03d54-5de2-4f41-90df-3d46225edf64@oss.qualcomm.com>
+Date: Mon, 13 Oct 2025 20:10:35 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-TrafficTypeDiagnostic:
-	AM8PR04MB7779:EE_|GV1PR04MB10195:EE_|DU2PEPF0001E9C0:EE_|DB8PR04MB6826:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3922b3b9-5d47-47d9-0721-08de0a65fefe
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam-Untrusted:
- BCL:0;ARA:13230040|1800799024|7416014|376014|52116014|366016|38350700014;
-X-Microsoft-Antispam-Message-Info-Original:
- =?us-ascii?Q?5oVRxyQ1kM1GBDaySz7w8t8ApO9fBa+j5xMpRC5tpQecx7Dgwit6U4BLnYSs?=
- =?us-ascii?Q?5Y7fH84SnKEUM9F6KNeBtVLAMeCSTvEJxrTY2e9L4/qi5m+GmjTyd00Fjxce?=
- =?us-ascii?Q?McOdhlNA0i3TJVsC6i5X9FApTgTF4NxIEMdS5SwMUe7uRbjc7yNqp2dR2Vlr?=
- =?us-ascii?Q?epA/OIM3ZHoLbsym/RR7Chvq27fDjXIqFTn+og2bWGDFxwqi43HIPtIaCuwZ?=
- =?us-ascii?Q?Hd+XMJkIpxcbVjWweXDhqf81D/aw4Vo9up0vP9mZ879fD4LC+wJ/DFgVb3jC?=
- =?us-ascii?Q?Ye+DBjU5c/buBXez7HIzWCh1tmNt7RFK6yG61ZM5uekyoWwJIYRuYvWU2GIq?=
- =?us-ascii?Q?LkN9x/7wcM61c/Bd2We+0Jtui22S4fnyjDQBcODxiTK9QjFUDFFvP5AjNB8a?=
- =?us-ascii?Q?JSKVa0ug0xuIEC17EOXSIUnjmqkbPDCirZaJv8sOYAK9HasDlQjt37pELT2S?=
- =?us-ascii?Q?oNwMUHgxwPpvm129YZ9vEA0I2Yv/te3zyz1xynN3/iE+ZwA2ycSsrt1vvvmF?=
- =?us-ascii?Q?yidx1PNOMIyiEn1iLmze+49vUYh87BfQy0E7A53cvhd648Of5Ymb4bed+8AG?=
- =?us-ascii?Q?CVwwYYR1WyttxBzSnMOSuga6+7VaHYQaKP6mWjOnf1jK0WCH6sqbIMlk3/hJ?=
- =?us-ascii?Q?H8Oy+dNJXXxraDOuQGBsxN5oLvsz7qbhOgYWMul4KmvhlIscgijJHsWoER5Z?=
- =?us-ascii?Q?a3E4Wj9sSyqptPo92xKnaQW1GkjkBtfJ9Mr23Ojxm7uofM3h3180h7tCp/aY?=
- =?us-ascii?Q?4A+Wa/sG2hLX4CAIrQAOTinzwcdRimPNT9zlrK7+ApbrCVJVb7NmZnYGUlJM?=
- =?us-ascii?Q?kzXpwAoEt92iB0inUSOWtssRV6HkEQpaCJRB5BbgvexE7GPRgeqgiHyrb2ZV?=
- =?us-ascii?Q?kHycuwAhZbwa/ilFTMRzOd4tBpCLsaau5ud1xg97BM7BRobIYtPI5y7epANb?=
- =?us-ascii?Q?x51yl7dprKPXhKGZQi5id8Crp2y8y7OsLoYPlQ3xi18O/nHcu9WifZlur2PO?=
- =?us-ascii?Q?j1gJPZG86fZWDCTLF99FuInQaM8KYoPDdnt1Ikv+ceYKyTUIoD5UyiVpKE2T?=
- =?us-ascii?Q?4M8dRMd6N/Dh6ViLrc7FUjqatOp7mMUzs7cjykebKFWYj1qOJTx854kz+cWK?=
- =?us-ascii?Q?jfTMzUvvdSzjGlaY5CISkx83ziD/US4120lBv3iuB/8pDhNGR1ZuqAk8KRbX?=
- =?us-ascii?Q?RLyIsqHgCTGilg94VTUwBQMxuxObJF3gImg8G+GG+tX5wqTIeGg4TriXlbPL?=
- =?us-ascii?Q?PoD7PkVPs47y9oJ+ZdNo2Z0hI9tZm4QnZyqCXsGh81m0S0iNBlId5HrDuMj3?=
- =?us-ascii?Q?EdrkYIj5n3ZaO7XS4M5FbEWH+uqqwlrhRo1OccbXdFg5PglCKGPZNnPKa8rw?=
- =?us-ascii?Q?uhIEV7MeCo5UhWBOMOhxee+pphi+Zpu+NTRvx6XNPl8KjugMpT66055rb0BY?=
- =?us-ascii?Q?qK+IFsd7paZyTnk3p4lfoywSsfZW8eXRilfwAPVEGhOuBWFApLJdXQ=3D=3D?=
-X-Forefront-Antispam-Report-Untrusted:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM8PR04MB7779.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(376014)(52116014)(366016)(38350700014);DIR:OUT;SFP:1102;
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV1PR04MB10195
-X-CodeTwo-MessageID: 3ab7ec44-5ac4-45de-a389-2b998c1dd8a5.20251013143710@westeu12-emailsignatures-cloud.codetwo.com
-X-CodeTwoProcessed: true
-X-EOPAttributedMessage: 0
-X-MS-Exchange-Transport-CrossTenantHeadersStripped:
- DU2PEPF0001E9C0.eurprd03.prod.outlook.com
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id-Prvs:
-	cbd11c2b-3bc2-44e5-005d-08de0a65facd
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|14060799003|35042699022|82310400026|376014|7416014|36860700013|1800799024;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?LuEXCK5hoFXa4Du/Xoy9RJGfMLZG8obFkIthnHGT5anjsDpGxxI0cz0vZjmA?=
- =?us-ascii?Q?P0hMCATd2OC1DssN6eVC/TtGlqSLDaZrVAp2uUInlVBfiAxqvz72DY90c7KL?=
- =?us-ascii?Q?eiBUdNpbRNDzo79S+zlnrWjLkHymJ4KcPwywXVdAXhQfR7ogkU2cGx6uq6CO?=
- =?us-ascii?Q?fKmkkhfeHEsIOH636bH1dEDdZ2+h4ONICdFr30c6HFsO+8pF6ECMHFTJRZ5m?=
- =?us-ascii?Q?ThJ6THWyVK3Hz1WhJZTmuCz6zntAOwGKgW/GXVofE9dkiNtgCCMvV7pyCnVY?=
- =?us-ascii?Q?UQBeLfa3GH1TjTkqJ5b6X1cJMzGRNQbfcktJP7q57VyHbzghG9O/jbYdShCM?=
- =?us-ascii?Q?8nGbumwW7SwGQZukiB4JokQWGyZY0X7a0mfYqD0M2PwNCrB4jYnsHS5Zdi19?=
- =?us-ascii?Q?J6cWiccuquL1JxmsfXEJz5h5R9RdOPEURS8gVjictAeSu9AkN7WmaHBI1bu/?=
- =?us-ascii?Q?dpw9b6akgrga6Izdg2LF3gQhxJlN9CtsLangJ/e7gZoWFXf5TSbidY3XGorz?=
- =?us-ascii?Q?1qc9SA+vF+6Uzp17MFqOZe1jzH3uEh7MX+ojKOrigcH607fi0VxSAj1PYvs6?=
- =?us-ascii?Q?Ko+EGf1DpkcYrn94sRTra2ENbN4SqnjA2+Ct6ICTW7mXm79qmR9U8dLwYuJH?=
- =?us-ascii?Q?IjxhMejO99DOYnqAtc5R+2r/HPtTlphvdYNY7R7rTgEZ6mDwXiZmYKQmZ97L?=
- =?us-ascii?Q?NOHnZBqxdxoBr5DZO7GbX2Jo2BCoEIQEfp92RkQr4Ljsj0Jcf3FHfJmc7XMW?=
- =?us-ascii?Q?xSXdcLQBogI1OPEuzl9QZBGlCemQiR3sXNYHcQUuAgkLYt1UVwO5ZmrW49gW?=
- =?us-ascii?Q?GFxrxvcPUu7O2ar/407PKDJffLXb0sk7cJXQN8KwCqPYSp+8uAq1IxyAVKqx?=
- =?us-ascii?Q?7LJyF4tXyK2TWexDbML2XmqmNTF1vmYP3A7g+5yPS3JMvdBDn490lbqGmr/o?=
- =?us-ascii?Q?wghMv6WFZpJ2ii10J2hdoOUReMBO0mJXnHrqf24du7V2hNjB+JkEETopTm/G?=
- =?us-ascii?Q?g92oOu5HC+hdttnmtBzXwy9esh+W7I69JUXpspJg/tRe2msLltHl7M3473+t?=
- =?us-ascii?Q?vV20yNNSNbS1ej6Pr2iv1zKrI4L8eyxKp8qcJ9mF5QwdNkTfKEh7fn+NjiOa?=
- =?us-ascii?Q?m3zzTyssEtGH0608NnxlUxnZE6UtrL304rT2nxIxoU16iKwzQGO8yxo5TWDh?=
- =?us-ascii?Q?h/euMRhCnhbxXQORXHmqN+7BgtZfpFv/SqKzz24oNUdsW9rYQ3fx9tYBWPcV?=
- =?us-ascii?Q?ME+NG4pDoHT1BojSzZI/uSYM8grJCm04nf8q2D7JYe+GTI2pRQDzyV7uL931?=
- =?us-ascii?Q?69cx8tAj3ljTJTj2oHZ44nfddibphCkLf5QOnsobm00YYTD+6l/vmw0dw8cj?=
- =?us-ascii?Q?+YG9FQt/2e/aae+SWKQF8R7lXb5inbCPJFI5j2MgW4JDDKKxU1N1Pj4zMbhY?=
- =?us-ascii?Q?YeziPqmMvQlMCSA1DimyH432pOXRBUEOB4jhHjLqNdBh0SURBH0EnFw4wujQ?=
- =?us-ascii?Q?gS9Nxt4nTiNBS2c=3D?=
-X-Forefront-Antispam-Report:
-	CIP:13.93.42.39;CTRY:NL;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:westeu12-emailsignatures-cloud.codetwo.com;PTR:westeu12-emailsignatures-cloud.codetwo.com;CAT:NONE;SFS:(13230040)(14060799003)(35042699022)(82310400026)(376014)(7416014)(36860700013)(1800799024);DIR:OUT;SFP:1102;
-X-OriginatorOrg: topic.nl
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Oct 2025 14:37:11.6258
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3922b3b9-5d47-47d9-0721-08de0a65fefe
-X-MS-Exchange-CrossTenant-Id: 449607a5-3517-482d-8d16-41dd868cbda3
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=449607a5-3517-482d-8d16-41dd868cbda3;Ip=[13.93.42.39];Helo=[westeu12-emailsignatures-cloud.codetwo.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	DU2PEPF0001E9C0.eurprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR04MB6826
-
-Add DT binding document for TI TMDS181 and SN65DP159 HDMI retimers.
-
-The two chips have similar register maps, but different applications
-(source vs. sink).
-
-Signed-off-by: Mike Looijmans <mike.looijmans@topic.nl>
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-
----
-
-(no changes since v6)
-
-Changes in v6:
-Rename ti,mode to ti,retimer-mode
-
-Changes in v5:
-ti,equalizer and ti,mode changed to enum
-Rename ti,slew-rate to slew-rate
-Make properties conditional for DP159/TMDS181
-Remove ti,dvi-mode (always set to avoid conflict)
-
-Changes in v4:
-Use fallback compatible
-
-Changes in v3:
-Fix duplicate links
-Add vcc-supply and vdd-supply
-Fix missing type for ti,slew-rate
-
-Changes in v2:
-Document driver specific bindings like slew-rate and threshold
-
- .../bindings/display/bridge/ti,tmds181.yaml   | 170 ++++++++++++++++++
- 1 file changed, 170 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/display/bridge/ti,tmd=
-s181.yaml
-
-diff --git a/Documentation/devicetree/bindings/display/bridge/ti,tmds181.ya=
-ml b/Documentation/devicetree/bindings/display/bridge/ti,tmds181.yaml
-new file mode 100644
-index 000000000000..9b23221634bb
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/bridge/ti,tmds181.yaml
-@@ -0,0 +1,170 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/bridge/ti,tmds181.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: TMDS181 and SN65DP159 HDMI retimer/redriver chips
-+
-+maintainers:
-+  - Mike Looijmans <mike.looijmans@topic.nl>
-+
-+description: |
-+  Texas Instruments TMDS181 and SN65DP159 retimer and redriver chips.
-+  https://www.ti.com/product/TMDS181
-+  https://www.ti.com/product/SN65DP159
-+  When I2C control is enabled, various pin strapping options like equalize=
-r and
-+  slew-rate are unavailable. These can be configured through I2C using the
-+  properties defined here.
-+  A common application for these chips is to convert AC coupled serdes out=
-puts
-+  from an FPGA or SoC into HDMI compliant signals.
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - const: ti,tmds181
-+      - items:
-+          - const: ti,sn65dp159
-+          - const: ti,tmds181
-+
-+  reg:
-+    enum:
-+      - 0x5b
-+      - 0x5c
-+      - 0x5d
-+      - 0x5e
-+
-+  reset-gpios:
-+    maxItems: 1
-+    description: GPIO specifier for OE pin which acts as active low reset.
-+
-+  vdd-supply:
-+    description: Core power supply, 1.1V
-+
-+  vcc-supply:
-+    description: IO power supply, 3.3V
-+
-+  ports:
-+    $ref: /schemas/graph.yaml#/properties/ports
-+
-+    properties:
-+      port@0:
-+        $ref: /schemas/graph.yaml#/$defs/port-base
-+        unevaluatedProperties: false
-+        description: Video port for HDMI (ish) input
-+
-+        properties:
-+          endpoint:
-+            $ref: /schemas/media/video-interfaces.yaml#
-+            unevaluatedProperties: false
-+
-+      port@1:
-+        $ref: /schemas/graph.yaml#/$defs/port-base
-+        unevaluatedProperties: false
-+        description: Video port for HDMI output (panel or bridge)
-+
-+        properties:
-+          endpoint:
-+            $ref: /schemas/media/video-interfaces.yaml#
-+            unevaluatedProperties: false
-+
-+    required:
-+      - port@0
-+      - port@1
-+
-+  ti,retimer-mode:
-+    enum:
-+      - source
-+      - sink
-+    description:
-+      Force chip to operate in "source" or "sink" mode.
-+
-+  ti,retimer-threshold-hz:
-+    minimum: 25000000
-+    maximum: 600000000
-+    default: 200000000
-+    description:
-+      Cross-over point. Up until this pixel clock frequency the chip remai=
-ns in
-+      the low-power redriver mode. Above the threshold the chip should ope=
-rate
-+      in retimer mode.
-+
-+  slew-rate:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    minimum: 0
-+    maximum: 3
-+    default: 3
-+    description: Set slew rate, 0 is slowest, 3 is fastest.
-+
-+  ti,equalizer:
-+    enum:
-+      - adaptive
-+      - disabled
-+      - fixed
-+    default: adaptive
-+    description: Configure the equalizer
-+
-+if:
-+  properties:
-+    compatible:
-+      contains:
-+        const: ti,sn65dp159
-+
-+then:
-+  properties:
-+    ti,retimer-mode:
-+      default: source
-+
-+else:
-+  properties:
-+    ti,retimer-mode:
-+      default: sink
-+    slew-rate: false
-+
-+required:
-+  - compatible
-+  - reg
-+  - ports
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    i2c {
-+        #address-cells =3D <1>;
-+        #size-cells =3D <0>;
-+
-+        bridge@5b {
-+            compatible =3D "ti,sn65dp159", "ti,tmds181";
-+            reg =3D <0x5b>;
-+            vdd-supply =3D <&vcc_1v1_reg>;
-+            vcc-supply =3D <&vcc_3v3_reg>;
-+            reset-gpios =3D <&gpio2 1 GPIO_ACTIVE_LOW>;
-+            slew-rate =3D <2>;
-+            ti,retimer-threshold-hz =3D <350000000>;
-+            ti,retimer-mode =3D "source";
-+            ti,equalizer =3D "disabled";
-+
-+            ports {
-+                #address-cells =3D <1>;
-+                #size-cells =3D <0>;
-+
-+                port@0 {
-+                    reg =3D <0>;
-+
-+                    endpoint {
-+                        remote-endpoint =3D <&encoder_out>;
-+                    };
-+                };
-+
-+                port@1 {
-+                    reg =3D <1>;
-+
-+                    endpoint {
-+                        remote-endpoint =3D <&hdmi_connector_in>;
-+                    };
-+                };
-+            };
-+        };
-+    };
---=20
-2.43.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/3] PCI: qcom: Treat PHY and PERST# as optional for the
+ new binding
+To: Manivannan Sadhasivam <mani@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        linus.walleij@linaro.org, brgl@bgdev.pl
+Cc: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Abraham I <kishon@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org,
+        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+References: <20251010-pci-binding-v1-0-947c004b5699@oss.qualcomm.com>
+ <20251010-pci-binding-v1-3-947c004b5699@oss.qualcomm.com>
+ <4532e2e6-51bd-4443-ad51-41fc02065a7d@oss.qualcomm.com>
+ <yvbghnxttchfvte3nxr4ru62wqilceil2n7x7dgpa5gnm57ywu@ljrbw3c44qpw>
+Content-Language: en-US
+From: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+In-Reply-To: <yvbghnxttchfvte3nxr4ru62wqilceil2n7x7dgpa5gnm57ywu@ljrbw3c44qpw>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: X2DICgpPyq-5RypmgK6UgO8YB09N0n1B
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDExMDAxOCBTYWx0ZWRfX7yuw+3SwCMQC
+ 5//21YOSRLh2NHpDBx5KnjHfQIxW2LLxehSLqHPRA7ZC38R9TCxIbJ19CYYnXneaXO+hO3YZgeL
+ afct0TuHiPGqy1ocdBo8VtJQFyIKqawZ59NV6bhksNMhpgH4DyxjFnCbPujNp1vKyePp/OvR0rl
+ Zix+y3UKuhmIzATMJSB4rIqAZ2k8PfzaoQIO6eGb5ATYNDPv+q1FjAA45IVzLI28KNVBuiOJopl
+ rUcLTQUIm3qQVyv/U2jvHt7Bd+bMAeDWA3nKTpXM9hNFtWPBVDApo7t19mvoeUBN+7h4LG54NBe
+ igkPWUveeymd+68r31CTu75mOX6NY2LfOlDF61ZdIr3NjeaA/SZ0i2GzMws9mFSx0+/AkTyccVw
+ NbKRGZzBfkKhD9npmK5ilHgjpd0PvQ==
+X-Proofpoint-GUID: X2DICgpPyq-5RypmgK6UgO8YB09N0n1B
+X-Authority-Analysis: v=2.4 cv=PdTyRyhd c=1 sm=1 tr=0 ts=68ed0f6d cx=c_pps
+ a=vVfyC5vLCtgYJKYeQD43oA==:117 a=mKR/62aTrRaa7QINDUyomg==:17
+ a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=EUspDBNiAAAA:8 a=DY-I8tSyz7GcGJVrnHcA:9
+ a=QEXdDO2ut3YA:10 a=rl5im9kqc5Lf4LNbBjHf:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-10-13_05,2025-10-06_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 phishscore=0 bulkscore=0 clxscore=1015 adultscore=0
+ lowpriorityscore=0 impostorscore=0 priorityscore=1501 spamscore=0
+ suspectscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2510020000
+ definitions=main-2510110018
 
 
-Met vriendelijke groet / kind regards,=0A=
-=0A=
-Mike Looijmans=0A=
-System Expert=0A=
-=0A=
-=0A=
-TOPIC Embedded Products B.V.=0A=
-Materiaalweg 4, 5681 RJ Best=0A=
-The Netherlands=0A=
-=0A=
-T: +31 (0) 499 33 69 69=0A=
-E: mike.looijmans@topic.nl=0A=
-W: www.topic.nl=0A=
-=0A=
-Please consider the environment before printing this e-mail=0A=
+
+On 10/11/2025 9:39 AM, Manivannan Sadhasivam wrote:
+> + GPIO folks for the below API query
+> 
+> On Fri, Oct 10, 2025 at 08:32:51PM +0200, Konrad Dybcio wrote:
+>> On 10/10/25 8:25 PM, Manivannan Sadhasivam wrote:
+>>> Even for the new DT binding where the PHY and PERST# properties are
+>>> specified in the Root Port, both are optional. Hence, treat them as
+>>> optional in the driver too.
+>>
+>> I suppose this makes sense if the PHY is transparent to the OS
+>> or otherwise pre-programmed and PERST# is hardwired or otherwise
+>> unnecessary.. both of which I suppose aren't totally impossible..
+>>
+> 
+> PERST# is by definition an optional signal, but I'm not sure about why PHY is
+> not used by the controller driver.
+> 
+one case where phy is optional is in pcie tunneling through usb4, there
+we don't require any phy.
+
+- Krishna Chaitanya.
+>>>
+>>> If both properties are not specified, then fall back to parsing the legacy
+>>> binding for backwards compatibility.
+>>>
+>>> Fixes: a2fbecdbbb9d ("PCI: qcom: Add support for parsing the new Root Port binding")
+>>> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+>>> ---
+>>>   drivers/pci/controller/dwc/pcie-qcom.c | 11 +++++++++--
+>>>   1 file changed, 9 insertions(+), 2 deletions(-)
+>>>
+>>> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
+>>> index 805edbbfe7eba496bc99ca82051dee43d240f359..d380981cf3ad78f549de3dc06bd2f626f8f53920 100644
+>>> --- a/drivers/pci/controller/dwc/pcie-qcom.c
+>>> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
+>>> @@ -1720,13 +1720,20 @@ static int qcom_pcie_parse_port(struct qcom_pcie *pcie, struct device_node *node
+>>>   
+>>>   	reset = devm_fwnode_gpiod_get(dev, of_fwnode_handle(node),
+>>>   				      "reset", GPIOD_OUT_HIGH, "PERST#");
+>>> -	if (IS_ERR(reset))
+>>> +	if (IS_ERR(reset) && PTR_ERR(reset) != -ENOENT)
+>>>   		return PTR_ERR(reset);
+>>
+>> Please introduce an _optional variant instead
+>>
+> 
+> Linus, Bartosz, are you OK with devm_fwnode_gpiod_get_optional() API? Just
+> wanted to confirm before I go ahead as there are existing users checking for
+> -ENOENT explicitly. Not sure if they are doing it for a reason other than the
+> absence of the _optional variant or not.
+> 
+> - Mani
+> 
 
