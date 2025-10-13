@@ -1,173 +1,141 @@
-Return-Path: <devicetree+bounces-225988-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225989-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id D72B9BD2B8E
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 13:07:43 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E8CC1BD2BAC
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 13:09:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 1E8644F0A41
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 11:07:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 32D57188AF18
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 11:09:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12E17267386;
-	Mon, 13 Oct 2025 11:06:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEB6E26980E;
+	Mon, 13 Oct 2025 11:09:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GipQZPs+"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RDQRbt3M"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f68.google.com (mail-ed1-f68.google.com [209.85.208.68])
+Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com [209.85.128.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 191DC255F28
-	for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 11:06:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.68
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B6492040AB
+	for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 11:09:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760353575; cv=none; b=sn0rxj0k6hPaVvKWBgs1+tlsoJmaOhiAwHoumR9WfgCTfJj5Mnk4AGJn3OJN4l8CvpMaL7alYD5BpDliGoLBHvawVK8RGKeIO38SLG96Yp2H1eF7mCFRPKEbd3H5rokya56mHGAES1BbKJ3638DDa4hvTWGigj6fogpAa9KAyw8=
+	t=1760353744; cv=none; b=LY4tsxgtEjYEgc//sXBHICmUKlrJfZrFIclUTCvFRVNWVgEbGDmvZj9TagH4aWMWZtCcoakwmYL4YUj1lehvtBXUH+halRLys4ukWt/sL7ONclJsjE+yvlSkznPyyd02ZajaEUBLKFMfSoXdgPNiV1eC4dbv4hl4trfW40qTZaI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760353575; c=relaxed/simple;
-	bh=nsyszXpKt948oOKahE3XIckpOp3K0wFz9VjnpoVgmwQ=;
+	s=arc-20240116; t=1760353744; c=relaxed/simple;
+	bh=JBjcoD6p4V3FBJzZf3IkyyOyuKRE3/OmLmnidKruPC0=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=u/Af263FpQoGGlcgRev2iW/3PJB+G4SMSeNK7g4+frgIciZWsCHHuYDQz0NZ4qaXw5tnE5yF9Fp43fiSFNWRQgwxZpSsA3CrIcY+1MqvhrgiCMe5oZjQruv2RkRLmhIkzXebM+ltsRel+uj46aL2vG13mLy1IxCsFyPW9STlowU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GipQZPs+; arc=none smtp.client-ip=209.85.208.68
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f68.google.com with SMTP id 4fb4d7f45d1cf-62fc89cd68bso4063757a12.0
-        for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 04:06:11 -0700 (PDT)
+	 To:Cc:Content-Type; b=NonZWahwQkGN3ahPm1pYohY4/5b9rVzp8B2+0bNSAX0zkKgLydPsHOi+tWM0XFPIaIZG/G8TWj+GHpmO7yby96o0dLAiLmRVwVZ4zUaa2ICraUqkBhLlgenIY6ksalo9rmTrwHTCBwHBIjZjO82imzSoq8ZyfqFLPkOpOOJ30bk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=RDQRbt3M; arc=none smtp.client-ip=209.85.128.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-71d71bcac45so41627617b3.0
+        for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 04:09:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1760353570; x=1760958370; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+aUxvhazo+fI5qnE1t9OWiNPdeUT1J2KZzqa5v9i4n4=;
-        b=GipQZPs+ZW1F1dXJO+PoBGjZiGv8mQ22pTroKDqs1RnYg+w4CFCVJwSRuqsGcDNBGm
-         itUmci8zVerEXiew+GQf4rFdKXpXayAquJZ7XoxHNR1QY0PlBpFkNuBfN4+dCCYzgOkL
-         PCsueQlJwCTRUTltYTTn9yQ00eQ5HBccsOYp8DjLDVvTmkyZs8PkoOqcSh4UWmGLbpYk
-         EYOyo7WJPl3SKvZa5Y7j0hQLYkdJnm4teB5FA5q24PnplY/maPL0ZhtGBIO/ek0D/a52
-         k7ZtSRXAPnlP35+t9SM9u7l3PNV+HfCrpkxrIiPwKVWpc0MGQclC5ytULvC1OPeNMJi3
-         W+iA==
+        d=linaro.org; s=google; t=1760353742; x=1760958542; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=KZ0p4RGMaKkdg82zu0ufNV13vLNgFLb6uCYyjivzVoc=;
+        b=RDQRbt3MGnpugXnjKCN3EOOg8+qImF7lC+O+0tFZxvkUWyQdE5SrtKSC8lT4KdmjAl
+         eGTJn4zVtP1TS4fLTWq3E3wil+Qro5Y4On0D9t/PZ0Sgj3eaw5gVALif+fz6/EeBfnLU
+         RaqOo9CqxAEqAQtj/gIdeyr2zMS2k/1Rn3dlzVj2idUhz6uHlN9nRAX7RVnVY+VbXqRx
+         4H1a7mgai4coyIvcQ1yujFIInHC9EN2NCjLRCDOS1tk2ufboi0B/hCvgrOORar19mugW
+         YpVAanTyoINpthqQTI5X3vtZAQrWj3fYdZxNWAP8gB9V67WEjSpu5TxvO1x20jkKH11z
+         Rvmg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760353570; x=1760958370;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=+aUxvhazo+fI5qnE1t9OWiNPdeUT1J2KZzqa5v9i4n4=;
-        b=SXmK/dN5EYVn7a9371qtG1Y9tnuDW7Yyj9ijeFrzJKeBLJ0osyv+Q3F4mNu6UdQlgU
-         iuvZdBEx+KLXPLpBeomMxTSbbDfSet3PJUBEFT0Ek8lTzrQlScAu/MvmrAewaVeUIIcW
-         K8ECrvfu2YVJifyeF1m4Kn/ybXVsx4NTVSo/G6+hKqr06+6RUmAb2uge4xbPSiZG4vzC
-         AkEg/S1rm6o/BD5ndHgymBg5NvOGAY5IwEr/g2nhzBCQwe/f1lICcP4kacT3WFXROe+P
-         sonHH5xoibKk5FWX/LnHiWs9mHhAKPi+/0AWo7OKNgDplrDpQ3aLq8XjNelqVo8s9vCi
-         81uw==
-X-Forwarded-Encrypted: i=1; AJvYcCXQX7IKo/MVUpzAVELQXnX9jQ6Mq2Ifq+RSbK+uLhc2aZPF4dLllqwlO6/VI52rYQhUM9Gm+J1Z6HG5@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx4QYhVQbZYc8nH5+nD8bX4e82stU+QEZ+kLDxXFow4XlxFrijt
-	V7rJ83Bwd3k50hp5ayxg65/Me4jM4l+caOoMBR0JsCTFqXKfhenyGDhrWn8BZVhuOnoOPreYqSI
-	wiGGeXlG+TBm8bhfmKjoWQjIKpfwSfWE=
-X-Gm-Gg: ASbGnctsuiP4PDqJPQq+DzL4OcNqD8nZk8KIS7d82nXfrMDs7rNCt0U4lynAruTaBjm
-	da6wb6xP44yHyJXjjZ0nnkxxiilj1rBay80+8IogY+JO1uaalVZPRNogLj36VGqe7yjOTUsIjQr
-	XO5MDpZxUQU0X8n27esvBNEjR74UqizI/qXsN35TYXm2EFt++oQ7eQXwrYr7/Gfb1/DoBNbMxSO
-	RIo0PCYQ5TOnThNizUtwkqk6Q==
-X-Google-Smtp-Source: AGHT+IGKDAXHZdvVmAlgzfekl2q5ywgCmcwxWyGOCrVIW3K2IvCUoc7P8HxcJHgwR9akx4wiqqa3iRMeNlO7r8vGrAA=
-X-Received: by 2002:a05:6402:144e:b0:63a:294:b02a with SMTP id
- 4fb4d7f45d1cf-63a0294b35fmr13389237a12.13.1760353570084; Mon, 13 Oct 2025
- 04:06:10 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1760353742; x=1760958542;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=KZ0p4RGMaKkdg82zu0ufNV13vLNgFLb6uCYyjivzVoc=;
+        b=N6WsvzTMutixjU7Hew5fijYb9Fok0QBDuOm58vE2jjoWjIOqVTIR1Q7DZalOaoDVbt
+         F49Mgh+Zy1bXRFAO9jB0B5zA8NYSCDjNoCGDDXXdte5PHWZ0HkWgBC3fhPwZbyZ6ODDx
+         xFQHRo9YvvPoEwaeWpYVTtaS8j3B6ui34yv8hY85HMyyENK3HureVuxEEOazaoIp21eC
+         FYl1Dx5oon0L5xzrIh23ttLodJF1RDpceKd7dW7wAfkKiTZxt8xDvJDf1FroUMvxS6KZ
+         TrHRDyo45DcRagm9CnZBWT/THt3Oiapo8YeJIfIkXZyJhmioQv1FGQGZDIpSQ7QHLoyt
+         MRew==
+X-Forwarded-Encrypted: i=1; AJvYcCXm4jnehHEYKYJsX2/RS1b/88kchdcq1mR3Gb6fLL9/kelM2EJ6qwRRSrb9K6mjrrU7lBUXSufUd+6m@vger.kernel.org
+X-Gm-Message-State: AOJu0YxPx8MR53+1PuF8qIoIAWb6F2v+/yZfDvJX3M4yhVrMX1HbFeqH
+	GUTJZ5n0nG2xxwC3nKU6zngoa5zpmuy4VqNE3GmBbejF1MvgH0TvS+WCozODolLkUp9Ba2Hk3KE
+	Z2S4o1jJOuwOU/RUbUH5edC0K1Prxv2jG0Nr0mbra8A==
+X-Gm-Gg: ASbGnctw+soDfm0j/qz43uEm82ZrfSlXCBbfkNkEE0mxgZzVJJfcaB5Pu7QoQqUa98+
+	MhxNx7B6IFJAsoJY4jfgj2FgzNCAsL4EE1VYQnVmWQ2wvBnF+JBGs3IcA0Qc+FcudLY3P10a6nS
+	i0ZZvrQBqL9fRVI3TO7c+7zpE/92XqjprmdaKoUmUZrVcI7blZN8mzEtDW5Q9gcQ4+dotcP2yRu
+	W0keVwYTlIb+YR7ftIh1U3dPvTeo2Vj/kd+TLBGTg==
+X-Google-Smtp-Source: AGHT+IHrxYQ9lAwrAdQaAqwn1O+JAjRD1WZ/bFkPUNTQEmfnnv60+IjtPt4OC2P/C+wu47H7hgloLf7dCT2IP6oTbGM=
+X-Received: by 2002:a53:5009:0:b0:636:2420:d3ce with SMTP id
+ 956f58d0204a3-63ccb93456dmr13963269d50.51.1760353741929; Mon, 13 Oct 2025
+ 04:09:01 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251001135914.13754-1-caojunjie650@gmail.com>
- <20251001135914.13754-3-caojunjie650@gmail.com> <cwgn24f6tnmytd4omr2tul4e5jjin3ijji3ff3qkumqm2xe3t3@ntayu3m5kai3>
- <CAK6c68jBwykcWZm3ckm3nwab-X9Are4rD-eauE4rXA2+XvuX1w@mail.gmail.com> <9cafccd5-35d4-46c5-aa57-1b0b8ec116e8@oss.qualcomm.com>
-In-Reply-To: <9cafccd5-35d4-46c5-aa57-1b0b8ec116e8@oss.qualcomm.com>
-From: Junjie Cao <caojunjie650@gmail.com>
-Date: Mon, 13 Oct 2025 19:04:43 +0800
-X-Gm-Features: AS18NWAHjO2WhOdNhja1yiGzTv7NF2-hQQdiny2sVnNEXy9aQKZ9xWdUII5sYvA
-Message-ID: <CAK6c68iV=n3BvMMa30FuehbMs7-U01s0saZnsYwPVoiyw0VTrg@mail.gmail.com>
-Subject: Re: [PATCH 2/3] drm/msm/dsi: support DSC configurations with
- slice_per_pkt > 1
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, 
-	Jessica Zhang <jessica.zhang@oss.qualcomm.com>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+References: <20250917063233.1270-1-svarbanov@suse.de>
+In-Reply-To: <20250917063233.1270-1-svarbanov@suse.de>
+From: Ulf Hansson <ulf.hansson@linaro.org>
+Date: Mon, 13 Oct 2025 13:08:26 +0200
+X-Gm-Features: AS18NWDL9Q6dk2HPqdUsVDURwgZHNk0vQNVjiF3dETSyBPsHFLwf7APcaD_mqAU
+Message-ID: <CAPDyKFpus05RAkYAoG7zjyvgAJiuXwRt3=z-JB5Kb7mo0AK4vw@mail.gmail.com>
+Subject: Re: [PATCH 0/4] Add watchdog support for bcm2712
+To: Stanimir Varbanov <svarbanov@suse.de>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-rpi-kernel@lists.infradead.org, 
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, linux-pm@vger.kernel.org, 
 	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Rob Clark <robin.clark@oss.qualcomm.com>, Dmitry Baryshkov <lumag@kernel.org>, 
-	Abhinav Kumar <abhinav.kumar@linux.dev>, Sean Paul <sean@poorly.run>, 
-	Marijn Suijten <marijn.suijten@somainline.org>, Antonino Maniscalco <antomani103@gmail.com>, 
-	Jonathan Marek <jonathan@marek.ca>, Eugene Lepshy <fekz115@gmail.com>, Jun Nie <jun.nie@linaro.org>, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	freedreno@lists.freedesktop.org
+	Florian Fainelli <florian.fainelli@broadcom.com>, Ray Jui <rjui@broadcom.com>, 
+	Scott Branden <sbranden@broadcom.com>, Lee Jones <lee@kernel.org>, 
+	Willow Cunningham <willow.e.cunningham@gmail.com>, Stefan Wahren <wahrenst@gmx.net>, 
+	Saenz Julienne <nsaenz@kernel.org>, Andrea della Porta <andrea.porta@suse.com>, 
+	Phil Elwell <phil@raspberrypi.com>, Jonathan Bell <jonathan@raspberrypi.com>, 
+	Dave Stevenson <dave.stevenson@raspberrypi.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com> =E4=BA=8E2025=E5=B9=B4=
-10=E6=9C=8813=E6=97=A5=E5=91=A8=E4=B8=80 17:39=E5=86=99=E9=81=93=EF=BC=9A
-> On 13/10/2025 04:52, =E6=9B=B9=E4=BF=8A=E6=9D=B0 wrote:
-> >  >Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com
-> > <mailto:dmitry.baryshkov@oss.qualcomm.com>> =E4=BA=8E2025=E5=B9=B410=E6=
-=9C=882=E6=97=A5=E5=91=A8=E5=9B=9B 10:04=E5=86=99=E9=81=93=EF=BC=9A
-> >  >On Wed, Oct 01, 2025 at 09:59:13PM +0800, Junjie Cao wrote:
-> >  >> From: Jun Nie <jun.nie@linaro.org <mailto:jun.nie@linaro.org>>
-> >  >>
-> >  >> Some panels support multiple slice to be sent in a single DSC
-> > packet. And
-> >  >> this feature is a must for specific panels, such as JDI LPM026M648C=
-.
-> > Add a
-> >  >> dsc_slice_per_pkt member into struct mipi_dsi_device and support th=
-e
-> >  >> feature in msm mdss driver.
-> >  >>
-> >  >> Co-developed-by: Jonathan Marek <jonathan@marek.ca
-> > <mailto:jonathan@marek.ca>>
-> >  >> Signed-off-by: Jonathan Marek <jonathan@marek.ca
-> > <mailto:jonathan@marek.ca>>
-> >  >> Signed-off-by: Jun Nie <jun.nie@linaro.org <mailto:jun.nie@linaro.o=
-rg>>
-> >  >> Signed-off-by: Junjie Cao <caojunjie650@gmail.com
-> > <mailto:caojunjie650@gmail.com>>
-> >  >> ---
-> >  >>  drivers/gpu/drm/msm/dsi/dsi_host.c | 25 ++++++++++---------------
-> >  >>  include/drm/drm_mipi_dsi.h         |  2 ++
-> >  >>  2 files changed, 12 insertions(+), 15 deletions(-)
-> >  >
-> >  >Please extract the generic part, so that it can be merged through a
-> >  >generic tree.
-> >  >
-> >
-> > Sorry, I don't get it.  The generic part, generic tree? Do you mean
-> > the drm tree? `slice_per_pkt >=3D 2` is seen on the panels of these
-> > tablets that are equipped with qcom chips. I don't know if these
-> > panels are used on other platforms, and if it is necessary to do it
-> > in drm.
+On Wed, 17 Sept 2025 at 08:33, Stanimir Varbanov <svarbanov@suse.de> wrote:
 >
-> There are two changes here:
-> - MIPI DSI header change
-> - msm DSI driver
+> Hello,
 >
-> I've asked to split it to those two commits so that he change for
-> drm_mipi_dsi.h is more obvious for reviewers and so that it can be
-> merged through a drm-misc tree (or through drm-msm tree provided it gets
-> a necessary ack).
+> The following patch-set aims to:
 >
+>  * allow probe of bcm2835-wdt watchdog driver for bcm2712.
+>  * prepare bcm2835-power driver for enabling of v3d for bcm2712.
+>
+>  - patch 1/4 is preparing bcm2835-power driver to be able to
+> control GRAFX_V3D pm-domain. This is a prerequisite for the follow-up
+> patch-set which will add a v3d DT node for bcm2712 (RPi5).
+>
+>  - patches 2/4 and 3/4 are adding bcm2712-pm compatible in MFD driver
+> and update the dt-bindings accordingly.
+>
+>  - patch 4/4 is adding a watchdog DT node for bcm2712.
+>
+> Comments are welcome!
 
-Thanks for your clear explanation.
+This looks good to me!
 
-I don't mind to add the field separately. But should I submit it
-with the panel driver together? Otherwise, this field is unused
-for a while.
+Kind regards
+Uffe
 
-However, as you mentioned, this is not a part of standard, neither
-mipi dsi nor VESA DSC. Recently, only Qualcomm devices require it
-to calculate parameters, then we use them to program registers. Why
-don't we parse the field from devicetree?
-
+>
+> regards,
+> ~Stan
+>
+> Stanimir Varbanov (4):
+>   pmdomain: bcm: bcm2835-power: Prepare to support BCM2712
+>   dt-bindings: soc: bcm: Add bcm2712 compatible
+>   mfd: bcm2835-pm: Add support for BCM2712
+>   arm64: dts: broadcom: bcm2712: Add watchdog DT node
+>
+>  .../bindings/soc/bcm/brcm,bcm2835-pm.yaml     | 28 +++++++++++++++----
+>  arch/arm64/boot/dts/broadcom/bcm2712.dtsi     |  9 ++++++
+>  drivers/mfd/bcm2835-pm.c                      |  1 +
+>  drivers/pmdomain/bcm/bcm2835-power.c          | 17 ++++++++---
+>  4 files changed, 46 insertions(+), 9 deletions(-)
 >
 > --
-> With best wishes
-> Dmitry
-
-Regards,
-Junjie
+> 2.47.0
+>
 
