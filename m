@@ -1,252 +1,240 @@
-Return-Path: <devicetree+bounces-226013-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226014-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1AB99BD2EEF
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 14:15:59 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A965BD2F59
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 14:28:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 907FA34B864
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 12:15:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6FF12189DB73
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 12:29:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18D5026E706;
-	Mon, 13 Oct 2025 12:15:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B64F3271443;
+	Mon, 13 Oct 2025 12:28:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bCAoPb2w"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LS35QxNN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com [209.85.210.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2D7825E44D;
-	Mon, 13 Oct 2025 12:15:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E435927055D
+	for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 12:28:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760357754; cv=none; b=kfChkUHVGKujF3V0P2SWLETgHPSv4auKBj+hUALvoc9jkTorSG1oxbRc7nvMjrxHumiSrVxX7ShnFPipO5THR4Sxu71VImnLSYB0JbEafN4DRril2qkb48/awgPgylicRH5ynddUhVvFrIMd5qQzYPCdEBe54bxrggDSyaYuFFo=
+	t=1760358514; cv=none; b=DFRJ3TJ8PHFMLVEty3ehmptf8zdaNK3teRJs+NoiwU+HTLsfeyMKmJySJ9ntLpVo42VUTxDNcZe7lmJqGzg0vkrav70M9dzVUG2VoTyy0FX18+SXGgX/qUBv3EFY7JxtSk/LbePhOyaiSCVvwybBt6aUsYp6tcnd1aap1k7ZaPA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760357754; c=relaxed/simple;
-	bh=BH73D8X4Lo6g3RTcuSv+XHBu00phhwmp0nmSDlsT/Hw=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=p+PvPfPxdN/dpsiBhmTFov9euw17NDm90ue86hrJT9NSmj2Pys8CwIsT6pvE5k0nwYw7H2JV4qyQwYkyJ5q0YwlrBoCTDPK4GuYGBHs37UGsGa45c3pK8GwWRpiKMfKXXZ1uq70L5OQXn2iazQBYNghTwDmppitCe8aua0FOhrI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bCAoPb2w; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 38C43C4CEE7;
-	Mon, 13 Oct 2025 12:15:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760357753;
-	bh=BH73D8X4Lo6g3RTcuSv+XHBu00phhwmp0nmSDlsT/Hw=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=bCAoPb2wmQVllBkskusRuCmqyz2kDC8Jaoo1062znpmdkN1yu1bQxmUXI9fQVawBJ
-	 qQfvUhTSxML5b9XP1pUXNJJJcso6G+8v+kVYY7X3iirUO90b/H3mBjtGYBNEculco/
-	 VDIB2CIWyVqnXjq4f7tJTcqihpx7DdtKSRO/0wdfg0BdOTe0SC2pgsGaim3Nvl2Vja
-	 WNwwmt72ZM8PGrs1GAS7V2SU8gbr1g4i6trHqKmPWaoT6lLJAe14XPnEjXIAr3sldr
-	 QzNqh0hxF89o+xixA6x0J/Ebg4HeYY+wan3Y2EiMzZeJg/Pa1dlugHKNb6T2Vr/tzW
-	 dEznpQR7SlL3w==
-Date: Mon, 13 Oct 2025 07:15:51 -0500
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+	s=arc-20240116; t=1760358514; c=relaxed/simple;
+	bh=+vbyFrZcBnFsvtcYalRuaDry0I2W4DKDBtFCjWgAn4s=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=JEk0LWmayeI/aK5Wu8aU4Y0gVOgBYeuhESqx6dGkzIQI+zuR8JhQaD4G26BZU6ACy6zDoeem+v9v3qhi9Fk/TDg4nGkHL13oPlhs9ZtDBrLbmPCVuA86tyNIigdB9aEVxTgke/0nUausSs05GxEhkgP5S8S8Io5xE2oxP7UkRUE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LS35QxNN; arc=none smtp.client-ip=209.85.210.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f178.google.com with SMTP id d2e1a72fcca58-780fc3b181aso2403355b3a.2
+        for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 05:28:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1760358512; x=1760963312; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=1Hfyx/yKH/qoWr47V08+NxngS+OiO3dtYiWQ1I4tci4=;
+        b=LS35QxNNN7opFVYyh8O4P9rQdZ9CqGR3yVgFC7mjkECcxzHNUNKjXSiJ7ZSKU08l83
+         igDPm3dC6FFruydFC8u7gR4crJyetjjLEUfXNYDJrWgJcfWorYrrMngX/X40CuX/7Sd6
+         ylEMH9TPytKsYqQa3oAlekfumKxw77aNvZDbf2fiVG7Wj0T3lBTU5puof1vNvbLqsNKM
+         ni211UaKq7dJyuN4lahewAbzfNPvWFcD4wH2yx4C0rjFSO+90L+s4QnoRogRqBEXfJBY
+         hprX7gfP8zeUV8SYeYVXU72/fPOnrgrxFGaa7MT2rFN3QoyI99oWKR+q8MeYythMe6mj
+         wgZw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1760358512; x=1760963312;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=1Hfyx/yKH/qoWr47V08+NxngS+OiO3dtYiWQ1I4tci4=;
+        b=Cv6uN/9Rj3tGYmbDnN/NZ5pWQASBWFVmw53vAwRnbgKRq43lxdzHiDdW3KuBIg56Kx
+         qmTxAIPrfzzWw4jJIuwXfMa7soY0EiURZ8g6YC2Inz5WLLbZIIcFDUC6Rf/H7Nfyzxrm
+         N/0SCCWdyYzjSUHCaF96yfYX/wkK8YZMXMis5PHSM3XvvEDXWa+i1pxpdptPTBy8QkXG
+         3jGOPYzx3RSl/glAdNMDmwhMXbAxtBKdNLaExS6R/ewmWKAJysdVUvznvnoUvIO0qOms
+         dfd9SLFl7ttyv4SArXKssPKWqMYOkbq/HqOPiXADj9fGjtLyP58S3zaV+lQ36nYgnPln
+         Pa9Q==
+X-Forwarded-Encrypted: i=1; AJvYcCW2V0vn/jQuVZnZlUXPysb9etQvH+dH64Xxnl794suN3r4t8KIZk2VNjgdz8C1TCoGCMUStsYVGtmLL@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw6Qj6hn3lrSCwF7UXcKIzQf48aAZL6Xx+5GwgCiqlWbH9S/bRB
+	Y1mHC8oZPpxDXlHL8juArFZ2XhhltYCc5MgpzzhVx4EFcvBfKiaIGkm7AvHyLaYmjSGduzM1RRX
+	MG+HEFpBXMVarNRrZ3ZUqcl3xMAWZkJI=
+X-Gm-Gg: ASbGncteeVvT9Pe63mQ+LThkWBooB/FRuvF0/R8mb9JHNeGlKOeUWeh/E6kR5YZDxZc
+	GTAFp5TE85C1cJQjXs0UqJEWqJ20eZ0oKG82FpKxET/l2gfHLDRg5rV6XvuTCWCHFL06FIYbPW7
+	LFeFUEaeoQtzIoJDN+x0beQYHxvH3FfgYrxuKr12gorP3JifK3FzuzhkGeeM1U+rQPD3cB2RKBb
+	FoW2yH1fmuw/gc1JJDUP109qEVzPDbRnjZwmVIUmvGsfNo4FASyQn4T0lfG
+X-Google-Smtp-Source: AGHT+IFDFAOFmZ461XoI5RW9YuCzah5zLExPQE6vCScxrqfd5twVWI97u4O0yepFXgRtTULwZnxCG8cuEBCFsRqZlPE=
+X-Received: by 2002:a17:90b:38cc:b0:32e:f1c:e778 with SMTP id
+ 98e67ed59e1d1-33b51105f5dmr28620196a91.3.1760358511952; Mon, 13 Oct 2025
+ 05:28:31 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Heiko Stuebner <heiko@sntech.de>, Sandy Huang <hjc@rock-chips.com>, 
- Andy Yan <andy.yan@rock-chips.com>, linux-rockchip@lists.infradead.org, 
- Kishon Vijay Abraham I <kishon@kernel.org>, 
- Amit Sunil Dhamne <amitsd@google.com>, linux-phy@lists.infradead.org, 
- David Airlie <airlied@gmail.com>, linux-arm-kernel@lists.infradead.org, 
- linux-kernel@vger.kernel.org, Yubing Zhang <yubing.zhang@rock-chips.com>, 
- Dragan Simic <dsimic@manjaro.org>, devicetree@vger.kernel.org, 
- Frank Wang <frank.wang@rock-chips.com>, 
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Johan Jonker <jbx6244@gmail.com>, 
- dri-devel@lists.freedesktop.org, Diederik de Haas <didi.debian@cknow.org>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Chaoyi Chen <chaoyi.chen@rock-chips.com>, 
- Thomas Zimmermann <tzimmermann@suse.de>, Maxime Ripard <mripard@kernel.org>, 
- Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
- Conor Dooley <conor+dt@kernel.org>, linux-usb@vger.kernel.org, 
- Vinod Koul <vkoul@kernel.org>, Simona Vetter <simona@ffwll.ch>, 
- Peter Robinson <pbrobinson@gmail.com>
-To: Chaoyi Chen <kernel@airkyi.com>
-In-Reply-To: <20251011033233.97-1-kernel@airkyi.com>
-References: <20251011033233.97-1-kernel@airkyi.com>
-Message-Id: <176035740777.2901291.16736462870856416206.robh@kernel.org>
-Subject: Re: [PATCH v5 0/8] Add Type-C DP support for RK3399 EVB IND board
+References: <cover.1759824376.git.mazziesaccount@gmail.com>
+ <93142a80d90a0ac80b27090d0c83914675aad94d.1759824376.git.mazziesaccount@gmail.com>
+ <20251009161847.GE2890766@google.com> <8ea507eb-f78c-4a16-882b-112e277fa1b6@gmail.com>
+ <20251010144515.GI2988639@google.com>
+In-Reply-To: <20251010144515.GI2988639@google.com>
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+Date: Mon, 13 Oct 2025 15:28:20 +0300
+X-Gm-Features: AS18NWD7Fn8K61uYpxry40G4lSMSR38Hgj7AfijgSk6lHd0n6-E_snhITV5UyEs
+Message-ID: <CANhJrGMEN0QRLoBzntVnaYgfFDyre=Yfw-dNdmi226p6pnpgHw@mail.gmail.com>
+Subject: Re: [RFC PATCH 06/13] mfd: bd71828: Support ROHM BD72720
+To: Lee Jones <lee@kernel.org>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>, Pavel Machek <pavel@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Sebastian Reichel <sre@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+	Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, 
+	Andreas Kemnade <andreas@kemnade.info>, linux-leds@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-pm@vger.kernel.org, linux-gpio@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
+pe 10.10.2025 klo 17.45 Lee Jones (lee@kernel.org) kirjoitti:
+>
+> On Fri, 10 Oct 2025, Matti Vaittinen wrote:
+>
+> > Hi deee Ho Lee,
+> >
+> > And Thanks for the review!
+> >
+> > On 09/10/2025 19:18, Lee Jones wrote:
+> > > On Tue, 07 Oct 2025, Matti Vaittinen wrote:
+> > >
+> > > > The ROHM BD72720 is a power management IC which continues the BD71828
+> > > > family of PMICs. Similarly to the BD71815 and BD71828, the BD72720
+> > > > integrates regulators, charger, RTC, clock gate and GPIOs.
+> > > >
+> > > > The main difference to the earlier PMICs is that the BD72720 has two
+> > > > different I2C slave addresses. In addition to the registers behind the
+> > > > 'main I2C address', most of the charger (and to some extent LED) control
+> > > > is done via registers behind a 'secondary I2C slave address', 0x4c.
+> > > >
+> > > > Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
 
-On Sat, 11 Oct 2025 11:32:25 +0800, Chaoyi Chen wrote:
-> From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
-> 
-> This series focuses on adding Type-C DP support for USBDP PHY and DP
-> driver. The USBDP PHY and DP will perceive the changes in cable status
-> based on the USB PD and Type-C state machines provided by TCPM. Before
-> this, the USBDP PHY and DP controller of RK3399 sensed cable state
-> changes through extcon, and devices such as the RK3399 Gru-Chromebook
-> rely on them. This series should not break them.
-> 
-> ====
-> 1. DisplayPort HPD status notify
-> 
-> Before v4, I implemented a variety of DP HPD status notify. However,
-> they all had various problems and it was difficult to become a common
-> solution.
-> 
-> Under Dmitry's guidance, I try to add default DRM AUX HPD device when
-> register DisplayPort altmode in patch 1. That makes it redundant for
-> each Type-C chip driver to implement a similar registration process
-> in embedded scenarios.
-> 
-> ====
-> 2. Altmode switching and orientation switching for USBDP PHY
-> 
-> For USB Type-C interfaces, an external Type-C controller chip assists
-> by detecting cable attachment, determining plug orientation, and
-> reporting USB PD message. The USB/DP combo PHY supports software
-> configurable pin mapping and DisplayPort lane assignment. Based on
-> these message, the combo PHY can perform both altmode switching and
-> orientation switching via software.
-> 
-> The RK3399 EVB IND board has a Type-C interface DisplayPort. It use
-> fusb302 chip as Type-C controller. The connection diagram is shown below:
-> 
-> fusb302 chip +---> USB2.0 PHY ----> DWC3 USB controller
->              |
->              +---> USB/DP PHY0 +--> CDN-DP controller
->                                |
->                                +--> DWC3 USB controller
-> 
-> ====
-> 3. Multiple bridge model for RK3399 CDN-DP
-> 
-> The RK3399 has two USB/DP combo PHY and one CDN-DP controller. And
-> the CDN-DP can be switched to output to one of the PHYs.
-> 
-> USB/DP PHY0 ---+
->                | <----> CDN-DP controller
-> USB/DP PHY1 ---+
-> 
-> In previous versions, if both PHY ports were connected to DP,
-> the CDN-DP driver would select the first PHY port for output.
-> 
-> On Dmitry's suggestion, we introduced a multi-bridge model to support
-> flexible selection of the output PHY port. For each PHY port, a
-> separate encoder and bridge are registered.
-> 
-> The change is based on the DRM AUX HPD bridge, rather than the
-> extcon approach. This requires the DT to correctly describe the
-> connections between the first bridge in bridge chain and DP
-> controller. And Once the first bridge is obtained, we can get the
-> last bridge corresponding to the USB-C connector, and then set the
-> DRM connector's fwnode to the corresponding one to enable HPD
-> notification.
-> 
-> ====
-> Patch1 add default HPD device when register Displayport altmode.
-> Patch2 add new Type-C mode switch for RK3399 USBDP phy binding.
-> Patch3 add typec_mux and typec_switch for RK3399 USBDP PHY.
-> Patch4 add DRM AUX bridge support for RK3399 USBDP PHY.
-> Patch5 drops CDN-DP's extcon dependency when Type-C is present.
-> Patch6 add multiple bridges to support PHY port selection.
-> Patch7 add missing dp_out port for RK3399 CDN-DP.
-> Patch8 add Type-C DP support for RK3399 EVB IND board.
-> 
-> Changes in v5:
-> - Link to V4: https://lore.kernel.org/all/20250922012039.323-1-kernel@airkyi.com/
-> - Remove the calls related to `drm_aux_hpd_bridge_notify()`.
-> - Place the helper functions in the same compilation unit.
-> - Add more comments about parent device.
-> - Add DRM AUX bridge support for RK3399 USBDP PHY
-> - By parsing the HPD bridge chain, set the connector's of_node to the
-> of_node corresponding to the USB-C connector.
-> - Return EDID cache when other port is already enabled.
-> 
-> Changes in v4:
-> - Link to V3: https://lore.kernel.org/all/20250729090032.97-1-kernel@airkyi.com/
-> - Add default HPD device for DisplayPort altmode.
-> - Introduce multiple bridges for CDN-DP.
-> - ...
-> 
-> Changes in v3:
-> - Link to V2: https://lore.kernel.org/all/20250718062619.99-1-kernel@airkyi.com/
-> - Add more descriptions to clarify the role of the PHY in switching.
-> - Fix wrong vdo value.
-> - Fix port node in usb-c-connector.
-> 
-> Changes in v2:
-> - Link to V1: https://lore.kernel.org/all/20250715112456.101-1-kernel@airkyi.com/
-> - Reuse dp-port/usb3-port in rk3399-typec-phy binding.
-> - Fix compile error when CONFIG_TYPEC is not enabled.
-> - Notify DP HPD state by USB/DP PHY.
-> - Ignore duplicate HPD events.
-> - Add endpoint to link DP PHY and DP controller.
-> - Fix devicetree coding style.
-> 
-> Chaoyi Chen (8):
->   usb: typec: Add default HPD device when register DisplayPort altmode
->   dt-bindings: phy: rockchip: rk3399-typec-phy: Support mode-switch
->   phy: rockchip: phy-rockchip-typec: Add typec_mux/typec_switch support
->   phy: rockchip: phy-rockchip-typec: Add DRM AUX bridge
->   drm/rockchip: cdn-dp: Support handle lane info without extcon
->   drm/rockchip: cdn-dp: Add multiple bridges to support PHY port
->     selection
->   arm64: dts: rockchip: Add missing dp_out port for RK3399 CDN-DP
->   arm64: dts: rockchip: rk3399-evb-ind: Add support for DisplayPort
-> 
->  .../phy/rockchip,rk3399-typec-phy.yaml        |   6 +
->  arch/arm64/boot/dts/rockchip/rk3399-base.dtsi |  10 +-
->  .../boot/dts/rockchip/rk3399-evb-ind.dts      | 146 ++++++
->  drivers/gpu/drm/rockchip/Kconfig              |   2 +
->  drivers/gpu/drm/rockchip/cdn-dp-core.c        | 380 +++++++++++++---
->  drivers/gpu/drm/rockchip/cdn-dp-core.h        |  24 +-
->  drivers/phy/rockchip/phy-rockchip-typec.c     | 417 +++++++++++++++++-
->  drivers/usb/typec/class.c                     |  26 ++
->  include/linux/usb/typec_altmode.h             |   2 +
->  9 files changed, 931 insertions(+), 82 deletions(-)
-> 
-> --
-> 2.49.0
-> 
-> 
-> 
+// snip
 
+> > > > +
+> > > > +static struct regmap *bd72720_secondary_regmap;
+> > >
+> > > Dynamically allocate this and add it to .platform_data once it's
+> > > populated.
+> > >
+> >
+> > This can be done but I suppose it's unnecessary churn. This driver does not
+> > (at the moment) support more than one instance of the PMIC anyways. (The
+> > button data is not alloacted).
+> >
+> > This is not really a problem as typically there is only 1 of these PMICs to
+> > be controlled.
+>
+> I'd take a few lines of extra code over a globally defined variable any
+> day of the week.
 
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
+Even though that'll require us to drop the const from the
+bd72720_mfd_cells MFD cell array? Which, in turn, will probably
+require us to drop the const from the MFD cell pointer in probe as
+well. Additionally, this will require us to skim through the MFD cell
+array in probe, so we locate the power cell, adding one more spot for
+errors. I think this is quite a cost just a princible of dropping a
+global, which is accessed from one function only. I'd definitely agree
+if it was driver data which gets used in a variety of functions, but
+here we really just need a memory location for a pointer so MFD can
+copy it when kicking the 'sub drivers'. Do you think you can still
+reconsider?
 
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
+>
+> > // snip
+> >
+> > > > +/*
+> > > > + * The BD72720 is an odd beast in that it contains two separate sets of
+> > > > + * registers, both starting from address 0x0. The twist is that these "pages"
+> > > > + * are behind different I2C slave addresses. Most of the registers are behind
+> > > > + * a slave address 0x4b, which will be used as the "main" address for this
+> > > > + * device.
+> > > > + * Most of the charger related registers are located behind slave address 0x4c.
+> > > > + * It is tempting to push the dealing with the charger registers and the extra
+> > > > + * 0x4c device in power-supply driver - but perhaps it's better for the sake of
+> > > > + * the cleaner re-use to deal with setting up all of the regmaps here.
+> > > > + * Furthermore, the LED stuff may need access to both of these devices.
+> > > > + */
+> > > > +#define BD72720_SECONDARY_I2C_SLAVE 0x4c
+> > > > +static const struct regmap_range bd72720_volatile_ranges_4b[] = {
+> > > > + {
+> > > > +         /* RESETSRC1 and 2 are write '1' to clear */
+> > > > +         .range_min = BD72720_REG_RESETSRC_1,
+> > > > +         .range_max = BD72720_REG_RESETSRC_2,
+> > >
+> > > regmap_reg_range()?
+> >
+> > Ah, thanks. Out of the curiosity - do you know why this macro is written on
+> > lowercase?
+>
+> Signed-off-by: Laxman Dewangan <ldewangan@nvidia.com>
+> Signed-off-by: Mark Brown <broonie@linaro.org>
+>
+> =:-)
 
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
+Yeah. I just thought that maybe you knew :)
 
-  pip3 install dtschema --upgrade
+>
+> > // snip
+> > > > +static int bd72720_set_type_config(unsigned int **buf, unsigned int type,
+> > > > +                            const struct regmap_irq *irq_data,
+> > > > +                            int idx, void *irq_drv_data)
+> > > > +{
+> > > > + const struct regmap_irq_type *t = &irq_data->type;
+> > > > +
+> > > > + /*
+> > > > +  * The regmap IRQ ecpects IRQ_TYPE_EDGE_BOTH to be written to register
+> > > > +  * as logical OR of the type_falling_val and type_rising_val. This is
+> > > > +  * not how the BD72720 implements this configuration, hence we need
+> > > > +  * to handle this specific case separately.
+> > > > +  */
+> > > > + if (type == IRQ_TYPE_EDGE_BOTH) {
+> > > > +         buf[0][idx] &= ~t->type_reg_mask;
+> > > > +         buf[0][idx] |= BD72720_GPIO_IRQ_TYPE_BOTH;
+> > > > +
+> > > > +         return 0;
+> > > > + }
+> > > > +
+> > > > + return regmap_irq_set_type_config_simple(buf, type, irq_data, idx,
+> > > > +                                          irq_drv_data);
+> > >
+> > > Use 100-chars to avoid these pointless wraps please.
+> >
+> > gnarl. I think we have discussed this before :)
+> > I would love to keep the lines short - closer to 80 chars - because that way
+> > I can fit 3 terminals on my screen. All the years spent staring at the
+> > monitor are taking their toll, and my vision isn't as good as it used to be.
+> > Frightening thing being that it seems I will only need to increase the font
+> > in the future :/
+> >
+> > Well, sure the lines can be split if you feel strongly about it - but I have
+> > a real reason (other than the usual - "they have always been like that") to
+> > try keep them short...
+>
+> Welcome to the year 2000 when 32" monitors are super affordable.
 
+I know. But work rooms where I can fit larger table aren't. Not even
+in Finland which should have plenty of space. And my table is really
+packed.
 
-This patch series was applied (using b4) to base:
- Base: attempting to guess base-commit...
- Base: tags/next-20251010 (best guess, 8/9 blobs matched)
- Base: tags/next-20251010 (use --merge-base to override)
+Yours,
+    -- Matti
 
-If this is not the correct base, please add 'base-commit' tag
-(or use b4 which does this automatically)
+-- 
 
-New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/rockchip/' for 20251011033233.97-1-kernel@airkyi.com:
+Matti Vaittinen
+Linux kernel developer at ROHM Semiconductors
+Oulu Finland
 
-arch/arm64/boot/dts/rockchip/rk3399-evb-ind.dtb: syscon@ff770000 (rockchip,rk3399-grf): usb2phy@e450: 'port' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/soc/rockchip/grf.yaml#
-arch/arm64/boot/dts/rockchip/rk3399-evb-ind.dtb: syscon@ff770000 (rockchip,rk3399-grf): usb2phy@e450: Unevaluated properties are not allowed ('port' was unexpected)
-	from schema $id: http://devicetree.org/schemas/soc/rockchip/grf.yaml#
-arch/arm64/boot/dts/rockchip/rk3399-evb-ind.dtb: usb2phy@e450 (rockchip,rk3399-usb2phy): 'port' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/phy/rockchip,inno-usb2phy.yaml#
-arch/arm64/boot/dts/rockchip/rk3399-evb-ind.dtb: /sound: failed to match any schema with compatible: ['rockchip,rk3399-gru-sound']
+~~ When things go utterly wrong vim users can always type :help! ~~
 
-
-
-
-
+Discuss - Estimate - Plan - Report and finally accomplish this:
+void do_work(int time) __attribute__ ((const));
 
