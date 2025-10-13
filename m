@@ -1,204 +1,209 @@
-Return-Path: <devicetree+bounces-226064-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226065-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C11AEBD3596
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 16:07:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3BD21BD383A
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 16:29:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E104B189B211
-	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 14:07:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B5AC8189EBC1
+	for <lists+devicetree@lfdr.de>; Mon, 13 Oct 2025 14:29:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F29512475C2;
-	Mon, 13 Oct 2025 14:07:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MM6YjOnd"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8068319E97A;
+	Mon, 13 Oct 2025 14:29:32 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f172.google.com (mail-qk1-f172.google.com [209.85.222.172])
+Received: from mail-vs1-f52.google.com (mail-vs1-f52.google.com [209.85.217.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 414B224A044
-	for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 14:07:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A839E1D5CEA
+	for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 14:29:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760364437; cv=none; b=cplGTA2Mzgg/mKWCQjpAsuX9jxrVDS9gj91mkeNwnYS1TZtzDtfySDVX+tdL43XGwq1iHgGHloWWLzfScoilOOZW75MxV1c74nxd0Ef2dPTKmX7HP8u+FMtoG+GNc/mlGciBF7cdfdwu9TECok79pBX7JRYFBwEBB9tqmcoOvSU=
+	t=1760365772; cv=none; b=iorOXnR8b7vSPzxNe7MZ5WgrC5lCUIU9ntd7H4Mdtm/9SohzUcCWTquerjzqZth72xbzhIS9O9tmJVZMYdFEnhiVsLi73QRkuSjL3xFgYZ9Qk/21OlefEg+Q7lZPxJO+BlYTfCrWqsOa8S0Ep8W87EBSEN/t8wOvmsx55nCZ7qo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760364437; c=relaxed/simple;
-	bh=il9BEy5z5fP/2XDjNY94SwIxeYHfSV12vEIzVfaLz4I=;
+	s=arc-20240116; t=1760365772; c=relaxed/simple;
+	bh=zlA57FXRk3iS29Kzv4WEft+U6fVs9xyP1OQ8Cp0Brq4=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=AKSGImrWcVpqmaaGC2XWK2doMcrnsMUcduvf9TLYz2Rsw3Eu7ecVtcDnCNTp+6iyCTv0gFxEiVA1E3QZUlFcAPnCo9LRkmlGYBdrdfC6lEWSTT5NG5O3IsIci3YiehhC7QnV8Zo6WPeQj0UEsGvh/QPNL3Di78dpG/IG6+oXqac=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MM6YjOnd; arc=none smtp.client-ip=209.85.222.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+	 To:Cc:Content-Type; b=BASfSRYWF+VSXg3hUdvMWC1Q5vmqjiTQXX+1RRrpz2H/AgDmHCHjb7agcWmLWBe1z1MYpWzKOma6ldvFeW+IZHVuJ/jJlia/w0RB9Jy9MJKV9VVmEr03yRziifaTW3eTBKew/N16sRBWyJSvNHjcp1PiD9A2ZkDBaINTO8Z0RiA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f172.google.com with SMTP id af79cd13be357-85a4ceb4c3dso518494885a.3
-        for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 07:07:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1760364435; x=1760969235; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=B3fxFMnHvhHYZxkU89prvgFn6OmHBSMeJm9YGzPYMJU=;
-        b=MM6YjOndHEe2uGDPWFKgEvw9uMggMkjD7xKLU6C9TZYVi4rRwzH+RkljfTCysGrOiL
-         g1DEh5ZYSq7CJ2d49IuBzLy/IDvkB07FQ6h8rdjGuQeqOklCeE+e8uK6HS33kTS+xbBV
-         LqfPaN8rc4TT/tdWBhbvXPMtPMnJJN0yHjWfJWwkTkkoZl+uiTkc81aElRsz3CqoPdLZ
-         u3IMmSK+hHVzZrZWxX+kaM64TryKaKfGCX8pBpRhfNxKmc3bjSL7ZyYlhrhBsIaUqhRA
-         ZvFKoOXrc2QzsPSWvBwzUfL7yXeDQkhRxKKkU5Q2Qcmsb+hkMhiqnH7z1jeHaOdNQ83k
-         aH6g==
+Received: by mail-vs1-f52.google.com with SMTP id ada2fe7eead31-5d3fb34ba53so3690276137.1
+        for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 07:29:30 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760364435; x=1760969235;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=B3fxFMnHvhHYZxkU89prvgFn6OmHBSMeJm9YGzPYMJU=;
-        b=hlLcSRRHSxOQBm2vk2tFtyHHWuOnVmpEDRLcJ7HAk+Y7LEcf3eMhAvk7NpddLq996o
-         tN80ur1qh4Fn0TkZtYb9P2PPYkJckGwNcFx3lS/sQqjDSdmCWfHNOeGBIRT4CwrWtU7W
-         A44Mfpf9Yg24kl7H4C2EauUjdjMdW2GPBWhge/loTlZ8m7cCwWaVHq7L8w8mu9/PPRaW
-         2SLGxzUn8tc+nQ+F1BZ3H+zhLLPw/QkjC6D67vQaGU+XNBNEnaxYjBZK2zBWv7T8v/e9
-         kswyZcjxiqGwH0Pq6ACFyeUc/4CR6j9hxNH/IMoXIhcyIGe3su7k5jQTM3ZmdRY3ifzg
-         ieeQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWNTYz/EVtS0kIygUAfo3qHQx1lFBGXML2WOHm6akwgxs3nMWoOlCvCDnv5mvt5W2ho/VCap3HFQQdI@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz8C4FhPW1PMU8MMpR+hpifAQ1OvlqZ10Wr9UHgvVjyUowfvdrw
-	KmpUc3uuaP6DwMX2QHAE1Czfk9PtHQWUhY5N5Pp3T1zpDW74ctjBMFOe4AVtYK5QaPxLftQaBBc
-	DbbCC0CdiPUuUgD9psYUpSxcJ/3PVUEM=
-X-Gm-Gg: ASbGncv33CYi3/NczTuEE6P0IJJacAzmP/0Ye5JThMAb5wXXmXzZjPD8HBIYImtHkkf
-	zgzL2bNzv9QSsazXvwn/jxTmO2Ae/uLSbp18CfSIkGeD/ipSFFT6QZ6OrW7+XaD80TeMrUQIq6X
-	8viftsn90LyuDcg+Zg8JMutCMG86fdYTNktbJpYDvtOV5sj497bvychPihwUh3bQ49U3q/G8xsL
-	CkpldemVaevL7DpDdEr8j2bLbuLKl+Dc/r/pg==
-X-Google-Smtp-Source: AGHT+IFJyxN0Hv1Y4GUd/peF3juYf0BASxuDUqSk2KfDDUExhxmcAVmPSatg4At2Xmntps9WxQl2SPNothq8SpuZzXY=
-X-Received: by 2002:a05:622a:4c6:b0:4b5:eb7b:2789 with SMTP id
- d75a77b69052e-4e6ead4825emr307845311cf.49.1760364434713; Mon, 13 Oct 2025
- 07:07:14 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1760365769; x=1760970569;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=wM5BKo03UXTKAaO0inlA90fZOzSgvU3v+GhQ9ytzuNM=;
+        b=UQhEU7FmKPcFz+9CSJLRmCCj3J4rCY0dpfGOhV8prH+7NiKV7BAN8vwxzQjCA1Cjq8
+         6cTU2rbFmpybkRpVX1+BkvoRlv3/ZzeguWzBoct4lMGLNQtS1YhNrSpIvYbVGXjYzCfh
+         Y7nfS/pnw76TRV4Yb/Qv4MbJkP2bbbNNzyylhq7XC+CUiKJwkM0m2DwQQCB3giJTnkIT
+         /kv0WIJkMVhTJRQAz4ET0Mhg1cO8igd6PSxavFUiT0lev0EXEJ7m6E9NmliSjI4qCGCc
+         U73fpGoG+4am+06D/Vk80eN2Y74M7w+ybM1XulAxMk3585De/h0GuLuEpEK0iri/U2JP
+         ALvQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV5pycLTvzQe/ja0u/bSXoy7VY2c/LUAtTOasJ17Dy+8NAitYQ+Ne6S32Wh3Gg2aqFwqT6Xdq5cNZo+@vger.kernel.org
+X-Gm-Message-State: AOJu0YxVdd/pFamp/DvbhzBg1WPnLG82Ga7zWqvCXdKtl/ffo4Tu6rhy
+	HzmLJ9c5cR7qZSAp9n5t7ZbOjy8UowjeZktG+fmrss0E0Xq+xtzbPdtgg0M1iW5x
+X-Gm-Gg: ASbGncvIr5au7d2/JXDowcMWqeZOure4Sb1f9TFAcIsB1k71S502m2uKIZHT6gif/bF
+	HXVG+fyNrKq4dCrsqeaS/ILWWpTbLmcGOXtENPHxnPf3ICp/n/e+sQLyo5Kx+wgquOTC6jWcMcy
+	0IFP4GguHTn8+EYVnNjO84bFOmyyy0ek02w9DW9XnDlY85hZsSv+7PKUTaTyFu+dk9y1yrPRV0r
+	zsvX+O5i3sev8jpvHRy0LX9bHbbFfc0aIzBXK1DystV/ysGudWUMsSLeb7Inv06iZAJLyfWewXu
+	tufd5FKbXbU8CIkhtrCLQnMkq5WPhnfq1NtdsvUj5bKBDpVPHMvSZAsruD7niY6/0HAY4lvAERe
+	dEu2g0ejpZExgl7J4wFcqKOpDbitvq8GyyrolPEylP0QJLvvaQfGJcwiG0V4w7bZk13x+l6yMlc
+	N7ziw=
+X-Google-Smtp-Source: AGHT+IH90u6RI2Sn44AUy/vx8i8pk2HCkxpUSaMTnEIbTXAijoy38DhU11l8x01+ES5ukGhaaYQmxw==
+X-Received: by 2002:a05:6102:44cc:10b0:5d5:f556:e3e5 with SMTP id ada2fe7eead31-5d5f556e41amr4406649137.26.1760365769332;
+        Mon, 13 Oct 2025 07:29:29 -0700 (PDT)
+Received: from mail-vs1-f43.google.com (mail-vs1-f43.google.com. [209.85.217.43])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-930bf78d14csm2787762241.16.2025.10.13.07.29.29
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 13 Oct 2025 07:29:29 -0700 (PDT)
+Received: by mail-vs1-f43.google.com with SMTP id ada2fe7eead31-5d3fb34ba53so3690270137.1
+        for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 07:29:29 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCX2AoLYe1KmXOazk+ZsFTT2UETHTAI19t5u4oAE5HHNXmqFn8lyGwGI2giwNYfDI58QXwnExvaeVHks@vger.kernel.org
+X-Received: by 2002:a05:6102:512b:b0:5d3:ff01:363d with SMTP id
+ ada2fe7eead31-5d5e2323bc3mr8711756137.21.1760365279124; Mon, 13 Oct 2025
+ 07:21:19 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251009084416.45542-1-jjm2473@gmail.com> <20251009084416.45542-4-jjm2473@gmail.com>
- <aOe_0EufouURu7R2@shell.armlinux.org.uk> <CAP_9mL4MfzagxiMD1VdOu=jBuN_XsOrvPQT=XTVgu2+G=+nD9A@mail.gmail.com>
- <aOz1SzpzGLDQjiYQ@shell.armlinux.org.uk>
-In-Reply-To: <aOz1SzpzGLDQjiYQ@shell.armlinux.org.uk>
-From: Liangbin Lian <jjm2473@gmail.com>
-Date: Mon, 13 Oct 2025 22:07:02 +0800
-X-Gm-Features: AS18NWC2KWpOjrIZRCNJ-njN7lopgvdR9BZGhK7C99VWUiJOF3JdegyR1Tmc-SU
-Message-ID: <CAP_9mL6x=p169y026nNycZsHK6UMHqJ+o-M_k0MqnvpB2fPzJg@mail.gmail.com>
-Subject: Re: [PATCH v5 3/3] arm64: dts: rockchip: add LinkEase EasePi R1
-To: "Russell King (Oracle)" <linux@armlinux.org.uk>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, heiko@sntech.de, 
-	quentin.schulz@cherry.de, kever.yang@rock-chips.com, naoki@radxa.com, 
-	honyuenkwun@gmail.com, inindev@gmail.com, ivan8215145640@gmail.com, 
-	neil.armstrong@linaro.org, mani@kernel.org, dsimic@manjaro.org, 
-	pbrobinson@gmail.com, alchark@gmail.com, didi.debian@cknow.org, 
-	jbx6244@gmail.com, andrew@lunn.ch, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
+References: <20251009160732.1623262-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20251009160732.1623262-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20251009160732.1623262-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 13 Oct 2025 16:21:07 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdV2-YrktT+=D2LVFw5oR+6EOLcPB_Yuh5wnos099W9YHQ@mail.gmail.com>
+X-Gm-Features: AS18NWACXzl9qHe2hLpg2jHp4NfY_rtfyBAoBdwcOf1UGmjWi7aFUHns305Ee_M
+Message-ID: <CAMuHMdV2-YrktT+=D2LVFw5oR+6EOLcPB_Yuh5wnos099W9YHQ@mail.gmail.com>
+Subject: Re: [PATCH v10 2/6] clk: renesas: rzv2h-cpg: Add support for DSI clocks
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Robert Foss <rfoss@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+	Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, 
+	Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>, David Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Biju Das <biju.das.jz@bp.renesas.com>, Magnus Damm <magnus.damm@gmail.com>, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	linux-clk@vger.kernel.org, Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-Russell King (Oracle) <linux@armlinux.org.uk> =E4=BA=8E2025=E5=B9=B410=E6=
-=9C=8813=E6=97=A5=E5=91=A8=E4=B8=80 20:49=E5=86=99=E9=81=93=EF=BC=9A
+On Thu, 9 Oct 2025 at 18:07, Prabhakar <prabhakar.csengg@gmail.com> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 >
-> On Fri, Oct 10, 2025 at 11:20:08AM +0800, Liangbin Lian wrote:
-> > Russell King (Oracle) <linux@armlinux.org.uk> =E4=BA=8E2025=E5=B9=B410=
-=E6=9C=889=E6=97=A5=E5=91=A8=E5=9B=9B 21:59=E5=86=99=E9=81=93=EF=BC=9A
-> > >
-> > > On Thu, Oct 09, 2025 at 04:44:16PM +0800, Liangbin Lian wrote:
-> > > > +&gmac0 {
-> > > > +     phy-mode =3D "rgmii-id";
-> > > > +     clock_in_out =3D "input";
-> > > ...
-> > > > +&gmac1 {
-> > > > +     phy-mode =3D "rgmii-id";
-> > > > +     clock_in_out =3D "input";
-> > >
-> > > I am fine with what is being proposed here, but I think this
-> > > clock_in_out property needs fixing. The description for it is thus:
-> > >
-> > >   clock_in_out:
-> > >     description:
-> > >       For RGMII, it must be "input", means main clock(125MHz)
-> > >       is not sourced from SoC's PLL, but input from PHY.
-> > >       For RMII, "input" means PHY provides the reference clock(50MHz)=
-,
-> > >       "output" means GMAC provides the reference clock.
-> > >     $ref: /schemas/types.yaml#/definitions/string
-> > >     enum: [input, output]
-> > >     default: input
-> > >
-> > > The problems that I have here are:
-> > >
-> > > 1) the description states that the only possible value for this when =
-in
-> > >    RGMII mode is "input" which is reasonable, because it's due to the
-> > >    RGMII specification. The driver code is perfectly able to determin=
-e
-> > >    whether RGMII has been specified, and set bsp_priv->clock_input
-> > >    itself, relieving DT of this need.
-> > >
-> > > 2) bsp_priv->clock_input is only used in gmac_clk_enable() when calli=
-ng
-> > >    the SoC specific set_clock_selection() method. Only RK3528, RK3576=
-,
-> > >    and RK3588 populate this method. Every other SoC supported by this
-> > >    driver still requires the property:
-> ...
-> > >   clock_in_out:
-> > >     description:
-> > >       For RGMII, it must be "input"
-> >
-> > This description does not match the actual situation,
-> > there are many dts using 'output':
-> > https://elixir.bootlin.com/linux/v6.17/source/arch/arm64/boot/dts/rockc=
-hip/rk3568-bpi-r2-pro.dts#L235
-> > https://elixir.bootlin.com/linux/v6.17/source/arch/arm64/boot/dts/rockc=
-hip/rk3568-evb1-v10.dts#L241
-> > https://elixir.bootlin.com/linux/v6.17/source/arch/arm64/boot/dts/rockc=
-hip/rk3568-fastrhino-r68s.dts#L33
-> > https://elixir.bootlin.com/linux/v6.17/source/arch/arm64/boot/dts/rockc=
-hip/rk3568-nanopi-r5s.dts#L78
+> Add support for PLLDSI and its post-dividers to the RZ/V2H CPG driver and
+> export a set of helper APIs to allow other consumers (notably the DSI
+> driver) to compute and select PLL parameter combinations.
 >
-> For all of the above, whether it is "input" or "output" has no effect
-> as these are all rk3568, and rk3568 does not implement the
-> set_clock_selection() method.
+> Introduce per-PLL-DSI state in the CPG private structure and implement
+> clk ops and registration for PLLDSI and PLLDSI divider clocks. Implement
+> rzv2h_cpg_plldsi_determine_rate and rzv2h_cpg_plldsi_set_rate to drive
+> PLL programming via the new per-PLL state and add a plldsi divider clk
+> with determine/set/recalc operations that cooperate with the PLL
+> algorithm.
 >
-> static const struct rk_gmac_ops rk3568_ops =3D {
->         .set_phy_intf_sel =3D rk3568_set_phy_intf_sel,
->         .set_to_rgmii =3D rk3568_set_to_rgmii,
->         .set_to_rmii =3D rk3568_set_to_rmii,
->         .set_speed =3D rk_set_clk_mac_speed,
->         .regs_valid =3D true,
->         .regs =3D {
->                 0xfe2a0000, /* gmac0 */
->                 0xfe010000, /* gmac1 */
->                 0x0, /* sentinel */
->         },
-> };
+> Centralize PLL parameter types and limits by moving definitions into a
+> shared header (include/linux/clk/renesas.h). Add struct rzv2h_pll_limits,
+> struct rzv2h_pll_pars and struct rzv2h_pll_div_pars, plus the
+> RZV2H_CPG_PLL_DSI_LIMITS() macro to declare DSI PLL limits.
 >
-> I'm going to propose:
+> Provide two exported helper functions, rzv2h_get_pll_pars() and
+> rzv2h_get_pll_divs_pars(), that perform iterative searches over PLL
+> parameters (M, K, P, S) and optional post-dividers to find the best (or
+> exact) match for a requested frequency. Export these helpers in the
+> "RZV2H_CPG" namespace for use by external drivers.
 >
-> 1) that the driver should only print an error if "clock_in_out" is
-> missing _and_ the SoC implements the required function.
+> This change centralizes DSI PLL rate selection logic, prevents duplicate
+> implementations in multiple drivers, and enables the DSI driver to
+> request accurate PLL rates and program the hardware consistently.
 >
-> 2) that the driver should print a non-fatal error if this property is
-> specified in DT _and_ the SoC does not implement the function to
-> discourage its use.
->
-> 3) [tr]x_delay should not print an error for non-RGMII phy interface
-> modes.
->
-> I consider it a bug that a driver prints errors for properties that
-> have not been specified that it does not actually require. By doing
-> so, it encourages people to add useless properties to their DT
-> description that will never ever be used (e.g. because they are not
-> relevant for hardware the operating mode that the board is setup
-> for.)
->
-> --
-> RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-> FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+> Co-developed-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+> Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> ---
+> v9->v10:
+> - Dropped rzv2h_get_pll_div_pars() helper and opencoded instead.
+> - Dropped rzv2h_get_pll_dtable_pars() helper and opencoded instead.
+> - Added dummy helpers rzv2h_get_pll_pars() and rzv2h_get_pll_divs_pars()
+>   in renesas.h for !CONFIG_CLK_RZV2H case.
+> - Updated commit message.
 
-I will remove clock_in_out, its default value is 'input'.
-After removing it, there will only be an error log, which will not
-affect the function.
+Thanks for the update!
+
+> --- a/drivers/clk/renesas/rzv2h-cpg.c
+> +++ b/drivers/clk/renesas/rzv2h-cpg.c
+
+> +static int rzv2h_cpg_plldsi_div_determine_rate(struct clk_hw *hw,
+> +                                              struct clk_rate_request *req)
+> +{
+> +       struct rzv2h_plldsi_div_clk *dsi_div = to_plldsi_div_clk(hw);
+> +       struct pll_clk *pll_clk = to_pll(clk_hw_get_parent(hw));
+> +       struct rzv2h_cpg_priv *priv = dsi_div->priv;
+> +       u8 table[RZV2H_MAX_DIV_TABLES] = { 0 };
+> +       struct rzv2h_pll_div_pars *dsi_params;
+> +       struct rzv2h_pll_dsi_info *dsi_info;
+> +       const struct clk_div_table *div;
+> +       u64 rate_millihz;
+> +       unsigned int i;
+> +
+> +       dsi_info = &priv->pll_dsi_info[pll_clk->pll.instance];
+> +       dsi_params = &dsi_info->pll_dsi_parameters;
+> +
+> +       rate_millihz = mul_u32_u32(req->rate, MILLI);
+> +       if (rate_millihz == dsi_params->div.error_millihz + dsi_params->div.freq_millihz)
+> +               goto exit_determine_rate;
+> +
+> +       div = dsi_div->dtable;
+
+This belongs inside the for-initializer below.
+
+> +       i = 0;
+
+Ditto; or better: in the variable declaration at the top of the function.
+
+> +       for (; div->div; div++) {
+> +               if (i >= RZV2H_MAX_DIV_TABLES)
+> +                       return -EINVAL;
+> +               table[i++] = div->div;
+> +       }
+> +
+> +       if (!rzv2h_get_pll_divs_pars(dsi_info->pll_dsi_limits, dsi_params, table, i,
+> +                                    rate_millihz)) {
+> +               dev_err(priv->dev, "failed to determine rate for req->rate: %lu\n",
+> +                       req->rate);
+> +               return -EINVAL;
+> +       }
+> +
+> +exit_determine_rate:
+> +       req->rate = DIV_ROUND_CLOSEST_ULL(dsi_params->div.freq_millihz, MILLI);
+> +       req->best_parent_rate = req->rate * dsi_params->div.divider_value;
+> +       dsi_info->req_pll_dsi_rate = req->best_parent_rate;
+> +
+> +       return 0;
+> +}
+
+The rest LGTM, so with the above fixed, and the field changes factored
+out into a separate patch:
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
