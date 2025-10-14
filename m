@@ -1,64 +1,95 @@
-Return-Path: <devicetree+bounces-226682-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226683-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CDADBDA733
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 17:42:18 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 20786BDA75B
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 17:44:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 2243A506F1E
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 15:33:30 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id F2D4F50370F
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 15:34:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECAD330100D;
-	Tue, 14 Oct 2025 15:30:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73401301716;
+	Tue, 14 Oct 2025 15:33:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="stjGgtV3"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Cy7RYE11"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B76E03002B9;
-	Tue, 14 Oct 2025 15:30:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE7C019CCEC
+	for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 15:33:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760455849; cv=none; b=Ub9OfkZkwvFCZwMLyNVnsWMR4GqhaYYTR8LWILKHDlGedG7M5O4BHH4q48WxpOVsFPCKvalbNQXGIA+bfx6ogRNLwtBdA+XRZOYdJ/hpAcWk8aFuFOIrggUES7t3OaEB/3LNJHAnhi5CqkJ9kPIXJ8pXqaD5XtPjuw536VeRvhk=
+	t=1760456007; cv=none; b=SB/UJkY1zPxu7uFv6aS6R6WGnikHSktQTnopWW3MP/5r5z6aLUj4+Rih61zghl7BcaWMkr4I+CDNIoVAXg4giLKu/PT7nJD2QCYBSc2qmfiU8lvbnup/DLV8lSsBXPgQqI6ZJyVO2J7q0k97ywLXfpNHteJcuiJKqkqKmq2L8SY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760455849; c=relaxed/simple;
-	bh=A5QbPcQmASszBH7eCjb9mxMsfoDfogo+3AvqiMDfHWM=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=o76qMDtqy3tyqVcRMkwnA1BjgxkrXSuan4HHcwmgJH6mVnugS7k3jMB2RYpEp71tH5NqqctyihQKhScrPpbR1YA7QY9kTtCo9U4JKbgeUkRHceaWGzcJ5KdDZY73iD3aOdzENr9dxKL8ObrWjgaFZeaMn6I54qbT9LGk63DlGXc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=stjGgtV3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E13D7C4CEE7;
-	Tue, 14 Oct 2025 15:30:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760455849;
-	bh=A5QbPcQmASszBH7eCjb9mxMsfoDfogo+3AvqiMDfHWM=;
-	h=From:To:Cc:Subject:Date:From;
-	b=stjGgtV3EjIkrR1FlccLeyqPCBFg4cyc3VKA/I+ut0W9JBSSCBl+wVazwABDI4NRI
-	 CWsaqjtYXgFdrUJysdicR5Zf5UU17ZYtbQXi8f6ZrFH2+/1mvJybGsCv0Fg52HxbuO
-	 nq+TVqVNGqG970NY9UCDReT7arMQfXo8Qu30GbpQ0GYMNxmnEVdtIZfUvcwWz7zO2t
-	 DnhwQGZTi1IPWd6Mi1RsFyIC7hKS7rRDcyc3zEorM2qVN0oN1L1mZ9kiW3baHxe02N
-	 dfWAlyyL0oS1je3ODd/gYQ3TeIAFOXWc0ZTqLgGkD4MnigIaoI8cPPC3hdYEk1I+x0
-	 /fVz1Kw0op2YQ==
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Andrew Lunn <andrew@lunn.ch>,
-	Gregory Clement <gregory.clement@bootlin.com>,
-	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+	s=arc-20240116; t=1760456007; c=relaxed/simple;
+	bh=bC1GV6kIreezKVVT4Oj9oFgXpMI9X56TUHGj+xw7qV0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=AQImYrYMlvdVi12l/UhfyAxndfIHuFsdXFaF2/nHx7golziA7Csr7qz020D5jzvDRjZZxiJAbf0bJrHDS5BlLduKV9B8qJXfn9RstgBiTL6lsUqhhUhhbnYo0WXT/9Z+V4M5rGVgIyBR4n06470Lyw1kMNkYXV7z0TyQhupFDnM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Cy7RYE11; arc=none smtp.client-ip=209.85.214.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-2698384978dso38600705ad.0
+        for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 08:33:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1760456004; x=1761060804; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=NOTwbs4p+L2U1fW4J3vWVmcZdnxexOHlXg5+8IeB40E=;
+        b=Cy7RYE11xqevbUkst+jpjJ+H+fH+gYdUvBUn5JA5wrNx3wzbIe7uEVC4pNUd4o4eEF
+         2KdKw03AzluaUcE64JHg20ZsOZhM3y7vS8dvqqX5TtF8n+UQ4YKQY7THbnOOVw+rFGXb
+         a5MoS3J3Ik/uiFJkzXW3C6kz+Cbpu5n6Mkz5xes4gHQ2gsPO80XIhfQGORpeuzrZBnlp
+         kgwLF3nbSY5sa23vvDk6GwBYDbkBtn64Iz2K8Tyq6dPgSzGP4vgBg6uVx+NIIQJZYI77
+         gAug+Kr5NtEaAWf57oEyX35uGbVLQ4q2q9Vid6A0hzpyw32p+r7L2gqHhgQe8pkT9Wv/
+         xsDw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1760456004; x=1761060804;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=NOTwbs4p+L2U1fW4J3vWVmcZdnxexOHlXg5+8IeB40E=;
+        b=iKIOjPpPG8Uj/kwJjHZ5KZrhrjCrGH3wyEBw8cKjC1on38fqhky/FVMBbdI7+wAbF4
+         SWCJxFr5etxajYtA3/132JAHZKXd0NKjusqDtAmXKDVbiP0Jj1+qlIgvyS2LyYtGk7V+
+         s68DJI6ceJAqAu+uvAsGave4HjdMed1QZr51ieSVMnMfOVWZO8WeqJqFPvZSNDqKfN+X
+         gUC2YbvpUOsDyPicWniROMSWSHah6L6vk8ZGS8Lg3CD2YXQ4NAY4H/TEULLbvxFf443D
+         5heZqOpxBX2hpjwpYhzQ++orIIW1AlL/lBCM+t3/7D4l3vlO49cFvmOMg5qxIOoRPzvH
+         /HeQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVp0tfBTnPl/Is7IM6cnNeBo3s+GKLQ7tEq3OxZKfX59sWYOHQQGoIVhMnWPw3gJ9Aosr469qwxX2bx@vger.kernel.org
+X-Gm-Message-State: AOJu0YzX/ET/F+pRT0imNEkrNrgNdDLNDF3WRwE2AshoazRUKGL34dZo
+	E2JYLITdiDKxG3XyWG/op3tBiptAgn6sqJpVGGSf9f17ST9BKQR6/TUz
+X-Gm-Gg: ASbGnctHQEPquHdf+ZyTe1YfuHKK5yt7Z2yvGgk9NyTmOCWNkXT4pvqa1gZcvT6mVtK
+	DDqViPCKF9q/y/5RnfbNZS3DwxEZF3E3GAWAbkwphlTDpYwhr0ZwMB98O5cghjI9+h+LMHIgPuq
+	fLAEgfnvlOHnQe1aCo0PCkzc3tT72wjq3a3XP3/n1/ON2BSjuNvyo6ziMA9UhT9LxDc1dAohpf8
+	UHkZs58T9M1EHQcNTIZMOZPwxiDJLGNAFX8oyvCpoTUSEVbUpYXFbkyEFiprAcDiHxCpI5Bqfmi
+	vU6/tyjTuNGFg8jjsvnU+C9ewm1D22agesybcX0C6fuSGrCI/UQiM/NamquSgwP1SWvgE5hxw4V
+	u6zjUJ8istAkDjbm80mV80LCUcSHuvVZUUuRDKypd+DYOC6MJQQJn8cl5psgVCJZRnzvVk5w6Gw
+	==
+X-Google-Smtp-Source: AGHT+IELj7XESXcNTKFyydH9ysU3D3yEIHHtBESIIuXVyNUNifJ3Hkcupco+7VjAtxuCHL7uYEOCqg==
+X-Received: by 2002:a17:902:ef09:b0:27f:1c1a:ee43 with SMTP id d9443c01a7336-290272c2564mr325594625ad.29.1760456004106;
+        Tue, 14 Oct 2025 08:33:24 -0700 (PDT)
+Received: from iku.. ([2401:4900:1c07:6d70:c338:e681:47e3:e797])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29034f36cb1sm166927545ad.100.2025.10.14.08.33.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 14 Oct 2025 08:33:23 -0700 (PDT)
+From: Prabhakar <prabhakar.csengg@gmail.com>
+X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Miquel Raynal <miquel.raynal@bootlin.com>
-Cc: linux-arm-kernel@lists.infradead.org,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-renesas-soc@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	linux-gpio@vger.kernel.org
-Subject: [PATCH] dt-bindings: arm: Convert Marvell AP80x System Controller to DT schema
-Date: Tue, 14 Oct 2025 10:30:38 -0500
-Message-ID: <20251014153040.3783896-1-robh@kernel.org>
-X-Mailer: git-send-email 2.51.0
+	Prabhakar <prabhakar.csengg@gmail.com>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH] arm64: dts: renesas: rzt2h-n2h-evk: Add VCC supply for EEPROM
+Date: Tue, 14 Oct 2025 16:33:14 +0100
+Message-ID: <20251014153314.177300-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,303 +98,33 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Convert the Marvell AP80x System Controller binding to DT schema format.
+From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-There's not any specific compatible for the whole block which is a
-separate problem, so just the child nodes are documented. Only the
-pinctrl and clock child nodes need to be converted as the GPIO node
-already has a schema.
+The R1EX24016 EEPROM on the RZ/T2H-N2H Evaluation Kit is powered from
+the 3.3V rail. Add the regulator phandle for the VCC supply to reflect
+this in the device tree and avoid the fallback to the dummy regulator:
 
-Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+    at24 0-0050: supply vcc not found, using dummy regulator
+
+Fixes: 0176c9e82e10 ("arm64: dts: renesas: rzt2h-n2h-evk-common: Enable EEPROM on I2C0")
+Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 ---
- .../arm/marvell/ap80x-system-controller.txt   | 146 ------------------
- .../bindings/clock/marvell,ap80x-clock.yaml   |  54 +++++++
- .../pinctrl/marvell,ap806-pinctrl.yaml        |  61 ++++++++
- 3 files changed, 115 insertions(+), 146 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/arm/marvell/ap80x-system-controller.txt
- create mode 100644 Documentation/devicetree/bindings/clock/marvell,ap80x-clock.yaml
- create mode 100644 Documentation/devicetree/bindings/pinctrl/marvell,ap806-pinctrl.yaml
+ arch/arm64/boot/dts/renesas/rzt2h-n2h-evk-common.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/arm/marvell/ap80x-system-controller.txt b/Documentation/devicetree/bindings/arm/marvell/ap80x-system-controller.txt
-deleted file mode 100644
-index 72de11bd2ef0..000000000000
---- a/Documentation/devicetree/bindings/arm/marvell/ap80x-system-controller.txt
-+++ /dev/null
-@@ -1,146 +0,0 @@
--Marvell Armada AP80x System Controller
--======================================
--
--The AP806/AP807 is one of the two core HW blocks of the Marvell Armada
--7K/8K/931x SoCs. It contains system controllers, which provide several
--registers giving access to numerous features: clocks, pin-muxing and
--many other SoC configuration items. This DT binding allows to describe
--these system controllers.
--
--For the top level node:
-- - compatible: must be: "syscon", "simple-mfd";
-- - reg: register area of the AP80x system controller
--
--SYSTEM CONTROLLER 0
--===================
--
--Clocks:
---------
--
--
--The Device Tree node representing the AP806/AP807 system controller
--provides a number of clocks:
--
-- - 0: reference clock of CPU cluster 0
-- - 1: reference clock of CPU cluster 1
-- - 2: fixed PLL at 1200 Mhz
-- - 3: MSS clock, derived from the fixed PLL
--
--Required properties:
--
-- - compatible: must be one of:
--   * "marvell,ap806-clock"
--   * "marvell,ap807-clock"
-- - #clock-cells: must be set to 1
--
--Pinctrl:
----------
--
--For common binding part and usage, refer to
--Documentation/devicetree/bindings/pinctrl/marvell,mvebu-pinctrl.txt.
--
--Required properties:
--- compatible must be "marvell,ap806-pinctrl",
--
--Available mpp pins/groups and functions:
--Note: brackets (x) are not part of the mpp name for marvell,function and given
--only for more detailed description in this document.
--
--name	pins	functions
--================================================================================
--mpp0	0	gpio, sdio(clk), spi0(clk)
--mpp1	1	gpio, sdio(cmd), spi0(miso)
--mpp2	2	gpio, sdio(d0), spi0(mosi)
--mpp3	3	gpio, sdio(d1), spi0(cs0n)
--mpp4	4	gpio, sdio(d2), i2c0(sda)
--mpp5	5	gpio, sdio(d3), i2c0(sdk)
--mpp6	6	gpio, sdio(ds)
--mpp7	7	gpio, sdio(d4), uart1(rxd)
--mpp8	8	gpio, sdio(d5), uart1(txd)
--mpp9	9	gpio, sdio(d6), spi0(cs1n)
--mpp10	10	gpio, sdio(d7)
--mpp11	11	gpio, uart0(txd)
--mpp12	12	gpio, sdio(pw_off), sdio(hw_rst)
--mpp13	13	gpio
--mpp14	14	gpio
--mpp15	15	gpio
--mpp16	16	gpio
--mpp17	17	gpio
--mpp18	18	gpio
--mpp19	19	gpio, uart0(rxd), sdio(pw_off)
--
--GPIO:
-------
--For common binding part and usage, refer to
--Documentation/devicetree/bindings/gpio/gpio-mvebu.yaml.
--
--Required properties:
--
--- compatible: "marvell,armada-8k-gpio"
--
--- offset: offset address inside the syscon block
--
--Optional properties:
--
--- marvell,pwm-offset: offset address of PWM duration control registers inside
--  the syscon block
--
--Example:
--ap_syscon: system-controller@6f4000 {
--	compatible = "syscon", "simple-mfd";
--	reg = <0x6f4000 0x1000>;
--
--	ap_clk: clock {
--		compatible = "marvell,ap806-clock";
--		#clock-cells = <1>;
--	};
--
--	ap_pinctrl: pinctrl {
--		compatible = "marvell,ap806-pinctrl";
--	};
--
--	ap_gpio: gpio {
--		compatible = "marvell,armada-8k-gpio";
--		offset = <0x1040>;
--		ngpios = <19>;
--		gpio-controller;
--		#gpio-cells = <2>;
--		gpio-ranges = <&ap_pinctrl 0 0 19>;
--		marvell,pwm-offset = <0x10c0>;
--		#pwm-cells = <2>;
--		clocks = <&ap_clk 3>;
--	};
--};
--
--SYSTEM CONTROLLER 1
--===================
--
--Cluster clocks:
-----------------
--
--Device Tree Clock bindings for cluster clock of Marvell
--AP806/AP807. Each cluster contain up to 2 CPUs running at the same
--frequency.
--
--Required properties:
-- - compatible: must be one of:
--   * "marvell,ap806-cpu-clock"
--   * "marvell,ap807-cpu-clock"
--- #clock-cells : should be set to 1.
--
--- clocks : shall be the input parent clock(s) phandle for the clock
--           (one per cluster)
--
--- reg: register range associated with the cluster clocks
--
--ap_syscon1: system-controller@6f8000 {
--	compatible = "marvell,armada-ap806-syscon1", "syscon", "simple-mfd";
--	reg = <0x6f8000 0x1000>;
--
--	cpu_clk: clock-cpu@278 {
--		compatible = "marvell,ap806-cpu-clock";
--		clocks = <&ap_clk 0>, <&ap_clk 1>;
--		#clock-cells = <1>;
--		reg = <0x278 0xa30>;
--	};
--};
-diff --git a/Documentation/devicetree/bindings/clock/marvell,ap80x-clock.yaml b/Documentation/devicetree/bindings/clock/marvell,ap80x-clock.yaml
-new file mode 100644
-index 000000000000..43b0631ba167
---- /dev/null
-+++ b/Documentation/devicetree/bindings/clock/marvell,ap80x-clock.yaml
-@@ -0,0 +1,54 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/clock/marvell,ap80x-clock.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Marvell Armada AP80x System Controller Clocks
-+
-+maintainers:
-+  - Gregory Clement <gregory.clement@bootlin.com>
-+  - Miquel Raynal <miquel.raynal@bootlin.com>
-+
-+description: >
-+  The AP806/AP807 is one of the two core HW blocks of the Marvell Armada
-+  7K/8K/931x SoCs. It contains system controllers, which provide several
-+  registers giving access to numerous features: clocks, pin-muxing and many
-+  other SoC configuration items.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - marvell,ap806-clock
-+      - marvell,ap806-cpu-clock
-+      - marvell,ap807-clock
-+      - marvell,ap807-cpu-clock
-+
-+  reg:
-+    maxItems: 1
-+
-+  "#clock-cells":
-+    const: 1
-+
-+  clocks:
-+    items:
-+      - description: cluster 0 parent clock phandle
-+      - description: cluster 1 parent clock phandle
-+
-+required:
-+  - compatible
-+  - "#clock-cells"
-+
-+additionalProperties: false
-+
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - marvell,ap806-cpu-clock
-+              - marvell,ap807-cpu-clock
-+    then:
-+      required:
-+        - clocks
-diff --git a/Documentation/devicetree/bindings/pinctrl/marvell,ap806-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/marvell,ap806-pinctrl.yaml
-new file mode 100644
-index 000000000000..00a7e358a8c9
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pinctrl/marvell,ap806-pinctrl.yaml
-@@ -0,0 +1,61 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/pinctrl/marvell,ap806-pinctrl.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Marvell AP806 pin controller
-+
-+maintainers:
-+  - Gregory Clement <gregory.clement@bootlin.com>
-+  - Miquel Raynal <miquel.raynal@bootlin.com>
-+
-+properties:
-+  compatible:
-+    const: marvell,ap806-pinctrl
-+
-+  reg:
-+    maxItems: 1
-+
-+patternProperties:
-+  '-pins$':
-+    type: object
-+    additionalProperties: false
-+
-+    properties:
-+      marvell,function:
-+        $ref: /schemas/types.yaml#/definitions/string
-+        description:
-+          Indicates the function to select.
-+        enum: [ gpio, i2c0, sdio, spi0, uart0, uart1 ]
-+
-+      marvell,pins:
-+        $ref: /schemas/types.yaml#/definitions/string-array
-+        description:
-+          Array of MPP pins to be used for the given function.
-+        minItems: 1
-+        maxItems: 20
-+        items:
-+          enum: [
-+            mpp0, mpp1, mpp2, mpp3, mpp4, mpp5, mpp6, mpp7, mpp8, mpp9, mpp10,
-+            mpp11, mpp12, mpp13, mpp14, mpp15, mpp16, mpp17, mpp18, mpp19
-+          ]
-+
-+allOf:
-+  - $ref: pinctrl.yaml#
-+
-+required:
-+  - compatible
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    pinctrl {
-+        compatible = "marvell,ap806-pinctrl";
-+
-+        uart0_pins: uart0-pins {
-+            marvell,pins = "mpp11", "mpp19";
-+            marvell,function = "uart0";
-+        };
-+    };
+diff --git a/arch/arm64/boot/dts/renesas/rzt2h-n2h-evk-common.dtsi b/arch/arm64/boot/dts/renesas/rzt2h-n2h-evk-common.dtsi
+index ceecf0c30072..a19b2e289aad 100644
+--- a/arch/arm64/boot/dts/renesas/rzt2h-n2h-evk-common.dtsi
++++ b/arch/arm64/boot/dts/renesas/rzt2h-n2h-evk-common.dtsi
+@@ -160,6 +160,7 @@ eeprom: eeprom@50 {
+ 		compatible = "renesas,r1ex24016", "atmel,24c16";
+ 		reg = <0x50>;
+ 		pagesize = <16>;
++		vcc-supply = <&reg_3p3v>;
+ 	};
+ };
+ 
 -- 
-2.51.0
+2.43.0
 
 
