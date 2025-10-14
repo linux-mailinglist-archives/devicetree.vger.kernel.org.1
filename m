@@ -1,173 +1,175 @@
-Return-Path: <devicetree+bounces-226355-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226356-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE6FEBD754D
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 06:55:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E0BCCBD75EC
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 07:13:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id EF7764F76FC
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 04:55:22 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 6EEC14E0F7C
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 05:13:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBB0E30DD38;
-	Tue, 14 Oct 2025 04:55:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A1F026E719;
+	Tue, 14 Oct 2025 05:13:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="PVaUtJPx"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MQgxxf/a"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com [209.85.210.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D31830DD27
-	for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 04:55:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14B541E9905
+	for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 05:13:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760417710; cv=none; b=POOC0CUVavz5DRZ98iKFWC9j7pfsmrH4PDM3uh2oletp78eEuJNN82C5P4KTFlRYA4L7djamExZKO3W7HomSm4v0Ii2bjh+TCO7mEPh+NG6hT0SDSjdMYk6eM7CIEvn6pc9Tb/Ys2YuD//9epH/jBn+BTC70+tcnOPIvw5sNWrI=
+	t=1760418796; cv=none; b=a8qHz06kQ1HJpaoYVALU/VysYziBxKqtbUdEOVxndV6kqL2MCIn7AhIwoYw4gXZzkYccyR2LCVYZ7YJJeUQIpx0L54mJCzPu2m6cDkLH6kSkmri0y/DdCarzD8PGYdg17vOwbIehTMcOQ88SNJ2Pm00Jk+TWVo7Pgs1i1P8LJTA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760417710; c=relaxed/simple;
-	bh=WUwD/+EOVA0PudMw8JrBaGqxsgVvBRhjfglghU0HMKk=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=MWy2lPV6YHj6pz7dwK1fznsH2ZFYBw3Yl9X5f1EQD4llrTImLk+e+MdLzXme/I61QQlQQ+yuvdXDt+7ZPc2jKwbzZ4ADCMNwVM2QN7CKFiCkGk1n+DarVEQ3uDuuQPkmU7e0yVbefyBKJyYgBSy7JnWxOrjLKfOyP1plzenIYLk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=PVaUtJPx; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59DHDF9b006416
-	for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 04:55:08 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=pdYxO6YX8ObCG67nQOGWJK
-	rMSPspmfPvmuJK/4LnsRI=; b=PVaUtJPxaExRN52z3K2yAmHWa8f8qbDiICyn5H
-	OHs+thoo5s6yxTXn3ZI1oUyPGqbaeIYQZmWDNvRG52JFJwQK/XgZZohAXdgQtuJs
-	EfCUy3TuJGEwjhFxzdAyjEejvuvhg0C/+oGM11D8yANSz16p6PEgmX1XGmo9rVT5
-	+zSN26e6C1GGW7ipMf165wergj0pD9LTegRvfSpToJj6gcIawzuFwa+5WKN9ZF+X
-	ZoCv83Q8yjWFAm4S31b7KLzoZNZtVDEoI1TW/0Ei0W/vl7W8GDoFkpowq8a/Yx6R
-	lRKb1tmwfOcwf5Qe2sfvZsZqrG4lLfzoaYsFYjBDOX0+SuvQ==
-Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49qfa87643-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 04:55:07 +0000 (GMT)
-Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-26e4fcc744dso56956205ad.3
-        for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 21:55:07 -0700 (PDT)
+	s=arc-20240116; t=1760418796; c=relaxed/simple;
+	bh=kkP81OwrDwwpNB554IClMEqQ/2h8j/7xBTxZHmkdRbs=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=qMYx1H+Ynx1nqgwMqAag7c7nKXo/fUcV//gcdabRNAafwDHfmpQctrzgpaEiBDoXLKqpTc2TuCbVkDzqmqh9iHDfWv7l6BFJwOUmS6H+PelfuJgBtzMoafEbGEfzNDu9jgdxSza7a97lTcZ9FWSs+tI8FuQj5hnL/FJn4e7Dgoc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MQgxxf/a; arc=none smtp.client-ip=209.85.210.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f178.google.com with SMTP id d2e1a72fcca58-781206cce18so5069024b3a.0
+        for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 22:13:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1760418791; x=1761023591; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=h5pJYct9yVXw0oCIW3UzRkZKmjOaGJ9oUwhyyYxVEys=;
+        b=MQgxxf/aCXF36ECgwXg/LASIg2TNTn9p4vrWJZWCJ3x5N1bGsw/tLddrBA3zBmcmO1
+         ubfNGyTJSu27IMglf6tpj8TgVcj4eueEHqX8y5PqpnAJMhC0hvYx61WbJ0baGYPRhFjg
+         qfki3PYkEuv1qgNzGQG39R27jFbK3TlOkdz79se5KExw3m7xZoo/ED4VVgGxMDT3MCtE
+         2277H79KIotgRL3+D4wddGKvkYevwPmDLaGhW6TXLooVbRgUK9kYtjh4d5kxu/4yOWUD
+         61Etm7Ng02RCAV8BHfKgkcq1AqCZXuYCDE6mII8gibxQ1xtJT/9MOKzUzO9QHEWP9TIQ
+         gPTA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760417706; x=1761022506;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1760418791; x=1761023591;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=pdYxO6YX8ObCG67nQOGWJKrMSPspmfPvmuJK/4LnsRI=;
-        b=F99oT8JzU7Wi09h4n0Q9tJsRCXlPjst+ccLMD+xSgZjA5mUTnezqih2yfIXeomTYBm
-         M1EEjtzSIk56ieFEIYLbb594MxsWff13EYYKGjYn51PqaGGgqHy2mzdgJXLNm/dCqG3K
-         lfEfjmmva+H7lYyVc2RfBgipFTeNq6AiDFCzZIkr9iMxlXHhvXimquccM/B6/EKbHmEu
-         sR4ScBpg2lUITCeMPhXEzCVWYMClZX5U6RcuvbVriMUCZtqkFca5CMJP2N1m5uW21UE5
-         ttURs6ZdGyI44/dD8vDdNNindoWSLEpXr5fbj90DGPBOoZmdz8tDpKaR2lZccIiK1AWf
-         BskA==
-X-Forwarded-Encrypted: i=1; AJvYcCUxEV0aIvzAd87TkhPTRZMDiHMithdbQOdejHbIP+9L0DW8H1LI/F2Y+qWg9YfHmQOhD+QEXdCGTxAZ@vger.kernel.org
-X-Gm-Message-State: AOJu0Yywr7Pxjqo7HFrp0Ih5Q86ouYWMBKj0qCnrp0aB7KSPrh+nYWF9
-	zNL1MIno4TrYXPNu+BVhc95qUx79825IumgODrT00CwaiQsaBrxAx/gwlP33VBv/DzOm4G+D46E
-	19Dz5J4m4WVt9wOZkNHvMmdRccLdlfTrh1ZkRszqTsTMaEf3DAKF0Ir/Mv3HdbkKy
-X-Gm-Gg: ASbGncsdeT7V14IljgZESPUXuxELY/KMixc/XYngqRi4N/z2stVxO0qhyzGm6mu3XOC
-	fsCej8eTRSsWbX0GCrJchhKcx0KJzKAskqVo/Z5ChGLooZFNJelOQPOPfM8/B2LOaktjghdv/KW
-	Bk8+wru3/vSXaSbJKDOSRPe3yAtpedXydZoyVKBh9SPInEtBmA1+nQQdAjZCYJhbdR29Bk50+zo
-	Gbz+pgpq3d7DXtlnlhLL51PPF9IJe/FYu6V6c0ly58xV2pphqK24wp+AD8mjIFmny+hsModnm0V
-	Px7tNGTFgU8aZH3XrO3Zz5zlj8K+kQHB6sza0LtlBmrm15d0CJ3A6KLHkJQMd9CB/feduvUSn5s
-	2+8vR1hH18anWKMWvRFO9i9ARNiR8Bc1Ik/WxcBqOX9FP109qsZt/aJe4GJ5jgXBMpyv1Gv9v3w
-	I=
-X-Received: by 2002:a17:903:90d:b0:286:74e3:3889 with SMTP id d9443c01a7336-290272f93damr297467995ad.55.1760417706394;
-        Mon, 13 Oct 2025 21:55:06 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFLnUO2n6BsedE7/JplPFRWWo2eaoT7e42RrdmkV7uobutfCESg29gEQ1ugpJHjGY2FHAz9nA==
-X-Received: by 2002:a17:903:90d:b0:286:74e3:3889 with SMTP id d9443c01a7336-290272f93damr297467655ad.55.1760417705944;
-        Mon, 13 Oct 2025 21:55:05 -0700 (PDT)
-Received: from hu-kathirav-blr.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com. [103.229.18.19])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29034de6e2asm151295105ad.23.2025.10.13.21.55.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Oct 2025 21:55:05 -0700 (PDT)
-From: Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>
-Date: Tue, 14 Oct 2025 10:25:01 +0530
-Subject: [PATCH] arm64: dts: qcom: ipq5424: correct the TF-A reserved
- memory to 512K
+        bh=h5pJYct9yVXw0oCIW3UzRkZKmjOaGJ9oUwhyyYxVEys=;
+        b=MxKdexVib4GM57DWQkt4d+3N26zxDDXZsGAnk93S6cTFBGeFIGlrV9zZvQfgJbVz44
+         E3zhVldlw6CdehcRx9a2OAkXyrjXdu1WBG/QeKzBtrtjtY4gCaCarABrpzD6GEW3Cro7
+         jUNxll4PSvpkZb9ZGuQQuKx1Q+6IDWYOt3pH77Kth4AmDeG/SvkQ/iszx/FNNSpv4zRr
+         +chw0NnJ0fQRxVU+greN8xoCEi7dQpGDbeYYtKPGwDptz8g+2xj959cdN4dzEt9mtqzR
+         jnND2f8nTaBG3QNmSsqNJl+Ng7wnLyzpCqYi8gefUwnyfBLXXVUq/IO20WpGjPkUDLum
+         HZpQ==
+X-Gm-Message-State: AOJu0YzxA/etBceD4eFvaSGyILRBOcPS3l06yxp1FjbCtpYq/vORo17q
+	qzIr8Z8VDROPuiOe/tK1321LPuxwMZYrTWwTn8HTMF6KjjjHe8Z/Sz5L
+X-Gm-Gg: ASbGncs+zwi8OrGx8wROt5NPDy4S614bJOJFx5SBYvIK3cVvW9f9NxAFWVN5/SsmnNt
+	tUzVT3EBDEiRySLW3+qST/cOOnOsz9yYW3X5P+xo1gVR6i7U9xi9BlJQ0RWY/1F6ejh7sFAiVcu
+	PeFT0doQMmaBY6+IlsfpNyxFPSaft4UxeRYeZVPt1bnuQO8iz4TgK7k6qQEsrHnJoONRZYMkZLf
+	aFJjLwUtc8rbDf9gG8xwuboOE7baIqFLZd+3Qr3cOqkyfAMIhJWvZZlO9269Piz+67Bfk2Xs2Fd
+	nVn4a4sU4qciXICmtF56LKGo4Oe3mevDUs0stZsN5S0p6LYB0hko8WPppiqKdo0+KVpb/+gD/dR
+	d44+X3L1T2lnlvae8/64Js5ceg96BIskuwKVbI5xFTslJzAJ/PxcDO/j7NhA9hNliVQ==
+X-Google-Smtp-Source: AGHT+IEFCzkkgshVwSNP2mRUNWEuhHD3ijpyLH4r7whNKouoX3vJnv6qHBbE3m/mtSLuTYRMhWSgqw==
+X-Received: by 2002:a05:6a20:72a5:b0:2af:65aa:4efa with SMTP id adf61e73a8af0-32d96db58d4mr34629174637.8.1760418791214;
+        Mon, 13 Oct 2025 22:13:11 -0700 (PDT)
+Received: from localhost.localdomain ([223.74.108.51])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b678ddce4b6sm10902353a12.13.2025.10.13.22.13.05
+        (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
+        Mon, 13 Oct 2025 22:13:10 -0700 (PDT)
+From: Liangbin Lian <jjm2473@gmail.com>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	heiko@sntech.de,
+	quentin.schulz@cherry.de,
+	kever.yang@rock-chips.com,
+	naoki@radxa.com,
+	honyuenkwun@gmail.com,
+	inindev@gmail.com,
+	ivan8215145640@gmail.com,
+	neil.armstrong@linaro.org,
+	mani@kernel.org,
+	dsimic@manjaro.org,
+	pbrobinson@gmail.com,
+	alchark@gmail.com,
+	didi.debian@cknow.org,
+	jjm2473@gmail.com,
+	jbx6244@gmail.com,
+	andrew@lunn.ch
+Cc: devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v6 0/3] arm64: dts: rockchip: introduce LinkEase EasePi R1
+Date: Tue, 14 Oct 2025 13:12:23 +0800
+Message-ID: <20251014051226.64255-1-jjm2473@gmail.com>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251014-tfa-reserved-mem-v1-1-48c82033c8a7@oss.qualcomm.com>
-X-B4-Tracking: v=1; b=H4sIAKTX7WgC/x3MQQqAIBBA0avIrBvQyYi6SrQonWoWWWhIEN09a
- fkX7z+QOAon6NUDkbMkOUIJUylw2xRWRvGlgTQ1RhuL1zJh5KIye9x5R6K5s7r2mlwLhZ2RF7n
- /5TC+7wdKC7B0YgAAAA==
-X-Change-ID: 20251014-tfa-reserved-mem-22b9403d02c7
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Vignesh Viswanathan <quic_viswanat@quicinc.com>
-Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1760417702; l=1137;
- i=kathiravan.thirumoorthy@oss.qualcomm.com; s=20230906;
- h=from:subject:message-id; bh=WUwD/+EOVA0PudMw8JrBaGqxsgVvBRhjfglghU0HMKk=;
- b=NZNE1gv4umCd6IBXb76jKwzZ0abJF2ZpzbQqzMwOS+gaI5qHUnenxr84pUQMfRUpS9140bUN9
- g8PY/e3g6czAw34aeeMc++RfYBZ7crxFpF3O68NYVy61HPR2jGQRyPr
-X-Developer-Key: i=kathiravan.thirumoorthy@oss.qualcomm.com; a=ed25519;
- pk=xWsR7pL6ch+vdZ9MoFGEaP61JUaRf0XaZYWztbQsIiM=
-X-Proofpoint-GUID: HK0A-TtjfmYq_GldiUpnyw2xAK0R-hLv
-X-Proofpoint-ORIG-GUID: HK0A-TtjfmYq_GldiUpnyw2xAK0R-hLv
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDExMDAxNyBTYWx0ZWRfXwQZ5oaEyrhs6
- llIEb9h6kxhmuZpIyZI1OwM/4glV/cH7LT1mMVWtcKgyOgqiBtp071x/skREZW5CW0ZVeecQXZZ
- A1yYdMhtp5jfE3pbasWs6oBNzgrt7rOgHaFDMCmlmoa27kaTCOa6M+oVSu+RMidOGDVXQTyEzAx
- pYlLeSlyWHhrNz9v0xUcc8NbgVK2ZdZBVWFu6JI9e/4vHOgcCtuu10HoxaGi/NLPRMcIp2Ns5MB
- T3FHTqEQuuc6x0IzrhUFaeyvbZ5wFRCPmj+LvmX1irDhWg4aLX4iiFv9vROMoJyq8vhGHqHFbT3
- LRaXnta73Pcg0kMfLvhqsFC9mvBpxyE4YvJolHz7BWNsSq5oJyNvKJN6D6QbLvke7cnRj4SFAKq
- zNnsuvinGwckNt8K68s8Lx1SHtBtnw==
-X-Authority-Analysis: v=2.4 cv=JLw2csKb c=1 sm=1 tr=0 ts=68edd7ab cx=c_pps
- a=cmESyDAEBpBGqyK7t0alAg==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
- a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=EUspDBNiAAAA:8 a=2F3ENMXdm_gDBiIvekQA:9 a=QEXdDO2ut3YA:10
- a=1OuFwYUASf3TG4hYMiVC:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-10-13_09,2025-10-13_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 phishscore=0 adultscore=0 bulkscore=0 priorityscore=1501
- impostorscore=0 suspectscore=0 malwarescore=0 spamscore=0 clxscore=1015
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2510020000 definitions=main-2510110017
+Content-Transfer-Encoding: 8bit
 
-Correct the reserved memory size for TF-A to 512K, as it was mistakenly
-marked as 500K. Update the reserved memory node accordingly.
+LinkEase EasePi R1 [1] is a high-performance mini router.
 
-Fixes: 8517204c982b ("arm64: dts: qcom: ipq5424: Add reserved memory for TF-A")
-Signed-off-by: Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>
+Specification:
+- Rockchip RK3568
+- 2GB/4GB LPDDR4 RAM
+- 16GB on-board eMMC
+- 1x M.2 key for 2280 NVMe (PCIe 3.0)
+- 1x USB 3.0 Type-A
+- 1x USB 2.0 Type-C (for USB flashing)
+- 2x 1000 Base-T (native, RTL8211F)
+- 2x 2500 Base-T (PCIe, RTL8125B)
+- 1x HDMI 2.0 Output
+- 12v DC Jack
+- 1x Power key connected to PMIC
+- 2x LEDs (one static power supplied, one GPIO controlled)
+
+[1] https://doc.linkease.com/zh/guide/easepi-r1/hardware.html
+
+Signed-off-by: Liangbin Lian <jjm2473@gmail.com>
 ---
-Bjorn, this needs to be pulled for 6.18-rc as well.
----
- arch/arm64/boot/dts/qcom/ipq5424.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/ipq5424.dtsi b/arch/arm64/boot/dts/qcom/ipq5424.dtsi
-index ef2b52f3597d9bf218ce7b73d8a65e6745bb26d5..227d5ce2975151c60f6c57cd11cbd16679ec2d0a 100644
---- a/arch/arm64/boot/dts/qcom/ipq5424.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq5424.dtsi
-@@ -213,7 +213,7 @@ smem@8a800000 {
- 		};
- 
- 		tfa@8a832000 {
--			reg = <0x0 0x8a832000 0x0 0x7d000>;
-+			reg = <0x0 0x8a832000 0x0 0x80000>;
- 			no-map;
- 			status = "disabled";
- 		};
+Changes in v2:
+- Change deprecated "rockchip,system-power-controller" to "system-power-controller"
+- Link to v1: https://lore.kernel.org/r/20250925055906.83375-1-jjm2473@gmail.com/
+
+Changes in v3:
+- Fix typo ('status = "disable"' -> 'status = "disabled"') found by kernel test robot https://lore.kernel.org/all/202509261328.Grjhp029-lkp@intel.com/
+- Link to v2: https://lore.kernel.org/r/20250925092037.13582-1-jjm2473@gmail.com/
+
+Changes in v4:
+- Fix missing "Acked-by" message in patch 1/3 and 2/3
+- Link to v3: https://lore.kernel.org/r/20250929065714.27741-1-jjm2473@gmail.com/
+
+Changes in v5:
+- Change gmac phy-mode to 'rgmii-id' and remove {tx|rx}_delay as suggested by Andrew Lunn <andrew@lunn.ch>
+- Fix comments ('not mounted' -> 'not populated') for unpopulated devices as suggested by Andrew Lunn <andrew@lunn.ch>
+- Link to v4: https://lore.kernel.org/r/20250930055017.67610-1-jjm2473@gmail.com/
+
+Changes in v6:
+- Fix missing 'vpcie3v3-supply' property for PCIe nodes found by Chukun Pan <amadeus@jmu.edu.cn>
+- Nodes and properties are sorted alphabetically as requested by Chukun Pan <amadeus@jmu.edu.cn>
+- Remove unpopulated devices (sdmmc0, sdmmc2) as suggested by Chukun Pan <amadeus@jmu.edu.cn> and Andrew Lunn <andrew@lunn.ch>
+- Remove 'combphy0' node which is unused
+- Remove 'clock_in_out' property in gmac nodes as suggested by Russell King (Oracle) <linux@armlinux.org.uk>
+- Remove deprecated 'label' property in gpio-leds node as requested by Chukun Pan <amadeus@jmu.edu.cn>
+- Link to v5: https://lore.kernel.org/r/20251009084416.45542-1-jjm2473@gmail.com/
 
 ---
-base-commit: 52ba76324a9d7c39830c850999210a36ef023cde
-change-id: 20251014-tfa-reserved-mem-22b9403d02c7
 
-Best regards,
+Liangbin Lian (3):
+  dt-bindings: vendor-prefixes: Document LinkEase
+  dt-bindings: arm: rockchip: Add LinkEase EasePi R1
+  arm64: dts: rockchip: add LinkEase EasePi R1
+
+ .../devicetree/bindings/arm/rockchip.yaml     |   5 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+ .../boot/dts/rockchip/rk3568-easepi-r1.dts    | 624 ++++++++++++++++++
+ 4 files changed, 632 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3568-easepi-r1.dts
+
+
+base-commit: 30d4efb2f5a515a60fe6b0ca85362cbebea21e2f
 -- 
-Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>
+2.51.0
 
 
