@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-226384-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226385-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0CA71BD8211
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 10:17:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D21F8BD822A
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 10:19:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D552B4F8202
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 08:17:34 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 101324F9153
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 08:19:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DCAD2DC790;
-	Tue, 14 Oct 2025 08:17:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37C7530F92A;
+	Tue, 14 Oct 2025 08:19:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dLdJKlx9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pT0lO+KV"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 375502DC777;
-	Tue, 14 Oct 2025 08:17:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED9B930F81D;
+	Tue, 14 Oct 2025 08:19:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760429851; cv=none; b=kLcUDh8kHIHYdnO0fdsjC834LQvVq/eqcVgN5PkkTeoBWZofzVkMMeNcfjRSZnHgV3Mhi6CQkb7bjgcJJXUTMxLnHBgUaGnPHrqOqlCUU+oBpvFkQ11Qcjzpve7IsxZJ5BdX7Vz5V2n5Hj3Xbve2c+H9UzIxlykB2pCdJM5yIfE=
+	t=1760429952; cv=none; b=aTBF8qucIk6qdo0+1sZhghf+sWZfEaHdaBuuDZsfgXdNjjSnoUEFzqe0UbMG1FOy9/f+eInoROOJDpkiHUe3OXktkcZRODf6fTbGQ6usyEPD5u86fjd2BeYI7+Lh0Ewy+19FaNbaNWhaUPJ3gCbdaxyyNd6FijzgAc/0Mejx0Gk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760429851; c=relaxed/simple;
-	bh=kYSJbdpApVHKl5lbFF9uXk0Y7li8c3YVSGSITvk5GXY=;
+	s=arc-20240116; t=1760429952; c=relaxed/simple;
+	bh=ZrB24db1zOJCMRMbowUUI3RqQgi8OeEP8pKOKUWPygc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RpLSP79byih8ZgHw6qIWMt7yEhUYfpEsKuBSbYeHRToJ041cD2UlmyTBmQukg/kHUar2DeVM6u0g+bi4okAVfyLrfJSGJh5vmCrR0Z4ZYwvLqIa5injZ+RD7tpMibkmAS5BYDLEF0MlpUjKoYmnFyviApUqnkgYxb9s8X9IM344=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dLdJKlx9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A69E9C4CEE7;
-	Tue, 14 Oct 2025 08:17:27 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=pkCb/Ju0IT5ICUfa/jiGS+1krdn0YCvAE4cyhFvQSg5/7WkP1k1Hy1/8DjTsiu7FMkdCLv1ze8Vch/C0t1v8ft86NpgucE+TnFFJ97dYhJ/XUUjJW6Vpl6Bblkkt68RRj19O5yttLx4hk/ub8VTot6n/e6f5SliHAhHjb+HSyVk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pT0lO+KV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 63C84C4CEF9;
+	Tue, 14 Oct 2025 08:19:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760429850;
-	bh=kYSJbdpApVHKl5lbFF9uXk0Y7li8c3YVSGSITvk5GXY=;
+	s=k20201202; t=1760429951;
+	bh=ZrB24db1zOJCMRMbowUUI3RqQgi8OeEP8pKOKUWPygc=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=dLdJKlx9o8qtsGAryUv1KGIfVMFdFAhIQYXCsrspMHLJXaSaboZ11+8WqCXIIfuPx
-	 vktvrGaZ+Yjzk+2EnGJ0ZvuQQBLHvdoUG6TpuGKey5oi66QXP1zZSL+MChtiyhwSY9
-	 qERtw/7ysvmvvpG7vQAyA7BptHGRj8zGnEPGAMHO9qHQOcfC2TWSoaZC3DXNhnUJrQ
-	 GIxCGQTriOq0wDmS8RbaXlrE7vHPap9octFA/xD6di4BJwqZm2T1TsBecDETZQSoOc
-	 c2KKWAZF48YSwFyvRtxekN1wOWDX8VeKDo03LToaKGiSqmgiFvUqScMgHDt4kvNfnu
-	 RR2p8E4FEZkTw==
-Message-ID: <3b220b8b-06b4-4738-8818-6fb4b85e89a8@kernel.org>
-Date: Tue, 14 Oct 2025 10:17:25 +0200
+	b=pT0lO+KVK1/+QwgtMgImp8vu72Nby9B5YnrbkCGEJqpPV9bv98aZsaHQdHoMEo8Ql
+	 MRqnfgf4XuaU1EaLaNEUFOZN16uOrkQ5bnl/Dl5IJJVHXWwx/Lecwe5otRVIGQdvol
+	 5dgb3dH8Unzt1BYvuFloZQrkQXlBSKSClztz8xJTpci/MOZen/CSjkILmghf7m6YVa
+	 KzXV9KtKslNWfOUPPadtgSw5ll44wCQPmjAe5mHDrAEM1Zpe41s8pV3sBBfTEYohEf
+	 rJ3B5pWGExs8K+6gDdvqTgHY5nUO8BYsjHEOiQiiQrokhx0hGwRfYJPNC9zqclRkRc
+	 iS65sivVhdKLA==
+Message-ID: <c44a56bd-955a-4e4a-af3c-7ba754659f69@kernel.org>
+Date: Tue, 14 Oct 2025 10:19:05 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,15 +50,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/3] regulator: max77675: Add MAX77675 regulator driver
-To: Joan-Na-adi <joan.na.devcode@gmail.com>,
- Liam Girdwood <lgirdwood@gmail.com>
-Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH v2 1/4] dt-bindings: leds: Add YAML bindings for Virtual
+ Color LED Group driver
+To: Jonathan Brophy <professor_jonny@hotmail.com>,
+ Jonathan Brophy <professorjonny98@gmail.com>, lee Jones <lee@kernel.org>,
+ Pavel Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, Joan Na <joan.na@analog.com>
-References: <20251014053142.15835-1-joan.na@analog.com>
- <20251014053142.15835-3-joan.na@analog.com>
+ <conor+dt@kernel.org>, Radoslav Tsvetkov <rtsvetkov@gradotech.eu>
+Cc: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-leds@vger.kernel.org" <linux-leds@vger.kernel.org>
+References: <20251013120955.227572-1-professorjonny98@gmail.com>
+ <20251013120955.227572-2-professorjonny98@gmail.com>
+ <8c3796eb-63d0-4650-b296-60894461a806@kernel.org>
+ <DS0PR84MB374636FF53989F5D94D821D49FEBA@DS0PR84MB3746.NAMPRD84.PROD.OUTLOOK.COM>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -104,87 +109,92 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20251014053142.15835-3-joan.na@analog.com>
+In-Reply-To: <DS0PR84MB374636FF53989F5D94D821D49FEBA@DS0PR84MB3746.NAMPRD84.PROD.OUTLOOK.COM>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 14/10/2025 07:31, Joan-Na-adi wrote:
-> From: Joan Na <joan.na@analog.com>
+On 14/10/2025 05:08, Jonathan Brophy wrote:
+>> Few minor things follow up, but considering missing reasoning I did not perform full review.
+>>
+>> A nit, subject: drop second/last, redundant "YAML bindings for". The "dt-bindings" prefix is already stating that these are bindings.
+>> See also:
+>> https://elixir.bootlin.com/linux/v6.17-rc3/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
+>>
+>> ... and driver. Again - explain the hardware. Bindings are not for driver.
 > 
-> This patch adds support for the Maxim Integrated MAX77675 PMIC regulator.
+> I'm kind a little bit confused what you mean by this statement.
+> 
+> I'm guessing I should omit hardware info in the class yaml and move it to a group yaml like the multicolor ones as below?
 
 
-Please do not use "This commit/patch/change", but imperative mood. See
-longer explanation here:
-https://elixir.bootlin.com/linux/v6.16/source/Documentation/process/submitting-patches.rst#L94
+I speak about the subject.
 
-...
+> If so that is just a mistake on my part not knowing the file structure well.
+> 
+> https://www.kernel.org/doc/Documentation/devicetree/bindings/leds/leds-class-multicolor.yaml
+> https://elixir.bootlin.com/linux/v6.17.1/source/Documentation/devicetree/bindings/leds/leds-group-multicolor.yaml
+> 
+>>>
+>>> +description: |
+>>> +  Bindings to show how to achieve logically grouped virtual LEDs.
+>>> +  The nodes and properties defined in this document are unique to the
+>>> +  virtualcolor LED class.
+>>
+>> That's completely redundant statement.
+> 
+> Ok fair enough, but I basically cloned this comment from the leds-group-multicolor as they have something simular.
+> 
+>>> +  Common LED nodes and properties are inherited from the common.yaml  
+>>> + within this documentation directory
+>>
+>> As well drop. Your description is pretty obvious and does not help at all.
+> 
+> Ok thanks
+> 
+>>> +    properties:
+>>> +      reg:
+>>> +        maxItems: 1
+>>> +        description: Virtual LED number
+>>> +
+>>> +      leds:
+>>> +        $ref: /schemas/types.yaml#/definitions/phandle-array
+>>> +        description: List of phandles to the monochromatic LEDs to 
+>>> + group
+>>> +
+>>> +      function:
+>>> +        description: |
+>>> +          For virtualcolor LEDs this property should be defined as
+>>> +          LED_FUNCTION_VIRTUAL_STATUS as outlined in:
+>>> +          include/dt-bindings/leds/common.h.
+>>> +
+>>> +      priority:
+>>> +        $ref: /schemas/types.yaml#/definitions/uint32
+>>> +        description: Priority level for LED activation
+>>> +          (higher value means higher priority)
+>>> +
+>>> +      blink-delay-on:
+>>> +        $ref: /schemas/types.yaml#/definitions/uint32
+>>> +        description: Time in milliseconds the LED is on during blink
+>>> +
+>>> +      blink-delay-off:
+>>> +        $ref: /schemas/types.yaml#/definitions/uint32
+>>> +        description: Time in milliseconds the LED is off during blink
+>>> +        note: Setting just one of the blink delays to a valid value while
+>>> +          setting the other to null will cause the LED to operate with a one-shot
+>>> +          on or off delay instead of a repeat cycle.
+>>
+>>
+>> And drop all above, except reg and leds. If these are new properties, then you need to use proper unit suffixes.
+>>
+>> https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/property-units.yaml
+> 
+> Thanks for pointing this out I guessed there was a definition's somewhere,
 
-> +	config.dev = &client->dev;
-> +	config.regmap = maxreg->regmap;
-> +	config.driver_data = maxreg;
-> +
-> +	regulators_np = of_get_child_by_name(client->dev.of_node, "regulators");
+
+You reference common LED bindings, so no need to duplicate properties
+from there.
 
 
-Where do you drop this reference?
-
-
-> +	if (!regulators_np) {
-> +		dev_err(maxreg->dev, "No 'regulators' subnode found in DT\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	for (i = 0; i < MAX77675_ID_NUM_MAX; i++) {
-> +		const struct regulator_desc *desc = &max77675_regulators[i];
-> +		struct regulator_dev *rdev;
-> +		struct device_node *child_np;
-> +
-> +		child_np = of_get_child_by_name(regulators_np, desc->name);
-> +		if (!child_np) {
-> +			dev_warn(maxreg->dev, "No DT node for regulator %s\n", desc->name);
-> +			continue;
-> +		}
-> +
-> +		config.of_node = child_np;
-> +
-> +		rdev = devm_regulator_register(&client->dev, desc, &config);
-
-
-Can't you drop child_np reference here?
-
-> +		if (IS_ERR(rdev)) {
-> +			ret = PTR_ERR(rdev);
-> +			dev_err(maxreg->dev,
-> +				"Failed to register regulator %d (%s): %d\n",
-> +				i, desc->name, ret);
-> +			of_node_put(child_np);
-> +			return ret;
-
-
-return dev_err_probe
-
-> +		}
-> +		of_node_put(child_np);
-> +	}
-> +
-> +	i2c_set_clientdata(client, maxreg);
-> +
-> +	return 0;
-> +}
-> +
-> +static void max77675_regulator_remove(struct i2c_client *client)
-> +{
-> +	/* Nothing to clean up currently */
-
-
-So drop it, do not add dead code.
-
-> +}
-> +
-> +static const struct i2c_device_id max77675_i2c_id[] = {
-> +	{ "max77675", 0 },
-> +	{ }
 Best regards,
 Krzysztof
 
