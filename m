@@ -1,189 +1,153 @@
-Return-Path: <devicetree+bounces-226784-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226785-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6E1ABDB806
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 23:57:24 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 73B74BDB82D
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 23:58:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 93735354755
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 21:57:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CEF3A18A28F2
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 21:59:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E58FE2E9EAD;
-	Tue, 14 Oct 2025 21:57:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E703A2E8B69;
+	Tue, 14 Oct 2025 21:58:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AcSnHc7Y"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="pBEikIK+";
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="snsRmcIz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B569E1A83F9;
-	Tue, 14 Oct 2025 21:57:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2C402E54B0;
+	Tue, 14 Oct 2025 21:58:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.161
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760479040; cv=none; b=IuxUMtnyOXf68r1zsMMJz7MZwP2nCGu8FOEOulbgNsP0sDBfeIitx7msfSvItAlfv24MoJ15+P2RxkeT6XUiCLPV2f16TPcXJmcDXgkJeDJREjw1j6hRtAZVRktF9EiAGsuuRS6vXvfBD/EurVQsdROI1d95Z4VzKzXhEWVWru8=
+	t=1760479105; cv=none; b=A7U/PtP1tqSd7z/2FN2ia3lWAIa2ovpPyPCxkcIH/bElZ2H61b2CEjvyokJcD2J24v322kCJ1JBIkbqhlhRi+cyvhpJK/gK/tkPuS3JRKksQeT5x+WSw4AAcd7OsbM+EvUZPl3Muu47f0W+XoR05gBibQGSLbttHrmOiNbH+D6A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760479040; c=relaxed/simple;
-	bh=v/qGyRBZSbCkLwbyD4B4HL5F+00L8KSG4+V9sExxzPI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=iFoA+eoC0TRj6TUxVyfivXS+r6s7NQHTjxl6bOdn/EM77QhEM2QlB74TbWKPj6VlFztMC2GnD7dOO1+8wbcmNyr0qQH7+VkxMJv8vaKM34d8WEZK2nKVYCeAdGdQMpTu09HasxtJkZUDQdK+gV4sSBMp2UpK7UCqQLuw7MLUK5k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AcSnHc7Y; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 228E3C4CEE7;
-	Tue, 14 Oct 2025 21:57:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760479040;
-	bh=v/qGyRBZSbCkLwbyD4B4HL5F+00L8KSG4+V9sExxzPI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=AcSnHc7YiPSLw+8L56cuExZ0Jto79hkkNYuB/MQzsD3ctNbIOjUcW0+arThVxMtrA
-	 V+A/ZMU701qF5Om3cr+Se476zUbWxI4kq9s8x2pugGNRI94VQUZd+4a9CfuwxLevE8
-	 XVWwbV9QE1e7i8bN/XbOX/OEbayzFu+OvpK1RglkHtSmppom70l22ajWCzBHid6vEL
-	 +zO+4UOC+nwSlPTrZMl+8w0ysl0g47YSAVYkQJfWZ+4dOUvJhGmjbecKtGGxW1acSO
-	 0hRC/vgpEwvRIvK17IThGtf1wNuoKOccLw2xz0vCzw3sbUcLj+/rM+gfwstP6p4Ylq
-	 1Rgxr7apKEqsQ==
-Message-ID: <861b6ede-f168-44e6-85bd-10cf04dbcec7@kernel.org>
-Date: Tue, 14 Oct 2025 23:57:12 +0200
+	s=arc-20240116; t=1760479105; c=relaxed/simple;
+	bh=s9jDvYtUk//D8IEKe9vGCZodv2kIq9aHsDcZJQ3nbUk=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Kg3q2oUiO0oVpg+1kCnG2++iI8YS90JuHmLvvv5E2OrF6w1z/k93lx/tzIgl7KT0FSicRdy+8OZcnxatifRPJx64tB3wiOvuyFsxafWNT0oyHT1UNdHpCcBI3g/ACBOfAe4ObQvPT3IHSoMdxMyKEq+1pE1F6xzvtj/hctjR/f0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=pBEikIK+; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=snsRmcIz; arc=none smtp.client-ip=80.241.56.161
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp102.mailbox.org (smtp102.mailbox.org [IPv6:2001:67c:2050:b231:465::102])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4cmSlL1cmMz9tBF;
+	Tue, 14 Oct 2025 23:58:22 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1760479102;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=ECD6YD/9cVcme/PryDiEd6/cZXsWx2lAl+ZUZ5W8UlA=;
+	b=pBEikIK+wtwvSAqqpRB732i7/omGwXf3d8SQ7CVldrydsdHvoqgWetmcCdNvHntoC/qvxC
+	HZVzvzeMhylPrn5x7LYs4TaBXBOpZdDD3tU0j1AbgJLzhYV+7eiDFSbdu/1dD1VlgyFwrX
+	JYOvJtCqEr1AJ5PVpYcXMlK6TotJU45tGTbYa9sQRXDEBxLCh43IrwLHMlJKu+eICECpny
+	jBJAuULpendajw2tvPrMn1CjCywAU26dnA4aI4xOsnFb9z9EAa+ijWG5NlkQQ2M1KnVChJ
+	st/Qx6XMVAffMDLjg/o7Rc3FC2ROrtJ0DJY7+ZO2RGbkaqvpLHVmfQ9JV/y9ww==
+Authentication-Results: outgoing_mbo_mout;
+	dkim=pass header.d=mailbox.org header.s=mail20150812 header.b=snsRmcIz;
+	spf=pass (outgoing_mbo_mout: domain of marek.vasut@mailbox.org designates 2001:67c:2050:b231:465::102 as permitted sender) smtp.mailfrom=marek.vasut@mailbox.org
+From: Marek Vasut <marek.vasut@mailbox.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1760479100;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=ECD6YD/9cVcme/PryDiEd6/cZXsWx2lAl+ZUZ5W8UlA=;
+	b=snsRmcIzhz2zONjehPba451aEJcwqxKk4vdTuE8eRF93uf8/e8n10U24xledVckHrAkY9V
+	2g7L/Bwax9Mw7U8o6HCRoujAIZgDr103EavOTseOJsorQywzQPja580Y25jD5dKlCezjmy
+	RnE6AJM588ZmGtqv34Ndt2JQblXhNHz/SxmRVMNEV+nHMzKNEO1k40bMNc1SlOcPFDzl0H
+	oY1qoc1csonb6QOtku1oiK3njoTIjbvaygxFWHwxU2Oop3MfZpGXBQIrBAfqRWi2Qgv6ZQ
+	HFEJ56WiiXw8VDJooazjnuEmcyqP04L/OqXkxUiqnGUE2oeIuknggKVdwHFzdw==
+To: dri-devel@lists.freedesktop.org
+Cc: Marek Vasut <marek.vasut@mailbox.org>,
+	Frank Li <Frank.Li@nxp.com>,
+	Abel Vesa <abelvesa@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Fabio Estevam <festevam@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Liu Ying <victor.liu@nxp.com>,
+	Lucas Stach <l.stach@pengutronix.de>,
+	Peng Fan <peng.fan@nxp.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-clk@vger.kernel.org
+Subject: [PATCH v2] dt-bindings: interrupt-controller: fsl,irqsteer: Add i.MX95 support
+Date: Tue, 14 Oct 2025 23:57:15 +0200
+Message-ID: <20251014215801.51331-1-marek.vasut@mailbox.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/6] dt-bindings: remoteproc: qcom,pas: Document pas for
- Kaanapali SoCCP
-To: Jingyi Wang <jingyi.wang@oss.qualcomm.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Manivannan Sadhasivam <mani@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- aiqun.yu@oss.qualcomm.com, tingwei.zhang@oss.qualcomm.com,
- trilok.soni@oss.qualcomm.com, yijie.yang@oss.qualcomm.com
-References: <20250924-knp-remoteproc-v1-0-611bf7be8329@oss.qualcomm.com>
- <20250924-knp-remoteproc-v1-4-611bf7be8329@oss.qualcomm.com>
- <a8796335-bec3-4c1f-afea-b5b7909d8ba3@kernel.org>
- <e9813a47-c40b-475a-8faf-de0811c9066e@oss.qualcomm.com>
- <40af8d13-1bee-49f7-946e-043b920d83fe@kernel.org>
- <0f0969e8-8668-411e-8ddb-a124703c9584@oss.qualcomm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <0f0969e8-8668-411e-8ddb-a124703c9584@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-MBO-RS-META: wjwkupjez7okptt7rcxc4om87i55xhh8
+X-MBO-RS-ID: 96a075b7f644b75232d
+X-Rspamd-Queue-Id: 4cmSlL1cmMz9tBF
 
-On 14/10/2025 07:30, Jingyi Wang wrote:
-> 
-> 
-> On 10/14/2025 12:47 PM, Krzysztof Kozlowski wrote:
->> On 14/10/2025 06:28, Jingyi Wang wrote:
->>>
->>>
->>> On 10/9/2025 6:27 PM, Krzysztof Kozlowski wrote:
->>>> On 25/09/2025 08:37, Jingyi Wang wrote:
->>>>> +
->>>>> +  glink-edge:
->>>>> +    $ref: /schemas/remoteproc/qcom,glink-edge.yaml#
->>>>> +    unevaluatedProperties: false
->>>>> +    description: |
->>>>
->>>> Drop |
->>>>
->>>>
->>>
->>> Will fix
->>>
->>>>> +      Qualcomm G-Link subnode which represents communication edge, channels
->>>>> +      and devices related to the Remoteproc.
->>>>> +
->>>>> +required:
->>>>> +  - compatible
->>>>> +  - reg
->>>>> +  - memory-region
->>>>> +  - clocks
->>>>> +  - clock-names
->>>>> +  - interrupts
->>>>> +  - interrupt-names
->>>>> +  - qcom,smem-states
->>>>> +  - qcom,smem-state-names
->>>>> +
->>>>> +unevaluatedProperties: false
->>>>
->>>> That's wrong in this context. But if you add missing (and corrected
->>>> pas-common) then it would make sense.
->>>>
->>>
->>> Sorry I didn't get this point, could you make it more clear?
->>>
->>> The property for Kaanapali SoCCP doesn't follow qcom,pas-common.yaml
->>> (the interrupts are different) so it was not included here, like
->>> "qcom,qcs404-cdsp-pil.yaml"
->>
->>
->> It should follow. We want the common properties to be common. You cannot
->> have new binding not using common properties, because you duplicate
->> property definition.
->>
->>>
->>> So I think just adding the missing "power-domains","power-domain-names"
->>> under "required" will be okay?
->>
->>
->> You need to adjust pas-common.yaml, all other bindings and this binding
->> so there is a common part.
->>
-> 
-> Do you mean remove the interrupts property from the pas-common.yaml then
-> define it in separate bindings?
+Add compatible string "fsl,imx95-irqsteer" for the i.MX95 chip, which is
+backward compatible with "fsl,imx-irqsteer".
 
-They should rather stay in pas-common and be extended to oneOf for two
-versions - old and Kaanapali one.
+Reviewed-by: Frank Li <Frank.Li@nxp.com>
+Signed-off-by: Marek Vasut <marek.vasut@mailbox.org>
+---
+Cc: Abel Vesa <abelvesa@kernel.org>
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: Fabio Estevam <festevam@gmail.com>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
+Cc: Liu Ying <victor.liu@nxp.com>
+Cc: Lucas Stach <l.stach@pengutronix.de>
+Cc: Peng Fan <peng.fan@nxp.com>
+Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
+Cc: Rob Herring <robh@kernel.org>
+Cc: Shawn Guo <shawnguo@kernel.org>
+Cc: Thomas Gleixner <tglx@linutronix.de>
+Cc: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: devicetree@vger.kernel.org
+Cc: dri-devel@lists.freedesktop.org
+Cc: imx@lists.linux.dev
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-clk@vger.kernel.org
+---
+V2: Add RB from Frank
+---
+ .../devicetree/bindings/interrupt-controller/fsl,irqsteer.yaml  | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Best regards,
-Krzysztof
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/fsl,irqsteer.yaml b/Documentation/devicetree/bindings/interrupt-controller/fsl,irqsteer.yaml
+index c49688be10581..5c768c1e159c1 100644
+--- a/Documentation/devicetree/bindings/interrupt-controller/fsl,irqsteer.yaml
++++ b/Documentation/devicetree/bindings/interrupt-controller/fsl,irqsteer.yaml
+@@ -20,6 +20,7 @@ properties:
+               - fsl,imx8qm-irqsteer
+               - fsl,imx8qxp-irqsteer
+               - fsl,imx94-irqsteer
++              - fsl,imx95-irqsteer
+           - const: fsl,imx-irqsteer
+ 
+   reg:
+@@ -87,6 +88,7 @@ allOf:
+               - fsl,imx8mp-irqsteer
+               - fsl,imx8qm-irqsteer
+               - fsl,imx8qxp-irqsteer
++              - fsl,imx95-irqsteer
+     then:
+       required:
+         - power-domains
+-- 
+2.51.0
+
 
