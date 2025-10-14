@@ -1,137 +1,133 @@
-Return-Path: <devicetree+bounces-226552-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226556-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67AEEBD9ABE
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 15:21:56 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 539DBBD9A4C
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 15:18:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B2AE4188E862
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 13:17:19 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 130904E9400
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 13:18:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9330A315D47;
-	Tue, 14 Oct 2025 13:10:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DAFD3164D8;
+	Tue, 14 Oct 2025 13:11:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="g9+NifUw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Y7a2RlIw"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4147E315D45;
-	Tue, 14 Oct 2025 13:10:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7B903101DC;
+	Tue, 14 Oct 2025 13:11:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760447444; cv=none; b=jxVSKkd6U6fM+7W9J/i8v3xa37YaaYxa0eDb2pB4Vdz0wyC7MmAKWfx1UtkD6+J4kfaLLusIgrzWRPELST9JZjTE86H3YIl1umKifrvzmYvREv0pKNtsQBXeijFVZVsojz+bTmT9ABkftwoLux0iSyTHjx409olThNmSmyixny8=
+	t=1760447513; cv=none; b=A6PXVS0dLffa0Cck55fg78ayodnA7/Cs/1gPwkdFnOtcQOuKmIM36CWj8gm4pU5bpdvRv4S5BJNJK13C6v4DgUlTzdCQXK9uzz2ch/ODlWOqQ3m6Q3hywiIfildSJ+iPVZIe13m6kMV32mjctCF7zKaxMAhvOYHEF/i61kRc29E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760447444; c=relaxed/simple;
-	bh=1z29qiTz6h5jyAO8g68bo34GcYPLqTUSe9I3ydJUTw8=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=ZZeLDS5Q/1ITttVT6k7/wzoBeMFTa2v83OhwUsPaUmvFUoGcxmj7YQJkjO/32245HWxVnn7Bn0AthYCIjyWBn3pVFIYBkCFMgwkP9KFkpC3tGh1Qtht4v294JD1xDIa6iTmItHgMUk2RttBVEKdtskFTlEwwnpyK8X+NCewsLPM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=g9+NifUw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8533FC4CEE7;
-	Tue, 14 Oct 2025 13:10:38 +0000 (UTC)
+	s=arc-20240116; t=1760447513; c=relaxed/simple;
+	bh=WWge5QE7ccS0BE12tLmkqcCYs9UtsCrKVaewIgo/7yU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fw2+fBNiagUl9p8Ij/5sTN1iR8h+8aoJLj9+dZ2VM0ygy90ymUUVigcQqfsI0hxil3Z8swGCB02aB9aY7hy3tTaxiEgRBeumX17JvDhkNp6km15a/pYJt4Dv2IbMBlFvngL4tq4/7eW6tttSRD+RAlNCobmeZzb3qByvd6mJS2M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Y7a2RlIw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 967D6C4CEE7;
+	Tue, 14 Oct 2025 13:11:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760447443;
-	bh=1z29qiTz6h5jyAO8g68bo34GcYPLqTUSe9I3ydJUTw8=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
-	b=g9+NifUwXszKwI+i9b+BADg9CHX9pjgCw2mu/yxA+73glB/SfRpvhpeMLwX+7zeg9
-	 cpZyrZdbl6zsMX+Wo90KkdV6hDFv+HpHH+GKnixUqPtsiiuipRTYlBSA+RFLrU6AdF
-	 z8MA7ZC0dDyvXrecjZhU8nlLLfZCLEsyyqROyne29Obt+UqzwZBF2jT+f8QUD3imN0
-	 gQ5aZfRz1OgEk0IJVCMTbI4VrsIEPNPKNZutUFVMj6TdGeXxePJsX5/R68ibLC+6iv
-	 jZYvfqrXGK5MchNQMt25O838FaWOmrFURP+ZyNfLcRWE1zF4CmsEn6AFbRAtwXlHBn
-	 SOQ76mXQJoW1Q==
-From: Pratyush Yadav <pratyush@kernel.org>
-To: Breno Leitao <leitao@debian.org>
-Cc: Pratyush Yadav <pratyush@kernel.org>,  Changyuan Lyu
- <changyuanl@google.com>,  rppt@kernel.org,  akpm@linux-foundation.org,
-  linux-kernel@vger.kernel.org,  anthony.yznaga@oracle.com,  arnd@arndb.de,
-  ashish.kalra@amd.com,  benh@kernel.crashing.org,  bp@alien8.de,
-  catalin.marinas@arm.com,  corbet@lwn.net,  dave.hansen@linux.intel.com,
-  devicetree@vger.kernel.org,  dwmw2@infradead.org,  ebiederm@xmission.com,
-  graf@amazon.com,  hpa@zytor.com,  jgowans@amazon.com,
-  kexec@lists.infradead.org,  krzk@kernel.org,
-  linux-arm-kernel@lists.infradead.org,  linux-doc@vger.kernel.org,
-  linux-mm@kvack.org,  luto@kernel.org,  mark.rutland@arm.com,
-  mingo@redhat.com,  pasha.tatashin@soleen.com,  pbonzini@redhat.com,
-  peterz@infradead.org,  robh@kernel.org,  rostedt@goodmis.org,
-  saravanak@google.com,  skinsburskii@linux.microsoft.com,
-  tglx@linutronix.de,  thomas.lendacky@amd.com,  will@kernel.org,
-  x86@kernel.org
-Subject: Re: [PATCH v8 01/17] memblock: add MEMBLOCK_RSRV_KERN flag
-In-Reply-To: <2ege2jfbevtunhxsnutbzde7cqwgu5qbj4bbuw2umw7ke7ogcn@5wtskk4exzsi>
-	(Breno Leitao's message of "Tue, 14 Oct 2025 01:34:07 -0700")
-References: <20250509074635.3187114-1-changyuanl@google.com>
-	<20250509074635.3187114-2-changyuanl@google.com>
-	<ef6wfr72set5wa5el3wbbu4yd5tnc4p2rhtjpb5kpmncv3xs5d@i3c5v3ciioi3>
-	<mafs0wm4yluej.fsf@kernel.org> <mafs0h5w2lpqu.fsf@kernel.org>
-	<2ege2jfbevtunhxsnutbzde7cqwgu5qbj4bbuw2umw7ke7ogcn@5wtskk4exzsi>
-Date: Tue, 14 Oct 2025 15:10:37 +0200
-Message-ID: <mafs0cy6pljci.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13)
+	s=k20201202; t=1760447512;
+	bh=WWge5QE7ccS0BE12tLmkqcCYs9UtsCrKVaewIgo/7yU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Y7a2RlIwG+uclBVyxfFoAmq5L+WVQ+T93yE4x0y2sc96TgfibGQFYktXTqIQNO+Om
+	 NIqTIzEFo8yLWL8/qmogLEvEkSKqV//zWpZWFAetDL8ZaNC/RLp6Xbgl+TwaEKEivJ
+	 DOqaujPGMQaxHhFJzve603WuvJpmJLb7Wr48gxqckfUtzLVo2BZzPNUip9djagijrU
+	 rq93rWYCDmSjZybOQkuoiJDXvbk5ZrwnjQmFjz0Jeo7wg36uODDRqBV11GtCTgVAX/
+	 Vr7im8kqP3oEn1Tyh61/7Xxk4n3uAww/C8ddyfmjvGeBDGiFNxjwfOgyYv+AbL2vv6
+	 R0a2kNX5/3rvg==
+Date: Tue, 14 Oct 2025 14:11:47 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Joan-Na-adi <joan.na.devcode@gmail.com>,
+	Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, Joan Na <joan.na@analog.com>
+Subject: Re: [PATCH v3 3/3] dt-bindings: regulator: Add MAX77675 regulator
+ binding
+Message-ID: <08b4c0a0-cc59-4640-94ff-2d243c558a67@sirena.org.uk>
+References: <20251014053142.15835-1-joan.na@analog.com>
+ <20251014053142.15835-4-joan.na@analog.com>
+ <512ffe3d-5ab3-4e87-afd2-46f0005a8d17@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="LaFKth9VJQMz7YfU"
+Content-Disposition: inline
+In-Reply-To: <512ffe3d-5ab3-4e87-afd2-46f0005a8d17@kernel.org>
+X-Cookie: Go 'way!  You're bothering me!
 
-On Tue, Oct 14 2025, Breno Leitao wrote:
 
-> Hello Pratyush,
->
-> On Mon, Oct 13, 2025 at 06:40:09PM +0200, Pratyush Yadav wrote:
->> On Mon, Oct 13 2025, Pratyush Yadav wrote:
->> >
->> > I suppose this would be useful. I think enabling memblock debug prints
->> > would also be helpful (using the "memblock=debug" commandline parameter)
->> > if it doesn't impact your production environment too much.
->> 
->> Actually, I think "memblock=debug" is going to be the more useful thing
->> since it would also show what function allocated the overlapping range
->> and the flags it was allocated with.
->> 
->> On my qemu VM with KVM, this results in around 70 prints from memblock.
->> So it adds a bit of extra prints but nothing that should be too
->> disrupting I think. Plus, only at boot so the worst thing you get is
->> slightly slower boot times.
->
-> Unfortunately this issue is happening on production systems, and I don't
-> have an easy way to reproduce it _yet_.
->
-> At the same time, "memblock=debug" has two problems:
->
->  1) It slows the boot time as you suggested. Boot time at large
->     environments is SUPER critical and time sensitive. It is a bit
->     weird, but it is common for machines in production to kexec
->     _thousands_ of times, and kexecing is considered downtime.
+--LaFKth9VJQMz7YfU
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-I don't know if it would make a real enough difference on boot times,
-only that it should theoretically affect it, mainly if you are using
-serial for dmesg logs. Anyway, that's your production environment so you
-know best.
+On Tue, Oct 14, 2025 at 10:14:15AM +0200, Krzysztof Kozlowski wrote:
+> On 14/10/2025 07:31, Joan-Na-adi wrote:
 
->
->     This would be useful if I find some hosts getting this issue, and
->     then I can easily enable the extra information to collect what
->     I need, but, this didn't pan out because the hosts I got
->     `memblock=debug` didn't collaborate.
->
->  2) "memblock=debug" is verbose for all cases, which also not necessary
->     the desired behaviour. I am more interested in only being verbose
->     when there is a known problem.
->
-> That said, my suggestion is to only dump extra information when something goes
-> wrong, not affecting the boot time neither boot verbosity.
->
+> > +  maxim,en-mode:
+> > +    description: |
+> > +      Enable mode configuration.
+> > +      "push-button"  - Push button
+> > +      "slide-switch" - Slide switch
+> > +      "logic" - Logic mode
 
-With your proposed change, we only know what the overlapping area is,
-but not who allocated it. I don't see how that can be done when the
-error is detected. memblock debug lets us know that, which is why I
-suggested it.
+> You just repeat the name in the description. Say something useful.
 
--- 
-Regards,
-Pratyush Yadav
+Do you have concrete suggestions there?  I can see dropping the
+descriptions entirely but otherwise I'm not sure there's much to
+usefully add.
+
+> > +  maxim,latency-mode:
+> > +    description: |
+> > +      Latency mode for voltage transition:
+> > +      "high" - High latency (100=CE=BCs)
+> > +      "low"  - Low latency (10=CE=BCs)
+
+> So use values 100 or 10, and proper type (-us)
+
+Without knowing the device specifics at all I rather suspect those
+numbers are more ballparks than specifics.
+
+> > +  maxim,dvs-slew-rate-mv-per-us:
+
+> ... like here.
+
+> > +    description: |
+> > +      Dynamic rising slew rate for output voltage transitions, in mV/=
+=CE=BCs.
+
+> Except you said mv/us, not us. Confusing.
+
+That's what I'd expect for a slew rate?  It's the speed with which the
+device ramps between voltages during voltage transitions, mV/us is a
+perfectly normal unit for that.
+
+--LaFKth9VJQMz7YfU
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmjuTBIACgkQJNaLcl1U
+h9BeEQf/c+ATautvWAPuyL53Im3Y2OM+ZsLDKKeM5EwuL1lGWkvTcHXgoyTOxFPi
+EXq8a1AZAND96Ac1+ENo2SQRQ+Vd38ra2fcLLDXdFdxZ7leyIc4APSsq/uvCRdGH
+HWmbKFpqtNDpyrtb7tQtrnBaSPDYKWSosuVIEv9GlTlziIb5/uTos5hUjsPKiTDb
+3ElwO6MBUrAeGRMMtFONT+uqGeCA8Dods3y8LJdcL3JTMTitJrgEL9q/xDf5VyyQ
+eT879ZMRLO8QF0L0BCPDYn/DLy9ZUlwk9DvJIQN6crKth6M16lz/djmqyrtRud68
+3njZFR5Gq9ohrYW679cCo9CgTzKJBQ==
+=qJK/
+-----END PGP SIGNATURE-----
+
+--LaFKth9VJQMz7YfU--
 
