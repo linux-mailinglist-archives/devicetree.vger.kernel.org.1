@@ -1,274 +1,124 @@
-Return-Path: <devicetree+bounces-226724-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226725-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8958BDABE5
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 19:12:24 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B896EBDAC85
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 19:31:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3385218A7FD6
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 17:12:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A54D93B158E
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 17:31:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DB79305053;
-	Tue, 14 Oct 2025 17:12:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B81CB305942;
+	Tue, 14 Oct 2025 17:30:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kJ0SEbtr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="l/SUphFl"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D7863002C8;
-	Tue, 14 Oct 2025 17:12:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81171304BDA;
+	Tue, 14 Oct 2025 17:30:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760461939; cv=none; b=TBm+qAjZNTvVtcPNuTjElRPeAJcw9bQ5KKfeRbeb9bBJYdW/mxwjJl3I/VqK1pq3m+nzWHvl/QAecrkyrRHOfWWQadJnQcJN4FkgRIid3XSLljkvXP7H57eZ/CiLjBBWK/dxfbOLm28Zbqlb0FA2cqwtQtatdzN31oyuGCgcU2w=
+	t=1760463003; cv=none; b=OgQD2Nm/lgHlhFXBgq1tSeplC2srcWANX6OBxjO7FGB6xgt6bsp5VHcNLbtXZB5wZ/KR180nL3NCJzUJCbWtGVXHPkjt1AVuJz/YfvOOGsgFNMwTWeHbT6SfEdiPruKA91gjSQx+OJ9R8VtqZESuC1vnI39Gxteck2tlMpp4pRA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760461939; c=relaxed/simple;
-	bh=gUQLj+zrhbIXqImMpcwbt9bYrEb+FWMkhQNFTbc7ep0=;
-	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=npqjZoaIGuRowxyEDqNznBbW41rDCSEA0wSDN0th5vTV4ZqCnmKQZYpfeQiJvXVex9YbVE54QOGmmWTEbkTW82NMlXeuz7RBFW54e9oY0/LimI2w7JLhzWJKCsT0evJivgneQ0/ru0T1raCPtniiOWHlTKPE/4LjjB/7BMNTzKA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kJ0SEbtr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0F517C4CEE7;
-	Tue, 14 Oct 2025 17:12:19 +0000 (UTC)
+	s=arc-20240116; t=1760463003; c=relaxed/simple;
+	bh=lxTHNrNEn65TcFb9Mt4czv1JDx4DrJ9v0Fa+yCS4Krg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Tjs5t/fDaTCxlHwprQ2T//dVaciujQx81lS+A4FXGQzjMS25LXLByMz35SUHtrg22h6NfefdOBpkbSJsECvUdELtoGm01yZmMQAeTlLm0GOGI8nyUmY9n5IUnu7JkO5eX+oN0YjVchcH2P0qLqR/gQk9jhJGLE0FlJiAjgl0V3Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=l/SUphFl; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1876DC4CEE7;
+	Tue, 14 Oct 2025 17:30:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760461939;
-	bh=gUQLj+zrhbIXqImMpcwbt9bYrEb+FWMkhQNFTbc7ep0=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=kJ0SEbtrirjPrgwEKqk+LXVr9DF5kZmPFkeMtMt8UIPY+AeK5G4QzrZkd7hdHbhXN
-	 Hr83y0BeFfrjyUpA8q3LZXnDigrPHd9IkWyEkeLF4ipOEuwSORfVhjlLYk1M0xGYxR
-	 Rs0shzhHXJV9GmfyGyCogRSZRG570XMbb53SkzKW6QlZl+bXlXma4JvFtNI4eQ2819
-	 OHGDJnkXeVmeSPFIeTuFp0NSJGlCY61WYGRDUiSoKwPH85ax9S5yzo1ENb9QJqrVIQ
-	 SfjOiyiHdMh1yRcRG+czeOMwRYenW0e+4TbeZjdU64OAvGq/30Ze7m/eGEt59GHDUf
-	 Dm/LvYsiEDneQ==
-Received: from 82-132-238-238.dab.02.net ([82.132.238.238] helo=lobster-girl.misterjones.org)
-	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <maz@kernel.org>)
-	id 1v8iZM-0000000Dwp9-2kHH;
-	Tue, 14 Oct 2025 17:12:17 +0000
-Date: Tue, 14 Oct 2025 18:12:11 +0100
-Message-ID: <87ecr5xv9w.wl-maz@kernel.org>
-From: Marc Zyngier <maz@kernel.org>
-To: Lorenzo Pieralisi <lpieralisi@kernel.org>
-Cc: linux-kernel@vger.kernel.org,	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,	linux-pci@vger.kernel.org,	Sascha Bischoff
- <sascha.bischoff@arm.com>,	Thomas Gleixner <tglx@linutronix.de>,	Rob
- Herring <robh@kernel.org>,	Frank Li <Frank.Li@nxp.com>,	Scott Branden
- <sbranden@broadcom.com>,	Bjorn Helgaas <bhelgaas@google.com>,	Ray Jui
- <rjui@broadcom.com>,	Manivannan Sadhasivam <mani@kernel.org>,	Krzysztof
- =?UTF-8?B?V2lsY3p5xYRza2k=?= <kwilczynski@kernel.org>
-Subject: Re: [PATCH v2 4/4] irqchip/gic-its: Rework platform MSI deviceID detection
-In-Reply-To: <20251014095845.1310624-5-lpieralisi@kernel.org>
-References: <20251014095845.1310624-1-lpieralisi@kernel.org>
-	<20251014095845.1310624-5-lpieralisi@kernel.org>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/30.1
- (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+	s=k20201202; t=1760463003;
+	bh=lxTHNrNEn65TcFb9Mt4czv1JDx4DrJ9v0Fa+yCS4Krg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=l/SUphFl5Wg/gx5N5k+Obv7h+O3tC3/feJaFfUrS4jrkuhteB2GIcThVkLlcZ4Aue
+	 G99j3CpL4KpPxy0vri260ZUyjnSKrbuU/ujB7Vl4KRcDd3hsvSdGpVDyFJim5Mf+6q
+	 s9V+ESXHn1MP3vpEJCRpsJq+rE+tWJ70zK2fF30GlH6husKzPWy2knQOHdswMTahTd
+	 mRnE6L1A6jps9qrBa9Rn4zHqJh9xMIjAs+OQw6GA9n+UX0O1ZgrPad3PWX950QI9G6
+	 p7rhutp8TOI63Eip8w0f6lBYVe1B78ddP1TBsRN6WWPHW6zSpVnxJZINBagTcuPqqk
+	 jv/hKlRi6qx2g==
+Date: Tue, 14 Oct 2025 18:29:58 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Marek Vasut <marek.vasut@mailbox.org>
+Cc: linux-clk@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Rob Herring <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: clk: si522xx: Clock driver for Skyworks
+ Si522xx I2C PCIe clock generators
+Message-ID: <20251014-sixfold-backslid-2f4158e35011@spud>
+References: <20251011223846.261652-1-marek.vasut@mailbox.org>
+ <20251013-finally-stopped-7f5ebac801b3@spud>
+ <de68a605-8b42-4dba-bd59-4708a5bcf542@mailbox.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 82.132.238.238
-X-SA-Exim-Rcpt-To: lpieralisi@kernel.org, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, linux-pci@vger.kernel.org, sascha.bischoff@arm.com, tglx@linutronix.de, robh@kernel.org, Frank.Li@nxp.com, sbranden@broadcom.com, bhelgaas@google.com, rjui@broadcom.com, mani@kernel.org, kwilczynski@kernel.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="Bj3uk/bTyhAiE5NY"
+Content-Disposition: inline
+In-Reply-To: <de68a605-8b42-4dba-bd59-4708a5bcf542@mailbox.org>
 
-On Tue, 14 Oct 2025 10:58:45 +0100,
-Lorenzo Pieralisi <lpieralisi@kernel.org> wrote:
-> 
-> Current code retrieving platform devices MSI devID in the GIC ITS MSI
-> parent helpers suffers from some minor issues:
-> 
-> - It leaks a struct device_node reference
-> - It triggers an excessive WARN_ON on wrong of_phandle_args count detection
 
-Well, if your DT is that rotten, maybe you actually deserve some
-console spamming, don't you think?
+--Bj3uk/bTyhAiE5NY
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> - It is duplicated between GICv3 and GICv5 for no good reason
-> - It does not use the OF phandle iterator code that simplifies
->   the msi-parent property parsing
-> 
-> Implement a helper function that addresses the full set of issues in one go
-> by consolidating GIC v3 and v5 code and converting the msi-parent parsing
-> loop to the more modern OF phandle iterator API, fixing the
-> struct device_node reference leak in the process.
-> 
-> Signed-off-by: Lorenzo Pieralisi <lpieralisi@kernel.org>
-> Cc: Sascha Bischoff <sascha.bischoff@arm.com>
-> Cc: Thomas Gleixner <tglx@linutronix.de>
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: Frank Li <Frank.Li@nxp.com>
-> Cc: Marc Zyngier <maz@kernel.org>
-> ---
->  drivers/irqchip/irq-gic-its-msi-parent.c | 98 ++++++++----------------
->  1 file changed, 33 insertions(+), 65 deletions(-)
-> 
-> diff --git a/drivers/irqchip/irq-gic-its-msi-parent.c b/drivers/irqchip/irq-gic-its-msi-parent.c
-> index eb1473f1448a..a65f762b7dd4 100644
-> --- a/drivers/irqchip/irq-gic-its-msi-parent.c
-> +++ b/drivers/irqchip/irq-gic-its-msi-parent.c
-> @@ -142,83 +142,51 @@ static int its_v5_pci_msi_prepare(struct irq_domain *domain, struct device *dev,
->  #define its_v5_pci_msi_prepare	NULL
->  #endif /* !CONFIG_PCI_MSI */
->  
-> -static int of_pmsi_get_dev_id(struct irq_domain *domain, struct device *dev,
-> -				  u32 *dev_id)
-> +static int __of_pmsi_get_dev_id(struct irq_domain *domain, struct device *dev, u32 *dev_id,
-> +				phys_addr_t *pa, bool is_v5)
->  {
-> -	int ret, index = 0;
-> +	struct of_phandle_iterator it;
-> +	uint32_t args;
+On Tue, Oct 14, 2025 at 12:56:29PM +0200, Marek Vasut wrote:
+> On 10/13/25 10:00 PM, Conor Dooley wrote:
+>=20
+> Hello Conor,
+>=20
+> > > diff --git a/Documentation/devicetree/bindings/clock/skyworks,si522xx=
+=2Eyaml b/Documentation/devicetree/bindings/clock/skyworks,si522xx.yaml
+> > > new file mode 100644
+> > > index 0000000000000..6ad26543f9d21
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/clock/skyworks,si522xx.yaml
+> >=20
+> > Can you just pick one of the compatibles here?
+>=20
+> I reused the existing pattern from previous binding document.
+>=20
+> Documentation/devicetree/bindings/clock/skyworks,si521xx.yaml
+>=20
+> I can use the 52202 for this binding document if that is preferable ?
 
-Use u32, this is not userspace-visible (the OF code will cope). And
-move it to where it matters instead of having such a wide scope.
+yeah, I'd rather that, thanks.
 
-> +	int ret;
->  
->  	/* Suck the DeviceID out of the msi-parent property */
-> -	do {
-> -		struct of_phandle_args args;
-> +	of_for_each_phandle(&it, ret, dev->of_node, "msi-parent", "#msi-cells", -1) {
-> +		/* GICv5 ITS domain matches the MSI controller node parent */
-> +		struct device_node *np __free(device_node) = is_v5 ? of_get_parent(it.node)
-> +							     : of_node_get(it.node);
->  
-> -		ret = of_parse_phandle_with_args(dev->of_node,
-> -						 "msi-parent", "#msi-cells",
-> -						 index, &args);
-> -		if (args.np == irq_domain_get_of_node(domain)) {
-> -			if (WARN_ON(args.args_count != 1))
-> -				return -EINVAL;
-> -			*dev_id = args.args[0];
-> -			break;
-> +		if (np == irq_domain_get_of_node(domain)) {
-> +			if (of_phandle_iterator_args(&it, &args, 1) != 1) {
-> +				dev_warn(dev, "Bogus msi-parent property\n");
-> +				ret = -EINVAL;
-> +			}
-> +
-> +			if (!ret && is_v5)
-> +				ret = its_translate_frame_address(it.node, pa);
+>=20
+> ...
+>=20
+> > > +patternProperties:
+> > > +  "^DIFF[0-11]$":
+> > > +    type: object
+> > > +    description:
+> > > +      Description of one of the outputs (DIFF0..DIF11).
+> >=20
+> > typo, DIFF11.
+> > Does this regex actually work? I don't think it allows anything other
+> > than DIFF0 and DIFF1, since it evaluates 0-1 as a range and 1 as another
+> > range.
+> Fixed both, also fixed rs9 bindings and patch posted.
 
-Why do you need this is_v5 hack, since the only case were you pass a
-pointer to get the translate register address is for v5?
+--Bj3uk/bTyhAiE5NY
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> +
-> +			if (!ret)
-> +				*dev_id = args;
-> +
-> +			of_node_put(it.node);
-> +			return ret;
->  		}
-> -		index++;
-> -	} while (!ret);
-> -
-> -	if (ret) {
-> -		struct device_node *np = NULL;
-> -
-> -		ret = of_map_id(dev->of_node, dev->id, "msi-map", "msi-map-mask", &np, dev_id);
-> -		if (np)
-> -			of_node_put(np);
->  	}
->  
-> -	return ret;
-> +	struct device_node *msi_ctrl __free(device_node) = NULL;
-> +
-> +	return of_map_id(dev->of_node, dev->id, "msi-map", "msi-map-mask", &msi_ctrl, dev_id);
-> +}
-> +
-> +static int of_pmsi_get_dev_id(struct irq_domain *domain, struct device *dev,
-> +			      u32 *dev_id)
-> +{
-> +	return __of_pmsi_get_dev_id(domain, dev, dev_id, NULL, false);
->  }
+-----BEGIN PGP SIGNATURE-----
 
-At this stage, we really don't need these on-liners, as they only
-obfuscate the logic. Just use the main helper directly. Something like
-the hack below.
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaO6IlgAKCRB4tDGHoIJi
+0rM2AQCOXXBQrTp3nRW9SfSppsqxuctCkfpuiNofG/c85xgiIwD9FkGhCIJtoYg+
+VMZhnY43W0SJvmkehrQRRhBFb117wAc=
+=DBm2
+-----END PGP SIGNATURE-----
 
-	M.
-
-diff --git a/drivers/irqchip/irq-gic-its-msi-parent.c b/drivers/irqchip/irq-gic-its-msi-parent.c
-index a65f762b7dd4d..7c82fd152655e 100644
---- a/drivers/irqchip/irq-gic-its-msi-parent.c
-+++ b/drivers/irqchip/irq-gic-its-msi-parent.c
-@@ -142,26 +142,27 @@ static int its_v5_pci_msi_prepare(struct irq_domain *domain, struct device *dev,
- #define its_v5_pci_msi_prepare	NULL
- #endif /* !CONFIG_PCI_MSI */
- 
--static int __of_pmsi_get_dev_id(struct irq_domain *domain, struct device *dev, u32 *dev_id,
--				phys_addr_t *pa, bool is_v5)
-+static int of_pmsi_get_msi_info(struct irq_domain *domain, struct device *dev, u32 *dev_id,
-+				phys_addr_t *pa)
- {
- 	struct of_phandle_iterator it;
--	uint32_t args;
- 	int ret;
- 
- 	/* Suck the DeviceID out of the msi-parent property */
- 	of_for_each_phandle(&it, ret, dev->of_node, "msi-parent", "#msi-cells", -1) {
- 		/* GICv5 ITS domain matches the MSI controller node parent */
--		struct device_node *np __free(device_node) = is_v5 ? of_get_parent(it.node)
-+		struct device_node *np __free(device_node) = pa ? of_get_parent(it.node)
- 							     : of_node_get(it.node);
- 
- 		if (np == irq_domain_get_of_node(domain)) {
-+			u32 args;
-+
- 			if (of_phandle_iterator_args(&it, &args, 1) != 1) {
- 				dev_warn(dev, "Bogus msi-parent property\n");
- 				ret = -EINVAL;
- 			}
- 
--			if (!ret && is_v5)
-+			if (!ret && pa)
- 				ret = its_translate_frame_address(it.node, pa);
- 
- 			if (!ret)
-@@ -177,18 +178,6 @@ static int __of_pmsi_get_dev_id(struct irq_domain *domain, struct device *dev, u
- 	return of_map_id(dev->of_node, dev->id, "msi-map", "msi-map-mask", &msi_ctrl, dev_id);
- }
- 
--static int of_pmsi_get_dev_id(struct irq_domain *domain, struct device *dev,
--			      u32 *dev_id)
--{
--	return __of_pmsi_get_dev_id(domain, dev, dev_id, NULL, false);
--}
--
--static int of_v5_pmsi_get_msi_info(struct irq_domain *domain, struct device *dev,
--				   u32 *dev_id, phys_addr_t *pa)
--{
--	return __of_pmsi_get_dev_id(domain, dev, dev_id, pa, true);
--}
--
- int __weak iort_pmsi_get_dev_id(struct device *dev, u32 *dev_id)
- {
- 	return -1;
-@@ -202,7 +191,7 @@ static int its_pmsi_prepare(struct irq_domain *domain, struct device *dev,
- 	int ret;
- 
- 	if (dev->of_node)
--		ret = of_pmsi_get_dev_id(domain->parent, dev, &dev_id);
-+		ret = of_pmsi_get_msi_info(domain->parent, dev, &dev_id, NULL);
- 	else
- 		ret = iort_pmsi_get_dev_id(dev, &dev_id);
- 	if (ret)
-@@ -230,7 +219,7 @@ static int its_v5_pmsi_prepare(struct irq_domain *domain, struct device *dev,
- 	if (!dev->of_node)
- 		return -ENODEV;
- 
--	ret = of_v5_pmsi_get_msi_info(domain->parent, dev, &dev_id, &pa);
-+	ret = of_pmsi_get_msi_info(domain->parent, dev, &dev_id, &pa);
- 	if (ret)
- 		return ret;
- 
-
--- 
-Jazz isn't dead. It just smells funny.
+--Bj3uk/bTyhAiE5NY--
 
