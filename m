@@ -1,59 +1,63 @@
-Return-Path: <devicetree+bounces-226730-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226731-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4F4DBDADF3
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 19:58:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CFA04BDAE19
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 20:02:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 30B9E19A4CB1
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 17:59:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3B0BD19A495E
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 18:03:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 486D93054E1;
-	Tue, 14 Oct 2025 17:58:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6777027F01E;
+	Tue, 14 Oct 2025 18:02:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bu/eZlsz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sWMSoGUB"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C488273804;
-	Tue, 14 Oct 2025 17:58:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 356C37083C;
+	Tue, 14 Oct 2025 18:02:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760464734; cv=none; b=SD587kYrE7rwtxgfwtggI6yYJ7U0UX1tk33LHpjC/Jg2Puf3406bLtV+WTChA9wbrjeFEQueCfj6/WYuRuGAqIoZJsmQgM0YrcgSlR8JJW4BZ7Pzplu//U37fMbUsUMn06+hJeVgokDicSqSPWkVHPwpqmOlO8gN8fOFxZ2QeoY=
+	t=1760464975; cv=none; b=aUvDGj7vymn+CgdsJFpZim/KTCSl2QSMgkupAe5TFYg8HqPuoIl4XWYTDp4io2C5N0ylk5n8+VfWBup0eqZnHa//6qyORO5PGSEIgPIrbGEBs8JwcG77umXZR0LEKtFdgLjhr4MPrpEicNSV8mkHOGNtsN3QEmhv08YudnrIPIc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760464734; c=relaxed/simple;
-	bh=XDE6Yxeh5XTmulB/+mdNcqgIXS4uoK/1f8lE5Ir5Ezg=;
+	s=arc-20240116; t=1760464975; c=relaxed/simple;
+	bh=3aJGCCas08m3S7gHD19HqzqscSuOVpUV8AM+dynP93Q=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=s94aD5k/8lc4sdzw+6NamAPv0Wuz0lz+vakkrKrLE3D9IAq3/EIEVugdw3lvpnX3rocb/TInW1t1ZkUzHTEJts5RUMsTNiYH+EAyj4gbT8MuDf/vfnASLSF9jidbQAo7V/LQLzgxAlutPGz6fSyADNDE9nlHWYO1xI3T8TbVhbA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bu/eZlsz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B0128C4CEE7;
-	Tue, 14 Oct 2025 17:58:51 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=UHwVCBh4M9OE3n2dZSXHg4TWao60JAmFM0DxIKN5rUooVhmii/x8eUSB6kIT2hY+lSzf1OK8IK1JG3p5AoEWHLsOvxV25P3y83t4HfRWpE+5v2KX9CsXOzU2uQn6ZUQY7O9CNl79IXuPtm9MOvh4fKGl+8X/t8PP5Nt6j0I3Wl8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sWMSoGUB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 22D7FC4CEE7;
+	Tue, 14 Oct 2025 18:02:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760464733;
-	bh=XDE6Yxeh5XTmulB/+mdNcqgIXS4uoK/1f8lE5Ir5Ezg=;
+	s=k20201202; t=1760464974;
+	bh=3aJGCCas08m3S7gHD19HqzqscSuOVpUV8AM+dynP93Q=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=bu/eZlsz44HxEbI47lj8muJJ1DeQ5g63sPU/8wR/cfumSftjo+mx1WWB7eCjqTgxm
-	 mj2N1DKHcHqc9qcyJM+Mme3ktfwcJLpWKUH4l8ExKtww8bTqPCLqgnTqnFZf82fs3C
-	 asYvnH6Q/I+Cn6GCWxIDT4B7nijvusMAZ7Mm21vCTz8n6c8KAPw1BYFvf1x6W2I/+d
-	 sMGLcrwHMvbNwdKCDHhl7Wl6U39+xof8+9+4vuTPnf6gNjtzPyrt+8BTOeYvA80/e3
-	 7HxvHGN1n5aaPHGiwOmDZ4gJWs0n5Y4+NpVa82qK1vqUhAG5ZvkA8tZdDr3xDqqWgV
-	 ywhKGFc5I6vkw==
-Date: Tue, 14 Oct 2025 18:58:49 +0100
+	b=sWMSoGUB1e/WSomPhcYiyYvbLWHEpOmsOHF0giBDglwt5DfNkSpTu2Zh/fghnWBwU
+	 Oi+mBZKmgEBxu80YN1PSbImf5zrKW6oalp/WwaIz2dh+cPyE2kX3LwIn++7HJjJtAK
+	 rf2R1Zl126Z7wuyAj0+2dlUpGoFpRUXZpvMfiN1dPco4RAwCrEAdl6MjZcwxsgoWNE
+	 KT7lDpUuXin7GuO8lZraIIHuQGVnFOGA0AfJbzaAuyEXVS14PSxpVqbPEnUV7TEklQ
+	 r8x35HeMJPDH3ByFMlZo8ddwPp68Ou6YuNFPu1dATXIZK2vUwPsQHpQlc2+HL19VWc
+	 xM5juQ7DWwKqQ==
+Date: Tue, 14 Oct 2025 19:02:50 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Linus Walleij <linus.walleij@linaro.org>
-Cc: Gary Yang <gary.yang@cixtech.com>, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	cix-kernel-upstream@cixtech.com
-Subject: Re: [PATCH v3 1/3] dt-bindings: pinctrl: Add cix,sky1-pinctrl
-Message-ID: <20251014-backyard-parted-572627bfc540@spud>
-References: <20251014015712.2922237-1-gary.yang@cixtech.com>
- <20251014015712.2922237-2-gary.yang@cixtech.com>
- <CACRpkda-2BNj+Pt2kS9u_bbr41bsWGRGDqNd3EXVnys-xSqg0g@mail.gmail.com>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Andrew Lunn <andrew@lunn.ch>, Vladimir Oltean <olteanv@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	"open list:NETWORKING DRIVERS" <netdev@vger.kernel.org>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
+Subject: Re: [PATCH 1/1] dt-bindings: net: dsa: nxp,sja1105: Add optional
+ clock
+Message-ID: <20251014-flattop-limping-46220a9eda46@spud>
+References: <20251010183418.2179063-1-Frank.Li@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,105 +65,36 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="r7QY2DKFaWvZjWwF"
+	protocol="application/pgp-signature"; boundary="Dn3+JVL4O4laIKgw"
 Content-Disposition: inline
-In-Reply-To: <CACRpkda-2BNj+Pt2kS9u_bbr41bsWGRGDqNd3EXVnys-xSqg0g@mail.gmail.com>
+In-Reply-To: <20251010183418.2179063-1-Frank.Li@nxp.com>
 
 
---r7QY2DKFaWvZjWwF
-Content-Type: text/plain; charset=utf-8
+--Dn3+JVL4O4laIKgw
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Oct 14, 2025 at 12:44:15PM +0200, Linus Walleij wrote:
-> Hi Gary,
+On Fri, Oct 10, 2025 at 02:34:17PM -0400, Frank Li wrote:
+> Add optional clock for OSC_IN and fix the below CHECK_DTBS warnings:
+>   arch/arm/boot/dts/nxp/imx/imx6qp-prtwd3.dtb: switch@0 (nxp,sja1105q): U=
+nevaluated properties are not allowed ('clocks' was unexpected)
 >=20
-> thanks for your patch!
->=20
-> On Tue, Oct 14, 2025 at 3:57=E2=80=AFAM Gary Yang <gary.yang@cixtech.com>=
- wrote:
->=20
->=20
-> > +# Client device subnode's properties
-> > +patternProperties:
-> > +  'pins$':
-> > +    type: object
-> > +    additionalProperties: false
-> > +    patternProperties:
-> > +      '(^pins|pins?$)':
-> > +        type: object
-> > +        additionalProperties: false
-> > +        description:
-> > +          A pinctrl node should contain at least one subnodes represen=
-ting the
-> > +          pinctrl groups available on the machine. Each subnode will l=
-ist the
-> > +          pins it needs, and how they should be configured, with regar=
-d to muxer
-> > +          configuration, pullups, and drive strength.
-> > +
-> > +        properties:
-> > +          pinmux:
-> > +            description:
-> > +              Values are constructed from pin number and mux setting a=
-nd are
-> > +              defined as macros in arch/arm64/boot/dts/cix/sky1-pinfun=
-c.h directly.
-> > +
-> > +          bias-disable: true
-> > +
-> > +          bias-pull-up: true
-> > +
-> > +          bias-pull-down: true
-> > +
-> > +          drive-strength:
-> > +            description:
-> > +              Can support 15 levels, from DS_LEVEL1 to DS_LEVEL15.
-> > +              defined as macros in arch/arm64/boot/dts/cix/sky1-pinfun=
-c.h.
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 
-Isn't this wrong?
-drive-strength is in mA but you're just shoving register values in here.
-pw-bot: changes-requested
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+pw-bot: not-applicable
 
-> > +
-> > +        required:
-> > +          - pinmux
->=20
-> Can't you just include both pinmux-node.yaml and pincfg-node.yaml
-> to get validation from the generic schemas?
->=20
-> 'pins$':
->   type: object
->   additionalProperties: false
->   patternProperties:
->     '(^pins|pins?$)':
-
-Why does this pattern allow foopin but not pinfoo?
-Also seems overkill to have both suffix and prefix options, instead of
-just sticking to one!
-
->       type: object
->       $ref: /schemas/pinctrl/pinmux-node.yaml
->       $ref: /schemas/pinctrl/pincfg-node.yaml
->       additionalProperties: false
->=20
-> Something like this, I never get this right before actually testcompiling=
-=2E..
-
-spacemit,k1-pinctrl has a node of this type, that can be copied from
-Gary. Essentially, you need an allOf: for the two references.
-
---r7QY2DKFaWvZjWwF
+--Dn3+JVL4O4laIKgw
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaO6PWQAKCRB4tDGHoIJi
-0pbcAQDMSqerReJ65uUM71ikHTc6L6kMQSFvvRzk3Z2gSbEsQQEAxn/UVVjIsZKM
-A4ol0es58WdnPRa/MXvsm6KKAtTLrwk=
-=9CrM
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaO6QSQAKCRB4tDGHoIJi
+0sXUAP9LYKTUydtydHeuxkp9yARH73uLXSVZLOOXNdGjZzAUjgEAout6dmnqQlgt
+w6mijUTOOjkghVoJPa0/PMpqZLVnegw=
+=fep+
 -----END PGP SIGNATURE-----
 
---r7QY2DKFaWvZjWwF--
+--Dn3+JVL4O4laIKgw--
 
