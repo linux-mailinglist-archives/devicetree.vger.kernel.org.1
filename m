@@ -1,233 +1,172 @@
-Return-Path: <devicetree+bounces-226386-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226387-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id EADADBD8244
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 10:22:21 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E63EBD8268
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 10:23:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id DCE274EF581
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 08:22:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 565533E83D7
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 08:23:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 169C730F52A;
-	Tue, 14 Oct 2025 08:22:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B806330F55C;
+	Tue, 14 Oct 2025 08:23:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lZh/f3/F"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="d5F/ktAF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yx1-f50.google.com (mail-yx1-f50.google.com [74.125.224.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D94FF2DC785;
-	Tue, 14 Oct 2025 08:22:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BC1230F527
+	for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 08:23:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.224.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760430138; cv=none; b=HGWxbYFULhwszGbG/pI96Vh5U6JNRJydlGz5U8y3UbYBO9u1CFSe7u9xPHf2xTM6kj4azKdepZk2W9UPkEIkzWRbddkP2DrqJiknTuWi6gpIolKfUdbKr8DcKhTaEfj8CtL9nTKkHlYQWx5IBu+7I5qO6C8SzW3wbG63nbQaYgc=
+	t=1760430201; cv=none; b=jAFdmlOjE5AOhXl6KYZEvOgWr7g3iTWfCSu/8ZXRzu70mtJ0gdNUgIzyfygnYWCXyeRDpyBP3OAddt4jNLPbqqU509oUmQXoidwm7J78LLUTcg2hh/w/PXGLpU3NoBhfPKKHJw2zZuA5LNC6xPThV73cKVWMd8FrT+8h9yRURzc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760430138; c=relaxed/simple;
-	bh=Vlj6tP3JBHPNk8PgyCr78TrY0haPC3Xs1lzW10Q8cLQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZkEkrWErCSMPH/V/KNXZgkuEqQoSZM8iGGtsvKNi0OMlVVtdd8kC9nkZKKkP27C3+t8XzIxMbW0WgK7CjwPWEbuOCOl+LVz/zlQ1m8Gpch+p6pMGBNvYf4iFcv2NQc17XcE/6l2pkaovvqHH7YBhJObhIOdTyWE65Tt+mS0W6Nk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lZh/f3/F; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6DC85C4CEE7;
-	Tue, 14 Oct 2025 08:22:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760430137;
-	bh=Vlj6tP3JBHPNk8PgyCr78TrY0haPC3Xs1lzW10Q8cLQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=lZh/f3/Fc7dCqb6CDiY5tbcF9lWWIzM7REjTEic65K1WxpJhP9paD7iOWZjj/Y+Wl
-	 MCwhrgVrUc2HiR6nIBY2UXCxb516F1/kDTinX8shqb2b+g5M4vLRBCdRSl4DcAMq2D
-	 nv+FOWHFuTQ9tv3hmz509d6OyfqKZWSPJnWQWj7GHIamJEaCB/IEhdg2RUA8aNrrBi
-	 Ys+gVyn7W4USl4yzyKCR0gqCgiCDDZpRwP4v//qwyN4LOSSi2nIoFwj4nKBWBtP5Gp
-	 Lr0ploa3eB3xB+jXVL2E5QMpBE65dRCaLJ6CLKEffRcdnsBSSHGfpFt3trToDEUu6/
-	 8PgGVHCVqCkCw==
-Message-ID: <b7b3de64-c656-4a84-8ba4-2d5c7eda9783@kernel.org>
-Date: Tue, 14 Oct 2025 10:22:07 +0200
+	s=arc-20240116; t=1760430201; c=relaxed/simple;
+	bh=QpLLN7omLU7FVeu70pu6uFOP+AtOBErrgm75t8rLSRw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=NmndY+RgJOVAUDlbhJLEt2tLfJPPXFxF1DbilLO6RY8fs3stTUZEUkR/W0WEHeX0IgRJ3FgQdZfbJTciTdz0Ca5grajOjku4GbR5ueJv4qQiqtGaPP49aS3x+oajbHMXrmbvmxhVlyn8w0imtQLYjwxkcMPXQIASHzfkCB4PcUI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=d5F/ktAF; arc=none smtp.client-ip=74.125.224.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yx1-f50.google.com with SMTP id 956f58d0204a3-63bbf5f77daso4988437d50.3
+        for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 01:23:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1760430199; x=1761034999; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Y9TclHM+FlxL8k/EdZlfp0sKQpkcWovBD/evGnk/JRY=;
+        b=d5F/ktAFXiAlca/nL4hv1iOe9/I8zrpQX5eD+YjxQvMcYsXB3gO0yt6NdWCwZZ1Q8f
+         YGm/uQWNq9Z302yY+mMQLJSQTzyTGw64d4voZuBwYDnLfJjZ/9ZYGSzDaRVh1Oihsyvh
+         8oKbrs+cvUN7M5292eAW5DZCwfjbkCyQXaGP/YhGeWcgOw4qkwYQ815xURYyl2yt/suN
+         XZtcl4QSVC7UHy9+ml8+wKOZ5EGmBnY0j9EpKCpNTrYcnDyF2qc766x2kqReFaBw0Zo7
+         yOZp27Y1L9JGsiD2XKQhRQdoRk8SF2q0YzB3vHEjTo0/lrv5Tv+y87v8+kcC5qHSnvJ0
+         5IcA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1760430199; x=1761034999;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Y9TclHM+FlxL8k/EdZlfp0sKQpkcWovBD/evGnk/JRY=;
+        b=qXYI3YC4t65tm0dCIHgb/i3UIWoXF39aOjy9JIyb1xhEbCucshMNnzVOzs94Fl7ZVo
+         /o+M249spCFRy3MBtAFwilcEI/OmcOOnp5IJ4iAqxqILsgcCV3pFUKJxNuVhuXP/qi0U
+         6txq82NjbjoKjlgVZ3Wxk79VYKhjKrmPSff7+zgs3pvooR0h6mZ1lUOf/HM8qasXP026
+         7MLPBtlaLzOa5td4RuxfWJTH5h32tcq0w+npmnSdGukeEZu6MjTNHIP4QCwF3kqibc6v
+         esBPjDsAMgZx66xjf/IAIZUpWoLc2JkZdmrbBfqkcStuoJRzBmLXZmf/ND8IVsfB7uV9
+         s0cw==
+X-Forwarded-Encrypted: i=1; AJvYcCVzolx4tqoY0VvZ8OnUiNzl1ps+yufimyW6vFVZNxhae9TenZQnw8hdk9meCF/2SbejLmiX6GTKu+VY@vger.kernel.org
+X-Gm-Message-State: AOJu0YxJ/yeZL1hOUtKAZu7yAcoyEOL1tRWXfth2mIPON8JqhNeyZ8Gv
+	RThHjqYP9X6epOghb3swOAlQgtqczoN+dfftB/XIUVStIk04WnV80T15AeEWjg6khFgSzwTHArW
+	KdiPx21MOO9BHCOSHn0gpjgJzSU5JUqymo3uvik3oBQ==
+X-Gm-Gg: ASbGncvLs+WYvgXhDFM8zoHRNYXlnH4vucIb3OFmdlV7Bv/fNukfLoJpqn00OfTwLP8
+	lv8xc7zDpKTy5b6P4H10R9cLVHoqjvWPm0it2iyDLp7fZo9+OY62NPnekc8chvQWqfSr9apkcaq
+	MUHrYMp80zdkqLoao91Ocfpl/d3TvO3059GC4DVXc9giUsmscxHP6rAnEb1HoP+Q+tPYE9M16ER
+	vSt+mjAvQY+oL3C+7qV+Epk+HCe6AFCg4FDSHrY
+X-Google-Smtp-Source: AGHT+IGUPFI5jCPwxpBaBsUtA4t105DOhgNvQsDGVLBIPQELjrZFFsrZcl9lsa37EFuLVIbBf5ZvE7ZH81SU0iQy1BA=
+X-Received: by 2002:a05:690e:424d:b0:5fc:5d98:3478 with SMTP id
+ 956f58d0204a3-63ccb7fabcfmr16158005d50.7.1760430198919; Tue, 14 Oct 2025
+ 01:23:18 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/4] dt-bindings: usb: dwc3: Add Google Tensor G5 DWC3
-To: Roy Luo <royluo@google.com>
-Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I
- <kishon@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Peter Griffin <peter.griffin@linaro.org>,
- =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
- Tudor Ambarus <tudor.ambarus@linaro.org>,
- Joy Chakraborty <joychakr@google.com>, Naveen Kumar <mnkumar@google.com>,
- Badhri Jagan Sridharan <badhri@google.com>, linux-phy@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org
-References: <20251010201607.1190967-1-royluo@google.com>
- <20251010201607.1190967-2-royluo@google.com>
- <066a9598-ad30-4327-be68-87299bba6fda@kernel.org>
- <CA+zupgwc7b51pNRLWRy2CX=n4=FTm=AP7J0dRP2RLjyK5LxGtw@mail.gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <CA+zupgwc7b51pNRLWRy2CX=n4=FTm=AP7J0dRP2RLjyK5LxGtw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20251009223501.570949-1-jelonek.jonas@gmail.com> <20251009223501.570949-2-jelonek.jonas@gmail.com>
+In-Reply-To: <20251009223501.570949-2-jelonek.jonas@gmail.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Tue, 14 Oct 2025 10:23:06 +0200
+X-Gm-Features: AS18NWBS0RiqVLOn6OGw-S2jkVsKedTw5UCNSQ2_7gUR2ne-WB-LpCsCs8TF6SE
+Message-ID: <CACRpkdb6bTFbTtNsO59GXFa9eMK9x=+BGK5Vx4bKv62wxiSpiw@mail.gmail.com>
+Subject: Re: [RFC PATCH v1 1/2] dt-bindings: gpio: add gpio-split controller
+To: Jonas Jelonek <jelonek.jonas@gmail.com>, Peter Rosin <peda@axentia.se>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 14/10/2025 03:40, Roy Luo wrote:
-> On Fri, Oct 10, 2025 at 5:09 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
->>
->> On 10/10/2025 22:16, Roy Luo wrote:
->>> Document the device tree bindings for the DWC3 USB controller found in
->>> Google Tensor SoCs, starting with the G5 generation.
->>>
->>> The Tensor G5 silicon represents a complete architectural departure from
->>> previous generations (like gs101), including entirely new clock/reset
->>> schemes, top-level wrapper and register interface. Consequently,
->>> existing Samsung/Exynos DWC3 USB bindings are incompatible, necessitating
->>> this new device tree binding.
->>>
->>> The USB controller on Tensor G5 is based on Synopsys DWC3 IP and features
->>> Dual-Role Device single port with hibernation support.
->>
->> You still mix, completely unnecessarily, subsystems. For Greg this is
->> actually even undesired, but regardless don't do this for any cases
->> because it just makes everything slower or more difficult to apply.
->>
->> Really, think how maintainers should deal with your patches.
->>
-> 
-> Understood, I will separate the patches into two distinct series: one for
-> the controller and one for the PHY.
-> Appreciate the feedback and the explanation.
-> 
->>>
->>> Signed-off-by: Roy Luo <royluo@google.com>
->>> ---
->>>  .../bindings/usb/google,gs5-dwc3.yaml         | 141 ++++++++++++++++++
->>>  1 file changed, 141 insertions(+)
->>>  create mode 100644 Documentation/devicetree/bindings/usb/google,gs5-dwc3.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/usb/google,gs5-dwc3.yaml b/Documentation/devicetree/bindings/usb/google,gs5-dwc3.yaml
->>> new file mode 100644
->>> index 000000000000..6fadea7f41e8
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/usb/google,gs5-dwc3.yaml
->>> @@ -0,0 +1,141 @@
->>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->>> +# Copyright (c) 2025, Google LLC
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/usb/google,gs5-dwc3.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: Google Tensor Series (G5+) DWC3 USB SoC Controller
->>> +
->>> +maintainers:
->>> +  - Roy Luo <royluo@google.com>
->>> +
->>> +description:
->>> +  Describes the DWC3 USB controller block implemented on Google Tensor SoCs,
->>> +  starting with the G5 generation. Based on Synopsys DWC3 IP, the controller
->>> +  features Dual-Role Device single port with hibernation add-on.
->>> +
->>> +properties:
->>> +  compatible:
->>> +    const: google,gs5-dwc3
->>> +
->>> +  reg:
->>> +    items:
->>> +      - description: Core DWC3 IP registers.
->>> +      - description: USB host controller configuration registers.
->>> +      - description: USB custom interrrupts control registers.
->>> +
->>> +  reg-names:
->>> +    items:
->>> +      - const: dwc3_core
->>> +      - const: host_cfg
->>> +      - const: usbint_cfg
->>> +
->>> +  interrupts:
->>> +    items:
->>> +      - description: Core DWC3 interrupt.
->>> +      - description: High speed power management event for remote wakeup from hibernation.
->>> +      - description: Super speed power management event for remote wakeup from hibernation.
->>
->> Wrap at 80 (see coding style) or just shorten these.
-> 
-> Ack, will fix it in the next patch.
-> 
->>
->>> +
->>> +  interrupt-names:
->>> +    items:
->>> +      - const: dwc_usb3
->>
->> So just "core"?
-> 
-> I'd prefer to stick to "dwc_usb3" as that's
-> 1. more expressive by referring to the underlying IP name,
+Hi Jonas,
 
+thanks for your patch!
 
-But that's completely redundant name.
+Including Peter Rosin (the gpio-mux author) and Geert Uytterhoeven
+on this review, as they have worked with similar stuff. Please include
+them on future postings. The result definitely need Peters ack before
+we can merge it.
 
-> 2. consistent with established dwc3 bindings such as
->     Documentation/devicetree/bindings/usb/snps,dwc3.yaml,
+On Fri, Oct 10, 2025 at 12:35=E2=80=AFAM Jonas Jelonek <jelonek.jonas@gmail=
+.com> wrote:
 
-If you use only one interrupt. You don't use one interrupt here.
+> Add dt-schema for a virtual gpio-split controller which exposes virtual
+> GPIOs for a shared GPIO controlled by a multiplexer, e.g. a gpio-mux.
+>
+> The gpio-split controller is a gpio-controller, thus has mostly the same
+> semantics. However, it requires a mux-control to be specified upon which
+> it will operate.
+>
+> Signed-off-by: Jonas Jelonek <jelonek.jonas@gmail.com>
 
->     Documentation/devicetree/bindings/usb/qcom,snps-dwc3.yaml,
-> unless you have a strong preference for the alternative naming.
+So if I understand it correctly this models a 1-to-many input-only
+GPIO multiplexer, we need an illustration such as
 
-Such namings are discouraged, because they tell absolutely nothing.
-Also, schematics or datasheets usually do not use them, either.
+        +----- A
+IN     /
+<-----o------- B
+    / |\
+    | | +----- C
+    | |  \
+    | |   +--- D
+    | |
+   M1 M0
 
+MUX CONTROL
 
-Best regards,
-Krzysztof
+ M1 M0   INPUT
+  0  0   A
+  0  1   B
+  1  0   C
+  1  1   D
+
+Is this correct? In that case include something like this
+verbatim in the bindings (feel free to copy/modify this)
+as it makes it much easier to understand what is going on.
+
+That's a very minimal example of a way to turn 3 GPIO
+lines into 4 GPIO lines, which is a bit crazy but I'm not
+the one to tell vendors what to do :D
+
+> +  mux-controls:
+> +    maxItems: 1
+
+So this needs a description, it is a phandle to the
+gpio multiplexer (reference /schemas/mux/gpio-mux.yaml
+explicitly!) used by the splitter.
+
+You should also in the same patch add an example to
+/schemas/mux/gpio-mux.yaml showing how this is used
+to muliplex GPIOs so people find this new usecase easily.
+
+> +  shared-gpio:
+> +    description:
+> +      GPIO that is shared by the virtual GPIOs and controlled via the mu=
+x.
+
+So this one is shared one-to-many, and I think the bindings
+overall makes sense.
+
+Maybe "gpio-split" is a bit ambiguous?
+We have io-channel-mux, so what about "gpio-line-mux"
+simply?
+
+The fact that GPIO lines are used to do the muxing is just
+a detail since a mux is an abstract concept, it could have
+just as well been muxed with some I2C device for example.
+
+Yours,
+Linus Walleij
 
