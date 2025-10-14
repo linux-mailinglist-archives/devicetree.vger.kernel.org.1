@@ -1,114 +1,119 @@
-Return-Path: <devicetree+bounces-226416-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226417-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 120B9BD881D
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 11:44:09 +0200 (CEST)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C879BD8898
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 11:47:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id F3A654FBAB9
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 09:44:04 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id C4A1635210A
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 09:47:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B91932EB5A1;
-	Tue, 14 Oct 2025 09:44:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C599D2FD1B0;
+	Tue, 14 Oct 2025 09:45:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fYv0ioYy"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="jWcRx9c/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CA5B2EA746;
-	Tue, 14 Oct 2025 09:44:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 884D32FCC01;
+	Tue, 14 Oct 2025 09:45:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760435041; cv=none; b=juUCQZu8EwnWk3ZMeXaDK0Vk/FLx5K+UIHXvpcoCQ88fUOc2II5Gn6vVrHT64POkSJ06OSVN64lopEVXZdgs7nTCNaUVhYEKj3C+TTHDt+PIEa4nZYir32XWLgDHcHYTVUACgLbWrEXw0rleArwplsOyWz697nTvnU4TlHEHzo4=
+	t=1760435157; cv=none; b=tClGsVKVEFlnAMXztrBTmchQpp1Hc3vy+nZWL9lWlmpUeIWEEJhGpVzADMNO1BsyRFounioIUheXAETA43qGNBkfhKqUya8NtZ0th90ng1t5l4ppkBGrMA1cxn60iVNdPitAkgnhTeBeShFlSeYLksNtTnhqX6ol1yMHniw1bek=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760435041; c=relaxed/simple;
-	bh=62DynX5Fht+DyP/QVDKn/evvRtifvlmnihjlLkxrxfw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=M0HYYIB+/YOaBS1Axo4nz0I/uVXfFa4igNCiIfAGgT2So2GrBrrywzYax5fzfoP3dsesqEzBewz5m4lp2ZXL5hNCwIynVQOM6QwiXY5qW3kYlnBeuW5tBXwbiw0lzTvId79N8CmP6MpuS4l7w0EGxKyLTGF0cjwyGTNBSt6Meig=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fYv0ioYy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5B3F1C4CEE7;
-	Tue, 14 Oct 2025 09:43:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760435041;
-	bh=62DynX5Fht+DyP/QVDKn/evvRtifvlmnihjlLkxrxfw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=fYv0ioYyVYUDNWbhBpxV2Ik86MO0Ueb8AQnNsXonFkoyeF7JcywfD/Fk+h8KezQP/
-	 NJRfGcvdAmaqJ8w35uDS1nWteDw5MSoHCPkxaRwsnrLGnQnGu18aSs5WaBaEJeLALL
-	 nLUGTxuC0d97AsbCRIHz0vpMg2FjfxXCP/iXdtk0l81+yHpjp3xC+FHEk3M3UoA9Vn
-	 mAso3gSByLshjh6KIU1lNqfZTLL0z5NGfB2uDbqzw39D1dxOUTUJiBqAyDncbB+ce3
-	 6TfyB1nSVarfBD+t3sp5QNoq4Gh9A3PIP1u/GY8MJJ5h2Jds2MzK7iZ7EYePS0eEuz
-	 UzNGKmv+kbc0A==
-Date: Tue, 14 Oct 2025 11:43:53 +0200
-From: Niklas Cassel <cassel@kernel.org>
-To: Randolph Lin <randolph@andestech.com>
-Cc: linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-	jingoohan1@gmail.com, mani@kernel.org, lpieralisi@kernel.org,
-	kwilczynski@kernel.org, robh@kernel.org, bhelgaas@google.com,
-	krzk+dt@kernel.org, conor+dt@kernel.org, alex@ghiti.fr,
-	aou@eecs.berkeley.edu, palmer@dabbelt.com, paul.walmsley@sifive.com,
-	ben717@andestech.com, inochiama@gmail.com,
-	thippeswamy.havalige@amd.com, namcao@linutronix.de,
-	shradha.t@samsung.com, pjw@kernel.org, randolph.sklin@gmail.com,
-	tim609@andestech.com
-Subject: Re: [PATCH v6 1/5] PCI: dwc: Allow adjusting the number of ob/ib
- windows in glue driver
-Message-ID: <aO4bWRqX_4rXud25@ryzen>
-References: <20251003023527.3284787-1-randolph@andestech.com>
- <20251003023527.3284787-2-randolph@andestech.com>
+	s=arc-20240116; t=1760435157; c=relaxed/simple;
+	bh=D4al88LL8q+XHjrCSJII1dctsBxIMEvTBINPRZs5xRI=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=P6qUwuJtyg5ppl9Uisikij2pFDU0NZYZosmgCEqwDVJj1eFZj7ZLdaCd3n19G+Nx08zS+I2XK6DAHmRIwHGR+j1T/v0CE30ZFtYwpcSeBQk2wjz1YtigX5Kjy/APAzef2paP4yylDO3lXeakffdl0NKDy6JV1GJag8jdJLyclg4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=jWcRx9c/; arc=none smtp.client-ip=185.246.85.4
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-03.galae.net (Postfix) with ESMTPS id F3B814E4109D;
+	Tue, 14 Oct 2025 09:45:47 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id A570F606EC;
+	Tue, 14 Oct 2025 09:45:47 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 0CCA7102F228B;
+	Tue, 14 Oct 2025 11:45:40 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1760435146; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=pS7S3KjjjVMBjFt3EILRfWOqjVjZmOnxzSm17MhSyeA=;
+	b=jWcRx9c/oN7rXNJkrTS3XvTf3Yj7U2V6UQucGtHJWdNsTKRX0GujBStzYYNWHLLgkPLBml
+	DpWDxhT2pQvP+xFAeGKA8AEk5nCOzZvfmDpQfM7A5YWcNlt3x5Uc3zwWMYXRnlZzH2YK8T
+	0o62way7LOZThsMmD0pImhigEEsU9YQPHTJrSqIVZ8LcjbpFQnphIrVXZhziOPnJU/spfg
+	t12gFk4qj49MP4fZBjgrfiobz2I1Aas/FNllUoMGPzGeEVFT+lKep+2ktWPnuYvWY6I3io
+	86UEB0vJLmmvUiaERj+HJ8gQF3Z0aObmxF4cTP2RiKOaIIorO1zCL4yTf/HeVg==
+From: Gregory CLEMENT <gregory.clement@bootlin.com>
+To: "Rob Herring (Arm)" <robh@kernel.org>, Wim Van Sebroeck
+ <wim@linux-watchdog.org>, Guenter Roeck <linux@roeck-us.net>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Andrew
+ Lunn <andrew@lunn.ch>
+Cc: linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: watchdog: Convert marvell,orion-wdt to DT
+ schema
+In-Reply-To: <20251013213146.695195-1-robh@kernel.org>
+References: <20251013213146.695195-1-robh@kernel.org>
+Date: Tue, 14 Oct 2025 11:45:39 +0200
+Message-ID: <87o6q9g6kc.fsf@BLaptop.bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251003023527.3284787-2-randolph@andestech.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Last-TLS-Session-Version: TLSv1.3
 
-On Fri, Oct 03, 2025 at 10:35:23AM +0800, Randolph Lin wrote:
-> The number of ob/ib windows is determined through write-read loops
-> on registers in the core driver. Some glue drivers need to adjust
-> the number of ob/ib windows to meet specific requirements,such as
+Hello Rob,
 
-Missing space after comma.
+Thank you for your work. I have one question:
 
+> +  reg:
+> +    minItems: 2
 
-> hardware limitations. This change allows the glue driver to adjust
-> the number of ob/ib windows to satisfy platform-specific constraints.
-> The glue driver may adjust the number of ob/ib windows, but the values
-> must stay within hardware limits.
+Should we also include this constraint here?
 
-Could we please get a better explaination than "satisfy platform-specific
-constraints" ?
+    maxItems: 3
 
-Your PCIe controller is synthesized with a certain number of {in,out}bound
-windows, and I assume that dw_pcie_iatu_detect() correctly detects the number
-of {in,out}bound windows, and initializes num_ob_windows/num_ib_windows
-accordingly.
+This would further restrict the binding.
 
-So, is the problem that because of some errata, you cannot use all the
-{in,out}bound windows of the iATU?
+Gregory
 
-Because it is hard to understand what kind of "hardware limit" that would
-cause your SoC to not be able to use all the available {in,out}bound windows.
+> +    items:
+> +      - description: Timer control register address.
+> +      - description: RSTOUT enable register address.
+> +      - description: Shared mask/unmask RSTOUT register address.
+> +
 
-Because it is simply a mapping in the iATU (internal Address Translation Unit).
+[...]
 
-In fact, in many cases, e.g. the NVMe EPF driver, then number of {in,out}bound
-windows is a major limiting factor of how many outstanding I/Os you can have,
-so usually, you really want to be able to use the maximum that the hardware
-supports.
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - marvell,armada-375-wdt
+> +              - marvell,armada-380-wdt
+> +    then:
+> +      properties:
+> +        reg:
+> +          minItems: 3
+> +    else:
+> +      properties:
+> +        reg:
+> +          maxItems: 2
+> +
 
-
-TL;DR: to modify this common code, I think your reasoning has to be more
-detailed.
-
-
-
-Kind regards,
-Niklas
+--=20
+Gr=C3=A9gory CLEMENT, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
