@@ -1,253 +1,79 @@
-Return-Path: <devicetree+bounces-226796-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226799-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8941BDB8D8
-	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 00:04:16 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C559CBDB940
+	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 00:10:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5D2644220FA
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 22:04:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 37DED1927BCB
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 22:11:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B439030F538;
-	Tue, 14 Oct 2025 22:03:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71B983081CD;
+	Tue, 14 Oct 2025 22:10:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="ItHkf7lD"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="RFfXKzkL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f42.google.com (mail-oo1-f42.google.com [209.85.161.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6750930E844
-	for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 22:03:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9882E30595D;
+	Tue, 14 Oct 2025 22:10:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760479394; cv=none; b=RVEin3YUXGIjbzzbdNQyJWaFeXUvz2jkb60ZJxMU/flTkZaDQzPBvNXw2FSxyMXT/j7o/3XI9hWTZM/c1w/0WsuOxrV9BRd5AODikCLb8kfCsemxTdYgh2WsWoHoqrkXgx0ImhbN2L0NEW/j3s/VQPRQTy0vJWww9xp0sR8jJ/M=
+	t=1760479837; cv=none; b=G9QwJ5VJmzmmxgJ4WRn6HzRzMpSDbyKX0mBxtAh0D3VfXW+1o2Qe1xinWyTJFqn1JuI6RqBlSRjBzyVP4Y6D36Qia8+VoqjJk6W1MiFIc1JlR+LzsIP3G8Gp+46BqZN1VUTQiOGXqDTuQseo7ywJnapeQlgfcqCFk4teeAdlQRM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760479394; c=relaxed/simple;
-	bh=lFdsA0YqVZdv9LVuQw0SrITN0a033KY7tyPi60ZKk2I=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Xu11j8DJTU37C87HNeLUTwoYI5zOOS/GkBBSxdS9Ltdh+53inCvFuFRodwg1kPy01VzE4t0c+Hcfw06ERxU043lkczCpYVNIFTImf3gN7XPFZ2h9aQBpw9uh6uY4yV9fDH7+mXzyrtgxS863Z958YAY9IxvasM/DrT67YsEAyGA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=ItHkf7lD; arc=none smtp.client-ip=209.85.161.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oo1-f42.google.com with SMTP id 006d021491bc7-63af096d4e2so1984009eaf.0
-        for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 15:03:12 -0700 (PDT)
+	s=arc-20240116; t=1760479837; c=relaxed/simple;
+	bh=3ib1iU3Qxw19Ut1WEzRnfFFufKNvW6qoaUWizLUq11Q=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=HKA2+f9zSoQVVhLjPQ5Mn/znWi8di5g47HxvL8i5DTEeo14j6kiy20ZO28bHosHL2fHiajTbuEVRA6Q5fEx9OD1AFxDo0PP42u7DoElF6q1Q2CTDGl80XBcxo4UZ3XTJcOmfMejC5aLgEGVfU/sZWVRyJ9oHGlN0T7BgRhURvz4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=RFfXKzkL; arc=none smtp.client-ip=203.29.241.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1760479391; x=1761084191; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=hqolBQIXv5KYau5vWoruyq5XQt42Dg49+iF61Wnk4+4=;
-        b=ItHkf7lDevgDrwHZLUeK+xcVv/ts7tvRjm4zyNgfejzP0jZmBGBQHjFk/Zi5KDB3Kj
-         pLp+kULXApS9ElWTgAq83xAE/z9rtiqDOrOZiL0UBg6GySJiUEUvKbokWFG6mQK3JGY1
-         /JVVNBAb9/eMp9tD32KbCtmyt7fn9DqArTUZCG6+x/Erjpb3b2hl3PL813mnA93NaGze
-         4cfG/0mvLtltZVtStScb9vMlUG9DHBv7FJSxCV1FxBhAHacM8OOhKAuvKcV/4qWqYObR
-         X6Rgq74M9KjINpfnyVY4PxgIRJUGGbqZ+QxPDQSuhz5Eeps2FLwo1YUCPbQDVnyJlDFU
-         L6Pw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760479391; x=1761084191;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=hqolBQIXv5KYau5vWoruyq5XQt42Dg49+iF61Wnk4+4=;
-        b=n8IjxrgTqhBvgjez4ZGdyRXPwSd2C8QbC7R9SxALeoKvsLmNxLj9cTUdadR547gtz8
-         +XAlo4UIcMdBN7JsyZpx/7ebh4bUhSy0xplbUbmyvpMJ6h3c20Xu3O172zjrfV73mKsf
-         bJmIbjBBMav6+8YJ2hqReh64CDXCDQ/zyzuEa/K/kIui3D1xk14R+h46a73fSRwtyf/2
-         NUJmcmfvTHUdWMvFUak0nASItNAOU/Vp/zskwCZ449XTm5t7tTd5xrEN/yakOtEFY/LJ
-         sOgSvQUibdhU7pee4cc98nqLflWHNf3tqxDJOnDqsAurJJhR5aPD/yh02vzXewnUJ4IJ
-         Hs/g==
-X-Forwarded-Encrypted: i=1; AJvYcCVr9Aoi2f6/HKCa4fPcOp617n1VcM1EhkN2rsJlumvATMpatdfM087vXGe/o+gxFb0gO5wfEGzsg/KJ@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw1kq1LJqx+YNDop+x+Qv+pCpfeMS4CcJe6wK/KpFUbz1QDHmT2
-	7FMZEw/tX8JRIx7a04lA6WTVAq17G+FYT6s9SeOmAm6JWMk5p6XjN5kTVFgcA0YcLrc=
-X-Gm-Gg: ASbGnctqedOecUuFYLNKy/lYvyldK0SWPzt1MNhgYzjhqjrFm4PMss9BH5dyhbBFSHR
-	Mn/GU4NZKoJOmmNg+wWXhrBvL6BvwoWG+2nxFPy0j5Cpjffrb+7qrK5VD3JRBS8Ku8siDvV3jR0
-	VHa08zO0iR5lMtZfbucQze2fU7EXp8kUKNTMS8WqRwSufzum4w5N1ucV6zdqjqQOXld9+DJ61fy
-	gr/e8kbSwujDIDBmZvghH/cV+8t6R5tbySNKEYwUDbEZ3NXUeCaVAxc1GW6+P21o767ARVakti+
-	vqStZ8NPZzd+31n1YeHa18b3BrLS363jEHKXiFVM1j8B//iZDNd+HPXcK8uyQvHVHYrtTCAS2yb
-	ZDPZLCCk/vuUl1D5Auad8hvjhihIEGnbYSK+/h/sSpbS9kEXRl052paSPBfph1XlaBEo=
-X-Google-Smtp-Source: AGHT+IGrKitcoow9K1NN0xlB4OhYZnctfJmK7wCThPVVW2AiUkp2WYlpDF9VUJlzxVhqzh0PkFHHOg==
-X-Received: by 2002:a05:6808:308c:b0:43b:5cee:137 with SMTP id 5614622812f47-4417b2d1eb5mr12898814b6e.4.1760479391430;
-        Tue, 14 Oct 2025 15:03:11 -0700 (PDT)
-Received: from [127.0.1.1] ([2600:8803:e7e4:500:c482:1912:c2de:367e])
-        by smtp.gmail.com with ESMTPSA id 5614622812f47-4419895119bsm3593732b6e.21.2025.10.14.15.03.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Oct 2025 15:03:11 -0700 (PDT)
-From: David Lechner <dlechner@baylibre.com>
-Date: Tue, 14 Oct 2025 17:02:16 -0500
-Subject: [PATCH 6/6] iio: adc: ad7380: Add support for multiple SPI buses
+	d=codeconstruct.com.au; s=2022a; t=1760479451;
+	bh=3ib1iU3Qxw19Ut1WEzRnfFFufKNvW6qoaUWizLUq11Q=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=RFfXKzkLQtwUueDyCrkSuazpG44SGbxqEHdEVqA6yRD7EsZxBZcdlMsE+zAhISIeA
+	 2pxWVSQWI3POKOY1yaS+c0Zmq0hVWF0BVwVLUcSKkuOjxEo4du64sz0+3f8eqc8ppV
+	 9AFbkGKLp8TAGcRnlg29Nb57Ax2cf4tly1tUNCp6wHzoTby0gn4Zc5FM/9vfsm7t1l
+	 za6awf81wSsV/ZXamUjdMf98iKiPeYBa1IdjJn5R+9qgvbk0a4e15gdnLjv+wr8NEP
+	 BrwCGW/HlU/YsqccXVvyIqWJGK/d6eOLB3gkZ+g9cXYT/o+uTQNdCQAnSpo6UrGbI1
+	 0uj+NvXVHyfuA==
+Received: from [192.168.68.113] (unknown [180.150.112.213])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 974387699E;
+	Wed, 15 Oct 2025 06:04:09 +0800 (AWST)
+Message-ID: <b387257937922d62fbf6bf6377470cfa8a46da2f.camel@codeconstruct.com.au>
+Subject: Re: [PATCH] dt-bindings: ipmi: Convert aspeed,ast2400-ibt-bmc to DT
+ schema
+From: Andrew Jeffery <andrew@codeconstruct.com.au>
+To: "Rob Herring (Arm)" <robh@kernel.org>, Corey Minyard
+ <corey@minyard.net>,  Krzysztof Kozlowski	 <krzk+dt@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>, Joel Stanley	 <joel@jms.id.au>
+Cc: openipmi-developer@lists.sourceforge.net, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, 
+	linux-kernel@vger.kernel.org
+Date: Wed, 15 Oct 2025 08:34:05 +1030
+In-Reply-To: <20251014152948.3782738-1-robh@kernel.org>
+References: <20251014152948.3782738-1-robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.1-1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251014-spi-add-multi-bus-support-v1-6-2098c12d6f5f@baylibre.com>
-References: <20251014-spi-add-multi-bus-support-v1-0-2098c12d6f5f@baylibre.com>
-In-Reply-To: <20251014-spi-add-multi-bus-support-v1-0-2098c12d6f5f@baylibre.com>
-To: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Marcelo Schmitt <marcelo.schmitt@analog.com>, 
- Michael Hennerich <michael.hennerich@analog.com>, 
- =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
- Jonathan Cameron <jic23@kernel.org>, Andy Shevchenko <andy@kernel.org>
-Cc: Sean Anderson <sean.anderson@linux.dev>, linux-spi@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-iio@vger.kernel.org, David Lechner <dlechner@baylibre.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=5388; i=dlechner@baylibre.com;
- h=from:subject:message-id; bh=lFdsA0YqVZdv9LVuQw0SrITN0a033KY7tyPi60ZKk2I=;
- b=owEBbQGS/pANAwAKAcLMIAH/AY/AAcsmYgBo7siO73aVsUeAFtRWx1v2QqO5Zloc4fMQatLzo
- //Eq6vynoOJATMEAAEKAB0WIQTsGNmeYg6D1pzYaJjCzCAB/wGPwAUCaO7IjgAKCRDCzCAB/wGP
- wC8zB/0TaaHlI2BsUjWkcJnrGnaU66GLjfMbbjoNWMo7yzQ2duCojSbMT7KqSMW/5BS2ASZZZSc
- OXCP8mbm5CKcmqFJ+NE5n8+h3Ac2NR90JfZmpiU2lTFrXRP4ukJTmY5ZmtGNr+8VunJWFU3nm+k
- Ust9VySN923SbBcx7l+sYXNsIHnAN96GoS5geOFrBv4L4z7LPyvVAfeU+Ce3+nkSWLUdrWNQ+wY
- mnxEysHbA++cbX6khKgwlfXIcb+cODXE5WSMMvQM/H20G91XODnYEp3JaoxLoNG7iZJ0Rfb7T3j
- COeEgLnk28y+yJxOsz+aW4O9XsEWywzazyvnoFtlH89HoqcI
-X-Developer-Key: i=dlechner@baylibre.com; a=openpgp;
- fpr=8A73D82A6A1F509907F373881F8AF88C82F77C03
 
-Add support for multiple SPI buses to increase throughput. The AD7380
-family of ADCs have multiple SDO lines on the chip that can be used to
-read each channel on a separate SPI bus. If wired up to a SPI controller
-that supports it, the driver will now take advantage of this feature.
-This allows reaching the maximum sample rate advertised in the datasheet
-when combined with SPI offloading.
+On Tue, 2025-10-14 at 10:29 -0500, Rob Herring (Arm) wrote:
+> Convert the aspeed,ast2400-ibt-bmc binding to DT schema format. It's a
+> straight-forward conversion.
+>=20
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 
-Signed-off-by: David Lechner <dlechner@baylibre.com>
----
- drivers/iio/adc/ad7380.c | 41 ++++++++++++++++++++++++++++-------------
- 1 file changed, 28 insertions(+), 13 deletions(-)
+Reviewed-by: Andrew Jeffery <andrew@codeconstruct.com.au>
 
-diff --git a/drivers/iio/adc/ad7380.c b/drivers/iio/adc/ad7380.c
-index bfd908deefc0f40b42bd8a44bfce7a2510b2fdf1..36abe95852006a81f7e31f8034699e59292af79e 100644
---- a/drivers/iio/adc/ad7380.c
-+++ b/drivers/iio/adc/ad7380.c
-@@ -77,8 +77,7 @@
- #define AD7380_CONFIG1_REFSEL		BIT(1)
- #define AD7380_CONFIG1_PMODE		BIT(0)
- 
--#define AD7380_CONFIG2_SDO2		GENMASK(9, 8)
--#define AD7380_CONFIG2_SDO		BIT(8)
-+#define AD7380_CONFIG2_SDO		GENMASK(9, 8)
- #define AD7380_CONFIG2_RESET		GENMASK(7, 0)
- 
- #define AD7380_CONFIG2_RESET_SOFT	0x3C
-@@ -92,11 +91,6 @@
- #define T_CONVERT_X_NS 500		/* xth conversion start time (oversampling) */
- #define T_POWERUP_US 5000		/* Power up */
- 
--/*
-- * AD738x support several SDO lines to increase throughput, but driver currently
-- * supports only 1 SDO line (standard SPI transaction)
-- */
--#define AD7380_NUM_SDO_LINES		1
- #define AD7380_DEFAULT_GAIN_MILLI	1000
- 
- /*
-@@ -1084,7 +1078,7 @@ static int ad7380_set_ch(struct ad7380_state *st, unsigned int ch)
- 	if (oversampling_ratio > 1)
- 		xfer.delay.value = T_CONVERT_0_NS +
- 			T_CONVERT_X_NS * (oversampling_ratio - 1) *
--			st->chip_info->num_simult_channels / AD7380_NUM_SDO_LINES;
-+			st->chip_info->num_simult_channels / st->spi->num_data_bus;
- 
- 	return spi_sync_transfer(st->spi, &xfer, 1);
- }
-@@ -1113,7 +1107,7 @@ static int ad7380_update_xfers(struct ad7380_state *st,
- 	if (oversampling_ratio > 1)
- 		t_convert = T_CONVERT_0_NS + T_CONVERT_X_NS *
- 			(oversampling_ratio - 1) *
--			st->chip_info->num_simult_channels / AD7380_NUM_SDO_LINES;
-+			st->chip_info->num_simult_channels / st->spi->num_data_bus;
- 
- 	if (st->seq) {
- 		xfer[0].delay.value = xfer[1].delay.value = t_convert;
-@@ -1124,6 +1118,7 @@ static int ad7380_update_xfers(struct ad7380_state *st,
- 			AD7380_SPI_BYTES(scan_type) *
- 			st->chip_info->num_simult_channels;
- 		xfer[3].rx_buf = xfer[2].rx_buf + xfer[2].len;
-+		xfer[3].multi_bus_mode = xfer[2].multi_bus_mode;
- 		/* Additional delay required here when oversampling is enabled */
- 		if (oversampling_ratio > 1)
- 			xfer[2].delay.value = t_convert;
-@@ -1198,6 +1193,8 @@ static int ad7380_init_offload_msg(struct ad7380_state *st,
- 	xfer->bits_per_word = scan_type->realbits;
- 	xfer->offload_flags = SPI_OFFLOAD_XFER_RX_STREAM;
- 	xfer->len = AD7380_SPI_BYTES(scan_type) * st->chip_info->num_simult_channels;
-+	if (st->spi->num_data_bus > 1)
-+		xfer->multi_bus_mode = SPI_MULTI_BUS_MODE_STRIPE;
- 
- 	spi_message_init_with_transfers(&st->offload_msg, xfer, 1);
- 	st->offload_msg.offload = st->offload;
-@@ -1793,6 +1790,7 @@ static const struct iio_info ad7380_info = {
- 
- static int ad7380_init(struct ad7380_state *st, bool external_ref_en)
- {
-+	u32 sdo;
- 	int ret;
- 
- 	/* perform hard reset */
-@@ -1815,11 +1813,24 @@ static int ad7380_init(struct ad7380_state *st, bool external_ref_en)
- 	st->ch = 0;
- 	st->seq = false;
- 
--	/* SPI 1-wire mode */
-+	/* SDO field has an irregular mapping. */
-+	switch (st->spi->num_data_bus) {
-+	case 1:
-+		sdo = 1;
-+		break;
-+	case 2:
-+		sdo = 0;
-+		break;
-+	case 4:
-+		sdo = 2;
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+
- 	return regmap_update_bits(st->regmap, AD7380_REG_ADDR_CONFIG2,
- 				  AD7380_CONFIG2_SDO,
--				  FIELD_PREP(AD7380_CONFIG2_SDO,
--					     AD7380_NUM_SDO_LINES));
-+				  FIELD_PREP(AD7380_CONFIG2_SDO, sdo));
- }
- 
- static int ad7380_probe_spi_offload(struct iio_dev *indio_dev,
-@@ -1842,7 +1853,7 @@ static int ad7380_probe_spi_offload(struct iio_dev *indio_dev,
- 				     "failed to get offload trigger\n");
- 
- 	sample_rate = st->chip_info->max_conversion_rate_hz *
--		      AD7380_NUM_SDO_LINES / st->chip_info->num_simult_channels;
-+		      spi->num_data_bus / st->chip_info->num_simult_channels;
- 
- 	st->sample_freq_range[0] = 1; /* min */
- 	st->sample_freq_range[1] = 1; /* step */
-@@ -2010,6 +2021,8 @@ static int ad7380_probe(struct spi_device *spi)
- 	st->normal_xfer[0].cs_change_delay.value = st->chip_info->timing_specs->t_csh_ns;
- 	st->normal_xfer[0].cs_change_delay.unit = SPI_DELAY_UNIT_NSECS;
- 	st->normal_xfer[1].rx_buf = st->scan_data;
-+	if (spi->num_data_bus > 1)
-+		st->normal_xfer[1].multi_bus_mode = SPI_MULTI_BUS_MODE_STRIPE;
- 
- 	spi_message_init_with_transfers(&st->normal_msg, st->normal_xfer,
- 					ARRAY_SIZE(st->normal_xfer));
-@@ -2031,6 +2044,8 @@ static int ad7380_probe(struct spi_device *spi)
- 	st->seq_xfer[2].cs_change = 1;
- 	st->seq_xfer[2].cs_change_delay.value = st->chip_info->timing_specs->t_csh_ns;
- 	st->seq_xfer[2].cs_change_delay.unit = SPI_DELAY_UNIT_NSECS;
-+	if (spi->num_data_bus > 1)
-+		st->seq_xfer[2].multi_bus_mode = SPI_MULTI_BUS_MODE_STRIPE;
- 
- 	spi_message_init_with_transfers(&st->seq_msg, st->seq_xfer,
- 					ARRAY_SIZE(st->seq_xfer));
-
--- 
-2.43.0
-
+Thanks Rob.
 
