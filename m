@@ -1,118 +1,138 @@
-Return-Path: <devicetree+bounces-226500-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226503-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E36B1BD9343
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 14:03:53 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8BBE1BD93C4
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 14:09:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3441118A27BA
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 12:04:17 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id CF08E4FF780
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 12:09:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88659310620;
-	Tue, 14 Oct 2025 12:03:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="KeRbIqUR"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0105311968;
+	Tue, 14 Oct 2025 12:09:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from Atcsqr.andestech.com (60-248-80-70.hinet-ip.hinet.net [60.248.80.70])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17DF725D546
-	for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 12:03:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA4403126BC;
+	Tue, 14 Oct 2025 12:08:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.248.80.70
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760443429; cv=none; b=B1pR6ldkg+IN0H6NZ8fFYqbZyz9ae+iW1zDima2ZsTk28XRH9se6uh72aHalkA6m7ZuIy+q6zmEALcg4MfnR1U6xZPTf54MRdfJF3ZWYp2yVX8TBJGp21QsWGASotZiE5T3BZ9+qnwK3xgTE5QauRlsuPrgEsQ+HfTH1mz4yCK0=
+	t=1760443757; cv=none; b=jTtNEW3XJNpCqmiGTl9OjtchaXoB3OtkwZ01+NplD46/e+7G3cd2rYTPDAShmCVJPVQWIyweuUhO/Dr3VwyrYPFAfIGUHBPICSjSjuKOwMIGMmcf6/61KpllB91Jj10EpJdmzyAAMb8BvmIjVPGobpGN3VnSDQNtBYcfjtO99L0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760443429; c=relaxed/simple;
-	bh=0NzeDm4YRr+qmfFJMboOlJS287Q0PmtLlAQtT9HyscU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ld7lgnZKs0Ymqp8KXBvHpLRg28TCg0qnjcgaQwlfRmBEKImHIpVffl8Eahx/QDUodbHryejj0EIDdJE8YMIsgrVztP0jtiFm8A6eoZCH49K8tfT5EJH3sXtwjFZiB5/4Z4lyIZDfX1fttTpcGlyy64ey7RDCSezJQPvPUdlXoEY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=KeRbIqUR; arc=none smtp.client-ip=209.85.167.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-579d7104c37so6346298e87.3
-        for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 05:03:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1760443425; x=1761048225; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=0NzeDm4YRr+qmfFJMboOlJS287Q0PmtLlAQtT9HyscU=;
-        b=KeRbIqURvSmDKHLD9BjfyIl86pAK4C1iZUq/tjbs9bCMuphFQdxqW/bAwAcKUAv6Lm
-         t2wwL6yXnVXaxgrF0sLYb737SQ8RdSXjPkeXO5507NRFOtJA4msOXarJBHf2TSkPrEfZ
-         pxFqUgNRQ7AKGBqXyiDY7KwpgVVKEutHHW2tS7ahbfy4iBGKMRlFQyzT/5jYpbWmfRXe
-         lf/ysQHLr3QRASu7pWgUnhdiN1VaT6ddwnnzRTyJY8hWJDGJTH7ftYZHxcgmQyuu+m1+
-         +N+7s27oeoUcsRHx5dygwN8+RN/TogsDtRbxTubRDheKks491Bi1l0+2JQtjj6ZQrTq6
-         7KhA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760443425; x=1761048225;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=0NzeDm4YRr+qmfFJMboOlJS287Q0PmtLlAQtT9HyscU=;
-        b=qvJoXhF46MdmKWBLt8T6lSw9wbV+izFbxP5qqKcgdoB3N7AiRKG8RYpsyDtdqo8Yb3
-         O67e88OW3+bklgt6UcVukx5fEUZhYooGKX/0z+ZJY6h71Xl2gGjga/ARfGO/z/Kt/93X
-         TI5JHv+laFiK/APs8F2yr0ZhFd0zZ/zWrb+fTf4YvLMRoA64JPeaYD3lxSzhBzqiFdPo
-         QBDwg3kNu082/tyDKfWWnFUCp3MDiRlshkeEN7WmD9wlSCwjZsO1YxO5ZkwBCGEk/8BS
-         id4RU+SgVZsbOLBHMT5WmPIcEFd8Bl5qwfvwM4hWzXTkqkYgwiB3X4a9fZxP0+i5SAf5
-         ykNg==
-X-Forwarded-Encrypted: i=1; AJvYcCVV1453SjTdsQgeT8l7n/y4wRyTc2Msr09UCuJsLdzZ/2MohQYrfjLdFaPmAAvmoJm2Ncf1YYesl1tx@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw6MagoFqycWRiv0Euo7w+gH/Y02A1Op1CjMR6CmJYV56J8k0s6
-	DPbX0xLLQ9pP/wKe/2psqPPZJBGDiy+nAK+AmC8wapmGYhcvgRpiLtWIsQrUZQ1sVv5RvKpyZgJ
-	vdiPqtv73/dhxMB/Enl4I8fTtqO4Smzc/PfJ07PVa3A==
-X-Gm-Gg: ASbGncsJAW+iSS5v2hZ4/Ja8em6lL7X1hxOrHYeA0iVrgn85LM8j25DQzaHW4sLwSKc
-	4MmvhfMOFZ6fGTIF3tSJjljONPU5eqeZNmFobFqLuDQg1yFzO9mU22zDKVvEXjQKViv2RQ6XF1N
-	5X1U+WGGDO4zY9j9GiQv/WA0Ppau8i1xzWQOo6qagictj2DhcfyDXVmh5bXza2DKuZKOqOlIo2W
-	+CnaEWrthgBV2rA7Uti4ZERCn3kW3/kbu+lR/Je
-X-Google-Smtp-Source: AGHT+IFD0BB7RH2Ep9aDetjvf52TraFr1nZFUAFZVtaRLq2brbGFG6VPJ0RQdb2vqcIUZBE6o0FGikD6X+TXoiS5UhI=
-X-Received: by 2002:a05:6512:3d10:b0:58b:26:11da with SMTP id
- 2adb3069b0e04-5906d8ef684mr6189769e87.29.1760443425099; Tue, 14 Oct 2025
- 05:03:45 -0700 (PDT)
+	s=arc-20240116; t=1760443757; c=relaxed/simple;
+	bh=7mYHfYJGnJ8LQn5syQJYgViWI5ELtPzT8LnE/+d1KVs=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=coP4oblRgcwv/wyfh0nWU/FL4wH7K7kyD7tifzg3kBTbOWwj1UdU7bhjoN5FvTKAHVmlwVGe74g/a92YD8eCmMs9LZSouEvD9sKnMiQ4BdwPHYRnEDJAkut+2/yHU6nT/nuxOvV2uJlNfyUUlHUXTfnJlCmeFP/8nsN2d8t68NY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=permerror header.from=andestech.com; spf=pass smtp.mailfrom=andestech.com; arc=none smtp.client-ip=60.248.80.70
+Authentication-Results: smtp.subspace.kernel.org; dmarc=permerror header.from=andestech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=andestech.com
+Received: from mail.andestech.com (ATCPCS31.andestech.com [10.0.1.89])
+	by Atcsqr.andestech.com with ESMTPS id 59EC3ueQ060852
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Tue, 14 Oct 2025 20:03:56 +0800 (+08)
+	(envelope-from randolph@andestech.com)
+Received: from atctrx.andestech.com (10.0.15.173) by ATCPCS31.andestech.com
+ (10.0.1.89) with Microsoft SMTP Server id 14.3.498.0; Tue, 14 Oct 2025
+ 20:03:56 +0800
+From: Randolph Lin <randolph@andestech.com>
+To: <linux-kernel@vger.kernel.org>
+CC: <linux-pci@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <jingoohan1@gmail.com>,
+        <mani@kernel.org>, <lpieralisi@kernel.org>, <kwilczynski@kernel.org>,
+        <robh@kernel.org>, <bhelgaas@google.com>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <alex@ghiti.fr>, <aou@eecs.berkeley.edu>,
+        <palmer@dabbelt.com>, <paul.walmsley@sifive.com>,
+        <ben717@andestech.com>, <inochiama@gmail.com>,
+        <thippeswamy.havalige@amd.com>, <namcao@linutronix.de>,
+        <shradha.t@samsung.com>, <pjw@kernel.org>, <randolph.sklin@gmail.com>,
+        <tim609@andestech.com>, Randolph Lin <randolph@andestech.com>
+Subject: [PATCH v8 0/5] Add support for Andes Qilai SoC PCIe controller
+Date: Tue, 14 Oct 2025 20:03:44 +0800
+Message-ID: <20251014120349.656553-1-randolph@andestech.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251008073046.23231-1-clamor95@gmail.com> <20251008073046.23231-2-clamor95@gmail.com>
-In-Reply-To: <20251008073046.23231-2-clamor95@gmail.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Tue, 14 Oct 2025 14:03:32 +0200
-X-Gm-Features: AS18NWCj_bKF0VIZCo40xgE2nZcym7DwrLVXQ08YjlTg5hV9lzx6rx-fa2x4Vss
-Message-ID: <CACRpkdb74fh_eFCd0MM4RK1_KtNRugLPp2yMA20FrpHq+-o6YA@mail.gmail.com>
-Subject: Re: [PATCH v4 01/24] pinctrl: tegra20: register csus_mux clock
-To: Svyatoslav Ryhel <clamor95@gmail.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Thierry Reding <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
-	Sowjanya Komatineni <skomatineni@nvidia.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>, 
-	Prashant Gaikwad <pgaikwad@nvidia.com>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Mikko Perttunen <mperttunen@nvidia.com>, 
-	Mauro Carvalho Chehab <mchehab@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	=?UTF-8?Q?Jonas_Schw=C3=B6bel?= <jonasschwoebel@yahoo.de>, 
-	Dmitry Osipenko <digetx@gmail.com>, Charan Pedumuru <charan.pedumuru@gmail.com>, 
-	Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>, Aaron Kling <webgeek1234@gmail.com>, 
-	Arnd Bergmann <arnd@arndb.de>, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-media@vger.kernel.org, linux-clk@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, linux-staging@lists.linux.dev
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-DKIM-Results: atcpcs31.andestech.com; dkim=none;
+X-DNSRBL: 
+X-SPAM-SOURCE-CHECK: pass
+X-MAIL:Atcsqr.andestech.com 59EC3ueQ060852
 
-On Wed, Oct 8, 2025 at 9:31=E2=80=AFAM Svyatoslav Ryhel <clamor95@gmail.com=
-> wrote:
+Add support for Andes Qilai SoC PCIe controller
 
-> Add csus_mux for further use as the csus clock parent, similar to how the
-> cdev1 and cdev2 muxes are utilized. Additionally, constify the cdev paren=
-t
-> name lists to resolve checkpatch warnings.
->
-> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+These patches introduce driver support for the PCIe controller on the
+Andes Qilai SoC.
 
-This patch 1/24 applied to the pinctrl tree!
+Signed-off-by: Randolph Lin <randolph@andestech.com>
 
-Yours,
-Linus Walleij
+---
+Changes in v8:
+- Fix the compile error reported by the kernel test robot.
+
+---
+Changes in v7:
+- Remove unnecessary nodes and property in DTS bindings
+
+---
+Changes in v6:
+- Fix typo in the logic for adjusting the number of OB/IB windows
+
+---
+Changes in v5:
+- Add support to adjust the number of OB/IB windows in the glue driver.
+- Fix the number of OB windows in the Qilai PCIe driver.
+- Remove meaningless properties from the device tree.
+- Made minor adjustments based on the reviewer's suggestions.
+
+---
+Changes in v4:
+- Add .post_init callback for enabling IOCP cache.  
+- Sort by vender name in Kconfig 
+- Using PROBE_PREFER_ASYNCHRONOUS as default probe type.
+- Made minor adjustments based on the reviewer's suggestions.
+
+---
+Changes in v3:
+- Remove outbound ATU address range validation callback and logic.
+- Add logic to skip failed outbound iATU configuration and continue.
+- Using PROBE_PREFER_ASYNCHRONOUS as default probe type.
+- Made minor adjustments based on the reviewer's suggestions.
+
+---
+Changes in v2:
+- Remove the patch that adds the dma-ranges property to the SoC node.
+- Add dma-ranges to the PCIe parent node bus node.
+- Refactor and rename outbound ATU address range validation callback and logic.
+- Use parent_bus_offset instead of cpu_addr_fixup().
+- Using PROBE_DEFAULT_STRATEGY as default probe type.
+- Made minor adjustments based on the reviewer's suggestions.
+
+Randolph Lin (5):
+  PCI: dwc: Allow adjusting the number of ob/ib windows in glue driver
+  dt-bindings: PCI: Add Andes QiLai PCIe support
+  riscv: dts: andes: Add PCIe node into the QiLai SoC
+  PCI: andes: Add Andes QiLai SoC PCIe host driver support
+  MAINTAINERS: Add maintainers for Andes QiLai PCIe driver
+
+ .../bindings/pci/andestech,qilai-pcie.yaml    |  84 ++++++
+ MAINTAINERS                                   |   7 +
+ arch/riscv/boot/dts/andes/qilai.dtsi          | 106 ++++++++
+ drivers/pci/controller/dwc/Kconfig            |  13 +
+ drivers/pci/controller/dwc/Makefile           |   1 +
+ drivers/pci/controller/dwc/pcie-andes-qilai.c | 240 ++++++++++++++++++
+ drivers/pci/controller/dwc/pcie-designware.c  |  12 +-
+ 7 files changed, 461 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/pci/andestech,qilai-pcie.yaml
+ create mode 100644 drivers/pci/controller/dwc/pcie-andes-qilai.c
+
+-- 
+2.34.1
+
 
