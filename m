@@ -1,139 +1,120 @@
-Return-Path: <devicetree+bounces-226299-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226300-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6232ABD6E1D
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 02:33:16 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B7378BD6F95
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 03:19:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8B45318A44FC
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 00:33:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9FA3A424F59
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 01:16:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C68B1C4A20;
-	Tue, 14 Oct 2025 00:33:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89ADE265606;
+	Tue, 14 Oct 2025 01:15:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uX1qN/6t"
+	dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b="Kg8YFhBR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtpbgsg2.qq.com (smtpbgsg2.qq.com [54.254.200.128])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B2AE1A9F86;
-	Tue, 14 Oct 2025 00:33:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5A05199949;
+	Tue, 14 Oct 2025 01:15:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.254.200.128
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760401992; cv=none; b=Jpi1GIwVydtSPqXh2x91xKv9yUxeyE55ySzlZVhk3YBnFbAWB/6XwkAwbDW5p1KA8Kf696h3QG4wT9lATNu+wGJycpbqqdpL+F8g4s1ztcA56lZmZitZOxEXxEw9kDMEAzNZ5XlbHL8peMRMwocOYdDfH4CidSj5W4U1w1U+MzQ=
+	t=1760404530; cv=none; b=s2fx4FI7nBgkMc0227BmA22SMz5/BXrWFMiGVyTkr+sTYptn2acWGGewtbQrb1UHFQ3SFYRVXFcq6DrQQdKiVwB/8Du4gu25dESXRKBe/JaDRBLDcpLggZM9tysHiYiKy3UZ8tXnvOslGZLSlWk3FnZZm2yfE+eDNOdhPdxRLOk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760401992; c=relaxed/simple;
-	bh=CONMfOkpLR/OR0Vcog2SL4bQ1cVtLbXbZRDLxFGSDjY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PTR3Y+Roj5ihy6nWdku/e5YAhyQ8H0qcFxsgcgzXmOs585OLHblT5KKUIK+XJ4n3eS5Rw6UgdiNZ7OWUPSwKpV5FphKTgmiRGY1fFu1JYpdF+F/vIVgiccrXMXsJqqsbUQlNvec4W0pfOGWuFyQ3IJnYgVpl5iuTX1ovJc8K1XU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uX1qN/6t; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A41E9C4CEE7;
-	Tue, 14 Oct 2025 00:33:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760401991;
-	bh=CONMfOkpLR/OR0Vcog2SL4bQ1cVtLbXbZRDLxFGSDjY=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=uX1qN/6t8Zx63Cp7nxsMUxh6BMAYZfNzi+SFdtReZPisgOlQluDaf0ovqyKJgt1oW
-	 dMw3mT7kIfwEpqXgR8PiXrAG/5mbUapIeyhMAjnineOLuKSH5g7Ef+FaGAwZfWmCVO
-	 cnJKxqfMy1sz+deEqI8jOB2RhyjrnvJurrVoOCPiPqs5Lb1lsjVvxQngPBGuWBACJw
-	 gzQM9xyInUc6Pp2Lll/8+vTMyEnT9SJDxxSF4v0ZuZzjy/1wql08+WTMfQi+yY5XUe
-	 wMtnKtMhxhZ0BZYmbOihLSqP776rZXJ1Kbjr2Rwlw0GR2hYAgydc2svWNOLHdw2WXf
-	 B+1vRixraSGPA==
-Message-ID: <50eb0743-8b6b-4d6b-bf22-46a428cbe26a@kernel.org>
-Date: Tue, 14 Oct 2025 02:33:04 +0200
+	s=arc-20240116; t=1760404530; c=relaxed/simple;
+	bh=ly90muq8Cu7cNAfo5LyDFAKK8zB6SZmBgl/e3Gqtgzs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=sWX22ou+psjyb6ukbjJCOZGPlBQVsw0W5pCVr0GRN/HJw+TQxvVBT18NJx8pbhtjWScobI3j0ewZJh/UeFIiF5jDCXVbmEKn1OED/UIT2JwTFJMT153MEJPACE1PAe5DAwmoTeYpK0uFdzmf+W1v5PBf8mvaXmGnQ0c4K/WJKcQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com; spf=none smtp.mailfrom=linux.spacemit.com; dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b=Kg8YFhBR; arc=none smtp.client-ip=54.254.200.128
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.spacemit.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.spacemit.com;
+	s=mxsw2412; t=1760404505;
+	bh=yPaqLTFJBou/8d1hMyxh74PBxgkDsYMEzO+87OROHB0=;
+	h=Date:From:To:Subject:Message-ID:MIME-Version;
+	b=Kg8YFhBRHXfSRquwf8U7lvE+E3jI/rUn5HmCczL6YSsSF/RJcsFe0sDlQpT75v9qe
+	 CMa96qD7xKuFqQpgbURy1N9i5J2p+rrb4nKvFjd4sDqkFKsOA4kPci4jQJ2bm7xT4B
+	 H7fHC/t3+ZAAN1CxgsbBhCZXQCxEONve2QZwxEfc=
+X-QQ-mid: esmtpgz13t1760404499t2e911499
+X-QQ-Originating-IP: o0PzaMQ5hTsLiEQfnYn0/i0z9Av6u2RRMSRj69aXyEU=
+Received: from = ( [61.145.255.150])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Tue, 14 Oct 2025 09:14:57 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 1259685802699772283
+EX-QQ-RecipientCnt: 16
+Date: Tue, 14 Oct 2025 09:14:57 +0800
+From: Troy Mitchell <troy.mitchell@linux.spacemit.com>
+To: Mark Brown <broonie@kernel.org>,
+	Troy Mitchell <troy.mitchell@linux.spacemit.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>, linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+	spacemit@lists.linux.dev, linux-kernel@vger.kernel.org,
+	Jinmei Wei <weijinmei@linux.spacemit.com>
+Subject: Re: [PATCH v4 2/2] ASoC: spacemit: add i2s support for K1 SoC
+Message-ID: <775044E19528DA5A+aO2kEerOWeY8ad0h@kernel.org>
+References: <20250921-k1-i2s-v4-0-4f819f50e468@linux.spacemit.com>
+ <20250921-k1-i2s-v4-2-4f819f50e468@linux.spacemit.com>
+ <d1d965c4-f0f4-4b09-b5c3-5925d5f7ce1b@sirena.org.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 0/3] arm64: dts: exynos: add initial support for
- exynos8890
-To: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>,
- Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Alim Akhtar <alim.akhtar@samsung.com>
-Cc: linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20250914150321.2632019-1-ivo.ivanov.ivanov1@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250914150321.2632019-1-ivo.ivanov.ivanov1@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <d1d965c4-f0f4-4b09-b5c3-5925d5f7ce1b@sirena.org.uk>
+X-QQ-SENDSIZE: 520
+Feedback-ID: esmtpgz:linux.spacemit.com:qybglogicsvrsz:qybglogicsvrsz3a-0
+X-QQ-XMAILINFO: NpfbsqbTlzxUWFfAYilv0/7Nw/jpI0bAV31+tuTsErHIOqfmS92dpfpz
+	O4WxUbsJjW0VPP4/OyIDFBG2ZdP3B909pfP2/fcf6IjN84SHJaKxhYqLlXyghDI4UfLmQBn
+	BzBca3Bve4vEbQgpLSinkE08hXhNfFcapFEfJ2xZuDeHB6iVE+hVjYh0KFhXhEu1n+YL+Jn
+	eM2udmHU4VHydZJe43CHZzy/MLTrvpPSpcIEf+if3WXOCCnzKmuQ6xp7EfUIOI9XZe2ibPm
+	9Q6AMnfhMuzvRmyX44a9txFzwAHdb1YvQEb2L1Hl3/QRpF8fJ/ePjkIJpY3Gaw+JMWQlXkb
+	zTGkrseJpSm+rO+LTAp1oRSALqvexzOY1j36O8TpLupo8upCMNizgmi/pPoCnChLI8ppscb
+	S09Sgfvj7MDYsW0PZFsSNOuz5n40C8Sx9y8yz0lMFVLa33k08n0WeF7GQKjrA7eZfTThvDD
+	EYC3uGRPnMTGL+aVNb5LLi/cbDMg4oyKumwHiJ8b06lY41Zj60clqsT4qvTynhcCbdEhq6F
+	9vc+pZETJeW5z+bQOoO3O+kqhyDvPPOUVWhSwEH3XrS/MGBUSpCONjHXfBOW9zJj4cdCE+P
+	dODqf56wooL48K0WchrRIUdDYNGMiDpaf/GukVasbl7pcfCetuwEiXe0O/kZpHWnx7pYnTC
+	zQryxsjqP44Tc7PQ7Beq/MU+wfas81nXe1M8dJgOOx3AdlTr0izDTZ1D/tDebtpJRryIwe6
+	6boQNOPoGvPUiug//vIAcrQQgard3hk6uL0s/84L9YPfVV81s9mAm9mTmQJA6UNERAGEq+b
+	T+w/yKviZZYfrJdIe7DAiSoTcU/UmQ01DdF7pfsxo1hsElTbExRqI3rth5Ucrhx82mI6HzI
+	8CxRrn7KThfE/04J8R8Mh8TmKbqc7nytqTU4KSB9xJe07roBj3O8EzKXGcC+LqFIMVPgwj7
+	o8p4BrpMCkGp6dNOf9+FdSQLdSHji2kMJy0aoFati5W0ok2Q8qu75iFju86Zvu7MJoo3n7Z
+	LCbUVCGNcYISEFJpzeyk92LYtQzGVSRdTjAgDnmUgtMFpQZelB1aDOj31K9Tk1xxbQOeqCW
+	w==
+X-QQ-XMRINFO: MSVp+SPm3vtS1Vd6Y4Mggwc=
+X-QQ-RECHKSPAM: 0
 
-On 14/09/2025 17:03, Ivaylo Ivanov wrote:
-> Hey folks,
+On Mon, Oct 13, 2025 at 01:05:58PM +0100, Mark Brown wrote:
+> On Sun, Sep 21, 2025 at 04:52:17PM +0800, Troy Mitchell wrote:
 > 
-> Before anything, this patchset depends on the following ones being merged,
-> either for dt-bindings for compatibles, and/or device drivers:
-> [1] https://lore.kernel.org/all/20250914112942.2604194-2-ivo.ivanov.ivanov1@gmail.com/
-> [2] https://lore.kernel.org/all/20250914114457.2610013-2-ivo.ivanov.ivanov1@gmail.com/
-> [3] https://lore.kernel.org/all/20250914122116.2616801-2-ivo.ivanov.ivanov1@gmail.com/
-> [4] https://lore.kernel.org/all/20250914124227.2619925-2-ivo.ivanov.ivanov1@gmail.com/
-> [11] https://lore.kernel.org/all/20250914134458.2624176-2-ivo.ivanov.ivanov1@gmail.com/
-> [13] https://lore.kernel.org/all/20250914145555.2631595-2-ivo.ivanov.ivanov1@gmail.com/
-> bindings only:
-> [5] https://lore.kernel.org/all/20250914131452.2622609-1-ivo.ivanov.ivanov1@gmail.com/
-> [6] https://lore.kernel.org/all/20250914131620.2622667-1-ivo.ivanov.ivanov1@gmail.com/
-> [7] https://lore.kernel.org/all/20250914131848.2622817-1-ivo.ivanov.ivanov1@gmail.com/
-> [8] https://lore.kernel.org/all/20250914132033.2622886-1-ivo.ivanov.ivanov1@gmail.com/
-> [9] https://lore.kernel.org/all/20250914132201.2622955-1-ivo.ivanov.ivanov1@gmail.com/
-> [10] https://lore.kernel.org/all/20250914132339.2623006-1-ivo.ivanov.ivanov1@gmail.com/
-> [12] https://lore.kernel.org/all/20250914135652.2626066-1-ivo.ivanov.ivanov1@gmail.com/
+> > +	case SND_SOC_DAIFMT_DSP_A:
+> > +	case SND_SOC_DAIFMT_DSP_B:
+> > +		snd_pcm_hw_constraint_minmax(substream->runtime,
+> > +					     SNDRV_PCM_HW_PARAM_CHANNELS,
+> > +					     1, 1);
+> > +		snd_pcm_hw_constraint_mask64(substream->runtime,
+> > +					     SNDRV_PCM_HW_PARAM_FORMAT,
+> > +					     SNDRV_PCM_FMTBIT_S32_LE);
+> > +		break;
+> 
+> The handling for one of these is buggy, DSP A and B are distinct modes
+> but throughout the driver they're handled identically AFAICT.
+Thanks! Indeed, this bug was introduced in this version.
+I’ll fix it and send v5 ASAP.
 
-This dependency means I cannot do anything with it. Please list ONLY:
-1. Real dependencies. Driver cannot be a dependency for DTS. Dependency
-is for building or LOST functionality comparing to mainline kernel.
+                            - Troy
 
-2. As separate list, the non-applied bindings used in this DTS. Bindings
-are not dependencies, but I cannot take DTS before they hit next.
 
-Best regards,
-Krzysztof
 
