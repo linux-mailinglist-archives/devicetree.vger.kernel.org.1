@@ -1,210 +1,130 @@
-Return-Path: <devicetree+bounces-226750-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226751-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2BC6EBDAFDB
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 21:05:02 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 49D32BDAFFC
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 21:11:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id A98803562CD
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 19:05:01 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 16F1E4E6061
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 19:11:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA43E255F28;
-	Tue, 14 Oct 2025 19:04:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B201A2BE7A6;
+	Tue, 14 Oct 2025 19:11:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Op5ZR0bJ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TD9f64jw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f173.google.com (mail-yw1-f173.google.com [209.85.128.173])
+Received: from mail-pg1-f175.google.com (mail-pg1-f175.google.com [209.85.215.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20F53235072
-	for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 19:04:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3049E23D7D9
+	for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 19:11:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760468697; cv=none; b=fWAE8mga1L9P85/l/5yDDLD5pXN4782tbnBetBNEgDEcmASPvBCjGircTGZsK3mnHDrhhe95kok1mYYE9glPPCIARtKjl01S3VP7l5lhkl4eqPVh0xWHhxn16Bq7MP4w9I/k32EzpjsTi9jP8V8TkKlLaLydwzQ+2nWLYV3sGpY=
+	t=1760469094; cv=none; b=N39lsFedkiq7BOPig897johxCSGCnezO6azKSJ7PCIl9l+h8jQE9VKjyDprOP+nxYyUcsa4EM8n0zUyK65/MWFzXhFIa3FfHJfikHxIwHNUnNXNVf6XMmSPmY8vzJ4BtohBKOvssR1Urth7O/PscHd9e1Cg942Mify0OBupBvbs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760468697; c=relaxed/simple;
-	bh=N0AeLKKkCbDWNM2GHj2h68g3QkP1HDjh2+4qJG/csDY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=SEUt3p9Z8KgfTB0ZIR1Yx5dXzPqGRslOO84oXyNy9ErPrQp/HOp0Zz6SFHjb7dG+vIkwstr3LgJDBqLMNYhqQmJKeHIh2YOCNlxBbH1HOVjVq7lI3DHkO93pAYWYIUYEUbETnOQrjAbwbvT48T4syFqcjL4n2Qk4Cs/6ajYjwFM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Op5ZR0bJ; arc=none smtp.client-ip=209.85.128.173
+	s=arc-20240116; t=1760469094; c=relaxed/simple;
+	bh=JoNiSlBHX0lRsNEM+X+qf5ROfd4SBePaFleHfgcatAU=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=k5iSQae5Q+KlA8VOagwVAd2UpMrazOrCmt4dFNPwtO4if1Zz1Hk5rW9paVy5ZrJPuW8Mhqprhf+4RUY4CY74ftOT6fi4T29Sng/BsvWNBa83GV0jhpMxSKiMpoKOUcig566RZRBlLmutscIqflgbsmlY2ja53g4BG+n8RAnk+SQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TD9f64jw; arc=none smtp.client-ip=209.85.215.175
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f173.google.com with SMTP id 00721157ae682-781421f5be8so24500777b3.1
-        for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 12:04:55 -0700 (PDT)
+Received: by mail-pg1-f175.google.com with SMTP id 41be03b00d2f7-b6a0a7f3a47so720a12.1
+        for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 12:11:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1760468695; x=1761073495; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=5LFWIwNcJTb0LbxCmM/QhGZd9SB3ddKyXhVeoMfh/Zo=;
-        b=Op5ZR0bJrteLhX5O67vCItpxZDTwSSOtkbnvcjwLkSeyv3O+jsTvH4rj8yUv9PESCX
-         brGiAQoO8PQcWo/Ky6KlmN0+tNi9XRA5F1tTe4UKE2b7NLfHGmdENrF9lhBVW0EKIkAA
-         axc3S7g5lvRTvCs6m7X1tiy6Ojcn/nUCyVAJkLicQt241pzYVZkOCTruKA0IPCQdgOiC
-         maUdKcELwKS5wv7JxMQDV4z3YjcMDkfj/7/KFYPrIqFRI88SzUpGieR4Dq2IiPu0V2Hs
-         qjrwd2m/PrldMC4aX1Cz+kXvCG53wAYevIV5bMcfBZbW6qJHVjkXxBTZNeZnyU9MSsx/
-         AVMw==
+        d=gmail.com; s=20230601; t=1760469092; x=1761073892; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=St16IbHkGZRw0WWM1PwYJ2PuL1/1u5d5uZewUoKrBqc=;
+        b=TD9f64jwwsmeEorCpnClT+/WvjXKc8O2j6YfZab/WgoOsNL//MKLDWg1+2bzw7WGiv
+         yXTTBX5iMqYLzjRlUYnfRZOrmyBsSHwdNk3vj5zLd51wPW3OvjjXgoCi9944toudOnl4
+         USOvPG05TDIve+VJVd9Ti0gI+3lQkXdtKvy0+Amz+wtv03TD5zVz9pUqQuv8aXWBgx38
+         +5+XYpDuYap5Pcs503C6vZsM9GhfIIugGy/gVzbPEl0BsM48iPWdh6ccne0tP9vTmHUD
+         MPTy+BJJJNY3hqijGAyP4+Q4oM0v8jwJnri9bmqYz6kUGT5Uv5iTJ+eyGwmvDOvPtYUd
+         NVwQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760468695; x=1761073495;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=5LFWIwNcJTb0LbxCmM/QhGZd9SB3ddKyXhVeoMfh/Zo=;
-        b=SgvaVfSxCt/s6pGN3LNgIRBzJl5zkk5mHodVnuVv4yGmdbq0WAvsKV1aYLj/6uju+B
-         lxQ6mUULxQRczmfsDSgEB0/DSjSeuqum3tA0EQ5nvyqcUx+kXQmJMnrAD9b4wAuUM3sE
-         LI6zeeavacpHWTKz82uEROTmoNVAmM7rb0jZKEhSfC9cxWbQgi7xLbqjhy04ll9splOr
-         jzBkzxvfMQ0W4r07jf/lZ++QDhpaWAiPNJqsjzMMaBQAPaz93R23Tdm1ynL0f6w/Dq/M
-         /yd0hkq3uvykHueJR49fEvA7/F+iNMjIj5r4R6NyyYtpoMvkZm0jHDy6VVcm+HrQog9M
-         Binw==
-X-Forwarded-Encrypted: i=1; AJvYcCUj7OqHArlbAiIsttNXmJ8/URPjoJiOSVBwJ9wKSv30GTPZbYFVDbznCK2Spu087vXmU7weqy1L0kVM@vger.kernel.org
-X-Gm-Message-State: AOJu0YyokA05AZUkHUbFhUvQmsasHTQ1/kKt9EDjvI1Z3UyEKtHX1gLZ
-	OSGhl/0REUrOiXuFrG9Z4O5H1iuqG8Jqf2+CWUTItn579rccHW1QBjAdHhBMpqFvzJLV9hVZ2EA
-	oLYDHQwhL1wqV6mBc1VHOTIIHNIQriMQ=
-X-Gm-Gg: ASbGnctYQndZQSZCwhp4MDo8/fZ8uY6eYf/DL18hz9lwWvzYG4BMrkivjr9pWhZ9IB0
-	nDp9UvEATNSH38dQj9M66cvngSFeJyB+Vou5AFWypP3w9c9PD3yzdehQ6Bt/irM3Wz/5z7dcT/z
-	eSxeunEz4ljvFx7bliP0zqvHYYQ7Xgkib2Y5AZOtpv95MYYC82vw3iFIE1tmDxHmCl85BvmXgF7
-	5/vXyTGcRIQ7S1Hzq+uuOKQ
-X-Google-Smtp-Source: AGHT+IENp8MGH0xB25fjWT8oq2mwyBPcuUqJct7YWr59h/VAdp+CaWyYdVq+xLcQfadKFc+RgdG15n4qfGSudatVgQA=
-X-Received: by 2002:a53:ba85:0:b0:633:a326:3b07 with SMTP id
- 956f58d0204a3-63ccb8d82cfmr16411233d50.24.1760468695058; Tue, 14 Oct 2025
- 12:04:55 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1760469092; x=1761073892;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=St16IbHkGZRw0WWM1PwYJ2PuL1/1u5d5uZewUoKrBqc=;
+        b=EU6yzWY3HjZBZRIXYag0KYk/TL4RV9THave/VFYhXlsjYurdGmIFsPInjR92oNgf51
+         RIXstmZEjhWjd6Q3q/JgmYvf4GWXQhI+OWSoF9aSiYStLz4ySOxOiRvT85mNUEbGbPMy
+         4l7bNpRXKC7UR4gYL8HGG+2Kbp58h12/Jo95kMmxGKpkKWuyOlb46Cj3QzgkNUXKYZF3
+         yBYSGOArk2stwZWg8RsnKl0WOZKZibal+rnHTz7CrzjcqMZAaFoGSRgxfOLXxVax45jN
+         ZxXyT29hyBgCrE6mcEVKfl9ZgsJvhTgeqFQzZKy+hBJaqH+OMNhRSCVffQAEu5RKFzZ3
+         EyJQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWLkszth+KVkQ5IGx1XvRFVcva++74zCn7aK/44+ateGiteGmbpLBfwO/0MjotvuY6DwpgO/Yws5f/H@vger.kernel.org
+X-Gm-Message-State: AOJu0Yym9+shY0I9aQSkl2uRE99tuZySuPaXaNLJxCmu92GsLBO5d+0h
+	+vhOW5mHy9uV+q0fnCA1cc5ZKe2TnDIX8UkdPm6L4Ir/xQ5WcMvgF4I/
+X-Gm-Gg: ASbGncvzdiTwarcfCkUjd1Z+8mN7znDHannuY5Xl+1woV74Pf9b7jfA/QCJZen9zUCm
+	RapCfZOm1lr1YZuZWCtBs4Xp9bOjgCQxu7arkdijTo5jnv1dMsYVAYdw0Z6yHVT0EpBI6c0ONGB
+	ykrnQJkWR23Db0l3i9lic1UKwE4Q/f7AYXP3MUfLx3h+VniyFQDNRredkzQJ6V76eF5x6tp9o1N
+	S/JUqs8UPcbbdB3a6f6WEmODwhn2RWVoAB5VkBzbDTOromY/6hiex3VvSqUYscG/rnZ4LuvMZH/
+	MTGJNqrJGMrGzlNvnfWpZoMkVVltgjjY7o6GNMscMltKyGuLn+kAzCxg0kFHOAyPl252d1EMCSr
+	l3g+8NlzPAkeAwXK2Ervtl2mGLperQVbEB5Q+qqVc9ZKYxWHt3XSFcJsAECEL
+X-Google-Smtp-Source: AGHT+IHCjOQ38l5+wUDId9pV67uaFxJ6e4csyg6AZzHE9fI8Bkcg7dp7NE09q8EsSbM69FmMTL2HpA==
+X-Received: by 2002:a17:902:f60c:b0:24e:593b:d107 with SMTP id d9443c01a7336-290273ed7aamr298836245ad.32.1760469092296;
+        Tue, 14 Oct 2025 12:11:32 -0700 (PDT)
+Received: from iku.. ([2401:4900:1c07:c7d3:9987:bec4:a0:deaf])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29034de658bsm172402755ad.22.2025.10.14.12.11.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 14 Oct 2025 12:11:31 -0700 (PDT)
+From: Prabhakar <prabhakar.csengg@gmail.com>
+X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Magnus Damm <magnus.damm@gmail.com>
+Cc: linux-renesas-soc@vger.kernel.org,
+	linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Prabhakar <prabhakar.csengg@gmail.com>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH 0/2] Add support for configuring pin properties on RZ/T2H-N2H SoCs
+Date: Tue, 14 Oct 2025 20:11:19 +0100
+Message-ID: <20251014191121.368475-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251014044135.177210-1-ghatto404@gmail.com> <20251014044135.177210-4-ghatto404@gmail.com>
- <e114504e-4bdd-46b9-b708-8eebc3075163@oss.qualcomm.com> <CAMQHOhfjsi1L+3j3TrcjEjPp3xkn94KOdsrVZvJCyUDFBBSeqg@mail.gmail.com>
- <d06a254f-bf54-4bdf-bd09-3ee5e5b31bad@oss.qualcomm.com>
-In-Reply-To: <d06a254f-bf54-4bdf-bd09-3ee5e5b31bad@oss.qualcomm.com>
-From: Ghatto <ghatto404@gmail.com>
-Date: Tue, 14 Oct 2025 15:04:44 -0400
-X-Gm-Features: AS18NWCHVKoCQ2wy6kKDp8pC-T3MMcjTx0pmcrDz7hEAH7pvV2HDWmC4HnxPwl8
-Message-ID: <CAMQHOhe=WYhtsjHMcRnJOi8UhnNNBfveTWRGSZ_bg24gFysAEw@mail.gmail.com>
-Subject: Re: [PATCH v2 3/6] arm64: dts: qcom: r0q: add touchscreen support
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Tue, Oct 14, 2025 at 11:18=E2=80=AFAM Konrad Dybcio
-<konrad.dybcio@oss.qualcomm.com> wrote:
->
-> On 10/14/25 5:10 PM, Ghatto wrote:
-> > On Tue, Oct 14, 2025 at 7:01=E2=80=AFAM Konrad Dybcio
-> > <konrad.dybcio@oss.qualcomm.com> wrote:
-> >>
-> >> On 10/14/25 6:41 AM, Eric Gon=C3=A7alves wrote:
-> >>> Enable the ST-Microelectronics FTS2BA61Y touchscreen. This patch
-> >>> depends on "Input: add support for the STM FTS2BA61Y touchscreen".
-> >>
-> >> The second sentence doesn't really make sense to be included in
-> >> the git log
-> > I'll keep it to the cover letter then
-> >>
-> >>> The device has an issue where SPI 8 (the bus which the touchscreen is
-> >>> connected to) is not working properly right now, so
-> >>> spi-gpio is used instead.
-> >>
-> >> Some Samsung devices used to use spi/i2c-gpio intentionally, also
-> >> on downstream. I'm assuming this isn't the case for r0q.
-> > It isn't, the device uses fts2ba61y on the spi8 bus - I hosted the
-> > DT at https://github.com/ghatt-o/ss_experiments/blob/main/r0q.dts if yo=
-u
-> > want to take a look.
-> >>
-> >> Did you enable gpi_dma1, qupv3_id_1 before spi8, when testing
-> > The driver probes, but it fails to recognize the touchscreen device
->
-> Could you post a complete dmesg and the precise DT diff you used?
-https://pastebin.com/QkYa8nMp (android dmesg) mainline dmesg doesn't have
-any relevant information other than spi/i2c probing, however, I've noticed
-both on deviceinfohw.ru and the dmesg that for some reason the touchscreen
-is on spi0.0 (even though DT says 8) and I'm not sure if that means it's on=
- SPI
-but on a bugged out bus or if it's really just spi on bus 0
-@@ -85,7 +85,7 @@
-         * is used instead.
-         */
+From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
--       spi8 {
-+       /*spi8 {
-                compatible =3D "spi-gpio";
-                pinctrl-names =3D "default", "sleep";
-                pinctrl-0 =3D <&spi_clk_tsp_active &spi_mosi_tsp_active
-&spi_miso_tsp_active>;
-@@ -106,7 +106,6 @@
-                touchscreen@0 {
-                        compatible =3D "st,fts2ba61y";
-                        reg =3D <0>;
--                       spi-max-frequency =3D <5000000>;
+Hi all,
 
-                        vdd-supply =3D <&vreg_l8c_1p8>;
-                        avdd-supply =3D <&vreg_l11c_3p0>;
-@@ -120,8 +119,7 @@
+This patch series adds support for configuring pin properties on the
+Renesas RZ/T2H-N2H SoCs. The RZ/T2H allows configuring pin properties
+through the DRCTLm (I/O Buffer Function Switching) registers, including:
+- Drive strength (low/middle/high/ultra high)
+- Pull-up/pull-down/no-bias configuration (3 options: no pull, pull-up,
+  pull-down)
+- Schmitt trigger control (enable/disable)
+- Slew rate control (2 options: slow/fast)
 
-                        status =3D "okay";
-                };
--       };
--
-+       };*/
+Cheers,
+Prabhakar 
 
-        vph_pwr: regulator-vph-pwr {
-                compatible =3D "regulator-fixed";
-@@ -134,6 +132,10 @@
-        };
- };
+Lad Prabhakar (2):
+  dt-bindings: pinctrl: renesas,r9a09g077: Document pin configuration
+    properties
+  pinctrl: renesas: rzt2h: Add pin configuration support
 
-+&gpi_dma1 {
-+       status =3D "okay";
-+};
-+
- &apps_rsc {
-        regulators-0 {
-                compatible =3D "qcom,pm8350-rpmh-regulators";
-@@ -280,10 +282,38 @@
-        status =3D "okay";
- };
+ .../pinctrl/renesas,r9a09g077-pinctrl.yaml    |  13 +
+ drivers/pinctrl/renesas/pinctrl-rzt2h.c       | 230 ++++++++++++++++++
+ 2 files changed, 243 insertions(+)
 
-+&spi8 {
-+       spi-max-frequency =3D <5000000>;
-+
-+       touchscreen@0 {
-+               compatible =3D "st,fts2ba61y";
-+               reg =3D <0>;
-+
-+               vdd-supply =3D <&vreg_l8c_1p8>;
-+               avdd-supply =3D <&vreg_l11c_3p0>;
-+
-+               interrupt-parent =3D <&tlmm>;
-+               interrupts =3D <46 IRQ_TYPE_LEVEL_LOW>;
-+
-+               pinctrl-names =3D "default", "sleep";
-+               pinctrl-0 =3D <&tsp_int_active>;
-+               pinctrl-1 =3D <&tsp_int_sleep>;
-+
-+               status =3D "okay";
-+       };
-+
-+
-+       status =3D "okay";
-+};
-+
- &qupv3_id_0 {
-        status =3D "okay";
- };
+-- 
+2.43.0
 
-+&qupv3_id_1 {
-+       status =3D "okay";
-+};
-+
- &tlmm {
-        gpio-reserved-ranges =3D <36 4>; /* SPI (Unused) */>
-> Konrad
-Resend (forgot to reply all)
 
