@@ -1,163 +1,114 @@
-Return-Path: <devicetree+bounces-226415-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226416-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4E73BD87EA
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 11:42:37 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 120B9BD881D
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 11:44:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7A7DF3AD199
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 09:42:36 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id F3A654FBAB9
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 09:44:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AA882EB87D;
-	Tue, 14 Oct 2025 09:42:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B91932EB5A1;
+	Tue, 14 Oct 2025 09:44:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PCtWSxsw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fYv0ioYy"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CFAC2EAD0D;
-	Tue, 14 Oct 2025 09:42:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CA5B2EA746;
+	Tue, 14 Oct 2025 09:44:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760434948; cv=none; b=GQ2PkGvM5zag3FnBzm3SI3+Vap2k6AUppvwmrOyUX2ECqoPGIdAyxUSml05Uc7stAVI7Ue3ApMwKEZOvrZKEUsm4snfdBgJPQotDVmjse7O6UX34pOB8ANb9DpAepb69GZVlvlwpxsQQZXHz97vHP3YCRv1wV9f84fi885g7jWg=
+	t=1760435041; cv=none; b=juUCQZu8EwnWk3ZMeXaDK0Vk/FLx5K+UIHXvpcoCQ88fUOc2II5Gn6vVrHT64POkSJ06OSVN64lopEVXZdgs7nTCNaUVhYEKj3C+TTHDt+PIEa4nZYir32XWLgDHcHYTVUACgLbWrEXw0rleArwplsOyWz697nTvnU4TlHEHzo4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760434948; c=relaxed/simple;
-	bh=0RP0L9rrdtLO/ij41A3dkWhYQztRaChrcp5Pto7llj8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=MeyMqEETWYZJlDxZ7EmvaVJA8UoUhBW9dHQ6z4tlBzzHjVX2cAbMm8KiGy083V4g9+qf2lZYBdxkadTodjFZ9otozPFxkg/0vzD/aViF1KldoUF65j4XXGzcWvn1JFQhTcoHokLyCHVKPTxcROi0Aa/Up4qGFR9zLfne0w8irFE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PCtWSxsw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id AAA3CC116D0;
-	Tue, 14 Oct 2025 09:42:27 +0000 (UTC)
+	s=arc-20240116; t=1760435041; c=relaxed/simple;
+	bh=62DynX5Fht+DyP/QVDKn/evvRtifvlmnihjlLkxrxfw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=M0HYYIB+/YOaBS1Axo4nz0I/uVXfFa4igNCiIfAGgT2So2GrBrrywzYax5fzfoP3dsesqEzBewz5m4lp2ZXL5hNCwIynVQOM6QwiXY5qW3kYlnBeuW5tBXwbiw0lzTvId79N8CmP6MpuS4l7w0EGxKyLTGF0cjwyGTNBSt6Meig=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fYv0ioYy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5B3F1C4CEE7;
+	Tue, 14 Oct 2025 09:43:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760434947;
-	bh=0RP0L9rrdtLO/ij41A3dkWhYQztRaChrcp5Pto7llj8=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=PCtWSxswtFDAJ42NmbXTP+UVZTscYBkn/kxrn8NH0/HxYS5jlUvvDf/gYGUcFC6PP
-	 10dZI/QPs64jpG0CZ5FhYetDdbO+0FPC9Dr/wltkNvabUDCk0U95dKR7AMy+EGXBne
-	 ArI2+3v0AOm/xtXB/fGk2BRRxvvbZPnlAVs0ekgDlzOcdB+1JNG/rZTgzIb/4MKiiI
-	 01L0wwY5kvclZqKblHf3rczA17IEGNd0pLX/abJ1bAkdydqE6KX7PU4nOpx7zTgpPS
-	 g0ACGI1XTwIqzKWx+SQM8+ZiIIB4X3KT9tFVdsN8bBN8DHGzO9uFo+VQ6M3vfkE46s
-	 vlwAkWlQy6NNw==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9B658CCD187;
-	Tue, 14 Oct 2025 09:42:27 +0000 (UTC)
-From: Xiangxu Yin via B4 Relay <devnull+xiangxu.yin.oss.qualcomm.com@kernel.org>
-Date: Tue, 14 Oct 2025 17:42:12 +0800
-Subject: [PATCH v2 3/3] arm64: dts: qcom: Enable DisplayPort on QCS615 Ride
- platform
+	s=k20201202; t=1760435041;
+	bh=62DynX5Fht+DyP/QVDKn/evvRtifvlmnihjlLkxrxfw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=fYv0ioYyVYUDNWbhBpxV2Ik86MO0Ueb8AQnNsXonFkoyeF7JcywfD/Fk+h8KezQP/
+	 NJRfGcvdAmaqJ8w35uDS1nWteDw5MSoHCPkxaRwsnrLGnQnGu18aSs5WaBaEJeLALL
+	 nLUGTxuC0d97AsbCRIHz0vpMg2FjfxXCP/iXdtk0l81+yHpjp3xC+FHEk3M3UoA9Vn
+	 mAso3gSByLshjh6KIU1lNqfZTLL0z5NGfB2uDbqzw39D1dxOUTUJiBqAyDncbB+ce3
+	 6TfyB1nSVarfBD+t3sp5QNoq4Gh9A3PIP1u/GY8MJJ5h2Jds2MzK7iZ7EYePS0eEuz
+	 UzNGKmv+kbc0A==
+Date: Tue, 14 Oct 2025 11:43:53 +0200
+From: Niklas Cassel <cassel@kernel.org>
+To: Randolph Lin <randolph@andestech.com>
+Cc: linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+	jingoohan1@gmail.com, mani@kernel.org, lpieralisi@kernel.org,
+	kwilczynski@kernel.org, robh@kernel.org, bhelgaas@google.com,
+	krzk+dt@kernel.org, conor+dt@kernel.org, alex@ghiti.fr,
+	aou@eecs.berkeley.edu, palmer@dabbelt.com, paul.walmsley@sifive.com,
+	ben717@andestech.com, inochiama@gmail.com,
+	thippeswamy.havalige@amd.com, namcao@linutronix.de,
+	shradha.t@samsung.com, pjw@kernel.org, randolph.sklin@gmail.com,
+	tim609@andestech.com
+Subject: Re: [PATCH v6 1/5] PCI: dwc: Allow adjusting the number of ob/ib
+ windows in glue driver
+Message-ID: <aO4bWRqX_4rXud25@ryzen>
+References: <20251003023527.3284787-1-randolph@andestech.com>
+ <20251003023527.3284787-2-randolph@andestech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251014-add-displayport-support-to-qcs615-devicetree-v2-3-1209df74d410@oss.qualcomm.com>
-References: <20251014-add-displayport-support-to-qcs615-devicetree-v2-0-1209df74d410@oss.qualcomm.com>
-In-Reply-To: <20251014-add-displayport-support-to-qcs615-devicetree-v2-0-1209df74d410@oss.qualcomm.com>
-To: Rob Clark <robin.clark@oss.qualcomm.com>, 
- Dmitry Baryshkov <lumag@kernel.org>, 
- Abhinav Kumar <abhinav.kumar@linux.dev>, 
- Jessica Zhang <jessica.zhang@oss.qualcomm.com>, Sean Paul <sean@poorly.run>, 
- Marijn Suijten <marijn.suijten@somainline.org>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
- freedreno@lists.freedesktop.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, fange.zhang@oss.qualcomm.com, 
- yongxing.mou@oss.qualcomm.com, li.liu@oss.qualcomm.com, 
- Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1760434946; l=1594;
- i=xiangxu.yin@oss.qualcomm.com; s=20241125; h=from:subject:message-id;
- bh=A/SsuVWsiV6vdsaEJQHVzPt+4G+6gB6Bn9Pd+6Y41VM=;
- b=zrQOwsN5AaLhGuLku7P3b3PlCYskdq/dqPR6U4lC3jeOxAhy5o06b+N+BbDs+5xvC/zunln5V
- n0aVs8SvMmdCDwzP8dhOOZdm4J468+Q4XEGyulkqipLqzsBmuxyRf7b
-X-Developer-Key: i=xiangxu.yin@oss.qualcomm.com; a=ed25519;
- pk=F1TwipJzpywfbt3n/RPi4l/A4AVF+QC89XzCHgZYaOc=
-X-Endpoint-Received: by B4 Relay for xiangxu.yin@oss.qualcomm.com/20241125
- with auth_id=542
-X-Original-From: Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
-Reply-To: xiangxu.yin@oss.qualcomm.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251003023527.3284787-2-randolph@andestech.com>
 
-From: Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
+On Fri, Oct 03, 2025 at 10:35:23AM +0800, Randolph Lin wrote:
+> The number of ob/ib windows is determined through write-read loops
+> on registers in the core driver. Some glue drivers need to adjust
+> the number of ob/ib windows to meet specific requirements,such as
 
-Add DP connector node and configure MDSS DisplayPort controller for
-QCS615 Ride platform. Include lane mapping and PHY supply settings
-to support DP output.
-
-Signed-off-by: Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
----
- arch/arm64/boot/dts/qcom/qcs615-ride.dts | 31 +++++++++++++++++++++++++++++++
- 1 file changed, 31 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/qcs615-ride.dts b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
-index 9ac1dd3483b56f9d1652f8a38f62d759efa92b6a..0b8bcabdd90a0820b1f9c85e43b78e40eb8a9a38 100644
---- a/arch/arm64/boot/dts/qcom/qcs615-ride.dts
-+++ b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
-@@ -39,6 +39,20 @@ xo_board_clk: xo-board-clk {
- 		};
- 	};
- 
-+	dp0-connector {
-+		compatible = "dp-connector";
-+		label = "DP0";
-+		type = "mini";
-+
-+		hpd-gpios = <&io_expander 8 GPIO_ACTIVE_HIGH>;
-+
-+		port {
-+			dp0_connector_in: endpoint {
-+				remote-endpoint = <&mdss_dp0_out>;
-+			};
-+		};
-+	};
-+
- 	dp-dsi0-connector {
- 		compatible = "dp-connector";
- 		label = "DSI0";
-@@ -423,6 +437,16 @@ &mdss {
- 	status = "okay";
- };
- 
-+&mdss_dp0 {
-+	status = "okay";
-+};
-+
-+&mdss_dp0_out {
-+	data-lanes = <3 2 0 1>;
-+	link-frequencies = /bits/ 64 <1620000000 2700000000 5400000000>;
-+	remote-endpoint = <&dp0_connector_in>;
-+};
-+
- &mdss_dsi0 {
- 	vdda-supply = <&vreg_l11a>;
- 	status = "okay";
-@@ -623,6 +647,13 @@ &usb_qmpphy {
- 	status = "okay";
- };
- 
-+&usb_qmpphy_2 {
-+	vdda-phy-supply = <&vreg_l5a>;
-+	vdda-pll-supply = <&vreg_l12a>;
-+
-+	status = "okay";
-+};
-+
- &usb_1 {
- 	status = "okay";
- };
-
--- 
-2.34.1
+Missing space after comma.
 
 
+> hardware limitations. This change allows the glue driver to adjust
+> the number of ob/ib windows to satisfy platform-specific constraints.
+> The glue driver may adjust the number of ob/ib windows, but the values
+> must stay within hardware limits.
+
+Could we please get a better explaination than "satisfy platform-specific
+constraints" ?
+
+Your PCIe controller is synthesized with a certain number of {in,out}bound
+windows, and I assume that dw_pcie_iatu_detect() correctly detects the number
+of {in,out}bound windows, and initializes num_ob_windows/num_ib_windows
+accordingly.
+
+So, is the problem that because of some errata, you cannot use all the
+{in,out}bound windows of the iATU?
+
+Because it is hard to understand what kind of "hardware limit" that would
+cause your SoC to not be able to use all the available {in,out}bound windows.
+
+Because it is simply a mapping in the iATU (internal Address Translation Unit).
+
+In fact, in many cases, e.g. the NVMe EPF driver, then number of {in,out}bound
+windows is a major limiting factor of how many outstanding I/Os you can have,
+so usually, you really want to be able to use the maximum that the hardware
+supports.
+
+
+TL;DR: to modify this common code, I think your reasoning has to be more
+detailed.
+
+
+
+Kind regards,
+Niklas
 
