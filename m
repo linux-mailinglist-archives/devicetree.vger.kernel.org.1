@@ -1,111 +1,111 @@
-Return-Path: <devicetree+bounces-226510-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226511-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D30C4BD9524
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 14:23:59 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8862EBD95BD
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 14:35:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9266D540A8B
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 12:23:58 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D649C4F7FE9
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 12:35:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89F0A313E05;
-	Tue, 14 Oct 2025 12:23:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 320A130F94E;
+	Tue, 14 Oct 2025 12:35:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="DaOYctO2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lRx3vTWN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50DDC31353D;
-	Tue, 14 Oct 2025 12:23:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A3B4307ACC;
+	Tue, 14 Oct 2025 12:35:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760444624; cv=none; b=Ml9A0oiLkZnUevKHmvnc38olKn6xUsemW/MCvzNNb8ryzRNCSCc2Cp3YR48K0hrvbVjLhOr8F0xfxqDYOI0cWFnUv2A9gCRjEy1aOOLQ98Dhj9pw5oHxj+7MtBvN2RJJ5QETg59FYGNkNwOvFRgre8Y2B02dODCcavRboz/hi/0=
+	t=1760445317; cv=none; b=Kx1HoCnpFfWxejvwCF5oHIGtc/6LcNir7y9d/OSfHCFR5A8ThVpDHuYsSoizyjG4AHlcpyxOFQAYA9fLVfPm/VAV0ElbjT2mycBWdSsFfmQHdOneaJdHbDRhd4ItTTL7X+XKg5GOJ6ofPgw0wsL2rM/hX4EhmdYxkuSoY8YdvZg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760444624; c=relaxed/simple;
-	bh=CafyeVLIYPhJPVMUhLBEGd8+CQQAGixD0ZmUS6mVJSw=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=vENAQoRtGBbYrh4+1K0aH2MTj9cJtDAzyQfyJ9rIJIRb8CHCUIXpMYV7/A09iZKTf+unULd56uW/cgLDHcQ2afVeslgwVECf4TAZxDC8pulBEpg1xoJ1QkSrxG2X0VwvxaolLFZ1Tpn3NfS7BtnaXQIJ2lupKhxU67aTKp/QXG0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=DaOYctO2; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
-	bh=A2wa4K0qWIFLcAnfmzypd+kDyosnJxyDAY3/uLjy03g=; b=DaOYctO2Ib9IIYYgqETAyF2zIt
-	0+gdutChlJDPIJbn0lIc0SwMbpflnjgYWoOc7FgRiawhAQkz3x9py/RpPBWx2KjwC06eTD7fneq09
-	bJp8jk4J3cRK3O0DZ32q6J+QQnBtn7Yuch+Q5V6lLihMBGmKAPfrwfQwJwNJSINqraC9zCmT40rC0
-	AdvyMhuGPULRwEJ7U7cWltvUNxOa67xECIx+3RpFdtsy+6jYWsUbO04FuEhB+0FBHrauAfDjxX6Az
-	8eX0hhGCHsZm3ry0U70sKnfyLUXe2QZoTMr6f0tpaMuvj2+vMOCYW47xmewnSGd8YFn+YzsGaDYuT
-	cy3bAg7A==;
-Received: from i53875b75.versanet.de ([83.135.91.117] helo=localhost.localdomain)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1v8e3s-0007Hl-IL; Tue, 14 Oct 2025 14:23:28 +0200
-From: Heiko Stuebner <heiko@sntech.de>
-To: robh@kernel.org,
-	WeiHao Li <cn.liweihao@gmail.com>
-Cc: Heiko Stuebner <heiko@sntech.de>,
-	hjc@rock-chips.com,
-	andy.yan@rock-chips.com,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-clk@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: (subset) [PATCH v2 0/8] drm/rockchip: Add MIPI DSI support for RK3368
-Date: Tue, 14 Oct 2025 14:23:18 +0200
-Message-ID: <176044455977.1550590.10827811203766869968.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20250905025632.222422-1-cn.liweihao@gmail.com>
-References: <20250905025632.222422-1-cn.liweihao@gmail.com>
+	s=arc-20240116; t=1760445317; c=relaxed/simple;
+	bh=OglqYXM5gyVnfpoYuVb+zV5hz/W1Vl9+ARMyr+0WbGw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=TiEUYp4SG2Bma8R9iJz1sQIUihsuuEZwWJJ5OVNrP3zHM0upFkEH+z3BEL8G81aOgklzsA1hxftbRXu9jZJDHhByTDkO9exRXwmWyHvw6kZSLpVnDvU1ODPLdyiNdRUklZGsS3/WjF1XRpKVYpuo6b9ezKOG04obSpm7l7MZPjE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lRx3vTWN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E4438C113D0;
+	Tue, 14 Oct 2025 12:35:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1760445316;
+	bh=OglqYXM5gyVnfpoYuVb+zV5hz/W1Vl9+ARMyr+0WbGw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=lRx3vTWNBxv6d5kpQ7a+9oj+0o7lHIZ2qIzdRfQ4B2vbByNg7J2Xi4OJZclAzcVx/
+	 J2IAggSjs7wYlXqSaBYxSeXHuoggrkJ2HG9zsOPnMCDszeLhfMObE2hVGHfLKe61NT
+	 CIjZ6/syIKWmkLcpNm9nzmEfA/dQLuG4tCxL7a51qDcfatjBY04jtHBEB5LYUNzjFx
+	 X0VPhvtIYqTduRfMP/SEIdwcGumSF9YR0Js1EqDprBGu73IXGirDu2ibMC7/BqxmGA
+	 T7nx8YAxgFor4ii99Cm9S2/sxeOKgJeyR6ZnKTgfuibcBoTPmsRDX3DHvLDVVtnSzv
+	 Kp38JB9W+LMdA==
+Date: Tue, 14 Oct 2025 13:35:11 +0100
+From: Mark Brown <broonie@kernel.org>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
+	linux-mediatek@lists.infradead.org, lee@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, matthias.bgg@gmail.com,
+	lgirdwood@gmail.com, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	kernel@collabora.com, wenst@chromium.org,
+	igor.belwon@mentallysanemainliners.org
+Subject: Re: [PATCH v8 4/9] regulator: Add support for MediaTek MT6363 SPMI
+ PMIC Regulators
+Message-ID: <bcf1004d-802a-4b48-9aab-0a4e39274037@sirena.org.uk>
+References: <20251003091158.26748-1-angelogioacchino.delregno@collabora.com>
+ <20251003091158.26748-5-angelogioacchino.delregno@collabora.com>
+ <5635636.31r3eYUQgx@workhorse>
+ <ac809179-7192-4218-8b13-86b9252652f4@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="Wn5Uvbbd3mnsI5Zl"
+Content-Disposition: inline
+In-Reply-To: <ac809179-7192-4218-8b13-86b9252652f4@collabora.com>
+X-Cookie: Go 'way!  You're bothering me!
 
 
-On Fri, 05 Sep 2025 10:56:24 +0800, WeiHao Li wrote:
-> This series adds MIPI DSI support for the Rockchip RK3368 SoC, enabling
-> native display connectivity through the MIPI DSI host controller and
-> PHY. The changes span multiple subsystems, including clock control,
-> DRM/VOP integration, DSI controller binding.
-> 
-> Key changes:
->  - Update dw-mipi-dsi-rockchip driver to preperly handle RK3368 dsi
->    initialization.
->  - Add missing lut_size of vop_data for RK3368.
->  - Add missing clock ID SCLK_MIPIDSI_24M to the RK3368 CRU driver,
->    which is required for enabling the 24MHz reference clock.
->  - Add MIPI DSI node to rk3368.dtsi with correct clocks, resets,
->    and register mappings.
->  - Add dt-bindings document.
-> 
-> [...]
+--Wn5Uvbbd3mnsI5Zl
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Applied, thanks!
+On Tue, Oct 14, 2025 at 01:35:37PM +0200, AngeloGioacchino Del Regno wrote:
+> Il 09/10/25 16:41, Nicolas Frattaroli ha scritto:
 
-[1/8] drm/rockchip: dsi: Add support for RK3368
-      commit: 6dd6949c76afbec037a66e6b9bcb6e2c5dee933e
-[2/8] drm/rockchip: vop: add lut_size for RK3368 vop_data
-      commit: 8e944ab8196e421f20386f51c5ffc43baa145932
-[8/8] dt-bindings: display: rockchip,dw-mipi-dsi: Document RK3368 DSI
-      commit: 2b756d321bf9f4e93437198d212c6ccec137b295
+> > Just initialise ret to 0 at the start of the function scope when
+> > you declare it. You've already missed an uninitialised use once,
+> > and playing these branch games is just asking for more trouble
+> > in the future. There's no micro-optimisation you're doing here,
+> > clang produces the same assembly for both zero initialised and
+> > the else branch version you're doing here.
 
+> It's not about micro-optimization. Double initialization is a bad coding practice.
 
-Moved patch8 (dt-binding) in front of patch1 (driver addition)
+Yes, if you just set the value at the start of the function then the
+compiler won't be able to tell if you messed up the logic somewhere
+later.  Sure, the warning is gone but that also includes cases where the
+compiler is telling you about an actual problem.
 
+--Wn5Uvbbd3mnsI5Zl
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Best regards,
--- 
-Heiko Stuebner <heiko@sntech.de>
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmjuQ34ACgkQJNaLcl1U
+h9C5jwf/XU13FSuJxf8T6RtyRPNXGOvljyrxJ6DklBvAU42vkhAKd19/Gv8HQSYJ
+vBoncLDbmzjUzf0Eo8ciSWrShl2MjmlDmg72ZTQpebIO+DszBkL6A2Ikreff9HcL
+0OhH91cshDMWzgd2R00tC8PDORmTljNrqWted4qwYIbUrbOpZK7kfmgtXa/f06md
+fX+/uU6SJ2ojk0apfoLg/avXygk0WgcSyelVofWOrXOQFqv7WDjHDjRBnBqavlK6
+O0lOjIoOYcuNylri623mMDDsAWlxDQjST8SYW2vzxW51oVgi4ctPxzgnnmBwi4vq
+LegSnOySQBMW+QhVHbhCEQt3pYf86g==
+=YAVv
+-----END PGP SIGNATURE-----
+
+--Wn5Uvbbd3mnsI5Zl--
 
