@@ -1,254 +1,189 @@
-Return-Path: <devicetree+bounces-226340-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226341-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B40C1BD7361
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 05:55:46 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 96982BD737E
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 06:09:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DD11A1891713
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 03:56:09 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 381F14E02AA
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 04:09:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF7B42F0C58;
-	Tue, 14 Oct 2025 03:55:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9A912F9D82;
+	Tue, 14 Oct 2025 04:09:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="hBTb01cv"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bYAx5FHF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from OSPPR02CU001.outbound.protection.outlook.com (mail-norwayeastazon11013037.outbound.protection.outlook.com [40.107.159.37])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88B0F17A30A
-	for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 03:55:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.159.37
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760414142; cv=fail; b=Vm3GqWoukfVKqES/kcfGo2zLdo7IpV0b90nBrOps454AMmdizScyV22M+L13nghyCPO3EHq45WCRgmLEwlkttK3y8JYFqaWl5BYw9B84QrVhmlsbIeQwuXTTap1m24Q63xcN+FztYQakfR3Il0dZebMvyjzxYNw0bgYC9yNhQhQ=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760414142; c=relaxed/simple;
-	bh=rnceS5lHgw8QPqZN5wUt4DDdtHF9y6Yerf5PmfNiAmo=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=QocxYtGSc9x8EKZs/nLo9Mm9wuvAjh0l55el73oaVV84025+5TOAmrGlmU5uPvCBNB7PxJ0HQuSFB9anoyQ3Jw7+v4ahmEoDbYtHGpvqM8WREW9q/TtWPKyunrsr5YCaEwk6QmK+f8xftTNqjH5C2QSP5OX51MNcD+c+GCYezG0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=hBTb01cv; arc=fail smtp.client-ip=40.107.159.37
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=NGt4uSfXCrThrOt5KDqmJ/CTVN5kPLd9JvQK7du2H2MvFKiSXQbyqiAB1KuANHocjroSObVdB5JuZ9VxgDIXye793rQ7pS9nEXPB+P3F8Sbf+U6hJzU9QB8GieBpOoRQRyKoFlX7d9pXcSCns7bwuYakvZYZ6cVNNhl4nmiVyUJwh/6aZqOhfzYxG55MC4kU2/mGBuanYDjhIgeALr98tmWhrqEKwivUQdPXhKPqgePQwXXwMFt0zhGLqqL6MOsbVvLRbCpepuzdxosXHaKyqayOSsq3Cz0SVnQFF+FCo+iAA478XBkGMvEo/+h68GVHo+xM8VhAtZU67p4ZPyR/6Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=85w3OvvTFE8wa2dpTDYlqbebjbN1qOt3fEFsjt7sGa4=;
- b=eyggfoGLKe3gzhfL2aIQ04318qQZzIWB7wpKXsGLJz1yZdzPKGk/Abts+wCebxMP2WqDnrVgn98AhIj5jAMe0+XPSt+NNRay5rKJIG6B/FLPdKWQllGqUE/Ku7m2YZXdqwUY19H04Ao5mIDGUMlh3Ad0Jca6ZTcGYvyOL5GAkxP4aUyQbqNxIaqV9HYY3YuLTEsw60EF9bbKcAiqRy0hWSbpbZCG6gIL79zRtpWgrruBAcHh28ooh8p1IkpnNG1IVtbzA5Qvk12mBXkdP13tZSkehPfkqhGjXUgCb+/5buDNi4u/7HBkg3Jw7JSxW3XJg46v/AK0S9WJ+q3g6SwSlw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=85w3OvvTFE8wa2dpTDYlqbebjbN1qOt3fEFsjt7sGa4=;
- b=hBTb01cvbuVdbsxV9o3wtxZQnDb34QLZV0IMAUjvW+YDUoWMyc05kc+WA6IUCSJ/GLFeWesrhn4C1j4Tniotwn0Azkz4jl5Jl3QrOr2Y8fPF/l3GOjT6KFiCwCEFt8H/mZsliTTg0XyCwounKwl53UYMfsF5uSY34ZXG61tPLTAyigRORKfZajeIP4U11YQx9SSR/caOUqfg2VkMuGgBEroMhLREnYTLkTh87aFVYXo51vSsd4BBAJnYcZ9qw7Wl+0IjRAGgWmvEN+O+o6DVTx9/sx6nC7UUih9KEtJx5HmpuG/CVt+gAWkIRQygLbvF10Up7LPSPdKT1K7vVaZWkw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
- by VI0PR04MB11867.eurprd04.prod.outlook.com (2603:10a6:800:31e::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9203.12; Tue, 14 Oct
- 2025 03:55:37 +0000
-Received: from AM7PR04MB7046.eurprd04.prod.outlook.com
- ([fe80::4609:64af:8a4b:fd64]) by AM7PR04MB7046.eurprd04.prod.outlook.com
- ([fe80::4609:64af:8a4b:fd64%6]) with mapi id 15.20.9203.009; Tue, 14 Oct 2025
- 03:55:37 +0000
-Message-ID: <239e8b99-0416-4708-9548-043d56ac88d2@nxp.com>
-Date: Tue, 14 Oct 2025 11:55:59 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RESEND v4 2/3] dt-bindings: lcdif: Expand the
- imx6sl/imx6sll fallbacks
-To: Fabio Estevam <festevam@gmail.com>
-Cc: marex@denx.de, stefan@agner.ch, airlied@gmail.com, simona@ffwll.ch,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- shawnguo@kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, Ahmad Fatoum
- <a.fatoum@pengutronix.de>, Frank Li <Frank.Li@nxp.com>
-References: <20251013205155.1187947-1-festevam@gmail.com>
- <20251013205155.1187947-2-festevam@gmail.com>
-From: Liu Ying <victor.liu@nxp.com>
-Content-Language: en-US
-In-Reply-To: <20251013205155.1187947-2-festevam@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MA5PR01CA0140.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:1b9::9) To AM7PR04MB7046.eurprd04.prod.outlook.com
- (2603:10a6:20b:113::22)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B5222BAF9
+	for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 04:09:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1760414972; cv=none; b=HR+zorwRxkcVtXD9xv600kHJbodWL8y8F3/VsTMI3jJjjyAUC7TgZ5Cj3JEu0cGgAkIws0A34WG/9ujRzkn1Qg3on7TSFfunmdAgosycgTX3geYL01dtp6dla9az+QKAuroDrzhMN5v+MhEHS6hGcxf2eB4rlMimBxQYQx4lMzc=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1760414972; c=relaxed/simple;
+	bh=3SJ+BAJ90/2fM1tvgHY4MUBt6A3UEulndiODvhiJaRg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=H+y9avRjSMeYlPDETsSZeqpUzqMWHyViIW15e9dyW6Yvxk1+3oDD3ATVSBgdhgkthTL91rqqYgFJCPsIXOHsOmn9KPpgZBh0mgTg4fXXE+0NsNx6GVDgQht+kFUPOIzVYzroqt/Jf55ZO7DVN0pjQvPK3IjqBNsiE92H18EljBw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bYAx5FHF; arc=none smtp.client-ip=209.85.214.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-28e8c5d64d8so44905515ad.1
+        for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 21:09:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1760414970; x=1761019770; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=T0FUz4z1xFNwCgvQPUMrt9kZD59yR5IRPj9qAd263rQ=;
+        b=bYAx5FHFLFmqOsHWaIS9zaZPMkzrGtd2FznZk/GkZhPYiEKwaCUuPF7YHz2Z8TCeX5
+         h97hNEL9GKIQbyT4cYkuoUmBGpXdE+ZYl4d4Q0k1y+nU5ATJE1OocffPSsBIgIYLEZ/U
+         EGmXYyakH7He74CDIhO+BV+2rT0pLAdmIFfy9C/Ntoi5fUC4mQgO6nA6booiWT+aUh46
+         8Fu9oITM4vJgoyHd7FkuHYRRs9mcaZV/X8o/WFsCRNEbaq5J69j14X7cygMCkg1c74UL
+         aluRakUUIXo9pEvVl7KGBHquCvkWDSyaKUJImyxWQwjM8PCLhCKJeu1X/QRZVU/fU5QA
+         aJBg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1760414970; x=1761019770;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=T0FUz4z1xFNwCgvQPUMrt9kZD59yR5IRPj9qAd263rQ=;
+        b=rPTcxbQhfM+thf7Kxm2jPi/xrKj7gFUHSuDS73RQb+XXf49ndFEfmP9CWBxLYrIS4A
+         uwTwXyOaW2gUaNzXAKdK9RzXkwMRyh2cPgPEvcoFhmY7LjQ0PKx6X33CiVGaabhSq78L
+         TErZD3YJNZj68xXz7lX7u75oNyN/OxkDhlx2tjhKUvgOXr+BEpnX1i2hA/4CBer4Yfz3
+         NlcVX84hNCUmtkhypoDDu6GpoWA/BBSPpAN69h3EbN9qgyeVdmwpmSInH6nZlrnMrn9n
+         bQaRpLUaaaX/RVciNa2RJ6vyzSZg73wlxTraLaUDykiJt4deGQmfgo6aocAK5RhNa7jS
+         tgRA==
+X-Forwarded-Encrypted: i=1; AJvYcCWsUTPjacn0fIeWWEi4ECGKNZrrCQAHAIepOGT3KUnIs1L1/Mr3hhHS6q65v63JhZgCUdEJUHcHxoYx@vger.kernel.org
+X-Gm-Message-State: AOJu0YzREKB67JEJNeR7YHiepvkO7STj12qSWoINO0KxOLvOfiYQp6BJ
+	ZSsEhqT0wVZzwMTAnV/M0GtGE0AifUVJavsDcRLGW6n+qv5gQrePCb5qJ6R6f1J/
+X-Gm-Gg: ASbGnctSSmPKZuc0REZSXBbIcwOMdD+2lk+ZamsnGjYXV9WIOKq1/jx5X5kKVmHJPNn
+	qb2pqRbO//EPIRSGgpWmdCMhNPkZZj6HyFkoFNnLfmQr6vSJUBtYSrypdOc9GgJNx9VGKyCpJPy
+	toJB7BlzT9Ai2I3uoM2PZtZ4Gn74XKBzrtNrJJFu0uYYcRFaR4YfFxs+GMtxsAdDCa+Rds0Dpq1
+	rjsB5YRkUuGNEUKCC3QlSBd+Ph26RvV4znv1z0OT+RgtJ1RzB6vIZNCNu9Mg6VdRvZatIuIJNfB
+	zquM5OsLwqizSjMNraYFqARqeD1DmcqemYEp62IX5pvK3BW16ygwqz0v9EgZ5XL66B+PdCxEobB
+	fTAf8xEQp+ptS1Qk8s6ISQGKapba+MIKwLlwsMHlvpDmo7FB90TB1uIqzeKHxCeYxI6kQe1CjEp
+	/T2gJZ3Cgb8Sw6/1IpshU=
+X-Google-Smtp-Source: AGHT+IEr20kAH+dfqBTsSZfMO0yg/OwD4bgTloNhcSIQWl/DGKL1nIf9DZfEY5q5FY5iCmPtfo18vw==
+X-Received: by 2002:a17:902:e806:b0:261:6d61:f28d with SMTP id d9443c01a7336-290273ffe94mr274157815ad.50.1760414970372;
+        Mon, 13 Oct 2025 21:09:30 -0700 (PDT)
+Received: from fedora (c-76-133-73-115.hsd1.ca.comcast.net. [76.133.73.115])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29034de5dbfsm149146305ad.20.2025.10.13.21.09.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 13 Oct 2025 21:09:29 -0700 (PDT)
+Date: Mon, 13 Oct 2025 21:09:27 -0700
+From: Tao Ren <rentao.bupt@gmail.com>
+To: Guenter Roeck <linux@roeck-us.net>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+	Andrew Lunn <andrew@lunn.ch>, Tao Ren <taoren@meta.com>
+Subject: Re: [PATCH v4 11/13] ARM: dts: aspeed: facebook-fuji: Include
+ facebook-fuji-data64.dts
+Message-ID: <aO3M90Ycp2DWyFuk@fedora>
+References: <20250728055618.61616-1-rentao.bupt@gmail.com>
+ <20250728055618.61616-12-rentao.bupt@gmail.com>
+ <79ddc7b9-ef26-4959-9a16-aa4e006eb145@roeck-us.net>
+ <aO2kLyxGlGt12sKD@fedora>
+ <e3dc7aee-c8af-4276-84e5-0f0c7926be05@roeck-us.net>
+ <054cf209-61af-4d21-9a3b-d0f6dd24ee3b@roeck-us.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM7PR04MB7046:EE_|VI0PR04MB11867:EE_
-X-MS-Office365-Filtering-Correlation-Id: b0b40c93-411d-40b4-f172-08de0ad588b9
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|19092799006|376014|7416014|1800799024|366016|7053199007;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?WjZrNFJNM3dleFVjeGkvUnBIZ0xMK2xFOGJKUUg2QS9Od2tqVlB3bi9qc1Vj?=
- =?utf-8?B?bUlSckNZUnA0Q0xaS1BaQ29pdlFnSTRUUU5VZnBsRDQyaXBEdUptZlhmblY0?=
- =?utf-8?B?WG1YU3hqY0c2ak9hU2lFN0RGbDM2ZVVCanNDZDdmMXh0T3VlYzRXVzF0cEFL?=
- =?utf-8?B?YzkyK2RvYWdOZlZDc21ENGdZMjM2dmRuajVkNnl0YXlwY1AvNHNySnVpYmFy?=
- =?utf-8?B?MDdTN2hBd29EWE1ENlgxNk1JN0hFS29veG5pZVIxdU1pMnRFbHFrbVVJMy8r?=
- =?utf-8?B?NkJhQlFhR0FpUUtteHZLVC9pNUdiaGJlZlRaN0gxejdIazdRTldCdWJQREk1?=
- =?utf-8?B?NHYxVmR1N0hTS0NyZlpBV1cvQ3VoSDk5V1ExNFl1bE5YM0ZrWGdoSi91cTJJ?=
- =?utf-8?B?MEt5eTlHenBWN3NKeFJFZTNxRGdUa1p4RWZSdUNyMUp3OUNraTRrUWtzbEsw?=
- =?utf-8?B?MlJvMWxwdW1CRCtJTVNNdCtNL3dYa0tVV0FsQzVENlk0OW5iUENyQ2ZRZVlz?=
- =?utf-8?B?aXNwbTV0ajlPVzR3akpHVDNWZnhyWkMxRDdMWk9rMTBvU2I5b3o3SmMrbG5P?=
- =?utf-8?B?OWxYeTdiby81NWYzUDBqckNDV0dKMHhOYTdzS0RmUlBkL29HeThJcjdkTThq?=
- =?utf-8?B?ekJhWXBZYXlYc3c0b0hHUlp0WTgyWTAxTmNma1l3dWtTRUdRMThOL25acXE0?=
- =?utf-8?B?aHBRMktVa0ZQd2FtT0ptT0pzZGwxbHZsOWxwMlUxRG0rcHRoTDEzZ0ZldkdB?=
- =?utf-8?B?ZXZNNjd2ZVV5aXJYYXBtSkJxZG5kakVDVG96VzZEV3JNUGZwSHlMNHRiWDd4?=
- =?utf-8?B?R0wxLy82UlVmZDFtb1dMUVhjYWpWVk5Ndm1SUVU4cndwSmlXdzA5K25Eb0hY?=
- =?utf-8?B?YUtvM0RRTW0zZTUxSmNnM3VSMzVGa2I5cWsxd2VSNXRJMkdNbXBOMnU4eFZU?=
- =?utf-8?B?UHpLd2Z6MitiaUlQWGg3dG9iUGgrWFJXTTdZME5xbW5KdVBNeGwwdDhJbENs?=
- =?utf-8?B?RmtBY3EyTEFnLzhvcGw0Vkp2NXZEQlhHcEdnQUhZaHFKY2k0Q3lOSkh5SFE3?=
- =?utf-8?B?alZnQUkyeVNDa21CSEVBWkRXNnFMYkNQWWg4clpQd3htYTNBYmNwQU1zekg4?=
- =?utf-8?B?WnNqaWVINmliaWJnWmNTOHBLaTZKRDZ2N2dkSGNKVUlrWnZkNHRqVkorR0tF?=
- =?utf-8?B?V2hIKzlUU2RGUVZrakNIZDE2YktCQmUvanJlVW41TjRGSkhNU1FJN0FOVmcx?=
- =?utf-8?B?dG5QMEY0aS9XMFczMkMreWJ2SjRPZmVQUXFoeVNTY1dta1FvK3hYWTZRMTNL?=
- =?utf-8?B?dldhYm1XdTc5RkN5OEV0d2hsTklxczMwNis4c3g3TWlleEVvUzhPa3dKTVdP?=
- =?utf-8?B?U0JnQzBtckhreTN0bFBkbEVEUG4vVkRVWHkyT204Mk5TK010RFVxTVlqK3Z3?=
- =?utf-8?B?U3ZTbnpwOXlUNVc0K1NTTzhlOEVreHpoVFZPYXFPRGJGRHduT2NNbDU5ZUcw?=
- =?utf-8?B?cVozQmcvYXB5MHhEUWV4S2d0KzNvSU92Mnp3YnlLY1lHZmdEWnE4T2EvNXRF?=
- =?utf-8?B?MUR2aDVCeE8yUDFvbGRVUmEzQUlOSVBPSVFEaFl0dHRrdmlCeXVqbktFWmFL?=
- =?utf-8?B?b3d4bVd5UUIvNTh1d2Y2V1BITE9JNTk0QkhUazIrZ2w2QVBIdWVyWExtTVRP?=
- =?utf-8?B?WmgrQlVDQkt2UEtLc0wxczJWeDhjNHpwYmovRiswdTVaVHpuS2VsRDFDNWVj?=
- =?utf-8?B?RkthY1ppcVJtdlgrTzA4NnFKUyt5RVd2M0dsVHNlcXhGSjNQcDlJZ3BDZUlQ?=
- =?utf-8?B?RVVSdTJBWXpHRHJ2VEJnajl4NmJqU2s3NkQrR0c1QXJxTVJMcmRrMFVGT1Q5?=
- =?utf-8?B?RnQyMFNnSnp4QXJrRzNEVEt5YjBkMkc0Y2ZYNERHeTN2RkJJaHRUVzFURmJr?=
- =?utf-8?Q?S8sYWLpemoyuJ5KXafZ/2funPxxDhMDr?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR04MB7046.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(376014)(7416014)(1800799024)(366016)(7053199007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?Mi9hZkxxNVN4V0ZrL09GR3Q1bDZDRVRxS2lMclVBbVdUY3l6L3B5NENUd3RW?=
- =?utf-8?B?cER6eVhTME5mSnNmZG5ucklKTFVjM0JwS2liOW5mM0dqVWtEblFhdDJYQnpF?=
- =?utf-8?B?V1ozNm94dUV6T3M0bVBoM2VuaHdNc2V2RnZGaUdKOGZvZSszL1dhVHdBZnhx?=
- =?utf-8?B?ZnQ0aFprUzVsTENUS1JrS3N6bTMxNG41bHptZElmZEg4T3hyQit4cjZQMk5H?=
- =?utf-8?B?WlVMN0pxQWkweWpYa08yVHlsUHNpeFhpZ2NmcmlyOUdsYTE2NFhMZDFYRzJO?=
- =?utf-8?B?eTZkR0k0YnN5VmwyMDFiZFhZZjJ1T3FsR2N1NFhMd3cxZU15enJTa1dKdDhl?=
- =?utf-8?B?OUhQdHp1dFRRejd6ckgzN295ajlvUlhYVDMrTDZmTGxWYUYvRkhlN0tYMnZ0?=
- =?utf-8?B?MU40bkVNeTRlelAzcU1yTEdQZ0w2STNka0FqSDkreVJaTTdmQmozSUN6RHFD?=
- =?utf-8?B?eWZtYmF5cjFBUW5XdkoycGc4eVNQblhBb3pwcXB6U2IrVmFJR0k5eEk3TkFu?=
- =?utf-8?B?eVZyVEhMazlwbjdBdUp0Y0N4eDlTbm9vd1RaMGMzMVVTemVJM3pSbXVFaDBt?=
- =?utf-8?B?UHcvRWwyZFJqWnRUcDVLNndOZk45NnlSODNBZ0dadUlRUkNPeTFiQy9OWi9v?=
- =?utf-8?B?aU5IbmZab2tpVmNlMm9LaFVNVHJWUmx6eTVoRDk2NVpjUmQ4S1JwamZHUURD?=
- =?utf-8?B?eFRDeDJZV2Z2anBuMkU1bTd5MXJPWk92RmpRUUNtSm9mNURKRE90T24waGRz?=
- =?utf-8?B?RTZLTFA3TGZoNkxFZzFwWjVyem5mUjlRczN6K1c3TmdhVGtET1I3RWE0VVpC?=
- =?utf-8?B?OTFxVHU5NHM2R0VJNHdPMENBWi80STc0VUpzS1pUT0Z5c2dRZWVvR2lSQngy?=
- =?utf-8?B?TDRYdjZOcUtyVzVraWc3LzlyQUprWkZyTytoU1MrcE5UNnFRRzlnalFNMEtW?=
- =?utf-8?B?elpJK0k2K3d2UXNwNUlreDcyQUwxQVFmdzFHcG0rSkFpandjVHNnYW9QQ0R3?=
- =?utf-8?B?SWpwRmhoY3VBcVZhTjJXRXhJZjJaaEY1VWc5dldhT2xYd1ZIQkhEZjcxWHZa?=
- =?utf-8?B?NFJ2R1hWeWxBVVZidzUrOGt4ZXdGc1RlRi9DOWVFdFdmc2VoRlB4YklmVVJW?=
- =?utf-8?B?c291cFNvaTdpbTBUUmpWRzFuSThYNDlJc3laOVhzcnFYWmV4bVFUOUh4MFlw?=
- =?utf-8?B?NUNrVTlvRVNqZDdYV28xVjJiSERoVmdXeXp1eU95NjVldllOUHBXUmdhMHNG?=
- =?utf-8?B?OWJVQVRqK2k4NDd4cHQ3eENLbEhQWlBRNkJYcU00cjNhNzNCbmpRZlA4cHIw?=
- =?utf-8?B?TUhwampnT0w1enFlMmJuQUlpeUxPd3JaWVhEdHhxUHJjemdXM21LbGIrWlg0?=
- =?utf-8?B?a0JCVzJ1eWdnb2wyU0JWTFlhY0dwRUdWdnB5emNEOEV1RWtlQVJYNldnZmtt?=
- =?utf-8?B?Q1Zvb0x4aUg1a3Fuc2FVbzBQUmhteFdzK0kzNGMyV0RoUVJOQ0d4L3RBNHZ0?=
- =?utf-8?B?SWJaNmdnSjI3SnROZzBPM3I0czNER0RrRXlYTTlRVjZ4c3lsK0tIRk51U0c2?=
- =?utf-8?B?QmhHeUwvcUlEZ3htRmZJQ0s1NUZNeGZGV2RLTnJoallDWGQ4L2g2OXVsc3lD?=
- =?utf-8?B?U3poT09Fd3BQd29UZGdnc3FKSzZYR1lWN0RObDdZS3h5U2hibjc2aEcyaUlo?=
- =?utf-8?B?Y3NDRUs4VEtobnJtVjR3SmlqQmt5ZHpNV2JoR0xIS1pRaXhaMVdRbnVGbHlt?=
- =?utf-8?B?eFlXaTBSWjlGS2dwYkpHQWdOWS9Gc3hWaDVzY1ppZVQ3QWJ6cHNrODVnbkZT?=
- =?utf-8?B?ZitpSlJrMHVoMXJSdUhVWk5iV09BeDBzd1dzYnlxcW1tWU55WkE1N3N3TWNw?=
- =?utf-8?B?NWI4dy9uQXE3ZzhzRzhFbklXdmoxR2R6OW9FWlpjUVd4YmRtQ0d4bXRQZnc5?=
- =?utf-8?B?TXdDMzRWQmxheDZHUE1hWHhZc1g5azc0WG5xd1NMb0RBMVltZmoxRkJQRzFZ?=
- =?utf-8?B?aWswUTVXd29YK1NwUzFsZ1kwSWhLci80ajhBd3E5Rlp3S2hCNWJzMEJIdDlX?=
- =?utf-8?B?dzRHR3lwZmJXR3laTTJsY1V4QXVYRDA4YSs3ZC9NaE9Fb3F2djQ2dmhEeE9l?=
- =?utf-8?Q?TcyGQz2/ZiFJ5IndtiQI716ho?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b0b40c93-411d-40b4-f172-08de0ad588b9
-X-MS-Exchange-CrossTenant-AuthSource: AM7PR04MB7046.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Oct 2025 03:55:37.3564
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: V1/PIIwFxGG3xG04vTdcc64VV8cKN5eh+hPpGnPepzonxILOPaJ4kazPBBoNsP11GKavYgAFohuI/b+GW1jaLw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI0PR04MB11867
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <054cf209-61af-4d21-9a3b-d0f6dd24ee3b@roeck-us.net>
 
-On 10/13/2025, Fabio Estevam wrote:
-> mx6sl.dtsi and imx6sll.dtsi have the following lcdif entries:
-> 
-> compatible = "fsl,imx6sl-lcdif", "fsl,imx28-lcdif";
-> 
-> This causes dt-schema warnings as the current binding only
-> allow 'fsl,imx6sx-lcdif' as fallback.
-> 
-> ['fsl,imx6sl-lcdif', 'fsl,imx28-lcdif'] is too long
-> ['fsl,imx6sll-lcdif', 'fsl,imx28-lcdif'] is too long
-> 
-> The imx6sx-lcdif programming model has more advanced features, such
-> as overlay plane and the CRC32 support than the imx28-lcdif IP.
+Hi Guenter,
 
-Sorry for the late comment, but the LCDIF chapter in i.MX28 TRM contains
-the CRC register too, though I agree that i.MX6SX LCDIF supports overlay
-plane while i.MX28 LCDIF doesn't.
+On Mon, Oct 13, 2025 at 08:44:17PM -0700, Guenter Roeck wrote:
+> On 10/13/25 20:20, Guenter Roeck wrote:
+> > On 10/13/25 18:15, Tao Ren wrote:
+> > > Hi Guenter,
+> > > 
+> > > On Mon, Oct 13, 2025 at 05:20:57PM -0700, Guenter Roeck wrote:
+> > > > Hi,
+> > > > 
+> > > > On Sun, Jul 27, 2025 at 10:56:13PM -0700, rentao.bupt@gmail.com wrote:
+> > > > > From: Tao Ren <rentao.bupt@gmail.com>
+> > > > > 
+> > > > > Include "facebook-fuji-data64.dts" in facebook-fuji dts to avoid
+> > > > > duplicated code.
+> > > > > 
+> > > > > Fuji-data64 and Fuji are identical except the BMC flash layout.
+> > > > > 
+> > > > > Signed-off-by: Tao Ren <rentao.bupt@gmail.com>
+> > > > 
+> > > > With this patch in the mainline kernel, the Ethernet interface I use for
+> > > > testing does not come online when loading fuji-bmc in qemu.
+> > > > 
+> > > > Reverting this patch fixes the problem.
+> > > > 
+> > > > Looking into this patch,
+> > > > 
+> > > > > -
+> > > > > -#include <dt-bindings/leds/common.h>
+> > > > > -#include "ast2600-facebook-netbmc-common.dtsi"
+> > > > > +#include "aspeed-bmc-facebook-fuji-data64.dts"
+> > > > ...
+> > > > > -&mac3 {
+> > > > > -    status = "okay";
+> > > > > -    phy-mode = "rgmii";
+> > > > > -    phy-handle = <&ethphy3>;
+> > > > > -    pinctrl-names = "default";
+> > > > > -    pinctrl-0 = <&pinctrl_rgmii4_default>;
+> > > > > -};
+> > > > 
+> > > > I don't see this in aspeed-bmc-facebook-fuji-data64.dts, meaning that
+> > > > interface is now disabled. Adding it back in fixes the problem.
+> > > > Also, MAC3 is explicitly enabled for fuji-bmc in qemu.
+> > > > 
+> > > > Was the interface disabled on purpose ?
+> > > > 
+> > > > Thanks,
+> > > > Guenter
+> > > 
+> > > The mac3 interface was removed in the latest patch (v4) per Andrew Lunn's
+> > > feedback, because the rgmii setting is incorrect.
+> > > 
+> > > I was planning to add mac3 back as soon as rgmii support is properly
+> > > handled in aspeed mac driver, but kindly let me know if you have other
+> > > suggestions.
+> > > 
+> > 
+> > All I can say is that it worked just fine with the qemu emulation,
+> > and that it is broken now. Since it was broken on purpose I guess I'll
+> > have to find a workaround or stop testing network interfaces with
+> > that emulation entirely.
+> > 
+> 
+> Ah, I see that mac3 was the only enabled Ethernet interface on that system,
+> so you effectively disabled networking on it.
+> 
+> I don't claim to understand the logic (how can anyone continue to use this bmc
+> without network interface ?) but I guess it is what it is. I'll stop testing it.
+> 
+> Guenter
 
-> 
-> Expand the imx6sl/imx6sll lcdif fallbacks to accept a less specific
-> fsl,imx28-lcdif fallback:
-> 
-> compatible = "fsl,imx6sl-lcdif", "fsl,imx6sx-lcdif", "fsl,imx28-lcdif";
+Sorry for the inconvenience.. I have to take a local patch to enable
+mac3 in my environment, because as you said, it's not useful without
+network interface.
 
-Looking at i.MX6SL TRM, I don't find any register to control overlay plane
-in LCDIF chapter, so I don't think i.MX6SL LCDIF supports overlay plane
-like i.MX6SX LCDIF does.  So, why not make the DT binding allow
-"compatible = "fsl,imx6sl-lcdif", "fsl,imx28-lcdif";" instead?
-
-I'm assuming i.MX6SL LCDIF and i.MX6SLL LCDIF are exactly the same.
-
-> 
-> This helps keeping DT compatibility as well as using the more advanced
-> lcdif features found on imx6sl and imx6sll.
-> 
-> Signed-off-by: Fabio Estevam <festevam@gmail.com>
-> Acked-by: Rob Herring (Arm) <robh@kernel.org>
-> Reviewed-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
-> Reviewed-by: Frank Li <Frank.Li@nxp.com>
-> ---
->  Documentation/devicetree/bindings/display/fsl,lcdif.yaml | 8 ++++++--
->  1 file changed, 6 insertions(+), 2 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/fsl,lcdif.yaml b/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
-> index ce31b873fb95..d665f3241e97 100644
-> --- a/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
-> +++ b/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
-> @@ -23,14 +23,18 @@ properties:
->            - fsl,imx93-lcdif
->        - items:
->            - enum:
-> -              - fsl,imx6sl-lcdif
-> -              - fsl,imx6sll-lcdif
->                - fsl,imx6ul-lcdif
->                - fsl,imx7d-lcdif
->                - fsl,imx8mm-lcdif
->                - fsl,imx8mn-lcdif
->                - fsl,imx8mq-lcdif
->            - const: fsl,imx6sx-lcdif
-> +      - items:
-> +          - enum:
-> +              - fsl,imx6sl-lcdif
-> +              - fsl,imx6sll-lcdif
-> +          - const: fsl,imx6sx-lcdif
-> +          - const: fsl,imx28-lcdif
->        - items:
->            - enum:
->                - fsl,imx6sx-lcdif
+Meanwhile, I will need to work with ASPEED to enable rgmii delay support
+in the ASPEED MAC driver so I can add mac3 back to the dts. If you are
+looking for a similar platform for testing, you could consider elbert.
 
 
--- 
-Regards,
-Liu Ying
+Thanks,
+
+Tao
 
