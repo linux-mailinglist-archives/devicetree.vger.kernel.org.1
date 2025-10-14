@@ -1,93 +1,95 @@
-Return-Path: <devicetree+bounces-226821-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226822-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA6B1BDBC71
-	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 01:21:39 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23357BDBC8B
+	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 01:24:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1944F18A787B
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 23:22:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BC991428001
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 23:24:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5DC92E0B74;
-	Tue, 14 Oct 2025 23:21:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF2832E285B;
+	Tue, 14 Oct 2025 23:24:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=minyard-net.20230601.gappssmtp.com header.i=@minyard-net.20230601.gappssmtp.com header.b="Ky8H5v9t"
+	dkim=pass (2048-bit key) header.d=minyard-net.20230601.gappssmtp.com header.i=@minyard-net.20230601.gappssmtp.com header.b="Kjqrto23"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail-ot1-f53.google.com (mail-ot1-f53.google.com [209.85.210.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3163C205ABA
-	for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 23:21:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37B501DB122
+	for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 23:24:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760484095; cv=none; b=hXWt3yjEwqIK12gK3USF07EuXKNmrVLdsfygheWW2XSJKR01fG1fKZaoR0dYK7GA/3/hHAzDlPpCTwjWeC7me6lF0L6+q/Iy0geDNr7xEk0LZkpiKB405GCq6GJHDhwn7tK39PG4hAid6HbZFz9zPumudOeNUF/kAhnVbUiNIrw=
+	t=1760484260; cv=none; b=Z4aeCd0MUYFewXgK8eQj/ukXUK7t3hWjq+NpZBUMxmGBeAPduPtW79jqSJPAcSwp+bM+xXYL/wKOuM1b32zFSdXnLskmh2rZOgSudWClUcv4B6gBJIRHCbsU9Db3DBoo64AXxxuFhPoNJzOtKNNaQdGojYk3SlvPI4X8MvsxGhc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760484095; c=relaxed/simple;
-	bh=r3Lp5QcNwsIG/hyBCyKlH8nW7+JhQtgEY81j4syZzLA=;
+	s=arc-20240116; t=1760484260; c=relaxed/simple;
+	bh=nykKmIGlqeNKSHIOK9cArsnp9F/dsxRBsg7SOi+yUbg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZkiCe8kJyMpia2zWGhJoW+ekzOizG9rLGtWaUSlJXmXLVmNRLJ7dtTVSL+pD5NOL0vZgTTNE/SjiMNGbmmoFlzz+mNNYc09m23JWGK2BuXvM44cZDEnK9JIF+Cr+Cr+S2m2ommxmEAtB6lTDq/taiUWsr/P9WVPT5PX23H2ZsiA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=minyard.net; spf=none smtp.mailfrom=minyard.net; dkim=pass (2048-bit key) header.d=minyard-net.20230601.gappssmtp.com header.i=@minyard-net.20230601.gappssmtp.com header.b=Ky8H5v9t; arc=none smtp.client-ip=209.85.210.53
+	 Content-Type:Content-Disposition:In-Reply-To; b=id1vzNvoeMi7NtHhNgTdS5beT0XlFxoGBOW2wLnTrYoYsgyAIDw1Zf/Nbo4pRwYQcxkiGMwJWw1JgO297W40/Aqh0RdNAL8M2OV4Vz40qhqMPXxuGi+eJ0eY0RD7dtmKnYzhLm/bLjBMv+ZWou7XxtSq02aAe9U7lFzTOIC/rd0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=minyard.net; spf=none smtp.mailfrom=minyard.net; dkim=pass (2048-bit key) header.d=minyard-net.20230601.gappssmtp.com header.i=@minyard-net.20230601.gappssmtp.com header.b=Kjqrto23; arc=none smtp.client-ip=209.85.210.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=minyard.net
 Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=minyard.net
-Received: by mail-ot1-f53.google.com with SMTP id 46e09a7af769-7bd8909c682so3891987a34.3
-        for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 16:21:33 -0700 (PDT)
+Received: by mail-ot1-f53.google.com with SMTP id 46e09a7af769-7b4f7a856acso2282751a34.3
+        for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 16:24:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=minyard-net.20230601.gappssmtp.com; s=20230601; t=1760484093; x=1761088893; darn=vger.kernel.org;
+        d=minyard-net.20230601.gappssmtp.com; s=20230601; t=1760484258; x=1761089058; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:reply-to
          :message-id:subject:cc:to:from:date:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=OSShFjPEhGZS0W8PMTI5EHo4sFmoEnYAkCUykXUZUtk=;
-        b=Ky8H5v9tQ1WvVDBg5yXG/pZvAxMg6KTx3DZsbZLqbKA0a7UkSo06DgJsw3bsKf/+Ug
-         8jPHrgi1yHJ6L5J+I1EJZuR1X+zPEQPOhsAlM5m6M7iCipxpv/usZlFGYl9KGBvoGi1V
-         JlB3U3cpXPK6FHLiDCKWqxY3zZPnzQpF8a3eZXlDY2Nb0aWEoWHW6DFqWuhxZ+5BvmPc
-         PUorlfW5HpBME8GYnCDK3b9D7x0HrVL5SOKRy9smSIuawuNQEk5QjgmL4qIXLDCcLnBI
-         wPL0vZzi4jaQIhegEhvieXPuPvhun3FJvL46/rW5acXXWb8eq2V+cK6DIYAcvQnuTmC4
-         sBtw==
+        bh=EzbA3h2diXeHnSi6hUxLmW4I+M7NlNe4WP1JAxxHucA=;
+        b=Kjqrto23zqmr3P2FoZz2EC9uq3n7JEDSkPAHVD2D1wGiJN7/w6hxngwkml4pgpsu5E
+         ZmD3EMyt86+4w8vtqAFnLY4uyDLxdh2bAa+Rn6MPluYrHRwHYIAqNNHQrHVD31UPzICt
+         cvMMDg/8mUiG41hOSoL+wYtFyYkpV1D7GtV8SXQczW3XJuYObA0YZDmyT4+6pW/6aV0i
+         NwYPhukIaqGhnLBsmKQnqrl/ItMmlJXBDTX6SdxwB7Wq1OMCKKK6Oz6hTadbIMZypXvc
+         hdOV7WbjpBwOse7JldMIg/SvllLxKHWj+J18h0o/eXdTbOpi+LsF3S1FWuEJYnVW84WH
+         WyPQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760484093; x=1761088893;
+        d=1e100.net; s=20230601; t=1760484258; x=1761089058;
         h=in-reply-to:content-disposition:mime-version:references:reply-to
          :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=OSShFjPEhGZS0W8PMTI5EHo4sFmoEnYAkCUykXUZUtk=;
-        b=MHMBZhWGwy0PQycyXBb2sXEM/GE/yAJhsXM4g6B6QfhhBc7MJ9DXhiv1XDZ4ij9xsz
-         KR9ifqjwQpKRT4jWFTslPfjpdW5XAeJHmBLdWRP9bAfZyYkWh6JiB5BLVRxCdl1kD8bE
-         Jd2iLYeqxz/Ib64tLtPoAWE7W2sVnRV2YAsDuIBwWSfUPfqlqBCs/05Zl8xThTYxOZGZ
-         NaXVIW0Tig54vM8CB6FNV55VNKcHaK7dGbbY6xyfKREjDD6tAO54ZEoxdAACGdH10/HP
-         WlsJ1yLfsp4PC8DTy0mjxGJUxBzo9qJXNx8PAhzdjpLmRIq1RH7kM/bx+PHoETElMwZe
-         hm/w==
-X-Forwarded-Encrypted: i=1; AJvYcCU52tkrcI3H6gvfV+faxD6jFXKTjGJlPqW9ZV/MWQ1NYfxPEVqZo0awhb/lCdYYyD5k3pkOw9gKBxq/@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw3igPaD9m8MyZ5RH4V0HH6i+O1pPS8UudlwE/2IZ0PUeONdTwe
-	35xNsbiTI1bbpDqMfbTube3MRZHUpXzM0CfucwCRCX0jhkFJ9GDNYPDqlE6sAE62/VIwqdiZ5eJ
-	7fPRd
-X-Gm-Gg: ASbGncugXS8cVRRP+TtEbKSe2vk1jxJjucfbPE8VYyr5rnZucZ1nyyGppJvvqZCY1eY
-	w3z4l+IjEVG1voxw6BiCInWm5FzoZlDEX3iMgUy6/pih7xM/ZD1PCFf0oDsJPLIOENbfwTjbVk5
-	8Dwo6X8bAZpHLJnhbLgMFt8DKctr5pS+yINkoicGsFOWrVFj6u0bSrnlck0HVuCxytB6VXBuV9d
-	vwm+WuzF3ig/OE0USE2cq7/Ccb29bwSbvAMZs9ZrUNz1l5gQeJUsudqHdfszJcV3c1gpy/+r04y
-	7K3XhvJxiFK5eXdFW25a25kA+r1yIXJ8VSRlTysOP5kIkvUjuEwyS9B1DZvvyddtg43VahDj15V
-	sCgm2rqtMRCPDN8R3E6ea6GETUqGRkKPJvM7vuD6yr1Yf5WRqqlvxlfo=
-X-Google-Smtp-Source: AGHT+IFyq+WDPFYOSKVvyIdkGtxTVAzzTyKhwOBWQXTwZ3nOyJ35Dj36gHaI4KcaGzemEBsN+8m9XA==
-X-Received: by 2002:a05:6830:661a:b0:799:bdea:3470 with SMTP id 46e09a7af769-7c0df6bc4famr15912480a34.18.1760484093234;
-        Tue, 14 Oct 2025 16:21:33 -0700 (PDT)
+        bh=EzbA3h2diXeHnSi6hUxLmW4I+M7NlNe4WP1JAxxHucA=;
+        b=cSrr0+XICdQiGVCntIU2OfohaKrPrGsTSXbZqELJrLGMmetSI/MWBtGFegl5a3q/nD
+         OUVeG5Y2mVUAHPluCwHo1R+jyCBIcO7+TufIDbKkx3qEf32/7K+37lq8d+ggTa+uTbJp
+         spQxvOFHfdguJLAz8NyryBaNzp0T3tGgqA3Hju499wzBIhl3g/0PxHpKktZ9QNQbTbM6
+         9ziVaSFPG0gOhQ5AZtIcTyA37XzKPpCuS2TetADxfeVuPqJaR5pzlyvkxDu7wDG1JYZC
+         85RBG21khgADws7N0JA2yLM45/w0tGALdGwdlRbBafMSdeIpGnywD810ocRy3LGcTMSH
+         4xYw==
+X-Forwarded-Encrypted: i=1; AJvYcCUx6qWnyMuE9Fu0IvrT1KbjJB/stzMz5lQbZNDdlryQ7/EzQ2ISyW7GAR+twPIlppXyW5ICOhc4qbQW@vger.kernel.org
+X-Gm-Message-State: AOJu0YwzqfuxrKc7N7PqO8EIgFQNTvCZGlgrEE7hLlD22lPhYPpgbuPs
+	jgzT/KMrCF4ju9dls/yi8FT1H4HFt65ZmBGUAs9ycsWcV0KfyrygMK9Hxl62OoEg3r8=
+X-Gm-Gg: ASbGncsivxOevLbSApVhgkdliJFH2Eg066CtRKVzBSUU/yIJp3DwIpnEFJH7HSctXS5
+	ZB2uIRsU8UUr61QRYQmtK/5omDAbLZeUpg+u//YcRnFdXRbelwcCgP5L/GTil3M51EREEhMCh4O
+	pJs5zBg1QlVfxFKtPu+NlES/I/cyIoO1E3AY/BrqurPJimfQzOYKSaHILEjcZKh74lN/hDmqFyn
+	/xZC/VJMGkSRAlMeo33Wo+QQGI88ryLRWG8FLVQ/UJy0n5AmecH5D+OA+z+MD+i8HzZdOB8qrf8
+	KpzfzJmlywHCM8b2Jq8RMz99Dj97HKzkoaYBw6RU82tvHjc7BhuGBiNu3f6iNDT9vwSfX6WcoJ/
+	NTtDK0z9z5/0/EiExR+UzKG0XQrr4r7WTCBLBL0Rr0LN9yrzFF7wvCao=
+X-Google-Smtp-Source: AGHT+IFQc/e1ZbUnpoFVWuijFM2zvD8w2iyi9D7yf/z3QjAKE+FCW90DUZ0U3/TgiDPhnHf198NIsA==
+X-Received: by 2002:a05:6830:641b:b0:74a:1f03:db5a with SMTP id 46e09a7af769-7c0df71bb2cmr14506181a34.3.1760484258480;
+        Tue, 14 Oct 2025 16:24:18 -0700 (PDT)
 Received: from mail.minyard.net ([2001:470:b8f6:1b:ad63:63fb:ee1c:2ee9])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7c0f90510dfsm4856881a34.5.2025.10.14.16.21.30
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7c0f9067d80sm4859579a34.11.2025.10.14.16.24.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Oct 2025 16:21:31 -0700 (PDT)
-Date: Tue, 14 Oct 2025 18:21:26 -0500
+        Tue, 14 Oct 2025 16:24:17 -0700 (PDT)
+Date: Tue, 14 Oct 2025 18:24:12 -0500
 From: Corey Minyard <corey@minyard.net>
 To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
-	Andrew Jeffery <andrew@codeconstruct.com.au>,
+Cc: Avi Fishman <avifishman70@gmail.com>,
+	Tomer Maimon <tmaimon77@gmail.com>,
+	Tali Perry <tali.perry1@gmail.com>,
+	Patrick Venture <venture@google.com>, Nancy Yuen <yuenn@google.com>,
+	Benjamin Fair <benjaminfair@google.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, openbmc@lists.ozlabs.org,
 	openipmi-developer@lists.sourceforge.net,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: ipmi: Convert aspeed,ast2400-ibt-bmc to DT
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: ipmi: Convert nuvoton,npcm750-kcs-bmc to DT
  schema
-Message-ID: <aO7a9moI23th0Oo9@mail.minyard.net>
+Message-ID: <aO7bnNtjU4G0_c1c@mail.minyard.net>
 Reply-To: corey@minyard.net
-References: <20251014152948.3782738-1-robh@kernel.org>
+References: <20251014152935.3782463-1-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -96,13 +98,14 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251014152948.3782738-1-robh@kernel.org>
+In-Reply-To: <20251014152935.3782463-1-robh@kernel.org>
 
-On Tue, Oct 14, 2025 at 10:29:47AM -0500, Rob Herring (Arm) wrote:
-> Convert the aspeed,ast2400-ibt-bmc binding to DT schema format. It's a
+On Tue, Oct 14, 2025 at 10:29:34AM -0500, Rob Herring (Arm) wrote:
+> Convert the nuvoton,npcm750-kcs-bmc binding to DT schema format. It's a
 > straight-forward conversion.
 
-Queued for 6.19, with Andrew's review.
+I have queued this for 6.19, but I would like a review from the people
+that worked on this file previously.
 
 Thanks,
 
@@ -111,95 +114,118 @@ Thanks,
 > 
 > Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 > ---
->  .../bindings/ipmi/aspeed,ast2400-ibt-bmc.txt  | 28 ------------
->  .../bindings/ipmi/aspeed,ast2400-ibt-bmc.yaml | 44 +++++++++++++++++++
->  2 files changed, 44 insertions(+), 28 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/ipmi/aspeed,ast2400-ibt-bmc.txt
->  create mode 100644 Documentation/devicetree/bindings/ipmi/aspeed,ast2400-ibt-bmc.yaml
+>  .../bindings/ipmi/npcm7xx-kcs-bmc.txt         | 40 --------------
+>  .../ipmi/nuvoton,npcm750-kcs-bmc.yaml         | 55 +++++++++++++++++++
+>  2 files changed, 55 insertions(+), 40 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/ipmi/npcm7xx-kcs-bmc.txt
+>  create mode 100644 Documentation/devicetree/bindings/ipmi/nuvoton,npcm750-kcs-bmc.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/ipmi/aspeed,ast2400-ibt-bmc.txt b/Documentation/devicetree/bindings/ipmi/aspeed,ast2400-ibt-bmc.txt
+> diff --git a/Documentation/devicetree/bindings/ipmi/npcm7xx-kcs-bmc.txt b/Documentation/devicetree/bindings/ipmi/npcm7xx-kcs-bmc.txt
 > deleted file mode 100644
-> index 25f86da804b7..000000000000
-> --- a/Documentation/devicetree/bindings/ipmi/aspeed,ast2400-ibt-bmc.txt
+> index 4fda76e63396..000000000000
+> --- a/Documentation/devicetree/bindings/ipmi/npcm7xx-kcs-bmc.txt
 > +++ /dev/null
-> @@ -1,28 +0,0 @@
-> -* Aspeed BT (Block Transfer) IPMI interface
+> @@ -1,40 +0,0 @@
+> -* Nuvoton NPCM KCS (Keyboard Controller Style) IPMI interface
 > -
-> -The Aspeed SOCs (AST2400 and AST2500) are commonly used as BMCs
-> -(BaseBoard Management Controllers) and the BT interface can be used to
-> -perform in-band IPMI communication with their host.
+> -The Nuvoton SOCs (NPCM) are commonly used as BMCs
+> -(Baseboard Management Controllers) and the KCS interface can be
+> -used to perform in-band IPMI communication with their host.
 > -
 > -Required properties:
-> -
 > -- compatible : should be one of
-> -	"aspeed,ast2400-ibt-bmc"
-> -	"aspeed,ast2500-ibt-bmc"
-> -	"aspeed,ast2600-ibt-bmc"
-> -- reg: physical address and size of the registers
-> -- clocks: clock for the device
-> -
-> -Optional properties:
-> -
-> -- interrupts: interrupt generated by the BT interface. without an
-> -  interrupt, the driver will operate in poll mode.
+> -    "nuvoton,npcm750-kcs-bmc"
+> -    "nuvoton,npcm845-kcs-bmc", "nuvoton,npcm750-kcs-bmc"
+> -- interrupts : interrupt generated by the controller
+> -- kcs_chan : The KCS channel number in the controller
 > -
 > -Example:
 > -
-> -	ibt@1e789140 {
-> -		compatible = "aspeed,ast2400-ibt-bmc";
-> -		reg = <0x1e789140 0x18>;
-> -		interrupts = <8>;
-> -		clocks = <&syscon ASPEED_CLK_GATE_LCLK>;
-> -	};
-> diff --git a/Documentation/devicetree/bindings/ipmi/aspeed,ast2400-ibt-bmc.yaml b/Documentation/devicetree/bindings/ipmi/aspeed,ast2400-ibt-bmc.yaml
+> -    lpc_kcs: lpc_kcs@f0007000 {
+> -        compatible = "nuvoton,npcm750-lpc-kcs", "simple-mfd", "syscon";
+> -        reg = <0xf0007000 0x40>;
+> -        reg-io-width = <1>;
+> -
+> -        #address-cells = <1>;
+> -        #size-cells = <1>;
+> -        ranges = <0x0 0xf0007000 0x40>;
+> -
+> -        kcs1: kcs1@0 {
+> -            compatible = "nuvoton,npcm750-kcs-bmc";
+> -            reg = <0x0 0x40>;
+> -            interrupts = <0 9 4>;
+> -            kcs_chan = <1>;
+> -            status = "disabled";
+> -        };
+> -
+> -        kcs2: kcs2@0 {
+> -            compatible = "nuvoton,npcm750-kcs-bmc";
+> -            reg = <0x0 0x40>;
+> -            interrupts = <0 9 4>;
+> -            kcs_chan = <2>;
+> -            status = "disabled";
+> -        };
+> -    };
+> diff --git a/Documentation/devicetree/bindings/ipmi/nuvoton,npcm750-kcs-bmc.yaml b/Documentation/devicetree/bindings/ipmi/nuvoton,npcm750-kcs-bmc.yaml
 > new file mode 100644
-> index 000000000000..c4f7cdbbe16b
+> index 000000000000..fc5df1c5e3bc
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/ipmi/aspeed,ast2400-ibt-bmc.yaml
-> @@ -0,0 +1,44 @@
+> +++ b/Documentation/devicetree/bindings/ipmi/nuvoton,npcm750-kcs-bmc.yaml
+> @@ -0,0 +1,55 @@
 > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/ipmi/aspeed,ast2400-ibt-bmc.yaml#
+> +$id: http://devicetree.org/schemas/ipmi/nuvoton,npcm750-kcs-bmc.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Aspeed Block Transfer (BT) IPMI interface
+> +title: Nuvoton NPCM KCS BMC
 > +
 > +maintainers:
-> +  - Joel Stanley <joel@jms.id.au>
+> +  - Avi Fishman <avifishman70@gmail.com>
+> +  - Tomer Maimon <tmaimon77@gmail.com>
+> +  - Tali Perry <tali.perry1@gmail.com>
+> +
+> +description:
+> +  The Nuvoton SOCs (NPCM) are commonly used as BMCs (Baseboard Management
+> +  Controllers) and the KCS interface can be used to perform in-band IPMI
+> +  communication with their host.
 > +
 > +properties:
 > +  compatible:
-> +    enum:
-> +      - aspeed,ast2400-ibt-bmc
-> +      - aspeed,ast2500-ibt-bmc
-> +      - aspeed,ast2600-ibt-bmc
+> +    oneOf:
+> +      - const: nuvoton,npcm750-kcs-bmc
+> +      - items:
+> +          - enum:
+> +              - nuvoton,npcm845-kcs-bmc
+> +          - const: nuvoton,npcm750-kcs-bmc
 > +
 > +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
 > +    maxItems: 1
 > +
 > +  interrupts:
 > +    maxItems: 1
 > +
+> +  kcs_chan:
+> +    description: The KCS channel number in the controller
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    minimum: 1
+> +    maximum: 3
+> +
 > +required:
 > +  - compatible
 > +  - reg
-> +  - clocks
+> +  - interrupts
+> +  - kcs_chan
 > +
 > +additionalProperties: false
 > +
 > +examples:
 > +  - |
-> +    #include <dt-bindings/clock/aspeed-clock.h>
-> +
-> +    bt@1e789140 {
-> +        compatible = "aspeed,ast2400-ibt-bmc";
-> +        reg = <0x1e789140 0x18>;
-> +        interrupts = <8>;
-> +        clocks = <&syscon ASPEED_CLK_GATE_LCLK>;
+> +    kcs@0 {
+> +        compatible = "nuvoton,npcm750-kcs-bmc";
+> +        reg = <0x0 0x40>;
+> +        interrupts = <9 4>;
+> +        kcs_chan = <1>;
 > +    };
 > -- 
 > 2.51.0
