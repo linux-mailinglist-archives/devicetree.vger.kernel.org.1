@@ -1,235 +1,134 @@
-Return-Path: <devicetree+bounces-226475-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226476-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2CE3BD8FF4
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 13:26:11 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B8E8BD9000
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 13:26:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2B3E53A91D6
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 11:26:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8E7F93ADAA9
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 11:26:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 108AA30C36B;
-	Tue, 14 Oct 2025 11:25:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E129030C36D;
+	Tue, 14 Oct 2025 11:26:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="f6qqLXBl"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bta5ycB1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61AB830BF70
-	for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 11:25:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3AD4B3093CE
+	for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 11:26:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760441156; cv=none; b=VxZDoOI/F5EgsSJxaLHi1PxzZR2s4F6FLSSJlSOMNfIsRO0kcYKMCkmg25YwUI+kPzikLvM2R5tgpIAOIVV3IHxOQAvRgxVZpr39l251bEiquYhyI8L/4pTjgZ4ZaaXjd0O6D2+tQ2g5Va5y1g0l/WQWqnMRtT9kUZPfIc+cpj4=
+	t=1760441174; cv=none; b=GxYXjJHm42jM008aJR/Q7oKDQbZjerH7onW+zMLZKbSwZcNYV21z2APiig8jGerKwmJLxFzFtHUmtc737q6YPl+BKii9/HFsyYXvsJFdh+w+ayDZ0yElAkMRH07/H/9Ir+SlQee20eP9HNk3dAnE6GEIAx5fqaw4xM513n09ATg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760441156; c=relaxed/simple;
-	bh=j686w3OYPk5TRiSL4y3TUeaPyqS51Ap3zi6yDNE7Sl4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=V6v5lhVdqeYgQDT26zSny9Ff5X9l67XJwBHSL0kfUzJnw/6w/rT9F7Ivuotd6fH6zmTv1VeQyb/KWTyD62jAnckeEeZlXcQOnN5ua9F6iTbNycl42wkP1FyB7nTYeP0lyp4SxyG7S2bu8uo7o6C5Afsa16NUcebS9jaR8Ib6b+4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=f6qqLXBl; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59E87J0S025666
-	for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 11:25:54 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	lB6sFQ3LeiBx00eAv9moG4oCFwLs4x2w8B2DPiD6Hkg=; b=f6qqLXBl9CpFDkBF
-	RhNN9adguwXk6DD/nBJfQGSnXfPCr9mfRDJwKmkOhwBzumRbrjFW/5RE2K7PyivO
-	dCCidrcSqjxY3vqARhVOCnUz6gX0E/O1L0NECosMXb7rcItIy3dBCoqzVZnsTY1x
-	oDMNmidK7J2AsHzNUcwO7Dpx7hA8vRQM8LZ/NgmZKZeJ+xva3z5ZXOAFkeGxlXYg
-	5aKCJcyu60uoIOxpkxW7wbWO3f/M53rdEcnNpqQU1HWiprzTtNXPoQ/vuwIwoih7
-	h5dPeRLu3xC+u3ZUcO+7XsvFw49cRwhg4p/opOOzrl57jtWWn06MMe+3iBes2Fhr
-	RAVNZg==
-Received: from mail-pj1-f72.google.com (mail-pj1-f72.google.com [209.85.216.72])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49qgdg03yd-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 11:25:54 +0000 (GMT)
-Received: by mail-pj1-f72.google.com with SMTP id 98e67ed59e1d1-3327e438680so1497003a91.3
-        for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 04:25:54 -0700 (PDT)
+	s=arc-20240116; t=1760441174; c=relaxed/simple;
+	bh=AxhzSl8w445Qz2/9QmnikOtBEtA4YSeYe89CVab5wLQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=fXOj9UWJE0OxO46Uuo/FlHSCIH8OqvpQZZiOn3VQATZtcHoHbIGAI8w58GZtAn2JN5rQ35MOuNr4zH2Nda6gwZwevHEEU+pxLJr7WHLt0McMNyWuoQi+wynNma4zHDo0WKl5/q1abStf3NllixRW5umoqf921OfkfjGEQk7C15A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bta5ycB1; arc=none smtp.client-ip=209.85.128.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-46e34bd8eb2so53076335e9.3
+        for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 04:26:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1760441170; x=1761045970; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=NkgjM/J9Iy/ZQpNJ94vlbj27WexN53OWj0CXa0A7G+Q=;
+        b=bta5ycB1i5svdSaKk/wvRw/YwXazpJL8e7sRG02w5K0mVO+o+DIgR/a2JIoFbhtKuj
+         SPS61tSYPLJGhvN1gBoCGyoiGuyiV5MkY/z13UUbYxEusP+Tp35f7OHa3u/uxqTj5TOs
+         F2JS9+GcxUvPdtBJ/vN1uW+BoljztnVKxz36w2x9U/ngZ9BW+ipMdp6lsSK7KrnBkqk+
+         IwYubRRB64hq+s2yQmDjdJQVz7aMHJKAKOCrQ/oWLqN7ZyZA9jWUBv1pOZ1K659ffKxc
+         AzrikcPwd4pLWOM1WkAQjI8pXA0OTuE9T22B5/P53i8e3TRe21KOYJVLTNd+PYekmGUK
+         POAQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760441154; x=1761045954;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=lB6sFQ3LeiBx00eAv9moG4oCFwLs4x2w8B2DPiD6Hkg=;
-        b=k5GcF3KTQVO1B1mCBMkQNBnuqUwMgbCkr3GXcE1WOtk60UUnaqdRCkKMsCovgltDnZ
-         tKKtalf4e61d3XtsNtu7v2+6sD7jbLJbDvE8vqyQSfYuewPxxGTWsQLRNomtQIz4L0qe
-         b+T+Rvlx1yBMF0CIQGjGvUISPJ7FLG83S5VKTlXEdPX9SpdMKug1Wa2nqjttH3dxULjY
-         d0LH/BWLmUmtj060z84JlBFYWLLC4CztGCRAJqFYCFA88r6pAODAfB9jim2HdIQHQiHu
-         UoB0YPz1fERV0bh9+SmRSPkbWPLkLC87Jg8Q/DLCNO7k+4LdKBF7KmGzuZTfxaq44eSi
-         oM/w==
-X-Forwarded-Encrypted: i=1; AJvYcCWo/+ytcDTtJfJdRcvQK4bVRrGOMLMxJR9FkGzJSYaN9ZJbIceDg6JtgeWmglGbrZTw08TQIi7+Zar3@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw9L/FVvQC9pWLPueNu51MRbxPslSlP3q5RX+BY584SzNGL16h/
-	k/8JJMnL1H3hpcwO7m83gvvYU5kcQtomY7Nac7gSIA625m6eRwKf6lU8AKixlSyNcoOio5xo223
-	ekjbucNER162KpZ1jA8XFU/KgZe1up4g6/crUFomzsHPBdJQRfR1eNCQ2voRIanmN
-X-Gm-Gg: ASbGncu1Sxp+it6FNZjRgjf3xfjVoAw72y1+F+4hQRuZsbWHtS9kklBA5jM5RLM7Ylk
-	cmuQnBFelRQ81kWsIZzVYr23Uho7viHUB3+ZJevwH7+sI1cdsTZkOmWeL4xmNNDINpNZYMdhEh1
-	m8AGhaUa3kvxZUWnxOQpJZgr/QoSkAkKbMP4QGqLeRvDsTAtwYhkrfxwL1h61DjYEoJi0sCLiQr
-	akhWI8hfLlFJ/RX7MAFgno87aWvOeaNFY8l7q8jOV31DqhlYox1PR6g25hGcB5uZD2huP5nrQp8
-	8hXxLHh2ylIe8dqj60x8pyVEWgw/dMqVS7RshdBceZpW+KQcQE9b7VNeft17MprIOWh5Hoe51YE
-	529k5LiY0WuPxTYksDl+907RcMbotPvfCqTY=
-X-Received: by 2002:a17:90b:388a:b0:332:3ffe:4be5 with SMTP id 98e67ed59e1d1-33b513ae791mr16920102a91.7.1760441153623;
-        Tue, 14 Oct 2025 04:25:53 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHlyXxDUchBxkJ8hKzcSdS8zUzwWZdwgzzM7euiuaBwsEcgugKDNWgcZSO4YiCAcVeXe1f/pg==
-X-Received: by 2002:a17:90b:388a:b0:332:3ffe:4be5 with SMTP id 98e67ed59e1d1-33b513ae791mr16920082a91.7.1760441153080;
-        Tue, 14 Oct 2025 04:25:53 -0700 (PDT)
-Received: from [10.133.33.159] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-33b61b11ca9sm15658229a91.24.2025.10.14.04.25.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Oct 2025 04:25:52 -0700 (PDT)
-Message-ID: <7277bc17-112b-4fc9-9099-243d216893d8@oss.qualcomm.com>
-Date: Tue, 14 Oct 2025 19:25:45 +0800
+        d=1e100.net; s=20230601; t=1760441170; x=1761045970;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=NkgjM/J9Iy/ZQpNJ94vlbj27WexN53OWj0CXa0A7G+Q=;
+        b=Mt2k28wtO+yTwMu22Vg/4/nMczfzGkNViE/KFmYNJh6/w3wvfrHo88QT1vxKqEO/U7
+         CSe1cDiV4RZc15a0/H42zgyo8oY5mQkuE2YHESpav/9bgkcDnU1/X6/JPhEWK7I0jBJb
+         j5YajQCz4XXC0/6b4CY0ox+GwoG/u44VddtfYyaCsd3SGbsfX1SG6EVFOPRh8Vb5uf7o
+         lugHg/LEGGzWAixrVtJtNCBkHMPl1ISsJgXG+IM40HcuxzOjPRSLLQlhWatkSUNzTGKI
+         XCRv79FOKXDj6W5bF/ar998AY7zsbyDH/eKx7GJyhuWn/lAonS2usf/u34+bC7aU29lU
+         Mw/w==
+X-Forwarded-Encrypted: i=1; AJvYcCXXxinuW7KKCq3zMfGEy1Hv48xfEMu8qJd5nAA7cs/GIKth86oh/eH+lo6YYBPnFAlw2OYctjwhYMqr@vger.kernel.org
+X-Gm-Message-State: AOJu0YyXiavCJU9JXiwv0P8aWllai/IeqHYRexS1h3ycWNaPnR4O4jP6
+	l1C2i7480wH2nl2NnZ5bUX1PS0YvD5/vNxl02IRTvrhZwsso34527QqC
+X-Gm-Gg: ASbGncsShL6p557CNZYxfM0T0I8uywTxLn5xIb1qf1l7Qy24Xdi4+uq76TFF4jBPVJ7
+	pbZMnyxmvJ7bLr/nAwA9QkHrNynGzwF4+Ckqp1v2fc0U0FuIicyNDS/tMo9FsdA7GZdSr/oxtJz
+	RDaXa3dzJyYRdc97dB/m4easFqOxItjwJOq5BdUi7p7kZgIIJb3IVpC/t2VKIjaBZRlwOZyuU33
+	IUaDaq2ZWCDDtJ4nLv3JUOsDPrRUQDbhEU4a9DItKMaH0LdX8oS+IWbigPlJzDd0q/1pSgI13H4
+	S0k6pdC1LiKkjGlo5mY5qWzzl6SXYirFwIDSCVmsndyGE1g5wVwSfu7AdiUekbdEEwKJ1r4x9rX
+	49wcRaM0BWH78batUTRkbMzIx2r66+XsHR8+T7QX7R2S5abYduOd00cXP42Ur7MN6LssS
+X-Google-Smtp-Source: AGHT+IFMf6DIq4h/prpv03d57pehdiVcP3X28cHjsLA6mXHmxzjuKa4nBjbv0JtAImSeizIQEmRacg==
+X-Received: by 2002:a05:600c:628e:b0:46e:4cd3:7d6e with SMTP id 5b1f17b1804b1-46fa9aa0b49mr152941585e9.9.1760441170197;
+        Tue, 14 Oct 2025 04:26:10 -0700 (PDT)
+Received: from vitor-nb (bl19-170-125.dsl.telepac.pt. [2.80.170.125])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-46fb492e6ddsm265829845e9.0.2025.10.14.04.26.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 14 Oct 2025 04:26:09 -0700 (PDT)
+From: Vitor Soares <ivitro@gmail.com>
+To: Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Siddharth Vadapalli <s-vadapalli@ti.com>,
+	Kishon Vijay Abraham I <kishon@kernel.org>
+Cc: Vitor Soares <vitor.soares@toradex.com>,
+	linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-omap@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	ivitro@gmail.com
+Subject: [PATCH v1 0/2] PCI: j721e: Add voltage regulator support
+Date: Tue, 14 Oct 2025 12:25:47 +0100
+Message-ID: <20251014112553.398845-1-ivitro@gmail.com>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: Enable DisplayPort on QCS615
- Ride platform
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Rob Clark <robin.clark@oss.qualcomm.com>,
-        Dmitry Baryshkov <lumag@kernel.org>,
-        Abhinav Kumar
- <abhinav.kumar@linux.dev>,
-        Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
-        Sean Paul <sean@poorly.run>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        fange.zhang@oss.qualcomm.com, yongxing.mou@oss.qualcomm.com,
-        li.liu@oss.qualcomm.com
-References: <20251014-add-displayport-support-to-qcs615-devicetree-v2-0-1209df74d410@oss.qualcomm.com>
- <20251014-add-displayport-support-to-qcs615-devicetree-v2-3-1209df74d410@oss.qualcomm.com>
- <kxwavurs7ebp5f22gxutvw4thwm24twqpahszhyxsodsikunja@7hl3y65ppqmo>
-From: Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
-In-Reply-To: <kxwavurs7ebp5f22gxutvw4thwm24twqpahszhyxsodsikunja@7hl3y65ppqmo>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDExMDAyNSBTYWx0ZWRfX6Yt3hePjKne1
- /CDlHv77O8oXJXrKIM9NJHJL31CKXv5cgUFBZbsCYX2dk2r0H8wth1PJaqgM9X5v7YSNG+ORZje
- Py88csWnCNTndJxS4CZIOTjpylYuHnGlyjwh4FlDT4LrosrfLwqJHB0w82wa5nbSxUcYP/fjKNe
- hG5xM4bpgLtHUnSRJ2LsLCf4UUsQqtgrbht9ISOPNFZxIzwHT7B6yBHYmSFjSJ1S6TCUEdAmQR1
- jfKVa+BiQrlW39XdduaFDDHRrCfSkawyNOt1OW2siqsBsEZSyp14ci4AfzyA9nPGI94ONemK/3+
- EdVlPN60WsX+bkAuNZvc7NGI5fhjllSaVaYLU77PBIZGEo5jeOQkdaDIXqVAoEwIIcBPdIoB8sx
- mi8ETxtI3CYGAgSwUIoSEJI5lz88Gg==
-X-Proofpoint-GUID: qSfnXrc1PsGUi251LYt87uD1hQsn5xKD
-X-Proofpoint-ORIG-GUID: qSfnXrc1PsGUi251LYt87uD1hQsn5xKD
-X-Authority-Analysis: v=2.4 cv=J4ynLQnS c=1 sm=1 tr=0 ts=68ee3342 cx=c_pps
- a=RP+M6JBNLl+fLTcSJhASfg==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
- a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=EUspDBNiAAAA:8 a=lUa4T_ycwPSD0wKDvOsA:9 a=QEXdDO2ut3YA:10
- a=iS9zxrgQBfv6-_F4QbHw:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-10-14_02,2025-10-13_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 lowpriorityscore=0 priorityscore=1501 adultscore=0
- bulkscore=0 suspectscore=0 clxscore=1015 phishscore=0 spamscore=0
- malwarescore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2510020000
- definitions=main-2510110025
+Content-Transfer-Encoding: 8bit
 
+From: Vitor Soares <vitor.soares@toradex.com>
 
-On 10/14/2025 6:21 PM, Dmitry Baryshkov wrote:
-> On Tue, Oct 14, 2025 at 05:42:12PM +0800, Xiangxu Yin via B4 Relay wrote:
->> From: Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
->>
->> Add DP connector node and configure MDSS DisplayPort controller for
->> QCS615 Ride platform. Include lane mapping and PHY supply settings
->> to support DP output.
->>
->> Signed-off-by: Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
->> ---
->>  arch/arm64/boot/dts/qcom/qcs615-ride.dts | 31 +++++++++++++++++++++++++++++++
->>  1 file changed, 31 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/qcs615-ride.dts b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
->> index 9ac1dd3483b56f9d1652f8a38f62d759efa92b6a..0b8bcabdd90a0820b1f9c85e43b78e40eb8a9a38 100644
->> --- a/arch/arm64/boot/dts/qcom/qcs615-ride.dts
->> +++ b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
->> @@ -39,6 +39,20 @@ xo_board_clk: xo-board-clk {
->>  		};
->>  	};
->>  
->> +	dp0-connector {
->> +		compatible = "dp-connector";
->> +		label = "DP0";
->> +		type = "mini";
->> +
->> +		hpd-gpios = <&io_expander 8 GPIO_ACTIVE_HIGH>;
-> Not the gpio102/ 103 / 104? Interesting.
+Some PCIe endpoints or slots connected to the TI J721E PCIe root complex
+may require external voltage regulators to provide 1.5V, 3.3V, or 12V
+supplies. These regulators depend on the specific board design — for
+example, M.2 or miniPCIe connectors often need 3.3V or 1.5V, while
+full-size PCIe slots may also require 12V.
 
+This series adds bindings and driver support for these optional regulators.
+When present, the driver enables them automatically using
+devm_regulator_get_enable_optional(), ensuring proper cleanup on removal.
 
-Yes, on this platform the DP HPD signal is controlled by the pin controller
-on the video-out sub-board, not by the TLMM on the SoC.
+Tested on a Toradex Aquila AM69 platform with a Wi-Fi PCIe endpoint
+requiring 3.3V.
 
+These changes are based on upstream discussion:
+https://lore.kernel.org/linux-pci/20231105092908.3792-1-wsa+renesas@sang-engineering.com/
 
->> +
->> +		port {
->> +			dp0_connector_in: endpoint {
->> +				remote-endpoint = <&mdss_dp0_out>;
->> +			};
->> +		};
->> +	};
->> +
->>  	dp-dsi0-connector {
->>  		compatible = "dp-connector";
->>  		label = "DSI0";
->> @@ -423,6 +437,16 @@ &mdss {
->>  	status = "okay";
->>  };
->>  
->> +&mdss_dp0 {
->> +	status = "okay";
->> +};
->> +
->> +&mdss_dp0_out {
->> +	data-lanes = <3 2 0 1>;
-> It's not a board peculiarity. All QCS615 / SM6150 devices are affected
-> by this twist. Please move this to the SoC DT file.
+Vitor Soares (2):
+  dt-bindings: PCI: ti,j721e-pci-host: Add optional regulator supplies
+  PCI: j721e: Add support for optional regulator supplies
 
+ .../devicetree/bindings/pci/ti,j721e-pci-host.yaml | 14 ++++++++++++++
+ drivers/pci/controller/cadence/pci-j721e.c         | 13 +++++++++++++
+ 2 files changed, 27 insertions(+)
 
-Ok.
+-- 
+2.51.0
 
-
->> +	link-frequencies = /bits/ 64 <1620000000 2700000000 5400000000>;
->> +	remote-endpoint = <&dp0_connector_in>;
->> +};
->> +
->>  &mdss_dsi0 {
->>  	vdda-supply = <&vreg_l11a>;
->>  	status = "okay";
->> @@ -623,6 +647,13 @@ &usb_qmpphy {
->>  	status = "okay";
->>  };
->>  
->> +&usb_qmpphy_2 {
->> +	vdda-phy-supply = <&vreg_l5a>;
->> +	vdda-pll-supply = <&vreg_l12a>;
->> +
->> +	status = "okay";
->> +};
->> +
->>  &usb_1 {
->>  	status = "okay";
->>  };
->>
->> -- 
->> 2.34.1
->>
->>
 
