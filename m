@@ -1,147 +1,145 @@
-Return-Path: <devicetree+bounces-226527-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226528-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0247BD9772
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 14:54:58 +0200 (CEST)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id A96BEBD97AB
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 14:57:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id A3E313546B4
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 12:54:58 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 54AAA354915
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 12:57:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CF8F313E0B;
-	Tue, 14 Oct 2025 12:54:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74A45313E00;
+	Tue, 14 Oct 2025 12:56:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="MCZXsLo/"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FbPNRZGi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9AFE314A6E;
-	Tue, 14 Oct 2025 12:54:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93638313295
+	for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 12:56:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760446452; cv=none; b=jeTNylEVYHqrbMQHpMVyforbtNcwPfd2+bqScCewF+tmx7PNafWYwWvvwL/EAdRUu66S+/wMcE0cO+/Bd8rN7EmRlAz/HsKR86FuBuh18DXNDvtzzRDb2tELTZeFbpXnENPSZLqPSIxi5OY5L83FoCjftGHmvIMJ9g6CVtuExXQ=
+	t=1760446617; cv=none; b=FdtNbhUZkI8HmPCIPwYzsaRwfwFDapXwfYs78p893PurwZ3My/kqtBJNMHqHMWvSIcG3EfQxru8uxSOL+AJvskDkur1CS76R3516cts/s98HnWiRNi0FRM+MUoQoILhdqUdqbdCuPtVhFIRoBkAy/P/o7AwhvP+VssmCgBCWMY4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760446452; c=relaxed/simple;
-	bh=SdOEaLMncUX0YvvjwNGfYDJE0ladr6lWv8GPyXIStFQ=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=rS9mbBLlBGOMe5M0HC9ENb+RNya+PDCYbcF81WsoKLGWi1CHLyhRxvpyKutJ7JttoJac+yImP/pT3XamiakiOnznk+Q8BHZdnBaVUHIzesBdfoRLfI7dxsAANmba85Q0PSkbDH53pmQW/nGeamrJnui01rzBkrkRevsN83wolWM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=MCZXsLo/; arc=none smtp.client-ip=198.47.19.245
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelvem-sh02.itg.ti.com ([10.180.78.226])
-	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTP id 59ECs5hj1070466;
-	Tue, 14 Oct 2025 07:54:05 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1760446445;
-	bh=K/fOsD+1MT4e1dO2GGA6VdkoZYulnrpFOzg6dRqRJJc=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=MCZXsLo//6Ax8Kd/CFXlb1etGGB16SFqXsZlyO1Ma5//1hbqhz3i5iTcKmPv1HxVW
-	 SuHunkeBNQ7R1jxfAEZT6o48ALq2cNBNkvtjEMQZQxjZCGWMYgIQ9f233JcYUCWFd8
-	 z92kZpnaMFggLD0q8ALZDPSplmngpPUbfuXRX+3c=
-Received: from DFLE210.ent.ti.com (dfle210.ent.ti.com [10.64.6.68])
-	by lelvem-sh02.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 59ECs5YB450013
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 14 Oct 2025 07:54:05 -0500
-Received: from DFLE212.ent.ti.com (10.64.6.70) by DFLE210.ent.ti.com
- (10.64.6.68) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Tue, 14 Oct
- 2025 07:54:04 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE212.ent.ti.com
- (10.64.6.70) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Tue, 14 Oct 2025 07:54:04 -0500
-Received: from toolbox.dhcp.ti.com (uda0492258.dhcp.ti.com [10.24.73.74])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 59ECrhPY055621;
-	Tue, 14 Oct 2025 07:54:01 -0500
-From: Siddharth Vadapalli <s-vadapalli@ti.com>
-To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>
-CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>,
-        <s-vadapalli@ti.com>
-Subject: [PATCH v3 5/5] arm64: dts: ti: k3-j721s2: disable "mcu_cpsw" in SoC file and enable in board files
-Date: Tue, 14 Oct 2025 18:23:43 +0530
-Message-ID: <20251014125349.3408784-6-s-vadapalli@ti.com>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20251014125349.3408784-1-s-vadapalli@ti.com>
-References: <20251014125349.3408784-1-s-vadapalli@ti.com>
+	s=arc-20240116; t=1760446617; c=relaxed/simple;
+	bh=LZnaDE/S/cnLfsiCdgYQZBmm8CJyduVyYwPzdW3joA4=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=dAN9FYy+fGdxzpAWHUASvpNdp2HPJMM43Yh6S+0EVWJdjhVtEVJCMbbkVU0vp+wZVCE3NL7hrt7K2zAVWkwB0tL+9yEuKKzkcIy3u8XBc2RlUsZNUIucP0rgsaDivClDFNLva4yM3kOB93NVgxjgtxYCEKn2avjKBtD6UsUw7Dg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FbPNRZGi; arc=none smtp.client-ip=209.85.214.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-2897522a1dfso49240585ad.1
+        for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 05:56:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1760446614; x=1761051414; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=o38gmX36PyqmjEq1ZTvcb122z3x4XvhpJiBBsGOOwy4=;
+        b=FbPNRZGiLlkHEVjPtMDE/f1z5U1yIEiU035iCpunTyU/ld5oATJ8lClY5OqD105BzS
+         eI7QvYUm9gH+2MKQ6WykSrwaoEgBhK91CY4PqBy6Uz23qRyomKKk8Oc9s2u+eyvB0rZX
+         CJxDLylDF32QwYdxip7h4nVmW7FdUvsK3iqmCJNy0xK7WkG01cRVP8UUxvk2ZWgevegy
+         PNzPtYHlnxkbl5CEHdqNU6XP7fQ5VBAt6+EIlJr+BjvC3zeQts6WDRo6/itAyCWtWlg9
+         b0vUsuxYmOSQN3XxuorxKcYXI5DMWvZH482thHvcV780xzQfQewDXohLBNS8mgsGt7kJ
+         6jAw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1760446614; x=1761051414;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=o38gmX36PyqmjEq1ZTvcb122z3x4XvhpJiBBsGOOwy4=;
+        b=v2bRVGpee3lk3aNPWs4bhyrVkkhZUuj9Exkcuva40ni2ss7gzlKFgTRUkwjHaJtuLO
+         Y3LtU1lxCPKGIM6Sp3siPLZzHQhRDCLSozp/SFXZVnk8TKxgbY2hdjJw0XkmZCEvvsI/
+         STvDegKSo9qG++nlgbXmKTf5oLJmaCqvBDaBdtSVn3XUVulSafofzWRnddfU1uwQglTI
+         eCLxNP6RyHGPlqeWRZRiN88AJT6rUB2/RA2xFuiDTnPmP4QS+0JPYdKs6QAPxwDEyqvz
+         qj4KchpeOinXjC+5s0p/HZvAoAfFUMr9B24HZj5pt0bHPgF/3KnEEcN3GsRXGjWc9Erk
+         7JHQ==
+X-Gm-Message-State: AOJu0YymgMadJ06m/kR4Z9MYz9j3a/RmbCLjPXQp773gFGUGNFIpIt3q
+	xJ+1TJebT+S2HgP7qspZSa1WDzLuFSjEvG2vrgyI7G9OxNLdBVuVVR4YcQ7ZGhhE3xM=
+X-Gm-Gg: ASbGncshdN8KINQXj5wZYxLABe5Rqv5SjN4EHzWLXIuJxRrpR4BKTBjotlLrVszecFr
+	nod8Duf97ggGgIKAipX0awUcUgikHgWjPuq4iXtxBbHk6iZntXR7wDL8mVuwnY74rTsy1gLWNsx
+	DT+4nfUt9Oq0vFlRgCmJBtJIeU2vykj6H49ZayopV4ElDii/L4ePtECp2Hxs9JVbiNKKBpVUgom
+	jkLh8G40tmMdal0RZcbId2OKbE3q0BBFsOBpsRRADHKUMsxyTgQUoTEmxTl3lmtxkFXNkR0k37E
+	QkkJf+ygchpZT/SQIX68llG5EK0zZT/LkJJoJXqWJBemlfCEkNsPP4BEedIW6mcOicy/HlZApJr
+	MBZQTZxv+2QD7SodOEsdgKpl5QeTuUCpoFQ5IqFQWCgs1A68zmTGrq2/Bd8diLhqD8e/0jalTIm
+	k=
+X-Google-Smtp-Source: AGHT+IFFPt+m448T/uVhH/uFa4IYkTCQ7dJj+PBX8yKsxeuPCGTRZrXD06eMiOSktRMiwnrCyjS6iw==
+X-Received: by 2002:a17:903:2351:b0:269:a23e:9fd7 with SMTP id d9443c01a7336-29027262689mr366784675ad.26.1760446613904;
+        Tue, 14 Oct 2025 05:56:53 -0700 (PDT)
+Received: from joaog-nb.corp.toradex.com ([67.159.246.222])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29034f3ab2fsm163919985ad.105.2025.10.14.05.56.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 14 Oct 2025 05:56:53 -0700 (PDT)
+From: =?utf-8?q?Jo=C3=A3o_Paulo_Gon=C3=A7alves?= <jpaulo.silvagoncalves@gmail.com>
+Date: Tue, 14 Oct 2025 09:56:43 -0300
+Subject: [PATCH v1] arm64: dts: imx8-ss-img: Avoid gpio0_mipi_csi GPIOs
+ being deferred
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Message-Id: <20251014-imx8-gpio-csi-deferred-probe-v1-1-62dd1b949731@toradex.com>
+X-B4-Tracking: v=1; b=H4sIAIpI7mgC/x3MQQrDIBAF0KuEWXdAUwxNr1K6sPpNZtEoIwQh5
+ O6RLN/mHVShgkrv4SDFLlXy1mEfA4XVbwtYYjeNZnTWmJnl3168FMkcqnBEgioiF80/MJCm4Cb
+ /dN5TL4oiSbv7D+2Wvud5AVmyznRyAAAA
+X-Change-ID: 20251009-imx8-gpio-csi-deferred-probe-eef6c56a35aa
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>, Frank Li <Frank.Li@nxp.com>
+Cc: devicetree@vger.kernel.org, imx@lists.linux.dev, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ =?utf-8?q?Jo=C3=A3o_Paulo_Gon=C3=A7alves?= <joao.goncalves@toradex.com>
+X-Mailer: b4 0.14.2
 
-Following the existing convention of disabling nodes in the SoC file and
-enabling only the required ones in the board file, disable "mcu_cpsw" node
-in the SoC file "k3-j721s2-mcu-wakeup.dtsi" and enable it in the board
-files:
-a) k3-am68-sk-base-board.dts
-b) k3-j721s2-common-proc-board.dts
+From: João Paulo Gonçalves <joao.goncalves@toradex.com>
 
-Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+The gpio0_mipi_csi DT nodes are enabled by default, but they are
+dependent on the irqsteer_csi nodes, which are not enabled. This causes
+the gpio0_mipi_csi GPIOs to be probe deferred. Since these GPIOs can be
+used independently of the CSI controller, enable irqsteer_csi by default
+too to prevent them from being deferred and to ensure they work out of
+the box.
+
+Fixes: 2217f8243714 ("arm64: dts: imx8: add capture controller for i.MX8's img subsystem")
+Signed-off-by: João Paulo Gonçalves <joao.goncalves@toradex.com>
 ---
+ arch/arm64/boot/dts/freescale/imx8-ss-img.dtsi | 2 --
+ 1 file changed, 2 deletions(-)
 
-v2 of this patch is at:
-https://patchwork.kernel.org/project/linux-arm-kernel/patch/20250611114336.2392320-6-s-vadapalli@ti.com/
-Changes since v2:
-- Rebased patch on next-20251010
-- Reordered 'status' property within the node to follow the ordering
-  specified by:
-  https://docs.kernel.org/devicetree/bindings/dts-coding-style.html#order-of-properties-in-device-node
-
-Regards,
-Siddharth.
-
- arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts       | 1 +
- arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts | 1 +
- arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi       | 2 ++
- 3 files changed, 4 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts b/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
-index 75a107456ce1..e44542b1584c 100644
---- a/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
-@@ -692,6 +692,7 @@ &main_sdhci1 {
- &mcu_cpsw {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&mcu_cpsw_pins_default>, <&mcu_mdio_pins_default>;
-+	status = "okay";
- };
+diff --git a/arch/arm64/boot/dts/freescale/imx8-ss-img.dtsi b/arch/arm64/boot/dts/freescale/imx8-ss-img.dtsi
+index 2cf0f7208350a416d77b11140279d2f66f41498f..a72b2f1c4a1b2ef26196c810b33ecfdebdbc1675 100644
+--- a/arch/arm64/boot/dts/freescale/imx8-ss-img.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8-ss-img.dtsi
+@@ -67,7 +67,6 @@ irqsteer_csi0: irqsteer@58220000 {
+ 		power-domains = <&pd IMX_SC_R_CSI_0>;
+ 		fsl,channel = <0>;
+ 		fsl,num-irqs = <32>;
+-		status = "disabled";
+ 	};
  
- &davinci_mdio {
-diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
-index 9e43dcff8ef2..3740596576c0 100644
---- a/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
-@@ -457,6 +457,7 @@ &main_sdhci1 {
- &mcu_cpsw {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&mcu_cpsw_pins_default>, <&mcu_mdio_pins_default>;
-+	status = "okay";
- };
+ 	gpio0_mipi_csi0: gpio@58222000 {
+@@ -144,7 +143,6 @@ irqsteer_csi1: irqsteer@58240000 {
+ 		power-domains = <&pd IMX_SC_R_CSI_1>;
+ 		fsl,channel = <0>;
+ 		fsl,num-irqs = <32>;
+-		status = "disabled";
+ 	};
  
- &davinci_mdio {
-diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
-index 837097751c18..2a7f9c519735 100644
---- a/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
-@@ -552,6 +552,8 @@ mcu_cpsw: ethernet@46000000 {
- 			    "tx4", "tx5", "tx6", "tx7",
- 			    "rx";
- 
-+		status = "disabled";
-+
- 		ethernet-ports {
- 			#address-cells = <1>;
- 			#size-cells = <0>;
+ 	gpio0_mipi_csi1: gpio@58242000 {
+
+---
+base-commit: 3a8660878839faadb4f1a6dd72c3179c1df56787
+change-id: 20251009-imx8-gpio-csi-deferred-probe-eef6c56a35aa
+
+Best regards,
 -- 
-2.51.0
+João Paulo Gonçalves <joao.goncalves@toradex.com>
 
 
