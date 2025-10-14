@@ -1,180 +1,136 @@
-Return-Path: <devicetree+bounces-226726-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226727-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB613BDACA6
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 19:37:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D0BA8BDAD4E
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 19:44:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 17FF74E4B38
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 17:37:35 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id BF8B64EAC95
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 17:44:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C958A27A10F;
-	Tue, 14 Oct 2025 17:37:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F20F63009E2;
+	Tue, 14 Oct 2025 17:44:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="q9jTq4a6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hvL3sS4O"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0147274B58;
-	Tue, 14 Oct 2025 17:37:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C913026B971;
+	Tue, 14 Oct 2025 17:44:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760463451; cv=none; b=FUvGAcVoe2uf28ISW0m26ae/XKKVQQBjMeEeWTZDiEEddzbeJPb7mFPdttdquHtsfY5HhudP4+Ez1vlbPUJZzf6aG4gsNeWZKYkZa9Pa4VPHBoC2eNcybcNVRB449+iZ4G5B5UO3afbZhq1BeEcrRodtB7Hn2WX4sp1t2MqubNA=
+	t=1760463881; cv=none; b=fuf5cFjIAkjS6f48tnA7zTCDPbQ+qndKDRfz/rEg2okGX/RNaiYkzAehxT0Qbe27yXZMIMQWy/HiabV/8DFr3h+xb2x8ZQjjtpddzZfVThK05MyWXKk/yheD6GPKnxrCobqhUFT4qubHKdZZJ4MqDoJhQMgvJfvmUxigtmGgXb4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760463451; c=relaxed/simple;
-	bh=HiHxgPNFAWSB/iS1Eg4H0inrzfOnWi/it/DJfDndziA=;
-	h=Content-Type:MIME-Version:In-Reply-To:References:Subject:From:Cc:
-	 To:Date:Message-ID; b=c8wxIg0YmKVHE7b07BjHWkw0stSLFsKpFNU646qhWQyHniMjvYICec6N1Y6trZjtxd3UA6ZbSy/st/QWZIhxuiSg7YKStH7a/HVZhEwP6QcER+TMUNuRhir3UtZ7dfD3/bZEAQagTyKiIXYFVSHZwwT+bVU2FyKhweQhWTaceJM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=q9jTq4a6; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (cpc89244-aztw30-2-0-cust6594.18-1.cable.virginm.net [86.31.185.195])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 1B5A1741;
-	Tue, 14 Oct 2025 19:35:48 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1760463348;
-	bh=HiHxgPNFAWSB/iS1Eg4H0inrzfOnWi/it/DJfDndziA=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=q9jTq4a6Wd81pLyp1VGc5fLh85ad6D3pNvVulfbdw6nNHMFfwQHZ+9YodjLIwb/tf
-	 OFUJHqcDSVDA1RGICzlwOuLLW8Jd6hpeXuJzD5A1yLJzUAHXvb1WykyTG/aJt3UuBv
-	 yDqmkZJeiY5Z5R4V1MVbHtD4AkP2IQSy9vXuIVUs=
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1760463881; c=relaxed/simple;
+	bh=PND3tMFcHSXQbftmY3sVLMvaNBKZSZ0hGpr0vDTs9sE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=PfxeGfpyEIkE7PqBA9zNCZvt4u79Z+JOnVjh6JG3+fe1YMbpEehF6acTF3TY1lGtcSwQNsbsbU/DCE7sroYubIa6twb08ErRUzrd5UBb2bV7yzs08bUo9djlAHITj3F3OR6IEjXBdqPBrUsy0v0Wp7F6jHWoAR3ZPMcVQNkTjjY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hvL3sS4O; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 79B73C4CEE7;
+	Tue, 14 Oct 2025 17:44:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1760463881;
+	bh=PND3tMFcHSXQbftmY3sVLMvaNBKZSZ0hGpr0vDTs9sE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=hvL3sS4O0/9Rp25fZny11LsDbx8NYa863vhybCfL5A96ugwuGYbS5uKASWQbsO200
+	 XT3CeYL63+CYtUITLF0WuMgsTYwHiAApLc3S3MmF+BQXZTv8hwTu3kqyddnK1nYZg8
+	 0NXQZD1JNENF/DcAfg8vSUlyuT0aiqfqk9F34lU3rEUBQQBVEdxyBpWxejZGZ6QzF3
+	 eD9HP7P1Nv9iCxnEFYKrat/ahxk3u0SsEjezu4HfXs/iRmW4AEwmeLi8a5jorS8npe
+	 d7E3UqwiFejKguvpLz1t90LebXig7Fgkys2bK915snVhBqj41dUvFK1k3e3sZ37A3J
+	 Vke1bYn3IQVJQ==
+Date: Tue, 14 Oct 2025 18:44:36 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Lucas Zampieri <lzampier@redhat.com>
+Cc: linux-kernel@vger.kernel.org, Charles Mirabile <cmirabil@redhat.com>,
+	Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Vivian Wang <dramforever@live.com>, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v3 2/3] dt-bindings: interrupt-controller: add UltraRISC
+ DP1000 PLIC
+Message-ID: <20251014-petted-papyrus-435129236562@spud>
+References: <20251014154100.168236-1-lzampier@redhat.com>
+ <20251014154100.168236-3-lzampier@redhat.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="SBMBPhePSwNwsQCs"
+Content-Disposition: inline
+In-Reply-To: <20251014154100.168236-3-lzampier@redhat.com>
+
+
+--SBMBPhePSwNwsQCs
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20250916144710.1285650-1-kieran.bingham@ideasonboard.com>
-References: <20250916144710.1285650-1-kieran.bingham@ideasonboard.com>
-Subject: Re: [PATCH] arm64: dts: freescale: debix-som-a-bmb-08: Enable HDMI output
-From: Kieran Bingham <kieran.bingham@ideasonboard.com>
-Cc: Shawn Guo <shawnguo2@yeah.net>, Marco Felsch <m.felsch@pengutronix.de>
-To: Conor Dooley <conor+dt@kernel.org>, Fabio Estevam <festevam@gmail.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Pengutronix Kernel Team <kernel@pengutronix.de>, Rob Herring <robh@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Date: Tue, 14 Oct 2025 18:37:23 +0100
-Message-ID: <176046344348.1246375.13335893574135284814@ping.linuxembedded.co.uk>
-User-Agent: alot/0.9.1
 
-Hi All,
-
-Quoting Kieran Bingham (2025-09-16 15:47:09)
-> Enable the HDMI output on the Debix SOM A board, using the HDMI encoder
-> present in the i.MX8MP SoC.
+On Tue, Oct 14, 2025 at 04:40:56PM +0100, Lucas Zampieri wrote:
+> From: Charles Mirabile <cmirabil@redhat.com>
 >=20
-> Enable and configure all nodes required for the HDMI port usage.
+> Add compatible strings for the PLIC found in UltraRISC DP1000 SoC.
 >=20
-> Signed-off-by: Kieran Bingham <kieran.bingham@ideasonboard.com>
+> The PLIC is part of the UR-CP100 core and has a hardware bug requiring
+> a workaround, so the driver will match on the more generic core-specific
+> compatible (ultrarisc,cp100-plic) to apply the quirk across all SoCs
+> using UR-CP100 cores.
 
-One review tag at https://lore.kernel.org/all/20250925171744.5eyhqjlqp7skes=
-qi@pengutronix.de/
+The exact driver behaviour itself is not really appropriate here, all
+you need to do is say that the core has the bug!
+With the prescriptive bit about driver matching behaviour removed,
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+pw-bot: changes-requested
 
-Could anyone be able to review / collect / apply this one please?
-
---
-Regards
-
-Kieran
-
-
+>=20
+> Signed-off-by: Charles Mirabile <cmirabil@redhat.com>
+> Signed-off-by: Lucas Zampieri <lzampier@redhat.com>
 > ---
+>  .../bindings/interrupt-controller/sifive,plic-1.0.0.yaml       | 3 +++
+>  1 file changed, 3 insertions(+)
 >=20
-> This replicates 4880ee1c9046 ("arm64: dts: imx8mp-debix-model-a: Enable
-> HDMI output") to support the Debix SOM as well.
+> diff --git a/Documentation/devicetree/bindings/interrupt-controller/sifiv=
+e,plic-1.0.0.yaml b/Documentation/devicetree/bindings/interrupt-controller/=
+sifive,plic-1.0.0.yaml
+> index 5b827bc24301..34591d64cca3 100644
+> --- a/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-=
+1.0.0.yaml
+> +++ b/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-=
+1.0.0.yaml
+> @@ -74,6 +74,9 @@ properties:
+>                - sophgo,sg2044-plic
+>                - thead,th1520-plic
+>            - const: thead,c900-plic
+> +      - items:
+> +          - const: ultrarisc,dp1000-plic
+> +          - const: ultrarisc,cp100-plic
+>        - items:
+>            - const: sifive,plic-1.0.0
+>            - const: riscv,plic0
+> --
+> 2.51.0
 >=20
->=20
->  .../freescale/imx8mp-debix-som-a-bmb-08.dts   | 47 +++++++++++++++++++
->  1 file changed, 47 insertions(+)
->=20
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-debix-som-a-bmb-08.dts =
-b/arch/arm64/boot/dts/freescale/imx8mp-debix-som-a-bmb-08.dts
-> index d241db3743a9..04619a722906 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp-debix-som-a-bmb-08.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp-debix-som-a-bmb-08.dts
-> @@ -22,6 +22,18 @@ chosen {
->                 stdout-path =3D &uart2;
->         };
-> =20
-> +       hdmi-connector {
-> +               compatible =3D "hdmi-connector";
-> +               label =3D "hdmi";
-> +               type =3D "a";
-> +
-> +               port {
-> +                       hdmi_connector_in: endpoint {
-> +                               remote-endpoint =3D <&hdmi_tx_out>;
-> +                       };
-> +               };
-> +       };
-> +
->         reg_baseboard_vdd3v3: regulator-baseboard-vdd3v3 {
->                 compatible =3D "regulator-fixed";
->                 regulator-min-microvolt =3D <3300000>;
-> @@ -222,6 +234,28 @@ flash: flash@0 {
->         };
->  };
-> =20
-> +&hdmi_pvi {
-> +       status =3D "okay";
-> +};
-> +
-> +&hdmi_tx {
-> +       pinctrl-names =3D "default";
-> +       pinctrl-0 =3D <&pinctrl_hdmi>;
-> +       status =3D "okay";
-> +
-> +       ports {
-> +               port@1 {
-> +                       hdmi_tx_out: endpoint {
-> +                               remote-endpoint =3D <&hdmi_connector_in>;
-> +                       };
-> +               };
-> +       };
-> +};
-> +
-> +&hdmi_tx_phy {
-> +       status =3D "okay";
-> +};
-> +
->  &i2c4 {
->         expander0: gpio@20 {
->                 compatible =3D "nxp,pca9535";
-> @@ -276,6 +310,10 @@ ethmac2: mac-address@c {
->         };
->  };
-> =20
-> +&lcdif3 {
-> +       status =3D "okay";
-> +};
-> +
->  &snvs_pwrkey {
->         status =3D "okay";
->  };
-> @@ -430,6 +468,15 @@ MX8MP_IOMUXC_NAND_DATA03__FLEXSPI_A_DATA03      0x82
->                 >;
->         };
-> =20
-> +       pinctrl_hdmi: hdmigrp {
-> +               fsl,pins =3D <
-> +                       MX8MP_IOMUXC_HDMI_DDC_SCL__HDMIMIX_HDMI_SCL     0=
-x1c3
-> +                       MX8MP_IOMUXC_HDMI_DDC_SDA__HDMIMIX_HDMI_SDA     0=
-x1c3
-> +                       MX8MP_IOMUXC_HDMI_HPD__HDMIMIX_HDMI_HPD         0=
-x19
-> +                       MX8MP_IOMUXC_HDMI_CEC__HDMIMIX_HDMI_CEC         0=
-x19
-> +               >;
-> +       };
-> +
->         pinctrl_i2c1: i2c1grp {
->                 fsl,pins =3D <
->                         MX8MP_IOMUXC_I2C1_SCL__I2C1_SCL                 0=
-x400001c2
-> --=20
-> 2.50.1
->
+
+--SBMBPhePSwNwsQCs
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaO6MAwAKCRB4tDGHoIJi
+0gnNAP9TKWqhJhzUUp3cCJPe5+VCmmPgdq2b1gK6o5qQaZNGSQEAvjL2WCBzA58u
+c8FoKcIciUJjkEw/LooNWCUxOKL2Ywk=
+=cYxS
+-----END PGP SIGNATURE-----
+
+--SBMBPhePSwNwsQCs--
 
