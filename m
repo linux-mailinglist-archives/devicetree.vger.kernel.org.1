@@ -1,172 +1,401 @@
-Return-Path: <devicetree+bounces-226387-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226388-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E63EBD8268
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 10:23:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DEBE7BD8286
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 10:24:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 565533E83D7
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 08:23:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4017D3E8A06
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 08:24:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B806330F55C;
-	Tue, 14 Oct 2025 08:23:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A204E30F81A;
+	Tue, 14 Oct 2025 08:24:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="d5F/ktAF"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xZk8uUNb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yx1-f50.google.com (mail-yx1-f50.google.com [74.125.224.50])
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BC1230F527
-	for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 08:23:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.224.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D22630F95B
+	for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 08:24:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760430201; cv=none; b=jAFdmlOjE5AOhXl6KYZEvOgWr7g3iTWfCSu/8ZXRzu70mtJ0gdNUgIzyfygnYWCXyeRDpyBP3OAddt4jNLPbqqU509oUmQXoidwm7J78LLUTcg2hh/w/PXGLpU3NoBhfPKKHJw2zZuA5LNC6xPThV73cKVWMd8FrT+8h9yRURzc=
+	t=1760430275; cv=none; b=dAfWNXt4NsKG9WjCTcliamHL+Kc/vn7/eypbdEiwHbw+l/umcINHiOLceUaJBLKWsZETiAqP75yIGyH5dT8NKtAK19/IoD3byrnQf69kC50osStt5/Z2T8Mn3MLkbQ6Dv6LRhDOGB4F//u8KSR1U1wFWgtOGU28N5Cc7QEfAyAY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760430201; c=relaxed/simple;
-	bh=QpLLN7omLU7FVeu70pu6uFOP+AtOBErrgm75t8rLSRw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=NmndY+RgJOVAUDlbhJLEt2tLfJPPXFxF1DbilLO6RY8fs3stTUZEUkR/W0WEHeX0IgRJ3FgQdZfbJTciTdz0Ca5grajOjku4GbR5ueJv4qQiqtGaPP49aS3x+oajbHMXrmbvmxhVlyn8w0imtQLYjwxkcMPXQIASHzfkCB4PcUI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=d5F/ktAF; arc=none smtp.client-ip=74.125.224.50
+	s=arc-20240116; t=1760430275; c=relaxed/simple;
+	bh=omBQDlN0SNSXKstrq0O2kRGJ7zOFZ+fJkN3e0IgV1JA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=RrCy2P2FPozWUjdjRNvNy6HzqfVNeiebLTLjdPdnhVpwU0KP8dDf7vcS37DGTXHKHzSXPEW1X3PIIhaKlQgTt+VgJtZhGLH846dgLUfdXlsr5DIghz+MEv0xizu5eGnKZKNR7aRheKh+cBAg1m+jqh3h/3Qr5ePQXH61vW52CZs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xZk8uUNb; arc=none smtp.client-ip=209.85.128.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yx1-f50.google.com with SMTP id 956f58d0204a3-63bbf5f77daso4988437d50.3
-        for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 01:23:19 -0700 (PDT)
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-46e491a5b96so27583135e9.2
+        for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 01:24:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1760430199; x=1761034999; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Y9TclHM+FlxL8k/EdZlfp0sKQpkcWovBD/evGnk/JRY=;
-        b=d5F/ktAFXiAlca/nL4hv1iOe9/I8zrpQX5eD+YjxQvMcYsXB3gO0yt6NdWCwZZ1Q8f
-         YGm/uQWNq9Z302yY+mMQLJSQTzyTGw64d4voZuBwYDnLfJjZ/9ZYGSzDaRVh1Oihsyvh
-         8oKbrs+cvUN7M5292eAW5DZCwfjbkCyQXaGP/YhGeWcgOw4qkwYQ815xURYyl2yt/suN
-         XZtcl4QSVC7UHy9+ml8+wKOZ5EGmBnY0j9EpKCpNTrYcnDyF2qc766x2kqReFaBw0Zo7
-         yOZp27Y1L9JGsiD2XKQhRQdoRk8SF2q0YzB3vHEjTo0/lrv5Tv+y87v8+kcC5qHSnvJ0
-         5IcA==
+        d=linaro.org; s=google; t=1760430271; x=1761035071; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=g1WLMyC6KZHho1k1eIZ+qKx3AxLZ35CnRGvjdbXTrhs=;
+        b=xZk8uUNbzSr2yOOstpXtq1eHNwsSuz1u652GVVYIqCMjBSQz4i7AT3eiodhRppomfB
+         iwaqArrGX65/YLIGHHJx90TsQOKe9LsH0azL+jYb3wFT/pzTSaWxsFleqA1aHktVzwEx
+         +MoqVC99YfFpHQ4+3wass/C3uKra9YOnlb7ctBQ9Q7R6l4EYJM4UJyZvwToHkF9Y2Lha
+         O8oBPXJ3+2f5I+zUbxOSSKIRT0w0Z292skf8hfEIKs1MPP6xFdngUfgxAGLG6Qoa470W
+         OXGP66IR5gAL4AGRF197Hjishz9d3L6/CMSTr9efF6VHEDC95bI8/fSkW28qE3ZtUsDM
+         jq9w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760430199; x=1761034999;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Y9TclHM+FlxL8k/EdZlfp0sKQpkcWovBD/evGnk/JRY=;
-        b=qXYI3YC4t65tm0dCIHgb/i3UIWoXF39aOjy9JIyb1xhEbCucshMNnzVOzs94Fl7ZVo
-         /o+M249spCFRy3MBtAFwilcEI/OmcOOnp5IJ4iAqxqILsgcCV3pFUKJxNuVhuXP/qi0U
-         6txq82NjbjoKjlgVZ3Wxk79VYKhjKrmPSff7+zgs3pvooR0h6mZ1lUOf/HM8qasXP026
-         7MLPBtlaLzOa5td4RuxfWJTH5h32tcq0w+npmnSdGukeEZu6MjTNHIP4QCwF3kqibc6v
-         esBPjDsAMgZx66xjf/IAIZUpWoLc2JkZdmrbBfqkcStuoJRzBmLXZmf/ND8IVsfB7uV9
-         s0cw==
-X-Forwarded-Encrypted: i=1; AJvYcCVzolx4tqoY0VvZ8OnUiNzl1ps+yufimyW6vFVZNxhae9TenZQnw8hdk9meCF/2SbejLmiX6GTKu+VY@vger.kernel.org
-X-Gm-Message-State: AOJu0YxJ/yeZL1hOUtKAZu7yAcoyEOL1tRWXfth2mIPON8JqhNeyZ8Gv
-	RThHjqYP9X6epOghb3swOAlQgtqczoN+dfftB/XIUVStIk04WnV80T15AeEWjg6khFgSzwTHArW
-	KdiPx21MOO9BHCOSHn0gpjgJzSU5JUqymo3uvik3oBQ==
-X-Gm-Gg: ASbGncvLs+WYvgXhDFM8zoHRNYXlnH4vucIb3OFmdlV7Bv/fNukfLoJpqn00OfTwLP8
-	lv8xc7zDpKTy5b6P4H10R9cLVHoqjvWPm0it2iyDLp7fZo9+OY62NPnekc8chvQWqfSr9apkcaq
-	MUHrYMp80zdkqLoao91Ocfpl/d3TvO3059GC4DVXc9giUsmscxHP6rAnEb1HoP+Q+tPYE9M16ER
-	vSt+mjAvQY+oL3C+7qV+Epk+HCe6AFCg4FDSHrY
-X-Google-Smtp-Source: AGHT+IGUPFI5jCPwxpBaBsUtA4t105DOhgNvQsDGVLBIPQELjrZFFsrZcl9lsa37EFuLVIbBf5ZvE7ZH81SU0iQy1BA=
-X-Received: by 2002:a05:690e:424d:b0:5fc:5d98:3478 with SMTP id
- 956f58d0204a3-63ccb7fabcfmr16158005d50.7.1760430198919; Tue, 14 Oct 2025
- 01:23:18 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1760430271; x=1761035071;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=g1WLMyC6KZHho1k1eIZ+qKx3AxLZ35CnRGvjdbXTrhs=;
+        b=hkEP903yhkt+44oKocmcGrm6acvFBCMvO7asxFalatsHgxVM+8gGLdmPZ8gV+SnNh8
+         /fzYN6vTxX93lUkYs6LF99zQCFRl/XNSBDmq3I/r7YbS8mthFWfjYInBU+zBcZTF+V1J
+         8YbTf4StyokHXV+j4dRKnReDAzkE1rDCBBRXmH0SYXpajHI/J5X37w5z/Wz+PtuDAB49
+         MVUuJXs/pobPC/ypvSaVMoH/FGxFWJmVVwusJiYzYLTuAL2nJyBjmRCBk/AWrEN5uQM4
+         lFIcvKkvlBx9uSuMMyqqZdn/6JlB5lbO5hSmZj3Vr3n+kg9nnfteBeGv38CnOrP+lDid
+         oQIg==
+X-Forwarded-Encrypted: i=1; AJvYcCXXyfFWb9aXrufIWPd8BI3e5xj+jY2if1A2QLuCsXIT4D/OME1PlyoDyLeCWpWoFTEcX5wEYSIczfp7@vger.kernel.org
+X-Gm-Message-State: AOJu0YyhoU85qALuFn+Z5yNrYoShOGEQgkYDIIWbxkATD4NnmEuDIKpR
+	iMkPbVGBiwUDa8J3s+oGfxBfdDfiEnttULTMGWTbh1pDkVzFqyg4JUnTPJVp8LOdLkU=
+X-Gm-Gg: ASbGncuo2uZienSYjtSl4qK81G9oZMePtdReILjo3u9a9QMq/3TLSLLFzFTOqpZciey
+	GKjBvu6JF9tMtjkCm/wj6+4kFXuhijMHO1XbUtDXvY6hjIN5HHSrsQi6kGNcqGkJuhLvRsgQzie
+	tIw2fhFuVw/R+3ULYElTEeeoqCJyQjUZj2DuvsDVJcoh7zFF/FS7GMe/X93ITlytR8cnQz7DzCF
+	oYCEKRqseQWvOWk1aBnY9wDr4vCLLoDriFbeEmElqOTsk3gx/2Mh9GydaoE084CXT9YJPVNZwnj
+	4msN3nrIobHLfPEWNPVn5P32V0ZXMZToAEOwEuCZxU4bqjJSfaUdMLeDqLPpFlLlK52reJ4tHmM
+	rtBPG1Dayc70HUWySOJriSL6ebyF3QkfF7GHNtsW6znkrWLfkfQ3/cNCA49rFpU9Lk8QI64/Wg+
+	zCpWojYffFg5Y=
+X-Google-Smtp-Source: AGHT+IF2nh8wX/8xS6xnvjff0xiiobDKtkMDK+CZSyPFZvqZoCQ8OqTQRSGwMzPpVRnLz4p9dqoSOg==
+X-Received: by 2002:a05:600c:6818:b0:46e:36fa:6b40 with SMTP id 5b1f17b1804b1-46fa9af915emr162139705e9.24.1760430270637;
+        Tue, 14 Oct 2025 01:24:30 -0700 (PDT)
+Received: from [192.168.0.19] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-426dac0ab7bsm13291015f8f.46.2025.10.14.01.24.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 14 Oct 2025 01:24:30 -0700 (PDT)
+Message-ID: <27b9a906-3348-4b75-b5e4-12edad91b93f@linaro.org>
+Date: Tue, 14 Oct 2025 09:24:27 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251009223501.570949-1-jelonek.jonas@gmail.com> <20251009223501.570949-2-jelonek.jonas@gmail.com>
-In-Reply-To: <20251009223501.570949-2-jelonek.jonas@gmail.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Tue, 14 Oct 2025 10:23:06 +0200
-X-Gm-Features: AS18NWBS0RiqVLOn6OGw-S2jkVsKedTw5UCNSQ2_7gUR2ne-WB-LpCsCs8TF6SE
-Message-ID: <CACRpkdb6bTFbTtNsO59GXFa9eMK9x=+BGK5Vx4bKv62wxiSpiw@mail.gmail.com>
-Subject: Re: [RFC PATCH v1 1/2] dt-bindings: gpio: add gpio-split controller
-To: Jonas Jelonek <jelonek.jonas@gmail.com>, Peter Rosin <peda@axentia.se>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 04/13] remoteproc: pas: Replace metadata context with
+ PAS context structure
+To: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Manivannan Sadhasivam <mani@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20251013-kvm_rprocv5-v5-0-d609ed766061@oss.qualcomm.com>
+ <20251013-kvm_rprocv5-v5-4-d609ed766061@oss.qualcomm.com>
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Content-Language: en-US
+In-Reply-To: <20251013-kvm_rprocv5-v5-4-d609ed766061@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Jonas,
+On 13/10/2025 11:03, Mukesh Ojha wrote:
+> As a superset of the existing metadata context, the PAS context
+> structure enables both remoteproc and non-remoteproc subsystems to
+> better support scenarios where the SoC runs with or without the Gunyah
+> hypervisor. To reflect this, relevant SCM and metadata functions are
+> updated to incorporate PAS context awareness.
+> 
+> Signed-off-by: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
+> ---
+>   drivers/firmware/qcom/qcom_scm.c       | 32 ++++++++++++++++-------------
+>   drivers/remoteproc/qcom_q6v5_pas.c     | 37 ++++++++++++++++++++++++----------
+>   drivers/soc/qcom/mdt_loader.c          |  4 ++--
+>   include/linux/firmware/qcom/qcom_scm.h |  4 ++--
+>   include/linux/soc/qcom/mdt_loader.h    |  6 +++---
+>   5 files changed, 51 insertions(+), 32 deletions(-)
+> 
+> diff --git a/drivers/firmware/qcom/qcom_scm.c b/drivers/firmware/qcom/qcom_scm.c
+> index 6d22b2ac7880..b11a21797d46 100644
+> --- a/drivers/firmware/qcom/qcom_scm.c
+> +++ b/drivers/firmware/qcom/qcom_scm.c
+> @@ -600,7 +600,7 @@ EXPORT_SYMBOL_GPL(qcom_scm_pas_context_init);
+>    *		and optional blob of data used for authenticating the metadata
+>    *		and the rest of the firmware
+>    * @size:	size of the metadata
+> - * @ctx:	optional metadata context
+> + * @ctx:	optional pas context
+>    *
+>    * Return: 0 on success.
+>    *
+> @@ -609,8 +609,9 @@ EXPORT_SYMBOL_GPL(qcom_scm_pas_context_init);
+>    * qcom_scm_pas_metadata_release() by the caller.
+>    */
+>   int qcom_scm_pas_init_image(u32 pas_id, const void *metadata, size_t size,
+> -			    struct qcom_scm_pas_metadata *ctx)
+> +			    struct qcom_scm_pas_context *ctx)
+>   {
+> +	struct qcom_scm_pas_metadata *mdt_ctx;
+>   	dma_addr_t mdata_phys;
+>   	void *mdata_buf;
+>   	int ret;
+> @@ -661,10 +662,11 @@ int qcom_scm_pas_init_image(u32 pas_id, const void *metadata, size_t size,
+>   out:
+>   	if (ret < 0 || !ctx) {
+>   		dma_free_coherent(__scm->dev, size, mdata_buf, mdata_phys);
+> -	} else if (ctx) {
+> -		ctx->ptr = mdata_buf;
+> -		ctx->phys = mdata_phys;
+> -		ctx->size = size;
+> +	} else if (ctx && ctx->metadata) {
+> +		mdt_ctx = ctx->metadata;
+> +		mdt_ctx->ptr = mdata_buf;
+> +		mdt_ctx->phys = mdata_phys;
+> +		mdt_ctx->size = size;
 
-thanks for your patch!
+Suspicious looking code..
 
-Including Peter Rosin (the gpio-mux author) and Geert Uytterhoeven
-on this review, as they have worked with similar stuff. Please include
-them on future postings. The result definitely need Peters ack before
-we can merge it.
+The second check for ctx is redundant as it cannot ever be false. You have
 
-On Fri, Oct 10, 2025 at 12:35=E2=80=AFAM Jonas Jelonek <jelonek.jonas@gmail=
-.com> wrote:
+if (ret < 0 || !ctx) {
+} else if (ctx && ctx->mdatadata) {
+}
 
-> Add dt-schema for a virtual gpio-split controller which exposes virtual
-> GPIOs for a shared GPIO controlled by a multiplexer, e.g. a gpio-mux.
->
-> The gpio-split controller is a gpio-controller, thus has mostly the same
-> semantics. However, it requires a mux-control to be specified upon which
-> it will operate.
->
-> Signed-off-by: Jonas Jelonek <jelonek.jonas@gmail.com>
+The old code was wrong but, that's no reason to continue to be wrong.
 
-So if I understand it correctly this models a 1-to-many input-only
-GPIO multiplexer, we need an illustration such as
+Is it currently possible for ctx to be true but ctx->metadata to be false..
 
-        +----- A
-IN     /
-<-----o------- B
-    / |\
-    | | +----- C
-    | |  \
-    | |   +--- D
-    | |
-   M1 M0
+void *qcom_scm_pas_context_init(struct device *dev, u32 pas_id, 
+phys_addr_t mem_phys,
+                                 size_t mem_size)
+{
+         struct qcom_scm_pas_context *ctx;
 
-MUX CONTROL
+         ctx = devm_kzalloc(dev, sizeof(*ctx), GFP_KERNEL);
+         if (!ctx)
+                 return ERR_PTR(-ENOMEM);
 
- M1 M0   INPUT
-  0  0   A
-  0  1   B
-  1  0   C
-  1  1   D
+         ctx->dev = dev;
+         ctx->pas_id = pas_id;
+         ctx->mem_phys = mem_phys;
+         ctx->mem_size = mem_size;
 
-Is this correct? In that case include something like this
-verbatim in the bindings (feel free to copy/modify this)
-as it makes it much easier to understand what is going on.
+         ctx->metadata = devm_kzalloc(dev, sizeof(*ctx->metadata), 
+GFP_KERNEL);
+         if (!ctx->metadata)
+                 return ERR_PTR(-ENOMEM);
 
-That's a very minimal example of a way to turn 3 GPIO
-lines into 4 GPIO lines, which is a bit crazy but I'm not
-the one to tell vendors what to do :D
+         return ctx;
+}
+EXPORT_SYMBOL_GPL(qcom_scm_pas_context_init);
 
-> +  mux-controls:
-> +    maxItems: 1
+No.
 
-So this needs a description, it is a phandle to the
-gpio multiplexer (reference /schemas/mux/gpio-mux.yaml
-explicitly!) used by the splitter.
+Lets fix the ctx checking logic in this code as we modify the patch.
+>   	}
+>   
+>   	return ret ? : res.result[0];
+> @@ -673,18 +675,20 @@ EXPORT_SYMBOL_GPL(qcom_scm_pas_init_image);
+>   
+>   /**
+>    * qcom_scm_pas_metadata_release() - release metadata context
+> - * @ctx:	metadata context
+> + * @ctx:	pas context
+>    */
+> -void qcom_scm_pas_metadata_release(struct qcom_scm_pas_metadata *ctx)
+> +void qcom_scm_pas_metadata_release(struct qcom_scm_pas_context *ctx)
+>   {
+> -	if (!ctx->ptr)
+> -		return;
+> +	struct qcom_scm_pas_metadata *mdt_ctx;
+>   
+> -	dma_free_coherent(__scm->dev, ctx->size, ctx->ptr, ctx->phys);
+> +	mdt_ctx = ctx->metadata;
+> +	if (!mdt_ctx->ptr)
+> +		return;
+>   
+> -	ctx->ptr = NULL;
+> -	ctx->phys = 0;
+> -	ctx->size = 0;
+> +	dma_free_coherent(__scm->dev, mdt_ctx->size, mdt_ctx->ptr, mdt_ctx->phys);
+> +	mdt_ctx->ptr = NULL;
+> +	mdt_ctx->phys = 0;
+> +	mdt_ctx->size = 0;
+>   }
 
-You should also in the same patch add an example to
-/schemas/mux/gpio-mux.yaml showing how this is used
-to muliplex GPIOs so people find this new usecase easily.
+If we have established that mdt_ctx->ptr is the fulcurm of truth for 
+this data then setting ->phys and ->size to anything after setting ->ptr 
+= NULL are wasted bus cycles.
 
-> +  shared-gpio:
-> +    description:
-> +      GPIO that is shared by the virtual GPIOs and controlled via the mu=
-x.
+>   EXPORT_SYMBOL_GPL(qcom_scm_pas_metadata_release);
+>   
+> diff --git a/drivers/remoteproc/qcom_q6v5_pas.c b/drivers/remoteproc/qcom_q6v5_pas.c
+> index 158bcd6cc85c..e9dcab94ea0c 100644
+> --- a/drivers/remoteproc/qcom_q6v5_pas.c
+> +++ b/drivers/remoteproc/qcom_q6v5_pas.c
+> @@ -117,8 +117,8 @@ struct qcom_pas {
+>   	struct qcom_rproc_ssr ssr_subdev;
+>   	struct qcom_sysmon *sysmon;
+>   
+> -	struct qcom_scm_pas_metadata pas_metadata;
+> -	struct qcom_scm_pas_metadata dtb_pas_metadata;
+> +	struct qcom_scm_pas_context *pas_ctx;
+> +	struct qcom_scm_pas_context *dtb_pas_ctx;
+>   };
+>   
+>   static void qcom_pas_segment_dump(struct rproc *rproc,
+> @@ -211,9 +211,9 @@ static int qcom_pas_unprepare(struct rproc *rproc)
+>   	 * auth_and_reset() was successful, but in other cases clean it up
+>   	 * here.
+>   	 */
+> -	qcom_scm_pas_metadata_release(&pas->pas_metadata);
+> +	qcom_scm_pas_metadata_release(pas->pas_ctx);
+>   	if (pas->dtb_pas_id)
+> -		qcom_scm_pas_metadata_release(&pas->dtb_pas_metadata);
+> +		qcom_scm_pas_metadata_release(pas->dtb_pas_ctx);
+>   
+>   	return 0;
+>   }
+> @@ -241,7 +241,7 @@ static int qcom_pas_load(struct rproc *rproc, const struct firmware *fw)
+>   
+>   		ret = qcom_mdt_pas_init(pas->dev, pas->dtb_firmware, pas->dtb_firmware_name,
+>   					pas->dtb_pas_id, pas->dtb_mem_phys,
+> -					&pas->dtb_pas_metadata);
+> +					pas->dtb_pas_ctx);
+>   		if (ret)
+>   			goto release_dtb_firmware;
+>   
+> @@ -255,7 +255,7 @@ static int qcom_pas_load(struct rproc *rproc, const struct firmware *fw)
+>   	return 0;
+>   
+>   release_dtb_metadata:
+> -	qcom_scm_pas_metadata_release(&pas->dtb_pas_metadata);
+> +	qcom_scm_pas_metadata_release(pas->dtb_pas_ctx);
+>   
+>   release_dtb_firmware:
+>   	release_firmware(pas->dtb_firmware);
+> @@ -306,7 +306,7 @@ static int qcom_pas_start(struct rproc *rproc)
+>   	}
+>   
+>   	ret = qcom_mdt_pas_init(pas->dev, pas->firmware, rproc->firmware, pas->pas_id,
+> -				pas->mem_phys, &pas->pas_metadata);
+> +				pas->mem_phys, pas->pas_ctx);
+>   	if (ret)
+>   		goto disable_px_supply;
+>   
+> @@ -332,9 +332,9 @@ static int qcom_pas_start(struct rproc *rproc)
+>   		goto release_pas_metadata;
+>   	}
+>   
+> -	qcom_scm_pas_metadata_release(&pas->pas_metadata);
+> +	qcom_scm_pas_metadata_release(pas->pas_ctx);
+>   	if (pas->dtb_pas_id)
+> -		qcom_scm_pas_metadata_release(&pas->dtb_pas_metadata);
+> +		qcom_scm_pas_metadata_release(pas->dtb_pas_ctx);
+>   
+>   	/* firmware is used to pass reference from qcom_pas_start(), drop it now */
+>   	pas->firmware = NULL;
+> @@ -342,9 +342,9 @@ static int qcom_pas_start(struct rproc *rproc)
+>   	return 0;
+>   
+>   release_pas_metadata:
+> -	qcom_scm_pas_metadata_release(&pas->pas_metadata);
+> +	qcom_scm_pas_metadata_release(pas->pas_ctx);
+>   	if (pas->dtb_pas_id)
+> -		qcom_scm_pas_metadata_release(&pas->dtb_pas_metadata);
+> +		qcom_scm_pas_metadata_release(pas->dtb_pas_ctx);
+>   disable_px_supply:
+>   	if (pas->px_supply)
+>   		regulator_disable(pas->px_supply);
+> @@ -779,6 +779,21 @@ static int qcom_pas_probe(struct platform_device *pdev)
+>   	}
+>   
+>   	qcom_add_ssr_subdev(rproc, &pas->ssr_subdev, desc->ssr_name);
+> +
+> +	pas->pas_ctx = qcom_scm_pas_context_init(pas->dev, pas->pas_id, pas->mem_phys,
+> +						 pas->mem_size);
+> +	if (IS_ERR(pas->pas_ctx)) {
+> +		ret = PTR_ERR(pas->pas_ctx);
+> +		goto remove_ssr_sysmon;
+> +	}
+> +
+> +	pas->dtb_pas_ctx = qcom_scm_pas_context_init(pas->dev, pas->dtb_pas_id,
+> +						     pas->dtb_mem_phys, pas->dtb_mem_size);
+> +	if (IS_ERR(pas->dtb_pas_ctx)) {
+> +		ret = PTR_ERR(pas->dtb_pas_ctx);
+> +		goto remove_ssr_sysmon;
+> +	}
+> +
+>   	ret = rproc_add(rproc);
+>   	if (ret)
+>   		goto remove_ssr_sysmon;
+> diff --git a/drivers/soc/qcom/mdt_loader.c b/drivers/soc/qcom/mdt_loader.c
+> index a5c80d4fcc36..fe35038c5342 100644
+> --- a/drivers/soc/qcom/mdt_loader.c
+> +++ b/drivers/soc/qcom/mdt_loader.c
+> @@ -234,13 +234,13 @@ EXPORT_SYMBOL_GPL(qcom_mdt_read_metadata);
+>    * @fw_name:	name of the firmware, for construction of segment file names
+>    * @pas_id:	PAS identifier
+>    * @mem_phys:	physical address of allocated memory region
+> - * @ctx:	PAS metadata context, to be released by caller
+> + * @ctx:	PAS context, ctx->metadata to be released by caller
+>    *
+>    * Returns 0 on success, negative errno otherwise.
+>    */
+>   int qcom_mdt_pas_init(struct device *dev, const struct firmware *fw,
+>   		      const char *fw_name, int pas_id, phys_addr_t mem_phys,
+> -		      struct qcom_scm_pas_metadata *ctx)
+> +		      struct qcom_scm_pas_context *ctx)
+>   {
+>   	const struct elf32_phdr *phdrs;
+>   	const struct elf32_phdr *phdr;
+> diff --git a/include/linux/firmware/qcom/qcom_scm.h b/include/linux/firmware/qcom/qcom_scm.h
+> index 75dec515c5d2..7c58d26ede24 100644
+> --- a/include/linux/firmware/qcom/qcom_scm.h
+> +++ b/include/linux/firmware/qcom/qcom_scm.h
+> @@ -83,8 +83,8 @@ struct qcom_scm_pas_context {
+>   void *qcom_scm_pas_context_init(struct device *dev, u32 pas_id, phys_addr_t mem_phys,
+>   				size_t mem_size);
+>   int qcom_scm_pas_init_image(u32 pas_id, const void *metadata, size_t size,
+> -			    struct qcom_scm_pas_metadata *ctx);
+> -void qcom_scm_pas_metadata_release(struct qcom_scm_pas_metadata *ctx);
+> +			    struct qcom_scm_pas_context *ctx);
+> +void qcom_scm_pas_metadata_release(struct qcom_scm_pas_context *ctx);
+>   int qcom_scm_pas_mem_setup(u32 pas_id, phys_addr_t addr, phys_addr_t size);
+>   int qcom_scm_pas_auth_and_reset(u32 pas_id);
+>   int qcom_scm_pas_shutdown(u32 pas_id);
+> diff --git a/include/linux/soc/qcom/mdt_loader.h b/include/linux/soc/qcom/mdt_loader.h
+> index 8ea8230579a2..07c278841816 100644
+> --- a/include/linux/soc/qcom/mdt_loader.h
+> +++ b/include/linux/soc/qcom/mdt_loader.h
+> @@ -10,14 +10,14 @@
+>   
+>   struct device;
+>   struct firmware;
+> -struct qcom_scm_pas_metadata;
+> +struct qcom_scm_pas_context;
+>   
+>   #if IS_ENABLED(CONFIG_QCOM_MDT_LOADER)
+>   
+>   ssize_t qcom_mdt_get_size(const struct firmware *fw);
+>   int qcom_mdt_pas_init(struct device *dev, const struct firmware *fw,
+>   		      const char *fw_name, int pas_id, phys_addr_t mem_phys,
+> -		      struct qcom_scm_pas_metadata *pas_metadata_ctx);
+> +		      struct qcom_scm_pas_context *pas_ctx);
+>   int qcom_mdt_load(struct device *dev, const struct firmware *fw,
+>   		  const char *fw_name, int pas_id, void *mem_region,
+>   		  phys_addr_t mem_phys, size_t mem_size,
+> @@ -39,7 +39,7 @@ static inline ssize_t qcom_mdt_get_size(const struct firmware *fw)
+>   
+>   static inline int qcom_mdt_pas_init(struct device *dev, const struct firmware *fw,
+>   				    const char *fw_name, int pas_id, phys_addr_t mem_phys,
+> -				    struct qcom_scm_pas_metadata *pas_metadata_ctx)
+> +				    struct qcom_scm_pas_context *pas_ctx)
+>   {
+>   	return -ENODEV;
+>   }
+> 
 
-So this one is shared one-to-many, and I think the bindings
-overall makes sense.
-
-Maybe "gpio-split" is a bit ambiguous?
-We have io-channel-mux, so what about "gpio-line-mux"
-simply?
-
-The fact that GPIO lines are used to do the muxing is just
-a detail since a mux is an abstract concept, it could have
-just as well been muxed with some I2C device for example.
-
-Yours,
-Linus Walleij
 
