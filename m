@@ -1,223 +1,173 @@
-Return-Path: <devicetree+bounces-226403-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226404-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50C81BD85F1
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 11:14:51 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2BD3BD8643
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 11:19:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 0D0AD4E05F3
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 09:14:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2D1C61923427
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 09:19:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BF432E6CD1;
-	Tue, 14 Oct 2025 09:14:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF4A62E5B13;
+	Tue, 14 Oct 2025 09:19:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mKZxf22Q"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Vju3B45/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3384429E0E5;
-	Tue, 14 Oct 2025 09:14:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3669B2C11F0
+	for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 09:19:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760433287; cv=none; b=doiAFfJAqExyP2J7EBxqpRapwVdB0N7JzO+IaSM1MvhYwg6j7CGtHk1pm+uj8sX8mDQmZOlJLYvOD1LMwi4QiWsaVf8YppQrZ7mAaL1lEA4f1RQihLvjJlXMu4zEcnmmRTZnBJDxjBkAt9nn+YxoVdIdO7ZdUhT6/wbUXjuN5Go=
+	t=1760433559; cv=none; b=LOHbH+8eIk7rngCqiDT1oJDDAdlJl/As40i1ZkNYteYP68QMMcWu1+si52eM1lxbhlCltS4/xub1zFhi9rZUSwtDj1I43rkMf1ie4pSCW/AHdVNzuV1lT8bdsxvos3lixH4WN0wgoWeOJYY0v4UvM4B0mZbCOt6IC2SvLd6SWyA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760433287; c=relaxed/simple;
-	bh=IBkCqz1KQ1uX83QuJ3HllJmulH8qpC3R2cWzYAaQB/g=;
+	s=arc-20240116; t=1760433559; c=relaxed/simple;
+	bh=KCXqlj2/eMDCK2VlI2slSyknIFjdtmFTDQyXloiv5ME=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nIVZXRU+2ZfkpA3Bs8h1smuKNM1hdmruQ7OyhYBx4m9tDSf8GRgpxHyfxyodnjKUZo9dUzkLYCkBESNwa43QfME0w+KJDIl/r3oIe+SARLXSb0NaS3Ma8hNc8IJIiEczYo+ah+uXVwWSxGuebWXDDYtyGMQJMlXrFzNMu3uZVI4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mKZxf22Q; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5FD61C4CEE7;
-	Tue, 14 Oct 2025 09:14:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760433286;
-	bh=IBkCqz1KQ1uX83QuJ3HllJmulH8qpC3R2cWzYAaQB/g=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=mKZxf22Qjtehf9Ju4hs4d1ZMls1QVC7xp1pg19tXZDUQGb2nMv21rX7z/REtSlZnn
-	 wdhZGctfOsCWA9ciC70TZNp9kr+a2rqxnEMKifOapN7x5EA3zolq/NQnJkZAJppQRs
-	 vN+2MI68O+Z6k7v8gSxVxBKjmzOynSflXzuDdH+Tp/pMAWfSXRKg9ML0HHI9XoLDo0
-	 gLZ+wE46cDHUuqsOuymef9yyVINznxtQIgzfjCc7kwee4kkI9zQ7A4k7a9BqOfRAKZ
-	 1KUsGf4Pkc3K2Bf7aET6QtHfXzDY8krzRLjehgxV2AakTlYjkVjMWbmoVDXqpa6YtG
-	 I1P5+AKe9VnHg==
-Date: Tue, 14 Oct 2025 10:14:41 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Samuel Holland <samuel.holland@sifive.com>
-Cc: Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <pjw@kernel.org>,
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-mm@kvack.org,
-	Alexandre Ghiti <alex@ghiti.fr>,
-	Emil Renner Berthing <kernel@esmil.dk>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>
-Subject: Re: [PATCH v2 17/18] riscv: dts: starfive: jh7100: Use physical
- memory ranges for DMA
-Message-ID: <20251014-unsocial-composer-880ea10cc1d1@spud>
-References: <20251009015839.3460231-1-samuel.holland@sifive.com>
- <20251009015839.3460231-18-samuel.holland@sifive.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=Me2e6/cFR0JYs+qooBrMYez71TXrBKJDTf2mA4x1LnfrKPp8w3zDdOuzQk9015vBfGKpFFUu5GV8hMRsEgLERKK1quaSJIsU4Gmb1zuNbBYUugfMozGb+ZYfTcteVH1x1PuS3tlE/1qWMdN27o3Z1yUzMe6edJfpOqQmyvdfhv0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Vju3B45/; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59E87LPa025916
+	for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 09:19:16 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=/M4+9qjbR0xmZ9AUGWwlamLg
+	Bh7AibV8Qv6wfylCGO0=; b=Vju3B45/mSf52hBqT0GENjluUCDiOtbOR2hShHAR
+	BcJk1V4XprO6TdfMxVoQMolPrcpWikbRccTF2XTe/aPr9dkq10/7H6n3b1n8X4NF
+	fFkCyHEKD1v3gwT9UVs0LNGGqc/uySAoxA71KPKW80lOwiEJT6ydGQv4aOLGbbgA
+	ideY2iQsyPOj9sDoQt4yZvoLWbLAEIl+or1dOB/8T2NVGhoNfeQLSDpOlEEQYhHs
+	rcatz2WUT+eM9xAbkiJzlJNwXlwekkWTNvuCCoRwFLAaIFdIBCuPr5ntVPQ8Xb5a
+	PCSfkuykNjcai38qTdQkegbwlpPr10Mj5xeSIHzRYWAkCQ==
+Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49qgdfyrub-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 09:19:16 +0000 (GMT)
+Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-86835654255so4723274885a.3
+        for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 02:19:16 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1760433555; x=1761038355;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=/M4+9qjbR0xmZ9AUGWwlamLgBh7AibV8Qv6wfylCGO0=;
+        b=BvkXIUb9ViNCFPdvqVWciEKB9oK+82b+kUaiDoRUg5bLcHRb9vaJ/7Wn3bJMkDJKbS
+         dQV3dubEpO7s6SsUkoJNYDI+RuJz6HRXUwPMzad5Bhk0aLPwMu1GkWfw3bpo9ttOim/V
+         RKanHC3V66F98Z2H2A4/+k8M4NxyxSmiRK8qIjvBZNlWXN2w+6AEdgMTXD0/aMva+1gP
+         zOOTmDvMSb+x19klyW2TRFATnsjRhQKe2YwGBEyYFaRJzgicrqpdu5Rut9WUcKGTluv1
+         yEkBTa/W9wwi8Qor8vTmEaT9/kFpg6e5ecHxagquYXfcOE5Pp+AHie/h6WEHcDVzdWSm
+         /KqQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVJiiSwftjgyIQF3iVTya1+6eAgVfBYJyv5OPSnvl4/+XxbUQlNBCADhWJ1GfUPq8EY4UtjxX/CKddT@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzc0pSZ8p7zK9jvtK9BlymI+y7GAJV7c8V0rRpRYG8TBjm/xpnr
+	/XMMHJUDNBiNprLPeNdlkltG7rJ8FmvfVAqa1rXJqtKJ5WHwHT4H9o4LDOW865y5dGhPdgzfYdN
+	3LXd/t0WgQ0+GyktCrMjiTpPZH0V/zWv+NUQBxVS3D2IVS2odcV7wDHVEocSLA7R1
+X-Gm-Gg: ASbGncuzeJNSm298vBEyDErXoJ4fpg5gXGz8jfjpHLLPi1zhaMXoCI3B8QH6jJJdf7S
+	jCUg8ldHIEfYAHqUHEiMST9RPwanjO5GKWPKlG931P2JigvEcIOGWN3Qfiw/Cx0ugBPBJo7jlVu
+	jUxQmVXGlHu87/fklaIxgNUxE7o4BwA3gg3kSBhE6BaKZZvtL7XoPAedzn9FlgVgzp50YZ5XZgC
+	wo+nAhhlVRWeNfRMkhyKmIiwJSK6H58wwUoLreX/KP/fv0HvdVQPo8iCc0yYrLHwYFAh0yXD+8H
+	sVLr5OUWrMtqmJ5xQhL/QtR8102A9hnC9du5KTHB8Vx/hfjs/2+lSLyjm9hI/EOThxWCmWEsUcC
+	CEK7NNh3Rip2JaHXTMUeHZ4nTxbHxuA0B+x6KN+PLTIGu9O//JKpV
+X-Received: by 2002:a05:620a:2a0b:b0:86f:b068:32c2 with SMTP id af79cd13be357-88352ba768amr3441610285a.65.1760433555023;
+        Tue, 14 Oct 2025 02:19:15 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFJ0Bdv9ZRjNQZJ2bun3sNcAh/K42pzla7s+n3DhqMnWjW0vg5zZPO+f31pSNhVt7Buy9t+Hg==
+X-Received: by 2002:a05:620a:2a0b:b0:86f:b068:32c2 with SMTP id af79cd13be357-88352ba768amr3441607285a.65.1760433554567;
+        Tue, 14 Oct 2025 02:19:14 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-3762ea11d19sm39716781fa.37.2025.10.14.02.19.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 14 Oct 2025 02:19:13 -0700 (PDT)
+Date: Tue, 14 Oct 2025 12:19:12 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Ayushi Makhija <quic_amakhija@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, robdclark@gmail.com, sean@poorly.run,
+        marijn.suijten@somainline.org, andersson@kernel.org, robh@kernel.org,
+        robh+dt@kernel.org, krzk+dt@kernel.org, konradybcio@kernel.org,
+        conor+dt@kernel.org, andrzej.hajda@intel.com,
+        neil.armstrong@linaro.org, rfoss@kernel.org,
+        Laurent.pinchart@ideasonboard.com, jonathan@marek.ca, jonas@kwiboo.se,
+        jernej.skrabec@gmail.com, quic_rajeevny@quicinc.com,
+        quic_vproddut@quicinc.com
+Subject: Re: [PATCH v2 6/7] arm64: dts: qcom: qcs8300: add Display Serial
+ Interface device nodes
+Message-ID: <v6cvbds3fsbf7ebfi33mpkrgbrrb4oxubgpshzjn4o75j2jzcn@nnaenoukfu2n>
+References: <20251006013924.1114833-1-quic_amakhija@quicinc.com>
+ <20251006013924.1114833-7-quic_amakhija@quicinc.com>
+ <fsqytqhe72bgmloyzm6khoprq6bysf52ufz6oi6epos7uadyho@wg4rxs6f2xyl>
+ <374098ea-23f1-4d1a-8f70-313a7e384f8d@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="kExO0No+kM/nXpTw"
-Content-Disposition: inline
-In-Reply-To: <20251009015839.3460231-18-samuel.holland@sifive.com>
-
-
---kExO0No+kM/nXpTw
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <374098ea-23f1-4d1a-8f70-313a7e384f8d@quicinc.com>
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDExMDAyNSBTYWx0ZWRfXx6Sy66paYUbK
+ b37K5IPCu6EMu9jI7VaFuYE404iaQK2iDIYU3SiNr7TLsu83awQkZk2+SXzAV6a3eDF7fLBQkGb
+ uLeMEYS4GmJxdBBB7LHib3Ojxncmg1pMhq7rWu9NX7febiwE2zzb4neS2CRHym2hS0tPxcuwmq5
+ Ug3YTzIGrG4rwovpelz8FqWihk3BRAiR0Ib1DiduyAF6YCmkciTWiXQ+3gVRdpqErUjzJi5nmzm
+ 7ttnDWl58y3cBn9vSxzwMm7xOL/fGa1WOi5MlI0qzcIlryDtu7xb3IIqKveiahPUbxvTJOW+EJp
+ FMruYsla+QDLJGi8PSUI3C4hdOYHeCUdo6TDFWlyhTKhwOxI0ppJD1cJnGwAe11DZ50RgQ/LYNa
+ Asblh7lVr3gmcGzfOazeQJ6yUNNP/w==
+X-Proofpoint-GUID: sVPqWSq_M8dmNnpYJL1NaHd-55c8fYm5
+X-Proofpoint-ORIG-GUID: sVPqWSq_M8dmNnpYJL1NaHd-55c8fYm5
+X-Authority-Analysis: v=2.4 cv=J4ynLQnS c=1 sm=1 tr=0 ts=68ee1594 cx=c_pps
+ a=50t2pK5VMbmlHzFWWp8p/g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=x6icFKpwvdMA:10 a=VkNPw1HP01LnGYTKEx00:22 a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8
+ a=KBoXMGrBdGQ6yHO1rqoA:9 a=CjuIK1q_8ugA:10 a=IoWCM6iH3mJn3m4BftBB:22
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-10-14_02,2025-10-13_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 lowpriorityscore=0 priorityscore=1501 adultscore=0
+ bulkscore=0 suspectscore=0 clxscore=1015 phishscore=0 spamscore=0
+ malwarescore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2510020000
+ definitions=main-2510110025
 
-On Wed, Oct 08, 2025 at 06:57:53PM -0700, Samuel Holland wrote:
-> JH7100 provides a physical memory region which is a noncached alias of
-> normal cacheable DRAM. Now that Linux can apply PMAs by selecting
-> between aliases of a physical memory region, any page of DRAM can be
-> marked as noncached for use with DMA, and the preallocated DMA pool is
-> no longer needed. This allows portable kernels to boot on JH7100 boards.
->=20
-> Signed-off-by: Samuel Holland <samuel.holland@sifive.com>
-> ---
->=20
-> Changes in v2:
->  - Move the JH7100 DT changes from jh7100-common.dtsi to jh7100.dtsi
->  - Keep RISCV_DMA_NONCOHERENT and RISCV_NONSTANDARD_CACHE_OPS selected
->=20
->  arch/riscv/Kconfig.errata                     | 19 ---------------
->  arch/riscv/Kconfig.socs                       |  2 ++
->  .../boot/dts/starfive/jh7100-common.dtsi      | 24 -------------------
->  arch/riscv/boot/dts/starfive/jh7100.dtsi      |  4 ++++
->  4 files changed, 6 insertions(+), 43 deletions(-)
->=20
-> diff --git a/arch/riscv/Kconfig.errata b/arch/riscv/Kconfig.errata
-> index e318119d570de..62700631a5c5d 100644
-> --- a/arch/riscv/Kconfig.errata
-> +++ b/arch/riscv/Kconfig.errata
-> @@ -53,25 +53,6 @@ config ERRATA_SIFIVE_CIP_1200
-> =20
->  	  If you don't know what to do here, say "Y".
-> =20
-> -config ERRATA_STARFIVE_JH7100
-> -	bool "StarFive JH7100 support"
-> -	depends on ARCH_STARFIVE
-> -	depends on !DMA_DIRECT_REMAP
-> -	depends on NONPORTABLE
-> -	select DMA_GLOBAL_POOL
-> -	select RISCV_DMA_NONCOHERENT
-> -	select RISCV_NONSTANDARD_CACHE_OPS
-> -	select SIFIVE_CCACHE
-> -	default n
-> -	help
-> -	  The StarFive JH7100 was a test chip for the JH7110 and has
-> -	  caches that are non-coherent with respect to peripheral DMAs.
-> -	  It was designed before the Zicbom extension so needs non-standard
-> -	  cache operations through the SiFive cache controller.
-> -
-> -	  Say "Y" if you want to support the BeagleV Starlight and/or
-> -	  StarFive VisionFive V1 boards.
+On Tue, Oct 14, 2025 at 11:54:31AM +0530, Ayushi Makhija wrote:
+> On 10/6/2025 3:44 PM, Dmitry Baryshkov wrote:
+> > On Mon, Oct 06, 2025 at 07:09:23AM +0530, Ayushi Makhija wrote:
+> >> Add device tree nodes for the DSI0 controller with their corresponding
+> >> PHY found on Qualcomm QCS8300 SoC.
+> >>
+> >> Signed-off-by: Ayushi Makhija <quic_amakhija@quicinc.com>
+> >> ---
+> >>  arch/arm64/boot/dts/qcom/qcs8300.dtsi | 98 ++++++++++++++++++++++++++-
+> >>  1 file changed, 97 insertions(+), 1 deletion(-)
+> >>
+> >> +
+> >> +				mdss_dsi_opp_table: opp-table {
+> >> +					compatible = "operating-points-v2";
+> >> +
+> >> +					opp-358000000 {
+> >> +						opp-hz = /bits/ 64 <358000000>;
+> >> +						required-opps = <&rpmhpd_opp_svs_l1>;
+> >> +					};
+> > 
+> > Does it really support only a single freq?
+> > 
+> 
+> Hi Dmitry, yes it support only single opp frequency, I got this information from ipcat sw for monaco, similar
+> we have used for LeMans.
+> 
 
-Hmm, removing this is going to break old devicetrees, right? Shouldn't we
-just keep this with a wording change stating that it has been replaced,
-rather than removing it right away?
+Thanks for the confirmation.
 
-Cheers,
-Conor.
 
-> -
->  config ERRATA_THEAD
->  	bool "T-HEAD errata"
->  	depends on RISCV_ALTERNATIVE
-> diff --git a/arch/riscv/Kconfig.socs b/arch/riscv/Kconfig.socs
-> index 848e7149e4435..a8950206fb750 100644
-> --- a/arch/riscv/Kconfig.socs
-> +++ b/arch/riscv/Kconfig.socs
-> @@ -50,6 +50,8 @@ config SOC_STARFIVE
->  	bool "StarFive SoCs"
->  	select PINCTRL
->  	select RESET_CONTROLLER
-> +	select RISCV_DMA_NONCOHERENT
-> +	select RISCV_NONSTANDARD_CACHE_OPS
->  	select ARM_AMBA
->  	help
->  	  This enables support for StarFive SoC platform hardware.
-> diff --git a/arch/riscv/boot/dts/starfive/jh7100-common.dtsi b/arch/riscv=
-/boot/dts/starfive/jh7100-common.dtsi
-> index ae1a6aeb0aeaa..47d0cf55bfc02 100644
-> --- a/arch/riscv/boot/dts/starfive/jh7100-common.dtsi
-> +++ b/arch/riscv/boot/dts/starfive/jh7100-common.dtsi
-> @@ -42,30 +42,6 @@ led-ack {
->  		};
->  	};
-> =20
-> -	reserved-memory {
-> -		#address-cells =3D <2>;
-> -		#size-cells =3D <2>;
-> -		ranges;
-> -
-> -		dma-reserved@fa000000 {
-> -			reg =3D <0x0 0xfa000000 0x0 0x1000000>;
-> -			no-map;
-> -		};
-> -
-> -		linux,dma@107a000000 {
-> -			compatible =3D "shared-dma-pool";
-> -			reg =3D <0x10 0x7a000000 0x0 0x1000000>;
-> -			no-map;
-> -			linux,dma-default;
-> -		};
-> -	};
-> -
-> -	soc {
-> -		dma-ranges =3D <0x00 0x80000000 0x00 0x80000000 0x00 0x7a000000>,
-> -			     <0x00 0xfa000000 0x10 0x7a000000 0x00 0x01000000>,
-> -			     <0x00 0xfb000000 0x00 0xfb000000 0x07 0x85000000>;
-> -	};
-> -
->  	wifi_pwrseq: wifi-pwrseq {
->  		compatible =3D "mmc-pwrseq-simple";
->  		reset-gpios =3D <&gpio 37 GPIO_ACTIVE_LOW>;
-> diff --git a/arch/riscv/boot/dts/starfive/jh7100.dtsi b/arch/riscv/boot/d=
-ts/starfive/jh7100.dtsi
-> index 7de0732b8eabe..34ff65d65ac7e 100644
-> --- a/arch/riscv/boot/dts/starfive/jh7100.dtsi
-> +++ b/arch/riscv/boot/dts/starfive/jh7100.dtsi
-> @@ -7,11 +7,15 @@
->  /dts-v1/;
->  #include <dt-bindings/clock/starfive-jh7100.h>
->  #include <dt-bindings/reset/starfive-jh7100.h>
-> +#include <dt-bindings/riscv/physical-memory.h>
-> =20
->  / {
->  	compatible =3D "starfive,jh7100";
->  	#address-cells =3D <2>;
->  	#size-cells =3D <2>;
-> +	riscv,physical-memory-regions =3D
-> +		<0x00 0x80000000 0x08 0x00000000 (PMA_RWXA | PMA_NONCOHERENT_MEMORY) 0=
-x0>,
-> +		<0x10 0x00000000 0x08 0x00000000 (PMA_RWX | PMA_NONCACHEABLE_MEMORY | =
-PMR_ALIAS(1)) 0x0>;
-> =20
->  	cpus: cpus {
->  		#address-cells =3D <1>;
-> --=20
-> 2.47.2
->=20
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 
---kExO0No+kM/nXpTw
-Content-Type: application/pgp-signature; name="signature.asc"
 
------BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaO4UgQAKCRB4tDGHoIJi
-0uKUAQD80+kPIuFiDo0jFL5AOngNkEUr28ECrOoIkr5OlYN8UgEAh9hDrsZWp8fb
-oE38JjdP0xJl6Q+HfnlMtSej1XDlZws=
-=jxde
------END PGP SIGNATURE-----
-
---kExO0No+kM/nXpTw--
+-- 
+With best wishes
+Dmitry
 
