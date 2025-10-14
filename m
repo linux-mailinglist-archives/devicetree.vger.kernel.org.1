@@ -1,63 +1,66 @@
-Return-Path: <devicetree+bounces-226731-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226732-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CFA04BDAE19
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 20:02:59 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 13D44BDAE39
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 20:05:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3B0BD19A495E
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 18:03:23 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 4DE0D4F4552
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 18:05:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6777027F01E;
-	Tue, 14 Oct 2025 18:02:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9BEC301711;
+	Tue, 14 Oct 2025 18:04:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sWMSoGUB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="R/lNTyQT"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 356C37083C;
-	Tue, 14 Oct 2025 18:02:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7AFF97083C;
+	Tue, 14 Oct 2025 18:04:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760464975; cv=none; b=aUvDGj7vymn+CgdsJFpZim/KTCSl2QSMgkupAe5TFYg8HqPuoIl4XWYTDp4io2C5N0ylk5n8+VfWBup0eqZnHa//6qyORO5PGSEIgPIrbGEBs8JwcG77umXZR0LEKtFdgLjhr4MPrpEicNSV8mkHOGNtsN3QEmhv08YudnrIPIc=
+	t=1760465097; cv=none; b=SevmRgaMoxkMP1i59uoAvz9MF/iISsaMEwusKgZai/uVKWdEKziE8U/8t2G9Bb/LONFN6T/nZJ2fJxOkiegak6N/ehO9EkhaWV96jfOW7oGwE7jITCjMXt8ptrmhYcKLhL6yDO5zOkWkTo0je/YoUWcx36V6Cdw5rWOq0xa7LmE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760464975; c=relaxed/simple;
-	bh=3aJGCCas08m3S7gHD19HqzqscSuOVpUV8AM+dynP93Q=;
+	s=arc-20240116; t=1760465097; c=relaxed/simple;
+	bh=XkTcoOEhikNfdYenQLoMD9cYANodz0P4ptRHT0QHziE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UHwVCBh4M9OE3n2dZSXHg4TWao60JAmFM0DxIKN5rUooVhmii/x8eUSB6kIT2hY+lSzf1OK8IK1JG3p5AoEWHLsOvxV25P3y83t4HfRWpE+5v2KX9CsXOzU2uQn6ZUQY7O9CNl79IXuPtm9MOvh4fKGl+8X/t8PP5Nt6j0I3Wl8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sWMSoGUB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 22D7FC4CEE7;
-	Tue, 14 Oct 2025 18:02:51 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=CfLrCo/EATpvnWD3BbpBzqp/KBO+ryNzq+xFkK7iY2dU3qBLefxhtqJC3kNckn8DqMEjQiURHqz3xh6LyGqW0FmMpg/+oEkI6grKyBd9yEHEi2SUhxCwgV0hzF0N4W5jpzVK/Yb5JOEMtVqsSRsxgrNLcJzTFl9LgyhZPOp1v9Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=R/lNTyQT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 06192C4CEE7;
+	Tue, 14 Oct 2025 18:04:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760464974;
-	bh=3aJGCCas08m3S7gHD19HqzqscSuOVpUV8AM+dynP93Q=;
+	s=k20201202; t=1760465097;
+	bh=XkTcoOEhikNfdYenQLoMD9cYANodz0P4ptRHT0QHziE=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=sWMSoGUB1e/WSomPhcYiyYvbLWHEpOmsOHF0giBDglwt5DfNkSpTu2Zh/fghnWBwU
-	 Oi+mBZKmgEBxu80YN1PSbImf5zrKW6oalp/WwaIz2dh+cPyE2kX3LwIn++7HJjJtAK
-	 rf2R1Zl126Z7wuyAj0+2dlUpGoFpRUXZpvMfiN1dPco4RAwCrEAdl6MjZcwxsgoWNE
-	 KT7lDpUuXin7GuO8lZraIIHuQGVnFOGA0AfJbzaAuyEXVS14PSxpVqbPEnUV7TEklQ
-	 r8x35HeMJPDH3ByFMlZo8ddwPp68Ou6YuNFPu1dATXIZK2vUwPsQHpQlc2+HL19VWc
-	 xM5juQ7DWwKqQ==
-Date: Tue, 14 Oct 2025 19:02:50 +0100
+	b=R/lNTyQTzb3SyPdkaaWt6zYajhsIj9ue5ZW3m4AoH1QSaO1cyKOV/F+vFemY/qQuL
+	 p9jqcYtb7P2yBuPbsh8H3fYdPegq73HDq+kg+cDAxtMiHtrMaCkbTjmRiHYKGut1YB
+	 c1z/aSN0KLwwYDrfjKAoJeBWXjxTUN0MQ/KnXTIUZfwRCLfdPABADNZYQ2EWhYP7Dg
+	 GABee502iJOBShuJ1xHVMit13DhyyiOb0+hk3Rh7w8Mc/1hZCAMrKHE9LvJQS3zoRb
+	 qJXQFGcKsG9ySjQNX65Nc/KYtujILQbuCWnasJSciwib8fRTxLcAlKk05FtphzQYyo
+	 Kj/US40GGssFg==
+Date: Tue, 14 Oct 2025 19:04:51 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Andrew Lunn <andrew@lunn.ch>, Vladimir Oltean <olteanv@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
+To: Antonio Borneo <antonio.borneo@foss.st.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	"open list:NETWORKING DRIVERS" <netdev@vger.kernel.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
-Subject: Re: [PATCH 1/1] dt-bindings: net: dsa: nxp,sja1105: Add optional
- clock
-Message-ID: <20251014-flattop-limping-46220a9eda46@spud>
-References: <20251010183418.2179063-1-Frank.Li@nxp.com>
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Bartosz Golaszewski <brgl@bgdev.pl>, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org,
+	Christophe Roullier <christophe.roullier@foss.st.com>,
+	Fabien Dessenne <fabien.dessenne@foss.st.com>,
+	Valentin Caron <valentin.caron@foss.st.com>
+Subject: Re: [PATCH v3 02/10] dt-bindings: pincfg-node: Add properties
+ 'skew-delay-{in,out}put'
+Message-ID: <20251014-barbecue-crewman-717fe614daa6@spud>
+References: <20251014140451.1009969-1-antonio.borneo@foss.st.com>
+ <20251014140451.1009969-3-antonio.borneo@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,36 +68,79 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="Dn3+JVL4O4laIKgw"
+	protocol="application/pgp-signature"; boundary="797F+UieUNy4iCeD"
 Content-Disposition: inline
-In-Reply-To: <20251010183418.2179063-1-Frank.Li@nxp.com>
+In-Reply-To: <20251014140451.1009969-3-antonio.borneo@foss.st.com>
 
 
---Dn3+JVL4O4laIKgw
+--797F+UieUNy4iCeD
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Oct 10, 2025 at 02:34:17PM -0400, Frank Li wrote:
-> Add optional clock for OSC_IN and fix the below CHECK_DTBS warnings:
->   arch/arm/boot/dts/nxp/imx/imx6qp-prtwd3.dtb: switch@0 (nxp,sja1105q): U=
-nevaluated properties are not allowed ('clocks' was unexpected)
+On Tue, Oct 14, 2025 at 04:04:43PM +0200, Antonio Borneo wrote:
+> Add the properties 'skew-delay-input' and 'skew-delay-output' to
+> specify independent skew delay value for the two pin's directions.
+> Make the new properties unavailable when the existing property
+> 'skew-delay' is selected.
 >=20
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> Signed-off-by: Antonio Borneo <antonio.borneo@foss.st.com>
+> ---
+>  .../bindings/pinctrl/pincfg-node.yaml         | 22 +++++++++++++++++++
+>  1 file changed, 22 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/pinctrl/pincfg-node.yaml b=
+/Documentation/devicetree/bindings/pinctrl/pincfg-node.yaml
+> index cbfcf215e571d..c3deb103d816b 100644
+> --- a/Documentation/devicetree/bindings/pinctrl/pincfg-node.yaml
+> +++ b/Documentation/devicetree/bindings/pinctrl/pincfg-node.yaml
+> @@ -153,4 +153,26 @@ properties:
+>        pin. Typically indicates how many double-inverters are
+>        used to delay the signal.
+> =20
+> +  skew-delay-input:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      this affects the expected clock skew on input pins.
+> +      Typically indicates how many double-inverters are used to
+> +      delay the signal.
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-pw-bot: not-applicable
+This property seems to be temporal, I would expect to see a unit of time
+mentioned here, otherwise it'll totally inconsistent in use between
+devices, and also a standard unit suffix in the property name.
+pw-bot: changes-requested
 
---Dn3+JVL4O4laIKgw
+> +
+> +  skew-delay-output:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      this affects the expected delay before latching a value to an
+> +      output pins. Typically indicates how many double-inverters are
+> +      used to delay the signal.
+> +
+> +if:
+> +  required:
+> +    - skew-delay
+> +then:
+> +  properties:
+> +    skew-delay-input: false
+> +    skew-delay-output: false
+> +
+>  additionalProperties: true
+> --=20
+> 2.34.1
+>=20
+
+--797F+UieUNy4iCeD
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaO6QSQAKCRB4tDGHoIJi
-0sXUAP9LYKTUydtydHeuxkp9yARH73uLXSVZLOOXNdGjZzAUjgEAout6dmnqQlgt
-w6mijUTOOjkghVoJPa0/PMpqZLVnegw=
-=fep+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaO6QwwAKCRB4tDGHoIJi
+0vcqAP9GGuk9psTaHkfPXjaUQtfxqAsXqRhqDaXExHqvhEHf5QD9FGn7+lMqWTn3
+gkgqoVZu1cClK8lWAtm67p7nBAiJ1gs=
+=upTw
 -----END PGP SIGNATURE-----
 
---Dn3+JVL4O4laIKgw--
+--797F+UieUNy4iCeD--
 
