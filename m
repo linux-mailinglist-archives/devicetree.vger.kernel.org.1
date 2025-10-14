@@ -1,217 +1,186 @@
-Return-Path: <devicetree+bounces-226334-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226335-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D732BD72F8
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 05:28:17 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 25F09BD7307
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 05:37:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5512D18A4D48
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 03:28:40 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D9DBE4EB9E8
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 03:37:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85A8D2749CB;
-	Tue, 14 Oct 2025 03:28:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC1762FFF89;
+	Tue, 14 Oct 2025 03:36:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="T+nd6q1Z"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PMNgTRaT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from PNYPR01CU001.outbound.protection.outlook.com (mail-centralindiaazolkn19010013.outbound.protection.outlook.com [52.103.68.13])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f176.google.com (mail-pf1-f176.google.com [209.85.210.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DD222222B7
-	for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 03:28:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.103.68.13
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760412493; cv=fail; b=hUwbddnpihDN5i0eHV4WGl/gIWYtP7br1w1StQLPLftLI4vjoRbdl+WvqHdhjgnabSpHp19dU/UoIE9kYx3V1zq50jywzSH7M3NKBdVbH02YvbMtLfNbLaKdoWeveJFx+KGYuocgFxo0dPiZDyUptSWqcF3vUOQYF9NfIoW+lnE=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760412493; c=relaxed/simple;
-	bh=f8FTl+q7euhuoqVzlAOdByxD1XGWnyXsjzIPb2WUXdg=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=LRJnYdopi4RB/31FzmYaqmtV4VfBlRi26hD2KYS3SjimVPjntlmW0pSnzjkCzognj8X8l/fNa1ENBNeWhzK1bPrPknl9WMtnmh/LUim2ynbfrInMC3g1p3OVk4w4fx4RLmRHDISKhQ6TfYCd2YHqGKJ8+a6osccn7YcqfKMT4ss=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=T+nd6q1Z; arc=fail smtp.client-ip=52.103.68.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=gL1s/TQoYnCSdBHIxgMxSDH29HyRiwDRQvttVy2vNdBBKfDcIO7z0cqRwtW/Y05l0ofE+1K9MreXRP4ebcElcaX86siWVBm3LDFd5ChB2uwI2sIN//Zq+VrA9YN88Kg/v6dIi64ev3PoGbP48TzHSD2RjEM4Ck6J2p3YNocWNIYGoldsgMZ5m4SXjwM4kcamYx1OrufJgqsBUQizgTxTVQgT77VRjWtwK6Lb8PVc9HP15U6t4S/ESweAdnblU54ccnXve8uoFXj+ZCq+yEQPwuTTbQQkxdZ/DHMSHmXnQCbaiq7YrEF15aZMLMMLgMdFMQVR5Xwt8GcuwKCUJgrq9Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=songDMsFxM0Kzy2cSd2GMNsZLVsCaDA8FWTdBl8wDoE=;
- b=w/DBocQ2Jqv7oZNV721hUWZlEmNu4J5r1aRFBz/S+UDtX6PA1F/uTq2VOk292JVAB+Gdw/Xzdhn8dqbbvDYBGXPj1QTzZSMH7wv/+IhYVh1/t+GHe38LLSVFE5rVO4NNDPlL+XIRZbv4DdCt6cofCYsQUxcqGQwvmeLuY641wCZIoJnRn9pKbYbWBwl8BTbPMg3n2BqAKtnwJkXGfdQOSnKopr3F1YU0U9SJ5tAH3lCKv/yPnz/QR5eZ7GjVSVfsG95OVQ8nG+/+Tsd0DZ1LnewZSRwlWKE0pM31IYvkJeqgYbFjbag6gFCdROYYDbW29P6DGymoDqZwlHhwSHDciA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=songDMsFxM0Kzy2cSd2GMNsZLVsCaDA8FWTdBl8wDoE=;
- b=T+nd6q1ZOJSMaa9McET7ILzxRQpnvQnzabFUhBAY84rkqHmg2GYJ8sElHUtfQA8PNRXiag6x7hjiJs0tcL4vQAF35RCh/1l0hJDUZORDoWYYafyRAn+O5869qcSX/2SZc0T1aAGv9CCxvjIMbLOBO6tnJa+3z54gqX8J0tAZmqYnC81nY1IMKlm8WaMK6F5CAmX6ZsVWjva2hbFlAXBA77+BBK1DUpfjaI2YTrv3/SgvmulqOuEBOyvSE78gbrlHlPuq28EbP6b0Cs4RxDDXLHuYtKyQ7ulxB8g5eKZgNA7hLPdCyX1X8iioKdZVp5Ha+wjbY6HSxrRqt8xwuvRUyA==
-Received: from PN6PR01MB11717.INDPRD01.PROD.OUTLOOK.COM (2603:1096:c01:2f1::8)
- by MA0PR01MB5616.INDPRD01.PROD.OUTLOOK.COM (2603:1096:a01:6d::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9203.13; Tue, 14 Oct
- 2025 03:28:01 +0000
-Received: from PN6PR01MB11717.INDPRD01.PROD.OUTLOOK.COM
- ([fe80::2e35:fc95:ee3:bf0f]) by PN6PR01MB11717.INDPRD01.PROD.OUTLOOK.COM
- ([fe80::2e35:fc95:ee3:bf0f%6]) with mapi id 15.20.9203.009; Tue, 14 Oct 2025
- 03:28:01 +0000
-Message-ID:
- <PN6PR01MB11717636E5B85CFE35B7B6653FEEBA@PN6PR01MB11717.INDPRD01.PROD.OUTLOOK.COM>
-Date: Tue, 14 Oct 2025 11:27:54 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/3] Add initial Milk-V Duo S board support
-To: Joshua Milas <josh.milas@gmail.com>, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, inochiama@gmail.com, paul.walmsley@sifive.com,
- palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr,
- alexander.sverdlin@gmail.com, rabenda.cn@gmail.com,
- thomas.bonnefille@bootlin.com, chao.wei@sophgo.com,
- liujingqi@lanxincomputing.com
-Cc: devicetree@vger.kernel.org, sophgo@lists.linux.dev,
- linux-riscv@lists.infradead.org
-References: <20251011014811.28521-1-josh.milas@gmail.com>
-From: Chen Wang <unicorn_wang@outlook.com>
-In-Reply-To: <20251011014811.28521-1-josh.milas@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SG2PR06CA0192.apcprd06.prod.outlook.com (2603:1096:4:1::24)
- To PN6PR01MB11717.INDPRD01.PROD.OUTLOOK.COM (2603:1096:c01:2f1::8)
-X-Microsoft-Original-Message-ID:
- <33a9d32e-a8c0-40db-897d-2240bc4513db@outlook.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 335492288C6
+	for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 03:36:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.176
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1760413018; cv=none; b=RWPVqYChkKeB78LlOmNZ6OVGtdraAL2ogiEQJ0UqxTIS/EUDfy8MExcZfzTKFqPS+vqIxWlpfyhTy3XzrWrBkE8G7kBOSomO3V4dc2n00OhF0if7AMrnfNamRbLZtO5VEXTbYWDSF8BuTn+mOxNHd5AOaoUOnZb6D7G1X3L6wD4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1760413018; c=relaxed/simple;
+	bh=/CzXqqYtf1FJCdNkjHOl9Lub3DmCKDOAW7PWFqrfAPE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=QkfiNxEUPjzJ2BFdXL4yieJt9iz4SeGgg35PMAmzc6SRYJ3HFbZp2yGUwW1jFZrv5wZuZ5PHunpJVrBeTSbcN+qyudMZGrgWDt/CieSrvki3C2dvNdAFBsBGKfdFIpkOO9sB4kISgqu6hs1/sdrcremxyHwmGe/0i4qqWGip1WA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PMNgTRaT; arc=none smtp.client-ip=209.85.210.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f176.google.com with SMTP id d2e1a72fcca58-782a77b5ec7so4325295b3a.1
+        for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 20:36:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1760413016; x=1761017816; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Ccdmlw0P8Ongl90yzFtBx8gIX2ejsYtTZ8XTnxj5K4Q=;
+        b=PMNgTRaTVJTLfIOZ65GOndKnoxn1Iaz0L2o3AeWa2DcHDFaCHALQsL7S2MHclDdvgS
+         Z+1bJdkFCvp57u09AXNx9TSGUeFSIbgsl/O00HoqSW7/pcq73iOM/dgYpan2X6dBue09
+         xhLgz2txFHzGvOLTslJz53l1/cqco4XA8W+5iXh6AAI9XzolO3AsdZiTJYEeGXeuBcDl
+         momJGRx43QraceDyNyS1Cm2Kk95QGrgD7BXyeYTblC5E0+98kRNeEI7VrwmAdC9SKZb2
+         fJ3mUa6YKphEht7K/2SXdwB/T1iCoXi86GpUTJvX2mSI2oLOAulHZ6S8reDRXIUul0DO
+         X4fg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1760413016; x=1761017816;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Ccdmlw0P8Ongl90yzFtBx8gIX2ejsYtTZ8XTnxj5K4Q=;
+        b=aj51wTVc3LLHDZn9z9MyoU7dNVJtxfEhlHzmpVxIMWLp99oGu1Mn6QvIo0tyKGLgsR
+         XOCngB0wI5S6N3TTmxY/yX8MhLUJMR9XAUZBSPDM444lw3Cfcyf+3d9tbkVS2h1gyVJ3
+         DKegBY2irQfAmzBJi6biTjbgAD0eudPfU9GmCRv3kzloVZH2iQHMZOMXcJEUzBgBKdtV
+         +rXxaIIwwz8rlkeAJ96Cvkbe0key/CHUeznqO2GHpuDpyhA2JTEBq9krP5ElkMl7jtaV
+         UJcoBAZAhzPbnBpnglePa8XyqAeClh41FHdOq/en2677HNBoB7zDgYHKmDCI7vp8QHCb
+         3t8g==
+X-Forwarded-Encrypted: i=1; AJvYcCV+LJGwFuuUkOwI28EN01oKzkohBfqzfoO+kFgyWNn1fECDiate7qvyU0uR9CmYDcifFjv8kh3RUJbY@vger.kernel.org
+X-Gm-Message-State: AOJu0YxJWoVntaivTNeA0BpDtE+Jcv1M1b5JmZsHyt8nHb4sCFqRPjeX
+	JM70FYMGvdEvlkOzTKfcHT2+sifMdyTsKhGEWIZhmafllzsn829Ut/5R
+X-Gm-Gg: ASbGncuF0eY3VCx6ZECa9ZrTSvg5QFX/glmbu/14aps43aqv9ZMKQ/YExudzOBoKfpM
+	uQ09RgoTv/3m/AyKjkf04PBDbYI4OSvqrVaFEy+bMLe1i7kF9XHZxe74J4kOOkwkGYUd1hSJd3J
+	LDSFlPAXuKDUlHqD+iEXb32cbraGOjczxnup9LAeJuNnQY6c/YLUE0lLgDOKdUJlF8N2HPpeE/d
+	24/W0nIi6G7J4jud/cbLXZDpnhklFE308Dexb1xcrdwePPiDS5mlIkbWOsNBB/asaCJ+TPS6dK6
+	kSRFozIC4qRMM/+iBfv+Am/R3L8QJ0SIK9pfYvhN7MJG3bHwZBKKLt5FftZulGgM5Z/eNcUMRHI
+	FVM/xkxDksyVGZYQLQptSnphCfiVp178ibgrrD2UoY+Z35PA+
+X-Google-Smtp-Source: AGHT+IFI2t0aHT+jG5SHHorR2/Jq1a0jlKoCVZryYvmOVxuds2BJQm+GgQTb5Kj5Vr9/N1p5H7Yiaw==
+X-Received: by 2002:a05:6a00:1492:b0:772:4319:e7ed with SMTP id d2e1a72fcca58-793881eb9c5mr28205857b3a.29.1760413016347;
+        Mon, 13 Oct 2025 20:36:56 -0700 (PDT)
+Received: from d.home.yangfl.dn42 ([45.32.227.231])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7992b060754sm13523825b3a.13.2025.10.13.20.36.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 13 Oct 2025 20:36:55 -0700 (PDT)
+From: David Yang <mmyangfl@gmail.com>
+To: netdev@vger.kernel.org
+Cc: David Yang <mmyangfl@gmail.com>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Vladimir Oltean <olteanv@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Simon Horman <horms@kernel.org>,
+	Russell King <linux@armlinux.org.uk>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH net-next v13 0/3] net: dsa: yt921x: Add support for Motorcomm YT921x
+Date: Tue, 14 Oct 2025 11:35:44 +0800
+Message-ID: <20251014033551.200692-1-mmyangfl@gmail.com>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PN6PR01MB11717:EE_|MA0PR01MB5616:EE_
-X-MS-Office365-Filtering-Correlation-Id: 28ddbbdc-fc47-4220-1191-08de0ad1adcc
-X-MS-Exchange-SLBlob-MailProps:
-	RlF2DIMZ1qU1KA69x/B2/kCnokZ6o97mdyUAB13t0BBXEWdyT/lJrOQI7/mEPepGF0RgPAC+VWs7zQlrlF98lBHEcXdUrSFxgh00hQgZW52y3KhWTHdHf14fs/B5F6IMlJ30m7Vu+Z5PuA1QiLLdxSSGCVrS8I26UsOq683sVNR20DVYEXluhsOwv0ECNJTJGpZoROTDScNF+0+bnZZ35jjt3JzyLvzhFdSLeg9Jyn2PlOTjwElEjeL0k3uRHQ3b93HqAO+Vx+wI7H/hjWoaYzhbxI/fbPHOlfIkUl+5karebC0+m2ToQ88P84eOvYBKAZcM1KAhygUqVdn/OsB323AtakX5YfdVqodigqg6lKF4Y3QfHPig1WqwCSHGNZf6sqqYoxA4ouSGwc/zzSFXCM/L0+tmSBQ9nxzBj6zBcC5hs/MiJ1HrfogtGFHPf+jB+nvvUARr2WAVbGKPKK1S69m6rHXO/dA5+g00ySm6gpAM1NjLikOMIroVsC/h1b7RJuSvF2v/pF/SBAQznnQpYiLYHmf8AKvJbYSegQD3sorVs1J2R1g+GAw+PMKx/yW3/IiTGQdAyRRQU8gsmLcDNnBOKmHIqJIHcUXX8CdLt9/eBNJ08EvyUtF/g6+rk3RP8Uie+3CdylKMqORq60kZJF1oF2kvjn7eRdsdPGMBzByFl7oxI2Cigbx784lTTrh8SAosliaNN3epUdK9kKfhhHRVzxw1CNo70KO+G1bjibNOytRwh6TI91arSl34uAhoLSfvqTsJXqS9eJfa4tV2gdjeEVf8hvJsCQKEtZ1QPHxgf6lOnSIv3DxjLkLR+EAhBE0C2UL4dWPMy1DhTLgfKnb4O4+tN2T7
-X-Microsoft-Antispam:
-	BCL:0;ARA:14566002|19110799012|461199028|6090799003|5072599009|15080799012|23021999003|12121999013|8060799015|40105399003|53005399003|3412199025|440099028|10035399007|4302099013|1602099012;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?by9sdE04YmwvUW9CRDloSG1Md0djTUJaTEtHM2RUTlJrMHVDMkJpSW8rUC9J?=
- =?utf-8?B?dGFJRG04Z1NjeFRJajFHQjk5NXd4YnRYZEZ5TmNRcmZhVldzRyt4ZURDYUN1?=
- =?utf-8?B?K0g4OW4yS3RlQlA2dGQ0Y3ovZEpRRmk4TDNJTG04VHd4djJqTG1DUjR4ZHU2?=
- =?utf-8?B?dGsyQ250dzZoSFdPY2RqQTMvWlVZWktDTG5BR3pDUlhySWZOeG1IUmVXYzRG?=
- =?utf-8?B?cEFrc3VpdlNrditHSlYwWG40TTMxRk5zRkdUZjVTeEVhME5FWloybkVFRjY1?=
- =?utf-8?B?eWtWQldtSitpWUlVQVgrY2lnc0I2TXJVSVRQbjVjV2JEM0xFdTI0eGxBSjJo?=
- =?utf-8?B?UzJwRGxiU2tDMzgxOGF4TjhzTDhuMnl0VnJSeld5b085WjhwTVNwa3FDYzFq?=
- =?utf-8?B?TTRGdkh6eWhXNUdJaDV5NUwxVFJMZUJFczRjdjdYeXNXTXNZbmxTbWV4TXAz?=
- =?utf-8?B?MUFsTWNzOGdjL3F4VGJVVlBsZzIzUEpuOHF5SGdrL0ZuRERPb0FadTRnUXhv?=
- =?utf-8?B?TVlodDF1cFdqOXR3R2xRZmk1dUx6NWhobWJVK0F6aHJSbkxnYm1tYjhmSDJV?=
- =?utf-8?B?bnY3ejdCZ3EvcHlXM0ZxWll3MjNGTXZUMG03eHQveXQ0c29UWEJSdjVWN1Z6?=
- =?utf-8?B?dTNnRTJaUnVETFhhMC9rdmNqSm5wZFF5SzJsbXZwdGZ3NVUvMmE4U05Ddm13?=
- =?utf-8?B?Q0lTQTdiL1BneFIwMDhkY2F0VVd3UFQ4VGlSdzJnVzlxQkFWSlhsS3VENlhI?=
- =?utf-8?B?T255aDNVMmJrNWxGNnBYS3p1anBkUGtLcXZJbUhFOE16U3VXQ1hlZkpKY2tn?=
- =?utf-8?B?TCt3aTNFcGd2ZmhmUUFxUFkraWtodFo2ekxaQ3hIb05PMHM0MzlRNU1qbkZw?=
- =?utf-8?B?Z0svOGFqVFN2WE5zNnRGU0FFdzVkK1M1a1VSNlloQUw3aDVwWmNqSGtGR3RV?=
- =?utf-8?B?NWNPVVBSVFRIMEh1NEczZno3VzR1SGtxeWkxMkplc0xmd2d6a1NLdHR2Y2dZ?=
- =?utf-8?B?WTNtMjNFNDNpcENlSEUyekhUUmlIK0RPUXVOa3k3bC9SSGNpczRqdWM3K2NT?=
- =?utf-8?B?R29PbjlaUmpsckNmazd1dmhpL3h3MHB3M0Ftck02ajZqMHlUS1N5eHZIcjJS?=
- =?utf-8?B?a1duZlJSVkRoVUZiQ25tWVNlZXcrbDMycnR1L3BuRjJtaDF2S1puWVNVZUdU?=
- =?utf-8?B?QTNJbWdmbHlSYWd2alZzSTdrSEFpQStRenk5S2Fzc1h3Qnc0QUVpZzRMcEto?=
- =?utf-8?B?ckJVNlZNK1h3WDlPUE4yYTN3YkxYRHBWYVJlZXFLMnZ2QW1KeUFmb1kxU2lQ?=
- =?utf-8?B?V0JPT2NyaGg5VzdNQ1ZJRjRtVzNqQ2RZcW1HZ1B5ZzZ0ellUV2J1YWNKME52?=
- =?utf-8?B?NkFGbEFuRnFRRlVTVHB1TlQyWm5YYkZOOXJ3aUh0NDFQS28rdTNYS0FSdEg3?=
- =?utf-8?B?NVd0c2NOTXNWWTFQbkp4ZFBZR3NBbG9wUGEwNGpxelhqNkp0L3JYWTZYZ0dw?=
- =?utf-8?B?a2hkU1NtZTBMUlFGUDh1dDJidFRqM0svRC81SWpqeXR1cGl1aHQvOHRZK2JC?=
- =?utf-8?B?ZDUwM3orLzNkcEpJWjNrdXFxOStLZ0tOeEJJcE40aW9rb1R6QkpWSzJSOWxZ?=
- =?utf-8?B?aUxwNEVKWkhZK0ZiN2NsUTQ2NittbFg0OUlIU3RWSmZWTWNwbUNiRVVPYXlO?=
- =?utf-8?B?bTAxb1BGNjRrYTQ3RStab2I1ZHdPWVJaUm5ROG9zUEhFUXF2NDJEOTVRVXV1?=
- =?utf-8?Q?Tue9d4QSirUDSiEBZ+8dLy3ZJH5856lY/BfRLQn?=
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?ZmsvMjlkbDArWnptTTVaUVJQcVRxaUxqbEMrOFR4SklhN2NGRXhWS0JxNlkv?=
- =?utf-8?B?OVRCd2NoN1lKWGw0a0lQWFNJaDdUWi92NXBpajg4dTJtMTQ3VE1uTE5IQUQ0?=
- =?utf-8?B?Y3lqY1RGbng5cWExQURNMXNidzZTQnBnZnVFRUhwc2VmS0YvUGp3a1orb0Ix?=
- =?utf-8?B?QjlVYWFNYTBQUy9yTzBVUVFoRFo5KzBHcUVPMXBYeU5jcTNmMG9tNkZyaGFj?=
- =?utf-8?B?dWQ1V3dDem9HSEhIK2srYnFtaDRNQkN5VnRoOTlBa082US9hSWhrTkxRTVFR?=
- =?utf-8?B?SDN0SGNoOFhPa21VT3pTMERPZjZvQWtsemJkU1NOZkdmQmF6YzFZdXAwdnBJ?=
- =?utf-8?B?VWlCOUhVYjU1dW83eWNGSUcyeUNoam5pYkpKQXZJd1VjMjFsYUV5aVpJeHN0?=
- =?utf-8?B?RnI5NUo1WVFEQlJUUXVMWkU3OTViSnU5ajUycVh1cWFxa3FPZEdkT3BVRVBp?=
- =?utf-8?B?TlRxd2VMaUhueTNPN3BDMis3aEtnQW16WktLUUVtZ05UdU55OUlVZUJaNmVs?=
- =?utf-8?B?ODhHd3l3QXdvelNuams2VktIL1F5Yk1QTFp2RlI2UzdWdEVhUmNPbVkrdEtp?=
- =?utf-8?B?VFVEN1o3akRnWFpIc1lhaGE2NzR4MXRKRXpPZ2xGZVNpWUpSZithZGNjRk4r?=
- =?utf-8?B?WHdFYnhmUmcvUGFtSzBpY0FSNnhqS2Q0VVhZdUk5ZHZnUzd0S3FXOGNRQUpy?=
- =?utf-8?B?V0J5bzdQZkRRWFVzWk9QZE5EaDJvbUtoeGZpckdBMnZzUjJCaFRTbi9XSHpF?=
- =?utf-8?B?aW0zemNHaFBoVSsxWC9aUkNwTEd2Z2Rpb3h3QTZlWVlWRVJDcVIrRjNVaUIy?=
- =?utf-8?B?R1BzYTlBeUtTdTNNSVUzYVRtbFNUN1k1Qy8wNXRrOHZxLzZjMHBpN2g4U1dR?=
- =?utf-8?B?Qlhvak5ReERlcFArVHN1T0dFUDBHZkdiaFUyYzFBclN4bUxyOGExMXgrOWhQ?=
- =?utf-8?B?dHB0L1duREVza2VYU3hRcnlRWXc0M2FjUjltN3ErLzl4S3hsM29MTWZUa1lI?=
- =?utf-8?B?U0RZeDFIYXhFRjJSYUVEdzZDc2VoVWdOZklnL0pXcktoL2IvS1d1c0c0eG9v?=
- =?utf-8?B?ZXpFTTZ6WFNObEFBTzcrQXVQMTNQVU56L3dFRTFmT3AzNEVCNU5pODVWYTE0?=
- =?utf-8?B?ZmtwN0I1NmNrK0xjY1MvWUNhMWViV2lvVGQ5OSt6bTNNdjBHMVZZRkh4bnd2?=
- =?utf-8?B?Mko0UEZDVmgwMWRjclcxNVY2WW9obXFCaS92NWJSaXpmY3FkdVBLekk3KzRR?=
- =?utf-8?B?K1RkK253ZGh5ZmVaOEo4SU9FLzVXKzdHSm9BQ1g0ZnhUM3ZFUmluSmdJN01n?=
- =?utf-8?B?MCt5ZGpNS1lvbjRwNzdGSVhEWW0yY1ZrSmdXQ3FPRzdTWkxyNW1HS2VieUI1?=
- =?utf-8?B?M2tXT2k5K1lSVmVLQkRTZnRMVjhNcHJkdHhVdlJCTTVDc251SlV4cU45UC8y?=
- =?utf-8?B?eTgwQUt1S2pCVDE5WmViZUxMMXByNTQ2b0Q1OGVnVXZSUTVWeWRxM3o2RGN1?=
- =?utf-8?B?cEJpTVZJNkluc3ROMjhvNEk4cmhWQlFodDJkMXFlQVY0UEJxRW1EUVNkMWR4?=
- =?utf-8?B?OHVadFVvQ1BzQUMra2syQWE1ajZWeFkyd1ZaZVBmT3FucS9wOGNiMThCR25t?=
- =?utf-8?B?WXhiWWtLeFBLa3ZFYmV1UXpYOUVsZ3JObmFTc3BWbVFoUVJhT0d5NlgwNGU5?=
- =?utf-8?B?WFZDdmovYk94cG4zM2MxTlpxSmxycXIxM0ZOd1hMU09qS09vdnhjYUhLOTIr?=
- =?utf-8?Q?kEfLQoybD0F8LMVZ1w/4MBSgeErMXJjObPaXS4o?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 28ddbbdc-fc47-4220-1191-08de0ad1adcc
-X-MS-Exchange-CrossTenant-AuthSource: PN6PR01MB11717.INDPRD01.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Oct 2025 03:28:01.7050
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MA0PR01MB5616
+Content-Transfer-Encoding: 8bit
 
+Motorcomm YT921x is a series of ethernet switches developed by Shanghai
+Motorcomm Electronic Technology, including:
 
-On 10/11/2025 9:48 AM, Joshua Milas wrote:
-> This adds an initial device tree for the Milk-V Duo S board
-> with support for reading from the SD card and network over
-> ethernet. This is continued work from Michael Opdenacker's
-> v6 series [1] on the ARM64 and RISCV side. It has been tested
-> with both ARM64 and RISCV64.
->
-> ---
->
-> v2
-> - Made new entry in docs to avoid DTC check error
-> - "Milk-V DuoS" -> "Milk-V Duo S"
-> - Sorting of aliases
-> - Added uart*, emmc, mdio, gmac0, i2c*, spi*, dmac, saradc
->    to device tree matching what is available on the pinout [2]
->    and available in the device tree includes
-> - Removal of 'no-mmc' and 'no-sdio' for sdhci0 as it works
->    without
-> - Added riscv device tree
+  - YT9215S / YT9215RB / YT9215SC: 5 GbE phys
+  - YT9213NB / YT9214NB: 2 GbE phys
+  - YT9218N / YT9218MB: 8 GbE phys
 
-Hi, Joshua,
+and up to 2 serdes interfaces.
 
-Better to add link to v1 so we can track the history of this patchset. 
-https://lore.kernel.org/linux-riscv/20251013-tt-bh-dts-v3-0-9f058d4bbbda@oss.tenstorrent.com/ 
-is a good sample for your quick reference.
+This patch adds basic support for a working DSA switch.
 
-Chen
+v12: https://lore.kernel.org/r/20250926135057.2323738-1-mmyangfl@gmail.com
+  - do not introduce PHY_INTERFACE_MODE_REVSGMII for the moment
+v11: https://lore.kernel.org/r/20250922131148.1917856-1-mmyangfl@gmail.com
+  - make MIB_DESC cleaner
+  - use disable_delayed_work at teardown
+v10: https://lore.kernel.org/r/20250919094234.1491638-1-mmyangfl@gmail.com
+  - fix warnings related to PHY_INTERFACE_MODE_REVSGMII
+v9: https://lore.kernel.org/r/20250913044404.63641-1-mmyangfl@gmail.com
+  - add PHY_INTERFACE_MODE_REVSGMII
+  - remove mdio_verify()
+  - remove uncessary fdb flush opeartions
+  - rework mib reading
+  - set port pvid by port_set_pvid()
+v8: https://lore.kernel.org/r/20250912024620.4032846-1-mmyangfl@gmail.com
+  - rework register polling
+  - rework mib reading
+  - other suggested code style changes
+v7: https://lore.kernel.org/r/20250905181728.3169479-1-mmyangfl@gmail.com
+  - simplify locking scheme
+v6: https://lore.kernel.org/r/20250824005116.2434998-1-mmyangfl@gmail.com
+  - handle unforwarded packets in tag driver
+  - move register and struct definitions to header file
+  - rework register abstraction and implement a driver lock
+  - implement *_stats and use a periodic work to fetch MIB
+  - remove EEPROM dump
+  - remove sysfs attr and other debug leftovers
+  - remove ds->user_mii_bus assignment
+  - run selftests and fix any errors found
+v5: https://lore.kernel.org/r/20250820075420.1601068-1-mmyangfl@gmail.com
+  - use enum for reg in dt binding
+  - fix phylink_mac_ops in the driver
+  - fix coding style
+v4: https://lore.kernel.org/r/20250818162445.1317670-1-mmyangfl@gmail.com
+  - remove switchid from dt binding
+  - remove hsr from tag driver
+  - use ratelimited log in tag driver
+v3: https://lore.kernel.org/r/20250816052323.360788-1-mmyangfl@gmail.com
+  - fix words and warnings in dt binding
+  - remove unnecessary dev_warn_ratelimited and u64_from_u32
+  - remove lag and mst
+  - check for mdio results and fix a unlocked write in conduit_state_change
+v2: https://lore.kernel.org/r/20250814065032.3766988-1-mmyangfl@gmail.com
+  - fix words in dt binding
+  - add support for lag and mst
+v1: https://lore.kernel.org/r/20250808173808.273774-1-mmyangfl@gmail.com
+  - fix coding style
+  - add dt binding
+  - add support for fdb, vlan and bridge
 
->
-> Link: https://lore.kernel.org/linux-riscv/20240421055710.143617-1-michael.opdenacker@bootlin.com/ [1]
-> Link: https://milkv.io/duo-s/duos-pinout.webp [2]
->
-> Joshua Milas (3):
->    dt-bindings: soc: sophgo: add Milk-V Duo S board compatibles
->    arm64: dts: sophgo: add initial Milk-V Duo S board support
->    riscv64: dts: sophgo: add initial Milk-V Duo S board support
->
->   .../bindings/soc/sophgo/sophgo.yaml           |   5 +
->   arch/arm64/boot/dts/sophgo/Makefile           |   1 +
->   .../boot/dts/sophgo/sg2000-milkv-duo-s.dts    | 110 ++++++++++++++++++
->   arch/riscv/boot/dts/sophgo/Makefile           |   1 +
->   .../boot/dts/sophgo/cv1812h-milkv-duo-s.dts   | 110 ++++++++++++++++++
->   5 files changed, 227 insertions(+)
->   create mode 100644 arch/arm64/boot/dts/sophgo/sg2000-milkv-duo-s.dts
->   create mode 100644 arch/riscv/boot/dts/sophgo/cv1812h-milkv-duo-s.dts
->
->
-> base-commit: 0251a1deaec78252cb311fc8305d3670bc5eee0e
+David Yang (3):
+  dt-bindings: net: dsa: yt921x: Add Motorcomm YT921x switch support
+  net: dsa: tag_yt921x: add support for Motorcomm YT921x tags
+  net: dsa: yt921x: Add support for Motorcomm YT921x
+
+ .../bindings/net/dsa/motorcomm,yt921x.yaml    |  167 +
+ drivers/net/dsa/Kconfig                       |    7 +
+ drivers/net/dsa/Makefile                      |    1 +
+ drivers/net/dsa/yt921x.c                      | 2898 +++++++++++++++++
+ drivers/net/dsa/yt921x.h                      |  504 +++
+ include/net/dsa.h                             |    2 +
+ include/uapi/linux/if_ether.h                 |    1 +
+ net/dsa/Kconfig                               |    6 +
+ net/dsa/Makefile                              |    1 +
+ net/dsa/tag_yt921x.c                          |  141 +
+ 10 files changed, 3728 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/dsa/motorcomm,yt921x.yaml
+ create mode 100644 drivers/net/dsa/yt921x.c
+ create mode 100644 drivers/net/dsa/yt921x.h
+ create mode 100644 net/dsa/tag_yt921x.c
+
+-- 
+2.51.0
+
 
