@@ -1,111 +1,95 @@
-Return-Path: <devicetree+bounces-226772-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226773-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12CBBBDB3FC
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 22:30:04 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 27BA6BDB4AD
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 22:40:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6C5C419A2AB1
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 20:30:27 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 167FB4E44F2
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 20:40:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61DC8306B09;
-	Tue, 14 Oct 2025 20:30:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA060306B1B;
+	Tue, 14 Oct 2025 20:40:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=svanheule.net header.i=@svanheule.net header.b="ZDVBrkK7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aQvwyvap"
 X-Original-To: devicetree@vger.kernel.org
-Received: from polaris.svanheule.net (polaris.svanheule.net [84.16.241.116])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 999F6305960
-	for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 20:29:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=84.16.241.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B15272C17A0;
+	Tue, 14 Oct 2025 20:40:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760473800; cv=none; b=jdvDCjHrA4Enns5KoXa2AsdKvy+w9dy4m8tRuL3f6QrxlWJY1qGXJGQ3q2cMULnztJ6dk1/mH3xKo/kNoAPQHg/2tReYcmYLbYJbWAnSu93e98Ha68uXr3fdjnQInlBF20uKa/LCPzjaBHz0l0gzvXdldQYI6OgKQ+v4F8wpIDI=
+	t=1760474452; cv=none; b=RJVy0atbk+B/ZT3fwTg2vu+cnXKSHTfrYe4ha1OasIuGQc4vTqEeXoU22nXIJfC4GkbNp0UHIwYHgp7mMCtuPgL1VpNxmAWBeKzMmFWdtIKrYMflnSQcuivffEwb1BH7oryr12Ssu5T3B1o3AADdPG9dLIIiN84jZ3BjpIDZVOE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760473800; c=relaxed/simple;
-	bh=SDNMpw+G6luDwZ4VeuJIUHessl56PUjKBDZIm4bRxWw=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=FdCAOJxBlYhTW8Xrexn9qNKGdmseTK86G4ax1Z505PXEqphsSJSvPZ27vAJRNmXtoceX2tOraAjRPcyRfLbVfuKguGO7lOV6O+SZgWt7sOrMsXHOSIdC3kScjJAQt1S4HmIcjjceOvZgwvvHRtUNLc+7pYUcyF/QNO9G/jbOTI8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=svanheule.net; spf=pass smtp.mailfrom=svanheule.net; dkim=pass (2048-bit key) header.d=svanheule.net header.i=@svanheule.net header.b=ZDVBrkK7; arc=none smtp.client-ip=84.16.241.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=svanheule.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=svanheule.net
-Received: from [IPv6:2a02:1812:162c:8f00:1e2d:b404:3319:eba8] (2a02-1812-162c-8f00-1e2d-b404-3319-eba8.ip6.access.telenet.be [IPv6:2a02:1812:162c:8f00:1e2d:b404:3319:eba8])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: sander@svanheule.net)
-	by polaris.svanheule.net (Postfix) with ESMTPSA id 23A73683D57;
-	Tue, 14 Oct 2025 22:22:09 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svanheule.net;
-	s=mail1707; t=1760473329;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=ctw2CxByGid2ikrYl8IMXBgvdU8bGZecOqg+lDJHYpo=;
-	b=ZDVBrkK7dySQcOnAARIvNN+wNs6Q9JFXaOYsbgv+ID7uCb7clt0KC9Wgy4TFowk3DujRt3
-	fTkb07SaJpCAEuRF3ZmQcKzK3V2u7aQp4VScBnaHnXY9wi8r+YG3vxwHyOCaV7GwrJnL9t
-	HH42no9iClSjp5IJh/tbfpREFUzOqGp2agNInpRJRXNGUJ3zKZK+tuphIA29BDgwfSC+U+
-	QWtR2WcyVpbHFsxuizxJvRCP65PvaG+ZZiGzSoMy0s1WnV8fYSm8spLdYui2pY3/tkGT7v
-	PNupTS21ZF9MHpozVgkYSz6DzpJOnD0lzaCiZfjFJcItuat5WKdYRPVa5OUNew==
-Message-ID: <ea8a57e4464f832d4cce1101d763b56674a1bf6d.camel@svanheule.net>
-Subject: Re: [PATCH] dt-bindings: watchdog: Convert marvell,orion-wdt to DT
- schema
-From: Sander Vanheule <sander@svanheule.net>
-To: "Rob Herring (Arm)" <robh@kernel.org>, Wim Van Sebroeck	
- <wim@linux-watchdog.org>, Guenter Roeck <linux@roeck-us.net>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Andrew
- Lunn <andrew@lunn.ch>,  Gregory Clement <gregory.clement@bootlin.com>
-Cc: linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Date: Tue, 14 Oct 2025 22:22:08 +0200
-In-Reply-To: <20251013213146.695195-1-robh@kernel.org>
-References: <20251013213146.695195-1-robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2 (3.56.2-2.fc42) 
+	s=arc-20240116; t=1760474452; c=relaxed/simple;
+	bh=jImoalCcPHmDFBiacMfQm6yGQJymS2ov7FLU0F5bxfs=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=fQhy2+5McuN+YYyjqoRDdC2/p5TlXDwe6/LTXpFEzLAPCweqs1iqaFPJwtHgBlvx32F5yjrUOaRpY8+chige451lxjfpV0Du7Ep6aI0TzzBA1YWqZWrq0TnfNmKMA1bhLiFtdZM0fVLA7eEfAMh4J4QfyDpmInAeo6Fa7ZTgCUw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aQvwyvap; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A321FC4CEE7;
+	Tue, 14 Oct 2025 20:40:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1760474452;
+	bh=jImoalCcPHmDFBiacMfQm6yGQJymS2ov7FLU0F5bxfs=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=aQvwyvapJDAzAymxezDh2olc4lO3euRwirQUj7nDo5L20NgpBYQHt6Zhk0Gu49lj9
+	 X0OfNT7Wlh8z7fdLUtIumR7xhro/W/rwn3ec+5PeXyQAYfQKCTXW5QwkC+/Cao2+D1
+	 GQ+/g0Dfpe8Ok6SOWqVACvC9/4Px8/U4GXBjUU8ltgn+oV5zJVUqmVLtBjTDxrDaFU
+	 l5VORK5XWJdv+uNLlzXi/oqzEFyT3IFZdJCbt3WdiwOS1rMNPiuHCXKf5hfv+6JQW/
+	 pwYCeex3AmupQPwMEzqcTg2KuJsAO0HjdVkI3RTDvAga2LVCY3J9IOpSEWIuTBZc2r
+	 ya8sgCgRcunHg==
+Date: Tue, 14 Oct 2025 13:40:50 -0700
+From: Jakub Kicinski <kuba@kernel.org>
+To: Conor Dooley <conor@kernel.org>
+Cc: Frank Li <Frank.Li@nxp.com>, Andrew Lunn <andrew@lunn.ch>, Vladimir
+ Oltean <olteanv@gmail.com>, "David S. Miller" <davem@davemloft.net>, Eric
+ Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, "open list:NETWORKING DRIVERS"
+ <netdev@vger.kernel.org>, "open list:OPEN FIRMWARE AND FLATTENED DEVICE
+ TREE BINDINGS" <devicetree@vger.kernel.org>, open list
+ <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
+Subject: Re: [PATCH 1/1] dt-bindings: net: dsa: nxp,sja1105: Add optional
+ clock
+Message-ID: <20251014134050.371d0c97@kernel.org>
+In-Reply-To: <20251014-unclothed-outsource-d0438fbf1b23@spud>
+References: <20251010183418.2179063-1-Frank.Li@nxp.com>
+	<20251014-flattop-limping-46220a9eda46@spud>
+	<20251014-projector-immovably-59a2a48857cc@spud>
+	<20251014120213.002308f2@kernel.org>
+	<20251014-unclothed-outsource-d0438fbf1b23@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-Hi Rob,
+On Tue, 14 Oct 2025 20:35:04 +0100 Conor Dooley wrote:
+> On Tue, Oct 14, 2025 at 12:02:13PM -0700, Jakub Kicinski wrote:
+> > On Tue, 14 Oct 2025 19:12:23 +0100 Conor Dooley wrote:  
+> > > Hmm, I think this pw-bot command, intended for the dt patchwork has
+> > > probably screwed with the state in the netdev patchwork. Hopefully I can
+> > > fix that via  
+> > 
+> > The pw-bot commands are a netdev+bpf thing :) They won't do anything
+> > to dt patchwork. IOW the pw-bot is a different bot than the one that
+> > replies when patch is applied.  
+> 
+> Rob's recently added it to our patchwork too.
 
-On Mon, 2025-10-13 at 16:31 -0500, Rob Herring (Arm) wrote:
-> -Clocks required for compatibles =3D "marvell,orion-wdt",
-> -				=C2=A0 "marvell,armada-370-wdt":
-> -- clocks : Must contain a single entry describing the clock input
-> -
-> -Clocks required for compatibles =3D "marvell,armada-xp-wdt"
-> -				=C2=A0 "marvell,armada-375-wdt"
-> -				=C2=A0 "marvell,armada-380-wdt":
-> -- clocks : Must contain an entry for each entry in clock-names.
-> -- clock-names : Must include the following entries:
-> -=C2=A0 "nbclk" (L2/coherency fabric clock),
-> -=C2=A0 "fixed" (Reference 25 MHz fixed-clock).
+:-o  Nice!
 
-> +=C2=A0 clocks:
-> +=C2=A0=C2=A0=C2=A0 minItems: 1
-> +=C2=A0=C2=A0=C2=A0 items:
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - description: Reference 25 MHz fixed-clo=
-ck supply.
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - description: L2/coherency fabric clock =
-input ("nbclk").
-> +
-> +=C2=A0 clock-names:
-> +=C2=A0=C2=A0=C2=A0 minItems: 1
-> +=C2=A0=C2=A0=C2=A0 items:
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: nbclk
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: fixed
+Do you know if it's the NIPA one or did he write his own?
+I think we need to add support for some kind of project tagging 
+to avoid changing state in each other's patchworks?
 
-Shouldn't the "clock-names" items be in the same order as the "clocks" item=
-s?
-(With nbclk first)
+  pw-bot: xyz [project]
 
-Best,
-Sander
+(with the [] brackets, not just meaning that the project is optional)
 
