@@ -1,377 +1,207 @@
-Return-Path: <devicetree+bounces-226379-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226381-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7B02BD7F14
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 09:34:09 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 601FCBD81B3
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 10:09:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EE6B44258D7
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 07:32:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 149683A34FB
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 08:09:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2EC8C23F412;
-	Tue, 14 Oct 2025 07:32:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A20A230F538;
+	Tue, 14 Oct 2025 08:09:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="PEDUWIiB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Jzql7MQ1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BB9623817D
-	for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 07:31:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7346C30EF98;
+	Tue, 14 Oct 2025 08:09:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760427124; cv=none; b=OHynxremo3Mq9tBp0KniQAByQEuqbIJMy/5maoN750RtLmBQIzoh5xA8sdYbPz1GbgqUN+Oj8Tl659DSmgnVrT4tmd4d2PHeWkOLJCRVW/F4VoOO9c5iDVxEpm6Blh9IvE0X6iThYBpsu108SInF0ppMjtDQDQdl33fVZK8wQiQ=
+	t=1760429377; cv=none; b=H2xx15KibLETfYR5JFVWKcK+FecqzMx1lGs/LLL0axsc/iXINOSe9pHPWtfD/T2dCBhFa0Q/fsV67IhxrYK1Hm5SH9qxOkWj02jgmcBlGkGNyW8jYrVObzHsG4n0STHWqk2/BsbK8tz/wPnJII+qXdBVNZfx5CvAOpiuBvZ6WJo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760427124; c=relaxed/simple;
-	bh=dVCZrCuq+ZctBuff8YlX99sbsYb/Y49Q+wQM+I7d7wo=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=miJbF/lDbCYw6HBUrx7QwupxjMeMXrBccW34q7/4607OJN/A40/ptE69eCv4Xqs5bPmp0fhU9vRHWKp2HO0paZBKd80ZOCe3m9jCr9upCNb1Y0JRJurvQttqC31E5CvSmjfhbH7chSJbPw23maev4rjYm+w2umqgreu+C9iFIQg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=PEDUWIiB; arc=none smtp.client-ip=209.85.218.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
-Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-b5a8184144dso197178566b.1
-        for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 00:31:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=suse.com; s=google; t=1760427117; x=1761031917; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=DXZZGW1uWPjZtrugE9+8JJyhpGziKLqQludy7yN6pDk=;
-        b=PEDUWIiB0rpNXVzxThn6ZSjTGHuWxtsGzfq9nHct+xtJK1RAYcPRWoG9RZGwvk4xOW
-         CZUmykrSphqB+NteNfSsv3iuHXyG4XIsLKi2kBKpIkCUI9JDGPrVCYn29VdsLOHB9SHt
-         bPoGy+KXfdWwGJWgnbvspe1W4oogzv4od4Va/hKkpO4VxolRo7flYi3Kr9oGzlzElh3+
-         31N1cr6km49qF/RSEE44EVQPMeTCRTTmBRP5jPFliMpixkmtbfMGnwyEu3d+WM1guKRg
-         pM4NtRg+oyEMmBFPcN5S0emQFBRzq6Gt5/GW8K7SSNJeU3ewVBqbKxMNT1xyvMFcelcC
-         MKZA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760427117; x=1761031917;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=DXZZGW1uWPjZtrugE9+8JJyhpGziKLqQludy7yN6pDk=;
-        b=Y8bNg3Bho/B4xxIVgd7/4IzzQta27mngeDb9m+qRPqptdvBIYblXfqORLdiSSn/oSw
-         Y+1MOs0263Y9hycEHsMrPWlaBp8sBJWlu2/J/FAYgDXRH/C9QOpiRudbSAAMUyULZdTG
-         EnDS1uTQT3muHJK6P9zCCmsaOo5t7S9wDiQICakZWGo9buGeR5zgBuiRkujEAvkg/Mbx
-         Dcn+coUYIhfKPAmw489rbSq+sg4BdRMqNAnUNvZ/2OXT6pIOMM8NWeUI/6jj9gapfoqz
-         OXrjVko8pOwFM6FYpLFbGWgNzkOrE31cVin8vnZ+95pYgUm1tCXqYL7sOQR5L5rMZPs7
-         ilyA==
-X-Forwarded-Encrypted: i=1; AJvYcCWnJdn/K/QNwifkl4j7xUgy59Oo2zBbcXOMiqbQeoyzzFeTLBJa2kV2meXN0fIEZK1TdE492TZ8xlwc@vger.kernel.org
-X-Gm-Message-State: AOJu0YxuOz71PXAclT+S2sLDE7PGcqvU5++IOiIxW795SGQ+NF0i7LR5
-	Bjb7D2284MbbyFW3MLg33BoqhtXKB4aBR8LWUX1UQmKmwRknnLUHo8qDuYBqNLTpZsg=
-X-Gm-Gg: ASbGncuRaOTh2//P2wzeHXUABN+jufCaw1y/lvU7RILoAp7WdmEdAnJUxKd9Zcl2hof
-	2qP8OSv4ueXKRfnf2X5VnuRd1zlUJRC7tKJLhAXzxQyU+MhscEum9zkpo2JXkCg8WEUBORqHj6v
-	QpbxgauRAHFWrkO+JGR0EIrtyRAv7q7pC2s93ze1y68CVCyIHb/2YB3pz9bT4eYeb0ni8RNfV0L
-	1+8pGpdo64XDnE4F2MYnysymVtjnFW/9BOOlfQWpvsr2PN86yd30ELDeWEwwWCZGkg5tslosmaQ
-	q13Xwha8sFIxLPq3PNC1EcoUdSms7O0CjVkM6HEuiIGvrtP6gsMTF7R8OzQ3LwUQsbxgPzRt4DT
-	KpHgWuVZjxAciLOI/9cmGhSlWFFg1pW4CGLBkIIaT5kYKz/EURKgdeqPFbww6GO3HBxme3pZAAb
-	qV057lkKYrHt4=
-X-Google-Smtp-Source: AGHT+IHKJefVpKUeKL/wI+HS+0ovCB1d0pVYRlAQVBL4u1wtot93EtcuA0IP5nStKOmwdm/Nsj0N5A==
-X-Received: by 2002:a17:907:7213:b0:b41:a571:21b0 with SMTP id a640c23a62f3a-b50ac1cc421mr2370839166b.39.1760427116641;
-        Tue, 14 Oct 2025 00:31:56 -0700 (PDT)
-Received: from localhost (host-95-247-55-253.retail.telecomitalia.it. [95.247.55.253])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b55d8c12ccbsm1083131366b.46.2025.10.14.00.31.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Oct 2025 00:31:56 -0700 (PDT)
-From: Andrea della Porta <andrea.porta@suse.com>
-To: Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	iivanov@suse.de,
-	svarbanov@suse.de,
-	mbrugger@suse.com,
-	Phil Elwell <phil@raspberrypi.com>
-Cc: Andrea della Porta <andrea.porta@suse.com>
-Subject: [PATCH] of: reserved_mem: Add heuristic to validate reserved memory regions
-Date: Tue, 14 Oct 2025 09:34:03 +0200
-Message-ID: <20251014073403.32134-1-andrea.porta@suse.com>
-X-Mailer: git-send-email 2.51.0
+	s=arc-20240116; t=1760429377; c=relaxed/simple;
+	bh=aod1SyLTuA8l9vg6WTwLEHjQq4wmSw6FgH1FjGpTX9Y=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=olIo4jh8hrsbhN51K2gZeTHRiiFohTp+KdA76Hqs/CLfz07oOZSjzpUYm/rg+dlYEXRWqRpsS11hzeW1BQ+a1o8khEa9Tg83gHKrV1XRVB/U3bz7St9ZThOMRq0MdRE6HJiNF4SgTOQgeIkef3XHUCILbef8zxDh7/797sURFvQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Jzql7MQ1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A130DC4CEE7;
+	Tue, 14 Oct 2025 08:09:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1760429376;
+	bh=aod1SyLTuA8l9vg6WTwLEHjQq4wmSw6FgH1FjGpTX9Y=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Jzql7MQ10q+YZCucKA5N988SKunyz3/4BxYsHwt/dfNEgNaGWj6mdI/P1x+PjaR5e
+	 +LZFrfj/8KAjK5mRkvr+6txwTGE4T2ClQ0EJKHW9wXsQ/0x+kczVv5gKZh3fgFBKFd
+	 e04P+Y519liUIsDjciV0ag5TW+I40EcLNhh9urCfmNEzR0FkxLz07qpVHyA2dTm022
+	 cFrrkqW4wT7aEZgk2d+QMB36oZqjt2KrzRIiWvOWdeh+/kP4gWLkbIQYnMIqi4Y0Xd
+	 ySTMGqPiPfZjdAA8qV+XAP+6itCrtJUFGHHd8yOYbs7ioCItmj887THgKXMp3ipvpi
+	 UxVOejTv+F+ug==
+Message-ID: <b6af124c-6d51-437e-bf51-d799ffbaaf55@kernel.org>
+Date: Tue, 14 Oct 2025 10:09:31 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/3] dt-bindings: regulator: Add MAX77675 binding
+ header
+To: Joan-Na-adi <joan.na.devcode@gmail.com>,
+ Liam Girdwood <lgirdwood@gmail.com>
+Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, Joan Na <joan.na@analog.com>
+References: <20251014053142.15835-1-joan.na@analog.com>
+ <20251014053142.15835-2-joan.na@analog.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20251014053142.15835-2-joan.na@analog.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-When parsing static reserved-memory DT nodes, any node with a reg property
-length that is not perfectly conformant is discarded.
-Specifically, any reg property whose length is not a multiple of the parent's
-(#address-cells + #size-cells) is dropped.
-
-Relax this condition (while still treating perfect multiples as having higher
-precedence) by allowing regions that are subsets of the parent's addressable
-space to be considered for inclusion.
-For example, in the following scenario:
-
-/ {
-        #address-cells = <0x02>;
-        #size-cells = <0x02>;
-	...
-
-        reserved-memory {
-                #address-cells = <0x02>;
-                #size-cells = <0x02>;
-		...
-
-                nvram {
-                        reg = <0x00 0x3fd16d00 0x37>;
-			...
-		};
-	};
-};
-
-Even though the reg property of the nvram node is not well-formed from a DT
-syntax perspective, it still references a perfectly valid memory region of
-0x37 bytes that should be reserved.
-
-This has at least one real-world equivalent on the Raspberry Pi 5, for example,
-on which the firmware incorrectly overwrites the nvram node's reg property
-without taking into account the actual value of the parent's #size-cells.
-
-Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
----
-
-The aforementioned heuristic has been tested with several combo of #address,
-#size and reg length and the results are shown in the following table:
-
-Testing #address-cells 1, #size-cells 1
-
-len     |t_len  |addr   |size   |#ignore
-0       |8      | INVALID
-4       |8      | INVALID
-8       |8      |1      |1      |0
-12      |8      | INVALID
-16      |8      |1      |1      |1
-20      |8      | INVALID
-24      |8      |1      |1      |2
-28      |8      | INVALID
-32      |8      |1      |1      |3
-36      |8      | INVALID
-40      |8      |1      |1      |4
-44      |8      | INVALID
-48      |8      |1      |1      |5
-52      |8      | INVALID
-56      |8      |1      |1      |6
-60      |8      | INVALID
-64      |8      |1      |1      |7
-68      |8      | INVALID
-72      |8      |1      |1      |8
-76      |8      | INVALID
-80      |8      |1      |1      |9
-84      |8      | INVALID
-88      |8      |1      |1      |10
-92      |8      | INVALID
-96      |8      |1      |1      |11
-
-
-Testing #address-cells 2, #size-cells 1
-
-len     |t_len  |addr   |size   |#ignore
-0       |12     | INVALID
-4       |12     | INVALID
-8       |12     | INVALID
-12      |12     |2      |1      |0
-16      |12     | INVALID
-20      |12     | INVALID
-24      |12     |2      |1      |1
-28      |12     | INVALID
-32      |12     | INVALID
-36      |12     |2      |1      |2
-40      |12     | INVALID
-44      |12     | INVALID
-48      |12     |2      |1      |3
-52      |12     | INVALID
-56      |12     | INVALID
-60      |12     |2      |1      |4
-64      |12     | INVALID
-68      |12     | INVALID
-72      |12     |2      |1      |5
-76      |12     | INVALID
-80      |12     | INVALID
-84      |12     |2      |1      |6
-88      |12     | INVALID
-92      |12     | INVALID
-96      |12     |2      |1      |7
+On 14/10/2025 07:31, Joan-Na-adi wrote:
+> From: Joan Na <joan.na@analog.com>
+> 
+> Add binding header for the MAX77675 PMIC regulator. This header defines
+> voltage ID and regulator index macros used both in device tree sources
+> and in the driver implementation.
+> 
+> Fixes:
+> - Removed unused macros
+> - Renamed macros for clarity
 
 
-Testing #address-cells 2, #size-cells 2
+This makes no sense. Fixes what? There are no macros before.
 
-len     |t_len  |addr   |size   |#ignore
-0       |16     | INVALID
-4       |16     | INVALID
-8       |16     | INVALID
-12      |16     |2      |1      |0
-16      |16     |2      |2      |0
-20      |16     | INVALID
-24      |16     |2      |1      |1
-28      |16     | INVALID
-32      |16     |2      |2      |1
-36      |16     |2      |1      |2
-40      |16     | INVALID
-44      |16     | INVALID
-48      |16     |2      |2      |2
-52      |16     | INVALID
-56      |16     | INVALID
-60      |16     |2      |1      |4
-64      |16     |2      |2      |3
-68      |16     | INVALID
-72      |16     |2      |1      |5
-76      |16     | INVALID
-80      |16     |2      |2      |4
-84      |16     |2      |1      |6
-88      |16     | INVALID
-92      |16     | INVALID
-96      |16     |2      |2      |5
+Please read submitting patches how to write proper changelogs.
 
- drivers/of/of_reserved_mem.c | 88 ++++++++++++++++++++++++++++++++----
- 1 file changed, 78 insertions(+), 10 deletions(-)
+> 
+> Signed-off-by: Joan Na <joan.na@analog.com>
+> ---
+>  .../regulator/maxim,max77675-regulator.h      | 52 +++++++++++++++++++
+>  1 file changed, 52 insertions(+)
+>  create mode 100644 include/dt-bindings/regulator/maxim,max77675-regulator.h
+> 
+> diff --git a/include/dt-bindings/regulator/maxim,max77675-regulator.h b/include/dt-bindings/regulator/maxim,max77675-regulator.h
+> new file mode 100644
+> index 000000000000..b3b52d1668c2
+> --- /dev/null
+> +++ b/include/dt-bindings/regulator/maxim,max77675-regulator.h
+> @@ -0,0 +1,52 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only OR BSD 2-Clause */
+> +/*
+> + * This header provides macros for MAXIM MAX77675 device bindings.
+> + *
+> + * Copyright (c) 2025, Analog Device inc.
+> + * Author: Joan Na <joan.na@analog.com>
+> + */
+> +
+> +#ifndef _DT_BINDINGS_REGULATOR_MAX77675_
+> +#define _DT_BINDINGS_REGULATOR_MAX77675_
+> +
+> +/* FPS source */
+> +#define MAX77675_FPS_SLOT_0       0x0
+> +#define MAX77675_FPS_SLOT_1       0x1
+> +#define MAX77675_FPS_SLOT_2       0x2
+> +#define MAX77675_FPS_SLOT_3       0x3
+> +#define MAX77675_FPS_DEF          0x4
+> +
+> +/* nEN Manual Reset Time Configuration (MRT) */
+> +#define MAX77675_MRT_4S           0x0
+> +#define MAX77675_MRT_8S           0x1
+> +#define MAX77675_MRT_12S          0x2
+> +#define MAX77675_MRT_16S          0x3
 
-diff --git a/drivers/of/of_reserved_mem.c b/drivers/of/of_reserved_mem.c
-index 2e9ea751ed2d..f94069ef988e 100644
---- a/drivers/of/of_reserved_mem.c
-+++ b/drivers/of/of_reserved_mem.c
-@@ -130,6 +130,68 @@ static void __init fdt_reserved_mem_save_node(unsigned long node, const char *un
- 	return;
- }
- 
-+/**
-+ * reg_len_valid() - scan for a suitable #size-cells value and validate
-+ *		     the reg property length
-+ * @len:	Length of the reg property to be validated (bytes). Can be composed
-+ *		by more than one reg addr+size pairs
-+ * @calc_addr:	the number of address cells expected by the parent of the node
-+ *		containing the reg property. Currently it's just used as in param
-+ * @calc_size:	the number of size cells expected by the parent of the node
-+ *		containing the reg property (out param)
-+ *
-+ * This function tries to find the correct #size-cells number for the size portion
-+ * of a reg property, assuming the #address-cells passed in (calc_addr param)
-+ * is valid to avoid ambiguity.
-+ * Parent_len is the length in bytes of a single reg property * as expected by the
-+ * parent.
-+ * Either len is a multiple of parent_len, in which case there's no adjustment to
-+ * be made to calc_size and the region is automatically valid (this choice has the
-+ * priority), or it is not a multiple.
-+ * In the latter case, it finds the smallest calc_addr+calc_size for which len
-+ * is still a multiple and adjust calc_size accordingly.
-+ * The rationale is to avoid nonsensical combo e.g. #adress-cells 1 and #size-cells
-+ * 2 since it's not fully addressable, and to promote any other combo that is a
-+ * subset of the original space, e.g. with calc_addr=2 and calc_size=2, returning
-+ * calc_size=1 still makes sense since the region is included in the parent space.
-+ * The reason for that is to avoid dropping perfectly valid memory regions that
-+ * could just have been passed with the wrong format in the reg property (some fw
-+ * are reportedly doing that when updating the DT at boot).
-+ *
-+ * Returns:	true if the region is valid and can be further processed,
-+ *		false otherwise. If valid, calc_size is filled with the actual
-+ *		length (in cells) of the size part.
-+ *
-+ */
-+static bool reg_len_valid(int len, const int *calc_addr, int *calc_size)
-+{
-+	int parent_len = (*calc_addr + *calc_size) * sizeof(__be32);
-+	bool parent_multiple = (len % parent_len) / sizeof(__be32);
-+	int row_n, calc_row_len = parent_len / sizeof(__be32);
-+	int len_b = len / sizeof(__be32);
-+
-+	if (!len || !parent_len)
-+		return false;
-+
-+	for (row_n = len_b / 2; row_n > 0; row_n--) {
-+		int tmp_row_len = len_b / row_n;
-+
-+		if (calc_row_len > tmp_row_len &&
-+		    tmp_row_len > *calc_addr &&
-+		    (len_b % tmp_row_len == 0))
-+			calc_row_len = tmp_row_len;
-+	}
-+
-+	if (parent_multiple && calc_row_len != parent_len / sizeof(__be32)) {
-+		*calc_size = calc_row_len - *calc_addr;
-+		return true;
-+	} else if (!parent_multiple) {
-+		return true;
-+	}
-+
-+	return false;
-+}
-+
- static int __init early_init_dt_reserve_memory(phys_addr_t base,
- 					       phys_addr_t size, bool nomap)
- {
-@@ -154,9 +216,9 @@ static int __init early_init_dt_reserve_memory(phys_addr_t base,
- static int __init __reserved_mem_reserve_reg(unsigned long node,
- 					     const char *uname)
- {
--	int t_len = (dt_root_addr_cells + dt_root_size_cells) * sizeof(__be32);
-+	int calc_addr, calc_size;
- 	phys_addr_t base, size;
--	int len;
-+	int len, t_len;
- 	const __be32 *prop;
- 	bool nomap;
- 
-@@ -164,17 +226,20 @@ static int __init __reserved_mem_reserve_reg(unsigned long node,
- 	if (!prop)
- 		return -ENOENT;
- 
--	if (len && len % t_len != 0) {
-+	calc_addr = dt_root_addr_cells;
-+	calc_size = dt_root_size_cells;
-+	if (!reg_len_valid(len, &calc_addr, &calc_size)) {
- 		pr_err("Reserved memory: invalid reg property in '%s', skipping node.\n",
- 		       uname);
- 		return -EINVAL;
- 	}
- 
- 	nomap = of_get_flat_dt_prop(node, "no-map", NULL) != NULL;
-+	t_len = (calc_addr + calc_size) * (int)sizeof(__be32);
- 
- 	while (len >= t_len) {
--		base = dt_mem_next_cell(dt_root_addr_cells, &prop);
--		size = dt_mem_next_cell(dt_root_size_cells, &prop);
-+		base = dt_mem_next_cell(calc_addr, &prop);
-+		size = dt_mem_next_cell(calc_size, &prop);
- 
- 		if (size && early_init_dt_reserve_memory(base, size, nomap) == 0) {
- 			/* Architecture specific contiguous memory fixup. */
-@@ -255,6 +320,7 @@ void __init fdt_scan_reserved_mem_reg_nodes(void)
- 	}
- 
- 	fdt_for_each_subnode(child, fdt, node) {
-+		int calc_addr, calc_size;
- 		const char *uname;
- 
- 		prop = of_get_flat_dt_prop(child, "reg", &len);
-@@ -263,19 +329,21 @@ void __init fdt_scan_reserved_mem_reg_nodes(void)
- 		if (!of_fdt_device_is_available(fdt, child))
- 			continue;
- 
-+		calc_addr = dt_root_addr_cells;
-+		calc_size = dt_root_size_cells;
- 		uname = fdt_get_name(fdt, child, NULL);
--		if (len && len % t_len != 0) {
-+		if (!reg_len_valid(len, &calc_addr, &calc_size)) {
- 			pr_err("Reserved memory: invalid reg property in '%s', skipping node.\n",
- 			       uname);
- 			continue;
- 		}
- 
- 		if (len > t_len)
--			pr_warn("%s() ignores %d regions in node '%s'\n",
--				__func__, len / t_len - 1, uname);
-+			pr_warn("%s() ignores %d regions in node '%s'\n", __func__,
-+				len / ((calc_addr + calc_size) * (int)sizeof(__be32)) - 1, uname);
- 
--		base = dt_mem_next_cell(dt_root_addr_cells, &prop);
--		size = dt_mem_next_cell(dt_root_size_cells, &prop);
-+		base = dt_mem_next_cell(calc_addr, &prop);
-+		size = dt_mem_next_cell(calc_size, &prop);
- 
- 		if (size)
- 			fdt_reserved_mem_save_node(child, uname, base, size);
--- 
-2.35.3
+None of these are bindings.
 
+
+> +
+> +/* nEN Mode Configuration */
+> +#define MAX77675_EN_PUSH_BUTTON   0x0
+> +#define MAX77675_EN_SLIDE_SWITCH  0x1
+> +#define MAX77675_EN_LOGIC         0x2
+
+Neither these.
+
+> +
+> +/* Debounce Timer Enable (DBEN_nEN) */
+> +#define MAX77675_DBEN_100US       0x0
+> +#define MAX77675_DBEN_30000US     0x1
+> +
+> +/* Rising slew rate control for SBB0 when ramping up */
+> +#define MAX77675_SR_2MV_PER_US    0x0  // 2 mV/us
+> +#define MAX77675_SR_USE_DVS       0x1  // Use DVS slew rate setting (maxim,dvs-slew-rate)
+> +
+> +/* Dynamic Voltage Scaling (DVS) Slew Rate */
+> +#define MAX77675_DVS_SLEW_5MV_PER_US    0x0  // 5 mV/us
+> +#define MAX77675_DVS_SLEW_10MV_PER_US   0x1  // 10 mV/us
+> +
+> +/* Latency Mode */
+> +#define MAX77675_HIGH_LATENCY_MODE  0x0   // High latency, low quiescent current (~100us)
+> +#define MAX77675_LOW_LATENCY_MODE   0x1   // Low latency, high quiescent current (~10us)
+> +
+> +/* SIMO Buck-Boost Drive Strength (All Channels) */
+> +#define MAX77675_DRV_SBB_STRENGTH_MAX  0x0  // Maximum drive strength (~0.6 ns transition time)
+> +#define MAX77675_DRV_SBB_STRENGTH_HIGH 0x1  // High drive strength (~1.2 ns transition time)
+> +#define MAX77675_DRV_SBB_STRENGTH_LOW  0x2  // Low drive strength (~1.8 ns transition time)
+> +#define MAX77675_DRV_SBB_STRENGTH_MIN  0x3  // Minimum drive strength (~8 ns transition time)
+> +
+
+
+Drop entire header. Not a binding. Otherwise explain me which ABI are
+you binding?
+
+
+Best regards,
+Krzysztof
 
