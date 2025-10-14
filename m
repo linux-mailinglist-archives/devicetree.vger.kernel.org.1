@@ -1,215 +1,172 @@
-Return-Path: <devicetree+bounces-226410-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226411-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB624BD86C1
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 11:23:50 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0322BBD8766
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 11:36:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 571F134B48B
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 09:23:50 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D398C4EF255
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 09:36:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D6DB2E36E3;
-	Tue, 14 Oct 2025 09:23:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A6C92E0B5F;
+	Tue, 14 Oct 2025 09:36:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OxijG8Ee"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ErIKlQPZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7C3A2080C1;
-	Tue, 14 Oct 2025 09:23:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9445E270ED2
+	for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 09:36:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760433820; cv=none; b=i7GFO+8YncyvBJR3uSFs5oFpBR9IXZ4y0+jZqn01mbmVRZIbHO4MzgkYl28WNOUq+DTxncTSrmygTA0KhRv2obuqx+B/oKhDyFpFtFdNFzCzOYSJ5MTiuyD3SRIhynJtJ0BS6zjEcnyFcOnMIduHmMbcV5AM7Q/4cA8foR9kSe4=
+	t=1760434597; cv=none; b=BlOoepWue349d8hqbvcp78ix1rrlIOe/c6nC3QJfjSwNo2q7sEhZWv5hFKNlwBJxmGz9PoEqcgHS1Lxy5WNAfSo8EUpyIP/+XtCFq/Z/tJ76iZ1VBEMDc30jeu9fNThd6WX6ZoL5klYSNyvEPom9TswYqnF96c4Tw42BMgP1NaY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760433820; c=relaxed/simple;
-	bh=8UMDWUKXnpdCQC7p8eOw9etMN6k4kyh9pwqfBIRJJR4=;
+	s=arc-20240116; t=1760434597; c=relaxed/simple;
+	bh=j0urYs90kPTFfhj6XsGDs3vJJ8OV9y18S3hd/gfBDIY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=S+/2PPU5IKa0qBPoYOX7y6j8jRDf+r07skhyDQIHtZBaas+m0ltctjcdz3mBAUilriQNRwfBD1Eo7b9M6+lSF/aHf0VujRecqcopPeUx37ZRXHubB5X/PJDXItz+TdSWDM+eaSS0iMwUZdjmF0jlR7u5/VRG8re5UOlqbvl6WK8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OxijG8Ee; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1AEAEC113D0;
-	Tue, 14 Oct 2025 09:23:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760433820;
-	bh=8UMDWUKXnpdCQC7p8eOw9etMN6k4kyh9pwqfBIRJJR4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=OxijG8Ee2g5+wVQnN1qVAuG8VcAY4HRVLn8vhSjOM7j7u/qSgp3Y1jBaIy50zEbUr
-	 3UmR+WU+NNvFUBOoKX6jegmuW9xrZ8b3jTnCKA0LccwLcM2WJIhKjzkQzokmU4GCFT
-	 p1C4gatH3OkYEwhVTUhG1+NaJsdWUZ6u4LIBleck60/q1eijpfs6FEBPl83NKAHsC+
-	 hb+6Zyq4fTx4ghfJ8XGh0t4prBJwWp5HAK7oJ5X35ixzuIz3ouRm6F9xM23i35s67o
-	 jW1aP4lFTsRyNPTSqQOGbBsTROYsZh7oszs1QwFMgghXEnRl9odRaf3Kl12TqZ48Z8
-	 3NVfLEmJjjzkg==
-Date: Tue, 14 Oct 2025 11:23:37 +0200
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-To: Simon Horman <horms@kernel.org>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH net-next v3 2/3] net: airoha: npu: Add
- airoha_npu_soc_data struct
-Message-ID: <aO4WmeuoAcZLFSBo@lore-desk>
-References: <20251013-airoha-npu-7583-v3-0-00f748b5a0c7@kernel.org>
- <20251013-airoha-npu-7583-v3-2-00f748b5a0c7@kernel.org>
- <aO4LL8racazLjjzk@horms.kernel.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=rcJEJCvHpcIdVKK3F9/1kvFyiqvbEwY34V4aUJ3wxnaUJzKP2LyBnk9+/i/HNqCaXoM9cy1p5Lxye3Txp/t4d3OBRLeZJMGsuuWM7E+ewPM0rgVoXKiaj+AFfb0ZKABJ5Oc79dYRmK40EM2y9HOhNIbZRtBxzf+z9e1Z/ttkxmE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ErIKlQPZ; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59E87krT018998
+	for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 09:36:35 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=RBVC+5/5ABafrPQ+4V6HCdRE
+	5Qnnq6FFZbvfYQ5jpT4=; b=ErIKlQPZQMOrg/qnmzemszHado82YkEIlTM5k+Ng
+	SHK2L/l+BM4TdVruAnnOwh8LzH0kStRIjZ5qkSTSaiSf045I47edY9lctn284X+Q
+	03oOOW1yFDf9mWP6ofnHDlBXtZb0dHMCWPqIQkyTv2QoOCe+HJTG/hTbmg2pdCGA
+	hGhlxuzTlViBKodnkYMk7zdDvgUvD2bN8xtZQMN+pt0Xi47tAkukQ70Igwukc822
+	m929KjMPQdhFHrA3qZL/UBaA0n1Mi4/pso3yqeQddVyXj6927t41f0jeGLMiwpgm
+	r4GkKnnqbzrhepUJUqgzK+meRFin0yLc5Wr8CxcP2NC1WQ==
+Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com [209.85.219.69])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49rw1ac99k-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 09:36:34 +0000 (GMT)
+Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-87bfeecc483so1497326d6.3
+        for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 02:36:34 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1760434593; x=1761039393;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=RBVC+5/5ABafrPQ+4V6HCdRE5Qnnq6FFZbvfYQ5jpT4=;
+        b=EKjcU6Jbf3at7WmUBan3CM1SU1bL0N6bK4OFea22Yq8aXzp8kchkWvsbuQ+QcufTuV
+         jFTM9WcPe1hKlq3nVkddwOQ/rX2qMry3Wv6XgkjU+NLUqJRyNOsu47MbUtzTknnXYnG1
+         QPOqzuEX+xXFRS4VhIdO4av4loDAmeD2ltSWO7AwViAX5UGvO78kkXIj4vbHTND3dB90
+         6Nx/O+YHXN7GNjpJ4C5NsjoK39DJy8+izbBaJB4RW9RtHKtXlbdvVa/IcyykeRvIrrTl
+         Moqvrh5gOhoszj3laMBCFjZDyLeQchrnMVT8qJoTW9JWMcdh40d8TEEvhodHaN+DAkZ0
+         OkhQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVpI/Vz1d9prqaDD1oQLqRivyzEzg3i2lDhQ/eHIlIdiP/nqysIs2XkK8TOJRBKdUAAo1oG6hLVHPrC@vger.kernel.org
+X-Gm-Message-State: AOJu0YxKAGscgn/BbNGC4du/N8PqpL3uUDkSJRoJlUjar6hBZk/QzN7B
+	ewbTeWTzrZQMMPmK0h7i+2rbwxfOToYOGx71OxXTK5D+AyoiGWQUpDAqmisp3qnDX2UOENgFUWd
+	lId3/ks1VTR48Rwoo/sx8cz0zQl3FOBJ0oU9Lk7iCpJYgXDibugcxlZtPwm+7wWfr
+X-Gm-Gg: ASbGncuflq/V+LDYztukDYjYdXHAovgN6lrVp9fiTwsrfSjU/bsd84thBW91FcwtGNf
+	RsIKsfM7umOmK5F2KR6h59HdkHogFJSjK75pnTQk1x2gtqCKs8POuwHt2SXIqjd48doSNjBoLsh
+	+oQ5/wyOJNLSgMVBD0mVoY9z7JLZhuOsSrFoLKBaPQxuzFDZ1WZrjb3a8QhPXeZ3AlKMpALVNB0
+	/JxmkhStLSg+v92XvQP17JIc68h2fTzalmMu+2KpsZ0MPVq3/VubXwWi+dxzLZdoRlTpeKPdK4C
+	egmfk8K5yqsg0rjTs6vh6f4+tI3+EwFWJ4em/Tiu1T+6a2DcucqQEn4B8zpGXkQcBdtqsHZoOCK
+	Db/BpYdRatL8zBEgVaDAcxsacCPMw5iLehrAK7bQBS9XhOk4rk2R7
+X-Received: by 2002:ac8:58c1:0:b0:4db:9c75:abad with SMTP id d75a77b69052e-4e6ead675e6mr362283191cf.74.1760434593390;
+        Tue, 14 Oct 2025 02:36:33 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IERrjyZhC8WYF5QIYCGn45rVK5JIGxvjZP4pOiPgTYBQZVXJXtDIxnFvrzcK8U0iF1Mgp1g4g==
+X-Received: by 2002:ac8:58c1:0:b0:4db:9c75:abad with SMTP id d75a77b69052e-4e6ead675e6mr362282921cf.74.1760434592949;
+        Tue, 14 Oct 2025 02:36:32 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-59088584806sm5055024e87.123.2025.10.14.02.36.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 14 Oct 2025 02:36:32 -0700 (PDT)
+Date: Tue, 14 Oct 2025 12:36:30 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Ayushi Makhija <quic_amakhija@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, robdclark@gmail.com, sean@poorly.run,
+        marijn.suijten@somainline.org, andersson@kernel.org, robh@kernel.org,
+        robh+dt@kernel.org, krzk+dt@kernel.org, konradybcio@kernel.org,
+        conor+dt@kernel.org, andrzej.hajda@intel.com,
+        neil.armstrong@linaro.org, rfoss@kernel.org,
+        Laurent.pinchart@ideasonboard.com, jonathan@marek.ca, jonas@kwiboo.se,
+        jernej.skrabec@gmail.com, quic_rajeevny@quicinc.com,
+        quic_vproddut@quicinc.com
+Subject: Re: [PATCH v2 7/7] arm64: dts: qcom: qcs8300-ride: add anx7625 DSI
+ to DP bridge node
+Message-ID: <acfvx2smpoco3hakkhas3w3fybu36it65lpelbuigcyg2f4thh@qjbtzgxcsrxj>
+References: <20251006013924.1114833-1-quic_amakhija@quicinc.com>
+ <20251006013924.1114833-8-quic_amakhija@quicinc.com>
+ <vj3pwikzgbflzwqwkbvdfac44llinsmrhrqnvu6gx756xz4h3e@2lspa6zx5xgr>
+ <3597f849-fe69-48a5-91cb-7a0bdc9f3e7d@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="RC3OzpSHrP3UiKaL"
-Content-Disposition: inline
-In-Reply-To: <aO4LL8racazLjjzk@horms.kernel.org>
-
-
---RC3OzpSHrP3UiKaL
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <3597f849-fe69-48a5-91cb-7a0bdc9f3e7d@quicinc.com>
+X-Authority-Analysis: v=2.4 cv=K88v3iWI c=1 sm=1 tr=0 ts=68ee19a2 cx=c_pps
+ a=wEM5vcRIz55oU/E2lInRtA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=x6icFKpwvdMA:10 a=VkNPw1HP01LnGYTKEx00:22 a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8
+ a=mWwphNQy6DiE2YH7zW4A:9 a=CjuIK1q_8ugA:10 a=OIgjcC2v60KrkQgK7BGD:22
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-GUID: ZeeK5e-5O-VwOTGAW2ZgL29seyXTB2GX
+X-Proofpoint-ORIG-GUID: ZeeK5e-5O-VwOTGAW2ZgL29seyXTB2GX
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDEzMDAzNSBTYWx0ZWRfX1RBo7Pj8mOw2
+ xE0/uicNjNvgHS9jth3rtt8BrLfwTvJRtcaHSjLAUL+4ec0nJ9zB4+gXFaK0l7MOLxA6aLIi3x5
+ 6UaIhYFh9yA8K11iVMrynFzgehUCvFCP3Iw7TD6LQVcJ6+eUnoXDSHhtVttiYpBspzI00zA/8OU
+ HU8iM0ratmD3sJeu0pxWE1W0yhrRt7TYULHkMC6Vaq0KFxThZSXh+su4/Lp7nJpz9F4N3w+6UJp
+ iFKjtyLscGkYCMSrIqA/1fvT4SVC/+yL1glLl8ji2u8tyTZkrODeAyRNd+McFwa91xNTIuQHXVZ
+ oKYJq0scxvrFchBlgEQOM1nQQloKcl4C6bqt37eTM07Gb5e2Z4mEcewUSQLZ3qenmm+R4DCUG9z
+ UQhOl/GB5i2ndJs+3KBqilx7ffCbYA==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-10-14_02,2025-10-13_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 spamscore=0 impostorscore=0 priorityscore=1501 phishscore=0
+ adultscore=0 clxscore=1015 bulkscore=0 suspectscore=0 lowpriorityscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2510020000 definitions=main-2510130035
 
-> On Mon, Oct 13, 2025 at 03:58:50PM +0200, Lorenzo Bianconi wrote:
->=20
-> ...
->=20
-> > @@ -182,49 +192,53 @@ static int airoha_npu_send_msg(struct airoha_npu =
-*npu, int func_id,
-> >  	return ret;
-> >  }
-> > =20
-> > -static int airoha_npu_run_firmware(struct device *dev, void __iomem *b=
-ase,
-> > -				   struct resource *res)
-> > +static int airoha_npu_load_firmware(struct device *dev, void __iomem *=
-addr,
-> > +				    const struct airoha_npu_fw *fw_info)
-> >  {
-> >  	const struct firmware *fw;
-> > -	void __iomem *addr;
-> >  	int ret;
-> > =20
-> > -	ret =3D request_firmware(&fw, NPU_EN7581_FIRMWARE_RV32, dev);
-> > +	ret =3D request_firmware(&fw, fw_info->name, dev);
-> >  	if (ret)
-> >  		return ret =3D=3D -ENOENT ? -EPROBE_DEFER : ret;
-> > =20
-> > -	if (fw->size > NPU_EN7581_FIRMWARE_RV32_MAX_SIZE) {
-> > +	if (fw->size > fw_info->max_size) {
-> >  		dev_err(dev, "%s: fw size too overlimit (%zu)\n",
-> > -			NPU_EN7581_FIRMWARE_RV32, fw->size);
-> > +			fw_info->name, fw->size);
-> >  		ret =3D -E2BIG;
-> >  		goto out;
-> >  	}
-> > =20
-> > -	addr =3D devm_ioremap_resource(dev, res);
-> > -	if (IS_ERR(addr)) {
-> > -		ret =3D PTR_ERR(addr);
-> > -		goto out;
-> > -	}
-> > -
-> >  	memcpy_toio(addr, fw->data, fw->size);
-> > +out:
-> >  	release_firmware(fw);
-> > =20
-> > -	ret =3D request_firmware(&fw, NPU_EN7581_FIRMWARE_DATA, dev);
-> > -	if (ret)
-> > -		return ret =3D=3D -ENOENT ? -EPROBE_DEFER : ret;
-> > +	return ret;
-> > +}
-> > =20
-> > -	if (fw->size > NPU_EN7581_FIRMWARE_DATA_MAX_SIZE) {
-> > -		dev_err(dev, "%s: fw size too overlimit (%zu)\n",
-> > -			NPU_EN7581_FIRMWARE_DATA, fw->size);
-> > -		ret =3D -E2BIG;
-> > -		goto out;
-> > -	}
-> > +static int airoha_npu_run_firmware(struct device *dev, void __iomem *b=
-ase,
-> > +				   struct resource *res)
-> > +{
-> > +	const struct airoha_npu_soc_data *soc;
-> > +	void __iomem *addr;
-> > +	int ret;
-> > =20
-> > -	memcpy_toio(base + REG_NPU_LOCAL_SRAM, fw->data, fw->size);
-> > -out:
-> > -	release_firmware(fw);
-> > +	soc =3D of_device_get_match_data(dev);
-> > +	if (!soc)
-> > +		return -EINVAL;
-> > =20
-> > -	return ret;
-> > +	addr =3D devm_ioremap_resource(dev, res);
-> > +	if (IS_ERR(addr))
-> > +		return PTR_ERR(addr);
-> > +
-> > +	/* Load rv32 npu firmware */
-> > +	ret =3D airoha_npu_load_firmware(dev, addr, &soc->fw_rv32);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	/* Load data npu firmware */
-> > +	return airoha_npu_load_firmware(dev, base + REG_NPU_LOCAL_SRAM,
-> > +					&soc->fw_data);
->=20
-> Hi Lorenzo,
+On Tue, Oct 14, 2025 at 12:06:13PM +0530, Ayushi Makhija wrote:
+> On 10/6/2025 3:46 PM, Dmitry Baryshkov wrote:
+> > On Mon, Oct 06, 2025 at 07:09:24AM +0530, Ayushi Makhija wrote:
+> >> Add anx7625 DSI to DP bridge device node.
+> >>
+> >> Signed-off-by: Ayushi Makhija <quic_amakhija@quicinc.com>
+> >> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+> >> ---
+> >>  arch/arm64/boot/dts/qcom/qcs8300-ride.dts | 170 ++++++++++++++++++++++
+> >>  1 file changed, 170 insertions(+)
+> >>
+> >> diff --git a/arch/arm64/boot/dts/qcom/qcs8300-ride.dts b/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
+> >> index 891e49602c97..5d4040376857 100644
+> >> --- a/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
+> >> +++ b/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
+> >> @@ -24,6 +24,64 @@ chosen {
+> >>  		stdout-path = "serial0:115200n8";
+> >>  	};
+> >>  
+> >> +	vreg_12p0: vreg-12p0-regulator {
+> > 
+> > Why are these nodes not in a correct place? Also, why are they named
+> > differently from all other regulators in this board file?
+> 
+> Hi Dmitry,
+> 
+> Will keep the nodes at their correct place based on alphabetical order in next patchset.
+> Similar names I have used in LeMans for these regulators. We have kept these name based on the information of these regulator we got from SW doc for monaco.
 
-Hi Simon,
+There is a slight difference between two DTSIs. LeMans RIDE uses
+vreg-foo-regulator, while qcs8300-ride.dtsi got regulator-usb2-vbus
+(which is close to what other platforms use). I think we should also be
+using regulator-vreg-12p0.
 
->=20
-> There are two calls to airoha_npu_load_firmware() above.
-> And, internally, airoha_npu_load_firmware() will call release_firmware()
-> if an error is encountered.
->=20
-> But should release_firmware() be called for the firmware requested
-> by the first call to airoha_npu_load_firmware() if the second call fails?
-> Such clean-up seems to have been the case prior to this patch.
-
-release_firmware() is intended to release the resources allocated by the
-corresponding call to request_firmware() in airoha_npu_load_firmware().
-According to my understanding we always run release_firmware() in
-airoha_npu_load_firmware() before returning to the caller. Even before this
-patch we run release_firmware() on the 'first' firmware image before reques=
-ting
-the second one. Am I missing something?
-
->=20
-> Also, not strictly related. Should release_firmware() be called (twice)
-> when the driver is removed?
-
-For the above reasons, it is not important to call release_firmware() remov=
-ing
-the module. Agree?
-
-Regards,
-Lorenzo
-
->=20
-> >  }
-> > =20
-> >  static irqreturn_t airoha_npu_mbox_handler(int irq, void *npu_instance)
->=20
-> ...
-
---RC3OzpSHrP3UiKaL
-Content-Type: application/pgp-signature; name=signature.asc
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCaO4WmQAKCRA6cBh0uS2t
-rMoTAP9HdqSplLptTvESowj2txGAcrb/gc17fXY3RbXV9I2MoQEAokKGOUSeg9My
-inH68eZk4H3dQS+CcqdVfpLwtEramQU=
-=2u0A
------END PGP SIGNATURE-----
-
---RC3OzpSHrP3UiKaL--
+-- 
+With best wishes
+Dmitry
 
