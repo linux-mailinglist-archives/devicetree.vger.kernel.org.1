@@ -1,53 +1,41 @@
-Return-Path: <devicetree+bounces-226548-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226550-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A129BD9889
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 15:05:44 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id A39E0BD9A03
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 15:16:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 41198188BFF7
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 13:04:24 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id ED8F850176F
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 13:16:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B416314D08;
-	Tue, 14 Oct 2025 13:02:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QD59k0xx"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 747AA31A7E5;
+	Tue, 14 Oct 2025 13:10:00 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 263FF314B82;
-	Tue, 14 Oct 2025 13:02:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C92A1314B7D
+	for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 13:09:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760446967; cv=none; b=hdw6Sk9kgH+gEBFIMg/2cWhAXLnlsSHsuYOmDaVoZ5GRMyE2EM6GsjhaYL8zVe2REGReBK7NIpYjZchf0uR/zPaRwYsiHlMZrOfbFXO6qJHdJwsIkSg/A7PD+P05jkN8o2u7MWbUhWKwwBdvKDyba1TsuqA0udMMFRCazHpb5aw=
+	t=1760447400; cv=none; b=XXK+e7hSbMppvIdYZo7Uux3MGix5d1Zh8Ti34EuSxGNSJJvpmwaE9tc3vV3exccLOO0bOZ2ejJloOngD5S7w7InIZgijbsZwk6fA15iy4b4lC7clj4HEWHVkMG08GwHOR2AJImYQ+hDhISaqBQWmpu4hWJmX7uekFUXclut8W4M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760446967; c=relaxed/simple;
-	bh=kg7jF/g8mf1TOHkSmwqvBnJWrqB9/61uIJ1LyTZh5NM=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=pS6YU6VBeKZvwxol0cyaP//XwH8QS2hT7xutW4DGfcelrYCD3Whm4aivESTAbo37zg7iW59QJMWFMpY7HWzaP12FT4G6e7d/t4rIdvKMUYFgqR19Qn91tuT5sRMpwwusvDseADuuzMsldwOfsuZYzR/6l096y5JPVhnuPlZrIEU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QD59k0xx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id F038EC113D0;
-	Tue, 14 Oct 2025 13:02:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760446967;
-	bh=kg7jF/g8mf1TOHkSmwqvBnJWrqB9/61uIJ1LyTZh5NM=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=QD59k0xxS1BfKzqU7DrEZmmXCwIMby9vjtbZu3YGvjCW3ORSkdiT2ILK6z58Bg7Eq
-	 5t6/4XkPi6CApllRqGBx3WEl5gAwjmSScqHc+P67bLbt8uNdUuAw2+QimX39bFAEGU
-	 hzrBgZD4+aWWaxRzZO2O252Zyw0KRRIBaWm6B/JfP0QWogwzlDNVLfjp82JSTDcMjQ
-	 ML68GVpeva5mZU3m3gkjxdQqro8a1yh7EkE7OvmkHgG2FVbBQb1oXxiBAcN6c7oUyc
-	 v7bx3oOJc+VQhD2v846XxI4ho22C0BXL3l9AsXJIYp/ElLus4GKjepAJ0Y7gPQsIVM
-	 C6Ez7Z9+fR1UA==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E475FCCD195;
-	Tue, 14 Oct 2025 13:02:46 +0000 (UTC)
-From: Michael Riesch via B4 Relay <devnull+michael.riesch.collabora.com@kernel.org>
-Date: Tue, 14 Oct 2025 15:02:04 +0200
-Subject: [PATCH v12 18/18] arm64: dts: rockchip: add overlay for radxa
- camera 8m
+	s=arc-20240116; t=1760447400; c=relaxed/simple;
+	bh=2tt4zSuVjsO7A5I6VZ49Wzvg4d7IGcTk/fszUM8KpGE=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=QcHDyDXh4/ikTvqUCtjlcf0Daea5N2krqFGENjJf6vuW+Bdjv0ZfqngPlbPW8eQfzI5Ch3p/Xya1YIfWgNNLNy07MdHTF0uAKnK8swQaH1NdCGU6crex4y2zfwi92/3crqg0XhNnu9mdOVEX6sH+ZPiBDqiHh+4artRaMT8+SS0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from dude04.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::ac])
+	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
+	(envelope-from <jre@pengutronix.de>)
+	id 1v8emV-0007EX-7j; Tue, 14 Oct 2025 15:09:35 +0200
+From: Jonas Rebmann <jre@pengutronix.de>
+Subject: [PATCH v4 0/2] Mainline Protonic PRT8ML board
+Date: Tue, 14 Oct 2025 15:09:30 +0200
+Message-Id: <20251014-imx8mp-prt8ml-v4-0-88fed69b1af2@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -56,182 +44,82 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20240220-rk3568-vicap-v12-18-c6dbece6bb98@collabora.com>
-References: <20240220-rk3568-vicap-v12-0-c6dbece6bb98@collabora.com>
-In-Reply-To: <20240220-rk3568-vicap-v12-0-c6dbece6bb98@collabora.com>
-To: Mehdi Djait <mehdi.djait@linux.intel.com>, 
- Maxime Chevallier <maxime.chevallier@bootlin.com>, 
- =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>, 
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- Gerald Loacker <gerald.loacker@wolfvision.net>, 
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
- Markus Elfring <Markus.Elfring@web.de>, 
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
- Mauro Carvalho Chehab <mchehab@kernel.org>, 
- Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
- Kever Yang <kever.yang@rock-chips.com>, 
- Nicolas Dufresne <nicolas.dufresne@collabora.com>, 
- Sebastian Reichel <sebastian.reichel@collabora.com>, 
- Collabora Kernel Team <kernel@collabora.com>, 
- Paul Kocialkowski <paulk@sys-base.io>, 
- Alexander Shiyan <eagle.alexander923@gmail.com>, 
- Val Packett <val@packett.cool>, Rob Herring <robh@kernel.org>, 
- Philipp Zabel <p.zabel@pengutronix.de>, 
- Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-rockchip@lists.infradead.org, 
- Michael Riesch <michael.riesch@collabora.com>, 
- Michael Riesch <michael.riesch@collabora.com>
-X-Mailer: b4 0.12.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1760446963; l=3860;
- i=michael.riesch@collabora.com; s=20250410; h=from:subject:message-id;
- bh=s8ffrmhVqarbGXNmyNRzp/PbAgcLyEWIBK3xolazp2A=;
- b=fvfo9TJNZHxhbS4B5qJgnlYi59MIORohISYnTHbyYsDFCfdJU9cWmnaLvd2Cv0BqSzR7kUZyr
- ggyw6q/zBhcAUVfLTPPPB33SrjoXSQ2r6psno90Zq9tNIC5CFvf8ejy
-X-Developer-Key: i=michael.riesch@collabora.com; a=ed25519;
- pk=+MWX1fffLFZtTPG/I6XdYm/+OSvpRE8D9evQaWbiN04=
-X-Endpoint-Received: by B4 Relay for michael.riesch@collabora.com/20250410
- with auth_id=371
-X-Original-From: Michael Riesch <michael.riesch@collabora.com>
-Reply-To: michael.riesch@collabora.com
+X-B4-Tracking: v=1; b=H4sIAIpL7mgC/23OTQ6CMBCG4auQrq3pzxSKK+9hXICdQhOBpiDBE
+ O5uwQ1Bl++XzJOZSY/BYU8uyUwCjq53XRsDTgl51EVbIXUmNhFMKJYxTl0z6cZTHwbdPCnjJUp
+ INaQqJ/HGB7Ru2rzbPXbt+qEL740f+bp+pZyzgzRyyqg1DAo0XKUZu3psq9cQutZNZ4Nk5UaxJ
+ /SREJGQRkMJFpU0+JeQO0LAkZDrF5Brk9mMFzn8EMuyfABQVCBoNQEAAA==
+X-Change-ID: 20250701-imx8mp-prt8ml-01be34684659
+To: Andrew Lunn <andrew@lunn.ch>, Vladimir Oltean <olteanv@gmail.com>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
+ Mark Brown <broonie@kernel.org>, Shengjiu Wang <shengjiu.wang@nxp.com>, 
+ Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>
+Cc: Vladimir Oltean <vladimir.oltean@nxp.com>, netdev@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-sound@vger.kernel.org, imx@lists.linux.dev, 
+ linux-arm-kernel@lists.infradead.org, Peng Fan <peng.fan@oss.nxp.com>, 
+ Jonas Rebmann <jre@pengutronix.de>, David Jander <david@protonic.nl>, 
+ Lucas Stach <l.stach@pengutronix.de>, 
+ Oleksij Rempel <o.rempel@pengutronix.de>
+X-Mailer: b4 0.15-dev-7abec
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1732; i=jre@pengutronix.de;
+ h=from:subject:message-id; bh=2tt4zSuVjsO7A5I6VZ49Wzvg4d7IGcTk/fszUM8KpGE=;
+ b=owGbwMvMwCV2ZcYT3onnbjcwnlZLYsh4590zpX7/AScjzaOeE/jEDCeLfg54/7/Lk/e1XZc9a
+ 82plvYdHaUsDGJcDLJiiiyxanIKQsb+180q7WJh5rAygQxh4OIUgIkI32D4p3204cQBibtq+i5V
+ UVqbpdczaV2c6vY/wf1r/buOuUfcbBkZdny5vndi3az3j9/aHkxeuSPAizO6P3fu5qsHf73prpn
+ 9lRkA
+X-Developer-Key: i=jre@pengutronix.de; a=openpgp;
+ fpr=0B7B750D5D3CD21B3B130DE8B61515E135CD49B5
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:1101:1d::ac
+X-SA-Exim-Mail-From: jre@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-From: Michael Riesch <michael.riesch@collabora.com>
+This series adds the Protonic PRT8ML device tree as well as some minor
+corrections to the devicetree bindings used.
 
-Add a device tree overlay for the Radxa Camera 8M featuring the Sony
-IMX219 image sensor. The sensor is connected to the RK3568 VICAP MIPI
-CSI-2 port, since as at the time of writing this there is no mainline
-support for the RK3568 ISP.
-
-Signed-off-by: Michael Riesch <michael.riesch@collabora.com>
+Signed-off-by: Jonas Rebmann <jre@pengutronix.de>
 ---
- arch/arm64/boot/dts/rockchip/Makefile              |  5 ++
- .../dts/rockchip/rk3568-rock-3a-radxa-cam8m.dtso   | 90 ++++++++++++++++++++++
- 2 files changed, 95 insertions(+)
+Changes in v4:
+- Dropped "dt-bindings: net: dsa: nxp,sja1105: Add reset-gpios
+  property", applied to netdev/net-next.git (Thanks, Jakub)
+- Comment on deleted OPP and deleted dma, correct tps65987ddh node names
+  (Thanks, Peng)
+- Link to v3: https://lore.kernel.org/r/20250924-imx8mp-prt8ml-v3-0-f498d7f71a94@pengutronix.de
 
-diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
-index ad684e3831bc..d6b969a0dab9 100644
---- a/arch/arm64/boot/dts/rockchip/Makefile
-+++ b/arch/arm64/boot/dts/rockchip/Makefile
-@@ -146,6 +146,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-qnap-ts433.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-radxa-e25.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-roc-pc.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-rock-3a.dtb
-+dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-rock-3a-radxa-cam8m.dtbo
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-rock-3b.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-wolfvision-pf5.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-wolfvision-pf5-display-vz.dtbo
-@@ -243,6 +244,10 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-rockpro64-v2-screen.dtb
- rk3399-rockpro64-v2-screen-dtbs := rk3399-rockpro64-v2.dtb \
- 	rk3399-rockpro64-screen.dtbo
- 
-+dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-rock-3a-radxa-8m-cam.dtb
-+rk3568-rock-3a-radxa-8m-cam-dtbs := rk3568-rock-3a.dtb \
-+	rk3568-rock-3a-radxa-cam8m.dtbo
-+
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-wolfvision-pf5-vz-2-uhd.dtb
- rk3568-wolfvision-pf5-vz-2-uhd-dtbs := rk3568-wolfvision-pf5.dtb \
- 	rk3568-wolfvision-pf5-display-vz.dtbo \
-diff --git a/arch/arm64/boot/dts/rockchip/rk3568-rock-3a-radxa-cam8m.dtso b/arch/arm64/boot/dts/rockchip/rk3568-rock-3a-radxa-cam8m.dtso
-new file mode 100644
-index 000000000000..4db177b1c701
---- /dev/null
-+++ b/arch/arm64/boot/dts/rockchip/rk3568-rock-3a-radxa-cam8m.dtso
-@@ -0,0 +1,90 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Device tree overlay for the Radxa Camera 8M attached to the CSI port of
-+ * the Radxa ROCK 3A.
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/pinctrl/rockchip.h>
-+
-+&{/} {
-+	clk_cam: clock-cam {
-+		compatible = "fixed-clock";
-+		clock-frequency = <24000000>;
-+		clock-output-names = "clk_cam";
-+		#clock-cells = <0>;
-+	};
-+
-+	vcc_camera: regulator-vcc-camera {
-+		compatible = "regulator-fixed";
-+		enable-active-high;
-+		gpio = <&gpio4 RK_PD2 GPIO_ACTIVE_HIGH>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&camera_power_en>;
-+		regulator-always-on;
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-name = "vcc_camera";
-+		vin-supply = <&vcc_cam>;
-+	};
-+};
-+
-+&i2c5 {
-+	#address-cells = <1>;
-+	clock-frequency = <100000>;
-+	#size-cells = <0>;
-+	status = "okay";
-+
-+	imx219: camera-sensor@10 {
-+		compatible = "sony,imx219";
-+		reg = <0x10>;
-+		clocks = <&clk_cam>;
-+		clock-names = "xclk";
-+		VANA-supply = <&vcc_camera>;
-+		VDIG-supply = <&vcc_camera>;
-+		VDDL-supply = <&vcc_camera>;
-+
-+		port {
-+			imx219_output: endpoint {
-+				data-lanes = <1 2>;
-+				link-frequencies = /bits/ 64 <456000000>;
-+				remote-endpoint = <&csi_input>;
-+			};
-+		};
-+	};
-+};
-+
-+&pinctrl {
-+	cam {
-+		camera_power_en: camera-power-en-pinctrl {
-+			rockchip,pins = <4 RK_PD2 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+};
-+
-+&csi {
-+	status = "okay";
-+};
-+
-+&csi_dphy {
-+	status = "okay";
-+};
-+
-+&csi_in {
-+	csi_input: endpoint {
-+		data-lanes = <1 2>;
-+		link-frequencies = /bits/ 64 <456000000>;
-+		remote-endpoint = <&imx219_output>;
-+	};
-+};
-+
-+&vicap {
-+	status = "okay";
-+};
-+
-+&vicap_mmu {
-+	status = "okay";
-+};
+Changes in v3:
+- Add comment on the intentional limitation to 100Mbps RGMII
+- Link to v2: https://lore.kernel.org/r/20250918-imx8mp-prt8ml-v2-0-3d84b4fe53de@pengutronix.de
 
--- 
-2.39.5
+Changes in v2:
+- Dropped "ASoC: dt-bindings: asahi-kasei,ak4458: Reference common DAI
+  properties", applied to broonie/sound for-next (Thanks, Mark)
+- Updated description of the reset-gpios property in sja1105 binding to
+  address the issues of connecting this pin to GPIO (Thanks, Vladimir)
+- Added the fec, switch and phy for RJ45 onboard ethernet after
+  successful testing
+- Consistently use interrupts-extended
+- Link to v1: https://lore.kernel.org/r/20250910-imx8mp-prt8ml-v1-0-fd04aed15670@pengutronix.de
 
+---
+Jonas Rebmann (2):
+      dt-bindings: arm: fsl: Add Protonic PRT8ML
+      arm64: dts: add Protonic PRT8ML board
+
+ Documentation/devicetree/bindings/arm/fsl.yaml  |   1 +
+ arch/arm64/boot/dts/freescale/Makefile          |   1 +
+ arch/arm64/boot/dts/freescale/imx8mp-prt8ml.dts | 504 ++++++++++++++++++++++++
+ 3 files changed, 506 insertions(+)
+---
+base-commit: 3a8660878839faadb4f1a6dd72c3179c1df56787
+change-id: 20250701-imx8mp-prt8ml-01be34684659
+
+Best regards,
+--  
+Jonas Rebmann <jre@pengutronix.de>
 
 
