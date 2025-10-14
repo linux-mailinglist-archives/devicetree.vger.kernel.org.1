@@ -1,160 +1,139 @@
-Return-Path: <devicetree+bounces-226457-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226458-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id F368FBD8CB7
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 12:44:36 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A188CBD8CD2
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 12:46:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id B40944F51B9
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 10:44:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5DEED3E5BB8
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 10:46:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 231702F99A3;
-	Tue, 14 Oct 2025 10:44:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1BDF2F8BC0;
+	Tue, 14 Oct 2025 10:46:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lhv2rd2W"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="kF0vJiJD";
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="OYLagKI8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com [209.85.128.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 798D52F7AD6
-	for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 10:44:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98ADA2D8DAF;
+	Tue, 14 Oct 2025 10:46:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760438673; cv=none; b=gVB07hb7bpzj2YsoAsoeu28IvmyFERuOPUD2tqCMWILfvfP92SNI3hare4dl2mjSINkau/b1fae1OHtwqD6PH5/Dw6WyqF3ogYmZg3yMQNmulnxfYCmbV5TE05waXkPXpbxyOez04ciF7d0e0H6LfCk+K7OdmuoJwSfCHtM8+hA=
+	t=1760438811; cv=none; b=FVxmkOuq3HSJLnOADiHvtr1F2q/HJDUhpv7uzSup0PPTyyMd40qHP+RyZvJaPzyUV2OYt1ohR0erCjUqyPrWnykdCl4hismgwe5VSTlrMIl5z2OVviiyDx/1cozwmc8ktFLlXJU66/MRxsZeyabNAKa+7lAbxG47q3f5YM5cenk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760438673; c=relaxed/simple;
-	bh=s3P3SxQQQdWjgG+0wxnCeO4S365wlkK1npK4z7KMX4I=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=cuAdhSugrBuUUp+FOpFtDFNfo35/AKbpydciBmXzYjWH78eOV2ok1rT9WOrrFwckhfto2mbUibUKiP4uWX6mj7rU58STV08D3yUaRTm0POMoKLGh5v7h5/8V+GH2fbS+Qd+dUMRDiBqn5q9jSjkSFcyoqBFF6TEXvUF8VdTRzOA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=lhv2rd2W; arc=none smtp.client-ip=209.85.128.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-78142734156so14967627b3.2
-        for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 03:44:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1760438670; x=1761043470; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=THAYM86a8lGfJC89oRqulnlUSAmMtqdsc6KSglKPv6Q=;
-        b=lhv2rd2WH9CZuFONezi4NEyOx2PohReRg+WuXsteVAy3mTZnfIBBL0yKNW6pshaf+c
-         L1uouiMZwnO0gI2ActMrSsqF5O5g3GTH8FyddAYuOPjB/ZnegPG6gf4V+cfPKztQme66
-         Y1/TbVe+Nxje5DEYZ9rRCEx7L6qFh+BKONDI6IxppbCCcDXmsqeovfq/f7CnFZo9bMwF
-         XWvSPpYpWsxexsIIH26rE9POCgGKjvhKNOtEkIFxYYueUl9CgF+xh6hRf6cURJufu1L/
-         YATa3cFJOo4HKE/Qg1vnoj3wIGpU9/gR77YBAi6FSIqWe3wbKZVM9JzapJCqH0yS1fr/
-         nFfw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760438670; x=1761043470;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=THAYM86a8lGfJC89oRqulnlUSAmMtqdsc6KSglKPv6Q=;
-        b=h/fP4cN3HFRHNuU05K/1nTwMg/gC2vdP1/GWCLUdAJHOxmAIhzW+XnkH6i4IEHY5Ti
-         lLsHt+Zvmbt8sKNZc5Zpazj0eS5Ll8YZtbADrBdhKPkXYOn9NXKNpefVtRgLuhpmhDA8
-         dXrcmXL1vFazkN2Ea1qzFjKpsZla5NF3XIg1jnm+0awaNhKwCbl9kvL23r0+IOxjRlEW
-         moeamzDPKoX82FzyAjphmCcfL+LMdSjc2tV0fF2gt9k59YC+xdy1V88zKcmyLhVCtMRQ
-         goRCHvxtek5xpQ5EtWXKHYUJJNRN4Z6b1mmXn3dCllBITYjurEdRb+Xd+dc+Q7zFyBeo
-         CwuQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVbiRCQdP8H22iu4NlgDzaqVf6XZAqNglbYPC4CrgngQ+y7Cj92XvGJ48lAsSA7gyy8w8ypeaEdEJ0Q@vger.kernel.org
-X-Gm-Message-State: AOJu0YxqQrkekQhZ+aGyl2jWUNN5Rrd+Uz9NE2PelM/AsO5SPtPSsjJL
-	+gVRziZxld9LVGUKwirXPMk76kMVZp5DjCAvF3YCeEVyp4oWuTMdd+H3mOuE0NwO/t7Q0Zp8NOz
-	Zz8eTs1Pl9TFlASoQs9z0O/2A4/By5DkNbIuTKb6Xkw==
-X-Gm-Gg: ASbGncuyewTrFtX30M+Qm4iUeZ1SPtnSVlLZmbEhjo3g8qqe6Gzj0XgYgBObCmI3Yl3
-	ruUKPzmTDb/KWCjCZ5rDbu0hlt3K/QPBLEY6mtOkwcNTfNip6lM5lic+qTm2SXpjZ4OX2rIK5x8
-	QeScq+VkXyW40O3vwZnHWVIYrZkK/alK9bpkNDweXpZ9IOM/7LzVjjsXPTnuBecA9N85moUc3mY
-	iQNYjILRI/SIC8wT6P8/a14uEDkOw==
-X-Google-Smtp-Source: AGHT+IFp4+6M8ipAZ5PvzMBFmhPMOi8dNCbnfx7iCHUB+I0mJ3szARsJfZuBKpYg4FajfdIRV8gYXT4SlaoN9/M/6LQ=
-X-Received: by 2002:a05:690e:182:b0:63c:f5a7:400 with SMTP id
- 956f58d0204a3-63cf5a70a44mr7374154d50.68.1760438670439; Tue, 14 Oct 2025
- 03:44:30 -0700 (PDT)
+	s=arc-20240116; t=1760438811; c=relaxed/simple;
+	bh=J5cGKQ7ib6j+foxfpPAYFC5BN5rwa+rlmWWDA+c+YNo=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=plCG/LQ05fVwt/T7LIOA4qezAvri3WH8OfWl2DWmgbPMrkffGEplQqy/wZNmPmtwfGy37LbHClke83LRBtaBW3KYV3wd6L3zn0Fqt79Nig+m0EEg1VKrv9B4XLO2g/FkajC59bQAYWl9D+5gjueN/cphd9cpRHF4GPKwWGLnalo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=kF0vJiJD; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=OYLagKI8; arc=none smtp.client-ip=80.241.56.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp1.mailbox.org (smtp1.mailbox.org [10.196.197.1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4cm9rR3KXhz9tSq;
+	Tue, 14 Oct 2025 12:46:47 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1760438807;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=SWWrsBpR7aC/HdPqmhuSETjy0DLiu2RVjUmznP1EZ3g=;
+	b=kF0vJiJDcogCNv0cFOdvVpENtqcMPoNYg7j0M6RLIhIoslGj8vRCssoyBtR5d/0gQ0/RDF
+	pcx/qqSQcQR8mbPICIt3akYSahBxsk79iqhs6TssIgti3SkDllbDViikMUbKwD7Tt2Q02K
+	FiYQrvOwAq8hPvo9dBdqwt0lRpSPFcCy3NTitTvRZdLpVd/cuBvr/IZ5bLjHfm3mGk5d70
+	EIb8fSsjXHOsIYy8ggnXflGDsJlSkRNjPcheIyImLUZxQ32nqFkEjIc04jRPJX1ajaaWUB
+	6EpzKJ32ElcgJ1rM3/TlQg02OJcjo/Kb+afhXXasc/7TKHzDwedncjC42uJJyA==
+From: Marek Vasut <marek.vasut@mailbox.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1760438805;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=SWWrsBpR7aC/HdPqmhuSETjy0DLiu2RVjUmznP1EZ3g=;
+	b=OYLagKI835qdAPt0LeDDDPypVvLtva5oIsZ2dN7fq6EYxTnXx//ww9kfnotHojaQPpG3DZ
+	nnyJbOlp7w86QT8+r4pDht3mRFNNgf+8EM9rHy1xZlijHRYf5YDcaBNRrZYyExEFdxtNsj
+	LX47wmSskHe/aPmU+kZKGsnroDNppEJBZCitZUExfCK52uyliAOJojk7KrP94nZ+Hyr9xX
+	GQhU4wjwVnAik6jiaBZEquo3UZT9o1u7+Qhzlo9Hf2VWPx8a1s2K4vkOc4stkssmXQ3hQ1
+	gcYFA2xACN38Q7j5+KDsCpzOeYPPRgxhexDLG5+Ay16kVJctlXA/DzhwsI8AGg==
+To: linux-clk@vger.kernel.org
+Cc: Marek Vasut <marek.vasut@mailbox.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Rob Herring <robh@kernel.org>,
+	Stephen Boyd <sboyd@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org
+Subject: [PATCH] dt-bindings: clk: rs9: Fix DIF pattern match
+Date: Tue, 14 Oct 2025 12:46:03 +0200
+Message-ID: <20251014104626.10682-1-marek.vasut@mailbox.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251014015712.2922237-1-gary.yang@cixtech.com> <20251014015712.2922237-2-gary.yang@cixtech.com>
-In-Reply-To: <20251014015712.2922237-2-gary.yang@cixtech.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Tue, 14 Oct 2025 12:44:15 +0200
-X-Gm-Features: AS18NWAu8xsDVfGUGNQZd3TKgpRR7nZFuc-hAgCzcqzNK32irDscIbUpkUaITw8
-Message-ID: <CACRpkda-2BNj+Pt2kS9u_bbr41bsWGRGDqNd3EXVnys-xSqg0g@mail.gmail.com>
-Subject: Re: [PATCH v3 1/3] dt-bindings: pinctrl: Add cix,sky1-pinctrl
-To: Gary Yang <gary.yang@cixtech.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	cix-kernel-upstream@cixtech.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-MBO-RS-ID: 7e34b1579a2a1b96ac5
+X-MBO-RS-META: s6uxqg19jh1au34je3g8qwdwc9oxoxzm
 
-Hi Gary,
+The pattern match [0-19] is incorrect and does not cover range of 0..19,
+use pattern 1?[0-9] to cover range 0..19 instead. Update the example to
+validate all parts of the pattern match and prevent such failures in the
+future.
 
-thanks for your patch!
+Fixes: 26c1bc67aa2f ("dt-bindings: clk: rs9: Add Renesas 9-series I2C PCIe clock generator")
+Signed-off-by: Marek Vasut <marek.vasut@mailbox.org>
+---
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Michael Turquette <mturquette@baylibre.com>
+Cc: Rob Herring <robh@kernel.org>
+Cc: Stephen Boyd <sboyd@kernel.org>
+Cc: devicetree@vger.kernel.org
+Cc: linux-clk@vger.kernel.org
+Cc: linux-renesas-soc@vger.kernel.org
+---
+ .../devicetree/bindings/clock/renesas,9series.yaml    | 11 ++++++++++-
+ 1 file changed, 10 insertions(+), 1 deletion(-)
 
-On Tue, Oct 14, 2025 at 3:57=E2=80=AFAM Gary Yang <gary.yang@cixtech.com> w=
-rote:
+diff --git a/Documentation/devicetree/bindings/clock/renesas,9series.yaml b/Documentation/devicetree/bindings/clock/renesas,9series.yaml
+index af6319697b1c0..a85f78ce29702 100644
+--- a/Documentation/devicetree/bindings/clock/renesas,9series.yaml
++++ b/Documentation/devicetree/bindings/clock/renesas,9series.yaml
+@@ -62,7 +62,7 @@ properties:
+     description: Output clock down spread in pcm (1/1000 of percent)
+ 
+ patternProperties:
+-  "^DIF[0-19]$":
++  "^DIF1?[0-9]$":
+     type: object
+     description:
+       Description of one of the outputs (DIF0..DIF19).
+@@ -107,6 +107,15 @@ examples:
+             DIF0 {
+                 renesas,slew-rate = <3000000>;
+             };
++
++            /* Not present on 9FGV0241, used for DT validation only */
++            DIF2 {
++                renesas,slew-rate = <2000000>;
++            };
++
++            DIF19 {
++                renesas,slew-rate = <3000000>;
++            };
+         };
+     };
+ 
+-- 
+2.51.0
 
-
-> +# Client device subnode's properties
-> +patternProperties:
-> +  'pins$':
-> +    type: object
-> +    additionalProperties: false
-> +    patternProperties:
-> +      '(^pins|pins?$)':
-> +        type: object
-> +        additionalProperties: false
-> +        description:
-> +          A pinctrl node should contain at least one subnodes representi=
-ng the
-> +          pinctrl groups available on the machine. Each subnode will lis=
-t the
-> +          pins it needs, and how they should be configured, with regard =
-to muxer
-> +          configuration, pullups, and drive strength.
-> +
-> +        properties:
-> +          pinmux:
-> +            description:
-> +              Values are constructed from pin number and mux setting and=
- are
-> +              defined as macros in arch/arm64/boot/dts/cix/sky1-pinfunc.=
-h directly.
-> +
-> +          bias-disable: true
-> +
-> +          bias-pull-up: true
-> +
-> +          bias-pull-down: true
-> +
-> +          drive-strength:
-> +            description:
-> +              Can support 15 levels, from DS_LEVEL1 to DS_LEVEL15.
-> +              defined as macros in arch/arm64/boot/dts/cix/sky1-pinfunc.=
-h.
-> +
-> +        required:
-> +          - pinmux
-
-Can't you just include both pinmux-node.yaml and pincfg-node.yaml
-to get validation from the generic schemas?
-
-'pins$':
-  type: object
-  additionalProperties: false
-  patternProperties:
-    '(^pins|pins?$)':
-      type: object
-      $ref: /schemas/pinctrl/pinmux-node.yaml
-      $ref: /schemas/pinctrl/pincfg-node.yaml
-      additionalProperties: false
-
-Something like this, I never get this right before actually testcompiling..=
-.
-
-Yours,
-Linus Walleij
 
