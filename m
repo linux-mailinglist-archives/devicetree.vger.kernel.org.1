@@ -1,167 +1,223 @@
-Return-Path: <devicetree+bounces-226606-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226601-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B934BDA183
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 16:42:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1133BBDA141
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 16:41:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7B3943A5BBD
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 14:41:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C8D21403B51
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 14:39:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 801EC30277E;
-	Tue, 14 Oct 2025 14:36:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFE1930147C;
+	Tue, 14 Oct 2025 14:36:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="cPd2oBQg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="L1xRW4nT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC85330217E;
-	Tue, 14 Oct 2025 14:36:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85A292FE07E;
+	Tue, 14 Oct 2025 14:36:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760452606; cv=none; b=XmPG7S0Q2u8c4E3igXhouLdB1KA3s2RxK+IuNdG/FJUSbQ4DHdGnDYsWhQTrG19phCPHvMwN2uVt/4A8YuatThViE6ZG7DwBCv1fLh9oT97L+ngMPWnZHu5SI2dDqeUUIMPM2Rkiw0ayyWe4sI4Tmi0SR8WihH83fH4EVH2xGFg=
+	t=1760452598; cv=none; b=XWFkxRs7DGJtqfBzpwjH6XHoE1irhLzjgSkalivhDCku1tBGJbKFtEtOskfHsPYhzy579wUAtocsjmXu4cipq3DmHtBVM/paGjP0RF/l7L91Z0+RcK2UVh/QBpYBR80cqmdLEAHRSMR0KDmlltpmenejhd4xh9jqEL1/6pZs0Ow=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760452606; c=relaxed/simple;
-	bh=GtG58/enpOmzqNC+68Zu2nFR08TJRD8qy0yK2jlXpGE=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=SeZ340SaGPjS6Y/Xb9Kns7HH4CDhecj9OSNzl0beAURCJiakHGP4q60TjRmhdYWNmv72juVy3fQP/5yx60OsdLBjtzBwjyPfvNyPRV8B8G45EtbM8eiMm8ycFqBCUoXo23eschCFZAXhfQ8P5EDBKFezvv5fR1m0owJpZ58pyE4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=cPd2oBQg; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59E87KUK020052;
-	Tue, 14 Oct 2025 14:36:38 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	HHp72nypWYixrH9s++XlvQ+W5L9Rj75DBjIx86zvWS0=; b=cPd2oBQgS9k/s5sr
-	28TncrSrhyxpOUOriVBHUBrcHmorq+eJM7Z6VlUOkrlQZH+3RQ2zlJLW8XGNyRIl
-	e5w9A7oTbSsknpcqI5LNfcfythc+lB9zWo8kLgoIJD3gpBcUty03d17vO868MCyJ
-	s8pqLegLzp59+nqBroX/kWW4T44Q24iDEEBEY6fN9G2zc70zCFTtRTqZcSs8sMpY
-	1l7BeI3NDQBac1aj/6SiHPritVEHMtquysSx/zbInvWgT/kWo4PJsj3rd9eLS5pP
-	IELO8uQYsWqc0kAPTtGB+bP3n+wT8eyZr5EzAGF7yiin0b5Wec131M3CB/SyBN30
-	qTOtaA==
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49qg0c0t2f-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 14 Oct 2025 14:36:38 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 59EEabv5007619
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 14 Oct 2025 14:36:37 GMT
-Received: from nsssdc-sh01-lnx.ap.qualcomm.com (10.80.80.8) by
- nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.24; Tue, 14 Oct 2025 07:36:32 -0700
-From: Luo Jie <quic_luoj@quicinc.com>
-Date: Tue, 14 Oct 2025 22:35:35 +0800
-Subject: [PATCH v7 10/10] arm64: defconfig: Build NSS clock controller
- driver for IPQ5424
+	s=arc-20240116; t=1760452598; c=relaxed/simple;
+	bh=+VfmoY4o0Igi3qnQwAAWFr+iU1sBQSfgIaPUV+gsUTQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=c2RZZ6sM6HXeaJ2JY3mrfHnFmtphk9OZe1ChovVWbMBvduohUYk/9CfWmAzIwQCuYOaJ3yTeH0EckYGJlmWAKq1Rfkb3RE0w6U3/Zf+dCCV4+ou2Pr/Gb3tLfRQhHSNegdkQkWC+z8Nqwbigg3gSl4Bv6X7C+Pr5QSJxuDLf8iY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=L1xRW4nT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3381CC116C6;
+	Tue, 14 Oct 2025 14:36:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1760452598;
+	bh=+VfmoY4o0Igi3qnQwAAWFr+iU1sBQSfgIaPUV+gsUTQ=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=L1xRW4nTtH8wLSueESBBMa2mHxBJIWmp/TZKr8dJp/9IB2N4g19+igfdtu4ZjeEg3
+	 jWukgT9p/nH5OmIOStTuqaAkG0CfuPtfF0NsEF2nmv8XsyqjnZfpOhumj0M7rq05IG
+	 SUS/un85uZf3Km6K84qjiC3CZ2GZyirWIxCEKVFpLTHqz1dh2+1D0wZ6xBzd9155P5
+	 vJmFbsRhU1cVWeC1MRjl723gGQOlAqUyI2B4RJlsD8FboY8OVtnrmMGFcgMA0+AR5B
+	 NOmvsfQJorF4ruCP2b2UyColP4i2LavtncT+x8oaE4Bmzhqz+IsMTUFDXdQNhIbkaJ
+	 66ijl/mLVHnUQ==
+From: Conor Dooley <conor@kernel.org>
+To: linus.walleij@linaro.org
+Cc: conor@kernel.org,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-kernel@vger.kernel.org,
+	linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Valentina.FernandezAlanis@microchip.com
+Subject: [PATCH v2 3/5] dt-bindings: pinctrl: document polarfire soc iomux0 pinmux
+Date: Tue, 14 Oct 2025 15:35:36 +0100
+Message-ID: <20251014-ravioli-ramrod-84b478186bb7@spud>
+X-Mailer: git-send-email 2.51.0
+In-Reply-To: <20251014-retype-limit-e6cbe901aa07@spud>
+References: <20251014-retype-limit-e6cbe901aa07@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20251014-qcom_ipq5424_nsscc-v7-10-081f4956be02@quicinc.com>
-References: <20251014-qcom_ipq5424_nsscc-v7-0-081f4956be02@quicinc.com>
-In-Reply-To: <20251014-qcom_ipq5424_nsscc-v7-0-081f4956be02@quicinc.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette
-	<mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        "Varadarajan
- Narayanan" <quic_varada@quicinc.com>,
-        Rob Herring <robh@kernel.org>,
-        "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        "Anusha Rao" <quic_anusha@quicinc.com>,
-        Devi Priya
-	<quic_devipriy@quicinc.com>,
-        Manikanta Mylavarapu
-	<quic_mmanikan@quicinc.com>,
-        Georgi Djakov <djakov@kernel.org>,
-        Philipp Zabel
-	<p.zabel@pengutronix.de>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Konrad
- Dybcio <konradybcio@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski@linaro.org>,
-        <devicetree@vger.kernel.org>, <linux-pm@vger.kernel.org>,
-        <netdev@vger.kernel.org>, <quic_kkumarcs@quicinc.com>,
-        <quic_linchen@quicinc.com>, <quic_leiwei@quicinc.com>,
-        <quic_pavir@quicinc.com>, <quic_suruchia@quicinc.com>,
-        Luo Jie <quic_luoj@quicinc.com>
-X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1760452536; l=836;
- i=quic_luoj@quicinc.com; s=20250209; h=from:subject:message-id;
- bh=GtG58/enpOmzqNC+68Zu2nFR08TJRD8qy0yK2jlXpGE=;
- b=xPw5JggRsSsxPiGvMeu2KUDJacEyHNxsTUi7/9PUSl3CxojphL0tcSeMbEBfhyqhJ3kv/joUB
- 2kM3WpZW/szBjdLkI7OEqvIotYRZGFlGDwT8OiId5yAubkbnTfXNKIs
-X-Developer-Key: i=quic_luoj@quicinc.com; a=ed25519;
- pk=pzwy8bU5tJZ5UKGTv28n+QOuktaWuriznGmriA9Qkfc=
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: -1x-ssqL_iPiD0MGoZW0lIkUBUJ_FG21
-X-Proofpoint-ORIG-GUID: -1x-ssqL_iPiD0MGoZW0lIkUBUJ_FG21
-X-Authority-Analysis: v=2.4 cv=eaIwvrEH c=1 sm=1 tr=0 ts=68ee5ff6 cx=c_pps
- a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=KKAkSRfTAAAA:8 a=COk6AnOGAAAA:8
- a=ikIlBLl75NxfxiEf-eQA:9 a=QEXdDO2ut3YA:10 a=cvBusfyB2V15izCimMoJ:22
- a=TjNXssC_j7lpFel5tvFf:22 a=cPQSjfK2_nFv0Q5t_7PE:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDExMDAyMiBTYWx0ZWRfX62wdkgCCheoX
- CMeGmVbGeTYmzNw6WWUbaHjaR2tjakPoMwpOBb91TX3m8dIdloyrGHSJ2N+yfAd2cLZhAk6vlrc
- MqcHchmqcZrhrHfmZcSUj6iHPfjY2k96zbkNjF/ERawR0sEEQtnXz7z9OYBYTua8EvdpEqpiC5m
- SJ5MEGb4gmch0gP+zSU6IExjdMh5Dpg8aZ4RdiJV8N2T1TRcHEQxEuJjYLzOgyxMs5Q1nTbHcwA
- M/oMiYCOc64laXmeusgt7SPldwucbClHsFLbmOW2T+8OrIKDS8cAIiZ7o/yQzNxK4eVbINBz4yg
- qNWqOP38GdWEXA04A7CezHs+WiefFDGXIBEgN3gLYUGsPRCEvWAGPvWObRC1vKuqxNu97hK4+ar
- QlAxgRJPFUzmW+GtPnVg68R6h3E3Dw==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-10-14_03,2025-10-13_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 priorityscore=1501 spamscore=0 impostorscore=0 phishscore=0
- adultscore=0 lowpriorityscore=0 clxscore=1015 suspectscore=0 malwarescore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2510020000 definitions=main-2510110022
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4774; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=5sn1YstE+H7UqUTB9GFUwVJdl/TH6yEqpFLyqPJF4eU=; b=owGbwMvMwCVWscWwfUFT0iXG02pJDBnv4s998JBZ63hlw6Fnez/vfRRnuGtfRVXZGs0P7xc+f O37/8fd1o5SFgYxLgZZMUWWxNt9LVLr/7jscO55CzOHlQlkCAMXpwBMxEmHkWHdNKO6gy7fHjd8 V1yQMpP1LIPHu/MCbwUsv9w8qKbZ/j2CkeGKYllS6hb/KZ3a6r3suxwdf12YUVWeN/sgf0TOM3s rAyYA
+X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
+Content-Transfer-Encoding: 8bit
 
-NSS clock controller is needed for supplying clocks and resets to the
-networking blocks for the Ethernet functions on the IPQ5424 platforms.
+From: Conor Dooley <conor.dooley@microchip.com>
 
-All boards based on the IPQ5424 SoC will require this driver to be enabled.
+On Polarfire SoC, iomux0 is responsible for routing functions to either
+Multiprocessor Subsystem (MSS) IOs or to the FPGA fabric, where they
+can either interface with custom RTL or be routed to the FPGA fabric's
+IOs. Document it.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Luo Jie <quic_luoj@quicinc.com>
+Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
 ---
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+ .../microchip,mpfs-pinctrl-iomux0.yaml        | 88 +++++++++++++++++++
+ .../microchip,mpfs-mss-top-sysreg.yaml        | 13 ++-
+ 2 files changed, 100 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/microchip,mpfs-pinctrl-iomux0.yaml
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index e401915e2f2f..d4fc8e6683cb 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -1414,6 +1414,7 @@ CONFIG_IPQ_GCC_5424=y
- CONFIG_IPQ_GCC_6018=y
- CONFIG_IPQ_GCC_8074=y
- CONFIG_IPQ_GCC_9574=y
-+CONFIG_IPQ_NSSCC_5424=m
- CONFIG_IPQ_NSSCC_9574=m
- CONFIG_MSM_GCC_8916=y
- CONFIG_MSM_MMCC_8994=m
-
+diff --git a/Documentation/devicetree/bindings/pinctrl/microchip,mpfs-pinctrl-iomux0.yaml b/Documentation/devicetree/bindings/pinctrl/microchip,mpfs-pinctrl-iomux0.yaml
+new file mode 100644
+index 000000000000..2b718de83a83
+--- /dev/null
++++ b/Documentation/devicetree/bindings/pinctrl/microchip,mpfs-pinctrl-iomux0.yaml
+@@ -0,0 +1,88 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/pinctrl/microchip,mpfs-pinctrl-iomux0.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Microchip PolarFire SoC iomux0
++
++maintainers:
++  - Conor Dooley <conor.dooley@microchip.com>
++
++description:
++  iomux0 is responsible for routing some functions to either the FPGA fabric,
++  or to MSSIOs. It only performs muxing, and has no IO configuration role, as
++  fabric IOs are configured separately and just routing a function to MSSIOs is
++  not sufficient for it to actually get mapped to an MSSIO, just makes it
++  possible.
++
++properties:
++  compatible:
++    oneOf:
++      - const: microchip,mpfs-pinctrl-iomux0
++      - items:
++          - const: microchip,pic64gx-pinctrl-iomux0
++          - const: microchip,mpfs-pinctrl-iomux0
++
++  reg:
++    maxItems: 1
++
++  pinctrl-use-default: true
++
++patternProperties:
++  '^mux-':
++    type: object
++    additionalProperties: false
++
++    properties:
++      function:
++        description:
++          A string containing the name of the function to mux to the group.
++        enum: [ spi0, spi1, i2c0, i2c1, can0, can1, qspi, uart0, uart1, uart2,
++                uart3, uart4, mdio0, mdio1 ]
++
++      groups:
++        description:
++          An array of strings. Each string contains the name of a group.
++        items:
++          enum: [ spi0_fabric, spi0_mssio, spi1_fabric, spi1_mssio, i2c0_fabric,
++                  i2c0_mssio, i2c1_fabric, i2c1_mssio, can0_fabric, can0_mssio,
++                  can1_fabric, can1_mssio, qspi_fabric, qspi_mssio,
++                  uart0_fabric, uart0_mssio, uart1_fabric, uart1_mssio,
++                  uart2_fabric, uart2_mssio, uart3_fabric, uart3_mssio,
++                  uart4_fabric, uart4_mssio, mdio0_fabric, mdio0_mssio,
++                  mdio1_fabric, mdio1_mssio ]
++
++    required:
++      - function
++      - groups
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    soc {
++      #size-cells = <1>;
++      #address-cells = <1>;
++
++      pinctrl@200 {
++        compatible = "microchip,mpfs-pinctrl-iomux0";
++        reg = <0x200 0x4>;
++
++        mux-spi0-fabric {
++          function = "spi0";
++          groups = "spi0_fabric";
++        };
++
++        mux-spi1-mssio {
++          function = "spi1";
++          groups = "spi1_mssio";
++        };
++      };
++    };
++
++...
+diff --git a/Documentation/devicetree/bindings/soc/microchip/microchip,mpfs-mss-top-sysreg.yaml b/Documentation/devicetree/bindings/soc/microchip/microchip,mpfs-mss-top-sysreg.yaml
+index 1ab691db8795..39987f722411 100644
+--- a/Documentation/devicetree/bindings/soc/microchip/microchip,mpfs-mss-top-sysreg.yaml
++++ b/Documentation/devicetree/bindings/soc/microchip/microchip,mpfs-mss-top-sysreg.yaml
+@@ -18,10 +18,17 @@ properties:
+     items:
+       - const: microchip,mpfs-mss-top-sysreg
+       - const: syscon
++      - const: simple-mfd
+ 
+   reg:
+     maxItems: 1
+ 
++  '#address-cells':
++    const: 1
++
++  '#size-cells':
++    const: 1
++
+   '#reset-cells':
+     description:
+       The AHB/AXI peripherals on the PolarFire SoC have reset support, so
+@@ -31,6 +38,10 @@ properties:
+       of PolarFire clock/reset IDs.
+     const: 1
+ 
++  pinctrl@200:
++    type: object
++    $ref: /schemas/pinctrl/microchip,mpfs-pinctrl-iomux0.yaml
++
+ required:
+   - compatible
+   - reg
+@@ -40,7 +51,7 @@ additionalProperties: false
+ examples:
+   - |
+     syscon@20002000 {
+-      compatible = "microchip,mpfs-mss-top-sysreg", "syscon";
++      compatible = "microchip,mpfs-mss-top-sysreg", "syscon", "simple-mfd";
+       reg = <0x20002000 0x1000>;
+       #reset-cells = <1>;
+     };
 -- 
-2.34.1
+2.51.0
 
 
