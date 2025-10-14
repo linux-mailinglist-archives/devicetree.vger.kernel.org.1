@@ -1,175 +1,177 @@
-Return-Path: <devicetree+bounces-226421-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226422-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 258EABD88C5
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 11:48:11 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6B87BD896E
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 11:54:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 539F61923CDA
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 09:48:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4B89C541C1E
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 09:50:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6AD8305966;
-	Tue, 14 Oct 2025 09:46:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 491622F49E4;
+	Tue, 14 Oct 2025 09:49:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Ob4eJLwL"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="IoHj+x5W"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20E2C3093AE
-	for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 09:46:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B67A42E2EF8;
+	Tue, 14 Oct 2025 09:49:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760435202; cv=none; b=tlWKbEBk26+7r194np+VZhi5kJWxqfKuNq06pRWVo0meZvtjxn8D1CKHydEmgGnf+ZNz5GfzVqw56monxEajzcetgBpkWqSV57oGHvX89AncTtsfY7MyUu/0hCj4Tg9l3v25rxshaGPn98IuVByrJy+KTXZeLjojd1jcLjypEwc=
+	t=1760435379; cv=none; b=WTBb7pdaQ6MXNtl7moAibc0buz/+V2SId0w1d87T9d3wL6cGWEoD9ZpVfQEtGgPo0gtuEYmKL5/nMoA7/CVXB5rAycthSEdBKJyi8ErTz2UhjMXTTVqIknWuBaLQwdnqDnn2+Tpz+4iWqESmAn3L/oEOi9wNqqGOMUGzMRhiX/0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760435202; c=relaxed/simple;
-	bh=lMgoKm6fFriFGTk58UsXdD/s6UE1JLiRxIhK+/XA3EQ=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Nl9ffI13DtYv6Ln/8Jc65CUYJNoP1Vk5DBg1tAIRF1Sw1Y4LF/UHe7yS8pYLKJXXysUMRf9Qx7YYQPyM9GaIavxYoA15a5zOKjQwsfji+pnjMwHLl71306k0KMTQqEHinOgp5K5YMKnDj5ey3R4YE39fvj2lN86U2M58RhifquI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Ob4eJLwL; arc=none smtp.client-ip=209.85.128.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-46e2e363118so43447685e9.0
-        for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 02:46:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1760435198; x=1761039998; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=xUaeped6AYTKx4zcDVin/2JtzA4/FqNOiGDU51UI8HM=;
-        b=Ob4eJLwL1jy5pdRhSy987E5TWW35fjW5cctory4ljaIm6T/OVyYBzqaEBwf65aIFon
-         tnFru3b/yIYBGGNisorW8FtjK/q1mmXAlmOHPPI5El/x6o8JPqiXOPzGttdHX2UC5pVB
-         SRgeHMu3PFfLg6ubDEEKzlKkuC9OzOGZZ4DO2aAIoTkneiLzkj7fmXqE36P//IWzR1DQ
-         n3inH0D6W4LBTDgLYQOJxod1DJSYnIsnK+QUjPVjDwOAywSvBM2hZpS69GDTaer1osZQ
-         HKizZA8wEJuVgHFo/R/YHGMjPdO5r8P/cEIaoGMvPZKDDpMfCK34v2fMcQc7KXcWOH7j
-         24rA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760435198; x=1761039998;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=xUaeped6AYTKx4zcDVin/2JtzA4/FqNOiGDU51UI8HM=;
-        b=wifWg2P+VJhV57UM/8xzdI8my/PkEmby18APELkkWbaAstb+O4AxkeSeXm7+p1kbkY
-         sjTiJ8wuYQhlN1aaoIlT2QVt9Halu9bxCtZOQHcLeQd10PIsqVEKB6LSo0T3UwnCVh6T
-         f38abAiloLswVHjo+SWrQ/M/VJCfbZEiEMMY6R3d/kGxdV/6YofQXvQmikWSbZEHX3u2
-         Y3LRh8nRuU3cJgoZeN5DZqvJCOtwckHaRLuP1kyE7CTDV2y/lAm6NRqIMkQpbIDxzSb8
-         mleIRmv5Rq4oUwQYU9Hr8WGPpsgCX4Gxty82opObNzTQ28J6crogFc7kyIBjbCVFtFPo
-         kNBw==
-X-Forwarded-Encrypted: i=1; AJvYcCVVppg+BvsLuy7MF8ZPPr5xJAklDhsBExB92Qe3EEl2CiqMZjBNvwmwI8BoQM/+Zq5xF7KSz5skS55K@vger.kernel.org
-X-Gm-Message-State: AOJu0YyCEZ3F5sICtkuX7CZ/EY7KwxVcqZuhCHGbWTywRAwJw8BROjay
-	/vtzPgxL6rZ/HGRVZ1CuEczebrpWFidutVepNwEIG0AIb6kjXYsEoUm6PnJucsSkmnc=
-X-Gm-Gg: ASbGncsddsdByNErVS6okk2wCsaOin3g4P6RPzCc2X0gi2GKXLQLsdxyIAEQRbi9PFW
-	cy1L9t3qetnR0qlNYxrjDpQ6czfvqxwIm9y4IKvOP6py0kXy/sscV2qeUJGAXI4evgnmNm3GXsb
-	hc59b1StrdAiFtdb2FBjBslxoiMz5Wc7DZ2yZ+n29ckCFN5CWdUjyudPXItOwJZ2uiYFUjJKciO
-	1VePaNCGEx6FtEKvW1l3GKxhjp7AstCL1RvZjS2j5A5NAsIba+FfA/SDk5/712pBkV6FqOoh2w6
-	cSbEt/eX6XBTmcZCwFM7limAR4bsqfoAZ6CzHDeo0k1DbzmZs+fVec0d+tRLrSKIchaWh2es8ZA
-	mLiN2L4u97kReZ6RfBhPHHjepHWtq9FdQja7iLeO04iG/jNSZT+Dxy9CPuemg80nz
-X-Google-Smtp-Source: AGHT+IHF94BpDjyQHISB3YpTos3ClDnO2QEk9OvNMWaiACfwfHscIkvvEEFe8GflJANQQTK/kZpUVA==
-X-Received: by 2002:a05:600c:c096:b0:46e:2cfe:971c with SMTP id 5b1f17b1804b1-46fa9b937e1mr113989105e9.0.1760435198283;
-        Tue, 14 Oct 2025 02:46:38 -0700 (PDT)
-Received: from hackbox.lan ([86.121.7.169])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-426ce5e8b31sm22866442f8f.54.2025.10.14.02.46.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Oct 2025 02:46:36 -0700 (PDT)
-From: Abel Vesa <abel.vesa@linaro.org>
-Date: Tue, 14 Oct 2025 12:46:05 +0300
-Subject: [PATCH RESEND v3 3/3] arm64: dts: qcom: Add missing TCSR ref clock
- to the DP PHYs
+	s=arc-20240116; t=1760435379; c=relaxed/simple;
+	bh=8ZOdtFHoqv/rQpLoY48GmoTDS5BQalfi24BFCB1h7e4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=gLeThKLmsaqXDEVPtSChhGI7uCmo0BX/I4InD7YG/BrtqHgYs55T2Xa67QzhPQittW2rQXPZjRBkjQHulc32+LPYDB4jRc2aavqr89G9OGUeQyZITQyCHbTKXS+dfXil/srhb95eS/Gl8NUWiiSxXF7aKe1K+wyT2I1jduWwj1M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=IoHj+x5W; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from mail01.disroot.lan (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id D255B260A3;
+	Tue, 14 Oct 2025 11:49:27 +0200 (CEST)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id uovdA5KCQ9Xb; Tue, 14 Oct 2025 11:49:27 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1760435367; bh=8ZOdtFHoqv/rQpLoY48GmoTDS5BQalfi24BFCB1h7e4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=IoHj+x5WYyeUqFeY+0WSwUtV5j8UHcGZo6LEs5W+hwoGC8uuZhp3dqgnQs2N23dSR
+	 vAtVe/CXt9eIFI/iXJPEcUr8gc3vKjAe6+rDfM1cozhLQJoQ4njt0rikI8x6zLGtkc
+	 svTX++7yslNag10zmvUIAhuwOcfl/zx39XP+sjOz77BxufupbSqSOllbkYksU3/t/7
+	 sXTz1yZMcGXOR3oTHAX4YDLL7eaPdJezuq/TfvZklX6i7Sy6R9rmlK5SGIu62ZXTv/
+	 3gHGdJzzGAgPo8AhbEzKMmyGE+xnpmjCY2b+sOrKVTyyeDAK811upWwuYn+maSxbb3
+	 c3hWa5dzGRQPQ==
+Date: Tue, 14 Oct 2025 09:49:07 +0000
+From: Yao Zi <ziyao@disroot.org>
+To: Drew Fustini <fustini@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Michal Wilczynski <m.wilczynski@samsung.com>,
+	Alexandre Ghiti <alex@ghiti.fr>, devicetree@vger.kernel.org,
+	Han Gao <gaohan@iscas.ac.cn>, Han Gao <rabenda.cn@gmail.com>,
+	linux-kernel@vger.kernel.org, Guo Ren <guoren@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-riscv@lists.infradead.org, Fu Wei <wefu@redhat.com>
+Subject: Re: [PATCH v2 2/5] dt-bindings: reset: thead,th1520-reset: Add
+ controllers for more subsys
+Message-ID: <aO4ck0IhO20T78eN@pie>
+References: <20250915095331.53350-1-ziyao@disroot.org>
+ <20250915095331.53350-3-ziyao@disroot.org>
+ <aOBSOZzOAeelS6Gi@x1>
+ <aOCEt7UGpSyWTury@pie>
+ <aOGckdJcY44hD4Hn@x1>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251014-phy-qcom-edp-add-missing-refclk-v3-3-078be041d06f@linaro.org>
-References: <20251014-phy-qcom-edp-add-missing-refclk-v3-0-078be041d06f@linaro.org>
-In-Reply-To: <20251014-phy-qcom-edp-add-missing-refclk-v3-0-078be041d06f@linaro.org>
-To: Vinod Koul <vkoul@kernel.org>, 
- Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Dmitry Baryshkov <lumag@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
- Sibi Sankar <sibi.sankar@oss.qualcomm.com>, 
- Rajendra Nayak <quic_rjendra@quicinc.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, linux-arm-msm@vger.kernel.org, 
- linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>, 
- stable@vger.kernel.org
-X-Mailer: b4 0.15-dev-dedf8
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1849; i=abel.vesa@linaro.org;
- h=from:subject:message-id; bh=lMgoKm6fFriFGTk58UsXdD/s6UE1JLiRxIhK+/XA3EQ=;
- b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBo7hvpvtZYMOOjNeP/WxoC05ERCeQIn31ePA6ou
- KHQQL1n7NiJAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCaO4b6QAKCRAbX0TJAJUV
- VjkFEACACdNyGShHB0VCbqgl3wmaUbLAiFR1/ZnEk/ntbJYOWJBHthyNxhu6Kwq2S+xgChEcJ3C
- QZEC4bm0PJK353jPGQV+PvNWHLv5P4m2njVLdNctNau9asqqoyyjwwhOlGn4xS6Oi/p33yl87II
- +8CtFUZ7Lx4XirqFhNykxJ7QjgbsgZnMJmrRC906I9ps+TaOe1DtxTXP3sozR+NA6Q6nbz1YT1R
- 4mhAmHzCiMGo+89DwZsUhkKIoVSrq9kV4D4p8Gi4tRwhTuGIpBl7bT5HLNOzWzaJwEc6B8HikTX
- rkpx2ZneYmmtu+UkRp6ZhJ5B0M7zuZC4TPxm5UGJUGtWYwv1MklakNYZLq5nfo/mi4Xa/zYwXbd
- nqM2eynJEMLpctZoXnC37DG4V8GMhsWIapXT4aXBRoY0gAZQbSGfS7nJYez4GewE531xVEB8ZpN
- B194MntxyQ2ezz9uk76VlkMua8dQkKf1IerZX1NIn/0COX0MfC0oxpQhWO8V5cjrg1lANTgKWP4
- h0zCHgiS76+ux8b/syakZ6yz609Ka34j1+l0QNMZHtTwOCoBecT8/AtUpzSi9w/9slJ1/q/Vx8e
- Mc6fUI0oevA6qCEEiUnZmqkabLH7VpJT17idYRfFGCazycy+HrDbGL7lQ/GHo1miGw1dPT9BU24
- j0PBwMhOV6uhIMA==
-X-Developer-Key: i=abel.vesa@linaro.org; a=openpgp;
- fpr=6AFF162D57F4223A8770EF5AF7BF214136F41FAE
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <aOGckdJcY44hD4Hn@x1>
 
-The DP PHYs on X1E80100 need the ref clock which is provided by the
-TCSR CC.
+On Sat, Oct 04, 2025 at 03:15:45PM -0700, Drew Fustini wrote:
+> On Sat, Oct 04, 2025 at 02:21:43AM +0000, Yao Zi wrote:
+> > On Fri, Oct 03, 2025 at 03:46:17PM -0700, Drew Fustini wrote:
+> > > On Mon, Sep 15, 2025 at 09:53:28AM +0000, Yao Zi wrote:
+> > > > TH1520 SoC is divided into several subsystems, most of them have
+> > > > distinct reset controllers. Let's document reset controllers other than
+> > > > the one for VO subsystem and IDs for their reset signals.
+> > > > 
+> > > > Signed-off-by: Yao Zi <ziyao@disroot.org>
+> > > 
+> > > Thanks for sending these patches.
+> > > 
+> > > > ---
+> > > >  .../bindings/reset/thead,th1520-reset.yaml    |   8 +-
+> > > >  .../dt-bindings/reset/thead,th1520-reset.h    | 216 ++++++++++++++++++
+> > > >  2 files changed, 223 insertions(+), 1 deletion(-)
+> > > > 
+> > > [snip]
+> > > > diff --git a/include/dt-bindings/reset/thead,th1520-reset.h b/include/dt-bindings/reset/thead,th1520-reset.h
+> > > > index e51d6314d131..68ac52ed69de 100644
+> > > > --- a/include/dt-bindings/reset/thead,th1520-reset.h
+> > > > +++ b/include/dt-bindings/reset/thead,th1520-reset.h
+> > > > @@ -7,6 +7,200 @@
+> > > >  #ifndef _DT_BINDINGS_TH1520_RESET_H
+> > > >  #define _DT_BINDINGS_TH1520_RESET_H
+> > > [snip]
+> > > > +/* DSP Subsystem */
+> > > > +#define TH1520_RESET_ID_X2X_DSP1	0
+> > > > +#define TH1520_RESET_ID_X2X_DSP0	1
+> > > > +#define TH1520_RESET_ID_X2X_SLAVE_DSP1	2
+> > > > +#define TH1520_RESET_ID_X2X_SLAVE_DSP0	3
+> > > > +#define TH1520_RESET_ID_DSP0_CORE	4
+> > > > +#define TH1520_RESET_ID_DSP0_DEBUG	5
+> > > > +#define TH1520_RESET_ID_DSP0_APB	6
+> > > > +#define TH1520_RESET_ID_DSP1_CORE	4
+> > > > +#define TH1520_RESET_ID_DSP1_DEBUG	5
+> > > > +#define TH1520_RESET_ID_DSP1_APB	6
+> > > > +#define TH1520_RESET_ID_DSPSYS_APB	7
+> > > > +#define TH1520_RESET_ID_AXI4_DSPSYS_SLV	8
+> > > > +#define TH1520_RESET_ID_AXI4_DSPSYS	9
+> > > > +#define TH1520_RESET_ID_AXI4_DSP_RS	10
+> > > 
+> > > This doesn't seem right. The numbers for each subsystem should not
+> > > repeat. Here the DSP0 and DSP1 items have the same numbers: 4, 5, 6.
+> > > 
+> > > This causes both clang and sparse to complain. I think you can just
+> > > change this so that TH1520_RESET_ID_DSP1_CORE is 7 and so on. The
+> > > indexes don't really have any concrete meaning other than how they are
+> > > used as unique keys.
+> > 
+> > You're correct, it's a copy-paste error, just like the one spotted in v1
+> > of the series...
+> > 
+> > I'm not sure why either my GCC or sparse yielded no warning about them.
+> > Will figure it out and send v3 with this fixed. Much sorry for these
+> > stupid mistakes.
+> > 
+> > Best regards,
+> > Yao Zi
+> 
+> Have you tried using W=1?
+> 
+> I do see the warning in gcc with that:
+> 
+> pdp7@thelio:~/linux$ rm drivers/reset/reset-th1520.o
+> pdp7@thelio:~/linux$ make W=1 CROSS_COMPILE=riscv64-linux-gnu- ARCH=riscv C=1 -j16
+>   CALL    scripts/checksyscalls.sh
+> Documentation/.renames.txt: warning: ignored by one of the .gitignore files
+>   CC      drivers/reset/reset-th1520.o
+> drivers/reset/reset-th1520.c:655:39: warning: initialized field overwritten [-Woverride-init]
+>   655 |         [TH1520_RESET_ID_DSP1_CORE] = {
+>       |                                       ^
+> drivers/reset/reset-th1520.c:655:39: note: (near initialization for ‘th1520_dsp_resets[4]’)
+> drivers/reset/reset-th1520.c:659:40: warning: initialized field overwritten [-Woverride-init]
+>   659 |         [TH1520_RESET_ID_DSP1_DEBUG] = {
+>       |                                        ^
+> drivers/reset/reset-th1520.c:659:40: note: (near initialization for ‘th1520_dsp_resets[5]’)
+> drivers/reset/reset-th1520.c:663:38: warning: initialized field overwritten [-Woverride-init]
+>   663 |         [TH1520_RESET_ID_DSP1_APB] = {
+>       |                                      ^
+> drivers/reset/reset-th1520.c:663:38: note: (near initialization for ‘th1520_dsp_resets[6]’)
+>   CHECK   drivers/reset/reset-th1520.c
+> drivers/reset/reset-th1520.c:643:10: warning: Initializer entry defined twice
+> drivers/reset/reset-th1520.c:655:10:   also defined here
 
-The current X Elite devices supported upstream work fine without this
-clock, because the boot firmware leaves this clock enabled. But we should
-not rely on that. Also, even though this change breaks the ABI, it is
-needed in order to make the driver disables this clock along with the
-other ones, for a proper bring-down of the entire PHY.
+Thanks, building with W=1 does spot the issue. Somehow my local setup of
+sparse cannot find the duplicated IDs for either v1 or v2 of this
+series, but GCC with W=1 could.
 
-So lets attach it to each of the DP PHYs in order to do that.
+Will send v3 of the series with these duplicated IDs fixed. Really
+thanks for finding the issue.
 
-Cc: stable@vger.kernel.org # v6.9
-Fixes: 1940c25eaa63 ("arm64: dts: qcom: x1e80100: Add display nodes")
-Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
----
- arch/arm64/boot/dts/qcom/x1e80100.dtsi | 12 ++++++++----
- 1 file changed, 8 insertions(+), 4 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-index 51576d9c935decbc61a8e4200de83e739f7da814..0db5183cb4c4ea984d6a47987a1a165cacb3c4e7 100644
---- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-+++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-@@ -5817,9 +5817,11 @@ mdss_dp2_phy: phy@aec2a00 {
- 			      <0 0x0aec2000 0 0x1c8>;
- 
- 			clocks = <&dispcc DISP_CC_MDSS_DPTX2_AUX_CLK>,
--				 <&dispcc DISP_CC_MDSS_AHB_CLK>;
-+				 <&dispcc DISP_CC_MDSS_AHB_CLK>,
-+				 <&tcsr TCSR_EDP_CLKREF_EN>;
- 			clock-names = "aux",
--				      "cfg_ahb";
-+				      "cfg_ahb",
-+				      "ref";
- 
- 			power-domains = <&rpmhpd RPMHPD_MX>;
- 
-@@ -5837,9 +5839,11 @@ mdss_dp3_phy: phy@aec5a00 {
- 			      <0 0x0aec5000 0 0x1c8>;
- 
- 			clocks = <&dispcc DISP_CC_MDSS_DPTX3_AUX_CLK>,
--				 <&dispcc DISP_CC_MDSS_AHB_CLK>;
-+				 <&dispcc DISP_CC_MDSS_AHB_CLK>,
-+				 <&tcsr TCSR_EDP_CLKREF_EN>;
- 			clock-names = "aux",
--				      "cfg_ahb";
-+				      "cfg_ahb",
-+				      "ref";
- 
- 			power-domains = <&rpmhpd RPMHPD_MX>;
- 
-
--- 
-2.48.1
-
+Best regards
+Yao Zi
 
