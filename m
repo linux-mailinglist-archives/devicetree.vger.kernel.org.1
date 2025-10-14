@@ -1,588 +1,198 @@
-Return-Path: <devicetree+bounces-226789-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226787-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9AD2BDB87D
-	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 00:02:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A363BDB86E
+	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 00:02:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E9D064EFC20
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 22:02:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 10B95425ABF
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 22:02:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71F822E2DD4;
-	Tue, 14 Oct 2025 22:02:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AA2B2EA73B;
+	Tue, 14 Oct 2025 22:02:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="VqglUMfy";
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="BEw3MSqn"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="fzBt9EOD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f225.google.com (mail-pf1-f225.google.com [209.85.210.225])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0D7A2D46D8;
-	Tue, 14 Oct 2025 22:02:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D90A42D46D8
+	for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 22:02:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.225
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760479359; cv=none; b=JspFKEU/rBRmoUgjvuSrdHq0DUWxQvnm0cDu4GIRgaFX6ZQNUXjTL1yMRc8KE48rGzu8LRRNq3tBe+zTVY/fgqlIcDALZUkjS1IIy+ayvCdeJOMternMDy1YcuzqN3dbldAn1CSGTQpiRwM9K0FZSEZ6J/mSrKm603AFuaSZyUQ=
+	t=1760479322; cv=none; b=PnvBwAVMjxEZiF4Ky2HPG3qgPi/K76yvDtKDB4TTKmwb2o1k+wjhc8i9B5W04VhAKcYIwEDFPiBPluhTlTXYbsoapIN0/vGq0PWJ3dJ/KBZ0v71s2apCKDpBvdngoqC3iBYsgUyNRTaKyJ74d0Jg1lgzT7xKptkAulixY0puHjA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760479359; c=relaxed/simple;
-	bh=06sULeXsxj5SXAikMEejH0aliiGPgGdIi8ou7CkNlKw=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=krIL0LyhALFjQSGRmu6kaQ8Q+LX5OHxQKkr81U6D907QPkAbz5TntY1B2l81R4KzRAIxOHLRW13yiYemW0okTUtVTKA54PxFdUHnIROJKI3M797Dofgy9DooDxZU6a5ryJEHMJiZd47m+SyulrzBDaJydbm9GjnBwc4b2XHJcZg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=VqglUMfy; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=BEw3MSqn; arc=none smtp.client-ip=80.241.56.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp102.mailbox.org (smtp102.mailbox.org [10.196.197.102])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4cmSr44jyPz9tQ4;
-	Wed, 15 Oct 2025 00:02:28 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1760479348;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=HzUVdemPxh33eWt7jzj16quWDjZajUU6+lZgHud0atE=;
-	b=VqglUMfyA1Uf7gGksxzcAjMfmFnYNOxtmRW54b1+2ngjylrEEXP1utQ4GnMEy62KLAH4nJ
-	qJ9qCmw5At6ZdQVn5I+iKBwLVubo9q82oT4+XP8dSV5OOBG6X6as0VJzzB2TYWgBQ/xQaa
-	PfNevFxQwrCV2XOX0g38ENjRgoJi5MEweUNRx2iLy0nntOFokOb/Sicn3fGKrBrDai58p3
-	CcS8nYkxfURtnjUKZ/bf/t2TqtvCdwJmk20GvAinWwcyzFMDsh/3IP4eFi28Wnxs0ybrIz
-	moRn8IIkAztGFwtUlR7pjkLiVmd6sJ+JWgSDP9ejOp32I67fAFk6ag24qWSR1g==
-From: Marek Vasut <marek.vasut@mailbox.org>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1760479346;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=HzUVdemPxh33eWt7jzj16quWDjZajUU6+lZgHud0atE=;
-	b=BEw3MSqnNG0Ch2tDaOFB/JP+Nve7t2qNw5fDkGLdYcK/67XQTrJXdyClgjIAMfv3H1gOns
-	s/wybmJxmgKoSKsZtXFR4aAEE0K5gCpL3CW+0nMiNY+3l2xzxhjf76/lX9i4hIGDRC3gMu
-	bwtkFvYyzYyu145EmMYYloJDj7EjeLr5eanOx1drGu5UKxrAqsCLqgvE6DwSJm4VdJOrxi
-	9c59rwFCnWVRkAMKATQ/qYL5BHPst9ZC1PqT+tAeieCgsKt23QtVznFkzy2wFG9TqhBU3l
-	yTX1kMnR17zTpJIlaUStNfOdIfX4Kg67H98Qij3Q92WSyitxP6/BPZ1OFJqC+A==
-To: linux-clk@vger.kernel.org
-Cc: Marek Vasut <marek.vasut@mailbox.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Rob Herring <robh@kernel.org>,
-	Stephen Boyd <sboyd@kernel.org>,
-	devicetree@vger.kernel.org
-Subject: [PATCH v2 2/2] clk: si522xx: Clock driver for Skyworks Si522xx I2C PCIe clock generators
-Date: Wed, 15 Oct 2025 00:01:44 +0200
-Message-ID: <20251014220206.52470-2-marek.vasut@mailbox.org>
-In-Reply-To: <20251014220206.52470-1-marek.vasut@mailbox.org>
-References: <20251014220206.52470-1-marek.vasut@mailbox.org>
+	s=arc-20240116; t=1760479322; c=relaxed/simple;
+	bh=MzT+PPiX2Ns3AvHt7w73ekUQyMyQjohybWezP0SN1m8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ho6ML5uFoXfOcPrqIyWpl3VHWdMI9ebh6gu31sMTEgQ4HG7Lp0y2+nYZykO3NQpOoG8cRxK3sqaXfmhyT1RmnfV4ZCJ3uLb07vJeVUR8v0et6/+IqyYX2gNpo3Kozb+imFFPMohRwWulrjFkxPygPwtpkxhmUdXpXeZpXbE4zHI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=fzBt9EOD; arc=none smtp.client-ip=209.85.210.225
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=broadcom.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
+Received: by mail-pf1-f225.google.com with SMTP id d2e1a72fcca58-781001e3846so5680417b3a.2
+        for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 15:02:00 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1760479320; x=1761084120;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:dkim-signature:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=2e1fK4ITdfQE4nTPV/5xAA7Q8Q0cuPRv06tROKIa50U=;
+        b=muKlYWWOKZvKDM7ysh2pWAEYt8pJlRU5UOIr0D0Cj3D3NLqAAavzuv89eUsEPk1v8R
+         IBFFiwQbS7001HBEPlFzk5FezWOKov5ch7qIDbCuBiLgnEr5GjrSp/HnlFub1+BbqsJo
+         9cOsZX2D2SCqK54eciOB0/Q/4RBnqLnLIoZJV4yVbBAdTbyBIKbGsDYRMQuAiuVbTCdU
+         heb+hnd2Ssf0HVuOfoO/F+mJFxy8Xk7+J5M4hcq6zVjuQrnNlKpS+18YsOzUGhbyPmub
+         1VLRr/Y9L98lwnyGo/YmXa+JSavhVF3i9c5W1iJIjJ9oprWbNNOt81RJJww9r71zaqXn
+         KyaA==
+X-Forwarded-Encrypted: i=1; AJvYcCV6Gr0yA+42g+eHNr1cFf5cpbnRs6FkzApgS8mHUcHrxf/hNCylgnSsNU2t62JJRKbe18OrwinDkNn4@vger.kernel.org
+X-Gm-Message-State: AOJu0YyTGgl0pxG418PBLNYilf2IbizpH0FBlHyNnVg1Iorni8Blq6vv
+	hp8Xway0srWS0n+uHEprn7sCI7gFhoHZooBMEnK3xJB9ctkC2QRsmZAm+cKMN5UPeI3GgSpHMCK
+	lzKaFIDgLM17g2wTYtPOrf9vrRp7efIpeYIE8OvjYA0iFi/VrYIXYZgj6xtS3sbyCiBDSSDeaut
+	AKWLMpGqKA0Famxun0EpVtfCt6drP3fOgRsYLdR7KRnWfo4T3seVzponHcOFwLQEyBZu0xxksFb
+	xg0w7c5lmFRUtOaX2OTqQ==
+X-Gm-Gg: ASbGncv6XaMcIBGyutH1cSYok3macoX/yY41VJu22LEJz+O7LUwH8sF7xOjkzkSsZci
+	n823BlK9ncA8kzl2tTYuon2lkuo3/48g6kgLf+BfcF6fPw11b6xtKVKVGjzd/8rl2psz/hi4ozP
+	peTzoAl017jSzcmQCckPURWyRZL7FviVOyI5zYC5nXJeGYZCIUJiiEeoLeJBKMC8ot2vbe1EQdE
+	WF/3+73QYstPSsTgXR+j3f0x0s+oAwfQuGKCFdZyOIqGHpVnQLz2jcCW1KEM8ixDHU+jhCisS5D
+	0LB8eeQNSTXnzQZ8At9JQ2Q0hEpZTb/vA99flB/X2BBom3GBjKHn2IYa8se71Y9nLQiGI3vuCy9
+	MmQNnQTSMuE7EgiLngNXyJVTZEX4Mbzmig0dDucdbo4KNmiSKBoPI5ubqwwovdel+by+tewGi3v
+	8yIfX9Oxk=
+X-Google-Smtp-Source: AGHT+IFuqqyFgXiq+FK6DtjcIhMwKPg4YuHj8qyIgCyVF7WuJyN1Vl81F9QWh2QS4XDJNIV/FwTTWJyArQW+
+X-Received: by 2002:a05:6a20:cb57:b0:32d:b90f:cdab with SMTP id adf61e73a8af0-32db90fce00mr23094670637.19.1760479319916;
+        Tue, 14 Oct 2025 15:01:59 -0700 (PDT)
+Received: from smtp-us-east1-p01-i01-si01.dlp.protect.broadcom.com (address-144-49-247-119.dlp.protect.broadcom.com. [144.49.247.119])
+        by smtp-relay.gmail.com with ESMTPS id d2e1a72fcca58-79930567610sm1321536b3a.5.2025.10.14.15.01.59
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 14 Oct 2025 15:01:59 -0700 (PDT)
+X-Relaying-Domain: broadcom.com
+X-CFilter-Loop: Reflected
+Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-86835654255so5123358885a.3
+        for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 15:01:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=broadcom.com; s=google; t=1760479318; x=1761084118; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=2e1fK4ITdfQE4nTPV/5xAA7Q8Q0cuPRv06tROKIa50U=;
+        b=fzBt9EODOZQKtj1cSdM9e1VNXC/ueKZPAcRtZrtsFDBM0JGXmjg4R2WmkuNKEdthIT
+         Y6woNcGPuoTSUftSM+Q+lAtR2PGvns0s+iH6FOMFR4b6UlNWT6CT5VMmT7yuMT4eKNC0
+         n66cYWsOHDRJIoms+U9KQSi3MeGKc/ZRzq35I=
+X-Forwarded-Encrypted: i=1; AJvYcCW5Te4TxLNidVTy6vvxWjx2krVqw6eBUqWHq5FBJSwpZ6LzJyHqBVNEciMXmHz4kYLW/oq9V8mvj0Qm@vger.kernel.org
+X-Received: by 2002:a05:620a:6910:b0:850:6d5e:cbda with SMTP id af79cd13be357-88353177b8bmr2980896285a.79.1760479318458;
+        Tue, 14 Oct 2025 15:01:58 -0700 (PDT)
+X-Received: by 2002:a05:620a:6910:b0:850:6d5e:cbda with SMTP id af79cd13be357-88353177b8bmr2980890485a.79.1760479317875;
+        Tue, 14 Oct 2025 15:01:57 -0700 (PDT)
+Received: from [10.67.48.245] ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-8849f3d70easm1299924985a.12.2025.10.14.15.01.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 14 Oct 2025 15:01:56 -0700 (PDT)
+Message-ID: <cd174f01-30f6-4a6c-b55e-a15c088eded1@broadcom.com>
+Date: Tue, 14 Oct 2025 15:01:53 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/3] dt-bindings: hwlock: Adding brcmstb-hwspinlock
+ support
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+ Kamal Dasu <kamal.dasu@broadcom.com>
+Cc: peng.fan@oss.nxp.com, andersson@kernel.org,
+ baolin.wang@linux.alibaba.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, bcm-kernel-feedback-list@broadcom.com,
+ linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20251009212003.2714447-1-kamal.dasu@broadcom.com>
+ <20251009212003.2714447-2-kamal.dasu@broadcom.com>
+ <3791aa93-c1c0-4fc9-9706-91f3f62743a3@kernel.org>
+ <CAKekbeuDux1oOOOKK8Pq-jYRzScCDOEXw1w=JBodaUQ4PU2=cA@mail.gmail.com>
+ <c6b68ec7-9195-4961-86dc-802a7cc55e38@kernel.org>
+Content-Language: en-US, fr-FR
+From: Florian Fainelli <florian.fainelli@broadcom.com>
+Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
+ xsBNBFPAG8ABCAC3EO02urEwipgbUNJ1r6oI2Vr/+uE389lSEShN2PmL3MVnzhViSAtrYxeT
+ M0Txqn1tOWoIc4QUl6Ggqf5KP6FoRkCrgMMTnUAINsINYXK+3OLe7HjP10h2jDRX4Ajs4Ghs
+ JrZOBru6rH0YrgAhr6O5gG7NE1jhly+EsOa2MpwOiXO4DE/YKZGuVe6Bh87WqmILs9KvnNrQ
+ PcycQnYKTVpqE95d4M824M5cuRB6D1GrYovCsjA9uxo22kPdOoQRAu5gBBn3AdtALFyQj9DQ
+ KQuc39/i/Kt6XLZ/RsBc6qLs+p+JnEuPJngTSfWvzGjpx0nkwCMi4yBb+xk7Hki4kEslABEB
+ AAHNMEZsb3JpYW4gRmFpbmVsbGkgPGZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tPsLB
+ IQQQAQgAywUCZWl41AUJI+Jo+hcKAAG/SMv+fS3xUQWa0NryPuoRGjsA3SAUAAAAAAAWAAFr
+ ZXktdXNhZ2UtbWFza0BwZ3AuY29tjDAUgAAAAAAgAAdwcmVmZXJyZWQtZW1haWwtZW5jb2Rp
+ bmdAcGdwLmNvbXBncG1pbWUICwkIBwMCAQoFF4AAAAAZGGxkYXA6Ly9rZXlzLmJyb2FkY29t
+ Lm5ldAUbAwAAAAMWAgEFHgEAAAAEFQgJChYhBNXZKpfnkVze1+R8aIExtcQpvGagAAoJEIEx
+ tcQpvGagWPEH/2l0DNr9QkTwJUxOoP9wgHfmVhqc0ZlDsBFv91I3BbhGKI5UATbipKNqG13Z
+ TsBrJHcrnCqnTRS+8n9/myOF0ng2A4YT0EJnayzHugXm+hrkO5O9UEPJ8a+0553VqyoFhHqA
+ zjxj8fUu1px5cbb4R9G4UAySqyeLLeqnYLCKb4+GklGSBGsLMYvLmIDNYlkhMdnnzsSUAS61
+ WJYW6jjnzMwuKJ0ZHv7xZvSHyhIsFRiYiEs44kiYjbUUMcXor/uLEuTIazGrE3MahuGdjpT2
+ IOjoMiTsbMc0yfhHp6G/2E769oDXMVxCCbMVpA+LUtVIQEA+8Zr6mX0Yk4nDS7OiBlvOwE0E
+ U8AbwQEIAKxr71oqe+0+MYCc7WafWEcpQHFUwvYLcdBoOnmJPxDwDRpvU5LhqSPvk/yJdh9k
+ 4xUDQu3rm1qIW2I9Puk5n/Jz/lZsqGw8T13DKyu8eMcvaA/irm9lX9El27DPHy/0qsxmxVmU
+ pu9y9S+BmaMb2CM9IuyxMWEl9ruWFS2jAWh/R8CrdnL6+zLk60R7XGzmSJqF09vYNlJ6Bdbs
+ MWDXkYWWP5Ub1ZJGNJQ4qT7g8IN0qXxzLQsmz6tbgLMEHYBGx80bBF8AkdThd6SLhreCN7Uh
+ IR/5NXGqotAZao2xlDpJLuOMQtoH9WVNuuxQQZHVd8if+yp6yRJ5DAmIUt5CCPcAEQEAAcLB
+ gQQYAQIBKwUCU8AbwgUbDAAAAMBdIAQZAQgABgUCU8AbwQAKCRCTYAaomC8PVQ0VCACWk3n+
+ obFABEp5Rg6Qvspi9kWXcwCcfZV41OIYWhXMoc57ssjCand5noZi8bKg0bxw4qsg+9cNgZ3P
+ N/DFWcNKcAT3Z2/4fTnJqdJS//YcEhlr8uGs+ZWFcqAPbteFCM4dGDRruo69IrHfyyQGx16s
+ CcFlrN8vD066RKevFepb/ml7eYEdN5SRALyEdQMKeCSf3mectdoECEqdF/MWpfWIYQ1hEfdm
+ C2Kztm+h3Nkt9ZQLqc3wsPJZmbD9T0c9Rphfypgw/SfTf2/CHoYVkKqwUIzI59itl5Lze+R5
+ wDByhWHx2Ud2R7SudmT9XK1e0x7W7a5z11Q6vrzuED5nQvkhAAoJEIExtcQpvGagugcIAJd5
+ EYe6KM6Y6RvI6TvHp+QgbU5dxvjqSiSvam0Ms3QrLidCtantcGT2Wz/2PlbZqkoJxMQc40rb
+ fXa4xQSvJYj0GWpadrDJUvUu3LEsunDCxdWrmbmwGRKqZraV2oG7YEddmDqOe0Xm/NxeSobc
+ MIlnaE6V0U8f5zNHB7Y46yJjjYT/Ds1TJo3pvwevDWPvv6rdBeV07D9s43frUS6xYd1uFxHC
+ 7dZYWJjZmyUf5evr1W1gCgwLXG0PEi9n3qmz1lelQ8lSocmvxBKtMbX/OKhAfuP/iIwnTsww
+ 95A2SaPiQZA51NywV8OFgsN0ITl2PlZ4Tp9hHERDe6nQCsNI/Us=
+In-Reply-To: <c6b68ec7-9195-4961-86dc-802a7cc55e38@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-MBO-RS-ID: d715e9e007d2cfd93a9
-X-MBO-RS-META: w985xswt646j4pheo16b73azesjg5ane
+X-DetectorID-Processed: b00c1d49-9d2e-4205-b15f-d015386d3d5e
 
-Add driver for the Skyworks Si522xx PCIe clock generators. Supported models
-are Si52202/Si52204/Si52208/Si52212, tested model is Si52202. While chip is
-similar to Si521xx, it contains many subtle differences to justify separate
-driver.
+On 10/14/25 14:46, Krzysztof Kozlowski wrote:
+> On 14/10/2025 17:40, Kamal Dasu wrote:
+>> On Thu, Oct 9, 2025 at 10:00 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>>>
+>>> On 09/10/2025 23:20, Kamal Dasu wrote:
+>>>> The broadcom settop SoCs have hardware semaphores as part of "sundry"
+>>>> IP block which has other controls that do not belong anywhere else.
+>>>> e.g. pin/mux controls, SoC identification, drive strength, reset controls,
+>>>> and other misc bits are part of this block.
+>>>
+>>> This does not explain why this has to be a separate block. Rob comment
+>>> stays valid - this belongs to parent node.
+>>>
+>>
+>> We do not have a separate parent node where this will fit in. We have
+> 
+> 
+> So what is the parent? simple bus?
 
-The Si522xx has different register and bit layout, supports spread spectrum
-clocking and slew rate settings, and no longer contains the old BC Byte Count
-configuration register. Instead, the I2C protocol is yet again very slightly
-different, but this time at least compatible with regmap.
+Ultimately yes, there is a parent node which is a "simple-bus" but what 
+we effectively did is break up the "sun-top-ctrl" node into register 
+ranges that are on 4 byte boundary, because the functionality offered in 
+that aggregate is partitioned on a 4 byte boundary.
 
-Signed-off-by: Marek Vasut <marek.vasut@mailbox.org>
----
-Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Michael Turquette <mturquette@baylibre.com>
-Cc: Rob Herring <robh@kernel.org>
-Cc: Stephen Boyd <sboyd@kernel.org>
-Cc: devicetree@vger.kernel.org
-Cc: linux-clk@vger.kernel.org
----
-V2: No change
----
- drivers/clk/Kconfig       |   9 +
- drivers/clk/Makefile      |   1 +
- drivers/clk/clk-si522xx.c | 430 ++++++++++++++++++++++++++++++++++++++
- 3 files changed, 440 insertions(+)
- create mode 100644 drivers/clk/clk-si522xx.c
+Now, we could utilize the fact that the node has been exposed in our 
+Device Trees using a syson:
 
-diff --git a/drivers/clk/Kconfig b/drivers/clk/Kconfig
-index 3a1611008e48e..0b2d9c4ba664e 100644
---- a/drivers/clk/Kconfig
-+++ b/drivers/clk/Kconfig
-@@ -423,6 +423,15 @@ config COMMON_CLK_SI521XX
- 	  This driver supports the SkyWorks Si521xx PCIe clock generator
- 	  models Si52144/Si52146/Si52147.
- 
-+config COMMON_CLK_SI522XX
-+	tristate "Clock driver for SkyWorks Si522xx PCIe clock generators"
-+	depends on I2C
-+	depends on OF
-+	select REGMAP_I2C
-+	help
-+	  This driver supports the SkyWorks Si522xx PCIe clock generator
-+	  models Si52202/Si52204/Si52208/Si52212.
-+
- config COMMON_CLK_VC3
- 	tristate "Clock driver for Renesas VersaClock 3 devices"
- 	depends on I2C
-diff --git a/drivers/clk/Makefile b/drivers/clk/Makefile
-index b74a1767ca278..d667730ae188c 100644
---- a/drivers/clk/Makefile
-+++ b/drivers/clk/Makefile
-@@ -105,6 +105,7 @@ obj-$(CONFIG_CLK_TWL)			+= clk-twl.o
- obj-$(CONFIG_ARCH_VT8500)		+= clk-vt8500.o
- obj-$(CONFIG_COMMON_CLK_RS9_PCIE)	+= clk-renesas-pcie.o
- obj-$(CONFIG_COMMON_CLK_SI521XX)	+= clk-si521xx.o
-+obj-$(CONFIG_COMMON_CLK_SI522XX)	+= clk-si522xx.o
- obj-$(CONFIG_COMMON_CLK_VC3)		+= clk-versaclock3.o
- obj-$(CONFIG_COMMON_CLK_VC5)		+= clk-versaclock5.o
- obj-$(CONFIG_COMMON_CLK_VC7)		+= clk-versaclock7.o
-diff --git a/drivers/clk/clk-si522xx.c b/drivers/clk/clk-si522xx.c
-new file mode 100644
-index 0000000000000..0114ed98dbaa4
---- /dev/null
-+++ b/drivers/clk/clk-si522xx.c
-@@ -0,0 +1,430 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/*
-+ * Driver for Skyworks Si522xx PCIe clock generator driver
-+ *
-+ * The following series can be supported:
-+ *   - Si52202 - 2x DIFF
-+ *   - Si52204 - 4x DIFF
-+ *   - Si52208 - 8x DIFF
-+ *   - Si52212 - 12x DIFF
-+ * Currently tested:
-+ *   - Si52202
-+ *
-+ * Copyright (C) 2025 Marek Vasut <marek.vasut@mailbox.org>
-+ */
-+
-+#include <linux/bitfield.h>
-+#include <linux/bitrev.h>
-+#include <linux/clk-provider.h>
-+#include <linux/i2c.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/regmap.h>
-+#include <linux/regulator/consumer.h>
-+
-+/* Register 0 and 1 (OE1 and OE2) */
-+#define SI522XX_REG_OE(n)			((n) & 0x1)
-+
-+/* Register 2 (software spread settings) */
-+#define SI522XX_REG_SS				0x2
-+#define SI522XX_REG_SS_SS_EN_SW_HW_CTRL		BIT(7)
-+#define SI522XX_REG_SS_SS_EN_SW			GENMASK(6, 5)
-+#define SI522XX_REG_SS_SS_EN_SW_M025P		0
-+#define SI522XX_REG_SS_SS_EN_SW_OFF		2
-+#define SI522XX_REG_SS_SS_EN_SW_M050P		3
-+
-+/* Register 3 (slew rate control) and 4 (slew rate control and amplitude) */
-+#define SI522XX_REG_SR(n)			(((n) & 0x1) + 3)
-+#define SI522XX_REG_SR_AMP_MASK			GENMASK(3, 0)
-+#define SI522XX_REG_SR_AMP_BASE			300000
-+#define SI522XX_REG_SR_AMP_MIN			600000
-+#define SI522XX_REG_SR_AMP_DEFAULT		700000
-+#define SI522XX_REG_SR_AMP_MAX			850000
-+#define SI522XX_REG_SR_AMP_STEP			50000
-+#define SI522XX_REG_SR_AMP(UV)			\
-+	FIELD_PREP(SI522XX_REG_SR_AMP_MASK,	\
-+		   ((UV) - SI522XX_REG_SR_AMP_BASE) / SI522XX_REG_SR_AMP_STEP)
-+
-+/* Register 5 and 6 (identification data) */
-+#define SI522XX_REG_ID				0x5
-+#define SI522XX_REG_ID_REV			GENMASK(7, 4)
-+#define SI522XX_REG_ID_VENDOR			GENMASK(3, 0)
-+#define SI522XX_REG_PG				0x6
-+
-+/* Count of populated OE bits in control register ref, 0 and 1 */
-+#define SI522XX_OE_MAP(cr1, cr2)	(((cr2) << 8) | (cr1))
-+#define SI522XX_OE_MAP_GET_OE(oe, map)	(((map) >> ((oe) * 8)) & 0xff)
-+
-+#define SI522XX_DIFF_MULT	4
-+#define SI522XX_DIFF_DIV	1
-+
-+/* Supported Skyworks Si522xx models. */
-+enum si522xx_model {
-+	SI52202 = 0x02,
-+	SI52204 = 0x04,
-+	SI52208 = 0x08,
-+	SI52212 = 0x12,
-+};
-+
-+struct si522xx;
-+
-+struct si_clk {
-+	struct clk_hw		hw;
-+	struct si522xx		*si;
-+	u8			reg;
-+	u8			bit;
-+	bool			slew_slow;
-+};
-+
-+struct si522xx {
-+	struct i2c_client	*client;
-+	struct regmap		*regmap;
-+	struct si_clk		clk_dif[12];
-+	u16			chip_info;
-+	u8			pll_amplitude;
-+	u8			pll_ssc;
-+};
-+
-+/*
-+ * Si522xx i2c regmap
-+ */
-+static const struct regmap_range si522xx_readable_ranges[] = {
-+	regmap_reg_range(SI522XX_REG_OE(0), SI522XX_REG_PG),
-+};
-+
-+static const struct regmap_access_table si522xx_readable_table = {
-+	.yes_ranges = si522xx_readable_ranges,
-+	.n_yes_ranges = ARRAY_SIZE(si522xx_readable_ranges),
-+};
-+
-+static const struct regmap_range si522xx_writeable_ranges[] = {
-+	regmap_reg_range(SI522XX_REG_OE(0), SI522XX_REG_SR(1)),
-+};
-+
-+static const struct regmap_access_table si522xx_writeable_table = {
-+	.yes_ranges = si522xx_writeable_ranges,
-+	.n_yes_ranges = ARRAY_SIZE(si522xx_writeable_ranges),
-+};
-+
-+static const struct regmap_config si522xx_regmap_config = {
-+	.reg_bits = 8,
-+	.val_bits = 8,
-+	.reg_base = 0x80,
-+	.cache_type = REGCACHE_NONE,
-+	.max_register = SI522XX_REG_PG,
-+	.rd_table = &si522xx_readable_table,
-+	.wr_table = &si522xx_writeable_table,
-+};
-+
-+static unsigned long si522xx_diff_recalc_rate(struct clk_hw *hw,
-+					      unsigned long parent_rate)
-+{
-+	unsigned long long rate;
-+
-+	rate = (unsigned long long)parent_rate * SI522XX_DIFF_MULT;
-+	do_div(rate, SI522XX_DIFF_DIV);
-+	return (unsigned long)rate;
-+}
-+
-+static int si522xx_diff_determine_rate(struct clk_hw *hw,
-+				       struct clk_rate_request *req)
-+{
-+	unsigned long best_parent;
-+
-+	best_parent = (req->rate / SI522XX_DIFF_MULT) * SI522XX_DIFF_DIV;
-+	req->best_parent_rate = clk_hw_round_rate(clk_hw_get_parent(hw), best_parent);
-+
-+	req->rate = (req->best_parent_rate / SI522XX_DIFF_DIV) * SI522XX_DIFF_MULT;
-+
-+	return 0;
-+}
-+
-+static int si522xx_diff_set_rate(struct clk_hw *hw, unsigned long rate,
-+				 unsigned long parent_rate)
-+{
-+	/*
-+	 * We must report success but we can do so unconditionally because
-+	 * si522xx_diff_round_rate returns values that ensure this call is a
-+	 * nop.
-+	 */
-+
-+	return 0;
-+}
-+
-+#define to_si522xx_clk(_hw) container_of(_hw, struct si_clk, hw)
-+
-+static int si522xx_diff_prepare(struct clk_hw *hw)
-+{
-+	struct si_clk *si_clk = to_si522xx_clk(hw);
-+	struct si522xx *si = si_clk->si;
-+
-+	regmap_update_bits(si->regmap, SI522XX_REG_SR(si_clk->reg), si_clk->bit,
-+			   si_clk->slew_slow ? 0 : si_clk->bit);
-+	regmap_set_bits(si->regmap, SI522XX_REG_OE(si_clk->reg), si_clk->bit);
-+
-+	return 0;
-+}
-+
-+static void si522xx_diff_unprepare(struct clk_hw *hw)
-+{
-+	struct si_clk *si_clk = to_si522xx_clk(hw);
-+	struct si522xx *si = si_clk->si;
-+
-+	regmap_clear_bits(si->regmap, SI522XX_REG_OE(si_clk->reg), si_clk->bit);
-+}
-+
-+static const struct clk_ops si522xx_diff_clk_ops = {
-+	.determine_rate = si522xx_diff_determine_rate,
-+	.set_rate	= si522xx_diff_set_rate,
-+	.recalc_rate	= si522xx_diff_recalc_rate,
-+	.prepare	= si522xx_diff_prepare,
-+	.unprepare	= si522xx_diff_unprepare,
-+};
-+
-+static int si522xx_get_common_config(struct si522xx *si)
-+{
-+	struct i2c_client *client = si->client;
-+	struct device_node *np = client->dev.of_node;
-+	unsigned int amp, ssc;
-+	int ret;
-+
-+	/* Set defaults */
-+	si->pll_amplitude = SI522XX_REG_SR_AMP(SI522XX_REG_SR_AMP_DEFAULT);
-+	si->pll_ssc = SI522XX_REG_SS_SS_EN_SW_M050P;
-+
-+	/* Output clock amplitude */
-+	ret = of_property_read_u32(np, "skyworks,out-amplitude-microvolt",
-+				   &amp);
-+	if (!ret) {
-+		if (amp < SI522XX_REG_SR_AMP_MIN || amp > SI522XX_REG_SR_AMP_MAX ||
-+		    amp % SI522XX_REG_SR_AMP_STEP) {
-+			return dev_err_probe(&client->dev, -EINVAL,
-+					     "Invalid skyworks,out-amplitude-microvolt value\n");
-+		}
-+		si->pll_amplitude = SI522XX_REG_SR_AMP(amp);
-+	}
-+
-+	/* Output clock spread spectrum */
-+	ret = of_property_read_u32(np, "skyworks,out-spread-spectrum", &ssc);
-+	if (!ret) {
-+		if (ssc == 100000)	/* 100% ... no spread (default) */
-+			si->pll_ssc = SI522XX_REG_SS_SS_EN_SW_OFF;
-+		else if (ssc == 99750)	/* -0.25% ... down spread */
-+			si->pll_ssc = SI522XX_REG_SS_SS_EN_SW_M025P;
-+		else if (ssc == 99500)	/* -0.50% ... down spread */
-+			si->pll_ssc = SI522XX_REG_SS_SS_EN_SW_M050P;
-+		else
-+			return dev_err_probe(&client->dev, -EINVAL,
-+					     "Invalid skyworks,out-spread-spectrum value\n");
-+	}
-+
-+	return 0;
-+}
-+
-+static int si522xx_get_output_config(struct si522xx *si, int idx)
-+{
-+	struct i2c_client *client = si->client;
-+	unsigned char name[16] = "DIFF0";
-+	struct device_node *np;
-+	int ret;
-+	u32 sr;
-+
-+	/* Set defaults */
-+	si->clk_dif[idx].slew_slow = false;
-+
-+	snprintf(name, sizeof(name), "DIFF%d", idx);
-+	np = of_get_child_by_name(client->dev.of_node, name);
-+	if (!np)
-+		return 0;
-+
-+	/* Output clock slew rate */
-+	ret = of_property_read_u32(np, "skyworks,slew-rate", &sr);
-+	of_node_put(np);
-+	if (!ret) {
-+		if (sr == 1900000) {		/* 1.9V/ns */
-+			si->clk_dif[idx].slew_slow = true;
-+		} else if (sr == 2400000) {	/* 2.4V/ns (default) */
-+			si->clk_dif[idx].slew_slow = false;
-+		} else {
-+			ret = dev_err_probe(&client->dev, -EINVAL,
-+					    "Invalid skyworks,slew-rate value\n");
-+		}
-+	}
-+
-+	return ret;
-+}
-+
-+static void si522xx_update_config(struct si522xx *si)
-+{
-+	/* If amplitude is non-default, update it. */
-+	if (si->pll_amplitude != SI522XX_REG_SR_AMP(SI522XX_REG_SR_AMP_DEFAULT)) {
-+		regmap_update_bits(si->regmap, SI522XX_REG_SR(1),
-+				   SI522XX_REG_SR_AMP_MASK, si->pll_amplitude);
-+	}
-+
-+	/* If SSC is non-default, update it. */
-+	if (si->pll_ssc != SI522XX_REG_SS_SS_EN_SW_M050P) {
-+		regmap_update_bits(si->regmap, SI522XX_REG_SS,
-+				   SI522XX_REG_SS_SS_EN_SW_HW_CTRL |
-+				   SI522XX_REG_SS_SS_EN_SW,
-+				   SI522XX_REG_SS_SS_EN_SW_HW_CTRL |
-+				   FIELD_PREP(SI522XX_REG_SS_SS_EN_SW, si->pll_ssc));
-+	}
-+}
-+
-+static void si522xx_diff_idx_to_reg_bit(const u16 chip_info, const int idx,
-+					struct si_clk *clk)
-+{
-+	unsigned long mask;
-+	int oe, b, ctr = 0;
-+
-+	for (oe = 0; oe <= 1; oe++) {
-+		mask = bitrev8(SI522XX_OE_MAP_GET_OE(oe, chip_info));
-+		for_each_set_bit(b, &mask, 8) {
-+			if (ctr++ != idx)
-+				continue;
-+			clk->reg = SI522XX_REG_OE(oe);
-+			clk->bit = BIT(7 - b);
-+			return;
-+		}
-+	}
-+}
-+
-+static struct clk_hw *
-+si522xx_of_clk_get(struct of_phandle_args *clkspec, void *data)
-+{
-+	struct si522xx *si = data;
-+	unsigned int idx = clkspec->args[0];
-+
-+	return &si->clk_dif[idx].hw;
-+}
-+
-+static int si522xx_probe(struct i2c_client *client)
-+{
-+	const u16 chip_info = (u16)(uintptr_t)i2c_get_match_data(client);
-+	const struct clk_parent_data clk_parent_data = { .index = 0 };
-+	struct device *dev = &client->dev;
-+	unsigned char name[16] = "DIFF0";
-+	struct clk_init_data init = {};
-+	struct si522xx *si;
-+	int i, ret;
-+
-+	if (!chip_info)
-+		return -EINVAL;
-+
-+	si = devm_kzalloc(dev, sizeof(*si), GFP_KERNEL);
-+	if (!si)
-+		return -ENOMEM;
-+
-+	i2c_set_clientdata(client, si);
-+	si->client = client;
-+
-+	/* Fetch common configuration from DT (if specified) */
-+	ret = si522xx_get_common_config(si);
-+	if (ret)
-+		return ret;
-+
-+	/* Fetch DIFFx output configuration from DT (if specified) */
-+	for (i = 0; i < hweight16(chip_info); i++) {
-+		ret = si522xx_get_output_config(si, i);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	/* Get and enable optional power supply regulator */
-+	ret = devm_regulator_get_enable_optional(dev, "vdd");
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to get regulator\n");
-+
-+	si->regmap = devm_regmap_init_i2c(client, &si522xx_regmap_config);
-+	if (IS_ERR(si->regmap))
-+		return dev_err_probe(dev, PTR_ERR(si->regmap),
-+				     "Failed to allocate register map\n");
-+
-+	/* Register clock */
-+	for (i = 0; i < hweight16(chip_info); i++) {
-+		memset(&init, 0, sizeof(init));
-+		snprintf(name, sizeof(name), "DIFF%d", i);
-+		init.name = name;
-+		init.ops = &si522xx_diff_clk_ops;
-+		init.parent_data = &clk_parent_data;
-+		init.num_parents = 1;
-+		init.flags = CLK_SET_RATE_PARENT;
-+
-+		si->clk_dif[i].hw.init = &init;
-+		si->clk_dif[i].si = si;
-+
-+		si522xx_diff_idx_to_reg_bit(chip_info, i, &si->clk_dif[i]);
-+
-+		ret = devm_clk_hw_register(dev, &si->clk_dif[i].hw);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	/* Wait t_STABLE = 5ms */
-+	usleep_range(5000, 6000);
-+
-+	ret = devm_of_clk_add_hw_provider(dev, si522xx_of_clk_get, si);
-+	if (!ret)
-+		si522xx_update_config(si);
-+
-+	return ret;
-+}
-+
-+static int __maybe_unused si522xx_suspend(struct device *dev)
-+{
-+	struct si522xx *si = dev_get_drvdata(dev);
-+
-+	regcache_cache_only(si->regmap, true);
-+	regcache_mark_dirty(si->regmap);
-+
-+	return 0;
-+}
-+
-+static int __maybe_unused si522xx_resume(struct device *dev)
-+{
-+	struct si522xx *si = dev_get_drvdata(dev);
-+	int ret;
-+
-+	regcache_cache_only(si->regmap, false);
-+	ret = regcache_sync(si->regmap);
-+	if (ret)
-+		dev_err(dev, "Failed to restore register map: %d\n", ret);
-+	return ret;
-+}
-+
-+static const struct i2c_device_id si522xx_id[] = {
-+	{ "si52202", .driver_data = SI522XX_OE_MAP(0x40, 0x20) },
-+	{ "si52204", .driver_data = SI522XX_OE_MAP(0x64, 0x10) },
-+	{ "si52208", .driver_data = SI522XX_OE_MAP(0x67, 0xd0) },
-+	{ "si52212", .driver_data = SI522XX_OE_MAP(0xff, 0xf0) },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(i2c, si522xx_id);
-+
-+static const struct of_device_id clk_si522xx_of_match[] = {
-+	{ .compatible = "skyworks,si52202", .data = (void *)SI522XX_OE_MAP(0x40, 0x20) },
-+	{ .compatible = "skyworks,si52204", .data = (void *)SI522XX_OE_MAP(0x64, 0x10) },
-+	{ .compatible = "skyworks,si52208", .data = (void *)SI522XX_OE_MAP(0x67, 0xd0) },
-+	{ .compatible = "skyworks,si52212", .data = (void *)SI522XX_OE_MAP(0xff, 0xf0) },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, clk_si522xx_of_match);
-+
-+static SIMPLE_DEV_PM_OPS(si522xx_pm_ops, si522xx_suspend, si522xx_resume);
-+
-+static struct i2c_driver si522xx_driver = {
-+	.driver = {
-+		.name = "clk-si522xx",
-+		.pm	= &si522xx_pm_ops,
-+		.of_match_table = clk_si522xx_of_match,
-+	},
-+	.probe		= si522xx_probe,
-+	.id_table	= si522xx_id,
-+};
-+module_i2c_driver(si522xx_driver);
-+
-+MODULE_AUTHOR("Marek Vasut <marek.vasut@mailbox.org>");
-+MODULE_DESCRIPTION("Skyworks Si522xx PCIe clock generator driver");
-+MODULE_LICENSE("GPL");
+                 sun_top_ctrl: syscon@8404000 {
+                         compatible = "brcm,brcmstb-sun-top-ctrl",
+                                 "syscon";
+                         reg = <0x8404000 0x708>;
+                 };
+
+
+> 
+>> the DWORD aligned  register defined here as organized in the SUNDRY
+>> block.
+> 
+> 
+> I don't know what SUNDRY is.
+
+https://www.merriam-webster.com/dictionary/sundry
 -- 
-2.51.0
-
+Florian
 
