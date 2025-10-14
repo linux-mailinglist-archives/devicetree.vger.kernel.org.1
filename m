@@ -1,153 +1,215 @@
-Return-Path: <devicetree+bounces-226409-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226410-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8E2CBD86A9
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 11:23:03 +0200 (CEST)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB624BD86C1
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 11:23:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 8C51C4E4167
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 09:23:02 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 571F134B48B
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 09:23:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 434B32E7651;
-	Tue, 14 Oct 2025 09:22:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D6DB2E36E3;
+	Tue, 14 Oct 2025 09:23:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="QQW0d/3+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OxijG8Ee"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 157902E7160
-	for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 09:22:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7C3A2080C1;
+	Tue, 14 Oct 2025 09:23:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760433777; cv=none; b=ain8MeGf9KOZOZoNI5T+uaJnwhrhjSyrNBt1uBgV32Hj3UAQiDBNUW1lU0bLEBLJfcJMEdCrgwn0G9Gpsu9s68oxrp6l6l10V3hmlYE+h2oxgbJPbMf4ySlXD3PMNxpEbAGhDs/VJfUjrpIL+5cw38xOzmJpKsehwJ1oDHJ+lIM=
+	t=1760433820; cv=none; b=i7GFO+8YncyvBJR3uSFs5oFpBR9IXZ4y0+jZqn01mbmVRZIbHO4MzgkYl28WNOUq+DTxncTSrmygTA0KhRv2obuqx+B/oKhDyFpFtFdNFzCzOYSJ5MTiuyD3SRIhynJtJ0BS6zjEcnyFcOnMIduHmMbcV5AM7Q/4cA8foR9kSe4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760433777; c=relaxed/simple;
-	bh=4kdH9JwWn5BUz8jMj6r/TaxLP/NSVJU/tJpy1sBaGwk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=jMh0eYGO1wKxSHIeK/FcM+XY+U+4Ah5z5G/uV7jpwWH+U0hhIU+d7wOuLR6xaCtwXnt1I58rXF5S/B5ojCmJlhHmux6lhw/hU7MGjYbe3h/IZjKjaAvbxICqj570dMOdaxyLf36HJAVBkBtmzxtLpq1KPhLZRQkojMVmp8mexM4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=QQW0d/3+; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59E87ImF001484
-	for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 09:22:54 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	pBRR5H2TkKxKF7H4pKihb9Oc+NcrIbt0tfqa5n/nEGc=; b=QQW0d/3+8jWCiqK9
-	aXFu4NReDnyno1hQnDd9X1Jx11vJXCyQNNBumCgDiKLY0VZq6lJdEpMTmqI6cQRM
-	uU/vTq3EwIHSOWzJj//TDDADPs5EtVlvLL7uyRRYkmvRv9hDI4qf2QyanIPc+S3p
-	PP+n9huZ3z6atcPsfZS7gpelklaTApv4fjkZf4OKKEyE9j5k8GsSndCw0R9fcPOG
-	Lgdam1Fl81MDIF3bSFYnnJIjdk5b4Oux7IVOvSEhUnjcSgZNygKhi0jhyGokAsxW
-	Re/i48Izy0xnUje6crVmv+HE5mSiJdwZqZFpTD+WpOR06Q7qOmS8bm9kgr0xsER/
-	ZSUiCw==
-Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49qfa87wv3-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 09:22:54 +0000 (GMT)
-Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-85a8ff42553so251404685a.2
-        for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 02:22:53 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760433773; x=1761038573;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=pBRR5H2TkKxKF7H4pKihb9Oc+NcrIbt0tfqa5n/nEGc=;
-        b=o9lrKh63gLQm8HseN6ccjVYI85lkeuBENmdsiod2ofzerLn8XC03fPO8NwjFLgx8u6
-         POig/PDi2AejXNilNSgvnnhBA/bUuHRt+0Uoe4Kt50aSOqqCx2GAvOLX5YzBQqXczVVm
-         hYZoOnlfsWt3wf4EkJC2+poUBoXFe2aZHAZ8BIfC5fuIYfn92mfwQ8U7flTJdIYheO1S
-         06KL86oeRMY8xeuLNSgUP7Gpitm6rUKJCrqgcUJGU+kvpoGkMvxJHkhPdnMrOwWzzHXX
-         aTUmPKlrPeiyLwyeSEmYSwcCCnfjaAPMq+kxfxeGu0awKBuEGbou8cWoCerFB0LyjssU
-         4wOg==
-X-Forwarded-Encrypted: i=1; AJvYcCV/MT6cVaQi502tNgJA6Xokav9jNF9Gti1R4MQMo4PgkMqR9q0TTNMgeln7NchuWfx0HcAoTra/xXzI@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw/3sHdyINWaa8QKLUiDZoVzxsMC1rxtJJtw/11sjKLv3Pn0Q+V
-	aE77CWkPB3LUXVXvNINlqqeTHEhLgZUFjhj3IaT2WSlUnPgdApeicdoS8aYvrTw4MPDugQpCrwQ
-	qeU/IqCeKSu9Z16bjch7WdlURozeBs36LpSX1pCEH9JmUJcIxuv8ea1IUEt3k6Cir
-X-Gm-Gg: ASbGncuPFfUQND54sHX+xFazE3mRdDjuxGSzOt8Gm5DGTksNt/bsdWn5moj3beucmEJ
-	haigWwedniuqfW0es5IUNSjCFG7m1JjiRukjKTsrHVz8tWEdsPTMT+SEiVWh+DSL5b0FjLJkaG6
-	fBhRwn3JPnbidbsCiQilIp/p990jGGlz6PppFEqevwHGDBsTEMKK4PPdE3nq+nEM+nl4y/P6+Nj
-	i2CXXcC4NQlQ6DnrRHUIBhCk6HutveJNy+lG83kn9VKxzEYjTw/V+r/MPh8R7imZYXSdE496e5h
-	gbL6mUoqEU4a439KzgXHiosvUZ4bQiQN1+cVn9zNifKfvFlHRxUQsrH+Y89z43tREvj1xWQbc8N
-	logyjCQ9CdaCWRK6Q6ZHPGA==
-X-Received: by 2002:a05:620a:bca:b0:862:dc6c:e7f3 with SMTP id af79cd13be357-88352e8e8eamr2066568485a.5.1760433773152;
-        Tue, 14 Oct 2025 02:22:53 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IH6lBPtCjgj5B0ks8xM4dqV/qBR4R1q23vBYNJs1dE8aUXN8FmTT9yYWz5xoRUNmm6qC74jzw==
-X-Received: by 2002:a05:620a:bca:b0:862:dc6c:e7f3 with SMTP id af79cd13be357-88352e8e8eamr2066565785a.5.1760433772666;
-        Tue, 14 Oct 2025 02:22:52 -0700 (PDT)
-Received: from [192.168.149.223] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b55d63c9a3csm1127034066b.23.2025.10.14.02.22.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Oct 2025 02:22:51 -0700 (PDT)
-Message-ID: <87650853-3b4e-4a05-b3f3-4fcb8820ea9f@oss.qualcomm.com>
-Date: Tue, 14 Oct 2025 11:22:48 +0200
+	s=arc-20240116; t=1760433820; c=relaxed/simple;
+	bh=8UMDWUKXnpdCQC7p8eOw9etMN6k4kyh9pwqfBIRJJR4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=S+/2PPU5IKa0qBPoYOX7y6j8jRDf+r07skhyDQIHtZBaas+m0ltctjcdz3mBAUilriQNRwfBD1Eo7b9M6+lSF/aHf0VujRecqcopPeUx37ZRXHubB5X/PJDXItz+TdSWDM+eaSS0iMwUZdjmF0jlR7u5/VRG8re5UOlqbvl6WK8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OxijG8Ee; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1AEAEC113D0;
+	Tue, 14 Oct 2025 09:23:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1760433820;
+	bh=8UMDWUKXnpdCQC7p8eOw9etMN6k4kyh9pwqfBIRJJR4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=OxijG8Ee2g5+wVQnN1qVAuG8VcAY4HRVLn8vhSjOM7j7u/qSgp3Y1jBaIy50zEbUr
+	 3UmR+WU+NNvFUBOoKX6jegmuW9xrZ8b3jTnCKA0LccwLcM2WJIhKjzkQzokmU4GCFT
+	 p1C4gatH3OkYEwhVTUhG1+NaJsdWUZ6u4LIBleck60/q1eijpfs6FEBPl83NKAHsC+
+	 hb+6Zyq4fTx4ghfJ8XGh0t4prBJwWp5HAK7oJ5X35ixzuIz3ouRm6F9xM23i35s67o
+	 jW1aP4lFTsRyNPTSqQOGbBsTROYsZh7oszs1QwFMgghXEnRl9odRaf3Kl12TqZ48Z8
+	 3NVfLEmJjjzkg==
+Date: Tue, 14 Oct 2025 11:23:37 +0200
+From: Lorenzo Bianconi <lorenzo@kernel.org>
+To: Simon Horman <horms@kernel.org>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH net-next v3 2/3] net: airoha: npu: Add
+ airoha_npu_soc_data struct
+Message-ID: <aO4WmeuoAcZLFSBo@lore-desk>
+References: <20251013-airoha-npu-7583-v3-0-00f748b5a0c7@kernel.org>
+ <20251013-airoha-npu-7583-v3-2-00f748b5a0c7@kernel.org>
+ <aO4LL8racazLjjzk@horms.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 2/3] arm64: dts: qcom: sdm845-oneplus: Correct gpio
- used for slider
-To: david@ixit.cz, Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Jonathan Corbet <corbet@lwn.net>, Jiri Kosina <jikos@kernel.org>,
-        Benjamin Tissoires <bentiss@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Casey Connolly <casey.connolly@linaro.org>,
-        =?UTF-8?Q?Guido_G=C3=BCnther?= <agx@sigxcpu.org>
-Cc: linux-input@vger.kernel.org, linux-doc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, phone-devel@vger.kernel.org,
-        Gergo Koteles <soyer@irl.hu>
-References: <20251014-op6-tri-state-v7-0-938a6367197b@ixit.cz>
- <20251014-op6-tri-state-v7-2-938a6367197b@ixit.cz>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20251014-op6-tri-state-v7-2-938a6367197b@ixit.cz>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: JNxJvXhdYroJ1dgNNhNKZbTnGmKb8zT6
-X-Proofpoint-ORIG-GUID: JNxJvXhdYroJ1dgNNhNKZbTnGmKb8zT6
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDExMDAxNyBTYWx0ZWRfXxPwdAB31HiuP
- EMO4wjCp5Y9w09vneoJAfFmv9qGOqSt+3GcV0ymtsr252GyKigm14bpRMFJ4eONVYOETReVQ1VX
- 2GncJ5/XrA+5hxNlVsUFA9cu1Vqjuqol7A9arXz1m6xOgbpRJaaSqurZiEg5VB1iQMZCJasjYgq
- 4XB7Or1I3iqh2+7Oy/4nwW3PKIkSYea5iwFvV/AQQIMwffsza0Klx6BdP5L9Ew/7bDrJEsZ9yMQ
- ZaYYRoxdnGnCWBodqoa1zlO0YvlIl7s/AMOfgRim0xO1ClsmyZs5ihrjuBFIOUdCx9e0021OMT9
- /k1Opz+w5Mbavk0HbaibDcbSardcpXPS02MXawoXsmElvrKxWJNN5fluSffGVfddCh9j+1xC4hb
- uAjabQFIa1eRke2u9GQvVbSccXK9DA==
-X-Authority-Analysis: v=2.4 cv=JLw2csKb c=1 sm=1 tr=0 ts=68ee166e cx=c_pps
- a=HLyN3IcIa5EE8TELMZ618Q==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=EUspDBNiAAAA:8 a=b_3gLtI3ev4ASzC4froA:9 a=QEXdDO2ut3YA:10
- a=bTQJ7kPSJx9SKPbeHEYW:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-10-14_02,2025-10-13_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 phishscore=0 adultscore=0 bulkscore=0 priorityscore=1501
- impostorscore=0 suspectscore=0 malwarescore=0 spamscore=0 clxscore=1015
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2510020000 definitions=main-2510110017
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="RC3OzpSHrP3UiKaL"
+Content-Disposition: inline
+In-Reply-To: <aO4LL8racazLjjzk@horms.kernel.org>
 
-On 10/14/25 11:20 AM, David Heidelberg via B4 Relay wrote:
-> From: Gergo Koteles <soyer@irl.hu>
-> 
-> The previous GPIO numbers were wrong. Update them to the correct
-> ones and fix the label.
-> 
-> Fixes: 288ef8a42612 ("arm64: dts: sdm845: add oneplus6/6t devices")
-> Signed-off-by: Gergo Koteles <soyer@irl.hu>
-> Signed-off-by: David Heidelberg <david@ixit.cz>
-> ---
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+--RC3OzpSHrP3UiKaL
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Konrad
+> On Mon, Oct 13, 2025 at 03:58:50PM +0200, Lorenzo Bianconi wrote:
+>=20
+> ...
+>=20
+> > @@ -182,49 +192,53 @@ static int airoha_npu_send_msg(struct airoha_npu =
+*npu, int func_id,
+> >  	return ret;
+> >  }
+> > =20
+> > -static int airoha_npu_run_firmware(struct device *dev, void __iomem *b=
+ase,
+> > -				   struct resource *res)
+> > +static int airoha_npu_load_firmware(struct device *dev, void __iomem *=
+addr,
+> > +				    const struct airoha_npu_fw *fw_info)
+> >  {
+> >  	const struct firmware *fw;
+> > -	void __iomem *addr;
+> >  	int ret;
+> > =20
+> > -	ret =3D request_firmware(&fw, NPU_EN7581_FIRMWARE_RV32, dev);
+> > +	ret =3D request_firmware(&fw, fw_info->name, dev);
+> >  	if (ret)
+> >  		return ret =3D=3D -ENOENT ? -EPROBE_DEFER : ret;
+> > =20
+> > -	if (fw->size > NPU_EN7581_FIRMWARE_RV32_MAX_SIZE) {
+> > +	if (fw->size > fw_info->max_size) {
+> >  		dev_err(dev, "%s: fw size too overlimit (%zu)\n",
+> > -			NPU_EN7581_FIRMWARE_RV32, fw->size);
+> > +			fw_info->name, fw->size);
+> >  		ret =3D -E2BIG;
+> >  		goto out;
+> >  	}
+> > =20
+> > -	addr =3D devm_ioremap_resource(dev, res);
+> > -	if (IS_ERR(addr)) {
+> > -		ret =3D PTR_ERR(addr);
+> > -		goto out;
+> > -	}
+> > -
+> >  	memcpy_toio(addr, fw->data, fw->size);
+> > +out:
+> >  	release_firmware(fw);
+> > =20
+> > -	ret =3D request_firmware(&fw, NPU_EN7581_FIRMWARE_DATA, dev);
+> > -	if (ret)
+> > -		return ret =3D=3D -ENOENT ? -EPROBE_DEFER : ret;
+> > +	return ret;
+> > +}
+> > =20
+> > -	if (fw->size > NPU_EN7581_FIRMWARE_DATA_MAX_SIZE) {
+> > -		dev_err(dev, "%s: fw size too overlimit (%zu)\n",
+> > -			NPU_EN7581_FIRMWARE_DATA, fw->size);
+> > -		ret =3D -E2BIG;
+> > -		goto out;
+> > -	}
+> > +static int airoha_npu_run_firmware(struct device *dev, void __iomem *b=
+ase,
+> > +				   struct resource *res)
+> > +{
+> > +	const struct airoha_npu_soc_data *soc;
+> > +	void __iomem *addr;
+> > +	int ret;
+> > =20
+> > -	memcpy_toio(base + REG_NPU_LOCAL_SRAM, fw->data, fw->size);
+> > -out:
+> > -	release_firmware(fw);
+> > +	soc =3D of_device_get_match_data(dev);
+> > +	if (!soc)
+> > +		return -EINVAL;
+> > =20
+> > -	return ret;
+> > +	addr =3D devm_ioremap_resource(dev, res);
+> > +	if (IS_ERR(addr))
+> > +		return PTR_ERR(addr);
+> > +
+> > +	/* Load rv32 npu firmware */
+> > +	ret =3D airoha_npu_load_firmware(dev, addr, &soc->fw_rv32);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	/* Load data npu firmware */
+> > +	return airoha_npu_load_firmware(dev, base + REG_NPU_LOCAL_SRAM,
+> > +					&soc->fw_data);
+>=20
+> Hi Lorenzo,
+
+Hi Simon,
+
+>=20
+> There are two calls to airoha_npu_load_firmware() above.
+> And, internally, airoha_npu_load_firmware() will call release_firmware()
+> if an error is encountered.
+>=20
+> But should release_firmware() be called for the firmware requested
+> by the first call to airoha_npu_load_firmware() if the second call fails?
+> Such clean-up seems to have been the case prior to this patch.
+
+release_firmware() is intended to release the resources allocated by the
+corresponding call to request_firmware() in airoha_npu_load_firmware().
+According to my understanding we always run release_firmware() in
+airoha_npu_load_firmware() before returning to the caller. Even before this
+patch we run release_firmware() on the 'first' firmware image before reques=
+ting
+the second one. Am I missing something?
+
+>=20
+> Also, not strictly related. Should release_firmware() be called (twice)
+> when the driver is removed?
+
+For the above reasons, it is not important to call release_firmware() remov=
+ing
+the module. Agree?
+
+Regards,
+Lorenzo
+
+>=20
+> >  }
+> > =20
+> >  static irqreturn_t airoha_npu_mbox_handler(int irq, void *npu_instance)
+>=20
+> ...
+
+--RC3OzpSHrP3UiKaL
+Content-Type: application/pgp-signature; name=signature.asc
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCaO4WmQAKCRA6cBh0uS2t
+rMoTAP9HdqSplLptTvESowj2txGAcrb/gc17fXY3RbXV9I2MoQEAokKGOUSeg9My
+inH68eZk4H3dQS+CcqdVfpLwtEramQU=
+=2u0A
+-----END PGP SIGNATURE-----
+
+--RC3OzpSHrP3UiKaL--
 
