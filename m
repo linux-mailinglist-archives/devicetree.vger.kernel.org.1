@@ -1,57 +1,56 @@
-Return-Path: <devicetree+bounces-226664-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226665-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78C4DBDA662
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 17:32:39 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E0FD3BDA643
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 17:30:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 64EE550479A
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 15:27:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 029283B1F5E
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 15:27:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2187E30274C;
-	Tue, 14 Oct 2025 15:25:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63689302CC7;
+	Tue, 14 Oct 2025 15:25:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="I8YNO75J"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="QvDrx9aW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
+Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4700A302152
-	for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 15:25:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84648302755
+	for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 15:25:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760455556; cv=none; b=X3A53l4IHhmDGoOzDO2WPXLep/fQ+8dk07e+dNEsWuScv8FtzdO/2Vk5serlq81vvSuO7uJG5Px8ut4Yqzcpcl6dj96Gtx11ttaxDeb3d6IvJmuEedRJv8wcS6GgRehki5TuNo4ls8eBFcskyYllWni+az6dpO2JGwFaZJSNv1Y=
+	t=1760455558; cv=none; b=lPGedc1L+mX4Qz1eEQGdKzJVa0wL7TiGxnVd/s7qECml0stYVICXcWhc7WmW2unLZmDSNKjbsKZE1rLr+qsMVI0ne6Qmw0gWy0DGenbTEwABICnFHwA+AjLZsJbnH8imrruEFp9cjCaOi+RJkCo25hL1R77/uZhujdrIUIsfkhU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760455556; c=relaxed/simple;
-	bh=J5rZfAdi1cqYrIEeP3rLvq9dDQUmAah5at1bAeS14qk=;
+	s=arc-20240116; t=1760455558; c=relaxed/simple;
+	bh=6C3Wt0uF2of/JuozjsoPyyV6fS+gbf9acU5v6U8/B4w=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=JPPHTdWg7CFM4V0/Sd9ImGiTVqLCoUOLoBJjnGK1B2tdZutG1B0CI6VnYuEra6ExiDM34LKosQ0DRUky8iVDQCMgRp1loJSNnMwUoJQCyNnmQlsJc6P1rZiaBYByPbasTf2xKA2Ght3a9BI8A6dcphYnTV/qpxCG6zKfcp27vaw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=I8YNO75J; arc=none smtp.client-ip=185.246.85.4
+	 In-Reply-To:To:Cc; b=rwmlnyEZQTVKX1yRFFBX1RQldmyyoeXTWL+12VxxAOgEmBrRBtwJmyKsYrEfLIYK9w22NsPe25NYUmvhGOVjQmObJdyfJIKEUlMP4y2XpqNbwlHPDjiyUpRDZmaxwd4CInxX5cEfN8C+Mf7w3EblhQcU1Fo3wc1iYZs/m+w8kpM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=QvDrx9aW; arc=none smtp.client-ip=185.171.202.116
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id E7FA64E410B4;
-	Tue, 14 Oct 2025 15:25:52 +0000 (UTC)
+	by smtpout-04.galae.net (Postfix) with ESMTPS id 006CDC09F96;
+	Tue, 14 Oct 2025 15:25:36 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id BCB80606EC;
-	Tue, 14 Oct 2025 15:25:52 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 9CB60102F22B2;
-	Tue, 14 Oct 2025 17:25:49 +0200 (CEST)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 0B0A0606EC;
+	Tue, 14 Oct 2025 15:25:55 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 047F7102F22B3;
+	Tue, 14 Oct 2025 17:25:51 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1760455551; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	t=1760455553; h=from:subject:date:message-id:to:cc:mime-version:content-type:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=kI0fvsqkgZcbGlYbMMgADSeWdOBIygdLfdA0Um1kIHU=;
-	b=I8YNO75J2QXIdgLDAiSsbGDGmz2XSIhCRqlVvU2cJT0kDd/rWg+78g/vYGhLIKUB+T1V2R
-	reNXzIznlOzbQcUZcpVO1buNqU6nSimsCtLnS2a1Y6USjEoFNf0Qy3zUSjuBW253Qv9eD7
-	y7t30c6KAGt2U8D9SbKKOf83KNJD/v1pBxSiosXUnD9lkneYFuN013vPdkesM8L9r01U7L
-	sNGoJzxD8SIVqHuwmnExmOj3xyilw6/MYGdnBUs+Q2nod89grqAs0XBA5cDcoZPpWLUyb9
-	fwSvCEprHgQ0jTLV1gIesR2tJystCu77JrCITpFoYsuW7xhg6V6n3lbz92eFnQ==
+	bh=t9uhUZLUO1xtva49wKLTR6cCYNQXY1i7HwxH90xJvFk=;
+	b=QvDrx9aW6kzLXvN4McWQJYxc7ZwJkwv1lSm2xb4U9JAW22dVDUOz40twAEVjesg0m43fDp
+	Wla1uJNKbcpQxp11pC+e2i6FXzuEQVW5NKKT/PJwt92+Fw23qKrU9r5PFqyWeHqrieodqJ
+	egcjHMhZ0SBT/kBeXG3ifVOmzomrGcFZsmfWFmst85CRUmzioE+9gLgWUaelBlTyOWJRDH
+	HpofZynmBDjv1p9os5oBYDdhdnthflNA3qrjaaDFx78EHxdoY0XD0BNxsQ4AZYn+tJwkzz
+	AQ80W4Qnd9c/h8XUsHl/EyHTr6fdzmd/4DplhVUWcklRT3SkZxU9FIDg4alHYw==
 From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-Date: Tue, 14 Oct 2025 17:25:07 +0200
-Subject: [PATCH net-next 06/15] net: macb: simplify
- macb_dma_desc_get_size()
+Date: Tue, 14 Oct 2025 17:25:08 +0200
+Subject: [PATCH net-next 07/15] net: macb: simplify macb_adj_dma_desc_idx()
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,7 +59,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20251014-macb-cleanup-v1-6-31cd266e22cd@bootlin.com>
+Message-Id: <20251014-macb-cleanup-v1-7-31cd266e22cd@bootlin.com>
 References: <20251014-macb-cleanup-v1-0-31cd266e22cd@bootlin.com>
 In-Reply-To: <20251014-macb-cleanup-v1-0-31cd266e22cd@bootlin.com>
 To: Andrew Lunn <andrew+netdev@lunn.ch>, 
@@ -84,60 +83,53 @@ Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
 X-Mailer: b4 0.14.2
 X-Last-TLS-Session-Version: TLSv1.3
 
-macb_dma_desc_get_size() does a switch on bp->hw_dma_cap and covers all
-four cases: 0, 64B, PTP, 64B+PTP. It also covers the #ifndef
-MACB_EXT_DESC separately, making it four codepaths.
+The function body uses a switch statement on bp->hw_dma_cap and handles
+its four possible values: 0, is_64b, is_ptp, is_64b && is_ptp.
 
-Instead, notice the descriptor size grows with enabled features and use
-plain if-statements on 64B and PTP flags.
+Instead, refactor by noticing that the return value is:
+   desc_size * MULT
+with MULT = 3 if is_64b && is_ptp,
+            2 if is_64b || is_ptp,
+            1 otherwise.
+
+MULT can be expressed as:
+   1 + is_64b + is_ptp
 
 Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
 ---
- drivers/net/ethernet/cadence/macb_main.c | 29 ++++++++---------------------
- 1 file changed, 8 insertions(+), 21 deletions(-)
+ drivers/net/ethernet/cadence/macb_main.c | 18 ++++++------------
+ 1 file changed, 6 insertions(+), 12 deletions(-)
 
 diff --git a/drivers/net/ethernet/cadence/macb_main.c b/drivers/net/ethernet/cadence/macb_main.c
-index 33e99aab1dcb360a699d0e80762ef421001d19a1..7f74e280a3351ee7f961ff5ecd9550470b2e68eb 100644
+index 7f74e280a3351ee7f961ff5ecd9550470b2e68eb..44a411662786ca4f309d6f9389b0d36819fc40ad 100644
 --- a/drivers/net/ethernet/cadence/macb_main.c
 +++ b/drivers/net/ethernet/cadence/macb_main.c
-@@ -121,29 +121,16 @@ struct sifive_fu540_macb_mgmt {
-  */
- static unsigned int macb_dma_desc_get_size(struct macb *bp)
+@@ -136,19 +136,13 @@ static unsigned int macb_dma_desc_get_size(struct macb *bp)
+ static unsigned int macb_adj_dma_desc_idx(struct macb *bp, unsigned int desc_idx)
  {
--#ifdef MACB_EXT_DESC
--	unsigned int desc_size;
-+	unsigned int desc_size = sizeof(struct macb_dma_desc);
- 
+ #ifdef MACB_EXT_DESC
 -	switch (bp->hw_dma_cap) {
 -	case HW_DMA_CAP_64B:
--		desc_size = sizeof(struct macb_dma_desc)
--			+ sizeof(struct macb_dma_desc_64);
--		break;
 -	case HW_DMA_CAP_PTP:
--		desc_size = sizeof(struct macb_dma_desc)
--			+ sizeof(struct macb_dma_desc_ptp);
+-		desc_idx <<= 1;
 -		break;
 -	case HW_DMA_CAP_64B_PTP:
--		desc_size = sizeof(struct macb_dma_desc)
--			+ sizeof(struct macb_dma_desc_64)
--			+ sizeof(struct macb_dma_desc_ptp);
+-		desc_idx *= 3;
 -		break;
 -	default:
--		desc_size = sizeof(struct macb_dma_desc);
+-		break;
 -	}
--	return desc_size;
-+#ifdef MACB_EXT_DESC
-+	if (bp->hw_dma_cap & HW_DMA_CAP_64B)
-+		desc_size += sizeof(struct macb_dma_desc_64);
-+	if (bp->hw_dma_cap & HW_DMA_CAP_PTP)
-+		desc_size += sizeof(struct macb_dma_desc_ptp);
- #endif
--	return sizeof(struct macb_dma_desc);
+-#endif
++	bool is_ptp = bp->hw_dma_cap & HW_DMA_CAP_PTP;
++	bool is_64b = bp->hw_dma_cap & HW_DMA_CAP_64B;
 +
-+	return desc_size;
++	return desc_idx * (1 + is_64b + is_ptp);
++#else
+ 	return desc_idx;
++#endif
  }
  
- static unsigned int macb_adj_dma_desc_idx(struct macb *bp, unsigned int desc_idx)
+ #ifdef CONFIG_ARCH_DMA_ADDR_T_64BIT
 
 -- 
 2.51.0
