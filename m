@@ -1,216 +1,426 @@
-Return-Path: <devicetree+bounces-226608-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226610-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8FE8BDA231
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 16:49:22 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 32342BDA2B2
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 16:56:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id A5D104E230C
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 14:49:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7AAF3541695
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 14:53:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A94692FABF7;
-	Tue, 14 Oct 2025 14:49:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B2EE2F5339;
+	Tue, 14 Oct 2025 14:53:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XCgY16Kp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Jm3OqX7U"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com [209.85.214.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FE752F7AAC
-	for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 14:49:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D09371D8E1A;
+	Tue, 14 Oct 2025 14:53:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760453358; cv=none; b=aar3KBZ8U18A/LtdHeFlfq/CL5jDiEP2T2qaFQwVdXOw/wqr9nCSR/jkpQNlbuaI58A9ZWUYmwakz7lZNPyiq9UVgKw+M0eO88F4iwBoEctJKALYYXeohdTAWwTKLbAxVc1mkuz2ZnJK5O4wghMtLq8lY2ocFXGet5d77LoFeek=
+	t=1760453623; cv=none; b=siPvQmZ5sUwrrIQb8OlZyZpEFVpzyseY7mRiLZixt/Qexuh+QMCiLO+1NDn5uiwTNq5EFumb1Kforxnw/LYk6+ymlmreokNufoFgWEhfbzyhv8uLtXIhRYzNYB7pM4Tj815taeK2qP47Vc7b7bHgpJ0EUrbR45LVJHR5qpUhe6U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760453358; c=relaxed/simple;
-	bh=+gU8GuyUmK9srOrfgZp7XDgFPCvUcB/bgGi+ten8cpQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FB1OQR1Kd8FKFWHjv1LmACJ0OItC+o9rC2KK+RADiKOD0wDMcmHr+kovV865Fagb3oOLviL5mSkTcSRD53TPFIKHb8f6w517ywR295ztAD5S7OdRvLnveXH1TAbGoDPpT2O/tRYAY3N60BG/+bPwHtz9XhThxSpaInRGkwfVZqU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XCgY16Kp; arc=none smtp.client-ip=209.85.214.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f174.google.com with SMTP id d9443c01a7336-2698d47e776so41441475ad.1
-        for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 07:49:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1760453356; x=1761058156; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=WSEdxW8vhqoLFw4XnO2RSQdydgt5roCSWClRMQwsv5Y=;
-        b=XCgY16KpHBY2dKQlVbArQbqV2AihMEUAKHNiZI+ul4xIhro+XPKhsjSujrA7s2aWZP
-         Rm7DoSu95Fc1tH7PTHx5yuh378ESSSQEHXFdAr3x/ooPg7q1p8Xdnt6hgtI8TBNz5I4c
-         ms/h05DoFU9vuJXp0mlP08N4iyTB5JUKOxdAhygdivg6JDnE5VUwdFsp10zjZpfZZZEK
-         /EmlmqNqdnh+HqfJGC1OufU87ndsLvu+F/KNH3eEGj6JGTutgg+oQwUiHDyS+nx2G3a7
-         mtTAoi3q5JR7ph4Rb1ac2ARylBSjl+VZ9unpDGFcDttkf5btkhJy9Xm9bnE2bV9pSkdF
-         vo7g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760453356; x=1761058156;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=WSEdxW8vhqoLFw4XnO2RSQdydgt5roCSWClRMQwsv5Y=;
-        b=DiqjlBRHe4NKNlovrD1ck1MkdfSVfFPKhbfecii/x8nx1GP6HchBrW9LQ4lkl3gKj8
-         R0NkHXsctxYtkoEql2g3W4W+RSXpZ4/AxSoLAekvwkuedmAeN+jlyyIxAAnrUjyK4nY4
-         yyd/CaG26uSuL/oUkmVavCOG1Be9UEvTpu2c+PC0TjBTolEUgh6VSx0s8+e0IrYmlcII
-         WNWInUSQ9HlpMbq9/VI5PxRxZVgN9bUGaVB8asWSA0NhIucTyIKfDNd8e7VuRu127nU4
-         27Rhqyvx001I6OxQEhKyvHHKbWZ9QCyonI5LBDCIDCbz4xS7vDnXN73VOhGnxsR+UDfo
-         EKjQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW0kVQzpF7V85KYEvGcKIzzFcAqTEfIRuM7C2J+XCU3Y/leu2qjh83a1ln3RN+5R2FEXtCrC6D4vaSt@vger.kernel.org
-X-Gm-Message-State: AOJu0YwDnT8DY3Ir1tbSZ74vUxNWxi8mJsSVCaj6VV58Z9PP0qZchQht
-	796Zpg/ABN3UuWjBNzG+rOsZ8Rq6c1Q4WwondTeD4ho/lx+1KUCyxrHz
-X-Gm-Gg: ASbGncsNGcsjEUbNWVg4luyOGCWNJOPvso4PfUzdOJttWn4Spq+6jly2l8jZ49Te3SI
-	cHFnGqzpxnacm2guYR75NZnnpHJMxVnMLqbL43dgRyQXoOs+ZxyhLrbTSdgPs8qrDe9j7pcOrsX
-	FsYGvzyx5fYDym4lC40ff6jISdRjZ/w0qJycLW4tY+fVmCyyFTGCCF85ohnmpr+pBNCPfPKdIDA
-	ijYUgqHIyYA6/ZpEnZuWtwugVtauj5hIk/UO6efhQNJ0PyRsG8w6jariM0OvxbcbJEm8Tc7Z4GT
-	VglKk5T21iuAeqDPB6lz2jaKx0ppQTPsWbLCeQlp8fu+oOEoFAsw3zFTyYCvbZjJqflgNSiR/Uy
-	AzQ20XQbpy5Dr8wMVIUbgCuT7fn3dFXv0/br+2xiU6tYqbj8J9hatvIBpmFmf9j581GG7VWk9Sf
-	yhRAcQsmJ+MlsgsA==
-X-Google-Smtp-Source: AGHT+IHRMZjidw1IlMPsFc5xiHiThksQokSbYFWWjCCXkhTX53XdUxvSbAMrz6e0Awv6re5tpQfvqA==
-X-Received: by 2002:a17:903:17cb:b0:290:7803:9e8 with SMTP id d9443c01a7336-29078030e8cmr41790895ad.48.1760453356132;
-        Tue, 14 Oct 2025 07:49:16 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29034f35382sm167317035ad.85.2025.10.14.07.49.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Oct 2025 07:49:15 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <4e099ead-e6df-4489-a775-1730bc852dcf@roeck-us.net>
-Date: Tue, 14 Oct 2025 07:49:13 -0700
+	s=arc-20240116; t=1760453623; c=relaxed/simple;
+	bh=xZGoceGmRGm/vUIa8AC2yAd6DePbxAMzPAjKBeTIdqk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bWg+TASGcDrs/tmpQlWuveC+gLdvCAnuk5G3bNS1UdpeRhlJQmkb/SGYn9GYPmvbdJJ69nTIyudMn2vgielwxsfMSsajdWyDG5EXQgqNVSoq2TJ5BXu2KaYHdq5gLspSTCz0dBGZdgUjo9oEDC1kqBMDDDe4n86JlbKJfPAEkms=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Jm3OqX7U; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B24A9C4CEE7;
+	Tue, 14 Oct 2025 14:53:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1760453623;
+	bh=xZGoceGmRGm/vUIa8AC2yAd6DePbxAMzPAjKBeTIdqk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Jm3OqX7UwRzMUOGLzUynu1g1YSvd2sEDRAskDWornCMoQyuXQObRi/7Y5iX3v+Iis
+	 u0EtB4A9H89mYaiU1Xw+usZdL7nqQ72hCyzXBX+91n+WEWFptzFW4UTROYHxIAsl48
+	 11bx2qQ647LPYYqyQSvp/AbVsysVHL2sADBt7+FD+NGMn0j1mNG4WcBNpqOiXQfaK7
+	 Y2fErmsTV4Ipcx3SHNBxn/EDoo4MsAAQ2Kkrz3TJZd9djMG4DCJKtTUsmdZD16i3xy
+	 uCEpBVbYtgFYUwR+2TQPH4NkLHvlzqUJgC6xRk/Spf5qQ5dS1cbxEwtDzOUyCURPJS
+	 wvBFJwIibG3Zw==
+Date: Tue, 14 Oct 2025 15:53:39 +0100
+From: Conor Dooley <conor@kernel.org>
+To: linus.walleij@linaro.org
+Cc: Conor Dooley <conor.dooley@microchip.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org, Valentina.FernandezAlanis@microchip.com
+Subject: Re: [PATCH v2 4/5] pinctrl: add polarfire soc iomux0 pinmux driver
+Message-ID: <20251014-fascism-deface-d32bd741cd2f@spud>
+References: <20251014-retype-limit-e6cbe901aa07@spud>
+ <20251014-evaluator-enunciate-e30b0707d1ca@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 11/13] ARM: dts: aspeed: facebook-fuji: Include
- facebook-fuji-data64.dts
-To: Andrew Lunn <andrew@lunn.ch>, Tao Ren <rentao.bupt@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
- Andrew Jeffery <andrew@codeconstruct.com.au>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
- linux-kernel@vger.kernel.org, Tao Ren <taoren@meta.com>
-References: <20250728055618.61616-1-rentao.bupt@gmail.com>
- <20250728055618.61616-12-rentao.bupt@gmail.com>
- <79ddc7b9-ef26-4959-9a16-aa4e006eb145@roeck-us.net> <aO2kLyxGlGt12sKD@fedora>
- <ea64d3c1-e517-4bd8-9a2e-56432f286347@lunn.ch>
-Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
-In-Reply-To: <ea64d3c1-e517-4bd8-9a2e-56432f286347@lunn.ch>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="L4BeR/aT/Wa4eQTZ"
+Content-Disposition: inline
+In-Reply-To: <20251014-evaluator-enunciate-e30b0707d1ca@spud>
 
-On 10/14/25 05:08, Andrew Lunn wrote:
-> On Mon, Oct 13, 2025 at 06:15:27PM -0700, Tao Ren wrote:
->> Hi Guenter,
->>
->> On Mon, Oct 13, 2025 at 05:20:57PM -0700, Guenter Roeck wrote:
->>> Hi,
->>>
->>> On Sun, Jul 27, 2025 at 10:56:13PM -0700, rentao.bupt@gmail.com wrote:
->>>> From: Tao Ren <rentao.bupt@gmail.com>
->>>>
->>>> Include "facebook-fuji-data64.dts" in facebook-fuji dts to avoid
->>>> duplicated code.
->>>>
->>>> Fuji-data64 and Fuji are identical except the BMC flash layout.
->>>>
->>>> Signed-off-by: Tao Ren <rentao.bupt@gmail.com>
->>>
->>> With this patch in the mainline kernel, the Ethernet interface I use for
->>> testing does not come online when loading fuji-bmc in qemu.
->>>
->>> Reverting this patch fixes the problem.
->>>
->>> Looking into this patch,
->>>
->>>> -
->>>> -#include <dt-bindings/leds/common.h>
->>>> -#include "ast2600-facebook-netbmc-common.dtsi"
->>>> +#include "aspeed-bmc-facebook-fuji-data64.dts"
->>>>   
->>> ...
->>>> -&mac3 {
->>>> -	status = "okay";
->>>> -	phy-mode = "rgmii";
->>>> -	phy-handle = <&ethphy3>;
->>>> -	pinctrl-names = "default";
->>>> -	pinctrl-0 = <&pinctrl_rgmii4_default>;
->>>> -};
->>>
->>> I don't see this in aspeed-bmc-facebook-fuji-data64.dts, meaning that
->>> interface is now disabled. Adding it back in fixes the problem.
->>> Also, MAC3 is explicitly enabled for fuji-bmc in qemu.
->>>
->>> Was the interface disabled on purpose ?
->>>
->>> Thanks,
->>> Guenter
->>
->> The mac3 interface was removed in the latest patch (v4) per Andrew Lunn's
->> feedback, because the rgmii setting is incorrect.
->>
->> I was planning to add mac3 back as soon as rgmii support is properly
->> handled in aspeed mac driver, but kindly let me know if you have other
->> suggestions.
-> 
-> If it is already in mainline, i don't care too much if it is wrong. We
-> don't want to cause regressions.
-> 
-> I only object when adding new nodes which are wrong. If we keep adding
-> broken nodes, there is no incentive to fix the broken driver to do the
 
-This wasn't adding an allegedly (sorry, it worked for me) broken node,
-it was removing one that worked for me all along. Obviously I do not know
-if it worked (or if it is even used) on real hardware, but it worked for
-the fuji-bmc qemu emulation.
+--L4BeR/aT/Wa4eQTZ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Guenter
+So, w.r.t. the correct wording, and whether "pin" etc are appropriate to
+use...
 
+On Tue, Oct 14, 2025 at 03:35:37PM +0100, Conor Dooley wrote:
+> +struct mpfs_iomux0_pinctrl {
+> +	struct pinctrl_dev *pctrl;
+> +	struct device *dev;
+> +	struct regmap *regmap;
+> +	struct pinctrl_desc desc;
+> +};
+> +
+> +struct mpfs_iomux0_pin_group {
+> +	const char *name;
+> +	const unsigned int *pins;
+> +	u32 mask;
+> +	u32 setting;
+> +};
+
+"pin group" here could be "peripheral routing", similarly "pin" could be
+replaced by "peripheral", that's the wording that's most commonly used
+our docs and I just don't have many ideas about good alternative to
+function!
+
+> +
+> +struct mpfs_iomux0_function {
+> +	const char *name;
+> +	const char * const *groups;
+
+groups would then be routing
+
+> +};
+> +
+> +static const struct pinctrl_pin_desc mpfs_iomux0_pins[] =3D {
+
+static const struct pinctrl_pin_desc mpfs_iomux_peripherals
+
+> +	PINCTRL_PIN(0, "spi0"),
+
+then this would be MPFS_PERIPHERAL or something, but the same actual
+macro contents in order to ideally retain use of pinctrl_pin_desc.
+
+> +	PINCTRL_PIN(1, "spi1"),
+> +	PINCTRL_PIN(2, "i2c0"),
+> +	PINCTRL_PIN(3, "i2c1"),
+> +	PINCTRL_PIN(4, "can0"),
+> +	PINCTRL_PIN(5, "can1"),
+> +	PINCTRL_PIN(6, "qspi"),
+> +	PINCTRL_PIN(7, "uart0"),
+> +	PINCTRL_PIN(8, "uart1"),
+> +	PINCTRL_PIN(9, "uart2"),
+> +	PINCTRL_PIN(10, "uart3"),
+> +	PINCTRL_PIN(11, "uart4"),
+> +	PINCTRL_PIN(12, "mdio0"),
+> +	PINCTRL_PIN(13, "mdio1"),
+> +};
+> +
+> +static const unsigned int mpfs_iomux0_spi0_pins[] =3D { 0 };
+
+s/_pins// maybe.
+
+> +static const unsigned int mpfs_iomux0_spi1_pins[] =3D { 1 };
+> +static const unsigned int mpfs_iomux0_i2c0_pins[] =3D { 2 };
+> +static const unsigned int mpfs_iomux0_i2c1_pins[] =3D { 3 };
+> +static const unsigned int mpfs_iomux0_can0_pins[] =3D { 4 };
+> +static const unsigned int mpfs_iomux0_can1_pins[] =3D { 5 };
+> +static const unsigned int mpfs_iomux0_qspi_pins[] =3D { 6 };
+> +static const unsigned int mpfs_iomux0_uart0_pins[] =3D { 7 };
+> +static const unsigned int mpfs_iomux0_uart1_pins[] =3D { 8 };
+> +static const unsigned int mpfs_iomux0_uart2_pins[] =3D { 9 };
+> +static const unsigned int mpfs_iomux0_uart3_pins[] =3D { 10 };
+> +static const unsigned int mpfs_iomux0_uart4_pins[] =3D { 11 };
+> +static const unsigned int mpfs_iomux0_mdio0_pins[] =3D { 12 };
+> +static const unsigned int mpfs_iomux0_mdio1_pins[] =3D { 13 };
+> +
+> +#define MPFS_IOMUX0_GROUP(_name) { \
+
+s/GROUPS/ROUTINGS/
+
+> +	.name =3D #_name "_mssio",	\
+> +	.pins =3D mpfs_iomux0_##_name##_pins,	\
+> +	.mask =3D BIT(mpfs_iomux0_##_name##_pins[0]),	\
+> +	.setting =3D 0x0,	\
+> +}, { \
+> +	.name =3D #_name "_fabric",	\
+> +	.pins =3D mpfs_iomux0_##_name##_pins,	\
+> +	.mask =3D BIT(mpfs_iomux0_##_name##_pins[0]),	\
+> +	.setting =3D BIT(mpfs_iomux0_##_name##_pins[0]),	\
+
+idk what you think of these macros, but I feel like they reduced my
+changes of making a mistake..
+
+> +}
+> +
+> +static const struct mpfs_iomux0_pin_group mpfs_iomux0_pin_groups[] =3D {
+
+s/pin_group/peripheral_routing/
+
+> +	MPFS_IOMUX0_GROUP(spi0),
+> +	MPFS_IOMUX0_GROUP(spi1),
+> +	MPFS_IOMUX0_GROUP(i2c0),
+> +	MPFS_IOMUX0_GROUP(i2c1),
+> +	MPFS_IOMUX0_GROUP(can0),
+> +	MPFS_IOMUX0_GROUP(can1),
+> +	MPFS_IOMUX0_GROUP(qspi),
+> +	MPFS_IOMUX0_GROUP(uart0),
+> +	MPFS_IOMUX0_GROUP(uart1),
+> +	MPFS_IOMUX0_GROUP(uart2),
+> +	MPFS_IOMUX0_GROUP(uart3),
+> +	MPFS_IOMUX0_GROUP(uart4),
+> +	MPFS_IOMUX0_GROUP(mdio0),
+> +	MPFS_IOMUX0_GROUP(mdio1),
+> +};
+> +
+> +static const char * const mpfs_iomux0_spi0_groups[] =3D { "spi0_mssio", =
+"spi0_fabric" };
+
+s/groups/routings/
+
+> +static const char * const mpfs_iomux0_spi1_groups[] =3D { "spi1_mssio", =
+"spi1_fabric" };
+> +static const char * const mpfs_iomux0_i2c0_groups[] =3D { "i2c0_mssio", =
+"i2c0_fabric" };
+> +static const char * const mpfs_iomux0_i2c1_groups[] =3D { "i2c1_mssio", =
+"i2c1_fabric" };
+> +static const char * const mpfs_iomux0_can0_groups[] =3D { "can0_mssio", =
+"can0_fabric" };
+> +static const char * const mpfs_iomux0_can1_groups[] =3D { "can1_mssio", =
+"can1_fabric" };
+> +static const char * const mpfs_iomux0_qspi_groups[] =3D { "qspi_mssio", =
+"qspi_fabric" };
+> +static const char * const mpfs_iomux0_uart0_groups[] =3D { "uart0_mssio"=
+, "uart0_fabric" };
+> +static const char * const mpfs_iomux0_uart1_groups[] =3D { "uart1_mssio"=
+, "uart1_fabric" };
+> +static const char * const mpfs_iomux0_uart2_groups[] =3D { "uart2_mssio"=
+, "uart2_fabric" };
+> +static const char * const mpfs_iomux0_uart3_groups[] =3D { "uart3_mssio"=
+, "uart3_fabric" };
+> +static const char * const mpfs_iomux0_uart4_groups[] =3D { "uart4_mssio"=
+, "uart4_fabric" };
+> +static const char * const mpfs_iomux0_mdio0_groups[] =3D { "mdio0_mssio"=
+, "mdio0_fabric" };
+> +static const char * const mpfs_iomux0_mdio1_groups[] =3D { "mdio1_mssio"=
+, "mdio1_fabric" };
+> +
+> +#define MPFS_IOMUX0_FUNCTION(_name) { \
+> +	.name =3D #_name,	\
+> +	.groups =3D mpfs_iomux0_##_name##_groups,	\
+> +}
+> +
+> +static const struct mpfs_iomux0_function mpfs_iomux0_functions[] =3D {
+> +	MPFS_IOMUX0_FUNCTION(spi0),
+> +	MPFS_IOMUX0_FUNCTION(spi1),
+> +	MPFS_IOMUX0_FUNCTION(i2c0),
+> +	MPFS_IOMUX0_FUNCTION(i2c1),
+> +	MPFS_IOMUX0_FUNCTION(can0),
+> +	MPFS_IOMUX0_FUNCTION(can1),
+> +	MPFS_IOMUX0_FUNCTION(qspi),
+> +	MPFS_IOMUX0_FUNCTION(uart0),
+> +	MPFS_IOMUX0_FUNCTION(uart1),
+> +	MPFS_IOMUX0_FUNCTION(uart2),
+> +	MPFS_IOMUX0_FUNCTION(uart3),
+> +	MPFS_IOMUX0_FUNCTION(uart4),
+> +	MPFS_IOMUX0_FUNCTION(mdio0),
+> +	MPFS_IOMUX0_FUNCTION(mdio1),
+> +};
+> +
+> +static void mpfs_iomux0_pin_dbg_show(struct pinctrl_dev *pctrl_dev, stru=
+ct seq_file *seq,
+> +				     unsigned int pin)
+
+for this function, pin -> peripheral
+
+> +{
+> +	struct mpfs_iomux0_pinctrl *pctrl =3D pinctrl_dev_get_drvdata(pctrl_dev=
+);
+> +	u32 val;
+> +
+> +	seq_printf(seq, "reg: %x, pin: %u ", MPFS_IOMUX0_REG, pin);
+> +
+> +	regmap_read(pctrl->regmap, MPFS_IOMUX0_REG, &val);
+> +	val =3D (val & BIT(pin)) >> pin;
+> +
+> +	seq_printf(seq, "val: %x\n", val);
+> +}
+> +
+> +static int mpfs_iomux0_groups_count(struct pinctrl_dev *pctldev)
+
+group -> routing
+
+> +{
+> +	return ARRAY_SIZE(mpfs_iomux0_pin_groups);
+> +}
+> +
+> +static const char *mpfs_iomux0_group_name(struct pinctrl_dev *pctldev, u=
+nsigned int selector)
+> +{
+> +	return mpfs_iomux0_pin_groups[selector].name;
+> +}
+> +
+> +static int mpfs_iomux0_group_pins(struct pinctrl_dev *pctldev, unsigned =
+int selector,
+> +				  const unsigned int **pins, unsigned int *num_pins)
+> +{
+> +	*pins =3D mpfs_iomux0_pin_groups[selector].pins;
+> +	*num_pins =3D 1;
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct pinctrl_ops mpfs_iomux0_pinctrl_ops =3D {
+> +	.get_groups_count =3D mpfs_iomux0_groups_count,
+> +	.get_group_name =3D mpfs_iomux0_group_name,
+> +	.get_group_pins =3D mpfs_iomux0_group_pins,
+
+obviously here, the left hand side wouldn't be changeable if the common
+pinctrl stuff is to be used.
+
+> +	.dt_node_to_map =3D pinconf_generic_dt_node_to_map_all,
+> +	.dt_free_map =3D pinctrl_utils_free_map,
+> +	.pin_dbg_show =3D mpfs_iomux0_pin_dbg_show,
+> +};
+> +
+> +static int mpfs_iomux0_pinmux_set_mux(struct pinctrl_dev *pctrl_dev, uns=
+igned int fsel,
+> +				      unsigned int gsel)
+
+maybe this is s/pinmux_//
+> +{
+> +	struct mpfs_iomux0_pinctrl *pctrl =3D pinctrl_dev_get_drvdata(pctrl_dev=
+);
+> +	struct device *dev =3D pctrl->dev;
+> +	const struct mpfs_iomux0_pin_group *group;
+> +	const struct mpfs_iomux0_function *function;
+> +
+> +	group =3D &mpfs_iomux0_pin_groups[gsel];
+> +	function =3D &mpfs_iomux0_functions[fsel];
+> +
+> +	dev_dbg(dev, "Setting func %s mask %x setting %x\n",
+> +		function->name, group->mask, group->setting);
+> +	regmap_assign_bits(pctrl->regmap, MPFS_IOMUX0_REG, group->mask, group->=
+setting);
+> +
+> +	return 0;
+> +}
+> +
+> +static int mpfs_iomux0_pinmux_get_funcs_count(struct pinctrl_dev *pctlde=
+v)
+> +{
+> +	return ARRAY_SIZE(mpfs_iomux0_functions);
+> +}
+> +
+> +static const char *mpfs_iomux0_pinmux_get_func_name(struct pinctrl_dev *=
+pctldev,
+> +						    unsigned int selector)
+> +{
+> +	return mpfs_iomux0_functions[selector].name;
+> +}
+> +
+> +static int mpfs_iomux0_pinmux_get_groups(struct pinctrl_dev *pctldev, un=
+signed int selector,
+> +					 const char * const **groups,
+> +					 unsigned int * const num_groups)
+
+groups references here would become routings, as above.
+
+> +{
+> +	*groups =3D mpfs_iomux0_functions[selector].groups;
+> +	*num_groups =3D 2;
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct pinmux_ops mpfs_iomux0_pinmux_ops =3D {
+> +	.get_functions_count =3D mpfs_iomux0_pinmux_get_funcs_count,
+> +	.get_function_name =3D mpfs_iomux0_pinmux_get_func_name,
+> +	.get_function_groups =3D mpfs_iomux0_pinmux_get_groups,
+> +	.set_mux =3D mpfs_iomux0_pinmux_set_mux,
+> +};
+> +
+> +static int mpfs_iomux0_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev =3D &pdev->dev;
+> +	struct mpfs_iomux0_pinctrl *pctrl;
+> +
+> +	pctrl =3D devm_kzalloc(dev, sizeof(*pctrl), GFP_KERNEL);
+> +	if (!pctrl)
+> +		return -ENOMEM;
+> +
+> +	pctrl->regmap =3D device_node_to_regmap(pdev->dev.parent->of_node);
+> +	if (IS_ERR(pctrl->regmap))
+> +		dev_err_probe(dev, PTR_ERR(pctrl->regmap), "Failed to find syscon regm=
+ap\n");
+> +
+> +	pctrl->desc.name =3D dev_name(dev);
+> +	pctrl->desc.pins =3D mpfs_iomux0_pins;
+> +	pctrl->desc.npins =3D ARRAY_SIZE(mpfs_iomux0_pins);
+
+similar here, can't really change the names what's in desc if I want to use
+the pinctrl core features, right? Well, I suppose I /could/ but it'd
+have to be the same struct layout and get cast, and I really don't like
+that idea very much! Or something funny with macros to obfuscate, but I
+don't think that is ultimately very beneficial either.
+
+> +	pctrl->desc.pctlops =3D &mpfs_iomux0_pinctrl_ops;
+> +	pctrl->desc.pmxops =3D &mpfs_iomux0_pinmux_ops;
+> +	pctrl->desc.owner =3D THIS_MODULE;
+> +
+> +	pctrl->dev =3D dev;
+> +
+> +	platform_set_drvdata(pdev, pctrl);
+> +
+> +	pctrl->pctrl =3D devm_pinctrl_register(&pdev->dev, &pctrl->desc, pctrl);
+> +	if (IS_ERR(pctrl->pctrl))
+> +		return PTR_ERR(pctrl->pctrl);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct of_device_id mpfs_iomux0_of_match[] =3D {
+> +	{ .compatible =3D "microchip,mpfs-pinctrl-iomux0" },
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(of, mpfs_iomux0_of_match);
+> +
+> +static struct platform_driver mpfs_iomux0_driver =3D {
+> +	.driver =3D {
+> +		.name =3D "mpfs-pinctrl-iomux0",
+> +		.of_match_table =3D mpfs_iomux0_of_match,
+> +	},
+> +	.probe =3D mpfs_iomux0_probe,
+> +};
+> +module_platform_driver(mpfs_iomux0_driver);
+> +
+> +MODULE_AUTHOR("Conor Dooley <conor.dooley@microchip.com>");
+> +MODULE_DESCRIPTION("Polarfire SoC iomux0 pinctrl driver");
+> +MODULE_LICENSE("GPL");
+> --=20
+> 2.51.0
+>=20
+
+--L4BeR/aT/Wa4eQTZ
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaO5j8wAKCRB4tDGHoIJi
+0tzZAP4ogWcskJA9GQyOiK94MlvWuljH0X7x3qsy1RLEZUQVXwD/RkA6csKg6xms
+PHt3Fc/VBV3+5m/iGRz8zIyAA4FWiA0=
+=L5iA
+-----END PGP SIGNATURE-----
+
+--L4BeR/aT/Wa4eQTZ--
 
