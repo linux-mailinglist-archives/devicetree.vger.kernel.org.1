@@ -1,94 +1,113 @@
-Return-Path: <devicetree+bounces-226776-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226777-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5526BDB505
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 22:49:29 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4BE0EBDB600
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 23:12:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 641FF3AD874
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 20:49:28 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 3B9264E43C5
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 21:12:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B743E306B09;
-	Tue, 14 Oct 2025 20:49:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3C7E30BF7F;
+	Tue, 14 Oct 2025 21:12:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="INYZIRSr"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="MLYI2/PH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83747274B58;
-	Tue, 14 Oct 2025 20:49:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DE2A306B32;
+	Tue, 14 Oct 2025 21:12:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.152
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760474965; cv=none; b=cYLbcmeJ2WRCSjd6OjL7jKiTcN8rwJNqZOvdYwbxhsZV0a3zfPgUheXHevbXOvLztRHHltrZDq/G/xdfsjvEjTNejgmw78BCr34aNqrzJAM1MM/3NU30fDR/5WnGwhpznh7pcO2BTn4ARdyKO3oiKiarDhxoxvTnMjoAfJzZjrg=
+	t=1760476330; cv=none; b=ZAWZ7Nqf5IgQkkE7jC5jDtJODYFvuIQpAM1ua1vnl66iIInVXKAmE+txgI3jzDA9G7XTnEn5h8o8o02jYnWJ9mipjHr48A4yWbzT8GfzsTtH0cc3KBP65Ud/pWXXNT4VO8la4j1skFl1iGvtCEo6RQ9h2Dw6kY52X/7klEbF3+k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760474965; c=relaxed/simple;
-	bh=tXxoIaagHe+5VMj+FXUqlWujyDPl5vQQh4jPiiPWkL0=;
+	s=arc-20240116; t=1760476330; c=relaxed/simple;
+	bh=C54wNaaIu+uHDYiULR2PYNdHVI7AwK6UwSpIIYAUtlc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=IrVuD4qYm4sS15ujdthRrhCWNLRgFkWHNDPjd0UQdAvSBRaEZsii9Y9xLqMpysTFZNEUBXkFZn2FbTu4QTrcM4vSj2JXJyuptRUTRQPuPsWk/+vonaWzWWAZHUZ+KMFfpYizYFuflBxv4Y9j76jKzfviw9O6HysB4KWO/YIeCDw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=INYZIRSr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D7AF3C4CEE7;
-	Tue, 14 Oct 2025 20:49:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760474965;
-	bh=tXxoIaagHe+5VMj+FXUqlWujyDPl5vQQh4jPiiPWkL0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=INYZIRSrT7y702jE2lZ9osZtFn4C2FROtPO81si8JKVE5YyVwJ0X6M3nwdMo8tz11
-	 ber2+g8dRiw6VZCKo7uTr+wwcUiCYCQ0lR2Qw9MGGrmpY8Hxo/rwwmlD5tWxY59HLM
-	 72UDkgsf9SYxEwvbZDFneR4vUVIf4QjUlTAAemlNZjo0JjwBEAbcqJM1yC3iPsNXbB
-	 G4x07ssr76MD4diwFdsXsMPIDdldl8V4BpfWR6ZltETs7ZQZ7ixBy6wQEFUzpaPo47
-	 fnuja1AOJIpy1vvMy1z21tzlUcmVCaqEN2TRWEg8tAY/CH6WoHo62S6+Mcwxk1vX3O
-	 o4FCOdB2nGOSQ==
-Message-ID: <fa3c1732-328d-46a2-8514-2e7f9ca6c63f@kernel.org>
-Date: Tue, 14 Oct 2025 21:49:17 +0100
+	 In-Reply-To:Content-Type; b=pRnFG9AU+EY5NxGShrma1eG4lel/gE1BwTzLsGWrLnwCqRS+cCmrm+2adwCwzqV31B+8BX/E5ZMsT/4G1Q8sBrGIPYiPwbMS6IpsFSZ8S8WWmm72WJ8qF0LLnn2ogOpkh0wTZaVrJREMVn9zywdul7xNnXWF+MIhF24PNRorp5U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=MLYI2/PH; arc=none smtp.client-ip=80.241.56.152
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp102.mailbox.org (smtp102.mailbox.org [IPv6:2001:67c:2050:b231:465::102])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4cmRjp4WXwz9v66;
+	Tue, 14 Oct 2025 23:11:58 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1760476318;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=GWenJQKHGvTj+n/qgZQIpg+9Ejswl9uucWP6T0h0hpI=;
+	b=MLYI2/PHUQ4pCbm9fiLSTZAnUEOdKGjp6Au1B9J53t8M+wbCqm1xlFnvXkFREipJSNM4zV
+	Xbbqek71cshVEyb/L9n1iv9eFIQMvPe4oYr4xtI1JeMHWefwaejwgfBp+fT9lAscZxwBn1
+	F8Lv3JB9KqBqKSnzBiyx1RkceBK1RjarniMYy72tUZhbRDT0cspNP3imfmUcH5TklObIU0
+	KhffzrGnLAbEnb3bhBbN0GzWCpxNljk3ZyMX2T/1EUzgz3xKqfGYe1IQiu5mRPJdfBKFK+
+	DDFK9UGzdyTo+omE3G2FEdAAgmdbgwoG64vUo/5q/mZOZkiVX7vYRx3mHek/Cg==
+Message-ID: <43e3e005-5d30-4450-8dbc-8c6b5a0fa951@mailbox.org>
+Date: Tue, 14 Oct 2025 23:11:54 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH 0/3] Introduce iommu-map-masked for platform devices
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Robin Murphy <robin.murphy@arm.com>,
- Charan Teja Kalla <charan.kalla@oss.qualcomm.com>, joro@8bytes.org,
- will@kernel.org, saravanak@google.com, conor+dt@kernel.org, robh@kernel.org,
- mchehab@kernel.org, krzk+dt@kernel.org, abhinav.kumar@linux.dev,
- vikash.garodia@oss.qualcomm.com, dikshita.agarwal@oss.qualcomm.com,
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- bjorn.andersson@oss.qualcomm.com, linux-media@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, iommu@lists.linux.dev
-References: <aec0f40a-8346-4194-8b18-1022fe3366bb@arm.com>
- <0d0560cc-9757-4c7b-8de4-170148d99481@oss.qualcomm.com>
- <ead7cf8b-fbc4-4242-a9da-b313dded1abc@arm.com>
- <nzqte4glwtpjs5bhkxz43yhdufelxvqvzmg5tepudxwetimir3@bvlw5csjizsh>
- <9d3eeb9f-b8ea-48e5-a1d9-0865f63ef991@arm.com>
- <fhb4woejzh3r6v5dxvdiopnsbuwstucfuuzbiymxg4wrxrjc7t@dt3z3utq6lwd>
- <8d88cd9d-16e8-43f9-8eb3-89862da1d0c1@arm.com>
- <hOs24ZavnUyKYyNwBWwRpYnrsefzBfp95yuy9zyp1ByxR9_3VacGX1Yntt8pCE4w3gllPwvevs1AZqghmwKoFg==@protonmail.internalid>
- <zcgn4xw2xghyna2eysavujbzbiydyki7p7upzzv7one5mdyjy6@sj7f75kc4vwu>
- <fb767586-a376-48eb-97b4-bf33061642b9@kernel.org>
- <a4WDx80rJP1GnGNEK0OOD5lh-m-MiAvireXdpiM9ETLKZ084sBJ2UthU_QqRbU_nwD4XtsdiyEqQ0AhxguzJ6g==@protonmail.internalid>
- <6gx74wxie4wcabq27wo5y7v36uuurez4jxlzanroepqazdlgtw@sdtv2ld47d3q>
-From: Bryan O'Donoghue <bod@kernel.org>
+Subject: Re: [PATCH 05/39] drm/imx: dc: Rework dc_subdev_get_id() to drop
+ ARRAY_SIZE() use
+To: Frank Li <Frank.li@nxp.com>, Liu Ying <victor.liu@nxp.com>
+Cc: dri-devel@lists.freedesktop.org, Abel Vesa <abelvesa@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Fabio Estevam <festevam@gmail.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Lucas Stach <l.stach@pengutronix.de>, Peng Fan <peng.fan@nxp.com>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Rob Herring <robh@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ linux-clk@vger.kernel.org
+References: <20251011170213.128907-1-marek.vasut@mailbox.org>
+ <20251011170213.128907-6-marek.vasut@mailbox.org>
+ <aO0vLbkpXejre2Ta@lizhi-Precision-Tower-5810>
+ <c7fee270-f3ff-402f-8266-0ffbb5077a61@mailbox.org>
+ <aO5oKe14GLp3diGH@lizhi-Precision-Tower-5810>
 Content-Language: en-US
-In-Reply-To: <6gx74wxie4wcabq27wo5y7v36uuurez4jxlzanroepqazdlgtw@sdtv2ld47d3q>
+From: Marek Vasut <marek.vasut@mailbox.org>
+In-Reply-To: <aO5oKe14GLp3diGH@lizhi-Precision-Tower-5810>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
+X-MBO-RS-META: 8ejmrw47in7jc7eotepxsc5w834h4ob9
+X-MBO-RS-ID: 68e0347f68ce8adfa13
 
-On 14/10/2025 19:35, Dmitry Baryshkov wrote:
->> Each function id can be associated with a device and a compat string
->> associated with it.
-> So, which part of the hardware is described by the -cb device? What does
-> it mean_here_?
+On 10/14/25 5:11 PM, Frank Li wrote:
+> On Tue, Oct 14, 2025 at 04:03:37PM +0200, Marek Vasut wrote:
+>> On 10/13/25 6:56 PM, Frank Li wrote:
+>>> On Sat, Oct 11, 2025 at 06:51:20PM +0200, Marek Vasut wrote:
+>>>> Rework dc_subdev_get_id() to drop ARRAY_SIZE() use and use empty trailing
+>>>> entry in each ID look up array instead. This allows passing of those arrays
+>>>> around as OF match data, which will be useful when using this pipeline on
+>>>> i.MX95, which has different address-to-ID mapping.
+>>>>
+>>>> Signed-off-by: Marek Vasut <marek.vasut@mailbox.org>
+>>>
+>>> This change is okay. but my questions is why need map register to id.
+>>
+>> This seems to be a recurring pattern in the driver, where some components
+>> need to find other components to link with them. The mapping is fixed, and
+>> since the DT does not encode link IDs, the resolution of the mapping has to
+>> happen by mapping the component base addresses to the IDs first.
+> 
+> In graphic link, port@<n>, n should be id? why not use it?
+I suspect you could model the relationships between the DC blocks using 
+OF graph, yes. I also suspect that description would be very complex in 
+DT, considering the amount of blocks and links this device contains. I 
+suspect this is why there is no such DT description using OF graph.
 
-The non-pixel path video encoder, the tz video encoder...
-
-What's not clear about that ?
-
----
-bod
+I think it might also be good to talk to Liu directly about the original 
+design decision and why this id mapping was done the way it was done, 
+they should know better than me.
 
