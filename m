@@ -1,179 +1,118 @@
-Return-Path: <devicetree+bounces-226499-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226500-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD3D9BD9337
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 14:03:07 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E36B1BD9343
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 14:03:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C1EA518A27F2
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 12:03:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3441118A27BA
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 12:04:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8925C3112C8;
-	Tue, 14 Oct 2025 12:02:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88659310620;
+	Tue, 14 Oct 2025 12:03:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="aiqICYOz"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="KeRbIqUR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4AB313112AB;
-	Tue, 14 Oct 2025 12:02:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.161
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17DF725D546
+	for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 12:03:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760443373; cv=none; b=LA/Q45RCbN44Ocs5lQnBreOQZeJg1g+SbYLluYX/VCHbwRdwE2NhRi7OJaasq1YSltevo8mmgDTsc98s+2kOhXWlo9K83dHHOn6QjKYfJBWZyR3LtEKo9/RuwEF8Br592845v7fNcDflh1ernVQV5nzd3ZM3gUVwKOFl/OfO6Fc=
+	t=1760443429; cv=none; b=B1pR6ldkg+IN0H6NZ8fFYqbZyz9ae+iW1zDima2ZsTk28XRH9se6uh72aHalkA6m7ZuIy+q6zmEALcg4MfnR1U6xZPTf54MRdfJF3ZWYp2yVX8TBJGp21QsWGASotZiE5T3BZ9+qnwK3xgTE5QauRlsuPrgEsQ+HfTH1mz4yCK0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760443373; c=relaxed/simple;
-	bh=Nybxa+p9NqNQhgsHzyX9inTtoUZ76g5EyUTzCC1rUjs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YLW6gfPcsovIx/GcHbdnnEQ9ZvLWA9B6MjuIlKx9vA7XZx/PSEWcIajPLPYiaIMpS0JnemihaQ/bWMv+eOlrDaZeom/Jxe6UCUw78F5vK5McTatCFRpz2Swohf4B8/XW4XZ0uhn4bm4fuUfBiVv+49nyC6uPs7zuGLuXeREn3vs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=aiqICYOz; arc=none smtp.client-ip=80.241.56.161
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp202.mailbox.org (smtp202.mailbox.org [10.196.197.202])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4cmCX207CPz9ssn;
-	Tue, 14 Oct 2025 14:02:42 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1760443362;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=o/k03sYntLq8Zfi4yO8/asoWJl9UlmpXJOixmGdXcyI=;
-	b=aiqICYOzVOtRvf45kCUN9D3ePfh9PDjsWLq321JNC/20zo7IUdO0LnT+lmtSBjy4l0mLfL
-	QBctdxgpYAdDupOqxL527XAV8FmE5GVKUQP+YgvzP7GBsu8vCQDqRTcQM4bz9mK616XeHX
-	SF0kvrHLR7CntlilUs1dyeRIn3RFkey0s3aiTr9dOIQiUfawS6dVLWBMp7SJwIEiEJiY3Y
-	H58vSGv9p9lYxw/qEP4TDKIKHQjWTMr2I8ZDE4J/HNWI4BH7KSStlCqLMo8n/1+fQhRkOm
-	GIJUyKKh8RFSgKM3b6tftTIekpOBxU4y6EL6MGDqlbz/YmJtx5/iVvx9Q/IyvQ==
-Message-ID: <f5d51ead-eae8-430f-b8b3-1ad4b78490ae@mailbox.org>
-Date: Tue, 14 Oct 2025 14:02:37 +0200
+	s=arc-20240116; t=1760443429; c=relaxed/simple;
+	bh=0NzeDm4YRr+qmfFJMboOlJS287Q0PmtLlAQtT9HyscU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ld7lgnZKs0Ymqp8KXBvHpLRg28TCg0qnjcgaQwlfRmBEKImHIpVffl8Eahx/QDUodbHryejj0EIDdJE8YMIsgrVztP0jtiFm8A6eoZCH49K8tfT5EJH3sXtwjFZiB5/4Z4lyIZDfX1fttTpcGlyy64ey7RDCSezJQPvPUdlXoEY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=KeRbIqUR; arc=none smtp.client-ip=209.85.167.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-579d7104c37so6346298e87.3
+        for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 05:03:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1760443425; x=1761048225; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=0NzeDm4YRr+qmfFJMboOlJS287Q0PmtLlAQtT9HyscU=;
+        b=KeRbIqURvSmDKHLD9BjfyIl86pAK4C1iZUq/tjbs9bCMuphFQdxqW/bAwAcKUAv6Lm
+         t2wwL6yXnVXaxgrF0sLYb737SQ8RdSXjPkeXO5507NRFOtJA4msOXarJBHf2TSkPrEfZ
+         pxFqUgNRQ7AKGBqXyiDY7KwpgVVKEutHHW2tS7ahbfy4iBGKMRlFQyzT/5jYpbWmfRXe
+         lf/ysQHLr3QRASu7pWgUnhdiN1VaT6ddwnnzRTyJY8hWJDGJTH7ftYZHxcgmQyuu+m1+
+         +N+7s27oeoUcsRHx5dygwN8+RN/TogsDtRbxTubRDheKks491Bi1l0+2JQtjj6ZQrTq6
+         7KhA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1760443425; x=1761048225;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=0NzeDm4YRr+qmfFJMboOlJS287Q0PmtLlAQtT9HyscU=;
+        b=qvJoXhF46MdmKWBLt8T6lSw9wbV+izFbxP5qqKcgdoB3N7AiRKG8RYpsyDtdqo8Yb3
+         O67e88OW3+bklgt6UcVukx5fEUZhYooGKX/0z+ZJY6h71Xl2gGjga/ARfGO/z/Kt/93X
+         TI5JHv+laFiK/APs8F2yr0ZhFd0zZ/zWrb+fTf4YvLMRoA64JPeaYD3lxSzhBzqiFdPo
+         QBDwg3kNu082/tyDKfWWnFUCp3MDiRlshkeEN7WmD9wlSCwjZsO1YxO5ZkwBCGEk/8BS
+         id4RU+SgVZsbOLBHMT5WmPIcEFd8Bl5qwfvwM4hWzXTkqkYgwiB3X4a9fZxP0+i5SAf5
+         ykNg==
+X-Forwarded-Encrypted: i=1; AJvYcCVV1453SjTdsQgeT8l7n/y4wRyTc2Msr09UCuJsLdzZ/2MohQYrfjLdFaPmAAvmoJm2Ncf1YYesl1tx@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw6MagoFqycWRiv0Euo7w+gH/Y02A1Op1CjMR6CmJYV56J8k0s6
+	DPbX0xLLQ9pP/wKe/2psqPPZJBGDiy+nAK+AmC8wapmGYhcvgRpiLtWIsQrUZQ1sVv5RvKpyZgJ
+	vdiPqtv73/dhxMB/Enl4I8fTtqO4Smzc/PfJ07PVa3A==
+X-Gm-Gg: ASbGncsJAW+iSS5v2hZ4/Ja8em6lL7X1hxOrHYeA0iVrgn85LM8j25DQzaHW4sLwSKc
+	4MmvhfMOFZ6fGTIF3tSJjljONPU5eqeZNmFobFqLuDQg1yFzO9mU22zDKVvEXjQKViv2RQ6XF1N
+	5X1U+WGGDO4zY9j9GiQv/WA0Ppau8i1xzWQOo6qagictj2DhcfyDXVmh5bXza2DKuZKOqOlIo2W
+	+CnaEWrthgBV2rA7Uti4ZERCn3kW3/kbu+lR/Je
+X-Google-Smtp-Source: AGHT+IFD0BB7RH2Ep9aDetjvf52TraFr1nZFUAFZVtaRLq2brbGFG6VPJ0RQdb2vqcIUZBE6o0FGikD6X+TXoiS5UhI=
+X-Received: by 2002:a05:6512:3d10:b0:58b:26:11da with SMTP id
+ 2adb3069b0e04-5906d8ef684mr6189769e87.29.1760443425099; Tue, 14 Oct 2025
+ 05:03:45 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH 04/39] drm/imx: dc: Use bulk clock
-To: Frank Li <Frank.li@nxp.com>
-Cc: dri-devel@lists.freedesktop.org, Abel Vesa <abelvesa@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Fabio Estevam <festevam@gmail.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Liu Ying <victor.liu@nxp.com>, Lucas Stach <l.stach@pengutronix.de>,
- Peng Fan <peng.fan@nxp.com>, Pengutronix Kernel Team
- <kernel@pengutronix.de>, Rob Herring <robh@kernel.org>,
- Shawn Guo <shawnguo@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- devicetree@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org
-References: <20251011170213.128907-1-marek.vasut@mailbox.org>
- <20251011170213.128907-5-marek.vasut@mailbox.org>
- <aO0utF930vhlJFl8@lizhi-Precision-Tower-5810>
-Content-Language: en-US
-From: Marek Vasut <marek.vasut@mailbox.org>
-In-Reply-To: <aO0utF930vhlJFl8@lizhi-Precision-Tower-5810>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-MBO-RS-ID: 211e7aa255b7d3d8ef5
-X-MBO-RS-META: bkw6rpy7gkkayzw1g5i6hemzbnb81gy6
+References: <20251008073046.23231-1-clamor95@gmail.com> <20251008073046.23231-2-clamor95@gmail.com>
+In-Reply-To: <20251008073046.23231-2-clamor95@gmail.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Tue, 14 Oct 2025 14:03:32 +0200
+X-Gm-Features: AS18NWCj_bKF0VIZCo40xgE2nZcym7DwrLVXQ08YjlTg5hV9lzx6rx-fa2x4Vss
+Message-ID: <CACRpkdb74fh_eFCd0MM4RK1_KtNRugLPp2yMA20FrpHq+-o6YA@mail.gmail.com>
+Subject: Re: [PATCH v4 01/24] pinctrl: tegra20: register csus_mux clock
+To: Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Thierry Reding <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
+	Sowjanya Komatineni <skomatineni@nvidia.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>, 
+	Prashant Gaikwad <pgaikwad@nvidia.com>, Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Mikko Perttunen <mperttunen@nvidia.com>, 
+	Mauro Carvalho Chehab <mchehab@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	=?UTF-8?Q?Jonas_Schw=C3=B6bel?= <jonasschwoebel@yahoo.de>, 
+	Dmitry Osipenko <digetx@gmail.com>, Charan Pedumuru <charan.pedumuru@gmail.com>, 
+	Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>, Aaron Kling <webgeek1234@gmail.com>, 
+	Arnd Bergmann <arnd@arndb.de>, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-media@vger.kernel.org, linux-clk@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, linux-staging@lists.linux.dev
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 10/13/25 6:54 PM, Frank Li wrote:
-> On Sat, Oct 11, 2025 at 06:51:19PM +0200, Marek Vasut wrote:
->> Switch to bulk clock operations, as many of the blocks present in DC
-> 
-> s/operations/API
-> 
->> use multiple clock on i.MX95. The use of bulk clock operations allows
->> the driver to seamlessly handle one or multiple clock.
->>
->> Signed-off-by: Marek Vasut <marek.vasut@mailbox.org>
->> ---
->> Cc: Abel Vesa <abelvesa@kernel.org>
->> Cc: Conor Dooley <conor+dt@kernel.org>
->> Cc: Fabio Estevam <festevam@gmail.com>
->> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
->> Cc: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
->> Cc: Liu Ying <victor.liu@nxp.com>
->> Cc: Lucas Stach <l.stach@pengutronix.de>
->> Cc: Peng Fan <peng.fan@nxp.com>
->> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
->> Cc: Rob Herring <robh@kernel.org>
->> Cc: Shawn Guo <shawnguo@kernel.org>
->> Cc: Thomas Zimmermann <tzimmermann@suse.de>
->> Cc: devicetree@vger.kernel.org
->> Cc: dri-devel@lists.freedesktop.org
->> Cc: imx@lists.linux.dev
->> Cc: linux-arm-kernel@lists.infradead.org
->> Cc: linux-clk@vger.kernel.org
->> ---
->>   drivers/gpu/drm/imx/dc/dc-drv.c | 14 ++++++++------
->>   drivers/gpu/drm/imx/dc/dc-ic.c  | 14 ++++++++------
->>   drivers/gpu/drm/imx/dc/dc-pe.c  | 12 ++++++------
->>   drivers/gpu/drm/imx/dc/dc-pe.h  |  3 ++-
->>   4 files changed, 24 insertions(+), 19 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/imx/dc/dc-drv.c b/drivers/gpu/drm/imx/dc/dc-drv.c
->> index f108964bf89f4..2717c92aba6c5 100644
->> --- a/drivers/gpu/drm/imx/dc/dc-drv.c
->> +++ b/drivers/gpu/drm/imx/dc/dc-drv.c
->> @@ -31,7 +31,8 @@
->>
->>   struct dc_priv {
->>   	struct drm_device *drm;
->> -	struct clk *clk_cfg;
->> +	struct clk_bulk_data *clk_cfg;
->> +	int clk_cfg_count;
->>   };
->>
->>   DEFINE_DRM_GEM_DMA_FOPS(dc_drm_driver_fops);
->> @@ -163,10 +164,11 @@ static int dc_probe(struct platform_device *pdev)
->>   	if (!priv)
->>   		return -ENOMEM;
->>
->> -	priv->clk_cfg = devm_clk_get(&pdev->dev, NULL);
->> -	if (IS_ERR(priv->clk_cfg))
->> -		return dev_err_probe(&pdev->dev, PTR_ERR(priv->clk_cfg),
->> +	ret = devm_clk_bulk_get_all(&pdev->dev, &priv->clk_cfg);
->> +	if (ret < 0)
->> +		return dev_err_probe(&pdev->dev, ret,
->>   				     "failed to get cfg clock\n");
->> +	priv->clk_cfg_count = ret;
->>
->>   	dev_set_drvdata(&pdev->dev, priv);
->>
->> @@ -201,7 +203,7 @@ static int dc_runtime_suspend(struct device *dev)
->>   {
->>   	struct dc_priv *priv = dev_get_drvdata(dev);
->>
->> -	clk_disable_unprepare(priv->clk_cfg);
->> +	clk_bulk_disable_unprepare(priv->clk_cfg_count, priv->clk_cfg);
->>
->>   	return 0;
->>   }
->> @@ -211,7 +213,7 @@ static int dc_runtime_resume(struct device *dev)
->>   	struct dc_priv *priv = dev_get_drvdata(dev);
->>   	int ret;
->>
->> -	ret = clk_prepare_enable(priv->clk_cfg);
->> +	ret = clk_bulk_prepare_enable(priv->clk_cfg_count, priv->clk_cfg);
->>   	if (ret)
->>   		dev_err(dev, "failed to enable cfg clock: %d\n", ret);
->>
->> diff --git a/drivers/gpu/drm/imx/dc/dc-ic.c b/drivers/gpu/drm/imx/dc/dc-ic.c
->> index a270ae4030cdc..67441b349a7d2 100644
->> --- a/drivers/gpu/drm/imx/dc/dc-ic.c
->> +++ b/drivers/gpu/drm/imx/dc/dc-ic.c
->> @@ -30,7 +30,8 @@
->>
->>   struct dc_ic_data {
->>   	struct regmap		*regs;
->> -	struct clk		*clk_axi;
->> +	struct clk_bulk_data	*clk_axi;
-> 
-> I am not sure if "axi' is good name for bulk clks. Maybe use 'clks'. _axi
-> quite specific to special 'axi' clocks.
-Fixed both, thanks.
+On Wed, Oct 8, 2025 at 9:31=E2=80=AFAM Svyatoslav Ryhel <clamor95@gmail.com=
+> wrote:
+
+> Add csus_mux for further use as the csus clock parent, similar to how the
+> cdev1 and cdev2 muxes are utilized. Additionally, constify the cdev paren=
+t
+> name lists to resolve checkpatch warnings.
+>
+> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+
+This patch 1/24 applied to the pinctrl tree!
+
+Yours,
+Linus Walleij
 
