@@ -1,145 +1,126 @@
-Return-Path: <devicetree+bounces-226528-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226529-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id A96BEBD97AB
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 14:57:05 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 212E7BD97CC
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 14:59:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 54AAA354915
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 12:57:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A2B91547862
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 12:58:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74A45313E00;
-	Tue, 14 Oct 2025 12:56:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97D72313E1D;
+	Tue, 14 Oct 2025 12:58:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FbPNRZGi"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HD+nY9Ki"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
+Received: from mail-yx1-f54.google.com (mail-yx1-f54.google.com [74.125.224.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93638313295
-	for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 12:56:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92AB3313E05
+	for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 12:58:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.224.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760446617; cv=none; b=FdtNbhUZkI8HmPCIPwYzsaRwfwFDapXwfYs78p893PurwZ3My/kqtBJNMHqHMWvSIcG3EfQxru8uxSOL+AJvskDkur1CS76R3516cts/s98HnWiRNi0FRM+MUoQoILhdqUdqbdCuPtVhFIRoBkAy/P/o7AwhvP+VssmCgBCWMY4=
+	t=1760446726; cv=none; b=ArUQMR61MW3q6g667CBXK4AQJDJCVF3Rq+u6bQcQ74RQKKBfNzVfC/lOodURCOtu7Cl2j3GdW4ClLJWsIma42zU6JyKyfbztzEwc7CE5i9aNannw97BpYXym1EQ5pgUHKXgKw+B8hmg0EvqBhoUfTrAHWNZKDOnWaC4XVvq+FiU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760446617; c=relaxed/simple;
-	bh=LZnaDE/S/cnLfsiCdgYQZBmm8CJyduVyYwPzdW3joA4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=dAN9FYy+fGdxzpAWHUASvpNdp2HPJMM43Yh6S+0EVWJdjhVtEVJCMbbkVU0vp+wZVCE3NL7hrt7K2zAVWkwB0tL+9yEuKKzkcIy3u8XBc2RlUsZNUIucP0rgsaDivClDFNLva4yM3kOB93NVgxjgtxYCEKn2avjKBtD6UsUw7Dg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FbPNRZGi; arc=none smtp.client-ip=209.85.214.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-2897522a1dfso49240585ad.1
-        for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 05:56:54 -0700 (PDT)
+	s=arc-20240116; t=1760446726; c=relaxed/simple;
+	bh=ERKaxZi856JIVKreXO7sribpAgoWkWL8cPcVypMRmHo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=MenBvHJ5egod0jwoWBrNmUdHN/pLKarATQ5eNo5ImT5C8WdzrTT0+pmYukdgiacD0kDj6OgGNZTvWcD8M745lxHYW80ktQpJteLPCY78OJj5qTkZnCUFoOpP8lG5JHiTx9RmYj+A4bEVseUmypRdUNWCWEs6+3pS7PqUdX8moW0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=HD+nY9Ki; arc=none smtp.client-ip=74.125.224.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yx1-f54.google.com with SMTP id 956f58d0204a3-635c9db8a16so5042147d50.0
+        for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 05:58:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1760446614; x=1761051414; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=o38gmX36PyqmjEq1ZTvcb122z3x4XvhpJiBBsGOOwy4=;
-        b=FbPNRZGiLlkHEVjPtMDE/f1z5U1yIEiU035iCpunTyU/ld5oATJ8lClY5OqD105BzS
-         eI7QvYUm9gH+2MKQ6WykSrwaoEgBhK91CY4PqBy6Uz23qRyomKKk8Oc9s2u+eyvB0rZX
-         CJxDLylDF32QwYdxip7h4nVmW7FdUvsK3iqmCJNy0xK7WkG01cRVP8UUxvk2ZWgevegy
-         PNzPtYHlnxkbl5CEHdqNU6XP7fQ5VBAt6+EIlJr+BjvC3zeQts6WDRo6/itAyCWtWlg9
-         b0vUsuxYmOSQN3XxuorxKcYXI5DMWvZH482thHvcV780xzQfQewDXohLBNS8mgsGt7kJ
-         6jAw==
+        d=linaro.org; s=google; t=1760446723; x=1761051523; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ERKaxZi856JIVKreXO7sribpAgoWkWL8cPcVypMRmHo=;
+        b=HD+nY9Ki9ZCU+ZBbai3sK4TlP+Gj4PeD5IBvNbVgmRwrXEMP1rH1Kq7Wd2U4DC9ql2
+         mmbSs/sedO+Z+pqNh178iwTUljJhUPXdoP+VQFu2ruyAZTpafom4Dgb3i9C7kLT30HMb
+         nugdcECozBZLP8w6AumLU59dnaaYGy11Vk23pFabxvZWzNmDF8nOoZlM5WedT3ES7DKS
+         D/cB7mXIddWy/q7Wje43ITkR6khfIHEjDiCwmec977cTp60w5mWUdbX6XXjhJUkrWeWO
+         j4ESkWjq0mWBEgaoWoQnKZzyhE+qXTM8zA+qwVIdhoT3qqyvhnb1qjF3AFb5czRRY0iT
+         BJBA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760446614; x=1761051414;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=o38gmX36PyqmjEq1ZTvcb122z3x4XvhpJiBBsGOOwy4=;
-        b=v2bRVGpee3lk3aNPWs4bhyrVkkhZUuj9Exkcuva40ni2ss7gzlKFgTRUkwjHaJtuLO
-         Y3LtU1lxCPKGIM6Sp3siPLZzHQhRDCLSozp/SFXZVnk8TKxgbY2hdjJw0XkmZCEvvsI/
-         STvDegKSo9qG++nlgbXmKTf5oLJmaCqvBDaBdtSVn3XUVulSafofzWRnddfU1uwQglTI
-         eCLxNP6RyHGPlqeWRZRiN88AJT6rUB2/RA2xFuiDTnPmP4QS+0JPYdKs6QAPxwDEyqvz
-         qj4KchpeOinXjC+5s0p/HZvAoAfFUMr9B24HZj5pt0bHPgF/3KnEEcN3GsRXGjWc9Erk
-         7JHQ==
-X-Gm-Message-State: AOJu0YymgMadJ06m/kR4Z9MYz9j3a/RmbCLjPXQp773gFGUGNFIpIt3q
-	xJ+1TJebT+S2HgP7qspZSa1WDzLuFSjEvG2vrgyI7G9OxNLdBVuVVR4YcQ7ZGhhE3xM=
-X-Gm-Gg: ASbGncshdN8KINQXj5wZYxLABe5Rqv5SjN4EHzWLXIuJxRrpR4BKTBjotlLrVszecFr
-	nod8Duf97ggGgIKAipX0awUcUgikHgWjPuq4iXtxBbHk6iZntXR7wDL8mVuwnY74rTsy1gLWNsx
-	DT+4nfUt9Oq0vFlRgCmJBtJIeU2vykj6H49ZayopV4ElDii/L4ePtECp2Hxs9JVbiNKKBpVUgom
-	jkLh8G40tmMdal0RZcbId2OKbE3q0BBFsOBpsRRADHKUMsxyTgQUoTEmxTl3lmtxkFXNkR0k37E
-	QkkJf+ygchpZT/SQIX68llG5EK0zZT/LkJJoJXqWJBemlfCEkNsPP4BEedIW6mcOicy/HlZApJr
-	MBZQTZxv+2QD7SodOEsdgKpl5QeTuUCpoFQ5IqFQWCgs1A68zmTGrq2/Bd8diLhqD8e/0jalTIm
-	k=
-X-Google-Smtp-Source: AGHT+IFFPt+m448T/uVhH/uFa4IYkTCQ7dJj+PBX8yKsxeuPCGTRZrXD06eMiOSktRMiwnrCyjS6iw==
-X-Received: by 2002:a17:903:2351:b0:269:a23e:9fd7 with SMTP id d9443c01a7336-29027262689mr366784675ad.26.1760446613904;
-        Tue, 14 Oct 2025 05:56:53 -0700 (PDT)
-Received: from joaog-nb.corp.toradex.com ([67.159.246.222])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29034f3ab2fsm163919985ad.105.2025.10.14.05.56.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Oct 2025 05:56:53 -0700 (PDT)
-From: =?utf-8?q?Jo=C3=A3o_Paulo_Gon=C3=A7alves?= <jpaulo.silvagoncalves@gmail.com>
-Date: Tue, 14 Oct 2025 09:56:43 -0300
-Subject: [PATCH v1] arm64: dts: imx8-ss-img: Avoid gpio0_mipi_csi GPIOs
- being deferred
+        d=1e100.net; s=20230601; t=1760446723; x=1761051523;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ERKaxZi856JIVKreXO7sribpAgoWkWL8cPcVypMRmHo=;
+        b=OdsF/N//TmYf0Kc2skOUg1yyprFDRDRKgq9fgjXWm8zewGQ/3DL7JD+6cFllkr9zq1
+         Yla1fBG8hkkccwTBIJqCCvMMETIwa1nNB1c+T6xJv91Vb6EIfDoiReNrbvlFxJtPUGOj
+         Exhip7HasII/IbZ+o2pD9+S68Cmjy1G+2x4azdMtYwZbsboKE2cIAivH5fL0ms0iCEzL
+         FQpchG4K/e1v5y19sSjfpnkjUXVSlfa7GM8/qQpUR2faa8yCN9slBRC5BBuZpmk+w6E7
+         yK3Im4z310rjGpXmjVW9Xx1uSARpPodGktFKMjfonXiJ3DBk/5mzhLP6HpC5mTOj96WP
+         7vJg==
+X-Forwarded-Encrypted: i=1; AJvYcCUev9oXnjcET3Vz9MB8weNMnQeX29kbVrDjS8nIHtsr7n6J0LjqQfVBFvc8Icj+5Ia3Hjf8V75d+Rsq@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz3Vy7qqeEENOOsIldOGTUFofqXaG6vPdSSffeuJk4JDzrAfjOn
+	ZXkmlf0tY1AtkwzDlWEf7odJPiop5fOW7Chqj1RuXNl03fpLHFtT1yoCFybezyx+lbPhK4SeivG
+	oIbGdqL6Fa3dlhdTPkI4Q4ZYAG1beV+KJknlWo0uHNQ==
+X-Gm-Gg: ASbGncsa7CS8RWMRhpLTMOH0aRqFvLG43Y6/M6GHMjJ89uoRbQ11QYpa8nKiLw0kNT8
+	VH/99AHdcOIUPrRmliroGVZFxV+tQ0wm/pXcWpViEKL1z/ObzFFBQy55yjNQE8A9AobxoD8bOWx
+	ldd2I7Vgjb2f2t0HCBdsj2Dmp9+fNv6chX82IyPdMl2Wb4/hj/GQ5pChBzTJLE0uyDCnEysNV7w
+	9qWwB3ngj5+jfgBmZOOg6SapeRKxw==
+X-Google-Smtp-Source: AGHT+IG7Kofwx6n9tYMDxUa5Z04wJalhfP6YJEHLa4yTiQQEa2UVqFp3ownpK3FKUhmGBn3Yg5tzw6HGtBhEHg9/vxk=
+X-Received: by 2002:a53:ba8d:0:b0:63d:24f9:5332 with SMTP id
+ 956f58d0204a3-63d24f953d8mr775113d50.55.1760446723523; Tue, 14 Oct 2025
+ 05:58:43 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20251014-imx8-gpio-csi-deferred-probe-v1-1-62dd1b949731@toradex.com>
-X-B4-Tracking: v=1; b=H4sIAIpI7mgC/x3MQQrDIBAF0KuEWXdAUwxNr1K6sPpNZtEoIwQh5
- O6RLN/mHVShgkrv4SDFLlXy1mEfA4XVbwtYYjeNZnTWmJnl3168FMkcqnBEgioiF80/MJCm4Cb
- /dN5TL4oiSbv7D+2Wvud5AVmyznRyAAAA
-X-Change-ID: 20251009-imx8-gpio-csi-deferred-probe-eef6c56a35aa
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
- Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>, Frank Li <Frank.Li@nxp.com>
-Cc: devicetree@vger.kernel.org, imx@lists.linux.dev, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- =?utf-8?q?Jo=C3=A3o_Paulo_Gon=C3=A7alves?= <joao.goncalves@toradex.com>
-X-Mailer: b4 0.14.2
+References: <cover.1759824376.git.mazziesaccount@gmail.com>
+ <fe1f4a0947c864496f4eeec8eef806afcf6094a4.1759824376.git.mazziesaccount@gmail.com>
+ <CACRpkdZnoMvYBXN7b6dw+uPs=f1WXr9wX-0VF1c1qd-rq+17LQ@mail.gmail.com> <cac4222e-1f66-40e1-abf8-7d4661d43bbf@gmail.com>
+In-Reply-To: <cac4222e-1f66-40e1-abf8-7d4661d43bbf@gmail.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Tue, 14 Oct 2025 14:58:28 +0200
+X-Gm-Features: AS18NWAzYGkVtZF2eWYQ8i62TI7iWUixyj6KHyQnG8bjFDuI6exLbunxibrSSZs
+Message-ID: <CACRpkdbOKNPFxNJM-r+HdnfKYisWJrQXvG21EL9w4UQVP74D5A@mail.gmail.com>
+Subject: Re: [RFC PATCH 04/13] dt-bindings: mfd: ROHM BD72720
+To: Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>, Lee Jones <lee@kernel.org>, 
+	Pavel Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Sebastian Reichel <sre@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, Andreas Kemnade <andreas@kemnade.info>, linux-leds@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-pm@vger.kernel.org, linux-gpio@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: João Paulo Gonçalves <joao.goncalves@toradex.com>
+On Tue, Oct 14, 2025 at 2:11=E2=80=AFPM Matti Vaittinen
+<mazziesaccount@gmail.com> wrote:
 
-The gpio0_mipi_csi DT nodes are enabled by default, but they are
-dependent on the irqsteer_csi nodes, which are not enabled. This causes
-the gpio0_mipi_csi GPIOs to be probe deferred. Since these GPIOs can be
-used independently of the CSI controller, enable irqsteer_csi by default
-too to prevent them from being deferred and to ensure they work out of
-the box.
+> > These are a bit idiomatic, not using the actual framework for such
+> > things (pin control) BUT: they are on the other hand crystal
+> > clear for an integrator working with this device tree, and only
+> > four pins so why over-engineer it. I am fine
+> > with them if the DT people are.
+>
+> I kind of like to emphasize the fact that this is not really a pin-mux
+> in a traditional sense. We can't change the routing after OTP is
+> written. As such, it more resembles "wiring" of the signal inside the
+> PMIC, and this property is not a control but tells us how the signal is
+> wired. But yeah, let's see what others think of it.
 
-Fixes: 2217f8243714 ("arm64: dts: imx8: add capture controller for i.MX8's img subsystem")
-Signed-off-by: João Paulo Gonçalves <joao.goncalves@toradex.com>
----
- arch/arm64/boot/dts/freescale/imx8-ss-img.dtsi | 2 --
- 1 file changed, 2 deletions(-)
+Just that the muxing is controlled by OTP and not by runtime
+software doesn't make it not pinmux. It is, because it is
+(one time) PROGRAMMED to a certain purpose. In a factory,
+nevertheless.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8-ss-img.dtsi b/arch/arm64/boot/dts/freescale/imx8-ss-img.dtsi
-index 2cf0f7208350a416d77b11140279d2f66f41498f..a72b2f1c4a1b2ef26196c810b33ecfdebdbc1675 100644
---- a/arch/arm64/boot/dts/freescale/imx8-ss-img.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8-ss-img.dtsi
-@@ -67,7 +67,6 @@ irqsteer_csi0: irqsteer@58220000 {
- 		power-domains = <&pd IMX_SC_R_CSI_0>;
- 		fsl,channel = <0>;
- 		fsl,num-irqs = <32>;
--		status = "disabled";
- 	};
- 
- 	gpio0_mipi_csi0: gpio@58222000 {
-@@ -144,7 +143,6 @@ irqsteer_csi1: irqsteer@58240000 {
- 		power-domains = <&pd IMX_SC_R_CSI_1>;
- 		fsl,channel = <0>;
- 		fsl,num-irqs = <32>;
--		status = "disabled";
- 	};
- 
- 	gpio0_mipi_csi1: gpio@58242000 {
+But the pin control muxing subsystem is designed for muxing
+that is controlled by software at runtime, and as such, indeed
+not a good fit.
 
----
-base-commit: 3a8660878839faadb4f1a6dd72c3179c1df56787
-change-id: 20251009-imx8-gpio-csi-deferred-probe-eef6c56a35aa
+Let's go with this!
 
-Best regards,
--- 
-João Paulo Gonçalves <joao.goncalves@toradex.com>
-
+Yours,
+Linus Walleij
 
