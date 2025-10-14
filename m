@@ -1,124 +1,180 @@
-Return-Path: <devicetree+bounces-226725-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226726-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B896EBDAC85
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 19:31:31 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB613BDACA6
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 19:37:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A54D93B158E
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 17:31:03 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 17FF74E4B38
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 17:37:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B81CB305942;
-	Tue, 14 Oct 2025 17:30:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C958A27A10F;
+	Tue, 14 Oct 2025 17:37:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="l/SUphFl"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="q9jTq4a6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81171304BDA;
-	Tue, 14 Oct 2025 17:30:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0147274B58;
+	Tue, 14 Oct 2025 17:37:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760463003; cv=none; b=OgQD2Nm/lgHlhFXBgq1tSeplC2srcWANX6OBxjO7FGB6xgt6bsp5VHcNLbtXZB5wZ/KR180nL3NCJzUJCbWtGVXHPkjt1AVuJz/YfvOOGsgFNMwTWeHbT6SfEdiPruKA91gjSQx+OJ9R8VtqZESuC1vnI39Gxteck2tlMpp4pRA=
+	t=1760463451; cv=none; b=FUvGAcVoe2uf28ISW0m26ae/XKKVQQBjMeEeWTZDiEEddzbeJPb7mFPdttdquHtsfY5HhudP4+Ez1vlbPUJZzf6aG4gsNeWZKYkZa9Pa4VPHBoC2eNcybcNVRB449+iZ4G5B5UO3afbZhq1BeEcrRodtB7Hn2WX4sp1t2MqubNA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760463003; c=relaxed/simple;
-	bh=lxTHNrNEn65TcFb9Mt4czv1JDx4DrJ9v0Fa+yCS4Krg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Tjs5t/fDaTCxlHwprQ2T//dVaciujQx81lS+A4FXGQzjMS25LXLByMz35SUHtrg22h6NfefdOBpkbSJsECvUdELtoGm01yZmMQAeTlLm0GOGI8nyUmY9n5IUnu7JkO5eX+oN0YjVchcH2P0qLqR/gQk9jhJGLE0FlJiAjgl0V3Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=l/SUphFl; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1876DC4CEE7;
-	Tue, 14 Oct 2025 17:30:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760463003;
-	bh=lxTHNrNEn65TcFb9Mt4czv1JDx4DrJ9v0Fa+yCS4Krg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=l/SUphFl5Wg/gx5N5k+Obv7h+O3tC3/feJaFfUrS4jrkuhteB2GIcThVkLlcZ4Aue
-	 G99j3CpL4KpPxy0vri260ZUyjnSKrbuU/ujB7Vl4KRcDd3hsvSdGpVDyFJim5Mf+6q
-	 s9V+ESXHn1MP3vpEJCRpsJq+rE+tWJ70zK2fF30GlH6husKzPWy2knQOHdswMTahTd
-	 mRnE6L1A6jps9qrBa9Rn4zHqJh9xMIjAs+OQw6GA9n+UX0O1ZgrPad3PWX950QI9G6
-	 p7rhutp8TOI63Eip8w0f6lBYVe1B78ddP1TBsRN6WWPHW6zSpVnxJZINBagTcuPqqk
-	 jv/hKlRi6qx2g==
-Date: Tue, 14 Oct 2025 18:29:58 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Marek Vasut <marek.vasut@mailbox.org>
-Cc: linux-clk@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Rob Herring <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: clk: si522xx: Clock driver for Skyworks
- Si522xx I2C PCIe clock generators
-Message-ID: <20251014-sixfold-backslid-2f4158e35011@spud>
-References: <20251011223846.261652-1-marek.vasut@mailbox.org>
- <20251013-finally-stopped-7f5ebac801b3@spud>
- <de68a605-8b42-4dba-bd59-4708a5bcf542@mailbox.org>
+	s=arc-20240116; t=1760463451; c=relaxed/simple;
+	bh=HiHxgPNFAWSB/iS1Eg4H0inrzfOnWi/it/DJfDndziA=;
+	h=Content-Type:MIME-Version:In-Reply-To:References:Subject:From:Cc:
+	 To:Date:Message-ID; b=c8wxIg0YmKVHE7b07BjHWkw0stSLFsKpFNU646qhWQyHniMjvYICec6N1Y6trZjtxd3UA6ZbSy/st/QWZIhxuiSg7YKStH7a/HVZhEwP6QcER+TMUNuRhir3UtZ7dfD3/bZEAQagTyKiIXYFVSHZwwT+bVU2FyKhweQhWTaceJM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=q9jTq4a6; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (cpc89244-aztw30-2-0-cust6594.18-1.cable.virginm.net [86.31.185.195])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 1B5A1741;
+	Tue, 14 Oct 2025 19:35:48 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1760463348;
+	bh=HiHxgPNFAWSB/iS1Eg4H0inrzfOnWi/it/DJfDndziA=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=q9jTq4a6Wd81pLyp1VGc5fLh85ad6D3pNvVulfbdw6nNHMFfwQHZ+9YodjLIwb/tf
+	 OFUJHqcDSVDA1RGICzlwOuLLW8Jd6hpeXuJzD5A1yLJzUAHXvb1WykyTG/aJt3UuBv
+	 yDqmkZJeiY5Z5R4V1MVbHtD4AkP2IQSy9vXuIVUs=
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="Bj3uk/bTyhAiE5NY"
-Content-Disposition: inline
-In-Reply-To: <de68a605-8b42-4dba-bd59-4708a5bcf542@mailbox.org>
-
-
---Bj3uk/bTyhAiE5NY
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20250916144710.1285650-1-kieran.bingham@ideasonboard.com>
+References: <20250916144710.1285650-1-kieran.bingham@ideasonboard.com>
+Subject: Re: [PATCH] arm64: dts: freescale: debix-som-a-bmb-08: Enable HDMI output
+From: Kieran Bingham <kieran.bingham@ideasonboard.com>
+Cc: Shawn Guo <shawnguo2@yeah.net>, Marco Felsch <m.felsch@pengutronix.de>
+To: Conor Dooley <conor+dt@kernel.org>, Fabio Estevam <festevam@gmail.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Pengutronix Kernel Team <kernel@pengutronix.de>, Rob Herring <robh@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Date: Tue, 14 Oct 2025 18:37:23 +0100
+Message-ID: <176046344348.1246375.13335893574135284814@ping.linuxembedded.co.uk>
+User-Agent: alot/0.9.1
 
-On Tue, Oct 14, 2025 at 12:56:29PM +0200, Marek Vasut wrote:
-> On 10/13/25 10:00 PM, Conor Dooley wrote:
->=20
-> Hello Conor,
->=20
-> > > diff --git a/Documentation/devicetree/bindings/clock/skyworks,si522xx=
-=2Eyaml b/Documentation/devicetree/bindings/clock/skyworks,si522xx.yaml
-> > > new file mode 100644
-> > > index 0000000000000..6ad26543f9d21
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/clock/skyworks,si522xx.yaml
-> >=20
-> > Can you just pick one of the compatibles here?
->=20
-> I reused the existing pattern from previous binding document.
->=20
-> Documentation/devicetree/bindings/clock/skyworks,si521xx.yaml
->=20
-> I can use the 52202 for this binding document if that is preferable ?
+Hi All,
 
-yeah, I'd rather that, thanks.
-
+Quoting Kieran Bingham (2025-09-16 15:47:09)
+> Enable the HDMI output on the Debix SOM A board, using the HDMI encoder
+> present in the i.MX8MP SoC.
 >=20
-> ...
+> Enable and configure all nodes required for the HDMI port usage.
 >=20
-> > > +patternProperties:
-> > > +  "^DIFF[0-11]$":
-> > > +    type: object
-> > > +    description:
-> > > +      Description of one of the outputs (DIFF0..DIF11).
-> >=20
-> > typo, DIFF11.
-> > Does this regex actually work? I don't think it allows anything other
-> > than DIFF0 and DIFF1, since it evaluates 0-1 as a range and 1 as another
-> > range.
-> Fixed both, also fixed rs9 bindings and patch posted.
+> Signed-off-by: Kieran Bingham <kieran.bingham@ideasonboard.com>
 
---Bj3uk/bTyhAiE5NY
-Content-Type: application/pgp-signature; name="signature.asc"
+One review tag at https://lore.kernel.org/all/20250925171744.5eyhqjlqp7skes=
+qi@pengutronix.de/
 
------BEGIN PGP SIGNATURE-----
+Could anyone be able to review / collect / apply this one please?
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaO6IlgAKCRB4tDGHoIJi
-0rM2AQCOXXBQrTp3nRW9SfSppsqxuctCkfpuiNofG/c85xgiIwD9FkGhCIJtoYg+
-VMZhnY43W0SJvmkehrQRRhBFb117wAc=
-=DBm2
------END PGP SIGNATURE-----
+--
+Regards
 
---Bj3uk/bTyhAiE5NY--
+Kieran
+
+
+> ---
+>=20
+> This replicates 4880ee1c9046 ("arm64: dts: imx8mp-debix-model-a: Enable
+> HDMI output") to support the Debix SOM as well.
+>=20
+>=20
+>  .../freescale/imx8mp-debix-som-a-bmb-08.dts   | 47 +++++++++++++++++++
+>  1 file changed, 47 insertions(+)
+>=20
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-debix-som-a-bmb-08.dts =
+b/arch/arm64/boot/dts/freescale/imx8mp-debix-som-a-bmb-08.dts
+> index d241db3743a9..04619a722906 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mp-debix-som-a-bmb-08.dts
+> +++ b/arch/arm64/boot/dts/freescale/imx8mp-debix-som-a-bmb-08.dts
+> @@ -22,6 +22,18 @@ chosen {
+>                 stdout-path =3D &uart2;
+>         };
+> =20
+> +       hdmi-connector {
+> +               compatible =3D "hdmi-connector";
+> +               label =3D "hdmi";
+> +               type =3D "a";
+> +
+> +               port {
+> +                       hdmi_connector_in: endpoint {
+> +                               remote-endpoint =3D <&hdmi_tx_out>;
+> +                       };
+> +               };
+> +       };
+> +
+>         reg_baseboard_vdd3v3: regulator-baseboard-vdd3v3 {
+>                 compatible =3D "regulator-fixed";
+>                 regulator-min-microvolt =3D <3300000>;
+> @@ -222,6 +234,28 @@ flash: flash@0 {
+>         };
+>  };
+> =20
+> +&hdmi_pvi {
+> +       status =3D "okay";
+> +};
+> +
+> +&hdmi_tx {
+> +       pinctrl-names =3D "default";
+> +       pinctrl-0 =3D <&pinctrl_hdmi>;
+> +       status =3D "okay";
+> +
+> +       ports {
+> +               port@1 {
+> +                       hdmi_tx_out: endpoint {
+> +                               remote-endpoint =3D <&hdmi_connector_in>;
+> +                       };
+> +               };
+> +       };
+> +};
+> +
+> +&hdmi_tx_phy {
+> +       status =3D "okay";
+> +};
+> +
+>  &i2c4 {
+>         expander0: gpio@20 {
+>                 compatible =3D "nxp,pca9535";
+> @@ -276,6 +310,10 @@ ethmac2: mac-address@c {
+>         };
+>  };
+> =20
+> +&lcdif3 {
+> +       status =3D "okay";
+> +};
+> +
+>  &snvs_pwrkey {
+>         status =3D "okay";
+>  };
+> @@ -430,6 +468,15 @@ MX8MP_IOMUXC_NAND_DATA03__FLEXSPI_A_DATA03      0x82
+>                 >;
+>         };
+> =20
+> +       pinctrl_hdmi: hdmigrp {
+> +               fsl,pins =3D <
+> +                       MX8MP_IOMUXC_HDMI_DDC_SCL__HDMIMIX_HDMI_SCL     0=
+x1c3
+> +                       MX8MP_IOMUXC_HDMI_DDC_SDA__HDMIMIX_HDMI_SDA     0=
+x1c3
+> +                       MX8MP_IOMUXC_HDMI_HPD__HDMIMIX_HDMI_HPD         0=
+x19
+> +                       MX8MP_IOMUXC_HDMI_CEC__HDMIMIX_HDMI_CEC         0=
+x19
+> +               >;
+> +       };
+> +
+>         pinctrl_i2c1: i2c1grp {
+>                 fsl,pins =3D <
+>                         MX8MP_IOMUXC_I2C1_SCL__I2C1_SCL                 0=
+x400001c2
+> --=20
+> 2.50.1
+>
 
