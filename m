@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-226567-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226568-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20764BD9B60
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 15:29:33 +0200 (CEST)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 601A4BD9B63
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 15:29:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 99EE6353057
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 13:29:32 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id D7B39353133
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 13:29:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E177530C34C;
-	Tue, 14 Oct 2025 13:29:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD003313E12;
+	Tue, 14 Oct 2025 13:29:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TAnMWUCi"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="afvaauLz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8E0B21E0BB;
-	Tue, 14 Oct 2025 13:29:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD48C304BC5;
+	Tue, 14 Oct 2025 13:29:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760448567; cv=none; b=ce+bzjeNA8LbHLf7uwKEUj6yjVLLmZOo64WvAiQ9SjA9FVoSnudHphCwuRYMT5j8lL1JTxJMhpJ4ncyLqQu5swDqGwm8IyawshUW1eSf+HNWrV9DAz9AIp4N/gHTyGSfL5gmvTpKEjaGaqnGuizKGMg5bKYWJzPH9Klw6AJ1VtY=
+	t=1760448569; cv=none; b=ehqdcIyujdY29Y5wvS2pQ6+KEATq2lCKTIaO24HRO3u6o0NrveuCtQQXlw+TLlq4ape/11loiqYiKpkIorQXmEUCZA6VfBw52eH1Fqqm2ZB46XAKpTG37KU/uwtjz5w5nGJ1lPk/PlFx1G4rDfc0jBiFN9h/fyi2m088qh0E8/U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760448567; c=relaxed/simple;
-	bh=QiXQnftXW1d9rJAEQ6KtRkpR9BslCCYM3ivIwvsJqxc=;
+	s=arc-20240116; t=1760448569; c=relaxed/simple;
+	bh=hc3kwbf2STN0A33JCbqR/U4/0iI1b6WP+A59VPIvBZ4=;
 	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=JdP4h+NsSiCq92gPV8R/cqm69Cm3gymfR6AZV37XFVcy13VYuvcTzgcFp702u2/H1z7DcUIE8L7BFjSD+bOR7pAFAB+HRg+7uZmwwIXwnbqskxdDjkUVrwXrhc1sce9VvBWYlFGlMMlFtUiNiIVBcIVdpycieQEanwh5gPemFb0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TAnMWUCi; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 13F9CC4CEF1;
-	Tue, 14 Oct 2025 13:29:26 +0000 (UTC)
+	 Message-Id:Subject; b=eRVUThRlR1cXiv5THk6NLFHOJ/4ROoMBtKqDQbfc+l28/Aa98/ElhKiiyiNjcY+MrP/k05t4Za5bKl048oJQtHKCD34fSngDabkHCse5CKKXnzdSEMN1aIxhx5KrN2b5c9uFLK4qQ7usJSjnG7DnJwvuUujUPLDGyhqUigvD6tE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=afvaauLz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 044EBC4CEE7;
+	Tue, 14 Oct 2025 13:29:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760448567;
-	bh=QiXQnftXW1d9rJAEQ6KtRkpR9BslCCYM3ivIwvsJqxc=;
+	s=k20201202; t=1760448569;
+	bh=hc3kwbf2STN0A33JCbqR/U4/0iI1b6WP+A59VPIvBZ4=;
 	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=TAnMWUCif1YonqEkAVnuSFvB9eNbrhifuqgaBBrwMBTNteapV79Ueu7vp+yHXBisi
-	 SUhbbM0TkJ53cHe0D250faJ4U46BzFgIeW3W38IjcKeDy+s7Oxh4QYn8eVXglp4OfK
-	 Fm/IeSQy1df0UevAGeU37JHvhsH11HP4s9S3wsDaHSwmgT34LLIGEb56gON944mhHh
-	 Wd5XlZWektTvp3MFajwCEgx9oSoY6CSa8a57zGLTcsRPBVxC40URyj4dAxD+vjGV5K
-	 MNvnqlRVKZiM6b/XkcoKgwQzpJmImqeFGUCN/tFyHSvDVzhFb4pUbWOTTxdgeomfBs
-	 4bAA1Tnn51M6A==
-Date: Tue, 14 Oct 2025 08:29:25 -0500
+	b=afvaauLzb7GRoYdi/QZ6GKLJIyMRSO6uQlcnktr5uu4zLAmBTI2O+jQkOuo33imLI
+	 MOeJjMGJZ6q5XPP3WGzbxeyIvo/Q7Jg8wDWQzqs+VuYBnbPdmwu27L9cdYfWrPUUuZ
+	 I4Xa45E9kCamLdx84n/rqkZczriDSmRb62VX8S2oqxjlxO/EpNZGZ7mi+gV9yQfghr
+	 JhLTD83s6SJxF42e7n8D3xfcsR94WSSTiII/Ov0gETPotLftlQ9PlnUxSKNBZWsQce
+	 GCLdIQxIBcnosYtzo2HUbkrTKUiwaKCzmCn0twHE6DGC0QxmbrD/hfJht47gk86+Ws
+	 pW589eqpsh/sw==
+Date: Tue, 14 Oct 2025 08:29:27 -0500
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
@@ -51,55 +51,59 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
- Matt Coster <matt.coster@imgtec.com>, Magnus Damm <magnus.damm@gmail.com>, 
- Adam Ford <aford173@gmail.com>, Frank Binns <frank.binns@imgtec.com>, 
- Simona Vetter <simona@ffwll.ch>, 
- Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>, 
- dri-devel@lists.freedesktop.org, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- Geert Uytterhoeven <geert+renesas@glider.be>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, David Airlie <airlied@gmail.com>, 
- linux-arm-kernel@lists.infradead.org
-To: Marek Vasut <marek.vasut+renesas@mailbox.org>
-In-Reply-To: <20251013190210.142436-1-marek.vasut+renesas@mailbox.org>
-References: <20251013190210.142436-1-marek.vasut+renesas@mailbox.org>
-Message-Id: <176044840106.3094437.2331943625522490352.robh@kernel.org>
-Subject: Re: [PATCH 1/3] dt-bindings: gpu: img,powervr-rogue: Document
- GX6250 GPU in Renesas R-Car M3-W/M3-W+
+Cc: linux-kernel@vger.kernel.org, Rajendra Nayak <quic_rjendra@quicinc.com>, 
+ Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, 
+ Abel Vesa <abel.vesa@linaro.org>, devicetree@vger.kernel.org, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, 
+ Sibi Sankar <sibi.sankar@oss.qualcomm.com>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
+In-Reply-To: <20251014022121.1850871-1-krishna.kurapati@oss.qualcomm.com>
+References: <20251014022121.1850871-1-krishna.kurapati@oss.qualcomm.com>
+Message-Id: <176044840201.3094490.10920986485506662870.robh@kernel.org>
+Subject: Re: [PATCH 0/2] Modify USB controller nodes for USB on X1E80100
 
 
-On Mon, 13 Oct 2025 21:01:17 +0200, Marek Vasut wrote:
-> Document Imagination Technologies PowerVR Rogue GX6250 BNVC 4.45.2.58
-> present in Renesas R-Car R8A77960 M3-W and R8A77961 M3-W+ SoC.
+On Tue, 14 Oct 2025 07:51:19 +0530, Krishna Kurapati wrote:
+> This series aims to flatten usb dt nodes and use latest bindings.
+> While at it, fix a compile time warning on the HS only controller node.
 > 
-> Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
-> ---
-> Cc: Adam Ford <aford173@gmail.com>
-> Cc: Conor Dooley <conor+dt@kernel.org>
-> Cc: David Airlie <airlied@gmail.com>
-> Cc: Frank Binns <frank.binns@imgtec.com>
-> Cc: Geert Uytterhoeven <geert+renesas@glider.be>
-> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> Cc: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Cc: Magnus Damm <magnus.damm@gmail.com>
-> Cc: Matt Coster <matt.coster@imgtec.com>
-> Cc: Maxime Ripard <mripard@kernel.org>
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: Simona Vetter <simona@ffwll.ch>
-> Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: devicetree@vger.kernel.org
-> Cc: dri-devel@lists.freedesktop.org
-> Cc: linux-renesas-soc@vger.kernel.org
-> ---
-> See https://gitlab.freedesktop.org/imagination/linux-firmware/-/issues/13
-> for related userspace bits.
-> ---
->  .../devicetree/bindings/gpu/img,powervr-rogue.yaml          | 6 ++++++
->  1 file changed, 6 insertions(+)
+> Tests done:
+> 1. On CRD, verified host mode operation of the 3 exposed Type-C ports
+> and enumeration of the Goodix fingerprint sensor on the multiport
+> usb controller.
+> 
+> 2. Modified the dr_mode to otg for the first 3 controllers and
+> verified role switching and device mode operation on the 3 exposed
+> Type-C ports.
+> 
+> HS only controller was not tested on any platform.
+> 
+> Krishna Kurapati (2):
+>   arm64: dts: qcom: x1e80100: Flatten usb controller nodes
+>   arm64: dts: qcom: x1e80100: Fix compile warnings for USB HS controller
+> 
+>  arch/arm64/boot/dts/qcom/hamoa-iot-som.dtsi   |  24 +-
+>  .../boot/dts/qcom/x1-asus-zenbook-a14.dtsi    |  12 +-
+>  arch/arm64/boot/dts/qcom/x1-crd.dtsi          |  18 +-
+>  arch/arm64/boot/dts/qcom/x1-dell-thena.dtsi   |  18 +-
+>  .../boot/dts/qcom/x1-hp-omnibook-x14.dtsi     |  18 +-
+>  arch/arm64/boot/dts/qcom/x1e001de-devkit.dts  |  18 +-
+>  .../qcom/x1e78100-lenovo-thinkpad-t14s.dtsi   |  18 +-
+>  .../dts/qcom/x1e80100-asus-vivobook-s15.dts   |  18 +-
+>  .../dts/qcom/x1e80100-dell-xps13-9345.dts     |  12 +-
+>  .../dts/qcom/x1e80100-lenovo-yoga-slim7x.dts  |  18 +-
+>  .../dts/qcom/x1e80100-microsoft-romulus.dtsi  |  12 +-
+>  arch/arm64/boot/dts/qcom/x1e80100-qcp.dts     |  18 +-
+>  arch/arm64/boot/dts/qcom/x1e80100.dtsi        | 322 ++++++++----------
+>  .../dts/qcom/x1p42100-lenovo-thinkbook-16.dts |  24 +-
+>  14 files changed, 214 insertions(+), 336 deletions(-)
+> 
+> --
+> 2.34.1
+> 
+> 
 > 
 
 
@@ -125,122 +129,108 @@ This patch series was applied (using b4) to base:
 If this is not the correct base, please add 'base-commit' tag
 (or use b4 which does this automatically)
 
-New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/renesas/' for 20251013190210.142436-1-marek.vasut+renesas@mailbox.org:
+New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/qcom/' for 20251014022121.1850871-1-krishna.kurapati@oss.qualcomm.com:
 
-Lexical error: arch/arm64/boot/dts/renesas/r8a77961.dtsi:2456.27-43 Unexpected 'R8A7796_PD_3DG_B'
-FATAL ERROR: Syntax error parsing input tree
-make[3]: *** [scripts/Makefile.dtbs:132: arch/arm64/boot/dts/renesas/r8a77961-ulcb-kf.dtb] Error 1
-make[2]: *** [scripts/Makefile.build:556: arch/arm64/boot/dts/renesas] Error 2
-make[2]: Target 'arch/arm64/boot/dts/renesas/r8a77961-ulcb-kf.dtb' not remade because of errors.
-make[1]: *** [/home/rob/proj/linux-dt-testing/Makefile:1478: renesas/r8a77961-ulcb-kf.dtb] Error 2
-Lexical error: arch/arm64/boot/dts/renesas/r8a77961.dtsi:2456.27-43 Unexpected 'R8A7796_PD_3DG_B'
-FATAL ERROR: Syntax error parsing input tree
-make[3]: *** [scripts/Makefile.dtbs:132: arch/arm64/boot/dts/renesas/r8a779m3-ulcb-kf.dtb] Error 1
-make[2]: *** [scripts/Makefile.build:556: arch/arm64/boot/dts/renesas] Error 2
-make[2]: Target 'arch/arm64/boot/dts/renesas/r8a779m3-ulcb-kf.dtb' not remade because of errors.
-make[1]: *** [/home/rob/proj/linux-dt-testing/Makefile:1478: renesas/r8a779m3-ulcb-kf.dtb] Error 2
-Lexical error: arch/arm64/boot/dts/renesas/r8a77961.dtsi:2456.27-43 Unexpected 'R8A7796_PD_3DG_B'
-FATAL ERROR: Syntax error parsing input tree
-make[3]: *** [scripts/Makefile.dtbs:132: arch/arm64/boot/dts/renesas/r8a77961-salvator-xs.dtb] Error 1
-make[2]: *** [scripts/Makefile.build:556: arch/arm64/boot/dts/renesas] Error 2
-make[2]: Target 'arch/arm64/boot/dts/renesas/r8a77961-salvator-xs.dtb' not remade because of errors.
-make[1]: *** [/home/rob/proj/linux-dt-testing/Makefile:1478: renesas/r8a77961-salvator-xs.dtb] Error 2
-Lexical error: arch/arm64/boot/dts/renesas/r8a77961.dtsi:2456.27-43 Unexpected 'R8A7796_PD_3DG_B'
-FATAL ERROR: Syntax error parsing input tree
-make[3]: *** [scripts/Makefile.dtbs:132: arch/arm64/boot/dts/renesas/r8a77961-ulcb.dtb] Error 1
-make[2]: *** [scripts/Makefile.build:556: arch/arm64/boot/dts/renesas] Error 2
-make[2]: Target 'arch/arm64/boot/dts/renesas/r8a77961-ulcb.dtb' not remade because of errors.
-make[1]: *** [/home/rob/proj/linux-dt-testing/Makefile:1478: renesas/r8a77961-ulcb.dtb] Error 2
-Lexical error: arch/arm64/boot/dts/renesas/r8a77961.dtsi:2456.27-43 Unexpected 'R8A7796_PD_3DG_B'
-FATAL ERROR: Syntax error parsing input tree
-make[3]: *** [scripts/Makefile.dtbs:132: arch/arm64/boot/dts/renesas/r8a779m3-ulcb.dtb] Error 1
-make[2]: *** [scripts/Makefile.build:556: arch/arm64/boot/dts/renesas] Error 2
-make[2]: Target 'arch/arm64/boot/dts/renesas/r8a779m3-ulcb.dtb' not remade because of errors.
-make[1]: *** [/home/rob/proj/linux-dt-testing/Makefile:1478: renesas/r8a779m3-ulcb.dtb] Error 2
-Lexical error: arch/arm64/boot/dts/renesas/r8a77961.dtsi:2456.27-43 Unexpected 'R8A7796_PD_3DG_B'
-FATAL ERROR: Syntax error parsing input tree
-make[3]: *** [scripts/Makefile.dtbs:132: arch/arm64/boot/dts/renesas/r8a779m3-salvator-xs.dtb] Error 1
-make[2]: *** [scripts/Makefile.build:556: arch/arm64/boot/dts/renesas] Error 2
-make[2]: Target 'arch/arm64/boot/dts/renesas/r8a779m3-salvator-xs.dtb' not remade because of errors.
-make[1]: *** [/home/rob/proj/linux-dt-testing/Makefile:1478: renesas/r8a779m3-salvator-xs.dtb] Error 2
-make: *** [Makefile:248: __sub-make] Error 2
-make: Target 'renesas/r9a07g044c2-smarc.dtb' not remade because of errors.
-make: Target 'renesas/r8a77961-ulcb-kf.dtb' not remade because of errors.
-make: Target 'renesas/r8a77965-ulcb.dtb' not remade because of errors.
-make: Target 'renesas/r8a77965-ulcb-kf.dtb' not remade because of errors.
-make: Target 'renesas/r8a779m1-ulcb.dtb' not remade because of errors.
-make: Target 'renesas/r8a774c0-ek874.dtb' not remade because of errors.
-make: Target 'renesas/r8a774c0-ek874-idk-2121wr.dtb' not remade because of errors.
-make: Target 'renesas/r9a09g077m44-rzt2h-evk.dtb' not remade because of errors.
-make: Target 'renesas/r8a77960-ulcb-kf.dtb' not remade because of errors.
-make: Target 'renesas/r8a77980a-condor-i.dtb' not remade because of errors.
-make: Target 'renesas/r8a774a1-hihope-rzg2m-rev2.dtb' not remade because of errors.
-make: Target 'renesas/r8a779g0-white-hawk.dtb' not remade because of errors.
-make: Target 'renesas/r8a774b1-hihope-rzg2n-rev2-ex.dtb' not remade because of errors.
-make: Target 'renesas/r8a779g2-white-hawk-single.dtb' not remade because of errors.
-make: Target 'renesas/r8a774e1-hihope-rzg2h-ex-idk-1110wr.dtb' not remade because of errors.
-make: Target 'renesas/r9a07g044l2-remi-pi.dtb' not remade because of errors.
-make: Target 'renesas/r8a774a1-hihope-rzg2m-ex-mipi-2.1.dtb' not remade because of errors.
-make: Target 'renesas/r8a774b1-hihope-rzg2n-rev2-ex-idk-1110wr.dtb' not remade because of errors.
-make: Target 'renesas/r8a774c0-ek874-mipi-2.1.dtb' not remade because of errors.
-make: Target 'renesas/r9a07g044l2-smarc.dtb' not remade because of errors.
-make: Target 'renesas/r9a09g056n48-rzv2n-evk.dtb' not remade because of errors.
-make: Target 'renesas/r8a774e1-hihope-rzg2h-ex-mipi-2.1.dtb' not remade because of errors.
-make: Target 'renesas/r8a779m5-salvator-xs.dtb' not remade because of errors.
-make: Target 'renesas/r8a77970-eagle.dtb' not remade because of errors.
-make: Target 'renesas/r8a77980-v3hsk.dtb' not remade because of errors.
-make: Target 'renesas/r8a77951-salvator-xs.dtb' not remade because of errors.
-make: Target 'renesas/r8a77951-ulcb-kf.dtb' not remade because of errors.
-make: Target 'renesas/r8a77965-salvator-xs.dtb' not remade because of errors.
-make: Target 'renesas/r9a09g057h48-kakip.dtb' not remade because of errors.
-make: Target 'renesas/r8a779f4-s4sk.dtb' not remade because of errors.
-make: Target 'renesas/r8a774b1-hihope-rzg2n-ex-mipi-2.1.dtb' not remade because of errors.
-make: Target 'renesas/r8a774b1-hihope-rzg2n-ex.dtb' not remade because of errors.
-make: Target 'renesas/r8a779h0-gray-hawk-single.dtb' not remade because of errors.
-make: Target 'renesas/r8a774c0-cat874.dtb' not remade because of errors.
-make: Target 'renesas/r8a77960-ulcb.dtb' not remade because of errors.
-make: Target 'renesas/r8a77951-ulcb.dtb' not remade because of errors.
-make: Target 'renesas/r8a774a1-hihope-rzg2m-rev2-ex-idk-1110wr.dtb' not remade because of errors.
-make: Target 'renesas/r8a774e1-beacon-rzg2h-kit.dtb' not remade because of errors.
-make: Target 'renesas/r9a09g087m44-rzn2h-evk.dtb' not remade because of errors.
-make: Target 'renesas/r8a779m1-ulcb-kf.dtb' not remade because of errors.
-make: Target 'renesas/r8a774b1-hihope-rzg2n-rev2.dtb' not remade because of errors.
-make: Target 'renesas/r8a77970-v3msk.dtb' not remade because of errors.
-make: Target 'renesas/r8a779m1-salvator-xs.dtb' not remade because of errors.
-make: Target 'renesas/r8a779m3-ulcb-kf.dtb' not remade because of errors.
-make: Target 'renesas/r9a09g047e57-smarc.dtb' not remade because of errors.
-make: Target 'renesas/r9a08g045s33-smarc.dtb' not remade because of errors.
-make: Target 'renesas/r8a77961-salvator-xs.dtb' not remade because of errors.
-make: Target 'renesas/r8a77960-salvator-xs.dtb' not remade because of errors.
-make: Target 'renesas/r8a77960-salvator-x.dtb' not remade because of errors.
-make: Target 'renesas/r8a77990-ebisu.dtb' not remade because of errors.
-make: Target 'renesas/r8a774b1-hihope-rzg2n-ex-idk-1110wr.dtb' not remade because of errors.
-make: Target 'renesas/r8a77980-condor.dtb' not remade because of errors.
-make: Target 'renesas/r9a07g054l2-smarc.dtb' not remade because of errors.
-make: Target 'renesas/r8a779g3-white-hawk-single.dtb' not remade because of errors.
-make: Target 'renesas/r8a779f0-spider.dtb' not remade because of errors.
-make: Target 'renesas/r8a774e1-hihope-rzg2h-ex.dtb' not remade because of errors.
-make: Target 'renesas/r8a779a0-falcon.dtb' not remade because of errors.
-make: Target 'renesas/r8a77965-salvator-x.dtb' not remade because of errors.
-make: Target 'renesas/r8a774e1-hihope-rzg2h.dtb' not remade because of errors.
-make: Target 'renesas/r8a77951-salvator-x.dtb' not remade because of errors.
-make: Target 'renesas/r9a09g011-v2mevk2.dtb' not remade because of errors.
-make: Target 'renesas/r8a774b1-hihope-rzg2n.dtb' not remade because of errors.
-make: Target 'renesas/r8a774b1-beacon-rzg2n-kit.dtb' not remade because of errors.
-make: Target 'renesas/r9a09g057h44-rzv2h-evk.dtb' not remade because of errors.
-make: Target 'renesas/r8a77961-ulcb.dtb' not remade because of errors.
-make: Target 'renesas/r8a774a1-hihope-rzg2m.dtb' not remade because of errors.
-make: Target 'renesas/r8a779h2-gray-hawk-single.dtb' not remade because of errors.
-make: Target 'renesas/r8a77995-draak.dtb' not remade because of errors.
-make: Target 'renesas/r8a774a1-hihope-rzg2m-ex.dtb' not remade because of errors.
-make: Target 'renesas/r8a779m3-ulcb.dtb' not remade because of errors.
-make: Target 'renesas/r8a774a1-hihope-rzg2m-ex-idk-1110wr.dtb' not remade because of errors.
-make: Target 'renesas/r8a779m3-salvator-xs.dtb' not remade because of errors.
-make: Target 'renesas/r9a07g043u11-smarc.dtb' not remade because of errors.
-make: Target 'renesas/r8a779g3-sparrow-hawk.dtb' not remade because of errors.
-make: Target 'renesas/r8a774a1-beacon-rzg2m-kit.dtb' not remade because of errors.
-make: Target 'renesas/r8a774a1-hihope-rzg2m-rev2-ex.dtb' not remade because of errors.
-make: Target 'renesas/r8a779g0-white-hawk-cpu.dtb' not remade because of errors.
+arch/arm64/boot/dts/qcom/x1e80100-dell-xps13-9345.dtb: usb@a200000 (qcom,x1e80100-dwc3): interrupt-names: ['dwc_usb3', 'pwr_event', 'dp_hs_phy_irq', 'dm_hs_phy_irq'] is too short
+	from schema $id: http://devicetree.org/schemas/usb/qcom,snps-dwc3.yaml#
+arch/arm64/boot/dts/qcom/x1e80100-asus-zenbook-a14.dtb: usb@a200000 (qcom,x1e80100-dwc3): interrupt-names: ['dwc_usb3', 'pwr_event', 'dp_hs_phy_irq', 'dm_hs_phy_irq'] is too short
+	from schema $id: http://devicetree.org/schemas/usb/qcom,snps-dwc3.yaml#
+arch/arm64/boot/dts/qcom/x1e80100-dell-xps13-9345.dtb: usb@a400000 (qcom,x1e80100-dwc3-mp): compatible:0: 'qcom,x1e80100-dwc3-mp' is not one of ['qcom,ipq4019-dwc3', 'qcom,ipq5018-dwc3', 'qcom,ipq5332-dwc3', 'qcom,ipq5424-dwc3', 'qcom,ipq6018-dwc3', 'qcom,ipq8064-dwc3', 'qcom,ipq8074-dwc3', 'qcom,ipq9574-dwc3', 'qcom,milos-dwc3', 'qcom,msm8953-dwc3', 'qcom,msm8994-dwc3', 'qcom,msm8996-dwc3', 'qcom,msm8998-dwc3', 'qcom,qcm2290-dwc3', 'qcom,qcs404-dwc3', 'qcom,qcs615-dwc3', 'qcom,qcs8300-dwc3', 'qcom,qdu1000-dwc3', 'qcom,sa8775p-dwc3', 'qcom,sar2130p-dwc3', 'qcom,sc7180-dwc3', 'qcom,sc7280-dwc3', 'qcom,sc8180x-dwc3', 'qcom,sc8180x-dwc3-mp', 'qcom,sc8280xp-dwc3', 'qcom,sc8280xp-dwc3-mp', 'qcom,sdm660-dwc3', 'qcom,sdm670-dwc3', 'qcom,sdm845-dwc3', 'qcom,sdx55-dwc3', 'qcom,sdx65-dwc3', 'qcom,sdx75-dwc3', 'qcom,sm4250-dwc3', 'qcom,sm6115-dwc3', 'qcom,sm6125-dwc3', 'qcom,sm6350-dwc3', 'qcom,sm6375-dwc3', 'qcom,sm8150-dwc3', 'qcom,sm8250-dwc3', 'qcom,sm8350-dwc3', 'qcom,sm8450-dwc3', 'qcom,s
+ m8550-dwc3', 'qcom,sm8650-dwc3', 'qcom,x1e80100-dwc3']
+	from schema $id: http://devicetree.org/schemas/usb/qcom,snps-dwc3.yaml#
+arch/arm64/boot/dts/qcom/x1e80100-asus-zenbook-a14.dtb: usb@a400000 (qcom,x1e80100-dwc3-mp): compatible:0: 'qcom,x1e80100-dwc3-mp' is not one of ['qcom,ipq4019-dwc3', 'qcom,ipq5018-dwc3', 'qcom,ipq5332-dwc3', 'qcom,ipq5424-dwc3', 'qcom,ipq6018-dwc3', 'qcom,ipq8064-dwc3', 'qcom,ipq8074-dwc3', 'qcom,ipq9574-dwc3', 'qcom,milos-dwc3', 'qcom,msm8953-dwc3', 'qcom,msm8994-dwc3', 'qcom,msm8996-dwc3', 'qcom,msm8998-dwc3', 'qcom,qcm2290-dwc3', 'qcom,qcs404-dwc3', 'qcom,qcs615-dwc3', 'qcom,qcs8300-dwc3', 'qcom,qdu1000-dwc3', 'qcom,sa8775p-dwc3', 'qcom,sar2130p-dwc3', 'qcom,sc7180-dwc3', 'qcom,sc7280-dwc3', 'qcom,sc8180x-dwc3', 'qcom,sc8180x-dwc3-mp', 'qcom,sc8280xp-dwc3', 'qcom,sc8280xp-dwc3-mp', 'qcom,sdm660-dwc3', 'qcom,sdm670-dwc3', 'qcom,sdm845-dwc3', 'qcom,sdx55-dwc3', 'qcom,sdx65-dwc3', 'qcom,sdx75-dwc3', 'qcom,sm4250-dwc3', 'qcom,sm6115-dwc3', 'qcom,sm6125-dwc3', 'qcom,sm6350-dwc3', 'qcom,sm6375-dwc3', 'qcom,sm8150-dwc3', 'qcom,sm8250-dwc3', 'qcom,sm8350-dwc3', 'qcom,sm8450-dwc3', 'qcom,
+ sm8550-dwc3', 'qcom,sm8650-dwc3', 'qcom,x1e80100-dwc3']
+	from schema $id: http://devicetree.org/schemas/usb/qcom,snps-dwc3.yaml#
+arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s-oled.dtb: usb@a200000 (qcom,x1e80100-dwc3): interrupt-names: ['dwc_usb3', 'pwr_event', 'dp_hs_phy_irq', 'dm_hs_phy_irq'] is too short
+	from schema $id: http://devicetree.org/schemas/usb/qcom,snps-dwc3.yaml#
+arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s-oled.dtb: usb@a400000 (qcom,x1e80100-dwc3-mp): compatible:0: 'qcom,x1e80100-dwc3-mp' is not one of ['qcom,ipq4019-dwc3', 'qcom,ipq5018-dwc3', 'qcom,ipq5332-dwc3', 'qcom,ipq5424-dwc3', 'qcom,ipq6018-dwc3', 'qcom,ipq8064-dwc3', 'qcom,ipq8074-dwc3', 'qcom,ipq9574-dwc3', 'qcom,milos-dwc3', 'qcom,msm8953-dwc3', 'qcom,msm8994-dwc3', 'qcom,msm8996-dwc3', 'qcom,msm8998-dwc3', 'qcom,qcm2290-dwc3', 'qcom,qcs404-dwc3', 'qcom,qcs615-dwc3', 'qcom,qcs8300-dwc3', 'qcom,qdu1000-dwc3', 'qcom,sa8775p-dwc3', 'qcom,sar2130p-dwc3', 'qcom,sc7180-dwc3', 'qcom,sc7280-dwc3', 'qcom,sc8180x-dwc3', 'qcom,sc8180x-dwc3-mp', 'qcom,sc8280xp-dwc3', 'qcom,sc8280xp-dwc3-mp', 'qcom,sdm660-dwc3', 'qcom,sdm670-dwc3', 'qcom,sdm845-dwc3', 'qcom,sdx55-dwc3', 'qcom,sdx65-dwc3', 'qcom,sdx75-dwc3', 'qcom,sm4250-dwc3', 'qcom,sm6115-dwc3', 'qcom,sm6125-dwc3', 'qcom,sm6350-dwc3', 'qcom,sm6375-dwc3', 'qcom,sm8150-dwc3', 'qcom,sm8250-dwc3', 'qcom,sm8350-dwc3', 'qcom,sm8450-dwc3
+ ', 'qcom,sm8550-dwc3', 'qcom,sm8650-dwc3', 'qcom,x1e80100-dwc3']
+	from schema $id: http://devicetree.org/schemas/usb/qcom,snps-dwc3.yaml#
+arch/arm64/boot/dts/qcom/x1e80100-dell-latitude-7455.dtb: usb@a200000 (qcom,x1e80100-dwc3): interrupt-names: ['dwc_usb3', 'pwr_event', 'dp_hs_phy_irq', 'dm_hs_phy_irq'] is too short
+	from schema $id: http://devicetree.org/schemas/usb/qcom,snps-dwc3.yaml#
+arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dtb: usb@a200000 (qcom,x1e80100-dwc3): interrupt-names: ['dwc_usb3', 'pwr_event', 'dp_hs_phy_irq', 'dm_hs_phy_irq'] is too short
+	from schema $id: http://devicetree.org/schemas/usb/qcom,snps-dwc3.yaml#
+arch/arm64/boot/dts/qcom/x1e80100-dell-latitude-7455.dtb: usb@a400000 (qcom,x1e80100-dwc3-mp): compatible:0: 'qcom,x1e80100-dwc3-mp' is not one of ['qcom,ipq4019-dwc3', 'qcom,ipq5018-dwc3', 'qcom,ipq5332-dwc3', 'qcom,ipq5424-dwc3', 'qcom,ipq6018-dwc3', 'qcom,ipq8064-dwc3', 'qcom,ipq8074-dwc3', 'qcom,ipq9574-dwc3', 'qcom,milos-dwc3', 'qcom,msm8953-dwc3', 'qcom,msm8994-dwc3', 'qcom,msm8996-dwc3', 'qcom,msm8998-dwc3', 'qcom,qcm2290-dwc3', 'qcom,qcs404-dwc3', 'qcom,qcs615-dwc3', 'qcom,qcs8300-dwc3', 'qcom,qdu1000-dwc3', 'qcom,sa8775p-dwc3', 'qcom,sar2130p-dwc3', 'qcom,sc7180-dwc3', 'qcom,sc7280-dwc3', 'qcom,sc8180x-dwc3', 'qcom,sc8180x-dwc3-mp', 'qcom,sc8280xp-dwc3', 'qcom,sc8280xp-dwc3-mp', 'qcom,sdm660-dwc3', 'qcom,sdm670-dwc3', 'qcom,sdm845-dwc3', 'qcom,sdx55-dwc3', 'qcom,sdx65-dwc3', 'qcom,sdx75-dwc3', 'qcom,sm4250-dwc3', 'qcom,sm6115-dwc3', 'qcom,sm6125-dwc3', 'qcom,sm6350-dwc3', 'qcom,sm6375-dwc3', 'qcom,sm8150-dwc3', 'qcom,sm8250-dwc3', 'qcom,sm8350-dwc3', 'qcom,sm8450-dwc3', 'qco
+ m,sm8550-dwc3', 'qcom,sm8650-dwc3', 'qcom,x1e80100-dwc3']
+	from schema $id: http://devicetree.org/schemas/usb/qcom,snps-dwc3.yaml#
+arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dtb: usb@a400000 (qcom,x1e80100-dwc3-mp): compatible:0: 'qcom,x1e80100-dwc3-mp' is not one of ['qcom,ipq4019-dwc3', 'qcom,ipq5018-dwc3', 'qcom,ipq5332-dwc3', 'qcom,ipq5424-dwc3', 'qcom,ipq6018-dwc3', 'qcom,ipq8064-dwc3', 'qcom,ipq8074-dwc3', 'qcom,ipq9574-dwc3', 'qcom,milos-dwc3', 'qcom,msm8953-dwc3', 'qcom,msm8994-dwc3', 'qcom,msm8996-dwc3', 'qcom,msm8998-dwc3', 'qcom,qcm2290-dwc3', 'qcom,qcs404-dwc3', 'qcom,qcs615-dwc3', 'qcom,qcs8300-dwc3', 'qcom,qdu1000-dwc3', 'qcom,sa8775p-dwc3', 'qcom,sar2130p-dwc3', 'qcom,sc7180-dwc3', 'qcom,sc7280-dwc3', 'qcom,sc8180x-dwc3', 'qcom,sc8180x-dwc3-mp', 'qcom,sc8280xp-dwc3', 'qcom,sc8280xp-dwc3-mp', 'qcom,sdm660-dwc3', 'qcom,sdm670-dwc3', 'qcom,sdm845-dwc3', 'qcom,sdx55-dwc3', 'qcom,sdx65-dwc3', 'qcom,sdx75-dwc3', 'qcom,sm4250-dwc3', 'qcom,sm6115-dwc3', 'qcom,sm6125-dwc3', 'qcom,sm6350-dwc3', 'qcom,sm6375-dwc3', 'qcom,sm8150-dwc3', 'qcom,sm8250-dwc3', 'qcom,sm8350-dwc3', 'qcom,sm8450-dwc3', 'qco
+ m,sm8550-dwc3', 'qcom,sm8650-dwc3', 'qcom,x1e80100-dwc3']
+	from schema $id: http://devicetree.org/schemas/usb/qcom,snps-dwc3.yaml#
+arch/arm64/boot/dts/qcom/x1p42100-crd.dtb: usb@a200000 (qcom,x1e80100-dwc3): interrupt-names: ['dwc_usb3', 'pwr_event', 'dp_hs_phy_irq', 'dm_hs_phy_irq'] is too short
+	from schema $id: http://devicetree.org/schemas/usb/qcom,snps-dwc3.yaml#
+arch/arm64/boot/dts/qcom/x1p42100-crd.dtb: usb@a400000 (qcom,x1e80100-dwc3-mp): compatible:0: 'qcom,x1e80100-dwc3-mp' is not one of ['qcom,ipq4019-dwc3', 'qcom,ipq5018-dwc3', 'qcom,ipq5332-dwc3', 'qcom,ipq5424-dwc3', 'qcom,ipq6018-dwc3', 'qcom,ipq8064-dwc3', 'qcom,ipq8074-dwc3', 'qcom,ipq9574-dwc3', 'qcom,milos-dwc3', 'qcom,msm8953-dwc3', 'qcom,msm8994-dwc3', 'qcom,msm8996-dwc3', 'qcom,msm8998-dwc3', 'qcom,qcm2290-dwc3', 'qcom,qcs404-dwc3', 'qcom,qcs615-dwc3', 'qcom,qcs8300-dwc3', 'qcom,qdu1000-dwc3', 'qcom,sa8775p-dwc3', 'qcom,sar2130p-dwc3', 'qcom,sc7180-dwc3', 'qcom,sc7280-dwc3', 'qcom,sc8180x-dwc3', 'qcom,sc8180x-dwc3-mp', 'qcom,sc8280xp-dwc3', 'qcom,sc8280xp-dwc3-mp', 'qcom,sdm660-dwc3', 'qcom,sdm670-dwc3', 'qcom,sdm845-dwc3', 'qcom,sdx55-dwc3', 'qcom,sdx65-dwc3', 'qcom,sdx75-dwc3', 'qcom,sm4250-dwc3', 'qcom,sm6115-dwc3', 'qcom,sm6125-dwc3', 'qcom,sm6350-dwc3', 'qcom,sm6375-dwc3', 'qcom,sm8150-dwc3', 'qcom,sm8250-dwc3', 'qcom,sm8350-dwc3', 'qcom,sm8450-dwc3', 'qcom,sm8550-dwc3',
+  'qcom,sm8650-dwc3', 'qcom,x1e80100-dwc3']
+	from schema $id: http://devicetree.org/schemas/usb/qcom,snps-dwc3.yaml#
+arch/arm64/boot/dts/qcom/x1e001de-devkit.dtb: usb@a200000 (qcom,x1e80100-dwc3): interrupt-names: ['dwc_usb3', 'pwr_event', 'dp_hs_phy_irq', 'dm_hs_phy_irq'] is too short
+	from schema $id: http://devicetree.org/schemas/usb/qcom,snps-dwc3.yaml#
+arch/arm64/boot/dts/qcom/x1e001de-devkit.dtb: usb@a400000 (qcom,x1e80100-dwc3-mp): compatible:0: 'qcom,x1e80100-dwc3-mp' is not one of ['qcom,ipq4019-dwc3', 'qcom,ipq5018-dwc3', 'qcom,ipq5332-dwc3', 'qcom,ipq5424-dwc3', 'qcom,ipq6018-dwc3', 'qcom,ipq8064-dwc3', 'qcom,ipq8074-dwc3', 'qcom,ipq9574-dwc3', 'qcom,milos-dwc3', 'qcom,msm8953-dwc3', 'qcom,msm8994-dwc3', 'qcom,msm8996-dwc3', 'qcom,msm8998-dwc3', 'qcom,qcm2290-dwc3', 'qcom,qcs404-dwc3', 'qcom,qcs615-dwc3', 'qcom,qcs8300-dwc3', 'qcom,qdu1000-dwc3', 'qcom,sa8775p-dwc3', 'qcom,sar2130p-dwc3', 'qcom,sc7180-dwc3', 'qcom,sc7280-dwc3', 'qcom,sc8180x-dwc3', 'qcom,sc8180x-dwc3-mp', 'qcom,sc8280xp-dwc3', 'qcom,sc8280xp-dwc3-mp', 'qcom,sdm660-dwc3', 'qcom,sdm670-dwc3', 'qcom,sdm845-dwc3', 'qcom,sdx55-dwc3', 'qcom,sdx65-dwc3', 'qcom,sdx75-dwc3', 'qcom,sm4250-dwc3', 'qcom,sm6115-dwc3', 'qcom,sm6125-dwc3', 'qcom,sm6350-dwc3', 'qcom,sm6375-dwc3', 'qcom,sm8150-dwc3', 'qcom,sm8250-dwc3', 'qcom,sm8350-dwc3', 'qcom,sm8450-dwc3', 'qcom,sm8550-dwc
+ 3', 'qcom,sm8650-dwc3', 'qcom,x1e80100-dwc3']
+	from schema $id: http://devicetree.org/schemas/usb/qcom,snps-dwc3.yaml#
+arch/arm64/boot/dts/qcom/x1p42100-hp-omnibook-x14.dtb: usb@a200000 (qcom,x1e80100-dwc3): interrupt-names: ['dwc_usb3', 'pwr_event', 'dp_hs_phy_irq', 'dm_hs_phy_irq'] is too short
+	from schema $id: http://devicetree.org/schemas/usb/qcom,snps-dwc3.yaml#
+arch/arm64/boot/dts/qcom/x1p42100-hp-omnibook-x14.dtb: usb@a400000 (qcom,x1e80100-dwc3-mp): compatible:0: 'qcom,x1e80100-dwc3-mp' is not one of ['qcom,ipq4019-dwc3', 'qcom,ipq5018-dwc3', 'qcom,ipq5332-dwc3', 'qcom,ipq5424-dwc3', 'qcom,ipq6018-dwc3', 'qcom,ipq8064-dwc3', 'qcom,ipq8074-dwc3', 'qcom,ipq9574-dwc3', 'qcom,milos-dwc3', 'qcom,msm8953-dwc3', 'qcom,msm8994-dwc3', 'qcom,msm8996-dwc3', 'qcom,msm8998-dwc3', 'qcom,qcm2290-dwc3', 'qcom,qcs404-dwc3', 'qcom,qcs615-dwc3', 'qcom,qcs8300-dwc3', 'qcom,qdu1000-dwc3', 'qcom,sa8775p-dwc3', 'qcom,sar2130p-dwc3', 'qcom,sc7180-dwc3', 'qcom,sc7280-dwc3', 'qcom,sc8180x-dwc3', 'qcom,sc8180x-dwc3-mp', 'qcom,sc8280xp-dwc3', 'qcom,sc8280xp-dwc3-mp', 'qcom,sdm660-dwc3', 'qcom,sdm670-dwc3', 'qcom,sdm845-dwc3', 'qcom,sdx55-dwc3', 'qcom,sdx65-dwc3', 'qcom,sdx75-dwc3', 'qcom,sm4250-dwc3', 'qcom,sm6115-dwc3', 'qcom,sm6125-dwc3', 'qcom,sm6350-dwc3', 'qcom,sm6375-dwc3', 'qcom,sm8150-dwc3', 'qcom,sm8250-dwc3', 'qcom,sm8350-dwc3', 'qcom,sm8450-dwc3', 'qcom,s
+ m8550-dwc3', 'qcom,sm8650-dwc3', 'qcom,x1e80100-dwc3']
+	from schema $id: http://devicetree.org/schemas/usb/qcom,snps-dwc3.yaml#
+arch/arm64/boot/dts/qcom/x1e80100-hp-omnibook-x14.dtb: usb@a200000 (qcom,x1e80100-dwc3): interrupt-names: ['dwc_usb3', 'pwr_event', 'dp_hs_phy_irq', 'dm_hs_phy_irq'] is too short
+	from schema $id: http://devicetree.org/schemas/usb/qcom,snps-dwc3.yaml#
+arch/arm64/boot/dts/qcom/x1e80100-hp-omnibook-x14.dtb: usb@a400000 (qcom,x1e80100-dwc3-mp): compatible:0: 'qcom,x1e80100-dwc3-mp' is not one of ['qcom,ipq4019-dwc3', 'qcom,ipq5018-dwc3', 'qcom,ipq5332-dwc3', 'qcom,ipq5424-dwc3', 'qcom,ipq6018-dwc3', 'qcom,ipq8064-dwc3', 'qcom,ipq8074-dwc3', 'qcom,ipq9574-dwc3', 'qcom,milos-dwc3', 'qcom,msm8953-dwc3', 'qcom,msm8994-dwc3', 'qcom,msm8996-dwc3', 'qcom,msm8998-dwc3', 'qcom,qcm2290-dwc3', 'qcom,qcs404-dwc3', 'qcom,qcs615-dwc3', 'qcom,qcs8300-dwc3', 'qcom,qdu1000-dwc3', 'qcom,sa8775p-dwc3', 'qcom,sar2130p-dwc3', 'qcom,sc7180-dwc3', 'qcom,sc7280-dwc3', 'qcom,sc8180x-dwc3', 'qcom,sc8180x-dwc3-mp', 'qcom,sc8280xp-dwc3', 'qcom,sc8280xp-dwc3-mp', 'qcom,sdm660-dwc3', 'qcom,sdm670-dwc3', 'qcom,sdm845-dwc3', 'qcom,sdx55-dwc3', 'qcom,sdx65-dwc3', 'qcom,sdx75-dwc3', 'qcom,sm4250-dwc3', 'qcom,sm6115-dwc3', 'qcom,sm6125-dwc3', 'qcom,sm6350-dwc3', 'qcom,sm6375-dwc3', 'qcom,sm8150-dwc3', 'qcom,sm8250-dwc3', 'qcom,sm8350-dwc3', 'qcom,sm8450-dwc3', 'qcom,s
+ m8550-dwc3', 'qcom,sm8650-dwc3', 'qcom,x1e80100-dwc3']
+	from schema $id: http://devicetree.org/schemas/usb/qcom,snps-dwc3.yaml#
+arch/arm64/boot/dts/qcom/x1e80100-qcp.dtb: usb@a200000 (qcom,x1e80100-dwc3): interrupt-names: ['dwc_usb3', 'pwr_event', 'dp_hs_phy_irq', 'dm_hs_phy_irq'] is too short
+	from schema $id: http://devicetree.org/schemas/usb/qcom,snps-dwc3.yaml#
+arch/arm64/boot/dts/qcom/x1e80100-qcp.dtb: usb@a400000 (qcom,x1e80100-dwc3-mp): compatible:0: 'qcom,x1e80100-dwc3-mp' is not one of ['qcom,ipq4019-dwc3', 'qcom,ipq5018-dwc3', 'qcom,ipq5332-dwc3', 'qcom,ipq5424-dwc3', 'qcom,ipq6018-dwc3', 'qcom,ipq8064-dwc3', 'qcom,ipq8074-dwc3', 'qcom,ipq9574-dwc3', 'qcom,milos-dwc3', 'qcom,msm8953-dwc3', 'qcom,msm8994-dwc3', 'qcom,msm8996-dwc3', 'qcom,msm8998-dwc3', 'qcom,qcm2290-dwc3', 'qcom,qcs404-dwc3', 'qcom,qcs615-dwc3', 'qcom,qcs8300-dwc3', 'qcom,qdu1000-dwc3', 'qcom,sa8775p-dwc3', 'qcom,sar2130p-dwc3', 'qcom,sc7180-dwc3', 'qcom,sc7280-dwc3', 'qcom,sc8180x-dwc3', 'qcom,sc8180x-dwc3-mp', 'qcom,sc8280xp-dwc3', 'qcom,sc8280xp-dwc3-mp', 'qcom,sdm660-dwc3', 'qcom,sdm670-dwc3', 'qcom,sdm845-dwc3', 'qcom,sdx55-dwc3', 'qcom,sdx65-dwc3', 'qcom,sdx75-dwc3', 'qcom,sm4250-dwc3', 'qcom,sm6115-dwc3', 'qcom,sm6125-dwc3', 'qcom,sm6350-dwc3', 'qcom,sm6375-dwc3', 'qcom,sm8150-dwc3', 'qcom,sm8250-dwc3', 'qcom,sm8350-dwc3', 'qcom,sm8450-dwc3', 'qcom,sm8550-dwc3',
+  'qcom,sm8650-dwc3', 'qcom,x1e80100-dwc3']
+	from schema $id: http://devicetree.org/schemas/usb/qcom,snps-dwc3.yaml#
+arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dtb: usb@a200000 (qcom,x1e80100-dwc3): interrupt-names: ['dwc_usb3', 'pwr_event', 'dp_hs_phy_irq', 'dm_hs_phy_irq'] is too short
+	from schema $id: http://devicetree.org/schemas/usb/qcom,snps-dwc3.yaml#
+arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dtb: usb@a400000 (qcom,x1e80100-dwc3-mp): compatible:0: 'qcom,x1e80100-dwc3-mp' is not one of ['qcom,ipq4019-dwc3', 'qcom,ipq5018-dwc3', 'qcom,ipq5332-dwc3', 'qcom,ipq5424-dwc3', 'qcom,ipq6018-dwc3', 'qcom,ipq8064-dwc3', 'qcom,ipq8074-dwc3', 'qcom,ipq9574-dwc3', 'qcom,milos-dwc3', 'qcom,msm8953-dwc3', 'qcom,msm8994-dwc3', 'qcom,msm8996-dwc3', 'qcom,msm8998-dwc3', 'qcom,qcm2290-dwc3', 'qcom,qcs404-dwc3', 'qcom,qcs615-dwc3', 'qcom,qcs8300-dwc3', 'qcom,qdu1000-dwc3', 'qcom,sa8775p-dwc3', 'qcom,sar2130p-dwc3', 'qcom,sc7180-dwc3', 'qcom,sc7280-dwc3', 'qcom,sc8180x-dwc3', 'qcom,sc8180x-dwc3-mp', 'qcom,sc8280xp-dwc3', 'qcom,sc8280xp-dwc3-mp', 'qcom,sdm660-dwc3', 'qcom,sdm670-dwc3', 'qcom,sdm845-dwc3', 'qcom,sdx55-dwc3', 'qcom,sdx65-dwc3', 'qcom,sdx75-dwc3', 'qcom,sm4250-dwc3', 'qcom,sm6115-dwc3', 'qcom,sm6125-dwc3', 'qcom,sm6350-dwc3', 'qcom,sm6375-dwc3', 'qcom,sm8150-dwc3', 'qcom,sm8250-dwc3', 'qcom,sm8350-dwc3', 'qcom,sm8450-dwc3', 'qcom
+ ,sm8550-dwc3', 'qcom,sm8650-dwc3', 'qcom,x1e80100-dwc3']
+	from schema $id: http://devicetree.org/schemas/usb/qcom,snps-dwc3.yaml#
+arch/arm64/boot/dts/qcom/x1p42100-asus-zenbook-a14.dtb: usb@a200000 (qcom,x1e80100-dwc3): interrupt-names: ['dwc_usb3', 'pwr_event', 'dp_hs_phy_irq', 'dm_hs_phy_irq'] is too short
+	from schema $id: http://devicetree.org/schemas/usb/qcom,snps-dwc3.yaml#
+arch/arm64/boot/dts/qcom/x1p42100-asus-zenbook-a14.dtb: usb@a400000 (qcom,x1e80100-dwc3-mp): compatible:0: 'qcom,x1e80100-dwc3-mp' is not one of ['qcom,ipq4019-dwc3', 'qcom,ipq5018-dwc3', 'qcom,ipq5332-dwc3', 'qcom,ipq5424-dwc3', 'qcom,ipq6018-dwc3', 'qcom,ipq8064-dwc3', 'qcom,ipq8074-dwc3', 'qcom,ipq9574-dwc3', 'qcom,milos-dwc3', 'qcom,msm8953-dwc3', 'qcom,msm8994-dwc3', 'qcom,msm8996-dwc3', 'qcom,msm8998-dwc3', 'qcom,qcm2290-dwc3', 'qcom,qcs404-dwc3', 'qcom,qcs615-dwc3', 'qcom,qcs8300-dwc3', 'qcom,qdu1000-dwc3', 'qcom,sa8775p-dwc3', 'qcom,sar2130p-dwc3', 'qcom,sc7180-dwc3', 'qcom,sc7280-dwc3', 'qcom,sc8180x-dwc3', 'qcom,sc8180x-dwc3-mp', 'qcom,sc8280xp-dwc3', 'qcom,sc8280xp-dwc3-mp', 'qcom,sdm660-dwc3', 'qcom,sdm670-dwc3', 'qcom,sdm845-dwc3', 'qcom,sdx55-dwc3', 'qcom,sdx65-dwc3', 'qcom,sdx75-dwc3', 'qcom,sm4250-dwc3', 'qcom,sm6115-dwc3', 'qcom,sm6125-dwc3', 'qcom,sm6350-dwc3', 'qcom,sm6375-dwc3', 'qcom,sm8150-dwc3', 'qcom,sm8250-dwc3', 'qcom,sm8350-dwc3', 'qcom,sm8450-dwc3', 'qcom,
+ sm8550-dwc3', 'qcom,sm8650-dwc3', 'qcom,x1e80100-dwc3']
+	from schema $id: http://devicetree.org/schemas/usb/qcom,snps-dwc3.yaml#
+arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtb: usb@a200000 (qcom,x1e80100-dwc3): interrupt-names: ['dwc_usb3', 'pwr_event', 'dp_hs_phy_irq', 'dm_hs_phy_irq'] is too short
+	from schema $id: http://devicetree.org/schemas/usb/qcom,snps-dwc3.yaml#
+arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtb: usb@a400000 (qcom,x1e80100-dwc3-mp): compatible:0: 'qcom,x1e80100-dwc3-mp' is not one of ['qcom,ipq4019-dwc3', 'qcom,ipq5018-dwc3', 'qcom,ipq5332-dwc3', 'qcom,ipq5424-dwc3', 'qcom,ipq6018-dwc3', 'qcom,ipq8064-dwc3', 'qcom,ipq8074-dwc3', 'qcom,ipq9574-dwc3', 'qcom,milos-dwc3', 'qcom,msm8953-dwc3', 'qcom,msm8994-dwc3', 'qcom,msm8996-dwc3', 'qcom,msm8998-dwc3', 'qcom,qcm2290-dwc3', 'qcom,qcs404-dwc3', 'qcom,qcs615-dwc3', 'qcom,qcs8300-dwc3', 'qcom,qdu1000-dwc3', 'qcom,sa8775p-dwc3', 'qcom,sar2130p-dwc3', 'qcom,sc7180-dwc3', 'qcom,sc7280-dwc3', 'qcom,sc8180x-dwc3', 'qcom,sc8180x-dwc3-mp', 'qcom,sc8280xp-dwc3', 'qcom,sc8280xp-dwc3-mp', 'qcom,sdm660-dwc3', 'qcom,sdm670-dwc3', 'qcom,sdm845-dwc3', 'qcom,sdx55-dwc3', 'qcom,sdx65-dwc3', 'qcom,sdx75-dwc3', 'qcom,sm4250-dwc3', 'qcom,sm6115-dwc3', 'qcom,sm6125-dwc3', 'qcom,sm6350-dwc3', 'qcom,sm6375-dwc3', 'qcom,sm8150-dwc3', 'qcom,sm8250-dwc3', 'qcom,sm8350-dwc3', 'qcom,sm8450-dwc3', 'q
+ com,sm8550-dwc3', 'qcom,sm8650-dwc3', 'qcom,x1e80100-dwc3']
+	from schema $id: http://devicetree.org/schemas/usb/qcom,snps-dwc3.yaml#
+arch/arm64/boot/dts/qcom/x1e80100-hp-elitebook-ultra-g1q.dtb: usb@a200000 (qcom,x1e80100-dwc3): interrupt-names: ['dwc_usb3', 'pwr_event', 'dp_hs_phy_irq', 'dm_hs_phy_irq'] is too short
+	from schema $id: http://devicetree.org/schemas/usb/qcom,snps-dwc3.yaml#
+arch/arm64/boot/dts/qcom/x1e80100-hp-elitebook-ultra-g1q.dtb: usb@a400000 (qcom,x1e80100-dwc3-mp): compatible:0: 'qcom,x1e80100-dwc3-mp' is not one of ['qcom,ipq4019-dwc3', 'qcom,ipq5018-dwc3', 'qcom,ipq5332-dwc3', 'qcom,ipq5424-dwc3', 'qcom,ipq6018-dwc3', 'qcom,ipq8064-dwc3', 'qcom,ipq8074-dwc3', 'qcom,ipq9574-dwc3', 'qcom,milos-dwc3', 'qcom,msm8953-dwc3', 'qcom,msm8994-dwc3', 'qcom,msm8996-dwc3', 'qcom,msm8998-dwc3', 'qcom,qcm2290-dwc3', 'qcom,qcs404-dwc3', 'qcom,qcs615-dwc3', 'qcom,qcs8300-dwc3', 'qcom,qdu1000-dwc3', 'qcom,sa8775p-dwc3', 'qcom,sar2130p-dwc3', 'qcom,sc7180-dwc3', 'qcom,sc7280-dwc3', 'qcom,sc8180x-dwc3', 'qcom,sc8180x-dwc3-mp', 'qcom,sc8280xp-dwc3', 'qcom,sc8280xp-dwc3-mp', 'qcom,sdm660-dwc3', 'qcom,sdm670-dwc3', 'qcom,sdm845-dwc3', 'qcom,sdx55-dwc3', 'qcom,sdx65-dwc3', 'qcom,sdx75-dwc3', 'qcom,sm4250-dwc3', 'qcom,sm6115-dwc3', 'qcom,sm6125-dwc3', 'qcom,sm6350-dwc3', 'qcom,sm6375-dwc3', 'qcom,sm8150-dwc3', 'qcom,sm8250-dwc3', 'qcom,sm8350-dwc3', 'qcom,sm8450-dwc3', 
+ 'qcom,sm8550-dwc3', 'qcom,sm8650-dwc3', 'qcom,x1e80100-dwc3']
+	from schema $id: http://devicetree.org/schemas/usb/qcom,snps-dwc3.yaml#
+arch/arm64/boot/dts/qcom/x1e80100-microsoft-romulus15.dtb: usb@a200000 (qcom,x1e80100-dwc3): interrupt-names: ['dwc_usb3', 'pwr_event', 'dp_hs_phy_irq', 'dm_hs_phy_irq'] is too short
+	from schema $id: http://devicetree.org/schemas/usb/qcom,snps-dwc3.yaml#
+arch/arm64/boot/dts/qcom/x1e80100-microsoft-romulus15.dtb: usb@a400000 (qcom,x1e80100-dwc3-mp): compatible:0: 'qcom,x1e80100-dwc3-mp' is not one of ['qcom,ipq4019-dwc3', 'qcom,ipq5018-dwc3', 'qcom,ipq5332-dwc3', 'qcom,ipq5424-dwc3', 'qcom,ipq6018-dwc3', 'qcom,ipq8064-dwc3', 'qcom,ipq8074-dwc3', 'qcom,ipq9574-dwc3', 'qcom,milos-dwc3', 'qcom,msm8953-dwc3', 'qcom,msm8994-dwc3', 'qcom,msm8996-dwc3', 'qcom,msm8998-dwc3', 'qcom,qcm2290-dwc3', 'qcom,qcs404-dwc3', 'qcom,qcs615-dwc3', 'qcom,qcs8300-dwc3', 'qcom,qdu1000-dwc3', 'qcom,sa8775p-dwc3', 'qcom,sar2130p-dwc3', 'qcom,sc7180-dwc3', 'qcom,sc7280-dwc3', 'qcom,sc8180x-dwc3', 'qcom,sc8180x-dwc3-mp', 'qcom,sc8280xp-dwc3', 'qcom,sc8280xp-dwc3-mp', 'qcom,sdm660-dwc3', 'qcom,sdm670-dwc3', 'qcom,sdm845-dwc3', 'qcom,sdx55-dwc3', 'qcom,sdx65-dwc3', 'qcom,sdx75-dwc3', 'qcom,sm4250-dwc3', 'qcom,sm6115-dwc3', 'qcom,sm6125-dwc3', 'qcom,sm6350-dwc3', 'qcom,sm6375-dwc3', 'qcom,sm8150-dwc3', 'qcom,sm8250-dwc3', 'qcom,sm8350-dwc3', 'qcom,sm8450-dwc3', 'qc
+ om,sm8550-dwc3', 'qcom,sm8650-dwc3', 'qcom,x1e80100-dwc3']
+	from schema $id: http://devicetree.org/schemas/usb/qcom,snps-dwc3.yaml#
+arch/arm64/boot/dts/qcom/hamoa-iot-evk.dtb: usb@a200000 (qcom,x1e80100-dwc3): interrupt-names: ['dwc_usb3', 'pwr_event', 'dp_hs_phy_irq', 'dm_hs_phy_irq'] is too short
+	from schema $id: http://devicetree.org/schemas/usb/qcom,snps-dwc3.yaml#
+arch/arm64/boot/dts/qcom/hamoa-iot-evk.dtb: usb@a400000 (qcom,x1e80100-dwc3-mp): compatible:0: 'qcom,x1e80100-dwc3-mp' is not one of ['qcom,ipq4019-dwc3', 'qcom,ipq5018-dwc3', 'qcom,ipq5332-dwc3', 'qcom,ipq5424-dwc3', 'qcom,ipq6018-dwc3', 'qcom,ipq8064-dwc3', 'qcom,ipq8074-dwc3', 'qcom,ipq9574-dwc3', 'qcom,milos-dwc3', 'qcom,msm8953-dwc3', 'qcom,msm8994-dwc3', 'qcom,msm8996-dwc3', 'qcom,msm8998-dwc3', 'qcom,qcm2290-dwc3', 'qcom,qcs404-dwc3', 'qcom,qcs615-dwc3', 'qcom,qcs8300-dwc3', 'qcom,qdu1000-dwc3', 'qcom,sa8775p-dwc3', 'qcom,sar2130p-dwc3', 'qcom,sc7180-dwc3', 'qcom,sc7280-dwc3', 'qcom,sc8180x-dwc3', 'qcom,sc8180x-dwc3-mp', 'qcom,sc8280xp-dwc3', 'qcom,sc8280xp-dwc3-mp', 'qcom,sdm660-dwc3', 'qcom,sdm670-dwc3', 'qcom,sdm845-dwc3', 'qcom,sdx55-dwc3', 'qcom,sdx65-dwc3', 'qcom,sdx75-dwc3', 'qcom,sm4250-dwc3', 'qcom,sm6115-dwc3', 'qcom,sm6125-dwc3', 'qcom,sm6350-dwc3', 'qcom,sm6375-dwc3', 'qcom,sm8150-dwc3', 'qcom,sm8250-dwc3', 'qcom,sm8350-dwc3', 'qcom,sm8450-dwc3', 'qcom,sm8550-dwc3'
+ , 'qcom,sm8650-dwc3', 'qcom,x1e80100-dwc3']
+	from schema $id: http://devicetree.org/schemas/usb/qcom,snps-dwc3.yaml#
+arch/arm64/boot/dts/qcom/x1e80100-dell-inspiron-14-plus-7441.dtb: usb@a200000 (qcom,x1e80100-dwc3): interrupt-names: ['dwc_usb3', 'pwr_event', 'dp_hs_phy_irq', 'dm_hs_phy_irq'] is too short
+	from schema $id: http://devicetree.org/schemas/usb/qcom,snps-dwc3.yaml#
+arch/arm64/boot/dts/qcom/x1e80100-dell-inspiron-14-plus-7441.dtb: usb@a400000 (qcom,x1e80100-dwc3-mp): compatible:0: 'qcom,x1e80100-dwc3-mp' is not one of ['qcom,ipq4019-dwc3', 'qcom,ipq5018-dwc3', 'qcom,ipq5332-dwc3', 'qcom,ipq5424-dwc3', 'qcom,ipq6018-dwc3', 'qcom,ipq8064-dwc3', 'qcom,ipq8074-dwc3', 'qcom,ipq9574-dwc3', 'qcom,milos-dwc3', 'qcom,msm8953-dwc3', 'qcom,msm8994-dwc3', 'qcom,msm8996-dwc3', 'qcom,msm8998-dwc3', 'qcom,qcm2290-dwc3', 'qcom,qcs404-dwc3', 'qcom,qcs615-dwc3', 'qcom,qcs8300-dwc3', 'qcom,qdu1000-dwc3', 'qcom,sa8775p-dwc3', 'qcom,sar2130p-dwc3', 'qcom,sc7180-dwc3', 'qcom,sc7280-dwc3', 'qcom,sc8180x-dwc3', 'qcom,sc8180x-dwc3-mp', 'qcom,sc8280xp-dwc3', 'qcom,sc8280xp-dwc3-mp', 'qcom,sdm660-dwc3', 'qcom,sdm670-dwc3', 'qcom,sdm845-dwc3', 'qcom,sdx55-dwc3', 'qcom,sdx65-dwc3', 'qcom,sdx75-dwc3', 'qcom,sm4250-dwc3', 'qcom,sm6115-dwc3', 'qcom,sm6125-dwc3', 'qcom,sm6350-dwc3', 'qcom,sm6375-dwc3', 'qcom,sm8150-dwc3', 'qcom,sm8250-dwc3', 'qcom,sm8350-dwc3', 'qcom,sm8450-dwc
+ 3', 'qcom,sm8550-dwc3', 'qcom,sm8650-dwc3', 'qcom,x1e80100-dwc3']
+	from schema $id: http://devicetree.org/schemas/usb/qcom,snps-dwc3.yaml#
+arch/arm64/boot/dts/qcom/x1e80100-crd.dtb: usb@a200000 (qcom,x1e80100-dwc3): interrupt-names: ['dwc_usb3', 'pwr_event', 'dp_hs_phy_irq', 'dm_hs_phy_irq'] is too short
+	from schema $id: http://devicetree.org/schemas/usb/qcom,snps-dwc3.yaml#
+arch/arm64/boot/dts/qcom/x1e80100-crd.dtb: usb@a400000 (qcom,x1e80100-dwc3-mp): compatible:0: 'qcom,x1e80100-dwc3-mp' is not one of ['qcom,ipq4019-dwc3', 'qcom,ipq5018-dwc3', 'qcom,ipq5332-dwc3', 'qcom,ipq5424-dwc3', 'qcom,ipq6018-dwc3', 'qcom,ipq8064-dwc3', 'qcom,ipq8074-dwc3', 'qcom,ipq9574-dwc3', 'qcom,milos-dwc3', 'qcom,msm8953-dwc3', 'qcom,msm8994-dwc3', 'qcom,msm8996-dwc3', 'qcom,msm8998-dwc3', 'qcom,qcm2290-dwc3', 'qcom,qcs404-dwc3', 'qcom,qcs615-dwc3', 'qcom,qcs8300-dwc3', 'qcom,qdu1000-dwc3', 'qcom,sa8775p-dwc3', 'qcom,sar2130p-dwc3', 'qcom,sc7180-dwc3', 'qcom,sc7280-dwc3', 'qcom,sc8180x-dwc3', 'qcom,sc8180x-dwc3-mp', 'qcom,sc8280xp-dwc3', 'qcom,sc8280xp-dwc3-mp', 'qcom,sdm660-dwc3', 'qcom,sdm670-dwc3', 'qcom,sdm845-dwc3', 'qcom,sdx55-dwc3', 'qcom,sdx65-dwc3', 'qcom,sdx75-dwc3', 'qcom,sm4250-dwc3', 'qcom,sm6115-dwc3', 'qcom,sm6125-dwc3', 'qcom,sm6350-dwc3', 'qcom,sm6375-dwc3', 'qcom,sm8150-dwc3', 'qcom,sm8250-dwc3', 'qcom,sm8350-dwc3', 'qcom,sm8450-dwc3', 'qcom,sm8550-dwc3',
+  'qcom,sm8650-dwc3', 'qcom,x1e80100-dwc3']
+	from schema $id: http://devicetree.org/schemas/usb/qcom,snps-dwc3.yaml#
+arch/arm64/boot/dts/qcom/x1e80100-microsoft-romulus13.dtb: usb@a200000 (qcom,x1e80100-dwc3): interrupt-names: ['dwc_usb3', 'pwr_event', 'dp_hs_phy_irq', 'dm_hs_phy_irq'] is too short
+	from schema $id: http://devicetree.org/schemas/usb/qcom,snps-dwc3.yaml#
+arch/arm64/boot/dts/qcom/x1e80100-microsoft-romulus13.dtb: usb@a400000 (qcom,x1e80100-dwc3-mp): compatible:0: 'qcom,x1e80100-dwc3-mp' is not one of ['qcom,ipq4019-dwc3', 'qcom,ipq5018-dwc3', 'qcom,ipq5332-dwc3', 'qcom,ipq5424-dwc3', 'qcom,ipq6018-dwc3', 'qcom,ipq8064-dwc3', 'qcom,ipq8074-dwc3', 'qcom,ipq9574-dwc3', 'qcom,milos-dwc3', 'qcom,msm8953-dwc3', 'qcom,msm8994-dwc3', 'qcom,msm8996-dwc3', 'qcom,msm8998-dwc3', 'qcom,qcm2290-dwc3', 'qcom,qcs404-dwc3', 'qcom,qcs615-dwc3', 'qcom,qcs8300-dwc3', 'qcom,qdu1000-dwc3', 'qcom,sa8775p-dwc3', 'qcom,sar2130p-dwc3', 'qcom,sc7180-dwc3', 'qcom,sc7280-dwc3', 'qcom,sc8180x-dwc3', 'qcom,sc8180x-dwc3-mp', 'qcom,sc8280xp-dwc3', 'qcom,sc8280xp-dwc3-mp', 'qcom,sdm660-dwc3', 'qcom,sdm670-dwc3', 'qcom,sdm845-dwc3', 'qcom,sdx55-dwc3', 'qcom,sdx65-dwc3', 'qcom,sdx75-dwc3', 'qcom,sm4250-dwc3', 'qcom,sm6115-dwc3', 'qcom,sm6125-dwc3', 'qcom,sm6350-dwc3', 'qcom,sm6375-dwc3', 'qcom,sm8150-dwc3', 'qcom,sm8250-dwc3', 'qcom,sm8350-dwc3', 'qcom,sm8450-dwc3', 'qc
+ om,sm8550-dwc3', 'qcom,sm8650-dwc3', 'qcom,x1e80100-dwc3']
+	from schema $id: http://devicetree.org/schemas/usb/qcom,snps-dwc3.yaml#
+arch/arm64/boot/dts/qcom/x1p42100-lenovo-thinkbook-16.dtb: usb@a200000 (qcom,x1e80100-dwc3): interrupt-names: ['dwc_usb3', 'pwr_event', 'dp_hs_phy_irq', 'dm_hs_phy_irq'] is too short
+	from schema $id: http://devicetree.org/schemas/usb/qcom,snps-dwc3.yaml#
+arch/arm64/boot/dts/qcom/x1p42100-lenovo-thinkbook-16.dtb: usb@a400000 (qcom,x1e80100-dwc3-mp): compatible:0: 'qcom,x1e80100-dwc3-mp' is not one of ['qcom,ipq4019-dwc3', 'qcom,ipq5018-dwc3', 'qcom,ipq5332-dwc3', 'qcom,ipq5424-dwc3', 'qcom,ipq6018-dwc3', 'qcom,ipq8064-dwc3', 'qcom,ipq8074-dwc3', 'qcom,ipq9574-dwc3', 'qcom,milos-dwc3', 'qcom,msm8953-dwc3', 'qcom,msm8994-dwc3', 'qcom,msm8996-dwc3', 'qcom,msm8998-dwc3', 'qcom,qcm2290-dwc3', 'qcom,qcs404-dwc3', 'qcom,qcs615-dwc3', 'qcom,qcs8300-dwc3', 'qcom,qdu1000-dwc3', 'qcom,sa8775p-dwc3', 'qcom,sar2130p-dwc3', 'qcom,sc7180-dwc3', 'qcom,sc7280-dwc3', 'qcom,sc8180x-dwc3', 'qcom,sc8180x-dwc3-mp', 'qcom,sc8280xp-dwc3', 'qcom,sc8280xp-dwc3-mp', 'qcom,sdm660-dwc3', 'qcom,sdm670-dwc3', 'qcom,sdm845-dwc3', 'qcom,sdx55-dwc3', 'qcom,sdx65-dwc3', 'qcom,sdx75-dwc3', 'qcom,sm4250-dwc3', 'qcom,sm6115-dwc3', 'qcom,sm6125-dwc3', 'qcom,sm6350-dwc3', 'qcom,sm6375-dwc3', 'qcom,sm8150-dwc3', 'qcom,sm8250-dwc3', 'qcom,sm8350-dwc3', 'qcom,sm8450-dwc3', 'qc
+ om,sm8550-dwc3', 'qcom,sm8650-dwc3', 'qcom,x1e80100-dwc3']
+	from schema $id: http://devicetree.org/schemas/usb/qcom,snps-dwc3.yaml#
 
 
 
