@@ -1,203 +1,111 @@
-Return-Path: <devicetree+bounces-226509-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226510-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80F06BD94DF
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 14:19:37 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D30C4BD9524
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 14:23:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B0A4B1925602
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 12:20:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9266D540A8B
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 12:23:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4719031352D;
-	Tue, 14 Oct 2025 12:19:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89F0A313E05;
+	Tue, 14 Oct 2025 12:23:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="e26WMm9v"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="DaOYctO2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 778E8313521
-	for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 12:19:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50DDC31353D;
+	Tue, 14 Oct 2025 12:23:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760444372; cv=none; b=QMcNumJJiKFn7mGoqb23suAf2bbV8PA9vetVXhjiONCpz/UjK9IAePpMaJI0MefZjo9yZfj0RQISfIU2BwtR1rgxgQsqFIxO0u4j1poG+xo6BxkBr2e9kwXPsCkcICBpjF0aKCceJkFaKr5CuEUAYnXvZm5taAZY4wvw/iqJjLs=
+	t=1760444624; cv=none; b=Ml9A0oiLkZnUevKHmvnc38olKn6xUsemW/MCvzNNb8ryzRNCSCc2Cp3YR48K0hrvbVjLhOr8F0xfxqDYOI0cWFnUv2A9gCRjEy1aOOLQ98Dhj9pw5oHxj+7MtBvN2RJJ5QETg59FYGNkNwOvFRgre8Y2B02dODCcavRboz/hi/0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760444372; c=relaxed/simple;
-	bh=+1zKWPalXJXneZqiPMx/hvBzngz50IBlE4Ff9W5rpR4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JD0IHAoz5c4KFZQORsxuDfM2W/17a739NwTW4NjxJJ7PwTeHBUHuLyZjNTsRtRYYpOd6DmXc5YJ6bUmVaBpgYlhMuPWasvlD2L+8ntgnoFawuIZkER/Q23H75wPvlTFTrFx3lO0q+FCTBA06bk0xPbkrhWybxZaPCkpWZrWz+Uk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=e26WMm9v; arc=none smtp.client-ip=209.85.128.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-46e3af7889fso28830765e9.2
-        for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 05:19:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1760444369; x=1761049169; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=1NXdPaciUzkmwtjhiuah7SoNF0Jn6KSlADxbD7J4quk=;
-        b=e26WMm9vhN0WQKhBXNjOyExqeKe9OZH/fr6UOa8LFDIsZBiNngzbchRNqfW2GEc1c9
-         LRnoZh76Dp7ZCZ+RHjJuXwZVjhq3vGzid88euy0tKLYwHgCnEXUF3b6EgIPnrz207CKP
-         cmeh8TlEdWcLwCJZh7TfGVlmwObc/JVOrkb0HhqC4qk8uStYd4QPxkehGS2RydX62Awl
-         lN+eoCbeNFzpk3AcVkNAlSrKNfj+fmn6dtq41Rp40VRTjrhnXwnC8YxwBq6y+OtdZdhX
-         EM4L63+/7iqHHItUK0YXR1zCwhwswwLbvRz9rALJhlLZ4ffWqpXCA+3wzlLJTgc2w7xq
-         mK4Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760444369; x=1761049169;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=1NXdPaciUzkmwtjhiuah7SoNF0Jn6KSlADxbD7J4quk=;
-        b=dC89HL4B3dzBGw5aUPJrbsSyDzMt3/iDA5RDhe/ZEG8nw00ZldDt1TCPscjagN0Hsl
-         99aFMS9aPVDSBjNxwWoq9Bz1nCOujazajGi/NPnP3QqiGtwbC5M6TjPXOtM9lp31WZAF
-         wEdih0owjQ3ryKdKXfYIDTlPl8Kh2rvqLuYmwZx9OkF0ucgYNFJTWiP2qLJHgKkaN19C
-         yySt8h5Xew1ARAXKqz1+XzGronyg0NGsQ8OWKsFsQYBtl64hGXihILYUegIDr8D7aSGM
-         C+XWZjXhQNDL6bObg34pruYnn1YQqdwGYtwN0zivUTntLOLU/Wmnlsya73LqDs+RsKN7
-         Tg8g==
-X-Forwarded-Encrypted: i=1; AJvYcCXF29wgIsfv42QBk9t8yhKnKfKOyZqlVvZDOFkoU0kPW9MsTwe4pFJMsD53dIMbSaensKZFRfoq3kYY@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx8D/OVj9me4pbSs57ZZB0jreizKKbp2DlOklqNB7ADyNeqfDl5
-	2KOp/dS/ku7K6GvHEYHKtsUud6w6rfnKTfb8PrqvqeLaKQI99CjrI0FT
-X-Gm-Gg: ASbGnctKLs/Dp4FPbORHxPOIYL/7+3I8AmrE6pRkan0lleDQpyklDNG4i/wnKkxxgiI
-	IgLbj4J2nfOIXmZWpEr1hEinrmt2kivofipNNgYeF/GEKCKqclfwwrea+XjLypny/Hx3PR4eMg8
-	MABtsOmpAX+nG09fveYSoFBf3BPJH2A/u6yu8QkqCGCBnsZnDI85tMn6b2Zhfb0M7jXwejo5ZlT
-	xNfYlqX2pY6MlMiGFCLVd599bKbbyJN9O4PTt4G85RKlAWltrz6YZCC+UrE3coQHLSrAl3vNBoM
-	CG3GfiVCs0EAkJlHnKcr2QP2+usbvTsEi7dasDdm+djqkZ/dDoV3k1IDdEonuEXvnZAUD8qH+JR
-	T8TdmRwHLDoT5LvHHSXleH+NOJKShJr9GGWXvZ4tRZaXdgxkxxaoyQ6GCKvM=
-X-Google-Smtp-Source: AGHT+IEtq2qk43DUx3Tekk3H1O0Yj52quZDJgPjlvM1teoyT/1HnDwsFwZ9RqTFP55MEyX2ZO4zCeQ==
-X-Received: by 2002:a05:600c:820a:b0:46e:4704:b01e with SMTP id 5b1f17b1804b1-46fa9a8631fmr169279315e9.8.1760444368506;
-        Tue, 14 Oct 2025 05:19:28 -0700 (PDT)
-Received: from legfed1 (lis01.vpn.liebherr.com. [193.27.220.234])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-426f3fa3bdasm985060f8f.46.2025.10.14.05.19.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Oct 2025 05:19:28 -0700 (PDT)
-Date: Tue, 14 Oct 2025 14:19:26 +0200
-From: Dimitri Fedrau <dima.fedrau@gmail.com>
-To: Conor Dooley <conor@kernel.org>
-Cc: dimitri.fedrau@liebherr.com, Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Marc Kleine-Budde <mkl@pengutronix.de>, linux-can@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] dt-bindings: phy: add support for NXPs TJA1145
- CAN transceiver
-Message-ID: <20251014121926.GA63762@legfed1>
-References: <20251013-tja1145-support-v3-0-4a9d245fe067@liebherr.com>
- <20251013-tja1145-support-v3-1-4a9d245fe067@liebherr.com>
- <20251013-supplier-edition-0ffc88286b5d@spud>
+	s=arc-20240116; t=1760444624; c=relaxed/simple;
+	bh=CafyeVLIYPhJPVMUhLBEGd8+CQQAGixD0ZmUS6mVJSw=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=vENAQoRtGBbYrh4+1K0aH2MTj9cJtDAzyQfyJ9rIJIRb8CHCUIXpMYV7/A09iZKTf+unULd56uW/cgLDHcQ2afVeslgwVECf4TAZxDC8pulBEpg1xoJ1QkSrxG2X0VwvxaolLFZ1Tpn3NfS7BtnaXQIJ2lupKhxU67aTKp/QXG0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=DaOYctO2; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
+	bh=A2wa4K0qWIFLcAnfmzypd+kDyosnJxyDAY3/uLjy03g=; b=DaOYctO2Ib9IIYYgqETAyF2zIt
+	0+gdutChlJDPIJbn0lIc0SwMbpflnjgYWoOc7FgRiawhAQkz3x9py/RpPBWx2KjwC06eTD7fneq09
+	bJp8jk4J3cRK3O0DZ32q6J+QQnBtn7Yuch+Q5V6lLihMBGmKAPfrwfQwJwNJSINqraC9zCmT40rC0
+	AdvyMhuGPULRwEJ7U7cWltvUNxOa67xECIx+3RpFdtsy+6jYWsUbO04FuEhB+0FBHrauAfDjxX6Az
+	8eX0hhGCHsZm3ry0U70sKnfyLUXe2QZoTMr6f0tpaMuvj2+vMOCYW47xmewnSGd8YFn+YzsGaDYuT
+	cy3bAg7A==;
+Received: from i53875b75.versanet.de ([83.135.91.117] helo=localhost.localdomain)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1v8e3s-0007Hl-IL; Tue, 14 Oct 2025 14:23:28 +0200
+From: Heiko Stuebner <heiko@sntech.de>
+To: robh@kernel.org,
+	WeiHao Li <cn.liweihao@gmail.com>
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	hjc@rock-chips.com,
+	andy.yan@rock-chips.com,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-clk@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: (subset) [PATCH v2 0/8] drm/rockchip: Add MIPI DSI support for RK3368
+Date: Tue, 14 Oct 2025 14:23:18 +0200
+Message-ID: <176044455977.1550590.10827811203766869968.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.47.2
+In-Reply-To: <20250905025632.222422-1-cn.liweihao@gmail.com>
+References: <20250905025632.222422-1-cn.liweihao@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251013-supplier-edition-0ffc88286b5d@spud>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-Am Mon, Oct 13, 2025 at 08:41:49PM +0100 schrieb Conor Dooley:
-> On Mon, Oct 13, 2025 at 11:19:18AM +0200, Dimitri Fedrau via B4 Relay wrote:
-> > From: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
-> > 
-> > Adding documentation for NXPs TJA1145 CAN transceiver, which resides like
-> > the ti,tcan104x-can.yaml in the same directory as other generic PHY
-> > subsystem bindings. At the moment there is only support for simple PHYs
-> > by using regulator bindings in combination with can-transceiver.yaml or
-> > PHYs that implement the generic PHY subsystem like the NXP TJA1145.
-> > 
-> > Signed-off-by: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
-> > ---
-> >  .../devicetree/bindings/phy/nxp,tja1145-can.yaml   | 79 ++++++++++++++++++++++
-> >  1 file changed, 79 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/phy/nxp,tja1145-can.yaml b/Documentation/devicetree/bindings/phy/nxp,tja1145-can.yaml
-> > new file mode 100644
-> > index 0000000000000000000000000000000000000000..3b81a2e1ead8452ed5fcf2021f33d628d4e12346
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/phy/nxp,tja1145-can.yaml
-> > @@ -0,0 +1,79 @@
-> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/phy/nxp,tja1145-can.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: TJA1145 CAN transceiver
-> > +
-> > +maintainers:
-> > +  - Dimitri Fedrau <dimitri.fedrau@liebherr.com>
-> > +
-> > +allOf:
-> > +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: nxp,tja1145-can
-> 
-> I'd drop the -can here, since I don't think the device can be anything
-> else?
->
-Will drop the -can. Device cannot be anything else.
 
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  "#phy-cells":
-> > +    const: 0
-> > +
-> > +  spi-max-frequency:
-> > +    maximum: 4000000
-> > +
-> > +  spi-cpha: true
+On Fri, 05 Sep 2025 10:56:24 +0800, WeiHao Li wrote:
+> This series adds MIPI DSI support for the Rockchip RK3368 SoC, enabling
+> native display connectivity through the MIPI DSI host controller and
+> PHY. The changes span multiple subsystems, including clock control,
+> DRM/VOP integration, DSI controller binding.
 > 
-> Is this optionally cpha or always? I'd mark it required if it is always
-> needed for the device to function.
+> Key changes:
+>  - Update dw-mipi-dsi-rockchip driver to preperly handle RK3368 dsi
+>    initialization.
+>  - Add missing lut_size of vop_data for RK3368.
+>  - Add missing clock ID SCLK_MIPIDSI_24M to the RK3368 CRU driver,
+>    which is required for enabling the 24MHz reference clock.
+>  - Add MIPI DSI node to rk3368.dtsi with correct clocks, resets,
+>    and register mappings.
+>  - Add dt-bindings document.
 > 
-According to the datasheet it is cpha. Didn't test if the device is
-running with a different configuration. I mark it as required then.
+> [...]
 
-> > +
-> > +  spi-cs-setup-delay-ns:
-> > +    minimum: 50
-> > +    default: 50
-> > +
-> > +  spi-cs-hold-delay-ns:
-> > +    minimum: 50
-> > +    default: 50
-> > +
-> > +  spi-cs-inactive-delay-ns:
-> > +    minimum: 250
-> > +    default: 250
-> > +
-> > +  vcc-supply:
-> > +    description:
-> > +      CAN transceiver supply voltage
-> > +
-> > +  vio-supply:
-> > +    description:
-> > +      Supply voltage for I/O level adaptor
-> > +
-> > +  vbat-supply:
-> > +    description:
-> > +      Battery supply voltage
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - "#phy-cells"
-> > +
-> > +unevaluatedProperties: false
-> 
-> If the properties you've listed above from spi-peripheral-props are the
-> only ones suitable for the device, I think additionalProperties: false
-> is sufficient here.
-> 
-I switch to additionalProperties: false then
+Applied, thanks!
+
+[1/8] drm/rockchip: dsi: Add support for RK3368
+      commit: 6dd6949c76afbec037a66e6b9bcb6e2c5dee933e
+[2/8] drm/rockchip: vop: add lut_size for RK3368 vop_data
+      commit: 8e944ab8196e421f20386f51c5ffc43baa145932
+[8/8] dt-bindings: display: rockchip,dw-mipi-dsi: Document RK3368 DSI
+      commit: 2b756d321bf9f4e93437198d212c6ccec137b295
+
+
+Moved patch8 (dt-binding) in front of patch1 (driver addition)
+
 
 Best regards,
-Dimitri Fedrau
+-- 
+Heiko Stuebner <heiko@sntech.de>
 
