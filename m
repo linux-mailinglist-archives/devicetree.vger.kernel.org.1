@@ -1,93 +1,143 @@
-Return-Path: <devicetree+bounces-226563-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226564-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A835BD9B3A
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 15:26:48 +0200 (CEST)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9BC13BD9AD6
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 15:22:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2604F19A8238
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 13:21:28 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 1B5FB355826
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 13:22:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B7733148A2;
-	Tue, 14 Oct 2025 13:19:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="iK/ZnFL+"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B87E9316194;
+	Tue, 14 Oct 2025 13:20:02 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ua1-f52.google.com (mail-ua1-f52.google.com [209.85.222.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71DE01DDA09;
-	Tue, 14 Oct 2025 13:19:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04354316186
+	for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 13:20:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760447955; cv=none; b=A3Ce1e/TTJMeJXw1NtaMkdujSnOp2zE2cBOsvEH403dTmnt1gmVbdH9f0TPf3vgZMj3LSFW8VwWMWvCFJ3RxSUWF79oYR2fujmnEvOMkFjR3fP3JKrsMGz04c0zh9VsmTiCK2Ic/9SqrMOSLsPQntks9x+hXQ1t8oEbB7ubYI68=
+	t=1760448002; cv=none; b=N+8rek6tpno+0/yhFrrrAEHBA6au0OiAxtF2E5ZAbSTAsKLyCQwQnD0frXZ9MQL5snmVHsKKAPxRX0S5XCJEvJMwHtwaOW+oMc+gUvtTrYx0ewTjhuHo/Ej4Jaxy3nu5I2+gqsXGirewEWR6bHYD1eAOnMqBij5gWCf/+DVmvKg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760447955; c=relaxed/simple;
-	bh=gQxUDGegM8VkIfBkYPZWqsIF3HBSy2cYwjYwHQ7pvC8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=GhpcOQpA0VU2uNmRFFTt+iNYCjnpErwj9385oy2kyrs6IYeSzYeOT/1liRbeC3C3OqgToOCr15233O6BehJgKiAmuByb90DSp+A6GFDBQLhxRyExt2zNyh+QL6a2QsskEYma9QbEXgYefhkRy26tjEmDpV1dtoXQxSzu43kZpUA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=iK/ZnFL+; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1760447951;
-	bh=gQxUDGegM8VkIfBkYPZWqsIF3HBSy2cYwjYwHQ7pvC8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=iK/ZnFL+jXF169b5rN3F52mi251gRInDD9/xPQ8/C9/7szD2G5wZAyninheV9MaQu
-	 TFC4rTb07gkWxiROZwPNoItAa0pJ58kyvKCfij1PcgT4B566aZQB2IEmBf+xiTJ3Wc
-	 uid6RwjuflaJfoDEVo+iBxLmpcdxskvWTq90NAjmOhDg9B2dfF51VN+vztqZE4zYbg
-	 2q0QA3ArZvEVNyaacL9iqwD0hWJMChnnm4ZnB4kUzjk3qh12k01GXXiJ/9W3y/jF9b
-	 241yHy8DfmaFSaW0O8HfDH1ssOJvSZvfOMIPdvHO4qjTksbj8MTM9+WeyCpX3pYAkT
-	 t6Gtjycqa9LUQ==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 2924B17E003B;
-	Tue, 14 Oct 2025 15:19:11 +0200 (CEST)
-Message-ID: <831f714b-f27a-4a3d-b256-e170ff0d65a4@collabora.com>
-Date: Tue, 14 Oct 2025 15:19:10 +0200
+	s=arc-20240116; t=1760448002; c=relaxed/simple;
+	bh=aSDd+KL4NOTNpSwWZ1vV1gh67WYD6fXPWRozSjlK8ZE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=U88UaEGaDCHFBnCzpD14Y8DpwoCXb3Hh9XKvJPHvI2K8Hs+wQByfrW+WzwikxRtC9S8jYy+kvJofLbbl3EnZT5ZiYb6NCheykmYUgUn3lRHXOQfXfKvudgSmdE4h0xBWPXXPfQFkkqDiq7te+IMUKM/lcDZ+iDMqeFmdBv6Xurs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ua1-f52.google.com with SMTP id a1e0cc1a2514c-8fea25727a9so1357659241.1
+        for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 06:20:00 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1760448000; x=1761052800;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Njz6v4Ye7icNa6eer5LCY0z/OUSx/xsBh5FobUmXyGU=;
+        b=uPRKELQzsXkLGyYqEVNgnSxF4RcopRYESvMhv0/09ywzZdx3njlqjsfMUSIu/HT2p3
+         jAjOX1tF4LUk++pRscYPjrVL2n8uNrAYeyxXlig2YCg7OYu/UCusUFYnsErA1SZXPCYV
+         W2HdZWG+2hcYu1VSh5j3uyEmxkPJaHwBFRJeJcqDp0vrimYmdAUQQMcgxxv7hzHev9u3
+         gPuG8k1MvZWrXXp4d1zammC3OJwxPv+0071xnRNqWvtFMke0wkCGx7nJPvvcdWPcel7/
+         YBwqXMe665IDMYgtsD243GTL8HwbhdamGX+i/TN3rAtfOwcpi/ry88h8ohdAaTl6jRkE
+         lCWw==
+X-Forwarded-Encrypted: i=1; AJvYcCUfQN7M0hnOptIVN3wOw/REaEIDx6nDqDVR4G9LK7v8QAY1pvABsX8kMi3nWfEJn56V14xyhewPZ96k@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzzphuc8lHQBTirwjx6rWqEKargdg4g7Qfm9bACA40Jg4hd0U94
+	EAccL0XnHfrKEm83O3Y20z7ahzkwQAdjigBtNmdX5AiohLLzkjjlYpfG1D7xTdVf
+X-Gm-Gg: ASbGncsjF5+BatG4XGh2LPYYMDt630L4MiD0s3Y1hVB3swrD5AE9/b9GNlYq+AzMHou
+	NPrjsGUTx1MpRhZxkh5P6O1FSoM0PGZYI29N6rNGFDv9neQvFjxUa21N3egBEMjbN+dENG52ur3
+	Em3sJPrfi+P7+KhN/8scYcycOntM0XSG1qnTWZrhqwj8ypE+fInyFQoRzXXZfeZTodCPn3CgFZ5
+	5/4DTEdpmh+d0QNVEY+7CPm72LmrFThvvLjvint40Xw7CX1UxD8OhRXqdLQxNS/QbFEXbCBEM9r
+	8J8LLePwEa781Rg2ZqJUqGPQIKQ/ndEF0iJfOw8eV3MnA4EAvAYenVlKLW1aklnPU+5+C/VATnS
+	mnSsDWtlTtA7QOvAAxIi0OsukGDbgvhOdHnSvanhsNS9nc8KVXByQBXAHoKGxXsCSv+WrtriZBr
+	cNsTFhWa8=
+X-Google-Smtp-Source: AGHT+IHOE4j1oSsKZCbApSq6GALRHhvhoyO55zxf7hvCpWfCmhMnYPDV/gO5HEOfjgL9E3Z7fb5+Jg==
+X-Received: by 2002:a05:6102:41a4:b0:59c:4925:eba3 with SMTP id ada2fe7eead31-5d5e23de45fmr8881601137.34.1760447999647;
+        Tue, 14 Oct 2025 06:19:59 -0700 (PDT)
+Received: from mail-ua1-f44.google.com (mail-ua1-f44.google.com. [209.85.222.44])
+        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-5d5fc4e9e4csm4408700137.0.2025.10.14.06.19.58
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 14 Oct 2025 06:19:58 -0700 (PDT)
+Received: by mail-ua1-f44.google.com with SMTP id a1e0cc1a2514c-930ae1c6d05so1363942241.3
+        for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 06:19:58 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCV+HXxu5oeyRicd0JfHPKQMHoy9nwVUvlEQR5uRjnsy5cvgF4Bc2Spp5gtynWJ8a7pw+udXyG1q/Ly4@vger.kernel.org
+X-Received: by 2002:a05:6102:6ca:b0:5d5:f6ae:38de with SMTP id
+ ada2fe7eead31-5d5f6ae3c7cmr5745861137.41.1760447998299; Tue, 14 Oct 2025
+ 06:19:58 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: gpu: mali-bifrost: Add compatible for
- MT8365 SoC
-To: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>
-Cc: kernel@collabora.com, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-References: <20250813-mt8365-enable-gpu-v1-0-46c44c6c1566@collabora.com>
- <20250813-mt8365-enable-gpu-v1-1-46c44c6c1566@collabora.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20250813-mt8365-enable-gpu-v1-1-46c44c6c1566@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20250918104009.94754-1-herve.codina@bootlin.com> <20250918104009.94754-8-herve.codina@bootlin.com>
+In-Reply-To: <20250918104009.94754-8-herve.codina@bootlin.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 14 Oct 2025 15:19:46 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWNErzjfqXXgJZOn2viPYmGeuJekY_WLDeK6vzYZzdJmA@mail.gmail.com>
+X-Gm-Features: AS18NWCbANtqchYIwTz4iekVik6u-ZIED4wJm4rfdVFvh3ZW_Tu4x1cmyNlu-78
+Message-ID: <CAMuHMdWNErzjfqXXgJZOn2viPYmGeuJekY_WLDeK6vzYZzdJmA@mail.gmail.com>
+Subject: Re: [PATCH v3 7/8] soc: renesas: Add support for Renesas RZ/N1 GPIO
+ Interrupt Multiplexer
+To: "Herve Codina (Schneider Electric)" <herve.codina@bootlin.com>
+Cc: Thomas Gleixner <tglx@linutronix.de>, Wolfram Sang <wsa+renesas@sang-engineering.com>, 
+	Hoan Tran <hoan@os.amperecomputing.com>, Linus Walleij <linus.walleij@linaro.org>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
+	Saravana Kannan <saravanak@google.com>, Serge Semin <fancer.lancer@gmail.com>, 
+	Phil Edworthy <phil.edworthy@renesas.com>, linux-gpio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, Pascal Eberhard <pascal.eberhard@se.com>, 
+	Miquel Raynal <miquel.raynal@bootlin.com>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Il 13/08/25 11:25, Louis-Alexis Eyraud ha scritto:
-> Add a compatible for the MediaTek MT8365 SoC, that has an integrated
-> ARM Mali G52 MC1 GPU and compatible with arm,mali-bifrost.
-> 
-> Signed-off-by: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+Hi Herv=C3=A9,
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+On Thu, 18 Sept 2025 at 12:40, Herve Codina (Schneider Electric)
+<herve.codina@bootlin.com> wrote:
+> On the Renesas RZ/N1 SoC, GPIOs can generate interruptions. Those
+> interruption lines are multiplexed by the GPIO Interrupt Multiplexer in
+> order to map 32 * 3 GPIO interrupt lines to 8 GIC interrupt lines.
+>
+> The GPIO interrupt multiplexer IP does nothing but select 8 GPIO
+> IRQ lines out of the 96 available to wire them to the GIC input lines.
+>
+> Signed-off-by: Herve Codina (Schneider Electric) <herve.codina@bootlin.co=
+m>
 
-P.S.: Can anyone pick this so that I can pick the devicetree commits? :-)
+Thanks for your patch!
 
-Cheers,
-Angelo
+> --- /dev/null
+> +++ b/drivers/soc/renesas/rzn1_irqmux.c
 
+> +static const struct of_device_id irqmux_of_match[] =3D {
+> +       { .compatible =3D "renesas,rzn1-gpioirqmux", },
+> +       { /* sentinel */ }
+> +};
+> +MODULE_DEVICE_TABLE(of, irq_mux_of_match);
+                           ^^^^^^^^^^^^^^^^
+                           irqmux_of_match
 
+Interestingly, this built fine for me before, presumably until commit
+5ab23c7923a1d2ae ("modpost: Create modalias for builtin modules")
+in v6.18-rc1.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
