@@ -1,207 +1,176 @@
-Return-Path: <devicetree+bounces-226353-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226354-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56E1DBD74D3
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 06:45:47 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E9B1BD74DF
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 06:47:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 697AB19A24BC
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 04:46:10 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 5E2514EB472
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 04:47:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55E1D271468;
-	Tue, 14 Oct 2025 04:45:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 677F030C601;
+	Tue, 14 Oct 2025 04:47:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KA9KJoNG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bligJCtf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f48.google.com (mail-pj1-f48.google.com [209.85.216.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C07E78635C
-	for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 04:45:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 272E830BF52;
+	Tue, 14 Oct 2025 04:47:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760417143; cv=none; b=FZU23DQWBZWvf8YfgOp5onwfX8ftuEtfcV7sCaLkf4Buao3yDdhyD4NjnfeQes3V/QIWYtIBQh2Srh05BiQyE6xuy7L+NtThCwO2dwGu2wht5/ZQGwt+/nDOsDwjJvgviVeH2B1UKC/BMLoH2E8IeAp0NNEd4ZxN7+c8Ol4O4wA=
+	t=1760417250; cv=none; b=HU99giPK5nbhGqZS6VON4NSJ1dRNe62hDpfzP4vJMd7QQbE3OUsevas7WfJdIMH7SY07qAGP+zpW27OhSY6qbpfx2+/TKrQkAGvsx4gyv5zK9g8B1JoqNBRHFQw+oQtcBrs8t0uwKKDbfQYrZUzngUX5CMnKjjT+7k3PInAFQ9Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760417143; c=relaxed/simple;
-	bh=0orUWzHmoddf5T6UWfg8hFuB0PDavX6xN2JvIHOkAeM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=udBArRjirp1T83no6molTexZ9Bjw1rqCSTUF5tRo0GBZvPCvEqIP20gRDiMbd3EoCeqVp1Uri11Gm7eMzmt0jk1OQ86zRHbRPQwuYmm3hfsd4tMP5q6zf3I093DtxAGkugg6LF2QVCgFw3vQea4f0iGk1CzxqeQgrPBYfsqIrRA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KA9KJoNG; arc=none smtp.client-ip=209.85.216.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f48.google.com with SMTP id 98e67ed59e1d1-3324523dfb2so4747582a91.0
-        for <devicetree@vger.kernel.org>; Mon, 13 Oct 2025 21:45:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1760417141; x=1761021941; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=6IWAevNcHXjFvzpaRr8LOfdvjd37W/dKCFMhW8BIdjo=;
-        b=KA9KJoNGPQ8v6W5U6bwJ66AubA+wP1aptNvX8WmU28aVeiJhDhex+B8vrWnaZlY4SX
-         oVta/O8lcZjfeLjn9NQ5VYm5t1j07fXFZVG7vuklJqeEJ5fJQ7KtKmc5TMW7DXNp5txr
-         5id/9TLF+EL8Nc33J6cKK56A4etDwtY5/545O2yEB63hJEmNRowsrCrfkpIU0uktBDE9
-         vHKpnQLZH+m0bYe+hGS6jKhicY1tyeA9/GuPljAW5iXMtk8VHhO6dSj/v6rH7TiGSMCk
-         3RD0mVssyZYTmQac7kTqL/sAVl/TqifvmwU/aWtC8Ou8bQZze5yr/Welkfjsy1ddM0z+
-         Mfqg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760417141; x=1761021941;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6IWAevNcHXjFvzpaRr8LOfdvjd37W/dKCFMhW8BIdjo=;
-        b=IQ8tGRVOv3QC80kIFinH64rYnveJaP6CjWeEiPmdRWoTUmoL/gg2saDCjpVz6lw6OR
-         zaQ0Fh8mXmMvwBsvoVMfZa3Qii/eGG9I3Z9+UeBbSCReATzFybxgWOI2HMit2LdNake1
-         VzYAa3I4AXIHfe4/C8LUvDMHmTS+3OMi1Maic5uMByO8D3hzP+EP2em82MA4tAWYssxe
-         Vesh4UUF7teiaRsEAbf3dqBybUHWDLCMksZCyW29oUBJphbUIFQsdzFViffgLmnnwrOS
-         Ayw/UKn/tughKwLknGCxFGIRGNq2wvRka7eJ76jSop7AeCvam51o+TYzbEG4y81Tz/UK
-         c/Jw==
-X-Forwarded-Encrypted: i=1; AJvYcCVCB3HH/TbMqZrGO0TfmcofLt0gOa9S8mdQBBQbNbe3yTWrFeSKRLB8p92s9l0FWPdBenQEs7aZ8KG5@vger.kernel.org
-X-Gm-Message-State: AOJu0YzfBXAXXblxtbDbCfOjeb+dQd9vDh0J2UbOTHhNNo6XpKqCxXeo
-	e/GqPg4gkzmbaox/BO7W6qzqjJFDsUjMxas4frq3RXPiB38pxxIKaq6S
-X-Gm-Gg: ASbGnct/rgD8VCX171mjmEXIt+afT0P1qepY1OByvm+cxwIs5esxBePRI1zzpWgm+WF
-	pAKUbV7Sjfpx3QcAftPP88BZ1BzMqa8JpWreb3tPPl3AFifcY3mxOqdrPfYjjfHEtyu4HLwUy4m
-	m3NJV1w8RWd6dJck+1Y4zPPCVBT67RIkKBF9VrDav/0fI6+CwMessfxP+CuSge8cdoCNlHVOpqT
-	xyQ6KMx1Cbksb14+2YzrCZV0zXasCKA9/L7JySO4wvm7Byv5nGPa8KzTKZC0uC7vayoS+wq3/rC
-	+pYlkqlRvHEBH+5e1s3HXxb/zdvInIwsy2CAh39GJ54R4EdU+SPRk4ReaDjRN1QwHCH/AsGTIRI
-	QYp10gmlAUdRjDvP8+p9GmHuG261+hlWX3lGo70OTJ33wYXKbqry0jLNH3F4vUuQVSRyeXh1Odg
-	==
-X-Google-Smtp-Source: AGHT+IFpInrQ3BK2IUoEdZQ4XEmHh6tIaVzcz4A5h+n6G2cV7PgK4L9/NeRbvXUR10GkJ9cgViH1AA==
-X-Received: by 2002:a17:90b:1b41:b0:32e:6019:5d19 with SMTP id 98e67ed59e1d1-33b513bdffdmr29320243a91.34.1760417141038;
-        Mon, 13 Oct 2025 21:45:41 -0700 (PDT)
-Received: from fedora (c-76-133-73-115.hsd1.ca.comcast.net. [76.133.73.115])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-33b626d15e2sm14122596a91.21.2025.10.13.21.45.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Oct 2025 21:45:40 -0700 (PDT)
-Date: Mon, 13 Oct 2025 21:45:38 -0700
-From: Tao Ren <rentao.bupt@gmail.com>
-To: Guenter Roeck <linux@roeck-us.net>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
-	Andrew Jeffery <andrew@codeconstruct.com.au>,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-	Andrew Lunn <andrew@lunn.ch>, Tao Ren <taoren@meta.com>
-Subject: Re: [PATCH v4 11/13] ARM: dts: aspeed: facebook-fuji: Include
- facebook-fuji-data64.dts
-Message-ID: <aO3VcnvDgtYLLjoI@fedora>
-References: <20250728055618.61616-1-rentao.bupt@gmail.com>
- <20250728055618.61616-12-rentao.bupt@gmail.com>
- <79ddc7b9-ef26-4959-9a16-aa4e006eb145@roeck-us.net>
- <aO2kLyxGlGt12sKD@fedora>
- <e3dc7aee-c8af-4276-84e5-0f0c7926be05@roeck-us.net>
- <054cf209-61af-4d21-9a3b-d0f6dd24ee3b@roeck-us.net>
- <aO3M90Ycp2DWyFuk@fedora>
- <04dbdd20-69c1-48fe-9bc7-7e9ffaedbe9a@roeck-us.net>
+	s=arc-20240116; t=1760417250; c=relaxed/simple;
+	bh=5DQI0Fe06+ZJbvuBOZfkOypz087y12M4OqIjdRJ3LNo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=d6uuvcc98JZyoXKoQ0DvVu5flVd6v7gHWG0EXHgAWmHKqp8aBAHkKoE9OR0EPVZrmwAVnrxYW97GjwFOWCzjlFgymv4qyQXoWpiUO167moMK08Pt1uh3CG+s59B+ibkR2wEfKWbhlnEeSCfpmneatM2BUsh+ZP2/R6v9tfFlj3w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bligJCtf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4826CC4CEE7;
+	Tue, 14 Oct 2025 04:47:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1760417249;
+	bh=5DQI0Fe06+ZJbvuBOZfkOypz087y12M4OqIjdRJ3LNo=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=bligJCtfsWIdOWU2vyKm0g4YM+3BZC2A1CXGh/0y1zL4395pIpmIgvRTh+x/aiZyT
+	 QkrcpYwlD64emuQulDtewS6u99WgC4RTEyqTPQxqs7GxOHXAWEiHg5K9pmLH/eVppA
+	 hkLVvrls8XxJbUiRE8hUpZBCI9bTI2YB3EZZ5hDGgmW7DKeVtvB9Czf7KnkweALz07
+	 tdMJforhXrEMkopQvxI6ww80g/eFfOlG/1zerdEBY5Qe3YYc3y8HsIj7lqshUe9Wg5
+	 jCyTObQvBYYAaUbSZ8SECn6HKtLsZ2YVAU7DicVDjm7g5gfS6BZcO4nRdFeH4kmjfh
+	 hQo/e1/R0j56w==
+Message-ID: <40af8d13-1bee-49f7-946e-043b920d83fe@kernel.org>
+Date: Tue, 14 Oct 2025 06:47:21 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <04dbdd20-69c1-48fe-9bc7-7e9ffaedbe9a@roeck-us.net>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 4/6] dt-bindings: remoteproc: qcom,pas: Document pas for
+ Kaanapali SoCCP
+To: Jingyi Wang <jingyi.wang@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Manivannan Sadhasivam <mani@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ aiqun.yu@oss.qualcomm.com, tingwei.zhang@oss.qualcomm.com,
+ trilok.soni@oss.qualcomm.com, yijie.yang@oss.qualcomm.com
+References: <20250924-knp-remoteproc-v1-0-611bf7be8329@oss.qualcomm.com>
+ <20250924-knp-remoteproc-v1-4-611bf7be8329@oss.qualcomm.com>
+ <a8796335-bec3-4c1f-afea-b5b7909d8ba3@kernel.org>
+ <e9813a47-c40b-475a-8faf-de0811c9066e@oss.qualcomm.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <e9813a47-c40b-475a-8faf-de0811c9066e@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Mon, Oct 13, 2025 at 09:35:43PM -0700, Guenter Roeck wrote:
-> On 10/13/25 21:09, Tao Ren wrote:
-> > Hi Guenter,
-> > 
-> > On Mon, Oct 13, 2025 at 08:44:17PM -0700, Guenter Roeck wrote:
-> > > On 10/13/25 20:20, Guenter Roeck wrote:
-> > > > On 10/13/25 18:15, Tao Ren wrote:
-> > > > > Hi Guenter,
-> > > > > 
-> > > > > On Mon, Oct 13, 2025 at 05:20:57PM -0700, Guenter Roeck wrote:
-> > > > > > Hi,
-> > > > > > 
-> > > > > > On Sun, Jul 27, 2025 at 10:56:13PM -0700, rentao.bupt@gmail.com wrote:
-> > > > > > > From: Tao Ren <rentao.bupt@gmail.com>
-> > > > > > > 
-> > > > > > > Include "facebook-fuji-data64.dts" in facebook-fuji dts to avoid
-> > > > > > > duplicated code.
-> > > > > > > 
-> > > > > > > Fuji-data64 and Fuji are identical except the BMC flash layout.
-> > > > > > > 
-> > > > > > > Signed-off-by: Tao Ren <rentao.bupt@gmail.com>
-> > > > > > 
-> > > > > > With this patch in the mainline kernel, the Ethernet interface I use for
-> > > > > > testing does not come online when loading fuji-bmc in qemu.
-> > > > > > 
-> > > > > > Reverting this patch fixes the problem.
-> > > > > > 
-> > > > > > Looking into this patch,
-> > > > > > 
-> > > > > > > -
-> > > > > > > -#include <dt-bindings/leds/common.h>
-> > > > > > > -#include "ast2600-facebook-netbmc-common.dtsi"
-> > > > > > > +#include "aspeed-bmc-facebook-fuji-data64.dts"
-> > > > > > ...
-> > > > > > > -&mac3 {
-> > > > > > > -    status = "okay";
-> > > > > > > -    phy-mode = "rgmii";
-> > > > > > > -    phy-handle = <&ethphy3>;
-> > > > > > > -    pinctrl-names = "default";
-> > > > > > > -    pinctrl-0 = <&pinctrl_rgmii4_default>;
-> > > > > > > -};
-> > > > > > 
-> > > > > > I don't see this in aspeed-bmc-facebook-fuji-data64.dts, meaning that
-> > > > > > interface is now disabled. Adding it back in fixes the problem.
-> > > > > > Also, MAC3 is explicitly enabled for fuji-bmc in qemu.
-> > > > > > 
-> > > > > > Was the interface disabled on purpose ?
-> > > > > > 
-> > > > > > Thanks,
-> > > > > > Guenter
-> > > > > 
-> > > > > The mac3 interface was removed in the latest patch (v4) per Andrew Lunn's
-> > > > > feedback, because the rgmii setting is incorrect.
-> > > > > 
-> > > > > I was planning to add mac3 back as soon as rgmii support is properly
-> > > > > handled in aspeed mac driver, but kindly let me know if you have other
-> > > > > suggestions.
-> > > > > 
-> > > > 
-> > > > All I can say is that it worked just fine with the qemu emulation,
-> > > > and that it is broken now. Since it was broken on purpose I guess I'll
-> > > > have to find a workaround or stop testing network interfaces with
-> > > > that emulation entirely.
-> > > > 
-> > > 
-> > > Ah, I see that mac3 was the only enabled Ethernet interface on that system,
-> > > so you effectively disabled networking on it.
-> > > 
-> > > I don't claim to understand the logic (how can anyone continue to use this bmc
-> > > without network interface ?) but I guess it is what it is. I'll stop testing it.
-> > > 
-> > > Guenter
-> > 
-> > Sorry for the inconvenience.. I have to take a local patch to enable
-> > mac3 in my environment, because as you said, it's not useful without
-> > network interface.
-> > 
-> > Meanwhile, I will need to work with ASPEED to enable rgmii delay support
-> > in the ASPEED MAC driver so I can add mac3 back to the dts. If you are
-> > looking for a similar platform for testing, you could consider elbert.
-> > 
+On 14/10/2025 06:28, Jingyi Wang wrote:
 > 
-> AFAICS aspeed-bmc-facebook-elbert.dtb does not work with the fuji-bmc machine.
-> The console interface or wiring seems to be different.
+> 
+> On 10/9/2025 6:27 PM, Krzysztof Kozlowski wrote:
+>> On 25/09/2025 08:37, Jingyi Wang wrote:
+>>> +
+>>> +  glink-edge:
+>>> +    $ref: /schemas/remoteproc/qcom,glink-edge.yaml#
+>>> +    unevaluatedProperties: false
+>>> +    description: |
+>>
+>> Drop |
+>>
+>>
+> 
+> Will fix
+> 
+>>> +      Qualcomm G-Link subnode which represents communication edge, channels
+>>> +      and devices related to the Remoteproc.
+>>> +
+>>> +required:
+>>> +  - compatible
+>>> +  - reg
+>>> +  - memory-region
+>>> +  - clocks
+>>> +  - clock-names
+>>> +  - interrupts
+>>> +  - interrupt-names
+>>> +  - qcom,smem-states
+>>> +  - qcom,smem-state-names
+>>> +
+>>> +unevaluatedProperties: false
+>>
+>> That's wrong in this context. But if you add missing (and corrected
+>> pas-common) then it would make sense.
+>>
+> 
+> Sorry I didn't get this point, could you make it more clear?
+> 
+> The property for Kaanapali SoCCP doesn't follow qcom,pas-common.yaml
+> (the interrupts are different) so it was not included here, like
+> "qcom,qcs404-cdsp-pil.yaml"
 
-Oh you are right (the console settings are different).
 
- 
-> As I said, I'll stop testing the network interface on fuji-bmc. That reduces
-> test coverage, but there is nothing I can do about that. I already made the
-> necessary changes in my testbed, so from my perspective the issue is closed.
+It should follow. We want the common properties to be common. You cannot
+have new binding not using common properties, because you duplicate
+property definition.
 
-Got it. I will drop you a message when I add mac3 back (if you feel it's
-helpful).
+> 
+> So I think just adding the missing "power-domains","power-domain-names"
+> under "required" will be okay?
 
 
-Thanks,
+You need to adjust pas-common.yaml, all other bindings and this binding
+so there is a common part.
 
-Tao
+Best regards,
+Krzysztof
 
