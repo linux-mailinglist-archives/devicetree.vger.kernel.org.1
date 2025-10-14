@@ -1,101 +1,152 @@
-Return-Path: <devicetree+bounces-226294-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226295-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED39BBD6D23
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 02:02:03 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id A19B0BD6D41
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 02:06:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id DB8044F09FF
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 00:02:02 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 93EAF4E66F5
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 00:06:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FC381A26B;
-	Tue, 14 Oct 2025 00:01:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7453ABA45;
+	Tue, 14 Oct 2025 00:06:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YUvbjhcC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97D671D6AA;
-	Tue, 14 Oct 2025 00:01:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 435CD34BA5B;
+	Tue, 14 Oct 2025 00:06:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760400119; cv=none; b=H7g18SsZLDQCFj3fjKEwcRLf8OML0L+3uzzUA1BxrnflVcE36eGN2Fn6HdFjvHgNPp8sQ8dITaALMvzUMgGZzi5bsqmlz5FX4M4ac75aRaWhc260sO0WBTTU1sMF7yXQTWD74iwcmCUzb3bcu90xhbuf+cSf3hRcZV3E1ASEvYM=
+	t=1760400414; cv=none; b=En7aP5q3EzE7M4EQq0uFuTz0WBzjEACXAM+0xMaDRZIt6PbSB75Cyq9Oezooc7xAkWi6zlOxXfK+xP2/6F/17XwnatSEA4LWsEyK5ex3o4hp+OdIlKtWV4EWHh/I7ZFUmDyi2jIqF1+OOHEoIDiDzDSJUn+0EnN+9H+WIWxpQS0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760400119; c=relaxed/simple;
-	bh=+vUFipcYIXgXpqA9AhKG0GuuSmvhuP8nc/YpFn8bR3A=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=jq71+xaa2/ECtPd66JHjLCOr1B7XBYCOqosGyuvtGt83velJfTMYo5/2o41alXd1tsEYZbTrSfqF6T2Nu1uCmuajluqU0dpO0D9HqPbPE0QuoLvE0SiDwpOFqLpjcoSFfzxQsfkAYiBTMlY3r3ZbXQIzry70XBsrEYuplhq4Swc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
-Received: from ofsar (unknown [116.232.147.32])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: dlan)
-	by smtp.gentoo.org (Postfix) with ESMTPSA id 10150340E58;
-	Tue, 14 Oct 2025 00:01:50 +0000 (UTC)
-From: Yixun Lan <dlan@gentoo.org>
-To: lee@kernel.org,
-	lgirdwood@gmail.com,
-	broonie@kernel.org,
-	alexandre.belloni@bootlin.com,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	Alex Elder <elder@riscstar.com>
-Cc: Yixun Lan <dlan@gentoo.org>,
-	mat.jonczyk@o2.pl,
-	paul.walmsley@sifive.com,
-	palmer@dabbelt.com,
-	aou@eecs.berkeley.edu,
-	alex@ghiti.fr,
-	linux.amoon@gmail.com,
-	troymitchell988@gmail.com,
-	guodong@riscstar.com,
-	linux-rtc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	spacemit@lists.linux.dev,
-	linux-kernel@vger.kernel.org
-Subject: Re: (subset) [PATCH v13 0/7] spacemit: introduce P1 PMIC support
-Date: Tue, 14 Oct 2025 08:01:45 +0800
-Message-ID: <176040002491.864314.9564488018549093381.b4-ty@gentoo.org>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20250825172057.163883-1-elder@riscstar.com>
-References: <20250825172057.163883-1-elder@riscstar.com>
+	s=arc-20240116; t=1760400414; c=relaxed/simple;
+	bh=XXYR+wR+uPbI+Ltuoy2z2Qb88tw6ivM08Razh0yrfy0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=IIof+cUF2gwQf/JV2IzABUVmRf1Pb2uTywYemeiKjNDE55/yudGRvJV5KiQ2DFiN48OkvTqk+DJO0V1tPz0UUnJN9pufF6nX3voT0WGSjboyv7JU8g5wuqnZmiHEsgH8oywaKifRXN7AU80WVEsylBLLIaNDvci2u5QVFoRjURg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YUvbjhcC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9FA2EC4CEE7;
+	Tue, 14 Oct 2025 00:06:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1760400413;
+	bh=XXYR+wR+uPbI+Ltuoy2z2Qb88tw6ivM08Razh0yrfy0=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=YUvbjhcCNjfWrgQoROeSZuaPdG6xDJiSqNHw+Jdqx/kHIkoMx4Uy7SBunIhqHsteZ
+	 sNMhwLWFBSFNK+s/bQ02BmDbKHwKDc1Yc8CyKV42ERj8KxsntWMv8/JC2E2q4YRoJW
+	 MutfQk+oFNnLM0dshAWuBlvrAS2tJjdYrW35E6ncVHyhtVh7ne+b14kR6kD8dg9abI
+	 o7eQJMVouNE0CNXClzGLyBal6g26YTicuqLCiFCSnttPoS+wvyTYwZmSe8EsbP+SPH
+	 ZcO/Hit5Gik4pn1PmkgxP/MMT8UjjCUfXMyL6B55OWkraSC3aLbDCn3PcUECX48XWb
+	 N0f/4aaMMp3VA==
+Message-ID: <cb753c72-70ca-44b9-a33c-af2b1c7e69c8@kernel.org>
+Date: Tue, 14 Oct 2025 02:06:46 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 1/4] dt-bindings: mmc: Add dll-presets values for HS400
+ and HS200 modes
+To: Ram Prakash Gupta <quic_rampraka@quicinc.com>,
+ Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Adrian Hunter <adrian.hunter@intel.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ dmitry.baryshkov@oss.qualcomm.com, quic_pragalla@quicinc.com,
+ quic_sayalil@quicinc.com, quic_nitirawa@quicinc.com,
+ quic_bhaskarv@quicinc.com, kernel@oss.qualcomm.com,
+ Sachin Gupta <quic_sachgupt@quicinc.com>
+References: <20251013145316.1087274-1-quic_rampraka@quicinc.com>
+ <20251013145316.1087274-2-quic_rampraka@quicinc.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20251013145316.1087274-2-quic_rampraka@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-
-On Mon, 25 Aug 2025 12:20:49 -0500, Alex Elder wrote:
-> The SpacemiT P1 is an I2C-controlled PMIC that implements 6 buck
-> converters and 12 LDOs.  It contains a load switch, ADC channels,
-> GPIOs, a real-time clock, and a watchdog timer.
+On 13/10/2025 16:53, Ram Prakash Gupta wrote:
+> From: Sachin Gupta <quic_sachgupt@quicinc.com>
 > 
-> This series introduces a multifunction driver for the P1 PMIC as
-> well as drivers for its regulators and RTC.
+> Document the 'dll-presets' property for MMC device tree bindings.
+> The 'dll-presets' property defines the DLL configurations for HS400
+> and HS200 modes.
 > 
-> [...]
+> QC SoCs can have 0 to 4 SDHCI instances, and each one may need
+> different tuning.
+> 
+> Signed-off-by: Sachin Gupta <quic_sachgupt@quicinc.com>
+> Signed-off-by: Ram Prakash Gupta <quic_rampraka@quicinc.com>
+> ---
+>  Documentation/devicetree/bindings/mmc/sdhci-msm.yaml | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
+> index 594bd174ff21..f7b3b1ced3ce 100644
+> --- a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
+> @@ -138,6 +138,11 @@ properties:
+>      $ref: /schemas/types.yaml#/definitions/uint32
+>      description: platform specific settings for DLL_CONFIG reg.
+>  
+> +  qcom,dll-presets:
+> +    maxItems: 10
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +    description: platform specific settings for DLL registers.
 
-Applied, thanks!
-
-[5/7] riscv: dts: spacemit: enable the i2c8 adapter
-      https://github.com/spacemit-com/linux/commit/3e8d7309e6260b1d066e733bf3e2e1b6a0d3f82b
-[6/7] riscv: dts: spacemit: define fixed regulators
-      https://github.com/spacemit-com/linux/commit/1df07a40453fd652132051419140950d47941fe9
-[7/7] riscv: dts: spacemit: define regulator constraints
-      https://github.com/spacemit-com/linux/commit/09a412d397484e76588707d85ccc37f71e491091
+One of my questions, never answered in original submission and in your
+versions, was to see the DTS user of it. I still do not see the DTS user.
 
 Best regards,
--- 
-Yixun Lan
-
+Krzysztof
 
