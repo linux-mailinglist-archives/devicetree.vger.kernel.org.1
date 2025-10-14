@@ -1,55 +1,55 @@
-Return-Path: <devicetree+bounces-226481-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226482-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07523BD90F6
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 13:35:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 504B1BD915D
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 13:46:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6738C1924452
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 11:36:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 28962188036A
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 11:46:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D9703081C6;
-	Tue, 14 Oct 2025 11:35:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEE16306497;
+	Tue, 14 Oct 2025 11:46:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="VVabfhq7"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="TWReYMcO"
 X-Original-To: devicetree@vger.kernel.org
 Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6663B2F8BC1;
-	Tue, 14 Oct 2025 11:35:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D340B2F6583;
+	Tue, 14 Oct 2025 11:46:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760441742; cv=none; b=Q2IYwyIyzNU/OV4QgYm+hTlqYPGlt9zIo8CzuEEAFZyUcjXYjAQiye1TJxr9th/ml1/NlR3BDZ6Ee5kaY37Dsece+Kidt+sCm3+O3Gg632SOgTflLYxnry5SoD0OVq4xgBwoLB8HCELO39c7YYbknA9ZXdBZ5wEApsuuRAFMOlY=
+	t=1760442369; cv=none; b=ZeTiYbYLwbZ4IU/22KjieLr2LX1/MIhDjO4tx9SQj6sJZ7eNJjGHemvNBY6PiwrhUoCVtrQtGFZnwOjCIFeEiJsklnuMSusirXdb4FBzRF1f3K5zxZpPkSdBQBVpDZfeyL9xf4rceC/jDkp6ITiNsjtrTfDpwUMafskQk9umaYA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760441742; c=relaxed/simple;
-	bh=h4RfT8BW5uglHP1wgDRzO4OhIAmDCeHY9g1PjPS2PTQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NvwmVLqoOCEhU7hlzyIZWQ0k5Cpr2WqL3miC21t09ivlzBLHN0s5fStcyE06p4WqVh465ze84zDnjSqtl2PaGdCmER04ByJfv/yAS7H0QwkyDqba9JHNTikrIxO0yBZD42aoV6UtY2HXFwa9nbsZirmTsfQvSHISobkuT1OVGew=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=VVabfhq7; arc=none smtp.client-ip=148.251.105.195
+	s=arc-20240116; t=1760442369; c=relaxed/simple;
+	bh=zh3gtbXSbad8n/WFENsjqEdQRtU1t+VuBKeLZcIuCyo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=hZISR3xSN8uc1wUFgPOXVaTowizh3iPAUo6h4tdGE+nlZTix7ynYAhQv9xJrI7VXuISOlqIvW7AeXR5k7AWFsPI1a6MJ3rxW0yc4YUZdOG7J0FBrRJR/y9aF6LBjSALAuYFM+qEYPodRiLmui72N4ekCgsX8owZP0Vzxt4pmmEg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=TWReYMcO; arc=none smtp.client-ip=148.251.105.195
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1760441738;
-	bh=h4RfT8BW5uglHP1wgDRzO4OhIAmDCeHY9g1PjPS2PTQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=VVabfhq7ySgeQWE5YFVpMC15pBUMza3xxclEaC8rofCUOdhDa1fPFMXSahF59tAt/
-	 PlscaPeGH6puZRXSh6XtUdnz+6CF9Foificw1MOmFKh4t3a4oTta5+rOFKdNhW3H+Q
-	 XUaAdk+wzy5wenoOHpkJhmM5eZ70dpnkv4bCgV3LN459Q+UWo/+TGav8F5A4WOsx/S
-	 8dkoYVDPd0mQ+K3sv2RhVKBxsTdmrTyQsqw/GltdW4EFW9qQY1OT+ehE2YAkxfW/M2
-	 4E7JHPGCHYOr1A6gBUY6KCGgy4uWUVGuo0rGLqJlv8f7eswHLugQuJw1fo7qIn4pL+
-	 IF5aEfRAvMyFA==
+	s=mail; t=1760442365;
+	bh=zh3gtbXSbad8n/WFENsjqEdQRtU1t+VuBKeLZcIuCyo=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=TWReYMcOyfclxK+44jSQmchHsdlk6IIef/vqhGJE23lcMjrpnO1Et34zR/cQq9kAk
+	 rF+UbcMdgKjdvHYxxYigA1FNNnSZ3nfkkodefswzCN001LJtvDcFzbeXa6Owr7s6iS
+	 9qqkgib6MMZl3D+nKgBqOxrHD5fUnuPrRb7+EqtlOF3CWMNmEaxwfKLLK1CAzdFR4A
+	 l8Mar11CgfjWBkTS8lRDK2CziF+KrWXUnkTzhes4Ic1hPC5QEg7omk9FlxRTNwsn15
+	 yn5LdbSMY6dILtHYJxYEPEhzlfYPFESHmJnhXXqvrF09tA+TzQNy52wKKmcriF2AiQ
+	 3u2sVnc+uOG0Q==
 Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
 	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
 	(No client certificate requested)
 	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 1FB2517E055D;
-	Tue, 14 Oct 2025 13:35:38 +0200 (CEST)
-Message-ID: <ac809179-7192-4218-8b13-86b9252652f4@collabora.com>
-Date: Tue, 14 Oct 2025 13:35:37 +0200
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 516D217E013C;
+	Tue, 14 Oct 2025 13:46:05 +0200 (CEST)
+Message-ID: <675d5338-09f0-439b-b22c-a3d50b243b5e@collabora.com>
+Date: Tue, 14 Oct 2025 13:46:04 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,127 +57,149 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 4/9] regulator: Add support for MediaTek MT6363 SPMI
- PMIC Regulators
-To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
- linux-mediatek@lists.infradead.org
-Cc: lee@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- matthias.bgg@gmail.com, lgirdwood@gmail.com, broonie@kernel.org,
+Subject: Re: [PATCH v5 4/5] PCI: mediatek: convert bool to single flags entry
+ and bitmap
+To: Christian Marangi <ansuelsmth@gmail.com>,
+ Ryder Lee <ryder.lee@mediatek.com>, Jianjun Wang
+ <jianjun.wang@mediatek.com>, Bjorn Helgaas <bhelgaas@google.com>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+ Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+ linux-pci@vger.kernel.org, linux-mediatek@lists.infradead.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, kernel@collabora.com,
- wenst@chromium.org, igor.belwon@mentallysanemainliners.org
-References: <20251003091158.26748-1-angelogioacchino.delregno@collabora.com>
- <20251003091158.26748-5-angelogioacchino.delregno@collabora.com>
- <5635636.31r3eYUQgx@workhorse>
+ linux-arm-kernel@lists.infradead.org, upstream@airoha.com
+References: <20251012205900.5948-1-ansuelsmth@gmail.com>
+ <20251012205900.5948-5-ansuelsmth@gmail.com>
 From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Content-Language: en-US
-In-Reply-To: <5635636.31r3eYUQgx@workhorse>
+In-Reply-To: <20251012205900.5948-5-ansuelsmth@gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-Il 09/10/25 16:41, Nicolas Frattaroli ha scritto:
-> On Friday, 3 October 2025 11:11:53 Central European Summer Time AngeloGioacchino Del Regno wrote:
->> Add a driver for the regulators found on the MT6363 PMIC, fully
->> controlled by SPMI interface.
->> This PMIC regulates voltage with an input range of 2.6-5.0V, and
->> features 10 buck converters and 26 LDOs.
->>
->> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->> ---
->>   drivers/regulator/Kconfig                  |  10 +
->>   drivers/regulator/Makefile                 |   1 +
->>   drivers/regulator/mt6363-regulator.c       | 935 +++++++++++++++++++++
->>   include/linux/regulator/mt6363-regulator.h | 330 ++++++++
->>   4 files changed, 1276 insertions(+)
->>   create mode 100644 drivers/regulator/mt6363-regulator.c
->>   create mode 100644 include/linux/regulator/mt6363-regulator.h
->>
->> [...]
->> diff --git a/drivers/regulator/mt6363-regulator.c b/drivers/regulator/mt6363-regulator.c
->> new file mode 100644
->> index 000000000000..812775072eb5
->> --- /dev/null
->> +++ b/drivers/regulator/mt6363-regulator.c
->> [...]
->> +
->> +static int mt6363_regulator_set_mode(struct regulator_dev *rdev,
->> +				     unsigned int mode)
->> +{
->> +	struct mt6363_regulator_info *info = rdev_get_drvdata(rdev);
->> +	struct regmap *regmap = rdev->regmap;
->> +	int cur_mode, ret;
->> +
->> +	if (!info->modeset_reg && mode == REGULATOR_MODE_FAST)
->> +		return -EOPNOTSUPP;
->> +
->> +	switch (mode) {
->> +	case REGULATOR_MODE_FAST:
->> +		ret = mt6363_buck_unlock(regmap, true);
->> +		if (ret)
->> +			break;
->> +
->> +		ret = regmap_set_bits(regmap, info->modeset_reg, info->modeset_mask);
->> +
->> +		mt6363_buck_unlock(regmap, false);
->> +		break;
->> +	case REGULATOR_MODE_NORMAL:
->> +		cur_mode = mt6363_regulator_get_mode(rdev);
->> +		if (cur_mode < 0) {
->> +			ret = cur_mode;
->> +			break;
->> +		}
->> +
->> +		if (cur_mode == REGULATOR_MODE_FAST) {
->> +			ret = mt6363_buck_unlock(regmap, true);
->> +			if (ret)
->> +				break;
->> +
->> +			ret = regmap_clear_bits(regmap, info->modeset_reg, info->modeset_mask);
->> +
->> +			mt6363_buck_unlock(regmap, false);
->> +			break;
->> +		} else if (cur_mode == REGULATOR_MODE_IDLE) {
->> +			ret = regmap_clear_bits(regmap, info->lp_mode_reg, info->lp_mode_mask);
->> +			if (ret == 0)
->> +				usleep_range(100, 200);
->> +		} else {
->> +			ret = 0;
+Il 12/10/25 22:56, Christian Marangi ha scritto:
+> To clean Mediatek SoC PCIe struct, convert all the bool to a bitmap and
+> use a single flags to reference all the values. This permits cleaner
+> addition of new flag without having to define a new bool in the struct.
 > 
-> Just initialise ret to 0 at the start of the function scope when
-> you declare it. You've already missed an uninitialised use once,
-> and playing these branch games is just asking for more trouble
-> in the future. There's no micro-optimisation you're doing here,
-> clang produces the same assembly for both zero initialised and
-> the else branch version you're doing here.
+> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> ---
+>   drivers/pci/controller/pcie-mediatek.c | 28 +++++++++++++++-----------
+>   1 file changed, 16 insertions(+), 12 deletions(-)
 > 
+> diff --git a/drivers/pci/controller/pcie-mediatek.c b/drivers/pci/controller/pcie-mediatek.c
+> index 24cc30a2ab6c..1678461e56d3 100644
+> --- a/drivers/pci/controller/pcie-mediatek.c
+> +++ b/drivers/pci/controller/pcie-mediatek.c
+> @@ -142,24 +142,29 @@
+>   
+>   struct mtk_pcie_port;
+>   
+> +enum mtk_pcie_flags {
 
-It's not about micro-optimization. Double initialization is a bad coding practice.
+enum mtk_pcie_quirks seems to be a better fit here, as this is used for... well..
+quirks.
+
+> +	NEED_FIX_CLASS_ID = BIT(0), /* host's class ID needed to be fixed */
+> +	NEED_FIX_DEVICE_ID = BIT(1), /* host's device ID needed to be fixed */
+> +	NO_MSI = BIT(2), /* Bridge has no MSI support, and relies on an
+> +			  * external block
+> +			  */
+
+Also perhaps... MTK_PCIE_FIX_CLASS_ID, MTK_PCIE_FIX_DEV_ID, MTK_PCIE_NO_MSI
+
+> +};
+> +
+>   /**
+>    * struct mtk_pcie_soc - differentiate between host generations
+> - * @need_fix_class_id: whether this host's class ID needed to be fixed or not
+> - * @need_fix_device_id: whether this host's device ID needed to be fixed or not
+>    * @no_msi: Bridge has no MSI support, and relies on an external block
+>    * @device_id: device ID which this host need to be fixed
+>    * @ops: pointer to configuration access functions
+>    * @startup: pointer to controller setting functions
+>    * @setup_irq: pointer to initialize IRQ functions
+> + * @flags: pcie device flags.
+>    */
+>   struct mtk_pcie_soc {
+> -	bool need_fix_class_id;
+> -	bool need_fix_device_id;
+> -	bool no_msi;
+>   	unsigned int device_id;
+>   	struct pci_ops *ops;
+>   	int (*startup)(struct mtk_pcie_port *port);
+>   	int (*setup_irq)(struct mtk_pcie_port *port, struct device_node *node);
+> +	u32 flags;
+
+u32 flags -> enum mtk_pcie_quirks quirks
 
 Cheers,
 Angelo
 
->> +		}
->> +		break;
->> +	case REGULATOR_MODE_IDLE:
->> +		ret = regmap_set_bits(regmap, info->lp_mode_reg, info->lp_mode_mask);
->> +		break;
->> +	default:
->> +		ret = -EINVAL;
->> +	}
->> +
->> +	if (ret) {
->> +		dev_err(&rdev->dev, "Failed to set mode %u: %d\n", mode, ret);
->> +		return ret;
->> +	}
->> +
->> +	return 0;
->> +}
->> +
->> [...]
-> 
-> Kind regards,
-> Nicolas Frattaroli
-> 
-> 
+>   };
+>   
+>   /**
+> @@ -703,7 +708,7 @@ static int mtk_pcie_startup_port_v2(struct mtk_pcie_port *port)
+>   	writel(val, port->base + PCIE_RST_CTRL);
+>   
+>   	/* Set up vendor ID and class code */
+> -	if (soc->need_fix_class_id) {
+> +	if (soc->flags & NEED_FIX_CLASS_ID) {
+>   		val = PCI_VENDOR_ID_MEDIATEK;
+>   		writew(val, port->base + PCIE_CONF_VEND_ID);
+>   
+> @@ -711,7 +716,7 @@ static int mtk_pcie_startup_port_v2(struct mtk_pcie_port *port)
+>   		writew(val, port->base + PCIE_CONF_CLASS_ID);
+>   	}
+>   
+> -	if (soc->need_fix_device_id)
+> +	if (soc->flags & NEED_FIX_DEVICE_ID)
+>   		writew(soc->device_id, port->base + PCIE_CONF_DEVICE_ID);
+>   
+>   	/* 100ms timeout value should be enough for Gen1/2 training */
+> @@ -1099,7 +1104,7 @@ static int mtk_pcie_probe(struct platform_device *pdev)
+>   
+>   	host->ops = pcie->soc->ops;
+>   	host->sysdata = pcie;
+> -	host->msi_domain = pcie->soc->no_msi;
+> +	host->msi_domain = !!(pcie->soc->flags & NO_MSI);
+>   
+>   	err = pci_host_probe(host);
+>   	if (err)
+> @@ -1187,9 +1192,9 @@ static const struct dev_pm_ops mtk_pcie_pm_ops = {
+>   };
+>   
+>   static const struct mtk_pcie_soc mtk_pcie_soc_v1 = {
+> -	.no_msi = true,
+>   	.ops = &mtk_pcie_ops,
+>   	.startup = mtk_pcie_startup_port,
+> +	.flags = NO_MSI,
+>   };
+>   
+>   static const struct mtk_pcie_soc mtk_pcie_soc_mt2712 = {
+> @@ -1199,19 +1204,18 @@ static const struct mtk_pcie_soc mtk_pcie_soc_mt2712 = {
+>   };
+>   
+>   static const struct mtk_pcie_soc mtk_pcie_soc_mt7622 = {
+> -	.need_fix_class_id = true,
+>   	.ops = &mtk_pcie_ops_v2,
+>   	.startup = mtk_pcie_startup_port_v2,
+>   	.setup_irq = mtk_pcie_setup_irq,
+> +	.flags = NEED_FIX_CLASS_ID,
+>   };
+>   
+>   static const struct mtk_pcie_soc mtk_pcie_soc_mt7629 = {
+> -	.need_fix_class_id = true,
+> -	.need_fix_device_id = true,
+>   	.device_id = PCI_DEVICE_ID_MEDIATEK_7629,
+>   	.ops = &mtk_pcie_ops_v2,
+>   	.startup = mtk_pcie_startup_port_v2,
+>   	.setup_irq = mtk_pcie_setup_irq,
+> +	.flags = NEED_FIX_CLASS_ID | NEED_FIX_DEVICE_ID,
+>   };
+>   
+>   static const struct of_device_id mtk_pcie_ids[] = {
+
 
 
