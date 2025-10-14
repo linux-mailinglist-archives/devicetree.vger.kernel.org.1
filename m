@@ -1,250 +1,124 @@
-Return-Path: <devicetree+bounces-226647-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226639-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC210BDA420
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 17:14:03 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 76249BDA4A5
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 17:18:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 5EC16356440
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 15:14:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E81A53AA4E8
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 15:10:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09DFC2FFFA0;
-	Tue, 14 Oct 2025 15:13:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD1FA2C1786;
+	Tue, 14 Oct 2025 15:10:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="d9GVtVEN"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fIwqjw8j"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f174.google.com (mail-yw1-f174.google.com [209.85.128.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05BED2FF65A;
-	Tue, 14 Oct 2025 15:13:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760454822; cv=pass; b=OelX96zzH4IVE65L6v9/u8S2hHYP6/xQ1hXm7v7cdm4/a+jeO2MyXXg1ZCphUJgCG7plvF7JMYVOnh0S9wEmzbwPVGOGA3AQVIGuz550svEpUYf32shWDh9Vj6qAsbvIoxb1GrrinssCKkBdgruzf33U/MvCjyTHgy/TC/ibeCw=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760454822; c=relaxed/simple;
-	bh=ZoBWVENKC8bPtFQSfKS6zeGQ+CyKx+/t0ZMvJMoFv98=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=h3x+tKR3Ab4RG8BEI950tfcJjAdhze/FXeV21pzNAVLkjjlKysi3KAY46q5DjFq14wLTRULLXwhPqtQMJGaVUJp7v84urX6xoYYPF5kEG0uPEFCTuxVdgXOwyI41FNna+TV5idBrPRxFr8yZVcip696wj05JUpZwytFmlXJbUWc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b=d9GVtVEN; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1760454652; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=CiuqWR2ZZlUhRzSdVwTeRuN3iwz5IpWLxexEnP8fiGfANThuTjYNGS2X6TpNQsU99z8iBxva7mnh5dSNM8OF8DPk6kwwNkRjnjBtirMEE7EcOTaxkkbdeDKiFl/e8xQJMnq+ecOynYhSeNynF/umnlE7x2FhRBKelahog71qeVQ=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1760454652; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=7jkM8YOO8pprHHZutGv60L6EyLB0fCheY+VPh3UUMEs=; 
-	b=Z4GCPKO5LrA8hscwHINGC1AvqSn9Ry8P/pbxZ5ChU73Wd69TqA4Fj2dCJn5UHkKKUZXYdoOlpyZ6d5MvsZL+2vxaPvqlF27xo8f+szdbqB1Xgw0KjonPWf4wAgPO4OzM7ePFFYPBXin6WA3kRoZWnJyiH9nC1CyOz5ZPUy4mv94=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
-	dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1760454652;
-	s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
-	h=From:From:Date:Date:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Message-Id:References:In-Reply-To:To:To:Cc:Cc:Reply-To;
-	bh=7jkM8YOO8pprHHZutGv60L6EyLB0fCheY+VPh3UUMEs=;
-	b=d9GVtVENKD3dzplgKPP92f8YaZg0NVzqreE1ArmQK2JoLprb8kKbYTT5s8UUv2ek
-	98DErOnDVOPPPOZfSqpOx05MOiCsaR3dEKSkp37AbmKtDOgIjiy/PQfiIg++TQYTOfe
-	bNAUD+RS8dIWGfElvqK+PwYmBDljeqkL2noxKbCQ=
-Received: by mx.zohomail.com with SMTPS id 1760454650860592.8317711169478;
-	Tue, 14 Oct 2025 08:10:50 -0700 (PDT)
-From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Date: Tue, 14 Oct 2025 17:10:09 +0200
-Subject: [PATCH 5/5] scsi: ufs: mediatek: Rework resets
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3070B2BDC13
+	for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 15:10:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.174
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1760454642; cv=none; b=g0WOO52AZZYPM7TKIUyDG8nM0SMbLFtGV5kV1AQzdoFVn+4lbX8D+xTfYUOBoW+h4GYzjwpV9PFRkU7NZ2LnA1RGtCnF+p4p+SZ4Zv0uBIkxVLouH9G3IaPMffa4x9s/RCW13js19dqmXPMA00aY4nYtc998hpqwpLi2PL7rKnM=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1760454642; c=relaxed/simple;
+	bh=N45NLKx5qz/uWyKxlofVnpvkJRX+F3r7dB9pwWo/Bh4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=tzBN/fSSTQIO7LEqtgp/hW+0q71+fZHcHlgLRHjolbuYjK7+8B3FB8UNM/7l0jT68qZN3A27c7KSfm8SQFl04LJLPG9W17i04qvSXbiG8Mt7WVTmSs4bRumwTki2dY5JQ796a/QNhh/+MfXDD2RQfaBN66FpOzrph6H370Gj8yU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fIwqjw8j; arc=none smtp.client-ip=209.85.128.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f174.google.com with SMTP id 00721157ae682-77fac63ba26so53493767b3.3
+        for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 08:10:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1760454640; x=1761059440; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=N45NLKx5qz/uWyKxlofVnpvkJRX+F3r7dB9pwWo/Bh4=;
+        b=fIwqjw8jl1RqtcbDjDGkeNyqgqMfCXA3JgCx43UpS/0X6LYOoyp4xffa6PGHw3E5Si
+         vLfnptyA1MGdns2e4Xlz2u8psDiW2Dzv4Q8e+qWBOPFFkAxpv/I2NvFwUI06eWYfXs2C
+         aD7u0ZtPVD3+/Oph73K58cT0NiA39YeVQAfEYju6uZQOusIY/XrlJNZmp3p/ACOWjSRt
+         RxPyKFqsGuSasa75muxl2sBpHkIvvK+ZVyGTuI+IyfSLBINV8Q21IJnzSGlA8rF0GGWe
+         y7b0gvGbcV17CU4thP8qoBPWnkBjEClG44V2tPn3nVzEeD9xN62FzK/XPK/DreczcVzT
+         kd4Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1760454640; x=1761059440;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=N45NLKx5qz/uWyKxlofVnpvkJRX+F3r7dB9pwWo/Bh4=;
+        b=euqbD6YPfz8snAEb7v6W00BUQEz7Ys0rgOjL9TDt4w7VL7Ph2oSOEOsrJJ6ZI/d3k5
+         tRwWAvf7L72r8Yngnn6SmOYRm3cWBqXOBlRuq38+gdlB6ybigm87/9siy2BCznwGta++
+         FfDhdnCLLJe4bNa1rWlVJ6cO4Hc2nG8XYu4A0izyKWWevbDjq0TKFSrK1SVAjGruJejn
+         B1p0czZzC7SxlxbuYoKLNp9QUANHbbRzLD+M03Z1v+F0Tmi1ooXv1T4a4cTY3desSzto
+         xvu9PLpJLk4jcEQYJNs7Lm21IRiVmqFJ1wvtl5PDD0+aESVekUARf4c6UALUYavZ1Ykx
+         gyaA==
+X-Forwarded-Encrypted: i=1; AJvYcCUJxTFI4eBTEeHdl690OCBdZJO1TtBZQhUxGKCXTG5pQ7f23bk/Fed++HjxTzHhQ63UIw0yfCWwheib@vger.kernel.org
+X-Gm-Message-State: AOJu0YzAG90hZR9xjvH3Mf7+hbu5l/Ug2UYmuunCnzgMbo1b5aa+phem
+	a/mH06CYGKQ0MNXBKmrjLpeqmLYFktpfnjchlcefD3k2RWqGIHI2w5Ds0oLgWad5Io7Of20PYC+
+	O1akp8BfrqRME4m5bQGsWAiKhcWThQls=
+X-Gm-Gg: ASbGncs6o2LvlfktjJINS2g/DKLandngKL4VaaGTdVExzDweRYXaJwi+mbZDQis671V
+	xwe0tt2K1j4Ayrf3r2jbqVKFJhKSWyJh9witQxS9ETMD1HzVOv98GWVlpgzvazI0EUKJG499aTX
+	2hxcodHUiMDz/YKpCEjUPRg7AftFF9olztH6AOooL+DIu53tDz/pNcpLoLNSQZQ/uyu3mSngujy
+	tZUq3FppezRHC6cJA6y2vdkPvs28v90WpC+6Ec=
+X-Google-Smtp-Source: AGHT+IEFfM4FGXJTQvWxhXUxdmWsCY/lm3PJuw9ZamSWPJz4UM3zNM8yD1Az1RQbZf5hUGrZH3eo7Ks3oQB0n6rIc2A=
+X-Received: by 2002:a53:ed49:0:b0:63c:f478:a389 with SMTP id
+ 956f58d0204a3-63cf478a761mr8925251d50.3.1760454639956; Tue, 14 Oct 2025
+ 08:10:39 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251014-mt8196-ufs-v1-5-195dceb83bc8@collabora.com>
-References: <20251014-mt8196-ufs-v1-0-195dceb83bc8@collabora.com>
-In-Reply-To: <20251014-mt8196-ufs-v1-0-195dceb83bc8@collabora.com>
-To: Alim Akhtar <alim.akhtar@samsung.com>, 
- Avri Altman <avri.altman@wdc.com>, Bart Van Assche <bvanassche@acm.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Stanley Chu <stanley.chu@mediatek.com>, 
- Chunfeng Yun <chunfeng.yun@mediatek.com>, Vinod Koul <vkoul@kernel.org>, 
- Kishon Vijay Abraham I <kishon@kernel.org>, 
- Peter Wang <peter.wang@mediatek.com>, Stanley Jhu <chu.stanley@gmail.com>, 
- "James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>, 
- "Martin K. Petersen" <martin.petersen@oracle.com>, 
- Philipp Zabel <p.zabel@pengutronix.de>
-Cc: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>, 
- kernel@collabora.com, linux-scsi@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
- linux-phy@lists.infradead.org, 
- Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-X-Mailer: b4 0.14.3
+References: <20251014044135.177210-1-ghatto404@gmail.com> <20251014044135.177210-4-ghatto404@gmail.com>
+ <e114504e-4bdd-46b9-b708-8eebc3075163@oss.qualcomm.com>
+In-Reply-To: <e114504e-4bdd-46b9-b708-8eebc3075163@oss.qualcomm.com>
+From: Ghatto <ghatto404@gmail.com>
+Date: Tue, 14 Oct 2025 12:10:26 -0300
+X-Gm-Features: AS18NWDwBpX6-RyiTxhZNQIFNlFjEHOZ4VGcSVYA_G4DwYI9zaRA-L3iyRKhUSw
+Message-ID: <CAMQHOhfjsi1L+3j3TrcjEjPp3xkn94KOdsrVZvJCyUDFBBSeqg@mail.gmail.com>
+Subject: Re: [PATCH v2 3/6] arm64: dts: qcom: r0q: add touchscreen support
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Rework the reset control getting in the driver's probe function to use
-the "_optional" function instead of defaulting to NULL on IS_ERR, so
-that actual real errors (as opposed to missing resets) can be handled as
-errors in the probe function.
-
-Also move the MPHY reset into the PHY driver, where it should live, and
-remove all remnants of it ever having been in this driver.
-
-Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
----
- drivers/ufs/host/ufs-mediatek-sip.h |  8 -----
- drivers/ufs/host/ufs-mediatek.c     | 67 +++++++++++++++++++++----------------
- drivers/ufs/host/ufs-mediatek.h     |  1 -
- 3 files changed, 38 insertions(+), 38 deletions(-)
-
-diff --git a/drivers/ufs/host/ufs-mediatek-sip.h b/drivers/ufs/host/ufs-mediatek-sip.h
-index d627dfb4a766..256598cc3b5b 100644
---- a/drivers/ufs/host/ufs-mediatek-sip.h
-+++ b/drivers/ufs/host/ufs-mediatek-sip.h
-@@ -31,11 +31,6 @@ enum ufs_mtk_vcc_num {
- 	UFS_VCC_MAX
- };
- 
--enum ufs_mtk_mphy_op {
--	UFS_MPHY_BACKUP = 0,
--	UFS_MPHY_RESTORE
--};
--
- /*
-  * SMC call wrapper function
-  */
-@@ -84,9 +79,6 @@ static inline void _ufs_mtk_smc(struct ufs_mtk_smc_arg s)
- #define ufs_mtk_device_pwr_ctrl(on, ufs_version, res) \
- 	ufs_mtk_smc(UFS_MTK_SIP_DEVICE_PWR_CTRL, &(res), on, ufs_version)
- 
--#define ufs_mtk_mphy_ctrl(op, res) \
--	ufs_mtk_smc(UFS_MTK_SIP_MPHY_CTRL, &(res), op)
--
- #define ufs_mtk_mtcmos_ctrl(op, res) \
- 	ufs_mtk_smc(UFS_MTK_SIP_MTCMOS_CTRL, &(res), op)
- 
-diff --git a/drivers/ufs/host/ufs-mediatek.c b/drivers/ufs/host/ufs-mediatek.c
-index 758a393a9de1..ac40d4a3a800 100644
---- a/drivers/ufs/host/ufs-mediatek.c
-+++ b/drivers/ufs/host/ufs-mediatek.c
-@@ -204,49 +204,60 @@ static void ufs_mtk_crypto_enable(struct ufs_hba *hba)
- static void ufs_mtk_host_reset(struct ufs_hba *hba)
- {
- 	struct ufs_mtk_host *host = ufshcd_get_variant(hba);
--	struct arm_smccc_res res;
-+	int ret;
- 
- 	reset_control_assert(host->hci_reset);
- 	reset_control_assert(host->crypto_reset);
- 	reset_control_assert(host->unipro_reset);
--	reset_control_assert(host->mphy_reset);
- 
--	usleep_range(100, 110);
-+	ret = phy_reset(host->mphy);
-+
-+	/*
-+	 * Only sleep if MPHY doesn't have a reset implemented (which already
-+	 * sleeps) or the PHY reset function failed somehow, just to be safe
-+	 */
-+	if (ret) {
-+		usleep_range(100, 110);
-+		if (ret != -EOPNOTSUPP)
-+			dev_warn(hba->dev, "PHY reset failed: %pe\n", ERR_PTR(ret));
-+	}
- 
- 	reset_control_deassert(host->unipro_reset);
- 	reset_control_deassert(host->crypto_reset);
- 	reset_control_deassert(host->hci_reset);
--	reset_control_deassert(host->mphy_reset);
--
--	/* restore mphy setting aftre mphy reset */
--	if (host->mphy_reset)
--		ufs_mtk_mphy_ctrl(UFS_MPHY_RESTORE, res);
- }
- 
--static void ufs_mtk_init_reset_control(struct ufs_hba *hba,
--				       struct reset_control **rc,
--				       char *str)
-+static int ufs_mtk_init_reset_control(struct ufs_hba *hba,
-+				      struct reset_control **rc,
-+				      const char *str)
- {
--	*rc = devm_reset_control_get(hba->dev, str);
-+	*rc = devm_reset_control_get_optional(hba->dev, str);
- 	if (IS_ERR(*rc)) {
--		dev_info(hba->dev, "Failed to get reset control %s: %ld\n",
--			 str, PTR_ERR(*rc));
--		*rc = NULL;
-+		dev_err(hba->dev, "Failed to get reset control %s: %pe\n", str, *rc);
-+		return PTR_ERR(*rc);
- 	}
-+
-+	return 0;
- }
- 
--static void ufs_mtk_init_reset(struct ufs_hba *hba)
-+static int ufs_mtk_init_reset(struct ufs_hba *hba)
- {
- 	struct ufs_mtk_host *host = ufshcd_get_variant(hba);
-+	int ret;
-+
-+	ret = ufs_mtk_init_reset_control(hba, &host->hci_reset, "hci_rst");
-+	if (ret)
-+		return ret;
-+
-+	ret = ufs_mtk_init_reset_control(hba, &host->unipro_reset, "unipro_rst");
-+	if (ret)
-+		return ret;
-+
-+	ret = ufs_mtk_init_reset_control(hba, &host->crypto_reset, "crypto_rst");
-+	if (ret)
-+		return ret;
- 
--	ufs_mtk_init_reset_control(hba, &host->hci_reset,
--				   "hci_rst");
--	ufs_mtk_init_reset_control(hba, &host->unipro_reset,
--				   "unipro_rst");
--	ufs_mtk_init_reset_control(hba, &host->crypto_reset,
--				   "crypto_rst");
--	ufs_mtk_init_reset_control(hba, &host->mphy_reset,
--				   "mphy_rst");
-+	return 0;
- }
- 
- static int ufs_mtk_hce_enable_notify(struct ufs_hba *hba,
-@@ -1238,11 +1249,9 @@ static int ufs_mtk_init(struct ufs_hba *hba)
- 	if (err)
- 		goto out_variant_clear;
- 
--	ufs_mtk_init_reset(hba);
--
--	/* backup mphy setting if mphy can reset */
--	if (host->mphy_reset)
--		ufs_mtk_mphy_ctrl(UFS_MPHY_BACKUP, res);
-+	err = ufs_mtk_init_reset(hba);
-+	if (err)
-+		goto out_variant_clear;
- 
- 	/* Enable runtime autosuspend */
- 	hba->caps |= UFSHCD_CAP_RPM_AUTOSUSPEND;
-diff --git a/drivers/ufs/host/ufs-mediatek.h b/drivers/ufs/host/ufs-mediatek.h
-index dfbf78bd8664..4a8a8dc2ab1e 100644
---- a/drivers/ufs/host/ufs-mediatek.h
-+++ b/drivers/ufs/host/ufs-mediatek.h
-@@ -174,7 +174,6 @@ struct ufs_mtk_host {
- 	struct reset_control *hci_reset;
- 	struct reset_control *unipro_reset;
- 	struct reset_control *crypto_reset;
--	struct reset_control *mphy_reset;
- 	struct ufs_hba *hba;
- 	struct ufs_mtk_crypt_cfg *crypt;
- 	struct ufs_mtk_clk mclk;
-
--- 
-2.51.0
-
+On Tue, Oct 14, 2025 at 7:01=E2=80=AFAM Konrad Dybcio
+<konrad.dybcio@oss.qualcomm.com> wrote:
+>
+> On 10/14/25 6:41 AM, Eric Gon=C3=A7alves wrote:
+> > Enable the ST-Microelectronics FTS2BA61Y touchscreen. This patch
+> > depends on "Input: add support for the STM FTS2BA61Y touchscreen".
+>
+> The second sentence doesn't really make sense to be included in
+> the git log
+I'll keep it to the cover letter then
+>
+> > The device has an issue where SPI 8 (the bus which the touchscreen is
+> > connected to) is not working properly right now, so
+> > spi-gpio is used instead.
+>
+> Some Samsung devices used to use spi/i2c-gpio intentionally, also
+> on downstream. I'm assuming this isn't the case for r0q.
+It isn't, the device uses fts2ba61y on the spi8 bus - I hosted the
+DT at https://github.com/ghatt-o/ss_experiments/blob/main/r0q.dts if you
+want to take a look.
+>
+> Did you enable gpi_dma1, qupv3_id_1 before spi8, when testing
+The driver probes, but it fails to recognize the touchscreen device
+and ends up erroring, spi-gpio solves this and I did try enabling those.
+It also works on the S22+ with spi-gpio, so I decided to do the same on r0q=
+.
+> that? I don't see any obvious errors in the dt that would cause
+> problems
+>
+> Konrad
 
