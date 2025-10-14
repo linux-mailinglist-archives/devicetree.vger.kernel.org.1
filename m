@@ -1,56 +1,54 @@
-Return-Path: <devicetree+bounces-226679-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226680-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4B71BDA663
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 17:32:53 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 30089BDA670
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 17:33:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 20C0A18863E3
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 15:33:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DCBE31889DDB
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 15:33:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2A1C304BC1;
-	Tue, 14 Oct 2025 15:30:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE7463064B2;
+	Tue, 14 Oct 2025 15:30:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nZyA2wnf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Og5oQqcE"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA9293043B5;
-	Tue, 14 Oct 2025 15:30:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7F4A3054F8;
+	Tue, 14 Oct 2025 15:30:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760455803; cv=none; b=g/pui72rizqYgbmSbYlSM3A0uNVXwjNdda43BdFKDEgCWo/kpOpsKAWYZbb2X9KCzWqEHKl+9Q5xamH/OGdpJ/FY/2TJhJ5eA4f+em/73Am+x5Upid7U/voBVWct+MSaHx3nP5j1FtFbp6JfYJM+0NjLyp7dMtw+sZcV9beHZYQ=
+	t=1760455815; cv=none; b=epa+YPxZmHwtCPuHBPAKauMEsPUNvByU2Go3pUL+Yshkgw6Nw2HcIXyU+Wcvzsxn9QCcoeaC0rrPDZJh5L6Oxk2I6U7HUdZm2Rbjul24EUoL90FfLaPZwMyt4KE9Emp/drMZPVvgRyvQ4IzT4M403Jj3yEJc8ox521EhsCxh8sU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760455803; c=relaxed/simple;
-	bh=qDYM5qiUIMSRgzkwh339gwmd+1D8ODOGuGXTWEGr3+8=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=iAEsSF3hKzG0stQOH6Ex7lKO5BDJoaoKX+zR2vNDpvpQQdEXO7RvjBH8JfRkECP1Qsaa5YTFkJLZclv/fYwXAqJG6k/wzoSurlb/YBHP25+M5o3Q7aTmheeNkHIP0NO969PxaH+LRMaZck8fDFzAwSK1HyhdFP+BsnFfaOEtNOA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nZyA2wnf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 144A1C4CEE7;
-	Tue, 14 Oct 2025 15:30:02 +0000 (UTC)
+	s=arc-20240116; t=1760455815; c=relaxed/simple;
+	bh=MFnFv9d3xt1vf/MPIoUFAkY1AMxFAwUt3JMO8lZ7920=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=c+OBrYMcJahG1HsfDBgmM4cJREfNXkUyDreRT3Y2zFj/uDEiPiJRf4r124WQ4Jd/qPjMeDA2WHf2ZhhQW98Do59lQaNNUif6ilGIAaq1MIVK0VMab6r718mYCdwSyTkObRHnqOKxncKPjyKPHWH7HqbuKP+JZPkCpbHsjx/W/j0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Og5oQqcE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 09454C4CEE7;
+	Tue, 14 Oct 2025 15:30:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760455803;
-	bh=qDYM5qiUIMSRgzkwh339gwmd+1D8ODOGuGXTWEGr3+8=;
+	s=k20201202; t=1760455815;
+	bh=MFnFv9d3xt1vf/MPIoUFAkY1AMxFAwUt3JMO8lZ7920=;
 	h=From:To:Cc:Subject:Date:From;
-	b=nZyA2wnf75bgZU821h/rfobYVckPCOOaVp/K/zFTYaxayro6PrOzTj6fkvs/ekBjU
-	 9VByeVQqF5GmcsIa+TETMOiBKUF2vyO2ATZW+B90zVi26WRqdjTnlRhpGMElQdJvv+
-	 b4Xa2wyyUHj4o3UYi80Xa8832yKwbYfglDw1aOYv36783DORlzrpeV9E3t35HQ0SxV
-	 kqd9tGYZk7Uv2RW41xzTonmJ3HfMGhYw7Du6PbpoOgW3lLrfHkCcnDg8yyuV4d4Q9M
-	 QX0oRScmRyDRWGg4KdO3atPkMKpuNtb/oLoC5XfL98M3JAbbC1xPN+cSJw8PyVxrtD
-	 5tKiP/bu2S3pg==
+	b=Og5oQqcEWINQUf63s7d/31hL40MuxUdYfUwlY07fEsykiqeUI8utZ2wOifFSaQaGN
+	 s5bJmYbcRxy9aCnMcrzmasLRu+kUhiUnhb9a0b2dZ1tyQKuJl0zSaEgrJWHNc0Vcdp
+	 C+GeyhjiRd6F752au1+Utl4e2sAgqO4PjY0PxDlHt/QeM5dJSmXyZ1oiT7d7I0tMc4
+	 4nKlsYKoKExJRXhLZ+u+ERXi+Z8UbDk0JECa6CF4ah2jv5DqHwpeHE24WpV4EozYGZ
+	 xSID1cnYsoSJmb8D56GA/OCZkZGcpmtJF338XtYvD7235Em7OhuIiHHXqw1hWf5YyL
+	 7W2jYNtlWl5DA==
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Srinivas Kandagatla <srini@kernel.org>,
+To: =?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Ray Jui <rjui@broadcom.com>,
-	Scott Branden <sbranden@broadcom.com>
+	Conor Dooley <conor+dt@kernel.org>
 Cc: devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: nvmem: Convert brcm,ocotp to DT schema
-Date: Tue, 14 Oct 2025 10:29:56 -0500
-Message-ID: <20251014152957.3782962-1-robh@kernel.org>
+Subject: [PATCH] dt-bindings: bus: Convert cznic,moxtet to DT schema
+Date: Tue, 14 Oct 2025 10:30:05 -0500
+Message-ID: <20251014153009.3783183-1-robh@kernel.org>
 X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -58,87 +56,186 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-Convert the brcm,ocotp binding to DT schema format. It's a
+Convert the cznic,moxtet binding to DT schema format. It's a
 straight-forward conversion.
 
 Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 ---
- .../devicetree/bindings/nvmem/brcm,ocotp.txt  | 17 --------
- .../devicetree/bindings/nvmem/brcm,ocotp.yaml | 39 +++++++++++++++++++
- 2 files changed, 39 insertions(+), 17 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/nvmem/brcm,ocotp.txt
- create mode 100644 Documentation/devicetree/bindings/nvmem/brcm,ocotp.yaml
+ .../devicetree/bindings/bus/cznic,moxtet.yaml | 94 +++++++++++++++++++
+ .../devicetree/bindings/bus/moxtet.txt        | 46 ---------
+ MAINTAINERS                                   |  2 +-
+ 3 files changed, 95 insertions(+), 47 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/bus/cznic,moxtet.yaml
+ delete mode 100644 Documentation/devicetree/bindings/bus/moxtet.txt
 
-diff --git a/Documentation/devicetree/bindings/nvmem/brcm,ocotp.txt b/Documentation/devicetree/bindings/nvmem/brcm,ocotp.txt
-deleted file mode 100644
-index 0415265c215a..000000000000
---- a/Documentation/devicetree/bindings/nvmem/brcm,ocotp.txt
-+++ /dev/null
-@@ -1,17 +0,0 @@
--Broadcom OTP memory controller
--
--Required Properties:
--- compatible: "brcm,ocotp" for the first generation Broadcom OTPC which is used
--  in Cygnus and supports 32 bit read/write. Use "brcm,ocotp-v2" for the second
--  generation Broadcom OTPC which is used in SoC's such as Stingray and supports
--  64-bit read/write.
--- reg: Base address of the OTP controller.
--- brcm,ocotp-size: Amount of memory available, in 32 bit words
--
--Example:
--
--otp: otp@301c800 {
--	compatible = "brcm,ocotp";
--	reg = <0x0301c800 0x2c>;
--	brcm,ocotp-size = <2048>;
--};
-diff --git a/Documentation/devicetree/bindings/nvmem/brcm,ocotp.yaml b/Documentation/devicetree/bindings/nvmem/brcm,ocotp.yaml
+diff --git a/Documentation/devicetree/bindings/bus/cznic,moxtet.yaml b/Documentation/devicetree/bindings/bus/cznic,moxtet.yaml
 new file mode 100644
-index 000000000000..ffad28417488
+index 000000000000..d340899ca5f1
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/nvmem/brcm,ocotp.yaml
-@@ -0,0 +1,39 @@
++++ b/Documentation/devicetree/bindings/bus/cznic,moxtet.yaml
+@@ -0,0 +1,94 @@
 +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/nvmem/brcm,ocotp.yaml#
++$id: http://devicetree.org/schemas/bus/cznic,moxtet.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Broadcom OTP memory controller
++title: Turris Moxtet SPI bus
 +
 +maintainers:
-+  - Ray Jui <rjui@broadcom.com>
-+  - Scott Branden <sbranden@broadcom.com>
++  - Marek Behún <kabel@kernel.org>
++
++description: >
++  Turris Mox module status and configuration bus (over SPI)
++
++  The driver finds the devices connected to the bus by itself, but it may be
++  needed to reference some of them from other parts of the device tree. In that
++  case the devices can be defined as subnodes of the moxtet node.
 +
 +properties:
 +  compatible:
-+    enum:
-+      - brcm,ocotp
-+      - brcm,ocotp-v2
++    const: cznic,moxtet
 +
 +  reg:
 +    maxItems: 1
 +
-+  brcm,ocotp-size:
-+    description: Amount of memory available, in 32-bit words
-+    $ref: /schemas/types.yaml#/definitions/uint32
++  "#address-cells":
++    const: 1
++
++  "#size-cells":
++    const: 0
++
++  spi-cpol: true
++
++  spi-cpha: true
++
++  spi-max-frequency: true
++
++  interrupt-controller: true
++
++  "#interrupt-cells":
++    const: 1
++
++  interrupts:
++    maxItems: 1
++
++  reset-gpios:
++    maxItems: 1
 +
 +required:
 +  - compatible
 +  - reg
-+  - brcm,ocotp-size
++  - "#address-cells"
++  - "#size-cells"
++  - spi-cpol
++  - spi-cpha
++  - interrupts
++  - interrupt-controller
++  - "#interrupt-cells"
 +
-+additionalProperties: false
++additionalProperties:
++  type: object
++
++  required:
++    - reg
 +
 +examples:
 +  - |
-+    otp@301c800 {
-+        compatible = "brcm,ocotp";
-+        reg = <0x0301c800 0x2c>;
-+        brcm,ocotp-size = <2048>;
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    spi {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        moxtet@1 {
++            compatible = "cznic,moxtet";
++            #address-cells = <1>;
++            #size-cells = <0>;
++            reg = <1>;
++            spi-max-frequency = <10000000>;
++            spi-cpol;
++            spi-cpha;
++            interrupt-controller;
++            #interrupt-cells = <1>;
++            interrupt-parent = <&gpiosb>;
++            interrupts = <5 IRQ_TYPE_EDGE_FALLING>;
++
++            gpio@0 {
++                compatible = "cznic,moxtet-gpio";
++                gpio-controller;
++                #gpio-cells = <2>;
++                reg = <0>;
++            };
++        };
 +    };
+diff --git a/Documentation/devicetree/bindings/bus/moxtet.txt b/Documentation/devicetree/bindings/bus/moxtet.txt
+deleted file mode 100644
+index fb50fc865336..000000000000
+--- a/Documentation/devicetree/bindings/bus/moxtet.txt
++++ /dev/null
+@@ -1,46 +0,0 @@
+-Turris Mox module status and configuration bus (over SPI)
+-
+-Required properties:
+- - compatible		: Should be "cznic,moxtet"
+- - #address-cells	: Has to be 1
+- - #size-cells		: Has to be 0
+- - spi-cpol		: Required inverted clock polarity
+- - spi-cpha		: Required shifted clock phase
+- - interrupts		: Must contain reference to the shared interrupt line
+- - interrupt-controller	: Required
+- - #interrupt-cells	: Has to be 1
+-
+-For other required and optional properties of SPI slave nodes please refer to
+-../spi/spi-bus.txt.
+-
+-Required properties of subnodes:
+- - reg			: Should be position on the Moxtet bus (how many Moxtet
+-			  modules are between this module and CPU module, so
+-			  either 0 or a positive integer)
+-
+-The driver finds the devices connected to the bus by itself, but it may be
+-needed to reference some of them from other parts of the device tree. In that
+-case the devices can be defined as subnodes of the moxtet node.
+-
+-Example:
+-
+-	moxtet@1 {
+-		compatible = "cznic,moxtet";
+-		#address-cells = <1>;
+-		#size-cells = <0>;
+-		reg = <1>;
+-		spi-max-frequency = <10000000>;
+-		spi-cpol;
+-		spi-cpha;
+-		interrupt-controller;
+-		#interrupt-cells = <1>;
+-		interrupt-parent = <&gpiosb>;
+-		interrupts = <5 IRQ_TYPE_EDGE_FALLING>;
+-
+-		moxtet_sfp: gpio@0 {
+-			compatible = "cznic,moxtet-gpio";
+-			gpio-controller;
+-			#gpio-cells = <2>;
+-			reg = <0>;
+-		}
+-	};
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 1741b9f549d2..7196970eed39 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -2658,7 +2658,7 @@ F:	Documentation/ABI/testing/debugfs-moxtet
+ F:	Documentation/ABI/testing/sysfs-bus-i2c-devices-turris-omnia-mcu
+ F:	Documentation/ABI/testing/sysfs-bus-moxtet-devices
+ F:	Documentation/ABI/testing/sysfs-firmware-turris-mox-rwtm
+-F:	Documentation/devicetree/bindings/bus/moxtet.txt
++F:	Documentation/devicetree/bindings/bus/cznic,moxtet.yaml
+ F:	Documentation/devicetree/bindings/firmware/cznic,turris-mox-rwtm.txt
+ F:	Documentation/devicetree/bindings/firmware/cznic,turris-omnia-mcu.yaml
+ F:	Documentation/devicetree/bindings/interrupt-controller/marvell,mpic.yaml
 -- 
 2.51.0
 
