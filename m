@@ -1,88 +1,80 @@
-Return-Path: <devicetree+bounces-226398-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226399-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BF57BD84A7
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 10:53:43 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 536ADBD84C2
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 10:54:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C305A3A4131
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 08:53:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 649201921A54
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 08:55:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 546442DC785;
-	Tue, 14 Oct 2025 08:53:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B5AE2DE1FA;
+	Tue, 14 Oct 2025 08:54:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="kTIbnxel"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RgaO6zD7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com [209.85.210.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B47702D3EF1
-	for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 08:53:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C5742DCF77
+	for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 08:54:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760432018; cv=none; b=MUGc33H6hS+0VytdLpmcrHtuRf7aIF35njNyI7+XdXMokXZsHwWLTtRB2rUNf8/RoJ7rGbMDt6X5zrgCldwmGMgSpd9qTUIRaMsYZ4vqO2H5PDnBPwcsTAd+FblpdS5yDQGupVUC/hndqxIicblqw/iImS1wvxILUNSwS7FESKo=
+	t=1760432084; cv=none; b=i3+zk8UjD+V60EYCRPclNsL+9IbUSbfLJ3a+FRPZKT9ZVksu2lOGzFLsXxq5da+9yS0Lh9s27y7zwNjgwXbEJqxuoPyRePYjeDu9aeAf6uJ6KdTeHE/+wpmadDd/srty4dM16cV9uDtYS0T/ltOhUMD8SFOQwPOpqaHGAQX8OJY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760432018; c=relaxed/simple;
-	bh=ixb/fdiw8StgSMnPp3lrzYkEhBChXbenwOwYOc+9cJI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=CDA06nLMfB8+mUtZ3YzkSaYYrYxHPx78uybyUJe9cAC5tF8JYJopE1XFwK5m4abs9UPtsD8OPe/QDhZBCRHL1VFW/gG9Ti4vARZBjBZ/E3Ut9KLRSWQ6GBsRYjMp5bliVS9QCRNUhwhtlpwm690hWqkUsia42OQ3+YM+S4mmKt8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=kTIbnxel; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59E87Hw6005372
-	for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 08:53:35 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	yu6GxXvjzVdp0jD9TyFSB0cQTPVuV4yy/C3ICodMY8c=; b=kTIbnxelhGa2sVP3
-	boJK3HyeqmX/0HOgmXYWMij4nlauwxuwRmcj0aAOZC4nC4JsZAFPBu3yvdYA6Gjl
-	aJPSbjTRO5XYviCOe3d/StKOp4eBS4kFaxp8IpxTRPa9EkjQhRE97dB3bco2DMyy
-	ExLDNvHIFyeDsenozVaaiXx8hbeOVQkVIE+06H8xn0QlAnPwUFvtvhDDXpzbJJUQ
-	RES2xTPr6phcaIik9jHxJXDZ694LxbumoYb98FK4U+Y6oFD4smz72AGvwcXiFbD2
-	WD+GJ8WUBOOrW0qJQc2Wn1Tv9xMjgxPvsZtyrVRg2G5DU5HoODBTW92jlmzk1aSw
-	ffoEog==
-Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49qfbhysvw-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 08:53:35 +0000 (GMT)
-Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-860fe46b4easo287819685a.0
-        for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 01:53:35 -0700 (PDT)
+	s=arc-20240116; t=1760432084; c=relaxed/simple;
+	bh=7x1ksEGRUIlN/JRIZWql+/rRJiRrxtl9r0MDlxoj8Co=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=dYPEEVBmbYctDjqM22amnyY9yffuLNq9EIFv+I182/kzw2Oy3Ny2kfNa179djqKA5wnHlpVuj20eGy1pVk8/r8ef3p9qdolXcmHZhQj8WvqNvExhw41brUDXMWyqWodflTMGBGnfUJ0rgIEabZ+wpBN9op8VQR/3YryDPx/E8LI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RgaO6zD7; arc=none smtp.client-ip=209.85.210.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f175.google.com with SMTP id d2e1a72fcca58-791c287c10dso4286619b3a.1
+        for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 01:54:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1760432082; x=1761036882; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:subject:from:user-agent:mime-version:date:message-id:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=ISi9f6KzQSpnphkygLBuAPANu77cvnhCFWLhBPhHgsY=;
+        b=RgaO6zD7JIq0U1oTpkDVKzmcZUfv7rs1fKBnpjk22jmaEJeOhOopafaZAqyFnmyEhH
+         AGRlxGAZ8oyhvit0nMn7qf4QrELfs4w6o3YMAIQYf5et4EmHgEJsDuJjZPk9vHVkR8Qq
+         tDN4faYddijCXim041/EKruc2EiJuki368SkZLekMxUYssjkvzpt27/+xV07/CL4uk7J
+         WpEILnCEl6K5rvoc+py9mTY2zYnWpddaSWY7n5/ge29ZQ+IMqVwNNYQnMzn4MWvIn96u
+         ywCsstlWGSYIlKdYoEAWqPebmtROZ9qYtKHsPwDynY+c6XMIw411qIDc982ytjKffXQo
+         hbUA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760432014; x=1761036814;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1760432082; x=1761036882;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:subject:from:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=yu6GxXvjzVdp0jD9TyFSB0cQTPVuV4yy/C3ICodMY8c=;
-        b=WBCMzTFoecg78M/fdiiF1lJhhC20fe6qp6+7NiqQc6608aQwoIirq+gPmFxUmL/0Id
-         t1tMd6gi4bwBC5I9PJ/gabwsHmTiTQ8CmHhgD1LQc1YCXj83S1t0q918RAWbE5kGlDkU
-         5PGY2sQrkbdSXiB4r7nbMjM02wRdFroqai53cw2h6hWxxsA528bhGiJzPLPmCw8kvDcQ
-         eYzRvU0J2KjmzmYVWMAsjLBs+kYhc+d0tgC+yoDvkpiFTkQlVbkgHwInAajtqVP2iSl2
-         1Jzy6xQzmdrNlciTIa0VMfOkIXCkdzdebqgpMCG44slwQEsk6p5ScVnir5CYM1iv7u5Q
-         i48w==
-X-Forwarded-Encrypted: i=1; AJvYcCWQhnrrNNk+Q0k3SdfDgobBY5lB/QVmVHKQ8DFTlB53PYnAZZ6fWtdBsL35DyuTjk0WETw77mjTJqpj@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy5T+U/eEAweNxY6OmVj+WeCBUgmWrYZEtrDuHepX7kUHSMfMO2
-	S1O8GYbB9f6UEJkK/+Xpf7TtYXpsT+XsfXBVDxfdDv6MVG1o4/hbSUiSCVvjdz1jFXGVJbKL7Yr
-	K5sTd44lvLz6WjdPTJcZLWED9xYLXjb8ha95RBY/daH3su3fJddyi2UjBAX2/ekBv
-X-Gm-Gg: ASbGnctXRHCQQZQcePZRNWKJ2C3GSE8Mqe34xJxFc113R6Ww2VP3/ZgPj8tVTRbaF8y
-	fbg/qwSXCZnvNaP5LnvBC2t0PQXvRK9D8dV9kPyJqMLoj4FsaExMhuGqVTAkNSGgHeABBlM+R+S
-	GbH5rAR5xDHeVnelB3G5Txb1Y4nfY9MjehhuewWI8pvmCxFvpYkuIFdDqQH4NeNgXvez7rzxkGD
-	6O8L6XSoT4GG9d6dr3S/Pd9YBj4fEnK7hB9bIe58Lu/8FuOaTK+xZZ4KmRokG5aprVBM8gZ49lQ
-	JG5GJAdQtQq0bcBTj4v18hyUnpycfntg/DAH4I4uLbtW+O68uXWgZao5N9WZj1y3s7yYAFceNRR
-	91nCWgJVi1j1lCdvRXd8J4A==
-X-Received: by 2002:a05:620a:372c:b0:86b:12e2:28d1 with SMTP id af79cd13be357-88352d954aemr2148349285a.7.1760432014521;
-        Tue, 14 Oct 2025 01:53:34 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGm4ixM4YDDyNB4X3gy92GuzgILUxOgPYXhz9lsuSEFNcMwwXiOp3PYD1SDSeDU0RrlNXPctQ==
-X-Received: by 2002:a05:620a:372c:b0:86b:12e2:28d1 with SMTP id af79cd13be357-88352d954aemr2148348085a.7.1760432014042;
-        Tue, 14 Oct 2025 01:53:34 -0700 (PDT)
-Received: from [192.168.149.223] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b55d8c12b4csm1136163866b.56.2025.10.14.01.53.30
+        bh=ISi9f6KzQSpnphkygLBuAPANu77cvnhCFWLhBPhHgsY=;
+        b=hVKYXYLre4eNUNJGasWus+WS5pMS5TYqKT5l5MxW54YQnnlHst1Rc5GR4faqYLu+YD
+         pfQXo/TImXC9AYS24L3zNg5/gplN2CyeXIYz58hV/vWGnlHdcCLtJyiuscEw0ohVS9s7
+         nLJXvy1GtDS9+tTSlwA3aPw8xazN/7HiGtTGa0th9X0dZPmU83DYhtmPlZqHQ/SNQYxk
+         02SKwkONWpwlLxDuKF1r2dp7Ux2hzv5WONwmjKnYPB/fDW4BLSYzXqkcFHXCWBsGMt2Y
+         1WEjzzgUU7uin6ungRgBOB4SclyVUNfFTBezzNn4SK+C9za3Pis98sCY8FzlyZGxFSCJ
+         t3ow==
+X-Forwarded-Encrypted: i=1; AJvYcCVhpPytLJc3gPFV0HOUhQ3a2O+bWX5IeSoZY0JADwUpfwKBuWIcwtETFcigHMVZ6XhZux71m6p9pJEI@vger.kernel.org
+X-Gm-Message-State: AOJu0YyCFXKjnIrXiYZ89UWSSKCxedv6RSeFvX/erpBTeh28ge4dy7k1
+	PJXV6fCrvGq9YlJ4Of+L2DH9LtdjEp8f0RcnG2w1uYj3TIexhlaIk0eF
+X-Gm-Gg: ASbGncu4Aon9xHLezqlD0EVWbI1d1AR8eDPTlMUsAV1uGEZcYeUtBFsGSW+8ib38xmM
+	UbWLiP893OuupwUUwrbfgwYjWTF2wKJXC6t0d+nNwsbMfHqo1YSGYKNCcJfQMgbrBzNNnupbiSy
+	Bfon1stQRW5AGG0Nz4g0x12kkXbVRulBxxT6cX2j9wuQwmeAWkfR8N/sSOJhO9C0RFRHLe4TwXO
+	HLkbSE/sYrotXYV7vuHsx4FcfzkEKBg05zjZ4Yx9LRrZ+35C4XjiO3i+Tq5tOoWHFiUDis5JEPk
+	d0cF6/B9Z7v49b670+1jWV5fuMYcDiuDd5W4nJKcdXshxe21BQrYQE4zkrkHlKwMEWqer+pjKE3
+	eVoQiZedoqwMA2gpnGfyeFpIt8IlZPhmmLvMtdkWwmDlbpj3oGZwglA==
+X-Google-Smtp-Source: AGHT+IGqTpN25zTj2NoGAGnl9jeNvvTw7CBNIuJy1oxy3KZR2C7Ji/G8drrYLcEK31MzNn+ZS3y/Fg==
+X-Received: by 2002:a05:6a00:4fd3:b0:776:12ea:c737 with SMTP id d2e1a72fcca58-79387e05323mr21822249b3a.23.1760432081535;
+        Tue, 14 Oct 2025 01:54:41 -0700 (PDT)
+Received: from [192.168.0.13] ([172.92.174.155])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7992b060b66sm14499599b3a.8.2025.10.14.01.54.40
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Oct 2025 01:53:33 -0700 (PDT)
-Message-ID: <40a9643d-01b3-434d-9163-da35c2e469b4@oss.qualcomm.com>
-Date: Tue, 14 Oct 2025 10:53:30 +0200
+        Tue, 14 Oct 2025 01:54:41 -0700 (PDT)
+Message-ID: <8226884b-96f9-483e-bcee-466ff3e04b23@gmail.com>
+Date: Tue, 14 Oct 2025 01:53:38 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,80 +82,190 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 6/7] arm64: dts: qcom: qcs8300: add Display Serial
- Interface device nodes
-To: Ayushi Makhija <quic_amakhija@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, robdclark@gmail.com, sean@poorly.run,
-        marijn.suijten@somainline.org, andersson@kernel.org, robh@kernel.org,
-        robh+dt@kernel.org, krzk+dt@kernel.org, konradybcio@kernel.org,
-        conor+dt@kernel.org, andrzej.hajda@intel.com,
-        neil.armstrong@linaro.org, rfoss@kernel.org,
-        Laurent.pinchart@ideasonboard.com, jonathan@marek.ca, jonas@kwiboo.se,
-        jernej.skrabec@gmail.com, quic_rajeevny@quicinc.com,
-        quic_vproddut@quicinc.com
-References: <20251006013924.1114833-1-quic_amakhija@quicinc.com>
- <20251006013924.1114833-7-quic_amakhija@quicinc.com>
- <fsqytqhe72bgmloyzm6khoprq6bysf52ufz6oi6epos7uadyho@wg4rxs6f2xyl>
- <374098ea-23f1-4d1a-8f70-313a7e384f8d@quicinc.com>
+From: Bo Gan <ganboing@gmail.com>
+Subject: Re: [PATCH v7 1/2] dt-bindings: ethernet: eswin: Document for EIC7700
+ SoC
+To: weishangjuan@eswincomputing.com, devicetree@vger.kernel.org,
+ andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
+ kuba@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ netdev@vger.kernel.org, pabeni@redhat.com, mcoquelin.stm32@gmail.com,
+ alexandre.torgue@foss.st.com, vladimir.oltean@nxp.com,
+ rmk+kernel@armlinux.org.uk, yong.liang.choong@linux.intel.com,
+ anthony.l.nguyen@intel.com, prabhakar.mahadev-lad.rj@bp.renesas.com,
+ jan.petrous@oss.nxp.com, jszhang@kernel.org, inochiama@gmail.com,
+ 0x1207@gmail.com, boon.khai.ng@altera.com, linux-kernel@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org
+Cc: ningyu@eswincomputing.com, linmin@eswincomputing.com,
+ lizhi2@eswincomputing.com, pinkesh.vaghela@einfochips.com,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+References: <20250918085612.3176-1-weishangjuan@eswincomputing.com>
+ <20250918085903.3228-1-weishangjuan@eswincomputing.com>
 Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <374098ea-23f1-4d1a-8f70-313a7e384f8d@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
+In-Reply-To: <20250918085903.3228-1-weishangjuan@eswincomputing.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDExMDAxOCBTYWx0ZWRfXwC1ZpRfeyfSh
- OUvgkcZUa9UuJ4Gf397YLJ7BbuDaYkbcbseQQZZnwaIodnJV9wLY+oFgNXki7vLIi0RPaaHGjNP
- iniUEWojjjlZlPSiG/rTM53VO3Eot19kgK3BX/6ZTvhbwx63eAVBmiUiSEnud9iFq5ijgBxROdl
- HET9cdV2rj7AWOVCgVbNNbF6KDYuYxmiCe2CTIzAgfAxutY2iVxFu3Pt4GQtHs5+opD06FI2Tni
- Id3BFk0goB0HlPchiZVqVQemYqPlTMx6w9X2NXRwaYLnY6N6bYRMRjbUdrhRZKPEqTsJRRPJWvw
- S/Q91YI7wv4p7bf5AEcOIQ3eD42hcLi6hy4FKwSI4UswIdmwflFfOGHqLJkMokgCJp4n5FOdAI5
- FtYQOrXMzsOjBOXcECW+9sMyYDtyTA==
-X-Proofpoint-ORIG-GUID: TVoxvVA7SOL3yDvVVjygwQ68bFdYI8br
-X-Authority-Analysis: v=2.4 cv=bodBxUai c=1 sm=1 tr=0 ts=68ee0f8f cx=c_pps
- a=HLyN3IcIa5EE8TELMZ618Q==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=COk6AnOGAAAA:8 a=BM6OdSh4NsqE7HirI3EA:9 a=QEXdDO2ut3YA:10
- a=bTQJ7kPSJx9SKPbeHEYW:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-GUID: TVoxvVA7SOL3yDvVVjygwQ68bFdYI8br
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-10-14_02,2025-10-13_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 lowpriorityscore=0 adultscore=0 impostorscore=0 suspectscore=0
- bulkscore=0 priorityscore=1501 clxscore=1015 malwarescore=0 spamscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2510020000 definitions=main-2510110018
 
-On 10/14/25 8:24 AM, Ayushi Makhija wrote:
-> On 10/6/2025 3:44 PM, Dmitry Baryshkov wrote:
->> On Mon, Oct 06, 2025 at 07:09:23AM +0530, Ayushi Makhija wrote:
->>> Add device tree nodes for the DSI0 controller with their corresponding
->>> PHY found on Qualcomm QCS8300 SoC.
->>>
->>> Signed-off-by: Ayushi Makhija <quic_amakhija@quicinc.com>
->>> ---
->>>  arch/arm64/boot/dts/qcom/qcs8300.dtsi | 98 ++++++++++++++++++++++++++-
->>>  1 file changed, 97 insertions(+), 1 deletion(-)
->>>
->>> +
->>> +				mdss_dsi_opp_table: opp-table {
->>> +					compatible = "operating-points-v2";
->>> +
->>> +					opp-358000000 {
->>> +						opp-hz = /bits/ 64 <358000000>;
->>> +						required-opps = <&rpmhpd_opp_svs_l1>;
->>> +					};
->>
->> Does it really support only a single freq?
->>
+On 9/18/25 01:59, weishangjuan@eswincomputing.com wrote:
+> From: Shangjuan Wei <weishangjuan@eswincomputing.com>
 > 
-> Hi Dmitry, yes it support only single opp frequency, I got this information from ipcat sw for monaco, similar
-> we have used for LeMans.
+> Add ESWIN EIC7700 Ethernet controller, supporting clock
+> configuration, delay adjustment and speed adaptive functions.
+> 
+> Signed-off-by: Zhi Li <lizhi2@eswincomputing.com>
+> Signed-off-by: Shangjuan Wei <weishangjuan@eswincomputing.com>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>   .../bindings/net/eswin,eic7700-eth.yaml       | 127 ++++++++++++++++++
+>   1 file changed, 127 insertions(+)
+>   create mode 100644 Documentation/devicetree/bindings/net/eswin,eic7700-eth.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/net/eswin,eic7700-eth.yaml b/Documentation/devicetree/bindings/net/eswin,eic7700-eth.yaml
+> new file mode 100644
+> index 000000000000..57d6d0efc126
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/eswin,eic7700-eth.yaml
+> @@ -0,0 +1,127 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/eswin,eic7700-eth.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Eswin EIC7700 SOC Eth Controller
+> +
+> +maintainers:
+> +  - Shuang Liang <liangshuang@eswincomputing.com>
+> +  - Zhi Li <lizhi2@eswincomputing.com>
+> +  - Shangjuan Wei <weishangjuan@eswincomputing.com>
+> +
+> +description:
+> +  Platform glue layer implementation for STMMAC Ethernet driver.
+> +
+> +select:
+> +  properties:
+> +    compatible:
+> +      contains:
+> +        enum:
+> +          - eswin,eic7700-qos-eth
+> +  required:
+> +    - compatible
+> +
+> +allOf:
+> +  - $ref: snps,dwmac.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - const: eswin,eic7700-qos-eth
+> +      - const: snps,dwmac-5.20
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  interrupt-names:
+> +    const: macirq
+> +
+> +  clocks:
+> +    items:
+> +      - description: AXI clock
+> +      - description: Configuration clock
+> +      - description: GMAC main clock
+> +      - description: Tx clock
+> +
+> +  clock-names:
+> +    items:
+> +      - const: axi
+> +      - const: cfg
+> +      - const: stmmaceth
+> +      - const: tx
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +  reset-names:
+> +    items:
+> +      - const: stmmaceth
+> +
+> +  rx-internal-delay-ps:
+> +    enum: [0, 200, 600, 1200, 1600, 1800, 2000, 2200, 2400]
+> +
+> +  tx-internal-delay-ps:
+> +    enum: [0, 200, 600, 1200, 1600, 1800, 2000, 2200, 2400]
+> +
+> +  eswin,hsp-sp-csr:
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +    items:
+> +      - description: Phandle to HSP(High-Speed Peripheral) device
+> +      - description: Offset of phy control register for internal
+> +                     or external clock selection
+> +      - description: Offset of AXI clock controller Low-Power request
+> +                     register
+> +      - description: Offset of register controlling TX/RX clock delay
+> +    description: |
+> +      High-Speed Peripheral device needed to configure clock selection,
+> +      clock low-power mode and clock delay.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +  - interrupts
+> +  - interrupt-names
+> +  - phy-mode
+> +  - resets
+> +  - reset-names
+> +  - rx-internal-delay-ps
+> +  - tx-internal-delay-ps
+> +  - eswin,hsp-sp-csr
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    ethernet@50400000 {
+> +        compatible = "eswin,eic7700-qos-eth", "snps,dwmac-5.20";
+> +        reg = <0x50400000 0x10000>;
+> +        clocks = <&d0_clock 186>, <&d0_clock 171>, <&d0_clock 40>,
+> +                <&d0_clock 193>;
+> +        clock-names = "axi", "cfg", "stmmaceth", "tx";
+> +        interrupt-parent = <&plic>;
+> +        interrupts = <61>;
+> +        interrupt-names = "macirq";
+> +        phy-mode = "rgmii-id";
+> +        phy-handle = <&phy0>;
+> +        resets = <&reset 95>;
+> +        reset-names = "stmmaceth";
+> +        rx-internal-delay-ps = <200>;
+> +        tx-internal-delay-ps = <200>;
+> +        eswin,hsp-sp-csr = <&hsp_sp_csr 0x100 0x108 0x118>;
+> +        snps,axi-config = <&stmmac_axi_setup>;
+> +        snps,aal;
+> +        snps,fixed-burst;
+> +        snps,tso;
+> +        stmmac_axi_setup: stmmac-axi-config {
+> +            snps,blen = <0 0 0 0 16 8 4>;
+> +            snps,rd_osr_lmt = <2>;
+> +            snps,wr_osr_lmt = <2>;
+> +        };
+> +    };
+> \ No newline at end of file
+> --
+> 2.17.1
+> 
 
-I can attest to that, even though I'm a little surprised that's
-the case
+Hi ShangJuan,
 
-Konrad
+I'm active user of HiFive p550. I'd like to test out this driver. Do you have
+the device tree section of phy0 for Hifive p550 board? Or it's optional for
+p550 board and I can just provide an empty &phy0 node? Regarding hsp_sp_csr
+node, I should be able to use
+https://github.com/sifiveinc/riscv-linux/blob/b4a753400e624a0eba3ec475fba2866dd7efb767/arch/riscv/boot/dts/eswin/eic7700.dtsi#L167
+correct?
+
+Bo
 
