@@ -1,244 +1,389 @@
-Return-Path: <devicetree+bounces-226578-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226581-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 368B9BD9E2B
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 16:07:02 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF969BD9E67
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 16:10:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ED2603B393C
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 14:06:03 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E9AB74F9B7E
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 14:07:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62EA4315D39;
-	Tue, 14 Oct 2025 14:05:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="jaGvv8Zv"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15371314D04;
+	Tue, 14 Oct 2025 14:07:44 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 840643148D5;
-	Tue, 14 Oct 2025 14:05:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=91.207.212.93
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760450730; cv=fail; b=fMuYt1tckJpztY5sM9VLI50qtoUQGLA7Eh9TNAaRq0EDBbZMoJDcX2wpFOppYdJs+3sn3wplbEIlv0n3Gcr37yD1F9AlDCzwf8Ivsg2LknYJ6EzbffjMdyBeWf7P+7bBQLXXwFDAcdtfOjz4pZQxHJ5VGgYbTm9rODhxroy3s70=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760450730; c=relaxed/simple;
-	bh=9A9wAKuanHieHs1FB0xkPuduibEl9Yn/3S9SVnGlOmM=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=IXPGr5ouki9w5weUID05yqdyrbJoAJLdar6VP9xZamcLaYALo5eZLc+N8dPLHCN/YXLFCbtjDXGYvHxuTFoBpFN+WI77ti7cmJ+S8eGEUYQfrTFccuBrw5fpk8o8H988t//y3x1o/M1qFlSZxkjH5oe2u3+kqPw9BU5TehBkYIY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=jaGvv8Zv; arc=fail smtp.client-ip=91.207.212.93
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59EDsZgE025989;
-	Tue, 14 Oct 2025 16:05:06 +0200
-Received: from duzpr83cu001.outbound.protection.outlook.com (mail-northeuropeazon11012068.outbound.protection.outlook.com [52.101.66.68])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 49qfav48su-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 14 Oct 2025 16:05:05 +0200 (MEST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=GpjoBazj+p2lNrkidr0nP+plrx20XnZGHyQPe6NLFt2ztkKTb5LkTO4Ws4CblahHm13JXIaZ+NDYWJkekQUs1NMvCnS08WcBADeUlLB4lMXeyOcXO152Gh9ewjUBuqWIxnUl219Oem13MdxOpizH+bVO2TZE5uggQEThZXauuwhLKJqefSrIU8Q0U0YHVqUKGrF+InsO7wlzzbUXrHMXZEECelMlCVxftrK8Z7AdUiDULnvQ8o/UlczlfYEseLVDLNDZ74z3GE2cLzw7CsIFPVR1HqfTd0B/B8z5+b476hby63oPzjA7ULzmOFGalI1UCM9p87rfOM576DeTHDp+1w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7GCZq/0vB2JzDCStdp5xnjJ3j+fDgm9jbDYKZgxtsIQ=;
- b=soMuTTSAoCdeQHCYqasQMUeB2Ar26bCLjFIf3XfhW2IKbZOEKNRCNyja0OB8+No7QdBs2d5DTPk/P5SMM5brboedUjd4+Rrk4r43qVd5Y1FLtNWjJMyy2aaceMtlBDPX9SJeRBLvlOm7NlBpOsLggo8jstbzhObgNHrOx23xf//egnavaYfBiHxtAcrPQeIxmoYY/FX62LKS7t8RSwO4O5sBtuYOl7cQMn9R2aB/AGn0ZfaQEFXO61hpAZJCuACrxIGkDgZSMsDDZbplQ/3ABywH98fL9L2J8vGlSuxwWwSBIztqfdc6VkQ9Gr6Pvc1cfG1wH+RwAt23224QECikkg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
- 164.130.1.43) smtp.rcpttodomain=linaro.org smtp.mailfrom=foss.st.com;
- dmarc=fail (p=none sp=none pct=100) action=none header.from=foss.st.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7GCZq/0vB2JzDCStdp5xnjJ3j+fDgm9jbDYKZgxtsIQ=;
- b=jaGvv8ZvA0g6JdioGVNzXNH0SWO9vckTmcTW9++Umsj7cz+Zt6W493zm2N+tLV7on5V/emaGg1CgFLLNIXa7fmqdrBZYW1nJLUz/B2yhhYVo2EpMw83dl/XvYARmpZQvk2xsl9qDarh51jhtmP797te7FINRq0vr3yzTz0AtfkXqcZZUkuyqVDYgf7eracSlmGXtN5ARpUD7OCzkauLsh25fdxcRTkW5zZXkx73r4FVyLWOsKs9opj7N4Ev0u881YKsqm5J2CX/Lu/NVR25Hux1AQ2D7z1ju/cLjnB7CZsg/Hp/dGgeP66LsM/VhdvCzTccetZzgfkwQSORNZWd+fA==
-Received: from AS4P192CA0020.EURP192.PROD.OUTLOOK.COM (2603:10a6:20b:5e1::6)
- by BESPR10MB9222.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:b10:ec::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9203.12; Tue, 14 Oct
- 2025 14:05:03 +0000
-Received: from AM4PEPF00027A5D.eurprd04.prod.outlook.com
- (2603:10a6:20b:5e1:cafe::fe) by AS4P192CA0020.outlook.office365.com
- (2603:10a6:20b:5e1::6) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9203.13 via Frontend Transport; Tue,
- 14 Oct 2025 14:05:00 +0000
-X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 164.130.1.43)
- smtp.mailfrom=foss.st.com; dkim=none (message not signed)
- header.d=none;dmarc=fail action=none header.from=foss.st.com;
-Received-SPF: Fail (protection.outlook.com: domain of foss.st.com does not
- designate 164.130.1.43 as permitted sender) receiver=protection.outlook.com;
- client-ip=164.130.1.43; helo=smtpO365.st.com;
-Received: from smtpO365.st.com (164.130.1.43) by
- AM4PEPF00027A5D.mail.protection.outlook.com (10.167.16.69) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9228.7 via Frontend Transport; Tue, 14 Oct 2025 14:05:02 +0000
-Received: from SHFDAG1NODE1.st.com (10.75.129.69) by smtpO365.st.com
- (10.250.44.66) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.57; Tue, 14 Oct
- 2025 16:02:40 +0200
-Received: from localhost (10.48.86.11) by SHFDAG1NODE1.st.com (10.75.129.69)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.57; Tue, 14 Oct
- 2025 16:05:01 +0200
-From: Antonio Borneo <antonio.borneo@foss.st.com>
-To: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue
-	<alexandre.torgue@foss.st.com>,
-        Bartosz Golaszewski <brgl@bgdev.pl>, <linux-gpio@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>
-CC: Antonio Borneo <antonio.borneo@foss.st.com>,
-        Christophe Roullier
-	<christophe.roullier@foss.st.com>,
-        Fabien Dessenne
-	<fabien.dessenne@foss.st.com>,
-        Valentin Caron <valentin.caron@foss.st.com>
-Subject: [PATCH v3 10/10] arm64: dts: st: Add I/O sync to eth pinctrl in stm32mp25-pinctrl.dtsi
-Date: Tue, 14 Oct 2025 16:04:51 +0200
-Message-ID: <20251014140451.1009969-11-antonio.borneo@foss.st.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20251014140451.1009969-1-antonio.borneo@foss.st.com>
-References: <20251014140451.1009969-1-antonio.borneo@foss.st.com>
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0589314B6A;
+	Tue, 14 Oct 2025 14:07:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1760450864; cv=none; b=sLW7HIce5p/6Zxf7bLSSHFurVwbtBZoqFxautZzAtaJfDSmqNiL3dXz7C0+3WhyXVP4jxQkhjUFARI/8Sdi/ErO7ilp8B4Wa3+rwD8EQD2OryjMQys3JM23gHJXff8WdyW1NfR7KwsqkIL41qjKqj95Kcc8oMzts8/vH2WqogmE=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1760450864; c=relaxed/simple;
+	bh=AT5a0F8624P0Jt/Br9rp8jSx/K2WNUUXkXV5q0k5J2s=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=eN/twcR86HpLl5cQWUKzijQSbDc4mGG/S4oDeThBo2K8HPX/5SzUV8b0JBic8ATCFW1uV2aL/qYKGH2bUaalWBrnVEe3/UpiQrLff3xO2lmNrdVavSh0SmPRgUk7XRMrxb/dhGZlin5BUVWqVpjOOYLXe2Sp1TcnA/Dlq/LzeNg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4FDEE1A9A;
+	Tue, 14 Oct 2025 07:07:33 -0700 (PDT)
+Received: from [10.57.7.84] (unknown [10.57.7.84])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 29B543F6A8;
+	Tue, 14 Oct 2025 07:07:38 -0700 (PDT)
+Message-ID: <58790287-4787-4763-a979-69df60de9263@arm.com>
+Date: Tue, 14 Oct 2025 15:07:34 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SAFCAS1NODE1.st.com (10.75.90.11) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM4PEPF00027A5D:EE_|BESPR10MB9222:EE_
-X-MS-Office365-Filtering-Correlation-Id: 349fdb86-ea80-4461-31cf-08de0b2aabbe
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|36860700013|82310400026|7416014|376014|921020;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?ETbIHXoCdhjTRsZLUvKxQ9wRfxJFbCzA/wJ1/+u5j4lu82ASa9SidKkSUMrr?=
- =?us-ascii?Q?FZ0lKXza7m6EI0qERDmSpsxUPTTC8f929AWPtcbPyUQmJBj2huCWTqdyX4zo?=
- =?us-ascii?Q?AOSQBU5LPrTLsQGhO+6KyStOVSAj4neSb0c4gT/2wh2RIo9e/nkQoytWAjSr?=
- =?us-ascii?Q?yyKB2freCTniW8z1QTCcrYiRswa7fVteDG5Trx7WfrqjQWzzZ7KBBLpI3WxE?=
- =?us-ascii?Q?nULIXPGquaVNFy5PnMoX+vswe1COb/4UvEAkP5VTrTQUck3rUPmPergy1OWU?=
- =?us-ascii?Q?JyNWLsHbyNvX88723wUttwlZikxIQbbDbwGxRRhN8Xne8vW8W3fAoey6UcKA?=
- =?us-ascii?Q?OkhKY+Eh8jIarKi08cR9EMiHxN3dFPfg+M6S9RtZISkGoUr2dOS8FFDCoRod?=
- =?us-ascii?Q?uPraLNSBMvH5QiXqrppchh31jeAHD8GuXuB+nzyZItAgRU3xH7JoVzqEBQdd?=
- =?us-ascii?Q?Bi4l0vDlPjpaVtr1NBzE0gcXwWrA1yDYUbJpHJsLPBjiK7T0ZBBJROSJXHOI?=
- =?us-ascii?Q?GJAtFRxpPxvs7HryZdu3JxjIeEaffWEu1N93M09wIZzqQP2fGvsCRUgdvXpd?=
- =?us-ascii?Q?rwGv8kbhLr2z8xgH1kmip0fB5TTxypbwRoJNPY1ord5pySsYzbEdhcWLnO3q?=
- =?us-ascii?Q?FnzX7VoK8MxX6r8UiV3XhC6lYJOLNJCAVCnlAhTf5gBQuPw9sJhfFDj+2zEe?=
- =?us-ascii?Q?qNohdzYwz1CBP9/1NJxVlsKFWwGfKMg8+6dTDQZ8Ci/6kOpNEsOSnt5MQiux?=
- =?us-ascii?Q?BWcDWyEQnkRmwruC01vUp3cer/phcbIbc5UbikHqW3O5tTi1lIljakprnaaG?=
- =?us-ascii?Q?I4K1o9Bf4552fweiHmBtzevSblc2mSaWZyEgCjwfIjWZTN9x2d+jz+L0Merd?=
- =?us-ascii?Q?inksAiqYzu8/gZH6HUnbjYmBJq8dDUS94zDqC3qdOq2RGDf3fXwMoHURflNn?=
- =?us-ascii?Q?09XuVICnEBMur6gucV+w2uLpojI5yVtlr1pP1wOSFPhYtc50tomn081UTZ/y?=
- =?us-ascii?Q?JuWEMu7pX9HuHCgHs1XlUVrRQcuMkimwAjb6zEZXmKGosaC+VirqLgvHJNwa?=
- =?us-ascii?Q?3Vz6w+GxKnHJPkb6VUvBz+HBlBHJbo4VG23Bfurq16tQm5YvqOs9UD7Pu5+5?=
- =?us-ascii?Q?HhTY6j7JMq9JvTVGZlAPdARZvAsTHya3sh2uBp/6+e8b0ndh7hevt5yzeKWW?=
- =?us-ascii?Q?Rzrch7BPvg4HcQ4Z+j5rONPXJL5rIa7YU2uvEL2EZNqYT/Bg2SkSeHP+GQ2k?=
- =?us-ascii?Q?5PrVLPPPqTbKNwMVd1p7YPJs3Q1Bl024QV5JZrtRsV0aCw/facnIJpNUE8xo?=
- =?us-ascii?Q?7lIXMfqrlop1DIal5hYri+igfSZdXwqA5r76IqnMd+ECnyMLIiZKgatS2J4D?=
- =?us-ascii?Q?gmzhYsFHRmkjKj1m3l6mX8fC9EXN3ssNXBrhyehQNSNtmzE8enMiK8ewATOu?=
- =?us-ascii?Q?oGQUcXdNnrsb6FfQ7sEcTxJWU1fskYWy6PQmJn/WJESY+2yzy9iEB3mNPEzN?=
- =?us-ascii?Q?I/OaiksvWLVuADxwkNlsX0cgWti8Q6qmWj0bPDz3HVMNpkD5hLGOkQb9qFj4?=
- =?us-ascii?Q?cwROQhDVO+bQASX6KXvxk/8FtlLsUCvngSspk87W?=
-X-Forefront-Antispam-Report:
-	CIP:164.130.1.43;CTRY:IT;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:smtpO365.st.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(36860700013)(82310400026)(7416014)(376014)(921020);DIR:OUT;SFP:1101;
-X-OriginatorOrg: foss.st.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Oct 2025 14:05:02.9922
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 349fdb86-ea80-4461-31cf-08de0b2aabbe
-X-MS-Exchange-CrossTenant-Id: 75e027c9-20d5-47d5-b82f-77d7cd041e8f
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=75e027c9-20d5-47d5-b82f-77d7cd041e8f;Ip=[164.130.1.43];Helo=[smtpO365.st.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	AM4PEPF00027A5D.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BESPR10MB9222
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDExMDAxNyBTYWx0ZWRfX5htO/T79uHNi
- /DSv3Xr7D4NelULSoRLQ/itqoOlHN6diV1fyASxSrTzRq5wypFJwuM0w1UpEKlMisn6A0GymlMW
- LIDjiNzO5at1Iien5jVTGMIjuM3pIJzWAZMk54MhtmbL/6FMCdFPDNQq5YBtTl7u4RnZl8oGUa8
- lM4Of/0Nx7NTaM3xrUXRkQzNaNr+62+z+1Mj/3mM5Up+CvY1YUX98wTLbJfoy2c19L8YiDzEiWm
- 06+/Iw2qq0ua2QapF1nCfBG2q2yH4LMaTyeVx8cdFqyJ5x3veu5yPmSr8qPG2tyu9hybAxK5/sk
- PmBuUSVwwt4qnmrQVDlN5Pah02i3/QR0G0iy4REgogNgxoIBBbRT9K3dtLyGCnEs5MhFDrVunfQ
- AO+iSfIL+Alqx/Cv+SRarsSbst1K1A==
-X-Authority-Analysis: v=2.4 cv=Ne7rFmD4 c=1 sm=1 tr=0 ts=68ee5891 cx=c_pps
- a=xyIh7xk4YN0HFApL+B8wwA==:117 a=peP7VJn1Wk7OJvVWh4ABVQ==:17
- a=6eWqkTHjU83fiwn7nKZWdM+Sl24=:19 a=y9YUpebZf6kA:10 a=x6icFKpwvdMA:10
- a=s63m1ICgrNkA:10 a=KrXZwBdWH7kA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=8b9GpE9nAAAA:8 a=zedmP5LN3X88bpDL2FwA:9 a=T3LWEMljR5ZiDmsYVIUa:22
- a=cPQSjfK2_nFv0Q5t_7PE:22
-X-Proofpoint-ORIG-GUID: K5a8D2S3Xz21TrJp1Al8LD_Wri9NfTTn
-X-Proofpoint-GUID: K5a8D2S3Xz21TrJp1Al8LD_Wri9NfTTn
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-10-14_03,2025-10-13_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 malwarescore=0
- priorityscore=1501 suspectscore=0 spamscore=0 adultscore=0 clxscore=1015
- lowpriorityscore=0 impostorscore=0 bulkscore=0 phishscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2510020000 definitions=main-2510110017
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH 0/3] Introduce iommu-map-masked for platform devices
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Charan Teja Kalla <charan.kalla@oss.qualcomm.com>, joro@8bytes.org,
+ will@kernel.org, saravanak@google.com, conor+dt@kernel.org, robh@kernel.org,
+ mchehab@kernel.org, bod@kernel.org, krzk+dt@kernel.org,
+ abhinav.kumar@linux.dev, vikash.garodia@oss.qualcomm.com,
+ dikshita.agarwal@oss.qualcomm.com,
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ bjorn.andersson@oss.qualcomm.com, linux-media@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, iommu@lists.linux.dev
+References: <20250928171718.436440-1-charan.kalla@oss.qualcomm.com>
+ <aec0f40a-8346-4194-8b18-1022fe3366bb@arm.com>
+ <0d0560cc-9757-4c7b-8de4-170148d99481@oss.qualcomm.com>
+ <ead7cf8b-fbc4-4242-a9da-b313dded1abc@arm.com>
+ <nzqte4glwtpjs5bhkxz43yhdufelxvqvzmg5tepudxwetimir3@bvlw5csjizsh>
+ <9d3eeb9f-b8ea-48e5-a1d9-0865f63ef991@arm.com>
+ <fhb4woejzh3r6v5dxvdiopnsbuwstucfuuzbiymxg4wrxrjc7t@dt3z3utq6lwd>
+ <8d88cd9d-16e8-43f9-8eb3-89862da1d0c1@arm.com>
+ <zcgn4xw2xghyna2eysavujbzbiydyki7p7upzzv7one5mdyjy6@sj7f75kc4vwu>
+From: Robin Murphy <robin.murphy@arm.com>
+Content-Language: en-GB
+In-Reply-To: <zcgn4xw2xghyna2eysavujbzbiydyki7p7upzzv7one5mdyjy6@sj7f75kc4vwu>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On board stm32mp257f-ev1, the propagation delay between eth1/eth2
-and the external PHY requires a compensation to guarantee that no
-packet get lost in all the working conditions.
+On 2025-10-13 1:31 pm, Dmitry Baryshkov wrote:
+> On Mon, Oct 13, 2025 at 12:20:54PM +0100, Robin Murphy wrote:
+>> On 2025-10-09 7:25 pm, Dmitry Baryshkov wrote:
+>>> On Thu, Oct 09, 2025 at 06:03:29PM +0100, Robin Murphy wrote:
+>>>> On 2025-10-09 2:19 pm, Dmitry Baryshkov wrote:
+>>>>> On Thu, Oct 09, 2025 at 11:46:55AM +0100, Robin Murphy wrote:
+>>>>>> On 2025-10-08 8:10 pm, Charan Teja Kalla wrote:
+>>>>>>>
+>>>>>>> On 9/29/2025 3:50 PM, Robin Murphy wrote:
+>>>>>>>>> USECASE [1]:
+>>>>>>>>> -----------
+>>>>>>>>> Video IP, 32bit, have 2 hardware sub blocks(or can be called as
+>>>>>>>>> functions) called as pixel and nonpixel blocks, that does decode and
+>>>>>>>>> encode of the video stream. These sub blocks are __configured__ to
+>>>>>>>>> generate different stream IDs.
+>>>>>>>>
+>>>>>>>> So please clarify why you can't:
+>>>>>>>>
+>>>>>>>> a) Describe the sub-blocks as individual child nodes each with their own
+>>>>>>>> distinct "iommus" property
+>>>>>>>>
+>>>>>>>
+>>>>>>> Thanks Robin for your time. Sorry for late reply as I really didn't have
+>>>>>>> concrete answer for this question.
+>>>>>>>
+>>>>>>> First let me clarify the word "sub blocks" -- This is just the logical
+>>>>>>> separation with no separate address space to really able to define them
+>>>>>>> as sub devices. Think of it like a single video IP with 2 dma
+>>>>>>> engines(used for pixel and non-pixel purpose).
+>>>>>>>
+>>>>>>> I should agree that the child-nodes in the device tree is the easy one
+>>>>>>> and infact, it is how being used in downstream.
+>>>>>>>
+>>>>>>> For upstream -- Since there is no real address space to interact with
+>>>>>>> these sub-blocks(or logical blocks), does it really qualify to define as
+>>>>>>> child nodes in the device tree? I see there is some push back[1].
+>>>>>>
+>>>>>> Who says you need an address space? Child nodes without "reg" properties,
+>>>>>> referenced by name, compatible or phandle, exist all over the place for all
+>>>>>> manner of reasons. If there are distinct logical functions with their own
+>>>>>> distinct hardware properties, then I would say having child nodes to
+>>>>>> describe and associate those properties with their respective functions is
+>>>>>> entirely natural and appropriate. The first example that comes to mind of
+>>>>>> where this is a well-established practice is PMICs - to pick one at random:
+>>>>>> Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml
+>>>>>
+>>>>> Logical function, that's correct. And also note, for PMICs that practice
+>>>>> has bitten us back. For PM8008 we switched back to a non-subdevice
+>>>>> representation.
+>>>>>
+>>>>>> For bonus irony, you can't take the other approaches without inherently
+>>>>>> *introducing* a notional address space in the form of your logical function
+>>>>>> IDs anyway.
+>>>>>>
+>>>>>>>       > or:
+>>>>>>>>
+>>>>>>>> b) Use standard "iommu-map" which already supports mapping a masked
+>>>>>>>> input ID to an arbitrary IOMMU specifier
+>>>>>>>>
+>>>>>>>
+>>>>>>> I think clients is also required to program non-zero smr mask, where as
+>>>>>>> iommu-map just maps the id to an IOMMU specifier(sid). Please LMK if I
+>>>>>>> am unable to catch your thought here.
+>>>>>> An IOMMU specifier is whatever the target IOMMU node's #iommu-cells says it
+>>>>>> is. The fact that Linux's parsing code only works properly for #iommu-cells
+>>>>>> = 1 is not really a DT binding problem (other than it stemming from a loose
+>>>>>> assumption stated in the PCI binding's use of the property).
+>>>>>
+>>>>> I really don't like the idea of extending the #iommu-cells. The ARM SMMU
+>>>>> has only one cell, which is correct even for our platforms. The fact
+>>>>> that we need to identify different IOMMU SIDs (and handle them in a
+>>>>> differnt ways) is internal to the video device (and several other
+>>>>> devices). There is nothing to be handled on the ARM SMMU side.
+>>>>
+>>>> Huh? So if you prefer not to change anything, are you suggesting this series
+>>>> doesn't need to exist at all? Now I'm thoroughly confused...
+>>>
+>>> Hmm. We need changes, but I don't feel like adding the FUNCTION_ID to
+>>> #iommu-cells is the best idea.
+>>
+>> What? No, any function ID would be an *input* to a map, not part of the
+>> output specifier; indeed it should never go anywhere near the IOMMU, I don't
+>> think anyone suggested that.
+> 
+> It was Bryan, https://lore.kernel.org/linux-arm-msm/9bae595a-597e-46e6-8eb2-44424fe21db6@linaro.org
 
-Add I/O synchronization properties in pinctrl on all the RGMII
-data pins, activating re-sampling on both edges of the clock.
+Ah, I wasn't on that thread. But indeed, as I hopefully explained 
+before, that whole idea is a non-starter anyway due to who the consumers 
+of "iommus" actually are.
 
-Co-developed-by: Christophe Roullier <christophe.roullier@foss.st.com>
-Signed-off-by: Christophe Roullier <christophe.roullier@foss.st.com>
-Signed-off-by: Antonio Borneo <antonio.borneo@foss.st.com>
----
- arch/arm64/boot/dts/st/stm32mp25-pinctrl.dtsi | 4 ++++
- 1 file changed, 4 insertions(+)
+>>>> If you want to use SMR masks, then you absolutely need #iommu-cells = 2,
+>>>> because that is the SMMU binding for using SMR masks. It would definitely
+>>>
+>>> I'm sorry. Yes, we have #iommu-cells = <2>.
+>>>
+>>>> not be OK to have some magic property trying to smuggle
+>>>> IOMMU-driver-specific data contrary to what the IOMMU node itself says. As
+>>>> for iommu-map, I don't see what would be objectionable about improving the
+>>>> parsing to respect a real #iommu-cells value rather than hard-coding an
+>>>> assumption. Yes, we'd probably need to forbid entries with length > 1
+>>>> targeting IOMMUs with #iommu-cells > 1, since the notion of a linear
+>>>
+>>> This will break e.g. PCIe on Qualcomm platforms:
+>>>
+>>>                           iommu-map = <0x0   &apps_smmu 0x1400 0x1>,
+>>>                                       <0x100 &apps_smmu 0x1401 0x1>;
+>>>
+>>>
+>>> But this seems unlogical anyway wrt. apps_smmu having #iommu-cells =
+>>> <2>. It depends on ARM SMMU ignoring the second cell when it's not
+>>> present.
+>>
+>> Urgh, yes, that's just broken already :(
+>>
+>> At least they all seem to be a sufficiently consistent pattern that a
+>> targeted workaround to detect old DTBs looks feasible (I'm thinking, if
+>> iommu-map size % 4 == 0 and cells n*4 + 3 are all 1 and cells n*4 + 1 are
+>> all the same phandle to an IOMMU with #iommu-cells == 2, then parse as if
+>> #iommu-cells == 1)
+> 
+> How do we handle the case of #iommu-cells = <2>? I.e. what should be the
+> "fixed" representation of the map above? Should we have usual cells and
+> one extra "length" just for the sake of it?
 
-diff --git a/arch/arm64/boot/dts/st/stm32mp25-pinctrl.dtsi b/arch/arm64/boot/dts/st/stm32mp25-pinctrl.dtsi
-index e0d102eb61769..7906b3c585a2d 100644
---- a/arch/arm64/boot/dts/st/stm32mp25-pinctrl.dtsi
-+++ b/arch/arm64/boot/dts/st/stm32mp25-pinctrl.dtsi
-@@ -38,6 +38,7 @@ pins1 {
- 			bias-disable;
- 			drive-push-pull;
- 			slew-rate = <3>;
-+			st,io-sync = <4>;
- 		};
- 		pins2 {
- 			pinmux = <STM32_PINMUX('H', 9, AF10)>, /* ETH_RGMII_CLK125 */
-@@ -53,6 +54,7 @@ pins3 {
- 				 <STM32_PINMUX('H', 13, AF10)>, /* ETH_RGMII_RXD3 */
- 				 <STM32_PINMUX('A', 11, AF10)>; /* ETH_RGMII_RX_CTL */
- 			bias-disable;
-+			st,io-sync = <4>;
- 		};
- 		pins4 {
- 			pinmux = <STM32_PINMUX('A', 14, AF10)>; /* ETH_RGMII_RX_CLK */
-@@ -142,6 +144,7 @@ pins1 {
- 			bias-disable;
- 			drive-push-pull;
- 			slew-rate = <3>;
-+			st,io-sync = <4>;
- 		};
- 		pins2 {
- 			pinmux = <STM32_PINMUX('F', 8, AF10)>, /* ETH_RGMII_CLK125 */
-@@ -164,6 +167,7 @@ pins4 {
- 				 <STM32_PINMUX('C', 11, AF10)>, /* ETH_RGMII_RXD3 */
- 				 <STM32_PINMUX('C', 3, AF10)>; /* ETH_RGMII_RX_CTL */
- 			bias-disable;
-+			st,io-sync = <4>;
- 		};
- 		pins5 {
- 			pinmux = <STM32_PINMUX('F', 6, AF10)>; /* ETH_RGMII_RX_CLK */
--- 
-2.34.1
+It's not really "for the sake of it", it is the defined format of the 
+"iommu-map" binding - IMO it would be far more horrible if each entry 
+did or didn't include a length cell depending on the size of the 
+preceding IOMMU specifier. It's also far from infeasible to have *some* 
+well-defined relationship between a non-singular input ID range and a 
+multi-cell base IOMMU specifier, it just needs more IOMMU-specific 
+interpretation in the consumer than Linux cares to bother with. Thus it 
+is appropriate for the binding to be able to describe that even though 
+Linux as a consumer continues to refuse to support it. The binding does 
+not describe Linux, or the property would be named "linux,iommu-map".
 
+>                 iommu-map = <0x0   &apps_smmu 0x1400 0x0 0x1>,
+>                             <0x100 &apps_smmu 0x1401 0x0 0x1>;
+> 
+> 
+> I really like the idea of fixing iommu-map as that would remove the need
+> for other properties, but
+> 
+>>
+>>>> relationship between the input ID and the output specifier falls apart when
+>>>> the specifier is complex, but that seems simple enough to implement and
+>>>> document (even if it's too fiddly to describe in the schema itself), and
+>>>> still certainly no worse than having another property that *is* just
+>>>> iommu-map with implicit length = 1.
+>>>>
+>>>> And if you want individual StreamIDs for logical functions to be attachable
+>>>> to distinct contexts then those functions absolutely must be visible to the
+>>>> IOMMU layer and the SMMU driver as independent devices with their own unique
+>>>> properties, which means either they come that way from the DT as of_platform
+>>>> devices in the first place, or you implement a full bus_type abstraction
+>>>
+>>> Not necessarily. Tegra display driver creates a device for each context
+>>> on its own.
+>> No, the *display* driver does not; the host1x bus driver does, which is the
+>> point I was making - that has a proper bus abstraction tied into the IOMMU
+>> layer, such that the devices are correctly configured long before the actual
+>> DRM driver(s) get anywhere near them.
+> 
+> Ack. I agree. it's drivers/gpu/host1x/context, not drivers/gpu/drm/
+> 
+>>
+>>> In fact, using OF to create context devices is _less_
+>>> robust, because now the driver needs to sync, checking that there is a
+>>> subdevice, that it has probed, etc. Using manually created devices seems
+>>> better from my POV.
+>>
+>> Huh? A simple call to of_platform_populate() is somehow less robust than
+>> open-coding much of the same logic that of_platform_populate() does plus a
+>> bunch of hackery to try to fake up an of_node to make the new device appear
+>> to own the appropriate properties?
+>>
+>> Having entire sub-*drivers* for child devices or not is an orthogonal issue
+>> regardless of whichever way they are created.
+> 
+> I was (again) looking at host1x. It doesn't fake of_node (nor does it
+> have actual OF nodes). Instead it just mapps IOMMUs directly to the
+> context devices. Compare this to misc/fastrpc.c, which has subdevices
+> and drivers to map contexts. The latter one looks less robust.
+> 
+> And from DT perspective compare:
+> 
+> 		fastrpc {
+> 			compatible = "qcom,fastrpc";
+> 			#address-cells = <1>;
+> 			#size-cells = <0>;
+> 
+> 			compute-cb@3 {
+> 				compatible = "qcom,fastrpc-compute-cb";
+> 				reg = <3>;
+> 				iommus = <&apps_smmu 0x1803 0x0>;
+> 			};
+> 
+> 			compute-cb@4 {
+> 				compatible = "qcom,fastrpc-compute-cb";
+> 				reg = <4>;
+> 				iommus = <&apps_smmu 0x1804 0x0>;
+> 			};
+> 
+> 			compute-cb@5 {
+> 				compatible = "qcom,fastrpc-compute-cb";
+> 				reg = <5>;
+> 				iommus = <&apps_smmu 0x1805 0x0>;
+> 			};
+> 		};
+> 
+> VS (note, it doesn't have 'length', it can be added back with no issues):
+> 
+> 		fastrpc {
+> 			compatible = "qcom,fastrpc";
+> 			#address-cells = <1>;
+> 			#size-cells = <0>;
+> 
+> 			iommu-map = <3 &apps_smmu 0x1803 0x0>,
+> 				    <4 &apps_smmu 0x1804 0x0>,
+> 				    <5 &apps_smmu 0x1805 0x0>;
+> 		};
+> 
+> 
+> I think the latter is more compact, and more robust.
+
+For that particular case I concur that iommu-map might fit just as well, 
+since it appears similar to the Tegra one - essentially just a pool of 
+identical hardware contexts with no special individual properties, whose 
+purpose is defined by the software using them (be that the driver 
+itself, or the firmware on the other end). IOW, the DT really isn't 
+describing anything more than a mapping between a context ID and an 
+IOMMU specifier either way.
+
+That said I also see nothing immediately wrong with the fastrpc driver 
+as-is either; if anything it looks like a pretty ideal example of the 
+"self-contained" non-bus approach I was alluding to. The "fake of_node" 
+notion only applies to the idea of trying to keep that same driver 
+structure but just replace of_platform_populate() with conjuring 
+platform_devices out of thin air.
+> Note, to make a complete example, it should be probably something like
+> (sc7280, cdsp, note duplicate IDs in the map, again, I omitted length):
+> 
+> 	       fastrpc {
+> 			compatible = "qcom,fastrpc";
+> 
+> 			iommu-map = <1 &apps_smmu 0x11a1 0x0420>,
+> 				    <1 &apps_smmu 0x1181 0x0420>,
+> 				    <2 &apps_smmu 0x11a2 0x0420>,
+> 				    <2 &apps_smmu 0x1182 0x0420>,
+> 				    <3 &apps_smmu 0x11a3 0x0420>,
+> 				    <3 &apps_smmu 0x1183 0x0420>;
+
+Note that as another orthogonal issue, Linux also doesn't support 1:many 
+maps like that - we'll only parse the first matching entry. However this 
+specific example (and the current DTs) doesn't make sense anyway, since 
+each pair of SMRs encodes the same set of matches (0x118x, 0x11ax, 
+0x158x, 0x15ax), so at best it's redundant while at worst it's a stream 
+match conflict fault waiting to happen?
+
+> 			dma-coherent;
+> 		};
+> 
+> 
+>>>> which will have to be hooked up to the IOMMU layer. You cannot make IOMMU
+>>>> configuration "internal" to the actual client driver which is only allowed
+>>>> to bind *after* said IOMMU configuration has already been made.
+>>>
+>>> I'm not sure I follow this, I'm sorry.
+>> I mean IOMMU configuration is designed to happen at device_add() time, and
+>> client drivers must not assume otherwise (the mechanisms for handling IOMMU
+>> drivers registering "late" from modules are internal details that can and
+>> will change). If you're under the impression that a straightforward platform
+>> driver for the video codec itself would be able to invoke IOMMU
+>> configuration for the video codec platform device (without unacceptable
+>> levels of hackery) then you are mistaken, sorry.
+>>
+>> Again, to be able to assign StreamIDs to different contexts, those StreamIDs
+>> must uniquely belong to different struct devices. Thus in terms of how you
+>> get to those struct devices from a DT representation, either they come from
+>> distinct DT nodes with standard "iommus" properties that the generic
+>> of_platform code can create and configure accordingly, or you're doing a
+>> non-trivial amount of work to implement your own bus layer like
+>> host1x_context_bus to manage your own type of sub-device. There is no valid
+>> middle ground of trying to stuff driver-specific knowledge of arbitrarily
+>> made-up function IDs into the generic platform bus code.
+> 
+> 
+> I'd totally prefer something like:
+> 
+> 	video-codec@foobar {
+> 		compatible = "qcom,video";
+> 
+> 		iommus = <&apps_smmu 0x1234 0xca>;
+> 		iommu-maps = <PIXEL &apps_smmu 0xabcdef 0xac>,
+> 			     <SECURE_PIXEL &apps_smmu 0x898989 0xac>,
+> 			     <SECURE_BITSTREAM &apps_smmu 0x898998 0xac>;
+> 	};
+This is where I maintain a differing opinion - if it's *not* a "pool of 
+identical contexts" case, but a single nominal hardware block with a 
+small number of distinct DMA streams for fundamentally different 
+purposes defined by the hardware design, then I would usually consider 
+it more natural, honest and useful to make those differences explicit by 
+name/compatible with child nodes, rather than hide them behind an opaque 
+arbitrary integer. If by nature of being functionally different they 
+also might require individual properties - such as memory-regions - then 
+child nodes are the only option anyway.
+
+However, if there is actually some meaningful hardware notion of 
+"function ID", the design/usage model is such that it would generally be 
+logical for a consumer driver to be structured as managing a set of 
+fixed-function sub-devices on an internal bus, and you're absolutely 
+definite that those sub-devices will never ever need any DT properties 
+of their own in future revisions/integrations, then maybe an 
+"iommu-map"-based binding is OK. All I can say for sure is that 
+describing complex hardware well is very nuanced and there is no one 
+universal right answer.
+
+Thanks,
+Robin.
 
