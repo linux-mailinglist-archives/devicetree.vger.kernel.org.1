@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-226385-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226386-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id D21F8BD822A
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 10:19:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EADADBD8244
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 10:22:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 101324F9153
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 08:19:16 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id DCE274EF581
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 08:22:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37C7530F92A;
-	Tue, 14 Oct 2025 08:19:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 169C730F52A;
+	Tue, 14 Oct 2025 08:22:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pT0lO+KV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lZh/f3/F"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED9B930F81D;
-	Tue, 14 Oct 2025 08:19:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D94FF2DC785;
+	Tue, 14 Oct 2025 08:22:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760429952; cv=none; b=aTBF8qucIk6qdo0+1sZhghf+sWZfEaHdaBuuDZsfgXdNjjSnoUEFzqe0UbMG1FOy9/f+eInoROOJDpkiHUe3OXktkcZRODf6fTbGQ6usyEPD5u86fjd2BeYI7+Lh0Ewy+19FaNbaNWhaUPJ3gCbdaxyyNd6FijzgAc/0Mejx0Gk=
+	t=1760430138; cv=none; b=HGWxbYFULhwszGbG/pI96Vh5U6JNRJydlGz5U8y3UbYBO9u1CFSe7u9xPHf2xTM6kj4azKdepZk2W9UPkEIkzWRbddkP2DrqJiknTuWi6gpIolKfUdbKr8DcKhTaEfj8CtL9nTKkHlYQWx5IBu+7I5qO6C8SzW3wbG63nbQaYgc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760429952; c=relaxed/simple;
-	bh=ZrB24db1zOJCMRMbowUUI3RqQgi8OeEP8pKOKUWPygc=;
+	s=arc-20240116; t=1760430138; c=relaxed/simple;
+	bh=Vlj6tP3JBHPNk8PgyCr78TrY0haPC3Xs1lzW10Q8cLQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pkCb/Ju0IT5ICUfa/jiGS+1krdn0YCvAE4cyhFvQSg5/7WkP1k1Hy1/8DjTsiu7FMkdCLv1ze8Vch/C0t1v8ft86NpgucE+TnFFJ97dYhJ/XUUjJW6Vpl6Bblkkt68RRj19O5yttLx4hk/ub8VTot6n/e6f5SliHAhHjb+HSyVk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pT0lO+KV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 63C84C4CEF9;
-	Tue, 14 Oct 2025 08:19:07 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=ZkEkrWErCSMPH/V/KNXZgkuEqQoSZM8iGGtsvKNi0OMlVVtdd8kC9nkZKKkP27C3+t8XzIxMbW0WgK7CjwPWEbuOCOl+LVz/zlQ1m8Gpch+p6pMGBNvYf4iFcv2NQc17XcE/6l2pkaovvqHH7YBhJObhIOdTyWE65Tt+mS0W6Nk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lZh/f3/F; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6DC85C4CEE7;
+	Tue, 14 Oct 2025 08:22:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760429951;
-	bh=ZrB24db1zOJCMRMbowUUI3RqQgi8OeEP8pKOKUWPygc=;
+	s=k20201202; t=1760430137;
+	bh=Vlj6tP3JBHPNk8PgyCr78TrY0haPC3Xs1lzW10Q8cLQ=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=pT0lO+KVK1/+QwgtMgImp8vu72Nby9B5YnrbkCGEJqpPV9bv98aZsaHQdHoMEo8Ql
-	 MRqnfgf4XuaU1EaLaNEUFOZN16uOrkQ5bnl/Dl5IJJVHXWwx/Lecwe5otRVIGQdvol
-	 5dgb3dH8Unzt1BYvuFloZQrkQXlBSKSClztz8xJTpci/MOZen/CSjkILmghf7m6YVa
-	 KzXV9KtKslNWfOUPPadtgSw5ll44wCQPmjAe5mHDrAEM1Zpe41s8pV3sBBfTEYohEf
-	 rJ3B5pWGExs8K+6gDdvqTgHY5nUO8BYsjHEOiQiiQrokhx0hGwRfYJPNC9zqclRkRc
-	 iS65sivVhdKLA==
-Message-ID: <c44a56bd-955a-4e4a-af3c-7ba754659f69@kernel.org>
-Date: Tue, 14 Oct 2025 10:19:05 +0200
+	b=lZh/f3/Fc7dCqb6CDiY5tbcF9lWWIzM7REjTEic65K1WxpJhP9paD7iOWZjj/Y+Wl
+	 MCwhrgVrUc2HiR6nIBY2UXCxb516F1/kDTinX8shqb2b+g5M4vLRBCdRSl4DcAMq2D
+	 nv+FOWHFuTQ9tv3hmz509d6OyfqKZWSPJnWQWj7GHIamJEaCB/IEhdg2RUA8aNrrBi
+	 Ys+gVyn7W4USl4yzyKCR0gqCgiCDDZpRwP4v//qwyN4LOSSi2nIoFwj4nKBWBtP5Gp
+	 Lr0ploa3eB3xB+jXVL2E5QMpBE65dRCaLJ6CLKEffRcdnsBSSHGfpFt3trToDEUu6/
+	 8PgGVHCVqCkCw==
+Message-ID: <b7b3de64-c656-4a84-8ba4-2d5c7eda9783@kernel.org>
+Date: Tue, 14 Oct 2025 10:22:07 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,20 +50,26 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/4] dt-bindings: leds: Add YAML bindings for Virtual
- Color LED Group driver
-To: Jonathan Brophy <professor_jonny@hotmail.com>,
- Jonathan Brophy <professorjonny98@gmail.com>, lee Jones <lee@kernel.org>,
- Pavel Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH v3 1/4] dt-bindings: usb: dwc3: Add Google Tensor G5 DWC3
+To: Roy Luo <royluo@google.com>
+Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I
+ <kishon@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Radoslav Tsvetkov <rtsvetkov@gradotech.eu>
-Cc: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-leds@vger.kernel.org" <linux-leds@vger.kernel.org>
-References: <20251013120955.227572-1-professorjonny98@gmail.com>
- <20251013120955.227572-2-professorjonny98@gmail.com>
- <8c3796eb-63d0-4650-b296-60894461a806@kernel.org>
- <DS0PR84MB374636FF53989F5D94D821D49FEBA@DS0PR84MB3746.NAMPRD84.PROD.OUTLOOK.COM>
+ <conor+dt@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Peter Griffin <peter.griffin@linaro.org>,
+ =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
+ Tudor Ambarus <tudor.ambarus@linaro.org>,
+ Joy Chakraborty <joychakr@google.com>, Naveen Kumar <mnkumar@google.com>,
+ Badhri Jagan Sridharan <badhri@google.com>, linux-phy@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org
+References: <20251010201607.1190967-1-royluo@google.com>
+ <20251010201607.1190967-2-royluo@google.com>
+ <066a9598-ad30-4327-be68-87299bba6fda@kernel.org>
+ <CA+zupgwc7b51pNRLWRy2CX=n4=FTm=AP7J0dRP2RLjyK5LxGtw@mail.gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -109,90 +115,117 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <DS0PR84MB374636FF53989F5D94D821D49FEBA@DS0PR84MB3746.NAMPRD84.PROD.OUTLOOK.COM>
+In-Reply-To: <CA+zupgwc7b51pNRLWRy2CX=n4=FTm=AP7J0dRP2RLjyK5LxGtw@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 14/10/2025 05:08, Jonathan Brophy wrote:
->> Few minor things follow up, but considering missing reasoning I did not perform full review.
+On 14/10/2025 03:40, Roy Luo wrote:
+> On Fri, Oct 10, 2025 at 5:09 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
 >>
->> A nit, subject: drop second/last, redundant "YAML bindings for". The "dt-bindings" prefix is already stating that these are bindings.
->> See also:
->> https://elixir.bootlin.com/linux/v6.17-rc3/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
+>> On 10/10/2025 22:16, Roy Luo wrote:
+>>> Document the device tree bindings for the DWC3 USB controller found in
+>>> Google Tensor SoCs, starting with the G5 generation.
+>>>
+>>> The Tensor G5 silicon represents a complete architectural departure from
+>>> previous generations (like gs101), including entirely new clock/reset
+>>> schemes, top-level wrapper and register interface. Consequently,
+>>> existing Samsung/Exynos DWC3 USB bindings are incompatible, necessitating
+>>> this new device tree binding.
+>>>
+>>> The USB controller on Tensor G5 is based on Synopsys DWC3 IP and features
+>>> Dual-Role Device single port with hibernation support.
 >>
->> ... and driver. Again - explain the hardware. Bindings are not for driver.
+>> You still mix, completely unnecessarily, subsystems. For Greg this is
+>> actually even undesired, but regardless don't do this for any cases
+>> because it just makes everything slower or more difficult to apply.
+>>
+>> Really, think how maintainers should deal with your patches.
+>>
 > 
-> I'm kind a little bit confused what you mean by this statement.
-> 
-> I'm guessing I should omit hardware info in the class yaml and move it to a group yaml like the multicolor ones as below?
-
-
-I speak about the subject.
-
-> If so that is just a mistake on my part not knowing the file structure well.
-> 
-> https://www.kernel.org/doc/Documentation/devicetree/bindings/leds/leds-class-multicolor.yaml
-> https://elixir.bootlin.com/linux/v6.17.1/source/Documentation/devicetree/bindings/leds/leds-group-multicolor.yaml
+> Understood, I will separate the patches into two distinct series: one for
+> the controller and one for the PHY.
+> Appreciate the feedback and the explanation.
 > 
 >>>
->>> +description: |
->>> +  Bindings to show how to achieve logically grouped virtual LEDs.
->>> +  The nodes and properties defined in this document are unique to the
->>> +  virtualcolor LED class.
->>
->> That's completely redundant statement.
-> 
-> Ok fair enough, but I basically cloned this comment from the leds-group-multicolor as they have something simular.
-> 
->>> +  Common LED nodes and properties are inherited from the common.yaml  
->>> + within this documentation directory
->>
->> As well drop. Your description is pretty obvious and does not help at all.
-> 
-> Ok thanks
-> 
->>> +    properties:
->>> +      reg:
->>> +        maxItems: 1
->>> +        description: Virtual LED number
+>>> Signed-off-by: Roy Luo <royluo@google.com>
+>>> ---
+>>>  .../bindings/usb/google,gs5-dwc3.yaml         | 141 ++++++++++++++++++
+>>>  1 file changed, 141 insertions(+)
+>>>  create mode 100644 Documentation/devicetree/bindings/usb/google,gs5-dwc3.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/usb/google,gs5-dwc3.yaml b/Documentation/devicetree/bindings/usb/google,gs5-dwc3.yaml
+>>> new file mode 100644
+>>> index 000000000000..6fadea7f41e8
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/usb/google,gs5-dwc3.yaml
+>>> @@ -0,0 +1,141 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>>> +# Copyright (c) 2025, Google LLC
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/usb/google,gs5-dwc3.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 >>> +
->>> +      leds:
->>> +        $ref: /schemas/types.yaml#/definitions/phandle-array
->>> +        description: List of phandles to the monochromatic LEDs to 
->>> + group
+>>> +title: Google Tensor Series (G5+) DWC3 USB SoC Controller
 >>> +
->>> +      function:
->>> +        description: |
->>> +          For virtualcolor LEDs this property should be defined as
->>> +          LED_FUNCTION_VIRTUAL_STATUS as outlined in:
->>> +          include/dt-bindings/leds/common.h.
+>>> +maintainers:
+>>> +  - Roy Luo <royluo@google.com>
 >>> +
->>> +      priority:
->>> +        $ref: /schemas/types.yaml#/definitions/uint32
->>> +        description: Priority level for LED activation
->>> +          (higher value means higher priority)
+>>> +description:
+>>> +  Describes the DWC3 USB controller block implemented on Google Tensor SoCs,
+>>> +  starting with the G5 generation. Based on Synopsys DWC3 IP, the controller
+>>> +  features Dual-Role Device single port with hibernation add-on.
 >>> +
->>> +      blink-delay-on:
->>> +        $ref: /schemas/types.yaml#/definitions/uint32
->>> +        description: Time in milliseconds the LED is on during blink
+>>> +properties:
+>>> +  compatible:
+>>> +    const: google,gs5-dwc3
 >>> +
->>> +      blink-delay-off:
->>> +        $ref: /schemas/types.yaml#/definitions/uint32
->>> +        description: Time in milliseconds the LED is off during blink
->>> +        note: Setting just one of the blink delays to a valid value while
->>> +          setting the other to null will cause the LED to operate with a one-shot
->>> +          on or off delay instead of a repeat cycle.
+>>> +  reg:
+>>> +    items:
+>>> +      - description: Core DWC3 IP registers.
+>>> +      - description: USB host controller configuration registers.
+>>> +      - description: USB custom interrrupts control registers.
+>>> +
+>>> +  reg-names:
+>>> +    items:
+>>> +      - const: dwc3_core
+>>> +      - const: host_cfg
+>>> +      - const: usbint_cfg
+>>> +
+>>> +  interrupts:
+>>> +    items:
+>>> +      - description: Core DWC3 interrupt.
+>>> +      - description: High speed power management event for remote wakeup from hibernation.
+>>> +      - description: Super speed power management event for remote wakeup from hibernation.
 >>
->>
->> And drop all above, except reg and leds. If these are new properties, then you need to use proper unit suffixes.
->>
->> https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/property-units.yaml
+>> Wrap at 80 (see coding style) or just shorten these.
 > 
-> Thanks for pointing this out I guessed there was a definition's somewhere,
+> Ack, will fix it in the next patch.
+> 
+>>
+>>> +
+>>> +  interrupt-names:
+>>> +    items:
+>>> +      - const: dwc_usb3
+>>
+>> So just "core"?
+> 
+> I'd prefer to stick to "dwc_usb3" as that's
+> 1. more expressive by referring to the underlying IP name,
 
 
-You reference common LED bindings, so no need to duplicate properties
-from there.
+But that's completely redundant name.
+
+> 2. consistent with established dwc3 bindings such as
+>     Documentation/devicetree/bindings/usb/snps,dwc3.yaml,
+
+If you use only one interrupt. You don't use one interrupt here.
+
+>     Documentation/devicetree/bindings/usb/qcom,snps-dwc3.yaml,
+> unless you have a strong preference for the alternative naming.
+
+Such namings are discouraged, because they tell absolutely nothing.
+Also, schematics or datasheets usually do not use them, either.
 
 
 Best regards,
