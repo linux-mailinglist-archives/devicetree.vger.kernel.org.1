@@ -1,80 +1,80 @@
-Return-Path: <devicetree+bounces-226399-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226400-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 536ADBD84C2
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 10:54:46 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id A5ED5BD8557
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 11:00:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 649201921A54
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 08:55:09 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 4DE724EC1B8
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 09:00:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B5AE2DE1FA;
-	Tue, 14 Oct 2025 08:54:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 690ED2D8790;
+	Tue, 14 Oct 2025 09:00:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RgaO6zD7"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IV3aNhOp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com [209.85.210.175])
+Received: from mail-pj1-f52.google.com (mail-pj1-f52.google.com [209.85.216.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C5742DCF77
-	for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 08:54:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE3A812B94
+	for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 09:00:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760432084; cv=none; b=i3+zk8UjD+V60EYCRPclNsL+9IbUSbfLJ3a+FRPZKT9ZVksu2lOGzFLsXxq5da+9yS0Lh9s27y7zwNjgwXbEJqxuoPyRePYjeDu9aeAf6uJ6KdTeHE/+wpmadDd/srty4dM16cV9uDtYS0T/ltOhUMD8SFOQwPOpqaHGAQX8OJY=
+	t=1760432428; cv=none; b=PQiWt5qcpgh/NHyRJWvcUpc2tkc1BpYIgdOYktekYLteLy7JrugMXJJYLct3l2VsUIeCS09+5BMq9P7q5l0b1rp/TtGTuE/35Xs3jTCCjEW/4C02g33rhnaHAvPASzUEPYxnB82f3aNisPs855FM47q9R0PHodlI52AJiU0R3uQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760432084; c=relaxed/simple;
-	bh=7x1ksEGRUIlN/JRIZWql+/rRJiRrxtl9r0MDlxoj8Co=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=dYPEEVBmbYctDjqM22amnyY9yffuLNq9EIFv+I182/kzw2Oy3Ny2kfNa179djqKA5wnHlpVuj20eGy1pVk8/r8ef3p9qdolXcmHZhQj8WvqNvExhw41brUDXMWyqWodflTMGBGnfUJ0rgIEabZ+wpBN9op8VQR/3YryDPx/E8LI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RgaO6zD7; arc=none smtp.client-ip=209.85.210.175
+	s=arc-20240116; t=1760432428; c=relaxed/simple;
+	bh=vLLXYSNqwVBysVXGGW/2y78CIHhM+kEKSlCHLMSsiuY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=pPziOQutGGoIuisWDehlL7BiKYbprvg1IObcOi7S2UovQdxIx4DWfhBcGSf3MinWNxVvR4EuTe4NKbNegXDJbG4LKwOuqcMJ7wSKfsZcbSygFhKf/Ym6AGSuYuOU2IIETpY7dQoRF6sSIpkadtfppbJ7T38eA+CvUNIK0Y/VKYs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IV3aNhOp; arc=none smtp.client-ip=209.85.216.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f175.google.com with SMTP id d2e1a72fcca58-791c287c10dso4286619b3a.1
-        for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 01:54:42 -0700 (PDT)
+Received: by mail-pj1-f52.google.com with SMTP id 98e67ed59e1d1-3306d93e562so5081270a91.1
+        for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 02:00:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1760432082; x=1761036882; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:subject:from:user-agent:mime-version:date:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=ISi9f6KzQSpnphkygLBuAPANu77cvnhCFWLhBPhHgsY=;
-        b=RgaO6zD7JIq0U1oTpkDVKzmcZUfv7rs1fKBnpjk22jmaEJeOhOopafaZAqyFnmyEhH
-         AGRlxGAZ8oyhvit0nMn7qf4QrELfs4w6o3YMAIQYf5et4EmHgEJsDuJjZPk9vHVkR8Qq
-         tDN4faYddijCXim041/EKruc2EiJuki368SkZLekMxUYssjkvzpt27/+xV07/CL4uk7J
-         WpEILnCEl6K5rvoc+py9mTY2zYnWpddaSWY7n5/ge29ZQ+IMqVwNNYQnMzn4MWvIn96u
-         ywCsstlWGSYIlKdYoEAWqPebmtROZ9qYtKHsPwDynY+c6XMIw411qIDc982ytjKffXQo
-         hbUA==
+        d=gmail.com; s=20230601; t=1760432426; x=1761037226; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=F1TFiJXfN4H/Xgn0NClhb7Y/ZMUzFLTyPno5YMrNpTY=;
+        b=IV3aNhOprq4KTf4s2K+hFbIaOXEg7HQlKwXbuO8m8DDndYLSl0UwwVOBhjNJNewLHG
+         dE/JCCRYzvhydhSNFXszrKjekF2b89STe4HX6oK9UDoXV6nLZ7+JptN0lGxpLNm+9oid
+         YTo47RICcIilxETfKbsN124UscNwrZTiwvsPcW1rfSieebeRUyCaMxlLYzPL3gpfmTND
+         O/8B1SqzcJIrx75QjWDK5tVTFh7Vd38tTdrOlY7DRBv6byAL9flwggAopshpeEE4vSI7
+         xOWWaTK3a7frKDuMjKiExm+qRhUQUdpGVCpCtVblXlEuAua7nhE6rubJwWyV1l7l7kWz
+         Pr/Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760432082; x=1761036882;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:subject:from:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1760432426; x=1761037226;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ISi9f6KzQSpnphkygLBuAPANu77cvnhCFWLhBPhHgsY=;
-        b=hVKYXYLre4eNUNJGasWus+WS5pMS5TYqKT5l5MxW54YQnnlHst1Rc5GR4faqYLu+YD
-         pfQXo/TImXC9AYS24L3zNg5/gplN2CyeXIYz58hV/vWGnlHdcCLtJyiuscEw0ohVS9s7
-         nLJXvy1GtDS9+tTSlwA3aPw8xazN/7HiGtTGa0th9X0dZPmU83DYhtmPlZqHQ/SNQYxk
-         02SKwkONWpwlLxDuKF1r2dp7Ux2hzv5WONwmjKnYPB/fDW4BLSYzXqkcFHXCWBsGMt2Y
-         1WEjzzgUU7uin6ungRgBOB4SclyVUNfFTBezzNn4SK+C9za3Pis98sCY8FzlyZGxFSCJ
-         t3ow==
-X-Forwarded-Encrypted: i=1; AJvYcCVhpPytLJc3gPFV0HOUhQ3a2O+bWX5IeSoZY0JADwUpfwKBuWIcwtETFcigHMVZ6XhZux71m6p9pJEI@vger.kernel.org
-X-Gm-Message-State: AOJu0YyCFXKjnIrXiYZ89UWSSKCxedv6RSeFvX/erpBTeh28ge4dy7k1
-	PJXV6fCrvGq9YlJ4Of+L2DH9LtdjEp8f0RcnG2w1uYj3TIexhlaIk0eF
-X-Gm-Gg: ASbGncu4Aon9xHLezqlD0EVWbI1d1AR8eDPTlMUsAV1uGEZcYeUtBFsGSW+8ib38xmM
-	UbWLiP893OuupwUUwrbfgwYjWTF2wKJXC6t0d+nNwsbMfHqo1YSGYKNCcJfQMgbrBzNNnupbiSy
-	Bfon1stQRW5AGG0Nz4g0x12kkXbVRulBxxT6cX2j9wuQwmeAWkfR8N/sSOJhO9C0RFRHLe4TwXO
-	HLkbSE/sYrotXYV7vuHsx4FcfzkEKBg05zjZ4Yx9LRrZ+35C4XjiO3i+Tq5tOoWHFiUDis5JEPk
-	d0cF6/B9Z7v49b670+1jWV5fuMYcDiuDd5W4nJKcdXshxe21BQrYQE4zkrkHlKwMEWqer+pjKE3
-	eVoQiZedoqwMA2gpnGfyeFpIt8IlZPhmmLvMtdkWwmDlbpj3oGZwglA==
-X-Google-Smtp-Source: AGHT+IGqTpN25zTj2NoGAGnl9jeNvvTw7CBNIuJy1oxy3KZR2C7Ji/G8drrYLcEK31MzNn+ZS3y/Fg==
-X-Received: by 2002:a05:6a00:4fd3:b0:776:12ea:c737 with SMTP id d2e1a72fcca58-79387e05323mr21822249b3a.23.1760432081535;
-        Tue, 14 Oct 2025 01:54:41 -0700 (PDT)
+        bh=F1TFiJXfN4H/Xgn0NClhb7Y/ZMUzFLTyPno5YMrNpTY=;
+        b=YZs7VvdMc+xHxpHlEJGizx4jLTbPR+zk+/gmEAVethLry2UO2522UQYuNNwhXNIvHh
+         bq7G9iHr3CxPeHpwdzy5uioD6PPPfx8lsbfgdurf0ccndb1GKIdAM1hrptdsd87nY5EP
+         acvozfO+TI4ILpNdUPpOfiIfd1CyJ+95nIarFsVF0uoPVmuxqZonqohvvRu1T94HLTwq
+         Z2xqGt7/lqd+XqHCDFBRSK0V+/W6+sM51xYsIECxnF+dcS+sbuav1RLjt9iOTlMQSGSv
+         WqX8LOgigDOo35G0vWb4BS9xQgbiw+2+hUwO4W3VEp3vpfV46cn6NFujerbAVPOlVmWE
+         LIAA==
+X-Forwarded-Encrypted: i=1; AJvYcCXL+Ihn4jwPYJhXwPJkUfXvWWNX2rp8SOSJFLD/xxeL+SJH0ypIVO8tRScX9NpSPFiFT8S9MrdPLTcn@vger.kernel.org
+X-Gm-Message-State: AOJu0YwivWqldd8lqtSkumtPKxzbs9bw+cp4pQlsC67c0u7PGPMu+gww
+	Z1ppsg/9xwMh1kdxXLkNbCnjW27zYvDOSj2tfbTGAHki56VFx0hfOjpW
+X-Gm-Gg: ASbGncuxpGs47IZvSKG7de+SiGgzqf0TUEefOhMRDCNL8Ip3u/792rG9NKx0WIX+amx
+	pnYag8RfFOQmIgDGAwQo6JND6hnQa9hdMsbFOXVNwgh4fvoc6JwvqzjoqJJYeh+o4F4Tg8FgWQJ
+	uLQBIzwB3knMeIXJOAjVh5skhw01RvVYQv0KeO7IQcvW7nyqePx21wBPL76gynbB7tIVDxVwlDh
+	B75Ebt4uvBoC34Dv+LbCktv55xzk/eDBZ7YX9U77HmGak6+2tq7B6Z74S80UYomOjYnIRBnrpE0
+	7HNA7DZVFb7uJr6pidiOdCJjBTM8uFdfLEMm6yw7W5pIQsd0mqq6+721vfTgNJ1aHwY0l/yt6aX
+	M2PWgG0tltkluf00ypc3F2Sm1Z52eFenUPjx1DkoMUuQ=
+X-Google-Smtp-Source: AGHT+IE0mIgWQWJZSxQ3gwmU/tn8/Wu8JthlrumZUzn60cmTN+GhgkxNyMqIgZ/XievZAUQnR5iVrw==
+X-Received: by 2002:a17:90b:1b43:b0:32e:18f2:7a59 with SMTP id 98e67ed59e1d1-33b5116251cmr36222338a91.11.1760432425506;
+        Tue, 14 Oct 2025 02:00:25 -0700 (PDT)
 Received: from [192.168.0.13] ([172.92.174.155])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7992b060b66sm14499599b3a.8.2025.10.14.01.54.40
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-33b61aab6eesm15311175a91.15.2025.10.14.02.00.24
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Oct 2025 01:54:41 -0700 (PDT)
-Message-ID: <8226884b-96f9-483e-bcee-466ff3e04b23@gmail.com>
-Date: Tue, 14 Oct 2025 01:53:38 -0700
+        Tue, 14 Oct 2025 02:00:24 -0700 (PDT)
+Message-ID: <a6e787e3-f332-4445-9f7a-b2ec65daf019@gmail.com>
+Date: Tue, 14 Oct 2025 01:59:22 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,190 +82,171 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-From: Bo Gan <ganboing@gmail.com>
-Subject: Re: [PATCH v7 1/2] dt-bindings: ethernet: eswin: Document for EIC7700
- SoC
-To: weishangjuan@eswincomputing.com, devicetree@vger.kernel.org,
- andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
- kuba@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- netdev@vger.kernel.org, pabeni@redhat.com, mcoquelin.stm32@gmail.com,
- alexandre.torgue@foss.st.com, vladimir.oltean@nxp.com,
- rmk+kernel@armlinux.org.uk, yong.liang.choong@linux.intel.com,
- anthony.l.nguyen@intel.com, prabhakar.mahadev-lad.rj@bp.renesas.com,
- jan.petrous@oss.nxp.com, jszhang@kernel.org, inochiama@gmail.com,
- 0x1207@gmail.com, boon.khai.ng@altera.com, linux-kernel@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org
-Cc: ningyu@eswincomputing.com, linmin@eswincomputing.com,
- lizhi2@eswincomputing.com, pinkesh.vaghela@einfochips.com,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <20250918085612.3176-1-weishangjuan@eswincomputing.com>
- <20250918085903.3228-1-weishangjuan@eswincomputing.com>
+Subject: Re: [PATCH 04/11] rvtrace: Add functions to start/stop tracing on a
+ component path
+To: Mayuresh Chitale <mchitale@ventanamicro.com>, Bo Gan <ganboing@gmail.com>
+Cc: Anup Patel <apatel@ventanamicro.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
+ Palmer Dabbelt <palmer@dabbelt.com>, Greg KH <gregkh@linuxfoundation.org>,
+ Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+ Ian Rogers <irogers@google.com>, Alexandre Ghiti <alex@ghiti.fr>,
+ Peter Zijlstra <peterz@infradead.org>, Ingo Molnar <mingo@redhat.com>,
+ Namhyung Kim <namhyung@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
+ Jiri Olsa <jolsa@kernel.org>, Adrian Hunter <adrian.hunter@intel.com>,
+ Liang Kan <kan.liang@linux.intel.com>, Mayuresh Chitale
+ <mchitale@gmail.com>, Anup Patel <anup@brainfault.org>,
+ Atish Patra <atish.patra@linux.dev>, Andrew Jones <ajones@ventanamicro.com>,
+ Sunil V L <sunilvl@ventanamicro.com>, linux-riscv@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20251002060732.100213-1-apatel@ventanamicro.com>
+ <20251002060732.100213-5-apatel@ventanamicro.com>
+ <20edc3a9-2efe-4431-b198-f00b3940777c@gmail.com>
+ <CAK9=C2U+H5xZaK6g5qcytESyC9H8gkU_jEUDJanEs1qzcGgYCQ@mail.gmail.com>
+ <69205060-6a47-4140-8026-6e5a50ad1512@gmail.com>
+ <CAN37VV4jFyuEYw0cxU00FucgV=so5SfTon_1hdvbVuqX1QzYCQ@mail.gmail.com>
 Content-Language: en-US
-In-Reply-To: <20250918085903.3228-1-weishangjuan@eswincomputing.com>
+From: Bo Gan <ganboing@gmail.com>
+In-Reply-To: <CAN37VV4jFyuEYw0cxU00FucgV=so5SfTon_1hdvbVuqX1QzYCQ@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 9/18/25 01:59, weishangjuan@eswincomputing.com wrote:
-> From: Shangjuan Wei <weishangjuan@eswincomputing.com>
-> 
-> Add ESWIN EIC7700 Ethernet controller, supporting clock
-> configuration, delay adjustment and speed adaptive functions.
-> 
-> Signed-off-by: Zhi Li <lizhi2@eswincomputing.com>
-> Signed-off-by: Shangjuan Wei <weishangjuan@eswincomputing.com>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->   .../bindings/net/eswin,eic7700-eth.yaml       | 127 ++++++++++++++++++
->   1 file changed, 127 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/net/eswin,eic7700-eth.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/net/eswin,eic7700-eth.yaml b/Documentation/devicetree/bindings/net/eswin,eic7700-eth.yaml
-> new file mode 100644
-> index 000000000000..57d6d0efc126
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/eswin,eic7700-eth.yaml
-> @@ -0,0 +1,127 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/net/eswin,eic7700-eth.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Eswin EIC7700 SOC Eth Controller
-> +
-> +maintainers:
-> +  - Shuang Liang <liangshuang@eswincomputing.com>
-> +  - Zhi Li <lizhi2@eswincomputing.com>
-> +  - Shangjuan Wei <weishangjuan@eswincomputing.com>
-> +
-> +description:
-> +  Platform glue layer implementation for STMMAC Ethernet driver.
-> +
-> +select:
-> +  properties:
-> +    compatible:
-> +      contains:
-> +        enum:
-> +          - eswin,eic7700-qos-eth
-> +  required:
-> +    - compatible
-> +
-> +allOf:
-> +  - $ref: snps,dwmac.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - const: eswin,eic7700-qos-eth
-> +      - const: snps,dwmac-5.20
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  interrupt-names:
-> +    const: macirq
-> +
-> +  clocks:
-> +    items:
-> +      - description: AXI clock
-> +      - description: Configuration clock
-> +      - description: GMAC main clock
-> +      - description: Tx clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: axi
-> +      - const: cfg
-> +      - const: stmmaceth
-> +      - const: tx
-> +
-> +  resets:
-> +    maxItems: 1
-> +
-> +  reset-names:
-> +    items:
-> +      - const: stmmaceth
-> +
-> +  rx-internal-delay-ps:
-> +    enum: [0, 200, 600, 1200, 1600, 1800, 2000, 2200, 2400]
-> +
-> +  tx-internal-delay-ps:
-> +    enum: [0, 200, 600, 1200, 1600, 1800, 2000, 2200, 2400]
-> +
-> +  eswin,hsp-sp-csr:
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +    items:
-> +      - description: Phandle to HSP(High-Speed Peripheral) device
-> +      - description: Offset of phy control register for internal
-> +                     or external clock selection
-> +      - description: Offset of AXI clock controller Low-Power request
-> +                     register
-> +      - description: Offset of register controlling TX/RX clock delay
-> +    description: |
-> +      High-Speed Peripheral device needed to configure clock selection,
-> +      clock low-power mode and clock delay.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - interrupts
-> +  - interrupt-names
-> +  - phy-mode
-> +  - resets
-> +  - reset-names
-> +  - rx-internal-delay-ps
-> +  - tx-internal-delay-ps
-> +  - eswin,hsp-sp-csr
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    ethernet@50400000 {
-> +        compatible = "eswin,eic7700-qos-eth", "snps,dwmac-5.20";
-> +        reg = <0x50400000 0x10000>;
-> +        clocks = <&d0_clock 186>, <&d0_clock 171>, <&d0_clock 40>,
-> +                <&d0_clock 193>;
-> +        clock-names = "axi", "cfg", "stmmaceth", "tx";
-> +        interrupt-parent = <&plic>;
-> +        interrupts = <61>;
-> +        interrupt-names = "macirq";
-> +        phy-mode = "rgmii-id";
-> +        phy-handle = <&phy0>;
-> +        resets = <&reset 95>;
-> +        reset-names = "stmmaceth";
-> +        rx-internal-delay-ps = <200>;
-> +        tx-internal-delay-ps = <200>;
-> +        eswin,hsp-sp-csr = <&hsp_sp_csr 0x100 0x108 0x118>;
-> +        snps,axi-config = <&stmmac_axi_setup>;
-> +        snps,aal;
-> +        snps,fixed-burst;
-> +        snps,tso;
-> +        stmmac_axi_setup: stmmac-axi-config {
-> +            snps,blen = <0 0 0 0 16 8 4>;
-> +            snps,rd_osr_lmt = <2>;
-> +            snps,wr_osr_lmt = <2>;
-> +        };
-> +    };
-> \ No newline at end of file
-> --
-> 2.17.1
-> 
+Hi Mayuresh,
 
-Hi ShangJuan,
+On 10/14/25 01:10, Mayuresh Chitale wrote:
+> Hi Bo,
+> 
+> On Mon, Oct 13, 2025 at 10:23 AM Bo Gan <ganboing@gmail.com> wrote:
+>>
+>> On 10/12/25 20:43, Anup Patel wrote:
+>>> On Wed, Oct 8, 2025 at 2:45 PM Bo Gan <ganboing@gmail.com> wrote:
+>>>>
+>>>> On 10/1/25 23:07, Anup Patel wrote:
+>>>>> From: Mayuresh Chitale <mchitale@ventanamicro.com>
+>>>>>
+>>>>> The perf driver framework needs to be able to start / stop all components
+>>>>> in a trace component path during its operation. Add rvtrace_path_start()
+>>>>> and rvtrace_path_stop() functions for this purpose.
+>>>>>
+>>>>> Co-developed-by: Anup Patel <apatel@ventanamicro.com>
+>>>>> Signed-off-by: Anup Patel <apatel@ventanamicro.com>
+>>>>> Signed-off-by: Mayuresh Chitale <mchitale@ventanamicro.com>
+>>>>> ---
+>>>>>     drivers/hwtracing/rvtrace/rvtrace-core.c | 44 ++++++++++++++++++++++++
+>>>>>     include/linux/rvtrace.h                  |  6 ++++
+>>>>>     2 files changed, 50 insertions(+)
+>>>>>
+>>>>> diff --git a/drivers/hwtracing/rvtrace/rvtrace-core.c b/drivers/hwtracing/rvtrace/rvtrace-core.c
+>>>>> index 7013d50ca569..109be40d4b24 100644
+>>>>> --- a/drivers/hwtracing/rvtrace/rvtrace-core.c
+>>>>> +++ b/drivers/hwtracing/rvtrace/rvtrace-core.c
+>>>>> @@ -614,6 +614,50 @@ static void rvtrace_release_path_nodes(struct rvtrace_path *path)
+>>>>>         }
+>>>>>     }
+>>>>>
+>>>>> +int rvtrace_path_start(struct rvtrace_path *path)
+>>>>> +{
+>>>>> +     const struct rvtrace_driver *rtdrv;
+>>>>> +     struct rvtrace_component *comp;
+>>>>> +     struct rvtrace_path_node *node;
+>>>>> +     int ret;
+>>>>> +
+>>>>> +     list_for_each_entry(node, &path->comp_list, head) {
+>>>>> +             comp = node->comp;
+>>>>> +             rtdrv = to_rvtrace_driver(comp->dev.driver);
+>>>>> +             if (!rtdrv->start)
+>>>>> +                     continue;
+>>>>> +
+>>>>> +             ret = rtdrv->start(comp);
+>>>>> +             if (ret)
+>>>>> +                     return ret;
+>>>>> +     }
+>>>>> +
+>>>>> +     return 0;
+>>>>> +}
+>>>>> +EXPORT_SYMBOL_GPL(rvtrace_path_start);
+>>>>> +
+>>>>> +int rvtrace_path_stop(struct rvtrace_path *path)
+>>>>> +{
+>>>>> +     const struct rvtrace_driver *rtdrv;
+>>>>> +     struct rvtrace_component *comp;
+>>>>> +     struct rvtrace_path_node *node;
+>>>>> +     int ret;
+>>>>> +
+>>>>> +     list_for_each_entry(node, &path->comp_list, head) {
+>>>>> +             comp = node->comp;
+>>>>> +             rtdrv = to_rvtrace_driver(comp->dev.driver);
+>>>>> +             if (!rtdrv->stop)
+>>>>> +                     continue;
+>>>>> +
+>>>>> +             ret = rtdrv->stop(comp);
+>>>>> +             if (ret)
+>>>>> +                     return ret;
+>>>>> +     }
+>>>>> +
+>>>>> +     return 0;
+>>>>> +}
+>>>>> +EXPORT_SYMBOL_GPL(rvtrace_path_stop);
+>>>>> +
+>>>>>     struct rvtrace_path *rvtrace_create_path(struct rvtrace_component *source,
+>>>>>                                          struct rvtrace_component *sink,
+>>>>>                                          enum rvtrace_component_mode mode)
+>>>>> diff --git a/include/linux/rvtrace.h b/include/linux/rvtrace.h
+>>>>> index f2174f463a69..e7bd335d388f 100644
+>>>>> --- a/include/linux/rvtrace.h
+>>>>> +++ b/include/linux/rvtrace.h
+>>>>> @@ -273,10 +273,14 @@ struct rvtrace_path *rvtrace_create_path(struct rvtrace_component *source,
+>>>>>                                          struct rvtrace_component *sink,
+>>>>>                                          enum rvtrace_component_mode mode);
+>>>>>     void rvtrace_destroy_path(struct rvtrace_path *path);
+>>>>> +int rvtrace_path_start(struct rvtrace_path *path);
+>>>>> +int rvtrace_path_stop(struct rvtrace_path *path);
+>>>>>
+>>>>>     /**
+>>>>>      * struct rvtrace_driver - Representation of a RISC-V trace driver
+>>>>>      * id_table: Table to match components handled by the driver
+>>>>> + * start:        Callback to start tracing
+>>>>> + * stop:         Callback to stop tracing
+>>>>>      * probe:        Driver probe() function
+>>>>>      * remove:       Driver remove() function
+>>>>>      * get_trace_id: Get/allocate a trace ID
+>>>>> @@ -285,6 +289,8 @@ void rvtrace_destroy_path(struct rvtrace_path *path);
+>>>>>      */
+>>>>>     struct rvtrace_driver {
+>>>>>         const struct rvtrace_component_id *id_table;
+>>>>> +     int                     (*start)(struct rvtrace_component *comp);
+>>>>> +     int                     (*stop)(struct rvtrace_component *comp);
+>>>>>         int                     (*probe)(struct rvtrace_component *comp);
+>>>>>         void                    (*remove)(struct rvtrace_component *comp);
+>>>>>         int                     (*get_trace_id)(struct rvtrace_component *comp,
+>>>>
+>>>> I'd suggest add another function (*quiesce) or something like that. Trace
+>>>> components have a tr??Empty bit that indicates trace has been all flushed
+>>>> out. Also along the path when you do rvtrace_path_stop, you need to ensure
+>>>> the source has stopped and quiescent before beginning to stop the sink.
+>>>> Otherwise you'll get partial or corrupted trace. In essence, follow Control
+>>>> Interface Spec 11.3 Enabling and Disabling. FYI: my userspace driver:
+>>>> https://github.com/ganboing/riscv-trace-umd/blob/master/rvtrace/funnel.py#L223
+>>>
+>>> It's better to add functions on a need basis rather than adding
+>>> it now without any potential user.
+>>>
+>>> Regards,
+>>> Anu
+>>
+>> Hi Anup, my previous comment also applies to your current use case where you
+>> have encoder->RAM sink directly connected together. Having a longer path,
+>> e.g., funnels in between makes it worse. The driver needs to poll the empty
+>> bit tr??Empty (bit 3) of the control register to check if trace has been
+>> completely flushed. Otherwise, you get a partial trace, possibly with last
+>> few messages missing or truncated. So, yes, there's really a need to do so.
+> 
+> I think this can also be implemented in the component's 'stop' callback.
 
-I'm active user of HiFive p550. I'd like to test out this driver. Do you have
-the device tree section of phy0 for Hifive p550 board? Or it's optional for
-p550 board and I can just provide an empty &phy0 node? Regarding hsp_sp_csr
-node, I should be able to use
-https://github.com/sifiveinc/riscv-linux/blob/b4a753400e624a0eba3ec475fba2866dd7efb767/arch/riscv/boot/dts/eswin/eic7700.dtsi#L167
-correct?
+Sure, that also works.
+
+>>
+>> Bo
 
 Bo
 
