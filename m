@@ -1,218 +1,219 @@
-Return-Path: <devicetree+bounces-226478-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226480-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34181BD9081
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 13:30:34 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 61285BD90BA
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 13:32:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DF3B03A3643
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 11:30:32 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 43B384E6726
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 11:32:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0229530CD81;
-	Tue, 14 Oct 2025 11:30:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87DBC30C61D;
+	Tue, 14 Oct 2025 11:32:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="dZ9ek50b"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="nnBFVhMU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CF1A305063
-	for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 11:30:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 869922E3B03;
+	Tue, 14 Oct 2025 11:32:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760441429; cv=none; b=gbCTHW3r4+v8XTbZhGhZjZ5QbJi5uchi5pqf7OXBNyuREqgTgRfETSZGtgichfhdO7zj5rbYml+Rf2vsmU7lgBtYuF/EaOQkQmoMMty+5Cr8lKyw4JH/Q6JhW75F8f/CQeGVMKZ4rRfuU/3VG3GLGdMqjut4SyeUVjBm/fTf4Gk=
+	t=1760441545; cv=none; b=K1yyMwhAzVCG4I4bmsVKhhoAlpkZHCjEABYsdyh50kOqa/WsvmsdLA5PWsdLqK01vYLtl6Y87TPapNzAgqBICTMsK7DdmlMPTZDrbvfKylT2vniRfLPzkH1VjuPUSpqZU+EiVHPaEYEjG+uXOJDDpvb1guBbCQfVGJRtBLnjOxY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760441429; c=relaxed/simple;
-	bh=xKTYsXPMGOMKMV/jt+4Z9kaeJjZ4nbFhnUfdLzk38tM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Suzzn2se1gTzyaLSE1CRKcNX6SVDELrSB4SzUt4XFBXx8nw/etDCFBF41CMhOEH6x9jetiWbLWOuvsXkM9KQ/wfqf9XpH06IG0+lsR7eOyadbNdMDyrd3BxISRJ4a2VT4GO9d9V97PcnFEmWs/XZAr8VrfitGcZeWv2bgVeBXdM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=dZ9ek50b; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=from:to:cc:subject:date:message-id
-	:in-reply-to:references:mime-version:content-transfer-encoding;
-	 s=k1; bh=m2Ce9z697ssvL8uDRJI2+5HkTIC8S6bwRAdA0cAsyWg=; b=dZ9ek5
-	0brAbd80iuMBUeh0ftOxJgK2OsXYBeX7Mv+do0fVcvEcG7KaT+RTiyrGhMg4PgJW
-	o4Ga+M92oOSWkHGXsoNcUTwpXq1eYJu+ZTF1b+YXTv8joNuHXZ/NGQphLlupitLE
-	ivipDgVj15IgP1Oz/PlHmHFapR3tPBYwnFkXsuziOnFmo5dTnEeIfxonbioiZT0N
-	aQKyIOMUaPHm4WT9I4k97jXjI1YEqEh0LoWvhKVHqvJzY/ua0oiOy9211MXFW2eq
-	feBxC6zRRLJPLDAUwtEi9WFKO7+rjKkxOKWVdNzjhV7OXaZAkPLLfRdjzEbWu1YP
-	GELhXyAkA42NJW7Q==
-Received: (qmail 2943660 invoked from network); 14 Oct 2025 13:30:18 +0200
-Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 14 Oct 2025 13:30:18 +0200
-X-UD-Smtp-Session: l3s3148p1@6CphtRxByN4gAwDPXwQHAL/S9V79e5yL
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: linux-renesas-soc@vger.kernel.org
-Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	linux-watchdog@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH v2 1/2] dt-bindings: watchdog: Add Renesas WWDT
-Date: Tue, 14 Oct 2025 13:29:53 +0200
-Message-ID: <20251014112953.25712-5-wsa+renesas@sang-engineering.com>
-X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20251014112953.25712-4-wsa+renesas@sang-engineering.com>
-References: <20251014112953.25712-4-wsa+renesas@sang-engineering.com>
+	s=arc-20240116; t=1760441545; c=relaxed/simple;
+	bh=8juqZChkhVdJOJOqCmRgkPRBnkr1y8NTqdNQbKSKwVM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=SktZFBKWt2BhmCdhZmQCKre7FMiN+FPJgyQfVJFej7MVKuhPZFoTT9gE27KRelVNjcwBGOn2ufAMnnuepYlgAQydH5m4VHAqbrSFQleYOg95YI2L/pSLgXP2PwcF43zmOW7GEox6bvOEZzty1Gk72q0ugT9yW/imda8YYBkTIm8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=nnBFVhMU; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1760441541;
+	bh=8juqZChkhVdJOJOqCmRgkPRBnkr1y8NTqdNQbKSKwVM=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=nnBFVhMUh/1GaQxtOa7WgGzBInvLUnfBP0ZJ5exU29pIvQPutfuF6d55LhieayC9S
+	 l7wVqv9cR+57AUhZyHQUAGTmHtMQ422yyfQGUxKKhVWVAzrBb7j9RcuzO3IVE5PLWR
+	 b1Jpg72ulzl2e4LCz6NHabdLV3QrZcRhBfLq437V5Ww5+Gx2kfh0y08rUNeNx2QEb3
+	 Ng/U4TIXz7za7kOR9lnK/kRAtD6MBcMIMp83Q75easNYWXalVYVvWj8KSeABQ0uyIk
+	 ezJ0BGUtTbRcp7i/KvzO8BXHOD+uBPk3Zryq9vVtNLnsREVPIjWlMbc6JeQIx0RyIa
+	 oHXqlalgkD+ag==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 05DF517E1292;
+	Tue, 14 Oct 2025 13:32:20 +0200 (CEST)
+Message-ID: <87489f92-7bc0-4494-8532-f8f2d220bd27@collabora.com>
+Date: Tue, 14 Oct 2025 13:32:20 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 10/20] soc: mediatek: mtk-cmdq: Add new APIs to replace
+ cmdq_pkt_write() and cmdq_pkt_write_mask()
+To: =?UTF-8?B?SmFzb24tSkggTGluICjmnpfnnb/npaUp?= <Jason-JH.Lin@mediatek.com>,
+ "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
+ "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
+ <krzk+dt@kernel.org>, "jassisinghbrar@gmail.com" <jassisinghbrar@gmail.com>,
+ "mchehab@kernel.org" <mchehab@kernel.org>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>, =?UTF-8?B?Q0sgSHUgKOiDoeS/ig==?=
+ =?UTF-8?B?5YWJKQ==?= <ck.hu@mediatek.com>
+Cc: "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+ =?UTF-8?B?U2lyaXVzIFdhbmcgKOeOi+eak+aYsSk=?= <Sirius.Wang@mediatek.com>,
+ =?UTF-8?B?TW91ZHkgSG8gKOS9leWul+WOnyk=?= <Moudy.Ho@mediatek.com>,
+ =?UTF-8?B?WGlhbmRvbmcgV2FuZyAo546L5YWI5YasKQ==?=
+ <Xiandong.Wang@mediatek.com>, "nicolas@ndufresne.ca" <nicolas@ndufresne.ca>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ Project_Global_Chrome_Upstream_Group
+ <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+ "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ =?UTF-8?B?UGF1bC1wbCBDaGVuICjpmbPmn4/pnJYp?= <Paul-pl.Chen@mediatek.com>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "fshao@chromium.org" <fshao@chromium.org>,
+ =?UTF-8?B?U2luZ28gQ2hhbmcgKOW8teiIiOWciyk=?= <Singo.Chang@mediatek.com>,
+ =?UTF-8?B?TmFuY3kgTGluICjmnpfmrKPonqIp?= <Nancy.Lin@mediatek.com>,
+ "wenst@chromium.org" <wenst@chromium.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>
+References: <20250827114006.3310175-1-jason-jh.lin@mediatek.com>
+ <20250827114006.3310175-11-jason-jh.lin@mediatek.com>
+ <b2335fd9296bc6f3511f8139870f0c34db1be62a.camel@mediatek.com>
+ <fa46fec3f7ca25532c39e6e864ea692e19b7f5bb.camel@mediatek.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <fa46fec3f7ca25532c39e6e864ea692e19b7f5bb.camel@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-Describe the Window Watchdog Timer found on Renesas R-Car SoCs from late
-Gen3 onwards.
+Il 13/10/25 11:50, Jason-JH Lin (林睿祥) ha scritto:
+> On Fri, 2025-09-05 at 09:41 +0000, CK Hu (胡俊光) wrote:
+>> On Wed, 2025-08-27 at 19:37 +0800, Jason-JH Lin wrote:
+>>> To support generating GCE write instructions using both pa_base and
+>>> subsys, the original cmdq_pkt_write() and cmdq_pkt_write_mask()
+>>> have
+>>> been expanded into four new APIs:
+>>> - Replaced cmdq_pkt_write() to cmdq_pkt_write_pa() and
+>>>    cmdq_pkt_write_subsys().
+>>> - Replaced cmdq_pkt_write_mask() to cmdq_pkt_write_mask_pa() and
+>>>    cmdq_pkt_write_mask_subsys().
+>>>
+>>> The original cmdq_pkt_write() and cmdq_pkt_write_mask() will be
+>>> removed
+>>> after all CMDQ users have migrated to the new APIs.
+>>>
+>>> Signed-off-by: Jason-JH Lin <jason-jh.lin@mediatek.com>
+>>> ---
+>>>   drivers/soc/mediatek/mtk-cmdq-helper.c | 41 +++++++++++++
+>>>   include/linux/soc/mediatek/mtk-cmdq.h  | 79
+>>> ++++++++++++++++++++++++++
+>>>   2 files changed, 120 insertions(+)
+>>>
+>>> diff --git a/drivers/soc/mediatek/mtk-cmdq-helper.c
+>>> b/drivers/soc/mediatek/mtk-cmdq-helper.c
+>>> index 41e1997cdd53..7e86299213d8 100644
+>>> --- a/drivers/soc/mediatek/mtk-cmdq-helper.c
+>>> +++ b/drivers/soc/mediatek/mtk-cmdq-helper.c
+>>> @@ -213,6 +213,26 @@ int cmdq_pkt_write(struct cmdq_pkt *pkt, u8
+>>> subsys, u16 offset, u32 value)
+>>>   }
+>>>   EXPORT_SYMBOL(cmdq_pkt_write);
+>>>   
+>>> +int cmdq_pkt_write_pa(struct cmdq_pkt *pkt, u8 subsys /*unused*/,
+>>> u32 pa_base,
+>>> +		      u16 offset, u32 value)
+>>
+>> subsys is useless. Drop it.
+>>
+>>> +{
+>>> +	int err;
+>>> +
+>>> +	err = cmdq_pkt_assign(pkt, CMDQ_THR_SPR_IDX0,
+>>> CMDQ_ADDR_HIGH(pa_base));
+>>> +	if (err < 0)
+>>> +		return err;
+>>> +
+>>> +	return cmdq_pkt_write_s_value(pkt, CMDQ_THR_SPR_IDX0,
+>>> CMDQ_ADDR_LOW(offset), value);
+>>> +}
+>>> +EXPORT_SYMBOL(cmdq_pkt_write_pa);
+>>> +
+>>> +int cmdq_pkt_write_subsys(struct cmdq_pkt *pkt, u8 subsys, u32
+>>> pa_base /*unused*/,
+>>> +			  u16 offset, u32 value)
+>>
+>> pa_base is useless. Drop it.
+>>
+>>> +{
+>>> +	return cmdq_pkt_write(pkt, subsys, offset, value);
+>>> +}
+>>> +EXPORT_SYMBOL(cmdq_pkt_write_subsys);
+>>> +
+>>>   int cmdq_pkt_write_mask(struct cmdq_pkt *pkt, u8 subsys,
+>>>   			u16 offset, u32 value, u32 mask)
+>>>   {
+>>> @@ -230,6 +250,27 @@ int cmdq_pkt_write_mask(struct cmdq_pkt *pkt,
+>>> u8 subsys,
+>>>   }
+>>>   EXPORT_SYMBOL(cmdq_pkt_write_mask);
+>>>   
+>>> +int cmdq_pkt_write_mask_pa(struct cmdq_pkt *pkt, u8 subsys
+>>> /*unused*/, u32 pa_base,
+>>> +			   u16 offset, u32 value, u32 mask)
+>>
+>> subsys is useless. Drop it.
+>>
+>>> +{
+>>> +	int err;
+>>> +
+>>> +	err = cmdq_pkt_assign(pkt, CMDQ_THR_SPR_IDX0,
+>>> CMDQ_ADDR_HIGH(pa_base));
+>>> +	if (err < 0)
+>>> +		return err;
+>>> +
+>>> +	return cmdq_pkt_write_s_mask_value(pkt, CMDQ_THR_SPR_IDX0,
+>>> +					   CMDQ_ADDR_LOW(offset),
+>>> value, mask);
+>>> +}
+>>> +EXPORT_SYMBOL(cmdq_pkt_write_mask_pa);
+>>> +
+>>> +int cmdq_pkt_write_mask_subsys(struct cmdq_pkt *pkt, u8 subsys,
+>>> u32 pa_base /*unused*/,
+>>> +			       u16 offset, u32 value, u32 mask)
+>>
+>> pa_base is useless. Drop it.
+>>
+>>> +{
+>>> +	return cmdq_pkt_write_mask(pkt, subsys, offset, value,
+>>> mask);
+>>> +}
+>>> +EXPORT_SYMBOL(cmdq_pkt_write_mask_subsys);
+>>> +
+> 
+> Hi CK,
+> 
+> I'll drop the unused parameters.
+> Thanks for the reviews.
 
-Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
----
+It's unused, but if we want to use function pointers we do need those.
 
-Note: Despite the name, V3U is considered to be a Gen4 SoC.
+Unless you want to use one variable for both things, which then becomes
+kind of janky and unreadable.
 
-Changes since v1:
+Cheers,
+Angelo
 
-* support not only V4H but all Gen3/4 SoCs having this WWDT
-* handle the two-resets exception for V3U and S4
-* switch order of clocks, so it is the same as for the resets
-  (for resets, "cnt" is always present and "bus" is optional)
-* rename the file to match the base compatible
-* require interrupts and resets
-* drop unneeded label from the example
-
- .../watchdog/renesas,rcar-gen3-wwdt.yaml      | 114 ++++++++++++++++++
- 1 file changed, 114 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/watchdog/renesas,rcar-gen3-wwdt.yaml
-
-diff --git a/Documentation/devicetree/bindings/watchdog/renesas,rcar-gen3-wwdt.yaml b/Documentation/devicetree/bindings/watchdog/renesas,rcar-gen3-wwdt.yaml
-new file mode 100644
-index 000000000000..ffafe9a6d3f5
---- /dev/null
-+++ b/Documentation/devicetree/bindings/watchdog/renesas,rcar-gen3-wwdt.yaml
-@@ -0,0 +1,114 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/watchdog/renesas,rcar-gen3-wwdt.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Renesas Window Watchdog Timer (WWDT) Controller
-+
-+maintainers:
-+  - Wolfram Sang <wsa+renesas@sang-engineering.com>
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - items:
-+          - enum:
-+              - renesas,r8a77970-wwdt  # R-Car V3M
-+              - renesas,r8a77980-wwdt  # R-Car V3H
-+          - const: renesas,rcar-gen3-wwdt
-+
-+      - items:
-+          - enum:
-+              - renesas,r8a779a0-wwdt  # R-Car V3U
-+              - renesas,r8a779f0-wwdt  # R-Car S4
-+              - renesas,r8a779g0-wwdt  # R-Car V4H
-+              - renesas,r8a779h0-wwdt  # R-Car V4M
-+          - const: renesas,rcar-gen4-wwdt
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    items:
-+      - description: Pretimeout, 75% of overflow reached
-+      - description: Error occurred
-+
-+  interrupt-names:
-+    items:
-+      - const: pretimeout
-+      - const: error
-+
-+  clocks:
-+    items:
-+      - description: Counting clock
-+      - description: Bus clock
-+
-+  clock-names:
-+    items:
-+      - const: cnt
-+      - const: bus
-+
-+  resets:
-+    minItems: 1
-+    maxItems: 2
-+
-+  reset-names:
-+    minItems: 1
-+    items:
-+      - const: cnt
-+      - const: bus
-+
-+  power-domains:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - interrupt-names
-+  - clocks
-+  - clock-names
-+  - resets
-+  - reset-names
-+  - power-domains
-+
-+allOf:
-+  - $ref: watchdog.yaml#
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - renesas,r8a779a0-wwdt
-+              - renesas,r8a779f0-wwdt
-+    then:
-+      properties:
-+        resets:
-+          minItems: 2
-+        reset-names:
-+          minItems: 2
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/r8a779g0-cpg-mssr.h>
-+    #include <dt-bindings/power/r8a779g0-sysc.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    watchdog@ffc90000 {
-+            compatible = "renesas,r8a779g0-wwdt",
-+                         "renesas,rcar-gen4-wwdt";
-+            reg = <0xffc90000 0x10>;
-+            interrupts = <GIC_SPI 310 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 311 IRQ_TYPE_LEVEL_HIGH>;
-+            interrupt-names = "pretimeout", "error";
-+            clocks = <&cpg CPG_CORE R8A779G0_CLK_R>,
-+                     <&cpg CPG_CORE R8A779G0_CLK_SASYNCRT>;
-+            clock-names = "cnt", "bus";
-+            power-domains = <&sysc R8A779G0_PD_ALWAYS_ON>;
-+            resets = <&cpg 1200>;
-+            reset-names = "cnt";
-+    };
--- 
-2.47.2
+> 
+> Regards,
+> Jason-JH Lin
 
 
