@@ -1,280 +1,212 @@
-Return-Path: <devicetree+bounces-226703-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226704-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61F34BDA915
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 18:09:19 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB965BDA9A6
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 18:25:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 93B9C18A3043
-	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 16:09:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 02E2C19A0E7F
+	for <lists+devicetree@lfdr.de>; Tue, 14 Oct 2025 16:25:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A11ED301027;
-	Tue, 14 Oct 2025 16:09:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B525F3002DB;
+	Tue, 14 Oct 2025 16:25:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="m6IGRwZA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KAAWQzDA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f171.google.com (mail-il1-f171.google.com [209.85.166.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C06B923D7D3
-	for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 16:09:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90B5A255F22
+	for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 16:25:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760458153; cv=none; b=ip4fJt3yoj+aY+mguxi1l+BZgS4GE2bjTc/kh6ZF/LMTbY9Th21DxpIdPr87cj9WCXq51C0vApJXMJDQ3zj6QKFft6trlSxEDIld2opccg3S123Ig9pm8P8EPqQAD/HnmG6pVt+Y6M5VNu6wTyGNbMnjzM5LvUX2BkCfLrh768U=
+	t=1760459118; cv=none; b=LlsskT6zfPeh1eqIcEv/rRlgR4BAoXC3PXIfFhGK1jyfG3F5kxYcdaWdTbY3NgRwuRWfWj3vaaVm/w68ycFDTZq5toQA9TN5GfYmBaCaCtqCZ+aFrV3urlAcrunvdQnZqWc8KlOuwtpEA12+xri4sxYcskHdJBpgCTQpoNIhBxE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760458153; c=relaxed/simple;
-	bh=vI/HA29EzGIBPGI5M+Onivig7KOJp/tMhJYSeUKOUEM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=B8725+8LkrToViU+7TmGOgOVuHNMLv9Uq1WPKyB2BUgVuBuhlhiikcdxeHhEIiJGyySfXLW9yprSQZV9dmNtR2+dQ9hnuu2FxcXI8/YH8qkZU9BBLeAHy0x055ite1yV1c0d3kCHe5b+h0zkNJ/DbGgsOQxvPH0P9jBWU7YH55o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=m6IGRwZA; arc=none smtp.client-ip=209.85.166.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
-Received: by mail-il1-f171.google.com with SMTP id e9e14a558f8ab-42f9f5a9992so36393845ab.2
-        for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 09:09:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google; t=1760458151; x=1761062951; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=/56Sp040rDsPp3z3aaVtrpaepoT3obZVyIP0xy0kutY=;
-        b=m6IGRwZAik2N332EZtp776Iy0w+uCc0kIYfc9iBJ8kl2vAH4Fq+ngMRW7rJ3pRKJST
-         dd/avbtDnrwJGGJdc3o/a7UdENFJiip+QkISYwIILWmNMH1707kGvsPK4UfUi7qyimsx
-         YmFmShzweSzRwrhdKVMqjThy3OZQhktm4MTMgSmv2sEuA7rDuxx40ILg5YXmbGLC/LlI
-         9uaZ3B2RLbp7giWWXLT8TM8ftnST2XMWEWR7uJrH0B63bW/PJbupg/eHrbmnuQAX/JpK
-         nh+KcJd35u7JMNRJwIGGG+hJd+e43PLDUXgeaEzmpqt1Jtek6UQ/WuWYaa96mTp2IFIp
-         SuMA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760458151; x=1761062951;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/56Sp040rDsPp3z3aaVtrpaepoT3obZVyIP0xy0kutY=;
-        b=EkJjEDEMtJkkMrQJCTPZZBR0s2zWxpECMYHdCYeEZOQ6VJZ/+q7oQtdI/nZvP44kjC
-         9tfHweEAv5rJaYzm11K5eZkyDcSM5K3Ejv9mdbDunU9BMFC+eYa0/xZ9FGVUJekat0vZ
-         5YSdPWteLqUEY08Rmc7rqOOTYzGU7JN8D3t+eMq7+/IUaqt5GWbbzMQZafpKgr2grZ5c
-         +AV2qdh+272OE7b1xVjvJQ0JcBDudHZe2J9gf4KY5UZGlDXgcb/LZ7QjUVZkzsKmxIt6
-         X8Za963faJg7yqN+PMJ+CnrcTrTHGzi6ZYz5Klnci9ufjctxxp04e/dtb3MNybupHyNm
-         ug3Q==
-X-Forwarded-Encrypted: i=1; AJvYcCWOuMqY/i3hGEJKor19QhHS1Xi2YRVbJGRNHiBXuMohHJ2/TIs3pAZssMWSqiif4wY/uEtp6XOG6rHV@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxkz57XfhFEa5VpCidifrVoIHonph39XKt2tbqrd6A8cbaMnrDF
-	fqFrbuKkiw8bGnr6yD/3XmaTgTSSHGUlAecpPJHCg7ARqlA9uuZymvNe/Xs08IElItg=
-X-Gm-Gg: ASbGncus34X7QiwC/xzzZqCRZZZn8tInXmBvv4hRYH1zKWieqI9Utl/YrTw5rmCgES9
-	vsjeTOv7cb8oM2saMR5LHtdZwXTbggKE6dsXvS4YXb7Cdy66qmjw7E4akuuc7Xx1dNhyeSiuOCT
-	SfYw+V8kgeKrcdE+8fpwqvVNknEQiQsKfj9PbmelztYK9b87gJIJgTDX8sj57RhJj46uw3upFvD
-	ap6zFbIQVLd000pw5OiAsj+o+Z77KipeyTAmxzofd7TqEFOtuvKvHG//fRpzUZpNHi3ZuSyVElW
-	DPZxvRyGiChXTTnnccDMic1DMksWUILis73F0xKv/PoGs3c/Z35EXIzHEwSEpBkmymR6kLyZkNJ
-	ShFsZB2iHheOI1C1zGfbZFNer4kSdI+FuhEQ/czBWiZvmc75KvcMrvIgKgymVgMyVHKo8
-X-Google-Smtp-Source: AGHT+IF2rM5N57cc9e87vSQgs53jlX3hESnb8bjcQJckI0u09+/PvPrRQAWm3vnphVNgXUCUPAT9Lw==
-X-Received: by 2002:a05:6e02:1688:b0:42f:953c:6d59 with SMTP id e9e14a558f8ab-42f953c6db7mr210550045ab.24.1760458150581;
-        Tue, 14 Oct 2025 09:09:10 -0700 (PDT)
-Received: from [100.64.0.1] ([170.85.6.208])
-        by smtp.gmail.com with ESMTPSA id e9e14a558f8ab-430a4b94dbdsm6044085ab.13.2025.10.14.09.09.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Oct 2025 09:09:10 -0700 (PDT)
-Message-ID: <b58b2705-a1b4-4d71-8b76-e2bba4df6987@sifive.com>
-Date: Tue, 14 Oct 2025 11:09:09 -0500
+	s=arc-20240116; t=1760459118; c=relaxed/simple;
+	bh=i62BE0GFkFgue5do0GJ0IvnkcNoe6EayIVxI3F5YXHQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=SoTTHqxKS5IDu5ZKqgrhs2LNJCg+V2lUOjoj0zuz71hfOKkUG8OfLwROc3yI4fgMmjsDuPaGTaffT2HoMggBxz9+WSKT1m/KCHlXveCZ9PsXANXPM0SFRurrqVvcW5h8cCaGbcBRfSmNbUO6rGw1ZUqrgrBEan0l19D/Oovkf3w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KAAWQzDA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E3F2C4CEE7
+	for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 16:25:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1760459118;
+	bh=i62BE0GFkFgue5do0GJ0IvnkcNoe6EayIVxI3F5YXHQ=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=KAAWQzDAOZISVKrggPfJwkEFRr0ZmMrhMNLZnMe2jJmlnt/tdsXr3t3MfS8Wed0D4
+	 2kOouEndhTGnK6sgHoJXX1s+fRFoYD4V93HCe05E6prBYy3yQgFXxuPoap347piWOh
+	 d1ueMFhqkfFcENojOeFd1wTIedbkFNWtbnUrQxf9JSyM5+QDv3FF6Bi0OjclJtA9wY
+	 MTb5L/X/QlRE6SDk8D9J7knbcHOh72pUvgThoYyanopnceSTIYd0pG9i16WDPNEczX
+	 9r4Vz6HXaquPha5gajdw08acef0ERPCCpREhfDIWrX8zANAeJ22LT0Vlo0eWNXL4zV
+	 ArJ8VRgaLCsmQ==
+Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-b3ee18913c0so900892666b.3
+        for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 09:25:18 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUhxeGpoXul2nsAdqlE+Bxpx8fnPil2txlj39Yz2UKU7pVLltqkcaNWf52vUpC+EZo7VoP8gSOSxSWl@vger.kernel.org
+X-Gm-Message-State: AOJu0YwXKBG4v+0iTT9SEoe22NhYDnjcRyKLb+DqX50aL2rXgL8JLsb0
+	lfXmFK4u1bVf392CoUJNCX62tU2FIllktDbWwmBGXRA4mKqo7lH9716C3B/RDCV7VglzW8a2lCC
+	JIfdv27mYNfDenQr2DBHQ65Thue0KTA==
+X-Google-Smtp-Source: AGHT+IGinfO0HrMvqGRjuurEdF2ea5rdIyeySzvXP0NvM0n6r/RBFmKvkmkvQdi378uobSYqgRdGJwsrirjCWZ+EtmM=
+X-Received: by 2002:a17:907:d13:b0:b3c:8940:623c with SMTP id
+ a640c23a62f3a-b50aa18477bmr2491260366b.14.1760459116731; Tue, 14 Oct 2025
+ 09:25:16 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/3] irqchip/plic: add support for UltraRISC DP1000
- PLIC
-To: Lucas Zampieri <lzampier@redhat.com>
-Cc: Charles Mirabile <cmirabil@redhat.com>,
- Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Alexandre Ghiti <alex@ghiti.fr>, Vivian Wang <dramforever@live.com>,
- devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
- Zhang Xincheng <zhangxincheng@ultrarisc.com>, linux-kernel@vger.kernel.org
-References: <20251014154100.168236-1-lzampier@redhat.com>
- <20251014154100.168236-4-lzampier@redhat.com>
-From: Samuel Holland <samuel.holland@sifive.com>
-Content-Language: en-US
-In-Reply-To: <20251014154100.168236-4-lzampier@redhat.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20251014073403.32134-1-andrea.porta@suse.com> <CAL_Jsq+CugQrswhOWntK5RiRBSKkWRNUoB0pB8HoKPmym2e65w@mail.gmail.com>
+ <aO5dtNJrF3vduSyJ@apocalypse>
+In-Reply-To: <aO5dtNJrF3vduSyJ@apocalypse>
+From: Rob Herring <robh@kernel.org>
+Date: Tue, 14 Oct 2025 11:25:04 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqKsK+Bf6n=5YHmC681wxJjszkrdiryhP2+02=KGgPcM9w@mail.gmail.com>
+X-Gm-Features: AS18NWBBD53yTMhnm8NpmjdVOpCmx42ZlQ8TDmIrljrvnk9yGHCqq7la50hyFx8
+Message-ID: <CAL_JsqKsK+Bf6n=5YHmC681wxJjszkrdiryhP2+02=KGgPcM9w@mail.gmail.com>
+Subject: Re: [PATCH] of: reserved_mem: Add heuristic to validate reserved
+ memory regions
+To: Andrea della Porta <andrea.porta@suse.com>
+Cc: Saravana Kannan <saravanak@google.com>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, iivanov@suse.de, svarbanov@suse.de, 
+	mbrugger@suse.com, Phil Elwell <phil@raspberrypi.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 2025-10-14 10:40 AM, Lucas Zampieri wrote:
-> From: Charles Mirabile <cmirabil@redhat.com>
-> 
-> Add a new compatible for the plic found in UltraRISC DP1000 with a quirk to
-> work around a known hardware bug with IRQ claiming in the UR-CP100 cores.
-> 
-> When claiming an interrupt on UR-CP100 cores, all other interrupts must be
-> disabled before the claim register is accessed to prevent incorrect
-> handling of the interrupt. This is a hardware bug in the CP100 core
-> implementation, not specific to the DP1000 SoC.
-> 
-> When the PLIC_QUIRK_CLAIM_REGISTER is present, a specialized handler
+On Tue, Oct 14, 2025 at 9:24=E2=80=AFAM Andrea della Porta
+<andrea.porta@suse.com> wrote:
+>
+> Hi Rob,
+>
+> On 08:12 Tue 14 Oct     , Rob Herring wrote:
+> > On Tue, Oct 14, 2025 at 2:32=E2=80=AFAM Andrea della Porta
+> > <andrea.porta@suse.com> wrote:
+> > >
+> > > When parsing static reserved-memory DT nodes, any node with a reg pro=
+perty
+> > > length that is not perfectly conformant is discarded.
+> > > Specifically, any reg property whose length is not a multiple of the =
+parent's
+> > > (#address-cells + #size-cells) is dropped.
+> > >
+> > > Relax this condition (while still treating perfect multiples as havin=
+g higher
+> > > precedence) by allowing regions that are subsets of the parent's addr=
+essable
+> > > space to be considered for inclusion.
+> > > For example, in the following scenario:
+> > >
+> > > / {
+> > >         #address-cells =3D <0x02>;
+> > >         #size-cells =3D <0x02>;
+> > >         ...
+> > >
+> > >         reserved-memory {
+> > >                 #address-cells =3D <0x02>;
+> > >                 #size-cells =3D <0x02>;
+> > >                 ...
+> > >
+> > >                 nvram {
+> > >                         reg =3D <0x00 0x3fd16d00 0x37>;
+> > >                         ...
+> > >                 };
+> > >         };
+> > > };
+> > >
+> > > Even though the reg property of the nvram node is not well-formed fro=
+m a DT
+> > > syntax perspective, it still references a perfectly valid memory regi=
+on of
+> > > 0x37 bytes that should be reserved.
+> >
+> > No it isn't. I could just as easily argue that the reserved size
+> > should be 0x37_00000000 because it's BE data. I have little interest
+> > in supporting incorrect DTs especially generically where we have no
+> > clue what platform needs it and whether we still have to carry the
+> > code. There's enough of that crap with ancient PPC and Sparc systems.
+>
+> I understand the pain, but IIUC the example you mentioned (0x37 0x00) dea=
+ls
+> with an incorrect size value (due to endianness) over a correct size leng=
+th
+> (#size-cells =3D 2), while the case this patch tries to address is the op=
+posite,
+> i.e. correct size values (corrected by the fw) over an incorrect size len=
+gth.
+> For the former issue, the actual kernel code does not have an answer yet.=
+ For
+> the latter I propose this patch.
 
-You may want to name this something a bit more specific. Every PLIC has a claim
-register, so it seems a bit weird saying that this is a quirk :)
+No, my point was who is to say the error is not 'reg' was treated as
+if #size-cells was 1, but rather 'reg' was truncated by 1 cell by
+mistake. You don't know (in general) which one it is.
 
-Anyway, the code looks good, so:
+> The point is that the potential erroneous regions we could introduce with=
+ this
+> patch are just a subset of the regions that can be erroneously introduced=
+ in
+> the actual kernel, so no additional harm could be done.
 
-Acked-by: Samuel Holland <samuel.holland@sifive.com>
+There's little reason for us to handle such an error as there is
+little excuse for getting it wrong. We have multiple tools that check
+this including the kernel evidently.
 
-> (plic_handle_irq_cp100) saves the enable state of all interrupts, disables
-> all interrupts except for the first pending one before reading the claim
-> register, and then restores the interrupts before further processing of
-> the claimed interrupt continues.
-> 
-> The driver matches on "ultrarisc,cp100-plic" to apply the quirk to all
-> SoCs using UR-CP100 cores, regardless of the specific SoC implementation.
-> This has no impact on other platforms.
-> 
-> Co-developed-by: Zhang Xincheng <zhangxincheng@ultrarisc.com>
-> Signed-off-by: Zhang Xincheng <zhangxincheng@ultrarisc.com>
-> Signed-off-by: Charles Mirabile <cmirabil@redhat.com>
-> Signed-off-by: Lucas Zampieri <lzampier@redhat.com>
-> ---
->  drivers/irqchip/irq-sifive-plic.c | 94 ++++++++++++++++++++++++++++++-
->  1 file changed, 93 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/irqchip/irq-sifive-plic.c b/drivers/irqchip/irq-sifive-plic.c
-> index bf69a4802b71..1d528904b353 100644
-> --- a/drivers/irqchip/irq-sifive-plic.c
-> +++ b/drivers/irqchip/irq-sifive-plic.c
-> @@ -49,6 +49,8 @@
->  #define CONTEXT_ENABLE_BASE		0x2000
->  #define     CONTEXT_ENABLE_SIZE		0x80
->  
-> +#define PENDING_BASE                    0x1000
-> +
->  /*
->   * Each hart context has a set of control registers associated with it.  Right
->   * now there's only two: a source priority threshold over which the hart will
-> @@ -63,6 +65,7 @@
->  #define	PLIC_ENABLE_THRESHOLD		0
->  
->  #define PLIC_QUIRK_EDGE_INTERRUPT	0
-> +#define PLIC_QUIRK_CLAIM_REGISTER	1
->  
->  struct plic_priv {
->  	struct fwnode_handle *fwnode;
-> @@ -394,6 +397,89 @@ static void plic_handle_irq(struct irq_desc *desc)
->  	chained_irq_exit(chip, desc);
->  }
->  
-> +static bool cp100_isolate_pending_irq(int nr_irq_groups, u32 ie[],
-> +				       void __iomem *pending,
-> +				       void __iomem *enable)
-> +{
-> +	u32 pending_irqs = 0;
-> +	int i, j;
-> +
-> +	/* Look for first pending interrupt */
-> +	for (i = 0; i < nr_irq_groups; i++) {
-> +		pending_irqs = ie[i] & readl_relaxed(pending + i * sizeof(u32));
-> +		if (pending_irqs)
-> +			break;
-> +	}
-> +
-> +	if (!pending_irqs)
-> +		return false;
-> +
-> +	/* Disable all interrupts but the first pending one */
-> +	for (j = 0; j < nr_irq_groups; j++) {
-> +		u32 new_mask = 0;
-> +
-> +		if (j == i)
-> +			/* Extract mask with lowest set bit */
-> +			new_mask = (pending_irqs & -pending_irqs);
-> +
-> +		writel_relaxed(new_mask, enable + j * sizeof(u32));
-> +	}
-> +
-> +	return true;
-> +}
-> +
-> +static irq_hw_number_t cp100_get_hwirq(struct plic_handler *handler,
-> +					void __iomem *claim)
-> +{
-> +	void __iomem *enable = handler->enable_base;
-> +	void __iomem *pending = handler->priv->regs + PENDING_BASE;
-> +	int nr_irqs = handler->priv->nr_irqs;
-> +	int nr_irq_groups = DIV_ROUND_UP(nr_irqs, 32);
-> +	int i;
-> +	irq_hw_number_t hwirq = 0;
-> +
-> +	raw_spin_lock(&handler->enable_lock);
-> +
-> +	/* Save current interrupt enable state */
-> +	for (i = 0; i < nr_irq_groups; i++)
-> +		handler->enable_save[i] = readl_relaxed(enable + i * sizeof(u32));
-> +
-> +	if (!cp100_isolate_pending_irq(nr_irq_groups, handler->enable_save, pending, enable))
-> +		goto out;
-> +
-> +	hwirq = readl(claim);
-> +
-> +	/* Restore previous state */
-> +	for (i = 0; i < nr_irq_groups; i++)
-> +		writel_relaxed(handler->enable_save[i], enable + i * sizeof(u32));
-> +out:
-> +	raw_spin_unlock(&handler->enable_lock);
-> +	return hwirq;
-> +}
-> +
-> +static void plic_handle_irq_cp100(struct irq_desc *desc)
-> +{
-> +	struct plic_handler *handler = this_cpu_ptr(&plic_handlers);
-> +	struct irq_chip *chip = irq_desc_get_chip(desc);
-> +	void __iomem *claim = handler->hart_base + CONTEXT_CLAIM;
-> +	irq_hw_number_t hwirq;
-> +
-> +	WARN_ON_ONCE(!handler->present);
-> +
-> +	chained_irq_enter(chip, desc);
-> +
-> +	while ((hwirq = cp100_get_hwirq(handler, claim))) {
-> +		int err = generic_handle_domain_irq(handler->priv->irqdomain,
-> +						    hwirq);
-> +		if (unlikely(err)) {
-> +			pr_warn_ratelimited("%pfwP: can't find mapping for hwirq %lu\n",
-> +					    handler->priv->fwnode, hwirq);
-> +		}
-> +	}
-> +
-> +	chained_irq_exit(chip, desc);
-> +}
-> +
->  static void plic_set_threshold(struct plic_handler *handler, u32 threshold)
->  {
->  	/* priority must be > threshold to trigger an interrupt */
-> @@ -430,6 +516,8 @@ static const struct of_device_id plic_match[] = {
->  	  .data = (const void *)BIT(PLIC_QUIRK_EDGE_INTERRUPT) },
->  	{ .compatible = "thead,c900-plic",
->  	  .data = (const void *)BIT(PLIC_QUIRK_EDGE_INTERRUPT) },
-> +	{ .compatible = "ultrarisc,cp100-plic",
-> +	  .data = (const void *)BIT(PLIC_QUIRK_CLAIM_REGISTER) },
->  	{}
->  };
->  
-> @@ -664,12 +752,16 @@ static int plic_probe(struct fwnode_handle *fwnode)
->  		}
->  
->  		if (global_setup) {
-> +			void (*handler_fn)(struct irq_desc *) = plic_handle_irq;
-> +			if (test_bit(PLIC_QUIRK_CLAIM_REGISTER, &handler->priv->plic_quirks))
-> +				handler_fn = plic_handle_irq_cp100;
-> +
->  			/* Find parent domain and register chained handler */
->  			domain = irq_find_matching_fwnode(riscv_get_intc_hwnode(), DOMAIN_BUS_ANY);
->  			if (domain)
->  				plic_parent_irq = irq_create_mapping(domain, RV_IRQ_EXT);
->  			if (plic_parent_irq)
-> -				irq_set_chained_handler(plic_parent_irq, plic_handle_irq);
-> +				irq_set_chained_handler(plic_parent_irq, handler_fn);
->  
->  			cpuhp_setup_state(CPUHP_AP_IRQ_SIFIVE_PLIC_STARTING,
->  					  "irqchip/sifive/plic:starting",
+> > Furthermore, this looks like an abuse of /reserved-memory which should
+> > *only* be holes in what /memory node(s) define. I don't think we
+> > enforce that and I imagine there is lots of abuse.
+>
+> AFAIK the only enforcement in the kernel is being an integer multiple of =
+the
+> root address + size cells. As you already pointed out, this means easy ab=
+use
+> but this is still a fact with the current kernel, not something that woul=
+d
+> be exploitable more easily with this patch.
+>
+> >
+> > > This has at least one real-world equivalent on the Raspberry Pi 5, fo=
+r example,
+> > > on which the firmware incorrectly overwrites the nvram node's reg pro=
+perty
+> > > without taking into account the actual value of the parent's #size-ce=
+lls.
+> >
+> > If we have to support this broken firmware, the kernel should fixup
+> > the entry to be correct.
+>
+> This is what I first thought of, but it has several issues that complicat=
+es
+> its implementation:
+>
+> - I guess there's no current infrastructure to execute fw specific code i=
+n
+>   the reserved-memory node (something that resembles PCI quirks?)
 
+Not there specifically, but PPC does do a number of fixups.
+
+> - Finding out whether a fix is required depends on identifying the fw, wh=
+ich is
+>   possible only reading its fingerprint through the reserved-memory regio=
+n
+>   itself. This is kinda of a recursive problem...
+
+If RPi5, then check and fix 'reg' length in /reserved-memory nodes.
+That doesn't seem hard.
+
+> - The reserved memory parsing function is invoked very early in the boot =
+process,
+>   so we cannot rely on a driver module to amend that
+
+Does it need to be? If the region truly isn't in DRAM, then we don't
+really need to fix it early.
+
+> I will try to cook up something on this line, but I guess it will not be =
+easy.
+
+I pushed a branch, dt/fixup-infrastruct, to my kernel.org tree. It's a
+prototype that we ended up not using. It won't work for you if we need
+to fixup the fdt rather than the unflattened tree.
+
+Rob
 
