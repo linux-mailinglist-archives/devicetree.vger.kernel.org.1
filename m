@@ -1,86 +1,330 @@
-Return-Path: <devicetree+bounces-226989-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226993-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7429BDD837
-	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 10:50:35 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 44F0BBDD886
+	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 10:52:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6144F1897ABD
-	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 08:50:33 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id DFDBF4FFB6D
+	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 08:51:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3122031815D;
-	Wed, 15 Oct 2025 08:50:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80439316901;
+	Wed, 15 Oct 2025 08:51:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="k/Utm4TI"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="GUBNJGKW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DF5E3168EB;
-	Wed, 15 Oct 2025 08:49:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760518205; cv=none; b=U/usj85RMvzHrzomTO+O5PC7woU+sYxgwtoGFqaNe1bDPinRyOTFStI1Qj2fU91wBvUde0bIxIohgfZ2+Ps3iwKcprId+COMOAs3fQVJul0sG8035v4NT4A+UdSieo9Pxmt9P+1PCINdLV5sOsY0fAKvSMnBLgk8l1l+5cPXVto=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760518205; c=relaxed/simple;
-	bh=yn1ks2heKSsmo2MZYoR1wSCC8e1kYOiFpMfzPzh3yvY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=sRp1CDoF9I/Y5c9aobqFa/8loGYbDHU3tA9iVxPU4nzsKei2pWQUqubvUhUkHlyvHSWXC48hxvO0CCm9kdJa03qWG+lXFejPcIGPXI+pb8msbSkTHZt6hBckNIIGuwjs8y0GtpG2Hva7dIaeJsHnErmu7+pjcvUVmT/6/1I7yCs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=k/Utm4TI; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A91F0319609;
+	Wed, 15 Oct 2025 08:51:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1760518273; cv=pass; b=mNfgRLs5Dsr0QrX8NmpArdDxd//P6uaSb/qNNOili7jrW78iftjUc23BEmO5CzKfQyBHdDyxYjmDIf5UtNHkdMYZkFehxDcau/J7RxPKUf9QuLcwYz1Ygrd0Fy4g690ApivhIte8nHt/H80JEZYJL30+jl40kRjBITuwKMlfhVs=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1760518273; c=relaxed/simple;
+	bh=UmOCMLIwOjp2IFYkyRBAvWNC+WC7xWYDqPg9WfWMmtg=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=eGYllLYXJLBJhhycbrr02uVf0cyka+6UO/Q5RzVI9lP4QykM6UHsEG59nmh8d4c9nBxRpFQw6YF+/jrTXKVlsdZfsfnIqr48Tf2rzwOU6OK4gvSebYlssURKcoR4MTXhr4R6pQ453BOx8VMsoi90ONqCM3L0BknbVvCgJTD7jsw=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b=GUBNJGKW; arc=pass smtp.client-ip=136.143.188.112
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1760518186;
-	bh=yn1ks2heKSsmo2MZYoR1wSCC8e1kYOiFpMfzPzh3yvY=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=k/Utm4TIUGQilymOrYxwYFmumpX0wlq0j2Vmek7or8K31CrN3cIQ464L5pyi9oQbS
-	 lU48rixwN1Li8KFbsoYUFNNaw3QQYAhuHuaRKTKFSYxJ7+Aeqqaxc52BqakDjVQbTL
-	 SCOyzQF86gv0p/R9rkokMAPscHloc9xCFNBYlEJ/YjA7OdvEkPCCN8XbdZerpgfAJZ
-	 R/YRIjRF8zKXnafPZSaJxyXB8GjAOO01Pe+4U1TiJnwnvnSGQEWY7Sc8CB3Fe9DXCj
-	 I9SXSiqNPWuZBF7CSkjLwh25wlzVnOycwAgNOruw8PTnYgyNbg8gvuGqEHjtVnJjx4
-	 IaZ099ntgZGug==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id DEE7617E12EB;
-	Wed, 15 Oct 2025 10:49:45 +0200 (CEST)
-Message-ID: <707832a4-47b9-4c31-851c-07d129cada12@collabora.com>
-Date: Wed, 15 Oct 2025 10:49:45 +0200
+ARC-Seal: i=1; a=rsa-sha256; t=1760518235; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=jtO13Yuhis7X9M1ReqNECR7b4oP7DxwuVG0VU/7xGIqEDQ/3oO/1jFP5VpMotU72dieRWUZW4GQAEJYcT04Wp6TcdiFtXCDFjrf3k8mG5mqDIcPDm/r+8XbRzSuvPSim58DIH5BXAubDxyu5aEzXG0E4vNHEyb40R8woxmaXDsk=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1760518235; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=irXTiT6Umv24RxIfXu2zQxbcTIbZYmUvP6fkC0upYQU=; 
+	b=ir6o0T6ghxsqvpFcWSc+PMhF+carYE0NQyHlGwEVKmAJwjjUDHDFTkz1XD77VtRnQZKofa0cIdO58f4DIhEFQPRRg1h1SLgiYfp+B6VnsqUxxTBg5p1SDPtv1XBw4qlOYwy7NZvuQMfE86IFYPdK9eSU4Mo65TnrKlCKjeUTQZA=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
+	dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1760518235;
+	s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
+	h=From:From:Subject:Subject:Date:Date:Message-Id:Message-Id:MIME-Version:Content-Type:Content-Transfer-Encoding:To:To:Cc:Cc:Reply-To;
+	bh=irXTiT6Umv24RxIfXu2zQxbcTIbZYmUvP6fkC0upYQU=;
+	b=GUBNJGKWCXt5scF10BxGmQsVh8KnWOF24XXyVNglAxS5ClP8yVvThD77pfZNqQUi
+	jKpULar+/k6Zb8NunYW48ZUf+E5J4/GwhxFG8kBe/IuzJIc6kpuXyRXrtblEcOT6cFx
+	E/oZOkktelh2Tr5MbVP6/egE2n+AGcWYAKfeDzCc=
+Received: by mx.zohomail.com with SMTPS id 17605182170721002.689479091849;
+	Wed, 15 Oct 2025 01:50:17 -0700 (PDT)
+From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Subject: [PATCH v7 0/5] MT8196 GPU Frequency/Power Control Support
+Date: Wed, 15 Oct 2025 10:49:59 +0200
+Message-Id: <20251015-mt8196-gpufreq-v7-0-0a6435da2080@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/5] iommu/mediatek: mt8189: Add APU IOMMUs support
-To: Zhengnan Chen <zhengnan.chen@mediatek.com>, Yong Wu
- <yong.wu@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
- Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>
-Cc: iommu@lists.linux.dev, linux-mediatek@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,
- Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20251015032509.5057-1-zhengnan.chen@mediatek.com>
- <20251015032509.5057-4-zhengnan.chen@mediatek.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20251015032509.5057-4-zhengnan.chen@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIADdg72gC/23RS27DIBAG4KtYrEvFczBZ9R5VFxjGCVJsp9ixU
+ kW+e7EjVVbx8kfMNzPwJCOmiCM5VU+ScI5jHPoczFtF/MX1Z6Qx5EwEE5rVwtJuqrkFer7d24T
+ f1BlQGgwLvBYkF90StvGxgZ9fr5yv3bM7vQ5J40akfui6OJ2qHh8TXW3OuCJrwSWO05B+toFmv
+ lVsvS3T/3vPnDJqGvAiQINC8A8/XK+uGZJ7zw02bhY7gouCECthrKudNMIGe0TIPWEKQmbCKwy
+ oGiWtxSNC7QghC0JlAnwA6QIaGeCI0Hui+IdZZ0IyDajRtwb0EQF/BGesnALWtwBlaxeAh3KRZ
+ Vl+ASsULZEwAgAA
+X-Change-ID: 20250829-mt8196-gpufreq-a7645670d182
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Boris Brezillon <boris.brezillon@collabora.com>, 
+ Jassi Brar <jassisinghbrar@gmail.com>, Chia-I Wu <olvaffe@gmail.com>, 
+ Chen-Yu Tsai <wenst@chromium.org>, Steven Price <steven.price@arm.com>, 
+ Liviu Dudau <liviu.dudau@arm.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, Kees Cook <kees@kernel.org>, 
+ "Gustavo A. R. Silva" <gustavoars@kernel.org>, 
+ Ulf Hansson <ulf.hansson@linaro.org>
+Cc: kernel@collabora.com, dri-devel@lists.freedesktop.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+ linux-hardening@vger.kernel.org, linux-pm@vger.kernel.org, 
+ Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+X-Mailer: b4 0.14.3
 
-Il 15/10/25 05:24, Zhengnan Chen ha scritto:
-> Add support for mt8189 APU IOMMUs.
-> 
-> Signed-off-by: Zhengnan Chen <zhengnan.chen@mediatek.com>
+This series introduces two new drivers to accomplish controlling the
+frequency and power of the Mali GPU on MediaTek MT8196 SoCs.
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+The reason why it's not as straightforward as with other SoCs is that
+the MT8196 has quite complex glue logic in order to squeeze the maximum
+amount of performance possible out of the silicon. There's an additional
+MCU running a specialised firmware, which communicates with the
+application processor through a mailbox and some reserved memory, and is
+in charge of controlling the regulators, the PLL clocks, and the power
+gating of the GPU, all while also being in charge of any DVFS control.
 
+This set of drivers is enough to communicate desired OPP index limits to
+the aforementioned MCU, referred to as "GPUEB" from here on out. The
+GPUEB is still free to lower the effective frequency if the GPU has no
+jobs going on at all, even when a higher OPP is set.
+
+The power- and frequency control driver, mtk-mfg-pmdomain, is now
+implemented as a power domain driver, with a set_performance_state
+operation. It also exposes itself as a clock provider, so that panthor
+can read the actual achieved DVFS clock rate as per the GPUEB firmware.
+
+This power domain approach means that panthor does not need to know
+about how the frequency control works on this SoC, as the OPP core
+framework already takes care of it. The only exception is that panthor
+needs to not register OPPs from DT itself if there already is an OPP
+table present.
+
+The mailbox driver is a fairly bog-standard common mailbox framework
+driver, just specific to the firmware that runs on the GPUEB. It was
+merged in v6.18 already.
+
+Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+---
+Changes in v7:
+- panthor: rename "t" to "table"
+- panthor: add code comment explaining why an existing OPP table is
+  being checked for
+- mtk-mfg-pmdomain: use GF_REG_MAGIC offset for sake of consistency
+- mtk-mfg-pmdomain: remove redundant semicolon after mtk_mfg_mt8196_init
+- mtk-mfg-pmdomain: fix resource leaks on probe failure
+- mtk-mfg-pmdomain: enable/disable EB clock during MT8196 init, which is
+  needed for the register read
+- Rebase onto next-20251014, which drops already merged patches, namely
+  mailbox driver+bindings, and drops the ASN_HASH patch series
+  dependency, which was also merged
+- Link to v6: https://lore.kernel.org/r/20251003-mt8196-gpufreq-v6-0-76498ad61d9e@collabora.com
+
+Changes in v6:
+- mailbox: move buf definition into if condition, as per Chia-I Wu
+- panthor: remove the redundant NULL checks in panthor_devfreq_get_freq
+- mtk-mfg-pmdomain: adjust return style consistency
+- mtk-mfg-pmdomain: add docstring for mtk_mfg_send_ipi to explain it's
+  blocking
+- mtk-mfg-pmdomain: use CMD_FIX_DUAL_TARGET_OPPIDX instead of
+  CMD_FIX_TARGET_OPPIDX.
+- mtk-mfg-pmdomain: reword code comments to not be in the "we" style
+- mtk-mfg-pmdomain: shuffle around mbox allocations as per Angelo
+- mtk-mfg-pmdomain: don't pointlessly turn on EB clock in probe,
+  reducing the need for a comment explaining the bookkeeping
+- mtk-mfg-pmdomain: consistently use dev_err_probe and Capitalise first
+  letter of error string
+- mtk-mfg-pmdomain: get rid of redundant ret = dev_err_probe assignment
+- mtk-mfg-pmdomain: reintroduce stack OPP table, choose min(gpu, stack)
+  when adding frequencies. Fixes gaps in OPP levels where only stack
+  changed, but gpu had duplicates, which resulted in choosing a too slow
+  OPP
+- mtk-mfg-pmdomain: stub round_rate clk op to opt out of CCF always
+  "rounding" a devfreq rate request to the current rate
+- Link to v5: https://lore.kernel.org/r/20250929-mt8196-gpufreq-v5-0-3056e5ecf765@collabora.com
+
+Changes in v5:
+- mtk-mfg-pmdomain binding: add memory-regions property, remove shmem
+  property, as we now correctly describe the shared memory as a regular
+  memory region
+- mtk-mfg-pmdomain binding: get rid of redundant |
+- drop "dt-bindings: sram: Add compatible for
+  mediatek,mt8196-gpufreq-sram" as part of the move to reserved memory
+- mtk-mfg-pmdomain: move to using reserved-memory for GPUEB shared
+  memory
+- mtk-mfg-pmdomain: demote some types to smaller sizes in struct
+  mtk_mfg, as per Angelo's suggestions
+- mtk-mfg-pmdomain: use units.h for Hz-to-KHz
+- mtk-mfg-pmdomain: change for loop in attach_dev to reduce indentation
+- mtk-mfg-pmdomain: simplify return in mtk_mfg_power_off
+- mtk-mfg-pmdomain: move of_device_id after probe
+- mtk_mfg_pmdomain: map mmio by index
+- mtk_mfg_pmdomain: add error checking to pm_genpd_init()
+- mtk_mfg_pmdomain: add remove function
+- mtk_mfg_pmdomain: remove last_opp member and logic, since OPP core
+  already does that for us
+- mtk_mfg_pmdomain: adjust comment in mtk_mfg_set_performance to explain
+  why we're doing what we're doing
+- mtk_mfg_pmdomain: call mtk_mfg_set_oppidx in mtk_mfg_power_on with
+  the performance_state we deferred setting while it was powered off
+- mtk_mfg_pmdomain: add inline function for PWR_ACK checking, as it's
+  now used twice with the added remove function
+- mtk-mfg-pmdomain: add suppress_bind_attrs so people don't play with
+  that
+- mtk-mfg-pmdomain: change KConfig from tristate to bool, as module
+  unloading results in strange likely firmware-induced hardware state
+  woes in the mali GPU
+- mtk-mfg-pmdomain: read IPI magic in power_on, don't zero it after
+  confirming that seemingly had no purpose
+- mtk-mfg-pmdomain: misc style changes
+- Link to v4: https://lore.kernel.org/r/20250923-mt8196-gpufreq-v4-0-6cd63ade73d6@collabora.com
+
+Changes in v4:
+- rebase onto next-20250922, which includes Laura Nao's clock patches
+- refactor mediatek_mfg into a pmdomain driver called "mtk-mfg-pmdomain"
+- move mt8196-gpufreq binding to the power subdirectory
+- mali-valhall-csf binding: adjust for power-domains usage
+- mali-valhall-csf binding: use clocks on mt8196
+- mailbox: prefix defines with "GPUEB_"
+- mailbox: get rid of custom of_xlate
+- mailbox: rename "CLOGGED" to "BLOCKED"
+- mailbox: adjust send_data comment to include more technical info
+- mailbox: misc style improvements
+- panthor: drop "drm/panthor: devfreq: make get_dev_status use
+  get_cur_freq", as it is now not necessary and makes the code worse
+- panthor: drop "drm/panthor: devfreq: add pluggable devfreq providers"
+- panthor: drop "drm/panthor: add no_clocks soc_data member for MT8196",
+  as we now have clocks courtesy of gpufreq
+- panthor: check for existing opp table before registering a new one
+- mtk-mfg-pmdomain: add turbo_below variant data, which marks OPPs below
+  a certain index as turbo for the OPP subsystem
+- mtk-mfg-pmdomain: no longer read stack OPPs, as they weren't used
+- mtk-mfg-pmdomain: get rid of num gpu opp != num stack opp check.
+  That's the firmware's problem should it ever happen, not ours
+- mtk-mfg-pmdomain: some small name and whitespace changes on the defines
+- Link to v3: https://lore.kernel.org/r/20250917-mt8196-gpufreq-v3-0-c4ede4b4399e@collabora.com
+
+Changes in v3:
+- mali-valhall-csf binding: get rid of clocks for MT8196, rebase onto
+  Chia-I Wu's patch
+- mt8196-gpufreq binding: rename hw_revision to hw-revision
+- mt8196-gpufreq binding: rename clocks
+- mt8196-gpufreq binding: drop pointless label in example
+- mailbox binding: drop pointless label in example
+- mailbox: whitespace changes on defines
+- mailbox: remove rx_buf member from channel struct, use stack buffer
+- mailbox: check in probe that no rx_len exceeds MBOX_MAX_RX_SIZE
+- panthor: add no_clocks SoC data patch, also rebase onto Chia-I Wu's
+  series
+- panthor: refactor devfreq provider functionality to do allocation and
+  initialisation of panthor_devfreq struct in panthor in all cases
+- panthor: drop the patch that moves struct panthor_devfreq to a header
+  file, as it no longer needs to be exposed to devfreq providers
+- mediatek_mfg: refactor devfreq provider functionality to decouple it
+  more from panthor itself
+- mediatek_mfg: move SRAM magic to a #define
+- mediatek_mfg: begrudgingly rename member "padding_lol" to "reserved"
+- mediatek_mfg: use local struct device pointer var in more places
+- mediatek_mfg: change wording of sleep command failure error message,
+  but keep the format specifier because I don't want to throw bare
+  errnos at users
+- mediatek_mfg: remove unnecessary braces around dev_err EB power off
+  timeout message
+- mediatek_mfg: allocate rx_data for channels that expect a response
+- mediatek_mfg: memcpy the rx buffer from the common mailbox framework
+  in the rx callback to rx_data, as mssg now points to stack memory
+- mediatek_mfg: make SRAM clearing message dev_dbg
+- mediatek_mfg: no longer print physical address of SRAM
+- mediatek_mfg: expand on the GF_REG_OPP_TABLE_STK comment, toning down
+  its defeatist attitude in the process
+- mediatek_mfg: style fixes in mtk_mfg_get_closest_opp_idx
+- mediatek_mfg: rename clocks and hw-revision reg as per binding
+- Link to v2: https://lore.kernel.org/r/20250912-mt8196-gpufreq-v2-0-779a8a3729d9@collabora.com
+
+Changes in v2:
+- mali-valhall-csf binding: move from performance-controller to
+  performance-domains property
+- mali-valhall-csf binding: fix vendor name oopsie in compatible of if
+  condition
+- mt8196-gpufreq binding: move from performance-controller to
+  performance-domains by adding the cells property
+- mt8196-gpufreq binding: rename e2_id to hw_revision
+- mt8196-gpufreq binding: add description that mentions "MediaTek
+  Flexible Graphics"
+- mt8196-gpufreq binding: get rid of mailbox channels we're unlikely to
+  use any time soon, if ever
+- mt8196-gpufreq binding: change name of mailbox channels to use -
+  instead of _
+- mailbox binding: change reg-names to "data" and "ctl"
+- drm/panthor: mediatek_mfg: rename e2_id to hw_revision
+- drm/panthor: devfreq: switch from performance-controller to
+  performance-domains
+- drm/panthor: devfreq: get rid of the accidental get_cur_freq function
+  move
+- mailbox: rename mtk_gpueb_mbox_ch to mtk_gpueb_mbox_chan_desc
+- mailbox: use smaller types in mtk_gpueb_mbox_chan_desc where possible
+- mailbox: add per-channel runtime data struct
+- mailbox: request one threaded IRQ per channel, pass channel struct as
+  data
+- mailbox: make num_channels in variant struct u8
+- mailbox: get rid of no_response, as it was redundant
+- mailbox: enable and disable clock in mailbox startup/shutdown
+- mailbox: point con_priv of mailbox framework channel struct to this
+  driver's channel struct
+- mailbox: request and free the threaded IRQ in startup/shutdown
+- mailbox: only clear IRQ bit flag once RX data has been read from MMIO
+- mailbox: reduce needlessly large receive buffer size
+- mailbox: handle allocation errors wherever they could pop up
+- mailbox: style cleanups in mtk_gpueb_mbox_read_rx
+- mailbox: call platform_get_irq earlier on in probe
+- mailbox: set drvdata later on in probe
+- mailbox: ioremap resources by index, not name
+- mailbox: handle devm_mbox_controller_register errors
+- mailbox: rename channels to correspond to bindings
+- mailbox: document a few of the private driver structs to be kind to
+  the next person who will look at this code
+- Link to v1: https://lore.kernel.org/r/20250905-mt8196-gpufreq-v1-0-7b6c2d6be221@collabora.com
+
+---
+Nicolas Frattaroli (5):
+      dt-bindings: gpu: mali-valhall-csf: add mediatek,mt8196-mali variant
+      dt-bindings: power: Add MT8196 GPU frequency control binding
+      drm/panthor: call into devfreq for current frequency
+      drm/panthor: Use existing OPP table if present
+      pmdomain: mediatek: Add support for MFlexGraphics
+
+ .../bindings/gpu/arm,mali-valhall-csf.yaml         |   37 +-
+ .../bindings/power/mediatek,mt8196-gpufreq.yaml    |  117 +++
+ drivers/gpu/drm/panthor/panthor_devfreq.c          |   62 +-
+ drivers/gpu/drm/panthor/panthor_devfreq.h          |    2 +
+ drivers/gpu/drm/panthor/panthor_device.h           |    3 -
+ drivers/gpu/drm/panthor/panthor_drv.c              |    4 +-
+ drivers/pmdomain/mediatek/Kconfig                  |   16 +
+ drivers/pmdomain/mediatek/Makefile                 |    1 +
+ drivers/pmdomain/mediatek/mtk-mfg-pmdomain.c       | 1045 ++++++++++++++++++++
+ 9 files changed, 1269 insertions(+), 18 deletions(-)
+---
+base-commit: 40a3abb0f3e5229996c8ef0498fc8d8a0c2bd64f
+change-id: 20250829-mt8196-gpufreq-a7645670d182
+
+Best regards,
+-- 
+Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
 
 
