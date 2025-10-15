@@ -1,127 +1,293 @@
-Return-Path: <devicetree+bounces-227154-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227155-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id D74BABDF1F4
-	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 16:41:17 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C86BABDF22D
+	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 16:43:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 82C9935796F
-	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 14:41:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F376C189E460
+	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 14:42:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 277E72D839C;
-	Wed, 15 Oct 2025 14:39:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E6572D4813;
+	Wed, 15 Oct 2025 14:40:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eJTMLG3Y"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fh7X//6p"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f174.google.com (mail-pg1-f174.google.com [209.85.215.174])
+Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 895302D73B0
-	for <devicetree@vger.kernel.org>; Wed, 15 Oct 2025 14:39:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E63C42D0C6F
+	for <devicetree@vger.kernel.org>; Wed, 15 Oct 2025 14:40:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760539187; cv=none; b=WNbAyL1wp0NpwiMtCfNZ1gAyYggYUKqBqNQxOHopylhlScZ8svUIBJisGFovP+6r+AseaXZC3hSvhAyqohhtryRZkqxXdA7tBLxvJvq8EtcNo4mngeFKDxW5vReS3ok8rk0jZRo3WkrfYFY5i03tlVI2o3vabMCczKYUVdeNwDQ=
+	t=1760539243; cv=none; b=RYheI8SqF8l59qzXuUfIAR8PHSVvFFShp4XlCPwH8urgC/S7fBHCx9kB0dJmpvEoVge/wqHTIxJRZy6mSWQVdeDpIRCW8Xo81aMg+ed1l+emMx6+js7ur14BleLq9vmhzeASlzNs9tOwYFgzCL+aAV7TWcBaMjOoJNfs2m0rslA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760539187; c=relaxed/simple;
-	bh=lYf/qe80oLGAnbA7MhV4NFVx5ShYiQse0PXVM1jfQ10=;
-	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=HyT0dsL3ZrA+AOWgiVWTyVkP+TU5B7rJflYuoiaGGvfMEC9K0z5QxEqtE7+BegP3bwq8M0ufxHjG6NcwNoOy30BbN8woPiSO83PMlC1gw7VkwdUJxN6JvRFiZWNWo0Rfg3OvE5l+x5E4jEVlCF6F9D/jupWjOqJ9ZKXt4vlQTCI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eJTMLG3Y; arc=none smtp.client-ip=209.85.215.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f174.google.com with SMTP id 41be03b00d2f7-b62ed9c3e79so4335676a12.0
-        for <devicetree@vger.kernel.org>; Wed, 15 Oct 2025 07:39:45 -0700 (PDT)
+	s=arc-20240116; t=1760539243; c=relaxed/simple;
+	bh=ikH5swHYBeBJPlbfJqsn6TfKPl7QDSsR29Hivq5uecM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=SzFk/dZybtn7t6iD/tpV6rV9jmba6vKceBCavkU/yE7jo6ZbAqMlPyJSeS90eYMvxWqxf7CR+93VXoM4irWwHssWMLyFqLx+VPjp1ANqhvK4620pJZOhvBRjrwG2FHb29Gq73I4CT5fhXfYOUzMcCxxNIuSUw+HLlRwwEaVtFGE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=fh7X//6p; arc=none smtp.client-ip=209.85.208.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-637dbabdb32so13008964a12.2
+        for <devicetree@vger.kernel.org>; Wed, 15 Oct 2025 07:40:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1760539185; x=1761143985; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=F/LQNtZoS7OfijYrFt3rjrDuiajb22vvwUPhElheOqs=;
-        b=eJTMLG3YVH8WC6q/6qdtQD0sYY23AFn61FQaDZFIIe3O0hQKLTifeLDS2Kn5qwovFm
-         6kcPhrJ0YHyxBbaMbgaECNEQW5M30VCry2w2u7rl/KpSY+V15K2OBWwPRF7oefySKFVf
-         xkFs0/kFNaVuVa11Huf1vF8XjBogj31DU9MHnM/bCqXmLuO8kQC1yl747mSlpaIcYfee
-         W+rVizuNLS3YCAcyz2eVcdCCIumrlLMlvA8nMu5bysjrUsYxbzqGeN6noV4jNNYeuyVm
-         Qmsae+oyvtgk3Qr3TyhQu/FNGe4JgY+dYc/xUi6AqUOB3XYHzJhQ3MFuP1BrOSQ/APMk
-         +s5w==
+        d=linaro.org; s=google; t=1760539239; x=1761144039; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=ioOXHAUeOWl9Cx98+VIOdE/MtzEd2iYjV+Axx4XR/9I=;
+        b=fh7X//6px4cx/BxjhTyjOcBHvmX3CTwms4d2hTXie7gwxovA3/WVlRnyMcwBfgZmYb
+         eQYDdqRGgTDDMIrL+Tfhhlq39zZeoWwBpWD4/wugmXzHzA+yhpF0UxqPgsP/gmZ1dBBq
+         MKCKSWbHs1+bcUUA8Stp8CxLoY9vgpjT8KisEVeAVMsd7V1GmCFOEH/wh7asyxwY1FVT
+         oK4edFHel/4r1chIOsfwzZKgSyRDbrH1wUm7f1XIlUeMIRpuLNDZrSgcaF4rBSltmqM8
+         2mpSUTZ5sDRjsg5yu++Edfi6juAgc7aCKO2VN/Rex7LmOp9Eo3WW+cBCPtbNQalHnj24
+         MZHA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760539185; x=1761143985;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=F/LQNtZoS7OfijYrFt3rjrDuiajb22vvwUPhElheOqs=;
-        b=V6bJNe+FAnRx6CMqOy26eQdgvaLEajwTpLsXvjJMokxosyc4M9oI9d4h8R3/dvx5PJ
-         XDp2G23M+MZ1hJiZk21NhkDMTPDg1sKZE5gnR5uLTGTx8N+GJo1KP2iJ+8DF+Wne5kFM
-         LJT/fIy/Xd0TAjUU8QVYVp2U3IZjfg7pgt2gjSn0bhTNW87Vc8JTTlOlpBI/Qbx5u/Vt
-         7g6Z7TMAihOb5toMziiu5VhbfuBHWrn+u6mCNEZ52XS7geMmhvzdwXfG/BH6iVMCllB0
-         0/TFJCsol9QHnJOs+Al075gN1wL8hSoNgxXl7j669eiAmqBDXp0Xc0aOBKaMRXEgu0R4
-         bubQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWEubyck4leJ6t/G+EO6VLXaDrTrQx4mwcNm6XXcz99KoowIta5Fs4u/TV7wDvwEaUqAN8weNXd+uEn@vger.kernel.org
-X-Gm-Message-State: AOJu0YzTbJKUqrKcNkutZVHPigwvk4uCErh9nQ7hTsJP3yw95LiEXqfY
-	q9//Ugcxo1Ud2GP8ShzZsLi63IX0TDv4RISFxLkLlFR0s4ArcQwjrMhA
-X-Gm-Gg: ASbGncu8OHQOGkWRZ5qB0mRdB2rcYiA0PAbfUHVz9I66+xmr5G1mrcDp/4YRlDyD1lP
-	+sj+OY/jDkp5TKpdzA1AnTLEs6s5xs9zFFM+uZs2M9JXoVR2HwC30lgDzz1znJpj97IWR7WZ+rW
-	Snsh8/I41/MA2vibuHfnFWV8mIhVyjRkxy6DweITXfIWBap2DLgqCqHqJQNfsweMFdgptrvaamc
-	WNwuFUpZbdGRnyzVVgGlbS2G02lfzdTN0yHfCvhCkLl1sjQaMJ7xLCgma0+VyVaPlCa6PaeNLAH
-	fyvx+Mln7zTCLDjoen8S41/0lYhq+t5MMweNBIt48QKf1gNIxZbkZKSmk2xSe+A+dtBp0z9otkD
-	lcohgiMbf4ylqUS0HCF/sc6osQVhyPh3dBoXNJ+M378EDpeMyVNHbryHavU52lMd8x8weWNM76u
-	cneNfbPRSutXUJFiZqGV0f25edpg2aRQ==
-X-Google-Smtp-Source: AGHT+IF2UAqKBEIsjWDU03fhnfdk79hzfXklRzmYJu0XI5WZNyJUsJl9A1TbaofF+An7RpHOubeYSA==
-X-Received: by 2002:a17:903:2c10:b0:27e:e96a:4c3 with SMTP id d9443c01a7336-29027374b5amr331259715ad.14.1760539184757;
-        Wed, 15 Oct 2025 07:39:44 -0700 (PDT)
-Received: from fred-System-Product-Name.. (61-220-246-151.hinet-ip.hinet.net. [61.220.246.151])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29034f36738sm199853455ad.87.2025.10.15.07.39.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Oct 2025 07:39:44 -0700 (PDT)
-From: Fred Chen <fredchen.openbmc@gmail.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Joel Stanley <joel@jms.id.au>,
-	Andrew Jeffery <andrew@codeconstruct.com.au>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v4 7/7] ARM: dts: aspeed: santabarbara: Add eeprom device node for PRoT module
-Date: Wed, 15 Oct 2025 22:39:03 +0800
-Message-ID: <20251015143916.1850450-8-fredchen.openbmc@gmail.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20251015143916.1850450-1-fredchen.openbmc@gmail.com>
-References: <20251015143916.1850450-1-fredchen.openbmc@gmail.com>
+        d=1e100.net; s=20230601; t=1760539239; x=1761144039;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ioOXHAUeOWl9Cx98+VIOdE/MtzEd2iYjV+Axx4XR/9I=;
+        b=Phz3P3yFE/6nzzpjH7PmQ3W4IE9VxbCR1Iyy4dLQvjQJYhg7uMC7UtrdfIZUpygFTl
+         /B8UpcAoX55OnYIc0u3TXlaHbBUToDMvzuSRFv8r2X3UztSSrQ/36G30VHrmUbZ4Oy6X
+         Bgv/GzO2BMW8fBcnZCeUuKB6VeExgKu3qCSmwu620lp4+abfBcofo6x6UDVLX0W7OKPW
+         x8PS8RZqPIcae7eYeL3qZ02CaKO6tHDpCSnai1YgCLSMGh6HzFxfnIm4rciYYgSxnN4K
+         MPdYr1b1lGK4KX0RNs5y+SZIA2aXtfphKro6YSdgydTjCZv2t4UothYmiQd4fS3b8CRu
+         X6qg==
+X-Forwarded-Encrypted: i=1; AJvYcCWg2qsfhS5JvU4eP1U5g+xvdgtp7asvUtoh/G8GcEpsfvVX1+gQrowj3gG28/MUHq+BtkPpXR9te8Sk@vger.kernel.org
+X-Gm-Message-State: AOJu0YzLM+p1Wj2gwq2u+kfBAXu2gVxQbseMoCzUi8fdgO4VU70lsYcI
+	6ri97nmWzLOttzMgH+g0MWfshu1BmbBXcHraSMISfD/99DuWuyRdhU08tZo+EtgjZWdBqiPXyaY
+	9WdGMpGnLOorCSJkHIBiv1P+CbXqRPhwZWPf4fvHvFQ==
+X-Gm-Gg: ASbGncv2+yR499pKD2RafQVTVVg2efpUU2DXGdLnOk7Q3Ap16VPQ/IfVIQpZTajad7B
+	iBgKq0dyV/5bxhrQLwOSgwNb12l/kWRkd3MZmGbbGDwAKWS3y0lMoV4SyYSZNDm0gU8V6tS0tt2
+	zJsttHVeVerYyQNZrg6Ts6kJ+Fx6dBeHoAhm3ofYrfklmXWwv8x4tdQHKLjXUIvwHX2IQErBOg3
+	ewzssKcOi7m6yIZKdRe8OY9Ku1LguEeqwOE1PruBx1zlIKeHAR2DS9NvOOguw==
+X-Google-Smtp-Source: AGHT+IE55tYwWLea5Z6cfLKt4Sgq0GP5juB5/AB0VrwbGmTvtf1jxrqrlQyzV6KgpTsqfhg8Yx84hzotM9p51deCCN8=
+X-Received: by 2002:a17:907:7f17:b0:b04:2452:e267 with SMTP id
+ a640c23a62f3a-b50ac9f8958mr3155639966b.56.1760539239137; Wed, 15 Oct 2025
+ 07:40:39 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20251015-arm-psci-system_reset2-vendor-reboots-v16-0-b98aedaa23ee@oss.qualcomm.com>
+ <20251015-arm-psci-system_reset2-vendor-reboots-v16-2-b98aedaa23ee@oss.qualcomm.com>
+In-Reply-To: <20251015-arm-psci-system_reset2-vendor-reboots-v16-2-b98aedaa23ee@oss.qualcomm.com>
+From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Date: Wed, 15 Oct 2025 16:40:28 +0200
+X-Gm-Features: AS18NWCQoc3JRxuhuUVN2sHmwVBBVV2ODuQ3ysvtaltJn61MtT40Ld9OBIYCQNI
+Message-ID: <CACMJSesvTLe28Jz83b=zfHD2rvmf7-i_2+2DoV=dgooVqFEYbA@mail.gmail.com>
+Subject: Re: [PATCH v16 02/14] power: reset: reboot-mode: Add device tree
+ node-based registration
+To: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Sudeep Holla <sudeep.holla@arm.com>, Souvik Chakravarty <Souvik.Chakravarty@arm.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Andy Yan <andy.yan@rock-chips.com>, Mark Rutland <mark.rutland@arm.com>, 
+	Lorenzo Pieralisi <lpieralisi@kernel.org>, Arnd Bergmann <arnd@arndb.de>, 
+	Konrad Dybcio <konradybcio@kernel.org>, cros-qcom-dts-watchers@chromium.org, 
+	Vinod Koul <vkoul@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>, 
+	Will Deacon <will@kernel.org>, Florian Fainelli <florian.fainelli@broadcom.com>, 
+	Moritz Fischer <moritz.fischer@ettus.com>, John Stultz <john.stultz@linaro.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, Krzysztof Kozlowski <krzk@kernel.org>, 
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
+	Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>, Stephen Boyd <swboyd@chromium.org>, 
+	Andre Draszik <andre.draszik@linaro.org>, 
+	Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>, linux-pm@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org, 
+	Elliot Berman <quic_eberman@quicinc.com>, Srinivas Kandagatla <srini@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 
-Add eeprom device node for PRot module FRU.
+On Wed, 15 Oct 2025 at 06:38, Shivendra Pratap
+<shivendra.pratap@oss.qualcomm.com> wrote:
+>
+> The reboot-mode driver does not have a strict requirement for
+> device-based registration. It primarily uses the device's of_node
+> to read mode-<cmd> properties and the device pointer for logging.
+>
+> Remove the dependency on struct device and introduce support for
+> firmware node (fwnode) based registration. This enables drivers
+> that are not associated with a struct device to leverage the
+> reboot-mode framework.
+>
+> Signed-off-by: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>
+> ---
+>  drivers/power/reset/reboot-mode.c | 45 +++++++++++++++++++++++++++++----------
+>  include/linux/reboot-mode.h       |  3 ++-
+>  2 files changed, 36 insertions(+), 12 deletions(-)
+>
+> diff --git a/drivers/power/reset/reboot-mode.c b/drivers/power/reset/reboot-mode.c
+> index 8fc3e14638ea757c8dc3808c240ff569cbd74786..c8f71e6f661ae14eb72bdcb1f412cd05faee3dd9 100644
+> --- a/drivers/power/reset/reboot-mode.c
+> +++ b/drivers/power/reset/reboot-mode.c
+> @@ -3,13 +3,17 @@
+>   * Copyright (c) 2016, Fuzhou Rockchip Electronics Co., Ltd
+>   */
+>
+> +#define pr_fmt(fmt)    "reboot-mode: " fmt
+> +
+>  #include <linux/device.h>
+>  #include <linux/init.h>
+>  #include <linux/kernel.h>
+> +#include <linux/list.h>
+>  #include <linux/module.h>
+>  #include <linux/of.h>
+>  #include <linux/reboot.h>
+>  #include <linux/reboot-mode.h>
+> +#include <linux/slab.h>
+>
+>  #define PREFIX "mode-"
+>
+> @@ -69,17 +73,26 @@ static int reboot_mode_notify(struct notifier_block *this,
+>  /**
+>   * reboot_mode_register - register a reboot mode driver
+>   * @reboot: reboot mode driver
+> + * @fwnode: Firmware node with reboot-mode configuration
+>   *
+>   * Returns: 0 on success or a negative error code on failure.
+>   */
+> -int reboot_mode_register(struct reboot_mode_driver *reboot)
+> +int reboot_mode_register(struct reboot_mode_driver *reboot, struct fwnode_handle *fwnode)
+>  {
+>         struct mode_info *info;
+> +       struct mode_info *next;
+> +       struct device_node *np;
+>         struct property *prop;
+> -       struct device_node *np = reboot->dev->of_node;
+>         size_t len = strlen(PREFIX);
+>         int ret;
+>
+> +       if (!fwnode)
+> +               return -EINVAL;
+> +
+> +       np = to_of_node(fwnode);
+> +       if (!np)
+> +               return -EINVAL;
+> +
+>         INIT_LIST_HEAD(&reboot->head);
+>
+>         mutex_init(&reboot->rb_lock);
+> @@ -89,28 +102,28 @@ int reboot_mode_register(struct reboot_mode_driver *reboot)
+>                         if (strncmp(prop->name, PREFIX, len))
+>                                 continue;
+>
+> -                       info = devm_kzalloc(reboot->dev, sizeof(*info), GFP_KERNEL);
 
-Signed-off-by: Fred Chen <fredchen.openbmc@gmail.com>
----
- .../arm/boot/dts/aspeed/aspeed-bmc-facebook-santabarbara.dts | 5 +++++
- 1 file changed, 5 insertions(+)
+This change is good - devres should not be used in subsystem library
+code, only in drivers - but it doesn't seem to belong here, can you
+please separate it out and make it backportable?
 
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-santabarbara.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-santabarbara.dts
-index 3ca5109af19b..f74f463cc878 100644
---- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-santabarbara.dts
-+++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-santabarbara.dts
-@@ -1076,6 +1076,11 @@ eeprom@50 {
- 		reg = <0x50>;
- 	};
- 
-+	eeprom@51 {
-+		compatible = "atmel,24c128";
-+		reg = <0x51>;
-+	};
-+
- 	// BSM FRU
- 	eeprom@56 {
- 		compatible = "atmel,24c64";
--- 
-2.49.0
+> +                       info = kzalloc(sizeof(*info), GFP_KERNEL);
+>                         if (!info) {
+>                                 ret = -ENOMEM;
+>                                 goto error;
+>                         }
+>
+>                         if (of_property_read_u32(np, prop->name, &info->magic)) {
+> -                               dev_err(reboot->dev, "reboot mode %s without magic number\n",
+> -                                       info->mode);
+> -                               devm_kfree(reboot->dev, info);
+> +                               pr_err("reboot mode %s without magic number\n", info->mode);
+> +                               kfree(info);
+>                                 continue;
+>                         }
+>
+>                         info->mode = kstrdup_const(prop->name + len, GFP_KERNEL);
+>                         if (!info->mode) {
+>                                 ret =  -ENOMEM;
+> +                               kfree(info);
+>                                 goto error;
+>                         } else if (info->mode[0] == '\0') {
+>                                 kfree_const(info->mode);
+> +                               kfree(info);
+>                                 ret = -EINVAL;
+> -                               dev_err(reboot->dev, "invalid mode name(%s): too short!\n",
+> -                                       prop->name);
+> +                               pr_err("invalid mode name(%s): too short!\n", prop->name);
+>                                 goto error;
+>                         }
+>
+> @@ -123,8 +136,11 @@ int reboot_mode_register(struct reboot_mode_driver *reboot)
+>                 return 0;
+>
+>  error:
+> -               list_for_each_entry(info, &reboot->head, list)
+> +               list_for_each_entry_safe(info, next, &reboot->head, list) {
+> +                       list_del(&info->list);
 
+Same here, not deleting the entries currently seems like a bug? Do we
+depend on the driver detach to clean up the resources on failure?
+
+>                         kfree_const(info->mode);
+> +                       kfree(info);
+> +               }
+>         }
+>
+>         return ret;
+> @@ -138,12 +154,16 @@ EXPORT_SYMBOL_GPL(reboot_mode_register);
+>  int reboot_mode_unregister(struct reboot_mode_driver *reboot)
+>  {
+>         struct mode_info *info;
+> +       struct mode_info *next;
+>
+>         unregister_reboot_notifier(&reboot->reboot_notifier);
+>
+>         scoped_guard(mutex, &reboot->rb_lock) {
+> -               list_for_each_entry(info, &reboot->head, list)
+> +               list_for_each_entry_safe(info, next, &reboot->head, list) {
+> +                       list_del(&info->list);
+>                         kfree_const(info->mode);
+> +                       kfree(info);
+> +               }
+>         }
+>
+>         return 0;
+> @@ -168,11 +188,14 @@ int devm_reboot_mode_register(struct device *dev,
+>         struct reboot_mode_driver **dr;
+>         int rc;
+>
+> +       if (!reboot->dev || !reboot->dev->of_node)
+> +               return -EINVAL;
+> +
+>         dr = devres_alloc(devm_reboot_mode_release, sizeof(*dr), GFP_KERNEL);
+>         if (!dr)
+>                 return -ENOMEM;
+>
+> -       rc = reboot_mode_register(reboot);
+> +       rc = reboot_mode_register(reboot, of_fwnode_handle(reboot->dev->of_node));
+>         if (rc) {
+>                 devres_free(dr);
+>                 return rc;
+> diff --git a/include/linux/reboot-mode.h b/include/linux/reboot-mode.h
+> index b73f80708197677db8dc2e43affc519782b7146e..7f05fd873e95ca8249bc167c21aa6b76faba7849 100644
+> --- a/include/linux/reboot-mode.h
+> +++ b/include/linux/reboot-mode.h
+> @@ -2,6 +2,7 @@
+>  #ifndef __REBOOT_MODE_H__
+>  #define __REBOOT_MODE_H__
+>
+> +#include <linux/fwnode.h>
+>  #include <linux/mutex.h>
+>
+>  struct reboot_mode_driver {
+> @@ -13,7 +14,7 @@ struct reboot_mode_driver {
+>         struct mutex rb_lock;
+>  };
+>
+> -int reboot_mode_register(struct reboot_mode_driver *reboot);
+> +int reboot_mode_register(struct reboot_mode_driver *reboot, struct fwnode_handle *fwnode);
+>  int reboot_mode_unregister(struct reboot_mode_driver *reboot);
+>  int devm_reboot_mode_register(struct device *dev,
+>                               struct reboot_mode_driver *reboot);
+>
+> --
+> 2.34.1
+>
+
+Bartosz
 
