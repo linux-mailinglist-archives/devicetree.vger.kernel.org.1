@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-227292-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227293-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35D14BE039F
-	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 20:41:42 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 88242BE03E1
+	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 20:46:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 1665D4E5B05
-	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 18:41:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 435E15402DD
+	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 18:46:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C4DE2D837E;
-	Wed, 15 Oct 2025 18:41:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C32B2BE020;
+	Wed, 15 Oct 2025 18:46:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HehQwM83"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="OZjNTkPq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
+Received: from mail-ot1-f48.google.com (mail-ot1-f48.google.com [209.85.210.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5949C273800
-	for <devicetree@vger.kernel.org>; Wed, 15 Oct 2025 18:41:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DA3B3254AE
+	for <devicetree@vger.kernel.org>; Wed, 15 Oct 2025 18:46:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760553699; cv=none; b=OndfaPDZkZBKvEdXNm0oIgNs179+ZFQGKZ2zt6bynwsB/EzLCGdh8EPbanxZybzhElygQa2YoGLBuxuYPEr4u6MNBT8jwVMLCUG6OcWXz1Dkh6Ssj6lTAcuPgljlEDb/n0mgH9R851RGU99ez/I+uSBnn9/dBS2NItb5UFbTDSk=
+	t=1760553993; cv=none; b=FQ5fHaHW0RKClAAGx7cYCke0jcXpRK3LqM2WpoGLbLtgCrEMZ19qUdhj7MP8WWLd1DiRHGRR42lCDjrZLHZqiXQZPhVu9cL0qo7+lvatDwlenY0khZe+YKeGmYcdG5so2C3ktMIL3sO2dg35coHy8n5E3lBoX2N1KYx5IlNqbNw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760553699; c=relaxed/simple;
-	bh=dx0qVmHaErexTyZmeoLh4fwFrUvfpdSCx26iEjNbWxg=;
+	s=arc-20240116; t=1760553993; c=relaxed/simple;
+	bh=YvgiZGtPFbCt2IU0u4vPOg9X+YBDn8GnfhZjI9AxjG4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=GFABWVqKtVu35ZoxIkFXApe539XxO6Dp5PjuX/IY7zXUxCghWLUlXQQI/o06Ka4bGBXyZnOXPrqnNESo8tgmUhHgIRRHXEOIeSpK85vdKXcu5yMzNzVlEESOx/rA8I1U2UJ1LBdci2z+KeBAXR9aV9P3UFuPnfC2s0pk80KPOss=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=HehQwM83; arc=none smtp.client-ip=209.85.167.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-580585075aeso1173206e87.2
-        for <devicetree@vger.kernel.org>; Wed, 15 Oct 2025 11:41:37 -0700 (PDT)
+	 In-Reply-To:Content-Type; b=cgO2VCVgZBwfaH1/BF0bHfcGcxKt70CeFTXynhNtmM2rd75pUsUhE2vuvqH45Ip2i2nmgS1Jmxu+16Ib1GpIsPnJios24gA2IxL1ueHyK0VBInPT+8+IR3MurIz8vIrE0mjMhAmcwsQk79B9uOU9wEM+oRyEeMbYrqvH9YzRIds=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=OZjNTkPq; arc=none smtp.client-ip=209.85.210.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-ot1-f48.google.com with SMTP id 46e09a7af769-79f79e37c04so5234738a34.3
+        for <devicetree@vger.kernel.org>; Wed, 15 Oct 2025 11:46:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1760553695; x=1761158495; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=tJlLj6BAoxjVSk1NLTz6D1jxyQjoorCPPfMJr/rohBw=;
-        b=HehQwM83lHvn4pSkb9fcOeFLAQVkxPXyOWY9idFVi1qswWRKVD806cxXLvsNoiRLCY
-         5ePMhDUMvrfaa/67RNks/KMnhgPQJB9d7Z82rTxtTr1si+oY+6etJeZwpBwA6irkpzOZ
-         HD8hZSpiDa9kKY4SQgSxGzMTFkBj6wTFT9+gu+HPe3fe7SS3dC+EKT7Zadxrq7Vipfmb
-         gakLaijFgjP2qSS7bWJTNAST/Q5j+c7loJ3VhEc+9ATBIyPOv4zpJnoWRUmFkdZuokZb
-         SvfRniiulfo0/3v7leX3Ob95lLo/Y6HZhetYoVNlmD3MVkkk7KBROrSmYHUlLwfGsJhc
-         9OeA==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1760553990; x=1761158790; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=q1W1dpMIImxvQoP7g+++7QUy7cb9UdrUIxFQdJbQORk=;
+        b=OZjNTkPqz6clw+zEkoi2JtBkcRSS5faiKVbPkh8zt+IremB1i11rtHe5SwqJDD8OI4
+         ZtVT8D9M4NqvlSRPdHzXyNICvhv62MJ/cgu2R6N1mNyj2GuXDxjWARQo2ZgZawb7YFJs
+         eqG0M2cK8bbxcmLAkIvs/tzucffpGHlE/l36fuZV4BUbU5pc5rlsKr+hsGUe3iubF2hq
+         JvL5FbMHayWuKx9XlCpuFfcRKjqvemqLNq5lS9bZ8eT14FWGuGoS4I4Zhnz8pZrR1XXc
+         fhwIrWiu+V31qK5MZh8vB3i0cr9chgxS/cA0Eptpi8IiPCHNOS0M7oTOXRx/WuQGFKg8
+         09WQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760553695; x=1761158495;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=tJlLj6BAoxjVSk1NLTz6D1jxyQjoorCPPfMJr/rohBw=;
-        b=T1WNV5Gl/pBwGUbSehjSiuuWW6Te4bMMCUuZOJC8yqqEs9SUqYW4ItC5Npnqdiyd/x
-         LEAWxmlQPFuFHN8V69xiHhOqlLWoNp778ZrGRp8D7GpmUEieZeAOjWmH3G04z+x/NJ5A
-         G+h901RBdUqfpPaTVHtab3SXNDfHqejHqGLPjzHA1G7e0HRK79m06R6RJ7FA6xCaYbos
-         1goAJzcA+TYD0218ZIa5mu7wzyJVey1kRjTNPEB5cedaqLnLYZNGZz9kY64QHANoCmN3
-         ThEh4CFaXprHqjVkgMJ8dUb7fl4z7nvPx0xtyFBG+Zs6kAB48CXdmAJLmvsx697+68m1
-         w5cA==
-X-Forwarded-Encrypted: i=1; AJvYcCWZqQnDknfSv7+QSe/pQMymLiVwszUuwwUSpy6beWOanFEvnNwYynljhvoKYKXckLvwGIhRfWnbqawd@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy7Au2TsgcdyDjaPMFXtFL4Q5UbEdh8X0/jyjtYzNlg/HvAmx4w
-	R2oPoIT2vartw7gtdzIX38uvu/4pliYuepduf2iW0k2ooHaCBQ0qVq1EIDUeZ9EZ69M=
-X-Gm-Gg: ASbGnctLOpaeRz4HDCLuWDjDJbr8IxhVb0uzi1qERhU7TlPFJsGC8iPoIzygg9RCxLM
-	Tz+DOG+2LnZAux/X8o1lIJwynLBTaUTORiKgShzOoo8e3xgfFbCwgqcXtrEfBZmcnZAcb6zU/5G
-	eszToU+9Oa6phW2uujkp39FJCcg27SIEQss6TobRcxsSxu6dHnzjxZE1+RFxAZZQUiDBXv8rixy
-	TjyEYCjJxwUHeLqgArQCo0qzAD4YcgkzhgKetCPWtOEG4hM9983+A7sNheDJLtpPCKio14i7taN
-	fbi/c8FIu/V+F/1K824LipCKENLSxZro1DhclClxD2DgWN0n1yhz59TUQAz3VAugGI5byea/IWG
-	HCS6B+OellbHJRkMIOdbh0b5KJqmyFZN/jOXrkgRTjMfWj8Eub2rQBFuMKBBLkfJ2i5R+C19Os0
-	kP6UzKN09Y9G2p7d9R5YynD6C9WZ+tX4hC80k=
-X-Google-Smtp-Source: AGHT+IF+omlnIj0VW42QBPNVZc431CsHdQ7EPsBKi1Mx1WFqeaAKSz1ndgSM5DbxSPhZLcvdHjBrYg==
-X-Received: by 2002:a05:651c:1987:b0:36b:9ecc:cb62 with SMTP id 38308e7fff4ca-376099f239fmr41529381fa.0.1760553695443;
-        Wed, 15 Oct 2025 11:41:35 -0700 (PDT)
-Received: from [192.168.1.100] (91-159-24-186.elisa-laajakaista.fi. [91.159.24.186])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-3762ea14d46sm49223291fa.34.2025.10.15.11.41.33
+        d=1e100.net; s=20230601; t=1760553990; x=1761158790;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=q1W1dpMIImxvQoP7g+++7QUy7cb9UdrUIxFQdJbQORk=;
+        b=f4lFGfwOnMFYwA0nfHf5SjJXi6E4AiZudGvTuOoLNvvXhVyOO9u4kwJRyyCEcs8BYA
+         TgnzIHtix72Y9KagNxNQsDGFALw5CFbjTD8rckZPvtm2dRjQpPRRuWLc3KDNGTR0moND
+         cBCIuA38VdxVbL+MlvkEBjXIztg8cgNjAUdmxCbgZX2moANQ9Kr4x+Cymd4KvRtt1IIY
+         BzYPJwbo73xUhCj0FQazvw41ghTGXx/fBE6Ll2oEELIGwkSpRJpP8q5a+32XKc2bGEUJ
+         AOQF9FjrefytoO687juJGYNl1IPI8FUiHBBgKYVljWNYKH5mJ6rmSbBWjASJypxR2wM+
+         9tWw==
+X-Forwarded-Encrypted: i=1; AJvYcCUFxsLlLJSVSjYpwTdNOrecFzM5jpqGokIuXlXnjKOA4GVxPyfvn9egysrBWcgUQkqaVnbFQhoet9M+@vger.kernel.org
+X-Gm-Message-State: AOJu0YxRMdwqMWIYjgWg0Z0k/DwXiu16Ns9jXqVgBXsIg/kJGmcr5Run
+	eLd4owAFMxuFWbXaoiHkU+EvTIOB0nrvTDEIu54cnxlUJFl97ds69qU24iD5l1K6XW8=
+X-Gm-Gg: ASbGncuXQaThhqiy1d3LFWWl4qTSUfL495hYaoQ/FaoOHPAPubRelVp15rRsT3MyQZW
+	zydbRjmjxBY7098+qV3MbBocxHWHo2c6dZM9sYSKJm+d4ExB3IVinSB41CuUC5TJ4J3qdrhcRFe
+	jFRk312G+5DUz+6mAL+BP57Xp9vlRnWN5TGw3SLGGJCK93oSnT6E3v7nhgCij4vn+5VmoGLyWNl
+	S1dA2shSbfxs3AUliKD+bdsZuqBkE/2cuolrXlrreslEcgBkAJKgAWuVzSFa3qvv3oLH39ejLy4
+	QW6y/x+pB/t4I5tmmJCWfHjybYRg+lh+/vYydd5AvkdkWV5QHTf8uwIOsW9ooABqpUSz+Hmzk+X
+	PF2OQpZt7eVJR+90Mv4W0NoP3fy+NoPqvfpMdK9sjvU7L0cenjoOt3LHtxRzbA5fYllnQvW4NqP
+	OcQOZFiz117WVnS34=
+X-Google-Smtp-Source: AGHT+IEeWyUK5JU0xMQ0zLXGTri5uRlu04b7SEkveGRRQqga9ddNeRw/aypGJc8FLMQHLk6d2PIOZw==
+X-Received: by 2002:a05:6808:1b13:b0:43f:7e97:397f with SMTP id 5614622812f47-4417b3de534mr14932239b6e.41.1760553990406;
+        Wed, 15 Oct 2025 11:46:30 -0700 (PDT)
+Received: from ?IPV6:2600:8803:e7e4:500:c482:1912:c2de:367e? ([2600:8803:e7e4:500:c482:1912:c2de:367e])
+        by smtp.gmail.com with ESMTPSA id 5614622812f47-441c9209c34sm3068700b6e.8.2025.10.15.11.46.27
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 15 Oct 2025 11:41:34 -0700 (PDT)
-Message-ID: <bfa0d4f2-45c6-463e-8afc-d90edcf8cf2f@linaro.org>
-Date: Wed, 15 Oct 2025 21:41:32 +0300
+        Wed, 15 Oct 2025 11:46:29 -0700 (PDT)
+Message-ID: <1d9704c6-1729-4288-973b-3b3596609553@baylibre.com>
+Date: Wed, 15 Oct 2025 13:46:27 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,94 +83,45 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/2] dt-bindings: media: qcom,qcs8300-camss: Add
- missing power supplies
-To: Vikram Sharma <quic_vikramsa@quicinc.com>, mchehab@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- andersson@kernel.org, konradybcio@kernel.org, hverkuil-cisco@xs4all.nl,
- cros-qcom-dts-watchers@chromium.org, catalin.marinas@arm.com, will@kernel.org
-Cc: linux-arm-kernel@lists.infradead.org, quic_svankada@quicinc.com,
- linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+Subject: Re: [PATCH 6/6] iio: adc: ad7380: Add support for multiple SPI buses
+To: =?UTF-8?Q?Nuno_S=C3=A1?= <noname.nuno@gmail.com>,
+ Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Marcelo Schmitt <marcelo.schmitt@analog.com>,
+ Michael Hennerich <michael.hennerich@analog.com>,
+ =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
+ Jonathan Cameron <jic23@kernel.org>, Andy Shevchenko <andy@kernel.org>
+Cc: Sean Anderson <sean.anderson@linux.dev>, linux-spi@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Nihal Kumar Gupta <quic_nihalkum@quicinc.com>, bryan.odonoghue@linaro.org
-References: <20251015130130.2790829-1-quic_vikramsa@quicinc.com>
- <20251015130130.2790829-2-quic_vikramsa@quicinc.com>
-From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-In-Reply-To: <20251015130130.2790829-2-quic_vikramsa@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+ linux-iio@vger.kernel.org
+References: <20251014-spi-add-multi-bus-support-v1-0-2098c12d6f5f@baylibre.com>
+ <20251014-spi-add-multi-bus-support-v1-6-2098c12d6f5f@baylibre.com>
+ <ef452c01679bee2c8bdbefe1df4775c432f8b345.camel@gmail.com>
+Content-Language: en-US
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <ef452c01679bee2c8bdbefe1df4775c432f8b345.camel@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On 10/15/25 16:01, Vikram Sharma wrote:
-> Add support for vdda-phy-supply and vdda-pll-supply in the QCS8300
-> CAMSS binding to reflect camera sensor hardware requirements.
+On 10/15/25 5:36 AM, Nuno Sá wrote:
+> On Tue, 2025-10-14 at 17:02 -0500, David Lechner wrote:
 
-What are "camera sensor hardware requirements"? You do add properties
-to the ISP.
+...
 
+>>  
+>>  	if (st->seq) {
+>>  		xfer[0].delay.value = xfer[1].delay.value = t_convert;
+>> @@ -1124,6 +1118,7 @@ static int ad7380_update_xfers(struct ad7380_state *st,
+>>  			AD7380_SPI_BYTES(scan_type) *
+>>  			st->chip_info->num_simult_channels;
+>>  		xfer[3].rx_buf = xfer[2].rx_buf + xfer[2].len;
+>> +		xfer[3].multi_bus_mode = xfer[2].multi_bus_mode;
 > 
-> Co-developed-by: Nihal Kumar Gupta <quic_nihalkum@quicinc.com>
-> Signed-off-by: Nihal Kumar Gupta <quic_nihalkum@quicinc.com>
-> Signed-off-by: Vikram Sharma <quic_vikramsa@quicinc.com>
-> ---
->   .../bindings/media/qcom,qcs8300-camss.yaml          | 13 +++++++++++++
->   1 file changed, 13 insertions(+)
+> Why not doing the above once during probe?
 > 
-> diff --git a/Documentation/devicetree/bindings/media/qcom,qcs8300-camss.yaml b/Documentation/devicetree/bindings/media/qcom,qcs8300-camss.yaml
-> index 80a4540a22dc..dce0a1fcb10c 100644
-> --- a/Documentation/devicetree/bindings/media/qcom,qcs8300-camss.yaml
-> +++ b/Documentation/devicetree/bindings/media/qcom,qcs8300-camss.yaml
-> @@ -120,6 +120,14 @@ properties:
->       items:
->         - const: top
->   
-> +  vdda-phy-supply:
-> +    description:
-> +      Phandle to a regulator supply to PHY core block.
 
-What is "PHY core block" here?
+There is nothing else in st->seq_xfer[3] that gets set in probe, so
+I didn't really consider it. Seems like it should be fine to do as you
+suggest though.
 
-> +
-> +  vdda-pll-supply:
-> +    description:
-> +      Phandle to 1.8V regulator supply to PHY refclk pll block.
-
-This is a copy-paste example of a known to be wrong pattern.
-
-If you open a QCS8300 documentation or a schematics of some QCS8300 powered
-board, can you get a link between the actual pin names and the introduced
-property? Likely there should be nothing, which resembles "PHY refclk pll
-block" over there, and thus the description of the property is misleading.
-
-Please check other similar and recently added properties, like it's been
-done if you add a voltage level reference (and that's the only known for
-sure information), there will be no need to guess the right voltage level.
-And it's either incorrect in the description above or in the example below.
-
-> +
->     ports:
->       $ref: /schemas/graph.yaml#/properties/ports
->   
-> @@ -160,6 +168,8 @@ required:
->     - power-domains
->     - power-domain-names
->     - ports
-> +  - vdda-phy-supply
-> +  - vdda-pll-supply
->   
->   additionalProperties: false
->   
-> @@ -328,6 +338,9 @@ examples:
->               power-domains = <&camcc CAM_CC_TITAN_TOP_GDSC>;
->               power-domain-names = "top";
->   
-> +            vdda-phy-supply = <&vreg_l4a_0p88>;
-> +            vdda-pll-supply = <&vreg_l1c_1p2>;
-> +
->               ports {
->                   #address-cells = <1>;
->                   #size-cells = <0>;
-
--- 
-Best wishes,
-Vladimir
 
