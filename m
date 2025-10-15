@@ -1,66 +1,81 @@
-Return-Path: <devicetree+bounces-227331-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227329-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07CEEBE08F5
-	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 21:56:54 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 97B61BE08CD
+	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 21:53:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 68888505A60
-	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 19:56:51 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 8F53550762A
+	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 19:52:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E5A52FE57F;
-	Wed, 15 Oct 2025 19:56:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45E6E3081B7;
+	Wed, 15 Oct 2025 19:52:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b="dDIadWK1";
-	dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b="dDIadWK1"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ObYaBkA0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.mleia.com (mleia.com [178.79.152.223])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70FA6272E4E;
-	Wed, 15 Oct 2025 19:56:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.79.152.223
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4EB0221FBD
+	for <devicetree@vger.kernel.org>; Wed, 15 Oct 2025 19:52:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760558210; cv=none; b=XaB4rbrf7WSPSrRXlQp30mfMw18VVn6EG4KMh+MMD+Hq1X18XVyoDtQPRAQdVFEan0ICfZwOWHjZ141v9vGiCEx5PTHVxscXH2HXG6DjCEr7jg/V0vDo1DPGNi/PiJCQAsstlP3MEw9jO8JwWrSUS8exwj0++sAaeavsRw+u1Cs=
+	t=1760557961; cv=none; b=fc/Rq7Jz9vZ3lERYQ57wHgLXaWeDBd8FbSJzmOkTRvfpfp0EXG1u9AtYEwdjZsekS6lNLAtbwLs+gR+qzloYdjPkEZ1qG2mu1cWIst76oDkKNg37bRIK357xrwtuhOjW6/v4QYuWUe2+Qfoc3ZPOQXOGXVqA0MuE219frXVembE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760558210; c=relaxed/simple;
-	bh=tJUGuCu7ggRIyopQyMCtc58g1/733SmlpECwCzvrvNw=;
+	s=arc-20240116; t=1760557961; c=relaxed/simple;
+	bh=af8Xe6TRc+JzmwAuvgEbc4JHLFA1oiSBVP44j7jh3EU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gQt4iVhfhnkXkArrzNdmWA9kIPuMihnJTx5QmSeB3JvMTvuCjUCeCTT4wErnQLwppxLVlqach8bqHDJFspJ0fnvFpzudib+Il2RiNnDNGRgnUf4dhgwowtLQv/VzcbKkllLPQ4Wtzv2pspPMwZfaUbhhBkgqhrfpK11L6LAsdw4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mleia.com; spf=none smtp.mailfrom=mleia.com; dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b=dDIadWK1; dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b=dDIadWK1; arc=none smtp.client-ip=178.79.152.223
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mleia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=mleia.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mleia.com; s=mail;
-	t=1760557729; bh=tJUGuCu7ggRIyopQyMCtc58g1/733SmlpECwCzvrvNw=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=dDIadWK1+hrZWjIOZwX6YBWXbF3dy2MJkZbjcv0SEfiyzid4Z4drBshnL3owHmAb4
-	 OYNrwKEYm6QFDI7sfEHeHVu8gUlvnnw+vLJwgme1ImlrmQhyaO5Yk7XvtjfK/rky4+
-	 2rUKQYGThZdddTPAG9vpv8xip4tiXsnzh6u0NtyyDBTD+DtjNrfpLzifcjyB3G1Fil
-	 BK+/S8Y8c0nem7m6bs2VJyJ5AgvXk2uD+LGKWRknkaymjy/P0ER7N+jIbH6MBPfGL2
-	 S+qAPxq7AREcNEobzh7O/fAbnBJH9KV+3jGSCyv8XNJJzMwAZQyy1M9/7gGPSv/4n/
-	 PwbLkc2mGuAOw==
-Received: from mail.mleia.com (localhost [127.0.0.1])
-	by mail.mleia.com (Postfix) with ESMTP id 3C6383DA3EC;
-	Wed, 15 Oct 2025 19:48:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mleia.com; s=mail;
-	t=1760557729; bh=tJUGuCu7ggRIyopQyMCtc58g1/733SmlpECwCzvrvNw=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=dDIadWK1+hrZWjIOZwX6YBWXbF3dy2MJkZbjcv0SEfiyzid4Z4drBshnL3owHmAb4
-	 OYNrwKEYm6QFDI7sfEHeHVu8gUlvnnw+vLJwgme1ImlrmQhyaO5Yk7XvtjfK/rky4+
-	 2rUKQYGThZdddTPAG9vpv8xip4tiXsnzh6u0NtyyDBTD+DtjNrfpLzifcjyB3G1Fil
-	 BK+/S8Y8c0nem7m6bs2VJyJ5AgvXk2uD+LGKWRknkaymjy/P0ER7N+jIbH6MBPfGL2
-	 S+qAPxq7AREcNEobzh7O/fAbnBJH9KV+3jGSCyv8XNJJzMwAZQyy1M9/7gGPSv/4n/
-	 PwbLkc2mGuAOw==
-Received: from [192.168.1.100] (91-159-24-186.elisa-laajakaista.fi [91.159.24.186])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mail.mleia.com (Postfix) with ESMTPSA id A97703DA36F;
-	Wed, 15 Oct 2025 19:48:48 +0000 (UTC)
-Message-ID: <b75b30d4-e33e-4620-bc37-56b36612364c@mleia.com>
-Date: Wed, 15 Oct 2025 22:48:47 +0300
+	 In-Reply-To:Content-Type; b=SWiPqMVkI46TvrXm6yDu2jO7UD8mV5qKpINlMFlCXe1t49HR4oPAE9JcaVPhIKEIam5BG6cqwuNj7EzYG9W16F2M2ZmInKnG3HgeqlaCNS8v6QMot88ElTpoPHrBQwo7cT+DVFxgUcmLbcpnahn4HS1tSzPstNdpI3iHDkWh5G4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ObYaBkA0; arc=none smtp.client-ip=209.85.128.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-46e6ba26c50so45026295e9.2
+        for <devicetree@vger.kernel.org>; Wed, 15 Oct 2025 12:52:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1760557956; x=1761162756; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=9GS1idVixeI5e2i+7QHqAFbRFPE0KaUN0lsPmnrv+9w=;
+        b=ObYaBkA01lQyxQhQ8kKSQS/RPGNqcvyHVTldqN5eRNylfz7gCGR5SvaQoP/MB4iNVT
+         3DchSRkM+24PNgUiYDUXTMT/dNu9OEwYdp3YbvMvEtQad0m4DRNZ3PZZbl3z//pLOWSw
+         kjfknvKRcAs40ttBipcx0cvgoj1ZQ/0Yd4fPYEn2+XLSettgAgu7H9aagLhvuIavhXb9
+         U+6Uxv9GLmntVcWFMCsZDezMt6fqklBHMw5dEBa6+G6SG7LBEIqh0lrp6qqexrUGLzMY
+         9P7CRhdbq+Q4XA+0KtpcOy5MrztJB//q8ay1nAAPwNgHAuzxeMfAEWchvccMoKrOVQR0
+         h3HQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1760557956; x=1761162756;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=9GS1idVixeI5e2i+7QHqAFbRFPE0KaUN0lsPmnrv+9w=;
+        b=hnuPCfFsC1eBlVcCht7p7ooNbs7cSAhAX9GjB6iA9gHIW+vWU77tO1bRy4CMp7ayaU
+         PItTl9Q7WDo3LG6SDZU6fhkNB1y3BoD/M8SsXcQM9Ki8K72Zoplyw4zkM8zmOL/Dlb/a
+         zbTe8Q5gVXeAwBzwm2dTYhSovaBou/wq3wYsGEuj77x7Cc0CORE7vabpxYknZ7XxRkS6
+         DCztu6ZOpLVVrN/ZIUIxFJDC59JAXHAe3QV8Hu3jG2zjVfJ6/HhmAeOhss87aR+XYTBk
+         W/B4cnWy/2jsifnvxKNPk9Fauef4SAKF0PVsk5MAQeF+8+BJe1+JzdTPlAApUTJNqjK/
+         2lag==
+X-Forwarded-Encrypted: i=1; AJvYcCXNmFOBRPU8w9hQMdVjaBLYQxh+5WPmSvlyYPwkV4mbhyLcVloi56lZcp9Vh+a/iE0iNJ3K9JuZn3Lt@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx4fuUk0z3RjEjFv5FMRlf8nRO4fAfk+3QBAwyFyLhiRJLPNJyy
+	8O4czMnuzFlubR0VaB4j/gPXtk1Q3cFQbzTp00JPFYgi70GxHU4FaHUNjzihJwN3GnE=
+X-Gm-Gg: ASbGnctyixSkR1jV71c1SldiKZ+kCyOXcQNL7v52zAQer35h4F/pGBiTGlaNou0DLyq
+	NCVyw6AFoiRVkW2xOuOkB2gh+m6FzH2W6och12OpwJ4fpRxtEUtLZLmWoFTvKjNSjznkipu7GQY
+	7H+agm27KxuadJXNMngLgkhbumSSvcdVCBPF+E/ZDNfzFfS1/T2+4zRq/UwPDAmHBXzNyCWbS+5
+	ubujVX94BGMsH/KL3CeEbLMRHkqBpdoT/brOoiJoGgxEMI8fPJHcQA0xxF+DIl6aBpN/wF45VxE
+	f41231DW6pMqHSEf1lsszTqs5KaCOY6TyTxBNltoKCUs7dG7RW5Uxs/Mxn4t47nXjVRNr7GDSp1
+	psBTDTjOvr2pqXb8RwIATTDjA5Ujk2+8uUs7ZgxH7mk22PzJzskUPhlIzrnTP5uPLRzQZsBkcbh
+	Ap0ZZYg5TwOHNy/6KxJ42AVU0KTUpTlwbQ0wN+gdCYWabSZV6+/KGPRAHHtE4whZxuFoA=
+X-Google-Smtp-Source: AGHT+IGkZ6+GeFJQTzXCmHptwwr4bo+TRjYBptncrFFbipQ1Aojn7DOqu6C8j1sCaiyxrTrPkDJUeQ==
+X-Received: by 2002:a05:600c:a4a:b0:471:672:3486 with SMTP id 5b1f17b1804b1-471067234b4mr23258485e9.15.1760557956297;
+        Wed, 15 Oct 2025 12:52:36 -0700 (PDT)
+Received: from [192.168.0.19] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47101c2359fsm48647285e9.11.2025.10.15.12.52.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 15 Oct 2025 12:52:35 -0700 (PDT)
+Message-ID: <aae11951-35c2-48f8-b919-e32393279c79@linaro.org>
+Date: Wed, 15 Oct 2025 20:52:34 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,85 +83,51 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RESEND v2 1/1] dt-bindings: arm: lpc: add missed lpc43xx board
-To: Frank Li <Frank.Li@nxp.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Piotr Wojtaszczyk <piotr.wojtaszczyk@timesys.com>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>,
- "moderated list:ARM/LPC32XX SOC SUPPORT"
- <linux-arm-kernel@lists.infradead.org>,
- open list <linux-kernel@vger.kernel.org>
-Cc: imx@lists.linux.dev
-References: <20251015184846.2509016-1-Frank.Li@nxp.com>
-From: Vladimir Zapolskiy <vz@mleia.com>
-In-Reply-To: <20251015184846.2509016-1-Frank.Li@nxp.com>
+Subject: Re: [PATCH] media: qcom: camss: Use a macro to specify the initial
+ buffer count
+To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>,
+ Loic Poulain <loic.poulain@oss.qualcomm.com>, Robert Foss
+ <rfoss@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Todor Tomov <todor.too@gmail.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>
+Cc: linux-i2c@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-media@vger.kernel.org
+References: <20251014-use-marco-to-denote-image-buffer-number-v1-1-f782e4cc622d@oss.qualcomm.com>
+ <62da6efb-24d0-4a6b-9a52-c8f981f09d30@linaro.org>
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Content-Language: en-US
+In-Reply-To: <62da6efb-24d0-4a6b-9a52-c8f981f09d30@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-49551924 
-X-CRM114-CacheID: sfid-20251015_194849_266330_AB8984CD 
-X-CRM114-Status: GOOD (  11.34  )
 
-Hi Frank,
-
-On 10/15/25 21:48, Frank Li wrote:
-> Add missed legancy lpc43xx board compatible string to fix below CHECK_DTB
-> warnings:
-> arch/arm/boot/dts/nxp/lpc/lpc4337-ciaa.dtb: /: failed to match any schema with compatible: ['ciaa,lpc4337', 'nxp,lpc4337', 'nxp,lpc4350']
+On 15/10/2025 20:22, Vladimir Zapolskiy wrote:
+> On 10/15/25 05:42, Hangxiang Ma wrote:
+>> Replace the hardcoded buffer count value with a macro to enable
+>> operating on these buffers elsewhere in the CAMSS driver based on this
+>> count. Some of the hardware architectures require deferring the AUP and
+>> REG update until after the CSID configuration and this macro is expected
+>> to be useful in such scenarios.
+>>
+>> Signed-off-by: Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>
+>> ---
+>> This change use a global macro to specify the initial buffer count. It
+>> meets the requirement that some hardware architectures need to defer the
+>> AUP and REG update to CSID configuration stage.
 > 
-> Reviewed-by: Vladimir Zapolskiy <vz@mleia.com>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> Both the commit message and the explanation above brings no clarity on
+> the necessity of this change at all.
 
-I'll take it for v6.19, thank you.
+I don't agree. Removing a hard-coded value for a define is an obviously 
+correct change.
 
-If you have any other changes in the queue, please feel free to send them also.
+> This is a dangling useless commit, if you'd like to connect it to
+> something meaningful, please include it into a series.
 
-> ---
-> Resend
-> - colloect R-b tags.
-> 
-> change in v2
-> - move to nxp lpc32xx.yaml
-> - fix ea,lpc4357-developers-kit include lpc4337
-> ---
->   .../devicetree/bindings/arm/nxp/lpc32xx.yaml  | 22 +++++++++++++++++++
->   1 file changed, 22 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/nxp/lpc32xx.yaml b/Documentation/devicetree/bindings/arm/nxp/lpc32xx.yaml
-> index 6b7f5e6f99cfb..1e290f16a7a50 100644
-> --- a/Documentation/devicetree/bindings/arm/nxp/lpc32xx.yaml
-> +++ b/Documentation/devicetree/bindings/arm/nxp/lpc32xx.yaml
-> @@ -22,5 +22,27 @@ properties:
->                 - phytec,phy3250
->             - const: nxp,lpc3250
->   
-> +      - items:
-> +          - enum:
-> +              - ea,lpc4357-developers-kit
-> +          - const: nxp,lpc4357
-> +          - const: nxp,lpc4350
-> +
-> +      - items:
-> +          - enum:
-> +              - ciaa,lpc4337
-> +          - const: nxp,lpc4337
-> +          - const: nxp,lpc4350
-> +
-> +      - items:
-> +          - enum:
-> +              - hitex,lpc4350-eval-board
-> +          - const: nxp,lpc4350
-> +
-> +      - items:
-> +          - enum:
-> +              - myir,myd-lpc4357
-> +          - const: nxp,lpc4357
-> +
->   additionalProperties: true
->   ...
+No. It is fine as is.
 
--- 
-Best wishes,
-Vladimir
+---
+bod
 
