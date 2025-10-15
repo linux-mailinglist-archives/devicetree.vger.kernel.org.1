@@ -1,195 +1,210 @@
-Return-Path: <devicetree+bounces-227289-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227291-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E7BDBE0372
-	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 20:38:59 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6AE27BE0399
+	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 20:41:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 81B0F4F8E53
-	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 18:38:58 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 5A965503288
+	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 18:40:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 853CD298CD7;
-	Wed, 15 Oct 2025 18:38:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55C53298CD7;
+	Wed, 15 Oct 2025 18:40:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="gJqaZnRI"
+	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="UOuBuEb3";
+	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="UYfg96jV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f53.google.com (mail-ot1-f53.google.com [209.85.210.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23B2D21A447
-	for <devicetree@vger.kernel.org>; Wed, 15 Oct 2025 18:38:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F4F3325494;
+	Wed, 15 Oct 2025 18:40:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760553535; cv=none; b=oJ2LEDONur9SvQ7YJ9qWfSYdmD1NyX7+gqIvIxqLzmaqWyYqFK1NZ5u7xdaS4Ryk3+7dsFRdcO2tUKx990NAJGm5ULpr+94iCrXo7xijknkIESHwiogzE0T+lJoNaeNXIgMJv0lWuIXdGFam3iOVU/Cv5sTgYBL/NsMJrW7SA4I=
+	t=1760553652; cv=none; b=A9OiasmJOFSNoLxv4WU8rLxweB0PPXrgiDlw+jzI0lwPGL55AIHu52+uM26e/mogFWi48VVXggbDpJRJiZbaXX9EXEAi2kIkPNXntNDD5KjaI/RxagOKg/vd7Hk4GEawIKbHy822I5sF+eBMxQn9GljJDks78d2beWr8uGkY50Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760553535; c=relaxed/simple;
-	bh=A6ABvce90CoOKfZJ1YRD55sJ0SyCGKbP1stpO6hQahU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gcWJVdRrUi/l8CDki+cHCjzMrUBbAcT8o06G59NXli5nj8Hg+rhZ1i8yxPdUa01oe8HNHlqUoOLQ0RspfXm+nd7SkB0NGELCE8dd/AIl60FclovMFQJcLydBRrJye+UmFBbLGk0RPo/lnOxl7N6hJ2Tj+E2m+TlHu8NhV19P4nw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=gJqaZnRI; arc=none smtp.client-ip=209.85.210.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ot1-f53.google.com with SMTP id 46e09a7af769-7c12ddebffdso598999a34.2
-        for <devicetree@vger.kernel.org>; Wed, 15 Oct 2025 11:38:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1760553532; x=1761158332; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=c7Pa/1BHqYMBhXpBmEF4fAbsSTM4OPfXzGQjsT1agWg=;
-        b=gJqaZnRIpydAa/IzHDREMVj5BjSuQEBbP02U5YPr3hlm2gzIik5Xjf1Qfgmqy3Hngb
-         2nUYB43nLix6Hek5MChzxeJ1EGFUw4awYDla/+ex3mXjLmB9LgUyXRgvaIYBgDm2ksj8
-         5guWBE8pkaBWIX5NDYjEZbYpQ2HiooPl+OSgrOq3EEc0qW+Ews6keSypV3OuMRffHJsK
-         bK/ibcpaiAKn8RVFU9NFWeZ4Nqs7JzWI4e2eqA+kY2x0pI1tCK7yGRe/byddy9MI/m8/
-         G6wHBzbkMQJtu+l/SQiqwaF+jkd9afzuNpJoK/AvYUTz47c45HzubofxhCxLHXKXxoYt
-         QZIw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760553532; x=1761158332;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=c7Pa/1BHqYMBhXpBmEF4fAbsSTM4OPfXzGQjsT1agWg=;
-        b=n8As0d+FTXwBYESJ/ygpQV9wcVyfbfc4eXSvxiW4G7cKD70gs4DUInC48+oOPBSkV9
-         PsYZM6XUxrOwQbSE0YJdXU/5SYWanEWdrj97jQeXJ2lZeXiT6FzRZACUrpdLSNIn0wS1
-         xu1Ae3afja6IFokHzpPBI8kV4ozXq/tuhs6wpeh3hvfV0V/irGl6JJZvp4mJnN0WelrD
-         IjffV4AzkJbFpSsdKfsevV3m8fJJ/II/OKErdWy+47bjSJbaU7aMnUmTTOtWGoDbpjqf
-         XBRCN/iSkoys/d5q4tL0WozX69pqY5BgnPSYvBBqYBu9ywkNBfyxk+FB00tbqeWb5Tlp
-         JgmA==
-X-Forwarded-Encrypted: i=1; AJvYcCXXB9zaCmdRx88q1R5JEoknqCb65NuRYZLYr3d9kwLexSXn2hQXVVZd7kbP3+WWt+cuN/LjdKB+1O6f@vger.kernel.org
-X-Gm-Message-State: AOJu0YxdzBOTJVqxvqDD/FQI8MwjIKqz0ZLrVfpUsDk7xsHDcatk+I+P
-	Kiyb/nYL4B3yAGgBIzj+sroaeX/w+YDFIhkRd0B/RMIeog66O/rSGDx18vzCiQ4rYQo=
-X-Gm-Gg: ASbGnctlj94M7sRmS4Jzm6ozUYOoPVne7EEYwMgRHMnDvaxy6TgE6U6mxdOasFyiAGv
-	SLo8HeOXa89z8DgpcwQNE657DkBAbdf/J4ANF/uUOI9ii3Zvakey0JRGd465+rn8aVXllI/e3k7
-	DAWGiprgf7y/lCbRbNn0NjPzngEupj7moZ7yM69q9iu7HeLJKPqJ7IxqkYb8Kk62z0mpBHefVpw
-	x56pRqdlJXkY/LtbgLts1rLjBG5ul9LWgB1lNoh/sYFUICL8wd3+LcF1PBr6DrMYKYGfxVqSTW9
-	TR9J7MAGf5cRDvEmhPlowZatsI5Ujw/esdD9uqgakMKhk1TMsEy3MHO2QasVdlJ0k2RONBgum6h
-	nooq0E7PmcIa3dyBQvdq0G7Zp0ir2G6Fz5kNlND7D80WcznyGuspcyd4kCKp1X7nXI6QAc4jD9E
-	vuNZZxPrj7uyElrjnvxD4558JkmYOG1hiRW5sH
-X-Google-Smtp-Source: AGHT+IFUFKcADmzsj/IXf4M39Ln3t08RBAMcgnpJ1VX0iX7hN5yNIgTZRlo50r/4Kc/y5Zljp8pqkw==
-X-Received: by 2002:a05:6808:50a7:b0:43f:a2eb:861f with SMTP id 5614622812f47-4417b2bbcbfmr13447346b6e.8.1760553532023;
-        Wed, 15 Oct 2025 11:38:52 -0700 (PDT)
-Received: from ?IPV6:2600:8803:e7e4:500:c482:1912:c2de:367e? ([2600:8803:e7e4:500:c482:1912:c2de:367e])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7c0f90510a2sm5533725a34.2.2025.10.15.11.38.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 15 Oct 2025 11:38:51 -0700 (PDT)
-Message-ID: <ad929fe5-be03-4628-b95a-5c3523bae0c8@baylibre.com>
-Date: Wed, 15 Oct 2025 13:38:50 -0500
+	s=arc-20240116; t=1760553652; c=relaxed/simple;
+	bh=VLIxBEms27Yz3y0Bt+/VwITTq6tiyEIu79XTi07+0bg=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=cIWqqGOEsjVPSZsdpbxemUQIs3kY3UlvML1qeevg8x9Julo9ZK9lKSv7s5Pmbu1tfJdysvkinBoRC2rPhjtGhyE+xMAkxpiBZyiWmVXCA7kM8D9IKER+t6Daz7SvmIJvZcaNSdYeE0RxNvkV+uFhkj7Js3439/r25pnzcuiW+Cs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=UOuBuEb3; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=UYfg96jV; arc=none smtp.client-ip=193.142.43.55
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
+From: Thomas Gleixner <tglx@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020; t=1760553648;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=+uP+eUWmeV1AcOzpTFqHijqsFbONeijvS4FICr7ALx0=;
+	b=UOuBuEb3B/deBdCKfzYKnZIv2IFCw47QVB1rB9Y5sQHMYA+c3VxT+e2bSU32O3lP319r+E
+	t1Rit1EJ/f6KLl67lVV4PNtcL6K1nQflR65zafd5wymcBVREUIPxgUU7KW3A7mqtJRx31y
+	3rg15l7/ICCsPuplfWLOBp6GXUeyCah+0B6FlzBJLr90J6H6tiOBh0x1k2Q0W+vQ6ih6+d
+	QM8i/pcTOrSwkI18KlKjQXkKKCnFq/HxIAXijjZXELxg21GkNQnI+KoC5Mkhl1IvG2gacs
+	c+gMgZYIM6Akpa9ZVhyVRBv5SpN3xt0TKERYMGsKDNR1BzixXp2mibw+FhajJQ==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020e; t=1760553648;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=+uP+eUWmeV1AcOzpTFqHijqsFbONeijvS4FICr7ALx0=;
+	b=UYfg96jVV87s4/TO5Vuc6hNOWjzMJp5IqRYwlMW4j71Ncv1gUmSo08Rx6c6uwktqSx9/6i
+	D/+JC7X2WVknTiCg==
+To: Lucas Zampieri <lzampier@redhat.com>, linux-kernel@vger.kernel.org
+Cc: Charles Mirabile <cmirabil@redhat.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, Samuel
+ Holland <samuel.holland@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>,
+ Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, Vivian
+ Wang <dramforever@live.com>, devicetree@vger.kernel.org,
+ linux-riscv@lists.infradead.org, Zhang Xincheng
+ <zhangxincheng@ultrarisc.com>, Lucas Zampieri <lzampier@redhat.com>
+Subject: Re: [PATCH v4 3/3] irqchip/plic: add support for UltraRISC DP1000 PLIC
+In-Reply-To: <20251015143108.441291-4-lzampier@redhat.com>
+References: <20251015143108.441291-1-lzampier@redhat.com>
+ <20251015143108.441291-4-lzampier@redhat.com>
+Date: Wed, 15 Oct 2025 20:40:47 +0200
+Message-ID: <87y0pc100g.ffs@tglx>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/6] spi: add multi_bus_mode field to struct spi_transfer
-To: =?UTF-8?Q?Nuno_S=C3=A1?= <noname.nuno@gmail.com>,
- Mark Brown <broonie@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Marcelo Schmitt <marcelo.schmitt@analog.com>,
- Michael Hennerich <michael.hennerich@analog.com>,
- =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
- Jonathan Cameron <jic23@kernel.org>, Andy Shevchenko <andy@kernel.org>,
- Sean Anderson <sean.anderson@linux.dev>, linux-spi@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-iio@vger.kernel.org
-References: <20251014-spi-add-multi-bus-support-v1-0-2098c12d6f5f@baylibre.com>
- <20251014-spi-add-multi-bus-support-v1-3-2098c12d6f5f@baylibre.com>
- <9269eadc1ea593e5bc8f5cad8061b48220f4d2b2.camel@gmail.com>
- <409ad505-8846-443e-8d71-baca3c9aef21@sirena.org.uk>
- <12db0930458ceb596010655736b0a67a0ad0ae53.camel@gmail.com>
- <8c7bf62a-c5dc-4e4d-8059-8abea15ba94e@sirena.org.uk>
- <d9455d90-31ca-4be7-b17c-2b339e92f8a0@baylibre.com>
- <9024f05854dcc3cc59345c0a3de900f57c4730d9.camel@gmail.com>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <9024f05854dcc3cc59345c0a3de900f57c4730d9.camel@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-On 10/15/25 11:43 AM, Nuno Sá wrote:
-> On Wed, 2025-10-15 at 11:15 -0500, David Lechner wrote:
->> On 10/15/25 10:18 AM, Mark Brown wrote:
->>> On Wed, Oct 15, 2025 at 03:43:09PM +0100, Nuno Sá wrote:
->>>> On Wed, 2025-10-15 at 13:01 +0100, Mark Brown wrote:
->>>>> On Wed, Oct 15, 2025 at 11:16:01AM +0100, Nuno Sá wrote:
->>>>>> On Tue, 2025-10-14 at 17:02 -0500, David Lechner wrote:
->>>
->>>>>>>         controller    < data bits <     peripheral
->>>>>>>         ----------   ----------------   ----------
->>>>>>>             SDI 0    0-0-0-1-0-0-0-1    SDO 0
->>>>>>>             SDI 1    1-0-0-0-1-0-0-0    SDO 1
->>>
->>>>>> Out of curiosity, how does this work for devices like AD4030 where the same
->>>>>> word
->>
->> The AD4030 is just one channel, so doesn't do interleaving. But you probably
->> meant AD4630 when it is wired up with only 1 SDO line. That line has to be shared
->> by both of the simultaneous converters so it alternates between sending one bit
->> from each word. This patch series doesn't address that case. But this series will
->> work for the AD4630 when it has 2 SDO lines wired up.
->>
-> 
-> Hmm I didn't even remembered that one. But what I meant with interleaved was having
-> the same data word spread through multiple SDO lines (one bit per line) which is what
-> (also) happens with the devices I mentioned. And since you mentioned "...two
-> different data words at the same time, one on each bus...", I raised the question.
+On Wed, Oct 15 2025 at 15:31, Lucas Zampieri wrote:
+> +static bool cp100_isolate_pending_irq(int nr_irq_groups, u32 ie[],
+> +				       void __iomem *pending,
+> +				       void __iomem *enable)
+> +{
+> +	u32 pending_irqs = 0;
+> +	int i, j;
+> +
+> +	/* Look for first pending interrupt */
+> +	for (i = 0; i < nr_irq_groups; i++) {
+> +		pending_irqs = ie[i] & readl_relaxed(pending + i * sizeof(u32));
+> +		if (pending_irqs)
+> +			break;
+> +	}
+> +
+> +	if (!pending_irqs)
+> +		return false;
+> +
+> +	/* Disable all interrupts but the first pending one */
+> +	for (j = 0; j < nr_irq_groups; j++) {
+> +		u32 new_mask = 0;
+> +
+> +		if (j == i)
+> +			/* Extract mask with lowest set bit */
+> +			new_mask = (pending_irqs & -pending_irqs);
 
-Ah, yes, I know what you are talking about now. I didn't mention that use case in
-the cover letter because I didn't want to confuse things. But actually the AD4630
-can have 8 SDO lines, 4 per each data bus/ADC channel. The groups of 4 act like a
-quad SPI where 4 bits of one data word are sent at the same time. Those 4 lines are
-considered one "bus" since they are all connected to the same serialzer that combines
-the bits into a single word. We already have support for this sort of thing in Linux.
-And sure, we could mix the two together. So a SPI transfer might look like:
+Please add brackets around the conditional as it's not a true single
+line.
 
-struct spi_transfer example = {
-	rx_buf = rx_buf;
-	len = 4; /* 2 x 16-bit words */
-	rx_nbits = 4; /* each bus is quad SPI */
-	multi_bus_mode = SPI_MULTI_BUS_MODE_STRIPE; /* 2 data buses */
-	bits_per_word = 16;
-};
+> +static irq_hw_number_t cp100_get_hwirq(struct plic_handler *handler,
+> +					void __iomem *claim)
+> +{
+> +	void __iomem *enable = handler->enable_base;
+> +	void __iomem *pending = handler->priv->regs + PENDING_BASE;
+> +	int nr_irqs = handler->priv->nr_irqs;
+> +	int nr_irq_groups = DIV_ROUND_UP(nr_irqs, 32);
+> +	int i;
+> +	irq_hw_number_t hwirq = 0;
 
-This would result in a transfer that reads two 16-bit words in 4 SCLK cycles.
+Please use reverse fir tree ordering:
 
-And the .dts would look like:
+  https://www.kernel.org/doc/html/latest/process/maintainer-tip.html#variable-declarations
 
-spi {
-	adc@0 {
-		compatible = "adi,ad4630-16";
-		reg = <0>;
-		...
-		spi-rx-bus-width = <4>;
-		spi-buses = <2>;
-		...
-	};
-};
+> +
+> +	raw_spin_lock(&handler->enable_lock);
 
-The AXI SPI Engine doesn't know how to do the quad SPI part yet though, so
-it isn't something we could implement right now.
+Please use
 
-If we tried to do it with spi-buses = <8>; then we would end up with the
-"interleaved" bits (or nibbles depending on the wiring) that requires the
-extra IP block to sort out when using SPI offloading. Technically, we could
-make it work, but it would require a bunch of extra hardware description that
-the driver would have to interpret in order to correctly format the struct
-spi_transfer. I was hoping we could avoid that and just teach the SPI Engine
-how to do dual/quad SPI like other SPI controllers.
+       guard(raw_spinlock)(&handler->....);
 
-> 
-> So I guess I kind of misused what interleaved typically means (even though I guess
-> it's not completely off :)) and was thinking more on the parallel concept Mark spoke
-> about.
-> 
-> Anyways, from your reply I see the intent is to also use the stripe mode for this and
-> have some kind of external IP deal with data re-order. I gave a look into the ad4630
-> IP core and indeed there's a data reorder IP block after the offload engine.
-> 
-> - Nuno Sá
-> 
->>>>>
+which gets rid of the goto and you can just return instead.
 
+> +	/* Save current interrupt enable state */
+> +	for (i = 0; i < nr_irq_groups; i++)
+> +		handler->enable_save[i] = readl_relaxed(enable + i * sizeof(u32));
+> +
+> +	if (!cp100_isolate_pending_irq(nr_irq_groups, handler->enable_save, pending, enable))
+> +		goto out;
+> +
+> +	hwirq = readl(claim);
+> +
+> +	/* Restore previous state */
+> +	for (i = 0; i < nr_irq_groups; i++)
+> +		writel_relaxed(handler->enable_save[i], enable + i * sizeof(u32));
+> +out:
+> +	raw_spin_unlock(&handler->enable_lock);
+> +	return hwirq;
+> +}
+> +
+> +static void plic_handle_irq_cp100(struct irq_desc *desc)
+> +{
+> +	struct plic_handler *handler = this_cpu_ptr(&plic_handlers);
+> +	struct irq_chip *chip = irq_desc_get_chip(desc);
+> +	void __iomem *claim = handler->hart_base + CONTEXT_CLAIM;
+> +	irq_hw_number_t hwirq;
+> +
+> +	WARN_ON_ONCE(!handler->present);
+> +
+> +	chained_irq_enter(chip, desc);
+> +
+> +	while ((hwirq = cp100_get_hwirq(handler, claim))) {
+> +		int err = generic_handle_domain_irq(handler->priv->irqdomain,
+> +						    hwirq);
+
+Let it stick out, you have 100 characters
+
+> +		if (unlikely(err)) {
+> +			pr_warn_ratelimited("%pfwP: can't find mapping for hwirq %lu\n",
+> +					    handler->priv->fwnode, hwirq);
+> +		}
+> +	}
+> +
+> +	chained_irq_exit(chip, desc);
+> +}
+> +
+>  static void plic_set_threshold(struct plic_handler *handler, u32 threshold)
+>  {
+>  	/* priority must be > threshold to trigger an interrupt */
+> @@ -430,6 +516,8 @@ static const struct of_device_id plic_match[] = {
+>  	  .data = (const void *)BIT(PLIC_QUIRK_EDGE_INTERRUPT) },
+>  	{ .compatible = "thead,c900-plic",
+>  	  .data = (const void *)BIT(PLIC_QUIRK_EDGE_INTERRUPT) },
+> +	{ .compatible = "ultrarisc,cp100-plic",
+> +	  .data = (const void *)BIT(PLIC_QUIRK_CP100_CLAIM_REGISTER_ERRATUM) },
+>  	{}
+>  };
+>  
+> @@ -664,12 +752,16 @@ static int plic_probe(struct fwnode_handle *fwnode)
+>  		}
+>  
+>  		if (global_setup) {
+> +			void (*handler_fn)(struct irq_desc *) = plic_handle_irq;
+
+Lacks a newline between variable declaration and code.
+
+> +			if (test_bit(PLIC_QUIRK_CP100_CLAIM_REGISTER_ERRATUM, &handler->priv->plic_quirks))
+> +				handler_fn = plic_handle_irq_cp100;
+> +
+>  			/* Find parent domain and register chained handler */
+>  			domain = irq_find_matching_fwnode(riscv_get_intc_hwnode(), DOMAIN_BUS_ANY);
+>  			if (domain)
+>  				plic_parent_irq = irq_create_mapping(domain, RV_IRQ_EXT);
+>  			if (plic_parent_irq)
+> -				irq_set_chained_handler(plic_parent_irq, plic_handle_irq);
+> +				irq_set_chained_handler(plic_parent_irq, handler_fn);
+>  
+>  			cpuhp_setup_state(CPUHP_AP_IRQ_SIFIVE_PLIC_STARTING,
+>  					  "irqchip/sifive/plic:starting",
+
+Thanks,
+
+        tglx
 
