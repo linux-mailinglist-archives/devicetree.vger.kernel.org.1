@@ -1,227 +1,259 @@
-Return-Path: <devicetree+bounces-227036-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227037-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F026BDE024
-	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 12:32:58 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 65144BDE048
+	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 12:34:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E1CC618806F2
-	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 10:33:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 214F8401F8B
+	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 10:33:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59F78322521;
-	Wed, 15 Oct 2025 10:28:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DE9B30CD97;
+	Wed, 15 Oct 2025 10:30:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="F77YPgJu"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CHdkrAIm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B36C5321F46
-	for <devicetree@vger.kernel.org>; Wed, 15 Oct 2025 10:28:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C933B2EBBA4
+	for <devicetree@vger.kernel.org>; Wed, 15 Oct 2025 10:30:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760524121; cv=none; b=ZZn7GELpLPd+mXQaBd0TD5N1EwkNDuU6sF59qMS9CVFtm9lInvjzHHNfN/gOBoa6W3YhdgyjFBfM+JM4qs3ZFDtJ3PRoddLO/aAdU5LrTn0qOXLcs51SoEip1DTAULYm8sbbTNxTmW1MANgq7f++Uis6ejoOEV5yoC1SCooIm6E=
+	t=1760524211; cv=none; b=aeJ2ElhPsmRUE3/8RD7lJ1n+9P9Dm4iBDMD3Dw2PnaE5Na2mkZIGeJc09BV7q0YdoeogZ8kxBZFX9MTlV8RuvXAiJqWS5g5dOPhaUh7VVCVwtPl4g8ujwEpZbIkdqr0zy+QC8y6rf30DoPHjCmS4Y5WGiErlmpy5Ihm1aQnUjLw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760524121; c=relaxed/simple;
-	bh=0tvqjA5g5nXTtWkmeWJomxbNRZvUvJaMshuYYM2spUk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=XZiR2ytHsbFauChO0rQ9ukNsttvlXdhJdeMCz/erefKy3bwciY01d8Akkz4F9TPGRIqwNhDMmcEY/Ya/U6yp7fFpDi2qmhg3zGPQLqJ+s5UUALq1W5EW2CkVkBTV/06qV1xWSSRZHBBlq/g85dduJqTtwB+D6SkvOsvKJI1XX4s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=F77YPgJu; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59F2s8a5016142
-	for <devicetree@vger.kernel.org>; Wed, 15 Oct 2025 10:28:38 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	OtCuBzfMS782vxBLNrbSA6yWo7+oKeRaHTDzQnpUByc=; b=F77YPgJufPc4+VPB
-	aUtGpNZb3u+Dncakf0e5YdtCVESkYOjvfINYg9aELyOuCiVDpJ5pH1msWoAFcyHv
-	Y/X6bs6PBZcefBcZpBnd7F9mO/WjgV00kDq5xn3bc5LA9nHMig7YUi5TKUBd+yVN
-	hf+R3TL6qk0yCfw2iuW4NapYMXl4YD3foUZma4eZKTGuRhlImkgaPq0nhqiHg3XD
-	xQoPvgtNAHYzuaVebEKjOeH7wtVp0cNxbW9V/hF1zWKG3F0zLW40JsINdcxto74X
-	h3xzv5YGfJzg2kayjecLmRgcNrGNwvavhlhtYEQeEIxYnwVGPjwmrfclCslDiaso
-	dunnDA==
-Received: from mail-pg1-f198.google.com (mail-pg1-f198.google.com [209.85.215.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49qfdkc1xj-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 15 Oct 2025 10:28:38 +0000 (GMT)
-Received: by mail-pg1-f198.google.com with SMTP id 41be03b00d2f7-b62ebb4e7c7so9733629a12.3
-        for <devicetree@vger.kernel.org>; Wed, 15 Oct 2025 03:28:38 -0700 (PDT)
+	s=arc-20240116; t=1760524211; c=relaxed/simple;
+	bh=Bg+Z1n2wXb8uVIji48r8xGjYlXJK8zyqzDDHBMHeaik=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=UEyLidLgz2qHo/oH6NpMzKR5LW9WVkFCK09jpxk6m5oGJQpSxwozO3k9mobMPA+xvDg4ncZAriEtTeyXCcJJq8juIrUpDMBTL6ufpV9uDCWX3dccWupDRsk606GwVS+yoZQsNOJima9fXMlG+Rl5KpyYaRviqDsUy1++Pmq9FyA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CHdkrAIm; arc=none smtp.client-ip=209.85.128.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-46b303f755aso56527205e9.1
+        for <devicetree@vger.kernel.org>; Wed, 15 Oct 2025 03:30:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1760524207; x=1761129007; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=YQME+sn3dWO68d8oui4leQRfjhZnFNWObqexC6XKq9M=;
+        b=CHdkrAImt+9RuVewZ3GqqOIULDQ+Dt1fQ/LRorVeJZRaJSB7nV7/gk2bHBAif+ZfTk
+         myL2nfm7RSssQz/0EEV7GTY916GgibMJNRS1WYYy9PXcaHjqcQS1FSka2wpApV9tKGns
+         aNg8KEStjtAQeH4r1NPQG3kBMkZnsBxOvSOlfft+apf7cjHAs3hBsfriVnNiBhFKWgDF
+         vgTS/0Ag8ySD25Qiop16QhqGw4lh0FIY+ANwd+86x9WLvu7zT+o40bPKxIMwZpA46t0t
+         U4LIraOXjwi9XPMLPk7mcn9Wz4lgdkXjIFpnq1fZR+9cbmpreSpPGbId3L6W4g19bf5U
+         ysQA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760524117; x=1761128917;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=OtCuBzfMS782vxBLNrbSA6yWo7+oKeRaHTDzQnpUByc=;
-        b=FGKvag7eirtT1LwgG9g7hij8WhsPOICi7GwnC6mvJfgDhdP7BbccoG/dN+l7mGk25C
-         5/BO4goQfuvybR7pzMj4QAd+T7bUzZAxbbznlnRBWxPS4zIs0zJyH/53wPvCeOKIaooV
-         sQwoJqdhbjjdPi0lgU3rqnU129tKcrphO7KVk0pQJj3uFZKyEKcJSoonhDNBUQ16zjUS
-         Dkj23Q0vNw0yX2yHiQWfTGBAbwZSao5TdHfJV8jw747A/6Nr6kUIGQmlnFQrC5yUEuaP
-         ngmb/cTOFxWmkZSbeBxy8MMtLhc9SPp3jWXCZRCE7wmT5VBU/raLgXsjSU1bT8F/iYr6
-         jszQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVuU7gCSy6Ms+FO+fChCPr3I3sSfkfg7m1tKykoBUVApHi97cnnkenMG80Al/XSeQtI3h90AeMqniWF@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz3WBV2RtQedwyD/8JCRDw0zNl4m4X1VPll9LvUDPgiA/40XMGT
-	A8cyiT6V7R8nKyyEl514b/hVeJIL7OsbQNPO1niYQCQrH/S5UHgPgEr2QxWCOAyPcPO8mP5COmv
-	B0XI+H0bgpsxWr4ejaOOXEjQ3npc2Ty/fs6Ez5F/nBgrLeKJZdvESMgsvHpgxNv3d
-X-Gm-Gg: ASbGncufExUTS8EJfBvK3WnKUKlyPWWNbU5OCHX/fCH9XcrmUAVHsGcqkbOoebn/sKJ
-	A64pcVEatGCn42nwSvDpad+lK5bXEpxX03MncP9jrgw3YlxSiP1P+g/t7IWU9p/orE4OK0oG6T1
-	3UPGsNUXkKeRjCLCjhfrMY3PhXPsUFhN9AO+B48XGrhWA2/tEU+9cSKOjtwG9dTSdCylnnBB5hG
-	Jvfe1K9XvGbU6MmppC8z7C8iCWrt2uGXmOjx+LjfOTE4Dm0iXL7pGcaezqYoIknvFcimLi4dSz7
-	NdpqKZmirP4BLVTxLr1tWGBgzOZiRmd7cSUP/7EDKYer3nMDkgSvIAhN9TsIfI8Vh+t9o3k=
-X-Received: by 2002:a05:6a21:32a3:b0:303:b64b:e44 with SMTP id adf61e73a8af0-32da83e38bemr35878494637.43.1760524117199;
-        Wed, 15 Oct 2025 03:28:37 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHFMeBDWmLwGmtvM1sNbU+BcXtiGukpKU9b6FpL+kUTBWyczFWyDH0DN4wWF25eRGbf5yYZSg==
-X-Received: by 2002:a05:6a21:32a3:b0:303:b64b:e44 with SMTP id adf61e73a8af0-32da83e38bemr35878463637.43.1760524116776;
-        Wed, 15 Oct 2025 03:28:36 -0700 (PDT)
-Received: from [10.218.44.34] ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7992bb1e50dsm18263043b3a.33.2025.10.15.03.28.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 15 Oct 2025 03:28:36 -0700 (PDT)
-Message-ID: <235cf6b7-e758-4d16-b5a1-182cc869b2e4@oss.qualcomm.com>
-Date: Wed, 15 Oct 2025 15:58:31 +0530
+        d=1e100.net; s=20230601; t=1760524207; x=1761129007;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=YQME+sn3dWO68d8oui4leQRfjhZnFNWObqexC6XKq9M=;
+        b=nfd4t1AV20qUyMlqZbFxlY6mwaM1h2gKK/t8ful1HUBNSf96ObRLhKiux011bbu5sn
+         SOEgFddyJrT4xxyM7wgxFBA/zhC9PVRWjwmDyKsNRDbN3KEKmfw/sjp8JeF+KRDhKSNx
+         OsVv/D+XqaApJT8tPMOSAEtkMlWRiE+/HAcm3wYDh2yXZyWtUICVYWxFBqY+n5r5jMQY
+         8xr5/oRiXP5doHggdl8PpSjPLKoDO6wa6r3E8Fcf3wZcYUu3bKbf27+WGoW2GshN+8RE
+         zLVsCSev2UuXI4Bqlcl55gA/Dqbx2LqvBwWNYJ3SqcTOAJApbtfsMN5n0miu/LPeXaUE
+         v59g==
+X-Forwarded-Encrypted: i=1; AJvYcCU/dvspluiF10MvHnYW4As+DyC+pP7UT8jD+hR5XH4WWkZxCoxcvqYlLW1vdHMbb5jzTyoy3MkeW2c+@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx123o07SQP7LZYdnNDwNRbw9hD3xaBbWBwimEeDm4yw8jGrPxo
+	jplfc6VBhYyySpUWEV8CDLGbDh5gqjtc/QKzuRL3ZEGVdIxAnM4qa/wu
+X-Gm-Gg: ASbGncv91Bd9tumckW0q9xxHQz6sjywcEr0kkF6b4X1PiyoBNlNnfENghX5TuwoCv8h
+	dvPVx5QSqKdie/ggxGBS+N37Bv1dwvA3Evnl4IO20W/ynfvxRJZ+0i77YDOXDr3tyWaRByIGo/z
+	/uEUBNdc6KjS6Wb2c12CtPBbfVuvUgY2w3f+LY1is6l0+3XS8Tn57LiEll+ZR1avCLr+HkuY1Kc
+	So1UH7xt/DNIiNSRPD0o1ZImzip80B75Rla7UNVVCwJazNNiMEridoL4KVL9VE48/5qR1Di7Kzr
+	PgbVWISCrOKo5teRKXAw4b0qWTyAWsrmOnCUfyOI0rOZxcdyvcJzkO7ejpHXpCv8VS66UVsL+7n
+	ZUZkDZQ647fIsXCmB5thzSdscCcQN4Qt8VecK0k0z95CyCPIqhvd5RdqpLHdz
+X-Google-Smtp-Source: AGHT+IG59U3gqkC6eeKyzFw5fLLTNIH8yW3/ovkw5HgRRTRqvgP4g98uKIUkAFMPY1Ss14l8BFe+jw==
+X-Received: by 2002:a05:600c:1c23:b0:45b:6b57:5308 with SMTP id 5b1f17b1804b1-46fa9a892a0mr204503275e9.7.1760524206980;
+        Wed, 15 Oct 2025 03:30:06 -0700 (PDT)
+Received: from [192.168.1.187] ([161.230.67.253])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-470ff15ef28sm31596615e9.5.2025.10.15.03.30.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 15 Oct 2025 03:30:06 -0700 (PDT)
+Message-ID: <3180475bd51e1e057d6aa7e1b62f564cb57a117e.camel@gmail.com>
+Subject: Re: [PATCH 4/6] spi: axi-spi-engine: support
+ SPI_MULTI_BUS_MODE_STRIPE
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: David Lechner <dlechner@baylibre.com>, Mark Brown <broonie@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,  Marcelo Schmitt
+ <marcelo.schmitt@analog.com>, Michael Hennerich
+ <michael.hennerich@analog.com>, Nuno =?ISO-8859-1?Q?S=E1?=	
+ <nuno.sa@analog.com>, Jonathan Cameron <jic23@kernel.org>, Andy Shevchenko	
+ <andy@kernel.org>
+Cc: Sean Anderson <sean.anderson@linux.dev>, linux-spi@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-iio@vger.kernel.org
+Date: Wed, 15 Oct 2025 11:30:39 +0100
+In-Reply-To: <20251014-spi-add-multi-bus-support-v1-4-2098c12d6f5f@baylibre.com>
+References: 
+	<20251014-spi-add-multi-bus-support-v1-0-2098c12d6f5f@baylibre.com>
+	 <20251014-spi-add-multi-bus-support-v1-4-2098c12d6f5f@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.0 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 04/24] arm64: dts: qcom: glymur: Add QUPv3 configuration
- for serial engines
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Pankaj Patil <pankaj.patil@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20250925-v3_glymur_introduction-v1-0-24b601bbecc0@oss.qualcomm.com>
- <20250925-v3_glymur_introduction-v1-4-24b601bbecc0@oss.qualcomm.com>
- <8828946b-3979-4e7b-a11c-740d8a6253ce@oss.qualcomm.com>
-Content-Language: en-US
-From: Jyothi Kumar Seerapu <jyothi.seerapu@oss.qualcomm.com>
-In-Reply-To: <8828946b-3979-4e7b-a11c-740d8a6253ce@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: k-jALKwKGUNWSLpkbMl5vfQuh3Kv4AHd
-X-Authority-Analysis: v=2.4 cv=MrNfKmae c=1 sm=1 tr=0 ts=68ef7756 cx=c_pps
- a=Qgeoaf8Lrialg5Z894R3/Q==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
- a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=EUspDBNiAAAA:8 a=5RRmG2Rm61FAXBKOsCEA:9 a=QEXdDO2ut3YA:10
- a=x9snwWr2DeNwDh03kgHS:22
-X-Proofpoint-GUID: k-jALKwKGUNWSLpkbMl5vfQuh3Kv4AHd
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDExMDAxOCBTYWx0ZWRfX/FywsJiG9pvF
- mEg5zE0lClDKnE9R2xd3mEGlITvVAcTroKvdFUJh0oXVOLp0Mhg8pG5uHg/59se830kUgSPLnwy
- 5zMbVFA0MmHOVMC/3kE2ghinmbTvWWp0EzRNlACe+VTxGlrG4M2dXDvDsvUjFIzF24LqumQGgid
- vPKL4pNUXCo6AbjvEz+iupRixZk916VcNDCeseRNvl2PvN9KdNPpLeis/LaiGavsjs/hqhtcvDw
- es989Z+XPA4bXjOXzye6hZSLNuQmfM86R3CMiHHkUs00EiLAnuUN1gVcFYvPTh4VgLYrPOtoSSW
- rZmzMZmtVLyGR2zq9cxHchUIkhhvK9AmOsiT92R5cyIqQkYbjEZYY8A4nYv7x9KTAapdOW4YQIY
- 4rUu2xAbDP+gt3lZUq271leVieOEDw==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-10-15_04,2025-10-13_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 bulkscore=0 clxscore=1015 adultscore=0 phishscore=0
- impostorscore=0 priorityscore=1501 malwarescore=0 lowpriorityscore=0
- suspectscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2510020000
- definitions=main-2510110018
 
+On Tue, 2025-10-14 at 17:02 -0500, David Lechner wrote:
+> Add support for SPI_MULTI_BUS_MODE_STRIPE to the AXI SPI engine driver.
+>=20
+> The v2.0.0 version of the AXI SPI Engine IP core supports multiple
+> buses. This can be used with SPI_MULTI_BUS_MODE_STRIPE to support
+> reading from simultaneous sampling ADCs that have a separate SDO line
+> for each analog channel. This allows reading all channels at the same
+> time to increase throughput.
+>=20
+> Signed-off-by: David Lechner <dlechner@baylibre.com>
+> ---
+> =C2=A0drivers/spi/spi-axi-spi-engine.c | 128 ++++++++++++++++++++++++++++=
++++++++++-
+> -
+> =C2=A01 file changed, 124 insertions(+), 4 deletions(-)
+>=20
+> diff --git a/drivers/spi/spi-axi-spi-engine.c b/drivers/spi/spi-axi-spi-
+> engine.c
+> index
+> e06f412190fd243161a0b3df992f26157531f6a1..707e5108efec41f7eff608a09fcebd9=
+d28fa
+> 2d70 100644
+> --- a/drivers/spi/spi-axi-spi-engine.c
+> +++ b/drivers/spi/spi-axi-spi-engine.c
+> @@ -23,6 +23,9 @@
+> =C2=A0#include <linux/spi/spi.h>
+> =C2=A0#include <trace/events/spi.h>
+> =C2=A0
+> +#define SPI_ENGINE_REG_DATA_WIDTH		0x0C
+> +#define=C2=A0=C2=A0 SPI_ENGINE_REG_DATA_WIDTH_NUM_OF_SDIO_MASK	GENMASK(2=
+4, 16)
+> +#define=C2=A0=C2=A0 SPI_ENGINE_REG_DATA_WIDTH_MASK		GENMASK(15, 0)
+> =C2=A0#define SPI_ENGINE_REG_OFFLOAD_MEM_ADDR_WIDTH	0x10
+> =C2=A0#define SPI_ENGINE_REG_RESET			0x40
+> =C2=A0
+> @@ -75,6 +78,8 @@
+> =C2=A0#define SPI_ENGINE_CMD_REG_CLK_DIV		0x0
+> =C2=A0#define SPI_ENGINE_CMD_REG_CONFIG		0x1
+> =C2=A0#define SPI_ENGINE_CMD_REG_XFER_BITS		0x2
+> +#define SPI_ENGINE_CMD_REG_SDI_MASK		0x3
+> +#define SPI_ENGINE_CMD_REG_SDO_MASK		0x4
+> =C2=A0
+> =C2=A0#define SPI_ENGINE_MISC_SYNC			0x0
+> =C2=A0#define SPI_ENGINE_MISC_SLEEP			0x1
+> @@ -105,6 +110,10 @@
+> =C2=A0#define SPI_ENGINE_OFFLOAD_CMD_FIFO_SIZE	16
+> =C2=A0#define SPI_ENGINE_OFFLOAD_SDO_FIFO_SIZE	16
+> =C2=A0
+> +/* Extending SPI_MULTI_BUS_MODE values for optimizing messages. */
+> +#define SPI_ENGINE_MULTI_BUS_MODE_UNKNOWN	-1
+> +#define SPI_ENGINE_MULTI_BUS_MODE_CONFLICTING	-2
+> +
+> =C2=A0struct spi_engine_program {
+> =C2=A0	unsigned int length;
+> =C2=A0	uint16_t instructions[] __counted_by(length);
+> @@ -142,6 +151,9 @@ struct spi_engine_offload {
+> =C2=A0	unsigned long flags;
+> =C2=A0	unsigned int offload_num;
+> =C2=A0	unsigned int spi_mode_config;
+> +	unsigned int multi_bus_mode;
+> +	u8 primary_bus_mask;
+> +	u8 all_bus_mask;
+> =C2=A0	u8 bits_per_word;
+> =C2=A0};
+> =C2=A0
+> @@ -165,6 +177,22 @@ struct spi_engine {
+> =C2=A0	bool offload_requires_sync;
+> =C2=A0};
+> =C2=A0
+> +static u8 spi_engine_primary_bus_flag(struct spi_device *spi)
+> +{
+> +	return BIT(spi->data_bus[0]);
+> +}
+> +
+> +static u8 spi_engine_all_bus_flags(struct spi_device *spi)
+> +{
+> +	u8 flags =3D 0;
+> +	int i;
+> +
+> +	for (i =3D 0; i < spi->num_data_bus; i++)
+> +		flags |=3D BIT(spi->data_bus[i]);
+> +
+> +	return flags;
+> +}
+> +
+> =C2=A0static void spi_engine_program_add_cmd(struct spi_engine_program *p=
+,
+> =C2=A0	bool dry, uint16_t cmd)
+> =C2=A0{
+> @@ -193,7 +221,7 @@ static unsigned int spi_engine_get_config(struct
+> spi_device *spi)
+> =C2=A0}
+> =C2=A0
+> =C2=A0static void spi_engine_gen_xfer(struct spi_engine_program *p, bool =
+dry,
+> -	struct spi_transfer *xfer)
+> +				struct spi_transfer *xfer, u32 num_lanes)
+> =C2=A0{
+> =C2=A0	unsigned int len;
+> =C2=A0
+> @@ -204,6 +232,9 @@ static void spi_engine_gen_xfer(struct spi_engine_pro=
+gram
+> *p, bool dry,
+> =C2=A0	else
+> =C2=A0		len =3D xfer->len / 4;
+> =C2=A0
+> +	if (xfer->multi_bus_mode =3D=3D SPI_MULTI_BUS_MODE_STRIPE)
+> +		len /=3D num_lanes;
+> +
+> =C2=A0	while (len) {
+> =C2=A0		unsigned int n =3D min(len, 256U);
+> =C2=A0		unsigned int flags =3D 0;
+> @@ -269,6 +300,7 @@ static int spi_engine_precompile_message(struct
+> spi_message *msg)
+> =C2=A0{
+> =C2=A0	unsigned int clk_div, max_hz =3D msg->spi->controller->max_speed_h=
+z;
+> =C2=A0	struct spi_transfer *xfer;
+> +	int multi_bus_mode =3D SPI_ENGINE_MULTI_BUS_MODE_UNKNOWN;
+> =C2=A0	u8 min_bits_per_word =3D U8_MAX;
+> =C2=A0	u8 max_bits_per_word =3D 0;
+> =C2=A0
+> @@ -284,6 +316,24 @@ static int spi_engine_precompile_message(struct
+> spi_message *msg)
+> =C2=A0			min_bits_per_word =3D min(min_bits_per_word, xfer-
+> >bits_per_word);
+> =C2=A0			max_bits_per_word =3D max(max_bits_per_word, xfer-
+> >bits_per_word);
+> =C2=A0		}
+> +
+> +		if (xfer->rx_buf || xfer->offload_flags &
+> SPI_OFFLOAD_XFER_RX_STREAM ||
+> +		=C2=A0=C2=A0=C2=A0 xfer->tx_buf || xfer->offload_flags &
+> SPI_OFFLOAD_XFER_TX_STREAM) {
 
+I'm a bit confused by this condition. It looks like setting priv->multi_bus=
+_mode
+(and the other fields) only matters for msg->offload but the above will be =
+true
+for regular rx/tx messages, right? Or am i missing something?
 
-On 9/25/2025 3:48 PM, Konrad Dybcio wrote:
-> On 9/25/25 8:32 AM, Pankaj Patil wrote:
->> From: Jyothi Kumar Seerapu <jyothi.seerapu@oss.qualcomm.com>
->>
->> Add device tree support for QUPv3 serial engine protocols on Glymur.
->> Glymur has 24 QUP serial engines across 3 QUP wrappers, each with
->> support of GPI DMA engines.
->>
->> Signed-off-by: Jyothi Kumar Seerapu <jyothi.seerapu@oss.qualcomm.com>
->> Signed-off-by: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
->> ---
-> 
-> [...]
-> 
->> +		gpi_dma2: dma-controller@800000 {
->> +			compatible = "qcom,glymur-gpi-dma", "qcom,sm6350-gpi-dma";
->> +			reg = <0 0x00800000 0 0x60000>;
->> +			interrupts = <GIC_SPI 588 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 589 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 590 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 591 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 592 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 593 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 594 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 595 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 596 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 597 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 598 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 599 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_ESPI 129 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_ESPI 130 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_ESPI 131 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_ESPI 132 IRQ_TYPE_LEVEL_HIGH>;
->> +			dma-channels = <16>;
->> +			dma-channel-mask = <0x3f>;
->> +			#dma-cells = <3>;
->> +			iommus = <&apps_smmu 0xd76 0x0>;
->> +			status = "ok";
-> 
-> this is implied by default, drop
-
-Hi Konard,
-
-Do you mean we should remove the status property for all QUPs and 
-GPI_DMAs from the common device tree (SOC) and enable them only in the 
-board-specific device tree files?
-
-> 
->> +		};
->> +
->>   		qupv3_2: geniqup@8c0000 {
->>   			compatible = "qcom,geni-se-qup";
->>   			reg = <0x0 0x008c0000 0x0 0x3000>;
->> @@ -718,6 +744,339 @@ qupv3_2: geniqup@8c0000 {
->>   			#address-cells = <2>;
->>   			#size-cells = <2>;
->>   			ranges;
->> +			status = "ok";
-> 
-> ditto
-> 
-> (please resolve all occurences)
-> 
-> [...]
-> 
->> +		cnoc_main: interconnect@1500000 {
->> +			compatible = "qcom,glymur-cnoc-main";
->> +			reg = <0x0 0x01500000 0x0 0x17080>;
->> +			qcom,bcm-voters = <&apps_bcm_voter>;
->> +			#interconnect-cells = <2>;
->> +		};
->> +
->> +		config_noc: interconnect@1600000 {
->> +			compatible = "qcom,glymur-cnoc-cfg";
->> +			reg = <0x0 0x01600000 0x0 0x6600>;
->> +			qcom,bcm-voters = <&apps_bcm_voter>;
->> +			#interconnect-cells = <2>;
->> +		};
->> +
->> +		system_noc: interconnect@1680000 {
->> +			compatible = "qcom,glymur-system-noc";
->> +			reg = <0x0 0x01680000 0x0 0x1c080>;
->> +			qcom,bcm-voters = <&apps_bcm_voter>;
->> +			#interconnect-cells = <2>;
->> +		};
-> 
-> This diff becomes unreadable really fast.. please play with git
-> format-patch's --patience option
-> 
-> Konrad
+If so, I wonder why doing this for all transfers if we only care about
+multi_bus_mode for offload messages. I guess you want to validate
+xfer->multi_bus_mode? I would then just take the switch() out of the condit=
+ion
+(I mean trying to setup a no data xfer with an invalid bus_mode should also=
+ be
+seen as invalid IMO) and then use the offload conditions (or maybe simply m=
+sg-
+>offload?) for the multi_bus_mode handling. To me, it makes the intent more
+clear.
+=20
+- Nuno S=C3=A1
 
 
