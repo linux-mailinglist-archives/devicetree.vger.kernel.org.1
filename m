@@ -1,133 +1,133 @@
-Return-Path: <devicetree+bounces-227146-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227147-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D105BDF1A3
-	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 16:36:52 +0200 (CEST)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id EDCB7BDF1C4
+	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 16:39:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B64523AC03C
-	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 14:36:03 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 9A7F334B22C
+	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 14:39:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8278F28369D;
-	Wed, 15 Oct 2025 14:35:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCDD1284B2E;
+	Wed, 15 Oct 2025 14:39:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="V1u6Wi/b"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OVvXBITg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4EECA26CE06;
-	Wed, 15 Oct 2025 14:35:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D5A121B9F5
+	for <devicetree@vger.kernel.org>; Wed, 15 Oct 2025 14:39:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760538959; cv=none; b=KTHO16OHkbuLI7DDa7di1bxtyHdBHMbDy5jhrlI2A213qS086nQ5jnszwWatymMBwtZb9Qu9fERYxymkHhO/P33rYon96JMOl6ugAq7CQsKDLtMRLhqnSnQUchB1Co8wEl7a1cbGMPr+tkOe81m7nYeWkAZ1xcGC33YxvcIrlxw=
+	t=1760539162; cv=none; b=JE3f+JAUQektIgBdY2YVyCYQnP9rt3HcOs7MO5UctTjneI/L2Li6ItCKWpBjezPq54tByue/5msNC980/5hgdgZlhF11AMCw5V8UE1jhIMmg1sWS2lepsTnFB7iz3CCOrk+5vQEtjoCNDlSRVYt0MuO9XACGpwqLllXpT78B9ec=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760538959; c=relaxed/simple;
-	bh=CQlnQCZTcQjCMg9gXM5j/h/j9QBEe/QKt7u0yZHQbQE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sT9o8iBFCHRD7JTgw2W3c4M0XjLK8dO3AMkoNOsSdw2SBRCB9qEGgjpJ8FiDqPM/ZJVJosf3Wi2SWb/oErarjg+p4jOtZ3KihbFet0NclwQ83O53hDpBO1SceT+yW0sur3GYBWzv4EUXOxmdMwkaVysyOKeUIBdAZl1QSifgCUw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=V1u6Wi/b; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E5A66C4CEF8;
-	Wed, 15 Oct 2025 14:35:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760538958;
-	bh=CQlnQCZTcQjCMg9gXM5j/h/j9QBEe/QKt7u0yZHQbQE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=V1u6Wi/bA8yzs2VzytUSKwlOdJY627sho9aV934PlC9av+KzwXYa2BrrFU9y6Ptwo
-	 J+TUilM0Y8GtatWIY8ATBQIDQwY9kOqNlj344/MlQSTKbJywS1GziAxbxbP9w61X+9
-	 A3TSqCq6Yo5Tf/TYyPlYvL0pajqjSFWDamK27jsbDrPDxmEqidk9uRAslM99epdfbh
-	 dERs70VvRyfwG7Lez+yG8I2jkm1DQgffLXYES6OtZBxrEGN9KBqYSIg0MKAAG1/igN
-	 GjfCspVtrmiKyau0OERse5FwxKji55mnzZwUn3IZ5zfNdpuPYNhdc8/qQS79azJjVh
-	 Pxjs2x59J2QEQ==
-Date: Wed, 15 Oct 2025 15:35:53 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Antonio Borneo <antonio.borneo@foss.st.com>
-Cc: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1760539162; c=relaxed/simple;
+	bh=SlngsQQxcONRtHhTs1DZZ1H59SrvYbvg4ov1vmkq0Bo=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version; b=O85iv23uVleYXS3flSHofDg4EHmnT+wvbJkLH/FI+QknsHY+7lk4uzgAfjeJ7h6VjZnWyyL6awmIjVQqFnot19qNWarziVPZKGvB33WPW8OMTiv188gKrb/d0QbkBh73D9oa5NvBBwe7vnEbxpMV7xdWgE8GRqI6n1u4aE9wqxA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OVvXBITg; arc=none smtp.client-ip=209.85.214.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-2897522a1dfso62277335ad.1
+        for <devicetree@vger.kernel.org>; Wed, 15 Oct 2025 07:39:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1760539160; x=1761143960; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ouWcSpiIf9dLpvZnWLKHc0VRpVvUzoJh4rEYwTYJ/q4=;
+        b=OVvXBITgrwxPD748yT8i5mBEbmmV5OHKzvU4j7iK+1GgksviN3fm16GxV86fcVRHqa
+         KVHqR4V3m/IeqbtEOUN4vk5AR26HmRQ5SetugQA2DHw+HBUslISfVWQo1E4vN1iKBCTf
+         1Wv/nMcBsdew5pqaV1FGVB2VD0+JVlKrJg3gSMxw9QoGNlBfs9HgwZH1G5cjId3vruJE
+         PjDaW2BHoc+kclOhtMPjNMQrlpYQxlodF05NcVRt5KTpECIb4VgJ7LV72+jQdjq6Zzfo
+         AGN79q6MU+oE2MQ9IqGpGUf2FKv77JPGnZrnuETx1FcJD+A7Dpth5u+NLi5hjNZyMbFi
+         dPhA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1760539161; x=1761143961;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ouWcSpiIf9dLpvZnWLKHc0VRpVvUzoJh4rEYwTYJ/q4=;
+        b=eO3cKtsJQ17pWOst79baxxoQG/Tm/p28JwV/ZwUDjLP/mRhec8XahNdn5gdk/drTx8
+         WzRwkjNoEB6I++6BT6FP5FH/IQZ10dPNz2eDbVnhGW+khdmPljmWOfgrAAYpuIhlxz/4
+         guxw37JrA5C5kIuzvgGsh2VRCrjljLNhD9QM17Bx0RJm6blzZrjeT3SjVOWPMks47l4W
+         3pNmq1CvpdYBe6glaDNu4JPpo9wVBi1o/BodM2V7SVRyNVAv1m6Dc5YFv/bJ0vCdvzf1
+         GRR7TTXNe7Ri3kmwSA5rrtvuMEoF19F/xhdzrfSbODhdtx//k3jp6Rc9TDY03mubG24j
+         ujzQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWsAlU+kAEg0P+9Qj4Lp+qAGgxM9s7U9ePn2QGi+XI5tqB2UCikRCvOJuUvWBymS5Kq0LgGi+VdNigw@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyiq/JXt6Us0swmxItYUWWGrbkPQl6r/+QPlEWuno8U1eEZGFt/
+	aEASQfRN66DmC41NUGmDvfaGskzBtw9MvIidsCYDzQCw9pgBVTlWzMbH
+X-Gm-Gg: ASbGnctZ8LNzhL+IlIqY3iDbhaO2cqEsx4NqUBhkJh5ock9TRnESxYFBP3rzVQNi9Zq
+	OdDoFD7Db+hayfXe1RX8Y9oT8qBjVOAmun7fx/ZQL3gMMsy8jj6W5bRC+UE1d2COYcvPihu22rw
+	gueEjrDDX5nk+i/QQBRQIoa19f/V3eqOGN9qxR7H08KVpKKiSYLi8frDi4SUNXaga+wSodXPirT
+	XFG3YsNXGOlMsPRp8NzCsmtOcaNayuWRYnEPw7D2e50mit6omv2NlFYGpVhcxvqKNsd6Ovnxj1I
+	GrNNrGQqFRiJLE0wuVKPoQMaQRMvQQ83gKTtqsIkbqISUfd1k+n9K2cTZZNO3r9HYisQzoVXpg2
+	Gh8V4lPUQo6+FJwRWEQHz+vqoqV7OXnQX56XEequP3v9O7Z9jZ8ZNA0f+XK/ewowYpGWUHQV+/7
+	1QdhNafmY1rPL9A+Pr+xjpvvXTk5m9TzAYM6MSlZflYYA72atm52Z+KMJL+k/w6HeB
+X-Google-Smtp-Source: AGHT+IE502KIN4tz1ZiBR1VS+4c/5BDktMXSPvvmFW+gOT8kNcqJukYwWerUdV/VaxRhOB3SKUHsgQ==
+X-Received: by 2002:a17:902:f642:b0:250:999f:31c6 with SMTP id d9443c01a7336-290272b4764mr317255775ad.32.1760539160392;
+        Wed, 15 Oct 2025 07:39:20 -0700 (PDT)
+Received: from fred-System-Product-Name.. (61-220-246-151.hinet-ip.hinet.net. [61.220.246.151])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29034f36738sm199853455ad.87.2025.10.15.07.39.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 15 Oct 2025 07:39:20 -0700 (PDT)
+From: Fred Chen <fredchen.openbmc@gmail.com>
+To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Bartosz Golaszewski <brgl@bgdev.pl>, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
+	Joel Stanley <joel@jms.id.au>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>,
+	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
-	Christophe Roullier <christophe.roullier@foss.st.com>,
-	Fabien Dessenne <fabien.dessenne@foss.st.com>,
-	Valentin Caron <valentin.caron@foss.st.com>
-Subject: Re: [PATCH v3 09/10] dt-bindings: pinctrl: stm32: Support I/O
- synchronization parameters
-Message-ID: <20251015-headstand-impulse-95aa736e7633@spud>
-References: <20251014140451.1009969-1-antonio.borneo@foss.st.com>
- <20251014140451.1009969-10-antonio.borneo@foss.st.com>
- <20251014-affection-voltage-8b1764273a06@spud>
- <b4eca95eaa0e6f27fc07479d5eab2131d20eb270.camel@foss.st.com>
+	linux-aspeed@lists.ozlabs.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v4 0/7] Revise Meta Santabarbara devicetree
+Date: Wed, 15 Oct 2025 22:38:56 +0800
+Message-ID: <20251015143916.1850450-1-fredchen.openbmc@gmail.com>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="RrT1Ouiw7gUB6N03"
-Content-Disposition: inline
-In-Reply-To: <b4eca95eaa0e6f27fc07479d5eab2131d20eb270.camel@foss.st.com>
+Content-Transfer-Encoding: 8bit
 
+Summary:
+Revise linux device tree entry related to Meta (Facebook) Santabarbara.
 
---RrT1Ouiw7gUB6N03
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Change log
+v3 -> v4:
+  - add blank lines between nodes for readability
+  - drop changes to already defined LEDs
+  - add gpio name debug-card-mux and FM_MAIN_PWREN_RMC_EN_ISO_R
+  - enable amd apml interface
+  - add eeprom for prot module
+v2 -> v3:
+  - remove mctp node label
+v1 -> v2:
+  - add 'bmc_ready_noled' LED and update commit message
+  - add sgpio line name for leak detection
+v1:
+  - add sensor nodes for extension board
+  - add mctp node for NIC
+  - adjust LED configuration
 
-On Wed, Oct 15, 2025 at 02:56:56PM +0200, Antonio Borneo wrote:
-> On Tue, 2025-10-14 at 19:10 +0100, Conor Dooley wrote:
-> > On Tue, Oct 14, 2025 at 04:04:50PM +0200, Antonio Borneo wrote:
+Fred Chen (7):
+  ARM: dts: aspeed: santabarbara: Add blank lines between nodes for
+    readability
+  ARM: dts: aspeed: santabarbara: Add sensor support for extension
+    boards
+  ARM: dts: aspeed: santabarbara: Enable MCTP for frontend NIC
+  ARM: dts: aspeed: santabarbara: Add bmc_ready_noled Led
+  ARM: dts: aspeed: santabarbara: Add gpio line name
+  ARM: dts: aspeed: santabarbara: Add AMD APML interface support
+  ARM: dts: aspeed: santabarbara: Add eeprom device node for PRoT module
 
-> >=20
-> > > +
-> > > +=A0=A0=A0=A0=A0=A0=A0=A0=A0 st,io-sync:
-> > > +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 description: |
-> > > +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 IO synchronization through r=
-e-sampling or inversion
-> > > +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 0: data or clock GPIO pass-t=
-hrough
-> > > +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 1: clock GPIO inverted
-> > > +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 2: data GPIO re-sampled on c=
-lock rising edge
-> > > +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 3: data GPIO re-sampled on c=
-lock falling edge
-> > > +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 4: data GPIO re-sampled on b=
-oth clock edges
-> > > +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 $ref: /schemas/types.yaml#/definit=
-ions/uint32
-> > > +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 enum: [0, 1, 2, 3, 4]
-> >=20
-> > I really don't like this kinds of properties that lead to "random"
-> > numbers in devicetree. I'd much rather see a string list here.
->=20
-> Agree!
-> I just need to figure out some reasonably short but still meaningful
-> string for them.
+ .../aspeed-bmc-facebook-santabarbara.dts      | 919 +++++++++++++++++-
+ 1 file changed, 913 insertions(+), 6 deletions(-)
 
-pass-through
-inverted
-rising-edge
-falling-edge
-both-edges
+-- 
+2.49.0
 
-perhaps?
-
---RrT1Ouiw7gUB6N03
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaO+xRgAKCRB4tDGHoIJi
-0lfAAP9Wmew99Hvt1yhCWck5hvyNjlO7jQxH+64gBF5XK6BLXgEAjBA58Y45RCl0
-7cO7Pj2cMcMbSBMMf8uhGjNZlOnz5Qs=
-=XBKe
------END PGP SIGNATURE-----
-
---RrT1Ouiw7gUB6N03--
 
