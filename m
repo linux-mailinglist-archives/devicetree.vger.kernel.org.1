@@ -1,48 +1,55 @@
-Return-Path: <devicetree+bounces-226998-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226999-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9121BDD8B9
-	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 10:54:15 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C5936BDD904
+	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 10:58:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id C2B484F9550
-	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 08:53:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 83BDE545090
+	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 08:58:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEDC8316911;
-	Wed, 15 Oct 2025 08:53:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 085A83195FC;
+	Wed, 15 Oct 2025 08:58:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AZ6KrkpD"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="RN3nQiyF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 966862C029C;
-	Wed, 15 Oct 2025 08:53:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3B4D3064AA;
+	Wed, 15 Oct 2025 08:58:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760518433; cv=none; b=QTL0QSNtcwmPCMpa4mEacIoKeGwwNuMhFBQAh9uo+aBclywxja3pr12hpSs7EdDnXOPH0+winnjNdMF5KNBRoj+9rH2CzQzbQ4Rfxr9E2wTOyAvPNxhQDUrUf1b0FCFyANQ57XdcrUSxYiqnYv9WBmyEwwLimrLBhuMobdq/aDM=
+	t=1760518731; cv=none; b=Bs4FmCZURfGnbOTYAFnCIhBf3sq6XDewPWysqXuQxbsmxlh8YbugNts2pQJs/+Kx7i9vkDrppyUiy/nUmNO1Ub3rNuIa8cJNs4AmyO1nRXZo2z4OiP5fvpfJodUfYM6PiG+Cg4y8jUWYXsBBsfSNUfDY7c2nejOKLxi7RtJOS6c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760518433; c=relaxed/simple;
-	bh=T4kD6tOFtFdY6vlKgJ1miqQqOPCztWGCphZnD5Xj3ow=;
+	s=arc-20240116; t=1760518731; c=relaxed/simple;
+	bh=QAdqNSEgBGHVX/qNLhebNe+uGdl6xTXjyZ1RRQvJ4Vw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=TXoWEorT2Sg7Pl65DylRfUvqhbnr3UCJqjkVrWO7WjZe8dzjFFbYxqRR8TXn+Lmj9dz7SR4rZPx8BZodr27yOsD35lzSkmfs0yer+ZLVmX1VOywDqoWzgiCGn8K9fK3VaKNmLJghgkpWlmqQaOxM2j3hngmbrAKIWA1H454WWLM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AZ6KrkpD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 89070C4CEF8;
-	Wed, 15 Oct 2025 08:53:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760518433;
-	bh=T4kD6tOFtFdY6vlKgJ1miqQqOPCztWGCphZnD5Xj3ow=;
+	 In-Reply-To:Content-Type; b=rbCJXg4tk1pbE4T26nnDrZu5fVI5l2wTwNp7ZYIfxSMKa/YmhRSNPjtIolFMHFd7BO+LOE0cNWz1SLHcSorxUEmNYUX7M4PxVKA7gjZ+sy5W6tyP9Lu56ErzCAPAxVCjoXL5tPHPZvk7VNwokHs4JBGvzrVbMygspCbkGxmF8pA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=RN3nQiyF; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1760518727;
+	bh=QAdqNSEgBGHVX/qNLhebNe+uGdl6xTXjyZ1RRQvJ4Vw=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=AZ6KrkpDMBgPbjRDGNgoWUTTG1BoLKc76qXKWn/FocVqmjQ0bhJt80Up760+Ye9T9
-	 Yaz2VvMeR5g/w/Zse7FczGCo6yIpN18TM6rIlC3WesfcMXGcFXuA6tp4rokA7sgh7M
-	 rhz2orCXrs9/Tc2iF/arMhhQMqRHsnxshKzjLeuUOILGRYfxfb5acNBrNzXL2f/k7C
-	 eoVCt1qHxP4JHWHKf7JC089Qnp+qDjcKW/cb0gvpRrXZqK2R2PBXn6sbSIfq5MZiMN
-	 ji0ombktQcZdWekTYW+JvX0h/EHpcBN2mOABLViOR7sc9amMu6v8iDU4Wl7rgeg3gl
-	 XKs80yi5H8xEg==
-Message-ID: <796770d1-024e-4967-a96a-b7f32b28ca64@kernel.org>
-Date: Wed, 15 Oct 2025 09:53:45 +0100
+	b=RN3nQiyFJ6buk9Z+jA8ayDgIoLJGBNukuUNUoK0a7r3RUyYMMrgAt6Cg52FzXVqgp
+	 oQfYv2GD7RAdAPwG4zUslrpf1UWlGX4JiJo52kfEbSwd9dEgaohMwQwXn8Y3TzgM5r
+	 xzn0asGUn53DL0yH8oHjE+df1ugQc+r1yJQPmLFA9+Z4Yl2uvpasGH7iNjf+RqFavh
+	 VEERtTiV5pJSuvqenQTHnzD8gIouNIipLbxtR8CT11S6tTn+d8hzwOUJPGbUgYsT7g
+	 U1gjlbxtwF8BTbw0WnLH++6j9gSDVde0PBZM4L0QcH4k0NLvaX9WAfIxduQnJF25h1
+	 cmK2NAS6WaAFA==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id D285C17E12EB;
+	Wed, 15 Oct 2025 10:58:46 +0200 (CEST)
+Message-ID: <21691007-7622-4c45-9c02-011d44c97f15@collabora.com>
+Date: Wed, 15 Oct 2025 10:58:46 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,104 +57,44 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH 0/3] Introduce iommu-map-masked for platform devices
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Robin Murphy <robin.murphy@arm.com>,
- Charan Teja Kalla <charan.kalla@oss.qualcomm.com>, joro@8bytes.org,
- will@kernel.org, saravanak@google.com, conor+dt@kernel.org, robh@kernel.org,
- mchehab@kernel.org, krzk+dt@kernel.org, abhinav.kumar@linux.dev,
- vikash.garodia@oss.qualcomm.com, dikshita.agarwal@oss.qualcomm.com,
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- bjorn.andersson@oss.qualcomm.com, linux-media@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, iommu@lists.linux.dev
-References: <nzqte4glwtpjs5bhkxz43yhdufelxvqvzmg5tepudxwetimir3@bvlw5csjizsh>
- <9d3eeb9f-b8ea-48e5-a1d9-0865f63ef991@arm.com>
- <fhb4woejzh3r6v5dxvdiopnsbuwstucfuuzbiymxg4wrxrjc7t@dt3z3utq6lwd>
- <8d88cd9d-16e8-43f9-8eb3-89862da1d0c1@arm.com>
- <hOs24ZavnUyKYyNwBWwRpYnrsefzBfp95yuy9zyp1ByxR9_3VacGX1Yntt8pCE4w3gllPwvevs1AZqghmwKoFg==@protonmail.internalid>
- <zcgn4xw2xghyna2eysavujbzbiydyki7p7upzzv7one5mdyjy6@sj7f75kc4vwu>
- <fb767586-a376-48eb-97b4-bf33061642b9@kernel.org>
- <a4WDx80rJP1GnGNEK0OOD5lh-m-MiAvireXdpiM9ETLKZ084sBJ2UthU_QqRbU_nwD4XtsdiyEqQ0AhxguzJ6g==@protonmail.internalid>
- <6gx74wxie4wcabq27wo5y7v36uuurez4jxlzanroepqazdlgtw@sdtv2ld47d3q>
- <fa3c1732-328d-46a2-8514-2e7f9ca6c63f@kernel.org>
- <aE5RMDRfrr2wxUAqjjsBMcodNQxLsUT_Soi_LXMJXYcfmmeBSHnPM3e5JUPOb89tSfeI1jQbt9LfLCOXFBZFSA==@protonmail.internalid>
- <mwthowuei7pcqp2b4hg5c45n47iakclkioumc6diyznhnldfv5@wloeoys224bg>
-From: Bryan O'Donoghue <bod@kernel.org>
+Subject: Re: [PATCH v7 4/5] drm/panthor: Use existing OPP table if present
+To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
+ Boris Brezillon <boris.brezillon@collabora.com>,
+ Jassi Brar <jassisinghbrar@gmail.com>, Chia-I Wu <olvaffe@gmail.com>,
+ Chen-Yu Tsai <wenst@chromium.org>, Steven Price <steven.price@arm.com>,
+ Liviu Dudau <liviu.dudau@arm.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>, Kees Cook <kees@kernel.org>,
+ "Gustavo A. R. Silva" <gustavoars@kernel.org>,
+ Ulf Hansson <ulf.hansson@linaro.org>
+Cc: kernel@collabora.com, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ linux-hardening@vger.kernel.org, linux-pm@vger.kernel.org
+References: <20251015-mt8196-gpufreq-v7-0-0a6435da2080@collabora.com>
+ <20251015-mt8196-gpufreq-v7-4-0a6435da2080@collabora.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Content-Language: en-US
-In-Reply-To: <mwthowuei7pcqp2b4hg5c45n47iakclkioumc6diyznhnldfv5@wloeoys224bg>
+In-Reply-To: <20251015-mt8196-gpufreq-v7-4-0a6435da2080@collabora.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 14/10/2025 23:18, Dmitry Baryshkov wrote:
-> On Tue, Oct 14, 2025 at 09:49:17PM +0100, Bryan O'Donoghue wrote:
->> On 14/10/2025 19:35, Dmitry Baryshkov wrote:
->>>> Each function id can be associated with a device and a compat string
->>>> associated with it.
->>> So, which part of the hardware is described by the -cb device? What does
->>> it mean_here_?
->>
->> The non-pixel path video encoder, the tz video encoder...
->>
->> What's not clear about that ?
+Il 15/10/25 10:50, Nicolas Frattaroli ha scritto:
+> On SoCs where the GPU's power-domain is in charge of setting performance
+> levels, the OPP table of the GPU node will have already been populated
+> during said power-domain's attach_dev operation.
 > 
-> Where do you have pixel encoders in the fastrpc device node?
+> To avoid initialising an OPP table twice, only set the OPP regulator and
+> the OPPs from DT if there's no OPP table present.
 > 
-> --
-> With best wishes
-> Dmitry
+> Reviewed-by: Chia-I Wu <olvaffe@gmail.com>
+> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
 
-Haha, no sorry I didn't mean to suggest that at all.
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-I mean do something _like_ that, for these FUNCION_IDs.
 
-We could replicate that for a new iris add for say Glymur or Kanaapali.
-
-Sub-nodes of the main iris device. They have a real purpose in that the 
-'device' requirement is full range IOVA for the SID and implicit 
-identification of the FUNCTION_ID with the compat string
-
-iris-video@0xdeadbeef {
-	video@0 {
-		reg = <0>;  /* FUNCTION_ID HLOS could also go here */
-		compat = "qcom,glymur-iris";
-
-		iommus = <&apps_smmu 0x1940 0x0000>;
-	};
-
-	video@1 {
-		reg = <1>;
-		compat = "qcom,glymur-iris-non-pixel";
-		iommus = <&apps_smmu 0x1947 0x0000>;
-	};
-};
-
-The reg property could also be the function_id
-
-video@FUNC_ID_HLOS {
-	reg = <FUNC_ID_HLOS>;
-	...
-};
-
-There's no need for a new iommu specific property to help us fixup 
-sm8550 iommu definition.
-
-As I say if that error wasn't already in sm8550, we wouldn't be trying 
-to solve the problem this way.
-
-So lets solve the problem for Glymur and Kanaapali and then backport 
-upstream if we can or downstream if we can't.
-
-What we need are new devices what we will do with the data in 
-iommu-map-masked is make new devices. We are mapping data - iommu SID to 
-device and implicit FUNCTION_ID to a device.
-
-So we should be declaring devices, instead of burying the data in a new 
-property that is not obvious what it does or why it exists.
-
-Robin has suggested devices, we have two real bits of hardware data to 
-go with those devices...
-
----
-bod
 
