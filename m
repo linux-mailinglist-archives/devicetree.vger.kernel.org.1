@@ -1,113 +1,109 @@
-Return-Path: <devicetree+bounces-227075-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227076-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42647BDE605
-	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 14:03:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 41F44BDE676
+	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 14:09:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id A605235539C
-	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 12:03:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BE97B48118A
+	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 12:09:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2497324B12;
-	Wed, 15 Oct 2025 12:03:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E49C324B30;
+	Wed, 15 Oct 2025 12:09:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mdwgvO/t"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="14+Nn4BM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93291221FCB;
-	Wed, 15 Oct 2025 12:03:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D72953233ED;
+	Wed, 15 Oct 2025 12:09:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760529802; cv=none; b=BJFWyBpBj7Nun+p8rNf0BorDPIqjQcfP4XZPomgacBrh8UHT5aZ1k5Yn4vBonkD2150Jrrpl8oDeLTQ89nLr4MFEmVEIIe+JGxNhYAfAEKYukWTBE3PkYY50JzOp+Mje7oVrwXgzRZV/dzjYQ13nenRlAO4M5R0upi9lXNB1Mr0=
+	t=1760530165; cv=none; b=NcJDkUkpCjgsaH/ul1w4UCC1eIFici/1nGXIzzz++NJaz6NkjVHbEp0YqvCgrV9mgJT4fa5/QU2YPI1sRkiEcQY0HjwzXZpeOQ3o4FSA+iRi/DO+13j8sInsXgCcUvn/I+25bngjcxEiH10cznPg04C1BdpVBUiLXXMsrnpInlE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760529802; c=relaxed/simple;
-	bh=rBcEcp5gh4WzW4q8kM8GvUQXZjf1NbSSnFncWi8p32w=;
+	s=arc-20240116; t=1760530165; c=relaxed/simple;
+	bh=byDt9cJNaoV9UerzEQZrWBXDSIWGA1UsTPnBa3lcc2E=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EmTHilTgh4xsgwgssIMIZzZqSSFfV/jnELQQ4jPWX6KtI9oBPvbtta+ExiE10tizwA/0PeVbk/F3v0Z/VMVIWpCK5kIiSVb+5DMh1CZhajDjOkQl5Bp0SJ1O7TXzs774C/vl35g33a0vz6/Kteh0YFT0JkGIBBJCh4dDSYfowlM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mdwgvO/t; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 11B68C4CEF8;
-	Wed, 15 Oct 2025 12:03:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760529802;
-	bh=rBcEcp5gh4WzW4q8kM8GvUQXZjf1NbSSnFncWi8p32w=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=mdwgvO/tyYbo8EVGxVwnluWaIVdIFPMRY3siss0igYKWQXpTBiIFOLYfedvO6Lzcs
-	 A5shPbJenQPB2nvm+/8D4WSUZoDCDgtT33B1WrjWdPFKIBcZHj1OXI+NJCDNTyt6or
-	 zm33Q9KpAuOSEBSDdS1jHTCKHegjHp/bnFXK5mANs6n6A0txd8u4hA7Q2zEErtoi/F
-	 iGBCGWvDVYJrtQBELOQHHUICOvbWUbsOIbvM7ywLJTNLn/DFc64udAXnIXWt1h+pKe
-	 rkcBy0GpsPysBSvZK45dznXg6RoBvXdEzYn8MmTjxPpxzq+87BcSQM5fds67AYGRc2
-	 CxXmC36Ebn9Ug==
-Date: Wed, 15 Oct 2025 13:03:16 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Nuno =?iso-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-Cc: David Lechner <dlechner@baylibre.com>, Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=qHYRex9HI4PtsaEBb3f6mfRWyzVzhdUatYuuu4noAQ7uVJRNUuAdDDMBbgHHz/bTJ63C+i1/NtxT9Epf2WvyMBeC2k6tSvw6T08RtyhvZU7qM/o65z3C7PzddfG80dQJ6vcGpan6bQiVVb2sxPq0avLObUc0uFAhOT3Q5Q3Fj/M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=14+Nn4BM; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=6qLbkEn/jIW40ylFRsyZqZoQ0CK2OjczehoMcmU90RA=; b=14+Nn4BMuFFT7DcJryd1+OKTcx
+	f/hvL2nKX7yIJaFKQ725q52wAYCItNbYGSQqG1OMTfmvmKg+0mon5EyLpCPlXvz/aGMNNB1lpqbhR
+	MViyAdas/OJMpHrQuONAV2TBGp2sP31eQcFolR0P6INNpBiVqcFG/Cx3eZXG4DW5yeXA=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1v90Jb-00B1Qw-Lg; Wed, 15 Oct 2025 14:09:11 +0200
+Date: Wed, 15 Oct 2025 14:09:11 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Rob Herring <robh@kernel.org>
+Cc: Jakub Kicinski <kuba@kernel.org>, Conor Dooley <conor@kernel.org>,
+	Frank Li <Frank.Li@nxp.com>, Vladimir Oltean <olteanv@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Marcelo Schmitt <marcelo.schmitt@analog.com>,
-	Michael Hennerich <michael.hennerich@analog.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Andy Shevchenko <andy@kernel.org>,
-	Sean Anderson <sean.anderson@linux.dev>, linux-spi@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-iio@vger.kernel.org
-Subject: Re: [PATCH 4/6] spi: axi-spi-engine: support
- SPI_MULTI_BUS_MODE_STRIPE
-Message-ID: <90407135-f9fc-4b83-a2b2-393bb20aef87@sirena.org.uk>
-References: <20251014-spi-add-multi-bus-support-v1-0-2098c12d6f5f@baylibre.com>
- <20251014-spi-add-multi-bus-support-v1-4-2098c12d6f5f@baylibre.com>
- <3180475bd51e1e057d6aa7e1b62f564cb57a117e.camel@gmail.com>
+	"open list:NETWORKING DRIVERS" <netdev@vger.kernel.org>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
+Subject: Re: [PATCH 1/1] dt-bindings: net: dsa: nxp,sja1105: Add optional
+ clock
+Message-ID: <0d90ce60-a7cd-4fff-9db2-489531e3c944@lunn.ch>
+References: <20251010183418.2179063-1-Frank.Li@nxp.com>
+ <20251014-flattop-limping-46220a9eda46@spud>
+ <20251014-projector-immovably-59a2a48857cc@spud>
+ <20251014120213.002308f2@kernel.org>
+ <20251014-unclothed-outsource-d0438fbf1b23@spud>
+ <20251014204807.GA1075103-robh@kernel.org>
+ <20251014181302.44537f00@kernel.org>
+ <CAL_Jsq+SSiMCbGvbYcrS1mGUJOakqZF=gZOJ4iC=Y5LbcfTAUQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="8a16MxYkGAbfehvy"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <3180475bd51e1e057d6aa7e1b62f564cb57a117e.camel@gmail.com>
-X-Cookie: Long life is in store for you.
+In-Reply-To: <CAL_Jsq+SSiMCbGvbYcrS1mGUJOakqZF=gZOJ4iC=Y5LbcfTAUQ@mail.gmail.com>
 
+> I also considered looking at who the email is from and restricting it
+> to the maintainers. I know the netdev one doesn't do that either
+> because I used it a couple of times. :) It does seem like it could be
+> abused.
 
---8a16MxYkGAbfehvy
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+The netdev one does have some restrictions.
 
-On Wed, Oct 15, 2025 at 11:30:39AM +0100, Nuno S=E1 wrote:
-> On Tue, 2025-10-14 at 17:02 -0500, David Lechner wrote:
-> > Add support for SPI_MULTI_BUS_MODE_STRIPE to the AXI SPI engine driver.
-> >=20
-> > The v2.0.0 version of the AXI SPI Engine IP core supports multiple
-> > buses. This can be used with SPI_MULTI_BUS_MODE_STRIPE to support
-> > reading from simultaneous sampling ADCs that have a separate SDO line
-> > for each analog channel. This allows reading all channels at the same
-> > time to increase throughput.
+https://www.kernel.org/doc/html/latest/process/maintainer-netdev.html#updating-patch-status
 
-Please delete unneeded context from mails when replying.  Doing this
-makes it much easier to find your reply in the message, helping ensure
-it won't be missed by people scrolling through the irrelevant quoted
-material.
+says:
 
---8a16MxYkGAbfehvy
-Content-Type: application/pgp-signature; name="signature.asc"
+  The use of the bot is restricted to authors of the patches (the
+  From: header on patch submission and command must match!),
+  maintainers of the modified code according to the MAINTAINERS file
+  (again, From: must match the MAINTAINERS entry) and a handful of
+  senior reviewers.
 
------BEGIN PGP SIGNATURE-----
+Here is one example from you:
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmjvjYMACgkQJNaLcl1U
-h9CKWQf/fiOSGY9C8sjgxx1MNemuLhL+GY5hU8hErhOnmiBuVX/BrfM5BhZBX3Ie
-DtHQs30ExfmeTtdXlnE0we1o4FnLMu8cnZ0KRDkgbX13ysFuPlYnPLGhOy/OhN2y
-DrtJVl7q/+orQsQeFK7fN5vnZMv0Q3fmwBCJcEc+iqkcBjuOy5pTEmdRHKRKcsAP
-QmbolaIdR/By1dvRRtYxAtEPcvOLjit5C2aoop4GOdkd+5YIED8EFq7ipI8cZAuS
-h/t04+iHN7IdNwiYtq04GhfnT2M9Iyb7Jmq/ZpcsOLDOVeF77yBrwu59H5YV4808
-UFnutk6J4vqii8+N/TfsS5YcYgfmnw==
-=9TaG
------END PGP SIGNATURE-----
+https://patchwork.kernel.org/project/netdevbpf/patch/20241113225742.1784723-2-robh@kernel.org/
 
---8a16MxYkGAbfehvy--
+and it was your own patch.
+
+All its actions are logged:
+
+https://netdev.bots.linux.dev/pw-bot.html
+
+so we can keep an eye of out for abuse. Plus, since it is an email to
+patchwork, patchwork itself should have any abuse emails.
+
+	Andrew
 
