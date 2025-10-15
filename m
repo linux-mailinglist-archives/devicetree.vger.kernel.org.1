@@ -1,147 +1,153 @@
-Return-Path: <devicetree+bounces-226997-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226998-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5C13BDD88F
-	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 10:52:33 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id E9121BDD8B9
+	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 10:54:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 009355445C0
-	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 08:52:18 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id C2B484F9550
+	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 08:53:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13C5C31A807;
-	Wed, 15 Oct 2025 08:51:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEDC8316911;
+	Wed, 15 Oct 2025 08:53:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AZ6KrkpD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f180.google.com (mail-vk1-f180.google.com [209.85.221.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD41331815D
-	for <devicetree@vger.kernel.org>; Wed, 15 Oct 2025 08:51:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 966862C029C;
+	Wed, 15 Oct 2025 08:53:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760518301; cv=none; b=g9utRJhTPaBxxbNL4HgkD8g3/knORrOXybCAy+B+KLX4GlK+5KOcQXKgWuTIhvfbicDSEnfUgRytnw/VecMXgwn67DwkTRFgq4lX5MSm3GEjWml4Ciz/dVdan8o+xIb5oos93gEM5TBEjuropR/aVksrzzM2l9fzpGFsOHZTTPs=
+	t=1760518433; cv=none; b=QTL0QSNtcwmPCMpa4mEacIoKeGwwNuMhFBQAh9uo+aBclywxja3pr12hpSs7EdDnXOPH0+winnjNdMF5KNBRoj+9rH2CzQzbQ4Rfxr9E2wTOyAvPNxhQDUrUf1b0FCFyANQ57XdcrUSxYiqnYv9WBmyEwwLimrLBhuMobdq/aDM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760518301; c=relaxed/simple;
-	bh=Xe6Y50t/1UHK03lauiiO1RqhnypsAyHrTe2pPSI8Vmg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=sgnk5lGoVA1V2rHMk7H3Uo8JYjEs5KMqCPbwZsAXcDV6oMMgBvudkrccK2T+Q437vi1vZ3L2TwRAGVdm9Up77sH/qsbwi4ywfJSsi38JJXcJrSEV1py+V2qD5n+qec6QPQKFriU9owHnlTjcNtoKlo2sgDHHehXE1uytBSt+nzo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f180.google.com with SMTP id 71dfb90a1353d-54c0bac7d6bso3253084e0c.0
-        for <devicetree@vger.kernel.org>; Wed, 15 Oct 2025 01:51:31 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760518288; x=1761123088;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Cc23OylIA7nwIKH5grl86j81RiWu7A7C8vOJ884eZmU=;
-        b=R0hFaccVvFPjsGbPyKepBycHnOZ1s2SwlWp695w7EKCi79zj3wiYJOGwu5i8jaO+r8
-         kGAHRhV74KkONNmasupzEzOKPKr6WaQJSxP7Dnx0EH0rUUvTf7Dl0O3FkFmX5UfRzWBP
-         XrtkX7ZQJhLEQCempq7vyC3Aekx5kj1SKWhsG8OJ6HNK10UxaZvNfjjhTU+lQhnZqRVD
-         Ie04nmbP3eJNYjknSEOvmVIwXbCShhzMdfP1tBTPWYJ9WsXsnEKivS7sCj1jpe3OqxNM
-         4tdPkhldjFnT5V3RO1/gxiQc0f39VodQSrcz1Dj/Q2Hop1Q7LRcgAKyXJ1u1MU1gSdO9
-         9tqA==
-X-Forwarded-Encrypted: i=1; AJvYcCU+zOBm2gBRKJRxx5vuf0OeRru02CooCA2I8w1eiJDCK1he1H0k7JA/EulgLEmCuoauHwqeRb5HKG2k@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx9HpTCCwiwxlqqxjtp2Wzb28V2f5Egrs6yuGbTzEt9742D48DX
-	YRgyLsALl2ZW+RyzQmnbxrNZ6FdrA4pwu8DVkNbK8RTnVd1Gchb5UJGLfXhoT623
-X-Gm-Gg: ASbGncuUv883o0ObS0tkYj3xA9MNO6bN9zdqr3YMVFCJU/wi/FodbCjoRPQRNoobR8c
-	lwEwjgu4n+lKKBsbeyPI4gZtO41JjbaP45UEIWF/8SwzHQqYSd9ys48aFcU0asMc/LmafXeFXwc
-	8hcsZi4l2IVIuWStMjIcykgSFDrxjmjw8Tnhrb+FP4ECHkXPykdixBA4qrkxhOUiqdoOVMaHhB0
-	zkWv7nkPNI+w8vrACoi6+pRvhZJT3QDeUriecrcESq4ADqLWQ9MgA8f6LLCdrCc2a8xDS8tLYhF
-	SLN90OZwtSAwbS6OG1OaOaspogmezXIl0Yvujj0TBZYIoe7CpBHN+Qe1LBCOixd3v2BR0H6oyKJ
-	Gyj4eMdCQKLjxGMmRqhXAh9FBpKmIOZU/T9xhXBk9n34gEIx3YKfem3hGZe3MH+0+TbjY/6QB0q
-	ldd4i8Wuw=
-X-Google-Smtp-Source: AGHT+IFk1/jeIk+86CbVe+psNQHbQk4Ft1GaXChMxtwryXWxQ68/+7uQGwP5yjIPanBECm3EpGOuCw==
-X-Received: by 2002:a05:6122:3d0f:b0:544:4ee5:1334 with SMTP id 71dfb90a1353d-554b8a82a96mr10338892e0c.2.1760518287548;
-        Wed, 15 Oct 2025 01:51:27 -0700 (PDT)
-Received: from mail-vk1-f177.google.com (mail-vk1-f177.google.com. [209.85.221.177])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-554d81148c6sm4883468e0c.26.2025.10.15.01.51.26
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 15 Oct 2025 01:51:26 -0700 (PDT)
-Received: by mail-vk1-f177.google.com with SMTP id 71dfb90a1353d-554ee2f1e9bso2357057e0c.3
-        for <devicetree@vger.kernel.org>; Wed, 15 Oct 2025 01:51:26 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUflLhO9EPnQgAQYZTl2PaYyz7e3kGhGLMurlFwz0yEX1ZLOpO/PiwNax6AJ2MVQtbHE7MzpTOgbQOV@vger.kernel.org
-X-Received: by 2002:a05:6102:6219:10b0:5d5:f40d:28cc with SMTP id
- ada2fe7eead31-5d5f40d28d5mr7213275137.34.1760518286251; Wed, 15 Oct 2025
- 01:51:26 -0700 (PDT)
+	s=arc-20240116; t=1760518433; c=relaxed/simple;
+	bh=T4kD6tOFtFdY6vlKgJ1miqQqOPCztWGCphZnD5Xj3ow=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=TXoWEorT2Sg7Pl65DylRfUvqhbnr3UCJqjkVrWO7WjZe8dzjFFbYxqRR8TXn+Lmj9dz7SR4rZPx8BZodr27yOsD35lzSkmfs0yer+ZLVmX1VOywDqoWzgiCGn8K9fK3VaKNmLJghgkpWlmqQaOxM2j3hngmbrAKIWA1H454WWLM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AZ6KrkpD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 89070C4CEF8;
+	Wed, 15 Oct 2025 08:53:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1760518433;
+	bh=T4kD6tOFtFdY6vlKgJ1miqQqOPCztWGCphZnD5Xj3ow=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=AZ6KrkpDMBgPbjRDGNgoWUTTG1BoLKc76qXKWn/FocVqmjQ0bhJt80Up760+Ye9T9
+	 Yaz2VvMeR5g/w/Zse7FczGCo6yIpN18TM6rIlC3WesfcMXGcFXuA6tp4rokA7sgh7M
+	 rhz2orCXrs9/Tc2iF/arMhhQMqRHsnxshKzjLeuUOILGRYfxfb5acNBrNzXL2f/k7C
+	 eoVCt1qHxP4JHWHKf7JC089Qnp+qDjcKW/cb0gvpRrXZqK2R2PBXn6sbSIfq5MZiMN
+	 ji0ombktQcZdWekTYW+JvX0h/EHpcBN2mOABLViOR7sc9amMu6v8iDU4Wl7rgeg3gl
+	 XKs80yi5H8xEg==
+Message-ID: <796770d1-024e-4967-a96a-b7f32b28ca64@kernel.org>
+Date: Wed, 15 Oct 2025 09:53:45 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250925100302.3508038-1-claudiu.beznea.uj@bp.renesas.com>
- <20250925100302.3508038-5-claudiu.beznea.uj@bp.renesas.com>
- <c7fc31f1247332196516394a22f6feef9733a0b4.camel@pengutronix.de>
- <66d85e70-efb8-4a45-9164-55b123691b70@tuxon.dev> <bcf6113b0025777db1cb2ace1618fed8fac2dfc6.camel@pengutronix.de>
- <cca1061e-df67-4b5b-99bd-9721c72a0f88@tuxon.dev> <6d4bc69c-1571-4d98-b0d4-214c68be118e@tuxon.dev>
- <c1099a8e422abbc5d12bf3f325cb9f2140c8c006.camel@pengutronix.de>
- <77678dd6-071b-4911-a5c5-f1519c92e91a@tuxon.dev> <6ba1fd1f07753c9b98a57c87bffbbee16971da7a.camel@pengutronix.de>
-In-Reply-To: <6ba1fd1f07753c9b98a57c87bffbbee16971da7a.camel@pengutronix.de>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 15 Oct 2025 10:51:15 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdVQ_Eabhz0=FRB28BqdidQDpjdBOGq6+9yR6pioNfA_Lg@mail.gmail.com>
-X-Gm-Features: AS18NWCfZCQ0twtFVwNHBIGpA19Nn65er5LxlXMaub9DnCgxRsRqvVPljtERNfU
-Message-ID: <CAMuHMdVQ_Eabhz0=FRB28BqdidQDpjdBOGq6+9yR6pioNfA_Lg@mail.gmail.com>
-Subject: Re: [PATCH v7 4/7] reset: rzg2l-usbphy-ctrl: Add support for USB PWRRDY
-To: Philipp Zabel <p.zabel@pengutronix.de>
-Cc: Claudiu Beznea <claudiu.beznea@tuxon.dev>, vkoul@kernel.org, kishon@kernel.org, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	magnus.damm@gmail.com, yoshihiro.shimoda.uh@renesas.com, 
-	biju.das.jz@bp.renesas.com, linux-phy@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, 
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>, 
-	Wolfram Sang <wsa+renesas@sang-engineering.com>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH 0/3] Introduce iommu-map-masked for platform devices
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Robin Murphy <robin.murphy@arm.com>,
+ Charan Teja Kalla <charan.kalla@oss.qualcomm.com>, joro@8bytes.org,
+ will@kernel.org, saravanak@google.com, conor+dt@kernel.org, robh@kernel.org,
+ mchehab@kernel.org, krzk+dt@kernel.org, abhinav.kumar@linux.dev,
+ vikash.garodia@oss.qualcomm.com, dikshita.agarwal@oss.qualcomm.com,
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ bjorn.andersson@oss.qualcomm.com, linux-media@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, iommu@lists.linux.dev
+References: <nzqte4glwtpjs5bhkxz43yhdufelxvqvzmg5tepudxwetimir3@bvlw5csjizsh>
+ <9d3eeb9f-b8ea-48e5-a1d9-0865f63ef991@arm.com>
+ <fhb4woejzh3r6v5dxvdiopnsbuwstucfuuzbiymxg4wrxrjc7t@dt3z3utq6lwd>
+ <8d88cd9d-16e8-43f9-8eb3-89862da1d0c1@arm.com>
+ <hOs24ZavnUyKYyNwBWwRpYnrsefzBfp95yuy9zyp1ByxR9_3VacGX1Yntt8pCE4w3gllPwvevs1AZqghmwKoFg==@protonmail.internalid>
+ <zcgn4xw2xghyna2eysavujbzbiydyki7p7upzzv7one5mdyjy6@sj7f75kc4vwu>
+ <fb767586-a376-48eb-97b4-bf33061642b9@kernel.org>
+ <a4WDx80rJP1GnGNEK0OOD5lh-m-MiAvireXdpiM9ETLKZ084sBJ2UthU_QqRbU_nwD4XtsdiyEqQ0AhxguzJ6g==@protonmail.internalid>
+ <6gx74wxie4wcabq27wo5y7v36uuurez4jxlzanroepqazdlgtw@sdtv2ld47d3q>
+ <fa3c1732-328d-46a2-8514-2e7f9ca6c63f@kernel.org>
+ <aE5RMDRfrr2wxUAqjjsBMcodNQxLsUT_Soi_LXMJXYcfmmeBSHnPM3e5JUPOb89tSfeI1jQbt9LfLCOXFBZFSA==@protonmail.internalid>
+ <mwthowuei7pcqp2b4hg5c45n47iakclkioumc6diyznhnldfv5@wloeoys224bg>
+From: Bryan O'Donoghue <bod@kernel.org>
+Content-Language: en-US
+In-Reply-To: <mwthowuei7pcqp2b4hg5c45n47iakclkioumc6diyznhnldfv5@wloeoys224bg>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Philipp,
+On 14/10/2025 23:18, Dmitry Baryshkov wrote:
+> On Tue, Oct 14, 2025 at 09:49:17PM +0100, Bryan O'Donoghue wrote:
+>> On 14/10/2025 19:35, Dmitry Baryshkov wrote:
+>>>> Each function id can be associated with a device and a compat string
+>>>> associated with it.
+>>> So, which part of the hardware is described by the -cb device? What does
+>>> it mean_here_?
+>>
+>> The non-pixel path video encoder, the tz video encoder...
+>>
+>> What's not clear about that ?
+> 
+> Where do you have pixel encoders in the fastrpc device node?
+> 
+> --
+> With best wishes
+> Dmitry
 
-On Tue, 14 Oct 2025 at 18:42, Philipp Zabel <p.zabel@pengutronix.de> wrote:
-> On Di, 2025-10-14 at 11:36 +0300, Claudiu Beznea wrote:
-> > On 10/13/25 17:57, Philipp Zabel wrote:
-> > > Is the issue that you need the PWRRDY signal to be (de)asserted
-> > > independently from the CPG power domain enable/disable?
-> >
-> > Yes. I need to de-assert it before clocks, MSTOP on probe/resume and assert
-> > it back after clocks, MSTOP, on remove/suspend.
-> >
-> > > (Why?)
-> >
-> > Due to hardware constraints. This is how Renesas HW team recommended.
->
-> I still haven't understood this part. Isn't CPG the power domain
-> enabled "before clocks, MSTOP on probe resume" and disabled "after
-> clocks, MSTOP, on remove/suspend"? So PWRRDY could be toggled from
-> genpd notifications. If it needs to be (de)asserted independently,
-> wouldn't that mean the genpd notifier approach can not be used?
-> The notifiers are called from genpd_power_on/off(), after all.
+Haha, no sorry I didn't mean to suggest that at all.
 
-Please let me chime in to clarify...
+I mean do something _like_ that, for these FUNCION_IDs.
 
-The CPG is not a power domain in the sense of a power area that can
-be powered on or off.
-The CPG is a clock domain in the Linux PM Domain abstraction, more
-specifically an always-on power domain that contains devices that are
-all power-managed similarly, through their module clock(s).
-Hence the CPG PM Domain itself cannot be powered on or off (through
-the generic_pm_domain.power_o{ff,n}() callbacks), but the individual
-devices that are part of it can be started/stopped (through the
-generic_pm_domain.dev_ops.{start,stop}() callbacks).
+We could replicate that for a new iris add for say Glymur or Kanaapali.
 
-I hope this helps.
+Sub-nodes of the main iris device. They have a real purpose in that the 
+'device' requirement is full range IOVA for the SID and implicit 
+identification of the FUNCTION_ID with the compat string
 
-Gr{oetje,eeting}s,
+iris-video@0xdeadbeef {
+	video@0 {
+		reg = <0>;  /* FUNCTION_ID HLOS could also go here */
+		compat = "qcom,glymur-iris";
 
-                        Geert
+		iommus = <&apps_smmu 0x1940 0x0000>;
+	};
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+	video@1 {
+		reg = <1>;
+		compat = "qcom,glymur-iris-non-pixel";
+		iommus = <&apps_smmu 0x1947 0x0000>;
+	};
+};
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+The reg property could also be the function_id
+
+video@FUNC_ID_HLOS {
+	reg = <FUNC_ID_HLOS>;
+	...
+};
+
+There's no need for a new iommu specific property to help us fixup 
+sm8550 iommu definition.
+
+As I say if that error wasn't already in sm8550, we wouldn't be trying 
+to solve the problem this way.
+
+So lets solve the problem for Glymur and Kanaapali and then backport 
+upstream if we can or downstream if we can't.
+
+What we need are new devices what we will do with the data in 
+iommu-map-masked is make new devices. We are mapping data - iommu SID to 
+device and implicit FUNCTION_ID to a device.
+
+So we should be declaring devices, instead of burying the data in a new 
+property that is not obvious what it does or why it exists.
+
+Robin has suggested devices, we have two real bits of hardware data to 
+go with those devices...
+
+---
+bod
 
