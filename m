@@ -1,145 +1,228 @@
-Return-Path: <devicetree+bounces-227162-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227178-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7707ABDF2A2
-	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 16:51:54 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id D520FBDF32C
+	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 16:57:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DE61C3E5BCE
-	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 14:51:52 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id DCF4C5016FF
+	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 14:57:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB0462D5432;
-	Wed, 15 Oct 2025 14:51:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FF8B2DCF7B;
+	Wed, 15 Oct 2025 14:56:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="U5CXtQ3h"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DfiKFUsF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C047D2D46D9;
-	Wed, 15 Oct 2025 14:51:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0663528369D
+	for <devicetree@vger.kernel.org>; Wed, 15 Oct 2025 14:56:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760539907; cv=none; b=bUJYpoLE0bqpc4fpPK1n3dN+1ScHghNnxcJtWUFIW8riZl1oI+mVYSqB41AEQxzHnYeZiwcyJwghaJqb2kydcr5StFQEz8S7CwDkwa0llIcghSd+hRY5MGn1MKKFxk/m1LeuYp/REySwacIy+55m59fS9HSpx3LnNbr/f510+0s=
+	t=1760540188; cv=none; b=eBqoxCLvc6MLA2CqVBGDaFkfgJg9Jt2iU9E6eFhr9GWLu32NalfuxNJr7KQcvJ1WrMMkAjWpybq8v3EOZjeYhTXiLFkzd13fDfQFu6WU3DX5/OLZwv2yI2JG5tVlx0clGePjqcAZAuOjMXU96IU69Dq7CZ0sx9pSTLqmQR843HU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760539907; c=relaxed/simple;
-	bh=Xofm9tj+wJ3Qu8iS4OZpq/B4hCrDuWOs4+tl4qQIuX8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=dJ27BLL5mlnJwP3RkDigtVNI4F/xPy9mQOJ1nUy9kOI8ScF0LEUPzNNiVnDzSBNKpPXIKCRsoczCDK0ZnEVaM8rJB87HsvApnxhUAS49uHobuMZEoZLe+Sj+rzprrg00KLveS7Rcz3wVv6L5X4CVFYt5G7syqtRpjEoow3XG7ks=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=U5CXtQ3h; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 581D8C4CEFB;
-	Wed, 15 Oct 2025 14:51:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760539907;
-	bh=Xofm9tj+wJ3Qu8iS4OZpq/B4hCrDuWOs4+tl4qQIuX8=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=U5CXtQ3hj5g7waYs0kJd0p3gBkcpSs0SD13n40Rmw9VCaKC2mdRwHdDuk4t51dVsb
-	 oAnNqQDZHX+YpB5C5RooIGwK1sYh0yryXHlxD+MRm+5p3Dc827SdRy7QeiIAd8n675
-	 Yivr+NqNYOCB0U9xzJev5QP8efVaRcmkco3kFLcgUZOnIXlJIrT6IKWvpZ7LMNRrIP
-	 KCDfm4JW7O4NSyna1vvcsSdbXACHMjTNetuacxQAg2YW4B9RgRo+aLl0L+YCep4my2
-	 ISzUMgfCWcDqhAkT6BzdZ8prqXglwfVvdhPKN6zRrgO8pekR6Tr1YdqBHSAjSlTKPe
-	 x4cCcuVHwcKGg==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4B8DACCD194;
-	Wed, 15 Oct 2025 14:51:47 +0000 (UTC)
-From: =?utf-8?q?Nuno_S=C3=A1_via_B4_Relay?= <devnull+nuno.sa.analog.com@kernel.org>
-Date: Wed, 15 Oct 2025 15:52:21 +0100
-Subject: [PATCH 3/3] hwmon: (adt7410): Support adt7422 chip
+	s=arc-20240116; t=1760540188; c=relaxed/simple;
+	bh=cAVu1Ez4yYUTuEc8XdVelIPzH5j9qezO1CIAHTlUR1I=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=X0YwlcUZHFxhARaZJmjAjaqdlxePirSQ3N7bv8kFZHHuF1nRgVL2ZxF1NyTyQlnC24W/+7Vlkzse3Hp2waiF5HErCPDnQtbGlwwHPxxSPDeielo+joNL5HbWxaWs/CrekQz4Ae27YIak004jgdcRuo22ZrKQ/sdAX68pfpl8O5M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DfiKFUsF; arc=none smtp.client-ip=209.85.221.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-3ee12807d97so4971696f8f.0
+        for <devicetree@vger.kernel.org>; Wed, 15 Oct 2025 07:56:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1760540185; x=1761144985; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=GI9CaA/4ITOkaOZyH+29H11i4BVtBD/Oo8oTodLjamo=;
+        b=DfiKFUsFIHEIez+fvibFeKf7Yqv2B/m5F9vC5tRPDAc5mQSJpdrniDg8Z018NIc/S3
+         ybkZ4hBUnrJi1euEjkQfiXh6olXVMR7rBRGvuQnS9VUdArqEEZVVxCUkmcjE229PZnPE
+         RiDLmVdHKFs5UK0P+HJ+RGRE7NMyD+PFnmZus52WMzZy7bebO6NuwPLQSPPm8exZihfw
+         Aa4cNhqUcQhDJpR/6KI5t7r5WpfkVzhvbW4e+h4FPzUWuu9xDmXdXTBnVZBF6UG5DyuP
+         9O9gYlVHwb70omAZoKcXzQTHJAv0CkD0Y4Lvgy7nfLZvrra7ebvJwcXJkaowJq6XWiQp
+         +jiA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1760540185; x=1761144985;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=GI9CaA/4ITOkaOZyH+29H11i4BVtBD/Oo8oTodLjamo=;
+        b=fCZ/A2yG+Km2kaZdUrF4qUKEv0UKnzm+LLmcxMTyZnROI2SiZMTg9mCqrh4s7V3nR0
+         AxHkycjj+0U1RBRCwTrH+yaMo7Cp4sTxDPTILjaLrrDDfJCwdMSunekeiq81rtB4lpbE
+         fpjfmiz2LLO7+hWX/g5CF0HaqKSegVtybaBHWvhGq7nrrVpomP72G2jJzltZnq1xOtyK
+         5z+Nm3i2Pcw0R1EywUPR3klUMalrsG0XsKoP3PLWZSKUzTv5c0+ug99ydsnCgiGs/Pv8
+         GMh1tBZYI0lSBeRUWwSeIwJ8mbPakmEi/Q/jb3bG3u3YTK28UJ7zb+zdjQ9wqzhjcng0
+         xTqA==
+X-Forwarded-Encrypted: i=1; AJvYcCWmOO4RUhWBmY+GiVP7XeSYvBZMuYpi3ieVYBiTRCIO0QA6rdD2dEJ8MFK91d2Jha6c6swkng5Itu0Z@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw1OjFK9Y3WxvalZ0lncK1GboBPU+qRSC0RsP3lvMSMpH7tL70i
+	2Ola8h8hmTd1iNEvDxN7WiMN5ImJEd67k73NO86cn53cu8EyKrRHpV36ZtfX9Guz8vI8JJtmZ1v
+	2LefUafyO78oDginC+BJUvDaFyOA3gtI=
+X-Gm-Gg: ASbGnctjMqtT4xPks4r6ButC6PCL6AIABH5vIl1rXmMa06O4gya5ePcRvc+UIjpB5aD
+	ZP7J2etxTbr5WVYOdF4h3updiTWa5lMx2u/h0L8nQ4w82l4182uDsShbwq8on9kykBphyHfN/wB
+	zcl5EZ2mC4/EAKfNsbV3Jc40vyD3CNRbAPM4GqWNT2gNw5pRUZBfLvZQEdCl7PjC59d9sceRHM6
+	g5SXc0ZEBSWvJAqMMUonmyn1rEtz5NEqEKglHdB9xz1wSM8knC1j8+qaItp
+X-Google-Smtp-Source: AGHT+IH5L1Mo7xLa57k+5KugvuK+N+9eSJpkUwgo4LQeKXBhJMy9CjFuhGIGVQ+i6zqQoqwOUPriVfL9xrycTyM9beg=
+X-Received: by 2002:a05:6000:43d6:20b0:426:f391:1968 with SMTP id
+ ffacd0b85a97d-426f3911a30mr3441482f8f.35.1760540185079; Wed, 15 Oct 2025
+ 07:56:25 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20251015-dev-add-adt7422-v1-3-7cf72d3253ad@analog.com>
-References: <20251015-dev-add-adt7422-v1-0-7cf72d3253ad@analog.com>
-In-Reply-To: <20251015-dev-add-adt7422-v1-0-7cf72d3253ad@analog.com>
-To: devicetree@vger.kernel.org, linux-hwmon@vger.kernel.org
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Guenter Roeck <linux@roeck-us.net>, 
- Cosmin Tanislav <demonsingur@gmail.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1760539940; l=2189;
- i=nuno.sa@analog.com; s=20231116; h=from:subject:message-id;
- bh=kRPkAzRSj0YVbwruCoHvC/DO1myQ3X+DgwaNSnHWKAc=;
- b=HGgxTpLGceqpY0VXpBuDmxitaHIc4idapwqTECPU49Nj7R2vD/4fxjRJSBroRvbK8gYezsVOn
- li0H5N8+OvGDzp4S1Wj14Dehk2HDM34S2fxbF4pVtbL/fIQbBhGS58I
-X-Developer-Key: i=nuno.sa@analog.com; a=ed25519;
- pk=3NQwYA013OUYZsmDFBf8rmyyr5iQlxV/9H4/Df83o1E=
-X-Endpoint-Received: by B4 Relay for nuno.sa@analog.com/20231116 with
- auth_id=100
-X-Original-From: =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>
-Reply-To: nuno.sa@analog.com
+References: <20251009160732.1623262-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20251009160732.1623262-3-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdV2-YrktT+=D2LVFw5oR+6EOLcPB_Yuh5wnos099W9YHQ@mail.gmail.com>
+In-Reply-To: <CAMuHMdV2-YrktT+=D2LVFw5oR+6EOLcPB_Yuh5wnos099W9YHQ@mail.gmail.com>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Wed, 15 Oct 2025 15:55:57 +0100
+X-Gm-Features: AS18NWDborL4rX4hqJjZmtwrGarJ9O0NBNJ1OthS7bueNWRfQx925JxPvOSaoZs
+Message-ID: <CA+V-a8s9v5QmU=vrHM6wkFbEwdzp_+eE6kxEN53JfhnpA2KOUg@mail.gmail.com>
+Subject: Re: [PATCH v10 2/6] clk: renesas: rzv2h-cpg: Add support for DSI clocks
+To: Geert Uytterhoeven <geert@linux-m68k.org>, 
+	Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Robert Foss <rfoss@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+	Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Biju Das <biju.das.jz@bp.renesas.com>, Magnus Damm <magnus.damm@gmail.com>, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	linux-clk@vger.kernel.org, Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Nuno Sá <nuno.sa@analog.com>
+Hi Geert,
 
-Add support for the ADT7422 high accuracy digital temperature sensor. It's
-identical to the other chips supported in the driver so we just need to
-add it to the ID tables.
+Thank you for the review.
 
-Co-developed-by: Cosmin Tanislav <demonsingur@gmail.com>
-Signed-off-by: Cosmin Tanislav <demonsingur@gmail.com>
-Signed-off-by: Nuno Sá <nuno.sa@analog.com>
----
- drivers/hwmon/Kconfig   | 6 +++---
- drivers/hwmon/adt7410.c | 2 ++
- 2 files changed, 5 insertions(+), 3 deletions(-)
+On Mon, Oct 13, 2025 at 3:26=E2=80=AFPM Geert Uytterhoeven <geert@linux-m68=
+k.org> wrote:
+>
+> On Thu, 9 Oct 2025 at 18:07, Prabhakar <prabhakar.csengg@gmail.com> wrote=
+:
+> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> > Add support for PLLDSI and its post-dividers to the RZ/V2H CPG driver a=
+nd
+> > export a set of helper APIs to allow other consumers (notably the DSI
+> > driver) to compute and select PLL parameter combinations.
+> >
+> > Introduce per-PLL-DSI state in the CPG private structure and implement
+> > clk ops and registration for PLLDSI and PLLDSI divider clocks. Implemen=
+t
+> > rzv2h_cpg_plldsi_determine_rate and rzv2h_cpg_plldsi_set_rate to drive
+> > PLL programming via the new per-PLL state and add a plldsi divider clk
+> > with determine/set/recalc operations that cooperate with the PLL
+> > algorithm.
+> >
+> > Centralize PLL parameter types and limits by moving definitions into a
+> > shared header (include/linux/clk/renesas.h). Add struct rzv2h_pll_limit=
+s,
+> > struct rzv2h_pll_pars and struct rzv2h_pll_div_pars, plus the
+> > RZV2H_CPG_PLL_DSI_LIMITS() macro to declare DSI PLL limits.
+> >
+> > Provide two exported helper functions, rzv2h_get_pll_pars() and
+> > rzv2h_get_pll_divs_pars(), that perform iterative searches over PLL
+> > parameters (M, K, P, S) and optional post-dividers to find the best (or
+> > exact) match for a requested frequency. Export these helpers in the
+> > "RZV2H_CPG" namespace for use by external drivers.
+> >
+> > This change centralizes DSI PLL rate selection logic, prevents duplicat=
+e
+> > implementations in multiple drivers, and enables the DSI driver to
+> > request accurate PLL rates and program the hardware consistently.
+> >
+> > Co-developed-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+> > Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > ---
+> > v9->v10:
+> > - Dropped rzv2h_get_pll_div_pars() helper and opencoded instead.
+> > - Dropped rzv2h_get_pll_dtable_pars() helper and opencoded instead.
+> > - Added dummy helpers rzv2h_get_pll_pars() and rzv2h_get_pll_divs_pars(=
+)
+> >   in renesas.h for !CONFIG_CLK_RZV2H case.
+> > - Updated commit message.
+>
+> Thanks for the update!
+>
+> > --- a/drivers/clk/renesas/rzv2h-cpg.c
+> > +++ b/drivers/clk/renesas/rzv2h-cpg.c
+>
+> > +static int rzv2h_cpg_plldsi_div_determine_rate(struct clk_hw *hw,
+> > +                                              struct clk_rate_request =
+*req)
+> > +{
+> > +       struct rzv2h_plldsi_div_clk *dsi_div =3D to_plldsi_div_clk(hw);
+> > +       struct pll_clk *pll_clk =3D to_pll(clk_hw_get_parent(hw));
+> > +       struct rzv2h_cpg_priv *priv =3D dsi_div->priv;
+> > +       u8 table[RZV2H_MAX_DIV_TABLES] =3D { 0 };
+> > +       struct rzv2h_pll_div_pars *dsi_params;
+> > +       struct rzv2h_pll_dsi_info *dsi_info;
+> > +       const struct clk_div_table *div;
+> > +       u64 rate_millihz;
+> > +       unsigned int i;
+> > +
+> > +       dsi_info =3D &priv->pll_dsi_info[pll_clk->pll.instance];
+> > +       dsi_params =3D &dsi_info->pll_dsi_parameters;
+> > +
+> > +       rate_millihz =3D mul_u32_u32(req->rate, MILLI);
+> > +       if (rate_millihz =3D=3D dsi_params->div.error_millihz + dsi_par=
+ams->div.freq_millihz)
+> > +               goto exit_determine_rate;
+> > +
+> > +       div =3D dsi_div->dtable;
+>
+> This belongs inside the for-initializer below.
+>
+Agreed.
 
-diff --git a/drivers/hwmon/Kconfig b/drivers/hwmon/Kconfig
-index 2760feb9f83b..aa783be9b73d 100644
---- a/drivers/hwmon/Kconfig
-+++ b/drivers/hwmon/Kconfig
-@@ -175,7 +175,7 @@ config SENSORS_ADT7X10
- 	select REGMAP
- 	help
- 	  This module contains common code shared by the ADT7310/ADT7320 and
--	  ADT7410/ADT7420 temperature monitoring chip drivers.
-+	  ADT7410/ADT7420/ADT7422 temperature monitoring chip drivers.
- 
- 	  If built as a module, the module will be called adt7x10.
- 
-@@ -191,12 +191,12 @@ config SENSORS_ADT7310
- 	  will be called adt7310.
- 
- config SENSORS_ADT7410
--	tristate "Analog Devices ADT7410/ADT7420"
-+	tristate "Analog Devices ADT7410/ADT7420/ADT7422"
- 	depends on I2C
- 	select SENSORS_ADT7X10
- 	help
- 	  If you say yes here you get support for the Analog Devices
--	  ADT7410 and ADT7420 temperature monitoring chips.
-+	  ADT7410, ADT7420 and ADT7422 temperature monitoring chips.
- 
- 	  This driver can also be built as a module. If so, the module
- 	  will be called adt7410.
-diff --git a/drivers/hwmon/adt7410.c b/drivers/hwmon/adt7410.c
-index 79952866a4db..73b196a78f3a 100644
---- a/drivers/hwmon/adt7410.c
-+++ b/drivers/hwmon/adt7410.c
-@@ -91,6 +91,7 @@ static int adt7410_i2c_probe(struct i2c_client *client)
- static const struct i2c_device_id adt7410_ids[] = {
- 	{ "adt7410" },
- 	{ "adt7420" },
-+	{ "adt7422" },
- 	{}
- };
- MODULE_DEVICE_TABLE(i2c, adt7410_ids);
-@@ -98,6 +99,7 @@ MODULE_DEVICE_TABLE(i2c, adt7410_ids);
- static const struct of_device_id adt7410_of_match[] = {
- 	{ .compatible = "adi,adt7410" },
- 	{ .compatible = "adi,adt7420" },
-+	{ .compatible = "adi,adt7422" },
- 	{ }
- };
- MODULE_DEVICE_TABLE(of, adt7410_of_match);
+> > +       i =3D 0;
+>
+> Ditto; or better: in the variable declaration at the top of the function.
+>
+Ok, I will move to the top.
 
--- 
-2.51.0
+> > +       for (; div->div; div++) {
+> > +               if (i >=3D RZV2H_MAX_DIV_TABLES)
+> > +                       return -EINVAL;
+> > +               table[i++] =3D div->div;
+> > +       }
+> > +
+> > +       if (!rzv2h_get_pll_divs_pars(dsi_info->pll_dsi_limits, dsi_para=
+ms, table, i,
+> > +                                    rate_millihz)) {
+> > +               dev_err(priv->dev, "failed to determine rate for req->r=
+ate: %lu\n",
+> > +                       req->rate);
+> > +               return -EINVAL;
+> > +       }
+> > +
+> > +exit_determine_rate:
+> > +       req->rate =3D DIV_ROUND_CLOSEST_ULL(dsi_params->div.freq_millih=
+z, MILLI);
+> > +       req->best_parent_rate =3D req->rate * dsi_params->div.divider_v=
+alue;
+> > +       dsi_info->req_pll_dsi_rate =3D req->best_parent_rate;
+> > +
+> > +       return 0;
+> > +}
+>
+> The rest LGTM, so with the above fixed, and the field changes factored
+> out into a separate patch:
+Ok, I will move the field changes into a separate patch.
 
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
+Cheers,
+Prabhakar
 
