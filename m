@@ -1,66 +1,66 @@
-Return-Path: <devicetree+bounces-227086-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227087-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A36F9BDE857
-	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 14:44:02 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA55FBDE8B0
+	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 14:52:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 623EE3B194E
-	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 12:44:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2303B1926428
+	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 12:52:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 386A41B0439;
-	Wed, 15 Oct 2025 12:43:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E4E71C84C0;
+	Wed, 15 Oct 2025 12:52:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aXIRVnnX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="t8o3nVis"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0860B39FCE;
-	Wed, 15 Oct 2025 12:43:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63B3218E1F;
+	Wed, 15 Oct 2025 12:52:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760532238; cv=none; b=r1Sv9pgwrowy9fCaEs1KPtOhut0dRC6QHpwvtA4W03DhMTt0MLo+VuvcrWmK9b9BMg34iRv86roj8CT520bxJHSriueNzp6zv9Llf0VgHeKFUWqhI7CX+gEeBy4CbV9pPI/LSeZiSu0Yoy2YHjApJzLsH2Q89Z66mxfy9EvKtrY=
+	t=1760532751; cv=none; b=Y9DtKpVPZOeQqaBoGkHySl2nf4WldhwH22RY/78gV5bwZ3b9ndO9L7U4riJEits6TKrfXLO96dA2lro2LeWDwkf4CayLCfY8WauagcGJeg10Sp7Nnc9v7iVYUjKAsR55feQYH9CUjTimDAtdtEE3zA185earlPi87aKfXffy7h0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760532238; c=relaxed/simple;
-	bh=Rv/WTcy0mNMm+uRot/GU/7Fbs+K4qxalPuCtaq1ElJ0=;
+	s=arc-20240116; t=1760532751; c=relaxed/simple;
+	bh=4DK8NsHpOSDw78JlpzEJiBRJK0MDuJa00sse3sDOyDs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=m6dIR5sTC6nhZwmFzxn+DIN/vkSf/tmDyWr81zvrzcfsD/S8QwsVTdmj2TSs63+r7yCSz1c0x9nSirKQN13zImeeEF+Is4sdoi5FcXLLdneKt6yIrQ/mIMMXNojGW/SBJ/JeXPGf4mproRV+awYl/v1rt37gGb72lwIDo3uk57M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aXIRVnnX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5362DC4CEF8;
-	Wed, 15 Oct 2025 12:43:57 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=SIYJAZsDW55PwXwnU5mM8pNzxKd0+j6USYrNjqDwG96Qz9sW4NlDNJEGKMQXGGbFphD/DfyocsBBK3CK8UiJkeP4isw3ILO3O7xh2h82HIQ4I4CqMW44vZd0saWydW3+Dk/Ozni0YQ/V64NjiEFRLmIV7De5wImWR9n12y88SNY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=t8o3nVis; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3F712C4CEF8;
+	Wed, 15 Oct 2025 12:52:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760532237;
-	bh=Rv/WTcy0mNMm+uRot/GU/7Fbs+K4qxalPuCtaq1ElJ0=;
+	s=k20201202; t=1760532750;
+	bh=4DK8NsHpOSDw78JlpzEJiBRJK0MDuJa00sse3sDOyDs=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=aXIRVnnX1DKzvIv1B6Y3BFLJbfCl+l7UBPd4iL2xwtSnN+cZL6OtcgShLadRkxhuK
-	 CPemmyAY+8iEQiMjSq0J64kBB2mJTgtuKkDF1MbRZAfmyJGpAT2CcyMUnaPBFlVnG8
-	 +RnWbNmsHeX3KAnSbxy2xUWIXly6N5NuddQAkm7w0qWHxdDfiOOqkuppPuS70weaIT
-	 UTk5zxeRhYiMKl8gKtgC7R4myMQBofR2hCp8CDo9ldjljHX66+Poifj02PoPPjaYVe
-	 nkZbTG74SRlPUeyhg3r70EAAp3vzy60TvuIyp+KkqMo3VAhWjdyNX52JuIQhC9tmWE
-	 I0oQiebGdts3Q==
-Date: Wed, 15 Oct 2025 07:43:55 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
-Cc: Conor Dooley <conor+dt@kernel.org>,
+	b=t8o3nVisN7MqQBJeLDOFcbTRf67htnjR8DcPwRhAq4aev4tsHgIkoMlwuWCeCa59R
+	 jlqIcNRknLKlRb10gzt5joFkL1eEy7qb+mt/Q3pSm6LISI5M1QcmNxEwCRuQhkjFVy
+	 GjM39Goe0J/dWh2Lj3mWdO8BnpWZB64sG2Dhtmlcf+AtuYFim9Tm5oXfgMHB3oJU4G
+	 a0cGFDrFaJdrgVy5ES42Knl7f2I61yFf6tVgGI5i1bD8NaBUtayoom8W8zWj5doLaW
+	 9hWYFmzDkaKeDlv5b3NJmcOqRRuKGz2S8nNWATw5VeH3PKNyK2f7GDL6cTTEwJFi4G
+	 zEuQ9KR/cNgKw==
+Date: Wed, 15 Oct 2025 13:52:26 +0100
+From: Simon Horman <horms@kernel.org>
+To: Lorenzo Bianconi <lorenzo@kernel.org>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Abraham I <kishon@kernel.org>, linux-arm-msm@vger.kernel.org,
-	linux-pci@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>,
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>
-Subject: Re: [PATCH 1/3] dt-bindings: PCI: Update the email address for
- Manivannan Sadhasivam
-Message-ID: <176053223303.3202616.6553332621383327286.robh@kernel.org>
-References: <20251010-pci-binding-v1-0-947c004b5699@oss.qualcomm.com>
- <20251010-pci-binding-v1-1-947c004b5699@oss.qualcomm.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next 03/12] net: airoha: Add
+ airoha_ppe_get_num_stats_entries() and
+ airoha_ppe_get_num_total_stats_entries()
+Message-ID: <aO-ZCqsvPQ6Pqjpg@horms.kernel.org>
+References: <20251015-an7583-eth-support-v1-0-064855f05923@kernel.org>
+ <20251015-an7583-eth-support-v1-3-064855f05923@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,32 +69,88 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251010-pci-binding-v1-1-947c004b5699@oss.qualcomm.com>
+In-Reply-To: <20251015-an7583-eth-support-v1-3-064855f05923@kernel.org>
 
-
-On Fri, 10 Oct 2025 11:25:47 -0700, Manivannan Sadhasivam wrote:
-> My linaro email id is no longer active. So switch to kernel.org one.
+On Wed, Oct 15, 2025 at 09:15:03AM +0200, Lorenzo Bianconi wrote:
+> Introduce airoha_ppe_get_num_stats_entries and
+> airoha_ppe_get_num_total_stats_entries routines in order to make the
+> code more readable controlling if CONFIG_NET_AIROHA_FLOW_STATS is
+> enabled or disabled.
+> Modify airoha_ppe_foe_get_flow_stats_index routine signature relying on
+> airoha_ppe_get_num_total_stats_entries().
 > 
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
 > ---
->  Documentation/devicetree/bindings/pci/pci-ep.yaml             | 2 +-
->  Documentation/devicetree/bindings/pci/qcom,pcie-common.yaml   | 2 +-
->  Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml       | 2 +-
->  Documentation/devicetree/bindings/pci/qcom,pcie-sa8255p.yaml  | 2 +-
->  Documentation/devicetree/bindings/pci/qcom,pcie-sa8775p.yaml  | 2 +-
->  Documentation/devicetree/bindings/pci/qcom,pcie-sc7280.yaml   | 2 +-
->  Documentation/devicetree/bindings/pci/qcom,pcie-sc8180x.yaml  | 2 +-
->  Documentation/devicetree/bindings/pci/qcom,pcie-sc8280xp.yaml | 2 +-
->  Documentation/devicetree/bindings/pci/qcom,pcie-sm8150.yaml   | 2 +-
->  Documentation/devicetree/bindings/pci/qcom,pcie-sm8250.yaml   | 2 +-
->  Documentation/devicetree/bindings/pci/qcom,pcie-sm8350.yaml   | 2 +-
->  Documentation/devicetree/bindings/pci/qcom,pcie-sm8450.yaml   | 2 +-
->  Documentation/devicetree/bindings/pci/qcom,pcie-sm8550.yaml   | 2 +-
->  Documentation/devicetree/bindings/pci/qcom,pcie-x1e80100.yaml | 2 +-
->  Documentation/devicetree/bindings/pci/qcom,pcie.yaml          | 2 +-
->  15 files changed, 15 insertions(+), 15 deletions(-)
+>  drivers/net/ethernet/airoha/airoha_eth.h |  10 +--
+>  drivers/net/ethernet/airoha/airoha_ppe.c | 103 +++++++++++++++++++++++++------
+>  2 files changed, 86 insertions(+), 27 deletions(-)
 > 
+> diff --git a/drivers/net/ethernet/airoha/airoha_eth.h b/drivers/net/ethernet/airoha/airoha_eth.h
+> index 4330b672d99e1e190efa5ad75d13fb35e77d070e..1f7e34a5f457ca2200e9c81dd05dc03cd7c5eb77 100644
+> --- a/drivers/net/ethernet/airoha/airoha_eth.h
+> +++ b/drivers/net/ethernet/airoha/airoha_eth.h
+> @@ -50,15 +50,9 @@
+>  
+>  #define PPE_NUM				2
+>  #define PPE1_SRAM_NUM_ENTRIES		(8 * 1024)
+> -#define PPE_SRAM_NUM_ENTRIES		(2 * PPE1_SRAM_NUM_ENTRIES)
+> -#ifdef CONFIG_NET_AIROHA_FLOW_STATS
+> +#define PPE_SRAM_NUM_ENTRIES		(PPE_NUM * PPE1_SRAM_NUM_ENTRIES)
+>  #define PPE1_STATS_NUM_ENTRIES		(4 * 1024)
+> -#else
+> -#define PPE1_STATS_NUM_ENTRIES		0
+> -#endif /* CONFIG_NET_AIROHA_FLOW_STATS */
+> -#define PPE_STATS_NUM_ENTRIES		(2 * PPE1_STATS_NUM_ENTRIES)
+> -#define PPE1_SRAM_NUM_DATA_ENTRIES	(PPE1_SRAM_NUM_ENTRIES - PPE1_STATS_NUM_ENTRIES)
+> -#define PPE_SRAM_NUM_DATA_ENTRIES	(2 * PPE1_SRAM_NUM_DATA_ENTRIES)
+> +#define PPE_STATS_NUM_ENTRIES		(PPE_NUM * PPE1_STATS_NUM_ENTRIES)
+>  #define PPE_DRAM_NUM_ENTRIES		(16 * 1024)
+>  #define PPE_NUM_ENTRIES			(PPE_SRAM_NUM_ENTRIES + PPE_DRAM_NUM_ENTRIES)
+>  #define PPE_HASH_MASK			(PPE_NUM_ENTRIES - 1)
+> diff --git a/drivers/net/ethernet/airoha/airoha_ppe.c b/drivers/net/ethernet/airoha/airoha_ppe.c
+> index 8d1dceadce0becb2b1ce656d64ab77bd3c2f914a..303d31e1da4b723023ee0cc1ca5f6038c16966cd 100644
+> --- a/drivers/net/ethernet/airoha/airoha_ppe.c
+> +++ b/drivers/net/ethernet/airoha/airoha_ppe.c
+> @@ -32,6 +32,30 @@ static const struct rhashtable_params airoha_l2_flow_table_params = {
+>  	.automatic_shrinking = true,
+>  };
+>  
+> +static int airoha_ppe_get_num_stats_entries(struct airoha_ppe *ppe,
+> +					    u32 *num_stats)
+> +{
+> +#ifdef CONFIG_NET_AIROHA_FLOW_STATS
+> +	*num_stats = PPE1_STATS_NUM_ENTRIES;
+> +	return 0;
+> +#else
+> +	return -EOPNOTSUPP;
+> +#endif /* CONFIG_NET_AIROHA_FLOW_STATS */
+> +}
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+Hi Lorenzo,
 
+I think that in general using IS_ENABLED is preferred over #ifdef
+in cases where the former can be used. For one thing it improves compile
+coverage.
+
+That does seem applicable here, so I'm wondering if
+we can do something like the following.
+(Compile tested only!)
+
+static int airoha_ppe_get_num_stats_entries(struct airoha_ppe *ppe,
+                                            u32 *num_stats)
+{
+        if (!IS_ENABLED(CONFIG_NET_AIROHA_FLOW_STATS))
+                return -EOPNOTSUPP;
+
+        *num_stats = PPE1_STATS_NUM_ENTRIES;
+        return 0;
+}
+
+Also, very subjectively, I might have returned num_stats as
+a positive return value. I'm assuming it's value will never overflow an int.
+Likewise elsewhere.
+
+But that's just my idea. Feel free to stick with the current scheme.
+
+...
 
