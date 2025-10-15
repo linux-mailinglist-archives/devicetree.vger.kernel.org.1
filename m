@@ -1,424 +1,354 @@
-Return-Path: <devicetree+bounces-226977-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226978-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00EF8BDD54E
-	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 10:15:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 24D7BBDD581
+	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 10:19:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 371691895477
-	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 08:15:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5CCA719251E3
+	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 08:20:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EAB72D3A6F;
-	Wed, 15 Oct 2025 08:15:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C1F32D8363;
+	Wed, 15 Oct 2025 08:19:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="Hjz7huSf"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="l7HzU/zU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 594DD26B2D2
-	for <devicetree@vger.kernel.org>; Wed, 15 Oct 2025 08:15:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C58202D7DE4
+	for <devicetree@vger.kernel.org>; Wed, 15 Oct 2025 08:19:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760516119; cv=none; b=TmRly/iLzOE/0FvMcWZtgWwvx2WnV6zvGerNuogJ6UfX4jAhSBI6QChpV+BTnaka+PO1/DRrt8XriR+2YhdV3aoqcTUOmxXzCmT481gYYpUx3Uj/4ulo0P8svg6oU6mE6te285wPWwwL3/eaM45QM6qNuOivI4kj8W4v+qKMv1Y=
+	t=1760516382; cv=none; b=nPscXUW9WiIH3ucqqXgjl+hzCl/WE/L7L2c9tfS8HnNw95a4qTRbcuo29msK9nNKgPkkY24x4bsj5Alv+y34xLe6C4tcAbs3VxUzlJXo0Q1vOfUWL2vnQ51g3sUPM5WB/+fKu502O8etND4vsgtfFnohLW8vrfmSrR94zfsu4FY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760516119; c=relaxed/simple;
-	bh=Ccw1kBiyRhQSVrMu4J+f5y24aPSH1p1AMOPs0E4nI3c=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=AbJL2HK/Ciq15mPzpRDt34dTQ3B3JZ4RTRH7t7RzPq0km5oCIx8+R3fFH/qrEFj52fiUSig3XSTykQKbbkIiYz9AvWT0LgDXM06gSRHFYhcCy7p/ly+Igd1qCDuB9ZmBvDjJiMl2HHPaMHqhkkCsyp/IN1R9hxweNVQnvnsAFLU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=Hjz7huSf; arc=none smtp.client-ip=170.10.129.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1760516116;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=tZKda9N5dijKxgcEWmfEVaFBabk39V5bB1Cg5EO94mA=;
-	b=Hjz7huSfSXmQI5+0RGqZTE7TdiBaF08epeHBkdr2YEKPzm6dseyHBPf9wBIoDytcpYqUAc
-	Y7i+WURocb7jqILEWV6UZivFRtQwCpXtYb0fHi+DBV3VXv1DiTiMa4Ueq79k0MSFriEi0v
-	WC1SHSaN+zlWejBPGKGGxOzuqetl2TM=
-Received: from mail-oo1-f72.google.com (mail-oo1-f72.google.com
- [209.85.161.72]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-669-ViFQLfGHMP-tAi_RRQ-0Bw-1; Wed, 15 Oct 2025 04:15:15 -0400
-X-MC-Unique: ViFQLfGHMP-tAi_RRQ-0Bw-1
-X-Mimecast-MFC-AGG-ID: ViFQLfGHMP-tAi_RRQ-0Bw_1760516114
-Received: by mail-oo1-f72.google.com with SMTP id 006d021491bc7-644ad4b786eso278354eaf.0
-        for <devicetree@vger.kernel.org>; Wed, 15 Oct 2025 01:15:14 -0700 (PDT)
+	s=arc-20240116; t=1760516382; c=relaxed/simple;
+	bh=WkSHbQXCPDqpXetRB1ukOSkjAVefKFWsDstqnzdpd9w=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=CAa06fc1YVC6g+a7qMwAqQirYvgBd0UUTsI9U/B44k/d6tTFC9GSz+swBLrA6hvW1+rjEpSwsPzAGhKcbPL2ptKdW3hVuwRozu0gdGzQmxWdLiQYt1tE0vCoAuSEoCfkmmnjfV2QjQR+oU1f32WzL1PCfyt4S+/hv88aea2YcjI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=l7HzU/zU; arc=none smtp.client-ip=209.85.218.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
+Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-b3e234fcd4bso1024585066b.3
+        for <devicetree@vger.kernel.org>; Wed, 15 Oct 2025 01:19:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=tuxon.dev; s=google; t=1760516378; x=1761121178; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=8KneEMScoa9FWAqTtx3ph1+7zePLdAas+6JTV1uYXUY=;
+        b=l7HzU/zU4dCdtyyD82rt8h1r5fXVq94kwZic6KgrzT4j/CzDETn5lIqqyQHJIYYMMh
+         JbSJRyMIcJvRHiGD9kbB6WYxtVVdpVMsKeAg8Yhx+vnFFsQ8MZL+DR9XHOqUOBZxhPXm
+         69clutJjeVCtmAeLwtlDH7ukJvpxVtHU8eok4Ow4MB87zcuHlzUAaIIzmbrrpzREV/NC
+         jcpeQkkDCt4qXjMCsS4mehpV7dKsizriMCtI1b8xcBekAVDR/qdC8y5HM6uWbMvWtlCZ
+         9f4hHdcyWRmLYXYyzMkwwEcbHvU+QgXW1vLm3kto8P6M40gtif8p7LA1myR+rpGpUEQW
+         c0IQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760516114; x=1761120914;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=tZKda9N5dijKxgcEWmfEVaFBabk39V5bB1Cg5EO94mA=;
-        b=EeygkRiubJajnX4b0rgXCDu28gs1NoXm+sSm9UhLuNQ4zy2e3I2iNK+DSEcM7Nd8Ax
-         SIHqAQ8uGA1Wy3+xyUTDK0aq8tsbpvwCxUN9QsTGAO65ZE/6EyVWdl1SImMuv2/CeqYa
-         caBHZCf/nn6JiNS68QzKEYaZS5nW+sVRs7xNPtfJaEozvWRstRIsgjOMvQDu72m42ZGB
-         pS4rHgkVbNzL+DCMGa2U3IYoAB7+/ty5KZH22YeEOqmV1joXT8azwtSU0dtf7PzKA5vN
-         zSuqLILUPAYKkgBWnKpkBKyQJDK4xrM5kBquB5isLBT/OYARMRhV4bPnb4reaEptKYFs
-         Lmlw==
-X-Forwarded-Encrypted: i=1; AJvYcCWvtXj4XRkhn56Jf8uFt8F7hWSXmP/9Jh45PvzTd3BT63KhFRjJP8MlBZQK5j1Bjx72IbC0ELaNlwgd@vger.kernel.org
-X-Gm-Message-State: AOJu0YwkKjKAnqMZGkDI+MeODwW8GfjbdJRzynAKETCAVwC86d0vMQ6d
-	c3f097ze+d/SETbtuXdtBFxdI+Dvsbpemr+XR6fjsrmzboGa0fjrZRvhQGw6HOH+3n6uelE8JfU
-	XE0VmV+CdtbJiOyow34L9PAgrepuMvNycQUoHGcnrYiKJ2Fh+Htv3ldKXw6FmDY2Mq/wXviJ3S1
-	hekLya6HN2q1PfBnXI0dx+sHiWxoQjoVYxu+Cieg==
-X-Gm-Gg: ASbGncuhK8/XaUGfMIwtpXoAYCvFH612UtvcyvcMTp373NTLyBiyT82BKXUdZxNslwr
-	1DOyZn9P1F8zOWt9Ugr2qdhYiGrrdTVv7GQ+Ldfmlj3Fbj4hzW8lLpk7AiFVX2DUlGuev1z0cXN
-	GjaUrmrn29abWOIfDF9g==
-X-Received: by 2002:a4a:a5cb:0:b0:650:11d8:238b with SMTP id 006d021491bc7-65011d82737mr3501921eaf.3.1760516114019;
-        Wed, 15 Oct 2025 01:15:14 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHmaU0mA5ZgI30BHsNRVowCM5aNsY26oF2v2JdjYxUuHKGZZFoMEDYsj2ZYBfGCAjm2CUzHY53+s7Zb3V4S4Qk=
-X-Received: by 2002:a4a:a5cb:0:b0:650:11d8:238b with SMTP id
- 006d021491bc7-65011d82737mr3501913eaf.3.1760516113614; Wed, 15 Oct 2025
- 01:15:13 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1760516378; x=1761121178;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=8KneEMScoa9FWAqTtx3ph1+7zePLdAas+6JTV1uYXUY=;
+        b=PFo5ohvvAOgsa87AZDtjidAN9fB/kunm3BjB28NJzQ8ODCM5wP4dexF2hgeeDK0WXU
+         jHt5N6vbldg8KYFSaF0PllH4p1roAK9dfgYEESdlDl6SX2Mpw3x+kxDdRqaN/IIUUXWp
+         b0fZcErAdtBr/GNP9uHpsFqIj/V/9tiIqy8AACDRdwo6ugIr1jfry0OAn8IWJCwwXzy5
+         ee6uaCuZto8II7Wac04FYag7vMlAxEpXFRvBlsCNzEmoTFlBU/EuZvD4iw2ewydNp/js
+         L3n6vCZ4Ln013wWH8n+28piXYB0VQXV7QljKGf83vOBwhtUI8mTr3JZMpmljbNPY6WuS
+         HgMA==
+X-Forwarded-Encrypted: i=1; AJvYcCUexxx0LdfteCjQL6Y304ChsdGpmVOkkycEW9HwnOzYqTN05L07Bh0VVNYkEkPpPdCpGx0SNdlhHOxX@vger.kernel.org
+X-Gm-Message-State: AOJu0YxrEfzC3+YrhKc6W+Kr/omb+/8HirZ9upuTwSmLLPGMlmigbpyk
+	0elktwxlC0Pmn3SSlZsZ7u1UyBM6Wwo+HAG8QymQomTxGPg5G1CHqobdSI1QtudIGAg=
+X-Gm-Gg: ASbGncsH9a2HQcc5PyFIDFVtSVXoiT4BbS6Cqq3fmvQBeQwQkQO1dMKDSSpxJ20c6V1
+	tm+aYIosr4V2svvWh8AoafLFlM6xn7d6q599j8A+l/iWBi/Qhi72OzSDIKGTtpDIvZ4HPBVE9D5
+	8sD4wBt+Q19Wo3/zWCs6dJyUuizyKcu5z26AuOrEkP7rbqtCtvaVCdBHeSKl3AjE6U3casJjP+N
+	FNY+NfaOsLTlBRmUB2lIQXbLYWp6S02LtQ5SwwGj/8mYekfCQwIzpxa7M6MRygNqeZpl3WhbO1M
+	FAkalx0togXwABfRuJ6hIKmzHLmmkx8DgppBGg8AUtO3fJGAs2jQ/t903MulHQwrbGRouhZiGdD
+	EI92K/yd+wy6qKXcpJCKlAjJX5sA890T8VCWBui4zq1pKMqABlQ==
+X-Google-Smtp-Source: AGHT+IEVkjo7z+13pgEMw8ki/r0mUSZhrjZCaI1xrW40+u9DWDfR3ebpJtSBjpXr8BzCEh4v3qtFoA==
+X-Received: by 2002:a17:907:72cf:b0:b04:61aa:6adc with SMTP id a640c23a62f3a-b50aa69e311mr2948870066b.7.1760516377814;
+        Wed, 15 Oct 2025 01:19:37 -0700 (PDT)
+Received: from [10.95.0.194] ([213.233.104.39])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b5ccd39b7d8sm166061566b.69.2025.10.15.01.19.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 15 Oct 2025 01:19:37 -0700 (PDT)
+Message-ID: <19746f65-bf10-4687-9e2b-b259220a9ea8@tuxon.dev>
+Date: Wed, 15 Oct 2025 11:19:34 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251006-nxp-s32g-boards-v1-1-f70a57b8087f@oss.nxp.com>
-In-Reply-To: <20251006-nxp-s32g-boards-v1-1-f70a57b8087f@oss.nxp.com>
-From: Enric Balletbo i Serra <eballetb@redhat.com>
-Date: Wed, 15 Oct 2025 10:12:55 +0200
-X-Gm-Features: AS18NWBquLznSadLgXrWHTjQr4NrQxZIv7gXTzpb0atLEJ2_g3uy-0qxXqM2JHs
-Message-ID: <CALE0LRusjwiozUPgncUx=iy8O2jbDkm_ktUNXdA3Ludyp02dEg@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: freescale: Add GMAC Ethernet for S32G2 EVB
- and RDB2 and S32G3 RDB3
-To: jan.petrous@oss.nxp.com
-Cc: Chester Lin <chester62515@gmail.com>, Matthias Brugger <mbrugger@suse.com>, 
-	Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>, NXP S32 Linux Team <s32@nxp.com>, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Richard Cochran <richardcochran@gmail.com>, linux-arm-kernel@lists.infradead.org, 
-	imx@lists.linux.dev, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	netdev@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 4/7] reset: rzg2l-usbphy-ctrl: Add support for USB
+ PWRRDY
+To: Philipp Zabel <p.zabel@pengutronix.de>, vkoul@kernel.org,
+ kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ geert+renesas@glider.be, magnus.damm@gmail.com,
+ yoshihiro.shimoda.uh@renesas.com, biju.das.jz@bp.renesas.com
+Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+ Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>,
+ Wolfram Sang <wsa+renesas@sang-engineering.com>
+References: <20250925100302.3508038-1-claudiu.beznea.uj@bp.renesas.com>
+ <20250925100302.3508038-5-claudiu.beznea.uj@bp.renesas.com>
+ <c7fc31f1247332196516394a22f6feef9733a0b4.camel@pengutronix.de>
+ <66d85e70-efb8-4a45-9164-55b123691b70@tuxon.dev>
+ <bcf6113b0025777db1cb2ace1618fed8fac2dfc6.camel@pengutronix.de>
+ <cca1061e-df67-4b5b-99bd-9721c72a0f88@tuxon.dev>
+ <6d4bc69c-1571-4d98-b0d4-214c68be118e@tuxon.dev>
+ <c1099a8e422abbc5d12bf3f325cb9f2140c8c006.camel@pengutronix.de>
+ <77678dd6-071b-4911-a5c5-f1519c92e91a@tuxon.dev>
+ <6ba1fd1f07753c9b98a57c87bffbbee16971da7a.camel@pengutronix.de>
+From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
+Content-Language: en-US
+In-Reply-To: <6ba1fd1f07753c9b98a57c87bffbbee16971da7a.camel@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Jan
+Hi, Philipp,
 
-Thank you for your patch.
+On 10/14/25 19:42, Philipp Zabel wrote:
+> Hi Claudiu,
+> 
+> On Di, 2025-10-14 at 11:36 +0300, Claudiu Beznea wrote:
+>> On 10/13/25 17:57, Philipp Zabel wrote:
+> [...]
+>>>>> On 10/8/25 13:23, Philipp Zabel wrote:
+>>>>>> On Mi, 2025-10-08 at 12:29 +0300, Claudiu Beznea wrote:
+> [...]
+>>>>>>> The approaches considered were:
+>>>>>>> a/ power domain
+> [...]
+>>>>>> Could you point me to the discussion related to a?
+> [...]
+>>> Thank you! From this discussion it still isn't clear to me whether
+>>> Ulf's suggestion of using genpd on/off notifiers was considered and why
+>>
+>> The genpd on/off notifier suggestion wasn't tried, but only the
+>> implementation of PWRRDY handling through the power domain (what Ulf
+>> suggested though "Move the entire reset handling into the PM domain
+>> provider, as it obviously knows when the domain is getting turned on/off"
+>> in
+>> https://lore.kernel.org/all/fa9b3449-ea3e-4482-b7eb-96999445cea5@tuxon.dev/).
+>> Sorry if I mislead you.
+> 
+> No worries, misunderstandings happen. Here I assumed the "power domain
+> approach" meant letting the PWRRDY signal be controlled by power domain
+> state, not specifically all code in the power domain driver.
 
+I had a power domain driver implemented with its own genpd::power_{on,
+off}, where the PWRRDY bit was set. I just pushed a branch here [1] with my
+trials if you would like to check.
 
-On Mon, Oct 6, 2025 at 6:32=E2=80=AFPM Jan Petrous via B4 Relay
-<devnull+jan.petrous.oss.nxp.com@kernel.org> wrote:
->
-> From: "Jan Petrous (OSS)" <jan.petrous@oss.nxp.com>
->
-> Add support for the Ethernet connection over GMAC controller connected to
-> the Micrel KSZ9031 Ethernet RGMII PHY located on the boards.
->
-> The mentioned GMAC controller is one of two network controllers
-> embedded on the NXP Automotive SoCs S32G2 and S32G3.
->
-> The supported boards:
->  * EVB:  S32G-VNP-EVB with S32G2 SoC
->  * RDB2: S32G-VNP-RDB2
->  * RDB3: S32G-VNP-RDB3
+[1] https://github.com/claudiubeznea/linux/tree/usb-bringup%2Bpm-domain-v0
 
-I got ethernet detected and working with this patch on S32G-VNP-RDB3
+> And I only
+> learned about the genpd notifier suggestion after reading the thread.
+> 
+>> Ulf suggested then here
+>> https://lore.kernel.org/all/CAPDyKFpLnREr4C=wZ7o8Lb-CZbQa4Nr2VTuYdZHZ26Rcb1Masg@mail.gmail.com/
+>> that he is not agreeing anymore with having it as power domain due to the
+>> discussion in thread
+>> https://lore.kernel.org/all/TY3PR01MB1134652F9587CFA0ADE851CA486902@TY3PR01MB11346.jpnprd01.prod.outlook.com/
+>> (I can't remember what made him taking back is ack on this solution and I
+>> can't find something in the thread either).
+>>
+>> If I'm not wrong, with the information that we have at the moment, the best
+>> for the notifier would have to register it (before runtime resume) and
+>> implement it in this driver (reset-rzg2l-usbphy-ctrl) so that, when the
+>> pm_runtime_resume_and_get()/pm_runtime_put() in
+>> rzg2l_usbphy_ctrl_probe()/rzg2l_usbphy_ctrl_remove() will be called (or
+>> suspend/resume) the notifier will be called and set the PWRRDY bit. Please
+>> let me know if you see it otherwise.
+> 
+> That sounds like a clean abstraction to me.
+> 
+>>> it was dismissed.
+>>
+>> The power domain approach was dismissed as a result of discussion from this
+>> thread:
+>> https://lore.kernel.org/all/TY3PR01MB1134652F9587CFA0ADE851CA486902@TY3PR01MB11346.jpnprd01.prod.outlook.com/
+>>
+>> I don't remember exactly what triggered it and can't find it as well, sorry.
+> 
+> Ok.
+> 
+>>> From the DT patches it looks like there is no actual separate power
+>>> domain for USB, just the single always-on CPG power domain (in rzg2l-
+>>> cpg.c). Is that correct?
+>>
+>> That is correct, the CPG is a clock power domain. All the clocks that CPG
+>> can be provided (including USB clocks) are part of CPG clock power domain.
+>>
+>>> In the thread it sounded like there were
+>>> multiple domains.
+>>
+>> You probably refer to this:
+>> https://lore.kernel.org/all/fa9b3449-ea3e-4482-b7eb-96999445cea5@tuxon.dev/
+> 
+> Yes, I was confused by this sentence near the end: "And the USB SYSC PM
+> domain is parent for all USB PM domains provided by CPG (3 in this
+> case)."
 
-[   43.473918] s32-dwmac 4033c000.ethernet end0: PHY [stmmac-0:01]
-driver [Micrel KSZ9031 Gigabit PHY] (irq=3DPOLL)
-[   43.477547] s32-dwmac 4033c000.ethernet end0: Enabling Safety Features
-[   43.489972] s32-dwmac 4033c000.ethernet end0: Invalid PTP clock rate
-[   43.496479] s32-dwmac 4033c000.ethernet end0: PTP init failed
-[   43.496491] s32-dwmac 4033c000.ethernet end0: configuring for
-phy/rgmii-id link mode
-[   46.599752] s32-dwmac 4033c000.ethernet end0: Link is Up -
-1Gbps/Full - flow control rx/tx
+There were 2 approaches that I've tried with power domain:
 
-So,
+1/ to provide both (cpg and PWRRDY) power domains phandle to the
+   reset-rzg2l-usbphy-ctrl DT node as:
 
-Tested-by: Enric Balletbo i Serra <eballetb@redhat.com>
+power-domains = <&cpg R9A08G045_PD_USB_PHY>, <&sysc R9A08G045_SYSC_PD_USB>;
 
+   branch at [1] is for this approach (except, in there the cpg was used as
+   an always on power domain, not providing individual controls for each
+   IP, due to early implementation of MSTOP (please see above))
 
->
-> Signed-off-by: Jan Petrous (OSS) <jan.petrous@oss.nxp.com>
-> ---
->  arch/arm64/boot/dts/freescale/s32g2.dtsi        | 50 +++++++++++++++++++=
-+++++-
->  arch/arm64/boot/dts/freescale/s32g274a-evb.dts  | 21 ++++++++++-
->  arch/arm64/boot/dts/freescale/s32g274a-rdb2.dts | 19 ++++++++++
->  arch/arm64/boot/dts/freescale/s32g3.dtsi        | 50 +++++++++++++++++++=
-+++++-
->  arch/arm64/boot/dts/freescale/s32g399a-rdb3.dts | 21 ++++++++++-
->  5 files changed, 157 insertions(+), 4 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/freescale/s32g2.dtsi b/arch/arm64/boot/d=
-ts/freescale/s32g2.dtsi
-> index d167624d1f0c..d06103e9564e 100644
-> --- a/arch/arm64/boot/dts/freescale/s32g2.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/s32g2.dtsi
-> @@ -3,7 +3,7 @@
->   * NXP S32G2 SoC family
->   *
->   * Copyright (c) 2021 SUSE LLC
-> - * Copyright 2017-2021, 2024 NXP
-> + * Copyright 2017-2021, 2024-2025 NXP
->   */
->
->  #include <dt-bindings/interrupt-controller/arm-gic.h>
-> @@ -738,5 +738,53 @@ gic: interrupt-controller@50800000 {
->                         interrupt-controller;
->                         #interrupt-cells =3D <3>;
->                 };
-> +
-> +               gmac0: ethernet@4033c000 {
-> +                       compatible =3D "nxp,s32g2-dwmac";
-> +                       reg =3D <0x4033c000 0x2000>, /* gmac IP */
-> +                             <0x4007c004 0x4>;    /* GMAC_0_CTRL_STS */
-> +                       interrupt-parent =3D <&gic>;
-> +                       interrupts =3D <GIC_SPI 57 IRQ_TYPE_LEVEL_HIGH>;
-> +                       interrupt-names =3D "macirq";
-> +                       snps,mtl-rx-config =3D <&mtl_rx_setup>;
-> +                       snps,mtl-tx-config =3D <&mtl_tx_setup>;
-> +                       status =3D "disabled";
-> +
-> +                       mtl_rx_setup: rx-queues-config {
-> +                               snps,rx-queues-to-use =3D <5>;
-> +
-> +                               queue0 {
-> +                               };
-> +                               queue1 {
-> +                               };
-> +                               queue2 {
-> +                               };
-> +                               queue3 {
-> +                               };
-> +                               queue4 {
-> +                               };
-> +                       };
-> +
-> +                       mtl_tx_setup: tx-queues-config {
-> +                               snps,tx-queues-to-use =3D <5>;
-> +
-> +                               queue0 {
-> +                               };
-> +                               queue1 {
-> +                               };
-> +                               queue2 {
-> +                               };
-> +                               queue3 {
-> +                               };
-> +                               queue4 {
-> +                               };
-> +                       };
-> +
-> +                       gmac0mdio: mdio {
-> +                               #address-cells =3D <1>;
-> +                               #size-cells =3D <0>;
-> +                               compatible =3D "snps,dwmac-mdio";
-> +                       };
-> +               };
->         };
->  };
-> diff --git a/arch/arm64/boot/dts/freescale/s32g274a-evb.dts b/arch/arm64/=
-boot/dts/freescale/s32g274a-evb.dts
-> index c4a195dd67bf..f020da03979a 100644
-> --- a/arch/arm64/boot/dts/freescale/s32g274a-evb.dts
-> +++ b/arch/arm64/boot/dts/freescale/s32g274a-evb.dts
-> @@ -1,7 +1,7 @@
->  // SPDX-License-Identifier: GPL-2.0-or-later OR MIT
->  /*
->   * Copyright (c) 2021 SUSE LLC
-> - * Copyright 2019-2021, 2024 NXP
-> + * Copyright 2019-2021, 2024-2025 NXP
->   */
->
->  /dts-v1/;
-> @@ -15,6 +15,7 @@ / {
->
->         aliases {
->                 serial0 =3D &uart0;
-> +               ethernet0 =3D &gmac0;
->         };
->
->         chosen {
-> @@ -43,3 +44,21 @@ &usdhc0 {
->         no-1-8-v;
->         status =3D "okay";
->  };
-> +
-> +&gmac0 {
-> +       clocks =3D <&clks 24>, <&clks 19>, <&clks 18>, <&clks 15>;
-> +       clock-names =3D "stmmaceth", "tx", "rx", "ptp_ref";
-> +       phy-mode =3D "rgmii-id";
-> +       phy-handle =3D <&rgmiiaphy4>;
-> +       status =3D "okay";
-> +};
-> +
-> +&gmac0mdio {
-> +       #address-cells =3D <1>;
-> +       #size-cells =3D <0>;
-> +
-> +       /* KSZ 9031 on RGMII */
-> +       rgmiiaphy4: ethernet-phy@4 {
-> +               reg =3D <4>;
-> +       };
-> +};
-> diff --git a/arch/arm64/boot/dts/freescale/s32g274a-rdb2.dts b/arch/arm64=
-/boot/dts/freescale/s32g274a-rdb2.dts
-> index 4f58be68c818..b9c2f964b3f7 100644
-> --- a/arch/arm64/boot/dts/freescale/s32g274a-rdb2.dts
-> +++ b/arch/arm64/boot/dts/freescale/s32g274a-rdb2.dts
-> @@ -16,6 +16,7 @@ / {
->         aliases {
->                 serial0 =3D &uart0;
->                 serial1 =3D &uart1;
-> +               ethernet0 =3D &gmac0;
->         };
->
->         chosen {
-> @@ -77,3 +78,21 @@ &usdhc0 {
->         no-1-8-v;
->         status =3D "okay";
->  };
-> +
-> +&gmac0 {
-> +       clocks =3D <&clks 24>, <&clks 19>, <&clks 18>, <&clks 15>;
-> +       clock-names =3D "stmmaceth", "tx", "rx", "ptp_ref";
-> +       phy-mode =3D "rgmii-id";
-> +       phy-handle =3D <&rgmiiaphy1>;
-> +       status =3D "okay";
-> +};
-> +
-> +&gmac0mdio {
-> +       #address-cells =3D <1>;
-> +       #size-cells =3D <0>;
-> +
-> +       /* KSZ 9031 on RGMII */
-> +       rgmiiaphy1: ethernet-phy@1 {
-> +               reg =3D <1>;
-> +       };
-> +};
-> diff --git a/arch/arm64/boot/dts/freescale/s32g3.dtsi b/arch/arm64/boot/d=
-ts/freescale/s32g3.dtsi
-> index be3a582ebc1b..e31184847371 100644
-> --- a/arch/arm64/boot/dts/freescale/s32g3.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/s32g3.dtsi
-> @@ -1,6 +1,6 @@
->  // SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause)
->  /*
-> - * Copyright 2021-2024 NXP
-> + * Copyright 2021-2025 NXP
->   *
->   * Authors: Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>
->   *          Ciprian Costea <ciprianmarian.costea@nxp.com>
-> @@ -883,6 +883,54 @@ gic: interrupt-controller@50800000 {
->                               <0x50420000 0x2000>;
->                         interrupts =3D <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
->                 };
-> +
-> +               gmac0: ethernet@4033c000 {
-> +                       compatible =3D "nxp,s32g2-dwmac";
-> +                       reg =3D <0x4033c000 0x2000>, /* gmac IP */
-> +                             <0x4007c004 0x4>;    /* GMAC_0_CTRL_STS */
-> +                       interrupt-parent =3D <&gic>;
-> +                       interrupts =3D <GIC_SPI 57 IRQ_TYPE_LEVEL_HIGH>;
-> +                       interrupt-names =3D "macirq";
-> +                       snps,mtl-rx-config =3D <&mtl_rx_setup>;
-> +                       snps,mtl-tx-config =3D <&mtl_tx_setup>;
-> +                       status =3D "disabled";
-> +
-> +                       mtl_rx_setup: rx-queues-config {
-> +                               snps,rx-queues-to-use =3D <5>;
-> +
-> +                               queue0 {
-> +                               };
-> +                               queue1 {
-> +                               };
-> +                               queue2 {
-> +                               };
-> +                               queue3 {
-> +                               };
-> +                               queue4 {
-> +                               };
-> +                       };
-> +
-> +                       mtl_tx_setup: tx-queues-config {
-> +                               snps,tx-queues-to-use =3D <5>;
-> +
-> +                               queue0 {
-> +                               };
-> +                               queue1 {
-> +                               };
-> +                               queue2 {
-> +                               };
-> +                               queue3 {
-> +                               };
-> +                               queue4 {
-> +                               };
-> +                       };
-> +
-> +                       gmac0mdio: mdio {
-> +                               #address-cells =3D <1>;
-> +                               #size-cells =3D <0>;
-> +                               compatible =3D "snps,dwmac-mdio";
-> +                       };
-> +               };
->         };
->
->         timer {
-> diff --git a/arch/arm64/boot/dts/freescale/s32g399a-rdb3.dts b/arch/arm64=
-/boot/dts/freescale/s32g399a-rdb3.dts
-> index e94f70ad82d9..4a74923789ae 100644
-> --- a/arch/arm64/boot/dts/freescale/s32g399a-rdb3.dts
-> +++ b/arch/arm64/boot/dts/freescale/s32g399a-rdb3.dts
-> @@ -1,6 +1,6 @@
->  // SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause)
->  /*
-> - * Copyright 2021-2024 NXP
-> + * Copyright 2021-2025 NXP
->   *
->   * NXP S32G3 Reference Design Board 3 (S32G-VNP-RDB3)
->   */
-> @@ -18,6 +18,7 @@ aliases {
->                 mmc0 =3D &usdhc0;
->                 serial0 =3D &uart0;
->                 serial1 =3D &uart1;
-> +               ethernet0 =3D &gmac0;
->         };
->
->         chosen {
-> @@ -93,3 +94,21 @@ &usdhc0 {
->         disable-wp;
->         status =3D "okay";
->  };
-> +
-> +&gmac0 {
-> +       clocks =3D <&clks 24>, <&clks 19>, <&clks 18>, <&clks 15>;
-> +       clock-names =3D "stmmaceth", "tx", "rx", "ptp_ref";
-> +       phy-mode =3D "rgmii-id";
-> +       phy-handle =3D <&rgmiiaphy1>;
-> +       status =3D "okay";
-> +};
-> +
-> +&gmac0mdio {
-> +       #address-cells =3D <1>;
-> +       #size-cells =3D <0>;
-> +
-> +       /* KSZ 9031 on RGMII */
-> +       rgmiiaphy1: ethernet-phy@1 {
-> +               reg =3D <1>;
-> +       };
-> +};
->
-> ---
-> base-commit: fd94619c43360eb44d28bd3ef326a4f85c600a07
-> change-id: 20251006-nxp-s32g-boards-2d156255b592
->
-> Best regards,
-> --
-> Jan Petrous (OSS) <jan.petrous@oss.nxp.com>
->
->
->
+2/ to provide a single power domain phandle to the reset-rzg2l-usbphy-ctrl
+   DT node, that being the power domain that handled the PWRRDY, and to
+   model the PWRRDY-CPG power domains parent-child relation in the driver
+   code (as can be seen in commit 7788bcbc3ebe ("initial") from [2], files:
+   - arch/arm64/boot/dts/renesas/r9a08g045.dtsi
+   - drivers/clk/renesas/r9a08g045-cpg.c, diff:
 
++       DEF_PD("usb",           RZG3S_PD_USB,
++                               DEF_REG_CONF_COOKIE(SYS_USB_PWRRDY, BIT(0),
+RZG3S_FW_SIP_ID),
++                               RZG2L_PD_PARENT_DEFAULT, RZG2L_PD_F_NONE),
++       DEF_PD("usb0",          R9A08G045_PD_USB0,
++                               DEF_REG_CONF(CPG_BUS_PERI_COM_MSTOP,
+GENMASK(6, 5)),
++                               RZG2L_PD_PARENT_USB, RZG2L_PD_F_NONE),
++       DEF_PD("usb1",          R9A08G045_PD_USB1,
++                               DEF_REG_CONF(CPG_BUS_PERI_COM_MSTOP, BIT(7)),
++                               RZG2L_PD_PARENT_USB, RZG2L_PD_F_NONE),
++       DEF_PD("usb-phy",       R9A08G045_PD_USB_PHY,
++                               DEF_REG_CONF(CPG_BUS_PERI_COM_MSTOP, BIT(4)),
++                               RZG2L_PD_PARENT_USB, RZG2L_PD_F_NONE),
+
+   - drivers/clk/renesas/rzg2l-cpg.c
+
+Please note that code in [2] is ugly.
+
+By "And the USB SYSC PM domain is parent for all USB PM domains provided by
+CPG (3 in this case)." I was referring to the solution 2/, implemented in
+branch at [2]
+
+Also, few other aspects that I missed to mention in this discussion, which
+are important for the genpd notifier approach:
+
+a/ by the time v1 was posted the MSTOP for each IP was abstracted as a
+   power domain; at that time the MSTOP was implemented as power domain
+   only in the drivers but it wasn't enabled in device tree due to some
+   bugs in the watchdog driver
+
+b/ as a result of discussions with Renesas HW team on the USB PWRRDY it was
+   revealed that MSTOP must be strictly configured after/before clocks
+   enable/disable. Due to this, the MSTOP power domain abstraction was
+   dropped from the drivers code and now we are with a always on power
+   domain (CPG) for all the IPs, that is actually a clock power domain.
+   Today the MSTOP is set in the clock enable/disable APIs.
+
+[2] https://github.com/claudiubeznea/linux/tree/usb-pwrrdy-parent-of-cpg-usb
+
+> 
+>> In there, I was trying to present to Ulf how I did implement (locally,
+>> nothing posted) the handling of PWRRDY though power domains. In that case
+>> the SYSC (System Controller), where the PWRRDY resides, was modeled as a
+>> power domain, I passed to the reset-rzg2l-usbphy-ctrl DT node the phandle
+>> to sysc USB power domain as:
+>>
+>> power-domains = <&cpg R9A08G045_PD_USB_PHY>, <&sysc R9A08G045_SYSC_PD_USB>;
+>>
+>> along with the cpg, and handled it in the reset-rzg2l-usbphy-ctrl probe().
+> 
+> Ok, thank you for the clarification.
+> 
+>>> Is the issue that you need the PWRRDY signal to be (de)asserted
+>>> independently from the CPG power domain enable/disable?
+>>
+>> Yes. I need to de-assert it before clocks, MSTOP on probe/resume and assert
+>> it back after clocks, MSTOP, on remove/suspend.
+>>
+>>> (Why?)
+>>
+>> Due to hardware constraints. This is how Renesas HW team recommended.
+> 
+> I still haven't understood this part. Isn't CPG the power domain
+> enabled "before clocks, MSTOP on probe resume" and disabled "after
+> clocks, MSTOP, on remove/suspend"? So PWRRDY could be toggled from
+> genpd notifications. If it needs to be (de)asserted independently,
+> wouldn't that mean the genpd notifier approach can not be used?
+
+I did tried on my side yesterday evening to prototype the genpd notifier
+solution and, yes, you are right.
+
+Because CPG is an always on clock power domain, shared by all it's clocks,
+the _genpd_power_on(), where the notifier are invoked, is called only when
+the 1st clock in the system is enabled, as there is genpd_status_on() check
+in genpd_power_on(), which I missed when I inspected the code yesterday,
+when replying to your email.
+
+Because of this, you're right, we can't use the genpd notifier for this,
+either.
+
+> The notifiers are called from genpd_power_on/off(), after all.
+> 
+>>> Why can't the power domain provider (cpg) have the renesas,sysc-pwrrdy
+>>> property and set the signal together with the power domain?
+>>
+>> That can be done but, passing a SYSC phandle to the CPG DT node will not be
+>> valid from the HW description point of view.
+>>
+>>>>>> I see v2 and v3 tried to control the bit from the PHY drivers, and in
+>>>>>> v4 we were are already back to the reset driver.
+>>>>> v2 passed the system controller (SYSC) phandle to the USB PHYs only (though
+>>>>> renesas,sysc-signals DT property) where the PWRRDY bit was set. The PWRRDY
+>>>>> bit was referenced counted in the SYSC driver though regmap APIs.
+>>>>>
+>>>>> v3 used the approach from v2 but passed the renesas,sysc-signals to all the
+>>>>> USB related drivers.
+>>>>>
+>>>>> Then, in v4, the PWRRDY refcounting was dropped and passed
+>>>>> renesas,sysc-signals only to the USB PHY CTRL DT node in the idea that this
+>>>>> is the node that will always be probed first as all the other USB blocks
+>>>>> need it and request resets from it.
+>>>>>
+>>>>> v5 and v6 kept the approach from v4 and only addressed misc comments or
+>>>>> things that I noticed.
+>>>>
+>>>> Could you please let me know if you are OK with the approach proposed in
+>>>> v7, so that I can start preparing a new version addressing your comments?
+>>>
+>>> If the PWRRDY signal is an input to the USB2PHY control block, and not
+>>> only to the PHY blocks, I have no issue with this being handled in the
+>>> usb2phy reset driver -
+>>
+>> Yes, this is how the Renesas HW team confirmed they are related.
+> 
+> Ok, understood. I concur that usb2phy-ctrl is the right place for the
+> sysc property then.
+> 
+>>> iff it is not sensible to just control the
+>>> signal from the power domain driver.
+>>
+>> As mentioned above, that can be done as well but, passing a SYSC phandle to
+>> the CPG DT node will not be valid from the HW description point of view.
+>>
+>>> If we have to handle it in the reset driver, I'd prefer to see this
+>>> controlled with a dev_pm_genpd_add_notifier(). If that is not possible,
+>>> I'd like to understand why.
+>>
+>> From the code inspection I did, that can be done. From what I can tell at
+>> the moment, I'll have to register a gepnd notifier from
+>> reset-rzg2l-usbphy-ctrl, before runtime resuming the device and control the
+>> SYSC PWRRDY from it.
+> 
+> I'd like that.
+
+Now, that we found the genpd notifier is not a solution, could you please
+let me know how would you like me to proceed?
+
+Thank you,
+Claudiu
 
