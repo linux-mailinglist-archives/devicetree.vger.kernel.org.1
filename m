@@ -1,127 +1,99 @@
-Return-Path: <devicetree+bounces-226836-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226837-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 576A6BDBF57
-	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 03:09:56 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A4A85BDBF71
+	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 03:13:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id C1D53352C13
-	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 01:09:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 04A9A1928123
+	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 01:13:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 339D82F5485;
-	Wed, 15 Oct 2025 01:09:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 478192F9DA1;
+	Wed, 15 Oct 2025 01:13:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hqvdr8EA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="imHLErg0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DF91186294
-	for <devicetree@vger.kernel.org>; Wed, 15 Oct 2025 01:09:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 159602F8BF3;
+	Wed, 15 Oct 2025 01:13:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760490591; cv=none; b=U3oMhj48Y5m4pIZta5cETmkjQk8nYRksDWSuIOf+8x9BH3AIMv2e7mGmAwomOu/kaSioWO/nz5qCfqahOJ3/xDQ1Zckt0MOcVSgUb2lnPkpamxHSfMiF/c5+v4OJW/8gBJtkoQbeNWb1/A0Pls+R6woSPdL2wDQIGo4P9icNCQg=
+	t=1760490786; cv=none; b=TnHRrT4Exk7/Y6yVa4yA8N11mPsA1MkWgHo0+WVKMPvCSQi1qtPhrY9mCPSNsEfPWwghSATwyjlpCr5kLZwlSBR2rcO3xgG87mtZm/XmatXZ4NRQp0Zah6go12Ncahcpf7ZocUe608ElOCpy8uFGSh6JLV1TQ5WXiyUUhLWqKH0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760490591; c=relaxed/simple;
-	bh=eAc8ToLT++sjML7CILZCptHEuY2mOuZKGs45HA4rKDQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=RNk5t5VCqBLd0Q0VVH5AqsVpZkE/rbwjNI6rWN1fADjvo4R6mATSkH40DQBAXwbDlGadDZkB3cc3y5rrsBf2npgrxOz4qhZPc4sYI5E86eEwavG1wtB7mbJSAIY77XeEOZyUKnbD0Wr59PhkToj/3o5RPBxzug6f6vrgkDyn8uE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hqvdr8EA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 98C59C19423
-	for <devicetree@vger.kernel.org>; Wed, 15 Oct 2025 01:09:50 +0000 (UTC)
+	s=arc-20240116; t=1760490786; c=relaxed/simple;
+	bh=r04KuBjTFALlX6vLWenb1nfafbHbRWYkUuaNo7B96HQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=pvPKLl8mPD8WTHaVlNZ9zXkFhnlXil7J1WDNkgg8h0u0wNUAnRWrY8nKcJEWRQXYJXLQCBxe41M3K165FnV4CcfzoJeN/pfzUvspfoCBizi0jhNwT69z+zXXccqn4TqM12G5AMNZ3L7W1uv8zgSgeBxZQfBEXolBfyk1ds7JSq8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=imHLErg0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DC766C4CEF1;
+	Wed, 15 Oct 2025 01:13:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760490590;
-	bh=eAc8ToLT++sjML7CILZCptHEuY2mOuZKGs45HA4rKDQ=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=hqvdr8EAoSCMceVboYhaIrNbKUgrG6K/GONU/pN9c6K741lte0ksBgF631dRUmXAR
-	 TOzQruoAOww3Ku9spozdvs9MGRvEYZrJGYgoayVrQXxF9KKsr3Q4K2N7AtEk4/A7zv
-	 Y/SwQ86CPtqnqkTcnrlwVvbub61h4B99VLX4krs5HxMD4MoBgnA+irgsc48gSceJqU
-	 e+leT8Wx/OpI6DiOfHHISaNnRag5x4xjVGu3DVUTJJJuc3SGT4GelLFO5TqQIMs/gs
-	 iwCLtF6XjvxbXxY5v3og+3yofqRuAkQ/k6hrBOe5ptJobRjulroWS1vkcBJgzIYh1C
-	 mBWMupSqhkxlA==
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-46e504975dbso35618395e9.1
-        for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 18:09:50 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCX7UAwynH9nXhFc9JqZQFGf0KWTB+56qu8Opess4b8+O9aQhCoPr+I1qgCaOnqAxi5nakA2WXKgxz8c@vger.kernel.org
-X-Gm-Message-State: AOJu0YzoW3NC/4Ie1KwStTmPSoZOzUF6WMYXnm2Nmqz2lnHBrt+scJEG
-	YVfh34wEok8+ihSNEp5qF1JDz0m0iclPc5DEQfZhGjRcPDk7C2m0THkvbv/mPW6jT/StmeSUDY6
-	YdJ3BeL91F1A+ruQ00Hkxrlfn/r1TT+o=
-X-Google-Smtp-Source: AGHT+IEf1qHDhIy3ghKtvb57UtTDu7Eu45y/mQdGhF+whW4lndi3TKlBmmJMDsWa7NiJS7VrCQsWX0uq8LcDgSwPQp8=
-X-Received: by 2002:a05:600c:4e0c:b0:46e:4c67:ff17 with SMTP id
- 5b1f17b1804b1-46fa9a98d8cmr165301465e9.14.1760490589115; Tue, 14 Oct 2025
- 18:09:49 -0700 (PDT)
+	s=k20201202; t=1760490784;
+	bh=r04KuBjTFALlX6vLWenb1nfafbHbRWYkUuaNo7B96HQ=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=imHLErg0527hILuvzg62O5hWQr/Gb8+8/ykxO/Jc4AOkZrRrwb43/pyN04gmTwgGU
+	 YgDwbot9UvLm0XeP6uLbXvi0t62J+Dee1kqGvzR9+hW2XdDRh9COBIClBz+e8F0vnO
+	 Y+IdjebP43/zKaFbHVOFTl8JpU+3nfKH7wBcCiIfFPb0RHie+/m6B6Xqj1aK7xOdhs
+	 w4gscZW3DDahuMcFoSAp+zs4BTtSuv7s20mkewvLH4okA9cOMrb6mDueZ+PN9oSLRH
+	 Gp8HOJmzn0OquadtehTs6qKrcb7Vm9mueHTpYtK9mlUjgosz0lVTJX1mHUiqtuytJ9
+	 pXLf2h2IzqTvw==
+Date: Tue, 14 Oct 2025 18:13:02 -0700
+From: Jakub Kicinski <kuba@kernel.org>
+To: Rob Herring <robh@kernel.org>
+Cc: Conor Dooley <conor@kernel.org>, Frank Li <Frank.Li@nxp.com>, Andrew
+ Lunn <andrew@lunn.ch>, Vladimir Oltean <olteanv@gmail.com>, "David S.
+ Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Paolo
+ Abeni <pabeni@redhat.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>, "open list:NETWORKING DRIVERS"
+ <netdev@vger.kernel.org>, "open list:OPEN FIRMWARE AND FLATTENED DEVICE
+ TREE BINDINGS" <devicetree@vger.kernel.org>, open list
+ <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
+Subject: Re: [PATCH 1/1] dt-bindings: net: dsa: nxp,sja1105: Add optional
+ clock
+Message-ID: <20251014181302.44537f00@kernel.org>
+In-Reply-To: <20251014204807.GA1075103-robh@kernel.org>
+References: <20251010183418.2179063-1-Frank.Li@nxp.com>
+	<20251014-flattop-limping-46220a9eda46@spud>
+	<20251014-projector-immovably-59a2a48857cc@spud>
+	<20251014120213.002308f2@kernel.org>
+	<20251014-unclothed-outsource-d0438fbf1b23@spud>
+	<20251014204807.GA1075103-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251014131032.49616-1-ziyao@disroot.org> <20251014131032.49616-2-ziyao@disroot.org>
-In-Reply-To: <20251014131032.49616-2-ziyao@disroot.org>
-From: Guo Ren <guoren@kernel.org>
-Date: Wed, 15 Oct 2025 09:09:37 +0800
-X-Gmail-Original-Message-ID: <CAJF2gTQX+7sUU5mwO_VW1evTCTVR6bvVNuEXzgTuW3WB5w7e3Q@mail.gmail.com>
-X-Gm-Features: AS18NWBQYrQzenUDz05dqM7PP-EICAzNJPLTN3D8td0YUM6voGD9A9WUDe25oSI
-Message-ID: <CAJF2gTQX+7sUU5mwO_VW1evTCTVR6bvVNuEXzgTuW3WB5w7e3Q@mail.gmail.com>
-Subject: Re: [PATCH v3 1/5] dt-bindings: reset: thead,th1520-reset: Remove
- non-VO-subsystem resets
-To: Yao Zi <ziyao@disroot.org>
-Cc: Drew Fustini <fustini@kernel.org>, Fu Wei <wefu@redhat.com>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, 
-	Michal Wilczynski <m.wilczynski@samsung.com>, linux-riscv@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Icenowy Zheng <uwu@icenowy.me>, Han Gao <rabenda.cn@gmail.com>, Han Gao <gaohan@iscas.ac.cn>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Tue, Oct 14, 2025 at 9:11=E2=80=AFPM Yao Zi <ziyao@disroot.org> wrote:
->
-> Registers in control of TH1520_RESET_ID_{NPU,WDT0,WDT1} belong to AP
-> reset controller, not the VO one which is documented as
-> "thead,th1520-reset" and is the only reset controller supported for
-> TH1520 for now.
->
-> Let's remove the IDs, leaving them to be implemented by AP-subsystem
-> reset controller in the future.
+On Tue, 14 Oct 2025 15:48:07 -0500 Rob Herring wrote:
+> On Tue, Oct 14, 2025 at 08:35:04PM +0100, Conor Dooley wrote:
+> > On Tue, Oct 14, 2025 at 12:02:13PM -0700, Jakub Kicinski wrote:  
+> > > The pw-bot commands are a netdev+bpf thing :) They won't do anything
+> > > to dt patchwork. IOW the pw-bot is a different bot than the one that
+> > > replies when patch is applied.  
+> > 
+> > Rob's recently added it to our patchwork too.  
+> 
+> And the issue is that both PW projects might get updated and both don't 
+> necessarily want the same state (like this case). So we need to 
+> distinguish. Perhaps like one of the following:
+> 
+> dt-pw-bot: <state>
+> 
+> or
+> 
+> pw-bot: <project> <state>
 
-LGTM.
+We crossed replies, do you mind
 
-Acked-by: Guo Ren <guoren@kernel.org>
+  pw-bot: xyz [project]
 
->
-> Fixes: 30e7573babdc ("dt-bindings: reset: Add T-HEAD TH1520 SoC Reset Con=
-troller")
-> Signed-off-by: Yao Zi <ziyao@disroot.org>
-> Acked-by: Rob Herring (Arm) <robh@kernel.org>
-> ---
->  include/dt-bindings/reset/thead,th1520-reset.h | 3 ---
->  1 file changed, 3 deletions(-)
->
-> diff --git a/include/dt-bindings/reset/thead,th1520-reset.h b/include/dt-=
-bindings/reset/thead,th1520-reset.h
-> index ee799286c175..e51d6314d131 100644
-> --- a/include/dt-bindings/reset/thead,th1520-reset.h
-> +++ b/include/dt-bindings/reset/thead,th1520-reset.h
-> @@ -9,9 +9,6 @@
->
->  #define TH1520_RESET_ID_GPU            0
->  #define TH1520_RESET_ID_GPU_CLKGEN     1
-> -#define TH1520_RESET_ID_NPU            2
-> -#define TH1520_RESET_ID_WDT0           3
-> -#define TH1520_RESET_ID_WDT1           4
->  #define TH1520_RESET_ID_DPU_AHB                5
->  #define TH1520_RESET_ID_DPU_AXI                6
->  #define TH1520_RESET_ID_DPU_CORE       7
-> --
-> 2.50.1
->
-
-
---=20
-Best Regards
- Guo Ren
+? I like the optional param after required, and the brackets may help
+us disambiguate between optional params if there are more in the future.
 
