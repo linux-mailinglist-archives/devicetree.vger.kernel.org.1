@@ -1,128 +1,246 @@
-Return-Path: <devicetree+bounces-227078-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227079-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3860BDE6CD
-	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 14:15:14 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D9B1BDE6E5
+	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 14:15:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 60DCA4E7267
-	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 12:15:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 86FB319285D5
+	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 12:16:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DA2D326D58;
-	Wed, 15 Oct 2025 12:15:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF22D3277AF;
+	Wed, 15 Oct 2025 12:15:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="mp/u9j+q"
+	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="GeT0aQvn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7946E324B27;
-	Wed, 15 Oct 2025 12:15:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B07A3277AA
+	for <devicetree@vger.kernel.org>; Wed, 15 Oct 2025 12:15:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760530511; cv=none; b=jbRZyPfO74k1Row5g6D4pOJ5LV1Hk2eV3sIlpsDxyfh6Y0BNETmZdX3rKBI3uNSURjMGA/xhDrdCJCGQssjCF6NQeRV2fNg3YqU75sQHls8lchc0kswt8IGKcWullYrExAQhPIYOJjxdRgIjJrzyMTCAmftCY/7iee+IsBtNvps=
+	t=1760530542; cv=none; b=hAnONS2s43Yeeft696yf34zYm9L6UGu+X8drMYF5LdZEbqpFQ+WouFiKTab5BDO3PcUu0L3U7Ozjz+WZb9IuVWGPOHQdxmobD8tG9SZTsqsq2tNrW9nGB7Ezvot71JmixNiV3JlRWm8Azk3DZUtO/glfOy9YY0jLsdE3cDcpMTs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760530511; c=relaxed/simple;
-	bh=c9aTXp+I+4A3k1DvpeXMIzErotkE9GitHiUWRAQ2v2s=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ihSLSUC8goPy+jB9nHWI0o7UL5j12hzf33N93ldJUSTLX/v7Jrf/L8VpYVHnJOeCEPr2enFy0lKqnlj5/As0R2/V73GyGi8RSMzv/M3ca3lGNcbsh8L9Umualqh2e10BoK3H63ctVjWq1pDqT2k2B08ghAuDg5KWBw4Uej9MM+U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=mp/u9j+q; arc=none smtp.client-ip=198.47.19.245
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllvem-sh04.itg.ti.com ([10.64.41.54])
-	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTP id 59FCEs301313169;
-	Wed, 15 Oct 2025 07:14:54 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1760530494;
-	bh=2OkkNCfu4YnFSj7smPfoU7koyJr+GcXCwTUxoqvzw+Q=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=mp/u9j+qM8SGyPJRAIYEryWwjOZQHt6KJB6YWdyGwKb3jPB6PWHrWT3SHrYFQNA24
-	 sN2G2zAEgOS4ZMfMZJhmXr9dm38adp+cCLbC1qYS3cLHaaG4LA3+HVTfeoL5CtNZCT
-	 qFUGsP559oVqrekDfEbDMjB4KUIHLu/PmJdcyblY=
-Received: from DLEE212.ent.ti.com (dlee212.ent.ti.com [157.170.170.114])
-	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 59FCEs4E392056
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 15 Oct 2025 07:14:54 -0500
-Received: from DLEE201.ent.ti.com (157.170.170.76) by DLEE212.ent.ti.com
- (157.170.170.114) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 15 Oct
- 2025 07:14:53 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE201.ent.ti.com
- (157.170.170.76) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Wed, 15 Oct 2025 07:14:53 -0500
-Received: from localhost (lcpd911.dhcp.ti.com [172.24.233.130])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 59FCEqFo1878736;
-	Wed, 15 Oct 2025 07:14:53 -0500
-Date: Wed, 15 Oct 2025 17:44:52 +0530
-From: Dhruva Gole <d-gole@ti.com>
-To: Bryan Brattlof <bb@ti.com>
-CC: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Andrew
- Davis <afd@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Tony
- Lindgren <tony@atomide.com>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Sascha Hauer
-	<s.hauer@pengutronix.de>,
-        <linux-gpio@vger.kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v6 1/4] dt-bindings: arm: ti: Add binding for AM62L SoCs
-Message-ID: <20251015121452.7cmsi4tceezroxsa@lcpd911>
-References: <20250912-am62lx-v6-0-29d5a6c60512@ti.com>
- <20250912-am62lx-v6-1-29d5a6c60512@ti.com>
+	s=arc-20240116; t=1760530542; c=relaxed/simple;
+	bh=VStyme2WGFC5nzLQgSu6EqVplLj1Zfy/hLTQGyfhIP0=;
+	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=of6hmP+fJZ1UaUjJ7xu162iLStZdl8jCwo3BiWZVpsKtNKgPiM1kj/XV3h87EqUKoF7Bm0b1aBJLUBPqUgiRnWDXYqDONupb5etKUn/uzKDnbjrVyUMQ0O6aVD6Drl3FixkBjKSyqXKIP7LEPQBU8mjjhrnHqTh9FrgtHo1Bw5M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=GeT0aQvn; arc=none smtp.client-ip=209.85.218.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
+Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-b3dbf11fa9eso1059087966b.0
+        for <devicetree@vger.kernel.org>; Wed, 15 Oct 2025 05:15:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=suse.com; s=google; t=1760530539; x=1761135339; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:date:from:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=S81YGrxPeLeHeMdfRUBH53cdbRUFL96MyZ7J9EKhJdo=;
+        b=GeT0aQvnmCgdhdE/Rq+Li0jKkXgZbcM3AX6qRb3UoJPigTN7zzjZ5Z/zkDE+ZZJoOw
+         aflUPSP4PoCnZJaErkoqPbkXr4TMmKS34nxNEyWUAX1c7ptkcnrQh1ZE0IsBe0CMwnRj
+         AtanoTzdIWsr6Ka0RHZ2knzg6sMl4DapamQg1lPRCSBLA5lKnL5THdJwn50W8ojH5bRr
+         IiQDWJOtIiMj27gErX0TtxRy1iqRqIw3umuouCghihI05ZMExf60SR1cMZCfoI+xeuBb
+         X0NLxOIVB3xPXSH4TBrBasJWrcaAU41v3uiRBpEWHvEiyxJXyuFedSpkltq0mCko4mfd
+         JGvw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1760530539; x=1761135339;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:date:from
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=S81YGrxPeLeHeMdfRUBH53cdbRUFL96MyZ7J9EKhJdo=;
+        b=uQYcG6GbZXT2j8QUr31UJ1x6qWlyWwa/9E60YWU8OavST+job1nJpuxBupmrXuUYR4
+         ZA/85sNe/TQdxPvXj3kDV7aN597PpEfaqC07qrzbKUTDuGqDNCkr/o7SUUjtz1rdXAnd
+         sZUXaJHaZDqJg4iLdeSYzctMnYzMolFnBzYmFzMTcuCZW8NZu2pk5E9zk1ClsHZcq9dv
+         Lpp3io/32KvtpNVLMlWmqyt8l6zJqt5ElMb/Fp8ct0mfwSTWxygn3RyAkMhijcPKMqi2
+         hRKAqff3La7eCPtXaYEg3E69tuRUo3N6JUgpzZim9TcVDQTW+4lNwu7gs6eyM3hvOAl1
+         ChoA==
+X-Forwarded-Encrypted: i=1; AJvYcCW7yXLkrgDHVppS5twnLvtmzG7WKXsbG+EWrEjy44Pvi3j0fht3Uw3vo73djkYWtUaB7kyysFQTeD4b@vger.kernel.org
+X-Gm-Message-State: AOJu0YwlIDPVNms9RRQvZgdvdzkW4RclOCSmxoeAecSZsQ2wBuGom9cf
+	5X3KE9QdvMLhFep8ObYIzCgQzOy9ZTusrONcFmwD5WwkLV2Wu1PZmCdaBePZR2cuXV8=
+X-Gm-Gg: ASbGncs0+BLqrW0LMxpW/h1OvYPNyQ7ZuUDwnOIYKC8Il7SVEyubMY4AzfHLDIDGZNI
+	u9ihLdWlyOKLrQFRr39P/DRC7AMDAINEc8ASxOsdgWJghB8EjYQ2m4anBNDc8kcC6DMiShyXkRE
+	Biv45rM3Hxv89bZLDXYp5qr4EWTD6K5CpQU+fBwb5Sm3Ydr29+9cigsRDFy7Xln5GRl7A7hs/vl
+	xEf3+i9Yu+9lIs2KZXwCGyyqZ4WoYWmRx60ceMXK4V+0q/oFxm1meGn5v085OJH2pSXgcDlCriW
+	udlAqoESGlZ0BpX+I8GdFWTwpXKY2qUdp5IcYFRa/yId/LGJ0XlukbZS9DKNajdsne8j5KqcRGj
+	tfILmz6u8lEKz4yyiuxQjCgKHcrEXw1j03ea5MOje1n8wCiypOZxNoCUqiThphWwrxmIXdsvC6T
+	uYIkMvL2i8VQ9tHH67
+X-Google-Smtp-Source: AGHT+IGkix6V3HHgZ9jFLmO3/fnOWGYAxFfttJM/PDcnY7nztBAeVvDuGIrDEMQI/LqfF2xlEMAlIw==
+X-Received: by 2002:a17:906:ee89:b0:b04:25ae:6c76 with SMTP id a640c23a62f3a-b50ac8e51eamr2725062066b.47.1760530538553;
+        Wed, 15 Oct 2025 05:15:38 -0700 (PDT)
+Received: from localhost (host-87-9-62-200.retail.telecomitalia.it. [87.9.62.200])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b5cb965c324sm212887566b.7.2025.10.15.05.15.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 15 Oct 2025 05:15:38 -0700 (PDT)
+From: Andrea della Porta <andrea.porta@suse.com>
+X-Google-Original-From: Andrea della Porta <aporta@suse.de>
+Date: Wed, 15 Oct 2025 14:17:47 +0200
+To: Rob Herring <robh@kernel.org>
+Cc: Andrea della Porta <andrea.porta@suse.com>,
+	Saravana Kannan <saravanak@google.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, iivanov@suse.de, svarbanov@suse.de,
+	mbrugger@suse.com, Phil Elwell <phil@raspberrypi.com>
+Subject: Re: [PATCH] of: reserved_mem: Add heuristic to validate reserved
+ memory regions
+Message-ID: <aO-Q6xMDd8Bfeww2@apocalypse>
+References: <20251014073403.32134-1-andrea.porta@suse.com>
+ <CAL_Jsq+CugQrswhOWntK5RiRBSKkWRNUoB0pB8HoKPmym2e65w@mail.gmail.com>
+ <aO5dtNJrF3vduSyJ@apocalypse>
+ <CAL_JsqKsK+Bf6n=5YHmC681wxJjszkrdiryhP2+02=KGgPcM9w@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250912-am62lx-v6-1-29d5a6c60512@ti.com>
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAL_JsqKsK+Bf6n=5YHmC681wxJjszkrdiryhP2+02=KGgPcM9w@mail.gmail.com>
 
-On Sep 12, 2025 at 10:40:40 -0500, Bryan Brattlof wrote:
-> Add the binding for TI's AM62L family of devices.
+Hi Rob,
+
+On 11:25 Tue 14 Oct     , Rob Herring wrote:
+> On Tue, Oct 14, 2025 at 9:24 AM Andrea della Porta
+> <andrea.porta@suse.com> wrote:
+> >
+> > Hi Rob,
+> >
+> > On 08:12 Tue 14 Oct     , Rob Herring wrote:
+> > > On Tue, Oct 14, 2025 at 2:32 AM Andrea della Porta
+> > > <andrea.porta@suse.com> wrote:
+> > > >
+> > > > When parsing static reserved-memory DT nodes, any node with a reg property
+> > > > length that is not perfectly conformant is discarded.
+> > > > Specifically, any reg property whose length is not a multiple of the parent's
+> > > > (#address-cells + #size-cells) is dropped.
+> > > >
+> > > > Relax this condition (while still treating perfect multiples as having higher
+> > > > precedence) by allowing regions that are subsets of the parent's addressable
+> > > > space to be considered for inclusion.
+> > > > For example, in the following scenario:
+> > > >
+> > > > / {
+> > > >         #address-cells = <0x02>;
+> > > >         #size-cells = <0x02>;
+> > > >         ...
+> > > >
+> > > >         reserved-memory {
+> > > >                 #address-cells = <0x02>;
+> > > >                 #size-cells = <0x02>;
+> > > >                 ...
+> > > >
+> > > >                 nvram {
+> > > >                         reg = <0x00 0x3fd16d00 0x37>;
+> > > >                         ...
+> > > >                 };
+> > > >         };
+> > > > };
+> > > >
+> > > > Even though the reg property of the nvram node is not well-formed from a DT
+> > > > syntax perspective, it still references a perfectly valid memory region of
+> > > > 0x37 bytes that should be reserved.
+> > >
+> > > No it isn't. I could just as easily argue that the reserved size
+> > > should be 0x37_00000000 because it's BE data. I have little interest
+> > > in supporting incorrect DTs especially generically where we have no
+> > > clue what platform needs it and whether we still have to carry the
+> > > code. There's enough of that crap with ancient PPC and Sparc systems.
+> >
+> > I understand the pain, but IIUC the example you mentioned (0x37 0x00) deals
+> > with an incorrect size value (due to endianness) over a correct size length
+> > (#size-cells = 2), while the case this patch tries to address is the opposite,
+> > i.e. correct size values (corrected by the fw) over an incorrect size length.
+> > For the former issue, the actual kernel code does not have an answer yet. For
+> > the latter I propose this patch.
 > 
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Bryan Brattlof <bb@ti.com>
-> ---
-> Changes in v1:
->  - separated out devicetree bindings
-> ---
->  Documentation/devicetree/bindings/arm/ti/k3.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
+> No, my point was who is to say the error is not 'reg' was treated as
+> if #size-cells was 1, but rather 'reg' was truncated by 1 cell by
+> mistake. You don't know (in general) which one it is.
+
+Ok, general case can have ambiguity, got it. Since this seems to be a dead end,
+I will abandon the heuristic path in favor of fixing the specific (Rpi5) case.
+
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/ti/k3.yaml b/Documentation/devicetree/bindings/arm/ti/k3.yaml
-> index e80c653fa4382acef964e182ecc4ae5445088936..d916c627eb619d16124772df5aacac9354126808 100644
-> --- a/Documentation/devicetree/bindings/arm/ti/k3.yaml
-> +++ b/Documentation/devicetree/bindings/arm/ti/k3.yaml
-> @@ -37,6 +37,12 @@ properties:
->            - const: phytec,am62a-phycore-som
->            - const: ti,am62a7
->  
-> +      - description: K3 AM62L3 SoC and Boards
-> +        items:
-> +          - enum:
-> +              - ti,am62l3-evm
-> +          - const: ti,am62l3
-> +
->        - description: K3 AM62P5 SoC and Boards
+> > The point is that the potential erroneous regions we could introduce with this
+> > patch are just a subset of the regions that can be erroneously introduced in
+> > the actual kernel, so no additional harm could be done.
+> 
+> There's little reason for us to handle such an error as there is
+> little excuse for getting it wrong. We have multiple tools that check
+> this including the kernel evidently.
+> 
+> > > Furthermore, this looks like an abuse of /reserved-memory which should
+> > > *only* be holes in what /memory node(s) define. I don't think we
+> > > enforce that and I imagine there is lots of abuse.
+> >
+> > AFAIK the only enforcement in the kernel is being an integer multiple of the
+> > root address + size cells. As you already pointed out, this means easy abuse
+> > but this is still a fact with the current kernel, not something that would
+> > be exploitable more easily with this patch.
+> >
+> > >
+> > > > This has at least one real-world equivalent on the Raspberry Pi 5, for example,
+> > > > on which the firmware incorrectly overwrites the nvram node's reg property
+> > > > without taking into account the actual value of the parent's #size-cells.
+> > >
+> > > If we have to support this broken firmware, the kernel should fixup
+> > > the entry to be correct.
+> >
+> > This is what I first thought of, but it has several issues that complicates
+> > its implementation:
+> >
+> > - I guess there's no current infrastructure to execute fw specific code in
+> >   the reserved-memory node (something that resembles PCI quirks?)
+> 
+> Not there specifically, but PPC does do a number of fixups.
+> 
+> > - Finding out whether a fix is required depends on identifying the fw, which is
+> >   possible only reading its fingerprint through the reserved-memory region
+> >   itself. This is kinda of a recursive problem...
+> 
+> If RPi5, then check and fix 'reg' length in /reserved-memory nodes.
+> That doesn't seem hard.
 
-Reviewed-by: Dhruva Gole <d-gole@ti.com>
+Maybe we can workaround this by just checking if the reserved node has 
+"raspberrypi,bootloader-config" in the compatible list *and* the reg property
+is not aligned with the #size-cells advertised by the parent. In this case we
+are surely dealing with the misbehaving fw and we can act accordingly.
+Thanks for the heads-up.
 
--- 
-Best regards,
-Dhruva Gole
-Texas Instruments Incorporated
+> 
+> > - The reserved memory parsing function is invoked very early in the boot process,
+> >   so we cannot rely on a driver module to amend that
+> 
+> Does it need to be? If the region truly isn't in DRAM, then we don't
+> really need to fix it early.
+
+I think we should. The reseved memory regions are outlined during the first-pass
+parsing of the fdt and the nvmem-rmem driver will not work if it wouldn't find
+a matching region. I think there's no point in rewriting this logic, let's just
+fix the entry sooner rather than later. As an added benefit, whoever will need
+to dump the fdt at later time can do so and have the reg property matching its
+live tree counterpart. Need to do some testing to verify whether its already doable
+or if it needs some new helper functions to deal with the fdt.
+
+> 
+> > I will try to cook up something on this line, but I guess it will not be easy.
+> 
+> I pushed a branch, dt/fixup-infrastruct, to my kernel.org tree. It's a
+> prototype that we ended up not using. It won't work for you if we need
+> to fixup the fdt rather than the unflattened tree.
+
+Thanks for that. As said above though, I'd rather fix it early in the fdt rather
+than in the live tree, although the actions in your proposed branch have direct
+equivalent in the fdt world (or at least they should, I need to verify), so the
+trace is still good to follow.
+I'll bake something and come back with a renovate V2.
+
+Many thanks,
+Andrea
+
+> 
+> Rob
 
