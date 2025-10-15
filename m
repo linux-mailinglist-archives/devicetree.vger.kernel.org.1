@@ -1,212 +1,115 @@
-Return-Path: <devicetree+bounces-226899-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226900-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95D6BBDC877
-	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 06:42:38 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 49934BDC8E6
+	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 06:59:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C41A13BAC75
-	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 04:41:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7EAFB1928038
+	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 04:59:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D28DE2FFFB2;
-	Wed, 15 Oct 2025 04:40:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 086A82FABF7;
+	Wed, 15 Oct 2025 04:59:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="hxs2r+8S"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="YUD0feHE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F3DD2FF14D
-	for <devicetree@vger.kernel.org>; Wed, 15 Oct 2025 04:40:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2E8C28FFFB;
+	Wed, 15 Oct 2025 04:58:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760503249; cv=none; b=cXH3MM12XqriUxLGDlCl0YKQUcvVhd64QfrStuoRhoG8UzIbKUSkNdglGdABz/ArpOWO/3IOpqF3zsGx50R0VyfdDLP9fiF4VuxdBY51+hm/UpeMmlhcZJCcleEf0sPiXCg1VULBmPDlPz5ckkmw5IXxWIEr52rukXijbXpV9Vc=
+	t=1760504340; cv=none; b=kZZL7+jUMUFaXcYTBsRQsFUS1eVSD2Y/FNDRUk7yaFJJ2w+yIrvC8qu9ytdtxlg05+QvFx+y1WTZxX6KjkTD06rv2edLEHGS5IgLtSOBBFK4imsbRMLxVpmFgIEGrgsXIreHrZQSFCuMCEyT+CLk5Qq13tugdn9A43WYyWkXt1M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760503249; c=relaxed/simple;
-	bh=q1pRzkuBh9GAg1JcwXGzO3FL3XRWgrlscAgQj90ENvE=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=tGivungA1x+uumJ5BBzcsRPWIAWkUR1IB9cuEQnxNcwct6CLHMkA0FtnkjMDfgn0WfNwC+4yS5FmShpItunpS1Wk67LbuPqhGdA0PglOJltJ7rePwccgraXNAGJONhjdCsaCm7JnCpBM4qRkTbsbFN/f9rne2BGEtnTzmKPNxLU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=hxs2r+8S; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59F2sjMQ003849
-	for <devicetree@vger.kernel.org>; Wed, 15 Oct 2025 04:40:47 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	gBo9gZrkew51yYf4IHpWDN66o41yYqQF87bJGWuNb/k=; b=hxs2r+8SAYSKqgeT
-	uAZNpqBlEcK6bBPzYZ5zcv8abNZFHrNMkkFFCSPx8K8IIyRARkIGLrTOPXAqDF/n
-	qZp5bk41wfi2JAhOAerQ/gzaNeZKOMKe0+ao48SwoB8F0jVO8VGz2suDEWTaKeDP
-	J83RV++aCKvWtMtJEjQgMIZcXWIZi7gOz8MkBDDA9j3XCIKlaf11bs8U3BZx49x7
-	pN05oHm3WL4XOd+RN9kp3jgnEWfzcVTmVkCM8pRMt6XCy40+rjLbyh1LsBkT7xCn
-	Ybb/QhPBDJIGuzlRTMgSDqZ9T2FUOMOYfSLD20UkNWEcVKsrZ3zH2EvD+AEnbMYL
-	OI9xXw==
-Received: from mail-pj1-f72.google.com (mail-pj1-f72.google.com [209.85.216.72])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49sua8hmnd-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 15 Oct 2025 04:40:46 +0000 (GMT)
-Received: by mail-pj1-f72.google.com with SMTP id 98e67ed59e1d1-3352a336ee1so21071235a91.0
-        for <devicetree@vger.kernel.org>; Tue, 14 Oct 2025 21:40:46 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760503246; x=1761108046;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=gBo9gZrkew51yYf4IHpWDN66o41yYqQF87bJGWuNb/k=;
-        b=j1XhJ56cOdvwSvRNDvnSrYgoVxDn6V/VF8V9pZoaIgw4yJwm4KRVXzHz64P9Kq37mN
-         qT8YrdWx7xDybV6qguIsogh8dtLZ3bl7Y0FR0MTRp6S739V4nT7GiD1S7+9iGtru1Ljs
-         egT0tD7kXKycRbIf3SloPkN3JYDGYCPCW0augb/+xGi/v+eWLzDOqL6BrqxNIrs2ItHA
-         1Sps22aezuUsCTh4QqcH4CndrmjaK8gONJn06vBI854nNrgPoX91c4P4tZ2MJHmng1R0
-         A51Dry3pJ4HMUWSf0BH2yZR+GJM7FOEvEmIMcouXYcAY+TtInZWAGXwXKf2blh1DfMtB
-         Gp5A==
-X-Forwarded-Encrypted: i=1; AJvYcCVeApq74DSZoVULd5KBh+xeQxUNghyMVMjFujH6T3xyvs0QfMnme6wsfbUDMPSj3cMWrJ9aUu1atMOC@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywenajm3MjFEeBtWciE+0QR9suWl3pv2MTYeEP36MLouEYQzNWf
-	+2Y6P7t5HaAZuUUeQcUUYVXkPvxPbUFlELddyC1V1UCIHgAyx05ZnDV7HC2+Lwrpr8wf4bigl7c
-	mYOHYnsRuj9BOdq6DbrsdDyqHO8JSe/BXRe7Rp+LECdH+vng4vl1+Xb+Wud6C0cQx
-X-Gm-Gg: ASbGncuPYFoSyTqusFOYeewhDWd6mLBdkjatYClOlYFV2oq0Ylctg2Rl4Jf+fv3FkRi
-	7aCk9WYC9WzsFIsL0ZrzOXucA5vrYcCXYkjOP2Vb4ZDuvlTSdzmFNm5Menk5UKYZxQXL+8zmpiC
-	aJuIG7zDVZ5ISXpB0yXvd214VHG+FcGT21du1In2LancZ6LPeEfk9xzXDpD1BcOccdbC2yI5xIs
-	OaWMjxNqKGtklrRiVla7SrRBeMy416smTJGLRz79pfhJZm5i4NP/DWt+En+/BVK1hPoyuFgrUVF
-	hd45xgVjumyP4txG7DHCuq6dKzAcosyut22toL9y05XW1Ymmty4todMDQF5U5+0rZNOr1lQRVeN
-	F
-X-Received: by 2002:a17:90b:1c88:b0:330:a454:c31a with SMTP id 98e67ed59e1d1-33b51386573mr36050543a91.32.1760503245571;
-        Tue, 14 Oct 2025 21:40:45 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHl45T5gEGBYaChkWOQqwIOqGUS/zz2WbvtwiMkJgYFYDoxb2M6+A0u7nW/BBPu6hBROJZsvA==
-X-Received: by 2002:a17:90b:1c88:b0:330:a454:c31a with SMTP id 98e67ed59e1d1-33b51386573mr36050499a91.32.1760503245015;
-        Tue, 14 Oct 2025 21:40:45 -0700 (PDT)
-Received: from hu-spratap-hyd.qualcomm.com ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-33b9787af5asm705406a91.20.2025.10.14.21.40.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Oct 2025 21:40:44 -0700 (PDT)
-From: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>
-Date: Wed, 15 Oct 2025 10:08:29 +0530
-Subject: [PATCH v16 14/14] arm64: dts: qcom: qcs615-ride: Add PSCI
- SYSTEM_RESET2 types
+	s=arc-20240116; t=1760504340; c=relaxed/simple;
+	bh=qM1aYAgMdOp/DAeBDMg2FxvR5/rP1mT9Bp6FUbFmyb0=;
+	h=Message-ID:Subject:From:To:CC:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=GkH8Pk6roY40VceAnzE49uOQ3C74vQt4oTq2R0tcLQm8C3HJLnp2I7escmtjGb2LaKT/GTuo07fArN7iTeSokhL4js8+c2IgIM77sPaIYlraLX5f/CFxEm6V1v2K6tzy4ZDC8xyKu2qmg/nhxfWyrsVnoQqPbMa+s4wpeKjpPTg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=YUD0feHE; arc=none smtp.client-ip=198.47.23.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 59F4wmum1318058;
+	Tue, 14 Oct 2025 23:58:48 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1760504328;
+	bh=qM1aYAgMdOp/DAeBDMg2FxvR5/rP1mT9Bp6FUbFmyb0=;
+	h=Subject:From:To:CC:Date:In-Reply-To:References;
+	b=YUD0feHE/X0dHO2pNZp/TxEyKJSxN8mI7i6Rk6MygplaXV6IRjkBv61m/ClLg2MDi
+	 valbzwyavkTHkCfc6bh4sVHY4H+OwFecoH34YRkClax/dAo71ke7Vv1etYOTA/J6OU
+	 YYDUMmKT6Zctyk7fpDKw2MgseokLNwbxx22xovng=
+Received: from DLEE200.ent.ti.com (dlee200.ent.ti.com [157.170.170.75])
+	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 59F4wmui551616
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 14 Oct 2025 23:58:48 -0500
+Received: from DLEE209.ent.ti.com (157.170.170.98) by DLEE200.ent.ti.com
+ (157.170.170.75) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Tue, 14 Oct
+ 2025 23:58:48 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE209.ent.ti.com
+ (157.170.170.98) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Tue, 14 Oct 2025 23:58:48 -0500
+Received: from [10.24.73.74] (uda0492258.dhcp.ti.com [10.24.73.74])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 59F4wisn1323981;
+	Tue, 14 Oct 2025 23:58:45 -0500
+Message-ID: <1b2b23293b01cec8161bc749bb864b18b3d41678.camel@ti.com>
+Subject: Re: [PATCH v3 0/5] TI-K3-DTS: Cleanup CPSW DT Nodes
+From: Siddharth Vadapalli <s-vadapalli@ti.com>
+To: Dominik Haller <d.haller@phytec.de>
+CC: "nm@ti.com" <nm@ti.com>, "vigneshr@ti.com" <vigneshr@ti.com>,
+        "kristo@kernel.org" <kristo@kernel.org>,
+        "krzk+dt@kernel.org"
+	<krzk+dt@kernel.org>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        "robh@kernel.org" <robh@kernel.org>,
+        "linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>,
+        "srk@ti.com" <srk@ti.com>, "s-vadapalli@ti.com" <s-vadapalli@ti.com>
+Date: Wed, 15 Oct 2025 10:28:51 +0530
+In-Reply-To: <df6acbfe5d30956ed66e2768fa595c36d2ebe98a.camel@phytec.de>
+References: <20251014125349.3408784-1-s-vadapalli@ti.com>
+	 <df6acbfe5d30956ed66e2768fa595c36d2ebe98a.camel@phytec.de>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.1-1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251015-arm-psci-system_reset2-vendor-reboots-v16-14-b98aedaa23ee@oss.qualcomm.com>
-References: <20251015-arm-psci-system_reset2-vendor-reboots-v16-0-b98aedaa23ee@oss.qualcomm.com>
-In-Reply-To: <20251015-arm-psci-system_reset2-vendor-reboots-v16-0-b98aedaa23ee@oss.qualcomm.com>
-To: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Souvik Chakravarty <Souvik.Chakravarty@arm.com>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Andy Yan <andy.yan@rock-chips.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>, Konrad Dybcio <konradybcio@kernel.org>,
-        cros-qcom-dts-watchers@chromium.org, Vinod Koul <vkoul@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Florian Fainelli <florian.fainelli@broadcom.com>,
-        Moritz Fischer <moritz.fischer@ettus.com>,
-        John Stultz <john.stultz@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-        Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Andre Draszik <andre.draszik@linaro.org>,
-        Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>,
-        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org,
-        Elliot Berman <quic_eberman@quicinc.com>,
-        Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>,
-        Srinivas Kandagatla <srini@kernel.org>,
-        Song Xue <quic_songxue@quicinc.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1760503106; l=1528;
- i=shivendra.pratap@oss.qualcomm.com; s=20250710; h=from:subject:message-id;
- bh=st897fJ7jTPYQ5eppZ6+OrlCOSPDdAnpzJ0eoXTLNbM=;
- b=gWz6wC5KS4Z9D59qmU8+oPQ+ydpoZURhG6YTecv1VL1HdeQY4r8X5AuEshLZFDnnQNu2P7OnP
- ETCaaC08bcmCbxRY4EyrQJoana5MwZKnS0RbAX/G9ftaPPfaG17phQc
-X-Developer-Key: i=shivendra.pratap@oss.qualcomm.com; a=ed25519;
- pk=CpsuL7yZ8NReDPhGgq6Xn/SRoa59mAvzWOW0QZoo4gw=
-X-Proofpoint-GUID: AMYttromKAx9msBX21SikreODOhvt3Dc
-X-Authority-Analysis: v=2.4 cv=e5MLiKp/ c=1 sm=1 tr=0 ts=68ef25cf cx=c_pps
- a=RP+M6JBNLl+fLTcSJhASfg==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
- a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8 a=pkXgoPqwvIc8jTsVjBcA:9 a=QEXdDO2ut3YA:10
- a=iS9zxrgQBfv6-_F4QbHw:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDE0MDEzNCBTYWx0ZWRfX+HtAP5XQPwSr
- z+h605Qqw+7KV6jP2oWl/YcmZb9YlmJSGmwPlAkmr4CjSjan5tsbMXbwBuImWGZRR9TgwG791Hy
- KtWVGY/v03JJwWllzFIVkeGPPy+X2oOP8D7RqQnOyp1zKeNlu5hONtl/OMDW4T84T9zKlmZY8F+
- lLQnCh60GhX516sPkTbA1EGay75x521LkDQ6vfitGDiqdQdAv0W4nMeUZ1BqHFi0Mm1CDGLOJI3
- DlNmnXYB9r5nK55JP9+odcrXiSz2zN6kgpZsUYYCQgVN2miiH1qcjRT1R6uFgSSB1XXpurNaiwd
- WcvhsaIxzSj6BFGjkewbqR/yPsHDuc1J8wRH5DUpTWlWxtxdsQ52f88k2aYkMiw7KWxJ31DIDnm
- fyFzex5m0JwS3XLqxzpzotD/v4zhSw==
-X-Proofpoint-ORIG-GUID: AMYttromKAx9msBX21SikreODOhvt3Dc
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-10-15_01,2025-10-13_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 suspectscore=0 spamscore=0 adultscore=0 clxscore=1015
- priorityscore=1501 impostorscore=0 malwarescore=0 bulkscore=0
- lowpriorityscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2510020000
- definitions=main-2510140134
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-From: Song Xue <quic_songxue@quicinc.com>
+On Tue, 2025-10-14 at 17:07 +0000, Dominik Haller wrote:
+> On Di, 2025-10-14 at 18:23 +0530, Siddharth Vadapalli wrote:
+> > Hello,
+> >=20
+> > This series cleans up the CPSW Device-tree nodes by updating the SoC
+> > and
+> > board files to keep CPSW disabled in the SoC files and enable it only
+> > in
+> > the board files.
+> >=20
+> > The following is a summary of the SoCs, CPSW instance and the Boards
+> > that
+> > this series affects:
+> Hello Siddharth,
+>=20
+> please also enable cpsw3g in our k3-am62-phycore-som.dtsi and mcu_cpsw
+> in our k3-am68-phyboard-izar.dts.
+> Unless I'm missing some other patches you're turning off ethernet on
+> those two both platforms too.
 
-Add support for SYSTEM_RESET2 vendor-specific resets in
-qcs615-ride as reboot-modes.  Describe the resets:
-"bootloader" will cause device to reboot and stop in the
-bootloader's fastboot mode.  "edl" will cause device to reboot
-into "emergency download mode", which permits loading images via
-the Firehose protocol.
+Thank you for pointing it out. I will include them and post the v4 series.
 
-Signed-off-by: Song Xue <quic_songxue@quicinc.com>
-Signed-off-by: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>
----
- arch/arm64/boot/dts/qcom/qcs615-ride.dts | 7 +++++++
- arch/arm64/boot/dts/qcom/sm6150.dtsi     | 2 +-
- 2 files changed, 8 insertions(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/qcs615-ride.dts b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
-index 705ea71b07a10aea82b5789e8ab9f757683f678a..bfb504db43368fe73ff200476ff5220334872c8a 100644
---- a/arch/arm64/boot/dts/qcom/qcs615-ride.dts
-+++ b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
-@@ -343,6 +343,13 @@ &pon_resin {
- 	status = "okay";
- };
- 
-+&psci {
-+	reboot-mode {
-+		mode-bootloader = <0x10001 0x2>;
-+		mode-edl = <0 0x1>;
-+	};
-+};
-+
- &qupv3_id_0 {
- 	status = "okay";
- };
-diff --git a/arch/arm64/boot/dts/qcom/sm6150.dtsi b/arch/arm64/boot/dts/qcom/sm6150.dtsi
-index 3d2a1cb02b628a5db7ca14bea784429be5a020f9..9df5e94069f604e5393350f5d8906097d6d01209 100644
---- a/arch/arm64/boot/dts/qcom/sm6150.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm6150.dtsi
-@@ -416,7 +416,7 @@ opp-128000000 {
- 		};
- 	};
- 
--	psci {
-+	psci: psci {
- 		compatible = "arm,psci-1.0";
- 		method = "smc";
- 
-
--- 
-2.34.1
-
+Regards,
+Siddharth.
 
