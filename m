@@ -1,124 +1,134 @@
-Return-Path: <devicetree+bounces-227072-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227073-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E6AEBDE579
-	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 13:53:17 +0200 (CEST)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id C5DFBBDE597
+	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 13:57:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 399BF3A4BE2
-	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 11:53:16 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 3ABEF3578E3
+	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 11:57:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF5F3324B0C;
-	Wed, 15 Oct 2025 11:53:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2ED11324B1D;
+	Wed, 15 Oct 2025 11:57:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="M+tVgvi2"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="C9PDrK/v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yx1-f41.google.com (mail-yx1-f41.google.com [74.125.224.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA763201017
-	for <devicetree@vger.kernel.org>; Wed, 15 Oct 2025 11:53:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 930A62C3256
+	for <devicetree@vger.kernel.org>; Wed, 15 Oct 2025 11:57:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.224.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760529194; cv=none; b=E4EqYlG6qYSy0x3AcAHGi06tzHjNpyJJIY3w20u0TvGa2Wnz5aDdTbFribElYwP7RAAsHRdl5C86dn2PhcXcGAaQn3sBfMMJoNtZ1chUs+z0E6mJ0sk+SpQNzpzIyqXQohsJd9Ox1yEibfvaELkIU4xD/DkBF2YZlkj8gJMPUd4=
+	t=1760529459; cv=none; b=AW8CZTTxBeX3ZU9zarHeeEjluVdIqBKVjuF7XahaNj7xf8/WEGLhJsfPu2dCPW17D9Ad0AspVE1vAhR4RMXlJGH3DzDV6ONEK4wCqD4VO0Czwcl+yy7CE/h9PnO+hHyHIlWy9rUOgfqL03fgr81tvt9Nj3b/d6EWu3lriaxthKQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760529194; c=relaxed/simple;
-	bh=j68Djg9MIPNj1/yW5wQOpBS5ZJ9KqRr2JdVAjj0PjLU=;
+	s=arc-20240116; t=1760529459; c=relaxed/simple;
+	bh=e6nUalP9hfTJgsbidLIuHQleVlwtT+pTzZf78d6vMo8=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=DdZYSsrBOrZc7v20zg3H+hF1YlhBsliw+NiDrYEWQwhvmhXwlRVOBuuEUxFlTV0aeSHAZuKUNkriWuaBS6VdUmoUg1ViappX6kosxg9+Bo2P/S4PB73RHI4VZ0qeTzDhpIwzvNzJfeqlHYlBX6vA/0ql5oSCKFJgOQY5YPiiK68=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=M+tVgvi2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ACFDEC4AF0C
-	for <devicetree@vger.kernel.org>; Wed, 15 Oct 2025 11:53:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760529194;
-	bh=j68Djg9MIPNj1/yW5wQOpBS5ZJ9KqRr2JdVAjj0PjLU=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=M+tVgvi2vPNEUpRiZD4fZpAU6hFYWkRPhQbrGFcZCZ0rj6U5K3NkppqPdChIy6jw2
-	 thRVFWL46oNpZJO5WI2ygN1d7vawJmGga5Np2nchNCWKm/Jhb1yZcqAjoKQvlAU+MN
-	 IyXrG+RnBJWOkIgLKEppP8vDbS/26E8D//QCqc28UgIU9kw5kn+TiTZjumekG//lcN
-	 dKvQFQz2KeQUy8aSPJi6e4/hH0EQsH+bhpYzjA4FVqmtgcyXkSuGac2s2x4Hj0AueU
-	 cTKpNeAEMwveihom1R/vjbQcWOwQcHaa1ggOYnUo8Be6c4/xzsHkWzV6z04Ct6WnGK
-	 OJ05/2UTKKa2w==
-Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-b4c89df6145so1084645066b.3
-        for <devicetree@vger.kernel.org>; Wed, 15 Oct 2025 04:53:14 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVf+2E/0L/GpQy+0HI0l5FnT3jl2l+SK4/Hb85AiQkdNmM5EmGjUP4r0VDqaHPm9W4ADL2W8KgGsgDB@vger.kernel.org
-X-Gm-Message-State: AOJu0YypDpZe1BFGFKOpQfOeYdsaohkwzmby7fSlbZ1x3IQrG6uVTRp7
-	SJdKMLLtQLZeRPqXFo4xxRDY/gB/U1hcx9gbIqjK6GhBDtMyYBgCy64or+MLk3ZlwzW+I+XpAWT
-	R0Zcy1icaejzp/vnq+T25f96FQQeYbg==
-X-Google-Smtp-Source: AGHT+IHpBsZoPqy1azuK/vjwTS/jNRB6fTmD0NvYAu3GizHlrEGmyD/1vlyW9f+VRJsbJ7v4OWHL7IrqoHGxFu1lS/8=
-X-Received: by 2002:a17:907:724a:b0:b04:5b0a:5850 with SMTP id
- a640c23a62f3a-b50ac1c3f18mr3099214366b.40.1760529193310; Wed, 15 Oct 2025
- 04:53:13 -0700 (PDT)
+	 To:Cc:Content-Type; b=JWT40F0hCOhEeGcMr1q4i9zrItgH2OThT2CzjSa2Cgo0+WNWBe1PuKgxaXolxTo41yEoTdjvqCv2LRa5fPrbroA9jfDhlSu6PNvcDlddgK6sh05IukqMkvtd51WdjfdGtiT29AKYfG0SEXwT2vI0cIpdL9R67I88hrILhdWal6c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=C9PDrK/v; arc=none smtp.client-ip=74.125.224.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yx1-f41.google.com with SMTP id 956f58d0204a3-6353f2937f3so7631470d50.3
+        for <devicetree@vger.kernel.org>; Wed, 15 Oct 2025 04:57:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1760529456; x=1761134256; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ieaWzRWGII3uqPa4WyCaS/MYjwfMUCH1mb2GlldqZ1k=;
+        b=C9PDrK/vD5sfdAleE1YJqbiaZDCk3UKsiZsOMbaTVEo4p9TJcaUcF/iVUSjORcK05N
+         uq9OYwDo93B5Me2AZZfkRLSNIgMD8c38jCbmXMmGf8J8pGal5D/47O2Q9ku5DEywZqwG
+         OmXg4Yv1a5eizEVWwb7gHCJ9w8llHco7v9w3IfCX3OEEDskF4I664w9/GygTbbzZlj0c
+         MraauNS2NeOujQpQJyTFM3412kqHaGAXayyE5wxPMWAPedomUGIVPr6w8O78jABSFzO2
+         wHJUv9YltP6R4K/r2E61rQHqLYZZWmGi3Qy6x11f+NBcXm6IkpO0r2Ljk+oaeQ4GAI6K
+         M5HQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1760529456; x=1761134256;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ieaWzRWGII3uqPa4WyCaS/MYjwfMUCH1mb2GlldqZ1k=;
+        b=vt3LXDQCHNjBZ+kGIDJGKwenPwPO5Gj6Pxt/IgFOQTZrg3AqNnkOU7inTNmU0K1kgB
+         ZYmW/4KvW6vJUXCzfOKvS9yLluPcEuMjayNfA4Kfk4XmNYiE+c0dfXeK90pe+Ss4C1WM
+         BBBQ5+NaGqX4RnpxoJqmYGqTWT2DMB7YWVp1hGrRrpmBJjfCevXvMVvZE+p8bDL5AdnD
+         05Bxp0OUhqQysA4sNBZ4t3Ri0hdweY+NSzi9TY3uGkPn9V0QdVYNjziRtclpi3xqzqHi
+         gXkTUhxdJplC2KpJIXo2JsikymS1ljV11v/Pq49M0PoUx64Zz+UZcWj1GJu3tkEvVTmY
+         rhWw==
+X-Forwarded-Encrypted: i=1; AJvYcCUSu6w8C3rlccsNw8CjftP5N+xWNPmrXWwyv5hzjbhokWFPhVjcxkrApcQmf69+4qth9ECq1+5EUd8a@vger.kernel.org
+X-Gm-Message-State: AOJu0YzxzVIVmv+HtVyz7ZlUoo438VWU90Q2ainntOCIMAek4Nt6NEOJ
+	W7SOmHAOFYyGGF+sc7Ug85wNi1IcEj9/pletxLvIlwcE98uHi4ISybgelDL3ONEvLftKYekBQ/1
+	Cb/VFAoyTqXpLGIgeOC3UpLCzn6imTnw=
+X-Gm-Gg: ASbGncs2r7Hv+RCe7qAMdXbEMTb2iBtLUct7AtzjwFY6Q4x7v106q4cbV9BIWC79Z3n
+	Ic0PmNMTR97g8p+L+z5sixby7VxGUcV1pnJYVVOVPesYMD/js+Qe0agPfZae+SIJ3c9ioR30CFz
+	lfzxM+hPRh4MJGLn7Kq2eWu0vZX/Tn/W0uHU/Vr3y6Jou90yDMu8rmeQ/f2sPhYBC8+FC+FGiSe
+	nsfTyr20G4w3M7qmIytGq1knA==
+X-Google-Smtp-Source: AGHT+IFNe9SeQx840UU/MTW2ly7whPTiSlZ0Fatcdl+zHeGnhTcfrwo2zlexd/EV4UoupspsKkcGV6yrEL5HlrHNkQM=
+X-Received: by 2002:a53:ceca:0:b0:63c:f5a7:3ff with SMTP id
+ 956f58d0204a3-63cf5a709f6mr9503871d50.67.1760529456518; Wed, 15 Oct 2025
+ 04:57:36 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251010183418.2179063-1-Frank.Li@nxp.com> <20251014-flattop-limping-46220a9eda46@spud>
- <20251014-projector-immovably-59a2a48857cc@spud> <20251014120213.002308f2@kernel.org>
- <20251014-unclothed-outsource-d0438fbf1b23@spud> <20251014204807.GA1075103-robh@kernel.org>
- <20251014181302.44537f00@kernel.org>
-In-Reply-To: <20251014181302.44537f00@kernel.org>
-From: Rob Herring <robh@kernel.org>
-Date: Wed, 15 Oct 2025 06:53:01 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+SSiMCbGvbYcrS1mGUJOakqZF=gZOJ4iC=Y5LbcfTAUQ@mail.gmail.com>
-X-Gm-Features: AS18NWC_gYw37Br6ewmB14S0Rj55MCQnT2_L9wHXys5hY5S_h2Z178AMbZOAzBw
-Message-ID: <CAL_Jsq+SSiMCbGvbYcrS1mGUJOakqZF=gZOJ4iC=Y5LbcfTAUQ@mail.gmail.com>
-Subject: Re: [PATCH 1/1] dt-bindings: net: dsa: nxp,sja1105: Add optional clock
-To: Jakub Kicinski <kuba@kernel.org>
-Cc: Conor Dooley <conor@kernel.org>, Frank Li <Frank.Li@nxp.com>, Andrew Lunn <andrew@lunn.ch>, 
-	Vladimir Oltean <olteanv@gmail.com>, "David S. Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	"open list:NETWORKING DRIVERS" <netdev@vger.kernel.org>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>, 
-	imx@lists.linux.dev
+References: <20251006-st7920-v3-0-4f89d656fa03@gmail.com> <20251006-st7920-v3-1-4f89d656fa03@gmail.com>
+ <bf207d35-3ca9-40a2-807a-0dbb0d1504de@kernel.org>
+In-Reply-To: <bf207d35-3ca9-40a2-807a-0dbb0d1504de@kernel.org>
+From: Iker Pedrosa <ikerpedrosam@gmail.com>
+Date: Wed, 15 Oct 2025 13:57:25 +0200
+X-Gm-Features: AS18NWDRb-G3sUnj4rnpU7SKnuODhp_u2ZhjVPW2nZFhRMfdfCfjUZN2mnbd71w
+Message-ID: <CABdCQ=O-WSt9f_cbwUhRw1uy5a-P3-dEcJfcq8Y8thDAzVuS9g@mail.gmail.com>
+Subject: Re: [PATCH v3 1/3] dt-bindings: display: sitronix,st7920: Add DT schema
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Javier Martinez Canillas <javierm@redhat.com>, linux-kernel@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Oct 14, 2025 at 8:13=E2=80=AFPM Jakub Kicinski <kuba@kernel.org> wr=
-ote:
+El mar, 7 oct 2025 a las 11:12, Krzysztof Kozlowski
+(<krzk@kernel.org>) escribi=C3=B3:
 >
-> On Tue, 14 Oct 2025 15:48:07 -0500 Rob Herring wrote:
-> > On Tue, Oct 14, 2025 at 08:35:04PM +0100, Conor Dooley wrote:
-> > > On Tue, Oct 14, 2025 at 12:02:13PM -0700, Jakub Kicinski wrote:
-> > > > The pw-bot commands are a netdev+bpf thing :) They won't do anythin=
-g
-> > > > to dt patchwork. IOW the pw-bot is a different bot than the one tha=
-t
-> > > > replies when patch is applied.
-> > >
-> > > Rob's recently added it to our patchwork too.
-> >
-> > And the issue is that both PW projects might get updated and both don't
-> > necessarily want the same state (like this case). So we need to
-> > distinguish. Perhaps like one of the following:
-> >
-> > dt-pw-bot: <state>
-> >
-> > or
-> >
-> > pw-bot: <project> <state>
+> On 07/10/2025 02:48, Iker Pedrosa wrote:
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: sitronix,st7920
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  spi-max-frequency:
+> > +    maximum: 600000
+> > +
 >
-> We crossed replies, do you mind
+> Datasheet I found on the web clearly stats you have at least VDD and XRES=
+ET.
 >
->   pw-bot: xyz [project]
->
-> ? I like the optional param after required, and the brackets may help
-> us disambiguate between optional params if there are more in the future.
+> Your binding is still not complete (and I asked...), while it should be
+> complete (See writing bindings doc).
 
-That's fine. Though it will be optional for you, but not us? We have
-to ignore tags without the project if tags intended for netdev are
-continued without the project. Or does no project mean I want to
-update every project?
+Thanks for the information. You're correct; I'll add the two suggested
+properties, XRESET and VDD, to the binding. I'll also implement the
+XRESET handling in the driver.
 
-I also considered looking at who the email is from and restricting it
-to the maintainers. I know the netdev one doesn't do that either
-because I used it a couple of times. :) It does seem like it could be
-abused.
+I missed the XRESET pin because my testing setup was working without
+it. For VDD, it's currently connected to the RPi's 5V output.
 
-Rob
+While other Sitronix display bindings in the kernel don't currently
+define a supply property (running "git grep -i supply
+Documentation/devicetree/bindings/display/sitronix*" confirmed this),
+I agree it should be included for a complete binding. I'll define it
+as a fixed-regulator in my display DT node.
+
+>
+>
+> Best regards,
+> Krzysztof
 
