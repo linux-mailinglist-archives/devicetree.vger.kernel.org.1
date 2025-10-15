@@ -1,163 +1,428 @@
-Return-Path: <devicetree+bounces-227345-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227346-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98D14BE0B3A
-	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 22:52:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 18EF0BE0B7F
+	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 22:57:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 3BDD04EB488
-	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 20:52:25 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 50B814F28E6
+	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 20:57:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9C2D2D12F5;
-	Wed, 15 Oct 2025 20:52:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 459202D9EE0;
+	Wed, 15 Oct 2025 20:57:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aAkJY6bp"
+	dkim=pass (2048-bit key) header.d=rivosinc.com header.i=@rivosinc.com header.b="DoRvfCr6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f45.google.com (mail-pj1-f45.google.com [209.85.216.45])
+Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com [209.85.210.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FDD32BE657
-	for <devicetree@vger.kernel.org>; Wed, 15 Oct 2025 20:52:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 705793254BB
+	for <devicetree@vger.kernel.org>; Wed, 15 Oct 2025 20:57:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760561541; cv=none; b=S8wXxmzF+1z/saS5rNqRnaOgzAChIEcWfy1SoG9XIuXa3y+oPwK7KHauuFiifahiIpXWY83m1Phk/c6PmXSTrRZqiuneIyxJPd9YfZEihsKuAm2jDvqtvSqIULTvRmBVG+jVJqOAnyUUWTQI6Ux59GeqsPsv4Cy8RlVobMOmKhE=
+	t=1760561826; cv=none; b=LvnlEc/QlwLZDqcpgJRpQ6o0cxAnwP71P5Lv+u5m+qzvY5Gn57XoO4yfdg6Xw5fttvQACA+TSqPE+WIIBQ+6hY25++VadIoUUuMlDJqbJ2qGJAfff5+JBAKbdeYmhRPPZC1nysyBsMu4Wbh+sOL3KmhXuqwr0ehIrNeAYvgz5gk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760561541; c=relaxed/simple;
-	bh=hsD+aslz1OkQOnpQ7vD/eAIL2an/1I+2GU4RtlCHgkk=;
+	s=arc-20240116; t=1760561826; c=relaxed/simple;
+	bh=A78iN+rgxSiV6lxKErBK8A+jZK/Hr9J1s3+XCMErbAY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ojWlF1oI4oXk3FKqm21MS71xzo8XDSXiMy+6PLmG5cO/NzcCgWKUZVzd9rx29a40n0u7v8zrtYyrjAApqtZdNBQLsT/XAt+nK+WyBx2YNZgrVOlFFj6e4PxDItbhRvArsuf/YsVA0H4sR6lNxRQBVEsoQYvrW0/UpU7W+khSIWk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=aAkJY6bp; arc=none smtp.client-ip=209.85.216.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f45.google.com with SMTP id 98e67ed59e1d1-33b8a8aa73bso65919a91.0
-        for <devicetree@vger.kernel.org>; Wed, 15 Oct 2025 13:52:20 -0700 (PDT)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZyynkG1W1iCsi41avgLAFMpnCOG1dhfLsXTeZh6GfAxqCH4eCxbnCHdVbyW4vV1irOLNIC9mJA3C9WJ3NARU08bZRMW5HtmjoYUoVN2dxksSp8pubxUZFU+ozQrxX6lyKxM/3xbbpO9Crr9uPnkMjecwwvwDTaNjXXKiE+hEQNg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc.com header.i=@rivosinc.com header.b=DoRvfCr6; arc=none smtp.client-ip=209.85.210.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rivosinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
+Received: by mail-pf1-f171.google.com with SMTP id d2e1a72fcca58-781ea2cee3fso78666b3a.0
+        for <devicetree@vger.kernel.org>; Wed, 15 Oct 2025 13:57:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1760561540; x=1761166340; darn=vger.kernel.org;
+        d=rivosinc.com; s=google; t=1760561823; x=1761166623; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=4Q3l3wXZP1srYTWBx6D17j0OpQl3qJmuJ/CIapeLh80=;
-        b=aAkJY6bpYgLrhjydCSaF0WEz401VhyQpHjxyiS1q5/0W1/vaZ+X9DuAjUczWx0RZSH
-         06V9jGc7zHjJj+3wP77haSL3AoQtwd1cSbRajrXKLNXbkha3bm608AYK7pnP2MIVK09R
-         ACysIjOAmj/BktLKnlzgm/HHpOrxg9blGOK1x36imA3HCfEdbRxcOlzg1a6BfYf2hC0g
-         h5zSWPPHR1LfNOQE8RO1FvkLdB/cKO0yo+X41oab3LBDt7h4wogSl9ZvQtb9RQTGYmhK
-         gPMl4MqOQXxLp6QzKQhNee6QoTvdI5wasLLRZht7VOVrD02FJPBU0qdJOMeZrMvomY9Y
-         Mc0A==
+        bh=JtJ7DaV1gwJQgtXjwIR5eEbDMXGgeP8Qy25oJGnYRdI=;
+        b=DoRvfCr6TdQyvjdaCJZZIuijkoGey/zl2c+DrYqXrATTbR6IvXdyUynZFVqU8hVECu
+         8dD8j7YihRCJV1Xg+pa5bQuji0MIjhlpnTv1wIrKfWCYhQt6kmlT4pW6IwmYkh+tkwU9
+         NydG9snL0RHqCyKrYRD0KzckjRRiMkWppi3G3jsp0faghrAmhQcPm0txLTviPk13cElc
+         R8oxIkiv3b+450aOXvVGAupTzRGiarkj3kxVxVd1Aacp9j+QXwRkPRZTGNXzAsSf6nYU
+         tl+F7EfR4r1O1Xi4SCZO4wD2XXNtreSP3y6SCCc9eIH8hc3QgyG5don5peS7SqbYUam/
+         yUpg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760561540; x=1761166340;
+        d=1e100.net; s=20230601; t=1760561823; x=1761166623;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=4Q3l3wXZP1srYTWBx6D17j0OpQl3qJmuJ/CIapeLh80=;
-        b=qmdkxSTxvB5DBZH/mUT4PjbH3AECzJnfRLUHM7n3xyBM4KpxXmb2aBOoQ1eeOAtHMI
-         WJ2KrrqmSYA3kka7yFWORslPs6OUrGPmbnX5EBoJzuY9rgKeyYqbhUiUb84QAEwRc2Ts
-         SRLz3zZEri8+TJPwNFwTUVuMVwZc3zRYXRAkpFVfOUitkvO/qhQDRKwrlbueea1uDFYB
-         qjlJphNQVD5b0yu4XyfQGwNS9pwpCg+I5J1FywhO/snALT04X7Dz/joPRoTj0RoBHiWJ
-         YwzmLnvmySrwMCDo12sK2cRvp9quLBcLkZKnCEbthze/hIwom5oEwRQWGnI9irCFGntJ
-         a2iQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXyJKWD07HtG/XBDg3bFfgSXpXIOIgOvR8I4qzIl4Ivxu6eRz3wSXVb3FZNfXgU34NvWKBxEXz2u8Zv@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx51s85L4T8vltdE05/wCb2hYEefY2/qI3guRDiJhbktVJxXvwg
-	nMUQpA6G4TGrntn3fKx955b5iKttU8fHvKPI1MhijJbZjsrpB4NqsTVh
-X-Gm-Gg: ASbGncvK+b8K+ffoURFs4PJllQbWmfSg2REpqyYpu/R8EQaALmbEkIZ9nqwpwUSCO9Y
-	AdUtrZxub3Vj0Mo0Mvu6slBsrwJMnkDshzNKeciQCJwJY1mzp7J3qVcYctrpjIMmQ9l4fnJI6sP
-	VV/HpLpX3vAiyRpxSUnVYRPtG+hYjX0gcihTQ+RXBKJCLG0xsaVXqMmQR7TItLdYVo8BI9acbXl
-	IkIXIuxnd2BpTvG0KWIOHduEWBX90OzK3M2V3TkDkPqeBDRyQ6QgSUUi5G3iEl7Smv6BpqwhSjQ
-	MmLwtlThQ8LrJ5akLbmCT/3mf+tGRUIlbTRBck8UQW6T8ZDB1lJh9H6RWKORtAqdjQVxTqbG4dH
-	iYTmoNEkMvoI2nJ/A4+s1SkpxI6gYE6T5OeyvqxOLI61rPLj4nGA+pc1AFWAdChhvpBheRQxJJD
-	NzAN+/aRP1uQ==
-X-Google-Smtp-Source: AGHT+IHSyWgfprtuMBAJxkjGFH7PXnZ2eurong9CmDGzEOpx+NucIlNRXvqcw5rqha+z6ylJLfGOQg==
-X-Received: by 2002:a17:90b:17c2:b0:32b:baaa:21b0 with SMTP id 98e67ed59e1d1-33b510ff5dfmr43287001a91.6.1760561539548;
-        Wed, 15 Oct 2025 13:52:19 -0700 (PDT)
-Received: from localhost ([2804:30c:402b:1a00:ec78:db53:a246:207a])
-        by smtp.gmail.com with UTF8SMTPSA id 41be03b00d2f7-b6a22b7a625sm514092a12.24.2025.10.15.13.52.18
+        bh=JtJ7DaV1gwJQgtXjwIR5eEbDMXGgeP8Qy25oJGnYRdI=;
+        b=jBgAMFLEZBZl04HBHK+tQ/7WSk90F4y9VBeP7Gq1Mm+Oc2riRj9ALwzYqgzZX2QfyX
+         QOgCDhP5CgnEcnztkIPb2Al9bO3J5PWQt16CjusAVzcha1WpMhcmb8kVV84j6+43LfVS
+         eN5ziZFZsaelyi0Bx/sI81KB1XrzoipI6VGF144tgcYtLtIcoa+MFPeKTahvdykqqwm4
+         +LX4kQVFdZJXrEjkHs7ludIo0X/ct+fGjI4i8/L6EWE8sU1bppjrw4feVHxytcwR0sEE
+         TUElUcq16wL54PQVPpcAxK0baj9XW1o6cBmGDAm5xc3RfVt6U7OsoEpnTX67wxIXJqiv
+         TpnQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVMZKVOzr+E7CujCzXzj6I9C5LYuwprb0w2cC2c2kLbxuq+zBWtwkhSmtVGiqRNkWL7Gdv8DFQ3P20M@vger.kernel.org
+X-Gm-Message-State: AOJu0YwhsXNZNB+ZUwxcHA6/hw+Q3JWiP9nzV4z6rCE2hOmUhYZK5uVW
+	pEuLwcZaL9fm2yJdGuAMVfNV6PI1zEMiueI/IMINONTQHtNiq6gZhy97mwIh6Sw4HNs=
+X-Gm-Gg: ASbGnctBh9LTUxmBQ48tCuv3TTq5nRNrHwAtY2gWEzHbfYeY6jR6p/eRTBd6bW8q3bB
+	jUD3UC+7XyCm8QB0ryKFC0XKCJ/VT9k5UwZ7WdV7CXG3pRuv/KyMLXZY6ieTno+Ggt024S6P7ny
+	V4d4a79+B9EcLcSTDsU3D/d80keOmcU7YLvGK8r0H3/lpQ17ogS8nV8UCk0CNNad0Tdfl0/wH60
+	pc+NZEu+t3g0QEGP90WjmOwhbpEmDv4ExQb17ypy0Gch77t+EYY8QiaHRPvlBV3QnufypuI5ASk
+	90111Y3l0aZTvcNnJxFpKd8AzZK0xSxmWMuzWU5Olw7+mbX2IUFqRMlvDmjkbLK2nutnSOgzBif
+	YpeTyXlNKCgceVliXJ4YZE82nOQZ2Mi5ZAo3WHI2nytiIkR5jUpFcQm/XSBnNMA==
+X-Google-Smtp-Source: AGHT+IGB+5aNaGhvYx/i7SuLRZMzUGb9z0qxzWuFI5LtrYeUM1k/B64dlkgzbMPNLYbYv0YwsW+Slg==
+X-Received: by 2002:a05:6a21:3396:b0:334:8f45:8e99 with SMTP id adf61e73a8af0-3348f459868mr3796560637.35.1760561822048;
+        Wed, 15 Oct 2025 13:57:02 -0700 (PDT)
+Received: from debug.ba.rivosinc.com ([64.71.180.162])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7992b06075fsm20255047b3a.17.2025.10.15.13.56.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Oct 2025 13:52:18 -0700 (PDT)
-Date: Wed, 15 Oct 2025 17:53:22 -0300
-From: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
-To: David Lechner <dlechner@baylibre.com>
-Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Marcelo Schmitt <marcelo.schmitt@analog.com>,
-	Michael Hennerich <michael.hennerich@analog.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Andy Shevchenko <andy@kernel.org>,
-	Sean Anderson <sean.anderson@linux.dev>, linux-spi@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-iio@vger.kernel.org
-Subject: Re: [PATCH 4/6] spi: axi-spi-engine: support
- SPI_MULTI_BUS_MODE_STRIPE
-Message-ID: <aPAJwqdFY7ldtt-F@debian-BULLSEYE-live-builder-AMD64>
-References: <20251014-spi-add-multi-bus-support-v1-0-2098c12d6f5f@baylibre.com>
- <20251014-spi-add-multi-bus-support-v1-4-2098c12d6f5f@baylibre.com>
+        Wed, 15 Oct 2025 13:57:01 -0700 (PDT)
+Date: Wed, 15 Oct 2025 13:56:56 -0700
+From: Deepak Gupta <debug@rivosinc.com>
+To: Charles Mirabile <cmirabil@redhat.com>
+Cc: Liam.Howlett@oracle.com, a.hindborg@kernel.org,
+	akpm@linux-foundation.org, alex.gaynor@gmail.com,
+	alexghiti@rivosinc.com, aliceryhl@google.com,
+	alistair.francis@wdc.com, andybnac@gmail.com, aou@eecs.berkeley.edu,
+	arnd@arndb.de, atishp@rivosinc.com, bjorn3_gh@protonmail.com,
+	boqun.feng@gmail.com, bp@alien8.de, brauner@kernel.org,
+	broonie@kernel.org, charlie@rivosinc.com, cleger@rivosinc.com,
+	conor+dt@kernel.org, conor@kernel.org, corbet@lwn.net,
+	dave.hansen@linux.intel.com, devicetree@vger.kernel.org,
+	ebiederm@xmission.com, evan@rivosinc.com, gary@garyguo.net,
+	hpa@zytor.com, jannh@google.com, jim.shu@sifive.com,
+	kees@kernel.org, kito.cheng@sifive.com, krzk+dt@kernel.org,
+	linux-arch@vger.kernel.org, linux-doc@vger.kernel.org,
+	linux-fsdevel@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-kselftest@vger.kernel.org, linux-mm@kvack.org,
+	linux-riscv@lists.infradead.org, lorenzo.stoakes@oracle.com,
+	lossin@kernel.org, mingo@redhat.com, ojeda@kernel.org,
+	oleg@redhat.com, palmer@dabbelt.com, paul.walmsley@sifive.com,
+	peterz@infradead.org, richard.henderson@linaro.org,
+	rick.p.edgecombe@intel.com, robh@kernel.org,
+	rust-for-linux@vger.kernel.org, samitolvanen@google.com,
+	shuah@kernel.org, tglx@linutronix.de, tmgross@umich.edu,
+	vbabka@suse.cz, x86@kernel.org
+Subject: Re: [PATCH v20 24/28] arch/riscv: dual vdso creation logic and
+ select vdso based on hw
+Message-ID: <aPAKmCwDeXXvU7VD@debug.ba.rivosinc.com>
+References: <20251013-v5_user_cfi_series-v20-24-b9de4be9912e@rivosinc.com>
+ <20251015203611.2572538-1-cmirabil@redhat.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=us-ascii; format=flowed
 Content-Disposition: inline
-In-Reply-To: <20251014-spi-add-multi-bus-support-v1-4-2098c12d6f5f@baylibre.com>
+In-Reply-To: <20251015203611.2572538-1-cmirabil@redhat.com>
 
-On 10/14, David Lechner wrote:
-> Add support for SPI_MULTI_BUS_MODE_STRIPE to the AXI SPI engine driver.
-> 
-> The v2.0.0 version of the AXI SPI Engine IP core supports multiple
-> buses. This can be used with SPI_MULTI_BUS_MODE_STRIPE to support
-> reading from simultaneous sampling ADCs that have a separate SDO line
-> for each analog channel. This allows reading all channels at the same
-> time to increase throughput.
-> 
-> Signed-off-by: David Lechner <dlechner@baylibre.com>
-> ---
->  drivers/spi/spi-axi-spi-engine.c | 128 +++++++++++++++++++++++++++++++++++++--
->  1 file changed, 124 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/spi/spi-axi-spi-engine.c b/drivers/spi/spi-axi-spi-engine.c
-> index e06f412190fd243161a0b3df992f26157531f6a1..707e5108efec41f7eff608a09fcebd9d28fa2d70 100644
-> --- a/drivers/spi/spi-axi-spi-engine.c
-> +++ b/drivers/spi/spi-axi-spi-engine.c
-> @@ -23,6 +23,9 @@
->  #include <linux/spi/spi.h>
->  #include <trace/events/spi.h>
->  
-> +#define SPI_ENGINE_REG_DATA_WIDTH		0x0C
-> +#define   SPI_ENGINE_REG_DATA_WIDTH_NUM_OF_SDIO_MASK	GENMASK(24, 16)
-would it be 8-bit mask?
-#define   SPI_ENGINE_REG_DATA_WIDTH_NUM_OF_SDIO_MASK   GENMASK(23, 16)
+Hi Charles,
 
-> +#define   SPI_ENGINE_REG_DATA_WIDTH_MASK		GENMASK(15, 0)
->  #define SPI_ENGINE_REG_OFFLOAD_MEM_ADDR_WIDTH	0x10
->  #define SPI_ENGINE_REG_RESET			0x40
->  
-...
->  
-> +	data_width_reg_val = readl(spi_engine->base + SPI_ENGINE_REG_DATA_WIDTH);
-> +
->  	if (adi_axi_pcore_ver_gteq(version, 1, 1)) {
->  		unsigned int sizes = readl(spi_engine->base +
->  				SPI_ENGINE_REG_OFFLOAD_MEM_ADDR_WIDTH);
-> @@ -1097,6 +1214,9 @@ static int spi_engine_probe(struct platform_device *pdev)
->  	}
->  	if (adi_axi_pcore_ver_gteq(version, 1, 3))
->  		host->mode_bits |= SPI_MOSI_IDLE_LOW | SPI_MOSI_IDLE_HIGH;
-> +	if (adi_axi_pcore_ver_gteq(version, 2, 0))
-> +		host->num_data_bus = FIELD_GET(SPI_ENGINE_REG_DATA_WIDTH_NUM_OF_SDIO_MASK,
-> +					       data_width_reg_val);
->  
-Not sure I'm following the use of DATA_WIDTH and NUM_OF_SDIO.
-HDL doc [1] states NUM_OF_SDIO 'is equal with the maximum supported SDI lines in
-bits'. And the code sets that to be the number of buses. That should work for
-AD7380 because each AD7380 SDO bus has only one line. But, it won't support
-AD4630 (or even AD4030) because each AD4630 rx bus has 4 data lines. I can't
-find it in HDL, but I'd expect to also have something like NUM_OF_SDIO_PER_BUS.
-Or DATA_WIDTH is the number of lines per bus and HDL doc is unclear to me?
-Well, it would be nice if we can have host->num_data_bus set in a way that
-minimizes diff when multiple lines per bus gets implemented (if that's not
-currently supported).
 
-[1]: https://github.com/analogdevicesinc/hdl/pull/1808/files#diff-d1274cfe2e206aa66a0ecd3da04b3e62fc5fad9e12029b34b226c6f91454d34dR77
+On Wed, Oct 15, 2025 at 04:36:11PM -0400, Charles Mirabile wrote:
+>Hi Deepak -
+>
+>On Mon, Oct 13, 2025 at 02:56:16PM -0700, Deepak Gupta wrote:
+>> Shadow stack instructions are taken from zimop (mandated on RVA23).
+>> Any hardware prior to RVA23 profile will fault on shado stack instruction.
+>> Any userspace with shadow stack instruction in it will fault on such
+>> hardware. Thus such userspace can't be brought onto such a hardware.
+>>
+>> It's not known how userspace will respond to such binary fragmentation.
+>> However in order to keep kernel portable across such different hardware,
+>> `arch/riscv/kernel/vdso_cfi` is created which has logic (Makefile) to
+>> compile `arch/riscv/kernel/vdso` sources with cfi flags and then changes
+>> in `arch/riscv/kernel/vdso.c` for selecting appropriate vdso depending
+>> on whether underlying hardware(cpu) implements zimop extension. Offset
+>> of vdso symbols will change due to having two different vdso binaries,
+>> there is added logic to include new generated vdso offset header and
+>> dynamically select offset (like for rt_sigreturn).
+>
+>This looks great. As kernel test robot highlighted, the code doesn't build
+>when the config is off, but I was able to fix it with the attached patch.
+
+Yes sorry about that. Locally include/generated had both files and that's how
+I missed it.
+
+>
+>Assuming that these changes or equivalent are folded in, you have my:
+>
+
+Yes v21 changes are equivalent to what you proposed.
+
+>Acked-by: Charles Mirabile <cmirabil@redhat.com>
+
+If I send another version due to some other issue, I'll collect your tag.
+
+Else
+Paul,
+
+Can you apply the tag when you take it in.
+
+-Deepak
+
+>
+>As merely a user whose previous concerns have been addressed, I am not
+>sure what that is worth, but I appreciate your effort on this.
+
+Thanks.
+
+>
+>>
+>> Signed-off-by: Deepak Gupta <debug@rivosinc.com>
+>> ---
+>>  arch/riscv/Makefile                        |  3 +++
+>>  arch/riscv/include/asm/vdso.h              |  7 ++++++-
+>>  arch/riscv/kernel/Makefile                 |  1 +
+>>  arch/riscv/kernel/vdso.c                   |  7 +++++++
+>>  arch/riscv/kernel/vdso/Makefile            | 29 ++++++++++++++++++++---------
+>>  arch/riscv/kernel/vdso/gen_vdso_offsets.sh |  4 +++-
+>>  arch/riscv/kernel/vdso_cfi/Makefile        | 25 +++++++++++++++++++++++++
+>>  arch/riscv/kernel/vdso_cfi/vdso-cfi.S      | 11 +++++++++++
+>>  8 files changed, 76 insertions(+), 11 deletions(-)
+>>
+>> diff --git a/arch/riscv/Makefile b/arch/riscv/Makefile
+>> index f60c2de0ca08..b74b63da16a7 100644
+>> --- a/arch/riscv/Makefile
+>> +++ b/arch/riscv/Makefile
+>> @@ -176,6 +176,8 @@ ifeq ($(CONFIG_MMU),y)
+>>  prepare: vdso_prepare
+>>  vdso_prepare: prepare0
+>>  	$(Q)$(MAKE) $(build)=arch/riscv/kernel/vdso include/generated/vdso-offsets.h
+>> +	$(if $(CONFIG_RISCV_USER_CFI),$(Q)$(MAKE) \
+>> +		$(build)=arch/riscv/kernel/vdso_cfi include/generated/vdso-cfi-offsets.h)
+>>  	$(if $(CONFIG_COMPAT),$(Q)$(MAKE) \
+>>  		$(build)=arch/riscv/kernel/compat_vdso include/generated/compat_vdso-offsets.h)
+>>
+>> @@ -183,6 +185,7 @@ endif
+>>  endif
+>>
+>>  vdso-install-y			+= arch/riscv/kernel/vdso/vdso.so.dbg
+>> +vdso-install-$(CONFIG_RISCV_USER_CFI)	+= arch/riscv/kernel/vdso_cfi/vdso-cfi.so.dbg
+>>  vdso-install-$(CONFIG_COMPAT)	+= arch/riscv/kernel/compat_vdso/compat_vdso.so.dbg
+>>
+>>  BOOT_TARGETS := Image Image.gz Image.bz2 Image.lz4 Image.lzma Image.lzo Image.zst Image.xz loader loader.bin xipImage vmlinuz.efi
+>> diff --git a/arch/riscv/include/asm/vdso.h b/arch/riscv/include/asm/vdso.h
+>> index f80357fe24d1..3fc8f72b8bfb 100644
+>> --- a/arch/riscv/include/asm/vdso.h
+>> +++ b/arch/riscv/include/asm/vdso.h
+>> @@ -18,9 +18,13 @@
+>>
+>>  #ifndef __ASSEMBLER__
+>>  #include <generated/vdso-offsets.h>
+>> +#include <generated/vdso-cfi-offsets.h>
+>>
+>>  #define VDSO_SYMBOL(base, name)							\
+>> -	(void __user *)((unsigned long)(base) + __vdso_##name##_offset)
+>> +	((IS_ENABLED(CONFIG_RISCV_USER_CFI) &&					\
+>> +	  riscv_has_extension_unlikely(RISCV_ISA_EXT_ZIMOP)) ?			\
+>> +	  (void __user *)((unsigned long)(base) + __vdso_##name##_cfi_offset) :	\
+>> +	  (void __user *)((unsigned long)(base) + __vdso_##name##_offset))
+>>
+>>  #ifdef CONFIG_COMPAT
+>>  #include <generated/compat_vdso-offsets.h>
+>> @@ -33,6 +37,7 @@ extern char compat_vdso_start[], compat_vdso_end[];
+>>  #endif /* CONFIG_COMPAT */
+>>
+>>  extern char vdso_start[], vdso_end[];
+>> +extern char vdso_cfi_start[], vdso_cfi_end[];
+>>
+>>  #endif /* !__ASSEMBLER__ */
+>>
+>> diff --git a/arch/riscv/kernel/Makefile b/arch/riscv/kernel/Makefile
+>> index 2d0e0dcedbd3..9026400cba10 100644
+>> --- a/arch/riscv/kernel/Makefile
+>> +++ b/arch/riscv/kernel/Makefile
+>> @@ -72,6 +72,7 @@ obj-y	+= vendor_extensions/
+>>  obj-y	+= probes/
+>>  obj-y	+= tests/
+>>  obj-$(CONFIG_MMU) += vdso.o vdso/
+>> +obj-$(CONFIG_RISCV_USER_CFI) += vdso_cfi/
+>>
+>>  obj-$(CONFIG_RISCV_MISALIGNED)	+= traps_misaligned.o
+>>  obj-$(CONFIG_RISCV_MISALIGNED)	+= unaligned_access_speed.o
+>> diff --git a/arch/riscv/kernel/vdso.c b/arch/riscv/kernel/vdso.c
+>> index 3a8e038b10a2..bf080e519101 100644
+>> --- a/arch/riscv/kernel/vdso.c
+>> +++ b/arch/riscv/kernel/vdso.c
+>> @@ -98,6 +98,13 @@ static struct __vdso_info compat_vdso_info __ro_after_init = {
+>>
+>>  static int __init vdso_init(void)
+>>  {
+>> +	/* Hart implements zimop, expose cfi compiled vdso */
+>> +	if (IS_ENABLED(CONFIG_RISCV_USER_CFI) &&
+>> +		riscv_has_extension_unlikely(RISCV_ISA_EXT_ZIMOP)) {
+>> +		vdso_info.vdso_code_start = vdso_cfi_start;
+>> +		vdso_info.vdso_code_end = vdso_cfi_end;
+>> +	}
+>> +
+>>  	__vdso_init(&vdso_info);
+>>  #ifdef CONFIG_COMPAT
+>>  	__vdso_init(&compat_vdso_info);
+>> diff --git a/arch/riscv/kernel/vdso/Makefile b/arch/riscv/kernel/vdso/Makefile
+>> index 272f1d837a80..a842dc034571 100644
+>> --- a/arch/riscv/kernel/vdso/Makefile
+>> +++ b/arch/riscv/kernel/vdso/Makefile
+>> @@ -20,6 +20,10 @@ endif
+>>  ifdef VDSO_CFI_BUILD
+>>  CFI_MARCH = _zicfilp_zicfiss
+>>  CFI_FULL = -fcf-protection=full
+>> +CFI_SUFFIX = -cfi
+>> +OFFSET_SUFFIX = _cfi
+>> +ccflags-y += -DVDSO_CFI=1
+>> +asflags-y += -DVDSO_CFI=1
+>>  endif
+>>
+>>  # Files to link into the vdso
+>> @@ -48,13 +52,20 @@ endif
+>>  CFLAGS_hwprobe.o += -fPIC
+>>
+>>  # Build rules
+>> -targets := $(obj-vdso) vdso.so vdso.so.dbg vdso.lds
+>> +vdso_offsets := vdso$(if $(VDSO_CFI_BUILD),$(CFI_SUFFIX),)-offsets.h
+>> +vdso_o := vdso$(if $(VDSO_CFI_BUILD),$(CFI_SUFFIX),).o
+>> +vdso_so := vdso$(if $(VDSO_CFI_BUILD),$(CFI_SUFFIX),).so
+>> +vdso_so_dbg := vdso$(if $(VDSO_CFI_BUILD),$(CFI_SUFFIX),).so.dbg
+>> +vdso_lds := vdso.lds
+>> +
+>> +targets := $(obj-vdso) $(vdso_so) $(vdso_so_dbg) $(vdso_lds)
+>> +
+>>  obj-vdso := $(addprefix $(obj)/, $(obj-vdso))
+>>
+>> -obj-y += vdso.o
+>> -CPPFLAGS_vdso.lds += -P -C -U$(ARCH)
+>> +obj-y += vdso$(if $(VDSO_CFI_BUILD),$(CFI_SUFFIX),).o
+>> +CPPFLAGS_$(vdso_lds) += -P -C -U$(ARCH)
+>>  ifneq ($(filter vgettimeofday, $(vdso-syms)),)
+>> -CPPFLAGS_vdso.lds += -DHAS_VGETTIMEOFDAY
+>> +CPPFLAGS_$(vdso_lds) += -DHAS_VGETTIMEOFDAY
+>>  endif
+>>
+>>  # Disable -pg to prevent insert call site
+>> @@ -63,12 +74,12 @@ CFLAGS_REMOVE_getrandom.o = $(CC_FLAGS_FTRACE) $(CC_FLAGS_SCS)
+>>  CFLAGS_REMOVE_hwprobe.o = $(CC_FLAGS_FTRACE) $(CC_FLAGS_SCS)
+>>
+>>  # Force dependency
+>> -$(obj)/vdso.o: $(obj)/vdso.so
+>> +$(obj)/$(vdso_o): $(obj)/$(vdso_so)
+>>
+>>  # link rule for the .so file, .lds has to be first
+>> -$(obj)/vdso.so.dbg: $(obj)/vdso.lds $(obj-vdso) FORCE
+>> +$(obj)/$(vdso_so_dbg): $(obj)/$(vdso_lds) $(obj-vdso) FORCE
+>>  	$(call if_changed,vdsold_and_check)
+>> -LDFLAGS_vdso.so.dbg = -shared -soname=linux-vdso.so.1 \
+>> +LDFLAGS_$(vdso_so_dbg) = -shared -soname=linux-vdso.so.1 \
+>>  	--build-id=sha1 --eh-frame-hdr
+>>
+>>  # strip rule for the .so file
+>> @@ -79,9 +90,9 @@ $(obj)/%.so: $(obj)/%.so.dbg FORCE
+>>  # Generate VDSO offsets using helper script
+>>  gen-vdsosym := $(src)/gen_vdso_offsets.sh
+>>  quiet_cmd_vdsosym = VDSOSYM $@
+>> -	cmd_vdsosym = $(NM) $< | $(gen-vdsosym) | LC_ALL=C sort > $@
+>> +	cmd_vdsosym = $(NM) $< | $(gen-vdsosym) $(OFFSET_SUFFIX) | LC_ALL=C sort > $@
+>>
+>> -include/generated/vdso-offsets.h: $(obj)/vdso.so.dbg FORCE
+>> +include/generated/$(vdso_offsets): $(obj)/$(vdso_so_dbg) FORCE
+>>  	$(call if_changed,vdsosym)
+>>
+>>  # actual build commands
+>> diff --git a/arch/riscv/kernel/vdso/gen_vdso_offsets.sh b/arch/riscv/kernel/vdso/gen_vdso_offsets.sh
+>> index c2e5613f3495..bd5d5afaaa14 100755
+>> --- a/arch/riscv/kernel/vdso/gen_vdso_offsets.sh
+>> +++ b/arch/riscv/kernel/vdso/gen_vdso_offsets.sh
+>> @@ -2,4 +2,6 @@
+>>  # SPDX-License-Identifier: GPL-2.0
+>>
+>>  LC_ALL=C
+>> -sed -n -e 's/^[0]\+\(0[0-9a-fA-F]*\) . \(__vdso_[a-zA-Z0-9_]*\)$/\#define \2_offset\t0x\1/p'
+>> +SUFFIX=${1:-""}
+>> +sed -n -e \
+>> +'s/^[0]\+\(0[0-9a-fA-F]*\) . \(__vdso_[a-zA-Z0-9_]*\)$/\#define \2'$SUFFIX'_offset\t0x\1/p'
+>> diff --git a/arch/riscv/kernel/vdso_cfi/Makefile b/arch/riscv/kernel/vdso_cfi/Makefile
+>> new file mode 100644
+>> index 000000000000..8ebd190782b0
+>> --- /dev/null
+>> +++ b/arch/riscv/kernel/vdso_cfi/Makefile
+>> @@ -0,0 +1,25 @@
+>> +# SPDX-License-Identifier: GPL-2.0-only
+>> +# RISC-V VDSO CFI Makefile
+>> +# This Makefile builds the VDSO with CFI support when CONFIG_RISCV_USER_CFI is enabled
+>> +
+>> +# setting VDSO_CFI_BUILD triggers build for vdso differently
+>> +VDSO_CFI_BUILD := 1
+>> +
+>> +# Set the source directory to the main vdso directory
+>> +src := $(srctree)/arch/riscv/kernel/vdso
+>> +
+>> +# Copy all .S and .c files from vdso directory to vdso_cfi object build directory
+>> +vdso_c_sources := $(wildcard $(src)/*.c)
+>> +vdso_S_sources := $(wildcard $(src)/*.S)
+>> +vdso_c_objects := $(addprefix $(obj)/, $(notdir $(vdso_c_sources)))
+>> +vdso_S_objects := $(addprefix $(obj)/, $(notdir $(vdso_S_sources)))
+>> +
+>> +$(vdso_S_objects): $(obj)/%.S: $(src)/%.S
+>> +	$(Q)cp $< $@
+>> +
+>> +$(vdso_c_objects): $(obj)/%.c: $(src)/%.c
+>> +	$(Q)cp $< $@
+>> +
+>> +# Include the main VDSO Makefile which contains all the build rules and sources
+>> +# The VDSO_CFI_BUILD variable will be passed to it to enable CFI compilation
+>> +include $(src)/Makefile
+>> diff --git a/arch/riscv/kernel/vdso_cfi/vdso-cfi.S b/arch/riscv/kernel/vdso_cfi/vdso-cfi.S
+>> new file mode 100644
+>> index 000000000000..d426f6accb35
+>> --- /dev/null
+>> +++ b/arch/riscv/kernel/vdso_cfi/vdso-cfi.S
+>> @@ -0,0 +1,11 @@
+>> +/* SPDX-License-Identifier: GPL-2.0-only */
+>> +/*
+>> + * Copyright 2025 Rivos, Inc
+>> + */
+>> +
+>> +#define	vdso_start	vdso_cfi_start
+>> +#define	vdso_end	vdso_cfi_end
+>> +
+>> +#define __VDSO_PATH "arch/riscv/kernel/vdso_cfi/vdso-cfi.so"
+>> +
+>> +#include "../vdso/vdso.S"
+>>
+>> --
+>> 2.43.0
+>>
+>>
+>> _______________________________________________
+>> linux-riscv mailing list
+>> linux-riscv@lists.infradead.org
+>> http://lists.infradead.org/mailman/listinfo/linux-riscv
+>---
+>diff --git a/arch/riscv/include/asm/vdso.h b/arch/riscv/include/asm/vdso.h
+>index 3fc8f72b8bfb..9cfbb390270f 100644
+>--- a/arch/riscv/include/asm/vdso.h
+>+++ b/arch/riscv/include/asm/vdso.h
+>@@ -18,13 +18,21 @@
+>
+> #ifndef __ASSEMBLER__
+> #include <generated/vdso-offsets.h>
+>+#if IS_ENABLED(CONFIG_RISCV_USER_CFI)
+>+
+> #include <generated/vdso-cfi-offsets.h>
+>
+> #define VDSO_SYMBOL(base, name)							\
+>-	((IS_ENABLED(CONFIG_RISCV_USER_CFI) &&					\
+>-	  riscv_has_extension_unlikely(RISCV_ISA_EXT_ZIMOP)) ?			\
+>-	  (void __user *)((unsigned long)(base) + __vdso_##name##_cfi_offset) :	\
+>-	  (void __user *)((unsigned long)(base) + __vdso_##name##_offset))
+>+	(riscv_has_extension_unlikely(RISCV_ISA_EXT_ZIMOP)) ?			\
+>+	 (void __user *)((unsigned long)(base) + __vdso_##name##_cfi_offset) :	\
+>+	 (void __user *)((unsigned long)(base) + __vdso_##name##_offset)
+>+
+>+#else /* !CONFIG_RISCV_USER_CFI */
+>+
+>+#define VDSO_SYMBOL(base, name)							\
+>+	(void __user *)((unsigned long)(base) + __vdso_##name##_offset)
+>+
+>+#endif /* CONFIG_RISCV_USER_CFI */
+>
+> #ifdef CONFIG_COMPAT
+> #include <generated/compat_vdso-offsets.h>
+>
 
