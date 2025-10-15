@@ -1,123 +1,195 @@
-Return-Path: <devicetree+bounces-227290-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227289-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6151BE0381
-	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 20:39:14 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E7BDBE0372
+	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 20:38:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 45CDB487040
-	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 18:39:06 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 81B0F4F8E53
+	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 18:38:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9271C298CC0;
-	Wed, 15 Oct 2025 18:39:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 853CD298CD7;
+	Wed, 15 Oct 2025 18:38:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="L0YA6qK/"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="gJqaZnRI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ot1-f53.google.com (mail-ot1-f53.google.com [209.85.210.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C1253002C9;
-	Wed, 15 Oct 2025 18:38:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23B2D21A447
+	for <devicetree@vger.kernel.org>; Wed, 15 Oct 2025 18:38:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760553540; cv=none; b=Rj+N4zhtUsIfnkhDrxkJtY3SBT9BphjZumYpDi+fkV9HCK4IF9KBFFY8UdgNzh1c0kzpzjv/jPQrX33bVxPtTrQdz0bmSptw8YrOnqTbA8bWLooc2OP4wSO7LjD5R/tcJXxavEX+/viXSHTrny3qgyAirdel5gx/WjDYeI54F/c=
+	t=1760553535; cv=none; b=oJ2LEDONur9SvQ7YJ9qWfSYdmD1NyX7+gqIvIxqLzmaqWyYqFK1NZ5u7xdaS4Ryk3+7dsFRdcO2tUKx990NAJGm5ULpr+94iCrXo7xijknkIESHwiogzE0T+lJoNaeNXIgMJv0lWuIXdGFam3iOVU/Cv5sTgYBL/NsMJrW7SA4I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760553540; c=relaxed/simple;
-	bh=JNsjsmztpbrMbHw2L00RSaIuraDPT25WKoFIf1QqRps=;
+	s=arc-20240116; t=1760553535; c=relaxed/simple;
+	bh=A6ABvce90CoOKfZJ1YRD55sJ0SyCGKbP1stpO6hQahU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=EksTmR/AXfG1Csk9xHmG3K4Qt1FQ4DhS5r4RGFr9z83fXxQfnc5IJRsS+JddOS15drEJHv8uAh/KSdTtVPOkCixnq5ZoJhV18RTilVhqdQ8+kMBVWEgvtiIYLJlfyYh7zisT1bPNVLmXJGdSOndphEJr+aRouX9I8hPUTqHnYkU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=L0YA6qK/; arc=none smtp.client-ip=80.241.56.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp1.mailbox.org (smtp1.mailbox.org [IPv6:2001:67c:2050:b231:465::1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4cn0Gk6R2wz9tcL;
-	Wed, 15 Oct 2025 20:38:54 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1760553534;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=hMSfqTFOOxz3BI5gxHBbzrsmx6UX56DPc5IdGmMbF48=;
-	b=L0YA6qK/+qwqyGzdmlgNk9FFQ/Hnb30IjR7tRRMximVvgg8VhA4sTDV6Nci0YOF699BdSC
-	HDytgme2wZ2JXtAD9NWTiMd86orRY8X7a/nrqGilUlGTMrbetzClPpeW6qKoMQrB2A6hD+
-	Ucr6cRe6ObD5btBmRxX/k1fdxaXR/Ij3a/fAkQH393hfKW36BvNqG8GyD2vCikswdNPLdC
-	AjJIyxzmVw2UQ+N3ajYT0E7IYyqFOhiO1F3HXrOfSMKOo51THGMQ6iGkY0br+JrGsABUrd
-	uB/ICQVefSai09vHfMT5dHwfGsn+BHAdMV7LoXlXFucGwyFSUCDlpVi40PZvTg==
-Message-ID: <cf7ebf8a-01e5-44fb-920b-5e21c05e568a@mailbox.org>
-Date: Wed, 15 Oct 2025 20:38:47 +0200
+	 In-Reply-To:Content-Type; b=gcWJVdRrUi/l8CDki+cHCjzMrUBbAcT8o06G59NXli5nj8Hg+rhZ1i8yxPdUa01oe8HNHlqUoOLQ0RspfXm+nd7SkB0NGELCE8dd/AIl60FclovMFQJcLydBRrJye+UmFBbLGk0RPo/lnOxl7N6hJ2Tj+E2m+TlHu8NhV19P4nw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=gJqaZnRI; arc=none smtp.client-ip=209.85.210.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-ot1-f53.google.com with SMTP id 46e09a7af769-7c12ddebffdso598999a34.2
+        for <devicetree@vger.kernel.org>; Wed, 15 Oct 2025 11:38:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1760553532; x=1761158332; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=c7Pa/1BHqYMBhXpBmEF4fAbsSTM4OPfXzGQjsT1agWg=;
+        b=gJqaZnRIpydAa/IzHDREMVj5BjSuQEBbP02U5YPr3hlm2gzIik5Xjf1Qfgmqy3Hngb
+         2nUYB43nLix6Hek5MChzxeJ1EGFUw4awYDla/+ex3mXjLmB9LgUyXRgvaIYBgDm2ksj8
+         5guWBE8pkaBWIX5NDYjEZbYpQ2HiooPl+OSgrOq3EEc0qW+Ews6keSypV3OuMRffHJsK
+         bK/ibcpaiAKn8RVFU9NFWeZ4Nqs7JzWI4e2eqA+kY2x0pI1tCK7yGRe/byddy9MI/m8/
+         G6wHBzbkMQJtu+l/SQiqwaF+jkd9afzuNpJoK/AvYUTz47c45HzubofxhCxLHXKXxoYt
+         QZIw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1760553532; x=1761158332;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=c7Pa/1BHqYMBhXpBmEF4fAbsSTM4OPfXzGQjsT1agWg=;
+        b=n8As0d+FTXwBYESJ/ygpQV9wcVyfbfc4eXSvxiW4G7cKD70gs4DUInC48+oOPBSkV9
+         PsYZM6XUxrOwQbSE0YJdXU/5SYWanEWdrj97jQeXJ2lZeXiT6FzRZACUrpdLSNIn0wS1
+         xu1Ae3afja6IFokHzpPBI8kV4ozXq/tuhs6wpeh3hvfV0V/irGl6JJZvp4mJnN0WelrD
+         IjffV4AzkJbFpSsdKfsevV3m8fJJ/II/OKErdWy+47bjSJbaU7aMnUmTTOtWGoDbpjqf
+         XBRCN/iSkoys/d5q4tL0WozX69pqY5BgnPSYvBBqYBu9ywkNBfyxk+FB00tbqeWb5Tlp
+         JgmA==
+X-Forwarded-Encrypted: i=1; AJvYcCXXB9zaCmdRx88q1R5JEoknqCb65NuRYZLYr3d9kwLexSXn2hQXVVZd7kbP3+WWt+cuN/LjdKB+1O6f@vger.kernel.org
+X-Gm-Message-State: AOJu0YxdzBOTJVqxvqDD/FQI8MwjIKqz0ZLrVfpUsDk7xsHDcatk+I+P
+	Kiyb/nYL4B3yAGgBIzj+sroaeX/w+YDFIhkRd0B/RMIeog66O/rSGDx18vzCiQ4rYQo=
+X-Gm-Gg: ASbGnctlj94M7sRmS4Jzm6ozUYOoPVne7EEYwMgRHMnDvaxy6TgE6U6mxdOasFyiAGv
+	SLo8HeOXa89z8DgpcwQNE657DkBAbdf/J4ANF/uUOI9ii3Zvakey0JRGd465+rn8aVXllI/e3k7
+	DAWGiprgf7y/lCbRbNn0NjPzngEupj7moZ7yM69q9iu7HeLJKPqJ7IxqkYb8Kk62z0mpBHefVpw
+	x56pRqdlJXkY/LtbgLts1rLjBG5ul9LWgB1lNoh/sYFUICL8wd3+LcF1PBr6DrMYKYGfxVqSTW9
+	TR9J7MAGf5cRDvEmhPlowZatsI5Ujw/esdD9uqgakMKhk1TMsEy3MHO2QasVdlJ0k2RONBgum6h
+	nooq0E7PmcIa3dyBQvdq0G7Zp0ir2G6Fz5kNlND7D80WcznyGuspcyd4kCKp1X7nXI6QAc4jD9E
+	vuNZZxPrj7uyElrjnvxD4558JkmYOG1hiRW5sH
+X-Google-Smtp-Source: AGHT+IFUFKcADmzsj/IXf4M39Ln3t08RBAMcgnpJ1VX0iX7hN5yNIgTZRlo50r/4Kc/y5Zljp8pqkw==
+X-Received: by 2002:a05:6808:50a7:b0:43f:a2eb:861f with SMTP id 5614622812f47-4417b2bbcbfmr13447346b6e.8.1760553532023;
+        Wed, 15 Oct 2025 11:38:52 -0700 (PDT)
+Received: from ?IPV6:2600:8803:e7e4:500:c482:1912:c2de:367e? ([2600:8803:e7e4:500:c482:1912:c2de:367e])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7c0f90510a2sm5533725a34.2.2025.10.15.11.38.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 15 Oct 2025 11:38:51 -0700 (PDT)
+Message-ID: <ad929fe5-be03-4628-b95a-5c3523bae0c8@baylibre.com>
+Date: Wed, 15 Oct 2025 13:38:50 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH v2 1/3] dt-bindings: gpu: img,powervr-rogue: Document
- GX6250 GPU in Renesas R-Car M3-W/M3-W+
-To: Matt Coster <Matt.Coster@imgtec.com>
-Cc: Conor Dooley <conor.dooley@microchip.com>, Adam Ford
- <aford173@gmail.com>, Conor Dooley <conor+dt@kernel.org>,
- David Airlie <airlied@gmail.com>, Frank Binns <Frank.Binns@imgtec.com>,
- Alessio Belle <Alessio.Belle@imgtec.com>,
- Alexandru Dadu <Alexandru.Dadu@imgtec.com>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Magnus Damm <magnus.damm@gmail.com>, Maxime Ripard <mripard@kernel.org>,
- Rob Herring <robh@kernel.org>, Simona Vetter <simona@ffwll.ch>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>
-References: <20251015153952.185249-1-marek.vasut+renesas@mailbox.org>
- <807d4d4d-f1dd-4776-9543-2e8d997071e1@imgtec.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/6] spi: add multi_bus_mode field to struct spi_transfer
+To: =?UTF-8?Q?Nuno_S=C3=A1?= <noname.nuno@gmail.com>,
+ Mark Brown <broonie@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Marcelo Schmitt <marcelo.schmitt@analog.com>,
+ Michael Hennerich <michael.hennerich@analog.com>,
+ =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
+ Jonathan Cameron <jic23@kernel.org>, Andy Shevchenko <andy@kernel.org>,
+ Sean Anderson <sean.anderson@linux.dev>, linux-spi@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-iio@vger.kernel.org
+References: <20251014-spi-add-multi-bus-support-v1-0-2098c12d6f5f@baylibre.com>
+ <20251014-spi-add-multi-bus-support-v1-3-2098c12d6f5f@baylibre.com>
+ <9269eadc1ea593e5bc8f5cad8061b48220f4d2b2.camel@gmail.com>
+ <409ad505-8846-443e-8d71-baca3c9aef21@sirena.org.uk>
+ <12db0930458ceb596010655736b0a67a0ad0ae53.camel@gmail.com>
+ <8c7bf62a-c5dc-4e4d-8059-8abea15ba94e@sirena.org.uk>
+ <d9455d90-31ca-4be7-b17c-2b339e92f8a0@baylibre.com>
+ <9024f05854dcc3cc59345c0a3de900f57c4730d9.camel@gmail.com>
 Content-Language: en-US
-From: Marek Vasut <marek.vasut@mailbox.org>
-In-Reply-To: <807d4d4d-f1dd-4776-9543-2e8d997071e1@imgtec.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-MBO-RS-META: bx97qrbn6yau3qh7ddkjtc6pytrq343p
-X-MBO-RS-ID: 98685ba3c8924c321a2
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <9024f05854dcc3cc59345c0a3de900f57c4730d9.camel@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On 10/15/25 6:50 PM, Matt Coster wrote:
+On 10/15/25 11:43 AM, Nuno Sá wrote:
+> On Wed, 2025-10-15 at 11:15 -0500, David Lechner wrote:
+>> On 10/15/25 10:18 AM, Mark Brown wrote:
+>>> On Wed, Oct 15, 2025 at 03:43:09PM +0100, Nuno Sá wrote:
+>>>> On Wed, 2025-10-15 at 13:01 +0100, Mark Brown wrote:
+>>>>> On Wed, Oct 15, 2025 at 11:16:01AM +0100, Nuno Sá wrote:
+>>>>>> On Tue, 2025-10-14 at 17:02 -0500, David Lechner wrote:
+>>>
+>>>>>>>         controller    < data bits <     peripheral
+>>>>>>>         ----------   ----------------   ----------
+>>>>>>>             SDI 0    0-0-0-1-0-0-0-1    SDO 0
+>>>>>>>             SDI 1    1-0-0-0-1-0-0-0    SDO 1
+>>>
+>>>>>> Out of curiosity, how does this work for devices like AD4030 where the same
+>>>>>> word
+>>
+>> The AD4030 is just one channel, so doesn't do interleaving. But you probably
+>> meant AD4630 when it is wired up with only 1 SDO line. That line has to be shared
+>> by both of the simultaneous converters so it alternates between sending one bit
+>> from each word. This patch series doesn't address that case. But this series will
+>> work for the AD4630 when it has 2 SDO lines wired up.
+>>
+> 
+> Hmm I didn't even remembered that one. But what I meant with interleaved was having
+> the same data word spread through multiple SDO lines (one bit per line) which is what
+> (also) happens with the devices I mentioned. And since you mentioned "...two
+> different data words at the same time, one on each bus...", I raised the question.
 
-Hello Matt,
+Ah, yes, I know what you are talking about now. I didn't mention that use case in
+the cover letter because I didn't want to confuse things. But actually the AD4630
+can have 8 SDO lines, 4 per each data bus/ADC channel. The groups of 4 act like a
+quad SPI where 4 bits of one data word are sent at the same time. Those 4 lines are
+considered one "bus" since they are all connected to the same serialzer that combines
+the bits into a single word. We already have support for this sort of thing in Linux.
+And sure, we could mix the two together. So a SPI transfer might look like:
 
-> Would you mind splitting this conditional block up? We already have a
-> constraint for 2 power-domains (see img,img-bxs-4-64), which should be
-> applied to the entire img,img-gx6250 compatible.
+struct spi_transfer example = {
+	rx_buf = rx_buf;
+	len = 4; /* 2 x 16-bit words */
+	rx_nbits = 4; /* each bus is quad SPI */
+	multi_bus_mode = SPI_MULTI_BUS_MODE_STRIPE; /* 2 data buses */
+	bits_per_word = 16;
+};
 
-I will add a patch into V3 which splits the allOf section up such, that 
-clocks and power-domains limits are limited separately. That will make 
-this addition of GX6250 easy.
+This would result in a transfer that reads two 16-bit words in 4 SCLK cycles.
 
-> As for the clocks, for the currently supported GPUs, we have "mem" and
-> "sys" clocks that are optional at integration time, so those
-> conditionals are based on the vendor compatible strings (ti,... etc).
-> However, these older GPUs always require all three clocks, so it
-> probably makes sense to create the properties:clock{,-name}s:minItems:3
-> constraint on the img,img-gx6250 compatible as well, rather than the
-> renesas,r8... ones.
+And the .dts would look like:
 
-OK
+spi {
+	adc@0 {
+		compatible = "adi,ad4630-16";
+		reg = <0>;
+		...
+		spi-rx-bus-width = <4>;
+		spi-buses = <2>;
+		...
+	};
+};
 
-> You shouldn't need to explicit list the power-domain descriptions at the
-> constraint level at all; if there's a build warning that they're missing
-> I guess the correct place to add them would be on the top-level
-> power-domains entry, but I don't really think they contribute anything
-> meaningful.
-The descriptions basically emulate minItems/maxItems: 2 here. I can also 
-just set minItems:2 ?
+The AXI SPI Engine doesn't know how to do the quad SPI part yet though, so
+it isn't something we could implement right now.
 
-I have one more question -- does GX6250 _always_ have two power domains, 
-i.e. the constrains always set minItems:2 for "img,img-gx6250" 
-"power-domains" property ?
+If we tried to do it with spi-buses = <8>; then we would end up with the
+"interleaved" bits (or nibbles depending on the wiring) that requires the
+extra IP block to sort out when using SPI offloading. Technically, we could
+make it work, but it would require a bunch of extra hardware description that
+the driver would have to interpret in order to correctly format the struct
+spi_transfer. I was hoping we could avoid that and just teach the SPI Engine
+how to do dual/quad SPI like other SPI controllers.
+
+> 
+> So I guess I kind of misused what interleaved typically means (even though I guess
+> it's not completely off :)) and was thinking more on the parallel concept Mark spoke
+> about.
+> 
+> Anyways, from your reply I see the intent is to also use the stripe mode for this and
+> have some kind of external IP deal with data re-order. I gave a look into the ad4630
+> IP core and indeed there's a data reorder IP block after the offload engine.
+> 
+> - Nuno Sá
+> 
+>>>>>
+
 
