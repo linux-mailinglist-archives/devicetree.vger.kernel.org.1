@@ -1,60 +1,61 @@
-Return-Path: <devicetree+bounces-227083-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227084-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DF18BDE81C
-	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 14:39:32 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D1B4BDE830
+	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 14:40:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id DF5EE4FF956
-	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 12:39:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AB3493C1CF3
+	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 12:40:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAA0D40855;
-	Wed, 15 Oct 2025 12:39:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4D6D1C7009;
+	Wed, 15 Oct 2025 12:40:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aADQLKwn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="J2gpWtDl"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEF7C182D2;
-	Wed, 15 Oct 2025 12:39:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99F02EEDE;
+	Wed, 15 Oct 2025 12:40:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760531966; cv=none; b=npGZI9gwx/zBPOSEc0ZSr+C5FJ3zH0fJueyXqSRWakJ+vN0RrZ1hgmRXAwyiBc0WLhc8Gmon8MPbEoR/Dij9/kOirp7qEULKYEy9GmY4Ir0bTtGUpirfl5m+wRcA2B5W/jhCfWjqEAafONB8aZkvPbbELeaVgK9qoADg5nj2HMg=
+	t=1760532007; cv=none; b=H6bfbBBRKlqCrgAyr4MpfzRTALdqy/qELkuUF9UwIVTW2iDOv14LWUYWYi50OrLMWXgU9aJAAJDfkt2ubLtgaImg3sGSPeLL36hjUDxlM33m1Gd8kbkA5pgNK4/OvMFKmTA5c3UaZmyvOEEYP5cz9sl8e3a8xvmrBi+7SXJ5XTo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760531966; c=relaxed/simple;
-	bh=O4vy5PSXyIGPiDBPil6snETDgyGJ9ca0rxgId+YGngw=;
+	s=arc-20240116; t=1760532007; c=relaxed/simple;
+	bh=+O+6yIYr8FzPbqLDVixZB4ttA26iKq/msZN98cXYthY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FIODCUtDVEYUS3h2af1H+trtfXd0QjCuDbCYyY36X3MdmgKZba5xvVWi4XmaLQDb5+pQ9mB6ly8iktZymymPywq4kVnQOUOXH2078vk3zGc8jdBl17IGNMyNMvOGTIlY+Ove24qiW+7XYAg7lm6ii87JLGEvbl1J58afJL5ZCig=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aADQLKwn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0AF81C4CEF8;
-	Wed, 15 Oct 2025 12:39:25 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=CwgvhmdKNH5D6acT2uDdhlP8ZCaIPkxARwe21FutwgHhjrErlnwtodRnUhj4uTwwpPdGtPgFLc8/ZBK47Ykol1if3uz0DGpNognoca5Fn5CF+GlW3C1riqjkWITKg4E3lDO9lmNMl2y18CLSuLAyawSbQQ2zZCL9Zr4RABsXD9M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=J2gpWtDl; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DEA87C113D0;
+	Wed, 15 Oct 2025 12:40:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760531966;
-	bh=O4vy5PSXyIGPiDBPil6snETDgyGJ9ca0rxgId+YGngw=;
+	s=k20201202; t=1760532007;
+	bh=+O+6yIYr8FzPbqLDVixZB4ttA26iKq/msZN98cXYthY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=aADQLKwn0O0etKEqQQ+te27f5Oajw9gR9Exbma95Xn1NrWBIo/sS40/JhgBFHYNPq
-	 zuJi90mAD3JBoVaZWRht4dAbJvomp0Ynmh/1RwE4PtotlI9jDhsdDEv1JEMlbcpFnf
-	 Geo6XGPmXHW1prv+ZSjTV3NAJYD2YoMYT0f4SI2wRAe/3ykfGrtKEhEVKTTtXlFnyb
-	 XXv955yEJKhW5MqOUKOpmD3U5LoiTcNHisZrU9fStcr0ZtunBhk9kvqRSEZXsxHME7
-	 oNmbA1ZXd87mLoyJ8aIgfeCrSoDcx7VhNgdOg7pv5sVvtAYaDZv5rz75Xcl59zPy/2
-	 OOgbiVL/zBA6g==
-Date: Wed, 15 Oct 2025 07:39:24 -0500
+	b=J2gpWtDlTvjz1RDRypFRUoftIsS0ta1nv63XEuFb5Qe1CuP9upnEyqfjCVqMU8cSJ
+	 1gCJ9jDGdZgCB1T7ePBrQtrNok3LkzGJtm2WiyhGaqo7BVSmgJdoBQGoDRSrrU1L3P
+	 yVH0X0bryzo8kuVyhmLhmffkRwVOdSCJYFI5YpVuHYygAj5Bfijy/0mJ5NfG572Cia
+	 zt2wY8pqlX8IdCV7E5zw5i63b30mYPPFahizjf71RkJV+2tDy1N3T97K703ZDl7PVl
+	 svMAb2IJN/RSFUJG465hYPxa3DWrcTLRR6N6QirtImasYNszxyYT6P4jR5vVgUXbUF
+	 KoSBHpkeF+Qlw==
+Date: Wed, 15 Oct 2025 07:40:05 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>
-Cc: linux-watchdog@vger.kernel.org, linux-aspeed@lists.ozlabs.org,
-	andrew@codeconstruct.com.au, krzk+dt@kernel.org, linux@roeck-us.net,
-	wim@linux-watchdog.org, linux-kernel@vger.kernel.org,
-	joel@jms.id.au, linux-arm-kernel@lists.infradead.org,
-	BMC-SW@aspeedtech.com, conor+dt@kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 1/3] dt-bindings: watchdog: aspeed,ast2400-wdt: Add
- support for AST2700
-Message-ID: <176053196354.3197283.4565101517229903275.robh@kernel.org>
-References: <20251010080315.816628-1-chin-ting_kuo@aspeedtech.com>
- <20251010080315.816628-2-chin-ting_kuo@aspeedtech.com>
+To: Baojun Xu <baojun.xu@ti.com>
+Cc: 13916275206@139.com, chinkaiting@google.com, devicetree@vger.kernel.org,
+	andriy.shevchenko@linux.intel.com, tiwai@suse.de,
+	linux-kernel@vger.kernel.org, toastcheng@google.com, k-yi@ti.com,
+	shenghao-ding@ti.com, will-wang@ti.com, jesse-ji@ti.com,
+	broonie@kernel.org, krzk+dt@kernel.org, jim.shil@goertek.com,
+	robinchen@ti.com, henry.lo@ti.com, conor+dt@kernel.org,
+	lgirdwood@gmail.com, linux-sound@vger.kernel.org
+Subject: Re: [PATCH v7 2/2] ASoC: dt-bindings: ti,tas2781: Add TAS5802,
+ TAS5815, and TAS5828
+Message-ID: <176053200447.3198136.11218701016836668854.robh@kernel.org>
+References: <20251010085349.52951-1-baojun.xu@ti.com>
+ <20251010085349.52951-2-baojun.xu@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,23 +64,37 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251010080315.816628-2-chin-ting_kuo@aspeedtech.com>
+In-Reply-To: <20251010085349.52951-2-baojun.xu@ti.com>
 
 
-On Fri, 10 Oct 2025 16:03:13 +0800, Chin-Ting Kuo wrote:
-> Add support for the AST2700 SoC in the ASPEED watchdog device tree
-> bindings. This includes:
+On Fri, 10 Oct 2025 16:53:49 +0800, Baojun Xu wrote:
+> TAS5802, TAS5815, and TAS5828 are in same family with TAS5825, TAS5827,
+> TAS5802 and TAS5815 share same address setting, and TAS5828
+> share same address setting with TAS5827.
 > 
-> - Adding "aspeed,ast2700-wdt" to the compatible string list.
-> - Extending the "aspeed,reset-mask" property description for AST2700.
-> - Defining AST2700-specific reset mask bits in aspeed-wdt.h,
->   covering RESET1 to RESET5.
+> Signed-off-by: Baojun Xu <baojun.xu@ti.com>
 > 
-> Signed-off-by: Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>
 > ---
->  .../bindings/watchdog/aspeed,ast2400-wdt.yaml |   8 +-
->  include/dt-bindings/watchdog/aspeed-wdt.h     | 138 ++++++++++++++++++
->  2 files changed, 144 insertions(+), 2 deletions(-)
+> v7:
+>  - Updated the patch subject
+> v6:
+>  - Change the patch title and the description in more detail
+> v5:
+>  - Change the patch title and the description
+> v4:
+>  - Change the patch title
+>  - Add TAS5802 support in yaml file
+>  - Change description for missed TAS5815
+>  - Change format to keep all lines within 80 bytes in length
+> v3:
+>  - Rewrite the patch title
+>  - Add TAS5815 support in yaml file
+> v2:
+>  - Update description for TAS5828
+>  - Change commit tree to .../tiwai/sound.git
+> ---
+>  .../devicetree/bindings/sound/ti,tas2781.yaml | 43 ++++++++++++++++---
+>  1 file changed, 37 insertions(+), 6 deletions(-)
 > 
 
 Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
