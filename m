@@ -1,92 +1,85 @@
-Return-Path: <devicetree+bounces-227125-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227126-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DEE47BDEE1B
-	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 16:00:19 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 91B7FBDEE7A
+	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 16:04:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C0DE64053FD
-	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 14:00:17 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 9FC42500DF2
+	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 14:04:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86F2E215F7D;
-	Wed, 15 Oct 2025 14:00:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEC61288C96;
+	Wed, 15 Oct 2025 14:02:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NxRVPNxT"
+	dkim=pass (4096-bit key) header.d=prolan.hu header.i=@prolan.hu header.b="mNpSdK7Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fw2.prolan.hu (fw2.prolan.hu [193.68.50.107])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5627715B0EC;
-	Wed, 15 Oct 2025 14:00:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA0BB76026;
+	Wed, 15 Oct 2025 14:02:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.68.50.107
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760536816; cv=none; b=VaruXYebljN8W1ksrerUYzJpu7r6Mab6vnobNSi8f6m27nswHR1nYoGh5iugirkW7DCJBg5YuRwnUZ9cYA7f+PWvZSJPqltSUzNdlvkM2nQqk6qJIRTzcyiRmaywDG+3V4LVSIlYYvFH0KGqqx5TYGvtzh5LoiD4DgvcjWga+wA=
+	t=1760536946; cv=none; b=MY8pDFQblWEDIwz8LRpb4bImqzQuLGZrIqBGFlQhE2oPLYgcSF/XwxLFX4HIf6IWCcZtzNh4fUNZ+dDGbV+gxZ2r4aQ5caZ3932Wvw5fnfZFDXTnNVhKSzk3g0KNgLDOG1fMwuwWT/hDnvq01rGp8tgnhtbOtSZ6tQhmqLKriWY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760536816; c=relaxed/simple;
-	bh=CFCf1jlvWWOR/a6zkgwqZYSPmfb3AShgDFzbIXQWQOk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=puKfAU0K801NdgXBpxKke1Oy0kyZ6FAd3MqYymWvhpuvfoYgKqpkQQaQtkxk+BTJ8/mBsP2r/2Gm2WYl/81mHINEl9aIKwwKRnKgZHL8IO8DwbHoXtyiA/BRzVLSk0kFo1dUK002Vh9FZ+23iXuC6yiGQS2o+pQZN5Tr+PKVjTE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NxRVPNxT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9C8C2C4CEF8;
-	Wed, 15 Oct 2025 14:00:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760536815;
-	bh=CFCf1jlvWWOR/a6zkgwqZYSPmfb3AShgDFzbIXQWQOk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=NxRVPNxTJEZrwlxkuY1eKTFhrZhKXnwRscbJ7VUzY9GgzJ+PQebmlbNSTi15ZBt9U
-	 xoDvIxMLiw6q1SUpss4Ae4UReY0SCbP3RUaDRJe4XhBemugb8m2gcy1+XWOpZW9zay
-	 Ii2jX7rVmR1IV/0HIM+QPn3kmfdUdtAWHrr2a3jOwoTmp5rGalA8ADoLmYFd3I1INe
-	 oTOS/zZBinBbqRbrOY3yrUE5Zj8KthPA7pGenTEKmJkRlmijzicanovCH69HkImXSh
-	 0feFCF2t43Of1zEgQ3lFk8H2Q+Zh0KGLSH5v3m08GXkHyMKQQZzpODL6enQq/4jsGw
-	 ST8ahiKMsFP3A==
-Date: Wed, 15 Oct 2025 09:00:13 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-pci@vger.kernel.org,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	linux-mediatek@lists.infradead.org,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	linux-kernel@vger.kernel.org,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, upstream@airoha.com,
-	Ryder Lee <ryder.lee@mediatek.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	Jianjun Wang <jianjun.wang@mediatek.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v5 3/5] dt-bindings: PCI: mediatek: Add support for
- Airoha AN7583
-Message-ID: <176053681339.3300147.17032986972081820170.robh@kernel.org>
-References: <20251012205900.5948-1-ansuelsmth@gmail.com>
- <20251012205900.5948-4-ansuelsmth@gmail.com>
+	s=arc-20240116; t=1760536946; c=relaxed/simple;
+	bh=6nvpRL+w3yMGwSCxrLlHi6Jp9XUA2RlHNIJiHeRHwsQ=;
+	h=Date:From:To:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=EbvFOhD4sVgPAADn4PjWCGcTPqoBs3YSrfh0SOaM3JGpQV9T/mkG0A0EOM7uFhOlZ7ddec7/cjoak/7XPDF1MghuRWOchpEcAN+Yxjgdo2F8jm3VussImtyh7mgML+Sg7uM1hnpBAVeYH2L1QG49Y5Rfp+PMzwYyQRPKUEJ8c0g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=prolan.hu; spf=pass smtp.mailfrom=prolan.hu; dkim=pass (4096-bit key) header.d=prolan.hu header.i=@prolan.hu header.b=mNpSdK7Q; arc=none smtp.client-ip=193.68.50.107
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=prolan.hu
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=prolan.hu
+Received: from proxmox-mailgw.intranet.prolan.hu (localhost.localdomain [127.0.0.1])
+	by proxmox-mailgw.intranet.prolan.hu (Proxmox) with ESMTP id 8E925A0D06;
+	Wed, 15 Oct 2025 16:02:22 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=prolan.hu; h=cc
+	:content-type:content-type:date:from:from:in-reply-to:message-id
+	:mime-version:references:reply-to:subject:subject:to:to; s=mail;
+	 bh=6nvpRL+w3yMGwSCxrLlHi6Jp9XUA2RlHNIJiHeRHwsQ=; b=mNpSdK7QZuNc
+	k/Wymn9abrPlG/o8jt1BE6i36xozmG0hgxwwbSFA5PzA5DCr79idbsORw+7m8BIU
+	3HB4yTVOlzR/5/HX4gtPBNIHGmbDGHc3yl09T07IhqdzFdlk2T9T5NHy2ukL896a
+	25KCxxCx2dOZQUCZ7Sk2gEaGc2iRIHYEgdOuZbGRLTsRzAKcUn80s9cGV0+jmOR/
+	BH0oG4w1TnenlAzKXjG6PiO/F25M8oJ6A0YCVn8bypoKZqHESpyFOIRK4tvzAQCB
+	g5ugfzcsjSmLwI9G40xKzVGOXOJutfExw0ufspu3XJGpi69q3XUY68fPIXkXHLqo
+	isNMC8P2heHm7/kwYFsHI3AR91XIxI0JUdoIfoxrbFw/Wu/yO0uDRBn2IStk/B11
+	9LiIP8sYQ+o7bC51svWH7iVtCGJ+Z3ZZTZjCjyi62UlN0Gt/fAq8NQDgQYdBHYbV
+	2WXXvZGBAz9CbFnJfggAWq82uU+jrY7diXBKGm1/qw11F/CqP3LLv30SQ/0xFWjB
+	q1kx5IQFLd0qn9HBdYJsUYDjeFDFimd5vxtTy+bWs0YLsJAR36wXX7jRl7A787RF
+	8M+HTat2Zafze9tEUxnKZAmMERfZPKUeblpX0yIk18UwY8g+YD0oW7BMtbPSdcze
+	hubWQw9wOFtfLtVb1+n6upoGKyXVpfo=
+Date: Wed, 15 Oct 2025 16:02:21 +0200
+From: Buday Csaba <buday.csaba@prolan.hu>
+To: Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>, "David S. Miller"
+	<davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub Kicinski
+	<kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Florian Fainelli <f.fainelli@gmail.com>,
+	<netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 1/4] net: mdio: common handling of phy reset properties
+Message-ID: <aO-pbUEzbNGFwNHT@debianbuilder>
+References: <20251015134503.107925-1-buday.csaba@prolan.hu>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20251012205900.5948-4-ansuelsmth@gmail.com>
+In-Reply-To: <20251015134503.107925-1-buday.csaba@prolan.hu>
+X-ESET-AS: R=OK;S=0;OP=CALC;TIME=1760536941;VERSION=8000;MC=3282358105;ID=541937;TRN=0;CRV=0;IPC=;SP=0;SIPS=0;PI=3;F=0
+X-ESET-Antispam: OK
+X-EsetResult: clean, is OK
+X-EsetId: 37303A2998FD515F64756A
 
+This is the refined v2 patchset of my previous patches, addressing the
+issues found in them.
 
-On Sun, 12 Oct 2025 22:56:57 +0200, Christian Marangi wrote:
-> Introduce Airoha AN7583 SoC compatible in mediatek PCIe controller
-> binding.
-> 
-> Similar to GEN3, the Airoha AN7583 GEN2 PCIe controller require the
-> PBUS csr property to permit the correct functionality of the PCIe
-> controller.
-> 
-> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-> ---
->  .../bindings/pci/mediatek-pcie.yaml           | 120 ++++++++++++++++++
->  1 file changed, 120 insertions(+)
-> 
-
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+See the previous thread here:
+https://lore.kernel.org/lkml/20251015134503.107925-1-buday.csaba@prolan.hu/
 
 
