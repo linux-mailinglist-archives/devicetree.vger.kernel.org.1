@@ -1,158 +1,121 @@
-Return-Path: <devicetree+bounces-227057-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227058-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97422BDE3C2
-	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 13:14:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EAF1EBDE3D7
+	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 13:16:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id A1CCE4E7319
-	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 11:14:51 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 9A6424E84E4
+	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 11:16:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91F0E32038B;
-	Wed, 15 Oct 2025 11:14:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B74C31CA7B;
+	Wed, 15 Oct 2025 11:16:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="HUd1DMjy"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="UoDvdrNE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
+Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB1F131E0FE;
-	Wed, 15 Oct 2025 11:14:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C18E213E6D;
+	Wed, 15 Oct 2025 11:16:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760526856; cv=none; b=jAit+aGVfZkGxyTw085Y6cFL0i2Qi2vyxUk7XWGXUZSIveJekdwUfQU7MtFAZENWhBE3Csd6Kqv5UFmv8AS8MQvLVmj07HrpXZkuJEwG+3YEn9svUdWwQz3ZTsSKcRwz2DXYoUDT/ewEnx15zk/1nSmZWIBzGwFY7KhBGOAH/EQ=
+	t=1760527002; cv=none; b=XNEfAAsKT9mpur1SYybVNHu3rZ+/NKi1fTSYv4sig+1CmGPMO0/ph8TTTsqOlHqQsspdz8Bv37xLMg9lmdNuH4i0RyOUeSNvUKuWHUQ2fmJzKl6kbQdcmCIXum3AWZuVKbT1Lrl5wgq7dwYW03fdJ9Sh+vC2zhy7yQl+jgHPDVo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760526856; c=relaxed/simple;
-	bh=OgizwtT1W1HTYdW7W6Q46N7j/FNsDV5aR/OdVxogSS0=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ituiKvpe3hTBvkotBGsd8CcBcFZQrXskhjr+ZPAUwCBQwLChrK2KbyyuBwXTiixV+E/alsX00/EoTK09SRQ9Px6YRzIOfXRt71ifUKtXGZHNVQ200cyjQ+j4aEEV7lDXJgcGmB8hjamEt/h7DcmFmJloYI4Jdx0g89KrWcyntrI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=HUd1DMjy; arc=none smtp.client-ip=198.47.23.235
+	s=arc-20240116; t=1760527002; c=relaxed/simple;
+	bh=Bis6a1wlF8kYaFqIpcDHDYpUVxg0GoC2tnUOAX6rrV8=;
+	h=Message-ID:Subject:From:To:CC:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=haNBasZTAAWKQgmFFAG53VHOsHDyFol9qJJocM4RweUP9hs7Ejd1yJ5ybLVSSH7OiO+J5wJEbbchS7AWjuuFOu/jrwdVm6xxM680CxSAns/xIM9iLfiJsn5zMwBGRKOAolyDbH6Cy9eCla172c2DeMQpovBiamzA5iplh8FRcQU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=UoDvdrNE; arc=none smtp.client-ip=198.47.19.246
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllvem-sh04.itg.ti.com ([10.64.41.54])
-	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 59FBE0Ms1828485;
-	Wed, 15 Oct 2025 06:14:00 -0500
+Received: from lelvem-sh02.itg.ti.com ([10.180.78.226])
+	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTP id 59FBGXeH1740850;
+	Wed, 15 Oct 2025 06:16:33 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1760526840;
-	bh=ctceTll3xAGQoau/JHLiaRcQEETQnVqO+VnzBBxC17U=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=HUd1DMjygZA2jZ+QvEZXrtxLSI/3oizjKnvZr/nQEuJqYr44CmJBLSchTnu/tgRRR
-	 V/jCTQyoB1bB70xiGr8NuPG+qxN554N5NgOjJEzVXjzdCtIZmE6jSY3lR1K4GKWbaF
-	 hSpssW3EGiyGfTaGbiDXSIWYO/n3kF8GpUo7WuU8=
-Received: from DFLE206.ent.ti.com (dfle206.ent.ti.com [10.64.6.64])
-	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 59FBE0e3362488
+	s=ti-com-17Q1; t=1760526993;
+	bh=Bis6a1wlF8kYaFqIpcDHDYpUVxg0GoC2tnUOAX6rrV8=;
+	h=Subject:From:To:CC:Date:In-Reply-To:References;
+	b=UoDvdrNEXNBiVaAnqEefl7YcpzHKMHjAEoqNksiEgnRsyyd8OtBcFi7ZlBnGTtMc5
+	 ESkd+x/bhid6WFpm1aPLvlaTgZKHX+WxIWJ7ga3+eRWzX8ub2DEXemYQ+U7wJiyKJZ
+	 TJ18MXo39HAj0+s7vXlWyP7xq9VqOthwLQj1vgi0=
+Received: from DFLE202.ent.ti.com (dfle202.ent.ti.com [10.64.6.60])
+	by lelvem-sh02.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 59FBGXx31181400
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 15 Oct 2025 06:14:00 -0500
-Received: from DFLE208.ent.ti.com (10.64.6.66) by DFLE206.ent.ti.com
- (10.64.6.64) with Microsoft SMTP Server (version=TLS1_2,
+	Wed, 15 Oct 2025 06:16:33 -0500
+Received: from DFLE204.ent.ti.com (10.64.6.62) by DFLE202.ent.ti.com
+ (10.64.6.60) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 15 Oct
- 2025 06:14:00 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE208.ent.ti.com
- (10.64.6.66) with Microsoft SMTP Server (version=TLS1_2,
+ 2025 06:16:33 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE204.ent.ti.com
+ (10.64.6.62) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Wed, 15 Oct 2025 06:14:00 -0500
-Received: from toolbox.dhcp.ti.com (uda0492258.dhcp.ti.com [10.24.73.74])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 59FBDbHn1809909;
-	Wed, 15 Oct 2025 06:13:56 -0500
+ Transport; Wed, 15 Oct 2025 06:16:33 -0500
+Received: from [10.24.73.74] (uda0492258.dhcp.ti.com [10.24.73.74])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 59FBGTHc1811397;
+	Wed, 15 Oct 2025 06:16:30 -0500
+Message-ID: <f815e16805a5a7f7a04dc3158addbbd364447d36.camel@ti.com>
+Subject: Re: [PATCH v3 0/5] TI-K3-DTS: Cleanup CPSW DT Nodes
 From: Siddharth Vadapalli <s-vadapalli@ti.com>
-To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <d.haller@phytec.de>
-CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>,
-        <s-vadapalli@ti.com>
-Subject: [PATCH v4 5/5] arm64: dts: ti: k3-j721s2: disable "mcu_cpsw" in SoC file and enable in board files
-Date: Wed, 15 Oct 2025 16:43:37 +0530
-Message-ID: <20251015111344.3639415-6-s-vadapalli@ti.com>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20251015111344.3639415-1-s-vadapalli@ti.com>
-References: <20251015111344.3639415-1-s-vadapalli@ti.com>
+To: Dominik Haller <d.haller@phytec.de>
+CC: "nm@ti.com" <nm@ti.com>, "vigneshr@ti.com" <vigneshr@ti.com>,
+        "kristo@kernel.org" <kristo@kernel.org>,
+        "krzk+dt@kernel.org"
+	<krzk+dt@kernel.org>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        "robh@kernel.org" <robh@kernel.org>,
+        "linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>,
+        "srk@ti.com" <srk@ti.com>, "s-vadapalli@ti.com" <s-vadapalli@ti.com>
+Date: Wed, 15 Oct 2025 16:46:36 +0530
+In-Reply-To: <1b2b23293b01cec8161bc749bb864b18b3d41678.camel@ti.com>
+References: <20251014125349.3408784-1-s-vadapalli@ti.com>
+		 <df6acbfe5d30956ed66e2768fa595c36d2ebe98a.camel@phytec.de>
+	 <1b2b23293b01cec8161bc749bb864b18b3d41678.camel@ti.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.1-1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Following the existing convention of disabling nodes in the SoC file and
-enabling only the required ones in the board file, disable "mcu_cpsw" node
-in the SoC file "k3-j721s2-mcu-wakeup.dtsi" and enable it in the board
-files:
-a) k3-am68-phyboard-izar.dts
-b) k3-am68-sk-base-board.dts
-c) k3-j721s2-common-proc-board.dts
+On Wed, 2025-10-15 at 10:28 +0530, Siddharth Vadapalli wrote:
+> On Tue, 2025-10-14 at 17:07 +0000, Dominik Haller wrote:
+> > On Di, 2025-10-14 at 18:23 +0530, Siddharth Vadapalli wrote:
+> > > Hello,
+> > >=20
+> > > This series cleans up the CPSW Device-tree nodes by updating the SoC
+> > > and
+> > > board files to keep CPSW disabled in the SoC files and enable it only
+> > > in
+> > > the board files.
+> > >=20
+> > > The following is a summary of the SoCs, CPSW instance and the Boards
+> > > that
+> > > this series affects:
+> > Hello Siddharth,
+> >=20
+> > please also enable cpsw3g in our k3-am62-phycore-som.dtsi and mcu_cpsw
+> > in our k3-am68-phyboard-izar.dts.
+> > Unless I'm missing some other patches you're turning off ethernet on
+> > those two both platforms too.
+>=20
+> Thank you for pointing it out. I will include them and post the v4 series=
+.
 
-Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
----
+I have implemented the feedback and have posted the v4 series at:
+https://lore.kernel.org/r/20251015111344.3639415-1-s-vadapalli@ti.com/
 
-v3 of this patch is at:
-https://patchwork.kernel.org/project/linux-arm-kernel/patch/20251014125349.3408784-6-s-vadapalli@ti.com/
-Changes since v3:
-- Rebased patch on next-20251014.
-- Based on feedback from Dominik Haller <d.haller@phytec.de> at:
-  https://lore.kernel.org/r/df6acbfe5d30956ed66e2768fa595c36d2ebe98a.camel@phytec.de/
-  cpsw has been enabled in k3-am68-phyboard-izar.dts
-
- arch/arm64/boot/dts/ti/k3-am68-phyboard-izar.dts       | 1 +
- arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts       | 1 +
- arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts | 1 +
- arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi       | 2 ++
- 4 files changed, 5 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-am68-phyboard-izar.dts b/arch/arm64/boot/dts/ti/k3-am68-phyboard-izar.dts
-index 41c8f8526e15..381880cf9d79 100644
---- a/arch/arm64/boot/dts/ti/k3-am68-phyboard-izar.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am68-phyboard-izar.dts
-@@ -422,6 +422,7 @@ &main_uart8 {
- &mcu_cpsw {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&mcu_cpsw_pins_default>;
-+	status = "okay";
- };
- 
- &mcu_i2c1 {
-diff --git a/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts b/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
-index 75a107456ce1..e44542b1584c 100644
---- a/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
-@@ -692,6 +692,7 @@ &main_sdhci1 {
- &mcu_cpsw {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&mcu_cpsw_pins_default>, <&mcu_mdio_pins_default>;
-+	status = "okay";
- };
- 
- &davinci_mdio {
-diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
-index 9e43dcff8ef2..3740596576c0 100644
---- a/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
-@@ -457,6 +457,7 @@ &main_sdhci1 {
- &mcu_cpsw {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&mcu_cpsw_pins_default>, <&mcu_mdio_pins_default>;
-+	status = "okay";
- };
- 
- &davinci_mdio {
-diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
-index 837097751c18..2a7f9c519735 100644
---- a/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
-@@ -552,6 +552,8 @@ mcu_cpsw: ethernet@46000000 {
- 			    "tx4", "tx5", "tx6", "tx7",
- 			    "rx";
- 
-+		status = "disabled";
-+
- 		ethernet-ports {
- 			#address-cells = <1>;
- 			#size-cells = <0>;
--- 
-2.51.0
-
+Regards,
+Siddharth.
 
