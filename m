@@ -1,135 +1,113 @@
-Return-Path: <devicetree+bounces-227211-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227215-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6597BDF9C3
-	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 18:18:40 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 082C0BDFA11
+	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 18:22:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0555C189A668
-	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 16:19:04 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id DD8744EA0EB
+	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 16:22:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0210A3375CF;
-	Wed, 15 Oct 2025 16:18:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 543A9335BBE;
+	Wed, 15 Oct 2025 16:22:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="V1Gj3UXl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JuqpDqa1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31F9F3375BF;
-	Wed, 15 Oct 2025 16:18:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.161
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C45D202F71;
+	Wed, 15 Oct 2025 16:22:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760545115; cv=none; b=optOlJ8IEYAWUUQtbwpsUcULlJ9D8D/Py6yHyPmwChZXUSrR7tK27SsOROwYasG3iMcu7SqzHIFik8yyu+g3Hdgfcn/JW9rMA8BEmPxH6SVpQGN6ub4sY0QGE9F21NxNBLOfI0bRcXicSIuuUjjc/8PqCDYiYQ9X98nQ8y7p69w=
+	t=1760545332; cv=none; b=i9Ymlh9y+vHpkD+WKNFR6ns4fOCqKEYP+OIykcf4g7Jfw5RYpbd2FYl8g4WtMw+QgS5q/p+95UsYPQxwqYzZzxMeDteAnTe9Y5Lp/ZDf9UpdbF8iJkWhWZcsTQEkPRdXLj+A5TJmVzznw17zbJnITZCTe2Kn6wY0gQ1J8zUKu3E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760545115; c=relaxed/simple;
-	bh=HFtFHnjdoCw2QpmLuESwUrt9XygQu+XZS3kuRKv4N8E=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dMsxmmortNyFC9gXlUKw3RCZeM7MDnRwyWwcrnmDmeYTbqK4XHX0SB20AYGD/bUzWwF9xqV8SZuuW9qA1Pc9X6yWJ3ZN2Q3ve5hBFUD34UKrsnts4DUdsL2ULt3QTpPUnQkEpqjSwwyR+rN8nj9jQWMTfdKHuk9z7vWyz0tC4KQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=V1Gj3UXl; arc=none smtp.client-ip=80.241.56.161
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp1.mailbox.org (smtp1.mailbox.org [IPv6:2001:67c:2050:b231:465::1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4cmx8k3hfSz9spd;
-	Wed, 15 Oct 2025 18:18:30 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1760545110;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=+RAcB1KnTu10/U/5AH7wLJv4yw422htNmPqwtIjsMk4=;
-	b=V1Gj3UXlTfbAXXf5H8fENfL7wuosE2RSQoMBoCz53MsTllEkLuoeDDji6805ZHRW/Gw2o0
-	Xu+HELzQrpUOJ4rxjwCf0hYN+hyML3uTegapcoIlXOoLI25GNkOeBr85BaF976a60WtRex
-	aOjTyjwPhdras7ObxUNPbMgCA/y5MfJPz+G5148y3bXilFNgAZFtArFRjUA3aq0/Sw8eGq
-	xoNLrI70eJJzv70Rxl8IVKoG2unPNxQZZWlxubfp++LOdQPT/f/Wz+9U6Zq7qJwowPxn9k
-	DG2C8guxzonxJujbwt0iuMaFLr19G69W9/ZMo/0Q+roji0ksHOC2+vvHviKJww==
-Message-ID: <e0507800-7e86-4fbb-95cb-e64d8cca1e49@mailbox.org>
-Date: Wed, 15 Oct 2025 18:18:25 +0200
+	s=arc-20240116; t=1760545332; c=relaxed/simple;
+	bh=m5yz6FAGECP9+hJqdl/rehdUmr+YvIiUg5swfLlBFGk=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=CSvCgqjo5raeKdpK+QY0TDRFEVZ3yZZ6WRDDk2K865+Wd4VzK6TdP3X5JlA971IoKv4JOeQEP0PmMtrbeaeOGTU9IeAt1rDG6AX9KaDXVG4Oq9IK6yhN2xm+hRMQagQrsXovVRdvnMFRWKpX9jRS2RkPj2H/DgIWvLWs7ug1UDU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JuqpDqa1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5D9C1C4CEF9;
+	Wed, 15 Oct 2025 16:22:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1760545330;
+	bh=m5yz6FAGECP9+hJqdl/rehdUmr+YvIiUg5swfLlBFGk=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=JuqpDqa1YOpi244K0gRdbMaFRQVKXJFoxEajxUXv4EOncI+NW2gCfk6C6742EorfY
+	 cHWVCgqZ+VehNMHDpgqcrg+YsZ8wvPLEtd8kpVQqJXwNN5RlTzeS1g1PCFgEcH+icC
+	 PWH6v4b1CHP21kyfdHL6+Zeyiq0ElrjtEnBCxhZgzeDKYd4jKKuEa87Nrot6kchddH
+	 gIBee+jSI6kiDRyJVhnZmU8NrwPlqXtUezcSyTgTXy+0cOmIc1pFj6SxDSq2pdG3bw
+	 44Q8/16bVwfAyd4Zy+R27pZ6rdx/fZg3KfvPOeDY4NbvAO1GGUS4kb0CpnyJbzSJSC
+	 oAS6zTG7kSgJQ==
+From: Mark Brown <broonie@kernel.org>
+To: Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Thierry Reding <thierry.reding@gmail.com>, Marc Zyngier <maz@kernel.org>, 
+ Thomas Gleixner <tglx@linutronix.de>, Liam Girdwood <lgirdwood@gmail.com>, 
+ "Sheetal ." <sheetal@nvidia.com>
+Cc: Jonathan Hunter <jonathanh@nvidia.com>, 
+ Sameer Pujar <spujar@nvidia.com>, dmaengine@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-sound@vger.kernel.org
+In-Reply-To: <20250929105930.1767294-1-sheetal@nvidia.com>
+References: <20250929105930.1767294-1-sheetal@nvidia.com>
+Subject: Re: (subset) [PATCH V2 0/4] Add tegra264 audio device tree support
+Message-Id: <176054532703.196625.10143802503112850077.b4-ty@kernel.org>
+Date: Wed, 15 Oct 2025 17:22:07 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH 00/39] Add i.MX95 DPU/DSI/LVDS support
-To: Liu Ying <victor.liu@nxp.com>, dri-devel@lists.freedesktop.org
-Cc: Abel Vesa <abelvesa@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Fabio Estevam <festevam@gmail.com>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Lucas Stach <l.stach@pengutronix.de>, Peng Fan <peng.fan@nxp.com>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Rob Herring <robh@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- linux-clk@vger.kernel.org
-References: <20251011170213.128907-1-marek.vasut@mailbox.org>
- <174ec43e-4cac-4452-a77b-e2e3b8413d05@nxp.com>
- <2c4a42eb-8c49-4ba3-baa3-921ec52f730d@mailbox.org>
- <92d928cc-d9df-4c9c-8571-da39001b91a7@nxp.com>
-Content-Language: en-US
-From: Marek Vasut <marek.vasut@mailbox.org>
-In-Reply-To: <92d928cc-d9df-4c9c-8571-da39001b91a7@nxp.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-MBO-RS-ID: 03ff7b3109451a21313
-X-MBO-RS-META: kx1epfwft5um1jo7qw14sxkpbgi5h5ht
+X-Mailer: b4 0.15-dev-2a268
 
-On 10/15/25 12:00 PM, Liu Ying wrote:
-
-Hi,
-
->> I wanted to put this whole thing on the list first, before I start splitting it up.
->>
->> For starters, I think I can send these separately:
+On Mon, 29 Sep 2025 16:29:26 +0530, Sheetal . wrote:
+> Add device tree support for tegra264 audio subsystem including:
+> - Binding update for
+>   - 64-channel ADMA controller
+>   - 32 RX/TX ADMAIF channels
+>   - tegra264-agic binding for arm,gic
+> - Add device tree nodes for
+>   - APE subsystem (ACONNECT, AGIC, ADMA, AHUB and children (ADMAIF, I2S,
+>     DMIC, DSPK, MVC, SFC, ASRC, AMX, ADX, OPE and Mixer) nodes
+>   - HDA controller
+>   - sound
 > 
-> Before discussing how to split, a bigger question is that is it fine to
-> support both i.MX8qxp DC and i.MX95 DC in the same imx8_dc_drm module?
-> Separate modules look more reasonable to me, considering the fact that
-> there are quite a lot difference between the two DCs.
+> [...]
 
-(maybe I do not quite understand your suggestion with "separate module", 
-I assume this means entirely duplicate driver, is that correct? I 
-operate with that assumption in the text below.)
+Applied to
 
-This series indicates that the functional units in the DC are basically 
-identical, with the majority of changes being register base addresses of 
-the whole DC and an odd bit or register offset here and there. Most of 
-the code can be reused, as can be seen in the first half of the series.
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-The addition of iMX95 into the iMX8QXP DC also does not seem to be 
-making the driver in any way more complicated.
+Thanks!
 
-What would be the benefit of having duplicate driver for IP that is 
-basically identical, for i.MX95 ?
+[2/4] dt-bindings: sound: Update ADMAIF bindings for tegra264
+      commit: 4d410ba9aa275e7990a270f63ce436990ace1bea
 
-[...]
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
->> - drm/imx: dc: Rename i.MX8QXP specific Link IDs
-> 
-> TBH, I'm not a big fan of adding LINK_ID_x_MXy to enum dc_link_id, since
-> the members may have the same value and it's kind of a mess considering
-> future SoCs.
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
 
-I am open to a better suggestion which does not involve duplicate driver.
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
 
->> - drm/imx: Add more RGB swizzling options
-> 
-> This one seems ok.
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
 
-I can send that one separately. Can you test that on MX8QXP ? I don't 
-have a board with that SoC, sorry.
+Thanks,
+Mark
 
-[...]
-
-> I kind of opt to separate modules.  Maybe, to save some code, an additional
-> module can be introduced to wrap common part as helpers, plus some callback
-> magics, like fg->dc_fg_cfg_videomode().
-Let me ask for clarification here -- by separate modules, do you mean 
-two totally separate drivers ?
 
