@@ -1,254 +1,146 @@
-Return-Path: <devicetree+bounces-227182-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227184-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E918BDF33B
-	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 16:57:35 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E3292BDF4EF
+	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 17:18:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 8E129500664
-	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 14:57:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 594C219C6F9F
+	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 15:18:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5009D2DEA94;
-	Wed, 15 Oct 2025 14:56:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D19FA2FB098;
+	Wed, 15 Oct 2025 15:18:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YSCYSFR5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sUxnLGGL"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 115102DCF50;
-	Wed, 15 Oct 2025 14:56:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DD7C2FABE6;
+	Wed, 15 Oct 2025 15:18:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760540189; cv=none; b=CPEM0DMBQJRyHbrq98tBw6pR53GniWnOE/xSqj+aki4Po461cMWGIRewN2/FdybTxcUI0wFGgJCi9JIOZxzAoDCjuklTeoknjTR1dX26+1ac6bUR23YWmuhSiFiUBqqcGykoADQlJgX75nhVjkFxg+Bg2XJrH0N6nMfzQZ28iy8=
+	t=1760541492; cv=none; b=PBWJXppEjA5zS7yULwPL/4i6rbsq5r1nJvZHMvn/OYbnZR8RBCfu/xP4fasydZbYznXylz6EFxtCYaGXd/MFONEa2Q+HeL4NV1DeyBoyCwZenTc5GBDa0q6HvWzOBV0yTSKRyFwOlI3qCjsx3ZjVGyKqGgZypMFdHceJbxJIfmA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760540189; c=relaxed/simple;
-	bh=9TfNZFPxnfGLTRypItsxifDHxO/2W6YQvUidVKuwoLk=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=rRmM6n0il30ul1kaariJoo8TzzZBD+g+RD0Xu2GyXyJyaohW5DZboOuR1Yfc3UXVI3toZWZ8giBRTgnTGkOO8ikj+P3g5HbZtBXXU6ZTjVdsvucPYnPrh+OPUEd8rTR8hkI45sxN0grSDKWFhMFUyf6LgEqCL9rqbhenT3Q39Hw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YSCYSFR5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id C8124C19425;
-	Wed, 15 Oct 2025 14:56:28 +0000 (UTC)
+	s=arc-20240116; t=1760541492; c=relaxed/simple;
+	bh=uHPoJ+XDxm8fGAJXTft1xVTIPKhJBvXP8Sgc89WODPA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=O4xp7d6apGQImFgqSVQW8KxKmHMAiViWXD3AFk2DWpZpNxmFw/yoYV/I6P8qH7ULZs0/m2ZtsiPrt6pW/P30ZnFnOxO42s1Ghtg7Y/zOW5aKTpcBzLtQG3DMtHFjiBVzu77QbgLoYsxLtxXsOh4n2/7tkyN02OOLPmmVHYjUFTI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sUxnLGGL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E183AC4CEF8;
+	Wed, 15 Oct 2025 15:18:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760540188;
-	bh=9TfNZFPxnfGLTRypItsxifDHxO/2W6YQvUidVKuwoLk=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=YSCYSFR5RHWlPtsb0vRBT64WHx14ek9eUxaj7Spfq/VEYRjF349zg7RHMHB3nbdo6
-	 RaYRfpgVDymm7dqk1pDCIxPmOAw5jE7iV00UqoGgCqohtSLaBGATI+Pm0MOohAkwfH
-	 lzEZjW2YAwgUfwLKbORbDAv3fMeU6G+VBzE4tsixQw5KhNfAE9arh9JnD6Ea4YXGsI
-	 rItVSW5UVN8URhbHlf7YHBoJkaYNw34ubhTQo2nhBO7/q4P1FP/Sbr5p/iCR/USx1P
-	 hZDRSZ/kRPzmQuFef/UXvD+vzTOFonOaVBOMWUs2nMIYtQmBdsxK4txbHeQgGgMRUc
-	 mb+uBRSg2WmCA==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id ABAA1CCD194;
-	Wed, 15 Oct 2025 14:56:28 +0000 (UTC)
-From: Michael Riesch via B4 Relay <devnull+michael.riesch.collabora.com@kernel.org>
-Date: Wed, 15 Oct 2025 16:56:41 +0200
-Subject: [PATCH v13 18/18] arm64: dts: rockchip: add radxa camera 8m on
- rock 3a csi port
+	s=k20201202; t=1760541492;
+	bh=uHPoJ+XDxm8fGAJXTft1xVTIPKhJBvXP8Sgc89WODPA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=sUxnLGGLil/hEpoJqMgZ2OU0Oq1DxrcBFu8qHeOnFR6DywRGzVOJ0GZfueGloi6nS
+	 dPzchaDG9Ffni0l81PSeXK7ho4BLvP5c3YDqBNvRI6zXeELo4jpKDHvbP48agC/QqO
+	 7st+K+XEC1MGM/wklzp/OLZ+or+GUgVo0mEprFm2+n8ut1qwITWkP6UXxcd2AULuol
+	 /uOdGIO+zib/asGLzxNLPsAcYWUhsvxM/QpI9nI2BC+V3ZLshTEhtsLrHzJ0i5lvqj
+	 IvgoS46dqIGnF+Bcv6cbhiURtoOTuIBsS3vOifSPBcGbDk9cvSU80AHyf6926rPAcq
+	 z93MGIGHJOWkQ==
+Date: Wed, 15 Oct 2025 16:18:06 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Nuno =?iso-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+Cc: David Lechner <dlechner@baylibre.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Marcelo Schmitt <marcelo.schmitt@analog.com>,
+	Michael Hennerich <michael.hennerich@analog.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Andy Shevchenko <andy@kernel.org>,
+	Sean Anderson <sean.anderson@linux.dev>, linux-spi@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-iio@vger.kernel.org
+Subject: Re: [PATCH 3/6] spi: add multi_bus_mode field to struct spi_transfer
+Message-ID: <8c7bf62a-c5dc-4e4d-8059-8abea15ba94e@sirena.org.uk>
+References: <20251014-spi-add-multi-bus-support-v1-0-2098c12d6f5f@baylibre.com>
+ <20251014-spi-add-multi-bus-support-v1-3-2098c12d6f5f@baylibre.com>
+ <9269eadc1ea593e5bc8f5cad8061b48220f4d2b2.camel@gmail.com>
+ <409ad505-8846-443e-8d71-baca3c9aef21@sirena.org.uk>
+ <12db0930458ceb596010655736b0a67a0ad0ae53.camel@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240220-rk3568-vicap-v13-18-da164b4918fe@collabora.com>
-References: <20240220-rk3568-vicap-v13-0-da164b4918fe@collabora.com>
-In-Reply-To: <20240220-rk3568-vicap-v13-0-da164b4918fe@collabora.com>
-To: Mehdi Djait <mehdi.djait@linux.intel.com>, 
- Maxime Chevallier <maxime.chevallier@bootlin.com>, 
- =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>, 
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- Gerald Loacker <gerald.loacker@wolfvision.net>, 
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
- Markus Elfring <Markus.Elfring@web.de>, 
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
- Mauro Carvalho Chehab <mchehab@kernel.org>, 
- Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
- Kever Yang <kever.yang@rock-chips.com>, 
- Nicolas Dufresne <nicolas.dufresne@collabora.com>, 
- Sebastian Reichel <sebastian.reichel@collabora.com>, 
- Collabora Kernel Team <kernel@collabora.com>, 
- Paul Kocialkowski <paulk@sys-base.io>, 
- Alexander Shiyan <eagle.alexander923@gmail.com>, 
- Val Packett <val@packett.cool>, Rob Herring <robh@kernel.org>, 
- Philipp Zabel <p.zabel@pengutronix.de>, 
- Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-rockchip@lists.infradead.org, 
- Michael Riesch <michael.riesch@collabora.com>, 
- Michael Riesch <michael.riesch@collabora.com>
-X-Mailer: b4 0.12.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1760540185; l=4380;
- i=michael.riesch@collabora.com; s=20250410; h=from:subject:message-id;
- bh=bWQQTyrmHj2T8R0YJb/80IDIFMO0lILMJZpkYBRnj/o=;
- b=76DdHcEdx4dUGs3ZgThl9xjSHh0R+tkTOaCxcMISXgqSkNLL+fURqzNIQOXZV34VbJDS0uN4h
- eqHgjJIPtshCvGOQG2rVp/4Fl9Z4yY04CbUZG2KjmKphx2bpkxJUS8H
-X-Developer-Key: i=michael.riesch@collabora.com; a=ed25519;
- pk=+MWX1fffLFZtTPG/I6XdYm/+OSvpRE8D9evQaWbiN04=
-X-Endpoint-Received: by B4 Relay for michael.riesch@collabora.com/20250410
- with auth_id=371
-X-Original-From: Michael Riesch <michael.riesch@collabora.com>
-Reply-To: michael.riesch@collabora.com
-
-From: Michael Riesch <michael.riesch@collabora.com>
-
-Add a device tree overlay for the Radxa Camera 8M (featuring the
-Sony IMX219 image sensor) to be connected to the Radxa ROCK 3A CSI
-port.
-
-The image sensor is connected to the RK3568 VICAP MIPI CSI-2
-port, since as at the time of writing this there is no mainline
-support for the RK3568 ISP.
-
-Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Signed-off-by: Michael Riesch <michael.riesch@collabora.com>
----
- arch/arm64/boot/dts/rockchip/Makefile              |   5 +
- .../dts/rockchip/rk3568-rock-3a-radxa-cam8m.dtso   | 103 +++++++++++++++++++++
- 2 files changed, 108 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
-index ad684e3831bc..d6b969a0dab9 100644
---- a/arch/arm64/boot/dts/rockchip/Makefile
-+++ b/arch/arm64/boot/dts/rockchip/Makefile
-@@ -146,6 +146,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-qnap-ts433.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-radxa-e25.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-roc-pc.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-rock-3a.dtb
-+dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-rock-3a-radxa-cam8m.dtbo
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-rock-3b.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-wolfvision-pf5.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-wolfvision-pf5-display-vz.dtbo
-@@ -243,6 +244,10 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-rockpro64-v2-screen.dtb
- rk3399-rockpro64-v2-screen-dtbs := rk3399-rockpro64-v2.dtb \
- 	rk3399-rockpro64-screen.dtbo
- 
-+dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-rock-3a-radxa-8m-cam.dtb
-+rk3568-rock-3a-radxa-8m-cam-dtbs := rk3568-rock-3a.dtb \
-+	rk3568-rock-3a-radxa-cam8m.dtbo
-+
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-wolfvision-pf5-vz-2-uhd.dtb
- rk3568-wolfvision-pf5-vz-2-uhd-dtbs := rk3568-wolfvision-pf5.dtb \
- 	rk3568-wolfvision-pf5-display-vz.dtbo \
-diff --git a/arch/arm64/boot/dts/rockchip/rk3568-rock-3a-radxa-cam8m.dtso b/arch/arm64/boot/dts/rockchip/rk3568-rock-3a-radxa-cam8m.dtso
-new file mode 100644
-index 000000000000..3aa1ffdc22d8
---- /dev/null
-+++ b/arch/arm64/boot/dts/rockchip/rk3568-rock-3a-radxa-cam8m.dtso
-@@ -0,0 +1,103 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Device tree overlay for the Radxa Camera 8M attached to the CSI port of
-+ * the Radxa ROCK 3A.
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/pinctrl/rockchip.h>
-+
-+&{/} {
-+	clk_camera: clock-camera {
-+		compatible = "fixed-clock";
-+		clock-frequency = <24000000>;
-+		clock-output-names = "clk_camera";
-+		#clock-cells = <0>;
-+	};
-+
-+	vana_camera: regulator-vana-camera {
-+		compatible = "regulator-fixed";
-+		regulator-min-microvolt = <2800000>;
-+		regulator-max-microvolt = <2800000>;
-+		regulator-name = "vana_camera";
-+		vin-supply = <&vcc_cam>;
-+	};
-+
-+	vddl_camera: regulator-vddl-camera {
-+		compatible = "regulator-fixed";
-+		regulator-min-microvolt = <1200000>;
-+		regulator-max-microvolt = <1200000>;
-+		regulator-name = "vddl_camera";
-+		vin-supply = <&vcc_cam>;
-+	};
-+
-+	vdig_camera: regulator-vdig-camera {
-+		compatible = "regulator-fixed";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		regulator-name = "vdig_camera";
-+		vin-supply = <&vcc_cam>;
-+	};
-+};
-+
-+&i2c5 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	status = "okay";
-+
-+	imx219: camera-sensor@10 {
-+		compatible = "sony,imx219";
-+		reg = <0x10>;
-+		clocks = <&clk_camera>;
-+		clock-names = "xclk";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&camera_reset>;
-+		reset-gpios = <&gpio4 RK_PD2 GPIO_ACTIVE_HIGH>;
-+		VANA-supply = <&vana_camera>;
-+		VDDL-supply = <&vddl_camera>;
-+		VDIG-supply = <&vdig_camera>;
-+
-+		port {
-+			imx219_output: endpoint {
-+				data-lanes = <1 2>;
-+				link-frequencies = /bits/ 64 <456000000>;
-+				remote-endpoint = <&csi_input>;
-+			};
-+		};
-+	};
-+};
-+
-+&pinctrl {
-+	cam {
-+		camera_reset: camera-reset-pinctrl {
-+			rockchip,pins = <4 RK_PD2 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+};
-+
-+&csi {
-+	status = "okay";
-+};
-+
-+&csi_dphy {
-+	status = "okay";
-+};
-+
-+&csi_in {
-+	csi_input: endpoint {
-+		data-lanes = <1 2>;
-+		link-frequencies = /bits/ 64 <456000000>;
-+		remote-endpoint = <&imx219_output>;
-+	};
-+};
-+
-+&vicap {
-+	status = "okay";
-+};
-+
-+&vicap_mmu {
-+	status = "okay";
-+};
-
--- 
-2.39.5
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="VydopxqU1EZbMNWE"
+Content-Disposition: inline
+In-Reply-To: <12db0930458ceb596010655736b0a67a0ad0ae53.camel@gmail.com>
+X-Cookie: Long life is in store for you.
 
 
+--VydopxqU1EZbMNWE
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Wed, Oct 15, 2025 at 03:43:09PM +0100, Nuno S=E1 wrote:
+> On Wed, 2025-10-15 at 13:01 +0100, Mark Brown wrote:
+> > On Wed, Oct 15, 2025 at 11:16:01AM +0100, Nuno S=E1 wrote:
+> > > On Tue, 2025-10-14 at 17:02 -0500, David Lechner wrote:
+
+> > > > =A0=A0=A0=A0=A0=A0=A0 controller=A0=A0=A0 < data bits <=A0=A0=A0=A0=
+ peripheral
+> > > > =A0=A0=A0=A0=A0=A0=A0 ----------=A0=A0 ----------------=A0=A0 -----=
+-----
+> > > > =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 SDI 0=A0=A0=A0 0-0-0-1-0-0-0-1=A0=
+=A0=A0 SDO 0
+> > > > =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 SDI 1=A0=A0=A0 1-0-0-0-1-0-0-0=A0=
+=A0=A0 SDO 1
+
+> > > Out of curiosity, how does this work for devices like AD4030 where th=
+e same
+> > > word
+> > > is kind of interleaved between SDO lines? I guess it works the same (=
+in
+> > > terms of
+> > > SW) and is up to some IP core (typically in the FPGA) to "re-assemble=
+" the
+> > > word?
+
+> > So combined with the existing parallel SPI support?
+
+> Not sure if this is meant for me :). parallel SPI is for parallel memorie=
+s and
+> the spi_device multi cs support stuff right? I tried to track it down but=
+ it's
+> not clear if there are any users already upstream (qspi zynqmp and the nor
+> flashes). It looks like it's not in yet but not sure.
+
+There's multi-CS stuff but what I was thinking about was the stuff for
+parallel memories, I was trying to clarify what cases you were talking
+about with "interleaved between SDO lines".
+
+> Anyways, IIUC, it seems we could indeed see the device I mentioned as a p=
+arallel
+> kind of thing as we have one bit per lane per sclk. However, the multi_cs
+> concept does not apply (so I think it would be misleading to try and hack=
+ it
+> around with tweaking cs_index_mask and related APIs).
+
+OK, so either just the parallel SPI or possibly that composed with this
+(fun!).
+
+--VydopxqU1EZbMNWE
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmjvuy0ACgkQJNaLcl1U
+h9A9fwf9HKFZXnDsRgTgE9HMei//SyHircumbi19Y5BgrFH1ZuEgJQvO+txFYloA
++1MW1ydyFc2X3hPQJfCGPjdiOA2YBhdl83Jm5n5YODHjzD25r23QHkFx7ipDqHcq
+sEXXHF3Ti7Tw5WONXObua6+ieJg/4VlUd0dWiF9OcLBqOi8AJl43bpxvKv94aPHx
+RTh/Q/SHiHX5agKXCdlmwwfDTfvYi8oTYTxWL/M55pWol1AWb2SHi/2+eHTOr6t+
+BmWzfqNvz6LUPBYLA2uvTAJGSdSoEy0nsrKjbQsqU+kd93hozZFYyIDkc6MraVbH
+7YuuL+JhnF8YJgk14gxdsRJkNC65+Q==
+=v7SV
+-----END PGP SIGNATURE-----
+
+--VydopxqU1EZbMNWE--
 
