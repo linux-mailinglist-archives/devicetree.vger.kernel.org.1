@@ -1,92 +1,123 @@
-Return-Path: <devicetree+bounces-227288-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227290-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CE90BE0300
-	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 20:32:34 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C6151BE0381
+	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 20:39:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 3CC6C4E1034
-	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 18:32:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 45CDB487040
+	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 18:39:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20728325491;
-	Wed, 15 Oct 2025 18:32:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9271C298CC0;
+	Wed, 15 Oct 2025 18:39:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VEG4U2O8"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="L0YA6qK/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E565E325489;
-	Wed, 15 Oct 2025 18:32:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C1253002C9;
+	Wed, 15 Oct 2025 18:38:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760553151; cv=none; b=llVZ+jo1+koeG/3qUcYja1WVOFhSY7R8I9TTuxap8dsd5gTfk4C1aIo1yeojbEBcq6NMf7OKTG9sJkcqAU6Y5A7yTyuyBx8LYng9wqup4K87LoK85GIRyR519bZceL4bOLc9tuew01FWImni2zQ+L4ig2FonwT1FRbSNLAFr8fk=
+	t=1760553540; cv=none; b=Rj+N4zhtUsIfnkhDrxkJtY3SBT9BphjZumYpDi+fkV9HCK4IF9KBFFY8UdgNzh1c0kzpzjv/jPQrX33bVxPtTrQdz0bmSptw8YrOnqTbA8bWLooc2OP4wSO7LjD5R/tcJXxavEX+/viXSHTrny3qgyAirdel5gx/WjDYeI54F/c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760553151; c=relaxed/simple;
-	bh=fQ6Dvs6k0CQ3t/luHMYAgBo0nY4Veo8+0mTyWsYHiwE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mUQxM816g8EuNUiPWFqHC2CQ6ptEMhmJV/oLKSi3SHG+u8jUTXSqJo9cKk/ZHudu5RvZhMeD7WilW4XiXUBKvyZ/vG6cp2s/Kbx9LnAuGM37UOVjS2ZJD+J8SwIWlbUyA8QU7mhY9E37T8YO5soTPF5mVHO/VeiylfXRmn/lvTg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VEG4U2O8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 36D3AC4CEF8;
-	Wed, 15 Oct 2025 18:32:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760553150;
-	bh=fQ6Dvs6k0CQ3t/luHMYAgBo0nY4Veo8+0mTyWsYHiwE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=VEG4U2O8yPqmF/FtLYfSbvUyTNChkJV8jzzx4HeGE1oz1q4G9b00Fh+HWj7b16kBn
-	 BwJElzg5wduStaoJgTlIH0HQKMuFD4gChKoSk+EeOcN7+xkWjO+ZOJJmpjF3Y5e93X
-	 Iq7ysnMH97lPOHsY8uMOKkq4oKcsjzEAqDxNFJ21JbRiaccYzeR+lOHtedTZ46Exnf
-	 KWVuVoD2Woa0q1vmnP7STrKQoE1CrqibKeL4z/xHsKZ0fPuPobmnpDHoqVn6vEDVVd
-	 lSMr5pDFiPEFIld19VlKmSAsyD1gIDy1mrNcHddNK4tZYjibmzAykMVROkAOFbHCHB
-	 XKvXJ4OYwcCuQ==
-Date: Wed, 15 Oct 2025 13:32:28 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Peter Griffin <peter.griffin@linaro.org>
-Cc: Alim Akhtar <alim.akhtar@samsung.com>,
-	Krzysztof Kozlowski <krzk@kernel.org>, devicetree@vger.kernel.org,
-	Tudor Ambarus <tudor.ambarus@linaro.org>,
-	=?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>,
-	linux-kernel@vger.kernel.org,
-	Sam Protsenko <semen.protsenko@linaro.org>,
-	linux-samsung-soc@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Stephen Boyd <sboyd@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chanwoo Choi <cw00.choi@samsung.com>,
-	Sylwester Nawrocki <s.nawrocki@samsung.com>,
-	linux-clk@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	kernel-team@android.com, Will McVicker <willmcvicker@google.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>
-Subject: Re: [PATCH 2/9] dt-bindings: clock: google,gs101-clock: add
- samsung,sysreg property as required
-Message-ID: <176055314794.180061.13794322940289476072.robh@kernel.org>
-References: <20251013-automatic-clocks-v1-0-72851ee00300@linaro.org>
- <20251013-automatic-clocks-v1-2-72851ee00300@linaro.org>
+	s=arc-20240116; t=1760553540; c=relaxed/simple;
+	bh=JNsjsmztpbrMbHw2L00RSaIuraDPT25WKoFIf1QqRps=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=EksTmR/AXfG1Csk9xHmG3K4Qt1FQ4DhS5r4RGFr9z83fXxQfnc5IJRsS+JddOS15drEJHv8uAh/KSdTtVPOkCixnq5ZoJhV18RTilVhqdQ8+kMBVWEgvtiIYLJlfyYh7zisT1bPNVLmXJGdSOndphEJr+aRouX9I8hPUTqHnYkU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=L0YA6qK/; arc=none smtp.client-ip=80.241.56.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp1.mailbox.org (smtp1.mailbox.org [IPv6:2001:67c:2050:b231:465::1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4cn0Gk6R2wz9tcL;
+	Wed, 15 Oct 2025 20:38:54 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1760553534;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=hMSfqTFOOxz3BI5gxHBbzrsmx6UX56DPc5IdGmMbF48=;
+	b=L0YA6qK/+qwqyGzdmlgNk9FFQ/Hnb30IjR7tRRMximVvgg8VhA4sTDV6Nci0YOF699BdSC
+	HDytgme2wZ2JXtAD9NWTiMd86orRY8X7a/nrqGilUlGTMrbetzClPpeW6qKoMQrB2A6hD+
+	Ucr6cRe6ObD5btBmRxX/k1fdxaXR/Ij3a/fAkQH393hfKW36BvNqG8GyD2vCikswdNPLdC
+	AjJIyxzmVw2UQ+N3ajYT0E7IYyqFOhiO1F3HXrOfSMKOo51THGMQ6iGkY0br+JrGsABUrd
+	uB/ICQVefSai09vHfMT5dHwfGsn+BHAdMV7LoXlXFucGwyFSUCDlpVi40PZvTg==
+Message-ID: <cf7ebf8a-01e5-44fb-920b-5e21c05e568a@mailbox.org>
+Date: Wed, 15 Oct 2025 20:38:47 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251013-automatic-clocks-v1-2-72851ee00300@linaro.org>
+Subject: Re: [PATCH v2 1/3] dt-bindings: gpu: img,powervr-rogue: Document
+ GX6250 GPU in Renesas R-Car M3-W/M3-W+
+To: Matt Coster <Matt.Coster@imgtec.com>
+Cc: Conor Dooley <conor.dooley@microchip.com>, Adam Ford
+ <aford173@gmail.com>, Conor Dooley <conor+dt@kernel.org>,
+ David Airlie <airlied@gmail.com>, Frank Binns <Frank.Binns@imgtec.com>,
+ Alessio Belle <Alessio.Belle@imgtec.com>,
+ Alexandru Dadu <Alexandru.Dadu@imgtec.com>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Magnus Damm <magnus.damm@gmail.com>, Maxime Ripard <mripard@kernel.org>,
+ Rob Herring <robh@kernel.org>, Simona Vetter <simona@ffwll.ch>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>
+References: <20251015153952.185249-1-marek.vasut+renesas@mailbox.org>
+ <807d4d4d-f1dd-4776-9543-2e8d997071e1@imgtec.com>
+Content-Language: en-US
+From: Marek Vasut <marek.vasut@mailbox.org>
+In-Reply-To: <807d4d4d-f1dd-4776-9543-2e8d997071e1@imgtec.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-MBO-RS-META: bx97qrbn6yau3qh7ddkjtc6pytrq343p
+X-MBO-RS-ID: 98685ba3c8924c321a2
 
+On 10/15/25 6:50 PM, Matt Coster wrote:
 
-On Mon, 13 Oct 2025 21:51:31 +0100, Peter Griffin wrote:
-> Update the bindings documentation so that all CMUs (with the exception of
-> gs101-cmu-top) have samsung,sysreg as a required property.
-> 
-> Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
-> ---
->  .../bindings/clock/google,gs101-clock.yaml         | 23 +++++++++++++++++++++-
->  1 file changed, 22 insertions(+), 1 deletion(-)
-> 
+Hello Matt,
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+> Would you mind splitting this conditional block up? We already have a
+> constraint for 2 power-domains (see img,img-bxs-4-64), which should be
+> applied to the entire img,img-gx6250 compatible.
 
+I will add a patch into V3 which splits the allOf section up such, that 
+clocks and power-domains limits are limited separately. That will make 
+this addition of GX6250 easy.
+
+> As for the clocks, for the currently supported GPUs, we have "mem" and
+> "sys" clocks that are optional at integration time, so those
+> conditionals are based on the vendor compatible strings (ti,... etc).
+> However, these older GPUs always require all three clocks, so it
+> probably makes sense to create the properties:clock{,-name}s:minItems:3
+> constraint on the img,img-gx6250 compatible as well, rather than the
+> renesas,r8... ones.
+
+OK
+
+> You shouldn't need to explicit list the power-domain descriptions at the
+> constraint level at all; if there's a build warning that they're missing
+> I guess the correct place to add them would be on the top-level
+> power-domains entry, but I don't really think they contribute anything
+> meaningful.
+The descriptions basically emulate minItems/maxItems: 2 here. I can also 
+just set minItems:2 ?
+
+I have one more question -- does GX6250 _always_ have two power domains, 
+i.e. the constrains always set minItems:2 for "img,img-gx6250" 
+"power-domains" property ?
 
