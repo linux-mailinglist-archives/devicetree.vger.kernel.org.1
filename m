@@ -1,202 +1,209 @@
-Return-Path: <devicetree+bounces-226968-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226969-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04F21BDD2FE
-	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 09:46:30 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id EB34EBDD313
+	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 09:47:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E18634E5F24
-	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 07:46:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 31C341890F69
+	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 07:48:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CEBE313546;
-	Wed, 15 Oct 2025 07:46:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3790E31355F;
+	Wed, 15 Oct 2025 07:47:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ddJzFy5g"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="GTGvq6sc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B9B82C026F
-	for <devicetree@vger.kernel.org>; Wed, 15 Oct 2025 07:46:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A03C22C026F
+	for <devicetree@vger.kernel.org>; Wed, 15 Oct 2025 07:47:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760514384; cv=none; b=Q23LQnR8FCcXExw2POTYaIT4Ie5w4AuHS1yYSe1cQPBoA4ghbIpU54wsOlO/M7DWP44mmEvw+dlsQMDwkmVUo+VNUKTYjhmB3uDS5uQ8vQ74zQ9yIFNiyWpzP4aMXB9l4vkt7ppaHXvrzJsev+ctZ1YKw5BE8hBz8irxPUQK29E=
+	t=1760514457; cv=none; b=m7gYQtOIzZ9yPEsUmr6GPBuWqiTVSC9ymzDUcDNoucYuWxncZG1p3Wr3iotKj8A9/WIVtRMuyfTAGY/e6pTVgQcxML0MUzGqYfjjUybRW2XhLM6pUCIW9HlzMARpC3Mm9g1F+wUvhdtudRjaZmEIbuGyb5KE7zGt68bU2uUGZkY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760514384; c=relaxed/simple;
-	bh=BC15KuwCSg0SviAD2NX9WP0PeUqiSLVuQjRMVITVnHE=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=UnEySM7picnhsA5aC8vshzYvFfEwgkpBNH2pFOxLKvw6SFaGNv5hVEHa/Bqdyrmgf126eJM/2tSB4AjxuwFGY+YPrmD1S2hPHVxf5OBC3c+yi6xlMUe0cNdIJQSpjl2pKbJKIjiDZLnNvUsfB714yIhub3X73wDBin4YsKl8bj8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ddJzFy5g; arc=none smtp.client-ip=209.85.167.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-57a604fecb4so8148659e87.1
-        for <devicetree@vger.kernel.org>; Wed, 15 Oct 2025 00:46:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1760514381; x=1761119181; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=p2MNLLJ09ZFJ09dXhL/1vB6MSlJ3nz18TUtg3KkoHkI=;
-        b=ddJzFy5g2VXmK1b6XnYhEOHzZI2aKv8MYBIt8Lh4/IE0Xw0LuR7NaZqJ7gbA0LFnmF
-         4wtIcvaU1BXW3p6ha/Utd+ReyxCZVVlqG4iUJGwJWcU7IeghHhA/f9zoaLb/HWtkgdOt
-         /jh4ABplWMedw84oY8DLHJWdGfanW4pzwtOlIxI1W6wST5c40oOKNUd/QvsxopjdQkAW
-         HzWD72upKFk80N8WUxdEIXlpy9G9SdmrqxC4FNLcRxFNdXJ4gylsmA+EAxaZss/un49b
-         q/0QJ1w7ZIYMA54+Y46CdTtjLEfNYKoqzJH9IDG27Rh+xpI+iwbB2tH+v6o7CbNwNaCj
-         ByIQ==
+	s=arc-20240116; t=1760514457; c=relaxed/simple;
+	bh=JBySYm7jCnLNR7S47OJWMx5tSg66aDYRas2A7H3BfRg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=cIobQUri80HGty6H5ffJo0uC/6wLgtx6jKuo7MdKgwjEuWur5CM+JZhI+cFu6fEcBkskwDdkZMdh56MUM2ubkiZQ4n8/zkgvmrxhnGC2KKh1oO7LVtfpFh+Ce3Czg2+bniww1sknoLkRMfbcFC+bUR7PujqhV2kbOOnaL5TFUeA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=GTGvq6sc; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59F2s9ov016154
+	for <devicetree@vger.kernel.org>; Wed, 15 Oct 2025 07:47:34 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	3wzEuS4KgwUf/si4HCRP4Xjfg9FTP53VK8rld0Pt2hw=; b=GTGvq6sc6JxH0BRj
+	ATrPrb5KfpdAAosrchw3H6kaMELoxGWp3yqbmmH/y8D0AjUvLOxzprSudsU1bZ+Q
+	TxBCCCTKBjaI+EbGlJyNHNMwPGIDwH5Yq/0K58KY45PtKXZtRE0EtZUy/BiR9bdB
+	7RfKDLwEGUEoLtyTJztloXRJp5obqdVQWiYMSUyr4qsnc+iyh27XpAyRk+n6bbBf
+	i99KG671HDGIGK8V9oiQ+AFQo2ieOzwDQVXf+HCFcS/uAtIJR/bLuJCyUVulwGCF
+	iWatMZCyif/690rRFP6oj6A8romXj3CPAjlRaWDSVFR1BzUDFyvbObTo1uhbBSub
+	m8pakw==
+Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com [209.85.214.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49qfdkbjb6-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 15 Oct 2025 07:47:34 +0000 (GMT)
+Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-27ee41e062cso141978935ad.1
+        for <devicetree@vger.kernel.org>; Wed, 15 Oct 2025 00:47:34 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760514381; x=1761119181;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1760514453; x=1761119253;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=p2MNLLJ09ZFJ09dXhL/1vB6MSlJ3nz18TUtg3KkoHkI=;
-        b=KMWuaoT0Jmc88Ks8fgJDdEl8DHrTtczBFrDYDhBU69fnVFDBd/31vQXWXcXnNjZTqn
-         LDxsEUMcJ5wwRBdUoQh4eHgyn3OninVc+eItaMaaCgEmANyjLodRYrgkhmqN/PDXKh4I
-         CKA7dZ92EEZqPhvYPt+7sZUeHhmY3lLEk6Nndc+/OZv89dQky6ojxl8JCXMN3avQuoXN
-         XQWIHHrbchgceebbGcteQkyWAAjqNAihp+5/Qo3bBjXfXgRSqljKlgAYMA3busWaWmnU
-         w2l5uT6qkRy4R/PfrgtMZa5MgYlfOTCMTYeq/B9FqiJ16a9wVufck1xkaCXtPYnuuXwr
-         b3rQ==
-X-Forwarded-Encrypted: i=1; AJvYcCV1JilmCWibelnXBcw3sJbJ/Iv9O+ISDVh3RbGAzavEgeDzlj9NqpqVNsidT+dyzHRBEgHKqQrHV9Wr@vger.kernel.org
-X-Gm-Message-State: AOJu0YynvYjGx0UDz1lxMgXtHJuHE6lljvWajXX7y4tb9SmV+fMnrgwC
-	X6z8/pz3Jrr6Ri0fNyVTyS/iOVZNav/UEypYPfngWc80RrLhIkcxcmgs
-X-Gm-Gg: ASbGncvn0+T5xDhRX3Fibqvi7C92cqXkiSQnyldvtfH+ADq1VmHXuJFlFmpWkZ1gh91
-	qte+RBoHOL8X8Qa0uIb4WncGgcA3L5Q23RHYE+WK7vjGboE1oJP/5gUJpb0QQXA9Wu5D0D1PseE
-	jnX7L9dQyDb2INj5whSPG+plltTDK9p35BRd9nSbsGjAG6DRxPE2xygls49aA90KoIWc3VFHINS
-	9v55waFobqhMmUDZLyIwIeFFH91aRGpP0OUUX3j3U/DptIAKblvxGgSfkY6EtT5Cf+UpPivvlSy
-	dgEOHCLmpL2LMt/bX3OPTCFPQG/jx1p/mM8cuh6B+897xtEshHmf0e8XlCuLDAyhcS0EPBVjS/A
-	Seekie6zRf3IiB1rTLyrbQW4moo9zgctU+XUdWPM2ZNPzwa/nHfmit//I80R3uw2/W9dCIdWfWW
-	refX8jgBlpGBkKUs1sqm8Zkng=
-X-Google-Smtp-Source: AGHT+IECrk7yi+Pwe9pZO4hGvEmNp5pxm/s4OrGMFnEn/EkQ/+8aZDd4HdtIeMunC3aM5IGda/MJPw==
-X-Received: by 2002:a05:6512:3b29:b0:58b:23e:249 with SMTP id 2adb3069b0e04-5906d892889mr7308450e87.18.1760514380271;
-        Wed, 15 Oct 2025 00:46:20 -0700 (PDT)
-Received: from ?IPV6:2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703? ([2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-591c20253b1sm1336364e87.79.2025.10.15.00.46.19
+        bh=3wzEuS4KgwUf/si4HCRP4Xjfg9FTP53VK8rld0Pt2hw=;
+        b=usA0QQZZ+J7mRVxBV+ZlyH1FHAE8gPfMq0cfHEaxc+DD9r0SLAA6BZokCjuKl2QIzp
+         1XxNSZzk/17aeoMzizAuNUzpNr0I9fiFgc7VxXAZLEQxsZXbfjvl73XYXq5PXsRTOqqd
+         /pHnSTrm8p+LisYmdSJSqZmegmoHnpPVJParVUgZM/PfjKprt14EIB4bk+SSq8T9sBdy
+         mQOslkZpI8cRy5JyeJNRmGrJj6bCkOgnVDaZpiTXFwfD9WZfAPfFueJyWsuf5wed1pkA
+         R/J+gYOKSB3hbJIeazr8qX0La/vydcTjQnCrY5WsGZZqnqAbWN5/PCkIAe9aGUzxhRYE
+         ldHA==
+X-Forwarded-Encrypted: i=1; AJvYcCVJbU9Ync2qRPA1axcWRdzoW/98ZJqmbciuZ0DdZkrJiKbGIiQOhmvXzeBeIlgJTE9MXUEqYOv1Z/rc@vger.kernel.org
+X-Gm-Message-State: AOJu0YwFmMpcRfQucGZTeOBul/AyQIy/T2Gb3uzlOTJa4Do7VNC5V1zg
+	a6trTd+XUfKTrsYy3rmkv2d2JOsOx2AZ7tIklv19bNdL0/RarfILehOLCTU+lGIlfP2jxY3BmWg
+	whs91kUABHXyN+3FlUnsKIRf509sNHLGImqAkNPAOKI+Ib4j159SMjeJRXw7V4ltP
+X-Gm-Gg: ASbGncs27AEc4m7VZ0/OCzZtIDyQXrE9EukspO4M8trUpcI/N9inpRSOfNoooZhgPoo
+	Aj+zftoGeyqlPnZMWbx8FVnVx63LbNaQLc+jty0vlnAvx896jChBPDgJAMaJWh7YLycsv60jTut
+	OEcMwJ5vAI313bvl7Oe13Bo27ObLeu3bB/TsaJYofflRbKAkZ6rfaxqIo3nn/M8O09d2claPNb0
+	sVvoRhTRtX8Glcb2S88zy5GiGKmnyiLFLZDZ0vXUO5SFpJeAq0OYyrabO5kEuZYGGlATqVZMDgM
+	BFYg0hEEYpoJqJJ6KEPBekDpSaLMaxMG9EAS1+lXs6uh90t3JU5MNcnmmNoUO2LISmSaXIEtnA=
+	=
+X-Received: by 2002:a17:903:2343:b0:248:fc2d:3a21 with SMTP id d9443c01a7336-29027290194mr277067295ad.4.1760514452617;
+        Wed, 15 Oct 2025 00:47:32 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGhzyOtK2t73BdHuEH9yQdQ6LRCYOnKx0D9BJpdqWj+pdvXaadxnVohWazYDT43ZnK/Q6nPCw==
+X-Received: by 2002:a17:903:2343:b0:248:fc2d:3a21 with SMTP id d9443c01a7336-29027290194mr277066685ad.4.1760514451980;
+        Wed, 15 Oct 2025 00:47:31 -0700 (PDT)
+Received: from [10.216.0.133] ([202.46.23.19])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29034de658bsm187706535ad.22.2025.10.15.00.47.19
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 15 Oct 2025 00:46:19 -0700 (PDT)
-Message-ID: <07bd2e21-8631-4812-9021-3d3b2dbc7050@gmail.com>
-Date: Wed, 15 Oct 2025 10:46:18 +0300
+        Wed, 15 Oct 2025 00:47:31 -0700 (PDT)
+Message-ID: <1bf62073-fae9-dd49-c908-193c06cdda84@oss.qualcomm.com>
+Date: Wed, 15 Oct 2025 13:17:01 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH 06/13] mfd: bd71828: Support ROHM BD72720
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-To: Andreas Kemnade <andreas@kemnade.info>
-Cc: Lee Jones <lee@kernel.org>,
- Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
- Pavel Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Sebastian Reichel <sre@kernel.org>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski
- <brgl@bgdev.pl>, linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
- linux-gpio@vger.kernel.org
-References: <cover.1759824376.git.mazziesaccount@gmail.com>
- <93142a80d90a0ac80b27090d0c83914675aad94d.1759824376.git.mazziesaccount@gmail.com>
- <20251009161847.GE2890766@google.com>
- <8ea507eb-f78c-4a16-882b-112e277fa1b6@gmail.com>
- <20251010150317.07bfdbe8@kemnade.info>
- <d2295506-bf70-4142-8537-0fdf9cb04a30@gmail.com>
- <20251013151900.3e4cc69f@kemnade.info>
- <5ef55577-b8ae-4c8d-a965-ee356c47c691@gmail.com>
-Content-Language: en-US, en-AU, en-GB, en-BW
-In-Reply-To: <5ef55577-b8ae-4c8d-a965-ee356c47c691@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.1
+Subject: Re: [PATCH v16 07/14] firmware: psci: Implement vendor-specific
+ resets as reboot-mode
+Content-Language: en-US
+To: Pavan Kondeti <pavan.kondeti@oss.qualcomm.com>
+Cc: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Souvik Chakravarty <Souvik.Chakravarty@arm.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Andy Yan <andy.yan@rock-chips.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>, Konrad Dybcio <konradybcio@kernel.org>,
+        cros-qcom-dts-watchers@chromium.org, Vinod Koul <vkoul@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Florian Fainelli <florian.fainelli@broadcom.com>,
+        Moritz Fischer <moritz.fischer@ettus.com>,
+        John Stultz <john.stultz@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+        Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Andre Draszik
+ <andre.draszik@linaro.org>,
+        Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>,
+        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org,
+        Elliot Berman <quic_eberman@quicinc.com>,
+        Srinivas Kandagatla <srini@kernel.org>,
+        Umang Chheda <umang.chheda@oss.qualcomm.com>
+References: <20251015-arm-psci-system_reset2-vendor-reboots-v16-0-b98aedaa23ee@oss.qualcomm.com>
+ <20251015-arm-psci-system_reset2-vendor-reboots-v16-7-b98aedaa23ee@oss.qualcomm.com>
+ <3978e740-0589-4872-8f2f-1162084d3818@quicinc.com>
+From: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>
+In-Reply-To: <3978e740-0589-4872-8f2f-1162084d3818@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: PfkEuIO-C_hn1v8Xh50NBUUzV03QyZVw
+X-Authority-Analysis: v=2.4 cv=MrNfKmae c=1 sm=1 tr=0 ts=68ef5196 cx=c_pps
+ a=IZJwPbhc+fLeJZngyXXI0A==:117 a=j4ogTh8yFefVWWEFDRgCtg==:17
+ a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=R8NOTgI61i89tWg-cvsA:9 a=QEXdDO2ut3YA:10 a=uG9DUKGECoFWVXl0Dc02:22
+X-Proofpoint-GUID: PfkEuIO-C_hn1v8Xh50NBUUzV03QyZVw
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDExMDAxOCBTYWx0ZWRfX5aNOMAquDtKH
+ iMPIfcRSVHP+Qq3YdPugJz44cxyFy54y60J2+1HyVozenWhUmzF3Wg4WW+gWackZMDq1bXwY+bt
+ wbd5cthR0hTYi8skBLcMIjvDG/XJ0NmhlENSpogd+pOEJlvuP1f7yqPl14/U8MDopMD84uPCfG/
+ VWrsr7LaDIRZxP/s5QT+Ko/+mRRhh5w9fI/+VTWqIzfLoeouCidmjeGUCtMZnI8pDiKmNhYKX8l
+ Ws9kJB72d1CWecTr5lteqI9m5THbp/3J8g/SmaM5tW3L//Z5npTSTqfbmrz48ILfIMmA9zh/yTs
+ /KTVL8zhfKCZmq/NtpYGaJ7jcMhlqykCO95Eld9988/WIeHtSFGZUcD9oiQKwf0CA4NNZaA1u5t
+ 1IepjCpU9izafasogiu/06A8rr8P6g==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-10-15_03,2025-10-13_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 bulkscore=0 clxscore=1015 adultscore=0 phishscore=0
+ impostorscore=0 priorityscore=1501 malwarescore=0 lowpriorityscore=0
+ suspectscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2510020000
+ definitions=main-2510110018
 
-On 14/10/2025 08:41, Matti Vaittinen wrote:
-> On 13/10/2025 16:19, Andreas Kemnade wrote:
->> On Mon, 13 Oct 2025 12:27:33 +0300
->> Matti Vaittinen <mazziesaccount@gmail.com> wrote:
->>
->>> Hi Andreas!
->>>
->>> First of all, thanks for taking a look at this!
->>>
->>> On 10/10/2025 16:03, Andreas Kemnade wrote:
->>>> On Fri, 10 Oct 2025 15:09:07 +0300
->>>> Matti Vaittinen <mazziesaccount@gmail.com> wrote:
->>>>>>> +static int bd72720_get_secondary_regmap(struct i2c_client *i2c,
->>>>>>
->>>>>> Does this 'secondary' have a specific purpose or a better name?
->>>>>
->>>>> I am not entirely sure. When I asked this from the designers they just
->>>>> told me that they needed more than 255 registers so they added another
->>>>> slave address... (I'm not sure what would have been wrong with using a
->>>>> page register). So, I assume they just placed stuff that didn't fit in
->>>>> first 255 register there. But yeah, it looks like most of the 
->>>>> registers
->>>>> there are related to the charger. So, perhaps it isn't completely
->>>>> misleading to use "charger regmap"? The data-sheet seems to be just
->>>>> using "Register map 1" and "Register map 2" in the tables listing 
->>>>> these
->>>>> registers. I kind of like using something which maps easily to the
->>>>> data-sheet, but I really have no strong opinion on this.
->>>>
->>>> just another idea: What about one regmap with custom functions covering
->>>> both these adresses? Maybe that could even be added to the regmap
->>>> functionality, maybe with a 0x100 offset for the second range.
->>>> That way the rest of the code only needs to real with one regmap
->>>> and properly defined registers.
->>>
->>> Interesting idea.
->>>
->>> I suppose you mean something like implementing custom remap_read() and
->>> regmap_write() - which would practically select the I2C adapter to use
->>> based on the register address - and then doing same thing as the
->>> regmap_i2c_smbus_i2c_write() / regmap_i2c_smbus_i2c_read() do?
->>>
->>> I suppose this would mean duplicating the functionality provided by the
->>> regmap_i2c_smbus_i2c_write() and the regmap_i2c_smbus_i2c_read(), which
->>> are static. It'd also mean we'll lose the 1 to 1 mapping between the
->>> register addresses in driver and addresses in the data-sheet. I agree
->>> this wouldn't be such a huge thing if we used offset like 0x100 though.
->>>
->> Well, you could also stack regmaps like ntxec.c is doing (but there
->> for some very weird reason). That would avoid duplicating code.
+
+
+On 10/15/2025 12:25 PM, Pavan Kondeti wrote:
+> On Wed, Oct 15, 2025 at 10:08:22AM +0530, Shivendra Pratap wrote:
+>> +static int __init psci_init_vendor_reset(void)
+>> +{
+>> +	struct reboot_mode_driver *reboot;
+>> +	struct device_node *psci_np;
+>> +	struct device_node *np;
+>> +	int ret;
+>> +
+>> +	if (!psci_system_reset2_supported)
+>> +		return -EINVAL;
+>> +
+>> +	psci_np = of_find_compatible_node(NULL, NULL, "arm,psci-1.0");
+>> +	if (!psci_np)
+>> +		return -ENODEV;
+>> +
+>> +	np = of_find_node_by_name(psci_np, "reboot-mode");
+>> +	if (!np) {
+>> +		of_node_put(psci_np);
+>> +		return -ENODEV;
+>> +	}
+>> +
+>> +	ret = atomic_notifier_chain_register(&panic_notifier_list, &psci_panic_block);
+>> +	if (ret)
+>> +		goto err_notifier;
+>> +
+>> +	reboot = kzalloc(sizeof(*reboot), GFP_KERNEL);
+>> +	if (!reboot) {
+>> +		ret = -ENOMEM;
+>> +		goto err_kzalloc;
+>> +	}
+>> +
+>> +	reboot->write = psci_set_vendor_sys_reset2;
+>> +	reboot->driver_name = "psci";
+>> +
+>> +	ret = reboot_mode_register(reboot, of_fwnode_handle(np));
+>> +	if (ret)
+>> +		goto err_register;
+>> +
 > 
-// snip
-> 
-> If this works, then I kind of like this. It avoids using the platform 
-> data and simplifies the regmap getting in the power_supply driver. 
-> Thanks for the good idea Andreas!
+> minor nit: np and psci_np reference must be dropped since we are done
+> using it.
 
-Hmm. This morning I tested this approach. I converted the MFD driver and 
-some sub-devices, and I mostly liked it. Mostly.
+Ack. Sure. thanks. Will update this.
 
-When adding the offset only to the addresses behind the 'secondary 
-slave', the addresses behind the 'real slave' (which the MFD driver is 
-bound), can be accessed using both the 'wrapper' and the 'real' regmap. 
-Assuming the cache is kept in the 'real' regmaps. This is a small 
-performance penalty compared to having the cache already in the wrapper, 
-but it allows the drivers like the regulator driver, which only use the 
-'primary slave' to just get a regmap from the MFD parent, no matter 
-whether they get the 'wrapper' of the 'real' one. So, no deviation in 
-these slave devices - nice.
-
-MFD gains a tad more complexity due to the additional wrapper regmap. 
-That's not bad though. MFD also needs to use the 'unwrapped' register 
-addresses for the slave regmap config (ranges and max register). This 
-won't get extremely ugly though as we can do some simple macros for 
-'unwrapping'.
-
-What I do dislike is the fact that the register addresses for the 
-secondary slave will now be 9 bits. This will require some modifications 
-in the power-supply driver, which currently stores the addresses using 
-u8. The register values can still be 8-bits though, so maybe it won't 
-get that bad. I haven't tested this yet.
-
-As a result, I am not entirely convinced, but not totally against this 
-idea either.
-
-I'll be away for a bit more than a week, starting from Friday, so it may 
-be I won't spin the next version until around the last days of the October.
-
-Yours,
-	-- Matti.
+thanks,
+Shivendra
 
