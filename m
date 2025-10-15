@@ -1,59 +1,66 @@
-Return-Path: <devicetree+bounces-227085-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227086-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22163BDE842
-	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 14:42:46 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A36F9BDE857
+	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 14:44:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 90F051892527
-	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 12:43:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 623EE3B194E
+	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 12:44:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43BEF1AB6F1;
-	Wed, 15 Oct 2025 12:42:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 386A41B0439;
+	Wed, 15 Oct 2025 12:43:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Xhn948jh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aXIRVnnX"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 119EDEEDE;
-	Wed, 15 Oct 2025 12:42:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0860B39FCE;
+	Wed, 15 Oct 2025 12:43:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760532162; cv=none; b=Ys49HZ+eJGEq255SQRruWIyEHLRKULbVxBHgEkB6UYTK6pjXTdobWs689Ebg5Cbu1Z+cSffZYkS4+0En9DF1Fz10PKP8yxd9fDMdug9cfmV98m+vKBc1w60vQvC/hjV1GbjzOyh+KVSCWuV+2q4KYmTsDenI0T+RvLLeuEHxzlc=
+	t=1760532238; cv=none; b=r1Sv9pgwrowy9fCaEs1KPtOhut0dRC6QHpwvtA4W03DhMTt0MLo+VuvcrWmK9b9BMg34iRv86roj8CT520bxJHSriueNzp6zv9Llf0VgHeKFUWqhI7CX+gEeBy4CbV9pPI/LSeZiSu0Yoy2YHjApJzLsH2Q89Z66mxfy9EvKtrY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760532162; c=relaxed/simple;
-	bh=vPfvpriXfBpWr4RM30z71/TyfE3xH4ICNaEpoI7JHrM=;
+	s=arc-20240116; t=1760532238; c=relaxed/simple;
+	bh=Rv/WTcy0mNMm+uRot/GU/7Fbs+K4qxalPuCtaq1ElJ0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GrN2kiSwNyG1tunbgLqbu8zpfoytiCoIl23wWvGx2TuDBVb05q7XcENRbf/ncci+3ZR1ztTwcWQfZfCHgV+kLw4evdJSh2agZjJS6mUtbUWnoAbrey5aqzxPnpEN97FLiw9pWa0SdmRN9vOZB13GhqG7p47Ly5WbBLP8krsSAj4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Xhn948jh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5820EC4CEF8;
-	Wed, 15 Oct 2025 12:42:41 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=m6dIR5sTC6nhZwmFzxn+DIN/vkSf/tmDyWr81zvrzcfsD/S8QwsVTdmj2TSs63+r7yCSz1c0x9nSirKQN13zImeeEF+Is4sdoi5FcXLLdneKt6yIrQ/mIMMXNojGW/SBJ/JeXPGf4mproRV+awYl/v1rt37gGb72lwIDo3uk57M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aXIRVnnX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5362DC4CEF8;
+	Wed, 15 Oct 2025 12:43:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760532161;
-	bh=vPfvpriXfBpWr4RM30z71/TyfE3xH4ICNaEpoI7JHrM=;
+	s=k20201202; t=1760532237;
+	bh=Rv/WTcy0mNMm+uRot/GU/7Fbs+K4qxalPuCtaq1ElJ0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Xhn948jhvcjX5NZghm7TBKTXDTmnMXoR1Z/yDfXLhq5hqtIBAWNtnh6D45NYIvXDq
-	 VpG0cizwvt4XahXnYzcu3yoiAd6mHXIqVHLfQwOouOwcPgfIPeJo6c7vcL9nPG6tRq
-	 YoNjvoQELppFjLusq5yk2PyRjoAIr+Towua9Sld3DWSG9V30hG8R++vUrPZxpAdGz3
-	 kJvWyBtXjEpI0aSNQYn0ErOcI1g5vNoYlrrSeVmjFi0x+IDJyHJ0Dys+pMsDeWVTMi
-	 4sm/Ek5Jl5FLLcH15n2VKCU36h0RU7OhywrpFUio5ljGqZU11UVK1S9gxIk4adjm7g
-	 Jg3jSEOkxePeA==
-Date: Wed, 15 Oct 2025 07:42:39 -0500
+	b=aXIRVnnX1DKzvIv1B6Y3BFLJbfCl+l7UBPd4iL2xwtSnN+cZL6OtcgShLadRkxhuK
+	 CPemmyAY+8iEQiMjSq0J64kBB2mJTgtuKkDF1MbRZAfmyJGpAT2CcyMUnaPBFlVnG8
+	 +RnWbNmsHeX3KAnSbxy2xUWIXly6N5NuddQAkm7w0qWHxdDfiOOqkuppPuS70weaIT
+	 UTk5zxeRhYiMKl8gKtgC7R4myMQBofR2hCp8CDo9ldjljHX66+Poifj02PoPPjaYVe
+	 nkZbTG74SRlPUeyhg3r70EAAp3vzy60TvuIyp+KkqMo3VAhWjdyNX52JuIQhC9tmWE
+	 I0oQiebGdts3Q==
+Date: Wed, 15 Oct 2025 07:43:55 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: devicetree@vger.kernel.org, Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Shengjiu Wang <shengjiu.wang@nxp.com>, linux-sound@vger.kernel.org,
-	Conor Dooley <conor+dt@kernel.org>, imx@lists.linux.dev,
+To: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+Cc: Conor Dooley <conor+dt@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/1] ASoC: dt-bindings: Add compatible string
- fsl,imx-audio-tlv320
-Message-ID: <176053215879.3201098.9562070210286205315.robh@kernel.org>
-References: <20251010160321.2130093-1-Frank.Li@nxp.com>
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Abraham I <kishon@kernel.org>, linux-arm-msm@vger.kernel.org,
+	linux-pci@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>,
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>
+Subject: Re: [PATCH 1/3] dt-bindings: PCI: Update the email address for
+ Manivannan Sadhasivam
+Message-ID: <176053223303.3202616.6553332621383327286.robh@kernel.org>
+References: <20251010-pci-binding-v1-0-947c004b5699@oss.qualcomm.com>
+ <20251010-pci-binding-v1-1-947c004b5699@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,17 +69,30 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251010160321.2130093-1-Frank.Li@nxp.com>
+In-Reply-To: <20251010-pci-binding-v1-1-947c004b5699@oss.qualcomm.com>
 
 
-On Fri, 10 Oct 2025 12:03:20 -0400, Frank Li wrote:
-> Add compatible string fsl,imx-audio-tlv320 to fix below CHECK_DTBS warning:
->   arch/arm/boot/dts/nxp/imx/imx6dl-gw5903.dtb: /sound: failed to match any schema with compatible: ['fsl,imx-audio-tlv320']
+On Fri, 10 Oct 2025 11:25:47 -0700, Manivannan Sadhasivam wrote:
+> My linaro email id is no longer active. So switch to kernel.org one.
 > 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
 > ---
->  Documentation/devicetree/bindings/sound/fsl-asoc-card.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>  Documentation/devicetree/bindings/pci/pci-ep.yaml             | 2 +-
+>  Documentation/devicetree/bindings/pci/qcom,pcie-common.yaml   | 2 +-
+>  Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml       | 2 +-
+>  Documentation/devicetree/bindings/pci/qcom,pcie-sa8255p.yaml  | 2 +-
+>  Documentation/devicetree/bindings/pci/qcom,pcie-sa8775p.yaml  | 2 +-
+>  Documentation/devicetree/bindings/pci/qcom,pcie-sc7280.yaml   | 2 +-
+>  Documentation/devicetree/bindings/pci/qcom,pcie-sc8180x.yaml  | 2 +-
+>  Documentation/devicetree/bindings/pci/qcom,pcie-sc8280xp.yaml | 2 +-
+>  Documentation/devicetree/bindings/pci/qcom,pcie-sm8150.yaml   | 2 +-
+>  Documentation/devicetree/bindings/pci/qcom,pcie-sm8250.yaml   | 2 +-
+>  Documentation/devicetree/bindings/pci/qcom,pcie-sm8350.yaml   | 2 +-
+>  Documentation/devicetree/bindings/pci/qcom,pcie-sm8450.yaml   | 2 +-
+>  Documentation/devicetree/bindings/pci/qcom,pcie-sm8550.yaml   | 2 +-
+>  Documentation/devicetree/bindings/pci/qcom,pcie-x1e80100.yaml | 2 +-
+>  Documentation/devicetree/bindings/pci/qcom,pcie.yaml          | 2 +-
+>  15 files changed, 15 insertions(+), 15 deletions(-)
 > 
 
 Acked-by: Rob Herring (Arm) <robh@kernel.org>
