@@ -1,143 +1,154 @@
-Return-Path: <devicetree+bounces-227301-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227300-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0111ABE0535
-	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 21:12:52 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD7A8BE052F
+	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 21:12:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id DD5F64E60E7
-	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 19:12:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 23162428316
+	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 19:12:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 490DF303A0B;
-	Wed, 15 Oct 2025 19:12:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 508F9305042;
+	Wed, 15 Oct 2025 19:12:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CuNCKEzm"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pJG/aXgq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74AE13019B2
-	for <devicetree@vger.kernel.org>; Wed, 15 Oct 2025 19:12:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D0F630101E
+	for <devicetree@vger.kernel.org>; Wed, 15 Oct 2025 19:12:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760555568; cv=none; b=JtxRofACG130JgKsbKywuWjrPjn+/hxsHQUVVfaLkvuEzjCLdssTptxegxJKvEcnswf8HSLRUodR1MIuAXPrMCoioTXky9JC4/v7XjJj7OpJFMLPYMN87FTDAT9uZc5q7Mp0MHyb9oz/h4ogJq2bqwts7PQXrQ1cQmmGChFDuU0=
+	t=1760555548; cv=none; b=n8TA1XsLs0q564j9YMuqHrdsg9rdohO89F/Zu8TFKpNb2bD/NxlFlV5Qqdk7H1gR0rRPA63LwxG3QXgYxfrkOfsQW+FCYLYcLcqyA2I3K9jo2pYd9fP4RLXzHzaK/LSyelaC9UgD5aKqDnyqKOF1flWlgpX19MvFjBiIXznprv0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760555568; c=relaxed/simple;
-	bh=MvR+0JKXb5CBAEei5A2lB3ToTgOiUAvcquMmLPEYUy0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=os2GT4qZy93Jz6kISjdJ++G4rVWEyj1mV0juU1K1RE+SA/hRkACk3qjkQl6wzcyE9oRp8OtR3HUWeeb1xmm7zXjYC3EgYwjXCZ6UrpSOG8ChZUqXOIPBjNuF2JAcKtsjgPOX5k+L4upbGarqlRg38F7R5iNvRTKtfbvtVkRs6aE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CuNCKEzm; arc=none smtp.client-ip=209.85.128.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-46e2e6a708fso43631045e9.0
-        for <devicetree@vger.kernel.org>; Wed, 15 Oct 2025 12:12:46 -0700 (PDT)
+	s=arc-20240116; t=1760555548; c=relaxed/simple;
+	bh=4QK2T6kGZyFylzPYSzPxH+9bXfmmQQta6fIUzxi82kw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Zw57xWmcKG9WiQzAxh8Xv245HDFl5KYJk/I6pDYY3rPM87DXC30LvDtFGwUYa3jph32H8lw/23XAxk2f1mGRKoiSMKHx07Vl8Fi1ngbmqbm1BMdd3063iu2/W4+xe+bC9BL3cCzQm7rkP6pUuizGHOzzay1WU/bhY5c98RbPePg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=pJG/aXgq; arc=none smtp.client-ip=209.85.128.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-46e384dfde0so70896665e9.2
+        for <devicetree@vger.kernel.org>; Wed, 15 Oct 2025 12:12:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1760555565; x=1761160365; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=OhyinuDlZwKREDWmNx8hCk7tI9XdjStorfWj2UhFgTY=;
-        b=CuNCKEzmNNFm8QiEk1EemTNCB6eJcJOl2G6kmRrvOOPZeNuHHc/nuUrKRbByMYG9s1
-         srbVteVPPFS+W06BULQrxd2QQu9RmE1kf4nT0JG0sEJ1MrRh4wvGSBfiAEbqdJYe3ft+
-         RjUR5zktBIwXWG3dCodcI/Kj57YsJBJt+/z+mcJmEFpBxaCLMVonjNdRtZCWZuZxp9/E
-         3MKLDqoTibeQ6y02BvALO+5X/ko+kKbojFMjtp3/5mCRo645aBYCLyUQKvQX1qcX8Mku
-         w2Pp2Nk73XqO5jFn7A7CDyRYeg75hJDZLKwDZQLv17wioIEH6takbzzcPl5I9jepR/1q
-         d8tQ==
+        d=linaro.org; s=google; t=1760555544; x=1761160344; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=zX0FQJMNOkesxTSiczvMscK9aHeUEgUhQXWADwrmqhs=;
+        b=pJG/aXgqTPZ6GB70+XnOb3h9OZZnIcsS0otLdSaGUVnkmYKNx3qz8fuMEtTm+nec2i
+         356bG56xys9klBWxh+4vX/HXlMhSQesz0UeFhRVLfCd86ms8XizN40N8lANcmaQ5cggX
+         PWVdsrcL85RtAIW15UT+Xw+fE+JssJhyDjAMydB5o2wcIA8XIeVg8fEhCTYQTG/DmYoU
+         RMWyfK43dGV5ApmMTKCg5zZg2q1RR1rjVZG2FMJ1DziiKwmRvEmr4BCFvCEeR1jJ56uq
+         GrBOfA0e+EJg+3VQSbQYmQq74bOpbyYcSeh/3e6KTt/KyaEnkEHj5RjdpV4m4F0Pjcqt
+         Euvg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760555565; x=1761160365;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=OhyinuDlZwKREDWmNx8hCk7tI9XdjStorfWj2UhFgTY=;
-        b=qEQ3WN14fa8NvrDTrAwXgjNJMyhkLb2CFvwhpzNs2LmZgp1F+W0mypmXJQNf/oWIoP
-         VkKETwlhsnpmH0ZxJasH4wfUxQkjpIPzoO2QJm4jkrMLDQdq59kmiTlDAb8haJwAGDAi
-         O2ZdlwDDvmair1fb4RVPDHBaTOiVvho/8Z1rD7xu3s3+8vaA59yXJpvDgA/10pRfyTFS
-         JyJG7T0qu11AI4zgPSO++8jGJSXIVpbZLg5HxOfmdgUhLAjsGJ2uSJYmAArNbTuK78VT
-         iyRSIoilpSf8OTqHnQA/cEhcmXA2/BiWs72ELw8L0SD16V0RaTcU26olneUDN5dJ3VGD
-         fZWA==
-X-Forwarded-Encrypted: i=1; AJvYcCX4HxfP3q8j9y47LwTmY9w8Nvat2jtP1XGY7EOkaruSg0jVDEMhj170Isqy2/iliGGy7S+08ZaLIuPx@vger.kernel.org
-X-Gm-Message-State: AOJu0YxEB/uf6LCbpFaugIknJvNdYRqrAO28QI9gOoXHDoYnj6x5Q5lw
-	FyRLBe1lYEZzmRg5LLTRqdNi898vDtgsNBAEwQ+58r9Xez7xY/J+N5tu4+Eow9Uzapj1Tzpwr1U
-	KqXlxSJRtPOwsOLwDa5JAR/rSor3iC1c=
-X-Gm-Gg: ASbGncuq0wpukzug9dwVdusCRLFMPcDRwzriA4XI2f7eEH8jtwKlBPkw9lb0pAXw4rp
-	xHrv4Vrr0X8pY//CaTQQPknjPbr7yZ8Yb1iANEObfaIM9jj6lU5q/Y5BlGSNq8MszpArLUdvyw/
-	YVxOSwR2B46z0otJJWST0B3DL3v8QUR3oV3gu4nInaloqrwrkd5N5md+1fo7fXXOdqIxZMLQdXw
-	uKXTBz1FsXzwK1b3HRlr8dSlYZn8Raqz/TIacLHxYFlvyhfxIQv0DCZXTGJ
-X-Google-Smtp-Source: AGHT+IGptweOAxfQob9Jd4H5eNxPIDoVFH0g644LiyqMYerOmNSPqkAZdQtC7+4FweyrZZizKJf/AjDZCN535DWV0k8=
-X-Received: by 2002:a05:6000:2c0c:b0:3f1:5bdd:190a with SMTP id
- ffacd0b85a97d-42666ac3a16mr18451032f8f.3.1760555564585; Wed, 15 Oct 2025
- 12:12:44 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1760555544; x=1761160344;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=zX0FQJMNOkesxTSiczvMscK9aHeUEgUhQXWADwrmqhs=;
+        b=dD725b3ObpX5mfmUBlp/09YpSyplDO3KHRHI0dXAxJEsy229fIXkGknnoULKVhMimq
+         mGaIxrmpgNLRYgyr5O+mKDam5WF/lXY4loCnqDcMET2oJEqTMbMFHcTYojpKSWg2ilzu
+         Cc94oUNvkpzeq3gNMQK6GbfZct6FRgGzOzEVfmQ5SL0awRkEaHNVUrdzQrkNQvsbMFrT
+         mi6Dx7cZP5txSN3P+2WXEjsyaznpKakPnGU3IOB44NkhdyWTdi9Ni8YIeuaMkf0SI/e+
+         W0Ezn+PAPqMM97/XUyw3rv2wiSjgN3vRpM75pRA1QXxOousHG5tNZyW2pDXZwLX8O+PI
+         b02g==
+X-Forwarded-Encrypted: i=1; AJvYcCUWdz9lAZXNxnPV4vRtG86VG35TxrN/sKO8lu4RASe0kW54Nx6kMjESVTIqB9ogB6R80LrI80NHqJKL@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyk/LfOunUpPWoD7pAcnPqehFYL2Tc3TMl7Vn2K90pYRTOPR5r/
+	N3jPW5XMw93EzTnD9Abny15gpeR29PMwkO/F8iVkv+LPgdDC15rBmTXO4UsWY8YaHo4=
+X-Gm-Gg: ASbGncu969C/WznO25ztgOaIwN1WOIxqnAxHDNMa7dx1Rn3RC1ABXv89V9hw9egOzd2
+	RKkpDPUXGF9jeQtKEjlDQY1iG4mK7G1iznkSYf/AvfznLlv+dSZ7f77Zgl/cceludqHhbb4bWkl
+	1sX5lXC1gPckDuYWN76x8DOzL+RUyHw9mohrZS497+y8xBGzNR1rOU9saTgUUJDT3fn2i+niJo0
+	pzkQVU3KIPahCQ8PrHMzFGQ9areprB6Hi6iTHh+NmcBZCVCxwcU0YaQSpunBl5zXWTERwG8nmpY
+	lpopFWFXtzI5ALBp0OYtVkpvIb3IT/38VHDYEe3YmfTqcx9v4/BGO0B3buylCBNqYlIzI/m5tn1
+	ihpuqgzo9ifyAKYUcsLRuiQ6AYHHPFWf63G43n7TsRQKDaSPSI+P6JykNcjHw7RPUIwnZF6weAB
+	cRsdfP69kyjCDpyd0ox7bfwA==
+X-Google-Smtp-Source: AGHT+IHbd0cW44W3/gflLhZW99H6UzVn2a320v+osYcGxzgftCt49JmvdlRHRiYyZeC4FCtJAzNpwA==
+X-Received: by 2002:a05:600c:6383:b0:465:a51d:d4 with SMTP id 5b1f17b1804b1-46fa9a8b48dmr229438345e9.6.1760555543790;
+        Wed, 15 Oct 2025 12:12:23 -0700 (PDT)
+Received: from [192.168.0.19] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-426ce57d49bsm32016093f8f.10.2025.10.15.12.12.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 15 Oct 2025 12:12:23 -0700 (PDT)
+Message-ID: <15b35191-eaff-4971-bae5-2d5a8cb9f864@linaro.org>
+Date: Wed, 15 Oct 2025 20:12:21 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251014153314.177300-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdUBthNYYOg4WHjt+gJRL=g00wmiqCsx+La_3NCUrCJ9gg@mail.gmail.com>
-In-Reply-To: <CAMuHMdUBthNYYOg4WHjt+gJRL=g00wmiqCsx+La_3NCUrCJ9gg@mail.gmail.com>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Wed, 15 Oct 2025 20:12:18 +0100
-X-Gm-Features: AS18NWCeX_juiZImnilmkiUrbUqjiLLajME51FAEENFN1IPwAIZdGkxwJx_QjPc
-Message-ID: <CA+V-a8vUKJDFCwQ3tMyhuMEaoR1DhpEhhHfwRnmMwNerdBM49w@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: renesas: rzt2h-n2h-evk: Add VCC supply for EEPROM
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
-	Bartosz Golaszewski <bgolaszewski@baylibre.com>, Linux I2C <linux-i2c@vger.kernel.org>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/2] dt-bindings: media: qcom,qcs8300-camss: Add
+ missing power supplies
+To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ Vikram Sharma <quic_vikramsa@quicinc.com>, mchehab@kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ andersson@kernel.org, konradybcio@kernel.org, hverkuil-cisco@xs4all.nl,
+ cros-qcom-dts-watchers@chromium.org, catalin.marinas@arm.com, will@kernel.org
+Cc: linux-arm-kernel@lists.infradead.org, quic_svankada@quicinc.com,
+ linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Nihal Kumar Gupta <quic_nihalkum@quicinc.com>
+References: <20251015130130.2790829-1-quic_vikramsa@quicinc.com>
+ <20251015130130.2790829-2-quic_vikramsa@quicinc.com>
+ <bfa0d4f2-45c6-463e-8afc-d90edcf8cf2f@linaro.org>
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Content-Language: en-US
+In-Reply-To: <bfa0d4f2-45c6-463e-8afc-d90edcf8cf2f@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Hi Geert,
+On 15/10/2025 19:41, Vladimir Zapolskiy wrote:
+> On 10/15/25 16:01, Vikram Sharma wrote:
+>> Add support for vdda-phy-supply and vdda-pll-supply in the QCS8300
+>> CAMSS binding to reflect camera sensor hardware requirements.
+> 
+> What are "camera sensor hardware requirements"? You do add properties
+> to the ISP.
+> 
+>>
+>> Co-developed-by: Nihal Kumar Gupta <quic_nihalkum@quicinc.com>
+>> Signed-off-by: Nihal Kumar Gupta <quic_nihalkum@quicinc.com>
+>> Signed-off-by: Vikram Sharma <quic_vikramsa@quicinc.com>
+>> ---
+>>   .../bindings/media/qcom,qcs8300-camss.yaml          | 13 +++++++++++++
+>>   1 file changed, 13 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/media/qcom,qcs8300- 
+>> camss.yaml b/Documentation/devicetree/bindings/media/qcom,qcs8300- 
+>> camss.yaml
+>> index 80a4540a22dc..dce0a1fcb10c 100644
+>> --- a/Documentation/devicetree/bindings/media/qcom,qcs8300-camss.yaml
+>> +++ b/Documentation/devicetree/bindings/media/qcom,qcs8300-camss.yaml
+>> @@ -120,6 +120,14 @@ properties:
+>>       items:
+>>         - const: top
+>> +  vdda-phy-supply:
+>> +    description:
+>> +      Phandle to a regulator supply to PHY core block.
+> 
+> What is "PHY core block" here?
 
-On Wed, Oct 15, 2025 at 4:36=E2=80=AFPM Geert Uytterhoeven <geert@linux-m68=
-k.org> wrote:
->
-> Hi Prabhakar,
->
-> CC at24, regulator
->
-> On Tue, 14 Oct 2025 at 17:33, Prabhakar <prabhakar.csengg@gmail.com> wrot=
-e:
-> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > The R1EX24016 EEPROM on the RZ/T2H-N2H Evaluation Kit is powered from
-> > the 3.3V rail. Add the regulator phandle for the VCC supply to reflect
-> > this in the device tree and avoid the fallback to the dummy regulator:
-> >
-> >     at24 0-0050: supply vcc not found, using dummy regulator
-> >
-> > Fixes: 0176c9e82e10 ("arm64: dts: renesas: rzt2h-n2h-evk-common: Enable=
- EEPROM on I2C0")
-> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> Thanks for your patch!
->
-> > --- a/arch/arm64/boot/dts/renesas/rzt2h-n2h-evk-common.dtsi
-> > +++ b/arch/arm64/boot/dts/renesas/rzt2h-n2h-evk-common.dtsi
-> > @@ -160,6 +160,7 @@ eeprom: eeprom@50 {
-> >                 compatible =3D "renesas,r1ex24016", "atmel,24c16";
-> >                 reg =3D <0x50>;
-> >                 pagesize =3D <16>;
-> > +               vcc-supply =3D <&reg_3p3v>;
-> >         };
-> >  };
->
-> "vcc-supply" is not a required property, according to the DT bindings,
-> and I believe the 3.3V supply can be considered always-on (but see
-> below to encounter dragons).
-> I was always under the impression that these "supply not found, using
-> dummy regulator"-messages are just informational, and can be ignored,
-> but they are at the KERN_WARNING level.
-> So should we add real dummy supplies to DTS, or not?
->
-Agreed, I get your point. Let's drop this patch.
+I mean come on, I think the meaning is clear.
 
-Cheers,
-Prabhakar
+>> +
+>> +  vdda-pll-supply:
+>> +    description:
+>> +      Phandle to 1.8V regulator supply to PHY refclk pll block.
+> 
+> This is a copy-paste example of a known to be wrong pattern.
+
+You're right about the name, please align with this commit
+
+git show cba308979b012664c7fe7c5baa818fcb68e86363
+
+Thanks for spotting.
+
+---
+bod
 
