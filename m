@@ -1,125 +1,105 @@
-Return-Path: <devicetree+bounces-227110-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227111-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C94D9BDEC3F
-	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 15:30:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D8B67BDEC4D
+	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 15:31:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 974DD40848A
-	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 13:30:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9872C3A6806
+	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 13:31:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 490E5223710;
-	Wed, 15 Oct 2025 13:30:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05BF42236E8;
+	Wed, 15 Oct 2025 13:31:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b6ci1stX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NjkVEOa0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15886221DB6;
-	Wed, 15 Oct 2025 13:30:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C43721A26B;
+	Wed, 15 Oct 2025 13:31:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760535023; cv=none; b=CJp39Kv9ff/4ZIq7/g3XJ23kWwR1GmjUU6fdGqFbyGMWG+UMa85sRznuemzDujFM4kh1z7SVEca91/NA5V8nQV1G1bHqhx8umTjN5AGevOMpfcj17rPe4V8FDPsDtf5LQiTX8xOsVsovoniF0S7ibPMEcmonlvia/emBn9R4Jo8=
+	t=1760535109; cv=none; b=rMYMh4tm1pI3tvOk2XNzv3fKwtZNFEh9vAxBZZoTp9UjwfOUV5g/BMP+sLkzglDCtRaJiU+B6D8XdsCrEeV/uE/sGrhgGuh03bxwU/t8izhkKauc3byBwF8hlrv/rAQOpTBgabTfEPn5h7SzCJc2BfV04/8IdEBtdlOoFjluOuc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760535023; c=relaxed/simple;
-	bh=A4j7EyyUEQAH/++sFjjOscr7TYVqFzYtv6RZBE5pQNE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=cP1a2R9THZC3ASwBTIfBZy1coV9hF2YcmzHOYdtW5KX57kclrWm+96qDC4xkF8cbFn1HSlI04rGq2gKZlYW7vjt3/xH07RfZMkRcNGePaNBMMYz2s4d6mf7MTQjHIGl0qbe7KUaniIqhxt3uRCSXzKk+CR/+VAlKVtH9lgqTsEI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=b6ci1stX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B283CC4CEFE;
-	Wed, 15 Oct 2025 13:30:18 +0000 (UTC)
+	s=arc-20240116; t=1760535109; c=relaxed/simple;
+	bh=U6U9Isg9UG30rWgAIkGOrIJ8TJ7Vt+fz8n5cRLTTnNE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=GGYTJnNV5SPjsczNvpt+lvI+5G7lY495M/VeRxAIiVCSfVn/EEvyM13QSQmcVM8Wzth4OVZYZL3KLmgbQz+5DhA3uF6hQ0p7oRJFrvryHV3yfcmcgeIPP/FIYvYPRv7YknC8uyhHf+UI8e1ey/Np1Uz20q3f6SzNg1rQtLTjgzs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NjkVEOa0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1B13CC4CEF8;
+	Wed, 15 Oct 2025 13:31:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760535022;
-	bh=A4j7EyyUEQAH/++sFjjOscr7TYVqFzYtv6RZBE5pQNE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=b6ci1stXqNKhV16bQZUz2RKyXZlZu/XYFYpCzaE+LYx/QRiRt9Jy59YuGmxqUoF/i
-	 sZQjJcJaIvwIy+xtYGruCM2hrR7Yzju5OJqzfVb/Q62yi6S5kJXs2GmmxDsPicrq80
-	 z78Vm4Ikoezi+QIy4EMXK/VXJxVqC/p8oDMGG6sdPBDrbS8AEelVtc8aPNJoNgEy5x
-	 srfEllTzNfWkG8OB/UFi7ZlQwxeoD+KdQUhR/rDUMaIBvEZhRfYKbEH6G/DWBmMl+w
-	 SO98xbxHlaLZk4RMMSiNRAoHeYExrixS5LTfTnnMvizdwz6Qa9nAaMBFTz1VKDXMbv
-	 fEhG9pPWVdb1g==
-Message-ID: <9adec627-e3f5-4664-881c-9e93f029e189@kernel.org>
-Date: Wed, 15 Oct 2025 14:30:16 +0100
+	s=k20201202; t=1760535108;
+	bh=U6U9Isg9UG30rWgAIkGOrIJ8TJ7Vt+fz8n5cRLTTnNE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=NjkVEOa0kDfH9tViKXPU8re9ULjS63UkwqtmS40Er35wFdQP/39XagX39obdH0pNS
+	 kacHVArwTN8ZpgIFFwnorVX7x71UBMbm1LVlKkWodBC+sxGBwPhuI8fgokg4mG0SRl
+	 9QgQzrOlPBRf7hcdcdowOGDhAs8Ig8rqpXrG5duNFvzuXWt3NP1N1OwpslbIKFbMbY
+	 0kqTF2XVa0QxJ7tffLU6jZX/jbyQTyLdPeVOpntsnk5dTRufeHH8JWCbbECC1GIlXt
+	 wDIdOI7lTQSIv0/VcCtNNOGylySalRmp8Ja0tkKf2guvhWUB0JMAUaJaN9dCpBsR1w
+	 tfVDFvPSjOUiA==
+Date: Wed, 15 Oct 2025 08:31:46 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Marek Vasut <marek.vasut@mailbox.org>
+Cc: Abel Vesa <abelvesa@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Peng Fan <peng.fan@nxp.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	Liu Ying <victor.liu@nxp.com>, Fabio Estevam <festevam@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Lucas Stach <l.stach@pengutronix.de>,
+	dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH 37/39] dt-bindings: interrupt-controller: fsl,irqsteer:
+ Add i.MX95 support
+Message-ID: <176053510455.3263483.4220696056487086323.robh@kernel.org>
+References: <20251011170213.128907-1-marek.vasut@mailbox.org>
+ <20251011170213.128907-38-marek.vasut@mailbox.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/2] dt-bindings: media: qcom,qcs8300-camss: Add
- missing power supplies
-To: Vikram Sharma <quic_vikramsa@quicinc.com>, mchehab@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- andersson@kernel.org, konradybcio@kernel.org, hverkuil-cisco@xs4all.nl,
- cros-qcom-dts-watchers@chromium.org, catalin.marinas@arm.com, will@kernel.org
-Cc: linux-arm-kernel@lists.infradead.org, quic_svankada@quicinc.com,
- linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Nihal Kumar Gupta <quic_nihalkum@quicinc.com>
-References: <20251015130130.2790829-1-quic_vikramsa@quicinc.com>
- <20251015130130.2790829-2-quic_vikramsa@quicinc.com>
-From: Bryan O'Donoghue <bod@kernel.org>
-Content-Language: en-US
-In-Reply-To: <20251015130130.2790829-2-quic_vikramsa@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251011170213.128907-38-marek.vasut@mailbox.org>
 
-On 15/10/2025 14:01, Vikram Sharma wrote:
-> Add support for vdda-phy-supply and vdda-pll-supply in the QCS8300
-> CAMSS binding to reflect camera sensor hardware requirements.
+
+On Sat, 11 Oct 2025 18:51:52 +0200, Marek Vasut wrote:
+> Add compatible string "fsl,imx95-irqsteer" for the i.MX95 chip, which is
+> backward compatible with "fsl,imx-irqsteer".
 > 
-> Co-developed-by: Nihal Kumar Gupta <quic_nihalkum@quicinc.com>
-> Signed-off-by: Nihal Kumar Gupta <quic_nihalkum@quicinc.com>
-> Signed-off-by: Vikram Sharma <quic_vikramsa@quicinc.com>
+> Signed-off-by: Marek Vasut <marek.vasut@mailbox.org>
 > ---
->   .../bindings/media/qcom,qcs8300-camss.yaml          | 13 +++++++++++++
->   1 file changed, 13 insertions(+)
+> Cc: Abel Vesa <abelvesa@kernel.org>
+> Cc: Conor Dooley <conor+dt@kernel.org>
+> Cc: Fabio Estevam <festevam@gmail.com>
+> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+> Cc: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
+> Cc: Liu Ying <victor.liu@nxp.com>
+> Cc: Lucas Stach <l.stach@pengutronix.de>
+> Cc: Peng Fan <peng.fan@nxp.com>
+> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: Shawn Guo <shawnguo@kernel.org>
+> Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: devicetree@vger.kernel.org
+> Cc: dri-devel@lists.freedesktop.org
+> Cc: imx@lists.linux.dev
+> Cc: linux-arm-kernel@lists.infradead.org
+> Cc: linux-clk@vger.kernel.org
+> ---
+>  .../devicetree/bindings/interrupt-controller/fsl,irqsteer.yaml  | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/media/qcom,qcs8300-camss.yaml b/Documentation/devicetree/bindings/media/qcom,qcs8300-camss.yaml
-> index 80a4540a22dc..dce0a1fcb10c 100644
-> --- a/Documentation/devicetree/bindings/media/qcom,qcs8300-camss.yaml
-> +++ b/Documentation/devicetree/bindings/media/qcom,qcs8300-camss.yaml
-> @@ -120,6 +120,14 @@ properties:
->       items:
->         - const: top
->   
-> +  vdda-phy-supply:
-> +    description:
-> +      Phandle to a regulator supply to PHY core block.
-> +
-> +  vdda-pll-supply:
-> +    description:
-> +      Phandle to 1.8V regulator supply to PHY refclk pll block.
-> +
->     ports:
->       $ref: /schemas/graph.yaml#/properties/ports
->   
-> @@ -160,6 +168,8 @@ required:
->     - power-domains
->     - power-domain-names
->     - ports
-> +  - vdda-phy-supply
-> +  - vdda-pll-supply
->   
->   additionalProperties: false
->   
-> @@ -328,6 +338,9 @@ examples:
->               power-domains = <&camcc CAM_CC_TITAN_TOP_GDSC>;
->               power-domain-names = "top";
->   
-> +            vdda-phy-supply = <&vreg_l4a_0p88>;
-> +            vdda-pll-supply = <&vreg_l1c_1p2>;
-> +
->               ports {
->                   #address-cells = <1>;
->                   #size-cells = <0>;
 
-This needs a Fixes: tag
+Applied, thanks!
 
----
-bod
 
