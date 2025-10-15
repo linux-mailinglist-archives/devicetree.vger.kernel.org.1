@@ -1,264 +1,283 @@
-Return-Path: <devicetree+bounces-227020-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227021-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC52DBDDE51
-	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 12:00:20 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF246BDDE8A
+	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 12:06:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 9B1ED4F7900
-	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 10:00:19 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id A5C8F4ED4C9
+	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 10:06:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 794C231961C;
-	Wed, 15 Oct 2025 10:00:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F41CB31B81D;
+	Wed, 15 Oct 2025 10:06:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="JjiXBm9N"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="M1AIA/kI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AS8PR04CU009.outbound.protection.outlook.com (mail-westeuropeazon11011007.outbound.protection.outlook.com [52.101.70.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F2AD31B822;
-	Wed, 15 Oct 2025 10:00:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.70.7
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760522415; cv=fail; b=tf4i7MThb9PlqX8gN2Mqj90rsSbT5OSLtJjVQzAwN/P0OqtT1lOnpBzGCIZjD6155yE43sN7mHU/dwT9p/FY16a3hLpLqShjS49nrbk3Wdp6VuNRohYMKhFWEnKg0szZ21R/FlBLHyBZHPqzfrN+LFoFhyqA5q6mYVheKJT7b4M=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760522415; c=relaxed/simple;
-	bh=zWMk3O3oIgOZxMwLohOOyN/KK6M7/CQdj9Pe7tkxRH0=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=a8sZOE2M35j1XDPVNXwOKQ0AcmOd30FrAth+oOSsoQrsPJhuubpQ8poOF7q84wKuVuJ5Tfa4kvZjaWnZ+UYQbyL6LYlSCUcZHGajYbtKBXNnANsn4gsPLalfYofWRx3zBJ80LfiyOq5SoKZpQOfSgpFRXTewJemxcQX9O8/QcUM=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=JjiXBm9N; arc=fail smtp.client-ip=52.101.70.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ArJ0TCgCAtKOKM22wW8VoUVAI7m9usEhL8vYdeP8gcuZgRId6Qkl29E1TWo3s3CaNw9tfDx7sBUQ9YMI6JE9QDiUXn7KATtZH6NHF3/h49RjsJlpXbhJM62yrNN1ObJv+WcvcKIjoBjXOTut3CmdBJJOBpqKfFl9UAurJ39Iw5SwTbwnyMxpCHBCrVZWlarijicRYwCQKoLpcsInT0z1AgdQBchxdWmMOzZ3kuDCP3tIJ32o9PwECv2gaJI65zUWvpybLNaw+A9u3T/DAW86iTYzyaXt6YXqvxKmLQR/ds+SsdoWHt59JP4FMIU04OLvMmKBin0JPBOq//431qg7TA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=JLowpIT+MwLwp8LY/gITwRgoaaYLwOxNtBj+X3R4nCs=;
- b=tHdhi2ILZuxxjCd6wBSnIJ48lRgViejrLHLgkfs3MYahQaukWp4/1reh5R6q4X1wAAmB+b5WbFd/pPFauSMiQsXyFSMP7sxIQ9dDLHfDBtuRm1AqsUoiFZlobkRrKni46tdTNcHKaCPj2cr4DRj00duUGCQRHHKkVbMEhv7pqsUnmdjgIpxURNDReXeJ/+s5w5od5mUiQlEnfRteqblQSjKfrNgTXS4Li/2mQfPSp/tY26hcRwjDIekkjbP4EChx93V6v/MCNiDp1PFdI+ytBzywZcP+cF2hM3pAL70vpSfyEqZBuax80EKCXgw4gztfzN7gbCaTyW6QnZIeA+O5Dw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=JLowpIT+MwLwp8LY/gITwRgoaaYLwOxNtBj+X3R4nCs=;
- b=JjiXBm9Nl6w4EfMWL3kx1hNVh4RxFqbZ+63IqRjGIH4PEFEiMgtxDEJ4CekA7vzlcHyX//gvK/GEB19guGQcpGBHsKEGR44D99x54Fd0EDM6b+Aa8rGmoXu1uo9Kknk2IA/kqdMCzGsFoJAspNSseQzvJr7KGbCSlSdhoBAxBwR0OX5a6nqtP77+JNGmDJQwVVnxSiFOb79KQzQZM8cgeGNcU0xlSSDSu7+a6FP+dZYFmu8judCh8o9RQ8eNlyMXif5Mo3LmY/fRgb5gQUMqgNcaHeBBY+hIyyOVZvZnyWK+2TAIeQ/G3PHXIDEoU4uI7d2DYiFYFuoWPevd71OEyw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
- by VI0PR04MB10782.eurprd04.prod.outlook.com (2603:10a6:800:25d::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9228.10; Wed, 15 Oct
- 2025 10:00:09 +0000
-Received: from AM7PR04MB7046.eurprd04.prod.outlook.com
- ([fe80::4609:64af:8a4b:fd64]) by AM7PR04MB7046.eurprd04.prod.outlook.com
- ([fe80::4609:64af:8a4b:fd64%6]) with mapi id 15.20.9228.009; Wed, 15 Oct 2025
- 10:00:09 +0000
-Message-ID: <92d928cc-d9df-4c9c-8571-da39001b91a7@nxp.com>
-Date: Wed, 15 Oct 2025 18:00:31 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 00/39] Add i.MX95 DPU/DSI/LVDS support
-To: Marek Vasut <marek.vasut@mailbox.org>, dri-devel@lists.freedesktop.org
-Cc: Abel Vesa <abelvesa@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Fabio Estevam <festevam@gmail.com>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Lucas Stach <l.stach@pengutronix.de>, Peng Fan <peng.fan@nxp.com>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Rob Herring <robh@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- linux-clk@vger.kernel.org
-References: <20251011170213.128907-1-marek.vasut@mailbox.org>
- <174ec43e-4cac-4452-a77b-e2e3b8413d05@nxp.com>
- <2c4a42eb-8c49-4ba3-baa3-921ec52f730d@mailbox.org>
-From: Liu Ying <victor.liu@nxp.com>
-Content-Language: en-US
-In-Reply-To: <2c4a42eb-8c49-4ba3-baa3-921ec52f730d@mailbox.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SG2PR01CA0188.apcprd01.prod.exchangelabs.com
- (2603:1096:4:189::10) To AM7PR04MB7046.eurprd04.prod.outlook.com
- (2603:10a6:20b:113::22)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E91BF3191C1
+	for <devicetree@vger.kernel.org>; Wed, 15 Oct 2025 10:06:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1760522784; cv=none; b=YmBu3n4wVFXGt0hez2tYvmuWtdul6XkNC3GnwZtnEmq+5zccGFSKqiNduzqULO+tPiaIYK2oEuCVOxmoOtPlYamExCHrQl85SNP5X7sR0EZZhFivosoaKpfWNuXIDu6xfBJTuq3aojAwfAgJhTedY65u2kZPANk8x1mMytAqW9s=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1760522784; c=relaxed/simple;
+	bh=h9QAIiYBcYTwaPRJ3ulgxq/EMfWZ1M59+t8rd940DqQ=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=nieINnD7ll3rMKxper+zK7A6QNqRGRSr88hScISphZjPewfWqFDSYNFbOpKncn7Xw3FUu8B7RvB26ZxndVszIaio7zgBY4Eu+GiAl75llp2bNO5JboAV23GEEryyoR8IVzvq1wY/4F6ufqOigZPEK/a2y+qporml1sC+4jshOuc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=M1AIA/kI; arc=none smtp.client-ip=209.85.128.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-471075c0a18so2219955e9.1
+        for <devicetree@vger.kernel.org>; Wed, 15 Oct 2025 03:06:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1760522781; x=1761127581; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=/JikAXSzFP+8HMT+G2vdPMmgBXFYz0AF+l9lS3J+JcA=;
+        b=M1AIA/kIAhdfR/m8NlmK0uf40xKAqqWXaYydoH5oHgRHoOS+HvzPhiyd49aXkIJB+U
+         rYsjwqSjBW2ye2TryKylm/t1wgtryNb25A09ItAlMJUbuvS1lIEEd/JdUAL9MJ6UdqRy
+         MN07RkD2Wl8bn57jgT3TnQodn6v0615xpAY19x2U99NZ0jUJKyjt4IYjYMCyt4ZKLJsR
+         r9PEqVB/BpAsHVnAXVK7phmrlROdLEdRCmNsc6e/XynBQlKcQTd+YJoaIgMQzG6Hnvf7
+         ykZZ6o5syqPGylSlxb5hWr3i5ySYFRm/kZV/NEcch7QqjrzKaX8jrymLQ8D9SpcIuivq
+         POAg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1760522781; x=1761127581;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=/JikAXSzFP+8HMT+G2vdPMmgBXFYz0AF+l9lS3J+JcA=;
+        b=xOPKlFXF5w1tAyIwYC3ld3M6Bh/MtA0nNWBTZetLn54mqy0y63M493Sy3OxS+f4Kwg
+         Wh2hW5OZQPvNmBQ3lLqU4Rw6YAXgIh6zqhyCEGeMHVm7y48CQiBQSj+KYBRfCW1rTyoO
+         1X8ybgX2IxabKvRCrkenXDh+QkqEv/ecfSmCWIOt2RyzoLIu7NpGQRSbbiIVSugUOW6W
+         o+ZkwMGYhTjm9t86ZE3rbUqxAybAeClVQDEbyoy9ftK4EOsPkWf76fiD3ksCweBVmeoZ
+         ncnhO752U8TKGiqzTyeG5JNILaPsHuM8HBSb2h048/JZG1FFtTfkWED9MOTM1m/0FLnG
+         oPRg==
+X-Forwarded-Encrypted: i=1; AJvYcCUwZpYugqBCckh2eZvcHvHdd9DD/zfRZEyAh5U9SuIie+82vsuJUOdeO3BML6OYLmRsRXti4yDYMUeK@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxbp/0YD4VHMp0G2SsCIvNKdJqhBdBXQehju8iKnWke6s6g1xkx
+	1gZce106Nws2s3Qi+Jv9fZ+3BafeXCVkJeBtzQ9sgWGPcLHFhEzmDmmk
+X-Gm-Gg: ASbGncvcMHjyAPOnm4zRUkZO8v+w99iVSWr7tUjfYabyDyVfIwPPflPkS+ajT3Z9/7x
+	p1uoi2WE5j+ihQAQejHljdmlan9d7WKS8dUjxS19mdM02G/be6Jhln7S0bnA8socckmvGMFqqwb
+	NOo2grr+mVdqBXzdfsxNWw8jXVCdPcwvVIPGSTQVWebwXHPnCGIMAAnWsHMTvQWkps4HFXwNxFp
+	RoznI9udB/RcVF+AlGCRu4Y6V4kLVg6wO7mWXZBQCYWYDIxsSUtpoNaOaMukijLOsE8DWV6gi6y
+	xXMpVBCbiVWsPr92TOO5CZFQQKbdJmQ/fB7iRVw/Mi0AOwPK0q9dDxtGgDrQlE2//ovu+vF18jz
+	Vi4K4FyUc6opLU6v3E1SJZ1ibAJwEX+5lJn3twv5t/SWNfkiugA==
+X-Google-Smtp-Source: AGHT+IHgV6cBNKFg7lVaIxISMGZEhCnRq3f5FX2Mo/ZiPw8peOXBQ8nl2TpEvxlKSck3NJj+Cpjhig==
+X-Received: by 2002:a05:600c:46d2:b0:46e:3686:a2dd with SMTP id 5b1f17b1804b1-46fbbc93abfmr104856245e9.11.1760522780872;
+        Wed, 15 Oct 2025 03:06:20 -0700 (PDT)
+Received: from [192.168.1.187] ([161.230.67.253])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-46fb482b9absm333699055e9.2.2025.10.15.03.06.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 15 Oct 2025 03:06:20 -0700 (PDT)
+Message-ID: <d7a62beac6b9ea74ccc791b4491e24328e05fb52.camel@gmail.com>
+Subject: Re: [PATCH 2/6] spi: Support multi-bus controllers
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: David Lechner <dlechner@baylibre.com>, Mark Brown <broonie@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,  Marcelo Schmitt
+ <marcelo.schmitt@analog.com>, Michael Hennerich
+ <michael.hennerich@analog.com>, Nuno =?ISO-8859-1?Q?S=E1?=	
+ <nuno.sa@analog.com>, Jonathan Cameron <jic23@kernel.org>, Andy Shevchenko	
+ <andy@kernel.org>
+Cc: Sean Anderson <sean.anderson@linux.dev>, linux-spi@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-iio@vger.kernel.org
+Date: Wed, 15 Oct 2025 11:06:53 +0100
+In-Reply-To: <20251014-spi-add-multi-bus-support-v1-2-2098c12d6f5f@baylibre.com>
+References: 
+	<20251014-spi-add-multi-bus-support-v1-0-2098c12d6f5f@baylibre.com>
+	 <20251014-spi-add-multi-bus-support-v1-2-2098c12d6f5f@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.0 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM7PR04MB7046:EE_|VI0PR04MB10782:EE_
-X-MS-Office365-Filtering-Correlation-Id: 78d4094f-76ec-438e-3144-08de0bd19f9a
-X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
- BCL:0;ARA:13230040|7416014|376014|19092799006|366016|1800799024;
-X-Microsoft-Antispam-Message-Info:
- =?utf-8?B?NTI1VFBFeVlMNjJ3NUFSMGt4NFZHTzRwYjNxVDQrdjdRMXY2R204VkFVbWlJ?=
- =?utf-8?B?alpkUy9NR3liSGJhU0VKZnZ0NXVjcnI4NnRTTVJMSUhRbUhOWGt2WEZVZUlE?=
- =?utf-8?B?MmJGMVNvU2UwZnkxY2R4aUZLMy8wcDcwK0libUhQRDYvU0pxOGVWTXJMMDg2?=
- =?utf-8?B?VWwzNkVUS3ZSWHVEVXlISHFJYnZLU1prY2dqempKWWVSVC9CNHZmVDFRVUpG?=
- =?utf-8?B?YlNMUGVuSGw1Yk1Ianc1RWRVcTVMZ01RZGFxRnkxQlhYYy8xb0xNR3JQQUhn?=
- =?utf-8?B?SmdmS0JxVlY0dU9aZmd2MmZkbFBsanhLanJncG13NXpidzhaSGhwa0xibG4z?=
- =?utf-8?B?L3p4ZHJZc3EzUk5tY2V0amt0ekVXZlR1a09EN2RpaHA2b2tjbHZoZHhVNE90?=
- =?utf-8?B?UUkrQjd3elFTdTFHeXFPT21vTWxVTEk0SU9GcTVtUENSbm1UY3oxOXNQU0Qr?=
- =?utf-8?B?MkhwQTMxbjE2cjdNbG1LMTJqSzNRR0todzRQUEE0c1FSUmRTWHB0UWJVN2VC?=
- =?utf-8?B?L1pmSFdEOEZWUlpiZ2U0UlEyRVhZUnFDUG1JMVJJRmxBZk1OM1UyN2VFVHJm?=
- =?utf-8?B?a0VNL0QzUVZNcndZZ0tNYXhSNHNyQlpZUnIrMnNSN2NaMVVLd2wrazdsMmdp?=
- =?utf-8?B?S2Foelh3VUFBcUZMNzRMb2tHSHg3end4aWF3dDVJczdWSElhNEE2N2JIa2hr?=
- =?utf-8?B?a1Z6c2l3Qmo1MWc4UUJDV0VISk1vUE1kUXA2VkFkRlBrbzdJU0xtODFOaWs5?=
- =?utf-8?B?VFg0ZEkzQ3hMcjZlb1VObjI3enN0amNGdzVsMks3aVRMbWkyTW1KK2x2Z1h6?=
- =?utf-8?B?Z1IzTGExZE4zT1g1a3lwTmQ2bzZZakQ4Q21HRkw3OTlsMjRnellab1Fjb3Y1?=
- =?utf-8?B?dk9SL0ZuSmNzU2dodzdqUEFYamhObG9aYzNlMEdMY2FUUS80dWtyQ1RYR2J5?=
- =?utf-8?B?QXRzMDZpMlcrZXRKUTQwRTl1K0taOC9ncisxUkN1Vk10UTJhWWQrQVh6dXZZ?=
- =?utf-8?B?clZXcTI1WS9kS1FqTUNqZ1FEK2Z5ZjY4U3BBeFFjT1h6cGxBVDg1bXFtVWtS?=
- =?utf-8?B?NHh3cUZtaFoyajJhVlB3azFzZEFQSjJxalR3NTU1VExTcWVpWVJCMEQ3Q1U0?=
- =?utf-8?B?blU1SDFzL1lGcTgrK0ZJNXZ1MzFETi9TSU5iRVk2SkJyNU92WTJFcnlkYVAx?=
- =?utf-8?B?c0lRMEZHWHFuczR0QTJZU3B4L2hzc2d4T09UUlZIUHVhcEJVY0FHV1dYT3Y2?=
- =?utf-8?B?VEg1WjJTenhrbENJVXU0cGJqaUk4QUhGZnBaZHR4cjZaWHllUnUxUEpzcEdw?=
- =?utf-8?B?cXRhYmw4emxjempoeW9KcGhUQnMwTVhxanl4T3dXMnNncFZEc1NsM0xvRFlY?=
- =?utf-8?B?YTExK3JlamJhVG1KdDNHOGUzUitmVUhIWU9lVS9DSlJtcHVhME9YUmt0enVy?=
- =?utf-8?B?enBneTZiZGVVaXNsdHBCcDQ5b0p3NVU4c0lRZUxCa0crUk9BeHhlSnFxYVJZ?=
- =?utf-8?B?YnhwcHFGWW5tRGlWSU50Tyt3aVFqTWRMQWZOSzZnWldBTzJGUGhrQTZQeG4r?=
- =?utf-8?B?MFUrZ3laanJYZFpTWGdXbHRwd2hyVStVOElxbHgxZGlIc0ZzREhWaDVHSkdP?=
- =?utf-8?B?WjhoWHRzT01TMjFlNDU1TDNJeVBmSzRmT1VkUnpDU2xhVVNpYmRLc05mc0VM?=
- =?utf-8?B?MVlFMUVuRVJuZ28vUDRSTG1XcGQ5L1FZKzAwWkFZbEhXZ3dZYTVxaUVsT2c0?=
- =?utf-8?B?dGptTzNObG1KeTJ1L1VKZXZpck80bVRhZGYxUndneW5kMVovR2FrZ3M0cGtK?=
- =?utf-8?B?WnlseExNYkxZek41S0w3L1EydUdNa1ZoR00xSkhCbUJZQ2dQNUxsS2tkelpu?=
- =?utf-8?B?VHR6U0FqcFMvMWJtYzVhNTJrM0lsdU81eHVjbTBBWk45dUQxN2tUbzZ0MVY0?=
- =?utf-8?Q?GvQbXs3JauuhScJouWpxTgs67egSFiZn?=
-X-Forefront-Antispam-Report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR04MB7046.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(19092799006)(366016)(1800799024);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
- =?utf-8?B?dVM4d1FEd2ozU3JObmdqb2lPMzFzNVRWd21LT3pDK01YSzdxTGQzRzM2Wlhh?=
- =?utf-8?B?TkVqVG40TTdPQ2Ixa3pVM1podUtFL0hHNW1FRXFIclEvZWZNVTBma2xBN1hR?=
- =?utf-8?B?Y2dLM0JmSDVhaG1OYlpBTE5xU2Q2eVludmV0TzI4WSttR0ZpT3RxVzNaaVVl?=
- =?utf-8?B?Tk1xMktNTTFDNmh2REFWS1d6MEdjbVpmc2J5SVZXaEZmN29EczNYbmQxKzhR?=
- =?utf-8?B?R2k2cUJXZ0VpdXp6VDBIN1lua2dFN3BJejJoQUVUK0wyQVpTSjlFK0llQWpu?=
- =?utf-8?B?UEYva0Z4a0ZHcjdnREVHcCs3dHBkdDRidWlSYzVKT2hXeU94dllEd1B6QjZI?=
- =?utf-8?B?bi9Fa1k1eVdLKzFGdU5LY25xQzhhOGRxdFJldk8yOElEejE0UzNaRGJSMDNv?=
- =?utf-8?B?d0d1OFk2aWErMTFLdmtyY2NaQ2puUGhQOHpEM0xRSnRYRVlneENXbkFHOGc3?=
- =?utf-8?B?NGVWOU90dS9XeUR2WGtva2NYamJieXZMa3c5VzlOQU1qeU9tQ3dCOUtGc1Rx?=
- =?utf-8?B?eHFBaXJXbVhpRjVkQ1NTcHJMMmd0MWdlMUMwWjRwVGQwYnBZRXo4N25qM1JZ?=
- =?utf-8?B?S04zZFFTNVR4RWtVTU5sTEJLVGczTm0rRlZaTGpnTWJacHkrTy8rRjRmNHVp?=
- =?utf-8?B?bjRvNTE4c3NHNVZUcDlzY0wxSEZiakVsQmtOaGZuQW9qODVEdGxMRXMwZEhO?=
- =?utf-8?B?cVFscDdWZDdLbHF1RDZYYjY1dSs5WEZBZ253alFESXdEbVM1TWlMc2hSelNR?=
- =?utf-8?B?WDZzRlNoVklmRWxzS00xWWNvdlh6WVR0b3ErVGhydVA1OWN4WEUyU0IwNWE2?=
- =?utf-8?B?ano3SFJFWGVVS1FxcVhLWEFwbW9iNVFMU1BWZjNYU09qNmhkUzg3Q2tBWTNP?=
- =?utf-8?B?MEI3SnA1SytSNXJGcC9qUVdra2Qyd3VWZElCWjM5TTFQak5WWVcxMEY3WDVl?=
- =?utf-8?B?bGtkMDN3NWVGK1psODQ4L294YWp3MVo2enNuSXZCOUpCYTVIckhPaytOMkN1?=
- =?utf-8?B?NWhVT01pL1BSY21reGxxZElsZVUyaW9iQWlqSFBjMytkM0RxalhhdkdxbllB?=
- =?utf-8?B?czlYNVJkelNCTDFFOEp1ZUFCRjNhekhqL1d6alpiN2cwaG9taVI2djJYTzJh?=
- =?utf-8?B?Tk5ZZnRlSWczbHFEaHY2d2NCaUw5L3dYVjdTL1FBTEE3RStIWklTb3N5Tnhp?=
- =?utf-8?B?Y2swSkN6NG9rSXFEKzFHNUZsZVhCRE45MWkrbGxWc2hPTlUxVU9rNW9UOUwz?=
- =?utf-8?B?UlpESzRBR2QvSGlPdnVwNFZjWEM1SXBnemVGSHkyT0pyYkpML2xhN2ZUWTMr?=
- =?utf-8?B?a0V0WjJIN2llbE5qUlpGK3BBeVFOQkNvQnpYRFRUUllIUnlOSE5weTV4NFlU?=
- =?utf-8?B?bmF3MU9lSmNneXlYa2h0azhNU2EvSU44VTdTc1ZCc3h2RTF6RmZjbzZJUHZi?=
- =?utf-8?B?RnV0T1NtekU5WEZ6bDByTDIxc0F2RU9XVUtneERleWZxb3RJb2tSOEN0L0Fv?=
- =?utf-8?B?Vkl2aFl5ZVpYMnd1bGxJNklPMzdLRldacitZc3dCQkZmbnV6MDdDVkp3a011?=
- =?utf-8?B?Y0NqWU9ud1EvZWwyMUpqcUlxTXlSZzg2bFNXM2wzTmt0NnJ4SW12S001ZEhZ?=
- =?utf-8?B?NFZBL3FmdGJ3L1I1dktUT2RaamI4ZklEVUY1YldQaCtOTkFjaG9uWXl6eTVa?=
- =?utf-8?B?REJBSE9QMUMrWTUrU3hlWDZFTkZvVzVubWdIUkJoaXhBQ052cVIwSFc0S1lU?=
- =?utf-8?B?VXpuREpCTnBHZ1QyZjZGZEdvMi9meDJaR2hLTlhDSXpCZVZsOVpXRVpEVUtw?=
- =?utf-8?B?QVFJbGx3MDd1WUZsOHI1SjFTYncySWYvWjF6VGpyeG9SNUtqTVY1ZkpZL0NH?=
- =?utf-8?B?OUY5TGpraDNwVkZEK1pValRzZE5mVWNWWllqZEpsT2pnN3JTNXNTUE1rRnAw?=
- =?utf-8?B?ai9UUExrR29jeE9zdTRZaEVKS2JGVXVac3cvb2dVVmo3Q0hubUVCRVhBS1Bn?=
- =?utf-8?B?NzlhL0RJZExVWlN6SmxIOWg3T1dncXdmQSszUFlvSUhpTG9rK0Y5RXdIRHpL?=
- =?utf-8?B?OEpyT0U4bk5vNEFuN2tGcDJJSlFGQkxxTzh1cDVRYTBsa1ZTQ00rVHNxelYw?=
- =?utf-8?Q?zrvYXIm/mK48gv//1NMQdyXXI?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 78d4094f-76ec-438e-3144-08de0bd19f9a
-X-MS-Exchange-CrossTenant-AuthSource: AM7PR04MB7046.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Oct 2025 10:00:09.0223
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: +JbvIt7EEvKcSxRhB45bX/wYTXTVPK6pnunQvOt1WRQ5NaBMDCZ8qlKUazxKm+/HvUD1BeGKPmEsXmVFuVFLWA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI0PR04MB10782
 
-On 10/14/2025, Marek Vasut wrote:
-> On 10/14/25 10:51 AM, Liu Ying wrote:
->> Hi Marek,
-> 
-> Hi,
-> 
->> On 10/11/2025, Marek Vasut wrote:
->>> This large series adds support for the i.MX95 display pipeline, including
->>> DPU, DSI and LVDS support. Most of the components extend existin drivers,
->>> DPU is added into DC driver, DSI into iMX93 DSI driver, LVDS into iMX8MP
->>> LDB. Pixel link and pixel interleaver drivers are reworked to work as two
->>> independent channels, since there seems to be no dependency between their
->>> two channels. The i.MX95 DTSI changes are also included.
->>>
->>> Since the DPU chapter is missing from the i.MX95 RM, this is based on the
->>> NXP downstream kernel fork code and there might be issues.
->>>
->>> Majority of this series are DPU patches on top of the DC driver, I tried
->>> to keep them separate and easy to review. Later part adds LVDS and DSI
->>> support, this can be split into separate series.
->>
->> Like you said that this patch series is large, please split it.
->> Also, make sure proper maintainers are in TO or CC lists for each patch(b4
->> tool should do that automatically for you), e.g., patch 37 should be sent
->> to Thomas Gleixner <tglx@linutronix.de> according to MAINTAINERS.
-> 
-> I had to trim down the CC list for this series, it was enormous.
-> 
-> I wanted to put this whole thing on the list first, before I start splitting it up.
-> 
-> For starters, I think I can send these separately:
+On Tue, 2025-10-14 at 17:02 -0500, David Lechner wrote:
+> Add support for SPI controllers with multiple physical SPI data buses.
+> (A data bus in this context means lines connected to a serializer, so a
+> controller with two data buses would have two serializers in a single
+> controller).
+>=20
+> This is common in the type of controller that can be used with parallel
+> flash memories, but can be used for general purpose SPI as well.
+>=20
+> To indicate support, a controller just needs to set ctlr->num_data_bus
+> to something greater than 1. Peripherals indicate which bus they are
+> connected to via device tree (ACPI support can be added if needed).
+>=20
+> Signed-off-by: David Lechner <dlechner@baylibre.com>
+> ---
 
-Before discussing how to split, a bigger question is that is it fine to
-support both i.MX8qxp DC and i.MX95 DC in the same imx8_dc_drm module?
-Separate modules look more reasonable to me, considering the fact that
-there are quite a lot difference between the two DCs.
+LGTM,
 
-> 
-> - drm/imx: dc: Use bulk clock
+Acked-by: Nuno S=C3=A1 <nuno.sa@analog.com>
 
-I don't think this one is needed because reach relevant block has only one
-clock.
-
-> - drm/imx: dc: Rework dc_subdev_get_id() to drop ARRAY_SIZE() use
-
-It doesn't seem that this one is needed either, if we use separate modules.
-
-> - drm/imx: dc: Rename i.MX8QXP specific Link IDs
-
-TBH, I'm not a big fan of adding LINK_ID_x_MXy to enum dc_link_id, since
-the members may have the same value and it's kind of a mess considering
-future SoCs.
-
-> - drm/imx: Add more RGB swizzling options
-
-This one seems ok.
-
-> - dt-bindings: interrupt-controller: fsl,irqsteer: Add i.MX95 support
-
-Ditto.
-
-> 
-> Then in second round, probably all these clean ups:
-> 
-> - drm/imx: dc: *: Pass struct dc_*_subdev_match_data via OF match data
-
-Same, doesn't seem needed, if we use separate modules.
-
-> 
-> And then rest afterward.
-> 
-> What do you think ?
-
-I kind of opt to separate modules.  Maybe, to save some code, an additional
-module can be introduced to wrap common part as helpers, plus some callback
-magics, like fg->dc_fg_cfg_videomode().
-
--- 
-Regards,
-Liu Ying
+>=20
+> This patch has been seen in a different series [1] by Sean before:
+>=20
+> [1]:
+> https://lore.kernel.org/linux-spi/20250616220054.3968946-4-sean.anderson@=
+linux.dev/
+>=20
+> Changes:
+> * Use u8 array instead of bitfield so that the order of the mapping is
+> =C2=A0 preserved. (Now looks very much like chip select mapping.)
+> * Added doc strings for added fields.
+> * Tweaked the comments.
+> ---
+> =C2=A0drivers/spi/spi.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 28 ++++++++=
++++++++++++++++++++-
+> =C2=A0include/linux/spi/spi.h | 17 +++++++++++++++++
+> =C2=A02 files changed, 44 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/drivers/spi/spi.c b/drivers/spi/spi.c
+> index
+> 2e0647a06890290e1c9dc4a347a0864329795b08..84e5d5057eb41f1a522c4870265d78f=
+eb411
+> 09c8 100644
+> --- a/drivers/spi/spi.c
+> +++ b/drivers/spi/spi.c
+> @@ -2354,7 +2354,7 @@ static void of_spi_parse_dt_cs_delay(struct device_=
+node
+> *nc,
+> =C2=A0static int of_spi_parse_dt(struct spi_controller *ctlr, struct spi_=
+device
+> *spi,
+> =C2=A0			=C2=A0=C2=A0 struct device_node *nc)
+> =C2=A0{
+> -	u32 value, cs[SPI_DEVICE_CS_CNT_MAX];
+> +	u32 value, buses[SPI_DEVICE_DATA_BUS_CNT_MAX],
+> cs[SPI_DEVICE_CS_CNT_MAX];
+> =C2=A0	int rc, idx;
+> =C2=A0
+> =C2=A0	/* Mode (clock phase/polarity/etc.) */
+> @@ -2446,6 +2446,31 @@ static int of_spi_parse_dt(struct spi_controller *=
+ctlr,
+> struct spi_device *spi,
+> =C2=A0	for (idx =3D 0; idx < rc; idx++)
+> =C2=A0		spi_set_chipselect(spi, idx, cs[idx]);
+> =C2=A0
+> +	rc =3D of_property_read_variable_u32_array(nc, "spi-buses", buses, 1,
+> +						 ARRAY_SIZE(buses));
+> +	if (rc < 0 && rc !=3D -EINVAL) {
+> +		dev_err(&ctlr->dev, "%pOF has invalid 'spi-buses' property
+> (%d)\n",
+> +			nc, rc);
+> +		return rc;
+> +	}
+> +
+> +	if (rc =3D=3D -EINVAL) {
+> +		/* Default when property is omitted. */
+> +		spi->num_data_bus =3D 1;
+> +	} else {
+> +		for (idx =3D 0; idx < rc; idx++) {
+> +			if (buses[idx] >=3D ctlr->num_data_bus) {
+> +				dev_err(&ctlr->dev,
+> +					"%pOF has out of range 'spi-buses'
+> property (%d/%d)\n",
+> +					nc, buses[idx], ctlr->num_data_bus);
+> +				return -EINVAL;
+> +			}
+> +			spi->data_bus[idx] =3D buses[idx];
+> +		}
+> +
+> +		spi->num_data_bus =3D rc;
+> +	}
+> +
+> =C2=A0	/*
+> =C2=A0	 * By default spi->chip_select[0] will hold the physical CS number=
+,
+> =C2=A0	 * so set bit 0 in spi->cs_index_mask.
+> @@ -3054,6 +3079,7 @@ struct spi_controller *__spi_alloc_controller(struc=
+t
+> device *dev,
+> =C2=A0	mutex_init(&ctlr->add_lock);
+> =C2=A0	ctlr->bus_num =3D -1;
+> =C2=A0	ctlr->num_chipselect =3D 1;
+> +	ctlr->num_data_bus =3D 1;
+> =C2=A0	ctlr->target =3D target;
+> =C2=A0	if (IS_ENABLED(CONFIG_SPI_SLAVE) && target)
+> =C2=A0		ctlr->dev.class =3D &spi_target_class;
+> diff --git a/include/linux/spi/spi.h b/include/linux/spi/spi.h
+> index
+> cb2c2df3108999a73b67ef4a7b0d2cb07adfc669..c314194d4e7e2b396795ece10e14211=
+8ca05
+> f4eb 100644
+> --- a/include/linux/spi/spi.h
+> +++ b/include/linux/spi/spi.h
+> @@ -23,6 +23,9 @@
+> =C2=A0/* Max no. of CS supported per spi device */
+> =C2=A0#define SPI_DEVICE_CS_CNT_MAX 4
+> =C2=A0
+> +/* Max no. of data buses supported per spi device */
+> +#define SPI_DEVICE_DATA_BUS_CNT_MAX 8
+> +
+> =C2=A0struct dma_chan;
+> =C2=A0struct software_node;
+> =C2=A0struct ptp_system_timestamp;
+> @@ -171,6 +174,9 @@ extern void spi_transfer_cs_change_delay_exec(struct
+> spi_message *msg,
+> =C2=A0 * @chip_select: Array of physical chipselect, spi->chipselect[i] g=
+ives
+> =C2=A0 *	the corresponding physical CS for logical CS i.
+> =C2=A0 * @num_chipselect: Number of physical chipselects used.
+> + * @data_bus: Array of physical data buses. This is only used with
+> specialized
+> + * controllers that support multiple data buses.
+> + * @num_data_bus: Number of physical data buses used.
+> =C2=A0 * @cs_index_mask: Bit mask of the active chipselect(s) in the chip=
+select
+> array
+> =C2=A0 * @cs_gpiod: Array of GPIO descriptors of the corresponding chipse=
+lect lines
+> =C2=A0 *	(optional, NULL when not using a GPIO line)
+> @@ -231,6 +237,8 @@ struct spi_device {
+> =C2=A0
+> =C2=A0	u8			chip_select[SPI_DEVICE_CS_CNT_MAX];
+> =C2=A0	u8			num_chipselect;
+> +	u8			data_bus[SPI_DEVICE_DATA_BUS_CNT_MAX];
+> +	u8			num_data_bus;
+> =C2=A0
+> =C2=A0	/*
+> =C2=A0	 * Bit mask of the chipselect(s) that the driver need to use from
+> @@ -401,6 +409,7 @@ extern struct spi_device *spi_new_ancillary_device(st=
+ruct
+> spi_device *spi, u8 ch
+> =C2=A0 *	SPI targets, and are numbered from zero to num_chipselects.
+> =C2=A0 *	each target has a chipselect signal, but it's common that not
+> =C2=A0 *	every chipselect is connected to a target.
+> + * @num_data_bus: Number of data buses supported by this controller. Def=
+ault
+> is 1.
+> =C2=A0 * @dma_alignment: SPI controller constraint on DMA buffers alignme=
+nt.
+> =C2=A0 * @mode_bits: flags understood by this controller driver
+> =C2=A0 * @buswidth_override_bits: flags to override for this controller d=
+river
+> @@ -576,6 +585,14 @@ struct spi_controller {
+> =C2=A0	 */
+> =C2=A0	u16			num_chipselect;
+> =C2=A0
+> +	/*
+> +	 * Some specialized SPI controllers can have more than one physical
+> +	 * bus interface per controller (each having it's own serializer).
+> This
+> +	 * specifies the number of buses in that case. Other controllers do
+> not
+> +	 * need to set this (defaults to 1).
+> +	 */
+> +	u16			num_data_bus;
+> +
+> =C2=A0	/* Some SPI controllers pose alignment requirements on DMAable
+> =C2=A0	 * buffers; let protocol drivers know about these requirements.
+> =C2=A0	 */
 
