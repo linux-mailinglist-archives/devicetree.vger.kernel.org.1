@@ -1,163 +1,195 @@
-Return-Path: <devicetree+bounces-227189-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227190-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31C36BDF6F1
-	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 17:40:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6DDBBDF705
+	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 17:41:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id CFF7D3521B2
-	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 15:40:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BFF7A3C73BB
+	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 15:40:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 402CB32C33D;
-	Wed, 15 Oct 2025 15:40:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B9CB32C318;
+	Wed, 15 Oct 2025 15:40:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="ts5+XU4E";
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="Ox3W2Jta"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="fFifcm06"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F19B31D730;
-	Wed, 15 Oct 2025 15:40:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.161
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73F84322DC1
+	for <devicetree@vger.kernel.org>; Wed, 15 Oct 2025 15:40:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760542842; cv=none; b=eOhTdV2cBApsJZIiRoPMuiE+ipjnD3tIzYGzN+DWbLXdqgoLXYCMMDO4TK1V6uS3lKUkDWiPcrCJa/YwRSuPNbj97bsKHzi83aA4TO2QYbe+Mtc/EZFnfuw2vw4DmK3ujTS83835OqJ72tWbEIEoI0bEpDBsdcnEWp+XTtwOGoY=
+	t=1760542843; cv=none; b=cbF3hlrFFRcFhmNctmwLQA7HVEQms5MJjSNh7OyxKOTaUVyOqD2D5DtrpP6u6u83jZIHqVeV9BVHCEJvXf2HsrAwrsYEwXyQ78oJEdwNgQvTZgfhQyQQdz2T9326l3vDSws3UOUyo0fc4UUR4d9494ZkC8vk+DcxCI5J/uFjAfI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760542842; c=relaxed/simple;
-	bh=vXaxlDaljo3DrUaTZaX7U1L3tWLa3vJ9t3g1e5xesD0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=e6bHPyCtKYg14tFcB/ZI/4A+629rcTPqb2/ChZfSkHhzi6FaQ2py72VTUcKSlY1itmsVsRcOjs8cDaoY5fhMuY0JcDXH3BwCr/PrH4YG9nLu54/ocQdbIp3tLOTK+AJbPUPTazrpCvSmkks8ZkzBgSMFX4YFOMpc6ub6S/RELDw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=ts5+XU4E; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=Ox3W2Jta; arc=none smtp.client-ip=80.241.56.161
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp1.mailbox.org (smtp1.mailbox.org [10.196.197.1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4cmwK12bwPz9tgG;
-	Wed, 15 Oct 2025 17:40:37 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1760542837;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=WALWGBujqpuz8lR80FyOJBIEDnbfCjtWd9uM0KYO5Yw=;
-	b=ts5+XU4E9uoeHP5aS64D51GHt/43rxLYhmiO+ceTFAlILlRkBOW4nuwRPhS/QoDBsMaYaU
-	KCPIayrqg7nsW4oZQ3S9IwE8p6SPMTeujQ53CjnBgInPF8bGhU18qcM+ONY4/fSACDfUIC
-	lyL2BBOcApE3N6w+6rrmWUEpuBOLXSx2EMk1pj8YC62TU9FyeLXpfAd7DlAQe92R1qwpZz
-	X1QZWMvhZq6ufUFICtCqXXkrmGFmqZEEmw1Ots7KGfwz7atEJspdd7Oa6pgngD4RLsMMLh
-	57lt4tIyRcWKeA7UoMItrjtW2bKKVWuxMW0RIj63wpCSCES1kmXIyIYBkKNKcQ==
-From: Marek Vasut <marek.vasut+renesas@mailbox.org>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1760542835;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=WALWGBujqpuz8lR80FyOJBIEDnbfCjtWd9uM0KYO5Yw=;
-	b=Ox3W2JtanoRnnGjuRU71a1yZIYIdVPzwidldeUfyJ8Rh7BK1YGGrheGYY5oeSM6oDNZgzb
-	bKsUn0gaex8TUY18GUGxZzMGPp5oNStT8JzPJKvff3p2YuFpnnso5FT+QdLPNFpEcUNl8m
-	9CYL84WwKmJA+5rOq2keXj1PfIAm0jW8P4wt/aBNRNtx+3bCfe/wgyrU9r8GwjK/c4AU4K
-	8LBEvA/Kax3eUKobLyaNjylwj0E3tJbzAofHE5Mzh0GkeSgN36I5dlwhmibhG/zLAWkfI6
-	K5+pC3s652vYmuAtLZVngCxQ7JdGKXJhJF1YBE1fx1zlilWdFXCgFBnmu/Y9KQ==
-To: linux-arm-kernel@lists.infradead.org
-Cc: Marek Vasut <marek.vasut+renesas@mailbox.org>,
-	=?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>,
-	Adam Ford <aford173@gmail.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	David Airlie <airlied@gmail.com>,
-	Frank Binns <frank.binns@imgtec.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Matt Coster <matt.coster@imgtec.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Simona Vetter <simona@ffwll.ch>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	devicetree@vger.kernel.org,
-	dri-devel@lists.freedesktop.org,
-	linux-renesas-soc@vger.kernel.org
-Subject: [PATCH v2 3/3] arm64: dts: renesas: r8a77961: Add GX6250 GPU node
-Date: Wed, 15 Oct 2025 17:38:58 +0200
-Message-ID: <20251015153952.185249-3-marek.vasut+renesas@mailbox.org>
-In-Reply-To: <20251015153952.185249-1-marek.vasut+renesas@mailbox.org>
-References: <20251015153952.185249-1-marek.vasut+renesas@mailbox.org>
+	s=arc-20240116; t=1760542843; c=relaxed/simple;
+	bh=8yIzlOJSXfO6YXhbSck71FcfdlxfIEO0W1rlhZ3Foj0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=heC+7y1gl6Tyj8wAcScf/FLPAyBzvWTozQZQgTnTuckBNksVwmlTfmmb3ENOTiCYUV8UkhMnpa2MTep2VJxRngZXRwEvlr7ktziIeS6yR7Ym/suvlUC+dUED7IWgG+9FGdo9KyNDjKHgATgIz/b9jcXtVfvsAlAXbzq31GngriE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=fFifcm06; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59FA8joQ003418
+	for <devicetree@vger.kernel.org>; Wed, 15 Oct 2025 15:40:39 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=v51xGGLBzfthpJ6uAG1FtfpT
+	PpeQpU30JZDZNcynxBI=; b=fFifcm06MJtVgPqG3E+gCnYpVvRuDmp8Kd5uoQhJ
+	KU8sxlsS/ZEY2VcwhzOQaw5i1Qtdshl/deNlyb8C9HL7eC0cQqMiBfIz+wje3iFa
+	evnphpSb97MAd9bPeNhrZxG6HlnL530o9Ej323pF1JFTaBf54WAKcsbffE0ujUBe
+	zZrvzCnoyKpJk33+0stXq639TgJd2N9UgnwjFHfsjKlaCifQlz+1yU14zd464FAT
+	uINnJbFeeEXWLjF3ZrNXEMUfP00/kPcglhFjYRRjRPstwTQy7aQryG5+Sq+8K9S3
+	v3GKHBAfFKsxohCoV8AEAKDVkeLxiTuhey1ErGpQ0gKqwQ==
+Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com [209.85.214.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49sua8kjcy-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 15 Oct 2025 15:40:39 +0000 (GMT)
+Received: by mail-pl1-f199.google.com with SMTP id d9443c01a7336-2699ed6d43dso112123585ad.1
+        for <devicetree@vger.kernel.org>; Wed, 15 Oct 2025 08:40:39 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1760542838; x=1761147638;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=v51xGGLBzfthpJ6uAG1FtfpTPpeQpU30JZDZNcynxBI=;
+        b=JNMuXF+WzdN9Uu9rzMtTxaclRyepoq0ue/WboN/lzE2/zfvdyf4513zKMZ/brmvJB3
+         VYN5FVB9eEIAuDmA6O+dCv8kuvQS4xhHL9SV/fwHlXlWbPxs6efaFD1wEIoX8rOpGDco
+         L/S7sIGVva3gM3W5m5sQrJWWSk9i+BjlPcF5BQOOXA4r0HWG+y5gkMrWGdXfwVcLB2/Q
+         /G3A5lc9URmifwX42afzx+jwu+hehgKTMaXr6rkXLbsQG37umcbDrqxS4eDWARvTGfne
+         16Ond4NAMPlHmqJhdOaWu3R5BY713EDB8CY3wxJL40g+BitmlCvshp/w1TcVqqra/SSb
+         gJUw==
+X-Forwarded-Encrypted: i=1; AJvYcCUBs1MbV+dYJlqsxqJhe2n9KbbyMrfHDg1P9s87mWZRZ1jo/AphNb24/YAMQGAbltHh4JUdtW0RcX9w@vger.kernel.org
+X-Gm-Message-State: AOJu0YzUJgidAti9/CtkLm4HdKNlqpqfuryOQ8AjpumnHUGJ45AAc9fN
+	dlulSXe9nKv3taNIfGQEU8UQmNJD/nhFRcE4cyXHiZAlHeoUI/tX52bJjr4khfGzWGEkOleWWt7
+	q2wnEeRdeC4bU+JkviF20hxAvnLoJ7MyKVcWnBh2DUPmqGXUKmP9qo01gXCnMOOJj
+X-Gm-Gg: ASbGncuDmccxnd1hsTn/6Hbh/YkOEd0JZSSD1EpFFsUTByHSBo9Mg2d5wX5cbJooLLk
+	WYEpvi+Jd/JDi1cMZIodJoA0MrbaAjQF5SGN8wkDhCuaQRGZN8TcBOLPXDuCa0Gz7ayKFy0O0D/
+	+dfg7jbj/cmH+aSwSovTLKEeZJrkFXCdUilcpP8varntS7P8xrkzSo2HE8AaUe+quRAP6xe6Kfj
+	IdyYh2h4iWiCXmELxBoCI453IWafvzURAp5oQyc9XxUBGn9EL/EYs9dG/cqB/zJC4CHl7fdGJxh
+	NsdcDd634sYoHIFEzaYHG8NQ9UjPFCYegWJSZXvkayrMhLmB3DR4Q4Pw6AVCsQfXOHlEskp8XMN
+	xpDmhZmlRyhEAUAs16sbx82UkgA==
+X-Received: by 2002:a17:903:94f:b0:250:643e:c947 with SMTP id d9443c01a7336-290273ee209mr362922935ad.28.1760542837792;
+        Wed, 15 Oct 2025 08:40:37 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IH0flfR5h7EFdAnGkZA4xK4OhgMnYLtcfmupB0TvW9tUJ2NNuuPUm+lRnMe685BmxN8pgVIOg==
+X-Received: by 2002:a17:903:94f:b0:250:643e:c947 with SMTP id d9443c01a7336-290273ee209mr362922665ad.28.1760542837307;
+        Wed, 15 Oct 2025 08:40:37 -0700 (PDT)
+Received: from hu-kamalw-hyd.qualcomm.com ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29034e1cbcbsm200774325ad.45.2025.10.15.08.40.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 15 Oct 2025 08:40:36 -0700 (PDT)
+Date: Wed, 15 Oct 2025 21:10:31 +0530
+From: Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Pankaj Patil <pankaj.patil@oss.qualcomm.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 09/24] arm64: dts: qcom: glymur-crd: Add RPMH regulator
+ rails
+Message-ID: <20251015154031.hbifj6khno3gi3mz@hu-kamalw-hyd.qualcomm.com>
+References: <20250925-v3_glymur_introduction-v1-0-24b601bbecc0@oss.qualcomm.com>
+ <20250925-v3_glymur_introduction-v1-9-24b601bbecc0@oss.qualcomm.com>
+ <a49f3f75-c882-4635-9be3-a433b7fe32c8@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-MBO-RS-ID: e2ada218b4f0bf9902c
-X-MBO-RS-META: xes7cftrux7je99qpochttto5be99b3u
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <a49f3f75-c882-4635-9be3-a433b7fe32c8@oss.qualcomm.com>
+X-Proofpoint-GUID: Ilh15b8MkvdbEAEIYn9ZIGvb33GUIn-4
+X-Authority-Analysis: v=2.4 cv=e5MLiKp/ c=1 sm=1 tr=0 ts=68efc077 cx=c_pps
+ a=JL+w9abYAAE89/QcEU+0QA==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=kj9zAlcOel0A:10 a=x6icFKpwvdMA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=EUspDBNiAAAA:8 a=VNp9kv7xENmXbawpSbEA:9 a=CjuIK1q_8ugA:10
+ a=324X-CrmTo6CU4MGRt3R:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDE0MDEzNCBTYWx0ZWRfX9ywN3JB2zmvM
+ iP58O1hzd6lcWZRdreKiFHQ+9cWh7qV8YV270n05amNhN4O1BgxdRA2gFRf2HU5cs55WsvOCbqY
+ gkXKVgFUdDm+jkv1fzFqFqEPy47+8dLUkaYxOiKWp8lYoAOAydfYVrGFM0Cbc8ZsovF6CNwMxJk
+ gOvkMLcrzOPQxdvIerRIfJJ6OO6zsJn4OmtTHuQDeDWJy/n1ZWb0RoBDX8/XlXWnBRiiC8BfLXX
+ Ue0s47pWmI6hN6veP4+rDy2zLh/GyMmQVnOzX0RC9EPS/4Nenle9NOAe0Ltq1vRUqDkZ8802kJ4
+ OWpblA9DkFMutmV0bqSA+U5yEzU5YFAU42KEWzH/T5soQ/sToreTYWGd6rC1qKHjdMGhzDqoUf5
+ B/YxVk75nG50FIXoTu2E8bqohIkyuA==
+X-Proofpoint-ORIG-GUID: Ilh15b8MkvdbEAEIYn9ZIGvb33GUIn-4
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-10-15_05,2025-10-13_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 suspectscore=0 spamscore=0 adultscore=0 clxscore=1015
+ priorityscore=1501 impostorscore=0 malwarescore=0 bulkscore=0
+ lowpriorityscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2510020000
+ definitions=main-2510140134
 
-Describe Imagination Technologies PowerVR Rogue GX6250 BNVC 4.45.2.58
-present in Renesas R-Car R8A77961 M3-W+ SoC.
+On Thu, Sep 25, 2025 at 01:01:56PM +0200, Konrad Dybcio wrote:
+> On 9/25/25 8:32 AM, Pankaj Patil wrote:
+> > From: Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
+> > 
+> > Add RPMH regulator rails for Glymur CRD.
+> > 
+> > Signed-off-by: Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
+> > Signed-off-by: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
+> > ---
+> 
+> [...]
+> 
+> > +	regulators-1 {
+> > +		compatible = "qcom,pmcx0102-rpmh-regulators";
+> > +		qcom,pmic-id = "C_E0";
+> > +		vdd-s1-supply = <&vph_pwr>;
+> > +		vdd-s8-supply = <&vph_pwr>;
+> > +
+> > +		vreg_s1c_e0_0p3: smps1 {
+> > +			regulator-name = "vreg_s1c_e0_0p3";
+> > +			regulator-min-microvolt = <300000>;
+> > +			regulator-max-microvolt = <1200000>;
+> > +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> > +		};
+> > +
+> > +		vreg_s8c_e0_0p3: smps8 {
+> > +			regulator-name = "vreg_s8c_e0_0p3";
+> > +			regulator-min-microvolt = <300000>;
+> > +			regulator-max-microvolt = <1200000>
+> 
+> Both of these regulators, having no consumers, will be parked to 0.3 V
+> (the lower bound)
+> 
+> There are other similar cases in this patch
 
-Reviewed-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
-Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
----
-Cc: Adam Ford <aford173@gmail.com>
-Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: David Airlie <airlied@gmail.com>
-Cc: Frank Binns <frank.binns@imgtec.com>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Cc: Magnus Damm <magnus.damm@gmail.com>
-Cc: Matt Coster <matt.coster@imgtec.com>
-Cc: Maxime Ripard <mripard@kernel.org>
-Cc: Rob Herring <robh@kernel.org>
-Cc: Simona Vetter <simona@ffwll.ch>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: devicetree@vger.kernel.org
-Cc: dri-devel@lists.freedesktop.org
-Cc: linux-renesas-soc@vger.kernel.org
----
-V2: - Add RB from Niklas
-    - Fix up power-domains = <&sysc R8A77961_PD_3DG_B>; for 77961
-    - Fill in all three clock and two power domains
----
- arch/arm64/boot/dts/renesas/r8a77961.dtsi | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+Ok. I will remove the unused rails.
 
-diff --git a/arch/arm64/boot/dts/renesas/r8a77961.dtsi b/arch/arm64/boot/dts/renesas/r8a77961.dtsi
-index 12435ad9adc04..aa7f5de61e787 100644
---- a/arch/arm64/boot/dts/renesas/r8a77961.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r8a77961.dtsi
-@@ -2455,6 +2455,22 @@ gic: interrupt-controller@f1010000 {
- 			resets = <&cpg 408>;
- 		};
- 
-+		gpu: gpu@fd000000 {
-+			compatible = "renesas,r8a77961-gpu",
-+				     "img,img-gx6250",
-+				     "img,img-rogue";
-+			reg = <0 0xfd000000 0 0x40000>;
-+			interrupts = <GIC_SPI 119 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cpg CPG_CORE R8A77961_CLK_ZG>,
-+				 <&cpg CPG_CORE R8A77961_CLK_S2D1>,
-+				 <&cpg CPG_MOD 112>;
-+			clock-names = "core", "mem", "sys";
-+			power-domains = <&sysc R8A77961_PD_3DG_A>,
-+					<&sysc R8A77961_PD_3DG_B>;
-+			power-domain-names = "a", "b";
-+			resets = <&cpg 112>;
-+		};
-+
- 		pciec0: pcie@fe000000 {
- 			compatible = "renesas,pcie-r8a77961",
- 				     "renesas,pcie-rcar-gen3";
--- 
-2.51.0
+But just wanted to let you know currently i have exposed all the rails that
+are allowed to be controlled from APPS, mostly these rails will be staying
+OFF if no clients in SW are there to vote on them.
 
+But do note that some of the clients may be getting added as more features
+get added, as lot of these rails are not unused in the HW. The client driver
+just isnt enabled as of now.
+
+So wanted to check if I should remove ALL rails that are unused in SW?
+ or
+Can i keep the ones for which clients will be getting added in near future.
+
+(i would prefer the later option, if that is ok with you?)
+
+> 
+> Does the board still boot with all the expected functionality with only
+> patches 1-9 applied?
+
+No. just tested, it seems not able to boot properly with just 1-9 patches.
+is your concern about squashing of the patches?
+(just trying to understand)
+
+> 
+> Konrad
+
+Regards,
+Kamal
 
