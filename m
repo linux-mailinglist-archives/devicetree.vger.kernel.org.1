@@ -1,183 +1,192 @@
-Return-Path: <devicetree+bounces-227340-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227341-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 245FCBE09E0
-	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 22:20:30 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A295BE0A53
+	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 22:35:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 970D53556AF
-	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 20:20:29 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 3B9774EC700
+	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 20:34:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97BD52C0296;
-	Wed, 15 Oct 2025 20:20:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0D1B30C341;
+	Wed, 15 Oct 2025 20:34:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="M0USLYG7"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="a11Kg6bh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com [209.85.210.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from MRWPR03CU001.outbound.protection.outlook.com (mail-francesouthazon11011019.outbound.protection.outlook.com [40.107.130.19])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D49B29B204
-	for <devicetree@vger.kernel.org>; Wed, 15 Oct 2025 20:20:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.182
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760559625; cv=none; b=Z1htiILFOf1kgn+WZT5rVp9KqfYKn+Fyu46tRHfe5myaSajDa+IAqiAtOoFU9nxi/GmMFW+9oG5AufpBk02pwgCxd/hULosl9rw9On3HSR8MOaMw7S9ugkcWpy+0QII3iGZOGfVqSBuV4DBmvTxd5ZNBS/YwS0NilJwY2+tB1f0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760559625; c=relaxed/simple;
-	bh=W5lL+7clCIuimE2JZ8XP6AYfpvpiK8gFacYRPIHJLgQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lkhYR4nPrPQhKrH1HhkdO9GlyUKtt9aF/L4V+x049xM0wA2MGmKH55jnxXH24L6VA6+IQlbXNHbMGvDxVSI6ocUp8p9nILAIq4BjNLU0C6mNhj7PURHheeB7DGVH47ZDW8x+PYxtHx3mZavHlKpp38A+1qkZVXfMEweMILHIj2s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=M0USLYG7; arc=none smtp.client-ip=209.85.210.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f182.google.com with SMTP id d2e1a72fcca58-7811a02316bso17390b3a.3
-        for <devicetree@vger.kernel.org>; Wed, 15 Oct 2025 13:20:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1760559623; x=1761164423; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=95gcM031oDoREK3NrLaeDpeIxgdfvAPsa65KxdRg+ks=;
-        b=M0USLYG7rUyAgUurL2h04e/V1EqNNSdzSyAhWbOIWIUzbwrgQwFk7gInAPhBx5bV87
-         O5kHGaOVCHfcp/qc9YKMpHQ5WQtkzrg4pBRAC2pMjcOzN63hTYmWzuNYpWtXoQ2zy+x+
-         atk+kv8u0l55hq2ycBKbEChrSlNb6has74FBUMhcX05gM91i/e25Vhj9cJewKB/GleIo
-         mnSq17a/61qKK4/q/PMJ6IPE3JGJj3FfnXKzRXq2e3vEf/+B60IDSX4KBVJcjd+LGJbM
-         GdAmZRrL5LA+eK5RDPqGPtAipr52YRKMV8rgYbqb8plXn36YXcMUBBCAzrL1GdbH3q1p
-         0LTg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760559623; x=1761164423;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=95gcM031oDoREK3NrLaeDpeIxgdfvAPsa65KxdRg+ks=;
-        b=Df1310RVZI/4daPIObpvvZ8yaYI+jGp/liAJ+cVeL2MXBgBMAIX6bIGkUtuJv68thy
-         bM2Gti+rLXqANsdrADAf271sJWpc00qgApHJH3wkMHaLGDN9sPNjDAzI81n6oB++arrt
-         dT4syRUXSn5GzYcTs5orWJY5bUxz1sfJXXiK7Iaot/tpaeycMD3FEiFH3rYdMsYtrSHS
-         GtsHHEPLPRq82e8Nk0UAmkNZsy3ZxAQL6JzRU9col/pTkPwigjA1W7mhbxBZ4iB6xKbA
-         SaJNepnNksleVZjBKkppZD0uEpi+bTztV98dSgWWPIwsQGWZR95sF8tsbA3qih6IALYQ
-         ZlYg==
-X-Forwarded-Encrypted: i=1; AJvYcCX7Dzq+06K2Ncnq6cEZbs4OHtyocBXmpVJzFrG1mTsN8APgoV1O4pLPRvTsE27Vve30ZG+X2xjM8Zmh@vger.kernel.org
-X-Gm-Message-State: AOJu0YyEz/VJtn57AEeiIeEbdmAtBIIraVuaLJw9UywR01k9s416DwW4
-	np5KxjzzPH36PPIXQslcg88yiQbU3Cn0xYAQklew31oXHhNPT7rmVz6n
-X-Gm-Gg: ASbGncsWsRa9Nl4QZZQPGHNjuZSWfhaBMDGgVRn21xrhZmHNunRXM5mmP5h9SgeTo21
-	wGLYaiW2YsIwc75kDesp4fJRhcjq9fniBzxOheFHCam4qsMXHSk+qIUzA5k0JtQztU/uSiy/GQ2
-	0KkeDOlxfZlMHlxouXaDA+5LqEbB07vl8LMmBqjNIjyzFvUm7HVlO5rIIrs5pGibuE2IfM7v+4+
-	MzGm389mHianXlyjjNdpWLGpflEDvNsOlpbkEsdkVzIC7J/XMm4/Su9kaFdbU1yfh69rWczfw8J
-	e7DehLf6GvYpcEQ6M94JaT+YdVuDrnChL9toBIXZTTfexmNdrAr3J4wWzUgU0JcmWlRIvK+Q3yp
-	aPg7ut1QXmMGWna4U7s8SAaRueLTKC1oPzFKWRi5vuVPQlWqmH5yUSzrmA/t4DYSUG/U9qhLOch
-	NP3VsBOjXoxXbexWDOteUf0KaXCyGDbhQ=
-X-Google-Smtp-Source: AGHT+IF0EKTCjT3naae1xA/PAZLLqfv/YtCN9ndqoHWsu9/x7DQfDR8VhO2uGork8o9ktOC/MruXJA==
-X-Received: by 2002:a05:6a00:2d8f:b0:781:2538:bfb4 with SMTP id d2e1a72fcca58-79385ce2724mr34350286b3a.10.1760559623239;
-        Wed, 15 Oct 2025 13:20:23 -0700 (PDT)
-Received: from localhost ([2804:30c:402b:1a00:ec78:db53:a246:207a])
-        by smtp.gmail.com with UTF8SMTPSA id d2e1a72fcca58-79cf0a052b8sm11363661b3a.67.2025.10.15.13.20.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Oct 2025 13:20:22 -0700 (PDT)
-Date: Wed, 15 Oct 2025 17:21:26 -0300
-From: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
-To: David Lechner <dlechner@baylibre.com>
-Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Marcelo Schmitt <marcelo.schmitt@analog.com>,
-	Michael Hennerich <michael.hennerich@analog.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Andy Shevchenko <andy@kernel.org>,
-	Sean Anderson <sean.anderson@linux.dev>, linux-spi@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-iio@vger.kernel.org
-Subject: Re: [PATCH 3/6] spi: add multi_bus_mode field to struct spi_transfer
-Message-ID: <aPACRllAorjG47L7@debian-BULLSEYE-live-builder-AMD64>
-References: <20251014-spi-add-multi-bus-support-v1-0-2098c12d6f5f@baylibre.com>
- <20251014-spi-add-multi-bus-support-v1-3-2098c12d6f5f@baylibre.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FAB4302742;
+	Wed, 15 Oct 2025 20:34:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.130.19
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1760560487; cv=fail; b=pZtWit6mI8bPRPbjm2l1EP1ce0SIjyvHIxGl6rO+EIiC/OaPj9xiugSzkDEBDt/NimHqcbOnoaqm+R+63Dwm7mDrrd1rcXAI+oFfoRUxgJlUWu66c7POg4tkXDqzLyP/remK3GvuGoIdootd0tIZlAJUn0tQD+c1QEZARadMWRs=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1760560487; c=relaxed/simple;
+	bh=RpkNFtikYsCTlTctzNA5YBJWwIvRQQ1pflhR7aEhXQw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=Ozu6sCrwMxByzZ+Att2gBw/O/G7pVUZajumWP2xqmUpYsRts9Ufqe0dLRhwqwDmmqz0PE2dBlaxNt4qmECn+H9aAscESa/KjPRebEXYrFZdJv0fLl9KAm6nHLyUJj/0tt0mfmBmuDfYmttaHTMI5MqspT1SCmRwuUJ1uE4WP9qU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=a11Kg6bh; arc=fail smtp.client-ip=40.107.130.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=MvSLLJ3hHoK9Qe0O289TBMY8zbcNuDQ5sN89OKe4kazDXo2hnslETantgd4dPUUbG8KO1ssY5JNYUQn/7qBYyu40G8ccpORA+Hfg8wnXTYTJHlDm/DD/mMAz/y09KI6I4GLLkazBAaAURm44X+Zj4nrlA8xoy8Oy+rH1xXH9vNwnHYAEk3Es88vPlMBhkSc2yR7iO62iYGMnmofGB3WYkDDmafEYcWtuIFxJTVf9P57HIJ/E/+1g69XOZPKx3Xf6xS2VLPMkkKRl9ByaRk8OloybRF6Cz+uhF4CXRmXpmZOOvngCfaZSU6UejlTWsEVFVuG5bRxULwJJ/lmrS4/T3A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Wm6Yveb7TURE5rbYKACzY/hFToFCMld1KacmyH10qsY=;
+ b=Vg+VVYjbAR3etx3QDBAvddZIAaeot+b2IP1Lz0ZM9U5dzB/EEjaPZVlDaUZMnXrB2dM/SUDfhNN9f0sQCwBaSWdyO/uo7LBK6te6TCI51S39qv/fUJPSOMsgaB3rGVq0pCEgDATrU3ZEjYtmMA88ODWyJ0bNlFYeWzAef3HC3HsXGeMqvz5vMtRfH8AKxkMpnEPnUvCRVYHz3rSkib9L0KsSSzT0edWDLYN/g/xb1r8/GA65W7ZftoX3F1R6Iz/60RE35/5g7Q3z6vB3eA7tYGCJhn1w54xChoR8vysF3oUmJthS2wtuYemTnXvJdJ4/BKx+6HciCouyEEUhm7JZCQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Wm6Yveb7TURE5rbYKACzY/hFToFCMld1KacmyH10qsY=;
+ b=a11Kg6bhwuOAqa2lN9PkfmifXqOYJD5T1kSKPHc832WBTO19w4HHIp50wpCSoZeesuKzvBeqsVSHedvkPQm1kiEZhFw34Go6VYNg8GfENHhqFpJoSz4cpyDkiAp7P/IrDUZs41MAFMvx9TpGP3OZ14a/kRVObV/g7WJY5tlkU5iAv6nJ2330qOjQUf34ZjRjH8Anxprsthl8TzWMn8Y6clhcZHmKT5bG+nCo5sPAW6+q1q6W4w5fwBDHuDLft3qLljHZXOsHajL1dGiweVB/3Jpz+R3IcHG4EuE6Uh4qDdqZnEqISzok0907LoYEUcwJLX6HTQy2+arNxoU0foYgww==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXSPRMB0053.eurprd04.prod.outlook.com (2603:10a6:102:23f::21)
+ by PAXPR04MB8768.eurprd04.prod.outlook.com (2603:10a6:102:20f::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9228.11; Wed, 15 Oct
+ 2025 20:34:41 +0000
+Received: from PAXSPRMB0053.eurprd04.prod.outlook.com
+ ([fe80::504f:2a06:4579:5f15]) by PAXSPRMB0053.eurprd04.prod.outlook.com
+ ([fe80::504f:2a06:4579:5f15%6]) with mapi id 15.20.9228.010; Wed, 15 Oct 2025
+ 20:34:41 +0000
+Date: Wed, 15 Oct 2025 16:34:34 -0400
+From: Frank Li <Frank.li@nxp.com>
+To: "Russell King (Oracle)" <linux@armlinux.org.uk>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 02/11] ARM: dts: imx6: rename touch-thermal0 to
+ touch-0-thermal
+Message-ID: <aPAFWuJCfvTcK8hz@lizhi-Precision-Tower-5810>
+References: <20251015-imx6_dts_cleanup-v2-0-41a7281b98c6@nxp.com>
+ <20251015-imx6_dts_cleanup-v2-2-41a7281b98c6@nxp.com>
+ <aO_9Tw1s7VcHauNh@shell.armlinux.org.uk>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aO_9Tw1s7VcHauNh@shell.armlinux.org.uk>
+X-ClientProxiedBy: PH0PR07CA0014.namprd07.prod.outlook.com
+ (2603:10b6:510:5::19) To PAXSPRMB0053.eurprd04.prod.outlook.com
+ (2603:10a6:102:23f::21)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251014-spi-add-multi-bus-support-v1-3-2098c12d6f5f@baylibre.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXSPRMB0053:EE_|PAXPR04MB8768:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3312e933-6cd5-431d-cc1c-08de0c2a44db
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|7416014|376014|1800799024|52116014|19092799006|366016|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?Uri0J0sBVSlImiQPPCmt7I2i9XeB00467BthiFa1QVwE2MhNqf+JXf28carD?=
+ =?us-ascii?Q?KF+fuDHRDVjxOdOF7Tbjo+XSza609Nb4Tl/C/2aUayMluKIxWj8ytH1RTKuJ?=
+ =?us-ascii?Q?aYIow5DBjYyj5RS0xM0GQBIyrQspIrRbzj7XNw7zjTmV/yyqUxq4PkZ6eUrm?=
+ =?us-ascii?Q?juI5brpFZUzmSFn7Zirb0/B61vnkibH6QSU9DmU9vfAiWHNx/wPxbTPS0t8k?=
+ =?us-ascii?Q?vWU93cuxqPJYzwIsL+BHVka3O/Vo8q4Nss8Shz2ocg60bdp6Hd+XdytgAjV0?=
+ =?us-ascii?Q?3PKjLZBVNBzUxKs/MAKJyzL/82mUn61DMGipcV6Iyob9Pua9k59xHap72+sx?=
+ =?us-ascii?Q?JX4Y776QoGFbFxJn1RTDqcfPUI0RN7U0xCesvYDhKg95SrG2zITwdmVJz3r8?=
+ =?us-ascii?Q?dq17khXTWTIdYOtc3l8VFIhdX63qawH0+SuXvN0Zn5ta1r5ayRvuMX6QqQCD?=
+ =?us-ascii?Q?aoH6Gwq7dIJekcGiA/WoCRs7jM6llEBBNGaWxif92IYVgzNaf4KjcEQIyC1t?=
+ =?us-ascii?Q?FNB6D++1nhNyONufVCFX0jqJLfyaACVPdRucHSO4quaU8Z/utkLbRqNE8hzw?=
+ =?us-ascii?Q?sLm/jEL1VUCrbbOXYqbP8Fs72CnzVsm3GDPPtvX40+ylQDm5qhn+oCSBDgSO?=
+ =?us-ascii?Q?YwYAbGVwL6UjCQcI1Tk4jKugouc1178kyhYbE0I9NM65FrCDnoqqpwRGhXhN?=
+ =?us-ascii?Q?ifgA2C3tNuf5CKzhVX0btO1e2Cz5I1p7ff3ZUtgPzXAW05P13SObYDcvJPf0?=
+ =?us-ascii?Q?nWWbCNYhwZCeUeTP+A+F8ICZ91/ZG6eD79ENBD0Afq7wYyB/bPGedV/7bUhV?=
+ =?us-ascii?Q?9/3VAVwcXth0p50E5hnQ0OlBKxXVUk8xJSh9rpKN8GR/e98ncbCeR0eXqpHq?=
+ =?us-ascii?Q?k3dr7Um4mdqiAOgdDlKblW53UG83acarjo76dgpriFWshUyH6X9cbNPQeT+8?=
+ =?us-ascii?Q?Zrb2wgX+MqKA/AqLxnefvHs2wlzYYPfthnbgrtJpWx+yCqkZi5ubt8Jd/39i?=
+ =?us-ascii?Q?nxJuZRfPOzTyKY+uZRNm34g/83HuziqKmx5floCYD53iukgMwJ4YBjhPX21R?=
+ =?us-ascii?Q?ryeLO7n/Wn/c8VGP6KtRRBXHm0evUf72iXcJB18a9eFzsAGrnbXn29QHfTq2?=
+ =?us-ascii?Q?xVsSOJQI0q0ooKff0j5l7zxy9fQFnUExPwGeUXJsmw9zpp0b4CjgoFAjC94I?=
+ =?us-ascii?Q?CkIPQQvgxW5bgt0KCaRNl/6at7Yv9ytMdyONSUSG6SnASXZXTHF7PUan2xuY?=
+ =?us-ascii?Q?DwMuCjAOLrDUpohvsUkHb5djE2KACtOwHKU45kQb1o+cwEtLukE2Agweb6LC?=
+ =?us-ascii?Q?zuitnTzfr7Upz0QUBxukxcmBA9+Cd88Po2RP2Y4Yh2b9iWQVgz0ewfuSfjZx?=
+ =?us-ascii?Q?lisYc6a0KMvFni1i3HLGBihODujENym7KrMI3b1lsbh6r+L8JJa9xx0C6YYD?=
+ =?us-ascii?Q?sCmuk8vVsKw2Ltf6HXUm+OEWMK22e9vp?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXSPRMB0053.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(1800799024)(52116014)(19092799006)(366016)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?zTx9HGPcnHTy0RcMAsWm4ot+S5pWdi8jKcD02XmIGHIoD25uWHB51tS6q0MF?=
+ =?us-ascii?Q?h79KmCkJDvx9zZ+Qwn0YUh8YqwBXHiSLe95UqEycz+nQg59t1MPgg74BaZsd?=
+ =?us-ascii?Q?FeNlil4Ta61cSNlEY/nx+0aTvlZ+ND8/AGQmOGaTdJx2a0kubJDhdcBi/aEV?=
+ =?us-ascii?Q?3C6gw0afz8269jd/9R62AQ0OCOoOZB7tjNh1glOI8V0OycLd7Is4FKcpmUX5?=
+ =?us-ascii?Q?cxziO8oFmF0HgdAtGe6q+zL50Orh0+oxBCx0nvZ5wYYOYGYR7nta38jyvP6h?=
+ =?us-ascii?Q?TOumWyEEH+mJw7DwhoH++dvJa2vyWAjVWLujq+sQcPPHTVe8dilVQ1Kj6RMM?=
+ =?us-ascii?Q?37MJcpfBTwAJMacYjwVFh6Q7MxFpDculkeLc9sHQ+Pd4Dpp0tTFAd2GrLijW?=
+ =?us-ascii?Q?3K+A9LpvUfvECu9QmHjufZn65LqyPv4dXZTJdGr1gWHlpZv2JLAMzkLpy913?=
+ =?us-ascii?Q?NdDn3gjK4Zp5LcELxZlZXGXjO/y4cTZ8zIUT+u2wjgL5IOjWUqeK3W44yl/4?=
+ =?us-ascii?Q?KwgyRnibnuW9P936LfUeOH6fJ32A+5+nC2vDuB5cCxIGkCf9Fl/EHVi2LeVv?=
+ =?us-ascii?Q?pFeejO8qpdH/WNEjwBJb78Zt2C5XUGTJL/iUgkzXXITWC8YobaBCCWfvkjAn?=
+ =?us-ascii?Q?JOwZC/O5z+Ql01UnEj/AI86GKIh4f4zBt55Y+s3ZnJdCzN59cEuH2rvrSpTZ?=
+ =?us-ascii?Q?Gxsfv9PaYNTQBCEcvcm1+vHt424uUhpo57MpBVi6/xrisIUS+JN9M/LrVELr?=
+ =?us-ascii?Q?26VXptRaeIeTPsHNS+TD1jWHOWw/hAeV8ySqtkmVF7QztR2YSowrz2DjAayl?=
+ =?us-ascii?Q?p34jAdQcslzLVtlVOtyBY6oA51kBIWAIcUsRpa/BoN1CjXLcJUnFrEljbYt5?=
+ =?us-ascii?Q?hW6M6cgNlznwgNedkndrF3DKimUvGGhcgPhIhKPFIaVrtKHOSoM2yUH90JPI?=
+ =?us-ascii?Q?hNubSdqbsyHOWnOSTijqpJnDrAHS6jtu1sqfI65o/ZlVAo7Nynx9Kh9BfNix?=
+ =?us-ascii?Q?HmO1bEG4ooHl8BxgxfwlXIVvPJu3b+Avo4aG61lSgnwqOjM3/LnCMGVWu7FW?=
+ =?us-ascii?Q?IYmC6jxRr/kaJYzAQxoGh+sRMPl3+73MCXuSO1YRPsQx7dQxF10dWqHGOUlj?=
+ =?us-ascii?Q?rArRU6ymF3TD/M5iYhLrySq+HlvHSAlxo+C5JkA4ov6p2/E9a0YHzDaKC0iA?=
+ =?us-ascii?Q?GZwZSQp2tJGDSlOu80kSUpo07l1dip2i1C9G5s+YX54LExlgrAfiUX4EKWRT?=
+ =?us-ascii?Q?9U9YjDVUC1svhlKYtW2QISnV33hfyJ5u+47ovEjD9dzydt6oocPYO8mNHrIi?=
+ =?us-ascii?Q?9uo+zIaTrcrH5hoxPO4RGr/iX9JH0Mg1jP6NX73s2mZyt2vzJ4SD7eIQuk4i?=
+ =?us-ascii?Q?efs3NeKQnK6Or+lBfRwhdb4PjDS37ucVT1BV9S1s0gd+a/9EPgl0YOw7RYpE?=
+ =?us-ascii?Q?uuvNTrunO9MkhHLfoCHPMjlOA1ZLOx8qizncuZZrZ6mMnl0QZYSOYs3QFOxY?=
+ =?us-ascii?Q?FcomBRB76GBe588dzCGaReb9X+xlySg2BcqCZtsG+3mXqpZZ/QBrgYvOWM9O?=
+ =?us-ascii?Q?fGfl+z8XcJXppdhwrUI=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3312e933-6cd5-431d-cc1c-08de0c2a44db
+X-MS-Exchange-CrossTenant-AuthSource: PAXSPRMB0053.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Oct 2025 20:34:41.7844
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: tplKDGgqH7rvbQEK8ssH4ockHEpfnTGqb7ZDNojUQZ4pFVEjhqBBZCbXi5Asg9ivog5m8TvvK5BIgRH36JXJAA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB8768
 
-On 10/14, David Lechner wrote:
-> Add a new multi_bus_mode field to struct spi_transfer to allow
-> peripherals that support multiple SPI buses to be used with a single
-> SPI controller.
-> 
-> This requires both the peripheral and the controller to have multiple
-> serializers connected to separate data buses. It could also be used with
-> a single controller and multiple peripherals that are functioning as a
-> single logical device (similar to parallel memories).
-> 
-> The possible values for this field have the following semantics:
-> 
-> - SPI_MULTI_BUS_MODE_SINGLE: Only use the first bus. This means that it
->     it is operating just like a conventional SPI bus. It is the default
->     value so that existing drivers do not need to be modified.
-> 
->     Example:
->         tx_buf[0] = 0x88;
-> 
->         struct spi_transfer xfer = {
->             .tx_buf = tx_buf,
->             .len = 1,
->         };
-> 
->         spi_sync_transfer(spi, &xfer, 1);
-> 
->         controller    > data bits >     peripheral
->         ----------   ----------------   ----------
->             SDO 0    0-0-0-1-0-0-0-1    SDI 0
-> 
-> - SPI_MULTI_BUS_MODE_MIRROR: Send a single data word over all of the
->     buses at the same time. This only makes sense for writes and not
->     for reads.
-> 
->     Example:
->         tx_buf[0] = 0x88;
-> 
->         struct spi_transfer xfer = {
->             .tx_buf = tx_buf,
->             .len = 1,
->             .multi_bus_mode = SPI_MULTI_BUS_MODE_MIRROR,
->         };
-> 
->         spi_sync_transfer(spi, &xfer, 1);
-> 
->         controller    > data bits >     peripheral
->         ----------   ----------------   ----------
->             SDO 0    0-0-0-1-0-0-0-1    SDI 0
->             SDO 1    0-0-0-1-0-0-0-1    SDI 1
-> 
-> - SPI_MULTI_BUS_MODE_STRIPE: Send or receive two different data words at
->     the same time, one on each bus.
-> 
->     Example:
->         struct spi_transfer xfer = {
->             .rx_buf = rx_buf,
->             .len = 2, /* must be multiple of number of buses */
->             .multi_bus_mode = SPI_MULTI_BUS_MODE_STRIPE,
->         };
-> 
->         spi_sync_transfer(spi, &xfer, 1);
-> 
->         controller    < data bits <     peripheral
->         ----------   ----------------   ----------
->             SDI 0    0-0-0-1-0-0-0-1    SDO 0
->             SDI 1    1-0-0-0-1-0-0-0    SDO 1
-> 
->         After the transfer, rx_buf[0] == 0x11 (word from SDO 0) and
->         rx_buf[1] == 0x88 (word from SDO 1). If the transfer was longer,
->         the data would continue in an alternating fashion.
-> 
-Can the above explanation be added to the documentation?
-Maybe spi-summary.rst or a new file?
+On Wed, Oct 15, 2025 at 09:00:15PM +0100, Russell King (Oracle) wrote:
+> On Wed, Oct 15, 2025 at 12:44:27PM -0400, Frank Li wrote:
+> > -		touch-thermal0 {
+> > +		touch0-thermal {
+> ...
+> > -		touch-thermal1 {
+> > +		touch1-thermal {
+> ...
+> > -		touch-thermal0 {
+> > +		touch-0-thermal {
+> ...
+> > -		touch-thermal1 {
+> > +		touch-1-thermal {
+> ...
+> > -		touch-thermal0 {
+> > +		touch-0-thermal {
+> ...
+> > -		touch-thermal1 {
+> > +		touch-1-thermal {
+>
+> Is it touch-N-thermal or touchN-thermal?
 
-> Signed-off-by: David Lechner <dlechner@baylibre.com>
-> ---
+What's difference? I suppose both naming should be okay.
 
-Nevertheless,
-Acked-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
+Frank
+>
+> --
+> RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+> FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
