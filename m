@@ -1,195 +1,141 @@
-Return-Path: <devicetree+bounces-227190-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227194-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6DDBBDF705
-	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 17:41:06 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FBCCBDF714
+	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 17:41:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BFF7A3C73BB
-	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 15:40:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0F51618858F5
+	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 15:41:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B9CB32C318;
-	Wed, 15 Oct 2025 15:40:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3679032E73D;
+	Wed, 15 Oct 2025 15:41:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="fFifcm06"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="a6vs4vGq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73F84322DC1
-	for <devicetree@vger.kernel.org>; Wed, 15 Oct 2025 15:40:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1B2B327787;
+	Wed, 15 Oct 2025 15:41:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760542843; cv=none; b=cbF3hlrFFRcFhmNctmwLQA7HVEQms5MJjSNh7OyxKOTaUVyOqD2D5DtrpP6u6u83jZIHqVeV9BVHCEJvXf2HsrAwrsYEwXyQ78oJEdwNgQvTZgfhQyQQdz2T9326l3vDSws3UOUyo0fc4UUR4d9494ZkC8vk+DcxCI5J/uFjAfI=
+	t=1760542870; cv=none; b=u/V+jc77ns/pKoQK6RWm7s8DgwroYdzeZK42QaZy6FEXhyNTGUWtuRc/QIveBM5USTeLZ99G71TumDx+uDnbCD3ul8FLqglS1nuTrLYnSqSWnrqr1BrbKRBQfxUcEE/UOZ7x+FytvWD2XXV7UHkk0VmAQlVYZ0ykeWmLpiKvZ/k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760542843; c=relaxed/simple;
-	bh=8yIzlOJSXfO6YXhbSck71FcfdlxfIEO0W1rlhZ3Foj0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=heC+7y1gl6Tyj8wAcScf/FLPAyBzvWTozQZQgTnTuckBNksVwmlTfmmb3ENOTiCYUV8UkhMnpa2MTep2VJxRngZXRwEvlr7ktziIeS6yR7Ym/suvlUC+dUED7IWgG+9FGdo9KyNDjKHgATgIz/b9jcXtVfvsAlAXbzq31GngriE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=fFifcm06; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59FA8joQ003418
-	for <devicetree@vger.kernel.org>; Wed, 15 Oct 2025 15:40:39 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=v51xGGLBzfthpJ6uAG1FtfpT
-	PpeQpU30JZDZNcynxBI=; b=fFifcm06MJtVgPqG3E+gCnYpVvRuDmp8Kd5uoQhJ
-	KU8sxlsS/ZEY2VcwhzOQaw5i1Qtdshl/deNlyb8C9HL7eC0cQqMiBfIz+wje3iFa
-	evnphpSb97MAd9bPeNhrZxG6HlnL530o9Ej323pF1JFTaBf54WAKcsbffE0ujUBe
-	zZrvzCnoyKpJk33+0stXq639TgJd2N9UgnwjFHfsjKlaCifQlz+1yU14zd464FAT
-	uINnJbFeeEXWLjF3ZrNXEMUfP00/kPcglhFjYRRjRPstwTQy7aQryG5+Sq+8K9S3
-	v3GKHBAfFKsxohCoV8AEAKDVkeLxiTuhey1ErGpQ0gKqwQ==
-Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com [209.85.214.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49sua8kjcy-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 15 Oct 2025 15:40:39 +0000 (GMT)
-Received: by mail-pl1-f199.google.com with SMTP id d9443c01a7336-2699ed6d43dso112123585ad.1
-        for <devicetree@vger.kernel.org>; Wed, 15 Oct 2025 08:40:39 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760542838; x=1761147638;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=v51xGGLBzfthpJ6uAG1FtfpTPpeQpU30JZDZNcynxBI=;
-        b=JNMuXF+WzdN9Uu9rzMtTxaclRyepoq0ue/WboN/lzE2/zfvdyf4513zKMZ/brmvJB3
-         VYN5FVB9eEIAuDmA6O+dCv8kuvQS4xhHL9SV/fwHlXlWbPxs6efaFD1wEIoX8rOpGDco
-         L/S7sIGVva3gM3W5m5sQrJWWSk9i+BjlPcF5BQOOXA4r0HWG+y5gkMrWGdXfwVcLB2/Q
-         /G3A5lc9URmifwX42afzx+jwu+hehgKTMaXr6rkXLbsQG37umcbDrqxS4eDWARvTGfne
-         16Ond4NAMPlHmqJhdOaWu3R5BY713EDB8CY3wxJL40g+BitmlCvshp/w1TcVqqra/SSb
-         gJUw==
-X-Forwarded-Encrypted: i=1; AJvYcCUBs1MbV+dYJlqsxqJhe2n9KbbyMrfHDg1P9s87mWZRZ1jo/AphNb24/YAMQGAbltHh4JUdtW0RcX9w@vger.kernel.org
-X-Gm-Message-State: AOJu0YzUJgidAti9/CtkLm4HdKNlqpqfuryOQ8AjpumnHUGJ45AAc9fN
-	dlulSXe9nKv3taNIfGQEU8UQmNJD/nhFRcE4cyXHiZAlHeoUI/tX52bJjr4khfGzWGEkOleWWt7
-	q2wnEeRdeC4bU+JkviF20hxAvnLoJ7MyKVcWnBh2DUPmqGXUKmP9qo01gXCnMOOJj
-X-Gm-Gg: ASbGncuDmccxnd1hsTn/6Hbh/YkOEd0JZSSD1EpFFsUTByHSBo9Mg2d5wX5cbJooLLk
-	WYEpvi+Jd/JDi1cMZIodJoA0MrbaAjQF5SGN8wkDhCuaQRGZN8TcBOLPXDuCa0Gz7ayKFy0O0D/
-	+dfg7jbj/cmH+aSwSovTLKEeZJrkFXCdUilcpP8varntS7P8xrkzSo2HE8AaUe+quRAP6xe6Kfj
-	IdyYh2h4iWiCXmELxBoCI453IWafvzURAp5oQyc9XxUBGn9EL/EYs9dG/cqB/zJC4CHl7fdGJxh
-	NsdcDd634sYoHIFEzaYHG8NQ9UjPFCYegWJSZXvkayrMhLmB3DR4Q4Pw6AVCsQfXOHlEskp8XMN
-	xpDmhZmlRyhEAUAs16sbx82UkgA==
-X-Received: by 2002:a17:903:94f:b0:250:643e:c947 with SMTP id d9443c01a7336-290273ee209mr362922935ad.28.1760542837792;
-        Wed, 15 Oct 2025 08:40:37 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IH0flfR5h7EFdAnGkZA4xK4OhgMnYLtcfmupB0TvW9tUJ2NNuuPUm+lRnMe685BmxN8pgVIOg==
-X-Received: by 2002:a17:903:94f:b0:250:643e:c947 with SMTP id d9443c01a7336-290273ee209mr362922665ad.28.1760542837307;
-        Wed, 15 Oct 2025 08:40:37 -0700 (PDT)
-Received: from hu-kamalw-hyd.qualcomm.com ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29034e1cbcbsm200774325ad.45.2025.10.15.08.40.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Oct 2025 08:40:36 -0700 (PDT)
-Date: Wed, 15 Oct 2025 21:10:31 +0530
-From: Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Pankaj Patil <pankaj.patil@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 09/24] arm64: dts: qcom: glymur-crd: Add RPMH regulator
- rails
-Message-ID: <20251015154031.hbifj6khno3gi3mz@hu-kamalw-hyd.qualcomm.com>
-References: <20250925-v3_glymur_introduction-v1-0-24b601bbecc0@oss.qualcomm.com>
- <20250925-v3_glymur_introduction-v1-9-24b601bbecc0@oss.qualcomm.com>
- <a49f3f75-c882-4635-9be3-a433b7fe32c8@oss.qualcomm.com>
+	s=arc-20240116; t=1760542870; c=relaxed/simple;
+	bh=jDD1jxLWDqxUDxesIU9RCN0rgJCoWLFeBdfc8PLouSE=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=P28dcM5yaSB0TqhSH+DseitWmNDBBunuq+osu1HZgXefo54MNj/HtdmezkXmfWeEm0WX3VGCYJpoak/hFTTuhGCYRm1wlY5D1kii1P0fyPy+u5ljpBLdbuUGDo/6WXiO1JWxewkQ3uUzHZjHxi+zfWUT/+WtF0ucR3w553LOYQg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=a6vs4vGq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 65AABC4CEF8;
+	Wed, 15 Oct 2025 15:41:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1760542869;
+	bh=jDD1jxLWDqxUDxesIU9RCN0rgJCoWLFeBdfc8PLouSE=;
+	h=From:Subject:Date:To:Cc:From;
+	b=a6vs4vGq03raDuXSgrQqg5hENlMl0xnf5Vu6aas3ObbKOIKH780VRpmv2+Y8Bbdfn
+	 bNrvL6vf0CU1rqSE1Ve16c/N6kxxBUsfrAhNLMkJfy0wU+bI9s4EA+ARuiyF2Fk09V
+	 KI6lYhh5w90WeblZDVIOHTI7LMo12jBWJr2yLnmyCItRdmTzhU6k14NzyLKIp94e1E
+	 4M9ywcK/GmxPEb+WprYIujw5IEKl54RcXLirNtIlZiydxf8uIxG2L7MvOW/5YVsR0s
+	 7Zev2ArYnDG1zp9ESpPS1axy/W0rUEsal8w3yYCITQjpTP3eHvlY2H1dg+1JR6NR9o
+	 +5W1t4DSUqJJA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 596EBCCD199;
+	Wed, 15 Oct 2025 15:41:09 +0000 (UTC)
+From: Sven Peter <sven@kernel.org>
+Subject: [PATCH usb-next v2 0/5] Apple Silicon USB3 support - dwc3
+Date: Wed, 15 Oct 2025 15:40:40 +0000
+Message-Id: <20251015-b4-aplpe-dwc3-v2-0-cbd65a2d511a@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <a49f3f75-c882-4635-9be3-a433b7fe32c8@oss.qualcomm.com>
-X-Proofpoint-GUID: Ilh15b8MkvdbEAEIYn9ZIGvb33GUIn-4
-X-Authority-Analysis: v=2.4 cv=e5MLiKp/ c=1 sm=1 tr=0 ts=68efc077 cx=c_pps
- a=JL+w9abYAAE89/QcEU+0QA==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
- a=kj9zAlcOel0A:10 a=x6icFKpwvdMA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=EUspDBNiAAAA:8 a=VNp9kv7xENmXbawpSbEA:9 a=CjuIK1q_8ugA:10
- a=324X-CrmTo6CU4MGRt3R:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDE0MDEzNCBTYWx0ZWRfX9ywN3JB2zmvM
- iP58O1hzd6lcWZRdreKiFHQ+9cWh7qV8YV270n05amNhN4O1BgxdRA2gFRf2HU5cs55WsvOCbqY
- gkXKVgFUdDm+jkv1fzFqFqEPy47+8dLUkaYxOiKWp8lYoAOAydfYVrGFM0Cbc8ZsovF6CNwMxJk
- gOvkMLcrzOPQxdvIerRIfJJ6OO6zsJn4OmtTHuQDeDWJy/n1ZWb0RoBDX8/XlXWnBRiiC8BfLXX
- Ue0s47pWmI6hN6veP4+rDy2zLh/GyMmQVnOzX0RC9EPS/4Nenle9NOAe0Ltq1vRUqDkZ8802kJ4
- OWpblA9DkFMutmV0bqSA+U5yEzU5YFAU42KEWzH/T5soQ/sToreTYWGd6rC1qKHjdMGhzDqoUf5
- B/YxVk75nG50FIXoTu2E8bqohIkyuA==
-X-Proofpoint-ORIG-GUID: Ilh15b8MkvdbEAEIYn9ZIGvb33GUIn-4
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-10-15_05,2025-10-13_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 suspectscore=0 spamscore=0 adultscore=0 clxscore=1015
- priorityscore=1501 impostorscore=0 malwarescore=0 bulkscore=0
- lowpriorityscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2510020000
- definitions=main-2510140134
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAHjA72gC/3WNQQ6CMBBFr0Jm7ZiZUoO44h6GBZQpNJJCWkQM4
+ e427F2+vPz3d4gSnER4ZDsEWV10k0+gLhmYofG9oOsSgyJ1Y+IcW43NPM6C3cfkqG1REpeFZlt
+ C2sxBrNvO3hPesUUv2wJ1MoOLyxS+59HKp//TXBkJWTXFnYgMsa5eEryM1yn0UB/H8QMSfIMRt
+ QAAAA==
+X-Change-ID: 20251013-b4-aplpe-dwc3-4f79019741f9
+To: Janne Grunau <j@jannau.net>, Neal Gompa <neal@gompa.dev>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Thinh Nguyen <Thinh.Nguyen@synopsys.com>, 
+ Philipp Zabel <p.zabel@pengutronix.de>
+Cc: asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+ linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Sven Peter <sven@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, stable@kernel.org
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2138; i=sven@kernel.org;
+ h=from:subject:message-id;
+ bh=jDD1jxLWDqxUDxesIU9RCN0rgJCoWLFeBdfc8PLouSE=;
+ b=owGbwMvMwCHmIlirolUq95LxtFoSQ8b7A93N2e//l16/ae2y5/XqqMWmLmbfWU6WG6zirWaUS
+ e8Pkn/TUcrCIMbBICumyLJ9v73pk4dvBJduuvQeZg4rE8gQBi5OAZiIzl6G/56xG6JyT7r+iFV+
+ 9Wvx5YgDi5+ntc2Y5ioaZ/TnaM/r6UsZGaY/errN7IaZ5rYq329vmDVmvvK5f2FC9dElvDN3GoY
+ 7tLIBAA==
+X-Developer-Key: i=sven@kernel.org; a=openpgp;
+ fpr=A1E3E34A2B3C820DBC4955E5993B08092F131F93
+X-Endpoint-Received: by B4 Relay for sven@kernel.org/default with
+ auth_id=407
 
-On Thu, Sep 25, 2025 at 01:01:56PM +0200, Konrad Dybcio wrote:
-> On 9/25/25 8:32 AM, Pankaj Patil wrote:
-> > From: Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
-> > 
-> > Add RPMH regulator rails for Glymur CRD.
-> > 
-> > Signed-off-by: Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
-> > Signed-off-by: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
-> > ---
-> 
-> [...]
-> 
-> > +	regulators-1 {
-> > +		compatible = "qcom,pmcx0102-rpmh-regulators";
-> > +		qcom,pmic-id = "C_E0";
-> > +		vdd-s1-supply = <&vph_pwr>;
-> > +		vdd-s8-supply = <&vph_pwr>;
-> > +
-> > +		vreg_s1c_e0_0p3: smps1 {
-> > +			regulator-name = "vreg_s1c_e0_0p3";
-> > +			regulator-min-microvolt = <300000>;
-> > +			regulator-max-microvolt = <1200000>;
-> > +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> > +		};
-> > +
-> > +		vreg_s8c_e0_0p3: smps8 {
-> > +			regulator-name = "vreg_s8c_e0_0p3";
-> > +			regulator-min-microvolt = <300000>;
-> > +			regulator-max-microvolt = <1200000>
-> 
-> Both of these regulators, having no consumers, will be parked to 0.3 V
-> (the lower bound)
-> 
-> There are other similar cases in this patch
+Hi,
 
-Ok. I will remove the unused rails.
+As discussed in v2 of the combined Apple Silicon USB3 support series
+this one only contains the dwc3 changes without the DTS changes.
 
-But just wanted to let you know currently i have exposed all the rails that
-are allowed to be controlled from APPS, mostly these rails will be staying
-OFF if no clients in SW are there to vote on them.
+Changes since v1 of the dwc3-only series:
+- Link to v1: https://lore.kernel.org/r/20251013-b4-aplpe-dwc3-v1-0-12a78000c014@kernel.org
+- Rebased on usb-testing
+- Fixed a trivial merge conflict in glue.h regarding struct dwc3_properties
+- Added DWC3_DEFAULT_PROPERTIES to dwc3-apple.c
+- Added Thinh's Acks (thanks!)
 
-But do note that some of the clients may be getting added as more features
-get added, as lot of these rails are not unused in the HW. The client driver
-just isnt enabled as of now.
+Link to v2 of the combined series: https://lore.kernel.org/asahi/20250906-atcphy-6-17-v2-0-52c348623ef6@kernel.org/
+Changes since v2 of that series:
+- Documented all functions in glue.h
+- Fixed a typo in the example for the dt-bindings
+- Added detailed documentation about how the dwc3 hardware needs to be
+  driven on this platform to the glue driver
+- Renamed dwc3_apple.mode to state and folded in the probe check into
+  the new DWC3_APPLE_PROBE_PENDING state
+- Collected tags
 
-So wanted to check if I should remove ALL rails that are unused in SW?
- or
-Can i keep the ones for which clients will be getting added in near future.
+Best,
 
-(i would prefer the later option, if that is ok with you?)
+Sven
 
-> 
-> Does the board still boot with all the expected functionality with only
-> patches 1-9 applied?
+Signed-off-by: Sven Peter <sven@kernel.org>
+---
+---
+Sven Peter (5):
+      dt-bindings: usb: Add Apple dwc3
+      usb: dwc3: dwc3_power_off_all_roothub_ports: Use ioremap_np when required
+      usb: dwc3: glue: Add documentation
+      usb: dwc3: glue: Allow more fine grained control over mode switches
+      usb: dwc3: Add Apple Silicon DWC3 glue layer driver
 
-No. just tested, it seems not able to boot properly with just 1-9 patches.
-is your concern about squashing of the patches?
-(just trying to understand)
+ .../devicetree/bindings/usb/apple,dwc3.yaml        |  80 ++++
+ MAINTAINERS                                        |   2 +
+ drivers/usb/dwc3/Kconfig                           |  11 +
+ drivers/usb/dwc3/Makefile                          |   1 +
+ drivers/usb/dwc3/core.c                            |  16 +-
+ drivers/usb/dwc3/dwc3-apple.c                      | 489 +++++++++++++++++++++
+ drivers/usb/dwc3/gadget.c                          |   2 +
+ drivers/usb/dwc3/glue.h                            | 143 ++++++
+ drivers/usb/dwc3/host.c                            |   7 +-
+ 9 files changed, 745 insertions(+), 6 deletions(-)
+---
+base-commit: 877c80dfbf788e57a3338627899033b7007037ee
+change-id: 20251013-b4-aplpe-dwc3-4f79019741f9
 
-> 
-> Konrad
+Best regards,
+-- 
+Sven Peter <sven@kernel.org>
 
-Regards,
-Kamal
+
 
