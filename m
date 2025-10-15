@@ -1,80 +1,81 @@
-Return-Path: <devicetree+bounces-226978-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-226979-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24D7BBDD581
-	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 10:19:49 +0200 (CEST)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F2DEBDD5D6
+	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 10:23:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5CCA719251E3
-	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 08:20:12 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id BD8BE350E54
+	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 08:23:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C1F32D8363;
-	Wed, 15 Oct 2025 08:19:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C18EE239E7D;
+	Wed, 15 Oct 2025 08:23:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="l7HzU/zU"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uur9uFih"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
+Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C58202D7DE4
-	for <devicetree@vger.kernel.org>; Wed, 15 Oct 2025 08:19:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3E2E2C2348
+	for <devicetree@vger.kernel.org>; Wed, 15 Oct 2025 08:23:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760516382; cv=none; b=nPscXUW9WiIH3ucqqXgjl+hzCl/WE/L7L2c9tfS8HnNw95a4qTRbcuo29msK9nNKgPkkY24x4bsj5Alv+y34xLe6C4tcAbs3VxUzlJXo0Q1vOfUWL2vnQ51g3sUPM5WB/+fKu502O8etND4vsgtfFnohLW8vrfmSrR94zfsu4FY=
+	t=1760516633; cv=none; b=mqoIGubRKFAdq92+B5+gj8RMc7FpYf6AP1VIijcxAfS0j42y118EgXmw83ldRfwTv5xmVBvvUMs38FlTFcIPAmuGEHt8MPoqYaplJdRXBH9J6LR+ZMYd/y0eepp+9PECBCWaY2StTU1uXTUgHTVnILu8llzbC2GF35w3Eg8XPEc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760516382; c=relaxed/simple;
-	bh=WkSHbQXCPDqpXetRB1ukOSkjAVefKFWsDstqnzdpd9w=;
+	s=arc-20240116; t=1760516633; c=relaxed/simple;
+	bh=zjowPA6LA2JyKNy8/VG7vz2tOZi4UHzYurZ1ohlQmjA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=CAa06fc1YVC6g+a7qMwAqQirYvgBd0UUTsI9U/B44k/d6tTFC9GSz+swBLrA6hvW1+rjEpSwsPzAGhKcbPL2ptKdW3hVuwRozu0gdGzQmxWdLiQYt1tE0vCoAuSEoCfkmmnjfV2QjQR+oU1f32WzL1PCfyt4S+/hv88aea2YcjI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=l7HzU/zU; arc=none smtp.client-ip=209.85.218.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-b3e234fcd4bso1024585066b.3
-        for <devicetree@vger.kernel.org>; Wed, 15 Oct 2025 01:19:39 -0700 (PDT)
+	 In-Reply-To:Content-Type; b=MYTcKVeiyQNHauBdZHQSQ6uQW/D1OcXtjjMe1cXqFk5gs/oPavTynvoPCimt0qQrw/0q0sSHLA4JsN2hqL4LMJfwX8i5sGMMm4TjU/29a6hTfhs9/WJWWXp97Y31D4iVb3XqM/ZfWgVoqqkA9VyER2SIXsG37JZ7ZrlJsxKz4dQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=uur9uFih; arc=none smtp.client-ip=209.85.208.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-6394938e0ecso10306725a12.1
+        for <devicetree@vger.kernel.org>; Wed, 15 Oct 2025 01:23:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1760516378; x=1761121178; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1760516630; x=1761121430; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:content-language:from
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=8KneEMScoa9FWAqTtx3ph1+7zePLdAas+6JTV1uYXUY=;
-        b=l7HzU/zU4dCdtyyD82rt8h1r5fXVq94kwZic6KgrzT4j/CzDETn5lIqqyQHJIYYMMh
-         JbSJRyMIcJvRHiGD9kbB6WYxtVVdpVMsKeAg8Yhx+vnFFsQ8MZL+DR9XHOqUOBZxhPXm
-         69clutJjeVCtmAeLwtlDH7ukJvpxVtHU8eok4Ow4MB87zcuHlzUAaIIzmbrrpzREV/NC
-         jcpeQkkDCt4qXjMCsS4mehpV7dKsizriMCtI1b8xcBekAVDR/qdC8y5HM6uWbMvWtlCZ
-         9f4hHdcyWRmLYXYyzMkwwEcbHvU+QgXW1vLm3kto8P6M40gtif8p7LA1myR+rpGpUEQW
-         c0IQ==
+        bh=xEWfeOPoDT8hEUhHinrJj37kfG+XXphWeZaOer8q0XA=;
+        b=uur9uFihiQuKWrBEgfq/R4pBrAvhOye4itMhsn3NjK82CW1bFW//9TO2z6VKRXB/7D
+         OFt8DenKT1PrwX6bdCtax8ry5QOICiZ6o8yQyhZEqoCS/gRHZgphi2mnXChMgWXton0y
+         PiW3PEUIyB0aB77+Yc5XS4luA/Yks+o9P2QDwnx56yC3w07Qv7Ws+nGvXjiss3Ts1BXI
+         PAD57dapqzgZRM9gwIZquYPBb8V0nnfIqIHD6o03mw49/FO4zIId9iw4+MiAFpcpJue+
+         YkBz/W99QUPHu4yW05LggXa4zd7NHdbUaqApYnbEUw61ZOlKXIIBQKPGOl2Ve7q9tJP8
+         EDnA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760516378; x=1761121178;
+        d=1e100.net; s=20230601; t=1760516630; x=1761121430;
         h=content-transfer-encoding:in-reply-to:content-language:from
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8KneEMScoa9FWAqTtx3ph1+7zePLdAas+6JTV1uYXUY=;
-        b=PFo5ohvvAOgsa87AZDtjidAN9fB/kunm3BjB28NJzQ8ODCM5wP4dexF2hgeeDK0WXU
-         jHt5N6vbldg8KYFSaF0PllH4p1roAK9dfgYEESdlDl6SX2Mpw3x+kxDdRqaN/IIUUXWp
-         b0fZcErAdtBr/GNP9uHpsFqIj/V/9tiIqy8AACDRdwo6ugIr1jfry0OAn8IWJCwwXzy5
-         ee6uaCuZto8II7Wac04FYag7vMlAxEpXFRvBlsCNzEmoTFlBU/EuZvD4iw2ewydNp/js
-         L3n6vCZ4Ln013wWH8n+28piXYB0VQXV7QljKGf83vOBwhtUI8mTr3JZMpmljbNPY6WuS
-         HgMA==
-X-Forwarded-Encrypted: i=1; AJvYcCUexxx0LdfteCjQL6Y304ChsdGpmVOkkycEW9HwnOzYqTN05L07Bh0VVNYkEkPpPdCpGx0SNdlhHOxX@vger.kernel.org
-X-Gm-Message-State: AOJu0YxrEfzC3+YrhKc6W+Kr/omb+/8HirZ9upuTwSmLLPGMlmigbpyk
-	0elktwxlC0Pmn3SSlZsZ7u1UyBM6Wwo+HAG8QymQomTxGPg5G1CHqobdSI1QtudIGAg=
-X-Gm-Gg: ASbGncsH9a2HQcc5PyFIDFVtSVXoiT4BbS6Cqq3fmvQBeQwQkQO1dMKDSSpxJ20c6V1
-	tm+aYIosr4V2svvWh8AoafLFlM6xn7d6q599j8A+l/iWBi/Qhi72OzSDIKGTtpDIvZ4HPBVE9D5
-	8sD4wBt+Q19Wo3/zWCs6dJyUuizyKcu5z26AuOrEkP7rbqtCtvaVCdBHeSKl3AjE6U3casJjP+N
-	FNY+NfaOsLTlBRmUB2lIQXbLYWp6S02LtQ5SwwGj/8mYekfCQwIzpxa7M6MRygNqeZpl3WhbO1M
-	FAkalx0togXwABfRuJ6hIKmzHLmmkx8DgppBGg8AUtO3fJGAs2jQ/t903MulHQwrbGRouhZiGdD
-	EI92K/yd+wy6qKXcpJCKlAjJX5sA890T8VCWBui4zq1pKMqABlQ==
-X-Google-Smtp-Source: AGHT+IEVkjo7z+13pgEMw8ki/r0mUSZhrjZCaI1xrW40+u9DWDfR3ebpJtSBjpXr8BzCEh4v3qtFoA==
-X-Received: by 2002:a17:907:72cf:b0:b04:61aa:6adc with SMTP id a640c23a62f3a-b50aa69e311mr2948870066b.7.1760516377814;
-        Wed, 15 Oct 2025 01:19:37 -0700 (PDT)
-Received: from [10.95.0.194] ([213.233.104.39])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b5ccd39b7d8sm166061566b.69.2025.10.15.01.19.35
+        bh=xEWfeOPoDT8hEUhHinrJj37kfG+XXphWeZaOer8q0XA=;
+        b=K1h74sBoRfGwp4yy61lalGwSn9X3J/pqZuJpVK2rTHP1IrK8qs5+srbZKY78hPbMzB
+         X1teFlTIk0d58BcprB4yZt3i3kbN7KTggUWtuT37C4jLajAtFLLsS0Bil7q/zTs3Em3z
+         VaMFjwU3fdpGaqiEiAaSDed0oz5pKCjgKH2Q704Y8yv/hcp82h+dEU5134GIArOMXdby
+         zbmFqIj4MW5227lvbse9zdy8798DTbQ5Hhe3BKgr4skMnHt1MolOhNKLVbM2lQPFENM2
+         CI1FyFhyiO6+DlTE2YvQ+ydDORqbsIDwsnEwDSyuWSIBz59oUYD6iZWvqwxPJRoGDh1F
+         Bbtw==
+X-Forwarded-Encrypted: i=1; AJvYcCVn2Aa3bD16juFWW3SI69BSnJBI5qU6clVqPdM80b5Kvta3GYRnWcRzKSr88XDuBTCZqTVQvGZidOUm@vger.kernel.org
+X-Gm-Message-State: AOJu0YwbUdcdtGUqJFtmTQ3AiMw4G9sfSxNhwAiOOuyDqyNrqUcT+e9B
+	5IK+Ex/fkukQRqHz/lg7jF8q7Dj3Uwj5IVq7Gp8G8uJajjwth/2E3UUmw4h0S3lNgrc=
+X-Gm-Gg: ASbGnctEgBlWnex3fvFISYlVzdNbjt1f08g+OqywItjbl8yWo080iYhR+4tm+u08LXk
+	hEuz5v02LD+BcrXXb7zWhHkYzdmd4kSNzfkWQBUOKryWP2w7rIEgs11F+1t7mFoUrGaf2gsMeZ6
+	ahTBB7OdQc/GBtXWIaHBFEzLqbbBQ/tmFO7aqCvXX6XWgxP1+WQwu6E2ylTj66w5sF0gWDV49n1
+	dYh+2eawkbjEKQR+badJlkLfPH42rOLaV++288wlNbswi9Lcu8rNxrK4fuQ1a3EHmxRhY9vOtme
+	jENayaBR+Op1H9wA0D06gmy7pdX7zNbXuklGjK+E/Q1DAxdfdGAjbAFC+8VwRf4GzSrEKRbGT8O
+	/YzpCOC+C0y/UDtHvWQLGqkokG7qLzVT+EjBxjhgJCdbIIEVEzSW4EoOWyrDkaSMAeArnjn1avO
+	5SL5X0vsA9xa6EvQ5L0E1xQPtKlYqUs/XI
+X-Google-Smtp-Source: AGHT+IHxbqlKJ1VsMlPtKXhUfB9UFCf51KlIdgD/eUSC/bM2tWlthk0OOIVYAVvC9wH/4v5Ovq+w4g==
+X-Received: by 2002:a05:6402:2812:b0:632:d9b:271e with SMTP id 4fb4d7f45d1cf-639d5c3630emr27126917a12.22.1760516630160;
+        Wed, 15 Oct 2025 01:23:50 -0700 (PDT)
+Received: from [192.168.0.19] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-63a5235e7ebsm12712602a12.1.2025.10.15.01.23.48
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 15 Oct 2025 01:19:37 -0700 (PDT)
-Message-ID: <19746f65-bf10-4687-9e2b-b259220a9ea8@tuxon.dev>
-Date: Wed, 15 Oct 2025 11:19:34 +0300
+        Wed, 15 Oct 2025 01:23:49 -0700 (PDT)
+Message-ID: <1c422fbb-dd93-46ce-9227-57c94eb55db4@linaro.org>
+Date: Wed, 15 Oct 2025 09:23:47 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,273 +83,61 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 4/7] reset: rzg2l-usbphy-ctrl: Add support for USB
- PWRRDY
-To: Philipp Zabel <p.zabel@pengutronix.de>, vkoul@kernel.org,
- kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- geert+renesas@glider.be, magnus.damm@gmail.com,
- yoshihiro.shimoda.uh@renesas.com, biju.das.jz@bp.renesas.com
-Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
- Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>,
- Wolfram Sang <wsa+renesas@sang-engineering.com>
-References: <20250925100302.3508038-1-claudiu.beznea.uj@bp.renesas.com>
- <20250925100302.3508038-5-claudiu.beznea.uj@bp.renesas.com>
- <c7fc31f1247332196516394a22f6feef9733a0b4.camel@pengutronix.de>
- <66d85e70-efb8-4a45-9164-55b123691b70@tuxon.dev>
- <bcf6113b0025777db1cb2ace1618fed8fac2dfc6.camel@pengutronix.de>
- <cca1061e-df67-4b5b-99bd-9721c72a0f88@tuxon.dev>
- <6d4bc69c-1571-4d98-b0d4-214c68be118e@tuxon.dev>
- <c1099a8e422abbc5d12bf3f325cb9f2140c8c006.camel@pengutronix.de>
- <77678dd6-071b-4911-a5c5-f1519c92e91a@tuxon.dev>
- <6ba1fd1f07753c9b98a57c87bffbbee16971da7a.camel@pengutronix.de>
-From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
+Subject: Re: [PATCH] media: qcom: camss: Enable setting the rate to
+ camnoc_rt_axi clock
+To: Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>,
+ Loic Poulain <loic.poulain@oss.qualcomm.com>, Robert Foss
+ <rfoss@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Todor Tomov <todor.too@gmail.com>,
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>
+Cc: linux-i2c@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-media@vger.kernel.org
+References: <20251014-add-new-clock-in-vfe-matching-list-v1-1-0d965ccc8a3a@oss.qualcomm.com>
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 Content-Language: en-US
-In-Reply-To: <6ba1fd1f07753c9b98a57c87bffbbee16971da7a.camel@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8
+In-Reply-To: <20251014-add-new-clock-in-vfe-matching-list-v1-1-0d965ccc8a3a@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-Hi, Philipp,
-
-On 10/14/25 19:42, Philipp Zabel wrote:
-> Hi Claudiu,
+On 15/10/2025 03:43, Hangxiang Ma wrote:
+> On hardware architectures where a single CAMNOC module is split into
+> two, one for each of the real time (RT) and non real time (NRT) modules
+> within camera sub system, processing VFE output over the AXI bus
+> requires enabling and setting the appropriate clock rate for the RT
+> CAMNOC. This change lays the groundwork for supporting such
+> configurations.
 > 
-> On Di, 2025-10-14 at 11:36 +0300, Claudiu Beznea wrote:
->> On 10/13/25 17:57, Philipp Zabel wrote:
-> [...]
->>>>> On 10/8/25 13:23, Philipp Zabel wrote:
->>>>>> On Mi, 2025-10-08 at 12:29 +0300, Claudiu Beznea wrote:
-> [...]
->>>>>>> The approaches considered were:
->>>>>>> a/ power domain
-> [...]
->>>>>> Could you point me to the discussion related to a?
-> [...]
->>> Thank you! From this discussion it still isn't clear to me whether
->>> Ulf's suggestion of using genpd on/off notifiers was considered and why
->>
->> The genpd on/off notifier suggestion wasn't tried, but only the
->> implementation of PWRRDY handling through the power domain (what Ulf
->> suggested though "Move the entire reset handling into the PM domain
->> provider, as it obviously knows when the domain is getting turned on/off"
->> in
->> https://lore.kernel.org/all/fa9b3449-ea3e-4482-b7eb-96999445cea5@tuxon.dev/).
->> Sorry if I mislead you.
+> Signed-off-by: Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>
+> ---
+> This change lays the groundwork for supporting configurations for
+> hardware architectures that split a single CAMNOC module into real time
+> (RT) and non real time (NRT).
+> ---
+>   drivers/media/platform/qcom/camss/camss-vfe.c | 3 ++-
+>   1 file changed, 2 insertions(+), 1 deletion(-)
 > 
-> No worries, misunderstandings happen. Here I assumed the "power domain
-> approach" meant letting the PWRRDY signal be controlled by power domain
-> state, not specifically all code in the power domain driver.
-
-I had a power domain driver implemented with its own genpd::power_{on,
-off}, where the PWRRDY bit was set. I just pushed a branch here [1] with my
-trials if you would like to check.
-
-[1] https://github.com/claudiubeznea/linux/tree/usb-bringup%2Bpm-domain-v0
-
-> And I only
-> learned about the genpd notifier suggestion after reading the thread.
+> diff --git a/drivers/media/platform/qcom/camss/camss-vfe.c b/drivers/media/platform/qcom/camss/camss-vfe.c
+> index ee08dbbddf88..09b29ba383f1 100644
+> --- a/drivers/media/platform/qcom/camss/camss-vfe.c
+> +++ b/drivers/media/platform/qcom/camss/camss-vfe.c
+> @@ -914,7 +914,8 @@ static int vfe_match_clock_names(struct vfe_device *vfe,
+>   	return (!strcmp(clock->name, vfe_name) ||
+>   		!strcmp(clock->name, vfe_lite_name) ||
+>   		!strcmp(clock->name, "vfe_lite") ||
+> -		!strcmp(clock->name, "camnoc_axi"));
+> +		!strcmp(clock->name, "camnoc_axi") ||
+> +		!strcmp(clock->name, "camnoc_rt_axi"));
+>   }
+>   
+>   /*
 > 
->> Ulf suggested then here
->> https://lore.kernel.org/all/CAPDyKFpLnREr4C=wZ7o8Lb-CZbQa4Nr2VTuYdZHZ26Rcb1Masg@mail.gmail.com/
->> that he is not agreeing anymore with having it as power domain due to the
->> discussion in thread
->> https://lore.kernel.org/all/TY3PR01MB1134652F9587CFA0ADE851CA486902@TY3PR01MB11346.jpnprd01.prod.outlook.com/
->> (I can't remember what made him taking back is ack on this solution and I
->> can't find something in the thread either).
->>
->> If I'm not wrong, with the information that we have at the moment, the best
->> for the notifier would have to register it (before runtime resume) and
->> implement it in this driver (reset-rzg2l-usbphy-ctrl) so that, when the
->> pm_runtime_resume_and_get()/pm_runtime_put() in
->> rzg2l_usbphy_ctrl_probe()/rzg2l_usbphy_ctrl_remove() will be called (or
->> suspend/resume) the notifier will be called and set the PWRRDY bit. Please
->> let me know if you see it otherwise.
+> ---
+> base-commit: 69a67cb382f428c6dd8ba63e44cd2c59cb84f736
+> change-id: 20251012-add-new-clock-in-vfe-matching-list-25fb1e378c49
 > 
-> That sounds like a clean abstraction to me.
-> 
->>> it was dismissed.
->>
->> The power domain approach was dismissed as a result of discussion from this
->> thread:
->> https://lore.kernel.org/all/TY3PR01MB1134652F9587CFA0ADE851CA486902@TY3PR01MB11346.jpnprd01.prod.outlook.com/
->>
->> I don't remember exactly what triggered it and can't find it as well, sorry.
-> 
-> Ok.
-> 
->>> From the DT patches it looks like there is no actual separate power
->>> domain for USB, just the single always-on CPG power domain (in rzg2l-
->>> cpg.c). Is that correct?
->>
->> That is correct, the CPG is a clock power domain. All the clocks that CPG
->> can be provided (including USB clocks) are part of CPG clock power domain.
->>
->>> In the thread it sounded like there were
->>> multiple domains.
->>
->> You probably refer to this:
->> https://lore.kernel.org/all/fa9b3449-ea3e-4482-b7eb-96999445cea5@tuxon.dev/
-> 
-> Yes, I was confused by this sentence near the end: "And the USB SYSC PM
-> domain is parent for all USB PM domains provided by CPG (3 in this
-> case)."
-
-There were 2 approaches that I've tried with power domain:
-
-1/ to provide both (cpg and PWRRDY) power domains phandle to the
-   reset-rzg2l-usbphy-ctrl DT node as:
-
-power-domains = <&cpg R9A08G045_PD_USB_PHY>, <&sysc R9A08G045_SYSC_PD_USB>;
-
-   branch at [1] is for this approach (except, in there the cpg was used as
-   an always on power domain, not providing individual controls for each
-   IP, due to early implementation of MSTOP (please see above))
-
-2/ to provide a single power domain phandle to the reset-rzg2l-usbphy-ctrl
-   DT node, that being the power domain that handled the PWRRDY, and to
-   model the PWRRDY-CPG power domains parent-child relation in the driver
-   code (as can be seen in commit 7788bcbc3ebe ("initial") from [2], files:
-   - arch/arm64/boot/dts/renesas/r9a08g045.dtsi
-   - drivers/clk/renesas/r9a08g045-cpg.c, diff:
-
-+       DEF_PD("usb",           RZG3S_PD_USB,
-+                               DEF_REG_CONF_COOKIE(SYS_USB_PWRRDY, BIT(0),
-RZG3S_FW_SIP_ID),
-+                               RZG2L_PD_PARENT_DEFAULT, RZG2L_PD_F_NONE),
-+       DEF_PD("usb0",          R9A08G045_PD_USB0,
-+                               DEF_REG_CONF(CPG_BUS_PERI_COM_MSTOP,
-GENMASK(6, 5)),
-+                               RZG2L_PD_PARENT_USB, RZG2L_PD_F_NONE),
-+       DEF_PD("usb1",          R9A08G045_PD_USB1,
-+                               DEF_REG_CONF(CPG_BUS_PERI_COM_MSTOP, BIT(7)),
-+                               RZG2L_PD_PARENT_USB, RZG2L_PD_F_NONE),
-+       DEF_PD("usb-phy",       R9A08G045_PD_USB_PHY,
-+                               DEF_REG_CONF(CPG_BUS_PERI_COM_MSTOP, BIT(4)),
-+                               RZG2L_PD_PARENT_USB, RZG2L_PD_F_NONE),
-
-   - drivers/clk/renesas/rzg2l-cpg.c
-
-Please note that code in [2] is ugly.
-
-By "And the USB SYSC PM domain is parent for all USB PM domains provided by
-CPG (3 in this case)." I was referring to the solution 2/, implemented in
-branch at [2]
-
-Also, few other aspects that I missed to mention in this discussion, which
-are important for the genpd notifier approach:
-
-a/ by the time v1 was posted the MSTOP for each IP was abstracted as a
-   power domain; at that time the MSTOP was implemented as power domain
-   only in the drivers but it wasn't enabled in device tree due to some
-   bugs in the watchdog driver
-
-b/ as a result of discussions with Renesas HW team on the USB PWRRDY it was
-   revealed that MSTOP must be strictly configured after/before clocks
-   enable/disable. Due to this, the MSTOP power domain abstraction was
-   dropped from the drivers code and now we are with a always on power
-   domain (CPG) for all the IPs, that is actually a clock power domain.
-   Today the MSTOP is set in the clock enable/disable APIs.
-
-[2] https://github.com/claudiubeznea/linux/tree/usb-pwrrdy-parent-of-cpg-usb
-
-> 
->> In there, I was trying to present to Ulf how I did implement (locally,
->> nothing posted) the handling of PWRRDY though power domains. In that case
->> the SYSC (System Controller), where the PWRRDY resides, was modeled as a
->> power domain, I passed to the reset-rzg2l-usbphy-ctrl DT node the phandle
->> to sysc USB power domain as:
->>
->> power-domains = <&cpg R9A08G045_PD_USB_PHY>, <&sysc R9A08G045_SYSC_PD_USB>;
->>
->> along with the cpg, and handled it in the reset-rzg2l-usbphy-ctrl probe().
-> 
-> Ok, thank you for the clarification.
-> 
->>> Is the issue that you need the PWRRDY signal to be (de)asserted
->>> independently from the CPG power domain enable/disable?
->>
->> Yes. I need to de-assert it before clocks, MSTOP on probe/resume and assert
->> it back after clocks, MSTOP, on remove/suspend.
->>
->>> (Why?)
->>
->> Due to hardware constraints. This is how Renesas HW team recommended.
-> 
-> I still haven't understood this part. Isn't CPG the power domain
-> enabled "before clocks, MSTOP on probe resume" and disabled "after
-> clocks, MSTOP, on remove/suspend"? So PWRRDY could be toggled from
-> genpd notifications. If it needs to be (de)asserted independently,
-> wouldn't that mean the genpd notifier approach can not be used?
-
-I did tried on my side yesterday evening to prototype the genpd notifier
-solution and, yes, you are right.
-
-Because CPG is an always on clock power domain, shared by all it's clocks,
-the _genpd_power_on(), where the notifier are invoked, is called only when
-the 1st clock in the system is enabled, as there is genpd_status_on() check
-in genpd_power_on(), which I missed when I inspected the code yesterday,
-when replying to your email.
-
-Because of this, you're right, we can't use the genpd notifier for this,
-either.
-
-> The notifiers are called from genpd_power_on/off(), after all.
-> 
->>> Why can't the power domain provider (cpg) have the renesas,sysc-pwrrdy
->>> property and set the signal together with the power domain?
->>
->> That can be done but, passing a SYSC phandle to the CPG DT node will not be
->> valid from the HW description point of view.
->>
->>>>>> I see v2 and v3 tried to control the bit from the PHY drivers, and in
->>>>>> v4 we were are already back to the reset driver.
->>>>> v2 passed the system controller (SYSC) phandle to the USB PHYs only (though
->>>>> renesas,sysc-signals DT property) where the PWRRDY bit was set. The PWRRDY
->>>>> bit was referenced counted in the SYSC driver though regmap APIs.
->>>>>
->>>>> v3 used the approach from v2 but passed the renesas,sysc-signals to all the
->>>>> USB related drivers.
->>>>>
->>>>> Then, in v4, the PWRRDY refcounting was dropped and passed
->>>>> renesas,sysc-signals only to the USB PHY CTRL DT node in the idea that this
->>>>> is the node that will always be probed first as all the other USB blocks
->>>>> need it and request resets from it.
->>>>>
->>>>> v5 and v6 kept the approach from v4 and only addressed misc comments or
->>>>> things that I noticed.
->>>>
->>>> Could you please let me know if you are OK with the approach proposed in
->>>> v7, so that I can start preparing a new version addressing your comments?
->>>
->>> If the PWRRDY signal is an input to the USB2PHY control block, and not
->>> only to the PHY blocks, I have no issue with this being handled in the
->>> usb2phy reset driver -
->>
->> Yes, this is how the Renesas HW team confirmed they are related.
-> 
-> Ok, understood. I concur that usb2phy-ctrl is the right place for the
-> sysc property then.
-> 
->>> iff it is not sensible to just control the
->>> signal from the power domain driver.
->>
->> As mentioned above, that can be done as well but, passing a SYSC phandle to
->> the CPG DT node will not be valid from the HW description point of view.
->>
->>> If we have to handle it in the reset driver, I'd prefer to see this
->>> controlled with a dev_pm_genpd_add_notifier(). If that is not possible,
->>> I'd like to understand why.
->>
->> From the code inspection I did, that can be done. From what I can tell at
->> the moment, I'll have to register a gepnd notifier from
->> reset-rzg2l-usbphy-ctrl, before runtime resuming the device and control the
->> SYSC PWRRDY from it.
-> 
-> I'd like that.
-
-Now, that we found the genpd notifier is not a solution, could you please
-let me know how would you like me to proceed?
-
-Thank you,
-Claudiu
+> Best regards,
+Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 
