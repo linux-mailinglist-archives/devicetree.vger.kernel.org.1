@@ -1,109 +1,118 @@
-Return-Path: <devicetree+bounces-227076-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227077-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41F44BDE676
-	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 14:09:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C75AEBDE6AE
+	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 14:14:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BE97B48118A
-	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 12:09:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 753DA4836A1
+	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 12:14:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E49C324B30;
-	Wed, 15 Oct 2025 12:09:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5914B326D4D;
+	Wed, 15 Oct 2025 12:14:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="14+Nn4BM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o/X8KPLm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D72953233ED;
-	Wed, 15 Oct 2025 12:09:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29CCA29CE1;
+	Wed, 15 Oct 2025 12:14:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760530165; cv=none; b=NcJDkUkpCjgsaH/ul1w4UCC1eIFici/1nGXIzzz++NJaz6NkjVHbEp0YqvCgrV9mgJT4fa5/QU2YPI1sRkiEcQY0HjwzXZpeOQ3o4FSA+iRi/DO+13j8sInsXgCcUvn/I+25bngjcxEiH10cznPg04C1BdpVBUiLXXMsrnpInlE=
+	t=1760530446; cv=none; b=iuktIL7v53yI2rwFHdo+JXS7v0kqCDOus4NSz2ovnY2s99r5RH1px9KJ/uC/NAg98r4ky9oQ6qq/YLeYCX+hdWLWA/nXjMjY5uhC+Xq0G8b0n/tFqlV/TwkQRHxcw/lJnInwTcoduJSI4vAkRCB6C7ogf+piIxD/gSD6ncDA8Dw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760530165; c=relaxed/simple;
-	bh=byDt9cJNaoV9UerzEQZrWBXDSIWGA1UsTPnBa3lcc2E=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qHYRex9HI4PtsaEBb3f6mfRWyzVzhdUatYuuu4noAQ7uVJRNUuAdDDMBbgHHz/bTJ63C+i1/NtxT9Epf2WvyMBeC2k6tSvw6T08RtyhvZU7qM/o65z3C7PzddfG80dQJ6vcGpan6bQiVVb2sxPq0avLObUc0uFAhOT3Q5Q3Fj/M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=14+Nn4BM; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=6qLbkEn/jIW40ylFRsyZqZoQ0CK2OjczehoMcmU90RA=; b=14+Nn4BMuFFT7DcJryd1+OKTcx
-	f/hvL2nKX7yIJaFKQ725q52wAYCItNbYGSQqG1OMTfmvmKg+0mon5EyLpCPlXvz/aGMNNB1lpqbhR
-	MViyAdas/OJMpHrQuONAV2TBGp2sP31eQcFolR0P6INNpBiVqcFG/Cx3eZXG4DW5yeXA=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1v90Jb-00B1Qw-Lg; Wed, 15 Oct 2025 14:09:11 +0200
-Date: Wed, 15 Oct 2025 14:09:11 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Rob Herring <robh@kernel.org>
-Cc: Jakub Kicinski <kuba@kernel.org>, Conor Dooley <conor@kernel.org>,
-	Frank Li <Frank.Li@nxp.com>, Vladimir Oltean <olteanv@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"open list:NETWORKING DRIVERS" <netdev@vger.kernel.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
-Subject: Re: [PATCH 1/1] dt-bindings: net: dsa: nxp,sja1105: Add optional
- clock
-Message-ID: <0d90ce60-a7cd-4fff-9db2-489531e3c944@lunn.ch>
-References: <20251010183418.2179063-1-Frank.Li@nxp.com>
- <20251014-flattop-limping-46220a9eda46@spud>
- <20251014-projector-immovably-59a2a48857cc@spud>
- <20251014120213.002308f2@kernel.org>
- <20251014-unclothed-outsource-d0438fbf1b23@spud>
- <20251014204807.GA1075103-robh@kernel.org>
- <20251014181302.44537f00@kernel.org>
- <CAL_Jsq+SSiMCbGvbYcrS1mGUJOakqZF=gZOJ4iC=Y5LbcfTAUQ@mail.gmail.com>
+	s=arc-20240116; t=1760530446; c=relaxed/simple;
+	bh=U0qBfTAoLQ2lXuxhHDpAiZcucUrXqzfYam7mxeAjgzM=;
+	h=From:To:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=XaejaYF6JHZIKQdh1CMUq/TUC3H0HtNB9RqwmSXwRqtHcECcJtZ1DE1BOQbPGo1arurLMjP0IGd6xsJ4FOHfyYoNy2KeL2u5Aw5DjnTfV61Oxc1g9AVWHKP66fXQrgdiK2Zykaqaiu4HM0C/XjbrOYelP+lGoSCWqqUc6wnVARU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o/X8KPLm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F30FBC116B1;
+	Wed, 15 Oct 2025 12:14:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1760530444;
+	bh=U0qBfTAoLQ2lXuxhHDpAiZcucUrXqzfYam7mxeAjgzM=;
+	h=From:To:In-Reply-To:References:Subject:Date:From;
+	b=o/X8KPLmQwvaZ/4jk3aNbggMUsmUtSiTRQlSMl2XJzeWcdxeAHYCVUEkxd4xyQRUM
+	 lm9j3UxOz9eAQqeEiw4KJtqK6D9JhqFpzt824g1F5aOEiD9IDRQTb4jnryGTQEKfOs
+	 iAlvzz2RFp1CxWICKQO4xi1XyoRewABj3vRnEl7xWHSRMxzN0SpSnDF43LOvksIYR3
+	 ACtYefsh+xgYcs1L5mX2EWAr4I/iNRCtLcWAjJJMe7vdTvlm8DBDul72BwYuelziYo
+	 OjknTg03VXAm8mwyc8gDIxE4bHcrkdHE7kiuKHSn2QefE+Gc9U5X0I+y7ygwupdVFi
+	 /eyOx9e5W702g==
+From: Mark Brown <broonie@kernel.org>
+To: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+ joel@jms.id.au, andrew@codeconstruct.com.au, clg@kaod.org, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
+ openbmc@lists.ozlabs.org, linux-spi@vger.kernel.org, BMC-SW@aspeedtech.com, 
+ Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>
+In-Reply-To: <20251001112605.1130723-1-chin-ting_kuo@aspeedtech.com>
+References: <20251001112605.1130723-1-chin-ting_kuo@aspeedtech.com>
+Subject: Re: [PATCH 0/6] spi: aspeed: Improve clock, timing and address
+ decoding logic
+Message-Id: <176053044168.105519.1540910122531672579.b4-ty@kernel.org>
+Date: Wed, 15 Oct 2025 13:14:01 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAL_Jsq+SSiMCbGvbYcrS1mGUJOakqZF=gZOJ4iC=Y5LbcfTAUQ@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.15-dev-96507
 
-> I also considered looking at who the email is from and restricting it
-> to the maintainers. I know the netdev one doesn't do that either
-> because I used it a couple of times. :) It does seem like it could be
-> abused.
+On Wed, 01 Oct 2025 19:25:59 +0800, Chin-Ting Kuo wrote:
+> This patch series introduces several improvements to the
+> ASPEED SPI driver, targeting better stability, compatibility
+> and, flexibility across multiple ASPEED platforms.
+> 
+> Key changes include:
+> 
+> * Clock selection strategy update
+>   Improves fallback logic when timing calibration is skipped or
+>   fails, ensuring reliable boot behavior.
+> 
+> [...]
 
-The netdev one does have some restrictions.
+Applied to
 
-https://www.kernel.org/doc/html/latest/process/maintainer-netdev.html#updating-patch-status
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
 
-says:
+Thanks!
 
-  The use of the bot is restricted to authors of the patches (the
-  From: header on patch submission and command must match!),
-  maintainers of the modified code according to the MAINTAINERS file
-  (again, From: must match the MAINTAINERS entry) and a handful of
-  senior reviewers.
+[1/6] spi: aspeed: Update clock selection strategy
+      commit: 31dcc7e1f8a9377d8fd9f967f84c121c5ba8f89c
+[2/6] spi: aspeed: Improve timing calibration algorithm for AST2600 platform
+      commit: efb79de36e947d136517bac14c139d494fcc72fa
+[3/6] spi: aspeed: Force default address decoding range assignment for each CS
+      commit: 630a185fd06109193574d10f38b29812986c21de
+[4/6] spi: aspeed: Centralize address decoding region management
+      commit: b546e0023a203e7edf9377ac8f4f490a6965afd6
+[5/6] spi: aspeed: Add per-platform adjust_window callback for decoding range
+      commit: 0586b53d4a0c7c5a132629f99da934cc674ea4cd
+[6/6] spi: aspeed: Only map necessary address window region
+      commit: 64d87ccfae3326a9561fe41dc6073064a083e0df
 
-Here is one example from you:
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
-https://patchwork.kernel.org/project/netdevbpf/patch/20241113225742.1784723-2-robh@kernel.org/
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
 
-and it was your own patch.
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
 
-All its actions are logged:
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
 
-https://netdev.bots.linux.dev/pw-bot.html
+Thanks,
+Mark
 
-so we can keep an eye of out for abuse. Plus, since it is an email to
-patchwork, patchwork itself should have any abuse emails.
-
-	Andrew
 
