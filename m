@@ -1,108 +1,101 @@
-Return-Path: <devicetree+bounces-227220-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227221-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7AE7BDFABB
-	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 18:33:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 33F00BDFB1E
+	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 18:39:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id ABD244FFC3B
-	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 16:32:56 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 8992C4ECA0B
+	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 16:37:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9CD133A01C;
-	Wed, 15 Oct 2025 16:32:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B07953376B0;
+	Wed, 15 Oct 2025 16:37:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uMvuZhjL"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="3p/AB+nX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E97E33A017;
-	Wed, 15 Oct 2025 16:32:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D27B2D9EE2;
+	Wed, 15 Oct 2025 16:37:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760545954; cv=none; b=ElhuD7rg/neJ4dMKSAYbB7TzkTnDU7IMYnVT0NFkAVSL+R6LaOFPtoGJYrPFGOFg3O38iew5dSsAU1/Zf+SqaYWxxA2Cgr/BRUNVC9jR6UZxnL3wFjVJqLjA8Pb9jy3x+jIM3EtHfKvERgoTkoQ0DV0AO8kNQ2YxhtIYoFDUiNo=
+	t=1760546266; cv=none; b=fHR8IwDoILo406ag7ymWl1QRGESHG6pS1h1ipEBtEYSpiwN4SSXf9GASpcjxH1XtL/FrWdHBW/LRThHd9+r9R4BxcBst4w/MEELHgULZJZBF377+ZJ4VAQD0WI+ts1HLD0GMRYfOOGnKe5yCFrTDnTSW9UJEUJAA8TdWKVoJIK8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760545954; c=relaxed/simple;
-	bh=BtBRFT9OH9toITx+iqxKA5MV06vL51Meb9jMOVUGTUw=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=n2TQil1NBtnbKJp+IapyshMoLlQ2+yqke3cH94WaZ1CJBWU6ezAY5ET2ggGz3JSvH9EDNVIx7qXCW7NqNnUyPAc/LqmhbTvJRAz0bULY5/nEc5QwmGzPtZ7mYMHLhss0p8AGsTMIBfMmnyy97xSEpuqv0qVe9JHvi7W2SJOAm5M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uMvuZhjL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A154CC4CEF9;
-	Wed, 15 Oct 2025 16:32:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760545954;
-	bh=BtBRFT9OH9toITx+iqxKA5MV06vL51Meb9jMOVUGTUw=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=uMvuZhjL93yUurJSx7JEQccH+FrI3iobb2jC2mvEp/dHdQRM+LINxdLHULdd8KgZc
-	 bFtLb0t+gly7+0SBf12IJQqh02QhuSOOIbmPwdcNqrAHjwTc/xT/xWZuBOQkB8Osw8
-	 CatqPoQym5Zh8RDmb/KnPREgqau/09eHDJpW/YoB3kEZi0qZlZu3UhcHVncUttwceF
-	 +tFZEtG08PVF7aq/MnknfaS5bPkBjziRyb2RRsI0kKUeBA7Lecdi1XSzXOc6BsD/Yh
-	 e7fczabSIB/2snqzjsTEJEkT44YWhUTdaGVmiras462CprPqfyhiQf4FFYyP8hbcCF
-	 h3devuxX/pD5Q==
-From: Konrad Dybcio <konradybcio@kernel.org>
-Date: Wed, 15 Oct 2025 18:32:17 +0200
-Subject: [PATCH 2/2] arm64: dts: qcom: sdm845-starqltechn: Remove stray
- #address/size-cells
+	s=arc-20240116; t=1760546266; c=relaxed/simple;
+	bh=W491iOp9uGj/rptkEeZN3ds/se5A4eyizGAeBjNEYD0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Zv+2xCqv/wOvX5yE8w5rL9kcwpdTTqcVVpc8t+gFMWV9Kmf6MkUKqWDawVAm+pkrDl8Sna0RnKbYszSxcNKXCGGIBZ08m20F4tL5ePAqIm8Mi5N+SMoRpYCqPMeaQ2WrwHrZaq7/6flvYrzfBx84TsJX2mQ7vgmyfhURXFaPF84=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=3p/AB+nX; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=EmNyMES08hLl/lZo50ZMyOt0uk2s5aoOzzYmrsTy+X0=; b=3p/AB+nXcfar0/n95hcIl0eb3B
+	sdzT8OKBtQ98To+XFs5Bbtrk+fIwpTM08JgleTkl1NPK6b6w6fZnN6c79KulRIU3jX4kegbCAct57
+	VfTnzyW73zdlmfO1jyJbP3T1oAejXdtoubxWxQpPgm9uFOmnvr7qRN9CgJHbKnhbzwAQ=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1v94VJ-00B3LR-0W; Wed, 15 Oct 2025 18:37:33 +0200
+Date: Wed, 15 Oct 2025 18:37:32 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Linus Walleij <linus.walleij@linaro.org>
+Cc: Conor Dooley <conor@kernel.org>,
+	Antonio Borneo <antonio.borneo@foss.st.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Bartosz Golaszewski <brgl@bgdev.pl>, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org,
+	Christophe Roullier <christophe.roullier@foss.st.com>,
+	Fabien Dessenne <fabien.dessenne@foss.st.com>,
+	Valentin Caron <valentin.caron@foss.st.com>
+Subject: Re: [PATCH v3 02/10] dt-bindings: pincfg-node: Add properties
+ 'skew-delay-{in,out}put'
+Message-ID: <c2a0f301-ec5e-42d7-9df9-09a852a199ad@lunn.ch>
+References: <20251014140451.1009969-1-antonio.borneo@foss.st.com>
+ <20251014140451.1009969-3-antonio.borneo@foss.st.com>
+ <20251014-barbecue-crewman-717fe614daa6@spud>
+ <CACRpkdZT20cdH+G6Gjw8PopAkir+gGgMtRR4pkjnXFrmDkdfog@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251015-topic-starltechn_i2c_gpio-v1-2-6d303184ee87@oss.qualcomm.com>
-References: <20251015-topic-starltechn_i2c_gpio-v1-0-6d303184ee87@oss.qualcomm.com>
-In-Reply-To: <20251015-topic-starltechn_i2c_gpio-v1-0-6d303184ee87@oss.qualcomm.com>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Dzmitry Sankouski <dsankouski@gmail.com>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1760545944; l=963;
- i=konrad.dybcio@oss.qualcomm.com; s=20230215; h=from:subject:message-id;
- bh=IhnRzo+Bwj6O2GRi9mJgkYXwZpnc+BC2mQXjDukXxEw=;
- b=dL/oh04zh0TlwgDlz+uyy7vrRBtvco56i+PBIvb60IDw3TjK5m7KKVQT9aC7dnJ3A2WFANFP4
- sVE79l+rhiYB3mCTt8SBCyi6f6Dnm1ud53Ywv8rgCfqCM8wbHDR+B08
-X-Developer-Key: i=konrad.dybcio@oss.qualcomm.com; a=ed25519;
- pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CACRpkdZT20cdH+G6Gjw8PopAkir+gGgMtRR4pkjnXFrmDkdfog@mail.gmail.com>
 
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> I don't recall the reason for this way of defining things, but one reason
+> could be that the skew-delay incurred by two inverters is very
+> dependent on the production node of the silicon, and can be
+> nanoseconds or picoseconds, these days mostly picoseconds.
+> Example: Documentation/devicetree/bindings/net/adi,adin.yaml
 
-maxim,max77705 does not have any children with a 'reg' property, hence
-solve the following warning:
 
-'#address-cells', '#size-cells' do not match any of the regexes:
-'^pinctrl-[0-9]+$'
+I'm missing the big picture here, and i don't see an example of these
+properties being used. However, since you reference an old networking
+example, for RGMII delays....
 
-by simply removing the disallowed properties.
+adi,rx-internal-delay-ps should be deprecated, we now have the generic
+rx-internal-delay-ps. The point about using -ps is however still
+valid.
 
-Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
----
- arch/arm64/boot/dts/qcom/sdm845-samsung-starqltechn.dts | 2 --
- 1 file changed, 2 deletions(-)
+However, i would not like to see pinctl DT properties used in place of
+rx-internal-delay-ps. How the Ethernet MAC driver implements
+rx-internal-delay-ps is left open, so calling a pinctl API to set the
+skew is fine by me. And if the real use case has nothing to do with
+networking, then i don't care.
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-samsung-starqltechn.dts b/arch/arm64/boot/dts/qcom/sdm845-samsung-starqltechn.dts
-index 61a4fe7f843c..c5c6c7988bd9 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-samsung-starqltechn.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm845-samsung-starqltechn.dts
-@@ -606,8 +606,6 @@ pmic@66 {
- 		interrupts = <11 IRQ_TYPE_LEVEL_LOW>;
- 		pinctrl-0 = <&pmic_int_default>;
- 		pinctrl-names = "default";
--		#address-cells = <1>;
--		#size-cells = <0>;
- 
- 		leds {
- 			compatible = "maxim,max77705-rgb";
-
--- 
-2.51.0
-
+	    Andrew
 
