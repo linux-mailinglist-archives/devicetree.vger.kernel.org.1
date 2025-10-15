@@ -1,79 +1,79 @@
-Return-Path: <devicetree+bounces-227150-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227151-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42CE4BDF1DF
-	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 16:40:24 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id E7217BDF1E2
+	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 16:40:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 459E81A600B8
-	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 14:40:36 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D6C5F4EEB13
+	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 14:40:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 467072D372D;
-	Wed, 15 Oct 2025 14:39:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99E942D5426;
+	Wed, 15 Oct 2025 14:39:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XjLOXxzc"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RhWxF/m8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f174.google.com (mail-pg1-f174.google.com [209.85.215.174])
+Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3ACA2D2486
-	for <devicetree@vger.kernel.org>; Wed, 15 Oct 2025 14:39:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E57E2D46B3
+	for <devicetree@vger.kernel.org>; Wed, 15 Oct 2025 14:39:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760539173; cv=none; b=LHaJbVEmnEK8QqNLNyCvPFjj7PKaaGZI6msFSAUOVynrBFgL32KB9rdBivgfN5YBz0ycSHv7Ld6aX2s03BCNdHzCQd4Y3L0qAzrAii3lKbvocg8xAKsQ4zIDN1MilvwY5eL8HsegqeBuF+HPfjlMw0nqSPWnHgjx43GwKKjLVME=
+	t=1760539176; cv=none; b=WQ9s9CKdw33Y3VTehCeIAcuHBCb2XbBoBzi/b/ljTLijBKuE2oLN1gpYR6zSidhY4rMWBb3WauENsnYZn18Q5Ed5HNCCL+PdaiFC9Q0XuygeJtH1MIRr7PgUTuRjodhIqwVW08nODvZUf8Zc4ueqYYt6vxqhkJVIY0I2+Ki/qoM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760539173; c=relaxed/simple;
-	bh=AzyWtWcVDHS3YUe2MXPBE3luV5G7bLlUdIrIjbCCynE=;
+	s=arc-20240116; t=1760539176; c=relaxed/simple;
+	bh=jXUg/QtHqrfnHtRjLxbM98dfBLO/n/ot/03eZdO/L8Q=;
 	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=K47TOqmM1QC/fJ2WAUgxqfyOiOjaQJ6hrnvW6wydeONJB5JewiXwAgS9ddLJSZwiTr0c2msI4NYpVyl7iPwkUDSxDsm3gCQlEqtTpSwuaOEFMOcL4vT40r364xhSqn3k4qTkusfE2NEwShCkfJkEIXIqMXV4pQQRELv/R53TUl4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XjLOXxzc; arc=none smtp.client-ip=209.85.215.174
+	 MIME-Version; b=Vt+rdJnUtrLdrqiVT0lY3o7k9r/s/ztA8MQvLgfvbbyxKDnxP7farY4a7nHz/IXx2iUO7FVdNi9Qx3PctEjnwRg9egTEfhAoLyRGx50y4SaG5l4hjjygUBcCQQ7P7sbD5hoIrEqaGPqM09pMfewpXC5I4qZhlKFePvDKFhSFQCU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RhWxF/m8; arc=none smtp.client-ip=209.85.214.172
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f174.google.com with SMTP id 41be03b00d2f7-b632a6b9effso4136325a12.1
-        for <devicetree@vger.kernel.org>; Wed, 15 Oct 2025 07:39:31 -0700 (PDT)
+Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-27eed7bdfeeso13019695ad.0
+        for <devicetree@vger.kernel.org>; Wed, 15 Oct 2025 07:39:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1760539171; x=1761143971; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1760539174; x=1761143974; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=oianJSkzTRF5G/SQIYeXjnYqhxQJXKeLJMnXmoruyyw=;
-        b=XjLOXxzcghbvimP92D7i87LImR5faHuNtjUpydVLc5fOxA29RBeNFhU+hG+JUsdey5
-         cDPZ6l2IPapTZFptYl91sSr9USfSSkXhRls+VMKNOWzD+9vNOOwcDueHx2Kxd6KZECO8
-         5PBDwXVyySV/otNcrC8PO7NYArfuYHMj6pC4d0BOAvACdFRf0AfdwxvkKlTXozwKOfvp
-         9nSxAf+bGnvbkwMh+S4uvB+1OQm3nI8w4tfJ995F8jFmKp0gIIbLhcUuDZ4kpbO6Wocn
-         V5FbVTRTZ7L/2xEv+IONGMGhlEkj03KEu5sRZlmk5GNddCsRAhYlBedhsuooGTzqYjAl
-         1lQQ==
+        bh=cZnPPw1yHb/kgpk5HVTCc5i/nPN6HTsBrippheu6Yfk=;
+        b=RhWxF/m8joYE8uEJJGo7h0eDETjah6Yh1To69IBDabzv6Yjdl0m1bMh79fr5WB/Wpc
+         cGas+oD71jM5OZA24T5ypNwpkURoXlNEHY5dv7vtdl8789wY6iHlKgYR1T8LaFI0G6aA
+         7TAFnR/eIgBeib8c2D/gE4G2A3Oree+BDmRBqOWBU3ttT7gzkvLvHVj4MT5+reKOdqEM
+         Z3R06CA5PTGnAtNjjrlesbzCbnD3YsxxY+K1VIjYtw+th8hKMOjIM8TlaSX5HpmT4k+p
+         XnOkOavkGCnUvxw/5TpBJkOOXcfYV44cK8qoMk2jQCZocrm16EiLe+ITR65h8aqjB6Q1
+         /wvQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760539171; x=1761143971;
+        d=1e100.net; s=20230601; t=1760539174; x=1761143974;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=oianJSkzTRF5G/SQIYeXjnYqhxQJXKeLJMnXmoruyyw=;
-        b=HFldFx4VKipjn9A9PL7tADig66ZrXeL2P00wlD/KMGErbE9m1UfQqLGP27MgesSyLs
-         fcSGpUyVM3wyEb7fBcnRHpJuP67SDXDNeDc/3C7vHhXcy9sSqEtsRFt81Daa3qWGKWzt
-         g211s3VeEPgn9gT/VzwiGenQui4H4omsEmzkEivW+3+IDW8HG7Iu1GILRqpi45K5lQ4t
-         MT7lISbc516gpfwtCDu6pY9fQaQUg6lgo59v+9iCeTjOiFBh1SY1JSw8nDVBzwp24sG1
-         OHj7mYnyoIAY8PBXCrfi7AvWGgPx2oo8UYea2EVMgGD9A4JRnbAhTtHhn/0OX0jcblS5
-         9caA==
-X-Forwarded-Encrypted: i=1; AJvYcCWAET+Ak6hRHh8apVRVOFIihe42wpuhMZVL2I9ubduS8FxfmCQWFo2n/MktC54nw7HUkKqhnTFxzar5@vger.kernel.org
-X-Gm-Message-State: AOJu0YyB99fXoTfdC3mmxPG20kQL0MMyXcCoPi0zEm0UAoTAdYBeRh9i
-	oQmFxWFPdE8fHg32fF5D9HzsEAt88JHByeQIXEjm49S+C29UaLqmq/wMMiRlaNOr
-X-Gm-Gg: ASbGnct71crkuD3V2CHADXCIygaVK7oaxZVOyB2WB+ELJ8hznHv7MEWYK4bUdbp/eg2
-	UX7KSiBfG4gUauBEmQrNsy7rrY8fjDfWo7L/e7aB6do0XmaIbZ8ezlHh7yzMt8d5eYWZei9FkEG
-	aQ+rfSUblDe/lpanGkmBUHfUt3i5h8ERMiQixCAG26LTz6Y5s+hrQhZwisbJxyFX6gqVvWYQvOG
-	4l2KTFeAzNsRPR1GFESHMa6yvUNeSCluioQLZpIVBVIcnjfoyY/8RY5ollUxTRUltwJ4gXAeNSK
-	jJDCM2oJbN2jjiiaD3VtLU3qzAOdq8mAIqVdP+IN5hNGT4EmFkZXBiN2epM/FTFcl5cwxk+1OLt
-	byabJlLLr90aLcJswI/VyxYcbwB4Ws6vj9wfRKx97aiOpSm5YPR29J2yUdel9Z9j09HnVMRp1YM
-	BmLjonZs9tlzjtEw7PSZ4v5uCFznwafrZGQA8pinZSn6kp/6Sl2H7FbbJrq9uftBgl
-X-Google-Smtp-Source: AGHT+IHQV5VLlGEJEx4nThpYETPXzWBCwzYZ1PXelEFJYlRZ0x4BxIFfLFgQXf99ujEGLB1D9HXqKQ==
-X-Received: by 2002:a17:903:9cb:b0:266:702a:616b with SMTP id d9443c01a7336-290273799bdmr348708855ad.18.1760539171032;
-        Wed, 15 Oct 2025 07:39:31 -0700 (PDT)
+        bh=cZnPPw1yHb/kgpk5HVTCc5i/nPN6HTsBrippheu6Yfk=;
+        b=ucxo7OQZV+2SPrGFwAd0XwbzCTM+rdb92caVhvSrXf7riLvb/NfrjyDBL2t9FhJ2eM
+         n08wnil9+wAF/ukFIkRjURI1C44/Jl+BWY5Q5bChhDIVLrdJVQ0TX2vtwOatD/5W6bMq
+         ayfeo14NttyZfIm2XhdO0ICA3O5t+DqzyJtbHPI3CCrZyXvK6qZMFD51XXGOBnxZbQ7+
+         EM7Y179HaK9fMbTXcbxqJ2HGk5qKkL8tkPvkV1t3RIsdFHW/hgdgs1279t0/1zXj+bZ7
+         y6VSl6Mat5znYd1XCKtskEcwG0YKqS+qcZCPUmEIy2LEq4kQk2hNHVAdLWU97tJh4HW7
+         OEKA==
+X-Forwarded-Encrypted: i=1; AJvYcCXvD02r0DcJl+Nck7KYbzmgjJheuznqNKwjgoEYzeR58UB7En9GimihjyPJuLB3UEcLRWAhUwuKlslK@vger.kernel.org
+X-Gm-Message-State: AOJu0YwsDDXV7EgZKD2TUhGGbr4Hfs0nj93ew6b4QmrHmT4enkYuEJ4d
+	N7EvQS5o8329dLzrMq1SJVkS/vM5lgaG4NkrjYZGVBFvWygmSBuhRVLU
+X-Gm-Gg: ASbGnct9LgRZhCSzmknx89LDEPL60WJKUiul0CgbQl82NCzfJnpX9dVb3WG6TzxHldF
+	+/fsLAIdvsY/b7LSqovC5PBR8ReSdoEzxhUn9YsB/DkIPBbCSc7PDuUBDW9CCGQG/9nBkoRmCXh
+	cnKgwiizr4bHPfhST6uYqetSj+vgA6eP4VbslchRqq5KxnuXXAhdke5o2egMGXxU1+PnFdSTXsj
+	zScYN+2HxyjmgK83ISrX3QMykApQhzKABo6/4ODv9e9+hwOzxRYmbt7avcRPVnM+llmopOumz1Q
+	hP5hlQyFzCUR1HIlr86STNCgDAQQww75ZeC1AOnm04GmhxyetrXY1Jdru9D11himO4ZzAQG5CIu
+	bfJiMaWdOEPHj/skAh8hmfWvP+NNHIZWCdbQOv4003UgvK1z1CdgcwPwbvewY6iSD1HsUQF3zr1
+	K+gb4LW0AUNHaanWXdToxW9Epu58pr3Q==
+X-Google-Smtp-Source: AGHT+IEwVX/ElMrVL/1slVqgh0aEHLkum2PuLtXRVZK0Ha5cnSjmuPAFvQSxCr9PtIb+PIE7Zha0ow==
+X-Received: by 2002:a17:902:c951:b0:25c:43f7:7e40 with SMTP id d9443c01a7336-29091ae4cdbmr4400655ad.10.1760539174469;
+        Wed, 15 Oct 2025 07:39:34 -0700 (PDT)
 Received: from fred-System-Product-Name.. (61-220-246-151.hinet-ip.hinet.net. [61.220.246.151])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29034f36738sm199853455ad.87.2025.10.15.07.39.29
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29034f36738sm199853455ad.87.2025.10.15.07.39.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Oct 2025 07:39:30 -0700 (PDT)
+        Wed, 15 Oct 2025 07:39:34 -0700 (PDT)
 From: Fred Chen <fredchen.openbmc@gmail.com>
 To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -84,9 +84,9 @@ To: Rob Herring <robh@kernel.org>,
 	linux-arm-kernel@lists.infradead.org,
 	linux-aspeed@lists.ozlabs.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v4 3/7] ARM: dts: aspeed: santabarbara: Enable MCTP for frontend NIC
-Date: Wed, 15 Oct 2025 22:38:59 +0800
-Message-ID: <20251015143916.1850450-4-fredchen.openbmc@gmail.com>
+Subject: [PATCH v4 4/7] ARM: dts: aspeed: santabarbara: Add bmc_ready_noled Led
+Date: Wed, 15 Oct 2025 22:39:00 +0800
+Message-ID: <20251015143916.1850450-5-fredchen.openbmc@gmail.com>
 X-Mailer: git-send-email 2.49.0
 In-Reply-To: <20251015143916.1850450-1-fredchen.openbmc@gmail.com>
 References: <20251015143916.1850450-1-fredchen.openbmc@gmail.com>
@@ -98,34 +98,30 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Add the mctp-controller property and MCTP node to enable frontend NIC
-management via PLDM over MCTP.
+Add a 'bmc_ready_noled' LED on GPIOB3 with GPIO_TRANSITORY to ensure its
+state resets on BMC reboot.
 
 Signed-off-by: Fred Chen <fredchen.openbmc@gmail.com>
 ---
- .../boot/dts/aspeed/aspeed-bmc-facebook-santabarbara.dts   | 7 +++++++
- 1 file changed, 7 insertions(+)
+ .../arm/boot/dts/aspeed/aspeed-bmc-facebook-santabarbara.dts | 5 +++++
+ 1 file changed, 5 insertions(+)
 
 diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-santabarbara.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-santabarbara.dts
-index 89b18afe2b00..b190ab344aa7 100644
+index b190ab344aa7..c0334abf9cda 100644
 --- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-santabarbara.dts
 +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-santabarbara.dts
-@@ -1279,8 +1279,15 @@ temperature-sensor@49 {
- };
- 
- &i2c11 {
-+	multi-master;
-+	mctp-controller;
- 	status = "okay";
- 
-+	mctp@10 {
-+		compatible = "mctp-i2c-controller";
-+		reg = <(0x10 | I2C_OWN_SLAVE_ADDRESS)>;
-+	};
+@@ -104,6 +104,11 @@ led-2 {
+ 			default-state = "off";
+ 			gpios = <&gpio0 ASPEED_GPIO(P, 4) GPIO_ACTIVE_HIGH>;
+ 		};
 +
- 	// OCP NIC TEMP
- 	temperature-sensor@1f {
- 		compatible = "ti,tmp421";
++		led-3 {
++			label = "bmc_ready_noled";
++			gpios = <&gpio0 ASPEED_GPIO(B, 3) (GPIO_ACTIVE_HIGH|GPIO_TRANSITORY)>;
++		};
+ 	};
+ 
+ 	memory@80000000 {
 -- 
 2.49.0
 
