@@ -1,148 +1,108 @@
-Return-Path: <devicetree+bounces-227011-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227014-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1013ABDDBA2
-	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 11:19:54 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 21B06BDDD81
+	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 11:46:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id B0F393468C1
-	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 09:19:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CD2AE189A59A
+	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 09:46:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B06B9318121;
-	Wed, 15 Oct 2025 09:19:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D53EC2FE071;
+	Wed, 15 Oct 2025 09:46:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="QOJw+CNv"
+	dkim=pass (1024-bit key) header.d=thundersoft.com header.i=@thundersoft.com header.b="ZF/M/Ju1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mail-m1973180.qiye.163.com (mail-m1973180.qiye.163.com [220.197.31.80])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E80FA302CA2;
-	Wed, 15 Oct 2025 09:19:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD6D07262F;
+	Wed, 15 Oct 2025 09:46:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.80
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760519990; cv=none; b=FLlpJUuJEpMw8MpMe7mVlvrFeeuQe/l/lPShj7EWqOEze+HS12nMe9EQeBshKHJcMRf/N/M0rb0wGVde1wlefFq5HDTNyxfKXa3ey175Fz3T5LEQ9vbnRUJ6YgmwiAa7XnIpONaCWrWY1Qk5G32tHaCfO4RbWAH3Hqkojxpf8X0=
+	t=1760521586; cv=none; b=XrRfmjVb/eiikCq+yOxPT3mDMAbG+8szZKirFknvsNEe9cZ/rCOlT5cUNS6zGSo/9LxhmLXvzF9XT89I8HtAvQ6Uggrngvkl/XCt2iIPeH5aPGkZuONtI/E/XWb3962PfgLOiMKc02ze9Unvk7ffbcL2pT5qIffzQzXqMS67Z8c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760519990; c=relaxed/simple;
-	bh=zd0Js33uT4qAQsGbVa94/D6bzrHjWGPrzmHI09kg7LA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=QkHKhVD/NBhoyKa0gSgLKRbz82Vki7RutSMU2Ryk8cRARfxDLxlafo080fGBCsnZ/sBrM6ENRD1Qu4EGlnmZVNxPvWDafPiUaGv5XAzO3txnjsz7Fs4Hic511nz/NDwYX//vHmTYr39Op12uRQTDxdAPPXFSH+wif2jbzfJTSSM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=QOJw+CNv; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59F2sEmR014780;
-	Wed, 15 Oct 2025 09:19:24 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	zd0Js33uT4qAQsGbVa94/D6bzrHjWGPrzmHI09kg7LA=; b=QOJw+CNvy50zjqMC
-	IgFfRdlXC5TLoszBj/q8hnGFMTt2O1tI9nzCMXlOETZkn/pjAtrOnhPwnGAnps+i
-	3NUAT6LvtWvn4navdjmybHU9U5Zq6DG+ax0rEkH0NbyKBSgG71fk3RrU+U6xqRXI
-	+Q94On32Rk8DC7hzpwHQU1HOXUR3d8Uha0nkEKRykCCI5/b77mE486Iu7g7St+C4
-	UcsIwB0222EXyTOhg94f7pZ4DtsbmXpAgdi+aO6n3wI/25rlS0glIgSQSUBeWEDn
-	ShvkPx/51yU8IgaMJJCCAjeBtC5bbIeX9ZgvoQlS4pcZO6P6IA8oe5iOnabxDQYO
-	Tqmm3w==
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49qfbj3v4n-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 15 Oct 2025 09:19:24 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 59F9JNTp016333
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 15 Oct 2025 09:19:23 GMT
-Received: from [10.216.55.200] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.24; Wed, 15 Oct
- 2025 02:19:12 -0700
-Message-ID: <4bd619e7-e9ca-44a8-9d36-10c18d7a8157@quicinc.com>
-Date: Wed, 15 Oct 2025 14:49:08 +0530
+	s=arc-20240116; t=1760521586; c=relaxed/simple;
+	bh=EeTz9XPuu7BAUwUtkubwAobfgHHacbYpZdkwkkjlacY=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=hROJz8KPKY5owbJ+fQulYFt22TYuWeBCSW2MpaK2+IQxyRWD7NDxB7fj3snBoLLclkW+ymX+2ZFb5yQiviIobkF4RZoLdoNTv52RF2PcnC4p0N3H3bTSKM+kNz2cSJjSI3pceaswgotPFya2Uk3dV77O1eAuTdb/uk2o8D11KeU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=thundersoft.com; spf=pass smtp.mailfrom=thundersoft.com; dkim=pass (1024-bit key) header.d=thundersoft.com header.i=@thundersoft.com header.b=ZF/M/Ju1; arc=none smtp.client-ip=220.197.31.80
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=thundersoft.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=thundersoft.com
+Received: from albert-OptiPlex-7080.. (unknown [117.184.129.134])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 25feb775a;
+	Wed, 15 Oct 2025 17:31:03 +0800 (GMT+08:00)
+From: Albert Yang <yangzh0906@thundersoft.com>
+To: robh@kernel.org
+Cc: adrian.hunter@intel.com,
+	arnd@arndb.de,
+	bst-upstream@bstai.top,
+	catalin.marinas@arm.com,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	gordon.ge@bst.ai,
+	krzk+dt@kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-mmc@vger.kernel.org,
+	ulf.hansson@linaro.org,
+	will@kernel.org,
+	yangzh0906@thundersoft.com
+Subject: Re: [PATCH 4/9] dt-bindings: mmc: add binding for BST DWCMSHC SDHCI controller
+Date: Wed, 15 Oct 2025 17:31:02 +0800
+Message-ID: <20251015093102.1554881-1-yangzh0906@thundersoft.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <175862238966.2427901.366123788055800395.robh@kernel.org>
+References: <175862238966.2427901.366123788055800395.robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/3] Add edp reference clock for lemans
-Content-Language: en-US
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-CC: <robin.clark@oss.qualcomm.com>, <lumag@kernel.org>,
-        <abhinav.kumar@linux.dev>, <jessica.zhang@oss.qualcomm.com>,
-        <sean@poorly.run>, <marijn.suijten@somainline.org>,
-        <maarten.lankhorst@linux.intel.com>, <mripard@kernel.org>,
-        <tzimmermann@suse.de>, <airlied@gmail.com>, <simona@ffwll.ch>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <quic_mahap@quicinc.com>, <andersson@kernel.org>,
-        <konradybcio@kernel.org>, <mani@kernel.org>,
-        <James.Bottomley@hansenpartnership.com>, <martin.petersen@oracle.com>,
-        <vkoul@kernel.org>, <kishon@kernel.org>,
-        <cros-qcom-dts-watchers@chromium.org>, <linux-phy@lists.infradead.org>,
-        <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <freedreno@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-scsi@vger.kernel.org>,
-        <quic_vproddut@quicinc.com>
-References: <20251013104806.6599-1-quic_riteshk@quicinc.com>
- <7jmk3txdrnit6zn7ufra7davmomggd3graizdu6wqonp3lljza@mfnxt2owpknq>
-From: Ritesh Kumar <quic_riteshk@quicinc.com>
-In-Reply-To: <7jmk3txdrnit6zn7ufra7davmomggd3graizdu6wqonp3lljza@mfnxt2owpknq>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDExMDAxOCBTYWx0ZWRfX8VUjADvpBF8S
- kMdccCGoi2LX0d3PplLf45/vynuXKc10l8JtzCzzKGlNx2Y+Bep9yX37ktbVWBMCPvpgIdQB3d1
- vmAwlofGUcdN5HgfYyVU7CrXH+tkp19VEVKEeTWRuZGNLFOGDwJ1Jt24x0R/RE+0ZbeRX8Cn/ka
- RERxGOc3IJJ8arYtXyWRh00F2MFDt3oK1hIB6An6JCXtUXwfPyr+JUwCaMO8MyNOetpUgVJ464u
- Z2dHKe6fdTc2FvWHJ7vvz5QvliqUqITKrq5AoIB1+ksXq1upQ7M3FiNiu20uYWT9G3+3pX9S62h
- uJCK5NRAUki0R4EdGnivAYTi6BAzCleg7H4WJjLif+j2tnw9aNGy2JKs6T88P2J2swL5qUHLEb9
- pyQ9s1ZymTkjl61WWUURf8SKx6r5Lg==
-X-Proofpoint-ORIG-GUID: WkUePfu7CdqX9UE-bIRZOgucfbNQ8Sp4
-X-Authority-Analysis: v=2.4 cv=bodBxUai c=1 sm=1 tr=0 ts=68ef671c cx=c_pps
- a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=nQ7leC29giJESoIIZeQA:9 a=3ZKOabzyN94A:10
- a=QEXdDO2ut3YA:10 a=nl4s5V0KI7Kw-pW0DWrs:22 a=pHzHmUro8NiASowvMSCR:22
- a=xoEH_sTeL_Rfw54TyV31:22
-X-Proofpoint-GUID: WkUePfu7CdqX9UE-bIRZOgucfbNQ8Sp4
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-10-15_04,2025-10-13_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 lowpriorityscore=0 adultscore=0 impostorscore=0 suspectscore=0
- bulkscore=0 priorityscore=1501 clxscore=1015 malwarescore=0 spamscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2510020000 definitions=main-2510110018
+X-HM-Tid: 0a99e735723809cckunmdf24c7d565021a
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVkZTB4ZVktJQ0oeSEJMTE4YQ1YVFAkWGhdVEwETFh
+	oSFyQUDg9ZV1kYEgtZQVlKSkxVSkNPVUpJQlVKSE9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0hVSk
+	tLVUpCS0tZBg++
+DKIM-Signature: a=rsa-sha256;
+	b=ZF/M/Ju14bJoKl5y4eEJGYP+s0aqD7uGcfvw6nQhqPmgd7COTxeBT+TFvcHvOjbd8kJlLRbTfVAIQR7H7D34x6MAH3qImVJ9geDT/PWlOacYoRi3t7NIuEmCumdyE++j2qtKrIPtAP27XwQqUMtyCXGaJHhsFv/xvD77YW+8EPQ=; c=relaxed/relaxed; s=default; d=thundersoft.com; v=1;
+	bh=kazy95w4NqQW9hygc2OcQJl8bs8aQ8rm5/DSPqHwz30=;
+	h=date:mime-version:subject:message-id:from;
 
+Hi Rob,
 
-On 10/13/2025 6:04 PM, Dmitry Baryshkov wrote:
-> On Mon, Oct 13, 2025 at 04:18:03PM +0530, Ritesh Kumar wrote:
-> > On lemans chipset, edp reference clock is being voted by ufs mem phy
-> > (ufs_mem_phy: phy@1d87000). But after commit 77d2fa54a9457
-> > ("scsi: ufs: qcom : Refactor phy_power_on/off calls") edp reference
-> > clock is getting turned off, leading to below phy poweron failure on
-> > lemans edp phy.
->
-> How does UFS turn on eDP reference clock?
+Thank you for running the dt_binding_check on this patch!
 
-In lemans, GCC_EDP_REF_CLKREF_EN is voted as qref clock in ufs_mem_phy.
+On Tue, Sep 23, 2025 at 05:13:09AM -0500, Rob Herring (Arm) wrote:
+> My bot found errors running 'make dt_binding_check' on your patch:
+> 
+> yamllint warnings/errors:
+> 
+> dtschema/dtc warnings/errors:
+> Documentation/devicetree/bindings/mmc/bst,dwcmshc-sdhci.example.dtb: /example-0/bus/mmc@22200000: failed to match any schema with compatible: ['bst,c1200-dwcmshc-sdhci']
 
+This error occurred because in v4, while I updated the dts compatible property 
+definition to "bst,c1200-sdhci" (as requested in review), I failed to update 
+the compatible string in the example node accordingly. The example was still 
+using the old "bst,c1200-dwcmshc-sdhci", causing the schema validation to fail.
 
-ufs_mem_phy: phy@1d87000 {
-     compatible = "qcom,sa8775p-qmp-ufs-phy";
-     reg = <0x0 0x01d87000 0x0 0xe10>;
-     /*
-      * Yes, GCC_EDP_REF_CLKREF_EN is correct in qref. It
-      * enables the CXO clock to eDP *and* UFS PHY.
-      */
-     clocks = <&rpmhcc RPMH_CXO_CLK>,
-              <&gcc GCC_UFS_PHY_PHY_AUX_CLK>,
-              <&gcc GCC_EDP_REF_CLKREF_EN>;
-     clock-names = "ref", "ref_aux", "qref";
+I have now corrected the example's compatible string from:
+    compatible = "bst,c1200-dwcmshc-sdhci";
+to:
+    compatible = "bst,c1200-sdhci";
 
->
->
+Following your suggestion, I've upgraded dtschema:
+    pip3 install dtschema --upgrade
+
+and verified the fix with:
+    make dt_binding_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/mmc/bst,c1200-sdhci.yaml
+
+The binding now passes all validation checks. This fix will be included in v5.
+
+Best regards,
+Albert Yang
 
