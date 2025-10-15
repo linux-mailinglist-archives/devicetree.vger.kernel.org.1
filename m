@@ -1,120 +1,86 @@
-Return-Path: <devicetree+bounces-227199-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227200-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DE62BDF7C8
-	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 17:52:38 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 88F74BDF7E0
+	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 17:54:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DD1FB188662D
-	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 15:53:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 43F903AE7CB
+	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 15:54:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1005930BF67;
-	Wed, 15 Oct 2025 15:52:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09DF132E75F;
+	Wed, 15 Oct 2025 15:54:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="QTU+nErw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KaDWqTDS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 079C32D24A9;
-	Wed, 15 Oct 2025 15:52:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D51DB2D3755;
+	Wed, 15 Oct 2025 15:54:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760543554; cv=none; b=NeRXwA/q4fmtVaoOoDYQ8VWTgV7vBUJx1id8zjx3+ZQ0XPlxS/KhmZ0ZorpSyHxVwcLUxBrcYIVyIwJ0PlrCGOAK5fR3Yk4eQUCl7Jy18AtDHub/BATgyuReAS9Er1+BTit91YUWuGMDDr6k/qpeAcEW4oxCEqT0GNbF9UgCHdc=
+	t=1760543687; cv=none; b=qVkzH3+ZED7v9yqSRTBlh93AuUjPQY2VtBIADXKoVXtVVaxBfnEwKCgUHNZNkckjLVV+tFIPBFSY10uP7+g8RPqNT8cphzz8XWRRC4kewizjeFO6JaDQGIUv9QndOFYmTgviFBjJkI100JF1KX/mzVvBNey3s+zts7zQU6Ccm/U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760543554; c=relaxed/simple;
-	bh=5GGhoyfGd7C2d9b5NUJVQ1myqkk94R5VJe5ZXBVXC6s=;
-	h=From:To:Cc:Subject:MIME-Version:Content-Disposition:Content-Type:
-	 Message-Id:Date; b=n7m74yvDYo++4ZlOe4cUYvXD/NPKlmrJtsBA7WIGI9Hd4Olmuu+r5uJqPjCYE7DrNm9uYJJdC/Sy8mWjAa7SsI8VitG9KCogFHSs1Kn9Te83n0UTGqvB2j3LvHzYrf8m2t2QvwJx0QkMxffGHhuUBghrcWrVG2mwe2Bzp+Jwdt4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=QTU+nErw; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Date:Sender:Message-Id:Content-Type:
-	Content-Transfer-Encoding:MIME-Version:Subject:Cc:To:From:Reply-To:Content-ID
-	:Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:
-	Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:
-	List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=E4wJYDIfmOLBHQSkEtkRaWLUCWJYMEH7YngSIcElO/E=; b=QTU+nErwnxECo5Lf1ulzTqueWU
-	UMYy5DDKguxUOe2lRGVzg107MU6dXIg2VA3nP4Ufw3xYbGub/WVwEfQH/NoyQLYwySAxCQDzM7OAw
-	GRdC4pPyGUKdtTKAYl/YC6BSQOWgnyNPZjqyvsrUuX9otYS1b6ufgZaF4VSOlRT6q07mMl96FhaGo
-	aiHOZ27sS5AOEJSCCgP6Nkb3R2rXY+c6Vqb6rlJGHDMYcBec1Ffmz2IId+4ZyDinGmau3T1OfMPNQ
-	2d+2F0l/dkbdWV9o7CuSySZgwd/eycdJxW0oV+DFhYkDdgc9t1BoJKOsw0zin5nAOcrTFhmmNwSpa
-	ey7IpR4A==;
-Received: from e0022681537dd.dyn.armlinux.org.uk ([fd8f:7570:feb6:1:222:68ff:fe15:37dd]:59786 helo=rmk-PC.armlinux.org.uk)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <rmk@armlinux.org.uk>)
-	id 1v93nf-0000000057r-0noW;
-	Wed, 15 Oct 2025 16:52:27 +0100
-Received: from rmk by rmk-PC.armlinux.org.uk with local (Exim 4.98.2)
-	(envelope-from <rmk@rmk-PC.armlinux.org.uk>)
-	id 1v93ne-0000000AmQk-1nHh;
-	Wed, 15 Oct 2025 16:52:26 +0100
-From: "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>
-To: Jonathan Hunter <jonathanh@nvidia.com>,
-	Thierry Reding <thierry.reding@gmail.com>
-Cc: Aaron Kling <webgeek1234@gmail.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org,
+	s=arc-20240116; t=1760543687; c=relaxed/simple;
+	bh=3Gm4tGlsOa8Zx34REOY2GFsAOIWAL2jmXbC0xdevdvY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=efKPwVV42/eRxH3FrJoQxjRFCMYtseDbRQemPSndo1TXeEZkz13iVekRflJlwf0wV/RXstQ6BDvOmb/VK8HuguLjxyN/0KnX7Ov3aVEovIRkkHLngCLKpmT5UmIcXk2Xl4j1PwZIpNOHRZJIx80NwJYBZcRoRnV5Qh5W4yvA6rw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KaDWqTDS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BF501C4CEF8;
+	Wed, 15 Oct 2025 15:54:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1760543687;
+	bh=3Gm4tGlsOa8Zx34REOY2GFsAOIWAL2jmXbC0xdevdvY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=KaDWqTDSd7SUVWENYTiRxcIxnRzoZ2bTFmLk4YnY3qGkm/yw+3tIP90tP55fqRoil
+	 1CJYiJmAF5Ub5AhPuSlXvHIWKctoqfrpUsk7MFBBCM3AvUGNGKVZRL875EWu+XogG8
+	 ojtCGeAqRe4vO+HPSCqRub3vJfVEvO6gGcyhBdqM2+gF+PYsG2HjEXIbvTmuVGFi4Q
+	 WeDMuiquYDkT6xE1EsRoW3N84Azy1Yy8aC3TEbt1822FJXkI66MkuJrNrwzWlwgNdt
+	 FNIjjK8CihdGs5VP1RT8ca6qnC/Y7fEwsaCH1BgqlQZ8qdol4LRLEIM2cP9nVGGUtH
+	 UMCYLdm5Vr0cw==
+Date: Wed, 15 Oct 2025 16:54:42 +0100
+From: Simon Horman <horms@kernel.org>
+To: Lorenzo Bianconi <lorenzo@kernel.org>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-tegra@vger.kernel.org,
-	Rob Herring <robh@kernel.org>
-Subject: [PATCH] arm64: tegra: mark Jetson Xavier NX's PHY as a
- wakeup source
+	Conor Dooley <conor+dt@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next 10/12] net: airoha: Select default ppe cpu port
+ in airoha_dev_init()
+Message-ID: <aO_Dwn9r_32-U72N@horms.kernel.org>
+References: <20251015-an7583-eth-support-v1-0-064855f05923@kernel.org>
+ <20251015-an7583-eth-support-v1-10-064855f05923@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain; charset="utf-8"
-Message-Id: <E1v93ne-0000000AmQk-1nHh@rmk-PC.armlinux.org.uk>
-Sender: Russell King <rmk@armlinux.org.uk>
-Date: Wed, 15 Oct 2025 16:52:26 +0100
+In-Reply-To: <20251015-an7583-eth-support-v1-10-064855f05923@kernel.org>
 
-Mark the RTL8211F PHY as a wakeup source for the Jetson Xavier NX.
-This allows the reworked RTL8211F driver to know that the PHY is
-wired to wakeup capable hardware, and thus to expose WoL capabilities.
+On Wed, Oct 15, 2025 at 09:15:10AM +0200, Lorenzo Bianconi wrote:
+> Select PPE default cpu port in airoha_dev_init routine.
+> For PPE2 always use secondary cpu port. For PPE1 select cpu port
+> according to the running QDMA.
 
-Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
----
-I thought I had already sent this patch out, and I'm sure someone said
-that they had queued it for the merge window, but it wasn't merged. As
-I can't find it in any of my mailboxes, this must be a false memory.
-I'm way too overloaded to properly track anything right now.
+Hi Lorenzo,
 
-It's not a big problem. WoL will go from not being functional in
-previous kernels (and actually causing problems with interrupt
-delivery) to not being supported (ethtool will report so) in v6.18
-without this patch. Options are: merge it into 6.18-rc and have
-functional WoL for 6.18, or wait until the next merge window and
-have WoL working in approx. four months time when 6.19 is released.
+I think this could benefit from a few words around 'why?'.
 
-Note: the bindings update was already merged in commit a510980e740c
-("dt-bindings: net: realtek,rtl82xx: document wakeup-source property")
-during the recent merge window.
+> 
+> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
 
- arch/arm64/boot/dts/nvidia/tegra194-p3668.dtsi | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/arch/arm64/boot/dts/nvidia/tegra194-p3668.dtsi b/arch/arm64/boot/dts/nvidia/tegra194-p3668.dtsi
-index a410fc335fa3..c0f17f8189fa 100644
---- a/arch/arm64/boot/dts/nvidia/tegra194-p3668.dtsi
-+++ b/arch/arm64/boot/dts/nvidia/tegra194-p3668.dtsi
-@@ -42,6 +42,7 @@ phy: ethernet-phy@0 {
- 					interrupt-parent = <&gpio>;
- 					interrupts = <TEGRA194_MAIN_GPIO(G, 4) IRQ_TYPE_LEVEL_LOW>;
- 					#phy-cells = <0>;
-+					wakeup-source;
- 				};
- 			};
- 		};
--- 
-2.47.3
-
+...
 
