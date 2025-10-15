@@ -1,230 +1,216 @@
-Return-Path: <devicetree+bounces-227022-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227024-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id C28C7BDDEAD
-	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 12:08:49 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 56EB3BDDEBD
+	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 12:09:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 81C6D502EFA
-	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 10:08:16 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 3B71C4ED532
+	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 10:09:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB56531BC82;
-	Wed, 15 Oct 2025 10:08:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FE2C31B822;
+	Wed, 15 Oct 2025 10:09:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="NCAsV6co"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from DU2PR03CU002.outbound.protection.outlook.com (mail-northeuropeazon11011045.outbound.protection.outlook.com [52.101.65.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44D2531815E
-	for <devicetree@vger.kernel.org>; Wed, 15 Oct 2025 10:08:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760522894; cv=none; b=VYLQE6bDuV/dVMcOPBjLSWtgAUltMj0n/bJYUbRQhlnugd9oA1bZbdk0+ioVQ10uFKbqg6CKyhLrI+zESbMu5HLrDEDtFIbeJVieUlpQ1OysQLtUCYyRXJAAdUwgCcKN6U/lCgHNB5FLV5oNsAsiAGbO40F0KbBIE4mGpWHDA0c=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760522894; c=relaxed/simple;
-	bh=zRHulXzKkomfeepMTC5Jx8qgKTmBkwJfiPgL1AWRJC8=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=bZZs9CaAVFwylBtgAsQAvhxF4YE1NHTrpfv5Tq5yifkMryqN6AohOq8+2pfj4ld2wYxgggXPRb3rvHwT1rrXhI5SgrgFJ2O0QDR2DtspQ2tb0IENXzSrbT+LUaCxsg0lrUOIzjnzSurqrggOgaqyaTYTY3j41OtHJj3D+Z1JD+Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1v8yPu-00057X-NE; Wed, 15 Oct 2025 12:07:34 +0200
-Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e] helo=lupine)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1v8yPt-003hk2-23;
-	Wed, 15 Oct 2025 12:07:33 +0200
-Received: from pza by lupine with local (Exim 4.98.2)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1v8yPt-000000007Ix-2FwJ;
-	Wed, 15 Oct 2025 12:07:33 +0200
-Message-ID: <6bea63bb14f2be814762fa719d3d7944bad39b6e.camel@pengutronix.de>
-Subject: Re: [PATCH 5/5] scsi: ufs: mediatek: Rework resets
-From: Philipp Zabel <p.zabel@pengutronix.de>
-To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, Alim Akhtar	
- <alim.akhtar@samsung.com>, Avri Altman <avri.altman@wdc.com>, Bart Van
- Assche	 <bvanassche@acm.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski	 <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Matthias Brugger	 <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno	
- <angelogioacchino.delregno@collabora.com>, Stanley Chu	
- <stanley.chu@mediatek.com>, Chunfeng Yun <chunfeng.yun@mediatek.com>, Vinod
- Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, Peter
- Wang	 <peter.wang@mediatek.com>, Stanley Jhu <chu.stanley@gmail.com>,
- "James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>, "Martin K.
- Petersen" <martin.petersen@oracle.com>
-Cc: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>, 
-	kernel@collabora.com, linux-scsi@vger.kernel.org,
- devicetree@vger.kernel.org, 	linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, 	linux-mediatek@lists.infradead.org,
- linux-phy@lists.infradead.org
-Date: Wed, 15 Oct 2025 12:07:33 +0200
-In-Reply-To: <20251014-mt8196-ufs-v1-5-195dceb83bc8@collabora.com>
-References: <20251014-mt8196-ufs-v1-0-195dceb83bc8@collabora.com>
-	 <20251014-mt8196-ufs-v1-5-195dceb83bc8@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.1-1 
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CB8931B124;
+	Wed, 15 Oct 2025 10:09:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.65.45
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1760522962; cv=fail; b=I8fkOVn6RYQghYBPaZjTu9ThU+sxFcQgxn1SjPmwBuMjTaYJqNZJiNU00giwyH95NpyAMje0OJazZ7jb3lkL1m31lvVgLX7DDnDrzon/7Qn+B6Eag0QKclZg55WpphABIkvj0ch2EpKLl0GhTOfBhHjY47rF7wImmZmWoacXlk0=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1760522962; c=relaxed/simple;
+	bh=9bX9tW2IzDsdGL89vmVQ7UiWbHa/Ig+SrRC2l8/s6sc=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=AgIMRn0BaG5vAon49bjX1AdZHu84V68BNIg96g1D7Zgj1KZuqmtRhlyfZ12oRKJduPfyUeSq9VLMYSFUvKHgqZ7oWCQT5uEK7gi0DbzIewJ+EFu9vdbSsicxV0ogq4D6mmYGzebFzSPcarHK2PLxMFRnszSfHTVUZfZ58l1RBJo=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=NCAsV6co; arc=fail smtp.client-ip=52.101.65.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=MzF9aDo/9kevHLSRyntDw20rqVV0Rf6LidLeBpenYqm4yh/wfzCELuxMuk82x1dU7L8GEG4drP+oQaEcjNKBi7DqLzqp3i3Tgsz7MLsuj2VdOn78t1wK0qzD3MmJ8nR/rKL+GA5CqG9LsM1HcjSBMXMBDjJ8lMaMyG3ZblaFc867QovSwblmXTiCEjpd2PCSvCo1ze6Ue27PIpEsaCxwcTW+VCCFBlUwUjeKuly4muVlKTIjlYXbXFopQDeJ51tIlbgDRVTgOy2CKSn4hC9ACrgQ81iv3fNuwCfZiYihpDFbrEP2UtEueAYfYKIx3jvasIGlGAjvnyLzTF1gDPcaFw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=wHKrmdfVMjq5oJLNteR+WtVT1upjcmeFSxBH/bqwJWM=;
+ b=tuR2nn3XrgiCSsMguDeMMwAcSDf27JY9wMLqVQ19L+i0P0Ooyu7lRSGXD69deiWxA2BRSF8L8rDFVr4KaVA8DSGndH+ZyUcqvu1epZXoOQ8ev+ifVwaykXBmCBGWMAO0y4mVr/EhsAkazmpybxPVFf+ycynN5o2h6MDB2eek3CMOOmRRJ0KoFtGTSLaAkiRTq7DZj8hv6r9PWTVgm+Iy16RSePmdop57qFfxr2LkbOpQ1N8iOC2a3zSOwELpvQ79NZMv1Av/3caD+NWwFa8c0W0kldVYUkwK6QohiY7bXB7TvEDHSOhF+DA0z0hIv7AxsYWwbWMvMzFvK4bHuiz9iw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=wHKrmdfVMjq5oJLNteR+WtVT1upjcmeFSxBH/bqwJWM=;
+ b=NCAsV6coPrxLvpWLgL38YV26RhAl1FLp9t8N7IeyuExr535amU5ycE/wHCsDHKZGUQHPsqTVCtVYnZj7Yd926klynCeThgJpsrpC6fNvNSNPV91CQ75yYhfuJM7KzF2aR5zLlGmrW+x9L02wzvm3nDoQVxqdCOuT0jFkdNyBSMQH39Ecpkstl6Pi4qfgySgmip5r2apV8rL7pHMvJDz9mOzO8ciU2loW+cr+KY4ZLPkWw32SuBGD8fhkLIEj6yJFm7g95A4VCMyiwIooj9ww3yTXQXpq/jffLywLPt27TyWkuwvJ7/BnjETROqqUhxEeSxyHkpo9CNAgRc79GLKX7A==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
+ by AM9PR04MB8809.eurprd04.prod.outlook.com (2603:10a6:20b:408::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9228.11; Wed, 15 Oct
+ 2025 10:09:16 +0000
+Received: from AM7PR04MB7046.eurprd04.prod.outlook.com
+ ([fe80::4609:64af:8a4b:fd64]) by AM7PR04MB7046.eurprd04.prod.outlook.com
+ ([fe80::4609:64af:8a4b:fd64%6]) with mapi id 15.20.9228.009; Wed, 15 Oct 2025
+ 10:09:16 +0000
+Message-ID: <182271f2-4986-4401-a4c5-ca379a02e69b@nxp.com>
+Date: Wed, 15 Oct 2025 18:09:39 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 00/39] Add i.MX95 DPU/DSI/LVDS support
+To: Marek Vasut <marek.vasut@mailbox.org>, dri-devel@lists.freedesktop.org
+Cc: Abel Vesa <abelvesa@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Fabio Estevam <festevam@gmail.com>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Lucas Stach <l.stach@pengutronix.de>, Peng Fan <peng.fan@nxp.com>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Rob Herring <robh@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ linux-clk@vger.kernel.org
+References: <20251011170213.128907-1-marek.vasut@mailbox.org>
+ <2a22c45e-5de4-49ee-af3e-002941a7e2d0@nxp.com>
+ <bf451620-c917-4d4a-999d-32148fbcf11b@mailbox.org>
+From: Liu Ying <victor.liu@nxp.com>
+Content-Language: en-US
+In-Reply-To: <bf451620-c917-4d4a-999d-32148fbcf11b@mailbox.org>
+Content-Type: text/plain; charset=UTF-8
+X-ClientProxiedBy: SI2PR01CA0047.apcprd01.prod.exchangelabs.com
+ (2603:1096:4:193::10) To AM7PR04MB7046.eurprd04.prod.outlook.com
+ (2603:10a6:20b:113::22)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM7PR04MB7046:EE_|AM9PR04MB8809:EE_
+X-MS-Office365-Filtering-Correlation-Id: 741273ae-2c59-4fab-d581-08de0bd2e5b2
+X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+ BCL:0;ARA:13230040|1800799024|366016|19092799006|7416014|376014;
+X-Microsoft-Antispam-Message-Info:
+ =?utf-8?B?SWsvd3BJYno5T2RwcnpHaWxqL1pwRmhocXFud212VWpjZEpVT3NyQ0N3dktw?=
+ =?utf-8?B?TGR0KzdVU0dZYW9qV1pPOTh5aEVSMFF6ZERtc2tBUVI1SUgyYnV4ODViZWN6?=
+ =?utf-8?B?eDZVZm9KdGVXZGgydElVdE9UcVIxcGNpc0tVVUZQb1VpQnJZWW8yc3g1cVNU?=
+ =?utf-8?B?Sm8xemE1Z2U1dGJieGFwTzcyN0swcHRnUjFBU0duRXQwb0VEMTRwOU5XaVJV?=
+ =?utf-8?B?dG9ORjl5Y1NGa3IxL1A3RVd5NTVoY0MzOUNtNjdFOFY4UkdseWhEK2VwVFAz?=
+ =?utf-8?B?NGhsZE9QVEFCdHlCTXMyMGowOUZQMTc4TmZyOERlQ0NaWTlucWlFSWpsT25p?=
+ =?utf-8?B?TWUwZzBycms5VE4vVGhHbldTM3YxalF0YjZKemJZQllYNWZJbE1ncU9QMUww?=
+ =?utf-8?B?R2xPSEpyb0FieFFxMUpsTThuaDVOOHByR3VNTkZYQTFaQ0JVS0NRdnZBU2Zs?=
+ =?utf-8?B?TkZpd2YyNHFxbEs1VVRnOVBtTEpwbGxPd3o5QUQ2eFZPUXFsRTBPSFlRUjE4?=
+ =?utf-8?B?dll0WWdqR0ZqaWNEcER1UWo5MTlsMWtFa21jM1B5VUl6dC9XVDhIUWY3TTNo?=
+ =?utf-8?B?UGwxblRpaW8zaUorZjErT2Fpc0pTVzYvdEpKWmkrMEJ4SWFiZUdkNW5vMW11?=
+ =?utf-8?B?V0RhcVJ5MUY0L3ExK016T2tCcmJRcE1xbjk1d0Y2Mk9oUll1Q2dZeFhFNDlK?=
+ =?utf-8?B?MEJWc1gxSTkwL3dGNEpyQVFWMFpyZmdXbmFDdEpUYU9zOTY3UjZCQzRiWFRX?=
+ =?utf-8?B?cGxjVFphOC8rSTRCK2tSS1p5QTE5ZUZ2NkovUm80UjJxa0lmY0ZZN2xNVWNy?=
+ =?utf-8?B?TVhjcU43YVV2SE1wMm1HdWs3K1FOKytHUHdXTlQ0clVkWGtkWDk0b09Gbmtu?=
+ =?utf-8?B?N3RQZVZ4ZmM0Ukg2UWRpaEUybFN1VGhnSlJNVW9zSmdKOGNsbXdhNzBncW5I?=
+ =?utf-8?B?bDZ3QnoyNlgvNkhRRUxvT1NwNFJjV0daVkhZL2w2ekFUTHZGZEROUnJlUnQr?=
+ =?utf-8?B?RnpPR1lmQmNGY2p5ZVRnZXhwZkdnNU41VDNmaW9iN0llbnUzQWNqb2IxVWtx?=
+ =?utf-8?B?YytsVmJWYzd1N2ZSelBFdGNicjk3TkRDWFpCVWdyN3AybjNmQlNDS05neCtT?=
+ =?utf-8?B?N1owT080S3lrd0NLR1dhZmMwUUV6c3lNUWFCbFZJTFNuSjZQTk1TbDR2R1Fa?=
+ =?utf-8?B?MGpRYjB6bUd6QmJ2WGU3QkNzV1pJcUtpVHZ1WFUybWszbDlTZ3Nqa1huNjNP?=
+ =?utf-8?B?dU9yUWJJd0t3OUVyM09zazFIR3NocjlzeFpRQkxmYzBEK3BTTHhsRnVBeFUw?=
+ =?utf-8?B?SmdsdFJhb3QxOFUxVWIvcnJIakVWRm9YY3JxUU5ZZHV6WGpHQ3RLZ09Zbmlx?=
+ =?utf-8?B?a05BUDYyTjJtZ2pkSHM1RDV6ZG9nYkpEaDdsUDJlbzg2aXZKdXNLN3JKWUhK?=
+ =?utf-8?B?VzhFQ3JreWQ0NnNaMzJhTXZHVVVHcnllYlAxVHhJMEdZTzhTL3orVU90TWVM?=
+ =?utf-8?B?OGVWT1hUTjBWUUNISHlNc1VDWGZ0M3ZnUFBhOW8reGZvRTc4TFBPcmFjN1dI?=
+ =?utf-8?B?RC9KSmhSMXFnLytJZEpXZEROOEtvR3RlS0tOMDl4TkZMdzBkMzVESDdZUytO?=
+ =?utf-8?B?KzVYQnovWm1NQ0hqQlowZXpHZUFVWnh3ZGlEN3ZLSDBjbUZEeFlPSGJKRkt6?=
+ =?utf-8?B?NExQWnZXVUpoTlplenFPa2tOS0U3SlpVWTEwbE9rY015NVJwK0FyOGpSUDQz?=
+ =?utf-8?B?R0dYWDkzZkNyaERtbFFxbWFCYzNPOVRjRnkvTm9yYW5KM0VVa2dFZUdYWU1i?=
+ =?utf-8?B?eGc3amdjSkZLa2p2QmNWREtPbW5Hc0ZIVVhyQWFpVzJDNkRQd2duK2xCRmFy?=
+ =?utf-8?B?eXNhM21FYk5YWldRaE9YSXZnL1d5Q0ZzSmJObVp0Yk5mTlJVTDB5ZzRadG82?=
+ =?utf-8?Q?J6PaU4zsvHQ7TW3dM01Ripwn9CfvS/mp?=
+X-Forefront-Antispam-Report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR04MB7046.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(19092799006)(7416014)(376014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+ =?utf-8?B?Tkc1M0szVElST0t4cGFaZDZOWUovTGYyR3Z2aXRSdUlUT0kwVXlybHlOb3ZY?=
+ =?utf-8?B?WGl2NmZvZ29XbDJLSld6TWhHMjQ4VytYTkVBWk1uVmw3ZXRCWGEzRlNSalpR?=
+ =?utf-8?B?Zm1aZmIwNEFmaUxUbmx1UXFocUhnT3NZSjUyZWplcStycExVdHFEZUVNNmpY?=
+ =?utf-8?B?dXQweWVvdlZleTFxUnI4TmdIemM4Q25TbEFqRXFJRlhtZUlaTDhHVEk3SnAx?=
+ =?utf-8?B?aEdhT3RHZUpwT3pxSjB0eTc0UTVSbGFGWGQ0ejdtSHJ1YlFLa0pzYnBmMzN3?=
+ =?utf-8?B?VDJla2VPU0o4ckloQUFzRzBKa2RJQkVncGJMc2RKaXI0QVB3SDU0U2xFSDkx?=
+ =?utf-8?B?UkdVN1lsbG9BcnJmMklYaUlzbGcyZEQrOVJCREErY3crdVNlcUQrYWdpMXhk?=
+ =?utf-8?B?SDhhYXhXMEJUSytyVWFqbXh4TTJWOVVLY0hsTWo2ajFMRzFIOGtQZ09KT2ZX?=
+ =?utf-8?B?a28vMEVZOGs3RURXNllZREpIUkl0Tm00OVdJUzRvYVJQYlJ6NDFXQUpzazR3?=
+ =?utf-8?B?RU5RSzFlMGVmQ0xUWHJONjQxcTYvUk1hNkZMMTZwdllDcnZSeGZubTdqdjVr?=
+ =?utf-8?B?N01tb1VOaklvd2ZiR09pMTgyQkVSYkh2ZHhtWE9UQU05Y25rSUEwQXRtdWNM?=
+ =?utf-8?B?YVJsYzRJSFVjYmhBRjhqdlcxaWVpc1lvWnBuanZzVXB6cmV5VGI5TXp1M280?=
+ =?utf-8?B?czByaUJJQ05VTUpPWVY3czBRdm5NK3ZsSzZBVG5ld24yZFFoTW82NmlZdGVB?=
+ =?utf-8?B?OXNxTjlMeWRpQ3d1ZTA2Tll6UnNQdVAzOUlYT0txTjlkVmtNOW8wR0p2S0xh?=
+ =?utf-8?B?US9ETkU4THRZWTFSTUdXa3h4bXVIYmRIc3U1dGlwckFJdkt1QVFaZ3dJU2Zu?=
+ =?utf-8?B?aExvem0xQjVSeTlKdHlPaEFwM1JxWXhpU2FOaEozZzN4dXM4R0FZQXJ4eUdo?=
+ =?utf-8?B?UndqVThRZGNIdnlrMUU0WWV2dU4wcHBETEhiL250MHpIT05ZbSthMXA2QkRu?=
+ =?utf-8?B?a1B5SW1DQ0NMZkl1dUFYeEEweVBURnB6Y1NWQXRkZGx0ZjVYK3EyS00wWDgr?=
+ =?utf-8?B?cHBZVEVXQVQ5eUlEaXNUcmFhUGQvQ05uaXpFdUV2MEdVOVhURmJWeXN1QWMw?=
+ =?utf-8?B?T2l2K0FXNExjTEZsNllscVl1MWp0ZU5jbWp4TEFORWVWdkI3TDZXQW5WRjRL?=
+ =?utf-8?B?OVVvWDQ0cFQ1aVRjZmpHdnVnREFRRDN5dGRaczNFSjVIL3dBdFpGYWFWbHBU?=
+ =?utf-8?B?eDBBZG9qRG5NdVc5UlF1bzJnVlJmWnVnUENPblFKc2ErTDFWV05IbGU1cXdw?=
+ =?utf-8?B?VHEvZWF6UjlpMG5TV2NrZHN2T1pSd2lZUWR1alV3c0xiUXpQR2pRdmpMTktB?=
+ =?utf-8?B?RzNmdzl4ZmY5ZVVRc0FCSytWS2hjdE1jdXlvbXVKaHUxYVRTKzNZNmhjNGd1?=
+ =?utf-8?B?TVUraEZURERSdDdtd0FiZkxEMFM2eXhmbFFZNGppOXg2VDhwOXFYczI3UnZv?=
+ =?utf-8?B?V2tEdFZBaGFyeEZJbHQzT0d0M2ZreGdLR0haVEIvSkpaKzc4RGphUUdja1RF?=
+ =?utf-8?B?UmZSRXRjcUhoZWZmeExHLzhqRG8vb3h2RTQ3d2FKbnhxdUJtNmZoL1duNUoy?=
+ =?utf-8?B?ZXlER3UyaytoNHdVYjI2a083dlpNcW9TdjQ4UGQ4a2cya1F2VHptaGtJUDNE?=
+ =?utf-8?B?QURWMjNMTFR3VERKMnVURjEzZmVaQlV0NXlIeEltRFcvTElQTG1Mbm5pUFRU?=
+ =?utf-8?B?MkdWS3BhcGhQd3Y4T2Y3SS9LdVNzbmN4eE1pMFBOV0VlKy9wTmJpUkZNaE5m?=
+ =?utf-8?B?NG9Kb3Nia1dBa1BxT01GR0sxUDVjaHpDeTFPeENoK0xXRU1ZbS85VkN0V0Yy?=
+ =?utf-8?B?N3RzRnVsUGdqNU1oU01JdEJzU0ZEVkE1UWxqYW85bkpQOEJBd2ErVGJFUmlT?=
+ =?utf-8?B?WE1idTFlazIvdXpzQnFjaW5vdjBOdjJUMDhGV2ttbjd5b1JER0ErT0J4R3Rj?=
+ =?utf-8?B?VTJBNzNnUzZ4NDR1eFFGa2RETVVkMFF2eTJKSElON0FHaUFBZHNBbERHRmRo?=
+ =?utf-8?B?ZTVPRmlWTWFYdFVSZHdDbGxOS2lNb3ZPM2dDbE10R2hWTkNkZEd5cHR4WjIw?=
+ =?utf-8?Q?0tTJoG9hI8/tisB9ulPgSSW5b?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 741273ae-2c59-4fab-d581-08de0bd2e5b2
+X-MS-Exchange-CrossTenant-AuthSource: AM7PR04MB7046.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Oct 2025 10:09:16.0264
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: oULF5RGu0lwvtq8qFybKUym9KdctiadwWxRcIgNXfrJcizlFHi2OgyLK5cCu0/9T66k6xsDE03ZQctYJXnb74w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB8809
 
-Hi Nicolas,
+On 10/15/2025, Marek Vasut wrote:
+> On 10/14/25 11:13 AM, Liu Ying wrote:
+>> On 10/11/2025, Marek Vasut wrote:
+>>> DPU is added into DC driver
+>>
+>> This has conflicts with my in-flight patch series for adding i.MX8QXP DC
+>> prefetch engine support(though i.MX95 SoC doesn't embed any display controller
+>> prefetch engine).  You probably want to take a look at it, just a heads up.
+>>
+>> https://lore.kernel.org/all/20250929-imx8-dc-prefetch-v3-0-c01d0608add2@nxp.com/
+> 
+> Thank you for sharing that.
+> 
+> Would it make sense to send 4 and 5 separately , so the fixes can land faster?
 
-On Di, 2025-10-14 at 17:10 +0200, Nicolas Frattaroli wrote:
-> Rework the reset control getting in the driver's probe function to use
-> the "_optional" function instead of defaulting to NULL on IS_ERR, so
-> that actual real errors (as opposed to missing resets) can be handled as
-> errors in the probe function.
->=20
-> Also move the MPHY reset into the PHY driver, where it should live, and
-> remove all remnants of it ever having been in this driver.
+Maybe not, since there is no user(DT node is not enabled) so far.
+But I'd like to have more review/ack for that patch series(it's kind of
+hard to get sufficient review...).
 
-Part of that happened in the previous patch.
+> 
+> Also, could you please try and avoid the SCU dependency on patch 7 ,
+> and more in that direction , can the PRG be made a bit more optional, so the
 
-> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-> ---
->  drivers/ufs/host/ufs-mediatek-sip.h |  8 -----
->  drivers/ufs/host/ufs-mediatek.c     | 67 +++++++++++++++++++++----------=
-------
->  drivers/ufs/host/ufs-mediatek.h     |  1 -
->  3 files changed, 38 insertions(+), 38 deletions(-)
->=20
-> diff --git a/drivers/ufs/host/ufs-mediatek-sip.h b/drivers/ufs/host/ufs-m=
-ediatek-sip.h
-> index d627dfb4a766..256598cc3b5b 100644
-> --- a/drivers/ufs/host/ufs-mediatek-sip.h
-> +++ b/drivers/ufs/host/ufs-mediatek-sip.h
-> @@ -31,11 +31,6 @@ enum ufs_mtk_vcc_num {
->  	UFS_VCC_MAX
->  };
-> =20
-> -enum ufs_mtk_mphy_op {
-> -	UFS_MPHY_BACKUP =3D 0,
-> -	UFS_MPHY_RESTORE
-> -};
-> -
->  /*
->   * SMC call wrapper function
->   */
-> @@ -84,9 +79,6 @@ static inline void _ufs_mtk_smc(struct ufs_mtk_smc_arg =
-s)
->  #define ufs_mtk_device_pwr_ctrl(on, ufs_version, res) \
->  	ufs_mtk_smc(UFS_MTK_SIP_DEVICE_PWR_CTRL, &(res), on, ufs_version)
-> =20
-> -#define ufs_mtk_mphy_ctrl(op, res) \
-> -	ufs_mtk_smc(UFS_MTK_SIP_MPHY_CTRL, &(res), op)
-> -
->  #define ufs_mtk_mtcmos_ctrl(op, res) \
->  	ufs_mtk_smc(UFS_MTK_SIP_MTCMOS_CTRL, &(res), op)
-> =20
-> diff --git a/drivers/ufs/host/ufs-mediatek.c b/drivers/ufs/host/ufs-media=
-tek.c
-> index 758a393a9de1..ac40d4a3a800 100644
-> --- a/drivers/ufs/host/ufs-mediatek.c
-> +++ b/drivers/ufs/host/ufs-mediatek.c
-> @@ -204,49 +204,60 @@ static void ufs_mtk_crypto_enable(struct ufs_hba *h=
-ba)
->  static void ufs_mtk_host_reset(struct ufs_hba *hba)
->  {
->  	struct ufs_mtk_host *host =3D ufshcd_get_variant(hba);
-> -	struct arm_smccc_res res;
-> +	int ret;
-> =20
->  	reset_control_assert(host->hci_reset);
->  	reset_control_assert(host->crypto_reset);
->  	reset_control_assert(host->unipro_reset);
-> -	reset_control_assert(host->mphy_reset);
-> =20
-> -	usleep_range(100, 110);
-> +	ret =3D phy_reset(host->mphy);
-> +
-> +	/*
-> +	 * Only sleep if MPHY doesn't have a reset implemented (which already
-> +	 * sleeps) or the PHY reset function failed somehow, just to be safe
-> +	 */
-> +	if (ret) {
-> +		usleep_range(100, 110);
-> +		if (ret !=3D -EOPNOTSUPP)
-> +			dev_warn(hba->dev, "PHY reset failed: %pe\n", ERR_PTR(ret));
-> +	}
-> =20
->  	reset_control_deassert(host->unipro_reset);
->  	reset_control_deassert(host->crypto_reset);
->  	reset_control_deassert(host->hci_reset);
-> -	reset_control_deassert(host->mphy_reset);
-> -
-> -	/* restore mphy setting aftre mphy reset */
-> -	if (host->mphy_reset)
-> -		ufs_mtk_mphy_ctrl(UFS_MPHY_RESTORE, res);
->  }
-> =20
-> -static void ufs_mtk_init_reset_control(struct ufs_hba *hba,
-> -				       struct reset_control **rc,
-> -				       char *str)
-> +static int ufs_mtk_init_reset_control(struct ufs_hba *hba,
-> +				      struct reset_control **rc,
-> +				      const char *str)
->  {
-> -	*rc =3D devm_reset_control_get(hba->dev, str);
-> +	*rc =3D devm_reset_control_get_optional(hba->dev, str);
+Don't think there is any way to address them.
 
-Please use
+> iMX95 can still be supported by the DC driver ?
 
-	devm_reset_control_get_optional_exclusive()
+SCU dependency and PRG(even more other reasons) make me opt to separate
+modules for i.MX95/8qxp DCs.
 
-directly, or see below for an alternative suggestion.
-
->  	if (IS_ERR(*rc)) {
-> -		dev_info(hba->dev, "Failed to get reset control %s: %ld\n",
-> -			 str, PTR_ERR(*rc));
-> -		*rc =3D NULL;
-> +		dev_err(hba->dev, "Failed to get reset control %s: %pe\n", str, *rc);
-> +		return PTR_ERR(*rc);
->  	}
-> +
-> +	return 0;
->  }
-> =20
-> -static void ufs_mtk_init_reset(struct ufs_hba *hba)
-> +static int ufs_mtk_init_reset(struct ufs_hba *hba)
->  {
->  	struct ufs_mtk_host *host =3D ufshcd_get_variant(hba);
-> +	int ret;
-> +
-> +	ret =3D ufs_mtk_init_reset_control(hba, &host->hci_reset, "hci_rst");
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret =3D ufs_mtk_init_reset_control(hba, &host->unipro_reset, "unipro_rs=
-t");
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret =3D ufs_mtk_init_reset_control(hba, &host->crypto_reset, "crypto_rs=
-t");
-> +	if (ret)
-> +		return ret;
-
-It looks to me like you could combine these into a
-
-	devm_reset_control_bulk_get_optional_exclusive()
-
-and operate the three resets with reset_control_bulk_assert/deassert().
-
-
-regards
-Philipp
+-- 
+Regards,
+Liu Ying
 
