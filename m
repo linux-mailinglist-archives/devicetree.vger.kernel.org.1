@@ -1,189 +1,268 @@
-Return-Path: <devicetree+bounces-227357-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227358-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5116BE0E38
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 00:01:34 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A8618BE0F47
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 00:36:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 9025F4EBA21
-	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 22:01:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2930A1A2436E
+	for <lists+devicetree@lfdr.de>; Wed, 15 Oct 2025 22:36:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6AEBB2D6E6F;
-	Wed, 15 Oct 2025 22:01:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DC9330F53A;
+	Wed, 15 Oct 2025 22:35:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="AR+b1EI/"
+	dkim=pass (2048-bit key) header.d=aurel32.net header.i=@aurel32.net header.b="xbUyOAdB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f52.google.com (mail-ot1-f52.google.com [209.85.210.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from hall.aurel32.net (hall.aurel32.net [195.154.113.88])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B29507262F
-	for <devicetree@vger.kernel.org>; Wed, 15 Oct 2025 22:01:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F139226D18;
+	Wed, 15 Oct 2025 22:35:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.154.113.88
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760565688; cv=none; b=QC8aCNaXcR6RaVT60f6xJRWIjoTTf/6fSzXYUdKdQY1UeTAYAv513/EcH+PA09cBV5LK123jFEGg52go09+BeQ8wR1l/2WMERJHw22brCOMfMeYDf9+qCo3LkJXv+nSqDCySX6f/fvQuXXWNTiaX0T+yiP2WBgg9r8rMyHKeZAQ=
+	t=1760567737; cv=none; b=AagYvL4jypRlHaywwiYTuiS30SEH6ClNC3s3y4+qGxNkdC0ydyw0IcQo1M+zgfUkAKaDLqUgzRS4MnyDBjsSO7NvOYM9WGLV3Blx0n4e1gnLyNZEc4ro4BbcLTPSdz4ZwfDzN83i4fLd6SHHyP03jn25EcoFSHEl3JDVyOOcu3c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760565688; c=relaxed/simple;
-	bh=ivYFnPwosDasLCf4bTnC4t7wbWohepcJZp85u+LWQj4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=TDSzVyr1imVRSNpHM80Fdy9JaKRqiBLl87bwXEXyiQhfp6X+7YDMk7rAJlU+K80mx1GwbCnKOctfyEAgZ72jGbeQy0iyfJvy4Dm2CQuMSMIvN0m3DVjsOxVtmmrET1o6XEidH677UlFb1ZRfr35J9FvDe2W/6OrsSsZrpTrEXu4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=AR+b1EI/; arc=none smtp.client-ip=209.85.210.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ot1-f52.google.com with SMTP id 46e09a7af769-7b00927607eso70697a34.0
-        for <devicetree@vger.kernel.org>; Wed, 15 Oct 2025 15:01:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1760565685; x=1761170485; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=1L+yEKnDVHKCFi/+mzMQJngjwB10FbzOmuHQmkZoHW8=;
-        b=AR+b1EI/s47rfYdA+kRADE0Ww1nHbX7vEgxPLhP+uUqpKJ0KESYuTS+KDd2kgJ8GgY
-         qAtW4353wVvSeTqfa4yOqhmrOWf9Do93HTyNa1tokZvXn+43n44F/C5tWGnSEdosH/ek
-         n+atlXSNqKRr0L5KXIlE5bMuLTT3V8NmQISh9vi0EJ0vukKWl8MXyyoKp5dQPYObDW0q
-         e77hZROJzMq9DcXXJOWCuFmgQ30h7V3M1XGUOLzQrzIWXTO3lJ7sbkxSIzjXKGRXFc73
-         PZth5/6pCfvkhVazAiVgkQUgTkJcFjX1rO7Tgg0TszhwK5wrlhcGzzPImTqAZgq/svzu
-         pTtg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760565685; x=1761170485;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=1L+yEKnDVHKCFi/+mzMQJngjwB10FbzOmuHQmkZoHW8=;
-        b=eWjs+S5EH1G35F6jsPZTIxFo6OKRDqfhOLxaQa2rd6NY5glg3gXN286hX2Uzvq4Yvk
-         CmWF5wD+Q0iDgUKAB4aC1g1ymlz2vSi7upgiI+G4Y4VBqzhj4orCUfMmSpM/p6pLkVGe
-         aUQncYMjkfkYHTxrQe8MOOK6CDNWSc30p2IA0k+z2aIcRexZzUz/wL2Clus7nAKuCIpG
-         qDHLdix8cYw4zw+5jmaXLDZVcA1tZLnAWkgz3G5WDlEOup2IQlI1LjL1WGRkSSBeIOsv
-         F6Lmg+2kIQqDyvpxDYeLACsTmbvN6dYRcesqbmHLl/RWg9wtLLbpVTBxnKo/jG21Ds2/
-         shog==
-X-Forwarded-Encrypted: i=1; AJvYcCUtG2/OqnbvLJJECZYCHxbRpzmdlc8oGNYR2STMSNTrSSCHJWQLZqlFO8uf1d3rzDxIFjBmMpKfCxpY@vger.kernel.org
-X-Gm-Message-State: AOJu0YxrikxXJmejKE25aIyXpVk3NkXMRjGylKdScpwc00EuNgqXqL6P
-	i4gFEJKxr0OT1790HovaNH97LYcOQfMUHyL4siDwPso9Fn+BrzV4gs/yL6/zChh+djQ=
-X-Gm-Gg: ASbGncv4GObl9EpvxIb4FESL7qB8J0uT0gXN2KOR6hUMhrtR58S1nLKfMTBr5H6tPXV
-	Vwiu8FhieKJF6JfM4UVvYs4C8QVDFHEuypoYPa19+b7P5VFGgtPTw27b4VvfoJOx0aJB8XdjThe
-	iwOJvafWTtuXGBLcMV7D5w4UF2wvPN0N+AfPcJDHUOYyWtTJ0dLXF25jZkWYX2Ng6DsEvlJAs3r
-	zyXlpxG0R5m3tb2TeV9QGQ03zsWEPKBijHXjM3FXAVEgxRDX6SYqQIOQC4buWZebtx/7d6YTWKm
-	LvQmAp8AZ4gzfAlPwvEdO5smLBGYSgmmW7oENX6VT8m+yRqU503Apg88IlvMadt7oGFYuvPoZj5
-	9z6HrNcbHQdfUlrRocSEhswBOpBrnkktpg5z9xSHIGc33FxQA2hbK/qkVk9LcQ8erM1XTFWW68Z
-	bCADWnnOI5ppB02jmiJ20pdwwnCHU2eYp8hxrfjkAEpyx+tvs=
-X-Google-Smtp-Source: AGHT+IEX5hvXmn9UjZsBKQ0Hsx3hl8uxgDAS79OfkLE+xLuN78czXcOVDV7GvX8Pk5iqXK+4MsMs6A==
-X-Received: by 2002:a05:6830:d10:b0:743:968b:3440 with SMTP id 46e09a7af769-7c0df79ad52mr18475439a34.20.1760565684799;
-        Wed, 15 Oct 2025 15:01:24 -0700 (PDT)
-Received: from ?IPV6:2600:8803:e7e4:500:86b5:623:b364:9913? ([2600:8803:e7e4:500:86b5:623:b364:9913])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7c0f90fb491sm5770115a34.20.2025.10.15.15.01.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 15 Oct 2025 15:01:24 -0700 (PDT)
-Message-ID: <39794baf-0a9f-465e-916d-6d5340e508de@baylibre.com>
-Date: Wed, 15 Oct 2025 17:01:22 -0500
+	s=arc-20240116; t=1760567737; c=relaxed/simple;
+	bh=Uy50svceI1+XWgm3Zns9sEedIGjXkuM329JuRdlJIaY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=SZ7NJPC5SnCUDKvt2hHPh6IfBduCHE7Px997hGh8PkLJ9EczalcoE5m6SndARpgs75AIne21a2kYvdcZTEmRk5dTWzIqFWjCrHuS/D+nqmNC8QFUhvMALelTy6yCGK0Qpm0d2GeyCvQe0B4kNp3MZGNffFATak+yrUyUjAASYrs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=aurel32.net; spf=pass smtp.mailfrom=aurel32.net; dkim=pass (2048-bit key) header.d=aurel32.net header.i=@aurel32.net header.b=xbUyOAdB; arc=none smtp.client-ip=195.154.113.88
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=aurel32.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aurel32.net
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=aurel32.net
+	; s=202004.hall; h=In-Reply-To:Content-Type:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Content-Transfer-Encoding:From:Reply-To:
+	Subject:Content-ID:Content-Description:X-Debbugs-Cc;
+	bh=DlM+vgyHxfCOK+MuMNUGW61IU4Xna6U487K0RDUqQe4=; b=xbUyOAdBBo2/nc7toUSs5yUUu7
+	rrywRKq3bwPL5MUpl3nfnqscz+VW2P7YIZw7P87ayXPkqYOdOI0wMeIwqHM9Q3wfgrcfup1KukCVV
+	Di+1/rMvOeV3JtVrnD9rsGLNtDUhJXDqF8l9StRGufgFPXVJPSbHaAHTpPF6G/Kz1VWnblNMoU4DI
+	ni8/PBy/C1boyp49iSxDSakkNc/4wFgeJmCgjBMQlIgH+skWhAQMG6P5Rf2zpcufO56a0FAPV3AV2
+	OGf6igGMKov8tchzG1s9jf1g81OdIgJwqsRJ2SHNeZj7ZnhFdS5EgnosqPol41MrjGy++j4iGYALG
+	fXQ3zGpA==;
+Received: from [2a01:e34:ec5d:a741:1ee1:92ff:feb4:5ec0] (helo=ohm.rr44.fr)
+	by hall.aurel32.net with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <aurelien@aurel32.net>)
+	id 1v99Oh-0081CU-19;
+	Wed, 15 Oct 2025 23:51:03 +0200
+Date: Wed, 15 Oct 2025 23:51:02 +0200
+From: Aurelien Jarno <aurelien@aurel32.net>
+To: Alex Elder <elder@riscstar.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	bhelgaas@google.com, lpieralisi@kernel.org, kwilczynski@kernel.org,
+	mani@kernel.org, vkoul@kernel.org, kishon@kernel.org,
+	dlan@gentoo.org, guodong@riscstar.com, pjw@kernel.org,
+	palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr,
+	p.zabel@pengutronix.de, christian.bruel@foss.st.com,
+	shradha.t@samsung.com, krishna.chundru@oss.qualcomm.com,
+	qiang.yu@oss.qualcomm.com, namcao@linutronix.de,
+	thippeswamy.havalige@amd.com, inochiama@gmail.com,
+	devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
+	linux-phy@lists.infradead.org, spacemit@lists.linux.dev,
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Junzhong Pan <panjunzhong@linux.spacemit.com>
+Subject: Re: [PATCH v2 4/7] phy: spacemit: introduce PCIe/combo PHY
+Message-ID: <aPAXRiGA8aTZCNTm@aurel32.net>
+Mail-Followup-To: Alex Elder <elder@riscstar.com>, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, bhelgaas@google.com,
+	lpieralisi@kernel.org, kwilczynski@kernel.org, mani@kernel.org,
+	vkoul@kernel.org, kishon@kernel.org, dlan@gentoo.org,
+	guodong@riscstar.com, pjw@kernel.org, palmer@dabbelt.com,
+	aou@eecs.berkeley.edu, alex@ghiti.fr, p.zabel@pengutronix.de,
+	christian.bruel@foss.st.com, shradha.t@samsung.com,
+	krishna.chundru@oss.qualcomm.com, qiang.yu@oss.qualcomm.com,
+	namcao@linutronix.de, thippeswamy.havalige@amd.com,
+	inochiama@gmail.com, devicetree@vger.kernel.org,
+	linux-pci@vger.kernel.org, linux-phy@lists.infradead.org,
+	spacemit@lists.linux.dev, linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Junzhong Pan <panjunzhong@linux.spacemit.com>
+References: <20251013153526.2276556-1-elder@riscstar.com>
+ <20251013153526.2276556-5-elder@riscstar.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/6] spi: axi-spi-engine: support
- SPI_MULTI_BUS_MODE_STRIPE
-To: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
-Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Marcelo Schmitt <marcelo.schmitt@analog.com>,
- Michael Hennerich <michael.hennerich@analog.com>,
- =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
- Jonathan Cameron <jic23@kernel.org>, Andy Shevchenko <andy@kernel.org>,
- Sean Anderson <sean.anderson@linux.dev>, linux-spi@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-iio@vger.kernel.org
-References: <20251014-spi-add-multi-bus-support-v1-0-2098c12d6f5f@baylibre.com>
- <20251014-spi-add-multi-bus-support-v1-4-2098c12d6f5f@baylibre.com>
- <aPAJwqdFY7ldtt-F@debian-BULLSEYE-live-builder-AMD64>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <aPAJwqdFY7ldtt-F@debian-BULLSEYE-live-builder-AMD64>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251013153526.2276556-5-elder@riscstar.com>
+User-Agent: Mutt/2.2.13 (2024-03-09)
 
-On 10/15/25 3:53 PM, Marcelo Schmitt wrote:
-> On 10/14, David Lechner wrote:
->> Add support for SPI_MULTI_BUS_MODE_STRIPE to the AXI SPI engine driver.
->>
->> The v2.0.0 version of the AXI SPI Engine IP core supports multiple
->> buses. This can be used with SPI_MULTI_BUS_MODE_STRIPE to support
->> reading from simultaneous sampling ADCs that have a separate SDO line
->> for each analog channel. This allows reading all channels at the same
->> time to increase throughput.
->>
->> Signed-off-by: David Lechner <dlechner@baylibre.com>
->> ---
->>  drivers/spi/spi-axi-spi-engine.c | 128 +++++++++++++++++++++++++++++++++++++--
->>  1 file changed, 124 insertions(+), 4 deletions(-)
->>
->> diff --git a/drivers/spi/spi-axi-spi-engine.c b/drivers/spi/spi-axi-spi-engine.c
->> index e06f412190fd243161a0b3df992f26157531f6a1..707e5108efec41f7eff608a09fcebd9d28fa2d70 100644
->> --- a/drivers/spi/spi-axi-spi-engine.c
->> +++ b/drivers/spi/spi-axi-spi-engine.c
->> @@ -23,6 +23,9 @@
->>  #include <linux/spi/spi.h>
->>  #include <trace/events/spi.h>
->>  
->> +#define SPI_ENGINE_REG_DATA_WIDTH		0x0C
->> +#define   SPI_ENGINE_REG_DATA_WIDTH_NUM_OF_SDIO_MASK	GENMASK(24, 16)
-> would it be 8-bit mask?
-> #define   SPI_ENGINE_REG_DATA_WIDTH_NUM_OF_SDIO_MASK   GENMASK(23, 16)
+Hi,
 
-Ah, good catch.
-
+On 2025-10-13 10:35, Alex Elder wrote:
+> Introduce a driver that supports three PHYs found on the SpacemiT
+> K1 SoC.  The first PHY is a combo PHY that can be configured for
+> use for either USB 3 or PCIe.  The other two PHYs support PCIe
+> only.
 > 
->> +#define   SPI_ENGINE_REG_DATA_WIDTH_MASK		GENMASK(15, 0)
->>  #define SPI_ENGINE_REG_OFFLOAD_MEM_ADDR_WIDTH	0x10
->>  #define SPI_ENGINE_REG_RESET			0x40
->>  
-> ...
->>  
->> +	data_width_reg_val = readl(spi_engine->base + SPI_ENGINE_REG_DATA_WIDTH);
->> +
->>  	if (adi_axi_pcore_ver_gteq(version, 1, 1)) {
->>  		unsigned int sizes = readl(spi_engine->base +
->>  				SPI_ENGINE_REG_OFFLOAD_MEM_ADDR_WIDTH);
->> @@ -1097,6 +1214,9 @@ static int spi_engine_probe(struct platform_device *pdev)
->>  	}
->>  	if (adi_axi_pcore_ver_gteq(version, 1, 3))
->>  		host->mode_bits |= SPI_MOSI_IDLE_LOW | SPI_MOSI_IDLE_HIGH;
->> +	if (adi_axi_pcore_ver_gteq(version, 2, 0))
->> +		host->num_data_bus = FIELD_GET(SPI_ENGINE_REG_DATA_WIDTH_NUM_OF_SDIO_MASK,
->> +					       data_width_reg_val);
->>  
-> Not sure I'm following the use of DATA_WIDTH and NUM_OF_SDIO.
-> HDL doc [1] states NUM_OF_SDIO 'is equal with the maximum supported SDI lines in
-> bits'. And the code sets that to be the number of buses. That should work for
-> AD7380 because each AD7380 SDO bus has only one line. But, it won't support
-> AD4630 (or even AD4030) because each AD4630 rx bus has 4 data lines. I can't
-> find it in HDL, but I'd expect to also have something like NUM_OF_SDIO_PER_BUS.
-> Or DATA_WIDTH is the number of lines per bus and HDL doc is unclear to me?
-
-Right now, the HDL doesn't distinguish between the two, so we only have the
-case where each "SDIO" is a separate bus. The AD4630 project has extra IP
-blocks to unscramble things to simulate having 4 lines on each bus rather than
-8 buses.
-
-DATA_WIDTH has to do with how wide the bus between the SPI Engine and DMA
-is, so it has nothing to do with the wiring to the peripheral.
-
-> Well, it would be nice if we can have host->num_data_bus set in a way that
-> minimizes diff when multiple lines per bus gets implemented (if that's not
-> currently supported).
-
-I agree it would be nice. However, the register name and meaning already exists
-even in older versions of the IP block (as NUM_OF_SDI), so I think it would be
-best to stick with the existing name. Ideally, when support for multiple wires
-per bus is added, then we would compile like this: NUM_OF_SDIO=2 SDIO_BUS_WIDTH=4
-rather than NUM_OF_SDIO=8 NUM_OF_SDIO_PER_BUS=4.
-
+> All three PHYs must be programmed with an 8 bit receiver termination
+> value, which must be determined dynamically.  Only the combo PHY is
+> able to determine this value.  The combo PHY performs a special
+> calibration step at probe time to discover this, and that value is
+> used to program each PHY that operates in PCIe mode.  The combo
+> PHY must therefore be probed before either of the PCIe-only PHYs
+> will be used.
 > 
-> [1]: https://github.com/analogdevicesinc/hdl/pull/1808/files#diff-d1274cfe2e206aa66a0ecd3da04b3e62fc5fad9e12029b34b226c6f91454d34dR77
+> Each PHY has an internal PLL driven from an external oscillator.
+> This PLL started when the PHY is first initialized, and stays
+> on thereafter.
+> 
+> During normal operation, the USB or PCIe driver using the PHY must
+> ensure (other) clocks and resets are set up properly.
+> 
+> However PCIe mode clocks are enabled and resets are de-asserted
+> temporarily by this driver to perform the calibration step on the
+> combo PHY.
+> 
+> Tested-by: Junzhong Pan <panjunzhong@linux.spacemit.com>
+> Signed-off-by: Alex Elder <elder@riscstar.com>
 
-Well, the linked PR isn't merged yet, so I guess we could ask there to rename
-NUM_OF_SDIO to NUM_OF_SDIO_BUS there if you think that is a better name since
-it is being renamed anyway.
+Thanks for this new version. I have tried it on top of v6.18-rc1 + 
+spacemit DTS commits from next on a BPI-F3, and it fails calibrating the 
+PHY with:
+
+[    2.748405] spacemit-k1-pcie-phy c0b10000.phy: error -ENOENT: calibration failed
+[    2.755300] spacemit-k1-pcie-phy c0b10000.phy: error -ENOENT: error probing combo phy
+[    2.763088] spacemit-k1-pcie-phy c0b10000.phy: probe with driver spacemit-k1-pcie-phy failed with error -2
+[   14.309031] platform c0d10000.phy: deferred probe pending: (reason unknown)
+[   14.313426] platform c0c10000.phy: deferred probe pending: (reason unknown)
+[   14.320347] platform ca400000.pcie: deferred probe pending: platform: supplier c0c10000.phy not ready
+[   14.329542] platform ca800000.pcie: deferred probe pending: platform: supplier c0d10000.phy not ready
+
+Note that version 1 was working fine on the same board.
+
+[ snip ]
+
+> diff --git a/drivers/phy/phy-spacemit-k1-pcie.c b/drivers/phy/phy-spacemit-k1-pcie.c
+> new file mode 100644
+> index 0000000000000..81bc05823d080
+> --- /dev/null
+> +++ b/drivers/phy/phy-spacemit-k1-pcie.c
+
+[ snip ]
+
+> +static int k1_pcie_combo_phy_calibrate(struct k1_pcie_phy *k1_phy)
+> +{
+> +	struct reset_control_bulk_data resets[] = {
+> +		{ .id = "dbi", },
+> +		{ .id = "mstr", },
+> +		{ .id = "slv", },
+> +	};
+> +	struct clk_bulk_data clocks[] = {
+> +		{ .id = "dbi", },
+> +		{ .id = "mstr", },
+> +		{ .id = "slv", },
+> +	};
+> +	struct device *dev = k1_phy->dev;
+> +	struct reset_control *phy_reset;
+> +	int ret = 0;
+> +	int val;
+> +
+> +	/* Nothing to do if we already set the receiver termination value */
+> +	if (k1_phy_rterm_valid())
+> +		return 0;
+> +
+> +	/* De-assert the PHY (global) reset and leave it that way for USB */
+> +	phy_reset = devm_reset_control_get_exclusive_deasserted(dev, "phy");
+> +	if (IS_ERR(phy_reset))
+> +		return PTR_ERR(phy_reset);
+> +
+> +	/*
+> +	 * We also guarantee the APP_HOLD_PHY_RESET bit is clear.  We can
+> +	 * leave this bit clear even if an error happens below.
+> +	 */
+> +	regmap_assign_bits(k1_phy->pmu, PCIE_CLK_RES_CTRL,
+> +			   PCIE_APP_HOLD_PHY_RST, false);
+> +
+> +	/* If the calibration already completed (e.g. by U-Boot), we're done */
+> +	val = readl(k1_phy->regs + PCIE_RCAL_RESULT);
+> +	if (val & R_TUNE_DONE)
+> +		goto out_tune_done;
+> +
+> +	/* Put the PHY into PCIe mode */
+> +	k1_combo_phy_sel(k1_phy, false);
+> +
+> +	/* Get and enable the PCIe app clocks */
+> +	ret = clk_bulk_get(dev, ARRAY_SIZE(clocks), clocks);
+> +	if (ret <= 0) {
+> +		if (!ret)
+> +			ret = -ENOENT;
+> +		goto out_tune_done;
+> +	}
+
+This part doesn't look correct. The documentation says this function 
+"returns 0 if all clocks specified in clk_bulk_data table are obtained
+successfully, or valid IS_ERR() condition containing errno."
+
+To me, it seems the code should only be:
+
+	ret = clk_bulk_get(dev, ARRAY_SIZE(clocks), clocks);
+	if (ret)
+		goto out_tune_done;
+
+[snip]
+
+> +out_put_clocks:
+> +	clk_bulk_put_all(ARRAY_SIZE(clocks), clocks);
+
+When fixing the above bug, this then crashes with:
+
+[    2.776109] Unable to handle kernel paging request at virtual address ffffffc41a0110c8
+[    2.783958] Current kworker/u36:0 pgtable: 4K pagesize, 39-bit VAs, pgdp=0x00000000022a7000
+[    2.792302] [ffffffc41a0110c8] pgd=0000000000000000, p4d=0000000000000000, pud=0000000000000000
+[    2.800980] Oops [#1]
+[    2.803217] Modules linked in:
+[    2.806261] CPU: 3 UID: 0 PID: 58 Comm: kworker/u36:0 Not tainted 6.18.0-rc1+ #4 PREEMPTLAZY 
+[    2.814763] Hardware name: Banana Pi BPI-F3 (DT)
+[    2.819366] Workqueue: events_unbound deferred_probe_work_func
+[    2.825180] epc : virt_to_folio+0x5e/0xb8
+[    2.829172]  ra : kfree+0x3a/0x528
+[    2.832558] epc : ffffffff8034e12e ra : ffffffff8035557a sp : ffffffc600243980
+[    2.839762]  gp : ffffffff82074258 tp : ffffffd700994d80 t0 : ffffffff80021540
+[    2.846967]  t1 : 0000000000000018 t2 : 2d74696d65636170 s0 : ffffffc600243990
+[    2.854172]  s1 : ffffffc600243ab8 a0 : 03ffffc41a0110c0 a1 : ffffffff82123bd0
+[    2.861377]  a2 : 7c137c69131cec36 a3 : ffffffff816606d8 a4 : 0000000000000000
+[    2.868583]  a5 : ffffffc500000000 a6 : 0000000000000004 a7 : 0000000000000004
+[    2.875787]  s2 : ffffffd700b98410 s3 : ffffffc600243ab8 s4 : 0000000000000000
+[    2.882991]  s5 : ffffffff80828f1c s6 : 0000000000008437 s7 : ffffffd700b98410
+[    2.890197]  s8 : ffffffd700b98410 s9 : ffffffd700900240 s10: ffffffff81fc4100
+[    2.897401]  s11: ffffffd700987400 t3 : 0000000000000004 t4 : 0000000000000001
+[    2.904607]  t5 : 000000000000001f t6 : 0000000000000003
+[    2.909902] status: 0000000200000120 badaddr: ffffffc41a0110c8 cause: 000000000000000d
+[    2.917802] [<ffffffff8034e12e>] virt_to_folio+0x5e/0xb8
+[    2.923097] [<ffffffff8035557a>] kfree+0x3a/0x528
+[    2.927784] [<ffffffff80828f1c>] clk_bulk_put_all+0x64/0x78
+[    2.933340] [<ffffffff807249d6>] k1_pcie_phy_probe+0x4ee/0x618
+[    2.939155] [<ffffffff808e35e6>] platform_probe+0x56/0x98
+[    2.944538] [<ffffffff808e0328>] really_probe+0xa0/0x348
+[    2.949832] [<ffffffff808e064c>] __driver_probe_device+0x7c/0x140
+[    2.955909] [<ffffffff808e07f8>] driver_probe_device+0x38/0xd0
+[    2.961724] [<ffffffff808e0912>] __device_attach_driver+0x82/0xf0
+[    2.967801] [<ffffffff808dde6a>] bus_for_each_drv+0x72/0xd0
+[    2.973356] [<ffffffff808e0cac>] __device_attach+0x94/0x198
+[    2.978912] [<ffffffff808e0fca>] device_initial_probe+0x1a/0x30
+[    2.984815] [<ffffffff808defee>] bus_probe_device+0x96/0xa0
+[    2.990370] [<ffffffff808dff0e>] deferred_probe_work_func+0xa6/0x110
+[    2.996707] [<ffffffff8005cb66>] process_one_work+0x15e/0x340
+[    3.002436] [<ffffffff8005d58c>] worker_thread+0x22c/0x348
+[    3.007905] [<ffffffff80066b7c>] kthread+0x10c/0x208
+[    3.012853] [<ffffffff80014de0>] ret_from_fork_kernel+0x18/0x1c0
+[    3.018843] [<ffffffff80c917d6>] ret_from_fork_kernel_asm+0x16/0x18
+[    3.025098] Code: 7a98 8d19 2717 0131 3703 5fa7 8131 8d19 051a 953e (651c) f713 
+[    3.032497] ---[ end trace 0000000000000000 ]---
+
+It seems that we want clk_bulk_put() and not clk_bulk_put_all(). The 
+latter free the clocks, while they have been allocated on the stack.
+
+Regards,
+Aurelien
+
+-- 
+Aurelien Jarno                          GPG: 4096R/1DDD8C9B
+aurelien@aurel32.net                     http://aurel32.net
 
