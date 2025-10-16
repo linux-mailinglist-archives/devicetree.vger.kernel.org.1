@@ -1,139 +1,148 @@
-Return-Path: <devicetree+bounces-227478-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227479-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3261CBE1EE2
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 09:32:35 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7AB1FBE1F42
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 09:42:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 2A8874E7E25
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 07:32:34 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 4769B4E2C37
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 07:42:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1511D296BC1;
-	Thu, 16 Oct 2025 07:32:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01B862FAC09;
+	Thu, 16 Oct 2025 07:42:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="IHjGYpVV"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Lwvrmy0F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBEDD1DC985
-	for <devicetree@vger.kernel.org>; Thu, 16 Oct 2025 07:32:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F80018024
+	for <devicetree@vger.kernel.org>; Thu, 16 Oct 2025 07:42:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760599951; cv=none; b=QESSvhXtoUm3CiuESMSEk5TfHvcVP85ACkddiZK2oZuSUFVqpT8LspZng7P/9aCsJuFhiUHUNWqOiAisUWj3sliwFxB78pyZTIy2hcb+dUgteRBeFqMBMR5PjD/2zh5uf7OZMohQYosFYEBr1qIRsmbuGF34eBMoWi21T4m88hc=
+	t=1760600544; cv=none; b=lmI0dNBVaUdzvJAO9v6ozXsCccKYcLWoKh2EZUwrLdYkh16tSsJLMDXnO//PxCqzeDSs/6Am8W4MZ/5owGPmLRHgGeNz2EJ1yZaaeWnj7Qjm62l3Atqbj4D7lbn+qm0SlXSjlkABECAEU0//iZLW13Ve4kP6hwSr8KWvKG5qP78=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760599951; c=relaxed/simple;
-	bh=+xd28qTXSCcc8ok1niwAqU0DCbcQjRi1sND69W3gViw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=skFdqQUe/xmSQV9nnAOg8Dw/vVjKNAZ93oCU25u01NgF9LKqMWOkCi0rQg8s1fRo4atHO6m/2XEZzOalF6cQ1zAhhbRclYRkEpFdUJPP7iJ3VzCDRjTXpVzrxaMgLj5yZWUAqU+Kw+P5c5JimU4tOGwKjEwhYX06ZPSdOxa/VrY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=IHjGYpVV; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=yXa+
-	322mydREfaXen6L4SlMOyElKyFYLFnucwI7kpWM=; b=IHjGYpVVDdyxxjlVxBEd
-	hrMdOkp/v8xr6wQg8OoS+V1ott8EFJG3bid7Clv7UejYjJ/lrLjoRtGq4UpOSfoB
-	Bvm+pF8IyzeONLiWl/F2ztR68c6udtsiD4uKXrx9vU/ikZ0mpBVmB7pFC/6O5Whx
-	+YCmAEVNK+Hkbx9lBYPqjTEolZHg8E4TAx7YK4nmacj41F9q2/6DJ290mOvU3l8w
-	kiaFGZtSmpVlbO0Shhr6HT4t9XlD1VamRs6SyarE71c+CnBDgaACLQkWT6P4Q/lb
-	PAuy6o4ucjhghZRoWR5rywlGI5LmCdoK2wOdVYpbYOyES2NxVGZci24bUihI0YSp
-	tQ==
-Received: (qmail 3708801 invoked from network); 16 Oct 2025 09:32:25 +0200
-Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 16 Oct 2025 09:32:25 +0200
-X-UD-Smtp-Session: l3s3148p1@VIpNnkFBltQgAwDPXwQHAL/S9V79e5yL
-Date: Thu, 16 Oct 2025 09:32:24 +0200
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: Svyatoslav Ryhel <clamor95@gmail.com>
-Cc: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1760600544; c=relaxed/simple;
+	bh=TI1ysOXPP4hVMHn60o6TUG3RYzs3fDZDuOhKElmj1NM=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=akJ0NhnY65t5VGRN/3mGJNNcF/n7/WMDguWvww1sAi2Dh4RB4ktCK9UgzLDIsisN/ufYd2fR4CYb0Ldw8kXxirPknnCgMvrPV2CGXxFjQoSF+PrtzEYxXw8XFxVsIqhe9CXlgpkOR4vc4FwC37WCnIEW6Hkmt+ZIIPONryRbX7A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Lwvrmy0F; arc=none smtp.client-ip=209.85.167.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-57f0aa38aadso616544e87.2
+        for <devicetree@vger.kernel.org>; Thu, 16 Oct 2025 00:42:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1760600541; x=1761205341; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=e0TL/ekeJOQg26wztgmTDgEuvDo0zmkivmyNIAbPqQQ=;
+        b=Lwvrmy0FR4SSoTtcsz+k6eel0nldj4A65RjZdGhN88JE/tBUxH96s4h+YSwUtVEMd6
+         V7+0OEX1S4NMBNnqFbagKcBO5U2sHUPKo5su3skF2mkklIze/l+3Qw/PB0SyOnR6a4z1
+         PZNfDKybX+ET5BdHo4XTi1drTMnryJO63v44eDZ2zyFNOb1xBrVFKGVjE8YmSriA28qP
+         w8STUjf5qEqlONfS0WIu160nY+7oGQ5cOulO11V6tMwFM4Y2kai6iiR0cvAPC54EfU1t
+         RR5hrpGkGY7HFzWmLaPyTllMQKV069nSrd150HjZPXCMo8VMIvucyem3reIAd1/q7GgI
+         6y+w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1760600541; x=1761205341;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=e0TL/ekeJOQg26wztgmTDgEuvDo0zmkivmyNIAbPqQQ=;
+        b=J3FMKvOxFKFnR/m/wV3KStl+8FX9wVuP+r/CCQ2rmue3ZHLi0spZJnn4iR9QsilKH6
+         mYhMfbmFpQOavmaoURlA79DxVX5NLj/j+GuJuZRrd6euT4LHf+JW5z0pAiUCC/qbGc6N
+         xh4p3hC8yHtjGPofPSPsk55VhUufWd2K0cab7UjKnFeWXeO0845G937L3Qh9EugeeHI+
+         rjm3glecRQtLZBdpxa2uMv0LEi9f4rn6vfm+PPLTf6pK51sPEYSRsnrdM2z2Zc1BY/m0
+         ffBJDPhMTBMxIqPEYAQIMwmPyTstmJNxsR3xAKMTWVjMXLFhYeuNdLv7ziE8UAahm5r5
+         EkHw==
+X-Gm-Message-State: AOJu0YyCaoOYXr8t1bAcI9Hu83Ki6Lidv8cZ5N/Mr8QP9hLVrbpetlCV
+	pxLGkmXFMPQABRIDspSljNts+YMRgGqzjfTQtRVGrGRBgw4SvTgofqj1
+X-Gm-Gg: ASbGncs5okwnSR7/sq+SmPJVM0aaNYU05RxiHQ1qeMwO73EC+KGwuy6pe0G8hyfQ5Au
+	C2TF6cpPCw+u2qDUmvM9K5vQDe5yc1BkWvplqFuQ4KnVrC/6cslcj8NAyvJoE/yVReuv6uDVnCi
+	3+b5pnpQD9jOCkbTinTcYTUQkwMuhgXZI6V/xz8f00GfauTVqneWaJlzcZKaCU8/WFrnuAXcdFf
+	DAvY6wsaGTa61028nDqmmTTke7jREWxp3uXdkw+iuxapCwcpvcpC1XpOAS9jFwvFsFEvNG3WbR/
+	POVTDLJbOl3zh2aWC2Dz2Gfovlb4ABs+CfjEDBlr07gz/bTICXi55+sYUF/FmSpzkCDXHY6xR+Z
+	yeeiTJTOFjSaoNO1f9dqB4Mge1Dum8hvqRk88P56AyeRYy2E9O1IgKKgIyKFkV5E2y7MdLlQtRo
+	tZ+g==
+X-Google-Smtp-Source: AGHT+IHbI5nRs9M56J22ztjzyvcXIL8I57Igr4lqZlKhfr5x5C0oH/gLGKHadu7CjkSyNXpdSbLboA==
+X-Received: by 2002:a2e:a99f:0:b0:372:4d3d:aace with SMTP id 38308e7fff4ca-37609f3086emr82578691fa.38.1760600540863;
+        Thu, 16 Oct 2025 00:42:20 -0700 (PDT)
+Received: from xeon.. ([188.163.112.70])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-3762ea14d46sm53226121fa.34.2025.10.16.00.42.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 16 Oct 2025 00:42:20 -0700 (PDT)
+From: Svyatoslav Ryhel <clamor95@gmail.com>
+To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Peter Rosin <peda@axentia.se>,
-	=?utf-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>,
-	Jonas =?utf-8?B?U2Nod8O2YmVs?= <jonasschwoebel@yahoo.de>,
-	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Luca Ceresoli <luca@lucaceresoli.net>,
-	Herve Codina <herve.codina@bootlin.com>
-Subject: Re: [PATCH v1 0/2 RESEND] i2c: muxes: Add GPIO-detected hotplug I2C
-Message-ID: <aPCfiJxyKOXsgNJe@shikoro>
-References: <20251013060018.43851-1-clamor95@gmail.com>
- <w3bn5bqxqjhf4uvxov47rwlvmnbic6xnlk25xbpnbmi2eyup7q@tjuiu7pl3mmo>
- <CAPVz0n1-jN5WLFq4e0CZrneExrN_A=GNeGTwGHTCj14NAta+jQ@mail.gmail.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Thierry Reding <treding@nvidia.com>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: devicetree@vger.kernel.org,
+	linux-tegra@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v5 0/4 RESEND] ARM: tegra: complete Tegra 4 and Tegra K1 device trees
+Date: Thu, 16 Oct 2025 10:41:48 +0300
+Message-ID: <20251016074152.8759-1-clamor95@gmail.com>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="uEiwKgHyXhHzOFYb"
-Content-Disposition: inline
-In-Reply-To: <CAPVz0n1-jN5WLFq4e0CZrneExrN_A=GNeGTwGHTCj14NAta+jQ@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
 
+Complete T114 and T124 device trees.
 
---uEiwKgHyXhHzOFYb
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+---
+Changes in v5:
+- dropped clock and reset names from TSEC schema
+- removed clock and reset names from device nodes
 
-Hi Svyatoslav,
+Changes in v4:
+- configured tsec schema to cover Tegra210 TSEC as well
+- added required to tsec schema
+- reset-names preserved for consistency with other host1x devices and align with T210
+- added clock-names to align with T210
+- operating-points-v2 check https://lore.kernel.org/lkml/20230119131033.117324-1-krzysztof.kozlowski@linaro.org/
 
-> Herve and Luca did not come up with anything meaningful, they provided
-> just a few rough ideas. It will take an inconsiderate amount of time
+Changes in v3:
+- added tsec description
+- swapped compatible back to use enum
+- clock and reset description dropped, added maxItems: 1
+- reset-names preserved for consistency with other host1x devices
+- dropped interconnects and interconnect-names
+- dropped isp nodename
+- dropped multiple rest names for mpe/msenc
+- dropped tegra114 msenc example
+- fixed reset name in second isp in t124 dtsi
 
-Well, IIRC they said that your use case can be mapped onto their
-approach. Which is meaningful in my book.
+Changes in v2:
+- dropped accepted commits
+- added EPP, MPE and ISP compatibility for T114 and T124
+- added TSEC schema
+---
 
-> before there will be any consensus between them and schema
-> maintainers, and even more time would be requited to settle this into
-> schemas and implement into drivers. Why should I suffer from this? Why
-> should changes I need be halted due to some incomplete 'ideas'? This
-> driver uses existing i2c mux framework and fits into it just fine.
+Svyatoslav Ryhel (4):
+  dt-bindings: display: tegra: document EPP, ISP, MPE and TSEC for
+    Tegra114+
+  ARM: tegra114: add missing HOST1X device nodes
+  ARM: tegra124: add missing HOST1X device nodes
+  arm64: tegra210: drop redundant clock and reset names from TSEC node
 
-I am sorry to bring you bad news, but you need to suffer because this is
-how development goes. If I get presented a generic solution (see Herve's
-mail) and a specific solution (your driver), for this case I as a
-maintainer will prefer the generic solution. Generic solutions need more
-time because there are more things to handle, of course. This is typical
-for development, I would say, it is not Linux or Free Software specific.
+ .../display/tegra/nvidia,tegra114-tsec.yaml   | 68 +++++++++++++++++++
+ .../display/tegra/nvidia,tegra20-epp.yaml     | 14 ++--
+ .../display/tegra/nvidia,tegra20-isp.yaml     | 15 ++--
+ .../display/tegra/nvidia,tegra20-mpe.yaml     | 18 +++--
+ arch/arm/boot/dts/nvidia/tegra114.dtsi        | 64 +++++++++++++++++
+ arch/arm/boot/dts/nvidia/tegra124.dtsi        | 64 +++++++++++++++++
+ arch/arm64/boot/dts/nvidia/tegra210.dtsi      |  2 -
+ 7 files changed, 230 insertions(+), 15 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/tegra/nvidia,tegra114-tsec.yaml
 
-I appreciate that you tackled your issue and were open to share it with
-the community. I see the work being done there. However, there are so
-many things going on independently that I can't really prevent double
-development from happening despite it having a high priority for me. As
-soon as I get aware of people working on similar issues, I connect them.
-That's what I did here as well.
+-- 
+2.48.1
 
-So, if you want upstream supported I2C hot-plugging, you need to wait
-for Luca's and Herve's work being accepted. Or provide a superior
-solution. Or, if you want, join the ride. You already have experience in
-this field (and hardware plus use case), you would be a very welcome
-contributor, I would say.
-
-All the best,
-
-   Wolfram
-
-
---uEiwKgHyXhHzOFYb
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmjwn4gACgkQFA3kzBSg
-KbbYDBAAmGNkfML0PzlhNVB+YEhIWwu71dtzkZRexdYYq6v84h5Q5GvzUJhbhlF9
-XI5lxCEkPoMxPd5+5WzQr559IBOydhwig0OBgx21yS3H+fU6X5eMihCImyHbv3ud
-AMT6GOCTZzWu4Ds8j/cxUVSRiYb7feGxUuQgZgi4qjiOQqYchAfXQJxuC8XE7+Ne
-2RUQT8xj9Y+tadbC7jGRXcEqXLyRxAjhX/xM4ZNXBEF8ANGj5WO7uLIlmY9i6bkW
-mGEfMF+W3d1FPyn76iCY8FnKgs2cEChZZChnw/EWNt53Lu2KwDIz8+0zUzWZ+otO
-3EU6TIpgS66TaSIPc+OlIznDNjS1QCfVy2vULwjSHnPD7uRE2LtwKXATeEGhBMYi
-Xq14MSY3etMbhb1X17Y1n/ghRbtaTLKAmu4CRrn69/7MAkq3bWUXdzlHQkRWZe9P
-s+gVYK4uUOcDtpFSL3KVloqZjMlzyOWRrugtuFTo8klctZjABezBd9pbpXnnEKci
-nlDAR/aNLwVHC4U53c5j9Rgbj38ka+kmqYLorz+snzTmxjH5OvpqwvpIubirn8Jh
-15gt4Sxsd+hIwN0fzc93pSTNilS6+dA+I9h4hl140iq0YKhPvU4aUCsDfWu9XHBD
-djidWfetN9v/TEIgnaCeSBauwZNHjonpkBhS6AHq9a0mY9Q8jWY=
-=+hG4
------END PGP SIGNATURE-----
-
---uEiwKgHyXhHzOFYb--
 
