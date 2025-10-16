@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-227892-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227896-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A6E8BE583A
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 23:06:02 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B4872BE590D
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 23:25:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 81FF91AA0794
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 21:06:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D389D487D94
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 21:25:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 382432E3B06;
-	Thu, 16 Oct 2025 21:05:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54BF42E3B1C;
+	Thu, 16 Oct 2025 21:24:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BUFAmQ4b"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lR7BcZwL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f48.google.com (mail-pj1-f48.google.com [209.85.216.48])
+Received: from mail-pf1-f172.google.com (mail-pf1-f172.google.com [209.85.210.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 654FC2E2DD8
-	for <devicetree@vger.kernel.org>; Thu, 16 Oct 2025 21:05:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 764EF2BD001
+	for <devicetree@vger.kernel.org>; Thu, 16 Oct 2025 21:24:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760648752; cv=none; b=I0AEo7h1NO4i0wLKGAghz5tFFcVEI0/nYLzxjPNVwJGVnSyv3e3FpQ3MUTSVbmBJxj5XOcY2JTC8fhnB91AOXRkLMYSCPvy7vowOtqZ3YqBIQoDzG+1kfOLsZ6rad02HYzmaqr8uREyg2RHH6+kTFbvk7bLPX2fACvjcnjIYJiQ=
+	t=1760649897; cv=none; b=eDZ3KMu1+4APBl3BjNCsjV77jzVHI1Di9xFLUBT89y+67xES+kyIPrwn35/1AgwpwkalgQeVLL5BqHCzkOxry0SgCXv6T+kFWToFkGkgabLYVSt2JTFjRGQXB/RC/QbTXy4a2iyVymQdhYElzZDi/TTGR8ItAEVJtr+AgUOJy/w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760648752; c=relaxed/simple;
-	bh=0dR3gSPfSYELSWtkPMVt7iH1wbrrlnNX3HP+So0LDng=;
+	s=arc-20240116; t=1760649897; c=relaxed/simple;
+	bh=jfu5ly7hYCH7M6FPpJ9TWxzmAmpRDYMQzPgHkXlldhc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Nj0dQAEW5t3DOA/XggsrE0gtn4Wk/5UyHL4jeQEi7Z9+GXWH3qTo1NmSHr9N3L6a92mHgUchjy6XJ2r45r33KqkcHIxErHxYSvVjwcF52Kh9SBHz7w356Dji+hpByLcEeYKhSBFp7pMkiUDeE96pDTfHxHSb12ab1oHoB2RKhfM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BUFAmQ4b; arc=none smtp.client-ip=209.85.216.48
+	 In-Reply-To:Content-Type; b=XGVHONEG3uCnzcvTDTvKm04k+YnhrpqxmZT6RG6u8g+Bw/R4YJqGpjsNrDmfOVqbml3c5MsN9q5VpiWtejjt7GgxLcIRF581Ma0dD2oXR1F5VJj3VY+1N2Pr4IZ7zMAQ4qWsUGUIAB+0Ed0GuJLqf5D5oqeVbMe+IxTRHKbwxUI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lR7BcZwL; arc=none smtp.client-ip=209.85.210.172
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f48.google.com with SMTP id 98e67ed59e1d1-33badfbbc48so1559359a91.2
-        for <devicetree@vger.kernel.org>; Thu, 16 Oct 2025 14:05:49 -0700 (PDT)
+Received: by mail-pf1-f172.google.com with SMTP id d2e1a72fcca58-7811fa91774so1176077b3a.0
+        for <devicetree@vger.kernel.org>; Thu, 16 Oct 2025 14:24:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1760648749; x=1761253549; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1760649895; x=1761254695; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=L2EzoKc9cX6h7fNdOB+aUUlkvfgneGtOjZpo3gaTcMo=;
-        b=BUFAmQ4baeyeEFeasA5F4ZJCXl12P9jAhpD6IsYgU15Dpczvozr6nBM65cw2Obowxl
-         vHjL0WQ5Kd5pHBVrcaNF41capwFvfarARsGBHpVgIk1qpmPUCalqC2In3McJSjlnC3tZ
-         jOQ3MXWxFRR6+JwLEg0/L8lbXLTAs4Ya0OOyxtlPcOHa14c8fM06TQcrK1S6xbeKjcI9
-         fWdFxLqjoBaWbOaYuj3dtyVOJCpsbDmWw8IhQuCMJ5wKvA3gPS+y4nMOKriZRYRInSGt
-         ZYxCGGf8wsMpQ/ByGDiVB/PLmtT1AYnTi8rW9rg0HBX3EOGJ7ekCeD4NJ0zLQ26zIQeu
-         hVCg==
+        bh=zd/3SMts5DKBfe91ys3jWrhKDCgkhqpFgsK5gsCZVIQ=;
+        b=lR7BcZwLPkv+OH43TkVXdHDKbSEPuCx2igXyLrWr34Pd1mzEjZeWXctI2DvKl9uvfG
+         VBQ1S+AMvQhZo4sZ15RqzrMVpqhxKWXeB6vOxyr/msnsAj/xT61lSQPXuF29gh8LklK1
+         erAFwDE72BWDQrrUdTWbYyQ2Wpbgtfn6ST3TX67q7JQSnxFki3E2O6GmTdqBqwdQ6dPf
+         3FI/JjhXpmHQTIEWzmEvooD6kTH8zXEANiT5/G1YKNicHHwpiRgBmX0mj9apTDsNlhw9
+         Im1SfsuDGsJQM16kLxU6uw6ucOano2mF6SHAyTiWl3Wq6Nh1GUq1X52uVKK0mmFAcFR6
+         AKAQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760648749; x=1761253549;
+        d=1e100.net; s=20230601; t=1760649895; x=1761254695;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=L2EzoKc9cX6h7fNdOB+aUUlkvfgneGtOjZpo3gaTcMo=;
-        b=HFTpzBRkEAcBkmt9y0ZcOGBjatG2/gXVMCGyrJJq9buZfBLwvWbpb+DL6dmN6CmU1d
-         fdhc+KoMi5qxaQhLN+PNDcLCPk+XwSbADRCMwoScwDYHzR3tShNlSIMIyfNNNfk26l7P
-         WYCSwQTXI+m5ZKjOSxskBlA1FTLqTaRL+HG3jCWQ3qeAOHiRjCVreZOun2d8JK9vOyZn
-         rjbCp1mchk5UGemmIbxF1HM98K8dq5JMT6ZXOqSHA199SSC7jtylG3M5pRsQCWadoELx
-         2rpdLZ2rsnFOChELD2NvmD8375VimEXJAEsi5xJkX8bJJcEe7jiK8pKvjn2o4fQGem3u
-         3aNA==
-X-Forwarded-Encrypted: i=1; AJvYcCWE7nXT/Zri7AIM41O8SNGr0PxaBHWfZArshPZtpBwOFrMSb5o0uv4bl/0igT22g/fRccDDTvWc5HYF@vger.kernel.org
-X-Gm-Message-State: AOJu0YydLdsnb8gTyWcPQnYNYAeyAazOA6To6Zq1nQGUSgiXKfzij+pS
-	qLEJiPFZczWgK4pRjiGVa4L6V54sYFBvDeEP5GuvmAywZ3/yNR13iLBM
-X-Gm-Gg: ASbGncuQ0ZqKyGJLXTr/7gCrFmgBBK77fB4zI95VtQl62rrYHzPmJHGSmrh51U3kV4e
-	+RP+YhQAEZTcW4HHV9BfIwReei0ESAlYIQRs1DfexfIX2j9tiPtM4Rk64GqFCCX2YF3mG2+3erW
-	vIOEcKyGwBVQ7Ww1e0qZ++PTQNu2KrPrtYtYpkq2VeoX/GG+mMaXluHQS+7We7yjLXW30QkYAQK
-	2wYvwXbyFjDsHtqlQt3vjQOUBsLvrQsA3jpY43Uv0edf7QNDLiiFRbl9TObifkKo+JQQ3AjeT2M
-	ymEXS6m1OON973LSaGOmqL4prCdMlR06HaDuZxmZE8celfEtmySbXmgI+P4R/a9KbDdLwUaAbsJ
-	mGPB3IJag9J1vHJtitYYB2zs1AoiqWkHJ3hTLcBeoNltK35nZaZTKfLS3D9ewgucBIohrtH4NPT
-	/62EHWYiOAMWg/VipbqZqCK/bZ5duPQtLAhAA=
-X-Google-Smtp-Source: AGHT+IEL6ii9KnkIQBAerVn0Vg+xnY1ZhmA6A7rv/13jR+aG1nOdbS7HiWtqv1Golb0GwzDp3Xs8nQ==
-X-Received: by 2002:a17:90b:2887:b0:32e:5cba:ae26 with SMTP id 98e67ed59e1d1-33bcf8fa1aamr1327937a91.23.1760648748582;
-        Thu, 16 Oct 2025 14:05:48 -0700 (PDT)
+        bh=zd/3SMts5DKBfe91ys3jWrhKDCgkhqpFgsK5gsCZVIQ=;
+        b=psMRMVtN1V2aThHv9mixAArIM07H4ikt5tH+4xVvz7iRh+zrXJhpELbcrtdhK+cwvb
+         cKQkTU1wD0ZvHA5xyvYorKreF+0JBSAFXzAen/loCDbj6a08rcRIvzHhFtrWNn6SylDy
+         +/bGhaSprpnugRTngwK/KKn18tVfc6eP6m3lyAY4CaLtOf3pRnQngh2KJ1xiy2KCO8Md
+         96KFkFKpRDJ//QOxFMuDXFe2XrDuqOKopcT4yEnEZvXpAJSO7GAJst++vvpgF2WDIPdY
+         77h+8KV02xnoxq/cxnopcoCNCqDxJt4b5PdBvj/HoWZu/cqtdQLeNLShevOmnRO5sx1q
+         cx8A==
+X-Forwarded-Encrypted: i=1; AJvYcCXDjsIIX/LorpsZcUDuf5TSdIdIBPTto27rWYK+AaH8m2QxNnlX4au9fNjDXalysWRrsGLD/lp0q0p/@vger.kernel.org
+X-Gm-Message-State: AOJu0YxcPE9mHENMm4SdCKyad6Ki5qh0OhaXn1sK0HtOngkqD20vJFdJ
+	M0i333Oioy3wkElrD22LeoTxJ/sX38ZCwQob6fxfVjHuPG9ovUd3uazN
+X-Gm-Gg: ASbGncu7hMykR2+qCYlWJkv/3LWjuwBpxIN+haxK7+Xy4Cg5eFNgagHlT4kvvVVWibg
+	CwtKlwk3s1QDUvqn4DHLGf3mdQ10uOyEv8ZbuzTwXJWKqYsgFejOG9JgIvPe5/7M6EYojBzqmiG
+	kaVd0CMMMxkp03hWohsfZLjYJ26PEcGX0dBBHtDcjitYnjQP9lfg2UyZgTtou+LhVth+jmcictZ
+	gxMW53rE3oH/rNclwn1mYrVkbbLMn+etwEuHXes1wcm+qhzZE0AfA47fvu36NZtHrCFDcwglKo8
+	mx1JxcWe1U3nll84Td+wc8aLw7RSU/Jy8kywbof2EAljSqZsZJ6RNxtK8MAkhAL7a/bGTLAwNj0
+	Q6+A1+07a5J17QBibTkJcC6ZwoMb3NtVO8x5ooLWXr8luUdvZ/SdcJ7tC8zTiJ4sMbaWdda8TOE
+	8mWpKl7kwiUP1foMnMBOvcR3rC
+X-Google-Smtp-Source: AGHT+IFCaV6xglyKst+oFUXgvZM2Y+I/mFeCUZu1bLy7lDUbpg0VgGAYl951jYFBFM2GACulIHnn6Q==
+X-Received: by 2002:a05:6a00:130e:b0:781:15d0:8848 with SMTP id d2e1a72fcca58-7a2208eec13mr1621582b3a.13.1760649894512;
+        Thu, 16 Oct 2025 14:24:54 -0700 (PDT)
 Received: from [172.16.0.242] ([192.19.161.250])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b6a22b7a625sm3812966a12.24.2025.10.16.14.05.46
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7992d0965c3sm23431038b3a.52.2025.10.16.14.24.52
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 16 Oct 2025 14:05:48 -0700 (PDT)
-Message-ID: <565422eb-d5fc-4b84-9a8b-6f36df39b8e2@gmail.com>
-Date: Thu, 16 Oct 2025 14:09:23 -0700
+        Thu, 16 Oct 2025 14:24:54 -0700 (PDT)
+Message-ID: <831744c6-ba89-4029-a035-9a70c3f57465@gmail.com>
+Date: Thu, 16 Oct 2025 14:28:43 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -103,9 +103,10 @@ In-Reply-To: <20251016084301.27670-4-lzampier@redhat.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-Hi Lucas,
+Hi Lucas, Charles,
 
-Please see my comments below.
+I just realized your last reply and sorry about the messy formatting.
+Please disregard the previous one from me and use this one.
 
 On 10/16/25 01:42, Lucas Zampieri wrote:
 > From: Charles Mirabile <cmirabil@redhat.com>
@@ -193,6 +194,7 @@ No need to start from group 0. Only readl on the group with ie[i] != 0
 > +
 > +		writel_relaxed(new_mask, enable + j * sizeof(u32));
 
+
 There's no need to write the register if the value isn't changing. You can
 check new_mask with the value in ie[].
 
@@ -216,12 +218,10 @@ check new_mask with the value in ie[].
 > +	for (i = 0; i < nr_irq_groups; i++)
 > +		handler->enable_save[i] = readl_relaxed(enable + i * sizeof(u32));
 
-Here we need to read all the enabled bits from HW register. What about if we 
-keep the handler->enable_save in sync with HW? I.e., enable_save tracks the
-HW enable registers and we maintain it per each irq toggle. In this way, we
-don't need to read them at all. We'll introduce more overhead with irq_toggle,
-but they are not frequent. Thus, we can move this reading of ie[] away from
-hot-path.
+
+I see that you start to use handler->enable_save to track HW in the last reply.
+I'm about to suggest that. Please send out a new patch, so people can properly
+review it. There's change to common code path.
 
 > +
 > +	if (!cp100_isolate_pending_irq(nr_irq_groups, handler->enable_save, pending, enable))
@@ -229,9 +229,9 @@ hot-path.
 > +
 > +	hwirq = readl(claim);
 
-Possibly missing a io barrier. readl isn't going to enforce the ordering of 
-writel_relaxed above and itself. There could be other barriers missing. Please 
-check.
+Possibly missing a io barrier. readl isn't going to enforce the ordering of
+readl/writel_relaxed above and itself. There could be other barriers missing.
+Please check.
 
 > +
 > +	/* Restore previous state */
@@ -296,16 +296,14 @@ check.
 >   			cpuhp_setup_state(CPUHP_AP_IRQ_SIFIVE_PLIC_STARTING,
 >   					  "irqchip/sifive/plic:starting",
 
-My rationale of the above comments is to achieve minimal overhead with this 
-"read pending[] -> disable IE[] -> claim -> enable IE[]" approach. In general, 
-the fewer interrupts enabled on a hart, the lower the overhead. If there's only 
-1 interrupt enabled for a give hart, then there's zero reading/writing of IE[], 
-and you can further optimize away the reading of pending register. If you chose
-to use enable_save to track HW as I've described above, we should document it
-well, because enable_save is only used by suspend/resume without this quirk.
+My rationale of the above comments is to achieve minimal overhead with this
+"read pending[] -> disable IE[] -> claim -> enable IE[]" approach. In general,
+the fewer interrupts enabled on a hart, the lower the overhead. If there's only
+1 interrupt enabled for a give hart, then there's zero reading/writing of IE[],
+and you can further optimize away the reading of pending register.
 
-I'd imagine that if the user truly want to avoid the overhead of this quirk, 
-they can chose to spread out the irq groups onto different harts to alleviate 
+I'd imagine that if the user truly want to avoid the overhead of this quirk,
+they can chose to spread out the irq groups onto different harts to alleviate
 the slow down, or better isolate a single irq to a given hart, and we should
 make it possible.
 
