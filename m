@@ -1,227 +1,186 @@
-Return-Path: <devicetree+bounces-227507-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227508-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50E54BE22CB
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 10:37:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 14E04BE22D2
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 10:37:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 45DF7487D35
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 08:37:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0A8D75401FA
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 08:37:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF3A3304BDF;
-	Thu, 16 Oct 2025 08:36:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lSxiCumn"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DEF6306B2C;
+	Thu, 16 Oct 2025 08:37:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B429E145348;
-	Thu, 16 Oct 2025 08:36:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from azure-sdnproxy.icoremail.net (azure-sdnproxy.icoremail.net [13.75.44.102])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9127B30102C;
+	Thu, 16 Oct 2025 08:37:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=13.75.44.102
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760603812; cv=none; b=Qn96gISutGEBIUs2ixPJxP0RTlKyuDcUIQFCJc4jmgHiQOEXNAQu3VdLOt6j8hLPw1uwRxlzpU0l5F7TpXQH0U3zNrfXVtyhJ0gPNtlOv/uejRoYa2pFIRjTZpJf3vmZhO/haJdlC/Rn/BaUD3bR5ihRQGMlTMUgZn3IIc162/I=
+	t=1760603826; cv=none; b=p4M73HcxWf09E9no3TyN0D8WH1U9jkqAPmJr5KIMpPPWgq5hy938omGlTRzPYgWBjoNuwOb1/qV6cd9EUHXVSVyn51pF14NSSEjoXSk5EpwiWs8EiEfWFVcxQCDiXq0+1oQkvVFQ57gRumD0d2OjqDil9zN1d/PkADhHKOA0UOs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760603812; c=relaxed/simple;
-	bh=MuVT8F29Xlc5XO/utltXz470EZDUUeT2p+kzo7sBpCc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=V+YiFuNCUWrgV+p4Te3WsFV8zAbbgCdam3TcspEf0baSCSffWRxl2x6g9DpJ0wrTRq3dek/rur5bKQYymdIrbw0lTVo5N5PwEA3iirOAgnAUGXI64CLzZiluG9retjE418VF4hdPn1OabP7qJ09QojyOhVtdVtGBBBeLhIKpeJU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lSxiCumn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8CC6C4CEF1;
-	Thu, 16 Oct 2025 08:36:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760603812;
-	bh=MuVT8F29Xlc5XO/utltXz470EZDUUeT2p+kzo7sBpCc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=lSxiCumns7EpzNLOIgT/81hEQX9eA2qS1y/SDwq4SEuMAG5jL16PWcY1aeG8GdOH+
-	 QcclVkiqrcTwaToa4hGCK0J7pXlx1HsGlbj5wBXQLlQ3Ab/o4pTbThi9acFoCR/eLo
-	 65WmTLCEw20m71CvOHv/ZoA19nC1E7uORPjfXxifwEFKC0SVlCgfAVjl3ZuQNkjdc9
-	 m5gILegWqx67jDRS1rqorVr1lthwCEn9rHUNhS4KdtrXH2DojZ+YT+BCTGwFBrYSLR
-	 TD70OsqTNs0/v9YvrtLSrwrmpLX6/tnnXmj8+J22+D3sWTU+KKzkaJkRW8Vdg70GYH
-	 e7htLXVq29SVw==
-Date: Thu, 16 Oct 2025 10:36:49 +0200
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-To: Simon Horman <horms@kernel.org>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next 11/12] net: airoha: Refactor src port
- configuration in airhoha_set_gdm2_loopback
-Message-ID: <aPCuoR8ukM23d71i@lore-desk>
-References: <20251015-an7583-eth-support-v1-0-064855f05923@kernel.org>
- <20251015-an7583-eth-support-v1-11-064855f05923@kernel.org>
- <aO_GOE0jPMlcP-VR@horms.kernel.org>
+	s=arc-20240116; t=1760603826; c=relaxed/simple;
+	bh=NDwwwy0SIpprH+tMkxCSpNm6aauOVoGSL2X9etZlqs0=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
+	 MIME-Version:Message-ID; b=aa0oC11H2zZuctBctxQmNs78V2y9phe5bRydMC8pcDJwHW3TN2/biTQCDP4sXOypPCmdE8ddj2cHj9S6p+1TYeHmRfANG63pOjRr6p6OW8vFDlBuIez643w0d4ZYUKBvmJoH1wRidrAxmUdbYFTDvW3jaXhsUzivO49aRfSZ9gk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=13.75.44.102
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
+Received: from dongxuyang$eswincomputing.com ( [10.12.96.41] ) by
+ ajax-webmail-app2 (Coremail) ; Thu, 16 Oct 2025 16:36:49 +0800 (GMT+08:00)
+Date: Thu, 16 Oct 2025 16:36:49 +0800 (GMT+08:00)
+X-CM-HeaderCharset: UTF-8
+From: "Xuyang Dong" <dongxuyang@eswincomputing.com>
+To: p.zabel@pengutronix.de, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: ningyu@eswincomputing.com, linmin@eswincomputing.com,
+	huangyifeng@eswincomputing.com, pinkesh.vaghela@einfochips.com
+Subject: Re: [PATCH v7 0/2] Add driver support for ESWIN eic7700 SoC reset
+ controller
+X-Priority: 3
+X-Mailer: Coremail Webmail Server Version 2024.2-cmXT6 build
+ 20241203(6b039d88) Copyright (c) 2002-2025 www.mailtech.cn
+ mispb-72143050-eaf5-4703-89e0-86624513b4ce-eswincomputing.com
+In-Reply-To: <20250930093132.2003-1-dongxuyang@eswincomputing.com>
+References: <20250930093132.2003-1-dongxuyang@eswincomputing.com>
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=UTF-8
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="njSAvnTeCku01lzf"
-Content-Disposition: inline
-In-Reply-To: <aO_GOE0jPMlcP-VR@horms.kernel.org>
+Message-ID: <43bdee04.216.199ec2a2646.Coremail.dongxuyang@eswincomputing.com>
+X-Coremail-Locale: zh_CN
+X-CM-TRANSID:TQJkCgA31pShrvBovgUOAQ--.27355W
+X-CM-SenderInfo: pgrqw5xx1d0w46hv4xpqfrz1xxwl0woofrz/1tbiAQERAmjvzH0Ys
+	AABsM
+X-Coremail-Antispam: 1Ur529EdanIXcx71UUUUU7IcSsGvfJ3iIAIbVAYjsxI4VW3Jw
+	CS07vEb4IE77IF4wCS07vE1I0E4x80FVAKz4kxMIAIbVAFxVCaYxvI4VCIwcAKzIAtYxBI
+	daVFxhVjvjDU=
 
+SGkgYWxsLAoKICBHZW50bGUgcGluZy4gTG9va2luZyBmb3J3YXJkIHRvIHlvdXIgcmVwbHkuIFRo
+YW5rIHlvdSB2ZXJ5IG11Y2ghCgpCZXN0IHJlZ2FyZHMsClh1eWFuZyBEb25nCgo+IAo+IFRoaXMg
+c2VyaWVzIGRlcGVuZHMgb24gdGhlIGNvbmZpZyBvcHRpb24gcGF0Y2ggWzFdLgo+IAo+IFsxXSBo
+dHRwczovL2dpdC5rZXJuZWwub3JnL3B1Yi9zY20vbGludXgva2VybmVsL2dpdC9uZXh0L2xpbnV4
+LW5leHQuZ2l0L2NvbW1pdC8/aD1uZXh0LTIwMjUwOTI5JmlkPWNlMmQwMGM2ZTE5MmI1ODhkZGMz
+ZDFlZmI3MmIwZWEwMGFiNTUzOGYKPiAKPiBVcGRhdGVzOgo+IAo+ICAgZHQtYmluZGluZ3M6IHJl
+c2V0OiBlc3dpbjogRG9jdW1lbnRhdGlvbiBmb3IgZWljNzcwMCBTb0MKPiAgIHY2IC0+IHY3Ogo+
+ICAgICAxLiBSZW1vdmVkIHZlbmRvciBwcmVmaXggcGF0Y2ggZGVwZW5kZW5jeSBmcm9tIGNvdmVy
+IGxldHRlciwgYmVjYXVzZSB0aGUKPiAgICAgICAgcGF0Y2ggd2FzIGFwcGxpZWQuIFVwZGF0ZWQg
+dGhlIGxpbmsgb2YgY29uZmlnIG9wdGlvbiBwYXRjaC4KPiAgICAgMi4gTW9kaWZpZWQgcmVnIGFk
+ZHJlc3MgZnJvbSAweDUxODI4MDAwIHRvIDB4NTE4MjgzMDAgaW4geWFtbC4gQmVhY3VzZSB0aGUK
+PiAgICAgICAgU29DIHVzZWQgdGhlIHJlc2V0IHJlZ2lzdGVycyBmcm9tIDB4NTE4MjgzMDAuCj4g
+ICAgIDMuIE1vZGlmaWVkIHJlZyBzaXplIGZyb20gMHg4MDAwMCB0byAweDIwMC4gQmVhY3VzZSBy
+ZXNldCByZWdpc3RlcnMgdXNlZAo+ICAgICAgICB0aGUgc2l6ZSBvZiAweDIwMC4KPiAgICAgNC4g
+TW9kaWZpZWQgU1lTQ1JHX0NMRUFSX0JPT1RfSU5GT19PRkZTRVQgZnJvbSAweDMwQyB0byAweEMu
+IE1vZGlmaWVkCj4gICAgICAgIFNZU0NSR19SRVNFVF9PRkZTRVQgZnJvbSAweDQwMCB0byAweDEw
+MC4gQmVjYXVzZSBtb2RpZmllZCB0aGUgCj4gICAgICAgIHJlc2V0LWNvbnRyb2xsZXIgcmVnIGZy
+b20gMHg1MTgyODAwMCB0byAweDUxODI4MzAwLiBBbmQgdGhlIG9mZnNldCB3YXMgCj4gICAgICAg
+IGFsc28gbW9kaWZpZWQuCj4gICAgIDUuIEFkZGVkIC5yZWdfc3RyaWRlID0gNCBpbiBlaWM3NzAw
+X3JlZ21hcF9jb25maWcuIEJlYWN1c2UgcmlzY3Ygc3VwcG9ydGVkCj4gICAgICAgIDQtYnl0ZSBh
+bGlnbmVkIGFjY2Vzcy4KPiAgICAgTGluayB0byB2NjogaHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcv
+YWxsLzIwMjUwODI2MTEwNjEwLjEzMzgtMS1kb25neHV5YW5nQGVzd2luY29tcHV0aW5nLmNvbS8K
+PiAKPiAgIHY1IC0+IHY2Ogo+ICAgICBBZGQgZGVwZW5kZW5jaWVzIG9mIHZlbmRvciBwcmVmaXgg
+YW5kIGNvbmZpZyBvcHRpb24gcGF0Y2ggaW4gY292ZXItbGV0dGVyLgo+ICAgICBMaW5rIHRvIHY1
+OiBodHRwczovL2xvcmUua2VybmVsLm9yZy9hbGwvMjAyNTA3MjUwOTMyNDkuNjY5LTEtZG9uZ3h1
+eWFuZ0Blc3dpbmNvbXB1dGluZy5jb20vCj4gCj4gICB2NCAtPiB2NToKPiAgICAgMS4gRHJvcHBl
+ZCBFSUM3NzAwX1JFU0VUX01BWCBmcm9tIGJpbmRpbmdzLgo+ICAgICAyLiBBZGQgIlJldmlld2Vk
+LWJ5IiB0YWcgb2YgIktyenlzenRvZiBLb3psb3dza2kiIGZvciBQYXRjaCAxLgo+ICAgICAzLiBD
+b3JyZWN0ZWQgdGhlIGxpbmsgdG8gcHJldmlvdXMgdmVyc2lvbnMuCj4gICAgIExpbmsgdG8gdjQ6
+IGh0dHBzOi8vbG9yZS5rZXJuZWwub3JnL2FsbC8yMDI1MDcxNTEyMTQyNy4xNDY2LTEtZG9uZ3h1
+eWFuZ0Blc3dpbmNvbXB1dGluZy5jb20vCj4gCj4gICB2MyAtPiB2NDoKPiAgICAgMS4gUmVtb3Zl
+IHJlZ2lzdGVyIG9mZnNldHMgaW4gZHQtYmluZGluZ3MuCj4gICAgIDIuIFRoZSBjb25zdCB2YWx1
+ZSBvZiAiI3Jlc2V0LWNlbGwiIHdhcyBjaGFuZ2VkIGZyb20gMiB0byAxLgo+ICAgICAgICBCZWNh
+dXNlIHRoZSBvZmZzZXRzIHdlcmUgcmVtb3ZlZCBmcm9tIGR0LWJpbmRpbmdzLiBUaGVyZSBhcmUK
+PiAgICAgICAgb25seSBJRHMuIEFuZCByZW1vdmVkIHRoZSBkZXNjcmlwdGlvbiBvZiBpdC4KPiAg
+ICAgMy4gTW9kaWZ5IGNvcHlyaWdodCB5ZWFyIGZyb20gMjAyNCB0byAyMDI1Lgo+ICAgICA0LiBS
+ZWRlZmluZWQgdGhlIElEcyBpbiB0aGUgZHQtYmluZGluZ3MgYW5kIHVzZWQgdGhlc2UgdG8gYnVp
+bGQgYQo+ICAgICAgICByZXNldCBhcnJheSBpbiByZXNldCBkcml2ZXIuIEVuc3VyZSB0aGF0IHRo
+ZSByZXNldCByZWdpc3RlciBhbmQKPiAgICAgICAgcmVzZXQgdmFsdWUgY29ycmVzcG9uZGluZyB0
+byB0aGUgSURzIGFyZSBjb3JyZWN0Lgo+ICAgICBMaW5rIHRvIHYzOiBodHRwczovL2xvcmUua2Vy
+bmVsLm9yZy9hbGwvMjAyNTA2MTkwNzU4MTEuMTIzMC0xLWRvbmd4dXlhbmdAZXN3aW5jb21wdXRp
+bmcuY29tLwo+IAo+ICAgdjIgLT4gdjM6Cj4gICAgIDEuIERyb3Agc3lzY29uIGFuZCBzaW1wbGUt
+bWZkIGZyb20geWFtbCBhbmQgY29kZSwgYmVjYXVzZSB0aGVzZSBhcmUKPiAgICAgICAgbm90IG5l
+Y2Vzc2FyeS4KPiAgICAgMi4gVXBkYXRlIGRlc2NyaXB0aW9uIHRvIGludHJvZHVjZSByZXNldCBj
+b250cm9sbGVyLgo+ICAgICAzLiBBZGQgcmVzZXQgY29udHJvbCBpbmRpY2VzIGZvciBkdC1iaW5k
+aW5ncy4KPiAgICAgNC4gS2VlcCB0aGUgcmVnaXN0ZXIgb2Zmc2V0cyBpbiBkdC1iaW5kaW5ncy4K
+PiAgICAgTGluayB0byB2MjogaHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcvYWxsLzIwMjUwNjE5MDc1
+ODExLjEyMzAtMS1kb25neHV5YW5nQGVzd2luY29tcHV0aW5nLmNvbS8KPiAKPiAgIHYxIC0+IHYy
+Ogo+ICAgICAxLiBDbGVhciB3YXJuaW5ncy9lcnJvcnMgZm9yIHVzaW5nICJtYWtlIGR0X2JpbmRp
+bmdfY2hlY2siLgo+ICAgICAyLiBVcGRhdGUgZXhhbXBsZSwgY2hhbmdlIHBhcmVudCBub2RlIGZy
+b20gc3lzLWNyZyB0byByZXNldC1jb250cm9sbGVyCj4gICAgICAgIGZvciByZXNldCB5YW1sLgo+
+ICAgICAzLiBEcm9wIHRoZSBjaGlsZCBub2RlIGFuZCBhZGQgJyNyZXNldC1jZWxscycgdG8gdGhl
+IHBhcmVudCBub2RlLgo+ICAgICA0LiBEcm9wIHRoZSBkZXNjcmlwdGlvbiwgYmVjYXVzZSBzeXMt
+Y3JnIGJsb2NrIGlzIGNoYW5nZWQgdG8gcmVzZXQtCj4gICAgICAgIGNvbnRyb2xsZXIuCj4gICAg
+IDUuIENoYW5nZSBoZXggbnVtYmVycyB0byBkZWNpbWFsIG51bWJlcnMgZ29pbmcgZnJvbSAwLCBh
+bmQgZHJvcCB0aGUKPiAgICAgICAgbm90IG5lZWRlZCBoYXJkd2FyZSBudW1iZXJzLgo+ICAgICBM
+aW5rIHRvIHYxOiBodHRwczovL2xvcmUua2VybmVsLm9yZy9hbGwvMjAyNTA2MTkwNzU4MTEuMTIz
+MC0xLWRvbmd4dXlhbmdAZXN3aW5jb21wdXRpbmcuY29tLwo+IAo+ICAgcmVzZXQ6IGVzd2luOiBB
+ZGQgZWljNzcwMCByZXNldCBkcml2ZXIKPiAgIHY2IC0+IHY3Ogo+ICAgICAxLiBBZGRlZCAucmVn
+X3N0cmlkZSA9IDQgaW4gcmVnbWFwX2NvbmZpZy4gQmVjYXVzZSBlaWM3NzAwIG9ubHkgc3VwcG9y
+dGVkCj4gICAgICAgIDQtYnl0ZSByZWdpc3RlciBhY2Nlc3MuCj4gICAgIDIuIE1vZGlmaWVkIFNZ
+U0NSR19DTEVBUl9CT09UX0lORk9fT0ZGU0VUIGZyb20gMHgzMEMgdG8gMHhDLiBNb2RpZmllZAo+
+ICAgICAgICBTWVNDUkdfUkVTRVRfT0ZGU0VUIGZyb20gMHg0MDAgdG8gMHgxMDAuIEJlY2F1c2Ug
+dGhlIGJhc2UgYWRkcmVzcyBoYXMKPiAgICAgICAgY2hhbmdlZCBmcm9tIDB4NTE4MjgwMDAgdG8g
+MHg1MTgyODMwMC4KPiAKPiAgIHY1IC0+IHY2Ogo+ICAgICAxLiBSZW1vdmVkIHBsYXRmb3JtX3Nl
+dF9kcnZkYXRhKCkgZnVuY3Rpb24uCj4gICAgIDIuIEluIHByb2JlIGZ1bmN0aW9uLCBkZWZpbmVk
+IHN0cnVjdCBkZXZpY2UgKmRldiA9ICZwZGV2LT5kZXYuCj4gICAgICAgIE1vZGlmaWVkICZwZGV2
+LT5kZXYgdG8gZGV2Lgo+ICAgICBMaW5rIHRvIHY1OiBodHRwczovL2xvcmUua2VybmVsLm9yZy9h
+bGwvMjAyNTA3MjUwOTMyNDkuNjY5LTEtZG9uZ3h1eWFuZ0Blc3dpbmNvbXB1dGluZy5jb20vCj4g
+Cj4gICB2NCAtPiB2NToKPiAgICAgMS4gVGhlIHZhbHVlIG9mIC5tYXhfcmVnaXN0ZXIgaXMgMHg3
+ZmZmYy4KPiAgICAgMi4gQ29udmVydGVkICJ0b19lc3dpbl9yZXNldF9kYXRhIiBmcm9tIG1hY3Jv
+IHRvIGlubGluZSBmdW5jdGlvbi4KPiAgICAgMy4gTW9kaWZpZWQgRUlDNzcwMF9SRVNFVF9PRkZT
+RVQgdG8gRUlDNzcwMF9SRVNFVCBhbmQgZWljNzcwMF8KPiAgICAgICAgcmVnaXN0ZXJfb2Zmc2V0
+IHRvIGVpYzc3MDBfcmVzZXQuCj4gICAgIDQuIFNpbmNlIEVJQzc3MDBfUkVTRVRfTUFYIGlzIGRy
+b3BwZWQsIHVzZWQgZWljNzcwMF9yZXNldFtdIHdpdGhvdXQKPiAgICAgICAgRUlDNzcwMF9SRVNF
+VF9NQVguCj4gICAgIDUuIFJlbW92ZWQgZnVuY3Rpb24gZXN3aW5fcmVzZXRfc2V0LCBhbmQgcHV0
+IHJlZ21hcF9jbGVhcl9iaXRzIGluCj4gICAgICAgIGVzd2luX3Jlc2V0X2Fzc2VydCBhbmQgcmVn
+bWFwX3NldF9iaXRzIGluIGVzd2luX3Jlc2V0X2RlYXNzZXJ0Lgo+ICAgICA2LiBBZGRlZCB1c2xl
+ZXBfcmFuZ2UgaW4gZnVuY3Rpb24gZXN3aW5fcmVzZXRfcmVzZXQgd2hpY2ggd2FzIG1pc3NlZC4K
+PiAgICAgNy4gVXNlZCBBUlJBWV9TSVpFKGVpYzc3MDBfcmVzZXQpIGZvciBkYXRhLT5yY2Rldi5u
+cl9yZXNldHMuCj4gICAgIDguIFVzZSBidWlsdGluX3BsYXRmb3JtX2RyaXZlciwgYmVjYXVzZSBy
+ZXNldCBkcml2ZXIgaXMgYSByZXNldAo+ICAgICAgICBjb250cm9sbGVyIGZvciBTb0MuIFJlbW92
+ZWQgZXN3aW5fcmVzZXRfaW5pdCBmdW5jdGlvbi4KPiAgICAgOS4gTW9kaWZpZWQgZXN3aW5fcmVz
+ZXRfKiB0byBlaWM3NzAwX3Jlc2V0XyouCj4gICAgIExpbmsgdG8gdjQ6IGh0dHBzOi8vbG9yZS5r
+ZXJuZWwub3JnL2FsbC8yMDI1MDcxNTEyMTQyNy4xNDY2LTEtZG9uZ3h1eWFuZ0Blc3dpbmNvbXB1
+dGluZy5jb20vCj4gCj4gICB2MyAtPiB2NDoKPiAgICAgMS4gQWRkICdjb25zdCcgZm9yIHRoZSBk
+ZWZpbml0aW9uLiBJdCBpcyAnY29uc3Qgc3RydWN0IG9mX3BoYW5kbGVfCj4gICAgICAgIGFyZ3Mg
+KnJlc2V0X3NwZWMgPSBkYXRhOycuCj4gICAgIDIuIE1vZGlmeSBjb3B5cmlnaHQgeWVhciBmcm9t
+IDIwMjQgdG8gMjAyNS4KPiAgICAgMy4gSW5jbHVkZWQgImVzd2luLGVpYzc3MDAtcmVzZXQuaCIg
+aW4gcmVzZXQgZHJpdmVyLgo+ICAgICA0LiBBZGRlZCBtYXBwaW5nIHRhYmxlIGZvciByZXNldCBJ
+RHMuCj4gICAgIDUuIFJlbW92ZWQgb2ZfeGxhdGUgYW5kIGlkciBmdW5jdGlvbnMgYXMgd2UgYXJl
+IHVzaW5nIElEcyBmcm9tIERUUy4KPiAgICAgNi4gUmVtb3ZlZCAucmVtb3ZlIGZ1bmN0aW9uLgo+
+ICAgICBMaW5rIHRvIHYzOiBodHRwczovL2xvcmUua2VybmVsLm9yZy9hbGwvMjAyNTA2MTkwNzU4
+MTEuMTIzMC0xLWRvbmd4dXlhbmdAZXN3aW5jb21wdXRpbmcuY29tLwo+IAo+ICAgdjIgLT4gdjM6
+Cj4gICAgIDEuIENoYW5nZSBzeXNjb25fbm9kZV90b19yZWdtYXAoKSB0byBNTUlPIHJlZ21hcCBm
+dW5jdGlvbnMsIGJlY2F1c2UKPiAgICAgICAgZHJvcHBlZCBzeXNjb24uCj4gICAgIDIuIEFkZCBC
+SVQoKSBpbiBmdW5jdGlvbiBlc3dpbl9yZXNldF9zZXQoKSB0byBzaGlmdCB0aGUgcmVzZXQKPiAg
+ICAgICAgY29udHJvbCBpbmRpY2VzLgo+ICAgICAzLiBSZW1vdmUgZm9yY2VkIHR5cGUgY29udmVy
+c2lvbnMgZnJvbSBmdW5jdGlvbiBlc3dpbl9yZXNldF9vZl8KPiAgICAgICAgeGxhdGVfbG9va3Vw
+X2lkKCkuCj4gICAgIExpbmsgdG8gdjI6IGh0dHBzOi8vbG9yZS5rZXJuZWwub3JnL2FsbC8yMDI1
+MDYxOTA3NTgxMS4xMjMwLTEtZG9uZ3h1eWFuZ0Blc3dpbmNvbXB1dGluZy5jb20vCj4gCj4gICB2
+MSAtPiB2MjoKPiAgICAgMS4gTW9kaWZ5IHRoZSBjb2RlIGFjY29yZGluZyB0byB0aGUgc3VnZ2Vz
+dGlvbnMuCj4gICAgIDIuIFVzZSBlc3dpbl9yZXNldF9hc3NlcnQoKSBhbmQgZXN3aW5fcmVzZXRf
+ZGVhc3NlcnQgaW4gZnVuY3Rpb24KPiAgICAgICAgZXN3aW5fcmVzZXRfcmVzZXQoKS4KPiAgICAg
+My4gUGxhY2UgUkVTRVRfRUlDNzcwMCBpbiBLY29uZmlnIGFuZCBNYWtlZmlsZSBpbiBvcmRlci4K
+PiAgICAgNC4gVXNlIGRldl9lcnJfcHJvYmUoKSBpbiBwcm9iZSBmdW5jdGlvbi4KPiAgICAgTGlu
+ayB0byB2MTogaHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcvYWxsLzIwMjUwNjE5MDc1ODExLjEyMzAt
+MS1kb25neHV5YW5nQGVzd2luY29tcHV0aW5nLmNvbS8KPiAKPiBYdXlhbmcgRG9uZyAoMik6Cj4g
+ICBkdC1iaW5kaW5nczogcmVzZXQ6IGVzd2luOiBEb2N1bWVudGF0aW9uIGZvciBlaWM3NzAwIFNv
+Qwo+ICAgcmVzZXQ6IGVzd2luOiBBZGQgZWljNzcwMCByZXNldCBkcml2ZXIKPiAKPiAgLi4uL2Jp
+bmRpbmdzL3Jlc2V0L2Vzd2luLGVpYzc3MDAtcmVzZXQueWFtbCAgIHwgIDQyICsrCj4gIGRyaXZl
+cnMvcmVzZXQvS2NvbmZpZyAgICAgICAgICAgICAgICAgICAgICAgICB8ICAxMCArCj4gIGRyaXZl
+cnMvcmVzZXQvTWFrZWZpbGUgICAgICAgICAgICAgICAgICAgICAgICB8ICAgMSArCj4gIGRyaXZl
+cnMvcmVzZXQvcmVzZXQtZWljNzcwMC5jICAgICAgICAgICAgICAgICB8IDQyOSArKysrKysrKysr
+KysrKysrKysKPiAgLi4uL2R0LWJpbmRpbmdzL3Jlc2V0L2Vzd2luLGVpYzc3MDAtcmVzZXQuaCAg
+IHwgMjk4ICsrKysrKysrKysrKwo+ICA1IGZpbGVzIGNoYW5nZWQsIDc4MCBpbnNlcnRpb25zKCsp
+Cj4gIGNyZWF0ZSBtb2RlIDEwMDY0NCBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3Mv
+cmVzZXQvZXN3aW4sZWljNzcwMC1yZXNldC55YW1sCj4gIGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2
+ZXJzL3Jlc2V0L3Jlc2V0LWVpYzc3MDAuYwo+ICBjcmVhdGUgbW9kZSAxMDA2NDQgaW5jbHVkZS9k
+dC1iaW5kaW5ncy9yZXNldC9lc3dpbixlaWM3NzAwLXJlc2V0LmgKPiAKPiAtLQo+IDIuNDMuMAo=
 
---njSAvnTeCku01lzf
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-> On Wed, Oct 15, 2025 at 09:15:11AM +0200, Lorenzo Bianconi wrote:
-> > AN7583 chipset relies on different definitions for source-port
-> > identifier used for hw offloading. In order to support hw offloading
-> > in AN7583 controller, refactor src port configuration in
-> > airhoha_set_gdm2_loopback routine and introduce get_src_port_id
-> > callback.
-> >=20
-> > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
-> > ---
-> >  drivers/net/ethernet/airoha/airoha_eth.c  | 75 +++++++++++++++++++++--=
---------
-> >  drivers/net/ethernet/airoha/airoha_eth.h  | 11 +++--
-> >  drivers/net/ethernet/airoha/airoha_regs.h |  5 +--
-> >  3 files changed, 60 insertions(+), 31 deletions(-)
-> >=20
-> > diff --git a/drivers/net/ethernet/airoha/airoha_eth.c b/drivers/net/eth=
-ernet/airoha/airoha_eth.c
-> > index 5f6b5ab52e0265f7bb56b008ca653d64e04ff2d2..76c82750b3ae89a9fa81c64=
-d3b7c3578b369480c 100644
-> > --- a/drivers/net/ethernet/airoha/airoha_eth.c
-> > +++ b/drivers/net/ethernet/airoha/airoha_eth.c
-> > @@ -1682,11 +1682,14 @@ static int airoha_dev_set_macaddr(struct net_de=
-vice *dev, void *p)
-> >  	return 0;
-> >  }
-> > =20
-> > -static void airhoha_set_gdm2_loopback(struct airoha_gdm_port *port)
-> > +static int airhoha_set_gdm2_loopback(struct airoha_gdm_port *port)
-> >  {
-> >  	u32 pse_port =3D port->id =3D=3D 3 ? FE_PSE_PORT_GDM3 : FE_PSE_PORT_G=
-DM4;
-> >  	struct airoha_eth *eth =3D port->qdma->eth;
-> >  	u32 chan =3D port->id =3D=3D 3 ? 4 : 0;
-> > +	/* XXX: handle XSI_USB_PORT and XSI_PCE1_PORT */
-> > +	u32 nbq =3D port->id =3D=3D 3 ? 4 : 0;
-> > +	int src_port;
->=20
-> I think this code could benefit for names (defines) for port ids.
-> It's a bit clearer in airoha_en7581_get_src_port_id(). But the
-> numbers seem kind of magic in this function.
-
-ack, I will fix it in v2.
-
-Regards,
-Lorenzo
-
->=20
-> > =20
-> >  	/* Forward the traffic to the proper GDM port */
-> >  	airoha_set_gdm_port_fwd_cfg(eth, REG_GDM_FWD_CFG(2), pse_port);
-> > @@ -1709,29 +1712,23 @@ static void airhoha_set_gdm2_loopback(struct ai=
-roha_gdm_port *port)
-> >  	airoha_fe_clear(eth, REG_FE_VIP_PORT_EN, BIT(2));
-> >  	airoha_fe_clear(eth, REG_FE_IFC_PORT_EN, BIT(2));
-> > =20
-> > -	if (port->id =3D=3D 3) {
-> > -		/* FIXME: handle XSI_PCE1_PORT */
-> > -		airoha_fe_rmw(eth, REG_FE_WAN_PORT,
-> > -			      WAN1_EN_MASK | WAN1_MASK | WAN0_MASK,
-> > -			      FIELD_PREP(WAN0_MASK, HSGMII_LAN_PCIE0_SRCPORT));
-> > -		airoha_fe_rmw(eth,
-> > -			      REG_SP_DFT_CPORT(HSGMII_LAN_PCIE0_SRCPORT >> 3),
-> > -			      SP_CPORT_PCIE0_MASK,
-> > -			      FIELD_PREP(SP_CPORT_PCIE0_MASK,
-> > -					 FE_PSE_PORT_CDM2));
-> > -	} else {
-> > -		/* FIXME: handle XSI_USB_PORT */
-> > +	src_port =3D eth->soc->ops.get_src_port_id(port, nbq);
-> > +	if (src_port < 0)
-> > +		return src_port;
-> > +
-> > +	airoha_fe_rmw(eth, REG_FE_WAN_PORT,
-> > +		      WAN1_EN_MASK | WAN1_MASK | WAN0_MASK,
-> > +		      FIELD_PREP(WAN0_MASK, src_port));
-> > +	airoha_fe_rmw(eth, REG_SP_DFT_CPORT(src_port >> 3),
-> > +		      SP_CPORT_MASK(src_port & 0x7),
-> > +		      FE_PSE_PORT_CDM2 << __ffs(SP_CPORT_MASK(src_port & 0x7)));
->=20
-> Likewise, 3 and 0x7 a bit magical here.
->=20
-> > +
-> > +	if (port->id !=3D 3)
-> >  		airoha_fe_rmw(eth, REG_SRC_PORT_FC_MAP6,
-> >  			      FC_ID_OF_SRC_PORT24_MASK,
-> >  			      FIELD_PREP(FC_ID_OF_SRC_PORT24_MASK, 2));
->=20
-> ... and 2 here.
->=20
-> > -		airoha_fe_rmw(eth, REG_FE_WAN_PORT,
-> > -			      WAN1_EN_MASK | WAN1_MASK | WAN0_MASK,
-> > -			      FIELD_PREP(WAN0_MASK, HSGMII_LAN_ETH_SRCPORT));
-> > -		airoha_fe_rmw(eth,
-> > -			      REG_SP_DFT_CPORT(HSGMII_LAN_ETH_SRCPORT >> 3),
-> > -			      SP_CPORT_ETH_MASK,
-> > -			      FIELD_PREP(SP_CPORT_ETH_MASK, FE_PSE_PORT_CDM2));
-> > -	}
-> > +
-> > +	return 0;
-> >  }
->=20
-> ...
->=20
-> > @@ -3055,11 +3057,38 @@ static const char * const en7581_xsi_rsts_names=
-[] =3D {
-> >  	"xfp-mac",
-> >  };
-> > =20
-> > +static int airoha_en7581_get_src_port_id(struct airoha_gdm_port *port,=
- int nbq)
-> > +{
-> > +	switch (port->id) {
-> > +	case 3:
-> > +		/* 7581 SoC supports PCIe serdes on GDM3 port */
-> > +		if (nbq =3D=3D 4)
-> > +			return HSGMII_LAN_7581_PCIE0_SRCPORT;
-> > +		if (nbq =3D=3D 5)
-> > +			return HSGMII_LAN_7581_PCIE1_SRCPORT;
-> > +		break;
-> > +	case 4:
-> > +		/* 7581 SoC supports eth and usb serdes on GDM4 port */
-> > +		if (!nbq)
-> > +			return HSGMII_LAN_7581_ETH_SRCPORT;
-> > +		if (nbq =3D=3D 1)
-> > +			return HSGMII_LAN_7581_USB_SRCPORT;
-> > +		break;
-> > +	default:
-> > +		break;
-> > +	}
-> > +
-> > +	return -EINVAL;
-> > +}
->=20
-> ...
-
---njSAvnTeCku01lzf
-Content-Type: application/pgp-signature; name=signature.asc
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCaPCuoQAKCRA6cBh0uS2t
-rCOOAQDMDIpF364/MbSzib3j8d9uEzbbNEXLxP3luCc3gqQiqwEA742hYnGMwq6H
-kCa9nehAixoGaVR15kULJyL3ZZAxHgc=
-=NNc+
------END PGP SIGNATURE-----
-
---njSAvnTeCku01lzf--
 
