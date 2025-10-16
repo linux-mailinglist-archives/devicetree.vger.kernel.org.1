@@ -1,79 +1,79 @@
-Return-Path: <devicetree+bounces-227882-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227883-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E247BE5627
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 22:26:11 +0200 (CEST)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id ADA6DBE562D
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 22:26:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 009CB1AA0957
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 20:26:35 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 3ABD1359D5E
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 20:26:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 736A32E06C9;
-	Thu, 16 Oct 2025 20:25:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF13D2DF6F8;
+	Thu, 16 Oct 2025 20:26:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jakqgNWY"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GAH/0Nru"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f177.google.com (mail-pg1-f177.google.com [209.85.215.177])
+Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2330D2641C6
-	for <devicetree@vger.kernel.org>; Thu, 16 Oct 2025 20:25:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E532A1A9F93
+	for <devicetree@vger.kernel.org>; Thu, 16 Oct 2025 20:25:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760646356; cv=none; b=r6MRMlhwkx6zyG2V52StDf8rwCzwMPsOTjLMwZ2PpNRY2DrnmQ0xDR01NPrud4Vspys5b1arVIrS4B463yr9hTezKb+CvDYksMowfBZ1yGXD6XU4X8Bk8WROpbdodp5IPw+joWZ7580rXso/XFZKbDbji9QMfmcGMv7DNSmlx5Y=
+	t=1760646361; cv=none; b=JT9BTgbC02BRs+qC7NWmhAZ9hrDGTY/kqrXRNiXasQ3qyg27oPVFnjtsNuRs6/kBq34W0DmLcdGY7rhCpdWQRiB/xT6mstuKoegrBD5oN3a5Euqv0D7zBu0DZnAwo7kZghiWe8edKdJjv58dEwxz2zujITbin5dLOiu47x9Au4I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760646356; c=relaxed/simple;
-	bh=KO/OF/yd4zXyKj31xoVGvcnH26x/3OY20T5UcmQHuto=;
+	s=arc-20240116; t=1760646361; c=relaxed/simple;
+	bh=0lbKApLGJsv0AC5SvLZUWhz5LKrHZZBjMSka62s6Dls=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=n93Xuh88CIpdPw1oaMjTmmsmN4dBOkaoiv+cJDvcrWR5U9bPS6Cr+dEjCW0jBbL2nmY9JBjHeBpM4GaBa+87yXyPqGPsoGoJujJ2SVn3dtpimh7s7YWW71yDtlnjt8iuGS8koH8KU5z8OTpwmtEg7qZiV350fVRYyYhlbDuj6a8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jakqgNWY; arc=none smtp.client-ip=209.85.215.177
+	 MIME-Version; b=FRvtIS7UP23HGY0dtlYKSRP8ZtiRAh7Z0dhUju3wzJdT8tJB9gdRROLhETJ5qoCY4RxI4NUzDKRbuQrdvJkamNB9RSqsJWMYItjOKeEf2CYBYy1SuGJ2XftFGw0mpenG+Jn8zurIa7PsNrHmnl/LavfPRVyHEagvUcg7aF4tRQY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GAH/0Nru; arc=none smtp.client-ip=209.85.214.177
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f177.google.com with SMTP id 41be03b00d2f7-b4fb8d3a2dbso861769a12.3
-        for <devicetree@vger.kernel.org>; Thu, 16 Oct 2025 13:25:53 -0700 (PDT)
+Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-290d14e5c9aso3162445ad.3
+        for <devicetree@vger.kernel.org>; Thu, 16 Oct 2025 13:25:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1760646353; x=1761251153; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1760646359; x=1761251159; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=4wttzWlbBbcXOKu22uHo1yP0Fp3HmGcEmEwEO06P/KE=;
-        b=jakqgNWYrtMjPhWDL2bcdj43jCYSmAk2FRYfGyjy6BxH+/RVvjwgZFaS+c4++LbZyW
-         4/+olxMjuFFTlMtHxvDfnIlqmSXRNHIaz8VDFk5XgiAhHHjRhJlV4TJPFJTjKvh0QcXt
-         cHoCX50MQOysfLen7BdS/Zw0Fp8nJgUPiGGfl57e9sck32E3K7PPHaPt4ORhwfwUQFcj
-         Mz9E2XFaP+OVyFSiVXLQSAkXn69r2k7hprGF4cGO+cA9ABgTo/mZpqQJ+1mgpo5SL4W8
-         m5Gp5Cl5i/Lb+1oaUlE2RRVhDaA+h3EF2ImGuRuNPOa3qpXusVWl7tjZsNaRqFnNLBC+
-         nyRg==
+        bh=h76MnUi1nfJKqTd0c32BoYoR7lvvUentecme7rj0blk=;
+        b=GAH/0NruhFHU3yD4hwu0ayZ3aU6gaH0OSPDR+Un8+F6upK65opF3WB2imnxjmZdNhh
+         c1xJcgateM3ZTildj6d4oLCe/26LsowP35DZ/I6CAQNs6ZFlJ+kuFe5bwb2BwM5rhavl
+         7q3f9yPYxLADdWJsyMZ8nLIuJETyR3O60Qghzga6fkCUG46Amnuz/WxI9thSCf14X91q
+         RT7oIL9NdrfAINs9HdHmA6wgKaPy8n7Yyhbv/k9vp/bDdC345oHa24C3j/Fo5Vs6AC62
+         fQCGQW2tHj+6JAnYhA6U5yARBakk4JTZarkV2i0VlurAyK9t6+hKPLkT3VyEgqCr0nP0
+         M3UA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760646353; x=1761251153;
+        d=1e100.net; s=20230601; t=1760646359; x=1761251159;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=4wttzWlbBbcXOKu22uHo1yP0Fp3HmGcEmEwEO06P/KE=;
-        b=PbClrHZDN4WYZpVKzrafs4UTuHsFY2B++/09oxapH0pFg88PlWbMuIVbbTAlFOj4/Z
-         kLVHlgpeSX+4aOUvReDXybFy9RIyagQZ4tpbC3JKzzhE70GdZGd91G0PjFSAkezh2V8E
-         iaHIivZlKw1gffI3qLaGfBoQipvL507DUOwA3R9EfceML1aIcGEaGOWrY49nRfpsA81S
-         PunulsKpsqGjDXbqHmws4VSKN9C+1ehkFygsblkRdH84W9V/Pn8rJT8hVv167hBg88vS
-         qzDfemZANVejVsNxgVlA+zSP9b6q5SITuFRdu0asG4HzzIslCw8x4g4c42xG9V2XZAZF
-         y+pw==
-X-Forwarded-Encrypted: i=1; AJvYcCX7WbnlMa/PGw5pjlH0uPvmCqLcaTwAgcJrOR/8FJEHsitm2UJo1ZPHXniut9YEZmZx9dOo8sT3DFid@vger.kernel.org
-X-Gm-Message-State: AOJu0YzUXANiDbuElF4xFfGj0kECPbxyVLJOGr3l8+wRN/SenlO6eplT
-	+JorpJMdG9yBi9JQDd+xOc2Ts7IjYhfIBLko1gLeFVA6IEarSrXej/ax
-X-Gm-Gg: ASbGncsqThsmE7nIWctOmpJ+cZNjvqOBihCEJaBnvBR8JqJ8VU2llxpmDvp7IWfTvZ5
-	4p2YM450NnvowPOs9W2MXDKWYe7NI4XdkXWStdJgUFqpVcGsRgOk51miVHgWD8g87Cn1G5xGt28
-	RWI3VgYiNiquX8xrcVfUfZNks8VWiafIgHY96pI3idA9ivlNAJu53kgXQSLq2kZFSx/PM0haUnY
-	Yjw6rn1Crfi0jCcELVjDegG8LnUuc190QLUwnSj/ltkVAkr9mggG5s6xx7QULCxUdUyay9Hyw2/
-	NaEg0KpiMp5roXGfNCR+l5Z47edeKaGb7M/j2o4teiYPnaujXU3CCatw7AB6gtTcjTWJt4KNsq1
-	mgm4RVqUGBwsebNCY0nq6dhIr+cTDSP5TdYOqTNFX9bu0jEo3FJLVFASNX1XuWe5Qmjx7cFgrVe
-	TjG2BUNQX+GCP2no3F9v8Y+g==
-X-Google-Smtp-Source: AGHT+IEA2KqFqoK61jqqN2bdPvqxteC+UfFzMoBMorKHmALcj+3M/XVuPeuE+6pP40OhOBGgSdBthg==
-X-Received: by 2002:a17:902:e743:b0:269:8059:83ab with SMTP id d9443c01a7336-290cb27f849mr8850205ad.51.1760646353370;
-        Thu, 16 Oct 2025 13:25:53 -0700 (PDT)
+        bh=h76MnUi1nfJKqTd0c32BoYoR7lvvUentecme7rj0blk=;
+        b=cd2N1W1s91ezOYefDEWvGUtdPhHhpjAyVRP+rJ4XtrV7j9thQAxosYoNJTBmInfJYc
+         3HP1vMmLXNUiHlyyA0vvgr3WFGJHFt8bgUlt/FXgwfzk33en7gsLphcBLmz95Fq5MXtZ
+         VegMU8Mj7x618q1KP7Iz58JvptHdxHak0vi7fq3iP13QvkhPvffnivufvjZ6Se5S/EQa
+         JZX+SwYNEdn7SNhxIYeLK68fcx8adYY3eYi88XZXVjul9HdXshwQihftTmvzUinIM/Vn
+         84uajLTgLoTzEEMlqwJWtBvi59AxKVeTsRz+yYQp/8h5AfwHsxtt3UJz931UnKfHVgAW
+         rIsA==
+X-Forwarded-Encrypted: i=1; AJvYcCVbTPY/EBJfcJ8TFyLMVKRMakJqMnil80suEqP9UkD/3MeXvcf7FoN+kJZgAHHCanfrlIdyyLgNpYzm@vger.kernel.org
+X-Gm-Message-State: AOJu0YxLLyS/Gecl2lpEFHcx/UbQrw4J6D6Ak3e61x9tcw/2BBDLYsUx
+	wur/V78ci46ahD3KutyDoflkj/pYMT+QHbZtAuqmXZi5h3VWws6Y0rbh
+X-Gm-Gg: ASbGncvOmq2uoYGzrX0WpNCnaWaiILZ5LDgeyZPdWpiy6LoomnA1gr24Iazg0NTsqoh
+	Bq+7B6CTJhb0/dUDFVljP5fbzC6j1XJaDj9cPwfZ7PW/NOGqpaqunZUmNQo1LPrllTPA4fwFshm
+	X5ZK5Tbhbm0gBhV7qL+fSp7UT7xAG+cR56B3xG/wMybvhSHNdteAMAlPZA17qhy20ThA9Uajb5s
+	voUDNfZMB/TBbjJBzsdNZmGTi0BC/RawVJbeE2eUQvJkaSylK7uNTz+x6vSVLcLmsbxZsZ7HPXO
+	C+WX/TejS/ld22mO1umWHZB/yjMo2/ycI0d969ubFFNsl4QaQFLnP2YhJZleGGB6rKZVKJ9Uzcu
+	NNVYqBhjLzHssw/u75frrqy90S+3rMk94RdUJAgQb0qxY0Xb2v2zNq/lhss5aeUhAKH1SsPky8y
+	10IaWbPh6UEuvJpWMSowvrrw==
+X-Google-Smtp-Source: AGHT+IHDtd+NSss4a9qDIn4X2CdQqi+U3i+WR9383KxVPYAEVSmoSHv0M1qd1yw/TlEDcXz0xPUQzA==
+X-Received: by 2002:a17:902:ea01:b0:267:d2f9:2327 with SMTP id d9443c01a7336-290c9cf2d88mr16587815ad.27.1760646359072;
+        Thu, 16 Oct 2025 13:25:59 -0700 (PDT)
 Received: from iku.. ([2401:4900:1c07:c7d3:a396:54ac:a48f:c314])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29099af9131sm39577735ad.103.2025.10.16.13.25.48
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29099af9131sm39577735ad.103.2025.10.16.13.25.53
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Oct 2025 13:25:52 -0700 (PDT)
+        Thu, 16 Oct 2025 13:25:58 -0700 (PDT)
 From: Prabhakar <prabhakar.csengg@gmail.com>
 X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 To: Geert Uytterhoeven <geert+renesas@glider.be>,
@@ -88,9 +88,9 @@ Cc: linux-renesas-soc@vger.kernel.org,
 	Biju Das <biju.das.jz@bp.renesas.com>,
 	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
 	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH 2/5] arm64: dts: renesas: r9a09g087: Add ETHSS node
-Date: Thu, 16 Oct 2025 21:21:26 +0100
-Message-ID: <20251016202129.157614-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH 3/5] arm64: dts: renesas: r9a09g077: Add GMAC nodes
+Date: Thu, 16 Oct 2025 21:21:27 +0100
+Message-ID: <20251016202129.157614-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251016202129.157614-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
 References: <20251016202129.157614-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
@@ -104,63 +104,478 @@ Content-Transfer-Encoding: 8bit
 
 From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Add an Ethernet Switch Subsystem (ETHSS) device node to the RZ/N2H
-(R9A09G087) SoC. The ETHSS IP block is responsible for handling MII
-pass-through or conversion to RMII/RGMII.
+Add Ethernet MAC (GMAC) device nodes to the RZ/T2H (R9A09G077) SoC DTSI.
+The RZ/T2H integrates three GMAC interfaces based on the Synopsys
+DesignWare MAC (version 5.20).
 
 Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 ---
- arch/arm64/boot/dts/renesas/r9a09g087.dtsi | 37 ++++++++++++++++++++++
- 1 file changed, 37 insertions(+)
+ arch/arm64/boot/dts/renesas/r9a09g077.dtsi | 445 +++++++++++++++++++++
+ 1 file changed, 445 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a09g087.dtsi b/arch/arm64/boot/dts/renesas/r9a09g087.dtsi
-index 2d2db858f48f..882570622486 100644
---- a/arch/arm64/boot/dts/renesas/r9a09g087.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r9a09g087.dtsi
-@@ -270,6 +270,43 @@ i2c2: i2c@81008000 {
+diff --git a/arch/arm64/boot/dts/renesas/r9a09g077.dtsi b/arch/arm64/boot/dts/renesas/r9a09g077.dtsi
+index e397dd262c76..62499dca45ec 100644
+--- a/arch/arm64/boot/dts/renesas/r9a09g077.dtsi
++++ b/arch/arm64/boot/dts/renesas/r9a09g077.dtsi
+@@ -270,6 +270,444 @@ i2c2: i2c@81008000 {
  			status = "disabled";
  		};
  
-+		ethss: ethss@80110000 {
-+			compatible = "renesas,r9a09g087-miic", "renesas,r9a09g077-miic";
-+			reg =  <0 0x80110000 0 0x10000>;
-+			clocks = <&cpg CPG_CORE R9A09G087_ETCLKE>,
-+				 <&cpg CPG_CORE R9A09G087_ETCLKB>,
-+				 <&cpg CPG_CORE R9A09G087_ETCLKD>,
-+				 <&cpg CPG_MOD 403>;
-+			clock-names = "mii_ref", "rgmii_ref", "rmii_ref", "hclk";
-+			resets = <&cpg 405>, <&cpg 406>;
-+			reset-names = "rst", "crst";
++		gmac0: ethernet@80100000 {
++			compatible = "renesas,r9a09g077-gbeth", "snps,dwmac-5.20";
++			reg = <0 0x80100000 0 0x10000>;
++			interrupts = <GIC_SPI 498 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 500 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 499 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 509 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 510 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 511 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 512 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 513 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 514 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 515 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 516 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 501 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 502 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 503 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 504 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 505 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 506 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 507 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 508 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "macirq", "eth_wake_irq", "eth_lpi",
++					  "rx-queue-0", "rx-queue-1", "rx-queue-2",
++					  "rx-queue-3", "rx-queue-4", "rx-queue-5",
++					  "rx-queue-6", "rx-queue-7", "tx-queue-0",
++					  "tx-queue-1", "tx-queue-2", "tx-queue-3",
++					  "tx-queue-4", "tx-queue-5", "tx-queue-6",
++					  "tx-queue-7";
++			clocks = <&cpg CPG_MOD 400>,
++				 <&cpg CPG_CORE R9A09G077_CLK_PCLKH>,
++				 <&cpg CPG_CORE R9A09G077_ETCLKB>;
++			clock-names = "stmmaceth", "pclk", "tx";
++			resets = <&cpg 400>, <&cpg 401>;
++			reset-names = "stmmaceth", "ahb";
 +			power-domains = <&cpg>;
++			snps,multicast-filter-bins = <256>;
++			snps,perfect-filter-entries = <32>;
++			rx-fifo-depth = <8192>;
++			tx-fifo-depth = <8192>;
++			snps,fixed-burst;
++			snps,no-pbl-x8;
++			snps,force_thresh_dma_mode;
++			snps,axi-config = <&stmmac_axi_setup>;
++			snps,mtl-rx-config = <&mtl_rx_setup0>;
++			snps,mtl-tx-config = <&mtl_tx_setup0>;
++			snps,txpbl = <16>;
++			snps,rxpbl = <16>;
 +			status = "disabled";
 +
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			mii_conv0: mii-conv@0 {
-+				reg = <0>;
-+				status = "disabled";
++			mdio0: mdio {
++				compatible = "snps,dwmac-mdio";
++				#address-cells = <1>;
++				#size-cells = <0>;
 +			};
 +
-+			mii_conv1: mii-conv@1 {
-+				reg = <1>;
-+				status = "disabled";
++			mtl_rx_setup0: rx-queues-config {
++				snps,rx-queues-to-use = <8>;
++				snps,rx-sched-sp;
++
++				queue0 {
++					snps,dcb-algorithm;
++					snps,priority = <0x1>;
++					snps,map-to-dma-channel = <0>;
++				};
++
++				queue1 {
++					snps,dcb-algorithm;
++					snps,priority = <0x2>;
++					snps,map-to-dma-channel = <1>;
++				};
++
++				queue2 {
++					snps,dcb-algorithm;
++					snps,priority = <0x4>;
++					snps,map-to-dma-channel = <2>;
++				};
++
++				queue3 {
++					snps,dcb-algorithm;
++					snps,priority = <0x8>;
++					snps,map-to-dma-channel = <3>;
++				};
++
++				queue4 {
++					snps,dcb-algorithm;
++					snps,priority = <0x10>;
++					snps,map-to-dma-channel = <4>;
++				};
++
++				queue5 {
++					snps,dcb-algorithm;
++					snps,priority = <0x20>;
++					snps,map-to-dma-channel = <5>;
++				};
++
++				queue6 {
++					snps,dcb-algorithm;
++					snps,priority = <0x40>;
++					snps,map-to-dma-channel = <6>;
++				};
++
++				queue7 {
++					snps,dcb-algorithm;
++					snps,priority = <0x80>;
++					snps,map-to-dma-channel = <7>;
++				};
 +			};
 +
-+			mii_conv2: mii-conv@2 {
-+				reg = <2>;
-+				status = "disabled";
-+			};
++			mtl_tx_setup0: tx-queues-config {
++				snps,tx-queues-to-use = <8>;
 +
-+			mii_conv3: mii-conv@3 {
-+				reg = <3>;
-+				status = "disabled";
++				queue0 {
++					snps,dcb-algorithm;
++				};
++
++				queue1 {
++					snps,dcb-algorithm;
++				};
++
++				queue2 {
++					snps,dcb-algorithm;
++				};
++
++				queue3 {
++					snps,dcb-algorithm;
++				};
++
++				queue4 {
++					snps,dcb-algorithm;
++				};
++
++				queue5 {
++					snps,dcb-algorithm;
++				};
++
++				queue6 {
++					snps,dcb-algorithm;
++				};
++
++				queue7 {
++					snps,dcb-algorithm;
++				};
 +			};
 +		};
 +
- 		cpg: clock-controller@80280000 {
- 			compatible = "renesas,r9a09g087-cpg-mssr";
- 			reg = <0 0x80280000 0 0x1000>,
++		gmac1: ethernet@92000000 {
++			compatible = "renesas,r9a09g077-gbeth", "snps,dwmac-5.20";
++			reg = <0 0x92000000 0 0x10000>;
++			interrupts = <GIC_SPI 517 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 519 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 518 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 528 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 529 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 530 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 531 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 532 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 533 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 534 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 535 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 520 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 521 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 522 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 523 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 524 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 525 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 526 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 527 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "macirq", "eth_wake_irq", "eth_lpi",
++					  "rx-queue-0", "rx-queue-1", "rx-queue-2",
++					  "rx-queue-3", "rx-queue-4", "rx-queue-5",
++					  "rx-queue-6", "rx-queue-7", "tx-queue-0",
++					  "tx-queue-1", "tx-queue-2", "tx-queue-3",
++					  "tx-queue-4", "tx-queue-5", "tx-queue-6",
++					  "tx-queue-7";
++			clocks = <&cpg CPG_MOD 416>,
++				 <&cpg CPG_CORE R9A09G077_CLK_PCLKAH>,
++				 <&cpg CPG_CORE R9A09G077_ETCLKB>;
++			clock-names = "stmmaceth", "pclk", "tx";
++			resets = <&cpg 416>, <&cpg 417>;
++			reset-names = "stmmaceth", "ahb";
++			power-domains = <&cpg>;
++			snps,multicast-filter-bins = <256>;
++			snps,perfect-filter-entries = <32>;
++			rx-fifo-depth = <8192>;
++			tx-fifo-depth = <8192>;
++			snps,fixed-burst;
++			snps,no-pbl-x8;
++			snps,force_thresh_dma_mode;
++			snps,axi-config = <&stmmac_axi_setup>;
++			snps,mtl-rx-config = <&mtl_rx_setup1>;
++			snps,mtl-tx-config = <&mtl_tx_setup1>;
++			snps,txpbl = <16>;
++			snps,rxpbl = <16>;
++			status = "disabled";
++
++			mdio1: mdio {
++				compatible = "snps,dwmac-mdio";
++				#address-cells = <1>;
++				#size-cells = <0>;
++			};
++
++			mtl_rx_setup1: rx-queues-config {
++				snps,rx-queues-to-use = <8>;
++				snps,rx-sched-sp;
++
++				queue0 {
++					snps,dcb-algorithm;
++					snps,priority = <0x1>;
++					snps,map-to-dma-channel = <0>;
++				};
++
++				queue1 {
++					snps,dcb-algorithm;
++					snps,priority = <0x2>;
++					snps,map-to-dma-channel = <1>;
++				};
++
++				queue2 {
++					snps,dcb-algorithm;
++					snps,priority = <0x4>;
++					snps,map-to-dma-channel = <2>;
++				};
++
++				queue3 {
++					snps,dcb-algorithm;
++					snps,priority = <0x8>;
++					snps,map-to-dma-channel = <3>;
++				};
++
++				queue4 {
++					snps,dcb-algorithm;
++					snps,priority = <0x10>;
++					snps,map-to-dma-channel = <4>;
++				};
++
++				queue5 {
++					snps,dcb-algorithm;
++					snps,priority = <0x20>;
++					snps,map-to-dma-channel = <5>;
++				};
++
++				queue6 {
++					snps,dcb-algorithm;
++					snps,priority = <0x40>;
++					snps,map-to-dma-channel = <6>;
++				};
++
++				queue7 {
++					snps,dcb-algorithm;
++					snps,priority = <0x80>;
++					snps,map-to-dma-channel = <7>;
++				};
++			};
++
++			mtl_tx_setup1: tx-queues-config {
++				snps,tx-queues-to-use = <8>;
++
++				queue0 {
++					snps,dcb-algorithm;
++				};
++
++				queue1 {
++					snps,dcb-algorithm;
++				};
++
++				queue2 {
++					snps,dcb-algorithm;
++				};
++
++				queue3 {
++					snps,dcb-algorithm;
++				};
++
++				queue4 {
++					snps,dcb-algorithm;
++				};
++
++				queue5 {
++					snps,dcb-algorithm;
++				};
++
++				queue6 {
++					snps,dcb-algorithm;
++				};
++
++				queue7 {
++					snps,dcb-algorithm;
++				};
++			};
++		};
++
++		gmac2: ethernet@92010000 {
++			compatible = "renesas,r9a09g077-gbeth", "snps,dwmac-5.20";
++			reg = <0 0x92010000 0 0x10000>;
++			interrupts = <GIC_SPI 536 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 538 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 537 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 547 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 548 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 549 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 550 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 551 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 552 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 553 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 554 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 539 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 540 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 541 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 542 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 543 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 544 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 545 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 546 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "macirq", "eth_wake_irq", "eth_lpi",
++					  "rx-queue-0", "rx-queue-1", "rx-queue-2",
++					  "rx-queue-3", "rx-queue-4", "rx-queue-5",
++					  "rx-queue-6", "rx-queue-7", "tx-queue-0",
++					  "tx-queue-1", "tx-queue-2", "tx-queue-3",
++					  "tx-queue-4", "tx-queue-5", "tx-queue-6",
++					  "tx-queue-7";
++			clocks = <&cpg CPG_MOD 417>,
++				 <&cpg CPG_CORE R9A09G077_CLK_PCLKAH>,
++				 <&cpg CPG_CORE R9A09G077_ETCLKB>;
++			clock-names = "stmmaceth", "pclk", "tx";
++			resets = <&cpg 418>, <&cpg 419>;
++			reset-names = "stmmaceth", "ahb";
++			power-domains = <&cpg>;
++			snps,multicast-filter-bins = <256>;
++			snps,perfect-filter-entries = <32>;
++			rx-fifo-depth = <8192>;
++			tx-fifo-depth = <8192>;
++			snps,fixed-burst;
++			snps,no-pbl-x8;
++			snps,force_thresh_dma_mode;
++			snps,axi-config = <&stmmac_axi_setup>;
++			snps,mtl-rx-config = <&mtl_rx_setup2>;
++			snps,mtl-tx-config = <&mtl_tx_setup2>;
++			snps,txpbl = <16>;
++			snps,rxpbl = <16>;
++			status = "disabled";
++
++			mdio2: mdio {
++				compatible = "snps,dwmac-mdio";
++				#address-cells = <1>;
++				#size-cells = <0>;
++			};
++
++			mtl_rx_setup2: rx-queues-config {
++				snps,rx-queues-to-use = <8>;
++				snps,rx-sched-sp;
++
++				queue0 {
++					snps,dcb-algorithm;
++					snps,priority = <0x1>;
++					snps,map-to-dma-channel = <0>;
++				};
++
++				queue1 {
++					snps,dcb-algorithm;
++					snps,priority = <0x2>;
++					snps,map-to-dma-channel = <1>;
++				};
++
++				queue2 {
++					snps,dcb-algorithm;
++					snps,priority = <0x4>;
++					snps,map-to-dma-channel = <2>;
++				};
++
++				queue3 {
++					snps,dcb-algorithm;
++					snps,priority = <0x8>;
++					snps,map-to-dma-channel = <3>;
++				};
++
++				queue4 {
++					snps,dcb-algorithm;
++					snps,priority = <0x10>;
++					snps,map-to-dma-channel = <4>;
++				};
++
++				queue5 {
++					snps,dcb-algorithm;
++					snps,priority = <0x20>;
++					snps,map-to-dma-channel = <5>;
++				};
++
++				queue6 {
++					snps,dcb-algorithm;
++					snps,priority = <0x40>;
++					snps,map-to-dma-channel = <6>;
++				};
++
++				queue7 {
++					snps,dcb-algorithm;
++					snps,priority = <0x80>;
++					snps,map-to-dma-channel = <7>;
++				};
++			};
++
++			mtl_tx_setup2: tx-queues-config {
++				snps,tx-queues-to-use = <8>;
++
++				queue0 {
++					snps,dcb-algorithm;
++				};
++
++				queue1 {
++					snps,dcb-algorithm;
++				};
++
++				queue2 {
++					snps,dcb-algorithm;
++				};
++
++				queue3 {
++					snps,dcb-algorithm;
++				};
++
++				queue4 {
++					snps,dcb-algorithm;
++				};
++
++				queue5 {
++					snps,dcb-algorithm;
++				};
++
++				queue6 {
++					snps,dcb-algorithm;
++				};
++
++				queue7 {
++					snps,dcb-algorithm;
++				};
++			};
++		};
++
+ 		ethss: ethss@80110000 {
+ 			compatible = "renesas,r9a09g077-miic";
+ 			reg =  <0 0x80110000 0 0x10000>;
+@@ -429,6 +867,13 @@ sdhi1_vqmmc: vqmmc-regulator {
+ 		};
+ 	};
+ 
++	stmmac_axi_setup: stmmac-axi-config {
++		snps,lpi_en;
++		snps,wr_osr_lmt = <0xf>;
++		snps,rd_osr_lmt = <0xf>;
++		snps,blen = <16 8 4 0 0 0 0>;
++	};
++
+ 	timer {
+ 		compatible = "arm,armv8-timer";
+ 		interrupts = <GIC_PPI 13 IRQ_TYPE_LEVEL_LOW>,
 -- 
 2.43.0
 
