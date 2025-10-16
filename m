@@ -1,112 +1,150 @@
-Return-Path: <devicetree+bounces-227735-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227736-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1BA7BE4098
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 16:56:20 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A850BE40E3
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 16:59:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0347358729C
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 14:52:45 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 457E44FE780
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 14:59:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAC2F343D9E;
-	Thu, 16 Oct 2025 14:52:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C85E3469FC;
+	Thu, 16 Oct 2025 14:59:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HiN9j2zB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BF03341AD9
-	for <devicetree@vger.kernel.org>; Thu, 16 Oct 2025 14:52:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BE44341ACF
+	for <devicetree@vger.kernel.org>; Thu, 16 Oct 2025 14:59:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760626356; cv=none; b=M8txhyg3AgItdn9V0jx/PwZ2DJpVKU5o/OOvlbsLitj7ezWyotKeWBCneUag9VTziO337Ap24TJDS53tCU7LbBdYo/apLPSwHqKUj8LCIk5uc0b944ipfJkArS0rBIA3C9MweJZG2FUNnR8jKCu4EhQQCKhAUcMxBYIJvLoqv0w=
+	t=1760626752; cv=none; b=J2dAtBr6wNmRiPAI98GAVMi1lBKhSk2UukYXGOBkQMA1mClcC4mtw6kxSbq5uEnsmQCaoZw6b4KuzglEq8t5UROBDyxHlkbFu/+CH8fcqtSOLZI8bQJUZMkgPnFKYIIYoPd3+YBBYnbbGI2FDsbVTkCf58/8/0MU+7ax+nB1aI0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760626356; c=relaxed/simple;
-	bh=AsrCpUMq8eWO8v2CiJZQdE55qY+E8SyMfHzBPjxsu6s=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ABLWUSrXOjYVkQPs5WaNvDnL347lzSqfLqIS6Ln9dgNRvui36AbuZ3Wqzz4ccUV/dgRSlIwn8PudyViXW2xSCg+RzYhz2c61CTTPkSGBgDmhkrgI7/P/Qz1AHsiVX6Y1Qf/uJ/Xk0r3OCCiUyE0Wfn68D5h2Qi4jf/HTL3UKimk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1v9PKo-0005OT-2o; Thu, 16 Oct 2025 16:52:06 +0200
-Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1v9PKn-003uPG-0g;
-	Thu, 16 Oct 2025 16:52:05 +0200
-Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1v9PKn-00HTZq-0C;
-	Thu, 16 Oct 2025 16:52:05 +0200
-Date: Thu, 16 Oct 2025 16:52:05 +0200
-From: Marco Felsch <m.felsch@pengutronix.de>
-To: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc: Russ Weight <russ.weight@linux.dev>,
-	Luis Chamberlain <mcgrof@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Kamel Bouhara <kamel.bouhara@bootlin.com>,
-	Marco Felsch <kernel@pengutronix.de>,
-	Henrik Rydberg <rydberg@bitmath.org>,
-	Danilo Krummrich <dakr@kernel.org>, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-input@vger.kernel.org
-Subject: Re: [PATCH v3 1/4] firmware_loader: expand firmware error codes with
- up-to-date error
-Message-ID: <20251016145205.244gsevx5tdloiqy@pengutronix.de>
-References: <20250821-v6-10-topic-touchscreen-axiom-v3-0-940ccee6dba3@pengutronix.de>
- <20250821-v6-10-topic-touchscreen-axiom-v3-1-940ccee6dba3@pengutronix.de>
- <ifdhjgo6wchlsztqvgkaawpbnh3zahb76vmyzlomokfrqt6tjp@qjcdvcdqviag>
- <5tlhy2jl77etqxsna42ksdmvu3x3bsp5c44poshkt45agldfsj@bkzlvbfoshsl>
+	s=arc-20240116; t=1760626752; c=relaxed/simple;
+	bh=aqoyK5b4pV8L0+QOWtOd8nJmahq+LYPH19Z5q3W5EyM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=On/k0kVWukLgIjaF0Tl9KLmKh8oeTjKZlLRpY2+MEO4lbi0OnYagKO92V/4QD9cuI2FkhMDePDm88RB1E7kTmuEY9v35zM7i4bkQUXVSzxdLpvghvcHL/K7dbqgdTQXhKYOMJ6zjWtAqWGq2/AS7ZA2koM3Vn2hbrwCjfCd7j4E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=HiN9j2zB; arc=none smtp.client-ip=209.85.167.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-5903e6fc386so126223e87.2
+        for <devicetree@vger.kernel.org>; Thu, 16 Oct 2025 07:59:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1760626748; x=1761231548; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=l3SCwf4QRuIuRCKS4d3mSdP9dIfExgcs4ZcKTP0uVC8=;
+        b=HiN9j2zBvYHcpFFU4vMtcBGHlVjh7Vj+59BH7QPNBwJGin4FqNBswoK36npdq/VaKt
+         rnq6kDvIe/NC0Dc9jpagBwMtWCNIWDa+4w0MJojA5OLwXjx3jIHIVNPSH5QQLV4RzsDe
+         IpRjhlpZL3p61MD+2YcbI7gjZOTKebWJFK80f9eiarq/mB5eVL60LPYCcKKYQkIrsaPI
+         xYzzc6Ey4u0CAYtHN+viHWzv8Iiw+oFrad0oglv4xOmkRQIt31AJ7Z50GAtOyE0a4eDo
+         sCd2NLlOLz6ou+auLKJVUxLJFhzDipgBytREaEucrLxRzXM0OpceYtoeHtw/Kibr3q5p
+         HPpQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1760626748; x=1761231548;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=l3SCwf4QRuIuRCKS4d3mSdP9dIfExgcs4ZcKTP0uVC8=;
+        b=Ui/NQefR+bk2NwwyqagTCUd5OtzuYfZEjUy00lBd/M7fHLcsikPvNjDy7oeCAs4Qo2
+         x44xoURy5YmU//9KvhjUzrZT8kh76I+I/iZmBDfZDlnx2ymMiX99Aaajr7Ury9G1+Ljm
+         wiMnQ2wSv4PlAJELpw8dlCkAuxO5H8SDRXRJIno7xyn2jcaHT/5EIlIigxqivjbp6yof
+         Tu2PIGMAGG+qC4n0BuE32EgSl2ly/DpZW4pxZpFhtsdqHNvPbsoh01hOqasT5ROC9Cx9
+         CoHXuLBnOhoo7jXPAtQIWY8XJbqzgykYpnrkABpkfvzt5RrtdhhJAVFe/RsgGZm+Vu7b
+         if1w==
+X-Forwarded-Encrypted: i=1; AJvYcCX4eTf1qaUMStRmBKxBUHKB53sKNayKPTq2uCI/S9d3Y3bZiP0GUqImE4b2yfXv1PZbXIWIfovnFFgl@vger.kernel.org
+X-Gm-Message-State: AOJu0YyZZIYlx9G8iRDbZ/pH68lQIf9IB4QGKrjbGQQfPnmRLGzKwIqz
+	9Y7N83lJ2gDrEYL/PPAA9R1JqsZirdD+AlWGV+TZDa7gRO+XAiOe3k21jGk94KhSW48=
+X-Gm-Gg: ASbGncssjyWmuJUZzrYO/JkytFCIu4Mwvvqi0bHRcGnhP5GpPXCa7T0hn9nelMQT7MU
+	nEYBYA12/gDZBX0rirdgAABBU69Wippqv31PVXR48FgV58OpOvJojJ057N+farT1kYY7SW73v22
+	6LI/dzFDp3BJ4+/++MRI3D491zEHGwljMYoD0IQpOARsFVNvUxfJyRYFLwmJP1yt2BlXgci3I5R
+	tj9BqnBJtvs3Xhg12oIqFFf0nMkWRLutMhGIetlwN5X6r9XvVC0Uha6z24mM/Wd1mfTKTTTPWlF
+	a/r4VTA3fJtkCBxF5cAUobizolEyWzjT7+wPwvse5Nm5rCo94/QEV/+U6kieTXXDQ0CMHMwUilu
+	XLY/bLASRBpnsMD3SUq9QkOEwR2AiykwyR4ueW+Vr07L0Oe+L7uKROd2oeogXPiFWUNb0D64Gzm
+	jqmMKJPvlvjXWmU9ASzpRyzukTtJKyxpNaouaSX60ImlJwIzBWWx201plQAjuLfQasVX4FzA==
+X-Google-Smtp-Source: AGHT+IGdNDgtmwm6+LARkC9Pg+AOicIgMi7tFiszGJ9W+MAY//8AYywpy9+uYECJSeW8kXaGcH2ugw==
+X-Received: by 2002:a05:6512:2398:b0:55f:433b:e766 with SMTP id 2adb3069b0e04-591d874d51fmr56008e87.7.1760626746704;
+        Thu, 16 Oct 2025 07:59:06 -0700 (PDT)
+Received: from [192.168.1.100] (91-159-24-186.elisa-laajakaista.fi. [91.159.24.186])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5908820d20bsm7161649e87.54.2025.10.16.07.59.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 16 Oct 2025 07:59:06 -0700 (PDT)
+Message-ID: <628b0080-9977-4230-85ca-8685562e3fa6@linaro.org>
+Date: Thu, 16 Oct 2025 17:59:04 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <5tlhy2jl77etqxsna42ksdmvu3x3bsp5c44poshkt45agldfsj@bkzlvbfoshsl>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] media: qcom: camss: Enable setting the rate to
+ camnoc_rt_axi clock
+Content-Language: ru-RU
+To: Loic Poulain <loic.poulain@oss.qualcomm.com>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Krzysztof Kozlowski <krzk@kernel.org>,
+ Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>, Robert Foss
+ <rfoss@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Todor Tomov <todor.too@gmail.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, linux-i2c@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-media@vger.kernel.org
+References: <20251014-add-new-clock-in-vfe-matching-list-v1-1-0d965ccc8a3a@oss.qualcomm.com>
+ <9984bc23-05ef-4d46-aeb8-feb0a18e5762@kernel.org>
+ <bc0caeb8-c99b-4bef-a69e-5ce433e6b890@oss.qualcomm.com>
+ <c4fd6bfc-cc9a-4f37-99b3-f36466691a1e@linaro.org>
+ <CAFEp6-2=GJL-gc+PSyAL4=prp_sXdZJS=Ewg5nP2kcp_Gu85Fw@mail.gmail.com>
+From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+In-Reply-To: <CAFEp6-2=GJL-gc+PSyAL4=prp_sXdZJS=Ewg5nP2kcp_Gu85Fw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Hi all,
-
-On 25-09-20, Dmitry Torokhov wrote:
-> On Wed, Aug 27, 2025 at 03:29:33PM -0600, Russ Weight wrote:
-> > 
-> > On Thu, Aug 21, 2025 at 07:26:36PM +0200, Marco Felsch wrote:
-> > > Add FW_UPLOAD_ERR_DUPLICATE to allow drivers to inform the firmware_loader
-> > > framework that the update is not required. This can be the case if the
-> > > user provided firmware matches the current running firmware.
-> > > 
-> > > Sync lib/test_firmware.c accordingly.
-> > > 
-> > > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
-> > 
-> > Reviewed-by: Russ Weight <russ.weight@linux.dev>
+On 10/16/25 15:22, Loic Poulain wrote:
+> On Thu, Oct 16, 2025 at 1:50 PM Bryan O'Donoghue
+> <bryan.odonoghue@linaro.org> wrote:
+>>>>>
+>>>>> diff --git a/drivers/media/platform/qcom/camss/camss-vfe.c b/drivers/media/platform/qcom/camss/camss-vfe.c
+>>>>> index ee08dbbddf88..09b29ba383f1 100644
+>>>>> --- a/drivers/media/platform/qcom/camss/camss-vfe.c
+>>>>> +++ b/drivers/media/platform/qcom/camss/camss-vfe.c
+>>>>> @@ -914,7 +914,8 @@ static int vfe_match_clock_names(struct vfe_device *vfe,
+>>>>>      return (!strcmp(clock->name, vfe_name) ||
+>>>>>              !strcmp(clock->name, vfe_lite_name) ||
+>>>>>              !strcmp(clock->name, "vfe_lite") ||
+>>>>> -           !strcmp(clock->name, "camnoc_axi"));
+>>>>> +           !strcmp(clock->name, "camnoc_axi") ||
+>>>>> +           !strcmp(clock->name, "camnoc_rt_axi"));
+>>>>
+>>>> Just use camnoc_axi for both. Look at your bindings - why do you keep
+>>>> different names for same signal?
+>>>
+>>> I think the correct question to ask is:
+>>>
+>>> Is camnoc_axi going to represent the other (NRT) clock in this
+>>> setting?
+>>>
+>>> Konrad
+>>
+>> I'm - perhaps naively - assuming this clock really is required ... and
+>> that both will be needed concurrently.
 > 
-> Does this mean I should merge this through input tree?
-
-may I ask how this is planned to go further?
-
-Regards,
-  Marco
-
+> AFAIU, the NRT clock is not in use for the capture part, and only
+> required for the offline processing engine (IPE, OPE), which will
+> likely be described as a separated node.
 > 
-> Thanks.
-> 
-> -- 
-> Dmitry
+
+Does it mean the clock handling should be removed from QCM2290 or
+X1E80100 VFEx resources? Has it been tested/verified?
+
+-- 
+Best wishes,
+Vladimir
 
