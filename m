@@ -1,238 +1,229 @@
-Return-Path: <devicetree+bounces-227732-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227734-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5C45BE3F9C
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 16:45:50 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8240EBE4062
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 16:54:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5C6B55824BA
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 14:45:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C67A8548795
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 14:50:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39F3E342C92;
-	Thu, 16 Oct 2025 14:45:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DBA334F474;
+	Thu, 16 Oct 2025 14:49:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="OomDDAen"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="aGiY9CuH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DU2PR03CU002.outbound.protection.outlook.com (mail-northeuropeazon11011036.outbound.protection.outlook.com [52.101.65.36])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEDC8341AAA;
-	Thu, 16 Oct 2025 14:45:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.65.36
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760625944; cv=fail; b=H1J64x8VMmr5/q3ciCgOcgRW6qMcAN2XCsvQTNZ61FxmqH43wXjIv3Xp5FJAJ+ae+GJK3CWQJ+yPyU/wIDBe+dcNRLdhysnfCNo7SzS8e7Yb5gb0t/Wne0VygAq5bWCkKYBaQsJUyYXuOM4Gt6Pzrf9JCE3az1t2Ro7RHEvB7hg=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760625944; c=relaxed/simple;
-	bh=fOQ3EYLjRT/t7/2Mfv3fdW5You8ih1JIo9Uq4AwgsOQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=nuflqu8mtMGBSqinUZpjrzhZpYYxWiF1Lzhcn21BVE4Kvra24oYflh/QDJN6wUb/t3S+o7cGjs6dHh81x1Z1feNtd9ffvetu7z+O3g1h4/e9IQ91QCP5ctekqViGNF3qXjKNDT9Gyx3rIZoY0pCXWscmpNHoUZQ3fewHy1VAJr0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=OomDDAen; arc=fail smtp.client-ip=52.101.65.36
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Zq5q/KqILAKiEf3jLwVGCRl+iqs1TrlTHk11wHZQVdirjcMHKhG7xwOLJsj/3hQCDS1rOzBj47t97y09Ae5Rpia8x/qV0Sbx8gwX2sIsBPvSXensnL/2Z6IskvU1pAmwgvKZVaA7WUpZX9bWGZyxyPl/HzN9S6BIZd5hwGmN1raDyLSRNjeLFz3jdMXabWktECSqzXV/7gVLfpz7pVcu32VgJtJEAn+pew+cfGEcUNCJASKXXh//x/yoM9201zloAlCsUbxDFNUmevj9Dx5WkwhIJDId5mkFE/Gzhcj2z/4OnFOu93DQzWl5dboymhMFsbMzxMa6TaCclicZgQFt8A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=D02eRr7SQYfKrw8p3YPOCLyNtiBUhf0JuznHMR2gmZk=;
- b=f3TEjJfXg4QeVy42RlRrm6LmdFjBPrk3We5HrItAYZskXcVbH6VqOiU8clmkJIoKvK9HIWYJrXKIUXGLt636Gj72FOHTFLlUDeawspim72GUu44oVj2IYy6ELTaoFvxJ2gTUg/FaERy1kDfd3EnPV3tA3cfJIr846pPbWHETsiQD+LuAuiWIwriKA687U9J2R/sIM8wcBPNFUn6PrP5/3Ed3Wt8wC1tsVssesl/DoZYnxWmEvBqYUIe5xkNVgOg5UiT8h2XSiBoXr6XyBaYC0V7JOPIUNglRS6XbQM8hDBbrmL1En5CJFrlKqq7kudx5AwcrEaln9oQdrlLS2FMfOg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=D02eRr7SQYfKrw8p3YPOCLyNtiBUhf0JuznHMR2gmZk=;
- b=OomDDAenZUqIJOFiqEP0lQNqUEiShhZpqExMXSPCTPfWYi4JdNJFsVGz/8uVTok+M+ab/NIpkV8C7+Fw7VcGejhmngzLjTXivFh5toedIcX0JkfBDUv7RNRG3G6t9aXMpLh42l/Nlb2XReWLpCWDVoX7k814xlCARIC2rvIrCac6BOveWr9M2jvxmEEjkK2IbDD6HjRx+JH/GnQ5Jn2BEgEdmJzOEhXh5OgiMlyRebBET88GE2fxc2b8eGDe4MW1qN8gy1avaKYsnnpWrexJmiPpq4/K98xFRowq7QwA6jlN8MwNOLWjlu1KBeROEp3Sy81KTZTPhQqOrigifiFSGQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXSPRMB0053.eurprd04.prod.outlook.com (2603:10a6:102:23f::21)
- by PA4PR04MB9485.eurprd04.prod.outlook.com (2603:10a6:102:27d::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9228.11; Thu, 16 Oct
- 2025 14:45:32 +0000
-Received: from PAXSPRMB0053.eurprd04.prod.outlook.com
- ([fe80::504f:2a06:4579:5f15]) by PAXSPRMB0053.eurprd04.prod.outlook.com
- ([fe80::504f:2a06:4579:5f15%6]) with mapi id 15.20.9228.010; Thu, 16 Oct 2025
- 14:45:32 +0000
-Date: Thu, 16 Oct 2025 10:45:25 -0400
-From: Frank Li <Frank.li@nxp.com>
-To: Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: Ioana Ciornei <ioana.ciornei@nxp.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FC27346A16;
+	Thu, 16 Oct 2025 14:48:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.13
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1760626157; cv=none; b=ocDwA1KEC7N+fK5x8ja79mM/t6AgmjnvH5S1MuZA47THX+z9JgnCVp9aTZ3hh7SF8lbH0j0Z8ErgqYYXN2psSIVFADsqD5/ha4nkQUN+W2Ut5KqWb8SMdMwkslDGVbBCkO0drvatxW+XELpzljMwOHundkavbwKJREkA1VkRkfk=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1760626157; c=relaxed/simple;
+	bh=UuaSQVv6dm0D0kN6ZVf9PFfmOCcnIoxeV4OMPhiTiIk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZFJpDn/d1En7h/zVP7luwRyevNCvZCMhXMOR8EmnkdIRhWn9onASBCPcxPSE23LgNDThgzbetVzANC1EWr4KxtT3CpT2iqVK9HtMyEZNczDf8EldpLQd8TW6uoyaoeQrekoD9bu/AWjFssLJH+5kBdWRf7T6Td8DhAr9N1kHRXw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=aGiY9CuH; arc=none smtp.client-ip=192.198.163.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1760626139; x=1792162139;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=UuaSQVv6dm0D0kN6ZVf9PFfmOCcnIoxeV4OMPhiTiIk=;
+  b=aGiY9CuHXDHaKCXCSV3Gc80R/ledI4TjOuuALJSmk+mFj1HBrrNG/2Je
+   8e6SQM4/tltPteXTWMnDv1VUnE/AmdbBofVJDP5cWx1d1mvyjyhc8/bwX
+   UIPoMA47RZMmJD9DiB8Yi7V4OkAmE3rle4aP453w+oVH5XzxgAtuZVhVm
+   u/isABSanCuQW4do6zoKRXP+QUpPCJhbxuP5iLxAobe/ygMj9AmNaFMyI
+   Jj6bEiVIF2TS+AXhC9nQW+yMks3jkXPSXRYglZxsrnGoqjXWugHRkdPpS
+   +LypVp6IPJPrzt4/i2UDgd+oLkApYezKfFOmJW45lPGIZA14lZnmmMhCr
+   w==;
+X-CSE-ConnectionGUID: Jk9BBrQ0TaaKkxNOyp1qIQ==
+X-CSE-MsgGUID: ns/jeItNTQ2YKW+MGFkg1w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11584"; a="65435738"
+X-IronPort-AV: E=Sophos;i="6.19,234,1754982000"; 
+   d="scan'208";a="65435738"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Oct 2025 07:48:53 -0700
+X-CSE-ConnectionGUID: txGvphJxSIe+Wkrpx74r1A==
+X-CSE-MsgGUID: vPVOaWWKReulJ8C0yPEhtA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,234,1754982000"; 
+   d="scan'208";a="186746061"
+Received: from lkp-server02.sh.intel.com (HELO 66d7546c76b2) ([10.239.97.151])
+  by orviesa004.jf.intel.com with ESMTP; 16 Oct 2025 07:48:48 -0700
+Received: from kbuild by 66d7546c76b2 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1v9PHZ-0004vD-1i;
+	Thu, 16 Oct 2025 14:48:45 +0000
+Date: Thu, 16 Oct 2025 22:47:55 +0800
+From: kernel test robot <lkp@intel.com>
+To: "Herve Codina (Schneider Electric)" <herve.codina@bootlin.com>,
+	Wolfram Sang <wsa-dev@sang-engineering.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Shawn Guo <shawnguo@kernel.org>, Michael Walle <mwalle@kernel.org>,
-	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: (subset) [PATCH v6 0/9] drivers: gpio: and the QIXIS FPGA GPIO
- controller
-Message-ID: <aPEFBXwDUTwJK4us@lizhi-Precision-Tower-5810>
-References: <20251014155358.3885805-1-ioana.ciornei@nxp.com>
- <176060910602.64650.7023197009719546944.b4-ty@linaro.org>
- <o3oknl2onntkl2dgzpzsjm6xeunqxrq3j5afo5zb5gdy6xyo2r@4ctlictxhdlv>
- <CAMRc=Mepg=Cw0yUouEi9sJw+rPh3xRCQsbgYc=GVCsLXr3GAXg@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAMRc=Mepg=Cw0yUouEi9sJw+rPh3xRCQsbgYc=GVCsLXr3GAXg@mail.gmail.com>
-X-ClientProxiedBy: PH8P221CA0015.NAMP221.PROD.OUTLOOK.COM
- (2603:10b6:510:2d8::20) To PAXSPRMB0053.eurprd04.prod.outlook.com
- (2603:10a6:102:23f::21)
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	linux-iio@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Pascal Eberhard <pascal.eberhard@se.com>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH 2/4] iio: adc: Add support for the Renesas RZ/N1 ADC
+Message-ID: <202510162222.Fe1rY5aB-lkp@intel.com>
+References: <20251015142816.1274605-3-herve.codina@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXSPRMB0053:EE_|PA4PR04MB9485:EE_
-X-MS-Office365-Filtering-Correlation-Id: c14d5fae-cac2-46a5-6122-08de0cc2a83b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|7416014|52116014|366016|19092799006|1800799024|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?RngzdllValFvblpvZlliMkpQMWFFY2dOMmIxOGg3TXNSWmVnTVVEb1JsSmFR?=
- =?utf-8?B?YThmdkNRL1gwSWVLWS9xZVNJNFdRMWttc1VrYVdUUyt6dEdWS0xyaEhWM2gr?=
- =?utf-8?B?RnF1VEhVeEk5L2xXUGh4NnhLYTcvV1l4TWVuWU95dFhUQTIxSGFvcm91NnVl?=
- =?utf-8?B?SGpnL3lKS0hyRGlwSFdUcEluZmZzSGQwUXFpK1V2ZGdIWTVwVWlLc3VPWHpr?=
- =?utf-8?B?Wk9SeVlRTWRRVHBzMGcwaThUcFljMGFhNXdmMnJ0ZERmVkdSWkY5b281VGNO?=
- =?utf-8?B?M1dlWDF6VU1xWnRHSTBYNTNkR0Y2aUpqRll5QVlJeW5zZFloYWZGemd2Qyt2?=
- =?utf-8?B?YXFwaEJDU29BWGFOelFFbHNTVFVFOGlwd3pEQVlXUGZwNjl6UEdDQ3ZIOGhv?=
- =?utf-8?B?NXNFZUlqeFQwdlhyelBRTUhyUFZGZ3FMdm5kSVFSdktiYUpCMEcxeHIyR0ZC?=
- =?utf-8?B?cFA1b3V1TzhOdWVEbjdKMnFWQ3k2Zzk1SlorRCtzQnp0dEpwbndpRG15bDJw?=
- =?utf-8?B?M3JyalJKZ2pCOWxtQk5vN2VGUXBvVEhodzV3dVBwTE03eUNTRkowK3B3MUhH?=
- =?utf-8?B?aXl3azV2VEJ4MkZQVHdhV1FLbldHOTFPRHlQTjZoZVBiaWJ1aW1BNGdDMFZD?=
- =?utf-8?B?NEpZVjVweXEwSjBxTzVuRDloV05FODJaL2NVVUhZNUxVUno2NklaWkJmUFoz?=
- =?utf-8?B?bXJHV2V4YWtMWkcrc3BhemdXTlJlMGVuYXJXTzNIQ0VxREZyWWxQUldva09R?=
- =?utf-8?B?M2s0MFErcDE5Rzcza2xna0F3Nzg5MGRZMzkxbnllS1d5WHozUUV0cXZwdC9O?=
- =?utf-8?B?TjREODBJTWFwYlNVdGhhVlBtaUFTYnFXUm84cGt2VTNHWGlmVkMxc2tScWdy?=
- =?utf-8?B?VEVhRzdVaFV5YnkrUDN6WXQyWFZSVTA2RWNOUEJRK3NGZVlBUzg4UGhUUW93?=
- =?utf-8?B?TktHeUZWTVMwTzVGSldsQmZhSVJyUjVlZVBsdjdaRjZJOHlNbWsycHBEcEt1?=
- =?utf-8?B?WGdmdXZId3N5dllkSXBWWDJRallLK0xjTFJVOVZFZGRDajJuVDVXbVJXNmls?=
- =?utf-8?B?c01EditrKzR6aU5PMUNOOU40SzJyaGwxdTF5QnRCL0hzaVdPdXVORWY4WnFw?=
- =?utf-8?B?ZnAvam9UTStmNVdpRGE5cEVORkFrd203S1N3WFk5VmhGbnE4NGdIVzBncVdm?=
- =?utf-8?B?aUI5T0NHVlNuUjEzV2E1eVNlbjBjejB5WFhGRWpCZnNyU29pT1RZUTdRQUZ1?=
- =?utf-8?B?MEhkZkNtazZ3dWwzSEtQNTMzUWV4UFpMNlM4ejVmWDFNUDVRWElIbmkzOXRB?=
- =?utf-8?B?djEwR2NrdlBCSFA1Zm1oUDZXeUhUS01Tekw1Tzl3VjIvSTNTT01wOEd2VlZv?=
- =?utf-8?B?V215UVM5NzlIRlI4T0dzQTNqMzlkRW52RW5lUllwblBubFJybUw4dHYrT3pY?=
- =?utf-8?B?cnNBb01DQSt1MUI5eldtcjd5ckZtVXJwUnFSOThtVDdCRGJ2QUZlcHhHSWJM?=
- =?utf-8?B?RWZjWGJpZmpGL3BlMnFweGF4dXdnbFpnZ2hCV2h2MDNnNytPVy9PQThXMUVR?=
- =?utf-8?B?NGp2eGFKaGo1dU13YUlwQlNhT1N3U1JJZCtlS21IVzJPZUZZeWthMjc1b2Q5?=
- =?utf-8?B?NTU2VytsRnRPbU5jZXI3Vk5SM3VuRW9pSVZHNUl3UlhKVzRYVnJNditkdi9z?=
- =?utf-8?B?SWdaWm52OWNRWDFpQVJXZGN6VDlwMkpIR1RyOHBxcXhndWFQK3ZSTW02YXRH?=
- =?utf-8?B?YWs5L1dzbldiMUJOY0tBRGpEaE9zeFpyQ0FRTTVmZGRBQ0IvVUVDUkVnTGF5?=
- =?utf-8?B?WGFGOUNnamozVEd4T3FmUy9WOXZnQU00ZE1TVmdVejJmWHFFaVdpeEFuNWlX?=
- =?utf-8?B?cGFua1JBUFlTQ3lXMU96UEFYV0tUYi8vdHAyZDcrWmNWQTBOeXloc3d4ay9H?=
- =?utf-8?B?aDJmRXdoTm5oTWc1UnVZdC8zTFZGV3JOV3ZSby91TGwvZzlIQVBjWmM3NHFs?=
- =?utf-8?B?TC9GRzdBTjVPV05SVkVGaEV2Vk9YY3paMTRnMnIyVDh2cE4wMm5DejgrV3BP?=
- =?utf-8?Q?UUUqX6?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXSPRMB0053.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(52116014)(366016)(19092799006)(1800799024)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?T3BRMjczcG83OVRWUFZNNDlGSVE5S25oUm4yQnJ1RFRGME9wWTZHZWJoTytk?=
- =?utf-8?B?cEVaNTdzbGl1bDRYOWp3RmQyQUNGWmNBTzIyclZJdXdycDBxeHRtdVEwL0Fk?=
- =?utf-8?B?RW55QWtwamJoNHNHUzYwblZnaFdTaFJGamZEckFqOHBCUDJ1MUZNRDliZWJC?=
- =?utf-8?B?VUI2MjNSVE1BOEFwaEE5aU5Sa2tPejBuMkhyU25VYmw0NUVDV2xSemlJRURy?=
- =?utf-8?B?RmtjSmdRWUZ6dGt0RTB0T3FSczdLWlFuWkZmSlFuS1VDSnlORk45TUlFVlZt?=
- =?utf-8?B?WE5TN0FzK1lmeHJQOGovdUNSbkx5NDlpT0g1TStjcFQweXJRZ2FuMUordEZT?=
- =?utf-8?B?TUJFaFc1SXhXZy81NnV1U0pxRXNjY3ptLy9NUkV2SzFhUzU4VXJYK2FHcWh6?=
- =?utf-8?B?QjF4T29XMTZoYVlFM0dYZjJFdzBWMkd3cktKOTVNZUIyeWhFQlBtR2t4bU1J?=
- =?utf-8?B?V3JybVRKeVB1ajgrYmpiNi9UMWhwOEdjemFFb3FaM01YV2NTT3ptNFR6MTdu?=
- =?utf-8?B?cHFkUmxCdHg3TGJPRzFWWTlMeVN2NkhFT3BPM05RT1Y0cWdhVFFnRHVMekQx?=
- =?utf-8?B?K21IMmtQQUc3VFFDaVNYUEZEUTFFbmxpTWxnV3NDRm9lMVE2RTJxM1hudUZZ?=
- =?utf-8?B?NCsxM1dmRVVWNVZVcFVoTkhHTFo0U3J2U21xYmsyWWZtOGxyUUZrZnJMRkVu?=
- =?utf-8?B?SUJTeHI5a0R2UDV5RUhEckZJMWw3ekUwem9Nei8ranVLRDdIa2JxRnhPQmtz?=
- =?utf-8?B?ZnFsejE2OVpySlY3Y3dkN3FIQi9Mb295cUpHVkx0L09NL3RXdDVvOHJDNXhF?=
- =?utf-8?B?cUdCYllDQ09LbDA4YU5DT3lxbGtjNTNBV3lLTTlzTUMxNlJKUTJTOW94UTlJ?=
- =?utf-8?B?S21QdWRvdFNUdzYzVWZaZmxmTlVOS2E5cHNMdFhiSkw4ZWNRcHJSbWU1ck92?=
- =?utf-8?B?dVloMm1ISWhJN3libGZaWGhyak9pSHRzWVNMTkN6QmFkbEdNdnpRWk9kNjhH?=
- =?utf-8?B?SDlHUVBHWGdrR2VjcUQ5Vm03SDhFclFyNndXdXo5blJxMGtRb0RINDZQdkt1?=
- =?utf-8?B?dXF2TnRBTlMxYkJwaytHT3luR3l5ZWJjdU82cVM5NWduT2F6R0FxTUlacW9Y?=
- =?utf-8?B?T2pZeUoyTzhLZWFadENCVXNua1BoV2xyNXoyS0VMbEpyelVlRy92Qlk3ck5v?=
- =?utf-8?B?Zk1aRnNPWW80d0xZS2pFK2xPc0lVMlJpZ2NhTWo3eHE2a1JaNDA1aDltUUFj?=
- =?utf-8?B?VWZ2eXRLU3hoQWhQdGNPS2xTb2JWSjA3Vmpodk1tM2RPaUJKaUwrZ09ma2FY?=
- =?utf-8?B?Vk1zNkFvYXZPTnkrQTVNb2hLVmkwdXZzdVBvWkE0SmQzZ3VsZUZzK0QrcllZ?=
- =?utf-8?B?MGNhbkYyWk80KzF5NWthSlhDQURoMzRKQjRpdnNaV250S0l6RXJkWDZCQnIy?=
- =?utf-8?B?azJFeVVxVk5HVHJlbFI2dFYrZEpOOVZWUit4MSs2Zi9xZHpLV08xQ0NCdzRm?=
- =?utf-8?B?bDQzam9RNWlvcVhSaVJWTXhYYWFnSDkzVkNZNUVjU2dWUS9MWWtORkNpVWdx?=
- =?utf-8?B?QWErRzZONkwzQS9ZblVoL0ZKSUZQWFFqanhYYjRkUmFRUytsdzdKeXd6eEg4?=
- =?utf-8?B?ODJyQVdvSjBNUk00WWZEMXVFNDlyanlnRTMwbFFnL3pmS3pLYzlwTnF2WWxP?=
- =?utf-8?B?eG9ua2NBOERlQit5ZWMwZDZDUGZUeFhpeFdVM3c0YjVtUlVTNmlQMlRYNmN3?=
- =?utf-8?B?bHRHTm1vOTFmY20rVno0Mm5SMHBSMnV0Ui9FM2ZtL3RmaDhPUTVvM1JNYzhr?=
- =?utf-8?B?eUhHQW1yWkNadGxETzRGT0tQSUZpR3l6eHJHMktkQmdLS0QyL3RaL2xsaUVs?=
- =?utf-8?B?WUNRZXM0TjRGZXQyYmpNelNtOHh2ZzFrQUROYnU0Q3V6T0NxRC9QOFc2UEFs?=
- =?utf-8?B?L05xbk1DMEpENlJhNTdidkJMT0lVOGh6R3R6b0lKTzJMWHJqNXlXRVlCK1NG?=
- =?utf-8?B?VnNvYXl5WFhOdHZvbDhOQ0tjc1FsWGgrcGNydlNoNm9NdVQ1WThLMTBQWWFu?=
- =?utf-8?B?SXdnTWkzdlRQeTN5RnRrZlVGWFdaRDJIVDNVdWJ2djBWVGJFRGUvOHdHblVO?=
- =?utf-8?Q?Q/PI=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c14d5fae-cac2-46a5-6122-08de0cc2a83b
-X-MS-Exchange-CrossTenant-AuthSource: PAXSPRMB0053.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Oct 2025 14:45:32.0679
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: c/El+FB3gPW7S7k5QmuKbkda69wvD+VWJOKq7fwNhivSkSDEVdz83G67bpsB2otjOYKY7S3uV/I8FEdLYrr/Uw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR04MB9485
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251015142816.1274605-3-herve.codina@bootlin.com>
 
-On Thu, Oct 16, 2025 at 03:47:30PM +0200, Bartosz Golaszewski wrote:
-> On Thu, Oct 16, 2025 at 3:25 PM Ioana Ciornei <ioana.ciornei@nxp.com> wrote:
-> >
-> > On Thu, Oct 16, 2025 at 12:05:13PM +0200, Bartosz Golaszewski wrote:
-> > > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> > >
-> > >
-> > > On Tue, 14 Oct 2025 18:53:49 +0300, Ioana Ciornei wrote:
-> > > > This patch set adds support for the GPIO controllers on the QIXIS FPGAs
-> > > > found on some Layerscape boards such as LX2160ARDB and LS1046AQDS. At
-> > > > the same time it describes the SFP+ cages found on these boards, which
-> > > > are the users of those GPIO lines.
-> > > >
-> > > > Before actually adding the GPIO driver, patches #2 and #3 add and
-> > > > describe a new compatible string - fsl,lx2160ardb-fpga - which would be
-> > > > used for the QIXIS FPGA found on the LX2160ARDB board. As opposed to the
-> > > > other compatible strings found in fsl,fpga-qixis-i2c.yaml, the
-> > > > fsl,lx2160ardb-fpga imposes a unit address for its child devices. This
-> > > > will be used in the next patches when the gpio controller node will
-> > > > define its unit address as the address of its underlying register offset
-> > > > inside the FPGA. This requirement is described in the yaml file and it
-> > > > only affects the newly added compatible.
-> > > >
-> > > > [...]
-> > >
-> > > Applied, thanks!
-> > >
-> > > [1/9] dt-bindings: gpio: add QIXIS FPGA based GPIO controller
-> > >       https://git.kernel.org/brgl/linux/c/d5896130a8781de5ac8970dbb7083ce4cd6fe57a
-> > > [4/9] gpio: regmap: add the .fixed_direction_output configuration parameter
-> > >       https://git.kernel.org/brgl/linux/c/ae495810cffe29c3c30a757bd48b0bb035fc3098
-> > > [5/9] gpio: add QIXIS FPGA GPIO controller
-> > >       https://git.kernel.org/brgl/linux/c/e88500247dc3267787abc837848b001c1237f692
-> > >
-> >
-> > Thanks!
-> >
-> > How are the two remaining dt-binding patches going to be handled?
-> >
-> > The driver changes for the new fsl,lx2160ardb-fpga compatible were
-> > merged but not the associated dt-bindings changes in patch 2/9. And for
-> > patch 3/9 there are no associated driver changes.
-> >
-> > Ioana
->
-> I would assume Frank Li will pick them up? Ping me if that doesn't
-> happen in the following days, I'll pick them up into the GPIO tree.
+Hi Herve,
 
-I think Shawn Guo can pick it.
+kernel test robot noticed the following build errors:
 
-Frank
+[auto build test ERROR on jic23-iio/togreg]
+[also build test ERROR on geert-renesas-devel/next linus/master v6.18-rc1 next-20251015]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
->
-> Bart
+url:    https://github.com/intel-lab-lkp/linux/commits/Herve-Codina-Schneider-Electric/dt-bindings-iio-adc-Add-the-Renesas-RZ-N1-ADC/20251015-223254
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git togreg
+patch link:    https://lore.kernel.org/r/20251015142816.1274605-3-herve.codina%40bootlin.com
+patch subject: [PATCH 2/4] iio: adc: Add support for the Renesas RZ/N1 ADC
+config: hexagon-allmodconfig (https://download.01.org/0day-ci/archive/20251016/202510162222.Fe1rY5aB-lkp@intel.com/config)
+compiler: clang version 17.0.6 (https://github.com/llvm/llvm-project 6009708b4367171ccdbf4b5905cb6a803753fe18)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251016/202510162222.Fe1rY5aB-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202510162222.Fe1rY5aB-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+>> drivers/iio/adc/rzn1-adc.c:243:35: error: call to undeclared function 'FIELD_PREP'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+     243 |                 vc |= RZN1_ADC_VC_ADC1_ENABLE | RZN1_ADC_VC_ADC1_CHANNEL_SEL(adc1_ch);
+         |                                                 ^
+   drivers/iio/adc/rzn1-adc.c:53:42: note: expanded from macro 'RZN1_ADC_VC_ADC1_CHANNEL_SEL'
+      53 | #define RZN1_ADC_VC_ADC1_CHANNEL_SEL(_c)        FIELD_PREP(RZN1_ADC_VC_ADC1_CHANNEL_SEL_MASK, _c)
+         |                                                 ^
+>> drivers/iio/adc/rzn1-adc.c:304:16: error: call to undeclared function 'FIELD_GET'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+     304 |                 *adc1_data = RZN1_ADC_ADCX_GET_DATA(data_reg);
+         |                              ^
+   drivers/iio/adc/rzn1-adc.c:58:38: note: expanded from macro 'RZN1_ADC_ADCX_GET_DATA'
+      58 | #define RZN1_ADC_ADCX_GET_DATA(_reg)    FIELD_GET(RZN1_ADC_ADCX_DATA_DATA_MASK, _reg)
+         |                                         ^
+   drivers/iio/adc/rzn1-adc.c:309:16: error: call to undeclared function 'FIELD_GET'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+     309 |                 *adc2_data = RZN1_ADC_ADCX_GET_DATA(data_reg);
+         |                              ^
+   drivers/iio/adc/rzn1-adc.c:58:38: note: expanded from macro 'RZN1_ADC_ADCX_GET_DATA'
+      58 | #define RZN1_ADC_ADCX_GET_DATA(_reg)    FIELD_GET(RZN1_ADC_ADCX_DATA_DATA_MASK, _reg)
+         |                                         ^
+   3 errors generated.
+
+
+vim +/FIELD_PREP +243 drivers/iio/adc/rzn1-adc.c
+
+   236	
+   237	static void rzn1_adc_vc_setup_conversion(struct rzn1_adc *rzn1_adc, u32 ch,
+   238						 int adc1_ch, int adc2_ch)
+   239	{
+   240		u32 vc = 0;
+   241	
+   242		if (adc1_ch != -1)
+ > 243			vc |= RZN1_ADC_VC_ADC1_ENABLE | RZN1_ADC_VC_ADC1_CHANNEL_SEL(adc1_ch);
+   244	
+   245		if (adc2_ch != -1)
+   246			vc |= RZN1_ADC_VC_ADC2_ENABLE | RZN1_ADC_VC_ADC2_CHANNEL_SEL(adc2_ch);
+   247	
+   248		writel(vc, rzn1_adc->regs + RZN1_ADC_VC_REG(ch));
+   249	}
+   250	
+   251	static int rzn1_adc_vc_start_conversion(struct rzn1_adc *rzn1_adc, u32 ch)
+   252	{
+   253		u32 val;
+   254	
+   255		val = readl(rzn1_adc->regs + RZN1_ADC_FORCE_REG);
+   256		if (val & RZN1_ADC_FORCE_VC(ch))
+   257			return -EBUSY;
+   258	
+   259		writel(RZN1_ADC_FORCE_VC(ch), rzn1_adc->regs + RZN1_ADC_SET_FORCE_REG);
+   260	
+   261		return 0;
+   262	}
+   263	
+   264	static void rzn1_adc_vc_stop_conversion(struct rzn1_adc *rzn1_adc, u32 ch)
+   265	{
+   266		writel(RZN1_ADC_FORCE_VC(ch), rzn1_adc->regs + RZN1_ADC_CLEAR_FORCE_REG);
+   267	}
+   268	
+   269	static int rzn1_adc_vc_wait_conversion(struct rzn1_adc *rzn1_adc, u32 ch,
+   270					       u32 *adc1_data, u32 *adc2_data)
+   271	{
+   272		u32 data_reg;
+   273		int ret;
+   274		u32 v;
+   275	
+   276		/*
+   277		 * When a VC is selected, it needs 20 ADC clocks to perform the
+   278		 * conversion.
+   279		 *
+   280		 * The worst case is when the 16 VCs need to perform a conversion and
+   281		 * our VC is the lowest in term of priority.
+   282		 *
+   283		 * In that case, the conversion is performed in 16 * 20 ADC clocks.
+   284		 *
+   285		 * The ADC clock can be set from 4MHz to 20MHz. This leads to a worst
+   286		 * case of  16 * 20 * 1/4Mhz = 80us.
+   287		 *
+   288		 * Round it up to 100us
+   289		 */
+   290	
+   291		/*
+   292		 * Wait for the ADC_FORCE_VC(n) to clear.
+   293		 *
+   294		 * On timeout, ret is -ETIMEDOUT, otherwise it will be 0.
+   295		 */
+   296		ret = readl_poll_timeout_atomic(rzn1_adc->regs + RZN1_ADC_FORCE_REG,
+   297						v, !(v & RZN1_ADC_FORCE_VC(ch)),
+   298						0, 100);
+   299		if (ret)
+   300			return ret;
+   301	
+   302		if (adc1_data) {
+   303			data_reg = readl(rzn1_adc->regs + RZN1_ADC_ADC1_DATA_REG(ch));
+ > 304			*adc1_data = RZN1_ADC_ADCX_GET_DATA(data_reg);
+   305		}
+   306	
+   307		if (adc2_data) {
+   308			data_reg = readl(rzn1_adc->regs + RZN1_ADC_ADC2_DATA_REG(ch));
+   309			*adc2_data = RZN1_ADC_ADCX_GET_DATA(data_reg);
+   310		}
+   311	
+   312		return 0;
+   313	}
+   314	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
