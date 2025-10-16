@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-227461-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227462-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43B6ABE1C86
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 08:41:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B6C4BE1C98
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 08:42:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F1F523A81FD
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 06:41:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B8CFE405D6C
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 06:42:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC8F32DF145;
-	Thu, 16 Oct 2025 06:41:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EB6E2DE1E3;
+	Thu, 16 Oct 2025 06:42:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fv0n4ZBv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ph6IsXqb"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D15A2D73B3;
-	Thu, 16 Oct 2025 06:41:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2CEB7494;
+	Thu, 16 Oct 2025 06:42:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760596882; cv=none; b=CYbam09a0loN3Y2mDI7h8/Pb2Gj2mwTjgKjSLkklQmR/aBlJoaoeSckCYv6iXllKqu6eAFVfYgGRaLkyPAv+HrvLb4MkleCP9Jg6DQosnM3xRnTAz7w0K1iGt7mOUcKik/EiwEmSx398s0zRyDZcxBk7vt9H217TTsPY7mDIqaQ=
+	t=1760596941; cv=none; b=f/SlMvSpZnO/KK2I/Celfti8Iig61NxkC9zO66aOm0TcFRCHRQM1QsGTG7pQ6eJxx8kn4/9q3DxojYNK9ijhw8wEc39cE7He4S7RQ+zuPxoB1V18b/85mW1vEXyay86r4OE23keRMxZ2+OKRipmWVRtAlct7Akl6cfj1C2Pbbps=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760596882; c=relaxed/simple;
-	bh=hNCwUzObDXztNMtdGpnOAHrjLhO4y8Gdpytl21YeOcg=;
+	s=arc-20240116; t=1760596941; c=relaxed/simple;
+	bh=f65+VI1Gld8M73unDz0Hs4QoNmu1NRlYqp9Eb17gJVE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fKwsaPEQSOYt2JPLdEaopxzhIx0qaUXG7sEDlCV4OUoyXdyQ+nEGHhXz1PfNoY25VgYi2QbQExHqRWeFXrgCKxUYg4asKbLt7fK2tBwN9PAypDklrBklCqSXy/efoJC+hPrqNrlwFkh9DClze9S97XNOh19DFvhhNcOR1yBxCjU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fv0n4ZBv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5FA38C4CEF1;
-	Thu, 16 Oct 2025 06:41:19 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=PQBCdB0IPbjige03NUMCcs8yOtAtcPebX/ifhg0tWiHRKVXC/2lHMHz/01uv90n2KdEyBdiw4W/NXCGuE2+4JwYJVh2YJ476XXMOw36pmukp3WRZAE8BT4tj/jerk8uNiNBZhYzHcy4A1su3ie5tbYsbzGC0f9ZpwVIePOgp5Tw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ph6IsXqb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5BF7DC4CEF1;
+	Thu, 16 Oct 2025 06:42:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760596882;
-	bh=hNCwUzObDXztNMtdGpnOAHrjLhO4y8Gdpytl21YeOcg=;
+	s=k20201202; t=1760596940;
+	bh=f65+VI1Gld8M73unDz0Hs4QoNmu1NRlYqp9Eb17gJVE=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=fv0n4ZBvrPqmWl9jMqgcuI2AIvduMb+PqWQABbQDH+itpBz+YbQEfRabtviCJdBVG
-	 qBlTBybzGzN/v/mQk2tr9qQkzxCg4/gSPnz4VKsZ77t29EdRyRDJ8yxQSAgVotld7S
-	 oeSoqj/CYJTRZtcaRw43+dCaj3yq7ASGUvRAgLsy88tvg6jXtpvAYBBX8J/dMGEbJH
-	 qoWMoS7ahFl5xDmE1rB2rUl0W/c0OMtcC+ha+cV+my02qd20tcN41i0euzJ3IfMNSB
-	 pQo/4NbE27Wna65XXUVcOh8Pcetm8vqohHOUvTjaNMVWaAYvOUBb4c4xZMbad3lbeW
-	 tAIiA634lpn7Q==
-Message-ID: <04b3271b-3723-4d6e-b39e-31894f9ecc80@kernel.org>
-Date: Thu, 16 Oct 2025 08:41:17 +0200
+	b=Ph6IsXqbvh7xIeOrjHoq/e4XWkp8tE9Ows9qa9lci/l6h1o9IgdsShNz9NlzAcyO1
+	 nOUw5H6R0dkDm3D/jbB6bVb7tmlAKmGGqH6j46D6Pz1eqwXJXx40i5DtZdTDx/NlmM
+	 UJb5G2GtKdrWZHpssALhlDvkScOkt1yxhHTsy84OkoCVLjpPqKo1IkUvJIVgfprNSy
+	 IugJW+YwYfxzgbzLkgaM/B6IninBUCmi/kpwXD3x5iQr2R3Hm8r8kjpS9Am4x7LiGl
+	 Dm+yJy634YOiZC7U7h6TceG9Q7bWGSHWen32tkWSIQXPsd2HYAF4Idlkt4i74amjw8
+	 cSxvt8FTfzHdQ==
+Message-ID: <a5dfb28c-1dd8-40b0-a049-7b10712d355f@kernel.org>
+Date: Thu, 16 Oct 2025 08:42:13 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,17 +50,25 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: clock: Update identifiers for VIIF on
- Toshiba Visconti TMPV770x SoC
-To: Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Nobuhiro Iwamatsu <nobuhiro.iwamatsu.x90@mail.toshiba>,
+Subject: Re: [PATCH v4 03/14] MAINTAINERS: Add i.MX8qxp prefetch engine DT
+ binding files
+To: Liu Ying <victor.liu@nxp.com>, Philipp Zabel <p.zabel@pengutronix.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>
-Cc: linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20251016013328.303611-1-yuji2.ishikawa@toshiba.co.jp>
- <20251016013328.303611-2-yuji2.ishikawa@toshiba.co.jp>
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Dmitry Baryshkov <lumag@kernel.org>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Marek Vasut <marek.vasut@mailbox.org>,
+ Frank Li <Frank.Li@nxp.com>
+References: <20251016-imx8-dc-prefetch-v4-0-dfda347cb3c5@nxp.com>
+ <20251016-imx8-dc-prefetch-v4-3-dfda347cb3c5@nxp.com>
+ <51b72003-e9a5-4f34-ad08-249fc24b3041@kernel.org>
+ <ffc12213-db40-4c10-8a6e-57003d85f4df@nxp.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -106,40 +114,28 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20251016013328.303611-2-yuji2.ishikawa@toshiba.co.jp>
+In-Reply-To: <ffc12213-db40-4c10-8a6e-57003d85f4df@nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 16/10/2025 03:33, Yuji Ishikawa wrote:
-> Update identifiers for the clocks and the resets of Video Input Interface
-> in order to reflect the actual architecture of TMPV770x SoC.
+On 16/10/2025 08:38, Liu Ying wrote:
+> On 10/16/2025, Krzysztof Kozlowski wrote:
+>> On 16/10/2025 08:32, Liu Ying wrote:
+>>> Add i.MX8qxp prefetch engine DT binding files to
+>>> 'DRM DRIVERS FOR FREESCALE IMX8 DISPLAY CONTROLLER' section.
+>>>
+>>> Reviewed-by: Frank Li <Frank.Li@nxp.com>
+>>> Signed-off-by: Liu Ying <victor.liu@nxp.com>
+>>> ---
+>>> v2:
+>>> - Collect Frank's R-b tag.
+>>
+>> This should be squashed in each respective commit. This MAKES NO SENSE
+>> as separate commit, stop inflating the patchset.
 > 
-> Signed-off-by: Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>
-> ---
->  include/dt-bindings/clock/toshiba,tmpv770x.h | 33 +++++++++++++-------
->  include/dt-bindings/reset/toshiba,tmpv770x.h | 10 +++++-
->  2 files changed, 31 insertions(+), 12 deletions(-)
-> 
-> diff --git a/include/dt-bindings/clock/toshiba,tmpv770x.h b/include/dt-bindings/clock/toshiba,tmpv770x.h
-> index 5fce713001..2dbd5885c0 100644
-> --- a/include/dt-bindings/clock/toshiba,tmpv770x.h
-> +++ b/include/dt-bindings/clock/toshiba,tmpv770x.h
-> @@ -94,10 +94,10 @@
->  #define TMPV770X_CLK_DSP2_PBCLK		77
->  #define TMPV770X_CLK_DSP3_PBCLK		78
->  #define TMPV770X_CLK_DSVIIF0_APBCLK	79
-> -#define TMPV770X_CLK_VIIF0_APBCLK	80
-> -#define TMPV770X_CLK_VIIF0_CFGCLK	81
-> -#define TMPV770X_CLK_VIIF1_APBCLK	82
-> -#define TMPV770X_CLK_VIIF1_CFGCLK	83
-> +#define TMPV770X_CLK_VIIFBS0_APB	80
+> Sure.  Thanks for pointing this out.
 
-Nope, that's ABI break. These values do not reflect actual architecture,
-that's some non-sense. These are abstract numbers.
-
-NAK
-
-
+Checkpatch already told you that. Run checkpatch.
 
 Best regards,
 Krzysztof
