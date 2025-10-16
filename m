@@ -1,113 +1,181 @@
-Return-Path: <devicetree+bounces-227794-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227795-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0FEFFBE4793
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 18:10:29 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B13A1BE47D8
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 18:13:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 301FE584F79
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 16:07:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A7B7C3A9A80
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 16:12:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 435D632D0EC;
-	Thu, 16 Oct 2025 16:07:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72F7232D0E5;
+	Thu, 16 Oct 2025 16:12:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BnUKw1Bs"
+	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="ZRO9mP/8";
+	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="f4I884pQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1EA3D32D0DC
-	for <devicetree@vger.kernel.org>; Thu, 16 Oct 2025 16:07:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0DDA32D0C2;
+	Thu, 16 Oct 2025 16:12:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760630832; cv=none; b=cGIo5GplVcI0TeEaEX+6LsCAD2Z+GfL0PO7ni/CRQT8kQf7O+ZkkF+Oa6OrwQXGzX32ORGofgOGoeQ4/QNv6/Q59PSHAAa5E6wroE8crpZWRAOdru0A+lb2QSDQy8hV5ATrqiyGn2eDawNRNNdamQFkdguo3TAK12Td6YZy9mgM=
+	t=1760631150; cv=none; b=XnuQNuQBUx63BOZ90G+iG0+51bl/rlBbfEAZewDqHtOxzR5ENn4Xbltc7455CUnZ0g7ZI1oeZ6G7BsZYklBKGtUtxVyj6yRGSzLx9g47JWSAoibezE9rG+naADeHwhuMclzRJ6vCvf75C1DcVDZwuVe3kp7wA3j8H1VcHxB4AfE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760630832; c=relaxed/simple;
-	bh=Vjr9YRqSTqtgmJiKQ524agy+ATb2FxOdcZqgwssjAqI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=RK7LZ7O9LGw2D/R+7TRid7VSMVykPaMkasrSPBEt0jiVWAF6yj6vk/9kxCCvtnwi+Tm5SnjMhF7r9osOjGs0yoGM1HyZjadmqmCvP8p6OGpnzV/KrI1cQGdVXGhRYcx7gbTpUtVp8+6A0kH1NbuM3ZTlxjVaRc7/FHZNf0SK2Sg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BnUKw1Bs; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8E9FC2BCB4
-	for <devicetree@vger.kernel.org>; Thu, 16 Oct 2025 16:07:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760630831;
-	bh=Vjr9YRqSTqtgmJiKQ524agy+ATb2FxOdcZqgwssjAqI=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=BnUKw1BsIgKNfgjiQKOCCdP7+2sAITiVggeYA4bvzkmo9/dnOfQRX8i28JjI7nkXq
-	 RMVQvw5oHEex4GknBxHrcvo76GRBOF75qnA762q8AcKfifzqH2N8rsY8CzlyFx3ukd
-	 WLL7Z29LnYU5WpFV0tvRZ+eVq94WlEspx4JpStQMp42ejREk0LdvaK1AthG6ImDve/
-	 H2ceQQfLOMEw2/bOT3CREXPKc45UAGHEVMWOJ1k+4PkB+DF0sudp0lq73xHACcdDMg
-	 uxadb1Dx9xPL5SC8diIOTtrW6LsVsgDeuYQmfqeAAtq1uwn39xEu2ohGbpYtmK5aVg
-	 x/MPmQ4DkDSeg==
-Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-b457d93c155so129076266b.1
-        for <devicetree@vger.kernel.org>; Thu, 16 Oct 2025 09:07:11 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCWhI4jB0k8nlBL1ZO2zE5cD9TjffbZXw0A5HOMz+yD5p3I92aK0uXe2Lod/y/6zPufYmnIjqmYBLqYw@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw2MpP0foTDxa6OClN3h9RT7AHX4PMFotgpVtwWo7D/JaIbGv9F
-	9iaBZDRiSq/huTfhDQW2JIa+uki4J36K4/+svIQ3iWZelDMXt6DW7Ko5+xOXLQOoYwE6coLmxHb
-	IMzvddc9XRXFMUoTnCsaaaVTxfP0qzg==
-X-Google-Smtp-Source: AGHT+IEwUNFtjfemC+H8YbxetDx+/1UO/8iQ2gyCTnZPC0wHrc6i2JvE1D+ajYJoJm5ZfKz4z3qtGvXJ7TTBCQJq2aU=
-X-Received: by 2002:a17:907:1c85:b0:b3e:5f20:888d with SMTP id
- a640c23a62f3a-b647304516amr61378866b.27.1760630830062; Thu, 16 Oct 2025
- 09:07:10 -0700 (PDT)
+	s=arc-20240116; t=1760631150; c=relaxed/simple;
+	bh=XW6k3Gcar3ovV4dpcje4zQ2uk6r9dgawRYEicfegPf8=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=FKdPHytYTLsW3hIrgNp4F8pKxIrZd0WAXphkqPHQo8AzMsMAZFvnw94EORAIDHSIbtiLqOhJBoGXyLNt2pUh+C02NRy5twjSjiUt2mM54oxwh7jmXcdDVG+OI9OXCsnOUNDl34zpRSV1VeMuccIUDs0Ca0aO5Htnoa84yy0mk/8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=ZRO9mP/8; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=f4I884pQ; arc=none smtp.client-ip=193.142.43.55
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
+From: Thomas Gleixner <tglx@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020; t=1760631147;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=EimfC5YBQZ0kq/Gz52aWdB6vLjbMGcafw2nhUU8MVtE=;
+	b=ZRO9mP/8ehCkUpZqmBe1rgk54JZHc29ccwtTz5j954OrVqClG6R+uVRDYkbJp7hC1gdJJZ
+	y5PEOhujG1srTiKm+IOooIdhhs0kUZTBg4no06GdwWfYS9c5mWtbD/4Vm5ajrzxPau/bM9
+	9V1jlggPXINSOLbxqr8l4O4HJFubXNqMmKD9mxQ4/xIWvOz1XaQ+GtxT9E4rcZGj2ur6Ob
+	wSufpZsQHWCSIZlhRNhxoBXc712/TuEeRpyRjjoavVOhCa2rUqh8BW7FCpL+7ZOryAWmxx
+	AoFp07wqU0/WHcI9Qum/mmpesYmxTEZ1yG++4KX20YvDIBCM3mP0+nBORDZNSA==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020e; t=1760631147;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=EimfC5YBQZ0kq/Gz52aWdB6vLjbMGcafw2nhUU8MVtE=;
+	b=f4I884pQCh72NrW5bcmy4HgTPvI5ho0GNW8nxlBno/OTw1sTWSsWqoRojjYlPDOcm2wPbr
+	9w2ELHaEq06LBtBw==
+To: Charles Mirabile <cmirabil@redhat.com>
+Cc: Lucas Zampieri <lzampier@redhat.com>, linux-kernel@vger.kernel.org, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
+ Samuel Holland <samuel.holland@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti
+ <alex@ghiti.fr>, Vivian Wang <dramforever@live.com>,
+ devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, Zhang
+ Xincheng <zhangxincheng@ultrarisc.com>
+Subject: Re: [PATCH v5 3/3] irqchip/plic: add support for UltraRISC DP1000 PLIC
+In-Reply-To: <CABe3_aGj68qM1bNZ3LExbexO=9FO4RzJxhUy2T+HKK1qZfBmtw@mail.gmail.com>
+References: <20251016084301.27670-1-lzampier@redhat.com>
+ <20251016084301.27670-4-lzampier@redhat.com> <87plan0yvd.ffs@tglx>
+ <CABe3_aGj68qM1bNZ3LExbexO=9FO4RzJxhUy2T+HKK1qZfBmtw@mail.gmail.com>
+Date: Thu, 16 Oct 2025 18:12:25 +0200
+Message-ID: <87ms5q25cm.ffs@tglx>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251015232015.846282-1-robh@kernel.org> <aPERZ/IpjAhD2sen@lizhi-Precision-Tower-5810>
-In-Reply-To: <aPERZ/IpjAhD2sen@lizhi-Precision-Tower-5810>
-From: Rob Herring <robh@kernel.org>
-Date: Thu, 16 Oct 2025 11:06:58 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJCCBHp6vMvXdh39hpdiMg-3Kr3uB7KMFauCfYM7rYSWQ@mail.gmail.com>
-X-Gm-Features: AS18NWCmaqStDDMgrLFaOkte03G1gDmgUst_qjRWdTXsAn_QVmilmfjOPWrs-c4
-Message-ID: <CAL_JsqJCCBHp6vMvXdh39hpdiMg-3Kr3uB7KMFauCfYM7rYSWQ@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: Fix inconsistent quoting
-To: Frank Li <Frank.li@nxp.com>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Stephen Boyd <sboyd@kernel.org>, Thierry Reding <thierry.reding@gmail.com>, 
-	Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, 
-	Shawn Guo <shawnguo@kernel.org>, Fabio Estevam <festevam@gmail.com>, 
-	=?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
-	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
-	Jonathan Cameron <jic23@kernel.org>, Andy Shevchenko <andy@kernel.org>, 
-	Jassi Brar <jassisinghbrar@gmail.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
-	Lee Jones <lee@kernel.org>, Joel Stanley <joel@jms.id.au>, 
-	Andrew Jeffery <andrew@codeconstruct.com.au>, Andrew Lunn <andrew@lunn.ch>, 
-	Vladimir Oltean <olteanv@gmail.com>, "David S. Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	Daire McNamara <daire.mcnamara@microchip.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
-	=?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
-	Manivannan Sadhasivam <mani@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, Vinod Koul <vkoul@kernel.org>, 
-	Kishon Vijay Abraham I <kishon@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Nicolas Ferre <nicolas.ferre@microchip.com>, 
-	Alexandre Belloni <alexandre.belloni@bootlin.com>, Claudiu Beznea <claudiu.beznea@tuxon.dev>, 
-	Florian Fainelli <f.fainelli@gmail.com>, Tony Lindgren <tony@atomide.com>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-iio@vger.kernel.org, linux-media@vger.kernel.org, 
-	netdev@vger.kernel.org, linux-pci@vger.kernel.org, 
-	linux-phy@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Oct 16, 2025 at 10:38=E2=80=AFAM Frank Li <Frank.li@nxp.com> wrote:
+On Thu, Oct 16 2025 at 11:54, Charles Mirabile wrote:
+> On Thu, Oct 16, 2025 at 9:17=E2=80=AFAM Thomas Gleixner <tglx@linutronix.=
+de> wrote:
+>> > +static irq_hw_number_t cp100_get_hwirq(struct plic_handler *handler,
+>> > +                                     void __iomem *claim)
+>> > +{
+>> > +     int nr_irq_groups =3D DIV_ROUND_UP(handler->priv->nr_irqs, 32);
+>> > +     void __iomem *pending =3D handler->priv->regs + PENDING_BASE;
+>> > +     void __iomem *enable =3D handler->enable_base;
+>> > +     irq_hw_number_t hwirq =3D 0;
+>> > +     int i;
+>> > +
+>> > +     guard(raw_spinlock)(&handler->enable_lock);
+>> > +
+>> > +     /* Save current interrupt enable state */
+>> > +     for (i =3D 0; i < nr_irq_groups; i++)
+>> > +             handler->enable_save[i] =3D readl_relaxed(enable + i * s=
+izeof(u32));
+>>
+>> This is truly the most inefficient way to solve that problem. The enable
+>> registers are modified with enabled_lock held, so you can just cache the
+>> value in plic_handler::enabled_save and avoid this read loop completely.
+>> After claiming the interrupt you restore from that cache, no?
 >
-> On Wed, Oct 15, 2025 at 06:16:24PM -0500, Rob Herring (Arm) wrote:
-> > yamllint has gained a new check which checks for inconsistent quoting
-> > (mixed " and ' quotes within a file). Fix all the cases yamllint found
-> > so we can enable the check (once the check is in a release). Use
-> > whichever quoting is dominate in the file.
+> You mean touch the other functions where the enable bits are modified
+> to keep the cache in sync so that we don't need to do this read loop
+> and can have a proper set of values cached?
 >
-> Can we simple require only use one of " or ' to let everyone follow easil=
-y?
-> support both " or ' is unneccessary options.
+> My concern is that this obviously has an impact on other platforms
+> which do not have this quirk since keeping the cache in sync would get
+> pushed all throughout the driver.
 
-I don't really care to fix 915 files. And don't send 100s of patches
-for me to review either. Given we've got 5200 total, it's a good
-chance folks will copy the preferred style.
+The irq_enable()/disable() callbacks are not really hotpath and caching
+the bit in plic_toggle() or such is just not measurable overhead
+compared to the register access.
 
-Rob
+>> Now for the search and disable mechanism. Of course you need to search
+>> for th pending interrupt first, but then you can make that masking loop
+>> very simple by having a plic_handler::enabled_clear[] array which is
+>> zeroed on initialization:
+>>
+>>         unsigned long pending =3D 0;
+>>
+>>         for (group =3D 0; !pending && group < nr_irq_groups; group++) {
+>>                 pending =3D handler->enabled_save[i];
+>>                 pending =3D& readl_relaxed(pending + group * sizeof(u32)=
+);
+>>         }
+>>         if (!pending)
+>>                 return false;
+>>
+>>         bit =3D ffs(pending) - 1;
+>>         handler->enabled_clear[group] |=3D BIT(bit);
+>>         for (int i =3D 0; i < nr_irq_groups; i++)
+>>                 writel_relaxed(handler->enabled_clear[i], enable + i * s=
+izeof(u32));
+>>         handler->enabled_clear[group] =3D 0;
+>>
+>> No?
+>
+> Sure that would also work, but why are we using ffs (slow) only to
+> shift the result back to make a new mask when (x & -x) is faster and
+> skips the intermediate step delivering immediately the mask of the
+> lowest bit.
+
+Because I did not spend time thinking about it.=20
+
+> As for making another caching array, I guess, but again that is just a
+> time vs space trade off with its own invariants to maintain that would
+> also impact other platforms.
+
+It's a pointer in struct plic_handler (or whatever it's named) and you
+can allocate it when the quirk is required. The pointer is definitely
+not a burden for anyone else.
+
+>> Is the device B interrupt preserved in the interrupt chip and actually
+>> raised when the interrupt enable bit is restored or is it lost?
+>
+> I am not sure how to verify this other than to tell you that without
+> this quirk (i.e. trying to use normal plic behavior) the device does
+> not work, but with this quirk I can boot to a desktop with a pcie
+> graphics card and storage, use networking etc that all obviously
+> depend on the correct functioning of the interrupt controller.
+>
+> My reading of the spec for PLIC also suggests (but does not explicitly
+> confirm) that the pending bits function irrespective of the state of
+> the corresponding enable bit: "A pending bit in the PLIC core can be
+> cleared by setting the associated enable bit then performing a claim."
+> (page 14 plic spec 1.0.0 [1]).
+>
+> This sentence implies to me that it is possible for a pending bit to
+> be set even though the corresponding enable bit is not, which lends
+> credence to the idea that the pending bits operate independently.
+
+Looks like that. Please add a comment to that effect then.
+
+Thanks,
+
+        tglx
 
