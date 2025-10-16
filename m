@@ -1,237 +1,192 @@
-Return-Path: <devicetree+bounces-227741-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227742-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40643BE42D3
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 17:19:33 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 80BB6BE4366
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 17:26:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 92296189A69C
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 15:19:56 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 1364F4F5FFB
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 15:25:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E591B33EB0E;
-	Thu, 16 Oct 2025 15:19:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51716346A12;
+	Thu, 16 Oct 2025 15:25:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="eyMzW4rQ"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="FGWdwkd7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ot1-f50.google.com (mail-ot1-f50.google.com [209.85.210.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D9F44C9D;
-	Thu, 16 Oct 2025 15:19:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03A322E62D4
+	for <devicetree@vger.kernel.org>; Thu, 16 Oct 2025 15:25:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760627966; cv=none; b=h52LeK5v58PGthjz9SEvYI7YiTkhGdvoFqKgr+ZwCqQIenip0WqdCFNJ0GMxoNikkReE1bN+EUMc4Idmf4HgyLHq2FV8AkC3Tra6lvTf1p63Qr0UHr7l+7BRbdloBAu7YQ4uXGmvOvi34orQ5+gSD2UnAqUt3ojTKHdDEbQeqB8=
+	t=1760628347; cv=none; b=OO2eB9pOqEUNRKCJ2isCRdqIlxvOGTbmdx8tWFu44ZgKwqJdcDgipDkPUci6wry0keEhwXKpPXcx+zjCgMzZbMYi/KbNYxtZiZEfeM1Rs0hP0Gxcxm1vekTnagq3PdoRqENJirJGfwMkAsOc4qQnN9IcwVpCSIapj21J6MQLQ0g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760627966; c=relaxed/simple;
-	bh=ati0KgDtCv8PEJWIbHhO/9CBCvu0ooHMQ92xaU79xmk=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=f9+xFlAfKZSP7ZMMm+EFlePaf5vNYoUqYvcvzOA/IoUsP1S/D9aO/ttNoS9wWy9OACzdE8PnJtMTypBRM2jDPoW+PXaIvqEwrL+BRNFPDnDjuFoDTbzo9TIk+gYtZS3jQnFmXmuSKUdRK+YUg9vLG75MrO5DyR9Qjqg7WnGSnAc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=eyMzW4rQ; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1760627962;
-	bh=ati0KgDtCv8PEJWIbHhO/9CBCvu0ooHMQ92xaU79xmk=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-	b=eyMzW4rQLHVjAGqM0OkLEpY4VZFJWE3w9WApY6ZgKLoh+Q4yWD3UmKac5seip3q1G
-	 ZznepgwbmLiplpUFmhtGssykMO6LT53ekQB58MjzKaDZ0+IoIeU776UGgs+9iQ29lu
-	 rUDv5twJb29FF6pHWrGk+3H7VjxQ0PvD3OSbixH+vFLJniw72c5zLA24KKmVxGHtJv
-	 enz5u8ruG5zNpukj3DiwESj7b8UyWo/ot72UKR+f2svZEyWVU4/Nk9JzKsW5syUEnA
-	 rndPCpt6jorI5VXDLNZNIiyfv51L6idtB7ZudXXxUwtYiRImf5HIQvrnfWA/SZtrMY
-	 30i/81QAhXWzg==
-Received: from [IPv6:2606:6d00:17:ebd3::5ac] (unknown [IPv6:2606:6d00:17:ebd3::5ac])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: nicolas)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id E50C517E10C8;
-	Thu, 16 Oct 2025 17:19:19 +0200 (CEST)
-Message-ID: <f5956178a0e5d91dabc12e89f666eac2140f141e.camel@collabora.com>
-Subject: Re: [PATCH v4 4/8] media: mediatek: vcodec: Add core-only VP9
- decoding support for MT8189
-From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-To: Kyrie Wu <kyrie.wu@mediatek.com>, Tiffany Lin
- <tiffany.lin@mediatek.com>,  Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
- Yunfei Dong <yunfei.dong@mediatek.com>, Mauro Carvalho Chehab	
- <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski	
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Matthias Brugger	
- <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno	
- <angelogioacchino.delregno@collabora.com>, Hans Verkuil
- <hverkuil@xs4all.nl>,  Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
- Sebastian Fricke <sebastian.fricke@collabora.com>, Nathan Hebert	
- <nhebert@chromium.org>, Arnd Bergmann <arnd@arndb.de>, Irui Wang	
- <irui.wang@mediatek.com>, George Sun <george.sun@mediatek.com>, 
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-mediatek@lists.infradead.org
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, Andrzej Pietrasiewicz
-	 <andrzejtp2010@gmail.com>
-Date: Thu, 16 Oct 2025 11:19:18 -0400
-In-Reply-To: <20251016060747.20648-5-kyrie.wu@mediatek.com>
-References: <20251016060747.20648-1-kyrie.wu@mediatek.com>
-	 <20251016060747.20648-5-kyrie.wu@mediatek.com>
-Autocrypt: addr=nicolas.dufresne@collabora.com; prefer-encrypt=mutual;
- keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
- /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
- cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
- CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
- abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
- nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
- AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
- smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
- AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
- iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
- ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
- bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
-Organization: Collabora Canada
-Content-Type: multipart/signed; micalg="pgp-sha512";
-	protocol="application/pgp-signature"; boundary="=-Rz6sMYc0nh24Zfb5X2O5"
-User-Agent: Evolution 3.56.2 (3.56.2-2.fc42) 
+	s=arc-20240116; t=1760628347; c=relaxed/simple;
+	bh=oZuGEFGbX6oR0toYc711vT3FrpnAZW4F24vLJVW9nwI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Za4d4N5mWZKH/P3opHrjWqOBLicrQLL1L8LFUhmhP8HQsfMVr9jKI52onxcFeOfcn9+8x81KGla7qNOHCLagTajuQVjbmeMr2xtpNNXcZM89s/iF1KmMD+Usx2uBW0VbOL3UTF3CA6E5OZI2LM30X4BClC11QAptA3bxXt5GOYY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=FGWdwkd7; arc=none smtp.client-ip=209.85.210.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-ot1-f50.google.com with SMTP id 46e09a7af769-7c12ddebffdso279289a34.2
+        for <devicetree@vger.kernel.org>; Thu, 16 Oct 2025 08:25:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1760628344; x=1761233144; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=aRDJom06kYcViBp21r1cNp18crk2JJxYu33qcIgFpss=;
+        b=FGWdwkd7ouRELbSqq2TQQfswdgp2k18cXEu7ZoJpAXpr61P6d0C6i74YMKp2S+MQP9
+         oWSguH5b6LNbJ/7A3mnb78J3F3fZpm7G0rn6ClxbLacHeYLaQIsi10yCD2eu/bXXp3c2
+         8MmzoeYu+sy7L+mupzp8NJ1kQVr0YbbKfaUmNwqni6peA/Cc4K3yGkGKwfOIa2llWsVl
+         VTffrL2U2Ix+FMxmvMG5GjWqfT0QB+mC/Q1JALVOrn3astBxAIkt+5e4JmXOv+grugNq
+         qE1iRSaS/bmUxrXr2kra0H2wuM+pvM3UgeRwO9R0fID4xT2rNi5ZKHZyaz1HtBjWycRc
+         KtuQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1760628344; x=1761233144;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=aRDJom06kYcViBp21r1cNp18crk2JJxYu33qcIgFpss=;
+        b=WAo8F/mOuTg0FsxZQbUviRAIvJZPHJFdPLx2f+Emf0JaMWKLgdsdw6nkLBz3+l9mAr
+         AvU1zEioFhDhqWVwp0sBCB3tAJ4nzbej1HPp+FswHn4E5VN5ert00dDUpH1Afbth7Nb0
+         mse/cja85Dllj4PgWb985sHqq7JzEyky9BzID5/pelZz2pJQJxITixvUtV98cK5N0AMT
+         kzP4BKzO9BXakPvwPHilEZkEREinM6/AEgpwAfgJ3+9sl7ddRFHx6n+oGirK1MuxrRDy
+         sWbn0pnNxJD3pPQncptf8ePz9NmYEb1OJXCS47pSMi4VIJYUq+Y0FBNv68df0HMk+2FV
+         Z9GQ==
+X-Forwarded-Encrypted: i=1; AJvYcCX8/D0W2Vl4vb8HL/QPSY/1PfMyP9mGrCxIm9HVC+4WwrVzsdpOk3go1P18J6kDF4bId5K6IX6S8WoU@vger.kernel.org
+X-Gm-Message-State: AOJu0YzvTedeZUYpQaf/v8k3DH4n+uspKMIVff3jiL6jlzyFrLLN/hpD
+	RQ/NH8gS/ui7Ozx7OFUD8+Wyp0ZrOc8b4kUpo2ls2MVefm+Bu/71g5Bia2QhvBIvzBg=
+X-Gm-Gg: ASbGncsF+J6DhS06ecJR6y4/TYXVcULRPtl2VUDogl6V32DSnShQzvkCsGOo+oSNBBK
+	xCL9LeFpsj0NQR2CeHxI4s2Tkz4eDw+NxPPswy9po7Ws7uGESugCFU8k4WtW/tnwSO3RaRbn5lq
+	Tuv4HT2YCwMEidvWJ1Fz/TOGaofBq8JIzPGzNtR1v3ipEjvOoPtvN3POh898O5EZQBhRS78OFui
+	Gj/kKbjrIOCAJd+pz7+yDEGzKnLYKIf5hqcFVj4PZCGGAaNcscVThgP2bPsd5YTxVeseVGZNIcy
+	N/U8bbzx4PMXkkDq0TjU5x2o0sdHkHcl6kc0HxLtwCv+RfBE7D5gMFhtX4BrNuWflt825NQ7gX1
+	uof1XTvijKCFa7Rnedgqw+BpzNj6ckTRZZxaf8HeguthwbOa3X7bvHJBb3ItlMY6M0A3GOzFita
+	mDpxRROp1HZOX4HIBZ2b4hpbElS2vfDT9gEThrOOeVsSgOo9H0bGDV0KLowQ==
+X-Google-Smtp-Source: AGHT+IHQd1etEc00vCfr9TOASkqT9Pb4HP9nTzlHiZYHvdxM+5kCvGAInuFv8f6kXQRiRquoh7Foww==
+X-Received: by 2002:a05:6808:14c8:b0:441:896c:fab7 with SMTP id 5614622812f47-443a2ea6fedmr179835b6e.9.1760628344051;
+        Thu, 16 Oct 2025 08:25:44 -0700 (PDT)
+Received: from ?IPV6:2600:8803:e7e4:500:86b5:623:b364:9913? ([2600:8803:e7e4:500:86b5:623:b364:9913])
+        by smtp.gmail.com with ESMTPSA id 006d021491bc7-651c2c40b4dsm354513eaf.20.2025.10.16.08.25.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 16 Oct 2025 08:25:42 -0700 (PDT)
+Message-ID: <66f94eb6-15a9-457f-a7b8-47710652a34b@baylibre.com>
+Date: Thu, 16 Oct 2025 10:25:41 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/6] spi: add multi_bus_mode field to struct spi_transfer
+To: =?UTF-8?Q?Nuno_S=C3=A1?= <noname.nuno@gmail.com>,
+ Mark Brown <broonie@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Marcelo Schmitt <marcelo.schmitt@analog.com>,
+ Michael Hennerich <michael.hennerich@analog.com>,
+ =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
+ Jonathan Cameron <jic23@kernel.org>, Andy Shevchenko <andy@kernel.org>,
+ Sean Anderson <sean.anderson@linux.dev>, linux-spi@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-iio@vger.kernel.org
+References: <20251014-spi-add-multi-bus-support-v1-0-2098c12d6f5f@baylibre.com>
+ <20251014-spi-add-multi-bus-support-v1-3-2098c12d6f5f@baylibre.com>
+ <9269eadc1ea593e5bc8f5cad8061b48220f4d2b2.camel@gmail.com>
+ <409ad505-8846-443e-8d71-baca3c9aef21@sirena.org.uk>
+ <12db0930458ceb596010655736b0a67a0ad0ae53.camel@gmail.com>
+ <8c7bf62a-c5dc-4e4d-8059-8abea15ba94e@sirena.org.uk>
+ <d9455d90-31ca-4be7-b17c-2b339e92f8a0@baylibre.com>
+ <9024f05854dcc3cc59345c0a3de900f57c4730d9.camel@gmail.com>
+ <ad929fe5-be03-4628-b95a-5c3523bae0c8@baylibre.com>
+ <c4b5a42f5f1d3f577cb986946b642b4edc1300e9.camel@gmail.com>
+Content-Language: en-US
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <c4b5a42f5f1d3f577cb986946b642b4edc1300e9.camel@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+On 10/16/25 4:08 AM, Nuno Sá wrote:
+> On Wed, 2025-10-15 at 13:38 -0500, David Lechner wrote:
+>> On 10/15/25 11:43 AM, Nuno Sá wrote:
+>>> On Wed, 2025-10-15 at 11:15 -0500, David Lechner wrote:
+>>>> On 10/15/25 10:18 AM, Mark Brown wrote:
+>>>>> On Wed, Oct 15, 2025 at 03:43:09PM +0100, Nuno Sá wrote:
+>>>>>> On Wed, 2025-10-15 at 13:01 +0100, Mark Brown wrote:
+>>>>>>> On Wed, Oct 15, 2025 at 11:16:01AM +0100, Nuno Sá wrote:
+>>>>>>>> On Tue, 2025-10-14 at 17:02 -0500, David Lechner wrote:
+
+...
+
+>>
+>> The AXI SPI Engine doesn't know how to do the quad SPI part yet though, so
+>> it isn't something we could implement right now.
+>>
+>> If we tried to do it with spi-buses = <8>; then we would end up with the
+>> "interleaved" bits (or nibbles depending on the wiring) that requires the
+>> extra IP block to sort out when using SPI offloading. Technically, we could
+> 
+> I think that extra block already exists today. I was thinking the idea was just:
+> 
+> // the case where we just have one channel with eg: 32 bits words (eg: test
+> patterns) 
+> struct spi_transfer example = {
+> 	rx_buf = rx_buf;
+> 	len = 1; /* 1 32bit words */
+
+This would still need to be len = 4; since there are 4 bytes in a
+32-bit word. (If this was tx with SPI_MULTI_BUS_MODE_MIRROR, then
+len = 1 would be correct, but for striping, it is still the length
+of all data combined).
+
+> 	/* 4 lanes which is actually quadspi */
+> 	multi_bus_mode = SPI_MULTI_BUS_MODE_STRIPE; 
+> };
+
+This will work with the caveat that for non-offload case, the software 
+will need to rearrange the bits in rx_buf into the correct order after
+the spi_sync().
+
+For example, u8 *rx_buf will contain bits of the 32-bit word in the
+following order:
+
+rx_buf[0] = b28 b24 b20 b16 b12 b8 b4 b0
+rx_buf[1] = b29 b25 b21 b17 b13 b9 b5 b1
+rx_buf[2] = b30 b26 b22 b18 b14 b10 b6 b2
+rx_buf[3] = b31 b27 b23 b19 b15 b11 b7 b3
+
+The correct order of course would be (assuming little endian):
 
 
---=-Rz6sMYc0nh24Zfb5X2O5
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+rx_buf[0] = b7 b6 b5 b4 b3 b2 b1 b0
+...
 
-Hi,
+And for the offload case, it would require an extra IP block between
+SPI and DMA to rearrange the bits in hardware. So to "do it right", the
+driver should be checking for a hardware description that such an IP
+block exists in the pipline before creating such a SPI xfer.
 
-Le jeudi 16 octobre 2025 =C3=A0 14:07 +0800, Kyrie Wu a =C3=A9crit=C2=A0:
-> Implemented core-only VP9 decoding functions for MT8189.
-
-What does "core-only" means ? Did you mean single core ?
-
->=20
-> Signed-off-by: Kyrie Wu <kyrie.wu@mediatek.com>
-> ---
-> =C2=A0.../vcodec/decoder/vdec/vdec_vp9_req_lat_if.c | 27 +++++++++++-----=
----
-> =C2=A01 file changed, 16 insertions(+), 11 deletions(-)
->=20
-> diff --git
-> a/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp9_req_lat_if=
-.c
-> b/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp9_req_lat_if=
-.c
-> index fa0f406f7726..04197164fb82 100644
-> ---
-> a/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp9_req_lat_if=
-.c
-> +++
-> b/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp9_req_lat_if=
-.c
-> @@ -23,6 +23,7 @@
-> =C2=A0
-> =C2=A0#define VP9_TILE_BUF_SIZE 4096
-> =C2=A0#define VP9_PROB_BUF_SIZE 2560
-> +#define VP9_PROB_BUF_4K_SIZE 3840
-> =C2=A0#define VP9_COUNTS_BUF_SIZE 16384
-> =C2=A0
-> =C2=A0#define HDR_FLAG(x) (!!((hdr)->flags & V4L2_VP9_FRAME_FLAG_##x))
-> @@ -616,7 +617,10 @@ static int vdec_vp9_slice_alloc_working_buffer(struc=
-t
-> vdec_vp9_slice_instance *i
-> =C2=A0	}
-> =C2=A0
-> =C2=A0	if (!instance->prob.va) {
-> -		instance->prob.size =3D VP9_PROB_BUF_SIZE;
-> +		instance->prob.size =3D ((ctx->dev->chip_name =3D=3D
-> MTK_VDEC_MT8196) ||
-> +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 (ctx->dev->chip_name =3D=3D
-> MTK_VDEC_MT8189)) ?
-> +					VP9_PROB_BUF_4K_SIZE :
-> VP9_PROB_BUF_SIZE;
-
-I feel like this will keep growing, then you'll move to 8K and it will cont=
-inue.
-You already match every SoC in the driver, you should come up with SoC
-configuration data structure so you don't have to add doc check conditions =
-all
-over the place. This change is also not reflected in the commit message.
-
-> +
-> =C2=A0		if (mtk_vcodec_mem_alloc(ctx, &instance->prob))
-> =C2=A0			goto err;
-> =C2=A0	}
-> @@ -696,21 +700,22 @@ static int vdec_vp9_slice_tile_offset(int idx, int
-> mi_num, int tile_log2)
-> =C2=A0	return min(offset, mi_num);
-> =C2=A0}
-> =C2=A0
-> -static
-> -int vdec_vp9_slice_setup_single_from_src_to_dst(struct
-> vdec_vp9_slice_instance *instance)
-> +static int vdec_vp9_slice_setup_single_from_src_to_dst(struct
-> vdec_vp9_slice_instance *instance,
-> +						=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct mtk_vcodec_mem
-> *bs,
-> +						=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct vdec_fb *fb)
-> =C2=A0{
-> -	struct vb2_v4l2_buffer *src;
-> -	struct vb2_v4l2_buffer *dst;
-> +	struct mtk_video_dec_buf *src_buf_info;
-> +	struct mtk_video_dec_buf *dst_buf_info;
-> =C2=A0
-> -	src =3D v4l2_m2m_next_src_buf(instance->ctx->m2m_ctx);
-> -	if (!src)
-> +	src_buf_info =3D container_of(bs, struct mtk_video_dec_buf, bs_buffer);
-> +	if (!src_buf_info)
-> =C2=A0		return -EINVAL;
-> =C2=A0
-> -	dst =3D v4l2_m2m_next_dst_buf(instance->ctx->m2m_ctx);
-> -	if (!dst)
-> +	dst_buf_info =3D container_of(fb, struct mtk_video_dec_buf,
-> frame_buffer);
-> +	if (!dst_buf_info)
-> =C2=A0		return -EINVAL;
-> =C2=A0
-> -	v4l2_m2m_buf_copy_metadata(src, dst, true);
-> +	v4l2_m2m_buf_copy_metadata(&src_buf_info->m2m_buf.vb, &dst_buf_info-
-> >m2m_buf.vb, true);
-> =C2=A0
-> =C2=A0	return 0;
-> =C2=A0}
-> @@ -1800,7 +1805,7 @@ static int vdec_vp9_slice_setup_single(struct
-> vdec_vp9_slice_instance *instance,
-> =C2=A0	struct vdec_vp9_slice_vsi *vsi =3D &pfc->vsi;
-> =C2=A0	int ret;
-> =C2=A0
-> -	ret =3D vdec_vp9_slice_setup_single_from_src_to_dst(instance);
-> +	ret =3D vdec_vp9_slice_setup_single_from_src_to_dst(instance, bs, fb);
-
-This entire change is not explained in the commit message at all. Explain w=
-hy
-this is needed, what difference it makes. There is no clear indication we a=
-re in
-an MT8189 code path, so this change could have a incidence on all single co=
-re
-SoC (if any).
-
-Nicolas
-
-> =C2=A0	if (ret)
-> =C2=A0		goto err;
-> =C2=A0
-
---=-Rz6sMYc0nh24Zfb5X2O5
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-Content-Transfer-Encoding: 7bit
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaPEM9gAKCRDZQZRRKWBy
-9AB+AQCgeocVLaEndCMfX388SHPaflaLqJbYBY0d0ZHr7NpAOAEA7g9JD1WWMOrd
-Z+Pd5ov2tTNoe3q+1HvqeNDXlNyUOQs=
-=+EQ2
------END PGP SIGNATURE-----
-
---=-Rz6sMYc0nh24Zfb5X2O5--
+> 
+> I still did not looked at how the stripe mode is implemented in the hdl IP but
+> maybe the above would work as we get 8 bits per lane and we do have the data
+> reorder IP (or at least used to have) after the offload engine. 
+> 
+> That said, I do see now the above is not the intended usecase for this series
+> and even if it works we kind of have to hack the xfer len to 1 which does not
+> reflect reality.
+> 
+>> make it work, but it would require a bunch of extra hardware description that
+>> the driver would have to interpret in order to correctly format the struct
+>> spi_transfer. I was hoping we could avoid that and just teach the SPI Engine
+>> how to do dual/quad SPI like other SPI controllers.
+> 
+> Agreed!
+> 
+> - Nuno Sá
+> 
 
