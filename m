@@ -1,103 +1,97 @@
-Return-Path: <devicetree+bounces-227813-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227814-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 752F1BE4999
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 18:31:48 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6AA46BE49AA
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 18:32:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 3EBEF4E183A
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 16:31:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0D292427DBB
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 16:32:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F0991FC110;
-	Thu, 16 Oct 2025 16:31:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00EA4329C79;
+	Thu, 16 Oct 2025 16:32:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pFtCA44i"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nJaStcqj"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 530C232D0E1;
-	Thu, 16 Oct 2025 16:31:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD14E329C6B;
+	Thu, 16 Oct 2025 16:32:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760632304; cv=none; b=ppOExmXrhWc8K7kfT308TbB4X8ABZ/ZG4oZHhsavzpT/dDx/clgtqvweh1JXoMEtUk1t3uqsIOnRmf8MuDGJoImH4tiIiVeEWdkGbvVXbG3gMzfoB9DbwdQ7NonYbU5SHP8XDN2bnVpaLwaXMTicEoFoS0E32NIpYjTJLDWptHM=
+	t=1760632325; cv=none; b=ZgWCs2iqwb6CdzKgp8hPaw64rzqVM0XTrXc+b9R4RDLc4v9zPZk+P6ueGNpKBR4WLCJ8wuFQ5qpoNwOHsHgBIrWyuXH3K203DfyttmerkWepkhIixJgNkdPfTCr7ElLGWaq+KMYpOwm5RZHheOfcJeYa5uR4i+Fad9z2nXusYUM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760632304; c=relaxed/simple;
-	bh=29W5nbATLg28IhUhpNbWJzH8SNHYX5AYEkj889sc9+k=;
+	s=arc-20240116; t=1760632325; c=relaxed/simple;
+	bh=z1R0W85DdWS38NEWhVvry5wtDwvTTDiTfnRrh1x8t2Y=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JfQFixmiVmNKaMqfpg2U4mB3mJ9YZEROWv2lICShK/z70MkCTJSlO6+4vFLoyR0Y68Lx6aq1v/mNZUCcxuaEgu6spQDlmwN5jIA+knu8CPyvxlMufbzse4BoUSTUDFEP3/oXfI3h2m/D50fAJhTvMluqVZj93uBxFFrGj6qwjUc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pFtCA44i; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3FB2FC4CEF1;
-	Thu, 16 Oct 2025 16:31:40 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=QyGRRiNiEFTH7qVv+Ogq77awaj6G5uuHG92kDr8DBhrltuz7qdJKCV7dL1XvTaJnL+SR+9OTjOsj8qtvQZp0G6zSBCISSJuOUgJPSDDBf/I6ZrRqr1y0EqW9G+eZjKSr35YY2lzSoKJXBnARn0awy+ZytPF3mPv86VTDiRjQ7Z8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nJaStcqj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 462B5C4CEF1;
+	Thu, 16 Oct 2025 16:32:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760632303;
-	bh=29W5nbATLg28IhUhpNbWJzH8SNHYX5AYEkj889sc9+k=;
+	s=k20201202; t=1760632325;
+	bh=z1R0W85DdWS38NEWhVvry5wtDwvTTDiTfnRrh1x8t2Y=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=pFtCA44i6uxF+9s4JNBqT9WeY/G9YYlQMIH20RphumNcs3qYiz9OzadSzPhPCqgdW
-	 rvjp16iCsQgrS3D33mowTrTFqqgs5UbnhZDZiqbn3KxMheWP4Cpv2J26+iiPlzko6F
-	 lcaAeaZ/+m2cniCZ3zj+2wu0RhyYouFsbwOVTykcxFWsr3HY0AH/Ayxv1wd+TrR4WM
-	 lB1a0Evjy4vWqH7iAs9bYte2IH7iXz5EzcQT74rQK9qDVdz6tcRX4LPEAYokTowTc+
-	 +J2afBV6FMYZL2CgcBwLmnw6pCD3p4rjk8MdyS5KIJK88afhucf56TPuJ6/lbJL7nF
-	 ff2X8UaZJCJUw==
-Date: Thu, 16 Oct 2025 17:31:38 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Marek Vasut <marek.vasut@mailbox.org>
-Cc: dri-devel@lists.freedesktop.org, Frank Li <Frank.Li@nxp.com>,
-	Abel Vesa <abelvesa@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Liu Ying <victor.liu@nxp.com>, Lucas Stach <l.stach@pengutronix.de>,
-	Peng Fan <peng.fan@nxp.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-clk@vger.kernel.org
-Subject: Re: [PATCH v2] dt-bindings: interrupt-controller: fsl,irqsteer: Add
- i.MX95 support
-Message-ID: <20251016-anger-pretzel-87c1f84b8673@spud>
-References: <20251014215801.51331-1-marek.vasut@mailbox.org>
+	b=nJaStcqjesb4KP8cS2FbjpL8swA94OaCO67rDQw9dJtZtrXldzYsrDyjyRgs9UKyb
+	 RGzMne80jaiC8sKXuAo552oM2VlFoWhh9sCakKh29dJP0rbgO/bIk1i/MRBUDuhysu
+	 mP601sN+JsF2GKgoSZWBJik7BNwjpN6ZgLaDYjNvmI2KOz+kx5rPygHgN5v7UPHkr4
+	 wJYU5uuxvnj/rTOs0t2ArmqdkpfM10C9ZqPHqJVFOsgRvRJRUPu8u1X2l5oIfCa9un
+	 ODbFhMh93b5KzPI1qsM6o6FnVXd16XHAt4sm3WfYofdmfRR63Lg+hCIU+WG/JNJwJK
+	 DvWpYOb6JLrIw==
+Date: Thu, 16 Oct 2025 11:32:03 -0500
+From: Rob Herring <robh@kernel.org>
+To: Lothar Rubusch <l.rubusch@gmail.com>
+Cc: krzk+dt@kernel.org, conor+dt@kernel.org, dinguyen@kernel.org,
+	martin.petersen@oracle.com, pabeni@redhat.com, rostedt@goodmis.org,
+	bhelgaas@google.com, arnd@arndb.de, matthew.gerlach@altera.com,
+	tien.fong.chee@altera.com, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v6 08/11] dt-bindings: altera: add Mercury AA1 variants
+Message-ID: <20251016163203.GA3254688-robh@kernel.org>
+References: <20251015194416.33502-1-l.rubusch@gmail.com>
+ <20251015194416.33502-9-l.rubusch@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="T89yuDH1YCgqWT9Y"
-Content-Disposition: inline
-In-Reply-To: <20251014215801.51331-1-marek.vasut@mailbox.org>
-
-
---T89yuDH1YCgqWT9Y
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20251015194416.33502-9-l.rubusch@gmail.com>
 
-On Tue, Oct 14, 2025 at 11:57:15PM +0200, Marek Vasut wrote:
-> Add compatible string "fsl,imx95-irqsteer" for the i.MX95 chip, which is
-> backward compatible with "fsl,imx-irqsteer".
->=20
-> Reviewed-by: Frank Li <Frank.Li@nxp.com>
-> Signed-off-by: Marek Vasut <marek.vasut@mailbox.org>
+On Wed, Oct 15, 2025 at 07:44:13PM +0000, Lothar Rubusch wrote:
+> Update binding with combined .dts for the Mercury+ PE1, PE3 and ST1
+> carrier boards with the Mercury+ AA1 SoM.
+> 
+> Signed-off-by: Lothar Rubusch <l.rubusch@gmail.com>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  Documentation/devicetree/bindings/arm/altera.yaml | 3 +++
+>  1 file changed, 3 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/altera.yaml b/Documentation/devicetree/bindings/arm/altera.yaml
+> index 72cf04b22a08..73ba3cbff026 100644
+> --- a/Documentation/devicetree/bindings/arm/altera.yaml
+> +++ b/Documentation/devicetree/bindings/arm/altera.yaml
+> @@ -32,6 +32,9 @@ properties:
+>          items:
+>            - enum:
+>                - enclustra,mercury-pe1
+> +              - enclustra,mercury-aa1-pe1
+> +              - enclustra,mercury-aa1-pe3
+> +              - enclustra,mercury-aa1-st1
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-pw-bot: not-applicable
+Alphabetical order please.
 
---T89yuDH1YCgqWT9Y
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaPEd6gAKCRB4tDGHoIJi
-0vgtAQCsWApIMcAo4VKXn6RTQPNgNRFXtSQGMXFxXZFAmCE4WQEAnpcjtLoHMOEm
-RAckTJ0NvNnAdqmW9zbbJNm50vefMAU=
-=16D2
------END PGP SIGNATURE-----
-
---T89yuDH1YCgqWT9Y--
+>                - google,chameleon-v3
+>            - const: enclustra,mercury-aa1
+>            - const: altr,socfpga-arria10
+> -- 
+> 2.39.5
+> 
 
