@@ -1,98 +1,119 @@
-Return-Path: <devicetree+bounces-227853-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227855-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DD7EBE4E54
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 19:40:37 +0200 (CEST)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DB93BE4FAD
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 20:04:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E753E1A6187B
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 17:41:00 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 497AA356F21
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 18:04:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72F4B2222AC;
-	Thu, 16 Oct 2025 17:40:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC0F319DF8D;
+	Thu, 16 Oct 2025 18:03:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="uSAD+5cf"
+	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="WgKcr8kj";
+	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="iLgXZLXv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
+Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 916961FC110;
-	Thu, 16 Oct 2025 17:40:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.161
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F6567464;
+	Thu, 16 Oct 2025 18:03:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760636425; cv=none; b=jkSKRZ2ZwcbAZF+ADx4/BOvNuk8JMxc8yEaDw6EDZy7BobI3RUszxySOyPHOlJewhBkX2TgkdaFKfVxsQqKn6ekhJb/uBStn6D9EKQv+qZPF0EfAQ8kTdb4oX2Oc6+pTP6bV2eiYNhTR/1c3cQb0LeRuyggRIP4NYTDMxUMPDEc=
+	t=1760637839; cv=none; b=isKem0xLzegZX3+xyPdkrW816vqT4Y8RdbkGid0hp5VjN9+94gD5weGxCVaxVquPfGYzabnU7wtzTQ3MlLQf7N4VUVY9oT/9sTK1UJ4YuQegYrLd3yMITTX8DXXV2abFkUukLmcg4mgYI8ZrmYO7n2q8CLQV+iMq/YsxVKmorJQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760636425; c=relaxed/simple;
-	bh=Wq3pp60rA3hdopTYWj2BZO4WQdhVCiSXHOABuF5YnCM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=VOvj7wWHRx/eRfQOSXk2NHlbIYInohmc0h8a6Mecem4GrgVcU2RV7HOlyLY+GaH8xyule2HZiwKkSqMjuCP7nkCAvpkm/Ful1kxBgJYThEkjslBGaTcIsc9jn5mU+4h8UrVoTThbWQYGwP9+do4oMyHARD0k6MtF0lKJIRAPDjo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=uSAD+5cf; arc=none smtp.client-ip=80.241.56.161
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp202.mailbox.org (smtp202.mailbox.org [10.196.197.202])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4cnZwX3zWhz9tHQ;
-	Thu, 16 Oct 2025 19:40:12 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1760636412;
+	s=arc-20240116; t=1760637839; c=relaxed/simple;
+	bh=3M438IcLleLKLrOchGZmvPYl08kQhTgtfLrIArqvTlk=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=Se+rnaSKPTk5K+Nxmdeo5Q+wNKoHDj/DASpvX9VLx/JMEeNQ4BYv+vLpd9qzjozyZJpXwyMjjhraNbv5PtXhCjteXIBnj0OYtvpjSLvKBsX8Io6Q9eiViZygkP3Hjmaj7mo6tCAAiHe4wM4yO6P3Bi8HCdI4Fu/vD3+uvCdi3cg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=WgKcr8kj; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=iLgXZLXv; arc=none smtp.client-ip=193.142.43.55
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
+From: Thomas Gleixner <tglx@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020; t=1760637836;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=ZxP0Op2GOPJGCmVQfhpVi9OKM831NuQf5A5nCw+dZv4=;
-	b=uSAD+5cfZSmQYp83bqgCZJ2GFHuuQhmPjHL/wN/5mHexJACIMaAVV+lt/vEBlttehdTl28
-	eEGLhxwyU7vQRgALRAV8NAQEzMqaJiVtYNBbV2ib9G/rQblwYzxhZZOxWuBiUpr5yD74OG
-	N/nf9nemOKlaXVUVo0kriTvuDpV/ik6jDF0IMYpBfNu4OzqHNTkcR/lSnwV+czwWXkrTxR
-	T6BnyiZzrG8Xwfrv1a+RPavCsuU7dgc9HBKTfXiH5y90zKUKLtLahQ5S2j/a8ScaDBx8bB
-	Srzn/G0HBPbRhDnoTJohEiB7CRI9xQu3XNqYz5kfGWHWvNc09KH0S2WkKb/YLQ==
-Message-ID: <174bdb5a-b5a8-4856-a0ac-8caaaefde136@mailbox.org>
-Date: Thu, 16 Oct 2025 19:39:58 +0200
+	bh=CmaG09FybF1QSupTskdEfI0OuLqWwGIEPddqcjGF0uA=;
+	b=WgKcr8kjH6FfiUxbBMzY+bOuxxa0uJx9ZfPX+bktVJeKvLh63qriIiM1dOe05YedZlNt2P
+	SqwgwAluZHVfuHR69WLystKoHybkTgpi3ja/NkFs/eLfky5ABzvO6UwK8ZEB61C2fP/FjI
+	P5EdOgPXJwkfT8jtpV1XBz9+Jj3paSCD/PgGxsLsT5Mg9ssadXEFQeDz7+7GbeKnvAEdPO
+	gyBLHpoDJpoXTZuP4+VpLfUq+REoxBpsJKrVsGoVoyG323K3CMQ+Mg7I7h6zzgBmOlAFNJ
+	qvWe4rFFs0JtRwOXbR0GS1t9z1azF07i/816gfCyPrL/Vu3e6ty9Cl6TWvoqsA==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020e; t=1760637836;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=CmaG09FybF1QSupTskdEfI0OuLqWwGIEPddqcjGF0uA=;
+	b=iLgXZLXvAsqSuL4039yFWiptIlpAqYFTWXBTu3nSxJKFRpxJ10YaIX4gYfJOYsBPHQ5zC9
+	gYasGwhAFrIXN6Cw==
+To: Charles Mirabile <cmirabil@redhat.com>
+Cc: Lucas Zampieri <lzampier@redhat.com>, linux-kernel@vger.kernel.org, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
+ Samuel Holland <samuel.holland@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti
+ <alex@ghiti.fr>, Vivian Wang <dramforever@live.com>,
+ devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, Zhang
+ Xincheng <zhangxincheng@ultrarisc.com>
+Subject: Re: [PATCH v5 3/3] irqchip/plic: add support for UltraRISC DP1000 PLIC
+In-Reply-To: <CABe3_aH3YE9wWonH1j09-eCarhzhhRReNAOwmEMs5YjkOvvoiQ@mail.gmail.com>
+References: <20251016084301.27670-1-lzampier@redhat.com>
+ <20251016084301.27670-4-lzampier@redhat.com> <87plan0yvd.ffs@tglx>
+ <CABe3_aGj68qM1bNZ3LExbexO=9FO4RzJxhUy2T+HKK1qZfBmtw@mail.gmail.com>
+ <87ms5q25cm.ffs@tglx>
+ <CABe3_aH3YE9wWonH1j09-eCarhzhhRReNAOwmEMs5YjkOvvoiQ@mail.gmail.com>
+Date: Thu, 16 Oct 2025 19:53:26 +0200
+Message-ID: <87h5vy20o9.ffs@tglx>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH v4 07/14] drm/imx: dc: Add DPR channel support
-To: Liu Ying <victor.liu@nxp.com>, Philipp Zabel <p.zabel@pengutronix.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Dmitry Baryshkov <lumag@kernel.org>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, Frank Li <Frank.Li@nxp.com>
-References: <20251016-imx8-dc-prefetch-v4-0-dfda347cb3c5@nxp.com>
- <20251016-imx8-dc-prefetch-v4-7-dfda347cb3c5@nxp.com>
-Content-Language: en-US
-From: Marek Vasut <marek.vasut@mailbox.org>
-In-Reply-To: <20251016-imx8-dc-prefetch-v4-7-dfda347cb3c5@nxp.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-MBO-RS-META: oisd1xzkoiz1sooehr5hspunmxjz571t
-X-MBO-RS-ID: eee63f1da7d39cab528
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-On 10/16/25 8:32 AM, Liu Ying wrote:
+On Thu, Oct 16 2025 at 12:52, Charles Mirabile wrote:
+> On Thu, Oct 16, 2025 at 12:12=E2=80=AFPM Thomas Gleixner <tglx@linutronix=
+.de> wrote:
+>> >>         bit =3D ffs(pending) - 1;
+>> >>         handler->enabled_clear[group] |=3D BIT(bit);
+>> >>         for (int i =3D 0; i < nr_irq_groups; i++)
+>> >>                 writel_relaxed(handler->enabled_clear[i], enable + i =
+* sizeof(u32));
+>> >>         handler->enabled_clear[group] =3D 0;
+>> >>
+>> >> No?
+>> >
+>> > Sure that would also work, but why are we using ffs (slow) only to
+>> > shift the result back to make a new mask when (x & -x) is faster and
+>> > skips the intermediate step delivering immediately the mask of the
+>> > lowest bit.
+>>
+>> Because I did not spend time thinking about it.
+>
+> Sorry, did you mean "because I had not considered the original
+> approach carefully enough" or "because this other approach, while
+> slower, is more self evidently correct."
 
-Hello Liu,
+I did not think about x & -x :)
 
-> +++ b/drivers/gpu/drm/imx/dc/Kconfig
-> @@ -1,6 +1,7 @@
->   config DRM_IMX8_DC
->   	tristate "Freescale i.MX8 Display Controller Graphics"
->   	depends on DRM && COMMON_CLK && OF && (ARCH_MXC || COMPILE_TEST)
-> +	depends on IMX_SCU
-Can the SCU dependency be made optional, or per-module, or somehow 
-abstracted out (via regmap?), so iMX95 support can be added into the 
-driver easily too ?
+>> It's a pointer in struct plic_handler (or whatever it's named) and you
+>> can allocate it when the quirk is required. The pointer is definitely
+>> not a burden for anyone else.
+>
+> This I still don't understand how this is particuarly helpful. Since
+> we are doing mmio, this is going to be an explicit loop and not a
+> memcpy. The code is branchless in either case (set equal for the check
+> of i against j negate and and with mask before loading into the mmio).
 
-Thank you
+Fair enough. I did not think in RISC ASM :)
 
