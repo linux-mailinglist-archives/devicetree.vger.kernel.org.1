@@ -1,197 +1,154 @@
-Return-Path: <devicetree+bounces-227472-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227474-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 685CFBE1E65
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 09:24:03 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id BE209BE1E77
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 09:24:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 3CEF94F3809
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 07:24:02 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 5ACF74F43C1
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 07:24:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA45E2E5B0E;
-	Thu, 16 Oct 2025 07:23:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F3C02F9DA7;
+	Thu, 16 Oct 2025 07:24:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="lcehCPxd"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="tbj63GWZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24EDC2E1F08
-	for <devicetree@vger.kernel.org>; Thu, 16 Oct 2025 07:23:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71EF42E36FB
+	for <devicetree@vger.kernel.org>; Thu, 16 Oct 2025 07:24:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760599438; cv=none; b=AUl12/LpwjzRTi0sJLWmvHxVX83X17PJaROIPZ8K9iM8LtTEOcpdPLxSPGNQbtWRW//DizzyORe3rxG607/qzQ6cUopdBtFZxgUpiXNSWGu2BqQWlpB60PMskb/OAcWum9ADSW8sPzN4WMVbjKBuKJgxWoxxkDqhc40lJbEQ620=
+	t=1760599485; cv=none; b=uhtXTV5pvByJTINWET7RLPAoDWED3P0lDwrp/kgUqZ5JWC7jklevHq6bi2jLd4QKu8JPO9DZosz6Ogdc9GRzSAfehPy/1l5i4gz+uKNxm3Jr3YcfhgvXxMudyHWAMHK3bHLRJU7IGZzoi+EnNbKTWyhxm9ebCYdtdrJh4QjGL68=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760599438; c=relaxed/simple;
-	bh=u/pvDB6NNeRtZsdN9ugitJ4p2VYbjeZ0yG4iEuphbPg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=shETIOwMvz8jnxKYUXvwKCz04QcA6T9Zn8XoiBozl6hY1r5J94Y8jQZc1N/WaHtuWiof9F5+ck47ioyk1dBqjMH3MNMIUBXegdiqS+N2kFgdU4WfGnE2BWk8X0NsHE+18n+OIJh/rIv8GthA/VobjR26yDK2/F6z7KUqZ7Ve32A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=lcehCPxd; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59G2O9nR023174
-	for <devicetree@vger.kernel.org>; Thu, 16 Oct 2025 07:23:56 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=HNGoDb+vaeJYhaVScXJVKuKu
-	/Vv4DWy6iQO7I53RXv0=; b=lcehCPxdI3Y3P4qM+yY4UhPyGsxAao5Pp/qdcZiG
-	OsMZzCfojghPy6kLmWAQuHukdmPKI5dtOZlrv9CZmxrYxZw3ADW99vJTtiqw7uce
-	1W44E0QRpEFdP8Xt7Ni1hOZTPYs+S9bKymX1SOX8a53k2jHcTGXeFn1dCi9FprYG
-	5PQ+D5Vpx+HOi4rGzhpdM8oY8w7+dIcLYDyv1McaTcRTL8QuOthKT0qUn2BD7onW
-	r2z4no7LHMbWIvn6qzyAiEJjYnv6jEHkWsXoxwOoXwPdhlRP8AXRe5Dmy2mx6dKM
-	FhCpW+uv2KioBWzyoLNYccyX7+jb30gQRDNOIx3WR+3p0A==
-Received: from mail-pg1-f199.google.com (mail-pg1-f199.google.com [209.85.215.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49tqvpgr08-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 16 Oct 2025 07:23:55 +0000 (GMT)
-Received: by mail-pg1-f199.google.com with SMTP id 41be03b00d2f7-b630b4d8d52so376367a12.3
-        for <devicetree@vger.kernel.org>; Thu, 16 Oct 2025 00:23:55 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760599435; x=1761204235;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=HNGoDb+vaeJYhaVScXJVKuKu/Vv4DWy6iQO7I53RXv0=;
-        b=mHYt2WhFLHKDjGWDYL7/UURDhfQsWwisAvso3O8SZP1u6az0KywJGEPTjuPO2PX6K/
-         mQByk4w0ueyFgiYwNqvbhsVMgWUBYgdnR7GEGDrnEcqQpUBwpxJaYe5e90MRV+DTZapF
-         If+PsRCgqOasG2N5TAJvPuXvFyvWPhWIcq48UygWA3ooDfsyKxJRFfbTRa1ZPIqZS59C
-         U0QyoyIYbhMJWoPGy8qiJU/wHAoJFsKKCsRAne8y7BGjUNJTD+vVvwe6KqA0sNo7vwfE
-         jfIKVV70xg13XHOuv7dfYiFyh4h1yug/mQAWH7twGB/vLsLBmLnqY38MSZuz8Qr68Rro
-         FebQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXWh5+0p7cooUzCiKzyBmxG8vwsiMPnwVmlnSFyjHJ7ldruRfUG7Kpp99IpElAP05/ifkJ651Jiyvw+@vger.kernel.org
-X-Gm-Message-State: AOJu0YysuyKCGaCC+Rw+5UKd+RY4AuOb0qs6boJCL9DvamaMm7YzxAgH
-	BQQQRYSJBx9PWUwPsbmbDIULtHqyQsdBOjY9oiKjyufHDNQZHNV0536EPLdae+pgLQF99sVk4nN
-	N88c/oN9548zFtCVQRy7odQoGxOsnoe1p/MB1dcad7kL0/61vHC1dNDb+JkfILfeQ
-X-Gm-Gg: ASbGncvYJlUSqOY8Mx2rOxwIQvHBM+W+cCagAD/V0R/930LJp9LmYiOMtu4FSlhFC5Y
-	4T2QC0bfVnQxIv5HFzv+7qhV5Neo/TWAZ80fpTowrei6tc95Ttb0plv0/95OyyCBpEukZTCbJut
-	bELhoGTjUbic8F5j3AgC9aYiJsjtGNGPqkRHr6mKdukQt5km0ZI6uKZ7YYojaPzbutLDKLRKDwb
-	ZdUpB2jyIEFhkEo+cu87wrG2jhGHwpk5NeFakE+psZFGJ3tfoKZbKHyOmIyY77VdWhfqUAVKNgx
-	7wBqNxvR4HVA92+LI7xbW5MIWcwgTYSOo84wpbLLhaoacKQ4Z5Dzl+3mzv1vyzlrc5YFOtpddKu
-	juu2IBuh1veM2B2PqKFXHSgIrt6Aj9T0FZZf0CVnT9DgH3g==
-X-Received: by 2002:a05:6a20:9147:b0:334:8d0b:6640 with SMTP id adf61e73a8af0-3348d0b695bmr6237491637.8.1760599434705;
-        Thu, 16 Oct 2025 00:23:54 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGwrFPYz5L+0gDGKdDM3zwqmU9HSI97jDmKx2e+L9OE61zcHAbhnCy3ioFU+PCD6S5glLBXkw==
-X-Received: by 2002:a05:6a20:9147:b0:334:8d0b:6640 with SMTP id adf61e73a8af0-3348d0b695bmr6237464637.8.1760599434258;
-        Thu, 16 Oct 2025 00:23:54 -0700 (PDT)
-Received: from hu-qianyu-lv.qualcomm.com (Global_NAT1.qualcomm.com. [129.46.96.20])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7992bb116basm21248313b3a.30.2025.10.16.00.23.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Oct 2025 00:23:53 -0700 (PDT)
-Date: Thu, 16 Oct 2025 00:23:51 -0700
-From: Qiang Yu <qiang.yu@oss.qualcomm.com>
-To: Abel Vesa <abel.vesa@linaro.org>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>,
-        Wenbin Yao <wenbin.yao@oss.qualcomm.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Bjorn Andersson <andersson@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-        konrad.dybcio@oss.qualcomm.com,
-        Prudhvi Yarlagadda <quic_pyarlaga@quicinc.com>
-Subject: Re: [PATCH v4 2/4] dt-bindings: PCI: qcom: Document the Glymur PCIe
- Controller
-Message-ID: <aPCdhz+kr/Hghol/@hu-qianyu-lv.qualcomm.com>
-References: <20250903-glymur_pcie5-v4-0-c187c2d9d3bd@oss.qualcomm.com>
- <20250903-glymur_pcie5-v4-2-c187c2d9d3bd@oss.qualcomm.com>
- <w2r4yh2mgdjytteawyyh6h3kyxy36bnbfbfw4wir7jju7grldx@rypy6qjjy3a3>
- <7dadc4bb-43a1-4d53-bd6a-68ff76f06555@kernel.org>
- <aO797ZyWIrm0jx2y@hu-qianyu-lv.qualcomm.com>
- <w4kphey3icpiln2sd5ucmxgo7yp72twwtnloi5z7a3r3a63fri@fbebffeibb7p>
+	s=arc-20240116; t=1760599485; c=relaxed/simple;
+	bh=5xo1wcMo2ObznNd0kT3fow7tyytTL4bVQLcZfQgpJNA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type:
+	 References; b=lk91/qPm2jpuj/lzhu+6X6TCiKxboJqVMahnU+kYqu1D9oPcIo8zFKDxorPBw0DJcpfmtnQKFWgavqLc3Wf2N7lvusAfJS8ujvmG5Ts/BVY6KjIOzW3VJbBQ5NWyWkynT6ZYAF7FbjRObtSMG1Aw39waVjcHTkuezHDvmDg6O6M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=tbj63GWZ; arc=none smtp.client-ip=203.254.224.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas2p2.samsung.com (unknown [182.195.41.54])
+	by mailout3.samsung.com (KnoxPortal) with ESMTP id 20251016072440epoutp03c81fdc36aa3d7e5541643fcee3202897~u5_ZEr7R_1980719807epoutp03L
+	for <devicetree@vger.kernel.org>; Thu, 16 Oct 2025 07:24:40 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20251016072440epoutp03c81fdc36aa3d7e5541643fcee3202897~u5_ZEr7R_1980719807epoutp03L
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1760599480;
+	bh=uvPq6Yt+OkoQhl8rEe9LIjf6WFzUTfhhECRiJsOl0Bc=;
+	h=From:To:Cc:Subject:Date:References:From;
+	b=tbj63GWZxqzCPC8PYsOY+XfeMnVB0vOuEdTaZJXyo2jCzNkQkO0XOQUVZP/3CSqH/
+	 6dCoAN/I+/NyXLfeyzKebRV1eserjrrQcIxzPZiiC7OygmKrNZkpzypobelJF7jOsC
+	 IlGr+9k9jqqzKLd0OH584kP7OPTfBFkg7ipGewlM=
+Received: from epsnrtp02.localdomain (unknown [182.195.42.154]) by
+	epcas2p2.samsung.com (KnoxPortal) with ESMTPS id
+	20251016072439epcas2p263c9131a1e33874315c5c755bc31cbac~u5_Yjl-863251532515epcas2p2I;
+	Thu, 16 Oct 2025 07:24:39 +0000 (GMT)
+Received: from epcas2p2.samsung.com (unknown [182.195.38.202]) by
+	epsnrtp02.localdomain (Postfix) with ESMTP id 4cnKGH4Tdzz2SSKk; Thu, 16 Oct
+	2025 07:24:39 +0000 (GMT)
+Received: from epsmtip1.samsung.com (unknown [182.195.34.30]) by
+	epcas2p4.samsung.com (KnoxPortal) with ESMTPA id
+	20251016072438epcas2p4c090c6e0433452e0ee061b115398dddf~u5_XoFJ9x2416724167epcas2p45;
+	Thu, 16 Oct 2025 07:24:38 +0000 (GMT)
+Received: from asswp60 (unknown [10.229.9.60]) by epsmtip1.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20251016072438epsmtip14a5e9c18ff706ff09ae7d4bf88c40cf5~u5_XimSB72023420234epsmtip1c;
+	Thu, 16 Oct 2025 07:24:38 +0000 (GMT)
+From: Shin Son <shin.son@samsung.com>
+To: Bartlomiej Zolnierkiewicz <bzolnier@gmail.com>, Krzysztof Kozlowski
+	<krzk@kernel.org>, "Rafael J . Wysocki" <rafael@kernel.org>, Daniel Lezcano
+	<daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>, Lukasz Luba
+	<lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, Henrik Grimler
+	<henrik@grimler.se>
+Cc: Shin Son <shin.son@samsung.com>, linux-pm@vger.kernel.org,
+	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v7 0/3] Add exynosautov920 thermal support
+Date: Thu, 16 Oct 2025 16:24:26 +0900
+Message-ID: <20251016072429.1933024-1-shin.son@samsung.com>
+X-Mailer: git-send-email 2.50.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <w4kphey3icpiln2sd5ucmxgo7yp72twwtnloi5z7a3r3a63fri@fbebffeibb7p>
-X-Authority-Analysis: v=2.4 cv=aPD9aL9m c=1 sm=1 tr=0 ts=68f09d8c cx=c_pps
- a=Oh5Dbbf/trHjhBongsHeRQ==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=kj9zAlcOel0A:10 a=x6icFKpwvdMA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=gEfo2CItAAAA:8 a=AS9496Lnv1pbona6PS0A:9
- a=CjuIK1q_8ugA:10 a=_Vgx9l1VpLgwpw_dHYaR:22 a=sptkURWiP4Gy88Gu7hUp:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDE2MDAxNyBTYWx0ZWRfX+lLahzoUZpRt
- Bg/iORzYFeJkES6IF03E3NRdjb/8OGDb1VYdvoxUXrBp4GoLhFpMn07nlcjBqeTGmp0ik2xpofM
- ofvJ9Qzuz1XDb72Cxc+8eI6LzZVMjE19Paa/waE/OaRwV55F42Aoe3KAPpqIj+IjuxHbjLQz88U
- oY1gEEPxz34H79onh3MDoD8bqW717MMvlgBwXb9pkeXY3gvLIUDtWQ7Kc8GCzQoYqjTfD+MPlOF
- fJn0qp242dWLTyijMr7eTM/Vra61HT2L09xsi0yBQMQzIAdK/iUeY7zaxfSkSW8EkM7/C5UuAT+
- OhUf9w2xbx3fbMnnj4MbcEzYZ/DYeI2G/hgF4l0Z0i6SqMqf1HaZ/PK8PWjkDRDSqrHKJDXfYSO
- i9JncBpZatoEgR1GOQM9JgWVOk8ulA==
-X-Proofpoint-ORIG-GUID: b5YzDQmaE6bnbXDafYmVeBIMjkJKShNv
-X-Proofpoint-GUID: b5YzDQmaE6bnbXDafYmVeBIMjkJKShNv
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-10-16_01,2025-10-13_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 adultscore=0 impostorscore=0 lowpriorityscore=0 clxscore=1015
- bulkscore=0 suspectscore=0 malwarescore=0 phishscore=0 priorityscore=1501
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2510020000 definitions=main-2510160017
+Content-Transfer-Encoding: 8bit
+X-CMS-MailID: 20251016072438epcas2p4c090c6e0433452e0ee061b115398dddf
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+CMS-TYPE: 102P
+cpgsPolicy: CPGSC10-234,Y
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20251016072438epcas2p4c090c6e0433452e0ee061b115398dddf
+References: <CGME20251016072438epcas2p4c090c6e0433452e0ee061b115398dddf@epcas2p4.samsung.com>
 
-On Wed, Oct 15, 2025 at 09:58:31AM +0300, Abel Vesa wrote:
-> On 25-10-14 18:50:37, Qiang Yu wrote:
-> > On Sun, Oct 12, 2025 at 05:01:45AM +0200, Krzysztof Kozlowski wrote:
-> > > On 11/10/2025 14:15, Abel Vesa wrote:
-> > > >>  
-> > > >>  properties:
-> > > >>    compatible:
-> > > >> -    const: qcom,pcie-x1e80100
-> > > >> +    oneOf:
-> > > >> +      - const: qcom,pcie-x1e80100
-> > > >> +      - items:
-> > > >> +          - enum:
-> > > >> +              - qcom,glymur-pcie
-> > > >> +          - const: qcom,pcie-x1e80100
-> > > >>  
-> > > > 
-> > > > The cnoc_sf_axi clock is not found on Glymur, at least according to this:
-> > > > 
-> > > > https://lore.kernel.org/all/20250925-v3_glymur_introduction-v1-19-24b601bbecc0@oss.qualcomm.com/
-> > > > 
-> > > > And dtbs_check reports the following:
-> > > > 
-> > > > arch/arm64/boot/dts/qcom/glymur-crd.dtb: pci@1b40000 (qcom,glymur-pcie): clock-names: ['aux', 'cfg', 'bus_master', 'bus_slave', 'slave_q2a', 'noc_aggr'] is too short
-> > > >         from schema $id: http://devicetree.org/schemas/pci/qcom,pcie-x1e80100.yaml#
-> > > > 
-> > > > One more thing:
-> > > > 
-> > > > arch/arm64/boot/dts/qcom/glymur-crd.dtb: pci@1b40000 (qcom,glymur-pcie): max-link-speed: 5 is not one of [1, 2, 3, 4]
-> > > >         from schema $id: http://devicetree.org/schemas/pci/qcom,pcie-x1e80100.yaml#
-> > > > 
-> > > 
-> > > So that's another Glymur patch which wasn't ever tested?
-> > 
-> > I tested all of these patch and also did dtb checks. That's how I found
-> > cnoc_sf_axi clock is not required. There was a discussion about whether we
-> > need to limit max speed to 16 GT and I limited it. I may forget to do dtb
-> > checks again after changing it to 32 GT. Let me push another patch to fix
-> > this.
-> 
-> Still, you need to add glymur specific clocks entry then, to fix the schema
-> w.r.t cnoc_sf_axi not being needed.
->
+This patch series adds support for exynosautov920, automotive-grade
+processor. Although the exynosautov920's TMU hardware differs slightly
+from exisiting platform, its read and calibration logic closely follow
+our legacy TMU interface. To prevent runtime and build time errors,
+it is kept as a single change rather than being split.
 
-I think the clock-names too short (cnoc_sf_axi not needed) issue has been
-fixed by below change.
-https://lore.kernel.org/all/20250919142325.1090059-1-pankaj.patil@oss.qualcomm.com/
+This change merges the new exynosautov920-specific register definitions and
+timing parameters into the exynos-tmu driver, ensuring consistent behavior
+across all Exynos series. All new code paths have been tested on a
+exynosautov920 board and verified to correctly read temperatures and
+emulate behavior.
 
-About the max-link-speed issue, we will remove max-link-speed = <5> in dts
-as max-link-speed is used to limit speed but I'm not limiting it.
+Changes in v7:
+- Use lowercase hex for register address
+- Dropped unnecessary 'minItems' from properties.
+- Added restriction for 'clock-names'
 
-- Qiang Yu
-> 
-> Best regards,
-> Abel
+Changes in v6:
+- Add a reviewer for the thermal driver patch.
+
+Changes in v5:
+- Changed the maximum number of thermal sensors to 15.
+
+Changes in v4:
+- Kept 'addtionalProperties: false'.
+- Removed the 'samsung,hw-sensor-indices' property in the binding.
+- Added the 'samsung,sensors' property in the binding.
+- Dropped code-like formatting and rewrote the description in plain,
+  hardware-focused language in the commit message.
+- Removed the bitmap and replaced the tz_count to sensor_count.
+
+Changes in v3:
+- Removed redundant commit message.
+- Rephrased the sentences to describe the hardware clearly.
+- Restricted sensor indices to V920.
+- Set #thermal-sensor-cells per variant.
+- Replaced 'additionalProperties' with 'unevaluatedProperties'.
+- Removed the duplicate #define and use the original.
+- Used lowercase hex in #define.
+- Simplified 'temp_to_code' and 'code_to_temp' to one computation
+  path by normalizing calib_temp.
+
+Changes in v2:
+- Replace the generic property with a vendor-specific one.
+- Added an indices property instead of ranges.
+- Shortened thermal node name and made them more generic.
+- Updated the indices logic accordingly after removing the ranges property.
+
+Shin Son (3):
+  dt-bindings: thermal: samsung: Adjust '#thermal-sensor-cells' to 1
+  thermal: exynos_tmu: Support new hardware and update TMU interface
+  arm64: dts: exynosautov920: Add multiple sensors
+
+ .../thermal/samsung,exynos-thermal.yaml       |  33 +-
+ .../boot/dts/exynos/exynosautov920-tmu.dtsi   | 377 ++++++++++++++++++
+ .../arm64/boot/dts/exynos/exynosautov920.dtsi |  31 ++
+ drivers/thermal/samsung/exynos_tmu.c          | 322 +++++++++++++--
+ 4 files changed, 725 insertions(+), 38 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/exynos/exynosautov920-tmu.dtsi
+
+-- 
+2.50.1
+
 
