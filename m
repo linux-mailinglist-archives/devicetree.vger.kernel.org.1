@@ -1,150 +1,115 @@
-Return-Path: <devicetree+bounces-227736-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227737-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A850BE40E3
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 16:59:54 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 54DD2BE4212
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 17:10:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 457E44FE780
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 14:59:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E2F823B613C
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 15:08:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C85E3469FC;
-	Thu, 16 Oct 2025 14:59:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FDB02E425F;
+	Thu, 16 Oct 2025 15:08:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HiN9j2zB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YqYEJwnZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BE44341ACF
-	for <devicetree@vger.kernel.org>; Thu, 16 Oct 2025 14:59:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AD891D554;
+	Thu, 16 Oct 2025 15:08:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760626752; cv=none; b=J2dAtBr6wNmRiPAI98GAVMi1lBKhSk2UukYXGOBkQMA1mClcC4mtw6kxSbq5uEnsmQCaoZw6b4KuzglEq8t5UROBDyxHlkbFu/+CH8fcqtSOLZI8bQJUZMkgPnFKYIIYoPd3+YBBYnbbGI2FDsbVTkCf58/8/0MU+7ax+nB1aI0=
+	t=1760627284; cv=none; b=Bd+rKi0c3xN+E8/jOzC7OWVfW2gN6inL1DNJHoHWfijqADSfhxYpfAnst2UM48aOsqrcr1fthlvcFAoOlUgPtQWlQEYgV/vCohHriJU9rdfWFHI7axH8rfUSTClr/AFgu9HZaB121V7Zoqmu4wJgA+8OkeQvby79u0akOH7fGE0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760626752; c=relaxed/simple;
-	bh=aqoyK5b4pV8L0+QOWtOd8nJmahq+LYPH19Z5q3W5EyM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=On/k0kVWukLgIjaF0Tl9KLmKh8oeTjKZlLRpY2+MEO4lbi0OnYagKO92V/4QD9cuI2FkhMDePDm88RB1E7kTmuEY9v35zM7i4bkQUXVSzxdLpvghvcHL/K7dbqgdTQXhKYOMJ6zjWtAqWGq2/AS7ZA2koM3Vn2hbrwCjfCd7j4E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=HiN9j2zB; arc=none smtp.client-ip=209.85.167.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-5903e6fc386so126223e87.2
-        for <devicetree@vger.kernel.org>; Thu, 16 Oct 2025 07:59:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1760626748; x=1761231548; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=l3SCwf4QRuIuRCKS4d3mSdP9dIfExgcs4ZcKTP0uVC8=;
-        b=HiN9j2zBvYHcpFFU4vMtcBGHlVjh7Vj+59BH7QPNBwJGin4FqNBswoK36npdq/VaKt
-         rnq6kDvIe/NC0Dc9jpagBwMtWCNIWDa+4w0MJojA5OLwXjx3jIHIVNPSH5QQLV4RzsDe
-         IpRjhlpZL3p61MD+2YcbI7gjZOTKebWJFK80f9eiarq/mB5eVL60LPYCcKKYQkIrsaPI
-         xYzzc6Ey4u0CAYtHN+viHWzv8Iiw+oFrad0oglv4xOmkRQIt31AJ7Z50GAtOyE0a4eDo
-         sCd2NLlOLz6ou+auLKJVUxLJFhzDipgBytREaEucrLxRzXM0OpceYtoeHtw/Kibr3q5p
-         HPpQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760626748; x=1761231548;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=l3SCwf4QRuIuRCKS4d3mSdP9dIfExgcs4ZcKTP0uVC8=;
-        b=Ui/NQefR+bk2NwwyqagTCUd5OtzuYfZEjUy00lBd/M7fHLcsikPvNjDy7oeCAs4Qo2
-         x44xoURy5YmU//9KvhjUzrZT8kh76I+I/iZmBDfZDlnx2ymMiX99Aaajr7Ury9G1+Ljm
-         wiMnQ2wSv4PlAJELpw8dlCkAuxO5H8SDRXRJIno7xyn2jcaHT/5EIlIigxqivjbp6yof
-         Tu2PIGMAGG+qC4n0BuE32EgSl2ly/DpZW4pxZpFhtsdqHNvPbsoh01hOqasT5ROC9Cx9
-         CoHXuLBnOhoo7jXPAtQIWY8XJbqzgykYpnrkABpkfvzt5RrtdhhJAVFe/RsgGZm+Vu7b
-         if1w==
-X-Forwarded-Encrypted: i=1; AJvYcCX4eTf1qaUMStRmBKxBUHKB53sKNayKPTq2uCI/S9d3Y3bZiP0GUqImE4b2yfXv1PZbXIWIfovnFFgl@vger.kernel.org
-X-Gm-Message-State: AOJu0YyZZIYlx9G8iRDbZ/pH68lQIf9IB4QGKrjbGQQfPnmRLGzKwIqz
-	9Y7N83lJ2gDrEYL/PPAA9R1JqsZirdD+AlWGV+TZDa7gRO+XAiOe3k21jGk94KhSW48=
-X-Gm-Gg: ASbGncssjyWmuJUZzrYO/JkytFCIu4Mwvvqi0bHRcGnhP5GpPXCa7T0hn9nelMQT7MU
-	nEYBYA12/gDZBX0rirdgAABBU69Wippqv31PVXR48FgV58OpOvJojJ057N+farT1kYY7SW73v22
-	6LI/dzFDp3BJ4+/++MRI3D491zEHGwljMYoD0IQpOARsFVNvUxfJyRYFLwmJP1yt2BlXgci3I5R
-	tj9BqnBJtvs3Xhg12oIqFFf0nMkWRLutMhGIetlwN5X6r9XvVC0Uha6z24mM/Wd1mfTKTTTPWlF
-	a/r4VTA3fJtkCBxF5cAUobizolEyWzjT7+wPwvse5Nm5rCo94/QEV/+U6kieTXXDQ0CMHMwUilu
-	XLY/bLASRBpnsMD3SUq9QkOEwR2AiykwyR4ueW+Vr07L0Oe+L7uKROd2oeogXPiFWUNb0D64Gzm
-	jqmMKJPvlvjXWmU9ASzpRyzukTtJKyxpNaouaSX60ImlJwIzBWWx201plQAjuLfQasVX4FzA==
-X-Google-Smtp-Source: AGHT+IGdNDgtmwm6+LARkC9Pg+AOicIgMi7tFiszGJ9W+MAY//8AYywpy9+uYECJSeW8kXaGcH2ugw==
-X-Received: by 2002:a05:6512:2398:b0:55f:433b:e766 with SMTP id 2adb3069b0e04-591d874d51fmr56008e87.7.1760626746704;
-        Thu, 16 Oct 2025 07:59:06 -0700 (PDT)
-Received: from [192.168.1.100] (91-159-24-186.elisa-laajakaista.fi. [91.159.24.186])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5908820d20bsm7161649e87.54.2025.10.16.07.59.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 16 Oct 2025 07:59:06 -0700 (PDT)
-Message-ID: <628b0080-9977-4230-85ca-8685562e3fa6@linaro.org>
-Date: Thu, 16 Oct 2025 17:59:04 +0300
+	s=arc-20240116; t=1760627284; c=relaxed/simple;
+	bh=9uRFDjS7+x3BdeOr54o/KLXkg1iz2txFLMHKgJwlcVs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hl84j+UQy04TR/e636SRPLzIZXxkZ4oQxO0+EdxS7aM/wiZw1GABMBzPbJAz8XLhiGcjVdTfA3Yfc5QjWZLJ5w6H3kE5VuZYGmpaOYM0SUOFoLUNYekzuN1HYz/X1+7iY6gNqDus3wN/wGknEJj4LnSvByyRvji1a751zPbdaGw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YqYEJwnZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 303D8C4CEF1;
+	Thu, 16 Oct 2025 15:08:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1760627283;
+	bh=9uRFDjS7+x3BdeOr54o/KLXkg1iz2txFLMHKgJwlcVs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=YqYEJwnZ9PaMkDSnk875mAyc7GIhHZvNahcwqpD0zMtBraAlDgHef9/zw6CM4Q+Nr
+	 gmUkp175Hasp5o7BiFGTwL+H7eRH6p+Pr5gEqUS//72CSyGVTIWK/yeXhdeEV0bBDE
+	 YftO8/7wbA5vimMubS4ECH391sHnZNtbpG3pwnwCtKYH59sOU6V0icj7Z4HMo35sYv
+	 nT7qCj1guSL0XomnOb4YWEVUFwRLl3H4xm5ZbQ4Wikb3QO9cwgSdnH5V96dBoO8P9Y
+	 c2wEOQunvZlbOwmga/RPRN7JOpAQ7/+M0sOyYoFalQmip65/xVyujrwGxsqsBCrqvd
+	 xk/PrKp9WQfxg==
+Date: Thu, 16 Oct 2025 16:07:58 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Mikhail Kshevetskiy <mikhail.kshevetskiy@iopsys.eu>
+Cc: Lorenzo Bianconi <lorenzo@kernel.org>, Ray Liu <ray.liu@airoha.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Andy Shevchenko <andy@kernel.org>,
+	linux-arm-kernel@lists.infradead.org, linux-spi@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-mediatek@lists.infradead.org,
+	Andreas Gnau <andreas.gnau@iopsys.eu>
+Subject: Re: [PATCH v10 02/16] spi: airoha: remove unnecessary restriction
+ length
+Message-ID: <0ccbe966-2e93-46a6-aad1-7715f289c275@sirena.org.uk>
+References: <20251012121707.2296160-1-mikhail.kshevetskiy@iopsys.eu>
+ <20251012121707.2296160-3-mikhail.kshevetskiy@iopsys.eu>
+ <dbefe024-9b5c-4531-abb9-a1a7e9d3d769@sirena.org.uk>
+ <177bcba2-2358-424a-a22c-9bd8b42cbeae@iopsys.eu>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] media: qcom: camss: Enable setting the rate to
- camnoc_rt_axi clock
-Content-Language: ru-RU
-To: Loic Poulain <loic.poulain@oss.qualcomm.com>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- Krzysztof Kozlowski <krzk@kernel.org>,
- Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>, Robert Foss
- <rfoss@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Todor Tomov <todor.too@gmail.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, linux-i2c@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-media@vger.kernel.org
-References: <20251014-add-new-clock-in-vfe-matching-list-v1-1-0d965ccc8a3a@oss.qualcomm.com>
- <9984bc23-05ef-4d46-aeb8-feb0a18e5762@kernel.org>
- <bc0caeb8-c99b-4bef-a69e-5ce433e6b890@oss.qualcomm.com>
- <c4fd6bfc-cc9a-4f37-99b3-f36466691a1e@linaro.org>
- <CAFEp6-2=GJL-gc+PSyAL4=prp_sXdZJS=Ewg5nP2kcp_Gu85Fw@mail.gmail.com>
-From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-In-Reply-To: <CAFEp6-2=GJL-gc+PSyAL4=prp_sXdZJS=Ewg5nP2kcp_Gu85Fw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="pJBUQKF41vwGzvXX"
+Content-Disposition: inline
+In-Reply-To: <177bcba2-2358-424a-a22c-9bd8b42cbeae@iopsys.eu>
+X-Cookie: Whoever dies with the most toys wins.
 
-On 10/16/25 15:22, Loic Poulain wrote:
-> On Thu, Oct 16, 2025 at 1:50 PM Bryan O'Donoghue
-> <bryan.odonoghue@linaro.org> wrote:
->>>>>
->>>>> diff --git a/drivers/media/platform/qcom/camss/camss-vfe.c b/drivers/media/platform/qcom/camss/camss-vfe.c
->>>>> index ee08dbbddf88..09b29ba383f1 100644
->>>>> --- a/drivers/media/platform/qcom/camss/camss-vfe.c
->>>>> +++ b/drivers/media/platform/qcom/camss/camss-vfe.c
->>>>> @@ -914,7 +914,8 @@ static int vfe_match_clock_names(struct vfe_device *vfe,
->>>>>      return (!strcmp(clock->name, vfe_name) ||
->>>>>              !strcmp(clock->name, vfe_lite_name) ||
->>>>>              !strcmp(clock->name, "vfe_lite") ||
->>>>> -           !strcmp(clock->name, "camnoc_axi"));
->>>>> +           !strcmp(clock->name, "camnoc_axi") ||
->>>>> +           !strcmp(clock->name, "camnoc_rt_axi"));
->>>>
->>>> Just use camnoc_axi for both. Look at your bindings - why do you keep
->>>> different names for same signal?
->>>
->>> I think the correct question to ask is:
->>>
->>> Is camnoc_axi going to represent the other (NRT) clock in this
->>> setting?
->>>
->>> Konrad
->>
->> I'm - perhaps naively - assuming this clock really is required ... and
->> that both will be needed concurrently.
-> 
-> AFAIU, the NRT clock is not in use for the capture part, and only
-> required for the offline processing engine (IPE, OPE), which will
-> likely be described as a separated node.
-> 
 
-Does it mean the clock handling should be removed from QCM2290 or
-X1E80100 VFEx resources? Has it been tested/verified?
+--pJBUQKF41vwGzvXX
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
--- 
-Best wishes,
-Vladimir
+On Thu, Oct 16, 2025 at 04:39:19PM +0300, Mikhail Kshevetskiy wrote:
+
+> Could you give me an advice?
+
+> This patch series consist of:
+> 1) bug fixes (patches 1, 3, 5, 6, 13)
+
+I note that 13 isn't tagged as a fix.
+
+> 2) removing of boot related dirty hack, absolutely necessary for older
+> kernels (patch 12 and preparation patches 9-11)
+> 3) improvements (patches: 2, 8)
+> 4) cleanups (patches: 4, 7)
+> 5) support of en7523 SoC (patches: 14-16)
+
+Fixes, cleanups, general improvements, the new device support.
+
+--pJBUQKF41vwGzvXX
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmjxCk0ACgkQJNaLcl1U
+h9CYxQf/Zam73IWvHoogSMEqvn1+FjvwC3ymOKtI15IO14X1QPWD8W+JGl44lCA/
+McicUAUY7SS/J/b9phJ5I9ubrseMWvT6IxzWovf7apQAOp7n96tf4xJT6qfOZPOJ
+YqW8COZF2RzHVYgT5074JjOI2cgpnmXjEEmskwvK7y+VJbEl5rqYCEo5tF6rHQsl
+VBnNVP/3RhBLOGdDJcoDEeHew+uRR4RGhYOAEB0VCJXK393VVNLdsaPzo59wFSH6
+ilwlEkybKrX5pXVOaHNAEDMMBGRBalLgBIciNYqjz2nYrP1ugYAwFR/f4cRdo1qJ
+Rd1gh0XVNefMf3rr6rq670m6gXtOhA==
+=tBz1
+-----END PGP SIGNATURE-----
+
+--pJBUQKF41vwGzvXX--
 
