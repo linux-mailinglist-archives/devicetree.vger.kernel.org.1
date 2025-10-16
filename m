@@ -1,59 +1,73 @@
-Return-Path: <devicetree+bounces-227815-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227816-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52C98BE49AD
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 18:33:11 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 51274BE49E1
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 18:38:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0C3AC42220A
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 16:33:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B9C75189D744
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 16:38:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8D1721578D;
-	Thu, 16 Oct 2025 16:33:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eiQU7EmV"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84FA1341656;
+	Thu, 16 Oct 2025 16:38:08 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9163232D0CA;
-	Thu, 16 Oct 2025 16:33:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63F8932AAC3;
+	Thu, 16 Oct 2025 16:38:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760632387; cv=none; b=E16aanKqS6aGXKUcAV/qLzlrCY0EdUQxqs/et+e+3k78aAgaM3AOaZiudmiHg98kG4tT8w/KG7kFKh2owefP/bUDBb5evGERTBDNc93vM0pk9AI0/HuM1STehPikJ0b4P4rHARWMALW0ebJ92f6UjedihHsmS817IVt5n6/+Puk=
+	t=1760632688; cv=none; b=e0Eh+IC71BjI38YfUZsD9syNnHzuiYLfhYufnbTLkG6Aqn6zlxB/liG/3K1K5vP483IuavW/q3lbssH6wTcbMMOWtgLKakAdKXaqY2Ig3gKs+4COiBd/3BRsU0V0NB1VdG1ncJkmaNtg+g7mMKtKou3NZqOU1O3PLzdd3NpQ/HQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760632387; c=relaxed/simple;
-	bh=Ps6/tS1Hgxj9m4RTd+Gf9Pe8KrRYTPDWnoO8GqQp4fo=;
+	s=arc-20240116; t=1760632688; c=relaxed/simple;
+	bh=YxBKu+zIUX8CGJj4jbQUYQMuxHt2FoP59bIPuC+yGWA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Y+a4IhmU0EjQ+JrKrwyIF+PbVcXtQgXMFcx9AJWvP+NpMwdIRGntgAleVCJQ0eGu5P9lcqwUtt/L41JRoDa18/FLjZ4Jww87GGeu5x2p2ERGSNyTSy2rckD2JZGGFtvcqLmqrp2MiIf1CTqHGX89AhgXTnfcIhkg63uv0Bb+cK4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eiQU7EmV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 33A80C4CEF1;
-	Thu, 16 Oct 2025 16:33:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760632387;
-	bh=Ps6/tS1Hgxj9m4RTd+Gf9Pe8KrRYTPDWnoO8GqQp4fo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=eiQU7EmVBZeKMBQ+55jHw1BHzJGoAYwNj+vfRCNyRerQBoTmBskNi0ML0zBBOWIvm
-	 hZaBCGonW+tP3B2D/aX/q8RQDjsOst7DS9AMCgICneMGXgM6gA4AOki5dCi5UMTNhq
-	 eJysoFt2gvo8jDjR1etBjORW6eUOjcIPpK8QAbVyzxtoJuIc8EHVUmuVhGAp4oi0K2
-	 5QGAf2s1md7QoucnQQqbL9Ne43qoA+9B/gdV8NQTldUMSz1zu0vbBhyrjUn0G61d0W
-	 iPZak4DeJ5/PwHoWCADWJrv2P5KI+OvinXUrJRrQmP6eVILL94o0AxYWHRCTlPtOSu
-	 2ldxc89KZnSlw==
-Date: Thu, 16 Oct 2025 11:33:05 -0500
-From: Rob Herring <robh@kernel.org>
-To: Lothar Rubusch <l.rubusch@gmail.com>
-Cc: krzk+dt@kernel.org, conor+dt@kernel.org, dinguyen@kernel.org,
-	martin.petersen@oracle.com, pabeni@redhat.com, rostedt@goodmis.org,
-	bhelgaas@google.com, arnd@arndb.de, matthew.gerlach@altera.com,
-	tien.fong.chee@altera.com, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v6 10/11] dt-bindings: altera: removal of generic PE1 dts
-Message-ID: <20251016163305.GA3255795-robh@kernel.org>
-References: <20251015194416.33502-1-l.rubusch@gmail.com>
- <20251015194416.33502-11-l.rubusch@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=Q2VVpwWnhfAKEujn45Ap5KTrjohUbkjzQlLn/OcIESwXATi0CS22cjECqQJnrSwsuK9qcH8RM6i2Tk8JlXTGwbN8SxTrf7Fo0hGUXvJmNRDmj3apkutmHAotrBLFACpj1U8xoU5dWErPGK5fEWxHtbUYURWMu1JoOXdptOr5jCk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
+Received: from local
+	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+	 (Exim 4.98.2)
+	(envelope-from <daniel@makrotopia.org>)
+	id 1v9Qz1-000000002mr-31Oo;
+	Thu, 16 Oct 2025 16:37:43 +0000
+Date: Thu, 16 Oct 2025 17:37:36 +0100
+From: Daniel Golle <daniel@makrotopia.org>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: Sjoerd Simons <sjoerd@collabora.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	Ryder Lee <ryder.lee@mediatek.com>,
+	Jianjun Wang <jianjun.wang@mediatek.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Chunfeng Yun <chunfeng.yun@mediatek.com>,
+	Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Lee Jones <lee@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Lorenzo Bianconi <lorenzo@kernel.org>, Felix Fietkau <nbd@nbd.name>,
+	kernel@collabora.com, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, linux-pci@vger.kernel.org,
+	linux-phy@lists.infradead.org, netdev@vger.kernel.org,
+	Bryan Hinton <bryan@bryanhinton.com>
+Subject: Re: [PATCH 02/15] arm64: dts: mediatek: mt7981b-openwrt-one:
+ Configure UART0 pinmux
+Message-ID: <aPEfUBl6fMe6QYdY@makrotopia.org>
+References: <20251016-openwrt-one-network-v1-0-de259719b6f2@collabora.com>
+ <20251016-openwrt-one-network-v1-2-de259719b6f2@collabora.com>
+ <aPDnT4tuSzNDzyAE@makrotopia.org>
+ <5f430ff9-d701-426a-bf93-5290e6912eb4@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,42 +76,74 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251015194416.33502-11-l.rubusch@gmail.com>
+In-Reply-To: <5f430ff9-d701-426a-bf93-5290e6912eb4@collabora.com>
 
-On Wed, Oct 15, 2025 at 07:44:15PM +0000, Lothar Rubusch wrote:
-> Remove the binding for the generic Mercury+ AA1 on PE1 carrier board.
+On Thu, Oct 16, 2025 at 04:29:14PM +0200, AngeloGioacchino Del Regno wrote:
+> Il 16/10/25 14:38, Daniel Golle ha scritto:
+> > On Thu, Oct 16, 2025 at 12:08:38PM +0200, Sjoerd Simons wrote:
+> > > Add explicit pinctrl configuration for UART0 on the OpenWrt One board,
+> > > 
+> > > Signed-off-by: Sjoerd Simons <sjoerd@collabora.com>
+> > > ---
+> > >   arch/arm64/boot/dts/mediatek/mt7981b-openwrt-one.dts | 11 +++++++++++
+> > >   1 file changed, 11 insertions(+)
+> > > 
+> > > diff --git a/arch/arm64/boot/dts/mediatek/mt7981b-openwrt-one.dts b/arch/arm64/boot/dts/mediatek/mt7981b-openwrt-one.dts
+> > > index 968b91f55bb27..f836059d7f475 100644
+> > > --- a/arch/arm64/boot/dts/mediatek/mt7981b-openwrt-one.dts
+> > > +++ b/arch/arm64/boot/dts/mediatek/mt7981b-openwrt-one.dts
+> > > @@ -22,6 +22,17 @@ memory@40000000 {
+> > >   	};
+> > >   };
+> > > +&pio {
+> > > +	uart0_pins: uart0-pins {
+> > > +		mux {
+> > > +			function = "uart";
+> > > +			groups = "uart0";
+> > > +		};
+> > > +	};
+> > > +};
+> > > +
+> > >   &uart0 {
+> > > +	pinctrl-names = "default";
+> > > +	pinctrl-0 = <&uart0_pins>;
+> > >   	status = "okay";
+> > >   };
+> > 
+> > As there is only a single possible pinctrl configuration for uart0,
+> > both the pinmux definition as well as the pinctrl properties should go
+> > into mt7981b.dtsi rather than in the board's dts.
 > 
-> The removed Mercury+ AA1 on PE1 carrier board is just a particular
-> setup case, which is actually replaced by the set of generic Mercury+
-> AA1 combinations patch.
+> If there's really one single possible pin configuration for the UART0 pins,
+> as in, those pins *do not* have a GPIO mode, then yes I agree.
 > 
-> In other words a combination of a Mercury+ AA1 on a PE1 base board,
-> with boot mode SD card is already covered by the generic AA1
-> combinations. There is no further reason to keep this particular case
-> now in a redundantly. Thus the redundant DT setup is removed.
-> 
-> Signed-off-by: Lothar Rubusch <l.rubusch@gmail.com>
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->  Documentation/devicetree/bindings/arm/altera.yaml | 1 -
->  1 file changed, 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/altera.yaml b/Documentation/devicetree/bindings/arm/altera.yaml
-> index 73ba3cbff026..db61537b7115 100644
-> --- a/Documentation/devicetree/bindings/arm/altera.yaml
-> +++ b/Documentation/devicetree/bindings/arm/altera.yaml
-> @@ -31,7 +31,6 @@ properties:
->        - description: Mercury+ AA1 boards
->          items:
->            - enum:
-> -              - enclustra,mercury-pe1
+> If those pins can be as well configured as GPIOs, this goes to board DTS.
 
-Well, never mind I guess.
+I respectfully disagree and will explain below.
 
->                - enclustra,mercury-aa1-pe1
->                - enclustra,mercury-aa1-pe3
->                - enclustra,mercury-aa1-st1
-> -- 
-> 2.39.5
-> 
+All pinmux pins on the MediaTek platform also allow being configured as
+GPIOs. However, if you configure those as GPIOs the consequence is that
+you cannot use UART0 any more at all. So using UART0 at all always
+implies using exactly those pins, there is no alternative to that.
+
+Hence every board with every possible uses of pins 32 and 33 (there is
+only RX and TX for UART0, RTS/CTS flow-control is not possible) can be
+represented without needing to configure the pinctrl for uart0 on the
+board level. There isn't going to be any variation on the board-level
+when it comes to uart0. Either it is enabled (status = "okay";), and
+that will always imply using the 'uart0' group in mode 'uart', or, in
+case any of the two pins of uart0 is used for something else that means
+uart0 cannot be enabled. Simple as that.
+
+Hence there is no need to duplicate that pinctrl settings on each and
+every board, as controlling the 'status' property on the board-level
+already gives 100% freedom.
+
+(Sidenote: As even the BootROM already uses those two pins as UART for
+debug output, it is very unlikely that anyone would actually use them
+for anything else in production. Apart from being used as GPIOs you can
+also use pins 32 and 33 as an I2C target for external debug access to the
+registers of either the sgmii0_phy, sgmii1_phy or u3_phy. However, that
+doesn't matter in terms of the debate above, as the crucial point there
+is that using uart0 always implies using group 'uart0' in 'uart' mode.)
 
