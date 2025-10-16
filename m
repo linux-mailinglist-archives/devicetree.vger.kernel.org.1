@@ -1,504 +1,221 @@
-Return-Path: <devicetree+bounces-227743-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227744-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D788BE435D
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 17:26:06 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0545EBE4390
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 17:28:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id AF83035982B
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 15:26:05 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 228094EDC9A
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 15:28:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 361C1346A02;
-	Thu, 16 Oct 2025 15:26:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A73E346A05;
+	Thu, 16 Oct 2025 15:27:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gDRi6ofF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RZczjY8P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2D903469E6
-	for <devicetree@vger.kernel.org>; Thu, 16 Oct 2025 15:26:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C71C7212542;
+	Thu, 16 Oct 2025 15:27:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760628364; cv=none; b=hlcwfO3HgIvx7wE6+hYl2Gs9hhdgUxQ5FX/LaAgYgUs32IJjPx+4unxza/Ih6FBZvNO7OZdkkqhGUFQsrWIEuooGv+jZ17qX5+CihymHR0puz4dQ+J7GXetQQxS/gno5ueergYiEHPQF8iMojeAq1IprIHM7qAIXx2gip+c2yK0=
+	t=1760628474; cv=none; b=WMFcOw4dELV676ymq1Y8iu0SdZAwyzY/J7IFoD+EhtQVzvDziYRiPfoNw5DqZ3kSsJg2iGFUL0chPRJx/3gC0NLCK7ZPdRzGDKZ1UAEjW5SJrNqiXPRP2c/N3+yCLO2UAe6+kHI6YKEByc48rgHit0ivFKo6hxFJOoY6SfyE6aw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760628364; c=relaxed/simple;
-	bh=wM3DzxHSzsdJPxpS1qHX9kLtKFDt/p/Ag27wAKJy6z0=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=mj8uCnelc6Lmos1ZFTT9upwESvSqU3CsVkHJWa5drzcmGBYjR2D1bYxCN6OtRVNxCNrLBFbiO06//RDs+7hudU4uFN2IMLlEyuuwDiH102F8H5KLYaHOxDH3HQVPljHVlqvnuYlDFQmVX+EfTmnAUaHrVnr0lRWExt2H6RSgdlk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gDRi6ofF; arc=none smtp.client-ip=209.85.128.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-46b303f7469so7191425e9.1
-        for <devicetree@vger.kernel.org>; Thu, 16 Oct 2025 08:26:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1760628360; x=1761233160; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=8Liia8RsaOD9yQrd+3tJSK0OG/Nub4+LqqPt4624COE=;
-        b=gDRi6ofF/WCdroRBEnqV66pkNSLWH8KGBw8vtboEDQU47+wyeq72f3ysEoMgXeV1tv
-         5+DLMyrjEQYx+o3z/lBn4DoQQ9HCH/eDaU8ai+nO7M45LD7sLRXJTSvZ26Z4MPM1931D
-         vOjr89DbJmwXloz2mo30Z60ENA9eKGWyLHeUCG9VUTSpvc4ZA2X+cZkB120G1LkCJPep
-         Ziw7dKGMT+23ZX8P4VkDLOFxx/uaIs93X4iJokiumkck2/LDQdwNvUZxINWs0YF7c25V
-         1IgDNwipz1UNz/6DfHf0cInngAvIN/U2hQenT03RrUWMzjPCKaesRInuLauPCinw98vi
-         JXmA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760628360; x=1761233160;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=8Liia8RsaOD9yQrd+3tJSK0OG/Nub4+LqqPt4624COE=;
-        b=IJw8bh4/xUT+XLJXeUErKLBSLNiICM1zTb2wUwKpyKAOoDt6SrGTruJ/dc6DFMuZ3v
-         VP3gzdXTHkvVgGK48N9lLZaNUWqT8VqjoIrKudsk1y2pWxfL5OfLO/xD6NkYvd/yp4st
-         ztHeBxH52nHyr3r4TNpNYqZPqzbNEJBC1eh1zzux4EWRP8zPSIil3SUB5CuwYHw5F3gf
-         Volkv8hajx1z/fEgr1sKcnTh+yZFFEx+byYchLXejqEy7WJ2MYIoGzkyk7QzjZjxeCn1
-         R2lNenZq3RbZt0oqzGHjR8JLh0yyHF6WThrUORFm/kgs2E4laN9quxVsnv7jjY0BjUqk
-         rzZg==
-X-Forwarded-Encrypted: i=1; AJvYcCUBZrXVpztTZC3juCzLu0bs1mWZdxPbO3Ttu1HSd8AD3lD6qywxpRBMDHTB3ZRug5mKHtu/5zO5CHbH@vger.kernel.org
-X-Gm-Message-State: AOJu0YySbk5oRzk0wb6TcXCslLfNmw+85wfuskoNzLwVbzOSwibvHbji
-	NXJR9o99tjVaD24R7WrqJ7iu3T+uagxrylbg2vTjzSq+whz8PCy8YpKD
-X-Gm-Gg: ASbGncszmRmx75+GgmfWz2TbvV8vdmYxEFQx5ynZuGVSUU8IK2jJ+jx0VBcd3N0FBXu
-	iIwGD5d3sUJQElVZW7yAThkFKyM7ng8YZFEwlYY2nNjDZCHFhCrBgaE3RuOgoDHyKopESoTtDZX
-	pK7dBw9eEwdt4YfVg5V2agMEk24BNUo8wQUtS4sEn2Mj4SQfi2edqc/vn/cKJYqn6srPM2i930m
-	jnDzDuUlc1jC0A3R/1JSHvMil5LzlBtxUWERHeyEsifNIVL026KRSKNoc62k6GUxze1sQpvBTh8
-	3WbWpxXf1VhR8/Y6rPzEvRyX56oeKUa/g8VoZDKtUP6KXmK5p6risz7naCBZ6lvNV4m42sK6VLb
-	jpcsVdE16Yd5rZq9f6r9AzVTeg/vPc5zA892XO/cwwvw4pGnF7NX15o8rBzST9/nO8IYlstj7Bf
-	8lWUoSWNj8
-X-Google-Smtp-Source: AGHT+IGTg5CjF8+LxlH7KHK7krh6vjgKUIW8blkrBwnz+QKj01kT0jC/CqAAbFsClWPGaKXE1epkCQ==
-X-Received: by 2002:a05:600c:444d:b0:46e:1f86:aeba with SMTP id 5b1f17b1804b1-471178ad982mr3015155e9.17.1760628356645;
-        Thu, 16 Oct 2025 08:25:56 -0700 (PDT)
-Received: from [192.168.1.187] ([161.230.67.253])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-426ce5e10e8sm35438907f8f.39.2025.10.16.08.25.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Oct 2025 08:25:56 -0700 (PDT)
-Message-ID: <d7576a0bb9a8d5326d77ae434131540b4359bd2a.camel@gmail.com>
-Subject: Re: [PATCH 2/4] iio: adc: Add support for the Renesas RZ/N1 ADC
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Herve Codina <herve.codina@bootlin.com>
-Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>, Jonathan Cameron	
- <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, Nuno
- =?ISO-8859-1?Q?S=E1?=	 <nuno.sa@analog.com>, Andy Shevchenko
- <andy@kernel.org>, Rob Herring	 <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley	 <conor+dt@kernel.org>, Geert
- Uytterhoeven <geert+renesas@glider.be>, Magnus Damm
- <magnus.damm@gmail.com>, Liam Girdwood <lgirdwood@gmail.com>, Mark Brown	
- <broonie@kernel.org>, linux-iio@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Pascal Eberhard <pascal.eberhard@se.com>, 
- Miquel Raynal <miquel.raynal@bootlin.com>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>
-Date: Thu, 16 Oct 2025 16:26:28 +0100
-In-Reply-To: <20251016160202.3d4d0a5e@bootlin.com>
-References: <20251015142816.1274605-1-herve.codina@bootlin.com>
-		<20251015142816.1274605-3-herve.codina@bootlin.com>
-		<1e8d7c96cdfaa93bcc0f581103dc0e13dfee17b7.camel@gmail.com>
-		<20251015211420.031c61fa@bootlin.com>
-		<de57f5274b2fe0aac3621dc10cb6d4d0d98d3063.camel@gmail.com>
-	 <20251016160202.3d4d0a5e@bootlin.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.1 
+	s=arc-20240116; t=1760628474; c=relaxed/simple;
+	bh=Q/HWaD+Cm1k2FvqHSaHj4us9kKwWTCjTyyYVe2cQN/8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=HCcqglCwftdcicI/wG/9b4HgNXGI3rv5eF3dESF2p/QVMzQkZ/0F8Ju65jHo54N+ZY+/CsCyRZsmBmQn41AfOiN13+9670yBWVdzP9MsprYDQMvO1jPcTbXZUqej4+dJ8kyJgHYKr6Ej/drEMFVj9lU4rsfaSUbjLfewAfZNlEU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RZczjY8P; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A0EF8C4CEFB;
+	Thu, 16 Oct 2025 15:27:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1760628474;
+	bh=Q/HWaD+Cm1k2FvqHSaHj4us9kKwWTCjTyyYVe2cQN/8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=RZczjY8PAPUR65NODg0Xv5A+weHeZu0CXQADdIL3St/Ncjy4MenkFAGAoeyZPgHbt
+	 +nzUcDcfaPa/kZk57EXSlo3HPRTx13NeijCuSiqSuLvEIh+arNEpSFheX7joGESlS9
+	 lijYBN5NbYz9rfpGF1q38V/U9tz5Muvky7fP/aUvF8o1WhXjWq5nk9lGXkHAydqTYe
+	 b4PJ79E0KswuKRsutuC/FpomCeKN36MmRrF9w1Dg5OuTDolxKv5ObbRqkqEzhPnzFK
+	 2uWvjiVtfJH6HwPm3e5SgfEJgdmc7mCtmOJnD2/KSlpyDr0YAlAGnl+p7PtvCmvtav
+	 r1OowkX02LnpA==
+Date: Thu, 16 Oct 2025 16:27:49 +0100
+From: Lee Jones <lee@kernel.org>
+To: Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+	Pavel Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sebastian Reichel <sre@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Andreas Kemnade <andreas@kemnade.info>, linux-leds@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-pm@vger.kernel.org, linux-gpio@vger.kernel.org
+Subject: Re: [RFC PATCH 06/13] mfd: bd71828: Support ROHM BD72720
+Message-ID: <20251016152749.GA9735@google.com>
+References: <cover.1759824376.git.mazziesaccount@gmail.com>
+ <93142a80d90a0ac80b27090d0c83914675aad94d.1759824376.git.mazziesaccount@gmail.com>
+ <20251009161847.GE2890766@google.com>
+ <8ea507eb-f78c-4a16-882b-112e277fa1b6@gmail.com>
+ <20251010144515.GI2988639@google.com>
+ <CANhJrGMEN0QRLoBzntVnaYgfFDyre=Yfw-dNdmi226p6pnpgHw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CANhJrGMEN0QRLoBzntVnaYgfFDyre=Yfw-dNdmi226p6pnpgHw@mail.gmail.com>
 
-On Thu, 2025-10-16 at 16:02 +0200, Herve Codina wrote:
-> Hi Nuno,
->=20
-> On Thu, 16 Oct 2025 10:24:36 +0100
-> Nuno S=C3=A1 <noname.nuno@gmail.com> wrote:
->=20
-> > On Wed, 2025-10-15 at 21:14 +0200, Herve Codina wrote:
-> > > Hi Nuno,
-> > >=20
-> > > On Wed, 15 Oct 2025 16:21:09 +0100
-> > > Nuno S=C3=A1 <noname.nuno@gmail.com> wrote:
-> > >=20
-> > > ...=C2=A0=20
-> > > > =C2=A0=20
-> > > > > +static int rzn1_adc_enable(struct rzn1_adc *rzn1_adc)
+On Mon, 13 Oct 2025, Matti Vaittinen wrote:
+
+> pe 10.10.2025 klo 17.45 Lee Jones (lee@kernel.org) kirjoitti:
+> >
+> > On Fri, 10 Oct 2025, Matti Vaittinen wrote:
+> >
+> > > Hi deee Ho Lee,
+> > >
+> > > And Thanks for the review!
+> > >
+> > > On 09/10/2025 19:18, Lee Jones wrote:
+> > > > On Tue, 07 Oct 2025, Matti Vaittinen wrote:
+> > > >
+> > > > > The ROHM BD72720 is a power management IC which continues the BD71828
+> > > > > family of PMICs. Similarly to the BD71815 and BD71828, the BD72720
+> > > > > integrates regulators, charger, RTC, clock gate and GPIOs.
+> > > > >
+> > > > > The main difference to the earlier PMICs is that the BD72720 has two
+> > > > > different I2C slave addresses. In addition to the registers behind the
+> > > > > 'main I2C address', most of the charger (and to some extent LED) control
+> > > > > is done via registers behind a 'secondary I2C slave address', 0x4c.
+> > > > >
+> > > > > Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+> 
+> // snip
+> 
+> > > > > +
+> > > > > +static struct regmap *bd72720_secondary_regmap;
+> > > >
+> > > > Dynamically allocate this and add it to .platform_data once it's
+> > > > populated.
+> > > >
+> > >
+> > > This can be done but I suppose it's unnecessary churn. This driver does not
+> > > (at the moment) support more than one instance of the PMIC anyways. (The
+> > > button data is not alloacted).
+> > >
+> > > This is not really a problem as typically there is only 1 of these PMICs to
+> > > be controlled.
+> >
+> > I'd take a few lines of extra code over a globally defined variable any
+> > day of the week.
+> 
+> Even though that'll require us to drop the const from the
+> bd72720_mfd_cells MFD cell array? Which, in turn, will probably
+> require us to drop the const from the MFD cell pointer in probe as
+> well. Additionally, this will require us to skim through the MFD cell
+> array in probe, so we locate the power cell, adding one more spot for
+> errors. I think this is quite a cost just a princible of dropping a
+> global, which is accessed from one function only. I'd definitely agree
+> if it was driver data which gets used in a variety of functions, but
+> here we really just need a memory location for a pointer so MFD can
+> copy it when kicking the 'sub drivers'. Do you think you can still
+> reconsider?
+
+If the data isn't ready, it shouldn't be in static / const structures.
+
+You're attempting to statically declare dynamic data *shudder*, using
+global variables *double-shudder*!
+
+> >
+> > > // snip
+> > >
+> > > > > +/*
+> > > > > + * The BD72720 is an odd beast in that it contains two separate sets of
+> > > > > + * registers, both starting from address 0x0. The twist is that these "pages"
+> > > > > + * are behind different I2C slave addresses. Most of the registers are behind
+> > > > > + * a slave address 0x4b, which will be used as the "main" address for this
+> > > > > + * device.
+> > > > > + * Most of the charger related registers are located behind slave address 0x4c.
+> > > > > + * It is tempting to push the dealing with the charger registers and the extra
+> > > > > + * 0x4c device in power-supply driver - but perhaps it's better for the sake of
+> > > > > + * the cleaner re-use to deal with setting up all of the regmaps here.
+> > > > > + * Furthermore, the LED stuff may need access to both of these devices.
+> > > > > + */
+> > > > > +#define BD72720_SECONDARY_I2C_SLAVE 0x4c
+> > > > > +static const struct regmap_range bd72720_volatile_ranges_4b[] = {
+> > > > > + {
+> > > > > +         /* RESETSRC1 and 2 are write '1' to clear */
+> > > > > +         .range_min = BD72720_REG_RESETSRC_1,
+> > > > > +         .range_max = BD72720_REG_RESETSRC_2,
+> > > >
+> > > > regmap_reg_range()?
+> > >
+> > > Ah, thanks. Out of the curiosity - do you know why this macro is written on
+> > > lowercase?
+> >
+> > Signed-off-by: Laxman Dewangan <ldewangan@nvidia.com>
+> > Signed-off-by: Mark Brown <broonie@linaro.org>
+> >
+> > =:-)
+> 
+> Yeah. I just thought that maybe you knew :)
+> 
+> >
+> > > // snip
+> > > > > +static int bd72720_set_type_config(unsigned int **buf, unsigned int type,
+> > > > > +                            const struct regmap_irq *irq_data,
+> > > > > +                            int idx, void *irq_drv_data)
 > > > > > +{
-> > > > > +	int ret;
+> > > > > + const struct regmap_irq_type *t = &irq_data->type;
 > > > > > +
-> > > > > +	ret =3D rzn1_adc_core_power_on(&rzn1_adc->adc_core[0]);
-> > > > > +	if (ret)
-> > > > > +		return ret;
+> > > > > + /*
+> > > > > +  * The regmap IRQ ecpects IRQ_TYPE_EDGE_BOTH to be written to register
+> > > > > +  * as logical OR of the type_falling_val and type_rising_val. This is
+> > > > > +  * not how the BD72720 implements this configuration, hence we need
+> > > > > +  * to handle this specific case separately.
+> > > > > +  */
+> > > > > + if (type == IRQ_TYPE_EDGE_BOTH) {
+> > > > > +         buf[0][idx] &= ~t->type_reg_mask;
+> > > > > +         buf[0][idx] |= BD72720_GPIO_IRQ_TYPE_BOTH;
 > > > > > +
-> > > > > +	ret =3D rzn1_adc_core_power_on(&rzn1_adc->adc_core[1]);
-> > > > > +	if (ret)
-> > > > > +		goto poweroff_adc_core0;
+> > > > > +         return 0;
+> > > > > + }
 > > > > > +
-> > > > > +	ret =3D clk_prepare_enable(rzn1_adc->pclk);
-> > > > > +	if (ret)
-> > > > > +		goto poweroff_adc_core1;
-> > > > > +
-> > > > > +	ret =3D clk_prepare_enable(rzn1_adc->adc_clk);
-> > > > > +	if (ret)
-> > > > > +		goto disable_pclk;
-> > > > > +
-> > > > > +	ret =3D rzn1_adc_power(rzn1_adc, true);
-> > > > > +	if (ret)
-> > > > > +		goto disable_adc_clk;=C2=A0=C2=A0=C2=A0=20
-> > > >=20
-> > > > Can we use devm_actions() on the above to avoid the complex error p=
-ath
-> > > > plus
-> > > > the
-> > > > .remove() callback?=C2=A0=20
-> > >=20
-> > > rzn1_adc_enable() is used by the driver pm_runtime_resume() function.
-> > >=20
-> > > I don't think that devm_add_actions_or_reset() will help here.
-> > >=20
-> > > In my understanding, devm_* functions are use to perform some operati=
-ons
-> > > automatically on device removal.
-> > >=20
-> > > The purpose of the error path here is to restore a correct state if
-> > > rzn1_adc_enable() failed when it is called from pm_runtime_resume().
-> > >=20
-> > > In that case no device removal is involved to trig any action set by
-> > > devm_add_actions_or_reset().
-> > >=20
-> > > Maybe I am wrong. Did I miss something?=C2=A0=20
-> >=20
-> > Nope, I see now what's your intent.
->=20
-> Ok, no change planned for the next iteration related to this error path.
->=20
-> >=20
-> > > =C2=A0=20
-> > > > =C2=A0=20
-> > > > > +
-> > > > > +	return 0;
-> > > > > +
-> > > > > +disable_adc_clk:
-> > > > > +	clk_disable_unprepare(rzn1_adc->adc_clk);
-> > > > > +disable_pclk:
-> > > > > +	clk_disable_unprepare(rzn1_adc->pclk);
-> > > > > +poweroff_adc_core1:
-> > > > > +	rzn1_adc_core_power_off(&rzn1_adc->adc_core[1]);
-> > > > > +poweroff_adc_core0:
-> > > > > +	rzn1_adc_core_power_off(&rzn1_adc->adc_core[0]);
-> > > > > +	return ret;
-> > > > > +}
-> > > > > +=C2=A0=20
-> > >=20
-> > > ...
-> > > =C2=A0=20
-> > > > > +static int rzn1_adc_set_iio_dev_channels(struct rzn1_adc *rzn1_a=
-dc,
-> > > > > +					 struct iio_dev *indio_dev)
-> > > > > +{
-> > > > > +	int adc_used;
-> > > > > +
-> > > > > +	adc_used =3D rzn1_adc->adc_core[0].is_used ? 0x01 : 0x00;
-> > > > > +	adc_used |=3D rzn1_adc->adc_core[1].is_used ? 0x02 : 0x00;
-> > > > > +
-> > > > > +	switch (adc_used) {
-> > > > > +	case 0x01:
-> > > > > +		indio_dev->channels =3D rzn1_adc1_channels;
-> > > > > +		indio_dev->num_channels =3D
-> > > > > ARRAY_SIZE(rzn1_adc1_channels);
-> > > > > +		return 0;
-> > > > > +	case 0x02:
-> > > > > +		indio_dev->channels =3D rzn1_adc2_channels;
-> > > > > +		indio_dev->num_channels =3D
-> > > > > ARRAY_SIZE(rzn1_adc2_channels);
-> > > > > +		return 0;
-> > > > > +	case 0x03:
-> > > > > +		indio_dev->channels =3D rzn1_adc1_adc2_channels;
-> > > > > +		indio_dev->num_channels =3D
-> > > > > ARRAY_SIZE(rzn1_adc1_adc2_channels);
-> > > > > +		return 0;
-> > > > > +	default:
-> > > > > +		break;
-> > > > > +	}
-> > > > > +
-> > > > > +	dev_err(rzn1_adc->dev, "Failed to set IIO channels, no ADC
-> > > > > core
-> > > > > used\n");
-> > > > > +	return -ENODEV;=C2=A0=C2=A0=C2=A0=20
-> > > >=20
-> > > > dev_err_probe()?=C2=A0=20
-> > >=20
-> > > Why? the error returned is a well known value: -ENODEV.
-> > >=20
-> > > dev_err_probe() should be involved when -EPROBE_DEFER is a potential =
-error
-> > > code.
-> > >=20
-> > > IMHO, dev_err() here is correct.=C2=A0=20
-> >=20
-> > If I'm not missing nothing this function is called during probe so I do
-> > think
-> > dev_err_probe() should be used. Not only unifies logging style during p=
-robe
-> > it
-> > also has the small benefit of doing:
-> >=20
-> > return dev_err_probe(...) saving a line of code.
-> >=20
-> > You can see that, at least in IIO, we even have some patches just conve=
-rting
-> > drivers probe() to use dev_err_probe().
->=20
-> Right, I will use dev_err_probe() in the next iteration.
->=20
-> >=20
-> > > =C2=A0=20
-> > > > =C2=A0=20
-> > > > > +}
-> > > > > +
-> > > > > +static int rzn1_adc_probe(struct platform_device *pdev)
-> > > > > +{
-> > > > > +	struct device *dev =3D &pdev->dev;
-> > > > > +	struct iio_dev *indio_dev;
-> > > > > +	struct rzn1_adc *rzn1_adc;
-> > > > > +	int ret;
-> > > > > +
-> > > > > +	indio_dev =3D devm_iio_device_alloc(dev, sizeof(*rzn1_adc));
-> > > > > +	if (!indio_dev)
-> > > > > +		return -ENOMEM;
-> > > > > +
-> > > > > +	rzn1_adc =3D iio_priv(indio_dev);
-> > > > > +	rzn1_adc->dev =3D dev;
-> > > > > +	mutex_init(&rzn1_adc->lock);=C2=A0=C2=A0=C2=A0=20
-> > > >=20
-> > > > devm_mutex_init()=C2=A0=20
-> > >=20
-> > > Yes, I will update in the next iteration.
-> > > =C2=A0=20
-> > > > =C2=A0=20
-> > > > > +
-> > > > > +	rzn1_adc->regs =3D devm_platform_ioremap_resource(pdev, 0);
-> > > > > +	if (IS_ERR(rzn1_adc->regs))
-> > > > > +		return PTR_ERR(rzn1_adc->regs);
-> > > > > +
-> > > > > +	rzn1_adc->pclk =3D devm_clk_get(dev, "pclk");
-> > > > > +	if (IS_ERR(rzn1_adc->pclk))
-> > > > > +		return dev_err_probe(dev, PTR_ERR(rzn1_adc->pclk),
-> > > > > "Failed to
-> > > > > get pclk\n");
-> > > > > +
-> > > > > +	rzn1_adc->adc_clk =3D devm_clk_get(dev, "adc-clk");
-> > > > > +	if (IS_ERR(rzn1_adc->pclk))
-> > > > > +		return dev_err_probe(dev, PTR_ERR(rzn1_adc->pclk),
-> > > > > "Failed to
-> > > > > get adc-clk\n");
-> > > > > +
-> > > > > +	ret =3D rzn1_adc_core_get_regulators(rzn1_adc, &rzn1_adc-=C2=A0=
-=20
-> > > > > > adc_core[0],=C2=A0=20
-> > > > > +					=C2=A0=C2=A0 "adc1-avdd", "adc1-vref");
-> > > > > +	if (ret)
-> > > > > +		return ret;
-> > > > > +
-> > > > > +	ret =3D rzn1_adc_core_get_regulators(rzn1_adc, &rzn1_adc-=C2=A0=
-=20
-> > > > > > adc_core[1],=C2=A0=20
-> > > > > +					=C2=A0=C2=A0 "adc2-avdd", "adc2-vref");
-> > > > > +	if (ret)
-> > > > > +		return ret;=C2=A0=C2=A0=C2=A0=20
-> > > >=20
-> > > > Hmm, is avdd really an optional regulator? I mean can the ADC power=
- up
-> > > > at
-> > > > all
-> > > > without a supply in AVDD? Even vref seems to be mandatory as we can=
-'t
-> > > > properly
-> > > > scale the sample without it.=C2=A0=20
-> > >=20
-> > > Where do you see that avdd is an optional regulator?=C2=A0=20
-> >=20
-> > You are using devm_regulator_get_optional(). That's for optional regula=
-tors.
-> >=20
->=20
-> Indeed I use devm_regulator_get_optional().
->=20
-> We have two similar function to get regulators:
-> - devm_regulator_get() and
-> - devm_regulator_get_optional().
->=20
-> devm_regulator_get() returns a dummy regulator if the regulator is not
-> described in the device-tree. The calling code has no way to known if
-> the regulator was present or not.
+> > > > > + return regmap_irq_set_type_config_simple(buf, type, irq_data, idx,
+> > > > > +                                          irq_drv_data);
+> > > >
+> > > > Use 100-chars to avoid these pointless wraps please.
+> > >
+> > > gnarl. I think we have discussed this before :)
+> > > I would love to keep the lines short - closer to 80 chars - because that way
+> > > I can fit 3 terminals on my screen. All the years spent staring at the
+> > > monitor are taking their toll, and my vision isn't as good as it used to be.
+> > > Frightening thing being that it seems I will only need to increase the font
+> > > in the future :/
+> > >
+> > > Well, sure the lines can be split if you feel strongly about it - but I have
+> > > a real reason (other than the usual - "they have always been like that") to
+> > > try keep them short...
+> >
+> > Welcome to the year 2000 when 32" monitors are super affordable.
+> 
+> I know. But work rooms where I can fit larger table aren't. Not even
+> in Finland which should have plenty of space. And my table is really
+> packed.
 
-Yeah because it's mandatory and the part cannot work without power :). So w=
-e
-should not be allowed to operate without a regulator.
+*facepalm*  =:-)
 
->=20
-> On the other hand, devm_regulator_get_optional() returns -ENODEV when the
-> regulator is not described.
->=20
-> That's pretty confusing but it is the reality.
->=20
-> I use devm_regulator_get_optional() but check for -ENODEV to see if the
-> regulator is provided or not.
->=20
-> In order to use the ADC core (is_used flag), I need both the AVDD and the
-> VREF regulator available.
+I wouldn't swap out my 32" monitor now if you paid me!
 
-And that is why I don't get why are we allowed to proceed if there's no
-regulators? That seems wrong to me.=C2=A0
-
-So I think the regulators should be mandatory in the bindings and a dummy
-regulator should also not be allowed in this case because that should get y=
-ou=C2=A0
--EINVAL when calling regulator_get_voltage().
-
->=20
-> > > =C2=A0=20
-> > > >=20
-> > > > Also, can't we have getting and enabling the regulator together? Th=
-en,
-> > > > we
-> > > > could
-> > > > use some of the modern helpers to simplify the code (ok I see you u=
-se
-> > > > them
-> > > > in
-> > > > the PM callbacks).=C2=A0=20
-> > >=20
-> > > Yes, I rely on PM callbacks to handle those regulators.
-> > > =C2=A0=20
-> > > > =C2=A0=20
-> > > > > +
-> > > > > +	platform_set_drvdata(pdev, indio_dev);
-> > > > > +
-> > > > > +	indio_dev->name =3D dev_name(dev);=C2=A0=C2=A0=C2=A0=20
-> > > >=20
-> > > > dev_name() should not be used for the above. It's typically the par=
-t
-> > > > name so
-> > > > I
-> > > > guess in here "rzn1-adc" would be the appropriate one.=C2=A0=20
-> > >=20
-> > > I thought it was more related to the instance and so having a differe=
-nt
-> > > name
-> > > for each instance was better.
-> > >=20
-> > > Some other IIO drivers use dev_name() here.
-> > >=20
-> > > But well, if you confirm that a fixed string should be used and so al=
-l
-> > > instances have the same string, no problem, I will update my indio_de=
-v-
-> > > >name.=C2=A0=20
-> >=20
-> > It is a fixed string, typically the part name. David Lechner not that l=
-ong
-> > ago
-> > actually sent some patch or documented somewhere why not to use dev_nam=
-e().
-> > To
-> > identify different instances we have a 'label' property.
->=20
-> Right, I will set indio_dev->name to the "rzn1-adc" fixed string.
->=20
-> >=20
-> > > =C2=A0=20
-> > > > =C2=A0=20
-> > > > > +	indio_dev->info =3D &rzn1_adc_info;
-> > > > > +	indio_dev->modes =3D INDIO_DIRECT_MODE;
-> > > > > +	ret =3D rzn1_adc_set_iio_dev_channels(rzn1_adc, indio_dev);
-> > > > > +	if (ret)
-> > > > > +		return ret;
-> > > > > +
-> > > > > +	ret =3D rzn1_adc_enable(rzn1_adc);
-> > > > > +	if (ret)
-> > > > > +		return ret;
-> > > > > +
-> > > > > +	pm_runtime_set_autosuspend_delay(dev, 500);
-> > > > > +	pm_runtime_use_autosuspend(dev);
-> > > > > +	pm_runtime_get_noresume(dev);
-> > > > > +	pm_runtime_set_active(dev);
-> > > > > +	pm_runtime_enable(dev);=C2=A0=C2=A0=C2=A0=20
-> > > >=20
-> > > > There's a devm_pm_runtime_enable() API now.=C2=A0=20
-> > >=20
-> > > Will look to use it in the next iteration.
-> > > =C2=A0=20
-> > > > =C2=A0=20
-> > > > > +
-> > > > > +	ret =3D devm_iio_device_register(dev, indio_dev);
-> > > > > +	if (ret)
-> > > > > +		goto disable;
-> > > > > +
-> > > > > +	pm_runtime_mark_last_busy(dev);
-> > > > > +	pm_runtime_put_autosuspend(dev);
-> > > > > +
-> > > > > +	return 0;
-> > > > > +
-> > > > > +disable:
-> > > > > +	pm_runtime_disable(dev);
-> > > > > +	pm_runtime_put_noidle(dev);
-> > > > > +	pm_runtime_set_suspended(dev);
-> > > > > +	pm_runtime_dont_use_autosuspend(dev);
-> > > > > +
-> > > > > +	rzn1_adc_disable(rzn1_adc);
-> > > > > +	return ret;
-> > > > > +}
-> > > > > +
-> > > > > +static void rzn1_adc_remove(struct platform_device *pdev)
-> > > > > +{
-> > > > > +	struct iio_dev *indio_dev =3D platform_get_drvdata(pdev);
-> > > > > +	struct rzn1_adc *rzn1_adc =3D iio_priv(indio_dev);
-> > > > > +
-> > > > > +	pm_runtime_disable(rzn1_adc->dev);
-> > > > > +	pm_runtime_set_suspended(rzn1_adc->dev);
-> > > > > +	pm_runtime_dont_use_autosuspend(rzn1_adc->dev);
-> > > > > +
-> > > > > +	rzn1_adc_disable(rzn1_adc);
-> > > > > +}=C2=A0=C2=A0=C2=A0=20
-> > > >=20
-> > > > I'm fairly confident we can sanely go without .remove().=C2=A0=20
-> > >=20
-> > > Will see what I can be do for the next iteration.
-> > >=20
-> > > Maybe I will ask some questions if I need some clarification around
-> > > pm_runtime but let me first try to go further in that direction.=C2=
-=A0=20
-> >=20
-> > Yeah, maybe you can come up with something but given how you use pm to
-> > enable/disable stuff I'm also not sure the above is easily doable.
-> >=20
->=20
-> Hum, do you think it's worth a try?
-
-Not sure. But it got me thinking about all this handling in the pm runtime
-routines. So if in the resume() call you fail at some point and then disabl=
-e
-stuff in your return path and then we get an unbind won't things (clocks an=
-d
-regulators) be unbalanced leading to splats? In fact by just looking at the
-unbind path [1] I can see:
-
-1. We call pm_runtime_get_sync(dev) which can fail;
-2. Later on we call pm_runtime_put_sync(dev).
-
-Not really sure if there's special handling in the pm core to be aware that
-resuming failed (the refcount seems to be incremented [2] before resuming s=
-o...)
-
-Maybe I would keep it simple and get and enable clocks/regulators during pr=
-obe
-and only care of rzn1_adc_power() in the runtime routines. My 2 cents.
-
-[1]: https://elixir.bootlin.com/linux/v6.17.1/source/drivers/base/dd.c#L124=
-9
-[2]: https://elixir.bootlin.com/linux/v6.17.1/source/drivers/base/power/run=
-time.c#L1189
-
-- Nuno S=C3=A1
+-- 
+Lee Jones [李琼斯]
 
