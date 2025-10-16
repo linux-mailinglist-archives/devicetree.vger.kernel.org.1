@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-227465-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227466-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18D3ABE1D46
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 08:57:56 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 58216BE1D61
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 08:58:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id B22624E3E6F
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 06:57:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 12E43480A0A
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 06:58:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74CE72F5A01;
-	Thu, 16 Oct 2025 06:57:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D05262F5A33;
+	Thu, 16 Oct 2025 06:58:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="g9VRK7cJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="h8RQlW0l"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31C9A72622;
-	Thu, 16 Oct 2025 06:57:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C90872622;
+	Thu, 16 Oct 2025 06:58:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760597871; cv=none; b=JXtPyge0yFYM3OhXon6GVDePCaXD2j+i4iHhXtoU/GWtwaWcbB+PdQfUeCMVmLVtNjzQKLfVSpek47uk77H9JX7xu+Tg2PqE4fhcHN4vo2sP2tnE+fAmIZv0qjJBYTx1citEX2uTIpQ0c0eN9YymlMdFhuGWE6t9pSzQFEaX8DI=
+	t=1760597916; cv=none; b=LHRkoIA3l0+y6zZYkavZNxpolLnH7GW1FZantnPKLppGoE71OsaIBQILYCI0YLp0KJtPZHFR2J6uiXrcbEcDWOoaUl04zLnpRuXY99z0u/Opj9AjRXORcqHVW+3wCAJUJGHGmjbhvOpmNGB0g2JyuMQts8zToEm1wbw8AkYpF24=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760597871; c=relaxed/simple;
-	bh=PVIGP3Mk4x0juJB1vGos8zMhjY0qV8iKWIM/SK3yIuU=;
+	s=arc-20240116; t=1760597916; c=relaxed/simple;
+	bh=K6vRWrWDh9VQZt8cIle1wPCBRy3cYxXPZgoWb8CI4VI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=azCmxPvzf53lsbAtk8wFR+puSlbUOsZPzAMUVOyvDj8oWGqoAUg8EeFqVYSGNi9t8sWtJujI9TtwUZDI3nvNvGodd64aIyA2UT4HlB1i9i9cXNMlycrt4Nyytelqd5ABpivZNglkehPrFePS4FepX76Nc/MTU+C3aJaligh03/Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=g9VRK7cJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4E808C4CEFB;
-	Thu, 16 Oct 2025 06:57:40 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=Fu5PJB6c2x5XGnLYpV1AaycI7LWr83lVcLyIiuJISYsxPZ/4oDZatxl4au9nFd2X2I3n8HGkYBV5kq3u+CeRdT86GyJ1+dAiJWpR0/Z7kIINNot/BbQ+ZKCjRv1NpoebpP3HRq0ef+9ZhsOgyQtvEa8qug+zawmh6GeKJ+D962Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=h8RQlW0l; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A3FF3C4CEF1;
+	Thu, 16 Oct 2025 06:58:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760597870;
-	bh=PVIGP3Mk4x0juJB1vGos8zMhjY0qV8iKWIM/SK3yIuU=;
+	s=k20201202; t=1760597916;
+	bh=K6vRWrWDh9VQZt8cIle1wPCBRy3cYxXPZgoWb8CI4VI=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=g9VRK7cJPnLoUtostILIrziJBq3RCLYCfeXbGrYQGxKTB5jmb0yB7ihlFWw6HdcDG
-	 dwyYLGl3uobdbICzJuwaO4AbS1Sx4aV35LuiuMTXPJA8eKnHZUqr+rp1y+qPP7gsr3
-	 OUaLXPb7JfdPiIMtwH/x71sAde2yScjjs/Uc17UpeD0cZx8nkO5SQdaRHBwwSxmCbz
-	 wBIb5f9zBhdWGcLNjdW8IFfRqH3XRewvQoVyJQUIE6HA5MafWWUZf2OSb4OgG384Dz
-	 K7rLB9jY0ijTCmVrXFq+5iL2iGlV6IgbDzCVzBcYG/pv7kLyxsWsTx6kF0bmQmCGIJ
-	 yC2R65Az7VGwg==
-Message-ID: <de3bab41-0ea6-4c1d-9350-2c73ba464b10@kernel.org>
-Date: Thu, 16 Oct 2025 08:57:38 +0200
+	b=h8RQlW0lUU1W3jD8Zh/yc1a9mlNytKqDpZUWzTXLc3MpgBdLKDIup6XNwXZiP7vkn
+	 mC4xqI49JBSaM6YWfWJF4UBB4YbvseTskXspX10tHJKwieQ+dpraIYgYY8Z+RKzlmL
+	 luM1iRErOI88NqLEPf+kcH1agIgDOX8dwp38kEK0+q2eRRyF52pTlK0vlIJAJljDYT
+	 tvLVQPWbGj4SCTxKzs7u3Chx+6Sjh4WIxMNImCNWk17ZXvYRKJQ8X6UWe6PC8WcQ6O
+	 cDe6zVJBz/XkSHJMKaBHdUv6TSiZZwY1vhCePi4F37eiiPLGLnFKIKs9m+4BeVkm9E
+	 E8HUYns1wHXEQ==
+Message-ID: <e4d917bb-47b1-43d3-9731-22d4a39502f6@kernel.org>
+Date: Thu, 16 Oct 2025 08:58:30 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,41 +50,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: Fix inconsistent quoting
-To: "Rob Herring (Arm)" <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
- Thierry Reding <thierry.reding@gmail.com>,
- Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski
- <brgl@bgdev.pl>, Shawn Guo <shawnguo@kernel.org>,
- Fabio Estevam <festevam@gmail.com>, =?UTF-8?Q?Nuno_S=C3=A1?=
- <nuno.sa@analog.com>, Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Jonathan Cameron <jic23@kernel.org>, Andy Shevchenko <andy@kernel.org>,
- Jassi Brar <jassisinghbrar@gmail.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Lee Jones <lee@kernel.org>,
- Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@codeconstruct.com.au>,
- Andrew Lunn <andrew@lunn.ch>, Vladimir Oltean <olteanv@gmail.com>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Daire McNamara <daire.mcnamara@microchip.com>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
- Manivannan Sadhasivam <mani@kernel.org>, Bjorn Helgaas
- <bhelgaas@google.com>, Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Nicolas Ferre <nicolas.ferre@microchip.com>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Claudiu Beznea <claudiu.beznea@tuxon.dev>,
- Florian Fainelli <f.fainelli@gmail.com>, Tony Lindgren <tony@atomide.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-iio@vger.kernel.org,
- linux-media@vger.kernel.org, netdev@vger.kernel.org,
- linux-pci@vger.kernel.org, linux-phy@lists.infradead.org
-References: <20251015232015.846282-1-robh@kernel.org>
+Subject: Re: [PATCH v3 2/5] ASoC: dt-bindings: qcom,sm8250: Add kaanapali
+ sound card
+To: prasad.kumpatla@oss.qualcomm.com, Srinivas Kandagatla <srini@kernel.org>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Rao Mandadapu <quic_srivasam@quicinc.com>
+Cc: linux-sound@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+References: <20251015-knp-audio-v2-v3-0-e0e3e4167d87@oss.qualcomm.com>
+ <20251015-knp-audio-v2-v3-2-e0e3e4167d87@oss.qualcomm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -130,18 +107,21 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20251015232015.846282-1-robh@kernel.org>
+In-Reply-To: <20251015-knp-audio-v2-v3-2-e0e3e4167d87@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 16/10/2025 01:16, Rob Herring (Arm) wrote:
-> yamllint has gained a new check which checks for inconsistent quoting
-> (mixed " and ' quotes within a file). Fix all the cases yamllint found
-> so we can enable the check (once the check is in a release). Use
-> whichever quoting is dominate in the file.
+On 15/10/2025 09:57, Prasad Kumpatla via B4 Relay wrote:
+> From: Prasad Kumpatla <prasad.kumpatla@oss.qualcomm.com>
 > 
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> Add bindings for Kaanapali sound card, which looks fully
+> compatible with existing SM8450.
+> 
+> Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+> Signed-off-by: Prasad Kumpatla <prasad.kumpatla@oss.qualcomm.com>
 > ---
+>  Documentation/devicetree/bindings/sound/qcom,sm8250.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
