@@ -1,144 +1,217 @@
-Return-Path: <devicetree+bounces-227730-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227731-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA9A1BE3F59
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 16:40:20 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB0C3BE3F81
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 16:42:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D34081A64FE2
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 14:39:48 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 4E31E4E1E61
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 14:42:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F129E31196D;
-	Thu, 16 Oct 2025 14:38:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7590C340DA4;
+	Thu, 16 Oct 2025 14:42:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="VTAD340t"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f48.google.com (mail-qv1-f48.google.com [209.85.219.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 552742E764B
-	for <devicetree@vger.kernel.org>; Thu, 16 Oct 2025 14:38:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3050F30F933;
+	Thu, 16 Oct 2025 14:42:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760625532; cv=none; b=s4E4YtLlhIrXat4LF0K6uI58VJBTKfjrTwqW0IMb4c/w/sRhS+/KZQm+No5JHHSsAWdOUNevJbSs7lXyVqGurZOtsw2d84kgWOHeunDSagTDxi//LNb9U9EY+quqsbTaEV1pUtesnjEtAQ164K1GXSmAeemmzOTm+cc+kK+S0Yg=
+	t=1760625748; cv=none; b=JsJZNEuLrR0xMv4PfLpfmi46dYi7R+dhsZP2up9aYXTb6BP8BwkiCurxylNxZ1sPP2edzq8l76bGw7x5DwqlNLfXJcGQP4G+nO+HOaXFnAuFpvSmfHYW4PIG4vfavXK9CZk1G31tU1ot+AJo4NkKbBaF+BW0ZGloC+xbubREeR0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760625532; c=relaxed/simple;
-	bh=QMYwPDdqJ8DV681rGtY+oh0LJ+MFkkVHcY4G0TluSio=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=LPNmykoO2Cf7fru0Lw8VCasOLMOovcZgaquJTaz/q7cyMGAFI+c5AKqExaqLxtPuAMz5Km0bLbGeE8G71mNxg/hAeFNFNVb2Qk9SSW2kQ8onVgXfy2Zk3LKtcD7u4ro1XaYmAyBIr1vhiB5UFuvBtaxKZcbz+PH9M0k7Yg13JYo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qv1-f48.google.com with SMTP id 6a1803df08f44-87c148fb575so12980186d6.2
-        for <devicetree@vger.kernel.org>; Thu, 16 Oct 2025 07:38:51 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760625530; x=1761230330;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=7OKo+B/N8OpvVSgOheqCo9k1dnTlp+LYue6K4y6i8Mc=;
-        b=NZyO6PPhq/+UXDgEs43twjaoidPNP8/9chRpbshTpdfa02JxQiKP8/rnOdls5KNAD+
-         Yx5gIl1AcGLVx4oTdxzF96MEKOhNTbr7Lx2ZK6DcC9ct4QFh1uEmSu3iCjEf9KRBXWzf
-         ZZsE2HrfSYnLDJjjDq+UvR1glOlXmjLuk7nEAU8AXOb9qVc7m8vhyrF22UP9fu4RZ4W6
-         MI02tbuIoMA+/IalYKcOOPhM9Wa1naEFU+/sa+ptSXdYXuX6fIfkNrzqH04XSjiPGDH1
-         z0KZQaXCYOZn3tRZ23wTElUuvWnWV0Z8os2X1RV62YNH4aHgfFdl2pMR+JAaqpSDzruU
-         vzng==
-X-Forwarded-Encrypted: i=1; AJvYcCVmWZ/tINidJNHuladdFNIxFMecS587ygZDlaZWAmP/DGJT3P6NbNcVbiMEdEE9cPcQt5wiR80yga4d@vger.kernel.org
-X-Gm-Message-State: AOJu0YwUnUXtHARyrGUDCtRxR8x15QaE24k+5ZwpSkbzAYpCg8lyNjw5
-	rg5hS4tZ3+UveTlr3XaPC4dj1lAvVBaccrcsx6GPNKRmaMU5/2V5tzKrkBnMFVyy
-X-Gm-Gg: ASbGncvZSYaOEnt4WNO8DUX5tJvTPTOpaMDXTMAMWgzcZONTqwe+dC9eViCLkTiC/Ow
-	eWSC9H0xQlmoVpuAJDSJCsRfYAg5zEHeIWqvt9bZRtVQQXuGstNnQG4jx9YbhUHQBk9upmHnE2D
-	8nYc6hVhrTJZpvc4DdVO9A+RZNrzXg/3C0M9cwcpKbcIjUplLXJePVkaFnAsw4L1VIThDZeTMZ1
-	0mzxhjRlkMlfDk3ariNpRRNzNF2dCO0CXrR1Op90n+r+QtSxy3e0MkAyZDVDuzvSd3Y9lTDUqPp
-	rm7iGnQwQQUpcc7YHUOJE0WIVwBSqJCxu5UnumPpMs6Ja9dkTNyoBG/8sYKupijoCcrTpTjbRMZ
-	4Ub32K+g2smHamnVOoHyyciMXCIvSkmmL54o/hmtIF1PzuTH3X6H4G4hOtD5H4TxfnpYheNDN2b
-	B7HIkD5XGaTrL5T9beq7wrzDKCS938wFLemCETXVUdRhFQq8CJn/q9
-X-Google-Smtp-Source: AGHT+IFZQbWXAE9AavM+7cwJY24M1lC/WOk0Gdmoj2KNwTbwRFE858KN4A3iFakakpLeszDldLkvDQ==
-X-Received: by 2002:a05:6214:29cf:b0:7c2:d5b7:dd54 with SMTP id 6a1803df08f44-87c20566c92mr6183996d6.18.1760625529900;
-        Thu, 16 Oct 2025 07:38:49 -0700 (PDT)
-Received: from mail-qk1-f175.google.com (mail-qk1-f175.google.com. [209.85.222.175])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-87c012b5de7sm40732616d6.65.2025.10.16.07.38.49
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 16 Oct 2025 07:38:49 -0700 (PDT)
-Received: by mail-qk1-f175.google.com with SMTP id af79cd13be357-88e1a22125bso114515985a.2
-        for <devicetree@vger.kernel.org>; Thu, 16 Oct 2025 07:38:49 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUlB66XD5B5t8WeKUufxjBbWEKyYdQZsb1PO+ECxusioRnoi4McSJAD+6KtQHD26+9zSJ+Vle/9+Tsr@vger.kernel.org
-X-Received: by 2002:a05:6102:54aa:b0:5a1:3bcf:a93f with SMTP id
- ada2fe7eead31-5d7dd555922mr220616137.4.1760625133095; Thu, 16 Oct 2025
- 07:32:13 -0700 (PDT)
+	s=arc-20240116; t=1760625748; c=relaxed/simple;
+	bh=jjl0am6Ty1/jZDMPoiRz5vbe7o1TNwBWQRFz2urTlFU=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=BG+jJa5eR07ayeNzaVJKc6SaCAyasNAPHjf5u92dVdP6WiWyXTqmcbiSqYCAQY67uhI59rdkyrdkZYOs9XlYER9BViMaEyZtN+YkAAdFxz7NthAqu4dEN5ZZWrOIsT9KKpX/4mFLIhnHqJwIFDb48UU7cWVvF06Eo47CrxpxpYM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=VTAD340t; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1760625744;
+	bh=jjl0am6Ty1/jZDMPoiRz5vbe7o1TNwBWQRFz2urTlFU=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+	b=VTAD340tY1BwVmnfMhCJIsVuvW6/Y46pDQdugpP/XT0gWfNqbrO1uZ+aC2JfLquFk
+	 WBbIyNjK+rzQHWsSok+vclEY3RnJU45GJ0OsnYHBZiCbbQbOCfzCy+LHq7Xcu8DHcF
+	 Ihqkn/njaxWIesEmtusS8EhYfLgvPcHYs8OvmtDHLfHDE+FbyUD0ik8mX0QqXZlXtO
+	 TubExDvHADOCNmNXz5fcx38GrPEhaunjfvTaOQSRzwFCEPGuCDzVyxAzJfbkmJcVfU
+	 ffeD84/F3fE200JtXdfmEohmNZlS8BMYNK1KP70q4+4G50UQHghyBgTk+Tp+g0piPj
+	 I922IQ6O1JtEg==
+Received: from [IPv6:2606:6d00:17:ebd3::5ac] (unknown [IPv6:2606:6d00:17:ebd3::5ac])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: nicolas)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 7BAAD17E0CF8;
+	Thu, 16 Oct 2025 16:42:21 +0200 (CEST)
+Message-ID: <eeda0221acbe0a70219fb7d87603d3dfec73f56f.camel@collabora.com>
+Subject: Re: [PATCH v4 0/8] Enable video decoder & encoder for MT8189
+From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+To: Kyrie Wu <kyrie.wu@mediatek.com>, Tiffany Lin
+ <tiffany.lin@mediatek.com>,  Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+ Yunfei Dong <yunfei.dong@mediatek.com>, Mauro Carvalho Chehab	
+ <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski	
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Matthias Brugger	
+ <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno	
+ <angelogioacchino.delregno@collabora.com>, Hans Verkuil
+ <hverkuil@xs4all.nl>,  Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+ Sebastian Fricke <sebastian.fricke@collabora.com>, Nathan Hebert	
+ <nhebert@chromium.org>, Arnd Bergmann <arnd@arndb.de>, Irui Wang	
+ <irui.wang@mediatek.com>, George Sun <george.sun@mediatek.com>, 
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, Andrzej Pietrasiewicz
+	 <andrzejtp2010@gmail.com>
+Date: Thu, 16 Oct 2025 10:42:19 -0400
+In-Reply-To: <20251016060747.20648-1-kyrie.wu@mediatek.com>
+References: <20251016060747.20648-1-kyrie.wu@mediatek.com>
+Autocrypt: addr=nicolas.dufresne@collabora.com; prefer-encrypt=mutual;
+ keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
+ /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
+ cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
+ CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
+ abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
+ nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
+ AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
+ smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
+ AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
+ iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
+ ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
+ bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
+Organization: Collabora Canada
+Content-Type: multipart/signed; micalg="pgp-sha512";
+	protocol="application/pgp-signature"; boundary="=-AbDKkJujBZd+Yb/YkvVa"
+User-Agent: Evolution 3.56.2 (3.56.2-2.fc42) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251015153952.185249-1-marek.vasut+renesas@mailbox.org>
- <20251015153952.185249-2-marek.vasut+renesas@mailbox.org> <CAMuHMdVdW+tMA1=g9D+BQV0fk0kis8FzyQgf7BpN-u=pi5eQfA@mail.gmail.com>
- <51ff107d-126d-4481-b94a-f614f31c7bb8@mailbox.org> <CAMuHMdW+_1NZYdXrGsNcHkuvh_ym9148BRB+d0Wbz1oZrpWCdg@mail.gmail.com>
- <6f29d7af-a2e5-4412-9575-6368621c1178@mailbox.org>
-In-Reply-To: <6f29d7af-a2e5-4412-9575-6368621c1178@mailbox.org>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 16 Oct 2025 16:32:02 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdU9xSeFtLB-jUSUnJb1JHxYDXLe91GhZbT7QVGzYCXkRw@mail.gmail.com>
-X-Gm-Features: AS18NWBZ0iJCimoz06t01ILJ3nlCiaOTwnBjpX9tKhkz8DwVN2SfgQuIjQCiZ2I
-Message-ID: <CAMuHMdU9xSeFtLB-jUSUnJb1JHxYDXLe91GhZbT7QVGzYCXkRw@mail.gmail.com>
-Subject: Re: [PATCH v2 2/3] arm64: dts: renesas: r8a77960: Add GX6250 GPU node
-To: Marek Vasut <marek.vasut@mailbox.org>
-Cc: Marek Vasut <marek.vasut+renesas@mailbox.org>, linux-arm-kernel@lists.infradead.org, 
-	=?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>, 
-	Adam Ford <aford173@gmail.com>, Conor Dooley <conor+dt@kernel.org>, 
-	David Airlie <airlied@gmail.com>, Frank Binns <frank.binns@imgtec.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Magnus Damm <magnus.damm@gmail.com>, 
-	Matt Coster <matt.coster@imgtec.com>, Maxime Ripard <mripard@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Simona Vetter <simona@ffwll.ch>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org
+
+
+--=-AbDKkJujBZd+Yb/YkvVa
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Marek,
+Hi,
 
-On Thu, 16 Oct 2025 at 16:13, Marek Vasut <marek.vasut@mailbox.org> wrote:
-> On 10/16/25 12:14 PM, Geert Uytterhoeven wrote:
-> >> which are also never disabled, do we want to disable the GPU by default
-> >> and enable per-board ?
-> >
-> > Yes please. We do the same with renesas,*-mali GPU nodes.
-> > The board may not even have graphical output.
-> > Or do you envision using the GPU for more general and headless operation?
->
-> The GPU does have GP-GPU compute shader, so even headless system can do
-> compute on the GPU.
+Le jeudi 16 octobre 2025 =C3=A0 14:07 +0800, Kyrie Wu a =C3=A9crit=C2=A0:
+> This series have the follow changing:
+> Firstly add mt8189 video decoder compatible, profile and level to support
+> MT8189 kernel driver.
+> Secondly fix some bugs, including vp 4K profile2 and media device node
+> number bug.
+> Lastly, add mt8189 video encoder compatible.
+>=20
+> This series has been tested with MT8189 tast test.
+> Encoding and decoding worked for this chip.
+>=20
+> Patches 1-2 Add decoder compatible.
+> Patches 3 Add profile and level supporting.
+> Patches 4 Add core-only VP9 decoding supporting.
+> Patches 5-6 fix some bugs.
+> Patches 7-8 Adds encoder compatible.
+>=20
+> ---
+> H264 test results:
+> ./fluster.py run -d GStreamer-H.264-V4L2SL-Gst1.0 -j1 -t 90
+> =C2=A0=C2=A0=C2=A0=C2=A0 JVT-AVC_V1=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 9=
+4/135
 
-How is this handled on other SoCs?
+Your set indicates that this SoC supports more then H.264, any reason to om=
+it
+other codecs ? Also, why not -j2, does it mean concurrent decoding is broke=
+n ?
+>=20
+> v4l2-compliance test results:
+> Compliance test for mtk-vcodec-enc device /dev/video2:
+> Total for mtk-vcodec-enc device /dev/video2: 47, Succeeded: 46, Failed: 1=
+, Warnings: 0
+> Compliance test for mtk-vcodec-dec device /dev/video3:
+> Total for mtk-vcodec-dec device /dev/video3: 48, Succeeded: 48, Failed: 0=
+, Warnings: 0
+>=20
+> scp upstream link:
+> https://patchwork.kernel.org/project/linux-mediatek/patch/20250811015922.=
+32680-1-huayu.zong@mediatek.com/
+>=20
+> Changes compared with v3:
+> --add reviewer to commit messages
+> --Rebased on top of the latest media tree
+>=20
+> Changes compared with v2:
+> --add H264 fluster test results
+> --reorder compatible string for dt-bindings
+>=20
+> Changes compared with v1:
+> --add v4l2-compliance test results
+> --add scp upstream link
+> --add HW difference discriptions for dt-bindings commit messages
+>=20
+> This series patches dependent on:
+> [1]
+> https://patchwork.linuxtv.org/project/linux-media/cover/20250510075357.11=
+761-1-yunfei.dong@mediatek.com/
+> [2]
+> https://patchwork.linuxtv.org/project/linux-media/cover/20250814085642.17=
+343-1-kyrie.wu@mediatek.com/
 
-> >> I would argue the GPU should be enabled by default, so the GPU driver
-> >> can do a proper power management of the GPU. If firmware is missing, at
-> >> least power it off on failed probe, if nothing else.
-> >
-> > The *_PD_3DG_* domains are powered down anyway when unused.
->
-> If the driver was bound to the GPU node, then the domain would be surely
-> powered down in control of the Linux kernel driver, without depending on
-> the prior stage to leave it powered down.
->
-> I think it is in fact better to bind the GPU driver to the GPU IP and
-> let the GPU driver power manage the GPU in a well defined manner,
-> instead of depending on the prior stage to leave the GPU in some
-> specific state ?
+It could be nice to quote the subjects, so we can decide to open the links =
+or
+not. I suppose you opted for sending the DTS separately, I don't have the H=
+W,
+but if my chances someone wanted to test that, he's need a these, can you l=
+ink
+them please ?
 
-The domains are powered down by the rcar-sysc PM Domain driver,
-hence the system does not rely on any prior stage taking care of that.
+Nicolas
 
-Gr{oetje,eeting}s,
+>=20
+> Kyrie Wu (8):
+> =C2=A0 dt-bindings: media: mediatek: decoder: Add MT8189
+> =C2=A0=C2=A0=C2=A0 mediatek,vcodec-decoder
+> =C2=A0 media: mediatek: vcodec: add decoder compatible to support MT8189
+> =C2=A0 media: mediatek: vcodec: add profile and level supporting for MT81=
+89
+> =C2=A0 media: mediatek: vcodec: Add core-only VP9 decoding support for MT=
+8189
+> =C2=A0 media: mediatek: vcodec: fix vp9 4096x2176 fail for profile2
+> =C2=A0 media: mediatek: vcodec: fix media device node number
+> =C2=A0 dt-bindings: media: Add MT8189 mediatek,vcodec-encoder
+> =C2=A0 media: mediatek: encoder: Add MT8189 encoder compatible data
+>=20
+> =C2=A0.../media/mediatek,vcodec-encoder.yaml=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 |=C2=A0 2 ++
+> =C2=A0.../media/mediatek,vcodec-subdev-decoder.yaml |=C2=A0 1 +
+> =C2=A0.../vcodec/decoder/mtk_vcodec_dec_drv.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 |=C2=A0 9 +++++-
+> =C2=A0.../vcodec/decoder/mtk_vcodec_dec_drv.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 |=C2=A0 1 +
+> =C2=A0.../vcodec/decoder/mtk_vcodec_dec_stateless.c |=C2=A0 4 +++
+> =C2=A0.../vcodec/decoder/vdec/vdec_vp9_req_lat_if.c | 32 ++++++++++++----=
+---
+> =C2=A0.../vcodec/encoder/mtk_vcodec_enc_drv.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 | 14 ++++++++
+> =C2=A07 files changed, 50 insertions(+), 13 deletions(-)
 
-                        Geert
+--=-AbDKkJujBZd+Yb/YkvVa
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+-----BEGIN PGP SIGNATURE-----
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaPEESwAKCRDZQZRRKWBy
+9MMZAP0X3arp/YBTkXCva98lZDaCapBcw7wktlkZxAITnn8/ZQEA6FRrYm+LQmxk
+nPsXbosVPXzbjXK40/SFXm7EwWdetAw=
+=UGwt
+-----END PGP SIGNATURE-----
+
+--=-AbDKkJujBZd+Yb/YkvVa--
 
