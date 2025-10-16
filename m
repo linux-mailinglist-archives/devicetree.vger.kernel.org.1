@@ -1,256 +1,360 @@
-Return-Path: <devicetree+bounces-227602-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227603-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F027BE2CC0
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 12:30:28 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8755FBE2CC9
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 12:30:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8CE0619C8694
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 10:30:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F033E19C868A
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 10:30:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B453031D398;
-	Thu, 16 Oct 2025 10:29:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F74C31A06C;
+	Thu, 16 Oct 2025 10:30:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NnHbnSEL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ht3Bvgny"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D1C52BDC34;
-	Thu, 16 Oct 2025 10:29:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0298431961E;
+	Thu, 16 Oct 2025 10:30:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760610552; cv=none; b=qEMdv7rJPxLw3p6k8M0nqBDbZxVoi/ShaLWTGcmhinTZ78RXK62R+wqQ4gazLez14XTRqf64bSe1sY2xyDkA1TiuXRtZwZGEl8e1vBzbxbzbnzmR5aiNsSBBc0doXN1zK+s4qDtBldY42kkfHdZPXRVDLQlgqhfP7/9mfv3ohbA=
+	t=1760610606; cv=none; b=t63TXklZoNH8rkiqYcLAyzBn4A336fgGCyrELmGDX2Z5r7D0NJyifrQRdl6G7NRWLG6HPWHwSEfoYlnUReZsIqIMnWDZVqtZnf4bE/K4NQTw9NezjqQU1Qkrk09znLdH/tlClgTXe0v8TXQwTYKXSqSAt37HNvuKYY1SRe6ui3U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760610552; c=relaxed/simple;
-	bh=V7uKdWh9DL8VLIBAcI157v28Uag8XqY9eeq4Pg3ppWU=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=OQX6dIRGZ6A5YqGZw2oirVFKNX7vJnCybcTQDuwt7HL7ZYMTlCkdaece/76Zco3/E/T0R8XRPO9Ldv6blf9L6ekyUshnwj8hOT0QgodEXXIekiDu6bt7ADMbcmxbbYG9TH2lBMoRnZkga2UGS1BWOcwQqHh9pCgR6O54XWTzxQU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NnHbnSEL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 19907C4CEF1;
-	Thu, 16 Oct 2025 10:29:11 +0000 (UTC)
+	s=arc-20240116; t=1760610606; c=relaxed/simple;
+	bh=6oDqTTQNPa3hjTV43ytvjp3i0Ej8ZJ5aNHwNeKgT9wI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=fplcgaQ3mEa9h/7hi0+81A48tYKId0+WARe0dtc4q8KgYP7QOYjOeX3nfnXbvbHga5DwYnmza2E77PEVyWAhmWxTh5XkTAefqmgMm9dXQQX8uruh7ZsRqZEPzjoDtg7k6U2ZSZMpL/X2ProUX6MaddUeTta3PDzU/WPKEfopTMk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ht3Bvgny; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 419BDC113D0;
+	Thu, 16 Oct 2025 10:30:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760610552;
-	bh=V7uKdWh9DL8VLIBAcI157v28Uag8XqY9eeq4Pg3ppWU=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=NnHbnSELJYPgY3+ZqM+AKIPbdx9nnJPD8hPo09TKQLtx/x+TdzxgLEPg4r/+9Z/Vw
-	 L6JJj9MefF6oCFkl3C8glAQVkNwaneSuGR15KdqDUP+ObppcqLbC7KkubTC8/oCrfP
-	 61egIgKoOZXuNBlee62ixxrrJDZLnXG23o3sCzIEwFVbvm5aVFf1o5Vrom6/OkqGMY
-	 t1EboGM2kGh0jMlwKaEQuZJrmsVQUsNikiHUPKYjiXtzvIEA3YSCkxe36L5bQ1F/TU
-	 pZTsw9rcWN9Ln/ILlmKFWRQN+gTCaPfCIy1UytIzfV0Qd1nTRf+upUSeTxNp2J1GEq
-	 qbv1ItBFulW0g==
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-Date: Thu, 16 Oct 2025 12:28:27 +0200
-Subject: [PATCH net-next v2 13/13] net: airoha: Add AN7583 SoC support
+	s=k20201202; t=1760610604;
+	bh=6oDqTTQNPa3hjTV43ytvjp3i0Ej8ZJ5aNHwNeKgT9wI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=ht3BvgnyTHBlim2BpFe/HnnDeGnbArjq+Mq82LeeZiFYKhPsxL4dmHVjKkZWVcXta
+	 SGt3UnK8Z9fytsqLjpD8E6EJa6EJ0XX4sPwYPTbm+wPlDqc2H80yI7iNKbksKixh2y
+	 JD52CzoI2uiTcA0D4MdCokPzu8iY8szsMH7IjDiNZVrwgmcQztHPBEL+XzAFcgYJJ/
+	 u4koIp4V8wlvXAjD8DOCUsTJ+TSJeu1wPnm+Cnv39TgkLX9oi9xVm2hBhafb+eCp7m
+	 zGkRrPGOuDwitjjq6reaHhyFOwrfSXdRqOA+w08p0HPFHa1pxppdK0or3/a8kmlJ/M
+	 zVkuEaWTBS50w==
+Message-ID: <1d4d4627-7fe9-43b2-8622-8ffc078e30a6@kernel.org>
+Date: Thu, 16 Oct 2025 11:29:59 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/3] media: qcom: camss: add support for SM6150 camss
+To: Wenmeng Liu <wenmeng.liu@oss.qualcomm.com>, Robert Foss
+ <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>,
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20251016-sm6150-camss-v1-0-e7f64ac32370@oss.qualcomm.com>
+ <20251016-sm6150-camss-v1-2-e7f64ac32370@oss.qualcomm.com>
+From: Bryan O'Donoghue <bod@kernel.org>
+Content-Language: en-US
+In-Reply-To: <20251016-sm6150-camss-v1-2-e7f64ac32370@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-Id: <20251016-an7583-eth-support-v2-13-ea6e7e9acbdb@kernel.org>
-References: <20251016-an7583-eth-support-v2-0-ea6e7e9acbdb@kernel.org>
-In-Reply-To: <20251016-an7583-eth-support-v2-0-ea6e7e9acbdb@kernel.org>
-To: Andrew Lunn <andrew+netdev@lunn.ch>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
- Lorenzo Bianconi <lorenzo@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, 
- linux-mediatek@lists.infradead.org, netdev@vger.kernel.org, 
- devicetree@vger.kernel.org
-X-Mailer: b4 0.14.2
 
-Introduce support for AN7583 ethernet controller to airoha-eth dirver.
+On 16/10/2025 11:22, Wenmeng Liu wrote:
+> The camera subsystem for SM6150 which is based on Spectra 230.
+> 
+> Signed-off-by: Wenmeng Liu <wenmeng.liu@oss.qualcomm.com>
 
-Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+Your commit log needs more detail.
+
+- VFE17x version what ?
+- CSID version .. gen2 so CSID 480 is it ?
+- CSIPHY process node would be nice
+
+
+> ---
+>   .../platform/qcom/camss/camss-csiphy-3ph-1-0.c     |   2 +
+>   drivers/media/platform/qcom/camss/camss-vfe.c      |   2 +
+>   drivers/media/platform/qcom/camss/camss.c          | 186 +++++++++++++++++++++
+>   drivers/media/platform/qcom/camss/camss.h          |   1 +
+>   4 files changed, 191 insertions(+)
+> 
+> diff --git a/drivers/media/platform/qcom/camss/camss-csiphy-3ph-1-0.c b/drivers/media/platform/qcom/camss/camss-csiphy-3ph-1-0.c
+> index a229ba04b158739ddfe4076bdd28167a309f13ea..7bc524a9c4bbe3a316e366868e9d636e58d5956a 100644
+> --- a/drivers/media/platform/qcom/camss/camss-csiphy-3ph-1-0.c
+> +++ b/drivers/media/platform/qcom/camss/camss-csiphy-3ph-1-0.c
+> @@ -908,6 +908,7 @@ static bool csiphy_is_gen2(u32 version)
+>   
+>   	switch (version) {
+>   	case CAMSS_2290:
+> +	case CAMSS_6150:
+>   	case CAMSS_7280:
+>   	case CAMSS_8250:
+>   	case CAMSS_8280XP:
+> @@ -996,6 +997,7 @@ static int csiphy_init(struct csiphy_device *csiphy)
+>   		regs->lane_array_size = ARRAY_SIZE(lane_regs_sdm845);
+>   		break;
+>   	case CAMSS_2290:
+> +	case CAMSS_6150:
+>   		regs->lane_regs = &lane_regs_qcm2290[0];
+
+You don't need to specify the array index for that.
+
+>   		regs->lane_array_size = ARRAY_SIZE(lane_regs_qcm2290);
+>   		break;
+> diff --git a/drivers/media/platform/qcom/camss/camss-vfe.c b/drivers/media/platform/qcom/camss/camss-vfe.c
+> index dff8d0a1e8c228878d03d95aaf91f262b208f9e7..2ec796b6f82d67d7a1bc332a0d770a8185ba3fdd 100644
+> --- a/drivers/media/platform/qcom/camss/camss-vfe.c
+> +++ b/drivers/media/platform/qcom/camss/camss-vfe.c
+> @@ -341,6 +341,7 @@ static u32 vfe_src_pad_code(struct vfe_line *line, u32 sink_code,
+>   		break;
+>   	case CAMSS_660:
+>   	case CAMSS_2290:
+> +	case CAMSS_6150:
+>   	case CAMSS_7280:
+>   	case CAMSS_8x96:
+>   	case CAMSS_8250:
+> @@ -1989,6 +1990,7 @@ static int vfe_bpl_align(struct vfe_device *vfe)
+>   	int ret = 8;
+>   
+>   	switch (vfe->camss->res->version) {
+> +	case CAMSS_6150:
+>   	case CAMSS_7280:
+>   	case CAMSS_8250:
+>   	case CAMSS_8280XP:
+> diff --git a/drivers/media/platform/qcom/camss/camss.c b/drivers/media/platform/qcom/camss/camss.c
+> index 2fbcd0e343aac9620a5a30719c42e1b887cf34ed..51e2522d4d01dd7bb4581c721544835c47b09c38 100644
+> --- a/drivers/media/platform/qcom/camss/camss.c
+> +++ b/drivers/media/platform/qcom/camss/camss.c
+> @@ -1318,6 +1318,178 @@ static const struct camss_subdev_resources vfe_res_845[] = {
+>   	}
+>   };
+>   
+> +static const struct camss_subdev_resources csiphy_res_6150[] = {
+> +	/* CSIPHY0 */
+> +	{
+> +		.regulators = { "vdd-csiphy-1p2", "vdd-csiphy-1p8" },
+> +		.clock = { "csiphy0", "csiphy0_timer" },
+> +		.clock_rate = { { 269333333, 384000000 },
+> +				{ 269333333 } },
+> +		.reg = { "csiphy0" },
+> +		.interrupt = { "csiphy0" },
+> +		.csiphy = {
+> +			.hw_ops = &csiphy_ops_3ph_1_0,
+> +			.formats = &csiphy_formats_sdm845
+> +		}
+> +	},
+> +	/* CSIPHY1 */
+> +	{
+> +		.regulators = { "vdd-csiphy-1p2", "vdd-csiphy-1p8" },
+> +		.clock = { "csiphy1", "csiphy1_timer" },
+> +		.clock_rate = { { 269333333, 384000000 },
+> +				{ 269333333 } },
+> +		.reg = { "csiphy1" },
+> +		.interrupt = { "csiphy1" },
+> +		.csiphy = {
+> +			.hw_ops = &csiphy_ops_3ph_1_0,
+> +			.formats = &csiphy_formats_sdm845
+> +		}
+> +	},
+> +	/* CSIPHY2 */
+> +	{
+> +		.regulators = { "vdd-csiphy-1p2", "vdd-csiphy-1p8" },
+> +		.clock = { "csiphy2", "csiphy2_timer" },
+> +		.clock_rate = { { 269333333, 384000000 },
+> +				{ 269333333 } },
+> +		.reg = { "csiphy2" },
+> +		.interrupt = { "csiphy2" },
+> +		.csiphy = {
+> +			.hw_ops = &csiphy_ops_3ph_1_0,
+> +			.formats = &csiphy_formats_sdm845
+> +		}
+> +	},
+> +};
+> +
+> +static const struct camss_subdev_resources csid_res_6150[] = {
+> +	/* CSID0 */
+> +	{
+> +		.regulators = {},
+> +		.clock = { "vfe0_cphy_rx", "vfe0_csid" },
+> +		.clock_rate = { { 269333333, 384000000 },
+> +				{ 320000000, 540000000 } },
+> +		.reg = { "csid0" },
+> +		.interrupt = { "csid0" },
+> +		.csid = {
+> +			.is_lite = false,
+> +			.hw_ops = &csid_ops_gen2,
+> +			.parent_dev_ops = &vfe_parent_dev_ops,
+> +			.formats = &csid_formats_gen2
+> +		}
+> +	},
+> +	/* CSID1 */
+> +	{
+> +		.regulators = {},
+> +		.clock = { "vfe1_cphy_rx", "vfe1_csid" },
+> +		.clock_rate = { { 269333333, 384000000 },
+> +				{ 320000000, 540000000 } },
+> +		.reg = { "csid1" },
+> +		.interrupt = { "csid1" },
+> +		.csid = {
+> +			.is_lite = false,
+> +			.hw_ops = &csid_ops_gen2,
+> +			.parent_dev_ops = &vfe_parent_dev_ops,
+> +			.formats = &csid_formats_gen2
+> +		}
+> +	},
+> +	/* CSID2 */
+> +	{
+> +		.regulators = {},
+> +		.clock = { "vfe_lite_cphy_rx", "vfe_lite_csid" },
+> +		.clock_rate = { { 269333333, 384000000 },
+> +				{ 320000000, 540000000 } },
+> +		.reg = { "csid_lite" },
+> +		.interrupt = { "csid_lite" },
+> +		.csid = {
+> +			.is_lite = true,
+> +			.hw_ops = &csid_ops_gen2,
+> +			.parent_dev_ops = &vfe_parent_dev_ops,
+> +			.formats = &csid_formats_gen2
+> +		}
+> +	},
+> +};
+> +
+> +static const struct camss_subdev_resources vfe_res_6150[] = {
+> +	/* VFE0 */
+> +	{
+> +		.regulators = {},
+> +		.clock = { "gcc_axi_hf", "camnoc_axi", "cpas_ahb", "soc_ahb",
+> +			   "vfe0", "vfe0_axi"},
+> +		.clock_rate = { { 0 },
+> +				{ 400000000 },
+> +				{ 80000000 },
+> +				{ 37500000, 40000000 },
+> +				{ 360000000, 432000000, 540000000, 600000000 },
+> +				{ 265000000, 426000000 } },
+> +		.reg = { "vfe0" },
+> +		.interrupt = { "vfe0" },
+> +		.vfe = {
+> +			.line_num = 3,
+> +			.is_lite = false,
+> +			.has_pd = true,
+> +			.pd_name = "ife0",
+> +			.hw_ops = &vfe_ops_170,
+> +			.formats_rdi = &vfe_formats_rdi_845,
+> +			.formats_pix = &vfe_formats_pix_845
+> +		}
+> +	},
+> +	/* VFE1 */
+> +	{
+> +		.regulators = {},
+> +		.clock = { "gcc_axi_hf", "camnoc_axi", "cpas_ahb", "soc_ahb",
+> +			   "vfe1", "vfe1_axi"},
+> +		.clock_rate = { { 0 },
+> +				{ 400000000 },
+> +				{ 80000000 },
+> +				{ 37500000, 40000000 },
+> +				{ 360000000, 432000000, 540000000, 600000000 },
+> +				{ 265000000, 426000000 } },
+> +		.reg = { "vfe1" },
+> +		.interrupt = { "vfe1" },
+> +		.vfe = {
+> +			.line_num = 3,
+> +			.is_lite = false,
+> +			.has_pd = true,
+> +			.pd_name = "ife1",
+> +			.hw_ops = &vfe_ops_170,
+> +			.formats_rdi = &vfe_formats_rdi_845,
+> +			.formats_pix = &vfe_formats_pix_845
+> +		}
+> +	},
+> +	/* VFE2 */
+> +	{
+> +		.regulators = {},
+> +		.clock = { "gcc_axi_hf", "camnoc_axi", "cpas_ahb", "soc_ahb",
+> +			   "vfe_lite" },
+> +		.clock_rate = { { 0 },
+> +				{ 400000000 },
+> +				{ 80000000 },
+> +				{ 37500000, 40000000 },
+> +				{ 360000000, 432000000, 540000000, 600000000 } },
+> +		.reg = { "vfe_lite" },
+> +		.interrupt = { "vfe_lite" },
+> +		.vfe = {
+> +			.line_num = 4,
+> +			.is_lite = true,
+> +			.hw_ops = &vfe_ops_170,
+> +			.formats_rdi = &vfe_formats_rdi_845,
+> +			.formats_pix = &vfe_formats_pix_845
+> +		}
+> +	},
+> +};
+> +
+> +static const struct resources_icc icc_res_sm6150[] = {
+> +	{
+> +		.name = "ahb",
+> +		.icc_bw_tbl.avg = 38400,
+> +		.icc_bw_tbl.peak = 76800,
+> +	},
+> +	{
+> +		.name = "hf_mnoc",
+> +		.icc_bw_tbl.avg = 2097152,
+> +		.icc_bw_tbl.peak = 2097152,
+> +	},
+> +};
+> +
+>   static const struct camss_subdev_resources csiphy_res_8250[] = {
+>   	/* CSIPHY0 */
+>   	{
+> @@ -4438,6 +4610,19 @@ static const struct camss_resources sc7280_resources = {
+>   	.vfe_num = ARRAY_SIZE(vfe_res_7280),
+>   };
+>   
+> +static const struct camss_resources sm6150_resources = {
+> +	.version = CAMSS_6150,
+> +	.pd_name = "top",
+> +	.csiphy_res = csiphy_res_6150,
+> +	.csid_res = csid_res_6150,
+> +	.vfe_res = vfe_res_6150,
+> +	.icc_res = icc_res_sm6150,
+> +	.icc_path_num = ARRAY_SIZE(icc_res_sm6150),
+> +	.csiphy_num = ARRAY_SIZE(csiphy_res_6150),
+> +	.csid_num = ARRAY_SIZE(csid_res_6150),
+> +	.vfe_num = ARRAY_SIZE(vfe_res_6150),
+> +};
+> +
+>   static const struct camss_resources sm8550_resources = {
+>   	.version = CAMSS_8550,
+>   	.pd_name = "top",
+> @@ -4478,6 +4663,7 @@ static const struct of_device_id camss_dt_match[] = {
+>   	{ .compatible = "qcom,sdm660-camss", .data = &sdm660_resources },
+>   	{ .compatible = "qcom,sdm670-camss", .data = &sdm670_resources },
+>   	{ .compatible = "qcom,sdm845-camss", .data = &sdm845_resources },
+> +	{ .compatible = "qcom,sm6150-camss", .data = &sm6150_resources },
+>   	{ .compatible = "qcom,sm8250-camss", .data = &sm8250_resources },
+>   	{ .compatible = "qcom,sm8550-camss", .data = &sm8550_resources },
+>   	{ .compatible = "qcom,x1e80100-camss", .data = &x1e80100_resources },
+> diff --git a/drivers/media/platform/qcom/camss/camss.h b/drivers/media/platform/qcom/camss/camss.h
+> index a70fbc78ccc307c0abc2f3c834fb1e2dafd83c6b..b60556f2f226104adb48908bdb436f389fb1e1ad 100644
+> --- a/drivers/media/platform/qcom/camss/camss.h
+> +++ b/drivers/media/platform/qcom/camss/camss.h
+> @@ -79,6 +79,7 @@ enum pm_domain {
+>   enum camss_version {
+>   	CAMSS_660,
+>   	CAMSS_2290,
+> +	CAMSS_6150,
+>   	CAMSS_7280,
+>   	CAMSS_8x16,
+>   	CAMSS_8x53,
+> 
+
 ---
- drivers/net/ethernet/airoha/airoha_eth.c | 68 +++++++++++++++++++++++++++++---
- drivers/net/ethernet/airoha/airoha_eth.h | 11 ++++++
- drivers/net/ethernet/airoha/airoha_ppe.c |  3 ++
- 3 files changed, 77 insertions(+), 5 deletions(-)
-
-diff --git a/drivers/net/ethernet/airoha/airoha_eth.c b/drivers/net/ethernet/airoha/airoha_eth.c
-index b9d36b841fe272a302125367a8d1e88e6e5adfbf..79a85ce96d6393fe47d91208068ff20a29862ca7 100644
---- a/drivers/net/ethernet/airoha/airoha_eth.c
-+++ b/drivers/net/ethernet/airoha/airoha_eth.c
-@@ -1684,10 +1684,8 @@ static int airoha_dev_set_macaddr(struct net_device *dev, void *p)
- 
- static int airhoha_set_gdm2_loopback(struct airoha_gdm_port *port)
- {
--	u32 val, pse_port, chan = port->id == AIROHA_GDM3_IDX ? 4 : 0;
- 	struct airoha_eth *eth = port->qdma->eth;
--	/* XXX: handle XSI_USB_PORT and XSI_PCE1_PORT */
--	u32 nbq = port->id == AIROHA_GDM3_IDX ? 4 : 0;
-+	u32 val, pse_port, chan, nbq;
- 	int src_port;
- 
- 	/* Forward the traffic to the proper GDM port */
-@@ -1699,6 +1697,8 @@ static int airhoha_set_gdm2_loopback(struct airoha_gdm_port *port)
- 	/* Enable GDM2 loopback */
- 	airoha_fe_wr(eth, REG_GDM_TXCHN_EN(2), 0xffffffff);
- 	airoha_fe_wr(eth, REG_GDM_RXCHN_EN(2), 0xffff);
-+
-+	chan = port->id == AIROHA_GDM3_IDX ? airoha_is_7581(eth) ? 4 : 3 : 0;
- 	airoha_fe_rmw(eth, REG_GDM_LPBK_CFG(2),
- 		      LPBK_CHAN_MASK | LPBK_MODE_MASK | LPBK_EN_MASK,
- 		      FIELD_PREP(LPBK_CHAN_MASK, chan) |
-@@ -1713,6 +1713,8 @@ static int airhoha_set_gdm2_loopback(struct airoha_gdm_port *port)
- 	airoha_fe_clear(eth, REG_FE_VIP_PORT_EN, BIT(2));
- 	airoha_fe_clear(eth, REG_FE_IFC_PORT_EN, BIT(2));
- 
-+	/* XXX: handle XSI_USB_PORT and XSI_PCE1_PORT */
-+	nbq = port->id == AIROHA_GDM3_IDX && airoha_is_7581(eth) ? 4 : 0;
- 	src_port = eth->soc->ops.get_src_port_id(port, nbq);
- 	if (src_port < 0)
- 		return src_port;
-@@ -1726,7 +1728,7 @@ static int airhoha_set_gdm2_loopback(struct airoha_gdm_port *port)
- 		      SP_CPORT_MASK(val),
- 		      FE_PSE_PORT_CDM2 << __ffs(SP_CPORT_MASK(val)));
- 
--	if (port->id != AIROHA_GDM3_IDX)
-+	if (port->id != AIROHA_GDM3_IDX && airoha_is_7581(eth))
- 		airoha_fe_rmw(eth, REG_SRC_PORT_FC_MAP6,
- 			      FC_ID_OF_SRC_PORT24_MASK,
- 			      FIELD_PREP(FC_ID_OF_SRC_PORT24_MASK, 2));
-@@ -1881,6 +1883,22 @@ static u32 airoha_get_dsa_tag(struct sk_buff *skb, struct net_device *dev)
- #endif
- }
- 
-+static int airoha_get_fe_port(struct airoha_gdm_port *port)
-+{
-+	struct airoha_qdma *qdma = port->qdma;
-+	struct airoha_eth *eth = qdma->eth;
-+
-+	switch (eth->soc->version) {
-+	case 0x7583:
-+		return port->id == AIROHA_GDM3_IDX ? FE_PSE_PORT_GDM3
-+						   : port->id;
-+	case 0x7581:
-+	default:
-+		return port->id == AIROHA_GDM4_IDX ? FE_PSE_PORT_GDM4
-+						   : port->id;
-+	}
-+}
-+
- static netdev_tx_t airoha_dev_xmit(struct sk_buff *skb,
- 				   struct net_device *dev)
- {
-@@ -1921,7 +1939,7 @@ static netdev_tx_t airoha_dev_xmit(struct sk_buff *skb,
- 		}
- 	}
- 
--	fport = port->id == 4 ? FE_PSE_PORT_GDM4 : port->id;
-+	fport = airoha_get_fe_port(port);
- 	msg1 = FIELD_PREP(QDMA_ETH_TXMSG_FPORT_MASK, fport) |
- 	       FIELD_PREP(QDMA_ETH_TXMSG_METER_MASK, 0x7f);
- 
-@@ -3084,6 +3102,35 @@ static int airoha_en7581_get_src_port_id(struct airoha_gdm_port *port, int nbq)
- 	return -EINVAL;
- }
- 
-+static const char * const an7583_xsi_rsts_names[] = {
-+	"xsi-mac",
-+	"hsi0-mac",
-+	"hsi1-mac",
-+	"xfp-mac",
-+};
-+
-+static int airoha_an7583_get_src_port_id(struct airoha_gdm_port *port, int nbq)
-+{
-+	switch (port->id) {
-+	case 3:
-+		/* 7583 SoC supports eth serdes on GDM3 port */
-+		if (!nbq)
-+			return HSGMII_LAN_7583_ETH_SRCPORT;
-+		break;
-+	case 4:
-+		/* 7583 SoC supports PCIe and USB serdes on GDM4 port */
-+		if (!nbq)
-+			return HSGMII_LAN_7583_PCIE_SRCPORT;
-+		if (nbq == 1)
-+			return HSGMII_LAN_7583_USB_SRCPORT;
-+		break;
-+	default:
-+		break;
-+	}
-+
-+	return -EINVAL;
-+}
-+
- static const struct airoha_eth_soc_data en7581_soc_data = {
- 	.version = 0x7581,
- 	.xsi_rsts_names = en7581_xsi_rsts_names,
-@@ -3094,8 +3141,19 @@ static const struct airoha_eth_soc_data en7581_soc_data = {
- 	},
- };
- 
-+static const struct airoha_eth_soc_data an7583_soc_data = {
-+	.version = 0x7583,
-+	.xsi_rsts_names = an7583_xsi_rsts_names,
-+	.num_xsi_rsts = ARRAY_SIZE(an7583_xsi_rsts_names),
-+	.num_ppe = 1,
-+	.ops = {
-+		.get_src_port_id = airoha_an7583_get_src_port_id,
-+	},
-+};
-+
- static const struct of_device_id of_airoha_match[] = {
- 	{ .compatible = "airoha,en7581-eth", .data = &en7581_soc_data },
-+	{ .compatible = "airoha,an7583-eth", .data = &an7583_soc_data },
- 	{ /* sentinel */ }
- };
- MODULE_DEVICE_TABLE(of, of_airoha_match);
-diff --git a/drivers/net/ethernet/airoha/airoha_eth.h b/drivers/net/ethernet/airoha/airoha_eth.h
-index e09579da8c78a99ef07ee7eef7be3cd6c1b5be76..eb27a4ff51984ef376c6e94607ee2dc1a806488b 100644
---- a/drivers/net/ethernet/airoha/airoha_eth.h
-+++ b/drivers/net/ethernet/airoha/airoha_eth.h
-@@ -73,6 +73,12 @@ enum {
- 	HSGMII_LAN_7581_USB_SRCPORT,
- };
- 
-+enum {
-+	HSGMII_LAN_7583_ETH_SRCPORT	= 0x16,
-+	HSGMII_LAN_7583_PCIE_SRCPORT	= 0x18,
-+	HSGMII_LAN_7583_USB_SRCPORT,
-+};
-+
- enum {
- 	XSI_PCIE0_VIP_PORT_MASK	= BIT(22),
- 	XSI_PCIE1_VIP_PORT_MASK	= BIT(23),
-@@ -629,6 +635,11 @@ static inline bool airoha_is_7581(struct airoha_eth *eth)
- 	return eth->soc->version == 0x7581;
- }
- 
-+static inline bool airoha_is_7583(struct airoha_eth *eth)
-+{
-+	return eth->soc->version == 0x7583;
-+}
-+
- bool airoha_is_valid_gdm_port(struct airoha_eth *eth,
- 			      struct airoha_gdm_port *port);
- 
-diff --git a/drivers/net/ethernet/airoha/airoha_ppe.c b/drivers/net/ethernet/airoha/airoha_ppe.c
-index eda95107cd1daf6ff00a85abc72313a509ed67e9..c373f21d95f5a610deae365c64bc589c21f5e1a0 100644
---- a/drivers/net/ethernet/airoha/airoha_ppe.c
-+++ b/drivers/net/ethernet/airoha/airoha_ppe.c
-@@ -37,6 +37,9 @@ static int airoha_ppe_get_num_stats_entries(struct airoha_ppe *ppe)
- 	if (!IS_ENABLED(CONFIG_NET_AIROHA_FLOW_STATS))
- 		return -EOPNOTSUPP;
- 
-+	if (airoha_is_7583(ppe->eth))
-+		return -EOPNOTSUPP;
-+
- 	return PPE_STATS_NUM_ENTRIES;
- }
- 
-
--- 
-2.51.0
-
+bod
 
