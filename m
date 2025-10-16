@@ -1,40 +1,88 @@
-Return-Path: <devicetree+bounces-227912-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227913-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA0ADBE5C2D
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 01:05:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 76B5DBE5C33
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 01:10:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6EA90540C2F
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 23:05:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 18051580CF8
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 23:10:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DE0D2DFA40;
-	Thu, 16 Oct 2025 23:05:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F23722E36E1;
+	Thu, 16 Oct 2025 23:10:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="oRyqIqTW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from freeshell.de (freeshell.de [116.202.128.144])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6459238172;
-	Thu, 16 Oct 2025 23:05:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.202.128.144
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A35B02DF710
+	for <devicetree@vger.kernel.org>; Thu, 16 Oct 2025 23:10:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760655906; cv=none; b=Ghuo4xm8kdvg3Tt247f8AEN041vPqwfDN+Z03relUyl7RdBRzxZu3SxQDBb1c1NzfQVU7rrFu72zWB02CiY+NNbcc1r4J8fEnO+YL2bCC3N9xjaDVFjJyeiWN1zX52Lkxl/uuq4OGsRRU98I4Etgj3Lid8+InE4pRRPZFWgkMec=
+	t=1760656219; cv=none; b=S+xqkIeBNgnu/wfkJMFkGd1FmosOY4WSbKbAuT78N3NVJ+zC8wCflHirEIohm/ZwYrkNSoycbYFvHap27fpQMQa6L+DiGFKaNbqbRmwolYZtmuGOpS+20Y2Aho7TQ7n17Iz9w9K5gnZ+JeA5qkt0qG0rlRbr/uZiGRX1QBgIdpk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760655906; c=relaxed/simple;
-	bh=+niDfb7sQcunz3U78qcliEpPNm+6e6H3QJ7yAAnacJ8=;
+	s=arc-20240116; t=1760656219; c=relaxed/simple;
+	bh=1XLsS3RAIEx6by2HVEXnSKd0ADVsSaO6quvpcnso1qQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=mo5R9DQ+A1pe+2BYnmG7bH37Qn1aTkL69/x0x9UkKB+HG0pAmyxzlfbIbmV5+ok0iLYEBdot+XpP5ETgnyRHVwDQYqlLY5/lBC1+K1Aj6vyUI1QTDT9bozNnf9AnYVMJ9jdUfLv57z8Bt9q04gbSP9g3M4p9JBAShev59s0QfXw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de; spf=pass smtp.mailfrom=freeshell.de; arc=none smtp.client-ip=116.202.128.144
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freeshell.de
-Received: from [192.168.2.54] (unknown [98.97.26.134])
-	(Authenticated sender: e)
-	by freeshell.de (Postfix) with ESMTPSA id 0CF13B22042C;
-	Fri, 17 Oct 2025 00:55:34 +0200 (CEST)
-Message-ID: <7e31b240-2ffa-4946-af85-aaa45fe35199@freeshell.de>
-Date: Thu, 16 Oct 2025 15:55:32 -0700
+	 In-Reply-To:Content-Type; b=I0ylF+7XoFMdogYUOZHf0Cihj5wrHs+3yNuSsMJ1UeRybLkIdJXgunEHiWGHDmABingSF5mxPgschblFNMHU1Xsd5luBHZb7qikS7+Nuxj+e4fzZBmknS+mgpLnDa6uvQ7JBsI1hWY8PJLTzJc+/5nkVoS6zLCm6QOY8Kne6UEk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=oRyqIqTW; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59GKLOqN001722
+	for <devicetree@vger.kernel.org>; Thu, 16 Oct 2025 23:10:17 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	1tPINqjigGOZj9I27QX/968lYU1qIXvwjHcC4xMne5U=; b=oRyqIqTWyxdyqGuj
+	hYdayYyK27EPRL20FPIbhGMLjY2VbbaihwV/P5tjc7gbW7akiCAT9giKOmuuwkO5
+	qJD+gSv8KTVdUMrxwM3G+noZ11YzBOoreOo6vjrCGAhSemP5WwRAObhwepzKd1yo
+	IBs6pqmD0dM2OsgEkn+5W3p5Fb4unQ3Rr7d+8T+AI6MuBq3an1BWQWhe+GZq/9yd
+	9kHlABCJIwj6FKBHhjJZvGyKNCNviE5GaCDOwE6i1VLi88urIXFxtz+xwMuOkyof
+	bOb/otGCJhYvqF1liU57Scjwf97N0aQxyizarPOqjBwkOquLlXCBNBKgKUOwkzI9
+	/D7ChQ==
+Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com [209.85.214.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49qfd9a7hj-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 16 Oct 2025 23:10:16 +0000 (GMT)
+Received: by mail-pl1-f198.google.com with SMTP id d9443c01a7336-290cd61855eso4309925ad.1
+        for <devicetree@vger.kernel.org>; Thu, 16 Oct 2025 16:10:16 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1760656216; x=1761261016;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=1tPINqjigGOZj9I27QX/968lYU1qIXvwjHcC4xMne5U=;
+        b=HoUJ6DH+11IYyFVQ+07ACtNR4NiwfOcKA2IYeov4ymgbzzo5grMqZg1D+z9VtWNEzj
+         0qoyXxOPkUqXGmh6IHSF3fqLjlXRMCpgXpH3cs5ODznLPxrQKDKDagi/SYv9vUHBpVBb
+         BcWd1XQ0+5SuvTLS76s21ePxcx/NiNRpk6Q8cXWCIgcuAZ4LXFMW3bMQklr0Q5ksNQiW
+         pghC9UrcqL4m++u4aZcWF2CYk9b+lbSy3tx/mT6keK1Yx69SRfiaw4NWt4Kc8r3pvkEJ
+         cQZexPw56L2+4frfHzDJBZFI6PvYH4vkUJP4siGUBWfXk58PLI2ppDw6VMu5ue+2nwWV
+         ABrA==
+X-Forwarded-Encrypted: i=1; AJvYcCV5QegYC2R3G5v20EMQLf41N7i2s4DxJekv0bi2Q7QS1FBcxjD7cRSvHCfdM095+NDG4+cCbgzmczEM@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzg3dlxM5ZL9fIcTlVXh+IEPmOGo18MfJndhhC3lju/xAA720/v
+	9jiqrT5Yo63R6d+LCPPknbk7QkEDa4jVXf2T41eUSDPpNIhQ3jSpJrILHEsaz431tiAqe/4N4uR
+	Zt4rHzLVryeVUZLTqUUM7hFe0LrMMNB57I8Izta1HAuZ3iSijQWT7KVL+67Q7h0wH
+X-Gm-Gg: ASbGncv00OczKdfk9WUoZihLJNOViXwYmLMRbr4MTm3UV2vswgk96kvGEsqMqYZ3r9Z
+	oh4zfIDajLllz+disKMhjJIZh6oGAVyhe1gCz9jHiV2e7qwcbMEB/YBUJ2yiGncIrkOpCSRNr+W
+	YhHC+yOykR7ryxTleI6NjHXcMXHlp1/DdzviuAk45Eg6XH/wK5OfMTag7Wj2KM3/rx+ZLf0boNk
+	H9HiCU5+IkctoRc600rP0fuVphDWSEtQtGYd+BbFy7OthoQKnrXqjewZ+sEkWGk7A4QglN7hkGK
+	+r3AcF/0PiYkyZpyiwJeOMBch3h0e9lCGedxa1nO45mGs1nJVYFDvP4PI5RY1Bs0Ar9nV0xrkAE
+	rvG0qHRzQLHvpvHaf7WXA9vQ3y/5fUzQFgU5KFJfOfK9LK4NLDGMlBg==
+X-Received: by 2002:a17:903:120c:b0:269:b6c4:1005 with SMTP id d9443c01a7336-290cb94b68emr20083635ad.55.1760656215769;
+        Thu, 16 Oct 2025 16:10:15 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHiYfaBWbys9UzgyANLmFAYmV5ZKjYCVGYbDeOmnmvnPv1IKlpNavonKjhTDyi8fNIYCKZCQw==
+X-Received: by 2002:a17:903:120c:b0:269:b6c4:1005 with SMTP id d9443c01a7336-290cb94b68emr20083015ad.55.1760656215103;
+        Thu, 16 Oct 2025 16:10:15 -0700 (PDT)
+Received: from [10.62.37.19] (i-global254.qualcomm.com. [199.106.103.254])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29099a7d19dsm42393095ad.71.2025.10.16.16.10.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 16 Oct 2025 16:10:14 -0700 (PDT)
+Message-ID: <eb7992e4-f0a8-4266-ac4a-3de7694ac582@oss.qualcomm.com>
+Date: Thu, 16 Oct 2025 16:10:13 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -42,469 +90,457 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 4/7] riscv: dts: starfive: jh7110-common: Move out some
- nodes to the board dts
-To: Hal Feng <hal.feng@starfivetech.com>, Conor Dooley <conor+dt@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Palmer Dabbelt <palmer@dabbelt.com>, "Rafael J . Wysocki"
- <rafael@kernel.org>, Viresh Kumar <viresh.kumar@linaro.org>,
- Emil Renner Berthing <emil.renner.berthing@canonical.com>,
- Heinrich Schuchardt <heinrich.schuchardt@canonical.com>,
- Paul Walmsley <pjw@kernel.org>, Albert Ou <aou@eecs.berkeley.edu>
-Cc: devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20251016080054.12484-1-hal.feng@starfivetech.com>
- <20251016080054.12484-5-hal.feng@starfivetech.com>
+Subject: Re: [PATCH v2 4/6] media: qcom: camss: csiphy: Add support for v2.4.0
+ two-phase CSIPHY
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>,
+        Loic Poulain <loic.poulain@oss.qualcomm.com>,
+        Robert Foss
+ <rfoss@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Todor Tomov <todor.too@gmail.com>,
+        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>
+Cc: linux-i2c@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-media@vger.kernel.org, aiqun.yu@oss.qualcomm.com,
+        tingwei.zhang@oss.qualcomm.com, trilok.soni@oss.qualcomm.com,
+        yijie.yang@oss.qualcomm.com,
+        Jingyi Wang <jingyi.wang@oss.qualcomm.com>,
+        Atiya Kailany <atiya.kailany@oss.qualcomm.com>
+References: <20251014-add-support-for-camss-on-kaanapali-v2-0-f5745ba2dff9@oss.qualcomm.com>
+ <20251014-add-support-for-camss-on-kaanapali-v2-4-f5745ba2dff9@oss.qualcomm.com>
+ <059a2e7b-f399-44d9-9f32-cd01e573d954@linaro.org>
 Content-Language: en-US
-From: E Shattow <e@freeshell.de>
-In-Reply-To: <20251016080054.12484-5-hal.feng@starfivetech.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+From: Vijay Kumar Tumati <vijay.tumati@oss.qualcomm.com>
+In-Reply-To: <059a2e7b-f399-44d9-9f32-cd01e573d954@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-ORIG-GUID: cVleY-DwQl366nvVwDZGE5wTir8-2cVX
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDExMDAxOCBTYWx0ZWRfX6OEdOe+3gD8I
+ 381Q0HisBSkEb2W3oWC7dfjvPt3hCTpHA31MtFIyAGR46tDOJZH49stB/nloprRubqxvyNqR4sB
+ LAplNoXUTIr/mhV7xtTdBAqHT8+L4gUrA9T3bcMcs6/HkZgqdiSwB22d1CgjBow/NxgEvpX0z09
+ TVzKrw+yts3/alKYM5ywj0cfQ6tmTIj15FERca4YeiW/vQgltPA7Xb/QaYhWiDFBjkZ7LGE/Gfy
+ /4XQM6767N0DDkVvUWAJwUONT3eC3Tt7wnUZSVW2jFFdWC3SXr6eMLgYNQj/XggzW0TBosDO4WT
+ J1sBHFsiPPmj1h4t+oVOg2HJ7W8TkJzbJKBq6xMceQLLrfkQ6bwdfq8ohuSQX7S021O/ZaBNbtS
+ tAkc44gH/4F8JmSdEqAMJcgOk+cvNg==
+X-Proofpoint-GUID: cVleY-DwQl366nvVwDZGE5wTir8-2cVX
+X-Authority-Analysis: v=2.4 cv=PdTyRyhd c=1 sm=1 tr=0 ts=68f17b58 cx=c_pps
+ a=MTSHoo12Qbhz2p7MsH1ifg==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
+ a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=EUspDBNiAAAA:8 a=qluxdjdIzHZhSvtdTZwA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=GvdueXVYPmCkWapjIL-Q:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-10-16_04,2025-10-13_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 phishscore=0 bulkscore=0 clxscore=1015 adultscore=0
+ lowpriorityscore=0 impostorscore=0 priorityscore=1501 spamscore=0
+ suspectscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2510020000
+ definitions=main-2510110018
 
 
+On 10/16/2025 1:59 AM, Bryan O'Donoghue wrote:
+> On 15/10/2025 03:56, Hangxiang Ma wrote:
+>> Add more detailed resource information for CSIPHY devices in the camss
+>> driver along with the support for v2.4.0 in the 2 phase CSIPHY driver
+>> that is responsible for the PHY lane register configuration, module
+>> reset and interrupt handling.
+>>
+>> Add 'common_status_offset' variable in 'csidphy_device_regs' structure,
+>> which accommodates the offset between common registers and status
+>> registers. Because this specific offset in Kaanapali registers differs
+>> from other versions.
+>>
+>> Signed-off-by: Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>
+>> ---
+>>   .../platform/qcom/camss/camss-csiphy-3ph-1-0.c     | 147 
+>> ++++++++++++++++++++-
+>>   drivers/media/platform/qcom/camss/camss-csiphy.h   |   1 +
+>>   drivers/media/platform/qcom/camss/camss.c          | 107 
+>> +++++++++++++++
+>>   3 files changed, 249 insertions(+), 6 deletions(-)
+>>
+>> diff --git a/drivers/media/platform/qcom/camss/camss-csiphy-3ph-1-0.c 
+>> b/drivers/media/platform/qcom/camss/camss-csiphy-3ph-1-0.c
+>> index a229ba04b158..192636d02b32 100644
+>> --- a/drivers/media/platform/qcom/camss/camss-csiphy-3ph-1-0.c
+>> +++ b/drivers/media/platform/qcom/camss/camss-csiphy-3ph-1-0.c
+>> @@ -46,7 +46,8 @@
+>>   #define CSIPHY_3PH_CMN_CSI_COMMON_CTRL5_CLK_ENABLE    BIT(7)
+>>   #define CSIPHY_3PH_CMN_CSI_COMMON_CTRL6_COMMON_PWRDN_B BIT(0)
+>>   #define CSIPHY_3PH_CMN_CSI_COMMON_CTRL6_SHOW_REV_ID    BIT(1)
+>> -#define CSIPHY_3PH_CMN_CSI_COMMON_STATUSn(offset, n) ((offset) + 
+>> 0xb0 + 0x4 * (n))
+>> +#define CSIPHY_3PH_CMN_CSI_COMMON_STATUSn(offset, 
+>> common_status_offset, n) \
+>> +    ((offset) + (common_status_offset) + 0x4 * (n))
+>>     #define CSIPHY_DEFAULT_PARAMS        0
+>>   #define CSIPHY_LANE_ENABLE        1
+>> @@ -587,6 +588,123 @@ csiphy_lane_regs lane_regs_sm8550[] = {
+>>       {0x0C64, 0x7F, 0x00, CSIPHY_DEFAULT_PARAMS},
+>>   };
+>>   +/* 3nm 2PH v 2.4.0 2p5Gbps 4 lane DPHY mode */
+>
+> I'll again ask for a declaration of the process node this PHY sequence 
+> is fabbed on.
+>
+@Bryan, sorry, is this something other than "/* 3nm 2PH v 2.4.0 2p5Gbps 
+4 lane DPHY mode */" ?
+>> +static const struct
+>> +csiphy_lane_regs lane_regs_kaanapali[] = {
+>> +    /* LN 0 */
+>> +    {0x0094, 0x00, 0x00, CSIPHY_DEFAULT_PARAMS},
+>> +    {0x00A0, 0x00, 0x00, CSIPHY_DEFAULT_PARAMS},
+>> +    {0x0090, 0x0F, 0x00, CSIPHY_DEFAULT_PARAMS},
+>> +    {0x0098, 0x08, 0x00, CSIPHY_DEFAULT_PARAMS},
+>> +    {0x0094, 0x07, 0xd1, CSIPHY_DEFAULT_PARAMS},
+>> +    {0x0030, 0x00, 0x00, CSIPHY_DEFAULT_PARAMS},
+>> +    {0x0000, 0x8C, 0x00, CSIPHY_DEFAULT_PARAMS},
+>> +    {0x0038, 0xFE, 0x00, CSIPHY_DEFAULT_PARAMS},
+>> +    {0x002C, 0x01, 0x00, CSIPHY_DEFAULT_PARAMS},
+>> +    {0x0034, 0x0F, 0x00, CSIPHY_DEFAULT_PARAMS},
+>> +    {0x001C, 0x0A, 0x00, CSIPHY_DEFAULT_PARAMS},
+>> +    {0x0014, 0x60, 0x00, CSIPHY_DEFAULT_PARAMS},
+>> +    {0x003C, 0xB8, 0x00, CSIPHY_DEFAULT_PARAMS},
+>> +    {0x0004, 0x0C, 0x00, CSIPHY_DEFAULT_PARAMS},
+>> +    {0x0020, 0x00, 0x00, CSIPHY_DEFAULT_PARAMS},
+>> +    {0x0008, 0x19, 0x00, CSIPHY_SETTLE_CNT_LOWER_BYTE},
+>> +    {0x0010, 0x52, 0x00, CSIPHY_DEFAULT_PARAMS},
+>> +    {0x0094, 0xD7, 0x00, CSIPHY_SKEW_CAL},
+>> +    {0x005C, 0x54, 0x00, CSIPHY_SKEW_CAL},
+>> +    {0x0060, 0xFD, 0x00, CSIPHY_SKEW_CAL},
+>> +    {0x0064, 0x7F, 0x00, CSIPHY_SKEW_CAL},
+>> +
+>> +    /* LN 2 */
+>> +    {0x0494, 0x00, 0x00, CSIPHY_DEFAULT_PARAMS},
+>> +    {0x04A0, 0x00, 0x00, CSIPHY_DEFAULT_PARAMS},
+>> +    {0x0490, 0x0F, 0x00, CSIPHY_DEFAULT_PARAMS},
+>> +    {0x0498, 0x08, 0x00, CSIPHY_DEFAULT_PARAMS},
+>> +    {0x0494, 0x07, 0xd1, CSIPHY_DEFAULT_PARAMS},
+>> +    {0x0430, 0x00, 0x00, CSIPHY_DEFAULT_PARAMS},
+>> +    {0x0400, 0x8C, 0x00, CSIPHY_DEFAULT_PARAMS},
+>> +    {0x0438, 0xFE, 0x00, CSIPHY_DEFAULT_PARAMS},
+>> +    {0x042C, 0x01, 0x00, CSIPHY_DEFAULT_PARAMS},
+>> +    {0x0434, 0x0F, 0x00, CSIPHY_DEFAULT_PARAMS},
+>> +    {0x041C, 0x0A, 0x00, CSIPHY_DEFAULT_PARAMS},
+>> +    {0x0414, 0x60, 0x00, CSIPHY_DEFAULT_PARAMS},
+>> +    {0x043C, 0xB8, 0x00, CSIPHY_DEFAULT_PARAMS},
+>> +    {0x0404, 0x0C, 0x00, CSIPHY_DEFAULT_PARAMS},
+>> +    {0x0420, 0x00, 0x00, CSIPHY_DEFAULT_PARAMS},
+>> +    {0x0408, 0x19, 0x00, CSIPHY_SETTLE_CNT_LOWER_BYTE},
+>> +    {0x0410, 0x52, 0x00, CSIPHY_DEFAULT_PARAMS},
+>> +    {0x0494, 0xD7, 0x00, CSIPHY_SKEW_CAL},
+>> +    {0x045C, 0x54, 0x00, CSIPHY_SKEW_CAL},
+>> +    {0x0460, 0xFD, 0x00, CSIPHY_SKEW_CAL},
+>> +    {0x0464, 0x7F, 0x00, CSIPHY_SKEW_CAL},
+>> +
+>> +    /* LN 4 */
+>> +    {0x0894, 0x00, 0x00, CSIPHY_DEFAULT_PARAMS},
+>> +    {0x08A0, 0x00, 0x00, CSIPHY_DEFAULT_PARAMS},
+>> +    {0x0890, 0x0F, 0x00, CSIPHY_DEFAULT_PARAMS},
+>> +    {0x0898, 0x08, 0x00, CSIPHY_DEFAULT_PARAMS},
+>> +    {0x0894, 0x07, 0xd1, CSIPHY_DEFAULT_PARAMS},
+>> +    {0x0830, 0x00, 0x00, CSIPHY_DEFAULT_PARAMS},
+>> +    {0x0800, 0x8C, 0x00, CSIPHY_DEFAULT_PARAMS},
+>> +    {0x0838, 0xFE, 0x00, CSIPHY_DEFAULT_PARAMS},
+>> +    {0x082C, 0x01, 0x00, CSIPHY_DEFAULT_PARAMS},
+>> +    {0x0834, 0x0F, 0x00, CSIPHY_DEFAULT_PARAMS},
+>> +    {0x081C, 0x0A, 0x00, CSIPHY_DEFAULT_PARAMS},
+>> +    {0x0814, 0x60, 0x00, CSIPHY_DEFAULT_PARAMS},
+>> +    {0x083C, 0xB8, 0x00, CSIPHY_DEFAULT_PARAMS},
+>> +    {0x0804, 0x0C, 0x00, CSIPHY_DEFAULT_PARAMS},
+>> +    {0x0820, 0x00, 0x00, CSIPHY_DEFAULT_PARAMS},
+>> +    {0x0808, 0x19, 0x00, CSIPHY_SETTLE_CNT_LOWER_BYTE},
+>> +    {0x0810, 0x52, 0x00, CSIPHY_DEFAULT_PARAMS},
+>> +    {0x0894, 0xD7, 0x00, CSIPHY_SKEW_CAL},
+>> +    {0x085C, 0x54, 0x00, CSIPHY_SKEW_CAL},
+>> +    {0x0860, 0xFD, 0x00, CSIPHY_SKEW_CAL},
+>> +    {0x0864, 0x7F, 0x00, CSIPHY_SKEW_CAL},
+>> +
+>> +    /* LN 6 */
+>> +    {0x0C94, 0x00, 0x00, CSIPHY_DEFAULT_PARAMS},
+>> +    {0x0CA0, 0x00, 0x00, CSIPHY_DEFAULT_PARAMS},
+>> +    {0x0C90, 0x0F, 0x00, CSIPHY_DEFAULT_PARAMS},
+>> +    {0x0C98, 0x08, 0x00, CSIPHY_DEFAULT_PARAMS},
+>> +    {0x0C94, 0x07, 0xd1, CSIPHY_DEFAULT_PARAMS},
+>> +    {0x0C30, 0x00, 0x00, CSIPHY_DEFAULT_PARAMS},
+>> +    {0x0C00, 0x8C, 0x00, CSIPHY_DEFAULT_PARAMS},
+>> +    {0x0C38, 0xFE, 0x00, CSIPHY_DEFAULT_PARAMS},
+>> +    {0x0C2C, 0x01, 0x00, CSIPHY_DEFAULT_PARAMS},
+>> +    {0x0C34, 0x0F, 0x00, CSIPHY_DEFAULT_PARAMS},
+>> +    {0x0C1C, 0x0A, 0x00, CSIPHY_DEFAULT_PARAMS},
+>> +    {0x0C14, 0x60, 0x00, CSIPHY_DEFAULT_PARAMS},
+>> +    {0x0C3C, 0xB8, 0x00, CSIPHY_DEFAULT_PARAMS},
+>> +    {0x0C04, 0x0C, 0x00, CSIPHY_DEFAULT_PARAMS},
+>> +    {0x0C20, 0x00, 0x00, CSIPHY_DEFAULT_PARAMS},
+>> +    {0x0C08, 0x19, 0x00, CSIPHY_SETTLE_CNT_LOWER_BYTE},
+>> +    {0x0C10, 0x52, 0x00, CSIPHY_DEFAULT_PARAMS},
+>> +    {0x0C94, 0xD7, 0x00, CSIPHY_SKEW_CAL},
+>> +    {0x0C5C, 0x54, 0x00, CSIPHY_SKEW_CAL},
+>> +    {0x0C60, 0xFD, 0x00, CSIPHY_SKEW_CAL},
+>> +    {0x0C64, 0x7F, 0x00, CSIPHY_SKEW_CAL},
+>> +
+>> +    /* LN CLK */
+>> +    {0x0E94, 0x00, 0x00, CSIPHY_DEFAULT_PARAMS},
+>> +    {0x0EA0, 0x00, 0x00, CSIPHY_DEFAULT_PARAMS},
+>> +    {0x0E90, 0x0F, 0x00, CSIPHY_DEFAULT_PARAMS},
+>> +    {0x0E98, 0x08, 0x00, CSIPHY_DEFAULT_PARAMS},
+>> +    {0x0E94, 0x07, 0xd1, CSIPHY_DEFAULT_PARAMS},
+>> +    {0x0E30, 0x00, 0x00, CSIPHY_DEFAULT_PARAMS},
+>> +    {0x0E28, 0x04, 0x00, CSIPHY_DEFAULT_PARAMS},
+>> +    {0x0E00, 0x80, 0x00, CSIPHY_DEFAULT_PARAMS},
+>> +    {0x0E0C, 0xFF, 0x00, CSIPHY_DEFAULT_PARAMS},
+>> +    {0x0E38, 0x1F, 0x00, CSIPHY_DEFAULT_PARAMS},
+>> +    {0x0E2C, 0x01, 0x00, CSIPHY_DEFAULT_PARAMS},
+>> +    {0x0E34, 0x0F, 0x00, CSIPHY_DEFAULT_PARAMS},
+>> +    {0x0E1C, 0x0A, 0x00, CSIPHY_DEFAULT_PARAMS},
+>> +    {0x0E14, 0x60, 0x00, CSIPHY_DEFAULT_PARAMS},
+>> +    {0x0E3C, 0xB8, 0x00, CSIPHY_DEFAULT_PARAMS},
+>> +    {0x0E04, 0x0C, 0x00, CSIPHY_DEFAULT_PARAMS},
+>> +    {0x0E20, 0x00, 0x00, CSIPHY_DEFAULT_PARAMS},
+>> +    {0x0E08, 0x19, 0x00, CSIPHY_SETTLE_CNT_LOWER_BYTE},
+>> +    {0x0E10, 0x52, 0x00, CSIPHY_DEFAULT_PARAMS},
+>> +};
+>> +
+>>   /* 4nm 2PH v 2.1.2 2p5Gbps 4 lane DPHY mode */
+>>   static const struct
+>>   csiphy_lane_regs lane_regs_x1e80100[] = {
+>> @@ -714,13 +832,21 @@ static void csiphy_hw_version_read(struct 
+>> csiphy_device *csiphy,
+>>              CSIPHY_3PH_CMN_CSI_COMMON_CTRLn(regs->offset, 6));
+>>         hw_version = readl_relaxed(csiphy->base +
+>> - CSIPHY_3PH_CMN_CSI_COMMON_STATUSn(regs->offset, 12));
+>> +                   CSIPHY_3PH_CMN_CSI_COMMON_STATUSn(
+>> +                    regs->offset,
+>> +                    regs->common_status_offset, 12));
+>>       hw_version |= readl_relaxed(csiphy->base +
+>> - CSIPHY_3PH_CMN_CSI_COMMON_STATUSn(regs->offset, 13)) << 8;
+>> +                    CSIPHY_3PH_CMN_CSI_COMMON_STATUSn(
+>> +                    regs->offset,
+>> +                    regs->common_status_offset, 13)) << 8;
+>>       hw_version |= readl_relaxed(csiphy->base +
+>> - CSIPHY_3PH_CMN_CSI_COMMON_STATUSn(regs->offset, 14)) << 16;
+>> +                    CSIPHY_3PH_CMN_CSI_COMMON_STATUSn(
+>> +                    regs->offset,
+>> +                    regs->common_status_offset, 14)) << 16;
+>>       hw_version |= readl_relaxed(csiphy->base +
+>> - CSIPHY_3PH_CMN_CSI_COMMON_STATUSn(regs->offset, 15)) << 24;
+>> +                    CSIPHY_3PH_CMN_CSI_COMMON_STATUSn(
+>> +                    regs->offset,
+>> +                    regs->common_status_offset, 15)) << 24;
+>
+> This change should be separated from the addition of the PHY init 
+> sequence into its own patch so we can arbitrate that patch standalone 
+> on its merits.
+>
+> I have questions like "why do this" and "how does this affect other 
+> hardware" which a commit log for a change like this should spell out.
 
-On 10/16/25 01:00, Hal Feng wrote:
-> Some node in this file are not used by the upcoming VisionFive 2 Lite
-> board. Move them to the board dts to prepare for adding the new
-> VisionFive 2 Lite device tree.
-> 
-> Reviewed-by: E Shattow <e@freeshell.de>
-> Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
-> ---
->  .../boot/dts/starfive/jh7110-common.dtsi      | 19 --------
->  .../jh7110-deepcomputing-fml13v01.dts         | 46 +++++++++++++++++++
->  .../boot/dts/starfive/jh7110-milkv-mars.dts   | 46 +++++++++++++++++++
->  .../dts/starfive/jh7110-milkv-marscm-emmc.dts |  9 ++++
->  .../dts/starfive/jh7110-milkv-marscm-lite.dts |  1 +
->  .../dts/starfive/jh7110-milkv-marscm.dtsi     | 32 +++++++++++++
->  .../dts/starfive/jh7110-pine64-star64.dts     | 46 +++++++++++++++++++
->  .../jh7110-starfive-visionfive-2.dtsi         | 43 +++++++++++++++++
->  arch/riscv/boot/dts/starfive/jh7110.dtsi      | 16 -------
->  9 files changed, 223 insertions(+), 35 deletions(-)
-> 
-> diff --git a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
-> index 5dc15e48b74b..8cfe8033305d 100644
-> --- a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
-> +++ b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
-> @@ -281,14 +281,8 @@ &mmc0 {
->  	assigned-clock-rates = <50000000>;
->  	bus-width = <8>;
->  	bootph-pre-ram;
-> -	cap-mmc-highspeed;
-> -	mmc-ddr-1_8v;
-> -	mmc-hs200-1_8v;
-> -	cap-mmc-hw-reset;
->  	pinctrl-names = "default";
->  	pinctrl-0 = <&mmc0_pins>;
-> -	vmmc-supply = <&vcc_3v3>;
-> -	vqmmc-supply = <&emmc_vdd>;
->  	status = "okay";
->  };
->  
-> @@ -298,8 +292,6 @@ &mmc1 {
->  	assigned-clock-rates = <50000000>;
->  	bus-width = <4>;
->  	bootph-pre-ram;
-> -	cd-gpios = <&sysgpio 41 GPIO_ACTIVE_LOW>;
-> -	disable-wp;
->  	cap-sd-highspeed;
->  	pinctrl-names = "default";
->  	pinctrl-0 = <&mmc1_pins>;
-> @@ -444,17 +436,6 @@ GPOEN_SYS_I2C6_DATA,
->  	};
->  
->  	mmc0_pins: mmc0-0 {
-> -		 rst-pins {
-> -			pinmux = <GPIOMUX(62, GPOUT_SYS_SDIO0_RST,
-> -					      GPOEN_ENABLE,
-> -					      GPI_NONE)>;
-> -			bias-pull-up;
-> -			drive-strength = <12>;
-> -			input-disable;
-> -			input-schmitt-disable;
-> -			slew-rate = <0>;
-> -		};
-> -
->  		mmc-pins {
->  			pinmux = <PINMUX(PAD_SD0_CLK, 0)>,
->  				 <PINMUX(PAD_SD0_CMD, 0)>,
-> diff --git a/arch/riscv/boot/dts/starfive/jh7110-deepcomputing-fml13v01.dts b/arch/riscv/boot/dts/starfive/jh7110-deepcomputing-fml13v01.dts
-> index f2857d021d68..7535d62201f1 100644
-> --- a/arch/riscv/boot/dts/starfive/jh7110-deepcomputing-fml13v01.dts
-> +++ b/arch/riscv/boot/dts/starfive/jh7110-deepcomputing-fml13v01.dts
-> @@ -11,6 +11,52 @@ / {
->  	compatible = "deepcomputing,fml13v01", "starfive,jh7110";
->  };
->  
-> +&cpu_opp {
-> +	opp-375000000 {
-> +		opp-hz = /bits/ 64 <375000000>;
-> +		opp-microvolt = <800000>;
-> +	};
-> +	opp-500000000 {
-> +		opp-hz = /bits/ 64 <500000000>;
-> +		opp-microvolt = <800000>;
-> +	};
-> +	opp-750000000 {
-> +		opp-hz = /bits/ 64 <750000000>;
-> +		opp-microvolt = <800000>;
-> +	};
-> +	opp-1500000000 {
-> +		opp-hz = /bits/ 64 <1500000000>;
-> +		opp-microvolt = <1040000>;
-> +	};
-> +};
-> +
-> +&mmc0 {
-> +	cap-mmc-highspeed;
-> +	cap-mmc-hw-reset;
-> +	mmc-ddr-1_8v;
-> +	mmc-hs200-1_8v;
-> +	vmmc-supply = <&vcc_3v3>;
-> +	vqmmc-supply = <&emmc_vdd>;
-> +};
-> +
-> +&mmc0_pins {
-> +	rst-pins {
-> +		pinmux = <GPIOMUX(62, GPOUT_SYS_SDIO0_RST,
-> +				      GPOEN_ENABLE,
-> +				      GPI_NONE)>;
-> +		bias-pull-up;
-> +		drive-strength = <12>;
-> +		input-disable;
-> +		input-schmitt-disable;
-> +		slew-rate = <0>;
-> +	};
-> +};
-> +
-> +&mmc1 {
-> +	cd-gpios = <&sysgpio 41 GPIO_ACTIVE_LOW>;
-> +	disable-wp;
-> +};
-> +
->  &pcie1 {
->  	perst-gpios = <&sysgpio 21 GPIO_ACTIVE_LOW>;
->  	phys = <&pciephy1>;
-> diff --git a/arch/riscv/boot/dts/starfive/jh7110-milkv-mars.dts b/arch/riscv/boot/dts/starfive/jh7110-milkv-mars.dts
-> index fdaf6b4557da..c2e7a91e460a 100644
-> --- a/arch/riscv/boot/dts/starfive/jh7110-milkv-mars.dts
-> +++ b/arch/riscv/boot/dts/starfive/jh7110-milkv-mars.dts
-> @@ -11,6 +11,25 @@ / {
->  	compatible = "milkv,mars", "starfive,jh7110";
->  };
->  
-> +&cpu_opp {
-> +	opp-375000000 {
-> +		opp-hz = /bits/ 64 <375000000>;
-> +		opp-microvolt = <800000>;
-> +	};
-> +	opp-500000000 {
-> +		opp-hz = /bits/ 64 <500000000>;
-> +		opp-microvolt = <800000>;
-> +	};
-> +	opp-750000000 {
-> +		opp-hz = /bits/ 64 <750000000>;
-> +		opp-microvolt = <800000>;
-> +	};
-> +	opp-1500000000 {
-> +		opp-hz = /bits/ 64 <1500000000>;
-> +		opp-microvolt = <1040000>;
-> +	};
-> +};
-> +
->  &gmac0 {
->  	assigned-clocks = <&aoncrg JH7110_AONCLK_GMAC0_TX>;
->  	assigned-clock-parents = <&aoncrg JH7110_AONCLK_GMAC0_RMII_RTX>;
-> @@ -22,6 +41,33 @@ &i2c0 {
->  	status = "okay";
->  };
->  
-> +&mmc0 {
-> +	cap-mmc-highspeed;
-> +	cap-mmc-hw-reset;
-> +	mmc-ddr-1_8v;
-> +	mmc-hs200-1_8v;
-> +	vmmc-supply = <&vcc_3v3>;
-> +	vqmmc-supply = <&emmc_vdd>;
-> +};
-> +
-> +&mmc0_pins {
-> +	rst-pins {
-> +		pinmux = <GPIOMUX(62, GPOUT_SYS_SDIO0_RST,
-> +				      GPOEN_ENABLE,
-> +				      GPI_NONE)>;
-> +		bias-pull-up;
-> +		drive-strength = <12>;
-> +		input-disable;
-> +		input-schmitt-disable;
-> +		slew-rate = <0>;
-> +	};
-> +};
-> +
-> +&mmc1 {
-> +	cd-gpios = <&sysgpio 41 GPIO_ACTIVE_LOW>;
-> +	disable-wp;
-> +};
-> +
->  &pcie0 {
->  	status = "okay";
->  };
-> diff --git a/arch/riscv/boot/dts/starfive/jh7110-milkv-marscm-emmc.dts b/arch/riscv/boot/dts/starfive/jh7110-milkv-marscm-emmc.dts
-> index e568537af2c4..ce95496263af 100644
-> --- a/arch/riscv/boot/dts/starfive/jh7110-milkv-marscm-emmc.dts
-> +++ b/arch/riscv/boot/dts/starfive/jh7110-milkv-marscm-emmc.dts
-> @@ -10,3 +10,12 @@ / {
->  	model = "Milk-V Mars CM";
->  	compatible = "milkv,marscm-emmc", "starfive,jh7110";
->  };
-> +
-> +&mmc0 {
-> +	cap-mmc-highspeed;
-> +	cap-mmc-hw-reset;
-> +	mmc-ddr-1_8v;
-> +	mmc-hs200-1_8v;
-> +	vmmc-supply = <&vcc_3v3>;
-> +	vqmmc-supply = <&emmc_vdd>;
-> +};
-> diff --git a/arch/riscv/boot/dts/starfive/jh7110-milkv-marscm-lite.dts b/arch/riscv/boot/dts/starfive/jh7110-milkv-marscm-lite.dts
-> index 6c40d0ec4011..63aa94d65ab5 100644
-> --- a/arch/riscv/boot/dts/starfive/jh7110-milkv-marscm-lite.dts
-> +++ b/arch/riscv/boot/dts/starfive/jh7110-milkv-marscm-lite.dts
-> @@ -14,6 +14,7 @@ / {
->  &mmc0 {
->  	bus-width = <4>;
->  	cd-gpios = <&sysgpio 41 GPIO_ACTIVE_LOW>;
-> +	disable-wp;
->  };
->  
->  &mmc0_pins {
-> diff --git a/arch/riscv/boot/dts/starfive/jh7110-milkv-marscm.dtsi b/arch/riscv/boot/dts/starfive/jh7110-milkv-marscm.dtsi
-> index 25b70af564ee..af01d3abde2f 100644
-> --- a/arch/riscv/boot/dts/starfive/jh7110-milkv-marscm.dtsi
-> +++ b/arch/riscv/boot/dts/starfive/jh7110-milkv-marscm.dtsi
-> @@ -21,6 +21,25 @@ sdio_pwrseq: sdio-pwrseq {
->  	};
->  };
->  
-> +&cpu_opp {
-> +	opp-375000000 {
-> +		opp-hz = /bits/ 64 <375000000>;
-> +		opp-microvolt = <800000>;
-> +	};
-> +	opp-500000000 {
-> +		opp-hz = /bits/ 64 <500000000>;
-> +		opp-microvolt = <800000>;
-> +	};
-> +	opp-750000000 {
-> +		opp-hz = /bits/ 64 <750000000>;
-> +		opp-microvolt = <800000>;
-> +	};
-> +	opp-1500000000 {
-> +		opp-hz = /bits/ 64 <1500000000>;
-> +		opp-microvolt = <1040000>;
-> +	};
-> +};
-> +
->  &gmac0 {
->  	assigned-clocks = <&aoncrg JH7110_AONCLK_GMAC0_TX>;
->  	assigned-clock-parents = <&aoncrg JH7110_AONCLK_GMAC0_RMII_RTX>;
-> @@ -40,6 +59,19 @@ &i2c6 {
->  	status = "disabled";
->  };
->  
-> +&mmc0_pins {
-> +	rst-pins {
-> +		pinmux = <GPIOMUX(62, GPOUT_SYS_SDIO0_RST,
-> +				      GPOEN_ENABLE,
-> +				      GPI_NONE)>;
-> +		bias-pull-up;
-> +		drive-strength = <12>;
-> +		input-disable;
-> +		input-schmitt-disable;
-> +		slew-rate = <0>;
-> +	};
-> +};
-> +
->  &mmc1 {
->  	#address-cells = <1>;
->  	#size-cells = <0>;
-> diff --git a/arch/riscv/boot/dts/starfive/jh7110-pine64-star64.dts b/arch/riscv/boot/dts/starfive/jh7110-pine64-star64.dts
-> index 31e825be2065..6faf3826c5c3 100644
-> --- a/arch/riscv/boot/dts/starfive/jh7110-pine64-star64.dts
-> +++ b/arch/riscv/boot/dts/starfive/jh7110-pine64-star64.dts
-> @@ -14,6 +14,25 @@ aliases {
->  	};
->  };
->  
-> +&cpu_opp {
-> +	opp-375000000 {
-> +		opp-hz = /bits/ 64 <375000000>;
-> +		opp-microvolt = <800000>;
-> +	};
-> +	opp-500000000 {
-> +		opp-hz = /bits/ 64 <500000000>;
-> +		opp-microvolt = <800000>;
-> +	};
-> +	opp-750000000 {
-> +		opp-hz = /bits/ 64 <750000000>;
-> +		opp-microvolt = <800000>;
-> +	};
-> +	opp-1500000000 {
-> +		opp-hz = /bits/ 64 <1500000000>;
-> +		opp-microvolt = <1040000>;
-> +	};
-> +};
-> +
->  &gmac0 {
->  	starfive,tx-use-rgmii-clk;
->  	assigned-clocks = <&aoncrg JH7110_AONCLK_GMAC0_TX>;
-> @@ -44,6 +63,33 @@ &i2c0 {
->  	status = "okay";
->  };
->  
-> +&mmc0 {
-> +	cap-mmc-highspeed;
-> +	cap-mmc-hw-reset;
-> +	mmc-ddr-1_8v;
-> +	mmc-hs200-1_8v;
-> +	vmmc-supply = <&vcc_3v3>;
-> +	vqmmc-supply = <&emmc_vdd>;
-> +};
-> +
-> +&mmc0_pins {
-> +	rst-pins {
-> +		pinmux = <GPIOMUX(62, GPOUT_SYS_SDIO0_RST,
-> +				      GPOEN_ENABLE,
-> +				      GPI_NONE)>;
-> +		bias-pull-up;
-> +		drive-strength = <12>;
-> +		input-disable;
-> +		input-schmitt-disable;
-> +		slew-rate = <0>;
-> +	};
-> +};
-> +
-> +&mmc1 {
-> +	cd-gpios = <&sysgpio 41 GPIO_ACTIVE_LOW>;
-> +	disable-wp;
-> +};
-> +
->  &pcie1 {
->  	status = "okay";
->  };
-> diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-> index 5f14afb2c24d..9cd79fe30d19 100644
-> --- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-> +++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-> @@ -13,6 +13,25 @@ aliases {
->  	};
->  };
->  
-> +&cpu_opp {
-> +	opp-375000000 {
-> +		opp-hz = /bits/ 64 <375000000>;
-> +		opp-microvolt = <800000>;
-> +	};
-> +	opp-500000000 {
-> +		opp-hz = /bits/ 64 <500000000>;
-> +		opp-microvolt = <800000>;
-> +	};
-> +	opp-750000000 {
-> +		opp-hz = /bits/ 64 <750000000>;
-> +		opp-microvolt = <800000>;
-> +	};
-> +	opp-1500000000 {
-> +		opp-hz = /bits/ 64 <1500000000>;
-> +		opp-microvolt = <1040000>;
-> +	};
-> +};
-> +
->  &gmac0 {
->  	status = "okay";
->  };
-> @@ -38,9 +57,33 @@ &i2c0 {
->  };
->  
->  &mmc0 {
-> +	cap-mmc-highspeed;
-> +	cap-mmc-hw-reset;
-> +	mmc-ddr-1_8v;
-> +	mmc-hs200-1_8v;
-> +	vmmc-supply = <&vcc_3v3>;
-> +	vqmmc-supply = <&emmc_vdd>;
->  	non-removable;
->  };
->  
-> +&mmc0_pins {
-> +	rst-pins {
-> +		pinmux = <GPIOMUX(62, GPOUT_SYS_SDIO0_RST,
-> +				      GPOEN_ENABLE,
-> +				      GPI_NONE)>;
-> +		bias-pull-up;
-> +		drive-strength = <12>;
-> +		input-disable;
-> +		input-schmitt-disable;
-> +		slew-rate = <0>;
-> +	};
-> +};
-> +
-> +&mmc1 {
-> +	cd-gpios = <&sysgpio 41 GPIO_ACTIVE_LOW>;
-> +	disable-wp;
-> +};
-> +
->  &pcie0 {
->  	status = "okay";
->  };
-> diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> index 6e56e9d20bb0..a380d3dabedd 100644
-> --- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> +++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> @@ -205,22 +205,6 @@ core4 {
->  	cpu_opp: opp-table-0 {
->  			compatible = "operating-points-v2";
->  			opp-shared;
-> -			opp-375000000 {
-> -					opp-hz = /bits/ 64 <375000000>;
-> -					opp-microvolt = <800000>;
-> -			};
-> -			opp-500000000 {
-> -					opp-hz = /bits/ 64 <500000000>;
-> -					opp-microvolt = <800000>;
-> -			};
-> -			opp-750000000 {
-> -					opp-hz = /bits/ 64 <750000000>;
-> -					opp-microvolt = <800000>;
-> -			};
-> -			opp-1500000000 {
-> -					opp-hz = /bits/ 64 <1500000000>;
-> -					opp-microvolt = <1040000>;
-> -			};
->  	};
->  
->  	thermal-zones {
+There are three offsets in the picture here wrt the CSIPHY instance base 
+address
 
-Emil, for your consideration:
+1. First offset to the common registers of the PHY, 'regs->offset' (that 
+follows the lane registers)
 
-jh711x.dtsi  (formerly jh7110.dtsi)
+2. Second offset to the status registers within the common registers . 
+This has been historically the same and hard coded 
+in 'CSIPHY_3PH_CMN_CSI_COMMON_STATUSn' to 0xb0 but this is now changing 
+on Kaanapali.
 
-jh711x-common.dtsi (formerly jh7110-common.dtsi, cut opp table and paste
-to jh7110-common.dtsi, cut out mmc definitions pasted elsewhere either
-to "mmc{0,1}-card, mmc{0,1}-emmc, mmc{0,1}-sdio" dtsi snippets or
-duplicated to board files)
+3. Third set of offsets (12, 13, 14 and 15) are to the version registers 
+within the status registers.
 
-jh7110-common.dtsi (includes jh711x-common.dtsi, adds opp table)
+This change merely generalizes the CSIPHY_3PH_CMN_CSI_COMMON_STATUSn 
+macro for chip sets with different second offset using 
+"regs->common_status_offset". There should not be any impact to the 
+other chip sets, for which it is set to the same 0xb0 in csiphy_init().
 
-jh7110s-common.dtsi (includes jh711x-common.dtsi, adds opp table)
+Please advise if you still think it requires a patch series for itself 
+and we can do that. Thanks.
 
-This makes sense to me having two additional dtsi files of the CPU
-operating power points (on what is apparently binned silicon) to
-maintain for supporting 8+ boards. The decision to split or not split
-out the mmc/sdio configuration into common dtsi snippets is less clear
-to me, but we do have examples now of all the uses (card, eMMC, SDIO) on
-each of the ports mmc0 mmc1 so it might have some benefit; for sure
-keeping these assumptions about mmc0 mmc1 functionality in the one
-'-common.dtsi' is an obstacle to adding sdio module configurations.
-
--E
+>
+>>         dev_dbg(dev, "CSIPHY 3PH HW Version = 0x%08x\n", hw_version);
+>>   }
+>> @@ -749,7 +875,8 @@ static irqreturn_t csiphy_isr(int irq, void *dev)
+>>       for (i = 0; i < 11; i++) {
+>>           int c = i + 22;
+>>           u8 val = readl_relaxed(csiphy->base +
+>> - CSIPHY_3PH_CMN_CSI_COMMON_STATUSn(regs->offset, i));
+>> +            CSIPHY_3PH_CMN_CSI_COMMON_STATUSn(regs->offset,
+>> +                              regs->common_status_offset, i));
+>>             writel_relaxed(val, csiphy->base +
+>> CSIPHY_3PH_CMN_CSI_COMMON_CTRLn(regs->offset, c));
+>> @@ -915,6 +1042,7 @@ static bool csiphy_is_gen2(u32 version)
+>>       case CAMSS_845:
+>>       case CAMSS_8550:
+>>       case CAMSS_8775P:
+>> +    case CAMSS_KAANAPALI:
+>>       case CAMSS_X1E80100:
+>>           ret = true;
+>>           break;
+>> @@ -989,6 +1117,7 @@ static int csiphy_init(struct csiphy_device 
+>> *csiphy)
+>>         csiphy->regs = regs;
+>>       regs->offset = 0x800;
+>> +    regs->common_status_offset = 0xb0;
+>>         switch (csiphy->camss->res->version) {
+>>       case CAMSS_845:
+>> @@ -1023,6 +1152,12 @@ static int csiphy_init(struct csiphy_device 
+>> *csiphy)
+>>           regs->lane_regs = &lane_regs_sa8775p[0];
+>>           regs->lane_array_size = ARRAY_SIZE(lane_regs_sa8775p);
+>>           break;
+>> +    case CAMSS_KAANAPALI:
+>> +        regs->lane_regs = &lane_regs_kaanapali[0];
+>> +        regs->lane_array_size = ARRAY_SIZE(lane_regs_kaanapali);
+>> +        regs->offset = 0x1000;
+>> +        regs->common_status_offset = 0x138;
+>> +        break;
+>>       default:
+>>           break;
+>>       }
+>> diff --git a/drivers/media/platform/qcom/camss/camss-csiphy.h 
+>> b/drivers/media/platform/qcom/camss/camss-csiphy.h
+>> index 895f80003c44..2d5054819df7 100644
+>> --- a/drivers/media/platform/qcom/camss/camss-csiphy.h
+>> +++ b/drivers/media/platform/qcom/camss/camss-csiphy.h
+>> @@ -90,6 +90,7 @@ struct csiphy_device_regs {
+>>       const struct csiphy_lane_regs *lane_regs;
+>>       int lane_array_size;
+>>       u32 offset;
+>> +    u32 common_status_offset;
+>>   };
+>>     struct csiphy_device {
+>> diff --git a/drivers/media/platform/qcom/camss/camss.c 
+>> b/drivers/media/platform/qcom/camss/camss.c
+>> index 4a5caf54c116..542122fba825 100644
+>> --- a/drivers/media/platform/qcom/camss/camss.c
+>> +++ b/drivers/media/platform/qcom/camss/camss.c
+>> @@ -34,6 +34,111 @@
+>>     static const struct parent_dev_ops vfe_parent_dev_ops;
+>>   +static const struct camss_subdev_resources csiphy_res_kaanapali[] = {
+>> +    /* CSIPHY0 */
+>> +    {
+>> +        .regulators = { "vdda-phy0", "vdda-pll" },
+>> +        .clock = { "csiphy0", "csiphy0_timer",
+>> +               "cam_top_ahb", "cam_top_fast_ahb" },
+>> +        .clock_rate = { { 400000000, 480000000 },
+>> +                { 400000000 },
+>> +                { 0 },
+>> +                { 0 } },
+>> +        .reg = { "csiphy0" },
+>> +        .interrupt = { "csiphy0" },
+>> +        .csiphy = {
+>> +            .id = 0,
+>> +            .hw_ops = &csiphy_ops_3ph_1_0,
+>> +            .formats = &csiphy_formats_sdm845
+>> +        }
+>> +    },
+>> +    /* CSIPHY1 */
+>> +    {
+>> +        .regulators = { "vdda-phy1", "vdda-pll" },
+>> +        .clock = { "csiphy1", "csiphy1_timer",
+>> +               "cam_top_ahb", "cam_top_fast_ahb" },
+>> +        .clock_rate = { { 400000000, 480000000 },
+>> +                { 400000000 },
+>> +                { 0 },
+>> +                { 0 } },
+>> +        .reg = { "csiphy1" },
+>> +        .interrupt = { "csiphy1" },
+>> +        .csiphy = {
+>> +            .id = 1,
+>> +            .hw_ops = &csiphy_ops_3ph_1_0,
+>> +            .formats = &csiphy_formats_sdm845
+>> +        }
+>> +    },
+>> +    /* CSIPHY2 */
+>> +    {
+>> +        .regulators = { "vdda-phy2", "vdda-pll" },
+>> +        .clock = { "csiphy2", "csiphy2_timer",
+>> +               "cam_top_ahb", "cam_top_fast_ahb" },
+>> +        .clock_rate = { { 400000000, 480000000 },
+>> +                { 400000000 },
+>> +                { 0 },
+>> +                { 0 } },
+>> +        .reg = { "csiphy2" },
+>> +        .interrupt = { "csiphy2" },
+>> +        .csiphy = {
+>> +            .id = 2,
+>> +            .hw_ops = &csiphy_ops_3ph_1_0,
+>> +            .formats = &csiphy_formats_sdm845
+>> +        }
+>> +    },
+>> +    /* CSIPHY3 */
+>> +    {
+>> +        .regulators = { "vdda-phy3", "vdda-pll" },
+>> +        .clock = { "csiphy3", "csiphy3_timer",
+>> +               "cam_top_ahb", "cam_top_fast_ahb" },
+>> +        .clock_rate = { { 400000000, 480000000 },
+>> +                { 400000000 },
+>> +                { 0 },
+>> +                { 0 } },
+>> +        .reg = { "csiphy3" },
+>> +        .interrupt = { "csiphy3" },
+>> +        .csiphy = {
+>> +            .id = 3,
+>> +            .hw_ops = &csiphy_ops_3ph_1_0,
+>> +            .formats = &csiphy_formats_sdm845
+>> +        }
+>> +    },
+>> +    /* CSIPHY4 */
+>> +    {
+>> +        .regulators = { "vdda-phy4", "vdda-pll" },
+>> +        .clock = { "csiphy4", "csiphy4_timer",
+>> +               "cam_top_ahb", "cam_top_fast_ahb" },
+>> +        .clock_rate = { { 400000000, 480000000 },
+>> +                { 400000000 },
+>> +                { 0 },
+>> +                { 0 } },
+>> +        .reg = { "csiphy4" },
+>> +        .interrupt = { "csiphy4" },
+>> +        .csiphy = {
+>> +            .id = 4,
+>> +            .hw_ops = &csiphy_ops_3ph_1_0,
+>> +            .formats = &csiphy_formats_sdm845
+>> +        }
+>> +    },
+>> +    /* CSIPHY5 */
+>> +    {
+>> +        .regulators = { "vdda-phy5", "vdda-pll" },
+>> +        .clock = { "csiphy5", "csiphy5_timer",
+>> +               "cam_top_ahb", "cam_top_fast_ahb" },
+>> +        .clock_rate = { { 400000000, 480000000 },
+>> +                { 400000000 },
+>> +                { 0 },
+>> +                { 0 } },
+>> +        .reg = { "csiphy5" },
+>> +        .interrupt = { "csiphy5" },
+>> +        .csiphy = {
+>> +            .id = 5,
+>> +            .hw_ops = &csiphy_ops_3ph_1_0,
+>> +            .formats = &csiphy_formats_sdm845
+>> +        }
+>> +    },
+>> +};
+>> +
+>>   static const struct resources_icc icc_res_kaanapali[] = {
+>>       /* Based on 4096 x 3072 30 FPS 2496 Mbps mode */
+>>       {
+>> @@ -4308,8 +4413,10 @@ static void camss_remove(struct 
+>> platform_device *pdev)
+>>   static const struct camss_resources kaanapali_resources = {
+>>       .version = CAMSS_KAANAPALI,
+>>       .pd_name = "top",
+>> +    .csiphy_res = csiphy_res_kaanapali,
+>>       .icc_res = icc_res_kaanapali,
+>>       .icc_path_num = ARRAY_SIZE(icc_res_kaanapali),
+>> +    .csiphy_num = ARRAY_SIZE(csiphy_res_kaanapali),
+>>   };
+>>     static const struct camss_resources msm8916_resources = {
+>>
+>
+>
 
