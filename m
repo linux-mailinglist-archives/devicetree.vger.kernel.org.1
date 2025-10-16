@@ -1,277 +1,263 @@
-Return-Path: <devicetree+bounces-227659-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227663-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5EF0CBE33F3
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 14:08:36 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 79AD4BE3444
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 14:12:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0DF8B540DD7
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 12:08:35 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 270B04FF9C2
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 12:12:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEFE532D447;
-	Thu, 16 Oct 2025 12:07:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C88D327797;
+	Thu, 16 Oct 2025 12:11:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="bT4Nhvf8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n9yMkyc2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 041DD324B3B;
-	Thu, 16 Oct 2025 12:07:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760616476; cv=pass; b=fo7U7e9nDfxs4HIhL0sOy3y5uH1sjwjGlaMAETuXglK8Ky7FppQAvE4QPPXpxRux1FsOhb2ImY1DRSOBPlBjwOq2luvB06jor3yIN9ZucIB6HF4tlNA3wFrJaw60awcrx1reVPNHB4EMUpc1FFPKq5LURGaS3D8rnLHoHYm3E2g=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760616476; c=relaxed/simple;
-	bh=wGhrdsboigxLoPvRehQPV8wv5SmVq02GPaHi3FZ2hGQ=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=SUiOxAtQsM0YJqV1ZOcBhBWKQnkDMS6ZQkRffPsZGL73vhFDLB8cFl+yfSQDvbZsLRy8oOIFo+GjcalsSVDriPo2sR6wHJbSUdDpNsvI9u4VG+kDPS5FB76k5RcvC1HbYt5UoiH+Z90SzkJ1twcFiZOONO6pUc95S388u4ox0ds=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b=bT4Nhvf8; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1760616444; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=fw8LZ25VIooiqEOJRKjnxxU/daEV8nW3MD0rJC01fe7uzseRoTbayzdgHEhMYpo28yow5Zwc0FTSdYeN+cJsH1TmceFNeU7vCUbkFk9qaSqXqUbZ/hJ0Kr8NpozRHdZ9Jd12EXx7wzw+AD0jm9bb3i2kr3cWkQ2Pe/yZnY/TsJs=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1760616444; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=7UJzWh8Mx5huqt0Mv4EI6oIxF7/UV+tu1eGThaILPpw=; 
-	b=XEA8Hi6TetjMFUHlXjfWy2rDuF6lHDUSTTCasWHnyErxvTIYFKzsXRYvqOgD8hnNuoUYdfNWHacFrxCcPOkBwMbbheXAgBd4sLt5kHUioA9at1NVJGK/xbqT61233bBYyVXgHpYfT/f8LAZMswJEgnycJ0fVXk2ufcGoV94T2ws=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
-	dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1760616444;
-	s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
-	h=From:From:Date:Date:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Message-Id:References:In-Reply-To:To:To:Cc:Cc:Reply-To;
-	bh=7UJzWh8Mx5huqt0Mv4EI6oIxF7/UV+tu1eGThaILPpw=;
-	b=bT4Nhvf87bjJhpTCYG+2b0iurXRZQIEjlN+hpuBl8Mie1btFDBAUAOWgupXJcMl8
-	00uFK2Zn6tbgd5TKc6zc7tXFetc1OsqHuiSFiHbxp2djyuK8IIR9Pi8YRI8eNMax00X
-	7HxtjmNvndRgjl2X+Izm6cA7e4sa0LdP97H29r8I=
-Received: by mx.zohomail.com with SMTPS id 1760616443593700.2604768184038;
-	Thu, 16 Oct 2025 05:07:23 -0700 (PDT)
-From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Date: Thu, 16 Oct 2025 14:06:47 +0200
-Subject: [PATCH v2 5/5] scsi: ufs: mediatek: Rework resets
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D0C3306496;
+	Thu, 16 Oct 2025 12:11:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1760616711; cv=none; b=jD+2TRuYxp4TzMRL9fI+hlAKhBCtlV23B+mQ0wJaMNohVPE2kv6+SBLqSvmIzXmpx998R7PhZoDnLHSDVYK1vJzRz30Fm4iZx5mGzOYW9tNhd2fCIfJM+35y9vPCMCH1lDrACeG7txzcuODw56DZBDxaUwU3Xz4lN7qggNXbhSc=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1760616711; c=relaxed/simple;
+	bh=QMMq7ETdtjTgnDNtAlTjnkOPZVCN6eYABiSBB0vfLLQ=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=utYEqjcYRQpQXfaXRnpyN7Ef4JHqz5fVCUdH3CFNRcTs3CZKB0LQ2F9Btb3xQwS0NmyV5BL/t3g50dBbafdZP6J3AZiesvvZlLokAo0120QcdZ8x8grnGFBUns3TXUQTt/NyqbqwWw2q9pLdgtSPPOtQk5NI16eqVJ2bTYotLB4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n9yMkyc2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8B90BC4CEF1;
+	Thu, 16 Oct 2025 12:11:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1760616710;
+	bh=QMMq7ETdtjTgnDNtAlTjnkOPZVCN6eYABiSBB0vfLLQ=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=n9yMkyc2tj8S/WI8tnTdMbETm0ap6JHP5dyIRsPDzWMrHtHjLdsc6wCUEiCbfSgNT
+	 5wjkzOpCbxWP3n1ZmjRo6/DjKrmff4jtr2zAjGYe1S4jiluB41ZhQCHlCTTIMz3cDH
+	 KGzHiJkwTUiBPVejxI/Nwiu2Kiebwk1xDgemmukC9VbWVx3CVPK9QBAF8lfAP3Dqey
+	 dRgfVsmhb45ADD/us7wjBXXqqI19MFcJK3DNrTh0pftAHWrvyDhu6trNkUuaTeitNW
+	 qSeKgoP6PTCbakpoRn3egW79ZbN7GA2mLFdZtAl95MFb5FM1hGqBXWmk9PjWY5KVVg
+	 sDdCyPfKjT5TQ==
+Date: Thu, 16 Oct 2025 07:11:48 -0500
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251016-mt8196-ufs-v2-5-c373834c4e7a@collabora.com>
-References: <20251016-mt8196-ufs-v2-0-c373834c4e7a@collabora.com>
-In-Reply-To: <20251016-mt8196-ufs-v2-0-c373834c4e7a@collabora.com>
-To: Alim Akhtar <alim.akhtar@samsung.com>, 
- Avri Altman <avri.altman@wdc.com>, Bart Van Assche <bvanassche@acm.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Chunfeng Yun <chunfeng.yun@mediatek.com>, Vinod Koul <vkoul@kernel.org>, 
- Kishon Vijay Abraham I <kishon@kernel.org>, 
- Peter Wang <peter.wang@mediatek.com>, Stanley Jhu <chu.stanley@gmail.com>, 
- "James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>, 
- "Martin K. Petersen" <martin.petersen@oracle.com>, 
- Philipp Zabel <p.zabel@pengutronix.de>
-Cc: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>, 
- kernel@collabora.com, linux-scsi@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
- linux-phy@lists.infradead.org, 
- Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-X-Mailer: b4 0.14.3
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Frank Wang <frank.wang@rock-chips.com>, 
+ Sandy Huang <hjc@rock-chips.com>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Diederik de Haas <didi.debian@cknow.org>, 
+ Amit Sunil Dhamne <amitsd@google.com>, Johan Jonker <jbx6244@gmail.com>, 
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
+ Conor Dooley <conor+dt@kernel.org>, Andy Yan <andy.yan@rock-chips.com>, 
+ dri-devel@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>, 
+ Vinod Koul <vkoul@kernel.org>, linux-phy@lists.infradead.org, 
+ Peter Robinson <pbrobinson@gmail.com>, David Airlie <airlied@gmail.com>, 
+ Chaoyi Chen <chaoyi.chen@rock-chips.com>, 
+ linux-rockchip@lists.infradead.org, linux-usb@vger.kernel.org, 
+ Heiko Stuebner <heiko@sntech.de>, linux-kernel@vger.kernel.org, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Dragan Simic <dsimic@manjaro.org>, devicetree@vger.kernel.org, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ linux-arm-kernel@lists.infradead.org, 
+ Yubing Zhang <yubing.zhang@rock-chips.com>, 
+ Kishon Vijay Abraham I <kishon@kernel.org>, Simona Vetter <simona@ffwll.ch>, 
+ Maxime Ripard <mripard@kernel.org>
+To: Chaoyi Chen <kernel@airkyi.com>
+In-Reply-To: <20251016022741.91-1-kernel@airkyi.com>
+References: <20251016022741.91-1-kernel@airkyi.com>
+Message-Id: <176061621163.2563037.16885169757150775717.robh@kernel.org>
+Subject: Re: [PATCH v6 0/8] Add Type-C DP support for RK3399 EVB IND board
 
-Rework the reset control getting in the driver's probe function to use
-the bulk reset APIs. Use the optional variant instead of defaulting to
-NULL if the resets fail, so that absent resets can be distinguished from
-erroneous resets.
 
-Also move all remnants of the MPHY reset ever having lived in this
-driver.
+On Thu, 16 Oct 2025 10:27:33 +0800, Chaoyi Chen wrote:
+> From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+> 
+> This series focuses on adding Type-C DP support for USBDP PHY and DP
+> driver. The USBDP PHY and DP will perceive the changes in cable status
+> based on the USB PD and Type-C state machines provided by TCPM. Before
+> this, the USBDP PHY and DP controller of RK3399 sensed cable state
+> changes through extcon, and devices such as the RK3399 Gru-Chromebook
+> rely on them. This series should not break them.
+> 
+> ====
+> 1. DisplayPort HPD status notify
+> 
+> Before v4, I implemented a variety of DP HPD status notify. However,
+> they all had various problems and it was difficult to become a common
+> solution.
+> 
+> Under Dmitry's guidance, I try to add default DRM AUX HPD device when
+> register DisplayPort altmode in patch 1. That makes it redundant for
+> each Type-C chip driver to implement a similar registration process
+> in embedded scenarios.
+> 
+> ====
+> 2. Altmode switching and orientation switching for USBDP PHY
+> 
+> For USB Type-C interfaces, an external Type-C controller chip assists
+> by detecting cable attachment, determining plug orientation, and
+> reporting USB PD message. The USB/DP combo PHY supports software
+> configurable pin mapping and DisplayPort lane assignment. Based on
+> these message, the combo PHY can perform both altmode switching and
+> orientation switching via software.
+> 
+> The RK3399 EVB IND board has a Type-C interface DisplayPort. It use
+> fusb302 chip as Type-C controller. The connection diagram is shown below:
+> 
+> fusb302 chip +---> USB2.0 PHY ----> DWC3 USB controller
+>              |
+>              +---> USB/DP PHY0 +--> CDN-DP controller
+>                                |
+>                                +--> DWC3 USB controller
+> 
+> ====
+> 3. Multiple bridge model for RK3399 CDN-DP
+> 
+> The RK3399 has two USB/DP combo PHY and one CDN-DP controller. And
+> the CDN-DP can be switched to output to one of the PHYs.
+> 
+> USB/DP PHY0 ---+
+>                | <----> CDN-DP controller
+> USB/DP PHY1 ---+
+> 
+> In previous versions, if both PHY ports were connected to DP,
+> the CDN-DP driver would select the first PHY port for output.
+> 
+> On Dmitry's suggestion, we introduced a multi-bridge model to support
+> flexible selection of the output PHY port. For each PHY port, a
+> separate encoder and bridge are registered.
+> 
+> The change is based on the DRM AUX HPD bridge, rather than the
+> extcon approach. This requires the DT to correctly describe the
+> connections between the first bridge in bridge chain and DP
+> controller. And Once the first bridge is obtained, we can get the
+> last bridge corresponding to the USB-C connector, and then set the
+> DRM connector's fwnode to the corresponding one to enable HPD
+> notification.
+> 
+> ====
+> Patch1 add default HPD device when register Displayport altmode.
+> Patch2 add new Type-C mode switch for RK3399 USBDP phy binding.
+> Patch3 add typec_mux and typec_switch for RK3399 USBDP PHY.
+> Patch4 add DRM AUX bridge support for RK3399 USBDP PHY.
+> Patch5 drops CDN-DP's extcon dependency when Type-C is present.
+> Patch6 add multiple bridges to support PHY port selection.
+> Patch7 add missing dp_out port for RK3399 CDN-DP.
+> Patch8 add Type-C DP support for RK3399 EVB IND board.
+> 
+> Changes in v6:
+> - Link to V5: https://lore.kernel.org/all/20251011033233.97-1-kernel@airkyi.com/
+> - Fix depend in Kconfig.
+> - Check DP svid in tcphy_typec_mux_set().
+> - Remove mode setting in tcphy_orien_sw_set().
+> - Rename some variable names.
+> - Attach the DP bridge to the next bridge.
+> 
+> Changes in v5:
+> - Link to V4: https://lore.kernel.org/all/20250922012039.323-1-kernel@airkyi.com/
+> - Remove the calls related to `drm_aux_hpd_bridge_notify()`.
+> - Place the helper functions in the same compilation unit.
+> - Add more comments about parent device.
+> - Add DRM AUX bridge support for RK3399 USBDP PHY
+> - By parsing the HPD bridge chain, set the connector's of_node to the
+> of_node corresponding to the USB-C connector.
+> - Return EDID cache when other port is already enabled.
+> 
+> Changes in v4:
+> - Link to V3: https://lore.kernel.org/all/20250729090032.97-1-kernel@airkyi.com/
+> - Add default HPD device for DisplayPort altmode.
+> - Introduce multiple bridges for CDN-DP.
+> - ...
+> 
+> Changes in v3:
+> - Link to V2: https://lore.kernel.org/all/20250718062619.99-1-kernel@airkyi.com/
+> - Add more descriptions to clarify the role of the PHY in switching.
+> - Fix wrong vdo value.
+> - Fix port node in usb-c-connector.
+> 
+> Changes in v2:
+> - Link to V1: https://lore.kernel.org/all/20250715112456.101-1-kernel@airkyi.com/
+> - Reuse dp-port/usb3-port in rk3399-typec-phy binding.
+> - Fix compile error when CONFIG_TYPEC is not enabled.
+> - Notify DP HPD state by USB/DP PHY.
+> - Ignore duplicate HPD events.
+> - Add endpoint to link DP PHY and DP controller.
+> - Fix devicetree coding style.
+> 
+> Chaoyi Chen (8):
+>   usb: typec: Add default HPD device when register DisplayPort altmode
+>   dt-bindings: phy: rockchip: rk3399-typec-phy: Support mode-switch
+>   phy: rockchip: phy-rockchip-typec: Add typec_mux/typec_switch support
+>   phy: rockchip: phy-rockchip-typec: Add DRM AUX bridge
+>   drm/rockchip: cdn-dp: Support handle lane info without extcon
+>   drm/rockchip: cdn-dp: Add multiple bridges to support PHY port
+>     selection
+>   arm64: dts: rockchip: Add missing dp_out port for RK3399 CDN-DP
+>   arm64: dts: rockchip: rk3399-evb-ind: Add support for DisplayPort
+> 
+>  .../phy/rockchip,rk3399-typec-phy.yaml        |   6 +
+>  arch/arm64/boot/dts/rockchip/rk3399-base.dtsi |  10 +-
+>  .../boot/dts/rockchip/rk3399-evb-ind.dts      | 146 ++++++
+>  drivers/gpu/drm/rockchip/cdn-dp-core.c        | 354 ++++++++++++---
+>  drivers/gpu/drm/rockchip/cdn-dp-core.h        |  24 +-
+>  drivers/phy/rockchip/Kconfig                  |   3 +
+>  drivers/phy/rockchip/phy-rockchip-typec.c     | 420 +++++++++++++++++-
+>  drivers/usb/typec/Kconfig                     |   2 +
+>  drivers/usb/typec/class.c                     |  26 ++
+>  include/linux/usb/typec_altmode.h             |   2 +
+>  10 files changed, 911 insertions(+), 82 deletions(-)
+> 
+> --
+> 2.49.0
+> 
+> 
+> 
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
----
- drivers/ufs/host/ufs-mediatek-sip.h |  8 ----
- drivers/ufs/host/ufs-mediatek.c     | 78 ++++++++++++++++++-------------------
- drivers/ufs/host/ufs-mediatek.h     |  7 ++--
- 3 files changed, 42 insertions(+), 51 deletions(-)
 
-diff --git a/drivers/ufs/host/ufs-mediatek-sip.h b/drivers/ufs/host/ufs-mediatek-sip.h
-index d627dfb4a766..256598cc3b5b 100644
---- a/drivers/ufs/host/ufs-mediatek-sip.h
-+++ b/drivers/ufs/host/ufs-mediatek-sip.h
-@@ -31,11 +31,6 @@ enum ufs_mtk_vcc_num {
- 	UFS_VCC_MAX
- };
- 
--enum ufs_mtk_mphy_op {
--	UFS_MPHY_BACKUP = 0,
--	UFS_MPHY_RESTORE
--};
--
- /*
-  * SMC call wrapper function
-  */
-@@ -84,9 +79,6 @@ static inline void _ufs_mtk_smc(struct ufs_mtk_smc_arg s)
- #define ufs_mtk_device_pwr_ctrl(on, ufs_version, res) \
- 	ufs_mtk_smc(UFS_MTK_SIP_DEVICE_PWR_CTRL, &(res), on, ufs_version)
- 
--#define ufs_mtk_mphy_ctrl(op, res) \
--	ufs_mtk_smc(UFS_MTK_SIP_MPHY_CTRL, &(res), op)
--
- #define ufs_mtk_mtcmos_ctrl(op, res) \
- 	ufs_mtk_smc(UFS_MTK_SIP_MTCMOS_CTRL, &(res), op)
- 
-diff --git a/drivers/ufs/host/ufs-mediatek.c b/drivers/ufs/host/ufs-mediatek.c
-index 758a393a9de1..5239ca4a428b 100644
---- a/drivers/ufs/host/ufs-mediatek.c
-+++ b/drivers/ufs/host/ufs-mediatek.c
-@@ -94,6 +94,12 @@ static const char *const ufs_uic_dl_err_str[] = {
- 	"PA_INIT"
- };
- 
-+static const char *const ufs_reset_names[] = {
-+	"unipro_rst",
-+	"crypto_rst",
-+	"hci_rst",
-+};
-+
- static bool ufs_mtk_is_boost_crypt_enabled(struct ufs_hba *hba)
- {
- 	struct ufs_mtk_host *host = ufshcd_get_variant(hba);
-@@ -204,49 +210,45 @@ static void ufs_mtk_crypto_enable(struct ufs_hba *hba)
- static void ufs_mtk_host_reset(struct ufs_hba *hba)
- {
- 	struct ufs_mtk_host *host = ufshcd_get_variant(hba);
--	struct arm_smccc_res res;
--
--	reset_control_assert(host->hci_reset);
--	reset_control_assert(host->crypto_reset);
--	reset_control_assert(host->unipro_reset);
--	reset_control_assert(host->mphy_reset);
--
--	usleep_range(100, 110);
-+	int ret;
- 
--	reset_control_deassert(host->unipro_reset);
--	reset_control_deassert(host->crypto_reset);
--	reset_control_deassert(host->hci_reset);
--	reset_control_deassert(host->mphy_reset);
-+	ret = reset_control_bulk_assert(MTK_UFS_NUM_RESETS, host->resets);
-+	if (ret)
-+		dev_warn(hba->dev, "Host reset assert failed: %pe\n", ERR_PTR(ret));
- 
--	/* restore mphy setting aftre mphy reset */
--	if (host->mphy_reset)
--		ufs_mtk_mphy_ctrl(UFS_MPHY_RESTORE, res);
--}
-+	ret = phy_reset(host->mphy);
- 
--static void ufs_mtk_init_reset_control(struct ufs_hba *hba,
--				       struct reset_control **rc,
--				       char *str)
--{
--	*rc = devm_reset_control_get(hba->dev, str);
--	if (IS_ERR(*rc)) {
--		dev_info(hba->dev, "Failed to get reset control %s: %ld\n",
--			 str, PTR_ERR(*rc));
--		*rc = NULL;
-+	/*
-+	 * Only sleep if MPHY doesn't have a reset implemented (which already
-+	 * sleeps) or the PHY reset function failed somehow, just to be safe
-+	 */
-+	if (ret) {
-+		usleep_range(100, 110);
-+		if (ret != -EOPNOTSUPP)
-+			dev_warn(hba->dev, "PHY reset failed: %pe\n", ERR_PTR(ret));
- 	}
-+
-+	ret = reset_control_bulk_deassert(MTK_UFS_NUM_RESETS, host->resets);
-+	if (ret)
-+		dev_warn(hba->dev, "Host reset deassert failed: %pe\n", ERR_PTR(ret));
- }
- 
--static void ufs_mtk_init_reset(struct ufs_hba *hba)
-+static int ufs_mtk_init_reset(struct ufs_hba *hba)
- {
- 	struct ufs_mtk_host *host = ufshcd_get_variant(hba);
-+	int ret, i;
-+
-+	for (i = 0; i < MTK_UFS_NUM_RESETS; i++)
-+		host->resets[i].id = ufs_reset_names[i];
- 
--	ufs_mtk_init_reset_control(hba, &host->hci_reset,
--				   "hci_rst");
--	ufs_mtk_init_reset_control(hba, &host->unipro_reset,
--				   "unipro_rst");
--	ufs_mtk_init_reset_control(hba, &host->crypto_reset,
--				   "crypto_rst");
--	ufs_mtk_init_reset_control(hba, &host->mphy_reset,
--				   "mphy_rst");
-+	ret = devm_reset_control_bulk_get_optional_exclusive(hba->dev, MTK_UFS_NUM_RESETS,
-+							     host->resets);
-+	if (ret) {
-+		dev_err(hba->dev, "Failed to get resets: %pe\n", ERR_PTR(ret));
-+		return ret;
-+	}
-+
-+	return 0;
- }
- 
- static int ufs_mtk_hce_enable_notify(struct ufs_hba *hba,
-@@ -1238,11 +1240,9 @@ static int ufs_mtk_init(struct ufs_hba *hba)
- 	if (err)
- 		goto out_variant_clear;
- 
--	ufs_mtk_init_reset(hba);
--
--	/* backup mphy setting if mphy can reset */
--	if (host->mphy_reset)
--		ufs_mtk_mphy_ctrl(UFS_MPHY_BACKUP, res);
-+	err = ufs_mtk_init_reset(hba);
-+	if (err)
-+		goto out_variant_clear;
- 
- 	/* Enable runtime autosuspend */
- 	hba->caps |= UFSHCD_CAP_RPM_AUTOSUSPEND;
-diff --git a/drivers/ufs/host/ufs-mediatek.h b/drivers/ufs/host/ufs-mediatek.h
-index dfbf78bd8664..c020fe04fe9e 100644
---- a/drivers/ufs/host/ufs-mediatek.h
-+++ b/drivers/ufs/host/ufs-mediatek.h
-@@ -7,12 +7,14 @@
- #define _UFS_MEDIATEK_H
- 
- #include <linux/bitops.h>
-+#include <linux/reset.h>
- 
- /*
-  * MCQ define and struct
-  */
- #define UFSHCD_MAX_Q_NR 8
- #define MTK_MCQ_INVALID_IRQ	0xFFFF
-+#define MTK_UFS_NUM_RESETS 3
- 
- /* REG_UFS_MMIO_OPT_CTRL_0 160h */
- #define EHS_EN                  BIT(0)
-@@ -171,10 +173,7 @@ struct ufs_mtk_mcq_intr_info {
- struct ufs_mtk_host {
- 	struct phy *mphy;
- 	struct regulator *reg_va09;
--	struct reset_control *hci_reset;
--	struct reset_control *unipro_reset;
--	struct reset_control *crypto_reset;
--	struct reset_control *mphy_reset;
-+	struct reset_control_bulk_data resets[MTK_UFS_NUM_RESETS];
- 	struct ufs_hba *hba;
- 	struct ufs_mtk_crypt_cfg *crypt;
- 	struct ufs_mtk_clk mclk;
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
 
--- 
-2.51.0
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
+
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
+
+  pip3 install dtschema --upgrade
+
+
+This patch series was applied (using b4) to base:
+ Base: attempting to guess base-commit...
+ Base: tags/v6.18-rc1-18-g924aa1d9e0ae (exact match)
+ Base: tags/v6.18-rc1-18-g924aa1d9e0ae (use --merge-base to override)
+
+If this is not the correct base, please add 'base-commit' tag
+(or use b4 which does this automatically)
+
+New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/rockchip/' for 20251016022741.91-1-kernel@airkyi.com:
+
+arch/arm64/boot/dts/rockchip/rk3399-evb-ind.dtb: syscon@ff770000 (rockchip,rk3399-grf): usb2phy@e450: 'port' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/soc/rockchip/grf.yaml#
+arch/arm64/boot/dts/rockchip/rk3399-evb-ind.dtb: syscon@ff770000 (rockchip,rk3399-grf): usb2phy@e450: Unevaluated properties are not allowed ('port' was unexpected)
+	from schema $id: http://devicetree.org/schemas/soc/rockchip/grf.yaml#
+arch/arm64/boot/dts/rockchip/rk3399-evb-ind.dtb: usb2phy@e450 (rockchip,rk3399-usb2phy): 'port' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/phy/rockchip,inno-usb2phy.yaml#
+arch/arm64/boot/dts/rockchip/rk3399-evb-ind.dtb: /sound: failed to match any schema with compatible: ['rockchip,rk3399-gru-sound']
+
+
+
+
 
 
