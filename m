@@ -1,142 +1,154 @@
-Return-Path: <devicetree+bounces-227606-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227607-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4630BE2DA7
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 12:41:02 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C826BE2D9E
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 12:40:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id F27E44F5747
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 10:40:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A731C1A6347B
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 10:41:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 581DE2DA769;
-	Thu, 16 Oct 2025 10:40:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XtoYwC2y"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FA0B2D46D6;
+	Thu, 16 Oct 2025 10:40:47 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vs1-f52.google.com (mail-vs1-f52.google.com [209.85.217.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20161328621;
-	Thu, 16 Oct 2025 10:40:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2A9B1D5CC6
+	for <devicetree@vger.kernel.org>; Thu, 16 Oct 2025 10:40:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760611236; cv=none; b=HdY55AQhV7jjuRhi/v7/LEU8nfzTj7W1xDsnMOdvM7N36xqmFqX6RLU1Vb4embbgwN9SyYViHCoq4+Y0vrcjTZkoQpJzgAv8TlZ1fyC6QNJuaXrUKymOl0C0D6CkLwoasxaD94q4WOZf2CJq5DvCDb93sLL4bqesLML+pR2jEtM=
+	t=1760611247; cv=none; b=VLC6qUy7uB6SWlchBYdqdn7qBIbUoks6ibXGgUTCnpG8ELFMwz8Wr4FmeYR4aowCwoU0HkFKlZJKT1t6aemDeS6/TxVBqc3vdWFG826az+h7nDjgbVkJHcdrZEqllvr3/i7Es0IIhwuwDuEXYyl6Mb6CAx3zXl+zPNJQ5qni5M4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760611236; c=relaxed/simple;
-	bh=wbiKwt6TS6CzkPF2AqCXyH71oW6eCePOx9EhG/BPJNk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=N64TcuUHgBNxezlQDcPkW6s2qcuBlfiByA0MmBDH08eJRE8JuUDCeSXHATOs+mQncvn8MrUZdgG5aS0s/Lg5osWD+jrMh3P5IblaOscXvYwlqM6JEb1s1L8kxH7lFOEMrCOpLZdfok2P/DMuhXRINUqIZmDpS2n5Q0pnao8R0c0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XtoYwC2y; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C39DAC4CEF1;
-	Thu, 16 Oct 2025 10:40:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760611235;
-	bh=wbiKwt6TS6CzkPF2AqCXyH71oW6eCePOx9EhG/BPJNk=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=XtoYwC2yP21BrBlgXJrTIV7Il5/wcWdMeAvYY1LkTB1+L3DiUwwkkTuT+FWpZKeBY
-	 dMcx9Pzs/3ERTiO/FbNPJ/9l5GAD0EEeA0NfK4WfjHYMsJvmIY+jECxrtWI4EisXYS
-	 j1D8WZF2BqPn5nxJ2cXW+qBphxYdrZfvO9cq89/5pwrUp0Im8AHkHkc+/Nt2UC36lW
-	 BlFaoCJ4+dQMhDUk1KDDrcZdvhFgelquMEizJ3J4fDE3I18WOYG1riYAgI9OoDbSTs
-	 PAFDUSw/BjRDdFKWCSkVxB24DBLl45ktjBl5sTyZO2epMyuVbsQvKv3o1RdSC0QpSr
-	 CdacSaTaK8eVg==
-Message-ID: <597a5c19-163c-453d-8f89-f0589de7b23c@kernel.org>
-Date: Thu, 16 Oct 2025 12:40:29 +0200
+	s=arc-20240116; t=1760611247; c=relaxed/simple;
+	bh=piuGvvOfHYKguiEZW7O40NVeDxi8MR4Ntno3Ky8oHBQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=NCfZqs6fbZLzpApuz4OPSBbdhKR2KaYU6Z4iXhzzYHRR3j8LfIXFsElNNURXe2D72EElnPinJz8LSGUWkok9yJwy3uGHznn3k0ocKOx5xeCe1pwp4vLVcXrXzf+NgWOlv8PrE8cHhdabIjJ2xaZCz/RcB0hc3fHJaVxC37VbqGE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vs1-f52.google.com with SMTP id ada2fe7eead31-5d42137abc2so472141137.2
+        for <devicetree@vger.kernel.org>; Thu, 16 Oct 2025 03:40:45 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1760611245; x=1761216045;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=knJGO9EraQPquYGUUvWl6Sq1Kcv7y9Q9RdqSweYlpKs=;
+        b=Gby6ABeD2aGIwtm+o1U5Tra61v9lW+MWyhQeDELEXaeLlIcw39SY8gLAhum3erxGZn
+         aYtMPM/AiLgEgotL0JG1//JCBT9E/f1HpfKxJdBb/yrt8PABfQQ5FupDjVOmuQabNSE1
+         USWx4R2XiZ6CzU7YpCqJQ5/btw0Smqon99eXTbQ9zRHMCDgTRPaUtjfHKm+eVEZH9ZAs
+         C9rHn4lHnk+/cBI1Xn1uE2dJxdYQmuxoRpJ5bhcYbWAei4QcjTeVsyIkrv5prdnHlkb2
+         gf194Wlnma/FsOoGm2URFFnzBorcMp4qIiPqIO39rmsyvXcfJ7h2husL7+0E3ro1XABS
+         1eBQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVVIihLi6DxwsOsGeQee7TAAVcLo8hLjJidh1pu0q/4YDEakXDWsEAkAF7WixCpXAyB2qw7a3zB67QB@vger.kernel.org
+X-Gm-Message-State: AOJu0YxF7jYqiuK43RG5RvftArq0iR3Oz4s+L/4/Ds9HOBHFFPA6XJoU
+	lubi4+XFVUv1BuvuJnv6OvMjYl8+8kCM6QI6FZkfpmXl1Cx0QCIGB7unHTvQod+F
+X-Gm-Gg: ASbGnctGJ0vzNuXSFMwtQcPyasLMzEEvPFneRBvgsHaeNlATsYWuuN5Ag2FOIG6jXxL
+	87ZMwl1yGsWBl6rAwIkh21//Ne+w+82NwoBBGkeOmYLgWZkZeHCd0tzbWZ8XFdDM200wv95Vl5m
+	Ix0qEm+STV4y1p13iTpATvxjDYaddruwVzm/uJBu6r+4cnI6oJ3OlKyKZuraXOQreHczBSzfNPY
+	kjsFAtt4rz2Rs28QQv9xzuE4vUdbjr4eyFe5tnzIAwv4AnhKG+EfVzq8/4bNHn8ky4znTyZFTiE
+	kCsB0ghfPj7Q83GbNz7qxfyrvmKolzvr6IQgxQCEtj/7tMFZabAXKCRCHhKhryPOXG46X59EuX7
+	pWqyP0IajU5zM92k6tnMVYzkuank/KHQt74Y0xLkW5q4GLkDNR5BafSBaE32gY/WBAMqQWtWjGs
+	wOV72/tNzoVv4Y/Dg9lmkkTGGna+dUTTnydULyoTHZENjAs/1o
+X-Google-Smtp-Source: AGHT+IGvIvfDOhmu6HJyGSXcnC+gsaz8lEN6dby9ny8tjctsDlNqTvM/BqM94EwoEUIvFbYEBXcIjQ==
+X-Received: by 2002:a05:6102:5493:b0:521:ed06:1fc7 with SMTP id ada2fe7eead31-5d5e1fe4587mr12437609137.0.1760611244630;
+        Thu, 16 Oct 2025 03:40:44 -0700 (PDT)
+Received: from mail-vs1-f44.google.com (mail-vs1-f44.google.com. [209.85.217.44])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-9310a61e326sm137813241.7.2025.10.16.03.40.44
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 16 Oct 2025 03:40:44 -0700 (PDT)
+Received: by mail-vs1-f44.google.com with SMTP id ada2fe7eead31-5d613937df1so446939137.3
+        for <devicetree@vger.kernel.org>; Thu, 16 Oct 2025 03:40:44 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCXQRkcLIu7pabBjuUDLU6iSRbwmyJIwJUU/oXpfmi+5R/EzQUJlLAWka1d/fKSRIoYrTFVxi9JiXjbS@vger.kernel.org
+X-Received: by 2002:a05:6102:c8b:b0:5d5:f6ae:38ff with SMTP id
+ ada2fe7eead31-5d5f6ae3e01mr10107830137.44.1760611244201; Thu, 16 Oct 2025
+ 03:40:44 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/6] dt-bindings: i2c: qcom-cci: Document Kaanapali
- compatible
-To: Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>,
- Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
- Loic Poulain <loic.poulain@oss.qualcomm.com>, Robert Foss
- <rfoss@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Todor Tomov <todor.too@gmail.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc: linux-i2c@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-media@vger.kernel.org, aiqun.yu@oss.qualcomm.com,
- tingwei.zhang@oss.qualcomm.com, trilok.soni@oss.qualcomm.com,
- yijie.yang@oss.qualcomm.com, Jingyi Wang <jingyi.wang@oss.qualcomm.com>,
- Atiya Kailany <atiya.kailany@oss.qualcomm.com>
-References: <20251014-add-support-for-camss-on-kaanapali-v2-0-f5745ba2dff9@oss.qualcomm.com>
- <20251014-add-support-for-camss-on-kaanapali-v2-1-f5745ba2dff9@oss.qualcomm.com>
- <e2c43a8c-a9cc-46a1-9ddd-5d6dfc7e917b@linaro.org>
- <49eaf7ec-ac71-4bf3-9a4e-25fa633d815e@oss.qualcomm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <49eaf7ec-ac71-4bf3-9a4e-25fa633d815e@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20251010-kakip_eth0-v1-1-0d8fdcbceb9a@ideasonboard.com>
+ <CAMuHMdWZD1m6t8MnYTA83RV=h9G9o6M3KSZjO32rRjOpz6px+w@mail.gmail.com> <bcdc9a86-bda1-4646-9ccc-1dc00a710b44@ideasonboard.com>
+In-Reply-To: <bcdc9a86-bda1-4646-9ccc-1dc00a710b44@ideasonboard.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 16 Oct 2025 12:40:32 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUDuuXncX4sbd6oa+8KcS8x+1Sp-ahmvyh8fRdQt1GqKA@mail.gmail.com>
+X-Gm-Features: AS18NWBFQD_sktM9PiZ_iC8uRHAPFwDek8zekF1FbFM9hBNLqZ_UopO9JosomNU
+Message-ID: <CAMuHMdUDuuXncX4sbd6oa+8KcS8x+1Sp-ahmvyh8fRdQt1GqKA@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: renesas: r9a09g057h48-kakip: Enable eth0
+To: Dan Scally <dan.scally@ideasonboard.com>
+Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On 16/10/2025 03:56, Hangxiang Ma wrote:
->>
->> On QCM2290 the macro in front of the vlaue is GCC_CAMSS_TOP_AHB_CLK,
->> and name "ahb" is good for both, I believe.
->>
->>>               - const: cci
->>>     - if:
->>>
->>
-> 
-> On Kaanapali the macro has been changed to CAM_CC_CAM_TOP_AHB_CLK. GCC 
+Hi Dan,
 
+On Thu, 16 Oct 2025 at 12:23, Dan Scally <dan.scally@ideasonboard.com> wrote:
+> On 15/10/2025 13:32, Geert Uytterhoeven wrote:
+> > On Fri, 10 Oct 2025 at 13:11, Daniel Scally <dan.scally@ideasonboard.com> wrote:
+> >> Enable the eth0 node and define its phy.
+> >>
+> >> Signed-off-by: Daniel Scally <dan.scally@ideasonboard.com>
+> >
+> >> --- a/arch/arm64/boot/dts/renesas/r9a09g057h48-kakip.dts
+> >> +++ b/arch/arm64/boot/dts/renesas/r9a09g057h48-kakip.dts
+> >> @@ -50,6 +51,33 @@ vqmmc_sdhi0: regulator-vccq-sdhi0 {
+> >>          };
+> >>   };
+> >>
+> >> +&eth0 {
+> >> +       pinctrl-0 = <&eth0_pins>;
+> >> +       pinctrl-names = "default";
+> >> +       phy-handle = <&phy3>;
+> >> +       phy-mode = "rgmii-id";
+> >> +       status = "okay";
+> >> +};
+> >> +
+> >> +&mdio0 {
+> >> +       phy3: ethernet-phy@3 {
+> >> +               compatible = "ethernet-phy-id0022.1640", "ethernet-phy-ieee802.3-c22";
+> >
+> > The first compatible value corresponds to a Micrel KSZ9031 Ethernet
+> > PHY, but according to the block diagram and the picture in the Kakip
+> > H/W Quick Reference, the board has a Microchip LAN8830 instead?
+>
+> Ah, my bad...I thought it was the same as the EVK so I copied from there. I think then that this
+> should be "ethernet-phy-id0022.1652" (based on reading PHY registers 2 and 3 with phytool) and the
+> other properties look to be KSZ9031 specific so I'll drop them and re-send
 
-It seems you do not see the difference between GCC output clock and
-actual clock input so some other block.
+Hmm, include/linux/micrel_phy.h has:
 
+    #define PHY_ID_LAN8841          0x00221650
 
+drivers/net/phy/microchip.c has:
 
-Best regards,
-Krzysztof
+    .phy_id         = 0x0007c132,
+    [...]
+    .name           = "Microchip LAN88xx",
+
+I haven't found the ID in the LAN8830 datasheet yet, it seems to be
+buried deep...
+
+Which PHY is actually mounted on the board you have?
+Can you inspect it visually?
+
+Thanks!
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
