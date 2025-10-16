@@ -1,120 +1,253 @@
-Return-Path: <devicetree+bounces-227523-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227524-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0736BE24A2
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 11:07:15 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3153ABE24AE
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 11:08:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7EC3919C0433
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 09:07:39 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 12F024E5990
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 09:08:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B08B30EF70;
-	Thu, 16 Oct 2025 09:07:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5931B30F936;
+	Thu, 16 Oct 2025 09:08:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WHmZwVQz"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HmZGAz28"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yx1-f53.google.com (mail-yx1-f53.google.com [74.125.224.53])
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FCE83081CF
-	for <devicetree@vger.kernel.org>; Thu, 16 Oct 2025 09:07:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.224.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 790EA30F558
+	for <devicetree@vger.kernel.org>; Thu, 16 Oct 2025 09:08:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760605631; cv=none; b=kIRe7eaD2LpX2KnKZKrs9caQHjnBjmoMt9Txjiim8qPncGWF1mxJ9vfuozeVxfuJ+E1I8QOCuRLExfcwCh8yEH3HN1VFdh1LOxUq2+AbUb+NfO/8rU47iO+dJZEBgUhsSRVaL37fRiC3+CaR1nElG3gUPMMWYfoT2Saf//fRIK4=
+	t=1760605705; cv=none; b=SEF5e+0JLFRh2b57Nd2MkW5YmKzDUx6wvGV1+6vXKK5egwXiV8CZ0yYf/SZ3XnDrGWHa53SDjqNsUqAMoNoOwoKWn/rKKheXZzPgpFPrtw+H6iZKfEQJGuGpc/qklju5vt6kjyFc3QuEzFjoSOKLi9Zg2+NBs8L7ePUmfsi/2D8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760605631; c=relaxed/simple;
-	bh=guwRIMi0wiANNJuAD6tIEMgIhoRZw5vVBX6qb9J5PBk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Xkh0B0SnMgXqH/OgnpJxVqWC3DHkyTZW3b1zfbRiqJQmY/M3QkbFZcrGo9AcU6Zzu5UC9tgcf7q9JaUlJxK+HWFgWjgvkx1i15athftBlWLkzQFyW6HQ7huUd6QJmhYl+qiuT2RoZ8eXWa4gsmHKMIhP6pZ859V0uQy9JUCLvwc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WHmZwVQz; arc=none smtp.client-ip=74.125.224.53
+	s=arc-20240116; t=1760605705; c=relaxed/simple;
+	bh=Z3b+ZKz4HAOIT+dIhsy0oGO3fN0g3guLGEf4SOf1J48=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=X+BUsGhqNXPxwRsgrs0PVOqI2TKZ/kdRTBLchc9DCaniRn4QztG3DBaNdwJila9fbbEtZDV7lwbQtOLZrm+owt3FskjFIyI5NSAovyWojB8DY61hHphTQ2E35v+qGqqGHKqhHPDn0WP15Twd4yjiuy97nSQFgqUsOEdD2SVrKNM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HmZGAz28; arc=none smtp.client-ip=209.85.128.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yx1-f53.google.com with SMTP id 956f58d0204a3-63d97bcb898so651864d50.0
-        for <devicetree@vger.kernel.org>; Thu, 16 Oct 2025 02:07:08 -0700 (PDT)
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-46e491a5b96so3596975e9.2
+        for <devicetree@vger.kernel.org>; Thu, 16 Oct 2025 02:08:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1760605628; x=1761210428; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=guwRIMi0wiANNJuAD6tIEMgIhoRZw5vVBX6qb9J5PBk=;
-        b=WHmZwVQz6RljL7QN74Hm7itsTO+MvpEcatSH5KAdIvbjXhb08suymboZEQkDBOlBmm
-         8xV/jY66p5h9S5AgUgg1/DDUwIixBvrMLRadvOLX427Pu9ce0nVMyvl0W07+rVcgqjxv
-         GYBQBwoEGYxK5XdKhD4G1X8ocAv7n9GyfpGiZKDeQfXHln7plmO/+A1FbXSVtrVpUMzk
-         +O5nhWPSHJBEafEiQiHRXB7h6B0J11Jg3T/BL7V2KbaHYdgdbfFG8LTnsPVQlM9hJVa/
-         m6asT+qpNtJvtp7LpG7d0NCf6S8BfKMWhREqhWW5inZ5V5s8G8UoRc9sMxlMBVgwHSEh
-         ggYg==
+        d=gmail.com; s=20230601; t=1760605702; x=1761210502; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=abdY6FoJ2RE+nIOHLn4Md+/wD8DMWssQTpR3F8UFL/s=;
+        b=HmZGAz288NvEOb9egZJdKzketEhhm0YmWNqJAqmTl/abiS7h4L/KG0j6KegeZyW6xi
+         Q00dBTDV8ccGdPgGxhj+8NR7XEfXV0lmbr7PTTIozVTVRinSSDGrLrk6EjJwOPJV29qA
+         i40NmQGGFG1iDWVnIsFzC9zV/b/lHLYCyddZKiWpw2dehL+PNCRDpf3OplyUE2TiJK7y
+         /bbID3+oyf1GFaTyxd/tE2PWFG1K39HYhDUIWeeA4NUWbbvxEV2uVtNP18NUPLlvgnDX
+         4S9mZfPZ3qF/LvMEKTo71ry47+ZCSeyoiJQEXAWAMWTqIYqk/cytNzRe755y15XS/eeY
+         6JHA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760605628; x=1761210428;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=guwRIMi0wiANNJuAD6tIEMgIhoRZw5vVBX6qb9J5PBk=;
-        b=eYjKH9qLRL6a0yamV9hJ6wVotx/11yKonNSzePKkGs/RfmIyZsbjFb+gOZToKErkhm
-         x2FbZ7dGL4x4BwMjlHEosO+Bq1eHYwL/5OhwxNhFdxpbpFroQJEDaUJvFs8amb/A6zRw
-         QAwwTAWHlWwF6oK1rjE6VT4qwWbAvfkCO6LNYpgg+jwT1lp7OSXUudkN6FVyYYo8mnK1
-         ZU1tY+X689gf1gHLdyrrGi6u7i6oQQar8uap9W5KYmbhwOg1+HAxKrunRKCzoxKhDisZ
-         6Jj1PwIeWmH6WVDvD3F7Ypz6T5+O9n0w5NtKLRtUG9zU2ulByErHvRcreILDpphr4o6E
-         B0Jg==
-X-Forwarded-Encrypted: i=1; AJvYcCUyykKK7EY930gLxTS+vYZf3HKC9PSKelMJ+qO4PxTyDmx7cBHNhnJocVceNuviZhXTR5xtnKBXFqG1@vger.kernel.org
-X-Gm-Message-State: AOJu0YwbOp0ORWL1auE0LasMuhhWSTpUcoXpmb+QEgQFaH5mRa7XFJxe
-	0/zrFNz7fTdvDfSHV0fTgCKS6bbDRlJHjOvWnvfYfv9DgZaHhZJgXM7UvvM2NPkH/kBIQCjXxqa
-	0OKEegvyKc9YR+DxYVFNztnyDzgWb7CsOSg==
-X-Gm-Gg: ASbGncu3YDi9GPnEhAiA+hdmzcWix+CWErm0joDiwPha7JYq1MWiHTgNZLtqhHVvcTZ
-	4pM8ierhB66wbPTf8YHULRJbHYZVdJDKoTc4tEiOi+M9zVLZH/7TmBwNZ0JdyjAnqHI6d2ZU9Sc
-	eCr2L7VslkXZP878Tikarh7Fihk0Yd10ZhLIzY7BXTkjL9D1o/nvCJisHSnfERfs453S4c0xsYS
-	jDxhJFNDvwfDmTpv0SgCfxgrUYE/T2KtnkO8uzvl2Q2U19n0KfcT8ZwJ2Topw==
-X-Google-Smtp-Source: AGHT+IHVbO3++jsGwWmg/F2c4ksP+FLckoJYfOSeFWsAVaD7OsNLADoUPFrIAhLYYE/gNFYYmMmLiTqCkuWEcxtPEn0=
-X-Received: by 2002:a05:690e:4012:b0:62f:ce58:62ed with SMTP id
- 956f58d0204a3-63e08fd5985mr2306140d50.18.1760605627783; Thu, 16 Oct 2025
- 02:07:07 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1760605702; x=1761210502;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=abdY6FoJ2RE+nIOHLn4Md+/wD8DMWssQTpR3F8UFL/s=;
+        b=fpnmW0XP0KZQ0lTuCYOeM5sBLZDoL/AWeZeH0gJiS+wmRmxux05bSHgXOolKuhu/qg
+         KtjcVnybJV/Hl54SDMzqrCs/esoQAL0tzy/XupFhv2p6J2STdfLHI/dYWBo6oFl7wmuo
+         VMYJyp4HXe23lQ+GTqFhyvH9KP3VoaUIG8c5nkNvrQhGfa0r4aQuQzl/CeGySZphmveT
+         eNvRUtIYlhNZ+fZEXsugHctQttKZJSa2GWHCg8D62YaQ5kCr5rkeATcitjvxkysMPeEK
+         /xiEy+OX3+kHKYORyeNxDRfMnEfGYEYc3lKPfMwcjb3YvvvvKsrlPDlWYehxi7DdnsaE
+         d1EA==
+X-Forwarded-Encrypted: i=1; AJvYcCVwofX4BIL/Ud9VnS19C4hbMf6ZpLE8n9q2XecbLJvw9OWFdj6fMxUTfFaClkv5HqdaPSgJ3fIUD9qh@vger.kernel.org
+X-Gm-Message-State: AOJu0YyC/Mnof3NgLpQA8M8cil4OLDg1vEsICaX9cGMgV/TPNXb6WrP8
+	4jGcoIJTIlBgJ/H8MsvX4WfK6RlvRzLArjvkI1hq8+4FED8NtYbQXspz
+X-Gm-Gg: ASbGnctylVeF+nAA3ibvvY+A9LVPWtWXSwryOwWJJZJJgaGfK73PyHJH4fV908gETN6
+	rHEty+CyDxBDy/x9LsWik8IJiYnACeTNu4mxcQA3O1WFnCBJQwcW+B+aucTiXi0XQFq/+w4rgg1
+	zq0Na0g8vxy64xwyI9yMsBH1YaHtO8VEyIKsphsvpsJRmAQ2Yj4KBDC905/z3FrrVKh2UOnegAN
+	kx7ZTNCUZJ7Fyp7LYfqTs99vu5sSnWFzDZWTTaiRoI5SN0/WBokGeAsMyw8TWcjK0EzXvdwZRp3
+	96admcMTuwmQfnlgpZc7Ez5OyIBtNWkZzHAKvxRolZMjo/HQZKQc3JvfLeUKYljOKxur40DkMaT
+	rbN1qugt0KcUJpy4DtPbAjtkhjakq7gkA1ztZZsmAJiUM4Y+2gT2TRmKfT81Skx1gem3dY47Oa2
+	0H3Lnf7M5rjMb0ZAAKVu4=
+X-Google-Smtp-Source: AGHT+IGY8OEZMZNUGJFFWPHGkt+BkJz/xJ0U+q5T/YA/R/Qn+zeASomFVXxFQjW0EoWe8qfc8YL/fw==
+X-Received: by 2002:a05:600c:871b:b0:471:1337:7220 with SMTP id 5b1f17b1804b1-47113377843mr8240285e9.3.1760605701416;
+        Thu, 16 Oct 2025 02:08:21 -0700 (PDT)
+Received: from [192.168.1.187] ([161.230.67.253])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4711441f975sm14570015e9.4.2025.10.16.02.08.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 16 Oct 2025 02:08:21 -0700 (PDT)
+Message-ID: <c4b5a42f5f1d3f577cb986946b642b4edc1300e9.camel@gmail.com>
+Subject: Re: [PATCH 3/6] spi: add multi_bus_mode field to struct spi_transfer
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: David Lechner <dlechner@baylibre.com>, Mark Brown <broonie@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+  Conor Dooley <conor+dt@kernel.org>, Marcelo Schmitt
+ <marcelo.schmitt@analog.com>, Michael Hennerich	
+ <michael.hennerich@analog.com>, Nuno =?ISO-8859-1?Q?S=E1?=
+ <nuno.sa@analog.com>,  Jonathan Cameron	 <jic23@kernel.org>, Andy
+ Shevchenko <andy@kernel.org>, Sean Anderson	 <sean.anderson@linux.dev>,
+ linux-spi@vger.kernel.org, 	devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, 	linux-iio@vger.kernel.org
+Date: Thu, 16 Oct 2025 10:08:53 +0100
+In-Reply-To: <ad929fe5-be03-4628-b95a-5c3523bae0c8@baylibre.com>
+References: 
+	<20251014-spi-add-multi-bus-support-v1-0-2098c12d6f5f@baylibre.com>
+	 <20251014-spi-add-multi-bus-support-v1-3-2098c12d6f5f@baylibre.com>
+	 <9269eadc1ea593e5bc8f5cad8061b48220f4d2b2.camel@gmail.com>
+	 <409ad505-8846-443e-8d71-baca3c9aef21@sirena.org.uk>
+	 <12db0930458ceb596010655736b0a67a0ad0ae53.camel@gmail.com>
+	 <8c7bf62a-c5dc-4e4d-8059-8abea15ba94e@sirena.org.uk>
+	 <d9455d90-31ca-4be7-b17c-2b339e92f8a0@baylibre.com>
+	 <9024f05854dcc3cc59345c0a3de900f57c4730d9.camel@gmail.com>
+	 <ad929fe5-be03-4628-b95a-5c3523bae0c8@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250925200625.573902-1-tmaimon77@gmail.com> <175890301752.880349.2331946518360447485.robh@kernel.org>
- <CAP6Zq1jmmhqYu3C7KHFK2tz9zjW352Bbw4cXeOYSjNSTELrp5Q@mail.gmail.com> <045c7bcd3a852e626f11e5b78c07939feac0e298.camel@codeconstruct.com.au>
-In-Reply-To: <045c7bcd3a852e626f11e5b78c07939feac0e298.camel@codeconstruct.com.au>
-From: Tomer Maimon <tmaimon77@gmail.com>
-Date: Thu, 16 Oct 2025 12:06:56 +0300
-X-Gm-Features: AS18NWD2PDfZcVJRgxIyX7bEOze1mHnCXeX6pVqo7IZ1SuA6mem-A5kplcE6yyY
-Message-ID: <CAP6Zq1h6u0t8D4sDifGjVw6M_cTKxurxiPiO8yxFW5HtJBRvPA@mail.gmail.com>
-Subject: Re: [PATCH v3 0/3] arm64: dts: nuvoton: add NPCM845 SoC and EVB support
-To: Andrew Jeffery <andrew@codeconstruct.com.au>
-Cc: "Rob Herring (Arm)" <robh@kernel.org>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, venture@google.com, yuenn@google.com, 
-	openbmc@lists.ozlabs.org, benjaminfair@google.com, joel@jms.id.au, 
-	krzk+dt@kernel.org, tali.perry1@gmail.com, conor+dt@kernel.org, 
-	avifishman70@gmail.com
-Content-Type: text/plain; charset="UTF-8"
 
-Sure, thanks Andrew
+On Wed, 2025-10-15 at 13:38 -0500, David Lechner wrote:
+> On 10/15/25 11:43 AM, Nuno S=C3=A1 wrote:
+> > On Wed, 2025-10-15 at 11:15 -0500, David Lechner wrote:
+> > > On 10/15/25 10:18 AM, Mark Brown wrote:
+> > > > On Wed, Oct 15, 2025 at 03:43:09PM +0100, Nuno S=C3=A1 wrote:
+> > > > > On Wed, 2025-10-15 at 13:01 +0100, Mark Brown wrote:
+> > > > > > On Wed, Oct 15, 2025 at 11:16:01AM +0100, Nuno S=C3=A1 wrote:
+> > > > > > > On Tue, 2025-10-14 at 17:02 -0500, David Lechner wrote:
+> > > >=20
+> > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 controller=C2=A0=
+=C2=A0=C2=A0 < data bits <=C2=A0=C2=A0=C2=A0=C2=A0 peripheral
+> > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ----------=C2=A0=
+=C2=A0 ----------------=C2=A0=C2=A0 ----------
+> > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 SDI 0=C2=A0=C2=A0=C2=A0 0-0-0-1-0-0-0-1=C2=A0=C2=A0=C2=A0 SDO 0
+> > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 SDI 1=C2=A0=C2=A0=C2=A0 1-0-0-0-1-0-0-0=C2=A0=C2=A0=C2=A0 SDO 1
+> > > >=20
+> > > > > > > Out of curiosity, how does this work for devices like AD4030 =
+where
+> > > > > > > the same
+> > > > > > > word
+> > >=20
+> > > The AD4030 is just one channel, so doesn't do interleaving. But you
+> > > probably
+> > > meant AD4630 when it is wired up with only 1 SDO line. That line has =
+to be
+> > > shared
+> > > by both of the simultaneous converters so it alternates between sendi=
+ng
+> > > one bit
+> > > from each word. This patch series doesn't address that case. But this
+> > > series will
+> > > work for the AD4630 when it has 2 SDO lines wired up.
+> > >=20
+> >=20
+> > Hmm I didn't even remembered that one. But what I meant with interleave=
+d was
+> > having
+> > the same data word spread through multiple SDO lines (one bit per line)
+> > which is what
+> > (also) happens with the devices I mentioned. And since you mentioned ".=
+..two
+> > different data words at the same time, one on each bus...", I raised th=
+e
+> > question.
+>=20
+> Ah, yes, I know what you are talking about now. I didn't mention that use=
+ case
+> in
+> the cover letter because I didn't want to confuse things. But actually th=
+e
+> AD4630
+> can have 8 SDO lines, 4 per each data bus/ADC channel. The groups of 4 ac=
+t
+> like a
+> quad SPI where 4 bits of one data word are sent at the same time. Those 4
+> lines are
+> considered one "bus" since they are all connected to the same serialzer t=
+hat
+> combines
+> the bits into a single word. We already have support for this sort of thi=
+ng in
+> Linux.
+> And sure, we could mix the two together. So a SPI transfer might look lik=
+e:
+>=20
+> struct spi_transfer example =3D {
+> 	rx_buf =3D rx_buf;
+> 	len =3D 4; /* 2 x 16-bit words */
+> 	rx_nbits =3D 4; /* each bus is quad SPI */
+> 	multi_bus_mode =3D SPI_MULTI_BUS_MODE_STRIPE; /* 2 data buses */
+> 	bits_per_word =3D 16;
+> };
+>=20
+> This would result in a transfer that reads two 16-bit words in 4 SCLK cyc=
+les.
+>=20
+> And the .dts would look like:
+>=20
+> spi {
+> 	adc@0 {
+> 		compatible =3D "adi,ad4630-16";
+> 		reg =3D <0>;
+> 		...
+> 		spi-rx-bus-width =3D <4>;
+> 		spi-buses =3D <2>;
+> 		...
+> 	};
+> };
 
-On Wed, 1 Oct 2025 at 05:35, Andrew Jeffery <andrew@codeconstruct.com.au> wrote:
->
-> On Mon, 2025-09-29 at 12:15 +0300, Tomer Maimon wrote:
-> > Hi Rob,
-> >
-> > Thanks for your comments
-> >
-> > Most of the warnings occur because the compatible strings are located
-> > in .txt device tree binding rather than in the .yaml file.
-> >
-> > The only change that needs to be done is in ti,tmp100 that
-> >
-> > Could you approve the patches, avoiding NPCM845 compatible warnings?
-> > Meanwhile, I will work on converting the txt to yaml
->
-> I think it's best we get the conversion done, and then subsequently
-> apply the apply this series. See:
->
-> https://docs.kernel.org/process/maintainer-soc.html#validating-devicetree-files
->
-> and
->
-> https://docs.kernel.org/process/maintainer-soc-clean-dts.html#strict-dts-dt-schema-and-dtc-compliance
->
-> Andrew
+Yes, it makes sense! I guess the above is what Mark meant in the first plac=
+e.
+
+>=20
+> The AXI SPI Engine doesn't know how to do the quad SPI part yet though, s=
+o
+> it isn't something we could implement right now.
+>=20
+> If we tried to do it with spi-buses =3D <8>; then we would end up with th=
+e
+> "interleaved" bits (or nibbles depending on the wiring) that requires the
+> extra IP block to sort out when using SPI offloading. Technically, we cou=
+ld
+
+I think that extra block already exists today. I was thinking the idea was =
+just:
+
+// the case where we just have one channel with eg: 32 bits words (eg: test
+patterns)=20
+struct spi_transfer example =3D {
+	rx_buf =3D rx_buf;
+	len =3D 1; /* 1 32bit words */
+	/* 4 lanes which is actually quadspi */
+	multi_bus_mode =3D SPI_MULTI_BUS_MODE_STRIPE;=20
+};
+
+I still did not looked at how the stripe mode is implemented in the hdl IP =
+but
+maybe the above would work as we get 8 bits per lane and we do have the dat=
+a
+reorder IP (or at least used to have) after the offload engine.=C2=A0
+
+That said, I do see now the above is not the intended usecase for this seri=
+es
+and even if it works we kind of have to hack the xfer len to 1 which does n=
+ot
+reflect reality.
+
+> make it work, but it would require a bunch of extra hardware description =
+that
+> the driver would have to interpret in order to correctly format the struc=
+t
+> spi_transfer. I was hoping we could avoid that and just teach the SPI Eng=
+ine
+> how to do dual/quad SPI like other SPI controllers.
+
+Agreed!
+
+- Nuno S=C3=A1
+
+> > > > >=20
 
