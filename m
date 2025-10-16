@@ -1,60 +1,59 @@
-Return-Path: <devicetree+bounces-227677-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227678-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A818DBE374F
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 14:42:17 +0200 (CEST)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id E435BBE375B
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 14:42:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 17D951A629B6
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 12:42:41 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 638023586A4
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 12:42:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F03F32D7E0;
-	Thu, 16 Oct 2025 12:42:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8026A330D21;
+	Thu, 16 Oct 2025 12:42:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bJA/b4q4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NCzwt2aY"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2C3E32D7D9;
-	Thu, 16 Oct 2025 12:42:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D6BA32D459;
+	Thu, 16 Oct 2025 12:42:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760618522; cv=none; b=O5idfPYZDu4OFz74RV4NSCf4NRp0H2xSUD7NgMcMsnVGysmCFCXCAuhXjSMh2zbSrp6bMsQVDwjxTqVQuB08wrnkiRYNln4zL0vXeobQBGQrVAFkKZShR39vebQ1IybiISCGkc+z8a+CZAAsV4/LLvvOelqdes1+cT/4Dxbpi3M=
+	t=1760618528; cv=none; b=Hhe56JSzpeXiNJ5zKm/9P4ltRVpHXwfsqKfd74CJ9G8qir2mn1nY6tYxopaykISgOA4Rm+BG8x47Dllr0tdlqXRmEs/niEXI34dHC0dY1qNy5TochLheC1D93NwN99KQumeUIJFYCTprE0ydXB5JlrKokpVSN60yj5eUTAfolQs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760618522; c=relaxed/simple;
-	bh=capGskoZmjMJHMDq30MZgjnjSp0ctvHfRPAsE6z4KLg=;
+	s=arc-20240116; t=1760618528; c=relaxed/simple;
+	bh=yLkoC9bexsp0rz+m13EnQnE+1CpKO1ZweS+72nbnds0=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=RulVQiS7xrwyvJyPlTgvI5yrDCE8LAVdtnIC+2W6qJpUCaoX6laOIXwaBuSLBAPtf6DXzWS7B4Vfa8pZQ3QOHXN4iVqLiKQ4RTFGi5SwBmiHR3CLKLc2fYaalgHYdva5DEzqvNxZXS3a0UqJB6qAEnpjRgwuBS4SA6GuIG6NMsA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bJA/b4q4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 40AC4C4CEFE;
-	Thu, 16 Oct 2025 12:41:58 +0000 (UTC)
+	 MIME-Version:Content-Type; b=Uc+L/8i8+2ia8uITiQdhOaJqrdRvqaJj/MQRJrpqy1sQgyXaPXE2LZCSQ7l/oGUKdqNNTk4wZN2Lp9PTIosgDbwjCxu2jFzLLt/o5jKTfhtMP65ttkHIoz/yTm4odFbwOpF9sSbr1vPPcVOH+b7LvrLvNju3Fa7ZuzQCS7Dnzx4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NCzwt2aY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 02382C4CEF1;
+	Thu, 16 Oct 2025 12:42:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760618520;
-	bh=capGskoZmjMJHMDq30MZgjnjSp0ctvHfRPAsE6z4KLg=;
+	s=k20201202; t=1760618528;
+	bh=yLkoC9bexsp0rz+m13EnQnE+1CpKO1ZweS+72nbnds0=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=bJA/b4q4k13X3gyyiNae7f4498AGyd+HylQrw8Cecqj4mwpf0PpHPUfSPCzPayBVb
-	 XEVdPl3yMpZ5jPeQ1bor2ur9k+JQORr65Fop06IiHoeyTBav4RenuANXsna5dzktBL
-	 ujU5Wtj8ouhPXpOmcjjZ0HwT6JqkinFjAXZX9Ypjv2qt0p6dKRzz3N+ADmX2FTncqI
-	 lpZ70XzKlKUnkFuv/fI3KaKIVlFaCHzts6ysrfF30OSJ/95iS1krKhj9wj9R5uJgn7
-	 Vxhura0Vf7nAzr71jGdFBuoNUTQ7wbwT62TyLHj5rTISaBnlnPltBLsLhFW0SC4Vy1
-	 hCK/+ZdpgtmIg==
+	b=NCzwt2aYG7b3dTzMFyrnw+HSX/gpgauEusk0IORwgD3G4yNtoRp8M19Bb+aAixwcd
+	 azVngRR2B9/r/rfQeRg1T+FSBxaVXUvAd6RzVR0AkCmDdOTbMGq2RoesBw60VrBv+i
+	 aqrg+M12w9leUDy62HRptmkxswQaLskUVIsXLuf0it2OGPXt6jRfmSLfahCm5cgmA6
+	 53N5d+eqYs2h/qw9oGO9wTWDVeygrtbYaoWs5dZgHy9/Uad7vfqqDhs2jRatME4JJH
+	 HV/9Q4f5wjpKf5wjL6A3PF2jJ1VLhp/bMF6UX/rsMKBqOJqzqoWxfYL241jKZih4u/
+	 pub6dLxhx3ebw==
 From: Mark Brown <broonie@kernel.org>
-To: Srinivas Kandagatla <srini@kernel.org>, 
- Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>, 
+To: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>, 
- Takashi Iwai <tiwai@suse.com>, Le Qi <le.qi@oss.qualcomm.com>
-Cc: linux-sound@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- kernel@oss.qualcomm.com
-In-Reply-To: <20251009090619.1097388-1-le.qi@oss.qualcomm.com>
-References: <20251009090619.1097388-1-le.qi@oss.qualcomm.com>
-Subject: Re: [PATCH v2 0/2] ASoC: Add QCS615 sound card support
-Message-Id: <176061851800.55339.9213487570026484712.b4-ty@kernel.org>
-Date: Thu, 16 Oct 2025 13:41:58 +0100
+ Conor Dooley <conor+dt@kernel.org>, Shengjiu Wang <shengjiu.wang@nxp.com>, 
+ linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Frank Li <Frank.Li@nxp.com>
+Cc: imx@lists.linux.dev
+In-Reply-To: <20251010160321.2130093-1-Frank.Li@nxp.com>
+References: <20251010160321.2130093-1-Frank.Li@nxp.com>
+Subject: Re: [PATCH 1/1] ASoC: dt-bindings: Add compatible string
+ fsl,imx-audio-tlv320
+Message-Id: <176061852458.55339.3889292369003753911.b4-ty@kernel.org>
+Date: Thu, 16 Oct 2025 13:42:04 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,10 +64,10 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.15-dev-2a268
 
-On Thu, 09 Oct 2025 17:06:17 +0800, Le Qi wrote:
-> This patch series adds support for the QCS615 sound card:
-> - Updates device tree bindings for SM8250 to include QCS615.
-> - Adds QCS615 support in the SC8280XP ASoC driver.
+On Fri, 10 Oct 2025 12:03:20 -0400, Frank Li wrote:
+> Add compatible string fsl,imx-audio-tlv320 to fix below CHECK_DTBS warning:
+>   arch/arm/boot/dts/nxp/imx/imx6dl-gw5903.dtb: /sound: failed to match any schema with compatible: ['fsl,imx-audio-tlv320']
+> 
 > 
 
 Applied to
@@ -77,10 +76,8 @@ Applied to
 
 Thanks!
 
-[1/2] ASoC: dt-bindings: qcom,sm8250: Add QCS615 sound card
-      commit: 6079165e6e027c03e06556ff3df0ed03a34d68f0
-[2/2] ASoC: qcom: sc8280xp: Add support for QCS615
-      commit: dee4ef0ebe4dee655657ead30892aeca16462823
+[1/1] ASoC: dt-bindings: Add compatible string fsl,imx-audio-tlv320
+      commit: fcd298fdc2a32f1d90cdf9a452c5c5fdc6e8d137
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
