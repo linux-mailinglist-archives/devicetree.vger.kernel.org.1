@@ -1,391 +1,227 @@
-Return-Path: <devicetree+bounces-227504-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227507-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 909F7BE228F
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 10:32:38 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 50E54BE22CB
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 10:37:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 251874EEBF5
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 08:32:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 45DF7487D35
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 08:37:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63CDD281370;
-	Thu, 16 Oct 2025 08:32:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF3A3304BDF;
+	Thu, 16 Oct 2025 08:36:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="Lr7JhZco"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lSxiCumn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D3D22E54AA
-	for <devicetree@vger.kernel.org>; Thu, 16 Oct 2025 08:32:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B429E145348;
+	Thu, 16 Oct 2025 08:36:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760603544; cv=none; b=tHHG2W5bUCOfZNuxVicYwFkbY80BvggnKFlsekTQUtbZXlPVA6Q4SIcqmlJmcB6unJ76EifWzFYJ6rB1cJweRhr3dg7eNJ4CHQZrfsTPOGcKktwixXZedTAGT6H1NhqTAlRPis7Fki8fbjAVDWWoiSbodRIDZtl8RBSM9oDzvrc=
+	t=1760603812; cv=none; b=Qn96gISutGEBIUs2ixPJxP0RTlKyuDcUIQFCJc4jmgHiQOEXNAQu3VdLOt6j8hLPw1uwRxlzpU0l5F7TpXQH0U3zNrfXVtyhJ0gPNtlOv/uejRoYa2pFIRjTZpJf3vmZhO/haJdlC/Rn/BaUD3bR5ihRQGMlTMUgZn3IIc162/I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760603544; c=relaxed/simple;
-	bh=QDgfIhSA3WyFqLshlxgldAn9dZcKTZLfDbE2aYR+imI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=DOLPgYCmtfDvbPXbKkYrmB6vP32nBEQttEjPyFX5TZ4jRUCA1FBqyXMoR/xdjdOMcKUIZr5PZ+20pxDPYpCKN4nFzcFE6EcKPfApgJCqSmLZ5sCVVCVdDSCif2rn4wkPtzjVW7mniVNV73Uu1wIR2NAVuoOszqUB1bgvsC5NT6k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=Lr7JhZco; arc=none smtp.client-ip=209.85.208.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
-Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-62fc0b7bf62so653551a12.2
-        for <devicetree@vger.kernel.org>; Thu, 16 Oct 2025 01:32:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google; t=1760603540; x=1761208340; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=YGUnawecL83edOGjPf+u6bC7T95P7jfXKCNsQBzg0rA=;
-        b=Lr7JhZconcEiVfbkc3mNEAtd4EJed4ovzOlUbNKt2Rd2YhcmL20Y3wU9mfhL1owpQ5
-         SYBRHShfKwD6J4nqE+CM/TMPIAiRsnXH9kv1jcTYV6Z4oAXJwoiw0F2KPPRTrCtN5ium
-         XOdLZxqIeN40HlNo9+STNgiinAroKufc/Fy2w6OBHSgNKBFaNkPoFw6czfqWnemI7Qvu
-         HU653+cs5bJTozu3PjmLFuifjp+LfU2iGMxtIB171DcL4Le+x01lJHCcHQwq1Vtth8EX
-         wo8S9WC3ZHtg7FBfM+M8uzO+L/vtGu4ZwmgByjl0sY5tjhGQs2tbIXcfodwGB3guj5Fa
-         FV7g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760603540; x=1761208340;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=YGUnawecL83edOGjPf+u6bC7T95P7jfXKCNsQBzg0rA=;
-        b=fmB/Z1o+llVtzPauDEH4vFHJxSdnlEIMHJzWPdw/5PjiTRevqjAhsJLCjViRSqZwNG
-         GW7EF3PJnJlrOxFtOktYlCe1a/2RHGjKtlrCOF75AaGcdFdWj0g2R8BcErRnCXgL2Q94
-         Q917L/8YhyK3bwKIjPzHxKCgmypZtGWdmd5OfNggkboUIXKQDr5H4M8pKThTh0bcZZBe
-         /tb0o8NhLi8LpEF65Xr2LIZcAbDL0NXfjIIYh3neiUjPJfvl9/bEBG0TZo17M6R6GN1N
-         GRrHsYjfmuEP8l0Grc6aFEdXeVBWFDFtJ8TnLCMf5jJ3Ud977bwAg0zB5DeTogs4H8Uf
-         HnRQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW8J7cOtLapZDbn5mNvpo22L6R3YrjqX9cDBUKq/qWfAQUxhQ8oy5sP91fZijcYFhEeZzakTBvsuA+a@vger.kernel.org
-X-Gm-Message-State: AOJu0YxOVYvMRSu3SRTmwyHkDJgb/hXyITDd4gFCKDNaOEtv8UtUj7yu
-	xv7COp+4fDO6c3hYzPu/cPg70TjLqdsocB4Y3vty6WkfnEzzowOTcgvmQ6+UNDTY1Zt4sVay73X
-	6N6u4fsf5/NZvgYAksymJX+SNxekZzF+OHIQPMr4IPg==
-X-Gm-Gg: ASbGnct4RlHic2A7E7cvLQAUxEAT8/K0qk4HwMuRwR42uGZSNnw23KXffed99YnQc7L
-	Ni/2BhF5SoOSfuUWUyCC2q4AEvcAe/ttRJ/DjTtYUFd6zIflfBNUiGC6RctcU+gcs7/XdBuOs1W
-	0b2QZzLv9hbQZHrwoUHdGVNk6aByKjW6ZyUSFWKMNu0PlIyzCNvu86qHUAgq7G/UGi57GVG3BxY
-	28U03VgdYtFnS3/YCrG6WCjQINPz8W+JLri52XgBo5/J08c0olW02RH2PN4Ts41T10hJ8oVZw==
-X-Google-Smtp-Source: AGHT+IFHq55tnkrijYl7UmxNSZkHg8MUK7rL86Qec+QFny2Jj+Nqgl6hHNvXTQ4ak+tVR4IZPuR8dIifQEuqb6CMGOw=
-X-Received: by 2002:a05:6402:2706:b0:63c:1066:8bec with SMTP id
- 4fb4d7f45d1cf-63c10668e2bmr685991a12.35.1760603539325; Thu, 16 Oct 2025
- 01:32:19 -0700 (PDT)
+	s=arc-20240116; t=1760603812; c=relaxed/simple;
+	bh=MuVT8F29Xlc5XO/utltXz470EZDUUeT2p+kzo7sBpCc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=V+YiFuNCUWrgV+p4Te3WsFV8zAbbgCdam3TcspEf0baSCSffWRxl2x6g9DpJ0wrTRq3dek/rur5bKQYymdIrbw0lTVo5N5PwEA3iirOAgnAUGXI64CLzZiluG9retjE418VF4hdPn1OabP7qJ09QojyOhVtdVtGBBBeLhIKpeJU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lSxiCumn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8CC6C4CEF1;
+	Thu, 16 Oct 2025 08:36:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1760603812;
+	bh=MuVT8F29Xlc5XO/utltXz470EZDUUeT2p+kzo7sBpCc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=lSxiCumns7EpzNLOIgT/81hEQX9eA2qS1y/SDwq4SEuMAG5jL16PWcY1aeG8GdOH+
+	 QcclVkiqrcTwaToa4hGCK0J7pXlx1HsGlbj5wBXQLlQ3Ab/o4pTbThi9acFoCR/eLo
+	 65WmTLCEw20m71CvOHv/ZoA19nC1E7uORPjfXxifwEFKC0SVlCgfAVjl3ZuQNkjdc9
+	 m5gILegWqx67jDRS1rqorVr1lthwCEn9rHUNhS4KdtrXH2DojZ+YT+BCTGwFBrYSLR
+	 TD70OsqTNs0/v9YvrtLSrwrmpLX6/tnnXmj8+J22+D3sWTU+KKzkaJkRW8Vdg70GYH
+	 e7htLXVq29SVw==
+Date: Thu, 16 Oct 2025 10:36:49 +0200
+From: Lorenzo Bianconi <lorenzo@kernel.org>
+To: Simon Horman <horms@kernel.org>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next 11/12] net: airoha: Refactor src port
+ configuration in airhoha_set_gdm2_loopback
+Message-ID: <aPCuoR8ukM23d71i@lore-desk>
+References: <20251015-an7583-eth-support-v1-0-064855f05923@kernel.org>
+ <20251015-an7583-eth-support-v1-11-064855f05923@kernel.org>
+ <aO_GOE0jPMlcP-VR@horms.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251013-v5_user_cfi_series-v20-0-b9de4be9912e@rivosinc.com> <20251013-v5_user_cfi_series-v20-24-b9de4be9912e@rivosinc.com>
-In-Reply-To: <20251013-v5_user_cfi_series-v20-24-b9de4be9912e@rivosinc.com>
-From: Zong Li <zong.li@sifive.com>
-Date: Thu, 16 Oct 2025 16:32:08 +0800
-X-Gm-Features: AS18NWDdABXVeVU4BxVD4PUOdUQ6DbOXUTRdVQ9iYOyQ5bKOkgL4sYwtV7PCBF4
-Message-ID: <CANXhq0rVGisy33n6gB-P8B0ALiB2LqqYbKsSqgJLCNNRecP9TA@mail.gmail.com>
-Subject: Re: [PATCH v20 24/28] arch/riscv: dual vdso creation logic and select
- vdso based on hw
-To: Deepak Gupta <debug@rivosinc.com>
-Cc: Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>, 
-	Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org, 
-	"H. Peter Anvin" <hpa@zytor.com>, Andrew Morton <akpm@linux-foundation.org>, 
-	"Liam R. Howlett" <Liam.Howlett@oracle.com>, Vlastimil Babka <vbabka@suse.cz>, 
-	Lorenzo Stoakes <lorenzo.stoakes@oracle.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>, 
-	Christian Brauner <brauner@kernel.org>, Peter Zijlstra <peterz@infradead.org>, 
-	Oleg Nesterov <oleg@redhat.com>, Eric Biederman <ebiederm@xmission.com>, Kees Cook <kees@kernel.org>, 
-	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>, Jann Horn <jannh@google.com>, 
-	Conor Dooley <conor+dt@kernel.org>, Miguel Ojeda <ojeda@kernel.org>, 
-	Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
-	Gary Guo <gary@garyguo.net>, =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
-	Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, 
-	Trevor Gross <tmgross@umich.edu>, Benno Lossin <lossin@kernel.org>, linux-kernel@vger.kernel.org, 
-	linux-fsdevel@vger.kernel.org, linux-mm@kvack.org, 
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-arch@vger.kernel.org, linux-doc@vger.kernel.org, 
-	linux-kselftest@vger.kernel.org, alistair.francis@wdc.com, 
-	richard.henderson@linaro.org, jim.shu@sifive.com, andybnac@gmail.com, 
-	kito.cheng@sifive.com, charlie@rivosinc.com, atishp@rivosinc.com, 
-	evan@rivosinc.com, cleger@rivosinc.com, alexghiti@rivosinc.com, 
-	samitolvanen@google.com, broonie@kernel.org, rick.p.edgecombe@intel.com, 
-	rust-for-linux@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="njSAvnTeCku01lzf"
+Content-Disposition: inline
+In-Reply-To: <aO_GOE0jPMlcP-VR@horms.kernel.org>
+
+
+--njSAvnTeCku01lzf
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Oct 14, 2025 at 5:57=E2=80=AFAM Deepak Gupta <debug@rivosinc.com> w=
-rote:
->
-> Shadow stack instructions are taken from zimop (mandated on RVA23).
-> Any hardware prior to RVA23 profile will fault on shado stack instruction=
-.
+> On Wed, Oct 15, 2025 at 09:15:11AM +0200, Lorenzo Bianconi wrote:
+> > AN7583 chipset relies on different definitions for source-port
+> > identifier used for hw offloading. In order to support hw offloading
+> > in AN7583 controller, refactor src port configuration in
+> > airhoha_set_gdm2_loopback routine and introduce get_src_port_id
+> > callback.
+> >=20
+> > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+> > ---
+> >  drivers/net/ethernet/airoha/airoha_eth.c  | 75 +++++++++++++++++++++--=
+--------
+> >  drivers/net/ethernet/airoha/airoha_eth.h  | 11 +++--
+> >  drivers/net/ethernet/airoha/airoha_regs.h |  5 +--
+> >  3 files changed, 60 insertions(+), 31 deletions(-)
+> >=20
+> > diff --git a/drivers/net/ethernet/airoha/airoha_eth.c b/drivers/net/eth=
+ernet/airoha/airoha_eth.c
+> > index 5f6b5ab52e0265f7bb56b008ca653d64e04ff2d2..76c82750b3ae89a9fa81c64=
+d3b7c3578b369480c 100644
+> > --- a/drivers/net/ethernet/airoha/airoha_eth.c
+> > +++ b/drivers/net/ethernet/airoha/airoha_eth.c
+> > @@ -1682,11 +1682,14 @@ static int airoha_dev_set_macaddr(struct net_de=
+vice *dev, void *p)
+> >  	return 0;
+> >  }
+> > =20
+> > -static void airhoha_set_gdm2_loopback(struct airoha_gdm_port *port)
+> > +static int airhoha_set_gdm2_loopback(struct airoha_gdm_port *port)
+> >  {
+> >  	u32 pse_port =3D port->id =3D=3D 3 ? FE_PSE_PORT_GDM3 : FE_PSE_PORT_G=
+DM4;
+> >  	struct airoha_eth *eth =3D port->qdma->eth;
+> >  	u32 chan =3D port->id =3D=3D 3 ? 4 : 0;
+> > +	/* XXX: handle XSI_USB_PORT and XSI_PCE1_PORT */
+> > +	u32 nbq =3D port->id =3D=3D 3 ? 4 : 0;
+> > +	int src_port;
+>=20
+> I think this code could benefit for names (defines) for port ids.
+> It's a bit clearer in airoha_en7581_get_src_port_id(). But the
+> numbers seem kind of magic in this function.
 
-I notice that there is a typo for shado"w" stack instruction.
+ack, I will fix it in v2.
 
-> Any userspace with shadow stack instruction in it will fault on such
-> hardware. Thus such userspace can't be brought onto such a hardware.
->
-> It's not known how userspace will respond to such binary fragmentation.
-> However in order to keep kernel portable across such different hardware,
-> `arch/riscv/kernel/vdso_cfi` is created which has logic (Makefile) to
-> compile `arch/riscv/kernel/vdso` sources with cfi flags and then changes
-> in `arch/riscv/kernel/vdso.c` for selecting appropriate vdso depending
-> on whether underlying hardware(cpu) implements zimop extension. Offset
-> of vdso symbols will change due to having two different vdso binaries,
-> there is added logic to include new generated vdso offset header and
-> dynamically select offset (like for rt_sigreturn).
->
-> Signed-off-by: Deepak Gupta <debug@rivosinc.com>
-> ---
->  arch/riscv/Makefile                        |  3 +++
->  arch/riscv/include/asm/vdso.h              |  7 ++++++-
->  arch/riscv/kernel/Makefile                 |  1 +
->  arch/riscv/kernel/vdso.c                   |  7 +++++++
->  arch/riscv/kernel/vdso/Makefile            | 29 ++++++++++++++++++++----=
------
->  arch/riscv/kernel/vdso/gen_vdso_offsets.sh |  4 +++-
->  arch/riscv/kernel/vdso_cfi/Makefile        | 25 ++++++++++++++++++++++++=
-+
->  arch/riscv/kernel/vdso_cfi/vdso-cfi.S      | 11 +++++++++++
->  8 files changed, 76 insertions(+), 11 deletions(-)
->
-> diff --git a/arch/riscv/Makefile b/arch/riscv/Makefile
-> index f60c2de0ca08..b74b63da16a7 100644
-> --- a/arch/riscv/Makefile
-> +++ b/arch/riscv/Makefile
-> @@ -176,6 +176,8 @@ ifeq ($(CONFIG_MMU),y)
->  prepare: vdso_prepare
->  vdso_prepare: prepare0
->         $(Q)$(MAKE) $(build)=3Darch/riscv/kernel/vdso include/generated/v=
-dso-offsets.h
-> +       $(if $(CONFIG_RISCV_USER_CFI),$(Q)$(MAKE) \
-> +               $(build)=3Darch/riscv/kernel/vdso_cfi include/generated/v=
-dso-cfi-offsets.h)
->         $(if $(CONFIG_COMPAT),$(Q)$(MAKE) \
->                 $(build)=3Darch/riscv/kernel/compat_vdso include/generate=
-d/compat_vdso-offsets.h)
->
-> @@ -183,6 +185,7 @@ endif
->  endif
->
->  vdso-install-y                 +=3D arch/riscv/kernel/vdso/vdso.so.dbg
-> +vdso-install-$(CONFIG_RISCV_USER_CFI)  +=3D arch/riscv/kernel/vdso_cfi/v=
-dso-cfi.so.dbg
->  vdso-install-$(CONFIG_COMPAT)  +=3D arch/riscv/kernel/compat_vdso/compat=
-_vdso.so.dbg
->
->  BOOT_TARGETS :=3D Image Image.gz Image.bz2 Image.lz4 Image.lzma Image.lz=
-o Image.zst Image.xz loader loader.bin xipImage vmlinuz.efi
-> diff --git a/arch/riscv/include/asm/vdso.h b/arch/riscv/include/asm/vdso.=
-h
-> index f80357fe24d1..3fc8f72b8bfb 100644
-> --- a/arch/riscv/include/asm/vdso.h
-> +++ b/arch/riscv/include/asm/vdso.h
-> @@ -18,9 +18,13 @@
->
->  #ifndef __ASSEMBLER__
->  #include <generated/vdso-offsets.h>
-> +#include <generated/vdso-cfi-offsets.h>
->
->  #define VDSO_SYMBOL(base, name)                                         =
-               \
-> -       (void __user *)((unsigned long)(base) + __vdso_##name##_offset)
-> +       ((IS_ENABLED(CONFIG_RISCV_USER_CFI) &&                           =
-       \
-> +         riscv_has_extension_unlikely(RISCV_ISA_EXT_ZIMOP)) ?           =
-       \
-> +         (void __user *)((unsigned long)(base) + __vdso_##name##_cfi_off=
-set) : \
-> +         (void __user *)((unsigned long)(base) + __vdso_##name##_offset)=
-)
->
->  #ifdef CONFIG_COMPAT
->  #include <generated/compat_vdso-offsets.h>
-> @@ -33,6 +37,7 @@ extern char compat_vdso_start[], compat_vdso_end[];
->  #endif /* CONFIG_COMPAT */
->
->  extern char vdso_start[], vdso_end[];
-> +extern char vdso_cfi_start[], vdso_cfi_end[];
->
->  #endif /* !__ASSEMBLER__ */
->
-> diff --git a/arch/riscv/kernel/Makefile b/arch/riscv/kernel/Makefile
-> index 2d0e0dcedbd3..9026400cba10 100644
-> --- a/arch/riscv/kernel/Makefile
-> +++ b/arch/riscv/kernel/Makefile
-> @@ -72,6 +72,7 @@ obj-y +=3D vendor_extensions/
->  obj-y  +=3D probes/
->  obj-y  +=3D tests/
->  obj-$(CONFIG_MMU) +=3D vdso.o vdso/
-> +obj-$(CONFIG_RISCV_USER_CFI) +=3D vdso_cfi/
->
->  obj-$(CONFIG_RISCV_MISALIGNED) +=3D traps_misaligned.o
->  obj-$(CONFIG_RISCV_MISALIGNED) +=3D unaligned_access_speed.o
-> diff --git a/arch/riscv/kernel/vdso.c b/arch/riscv/kernel/vdso.c
-> index 3a8e038b10a2..bf080e519101 100644
-> --- a/arch/riscv/kernel/vdso.c
-> +++ b/arch/riscv/kernel/vdso.c
-> @@ -98,6 +98,13 @@ static struct __vdso_info compat_vdso_info __ro_after_=
-init =3D {
->
->  static int __init vdso_init(void)
->  {
-> +       /* Hart implements zimop, expose cfi compiled vdso */
-> +       if (IS_ENABLED(CONFIG_RISCV_USER_CFI) &&
-> +               riscv_has_extension_unlikely(RISCV_ISA_EXT_ZIMOP)) {
-> +               vdso_info.vdso_code_start =3D vdso_cfi_start;
-> +               vdso_info.vdso_code_end =3D vdso_cfi_end;
-> +       }
-> +
->         __vdso_init(&vdso_info);
->  #ifdef CONFIG_COMPAT
->         __vdso_init(&compat_vdso_info);
-> diff --git a/arch/riscv/kernel/vdso/Makefile b/arch/riscv/kernel/vdso/Mak=
-efile
-> index 272f1d837a80..a842dc034571 100644
-> --- a/arch/riscv/kernel/vdso/Makefile
-> +++ b/arch/riscv/kernel/vdso/Makefile
-> @@ -20,6 +20,10 @@ endif
->  ifdef VDSO_CFI_BUILD
->  CFI_MARCH =3D _zicfilp_zicfiss
->  CFI_FULL =3D -fcf-protection=3Dfull
-> +CFI_SUFFIX =3D -cfi
-> +OFFSET_SUFFIX =3D _cfi
-> +ccflags-y +=3D -DVDSO_CFI=3D1
-> +asflags-y +=3D -DVDSO_CFI=3D1
->  endif
->
->  # Files to link into the vdso
-> @@ -48,13 +52,20 @@ endif
->  CFLAGS_hwprobe.o +=3D -fPIC
->
->  # Build rules
-> -targets :=3D $(obj-vdso) vdso.so vdso.so.dbg vdso.lds
-> +vdso_offsets :=3D vdso$(if $(VDSO_CFI_BUILD),$(CFI_SUFFIX),)-offsets.h
-> +vdso_o :=3D vdso$(if $(VDSO_CFI_BUILD),$(CFI_SUFFIX),).o
-> +vdso_so :=3D vdso$(if $(VDSO_CFI_BUILD),$(CFI_SUFFIX),).so
-> +vdso_so_dbg :=3D vdso$(if $(VDSO_CFI_BUILD),$(CFI_SUFFIX),).so.dbg
-> +vdso_lds :=3D vdso.lds
-> +
-> +targets :=3D $(obj-vdso) $(vdso_so) $(vdso_so_dbg) $(vdso_lds)
-> +
->  obj-vdso :=3D $(addprefix $(obj)/, $(obj-vdso))
->
-> -obj-y +=3D vdso.o
-> -CPPFLAGS_vdso.lds +=3D -P -C -U$(ARCH)
-> +obj-y +=3D vdso$(if $(VDSO_CFI_BUILD),$(CFI_SUFFIX),).o
-> +CPPFLAGS_$(vdso_lds) +=3D -P -C -U$(ARCH)
->  ifneq ($(filter vgettimeofday, $(vdso-syms)),)
-> -CPPFLAGS_vdso.lds +=3D -DHAS_VGETTIMEOFDAY
-> +CPPFLAGS_$(vdso_lds) +=3D -DHAS_VGETTIMEOFDAY
->  endif
->
->  # Disable -pg to prevent insert call site
-> @@ -63,12 +74,12 @@ CFLAGS_REMOVE_getrandom.o =3D $(CC_FLAGS_FTRACE) $(CC=
-_FLAGS_SCS)
->  CFLAGS_REMOVE_hwprobe.o =3D $(CC_FLAGS_FTRACE) $(CC_FLAGS_SCS)
->
->  # Force dependency
-> -$(obj)/vdso.o: $(obj)/vdso.so
-> +$(obj)/$(vdso_o): $(obj)/$(vdso_so)
->
->  # link rule for the .so file, .lds has to be first
-> -$(obj)/vdso.so.dbg: $(obj)/vdso.lds $(obj-vdso) FORCE
-> +$(obj)/$(vdso_so_dbg): $(obj)/$(vdso_lds) $(obj-vdso) FORCE
->         $(call if_changed,vdsold_and_check)
-> -LDFLAGS_vdso.so.dbg =3D -shared -soname=3Dlinux-vdso.so.1 \
-> +LDFLAGS_$(vdso_so_dbg) =3D -shared -soname=3Dlinux-vdso.so.1 \
->         --build-id=3Dsha1 --eh-frame-hdr
->
->  # strip rule for the .so file
-> @@ -79,9 +90,9 @@ $(obj)/%.so: $(obj)/%.so.dbg FORCE
->  # Generate VDSO offsets using helper script
->  gen-vdsosym :=3D $(src)/gen_vdso_offsets.sh
->  quiet_cmd_vdsosym =3D VDSOSYM $@
-> -       cmd_vdsosym =3D $(NM) $< | $(gen-vdsosym) | LC_ALL=3DC sort > $@
-> +       cmd_vdsosym =3D $(NM) $< | $(gen-vdsosym) $(OFFSET_SUFFIX) | LC_A=
-LL=3DC sort > $@
->
-> -include/generated/vdso-offsets.h: $(obj)/vdso.so.dbg FORCE
-> +include/generated/$(vdso_offsets): $(obj)/$(vdso_so_dbg) FORCE
->         $(call if_changed,vdsosym)
->
->  # actual build commands
-> diff --git a/arch/riscv/kernel/vdso/gen_vdso_offsets.sh b/arch/riscv/kern=
-el/vdso/gen_vdso_offsets.sh
-> index c2e5613f3495..bd5d5afaaa14 100755
-> --- a/arch/riscv/kernel/vdso/gen_vdso_offsets.sh
-> +++ b/arch/riscv/kernel/vdso/gen_vdso_offsets.sh
-> @@ -2,4 +2,6 @@
->  # SPDX-License-Identifier: GPL-2.0
->
->  LC_ALL=3DC
-> -sed -n -e 's/^[0]\+\(0[0-9a-fA-F]*\) . \(__vdso_[a-zA-Z0-9_]*\)$/\#defin=
-e \2_offset\t0x\1/p'
-> +SUFFIX=3D${1:-""}
-> +sed -n -e \
-> +'s/^[0]\+\(0[0-9a-fA-F]*\) . \(__vdso_[a-zA-Z0-9_]*\)$/\#define \2'$SUFF=
-IX'_offset\t0x\1/p'
-> diff --git a/arch/riscv/kernel/vdso_cfi/Makefile b/arch/riscv/kernel/vdso=
-_cfi/Makefile
-> new file mode 100644
-> index 000000000000..8ebd190782b0
-> --- /dev/null
-> +++ b/arch/riscv/kernel/vdso_cfi/Makefile
-> @@ -0,0 +1,25 @@
-> +# SPDX-License-Identifier: GPL-2.0-only
-> +# RISC-V VDSO CFI Makefile
-> +# This Makefile builds the VDSO with CFI support when CONFIG_RISCV_USER_=
-CFI is enabled
-> +
-> +# setting VDSO_CFI_BUILD triggers build for vdso differently
-> +VDSO_CFI_BUILD :=3D 1
-> +
-> +# Set the source directory to the main vdso directory
-> +src :=3D $(srctree)/arch/riscv/kernel/vdso
-> +
-> +# Copy all .S and .c files from vdso directory to vdso_cfi object build =
-directory
-> +vdso_c_sources :=3D $(wildcard $(src)/*.c)
-> +vdso_S_sources :=3D $(wildcard $(src)/*.S)
-> +vdso_c_objects :=3D $(addprefix $(obj)/, $(notdir $(vdso_c_sources)))
-> +vdso_S_objects :=3D $(addprefix $(obj)/, $(notdir $(vdso_S_sources)))
-> +
-> +$(vdso_S_objects): $(obj)/%.S: $(src)/%.S
-> +       $(Q)cp $< $@
-> +
-> +$(vdso_c_objects): $(obj)/%.c: $(src)/%.c
-> +       $(Q)cp $< $@
-> +
-> +# Include the main VDSO Makefile which contains all the build rules and =
-sources
-> +# The VDSO_CFI_BUILD variable will be passed to it to enable CFI compila=
-tion
-> +include $(src)/Makefile
-> diff --git a/arch/riscv/kernel/vdso_cfi/vdso-cfi.S b/arch/riscv/kernel/vd=
-so_cfi/vdso-cfi.S
-> new file mode 100644
-> index 000000000000..d426f6accb35
-> --- /dev/null
-> +++ b/arch/riscv/kernel/vdso_cfi/vdso-cfi.S
-> @@ -0,0 +1,11 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only */
-> +/*
-> + * Copyright 2025 Rivos, Inc
-> + */
-> +
-> +#define        vdso_start      vdso_cfi_start
-> +#define        vdso_end        vdso_cfi_end
-> +
-> +#define __VDSO_PATH "arch/riscv/kernel/vdso_cfi/vdso-cfi.so"
-> +
-> +#include "../vdso/vdso.S"
->
-> --
-> 2.43.0
->
->
-> _______________________________________________
-> linux-riscv mailing list
-> linux-riscv@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-riscv
+Regards,
+Lorenzo
+
+>=20
+> > =20
+> >  	/* Forward the traffic to the proper GDM port */
+> >  	airoha_set_gdm_port_fwd_cfg(eth, REG_GDM_FWD_CFG(2), pse_port);
+> > @@ -1709,29 +1712,23 @@ static void airhoha_set_gdm2_loopback(struct ai=
+roha_gdm_port *port)
+> >  	airoha_fe_clear(eth, REG_FE_VIP_PORT_EN, BIT(2));
+> >  	airoha_fe_clear(eth, REG_FE_IFC_PORT_EN, BIT(2));
+> > =20
+> > -	if (port->id =3D=3D 3) {
+> > -		/* FIXME: handle XSI_PCE1_PORT */
+> > -		airoha_fe_rmw(eth, REG_FE_WAN_PORT,
+> > -			      WAN1_EN_MASK | WAN1_MASK | WAN0_MASK,
+> > -			      FIELD_PREP(WAN0_MASK, HSGMII_LAN_PCIE0_SRCPORT));
+> > -		airoha_fe_rmw(eth,
+> > -			      REG_SP_DFT_CPORT(HSGMII_LAN_PCIE0_SRCPORT >> 3),
+> > -			      SP_CPORT_PCIE0_MASK,
+> > -			      FIELD_PREP(SP_CPORT_PCIE0_MASK,
+> > -					 FE_PSE_PORT_CDM2));
+> > -	} else {
+> > -		/* FIXME: handle XSI_USB_PORT */
+> > +	src_port =3D eth->soc->ops.get_src_port_id(port, nbq);
+> > +	if (src_port < 0)
+> > +		return src_port;
+> > +
+> > +	airoha_fe_rmw(eth, REG_FE_WAN_PORT,
+> > +		      WAN1_EN_MASK | WAN1_MASK | WAN0_MASK,
+> > +		      FIELD_PREP(WAN0_MASK, src_port));
+> > +	airoha_fe_rmw(eth, REG_SP_DFT_CPORT(src_port >> 3),
+> > +		      SP_CPORT_MASK(src_port & 0x7),
+> > +		      FE_PSE_PORT_CDM2 << __ffs(SP_CPORT_MASK(src_port & 0x7)));
+>=20
+> Likewise, 3 and 0x7 a bit magical here.
+>=20
+> > +
+> > +	if (port->id !=3D 3)
+> >  		airoha_fe_rmw(eth, REG_SRC_PORT_FC_MAP6,
+> >  			      FC_ID_OF_SRC_PORT24_MASK,
+> >  			      FIELD_PREP(FC_ID_OF_SRC_PORT24_MASK, 2));
+>=20
+> ... and 2 here.
+>=20
+> > -		airoha_fe_rmw(eth, REG_FE_WAN_PORT,
+> > -			      WAN1_EN_MASK | WAN1_MASK | WAN0_MASK,
+> > -			      FIELD_PREP(WAN0_MASK, HSGMII_LAN_ETH_SRCPORT));
+> > -		airoha_fe_rmw(eth,
+> > -			      REG_SP_DFT_CPORT(HSGMII_LAN_ETH_SRCPORT >> 3),
+> > -			      SP_CPORT_ETH_MASK,
+> > -			      FIELD_PREP(SP_CPORT_ETH_MASK, FE_PSE_PORT_CDM2));
+> > -	}
+> > +
+> > +	return 0;
+> >  }
+>=20
+> ...
+>=20
+> > @@ -3055,11 +3057,38 @@ static const char * const en7581_xsi_rsts_names=
+[] =3D {
+> >  	"xfp-mac",
+> >  };
+> > =20
+> > +static int airoha_en7581_get_src_port_id(struct airoha_gdm_port *port,=
+ int nbq)
+> > +{
+> > +	switch (port->id) {
+> > +	case 3:
+> > +		/* 7581 SoC supports PCIe serdes on GDM3 port */
+> > +		if (nbq =3D=3D 4)
+> > +			return HSGMII_LAN_7581_PCIE0_SRCPORT;
+> > +		if (nbq =3D=3D 5)
+> > +			return HSGMII_LAN_7581_PCIE1_SRCPORT;
+> > +		break;
+> > +	case 4:
+> > +		/* 7581 SoC supports eth and usb serdes on GDM4 port */
+> > +		if (!nbq)
+> > +			return HSGMII_LAN_7581_ETH_SRCPORT;
+> > +		if (nbq =3D=3D 1)
+> > +			return HSGMII_LAN_7581_USB_SRCPORT;
+> > +		break;
+> > +	default:
+> > +		break;
+> > +	}
+> > +
+> > +	return -EINVAL;
+> > +}
+>=20
+> ...
+
+--njSAvnTeCku01lzf
+Content-Type: application/pgp-signature; name=signature.asc
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCaPCuoQAKCRA6cBh0uS2t
+rCOOAQDMDIpF364/MbSzib3j8d9uEzbbNEXLxP3luCc3gqQiqwEA742hYnGMwq6H
+kCa9nehAixoGaVR15kULJyL3ZZAxHgc=
+=NNc+
+-----END PGP SIGNATURE-----
+
+--njSAvnTeCku01lzf--
 
