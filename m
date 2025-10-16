@@ -1,483 +1,120 @@
-Return-Path: <devicetree+bounces-227522-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227523-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC9ADBE242E
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 11:00:05 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0736BE24A2
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 11:07:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id C88624E5FE9
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 09:00:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7EC3919C0433
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 09:07:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4957930DD3F;
-	Thu, 16 Oct 2025 08:59:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B08B30EF70;
+	Thu, 16 Oct 2025 09:07:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lAUdPufm"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WHmZwVQz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
+Received: from mail-yx1-f53.google.com (mail-yx1-f53.google.com [74.125.224.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FDC430EF69
-	for <devicetree@vger.kernel.org>; Thu, 16 Oct 2025 08:59:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FCE83081CF
+	for <devicetree@vger.kernel.org>; Thu, 16 Oct 2025 09:07:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.224.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760605188; cv=none; b=KqBdBQl/Ldg0+mBcUJPv6TyjVRwACRHIY7Ey1J4a/TsnTcOSZK6m32VnsBRfosj3/24CgO0kcVFC09k03f5iGCI2oIJM437993IW1ex1ERPZzGF0+ybiXA3G8V0dG95mf0LqXCuS77r0hGbhNMdid2cKdSet/twEMuMex8X2FaI=
+	t=1760605631; cv=none; b=kIRe7eaD2LpX2KnKZKrs9caQHjnBjmoMt9Txjiim8qPncGWF1mxJ9vfuozeVxfuJ+E1I8QOCuRLExfcwCh8yEH3HN1VFdh1LOxUq2+AbUb+NfO/8rU47iO+dJZEBgUhsSRVaL37fRiC3+CaR1nElG3gUPMMWYfoT2Saf//fRIK4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760605188; c=relaxed/simple;
-	bh=WNY5WeFs7L6NX3cz5T0OqHmpqUTkL7fyS1R5p8Y5iSo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ALCilPxKTzx6bVcl8pJWnTdOKWyoBrCx/ZwtBMHEWvUP6VRIJ+ZmwseBqfkwpNesmpxabuXAxnoptDI2RdOlQZsB4MJR0UGfXmFWswMvkgORxFXLov+NBv9nRz22tgyzPXpQ0GPJo7Jg3ku7V+TWWiq1R5RbICiz4nwLuCG7Y7Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=lAUdPufm; arc=none smtp.client-ip=209.85.221.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-421851bca51so384508f8f.1
-        for <devicetree@vger.kernel.org>; Thu, 16 Oct 2025 01:59:44 -0700 (PDT)
+	s=arc-20240116; t=1760605631; c=relaxed/simple;
+	bh=guwRIMi0wiANNJuAD6tIEMgIhoRZw5vVBX6qb9J5PBk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Xkh0B0SnMgXqH/OgnpJxVqWC3DHkyTZW3b1zfbRiqJQmY/M3QkbFZcrGo9AcU6Zzu5UC9tgcf7q9JaUlJxK+HWFgWjgvkx1i15athftBlWLkzQFyW6HQ7huUd6QJmhYl+qiuT2RoZ8eXWa4gsmHKMIhP6pZ859V0uQy9JUCLvwc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WHmZwVQz; arc=none smtp.client-ip=74.125.224.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yx1-f53.google.com with SMTP id 956f58d0204a3-63d97bcb898so651864d50.0
+        for <devicetree@vger.kernel.org>; Thu, 16 Oct 2025 02:07:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1760605182; x=1761209982; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=39XpzXJ9mEFd6l0WFlA738sgkk7w9+rmw36TFKBRZQ0=;
-        b=lAUdPufm/bzFdgBHm+VygFSZsq4qWq+CKixUBG+mvYILhuaOhpP13XxWzb4MMY3i4H
-         Iwup/0vRYFsvoh7ELWgJARTWZTr2H+aQLfdRxkqIMdHZkrRexoJ/MzJlVweCI7JyWYEa
-         Q+o4aNqrmrJPJnYPnPqA11YpVzPnqfzVHueVUuos2r/RYLrRYPep4liuLx0Z9elFxGRn
-         o2yr5LWEfgydvx5IXbW3ytXGucp7LD0b4BpY7ZghFvY9slfrbn4QQlRfhptcxOhynQ+y
-         e1BUcjYiSeSM8dPK/IN1EgSkuj23RhENAKezLKEeQryobdFCvBRLT3VtN0cYBWiegef/
-         HOQg==
+        d=gmail.com; s=20230601; t=1760605628; x=1761210428; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=guwRIMi0wiANNJuAD6tIEMgIhoRZw5vVBX6qb9J5PBk=;
+        b=WHmZwVQz6RljL7QN74Hm7itsTO+MvpEcatSH5KAdIvbjXhb08suymboZEQkDBOlBmm
+         8xV/jY66p5h9S5AgUgg1/DDUwIixBvrMLRadvOLX427Pu9ce0nVMyvl0W07+rVcgqjxv
+         GYBQBwoEGYxK5XdKhD4G1X8ocAv7n9GyfpGiZKDeQfXHln7plmO/+A1FbXSVtrVpUMzk
+         +O5nhWPSHJBEafEiQiHRXB7h6B0J11Jg3T/BL7V2KbaHYdgdbfFG8LTnsPVQlM9hJVa/
+         m6asT+qpNtJvtp7LpG7d0NCf6S8BfKMWhREqhWW5inZ5V5s8G8UoRc9sMxlMBVgwHSEh
+         ggYg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760605182; x=1761209982;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=39XpzXJ9mEFd6l0WFlA738sgkk7w9+rmw36TFKBRZQ0=;
-        b=bGdqT8ANh1JTEmUT6xxOnVryJ1tt09rEXWGnnnXy3owzvT2REuZqb2wg3UsuQ676W7
-         R8H92APv3ChLTS8+47OZpv8xTjeO8nIrvNJ71YYSNS7ZSSoYm6VHcEDjUQ2zGQjcb0jD
-         kLetPd6MMw/ut4o+xzTJR8QJ9OCDTqBUoZZZ81/88hu49137Oz0jGg7RF+GhUsCl24zg
-         +S9FlPS1OEscuXzhd1dnOaddvZv/z6G01LpMmJN4VY3TWvapxiwy+66Cn18ETa/qS3Y3
-         rZ1HtkrJaSH1YDANbGD6QpswnJBAEKz3KioeLElvhH2zUZm8y98FbkFRcVd/+q6I8Gj4
-         Df1w==
-X-Forwarded-Encrypted: i=1; AJvYcCWoOY2Es4sO36rZejhFMkVF/ANRnXwzcFG8fecCr1rUSso4kguoQo6BmOVjz91cTgwd/h65TSAsQFcc@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz/58k4Rlc8syWyGF1dIlbFPqfKR/SZKSAXopkq2xHVCufUbGgj
-	p02blee8QFqKaZpOsYF1osvCle/j8xoRegOO/E5q34JQtRg1yBjqJz0oR+CnpE/NUI8=
-X-Gm-Gg: ASbGnctqkpoOHNY2O86I15knBNHp25Di3aaxOxUAHl0aitB3NtYhs25t+H5RHaaguPS
-	IqT9qPhboa5S9hInuUAZiOOnRH4yRditcAaZR2gg3QWa18rZWH9trRaGmAC6w95RybNnpIiQnf3
-	BM/iQsu3cZMmSADS2tgR0orC2v0AYP76DfXC6P/cmvliazMl2027JG9+a5QLOxkJ6iloXb2+ZOg
-	fbYK5HjuNF6lClVqCror82LB9VyXCr7hAD+tdZUoVRe+JP6/gEWrsURbE6VRXHMR27aUKMb2tVr
-	B3+VojSIGT+u2kjrdyXaNgR3tnY8spwKuIHkTT9M0cc4Oh0BI6eJfn++L5tNVgQFu93gyJlQuio
-	iyOgtHLD9th6n/brDsjFezEv/F6ur7wmgGeA6SjhvOdNrle9LtLGhbdBpgCG/H1yrK2Ek79QZGK
-	zfPCROStCRSp/Mr9Oa/LbALEXmGLVm+A2/x1L3QveDEpahKQ==
-X-Google-Smtp-Source: AGHT+IFlDPa3T8k9nbZNweReXapCFa6hlD22eFQxpHRAIGN+rHEnIzDSyZpEIEHJUDE3+zn8+EsBKA==
-X-Received: by 2002:a05:6000:4a05:b0:426:d51c:4be8 with SMTP id ffacd0b85a97d-426d51c4d09mr14927664f8f.19.1760605182530;
-        Thu, 16 Oct 2025 01:59:42 -0700 (PDT)
-Received: from [192.168.0.19] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-426ce5d0006sm33589428f8f.34.2025.10.16.01.59.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 16 Oct 2025 01:59:42 -0700 (PDT)
-Message-ID: <059a2e7b-f399-44d9-9f32-cd01e573d954@linaro.org>
-Date: Thu, 16 Oct 2025 09:59:40 +0100
+        d=1e100.net; s=20230601; t=1760605628; x=1761210428;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=guwRIMi0wiANNJuAD6tIEMgIhoRZw5vVBX6qb9J5PBk=;
+        b=eYjKH9qLRL6a0yamV9hJ6wVotx/11yKonNSzePKkGs/RfmIyZsbjFb+gOZToKErkhm
+         x2FbZ7dGL4x4BwMjlHEosO+Bq1eHYwL/5OhwxNhFdxpbpFroQJEDaUJvFs8amb/A6zRw
+         QAwwTAWHlWwF6oK1rjE6VT4qwWbAvfkCO6LNYpgg+jwT1lp7OSXUudkN6FVyYYo8mnK1
+         ZU1tY+X689gf1gHLdyrrGi6u7i6oQQar8uap9W5KYmbhwOg1+HAxKrunRKCzoxKhDisZ
+         6Jj1PwIeWmH6WVDvD3F7Ypz6T5+O9n0w5NtKLRtUG9zU2ulByErHvRcreILDpphr4o6E
+         B0Jg==
+X-Forwarded-Encrypted: i=1; AJvYcCUyykKK7EY930gLxTS+vYZf3HKC9PSKelMJ+qO4PxTyDmx7cBHNhnJocVceNuviZhXTR5xtnKBXFqG1@vger.kernel.org
+X-Gm-Message-State: AOJu0YwbOp0ORWL1auE0LasMuhhWSTpUcoXpmb+QEgQFaH5mRa7XFJxe
+	0/zrFNz7fTdvDfSHV0fTgCKS6bbDRlJHjOvWnvfYfv9DgZaHhZJgXM7UvvM2NPkH/kBIQCjXxqa
+	0OKEegvyKc9YR+DxYVFNztnyDzgWb7CsOSg==
+X-Gm-Gg: ASbGncu3YDi9GPnEhAiA+hdmzcWix+CWErm0joDiwPha7JYq1MWiHTgNZLtqhHVvcTZ
+	4pM8ierhB66wbPTf8YHULRJbHYZVdJDKoTc4tEiOi+M9zVLZH/7TmBwNZ0JdyjAnqHI6d2ZU9Sc
+	eCr2L7VslkXZP878Tikarh7Fihk0Yd10ZhLIzY7BXTkjL9D1o/nvCJisHSnfERfs453S4c0xsYS
+	jDxhJFNDvwfDmTpv0SgCfxgrUYE/T2KtnkO8uzvl2Q2U19n0KfcT8ZwJ2Topw==
+X-Google-Smtp-Source: AGHT+IHVbO3++jsGwWmg/F2c4ksP+FLckoJYfOSeFWsAVaD7OsNLADoUPFrIAhLYYE/gNFYYmMmLiTqCkuWEcxtPEn0=
+X-Received: by 2002:a05:690e:4012:b0:62f:ce58:62ed with SMTP id
+ 956f58d0204a3-63e08fd5985mr2306140d50.18.1760605627783; Thu, 16 Oct 2025
+ 02:07:07 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/6] media: qcom: camss: csiphy: Add support for v2.4.0
- two-phase CSIPHY
-To: Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>,
- Loic Poulain <loic.poulain@oss.qualcomm.com>, Robert Foss
- <rfoss@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Todor Tomov <todor.too@gmail.com>,
- Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>
-Cc: linux-i2c@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-media@vger.kernel.org, aiqun.yu@oss.qualcomm.com,
- tingwei.zhang@oss.qualcomm.com, trilok.soni@oss.qualcomm.com,
- yijie.yang@oss.qualcomm.com, Jingyi Wang <jingyi.wang@oss.qualcomm.com>,
- Atiya Kailany <atiya.kailany@oss.qualcomm.com>
-References: <20251014-add-support-for-camss-on-kaanapali-v2-0-f5745ba2dff9@oss.qualcomm.com>
- <20251014-add-support-for-camss-on-kaanapali-v2-4-f5745ba2dff9@oss.qualcomm.com>
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Content-Language: en-US
-In-Reply-To: <20251014-add-support-for-camss-on-kaanapali-v2-4-f5745ba2dff9@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20250925200625.573902-1-tmaimon77@gmail.com> <175890301752.880349.2331946518360447485.robh@kernel.org>
+ <CAP6Zq1jmmhqYu3C7KHFK2tz9zjW352Bbw4cXeOYSjNSTELrp5Q@mail.gmail.com> <045c7bcd3a852e626f11e5b78c07939feac0e298.camel@codeconstruct.com.au>
+In-Reply-To: <045c7bcd3a852e626f11e5b78c07939feac0e298.camel@codeconstruct.com.au>
+From: Tomer Maimon <tmaimon77@gmail.com>
+Date: Thu, 16 Oct 2025 12:06:56 +0300
+X-Gm-Features: AS18NWD2PDfZcVJRgxIyX7bEOze1mHnCXeX6pVqo7IZ1SuA6mem-A5kplcE6yyY
+Message-ID: <CAP6Zq1h6u0t8D4sDifGjVw6M_cTKxurxiPiO8yxFW5HtJBRvPA@mail.gmail.com>
+Subject: Re: [PATCH v3 0/3] arm64: dts: nuvoton: add NPCM845 SoC and EVB support
+To: Andrew Jeffery <andrew@codeconstruct.com.au>
+Cc: "Rob Herring (Arm)" <robh@kernel.org>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, venture@google.com, yuenn@google.com, 
+	openbmc@lists.ozlabs.org, benjaminfair@google.com, joel@jms.id.au, 
+	krzk+dt@kernel.org, tali.perry1@gmail.com, conor+dt@kernel.org, 
+	avifishman70@gmail.com
+Content-Type: text/plain; charset="UTF-8"
 
-On 15/10/2025 03:56, Hangxiang Ma wrote:
-> Add more detailed resource information for CSIPHY devices in the camss
-> driver along with the support for v2.4.0 in the 2 phase CSIPHY driver
-> that is responsible for the PHY lane register configuration, module
-> reset and interrupt handling.
-> 
-> Add 'common_status_offset' variable in 'csidphy_device_regs' structure,
-> which accommodates the offset between common registers and status
-> registers. Because this specific offset in Kaanapali registers differs
-> from other versions.
-> 
-> Signed-off-by: Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>
-> ---
->   .../platform/qcom/camss/camss-csiphy-3ph-1-0.c     | 147 ++++++++++++++++++++-
->   drivers/media/platform/qcom/camss/camss-csiphy.h   |   1 +
->   drivers/media/platform/qcom/camss/camss.c          | 107 +++++++++++++++
->   3 files changed, 249 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/media/platform/qcom/camss/camss-csiphy-3ph-1-0.c b/drivers/media/platform/qcom/camss/camss-csiphy-3ph-1-0.c
-> index a229ba04b158..192636d02b32 100644
-> --- a/drivers/media/platform/qcom/camss/camss-csiphy-3ph-1-0.c
-> +++ b/drivers/media/platform/qcom/camss/camss-csiphy-3ph-1-0.c
-> @@ -46,7 +46,8 @@
->   #define CSIPHY_3PH_CMN_CSI_COMMON_CTRL5_CLK_ENABLE	BIT(7)
->   #define CSIPHY_3PH_CMN_CSI_COMMON_CTRL6_COMMON_PWRDN_B	BIT(0)
->   #define CSIPHY_3PH_CMN_CSI_COMMON_CTRL6_SHOW_REV_ID	BIT(1)
-> -#define CSIPHY_3PH_CMN_CSI_COMMON_STATUSn(offset, n)	((offset) + 0xb0 + 0x4 * (n))
-> +#define CSIPHY_3PH_CMN_CSI_COMMON_STATUSn(offset, common_status_offset, n) \
-> +	((offset) + (common_status_offset) + 0x4 * (n))
->   
->   #define CSIPHY_DEFAULT_PARAMS		0
->   #define CSIPHY_LANE_ENABLE		1
-> @@ -587,6 +588,123 @@ csiphy_lane_regs lane_regs_sm8550[] = {
->   	{0x0C64, 0x7F, 0x00, CSIPHY_DEFAULT_PARAMS},
->   };
->   
-> +/* 3nm 2PH v 2.4.0 2p5Gbps 4 lane DPHY mode */
+Sure, thanks Andrew
 
-I'll again ask for a declaration of the process node this PHY sequence 
-is fabbed on.
-
-> +static const struct
-> +csiphy_lane_regs lane_regs_kaanapali[] = {
-> +	/* LN 0 */
-> +	{0x0094, 0x00, 0x00, CSIPHY_DEFAULT_PARAMS},
-> +	{0x00A0, 0x00, 0x00, CSIPHY_DEFAULT_PARAMS},
-> +	{0x0090, 0x0F, 0x00, CSIPHY_DEFAULT_PARAMS},
-> +	{0x0098, 0x08, 0x00, CSIPHY_DEFAULT_PARAMS},
-> +	{0x0094, 0x07, 0xd1, CSIPHY_DEFAULT_PARAMS},
-> +	{0x0030, 0x00, 0x00, CSIPHY_DEFAULT_PARAMS},
-> +	{0x0000, 0x8C, 0x00, CSIPHY_DEFAULT_PARAMS},
-> +	{0x0038, 0xFE, 0x00, CSIPHY_DEFAULT_PARAMS},
-> +	{0x002C, 0x01, 0x00, CSIPHY_DEFAULT_PARAMS},
-> +	{0x0034, 0x0F, 0x00, CSIPHY_DEFAULT_PARAMS},
-> +	{0x001C, 0x0A, 0x00, CSIPHY_DEFAULT_PARAMS},
-> +	{0x0014, 0x60, 0x00, CSIPHY_DEFAULT_PARAMS},
-> +	{0x003C, 0xB8, 0x00, CSIPHY_DEFAULT_PARAMS},
-> +	{0x0004, 0x0C, 0x00, CSIPHY_DEFAULT_PARAMS},
-> +	{0x0020, 0x00, 0x00, CSIPHY_DEFAULT_PARAMS},
-> +	{0x0008, 0x19, 0x00, CSIPHY_SETTLE_CNT_LOWER_BYTE},
-> +	{0x0010, 0x52, 0x00, CSIPHY_DEFAULT_PARAMS},
-> +	{0x0094, 0xD7, 0x00, CSIPHY_SKEW_CAL},
-> +	{0x005C, 0x54, 0x00, CSIPHY_SKEW_CAL},
-> +	{0x0060, 0xFD, 0x00, CSIPHY_SKEW_CAL},
-> +	{0x0064, 0x7F, 0x00, CSIPHY_SKEW_CAL},
-> +
-> +	/* LN 2 */
-> +	{0x0494, 0x00, 0x00, CSIPHY_DEFAULT_PARAMS},
-> +	{0x04A0, 0x00, 0x00, CSIPHY_DEFAULT_PARAMS},
-> +	{0x0490, 0x0F, 0x00, CSIPHY_DEFAULT_PARAMS},
-> +	{0x0498, 0x08, 0x00, CSIPHY_DEFAULT_PARAMS},
-> +	{0x0494, 0x07, 0xd1, CSIPHY_DEFAULT_PARAMS},
-> +	{0x0430, 0x00, 0x00, CSIPHY_DEFAULT_PARAMS},
-> +	{0x0400, 0x8C, 0x00, CSIPHY_DEFAULT_PARAMS},
-> +	{0x0438, 0xFE, 0x00, CSIPHY_DEFAULT_PARAMS},
-> +	{0x042C, 0x01, 0x00, CSIPHY_DEFAULT_PARAMS},
-> +	{0x0434, 0x0F, 0x00, CSIPHY_DEFAULT_PARAMS},
-> +	{0x041C, 0x0A, 0x00, CSIPHY_DEFAULT_PARAMS},
-> +	{0x0414, 0x60, 0x00, CSIPHY_DEFAULT_PARAMS},
-> +	{0x043C, 0xB8, 0x00, CSIPHY_DEFAULT_PARAMS},
-> +	{0x0404, 0x0C, 0x00, CSIPHY_DEFAULT_PARAMS},
-> +	{0x0420, 0x00, 0x00, CSIPHY_DEFAULT_PARAMS},
-> +	{0x0408, 0x19, 0x00, CSIPHY_SETTLE_CNT_LOWER_BYTE},
-> +	{0x0410, 0x52, 0x00, CSIPHY_DEFAULT_PARAMS},
-> +	{0x0494, 0xD7, 0x00, CSIPHY_SKEW_CAL},
-> +	{0x045C, 0x54, 0x00, CSIPHY_SKEW_CAL},
-> +	{0x0460, 0xFD, 0x00, CSIPHY_SKEW_CAL},
-> +	{0x0464, 0x7F, 0x00, CSIPHY_SKEW_CAL},
-> +
-> +	/* LN 4 */
-> +	{0x0894, 0x00, 0x00, CSIPHY_DEFAULT_PARAMS},
-> +	{0x08A0, 0x00, 0x00, CSIPHY_DEFAULT_PARAMS},
-> +	{0x0890, 0x0F, 0x00, CSIPHY_DEFAULT_PARAMS},
-> +	{0x0898, 0x08, 0x00, CSIPHY_DEFAULT_PARAMS},
-> +	{0x0894, 0x07, 0xd1, CSIPHY_DEFAULT_PARAMS},
-> +	{0x0830, 0x00, 0x00, CSIPHY_DEFAULT_PARAMS},
-> +	{0x0800, 0x8C, 0x00, CSIPHY_DEFAULT_PARAMS},
-> +	{0x0838, 0xFE, 0x00, CSIPHY_DEFAULT_PARAMS},
-> +	{0x082C, 0x01, 0x00, CSIPHY_DEFAULT_PARAMS},
-> +	{0x0834, 0x0F, 0x00, CSIPHY_DEFAULT_PARAMS},
-> +	{0x081C, 0x0A, 0x00, CSIPHY_DEFAULT_PARAMS},
-> +	{0x0814, 0x60, 0x00, CSIPHY_DEFAULT_PARAMS},
-> +	{0x083C, 0xB8, 0x00, CSIPHY_DEFAULT_PARAMS},
-> +	{0x0804, 0x0C, 0x00, CSIPHY_DEFAULT_PARAMS},
-> +	{0x0820, 0x00, 0x00, CSIPHY_DEFAULT_PARAMS},
-> +	{0x0808, 0x19, 0x00, CSIPHY_SETTLE_CNT_LOWER_BYTE},
-> +	{0x0810, 0x52, 0x00, CSIPHY_DEFAULT_PARAMS},
-> +	{0x0894, 0xD7, 0x00, CSIPHY_SKEW_CAL},
-> +	{0x085C, 0x54, 0x00, CSIPHY_SKEW_CAL},
-> +	{0x0860, 0xFD, 0x00, CSIPHY_SKEW_CAL},
-> +	{0x0864, 0x7F, 0x00, CSIPHY_SKEW_CAL},
-> +
-> +	/* LN 6 */
-> +	{0x0C94, 0x00, 0x00, CSIPHY_DEFAULT_PARAMS},
-> +	{0x0CA0, 0x00, 0x00, CSIPHY_DEFAULT_PARAMS},
-> +	{0x0C90, 0x0F, 0x00, CSIPHY_DEFAULT_PARAMS},
-> +	{0x0C98, 0x08, 0x00, CSIPHY_DEFAULT_PARAMS},
-> +	{0x0C94, 0x07, 0xd1, CSIPHY_DEFAULT_PARAMS},
-> +	{0x0C30, 0x00, 0x00, CSIPHY_DEFAULT_PARAMS},
-> +	{0x0C00, 0x8C, 0x00, CSIPHY_DEFAULT_PARAMS},
-> +	{0x0C38, 0xFE, 0x00, CSIPHY_DEFAULT_PARAMS},
-> +	{0x0C2C, 0x01, 0x00, CSIPHY_DEFAULT_PARAMS},
-> +	{0x0C34, 0x0F, 0x00, CSIPHY_DEFAULT_PARAMS},
-> +	{0x0C1C, 0x0A, 0x00, CSIPHY_DEFAULT_PARAMS},
-> +	{0x0C14, 0x60, 0x00, CSIPHY_DEFAULT_PARAMS},
-> +	{0x0C3C, 0xB8, 0x00, CSIPHY_DEFAULT_PARAMS},
-> +	{0x0C04, 0x0C, 0x00, CSIPHY_DEFAULT_PARAMS},
-> +	{0x0C20, 0x00, 0x00, CSIPHY_DEFAULT_PARAMS},
-> +	{0x0C08, 0x19, 0x00, CSIPHY_SETTLE_CNT_LOWER_BYTE},
-> +	{0x0C10, 0x52, 0x00, CSIPHY_DEFAULT_PARAMS},
-> +	{0x0C94, 0xD7, 0x00, CSIPHY_SKEW_CAL},
-> +	{0x0C5C, 0x54, 0x00, CSIPHY_SKEW_CAL},
-> +	{0x0C60, 0xFD, 0x00, CSIPHY_SKEW_CAL},
-> +	{0x0C64, 0x7F, 0x00, CSIPHY_SKEW_CAL},
-> +
-> +	/* LN CLK */
-> +	{0x0E94, 0x00, 0x00, CSIPHY_DEFAULT_PARAMS},
-> +	{0x0EA0, 0x00, 0x00, CSIPHY_DEFAULT_PARAMS},
-> +	{0x0E90, 0x0F, 0x00, CSIPHY_DEFAULT_PARAMS},
-> +	{0x0E98, 0x08, 0x00, CSIPHY_DEFAULT_PARAMS},
-> +	{0x0E94, 0x07, 0xd1, CSIPHY_DEFAULT_PARAMS},
-> +	{0x0E30, 0x00, 0x00, CSIPHY_DEFAULT_PARAMS},
-> +	{0x0E28, 0x04, 0x00, CSIPHY_DEFAULT_PARAMS},
-> +	{0x0E00, 0x80, 0x00, CSIPHY_DEFAULT_PARAMS},
-> +	{0x0E0C, 0xFF, 0x00, CSIPHY_DEFAULT_PARAMS},
-> +	{0x0E38, 0x1F, 0x00, CSIPHY_DEFAULT_PARAMS},
-> +	{0x0E2C, 0x01, 0x00, CSIPHY_DEFAULT_PARAMS},
-> +	{0x0E34, 0x0F, 0x00, CSIPHY_DEFAULT_PARAMS},
-> +	{0x0E1C, 0x0A, 0x00, CSIPHY_DEFAULT_PARAMS},
-> +	{0x0E14, 0x60, 0x00, CSIPHY_DEFAULT_PARAMS},
-> +	{0x0E3C, 0xB8, 0x00, CSIPHY_DEFAULT_PARAMS},
-> +	{0x0E04, 0x0C, 0x00, CSIPHY_DEFAULT_PARAMS},
-> +	{0x0E20, 0x00, 0x00, CSIPHY_DEFAULT_PARAMS},
-> +	{0x0E08, 0x19, 0x00, CSIPHY_SETTLE_CNT_LOWER_BYTE},
-> +	{0x0E10, 0x52, 0x00, CSIPHY_DEFAULT_PARAMS},
-> +};
-> +
->   /* 4nm 2PH v 2.1.2 2p5Gbps 4 lane DPHY mode */
->   static const struct
->   csiphy_lane_regs lane_regs_x1e80100[] = {
-> @@ -714,13 +832,21 @@ static void csiphy_hw_version_read(struct csiphy_device *csiphy,
->   	       CSIPHY_3PH_CMN_CSI_COMMON_CTRLn(regs->offset, 6));
->   
->   	hw_version = readl_relaxed(csiphy->base +
-> -				   CSIPHY_3PH_CMN_CSI_COMMON_STATUSn(regs->offset, 12));
-> +				   CSIPHY_3PH_CMN_CSI_COMMON_STATUSn(
-> +					regs->offset,
-> +					regs->common_status_offset, 12));
->   	hw_version |= readl_relaxed(csiphy->base +
-> -				   CSIPHY_3PH_CMN_CSI_COMMON_STATUSn(regs->offset, 13)) << 8;
-> +				    CSIPHY_3PH_CMN_CSI_COMMON_STATUSn(
-> +					regs->offset,
-> +					regs->common_status_offset, 13)) << 8;
->   	hw_version |= readl_relaxed(csiphy->base +
-> -				   CSIPHY_3PH_CMN_CSI_COMMON_STATUSn(regs->offset, 14)) << 16;
-> +				    CSIPHY_3PH_CMN_CSI_COMMON_STATUSn(
-> +					regs->offset,
-> +					regs->common_status_offset, 14)) << 16;
->   	hw_version |= readl_relaxed(csiphy->base +
-> -				   CSIPHY_3PH_CMN_CSI_COMMON_STATUSn(regs->offset, 15)) << 24;
-> +				    CSIPHY_3PH_CMN_CSI_COMMON_STATUSn(
-> +					regs->offset,
-> +					regs->common_status_offset, 15)) << 24;
-
-This change should be separated from the addition of the PHY init 
-sequence into its own patch so we can arbitrate that patch standalone on 
-its merits.
-
-I have questions like "why do this" and "how does this affect other 
-hardware" which a commit log for a change like this should spell out.
-
->   
->   	dev_dbg(dev, "CSIPHY 3PH HW Version = 0x%08x\n", hw_version);
->   }
-> @@ -749,7 +875,8 @@ static irqreturn_t csiphy_isr(int irq, void *dev)
->   	for (i = 0; i < 11; i++) {
->   		int c = i + 22;
->   		u8 val = readl_relaxed(csiphy->base +
-> -				       CSIPHY_3PH_CMN_CSI_COMMON_STATUSn(regs->offset, i));
-> +			CSIPHY_3PH_CMN_CSI_COMMON_STATUSn(regs->offset,
-> +							  regs->common_status_offset, i));
->   
->   		writel_relaxed(val, csiphy->base +
->   			       CSIPHY_3PH_CMN_CSI_COMMON_CTRLn(regs->offset, c));
-> @@ -915,6 +1042,7 @@ static bool csiphy_is_gen2(u32 version)
->   	case CAMSS_845:
->   	case CAMSS_8550:
->   	case CAMSS_8775P:
-> +	case CAMSS_KAANAPALI:
->   	case CAMSS_X1E80100:
->   		ret = true;
->   		break;
-> @@ -989,6 +1117,7 @@ static int csiphy_init(struct csiphy_device *csiphy)
->   
->   	csiphy->regs = regs;
->   	regs->offset = 0x800;
-> +	regs->common_status_offset = 0xb0;
->   
->   	switch (csiphy->camss->res->version) {
->   	case CAMSS_845:
-> @@ -1023,6 +1152,12 @@ static int csiphy_init(struct csiphy_device *csiphy)
->   		regs->lane_regs = &lane_regs_sa8775p[0];
->   		regs->lane_array_size = ARRAY_SIZE(lane_regs_sa8775p);
->   		break;
-> +	case CAMSS_KAANAPALI:
-> +		regs->lane_regs = &lane_regs_kaanapali[0];
-> +		regs->lane_array_size = ARRAY_SIZE(lane_regs_kaanapali);
-> +		regs->offset = 0x1000;
-> +		regs->common_status_offset = 0x138;
-> +		break;
->   	default:
->   		break;
->   	}
-> diff --git a/drivers/media/platform/qcom/camss/camss-csiphy.h b/drivers/media/platform/qcom/camss/camss-csiphy.h
-> index 895f80003c44..2d5054819df7 100644
-> --- a/drivers/media/platform/qcom/camss/camss-csiphy.h
-> +++ b/drivers/media/platform/qcom/camss/camss-csiphy.h
-> @@ -90,6 +90,7 @@ struct csiphy_device_regs {
->   	const struct csiphy_lane_regs *lane_regs;
->   	int lane_array_size;
->   	u32 offset;
-> +	u32 common_status_offset;
->   };
->   
->   struct csiphy_device {
-> diff --git a/drivers/media/platform/qcom/camss/camss.c b/drivers/media/platform/qcom/camss/camss.c
-> index 4a5caf54c116..542122fba825 100644
-> --- a/drivers/media/platform/qcom/camss/camss.c
-> +++ b/drivers/media/platform/qcom/camss/camss.c
-> @@ -34,6 +34,111 @@
->   
->   static const struct parent_dev_ops vfe_parent_dev_ops;
->   
-> +static const struct camss_subdev_resources csiphy_res_kaanapali[] = {
-> +	/* CSIPHY0 */
-> +	{
-> +		.regulators = { "vdda-phy0", "vdda-pll" },
-> +		.clock = { "csiphy0", "csiphy0_timer",
-> +			   "cam_top_ahb", "cam_top_fast_ahb" },
-> +		.clock_rate = { { 400000000, 480000000 },
-> +				{ 400000000 },
-> +				{ 0 },
-> +				{ 0 } },
-> +		.reg = { "csiphy0" },
-> +		.interrupt = { "csiphy0" },
-> +		.csiphy = {
-> +			.id = 0,
-> +			.hw_ops = &csiphy_ops_3ph_1_0,
-> +			.formats = &csiphy_formats_sdm845
-> +		}
-> +	},
-> +	/* CSIPHY1 */
-> +	{
-> +		.regulators = { "vdda-phy1", "vdda-pll" },
-> +		.clock = { "csiphy1", "csiphy1_timer",
-> +			   "cam_top_ahb", "cam_top_fast_ahb" },
-> +		.clock_rate = { { 400000000, 480000000 },
-> +				{ 400000000 },
-> +				{ 0 },
-> +				{ 0 } },
-> +		.reg = { "csiphy1" },
-> +		.interrupt = { "csiphy1" },
-> +		.csiphy = {
-> +			.id = 1,
-> +			.hw_ops = &csiphy_ops_3ph_1_0,
-> +			.formats = &csiphy_formats_sdm845
-> +		}
-> +	},
-> +	/* CSIPHY2 */
-> +	{
-> +		.regulators = { "vdda-phy2", "vdda-pll" },
-> +		.clock = { "csiphy2", "csiphy2_timer",
-> +			   "cam_top_ahb", "cam_top_fast_ahb" },
-> +		.clock_rate = { { 400000000, 480000000 },
-> +				{ 400000000 },
-> +				{ 0 },
-> +				{ 0 } },
-> +		.reg = { "csiphy2" },
-> +		.interrupt = { "csiphy2" },
-> +		.csiphy = {
-> +			.id = 2,
-> +			.hw_ops = &csiphy_ops_3ph_1_0,
-> +			.formats = &csiphy_formats_sdm845
-> +		}
-> +	},
-> +	/* CSIPHY3 */
-> +	{
-> +		.regulators = { "vdda-phy3", "vdda-pll" },
-> +		.clock = { "csiphy3", "csiphy3_timer",
-> +			   "cam_top_ahb", "cam_top_fast_ahb" },
-> +		.clock_rate = { { 400000000, 480000000 },
-> +				{ 400000000 },
-> +				{ 0 },
-> +				{ 0 } },
-> +		.reg = { "csiphy3" },
-> +		.interrupt = { "csiphy3" },
-> +		.csiphy = {
-> +			.id = 3,
-> +			.hw_ops = &csiphy_ops_3ph_1_0,
-> +			.formats = &csiphy_formats_sdm845
-> +		}
-> +	},
-> +	/* CSIPHY4 */
-> +	{
-> +		.regulators = { "vdda-phy4", "vdda-pll" },
-> +		.clock = { "csiphy4", "csiphy4_timer",
-> +			   "cam_top_ahb", "cam_top_fast_ahb" },
-> +		.clock_rate = { { 400000000, 480000000 },
-> +				{ 400000000 },
-> +				{ 0 },
-> +				{ 0 } },
-> +		.reg = { "csiphy4" },
-> +		.interrupt = { "csiphy4" },
-> +		.csiphy = {
-> +			.id = 4,
-> +			.hw_ops = &csiphy_ops_3ph_1_0,
-> +			.formats = &csiphy_formats_sdm845
-> +		}
-> +	},
-> +	/* CSIPHY5 */
-> +	{
-> +		.regulators = { "vdda-phy5", "vdda-pll" },
-> +		.clock = { "csiphy5", "csiphy5_timer",
-> +			   "cam_top_ahb", "cam_top_fast_ahb" },
-> +		.clock_rate = { { 400000000, 480000000 },
-> +				{ 400000000 },
-> +				{ 0 },
-> +				{ 0 } },
-> +		.reg = { "csiphy5" },
-> +		.interrupt = { "csiphy5" },
-> +		.csiphy = {
-> +			.id = 5,
-> +			.hw_ops = &csiphy_ops_3ph_1_0,
-> +			.formats = &csiphy_formats_sdm845
-> +		}
-> +	},
-> +};
-> +
->   static const struct resources_icc icc_res_kaanapali[] = {
->   	/* Based on 4096 x 3072 30 FPS 2496 Mbps mode */
->   	{
-> @@ -4308,8 +4413,10 @@ static void camss_remove(struct platform_device *pdev)
->   static const struct camss_resources kaanapali_resources = {
->   	.version = CAMSS_KAANAPALI,
->   	.pd_name = "top",
-> +	.csiphy_res = csiphy_res_kaanapali,
->   	.icc_res = icc_res_kaanapali,
->   	.icc_path_num = ARRAY_SIZE(icc_res_kaanapali),
-> +	.csiphy_num = ARRAY_SIZE(csiphy_res_kaanapali),
->   };
->   
->   static const struct camss_resources msm8916_resources = {
-> 
-
+On Wed, 1 Oct 2025 at 05:35, Andrew Jeffery <andrew@codeconstruct.com.au> wrote:
+>
+> On Mon, 2025-09-29 at 12:15 +0300, Tomer Maimon wrote:
+> > Hi Rob,
+> >
+> > Thanks for your comments
+> >
+> > Most of the warnings occur because the compatible strings are located
+> > in .txt device tree binding rather than in the .yaml file.
+> >
+> > The only change that needs to be done is in ti,tmp100 that
+> >
+> > Could you approve the patches, avoiding NPCM845 compatible warnings?
+> > Meanwhile, I will work on converting the txt to yaml
+>
+> I think it's best we get the conversion done, and then subsequently
+> apply the apply this series. See:
+>
+> https://docs.kernel.org/process/maintainer-soc.html#validating-devicetree-files
+>
+> and
+>
+> https://docs.kernel.org/process/maintainer-soc-clean-dts.html#strict-dts-dt-schema-and-dtc-compliance
+>
+> Andrew
 
