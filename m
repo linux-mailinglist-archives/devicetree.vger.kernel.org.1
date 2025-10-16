@@ -1,171 +1,176 @@
-Return-Path: <devicetree+bounces-227686-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227687-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12001BE3A0B
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 15:14:35 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD0B5BE3A3C
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 15:17:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5A2361A63E6B
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 13:14:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 861D8406E8C
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 13:17:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46AD4339B29;
-	Thu, 16 Oct 2025 13:14:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5576C1A9FA3;
+	Thu, 16 Oct 2025 13:17:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="WlRlFvw9"
+	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="3/uLnaLm";
+	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="gn/NlTqn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E86A338F5F;
-	Thu, 16 Oct 2025 13:14:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD916182B4;
+	Thu, 16 Oct 2025 13:17:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760620444; cv=none; b=fSKYf5qsQMRUwVk9h11wNKgKasAg080JtVzg9I7l75sEZ0anJsxaseLD8Hj5SZlHloSa5Ilq7gtgUaMjh7JfR/bAhiUbn1MfaW3rfPmkDJWCDtTXJDnSipTzLHWpJHd3ZRLG4YpqRMF0/UHLTMqqVyM+2RhbSvFU4S3gaV0FghE=
+	t=1760620667; cv=none; b=syh7tgaAul/l+uC7r8S+LP7DsIvalwSAVVL52/2lpLnm+IirNTMcWT2QnSxn/htRsq6B6Qa0YqN/P1hmxPBkWEa966HvHfiKpndQAwO3FxeazhnFC6banJkAqpMAz//mFp+oW9C+NQi3yHn1jj5S05TmcWwnJqUF4Bfi3RuppgY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760620444; c=relaxed/simple;
-	bh=f1jSt7aAO6g1KOQbj+5i+zz2EOi4pLeJVv7XCY2lQYo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pn7tVv9EZ/tleWiaLyt2982ixsHL28165P8v26t/w0Ot6/wJ3w32evpKehsYA4ES/qaz+n4jTUY+35QhRJJL5tXienDmuD+SzGfkob4y5xpIwE+RogsSzNgPtpbd4dBnH4Ml5M3XeRMPMYjKRha72Jkp4otEyQ3nd85A211JOOo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=WlRlFvw9; arc=none smtp.client-ip=192.198.163.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1760620443; x=1792156443;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=f1jSt7aAO6g1KOQbj+5i+zz2EOi4pLeJVv7XCY2lQYo=;
-  b=WlRlFvw9pvxMnnh7MyR4Y3lJ36+5aFqLUoc+FlFL1YAE4ZHsps51aHQ4
-   VraRvSp6RRU5F2+doZRxNY6Ndl+WcHZ8YNP07Apc51P0ToEuVd/w9RBqd
-   ccEbyRK93jnc1HC31DlxWZ+zjPzE04FPOJTYPkuxGaDh9/+H/hM63C7T2
-   yuSTmFNvelveaCa7XxrhdV0tPqO4t8HYw6G+PZN5HQ7r+hUaaY1/k870h
-   outWt7a2+FSxCJC9Gi1jK/F5L3Wqg3697R1BthmtlxOwgJv+mMCCAttaA
-   KzllvlOsDFyELdJ6jLhBpyqH+K7tiU/BsSZmUHigCQ7p8WkeJamOw3jto
-   Q==;
-X-CSE-ConnectionGUID: KqadeojlSWO2qW4TmVqR5g==
-X-CSE-MsgGUID: Stc3Oa1+RXabCGxHPlr+jg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11584"; a="62710896"
-X-IronPort-AV: E=Sophos;i="6.19,234,1754982000"; 
-   d="scan'208";a="62710896"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
-  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Oct 2025 06:14:02 -0700
-X-CSE-ConnectionGUID: L7Wy79iRQ22E6MwZ53EzBw==
-X-CSE-MsgGUID: B4saKIrCTcq1Lu/FOO4KgA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,234,1754982000"; 
-   d="scan'208";a="182431750"
-Received: from lkp-server02.sh.intel.com (HELO 66d7546c76b2) ([10.239.97.151])
-  by orviesa008.jf.intel.com with ESMTP; 16 Oct 2025 06:13:57 -0700
-Received: from kbuild by 66d7546c76b2 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1v9Nnm-0004q3-1L;
-	Thu, 16 Oct 2025 13:13:54 +0000
-Date: Thu, 16 Oct 2025 21:13:43 +0800
-From: kernel test robot <lkp@intel.com>
-To: "Herve Codina (Schneider Electric)" <herve.codina@bootlin.com>,
-	Wolfram Sang <wsa-dev@sang-engineering.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>
-Cc: oe-kbuild-all@lists.linux.dev, linux-iio@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Pascal Eberhard <pascal.eberhard@se.com>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH 2/4] iio: adc: Add support for the Renesas RZ/N1 ADC
-Message-ID: <202510162035.gngVSgxu-lkp@intel.com>
-References: <20251015142816.1274605-3-herve.codina@bootlin.com>
+	s=arc-20240116; t=1760620667; c=relaxed/simple;
+	bh=yrKfrV0nbOKXtObxq3UyJPSp80wbu5z0EU242OuV6G0=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=biXFahYIxghDqk7mqspo6zmAeL6It+e5+A0AuOzYR2t5hivKnhGP0ul1+S3wwWPgAEIjwdx/5Uvz2t0yO/9LXkgmW3PACDDskni0D5EZy/iuBQbvQCoV0OkvKFdKOqi6Sncp+2XoSBuM5ovD6MCeCrlY7Ol2WBfa8hI88jp6xIg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=3/uLnaLm; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=gn/NlTqn; arc=none smtp.client-ip=193.142.43.55
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
+From: Thomas Gleixner <tglx@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020; t=1760620664;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=+oUsWchRMdAE4l+vEN2fWlus0VY/n34ExO8gyOqnMgA=;
+	b=3/uLnaLmN//dFyOSyDF7z93ieUKiwrTSGweVvS0Zt+mj1ZlLJM6EvuYJq7lQYwf6A8sNZJ
+	qmL0ZsFD5ylLS62sUlAziXGrq1mxaWSoXhfL30MRWnX5IoYG/dPaeNAICX9As8IpFHAFQ0
+	oezi9KI8sVw6tkcDDtRR1S1DiX6zqKcIeCRQukpnSWi2cLxN9ztpnUybJS/sHDlMokwupJ
+	cmYsGFiH6O8yhzqgsilzDLCIJarNni9F8ncD+nyOxV+EI9X3Lu8jGojxw/kxynWLmbrZcH
+	Ih7XhBYmh7hTJfUE26CiZ3VuiB1dFaGsNSf9jbJuk2lk3q8ZAHVLw0xEVd8zUQ==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020e; t=1760620664;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=+oUsWchRMdAE4l+vEN2fWlus0VY/n34ExO8gyOqnMgA=;
+	b=gn/NlTqnvRPSe8AeSdxph3cIKZLyJJlA5SOlj8PMN2CG1GBeIbsmhusHcfKwYcc3GKYCNk
+	km8SkqAp3iDfvmCw==
+To: Lucas Zampieri <lzampier@redhat.com>, linux-kernel@vger.kernel.org
+Cc: Charles Mirabile <cmirabil@redhat.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, Samuel
+ Holland <samuel.holland@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>,
+ Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, Vivian
+ Wang <dramforever@live.com>, devicetree@vger.kernel.org,
+ linux-riscv@lists.infradead.org, Zhang Xincheng
+ <zhangxincheng@ultrarisc.com>, Lucas Zampieri <lzampier@redhat.com>
+Subject: Re: [PATCH v5 3/3] irqchip/plic: add support for UltraRISC DP1000 PLIC
+In-Reply-To: <20251016084301.27670-4-lzampier@redhat.com>
+References: <20251016084301.27670-1-lzampier@redhat.com>
+ <20251016084301.27670-4-lzampier@redhat.com>
+Date: Thu, 16 Oct 2025 15:17:42 +0200
+Message-ID: <87plan0yvd.ffs@tglx>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251015142816.1274605-3-herve.codina@bootlin.com>
+Content-Type: text/plain
 
-Hi Herve,
+On Thu, Oct 16 2025 at 09:42, Lucas Zampieri wrote:
 
-kernel test robot noticed the following build warnings:
+After fixing the corrupted patch up I had a closer look and decided not
+to merge it. See comments below.
+  
+> +static bool cp100_isolate_pending_irq(int nr_irq_groups, u32 ie[],
+> +				       void __iomem *pending,
+> +				       void __iomem *enable)
+> +{
+> +	u32 pending_irqs = 0;
+> +	int i, j;
+> +
+> +	/* Look for first pending interrupt */
+> +	for (i = 0; i < nr_irq_groups; i++) {
+> +		pending_irqs = ie[i] & readl_relaxed(pending + i * sizeof(u32));
+> +		if (pending_irqs)
+> +			break;
+> +	}
+> +
+> +	if (!pending_irqs)
+> +		return false;
+> +
+> +	/* Disable all interrupts but the first pending one */
+> +	for (j = 0; j < nr_irq_groups; j++) {
+> +		u32 new_mask = 0;
+> +
+> +		if (j == i) {
+> +			/* Extract mask with lowest set bit */
+> +			new_mask = (pending_irqs & -pending_irqs);
+> +		}
+> +
+> +		writel_relaxed(new_mask, enable + j * sizeof(u32));
+> +	}
+> +
+> +	return true;
+> +}
+> +
+> +static irq_hw_number_t cp100_get_hwirq(struct plic_handler *handler,
+> +					void __iomem *claim)
+> +{
+> +	int nr_irq_groups = DIV_ROUND_UP(handler->priv->nr_irqs, 32);
+> +	void __iomem *pending = handler->priv->regs + PENDING_BASE;
+> +	void __iomem *enable = handler->enable_base;
+> +	irq_hw_number_t hwirq = 0;
+> +	int i;
+> +
+> +	guard(raw_spinlock)(&handler->enable_lock);
+> +
+> +	/* Save current interrupt enable state */
+> +	for (i = 0; i < nr_irq_groups; i++)
+> +		handler->enable_save[i] = readl_relaxed(enable + i * sizeof(u32));
 
-[auto build test WARNING on jic23-iio/togreg]
-[also build test WARNING on geert-renesas-devel/next linus/master v6.18-rc1 next-20251015]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+This is truly the most inefficient way to solve that problem. The enable
+registers are modified with enabled_lock held, so you can just cache the
+value in plic_handler::enabled_save and avoid this read loop completely.
+After claiming the interrupt you restore from that cache, no?
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Herve-Codina-Schneider-Electric/dt-bindings-iio-adc-Add-the-Renesas-RZ-N1-ADC/20251015-223254
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git togreg
-patch link:    https://lore.kernel.org/r/20251015142816.1274605-3-herve.codina%40bootlin.com
-patch subject: [PATCH 2/4] iio: adc: Add support for the Renesas RZ/N1 ADC
-config: alpha-allyesconfig (https://download.01.org/0day-ci/archive/20251016/202510162035.gngVSgxu-lkp@intel.com/config)
-compiler: alpha-linux-gcc (GCC) 15.1.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251016/202510162035.gngVSgxu-lkp@intel.com/reproduce)
+Now for the search and disable mechanism. Of course you need to search
+for th pending interrupt first, but then you can make that masking loop
+very simple by having a plic_handler::enabled_clear[] array which is
+zeroed on initialization:
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202510162035.gngVSgxu-lkp@intel.com/
+        unsigned long pending = 0;
+        
+	for (group = 0; !pending && group < nr_irq_groups; group++) {
+		pending = handler->enabled_save[i];
+                pending =& readl_relaxed(pending + group * sizeof(u32));
+	}
+        if (!pending)
+        	return false;
 
-All warnings (new ones prefixed by >>):
+        bit = ffs(pending) - 1;
+        handler->enabled_clear[group] |= BIT(bit);
+        for (int i = 0; i < nr_irq_groups; i++)
+		writel_relaxed(handler->enabled_clear[i], enable + i * sizeof(u32));
+        handler->enabled_clear[group] = 0;
 
-   drivers/iio/adc/rzn1-adc.c: In function 'rzn1_adc_vc_setup_conversion':
-   drivers/iio/adc/rzn1-adc.c:53:49: error: implicit declaration of function 'FIELD_PREP' [-Wimplicit-function-declaration]
-      53 | #define RZN1_ADC_VC_ADC1_CHANNEL_SEL(_c)        FIELD_PREP(RZN1_ADC_VC_ADC1_CHANNEL_SEL_MASK, _c)
-         |                                                 ^~~~~~~~~~
-   drivers/iio/adc/rzn1-adc.c:243:49: note: in expansion of macro 'RZN1_ADC_VC_ADC1_CHANNEL_SEL'
-     243 |                 vc |= RZN1_ADC_VC_ADC1_ENABLE | RZN1_ADC_VC_ADC1_CHANNEL_SEL(adc1_ch);
-         |                                                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/iio/adc/rzn1-adc.c: In function 'rzn1_adc_vc_wait_conversion':
-   drivers/iio/adc/rzn1-adc.c:58:41: error: implicit declaration of function 'FIELD_GET' [-Wimplicit-function-declaration]
-      58 | #define RZN1_ADC_ADCX_GET_DATA(_reg)    FIELD_GET(RZN1_ADC_ADCX_DATA_DATA_MASK, _reg)
-         |                                         ^~~~~~~~~
-   drivers/iio/adc/rzn1-adc.c:304:30: note: in expansion of macro 'RZN1_ADC_ADCX_GET_DATA'
-     304 |                 *adc1_data = RZN1_ADC_ADCX_GET_DATA(data_reg);
-         |                              ^~~~~~~~~~~~~~~~~~~~~~
-   drivers/iio/adc/rzn1-adc.c: At top level:
->> drivers/iio/adc/rzn1-adc.c:592:12: warning: 'rzn1_adc_pm_runtime_resume' defined but not used [-Wunused-function]
-     592 | static int rzn1_adc_pm_runtime_resume(struct device *dev)
-         |            ^~~~~~~~~~~~~~~~~~~~~~~~~~
->> drivers/iio/adc/rzn1-adc.c:582:12: warning: 'rzn1_adc_pm_runtime_suspend' defined but not used [-Wunused-function]
-     582 | static int rzn1_adc_pm_runtime_suspend(struct device *dev)
-         |            ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+No?
 
+But looking at this makes me wonder about the functional correctness of all
+this. What happens in this case:
 
-vim +/rzn1_adc_pm_runtime_resume +592 drivers/iio/adc/rzn1-adc.c
+Device A raises an interrupt
 
-   581	
- > 582	static int rzn1_adc_pm_runtime_suspend(struct device *dev)
-   583	{
-   584		struct iio_dev *indio_dev = dev_get_drvdata(dev);
-   585		struct rzn1_adc *rzn1_adc = iio_priv(indio_dev);
-   586	
-   587		rzn1_adc_disable(rzn1_adc);
-   588	
-   589		return 0;
-   590	}
-   591	
- > 592	static int rzn1_adc_pm_runtime_resume(struct device *dev)
-   593	{
-   594		struct iio_dev *indio_dev = dev_get_drvdata(dev);
-   595		struct rzn1_adc *rzn1_adc = iio_priv(indio_dev);
-   596	
-   597		return rzn1_adc_enable(rzn1_adc);
-   598	}
-   599	
+    handler()
+        ....
+        disable_groups();
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Device B raises a now disabled interrupt
+
+        restore_groups();
+
+Is the device B interrupt preserved in the interrupt chip and actually
+raised when the interrupt enable bit is restored or is it lost?
+
+Thanks,
+
+        tglx
 
