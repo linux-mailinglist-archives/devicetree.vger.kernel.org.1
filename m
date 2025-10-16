@@ -1,211 +1,247 @@
-Return-Path: <devicetree+bounces-227827-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227833-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id F11DDBE4AD7
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 18:49:46 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id B767EBE4B07
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 18:52:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id AB5094EC39C
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 16:49:45 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 903664E4B1D
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 16:52:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0E9B346A07;
-	Thu, 16 Oct 2025 16:49:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B04430C60B;
+	Thu, 16 Oct 2025 16:52:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b="IwJtn9H+";
-	dkim=pass (1024-bit key) header.d=cirrus4.onmicrosoft.com header.i=@cirrus4.onmicrosoft.com header.b="rEstz7eb"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="F7JQQOus"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-001ae601.pphosted.com (mx0a-001ae601.pphosted.com [67.231.149.25])
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF4C433CE96;
-	Thu, 16 Oct 2025 16:49:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=67.231.149.25
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760633359; cv=fail; b=fz5HthZKGtKN+7wBZI6YjFllzXE38ebII4pwE8Juru1WyLOL2VeFUcodhnCcNOBUTMPmy9QXdI3luFxcSbvXgPEI0cRauUGUoxvuSGwh0vzNrRmSvuOusoA3xsPABuZF6bbLqQCUtSfbPmOfEjmAVqXDQuJ6ukv3Vq9IQmrAb+I=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760633359; c=relaxed/simple;
-	bh=LgCMr6Kh0AgrixyJ2G8VLjDgU8+wpZ3SJEH/UbtQXHE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ZK/IiCBV3LB5YB0wnWbS0BX6Jpr+GpFqtrhhP408DEizIYnSLfa7SHv/stmMZbnJYMPilGSypezbv6k9nP80OqNWdQi5ivEpGWbXEk2SjRPWkx72Vpja3WBO9G3uHHDIjugrbYHuiNBfe1ADeL2xkCLeJKxftKrdEnCvJLLMUP0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com; spf=pass smtp.mailfrom=opensource.cirrus.com; dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b=IwJtn9H+; dkim=pass (1024-bit key) header.d=cirrus4.onmicrosoft.com header.i=@cirrus4.onmicrosoft.com header.b=rEstz7eb; arc=fail smtp.client-ip=67.231.149.25
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=opensource.cirrus.com
-Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
-	by mx0a-001ae601.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 59FNj9KK298651;
-	Thu, 16 Oct 2025 11:49:07 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=
-	PODMain02222019; bh=9wngttqaC4L4P1iGGBJcGvYx50owhYl9VrkkgkOsGHM=; b=
-	IwJtn9H+HyJZfW+7Zy9IJj8b+QRV/R1KybpxWECr8MAikPAo2krDlS1wcS8036Vm
-	lkjw6Q15ioxfL3hNFmj8kL30FHG/wGJ10CEbzs14Qgq+ZdLpSgSezcZqxbTzXbEN
-	3LS39Cf0Tl3VB4Y1fjGnxbhJaAl/LJNc7yTwEA+pMcvoe9CwWwNCOnpLGGp2wViN
-	ids7aWg3CRdzp5Y2F4ohcivRNHHzV1arqauBZMLpjOjhs7pXZ5K20EA1xNNYuhAp
-	O3ILfnAHst1hlQcWJ8Uu5RXG2P622Kj28mQhK7x5Njj8tz1C6wJ24Clx6Xv2xODf
-	Y+VCRHaRgd3mmzteRH4qUQ==
-Received: from byapr05cu005.outbound.protection.outlook.com (mail-westusazon11020137.outbound.protection.outlook.com [52.101.85.137])
-	by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 49t9mhj91w-1
-	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
-	Thu, 16 Oct 2025 11:49:06 -0500 (CDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=eWQ0v19VCgCL/b79g5bUuCNwObLggasRmTCQ/niuJRNqK1nNBXYscmTTmd+7pWzB5KV7+Z7vIhfBZ+EHenesptbvzjWlfTfgWNfLHNDPmt0UsBHV04KGVluOXaJmmH18rcl41KjTL1lW8XfydS7yzSZWjU2bfAhkUrfMl2xR2Fef+kL450Vb70vcaRNELCgP8zKytkfbM1vR441MXyPwIoBsd4iiuvaVvFS/7zMK5bZtDZ8ajbtK85OZdWJCW7kGu4PRBv97O6zX3YyXRA4vPFb+y7rUu5gpvM+h4ktI6PAIo+mljFKF5DH7+DTj9XY377tXqRH5b4KbauTIqcTjMA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=9wngttqaC4L4P1iGGBJcGvYx50owhYl9VrkkgkOsGHM=;
- b=I/z7hjazu3XNynN3cjjDDDfjIRpLyQ3dBBQxCXkZMcOIvon3KtmvBaGK81/bHYOc6Su9+66ivKkfKZ+hoipyb4I/9Lap65tRgxoRzDEVJgjD0pbgrbKWv+TVEu2/ZTQhjKTzGp+l6smBzCYYad3yFstqhRdEdebvgetXEKyRfZH+of4XDRiAIhMAdLBpduw24Vik15QVj8vX9Z/PibjJy1IZsmg4IVAYovNnkMLaLxBf7/atp91q8i03DtwOwD1S1D97DV/oXDgLr9ecicCE/1nBha+6lb+JQP5arhP8Zqw6MIuM5t/wCH13uWgXQBBDoS+qquPVuwnSBqMrfk7N9A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
- 84.19.233.75) smtp.rcpttodomain=cirrus.com
- smtp.mailfrom=opensource.cirrus.com; dmarc=fail (p=reject sp=reject pct=100)
- action=oreject header.from=opensource.cirrus.com; dkim=none (message not
- signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=cirrus4.onmicrosoft.com; s=selector2-cirrus4-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=9wngttqaC4L4P1iGGBJcGvYx50owhYl9VrkkgkOsGHM=;
- b=rEstz7ebjlwPZmlkAVi7Mgez4BY5bhkmmSEVkGTPlD86gn9Z8tcvR54Y4Np3FVqntF+sO2Qs0ZQNjUPy0z0Ad7dBZqJKIsfNSh210kTPaL0wqShArdblBY+Vht2UHw0XyC9hVoHWUOg9batkSZ1i5I4I5NwaDnjKzt6AeaKwObE=
-Received: from MN2PR06CA0003.namprd06.prod.outlook.com (2603:10b6:208:23d::8)
- by CH9PR19MB9468.namprd19.prod.outlook.com (2603:10b6:610:2e3::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9228.12; Thu, 16 Oct
- 2025 16:49:04 +0000
-Received: from BL6PEPF00020E61.namprd04.prod.outlook.com
- (2603:10b6:208:23d:cafe::ed) by MN2PR06CA0003.outlook.office365.com
- (2603:10b6:208:23d::8) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9228.12 via Frontend Transport; Thu,
- 16 Oct 2025 16:49:04 +0000
-X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 84.19.233.75)
- smtp.mailfrom=opensource.cirrus.com; dkim=none (message not signed)
- header.d=none;dmarc=fail action=oreject header.from=opensource.cirrus.com;
-Received-SPF: Fail (protection.outlook.com: domain of opensource.cirrus.com
- does not designate 84.19.233.75 as permitted sender)
- receiver=protection.outlook.com; client-ip=84.19.233.75;
- helo=edirelay1.ad.cirrus.com;
-Received: from edirelay1.ad.cirrus.com (84.19.233.75) by
- BL6PEPF00020E61.mail.protection.outlook.com (10.167.249.22) with Microsoft
- SMTP Server (version=TLS1_3, cipher=TLS_AES_256_GCM_SHA384) id 15.20.9228.7
- via Frontend Transport; Thu, 16 Oct 2025 16:49:03 +0000
-Received: from ediswmail9.ad.cirrus.com (ediswmail9.ad.cirrus.com [198.61.86.93])
-	by edirelay1.ad.cirrus.com (Postfix) with ESMTPS id D6CD140655D;
-	Thu, 16 Oct 2025 16:49:02 +0000 (UTC)
-Received: from lonswws03.ad.cirrus.com (lonswws03.ad.cirrus.com [198.90.188.34])
-	by ediswmail9.ad.cirrus.com (Postfix) with ESMTPSA id 75A13822541;
-	Thu, 16 Oct 2025 16:49:02 +0000 (UTC)
-From: Vitaly Rodionov <vitalyr@opensource.cirrus.com>
-To: Mark Brown <broonie@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Takashi Iwai <tiwai@suse.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        David Rhodes <david.rhodes@cirrus.com>,
-        Richard Fitzgerald <rf@opensource.cirrus.com>,
-        Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-sound@vger.kernel.org,
-        linux-kernel@vger.kernel.org, patches@opensource.cirrus.com,
-        devicetree@vger.kernel.org,
-        Vitaly Rodionov <vitalyr@opensource.cirrus.com>
-Subject: [PATCH v2 11/11] dt-bindings: sound: cirrus: cs530x: Add additional cs530x family variants
-Date: Thu, 16 Oct 2025 17:48:29 +0100
-Message-ID: <20251016164847.138826-12-vitalyr@opensource.cirrus.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20251016164847.138826-1-vitalyr@opensource.cirrus.com>
-References: <20251016164847.138826-1-vitalyr@opensource.cirrus.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE8542E1730
+	for <devicetree@vger.kernel.org>; Thu, 16 Oct 2025 16:52:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1760633559; cv=none; b=bz4UtCMqhchTVs7oYdPMrKk4O9LD0zy2SjRxT8zwp/xB6eLYhS2BzQ/D8x/tcq0jw88M5nwKJSfMmFwJ+7CG6OjzrcocgMcY9B9lkfGx4pPACWmI/2jOsCNTuGsdUGMZB94Wfk+H28yk39K+bcJhz8BCiJqsbKn0kiN62s8gQLw=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1760633559; c=relaxed/simple;
+	bh=xNlMfyS21EmSnFZhxFwEfdgGPJ9F6nSclwnkMoIhtUg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=FRd+4h0pU+HwJV58n6+ueIkjShy/bPw1kFVMfDtO5IMAb0LIMaVndqQTpgnf8Ztd7YUkH9w0oUfc780hRtypLPvIzEuM2FuA67dXSW9/9c/oXAkbHhVFgZG51bU/Bq1pq+OCvVUefoD2oIyp1KWOkHqsMy0YV389jdlKKhW4MQk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=F7JQQOus; arc=none smtp.client-ip=170.10.129.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1760633556;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=s3G/38K/f4KvIWBGZQcPCv+KujPEoeANOPy5LdUWYVA=;
+	b=F7JQQOusNzMS2mRRrBhVK2fWDBrcgtU4N16elNsQ84zrPPggdqa6kOx+G1MVljQ+qmg9aR
+	aYzXCfrLFt+WcnstpHVjTRgR3ztjKpARbliwX7T8ZBtdNpjmtZCyCAyqmsCO1lPUWwHFTM
+	ZGF2LS+CySoEa3abOALOmD8hZoB1MKs=
+Received: from mail-vs1-f70.google.com (mail-vs1-f70.google.com
+ [209.85.217.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-549-OQpVnJbQOXSwXBWkkH_JdQ-1; Thu, 16 Oct 2025 12:52:35 -0400
+X-MC-Unique: OQpVnJbQOXSwXBWkkH_JdQ-1
+X-Mimecast-MFC-AGG-ID: OQpVnJbQOXSwXBWkkH_JdQ_1760633555
+Received: by mail-vs1-f70.google.com with SMTP id ada2fe7eead31-5d42137ab7eso1884469137.3
+        for <devicetree@vger.kernel.org>; Thu, 16 Oct 2025 09:52:35 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1760633555; x=1761238355;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=s3G/38K/f4KvIWBGZQcPCv+KujPEoeANOPy5LdUWYVA=;
+        b=VT+joyWM1GHHq22NG7dUCVqi1CruiJBA0RgD/rctp0GSCBRm6QYaDlPihl+F6nKMLE
+         O94exVLHEjXYi8J8jFEGTM6Jie7ZBhoYkvwb2klzqKopALv9GRr4JhysLRZE/xo2aA0B
+         P75erogz/UtWc+JL3VKdiQge0t7TaV1A7gGyYHNUqY/stxhPmz16DqUp4EOKdgZOzj5e
+         VsKS1GiHfTVt9/MCO4wk687Krt04KVr7b9ULzko63dhSXjpw7f4zgMIeiXYoqqOPHtrh
+         s5OEBG9ColSo+9vFecMdebbDDB+XmOOEbjEJ93WdwGkLNKASRaqgmBzwzS0OEqnmgnxI
+         CO8A==
+X-Forwarded-Encrypted: i=1; AJvYcCXMsFtLgE8MwXIgRherNfW5Le/cR7SfGqHVSdbHz2czDRqfxzs+cEMKmersbXyPefEFlh+5DNOWQJ0x@vger.kernel.org
+X-Gm-Message-State: AOJu0YxXL4/H0nYtDWEpG5IYzfDUOzPcKEhQ90+GuMyCzgFEOiFo5Rpz
+	VYBedlbwsJc/04yk2/fPSOeYK6hD69pwVJFBqeZcD8uOy1IComWnIK4Dzo8/C8IxgVgOZqQdBm+
+	idRH4xWHNg1pul3HGguhvBS09mfhtd+vfEYMaSCVfcK8RdQQtik1FC5IqXsHb9rGRL8hdD6NUyT
+	sYzmZWvVx2dEbXPaEsjw+ADvO4GBeZUl9apr5SFw==
+X-Gm-Gg: ASbGncvGYhYnOjGFUqmZq3TQW0dUsRhI5p3EDoWBNYO0sh/ZptOGCAmdt4crOk8AZqb
+	ZU0RPT0VGqz13c5I6Zccw3WZcuLQyGfSg0Z7DOw/WlhFrRWPsuuj3brT9c2BsyLUOBgFhxEB07T
+	YrCr9qzYJVMxmpj8AiMvACt0LX8H28odeIVJkf2CkPS+PgRpca9CMT0dSp
+X-Received: by 2002:a05:6102:510c:b0:524:c767:f541 with SMTP id ada2fe7eead31-5d7dd6a440cmr495883137.35.1760633554637;
+        Thu, 16 Oct 2025 09:52:34 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHD5WG63fxuNfl/7xxXAKVY2shuG2V6JHbtY86SZeR5UI/cxt6xfRaVkEChSU6aorSQmSIXD4dsjkpgYhIzU+E=
+X-Received: by 2002:a05:6102:510c:b0:524:c767:f541 with SMTP id
+ ada2fe7eead31-5d7dd6a440cmr495868137.35.1760633554224; Thu, 16 Oct 2025
+ 09:52:34 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL6PEPF00020E61:EE_|CH9PR19MB9468:EE_
-Content-Type: text/plain
-X-MS-Office365-Filtering-Correlation-Id: c82d3c64-cfd3-455e-e0bc-08de0cd3ea40
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|36860700013|82310400026|61400799027|7416014|376014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?4+WlCEIuYnirWmSUqeldxjeZDyoEj5zdnpgtxEHN9XqXrSRv5F+ffY3qCZFE?=
- =?us-ascii?Q?yoKSRwXSWYuKA0tiqAoJzKiUL8DtKpLzjaejodmErbqm+mNaORLaWpR91sqo?=
- =?us-ascii?Q?1PFkXp04lhNv9JNA7S6pbPP2laI42xSRVuHlahA/wzSqiR+5HPTqxbHXm8Qf?=
- =?us-ascii?Q?pZVMtSdP14yt+7qAw+6UistMkJUKfAqGrVl67JP3JKwwOsNGY0hJ/PROLDci?=
- =?us-ascii?Q?n3RDoNWUGf+xCi8/AX+bEVNAKEpTPeI7rF+7ht6fZlwaDfSKK1B9FcVf10py?=
- =?us-ascii?Q?lA9rcSgO3HCcyQ55oIFYmJZMpS6p/pRNChtWevbqSBJF6Aag/vQEIY4ZOhyE?=
- =?us-ascii?Q?uSFl60OZcypVkidoknXyiDERg2SuIqMTJ4QkC39YTp32mQZrm5XjWOF+s+rn?=
- =?us-ascii?Q?kni4Q/3wBBu2gIrT0FGDJAhJBppplTrfGztA16xrh31llOX+7gcc5jAMVaaV?=
- =?us-ascii?Q?IUBqpG107VxwjqrMf/YvPfrdamEQ07mcAx5M8gTy5XbYK30R8EaD124QxbRV?=
- =?us-ascii?Q?br1t4IuY0PmL/JIx0FOCAJR9L+vzT2/RWgA4nV55mTFSDaBE8bFecgH+VzjB?=
- =?us-ascii?Q?MPKKB2j/rfYoAGq09pjKZuRonTagJUmupIGbmVMb1gWd7UffcckSzZ4tBU3w?=
- =?us-ascii?Q?sN98WMpGd7EqGNgWB0QVtAL+oTwyQR0B2UDKbrJanq1PKxqgybwX/32ycuhr?=
- =?us-ascii?Q?P9gqcVVBLA9jiWgFY7KuydnNpBJbe/n2jiRRtJrszAemneinl0UtJgp0H4H9?=
- =?us-ascii?Q?I0PxG2juge88Pf1erleRvnt2ErQW13yUjqZ45XnOCkpaj2cvJ2EOUyyW4Mts?=
- =?us-ascii?Q?WYTLQup+dmB0WUdFvMgqMojSjkViYVtIE9cgxJlyTdE27IUzvuvVkQdY+8OK?=
- =?us-ascii?Q?ZSRE8Jbrhz57qBy1nyvzMnRn/Iof9PES7bGQ+iR00Ubskw5lc8HfY/AOTFNU?=
- =?us-ascii?Q?M5W/xdAcwxG1cCY3p+bhgvj4DBNorjHfiQfjQj8GVt0BwyePenPwn66m9XjC?=
- =?us-ascii?Q?RBCB9lRBEa+wgjk5eYpvhWUD83fJBsbVO3wHy9NfGJVtmrEDV0rB7AUcalbY?=
- =?us-ascii?Q?wVIzagO49CghbvYqCv2RLHvV6FGfw/dPzmUwwNXFpD1c2NYiPoeBC5o5m561?=
- =?us-ascii?Q?RAo/b9eoiySB6kY8NHBKzc2mwWNL11C6mfqZbvmItjDkeWwrrFoLX+Mfpbze?=
- =?us-ascii?Q?IjHwmZQP2h+N2Yww2UMMy7tiTUMmKqPpBjyqnP46gPWM5poZfLxZ9d0dTTcO?=
- =?us-ascii?Q?saosjbRM+k+7iZUWnanCf7+QkC4HYQpqdF2vAoj8RAfaO34Aio67h4RvDsE3?=
- =?us-ascii?Q?8T45lNwb1vePT0oRrubzt/NFtKRHXC5avUyk4lDC9QfnkpT7aQoGAucsRM4g?=
- =?us-ascii?Q?Cx0DptWkNKyLy4BzadzcEYJQ5ySNKeWXVqwVNWUMEliLYs0FnBkPWU7av8dZ?=
- =?us-ascii?Q?zudsJju+myqoRn0o6+vbrolfJ4QCpIWCDlWiAe7pV5IWi1njcexvojfyfgwL?=
- =?us-ascii?Q?hKFBNXX5HWEa/kZ5FmFtVz48QS/xPec2lANj7Bb8U0R3sal+ZgUm4f4ayPFK?=
- =?us-ascii?Q?+GI2R2U9B07nA0fJd8Y=3D?=
-X-Forefront-Antispam-Report:
-	CIP:84.19.233.75;CTRY:GB;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:edirelay1.ad.cirrus.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700013)(82310400026)(61400799027)(7416014)(376014);DIR:OUT;SFP:1102;
-X-OriginatorOrg: opensource.cirrus.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Oct 2025 16:49:03.8868
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: c82d3c64-cfd3-455e-e0bc-08de0cd3ea40
-X-MS-Exchange-CrossTenant-Id: bec09025-e5bc-40d1-a355-8e955c307de8
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=bec09025-e5bc-40d1-a355-8e955c307de8;Ip=[84.19.233.75];Helo=[edirelay1.ad.cirrus.com]
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TreatMessagesAsInternal-BL6PEPF00020E61.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH9PR19MB9468
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDE2MDEyMSBTYWx0ZWRfXwOmxBSKaMfTE
- OXLsJDLgbLWUi2MXhI1baGJ9dtDPfeYpJD+v/mwSWn+w14FF7iCyKSZenKTdsT93sq6X7BmgpPi
- qtDwlHs3vG9feVq4eRGmcRIAWkQiTp+7xJ2KHh7PRwnEbP5GP4mw3TTAhOPBHx9ELuggBYTLPPW
- AkQ/Lx4Q5A3l9ySvyOqy5I+Sn2iNfycXMyvM/g45jpYIXM20wjICsPm0Mv0/w40xpnOBQ17YCSl
- FAoXdKs5iXQJZUsozRTSG7Bzwgy31kFYZCDqM5aahLrUOcDHKAduwEqF/4//2gWKEFmboL+o2YL
- D9B67fdlhx3GJU4KawluoplUhovqVaWbXesIzW4stve8cJFw1g8g69gOMuj5WTEpIfcupFF+zlv
- klYDbWL4Si0pMJPXM1Z2wH+hJj64qA==
-X-Proofpoint-ORIG-GUID: qedvp0dTpE3z6vVF5xk3V0oSIviatfmC
-X-Authority-Analysis: v=2.4 cv=OJIqHCaB c=1 sm=1 tr=0 ts=68f12202 cx=c_pps
- a=1umFaVqrme/hcr+f+MpLMA==:117 a=h1hSm8JtM9GN1ddwPAif2w==:17
- a=6eWqkTHjU83fiwn7nKZWdM+Sl24=:19 a=z/mQ4Ysz8XfWz/Q5cLBRGdckG28=:19
- a=x6icFKpwvdMA:10 a=s63m1ICgrNkA:10 a=RWc_ulEos4gA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=w1d2syhTAAAA:8 a=EIw7sTYcH-EARjFZPrAA:9
- a=cPQSjfK2_nFv0Q5t_7PE:22
-X-Proofpoint-GUID: qedvp0dTpE3z6vVF5xk3V0oSIviatfmC
-X-Proofpoint-Spam-Reason: safe
+References: <20251016084301.27670-1-lzampier@redhat.com> <20251016084301.27670-4-lzampier@redhat.com>
+ <87plan0yvd.ffs@tglx> <CABe3_aGj68qM1bNZ3LExbexO=9FO4RzJxhUy2T+HKK1qZfBmtw@mail.gmail.com>
+ <87ms5q25cm.ffs@tglx>
+In-Reply-To: <87ms5q25cm.ffs@tglx>
+From: Charles Mirabile <cmirabil@redhat.com>
+Date: Thu, 16 Oct 2025 12:52:22 -0400
+X-Gm-Features: AS18NWAJZGulCtwHsjeP4T38yEVHSOQmEhV7m0unjSLxlvw7p4A-SpEylNDrO3o
+Message-ID: <CABe3_aH3YE9wWonH1j09-eCarhzhhRReNAOwmEMs5YjkOvvoiQ@mail.gmail.com>
+Subject: Re: [PATCH v5 3/3] irqchip/plic: add support for UltraRISC DP1000 PLIC
+To: Thomas Gleixner <tglx@linutronix.de>
+Cc: Lucas Zampieri <lzampier@redhat.com>, linux-kernel@vger.kernel.org, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Samuel Holland <samuel.holland@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Alexandre Ghiti <alex@ghiti.fr>, Vivian Wang <dramforever@live.com>, devicetree@vger.kernel.org, 
+	linux-riscv@lists.infradead.org, Zhang Xincheng <zhangxincheng@ultrarisc.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-This patch adds additional cs530x family variants - DAC and CODEC parts.
+Hi Thomas=E2=80=94
 
-Signed-off-by: Vitaly Rodionov <vitalyr@opensource.cirrus.com>
----
- Documentation/devicetree/bindings/sound/cirrus,cs530x.yaml | 4 ++++
- 1 file changed, 4 insertions(+)
+On Thu, Oct 16, 2025 at 12:12=E2=80=AFPM Thomas Gleixner <tglx@linutronix.d=
+e> wrote:
+>
+> On Thu, Oct 16 2025 at 11:54, Charles Mirabile wrote:
+> > On Thu, Oct 16, 2025 at 9:17=E2=80=AFAM Thomas Gleixner <tglx@linutroni=
+x.de> wrote:
+> >> > +static irq_hw_number_t cp100_get_hwirq(struct plic_handler *handler=
+,
+> >> > +                                     void __iomem *claim)
+> >> > +{
+> >> > +     int nr_irq_groups =3D DIV_ROUND_UP(handler->priv->nr_irqs, 32)=
+;
+> >> > +     void __iomem *pending =3D handler->priv->regs + PENDING_BASE;
+> >> > +     void __iomem *enable =3D handler->enable_base;
+> >> > +     irq_hw_number_t hwirq =3D 0;
+> >> > +     int i;
+> >> > +
+> >> > +     guard(raw_spinlock)(&handler->enable_lock);
+> >> > +
+> >> > +     /* Save current interrupt enable state */
+> >> > +     for (i =3D 0; i < nr_irq_groups; i++)
+> >> > +             handler->enable_save[i] =3D readl_relaxed(enable + i *=
+ sizeof(u32));
+> >>
+> >> This is truly the most inefficient way to solve that problem. The enab=
+le
+> >> registers are modified with enabled_lock held, so you can just cache t=
+he
+> >> value in plic_handler::enabled_save and avoid this read loop completel=
+y.
+> >> After claiming the interrupt you restore from that cache, no?
+> >
+> > You mean touch the other functions where the enable bits are modified
+> > to keep the cache in sync so that we don't need to do this read loop
+> > and can have a proper set of values cached?
+> >
+> > My concern is that this obviously has an impact on other platforms
+> > which do not have this quirk since keeping the cache in sync would get
+> > pushed all throughout the driver.
+>
+> The irq_enable()/disable() callbacks are not really hotpath and caching
+> the bit in plic_toggle() or such is just not measurable overhead
+> compared to the register access.
 
-diff --git a/Documentation/devicetree/bindings/sound/cirrus,cs530x.yaml b/Documentation/devicetree/bindings/sound/cirrus,cs530x.yaml
-index 9582eb8eb418..90a5cea0632d 100644
---- a/Documentation/devicetree/bindings/sound/cirrus,cs530x.yaml
-+++ b/Documentation/devicetree/bindings/sound/cirrus,cs530x.yaml
-@@ -22,6 +22,10 @@ properties:
-       - cirrus,cs5302
-       - cirrus,cs5304
-       - cirrus,cs5308
-+      - cirrus,cs4282
-+      - cirrus,cs4302
-+      - cirrus,cs4304
-+      - cirrus,cs4308
- 
-   reg:
-     maxItems: 1
--- 
-2.43.0
+Fair enough, if you insist. This will probably require a second patch
+refactoring a decent amount of code (since the suspend / resume path
+for which this enable array was added becomes simpler).
+
+>
+> >> Now for the search and disable mechanism. Of course you need to search
+> >> for th pending interrupt first, but then you can make that masking loo=
+p
+> >> very simple by having a plic_handler::enabled_clear[] array which is
+> >> zeroed on initialization:
+> >>
+> >>         unsigned long pending =3D 0;
+> >>
+> >>         for (group =3D 0; !pending && group < nr_irq_groups; group++) =
+{
+> >>                 pending =3D handler->enabled_save[i];
+> >>                 pending =3D& readl_relaxed(pending + group * sizeof(u3=
+2));
+> >>         }
+> >>         if (!pending)
+> >>                 return false;
+> >>
+> >>         bit =3D ffs(pending) - 1;
+> >>         handler->enabled_clear[group] |=3D BIT(bit);
+> >>         for (int i =3D 0; i < nr_irq_groups; i++)
+> >>                 writel_relaxed(handler->enabled_clear[i], enable + i *=
+ sizeof(u32));
+> >>         handler->enabled_clear[group] =3D 0;
+> >>
+> >> No?
+> >
+> > Sure that would also work, but why are we using ffs (slow) only to
+> > shift the result back to make a new mask when (x & -x) is faster and
+> > skips the intermediate step delivering immediately the mask of the
+> > lowest bit.
+>
+> Because I did not spend time thinking about it.
+
+Sorry, did you mean "because I had not considered the original
+approach carefully enough" or "because this other approach, while
+slower, is more self evidently correct."
+
+If you meant the latter, I still want to argue for the bit twiddling
+approach. I verified that clang and gcc are both not smart enough to
+recognize the pattern of ffs followed by shift and optimize to x & -x
+(even on -O3 [1]), so using ffs is definitely slower and relies on a
+bunch of machinery (alternatives because risc-v does not include a
+dedicated count trailing zeros instruction in the base isa). To me
+anyways, the logic of x & -x is pretty obvious, and even more so with
+a comment, and this is actually in the hot path.
+
+>
+> > As for making another caching array, I guess, but again that is just a
+> > time vs space trade off with its own invariants to maintain that would
+> > also impact other platforms.
+>
+> It's a pointer in struct plic_handler (or whatever it's named) and you
+> can allocate it when the quirk is required. The pointer is definitely
+> not a burden for anyone else.
+
+This I still don't understand how this is particuarly helpful. Since
+we are doing mmio, this is going to be an explicit loop and not a
+memcpy. The code is branchless in either case (set equal for the check
+of i against j negate and and with mask before loading into the mmio).
+
+
+>
+> >> Is the device B interrupt preserved in the interrupt chip and actually
+> >> raised when the interrupt enable bit is restored or is it lost?
+> >
+> > I am not sure how to verify this other than to tell you that without
+> > this quirk (i.e. trying to use normal plic behavior) the device does
+> > not work, but with this quirk I can boot to a desktop with a pcie
+> > graphics card and storage, use networking etc that all obviously
+> > depend on the correct functioning of the interrupt controller.
+> >
+> > My reading of the spec for PLIC also suggests (but does not explicitly
+> > confirm) that the pending bits function irrespective of the state of
+> > the corresponding enable bit: "A pending bit in the PLIC core can be
+> > cleared by setting the associated enable bit then performing a claim."
+> > (page 14 plic spec 1.0.0 [1]).
+> >
+> > This sentence implies to me that it is possible for a pending bit to
+> > be set even though the corresponding enable bit is not, which lends
+> > credence to the idea that the pending bits operate independently.
+>
+> Looks like that. Please add a comment to that effect then.
+
+Will do.
+
+>
+> Thanks,
+>
+>         tglx
+>
+
+[1] https://godbolt.org/z/eofozYjPo
 
 
