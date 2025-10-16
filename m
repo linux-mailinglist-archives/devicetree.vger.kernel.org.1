@@ -1,348 +1,115 @@
-Return-Path: <devicetree+bounces-227914-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227915-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FDB9BE5C5D
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 01:16:36 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5778BBE5C79
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 01:20:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 224D54E1CBA
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 23:16:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D67831A648F5
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 23:21:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7F6221770A;
-	Thu, 16 Oct 2025 23:16:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A680C2BDC34;
+	Thu, 16 Oct 2025 23:20:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="F7ntGdLG"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NdX2/npy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f179.google.com (mail-pg1-f179.google.com [209.85.215.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC59D18872A
-	for <devicetree@vger.kernel.org>; Thu, 16 Oct 2025 23:16:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 788031CEAD6;
+	Thu, 16 Oct 2025 23:20:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760656592; cv=none; b=km1740/Z22n4ID7Ccgxn7r5SGO0xkHcKXDu2aNtmJoDSSrK1gZv9FcboRZ29xAygNdaBhu6C8Z+Xs8j2K8e3mrchMGpSV3fnndhtehzjdYkwHZgTOxu4qw57V1nzKS0rpTbFf7n5X9mqgAdOsffyqUNHelvtEQseKm+lAAmtE3M=
+	t=1760656829; cv=none; b=itmhL8RGXxNUXr/xfYiFuC8XgZe+ZrKXAg6rFlrKM0MaKd4errfV30rEKJzvXNG0t9ag9zdTx2YQ7QD+Mxw+twbg2MnA5Zyx4TqPbhHrxmgJzefkOFo9mhgBCqc5g/mszc3lk+1jVEVWO1Z22gxvO9qgBXFcxAqNo32ryqG+kO8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760656592; c=relaxed/simple;
-	bh=upjbPB6DTd2eAPDo7wFnSOj/2yeDbk2CtEo/BlT0wDE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=McGft5L+tl0skOalM3qyE4uzV6njWLRdQcM4+tWeBzg9fp1OZdjQRx7OF9i/nCkmi7KF1346uvH0o3jiTobHrNJwBGyQ7Yt//fSvj7qYGXQdR1jl7mEmxcme5VxNPy9S+A2G23loqnUphTWyBx7TUdKddTTYkGye4jOBIpseKbM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=F7ntGdLG; arc=none smtp.client-ip=209.85.215.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f179.google.com with SMTP id 41be03b00d2f7-b67ae7e76abso982136a12.3
-        for <devicetree@vger.kernel.org>; Thu, 16 Oct 2025 16:16:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1760656590; x=1761261390; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=/a+qqdPVmjqV2OGXo1EbYLdYhsnJczk1bqRHKiDFhY4=;
-        b=F7ntGdLGW7ZSQaQszoKm3ZuQa/QNZzE3ERB8y1L0shHdCvlJHHn+6A7ayBWGl7uxva
-         aRQ3JZNrSwWMSuLWmAhHmxl+jDWtIdazc38pVIENW+io8OzTmsejiZJjx3AeectDevvw
-         38KUSdMwq8R1idurRqawttpmpRNmJacWm1KPpEBTBNUBEV3dVi5Ro4vxremcHOQWkMQM
-         XoPDWdHEz3uBC5z9Dk0+fwbxEFldgu7pD+NelWbGbbrtcY/iWugIJrWeIbP3QI/DXW7M
-         +AktLMey4EDYRNVpBHMA+El59jcQKJneZ5/V6fRGgDsSqFiDkL5iwcvgdTdjAsfoo+Mq
-         G0fg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760656590; x=1761261390;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/a+qqdPVmjqV2OGXo1EbYLdYhsnJczk1bqRHKiDFhY4=;
-        b=l5kbtUcYLDVzdxpthfAE3TwZdotoKDRLghEYCJrMbkwqYOgGg3mETf6YF3XceiI5Ag
-         GBQVOWPJm5NjvT8RNGeQ8Rflxh8ECnzrwLNsIrUOcSdhtPKCnv2aaIFPbskziZ/weFcf
-         sAOh66BP3Y39jXO/JDG0Zx+FKTUUJFoYDuV9rMOagXCdaD58F8vyZjVukzq0XQy6gxUz
-         mpxrDsakbvRXFYF0/IwPFvTkLKjRFMUAfpT7PU1GqjyDPfzGtxFaWatfm4OdsVM32sY9
-         6K1wtsm3x88JFiq2KhSjoH76002qc2bivOxzDOmCRUIPRUdoXD1+zmWYKRv3rlHxCu13
-         EF4A==
-X-Forwarded-Encrypted: i=1; AJvYcCW5j0Qlp3+Mdx1hoocqyxVHzTl7qwHLPH9PwvnHd9VaZG27230REr2kvRT3PDOFowpIUmz5JGHJzDok@vger.kernel.org
-X-Gm-Message-State: AOJu0YwXAf+lkXjCbBE57MiNT3cZgfRs+QLSv9NoDzR4fEoCzcGFd8dM
-	2e+wrTwI6N83Vvog8wm9SY3XNcYrHW8/fC+uw/pECnkC20aIdcQiS05O
-X-Gm-Gg: ASbGncuU5q9SRcPLXwCB14yRP2mErxWkDGDYiISQ8Cx4b83pBWGmE6OdJRvJzYoG1fb
-	FvqCnEnOx6WzIeyw57bCpSEnKnFtN1biXzkXkKoJDpKt+mpstU69+ue+TECqL0m62eEQQG0mK1m
-	zIbuoKDQ95RtILczR4/CV/OopabGRXPo6UwjXcRkHZpbEPsseCviBTV+wxXWe+WR7bIDa3c8IgJ
-	FIS/UvFAibvvbiM4t0aMij/pJhHSuLXPc66bFC8O5+HSkABZF6+oPHptNOWTjmKIT/S2S4OhDH2
-	aNDOz8/nLINoAUarsFqSDEYnJeG0K1zTGDcMU7awmV2Uv68YvYgnyyo4aT493WZjKHI59yYSCIL
-	JLj3hmfsh2m/N/4DR5gAlfows84UyDNxZMjEH3KleIGu/Qy+Phiv2MPH0FmxvVXUWnTw06s4cu9
-	Vx9f+hJmxAD2W2xLlV07qtYbWqGy8NtdSRmD0=
-X-Google-Smtp-Source: AGHT+IGvciSnN+zR7+38ggCqYBNxU45unPBKyeAyCkOvXXXe6c3Mc9N3D3t2Q8bN895H8fJj9a/MAg==
-X-Received: by 2002:a17:903:1a4c:b0:267:ba92:4d19 with SMTP id d9443c01a7336-290c99a8ed3mr21441465ad.0.1760656589902;
-        Thu, 16 Oct 2025 16:16:29 -0700 (PDT)
-Received: from [172.16.0.242] ([192.19.161.250])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29099ab1ca0sm42189905ad.96.2025.10.16.16.16.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 16 Oct 2025 16:16:29 -0700 (PDT)
-Message-ID: <62e709f0-5841-40d6-97cd-91da3ba556e8@gmail.com>
-Date: Thu, 16 Oct 2025 16:19:43 -0700
+	s=arc-20240116; t=1760656829; c=relaxed/simple;
+	bh=XmFZ1aCPOavivGFm2MY2rpuXNMGOSeXgUjkf7jQ4ZSY=;
+	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
+	 In-Reply-To:To:Cc; b=n5To2Zoa4n4n6pw4LtRE19gyA6mICFVGO0Hr7VSb3MqdMNADkQXs4DotLQYMyGUuqL2si1TgjbuDLwaviZ81eFmPPVQI53c1GB3Cx00cuUgpJdK6SBhkSovL+ZPRePrvr3AQfzfaEGhPyS5oI/8rv6nPuLNZU/V0MTQaXJDhhgU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NdX2/npy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E9C2EC4CEF1;
+	Thu, 16 Oct 2025 23:20:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1760656829;
+	bh=XmFZ1aCPOavivGFm2MY2rpuXNMGOSeXgUjkf7jQ4ZSY=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=NdX2/npyuApB04JWfGhacNAQxh7Odc9VcysylDLj6xMk8iShYkL+ZSQulPbmVQnBP
+	 K5pg+2x4rOXIYLy6/MyMYeS6YblWpBHbRxa85mGx9Tk6J6BtgBwZEvq73JTA0pytjx
+	 ArdCtEq5O8mdevH4P1QWpfnYtEyun22mdyT+Cb4iSUuo1rXgpb8dsxGPZS5jSmxjI3
+	 JisiJn9jyFWATdHaf1lUoFioBvz9dCMI6MtKCCLWPD+H59kELGRRS+ljXrFV/Gdpm2
+	 y3F5YA3qkcYciAK53CnN5e8x+tQREXUYNusfIxLgbYaK1Oiu7vSYJxbtxC+7PBPOPc
+	 dVhsyg7mVesfg==
+Received: from [10.30.226.235] (localhost [IPv6:::1])
+	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id 33D7739D0C31;
+	Thu, 16 Oct 2025 23:20:14 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 3/3] irqchip/plic: add support for UltraRISC DP1000
- PLIC
-To: Samuel Holland <samuel.holland@sifive.com>, Bo Gan <ganboing@gmail.com>,
- Lucas Zampieri <lzampier@redhat.com>
-Cc: Charles Mirabile <cmirabil@redhat.com>,
- Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Alexandre Ghiti <alex@ghiti.fr>, Vivian Wang <dramforever@live.com>,
- devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
- Zhang Xincheng <zhangxincheng@ultrarisc.com>, linux-kernel@vger.kernel.org
-References: <20251016084301.27670-1-lzampier@redhat.com>
- <20251016084301.27670-4-lzampier@redhat.com>
- <831744c6-ba89-4029-a035-9a70c3f57465@gmail.com>
- <95a777a7-4998-4451-b271-8450a5b674bb@sifive.com>
-Content-Language: en-US
-From: Bo Gan <ganboing@gmail.com>
-In-Reply-To: <95a777a7-4998-4451-b271-8450a5b674bb@sifive.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH v8 0/2] Add driver support for Eswin eic7700 SoC ethernet
+ controller
+From: patchwork-bot+netdevbpf@kernel.org
+Message-Id: 
+ <176065681299.1942659.16205838065637894819.git-patchwork-notify@kernel.org>
+Date: Thu, 16 Oct 2025 23:20:12 +0000
+References: <20251015113751.1114-1-weishangjuan@eswincomputing.com>
+In-Reply-To: <20251015113751.1114-1-weishangjuan@eswincomputing.com>
+To: =?utf-8?b?6Z+m5bCa5aifIDx3ZWlzaGFuZ2p1YW5AZXN3aW5jb21wdXRpbmcuY29tPg==?=@codeaurora.org
+Cc: devicetree@vger.kernel.org, andrew+netdev@lunn.ch, davem@davemloft.net,
+ edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+ mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com,
+ rmk+kernel@armlinux.org.uk, yong.liang.choong@linux.intel.com,
+ vladimir.oltean@nxp.com, prabhakar.mahadev-lad.rj@bp.renesas.com,
+ jan.petrous@oss.nxp.com, inochiama@gmail.com, jszhang@kernel.org,
+ 0x1207@gmail.com, boon.khai.ng@altera.com, linux-kernel@vger.kernel.org,
+ netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, ningyu@eswincomputing.com,
+ linmin@eswincomputing.com, lizhi2@eswincomputing.com,
+ pinkesh.vaghela@einfochips.com
 
-Hi Samuel,
+Hello:
 
-On 10/16/25 15:01, Samuel Holland wrote:
-> Hi Bo,
-> 
-> On 2025-10-16 4:28 PM, Bo Gan wrote:
->> Hi Lucas, Charles,
->>
->> I just realized your last reply and sorry about the messy formatting.
->> Please disregard the previous one from me and use this one.
->>
->> On 10/16/25 01:42, Lucas Zampieri wrote:
->>> From: Charles Mirabile <cmirabil@redhat.com>
->>>
->>> Add a new compatible for the plic found in UltraRISC DP1000 with a quirk to
->>> work around a known hardware bug with IRQ claiming in the UR-CP100 cores.
->>>
->>> When claiming an interrupt on UR-CP100 cores, all other interrupts must be
->>> disabled before the claim register is accessed to prevent incorrect
->>> handling of the interrupt. This is a hardware bug in the CP100 core
->>> implementation, not specific to the DP1000 SoC.
->>>
->>> When the PLIC_QUIRK_CP100_CLAIM_REGISTER_ERRATUM flag is present, a specialized
->>> handler (plic_handle_irq_cp100) saves the enable state of all interrupts,
->>> disables all interrupts except for the first pending one before reading the
->>> claim register, and then restores the interrupts before further processing of
->>> the claimed interrupt continues.
->>>
->>> The driver matches on "ultrarisc,cp100-plic" to apply the quirk to all
->>> SoCs using UR-CP100 cores, regardless of the specific SoC implementation.
->>> This has no impact on other platforms.
->>>
->>> Co-developed-by: Zhang Xincheng <zhangxincheng@ultrarisc.com>
->>> Signed-off-by: Zhang Xincheng <zhangxincheng@ultrarisc.com>
->>> Signed-off-by: Charles Mirabile <cmirabil@redhat.com>
->>> Acked-by: Samuel Holland <samuel.holland@sifive.com>
->>> Signed-off-by: Lucas Zampieri <lzampier@redhat.com>
->>> ---
->>>    drivers/irqchip/irq-sifive-plic.c | 94 ++++++++++++++++++++++++++++++-
->>>    1 file changed, 93 insertions(+), 1 deletion(-)
->>>
->>> diff --git a/drivers/irqchip/irq-sifive-plic.c b/drivers/irqchip/irq-sifive-
->>> plic.c
->>> index bf69a4802b71..0428e9f3423d 100644
->>> --- a/drivers/irqchip/irq-sifive-plic.c
->>> +++ b/drivers/irqchip/irq-sifive-plic.c
->>> @@ -49,6 +49,8 @@
->>>    #define CONTEXT_ENABLE_BASE        0x2000
->>>    #define     CONTEXT_ENABLE_SIZE        0x80
->>>    +#define PENDING_BASE                    0x1000
->>> +
->>>    /*
->>>     * Each hart context has a set of control registers associated with it.  Right
->>>     * now there's only two: a source priority threshold over which the hart will
->>> @@ -63,6 +65,7 @@
->>>    #define    PLIC_ENABLE_THRESHOLD        0
->>>      #define PLIC_QUIRK_EDGE_INTERRUPT    0
->>> +#define PLIC_QUIRK_CP100_CLAIM_REGISTER_ERRATUM    1
->>>      struct plic_priv {
->>>        struct fwnode_handle *fwnode;
->>> @@ -394,6 +397,89 @@ static void plic_handle_irq(struct irq_desc *desc)
->>>        chained_irq_exit(chip, desc);
->>>    }
->>>    +static bool cp100_isolate_pending_irq(int nr_irq_groups, u32 ie[],
->>> +                       void __iomem *pending,
->>> +                       void __iomem *enable)
->>> +{
->>> +    u32 pending_irqs = 0;
->>> +    int i, j;
->>> +
->>> +    /* Look for first pending interrupt */
->>> +    for (i = 0; i < nr_irq_groups; i++) {
->>> +        pending_irqs = ie[i] & readl_relaxed(pending + i * sizeof(u32));
->>> +        if (pending_irqs)
->>> +            break;
->>
->> No need to start from group 0. Only readl on the group with ie[i] != 0
->>
->>> +    }
->>> +
->>> +    if (!pending_irqs)
->>> +        return false;
->>> +
->>> +    /* Disable all interrupts but the first pending one */
->>> +    for (j = 0; j < nr_irq_groups; j++) {
->>> +        u32 new_mask = 0;
->>> +
->>> +        if (j == i) {
->>> +            /* Extract mask with lowest set bit */
->>> +            new_mask = (pending_irqs & -pending_irqs);
->>> +        }
->>> +
->>> +        writel_relaxed(new_mask, enable + j * sizeof(u32));
->>
->>
->> There's no need to write the register if the value isn't changing. You can
->> check new_mask with the value in ie[].
->>
->>> +    }
->>> +
->>> +    return true;
->>> +}
->>> +
->>> +static irq_hw_number_t cp100_get_hwirq(struct plic_handler *handler,
->>> +                    void __iomem *claim)
->>> +{
->>> +    int nr_irq_groups = DIV_ROUND_UP(handler->priv->nr_irqs, 32);
->>> +    void __iomem *pending = handler->priv->regs + PENDING_BASE;
->>> +    void __iomem *enable = handler->enable_base;
->>> +    irq_hw_number_t hwirq = 0;
->>> +    int i;
->>> +
->>> +    guard(raw_spinlock)(&handler->enable_lock);
->>> +
->>> +    /* Save current interrupt enable state */
->>> +    for (i = 0; i < nr_irq_groups; i++)
->>> +        handler->enable_save[i] = readl_relaxed(enable + i * sizeof(u32));
->>
->>
->> I see that you start to use handler->enable_save to track HW in the last reply.
->> I'm about to suggest that. Please send out a new patch, so people can properly
->> review it. There's change to common code path.
->>
->>> +
->>> +    if (!cp100_isolate_pending_irq(nr_irq_groups, handler->enable_save,
->>> pending, enable))
->>> +        return 0;
->>> +
->>> +    hwirq = readl(claim);
->>
->> Possibly missing a io barrier. readl isn't going to enforce the ordering of
->> readl/writel_relaxed above and itself. There could be other barriers missing.
->> Please check.
-> 
-> There is no missing barrier. Linux requires the hardware to enforce this
-> ordering. See the comment in asm/mmio.h:
-> 
-> /*
->   * Relaxed I/O memory access primitives. These follow the Device memory
->   * ordering rules but do not guarantee any ordering relative to Normal memory
->   * accesses.  These are defined to order the indicated access (either a read or
->   * write) with all other I/O memory accesses to the same peripheral. Since the
->   * platform specification defines that all I/O regions are strongly ordered on
->   * channel 0, no explicit fences are required to enforce this ordering.
->   */
-> 
-> where "strongly ordered" is defined by the privileged ISA: "accesses to an I/O
-> region with strong ordering are generally observed by other harts and bus
-> mastering devices in program order."
-> 
-> Barriers are only needed if there are ordering requirements between I/O accesses
-> to multiple MMIO regions, or between I/O and normal memory (e.g. locks and DMA).
-> 
-> Regards,
-> Samuel
-> 
+This series was applied to netdev/net-next.git (main)
+by Jakub Kicinski <kuba@kernel.org>:
 
-Thanks for the clarification. I thought the I/O ordering requirement is more
-fine grained in that it only preserves per-register order. Given that it's per
-I/O region, my concern was not valid.
-
->>> +
->>> +    /* Restore previous state */
->>> +    for (i = 0; i < nr_irq_groups; i++)
->>> +        writel_relaxed(handler->enable_save[i], enable + i * sizeof(u32));
->>> +
->>> +    return hwirq;
->>> +}
->>> +
->>> +static void plic_handle_irq_cp100(struct irq_desc *desc)
->>> +{
->>> +    struct plic_handler *handler = this_cpu_ptr(&plic_handlers);
->>> +    struct irq_chip *chip = irq_desc_get_chip(desc);
->>> +    void __iomem *claim = handler->hart_base + CONTEXT_CLAIM;
->>> +    irq_hw_number_t hwirq;
->>> +
->>> +    WARN_ON_ONCE(!handler->present);
->>> +
->>> +    chained_irq_enter(chip, desc);
->>> +
->>> +    while ((hwirq = cp100_get_hwirq(handler, claim))) {
->>> +        int err = generic_handle_domain_irq(handler->priv->irqdomain, hwirq);
->>> +
->>> +        if (unlikely(err)) {
->>> +            pr_warn_ratelimited("%pfwP: can't find mapping for hwirq %lu\n",
->>> +                        handler->priv->fwnode, hwirq);
->>> +        }
->>> +    }
->>> +
->>> +    chained_irq_exit(chip, desc);
->>> +}
->>> +
->>>    static void plic_set_threshold(struct plic_handler *handler, u32 threshold)
->>>    {
->>>        /* priority must be > threshold to trigger an interrupt */
->>> @@ -430,6 +516,8 @@ static const struct of_device_id plic_match[] = {
->>>          .data = (const void *)BIT(PLIC_QUIRK_EDGE_INTERRUPT) },
->>>        { .compatible = "thead,c900-plic",
->>>          .data = (const void *)BIT(PLIC_QUIRK_EDGE_INTERRUPT) },
->>> +    { .compatible = "ultrarisc,cp100-plic",
->>> +      .data = (const void *)BIT(PLIC_QUIRK_CP100_CLAIM_REGISTER_ERRATUM) },
->>>        {}
->>>    };
->>>    @@ -664,12 +752,16 @@ static int plic_probe(struct fwnode_handle *fwnode)
->>>            }
->>>              if (global_setup) {
->>> +            void (*handler_fn)(struct irq_desc *) = plic_handle_irq;
->>> +
->>> +            if (test_bit(PLIC_QUIRK_CP100_CLAIM_REGISTER_ERRATUM, &handler-
->>>> priv->plic_quirks))
->>> +                handler_fn = plic_handle_irq_cp100;
->>> +
->>>                /* Find parent domain and register chained handler */
->>>                domain = irq_find_matching_fwnode(riscv_get_intc_hwnode(),
->>> DOMAIN_BUS_ANY);
->>>                if (domain)
->>>                    plic_parent_irq = irq_create_mapping(domain, RV_IRQ_EXT);
->>>                if (plic_parent_irq)
->>> -                irq_set_chained_handler(plic_parent_irq, plic_handle_irq);
->>> +                irq_set_chained_handler(plic_parent_irq, handler_fn);
->>>                  cpuhp_setup_state(CPUHP_AP_IRQ_SIFIVE_PLIC_STARTING,
->>>                          "irqchip/sifive/plic:starting",
->>
->> My rationale of the above comments is to achieve minimal overhead with this
->> "read pending[] -> disable IE[] -> claim -> enable IE[]" approach. In general,
->> the fewer interrupts enabled on a hart, the lower the overhead. If there's only
->> 1 interrupt enabled for a give hart, then there's zero reading/writing of IE[],
->> and you can further optimize away the reading of pending register.
->>
->> I'd imagine that if the user truly want to avoid the overhead of this quirk,
->> they can chose to spread out the irq groups onto different harts to alleviate
->> the slow down, or better isolate a single irq to a given hart, and we should
->> make it possible.
->>
->> Feel free to point out any of my misunderstandings.
->>
->> Bo
+On Wed, 15 Oct 2025 19:37:51 +0800 you wrote:
+> From: Shangjuan Wei <weishangjuan@eswincomputing.com>
 > 
+> Updates:
+> 
+>   Changes in v8:
+>   - Removed config option patch dependency from cover letter, because the patch
+>     was applied.
+>   - Modify the theme style of patch 2.
+>   - Remove unnecessary dependencies, such as CRC32 and MII
+>   - Add "Reviewed-by" tag of "Andrew Lunn" for Patch 2.
+>   - Update eswin,eic7700-eth.yaml
+>     - Add new line character at the end of file
+>   - Update dwmac-eic7700.c
+>     - Provide callbacks for plat_dat->init/exit and plat_dat->suspend/resume
+>       to optimize clock processing
+>     - Use devm_stmmac_pltfr_probe() instead of stmmac_dvr_probe() in probe
+>     - Remove eic7700_dwmac_remove()
+>   - Link to v7: https://lore.kernel.org/all/20250918085612.3176-1-weishangjuan@eswincomputing.com/
+> 
+> [...]
 
-Bo
+Here is the summary with links:
+  - [v8,1/2] dt-bindings: ethernet: eswin: Document for EIC7700 SoC
+    https://git.kernel.org/netdev/net-next/c/888bd0eca93c
+  - [v8,2/2] net: stmmac: add Eswin EIC7700 glue driver
+    https://git.kernel.org/netdev/net-next/c/ea77dbbdbc4e
+
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
+
 
