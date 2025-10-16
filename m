@@ -1,135 +1,202 @@
-Return-Path: <devicetree+bounces-227551-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227553-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67017BE27D6
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 11:48:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 77796BE27EC
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 11:48:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B0E2C3E42E6
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 09:48:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 77F64425286
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 09:48:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E98AA23C50A;
-	Thu, 16 Oct 2025 09:48:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="LY6pxnqu";
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="iRCKiYjV"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F33242BE7A1;
+	Thu, 16 Oct 2025 09:48:32 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C5173254BF;
-	Thu, 16 Oct 2025 09:48:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.161
+Received: from zg8tmja2lje4os4yms4ymjma.icoremail.net (zg8tmja2lje4os4yms4ymjma.icoremail.net [206.189.21.223])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBD9D23A564;
+	Thu, 16 Oct 2025 09:48:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=206.189.21.223
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760608088; cv=none; b=Uv/3D/T+HZt16cZ3n6bg4OuW5oXindFROH9BbppsfMUHRSuFb9r7hBdM1StUG9wo/cbP6v7XByaeNx1ZKq9inxB353o7aieeEjvbLeuznbmnJ3geC4G2rv4ZWYYm5zrpLRgnGrWie7+KiJesMJJaKxYpUMt2NZUTFVDizMjx6vI=
+	t=1760608112; cv=none; b=V3UEBVMqkzfV6qBTpIskaUse8YJzeLBocKn2r9BOuvdf3DddoA2jWclW1mU6PmSIexPCkqVmy76xjdKdAc9iHZOEQwmkQ8TMKGC+eX4PVwRNsZNrpTLY/ux/aA+Q0CN626gjqGKWHBAJwjuuPP/LQbnJ1I+FIkmnwFUNuuVzuis=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760608088; c=relaxed/simple;
-	bh=p14FaJn027QFv3xWUKqNHV1qfH6V9WZev1jnqi2J0Jc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=W9aBualbCv2lNaLKhmZvlBdy/I32LkeOnCZA6ufSWNI9RmVTiozpVQZP0rcDoVw6wUPoqEQiVOEFSCQYSxxrXCeCp4u6I91tIL5/AtoaWVOKn5YHyPwquF56QpYajWCmneznIvbJd9W3FddVd/6X+pbTTTvAZJn9ISMehAHm18g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=LY6pxnqu; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=iRCKiYjV; arc=none smtp.client-ip=80.241.56.161
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp202.mailbox.org (smtp202.mailbox.org [10.196.197.202])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4cnNRk5kTGz9tjH;
-	Thu, 16 Oct 2025 11:48:02 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1760608082;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=dDU4MHtIXNjqAS9JJD27/CnM+BvS39aAL00HB1wKmUs=;
-	b=LY6pxnquYPZzf/vnpVqvwnv42pmxyX6hS/LsDWtU2B5JF97gz28NKgw1jRUUjFmYd0WhY4
-	DhTdpjEhwlwi09VKAedBaCkcFWVxDpPVQBRvnyexpFgvr6thnM+qsFM/SXawGC24Snlkop
-	BAlxbv5sxRJcOfBbSTOPE3I5IkN2mwUjqU7cMUagSLRmPbwbsde288GtVU5kgwWl8HpOMt
-	guOm0DFxFFkYnqDc5YhclS3FSNnqn2mBeSvrLomnHRcn4bpZcLw3l6XGd3EqNTvCt/hEb/
-	4ZXRIj0BaM9G+H8AA7kE358iZM8WoKe7Dyz9W4zW7/b2OscjuPZVdG6sXIfCIA==
-Message-ID: <51ff107d-126d-4481-b94a-f614f31c7bb8@mailbox.org>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1760608080;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=dDU4MHtIXNjqAS9JJD27/CnM+BvS39aAL00HB1wKmUs=;
-	b=iRCKiYjVaNQjr7ciL/76PHWjl/5d+opl6I8j9fSY+qFPEtSc5dnwYavGolev5MM93Ngcdu
-	jI9veoq6Z/SRRV+gM+fLHysHUfIk4n6YOTzptX/Y5KOBvYVIGf9NxaiUXHF/VBNUqF8gta
-	JygcaVjXZOjfL9Bz15/lXRRO2RvvdX8l2LnnxfYIjgc3KZJ6PtM5oWJKIAY3RpwBrlVJB7
-	hELhC2z0tVptxe9FamxUsaGGnVtlkgWapRFm9F1p5+5PQGGCk+676DDTZJ4TEJKOh/H97j
-	UhVs3Q/nD4Joq2xP7oZKdzJqq6GnWFwTGSgJupUhHQ04ka4rG1+CeIQwMtmcXQ==
-Date: Thu, 16 Oct 2025 11:47:56 +0200
+	s=arc-20240116; t=1760608112; c=relaxed/simple;
+	bh=RA34cpqVuqj2vO2KVbsTQXHKHww4Zz+7bA7fQuzFXA8=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=X9+KmABrp+5yHd2DrjOK/v7tW2kftXvjOjnLCgIknmcagRS5F5tXG0t1RavjzHaXOkjGPrnyikETBrzA36eBgWZG8FDb75AA6Y3t3187zChyITd+NMeMRzY/jvj1E9WRFFQY4pbH4E1EKPPvNo+yubjqWeOynF3UOTox3igT/Do=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=206.189.21.223
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
+Received: from E0006493LT.eswin.cn (unknown [10.127.112.153])
+	by app2 (Coremail) with SMTP id TQJkCgBX9pRfv_BoRBIOAQ--.48733S4;
+	Thu, 16 Oct 2025 17:48:17 +0800 (CST)
+From: caohang@eswincomputing.com
+To: gregkh@linuxfoundation.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	Thinh.Nguyen@synopsys.com,
+	p.zabel@pengutronix.de,
+	linux-kernel@vger.kernel.org,
+	linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: ningyu@eswincomputing.com,
+	linmin@eswincomputing.com,
+	pinkesh.vaghela@einfochips.com,
+	Hang Cao <caohang@eswincomputing.com>,
+	Senchuan Zhang <zhangsenchuan@eswincomputing.com>
+Subject: [PATCH] usb: dwc3: eic7700: Add EIC7700 USB driver
+Date: Thu, 16 Oct 2025 17:48:12 +0800
+Message-ID: <20251016094812.739-1-caohang@eswincomputing.com>
+X-Mailer: git-send-email 2.45.1.windows.1
+In-Reply-To: <20251016094654.708-1-caohang@eswincomputing.com>
+References: <20251016094654.708-1-caohang@eswincomputing.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH v2 2/3] arm64: dts: renesas: r8a77960: Add GX6250 GPU node
-To: Geert Uytterhoeven <geert@linux-m68k.org>,
- Marek Vasut <marek.vasut+renesas@mailbox.org>
-Cc: linux-arm-kernel@lists.infradead.org,
- =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>,
- Adam Ford <aford173@gmail.com>, Conor Dooley <conor+dt@kernel.org>,
- David Airlie <airlied@gmail.com>, Frank Binns <frank.binns@imgtec.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Magnus Damm <magnus.damm@gmail.com>, Matt Coster <matt.coster@imgtec.com>,
- Maxime Ripard <mripard@kernel.org>, Rob Herring <robh@kernel.org>,
- Simona Vetter <simona@ffwll.ch>, Thomas Zimmermann <tzimmermann@suse.de>,
- devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linux-renesas-soc@vger.kernel.org
-References: <20251015153952.185249-1-marek.vasut+renesas@mailbox.org>
- <20251015153952.185249-2-marek.vasut+renesas@mailbox.org>
- <CAMuHMdVdW+tMA1=g9D+BQV0fk0kis8FzyQgf7BpN-u=pi5eQfA@mail.gmail.com>
-Content-Language: en-US
-From: Marek Vasut <marek.vasut@mailbox.org>
-In-Reply-To: <CAMuHMdVdW+tMA1=g9D+BQV0fk0kis8FzyQgf7BpN-u=pi5eQfA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-MBO-RS-ID: 6f731996ea0c40a0a5a
-X-MBO-RS-META: oz5jm67tb1wz1eczi1ucb737inbcuyn3
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:TQJkCgBX9pRfv_BoRBIOAQ--.48733S4
+X-Coremail-Antispam: 1UD129KBjvJXoWxAryrZr47XF4fZw4rXFyrWFg_yoWrXry5pa
+	ykuFyYkrs5Grs3Kws3t3Z5AF1agrs7C3yUtryIk3Z2vr1qq34UGFykWr1rXasYkryxXF15
+	tr4ktFyxuF47Z3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUUBv14x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+	1l84ACjcxK6xIIjxv20xvE14v26w1j6s0DM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4U
+	JVWxJr1l84ACjcxK6I8E87Iv67AKxVW0oVCq3wA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gc
+	CE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E
+	2Ix0cI8IcVAFwI0_Jrv_JF1lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJV
+	W8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2
+	Y2ka0xkIwI1lw4CEc2x0rVAKj4xxMxkF7I0En4kS14v26r1q6r43MxkIecxEwVCm-wCF04
+	k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18
+	MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr4
+	1lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1l
+	IxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4
+	A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x0JUHCJQUUUUU=
+X-CM-SenderInfo: xfdrxt1qj6v25zlqu0xpsx3x1qjou0bp/
 
-On 10/16/25 10:22 AM, Geert Uytterhoeven wrote:
+From: Hang Cao <caohang@eswincomputing.com>
 
-Hello Geert,
+Add the eic7700 usb driver, which is responsible for
+identifying,configuring and connecting usb devices.
 
->> --- a/arch/arm64/boot/dts/renesas/r8a77960.dtsi
->> +++ b/arch/arm64/boot/dts/renesas/r8a77960.dtsi
->> @@ -2575,6 +2575,22 @@ gic: interrupt-controller@f1010000 {
->>                          resets = <&cpg 408>;
->>                  };
->>
->> +               gpu: gpu@fd000000 {
->> +                       compatible = "renesas,r8a7796-gpu",
->> +                                    "img,img-gx6250",
->> +                                    "img,img-rogue";
->> +                       reg = <0 0xfd000000 0 0x40000>;
->> +                       interrupts = <GIC_SPI 119 IRQ_TYPE_LEVEL_HIGH>;
->> +                       clocks = <&cpg CPG_CORE R8A7796_CLK_ZG>,
->> +                                <&cpg CPG_CORE R8A7796_CLK_S2D1>,
->> +                                <&cpg CPG_MOD 112>;
->> +                       clock-names = "core", "mem", "sys";
->> +                       power-domains = <&sysc R8A7796_PD_3DG_A>,
->> +                                       <&sysc R8A7796_PD_3DG_B>;
->> +                       power-domain-names = "a", "b";
->> +                       resets = <&cpg 112>;
-> 
-> status = "disabled"; ?
+Signed-off-by: Senchuan Zhang <zhangsenchuan@eswincomputing.com>
+Signed-off-by: Hang Cao <caohang@eswincomputing.com>
+---
+ drivers/usb/dwc3/dwc3-generic-plat.c | 58 ++++++++++++++++++++++++++++
+ 1 file changed, 58 insertions(+)
 
-The GPU is always present in the SoC, similar to IPMMU/GIC/DMA/VSP/... 
-which are also never disabled, do we want to disable the GPU by default 
-and enable per-board ?
+diff --git a/drivers/usb/dwc3/dwc3-generic-plat.c b/drivers/usb/dwc3/dwc3-generic-plat.c
+index d96b20570002..98448bc434a5 100644
+--- a/drivers/usb/dwc3/dwc3-generic-plat.c
++++ b/drivers/usb/dwc3/dwc3-generic-plat.c
+@@ -10,8 +10,16 @@
+ #include <linux/clk.h>
+ #include <linux/platform_device.h>
+ #include <linux/reset.h>
++#include <linux/regmap.h>
++#include <linux/mfd/syscon.h>
+ #include "glue.h"
+ 
++#define EIC7700_HSP_BUS_FILTER_EN	BIT(0)
++#define EIC7700_HSP_BUS_CLKEN_GM	BIT(9)
++#define EIC7700_HSP_BUS_CLKEN_GS	BIT(16)
++#define EIC7700_HSP_AXI_LP_XM_CSYSREQ	BIT(0)
++#define EIC7700_HSP_AXI_LP_XS_CSYSREQ	BIT(16)
++
+ struct dwc3_generic {
+ 	struct device		*dev;
+ 	struct dwc3		dwc;
+@@ -20,8 +28,41 @@ struct dwc3_generic {
+ 	struct reset_control	*resets;
+ };
+ 
++struct dwc3_generic_match_data {
++	int (*init_ops)(struct device *dev);
++};
++
+ #define to_dwc3_generic(d) container_of((d), struct dwc3_generic, dwc)
+ 
++static int eic7700_dwc3_bus_init(struct device *dev)
++{
++	struct regmap *regmap;
++	u32 hsp_usb_axi_lp;
++	u32 hsp_usb_bus;
++	u32 args[2];
++	u32 val;
++
++	regmap = syscon_regmap_lookup_by_phandle_args(dev->of_node,
++						      "eswin,hsp-sp-csr",
++						      ARRAY_SIZE(args), args);
++	if (IS_ERR(regmap)) {
++		dev_err(dev, "No hsp-sp-csr phandle specified\n");
++		return PTR_ERR(regmap);
++	}
++
++	hsp_usb_bus       = args[0];
++	hsp_usb_axi_lp    = args[1];
++
++	regmap_read(regmap, hsp_usb_bus, &val);
++	regmap_write(regmap, hsp_usb_bus, val | EIC7700_HSP_BUS_FILTER_EN |
++		     EIC7700_HSP_BUS_CLKEN_GM | EIC7700_HSP_BUS_CLKEN_GS);
++
++	regmap_write(regmap, hsp_usb_axi_lp, EIC7700_HSP_AXI_LP_XM_CSYSREQ |
++		     EIC7700_HSP_AXI_LP_XS_CSYSREQ);
++
++	return 0;
++}
++
+ static void dwc3_generic_reset_control_assert(void *data)
+ {
+ 	reset_control_assert(data);
+@@ -29,6 +70,7 @@ static void dwc3_generic_reset_control_assert(void *data)
+ 
+ static int dwc3_generic_probe(struct platform_device *pdev)
+ {
++	const struct dwc3_generic_match_data *data;
+ 	struct dwc3_probe_data probe_data = {};
+ 	struct device *dev = &pdev->dev;
+ 	struct dwc3_generic *dwc3g;
+@@ -75,6 +117,14 @@ static int dwc3_generic_probe(struct platform_device *pdev)
+ 	probe_data.dwc = &dwc3g->dwc;
+ 	probe_data.res = res;
+ 	probe_data.ignore_clocks_and_resets = true;
++
++	data = of_device_get_match_data(dev);
++	if (data && data->init_ops) {
++		ret = data->init_ops(dev);
++		if (ret < 0)
++			return dev_err_probe(dev, ret, "failed to init ops\n");
++	}
++
+ 	ret = dwc3_core_probe(&probe_data);
+ 	if (ret)
+ 		return dev_err_probe(dev, ret, "failed to register DWC3 Core\n");
+@@ -139,6 +189,10 @@ static int dwc3_generic_runtime_idle(struct device *dev)
+ 	return dwc3_runtime_idle(dev_get_drvdata(dev));
+ }
+ 
++static const struct dwc3_generic_match_data eic7700_dwc3_data = {
++	.init_ops = eic7700_dwc3_bus_init,
++};
++
+ static const struct dev_pm_ops dwc3_generic_dev_pm_ops = {
+ 	SYSTEM_SLEEP_PM_OPS(dwc3_generic_suspend, dwc3_generic_resume)
+ 	RUNTIME_PM_OPS(dwc3_generic_runtime_suspend, dwc3_generic_runtime_resume,
+@@ -147,6 +201,10 @@ static const struct dev_pm_ops dwc3_generic_dev_pm_ops = {
+ 
+ static const struct of_device_id dwc3_generic_of_match[] = {
+ 	{ .compatible = "spacemit,k1-dwc3", },
++	{
++		.compatible = "eswin,eic7700-dwc3",
++		.data = &eic7700_dwc3_data,
++	},
+ 	{ /* sentinel */ }
+ };
+ MODULE_DEVICE_TABLE(of, dwc3_generic_of_match);
+-- 
+2.34.1
 
-I would argue the GPU should be enabled by default, so the GPU driver 
-can do a proper power management of the GPU. If firmware is missing, at 
-least power it off on failed probe, if nothing else.
-
-[...]
 
