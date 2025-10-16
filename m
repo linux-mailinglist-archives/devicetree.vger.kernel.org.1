@@ -1,100 +1,104 @@
-Return-Path: <devicetree+bounces-227582-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227583-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08762BE2B91
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 12:21:34 +0200 (CEST)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 51E26BE2B61
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 12:18:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 95C83504C6A
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 10:17:29 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id F1257351AD8
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 10:18:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D193F328618;
-	Thu, 16 Oct 2025 10:16:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46D4732861E;
+	Thu, 16 Oct 2025 10:18:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="4dyf4keG";
-	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="m97xrjB9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="u59n4pwk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49B82111A8;
-	Thu, 16 Oct 2025 10:16:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11886111A8;
+	Thu, 16 Oct 2025 10:18:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760609796; cv=none; b=QaIY18Y0n2q+KyvmQ8psERxe3E7jM+jFB2Bc/GEFHvC/3BJoJ+Wbu2bhVfQuBw6zb6hHtpw9X0oqaSvfk5YbmJyP9pzovXgHbAUkoAMxMDpEtMSgPyQEkBLZ6/DspEps8mzz3OwlKBDhMHYw5WMoz6SYQ5S+7z2SwHOEZ2rm9PY=
+	t=1760609916; cv=none; b=MJShy1SHZ7kQL8QRi1XxEQOVqzBcZmY+z9+NhsmomUx9WmmNef23J7NdLAE6HPA3ay6qbh6Ty4d9jIJpcUPFcm7mOBxWgnzTHVnNOdjSk7Lpg5hyW2POH8XXo+H2mG8W3xxN1IALJMKWRny864lxS1hC3inwt1UzdnCr88yQpmk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760609796; c=relaxed/simple;
-	bh=8P2htBhrJO17CrkOlrLH3d0XBHXx2pEysnhLVdEWLvs=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=BR7N60Km+0ZPF+GGrKw3psf4oZs/kie0Y0Daktlq+AtTjE3hEUYgs/EETQ83jB7ddjKvOiDNuwKlK7jXxSyzBaLTl7e5CNSoeZphMMvvXYGRKIhFMtaJvW9gQ+ej2FlxFau0PliCU9g2MEyrERbZAC/h/sS8u30Si9CU4wMflKs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=4dyf4keG; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=m97xrjB9; arc=none smtp.client-ip=193.142.43.55
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
-From: Thomas Gleixner <tglx@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020; t=1760609788;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=TLL69dJksF4/iqPmPUgAV5VYqtWXMBbCiNFdjNIo33A=;
-	b=4dyf4keGlON8LSBC1aKpcUUuL7XHEVITligizH+whmze2T1S9YiS2D6lI5s+/gLeIWR+Ah
-	2ZvutviDhrj2QYaki5VnTWq9WyAVwapLiVFaqxATBh3L/m2E1ihklhIKGi144T0EXKix2C
-	oQbaxy9NojKDXswd7xxV+KFCr6e4+WtJc/oXCYHxht1AmCjh7NXJP6B6C85s5AXv6vKidQ
-	sxL9j4vlNzXONRtdmWcoynupVyIKDsrh3VK2xxETQMpmgK7096cCoIIyrviDRMVa9jDArH
-	D1H/x+S15p6l6MhcgrXNkB0oq/YW2StHHvaUm/wdDaSnsUNWHPGtTMdbVfqx6Q==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020e; t=1760609788;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=TLL69dJksF4/iqPmPUgAV5VYqtWXMBbCiNFdjNIo33A=;
-	b=m97xrjB9cTEobIoToBzhJ5TnfbY2K7rA/p04sZvWEmK5R41wJb0EJV+mN6bY2YtAI0RRug
-	rUMF1tse33kTVWDA==
-To: Lucas Zampieri <lzampier@redhat.com>, linux-kernel@vger.kernel.org
-Cc: Charles Mirabile <cmirabil@redhat.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, Samuel
- Holland <samuel.holland@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>,
- Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, Vivian
- Wang <dramforever@live.com>, devicetree@vger.kernel.org,
- linux-riscv@lists.infradead.org, Zhang Xincheng
- <zhangxincheng@ultrarisc.com>, Lucas Zampieri <lzampier@redhat.com>
-Subject: Re: [PATCH v5 3/3] irqchip/plic: add support for UltraRISC DP1000 PLIC
-In-Reply-To: <20251016084301.27670-4-lzampier@redhat.com>
-References: <20251016084301.27670-1-lzampier@redhat.com>
- <20251016084301.27670-4-lzampier@redhat.com>
-Date: Thu, 16 Oct 2025 12:16:26 +0200
-Message-ID: <87sefj179h.ffs@tglx>
+	s=arc-20240116; t=1760609916; c=relaxed/simple;
+	bh=XBZLRHeHwSEC/eQfjqXZydQM4j4g6/JbFasBuQ9ZViM=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=b2Ry47oXD11R3Q2jL15Syv8AKC0CUcx8RUgLt2n91mgFO0s8QHZpnB5Uq1J47VNLF9iDWkyh/tVaCc4QIyWYx/xrN0mERQNuDMAbg7auDOq6XABvDYyDYOBX0OqModGEchA5alUpvu+2KJRO5rk0uhL8yKCLSZl086V/Zt4OcGg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=u59n4pwk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A231C4CEF1;
+	Thu, 16 Oct 2025 10:18:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1760609915;
+	bh=XBZLRHeHwSEC/eQfjqXZydQM4j4g6/JbFasBuQ9ZViM=;
+	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+	b=u59n4pwkDkGBXihWHVgPwxqsBGP9fYXWL9jaiHx/8IoRggh4zobpQte2xN2lu3F+X
+	 WB3ntzOPSP8sW2NLv5otBAaSPLFIusOe9p9dGVtEYhCT00ZbHM2EkQz9drh9BO2JsD
+	 x0yWfjvq/anDLdK5EIIKqesTTfJNVDNHs1ZClZSwjO0aB+SV/odVCGnbwuaP5obmbK
+	 IEgsc693K3MmRPtdzTulHM8BvbxF+HTqYDqLW/1QB5Qdrca8sIv5o2h6KDI5EfSVoC
+	 d9iYa+J9Is+vWEfXRsr6oS3gcZCwdi8tbOboVwwYm/rCnXZ9vgLlX0B+fQPms2bcgD
+	 lL5q6miHXWBBw==
+Message-ID: <16def16e-fead-4d32-812c-5672773ef3bb@kernel.org>
+Date: Thu, 16 Oct 2025 11:18:28 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 5/6] media: qcom: camss: csid: Add support for CSID
+ 1080
+From: Bryan O'Donoghue <bod@kernel.org>
+To: Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>,
+ Loic Poulain <loic.poulain@oss.qualcomm.com>, Robert Foss
+ <rfoss@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Todor Tomov <todor.too@gmail.com>,
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>
+Cc: linux-i2c@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-media@vger.kernel.org, aiqun.yu@oss.qualcomm.com,
+ tingwei.zhang@oss.qualcomm.com, trilok.soni@oss.qualcomm.com,
+ yijie.yang@oss.qualcomm.com, Jingyi Wang <jingyi.wang@oss.qualcomm.com>,
+ Atiya Kailany <atiya.kailany@oss.qualcomm.com>
+References: <20251014-add-support-for-camss-on-kaanapali-v2-0-f5745ba2dff9@oss.qualcomm.com>
+ <20251014-add-support-for-camss-on-kaanapali-v2-5-f5745ba2dff9@oss.qualcomm.com>
+ <5f0e081c-30f6-4ff9-b8d2-2af0d87efd23@kernel.org>
+Content-Language: en-US
+In-Reply-To: <5f0e081c-30f6-4ff9-b8d2-2af0d87efd23@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Thu, Oct 16 2025 at 09:42, Lucas Zampieri wrote:
-> @@ -430,6 +516,8 @@ static const struct of_device_id plic_match[] = {
-      ^^^^^^^^^^^^
-How on earth did you manage to screw up the hunk header?
+On 16/10/2025 11:04, Bryan O'Donoghue wrote:
+> drivers/media/platform/qcom/camss/camss-csid-gen3.c:        csid- 
+>  >reg_update &= ~CSID_RUP_AUP_RDI(port_id);
+> drivers/media/platform/qcom/camss/camss-csid-gen3.c:        csid- 
+>  >reg_update |= CSID_RUP_AUP_RDI(port_id);
+> 
+> and this in your code
+> 
+> 
+> λ ~/Development/qualcomm/qlt-kernel/ linux-stable/master-reviews- 
+> oct15-25* grep aup_update drivers/media/platform/qcom/camss/*
+> 
+> drivers/media/platform/qcom/camss/camss-csid-1080.c:static void 
+> __csid_aup_update(struct csid_device *csid, int port_id)
+> drivers/media/platform/qcom/camss/camss-csid-1080.c:    csid->aup_update 
+> |= AUP_RDIN << port_id;
 
-Applying: irqchip/plic: Add support for UltraRISC DP1000 PLIC
-error: corrupt patch at line 116
+And now that I see the code side-by-side - also please use the 
+established macros and/or write a new macro to follow the established 
+pattern.
 
->  	  .data = (const void *)BIT(PLIC_QUIRK_EDGE_INTERRUPT) },
->  	{ .compatible = "thead,c900-plic",
->  	  .data = (const void *)BIT(PLIC_QUIRK_EDGE_INTERRUPT) },
-> +	{ .compatible = "ultrarisc,cp100-plic",
-> +	  .data = (const void *)BIT(PLIC_QUIRK_CP100_CLAIM_REGISTER_ERRATUM) },
->  	{}
->  };
->  
-> @@ -664,12 +752,16 @@ static int plic_probe(struct fwnode_handle *fwnode)
-     ^^^^^^^^^^^^^^^
-Ditto here.
+There's virtually no good argument to replicate a bit shift or twiddle - 
+that can be functionally decomposed and encapsulated in one place and 
+subsequently reused.
 
-I fixed it up manually. Please be more careful next time.
-
+---
+bod
 
