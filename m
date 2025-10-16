@@ -1,103 +1,117 @@
-Return-Path: <devicetree+bounces-227622-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227623-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E62FBE2F4D
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 12:54:33 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3031DBE2FB8
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 12:58:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4EA863B9045
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 10:54:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C8E8B3BF476
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 10:58:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5ECC52E92DC;
-	Thu, 16 Oct 2025 10:54:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CD9F2E543B;
+	Thu, 16 Oct 2025 10:58:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="riheAUHm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BYBd3f0e"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 210FA2E0934;
-	Thu, 16 Oct 2025 10:54:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D1E72D4803;
+	Thu, 16 Oct 2025 10:58:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760612068; cv=none; b=sH3YosKnxTsEzP2fz7Rrq6n35j+gX7cfbqdbqzlbJVBAcckunYbUgeZgZb3pSdlYhKOG76G9zJCAcsjm74TYMdxqlsKnVZTrjfO9dv59CEZPH9olSPXDZx9eO7adQ8X55OahMXXMcsow0hzD28PLVHjZcPrLKfnaPqqRw2VffSg=
+	t=1760612299; cv=none; b=M+qO5QNCfWLjC0SHgE/iZcxdOnUl/0ZweZAkYa/b8Vj9jOWivu96KXeHf3J9kFHhIo3sb5gpPwXmHKHvqKu/G+pqYZCVbxU6LAcvMSyj39vVTyusVdujUE0lUV18QzuuSgrwwxHHphfbkCQgcjSfm66ArRmg7+6U/yij0xCaTmM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760612068; c=relaxed/simple;
-	bh=MNQCEVD7t9irNK9SNNWAEb+eVUCg70XjNwcvI0uGKp4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=GTVTzQgeduxhf4HzL3LiCYl14xmJIrmXrZjnsYs1u4OOns5dLEfkqpIquRZT1t1uA8FF42ZpeHaqGCkFciiguXcXTW0+KDs3KxD4NVifLbdqu6/gyYNK0/YA3TAYxNo8vSRoepjOYb92UoYBZEc7KCs+x1hDu+FkG7XZOe67GQU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=riheAUHm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 28ECEC4CEF9;
-	Thu, 16 Oct 2025 10:54:21 +0000 (UTC)
+	s=arc-20240116; t=1760612299; c=relaxed/simple;
+	bh=cIG0LBA0EBE4pS7e8v8i1abU52KH42lFqM/1hKG+T6g=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=qySxScIMyfwPZvpZjOhzTkxkayeuRHnLchoBOL2qXLbDAeiK2OgCNKnq0RcSyy/xWAc87FV2anMSv72UtH2QantGANWnA+Pof6bESRBFcUJVc2FJSReruTqvCNKWlWUYsb7Z/cKE15Jhs4rwCsQzSesTiU3vR3cjRsI1TfyyY3E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BYBd3f0e; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 77777C4CEF1;
+	Thu, 16 Oct 2025 10:58:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760612066;
-	bh=MNQCEVD7t9irNK9SNNWAEb+eVUCg70XjNwcvI0uGKp4=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=riheAUHml/y4W6kqiKw/pLQ7BTTMesLHUX9EXFHhxbsRXaH72SRDyKa3q6aooHfLe
-	 7xg+pU9jyIH0JPxwQGzDmiDyWerLHOxWwL5Ac177i7QL6+0CJem42DOdA7HF/NlcGW
-	 Pg3Puhw9TU0FnnP4CKBldchVXFgcW09fislJ0uUZ6pIGocKWiSRwSXVV0s8abk7diX
-	 uMOCYy9gnygbR1PGDoQS+f+mf4/udeyWsaIc8VOYKVz0DasnaPm53oM1GlrCNDjlWk
-	 qg1QwDJ93rtIc6ae26r7JzMzSkGnzqZ1dX+nCyZWoeun6HrIlt4BLCRn2cJ6LhYtJ4
-	 jlzlUpapYBMTg==
-Message-ID: <f5df1c29-a1cd-4cc7-8ac4-b4aefc4225b0@kernel.org>
-Date: Thu, 16 Oct 2025 11:54:20 +0100
+	s=k20201202; t=1760612298;
+	bh=cIG0LBA0EBE4pS7e8v8i1abU52KH42lFqM/1hKG+T6g=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=BYBd3f0ebCSEqSY4LkrtI2chwVdG0GQV1G2g4B5u+2iH3pLG9kYf0TC/ID6fo0Gi4
+	 ryaH3/5tOCaI5/Mp49yRY/Ef2LCzCJkvw5tS9ZT7pzsL64mhp33fgCd0rYxpLoGRko
+	 zlHNDp3AbhMG4GbNwZVFKugrNXZTWRw2LwTkaCfr3bF6YPfP6NlybRL/uWA8GvADmb
+	 Js+ukJRejbcbpugBEi8Umjeo2kVPp7TwPVkSfYC1IRuB2iyyGWWND5IJi1wOnlHJPh
+	 7Hs4S6Oz9OU0/ucPCyr7nwvfIobj1d3OPd2s4rfOvWT1Y4LFvVWywSs1lyVq1dwvlP
+	 PSY6HLf/Sl+mg==
+Date: Thu, 16 Oct 2025 05:58:16 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 6/6] media: qcom: camss: vfe: Add support for VFE 1080
-To: Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>,
- Loic Poulain <loic.poulain@oss.qualcomm.com>, Robert Foss
- <rfoss@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Todor Tomov <todor.too@gmail.com>,
- Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>
-Cc: linux-i2c@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-media@vger.kernel.org, aiqun.yu@oss.qualcomm.com,
- tingwei.zhang@oss.qualcomm.com, trilok.soni@oss.qualcomm.com,
- yijie.yang@oss.qualcomm.com, Jingyi Wang <jingyi.wang@oss.qualcomm.com>,
- Atiya Kailany <atiya.kailany@oss.qualcomm.com>
-References: <20251014-add-support-for-camss-on-kaanapali-v2-0-f5745ba2dff9@oss.qualcomm.com>
- <20251014-add-support-for-camss-on-kaanapali-v2-6-f5745ba2dff9@oss.qualcomm.com>
- <8d61f29b-ba02-4757-b8cd-5fb51b998acb@kernel.org>
- <FA4lDfkvC1Bdn7xJsoLXyWUEackUIfrSW4vn_6Q5YA5pDcNJ0QZ8EeU0CuEqKQuzdnYLC-AIvy9RhoY2ba5sbQ==@protonmail.internalid>
- <1aa133b9-2a99-47cb-8309-7e49b5dc4f85@oss.qualcomm.com>
-From: Bryan O'Donoghue <bod@kernel.org>
-Content-Language: en-US
-In-Reply-To: <1aa133b9-2a99-47cb-8309-7e49b5dc4f85@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: broonie@kernel.org, igor.belwon@mentallysanemainliners.org, 
+ linux-kernel@vger.kernel.org, lgirdwood@gmail.com, kernel@collabora.com, 
+ matthias.bgg@gmail.com, wenst@chromium.org, devicetree@vger.kernel.org, 
+ krzk+dt@kernel.org, lee@kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-mediatek@lists.infradead.org, conor+dt@kernel.org
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20251016093054.126293-2-angelogioacchino.delregno@collabora.com>
+References: <20251016093054.126293-1-angelogioacchino.delregno@collabora.com>
+ <20251016093054.126293-2-angelogioacchino.delregno@collabora.com>
+Message-Id: <176061229682.2195705.7053755296248416631.robh@kernel.org>
+Subject: Re: [PATCH v9 1/9] dt-bindings: regulator: Document MediaTek
+ MT6316 PMIC Regulators
 
-On 16/10/2025 11:33, Hangxiang Ma wrote:
->> But why ?
->>
->> ---
->> bod
-> That a story. When testing the RDI path on Kaanapali, we found one image
-> buffer starved at 19/20 stage. We want to capture 20 images but only 19
-> received.
+
+On Thu, 16 Oct 2025 11:30:46 +0200, AngeloGioacchino Del Regno wrote:
+> Add bindings for the regulators found in the MediaTek MT6316 PMIC,
+> usually found in board designs using the MT6991 Dimensity 9400 and
+> on MT8196 Kompanio SoC for Chromebooks.
 > 
-> On Kaanapali, the AUP and RUP are split into two separate registers not
-> a single one. Maybe this hardware change impacts something. Calling
-> ops->reg_update() in vfe_enable_output_v2 function only applies one
-> buffer address. The downstream code defers AUP and RUP to CSID
-> configuration stage. We mimic that and find it can solve this issue.
+> This chip is fully controlled by SPMI and has multiple variants
+> providing different phase configurations.
 > 
+> Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 > ---
-> Hangxiang
+>  .../regulator/mediatek,mt6316b-regulator.yaml | 78 +++++++++++++++++++
+>  .../regulator/mediatek,mt6316c-regulator.yaml | 78 +++++++++++++++++++
+>  .../regulator/mediatek,mt6316d-regulator.yaml | 77 ++++++++++++++++++
+>  3 files changed, 233 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/regulator/mediatek,mt6316b-regulator.yaml
+>  create mode 100644 Documentation/devicetree/bindings/regulator/mediatek,mt6316c-regulator.yaml
+>  create mode 100644 Documentation/devicetree/bindings/regulator/mediatek,mt6316d-regulator.yaml
+> 
 
-So this is the type of interesting detail that I'd go looking for in a 
-commit log, a comment in the code or a footnote in the cover letter.
+My bot found errors running 'make dt_binding_check' on your patch:
 
-One or two sentences in the commit log will do.
+yamllint warnings/errors:
 
----
-bod
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/regulator/mediatek,mt6316c-regulator.example.dtb: pmic@6 (mediatek,mt6316c-regulator): '#address-cells' does not match any of the regexes: '^pinctrl-[0-9]+$', '^vbuck(124|3)$'
+	from schema $id: http://devicetree.org/schemas/regulator/mediatek,mt6316c-regulator.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/regulator/mediatek,mt6316b-regulator.example.dtb: pmic@8 (mediatek,mt6316b-regulator): '#address-cells' does not match any of the regexes: '^pinctrl-[0-9]+$', '^vbuck(12|34)$'
+	from schema $id: http://devicetree.org/schemas/regulator/mediatek,mt6316b-regulator.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/regulator/mediatek,mt6316d-regulator.example.dtb: pmic@7 (mediatek,mt6316d-regulator): '#address-cells' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/regulator/mediatek,mt6316d-regulator.yaml#
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20251016093054.126293-2-angelogioacchino.delregno@collabora.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
