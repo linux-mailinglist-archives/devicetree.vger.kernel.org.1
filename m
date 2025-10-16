@@ -1,229 +1,287 @@
-Return-Path: <devicetree+bounces-227734-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227733-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8240EBE4062
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 16:54:02 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D78BBE3FFF
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 16:49:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C67A8548795
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 14:50:40 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 6801C4F4151
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 14:49:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DBA334F474;
-	Thu, 16 Oct 2025 14:49:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A42BF34573A;
+	Thu, 16 Oct 2025 14:48:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="aGiY9CuH"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="eI0bzSXr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+Received: from MRWPR03CU001.outbound.protection.outlook.com (mail-francesouthazon11011035.outbound.protection.outlook.com [40.107.130.35])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FC27346A16;
-	Thu, 16 Oct 2025 14:48:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.13
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760626157; cv=none; b=ocDwA1KEC7N+fK5x8ja79mM/t6AgmjnvH5S1MuZA47THX+z9JgnCVp9aTZ3hh7SF8lbH0j0Z8ErgqYYXN2psSIVFADsqD5/ha4nkQUN+W2Ut5KqWb8SMdMwkslDGVbBCkO0drvatxW+XELpzljMwOHundkavbwKJREkA1VkRkfk=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760626157; c=relaxed/simple;
-	bh=UuaSQVv6dm0D0kN6ZVf9PFfmOCcnIoxeV4OMPhiTiIk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZFJpDn/d1En7h/zVP7luwRyevNCvZCMhXMOR8EmnkdIRhWn9onASBCPcxPSE23LgNDThgzbetVzANC1EWr4KxtT3CpT2iqVK9HtMyEZNczDf8EldpLQd8TW6uoyaoeQrekoD9bu/AWjFssLJH+5kBdWRf7T6Td8DhAr9N1kHRXw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=aGiY9CuH; arc=none smtp.client-ip=192.198.163.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1760626139; x=1792162139;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=UuaSQVv6dm0D0kN6ZVf9PFfmOCcnIoxeV4OMPhiTiIk=;
-  b=aGiY9CuHXDHaKCXCSV3Gc80R/ledI4TjOuuALJSmk+mFj1HBrrNG/2Je
-   8e6SQM4/tltPteXTWMnDv1VUnE/AmdbBofVJDP5cWx1d1mvyjyhc8/bwX
-   UIPoMA47RZMmJD9DiB8Yi7V4OkAmE3rle4aP453w+oVH5XzxgAtuZVhVm
-   u/isABSanCuQW4do6zoKRXP+QUpPCJhbxuP5iLxAobe/ygMj9AmNaFMyI
-   Jj6bEiVIF2TS+AXhC9nQW+yMks3jkXPSXRYglZxsrnGoqjXWugHRkdPpS
-   +LypVp6IPJPrzt4/i2UDgd+oLkApYezKfFOmJW45lPGIZA14lZnmmMhCr
-   w==;
-X-CSE-ConnectionGUID: Jk9BBrQ0TaaKkxNOyp1qIQ==
-X-CSE-MsgGUID: ns/jeItNTQ2YKW+MGFkg1w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11584"; a="65435738"
-X-IronPort-AV: E=Sophos;i="6.19,234,1754982000"; 
-   d="scan'208";a="65435738"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
-  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Oct 2025 07:48:53 -0700
-X-CSE-ConnectionGUID: txGvphJxSIe+Wkrpx74r1A==
-X-CSE-MsgGUID: vPVOaWWKReulJ8C0yPEhtA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,234,1754982000"; 
-   d="scan'208";a="186746061"
-Received: from lkp-server02.sh.intel.com (HELO 66d7546c76b2) ([10.239.97.151])
-  by orviesa004.jf.intel.com with ESMTP; 16 Oct 2025 07:48:48 -0700
-Received: from kbuild by 66d7546c76b2 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1v9PHZ-0004vD-1i;
-	Thu, 16 Oct 2025 14:48:45 +0000
-Date: Thu, 16 Oct 2025 22:47:55 +0800
-From: kernel test robot <lkp@intel.com>
-To: "Herve Codina (Schneider Electric)" <herve.codina@bootlin.com>,
-	Wolfram Sang <wsa-dev@sang-engineering.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70FFD3451CC;
+	Thu, 16 Oct 2025 14:48:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.130.35
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1760626097; cv=fail; b=hrHsa57Uxi13OSziu2EORRaiboYRUgbvm+SeH40ucr/nX5yWvPMvPimVSRHVQ5+XKWewMXVWBkmpV+QrugfJBMBUlc9ylZJGl6kevfFrcuBJOyJNZxgG/LXuVoJhMrFKYz6i7lunr7IKyeusbg18Z22mlB+hZuZpvp4ozHRD8eY=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1760626097; c=relaxed/simple;
+	bh=ekgL0oCbcGaOSMIgMGQsRHOcqzgE4DtakjhAnLjtxow=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=AYXEiUsXXEEc2kJuooasbNv0C+VrNNntXBqZzqZMOcYSbr26M65LjqCz5b1rIkb8Ypiztpk7axCR9ZZbcQ8prkRHn6O2sHCphhQf+VZaRCtqMF4qbhfLqvwJvEFcW+/+Xf3sSIbE0UBe2n/iwe1PXcw9/DJszMZuVIHKToTSw/4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=eI0bzSXr; arc=fail smtp.client-ip=40.107.130.35
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=KuhLxcbG/+RmC5/pNEu15KOU5Uz5PviPgMxX2b5EGVZzlAfN9PYSqxLkL1Xe0A+5CCYsLWqAaeyCSY35oX2ve0Hlr1hMv3L95ozASk5RIFHDnt23jvXE/6ZMnQuEMHVOcuJFKc6XJvU2mGXPYoY6XIKbjAKvvWlm2d1ImxMEhwHxJMxhYLFyMSc/sulEl1UImAzqxBemAzXDkpsJmeIf1jxvnoI6YyP85cpxZhhLznQJt1ryLW6Dq1fcgPmRGZg7nh4PmkvAI7X3CgaILnpFwXJEIvgukdS/JyCMxy2ZHBRqIK1wQwPsjfDas51SqNNrNSLmqCnNseR+8ELRKxWFHw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ziISQ4ihHW+Iw82LwuYtZbYgCJyXsHjarY9khGlEEXo=;
+ b=zWNPOdCUgZ80ktbsiYszzEUXRkphl7SlWQ31DaSY7GiWiX0/ueT1eCU2mVUZdp3xvOBbP52nLDe+oXQwcYalfILlu7/mmbj3VleA/p3DFNmg/fOrYkF+YZHRtqT4GUbhmIhamZahfUZa6Mc1z1lpw3v+kkfUqvYWYkJ5DXdaAPzqZddFnGg07ew6Gnaw/eYfRKzoHARHtNR7Q9x8Rx8/drdFnFw+MLTK2k9xE9Jp0yttTKi8h1ARRkMrZSb4rCttxHSoc5IkPy39C0N7YcwzIWNrX2udGIz5Pw3YD53j6a45Pf6SkxCr0PYxMygtSUlGZSCFAt/RLNlzqBVJL1zqDw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ziISQ4ihHW+Iw82LwuYtZbYgCJyXsHjarY9khGlEEXo=;
+ b=eI0bzSXrN4hUi6Bfv3w8uLsXVCL0JshcPEmf4S6kIp7V7i4uO5r/K7wGX2inyGEOCWjSS4oR7bhD3L3VyFITmAlxSMtlmQ/pWsvMhwQO51kdxvgsXKK2YQBz9TWvyT7pd6eKSMuEMoc3vP+Mofmd2p3iKbT66IUIk4rnExfgi6kg3kQFuOyaW0hzTTEWagQjw91bAIH8r4+6Dy71gqxUPvBab9S0lxzyFXadISTTZ+CXyoJiXjBY/zZde9G5uo+vZXX8nhckBddrqJu/JwLHmPIWGzNqvZY8Pv0yuoGjcKhVf/bkahVHf4iK7aZIvpq/VlEMV7t498o8bIlqAKt6uw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXSPRMB0053.eurprd04.prod.outlook.com (2603:10a6:102:23f::21)
+ by AMBPR04MB11785.eurprd04.prod.outlook.com (2603:10a6:20b:6f6::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9228.11; Thu, 16 Oct
+ 2025 14:48:09 +0000
+Received: from PAXSPRMB0053.eurprd04.prod.outlook.com
+ ([fe80::504f:2a06:4579:5f15]) by PAXSPRMB0053.eurprd04.prod.outlook.com
+ ([fe80::504f:2a06:4579:5f15%6]) with mapi id 15.20.9228.010; Thu, 16 Oct 2025
+ 14:48:09 +0000
+Date: Thu, 16 Oct 2025 10:48:00 -0400
+From: Frank Li <Frank.li@nxp.com>
+To: Rob Herring <robh@kernel.org>
+Cc: Tomeu Vizoso <tomeu@tomeuvizoso.net>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	linux-iio@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Pascal Eberhard <pascal.eberhard@se.com>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH 2/4] iio: adc: Add support for the Renesas RZ/N1 ADC
-Message-ID: <202510162222.Fe1rY5aB-lkp@intel.com>
-References: <20251015142816.1274605-3-herve.codina@bootlin.com>
+	Oded Gabbay <ogabbay@kernel.org>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	Sumit Semwal <sumit.semwal@linaro.org>,
+	Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+	Robin Murphy <robin.murphy@arm.com>,
+	Steven Price <steven.price@arm.com>,
+	Daniel Stone <daniel@fooishbar.org>,
+	Sui Jingfeng <sui.jingfeng@linux.dev>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+	linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org
+Subject: Re: [PATCH v4 2/2] accel: Add Arm Ethos-U NPU driver
+Message-ID: <aPEFoDrTBxH7Y2FL@lizhi-Precision-Tower-5810>
+References: <20251015-ethos-v4-0-81025a3dcbf3@kernel.org>
+ <20251015-ethos-v4-2-81025a3dcbf3@kernel.org>
+ <aO/4cQ8+eLnwqFSh@lizhi-Precision-Tower-5810>
+ <CAL_Jsq+L2RHgP9FaEpxzzVRybyjeNr84xgEBbU4KEyZtrz63FA@mail.gmail.com>
+ <aPAL67Oct5yJv8/d@lizhi-Precision-Tower-5810>
+ <CAL_Jsq+sEYztJKdD0t8uPwwv1uKk_tac3MqQMUgxfrRjRZmz4A@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAL_Jsq+sEYztJKdD0t8uPwwv1uKk_tac3MqQMUgxfrRjRZmz4A@mail.gmail.com>
+X-ClientProxiedBy: PH8P223CA0030.NAMP223.PROD.OUTLOOK.COM
+ (2603:10b6:510:2db::26) To PAXSPRMB0053.eurprd04.prod.outlook.com
+ (2603:10a6:102:23f::21)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251015142816.1274605-3-herve.codina@bootlin.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXSPRMB0053:EE_|AMBPR04MB11785:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6ffed2a9-8597-49da-3b20-08de0cc305d4
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|52116014|7416014|376014|366016|19092799006|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?bmt5b0VHSVRQdGhibDErUkdpd1hxZWY0VHNJbm5zWkV2WGthek5mTFZlNWg1?=
+ =?utf-8?B?RnhuZmRqb1k4eDlXZno4WFlBSVREMmoyYlR3M3BndGZrUVA2TVpTQTltR3pI?=
+ =?utf-8?B?ZFRPV3pVUXl2eWdaSjA5VG5VUjJ6WkFXa3pISS9xbTg4amZYYUdLclhZS2Nr?=
+ =?utf-8?B?Wm9UMDNnSUJsdDBKWWthQmFXYnlqMFc0cUIzN0FtY0xrdWxQSmlaZFB4Rlgr?=
+ =?utf-8?B?VjZQQ0JMcUpFVXN2ZktuZXJodXN1dTdtY2pNcHRKQjZsNmZ0RXlYT2c5cmNL?=
+ =?utf-8?B?MVNic25IL3R4cFFXaXd6eENTU0FWcjBJOGdCZDdkUm9GZlUwQklLeGFpYUpN?=
+ =?utf-8?B?ekY2UG02RFFxYWpQYnhkZUs5YkpkcHd4NThqSmp1NXlBOWh3SUl4aFAyMUFJ?=
+ =?utf-8?B?QXhES0tuQUtnMG94MnpINzQ0K2FIdjd4aENpMTJXem5UdEpkdEo0c0o2ZmNT?=
+ =?utf-8?B?MmFLbWw2czRjUzVvNGc3dnhBQk5LczFpanhCL2twZDUrNGYwcXdmb0RoQWJp?=
+ =?utf-8?B?MjYySkw1Znp4WkN2VTBWWWgrOXVudzRZSDdwNEh6a0RuQ0NBZFY1NmFDY0NJ?=
+ =?utf-8?B?UTgyam9Rcmd4QXk4SmpmYmJDMUE4dzRDLzdZWEltMUM0V1NJMlo4NzNFOUJS?=
+ =?utf-8?B?WU5DWXpyUnRHVW9NVnQzTFIxSEFEVTFTVGg0ZmdNaUhGd3BYY1hpaVpkWEFy?=
+ =?utf-8?B?d0xKbmRTUTByMU1LYUYwdTAxdXQzVm4xYjFQMmZPZElDY0ZoekxQRjRZbnhL?=
+ =?utf-8?B?WUlLeVV1bjVFTEpjVjl0UE40Z3BtVEdiOFgrZi9OTjBjb2ErV0VEL0tmRXJ3?=
+ =?utf-8?B?VHA2cTRxbXEybDhOYnlPTlRhMVR4aURBK2ZaYUkwNFVxdnhrdlVHSXI0RHg1?=
+ =?utf-8?B?cG9sUERteEdIckVkNVFoS05pc3l2T1R2c21JUUsvSVpHczhpTHg2WnBCaTlM?=
+ =?utf-8?B?a2c5Vyt3SURDQTMrSVI1VDVjRWx2dXFnZkhvd3BudVcyd1loV1c5aGZ1ZkNC?=
+ =?utf-8?B?SUZPeGw3K2lBZ3hvNXZBWkNCRlhEeDVHUCtzbXQwUEhjZVNzbzVUTjVhMGda?=
+ =?utf-8?B?RFVweGVQSFpENlFBWTNCM2VPUzEyU3QzTDgzMmhDTW9WMS9FQjZ2ak1QTXM0?=
+ =?utf-8?B?RVQwNTFudVJhSFJnWXY3WTFhc1g1UlBHMnRhMXU3TnJwRWZudXJYRVRncS9Z?=
+ =?utf-8?B?b2FlTUprRjJGajFqMUxBeEJGbkRUNkVZVTNobUEzOHJsbWpyVFEvY1NNUlRl?=
+ =?utf-8?B?eU9JNlBZN2ZicXFjbHpGMy9tL0FjVnlBMnBUZDZ0QkZhZm1HOHVMdHgxN2Np?=
+ =?utf-8?B?S3pWNDVraXBIQUN3YjkrSXh6N3VYR3ZnWEhtbGxJUVhlTHF4S0FaNmtnUWxR?=
+ =?utf-8?B?S1hRYW12SklsOXhTUkQrTVVuQTB0aEtFckI5Y3VsVDR6RXdmVjcxZmY0MG9J?=
+ =?utf-8?B?dSt3eDBtUU5MRG9CZDREUnJsSzhsV1p3WHRSWDg4RXBhVmg4ZjNjWitLN25K?=
+ =?utf-8?B?clFqelNIVS9kYzZOMW1XUWlWOFl1WGUzdGhJMm1hM2NlUU4xK0hNSzlDR0lw?=
+ =?utf-8?B?bWh3ek9YYlJmTlB0RkZzMjFqc0plNktkR1d2TWo5dnc3SGYyWjVTaW53MmVC?=
+ =?utf-8?B?cGxkaHorb0U0cmNjK0VKME5NV1NEYlI1TWN1WENiNDROc0xyVmpieXlmSTJi?=
+ =?utf-8?B?dlh6RzBTK0grMGNTSmQvSTA4QWg2QjJtdjhUUTFLdDRENmFPd1puM3pkd3NL?=
+ =?utf-8?B?VVQ5c0tRblNRd1ZnY1loWnJ2Z1A1WGVHOERxZnBTV2Q5ODVJaG0ycCs2ZVI2?=
+ =?utf-8?B?WGxsaEhVbTg2bFgwMUJ0UUJ1cG13QWNIeVdlOFo0VE5tdER5YVVnL0Z3Tkky?=
+ =?utf-8?B?bDhNRW9rSnovZm1pbkNjNUFxdS83OG00RmJrTVZocTJvVGliYXc0YTJlTkNr?=
+ =?utf-8?B?TWJBMGtIMlBQRDU2UDB5MGd5eG43cmhrbVI5RTVxUnUweHVpem01TTlKTWZE?=
+ =?utf-8?B?VXFYck5WU1ZxaGIzK2d0alhTS3NyenhXZUhNL3lqQ2E3ZzllazhNVTZnVERa?=
+ =?utf-8?Q?KB62Yr?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXSPRMB0053.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(52116014)(7416014)(376014)(366016)(19092799006)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?RDlsNHlZNFdwVzJGQWJmYVlTTHhUcUdreDc5a1l3T3d4Q281SWhEV0tEUUYy?=
+ =?utf-8?B?OUlHNkhPeE1VWVh3Q0kzWGxxQnFVZmE1ZWtiL3VzTVFnczFJdFdKaGpwMXFh?=
+ =?utf-8?B?SnN2eHU3NlUyQ1Zld2pxRkFXZnBaM2J0THd1N05WZUY2VUhhVGJwblM3U2E3?=
+ =?utf-8?B?RUJTWmlRN3Rhc1hWcmpVVGFVRjl6RjZzYjk5UmUydS9IV3FTbkswTFR5MVFs?=
+ =?utf-8?B?UlYvL1VGRVZEalRIRStFdG5oQ0x6UzN3MWlXRWNwaE1pY0E5Z1gzaVFQRm1U?=
+ =?utf-8?B?dW5paDZFNUlPWGpXdGI4UDBTdmo4dDhUeENvalhTYldOVlp5NXBiSVUycTlq?=
+ =?utf-8?B?U25YdzVJTGpvb2NGVVgvZW83NkRock55VUFCYVdxeVErMCtZemVIcnhmdnJI?=
+ =?utf-8?B?cVdESG4vaWVlSC9tcTg4RU9jNGd5blJaaWU0Y1gvVnlVdDBmZXB2Wk1KaUx6?=
+ =?utf-8?B?N1BMOEl1SlJlbkpIbSt4S1VzcHdXczM4anNSZlR4eFM3S0F0dU81K0tXaUEz?=
+ =?utf-8?B?ZDBqbmtGTUZFT1ZEN2tqWmhmYTRpNUxudnFzOHBJcjJUdjFDdVBhTHdIbWJM?=
+ =?utf-8?B?Q0hXRjJ4QVh1ZHl2Y081dzJNTklHcXpNb3UrZGRDRnI5UENRVkVQa0NKTGF6?=
+ =?utf-8?B?c2VhV01Wb1Z6SFdFMm0wT3BKZ3puQjBOcXhrODNtdVI2NDkwRkF0cXhiV1h3?=
+ =?utf-8?B?Smswd0FnTW5FVDlzQWtKRzQyekxnak5iU0xIWDlGV3VXY3JOL1BGNldUWXdM?=
+ =?utf-8?B?aytrbmJ1am16UW5waktxNVJONXkvUnBMZ2p2UkowQk9qZTlHSkVZQ2NZYmVO?=
+ =?utf-8?B?MmhvNFYwQ1dlbkdBSi9pTTNPOXJvODlSMFZyT2Z0ZHNFUjVtS04vWE1iUEE3?=
+ =?utf-8?B?RDhqVFUzQk1Ba0N5bVc5VmIvNWJYbCtIbk9neENLSlNxTGN0QXF6a3BGYmpa?=
+ =?utf-8?B?RDZyaGlJNFlvMmt1dStiZjZySDJOZmsxTitVaklvQmx1WlpITktwVGRPRTZ0?=
+ =?utf-8?B?emZTV3RpVWdnVVVteGRXbDZjcFlNTytxbi9ZSGJZQzlRclZvY2I0b0RBbmdB?=
+ =?utf-8?B?dUJ5bWxjdFpoZzJTR3dicmdVaW5lSjZKcU50Sk5odVVTVUloZms3Nk14Vzl2?=
+ =?utf-8?B?eksrVnd3TlZxazN1UnRGQkZvMVo1dVJacEh0d0VGbzhDRjFEMkgwS0dGbWNy?=
+ =?utf-8?B?V2FOSHQ3QTBycHBjd2RWRi9jaERkanprTXdic2xFVG9NNDBOakJsQ2N5enhG?=
+ =?utf-8?B?U01oN1FUQUx0Q20rdWZMTlZVWHR6NVVqVVV2TzZlbGcxay9UdDJURlR3RVc1?=
+ =?utf-8?B?RXZGenljaHBnOGJIcUp6K2prRVgxQ3dCbDRkdW1jQWcrOFhiNlhvWENQREhK?=
+ =?utf-8?B?VHIzTEdVOG9OWHh3c24rNHB3Z0FqRUgySFViOWNDd3dzT1JtR0tXdEg4RWdF?=
+ =?utf-8?B?cFFnZTV4cndlWHJQdS9YRFJET1hwVG1tNVU4T2xkWnZQTnNGNXBlck9GVy9i?=
+ =?utf-8?B?QzlKZ3hMd0tUZ3lsVmRyMk5qLzhZY2loRS80UEpBUUc5am11R3k3TGtMc0Fk?=
+ =?utf-8?B?Rnlvayt0RnlhR2VuQnZxL25FT2oxc3ZZT3pLQnNHdEQwU2pWbEJoa2dGUjh0?=
+ =?utf-8?B?VVZ5VUppVWlZeFZiV1lmbnFIL0tFUndxcTlkTW9ORVpsUVVrdmx5MmNENktS?=
+ =?utf-8?B?NnlMUTdPbGZ1cWRuLzIrNTFVclBZbVlXWko0cktNV0JUUStYOUZhcjZNd2g4?=
+ =?utf-8?B?Um9aWXQxKy83b0hoQXZvdGJpcGErdUowWnFYamhsbzJ1MHpxN0FFM0llSk1p?=
+ =?utf-8?B?UXZHTU9Kd1QxYjV2ZXBRMEhDbHliRzhtWTJUVFJpd1MvaVkyMWhaM0YvMDlF?=
+ =?utf-8?B?eFl3Nm53SGRrdUxBalZXaUhISWRGWUhKRHcrbkVQb1dleUhTNVJyN3czTk9F?=
+ =?utf-8?B?L2E0UkJKejl3dDhqT1Bwa0NHNGJybURscVQwZEtsa0hMdXNpamtaT1ZJUHN5?=
+ =?utf-8?B?NTZxRU5JWi84cEpIQ2hGU1l5N1RBNENYUFBuYitDNm12UkxON0lId29yU01m?=
+ =?utf-8?B?N0tOT1Z1cVU0YjFHUUptQ3hsQStKWmQreHJ6aTJwUTBrREhyUnk1RE15UVpk?=
+ =?utf-8?Q?6hFA=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6ffed2a9-8597-49da-3b20-08de0cc305d4
+X-MS-Exchange-CrossTenant-AuthSource: PAXSPRMB0053.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Oct 2025 14:48:09.1005
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: tCL5rn0gJyovlXf+79yQKnkCBrJm+pEuJ8Mx/KNxG9CwM5YwOKGlNG4FSI8+2k50tyZN6wTUUG1bOitdPwrxiQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AMBPR04MB11785
 
-Hi Herve,
+On Thu, Oct 16, 2025 at 07:35:06AM -0500, Rob Herring wrote:
+> On Wed, Oct 15, 2025 at 4:02 PM Frank Li <Frank.li@nxp.com> wrote:
+> >
+> > On Wed, Oct 15, 2025 at 03:36:05PM -0500, Rob Herring wrote:
+> > > On Wed, Oct 15, 2025 at 2:39 PM Frank Li <Frank.li@nxp.com> wrote:
+> > > >
+> > > > On Wed, Oct 15, 2025 at 12:47:40PM -0500, Rob Herring (Arm) wrote:
+> > > > > Add a driver for Arm Ethos-U65/U85 NPUs. The Ethos-U NPU has a
+> > > > > relatively simple interface with single command stream to describe
+> > > > > buffers, operation settings, and network operations. It supports up to 8
+> > > > > memory regions (though no h/w bounds on a region). The Ethos NPUs
+> > > > > are designed to use an SRAM for scratch memory. Region 2 is reserved
+> > > > > for SRAM (like the downstream driver stack and compiler). Userspace
+> > > > > doesn't need access to the SRAM.
+>
+> > > > > +static int ethosu_init(struct ethosu_device *ethosudev)
+> > > > > +{
+> > > > > +     int ret;
+> > > > > +     u32 id, config;
+> > > > > +
+> > > > > +     ret = devm_pm_runtime_enable(ethosudev->base.dev);
+> > > > > +     if (ret)
+> > > > > +             return ret;
+> > > > > +
+> > > > > +     ret = pm_runtime_resume_and_get(ethosudev->base.dev);
+> > > > > +     if (ret)
+> > > > > +             return ret;
+> > > > > +
+> > > > > +     pm_runtime_set_autosuspend_delay(ethosudev->base.dev, 50);
+> > > > > +     pm_runtime_use_autosuspend(ethosudev->base.dev);
+> > > > > +
+> > > > > +     /* If PM is disabled, we need to call ethosu_device_resume() manually. */
+> > > > > +     if (!IS_ENABLED(CONFIG_PM)) {
+> > > > > +             ret = ethosu_device_resume(ethosudev->base.dev);
+> > > > > +             if (ret)
+> > > > > +                     return ret;
+> > > > > +     }
+> > > >
+> > > > I think it should call ethosu_device_resume() unconditional before
+> > > > devm_pm_runtime_enable();
+> > > >
+> > > > ethosu_device_resume();
+> > > > pm_runtime_set_active();
+> > > > pm_runtime_set_autosuspend_delay(ethosudev->base.dev, 50);
+> > > > devm_pm_runtime_enable();
+> > >
+> > > Why do you think this? Does this do a get?
+> > >
+> > > I don't think it is good to call the resume hook on our own, but we
+> > > have no choice with !CONFIG_PM. With CONFIG_PM, we should only use the
+> > > pm_runtime API.
+> >
+> > Enable clock and do some init work at probe() is quite common. But I never
+> > seen IS_ENABLED(CONFIG_PM) check. It is quite weird and not necessary to
+> > check CONFIG_PM flags. The most CONFIG_PM is enabled, so the branch !CONFIG_PM
+> > almost never tested.
+>
+> Okay, I get what you meant.
+>
+> >
+> > probe()
+> > {
+> >         devm_clk_bulk_get_all_enabled();
+> >
+> >         ... did some init work
+> >
+> >         pm_runtime_set_active();
+> >         devm_pm_runtime_enable();
+> >
+> >         ...
+> >         pm_runtime_put_autosuspend(ethosudev->base.dev);
+> > }
+>
+> I think we still need a pm_runtime_get_noresume() in here since we do
+> a put later on. Here's what I have now:
+>
+>     ret = ethosu_device_resume(ethosudev->base.dev);
+>     if (ret)
+>         return ret;
+>
+>     pm_runtime_set_autosuspend_delay(ethosudev->base.dev, 50);
+>     pm_runtime_use_autosuspend(ethosudev->base.dev);
+>     ret = devm_pm_runtime_set_active_enabled(ethosudev->base.dev);
+>     if (ret)
+>         return ret;
+>     pm_runtime_get_noresume(ethosudev->base.dev);
 
-kernel test robot noticed the following build errors:
+Look good.
 
-[auto build test ERROR on jic23-iio/togreg]
-[also build test ERROR on geert-renesas-devel/next linus/master v6.18-rc1 next-20251015]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Herve-Codina-Schneider-Electric/dt-bindings-iio-adc-Add-the-Renesas-RZ-N1-ADC/20251015-223254
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git togreg
-patch link:    https://lore.kernel.org/r/20251015142816.1274605-3-herve.codina%40bootlin.com
-patch subject: [PATCH 2/4] iio: adc: Add support for the Renesas RZ/N1 ADC
-config: hexagon-allmodconfig (https://download.01.org/0day-ci/archive/20251016/202510162222.Fe1rY5aB-lkp@intel.com/config)
-compiler: clang version 17.0.6 (https://github.com/llvm/llvm-project 6009708b4367171ccdbf4b5905cb6a803753fe18)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251016/202510162222.Fe1rY5aB-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202510162222.Fe1rY5aB-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
->> drivers/iio/adc/rzn1-adc.c:243:35: error: call to undeclared function 'FIELD_PREP'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     243 |                 vc |= RZN1_ADC_VC_ADC1_ENABLE | RZN1_ADC_VC_ADC1_CHANNEL_SEL(adc1_ch);
-         |                                                 ^
-   drivers/iio/adc/rzn1-adc.c:53:42: note: expanded from macro 'RZN1_ADC_VC_ADC1_CHANNEL_SEL'
-      53 | #define RZN1_ADC_VC_ADC1_CHANNEL_SEL(_c)        FIELD_PREP(RZN1_ADC_VC_ADC1_CHANNEL_SEL_MASK, _c)
-         |                                                 ^
->> drivers/iio/adc/rzn1-adc.c:304:16: error: call to undeclared function 'FIELD_GET'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     304 |                 *adc1_data = RZN1_ADC_ADCX_GET_DATA(data_reg);
-         |                              ^
-   drivers/iio/adc/rzn1-adc.c:58:38: note: expanded from macro 'RZN1_ADC_ADCX_GET_DATA'
-      58 | #define RZN1_ADC_ADCX_GET_DATA(_reg)    FIELD_GET(RZN1_ADC_ADCX_DATA_DATA_MASK, _reg)
-         |                                         ^
-   drivers/iio/adc/rzn1-adc.c:309:16: error: call to undeclared function 'FIELD_GET'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     309 |                 *adc2_data = RZN1_ADC_ADCX_GET_DATA(data_reg);
-         |                              ^
-   drivers/iio/adc/rzn1-adc.c:58:38: note: expanded from macro 'RZN1_ADC_ADCX_GET_DATA'
-      58 | #define RZN1_ADC_ADCX_GET_DATA(_reg)    FIELD_GET(RZN1_ADC_ADCX_DATA_DATA_MASK, _reg)
-         |                                         ^
-   3 errors generated.
-
-
-vim +/FIELD_PREP +243 drivers/iio/adc/rzn1-adc.c
-
-   236	
-   237	static void rzn1_adc_vc_setup_conversion(struct rzn1_adc *rzn1_adc, u32 ch,
-   238						 int adc1_ch, int adc2_ch)
-   239	{
-   240		u32 vc = 0;
-   241	
-   242		if (adc1_ch != -1)
- > 243			vc |= RZN1_ADC_VC_ADC1_ENABLE | RZN1_ADC_VC_ADC1_CHANNEL_SEL(adc1_ch);
-   244	
-   245		if (adc2_ch != -1)
-   246			vc |= RZN1_ADC_VC_ADC2_ENABLE | RZN1_ADC_VC_ADC2_CHANNEL_SEL(adc2_ch);
-   247	
-   248		writel(vc, rzn1_adc->regs + RZN1_ADC_VC_REG(ch));
-   249	}
-   250	
-   251	static int rzn1_adc_vc_start_conversion(struct rzn1_adc *rzn1_adc, u32 ch)
-   252	{
-   253		u32 val;
-   254	
-   255		val = readl(rzn1_adc->regs + RZN1_ADC_FORCE_REG);
-   256		if (val & RZN1_ADC_FORCE_VC(ch))
-   257			return -EBUSY;
-   258	
-   259		writel(RZN1_ADC_FORCE_VC(ch), rzn1_adc->regs + RZN1_ADC_SET_FORCE_REG);
-   260	
-   261		return 0;
-   262	}
-   263	
-   264	static void rzn1_adc_vc_stop_conversion(struct rzn1_adc *rzn1_adc, u32 ch)
-   265	{
-   266		writel(RZN1_ADC_FORCE_VC(ch), rzn1_adc->regs + RZN1_ADC_CLEAR_FORCE_REG);
-   267	}
-   268	
-   269	static int rzn1_adc_vc_wait_conversion(struct rzn1_adc *rzn1_adc, u32 ch,
-   270					       u32 *adc1_data, u32 *adc2_data)
-   271	{
-   272		u32 data_reg;
-   273		int ret;
-   274		u32 v;
-   275	
-   276		/*
-   277		 * When a VC is selected, it needs 20 ADC clocks to perform the
-   278		 * conversion.
-   279		 *
-   280		 * The worst case is when the 16 VCs need to perform a conversion and
-   281		 * our VC is the lowest in term of priority.
-   282		 *
-   283		 * In that case, the conversion is performed in 16 * 20 ADC clocks.
-   284		 *
-   285		 * The ADC clock can be set from 4MHz to 20MHz. This leads to a worst
-   286		 * case of  16 * 20 * 1/4Mhz = 80us.
-   287		 *
-   288		 * Round it up to 100us
-   289		 */
-   290	
-   291		/*
-   292		 * Wait for the ADC_FORCE_VC(n) to clear.
-   293		 *
-   294		 * On timeout, ret is -ETIMEDOUT, otherwise it will be 0.
-   295		 */
-   296		ret = readl_poll_timeout_atomic(rzn1_adc->regs + RZN1_ADC_FORCE_REG,
-   297						v, !(v & RZN1_ADC_FORCE_VC(ch)),
-   298						0, 100);
-   299		if (ret)
-   300			return ret;
-   301	
-   302		if (adc1_data) {
-   303			data_reg = readl(rzn1_adc->regs + RZN1_ADC_ADC1_DATA_REG(ch));
- > 304			*adc1_data = RZN1_ADC_ADCX_GET_DATA(data_reg);
-   305		}
-   306	
-   307		if (adc2_data) {
-   308			data_reg = readl(rzn1_adc->regs + RZN1_ADC_ADC2_DATA_REG(ch));
-   309			*adc2_data = RZN1_ADC_ADCX_GET_DATA(data_reg);
-   310		}
-   311	
-   312		return 0;
-   313	}
-   314	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Frank
+>
+>
+> Rob
 
