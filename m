@@ -1,151 +1,156 @@
-Return-Path: <devicetree+bounces-227364-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227365-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5EA42BE111C
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 02:05:27 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id B3E06BE1186
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 02:26:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8360C544C20
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 00:05:26 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 90ED14E45C4
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 00:26:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C994E211F;
-	Thu, 16 Oct 2025 00:05:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEF5E126C05;
+	Thu, 16 Oct 2025 00:26:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="mVbD4ji1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Dj94XWJV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B7C410E3
-	for <devicetree@vger.kernel.org>; Thu, 16 Oct 2025 00:05:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A73F1114;
+	Thu, 16 Oct 2025 00:26:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760573123; cv=none; b=Q8pE3zASL2oXwuN47N/1MU2gmOV+E+YLAIT2WkmfLzqFXYlVsmD9FA3fsPw6wyKRotZdWCOmSuSUoiOahbbhpZUyixW1c37ql3zkfvb7USy+RkVaX2RbPgxlH5RvfEFWB7jzIh1ldwFOu/56uoJ2cDQLQYIMc25mcFpOyJh9Le4=
+	t=1760574400; cv=none; b=HA9Da0UFZIzhK00IisNprU+BAMOJs+mtH58YOHBlU3wG6w8pj7qPVfBjxhv3ucPUGgGWhuCma/MlZvwguXs3qD9hZtOzOXjdzxxOyCmkMxmA6YmT6bbW9aie1ndMFYYb33seXJirmuR3AYlM9AyWaUyuUAnHCQBJrRKR/6O7pMU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760573123; c=relaxed/simple;
-	bh=Fax6VecnDWG9WfiWu3rGm/yJBg16kMyhvyosAjZ8fYM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qd1oZzXQWn1x8sBNS1Vf2PxfWH0rHRWcxV5QEkSnRIJURI104ZIwxqyCeI/ztpqdjs7ytr50i7TsKrt4iVT22HSWZgDvLDoOjawqsmtCibw0iamv7eI7zYL+zOLu0AKlediA1Q/bwTJJNEeSj5zjIYwA9l2YntaipQeW7opO8xM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=mVbD4ji1; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59FIFqa0024868
-	for <devicetree@vger.kernel.org>; Thu, 16 Oct 2025 00:05:21 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=ttH9o+JKFt12U4z1bUTlIexU
-	G6jcvhEibO1N+cM/DzM=; b=mVbD4ji1HvPHj0I8MTQbn2quhJKosorfDjRHqDmi
-	vz7qiYp3yhclG7K3UIUh4Jw4sDqUokOwqsDjDWcDCeDD4YhEAT73v8Zq5orGwd8g
-	nvUyuhS2+KgTbIlQvVPGQYw2goRA42L+yqGvFAx2GsHcvqcMuqpXpHgPWKcfEsvK
-	nv1VgxufuYnUf0ZT9RzQdR8R93HsRcEzWNSoUdg/I/cfoINn9Cl7ZaEWXYsHvLcb
-	UrJCahJKXyz5H2SfvcsZycMe7f/HNu4MtEt9Cw8fpLRPrrZotGb2Fq3t120/f3X9
-	MmTkszG2aaxB9kSeU4VwnaZyXoGCa6YvhlOvOOxfURpYhw==
-Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com [209.85.219.72])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49qff0xak7-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 16 Oct 2025 00:05:21 +0000 (GMT)
-Received: by mail-qv1-f72.google.com with SMTP id 6a1803df08f44-78efb3e2738so5660186d6.3
-        for <devicetree@vger.kernel.org>; Wed, 15 Oct 2025 17:05:21 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760573120; x=1761177920;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ttH9o+JKFt12U4z1bUTlIexUG6jcvhEibO1N+cM/DzM=;
-        b=ipoeaAoacbJw0KTJiU6Bi4hDFvf/Z2R7lNBlTKi1N2EIZJw23nrzoI53GiAQ+vA0BN
-         Aab0v/+isFimVkFC+dCki9jbLBWdcm2N/J4W/8YyWTXATf1F+aX/Ok41OGkv8PqkqF2e
-         XlNQr6fVbk5Xq11UiwhGhgGRi0EY4Mt/U2SO93zsXcJr8mbh+WR56tihczu8CRS9b+0Z
-         2WzXhZvwpNWSFiUgTL/pRBmUfxBWkiFhmE2fW0xe3OkjNd5KOVU8Owqbx16UyiL4pRdD
-         gt7O+PQLI+SgLjRp2TyEvO1FVFbTE7RRtUl83oxPgnYR32RUF0y0Auti/OGUiMk9TLo5
-         euDw==
-X-Forwarded-Encrypted: i=1; AJvYcCWdhOovuMFTc9Wax4+jf9JCEAzpVgHm1+E01XPY8+34c4sC04qEhOhV1HPjlaLT/ADevmxClEN2Ho3H@vger.kernel.org
-X-Gm-Message-State: AOJu0YwfdtwPZ+Gcjog67Aq0bKKX7ta5PsvuXmQg3Tg6GpxqiOZ3qSFS
-	zesOQSIOoXo5poMdKbKocEpKjvfx04v0l1wKsoZX/wGzUg5HFmE+ILaFs8sYnWSFIjXjczziuVC
-	DRCAsqeHjv2Miq9Y/FxEmTkeV5N61mVCCJILjXj0+g/EQRF/TzJ4jcWRd/1kfdvsY
-X-Gm-Gg: ASbGncsNjyeL2004y8kWHlTAAk/xgfDNODTkI8A+aHE+mA1jIuQWp4HPa0ExqvU5sXi
-	ABmtc4QxyLgLRt2F+E9A3Sn6bSDfGZsV1ixZzNWOIhkNabbidvZhaHKtZvxb5ifwcoih5d+B4Y0
-	XfrgvqEhIkDn9aEhU9OhopD8awURGz9rcxwGCppPEAGKlHIniRZXfJswiz3hznBVSgpn8vI+xX7
-	HY4VaLhPBzi5a4XtlO5sjGeSfdSCseNBz9VM2hi5H17MOtne86JDaDZU6PzlY7pZSLb0FXsfsSq
-	KS3T1rSta2smCV9GsUZB0jhEWmXlQio+d7/J7/Pi7vVn5nYnVWXLupeY92dPJK1S5cahE1sBKsL
-	FWfS73SAwU7kZFCNQ7DwrCNX+JI608xOVM/1F6ilX4dZNB1a1lWhNdaFGgBkEbBEJtSms3XgyJZ
-	JPdTrYSy50pSw=
-X-Received: by 2002:a05:622a:4890:b0:4b5:dada:9132 with SMTP id d75a77b69052e-4e6ead709f2mr460284871cf.75.1760573120303;
-        Wed, 15 Oct 2025 17:05:20 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGPHSdX8RqUU8RAtgjSgrc5QwEf9TAs3cpNtbgxxS9fE9uOnZFE46JhxPCkQd6l+F9bJayOlQ==
-X-Received: by 2002:a05:622a:4890:b0:4b5:dada:9132 with SMTP id d75a77b69052e-4e6ead709f2mr460284401cf.75.1760573119860;
-        Wed, 15 Oct 2025 17:05:19 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-590881f8c79sm6592635e87.34.2025.10.15.17.05.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Oct 2025 17:05:17 -0700 (PDT)
-Date: Thu, 16 Oct 2025 03:05:15 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Qiang Yu <qiang.yu@oss.qualcomm.com>
-Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
-        Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org,
-        Jingyi Wang <jingyi.wang@oss.qualcomm.com>
-Subject: Re: [PATCH v2 6/6] phy: qcom: qmp-pcie: add QMP PCIe PHY tables for
- Kaanapali
-Message-ID: <k7xjihanbqelhm6pytrugv73pc6bmspn75vy5a2thcqnxkzwhd@bsyp2nqkl5rf>
-References: <20251015-kaanapali-pcie-upstream-v2-0-84fa7ea638a1@oss.qualcomm.com>
- <20251015-kaanapali-pcie-upstream-v2-6-84fa7ea638a1@oss.qualcomm.com>
+	s=arc-20240116; t=1760574400; c=relaxed/simple;
+	bh=U28sDA1Foqogqj0EpzymayQ1wgUPbptp/B4nVYhh2VQ=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=aDchgbxM+vX/lDpblCXYah+pDzopWQHmXEeCFprmuifDL31i6PVC4668GOdaHfA2p6QqihqxCfn2xS0yR3NTI7kryxmCPfVSCKXPhBcS7MTyvMcQJZXaJ7CM0ypIP0AWriUkoOBuBF+vOY3FMh5CQarqR22juTtbEqPW5pPOUUU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Dj94XWJV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 90F7CC4CEF8;
+	Thu, 16 Oct 2025 00:26:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1760574399;
+	bh=U28sDA1Foqogqj0EpzymayQ1wgUPbptp/B4nVYhh2VQ=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=Dj94XWJV8URBCP7eHQRkGso8jdIVf4yq32iKR936m+qK40hXECoK27b6FucGkMto0
+	 xKqWpYkuWx4UHz/896XaCHoBe6Q1JiK0Kxc00rN7K8h+LuhdBPw9dxd2mNpLuJ/PYx
+	 tzubS/ZUMVIURtzvMmnHMgnXnGMfdlqmgRAfFKecvQdGrHV4o08O4AeT2FvZxs8MR3
+	 S2oBcLETPjUKZ1Z7T+ECLUUDZZ7/de+DlhSPpNl+CJxTWzsD31NPwc+R9Fx7aH5B6+
+	 JSbYHle1X/IxBGUx/oiSimthNjSWELBTTa2mpPBZ3gOWs/hRRYtOhh7vtqt1X+IZ/X
+	 O62U8DSbcPnEw==
+Date: Wed, 15 Oct 2025 19:26:36 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251015-kaanapali-pcie-upstream-v2-6-84fa7ea638a1@oss.qualcomm.com>
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDExMDAxOCBTYWx0ZWRfX6beNlOxqdsXa
- Rl+ikw5ftlCdaIQARMsddWUroDrsIMwWaHig8RxqoAV5yPubNJngdQefpMPnu1ghdw6/t3eG6sZ
- 8r8MHh/AqEyuWT8n/0FhaLOjPfo0IqIfEu1/GLQUbeL2Xv/LVuRW2UDe1RE++wS1yWwVOH8drr3
- uL65Jjdo4r2YdXF7qqcU2CqdYk/Nmb3xpMjXW+MH+5SVbV79OHA7iEmzhR3tY2a52Lsmo4SV4C5
- 7J/t6usHB2o8ivZ9rmaBsxeQQUw3CqJjX4OgOp+CIUBiMZHcNtgRpvzWK4bPmK7tmdLYAAP521a
- bWLOVN4HMzWA4ZmFt92aepY31z41Z5Z9y8caDMLcA==
-X-Proofpoint-GUID: hINNz3wVQLoCoMObVApV3FytPwVj81fx
-X-Authority-Analysis: v=2.4 cv=PriergM3 c=1 sm=1 tr=0 ts=68f036c1 cx=c_pps
- a=7E5Bxpl4vBhpaufnMqZlrw==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=x6icFKpwvdMA:10 a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8
- a=tdoatHydnEAQPWUjzvIA:9 a=CjuIK1q_8ugA:10 a=pJ04lnu7RYOZP9TFuWaZ:22
-X-Proofpoint-ORIG-GUID: hINNz3wVQLoCoMObVApV3FytPwVj81fx
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-10-15_07,2025-10-13_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 adultscore=0 bulkscore=0 phishscore=0 lowpriorityscore=0
- spamscore=0 suspectscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2510020000
- definitions=main-2510110018
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Vladimir Oltean <olteanv@gmail.com>, 
+ Nicolas Ferre <nicolas.ferre@microchip.com>, devicetree@vger.kernel.org, 
+ Jakub Kicinski <kuba@kernel.org>, Andy Shevchenko <andy@kernel.org>, 
+ Joel Stanley <joel@jms.id.au>, Bjorn Helgaas <bhelgaas@google.com>, 
+ Andrew Jeffery <andrew@codeconstruct.com.au>, Lee Jones <lee@kernel.org>, 
+ Daire McNamara <daire.mcnamara@microchip.com>, 
+ Mauro Carvalho Chehab <mchehab@kernel.org>, 
+ Eric Dumazet <edumazet@google.com>, linux-iio@vger.kernel.org, 
+ Manivannan Sadhasivam <mani@kernel.org>, Andrew Lunn <andrew@lunn.ch>, 
+ Michael Hennerich <Michael.Hennerich@analog.com>, 
+ Lorenzo Pieralisi <lpieralisi@kernel.org>, Vinod Koul <vkoul@kernel.org>, 
+ Jonathan Cameron <jic23@kernel.org>, linux-phy@lists.infradead.org, 
+ Florian Fainelli <f.fainelli@gmail.com>, netdev@vger.kernel.org, 
+ Paolo Abeni <pabeni@redhat.com>, Kishon Vijay Abraham I <kishon@kernel.org>, 
+ Stephen Boyd <sboyd@kernel.org>, Jassi Brar <jassisinghbrar@gmail.com>, 
+ linux-gpio@vger.kernel.org, Bartosz Golaszewski <brgl@bgdev.pl>, 
+ linux-media@vger.kernel.org, "David S. Miller" <davem@davemloft.net>, 
+ Lars-Peter Clausen <lars@metafoo.de>, 
+ Alexandre Belloni <alexandre.belloni@bootlin.com>, 
+ linux-clk@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
+ linux-pci@vger.kernel.org, Shawn Guo <shawnguo@kernel.org>, 
+ Claudiu Beznea <claudiu.beznea@tuxon.dev>, linux-kernel@vger.kernel.org, 
+ Geert Uytterhoeven <geert+renesas@glider.be>, 
+ Thierry Reding <thierry.reding@gmail.com>, 
+ Fabio Estevam <festevam@gmail.com>, linux-arm-kernel@lists.infradead.org, 
+ Linus Walleij <linus.walleij@linaro.org>, 
+ =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
+ Tony Lindgren <tony@atomide.com>
+To: "Rob Herring (Arm)" <robh@kernel.org>
+In-Reply-To: <20251015232015.846282-1-robh@kernel.org>
+References: <20251015232015.846282-1-robh@kernel.org>
+Message-Id: <176057439666.933167.2958808777480882513.robh@kernel.org>
+Subject: Re: [PATCH] dt-bindings: Fix inconsistent quoting
 
-On Wed, Oct 15, 2025 at 03:27:36AM -0700, Qiang Yu wrote:
-> Add QMP PCIe PHY support for the Kaanapali platform.
+
+On Wed, 15 Oct 2025 18:16:24 -0500, Rob Herring (Arm) wrote:
+> yamllint has gained a new check which checks for inconsistent quoting
+> (mixed " and ' quotes within a file). Fix all the cases yamllint found
+> so we can enable the check (once the check is in a release). Use
+> whichever quoting is dominate in the file.
 > 
-> Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
-> Signed-off-by: Qiang Yu <qiang.yu@oss.qualcomm.com>
-
-Who is the actual author of the patch? Do you miss the Co-developed-by
-tag?
-
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 > ---
->  drivers/phy/qualcomm/phy-qcom-qmp-pcie.c | 194 +++++++++++++++++++++++++++++++
->  1 file changed, 194 insertions(+)
+>  .../arm/altera/socfpga-clk-manager.yaml       |  4 ++--
+>  .../bindings/clock/nvidia,tegra124-car.yaml   |  8 ++++----
+>  .../bindings/clock/nvidia,tegra20-car.yaml    |  6 +++---
+>  .../devicetree/bindings/gpio/gpio-mxs.yaml    |  9 +++++----
+>  .../bindings/gpio/snps,dw-apb-gpio.yaml       |  4 ++--
+>  .../bindings/iio/temperature/adi,ltc2983.yaml | 20 +++++++++----------
+>  .../mailbox/qcom,apcs-kpss-global.yaml        | 16 +++++++--------
+>  .../mailbox/xlnx,zynqmp-ipi-mailbox.yaml      |  2 +-
+>  .../bindings/media/fsl,imx6q-vdoa.yaml        |  2 +-
+>  .../devicetree/bindings/mfd/aspeed-lpc.yaml   |  4 ++--
+>  .../devicetree/bindings/mfd/ti,twl.yaml       |  4 ++--
+>  .../bindings/net/ethernet-switch.yaml         |  2 +-
+>  .../pci/plda,xpressrich3-axi-common.yaml      |  2 +-
+>  .../bindings/phy/motorola,cpcap-usb-phy.yaml  |  4 ++--
+>  .../pinctrl/microchip,sparx5-sgpio.yaml       | 12 +++++------
+>  .../bindings/pinctrl/qcom,pmic-gpio.yaml      | 10 +++++-----
+>  .../bindings/pinctrl/qcom,pmic-mpp.yaml       |  6 +++---
+>  .../bindings/pinctrl/renesas,pfc.yaml         |  4 ++--
+>  .../bindings/pinctrl/renesas,rza1-ports.yaml  |  2 +-
+>  .../pinctrl/renesas,rzg2l-pinctrl.yaml        |  2 +-
+>  .../pinctrl/renesas,rzv2m-pinctrl.yaml        |  2 +-
+>  .../bindings/power/renesas,sysc-rmobile.yaml  |  4 ++--
+>  .../soc/microchip/atmel,at91rm9200-tcb.yaml   |  8 ++++----
+>  .../soc/tegra/nvidia,tegra20-pmc.yaml         | 12 +++++------
+>  24 files changed, 75 insertions(+), 74 deletions(-)
 > 
 
--- 
-With best wishes
-Dmitry
+My bot found errors running 'make dt_binding_check' on your patch:
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+Error: Documentation/devicetree/bindings/pinctrl/renesas,pfc.example.dts:90.36-37 syntax error
+FATAL ERROR: Unable to parse input tree
+make[2]: *** [scripts/Makefile.dtbs:132: Documentation/devicetree/bindings/pinctrl/renesas,pfc.example.dtb] Error 1
+make[2]: *** Waiting for unfinished jobs....
+make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1525: dt_binding_check] Error 2
+make: *** [Makefile:248: __sub-make] Error 2
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20251015232015.846282-1-robh@kernel.org
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
