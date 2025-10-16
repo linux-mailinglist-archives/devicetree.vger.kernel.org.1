@@ -1,121 +1,171 @@
-Return-Path: <devicetree+bounces-227426-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227427-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B2B38BE19BF
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 07:56:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CD74BBE19D1
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 07:59:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EC9E0188C906
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 05:56:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 33F31189373D
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 06:00:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5567824A04A;
-	Thu, 16 Oct 2025 05:56:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E1772472A4;
+	Thu, 16 Oct 2025 05:59:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tAo2SJwE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iSUBroB6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DC99242D70
-	for <devicetree@vger.kernel.org>; Thu, 16 Oct 2025 05:56:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD1FB241686;
+	Thu, 16 Oct 2025 05:59:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760594175; cv=none; b=BRryoBSD1HhIUhTiZX6k+/zH8Ot4X4s41WWKDoj+VlVhPAwaIcrFQA0jgcQyMDLBXPUhgwviZFoUB44asqcK0hrGHhn7gy1S54DHxsYfYJuJXJlVdWmfxc8EmRHzyoDTqUOVyusLF0wQCHsuapcqNe9Oo7CY0DUH2xozMGMrDwg=
+	t=1760594383; cv=none; b=jhtjpQVEGtxwvp3e84+HHy7LTRwDSuKjAGsZslKo5RxrJ/Y2V2O3f3OIuS8q9BX1qsQwmZB4StfECLXD5ZLFohCh7Fq5TuCA+ffHNZcLlXK4XrYZvVG/OGDsgI3nx2KBK7kgOrTDJclk3U82aMk3KFfGMtoJipMaiGCw3u3yKzM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760594175; c=relaxed/simple;
-	bh=6ycztQkvJg+KdGCCiCnENVHtBhwB6Y+p5nrVTPjvpLc=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=d/Me1LZgeV5n7sbbmF7Xucgg/yWrN56OnaLoirxQhM0AcuxUyLhD1I1zIdcOclwC95jY/vLNA8WmPnYjPLzbNG3dNrHtueiik9CoXi4ihviMbgVcjcFKsXfpk15rBP117TugOPabTows39cWUGN8OHAjqY0Cos06/jnopnKGtTA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=tAo2SJwE; arc=none smtp.client-ip=209.85.218.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-b50645ecfbbso67306766b.1
-        for <devicetree@vger.kernel.org>; Wed, 15 Oct 2025 22:56:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1760594171; x=1761198971; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=6ycztQkvJg+KdGCCiCnENVHtBhwB6Y+p5nrVTPjvpLc=;
-        b=tAo2SJwE9rpak8Mebz2GFYOXRsqg0Kq2i/y66sKssWolUVkV9CIztX8YztPD9Emt32
-         XldkFvb09so7lXyzGB9nxKHBkREzD3ELC0PuwM1l+vZY/4OipY3aOWuLAT2VvkgQi0VB
-         nsPrf6lmLMoG3kQm19zG4/lELk3W/6l0k4mW+xCRU5n6GgfBHz8tyBjhpF/8qZfxbYD7
-         SHQi1bueqjmwosezRUMMwjH7qDKfOwL29tAlaPagOUi6HPdxINwLAMUz1PbKoVphWsK3
-         GJtxP+fozZgho6HodUeDnboktHpi6RM4AV9tnj/QBjQD6QWB9FpoHKGSNB69hHaRTDFg
-         tTXA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760594171; x=1761198971;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=6ycztQkvJg+KdGCCiCnENVHtBhwB6Y+p5nrVTPjvpLc=;
-        b=PZfYuhkE/SGI7XmjbnMlaeyTbBEAougi/bGGtc58cByXXlN/GP90IXp+8heiBJz9LZ
-         alVz5lOZMGnFT8lMW2QiiHcpR645St/vqGoUf6hjm1CGSR9sCV3fLy4wn7LVvfm3721r
-         hZlBkStF+V28CdBhIUEj4pf91l2bVHRzBV/+L0mXqHRP4XC9yWi7GE2APACLC2MGmvLK
-         DPF7U62/Wsi2uCD8qHXobNrC8QuCWVY5CoTo5Dq1pZUA3X44jTCcqigqvf4OYPaetb5a
-         DqT7o4kIg/YAIMiAdDmMJk/rUxNfeDLNtnbtH1yqckXPomj8X+2tRZco+qHqZbEZRwKx
-         PZPw==
-X-Forwarded-Encrypted: i=1; AJvYcCVyp8ylLn3B5TXEgs2IThZiLvnpWJbwX/3ytn81oq6ItToVngwT+orMHTPncgFJYOmGOkGbxbKu5irG@vger.kernel.org
-X-Gm-Message-State: AOJu0YyR8S/epg1XbsPPVyNFYG6eIlQQa1p0C+hG+oFoQc/8jaYChine
-	mMph1Vcq+iF5pPmem7CWPhkW7tSjdg36urY1i8uNXudw1rMvS3eWuFpUjukZ5N+36HU=
-X-Gm-Gg: ASbGncuRi329zwqrGyU50Ni1dDWoVt5TqtROmn0Dg/RP5xC+8+FuLtWIeZSsNQqHdGE
-	JtQ+LZ5zVqm1CFDJeflpiIc74IVBFvlR/Hj28K98G5tZPK6F9u+eml+homhT7qqa7cocQSRDzFd
-	HV5hYyBA3lK25gMxKx4uEYtm90d2yCGZmqavedyR/xu7JLmmy0svaNNUOtIk2BjZW+EWK1ylmJr
-	PeGpKd+V5oHMJLjlfkEUbXOzo9QPArgkY3o1hOWS7Muh4+6sUoa7/9uozhoU5ZH+68iIyVbuL5E
-	1+ebPCwG/rvI4wk1JFuW4aLm20P+qyyoJwLFJk5ROx485v4ZIIAgBwWfMKgLjHjFUQjogokUIEx
-	Q8G4k4rbjpcubUHnz/W5dlXAP1Er8AkRvnvHy1qQbEQ4GpABBaApHBTOTVxFGmp2ZO8NucHaMwP
-	97nssTgpuz8epSZbV2TQ==
-X-Google-Smtp-Source: AGHT+IHRn6DJcub987XbIaCnD213XxBVwA1OkaUrOOTFR+bbpHbUgS+RyDdcriH37dmE0TK4LGPTbQ==
-X-Received: by 2002:a17:906:c149:b0:b41:2209:d35d with SMTP id a640c23a62f3a-b50a9d701b3mr3125674866b.1.1760594170719;
-        Wed, 15 Oct 2025 22:56:10 -0700 (PDT)
-Received: from draszik.lan ([80.111.64.44])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b5ccccaab18sm419863266b.48.2025.10.15.22.56.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Oct 2025 22:56:10 -0700 (PDT)
-Message-ID: <30a0c50b682b990820d486e536f320c7ea31eabc.camel@linaro.org>
-Subject: Re: [PATCH 3/9] arm64: dts: exynos: gs101: add sysreg_misc and
- sysreg_hsi0 nodes
-From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
-To: Peter Griffin <peter.griffin@linaro.org>, Rob Herring <robh@kernel.org>,
-  Krzysztof Kozlowski	 <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Alim Akhtar	 <alim.akhtar@samsung.com>, Tudor
- Ambarus <tudor.ambarus@linaro.org>, Michael Turquette
- <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Sam Protsenko	
- <semen.protsenko@linaro.org>, Sylwester Nawrocki <s.nawrocki@samsung.com>, 
- Chanwoo Choi <cw00.choi@samsung.com>
-Cc: Will McVicker <willmcvicker@google.com>, Krzysztof Kozlowski	
- <krzk@kernel.org>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, Krzysztof
- Kozlowski	 <krzysztof.kozlowski@linaro.org>, kernel-team@android.com
-Date: Thu, 16 Oct 2025 06:56:09 +0100
-In-Reply-To: <20251013-automatic-clocks-v1-3-72851ee00300@linaro.org>
-References: <20251013-automatic-clocks-v1-0-72851ee00300@linaro.org>
-	 <20251013-automatic-clocks-v1-3-72851ee00300@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-2+build3 
+	s=arc-20240116; t=1760594383; c=relaxed/simple;
+	bh=8ciTShZccMAg56b4cQsrmTPZobu4kdKJ+1tp/6jLHrc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=heKZFAfGBmS3KZiWwI+4C1TQkPPuYRXBRG5fyoYyXwCrqWmsmKax5ERunVa3EWIaBatrS7qg+e7M0Bzs66vYe+6vC0VPxvv0eQA/looSNxM4NMRUD3z0Rbxvxta+XRtwaJgE5LBIVM8A297lmcb3tnkEva7HvdRPKffsyjZBgFI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iSUBroB6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2C78EC4CEF1;
+	Thu, 16 Oct 2025 05:59:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1760594383;
+	bh=8ciTShZccMAg56b4cQsrmTPZobu4kdKJ+1tp/6jLHrc=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=iSUBroB6zN12uj57egK6nYeGXF+APzMzirw5wPgJ4EFDLmuWHTl7djqwdTvR7e9yW
+	 iIomQGcJ7npB5UUXK3wDA4QNY1GwrROFN1kkjByJa0JbmxhMcdoJV41DB9YB6gq6z2
+	 suzIP61mHuV7s927w8JSu3qTiK6TFLYhR+94L01R9WUcPht7GIZz9LyVaJH4A6kXZB
+	 Fi5oJZBcgl/SeXu4tfIa0huFsCHUtN7RcVz3UdNCnplrd6OlaYi9075op5RCbqOdnU
+	 kCev68BHUckZSPlUY65yz/1EfPKcEYu6G1biNv3lav79dbcW818Ee3rrmnAwFekmV+
+	 F6x1fWYerGqAA==
+Message-ID: <8966ddaf-9c10-4626-a4cc-36efd3fc93e2@kernel.org>
+Date: Thu, 16 Oct 2025 07:59:37 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/2] arm64: dts: qcom: qcs8300: Add support for camss
+To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ Vikram Sharma <quic_vikramsa@quicinc.com>, mchehab@kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ andersson@kernel.org, konradybcio@kernel.org, hverkuil-cisco@xs4all.nl,
+ cros-qcom-dts-watchers@chromium.org, catalin.marinas@arm.com, will@kernel.org
+Cc: linux-arm-kernel@lists.infradead.org, quic_svankada@quicinc.com,
+ linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, bryan.odonoghue@linaro.org
+References: <20251015130130.2790829-1-quic_vikramsa@quicinc.com>
+ <20251015130130.2790829-3-quic_vikramsa@quicinc.com>
+ <b4207e22-8d9c-4223-8b28-272d2650661f@linaro.org>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <b4207e22-8d9c-4223-8b28-272d2650661f@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Mon, 2025-10-13 at 21:51 +0100, Peter Griffin wrote:
-> Add syscon DT node for the hsi0 and misc sysreg controllers. These will b=
-e
-> referenced by their respective CMU nodes in future patchs.
+On 15/10/2025 20:49, Vladimir Zapolskiy wrote:
+> On 10/15/25 16:01, Vikram Sharma wrote:
+>> Add changes to support the camera subsystem on the QCS8300.
+>>
+>> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+>> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+>> Signed-off-by: Vikram Sharma <quic_vikramsa@quicinc.com>
+>> ---
+>>   arch/arm64/boot/dts/qcom/qcs8300.dtsi | 171 ++++++++++++++++++++++++++
+>>   1 file changed, 171 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/qcs8300.dtsi b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
+>> index 8d78ccac411e..acd475555115 100644
+>> --- a/arch/arm64/boot/dts/qcom/qcs8300.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
+>> @@ -4769,6 +4769,177 @@ videocc: clock-controller@abf0000 {
+>>   			#power-domain-cells = <1>;
+>>   		};
+>>   
+>> +		camss: isp@ac78000 {
+>> +			compatible = "qcom,qcs8300-camss";
+>> +
+>> +			reg = <0x0 0xac78000 0x0 0x1000>,
+>> +			      <0x0 0xac7a000 0x0 0xf00>,
+>> +			      <0x0 0xac7c000 0x0 0xf00>,
+>> +			      <0x0 0xac84000 0x0 0xf00>,
+>> +			      <0x0 0xac88000 0x0 0xf00>,
+>> +			      <0x0 0xac8c000 0x0 0xf00>,
+>> +			      <0x0 0xac90000 0x0 0xf00>,
+>> +			      <0x0 0xac94000 0x0 0xf00>,
+>> +			      <0x0 0xac9c000 0x0 0x2000>,
+>> +			      <0x0 0xac9e000 0x0 0x2000>,
+>> +			      <0x0 0xaca0000 0x0 0x2000>,
+>> +			      <0x0 0xacac000 0x0 0x400>,
+>> +			      <0x0 0xacad000 0x0 0x400>,
+>> +			      <0x0 0xacae000 0x0 0x400>,
+>> +			      <0x0 0xac4d000 0x0 0xf000>,
+>> +			      <0x0 0xac60000 0x0 0xf000>,
+>> +			      <0x0 0xac85000 0x0 0xd00>,
+>> +			      <0x0 0xac89000 0x0 0xd00>,
+>> +			      <0x0 0xac8d000 0x0 0xd00>,
+>> +			      <0x0 0xac91000 0x0 0xd00>,
+>> +			      <0x0 0xac95000 0x0 0xd00>;
+>> +			reg-names = "csid_wrapper",
+>> +				    "csid0",
+> 
+> The list of 'reg-names' is not alphanumerically sorted, this is a newly
+> introduced sorting order pattern of CAMSS 'reg' property values.
 
-s/patchs/patches :-)
 
->=20
-> Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
-> ---
-> =C2=A0arch/arm64/boot/dts/exynos/google/gs101.dtsi | 12 ++++++++++++
-> =C2=A01 file changed, 12 insertions(+)
+Please stop inventing ad-hoc or fake rules. There is no such sorting
+pattern for this property, which I expressed multiple times. Last time
+you claimed there is some sorting by "values", now this.
 
-Reviewed-by: Andr=C3=A9 Draszik <andre.draszik@linaro.org>
+Best regards,
+Krzysztof
 
