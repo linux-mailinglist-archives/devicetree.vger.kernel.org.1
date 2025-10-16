@@ -1,181 +1,106 @@
-Return-Path: <devicetree+bounces-227795-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227796-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B13A1BE47D8
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 18:13:35 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71473BE47F3
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 18:15:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A7B7C3A9A80
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 16:12:32 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 9E4275086CF
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 16:13:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72F7232D0E5;
-	Thu, 16 Oct 2025 16:12:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DBE232D0F1;
+	Thu, 16 Oct 2025 16:13:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="ZRO9mP/8";
-	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="f4I884pQ"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="YO7nCjUg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0DDA32D0C2;
-	Thu, 16 Oct 2025 16:12:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F4C732D0C6;
+	Thu, 16 Oct 2025 16:13:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760631150; cv=none; b=XnuQNuQBUx63BOZ90G+iG0+51bl/rlBbfEAZewDqHtOxzR5ENn4Xbltc7455CUnZ0g7ZI1oeZ6G7BsZYklBKGtUtxVyj6yRGSzLx9g47JWSAoibezE9rG+naADeHwhuMclzRJ6vCvf75C1DcVDZwuVe3kp7wA3j8H1VcHxB4AfE=
+	t=1760631222; cv=none; b=CeWsThCIMk419KV7uQ1q/H437v/hD5OOO+pY5TpV9eCt/ttltsyECWhkPCf7hON8fNfpHj3ALP+e3givig0wYLwCf3bDzmJHev9ijMYVPY4xJ5PNaTspqCI3rEV4emmRJQNFzzDLuxTjRxhq7Bvw2nhlsbi3xT53ddpAWTVBXQQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760631150; c=relaxed/simple;
-	bh=XW6k3Gcar3ovV4dpcje4zQ2uk6r9dgawRYEicfegPf8=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=FKdPHytYTLsW3hIrgNp4F8pKxIrZd0WAXphkqPHQo8AzMsMAZFvnw94EORAIDHSIbtiLqOhJBoGXyLNt2pUh+C02NRy5twjSjiUt2mM54oxwh7jmXcdDVG+OI9OXCsnOUNDl34zpRSV1VeMuccIUDs0Ca0aO5Htnoa84yy0mk/8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=ZRO9mP/8; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=f4I884pQ; arc=none smtp.client-ip=193.142.43.55
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
-From: Thomas Gleixner <tglx@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020; t=1760631147;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=EimfC5YBQZ0kq/Gz52aWdB6vLjbMGcafw2nhUU8MVtE=;
-	b=ZRO9mP/8ehCkUpZqmBe1rgk54JZHc29ccwtTz5j954OrVqClG6R+uVRDYkbJp7hC1gdJJZ
-	y5PEOhujG1srTiKm+IOooIdhhs0kUZTBg4no06GdwWfYS9c5mWtbD/4Vm5ajrzxPau/bM9
-	9V1jlggPXINSOLbxqr8l4O4HJFubXNqMmKD9mxQ4/xIWvOz1XaQ+GtxT9E4rcZGj2ur6Ob
-	wSufpZsQHWCSIZlhRNhxoBXc712/TuEeRpyRjjoavVOhCa2rUqh8BW7FCpL+7ZOryAWmxx
-	AoFp07wqU0/WHcI9Qum/mmpesYmxTEZ1yG++4KX20YvDIBCM3mP0+nBORDZNSA==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020e; t=1760631147;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=EimfC5YBQZ0kq/Gz52aWdB6vLjbMGcafw2nhUU8MVtE=;
-	b=f4I884pQCh72NrW5bcmy4HgTPvI5ho0GNW8nxlBno/OTw1sTWSsWqoRojjYlPDOcm2wPbr
-	9w2ELHaEq06LBtBw==
-To: Charles Mirabile <cmirabil@redhat.com>
-Cc: Lucas Zampieri <lzampier@redhat.com>, linux-kernel@vger.kernel.org, Rob
- Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
- Dooley <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
- Samuel Holland <samuel.holland@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti
- <alex@ghiti.fr>, Vivian Wang <dramforever@live.com>,
- devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, Zhang
- Xincheng <zhangxincheng@ultrarisc.com>
-Subject: Re: [PATCH v5 3/3] irqchip/plic: add support for UltraRISC DP1000 PLIC
-In-Reply-To: <CABe3_aGj68qM1bNZ3LExbexO=9FO4RzJxhUy2T+HKK1qZfBmtw@mail.gmail.com>
-References: <20251016084301.27670-1-lzampier@redhat.com>
- <20251016084301.27670-4-lzampier@redhat.com> <87plan0yvd.ffs@tglx>
- <CABe3_aGj68qM1bNZ3LExbexO=9FO4RzJxhUy2T+HKK1qZfBmtw@mail.gmail.com>
-Date: Thu, 16 Oct 2025 18:12:25 +0200
-Message-ID: <87ms5q25cm.ffs@tglx>
+	s=arc-20240116; t=1760631222; c=relaxed/simple;
+	bh=euhE71GeA9z14C6UTDiq3F8p62BdmMC4iuWpvdEJH6s=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=dJYzGj0+7dHCr87VOhS+N5cTQsPrNHY0g/hUl6DvzjHVKNGRIiFvXfY/R+l5pPCNOn3W6xNcpNZEhmmE7qCn+GXa1CGIJau81meZTULKRsKEAYh7UAe4YVg7l/pycQlgCPKOCmQmg5DZ1i8ifQdnqsPD5PTDUlsFOyoKFfPcfRU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=YO7nCjUg; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
+	bh=LzGjHDS+xi2DlOMgWkM/K6tjShNEfen6Tw2JtH1Zhpc=; b=YO7nCjUg0lOAZ06BrtQN/foq60
+	FRtIzvKAyVc0aBUZyVXPR9TqlhFdGo8LvIxQRaqIhOqycd9p6SPR3a8/vwKfzYKtXQeO+vabIVSO0
+	WdHaXqKIuitJJcZPsftdcGhW0VNlXBZ2vtJT7eL7dquQS6nwiQqzmOcK56gHaF0fAvY4RTgi+bu+/
+	9SpIu41HlD1P3odwoVMBc9TDjO1QQS4FYfpvBvF7foTXoiCM26Vn69pGpLdVHYxpnvnydl9j6r/kF
+	Z1CkI2SWYF1id0oUtmlSV2YVuG8/SA/inubLbfJUDQ0eNEkKV3edTuyjHxW9noahkCpP53opn6m+N
+	LoXcGbQw==;
+Received: from i53875b4f.versanet.de ([83.135.91.79] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1v9Qbf-0001Mr-58; Thu, 16 Oct 2025 18:13:35 +0200
+From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
+To: Finley Xiao <finley.xiao@rock-chips.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ ulf.hansson@linaro.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+ finley.xiao@rock-chips.com, zhangqing@rock-chips.com,
+ sugar.zhang@rock-chips.com, huangtao@rock-chips.com
+Subject: Re: [PATCH v1 2/2] pmdomain: rockchip: Add support for RV1126B
+Date: Thu, 16 Oct 2025 18:13:34 +0200
+Message-ID: <2176528.bB369e8A3T@diego>
+In-Reply-To: <20251016134103.294636-3-finley.xiao@rock-chips.com>
+References:
+ <20251016134103.294636-1-finley.xiao@rock-chips.com>
+ <20251016134103.294636-3-finley.xiao@rock-chips.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 
-On Thu, Oct 16 2025 at 11:54, Charles Mirabile wrote:
-> On Thu, Oct 16, 2025 at 9:17=E2=80=AFAM Thomas Gleixner <tglx@linutronix.=
-de> wrote:
->> > +static irq_hw_number_t cp100_get_hwirq(struct plic_handler *handler,
->> > +                                     void __iomem *claim)
->> > +{
->> > +     int nr_irq_groups =3D DIV_ROUND_UP(handler->priv->nr_irqs, 32);
->> > +     void __iomem *pending =3D handler->priv->regs + PENDING_BASE;
->> > +     void __iomem *enable =3D handler->enable_base;
->> > +     irq_hw_number_t hwirq =3D 0;
->> > +     int i;
->> > +
->> > +     guard(raw_spinlock)(&handler->enable_lock);
->> > +
->> > +     /* Save current interrupt enable state */
->> > +     for (i =3D 0; i < nr_irq_groups; i++)
->> > +             handler->enable_save[i] =3D readl_relaxed(enable + i * s=
-izeof(u32));
->>
->> This is truly the most inefficient way to solve that problem. The enable
->> registers are modified with enabled_lock held, so you can just cache the
->> value in plic_handler::enabled_save and avoid this read loop completely.
->> After claiming the interrupt you restore from that cache, no?
->
-> You mean touch the other functions where the enable bits are modified
-> to keep the cache in sync so that we don't need to do this read loop
-> and can have a proper set of values cached?
->
-> My concern is that this obviously has an impact on other platforms
-> which do not have this quirk since keeping the cache in sync would get
-> pushed all throughout the driver.
+Am Donnerstag, 16. Oktober 2025, 15:41:03 Mitteleurop=C3=A4ische Sommerzeit=
+ schrieb Finley Xiao:
+> Add configuration and power domains for RV1126 SoC.
+>=20
+> Signed-off-by: Finley Xiao <finley.xiao@rock-chips.com>
+> ---
 
-The irq_enable()/disable() callbacks are not really hotpath and caching
-the bit in plic_toggle() or such is just not measurable overhead
-compared to the register access.
+[...]
 
->> Now for the search and disable mechanism. Of course you need to search
->> for th pending interrupt first, but then you can make that masking loop
->> very simple by having a plic_handler::enabled_clear[] array which is
->> zeroed on initialization:
->>
->>         unsigned long pending =3D 0;
->>
->>         for (group =3D 0; !pending && group < nr_irq_groups; group++) {
->>                 pending =3D handler->enabled_save[i];
->>                 pending =3D& readl_relaxed(pending + group * sizeof(u32)=
-);
->>         }
->>         if (!pending)
->>                 return false;
->>
->>         bit =3D ffs(pending) - 1;
->>         handler->enabled_clear[group] |=3D BIT(bit);
->>         for (int i =3D 0; i < nr_irq_groups; i++)
->>                 writel_relaxed(handler->enabled_clear[i], enable + i * s=
-izeof(u32));
->>         handler->enabled_clear[group] =3D 0;
->>
->> No?
->
-> Sure that would also work, but why are we using ffs (slow) only to
-> shift the result back to make a new mask when (x & -x) is faster and
-> skips the intermediate step delivering immediately the mask of the
-> lowest bit.
+> @@ -1104,6 +1122,13 @@ static const struct rockchip_domain_info rv1126_pm=
+_domains[] =3D {
+>  	[RV1126_PD_USB]		=3D DOMAIN_RV1126("usb", BIT(9), BIT(15), BIT(15),  fa=
+lse),
+>  };
+> =20
+> +static const struct rockchip_domain_info rv1126b_pm_domains[] =3D {
+> +					      /* name    pwr     req      wakeup */
+> +	[RV1126B_PD_NPU]	=3D DOMAIN_RV1126B("npu",  BIT(0), BIT(8),  false),
+> +	[RV1126B_PD_VDO]	=3D DOMAIN_RV1126B("vdo",  BIT(1), BIT(9),  false),
+> +	[RV1126B_PD_AISP]	=3D DOMAIN_RV1126B("aisp", BIT(2), BIT(10), false),
+> +};
+> +
 
-Because I did not spend time thinking about it.=20
+same clarification needed as for patch 1 ... is it aiisp (with 2 "i")?
+As described everywhere in the TRM.
 
-> As for making another caching array, I guess, but again that is just a
-> time vs space trade off with its own invariants to maintain that would
-> also impact other platforms.
+Other than that I checked the bits and registers against the TRM, so
 
-It's a pointer in struct plic_handler (or whatever it's named) and you
-can allocate it when the quirk is required. The pointer is definitely
-not a burden for anyone else.
+Reviewed-by: Heiko Stuebner <heiko@sntech.de>
 
->> Is the device B interrupt preserved in the interrupt chip and actually
->> raised when the interrupt enable bit is restored or is it lost?
->
-> I am not sure how to verify this other than to tell you that without
-> this quirk (i.e. trying to use normal plic behavior) the device does
-> not work, but with this quirk I can boot to a desktop with a pcie
-> graphics card and storage, use networking etc that all obviously
-> depend on the correct functioning of the interrupt controller.
->
-> My reading of the spec for PLIC also suggests (but does not explicitly
-> confirm) that the pending bits function irrespective of the state of
-> the corresponding enable bit: "A pending bit in the PLIC core can be
-> cleared by setting the associated enable bit then performing a claim."
-> (page 14 plic spec 1.0.0 [1]).
->
-> This sentence implies to me that it is possible for a pending bit to
-> be set even though the corresponding enable bit is not, which lends
-> credence to the idea that the pending bits operate independently.
 
-Looks like that. Please add a comment to that effect then.
+Heiko
 
-Thanks,
 
-        tglx
 
