@@ -1,66 +1,72 @@
-Return-Path: <devicetree+bounces-227848-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227849-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB0AEBE4C7F
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 19:06:14 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id EAE8BBE4CA6
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 19:10:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7F494189C646
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 17:06:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A35A65818E0
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 17:10:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6838A33468C;
-	Thu, 16 Oct 2025 17:06:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9E271A2C11;
+	Thu, 16 Oct 2025 17:10:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="StUZULop"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b="UQsNPB5G"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35D60334684;
-	Thu, 16 Oct 2025 17:06:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760634368; cv=none; b=eAZqslSws5cQffG+acNyfdwpA1VrxCVZFDBR+QCVA0wI/tk4MMrDz1EIngGLYLg+1uyCPNiWjK/nuyAdqZdoCblqwtnffRIATLOkjhMtRvIMjNQVv9BpIoAvmpJr3nmUkAl2jxmBpDnLJVZinYWQOqzBWHN0wENUvcZhrk1b4Yw=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760634368; c=relaxed/simple;
-	bh=eskJgEswuM2KIOvIt6RczPdi3+e/Gu7TEutaJgkQaNs=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 003463346B2;
+	Thu, 16 Oct 2025 17:10:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1760634616; cv=pass; b=seL79o+OAF97zvXupisS5YxLHBnkPNbC518eP6kO1k/apDdyMsFvalXGYgExJhfu5Crz6xsQe6APyPggWoRzXVPq9TgOpvmWDnmYZLjs7o9UI1OEQTnudSjvXXCARqwDdTBmlnm0Ldv3X4ngWkvmqub5jrdDBz1a+dfNTbnPoME=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1760634616; c=relaxed/simple;
+	bh=IoOOOo99B6oDTSqOk5pWxfk5E3PACZ8LU1gvKyz/9f8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Du5eMpzYNWDf+oi2E4H44+t+ALmCeGzRCGYJPvbIRCGi8xiLgpiFEwG688QyXOjU/yHpfRV8KeFmQBV0viuepM1PSFoxpVu7MsKuGcV79WzJRNmrnzdZ3ct3PqO4j58AEu+6+nv1hqI1rgLnm4qmJ9WtDnMVLiyQUSWvTIt33cY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=StUZULop; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D44AFC4CEF1;
-	Thu, 16 Oct 2025 17:06:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760634367;
-	bh=eskJgEswuM2KIOvIt6RczPdi3+e/Gu7TEutaJgkQaNs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=StUZULop3yfuwZFzcgU07+8rl7AoDfRwDxWR3fVzNsMYuJICsLtbGlFjtpIiEOOok
-	 30mfl50ly7MNR/gJg/ejoZob8b2r5MH7ITg7BKQQs+CEKcJ6ogATPsK0mQPRK03yZW
-	 vsuUhrCV/HAEDcZiZhQL82KEas1KB4yPtifk7O7bhgi7OKc2ipDr/w8jw/D5ySOlDg
-	 eblw3vtIX5gF4pTjTdZZ2/PNXcsXhHMaZxY+8btMw4AO3tE2JTIFHiNbdFZOT6mQEn
-	 bhwweXE/4/mvIV6UZ2QEfol6YddUhfs44cydLebviPgifWzeQMuPNd9dRdEuRlL5iO
-	 W+qgskq36+qZg==
-Date: Thu, 16 Oct 2025 18:06:02 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Lorenzo Bianconi <lorenzo@kernel.org>,
-	g@spud.smtp.subspace.kernel.org
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next v2 01/13] dt-bindings: net: airoha: Add AN7583
- support
-Message-ID: <20251016-hypnoses-caucasian-5d08812740a6@spud>
-References: <20251016-an7583-eth-support-v2-0-ea6e7e9acbdb@kernel.org>
- <20251016-an7583-eth-support-v2-1-ea6e7e9acbdb@kernel.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=Fu8Ldc2/NDfJ9BuT60yMtyIlpo8uIHsZd7AX7dpFSeM24nzpHccYGDLaAHj8+8QxgGq0d6un1YdGQerlvAt9BCfzSrkOFQUMTGVNI6tux5EigN9x2iG0Qwbxw+eDhA1SnypKKmuWL1pmBuW2CjCxIKJlUzWxxAoiII27rNpLrmc=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b=UQsNPB5G; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1760634588; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=gczbO7sKvcCDnqFSCQR1vw53dx1KwJ5W0866fWUOnSzlNftVHnFLj77hgcQUZtYXhY4ar0IDH7bqxBx/6iCFqfl2mqPQH6dsKBEJ9AkGJjyDHneSaj81ertXiYnhnrzH0c9O80Zn4V1KJw79ZGJd7mmXlgT28lr0FBTaCsiadOQ=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1760634588; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=hbEVUDEoCtk3RUFUaAcs6tJL6oJ/a4YVjeL1gA2lj0c=; 
+	b=YoBbzw8uapRMEd890bLia1G3i2fGbjjsf6WNJmThnnPZhpHq5BO92Bf9SGMz2GamRtF4h1WYTLoGbU9bpLWepgGbVx3Ks8mQQglFWILlhDV4b3SigUq7xntql27Ad1dm1DFHD+6AXpW5tzdEplrhLZj9CYVop0/m/UcwIIfPtiI=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=sebastian.reichel@collabora.com;
+	dmarc=pass header.from=<sebastian.reichel@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1760634588;
+	s=zohomail; d=collabora.com; i=sebastian.reichel@collabora.com;
+	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
+	bh=hbEVUDEoCtk3RUFUaAcs6tJL6oJ/a4YVjeL1gA2lj0c=;
+	b=UQsNPB5Go5CaZbJTq7W5TDuEJTrKB9w9Kk33sLnBncGFqC3D24repvUEoKp49MYr
+	NaIT7U2ltqoYff1WLmjb5bzmBzfgIe57idrbASxG6LCiH7O8GXGe2SMPb0ks/ZXG9R3
+	H6mgu+d0x3B+3yZ2biXQx7MHasadDM+zICc2J0Rg=
+Received: by mx.zohomail.com with SMTPS id 1760634584762197.15433494671288;
+	Thu, 16 Oct 2025 10:09:44 -0700 (PDT)
+Received: by venus (Postfix, from userid 1000)
+	id A00AA180305; Thu, 16 Oct 2025 19:09:37 +0200 (CEST)
+Date: Thu, 16 Oct 2025 19:09:37 +0200
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+To: Adrian Hunter <adrian.hunter@intel.com>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Heiko Stuebner <heiko@sntech.de>, linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org, kernel@collabora.com, 
+	Yifeng Zhao <yifeng.zhao@rock-chips.com>
+Subject: Re: [PATCH 1/2] mmc: sdhci-of-dwcmshc: Add command queue support for
+ rockchip SOCs
+Message-ID: <7bxs6nw5fnjq22p7gxrmjqjtw3g5nt6cacwpfjihxv5jk765si@ho3odkyxpi7m>
+References: <20251014-rockchip-emmc-cqe-support-v1-0-918f03de0cb1@collabora.com>
+ <20251014-rockchip-emmc-cqe-support-v1-1-918f03de0cb1@collabora.com>
+ <70cca930-29ac-40a9-8e3d-fba1aace9156@intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,164 +74,106 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="9mL+XRXQMatgZUrQ"
+	protocol="application/pgp-signature"; boundary="hi7slofuvqrfaiik"
 Content-Disposition: inline
-In-Reply-To: <20251016-an7583-eth-support-v2-1-ea6e7e9acbdb@kernel.org>
+In-Reply-To: <70cca930-29ac-40a9-8e3d-fba1aace9156@intel.com>
+X-Zoho-Virus-Status: 1
+X-Zoho-Virus-Status: 1
+X-Zoho-AV-Stamp: zmail-av-1.4.3/260.576.51
+X-ZohoMailClient: External
 
 
---9mL+XRXQMatgZUrQ
-Content-Type: text/plain; charset=us-ascii
+--hi7slofuvqrfaiik
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH 1/2] mmc: sdhci-of-dwcmshc: Add command queue support for
+ rockchip SOCs
+MIME-Version: 1.0
 
-On Thu, Oct 16, 2025 at 12:28:15PM +0200, Lorenzo Bianconi wrote:
-> Introduce AN7583 ethernet controller support to Airoha EN7581
-> device-tree bindings. The main difference between EN7581 and AN7583 is
-> the number of reset lines required by the controller (AN7583 does not
-> require hsi-mac).
+Hi,
+
+I will fix the typo in the commit message in PATCHv2.
+
+On Thu, Oct 16, 2025 at 10:42:29AM +0300, Adrian Hunter wrote:
+> > +static void rk35xx_sdhci_cqe_enable(struct mmc_host *mmc)
+> > +{
+> > +	struct sdhci_host *host =3D mmc_priv(mmc);
+> > +	struct sdhci_pltfm_host *pltfm_host =3D sdhci_priv(host);
+> > +	struct dwcmshc_priv *dwc_priv =3D sdhci_pltfm_priv(pltfm_host);
+> > +	u32 reg;
+> > +
+> > +	reg =3D sdhci_readl(host, dwc_priv->vendor_specific_area2 + CQHCI_CFG=
+);
+> > +	reg |=3D CQHCI_ENABLE;
+> > +	sdhci_writel(host, reg, dwc_priv->vendor_specific_area2 + CQHCI_CFG);
+> > +
+> > +	reg =3D sdhci_readl(host, SDHCI_PRESENT_STATE);
+> > +	while (reg & SDHCI_DATA_AVAILABLE) {
+> > +		sdhci_readl(host, SDHCI_BUFFER);
+> > +		reg =3D sdhci_readl(host, SDHCI_PRESENT_STATE);
+> > +	}
+> > +
+> > +	sdhci_writew(host, DWCMSHC_SDHCI_CQE_TRNS_MODE, SDHCI_TRANSFER_MODE);
+> > +
+> > +	sdhci_cqe_enable(mmc);
+> > +
+> > +	sdhci_writew(host, DWCMSHC_SDHCI_CQE_TRNS_MODE, SDHCI_TRANSFER_MODE);
 >=20
-> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
-> ---
->  .../devicetree/bindings/net/airoha,en7581-eth.yaml | 60 ++++++++++++++++=
-++----
->  1 file changed, 51 insertions(+), 9 deletions(-)
+> Transfer mode was set already 2 lines up
+
+Indeed. I was not sure if this is an intentional quirk from Yifeng
+Zhao and thus kept this dual write.
+
+> > +}
+> > +
+> > +static void rk35xx_sdhci_cqe_disabled(struct mmc_host *mmc, bool recov=
+ery)
 >=20
-> diff --git a/Documentation/devicetree/bindings/net/airoha,en7581-eth.yaml=
- b/Documentation/devicetree/bindings/net/airoha,en7581-eth.yaml
-> index 6d22131ac2f9e28390b9e785ce33e8d983eafd0f..7b258949a76d5c603a8e66e18=
-1895c4a4ae95db8 100644
-> --- a/Documentation/devicetree/bindings/net/airoha,en7581-eth.yaml
-> +++ b/Documentation/devicetree/bindings/net/airoha,en7581-eth.yaml
-> @@ -17,6 +17,7 @@ properties:
->    compatible:
->      enum:
->        - airoha,en7581-eth
-> +      - airoha,an7583-eth
-> =20
->    reg:
->      items:
-> @@ -44,18 +45,12 @@ properties:
->        - description: PDMA irq
-> =20
->    resets:
-> +    minItems: 7
->      maxItems: 8
-> =20
->    reset-names:
-> -    items:
-> -      - const: fe
-> -      - const: pdma
-> -      - const: qdma
-> -      - const: xsi-mac
-> -      - const: hsi0-mac
-> -      - const: hsi1-mac
-> -      - const: hsi-mac
-> -      - const: xfp-mac
+> As mentioned elsewhere "disabled" -> "disable"
 
-Pretty sure most of this diff can just be avoided by changing this list
-to be
-  reset-names:
-    items:
-      - const: fe
-      - const: pdma
-      - const: qdma
-      - const: xsi-mac
-      - const: hsi0-mac
-      - const: hsi1-mac
-      - enum: [ hsi-mac, xfp-mac ]
-      - const: xfp-mac
-    minItems: 7
+Ack, will fix in PATCHv2.
 
-All of these -names properties IIRC are arrays of unique strings, so doing
-8 with xfp-mac twice would not pass. Your conditional portion of the
-binding then need only set min to 8 for the old device and max to 7 for
-the new one.
-
-> =20
->    memory-region:
->      items:
-> @@ -81,6 +76,53 @@ properties:
->        interface to implement hardware flow offloading programming Packet
->        Processor Engine (PPE) flow table.
-> =20
-> +allOf:
-> +  - $ref: ethernet-controller.yaml#
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - airoha,en7581-eth
-> +    then:
-> +      properties:
-> +        resets:
-> +          minItems: 8
-> +          maxItems: 8
-
-Same here fwiw, just need to set the min for this, and...
-
-> +
-> +        reset-names:
-> +          items:
-> +            - const: fe
-> +            - const: pdma
-> +            - const: qdma
-> +            - const: xsi-mac
-> +            - const: hsi0-mac
-> +            - const: hsi1-mac
-> +            - const: hsi-mac
-> +            - const: xfp-mac
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - airoha,an7583-eth
-> +    then:
-> +      properties:
-> +        resets:
-> +          minItems: 7
-> +          maxItems: 7
-
-=2E..max to 7 here. Re-setting min here is redudant, since it matches the
-outermost/widest constraint that you set when defining the property
-outside the conditional.
-
-pw-bot: changes-requested
-
-Cheers,
-Conor.
-
-> +
-> +        reset-names:
-> +          items:
-> +            - const: fe
-> +            - const: pdma
-> +            - const: qdma
-> +            - const: xsi-mac
-> +            - const: hsi0-mac
-> +            - const: hsi1-mac
-> +            - const: xfp-mac
-> +
->  patternProperties:
->    "^ethernet@[1-4]$":
->      type: object
+> > +{
+> > +	struct sdhci_host *host =3D mmc_priv(mmc);
+> > +	struct sdhci_pltfm_host *pltfm_host =3D sdhci_priv(host);
+> > +	struct dwcmshc_priv *dwc_priv =3D sdhci_pltfm_priv(pltfm_host);
+> > +	unsigned long flags;
+> > +	u32 ctrl;
+> > +
+> > +	mmc->cqe_ops->cqe_wait_for_idle(mmc);
 >=20
-> --=20
-> 2.51.0
->=20
+> Is this necessary?  If so, it seems more like something that should be do=
+ne by
+> cqhci itself.
 
---9mL+XRXQMatgZUrQ
+The RK3588 TRM says that the software needs to verify that the eMMC
+controller is in idle state without any ongoing commands or data
+transfers before disabling the CQ_EN bit (CQHCI_ENABLE in the kernel).
+
+Thanks for the review,
+
+-- Sebastian
+
+--hi7slofuvqrfaiik
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaPEl+gAKCRB4tDGHoIJi
-0on2AQCsGgDtbOnKMfcJ3xtmRPlJ8e6bbOl2Ha5gG8JXUfO1CgD/QxseQkLse1bg
-s5COTpsvRS3yGcjqbh/LziflXULgVgc=
-=rwvg
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmjxJs4ACgkQ2O7X88g7
++pq51hAAm3CH6Mqi1/tRfS7aU5DQ4CTIPKPwk8OcIi55uSaw6dq9jg7bPBVs4V7n
+9HB551tq8Pam5BJ4/rLH7izTRBCzSG/hvChWlKYqsVw1w60Pb/JaTBxoFiYrq9XD
+gNfWsQPBo3hwxrkzeIxYNNn2AnLHcEmkzYLWjVRsxNaoalAsOtwgTA/8bY4Yuwvg
+Q7zCCqj4XrWrhvYET/c8EIoYkfjOnTkNhvE/ErZRYPb1tJLSjrzJoxU0KjtUtGcm
+ac+orwAkqDuMVOpL0CvdjZkDiOhnubYAL9vWcSDXKN++MbeMwaLoqsrl3x9bnw1X
+eYzGDQr5pNK7ywYVAcxu6mOTFrQaBFzh7RcoV5f+Gpw2xjF99CYpGI5Nysxyjr/q
+1KoaTFjp8FQxVxycZhPCAnbAXrvfWWhKCwU8bbR3tgYHFMTGR/bnQqYQFbTu+5nL
+W54NRQir+pMjeAOt8/aKhPCvQ8FPOUdQoqXqUqt7iVBtEdDejfKxVgV+TAC/7ild
+xhh+jwafHylVySu8xf7kYUgITtNXIkeDlaU34SvWUs+rZ8fXE+ixQPez4c2QMzy7
+mImT+596Tn+3IeRjnZVGaRsFCHRcwZZ95O167gW2IfU6BCFNS3E3a6DULxsbrNmv
+aVM8t/FpIjNYIHDNGGTKD2YybwFSNeY1c0F2L7zUBTcY8gir0cM=
+=DGaK
 -----END PGP SIGNATURE-----
 
---9mL+XRXQMatgZUrQ--
+--hi7slofuvqrfaiik--
 
