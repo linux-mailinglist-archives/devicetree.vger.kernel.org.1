@@ -1,177 +1,146 @@
-Return-Path: <devicetree+bounces-227738-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227739-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9AF9BE4221
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 17:11:08 +0200 (CEST)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F51FBE4296
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 17:16:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DBB2B5E32B8
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 15:08:26 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id ED39E3556E9
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 15:16:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48BBA3451C4;
-	Thu, 16 Oct 2025 15:08:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2B6C3469F4;
+	Thu, 16 Oct 2025 15:16:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="CA8PzSRj"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ll4RLxDA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C7443054C4
-	for <devicetree@vger.kernel.org>; Thu, 16 Oct 2025 15:08:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DD9C26F45A
+	for <devicetree@vger.kernel.org>; Thu, 16 Oct 2025 15:16:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760627301; cv=none; b=W5rt75M3Fork4BzsG/M0W+AnVzwG6KXWkD5fRP63j1z1R1dmFpI8nteex29XlyxxJV0/0TMMIgrmZ4xIqXlH7B2iOY/kpj47DJEZC49ufwMDfhV+xHe5r+ozvQzk1XbEPBLFniB1RbFRFZEict2lesO2ezrOb1KALwjkiDi15p8=
+	t=1760627787; cv=none; b=IQy6tpX/4D4y9HbyiGlUa5w0esvV6SzhVdw0RPnQ56D2o1F0vEggBTVklDTLRK9wXHMORGJjkLPBaoSizyOwgU9L2lqQTYQHM6D+OaBuHOU7ueWvjy3Ke3/9uHgOkv41mIv/qlr5PVzgrQKpZ7iWHx2HxjSHoBDZWSa6BjqNENs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760627301; c=relaxed/simple;
-	bh=G99ZPbE0qrXEWxpI9cnRms8DfqdX68C4eTHKs/UcMD0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=aG3gQ8qDD4mLH1bzMivjiL3Pbv+Sdr1ZsF4V0/os1FAqU+N5OkrVWADckOUsz6NmkOFvyVaw8PoPO6r77xHoX1mVg3RZvQFwJFYYheAnjiPb5KHAIYv6UyJwaEDjzMcYCzunn4c/VJ6riHChJIXphaPGT9L3cx3/wXnUunp0eKE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=CA8PzSRj; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59G7t2RG002717
-	for <devicetree@vger.kernel.org>; Thu, 16 Oct 2025 15:08:18 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	FXyMiKp6Pe+UsoaL5xjvf5aBb6HRAlCgHcOZD/wdeOM=; b=CA8PzSRj4MsKetOp
-	iFUrF9KVRsp8LxbZKGn3ZZL5VBCWuTNtrZV5mlGAkOMeQcYDnQXpJew3FjH+fQF8
-	FYMKGerxmrMflb9ZnKj7k8gO+basMKX5D04Z/JFXEWJkTKgxrk5kXI3P9U6fktiz
-	BMoOqgYkgiKcDIzU3E1tbeCrc8O6+jYCQ5ko4fz2rdQGnt+im4UkTDfIjAjWd7n/
-	ybC1e2jaRRbhFitr2xA3vsOc12f3gXRObrkGuBK9IeHiFBuPboM6+6anVyOBwPwd
-	CEMkeyVHfYHB+sjfO+nz6DoD7tQY2f7lhRqhNQ1zdZj8QIhNhG2sFN0F3N+Uagmv
-	1CMR8w==
-Received: from mail-vk1-f197.google.com (mail-vk1-f197.google.com [209.85.221.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49qfd98tyn-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 16 Oct 2025 15:08:18 +0000 (GMT)
-Received: by mail-vk1-f197.google.com with SMTP id 71dfb90a1353d-54aa2c8926bso512334e0c.2
-        for <devicetree@vger.kernel.org>; Thu, 16 Oct 2025 08:08:18 -0700 (PDT)
+	s=arc-20240116; t=1760627787; c=relaxed/simple;
+	bh=wcfBHmd6UI5Ee2LDKTIUZ3jBqohaEOc9j2+snQ6rucI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=uH88CilxkBgIl2+FRTDuLceJ9YC43ql4BHa6/k8zvHYiIHImQ5kkWjZojQXurSY7qv17RbXngHT27tHmWtQeSFOACEjNbpSbx+ApSu53qzt8wW7tncpqYfR9xOGGydpZGsFdqkcZ6FHSLv3fSc276lfB3m+tkOYR6s3YMtC8ALw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ll4RLxDA; arc=none smtp.client-ip=209.85.208.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-634b774f135so1469138a12.2
+        for <devicetree@vger.kernel.org>; Thu, 16 Oct 2025 08:16:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1760627784; x=1761232584; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=+GMHzyWxIQdB2FcnGDsVo98f9mvKfQ0tZi6sM1VRpVw=;
+        b=ll4RLxDAj0FVXCLpmb0Hy92wpkTF+tM1aJ4Hph33IeRmerp1ZGixggCCVv1QYgMbmi
+         M/O4cBLWnNfZ91OhZzTHwaBP25UPrLsewfV6wE5Qc/OsRf6sKs7BqxNu1JYpSFrF4FMP
+         mdGbLp02Q1svctTmrUsS5qyfrRPVmfNf4bgjlm8yH3EWWILdj6LqCkzMfxUtwcuYGycA
+         fDSB7rSPCWvlxb7Q0ClsbBuK5AAAJtz9fDUKQ8tfkcjLOK94xQI916au5lMGWiFbJzuK
+         zFFny+iT9Eb4UI6VBbJ/pBCt+S450nk9b0/PbTPmDSDpxb9Dcclq0Hfy+Jqje0cL7ZSO
+         KlBw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760627297; x=1761232097;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=FXyMiKp6Pe+UsoaL5xjvf5aBb6HRAlCgHcOZD/wdeOM=;
-        b=ZJvwmtWP4k3UU0cAbTaXPw09Rzkjn4xd7uEhLGPxA1zV7GR0J76Qo835TgRH6Dgq3b
-         hS1OBVf4sqcm3eTOzw11q0vXW0JiPWqHntGvKtpwK6ZrnEEUh6eRozvFjQq4JdisL9Fe
-         Fgn/EIunCAEUyyRVTPq7XNvuL6zWRRUmtQFFuiK57rHr1WRT4UuVoJwCwWxkAOQlZ17r
-         prJlhFBgy3aVQR76SV0Nd6agfkkV2BFOD8UyK9YUTwS67ItG023Be1obbmrr91hUyt4Z
-         7CmDJnThlu4SEfPmN+Evqm7nNqsv1I828Y721WRQu6Nosh7yyHyDm/HIkpidU12IHhO2
-         ylVQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXGqYMZWqNLKvsjlxAdZgeKQcaP+H9ZovEvxfCVH9llQaUdNhUYYzYjHGXV2QlIJ9j3vuex5136pAfg@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx45GO5AMp5HbO/S/Qobwsv8HEEt1noa91CMAszYjSnTC9WeyLL
-	hqLX08Ylxrd+vQXgQMzMcLglf0sOC6swCTSNb3//VSqp9fBcTn7iEY3E7Oa1FwF7VUNI1FDWxUX
-	DUn1j4TkCcFwDiO+tTAPprCT4cYwjjrwX0FIoPDoXqXPFGP97seq+2ez9TdheppYL
-X-Gm-Gg: ASbGncuerxT8mzmqnUEhIe19hs2m4B8RzuL40R/UbDMbrGQYD8s57K9Pm2JjAd7hBkm
-	WDeCkNQ7veY/K9+WP4K/JlXMTyIYRVScK9jjNqKIC9S/93298sn/gRWU2PI2Cp13jrrswHbJBVM
-	76WhATisDKLIBS3UxMkV6sWhHxq8jYe/n6k2IY9yhUqMnKZSabERmpSFm0m3+TR0GpLWvHCiHBX
-	CHaIiNgGixuL2I57QHWi5tczONF6Bk9xa0QsCujHlb4y7OyGI3MIM5NEjRQiXJcckk5/3AfeRLM
-	WZhbbvHy3Tk6byd/hVf9/jRvUCzvkcYpX2vSti8elhpxqdfnKYdghvyGX3V0ydjFxRlga2ZMweF
-	7L+miiTPRxfGZq9j2LBYW+8Zy0A==
-X-Received: by 2002:a05:6123:2e6:b0:554:b927:dd96 with SMTP id 71dfb90a1353d-5564eca468fmr356743e0c.0.1760627297052;
-        Thu, 16 Oct 2025 08:08:17 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHPWieiWFaaKyulx2rok1ilSzb8mCz8kPrQASfSURizbtH1xNaE0Q4mMvEcDFXidP9X2/I5HQ==
-X-Received: by 2002:a05:6123:2e6:b0:554:b927:dd96 with SMTP id 71dfb90a1353d-5564eca468fmr356696e0c.0.1760627296637;
-        Thu, 16 Oct 2025 08:08:16 -0700 (PDT)
-Received: from [192.168.68.121] ([5.133.47.210])
-        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-42704141cc3sm1877857f8f.9.2025.10.16.08.08.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 16 Oct 2025 08:08:16 -0700 (PDT)
-Message-ID: <b0d9cec5-1162-476b-8438-8239e1458927@oss.qualcomm.com>
-Date: Thu, 16 Oct 2025 16:08:15 +0100
+        d=1e100.net; s=20230601; t=1760627784; x=1761232584;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+GMHzyWxIQdB2FcnGDsVo98f9mvKfQ0tZi6sM1VRpVw=;
+        b=ocZ7AKIalBE15qQqd05tnQLZZa92yTEEmvzqX1liGXF3UXHfD2oyrkQhB7yswoDOe2
+         4ofRSzKiy5egME1CF+Mj3KpwbFDnUh0Av8rl5T/xwzP+XaBUwsRTna40dov4VFDg6pAO
+         hoji9Lask4lMKWOI8SISJPIautSzvG2x5YRdS7AfOADXonnjE8nT8yY3t674SlwPO7VB
+         dqLw5YuoAc1Htp+WbpgzsMqWm5FciVbm8Roq7D/QtrrxAIZxLrnkey1XuHhDHmRID8pf
+         EicU5KlEZA5ZOCgt3j7jLxE0JP+OOldHFWLAtPdvwOLFh8r+qQf1rDB9owQSpdMhvex5
+         qliw==
+X-Forwarded-Encrypted: i=1; AJvYcCVSrm1BL6IQlHCXBu6oG0uVffmasCQfvSgwZ3AJsvz63jl1cUbrG2vtMzr/gL9j1/aTFohT6kQ7de7A@vger.kernel.org
+X-Gm-Message-State: AOJu0YyfxcKriY7u90JDADLB5ukhPjx+Mkrr+EVEVTSWtIns1z/TOYKS
+	XoOt7VE2KGO4O9+xL4z0wCxRnePNy1aYDk/zWLaP8RHD6n+YmVOdSrgm
+X-Gm-Gg: ASbGncsrgAD4p8GTuUbo3VR6ol1hZwF9knzZKqrSwh0m6L0u5MY9529pT1F+g1m63TE
+	4l8F7saXf4zdau0r5VXjlG1GHAdv0izVgXf5XqythzWvhMrAMe2Olpx77g3QoYMWqrPNQtz/Dbg
+	7siUuvFlMJeWMLZBd/N+k1khfrh29T7pgxOWB/hXEFaFVKKrBjlS7cVNKCU/TsC/76mZnXaeQll
+	f6xorR2Eg/fPP/sH6X5Nr2nroRmVXpS5t9ClwnTbD81xlZ+Azcy0hyo3UXOZ6br+K7qlMhRNaP3
+	ENZ6Zf2LcV20Zqsqykp/kzuslYUNfCJZC86DWYgQD9gCNnOjXrxTzUZB6t2TAdE8pgUzyYyIAzt
+	IyVpNfHN0R4QEkMIW6Mya3C8NwCut69imQ25debmWjLNirKbw8xBufxx9W2Ao/oNfgNW2XxENqP
+	TYWooHLLiv2P8KknOsV0OElvMwYszmEC7nhls6ynGydXjWABLE1ekynN6hiGaFLpij59nRvJLxW
+	g==
+X-Google-Smtp-Source: AGHT+IEUnMRpJptAyqDQKCXnI29t4Gj4evz9uABzOpOdIG6VCD9oWY5iTASgKePBY093qoWb66U4sQ==
+X-Received: by 2002:a17:907:2d06:b0:b40:cfe9:ed2c with SMTP id a640c23a62f3a-b64769cd245mr26276666b.64.1760627784283;
+        Thu, 16 Oct 2025 08:16:24 -0700 (PDT)
+Received: from orome (p200300e41f28f500f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f28:f500:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b5ccccb51fesm532883366b.44.2025.10.16.08.16.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 16 Oct 2025 08:16:23 -0700 (PDT)
+Date: Thu, 16 Oct 2025 17:16:21 +0200
+From: Thierry Reding <thierry.reding@gmail.com>
+To: webgeek1234@gmail.com
+Cc: Linus Walleij <linus.walleij@linaro.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Jonathan Hunter <jonathanh@nvidia.com>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 3/3] arm64: tegra: Add Tegra186 pin controllers
+Message-ID: <qkyzlnni5nqykck4org4vgxzju6v6iha6fulgguutxuhf7zozc@awyches7ozox>
+References: <20250812-tegra186-pinctrl-v3-0-115714eeecb1@gmail.com>
+ <20250812-tegra186-pinctrl-v3-3-115714eeecb1@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: sound: qcom,sm8250: add QRB2210 and RB1
- soundcards
-To: Alexey Klimov <alexey.klimov@linaro.org>,
-        Srinivas Kandagatla <srini@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-        linux-sound@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20251007-qrb2210-qcm2290-sndcard-v1-0-8222141bca79@linaro.org>
- <20251007-qrb2210-qcm2290-sndcard-v1-1-8222141bca79@linaro.org>
-Content-Language: en-US
-From: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
-In-Reply-To: <20251007-qrb2210-qcm2290-sndcard-v1-1-8222141bca79@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: CG5F1Dg4N9dfTT3Z0sLDDKpTZMA5pFie
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDExMDAxOCBTYWx0ZWRfXzwlOymqqbLCx
- kAc6vchPJrT9poQTjRTH/ZmeZyEyGkJoYiAIq//B/OrZtKBww9urkqRVPRkuxYv04x16J1Qd01f
- H2sXZ7WwtxE1hvIv6wy5915/hkkNVUxrjCzlTIKfmOC0SCSjyyb0yRMNLpsOXd67ioy5jXmOfei
- k019HTr8vWe/Y8t0NWRxx6bIbgtOFSEAeF4wavQe7oZ4KRACFqAaVejNHXSQCshNrb5Kbp/IHex
- XjkwX/Tu2s3I9UfC/aYnpxPKxrBwMBlUH8zmtQmqOzDG6YqEsNPwAMCK0lRx0Spdj70FJ4pA6rv
- FSD+yT+BX62KAAp0s5LPycUegg/QwxcfXbhjpidhyZF6snHXxgfyKGR12jd5XmSQco08nuc0HFd
- TNiOYvEH3hU/Myve2c3ly7f0aqO3+w==
-X-Proofpoint-GUID: CG5F1Dg4N9dfTT3Z0sLDDKpTZMA5pFie
-X-Authority-Analysis: v=2.4 cv=PdTyRyhd c=1 sm=1 tr=0 ts=68f10a62 cx=c_pps
- a=JIY1xp/sjQ9K5JH4t62bdg==:117 a=ZsC4DHZuhs/kKio7QBcDoQ==:17
- a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=VwQbUJbxAAAA:8 a=KKAkSRfTAAAA:8 a=7YHmJdMxG_e0k3IJONEA:9 a=QEXdDO2ut3YA:10
- a=tNoRWFLymzeba-QzToBc:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-10-16_03,2025-10-13_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 phishscore=0 bulkscore=0 clxscore=1015 adultscore=0
- lowpriorityscore=0 impostorscore=0 priorityscore=1501 spamscore=0
- suspectscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2510020000
- definitions=main-2510110018
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="xpwhjuenbephr6ly"
+Content-Disposition: inline
+In-Reply-To: <20250812-tegra186-pinctrl-v3-3-115714eeecb1@gmail.com>
 
 
+--xpwhjuenbephr6ly
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v3 3/3] arm64: tegra: Add Tegra186 pin controllers
+MIME-Version: 1.0
 
-On 10/7/25 2:26 AM, Alexey Klimov wrote:
-> Add soundcard compatible for QRB2210 (QCM2290) platforms.
-> While at this, also add QRB2210 RB1 entry which is set to be
-> compatible with QRB2210 soundcard.
-> 
-> Cc: Srinivas Kandagatla <srini@kernel.org>
-> Signed-off-by: Alexey Klimov <alexey.klimov@linaro.org>
+On Tue, Aug 12, 2025 at 04:24:42PM -0500, Aaron Kling via B4 Relay wrote:
+> From: Aaron Kling <webgeek1234@gmail.com>
+>=20
+> Add the device tree nodes for the MAIN and AON pin controllers found on
+> the Tegra186 family of SoCs.
+>=20
+> Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
 > ---
->  Documentation/devicetree/bindings/sound/qcom,sm8250.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml b/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
-> index 8ac91625dce5ccba5c5f31748c36296b12fac1a6..c29e59d0e8043fe2617b969be216525b493458c4 100644
-> --- a/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
-> +++ b/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
-> @@ -21,6 +21,10 @@ properties:
->                - lenovo,yoga-c630-sndcard
->                - qcom,db845c-sndcard
->            - const: qcom,sdm845-sndcard
-> +      - items:
-> +          - enum:
-> +              - qcom,qrb2210-rb1-sndcard
-I don't think you need rb1 specific compatible here, unless there this
-is totally different to what the base compatible can provide.
+>  arch/arm64/boot/dts/nvidia/tegra186.dtsi |  12 ++
+>  drivers/pinctrl/tegra/pinctrl-tegra186.c | 207 +++++++++++++++++++++++++=
++++++-
+>  2 files changed, 213 insertions(+), 6 deletions(-)
 
---srini> +          - const: qcom,qrb2210-sndcard
->        - items:
->            - enum:
->                - qcom,sm8550-sndcard
-> @@ -37,6 +41,7 @@ properties:
->            - qcom,qcs8275-sndcard
->            - qcom,qcs9075-sndcard
->            - qcom,qcs9100-sndcard
-> +          - qcom,qrb2210-sndcard
->            - qcom,qrb4210-rb2-sndcard
->            - qcom,qrb5165-rb5-sndcard
->            - qcom,sc7180-qdsp6-sndcard
-> 
+Applied, thanks.
 
+Thierry
+
+--xpwhjuenbephr6ly
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmjxDEUACgkQ3SOs138+
+s6E1FQ/9Emy2fSHqfWOx1mLl7fFhFiPgIbO/7b6K4ogiYAUJPPgObu9dQKwRZYcT
+y3WxvaYz9orL2R8f9wssQTfeCjiNcxs/9KX63v4K0A8UTAZ6IFU+jwzcuswQ0ZHX
+CLEl1zQnPnzbderf2Ay7rTbxUaOt+D9yDXjmpgm5zGOdGEPCibFaPC8RTbx+5Wy2
+rqztgmgQ4lHhBuVKGfjrfaVttYLrwfv2cV4pvZiyD+o5ekRgQqUqn6vrKbv81edG
+/RYqWHc1p/ylM/ff5oJKbSVEOIVHkdfFB6vREUZHcb5j8CFhXKojdp46dWRNzyKu
+ZobImewQyLDYmny2ci3uCZRZHuohBOHofyND1oPBuzA7seFGAmH41hNWzQD6mbuK
+8FU07VkQyz/S2vEOGb2yyeEnnzNLLSPmiJRXCO7Ld/voGIwAr5UpGdZKhcTn0MHG
+Djt+P8cRy0x5FppjlIT/YqPlhWFKiovlRJ9SSlMtnVyPMz8P+c4wC77uMtQoGodW
+3QkeqNwPVxDsN0pnUFb24DepLbCoOdRAknomjXbbTiRyzwyhCBoJ1y+C8fBNXzjM
+Ndo0FiyUNf712YVBRTtj/Kd44VxC6z0G7kChlUxo1ja4WTI5IZQYxDxoZttn0Nss
+07AJ9/Yu4hGCO60Ut6sY34UshXe//dGNnuaxvrMEbG3DwjD8uEo=
+=+p2n
+-----END PGP SIGNATURE-----
+
+--xpwhjuenbephr6ly--
 
