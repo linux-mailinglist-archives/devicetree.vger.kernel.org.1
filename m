@@ -1,173 +1,142 @@
-Return-Path: <devicetree+bounces-227707-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227708-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA931BE3C56
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 15:44:17 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9597CBE3C78
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 15:45:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D4D8E1A66C86
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 13:43:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 86963189D9EE
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 13:44:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB92733CEA4;
-	Thu, 16 Oct 2025 13:42:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6809133A02A;
+	Thu, 16 Oct 2025 13:43:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="TbM0Hawm"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uUeUqTY3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m1973173.qiye.163.com (mail-m1973173.qiye.163.com [220.197.31.73])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77D1033A00E;
-	Thu, 16 Oct 2025 13:41:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.73
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77DF132D442
+	for <devicetree@vger.kernel.org>; Thu, 16 Oct 2025 13:43:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760622121; cv=none; b=SRxLxENrxpk3D78YiaEbY9VtMZXrvbT5cbhLV6H+PGDpsVvNybTXdlPQT/49YzrfTP58/Sd6+gcx+sY4u+uzyYZxBONVSMlqELyeYXSgt6KoAPA99wa6mZoiF/7/iPi91NEIDUEdg69jS/e+TGx/twRWJ8Y4oZoEUWGMJc9qhuA=
+	t=1760622202; cv=none; b=Z/3nJ87e1M4zqg0c/XY7iKEDy4MjrNmil6aNtKGRjSb7c+iJc/LjC6ndru2YaDcxRH6SJ0hP8kRpLcwltjBLi0iKMsczerUQE0hpS+xLsdQkw1PGANoYziSvxfBD2Yaz6Kr3bco6741hTy5Jd0tR99inP8toVwBAOXGqJ2oF4zE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760622121; c=relaxed/simple;
-	bh=aR1eaDNIrPulkBL1DXPC20FxSUB27nGElMJ7szUod6E=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=s+nBIFqWrp5P7VGzSifJ2uivwYJaCMEVijb5v06Qezmu/rPlIzu277G89aANurXAC9Te+p54BhMILY9ZVWvmRUO/epuW9BraZlPUCSmJLP06PXzZ7TS8gE4ZnE/KkSeANlC5ZLAlUj7RoZhxO8Eey6Z6vSyverRNV52XMJoVMU8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=TbM0Hawm; arc=none smtp.client-ip=220.197.31.73
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from xf.. (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 26283fe3a;
-	Thu, 16 Oct 2025 21:41:48 +0800 (GMT+08:00)
-From: Finley Xiao <finley.xiao@rock-chips.com>
-To: heiko@sntech.de
-Cc: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	ulf.hansson@linaro.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-pm@vger.kernel.org,
-	finley.xiao@rock-chips.com,
-	zhangqing@rock-chips.com,
-	sugar.zhang@rock-chips.com,
-	huangtao@rock-chips.com
-Subject: [PATCH v1 2/2] pmdomain: rockchip: Add support for RV1126B
-Date: Thu, 16 Oct 2025 21:41:03 +0800
-Message-ID: <20251016134103.294636-3-finley.xiao@rock-chips.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20251016134103.294636-1-finley.xiao@rock-chips.com>
-References: <20251016134103.294636-1-finley.xiao@rock-chips.com>
+	s=arc-20240116; t=1760622202; c=relaxed/simple;
+	bh=jDp9/QBfldp4RgNCkyVTB+rWmBU/cFzzvTwjjiiKsD0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=SkI9XqwRB+Q7M7bjo1w46Ut9PDRkcCdGuPo9Oy9ZDKCkppkYtKekRo4nht7Dj+DDLB0qi92BHYUMt8QyU8LZPDkj2OeYaW35Iz+34AK9XtyC92PbvoHfGIpgdLdt3mUkWBg+phiLEJWxwFFcEawBzO7X2AI9qxQkG1fLybyk3bo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=uUeUqTY3; arc=none smtp.client-ip=209.85.167.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-591c7a913afso96313e87.3
+        for <devicetree@vger.kernel.org>; Thu, 16 Oct 2025 06:43:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1760622198; x=1761226998; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=VPa1I3Sb/NK9EofjdAp6afiIJMKd5znl9EBjNEXePg8=;
+        b=uUeUqTY3M0yVdJekd+rbaKKgBhgIQ/FbtquqJ8k83WXKo07FS3iLkIieZOXgBnYfwt
+         FJMYk44HwpdnDZcaiNnUJR6TihDMKRKTWz+nATgR4WHyEsDR42H72kQN9strCDyAne7C
+         RmWPKC1mdrIk+2JmHd/F1MiMjFcLPwSq96n2V6oDf+xGSruWsH+3AvqHulpfGalEaJv9
+         rKqLAMxABbbzr34e4AVSEAw11rw2JQtJrsW7pQnVNZ4Q4tGuS295DUx0W/o8CeF2Dv6W
+         0vPMJ9WCyN2WDeie6X7Oapr68a7iidDrUhrdLEjKbTGHwY4v36rel0G+cOVX0w4fJhFm
+         1XuA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1760622198; x=1761226998;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=VPa1I3Sb/NK9EofjdAp6afiIJMKd5znl9EBjNEXePg8=;
+        b=nbimcLY1ZW6N6mc3sjv+qFTokZvRiDlDPHsQoYO4ok1ZMG0cNnX4NcMyuW6CxMZoCv
+         oNG3aqqZZe8QgVXQYu4WlAophLnYnkzZUd0bjOMkaJ7n8lKXOtwbGalJ2gQDA8b3aaBm
+         ic9we2Sd9JQxAGg2MgcosyUgrMbeAQCHMgc/ZEUksMGw+Jq1oe922YhBeMha/zrEV+b5
+         MzNDUV3xAoneE/QeLo5ylHVmY+opJo+Zfef9mGIuZCYYwby5tQykPKaDwM6mSgNSwdOG
+         tbYPP9h90Jv3HZZRLdnzhGLn+zU5vbpccC5+i4TtpsrQBgeScAXjqMw5Hx6jztIapu2Y
+         8fdw==
+X-Forwarded-Encrypted: i=1; AJvYcCV27qnIh98C6gGJt0N+ZmPtTj04ril1lUsM2hPOTZG3gRP6r4XBMnpbwdWau8OV/Gr1eQeK6N1hrFYF@vger.kernel.org
+X-Gm-Message-State: AOJu0YwlI8FkUy//TXSWUjKAi+QFgDkdvGsPPlqogDLJhdLERMnXiPpM
+	if8zHk7erpUhbVHKxCTtHGnmwoTaQcCzK5mcOEKpi6jlMUfcTcpAhw0xk7J9Msh+gAI=
+X-Gm-Gg: ASbGncuofKDlGzYnDe1+2U3GJ+FzLWYgVmdesyRt66AggNLjn35jn9JTCu+ld/Q90E+
+	kqWSMR5WGf9Z29Kgy5ZiaPIB5gozOBFDlT0Sd0PX/Eb3ZMuI71sHrObHa7HPQbErCExe4C+9tmK
+	uVy4yZVDtYP6t1dJIdaPa29a04w0qC82FTF888JnVqrm9QE+dVkL+/hcynErkovqI8W1dkpYRv8
+	HDMKwNTxIL6WRScrASOlutOkdDvwsfKeel27sL1IP2Rm3qPdNbY57e8ZoL6SphvZzMqNtDBDUf+
+	cdDRgCvABfZiWq3liYYPFcTljP65P45Iu538ctE5tW/xv213u/rEezBh7tc41vx4g6IP5NM0Hvl
+	4AnHt+NFo6jVErd7Nv8LFlp7UN59WiWUwhDqt7D6z4t8JcV0i7V79ckAeFALTr4yjaJOUDk/Fq9
+	/C7e7Eot+mAqf22N9fNm9H5fB6cpvLU14e8hnWR+copg7aTzVCkeU90VBqvLE=
+X-Google-Smtp-Source: AGHT+IEsA6UFmX5BTWpr/DOMf7GtkUjTzhwEWEKu2is2k952LHuOq+Rngn7xDEvuu7cdwPIaQxIv2g==
+X-Received: by 2002:a05:6512:2347:b0:582:512:f4bd with SMTP id 2adb3069b0e04-591d877125amr3346e87.9.1760622198485;
+        Thu, 16 Oct 2025 06:43:18 -0700 (PDT)
+Received: from [192.168.1.100] (91-159-24-186.elisa-laajakaista.fi. [91.159.24.186])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-590881fdfd8sm7032230e87.52.2025.10.16.06.43.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 16 Oct 2025 06:43:18 -0700 (PDT)
+Message-ID: <cf1311b4-4190-4557-a958-55699df495e8@linaro.org>
+Date: Thu, 16 Oct 2025 16:43:17 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0a99ed415f1503a9kunm0a0c6b9d2865e
-X-HM-MType: 1
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGU0ZSlZMH0sZQkhLGk8eQh5WFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
-	hVSktLVUpCS0tZBg++
-DKIM-Signature: a=rsa-sha256;
-	b=TbM0Hawm5HzQvXbp+O5LAOEpKQ+D84rvrZ+39BZ+GY4SfM1sMQWUELFfVF6Sblh+ihxiTzaxDWKTEQq5/BB+hGHv/x6kB6KQDqDPLlTrG8XAghhcIED031ObiBE2h9KQTrlIulc6wUzu7rSbDYsRtGT57mGFuNN6jeosKoDIqEA=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=DTh7gctk5AI3bDTEHZSUWiFdhA+fv7NuK/ICIUrV96g=;
-	h=date:mime-version:subject:message-id:from;
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/3] media: qcom: camss: add support for SM6150 camss
+To: Wenmeng Liu <wenmeng.liu@oss.qualcomm.com>, Robert Foss
+ <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20251016-sm6150-camss-v1-0-e7f64ac32370@oss.qualcomm.com>
+ <20251016-sm6150-camss-v1-2-e7f64ac32370@oss.qualcomm.com>
+From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+In-Reply-To: <20251016-sm6150-camss-v1-2-e7f64ac32370@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Add configuration and power domains for RV1126 SoC.
+On 10/16/25 13:22, Wenmeng Liu wrote:
+> The camera subsystem for SM6150 which is based on Spectra 230.
+> 
+> Signed-off-by: Wenmeng Liu <wenmeng.liu@oss.qualcomm.com>
+> ---
 
-Signed-off-by: Finley Xiao <finley.xiao@rock-chips.com>
----
- drivers/pmdomain/rockchip/pm-domains.c | 41 ++++++++++++++++++++++++++
- 1 file changed, 41 insertions(+)
+<snip>
 
-diff --git a/drivers/pmdomain/rockchip/pm-domains.c b/drivers/pmdomain/rockchip/pm-domains.c
-index 1955c6d453e4..49a01261d13d 100644
---- a/drivers/pmdomain/rockchip/pm-domains.c
-+++ b/drivers/pmdomain/rockchip/pm-domains.c
-@@ -25,6 +25,7 @@
- #include <soc/rockchip/rockchip_sip.h>
- #include <dt-bindings/power/px30-power.h>
- #include <dt-bindings/power/rockchip,rv1126-power.h>
-+#include <dt-bindings/power/rockchip,rv1126b-power.h>
- #include <dt-bindings/power/rk3036-power.h>
- #include <dt-bindings/power/rk3066-power.h>
- #include <dt-bindings/power/rk3128-power.h>
-@@ -137,6 +138,20 @@ struct rockchip_pmu {
- 	.active_wakeup = wakeup,			\
- }
- 
-+#define DOMAIN_M_G(_name, pwr, status, req, idle, ack, g_mask, wakeup, keepon)	\
-+{							\
-+	.name = _name,					\
-+	.pwr_w_mask = (pwr) << 16,			\
-+	.pwr_mask = (pwr),				\
-+	.status_mask = (status),			\
-+	.req_w_mask = (req) << 16,			\
-+	.req_mask = (req),				\
-+	.idle_mask = (idle),				\
-+	.ack_mask = (ack),				\
-+	.clk_ungate_mask = (g_mask),			\
-+	.active_wakeup = wakeup,			\
-+}
-+
- #define DOMAIN_M_G_SD(_name, pwr, status, req, idle, ack, g_mask, mem, wakeup, keepon)	\
- {							\
- 	.name = _name,					\
-@@ -205,6 +220,9 @@ struct rockchip_pmu {
- #define DOMAIN_RV1126(name, pwr, req, idle, wakeup)		\
- 	DOMAIN_M(name, pwr, pwr, req, idle, idle, wakeup)
- 
-+#define DOMAIN_RV1126B(name, pwr, req, wakeup)			\
-+	DOMAIN_M_G(name, pwr, pwr, req, req, req, req, wakeup, true)
-+
- #define DOMAIN_RK3288(name, pwr, status, req, wakeup)		\
- 	DOMAIN(name, pwr, status, req, req, (req) << 16, wakeup)
- 
-@@ -1104,6 +1122,13 @@ static const struct rockchip_domain_info rv1126_pm_domains[] = {
- 	[RV1126_PD_USB]		= DOMAIN_RV1126("usb", BIT(9), BIT(15), BIT(15),  false),
- };
- 
-+static const struct rockchip_domain_info rv1126b_pm_domains[] = {
-+					      /* name    pwr     req      wakeup */
-+	[RV1126B_PD_NPU]	= DOMAIN_RV1126B("npu",  BIT(0), BIT(8),  false),
-+	[RV1126B_PD_VDO]	= DOMAIN_RV1126B("vdo",  BIT(1), BIT(9),  false),
-+	[RV1126B_PD_AISP]	= DOMAIN_RV1126B("aisp", BIT(2), BIT(10), false),
-+};
-+
- static const struct rockchip_domain_info rk3036_pm_domains[] = {
- 	[RK3036_PD_MSCH]	= DOMAIN_RK3036("msch", BIT(14), BIT(23), BIT(30), true),
- 	[RK3036_PD_CORE]	= DOMAIN_RK3036("core", BIT(13), BIT(17), BIT(24), false),
-@@ -1516,6 +1541,18 @@ static const struct rockchip_pmu_info rv1126_pmu = {
- 	.domain_info = rv1126_pm_domains,
- };
- 
-+static const struct rockchip_pmu_info rv1126b_pmu = {
-+	.pwr_offset = 0x210,
-+	.status_offset = 0x230,
-+	.req_offset = 0x110,
-+	.idle_offset = 0x128,
-+	.ack_offset = 0x120,
-+	.clk_ungate_offset = 0x140,
-+
-+	.num_domains = ARRAY_SIZE(rv1126b_pm_domains),
-+	.domain_info = rv1126b_pm_domains,
-+};
-+
- static const struct of_device_id rockchip_pm_domain_dt_match[] = {
- 	{
- 		.compatible = "rockchip,px30-power-controller",
-@@ -1585,6 +1622,10 @@ static const struct of_device_id rockchip_pm_domain_dt_match[] = {
- 		.compatible = "rockchip,rv1126-power-controller",
- 		.data = (void *)&rv1126_pmu,
- 	},
-+	{
-+		.compatible = "rockchip,rv1126b-power-controller",
-+		.data = (void *)&rv1126b_pmu,
-+	},
- 	{ /* sentinel */ },
- };
- 
+>   
+> +static const struct camss_subdev_resources csiphy_res_6150[] = {
+
+For the names of resource arrays please use a valid SoC name like it's
+been done for x1e80100, here it would be good to have sm6150 suffix.
+
+> +	/* CSIPHY0 */
+> +	{
+> +		.regulators = { "vdd-csiphy-1p2", "vdd-csiphy-1p8" },
+> +		.clock = { "csiphy0", "csiphy0_timer" },
+> +		.clock_rate = { { 269333333, 384000000 },
+> +				{ 269333333 } },
+> +		.reg = { "csiphy0" },
+> +		.interrupt = { "csiphy0" },
+> +		.csiphy = {
+
+You shall add .id field to all .csiphy structs.
+
+> +			.hw_ops = &csiphy_ops_3ph_1_0,
+> +			.formats = &csiphy_formats_sdm845
+> +		}
+> +	},
+
+In general the change looks good, after the fix please feel free
+to add a tag from me:
+
+Reviewed-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+
 -- 
-2.43.0
-
+Best wishes,
+Vladimir
 
