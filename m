@@ -1,81 +1,88 @@
-Return-Path: <devicetree+bounces-227900-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227901-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7FD6ABE5A14
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 00:01:37 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F493BE5A23
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 00:03:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id AD5C8356746
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 22:01:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D379F1A65845
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 22:04:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C867A2DE6F4;
-	Thu, 16 Oct 2025 22:01:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F1EE2E229C;
+	Thu, 16 Oct 2025 22:03:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="A3gYDrJm"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="IH0iahE7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-io1-f41.google.com (mail-io1-f41.google.com [209.85.166.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D886C1E1C02
-	for <devicetree@vger.kernel.org>; Thu, 16 Oct 2025 22:01:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EABCD2737FC
+	for <devicetree@vger.kernel.org>; Thu, 16 Oct 2025 22:03:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760652092; cv=none; b=KXI1bRiHFgyLo3KvT5qhrR2oD2XEs/R3O5GOIWtJCK/hCzNSuJ0vbzyUB4luMw/36v3Sei1cdRhZoHOmla28SIHydugrc922dH6WP03V+Xv6oiOXHpHcUXjuvGcdIJotKUIq1ym2gUGRpIAqSm7L19VCGkJP6pkVOiAkEyK6OOY=
+	t=1760652226; cv=none; b=i/wb7diEPH6+r6hRrY/9rk2u7OYeYQt2WES5NjlApVDhQjGPen57mBcEOGtJpBEcaWb56Br8XzxHJrjifR46EiyM80Cq5AIHvaUIxRETnI67uDH0yUnLgCs1uKQuZFCgZGzOZGdjFgJz2zhBUi4WamphrabgcMx678u54/ZJfcc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760652092; c=relaxed/simple;
-	bh=tdPjClI262Zm5tYMT3cr/OeRgdo7FymAe1OpdlIo1tg=;
+	s=arc-20240116; t=1760652226; c=relaxed/simple;
+	bh=REPaXfEEwHSvCPYQv1YOGPYDOJ36+iQWTap+y51gNTo=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=guwbv2fNIt0j0F/v4gP7UUTtuSbkFsN1bSOp6tkbtXyWdK0ApVaJLVUyt3VOA75AUm0mGZyRI4cW0yy/CCS9oN/BUMsyS/Te/CYyNoc54Pua0QJwfvDyeB3AYKVzoZ0MyDASspKhzV5YIgNzifpQCtctCVODdNaHmS1ftzGy2MY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=A3gYDrJm; arc=none smtp.client-ip=209.85.166.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
-Received: by mail-io1-f41.google.com with SMTP id ca18e2360f4ac-91fbba9a8f5so101782639f.0
-        for <devicetree@vger.kernel.org>; Thu, 16 Oct 2025 15:01:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google; t=1760652090; x=1761256890; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=dMl38ifpHYx95j3NO3+X1dV6A44ciq5yhWKFujz48Ms=;
-        b=A3gYDrJmpGuoMvTvekyXRcVcG5cC3vIdNjbWS9JrGad769t/h0qEvI0NTdujQwTMXL
-         v50m8AICnpnlZvMJdCU6ktzKJDihmme33brRyBbp1UWzb/aKXWWXKR+NLeXna249IJh+
-         UJim+jSnZ1EaYcuw1ARHPngqjEtmg63BUS6/NljKskJEPy24U/fk3pUQjW4uieyOdz9w
-         5WlC8ufIH1YpSFnqCSpyP1KxDYa49Mf2zOzD+rho8nB1RkwTbyKYsxU2T+SGWpRnfjfP
-         eeDiXi21Kcq8NxWcV7gRqBJzHLwk5l0xdQ54mv+U9QM085fqpYb8cX0HF57CtpUSDuZa
-         VvnA==
+	 In-Reply-To:Content-Type; b=gt85vaejFh/Bn0IhrUjOEOR5/4GH0XA5gC5xuCdTuvrlagIVzC9SFJ3mF3NEcoSh2lVkLwoRNCUCKcpZw/0jT8G8fLvMnHC30WSWrCRjRov3479SkfWk2Z5CS1eyo7tpE9ESDoMwMpf+KnPnMM2jYQ4vUHFHuExHKyu8Ec98y+E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=IH0iahE7; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59GKLYUb009518
+	for <devicetree@vger.kernel.org>; Thu, 16 Oct 2025 22:03:44 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	Hy4oakQHnBC57FbFZ/RDt9wr7jDjpQ0QoQIdKdfku5U=; b=IH0iahE7zd2RU9FH
+	JXT25DKQ7oALJmhqpYYPRCgzdpYiII/8oI5R13Pmh0CwELM8OgWJTiPmuB/nRdTr
+	mzndNtjqiZN4Qv6J35QAz+fKkjwazsct5nOm/pQvYphZXvZWgapz2h1NpcHdS53r
+	QzJTNFcIvT6TNuL/hL9wMbpR/pOR6rL4bKYlxzHQi+0L8PMrQ9m/roiEWqL0HpMj
+	Fgff+auIbwHmEjeJnO/gPcjRThy2p7U1eyFW2KiYzDRKMmndZ4Y0sVupo+jOPZKs
+	6nImmyVCwwSSGdTEFELP/Umlho13ihak7j8bycaXIAJYyr/EYnnjIC/ihgHEgDAc
+	O9gCsA==
+Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com [209.85.214.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49qg0c9u1v-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 16 Oct 2025 22:03:44 +0000 (GMT)
+Received: by mail-pl1-f199.google.com with SMTP id d9443c01a7336-277f0ea6fbaso16064545ad.0
+        for <devicetree@vger.kernel.org>; Thu, 16 Oct 2025 15:03:44 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760652090; x=1761256890;
-        h=content-transfer-encoding:in-reply-to:content-language:from
+        d=1e100.net; s=20230601; t=1760652223; x=1761257023;
+        h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=dMl38ifpHYx95j3NO3+X1dV6A44ciq5yhWKFujz48Ms=;
-        b=cGgItVz2B/1bX9UJxewFGrV2PyfyPh0cxQA3Gw/wOoLhhJJb41FU3rIZdafpmFWWUi
-         KMdGr/MyijSUMgjVZ+GHSXXehEo855Y/XASGl7NtuFPTfM0/Cp195f0//7eIIhXAUQmy
-         fLoXfXgkdkiqQ7puPuM4dR+GZ81CgkgP1Kw34xmnflydG87JUKbYwgofQfn4Hh5ZvFnI
-         qoaDG760yZkwfY+JDftTzbXR7fHJz2wWBF4UUj3s3AP5DwA56inwgtUBEx6lSRuLAK/9
-         0AYXDvNlWvcwo7SKyV4FLQfqd7ixUuvLjzpKk+vUfmiviVkMhH7+FCp0kTT8JbCkhATu
-         cl2A==
-X-Forwarded-Encrypted: i=1; AJvYcCW/Zf1FvB84kbc6xC+9fCciviHqI0W8lvy9aZcvP4bZgQ2Zc05zDk0hogPsNtS38umpXF+L3dk5vmXm@vger.kernel.org
-X-Gm-Message-State: AOJu0YzXszNsq8jF4oheFx0/ikyILhvhuL4ToR3OnYB6RUO5gFhKTV1o
-	uv+ekgfWYpI7SZG1BckBzyllrbbUEiFnaTpyir1OC7m4Xs9QWHtNRqAGjojN3/7oqB4=
-X-Gm-Gg: ASbGncuuV7H7c4NRvtHD28vLre5MJM/w+agblN/5SXl7Dfs+NyHa9un1/qg7xX24kby
-	5TjwdtZQF0KhfbeUVDleYaYyiIOZ77S5aBL4NoUIUcTsSpKL66VlXNwVrIuyWKq7WbRtHkIA37S
-	fuAlSF5+ONzWzTRLHLAFrHDEyg3ARrf46KsnDTG1RX8MJS1emaDNg2a2mhOL7ZbTEnSRikcGKpz
-	diAyRBtkO0QqZUefZSIgQeAq0Hmz1bfdR3Z1kqpqZ6bkdomorDPldJoEZrX8l1TCOvavKIYgRXy
-	V3S9FeZXGto7CjOF8nEW3rC8teeSsBIYp1eIgDuxhoCt2fAbGsjW0GbTL/jAXQHYl05qEwfawPs
-	UA2phAlhngXpGCZaceiD5ps2aeDiwwmInNTrHPrLSUAMPzs6QRJ1ekXhVIlj5DB6UOZnl6BXj17
-	+EhvQBIe8hs9lZ7LEYTf5ZEGimjeM=
-X-Google-Smtp-Source: AGHT+IEpHdQzMerjWdBXorJoGsR/H2Zsez6Tl7azsD2lDQq/RwaDAfjdaA+AF4wBT4wi6aeIVjSUPQ==
-X-Received: by 2002:a05:6e02:2291:b0:42f:9187:f6e0 with SMTP id e9e14a558f8ab-430c5270233mr29240445ab.13.1760652089394;
-        Thu, 16 Oct 2025 15:01:29 -0700 (PDT)
-Received: from [100.64.0.1] ([170.85.6.207])
-        by smtp.gmail.com with ESMTPSA id e9e14a558f8ab-430b512c03esm16138215ab.25.2025.10.16.15.01.26
+        bh=Hy4oakQHnBC57FbFZ/RDt9wr7jDjpQ0QoQIdKdfku5U=;
+        b=E21gHYoRK1VZzFa+x+Blo+jEPEB813ADSHZrKMW24j9jsJCPUStgT+T+KvO3zyXaLd
+         ljoWvgGV+PYt26K9vJMkYst9gIwp/e3zFTMZgRbTx4okT3ROVG+rz0w1aJZnON5/ehc5
+         2EtlIrlWycwzS98OeZkNGo91wjuzZcGMIXn2GXk1uYAlDxZ05ixvmQRTmJiRKR6LELUY
+         KxnBiw3dhIVWIw+pN42+6u95pibQTTc3HR/CIZCsS4H8VofdglpOtcvJhrS65q7AZe7o
+         DxMZNBLrxDJHQ8L6TquKZfvKpdgqvlVwpUaYc179sEeAAvFWurNQpUkgHrFz+w2Hk/Vu
+         M7ig==
+X-Forwarded-Encrypted: i=1; AJvYcCXus3IKTvJI8bFMFJBL+fvFFbPRLe5tEzL5jFgAVl444aOwPGPz8KPvlDIoJ17sX+B251XiWdzDY3gp@vger.kernel.org
+X-Gm-Message-State: AOJu0YwIVNHclzZZB+nNOIYu4YdI+CQTvxWXObN5xMotVntGn0bK/rOI
+	aQuaE01oKlAydjWpsz3hEZpDMExCJpfS8KF0YLF7LDUlFgFtb6m+NxMmsOlsyoBotea18jl/FCR
+	7vJKJzYKStd2o2zGuN9d3MfG80DSBiA5ZoRdcN4FoX40HeKMfZIhZGwk1zDMX771G
+X-Gm-Gg: ASbGncuv2c7lxowgClhbbZ0gGHHhPp8zbJwwWCliwr73KwFHaYpOrBTLzoRTT0E7uPh
+	7aJPMwwlp3WBitHIRoVRRn0VtUy5lGuPhItN56wTUsNRCDj//StD1InG8uCAXjUJqvAmJCCdM8J
+	VUhAmQ3w0Ha5F+o2aIhkdcwy68mWl09Q5MTNFW6Scuew80C9ga0svjuGjbKRONPuXkxkztD3u9S
+	tr7cNE3U8n7FaOO9TaSWt5VKByGulTQveNVrXYEJIQ+9i3y+T3KKaASLjhb0vh42nhgn3HjIHkE
+	CiZEdE3FEXzwJuHbc0I6KfekAfa8IxTzIN3s9ZERk1UQKWoxLFrrpb24vLq1BU1vASZXa/V33/k
+	ktXj7uhECEWT5Ei1VYf/krvvLIQrJITmc7Yb96hPmCOlXnXbzFcvqNw==
+X-Received: by 2002:a17:902:e841:b0:290:c902:759 with SMTP id d9443c01a7336-290ccab6c0amr11702725ad.51.1760652223252;
+        Thu, 16 Oct 2025 15:03:43 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGdlNyditaaAKOFd3CyrSvZAeteR0a/ircCtUxjXi9qCn2mN27imlOzHsdxn+P/3lQNSL8XVg==
+X-Received: by 2002:a17:902:e841:b0:290:c902:759 with SMTP id d9443c01a7336-290ccab6c0amr11702295ad.51.1760652222695;
+        Thu, 16 Oct 2025 15:03:42 -0700 (PDT)
+Received: from [10.62.37.19] (i-global254.qualcomm.com. [199.106.103.254])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2909934b0b5sm41340775ad.38.2025.10.16.15.03.41
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 16 Oct 2025 15:01:28 -0700 (PDT)
-Message-ID: <95a777a7-4998-4451-b271-8450a5b674bb@sifive.com>
-Date: Thu, 16 Oct 2025 17:01:25 -0500
+        Thu, 16 Oct 2025 15:03:42 -0700 (PDT)
+Message-ID: <1d300d0f-97c7-4538-9b14-4216f8762a1e@oss.qualcomm.com>
+Date: Thu, 16 Oct 2025 15:03:40 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,254 +90,96 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 3/3] irqchip/plic: add support for UltraRISC DP1000
- PLIC
-To: Bo Gan <ganboing@gmail.com>, Lucas Zampieri <lzampier@redhat.com>
-Cc: Charles Mirabile <cmirabil@redhat.com>,
- Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Alexandre Ghiti <alex@ghiti.fr>, Vivian Wang <dramforever@live.com>,
- devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
- Zhang Xincheng <zhangxincheng@ultrarisc.com>, linux-kernel@vger.kernel.org
-References: <20251016084301.27670-1-lzampier@redhat.com>
- <20251016084301.27670-4-lzampier@redhat.com>
- <831744c6-ba89-4029-a035-9a70c3f57465@gmail.com>
-From: Samuel Holland <samuel.holland@sifive.com>
+Subject: Re: [PATCH v2 5/6] media: qcom: camss: csid: Add support for CSID
+ 1080
+To: Bryan O'Donoghue <bod@kernel.org>,
+        Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>,
+        Loic Poulain <loic.poulain@oss.qualcomm.com>,
+        Robert Foss
+ <rfoss@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Todor Tomov <todor.too@gmail.com>,
+        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>
+Cc: linux-i2c@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-media@vger.kernel.org, aiqun.yu@oss.qualcomm.com,
+        tingwei.zhang@oss.qualcomm.com, trilok.soni@oss.qualcomm.com,
+        yijie.yang@oss.qualcomm.com,
+        Jingyi Wang <jingyi.wang@oss.qualcomm.com>,
+        Atiya Kailany <atiya.kailany@oss.qualcomm.com>
+References: <20251014-add-support-for-camss-on-kaanapali-v2-0-f5745ba2dff9@oss.qualcomm.com>
+ <20251014-add-support-for-camss-on-kaanapali-v2-5-f5745ba2dff9@oss.qualcomm.com>
+ <5f0e081c-30f6-4ff9-b8d2-2af0d87efd23@kernel.org>
+ <16def16e-fead-4d32-812c-5672773ef3bb@kernel.org>
 Content-Language: en-US
-In-Reply-To: <831744c6-ba89-4029-a035-9a70c3f57465@gmail.com>
-Content-Type: text/plain; charset=UTF-8
+From: Vijay Kumar Tumati <vijay.tumati@oss.qualcomm.com>
+In-Reply-To: <16def16e-fead-4d32-812c-5672773ef3bb@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-Proofpoint-GUID: YHfgVMTcgXfzMUApErRSsHpBsueMjrH0
+X-Proofpoint-ORIG-GUID: YHfgVMTcgXfzMUApErRSsHpBsueMjrH0
+X-Authority-Analysis: v=2.4 cv=eaIwvrEH c=1 sm=1 tr=0 ts=68f16bc0 cx=c_pps
+ a=JL+w9abYAAE89/QcEU+0QA==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
+ a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=_bdMYa0xl-006hGExtMA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=324X-CrmTo6CU4MGRt3R:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDExMDAyMiBTYWx0ZWRfX4s4la2KKQx6A
+ g2pE7Pe4PHxqcpThj5H45CD9FhtNYJRUSqX8bPHcqoxBZ0zwBy92kk5VRhuGH1lU1tcTelAZyvR
+ s8FYKZYpXZ/dOp7JlF4DOrvVM878CIRUg9fgsutHwV7xxRi9gSOAd3gegWf6xGpKDyrUhoJjoWa
+ r8ZASEV1nCH58drYP+v08mwH9X7ku6PDICMfd5ySrqf/z8EL+cHIy8u7ljkJ+miRxvlaLClir86
+ lISP17BfcBpAb41iG42ImdJRCGJzclQ2icUns1dbOkBHRR1Iqenx90WgMIk20Z4VE3wERAdQghD
+ v52cxRhZxzAFg6Ah0pIVNbi1vt1ApBonXUhF0MeWqD7vqnB2751bfqjxgBlvp1UTfuG3sLPO6Y/
+ huA+Awm0+Earen6dP7xR/4WnPI6q0Q==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-10-16_04,2025-10-13_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 priorityscore=1501 spamscore=0 impostorscore=0 phishscore=0
+ adultscore=0 lowpriorityscore=0 clxscore=1015 suspectscore=0 malwarescore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2510020000 definitions=main-2510110022
 
-Hi Bo,
 
-On 2025-10-16 4:28 PM, Bo Gan wrote:
-> Hi Lucas, Charles,
-> 
-> I just realized your last reply and sorry about the messy formatting.
-> Please disregard the previous one from me and use this one.
-> 
-> On 10/16/25 01:42, Lucas Zampieri wrote:
->> From: Charles Mirabile <cmirabil@redhat.com>
+On 10/16/2025 3:18 AM, Bryan O'Donoghue wrote:
+> On 16/10/2025 11:04, Bryan O'Donoghue wrote:
+>> drivers/media/platform/qcom/camss/camss-csid-gen3.c: csid- 
+>>  >reg_update &= ~CSID_RUP_AUP_RDI(port_id);
+>> drivers/media/platform/qcom/camss/camss-csid-gen3.c: csid- 
+>>  >reg_update |= CSID_RUP_AUP_RDI(port_id);
 >>
->> Add a new compatible for the plic found in UltraRISC DP1000 with a quirk to
->> work around a known hardware bug with IRQ claiming in the UR-CP100 cores.
+>> and this in your code
 >>
->> When claiming an interrupt on UR-CP100 cores, all other interrupts must be
->> disabled before the claim register is accessed to prevent incorrect
->> handling of the interrupt. This is a hardware bug in the CP100 core
->> implementation, not specific to the DP1000 SoC.
 >>
->> When the PLIC_QUIRK_CP100_CLAIM_REGISTER_ERRATUM flag is present, a specialized
->> handler (plic_handle_irq_cp100) saves the enable state of all interrupts,
->> disables all interrupts except for the first pending one before reading the
->> claim register, and then restores the interrupts before further processing of
->> the claimed interrupt continues.
+>> λ ~/Development/qualcomm/qlt-kernel/ linux-stable/master-reviews- 
+>> oct15-25* grep aup_update drivers/media/platform/qcom/camss/*
 >>
->> The driver matches on "ultrarisc,cp100-plic" to apply the quirk to all
->> SoCs using UR-CP100 cores, regardless of the specific SoC implementation.
->> This has no impact on other platforms.
->>
->> Co-developed-by: Zhang Xincheng <zhangxincheng@ultrarisc.com>
->> Signed-off-by: Zhang Xincheng <zhangxincheng@ultrarisc.com>
->> Signed-off-by: Charles Mirabile <cmirabil@redhat.com>
->> Acked-by: Samuel Holland <samuel.holland@sifive.com>
->> Signed-off-by: Lucas Zampieri <lzampier@redhat.com>
->> ---
->>   drivers/irqchip/irq-sifive-plic.c | 94 ++++++++++++++++++++++++++++++-
->>   1 file changed, 93 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/irqchip/irq-sifive-plic.c b/drivers/irqchip/irq-sifive-
->> plic.c
->> index bf69a4802b71..0428e9f3423d 100644
->> --- a/drivers/irqchip/irq-sifive-plic.c
->> +++ b/drivers/irqchip/irq-sifive-plic.c
->> @@ -49,6 +49,8 @@
->>   #define CONTEXT_ENABLE_BASE        0x2000
->>   #define     CONTEXT_ENABLE_SIZE        0x80
->>   +#define PENDING_BASE                    0x1000
->> +
->>   /*
->>    * Each hart context has a set of control registers associated with it.  Right
->>    * now there's only two: a source priority threshold over which the hart will
->> @@ -63,6 +65,7 @@
->>   #define    PLIC_ENABLE_THRESHOLD        0
->>     #define PLIC_QUIRK_EDGE_INTERRUPT    0
->> +#define PLIC_QUIRK_CP100_CLAIM_REGISTER_ERRATUM    1
->>     struct plic_priv {
->>       struct fwnode_handle *fwnode;
->> @@ -394,6 +397,89 @@ static void plic_handle_irq(struct irq_desc *desc)
->>       chained_irq_exit(chip, desc);
->>   }
->>   +static bool cp100_isolate_pending_irq(int nr_irq_groups, u32 ie[],
->> +                       void __iomem *pending,
->> +                       void __iomem *enable)
->> +{
->> +    u32 pending_irqs = 0;
->> +    int i, j;
->> +
->> +    /* Look for first pending interrupt */
->> +    for (i = 0; i < nr_irq_groups; i++) {
->> +        pending_irqs = ie[i] & readl_relaxed(pending + i * sizeof(u32));
->> +        if (pending_irqs)
->> +            break;
-> 
-> No need to start from group 0. Only readl on the group with ie[i] != 0
-> 
->> +    }
->> +
->> +    if (!pending_irqs)
->> +        return false;
->> +
->> +    /* Disable all interrupts but the first pending one */
->> +    for (j = 0; j < nr_irq_groups; j++) {
->> +        u32 new_mask = 0;
->> +
->> +        if (j == i) {
->> +            /* Extract mask with lowest set bit */
->> +            new_mask = (pending_irqs & -pending_irqs);
->> +        }
->> +
->> +        writel_relaxed(new_mask, enable + j * sizeof(u32));
-> 
-> 
-> There's no need to write the register if the value isn't changing. You can
-> check new_mask with the value in ie[].
-> 
->> +    }
->> +
->> +    return true;
->> +}
->> +
->> +static irq_hw_number_t cp100_get_hwirq(struct plic_handler *handler,
->> +                    void __iomem *claim)
->> +{
->> +    int nr_irq_groups = DIV_ROUND_UP(handler->priv->nr_irqs, 32);
->> +    void __iomem *pending = handler->priv->regs + PENDING_BASE;
->> +    void __iomem *enable = handler->enable_base;
->> +    irq_hw_number_t hwirq = 0;
->> +    int i;
->> +
->> +    guard(raw_spinlock)(&handler->enable_lock);
->> +
->> +    /* Save current interrupt enable state */
->> +    for (i = 0; i < nr_irq_groups; i++)
->> +        handler->enable_save[i] = readl_relaxed(enable + i * sizeof(u32));
-> 
-> 
-> I see that you start to use handler->enable_save to track HW in the last reply.
-> I'm about to suggest that. Please send out a new patch, so people can properly
-> review it. There's change to common code path.
-> 
->> +
->> +    if (!cp100_isolate_pending_irq(nr_irq_groups, handler->enable_save,
->> pending, enable))
->> +        return 0;
->> +
->> +    hwirq = readl(claim);
-> 
-> Possibly missing a io barrier. readl isn't going to enforce the ordering of
-> readl/writel_relaxed above and itself. There could be other barriers missing.
-> Please check.
-
-There is no missing barrier. Linux requires the hardware to enforce this
-ordering. See the comment in asm/mmio.h:
-
-/*
- * Relaxed I/O memory access primitives. These follow the Device memory
- * ordering rules but do not guarantee any ordering relative to Normal memory
- * accesses.  These are defined to order the indicated access (either a read or
- * write) with all other I/O memory accesses to the same peripheral. Since the
- * platform specification defines that all I/O regions are strongly ordered on
- * channel 0, no explicit fences are required to enforce this ordering.
- */
-
-where "strongly ordered" is defined by the privileged ISA: "accesses to an I/O
-region with strong ordering are generally observed by other harts and bus
-mastering devices in program order."
-
-Barriers are only needed if there are ordering requirements between I/O accesses
-to multiple MMIO regions, or between I/O and normal memory (e.g. locks and DMA).
-
-Regards,
-Samuel
-
->> +
->> +    /* Restore previous state */
->> +    for (i = 0; i < nr_irq_groups; i++)
->> +        writel_relaxed(handler->enable_save[i], enable + i * sizeof(u32));
->> +
->> +    return hwirq;
->> +}
->> +
->> +static void plic_handle_irq_cp100(struct irq_desc *desc)
->> +{
->> +    struct plic_handler *handler = this_cpu_ptr(&plic_handlers);
->> +    struct irq_chip *chip = irq_desc_get_chip(desc);
->> +    void __iomem *claim = handler->hart_base + CONTEXT_CLAIM;
->> +    irq_hw_number_t hwirq;
->> +
->> +    WARN_ON_ONCE(!handler->present);
->> +
->> +    chained_irq_enter(chip, desc);
->> +
->> +    while ((hwirq = cp100_get_hwirq(handler, claim))) {
->> +        int err = generic_handle_domain_irq(handler->priv->irqdomain, hwirq);
->> +
->> +        if (unlikely(err)) {
->> +            pr_warn_ratelimited("%pfwP: can't find mapping for hwirq %lu\n",
->> +                        handler->priv->fwnode, hwirq);
->> +        }
->> +    }
->> +
->> +    chained_irq_exit(chip, desc);
->> +}
->> +
->>   static void plic_set_threshold(struct plic_handler *handler, u32 threshold)
->>   {
->>       /* priority must be > threshold to trigger an interrupt */
->> @@ -430,6 +516,8 @@ static const struct of_device_id plic_match[] = {
->>         .data = (const void *)BIT(PLIC_QUIRK_EDGE_INTERRUPT) },
->>       { .compatible = "thead,c900-plic",
->>         .data = (const void *)BIT(PLIC_QUIRK_EDGE_INTERRUPT) },
->> +    { .compatible = "ultrarisc,cp100-plic",
->> +      .data = (const void *)BIT(PLIC_QUIRK_CP100_CLAIM_REGISTER_ERRATUM) },
->>       {}
->>   };
->>   @@ -664,12 +752,16 @@ static int plic_probe(struct fwnode_handle *fwnode)
->>           }
->>             if (global_setup) {
->> +            void (*handler_fn)(struct irq_desc *) = plic_handle_irq;
->> +
->> +            if (test_bit(PLIC_QUIRK_CP100_CLAIM_REGISTER_ERRATUM, &handler-
->> >priv->plic_quirks))
->> +                handler_fn = plic_handle_irq_cp100;
->> +
->>               /* Find parent domain and register chained handler */
->>               domain = irq_find_matching_fwnode(riscv_get_intc_hwnode(),
->> DOMAIN_BUS_ANY);
->>               if (domain)
->>                   plic_parent_irq = irq_create_mapping(domain, RV_IRQ_EXT);
->>               if (plic_parent_irq)
->> -                irq_set_chained_handler(plic_parent_irq, plic_handle_irq);
->> +                irq_set_chained_handler(plic_parent_irq, handler_fn);
->>                 cpuhp_setup_state(CPUHP_AP_IRQ_SIFIVE_PLIC_STARTING,
->>                         "irqchip/sifive/plic:starting",
-> 
-> My rationale of the above comments is to achieve minimal overhead with this
-> "read pending[] -> disable IE[] -> claim -> enable IE[]" approach. In general,
-> the fewer interrupts enabled on a hart, the lower the overhead. If there's only
-> 1 interrupt enabled for a give hart, then there's zero reading/writing of IE[],
-> and you can further optimize away the reading of pending register.
-> 
-> I'd imagine that if the user truly want to avoid the overhead of this quirk,
-> they can chose to spread out the irq groups onto different harts to alleviate
-> the slow down, or better isolate a single irq to a given hart, and we should
-> make it possible.
-> 
-> Feel free to point out any of my misunderstandings.
-> 
-> Bo
-
+>> drivers/media/platform/qcom/camss/camss-csid-1080.c:static void 
+>> __csid_aup_update(struct csid_device *csid, int port_id)
+>> drivers/media/platform/qcom/camss/camss-csid-1080.c: csid->aup_update 
+>> |= AUP_RDIN << port_id;
+>
+> And now that I see the code side-by-side - also please use the 
+> established macros and/or write a new macro to follow the established 
+> pattern.
+>
+> There's virtually no good argument to replicate a bit shift or twiddle 
+> - that can be functionally decomposed and encapsulated in one place 
+> and subsequently reused.
+>
+> ---
+> bod
+>
+Hi @Bryan, sure. Both are essentially shift + twiddle, just that in this 
+patch, both are happening in one place. Where as in gen3, the shift is 
+happening inside the macro. The other difference is that on Kaanapali, 
+RUP and AUP update registers are separated and hence need to be handled 
+separately. But I understand your point about the consistency. We will 
+modify the 1080 macros to be consistent with gen3. OR we can add two 
+macros commonly in csid.h that takes both the base bit (RDI0) offset 
+within those registers and also the port ID to return a value with the 
+bit set, just that gen3 file will have to call them separately from 
+within "csid_subdev_reg_update". Please let us know if you would like 
+this. Thanks.
 
