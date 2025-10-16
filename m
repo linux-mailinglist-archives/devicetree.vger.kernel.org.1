@@ -1,200 +1,135 @@
-Return-Path: <devicetree+bounces-227552-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227551-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 694DDBE27D7
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 67017BE27D6
 	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 11:48:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F40E63E696D
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 09:48:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B0E2C3E42E6
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 09:48:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 671EA27B32B;
-	Thu, 16 Oct 2025 09:48:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E98AA23C50A;
+	Thu, 16 Oct 2025 09:48:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="LY6pxnqu";
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="iRCKiYjV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from zg8tmty1ljiyny4xntuumtyw.icoremail.net (zg8tmty1ljiyny4xntuumtyw.icoremail.net [165.227.155.160])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3A573254BF;
-	Thu, 16 Oct 2025 09:48:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=165.227.155.160
+Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C5173254BF;
+	Thu, 16 Oct 2025 09:48:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.161
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760608095; cv=none; b=Za7IBUtjGnFrq2AgANDSa8kqTMyetFIoKhA8hN8WsvkJxWmiY/pJmmECfS1LLu6v1VRUL43nFGCFg7ixFNYBWlfptpMU1m17XMCL5r8yKHGh8IMwnIngIoGGcKeTRiQufdcT6wd0VpV7HxcG8ADodqT4Y5LvHOp3eG72c8Iappg=
+	t=1760608088; cv=none; b=Uv/3D/T+HZt16cZ3n6bg4OuW5oXindFROH9BbppsfMUHRSuFb9r7hBdM1StUG9wo/cbP6v7XByaeNx1ZKq9inxB353o7aieeEjvbLeuznbmnJ3geC4G2rv4ZWYYm5zrpLRgnGrWie7+KiJesMJJaKxYpUMt2NZUTFVDizMjx6vI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760608095; c=relaxed/simple;
-	bh=xDOJwYCfoVHZ+Oi8OohEkVOAIcO0v+Wl8xJvX2PCQ4s=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=QufS7EkGLtHfqXnJp9zpCfwhcyVZPW+Lh5kHYew62RiAiXVXCUQYT7yA7QavY3ELKxWNcz3CTMncHiOSO8vBuqU/ekda+xDQr19U4o40AGsnPveYc3YQcCaFkREZxx432K5G7hijEYme8Gt7INQU0MiULm0WpOpG3worirI2kZ8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=165.227.155.160
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
-Received: from E0006493LT.eswin.cn (unknown [10.127.112.153])
-	by app2 (Coremail) with SMTP id TQJkCgD3lZRPv_BoNhIOAQ--.18354S4;
-	Thu, 16 Oct 2025 17:48:01 +0800 (CST)
-From: caohang@eswincomputing.com
-To: gregkh@linuxfoundation.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	Thinh.Nguyen@synopsys.com,
-	p.zabel@pengutronix.de,
-	linux-kernel@vger.kernel.org,
-	linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org
-Cc: ningyu@eswincomputing.com,
-	linmin@eswincomputing.com,
-	pinkesh.vaghela@einfochips.com,
-	Hang Cao <caohang@eswincomputing.com>,
-	Senchuan Zhang <zhangsenchuan@eswincomputing.com>
-Subject: [PATCH] dt-bindings: usb: Add ESWIN EIC7700 USB controller
-Date: Thu, 16 Oct 2025 17:47:48 +0800
-Message-ID: <20251016094748.722-1-caohang@eswincomputing.com>
-X-Mailer: git-send-email 2.45.1.windows.1
-In-Reply-To: <20251016094654.708-1-caohang@eswincomputing.com>
-References: <20251016094654.708-1-caohang@eswincomputing.com>
+	s=arc-20240116; t=1760608088; c=relaxed/simple;
+	bh=p14FaJn027QFv3xWUKqNHV1qfH6V9WZev1jnqi2J0Jc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=W9aBualbCv2lNaLKhmZvlBdy/I32LkeOnCZA6ufSWNI9RmVTiozpVQZP0rcDoVw6wUPoqEQiVOEFSCQYSxxrXCeCp4u6I91tIL5/AtoaWVOKn5YHyPwquF56QpYajWCmneznIvbJd9W3FddVd/6X+pbTTTvAZJn9ISMehAHm18g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=LY6pxnqu; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=iRCKiYjV; arc=none smtp.client-ip=80.241.56.161
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp202.mailbox.org (smtp202.mailbox.org [10.196.197.202])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4cnNRk5kTGz9tjH;
+	Thu, 16 Oct 2025 11:48:02 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1760608082;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=dDU4MHtIXNjqAS9JJD27/CnM+BvS39aAL00HB1wKmUs=;
+	b=LY6pxnquYPZzf/vnpVqvwnv42pmxyX6hS/LsDWtU2B5JF97gz28NKgw1jRUUjFmYd0WhY4
+	DhTdpjEhwlwi09VKAedBaCkcFWVxDpPVQBRvnyexpFgvr6thnM+qsFM/SXawGC24Snlkop
+	BAlxbv5sxRJcOfBbSTOPE3I5IkN2mwUjqU7cMUagSLRmPbwbsde288GtVU5kgwWl8HpOMt
+	guOm0DFxFFkYnqDc5YhclS3FSNnqn2mBeSvrLomnHRcn4bpZcLw3l6XGd3EqNTvCt/hEb/
+	4ZXRIj0BaM9G+H8AA7kE358iZM8WoKe7Dyz9W4zW7/b2OscjuPZVdG6sXIfCIA==
+Message-ID: <51ff107d-126d-4481-b94a-f614f31c7bb8@mailbox.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1760608080;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=dDU4MHtIXNjqAS9JJD27/CnM+BvS39aAL00HB1wKmUs=;
+	b=iRCKiYjVaNQjr7ciL/76PHWjl/5d+opl6I8j9fSY+qFPEtSc5dnwYavGolev5MM93Ngcdu
+	jI9veoq6Z/SRRV+gM+fLHysHUfIk4n6YOTzptX/Y5KOBvYVIGf9NxaiUXHF/VBNUqF8gta
+	JygcaVjXZOjfL9Bz15/lXRRO2RvvdX8l2LnnxfYIjgc3KZJ6PtM5oWJKIAY3RpwBrlVJB7
+	hELhC2z0tVptxe9FamxUsaGGnVtlkgWapRFm9F1p5+5PQGGCk+676DDTZJ4TEJKOh/H97j
+	UhVs3Q/nD4Joq2xP7oZKdzJqq6GnWFwTGSgJupUhHQ04ka4rG1+CeIQwMtmcXQ==
+Date: Thu, 16 Oct 2025 11:47:56 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:TQJkCgD3lZRPv_BoNhIOAQ--.18354S4
-X-Coremail-Antispam: 1UD129KBjvJXoWxZw48GFWUGF1kZw4DAFWUArb_yoW5AFWkpa
-	97GrWDJr1fXr1fXa18tF10kFn3J3Z3CF10krZ7Jw47tr9Yqa4Fqw4akFy5Wa4UCr1xZry5
-	WFWag34ayw4xCrJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUUBv14x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
-	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
-	1l84ACjcxK6xIIjxv20xvE14v26w1j6s0DM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4U
-	JVWxJr1l84ACjcxK6I8E87Iv67AKxVW0oVCq3wA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gc
-	CE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E
-	2Ix0cI8IcVAFwI0_JrI_JrylYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJV
-	W8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2
-	Y2ka0xkIwI1lw4CEc2x0rVAKj4xxMxkF7I0En4kS14v26r1q6r43MxkIecxEwVCm-wCF04
-	k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18
-	MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr4
-	1lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1l
-	IxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4
-	A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x0JUXJ5wUUUUU=
-X-CM-SenderInfo: xfdrxt1qj6v25zlqu0xpsx3x1qjou0bp/
+Subject: Re: [PATCH v2 2/3] arm64: dts: renesas: r8a77960: Add GX6250 GPU node
+To: Geert Uytterhoeven <geert@linux-m68k.org>,
+ Marek Vasut <marek.vasut+renesas@mailbox.org>
+Cc: linux-arm-kernel@lists.infradead.org,
+ =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>,
+ Adam Ford <aford173@gmail.com>, Conor Dooley <conor+dt@kernel.org>,
+ David Airlie <airlied@gmail.com>, Frank Binns <frank.binns@imgtec.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Magnus Damm <magnus.damm@gmail.com>, Matt Coster <matt.coster@imgtec.com>,
+ Maxime Ripard <mripard@kernel.org>, Rob Herring <robh@kernel.org>,
+ Simona Vetter <simona@ffwll.ch>, Thomas Zimmermann <tzimmermann@suse.de>,
+ devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-renesas-soc@vger.kernel.org
+References: <20251015153952.185249-1-marek.vasut+renesas@mailbox.org>
+ <20251015153952.185249-2-marek.vasut+renesas@mailbox.org>
+ <CAMuHMdVdW+tMA1=g9D+BQV0fk0kis8FzyQgf7BpN-u=pi5eQfA@mail.gmail.com>
+Content-Language: en-US
+From: Marek Vasut <marek.vasut@mailbox.org>
+In-Reply-To: <CAMuHMdVdW+tMA1=g9D+BQV0fk0kis8FzyQgf7BpN-u=pi5eQfA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-MBO-RS-ID: 6f731996ea0c40a0a5a
+X-MBO-RS-META: oz5jm67tb1wz1eczi1ucb737inbcuyn3
 
-From: Hang Cao <caohang@eswincomputing.com>
+On 10/16/25 10:22 AM, Geert Uytterhoeven wrote:
 
-Add Device Tree binding documentation for the ESWIN EIC7700
-usb controller module.
+Hello Geert,
 
-Signed-off-by: Senchuan Zhang <zhangsenchuan@eswincomputing.com>
-Signed-off-by: Hang Cao <caohang@eswincomputing.com>
----
- .../bindings/usb/eswin,eic7700-usb.yaml       | 99 +++++++++++++++++++
- 1 file changed, 99 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/usb/eswin,eic7700-usb.yaml
+>> --- a/arch/arm64/boot/dts/renesas/r8a77960.dtsi
+>> +++ b/arch/arm64/boot/dts/renesas/r8a77960.dtsi
+>> @@ -2575,6 +2575,22 @@ gic: interrupt-controller@f1010000 {
+>>                          resets = <&cpg 408>;
+>>                  };
+>>
+>> +               gpu: gpu@fd000000 {
+>> +                       compatible = "renesas,r8a7796-gpu",
+>> +                                    "img,img-gx6250",
+>> +                                    "img,img-rogue";
+>> +                       reg = <0 0xfd000000 0 0x40000>;
+>> +                       interrupts = <GIC_SPI 119 IRQ_TYPE_LEVEL_HIGH>;
+>> +                       clocks = <&cpg CPG_CORE R8A7796_CLK_ZG>,
+>> +                                <&cpg CPG_CORE R8A7796_CLK_S2D1>,
+>> +                                <&cpg CPG_MOD 112>;
+>> +                       clock-names = "core", "mem", "sys";
+>> +                       power-domains = <&sysc R8A7796_PD_3DG_A>,
+>> +                                       <&sysc R8A7796_PD_3DG_B>;
+>> +                       power-domain-names = "a", "b";
+>> +                       resets = <&cpg 112>;
+> 
+> status = "disabled"; ?
 
-diff --git a/Documentation/devicetree/bindings/usb/eswin,eic7700-usb.yaml b/Documentation/devicetree/bindings/usb/eswin,eic7700-usb.yaml
-new file mode 100644
-index 000000000000..589a3ab6c644
---- /dev/null
-+++ b/Documentation/devicetree/bindings/usb/eswin,eic7700-usb.yaml
-@@ -0,0 +1,99 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/usb/eswin,eic7700-usb.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: ESWIN EIC7700 SoC Usb Controller
-+
-+maintainers:
-+  - Wei Yang <yangwei1@eswincomputing.com>
-+  - Senchuan Zhang <zhangsenchuan@eswincomputing.com>
-+  - Hang Cao <caohang@eswincomputing.com>
-+
-+description:
-+  The Usb controller on EIC7700 SoC.
-+
-+allOf:
-+  - $ref: snps,dwc3-common.yaml#
-+
-+properties:
-+  compatible:
-+    const: eswin,eic7700-dwc3
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  interrupt-names:
-+    items:
-+      - const: peripheral
-+
-+  clocks:
-+    maxItems: 3
-+
-+  clock-names:
-+    items:
-+      - const: aclk
-+      - const: cfg
-+      - const: usb_en
-+
-+  resets:
-+    maxItems: 2
-+
-+  reset-names:
-+    items:
-+      - const: vaux
-+      - const: usb_rst
-+
-+  eswin,hsp-sp-csr:
-+    description:
-+      HSP CSR is to control and get status of different high-speed peripherals
-+      (such as Ethernet, USB, SATA, etc.) via register, which can tune
-+      board-level's parameters of PHY, etc.
-+    $ref: /schemas/types.yaml#/definitions/phandle-array
-+    items:
-+      - items:
-+          - description: phandle to HSP Register Controller hsp_sp_csr node.
-+          - description: USB bus register offset.
-+          - description: AXI low power register offset.
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - clock-names
-+  - interrupts
-+  - interrupt-names
-+  - resets
-+  - reset-names
-+  - eswin,hsp-sp-csr
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    usb@50480000 {
-+        compatible = "eswin,eic7700-dwc3";
-+        reg = <0x50480000 0x10000>;
-+        clocks = <&clock 135>,
-+                 <&clock 136>,
-+                 <&hspcrg 18>;
-+        clock-names = "aclk", "cfg", "usb_en";
-+        interrupt-parent = <&plic>;
-+        interrupts = <85>;
-+        interrupt-names = "peripheral";
-+        resets = <&reset 84>, <&hspcrg 2>;
-+        reset-names = "vaux", "usb_rst";
-+        dr_mode = "peripheral";
-+        maximum-speed = "high-speed";
-+        phy_type = "utmi";
-+        snps,dis_enblslpm_quirk;
-+        snps,dis-u2-freeclk-exists-quirk;
-+        snps,dis_u2_susphy_quirk;
-+        snps,dis-del-phy-power-chg-quirk;
-+        snps,parkmode-disable-ss-quirk;
-+        eswin,hsp-sp-csr = <&hsp_sp_csr 0x800 0x818>;
-+    };
--- 
-2.34.1
+The GPU is always present in the SoC, similar to IPMMU/GIC/DMA/VSP/... 
+which are also never disabled, do we want to disable the GPU by default 
+and enable per-board ?
 
+I would argue the GPU should be enabled by default, so the GPU driver 
+can do a proper power management of the GPU. If firmware is missing, at 
+least power it off on failed probe, if nothing else.
+
+[...]
 
