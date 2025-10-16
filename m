@@ -1,247 +1,365 @@
-Return-Path: <devicetree+bounces-227833-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227834-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id B767EBE4B07
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 18:52:44 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 01844BE4B0D
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 18:53:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 903664E4B1D
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 16:52:43 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D3F0E4F2D96
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 16:53:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B04430C60B;
-	Thu, 16 Oct 2025 16:52:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C54C329C77;
+	Thu, 16 Oct 2025 16:53:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="F7JQQOus"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DOzuwVdT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE8542E1730
-	for <devicetree@vger.kernel.org>; Thu, 16 Oct 2025 16:52:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C86930C60B;
+	Thu, 16 Oct 2025 16:53:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760633559; cv=none; b=bz4UtCMqhchTVs7oYdPMrKk4O9LD0zy2SjRxT8zwp/xB6eLYhS2BzQ/D8x/tcq0jw88M5nwKJSfMmFwJ+7CG6OjzrcocgMcY9B9lkfGx4pPACWmI/2jOsCNTuGsdUGMZB94Wfk+H28yk39K+bcJhz8BCiJqsbKn0kiN62s8gQLw=
+	t=1760633588; cv=none; b=X0sqfCCmIvqzABWFXwuPIeagyQpffGcyOU2xErnePVRSNrhfEkR6pzn0wN0O+tcpIrvkp/rTw19Y0IIwR0RO0HkOAitLU3ojUg58V5VCVAQsIBz0N07npo6gc7cxtizcCisTljGKWncgAHG3H7UoE6rk2SwOBczpBrqc206mTnU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760633559; c=relaxed/simple;
-	bh=xNlMfyS21EmSnFZhxFwEfdgGPJ9F6nSclwnkMoIhtUg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=FRd+4h0pU+HwJV58n6+ueIkjShy/bPw1kFVMfDtO5IMAb0LIMaVndqQTpgnf8Ztd7YUkH9w0oUfc780hRtypLPvIzEuM2FuA67dXSW9/9c/oXAkbHhVFgZG51bU/Bq1pq+OCvVUefoD2oIyp1KWOkHqsMy0YV389jdlKKhW4MQk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=F7JQQOus; arc=none smtp.client-ip=170.10.129.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1760633556;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=s3G/38K/f4KvIWBGZQcPCv+KujPEoeANOPy5LdUWYVA=;
-	b=F7JQQOusNzMS2mRRrBhVK2fWDBrcgtU4N16elNsQ84zrPPggdqa6kOx+G1MVljQ+qmg9aR
-	aYzXCfrLFt+WcnstpHVjTRgR3ztjKpARbliwX7T8ZBtdNpjmtZCyCAyqmsCO1lPUWwHFTM
-	ZGF2LS+CySoEa3abOALOmD8hZoB1MKs=
-Received: from mail-vs1-f70.google.com (mail-vs1-f70.google.com
- [209.85.217.70]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-549-OQpVnJbQOXSwXBWkkH_JdQ-1; Thu, 16 Oct 2025 12:52:35 -0400
-X-MC-Unique: OQpVnJbQOXSwXBWkkH_JdQ-1
-X-Mimecast-MFC-AGG-ID: OQpVnJbQOXSwXBWkkH_JdQ_1760633555
-Received: by mail-vs1-f70.google.com with SMTP id ada2fe7eead31-5d42137ab7eso1884469137.3
-        for <devicetree@vger.kernel.org>; Thu, 16 Oct 2025 09:52:35 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760633555; x=1761238355;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=s3G/38K/f4KvIWBGZQcPCv+KujPEoeANOPy5LdUWYVA=;
-        b=VT+joyWM1GHHq22NG7dUCVqi1CruiJBA0RgD/rctp0GSCBRm6QYaDlPihl+F6nKMLE
-         O94exVLHEjXYi8J8jFEGTM6Jie7ZBhoYkvwb2klzqKopALv9GRr4JhysLRZE/xo2aA0B
-         P75erogz/UtWc+JL3VKdiQge0t7TaV1A7gGyYHNUqY/stxhPmz16DqUp4EOKdgZOzj5e
-         VsKS1GiHfTVt9/MCO4wk687Krt04KVr7b9ULzko63dhSXjpw7f4zgMIeiXYoqqOPHtrh
-         s5OEBG9ColSo+9vFecMdebbDDB+XmOOEbjEJ93WdwGkLNKASRaqgmBzwzS0OEqnmgnxI
-         CO8A==
-X-Forwarded-Encrypted: i=1; AJvYcCXMsFtLgE8MwXIgRherNfW5Le/cR7SfGqHVSdbHz2czDRqfxzs+cEMKmersbXyPefEFlh+5DNOWQJ0x@vger.kernel.org
-X-Gm-Message-State: AOJu0YxXL4/H0nYtDWEpG5IYzfDUOzPcKEhQ90+GuMyCzgFEOiFo5Rpz
-	VYBedlbwsJc/04yk2/fPSOeYK6hD69pwVJFBqeZcD8uOy1IComWnIK4Dzo8/C8IxgVgOZqQdBm+
-	idRH4xWHNg1pul3HGguhvBS09mfhtd+vfEYMaSCVfcK8RdQQtik1FC5IqXsHb9rGRL8hdD6NUyT
-	sYzmZWvVx2dEbXPaEsjw+ADvO4GBeZUl9apr5SFw==
-X-Gm-Gg: ASbGncvGYhYnOjGFUqmZq3TQW0dUsRhI5p3EDoWBNYO0sh/ZptOGCAmdt4crOk8AZqb
-	ZU0RPT0VGqz13c5I6Zccw3WZcuLQyGfSg0Z7DOw/WlhFrRWPsuuj3brT9c2BsyLUOBgFhxEB07T
-	YrCr9qzYJVMxmpj8AiMvACt0LX8H28odeIVJkf2CkPS+PgRpca9CMT0dSp
-X-Received: by 2002:a05:6102:510c:b0:524:c767:f541 with SMTP id ada2fe7eead31-5d7dd6a440cmr495883137.35.1760633554637;
-        Thu, 16 Oct 2025 09:52:34 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHD5WG63fxuNfl/7xxXAKVY2shuG2V6JHbtY86SZeR5UI/cxt6xfRaVkEChSU6aorSQmSIXD4dsjkpgYhIzU+E=
-X-Received: by 2002:a05:6102:510c:b0:524:c767:f541 with SMTP id
- ada2fe7eead31-5d7dd6a440cmr495868137.35.1760633554224; Thu, 16 Oct 2025
- 09:52:34 -0700 (PDT)
+	s=arc-20240116; t=1760633588; c=relaxed/simple;
+	bh=V0XeLsrus8KECI87ceClSS9Ua2YHT9amab2xtIElHn4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=nNH9W095BstghaM8Ka/Kr/8gJ9biOYaAU0daH25eBeTSsJjgtIxlH9WTNVIrLYDggxF1LvtjuyC4gE75vT5MvI7pj4wcQOfq0mskwdD/8g1V95YIVKQ+3CNCoklIUMbpkwgpE+K9on5JtJaOY5u3jMW4fEeJLjF/v3qgAALZXZQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DOzuwVdT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 47E9BC4CEF1;
+	Thu, 16 Oct 2025 16:53:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1760633587;
+	bh=V0XeLsrus8KECI87ceClSS9Ua2YHT9amab2xtIElHn4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=DOzuwVdTXLn0+8Ej93lFB+fLK2eYomM4FTuckTk8E1gLRFXid41R9z27ZK9GxmYoW
+	 BouffLeBYHSvO1lcJdFtVdMEU4q66IGzhUBxJUMAk+vds2/usxoOf0sNWKUcweD4JC
+	 VVAi6tCfKw6mrXePdKyz5U6rdaDzRermtz8yn95c1bSISmN48VO7dlTuLeYFWIVmL3
+	 ZpITLnASax7y1WHGcynaB3nDNvrY23MPhtxR22EAvnlGsYRCVZ+BJQzm0bHBiCr5Tb
+	 G+uHzCSf2ztJ7Vh0o5XhcLeePbL16lzRjc7dEZ06EtFBBS0KiT+1ILy/OaHbCbHknL
+	 XhnkWcMeRlwsw==
+Date: Thu, 16 Oct 2025 17:53:01 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Cc: Alim Akhtar <alim.akhtar@samsung.com>,
+	Avri Altman <avri.altman@wdc.com>,
+	Bart Van Assche <bvanassche@acm.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Stanley Chu <stanley.chu@mediatek.com>,
+	Chunfeng Yun <chunfeng.yun@mediatek.com>,
+	Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Peter Wang <peter.wang@mediatek.com>,
+	Stanley Jhu <chu.stanley@gmail.com>,
+	"James E.J. Bottomley" <James.Bottomley@hansenpartnership.com>,
+	"Martin K. Petersen" <martin.petersen@oracle.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>,
+	kernel@collabora.com, linux-scsi@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org
+Subject: Re: [PATCH 1/5] dt-bindings: ufs: mediatek,ufs: Add mt8196-ufshci
+ variant
+Message-ID: <20251016-kettle-clobber-2558d9c709de@spud>
+References: <20251014-mt8196-ufs-v1-0-195dceb83bc8@collabora.com>
+ <20251014-mt8196-ufs-v1-1-195dceb83bc8@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251016084301.27670-1-lzampier@redhat.com> <20251016084301.27670-4-lzampier@redhat.com>
- <87plan0yvd.ffs@tglx> <CABe3_aGj68qM1bNZ3LExbexO=9FO4RzJxhUy2T+HKK1qZfBmtw@mail.gmail.com>
- <87ms5q25cm.ffs@tglx>
-In-Reply-To: <87ms5q25cm.ffs@tglx>
-From: Charles Mirabile <cmirabil@redhat.com>
-Date: Thu, 16 Oct 2025 12:52:22 -0400
-X-Gm-Features: AS18NWAJZGulCtwHsjeP4T38yEVHSOQmEhV7m0unjSLxlvw7p4A-SpEylNDrO3o
-Message-ID: <CABe3_aH3YE9wWonH1j09-eCarhzhhRReNAOwmEMs5YjkOvvoiQ@mail.gmail.com>
-Subject: Re: [PATCH v5 3/3] irqchip/plic: add support for UltraRISC DP1000 PLIC
-To: Thomas Gleixner <tglx@linutronix.de>
-Cc: Lucas Zampieri <lzampier@redhat.com>, linux-kernel@vger.kernel.org, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Samuel Holland <samuel.holland@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Alexandre Ghiti <alex@ghiti.fr>, Vivian Wang <dramforever@live.com>, devicetree@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, Zhang Xincheng <zhangxincheng@ultrarisc.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="8ALsO+QMwrOx/G+O"
+Content-Disposition: inline
+In-Reply-To: <20251014-mt8196-ufs-v1-1-195dceb83bc8@collabora.com>
+
+
+--8ALsO+QMwrOx/G+O
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Hi Thomas=E2=80=94
+Hey,
 
-On Thu, Oct 16, 2025 at 12:12=E2=80=AFPM Thomas Gleixner <tglx@linutronix.d=
-e> wrote:
->
-> On Thu, Oct 16 2025 at 11:54, Charles Mirabile wrote:
-> > On Thu, Oct 16, 2025 at 9:17=E2=80=AFAM Thomas Gleixner <tglx@linutroni=
-x.de> wrote:
-> >> > +static irq_hw_number_t cp100_get_hwirq(struct plic_handler *handler=
-,
-> >> > +                                     void __iomem *claim)
-> >> > +{
-> >> > +     int nr_irq_groups =3D DIV_ROUND_UP(handler->priv->nr_irqs, 32)=
-;
-> >> > +     void __iomem *pending =3D handler->priv->regs + PENDING_BASE;
-> >> > +     void __iomem *enable =3D handler->enable_base;
-> >> > +     irq_hw_number_t hwirq =3D 0;
-> >> > +     int i;
-> >> > +
-> >> > +     guard(raw_spinlock)(&handler->enable_lock);
-> >> > +
-> >> > +     /* Save current interrupt enable state */
-> >> > +     for (i =3D 0; i < nr_irq_groups; i++)
-> >> > +             handler->enable_save[i] =3D readl_relaxed(enable + i *=
- sizeof(u32));
-> >>
-> >> This is truly the most inefficient way to solve that problem. The enab=
-le
-> >> registers are modified with enabled_lock held, so you can just cache t=
-he
-> >> value in plic_handler::enabled_save and avoid this read loop completel=
-y.
-> >> After claiming the interrupt you restore from that cache, no?
-> >
-> > You mean touch the other functions where the enable bits are modified
-> > to keep the cache in sync so that we don't need to do this read loop
-> > and can have a proper set of values cached?
-> >
-> > My concern is that this obviously has an impact on other platforms
-> > which do not have this quirk since keeping the cache in sync would get
-> > pushed all throughout the driver.
->
-> The irq_enable()/disable() callbacks are not really hotpath and caching
-> the bit in plic_toggle() or such is just not measurable overhead
-> compared to the register access.
+On Tue, Oct 14, 2025 at 05:10:05PM +0200, Nicolas Frattaroli wrote:
+> The MediaTek MT8196 SoC contains the same UFS host controller interface
+> hardware as the MT8195 SoC. Add it as a variant of MT8195, and extend
+> its list of allowed clocks, as well as give it the previously absent
+> resets property.
+>=20
+> Also add examples for both MT8195 and the new MT8196, so that the
+> binding can be verified against examples for these two variants.
+>=20
+> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+> ---
+>  .../devicetree/bindings/ufs/mediatek,ufs.yaml      | 134 +++++++++++++++=
+++++--
+>  1 file changed, 123 insertions(+), 11 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/ufs/mediatek,ufs.yaml b/Do=
+cumentation/devicetree/bindings/ufs/mediatek,ufs.yaml
+> index 1dec54fb00f3..070ae0982591 100644
+> --- a/Documentation/devicetree/bindings/ufs/mediatek,ufs.yaml
+> +++ b/Documentation/devicetree/bindings/ufs/mediatek,ufs.yaml
+> @@ -11,18 +11,30 @@ maintainers:
+> =20
+>  properties:
+>    compatible:
+> -    enum:
+> -      - mediatek,mt8183-ufshci
+> -      - mediatek,mt8192-ufshci
+> -      - mediatek,mt8195-ufshci
+> +    oneOf:
+> +      - enum:
+> +          - mediatek,mt8183-ufshci
+> +          - mediatek,mt8195-ufshci
+> +      - items:
+> +          - enum:
+> +              - mediatek,mt8192-ufshci
+> +          - const: mediatek,mt8183-ufshci
 
-Fair enough, if you insist. This will probably require a second patch
-refactoring a decent amount of code (since the suspend / resume path
-for which this enable array was added becomes simpler).
+It's hard to follow what's going on in this commit.
+Firstly, this seems to be some sort of unrelated change that isn't
+mentioned in the commit message.
 
->
-> >> Now for the search and disable mechanism. Of course you need to search
-> >> for th pending interrupt first, but then you can make that masking loo=
-p
-> >> very simple by having a plic_handler::enabled_clear[] array which is
-> >> zeroed on initialization:
-> >>
-> >>         unsigned long pending =3D 0;
-> >>
-> >>         for (group =3D 0; !pending && group < nr_irq_groups; group++) =
-{
-> >>                 pending =3D handler->enabled_save[i];
-> >>                 pending =3D& readl_relaxed(pending + group * sizeof(u3=
-2));
-> >>         }
-> >>         if (!pending)
-> >>                 return false;
-> >>
-> >>         bit =3D ffs(pending) - 1;
-> >>         handler->enabled_clear[group] |=3D BIT(bit);
-> >>         for (int i =3D 0; i < nr_irq_groups; i++)
-> >>                 writel_relaxed(handler->enabled_clear[i], enable + i *=
- sizeof(u32));
-> >>         handler->enabled_clear[group] =3D 0;
-> >>
-> >> No?
-> >
-> > Sure that would also work, but why are we using ffs (slow) only to
-> > shift the result back to make a new mask when (x & -x) is faster and
-> > skips the intermediate step delivering immediately the mask of the
-> > lowest bit.
->
-> Because I did not spend time thinking about it.
+> +      - items:
+> +          - enum:
+> +              - mediatek,mt8196-ufshci
+> +          - const: mediatek,mt8195-ufshci
+> =20
+>    clocks:
+>      minItems: 1
+> -    maxItems: 8
+> +    maxItems: 16
+> =20
+>    clock-names:
+>      minItems: 1
+> -    maxItems: 8
+> +    maxItems: 16
 
-Sorry, did you mean "because I had not considered the original
-approach carefully enough" or "because this other approach, while
-slower, is more self evidently correct."
+Then all devices grow 8 more permitted clocks, despite the wording in
+the commit message being 8195 specific. (Hint: you missed maxItems: 8 in
+the else)
 
-If you meant the latter, I still want to argue for the bit twiddling
-approach. I verified that clang and gcc are both not smart enough to
-recognize the pattern of ffs followed by shift and optimize to x & -x
-(even on -O3 [1]), so using ffs is definitely slower and relies on a
-bunch of machinery (alternatives because risc-v does not include a
-dedicated count trailing zeros instruction in the base isa). To me
-anyways, the logic of x & -x is pretty obvious, and even more so with
-a comment, and this is actually in the hot path.
+> +
+> +  freq-table-hz: true
 
->
-> > As for making another caching array, I guess, but again that is just a
-> > time vs space trade off with its own invariants to maintain that would
-> > also impact other platforms.
->
-> It's a pointer in struct plic_handler (or whatever it's named) and you
-> can allocate it when the quirk is required. The pointer is definitely
-> not a burden for anyone else.
+Then you add this deprecated property, which isn't mentioned in the
+commit message and I don't see why a deprecated property is needed.
 
-This I still don't understand how this is particuarly helpful. Since
-we are doing mmio, this is going to be an explicit loop and not a
-memcpy. The code is branchless in either case (set equal for the check
-of i against j negate and and with mask before loading into the mmio).
+> +
+> +  interrupts: true
+> =20
+>    phys:
+>      maxItems: 1
+> @@ -30,7 +42,15 @@ properties:
+>    reg:
+>      maxItems: 1
+> =20
+> +  resets:
+> +    maxItems: 3
+> +
+> +  reset-names:
+> +    maxItems: 3
 
+You cannot use reset-names if you don't define what the names are.
+Please provide a items list with descriptions in resets and some
+names in reset-names.
 
->
-> >> Is the device B interrupt preserved in the interrupt chip and actually
-> >> raised when the interrupt enable bit is restored or is it lost?
-> >
-> > I am not sure how to verify this other than to tell you that without
-> > this quirk (i.e. trying to use normal plic behavior) the device does
-> > not work, but with this quirk I can boot to a desktop with a pcie
-> > graphics card and storage, use networking etc that all obviously
-> > depend on the correct functioning of the interrupt controller.
-> >
-> > My reading of the spec for PLIC also suggests (but does not explicitly
-> > confirm) that the pending bits function irrespective of the state of
-> > the corresponding enable bit: "A pending bit in the PLIC core can be
-> > cleared by setting the associated enable bit then performing a claim."
-> > (page 14 plic spec 1.0.0 [1]).
-> >
-> > This sentence implies to me that it is possible for a pending bit to
-> > be set even though the corresponding enable bit is not, which lends
-> > credence to the idea that the pending bits operate independently.
->
-> Looks like that. Please add a comment to that effect then.
+>    vcc-supply: true
+> +  vccq-supply: true
+> +  vccq2-supply: true
 
-Will do.
+And then two new supplies that are not mentioned in the commit message,
+and again are allowed for all variants. The commit message talks about
+extended 8195 features, so this is starting to look like there was some
+sort of squashing accident.
 
->
-> Thanks,
->
->         tglx
->
+> =20
+>    mediatek,ufs-disable-mcq:
+>      $ref: /schemas/types.yaml#/definitions/flag
+> @@ -44,22 +64,19 @@ required:
+>    - reg
+>    - vcc-supply
+> =20
+> -unevaluatedProperties: false
+> -
+>  allOf:
+>    - $ref: ufs-common.yaml
+> -
+>    - if:
+>        properties:
+>          compatible:
+>            contains:
+> -            enum:
+> -              - mediatek,mt8195-ufshci
+> +            const: mediatek,mt8195-ufshci
 
-[1] https://godbolt.org/z/eofozYjPo
+The commit message says:
+| hardware as the MT8195 SoC. Add it as a variant of MT8195, and extend
+| its list of allowed clocks, as well as give it the previously absent
+| resets property.
 
+I don't know if that's meant to mean that only the new device has 16 and
+the 8195 only has 8, or if the 8195 should have had 16 possible clocks
+too.
+
+>      then:
+>        properties:
+>          clocks:
+>            minItems: 8
+>          clock-names:
+> +          minItems: 8
+>            items:
+>              - const: ufs
+>              - const: ufs_aes
+> @@ -69,6 +86,19 @@ allOf:
+>              - const: unipro_mp_bclk
+>              - const: ufs_tx_symbol
+>              - const: ufs_mem_sub
+> +            - const: crypt_mux
+> +            - const: crypt_lp
+> +            - const: crypt_perf
+> +            - const: ufs_sel
+> +            - const: ufs_sel_min_src
+> +            - const: ufs_sel_max_src
+> +            - const: ufs_rx_symbol0
+> +            - const: ufs_rx_symbol1
+> +        reset-names:
+> +          items:
+> +            - const: unipro_rst
+> +            - const: crypto_rst
+> +            - const: hci_rst
+>      else:
+>        properties:
+>          clocks:
+> @@ -76,6 +106,10 @@ allOf:
+>          clock-names:
+>            items:
+>              - const: ufs
+> +        resets: false
+> +        reset-names: false
+> +
+> +unevaluatedProperties: false
+> =20
+>  examples:
+>    - |
+> @@ -99,3 +133,81 @@ examples:
+>              vcc-supply =3D <&mt_pmic_vemc_ldo_reg>;
+>          };
+>      };
+> +  - |
+> +    ufshci@11270000 {
+> +        compatible =3D "mediatek,mt8195-ufshci";
+> +        reg =3D <0x11270000 0x2300>;
+> +        interrupts =3D <GIC_SPI 137 IRQ_TYPE_LEVEL_HIGH>;
+> +        phys =3D <&ufsphy>;
+> +        clocks =3D <&infracfg_ao 63>, <&infracfg_ao 64>, <&infracfg_ao 6=
+5>,
+> +                 <&infracfg_ao 54>, <&infracfg_ao 55>,
+> +                 <&infracfg_ao 56>, <&infracfg_ao 90>,
+> +                 <&infracfg_ao 93>;
+> +        clock-names =3D "ufs", "ufs_aes", "ufs_tick",
+> +                      "unipro_sysclk", "unipro_tick",
+> +                      "unipro_mp_bclk", "ufs_tx_symbol",
+> +                      "ufs_mem_sub";
+> +        freq-table-hz =3D <0 0>, <0 0>, <0 0>,
+> +                        <0 0>, <0 0>, <0 0>,
+> +                        <0 0>, <0 0>;
+> +        vcc-supply =3D <&mt6359_vemc_1_ldo_reg>;
+> +        mediatek,ufs-disable-mcq;
+> +    };
+> +  - |
+> +    #include <dt-bindings/reset/mediatek,mt8196-resets.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +    ufshci@16810000 {
+> +        compatible =3D "mediatek,mt8196-ufshci", "mediatek,mt8195-ufshci=
+";
+> +        reg =3D <0x16810000 0x2a00>;
+> +        interrupts =3D <GIC_SPI 320 IRQ_TYPE_LEVEL_HIGH>;
+> +
+> +        clocks =3D <&ufs_ao_clk 6>,
+> +                 <&ufs_ao_clk 7>,
+> +                 <&clk26m>,
+> +                 <&ufs_ao_clk 3>,
+> +                 <&clk26m>,
+> +                 <&ufs_ao_clk 4>,
+> +                 <&ufs_ao_clk 0>,
+> +                 <&topckgen 7>,
+> +                 <&topckgen 41>,
+> +                 <&topckgen 105>,
+> +                 <&topckgen 83>,
+> +                 <&topckgen 42>,
+> +                 <&topckgen 84>,
+> +                 <&topckgen 102>,
+> +                 <&ufs_ao_clk 1>,
+> +                 <&ufs_ao_clk 2>;
+> +        clock-names =3D "ufs",
+> +                      "ufs_aes",
+> +                      "ufs_tick",
+> +                      "unipro_sysclk",
+> +                      "unipro_tick",
+> +                      "unipro_mp_bclk",
+> +                      "ufs_tx_symbol",
+> +                      "ufs_mem_sub",
+> +                      "crypt_mux",
+> +                      "crypt_lp",
+> +                      "crypt_perf",
+> +                      "ufs_sel",
+> +                      "ufs_sel_min_src",
+> +                      "ufs_sel_max_src",
+> +                      "ufs_rx_symbol0",
+> +                      "ufs_rx_symbol1";
+> +
+> +        freq-table-hz =3D <273000000 499200000>, <0 0>, <0 0>, <0 0>, <0=
+ 0>,
+> +                        <0 0>, <0 0>, <0 0>, <0 0>, <0 0>, <0 0>, <0 0>,=
+ <0 0>,
+> +                        <0 0>;
+> +
+> +        phys =3D <&ufsphy>;
+> +
+> +        vcc-supply =3D <&mt6363_vemc>;
+> +        vccq-supply =3D <&mt6363_vufs12>;
+> +        vccq2-supply =3D <&mt6363_vufs18>;
+> +
+> +        resets =3D <&ufs_ao_clk MT8196_UFSAO_RST1_UFS_UNIPRO>,
+> +                 <&ufs_ao_clk MT8196_UFSAO_RST1_UFS_CRYPTO>,
+> +                 <&ufs_ao_clk MT8196_UFSAO_RST1_UFSHCI>;
+> +        reset-names =3D "unipro_rst", "crypto_rst", "hci_rst";
+
+Putting _rst in the name of a reset is redundant.
+
+pw-bot: changes-requested
+
+Thanks,
+Conor.
+> +        mediatek,ufs-disable-mcq;
+> +    };
+>=20
+> --=20
+> 2.51.0
+>=20
+
+--8ALsO+QMwrOx/G+O
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaPEi7AAKCRB4tDGHoIJi
+0sanAQDHpXuANi3k6/gN3+lkhmI3czcu3dk1enN4zyJvkxK79AEA/K8sbjFNf4iC
+3n+3+vohgUp9LMrdTmZdpWUNTJXRSws=
+=oqxK
+-----END PGP SIGNATURE-----
+
+--8ALsO+QMwrOx/G+O--
 
