@@ -1,139 +1,139 @@
-Return-Path: <devicetree+bounces-227619-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227620-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0958ABE2ECC
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 12:50:27 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 53BC8BE2F4B
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 12:54:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 43D1D3BB2C4
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 10:50:05 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id DEF8F505ED6
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 10:51:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCA5B33EB07;
-	Thu, 16 Oct 2025 10:45:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 874D9335BD8;
+	Thu, 16 Oct 2025 10:50:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="sJ4d9pGF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A225133EAFD
-	for <devicetree@vger.kernel.org>; Thu, 16 Oct 2025 10:45:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DEED2DECBC;
+	Thu, 16 Oct 2025 10:50:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760611523; cv=none; b=Tz3PhnQ3Kk1klBL7G2vbX6D1vHq17GzYIA64dhJAZ4unqemPGrJrR7Kt9vti7JwHax4VkR9GN1eqDrXy4ovUI/BjLqmkfD1NFfMn11ULO83J5kM70zNqBHPjsgo5kBjkHVN4Zq9C0n6yc7mNMIi6Tj08xqEucbSRWPkIo5fHZWI=
+	t=1760611831; cv=none; b=B4c8HZvumZyDdriSN1//+wLMGQEOAh0hIFO89bUF9UYvvf5JhI3Bj4Ecpx8YmHkmGm84vFSpNHzLmftuDyEpwwtzE3mNc64mzsalEI7ot/sBHIwD7QGheFvi+eofsMl4lt0jquYUoEbbTpF5ne++FNzzawKI3ys67NG6OhcjAhw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760611523; c=relaxed/simple;
-	bh=hrYJDosjd+/ob7cWB21JMK3xipvvovksinPUtE1sN0w=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=QiF8+xtKEqkAovBbnUO2TF3Sgr5qiJOyUAJhlzP8AnztlMgiclo/bfj/DxKBufFbjNs1uUO7pWwEpNTLyvSwcn8ujRqhlP6jtpoFYcPlc0aj3Lc/j/zpp33RMXx30LTOsfFK8FdkxoU7Xt07EeMRk4gsZnAynt6L4l+emboYLKg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1v9LTW-0003LT-FW; Thu, 16 Oct 2025 12:44:50 +0200
-Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e] helo=lupine)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1v9LTV-003sP0-11;
-	Thu, 16 Oct 2025 12:44:49 +0200
-Received: from pza by lupine with local (Exim 4.98.2)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1v9LTV-000000006MN-0w7x;
-	Thu, 16 Oct 2025 12:44:49 +0200
-Message-ID: <47112ace39ea096242e68659d67a401e931abf3a.camel@pengutronix.de>
-Subject: Re: [PATCH usb-next v2 5/5] usb: dwc3: Add Apple Silicon DWC3 glue
- layer driver
-From: Philipp Zabel <p.zabel@pengutronix.de>
-To: Sven Peter <sven@kernel.org>, Janne Grunau <j@jannau.net>, Neal Gompa	
- <neal@gompa.dev>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Rob
- Herring	 <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
- Dooley	 <conor+dt@kernel.org>, Thinh Nguyen <Thinh.Nguyen@synopsys.com>
-Cc: asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
-	linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Date: Thu, 16 Oct 2025 12:44:49 +0200
-In-Reply-To: <20251015-b4-aplpe-dwc3-v2-5-cbd65a2d511a@kernel.org>
-References: <20251015-b4-aplpe-dwc3-v2-0-cbd65a2d511a@kernel.org>
-	 <20251015-b4-aplpe-dwc3-v2-5-cbd65a2d511a@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.1-1 
+	s=arc-20240116; t=1760611831; c=relaxed/simple;
+	bh=nhtP8gYnLz+wyGXt2SQWyjUOTbE5Cjckx8uj8HL0Bvs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=SCwNwTBMbObydoifWQwPqO1hACXC9im7qJ5++uwZF+6K0FsygOUHumYrgpdWQ3PwufKoJ2Oy52zQF9eEunnLF/guaiUhMbmbGM/0uQX2OzNubY8U0IFjmiv19732WIpBfLiNCjvPSBRPCvkPyxo5u1zQ9DaAOra2P7m7HjonxUw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=sJ4d9pGF; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from [192.168.0.43] (cpc141996-chfd3-2-0-cust928.12-3.cable.virginm.net [86.13.91.161])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 5DA0422E;
+	Thu, 16 Oct 2025 12:48:46 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1760611726;
+	bh=nhtP8gYnLz+wyGXt2SQWyjUOTbE5Cjckx8uj8HL0Bvs=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=sJ4d9pGFjUx/+hjmQet4+zEgzUwOA3dwp9SAn5+N4CdghyFygPfjGg6vEZ0eQ5LY6
+	 zyruN2BCWoHTGfJ3Huywn8MMXdQo60m+0D2IZUcx3ub5kX6enDq6DdbMqRpEpmZTU2
+	 S2MIN5hoGNmnSlU8hRL1bzpGRBZm8WqSIoQPbsO0=
+Message-ID: <8b984f13-0498-4cc6-a64e-e2b6b147c346@ideasonboard.com>
+Date: Thu, 16 Oct 2025 11:50:23 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: renesas: r9a09g057h48-kakip: Enable eth0
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-renesas-soc@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20251010-kakip_eth0-v1-1-0d8fdcbceb9a@ideasonboard.com>
+ <CAMuHMdWZD1m6t8MnYTA83RV=h9G9o6M3KSZjO32rRjOpz6px+w@mail.gmail.com>
+ <bcdc9a86-bda1-4646-9ccc-1dc00a710b44@ideasonboard.com>
+ <CAMuHMdUDuuXncX4sbd6oa+8KcS8x+1Sp-ahmvyh8fRdQt1GqKA@mail.gmail.com>
+Content-Language: en-US
+From: Dan Scally <dan.scally@ideasonboard.com>
+In-Reply-To: <CAMuHMdUDuuXncX4sbd6oa+8KcS8x+1Sp-ahmvyh8fRdQt1GqKA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Mi, 2025-10-15 at 15:40 +0000, Sven Peter wrote:
-> The dwc3 controller present on Apple Silicon SoCs like the M1 requires
-> a specific order of operations synchronized between its PHY and its
-> Type-C controller. Specifically, the PHY first has to go through initial
-> bringup (which requires knowledge of the lane mode and orientation)
-> before dwc3 itself can be brought up and can then finalize the PHY
-> configuration.
-> Additionally, dwc3 has to be teared down and re-initialized whenever
-> the cable is changed due to hardware quirks that prevent a new device
-> from being recognized and due to the PHY being unable to switch lane
-> mode or orientation while dwc3 is up and running.
->=20
-> These controllers also have a Apple-specific MMIO region after the
-> common dwc3 region where some controls have to be updated. PHY bringup
-> and shutdown also requires SUSPHY to be enabled for the ports to work
-> correctly.
->=20
-> In the future, this driver will also gain support for USB3-via-USB4
-> tunneling which will require additional tweaks.
->=20
-> Add a glue driver that takes of all of these constraints.
->=20
-> Reviewed-by: Neal Gompa <neal@gompa.dev>
-> Acked-by: Thinh Nguyen <Thinh.Nguyen@synopsys.com>
-> Signed-off-by: Sven Peter <sven@kernel.org>
-> ---
->  MAINTAINERS                   |   1 +
->  drivers/usb/dwc3/Kconfig      |  11 +
->  drivers/usb/dwc3/Makefile     |   1 +
->  drivers/usb/dwc3/dwc3-apple.c | 489 ++++++++++++++++++++++++++++++++++++=
-++++++
->  4 files changed, 502 insertions(+)
->=20
-[...]
-> diff --git a/drivers/usb/dwc3/dwc3-apple.c b/drivers/usb/dwc3/dwc3-apple.=
-c
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..6e41bd0e34f461b0c3db9b8a6=
-46116458ff816b6
-> --- /dev/null
-> +++ b/drivers/usb/dwc3/dwc3-apple.c
-> @@ -0,0 +1,489 @@
-[...]
-> +static int dwc3_apple_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev =3D &pdev->dev;
-> +	struct dwc3_apple *appledwc;
-> +	int ret;
-> +
-> +	appledwc =3D devm_kzalloc(&pdev->dev, sizeof(*appledwc), GFP_KERNEL);
-> +	if (!appledwc)
-> +		return -ENOMEM;
-> +
-> +	appledwc->dev =3D &pdev->dev;
-> +	mutex_init(&appledwc->lock);
-> +
-> +	appledwc->resets =3D devm_reset_control_array_get_exclusive(dev);
+Hi Geert
 
-Why is this using an array? The bindings say there is only a single
-reset.
+On 16/10/2025 11:40, Geert Uytterhoeven wrote:
+> Hi Dan,
+> 
+> On Thu, 16 Oct 2025 at 12:23, Dan Scally <dan.scally@ideasonboard.com> wrote:
+>> On 15/10/2025 13:32, Geert Uytterhoeven wrote:
+>>> On Fri, 10 Oct 2025 at 13:11, Daniel Scally <dan.scally@ideasonboard.com> wrote:
+>>>> Enable the eth0 node and define its phy.
+>>>>
+>>>> Signed-off-by: Daniel Scally <dan.scally@ideasonboard.com>
+>>>
+>>>> --- a/arch/arm64/boot/dts/renesas/r9a09g057h48-kakip.dts
+>>>> +++ b/arch/arm64/boot/dts/renesas/r9a09g057h48-kakip.dts
+>>>> @@ -50,6 +51,33 @@ vqmmc_sdhi0: regulator-vccq-sdhi0 {
+>>>>           };
+>>>>    };
+>>>>
+>>>> +&eth0 {
+>>>> +       pinctrl-0 = <&eth0_pins>;
+>>>> +       pinctrl-names = "default";
+>>>> +       phy-handle = <&phy3>;
+>>>> +       phy-mode = "rgmii-id";
+>>>> +       status = "okay";
+>>>> +};
+>>>> +
+>>>> +&mdio0 {
+>>>> +       phy3: ethernet-phy@3 {
+>>>> +               compatible = "ethernet-phy-id0022.1640", "ethernet-phy-ieee802.3-c22";
+>>>
+>>> The first compatible value corresponds to a Micrel KSZ9031 Ethernet
+>>> PHY, but according to the block diagram and the picture in the Kakip
+>>> H/W Quick Reference, the board has a Microchip LAN8830 instead?
+>>
+>> Ah, my bad...I thought it was the same as the EVK so I copied from there. I think then that this
+>> should be "ethernet-phy-id0022.1652" (based on reading PHY registers 2 and 3 with phytool) and the
+>> other properties look to be KSZ9031 specific so I'll drop them and re-send
+> 
+> Hmm, include/linux/micrel_phy.h has:
+> 
+>      #define PHY_ID_LAN8841          0x00221650
+> 
+> drivers/net/phy/microchip.c has:
+> 
+>      .phy_id         = 0x0007c132,
+>      [...]
+>      .name           = "Microchip LAN88xx",
+> 
+> I haven't found the ID in the LAN8830 datasheet yet, it seems to be
+> buried deep...
 
-regards
-Philipp
+Indeed, I couldn't find it anywhere either so resorted to phytool.
+
+> 
+> Which PHY is actually mounted on the board you have?
+> Can you inspect it visually?
+
+It says LAN8830, plus a couple of other strings.
+
+Thanks
+Dan
+
+> 
+> Thanks!
+> 
+> Gr{oetje,eeting}s,
+> 
+>                          Geert
+> 
+
 
