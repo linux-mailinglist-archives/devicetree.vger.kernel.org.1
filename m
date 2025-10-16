@@ -1,174 +1,147 @@
-Return-Path: <devicetree+bounces-227672-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227651-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56C01BE3625
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 14:33:12 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 609D0BE33B1
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 14:05:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 083385468CA
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 12:33:11 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 4ABDE4FAC10
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 12:05:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FF192E36F2;
-	Thu, 16 Oct 2025 12:33:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B40131D398;
+	Thu, 16 Oct 2025 12:05:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="VoBrqAAm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from CHN02-BJS-obe.outbound.protection.partner.outlook.cn (mail-bjschn02on2092.outbound.protection.partner.outlook.cn [139.219.17.92])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E673E41AAC;
-	Thu, 16 Oct 2025 12:33:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=139.219.17.92
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760617987; cv=fail; b=R0UOU3gKqtksULZyqLGCQLHrf4OV3PK/yJBlk/JCyfFjLvLIyh52g1oqyE1gybd/L7keiOyZtDtIUNedcvksiXc0mWNS9HyAq1+vz3DYF+GiEz6cxm39Abyegg/W7gdArv2qwALhcJO3fbfbo6+YBz/RWmZeg/k9yau+IdzjvG0=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760617987; c=relaxed/simple;
-	bh=Agyyxacqw1AaXN7uHZrvpdVnPXsfhd0AKo/2+hpH7cg=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=kMPOmk3tu9wmE3oWIKKKgEwSklbr1Ilckb0XIigX92lrxCl/t4r83tGjXwpUBw3Tflr3YvusCExmAtc+DDTe9Xj0Z929qv94AHAieDo93OM2Lhk4lrteKErJZM5I5d0MSCvjN2BaDFVB6uGUIZtCTK713YARAwgS4RC1ElcJTNU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.17.92
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=starfivetech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=nrIYADy1UGm8FT9hxAPja4bjAkz2aFhVjdMIiDt0lubDvm4tlHR9axGLWcuASqnJZAhSA1fWOPgf7kuxIh9GnD+F2/fX6LCHG/UBhgZcbpsdQNQ8r24ZnOwwe5J4zDnrNJzgopBHZxsLXVkjkYEcyb2UixzF4I8LC2oamlbkxygCOuS9PfCmhLVQlzF7/iHF+QdvH0Pj4jsELwIMhXWv/Lp+ie1YwS4s80pZyASYK8uwtHebkP6dybsjB5lBQYrT9Mcpblub+mL58YJCxFnH9tF1EqGYszyYU5+lMM96Ynrnqb5syVcHkgm8gOwZv2oBVerYTOGFpBLXZUtm7/irPw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=taKBOgFQs2IAIsVhlTymY0rnsRa+YYr1Ya0lQa5DyKc=;
- b=AH6Q3PufJoGkRTL7mwilS3EsPVxoeS4/HlvDESPy6Yl8i6BouhvpSkqx8WJVh4vMALJGLgQD0jXTpPKZmXuxzzlaxog3RLeX0mCYbJSxE/SnO30G2DVlDV9fjbPElikj7lR1IzlDx/x08y3xRnAhVYsXkaQSSZm3CWLF33nMgZ40u/3hOvdp/KUxfl6xUFZ2u0UPSVja9Rz95zQVkG4n+eoBdyZIz6SYckXoGRWYiAdS61bwOD6LB4EyS60m/nQ+m15rrgZKHGfly3f5e6vXNkyYLWxYigqo2xZCkhAZOMqNe8gcyC4ZrtEEKpqgGPLtLkOIRiGMIkCJN5houY+KIw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=starfivetech.com; dmarc=pass action=none
- header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=starfivetech.com;
-Received: from ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c550:7::14) by ZQ2PR01MB1308.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c550:12::5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9182.23; Thu, 16 Oct
- 2025 08:01:06 +0000
-Received: from ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn
- ([fe80::2595:ef4d:fae:37d7]) by ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn
- ([fe80::2595:ef4d:fae:37d7%4]) with mapi id 15.20.9182.020; Thu, 16 Oct 2025
- 08:01:06 +0000
-From: Hal Feng <hal.feng@starfivetech.com>
-To: Conor Dooley <conor+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	"Rafael J . Wysocki" <rafael@kernel.org>,
-	Viresh Kumar <viresh.kumar@linaro.org>,
-	Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-	Heinrich Schuchardt <heinrich.schuchardt@canonical.com>,
-	E Shattow <e@freeshell.de>,
-	Paul Walmsley <pjw@kernel.org>,
-	Albert Ou <aou@eecs.berkeley.edu>
-Cc: Hal Feng <hal.feng@starfivetech.com>,
-	devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v1 3/7] dt-bindings: riscv: Add StarFive JH7110S SoC and VisionFive 2 Lite board
-Date: Thu, 16 Oct 2025 16:00:50 +0800
-Message-ID: <20251016080054.12484-4-hal.feng@starfivetech.com>
-X-Mailer: git-send-email 2.43.2
-In-Reply-To: <20251016080054.12484-1-hal.feng@starfivetech.com>
-References: <20251016080054.12484-1-hal.feng@starfivetech.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: NT0PR01CA0020.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c510:c::16) To ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c550:7::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DD512D2495;
+	Thu, 16 Oct 2025 12:05:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1760616343; cv=none; b=IYe7iZeEd2qwi0b0j7hR0bj9eYxjIHyIIFhNw71LxdFXj7wWSoNP0q+pp8VxH7LsUMrBJvqQx0ZP7+puLiL4tkFCQZ72YhR/eau5kHxfykh/eOQVy8ezOfdFvkP6WXMuS5UjxM/TMGe7oJ/bh00PkDuphf3hlcX26zN/ZJf/NPE=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1760616343; c=relaxed/simple;
+	bh=8id0PN9NwtaDE1YNWuvQqdoP0Sv1ZveE1XQPMUhj21Y=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:CC:References:
+	 In-Reply-To:Content-Type; b=FxmpsJT5PeZhMlRoAs5Lkl6QxaRxI5aNZeTrNceS1/D/AEUJs630GiYQpbLRY73uJKPV0f32MlaI5Cn7kj8ATF2l3W41iKM4c+vmMhh4N8aoGxAmY54/lrZZMmUnWXATrP06sWAj/w+Xc0JqFNSVKJioAg+LYC5QMdMAmP02pyg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=VoBrqAAm; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59G77sHu005001;
+	Thu, 16 Oct 2025 12:05:32 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	nvoSKz71AeJB3FmDV9/WVI5MlwEGscBdTTKI5p+NKI4=; b=VoBrqAAmd/yB9cwk
+	aNQcfptnNbVzWU9I82rSCgY+UVr0BaQNF5e6kzqlS7etwXmeHDoQmTrfwEh4Il8D
+	j1G8DMBw9vwzns531Ixw67GVLOfh2eywk0obxkO2UQyBBnd6M35SC4Tv+Z/oxi+n
+	JO3CzqxhHKoJuOUuN69FvNI7qmKxJ2dZuim7MoTu/Kqeqn2qjns/fw9mXaZsdjst
+	NuHsGBdUA/PsRgOBf+s5c3V8F1pabbr3sMfZuu/s31MKnTcXwQ2qaEQ6WFCb6TY8
+	7oX1fPSTLWHQzSEZUg3xGGJ6Stbg61vSIYQmgQhNHKF/7kXpvPi7spQNEvTOMaos
+	Ux5qZw==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49s6mwtg3q-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 16 Oct 2025 12:05:30 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 59GC5UiN021096
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 16 Oct 2025 12:05:30 GMT
+Received: from [10.206.103.106] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.24; Thu, 16 Oct
+ 2025 05:05:24 -0700
+Message-ID: <e0e0fa36-b75f-4d04-b179-772fa4b9d10c@quicinc.com>
+Date: Thu, 16 Oct 2025 17:34:51 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: ZQ2PR01MB1307:EE_|ZQ2PR01MB1308:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2a7b6f1a-7a84-4a32-d9e3-08de0c8a28a1
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|52116014|41320700013|1800799024|7416014|366016|38350700014|921020;
-X-Microsoft-Antispam-Message-Info:
-	lpicNDCzGlNDp1qFYIcYKMTGqx35dhMkY3jG0GzLBZBrmdod+sLP12dueEHqC0nlRMnaJutMDS1GBiT4MUHkxb5R7IPLswunVCB6q4CwsUNp16ABUrsnISi7CXw8FQP7mgwPDmHCByvPT4ofzQx2IHxYlOY9noRzrbSurJ1OHCibZqEgxtySIXBQOasHZFx4Eu3zrXXs6omNM7uFQ+ClaeNeh9UFMBFPtisORwWRw3zA5byW6BRsficO/SqnlnaeT8+ZtfIZjD63fjnfOHcOWy15kPwKEhnAlUdPYfE06Anta64Y4DCJMLHwC8CJ0kI/HuP+YSODK/IaYSRguoRYtS3icHz9YpCW1iiGxOEmdf8em5WJoZty90BF632dxPYqo2p9WinseqTPCZrHPJCZIy4jboY3mi9Jf8t6An6DRgTHbUexQeCzzu0ivJAdPNVERd5P49TQb2gmzs0tyNxSB+9YZ4vbyMYK9wk+FK0BItrdrbJVcN+6N8n33llZfU61Xfl+J/R1n4/c1vXe+kgUbXpJswmkSX+oYh5f9cYxYINIxeAUTYS0T4rOvnAq4PRpZtqv2wWfl2rB7eYVNnBAsDI+/ELqm9OVHG7gCBPrd9Q=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230040)(52116014)(41320700013)(1800799024)(7416014)(366016)(38350700014)(921020);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?Gr1sixIsTW8+xloru+xy3gCQs+TUYIwp4eczULINcn2YwFrxo5C9Vlg74HTg?=
- =?us-ascii?Q?VeiuYESKHeyPULEJJIX7/CclRuOeqF637hLcxFbuR1BUDfZU/Rn2Xocfj7pQ?=
- =?us-ascii?Q?3siVm4lT30GJKSWPlRY8nT76HQHoGSANhski4QdKzTgzqDWiFEybCkutfz9Y?=
- =?us-ascii?Q?cbIps6lWmPV3QlDRMOXhQodNIcsH3RPU/3U1Tv9EcA13x8e187RlV1DXHNyZ?=
- =?us-ascii?Q?8WR6eADtPre7+409hLLo2X6AwXxZnndc0IbqRLSmz08FvQZKCDTorLhLPO2y?=
- =?us-ascii?Q?NerEwbiy6hft0plIF3aMvq5RoUTDkfXlwcMdsuG25ACJ9/ZeECqi8MKcKZ19?=
- =?us-ascii?Q?YtQCqAEQKH8gzlI6uTyNwS1bTfyu76rlBhVGtSpBM/BAy2lY+FkkSGxH6qe5?=
- =?us-ascii?Q?dl9khMmsrMF8Narn6JgPGEb0/BBeriu1E1T8RwZ/d2ytYnmq2iv5WDrOuSud?=
- =?us-ascii?Q?XydvJhTr5YZilQKnkP0aJEAeJcghIAcE1D2JPGCwKRQ32EfBnjRlwoetTvbm?=
- =?us-ascii?Q?E6GFr8B1xCotv6DWTk1zW9SZlnMsKsX/yO6oO6+r8Qzx1NNfT0HxP3stNCzJ?=
- =?us-ascii?Q?0573vZPMlGrOQR8q5F5EqK2zkYX7CUTX/v5KXj95iEhfUMCau9V/qrVSJLbr?=
- =?us-ascii?Q?aL6PWmlx39nppihyMwP1mxg9Pj226+a8DhL2BnXreZhT8ER5dQn47s1IEiA7?=
- =?us-ascii?Q?KPqoOHBoCoiRdQCKI5lbi1iKa0F/BY40GNP+JEcNck4Dc372zBSSviJ6dUJU?=
- =?us-ascii?Q?BPSwV2dg0cAb2kastrqzqqBkAqe73C7PX6MEwE1cv3KXUlRO/Hi867KmrOgR?=
- =?us-ascii?Q?hgdenfKCTIWAb+ru04Iv3uuGVCn9U5uvJcd4jZiwcajMajeWlJr3x4DvTGy6?=
- =?us-ascii?Q?1lIovE52ZlPzG96ANka/ixY2MBKES4T6vawQ2sQh51KtctkIZDSEbGPEpWUJ?=
- =?us-ascii?Q?GWhmPpQnB1t1FjP79c+kBG011OfYhbl/O46Zsope5+0JYtSen4/YlsUd19ah?=
- =?us-ascii?Q?2lGlJArEtRAiD8Z04kFE0be+dq9ALWWfLnti9PB9C/7aLrrS7HGZcDFJj6iB?=
- =?us-ascii?Q?5X4entEa7M9Tyc5OuzxQlxokd5Z4/tavyceFxPF4sP2g9/xFp/O2YEKs2Mb9?=
- =?us-ascii?Q?grHIMYfOxamwnWkuUFjm//n65FU7ysIS5SJFFJf6Z9URctFfdibiXlv1vW/U?=
- =?us-ascii?Q?JMZ77cKtCKFNXJvymHICZpf8WnzFzK07m7j3dKF4DfVUsszb5B4qPnk3W0Q+?=
- =?us-ascii?Q?vbshsTOBjUFunKPwSut+8k3Zyts1/w5o0WzjqE4DWwX3fTwQwNOj0lu1Jfw0?=
- =?us-ascii?Q?WODp/RjrkHzQ87Gi/cCn3UkYdkYpcwZBCA0u6SKUzk0LPvSUO75bKSx4B1zS?=
- =?us-ascii?Q?tjL/ol9p2sz1MP4De6+TYau8tAX7mPJI1xBElU7nljcASHFCqDJzQHYOxXqU?=
- =?us-ascii?Q?dkuidsO1cioxyni7KbphHaUQU0FTzs0VV2zcLnvNGjW4CbtjNza8Lm02qhUH?=
- =?us-ascii?Q?pv7tbYrMUxffSqtgZOaEVVv6/vEEQMIqO/iptoV3QPZzFjPaNrdO/GW59BkG?=
- =?us-ascii?Q?WbUQQfN+O4uWu1mKxxDfGh4c7UIwydtqHovKOx+p7xSwqrMpThB1LaHZ94Tc?=
- =?us-ascii?Q?QA=3D=3D?=
-X-OriginatorOrg: starfivetech.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2a7b6f1a-7a84-4a32-d9e3-08de0c8a28a1
-X-MS-Exchange-CrossTenant-AuthSource: ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Oct 2025 08:01:06.1239
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: /BkoaFRM4LSMlZgTCY/REd1j6szElTbMVEjFAy6lYepqWNPsZ3D+vCLFAlA1AqBN7714o37f44EkxNUvneOspK11OTjsdAChoepnjC/fzyI=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: ZQ2PR01MB1308
+User-Agent: Mozilla Thunderbird
+From: Nihal Kumar Gupta <quic_nihalkum@quicinc.com>
+Subject: Re: [PATCH v4 2/3] arm64: dts: qcom: qcs8300: Add CCI definitions
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Vikram Sharma
+	<quic_vikramsa@quicinc.com>, <mchehab@kernel.org>,
+        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <andersson@kernel.org>, <konradybcio@kernel.org>,
+        <hverkuil-cisco@xs4all.nl>, <cros-qcom-dts-watchers@chromium.org>,
+        <catalin.marinas@arm.com>, <will@kernel.org>
+CC: <linux-arm-kernel@lists.infradead.org>, <quic_svankada@quicinc.com>,
+        <linux-media@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Ravi Shankar
+	<quic_rshankar@quicinc.com>,
+        Vishal Verma <quic_vishverm@quicinc.com>
+References: <20251015131303.2797800-1-quic_vikramsa@quicinc.com>
+ <20251015131303.2797800-3-quic_vikramsa@quicinc.com>
+ <84f17b74-a3ea-46bd-a6d4-efa79c1cb43a@linaro.org>
+Content-Language: en-US
+In-Reply-To: <84f17b74-a3ea-46bd-a6d4-efa79c1cb43a@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDEzMDA4MyBTYWx0ZWRfXyC2scQI+afb8
+ 2U6Dfwi2UZ+V9F6Li1agMvVT5qT8ttXozssBmzcYCEwhsP8KOeoHcjy5Y8xkb6s6UgTQmDw09zH
+ YQ97GGOPuadhSCod+XVpM1E7B6U47ZbQ4EynBQD7rliYij+Wnf5bQcb+cY4QBbpRAxnOIEKlTIQ
+ o9gLH/xpvuGP6vkoqn19Nl34xHi1lhm7eLg37+vqD6pHFsci4P95VZPMLdF1bX0kg+lEp+OMoeN
+ UCNxa25CTG4b7VTcbt2X2l37LGkl19v+4bc/CUPzB22xZnbwVukVYL2UimnjizrReQmZb/wnCFh
+ lWlg1rf6i8h+P8u3gS5WK4uXMFgx89kDF2Yn0GaMgUChvX3deIA2Zmo05EzTOOz1vIVWbaBcwD2
+ xgEFTFg97W3TG9wPV02VeQ2t7WkMsw==
+X-Authority-Analysis: v=2.4 cv=Fr4IPmrq c=1 sm=1 tr=0 ts=68f0df8a cx=c_pps
+ a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=COk6AnOGAAAA:8
+ a=KKAkSRfTAAAA:8 a=GvJNRsgozTBLNSz4xL4A:9 a=QEXdDO2ut3YA:10
+ a=TjNXssC_j7lpFel5tvFf:22 a=cvBusfyB2V15izCimMoJ:22 a=cPQSjfK2_nFv0Q5t_7PE:22
+X-Proofpoint-GUID: l8C571CAF8e22iQg4uf-GFBjzsL2r5pL
+X-Proofpoint-ORIG-GUID: l8C571CAF8e22iQg4uf-GFBjzsL2r5pL
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-10-16_02,2025-10-13_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 impostorscore=0 spamscore=0 phishscore=0 malwarescore=0
+ adultscore=0 lowpriorityscore=0 bulkscore=0 suspectscore=0 clxscore=1015
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2510020000 definitions=main-2510130083
 
-Add device tree bindings for the StarFive JH7110S SoC
-and the VisionFive 2 Lite board equipped with it.
 
-JH7110S SoC is an industrial SoC which can run at -40~85 degrees centigrade
-and up to 1.25GHz. Its CPU cores and peripherals are the same as
-those of the JH7110 SoC.
 
-VisionFive 2 Lite boards have SD card version (default) and eMMC version,
-which are called "VisionFive 2 Lite" and "VisionFive 2 Lite eMMC"
-respectively.
+On 15-10-2025 19:12, Bryan O'Donoghue wrote:
+> On 15/10/2025 14:13, Vikram Sharma wrote:
+>> From: Nihal Kumar Gupta <quic_nihalkum@quicinc.com>
+>>
+>> Qualcomm QCS8300 SoC contains 3 Camera Control Interface (CCI). Compared
+>> to lemans, the key difference is in SDA/SCL GPIO assignments and number
+>> of CCIs.
+> 
+> Codename should be "Lemans" and since you need to update the commit log for this it should be "three Camera Control .."
+> 
+> Assuming thats fixed.
+> 
 
-Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
----
- Documentation/devicetree/bindings/riscv/starfive.yaml | 6 ++++++
- 1 file changed, 6 insertions(+)
+I assume you're referring to update s/lemans/Lemans
 
-diff --git a/Documentation/devicetree/bindings/riscv/starfive.yaml b/Documentation/devicetree/bindings/riscv/starfive.yaml
-index 04510341a71e..797d9956b949 100644
---- a/Documentation/devicetree/bindings/riscv/starfive.yaml
-+++ b/Documentation/devicetree/bindings/riscv/starfive.yaml
-@@ -35,6 +35,12 @@ properties:
-               - starfive,visionfive-2-v1.3b
-           - const: starfive,jh7110
- 
-+      - items:
-+          - enum:
-+              - starfive,visionfive-2-lite
-+              - starfive,visionfive-2-lite-emmc
-+          - const: starfive,jh7110s
-+
- additionalProperties: true
- 
- ...
+Codename for QCS8775P SoC corresponds to Lemans while QCS8300 SoC corresponds to Monaco
+
+https://lore.kernel.org/all/20250923-rename-dts-v1-0-21888b68c781@oss.qualcomm.com/ 
+Following the above change,  I will update the commit message from
+"Qualcomm QCS8300 SoC contains 3 Camera.. " to "Monaco contains three Camera .."
+
+> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+
 -- 
-2.43.2
+Regards,
+Nihal Kumar Gupta
 
 
