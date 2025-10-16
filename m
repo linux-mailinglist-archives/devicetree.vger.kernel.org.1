@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-227457-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227458-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 774ADBE1C32
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 08:36:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E8EB1BE1C5C
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 08:39:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id AC5164FA777
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 06:35:15 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id C45A54F86BD
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 06:38:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 174C22DEA7E;
-	Thu, 16 Oct 2025 06:34:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 895322DF3E7;
+	Thu, 16 Oct 2025 06:38:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PA5BJPJb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XMMtEOsZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8DA62DE6E6;
-	Thu, 16 Oct 2025 06:34:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9B132DF159;
+	Thu, 16 Oct 2025 06:38:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760596496; cv=none; b=uXUXJRUn+HtZ+nOoJUuNv13oRul7/89MEtGX9ZjArqtoIo/DlmgZG+d+BQ52XL6rNPpjXSkiibnitxoVZcknf1mYe8QQ7kgtnR0hmF87/OeF+2Ogrsq2CCEtxIWXLHTmpC2JaySQUPl7mMvTpLWd6FSgZ6ztxWQYaXZrRagsYCg=
+	t=1760596710; cv=none; b=MsZad93z8Doz7BRYKPBrupKAxAknnzYlm/ap3aTN9zHNY3VXd4SgeVGbOyDU3xm+F4od46BzHCXISI0tfAgo5jfEUL0/O0972SIejcGf5DKNZm0i8QvwGGmheETX7o/1xWqf3WbzFuCf7waCkxVdnMZ/q5ihcNFkuO2TTQCcY4k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760596496; c=relaxed/simple;
-	bh=i37tzsi4E6hgqkvOcmWYuDQlSsDp0b0hPNlEiydphjQ=;
+	s=arc-20240116; t=1760596710; c=relaxed/simple;
+	bh=d4dwdfMkD6QgbfdJBxvnNY2nMJrmSg/B16f+uSrBE+c=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=t6hBn3wSxCnygRJIhBqswtHuQWY0sc8s5StGRxEioqPTvla5oXIIpkGMO++C0t/BA6sNNT3zmvYlcD2+Nq37FVHu0UCMKpTJTRu5vtaOyG89TA47ALVhA33KZ6BWss1yb/W58kDgeZy//iIRvi1W8N64tv/ud0mho/l/NB10FtM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PA5BJPJb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 98C54C4CEF1;
-	Thu, 16 Oct 2025 06:34:50 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=UOMCJeCnYclif+oOinhd4R1yvydkOw5PR0JHfexe9Lmzudhq0PiX3vJkaDaPvZOcHVOo3l6LePRtCpQt7FjSTCTIyqenzc4qs5HO8k05J/CpRCVGC4JfkJJn7T7HFF0+vd5lNZ0cuzm3ey6maNdE9tJprau6LxHNRn7MmUwnATo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XMMtEOsZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A6F41C4CEF1;
+	Thu, 16 Oct 2025 06:38:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760596495;
-	bh=i37tzsi4E6hgqkvOcmWYuDQlSsDp0b0hPNlEiydphjQ=;
+	s=k20201202; t=1760596710;
+	bh=d4dwdfMkD6QgbfdJBxvnNY2nMJrmSg/B16f+uSrBE+c=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=PA5BJPJbN0kIAc7Vs3iJ5fDisd8R+VOymaliDDRR/XhIXxWDxxfPwtHhYQq0Rnq0s
-	 AtNfiC7NtB96lnoxEiYtUYyPvkHrmc24UOk7xG1MMvJY7crxnU1hAwtqEmM2xqdnCS
-	 arDRFJgqQwY3RntB9lgLBwrudidUcPMu32qZBVYePS6ZHEpyRh2Exl6f1JvlcZ8ykL
-	 mvE7QXXXT/01fyIcYBtvHCj0+BL5K2tO2N7aCC0v7xhN6VMDPvxoYdu+cjeQtwcnE/
-	 vxfUmi3d+F5L4oQB/l1WtNIrixtaB6WB8FWC87GNr+Ylx9fC4k/PQIHHmVtfcJkwM+
-	 E9U84ve0E2hFQ==
-Message-ID: <51b72003-e9a5-4f34-ad08-249fc24b3041@kernel.org>
-Date: Thu, 16 Oct 2025 08:34:48 +0200
+	b=XMMtEOsZvhXxZcbi+GQKU6+8uyv/vdcv1N7xOmzSBE1AMXpio8pYcx7JwNfL5x6zg
+	 x5pl7juoz30oU/MHKDKGbpJkeByfGm3zacKYcsuluqRrZ3uVO4egDoPYnAgDAu5KKG
+	 WtnzMU1Uqz/piYzKqrIoyA25h2voYwevh0qnpsuHY5YL0H681f73LZyOJU5P+lSG4T
+	 4Uv4U1GsHCKgzK1GtdO83He8fSULxKLhNYDz6ZkN9PegpS8CTGKlYriVasoIc8hN6/
+	 dirWBtMgH+cvzzX9QrbfY0jrGWLUPwW4PQRhls3OPVRI9JimkReZPQ0IDKi8AMdHka
+	 5iP2W0PF6Qywg==
+Message-ID: <97184b19-156c-4c42-ac8a-dc9800ea64af@kernel.org>
+Date: Thu, 16 Oct 2025 08:38:25 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,23 +50,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 03/14] MAINTAINERS: Add i.MX8qxp prefetch engine DT
- binding files
-To: Liu Ying <victor.liu@nxp.com>, Philipp Zabel <p.zabel@pengutronix.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Dmitry Baryshkov <lumag@kernel.org>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, Marek Vasut <marek.vasut@mailbox.org>,
- Frank Li <Frank.Li@nxp.com>
-References: <20251016-imx8-dc-prefetch-v4-0-dfda347cb3c5@nxp.com>
- <20251016-imx8-dc-prefetch-v4-3-dfda347cb3c5@nxp.com>
+Subject: Re: [PATCH v13 1/7] dt-bindings: media: platform: visconti: Add
+ Toshiba Visconti MIPI CSI-2 Receiver
+To: Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>,
+ Nobuhiro Iwamatsu <nobuhiro.iwamatsu.x90@mail.toshiba>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20251016-visconti-viif-v13-0-ceca656b9194@toshiba.co.jp>
+ <20251016-visconti-viif-v13-1-ceca656b9194@toshiba.co.jp>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -112,22 +106,43 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20251016-imx8-dc-prefetch-v4-3-dfda347cb3c5@nxp.com>
+In-Reply-To: <20251016-visconti-viif-v13-1-ceca656b9194@toshiba.co.jp>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 16/10/2025 08:32, Liu Ying wrote:
-> Add i.MX8qxp prefetch engine DT binding files to
-> 'DRM DRIVERS FOR FREESCALE IMX8 DISPLAY CONTROLLER' section.
-> 
-> Reviewed-by: Frank Li <Frank.Li@nxp.com>
-> Signed-off-by: Liu Ying <victor.liu@nxp.com>
-> ---
-> v2:
-> - Collect Frank's R-b tag.
+On 16/10/2025 04:24, Yuji Ishikawa wrote:
+> Adds the Device Tree binding documentation that allows to describe
 
-This should be squashed in each respective commit. This MAKES NO SENSE
-as separate commit, stop inflating the patchset.
+"Add".
+
+https://elixir.bootlin.com/linux/v6.16/source/Documentation/process/submitting-patches.rst#L94
+
+
+> the MIPI CSI-2 Receiver found in Toshiba Visconti SoCs.
+
+
+...
+
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/toshiba,tmpv770x.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +    soc {
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +
+> +        csi0: csi@1c008000 {
+
+I don't understand why the label appeared. It is not used and it wasn't
+here before. I did not ask to add label, but I only asked to fix the
+node name to match generic names rule.
+
+Drop the label. With these fixes:
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
 
 Best regards,
 Krzysztof
