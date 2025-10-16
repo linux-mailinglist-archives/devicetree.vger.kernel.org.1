@@ -1,348 +1,235 @@
-Return-Path: <devicetree+bounces-227383-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227376-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 805A5BE1412
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 04:30:14 +0200 (CEST)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD7DEBE13BD
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 04:28:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 5E7E74E7F75
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 02:30:13 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 020E634A877
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 02:28:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FBCF227EA7;
-	Thu, 16 Oct 2025 02:28:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4278C1E5207;
+	Thu, 16 Oct 2025 02:27:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=airkyi.com header.i=@airkyi.com header.b="ePMMocVh"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="msdXfy+E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbgeu1.qq.com (smtpbgeu1.qq.com [52.59.177.22])
+Received: from PA4PR04CU001.outbound.protection.outlook.com (mail-francecentralazon11013066.outbound.protection.outlook.com [40.107.162.66])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD60D223DE7;
-	Thu, 16 Oct 2025 02:28:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=52.59.177.22
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760581735; cv=none; b=J1zrPa9fkZilSg2zTNoM6VtEnuC9zYp9WlotamzHHmGEqcCz4uKCOL/4ip24rBKqk6DAVkUwX+zG9bT++cWgKH5h1C6ULiBhrQ6gKW1tSV+ZBRpl8qcCgfOZXWvLemoaFLh2nOYGSXDklhifhVVGLNbi2FpK+hOGTzC4wMv4Wec=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760581735; c=relaxed/simple;
-	bh=Ksu1m13XDgyOSNrC/yix/S/ref0aCyYvyb9gG5K8i98=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=EejwR4vXUqU/8hDyAbm7SX9BQn1XRLpuy5XLvRdGegi76f3zwswwQm0XRuJO7N3JZNTwXID8HfDiM502dwoIrv50Uq6vwNwAPEskwMAD1714vOXlW37EOkaoMVDHGzg1DU1meo8jZhi6vFnkkkfeSZ+9mUwggR4Vvtq+B7UREZo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=airkyi.com; spf=pass smtp.mailfrom=airkyi.com; dkim=pass (1024-bit key) header.d=airkyi.com header.i=@airkyi.com header.b=ePMMocVh; arc=none smtp.client-ip=52.59.177.22
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=airkyi.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=airkyi.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=airkyi.com;
-	s=altu2504; t=1760581708;
-	bh=1RfAR5qe3fDpGYWfe4IMPee9wlWopj1wjBrVtJQSHJQ=;
-	h=From:To:Subject:Date:Message-Id;
-	b=ePMMocVhYpf+bx3EtPyKWKKIVsXxiiUO8q88h8aMWMd16ANKKXzCy0KDnWXQfU+EZ
-	 UPnXNEZ2Pe5GGjqVpd3dANfKLy2NEMKIeWCGx107PFH9q3WJqaP6qXnAUVjVrO1DCr
-	 wjuy7gCEyAhpkpnwEeAeLhzqF8V/CE7YwvB0uZdc=
-X-QQ-mid: zesmtpgz1t1760581707te7834fa0
-X-QQ-Originating-IP: fu4+9mqDE3XZAMSCh/z+SENLWrlcpaz7T3n6vsQJy5o=
-Received: from DESKTOP-8BT1A2O.localdomain ( [58.22.7.114])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Thu, 16 Oct 2025 10:28:25 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 18195829153663395563
-From: Chaoyi Chen <kernel@airkyi.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Sandy Huang <hjc@rock-chips.com>,
-	Andy Yan <andy.yan@rock-chips.com>,
-	Yubing Zhang <yubing.zhang@rock-chips.com>,
-	Frank Wang <frank.wang@rock-chips.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>,
-	Amit Sunil Dhamne <amitsd@google.com>,
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Chaoyi Chen <chaoyi.chen@rock-chips.com>,
-	Dragan Simic <dsimic@manjaro.org>,
-	Johan Jonker <jbx6244@gmail.com>,
-	Diederik de Haas <didi.debian@cknow.org>,
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-	Peter Robinson <pbrobinson@gmail.com>
-Cc: linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-phy@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	dri-devel@lists.freedesktop.org
-Subject: [PATCH v6 8/8] arm64: dts: rockchip: rk3399-evb-ind: Add support for DisplayPort
-Date: Thu, 16 Oct 2025 10:27:41 +0800
-Message-Id: <20251016022741.91-9-kernel@airkyi.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20251016022741.91-1-kernel@airkyi.com>
-References: <20251016022741.91-1-kernel@airkyi.com>
-X-QQ-SENDSIZE: 520
-Feedback-ID: zesmtpgz:airkyi.com:qybglogicsvrsz:qybglogicsvrsz4a-0
-X-QQ-XMAILINFO: NyTsQ4JOu2J27F0cQTRa45Ef9+r4ktGvtzz8BSBcGwlKmK4bUQ9BqOKr
-	7lnp5y6VNi9cvAsawFfhIjGqtlpWOw4TKTT/T53Xe8aGFka1FxZpFl6XiKzEarnSUCLaQPD
-	Wwe25p4lploE0MGXVBg6ilyEJwse/GLHWNA3lYjXg37lPbP9WjkzvKua/TO08t5c8yb1Elu
-	WzIWnEk/ii2oR0uzll54wldD/1iDQ5rQyOwLoULrS1AKcEeKpCTmePCcSfw38amlPDRxMVX
-	7N9KxDFQzG1P545BiN1p40hZNFuKaSslQycZVPXm7UfxNRTtnTFczVQmxRuG2JpbAVCOMCg
-	uBZpS1n93kQ/5S90YxD/oAE4C0uUW+/Y0mt5fWsG+KyGdh1JrUrt+TyYwbbVSnfuAJC6LpO
-	KzG0U0Y2gaa7Zqsqlaoe4QBUvkQLs65kyHVGmHr/kYHphMSjfkFyWKGmk1/OKChOeP4j25D
-	Gjcfn/3FI/QvC82lQfvp9x62k1yRxo+JW5ob8CbratMkkUtHgWIC1Y7ImHi8EzYk91LKi+q
-	v+TqUBXYICoPERWdG7DpVhqs6cbktXkgnqEbh1iDLLx3mif/jG8lSz8RGgZrW//goj0RooQ
-	hxjakLofksce+yOUZilYPOBB92zTu0UeLr09eWpb7Lfi7X3IKyQH0gt5ukcxaH8T332l3Tr
-	Pz2cl9e46C0xAf8wZqXAB0NIXsSbbHxtllkNtRUBVPopuKkhGs6zh7H1HjHGi33kkmjpNc8
-	NuI5Yzqe1AeylddJV7e79SKZN9aInTl1ucpbkTbsW6edQsb5guKWLWbtXGn5QYqnNIFX7jE
-	9heikYT0QHnWf0svJ7CyW3oNqFtkVeMTIy92OAxTw17dKJ3zVJ3TNbrbzmHrgBZdjT5smOa
-	50vivkbEGVoo6af53yl4XQLT1cO2ANhxM8mMciCRbkYCiYwCofzlY0bRxiWRwJqMZKqbJZP
-	ivV7C79a85fWPFftKkijCTtpD++imtzRLO55hXZMBM25dU5xIVC6RQI4/UewQfIQtx1NgnD
-	ldAPF7G1t93eAxttixuR5JSMhTVo/if0wFnptew8hiBPPGrr58
-X-QQ-XMRINFO: OWPUhxQsoeAVDbp3OJHYyFg=
-X-QQ-RECHKSPAM: 0
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 179DB946C;
+	Thu, 16 Oct 2025 02:27:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.162.66
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1760581675; cv=fail; b=CcteaF+dtNeE1NCnCXg5GpqjKXN14DKETkCnXT+Wm9GPAJpV3DBWtuun+v2tufUOtJNJrIJRN47SboMshiJfc/dvLIbrmrBYc7+M7ACfyokSO8ADQ4dfRBqGjSnpMmk55gYtaEK5jSEluKURvUg44csw9IiPiwCw5ckqBbkmZy8=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1760581675; c=relaxed/simple;
+	bh=U1ZgqgwxVRPAoWlIkJklvdbN6VyZUgEKJ/C+B7YB2m4=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=rPflNOI6ARHXFAS5i2W1GBa8/6ZxJ/JSW7c0p6cxiFQih8SIBi2m/n89kOcwhb8c7E0/Y98bLhprYIwSHbB++kftqVSqL3GB/7Kokn6B2H1OklBZsMja+hSpr5baMSShtkpF05Gu8mJU0aFXNSp+CIsR5rzbUIo9N7V1LoZWmrA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=msdXfy+E; arc=fail smtp.client-ip=40.107.162.66
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=yJjXPWX2nFE2f9dn1P1T7yOKCQaMRMdvtKHnwfoQTiQHcyVBbRYQXRUE4ovVPXb3d2kXn/dy02HZewqkGdanyceEdqknn/kvS7IBUFZpNRw76yknLxqr0N/9bUtmL3nalb8quqFJQgE5aHm9KGs4NIa4A6ZX94CZPhMqBT/EajHHZXu61vPooOAOglR4FzUMO/7euIpLesl9lR6Kl31FWYtEMWvC7ElLV9id77LB0dLNXlo17AMn5StG/QcFATC8kLFtwQtpdT0UCxEzUTc4ndix52qleSuFWrw6w86U832ljVABaqVQtGNe7gx2a5BRcsFpbVRefhgUhqF0ncAo6w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=j2Whk+/NjyAjQStInE1j/PzsTAhufFsXx6nD7f9u3/s=;
+ b=eP0T+0Aus9FZx9dkxZex51a5i1dI9OurpwMzVnyI8gDjQQT01cOd8sTWQPium8llEbhgRdh7NXhusvOyjxHLqtYux0PvToJak0WBb7y/yGOisBcrUHMUG/yBN25wrnApwdTzTL36TwYs5NqT6TeIFnHtUf27KRNJOY3N+3EWKf49BbPzgr3nJOqQW37WqYTT5msqD0DuAVlwBA2nEe2u9tVGp5ZqVXsjlfqIcYz1a+VqU8GjRvVn+0zFbrQM4EROJagS88Prn2etCdnCufthdbCAvQnjnlsMZDVzeOa9lGc8L0aL2gVmb9GIr/Kf3MjZX30Rz0oUG7H2G88YFGfWRg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=j2Whk+/NjyAjQStInE1j/PzsTAhufFsXx6nD7f9u3/s=;
+ b=msdXfy+EO+c60bspELBz5sU4Zt8xMJtSKBRCCl4DolsOuJ2wgfW7DvmHwr5o6Y1tae7WDBEybwqyL59mogPyzj7sS0P8cOAFAFe6gfu/MNNx3oLX8GxGzN2B4y3fU5zN57ew1kY1k30nVDiANQmZdq53roknHmT27u6g7ElUIztEtvBGfAUIXKWFMgFbVR/WFuc5Xt2dZaOhEswp8uBUfJrmP0vM3XibNC5VNE/uuAWor1xHxuE2w1VRiAYI4ri0qAsK1sFbn+Amds+rTPcEXyrTxXspS8opPUvGy5qTcys9mgGRiUAmLdtG9nJ/k6E49QamPj/243CDQ2dOu+VqqA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
+ by VI1PR04MB9955.eurprd04.prod.outlook.com (2603:10a6:800:1e1::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9228.12; Thu, 16 Oct
+ 2025 02:27:49 +0000
+Received: from AM7PR04MB7046.eurprd04.prod.outlook.com
+ ([fe80::4609:64af:8a4b:fd64]) by AM7PR04MB7046.eurprd04.prod.outlook.com
+ ([fe80::4609:64af:8a4b:fd64%6]) with mapi id 15.20.9228.012; Thu, 16 Oct 2025
+ 02:27:48 +0000
+Message-ID: <a9a9867c-2653-45f0-89a2-39132335aac9@nxp.com>
+Date: Thu, 16 Oct 2025 10:28:08 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 03/39] dt-bindings: display: imx: Document i.MX95 Display
+ Controller processing units
+To: Marek Vasut <marek.vasut@mailbox.org>, Frank Li <Frank.li@nxp.com>
+Cc: dri-devel@lists.freedesktop.org, Abel Vesa <abelvesa@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Fabio Estevam <festevam@gmail.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Lucas Stach <l.stach@pengutronix.de>, Peng Fan <peng.fan@nxp.com>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Rob Herring <robh@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ linux-clk@vger.kernel.org
+References: <20251011170213.128907-1-marek.vasut@mailbox.org>
+ <20251011170213.128907-4-marek.vasut@mailbox.org>
+ <aO0tmUWA5H0J80Ov@lizhi-Precision-Tower-5810>
+ <260b4db1-c02a-48a0-baf8-5e217c729824@mailbox.org>
+ <e3ab9421-61a5-4ab6-8c72-6b0ab340f3a8@nxp.com>
+ <ae9d1289-c0f9-47b9-b6be-e39d170425a2@mailbox.org>
+From: Liu Ying <victor.liu@nxp.com>
+Content-Language: en-US
+In-Reply-To: <ae9d1289-c0f9-47b9-b6be-e39d170425a2@mailbox.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SG2PR01CA0134.apcprd01.prod.exchangelabs.com
+ (2603:1096:4:8f::14) To AM7PR04MB7046.eurprd04.prod.outlook.com
+ (2603:10a6:20b:113::22)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM7PR04MB7046:EE_|VI1PR04MB9955:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1c27723a-f644-40e3-bd20-08de0c5b9711
+X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+ BCL:0;ARA:13230040|366016|376014|7416014|19092799006|1800799024;
+X-Microsoft-Antispam-Message-Info:
+ =?utf-8?B?MGpWSDNLM3REMjF0cHIrWE9abHpjeGlOZWtFYkZoTWJ1UlNVK3VVUGFRSCtM?=
+ =?utf-8?B?MDkySVN3Z3lTM0I1QVZwMXIwbGZnTkhLM3gwNFV2VXBUSU1abTVpekkwc0cz?=
+ =?utf-8?B?anVwSGdyelVKYTF2azJ6cG9aSHZtT2VxL2oxSTZ5K3lDbGg1TlRHVWdTNTBB?=
+ =?utf-8?B?NzhTTmhrWkFJUDRhSlc4V3NnVlEzN1MvczFzRnc2OFRWdkFCM0FJTW5PYlJL?=
+ =?utf-8?B?TVBCSVp4TEtCSkE2elovUjM1MUtrcjFxUTRqbzNiMXg4ZExyRTEzdUdwQ1Iv?=
+ =?utf-8?B?Sno4VmozeUtYdEdRNGNacUVwNnpFRXdGSTZEZkVVM240aUgxOTlSVVpuQjFC?=
+ =?utf-8?B?andEa0gyb1k4Z0ZKSVl6UXZoNVBmZTdHbFVKQ3ZVYTBUS0JCb3ZtUVBGSEVv?=
+ =?utf-8?B?cGIzdm51TlZKMlBEYUZDWkEvRzRFZ1BEWFNUWEwwTFZnV1d5WnYyTk5FSStO?=
+ =?utf-8?B?UDVwL1JHZVdHeEt1dVA2eHVGeTM5Q1lFY05xR0l0b2d1WUJCNVdOaGRJaVhL?=
+ =?utf-8?B?M0FvZEx4WFdqbXoxQVpFREVCWnlJT2dNNzZPdDgwS1Rud0U4YkM2bXpnOHNZ?=
+ =?utf-8?B?MUxlZkZRam5yTFFSaGpCN2JZWmw1MWl1QmYwN2VFWlZvb0IxZit1T3g2cUJ5?=
+ =?utf-8?B?R2xZWTlKSVF5akhQYWd1cnJvbkoxc252UnFWY2NyU2FBbUE4a1UxUWNWRzdO?=
+ =?utf-8?B?Ym9UOEU0YXdFUnUydFYxdVV0WWRqWFFuTjJJTzBTRlJpOEovby9FQU54WFhP?=
+ =?utf-8?B?R1c5elJNaVNGT0RzZHFPV012bWNkeGRSVjNsWVFvTyt5Zmt6MzhUQWlwSFFK?=
+ =?utf-8?B?VGhHSlVUbWdTNmZZV0cxRXl1VmM5NmZHMXF6Q25EaXloQzEyV0RSbnA2ekJM?=
+ =?utf-8?B?VWM2czFTdW1uRHlEb0tqNy9FdDJTRFByMXN1WGlIRTZOMzI2VXNZR1F0MkM3?=
+ =?utf-8?B?OVRaa1RxcW1yRG9JaThOOHhiZlNjTldmeGZ4TjRySGZlenkzRzlvWnE5Ynkr?=
+ =?utf-8?B?dndjcVQ3ZC9BSWl2bEM3dTNOVWFrTUdaWk90QVNqOEt1MjdnM2Jqd05LZk1Q?=
+ =?utf-8?B?cW5MdEhPUG80LzFUcElIdHI4R2JJZnB1NmdjR2xyWXVSVysvM1F4Wi9aMzRB?=
+ =?utf-8?B?Q1N5VTRkMGlkYkxqQ2pwWG1GV2ljMWh5Z0ZucERmdHp2cjhmWnVxaFlGc0hp?=
+ =?utf-8?B?WVBhTW9XVVVucnFkd00wT2RCK2FJYXd5K2RPTUgxRDJRekNUU0grMnFVMmoz?=
+ =?utf-8?B?TVUxT0orRTRRQjdLMVc3VWorMzQ2VHZEZStIWWUyYzBDTFdkVjd3VjNlb1JQ?=
+ =?utf-8?B?Y2dyS05NZTduaDlxS2JDcDdxZzhxZFRzZHc2ajc4cHBzdVZBUEg5U01Gd05t?=
+ =?utf-8?B?Rmo2c1RBVlVNbUI2WTFpT3Q4RnhUcy8xY052dFZobm5pVXE4Qjl6MUUyYkVk?=
+ =?utf-8?B?c090TkV1dk9leWs5NFdSbCszVDNZRHArczVyMm5JQ3dmVnFVcG9MUUc4Z3I1?=
+ =?utf-8?B?SjFoclhnZWFnSTFyVERUOWZIREdiWW9iWjVNZUFkUE1ZSHhkZlVSeTdDWVRw?=
+ =?utf-8?B?Z05pam9aeGcrSlg2aFhUNUFibGx3WUxUSGlwVVBHMUkvTjZCNi9IRXo5R3Fo?=
+ =?utf-8?B?cDNIdWR1a1V6cjJTR2xpTzMzOUFPOS9QR0FXZDI3TlV4V0VIWlVUQm9PRk1r?=
+ =?utf-8?B?bVJsdkJnaFJMS05WQjJ4N2UxT09CY29OUnRFdmI5NS9CYyttTnhTUzNGZGp0?=
+ =?utf-8?B?TE9PV0FuSEdiYnNGc1Rva2FtaCtXdWl2R1g1WHY2NnRNOW1UTXBIWEVnUzc0?=
+ =?utf-8?B?dHI0TXNUUmNETzNyUUFVVTdlVllxVlR3Z1c0Ni9DKzc2R2ZDeTFEOTgvZkt4?=
+ =?utf-8?B?SlMrcWg5UmNsSUJBUmovbVovd25CdjlGU2NHa3gwUEZRempRUEIzOUtFTU9r?=
+ =?utf-8?Q?z6C1HzCkBUr5KTgSr75avULIst87ZkSt?=
+X-Forefront-Antispam-Report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR04MB7046.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(7416014)(19092799006)(1800799024);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+ =?utf-8?B?ODh3cGRRdkVoU2tBeFJrNzhNWC8wcHdySkZCZFJvaTJYT1BpNDJnclVTSGtr?=
+ =?utf-8?B?bHdBelVQRzc5dFE0dEVWdXVtWmh2YkhhOCs3b3grSWozdHhhV3FNRXFpalN6?=
+ =?utf-8?B?UStMMjVBdWJIU1dOZ2U5Z29Yd1g0VnlUbUNPWCs1SExTdXQ2NkNZU0MzNHpq?=
+ =?utf-8?B?MDNGQVZ6Q21Id1NsUU9xR1I0SG9UN1BHdWVlSzlVSXk0Sk9rVy95Skp3emEv?=
+ =?utf-8?B?RVBaOUM5aTNKMG90cVg0ejRKK3FCS0tZQmUwNGtjUzhwOHkrZHdpSXgyV3lB?=
+ =?utf-8?B?NkFhdElJZmZZR0VHTnZwbCtPT3lPQVZLaDZ4WVdITFZrWGY2TXZzZUtKVnBn?=
+ =?utf-8?B?ZnkvSGJ5c3duaVVPYk1RRlY5QVdrN2ZOT0pDc2ttZmhRNXhLQkRud2kySnNB?=
+ =?utf-8?B?UmZ2MGoyaWxjbGVJY3IwRGhZSGhWTEdXVndPTDUzNXE3bmwzekVSUTZ5TStS?=
+ =?utf-8?B?R1dZWmswMjRhOENacHV4NW8yMGpuajQrQkZURG43Z1lFbFU5b2hPRy9zcDQx?=
+ =?utf-8?B?alRGYlhCaEdQQTRUelJjYkR4Q1VMMURyTWhZbXArVFVYV1ozcEorY0l1VVVn?=
+ =?utf-8?B?bUk5d2k5QUU1M3paUldyUDhJM2dmY1JMM25YRkNkS01pWFp6WnRzb0dHSTlF?=
+ =?utf-8?B?VG43cDNNSXhmeEk1WG56Sko4dG9SaU94TWtjTXVSajhoeTlaK3k5TEdIYXdM?=
+ =?utf-8?B?bGp0ZXpjTmRMcm1LMng3MXVBRDVSQjZlS2FYZmhGRmg1ZnpQTk9ZdEZGdnBQ?=
+ =?utf-8?B?RFQvemxmVktrSG9RM0FOcXFIQWJHbFZuNXNOM3U0aVpqZmdpSXVUZEw5a1k3?=
+ =?utf-8?B?bjFXektPVVRKVTRQeWltdDdEMFNKcDVrTzhwSnFZZ2tWTlkyc2hkQnJsNjRQ?=
+ =?utf-8?B?WWd3VUVIcWV5NHdvYU1ESWJqNFFhdVNVc3FSY0VtOEdhNEh2bmxvTk1jcjJ2?=
+ =?utf-8?B?MmRMbnRMUUJTQ0o4bUpFS256c0lYaFVRRW9XalhqeG8zY2NRZm9CZ25uMnBB?=
+ =?utf-8?B?T1N6ellaWEtHSEJDNmFoMW8xQlExUHJDRGtWYjc5RHhoWWZSS01zNi93eGJ3?=
+ =?utf-8?B?Z09QMVEzN3h5MVI2dnBGdExjTDZIVVJYbTk0OWNFZEFKK2NZZm1rTmZGV1lE?=
+ =?utf-8?B?RnFjQ29ZSVRaV0V6Q1cyZkdTL1M2dDFRVHZaSjN1VVBMSWVCRXd4MXJ6dUtn?=
+ =?utf-8?B?VHNGc3J0N0ZPQUp4OSsycHlhSGpCUkMrTTB2eUY0Qm5ETFV0SDRVdlQvalBn?=
+ =?utf-8?B?Y0hDYzV4REdPYnNyYkVCMnFxVi9vczd1MHJ5ZnRCeTRnMnJONmFjNmNsclZL?=
+ =?utf-8?B?WFpxdzlLYmlHVHpXWnovTzVOK2NLaHplZEZlbkVHQUZjbFh1NXVCY0F1a1h2?=
+ =?utf-8?B?RytpS0xkeTluaXEyOC9UTExQd3FTMkUxY1JNeDNCZ3RkUDVMQ01mZ2FLeUc3?=
+ =?utf-8?B?dGNMcVZrUXVkUnE4NWR6TzdJYy9jdnhwSm1ZVU5lNWZzai9mV25pbzh3S1Qr?=
+ =?utf-8?B?V3AwQi9vRjZDOEt3clBBR05tRllsWU5aK0R6Z0U5TkpWOFp6dmlid1JBN2k0?=
+ =?utf-8?B?aTZNLysySjFOdGhyeUdFOVpRVEtYalpnaHM0T0pjcG9IRVgySGk5K1J4ZkNp?=
+ =?utf-8?B?VVZndWY5N3h6MUdKNlhqZVRkVFcyNEgwUGZBRUhMWG02Y2hPQ2JJSENia3hr?=
+ =?utf-8?B?QjBCV3RtM2ROQ3pFWmQ2djdTQzdzUFFJRGFXazNoNVZhTmswdHova1JpWW1V?=
+ =?utf-8?B?SUh5a21UditZMzl1SGZCYUd0Z1dORENKOVRINVNrLzBkc3pkWlE4NGtMTm1q?=
+ =?utf-8?B?d3R5R2w1Sit3c0w4NFJ3SDU2bUIweWJ4blg0bHRibTc4cU9vNlBycDl0VmZj?=
+ =?utf-8?B?MVVBYmpqZ2M0dEJYMmRERDJ1eHhEc0hoV0RoaWhMUVY2YjBqR0NWT3EyR0dz?=
+ =?utf-8?B?OWdTYW1xbnpjak0vZ1hqTEY0SDMwT3pCc0dmd2J5ZDJ1UjVISVR1U2x1cCs2?=
+ =?utf-8?B?aWdKVnpraVo5SWt4QWNXVHVhRUl4VFFtVWY3a3pKMkJwVmQvcmVTTkJuakR2?=
+ =?utf-8?B?Wll2anRHUnRuYmFYWC9PZUIwZ25teVpNTmM2aW1mNEEzY3lCQksyd1pXQ3lN?=
+ =?utf-8?Q?3oV+SWHcsw1CWMAk2LO6J/Nni?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1c27723a-f644-40e3-bd20-08de0c5b9711
+X-MS-Exchange-CrossTenant-AuthSource: AM7PR04MB7046.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Oct 2025 02:27:48.6690
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: zvC0hUnsVp/fZ4IrEKLelxApfsX0FfAIRFbBSjZl0mV5SytkTpj/bsKyOtpqbE50pTbpUCiDaAZMbaZaOKgw9w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB9955
 
-From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+On 10/15/2025, Marek Vasut wrote:
+> On 10/15/25 10:59 AM, Liu Ying wrote:
+> 
+> Hello Liu,
 
-The RK3399 EVB IND board has a Type-C interface DisplayPort.
-It use fusb302 chip as Type-C controller.
+Hello,
 
-fusb302 chip ---> USB/DP PHY0 <----> CDN-DP controller
+> 
+>>>>> @@ -90,13 +102,15 @@ patternProperties:
+>>>>>          compatible:
+>>>>>            const: fsl,imx8qxp-dc-signature
+>>>>>
+>>>>> -  "^tcon@[0-9a-f]+$":
+>>>>> +  "^tcon(@[0-9a-f]+)?$":
+>>>>
+>>>> why here allow no address unit tcon?
+>>> This might be something Liu can clarify too.
+>>>
+>>> TCON on iMX95 DPU does not seem to exist at all, or at least has no control registers. Hence no address.
+>>
+>> i.MX95 DC hasn't got TCON so it should not be documented for i.MX95 DC.
+> 
+> What DT node do I attach the pixel-mapper/pixel-interleaver to then ?
 
-Signed-off-by: Chaoyi Chen <chaoyi.chen@rock-chips.com>
----
+It's Dither unit which sits in the last position of an i.MX95 DC display stream.
 
-(no changes since v4)
+BTW, i.MX8qxp/qm DCs haven't got any Dither unit.  The existing i.MX8qxp DC
+DT bindings have already documented all units within i.MX8qxp DC(I hope I didn't
+miss any unit). And TCON is the last one for i.MX8qxp/qm DC display stream.
 
-Changes in v3:
-- Fix wrong vdo value.
-- Fix port node in usb-c-connector.
+Have you got i.MX95 DC IP spec?  If no, then it would be difficult for you to
+write DT bindings for all i.MX95 DC units.  Note that this is something
+necessary to do.
 
-Changes in v2:
-- Add endpoint to link DP PHY and DP controller.
-- Fix devicetree coding style.
+And, a bit more information about display pipelines in i.MX95 display domain:
 
- .../boot/dts/rockchip/rk3399-evb-ind.dts      | 146 ++++++++++++++++++
- 1 file changed, 146 insertions(+)
+Dither -> pixel interleaver -> pixel link loopback -> camera domain
+                            -> pixel link -> MIPI DSI controller
+                            -> pixel mapper(LDB)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-evb-ind.dts b/arch/arm64/boot/dts/rockchip/rk3399-evb-ind.dts
-index 70aee1ab904c..aeeee6bd2973 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-evb-ind.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-evb-ind.dts
-@@ -4,6 +4,7 @@
-  */
- 
- /dts-v1/;
-+#include <dt-bindings/usb/pd.h>
- #include "rk3399.dtsi"
- 
- / {
-@@ -19,6 +20,21 @@ chosen {
- 		stdout-path = "serial2:1500000n8";
- 	};
- 
-+	sound: sound {
-+		compatible = "rockchip,rk3399-gru-sound";
-+		rockchip,cpu = <&i2s0 &spdif>;
-+	};
-+
-+	vbus_typec: regulator-vbus-typec {
-+		compatible = "regulator-fixed";
-+		enable-active-high;
-+		gpio = <&gpio1 RK_PC2 GPIO_ACTIVE_HIGH>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&vcc5v0_typec0_en>;
-+		regulator-name = "vbus_typec";
-+		vin-supply = <&vcc5v0_sys>;
-+	};
-+
- 	vcc5v0_sys: regulator-vcc5v0-sys {
- 		compatible = "regulator-fixed";
- 		enable-active-high;
-@@ -31,6 +47,11 @@ vcc5v0_sys: regulator-vcc5v0-sys {
- 	};
- };
- 
-+&cdn_dp {
-+	phys = <&tcphy0_dp>;
-+	status = "okay";
-+};
-+
- &cpu_b0 {
- 	cpu-supply = <&vdd_cpu_b>;
- };
-@@ -55,6 +76,12 @@ &cpu_l3 {
- 	cpu-supply = <&vdd_cpu_l>;
- };
- 
-+&dp_out {
-+	dp_controller_output: endpoint {
-+		remote-endpoint = <&dp_phy_in>;
-+	};
-+};
-+
- &emmc_phy {
- 	status = "okay";
- };
-@@ -341,6 +368,71 @@ regulator-state-mem {
- 	};
- };
- 
-+&i2c4 {
-+	i2c-scl-rising-time-ns = <475>;
-+	i2c-scl-falling-time-ns = <26>;
-+	status = "okay";
-+
-+	usbc0: typec-portc@22 {
-+		compatible = "fcs,fusb302";
-+		reg = <0x22>;
-+		interrupt-parent = <&gpio1>;
-+		interrupts = <RK_PA2 IRQ_TYPE_LEVEL_LOW>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&usbc0_int>;
-+		vbus-supply = <&vbus_typec>;
-+
-+		usb_con: connector {
-+			compatible = "usb-c-connector";
-+			label = "USB-C";
-+			data-role = "dual";
-+			power-role = "dual";
-+			try-power-role = "sink";
-+			op-sink-microwatt = <1000000>;
-+			sink-pdos =
-+				<PDO_FIXED(5000, 2500, PDO_FIXED_USB_COMM)>;
-+			source-pdos =
-+				<PDO_FIXED(5000, 1500, PDO_FIXED_USB_COMM)>;
-+
-+			altmodes {
-+				displayport {
-+					svid = /bits/ 16 <0xff01>;
-+					vdo = <0x00001c46>;
-+				};
-+			};
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+
-+					usbc_hs: endpoint {
-+						remote-endpoint = <&u2phy0_typec_hs>;
-+					};
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+
-+					usbc_ss: endpoint {
-+						remote-endpoint = <&tcphy0_typec_ss>;
-+					};
-+				};
-+
-+				port@2 {
-+					reg = <2>;
-+
-+					usbc_dp: endpoint {
-+						remote-endpoint = <&tcphy0_typec_dp>;
-+					};
-+				};
-+			};
-+		};
-+	};
-+};
-+
- &i2s2 {
- 	status = "okay";
- };
-@@ -354,6 +446,16 @@ &io_domains {
- };
- 
- &pinctrl {
-+	usb-typec {
-+		usbc0_int: usbc0-int {
-+			rockchip,pins = <1 RK_PA2 RK_FUNC_GPIO &pcfg_pull_up>;
-+		};
-+
-+		vcc5v0_typec0_en: vcc5v0-typec0-en {
-+			rockchip,pins = <1 RK_PC2 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+
- 	pmic {
- 		pmic_int_l: pmic-int-l {
- 			rockchip,pins = <1 RK_PC5 RK_FUNC_GPIO &pcfg_pull_up>;
-@@ -400,10 +502,48 @@ &sdmmc {
- 	status = "okay";
- };
- 
-+&sound {
-+	rockchip,codec = <&cdn_dp>;
-+	status = "okay";
-+};
-+
-+&spdif {
-+	status = "okay";
-+};
-+
- &tcphy0 {
- 	status = "okay";
- };
- 
-+&tcphy0_dp {
-+	mode-switch;
-+
-+	port {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		tcphy0_typec_dp: endpoint@0 {
-+			reg = <0>;
-+			remote-endpoint = <&usbc_dp>;
-+		};
-+
-+		dp_phy_in: endpoint@1 {
-+			reg = <1>;
-+			remote-endpoint = <&dp_controller_output>;
-+		};
-+	};
-+};
-+
-+&tcphy0_usb3 {
-+	orientation-switch;
-+
-+	port {
-+		tcphy0_typec_ss: endpoint {
-+			remote-endpoint = <&usbc_ss>;
-+		};
-+	};
-+};
-+
- &tcphy1 {
- 	status = "okay";
- };
-@@ -418,6 +558,12 @@ &tsadc {
- 
- &u2phy0 {
- 	status = "okay";
-+
-+	port {
-+		u2phy0_typec_hs: endpoint {
-+			remote-endpoint = <&usbc_hs>;
-+		};
-+	};
- };
- 
- &u2phy0_host {
+Note that NXP downstream kernel wrongly adds pixel link between pixel
+interleaver and pixel mapper due to ambiguous i.MX95 TRM.
+
 -- 
-2.49.0
-
+Regards,
+Liu Ying
 
