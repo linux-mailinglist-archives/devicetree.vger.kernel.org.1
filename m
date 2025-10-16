@@ -1,160 +1,120 @@
-Return-Path: <devicetree+bounces-227500-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227501-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1ACE9BE2219
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 10:23:30 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6E51BE2222
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 10:23:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E996C4E4738
-	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 08:23:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 304BD19A3631
+	for <lists+devicetree@lfdr.de>; Thu, 16 Oct 2025 08:24:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75CE0304BB8;
-	Thu, 16 Oct 2025 08:23:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FC6930499A;
+	Thu, 16 Oct 2025 08:23:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pUqcMiOp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f41.google.com (mail-ua1-f41.google.com [209.85.222.41])
+Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCDCF303A24
-	for <devicetree@vger.kernel.org>; Thu, 16 Oct 2025 08:23:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 763022E54AA
+	for <devicetree@vger.kernel.org>; Thu, 16 Oct 2025 08:23:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760603002; cv=none; b=u/tE4prsEW1g6qGxTeGDTx23q0dtsKkIhPyq1jiW2HFtQbG8bVt0oPgz9QLUIYdJ+edv4A56IZggfhn59B7Y7Gl64qPnvfE/NP7mmLfPW6xzPU27iGhkWFrkggNraJeIjnnYLkj/+S2PklogI2QyTyA8owfCgpaGcrc0och5SKc=
+	t=1760603024; cv=none; b=GspEoYYUZsCGQLfQ+vwevYutwHO0cZSJB06rMVX8kSRMXzk9KuTurFWh3MEzT/tM0GgjKJjyUNXuy14uk2gqlLhbSjbS+kc+8Z4sONOsccusSQbcv6vOUtW4c/2/hFECNCH0473twHbf45WYTCi93DVA8KdKsHHJbZrmcLSENLQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760603002; c=relaxed/simple;
-	bh=oDTYKk+av1YH4ibweUEEkTl0eDngTbPpDkqpzwGoZzE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ak/Ge7RIpqw13LLJaUCyD5sczL8mpF/BvODsH40CHNn42qXDj9Do/5Sh1IA1RCZZIQfwpT6fhEIdm997FFsMsw5Wj0+BliHlY6LBX49eHFVRS3YuUtDM67yumgfiWMM0KTySPXT7AUNNpengbOPQMKjHEQ2GmeDuJ4m9r8wN9t0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f41.google.com with SMTP id a1e0cc1a2514c-93109cb9dffso118649241.3
-        for <devicetree@vger.kernel.org>; Thu, 16 Oct 2025 01:23:20 -0700 (PDT)
+	s=arc-20240116; t=1760603024; c=relaxed/simple;
+	bh=zbBU1GRxOkLD2pr5cIJcjpIKGOaE5sykVLD2xdcq+os=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=csXPhC3vP8d3JoSuOCzSQrDx9nHyWeb7PTEa0PgV6+7W6GT4SEhVsI9F1exvzxWMNVk4Xb1zClPbTBQtKh59Ew7B2Hiyv8jUBSEegdRaP4OBT2Ub0wm7wvaTZBdBWdhOUvxBqWDgHK1TTKQeICLVZa4Y7yG9UE5dWulunU8mMZs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=pUqcMiOp; arc=none smtp.client-ip=209.85.208.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-62fc28843ecso601902a12.1
+        for <devicetree@vger.kernel.org>; Thu, 16 Oct 2025 01:23:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1760603021; x=1761207821; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=zbBU1GRxOkLD2pr5cIJcjpIKGOaE5sykVLD2xdcq+os=;
+        b=pUqcMiOpen1dP2tO/C1PaT5vDhHChyax9i750TmMzYSo6zLf5D3o4RvAdLhGXwcXwf
+         vnp4AiFfpumaIyXxfEp2SNr0fD7MWKma8BU3EenDAz2h3FaYLIWBBprjiOGFJfZt3np9
+         QEA5gUIvsrpdYyVfZX6fAzHtSeKhQXFD1gZWVZ9OgsGFNYu/qU2RP1QmzpeMKTdbVw2W
+         nuWvtiPl4efZKHmHvF6vIFP1q/dogIMugjtqubsh6+xG8oU2rlGj8ZuXvVdV9yMtZ+Fz
+         m3iyfs+Pl3Ynfo6BDizDs1RriVQiJ4ZzU6TGZatnZxRkfXgegBpZTJvTinxXtgrWAhbZ
+         Mnzg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760602999; x=1761207799;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=xR7pvs4sY0VZXb71oeLpqLl5nfCodgR8zUuBqvOj1Tc=;
-        b=U2CyKs5c8BWU9+lxiOPPkt9eBcLiuvt5hPVsGarsBZuz0Cueyvvmbp7pzQOMsBOfCx
-         WYmTH8saI6ixpb7HktBEKWxhywWswNgUY1GlA60lhVgOAY6m0/VXRY4x2xZdB2GEFjTr
-         R3qtwo+uqgGaFoW+mT07wzq8hU0DQJK8L/06haG7ronnO/yr9BY/Jw6YCpuH+ct8fk5z
-         oQ+SbshFWmoVi25JSYsoTf+fRJjMF8RyLY8gqY2/n34e6hMLdk50Ic35zNcqAIspG28z
-         zti5KtGmpL6raaQYRaK7G1T/d1ljxVNUBBT27KYab+08F62BX4sKTBWmH1HZXMHjyVNN
-         0p2w==
-X-Forwarded-Encrypted: i=1; AJvYcCUvKAczX4NC1JOmX8FW9tNnFqkFrk5qgrYp2jJ6DVp1m+Rx7eXSt+2sIp6lURHYBiuj7GbKGIgf6OoU@vger.kernel.org
-X-Gm-Message-State: AOJu0YxJZiehG2/3yWMWGKBNb5UWYaKn1+qLfPEMVC5nbT4gTC82TO5Q
-	Txhz0uGC1L+aPMTEgqGq9SbAxlVD4ZWBtRpFm0Kggo5eWsq533mWA434QGm3vrV1
-X-Gm-Gg: ASbGncviu8a+ZWbeZ/fMFFaTtl86m7eq7fI4EauEdHig7tLmsXCPmwVjbAOy+G+t111
-	4CIq8pvAbuBl1YkT7dKiocjRzpkVHCjQx0HacnQniXa7fFTTGZo/Nt8tHqJ2zBeqENCG5cOsiWn
-	f0BuslKrBTvPJ8mVqtY4xAVQ9hGkdxXl9nKjD17PvNRZV+yiGA67fcMqy4Zj1sItBiQJC3pJKOw
-	wpeV/NQqnpY8t1+T4KG6WN+XAyOYJj4sD1ws7t1kDrGMsnbV8jb9oDsJvPUL7Zn26nH0NoBc4Qv
-	1fyChajKR7zx4GBvNyKvOdK6Nu/3yspjovmTpgL/hjtG6QtfvqUH9piOCeSlmX+U7Uy/hTvjnj5
-	ZJZwViiOpxttkpSswvj+tVMb0p430OoQV4/LUez2KO4cdrfBiH4OGp6ysi090wl7r9rRSEHM2H+
-	qHAowheENB8oDohZ9f35Pjqm8+VzfL1gBE65LS1w==
-X-Google-Smtp-Source: AGHT+IHfdR52/uZQMBlUxjWYh7YpdUpdoG1P6vRnR0vBrON8ZlfNTOeYNdGGrxlX8GtpFa+OZN/qGA==
-X-Received: by 2002:a05:6102:a4e:b0:528:92b8:6c3e with SMTP id ada2fe7eead31-5d5e21ce95amr13456166137.1.1760602999532;
-        Thu, 16 Oct 2025 01:23:19 -0700 (PDT)
-Received: from mail-vs1-f53.google.com (mail-vs1-f53.google.com. [209.85.217.53])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-931008068d0sm774293241.6.2025.10.16.01.23.18
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 16 Oct 2025 01:23:18 -0700 (PDT)
-Received: by mail-vs1-f53.google.com with SMTP id ada2fe7eead31-5b62ab6687dso368765137.0
-        for <devicetree@vger.kernel.org>; Thu, 16 Oct 2025 01:23:18 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUlM3faUNzrnsHtQ/eyZOQ9ns8zbxqgnVM6p2cZ36UBOZSpEYI/ivGs4odKG4zgG1BCtcypPFjx9Rd2@vger.kernel.org
-X-Received: by 2002:a05:6102:32c1:b0:52d:110:a920 with SMTP id
- ada2fe7eead31-5d5e2394649mr12437643137.33.1760602998488; Thu, 16 Oct 2025
- 01:23:18 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1760603021; x=1761207821;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=zbBU1GRxOkLD2pr5cIJcjpIKGOaE5sykVLD2xdcq+os=;
+        b=GBOWjQIY8g6d4KHJS+KvOB85OkF8wtjOACs6TCjPZwlvm6oH89OhtIVBR3ktDrT6GI
+         /0/jyTFCmdbxlal9YYa35jYopcf/TMvPF+81uu+jM8bKoK7zvVMW1lOO/+Pp4ryzC5FE
+         GlLYKwu0laMYx7rMusxFNMBMtbb6OE1h9uY52GZ3yN1aHRgBhw2pi8ewV7YxkSXFtZTY
+         wKFfiAE/kJrbUDAZrBj8qx5bmHmXA6FAbW96WTiO4dMiqFzPb+EfYLJIzVZGhIrD5Nnh
+         xz73C1Izjcut8nAhkG1PR/X160FCs7y78Y1AOIkQ4D0hZgxOChJdXRUSoFM2lD9WrwAq
+         2T4g==
+X-Forwarded-Encrypted: i=1; AJvYcCUrfHb3CFBjk8DJa+xdaTtj7VF1PIDhGzt1x9YXj0OyoohT/RxHltanWwuLANqJeLisRUEIbY8oF6pI@vger.kernel.org
+X-Gm-Message-State: AOJu0YxlECv884DZtcMIDSSBwN4eLrkT4Ai/haiY3gVWq98fHucOyjGQ
+	fCnnpT91zOvSN+QSPG2ZJzacQor3fcBSQ4BStfS2LZ8r9D50Tq4k2X+V1wlDsfT5QWg=
+X-Gm-Gg: ASbGncteGe25sJJ0N5TmXowV8ZQShNdz2swyrhvEHSGSxrw7S2Bmfg2fojFVoOkO+7u
+	vRtDQDQitXAw3zCgIsNDHmwk0bY/uJEFosU7mBXYrrflp1glN7b6QKlzfQLSx+98sStLSOH7xqx
+	4nezR3LHWdwZa7+SilTWEaqTsNcAeXje1C27qXrxM+rahNxlQBpD56XOOiJWPPAqQO4Q62Ixgdz
+	eNKTvil4xBkO4TsmY34FsTozW2T0nfQg5lXaEJr5S79LDHBU3vz7NQbXecPAxw8R2xAINabL8sd
+	iAFGaJk7Cgy+SH7SCYwrWiyfbmqDXQLkT0tPwA8xky3LO1U5Sm2PIS95BrUwJtsFHabTjXJMXp+
+	qMSw061SwaSrO5Bmo+lkYPKQb46JB6xIpRZ454yOSOyeJr5o5e6tpqYSubsQSuvwO0XpSeoM77T
+	8dGNhKgLM=
+X-Google-Smtp-Source: AGHT+IHxUnUcoHUcFtyP0SeT8nrAVOhELQzl+mJmkJlg9L09uwKru3NwHd6GyQw68Ab0pvVWTAq0+w==
+X-Received: by 2002:a05:6402:26d2:b0:63b:f909:df50 with SMTP id 4fb4d7f45d1cf-63bf909e210mr4148941a12.14.1760603020784;
+        Thu, 16 Oct 2025 01:23:40 -0700 (PDT)
+Received: from draszik.lan ([80.111.64.44])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-63a52b7144esm15099610a12.23.2025.10.16.01.23.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 16 Oct 2025 01:23:40 -0700 (PDT)
+Message-ID: <17643995510406a50157a808ee4191488f24f97f.camel@linaro.org>
+Subject: Re: [PATCH 5/9] arm64: dts: exynos: gs101: fix sysreg_apm reg
+ property
+From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
+To: Peter Griffin <peter.griffin@linaro.org>, Rob Herring <robh@kernel.org>,
+  Krzysztof Kozlowski	 <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Alim Akhtar	 <alim.akhtar@samsung.com>, Tudor
+ Ambarus <tudor.ambarus@linaro.org>, Michael Turquette
+ <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Sam Protsenko	
+ <semen.protsenko@linaro.org>, Sylwester Nawrocki <s.nawrocki@samsung.com>, 
+ Chanwoo Choi <cw00.choi@samsung.com>
+Cc: Will McVicker <willmcvicker@google.com>, Krzysztof Kozlowski	
+ <krzk@kernel.org>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, Krzysztof
+ Kozlowski	 <krzysztof.kozlowski@linaro.org>, kernel-team@android.com
+Date: Thu, 16 Oct 2025 09:23:39 +0100
+In-Reply-To: <20251013-automatic-clocks-v1-5-72851ee00300@linaro.org>
+References: <20251013-automatic-clocks-v1-0-72851ee00300@linaro.org>
+	 <20251013-automatic-clocks-v1-5-72851ee00300@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-2+build3 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251015153952.185249-1-marek.vasut+renesas@mailbox.org> <20251015153952.185249-3-marek.vasut+renesas@mailbox.org>
-In-Reply-To: <20251015153952.185249-3-marek.vasut+renesas@mailbox.org>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 16 Oct 2025 10:23:07 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdUfssQFZj4Mj0T4KpXDzDXBC6MecnauD5wp2_2OLdt=ZA@mail.gmail.com>
-X-Gm-Features: AS18NWDv5MDbI0Q-YaerQHTTLK54INzbJu8pMvADwEhMtSUs8ivJgVETlU0r9ws
-Message-ID: <CAMuHMdUfssQFZj4Mj0T4KpXDzDXBC6MecnauD5wp2_2OLdt=ZA@mail.gmail.com>
-Subject: Re: [PATCH v2 3/3] arm64: dts: renesas: r8a77961: Add GX6250 GPU node
-To: Marek Vasut <marek.vasut+renesas@mailbox.org>
-Cc: linux-arm-kernel@lists.infradead.org, 
-	=?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>, 
-	Adam Ford <aford173@gmail.com>, Conor Dooley <conor+dt@kernel.org>, 
-	David Airlie <airlied@gmail.com>, Frank Binns <frank.binns@imgtec.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Magnus Damm <magnus.damm@gmail.com>, 
-	Matt Coster <matt.coster@imgtec.com>, Maxime Ripard <mripard@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Simona Vetter <simona@ffwll.ch>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-Hi Marek,
+On Mon, 2025-10-13 at 21:51 +0100, Peter Griffin wrote:
+> Both the start address and size are incorrect for the apm_sysreg DT
+> node. Update to match the TRM (rather than how it was defined downstream)=
+.
+>=20
+> Fixes: ea89fdf24fd9 ("arm64: dts: exynos: google: Add initial Google gs10=
+1 SoC support")
+> Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
+> ---
+> =C2=A0arch/arm64/boot/dts/exynos/google/gs101.dtsi | 4 ++--
+> =C2=A01 file changed, 2 insertions(+), 2 deletions(-)
 
-On Wed, 15 Oct 2025 at 17:40, Marek Vasut
-<marek.vasut+renesas@mailbox.org> wrote:
-> Describe Imagination Technologies PowerVR Rogue GX6250 BNVC 4.45.2.58
-> present in Renesas R-Car R8A77961 M3-W+ SoC.
->
-> Reviewed-by: Niklas S=C3=B6derlund <niklas.soderlund+renesas@ragnatech.se=
->
-> Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
-
-> V2: - Add RB from Niklas
->     - Fix up power-domains =3D <&sysc R8A77961_PD_3DG_B>; for 77961
->     - Fill in all three clock and two power domains
-
-Thanks for the update!
-
-> --- a/arch/arm64/boot/dts/renesas/r8a77961.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/r8a77961.dtsi
-> @@ -2455,6 +2455,22 @@ gic: interrupt-controller@f1010000 {
->                         resets =3D <&cpg 408>;
->                 };
->
-> +               gpu: gpu@fd000000 {
-> +                       compatible =3D "renesas,r8a77961-gpu",
-> +                                    "img,img-gx6250",
-> +                                    "img,img-rogue";
-> +                       reg =3D <0 0xfd000000 0 0x40000>;
-> +                       interrupts =3D <GIC_SPI 119 IRQ_TYPE_LEVEL_HIGH>;
-> +                       clocks =3D <&cpg CPG_CORE R8A77961_CLK_ZG>,
-> +                                <&cpg CPG_CORE R8A77961_CLK_S2D1>,
-> +                                <&cpg CPG_MOD 112>;
-> +                       clock-names =3D "core", "mem", "sys";
-> +                       power-domains =3D <&sysc R8A77961_PD_3DG_A>,
-> +                                       <&sysc R8A77961_PD_3DG_B>;
-> +                       power-domain-names =3D "a", "b";
-> +                       resets =3D <&cpg 112>;
-
-status =3D "disabled"; ?
-
-> +               };
-> +
->                 pciec0: pcie@fe000000 {
->                         compatible =3D "renesas,pcie-r8a77961",
->                                      "renesas,pcie-rcar-gen3";
-
-The rest LGTM, so
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+Reviewed-by: Andr=C3=A9 Draszik <andre.draszik@linaro.org>
 
