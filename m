@@ -1,160 +1,146 @@
-Return-Path: <devicetree+bounces-228040-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228041-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E58DBE6F2F
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 09:35:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B9B6BE6F4D
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 09:37:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 1CADF4FA7CA
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 07:35:15 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D334E506D17
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 07:37:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A86C0226541;
-	Fri, 17 Oct 2025 07:35:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A6C622D7A1;
+	Fri, 17 Oct 2025 07:37:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CjZtG3ou"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Q7+xXmnG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD1D72116E9
-	for <devicetree@vger.kernel.org>; Fri, 17 Oct 2025 07:35:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0CD322A4EA
+	for <devicetree@vger.kernel.org>; Fri, 17 Oct 2025 07:37:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760686511; cv=none; b=AJQYrbc5+6xnnQp6BtNnu1I8qCvVF6cRKOwIYs8matFehZ/lKcBEqED8K1EJj1uFlBuAXRwphNb7Mp0uTGIQC0pYy4Juy9rRrenC75JrSr0dVVf8aZH0gryteExy8ZUp7D6AC/8d4w4bD2Gm9TadgYQWA0hnZyZhA7xqfnkW2Pg=
+	t=1760686632; cv=none; b=TFzjWDTmd6ZLFCc0h4Urrb0D5aPOovhiw9iFgVza2BEBOVnenlORdGGjCmPSi6RLOG3sNm2pP11N/lerOPCSfOCxNC2CIYhHIkVftWC37HGTkWjnhHnrlHXZneDODuMhAZrD3Vk0NUQuE+iYvZl7ExJpUmPb250nAY8w5UWiUBg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760686511; c=relaxed/simple;
-	bh=wwXPEjxkzFj/Qc25TrA1OsYoG1fARgWnybGKe4by4PA=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=UIRAwMJ/z3g4tq5M+UzDUb3hyMMMujBI82uPLwSn6C1xr2FPet0GZ4nvcboS9mEZaruZwgFkmjMPSkIwFtYLJKdxMbgkA+RsEKh4n9u1y9hNZGdeCjmjS6G/YGDmXNb5dpD5nWTDTRw6OpaI7djupf+wF4j4GRa9wv68A7KRY7w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=CjZtG3ou; arc=none smtp.client-ip=209.85.128.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-46fc5e54cceso11720725e9.0
-        for <devicetree@vger.kernel.org>; Fri, 17 Oct 2025 00:35:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1760686508; x=1761291308; darn=vger.kernel.org;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=RRAHrLtzX4FkJ70tgmGH4RjNErNZIaozOeFYjpDWaqY=;
-        b=CjZtG3ouCuB8Wvp5bfaPs0AGlGfYroPnWR7rBlBg7vZeXWETXxN1bDnY1jKUzRoW+f
-         4rUybwL2QgHASaIygdRzo0A+lkpjb3MXiqwiOGaF9gJOF/TrFO1rfQ/KXESG6CSLkefP
-         le1mynWCtuKlX79OGDuEFeklx5d4rCj1mtqYoxXwY6K7mbn86yff7ZqrAMkv1HLXhFEg
-         drD3kIen6GDlJe9170ByCszlr0uKi8h33msxbtYP/W1VierchbChkuPv3coDfJmShB2v
-         trXXptP2erx/UpklJtsTvLy6cpHKGdBGnTjqlq8o8W8rTs/s1/MsvKwF3sOt4m0Rvakc
-         BZDw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760686508; x=1761291308;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=RRAHrLtzX4FkJ70tgmGH4RjNErNZIaozOeFYjpDWaqY=;
-        b=eyV4YXxWIPE8trFcoYtQORaDDAnQZK5UzU6sNoo6pX9Ir1QPEJ6m/zRRkSQGRbJOls
-         Ahy2aedcdiIhwVs3XFuYgyiSzlbXxKHWFf8LFCEy1XiSndlL+1Y0Dqak/IDEAYiOAA9N
-         BYQmeIs+M2s6Lj0Qh2sdDEa0olC2tLOE67m4NOXKuaptI5Dy94KlXG8r5/nQU15EkNGd
-         vF4TBchTxXiUZ0kzHEDLZEXTHd0OVYPT3wxfCxcpwmmSmFDTfAbne805X5SvfHYEWUM9
-         s6u+Oe1oQJ5ilkyDlLe+69SNkV4pPaxlcg4AbVslqVSThFlCuFXNWV7Rtr29ofFPvanq
-         vqjg==
-X-Forwarded-Encrypted: i=1; AJvYcCX7+0PPBf9lNeE8LZcIbfEfSCDOdnbsSGPrvPbo6IWUF4dx564qr3dw3fTtdpT38eVEpqwCJ7VwTd/p@vger.kernel.org
-X-Gm-Message-State: AOJu0Yys5ECb1lFeWXao5IbfuHgItlrofojri7nQkaoqxetmd9yGV0hX
-	AH5LBfmV3Kh1oZ//Sva+eZo87hmYryoajFCrmCACFu+TOnuI3bRZZjdPMSInOZ/bOcY=
-X-Gm-Gg: ASbGncs2j75kr8c54pEE04iosOuBJPCm/82zAoNSM6DcqaYBGqVaSkYIKzxixJd74mD
-	eWrwYh0DshD8om3EHmpYLhLLiOfav9eK4pBXit2QsD6ilNqdS1Pa0aIwi3yqHVm0hqAtGLim5cL
-	n6IPuQNXkV6ioLe9i08j9oQZ1sIEzWwnVtNxxHr+H+7Waky9YxQ3pDMXX9Qmhv8q/8630P2hvSZ
-	qCrNbkSVsub70FWFx9cI9dY98Yr3gPUn0ogno4H13/RFEwtOa/3nL+ZuS+itZPQBBFeLPNjHzkr
-	g1Xj8o8G6/UCUAmeLzh0jVRQWq7jxT6LkzNKI8CDko29tPhnwrLqpAAYHoX49QNxX0wb5ZoDYJK
-	ik1epj10cRGg3JaXWNu/tKnF+gFKFma/IP7nd+24ExdX2g75RVphg5yKlmIKULXfmB2xbwQ7mur
-	fD4Hrf/8aVNELSUyo=
-X-Google-Smtp-Source: AGHT+IEUpUn6oZgPv3BnmLbbizrB7eXAza/I+SZs20+aiPmae2iUnXG9lb3ZTVSYw/dt3XQUlczMAw==
-X-Received: by 2002:a05:600c:800f:b0:471:700:f281 with SMTP id 5b1f17b1804b1-471179041b6mr18279085e9.25.1760686507898;
-        Fri, 17 Oct 2025 00:35:07 -0700 (PDT)
-Received: from localhost ([2a02:c7c:7259:a00:6426:9b9b:6d3d:1da8])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-471144239bdsm92273405e9.3.2025.10.17.00.35.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Oct 2025 00:35:07 -0700 (PDT)
+	s=arc-20240116; t=1760686632; c=relaxed/simple;
+	bh=XpEL9oM2Q6hwqTx+Q2i/5Z/FDYFR+6KRpvMuvhq7Ovc=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=kmwkL2h84DR01O8MK/tMlwNWYISLzXQrByl04L+xznMYWDSKzGd8ISD3ziGJDm/LtI0Bag08dwyV0vNo4tPOyupoW0eqz5x5sHQOh47P2lS3yMS4DWgyKkcy9cY6CXqZRvR/f7X3QqToWdx0qQtEcO86dRm0nFTsV0jX3H2fo9w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Q7+xXmnG; arc=none smtp.client-ip=185.171.202.116
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-04.galae.net (Postfix) with ESMTPS id 9E92EC041DC;
+	Fri, 17 Oct 2025 07:36:48 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id D1541606DB;
+	Fri, 17 Oct 2025 07:37:07 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 2422D102F2292;
+	Fri, 17 Oct 2025 09:36:50 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1760686626; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=JOW8UJxO9T39NNPi0vwW+ahsGyVdO2TbKfHgdJqSrmc=;
+	b=Q7+xXmnGjsfONNO7RdknAoYKUvJSWKc4No9/CaTnR+6x1/wcnOkyN3tXGBBPl2hyRnJGUx
+	qVVIYdVa+r1AZfhKTo9/ua63VWU9FhiDbTIi0X7aNxn263z93ss1F9Ppz3gyDWCGcLjMst
+	zBUzMbxH7bhYx9AUVOCbVbCzoPW4JXAe6jVFAiau8X84me/SSVCTt/iapCLUkYT/1N2SLG
+	xR1V/y3hoVmns6bWCnln/0QJGnM2f6G+zhz8WyFVX30Pj/BKHa+5gqzwTuG5JX9j4IGnq8
+	KNwSs0bKdlyF+7srNcovElUXd8GFvxDsBqQQhBNhBnhB7jofpx5jngCXx4d8pg==
+Date: Fri, 17 Oct 2025 09:36:49 +0200
+From: Herve Codina <herve.codina@bootlin.com>
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: Jonathan Cameron <jic23@kernel.org>, David Lechner
+ <dlechner@baylibre.com>, Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Andy
+ Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Geert
+ Uytterhoeven <geert+renesas@glider.be>, Magnus Damm
+ <magnus.damm@gmail.com>, Liam Girdwood <lgirdwood@gmail.com>, Mark Brown
+ <broonie@kernel.org>, linux-iio@vger.kernel.org,
+ linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Pascal Eberhard <pascal.eberhard@se.com>,
+ Miquel Raynal <miquel.raynal@bootlin.com>, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH 2/4] iio: adc: Add support for the Renesas RZ/N1 ADC
+Message-ID: <20251017093649.2d5549e4@bootlin.com>
+In-Reply-To: <aPHiAObA61OVf8mY@ninjato>
+References: <20251015142816.1274605-1-herve.codina@bootlin.com>
+	<20251015142816.1274605-3-herve.codina@bootlin.com>
+	<aPHiAObA61OVf8mY@ninjato>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.43; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
-Date: Fri, 17 Oct 2025 08:35:06 +0100
-Message-Id: <DDKF9YV37ETZ.3DXIDZA4ZU6I3@linaro.org>
-Cc: "Srinivas Kandagatla" <srini@kernel.org>, "Liam Girdwood"
- <lgirdwood@gmail.com>, "Mark Brown" <broonie@kernel.org>, "Rob Herring"
- <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
- Dooley" <conor+dt@kernel.org>, "Jaroslav Kysela" <perex@perex.cz>, "Takashi
- Iwai" <tiwai@suse.com>, <linux-sound@vger.kernel.org>,
- <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: sound: qcom,sm8250: add QRB2210 and
- RB1 soundcards
-From: "Alexey Klimov" <alexey.klimov@linaro.org>
-To: "Dmitry Baryshkov" <dmitry.baryshkov@oss.qualcomm.com>, "Srinivas
- Kandagatla" <srinivas.kandagatla@oss.qualcomm.com>, "Krzysztof Kozlowski"
- <krzk+dt@kernel.org>
-X-Mailer: aerc 0.20.0
-References: <20251007-qrb2210-qcm2290-sndcard-v1-0-8222141bca79@linaro.org>
- <20251007-qrb2210-qcm2290-sndcard-v1-1-8222141bca79@linaro.org>
- <b0d9cec5-1162-476b-8438-8239e1458927@oss.qualcomm.com>
- <CAO9ioeVcqT_Yhvz-RMCucLtcpa4xCLrA+srM8Vy_ZZ-650ZQnw@mail.gmail.com>
-In-Reply-To: <CAO9ioeVcqT_Yhvz-RMCucLtcpa4xCLrA+srM8Vy_ZZ-650ZQnw@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-On Thu Oct 16, 2025 at 8:46 PM BST, Dmitry Baryshkov wrote:
-> On Thu, 16 Oct 2025 at 18:08, Srinivas Kandagatla
-> <srinivas.kandagatla@oss.qualcomm.com> wrote:
->>
->>
->>
->> On 10/7/25 2:26 AM, Alexey Klimov wrote:
->> > Add soundcard compatible for QRB2210 (QCM2290) platforms.
->> > While at this, also add QRB2210 RB1 entry which is set to be
->> > compatible with QRB2210 soundcard.
->> >
->> > Cc: Srinivas Kandagatla <srini@kernel.org>
->> > Signed-off-by: Alexey Klimov <alexey.klimov@linaro.org>
->> > ---
->> >  Documentation/devicetree/bindings/sound/qcom,sm8250.yaml | 5 +++++
->> >  1 file changed, 5 insertions(+)
->> >
->> > diff --git a/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml =
-b/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
->> > index 8ac91625dce5ccba5c5f31748c36296b12fac1a6..c29e59d0e8043fe2617b96=
-9be216525b493458c4 100644
->> > --- a/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
->> > +++ b/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
->> > @@ -21,6 +21,10 @@ properties:
->> >                - lenovo,yoga-c630-sndcard
->> >                - qcom,db845c-sndcard
->> >            - const: qcom,sdm845-sndcard
->> > +      - items:
->> > +          - enum:
->> > +              - qcom,qrb2210-rb1-sndcard
->> I don't think you need rb1 specific compatible here, unless there this
->> is totally different to what the base compatible can provide.
->
-> Why do we need to deviate from other platforms which declare
-> board-specific compat too?
+Hi Wolfram,
 
-There seems to be now a few incompatible suggestions for rb1 sndcard:
-- make it compatible/fallback to qcom,sm8250-sndcard (1);
-- make it compatible/fallback to qcom,qrb4210-rb2-sndcard (2);
-- add separate compatible/enum for rb1 sndcard as qcom,qrb2210-rb1-sndcard =
-(3);
-- add base compatible as qcom,qrb2210-sndcard and fallback
-rb1 sndcard compatible to it.
+On Fri, 17 Oct 2025 08:28:16 +0200
+Wolfram Sang <wsa+renesas@sang-engineering.com> wrote:
 
-The latter one is ruled out because base compatible should be used and
-it is not going to.
+> Hi Herve,
+> 
+> On Wed, Oct 15, 2025 at 04:28:14PM +0200, Herve Codina (Schneider Electric) wrote:
+> > The Renesas RZ/N1 ADC controller is the ADC controller available in the
+> > Renesas RZ/N1 SoCs family. It can use up to two internal ACD cores (ADC1  
+> 
+> ADC cores
 
-As far as I can see the last addition went simply with (3).
-Which one finally you all want?
+Yes, indeed.
+
+> 
+> > and ADC2) those internal cores are not directly accessed but are handled
+> > through ADC controller virtual channels.
+> > 
+> > Signed-off-by: Herve Codina (Schneider Electric) <herve.codina@bootlin.com>  
+> 
+> Very high level review.
+> 
+> > +/*                  ADC1 ADC2
+> > + * RZ/N1D, BGA 400   y    y
+> > + * RZ/N1D, BGA 324   y    n
+> > + * RZ/N1S, BGA 324   y    n
+> > + * RZ/N1S, BGA 196   y    n
+> > + * RZ/N1L, BGA 196   y    n
+> > + */  
+> 
+> I think this table can go. N1D is the only variant supported by Linux
+> because others have no SDRAM controller. Maybe a comment after the
+> copyright is helpful stating that the second ADC core is utilized when
+> the adc2-* bindings are supplied?
+
+Yes, with only RZ/N1D supported, this table doesn't bring any additional
+information.
+
+As you suggested, I will add information about ADC cores in the header
+part of this .c file.
+
+> 
+> > +static void rzn1_adc_vc_setup_conversion(struct rzn1_adc *rzn1_adc, u32 ch,
+> > +					 int adc1_ch, int adc2_ch)
+> > +{
+> > +	u32 vc = 0;
+> > +
+> > +	if (adc1_ch != -1)
+> > +		vc |= RZN1_ADC_VC_ADC1_ENABLE | RZN1_ADC_VC_ADC1_CHANNEL_SEL(adc1_ch);
+> > +
+> > +	if (adc2_ch != -1)
+> > +		vc |= RZN1_ADC_VC_ADC2_ENABLE | RZN1_ADC_VC_ADC2_CHANNEL_SEL(adc2_ch);  
+> 
+> Are you open to either use an errno (maybe EACCES) or define something
+> custom (maybe RZN1_ADC_NO_CHANNEL) instead of hardcoded -1? I think I
+> like the latter a tad more.
+
+I prefer RZN1_ADC_NO_CHANNEL too instead of an error code and I will use
+that instead of -1 in the next iteration.
 
 Best regards,
-Alexey
-
+Hervé
 
