@@ -1,551 +1,181 @@
-Return-Path: <devicetree+bounces-228275-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228276-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 051F8BEAF03
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 18:59:40 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CCEFBBEAFDC
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 19:08:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5C20B1AE2BED
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 17:00:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D24A1746D4E
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 17:00:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 556292F12B0;
-	Fri, 17 Oct 2025 16:59:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4ECEF2F7440;
+	Fri, 17 Oct 2025 17:00:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b="unP8fBfB"
+	dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b="GHNvhdyO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ixit.cz (ip-94-112-25-9.bb.vodafone.cz [94.112.25.9])
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.20])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56F552F12C6;
-	Fri, 17 Oct 2025 16:59:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=94.112.25.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8CE52F619A;
+	Fri, 17 Oct 2025 17:00:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760720369; cv=none; b=e30hiL90sBGuTxhZa+1JvkgM7caJU4rTWIWVz4Xf0LUn607k++AuSWzRrXnr38KH28zv/N/3VnHLcbOZynh9F3Bly+AEOS91bkkfZt6TQFVY56Q1z9swr4AI7HTaHkqAZ/IizB02hxtDRU9kGMM9RxN9LSLdChlEyFQ71krMTSg=
+	t=1760720451; cv=none; b=eob2BtUq53xPFs6EAqXEZvIosV6bZPy9XQ5rKZaN6HZ2w66gGbx7oBSiqQo7HsZTOZPRYZolK7ZSpZP4GLmag0DSiRB02Yb0tIubrMjtXjnwHuADusxOUVa6G5OnfYjdM6TrsWnKmcfysDcKrlqEo8+JfryQW0CLdlSFDMpTWUU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760720369; c=relaxed/simple;
-	bh=5G8j2cRRJ6A+Aq1N6J/7Fyblt2SmRs1gwK98e8GGRK4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=hSwUrZ1VVqG8Tbr42kvys3IcCdX1kkKIHevdNv88rz+PYyxn2mVWNGpUtZCQSHu1BCMKWKHvAvlfXuURBzhWm2C41mtJkZEOS5neaSg0R6ntMI87pv3PBVPTAm+6hRhPFPzl3sOcgueYCkZ2vw2IWqCdLE4hl6+ftAf1shdObvA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz; spf=pass smtp.mailfrom=ixit.cz; dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b=unP8fBfB; arc=none smtp.client-ip=94.112.25.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ixit.cz
-Received: from [10.0.0.200] (unknown [10.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange x25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by ixit.cz (Postfix) with ESMTPSA id AD5A553415E5;
-	Fri, 17 Oct 2025 18:59:14 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-	t=1760720354;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=q/ZTXzRkQm/q6cjhr+kjmelLmOVEaTG5PRmCV3EP2v0=;
-	b=unP8fBfByFAzMN42r+HrQJozH214U5U00bBjZPhnWxydfNs9BxlQy6MqO7aW6C7xcnlEih
-	WsLz9fVgjgKIpTLBgD1JGlx73iXq/KfbvximGrou3NWKGCzbRqSY46bBg66E3D14TXp0+c
-	SFXAUPeBiJoPrvcfqMCJc5ZU4CB9f/w=
-Message-ID: <a5da8d40-f194-4fed-9118-037bd39ebe2e@ixit.cz>
-Date: Fri, 17 Oct 2025 18:59:14 +0200
+	s=arc-20240116; t=1760720451; c=relaxed/simple;
+	bh=BDpQpTaK8FT02fLieU1z12t2UTrDwWO9TIsJNiEkQtc=;
+	h=MIME-Version:Message-ID:From:To:Cc:Subject:Content-Type:Date:
+	 In-Reply-To:References; b=n1PiDeulLLvJ7MUPJzZZPlS+1i9A2DRTDq4heinVoBdptXdsBk3Mzny1G+qeRL+C7EMSEVknFC2P0hk/QLf1aBfttBt3s/vdtLnDfQaASUF2gdhwBCG5mw3RYKkLTbe8FWQhaQNv3xh3sltontIuMDNWbGUSIL7z/pLi3Agb55I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de; spf=pass smtp.mailfrom=public-files.de; dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b=GHNvhdyO; arc=none smtp.client-ip=212.227.17.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=public-files.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=public-files.de;
+	s=s31663417; t=1760720425; x=1761325225; i=frank-w@public-files.de;
+	bh=eKcQlBPjPB472NaD5zP4wHbT+w80iRDXssOS6Yp5LGU=;
+	h=X-UI-Sender-Class:MIME-Version:Message-ID:From:To:Cc:Subject:
+	 Content-Type:Date:In-Reply-To:References:
+	 Content-Transfer-Encoding:cc:content-transfer-encoding:
+	 content-type:date:from:message-id:mime-version:reply-to:subject:
+	 to;
+	b=GHNvhdyOjKx9DEkuc+CiOWaxpTezwOpUD04IB3bEanFKTSB1DJ9dnzxwB5kx5hqp
+	 371Cveqdw/s8uitSL3XvezoEw09EB8avPsYP5/BvDYOrGosn3muZyE+OOJC22IMou
+	 x2eAuBXzkw1teioOmlM5iqfY7RNNljzBVLbM5YDE/eixiVbOjQ2pC9GLuItxYDxH+
+	 YPp1rI6mRfsRau37u5uhwvbtTbsnF2cdoQY4bzXp0p+7fN+QXCOGGstXFjnDs1lLU
+	 3G0p+7UEQLr/NAH+WkCDpdxhjpR1ZshR5K+zREH13ukMRAGsjH5/juSXxbYxkwb/g
+	 H1XV068d9ZtymvCO1Q==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [194.15.82.42] ([194.15.82.42]) by
+ trinity-msg-rest-gmx-gmx-live-654c5495b9-86l6j (via HTTP); Fri, 17 Oct 2025
+ 17:00:25 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: Add support for Pixel 3 and Pixel 3
- XL
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Amit Pundir <amit.pundir@linaro.org>, Casey Connolly <casey@connolly.tech>,
- Joel Selvaraj <foss@joelselvaraj.com>, Sumit Semwal
- <sumit.semwal@linaro.org>, Vinod Koul <vkoul@kernel.org>
-References: <20251005-pixel-3-v1-0-ab8b85f6133f@ixit.cz>
- <20251005-pixel-3-v1-2-ab8b85f6133f@ixit.cz>
- <n4xims4y5sssqxkchg2tikc7idkzds5ru7ayidcgxdfx77je2d@qo34qucbebnn>
-Content-Language: en-US
-From: David Heidelberg <david@ixit.cz>
-Autocrypt: addr=david@ixit.cz; keydata=
- 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
-In-Reply-To: <n4xims4y5sssqxkchg2tikc7idkzds5ru7ayidcgxdfx77je2d@qo34qucbebnn>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Message-ID: <trinity-189d521f-e308-475e-a4bf-3821794cd216-1760720425043@trinity-msg-rest-gmx-gmx-live-654c5495b9-86l6j>
+From: frank-w@public-files.de
+To: laura.nao@collabora.com, srini@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, rafael@kernel.org,
+ daniel.lezcano@linaro.org, rui.zhang@intel.com, lukasz.luba@arm.com,
+ matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com
+Cc: nfraprado@collabora.com, arnd@arndb.de, colin.i.king@gmail.com,
+ u.kleine-koenig@baylibre.com, andrew-ct.chen@mediatek.com,
+ lala.lin@mediatek.com, bchihi@baylibre.com, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ kernel@collabora.com, laura.nao@collabora.com
+Subject: Aw: [PATCH RESEND v3 0/9] Add thermal sensor driver support for
+ Mediatek MT8196
+Content-Type: text/plain; charset=UTF-8
+Date: Fri, 17 Oct 2025 17:00:25 +0000
+In-Reply-To: <20251016142158.740242-1-laura.nao@collabora.com>
+References: <20251016142158.740242-1-laura.nao@collabora.com>
+X-UI-CLIENT-META-MAIL-DROP: W10=
+X-Provags-ID: V03:K1:P+Yvh/yA0ff0Yl471I+mnmEBCSnB2JA4O9ZcySGW8hcqiIhGA76N3zud4wRV3OLMhC65r
+ 8fKbTK2sx2Xv2Q9sEwiMx/Fr1QVBPj2jardHsJ1KdI4Iv3nzb7SH8aWMjnnLIW81OTdGvyKxGfLM
+ X1YiuUquo3wO+LMKewInBl0Eykwqowy3Rd4Bl4hTyTariZ4Dcnn5WY5N3Y054oPWuUI31DecW+TA
+ Pd31FUGvCwaH7vek68jB6gih3xfut7pG7BQ7uFLeFnRwDMgFu0AKQJtB5uCsECKvWCjW7jccv1sH
+ f/eTAM7O7lxjMFxrddAcW5J1gaDqKZo+gNqlI2WZ/ov7Srq8DUXMsv0gdz6TLdrvRo=
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:SjEZhVmOfL0=;mUu1hbKY9O2aQGd+FALgkn7YiZg
+ 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
+Content-Transfer-Encoding: quoted-printable
 
-On 06/10/2025 00:03, Dmitry Baryshkov wrote:
-> On Sun, Oct 05, 2025 at 03:16:29PM +0200, David Heidelberg via B4 Relay wrote:
->> From: David Heidelberg <david@ixit.cz>
->>
->> This adds initial device tree support for the following phones:
->>
->>   - Google Pixel 3 (blueline)
->>   - Google Pixel 3 XL (crosshatch)
-> 
-> Great to finally see it being submitted!
-> 
->>
->> Both phone boards use the same identifiers and differ only slightly
->> in their connected peripherals.
->>
->> Supported functionality includes:
->>   - Debug UART
->>   - UFS
->>   - Charger
->>   - USB-C (peripheral mode)
->>   - Display (Pixel 3 only)
-> 
-> No remoteprocs / IPA / GPU / Venus / WiFi / BT? The firmware is
-> accessible to download from Google and it can be further repackaged (but
-> not redistributed). See [1], [2].
-> 
-> The phones share all firmware except for the bdwlan, so hopefully you
-> can add 'Google/blueline/foo.mbn' to the common file.
+> Gesendet: Donnerstag, 16. Oktober 2025 um 16:21
+> Von: "Laura Nao" <laura.nao@collabora.com>
+> Betreff: [PATCH RESEND v3 0/9] Add thermal sensor driver support for Med=
+iatek MT8196
+>
+> This patch series extends the MediaTek LVTS thermal driver to support th=
+e
+> MT8196 SoC.
+>=20
+> MT8196 requires a different implementation of the lvts_temp_to_raw()
+> function.
+>=20
+> To support this, the series introduces:
+>=20
+> - A new struct lvts_platform_ops to allow platform-specific
+>   conversion logic between raw sensor values and temperature
+> - A variant of the lvts_temp_to_raw() implementation
+> - Platform data and controller definitions for MT8196
 
-Would it be acceptable to use path format qcom/sdm845/$codename/ e.g. 
-qcom/sdm845/blueline as it's used elsewhere?
+Hi
 
-As I'm looking at the Google scripts, I assume both blueline/crosshatch 
-use same firmware (which makes sense, as only the battery and display is 
-different).
+tested the series against mt7988 and mt7987 (support not yet upstreamed, s=
+o added the necessary fields for it to my 6.17 version)=20
+and it does not break these boards.
 
-David
+Tested-by: Frank Wunderlich <frank-w@public-files.de>
 
-> 
-> [1] https://github.com/linux-msm/meta-qcom-extras/blob/master/recipes-bsp/firmware-nexus/firmware-qcom-pixel3.bb
-> [2] https://github.com/linux-msm/meta-qcom-extras/blob/master/recipes-bsp/firmware-nexus/firmware-qcom-pixel.inc
-> 
->>
->> GPIOs 0–3 and 81–84 are not accessible from the application CPUs,
->> so they are marked as reserved to allow the Pixel 3 to boot.
->>
->> The rmtfs region is allocated using UIO, making it technically "dynamic."
->>
->> Its address and size can be read from sysfs:
->>
->> $ cat /sys/class/uio/uio0/name
->> /sys/class/uio/uio0/maps/map0/addr
->> 0x00000000f2701000
->>
->> $ cat /sys/class/uio/uio0/maps/map0/size
->> 0x0000000000200000
->>
->> Like the OnePlus 6, the Pixel 3 requires 1 kB of reserved memory on either
->> side of the rmtfs region to work around an XPU bug that would otherwise
->> cause erroneous violations when accessing the rmtfs_mem region.
->>
->> Co-developed-by: Amit Pundir <amit.pundir@linaro.org>
->> Signed-off-by: Amit Pundir <amit.pundir@linaro.org>
->> Co-developed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
->> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
->> Co-developed-by: Casey Connolly <casey@connolly.tech>
->> Signed-off-by: Casey Connolly <casey@connolly.tech>
->> Co-developed-by: Joel Selvaraj <foss@joelselvaraj.com>
->> Signed-off-by: Joel Selvaraj <foss@joelselvaraj.com>
->> Co-developed-by: Sumit Semwal <sumit.semwal@linaro.org>
->> Signed-off-by: Sumit Semwal <sumit.semwal@linaro.org>
->> Co-developed-by: Vinod Koul <vkoul@kernel.org>
->> Signed-off-by: Vinod Koul <vkoul@kernel.org>
->> Signed-off-by: David Heidelberg <david@ixit.cz>
->> ---
->>   arch/arm64/boot/dts/qcom/Makefile                  |   2 +
->>   .../arm64/boot/dts/qcom/sdm845-google-blueline.dts | 128 ++++++
->>   arch/arm64/boot/dts/qcom/sdm845-google-common.dtsi | 467 +++++++++++++++++++++
->>   .../boot/dts/qcom/sdm845-google-crosshatch.dts     | 137 ++++++
->>   4 files changed, 734 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
->> index 4bfa926b6a085..ba05dc935dc7c 100644
->> --- a/arch/arm64/boot/dts/qcom/Makefile
->> +++ b/arch/arm64/boot/dts/qcom/Makefile
->> @@ -239,6 +239,8 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-db845c.dtb
->>   sdm845-db845c-navigation-mezzanine-dtbs	:= sdm845-db845c.dtb sdm845-db845c-navigation-mezzanine.dtbo
->>   
->>   dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-db845c-navigation-mezzanine.dtb
->> +dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-google-crosshatch.dtb
->> +dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-google-blueline.dtb
->>   dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-lg-judyln.dtb
->>   dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-lg-judyp.dtb
->>   dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-mtp.dtb
->> diff --git a/arch/arm64/boot/dts/qcom/sdm845-google-blueline.dts b/arch/arm64/boot/dts/qcom/sdm845-google-blueline.dts
->> new file mode 100644
->> index 0000000000000..df88982018b9e
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/qcom/sdm845-google-blueline.dts
->> @@ -0,0 +1,128 @@
->> +// SPDX-License-Identifier: GPL-2.0-only
->> +
->> +/dts-v1/;
->> +
->> +#include "sdm845-google-common.dtsi"
->> +
->> +/ {
->> +	model = "Google Pixel 3";
->> +	compatible = "google,blueline", "qcom,sdm845";
->> +
->> +	battery: battery {
->> +		compatible = "simple-battery";
->> +
->> +		charge-full-design-microamp-hours = <2970000>;
->> +		voltage-min-design-microvolt = <3600000>;
->> +		voltage-max-design-microvolt = <4400000>;
->> +	};
->> +
->> +	chosen {
->> +		#address-cells = <2>;
->> +		#size-cells = <2>;
->> +		ranges;
->> +
->> +		/* for u-boot */
->> +		framebuffer: framebuffer@9d400000 {
->> +			compatible = "simple-framebuffer";
->> +			reg = <0 0x9d400000 0 (2160 * 1080 * 4)>;
->> +			width = <1080>;
->> +			height = <2160>;
->> +			stride = <(1080 * 4)>;
->> +			format = "a8r8g8b8";
->> +		};
->> +	};
->> +
->> +	reserved-memory {
->> +		framebuffer_region@9d400000 {
-> 
-> Can't we use cont_splash_mem and let bootloader set it?
-> 
->> +			no-map;
->> +			reg = <0 0x9d400000 0 0x02400000>; // FIXME
->> +		};
->> +	};
->> +};
->> +
->> +&gmu {
->> +	status = "okay";
->> +};
-> 
-> No need to, it's enabled by default.
-> 
->> +
->> +&mdss {
->> +	status = "okay";
->> +};
->> +
->> +&mdss_dsi0 {
->> +	status = "okay";
->> +	vdda-supply = <&vdda_mipi_dsi0_1p2>;
->> +
->> +	ports {
->> +		port@1 {
->> +			endpoint {
->> +				remote-endpoint = <&panel_in>;
->> +				data-lanes = <0 1 2 3>;
->> +				qcom,te-source = "mdp_vsync_e";
-> 
-> &mdss_dsi1_out {
-> 	remote-endpoint = <&panel_in>;
-> 	.....
-> };
-> 
-> 
->> +			};
->> +		};
->> +	};
->> +
->> +	panel@0 {
->> +		compatible = "lg,sw43408";
->> +		reg = <0>;
->> +
->> +		vddi-supply = <&vreg_l14a_1p88>;
->> +		vpnl-supply = <&vreg_l28a_3p0>;
->> +
->> +		reset-gpios = <&tlmm 6 GPIO_ACTIVE_LOW>;
->> +
->> +		pinctrl-names = "default";
->> +		pinctrl-0 = <&panel_reset_pins &panel_te_pin &panel_pmgpio_pins>;
->> +
->> +		port {
->> +			panel_in: endpoint {
->> +				remote-endpoint = <&mdss_dsi0_out>;
->> +			};
->> +		};
->> +	};
->> +};
->> +
->> +&mdss_dsi0_out {
->> +	remote-endpoint = <&panel_in>;
->> +	data-lanes = <0 1 2 3>;
->> +};
->> +
->> +&mdss_dsi0_phy {
->> +	vdds-supply = <&vdda_mipi_dsi0_pll>;
->> +
->> +	status = "okay";
->> +};
->> +
->> +&pm8998_gpios {
->> +	panel_pmgpio_pins: panel-pmgpio-active-state {
-> 
-> Are these two actually used by the panel? I think they were only used
-> for sw43402, but not for sw43408.
-> 
->> +		pins = "gpio2", "gpio5";
->> +		function = "normal";
->> +		input-enable;
->> +		bias-disable;
->> +		power-source = <0>;
->> +	};
->> +};
->> +
->> +
->> +	volume-keys {
-> 
-> gpio-keys ?
-> 
->> +		compatible = "gpio-keys";
->> +		label = "Volume keys";
->> +		autorepeat;
->> +
->> +		pinctrl-names = "default";
->> +		pinctrl-0 = <&volume_up_gpio>;
->> +
->> +		key-vol-up {
->> +			label = "Volume Up";
->> +			linux,code = <KEY_VOLUMEUP>;
->> +			gpios = <&pm8998_gpios 6 GPIO_ACTIVE_LOW>;
->> +			debounce-interval = <15>;
->> +		};
->> +	};
->> +
->> +	vph_pwr: vph-pwr-regulator {
-> 
-> Nit: BCP is regulator-foo-bar
-> 
->> +		compatible = "regulator-fixed";
->> +		regulator-name = "vph_pwr";
->> +		regulator-min-microvolt = <3700000>;
->> +		regulator-max-microvolt = <3700000>;
->> +	};
->> +
->> +	vreg_s4a_1p8: vreg-s4a-1p8-regulator {
->> +		compatible = "regulator-fixed";
->> +		regulator-name = "vreg_s4a_1p8";
->> +
->> +		regulator-min-microvolt = <1800000>;
->> +		regulator-max-microvolt = <1800000>;
->> +		regulator-always-on;
->> +		regulator-boot-on;
->> +
->> +		vin-supply = <&vph_pwr>;
->> +	};
->> +};
->> +
->> diff --git a/arch/arm64/boot/dts/qcom/sdm845-google-crosshatch.dts b/arch/arm64/boot/dts/qcom/sdm845-google-crosshatch.dts
->> new file mode 100644
->> index 0000000000000..dc9938ffc0ab8
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/qcom/sdm845-google-crosshatch.dts
->> @@ -0,0 +1,137 @@
->> +// SPDX-License-Identifier: GPL-2.0-only
->> +
->> +/dts-v1/;
->> +
->> +#include "sdm845-google-common.dtsi"
->> +
->> +/ {
->> +	model = "Google Pixel 3 XL";
->> +	compatible = "google,crosshatch", "qcom,sdm845";
->> +
->> +	battery: battery {
->> +		compatible = "simple-battery";
->> +
->> +		charge-full-design-microamp-hours = <3480000>;
->> +		voltage-min-design-microvolt = <3600000>;
->> +		voltage-max-design-microvolt = <4400000>;
->> +	};
->> +
->> +	chosen {
->> +		#address-cells = <2>;
->> +		#size-cells = <2>;
->> +		ranges;
-> 
-> These are all the same as the -blueline. Please move common options to
-> the -common.dtsi
-> 
->> +
->> +		/* for u-boot */
->> +		framebuffer: framebuffer@9d400000 {
->> +			compatible = "simple-framebuffer";
->> +			reg = <0 0x9d400000 0 (2960 * 1440 * 4)>;
->> +			width = <1440>;
->> +			height = <2960>;
->> +			stride = <(1440 * 4)>;
->> +			format = "a8r8g8b8";
->> +		};
->> +	};
->> +
->> +	reserved-memory {
->> +		framebuffer_region@9d400000 {
->> +			no-map;
->> +			reg = <0 0x9d400000 0 0x02400000>;
->> +		};
->> +	};
->> +};
->> +
->> +&gmu {
->> +	status = "okay";
->> +};
->> +
->> +&mdss {
-> 
-> More and more common properties. Please move them to the common file.
-> 
->> +	status = "okay";
->> +};
->> +
->> +&mdss_dsi0 {
->> +	vdda-supply = <&vdda_mipi_dsi0_1p2>;
->> +
->> +	status = "okay";
->> +
->> +	ports {
->> +		port@1 {
->> +			endpoint {
->> +				remote-endpoint = <&panel_in>;
->> +				data-lanes = <0 1 2 3>;
->> +				qcom,te-source = "mdp_vsync_e";
->> +			};
->> +		};
->> +	};
->> +
->> +	panel@0 {
->> +		compatible = "samsung,s6e3ha8";
->> +		reg = <0>;
->> +
->> +		vci-supply = <&vreg_l28a_3p0>; // downstream
->> +		vdd3-supply = <&vreg_l28a_3p0>;
->> +		vddr-supply = <&vreg_l14a_1p88>;
->> +
->> +		reset-gpios = <&tlmm 6 GPIO_ACTIVE_LOW>;
->> +
->> +		pinctrl-names = "default";
->> +		pinctrl-0 = <&panel_reset_pins &panel_te_pin &se8_spiflash &panel_pmgpio_pins>;
-> 
-> - Why do you need spiflash here?
-> - I don't think this uses pmgpios too.
-> 
->> +
->> +		port {
->> +			panel_in: endpoint {
->> +				remote-endpoint = <&mdss_dsi0_out>;
->> +			};
->> +		};
->> +	};
->> +};
->> +
->> +&mdss_dsi0_out {
->> +	data-lanes = <0 1 2 3>;
->> +	remote-endpoint = <&panel_in>;
->> +};
->> +
->> +&mdss_dsi0_phy {
->> +	vdds-supply = <&vdda_mipi_dsi0_pll>;
->> +
->> +	status = "okay";
->> +};
->> +
->> +&pm8998_gpios {
->> +	panel_pmgpio_pins: panel-pmgpio-active-state {
->> +		pins = "gpio2", "gpio5";
->> +		function = "normal";
->> +		input-enable;
->> +		bias-disable;
->> +		power-source = <0>;
->> +	};
->> +};
->> +
->> +&tlmm {
->> +	se8_spiflash: se8-spiflash-state {
->> +		pins = "gpio65", "gpio66", "gpio67", "gpio68";
->> +		function = "gpio";
->> +		input-enable;
->> +		bias-disable;
->> +	};
->> +
->> +	panel_te_pin: panel-te-state {
->> +		pins = "gpio12";
->> +		function = "mdp_vsync";
->> +		drive-strength = <2>;
->> +		bias-pull-down;
->> +	};
->> +
->> +	panel_reset_pins: panel-active-state {
->> +		pins = "gpio6";
->> +		function = "gpio";
->> +		drive-strength = <8>;
->> +		bias-disable;
->> +	};
->> +
->> +	panel_suspend: panel-suspend-state {
->> +		pins = "gpio6";
->> +		function = "gpio";
->> +		drive-strength = <2>;
->> +		bias-pull-down;
->> +	};
->> +
->> +};
->>
->> -- 
->> 2.51.0
->>
->>
-> 
-
--- 
-David Heidelberg
-
+regards Frank
 
