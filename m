@@ -1,327 +1,405 @@
-Return-Path: <devicetree+bounces-228183-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228184-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8E90BE954B
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 16:51:58 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D11E5BE9575
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 16:53:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7BF7E404D6F
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 14:51:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 06C59188B4D2
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 14:52:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4955E332909;
-	Fri, 17 Oct 2025 14:47:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74B3442050;
+	Fri, 17 Oct 2025 14:49:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="J9VrrRU/"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="TVtlxrNF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from AM0PR83CU005.outbound.protection.outlook.com (mail-westeuropeazon11010050.outbound.protection.outlook.com [52.101.69.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 204D73328E7
-	for <devicetree@vger.kernel.org>; Fri, 17 Oct 2025 14:47:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760712473; cv=none; b=Tr4xIptDQsG0dcMXPj7adf+92eX7zd+1JlOK5EHDdJHx76hdHk0LchZHYzUdI0dG6uaNoV+MHVKglNw1eQdG7fw/pbuJlTlHu4oD7Gbk1Ob5/4x2ZLbwxO8DtqoT/CR/Y36D5czjmUgmJsv2XBHBt9cEAUNNyJpd4F9yhTzzpLU=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760712473; c=relaxed/simple;
-	bh=DiyVdXABTrVQ08Fd2LFM1CVCN+GGwKGDZECsTWV1E3I=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=uUjPm002/SaX6sDiZgPg4GDpAeV7aSgsn47V+A+dq05rfq30ANIGOML//Mzt9g4XELMPAKTngh9ez1hKaTWOIz1cwtUC47uvKkUBMmx3/tyjtTl8QrsGCXJ4mtTnqwwb6Hv9e1G/pP0VHkYePGKZWFhkS7kTxHXmkkL+uSdWefc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=J9VrrRU/; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59H7pssO017062
-	for <devicetree@vger.kernel.org>; Fri, 17 Oct 2025 14:47:49 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	QiH2J+dIVcecXrrAGCkcTfZdS4TOBQ+cjT9NDaaTuF0=; b=J9VrrRU/jdbJq9bO
-	0EAk7acvt5zAn0ZR59QlF+A/Q6sJ6hGysgUBLOJNpFyYH5hoku1AQ7vdpigqUUKQ
-	Rm+70vC4PnW2Wmddofi1eEZNooEf1eeffMljto/pEOdgZ3l5f5DYUuHBJ30s54eE
-	Caf6AjtQO9quon4iMBrGB2J7+F+/9NlXMEAxoHn+rwaM8199FfxSTKqcfAZC9xGK
-	iSxcDik/1ObWfEE1zbFpICVyLn3u4CGMRytMtYQ4Xg4nFUs16nLIo8enaDh1/aZG
-	lr+n274IM3bv1A9bgfVy5Yf7YQnEnVfdPArXuAuCgGEcwIn9Nm7kD5ndBLjPNy9/
-	q+7X9w==
-Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com [209.85.214.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49qfm5vqn4-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 17 Oct 2025 14:47:49 +0000 (GMT)
-Received: by mail-pl1-f199.google.com with SMTP id d9443c01a7336-290ab8f5af6so16554245ad.3
-        for <devicetree@vger.kernel.org>; Fri, 17 Oct 2025 07:47:48 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760712468; x=1761317268;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=QiH2J+dIVcecXrrAGCkcTfZdS4TOBQ+cjT9NDaaTuF0=;
-        b=qEapXUzaSx1v70FXb698//KfWV9VsDqf6nIMAYJCxCFCKxV+azlZkhWfrUCkfghsxD
-         7DfuUDRGblUu9d7rCID/8FcTYvQJ4rOrJd/STEVscp66bY90/jN04mTSTX3AXDBsyHOV
-         FepQlr1zs0mkJISqTHszvnb0QcKd0R+TAlX6dhTGmwatVj6AdBbotY/0KbQW4kK3whQi
-         +EHTMao6yHmwVKoxQCpilohC6NEvEUBWrM3B8Ml8DvE45YsaHSif66cMVTN2J+AvfQsr
-         HVu7fiOoJR8e65Atl1Kx3+HU0pTV5Etx576DPoYkgQwndryJPgWGGYLN41MC+AUwLqD9
-         ePlQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWNoNfMcFM75DJi29NkCfqbhw9vx2PCjXPxfyj7CdXXREBWRTfbEcLYwlkeyBHYn8BBF9hHKkVz1LRx@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz3n88iaICZJnTJXe/t5L9w7aQj13LicIFEzZ17DzGiZkImyVSP
-	prNWNIXfDtU7du9aBfrV0FOnmnMdJSkb1weFVlXmRndxXlbUjGM12GoYy0y+zCQZkQ42Z9jQtBw
-	Zdb1Jd/oJWHmBOSKaeOgcPvOsrAp+7E9zaFwN/yOCAeLhhYDAq6uV3f72OBvfG8KH1RMrHiWw
-X-Gm-Gg: ASbGncs5MPI92hcdcD2EUDaZ9T/EaZrRJoGYzbL1ryIL1iEe0uIFeJaGuCWX23joipO
-	3UQgdVKReftv38OhPImLJ11e39MVJ+Dl3LpRocjXedzoJ9hbq9abufOdUKlidJsdbx/aZtCSY+d
-	kMzMAWM9t5HSOlTE6gPAyrcSGBQPEEF1JMhs1WmFaVGiDK9hUkaYI0KhvGQ9WUHztQmzs47MTka
-	Q6ZCM0+0IhJVH/4wRHSxXXLabrYrxoMNCFUxQ6s/u7a1m8Oa7cY6nSJxYaaDqNH4d3Knbqf4KCw
-	F4Bhovs1DGyqzxT7Nwjzujg1F5L7txNbCUartJp2mfJqIXlxpJxZkyHqF7kpNYTk9v1dXV1iEtc
-	KA36DRXweoxTld6XvzAdouJiUPjeZg/K/vQ==
-X-Received: by 2002:a17:902:cf42:b0:269:ed31:6c50 with SMTP id d9443c01a7336-290c9c896b0mr41632865ad.10.1760712467542;
-        Fri, 17 Oct 2025 07:47:47 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHOjKbFTkJh0ezCxCdJ3kP6joxM9yMTBKLaFVhNRS3DcOSUHjMrOrZfMhR8o9cNnCg8mifCEA==
-X-Received: by 2002:a17:902:cf42:b0:269:ed31:6c50 with SMTP id d9443c01a7336-290c9c896b0mr41632325ad.10.1760712467017;
-        Fri, 17 Oct 2025 07:47:47 -0700 (PDT)
-Received: from [10.216.52.245] ([202.46.23.19])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29099388dbasm66275665ad.47.2025.10.17.07.47.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Oct 2025 07:47:46 -0700 (PDT)
-Message-ID: <2c8e7d94-cacb-427f-02ec-ecc83a189479@oss.qualcomm.com>
-Date: Fri, 17 Oct 2025 20:17:33 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B025337113;
+	Fri, 17 Oct 2025 14:49:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.69.50
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1760712577; cv=fail; b=R+urROFAdTsUXgUhPxZx7G8CDPT7wQCINPPuhZMzUKUbKsOycqS7Kl8NLkI8LZiooBhdbHqTNN6nnLZriO6zA2LzXhFaOjTTXbjuP+aSnmMdwbb+lJqjXWfajVuDFJAVdvVzgDWDlDu2ei5Gea6keCQj2b9oOT13f4s5z0bD3pw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1760712577; c=relaxed/simple;
+	bh=TPyusrtjjSwJayslQ8pPwOf0drhfURWe1fDWug1SJps=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=u66tPEuCqbaO1IV6WzIHF9EYN/0XgCR8SXnu+0OyQ1Jyp5VwySBVX90++TNd0hUSRC/4lmkEpIVtT6ERcxhpUM2Z3yEqXpd8v5BEL6JFy5hUADLW+aQhajmeC4ihrnKm4FQxmCKk4uovwvnOMrxArzxIB3AuT1rJPTkQzu3sj54=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=TVtlxrNF; arc=fail smtp.client-ip=52.101.69.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=c2aLolyO8AvxQTPsgZlaA3P4Ky7nTN007qzKtGmxSzEdlxOh6b6YUvS4Bmht8DqSneAR4qI1l8KhwJ1GR9rDjFyCNIYlMZ9CcGL/9FW+JfpdcmnmGAe57EoD8Scprxm/VDHOAhZH04jMHUXJUlXNDWvgvR9H2lDVG1IoxNes7sF5jpQupyQQftqJ6PTnLBySoUMard1f4G4TkKz1jajbUQtycC3KJE9lIAFmeTJjYtSCzQzOnKzm29rznbGEfwb0UTycl6EuX2DfgzJfKkuvxaWRs1/oRHSD/6Njspb+WBjZcYaTnm1V7qvE065PFycLL1dTQytHdLve3GMRpWvnrw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=LjW5USsLfItaiLR5omtm9ygxYixxcT11tsGX/OJNZko=;
+ b=qULnbSEeB8o1uCm7GEZt8Yelwh8KAVLprMwoXwEGDvfqKD1gGkZuY0QgShnNeE6J3mU/8zNRRlTPX9wySTTswe6Ce+bVXBpyuVYHaWEnEOJ4ytKd7iOJseofSPTRMVyMt79qMM0IOV07ooD/RJO/p0bl/jltdJgp+FehvqsWIBAXmUeqaM+W/RSNMtg6+o1ml+2+w0qI3v70lqgBhEURjJp0i7xQkq47+D5IUXJdUsAXyS54r5tNGzyAADeFsFgh4DW5wssndlB0pZXnLUHyEdbcX/+WytFZDAGtyWojU8GrtSMyOFS6+4T69TzF7EY8U5k9slzMNT7fudSpAfzjiQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=LjW5USsLfItaiLR5omtm9ygxYixxcT11tsGX/OJNZko=;
+ b=TVtlxrNFvq5ZdgQcYvpu4UiesxMFB8BUfmwGUlaYkbNSB+E+ZQImPQxBzJEjhcoh4RNxUhjZzubmzYReD8DLeAVlV6bAlhHNouj38XLt2jkdv6N8sV63soBWNhPFb+AexnKG6nf2Fu4MnuR2G8+VeI7tzwH29Oj6axVPVKR3sgWEOKO93Iyi1Wf0UcxkvWO/BlPVbVMcN5o89PHwLY/SsEyOYbPyBF9Te8+txTFY2adIJfZEsmfw2TfJ9rcK4llGLCStnIj/m3JFgPZsZ6aSOHVxE1T7s44stRxVASRDw29yNAjf2jY51R4bZdem5YERo1R1DEIx0hYg7P94K8bIew==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXSPRMB0053.eurprd04.prod.outlook.com (2603:10a6:102:23f::21)
+ by GV2PR04MB11397.eurprd04.prod.outlook.com (2603:10a6:150:2af::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9228.13; Fri, 17 Oct
+ 2025 14:49:31 +0000
+Received: from PAXSPRMB0053.eurprd04.prod.outlook.com
+ ([fe80::504f:2a06:4579:5f15]) by PAXSPRMB0053.eurprd04.prod.outlook.com
+ ([fe80::504f:2a06:4579:5f15%6]) with mapi id 15.20.9228.010; Fri, 17 Oct 2025
+ 14:49:31 +0000
+Date: Fri, 17 Oct 2025 10:49:24 -0400
+From: Frank Li <Frank.li@nxp.com>
+To: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
+Cc: Abel Vesa <abelvesa@kernel.org>, Peng Fan <peng.fan@nxp.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Fabio Estevam <festevam@gmail.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Daniel Baluta <daniel.baluta@nxp.com>,
+	Shengjiu Wang <shengjiu.wang@nxp.com>, linux-clk@vger.kernel.org,
+	imx@lists.linux.dev, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Pengutronix Kernel Team <kernel@pengutronix.de>
+Subject: Re: [PATCH v2 5/8] reset: imx8mp-audiomix: Switch to using regmap API
+Message-ID: <aPJXdPVrofYGQgIP@lizhi-Precision-Tower-5810>
+References: <20251017112025.11997-1-laurentiumihalcea111@gmail.com>
+ <20251017112025.11997-6-laurentiumihalcea111@gmail.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251017112025.11997-6-laurentiumihalcea111@gmail.com>
+X-ClientProxiedBy: CH0PR04CA0065.namprd04.prod.outlook.com
+ (2603:10b6:610:74::10) To PAXSPRMB0053.eurprd04.prod.outlook.com
+ (2603:10a6:102:23f::21)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH v16 01/14] power: reset: reboot-mode: Synchronize list
- traversal
-Content-Language: en-US
-To: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Sebastian Reichel
- <sre@kernel.org>, Rob Herring <robh@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Souvik Chakravarty <Souvik.Chakravarty@arm.com>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Andy Yan <andy.yan@rock-chips.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>, Konrad Dybcio <konradybcio@kernel.org>,
-        cros-qcom-dts-watchers@chromium.org, Vinod Koul <vkoul@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Florian Fainelli <florian.fainelli@broadcom.com>,
-        Moritz Fischer <moritz.fischer@ettus.com>,
-        John Stultz <john.stultz@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-        Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Andre Draszik
- <andre.draszik@linaro.org>,
-        Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>,
-        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org,
-        Elliot Berman <quic_eberman@quicinc.com>,
-        Srinivas Kandagatla <srini@kernel.org>
-References: <20251015-arm-psci-system_reset2-vendor-reboots-v16-0-b98aedaa23ee@oss.qualcomm.com>
- <20251015-arm-psci-system_reset2-vendor-reboots-v16-1-b98aedaa23ee@oss.qualcomm.com>
- <CACMJSeu_Y2Rra8x22kWN0B38jKZEwq7=B9C75zH18QdjDHAWqg@mail.gmail.com>
-From: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>
-In-Reply-To: <CACMJSeu_Y2Rra8x22kWN0B38jKZEwq7=B9C75zH18QdjDHAWqg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: J5BadvpQIwhMIM3HwWUVAKgAL6Y2KB4b
-X-Proofpoint-ORIG-GUID: J5BadvpQIwhMIM3HwWUVAKgAL6Y2KB4b
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDExMDAyMCBTYWx0ZWRfX9IZd3uspTu81
- z07NSk+6Pn/ytyrfyvpcxcCBFksSJm++7jNShoiWcSJTnP2YSAd5+Ih8tkkfP8X+J2wkhezx6PU
- YkliLym44VI3R6MCEKlgmJNBqaBKDLCwGbre+rZTPJSXund0NQAEKMC05zZ/RM3Bnxzj2XUtDIC
- QJmCyGIYev5exVDVjyZvaDQhZBG0dUQAwid3jqe2J03v9XJhFZokgvj6JfMyk9KsJKRtBcl6wqY
- Jp6ccJ1RzMeZ6dcUUubJvpEBzN7Ge4Qw5DGucI6pluMEcBrRHnUzRsmFNAubXOHzw1v2a9VMS2T
- JCBW54cu012S0dmoaGeCTWsQHaVPN/9jDNuFK0jTT1/OqWwb0SW6xXbnBi4+4l+1BMFb91RRP5P
- Ot44Y6qR4wokYp+hUU539NPDM6PQeA==
-X-Authority-Analysis: v=2.4 cv=V71wEOni c=1 sm=1 tr=0 ts=68f25715 cx=c_pps
- a=JL+w9abYAAE89/QcEU+0QA==:117 a=j4ogTh8yFefVWWEFDRgCtg==:17
- a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=EUspDBNiAAAA:8 a=js1QHsEmXU4TG3GKDNEA:9 a=QEXdDO2ut3YA:10
- a=324X-CrmTo6CU4MGRt3R:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-10-17_05,2025-10-13_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 malwarescore=0 spamscore=0 adultscore=0 suspectscore=0
- impostorscore=0 phishscore=0 clxscore=1015 lowpriorityscore=0
- priorityscore=1501 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2510020000
- definitions=main-2510110020
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXSPRMB0053:EE_|GV2PR04MB11397:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4c77a381-0ffd-489b-ccdf-08de0d8c6148
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|19092799006|366016|52116014|376014|7416014|1800799024|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?pVFvpWIgoVJdl/DxwAoRexnNNoPHDMTWsQESFh6EJEwmnOgVH15Vy9KkRxQB?=
+ =?us-ascii?Q?sLJyW5Z+YdHsYXTSK66Bj81cvBuQEdB81rrrITES3TYZUWJVsN0n+Au0WP9P?=
+ =?us-ascii?Q?4TTDF6ILhsyrBhPsh8DPLn2jqF4q7qWfQqqyeR+AEf/tED/iJvYB3c3B9YbC?=
+ =?us-ascii?Q?oYiKiZm8daace61SwD9D/+a5FGegqaI8SIkWDLIJeLdExtMb3AfjR0E1Y95j?=
+ =?us-ascii?Q?oXTZBIdsUzRq3vddqNmWZ6yBlrg1XJBO8qAp/XuzKbV8sc8RbqbFXxBYvsSz?=
+ =?us-ascii?Q?egF5Wyq7bIFAECnOPO8bBNgCo67NkJF7o+eKeXBiRKrdP7uX6mrqKhJ1fZ8Z?=
+ =?us-ascii?Q?ORdTZrW5YxiqvlzbqDlunaf86WtioysXKiuvGwLsKZcSRf4DoesBnkygwx1P?=
+ =?us-ascii?Q?Qpdc2ldwR5YEq72CtIUmehKo7/jo65yWzfcfqle25Nv877BWQIi8lYFA9NrZ?=
+ =?us-ascii?Q?ztMH23LVzt6gLBaXkgVeBIqZJThastkBs5wNM5socA/o0cDMb9pdXDbEhw+l?=
+ =?us-ascii?Q?0FBugHRiT3eWxaw1GRsTz395TQH1uzTFN7Z4Uo26vqT/P92h5rvUKCvFonRX?=
+ =?us-ascii?Q?iLyi7ji66Wmi0oIErC0LbVx+NImrITxgdOup7zbO36osvYg64X4LJSryq0dQ?=
+ =?us-ascii?Q?vw/ilNvDtdMtMyYZuBc0YMr6pWXbNfLUL23YOH1s4P/MbR9H6v7SebXFYOl+?=
+ =?us-ascii?Q?fzvDlRLvJyX1wm1wXkpgZUzIIAYOIx29bxSrlKlDviyBxqU93Ui7CUbLsnkv?=
+ =?us-ascii?Q?JucQ7BcTAhw0/flssO7VktqP0ehG9b5AsuVv3+FTvn+BQGcXvRh2JK4gihp/?=
+ =?us-ascii?Q?aPtf443HuoVQnJCbKKNDwtxIWccLI/PeY1ij+9EU3L3Or9/yyYYCAUTgMKDu?=
+ =?us-ascii?Q?3GO/LyzADowJIneTstGN1hcDDD17nkPyPkDZJD2nLapOD+Vx1f3eWoG/z3fh?=
+ =?us-ascii?Q?VacaoyAK63Kx/QfxoK2RDlz1Q3ODH+eXEvYYN3T+c9RpXSGgwlSZGTDMoBZT?=
+ =?us-ascii?Q?KufrRQwVjrmI0wRfX60qOxVf1rXpaetC5eSqtl6ITTNouli/mneRIE5yC9zE?=
+ =?us-ascii?Q?QXjnbP78BKDoK3V/dVQhJi449qYvNx+sfchweqEBYEG+48RhMx9w0tk0Ym3e?=
+ =?us-ascii?Q?Fnegjf9m3zqu1HmHE24w4lPspRg35D2eVJpmP+y2o+xTm1QR0Jc2KaD/IeXg?=
+ =?us-ascii?Q?uKz52rphggyd4bxUZRT8l+UPiP13zMM4wfswW1GECIkFUkE5hQf5QBjpZe2U?=
+ =?us-ascii?Q?HeGK0y6yu5iXr1n4CgaQ8+bAYy1WF5Obd9Ndkh4xll8YSb+WFl/F1A9cY6bu?=
+ =?us-ascii?Q?uRw8wCM/A8EfWmaBHOMdp3I6duPbM4D2QaQsNWgWniRnTCb55POZ3DEoeKDR?=
+ =?us-ascii?Q?prPvwzVa9E3jy3O8p+/Fg58WUy/BEdIDOMLyG4uNS0p0xPdccYpuLXaaKNXt?=
+ =?us-ascii?Q?JjstLMKXx2IfCEc9NBIhM0gq88U14rdvihZ62atO4OMy/tg0yq7RabNsFgYp?=
+ =?us-ascii?Q?IAesbJXoz+Ma85ETYztlUz4OZxdmdJvFM2Lm?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXSPRMB0053.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(366016)(52116014)(376014)(7416014)(1800799024)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?ZKBq5tDpQ94pf7G0vNekfs0yvvs/xXTYpJRLKo8E/IgTeUwBCdfqGLpVdhrA?=
+ =?us-ascii?Q?MDfN3v8yoPwUHnZHBo+9rS9+Gdj+lGNIlOI4CXo50aIpjtRCPBXZb+F86QR0?=
+ =?us-ascii?Q?+d1ZvHbPyI0LF2V0NIEx26NVHkRi3vI3POGJ4duKSto2JNqVN8AcJXxQfDmB?=
+ =?us-ascii?Q?4/5LVqAKCNWPG6PfeffD4+BfEBGKJydCKfRIe5Zu8xnWVDhvpqzmlK3yxFR9?=
+ =?us-ascii?Q?+JHUC77e8Wk8m8B3DNv8aiEnPxGe1moP28lXJnvAYQKHC2r+ZdjYPwQYBJy6?=
+ =?us-ascii?Q?DXZGH/MU5WDEAjbRLo5TaHTc02TQYiDn1gaWOIlwb3asYkao2QLSppbsilPx?=
+ =?us-ascii?Q?B7r66f4YqYHooZXo7AgSwNsd/Paa+va+atN8Xu8SqsKfdC/3d12vIlwCHZzC?=
+ =?us-ascii?Q?94R2n72Z86SZRfUjHOYUwRbk2IIzS5Di5rc+JriqLoDi/fuI6L1Vf2u3Jaih?=
+ =?us-ascii?Q?raGdCeQVgv+oTlBQ0JyvKw+Z5XbbObdTgBX9fHj9ScM0TebXwE1Ly6xVFG8n?=
+ =?us-ascii?Q?VaqvWw/DAs4spbSfkrot8e2GyvbxPfZJPh/nQpSneO2K5dZYVj5DMoYFePgz?=
+ =?us-ascii?Q?bEiVeTf7iv1l3CBcWCBtjUnwKjtL0iIcDdX8+7FXygpkOeagsPpyAQWVhSg2?=
+ =?us-ascii?Q?jAm3aE0fkEcos04omMTJST9KR8aYKzJrH6EMnjC5qUPi7N4yT0TginC0tGiM?=
+ =?us-ascii?Q?MtbgEzbYGoVf+TZNFdNqfNtnvUxizngb4Y47D2intUGyBgUt2rATOZWBBtS0?=
+ =?us-ascii?Q?Mq2yH496/Bs3Auy8gceM9g4UehHV20Q276yphshJLT5D5VmFi4JyqYTJn31H?=
+ =?us-ascii?Q?/c+Cne14yg3L/TaNlhSLlA/5tp+L0HeIWyOSyVOu5NHFKbXoeWKRsqb47eEa?=
+ =?us-ascii?Q?DzlzagpF3hbZBS03h6xoNsVKF5+qK5Q5Bca9VZ0npwWvui/oclPi1X2BXK0K?=
+ =?us-ascii?Q?Fe7FaC+yiBcpfPcedUKciEX4gfbnG5//SrFQIChsE6dO7VJf44Rqg0443JbR?=
+ =?us-ascii?Q?lDMhCgEzO8mGysipNTG8mkgvcP2ZIbeUgRxnLVEcvdhGA3xgRtsdlJhwmOb0?=
+ =?us-ascii?Q?2pQ1vHy9qA8VVCBwL76aNvyQXJCdSudi6DTDYYG2PTqGEhQ4+tb6a1HdYy9M?=
+ =?us-ascii?Q?G/bmVomcHU9nyk7iPHs+KBFmNVucpbuCuxDQd5eGPGkXthXN7pdQZV40p4JE?=
+ =?us-ascii?Q?3blzv0DFgnhIvC6vWG1TYAey0amzg2lP2ixSqBdtIkRV5xRmZdzHR5kGg/Gk?=
+ =?us-ascii?Q?/srZA1m/8ghRQL0YEvL6GYlCFlqVeG11pdcX1cmwAoE2z89RfACT07P5Yaqb?=
+ =?us-ascii?Q?Gw3Qz2Qfep6subi5uDIm9LOANk/j3qKwE6aLlg0G4KUb6H5BvOBSrdiv+2mT?=
+ =?us-ascii?Q?kv/lTGbeZbnCVLoGLWerr5w5EnXp/hSplxbKYYxUz7c+S2FAVF9wnpGUSmh9?=
+ =?us-ascii?Q?E784ZYhl40K1LbEkjUuET+Lz3RL+ilSOmXFQdYbiefz/mBEqpsL3GCVKeRBX?=
+ =?us-ascii?Q?k1iwUCuB87SfISRDubW7huHAOIryOW7wAYh/eW8PZAhQ14mXaD2sKF1R3VeR?=
+ =?us-ascii?Q?XHO6MqWp0kcIwGP5DGs=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4c77a381-0ffd-489b-ccdf-08de0d8c6148
+X-MS-Exchange-CrossTenant-AuthSource: PAXSPRMB0053.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Oct 2025 14:49:31.3829
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: rAxHzgJqjkKBnIvFU3rTe7byfON1gaOadxkoAiHex3FuKSKjWF9+NHoWrakmM5BM8rKl6Ru7P9p4h7T6Izw5hA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV2PR04MB11397
 
+On Fri, Oct 17, 2025 at 04:20:22AM -0700, Laurentiu Mihalcea wrote:
+> From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
+>
+> As far as the Linux kernel is concerned, block devices such as i.MX8MP's
+> AUDIOMIX block control or i.MX8ULP's SIM LPAV can simultaneously act as
+> clock controllers, reset controllers or mux controllers. Since these IPs
+> offer different functionalities through different subsystem APIs, it's
+> important to make sure that the register R-M-W cycles are performed under
+> the same lock across all subsystem APIs. This will ensure that registers
+> will not end up with the wrong values because of race conditions (e.g.
+> clock consumer tries to update block control register A, while, at the
+> same time, reset consumer tries to update the same block control register).
+>
+> However, the aforementioned race conditions will only impact block control
+> IPs which use the same register for multiple functionalities. For example,
+> i.MX8MP's AUDIOMIX block control IP provides clock gating functionalities
+> and reset control functionalities through different registers. This is why
+> the current approach (i.e. clock control and reset control work using
+> different locks) has worked well so far.
+>
+> Since we want to extend this driver to be usable for i.MX8ULP's SIM LPAV
+> block control IP, we need to make sure that clock control, reset control,
+> and mux control APIs use the same lock since all of these functionalities
+> are performed using the SYSCTRL0 register.
+>
+> To do so, we need to switch to the regmap API and, if possible, use the
+> parent device's regmap, which, in the case of i.MX8ULP, will be the clock
+> controller. This way, we can make sure that the clock gates and the reset
+> controller will use the same lock to perform the register R-M-W cycles.
+>
+> This change will also work fine for cases where we don't really need to
+> share the lock across multiple APIs (e.g. i.MX8MP's AUDIOMIX block
+> control) since regmap will take care of the locking we were previously
+> explicitly performing in the driver.
+>
+> The transition to the regmap API also involves some cleanup. Specifically,
+> we can make use of devres to unmap the device's memory and get rid of the
+> memory mapping-related error paths and the remove() function altogether.
+>
+> Signed-off-by: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
+> ---
+>  drivers/reset/reset-imx8mp-audiomix.c | 95 +++++++++++++++++----------
+>  1 file changed, 61 insertions(+), 34 deletions(-)
+>
+> diff --git a/drivers/reset/reset-imx8mp-audiomix.c b/drivers/reset/reset-imx8mp-audiomix.c
+> index e9643365a62c..c74ce6e04177 100644
+> --- a/drivers/reset/reset-imx8mp-audiomix.c
+> +++ b/drivers/reset/reset-imx8mp-audiomix.c
+> @@ -11,6 +11,7 @@
+>  #include <linux/module.h>
+>  #include <linux/of.h>
+>  #include <linux/of_address.h>
+> +#include <linux/regmap.h>
+>  #include <linux/reset-controller.h>
+>
+>  #define IMX8MP_AUDIOMIX_EARC_RESET_OFFSET	0x200
+> @@ -19,6 +20,7 @@
+>  struct imx8mp_reset_map {
+>  	unsigned int offset;
+>  	unsigned int mask;
+> +	unsigned int shift;
+>  	bool active_low;
+>  };
+>
+> @@ -26,24 +28,27 @@ static const struct imx8mp_reset_map reset_map[] = {
+>  	[IMX8MP_AUDIOMIX_EARC_RESET] = {
+>  		.offset	= IMX8MP_AUDIOMIX_EARC_RESET_OFFSET,
+>  		.mask = BIT(0),
+> +		.shift = 0,
+>  		.active_low = true,
+>  	},
+>  	[IMX8MP_AUDIOMIX_EARC_PHY_RESET] = {
+>  		.offset	= IMX8MP_AUDIOMIX_EARC_RESET_OFFSET,
+>  		.mask = BIT(1),
+> +		.shift = 1,
+>  		.active_low = true,
+>  	},
+>  	[IMX8MP_AUDIOMIX_DSP_RUNSTALL] = {
+>  		.offset	= IMX8MP_AUDIOMIX_DSP_RUNSTALL_OFFSET,
+>  		.mask = BIT(5),
+> +		.shift = 5,
 
+why need shift?  you can use ffs(mask) to get shift.
 
-On 10/15/2025 8:02 PM, Bartosz Golaszewski wrote:
-> On Wed, 15 Oct 2025 at 06:38, Shivendra Pratap
-> <shivendra.pratap@oss.qualcomm.com> wrote:
->>
->> List traversals must be synchronized to prevent race conditions
->> and data corruption. The reboot-mode list is not protected by a
->> lock currently, which can lead to concurrent access and race.
->>
->> Introduce a mutex lock to guard all operations on the reboot-mode
->> list and ensure thread-safe access. The change prevents unsafe
->> concurrent access on reboot-mode list.
->>
->> Fixes: 4fcd504edbf7 ("power: reset: add reboot mode driver")
->> Fixes: ca3d2ea52314 ("power: reset: reboot-mode: better compatibility with DT (replace ' ,/')")
->>
->> Signed-off-by: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>
->> ---
->>  drivers/power/reset/reboot-mode.c | 96 +++++++++++++++++++++------------------
->>  include/linux/reboot-mode.h       |  4 ++
->>  2 files changed, 57 insertions(+), 43 deletions(-)
->>
->> diff --git a/drivers/power/reset/reboot-mode.c b/drivers/power/reset/reboot-mode.c
->> index fba53f638da04655e756b5f8b7d2d666d1379535..8fc3e14638ea757c8dc3808c240ff569cbd74786 100644
->> --- a/drivers/power/reset/reboot-mode.c
->> +++ b/drivers/power/reset/reboot-mode.c
->> @@ -29,9 +29,11 @@ static unsigned int get_reboot_mode_magic(struct reboot_mode_driver *reboot,
->>         if (!cmd)
->>                 cmd = normal;
->>
->> -       list_for_each_entry(info, &reboot->head, list)
->> -               if (!strcmp(info->mode, cmd))
->> -                       return info->magic;
->> +       scoped_guard(mutex, &reboot->rb_lock) {
->> +               list_for_each_entry(info, &reboot->head, list)
->> +                       if (!strcmp(info->mode, cmd))
->> +                               return info->magic;
->> +       }
->>
->>         /* try to match again, replacing characters impossible in DT */
->>         if (strscpy(cmd_, cmd, sizeof(cmd_)) == -E2BIG)
->> @@ -41,9 +43,11 @@ static unsigned int get_reboot_mode_magic(struct reboot_mode_driver *reboot,
->>         strreplace(cmd_, ',', '-');
->>         strreplace(cmd_, '/', '-');
->>
->> -       list_for_each_entry(info, &reboot->head, list)
->> -               if (!strcmp(info->mode, cmd_))
->> -                       return info->magic;
->> +       scoped_guard(mutex, &reboot->rb_lock) {
->> +               list_for_each_entry(info, &reboot->head, list)
->> +                       if (!strcmp(info->mode, cmd_))
->> +                               return info->magic;
->> +       }
->>
->>         return 0;
->>  }
->> @@ -78,46 +82,50 @@ int reboot_mode_register(struct reboot_mode_driver *reboot)
->>
->>         INIT_LIST_HEAD(&reboot->head);
->>
->> -       for_each_property_of_node(np, prop) {
->> -               if (strncmp(prop->name, PREFIX, len))
->> -                       continue;
->> -
->> -               info = devm_kzalloc(reboot->dev, sizeof(*info), GFP_KERNEL);
->> -               if (!info) {
->> -                       ret = -ENOMEM;
->> -                       goto error;
->> -               }
->> -
->> -               if (of_property_read_u32(np, prop->name, &info->magic)) {
->> -                       dev_err(reboot->dev, "reboot mode %s without magic number\n",
->> -                               info->mode);
->> -                       devm_kfree(reboot->dev, info);
->> -                       continue;
->> -               }
->> -
->> -               info->mode = kstrdup_const(prop->name + len, GFP_KERNEL);
->> -               if (!info->mode) {
->> -                       ret =  -ENOMEM;
->> -                       goto error;
->> -               } else if (info->mode[0] == '\0') {
->> -                       kfree_const(info->mode);
->> -                       ret = -EINVAL;
->> -                       dev_err(reboot->dev, "invalid mode name(%s): too short!\n",
->> -                               prop->name);
->> -                       goto error;
->> +       mutex_init(&reboot->rb_lock);
->> +
->> +       scoped_guard(mutex, &reboot->rb_lock) {
->> +               for_each_property_of_node(np, prop) {
->> +                       if (strncmp(prop->name, PREFIX, len))
->> +                               continue;
->> +
->> +                       info = devm_kzalloc(reboot->dev, sizeof(*info), GFP_KERNEL);
->> +                       if (!info) {
->> +                               ret = -ENOMEM;
->> +                               goto error;
->> +                       }
->> +
->> +                       if (of_property_read_u32(np, prop->name, &info->magic)) {
->> +                               dev_err(reboot->dev, "reboot mode %s without magic number\n",
->> +                                       info->mode);
->> +                               devm_kfree(reboot->dev, info);
->> +                               continue;
->> +                       }
->> +
->> +                       info->mode = kstrdup_const(prop->name + len, GFP_KERNEL);
->> +                       if (!info->mode) {
->> +                               ret =  -ENOMEM;
->> +                               goto error;
->> +                       } else if (info->mode[0] == '\0') {
->> +                               kfree_const(info->mode);
->> +                               ret = -EINVAL;
->> +                               dev_err(reboot->dev, "invalid mode name(%s): too short!\n",
->> +                                       prop->name);
->> +                               goto error;
->> +                       }
->> +
->> +                       list_add_tail(&info->list, &reboot->head);
-> 
-> This seems to be the only call that actually needs synchronization.
-> All of the above can be run outside the critical section.
+>  		.active_low = false,
+>  	},
+>  };
+>
+>  struct imx8mp_audiomix_reset {
+>  	struct reset_controller_dev rcdev;
+> -	spinlock_t lock; /* protect register read-modify-write cycle */
+>  	void __iomem *base;
+> +	struct regmap *regmap;
+>  };
+>
+>  static struct imx8mp_audiomix_reset *to_imx8mp_audiomix_reset(struct reset_controller_dev *rcdev)
+> @@ -55,26 +60,15 @@ static int imx8mp_audiomix_update(struct reset_controller_dev *rcdev,
+>  				  unsigned long id, bool assert)
+>  {
+>  	struct imx8mp_audiomix_reset *priv = to_imx8mp_audiomix_reset(rcdev);
+> -	void __iomem *reg_addr = priv->base;
+> -	unsigned int mask, offset, active_low;
+> -	unsigned long reg, flags;
+> +	unsigned int mask, offset, active_low, shift, val;
+>
+>  	mask = reset_map[id].mask;
+>  	offset = reset_map[id].offset;
+>  	active_low = reset_map[id].active_low;
+> +	shift = reset_map[id].shift;
+> +	val = (active_low ^ assert) << shift;
+>
+> -	spin_lock_irqsave(&priv->lock, flags);
+> -
+> -	reg = readl(reg_addr + offset);
+> -	if (active_low ^ assert)
+> -		reg |= mask;
+> -	else
+> -		reg &= ~mask;
+> -	writel(reg, reg_addr + offset);
+> -
+> -	spin_unlock_irqrestore(&priv->lock, flags);
+> -
+> -	return 0;
+> +	return regmap_update_bits(priv->regmap, offset, mask, val);
+>  }
+>
+>  static int imx8mp_audiomix_reset_assert(struct reset_controller_dev *rcdev,
+> @@ -94,6 +88,50 @@ static const struct reset_control_ops imx8mp_audiomix_reset_ops = {
+>  	.deassert = imx8mp_audiomix_reset_deassert,
+>  };
+>
+> +static const struct regmap_config regmap_config = {
+> +	.reg_bits = 32,
+> +	.val_bits = 32,
+> +	.reg_stride = 4,
+> +};
+> +
+> +/* assumption: registered only if not using parent regmap */
+> +static void imx8mp_audiomix_reset_iounmap(void *data)
+> +{
+> +	struct imx8mp_audiomix_reset *priv = dev_get_drvdata(data);
+> +
+> +	iounmap(priv->base);
+> +}
+> +
+> +/* assumption: dev_set_drvdata() is called before this */
+> +static int imx8mp_audiomix_reset_get_regmap(struct device *dev)
+> +{
+> +	struct imx8mp_audiomix_reset *priv;
+> +	int ret;
+> +
+> +	priv = dev_get_drvdata(dev);
+> +
+> +	/* try to use the parent's regmap */
+> +	priv->regmap = dev_get_regmap(dev->parent, NULL);
+> +	if (priv->regmap)
+> +		return 0;
+> +
+> +	/* ... if that's not possible then initialize the regmap right now */
+> +	priv->base = of_iomap(dev->parent->of_node, 0);
+> +	if (!priv->base)
+> +		return dev_err_probe(dev, -ENOMEM, "failed to iomap address space\n");
+> +
+> +	ret = devm_add_action_or_reset(dev, imx8mp_audiomix_reset_iounmap, dev);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "failed to register action\n");
+> +
+> +	priv->regmap = devm_regmap_init_mmio(dev, priv->base, &regmap_config);
+> +	if (IS_ERR(priv->regmap))
+> +		return dev_err_probe(dev, PTR_ERR(priv->regmap),
+> +				     "failed to initialize regmap\n");
+> +
+> +	return 0;
+> +}
+> +
+>  static int imx8mp_audiomix_reset_probe(struct auxiliary_device *adev,
+>  				       const struct auxiliary_device_id *id)
+>  {
+> @@ -105,36 +143,26 @@ static int imx8mp_audiomix_reset_probe(struct auxiliary_device *adev,
+>  	if (!priv)
+>  		return -ENOMEM;
+>
+> -	spin_lock_init(&priv->lock);
+> -
+>  	priv->rcdev.owner     = THIS_MODULE;
+>  	priv->rcdev.nr_resets = ARRAY_SIZE(reset_map);
+>  	priv->rcdev.ops       = &imx8mp_audiomix_reset_ops;
+>  	priv->rcdev.of_node   = dev->parent->of_node;
+>  	priv->rcdev.dev	      = dev;
+>  	priv->rcdev.of_reset_n_cells = 1;
+> -	priv->base            = of_iomap(dev->parent->of_node, 0);
+> -	if (!priv->base)
+> -		return -ENOMEM;
+>
+> +	/* keep before call to imx8mp_audiomix_reset_init_regmap() */
+>  	dev_set_drvdata(dev, priv);
+>
+> +	ret = imx8mp_audiomix_reset_get_regmap(dev);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "failed to get regmap\n");
+> +
+>  	ret = devm_reset_controller_register(dev, &priv->rcdev);
+>  	if (ret)
+> -		goto out_unmap;
+> +		return dev_err_probe(dev, ret,
+> +				     "failed to register reset controller\n");
+>
+>  	return 0;
+> -
+> -out_unmap:
+> -	iounmap(priv->base);
+> -	return ret;
+> -}
+> -
+> -static void imx8mp_audiomix_reset_remove(struct auxiliary_device *adev)
+> -{
+> -	struct imx8mp_audiomix_reset *priv = dev_get_drvdata(&adev->dev);
+> -
+> -	iounmap(priv->base);
+>  }
+>
+>  static const struct auxiliary_device_id imx8mp_audiomix_reset_ids[] = {
+> @@ -147,7 +175,6 @@ MODULE_DEVICE_TABLE(auxiliary, imx8mp_audiomix_reset_ids);
+>
+>  static struct auxiliary_driver imx8mp_audiomix_reset_driver = {
+>  	.probe		= imx8mp_audiomix_reset_probe,
+> -	.remove		= imx8mp_audiomix_reset_remove,
 
-sure. will add it only around the required lines.
+cleanup imx8mp_audiomix_reset_remove need seperate patch.
 
-> 
->>                 }
->>
->> -               list_add_tail(&info->list, &reboot->head);
->> -       }
->> -
->> -       reboot->reboot_notifier.notifier_call = reboot_mode_notify;
->> -       register_reboot_notifier(&reboot->reboot_notifier);
->> +               reboot->reboot_notifier.notifier_call = reboot_mode_notify;
->> +               register_reboot_notifier(&reboot->reboot_notifier);
->>
->> -       return 0;
->> +               return 0;
->>
->>  error:
->> -       list_for_each_entry(info, &reboot->head, list)
->> -               kfree_const(info->mode);
->> +               list_for_each_entry(info, &reboot->head, list)
->> +                       kfree_const(info->mode);
->> +       }
->>
->>         return ret;
->>  }
->> @@ -133,8 +141,10 @@ int reboot_mode_unregister(struct reboot_mode_driver *reboot)
->>
->>         unregister_reboot_notifier(&reboot->reboot_notifier);
->>
->> -       list_for_each_entry(info, &reboot->head, list)
->> -               kfree_const(info->mode);
->> +       scoped_guard(mutex, &reboot->rb_lock) {
->> +               list_for_each_entry(info, &reboot->head, list)
->> +                       kfree_const(info->mode);
->> +       }
-> 
-> Please destroy the mutex here.
+Frank
 
-sure thanks. will add destroy here.
-
-thanks,
-Shivendra
+>  	.id_table	= imx8mp_audiomix_reset_ids,
+>  };
+>
+> --
+> 2.43.0
+>
 
