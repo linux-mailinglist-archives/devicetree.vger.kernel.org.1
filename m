@@ -1,175 +1,119 @@
-Return-Path: <devicetree+bounces-228191-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228192-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37FA4BE9889
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 17:11:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E074BE9817
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 17:09:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2E23C3BF7F0
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 15:01:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B733E7418E8
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 15:02:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78C3832E13C;
-	Fri, 17 Oct 2025 15:01:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DC3E3328E9;
+	Fri, 17 Oct 2025 15:01:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="VWZ2lb80"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NGQAyAD5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 464BA32C951
-	for <devicetree@vger.kernel.org>; Fri, 17 Oct 2025 15:01:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E9E42F12B7;
+	Fri, 17 Oct 2025 15:01:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760713270; cv=none; b=M6benD3sRcXqOvIhD0wv52b2y6sC/VG/odnJV8szgg+QOsncu84Rc5GwRxdxVo9VeX21vJXlzJN9XEjsAVzKcaniRdUMOo5GI+royfrMY++fd9afQpoKpCgrlGc/EyKKILT9PCdBT9PZHJKdwcWR4hSeZI1UOref2aH9ImH75bY=
+	t=1760713290; cv=none; b=LCMJByXKXgK7ZawVJ/bOMDuZfwpEHmBsfCMdbVE3YPECpPcELfWDndRpK6TMGgxj8IS/rL7ApFxUAA7otFWazQFY2gVbr/skh0XvNYUBLU/lToPf1TO0N8D2nCIMDxcsazac4jLwi8JPQwcO7QQzVbMAHdFfauoZZfsQev5/NKM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760713270; c=relaxed/simple;
-	bh=fu1rgFg6zFERmWrukTHtScTFU9VI+YSEm3Jqr3a3rqk=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=aDFE3l6qX1bHGpyoWEq7OSNkbSG8cMerqwzIiW5sEmqRguFOe+/5JdivdRoycpsHvpcpCsqG0eBtS+MQQiLNjPcuVCI4YCAgR4dmu8BKPYi6BY5iUjCWQvUxBNaaje5+AEjli2C5/B7WNjBgpPvLkoWAqvXGoMRFBJU+cfNiGec=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=VWZ2lb80; arc=none smtp.client-ip=185.246.84.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id 5E4B81A1483;
-	Fri, 17 Oct 2025 15:01:06 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 28795606DB;
-	Fri, 17 Oct 2025 15:01:06 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 53F01102F2363;
-	Fri, 17 Oct 2025 17:00:56 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1760713265; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=b9g9x9l+TGh+Jz6FtSUgUJKPZ2bmCq5GDO9amdTb+jU=;
-	b=VWZ2lb805RvAcMpu2w7GsmG4qPzHEvrmTXEmSf8bLkdyqv8tELrbP1N9GAyxwhuevB6DOy
-	ZqLha3EVHs7C3aY05GsxzDYApneZKZroDf1OnCtTXktlSpyHTuHIzyiT2dBcYisbYJ/f7T
-	JjroPIiENIUsrrrjgkPAU1zfgNM5V990gaiQRXv265R9Ht/4SIcK6lfOUNPhmIEqJHYDG0
-	mVJLKaoYho9vY3N3HdSWjsf+FUAkElIPSoSpFZ7JcYofHz0UTYpB6tzfJP75sHyGiOhmcq
-	UMkhtwb88dZwI94C0APecwjz124C0yM9cmIq7lZILPj1skAr+Jf7/L5H4YtUBA==
-Date: Fri, 17 Oct 2025 17:00:54 +0200
-From: Herve Codina <herve.codina@bootlin.com>
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc: Jonathan Cameron <jic23@kernel.org>, David Lechner
- <dlechner@baylibre.com>, Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Andy
- Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Geert
- Uytterhoeven <geert+renesas@glider.be>, Magnus Damm
- <magnus.damm@gmail.com>, Liam Girdwood <lgirdwood@gmail.com>, Mark Brown
- <broonie@kernel.org>, linux-iio@vger.kernel.org,
- linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Pascal Eberhard <pascal.eberhard@se.com>,
- Miquel Raynal <miquel.raynal@bootlin.com>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH 2/4] iio: adc: Add support for the Renesas RZ/N1 ADC
-Message-ID: <20251017170054.7a7a6d5f@bootlin.com>
-In-Reply-To: <aPIIVUlHnvi0BXtN@shikoro>
-References: <20251015142816.1274605-1-herve.codina@bootlin.com>
-	<20251015142816.1274605-3-herve.codina@bootlin.com>
-	<aPIIVUlHnvi0BXtN@shikoro>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.43; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1760713290; c=relaxed/simple;
+	bh=0Xg9t71CwxVpyuX6lVim4C/doJqHcjQzUz15fOWrHCg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=lxFtREirjn/3gOcIpzLcD10ZLRQQF8/A4LwzZgzCopmYpZtXWXCqOjzF+LfbKk51ftZxxcey7oWrvgXSGXWMNMubeVNJabFwlq01kWvSHvTQb53UfYHtxhnBhzWRWrO6CPQA7YRbcuvZY0TsESTu0PsUB1q8ZrDuwcvCNxP6m6I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NGQAyAD5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A61D9C4CEFE;
+	Fri, 17 Oct 2025 15:01:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1760713289;
+	bh=0Xg9t71CwxVpyuX6lVim4C/doJqHcjQzUz15fOWrHCg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=NGQAyAD5XnDqRI6Ckxc+dhnxUzuNz0e6HNJ0SffixS8dOxCuj5gLBR+3Q73rH0ffk
+	 3Me/PsOUnRp91VrGUhwYkxWcu3lWJpOmo8o8Ahur3kqxMve6V1bRXpp0zWatVxlO4z
+	 fmRbxQbi1mEZR2X7B7z72P9B9SFJB9XwacgBz5qKOcIdlPYJhKDoDOdSlL6Bnx6oXt
+	 XXX3O4ckbF6zRWvWu/dDFtonZrYVho3RCFNTjRMCyA4//Vn+o7MmBT70LYXVjWgUfZ
+	 d7Tws9NgJ3ZcP5hvsHA1wB3lzjOPxxPrbQ9KyG1qMxQEkn13YDec3iOHtMnpcGakTf
+	 kYeMixJOEOO2Q==
+Date: Fri, 17 Oct 2025 16:01:21 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Alexander Sverdlin <alexander.sverdlin@gmail.com>
+Cc: Herve Codina <herve.codina@bootlin.com>,
+	David Rhodes <david.rhodes@cirrus.com>,
+	Richard Fitzgerald <rf@opensource.cirrus.com>,
+	Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+	Nikita Shubin <nikita.shubin@maquefel.me>,
+	Axel Lin <axel.lin@ingics.com>,
+	Brian Austin <brian.austin@cirrus.com>, linux-sound@vger.kernel.org,
+	patches@opensource.cirrus.com, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH 1/3] ASoC: cs4271: Fix cs4271 I2C and SPI drivers
+ automatic module loading
+Message-ID: <5f2aeb66-97d6-41b7-8c80-87674c1b14d8@sirena.org.uk>
+References: <20251016130340.1442090-1-herve.codina@bootlin.com>
+ <20251016130340.1442090-2-herve.codina@bootlin.com>
+ <60fbaaef249e6f5af602fe4087eab31cd70905de.camel@gmail.com>
+ <20251017083232.31e53478@bootlin.com>
+ <d6bd466a5d11b016183db0ac3c25185fad3036fc.camel@gmail.com>
+ <4b851d47bf1d03988a27671ae21208cdeed76837.camel@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="UlIr9HwaN/pX+F86"
+Content-Disposition: inline
+In-Reply-To: <4b851d47bf1d03988a27671ae21208cdeed76837.camel@gmail.com>
+X-Cookie: Androphobia:
 
-Hi Wolfram,
 
-On Fri, 17 Oct 2025 11:11:49 +0200
-Wolfram Sang <wsa+renesas@sang-engineering.com> wrote:
+--UlIr9HwaN/pX+F86
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> > +static int rzn1_adc_read_raw_ch(struct rzn1_adc *rzn1_adc, unsigned int chan, int *val)
-> > +{
-> > +	u32 *adc1_data, *adc2_data;
-> > +	int adc1_ch, adc2_ch;
-> > +	u32 adc_data;
-> > +	int ret;
-> > +
-> > +	if (chan < 8) {
-> > +		/* chan 0..7 used to get ADC1 ch 0..7 */
-> > +		adc1_ch = chan;
-> > +		adc1_data = &adc_data;
-> > +		adc2_ch = -1;
-> > +		adc2_data = NULL;
-> > +	} else if (chan < 16) {
-> > +		/* chan 8..15 used to get ADC2 ch 0..7 */
-> > +		adc1_ch = -1;
-> > +		adc1_data = NULL;
-> > +		adc2_ch = chan - 8;
-> > +		adc2_data = &adc_data;
-> > +	} else {
-> > +		return -EINVAL;
-> > +	}  
-> 
-> How about putting part of the logic into the setup function? So, here
-> only:
-> 
-> 	if (chan >= 16)
-> 		return -EINVAL
-> 
-> > +
-> > +	ret = pm_runtime_resume_and_get(rzn1_adc->dev);
-> > +	if (ret < 0)
-> > +		return ret;
-> > +
-> > +	mutex_lock(&rzn1_adc->lock);
-> > +
-> > +	rzn1_adc_vc_setup_conversion(rzn1_adc, chan, adc1_ch, adc2_ch);  
-> 
-> 	rzn1_adc_vc_setup_conversion(rzn1_adc, chan);
-> 
-> And in that function:
-> 
-> > +static void rzn1_adc_vc_setup_conversion(struct rzn1_adc *rzn1_adc, u32 ch,
-> > +					 int adc1_ch, int adc2_ch)
-> > +{
-> > +	u32 vc = 0;
-> > +
-> > +	if (adc1_ch != -1)
-> > +		vc |= RZN1_ADC_VC_ADC1_ENABLE | RZN1_ADC_VC_ADC1_CHANNEL_SEL(adc1_ch);
-> > +
-> > +	if (adc2_ch != -1)
-> > +		vc |= RZN1_ADC_VC_ADC2_ENABLE | RZN1_ADC_VC_ADC2_CHANNEL_SEL(adc2_ch);
-> > +
-> > +	writel(vc, rzn1_adc->regs + RZN1_ADC_VC_REG(ch));
-> > +}  
-> 
-> 	if (ch < 8)
-> 		vc |= RZN1_ADC_VC_ADC1_ENABLE | RZN1_ADC_VC_ADC1_CHANNEL_SEL(ch);
-> 	else
-> 		vc |= RZN1_ADC_VC_ADC2_ENABLE | RZN1_ADC_VC_ADC2_CHANNEL_SEL(ch - 8);
-> 
-> And a similar simplification for rzn1_adc_vc_wait_conversion().
-> 
-> Should work and the code is even more readable, I'd say. And has less
-> lines.
-> 
+On Fri, Oct 17, 2025 at 04:41:53PM +0200, Alexander Sverdlin wrote:
 
-That was what I did on my first driver draft before sending this first
-iteration. I moved to adc1 and adc2 channel numbers in parameters to avoid
-adding this logic here.
+> indeed, that's what I've got for a fake I2C device:
 
-I think it was better to decouple the IIO chan number from the adc core
-channel used.
+> # cat /sys/bus/i2c/devices/0-0010/uevent=20
+> OF_NAME=3Dcs4271
+> OF_FULLNAME=3D/soc/i2c@4000000/cs4271@10
+> OF_COMPATIBLE_0=3Dcirrus,cs4271
+> OF_COMPATIBLE_N=3D1
+> MODALIAS=3Dof:Ncs4271T(null)Ccirrus,cs4271
 
-I don't know if it will be relevant but we can image a future improvement
-where new IIO chans use both the ADC core 1 and 2. It could make sense.
+> to me it looks like a bug somewhere in I2C core...
 
-IMHO, I think the solution you proposed is similar in term of complexity
-to the RZN1_ADC_NO_CHANNEL approach. On my side, I would prefer the
-RZN1_ADC_NO_CHANNEL approach to keep the decoupling between IIO chan and
-ADC core chans.
+IIRC this has been round the loop a few times and whatever you do
+something breaks.
 
-That's said, I am still open to move in your direction if you still think
-it is more relevant than the RZN1_ADC_NO_CHANNEL approach. Just tell me.
+--UlIr9HwaN/pX+F86
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Best regards,
-Hervé
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmjyWkEACgkQJNaLcl1U
+h9CvJQf/VMlgfy4CRVJIs0LqYHy82K2tDxhzq3IvVq/Okcn6MddfFUlGQ9pd0gl1
+9gRJkdFRga+i+g5u3sJAwzyhWV556mkyGRr3zFxHvtz4Hx2hp7cJbL22S0cHIL8v
+3d8028kB5q9PCPPsXdLBgj1z70Wy8bn5jhak2EJaoeXQxnrxjnQW+tL1Xs6MUpWg
+EywZIkSK+68PMI7MhIFdx3lhuqkG3rH6XF9kIhmC0pSJwCCXjCU+1qVRUM83cpnM
+LUQKrUY67679OPjxfnbKPkUIrDncIg7VItz/ud0L9JIxHeYiqnedoDHm916+XD4h
+ccIiQcymMIlgG0qx+34MbcSQqrpjcg==
+=dAdR
+-----END PGP SIGNATURE-----
+
+--UlIr9HwaN/pX+F86--
 
