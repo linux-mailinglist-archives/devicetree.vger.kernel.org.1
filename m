@@ -1,228 +1,140 @@
-Return-Path: <devicetree+bounces-228163-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228164-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 261BDBE9196
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 16:06:23 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id CCFDDBE9208
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 16:16:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id BA9524FD95B
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 14:05:56 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D37DF507BFA
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 14:14:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03BD036998C;
-	Fri, 17 Oct 2025 14:05:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 214C132C94A;
+	Fri, 17 Oct 2025 14:14:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="HnzF4Fov"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Su/2IPOE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9F7936997B
-	for <devicetree@vger.kernel.org>; Fri, 17 Oct 2025 14:05:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE9AD32C94C
+	for <devicetree@vger.kernel.org>; Fri, 17 Oct 2025 14:14:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760709954; cv=none; b=UxWhdsYn8tdoZzIm+ISOPfWNucG49XkFkQeLMOggfKA13aTv1eVpM/8MKZ6lqCCwUEA9WuJ6FwpUkptqrI6zffjhYzvNClxVFUQweaG+jMoCJVpxFopwtyXo7JFpWlr722hVyrs/mSNfJDTkjKvvj7zudvG6dnxF3iSgrgQHZOc=
+	t=1760710464; cv=none; b=MLWKXfyTKvwL6mx/l4ph/+psJ6l0EaknJ8HOBG99rbxG4SpMOoPdwFYNnYGtB2eUYfgHgw4S/tk2GK7Vs2qgz1nhnK5QpaRmcWNt/BqpWRZco1R5rRIke5YIcS51bHtG5IXhvuM1IqC2WXiBrJvk89wO79K09aZ7EhGvvKTyRro=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760709954; c=relaxed/simple;
-	bh=y2j14fKCfSUEyLu3qKfrbsyP8qXM57xWfcpUmJOscjA=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=VKvXt5+aAK1d2iG1S2ggeFezmd7LYhPlSjYAHIm5Tetbzu3CFqB91WBWu88e+a+xDXOP5fxaQNLWEqSN7D7Thq240SjtfnGaY33VE/F68FAQZo9FkU0j3UzcFvK+XCIZyZYvflcTkfan1l5e2eiLnFAx4hrldBNJa2A9cLmx4zU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=HnzF4Fov; arc=none smtp.client-ip=209.85.208.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-63bea08a326so2699319a12.3
-        for <devicetree@vger.kernel.org>; Fri, 17 Oct 2025 07:05:52 -0700 (PDT)
+	s=arc-20240116; t=1760710464; c=relaxed/simple;
+	bh=959p6xV6CKeeWXiRtPPtRMLL/TFd0b3Xs25RXyKYag0=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=R+eK/UFaEauYH2ydphyEQeYzAxdHWVD/zCL+GK8vned5f0hehsBruPFp787nnaHKI2PSXJhgDUCVgabioZ96Oeevag7OMdGsyxFrTqkaO0zw6uVG3NuQI+o8xjyHvgfizuaLGSCODjqAmTgqgr3XnCR2FjLeeryUAcZKBaxpE2M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Su/2IPOE; arc=none smtp.client-ip=209.85.128.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-4712c6d9495so774075e9.2
+        for <devicetree@vger.kernel.org>; Fri, 17 Oct 2025 07:14:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1760709951; x=1761314751; darn=vger.kernel.org;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=NDtFkvW71ZpCBo0DPDG4zvNO/0+/N+iEEt28V0Z9TN4=;
-        b=HnzF4FovcXOObmvLMUbPJTiOwxK3ehxfgyH7u84LetBoLjc5H7FG1kqIFLSH5jTjaf
-         OGh4df+M7VWi13/QZgAdVYq/3yJWXT/MtRt1ezmVRJC/27CTPtD14AdNMaxMQx4jQUwr
-         +2eWFU5CH5l8RWXG+G799vZhBvt6UAQNTpYwFjl/5e/2QuS9JPIu7vj+tuglbusVRJ6u
-         fHPziA8qXIg5RkJreJB+d46gKllAOzl2/ZNC2Scj/By3O2QmhqzRmJwRGgevaBWDagBC
-         W7StOWDa+9qrCUhfxY1/XACFSr50Nvz1kc7byZzZwu6OhAaSkAcQQZ33wR9Np/ynfEG2
-         USjg==
+        d=gmail.com; s=20230601; t=1760710460; x=1761315260; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=FTLnHbprIsxNg0GlvOz1rxX1RAjfsFXOqHQiYRq25LI=;
+        b=Su/2IPOElTtM+RsiQFMRs14hcKxioX7VfmNMd9Wuywrv8kjPCSJROetHVRUc9PhL2I
+         ZjpamG/lE1Ugc0wWzT9ea9ryyVtx17N93Es7t2N2ZupCvSUQQ4BX5UNujWZck9SJoR7q
+         W0QntK1fjnEpyAYA8Q34ed3VaoKiA8s4bzr5BES39aOL+4KzAcjAK2GMPPmbdKlJBdee
+         grP8XDSLyGfaItUt6ripBXvyaBjV4bLCiV7qeau9gC7AfjJ8zVxxQy6cyQy6OFLeQUFV
+         m8fuHnlvJgVRx/g2mdKfuCLgmlOr3OR5ADf1tOZR1OHehThLS7ESA71EksyUqROC8bYa
+         buhg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760709951; x=1761314751;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=NDtFkvW71ZpCBo0DPDG4zvNO/0+/N+iEEt28V0Z9TN4=;
-        b=LA5SwHnfjLndYZ6/Nfd3f2Kr7aYywWeCRYLNi5VKxJ32ecl0Xw3XqxH/Fi9POrK8RZ
-         I6B2yq7cZjvLEYQARr1CZCAdRsyPwH411jLP/WCepWt8pqC45hznOgyZ4y1cZ/SSsmAS
-         qIAByim4JZL7fDnpPlujYLu/YqrmVGHMG9mGZyXkazrm3RdQ0cPT2exTWL6/PMIvmH4B
-         mDiZs3mnpN792oWKn8kaaGu1EBvaBtSNOy/ALPi408qys8Pb8TanpbNNf5M/mzZGaXUX
-         YcVOyaRaKDNgyuLtAVMkQjiLcEGZDCoR9TZWBGk21AgQFpZSvkkxzhGua+l45kYyj5mR
-         4apQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVh1Bo7uMnhI4TSzR1e6QoUkNB2e1GrRQ/Q1Var/xM0eh0Wy2cu43pwQKvvEE973zfKYYgcck8UDxiR@vger.kernel.org
-X-Gm-Message-State: AOJu0YwFnmZfgP4d68XvIxEVudyC0U8rrWjaDByF0Qq1bQzy4pEAWOah
-	pYyTdlnGvPcPo+5WYupGDwZOD0D60laoQoVjEIQiDI7u639MaQsJDDDUNstAMuoX51o=
-X-Gm-Gg: ASbGncsaMp7aelHXrNwVS9HzvcwBhjrgo+XVRQwMcVz6I2IMfUpWbYNomSHLWJ5m18r
-	SADTm1pyXL/UAUXAZ3eLQ7Afy5rs6iuahlnE10vL2WbtZZb2izLmH/yD32dTNbAwPv/TktmT3vA
-	eAJWjuvCaJX8l0Kg58S6NXunugtrxbDLBPM4z96HTTef7m3PbW7Tor5ALW7Nw0Ovfllj9fY6jsV
-	HKrpqnj9QQjIGBCgrp6TkoHMD9Wh4chmVOrwHf2TQ5hfoNX67RGeqMyipolOstMlqrNgVpWJBvT
-	oUTKzsCdDrpKaoh1RQT414Nmi4YRZ6FmxzKhIq3qWFswvylda+ND006KFj12WIMePRbSg+l9Ek+
-	DxB2DMtC9OpczqG/2hStQQVYeKJPNu8phAymQGRnEW49InBXwbuiCxSBtd+0ywVC0TjgRoqaGHi
-	39qChnEUxWF1l6tWtBYIM5Xdr7ogyShoNqOA8XvZNpfYJUtIt/SuzBaYib
-X-Google-Smtp-Source: AGHT+IHD0zQCxNlY8i8goUteHIFFoUwCmKep+B7VhLiGVGAGPiHMCDPi+AsNJHLKrrEXZzT+k7ZWpg==
-X-Received: by 2002:a05:6402:3552:b0:639:e30c:2477 with SMTP id 4fb4d7f45d1cf-63c1f636789mr3573697a12.7.1760709951080;
-        Fri, 17 Oct 2025 07:05:51 -0700 (PDT)
-Received: from localhost (144-178-202-139.static.ef-service.nl. [144.178.202.139])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-63a5c134062sm18799571a12.36.2025.10.17.07.05.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Oct 2025 07:05:49 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1760710460; x=1761315260;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=FTLnHbprIsxNg0GlvOz1rxX1RAjfsFXOqHQiYRq25LI=;
+        b=Ucox+b0w9dFPHiRZyCoYVObCFWAW6THbFAJocaGoJ/b2AmwBJP2xbsqcQuR5Y9NY3D
+         KAVXYSgl1SDMqzdNHdl8X31orgGvlAfC0SC5N5THQYbdqAMsVHfqRl4NHcZCmfrERHRe
+         GtgC5YacS5lExf3/OjqRM/ZlJm4PQlCvSxvYfDqG6ggYTxqWvb5tAyC4FJwUJlnWHpOA
+         MJgxJRkPZIp6fYcMavqJA/19K8x6L6CleICt9CGx0cXPLNakeiaCxwt1fO9D6KxtoFon
+         FTkV5eHJ54vq82fo7caHCnXPgx6AkfWvXWdpKFyuXp+esX6+SbYCo4C1ktNGH6tOHZy7
+         778A==
+X-Forwarded-Encrypted: i=1; AJvYcCW4sGmG25uw2gZGEkqtdeDactWzLV36t9KPG16jiMnjdQpkGM3y21qMdnhk3VRgW52m6wYNzfL4c4fu@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyam2UkC/nt2peoUxcb6QgL/22CCXBgUlzWKaAsuuGg4XZSKrna
+	/XN6JIIFtb9Q5mrwj/uKkFmfut4sEfmQJDx6i04SQBRwoWNju49L4b5/
+X-Gm-Gg: ASbGncvPR3QNurpokmcWyq4WPX0XNZew4LGVjFiDTfF/6TZccKlC/FXwighMxOVNn5v
+	Vj7LaNstuuHPdmK6+nTVcyjFpMARoB0nxKMlxs9SpXaJog8cBu98yWVN3VdZQLdcVrVyOIG/zWV
+	HkTpa4Ez41FV4V9WlkHc9thjYjErzk9hB37oIDcpHhVb/kYONawCiu7MYRAy3wkJJ7NjwvB74iS
+	gCwHfhMlxfIVGvKOOsQsMMxvFBX0lsKp+NrkGmZGi4KYmxp6nmyNppMHNGX+CuI1hinwSwKuFJx
+	Fxgc+IajurKYknbjRFZ61BRtfz5p4ra5+Eu6IcKjihV5PpcYIYNS5jTeOEdJurcKfnnkXm275sC
+	Sx3J+HjCC/hOMpwlTkVcu5f404UB0f7coW28oSadSF8vjE6Gcc71Q2Orr/MT22+fqAkGx2vCHS7
+	ldTdp6dLWDKAvslUY3HhI=
+X-Google-Smtp-Source: AGHT+IF2EM7mT5D52gnp+VTbfiNcarttRakEXF5/pBTZwv3B+9i+o/ZbwXxFScc6ahCV+wEMQcYNyg==
+X-Received: by 2002:a05:600c:821a:b0:46f:b42e:e3a0 with SMTP id 5b1f17b1804b1-4711791dc89mr26441555e9.41.1760710459832;
+        Fri, 17 Oct 2025 07:14:19 -0700 (PDT)
+Received: from [192.168.1.187] ([161.230.67.253])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47114423862sm87177925e9.1.2025.10.17.07.14.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 17 Oct 2025 07:14:19 -0700 (PDT)
+Message-ID: <014f2380e9261a1449214907a149f11267acdd11.camel@gmail.com>
+Subject: Re: [PATCH v5 4/7] iio: adc: ad4030: Use BIT macro to improve code
+ readability
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Marcelo Schmitt <marcelo.schmitt@analog.com>, linux-iio@vger.kernel.org,
+ 	devicetree@vger.kernel.org, linux-doc@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Cc: jic23@kernel.org, michael.hennerich@analog.com, nuno.sa@analog.com, 
+	eblanc@baylibre.com, dlechner@baylibre.com, andy@kernel.org,
+ robh@kernel.org, 	krzk+dt@kernel.org, conor+dt@kernel.org, corbet@lwn.net, 
+	marcelo.schmitt1@gmail.com, Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Fri, 17 Oct 2025 15:14:52 +0100
+In-Reply-To: <ec78fd7e4348e2cbc99ae08004c48b7ea238ecf7.1760479760.git.marcelo.schmitt@analog.com>
+References: <cover.1760479760.git.marcelo.schmitt@analog.com>
+	 <ec78fd7e4348e2cbc99ae08004c48b7ea238ecf7.1760479760.git.marcelo.schmitt@analog.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Fri, 17 Oct 2025 16:05:48 +0200
-Message-Id: <DDKNL43NWFMA.1S03T0SUYFVMY@fairphone.com>
-Cc: "Bjorn Andersson" <andersson@kernel.org>, "Rob Herring"
- <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Jagadeesh
- Kona" <quic_jkona@quicinc.com>, "Bryan O'Donoghue"
- <bryan.odonoghue@linaro.org>, "Michael Turquette"
- <mturquette@baylibre.com>, "Stephen Boyd" <sboyd@kernel.org>, "Conor
- Dooley" <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-clk@vger.kernel.org>
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: sm8550: Additionally manage MXC
- power domain in camcc
-From: "Luca Weiss" <luca.weiss@fairphone.com>
-To: "Taniya Das" <taniya.das@oss.qualcomm.com>, "Luca Weiss"
- <luca.weiss@fairphone.com>, "Dmitry Baryshkov"
- <dmitry.baryshkov@oss.qualcomm.com>, "Vladimir Zapolskiy"
- <vladimir.zapolskiy@linaro.org>
-X-Mailer: aerc 0.21.0-0-g5549850facc2
-References: <20250303225521.1780611-1-vladimir.zapolskiy@linaro.org>
- <20250303225521.1780611-3-vladimir.zapolskiy@linaro.org>
- <dbxvzgqs5slrl5edqunal3wplg5jiszqv46dr4nzgowwlhkhxa@qwtfq7nfjwfo>
- <3210a484-b9c3-4399-bee1-9f5bbc90034c@linaro.org>
- <CAA8EJprP9Z181VDCT=xfyrBipzgiB0tfb8M_XZ4H=yOrvEnB0w@mail.gmail.com>
- <f41061a2-cf45-4588-8df7-22270c936ee2@quicinc.com>
- <D8EZ47Z557OX.37FDVYA5AHET0@fairphone.com>
- <d64c0776-0b12-42d3-aed3-4e6a13487f51@quicinc.com>
-In-Reply-To: <d64c0776-0b12-42d3-aed3-4e6a13487f51@quicinc.com>
+MIME-Version: 1.0
 
-Hi Taniya,
+On Tue, 2025-10-14 at 19:21 -0300, Marcelo Schmitt wrote:
+> Use BIT macro to make the list of average modes more readable.
+>=20
+> Suggested-by: Andy Shevchenko <andy.shevchenko@gmail.com>
+> Link:
+> https://lore.kernel.org/linux-iio/CAHp75Vfu-C3Hd0ZXTj4rxEgRe_O84cfo6jiRCP=
+FxZJnYrvROWQ@mail.gmail.com/
+> Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
+> ---
 
-On Thu Mar 13, 2025 at 12:57 PM CET, Taniya Das wrote:
->
->
-> On 3/13/2025 1:22 PM, Luca Weiss wrote:
->> Hi Taniya,
->>=20
->> On Thu Mar 13, 2025 at 5:39 AM CET, Taniya Das wrote:
->>>
->>>
->>> On 3/4/2025 2:10 PM, Dmitry Baryshkov wrote:
->>>> On Tue, 4 Mar 2025 at 09:37, Vladimir Zapolskiy
->>>> <vladimir.zapolskiy@linaro.org> wrote:
->>>>>
->>>>> On 3/4/25 01:53, Dmitry Baryshkov wrote:
->>>>>> On Tue, Mar 04, 2025 at 12:55:21AM +0200, Vladimir Zapolskiy wrote:
->>>>>>> SM8550 Camera Clock Controller shall enable both MXC and MMCX power
->>>>>>> domains.
->>>>>>
->>>>>> Are those really required to access the registers of the cammcc? Or =
-is
->>>>>> one of those (MXC?) required to setup PLLs? Also, is this applicable
->>>>>> only to sm8550 or to other similar clock controllers?
->>>>>
->>>>> Due to the described problem I experience a fatal CPU stall on SM8550=
--QRD,
->>>>> not on any SM8450 or SM8650 powered board for instance, however it do=
-es
->>>>> not exclude an option that the problem has to be fixed for other cloc=
-k
->>>>> controllers, but it's Qualcomm to confirm any other touched platforms=
-,
->>>>
->>>> Please work with Taniya to identify used power domains.
->>>>
->>>
->>> CAMCC requires both MMCX and MXC to be functional.
->>=20
->> Could you check whether any clock controllers on SM6350/SM7225 (Bitra)
->> need multiple power domains, or in general which clock controller uses
->> which power domain.
->>=20
->> That SoC has camcc, dispcc, gcc, gpucc, npucc and videocc.
->>=20
->> That'd be highly appreciated since I've been hitting weird issues there
->> that could be explained by some missing power domains.
->>=20
->
-> Hi Luca,
->
-> The targets you mentioned does not have any have multiple rail
-> dependency, but could you share the weird issues with respect to clock
-> controller I can take a look.
+I don't find the link particular useful in here. Seems redundant with the
+Suggested-by tag. Anyways:
 
-Coming back to this, I've taken a shot at camera on SM6350 (Fairphone 4)
-again, but again hitting some clock issues.
+Reviewed-by: Nuno S=C3=A1 <nuno.sa@analog.com>
 
-For reference, I am testing with following change:
-https://lore.kernel.org/linux-arm-msm/20250911011218.861322-3-vladimir.zapo=
-lskiy@linaro.org/
-
-Trying to enable CAMCC_MCLK1_CLK - wired up to the IMX576 camera sensor
-on this phone - results in following error.
-
-[    3.140232] ------------[ cut here ]------------
-[    3.141264] camcc_mclk1_clk status stuck at 'off'
-[    3.141276] WARNING: CPU: 6 PID: 12 at drivers/clk/qcom/clk-branch.c:87 =
-clk_branch_toggle+0x170/0x190
-
-Checking the driver against downstream driver, it looks like the RCGs
-should be using clk_rcg2_shared_ops because of enable_safe_config in
-downstream, but changing that doesn't really improve the situation, but
-it does change the error message to this:
-
-[    2.933254] ------------[ cut here ]------------
-[    2.933961] camcc_mclk1_clk_src: rcg didn't update its configuration.
-[    2.933970] WARNING: CPU: 7 PID: 12 at drivers/clk/qcom/clk-rcg2.c:136 u=
-pdate_config+0xd4/0xe4
-
-I've also noticed that some camcc drivers take in GCC_CAMERA_AHB_CLK as
-iface clk, could something like this be missing on sm6350?
-
-I'd appreciate any help or tips for resolving this.
-
-Regards
-Luca
-
->
->> Regards
->> Luca
->>=20
->>>
->>>>> for instance x1e80100-camcc has it resolved right at the beginning.
->>>>>
->>>>> To my understanding here 'required-opps' shall also be generalized, s=
-o
->>>>> the done copy from x1e80100-camcc was improper, and the latter dt-bin=
-ding
->>>>> should be fixed.
->>>>
->>>> Yes
->>>>
->>>
->>> required-opps is not mandatory for MXC as we ensure that MxC would neve=
-r
->>> hit retention.
->>>
->>> https://lore.kernel.org/r/20240625-avoid_mxc_retention-v2-1-af9c2f549a5=
-f@quicinc.com
->>>
->>>
->>>>
->>>>
->>=20
-
+> =C2=A0drivers/iio/adc/ad4030.c | 8 +++++---
+> =C2=A01 file changed, 5 insertions(+), 3 deletions(-)
+>=20
+> diff --git a/drivers/iio/adc/ad4030.c b/drivers/iio/adc/ad4030.c
+> index 4393160c7c77..b2847fd90271 100644
+> --- a/drivers/iio/adc/ad4030.c
+> +++ b/drivers/iio/adc/ad4030.c
+> @@ -233,9 +233,11 @@ struct ad4030_state {
+> =C2=A0}
+> =C2=A0
+> =C2=A0static const int ad4030_average_modes[] =3D {
+> -	1, 2, 4, 8, 16, 32, 64, 128,
+> -	256, 512, 1024, 2048, 4096, 8192, 16384, 32768,
+> -	65536,
+> +	BIT(0),					/* No
+> averaging/oversampling */
+> +	BIT(1), BIT(2), BIT(3), BIT(4),		/* 2 to 16 */
+> +	BIT(5), BIT(6), BIT(7), BIT(8),		/* 32 to 256 */
+> +	BIT(9), BIT(10), BIT(11), BIT(12),	/* 512 to 4096 */
+> +	BIT(13), BIT(14), BIT(15), BIT(16),	/* 8192 to 65536 */
+> =C2=A0};
+> =C2=A0
+> =C2=A0static int ad4030_enter_config_mode(struct ad4030_state *st)
 
