@@ -1,261 +1,112 @@
-Return-Path: <devicetree+bounces-228215-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228261-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76E40BEA3EA
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 17:52:39 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 41006BEAECC
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 18:57:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 98A2E588114
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 15:44:12 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 62EF9588BD9
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 16:50:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C380D330B17;
-	Fri, 17 Oct 2025 15:43:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7C992E8882;
+	Fri, 17 Oct 2025 16:50:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="PVWvx2vm"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="eyYDDBza"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
+Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06A1A20C00A
-	for <devicetree@vger.kernel.org>; Fri, 17 Oct 2025 15:43:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F170D2E7BA7;
+	Fri, 17 Oct 2025 16:50:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.161
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760715822; cv=none; b=nksO/IGQ0XzynU5NAvb50NuqlI2l6gWWlW/RAPLFGi6sBv6gdtNY+1nFeY6IPmDQw1F/7FWe1R4tt5lmCzTo6xMBRq+SprGdAaEvK3r4dNjfZj1C36F4lAlNSGxAU46K67ScaG1A8BLRnsZ0mhJHX+2Nice2oFbjp3nH7ahwmds=
+	t=1760719848; cv=none; b=Bg3mn2wtXtOFaGxFPJrvAiKcAbVPpfXYImqBcuRkvHOGAoHh7DiaE+9JGddwMstpjdyCrZ4cWpMVhXSgIwoQtKV9kFdCQwB7gx2YLfV6sgMqD/EGoULD0QnU/KbRw+5xjeMK/aF31Z99BsFY5174xCyrRaScUdsmFr0qKQ/WIHQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760715822; c=relaxed/simple;
-	bh=IBzm0BkIQZZsdt4xJw7y+O0Sm5/LFDw6hjYa1sV6J7M=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=NdpJxT/othZHSIKaVtr/dNKaIrdOMwEqLXAFfb39gxlVzBwEQNWzakrH+b/lyVxqycKMHuCd1ML7Ok7kaTul2LsSdr8ZWzuHCL8e8hjluGUlUrwvz5rN1rrITBkX8Iv8/1EuwQNDtQDWohK4FyES0OJjYkbu7R9U2cwWqcM2FLQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=PVWvx2vm; arc=none smtp.client-ip=185.246.85.4
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id 4B0714E41145;
-	Fri, 17 Oct 2025 15:43:38 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 1E02F606DB;
-	Fri, 17 Oct 2025 15:43:38 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 34268102F2326;
-	Fri, 17 Oct 2025 17:43:23 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1760715816; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=T3sgtYckKNpZfrVMfRULcu2lLGe70YFSspAezpijEXk=;
-	b=PVWvx2vmTlWIvYh5BJEJwIeglCvikRUVYwmfYiDqyDUGT0g22W9Dz9279iBM9hEHSqEx/X
-	LwhMRobtn4HcGtIcNlimhAkTTqiARlgQ1jyJ+vEaBQFPkSNXBzsXW6axUuOWNMSbKcBv3g
-	Pbl3bQJ0KyNTNRN8Gz92zA7lC4fK47UUIuN3iTbbLGxSfSygnHOrx/ULz/RxfU1iDhWBVH
-	JydHsoDBSks4pvHd9Vwt3Nv/lmUZ74yAkfTudbQtRPhKKcenvHlVXLyUwsWUio8EBONSqC
-	QTJC4Lv0gR63T/NgZyWZwemAAIrRo4eE3LZVJkSB9owqhtMmpfQwqZsdrPiCrw==
-Date: Fri, 17 Oct 2025 17:43:22 +0200
-From: Herve Codina <herve.codina@bootlin.com>
-To: Nuno =?UTF-8?B?U8Oh?= <noname.nuno@gmail.com>
-Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>, Jonathan Cameron	
- <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, Nuno
- =?UTF-8?B?U8Oh?=	 <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
- Rob Herring	 <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley	 <conor+dt@kernel.org>, Geert Uytterhoeven
- <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, Liam
- Girdwood <lgirdwood@gmail.com>, Mark Brown	 <broonie@kernel.org>,
- linux-iio@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Pascal Eberhard
- <pascal.eberhard@se.com>, Miquel Raynal <miquel.raynal@bootlin.com>, Thomas
- Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH 2/4] iio: adc: Add support for the Renesas RZ/N1 ADC
-Message-ID: <20251017174322.07997789@bootlin.com>
-In-Reply-To: <10e119ee5a76f1c47d7eb6a15989c8ffc00ffc5f.camel@gmail.com>
-References: <20251015142816.1274605-1-herve.codina@bootlin.com>
-	<20251015142816.1274605-3-herve.codina@bootlin.com>
-	<1e8d7c96cdfaa93bcc0f581103dc0e13dfee17b7.camel@gmail.com>
-	<20251015211420.031c61fa@bootlin.com>
-	<de57f5274b2fe0aac3621dc10cb6d4d0d98d3063.camel@gmail.com>
-	<20251016160202.3d4d0a5e@bootlin.com>
-	<d7576a0bb9a8d5326d77ae434131540b4359bd2a.camel@gmail.com>
-	<20251017085904.07e40e37@bootlin.com>
-	<10e119ee5a76f1c47d7eb6a15989c8ffc00ffc5f.camel@gmail.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.43; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1760719848; c=relaxed/simple;
+	bh=MMgFnY44lYLvFWaAHAhHw8Fg4sVOR5puzdhO0HV5r+8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Uzo6aUfb7krvf4JyH33pKpVHW02UMRZklYUhJTsoEH1GH/O3LnyXNdItMn/Sk1jtD1bRLegUtK9YS2nN0eId1vCXKc6hUL247UQaXzHkfLE2p6BZnc5IKIBVWsjrIIwGdAOOM001Weti7Av69hymCko5bpdcpG1c1/hbBRvimM4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=eyYDDBza; arc=none smtp.client-ip=80.241.56.161
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp2.mailbox.org (smtp2.mailbox.org [10.196.197.2])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4cp9mz25xwz9tJG;
+	Fri, 17 Oct 2025 18:50:43 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1760719843;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=KKALYDlBuq3AApm7hJUER0vvZlNv/1hPEVn7ARgUxR4=;
+	b=eyYDDBzaOLfNdca2I7KQdT7e1NK2NXZIZWRlguf6SJej6B3274WlX3ZqqSl9TQ9NfnXzZk
+	Pb7rR3iY1xOHKd1YsBZPleTaH7i5VwHRX/hwXHoygO2Uw13PIaOmiWcP3NzaZZqFsCoJNR
+	7CzPI/jIEEBOM6EJW3QfRZb+x4pWNlqXpzzZNVPlrmRBGAdr8NZJ7KLL3hAcoBFbcu+cZC
+	zcTMsaRupUE4lrEZwZPSfG6id4vATlg/djF3w76VmcjMCA7efgt5IfGwOF0V8rjF/zyVfV
+	YBpveuObA970laZ4iSSs7vCrqQHj93OZNBsIRS1wsm0BquPOrUCiX8tf6oLZJQ==
+Message-ID: <96850d24-8b38-4437-bbde-2b4aede3fdae@mailbox.org>
+Date: Fri, 17 Oct 2025 16:55:25 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+Subject: Re: [PATCH 25/39] dt-bindings: display: bridge: Document NXP i.MX95
+ pixel interleaver support
+To: Frank Li <Frank.li@nxp.com>
+Cc: dri-devel@lists.freedesktop.org, Abel Vesa <abelvesa@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Fabio Estevam <festevam@gmail.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Liu Ying <victor.liu@nxp.com>, Lucas Stach <l.stach@pengutronix.de>,
+ Peng Fan <peng.fan@nxp.com>, Pengutronix Kernel Team
+ <kernel@pengutronix.de>, Rob Herring <robh@kernel.org>,
+ Shawn Guo <shawnguo@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ devicetree@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org
+References: <20251011170213.128907-1-marek.vasut@mailbox.org>
+ <20251011170213.128907-26-marek.vasut@mailbox.org>
+ <aO1LkIAfErQhQ58j@lizhi-Precision-Tower-5810>
+Content-Language: en-US
+From: Marek Vasut <marek.vasut@mailbox.org>
+In-Reply-To: <aO1LkIAfErQhQ58j@lizhi-Precision-Tower-5810>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-MBO-RS-META: 63emeuje8d1fpppi7rferinsd6qqt4yc
+X-MBO-RS-ID: 7c53f1497155dd64e06
 
-I Nuno,
+On 10/13/25 8:57 PM, Frank Li wrote:
 
-On Fri, 17 Oct 2025 09:26:26 +0100
-Nuno Sá <noname.nuno@gmail.com> wrote:
+Hello Frank,
 
-> On Fri, 2025-10-17 at 08:59 +0200, Herve Codina wrote:
-> > Hi Nuno,
-> > 
-> > On Thu, 16 Oct 2025 16:26:28 +0100
-> > Nuno Sá <noname.nuno@gmail.com> wrote:
-> > 
-> > ...
-> > 
-> > ...  
-> > > > > > > > +
-> > > > > > > > +	ret = rzn1_adc_core_get_regulators(rzn1_adc, &rzn1_adc-
-> > > > > > > >       
-> > > > > > > > > adc_core[0],      
-> > > > > > > > +					   "adc1-avdd", "adc1-
-> > > > > > > > vref");
-> > > > > > > > +	if (ret)
-> > > > > > > > +		return ret;
-> > > > > > > > +
-> > > > > > > > +	ret = rzn1_adc_core_get_regulators(rzn1_adc, &rzn1_adc-
-> > > > > > > >       
-> > > > > > > > > adc_core[1],      
-> > > > > > > > +					   "adc2-avdd", "adc2-
-> > > > > > > > vref");
-> > > > > > > > +	if (ret)
-> > > > > > > > +		return ret;        
-> > > > > > > 
-> > > > > > > Hmm, is avdd really an optional regulator? I mean can the ADC power
-> > > > > > > up
-> > > > > > > at
-> > > > > > > all
-> > > > > > > without a supply in AVDD? Even vref seems to be mandatory as we
-> > > > > > > can't
-> > > > > > > properly
-> > > > > > > scale the sample without it.      
-> > > > > > 
-> > > > > > Where do you see that avdd is an optional regulator?      
-> > > > > 
-> > > > > You are using devm_regulator_get_optional(). That's for optional
-> > > > > regulators.
-> > > > >     
-> > > > 
-> > > > Indeed I use devm_regulator_get_optional().
-> > > > 
-> > > > We have two similar function to get regulators:
-> > > > - devm_regulator_get() and
-> > > > - devm_regulator_get_optional().
-> > > > 
-> > > > devm_regulator_get() returns a dummy regulator if the regulator is not
-> > > > described in the device-tree. The calling code has no way to known if
-> > > > the regulator was present or not.    
-> > > 
-> > > Yeah because it's mandatory and the part cannot work without power :). So we
-> > > should not be allowed to operate without a regulator.
-> > >   
-> > > > 
-> > > > On the other hand, devm_regulator_get_optional() returns -ENODEV when the
-> > > > regulator is not described.
-> > > > 
-> > > > That's pretty confusing but it is the reality.
-> > > > 
-> > > > I use devm_regulator_get_optional() but check for -ENODEV to see if the
-> > > > regulator is provided or not.
-> > > > 
-> > > > In order to use the ADC core (is_used flag), I need both the AVDD and the
-> > > > VREF regulator available.    
-> > > 
-> > > And that is why I don't get why are we allowed to proceed if there's no
-> > > regulators? That seems wrong to me. 
-> > > 
-> > > So I think the regulators should be mandatory in the bindings and a dummy
-> > > regulator should also not be allowed in this case because that should get
-> > > you 
-> > > -EINVAL when calling regulator_get_voltage().
-> > >   
-> > 
-> > I have 4 regulators: avdd1, vref1, avvd2, vref2.
-> > 
-> > The ADC controller can work with 2 internal ADC core (adc_core[0] and
-> > adc_core[1])
-> > in the driver. Those internal core are not directly accessed by the driver.
-> > Only
-> > the ADC controller is accesses.
-> > 
-> > Those cores have an AVDD and a VREF power supply.
-> > 
-> > We can use either adc_core[0] only, adc_core[1] only or both adc cores.
-> > 
-> > Depending on regulator described, the driver uses one or two adc cores.
-> > 
-> > This choice is done by:
-> > --- 8< ---
-> > static int rzn1_adc_set_iio_dev_channels(struct rzn1_adc *rzn1_adc,
-> > 					 struct iio_dev *indio_dev)
-> > {
-> > 	int adc_used;
-> > 
-> > 	adc_used = rzn1_adc->adc_core[0].is_used ? 0x01 : 0x00;
-> > 	adc_used |= rzn1_adc->adc_core[1].is_used ? 0x02 : 0x00;
-> > 
-> > 	switch (adc_used) {
-> > 	case 0x01:
-> > 		indio_dev->channels = rzn1_adc1_channels;
-> > 		indio_dev->num_channels = ARRAY_SIZE(rzn1_adc1_channels);
-> > 		return 0;
-> > 	case 0x02:
-> > 		indio_dev->channels = rzn1_adc2_channels;
-> > 		indio_dev->num_channels = ARRAY_SIZE(rzn1_adc2_channels);
-> > 		return 0;
-> > 	case 0x03:
-> > 		indio_dev->channels = rzn1_adc1_adc2_channels;
-> > 		indio_dev->num_channels =
-> > ARRAY_SIZE(rzn1_adc1_adc2_channels);
-> > 		return 0;
-> > 	default:
-> > 		break;
-> > 	}
-> > --- 8< ---
-> > 
-> > In rzn1_adc_core_get_regulators(), looking at one core I do the
-> > following:
-> >  - Try to get AVDD (using get_optional)
-> >  - Try to get VREF (using get_optional)
-> >  - Core is used only if both regulators are present.
-> > 
-> > For one core to be used, both regulators have to be present.
-> > 
-> > Regulators are mandatory but adc core usage is optional.
-> > 
-> > This optional usage depends on related regulator presence.
-> >   
+>> +  fsl,syscon:
+>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>> +    description: |
+>> +      A phandle which points to Control and Status Registers (CSR) module.
 > 
-> Ok, then we could flip the logic and have boolean properties for the adc core
-> usage and depending on that, requesting the regulators. To me, the intent would
-> be more clear (at the expense of more FW properties).
+> Need justify why not standard interface such as clock, phy, reset ...
 
-This introduces a new property and duplicates the information:
-- flag to tell if adc core is used
-- regulators described only if used
+Because this is neither clock, nor reset nor anything else. This is 
+really only a remote register which controls the pixel interleaving. 
+Therefore, syscon.
 
-And so, the possible flag set to "adc core used" but regulators not
-described. This is error prone.
-
-
-I have chosen to rely only on regulators description to avoid the
-information redundancy.
-  - regulators described -> adc core used
-  - regulators not described -> adc core not used
-
+>> +
+>> +  ports:
+>> +    $ref: /schemas/graph.yaml#/properties/ports
+>> +
+>> +    properties:
+>> +      port@0:
+>> +        $ref: /schemas/graph.yaml#/properties/port
 > 
-> Having said that, the above helps a lot in understanding what's going on and
-> explains the get_optional() usage. I'm not still 100% convinced but bah, fine :)
-> 
-> I would still argue that you should have a comment (likely in get_regulators())
-> explaining the logic and the optional usage.
-> 
-> Given the above I think you could also remove:
-> 
-> if (!adc_core->vref)
-> 	return -ENODEV;
-> 
-> from rzn1_adc_core_get_vref_mv() since the channels are only exposed in case the
-> regulators are present.
+> video-interfaces.yaml?
+No, because none of the properties in video-interfaces.yaml are 
+applicable to this port as far as I can tell.
 
-Yes indeed, I will remove the adc_core->vref check.
-
-Best regards,
-Hervé
+The rest is fixed, thanks !
 
