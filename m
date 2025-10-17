@@ -1,234 +1,270 @@
-Return-Path: <devicetree+bounces-228304-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228305-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37B15BEB65C
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 21:40:55 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 84F83BEB686
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 21:49:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4E54D3AD423
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 19:40:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 033A61AA6AA6
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 19:49:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 218E6330B31;
-	Fri, 17 Oct 2025 19:40:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ab+lJnO2"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3837F23EA82;
+	Fri, 17 Oct 2025 19:49:24 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from FR6P281CU001.outbound.protection.outlook.com (mail-germanywestcentralazon11020125.outbound.protection.outlook.com [52.101.171.125])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEB6C241691
-	for <devicetree@vger.kernel.org>; Fri, 17 Oct 2025 19:40:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760730048; cv=none; b=uiIP9Nk6ZitQWVGAszp9JOtXE8Fe2bXvfRpo+TWoNph9joCa5B9OtU1EQQt+vkUwIqKwQ54AUF9mhAz+2lFFAa9yggaxPa7bFVMyh2KeD1JiOtYl9njMnVa0hDwGS4lwjIkPRQK8/zVdeOKPTgdgfeqHA1mxEZB+puN4bF2DFAM=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760730048; c=relaxed/simple;
-	bh=RwXvQjbt7JK3pEL6l7LHRphjooUlJVKHIFoBkWQhKQ4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=XxtGd8wFvpPyRj/PtbZwx5/HxWQ4dXc8mhd27ZbdVuxsaUZwBGZd2+QhnAT1N3L9dOKwqI+XzGgHZJAJT8DDR7cCuaFUmcBBZPpeIJxcRu+u0V73Q1gLZgVs5XiBxZqWKlOrZM4432zTDAKlPTfmQQXs9z9S+uq9T4m9WD6nCJs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ab+lJnO2; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59HJGGWo015781
-	for <devicetree@vger.kernel.org>; Fri, 17 Oct 2025 19:40:44 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	NDFamMd0o9Y7qLZOjscAOp4r8I+m3aYXZeFPwTjn+lI=; b=ab+lJnO2WjDFcY+u
-	4mf4EfvpQGaWjRovEEcZWSSzRphu0skduP7aB5wQRV36e/nVbH1tjK/Zl8duA0tY
-	pGqWIoLNeFXEjanyyJ6fVjmg75ID42a12X8EF01ZSeWIlbiem49Bn4vthoh+Pb6o
-	AVSSTuQT7AscEh8JZlyZYj2YtzB6Ck23A3mr+JT8AuqYcNja4pmRG+Lw/w0OrDzU
-	JytgiPWKz+Iwq5LNNV59sdD60F4tNzFA+OODdp5hmCBipRhVa+79zCXeAq07KcFM
-	pvOFAArsBAwm4GimPMSpRb6dsfJhFIht6ew7jsTZqKsqWM1rGFbkI2aQ86m/yTIM
-	8pvjyA==
-Received: from mail-pj1-f69.google.com (mail-pj1-f69.google.com [209.85.216.69])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49sua8v8cm-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 17 Oct 2025 19:40:44 +0000 (GMT)
-Received: by mail-pj1-f69.google.com with SMTP id 98e67ed59e1d1-33bb4d11f5eso2131711a91.3
-        for <devicetree@vger.kernel.org>; Fri, 17 Oct 2025 12:40:44 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760730043; x=1761334843;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=NDFamMd0o9Y7qLZOjscAOp4r8I+m3aYXZeFPwTjn+lI=;
-        b=EvGlWgPeoZuubncG7GeXpgZGhp4jaf1rkgqwStewpBWcRsF0zXm/6csZI9A2mCBgA7
-         icL5tPAHAUSNKdbthXwJA1/6m8jjisyZALpM+jDlQtqkuNqzT9dUyFi2JKSipAt6Bxr/
-         Vz7+vwwBk8JGFmik7khoOsEwSiIlNbjAu4X0xDGHgo4cvOmyhjdXTnDtscXF0xXW5MnU
-         w4E75GXVjhxR/iC4kMjB0YFGwk/6eiKIznHMcGJUGBaJ4Je0l2/B2pnWBTg9LXGEL/UR
-         2BbSUf0azqtXvQK2dL1bjLgo53XHA9R7yHJaJ/dJmc/j7sf0YQebRYSmLu24eFw2ldb8
-         dvOA==
-X-Forwarded-Encrypted: i=1; AJvYcCWzOR0PMY7sVh4OAPbOixJd2RvCbwzbNd3ymes94s3XDmMfnf59nQL9d/pOaksTLCZbbxQ2V2VOhAfa@vger.kernel.org
-X-Gm-Message-State: AOJu0YzVluIl/Qz1nqvwRI0pKW0s44/MasDeji3xlWwJMGAjVdwF5b6e
-	+H3xD38WEuSix1DLd2mD/gOCptG+cDzKxOalfKvyYmqvdiDvz28DfqXVYShRIJHaOkXOaX6fba8
-	ErSbIsJAvxzuEylGHvy9PfoDspki/TJrR9C/29Jnxal4DpMhyEBmne9tR6afA27Gr
-X-Gm-Gg: ASbGncvZnilCAZ4FPH7OmZdTB5ajZM1VD2uHzOKhdC/NE+djpdfwH544q2s+/8+/Wmq
-	5ejcAw6fgLuz9nuSkfNAyGQ2rQOcI/SxsiWuh8CkUcGVyiAiYnRXnz6cnSIC9JXc7/I+iEtRVPM
-	lgfQOIj9emyyyMzXowePPcpmf7gY890R5saC+97lLsUV+fiAB+RuV3yPxRze91NAdVIr7kAH7oc
-	ZC+bVA2oJGUF4P2+A88AXLIlULfQXmhwM0aXbMZFU9NriU2aZcyu2FYRjo0vO/VswNqemAzeVni
-	rErYzp39t7j7V9DKNc4QCy42BfZoALvvUdoeVJeKPq8FjmeLIQ7e9JsHdfi6uHJpqIqqm+85cPp
-	ZXmsG3PNeIc8SaE41WgPGJvHJyq7mbf5Hfg==
-X-Received: by 2002:a17:90b:3f8c:b0:32b:a2b9:b200 with SMTP id 98e67ed59e1d1-33bcf87ab38mr6176219a91.13.1760730043206;
-        Fri, 17 Oct 2025 12:40:43 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGhslTnLw1d44+gxYWnp+m2GVuVioyNzi8Rgxtwtm1YnY0CsEHaMExcmSUWrki5gmUY0K4AhQ==
-X-Received: by 2002:a17:90b:3f8c:b0:32b:a2b9:b200 with SMTP id 98e67ed59e1d1-33bcf87ab38mr6176158a91.13.1760730042699;
-        Fri, 17 Oct 2025 12:40:42 -0700 (PDT)
-Received: from [10.216.52.245] ([202.46.23.19])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-33d5de11392sm200332a91.7.2025.10.17.12.40.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Oct 2025 12:40:42 -0700 (PDT)
-Message-ID: <8fb6e8e0-cdca-0bd5-d0fe-56b5f6d27a5c@oss.qualcomm.com>
-Date: Sat, 18 Oct 2025 01:10:09 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2AE5550276;
+	Fri, 17 Oct 2025 19:49:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.171.125
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1760730564; cv=fail; b=f7rCr5lhUtffIm/cNt76eatRqi1SfQujd/AijBfkLykg9JYlfifdghtXHZGwHYF4Z63evgB34mcALolp5vO6sboo6c8F433Ns3IaMNapYHuJITJ1A/PzvrrqrQ7mzlgMi5ER67eOIc8N8vtByAXEvfRCfhnMr229Hz98BhdCAUQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1760730564; c=relaxed/simple;
+	bh=rmq9iDM0N8egmiyuqy8qRNkKTNOFQR1O/F1qA79Nu3c=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=jO1KiNpKuK+MmpC++EhEwF5wGej1DkVFJHRTq79D2ODJnJe+2+OWAeWSb+PUf/EagYQe2xhDju/qcz646hEXbuJwe36/lX8gU8+qAqOj5hgX7/DzakRgzqQFk/UB7Q0n7FYA6O3IBKqLdRJcBF1OFVUvXRXiOpggUnrqkhwef0Y=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=siewert.io; spf=pass smtp.mailfrom=siewert.io; arc=fail smtp.client-ip=52.101.171.125
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=siewert.io
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=siewert.io
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=pWDHzgS70AXCJbP4AGDFdp2BK5S3qSB9PTSm8CeS2r1wGgtLmP7w0KSQncr82Gc2yGUVUtkQ3gpzEagDq9orph3XkCdYMGLIJm70+5lRAYDz3168zC66Cg9FhEuD2c6F6DID0TVhIaRy7TfwpmAELca8fl+mlD4HiZzs004Pgoc4H+lyK+eM7sBTKw6XIrdU9kIBZXPzf9hu0sNXxy7CY8UoFftgcY3ZUOwkciV2xNiwjVkS0H0crrLrNyvr2OrJY8x4aSkPHiBiSvypD35dBZcHwGErGjEC9+96kWf+p2s1RvdLwPCJphzZQYIJJGt4WK0EFn4AWZjY6tz/WRQ+jw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=RWX6UcmsSk8FPxfdTA1CdktxdkziQV2i/BSl9tgQ2wM=;
+ b=Wn7KvWS/rDzqdJ7WUIe7qDTKsda43vn+IBMmJj8Er7dilits21QBuwI1+IMROrhJCkmMbgfTFffIWGfZDostWK33CZ/DNg6paJK0XLOAndPo4Rj1CvMGsrq5oMrc15EoswYJLOZWE4mJzPVnLa1kR8ucbgI9cLNnh50kAbio0vDzRhv41dN80/w2J07IL4UNHbEXC3Pv6Sdqj46MfHDvWgDTnEsXEPRMAkjVPvoyWq2h/5VVE4OQKdlxSljLyzfp+UaCmnj9idIc3snfyW4SC8j+NtOM48Vbfz4aRHasdUC82atefIptpUl6+mClPtixbQx1ZE9mjH41yX8CQRHdHQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=siewert.io; dmarc=pass action=none header.from=siewert.io;
+ dkim=pass header.d=siewert.io; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=siewert.io;
+Received: from FR3PPFB3D0CF1D2.DEUP281.PROD.OUTLOOK.COM (2603:10a6:d18:2::182)
+ by FR5P281MB5048.DEUP281.PROD.OUTLOOK.COM (2603:10a6:d10:180::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9228.13; Fri, 17 Oct
+ 2025 19:49:19 +0000
+Received: from FR3PPFB3D0CF1D2.DEUP281.PROD.OUTLOOK.COM
+ ([fe80::ac8:ee5e:7e24:98a9]) by FR3PPFB3D0CF1D2.DEUP281.PROD.OUTLOOK.COM
+ ([fe80::ac8:ee5e:7e24:98a9%8]) with mapi id 15.20.9228.014; Fri, 17 Oct 2025
+ 19:49:19 +0000
+Message-ID: <cae47933-ccef-491f-a79f-910686047b42@siewert.io>
+Date: Fri, 17 Oct 2025 21:49:17 +0200
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] ARM: dts: aspeed: add asrock x470d4u bmc
+Content-Language: en-GB
+To: Andrew Jeffery <andrew@codeconstruct.com.au>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>
+Cc: Zev Weiss <zev@bewilderbeest.net>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
+ linux-kernel@vger.kernel.org
+References: <20251011112124.17588-1-tan@siewert.io>
+ <20251011112124.17588-3-tan@siewert.io>
+ <eb9ed79a820b67d7d3dbb0ab7ec6349bf962fe9c.camel@codeconstruct.com.au>
+From: Tan Siewert <tan@siewert.io>
+Autocrypt: addr=tan@siewert.io; keydata=
+ xjMEXY4MwBYJKwYBBAHaRw8BAQdAdDPxHO4UUyhKcZXkztTv4iVAbjk/+F8ayCYnegO4q4zN
+ HFRhbiBTaWV3ZXJ0IDx0YW5Ac2lld2VydC5pbz7ClAQTFgoAPBYhBJ1bd8XzFb0F9Kx5LnjQ
+ kBYSrhG1BQJnqiY3AhsDBQkSJuqzBAsJCAcEFQoJCAUWAgMBAAIeBQIXgAAKCRB40JAWEq4R
+ tbtDAQDyPybWLk2EYMeY+vv/WID8hk18+jp3fZCNp9aJp9GkJwD9GeQNvCO1LPDUjkMQqf8d
+ DgMM9pmsvbJUFfViYbflbQ7OOARdjgzAEgorBgEEAZdVAQUBAQdAjtzTYeMaO9yG3M1uBtQy
+ JB57UJXf+m+mNDhWkOY69DADAQgHwn4EGBYKACYCGwwWIQSdW3fF8xW9BfSseS540JAWEq4R
+ tQUCZk72AwUJEibqwwAKCRB40JAWEq4RtUkGAP0R8RmddZqdGdqdod1MkVXpw/z5OOptToXf
+ za1W8nsGmgEA5gvQzkN1LJ8oP9LB8YGAmJt82tPvJCmi4WzesI53kQY=
+In-Reply-To: <eb9ed79a820b67d7d3dbb0ab7ec6349bf962fe9c.camel@codeconstruct.com.au>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: BE1P281CA0116.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:b10:7b::6) To FR3PPFB3D0CF1D2.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d18:2::182)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH v16 05/14] power: reset: reboot-mode: Expose sysfs for
- registered reboot_modes
-Content-Language: en-US
-To: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Sebastian Reichel
- <sre@kernel.org>, Rob Herring <robh@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Souvik Chakravarty <Souvik.Chakravarty@arm.com>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Andy Yan <andy.yan@rock-chips.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>, Konrad Dybcio <konradybcio@kernel.org>,
-        cros-qcom-dts-watchers@chromium.org, Vinod Koul <vkoul@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Florian Fainelli <florian.fainelli@broadcom.com>,
-        John Stultz <john.stultz@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-        Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Andre Draszik
- <andre.draszik@linaro.org>,
-        Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>,
-        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org,
-        Elliot Berman <quic_eberman@quicinc.com>,
-        Srinivas Kandagatla <srini@kernel.org>
-References: <20251015-arm-psci-system_reset2-vendor-reboots-v16-0-b98aedaa23ee@oss.qualcomm.com>
- <20251015-arm-psci-system_reset2-vendor-reboots-v16-5-b98aedaa23ee@oss.qualcomm.com>
- <CACMJSetWthCcJo8v7EuUK-aDKhf5KTNG5WQQ9aTQu62B+E=DMA@mail.gmail.com>
-From: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>
-In-Reply-To: <CACMJSetWthCcJo8v7EuUK-aDKhf5KTNG5WQQ9aTQu62B+E=DMA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: MZUjwqneQ5PcIfufeBJ7ue09-N1Xvh8a
-X-Authority-Analysis: v=2.4 cv=e5MLiKp/ c=1 sm=1 tr=0 ts=68f29bbc cx=c_pps
- a=vVfyC5vLCtgYJKYeQD43oA==:117 a=j4ogTh8yFefVWWEFDRgCtg==:17
- a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=EUspDBNiAAAA:8 a=C5lFK0Xs5ZTp69CiT58A:9 a=QEXdDO2ut3YA:10
- a=rl5im9kqc5Lf4LNbBjHf:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDE0MDEzNCBTYWx0ZWRfXyGh61FCPqvJp
- Joe1K8PGvqirTC94QKugzgEM10+GWdevod1hXmG0G/p/nrdC67n8MlQM9TB4fz3fSGbqhQ9xnUj
- zFDdPb542TIAGATVR6Q//0SSUdzDPmm84S2HS6Ms3fh3Woveq1gB70euFLk0hx5sV5zgeljxl/a
- Kn1hRU5ZstTHm6CcKfGd76fWIQwS7iGSeT9y/XjI6WZ1iFbpfYUCmwtzjXJwihcPQn9Qrchw1ya
- HNvYIW026ig0TYBBKqDgWEuz2dbLClbVrySmkC6AwAIb/nCU4Fzxrz61YqfEoelh5eWCqbZX9Ml
- ThXXkCPj8m94Jd1P1eS0v6eymsP99TiUrNqr7pPQ7gbZuBzwa5oTjf09XD+kZg3Cs8Ilhp53IOb
- sjVVQ7EU/SOWKsj9BfsjPeMfK87Cow==
-X-Proofpoint-ORIG-GUID: MZUjwqneQ5PcIfufeBJ7ue09-N1Xvh8a
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-10-17_07,2025-10-13_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 suspectscore=0 spamscore=0 adultscore=0 clxscore=1015
- priorityscore=1501 impostorscore=0 malwarescore=0 bulkscore=0
- lowpriorityscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2510020000
- definitions=main-2510140134
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: FR3PPFB3D0CF1D2:EE_|FR5P281MB5048:EE_
+X-MS-Office365-Filtering-Correlation-Id: f0932a13-5e16-4cf0-f7e4-08de0db642bb
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014|7416014;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?N2hOU3RzWlZ1WFVKUnRYNjc4Y1YxbVZJalcrTEJMeEZYSXJ0dzdDUm53aFdP?=
+ =?utf-8?B?dlhZRW81MGp0VDBKdXh0Uk92YjBwSDIySmJ6UHZIaU01WU5zd2JXSzIwSlNK?=
+ =?utf-8?B?OUJETGxhZVNlRHNpK1VVRWdxMVFOYlpzWkJOUzc5dnZ2TW9ra3VzWkdBN3VZ?=
+ =?utf-8?B?bmJ1S2hkM2NRMkZHOTFyTjVFVXZlbjAxWWxsWUR1R1Rra3lEZjdpMVpHKzFm?=
+ =?utf-8?B?R3kvWGRETmRLdnFLKys3czNqVTZka2NyZEpGWWpXMHYxV21UUW9paDVvRmVk?=
+ =?utf-8?B?dTBoNXA1OVlqSkplTm9pUk5Jb3MyL2l5Tk1ReU95ZFhCak1SK25MUjBpd290?=
+ =?utf-8?B?NmlrVTkrMVEzQkpJenp6YmVaRlRBbEFNMHBkVmVYa3pXbDRrRGZsMzZsTjM5?=
+ =?utf-8?B?YkVHc1VHMkhDc2tUVVBSUFZkMlJkdFE1ZmNvRDNYaFBlNC9idllhZE5JZUxU?=
+ =?utf-8?B?Wk1KQlpkS3hvbmNKcy9XYnVqQjVxNUFXd2xaSFo2NkxSYjhYYUl1Ri93Vnc0?=
+ =?utf-8?B?Y2NITWNUc3RtZ3h5UWJZRVpsS0t0Vklqb2VwNDYrZ2tDT0I5R1U5ZDBQenZu?=
+ =?utf-8?B?SS9qdU1saGxCS2FXWXN5bFBEUVhObWpIZ2cyS2RIUTBCSXF4ZHJ2dE9tZUw3?=
+ =?utf-8?B?MytTVEc2cXI1RkQrQllZUjhnY2h5WEhuaE9EdDd5cXdPVnh3eFNWajkrY0Rt?=
+ =?utf-8?B?T01lMlZ3RzJyMFkyZ2lyZ2VYTW1kdnVUWmE1SG1uMjg5c3ZyZVVCU3NDQkFV?=
+ =?utf-8?B?NEFOTU0vYUJQT3pVV3FyWXQ3UC9kdFZ5Vm5tT0xDaEphWHNYWEhvb21YbjZr?=
+ =?utf-8?B?VUYxamdmQlJ6aDlINGVGTW9YOFd6SW9obG12MHNySENrdlZyNGZDMXh5aStV?=
+ =?utf-8?B?ZlFndXIwSXkrSVBySnZPcUl6eFhCeklDbHk0QmYzL0dESmNScWhoWkp0ekhv?=
+ =?utf-8?B?eFVtcnU1dUlMWHNXWTBHamh5Uk5UdW5aZFNRVWlKcURQSkdaYlFVL05yTmhY?=
+ =?utf-8?B?Sk1mWkpIYXZpL0IvbFlqL25zb29paWN5cXRkUWpJSUdOZlpneXRLM2VTTUFT?=
+ =?utf-8?B?TlVNaU1CNHZKL2VGak1telBmVC91akZSRWc4eUdSdGRBNUFERkFlZ2xiUEVU?=
+ =?utf-8?B?TnBod2NLN0hEY3d3cXo1OGhtSWEyZ094K0ZGODE4R3BqeTRJbm4rN3A3Vjds?=
+ =?utf-8?B?K2x0b015SERRUVBjZDloOXkrMk05R2ZZSFlNLzJxbm8rbmx5MFBVYlJQZnN5?=
+ =?utf-8?B?WjNOUDQybDVYOWlVanZnY05CUHUwS2VVZUpQcWgrbFROemppYW9aY3MwTnhX?=
+ =?utf-8?B?Z0h0NEgrcWNXSFMvNEdQWVNXbFB1MDhrcUFNM1Rqdmlpd3I0Z1U1cWp2TkFl?=
+ =?utf-8?B?a25xNnJkWWVmSUY4VEZFQWl4aWR0akdzOCtOQmUyYkcvc09HWWpQYkdRL3lw?=
+ =?utf-8?B?Tm9KR0VPZGJYR1F2T0lNUGRxL1c4N1hrUW15NmxlZU5nUXkrcHBGaUFoaEt0?=
+ =?utf-8?B?OTFsSCsyMVlXSW9tSEpBVEFVWThJSnczT29UM05BKytZYWpNZCtINGZIazVt?=
+ =?utf-8?B?WlJMYm55djF6NkV2ZEdTZCtkSkhNcU40ZG1kR2dlQXliam1lQXMvMjBnOWhV?=
+ =?utf-8?B?RjJ0OWM4WXhiRUJqZ3Yza3JDM1hNMW9JYlNwbDhCMG8rLzJaSGprdldmaWow?=
+ =?utf-8?B?SVV1alc0SlhieURUSFFzalJaSVU0MUV0cjZnYm9ONmExbUd3U1BSM2lZSXYy?=
+ =?utf-8?B?SmorZWZuZmZ1QnFOaU1DbVBXQURnVkQ1Qjd6MmlCeWlLb2RYY2ZMblNwcjF3?=
+ =?utf-8?B?SlFncTdUTXhjWnJzTGJ2d09DQmNvY0JkVjJsVFBYQmRUd2lVdWV3RU5abUhR?=
+ =?utf-8?B?U00zVGsvM1VQdU9DVmtQZDlsdkwzUldqcEY4cWxjcDhEN3BwV1phTW1qQWEr?=
+ =?utf-8?Q?ttusu4HP0fBEnERgt/HG2wtDYXmBgHdl?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:FR3PPFB3D0CF1D2.DEUP281.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(7416014);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?Z3JiSVE1dUdGQnZRUC84NmR6bytyekkyNk5OZHd3NUdja1NrVVdNRmQxZHlX?=
+ =?utf-8?B?QkJGTnh2S2lldS9VUE82Y1FYQUx6WWxGcXJQZjQ3MGpDT3FISEdMWlFiUzJl?=
+ =?utf-8?B?amtGVE1IdjduK2tVYUFWTTVKdVlia3RRVHdwNENRQWUzemFKaHNYQXY5Q3du?=
+ =?utf-8?B?QkdZdWhKUnhGRFZaRURCdjltbVYyeUFIcklBbWVXbmNPdkdick5iajBCd1o1?=
+ =?utf-8?B?Wmg2OTVKdEx3K2lxbElFSGM4YVg5b01YZmhyMjY5bjhTK05jK3A3aE5WeUFZ?=
+ =?utf-8?B?ODhGUm1RYXdIaUdVQjd4OFNwWk16bHovUUt1dUtmUWVXZHhxZ1QzZGRNUFI5?=
+ =?utf-8?B?bSt6RlBJbG1DWmpZanFOc0V5TkRMRlVUSzl4V3ErYm5PZVJPaXhHMlB5NlFS?=
+ =?utf-8?B?RFBJMXhRNVlzOEVpMTJzMnBKM3lzSWY3NTNhUlBJTHNqTzdjSVVNYWhKc3FS?=
+ =?utf-8?B?NE1iV1NiZ25EUkx5U1VzNkxRRGJVbWhna2lrempiVm5TSFVhY2RPTDBEMzFG?=
+ =?utf-8?B?czAwTE01RXJlZ0E0TWdVQURoL0U2ZmdrY2VaN2dMUTlsSmM5VkRsUTdNbUhL?=
+ =?utf-8?B?N2dIL2RONDhoM3FqNWRvNmtCd1BrQ3ZzTnZvWmttcFB4WVI1NGpuTHlWTnVh?=
+ =?utf-8?B?NlU2WTZLQW9Jd3JUUElVZTZxSDFlMFNFcmhINXlqQ0lFbkFyZGhIcW5sa0Yw?=
+ =?utf-8?B?QlpXUmEyR2VnZFdFaWxSS0sxRnpYbW5CdktoelMxdzBVeTVsNmdVYUUrTjBX?=
+ =?utf-8?B?YU9nb3oxRGdmcnB0NGs4N2xHc0RGMGpvVmg5ZkxxKzg0TFZ2Q0tENEF1ZVJR?=
+ =?utf-8?B?bWV4elZYM2tGanVta2ZleU1weE1YMGtoa1gxNXV1czFUd0lUc2VPMVFCV0I2?=
+ =?utf-8?B?SHNGdkVhSm9DL2cwMmNHaGJtUHgrcjF0aVF0UVhBcWltaXBQUXNTeW0yeUc1?=
+ =?utf-8?B?RHZGZkdQZ0VDRmdtekF3NDJnME1yeW84QWRhM1NidjVWOVJ2bWlyeUQxTi9K?=
+ =?utf-8?B?U2N3dnlZeXgyYU9DbnpFZkVaNDlnSTAzQlFxeWdqRjdvczRyN1FJRXFpUzc2?=
+ =?utf-8?B?VTNaS1I0RnRpQ1gzK3prTEFrMkRaMDVtTExZQUVMdDhpdmwrdHVPcHhSNWxJ?=
+ =?utf-8?B?ekFIR0o4c2FUclhETkt1TkJSa0NOd2R5M3g5ZnlZZE10TmFyUHIzQVRRa09I?=
+ =?utf-8?B?azkwbUNUL2poZWh0ODNiZmlUVS8xOEJQNXZDYktGMFF5dGxjbldjUm9ibm10?=
+ =?utf-8?B?cEhobWl1ZjhBWTZCZmdNOTZFMXhKWWl6RHNNTFlST2JhTFd5VWVIVUtzVWc2?=
+ =?utf-8?B?NmV2ZWNZN3JrWnc5a0hiMEdkbVVMVENZUkZzSmlEKzkxcDFCdXl5Y2Jiamls?=
+ =?utf-8?B?WkozQndwRnVxVW42MVhSY2RrN2QzVis4cDZBWnFMT0VjdDMzajNxVERPa0VI?=
+ =?utf-8?B?dW1RTFFMQVVHbVNnYzRkTG95a3FlU3g4MzlvM0dzcmtxOFVWOXpNZDRjc1Zt?=
+ =?utf-8?B?RGVJVlZqNnZoV2M2SjhhQkpkYTV0dWJ2NHdGVmJvcmJhYitNZS9sT0ljRnpO?=
+ =?utf-8?B?SEdGWnFlQTBaelhaN0UxdHpmMkZiVlNCUkRyakoyWGhicWZLK2NkM1NaWUZx?=
+ =?utf-8?B?alc3amd4dnp6ekFCVjc1MTh2SkpQYXljTmh6dlVlcWYzTXhBZURmN2FEUWpp?=
+ =?utf-8?B?T3JYeUxBcHMyc21Hbnd0UzNCN0FzVXkzakRpNDRXWWp3WkNYL2pmdmdIbDVW?=
+ =?utf-8?B?VGhzZkk2NjVabEU4TGlPdUJ4QW1mQzlrQjZ1YVFHdGI5QnpqZWxtbEIxSElF?=
+ =?utf-8?B?K0thRDZROUVKYk9pNnQ1d2FvNTVuQjlScGV4R2ZqUDJmZ3FyMGhSSFg1VEE1?=
+ =?utf-8?B?QXlqa1k2ZmtKTjFydHI3ZG5iS2drLyt1VC9jdEd0VWRqSkoyTFpJVGNKbW5M?=
+ =?utf-8?B?MFJhUElYVkpSeHEzS2xOVk4yRnlER3BReS9iNGlTdHJlZnpIU1hOeXRmUkF0?=
+ =?utf-8?B?YXN5MjdqZmtBNHlGR094cXlhNlZsYU1EM0ROQTFFTGh6N1ZoV0xIMlNNYTZT?=
+ =?utf-8?B?clUxZnRxOFlXZi9RWmpUejEycGdpVHQ2V3FpWVFoOHB2aVh3ZFcrejJWNC9x?=
+ =?utf-8?Q?bMu8=3D?=
+X-OriginatorOrg: siewert.io
+X-MS-Exchange-CrossTenant-Network-Message-Id: f0932a13-5e16-4cf0-f7e4-08de0db642bb
+X-MS-Exchange-CrossTenant-AuthSource: FR3PPFB3D0CF1D2.DEUP281.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Oct 2025 19:49:19.0190
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: e8b4abbe-444b-4835-b8fd-87ac97451a7e
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: a+c5AUDSuVasdwz8lqn1WJE6SMYoOa6AN/UGpmzDgKp79AkrpUg+zbIJByFRuEy3
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: FR5P281MB5048
 
-
-
-On 10/15/2025 8:17 PM, Bartosz Golaszewski wrote:
-> On Wed, 15 Oct 2025 at 06:39, Shivendra Pratap
-> <shivendra.pratap@oss.qualcomm.com> wrote:
+On 17.10.25 07:42, Andrew Jeffery wrote:
+> On Sat, 2025-10-11 at 13:21 +0200, Tan Siewert wrote:
+>> The ASRock Rack X470D4U X470D4U is a single-socket X470-based microATX
+>> motherboard for Ryzen processors with an AST2500 BMC and either 32MB or
+>> 64MB SPI flash.
 >>
->> Currently, there is no standardized mechanism for userspace to
->> discover which reboot-modes are supported on a given platform.
->> This limitation forces tools and scripts to rely on hardcoded
->> assumptions about the supported reboot-modes.
+>> This mainboard exists in three known "flavors" which only differ in the
+>> used host NIC, the BMC SPI size and some parts that may be un-populated.
 >>
->> Create a class 'reboot-mode' and a device under it to expose a
->> sysfs interface to show the available reboot mode arguments to
->> userspace. Use the driver_name field of the struct
->> reboot_mode_driver to create the device. For device-based
->> drivers, configure the device driver name as driver_name.
+>> To keep the complexity low with the BMC SPI, use the 32MB layout
+>> regardless of the used SPI or mainboard flavor.
 >>
->> This results in the creation of:
->>   /sys/class/reboot-mode/<driver>/reboot_modes
+>> Signed-off-by: Tan Siewert <tan@siewert.io>
+>> ---
+>> v2:
+>>    - fix led node names [robh]
+>>    - fix missing gfx memory region and other offenses [Tan]
+>> ---
+>>   arch/arm/boot/dts/aspeed/Makefile             |   1 +
+>>   .../dts/aspeed/aspeed-bmc-asrock-x470d4u.dts  | 350 ++++++++++++++++++
+>>   2 files changed, 351 insertions(+)
+>>   create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-x470d4u.dts
 >>
->> This read-only sysfs file will exposes the list of supported
->> reboot modes arguments provided by the driver, enabling userspace
->> to query the list of arguments.
+>> diff --git a/arch/arm/boot/dts/aspeed/Makefile b/arch/arm/boot/dts/aspeed/Makefile
+>> index 0f0b5b707654..c601af36915e 100644
+>> --- a/arch/arm/boot/dts/aspeed/Makefile
+>> +++ b/arch/arm/boot/dts/aspeed/Makefile
+>> @@ -13,6 +13,7 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
+>>   	aspeed-bmc-asrock-e3c256d4i.dtb \
+>>   	aspeed-bmc-asrock-romed8hm3.dtb \
+>>   	aspeed-bmc-asrock-spc621d8hm3.dtb \
+>> +	aspeed-bmc-asrock-x470d4u.dtb \
+>>   	aspeed-bmc-asrock-x570d4u.dtb \
+>>   	aspeed-bmc-asus-x4tf.dtb \
+>>   	aspeed-bmc-bytedance-g220a.dtb \
+>> diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-x470d4u.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-x470d4u.dts
+>> new file mode 100644
+>> index 000000000000..e9804b0ace9f
+>> --- /dev/null
+>> +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-x470d4u.dts
+>> @@ -0,0 +1,350 @@
+>> +// SPDX-License-Identifier: GPL-2.0+
+>> +/dts-v1/;
+>> +
+>> +#include "aspeed-g5.dtsi"
+>> +#include <dt-bindings/gpio/aspeed-gpio.h>
+>> +#include <dt-bindings/leds/common.h>
+>> +#include <dt-bindings/interrupt-controller/irq.h>
+>> +
+>> +/ {
+>> +	model = "Asrock Rack X470D4U-series BMC";
+>> +	compatible = "asrock,x470d4u-bmc", "aspeed,ast2500";
+>> +
+>> +	aliases {
+>> +		serial4 = &uart5;
+>> +	};
+>> +
+>> +	chosen {
+>> +		stdout-path = &uart5;
+>> +	};
 >>
->> Align the clean up path to maintain backward compatibility for
->> existing reboot-mode based drivers.
 >>
->> Signed-off-by: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>
 > 
-> [snip]
+> *snip*
 > 
+>> nvmem-cell-names = "mac-address";
+>> +};
 >> +
->> +static int create_reboot_mode_device(struct reboot_mode_driver *reboot)
->> +{
->> +       struct reboot_mode_driver **dr;
->> +       int ret = 0;
->> +
->> +       if (!rb_class) {
->> +               rb_class = class_create("reboot-mode");
->> +               if (IS_ERR(rb_class))
->> +                       return PTR_ERR(rb_class);
->> +       }
->> +
->> +       reboot->reboot_dev = device_create(rb_class, NULL, 0, NULL, reboot->driver_name);
->> +       if (IS_ERR(reboot->reboot_dev))
->> +               return PTR_ERR(reboot->reboot_dev);
->> +
->> +       ret = device_create_file(reboot->reboot_dev, &dev_attr_reboot_modes);
->> +       if (ret)
->> +               goto create_file_err;
->> +
->> +       dr = devres_alloc(release_reboot_mode_device, sizeof(*dr), GFP_KERNEL);
->> +       if (!dr) {
->> +               ret = -ENOMEM;
->> +               goto devres_alloc_error;
->> +       }
->> +
->> +       *dr = reboot;
->> +       devres_add(reboot->reboot_dev, dr);
+>> +&mac1 {
+>> +	status = "okay";
+>> +	pinctrl-names = "default";
+>> +	pinctrl-0 = <&pinctrl_rmii2_default &pinctrl_mdio2_default>;
 > 
-> If you're using devres here - at least make it obvious by adding the
-> devm_ prefix to the function name and make it take an explicit struct
-> device * parameter so that it's clear who owns the managed resource.
-> 
+> If you're using NCSI you don't need the MDIO pins here, right?
 
-sure. we can add devm_ prefix to the function name.
-reboot->reboot_dev is an internal member of struct reboot_mode_driver *reboot.
-The struct reboot_mode_driver *reboot is owned by the calling driver.
-If we want to PASS reboot->reboot_dev to the devm_ prefixed function call, we
-will need to kind of split create_reboot_mode_device into two calls - device_create
-in a separate function and then call the devm_ prefix function where we add the devres_alloc.
-Can you suggest a bit more on this?
+Right. Will be addressed with v3.
 
-thanks,
-Shivendra
+Thanks!
+Tan
+
+> 
+>> +	use-ncsi;
+>> +
+>> +	nvmem-cells = <&eth1_macaddress>;
+>> +	nvmem-cell-names = "mac-address";
+>> +};
+>> +
+> 
+> Andrew
 
