@@ -1,104 +1,157 @@
-Return-Path: <devicetree+bounces-228220-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228221-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00A95BEAD32
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 18:43:57 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A2CDFBEAD79
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 18:45:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D46CC963F3C
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 16:03:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A8C5C964508
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 16:04:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47DAA273D75;
-	Fri, 17 Oct 2025 16:02:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82B5B264630;
+	Fri, 17 Oct 2025 16:03:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LHoSw/PZ"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="FhUWtwoC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BD5726E717;
-	Fri, 17 Oct 2025 16:02:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0E23261B99;
+	Fri, 17 Oct 2025 16:03:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760716964; cv=none; b=KUNYRsttCcXZwm7O4tWXcLvOzY9F/D1sFzJtPlIvl2WS6xP8dGqfJhATx1LW0Qqf9jdpLC8GSb6t1Zbi/kEAMezlmo2+UKHggiUWi0tb6Tp0dtpLCh7wDHn9Rko+DFhZ0oYH6C2/4nORPYYlGuoE4rI5EOFgKmjqg3r+jT+hCz8=
+	t=1760717010; cv=none; b=I8zjyMokQxBUkAtbfjk4KFkkptqvlbpt0yybdCsWobYQbYJi7jLe7Mw4/wlkMAilQ4BtKPR1IdEevaSkCaz8o2stRyJld75XLDi4eteMJFR/5vqUfCUnMJXqjLX/BKbOWzSalzkDo9jNXuO4MndMn+gVOYZZmfGi1tuLdfOKp1U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760716964; c=relaxed/simple;
-	bh=xojrpFlz1LFNv97U0p6wiXyxxqPnBp1q0KSfoha5XPA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=B154F9uOvNxv5ebOnrypo3h/x7dbeE2iwQmYCmfkS77N6WPSLIzqr7Dkr8hOUmTjTh/BsgYgm7IqMH6WxER/q8r9d+7mgAE8unSsIefqtPg/c+A7q0fWqULtVxgGgc5bzqA/DP6m+YhlaM8rWr2z7FxonOmjkgmcpF7sty3WjTs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LHoSw/PZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 91458C4CEE7;
-	Fri, 17 Oct 2025 16:02:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760716963;
-	bh=xojrpFlz1LFNv97U0p6wiXyxxqPnBp1q0KSfoha5XPA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=LHoSw/PZokmUd2Wc0/IYOV1WttAmj1Ak5JnKJdEt0h3QSQBtfIxDIQgkomsBc5l1n
-	 el08IFWZToc9N5U0hSwBjvv342efsu0yc9Pu/pyZduyk7DUre0EMfyqYvky97Rtbyr
-	 UwxD7s+NEdOCv2uCjfPi0bvGrM/DCp7rLM2p78bga74zGKcvBiuQ2hJgghXCYTpYBt
-	 YhCluy32wjj8x2k1Wgl7X5llmtwOzeZd6aZV0HdwChvfpoNyeERpOl/Yxr5Ldz5WCX
-	 G6O4HPO/muoUrNzAuvYRoJYtif8/ypWig3+XayEUkcGrrvIhW15CsBBBr3vrcDr9RS
-	 SE7KW+1EMRJgA==
-Date: Fri, 17 Oct 2025 17:02:39 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Gary Yang <gary.yang@cixtech.com>
-Cc: linus.walleij@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	cix-kernel-upstream@cixtech.com
-Subject: Re: [PATCH v4 3/3] arm64: dts: cix: Add pinctrl nodes for sky1
-Message-ID: <20251017-expectant-tingly-95cd6d57962c@spud>
-References: <20251017074646.3344924-1-gary.yang@cixtech.com>
- <20251017074646.3344924-4-gary.yang@cixtech.com>
+	s=arc-20240116; t=1760717010; c=relaxed/simple;
+	bh=V5nvHHyMpT2oBH9OXx7GRjutbxS7EJ70S9GS3ixgU8g=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=QTvXPn6Mum6p2kPaDk3dtH4SIwUZP88QAsxnRQrbnGNIt2CE/ThRsIQdsaG/QtWhMTtAkcql3hVi09aPRBOSdFsMc/xSC1Y3xYu389RdVJr6NQ/zmj+ovKY4ntZa3x5ecOnEVGLCaiXJPzg1fy6uwvmryciUjiVou9aCnmVGNJY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=FhUWtwoC; arc=none smtp.client-ip=185.171.202.116
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-04.galae.net (Postfix) with ESMTPS id A90D8C041F8;
+	Fri, 17 Oct 2025 16:03:06 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id DC1EA606DB;
+	Fri, 17 Oct 2025 16:03:25 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 5C050102F2366;
+	Fri, 17 Oct 2025 18:03:15 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1760717005; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=VRVsgwJpNbMCtPLDUTdNjde66pvJANzuRr/rOO23+SI=;
+	b=FhUWtwoCP04yqOiDmI1EwaKM4t/9LEDySI/yars/wRXf4nwS1KPl3FYGVxS3pmy7ayjfu8
+	dimGqZSBI2FGcQlJrtl6CuIigftt/sPbKmUzjtVWd7ionCy4fpOa/M8nKedz3JOo86KR1u
+	9el4cFyMXPTJGKtxHrFcK8VXxf288PmRZUD8X0dZ7dsGnXh0B64g6B7HVjNsE5EhoT21Wu
+	LCItfKgk3M/74O35AivJ+XyBN42PTfngM8l/su5jrljiUluJ5oMhe6S8C7o2JV2p7GIUAb
+	e29UtSHdxEByIa2NfNLGUUcmCF4en4fOyWC5pCDXbfz22setFP8TodIdDqYWUQ==
+Date: Fri, 17 Oct 2025 18:03:13 +0200
+From: Herve Codina <herve.codina@bootlin.com>
+To: Alexander Sverdlin <alexander.sverdlin@gmail.com>
+Cc: David Rhodes <david.rhodes@cirrus.com>, Richard Fitzgerald	
+ <rf@opensource.cirrus.com>, Liam Girdwood <lgirdwood@gmail.com>, Mark Brown
+  <broonie@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski	
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela	
+ <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, Nikita Shubin	
+ <nikita.shubin@maquefel.me>, Axel Lin <axel.lin@ingics.com>, Brian Austin	
+ <brian.austin@cirrus.com>, linux-sound@vger.kernel.org,
+ patches@opensource.cirrus.com, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH 1/3] ASoC: cs4271: Fix cs4271 I2C and SPI drivers
+ automatic module loading
+Message-ID: <20251017180313.0f0f71d7@bootlin.com>
+In-Reply-To: <336e169019bd3eadc475c981abef3db07149a5db.camel@gmail.com>
+References: <20251016130340.1442090-1-herve.codina@bootlin.com>
+	<20251016130340.1442090-2-herve.codina@bootlin.com>
+	<60fbaaef249e6f5af602fe4087eab31cd70905de.camel@gmail.com>
+	<20251017083232.31e53478@bootlin.com>
+	<d6bd466a5d11b016183db0ac3c25185fad3036fc.camel@gmail.com>
+	<20251017171024.5a16da34@bootlin.com>
+	<336e169019bd3eadc475c981abef3db07149a5db.camel@gmail.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.43; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="H64nj9AQoov3hoOl"
-Content-Disposition: inline
-In-Reply-To: <20251017074646.3344924-4-gary.yang@cixtech.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
+Hi Alexander,
 
---H64nj9AQoov3hoOl
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+On Fri, 17 Oct 2025 17:35:56 +0200
+Alexander Sverdlin <alexander.sverdlin@gmail.com> wrote:
 
-On Fri, Oct 17, 2025 at 03:46:46PM +0800, Gary Yang wrote:
-> +#define DS_LEVEL0	2
-> +#define DS_LEVEL1	3
-> +#define DS_LEVEL2	5
-> +#define DS_LEVEL3	6
-> +#define DS_LEVEL4	8
-> +#define DS_LEVEL5	9
-> +#define DS_LEVEL6	11
-> +#define DS_LEVEL7	12
-> +#define DS_LEVEL8	13
-> +#define DS_LEVEL9	14
-> +#define DS_LEVEL10	17
-> +#define DS_LEVEL11	18
-> +#define DS_LEVEL12	20
-> +#define DS_LEVEL13	21
-> +#define DS_LEVEL14	23
-> +#define DS_LEVEL15	24
+> Hi Herve,
+> 
+> On Fri, 2025-10-17 at 17:10 +0200, Herve Codina wrote:
+> > > > > > In order to have the I2C or the SPI module loaded automatically, move
+> > > > > > the MODULE_DEVICE_TABLE(of, ...) the core to I2C and SPI parts.
+> > > > > > Also move cs4271_dt_ids itself from the core part to I2C and SPI parts
+> > > > > > as both the call to MODULE_DEVICE_TABLE(of, ...) and the cs4271_dt_ids
+> > > > > > table itself need to be in the same file.      
+> > > > > 
+> > > > > I'm a bit confused by this change.
+> > > > > What do you have in SYSFS "uevent" entry for the real device?    
+> > > > 
+> > > > Here is my uevent content:
+> > > > --- 8<---
+> > > > # cat /sys/bus/i2c/devices/3-0010/uevent 
+> > > > DRIVER=cs4271
+> > > > OF_NAME=cs4271
+> > > > OF_FULLNAME=/i2c@ff130000/cs4271@10
+> > > > OF_COMPATIBLE_0=cirrus,cs4271
+> > > > OF_COMPATIBLE_N=1
+> > > > MODALIAS=of:Ncs4271T(null)Ccirrus,cs4271
+> > > > # 
+> > > > --- 8< ---    
+> > > 
+> > > that's what I get with SPI-connected CS4271, and this is actually what I'd
+> > > expect (linux-next as of 2433b8476165):
+> > > 
+> > > # cat /sys/bus/spi/devices/spi0.0/uevent
+> > > DRIVER=cs4271
+> > > OF_NAME=codec
+> > > OF_FULLNAME=/soc/spi@808a0000/codec@0
+> > > OF_COMPATIBLE_0=cirrus,cs4271
+> > > OF_COMPATIBLE_N=1
+> > > MODALIAS=spi:cs4271  
+> > 
+> > So, this is without my patch applied.  
+> 
+> this is the modalias of the device, it doesn't depend on your patch series.
+> 
+> I'd say that modalias for SPI device is correct but commit c973b8a7dc50
+> lacks MODULE_DEVICE_TABLE(spi, ...) in the driver.
+> 
+> I'd argue that I2C modalias is correct in the driver:
+> 
+> # modinfo snd-soc-cs4271-i2c
+> ...
+> alias:          i2c:cs4271
+> 
+> But I still have to understand what happened to I2C core.
+> 
+> > I don't have any CS4271 connected on SPI bus to perform the same test
+> > with my patch applied.  
+> 
 
-All of these just hide the amperage, please drop them.
+In my next iteration, I will fix the MODULE_DEVICE_TABLE() in cs4271-spi.c
+replacing
+  MODULE_DEVICE_TABLE(of, cs4271_dt_ids);
+by
+  MODULE_DEVICE_TABLE(spi, cs4271_dt_ids);
 
---H64nj9AQoov3hoOl
-Content-Type: application/pgp-signature; name="signature.asc"
+For the moment, related to I2C, I keep MODULE_DEVICE_TABLE(of, cs4271_dt_ids)
+in cs4271-i2c.c
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaPJonwAKCRB4tDGHoIJi
-0iOeAQDyBaIb9gA3BPzuk30EVWGx8N+rGqa+2Z8gxw7jelG+/QD8DPxps1C5UQBi
-wFmCW5uuw60FSmq8tcTuX3dEPar0jgQ=
-=Z8KD
------END PGP SIGNATURE-----
-
---H64nj9AQoov3hoOl--
+Best regards,
+Hervé
 
