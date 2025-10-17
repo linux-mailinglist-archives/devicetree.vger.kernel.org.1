@@ -1,101 +1,93 @@
-Return-Path: <devicetree+bounces-227984-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227986-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB0E8BE694B
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 08:14:08 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 09BD6BE6A7C
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 08:26:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 364C23572CB
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 06:14:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 42A1D741836
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 06:17:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A38D93191DE;
-	Fri, 17 Oct 2025 06:11:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D64A30FC09;
+	Fri, 17 Oct 2025 06:13:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VoxFuiqz"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gI4ptFeP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BF84314B77
-	for <devicetree@vger.kernel.org>; Fri, 17 Oct 2025 06:11:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 135EB30F94E
+	for <devicetree@vger.kernel.org>; Fri, 17 Oct 2025 06:13:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760681468; cv=none; b=iNBin+NLJcRo21Gxm8X30E8jb8hSuSJ3M53Q/EH6W87E2UgXOISH9gdkR5XqmyC2BwIW74HJlYD/98uKel12UH5b8yinil/+/238BJWfxDM2k68xdYYfn5A8DHXMVA9bI8krEyj3lNVXSArxS27IkS+qf4qGhMuLqQvkAU6ZteA=
+	t=1760681598; cv=none; b=ZpEma5Z3ySxgLf0cqxmY/0bO2c4hvSxPJbJ7Ppch6mMAYXLMd3vXd44aWgf0RU1EEilAL0YRS14YV6jWeLZcMXtq7vSRqcu7vuoJC9PloWLFfaS/9cYIk6ax7JyTD9Rb85ur9FwDDYCLPVlA0Xu+fpokeR9oej1HCcSeHiv73jc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760681468; c=relaxed/simple;
-	bh=pCrMlpjFzN/XrjcWfs3YB+fSeVkmexAvaoC91gKso/4=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=bF9jN+FSEr7+XjIhJOl9fJ65Zwv1hLrCBuU+xHfzFeZbw3Kb3fhts1OYNjOBw1WVvgIoe1rKGiYwgqft4MrDEe3PU68OWyt2nRvzmqzzWCdg/Kz9OpcljU89p4Gl6TFQ8kiLEunxq7PeZAY1U2np/PpjvsLbgadmDMJVvqp4gnw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VoxFuiqz; arc=none smtp.client-ip=209.85.214.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-27d3540a43fso16689005ad.3
-        for <devicetree@vger.kernel.org>; Thu, 16 Oct 2025 23:11:05 -0700 (PDT)
+	s=arc-20240116; t=1760681598; c=relaxed/simple;
+	bh=eF6t9Vq9NRea3XnH1BHglCTN0IeLN7yA62hWb+lXoeE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=mY5DtFyTDkdh+tQEJKQn6cQziL/Xdtw1rRIqJy0HBArUI3kKxdiroma0kTIQjF6ZfOmeDIW2TVzJsD7ViG2rZmHa/5DVMscRw7M0xYX8iCVjU6UMV3cPjBMi3yXzrcUs7CbXq3od2GFsze6sVnqSYai/oIRwKZntnRCbJpWjPCg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=gI4ptFeP; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-46e29d65728so10518815e9.3
+        for <devicetree@vger.kernel.org>; Thu, 16 Oct 2025 23:13:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1760681464; x=1761286264; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=a4jV3SckoWHX2zGnHC+rYU8Ui0+E0D3XKDL6jcUcIDA=;
-        b=VoxFuiqzPS2WN95byxDpAHHFuGK3A15yl3clLQgoImTK8+v/0M6fgtDzoPpUppIMEi
-         Zger2TJmeNiLNj6XtNeZJY31ZP+oed9qFKOM3XsAy4/ehnA8dYmAPKBrC2mWcPzoiCps
-         lF0VYLPBiWUT3uexc+agBjwS6IXT+tdysYQ8vj498JX2jQyDdD4MhHf5+uiAOXoFfPpz
-         LaHt1syjxUxzpZtGmpzawp8nBYDiDmZAWMX/BggTQqM+HO+4OJ8HxULU9NNrdr46R/QE
-         PMB8s30WLiZAd0ylucVjjxY+nasjbqt/ZYinPA6sKq9bA0ODboU01ngYN6gC5qUQV7dI
-         zbwA==
+        d=linaro.org; s=google; t=1760681595; x=1761286395; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=RHSNJ2BDwx1sBbfCkuw18NdbM457O5a6eDYxm9b/Apw=;
+        b=gI4ptFePjPd23cusxBMiooO9gPjaVXKeuVH16Sq9TrAYSb68PcoIxvuviViJjSARD/
+         k+SHjLrGB17S00Zg4tuMgiNDgHHEjjz7ue1ZRQ2FGpD+yKVE4b7mgmemATWoGEdT8Fmc
+         DUP1s85K/bsUFBIJNTpNjb9GNHnyg1/MP7qdMibT1hUzCI+VqE5cxpbXdlZcPVlSfTm2
+         eEFOPgyzttZuLv3gN18aj2y8aQD2W/GPahATDDgV4yXUe+01hpVY5tPO4SPtvZiFdT0+
+         bEdYNCX8lHsTm1ugX/cqKpyk8hoZPpLRPS7WN9YnAcrH7hSiuIkWGxi6SNkIxnDJQtj+
+         Q7EQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760681464; x=1761286264;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=a4jV3SckoWHX2zGnHC+rYU8Ui0+E0D3XKDL6jcUcIDA=;
-        b=nze+b5zYc2c+r2iAdapZdQe0M+GodRBROhYc9ahOQ9Zuqd88icLeAEXQzRO78tVlDG
-         sUAhwQ/AnPcupNS2qpELYzpbfYPt1gcYohxrE+jJj9RwTJQ4zo0heig6ZN/cGWHQXSK0
-         eyRViPB4sIo0f5TjB54WGM6KNjhW+NQvS1o0mTMyoFYq4eoaXzUgXuhTb2fCMEiBMren
-         m8qHOViB5W4NsyE2PtS630I9MQLS1aY/jIlpKXuPO+3RwnnamsmvTD1loIs/blcx17TI
-         3/dEKoQZXOeB4amVp1cAlQxJ48OhI3aHScbjQsxpD1C7Ber/Urod+ETSeqB5nbxKyc54
-         IUBQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUwtn0QnsE8F2g1HzRB2juXTupmTbhHKLd+uPP7nNkApUGHkK45QUNjEA4z9j1iJ6cywZLC7KbZlZvD@vger.kernel.org
-X-Gm-Message-State: AOJu0YxC+7oepPPKYSOXr8Qtkoe6PqSwski/wFqzW+QREw87EuOafI7T
-	DJSZhECC4z+4mmwVwG3B+fXgWy2+EW0FFBpqOM9K2859QmJA0hL4apMN
-X-Gm-Gg: ASbGncvwcQj7e4TbOep2sD+BEyeMvmVPb6Ghaar4FuCgsd6ffAHzFRWXRV2s5UJVjrI
-	IDJYGpavP6V5DgaGVzNqSeeL+8OBcwLlpcIFX57kKnAyglQvCHverNd5v+i8T9J/V1Y57K5DbvX
-	5+vv6xcUP4jNvC3L8JOmXlbszJOl0d8p0M14aspfyxEC+3RmfFep8Ona8e4nJSR7zLqyp1DdwXy
-	xbzK4uidWoWVfJMti2T9+b/rC79w5VnO22GsCZOW3uDEc/L4uw2enMwDUm0Zux7MljvAVPYQGSg
-	n+lQQtGTJK13+UjN0KM+IaFMCorHcSkdv9NVEYqVyoZQ0cee1T2tH54l5F9G4p+100TCtwXtu9j
-	ptbqQS2NvHSCui7oz4U06K6948sf2DrPPe/T7OvZpSG8hHfZOQpB3PhMb54KaLWyrJGDuGucWWZ
-	xgMqz+d7QdJ0/QvdN7Ix4wuIXoIKHp
-X-Google-Smtp-Source: AGHT+IH5ImymZLKDALz+oetlYqaue91LhCFN2bDDJh6sQMmR3UMcGoG20bbqt1QrYkz1S4wAj3MGrA==
-X-Received: by 2002:a17:903:3d0c:b0:27f:1c1a:ee43 with SMTP id d9443c01a7336-290caf83123mr30401595ad.29.1760681464290;
-        Thu, 16 Oct 2025 23:11:04 -0700 (PDT)
-Received: from d.home.yangfl.dn42 ([45.32.227.231])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2909938759dsm51315475ad.49.2025.10.16.23.11.00
+        d=1e100.net; s=20230601; t=1760681595; x=1761286395;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=RHSNJ2BDwx1sBbfCkuw18NdbM457O5a6eDYxm9b/Apw=;
+        b=QnbOLap6saKm77Yt0M0NTggF46sE1X/CxB/8lkTwbhR4l99ujdIwGXTODQFwoU4Ihz
+         RDGqWt7qMM/0A1ny57QbA/YUwbApjU2uhsWJL8Q8EKKAik2s5LmLzQ84s1nCNrLkKHup
+         dWENApiV+bTVeOdME2D9ZwthZ4jVBIEjz9GNag/B35HJII6LkSm3x1h9JU1RdljG/a4l
+         RPN2karuB2xvWj+t5iAnbXjXtOAhQEY/q5DsMf05Vj12i2+Hnhf+UNkyyx5qazKcdmGG
+         tvFsDzzhpNmZEburwsA3TCgJrhteSucMTKLgzpkgJDCCJtxxApiiTYFDAus5HJ4XHmBR
+         hmrw==
+X-Forwarded-Encrypted: i=1; AJvYcCW6I9NXu/kFgXWqMNqOmodlJMFsH9wVo0nuxGNHUQ4iwGdSNVep2V3ssmv8/+T1+plQDPitz0POJLeg@vger.kernel.org
+X-Gm-Message-State: AOJu0YzPxcK058w5YoHVCz1AuZRAnHpmcBI4x+t+mnPx0WjMe6EagFOl
+	cF0aLK+uZd/zgu0nTkDYgtf2DoqCRcn2o9Zu3Y5eA9Fz1lNhYvjOICDaPGdwxGCDTsU=
+X-Gm-Gg: ASbGnctWxB5EIPNo/YJ0WdCmX/irDoWYxIE9sJ7N4y7qJcxWijYWNt2h9jcJgxWy7ds
+	/Q6AZ2qaiPTWYed6Vfy1lNFBS6cwvMitvaDp1Msr0LNnkBqLmzKm5ES+b+VSp/c03eU57uqNhkt
+	I6a+Ghi2heCsHcLjPNjfb0DfPo1GMWlvEXpWhLSJ2FSD+DTTlvZjA6EYl4p2FC09LzvuHUrkS9f
+	sq8NqpcADHegZCcpxvKaNtzvEEBkjqb9Byc05MBhvKUhPXgWYJJQ6/aNa1NYNii9nWeDCGeOLG1
+	wDAR8Qn/EZ0S0AyE/oMcbCpDMFOvPoDpMF6FhihHmUkGhI6+Q1/JI0C7vhth4igAdlYtYNwNLNz
+	j/e1gAbAbZaSQb8hA9zQ7+XW4i9r/+PQLI+qHpqaTLmEh8xwlrsi1DYB3bxRYdJ1CFIRL4/NMn+
+	Bml6El/g2gKxLDZnpn
+X-Google-Smtp-Source: AGHT+IFi56b/X0lBjC6eoQ5DueToZROug6pRk4AZnyscKkreLGme/V1PG6KxmiRrNewDQ22JeqVkQg==
+X-Received: by 2002:a05:600c:34d0:b0:471:1717:409 with SMTP id 5b1f17b1804b1-471179071b4mr16544585e9.23.1760681595439;
+        Thu, 16 Oct 2025 23:13:15 -0700 (PDT)
+Received: from orion.home ([2a02:c7c:7259:a00:6426:9b9b:6d3d:1da8])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47114429679sm61624745e9.8.2025.10.16.23.13.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Oct 2025 23:11:04 -0700 (PDT)
-From: David Yang <mmyangfl@gmail.com>
-To: netdev@vger.kernel.org
-Cc: David Yang <mmyangfl@gmail.com>,
-	Andrew Lunn <andrew@lunn.ch>,
-	Vladimir Oltean <olteanv@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Simon Horman <horms@kernel.org>,
-	Russell King <linux@armlinux.org.uk>,
+        Thu, 16 Oct 2025 23:13:14 -0700 (PDT)
+From: Alexey Klimov <alexey.klimov@linaro.org>
+To: lee@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	sboyd@kernel.org
+Cc: linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH net-next v14 4/4] MAINTAINERS: add entry for Motorcomm YT921x ethernet switch driver
-Date: Fri, 17 Oct 2025 14:08:56 +0800
-Message-ID: <20251017060859.326450-5-mmyangfl@gmail.com>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20251017060859.326450-1-mmyangfl@gmail.com>
-References: <20251017060859.326450-1-mmyangfl@gmail.com>
+	linux-kernel@vger.kernel.org,
+	srini@kernel.org,
+	krzysztof.kozlowski@linaro.org,
+	linux-sound@vger.kernel.org
+Subject: [PATCH v5] dt-bindings: mfd: qcom,spmi-pmic: add compatibles for audio blocks
+Date: Fri, 17 Oct 2025 07:13:14 +0100
+Message-ID: <20251017061314.644783-1-alexey.klimov@linaro.org>
+X-Mailer: git-send-email 2.47.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -104,34 +96,44 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Add a MAINTAINERS entry for the Motorcomm YT921x ethernet switch driver
-and its DT binding.
+If/when pm4125 audio codec will be added to a device tree file, then dtbs
+check will emit messages that pmic audio-codec@f000 doesn't match any
+of the regexes: '^pinctrl-[0-9]+$'.
 
-Signed-off-by: David Yang <mmyangfl@gmail.com>
+Add the compatibles for two possible audio codecs so the devicetree for
+such audio blocks of PMIC can be validated properly while also
+removing reference to qcom,pm8916-wcd-analog-codec schema file.
+
+Suggested-by: Krzysztof Kozlowski <krzk@kernel.org>
+Signed-off-by: Alexey Klimov <alexey.klimov@linaro.org>
 ---
- MAINTAINERS | 8 ++++++++
- 1 file changed, 8 insertions(+)
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 4faa7719bf86..ea72b3bd2248 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -17435,6 +17435,14 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/net/motorcomm,yt8xxx.yaml
- F:	drivers/net/phy/motorcomm.c
+v5: implemented Krzysztof's suggestion, completely rewrote commit messasge
+
+Previous version:
+https://lore.kernel.org/linux-arm-msm/20250915-pm4125_audio_codec_v1-v4-2-b247b64eec52@linaro.org/
+
+ Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+diff --git a/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml b/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
+index 078a6886f8b1..2a7a92371b55 100644
+--- a/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
++++ b/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
+@@ -137,7 +137,11 @@ patternProperties:
  
-+MOTORCOMM YT921X ETHERNET SWITCH DRIVER
-+M:	David Yang <mmyangfl@gmail.com>
-+L:	netdev@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/net/dsa/motorcomm,yt921x.yaml
-+F:	drivers/net/dsa/yt921x.*
-+F:	net/dsa/tag_yt921x.c
-+
- MOXA SMARTIO/INDUSTIO/INTELLIO SERIAL CARD
- M:	Jiri Slaby <jirislaby@kernel.org>
- S:	Maintained
+   "^audio-codec@[0-9a-f]+$":
+     type: object
+-    $ref: /schemas/sound/qcom,pm8916-wcd-analog-codec.yaml#
++    properties:
++      compatible:
++        enum:
++          - qcom,pm4125-codec
++          - qcom,pm8916-wcd-analog-codec
+ 
+   "^battery@[0-9a-f]+$":
+     type: object
 -- 
-2.51.0
+2.47.3
 
 
