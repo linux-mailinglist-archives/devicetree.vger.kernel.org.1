@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-227961-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227962-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02417BE653E
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 06:44:57 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B00CBE6553
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 06:46:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A6D323BAC56
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 04:44:56 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 7783E4EC74C
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 04:46:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2133B30B509;
-	Fri, 17 Oct 2025 04:44:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9408620C461;
+	Fri, 17 Oct 2025 04:46:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NOxblIDt"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BVRSV0PN"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8F38334689;
-	Fri, 17 Oct 2025 04:44:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 647E37081E;
+	Fri, 17 Oct 2025 04:46:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760676294; cv=none; b=GdQjrSxcP9x+4tU44ZcIgpsPiBHOKi6HxpHbcX5JBeyU8/kBlpwUf7WIZmOA+QkOH9t7CIen8FgmVlMb0Aa22PZ746KVG3INh8K26MTONfWIVYCszhS/M/DkS4EhSNrDZOYF3ofyVjb4WPXpkul7Xl4cNNVEFoZ2oy2aAkTcAVg=
+	t=1760676370; cv=none; b=VFKarb9zFUNzPrQy3z7ri9hPD3MC216qyzgbJ21wHypKv1veC/JOPqALz96zA1U+v0xe00WVbGFzTh59pudx8kXl7SJDoOZT9jUxOeEUhIxwNCXYEjgGUNLscxQXny1gvGzsRYVq8FTftu0PHfI5xx+n8NiE8O13k1BAsz+fCwU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760676294; c=relaxed/simple;
-	bh=SSTkBucb3JgRyyCqeNakRbmMDwqm8r6x8qKrd9uPk8w=;
+	s=arc-20240116; t=1760676370; c=relaxed/simple;
+	bh=MIF8uQjD6xOBCpoIO6NDT758UQrT+Sn42yH6L3Es73A=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=JEtpjrz38Xbtfxlt3foM18Cq/wwXGP4rUPN9tPaM4ENHF19VAfR1FmYJuyaXlv/barN5ljtMVvP9NMGtNLx1aOFgWaUDw7qSJQ/qQDaTByWKPTjXgNtHHzua7c7aGMDmFyJdG7wpc6b6vpt6NEg4v8ArRixoYYZLNM4lZ29Lh1o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NOxblIDt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6F539C4CEE7;
-	Fri, 17 Oct 2025 04:44:50 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=F95YG6lcFDeWkG1fVV59095GLNQTO2ad5Q6VAUBK9wPielY7pmlqFI7ETCanqWGWYXn9SgDqmkw0d9R2iMH/SQDDfzIttY6AnoVM+SF3oNTFfYdkeuoPXaITf6KbeHPbq7FDpM4uMoFW7k1ejstbHH5XMNk4G67Cu2IIJ8Pa4fg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BVRSV0PN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5AB03C4CEE7;
+	Fri, 17 Oct 2025 04:46:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760676293;
-	bh=SSTkBucb3JgRyyCqeNakRbmMDwqm8r6x8qKrd9uPk8w=;
+	s=k20201202; t=1760676368;
+	bh=MIF8uQjD6xOBCpoIO6NDT758UQrT+Sn42yH6L3Es73A=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=NOxblIDtox5CRTYai+aOrI33TDQrS5M1T7e6Ej1NyGLUSzavS5iX9HhRdSKFzIXSA
-	 ItaSyY6YCZ/UPfbBALJS+Cpj7nNMGtxjhq4vqr9SZ26AepewdxPa2SQdhU64Djqfbt
-	 qdM5L2Ji6yhco4eAQyxx4o34tiwNLkloTdFZOgZkCyj0B+aeMgFD6GyZQr0k8DuQUm
-	 8gyUUrqyVmGhfR4vom0uitgiVxHGMjj4vinvbGC4ThlNPMZVP8Oad7OhG2Lmxs3ecR
-	 FcTUVRtID/30F8lgtVE0JbmEoK0V0XqwyW2GT/M6p3oB4Xs6MA0F0dZy80ijrFVGCd
-	 tKeP+eAIHU8SQ==
-Message-ID: <c03cc208-5415-40e3-82fd-fc19d31fbc74@kernel.org>
-Date: Fri, 17 Oct 2025 06:44:48 +0200
+	b=BVRSV0PNJIAOQAo7vWbfR1iPpHUOAaQjluWHCv/3+VSvuafzMs12kiUf/MqYd6uCq
+	 95vPhhztXtYmXVaf0YJXwKqoQyrYtCkYw8IxObAV7bYritZr/DnM56xFizivJptBzd
+	 4IPSJNM6purJ3GqhGNXdQo//9xR9OvaTVututDXNmWmD3jt0xWvJOUfeVBv0ZfjA3B
+	 /2KNnmqJrcvxt95Z6gy+fjXedwJ7drWEq54ynNNZc5sbHLEkN1T68MISKqF+HjOM0+
+	 FAHEWFvPP1DZFdcm+BSkRIHU08vvdTbNOLtg2IXZA0bWTBrBmyaWLLguT0BTEERdB9
+	 UMnSHy9M10NAQ==
+Message-ID: <56c23e19-90c6-4e2f-afe9-ae7a83d15390@kernel.org>
+Date: Fri, 17 Oct 2025 06:46:02 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,16 +50,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: power: rockchip: Add support for
- RV1126B
-To: Finley Xiao <finley.xiao@rock-chips.com>, heiko@sntech.de
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- ulf.hansson@linaro.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
- zhangqing@rock-chips.com, sugar.zhang@rock-chips.com
-References: <20251017031425.310946-1-finley.xiao@rock-chips.com>
- <20251017031425.310946-2-finley.xiao@rock-chips.com>
+Subject: Re: [PATCH v2 1/6] dt-bindings: PCI: qcom,pcie-sm8550: Add Kaanapali
+ compatible
+To: Qiang Yu <qiang.yu@oss.qualcomm.com>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+ Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>,
+ Bjorn Helgaas <bhelgaas@google.com>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-phy@lists.infradead.org, Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+References: <20251015-kaanapali-pcie-upstream-v2-0-84fa7ea638a1@oss.qualcomm.com>
+ <20251015-kaanapali-pcie-upstream-v2-1-84fa7ea638a1@oss.qualcomm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -105,28 +110,19 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20251017031425.310946-2-finley.xiao@rock-chips.com>
+In-Reply-To: <20251015-kaanapali-pcie-upstream-v2-1-84fa7ea638a1@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 17/10/2025 05:14, Finley Xiao wrote:
-> Add power domain IDs for RV1126B SoC.
-> Add a new compatible because register fields have changed.
+On 15/10/2025 12:27, Qiang Yu wrote:
+> On the Qualcomm Kaanapali platform the PCIe host is compatible with the
+> DWC controller present on the SM8550 platform.
 > 
-> Signed-off-by: Finley Xiao <finley.xiao@rock-chips.com>
-> 
+> Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+> Signed-off-by: Qiang Yu <qiang.yu@oss.qualcomm.com>
+> ---
 
-Missing ---. Please read how commits and patches are created in
-submitting patches.
-
-> Changes in v2:
-> - update the commit message
-> - update the license
-> - rename AISP to AIISP
-
-because this breaks canonical patch format. See yourself, run checkpatch
-or verify signed-off tools.
-
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
