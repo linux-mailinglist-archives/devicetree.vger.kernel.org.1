@@ -1,93 +1,93 @@
-Return-Path: <devicetree+bounces-227925-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227926-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42D9DBE5E43
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 02:31:03 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 11069BE5E4F
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 02:31:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8DE7619C6D3C
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 00:31:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 58F031898853
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 00:31:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F2D9221543;
-	Fri, 17 Oct 2025 00:30:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADD8F2367CF;
+	Fri, 17 Oct 2025 00:30:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="GhepwMx+"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Nv/6+oTR"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9914421255E
-	for <devicetree@vger.kernel.org>; Fri, 17 Oct 2025 00:30:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDF0921C9FD
+	for <devicetree@vger.kernel.org>; Fri, 17 Oct 2025 00:30:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760661042; cv=none; b=r2L8VDf4k36SoGGC+HKHl2Cd8oPguiTSDCq6jRz/nxDW7dm+epfrD94CMAIPpIRvhuO2VmG+ZO2tJUZe+6/g1ZSqCnrjTSgVLIEST0PFLJemtiYQPH70wzy5SwbsvMZyPCtdo1j0Z2o+ncRgUecjsUQzaQRBavHU1b/nbyej+jA=
+	t=1760661044; cv=none; b=OStDTSM/fOSMg90Hq5RTVSnoozt1/u0IqRvHD1ElmEcAVOIFKiq0mSgGWVR4O4W+Y7idePrzbL8M2EwuRLAQ5x6gKPbCuRV9VG/LyxECaho/6yhDRZNpKZ1hRkCY99w36neTmwwNDGD7ixCO92WcmAcEaBOso5TpgwW0Ttcf/fQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760661042; c=relaxed/simple;
-	bh=WByn/huD95vkLRCvHBxG1KJwB7ue46+k82cXqCA5JZg=;
+	s=arc-20240116; t=1760661044; c=relaxed/simple;
+	bh=RU9u5+e96IskdKy79odK/nlpmnOUEqJHM5ulM9nXXPA=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=moqESAsj8p9HAr6DAR3EmGEg1eui4irNQ/Lv0PLX2FkNEqFimxEAW/otKo9fP0bYghm1iwpYwIkPmbPRk3ZHiqllgf+07DrY0qk4YAI3WoEz2TK4ay6lrcunCXdd7z+jLZKLWn2bu53WIooUF8ooO0UsjBEUV6XyvnhVdi7w8iY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=GhepwMx+; arc=none smtp.client-ip=205.220.180.131
+	 MIME-Version; b=h0aNVT4gMnf5YwBmvmkiHWtCr0CwpOYTOWfgzCJwYeY/+gpomf55KYSN20Ped58eKELBxi91cZEnHsdZmKqPajHTLgCwX9zLIH56jkKB1q+cFtq8882RayPm/CuK3+mErVzrFrvJWQoWUdkkDVm0cTsFXlRZj0F5I+g6F4fvLIs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Nv/6+oTR; arc=none smtp.client-ip=205.220.180.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59GKLTYr020347
-	for <devicetree@vger.kernel.org>; Fri, 17 Oct 2025 00:30:39 GMT
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59GKLXSX002701
+	for <devicetree@vger.kernel.org>; Fri, 17 Oct 2025 00:30:41 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=4yFDmhuv9dv
-	yyZhMJJxear451fNKAo3tkychOEGOyEk=; b=GhepwMx+H1OdAaLM/XvL41Tv7X5
-	HSZ2JFKqHD3YJxVRSy7daJhKj1X2T+TPSSj8AuALd6Pfu8wME8UvucPjb/Qp5o9E
-	UfR3AjxgCO2gj4XVYDbMMFUeR255q0B3J4kMjbo5UHTUXcrPVfH4d4ek8Pcul6TG
-	9/aItDgkWCO/Q7gapmD4GJ9TPh0qttXsw2SyUXeDUz6F9/KyT/lwDb8AvA2wXdgH
-	7RuaIfuDLV5QkCeUtse6XRkV7VLAS+HxSFUk1aF7V6UBAp7xvFTXnW2PaYQatsLi
-	OU5ReWjFFNV0EGPZV8/L7nEwf5oyt7XyU0yV2AFv6Hv6igJoDAZVqi1qoDQ==
-Received: from mail-pg1-f198.google.com (mail-pg1-f198.google.com [209.85.215.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49sua8rygy-1
+	:mime-version:references:subject:to; s=qcppdkim1; bh=wpu47feRnS3
+	JH7+rgGPW+V0fZ+MEpc12dYMVX48Lock=; b=Nv/6+oTRgyYG17bC+QOCQgSY0Nb
+	UGlxpdK+31nkQg++9X0lFLRdmwKmTMbp0neZzKPVX27agiOdlzQk/Znl32qMoays
+	qAOJ4TDhcKY8nobZYY3rC+VwUjy05v2/jdAiBgkKCVwmx9fK+OHugio0KBz1nBa0
+	ySn4E8Jl5YmwwN6gB4FXUN+pa0X/J9hx8aZjncAY7QmOhuVhUi6Tb8mIbbiPdY5a
+	9YTKwcS9BqysRE2O1AaEw+Jy5KPG02Kmdqg1VBVc9BmpXo3VSShYohVdYyv9BfIy
+	uJMb14fnJD3Gm7CszzK0hVrZZ//UoX7pwxsnNPcmfrQG1yDrhRn317qKM6A==
+Received: from mail-pf1-f197.google.com (mail-pf1-f197.google.com [209.85.210.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49qfa8jaep-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 17 Oct 2025 00:30:39 +0000 (GMT)
-Received: by mail-pg1-f198.google.com with SMTP id 41be03b00d2f7-b552f91033cso1908600a12.1
-        for <devicetree@vger.kernel.org>; Thu, 16 Oct 2025 17:30:39 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Fri, 17 Oct 2025 00:30:40 +0000 (GMT)
+Received: by mail-pf1-f197.google.com with SMTP id d2e1a72fcca58-781269a9049so2149995b3a.2
+        for <devicetree@vger.kernel.org>; Thu, 16 Oct 2025 17:30:40 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760661038; x=1761265838;
+        d=1e100.net; s=20230601; t=1760661040; x=1761265840;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=4yFDmhuv9dvyyZhMJJxear451fNKAo3tkychOEGOyEk=;
-        b=BF4D01QPJDlzsMJ2kCsPu9D5B0UnEphY7oq2jdYs834TfZ9rHOukFWmjwEcQrw0atN
-         AR82fRIrGlxqEL7SQUYAES2ILK7WfBZc5zxfZZQkkxh26g6NC4NM3QqsqxQ3YACoQ6ZZ
-         dKTvW+FShC5luKmJshIxnBSxx/aYjAPaiwut0z5FnsnT8fwXm/BFZwHbsVHw7wdOWwh0
-         cGY5in/6Qlp9tVVUUv/jPVDHEE/EcfU33IVf74rw46+HomIK3wqCTDYt4LYbqj/R540o
-         o8pyze4Bxm49porN+r+D9i5xxvwXeRVp4IflT0McBt8gaS51dfaST93BS6GfxeD6OQju
-         OeBw==
-X-Forwarded-Encrypted: i=1; AJvYcCXNiaRPwdjr1fzqky6r54IklX+Z32NYL5DDAfScIG1yJqdGtDn0vLIhclsqnt1SUay+w4wflkEdi+Gs@vger.kernel.org
-X-Gm-Message-State: AOJu0YyU2dLgYetjCcf5mtcs7L/BaXL8Q9CYnZN7EeIUhr13n5zyLb2x
-	eg4wiQ1KrkNamdJpNC62JR2aECFBq3xjkps5rPEczdKHdZzDFuZM7E6t8z3/lCmK1Go21qqC9J9
-	E2qrqM0TYHahj/J55Z7eAH+VEfXPtdAtfAWNQYWOfi58AvPW0dly6N0GI3x6MpAbe
-X-Gm-Gg: ASbGncsBw3N3zQ9MofddYN/9e88IgGMfFkTZKiiHyFLU3RdZ/hhoaXCMOa+U4g0DRUE
-	7pKVZHYBBhy68TLInlQXQnw7ELTDc2UXb+e6WdC7oIR5sE8qWkogJaDhSGGHi0kj5SLws9AHSkM
-	yOLFN657v6+ThtfhyL2cK38+guxTl5EFEs6jME/ux6/YW9aReYC8ucqIgWKIJQJuauNax3mR1gb
-	PlRMYvV4bOVIM4uq5aD6HGGUDxMktgwDjXKbbIWGytBeP2FCEnR8x0T4wdpnxV8Q+4wG7LqyuJz
-	W1KPB4UgmwZLZ7OvZtwHK46mEgi039Sh4tmwpdzgR1BogLfIXlONw0t6blH1oxHQr4ogeGw0nX9
-	S5S+v7LOug2v7LhLFEn/xKypdkxx7Uea5ewvyXEKWIT4n06GdRIbuVzAurkgucA==
-X-Received: by 2002:a05:6a21:33a9:b0:2fd:a3b:9349 with SMTP id adf61e73a8af0-334a8650af5mr2013498637.57.1760661038172;
-        Thu, 16 Oct 2025 17:30:38 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGG3hg4Yb7WGHko8UMgn0cThnFRccxK0T23SFcRXt8x+Scof8EP3nuTlw3EJJ1Wjce8BodaVQ==
-X-Received: by 2002:a05:6a21:33a9:b0:2fd:a3b:9349 with SMTP id adf61e73a8af0-334a8650af5mr2013473637.57.1760661037761;
-        Thu, 16 Oct 2025 17:30:37 -0700 (PDT)
+        bh=wpu47feRnS3JH7+rgGPW+V0fZ+MEpc12dYMVX48Lock=;
+        b=Iy5ecKjasteiVcGInQJUJKqV4P0QC897C9JFpevIuMFwDL2at0zAIsCB46FSIJS2ff
+         HvFV47FWlHivq+Ws0vKOackwXyRVPxEg7S6XDYwIJsF8kuKgsK68cayAW00C+duoRgEw
+         IyF8VpV7O/2esAGgMDzmHToZV93LPVvGb7PiV4RLN7GW5sEUB2bOFgC+akJQ9s6Rm/+a
+         P3gxiKXiUmOpGYNsk6gdJf1CAjnKGTtnyCsMn74mI9zx+on3ozNIpAFq2XPI0dQoAMLp
+         cEOdFg3+2lUgYw/sPZZPMdtTMl6eIG7W9+82A6ajY2Tn435hSJrwjFrUJKJpBCc/hvPL
+         QbdA==
+X-Forwarded-Encrypted: i=1; AJvYcCUJUHrcvNfV08wwbPXhiY9qouDgZfFOWVEhgeIFJo7etUDmV4Kc/OKQvpybpFJ+pqaIU8qespDqKqoC@vger.kernel.org
+X-Gm-Message-State: AOJu0YyOkRqWCpHknv0KamXgsGwIPJKpDaMtYx+2utivZjLlpWJWzl3e
+	2n26meXenNGNzinPmXxPbBZBwL7xjioDdq1hNRbVUcIUsxrEyM/B3cKGp29mPy7N83NmXu2aNwg
+	2ZVHeMjlXk5kW8JZrA0QVsdyZA2NGfP5YWFGdZr5RgM4PNlYsQM2Tl2RKjtCoELN8
+X-Gm-Gg: ASbGncuZp6LIQpPWXhSkknmHKPTo0yfr9Xa8DlayFG2VvgRbzCdCFFNQXYLszgcZE3M
+	Xkq6O6mGKigVACwkuygytnso8cwd5N/cxnR9PwI725AFqn2sBnQT+/TNGftPu6EbLXcX9vQGah4
+	RIQ3NORaJKtaMr4F5275PYzMUABVfTqlocr65QwOgtJUHQ6wrYDlkbzFB6rK2UARWqDkfL54UXn
+	fC5k7NCyxVvG8gsVAvxxkevHCYy1+A6sUVwxFRxWITxGvCO9qrDV/9kDE4SyfSs85vDoY7hvm4B
+	mGfSUKJ2brJ9btc/0yfXDoHAbwVq0ovbgISw3TRkv53c+YTIomT71QZ14piQKDYT1MADdB05yD8
+	ixrTBeXybohBzPIwzybEPuqJ0j3tIQq0uFiFcvk0hQbhELv7X/55qibS/zpf4RA==
+X-Received: by 2002:a05:6a00:1394:b0:781:2177:1c9b with SMTP id d2e1a72fcca58-7a220d232e6mr2450102b3a.17.1760661039524;
+        Thu, 16 Oct 2025 17:30:39 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IG2YuCrZTacPd+e4WwFad3XNi1Thwu/0jwICzedcCNVrK3jC8KhvIoGcsNp34j49mGFrBpEyQ==
+X-Received: by 2002:a05:6a00:1394:b0:781:2177:1c9b with SMTP id d2e1a72fcca58-7a220d232e6mr2450074b3a.17.1760661039073;
+        Thu, 16 Oct 2025 17:30:39 -0700 (PDT)
 Received: from hu-amelende-lv.qualcomm.com (Global_NAT1.qualcomm.com. [129.46.96.20])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7992d0966d7sm23613050b3a.40.2025.10.16.17.30.36
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7992d0966d7sm23613050b3a.40.2025.10.16.17.30.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Oct 2025 17:30:37 -0700 (PDT)
+        Thu, 16 Oct 2025 17:30:38 -0700 (PDT)
 From: Anjelique Melendez <anjelique.melendez@oss.qualcomm.com>
 To: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
         krzk+dt@kernel.org, conor+dt@kernel.org
 Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH 2/3] soc: qcom: pmic_glink: Add support for SOCCP remoteproc channels
-Date: Thu, 16 Oct 2025 17:30:32 -0700
-Message-Id: <20251017003033.268567-3-anjelique.melendez@oss.qualcomm.com>
+Subject: [PATCH 3/3] soc: qcom: pmic_glink: Add PDR service path and service name to client data
+Date: Thu, 16 Oct 2025 17:30:33 -0700
+Message-Id: <20251017003033.268567-4-anjelique.melendez@oss.qualcomm.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251017003033.268567-1-anjelique.melendez@oss.qualcomm.com>
 References: <20251017003033.268567-1-anjelique.melendez@oss.qualcomm.com>
@@ -98,86 +98,189 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-GUID: GtTniOmJlumVfewGjWvUdDJNvM36FmqY
-X-Authority-Analysis: v=2.4 cv=e5MLiKp/ c=1 sm=1 tr=0 ts=68f18e2f cx=c_pps
- a=Qgeoaf8Lrialg5Z894R3/Q==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+X-Proofpoint-GUID: gYVdHcQgKoLX4W2pVOc0bQaOnUoJbr6U
+X-Proofpoint-ORIG-GUID: gYVdHcQgKoLX4W2pVOc0bQaOnUoJbr6U
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDExMDAxNyBTYWx0ZWRfX+bn4z/sqpMOd
+ GiNn4K7SqmtK2ywUoBZ24asodml04UZm+h72D8WRg3PYIMzHOsenJsToJxymF1E1wK9wL5lmw+7
+ dYIrlpGLrlcc3ZbSzzC0wNBfL7LJAsVkpDbh1+cXr7RgIRUPBWzUWkQm+smCPsPHQNHUgIcYoEZ
+ LbBvvhAGeOAamSt1Iktu3IqvaX0M1x8Up5Q7F0TCRja2r2d7epNvMYZ4WU1FqzfsP/pqNMi0wFn
+ bFyEQ0AHap1OugvaKt/lIPuoasoB2ihMLBNu/G5epuPtPmuNYTBWfsOOW2Kjg0aS4suvj1/5BQK
+ kswje9aml0Hhh+MTWO2nQC/uqsColqQ9PrB9swDi0a5ZSuLdd+VWyvwsd3lYWFWUu08V9vxa4IF
+ 2AwpNSlFaebIHPCGjn9f8OrSIls0qQ==
+X-Authority-Analysis: v=2.4 cv=JLw2csKb c=1 sm=1 tr=0 ts=68f18e30 cx=c_pps
+ a=rEQLjTOiSrHUhVqRoksmgQ==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
  a=x6icFKpwvdMA:10 a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8
- a=U2TDSMueiEXJ_JPGoVUA:9 a=x9snwWr2DeNwDh03kgHS:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDE0MDEzNCBTYWx0ZWRfXwaVdq3497aNZ
- EGDnZb9FrOa9jB/OFA7UEM6Rj562SqVyOVWpjBHq0GZ9m+Fl2I2gag12Q6sjOS8GR9tkHonrSLu
- MuHyfO0kJM7JAWl4bDA7D+sXeiFHpWzydLWYT7rMcS4hY+OL0iSgSLIbdxxZjwi+528b9V5tS8N
- /vkd+yzYGJLvlpRMV+oCEyGfWMIgE5y15PN//ojaoY3bTDNhnKFvOsFd0Cg/GXNABLfljtLMpxn
- ODHtPnmrUFFMHxvHI6HW/ybgp2vqN1JMU0bbmicGe/x61WedAIvX23drezS8EZ2ok+bK13YTdU+
- 6asu9hT6Ccv5ldhV8R7b7YoSiXjSDXKJYjsu2tCib3S7c7I6a2Dl0/xMFhc+chg3chvaM4Is5F9
- ZHDWfmRz4fToBv6WRotxDpIzi96mag==
-X-Proofpoint-ORIG-GUID: GtTniOmJlumVfewGjWvUdDJNvM36FmqY
+ a=qLYHXgdTuLTpAkILo5MA:9 a=2VI0MkxyNR6bbpdq8BZq:22
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
  definitions=2025-10-16_04,2025-10-13_01,2025-03-28_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 suspectscore=0 spamscore=0 adultscore=0 clxscore=1015
- priorityscore=1501 impostorscore=0 malwarescore=0 bulkscore=0
- lowpriorityscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2510020000
- definitions=main-2510140134
+ lowpriorityscore=0 phishscore=0 adultscore=0 bulkscore=0 priorityscore=1501
+ impostorscore=0 suspectscore=0 malwarescore=0 spamscore=0 clxscore=1011
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2510020000 definitions=main-2510110017
 
-System On Chip Control Processor (SOCCP) is a subsystem that can have
-battery management firmware running on it to support Type-C/PD and
-battery charging. SOCCP does not have multiple PDs and hence PDR is not
-supported. So, if the subsystem comes up/down, rpmsg driver would be
-probed or removed. Use that for notifying clients of pmic_glink for
-PDR events.
+Currently, the charger PD service path and service name are hard coded
+however these paths are not guaranteed to be the same between PMICs. For
+example, on Kaanapali, Charger FW runs on SOCCP(another subsystem) which
+does not have any specific charger PDs defined.
 
-Add support for battery management FW running on SOCCP by adding the
-"PMIC_RTR_SOCCP_APPS" channel name to the rpmsg_match list and
-updating notify_clients logic.
+Define PDR service path and service name as client data so that each
+PMIC generation can properly define these paths.
+
+While at it, add the qcom,kaanapali-pmic-glink compatible string.
 
 Signed-off-by: Anjelique Melendez <anjelique.melendez@oss.qualcomm.com>
 ---
- drivers/soc/qcom/pmic_glink.c | 9 ++++++++-
- 1 file changed, 8 insertions(+), 1 deletion(-)
+ drivers/soc/qcom/pmic_glink.c | 65 ++++++++++++++++++++++-------------
+ 1 file changed, 41 insertions(+), 24 deletions(-)
 
 diff --git a/drivers/soc/qcom/pmic_glink.c b/drivers/soc/qcom/pmic_glink.c
-index c0a4be5df926..627f96ca322e 100644
+index 627f96ca322e..f64449de2305 100644
 --- a/drivers/soc/qcom/pmic_glink.c
 +++ b/drivers/soc/qcom/pmic_glink.c
-@@ -39,6 +39,7 @@ struct pmic_glink {
- 	struct mutex state_lock;
- 	unsigned int client_state;
- 	unsigned int pdr_state;
-+	bool pdr_available;
- 
- 	/* serializing clients list updates */
- 	spinlock_t client_lock;
-@@ -246,9 +247,12 @@ static int pmic_glink_rpmsg_probe(struct rpmsg_device *rpdev)
- 		return dev_err_probe(&rpdev->dev, -ENODEV, "no pmic_glink device to attach to\n");
- 
- 	dev_set_drvdata(&rpdev->dev, pg);
-+	pg->pdr_available = rpdev->id.driver_data;
- 
- 	guard(mutex)(&pg->state_lock);
- 	pg->ept = rpdev->ept;
-+	if (!pg->pdr_available)
-+		pg->pdr_state = SERVREG_SERVICE_STATE_UP;
- 	pmic_glink_state_notify_clients(pg);
- 
- 	return 0;
-@@ -265,11 +269,14 @@ static void pmic_glink_rpmsg_remove(struct rpmsg_device *rpdev)
- 
- 	guard(mutex)(&pg->state_lock);
- 	pg->ept = NULL;
-+	if (!pg->pdr_available)
-+		pg->pdr_state = SERVREG_SERVICE_STATE_DOWN;
- 	pmic_glink_state_notify_clients(pg);
- }
- 
- static const struct rpmsg_device_id pmic_glink_rpmsg_id_match[] = {
--	{ "PMIC_RTR_ADSP_APPS" },
-+	{.name = "PMIC_RTR_ADSP_APPS", .driver_data = true },
-+	{.name = "PMIC_RTR_SOCCP_APPS", .driver_data = false },
- 	{}
+@@ -23,13 +23,19 @@ enum {
+ 	PMIC_GLINK_CLIENT_UCSI,
  };
  
++struct pmic_glink_data {
++	unsigned long	client_mask;
++	char		*pdr_service_name;
++	char		*pdr_service_path;
++};
++
+ struct pmic_glink {
+ 	struct device *dev;
+ 	struct pdr_handle *pdr;
+ 
+ 	struct rpmsg_endpoint *ept;
+ 
+-	unsigned long client_mask;
++	const struct pmic_glink_data *data;
+ 
+ 	struct auxiliary_device altmode_aux;
+ 	struct auxiliary_device ps_aux;
+@@ -292,7 +298,6 @@ static struct rpmsg_driver pmic_glink_rpmsg_driver = {
+ 
+ static int pmic_glink_probe(struct platform_device *pdev)
+ {
+-	const unsigned long *match_data;
+ 	struct pdr_service *service;
+ 	struct pmic_glink *pg;
+ 	int ret;
+@@ -309,12 +314,10 @@ static int pmic_glink_probe(struct platform_device *pdev)
+ 	spin_lock_init(&pg->client_lock);
+ 	mutex_init(&pg->state_lock);
+ 
+-	match_data = (unsigned long *)of_device_get_match_data(&pdev->dev);
+-	if (!match_data)
++	pg->data = of_device_get_match_data(&pdev->dev);
++	if (!pg->data)
+ 		return -EINVAL;
+ 
+-	pg->client_mask = *match_data;
+-
+ 	pg->pdr = pdr_handle_alloc(pmic_glink_pdr_callback, pg);
+ 	if (IS_ERR(pg->pdr)) {
+ 		ret = dev_err_probe(&pdev->dev, PTR_ERR(pg->pdr),
+@@ -322,27 +325,30 @@ static int pmic_glink_probe(struct platform_device *pdev)
+ 		return ret;
+ 	}
+ 
+-	if (pg->client_mask & BIT(PMIC_GLINK_CLIENT_UCSI)) {
++	if (pg->data->client_mask & BIT(PMIC_GLINK_CLIENT_UCSI)) {
+ 		ret = pmic_glink_add_aux_device(pg, &pg->ucsi_aux, "ucsi");
+ 		if (ret)
+ 			goto out_release_pdr_handle;
+ 	}
+-	if (pg->client_mask & BIT(PMIC_GLINK_CLIENT_ALTMODE)) {
++	if (pg->data->client_mask & BIT(PMIC_GLINK_CLIENT_ALTMODE)) {
+ 		ret = pmic_glink_add_aux_device(pg, &pg->altmode_aux, "altmode");
+ 		if (ret)
+ 			goto out_release_ucsi_aux;
+ 	}
+-	if (pg->client_mask & BIT(PMIC_GLINK_CLIENT_BATT)) {
++	if (pg->data->client_mask & BIT(PMIC_GLINK_CLIENT_BATT)) {
+ 		ret = pmic_glink_add_aux_device(pg, &pg->ps_aux, "power-supply");
+ 		if (ret)
+ 			goto out_release_altmode_aux;
+ 	}
+ 
+-	service = pdr_add_lookup(pg->pdr, "tms/servreg", "msm/adsp/charger_pd");
+-	if (IS_ERR(service)) {
+-		ret = dev_err_probe(&pdev->dev, PTR_ERR(service),
+-				    "failed adding pdr lookup for charger_pd\n");
+-		goto out_release_aux_devices;
++	if (pg->data->pdr_service_name && pg->data->pdr_service_path) {
++		service = pdr_add_lookup(pg->pdr, pg->data->pdr_service_name,
++					 pg->data->pdr_service_path);
++		if (IS_ERR(service)) {
++			ret = dev_err_probe(&pdev->dev, PTR_ERR(service),
++					    "failed adding pdr lookup for charger_pd\n");
++			goto out_release_aux_devices;
++		}
+ 	}
+ 
+ 	mutex_lock(&__pmic_glink_lock);
+@@ -352,13 +358,13 @@ static int pmic_glink_probe(struct platform_device *pdev)
+ 	return 0;
+ 
+ out_release_aux_devices:
+-	if (pg->client_mask & BIT(PMIC_GLINK_CLIENT_BATT))
++	if (pg->data->client_mask & BIT(PMIC_GLINK_CLIENT_BATT))
+ 		pmic_glink_del_aux_device(pg, &pg->ps_aux);
+ out_release_altmode_aux:
+-	if (pg->client_mask & BIT(PMIC_GLINK_CLIENT_ALTMODE))
++	if (pg->data->client_mask & BIT(PMIC_GLINK_CLIENT_ALTMODE))
+ 		pmic_glink_del_aux_device(pg, &pg->altmode_aux);
+ out_release_ucsi_aux:
+-	if (pg->client_mask & BIT(PMIC_GLINK_CLIENT_UCSI))
++	if (pg->data->client_mask & BIT(PMIC_GLINK_CLIENT_UCSI))
+ 		pmic_glink_del_aux_device(pg, &pg->ucsi_aux);
+ out_release_pdr_handle:
+ 	pdr_handle_release(pg->pdr);
+@@ -372,23 +378,34 @@ static void pmic_glink_remove(struct platform_device *pdev)
+ 
+ 	pdr_handle_release(pg->pdr);
+ 
+-	if (pg->client_mask & BIT(PMIC_GLINK_CLIENT_BATT))
++	if (pg->data->client_mask & BIT(PMIC_GLINK_CLIENT_BATT))
+ 		pmic_glink_del_aux_device(pg, &pg->ps_aux);
+-	if (pg->client_mask & BIT(PMIC_GLINK_CLIENT_ALTMODE))
++	if (pg->data->client_mask & BIT(PMIC_GLINK_CLIENT_ALTMODE))
+ 		pmic_glink_del_aux_device(pg, &pg->altmode_aux);
+-	if (pg->client_mask & BIT(PMIC_GLINK_CLIENT_UCSI))
++	if (pg->data->client_mask & BIT(PMIC_GLINK_CLIENT_UCSI))
+ 		pmic_glink_del_aux_device(pg, &pg->ucsi_aux);
+ 
+ 	guard(mutex)(&__pmic_glink_lock);
+ 	__pmic_glink = NULL;
+ }
+ 
+-static const unsigned long pmic_glink_sm8450_client_mask = BIT(PMIC_GLINK_CLIENT_BATT) |
+-							   BIT(PMIC_GLINK_CLIENT_ALTMODE) |
+-							   BIT(PMIC_GLINK_CLIENT_UCSI);
++static const struct pmic_glink_data pmic_glink_sm8450_data = {
++	.client_mask = BIT(PMIC_GLINK_CLIENT_BATT) |
++		       BIT(PMIC_GLINK_CLIENT_ALTMODE) |
++		       BIT(PMIC_GLINK_CLIENT_UCSI),
++	.pdr_service_name = "tms/servreg",
++	.pdr_service_path = "msm/adsp/charger_pd",
++};
++
++static const struct pmic_glink_data pmic_glink_kaanapali_data = {
++	.client_mask = BIT(PMIC_GLINK_CLIENT_BATT) |
++		       BIT(PMIC_GLINK_CLIENT_ALTMODE) |
++		       BIT(PMIC_GLINK_CLIENT_UCSI),
++};
+ 
+ static const struct of_device_id pmic_glink_of_match[] = {
+-	{ .compatible = "qcom,pmic-glink", .data = &pmic_glink_sm8450_client_mask },
++	{ .compatible = "qcom,kaanapali-pmic-glink", .data = &pmic_glink_kaanapali_data },
++	{ .compatible = "qcom,pmic-glink", .data = &pmic_glink_sm8450_data },
+ 	{}
+ };
+ MODULE_DEVICE_TABLE(of, pmic_glink_of_match);
 -- 
 2.34.1
 
