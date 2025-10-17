@@ -1,224 +1,551 @@
-Return-Path: <devicetree+bounces-228274-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228275-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC598BEAF1B
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 19:00:49 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 051F8BEAF03
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 18:59:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id F16BB4F06CA
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 16:58:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5C20B1AE2BED
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 17:00:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADE322F12C9;
-	Fri, 17 Oct 2025 16:57:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 556292F12B0;
+	Fri, 17 Oct 2025 16:59:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b="fejDpFCL";
-	dkim=pass (1024-bit key) header.d=cirrus4.onmicrosoft.com header.i=@cirrus4.onmicrosoft.com header.b="ihQEL+Qr"
+	dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b="unP8fBfB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-001ae601.pphosted.com (mx0a-001ae601.pphosted.com [67.231.149.25])
+Received: from ixit.cz (ip-94-112-25-9.bb.vodafone.cz [94.112.25.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 078C12C0F92;
-	Fri, 17 Oct 2025 16:57:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=67.231.149.25
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760720279; cv=fail; b=slVQrJUnOjrJoycJXsLi5udkNP2CA78Robqvh94odlF0yrfkwN7o59UEd2YEvDYuNfGc8Mv35OA6BtADeH/DuxBBHZzmIy1KGsxawez7JzkHl9PfycfTBu9G0wPmSpmM+8qxLsc+LDAIEWgKXeP4vcw5pZTpJGK48jcWKACVang=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760720279; c=relaxed/simple;
-	bh=7gWzX8/mewedR4skGrPMWSZQUk0tc4EisgGlzv9l2F0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EtanFKwdje0BMzWtdA4lqugW+dHF6ijdi+DC9BvwVvGCgVfvONHfA09AijMjW32fIMtUhVvlrF8qVsSDTHN2Smdg1i6SMFRcU18eSBYqYZZQInLtsk7FFd49Qr4/K93KeZTwa5Dcu3fjO/WdQrhkU6JtQvA0u3U9JZOYHIS8Rsg=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com; spf=pass smtp.mailfrom=opensource.cirrus.com; dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b=fejDpFCL; dkim=pass (1024-bit key) header.d=cirrus4.onmicrosoft.com header.i=@cirrus4.onmicrosoft.com header.b=ihQEL+Qr; arc=fail smtp.client-ip=67.231.149.25
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=opensource.cirrus.com
-Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
-	by mx0a-001ae601.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 59H0Ykp74021107;
-	Fri, 17 Oct 2025 11:57:49 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=
-	PODMain02222019; bh=LV6tD0RGIoNS93ooyVi6GvGnSf7Ko7JrUGP30atv4jQ=; b=
-	fejDpFCLP0EhSh4fbBdlsbR52kHIWHDLXJTg6ZpCeAdJfCWqZDx8qrRm3nZ1d8m2
-	Ny6XDHei67UFaRK7GFBblp07lMaAXstXIkNJ7JvIru9k4zXYtNFikfVAJP/FgKoy
-	ckr5HH7wb8ag/WvVo9mJE9XxHKMYOAHoxDqzL2JqpjL+FW8p7LFzuAX3ipSCJpeh
-	EJDCyv11276DsRVxv/kSFagqI+p9KYiiNi4CBop1xTMhz7X+azNa0Q3HEYgHjfFC
-	Gjpy3+G/yi/x2HW4MUnjZuQdEdCNWsEg0TGLo94uzstlBEorNp5OB06rW/6XN7J7
-	Z2+7wJ1yJ/Oy0jWJ7Cgo2g==
-Received: from ph7pr06cu001.outbound.protection.outlook.com (mail-westus3azon11020072.outbound.protection.outlook.com [52.101.201.72])
-	by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 49ubc98xxn-1
-	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
-	Fri, 17 Oct 2025 11:57:48 -0500 (CDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=B8mzvjgrZcPpf+fkmOyZHvOUKEScuk/rdQyX6aO50aj173I5mDWyGthX2tWA2xWqDdmavyhpY8EsKreykOjyi4Z+af8AtwpMlqAIUrpKL5LFije7NU/qVfo1ciQ1A9y7r94Uqr1+JaxkEgJQxH4ck/u0VcS1v7jEkJX0lTGhHZXdRbGRFEigV3dNve0D5sIam2a2JA9tQI/Is7563d4hVCo2Re4pz8loL65fZhHMmebSYxTht1a9Lu5KrT58f4zOaKhsUcdwqe+QxLZbfnDA1HpmjLR3asUJT6YUZCh3iC35b3TwLTGWbSyk+BKCqTGmgefemdc/uoesaYq5lv+hZw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=LV6tD0RGIoNS93ooyVi6GvGnSf7Ko7JrUGP30atv4jQ=;
- b=IxCsw4fMuBS7zxai66COm2dIwEHP3Sh8G2sTJ1sDzUNRP7BdBB9oRGOJgMfwxp9hW2tOuzfUvyUeEJ/Tv8xi1g2bqavw+XY82dsap7IHZISl9C8An71+9zjhOdskcETE5YEnEcQtLJOryu1gdV9iJ+Gt2DaLFf4sjRNpRFDNAAGcV3bnXf/qBp+IP/L9svMRJQ9VPPzVVj3Nx9e7mQCKHR9ybEoiKaZh//6mOb7W5TznQm5jrNI8v1uaYBd13ZRIkxGfvnA8CAQt6VLyFyCzmsaT5kZwTNv/ymFVL9BVwFRb5PnPkt6W8KqsXXg3zMbadCGpkaQKwAWU+EfmZ83Pxg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
- 84.19.233.75) smtp.rcpttodomain=cirrus.com
- smtp.mailfrom=opensource.cirrus.com; dmarc=fail (p=reject sp=reject pct=100)
- action=oreject header.from=opensource.cirrus.com; dkim=none (message not
- signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=cirrus4.onmicrosoft.com; s=selector2-cirrus4-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=LV6tD0RGIoNS93ooyVi6GvGnSf7Ko7JrUGP30atv4jQ=;
- b=ihQEL+QrAxc+UPppDO9qkAvcg8rP2hH2PJlzSMDLN9ZYSpHM1E5kSO8ZUM/Yj+6zoyCmP47u4yVEGzk43F0MnSXNsWJPCY0DqXPv18H+uGMYnShUvobOBy+GqsBpjGZZ0WkTv7T8VEIDjC8VR+8nPRV2eOVtyHnFflym0LD2b9w=
-Received: from DS7PR05CA0045.namprd05.prod.outlook.com (2603:10b6:8:2f::7) by
- DS4PPFF446EBDEB.namprd19.prod.outlook.com (2603:10b6:f:fc00::a62) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9228.13; Fri, 17 Oct
- 2025 16:57:45 +0000
-Received: from DS2PEPF00003446.namprd04.prod.outlook.com
- (2603:10b6:8:2f:cafe::a) by DS7PR05CA0045.outlook.office365.com
- (2603:10b6:8:2f::7) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9253.5 via Frontend Transport; Fri,
- 17 Oct 2025 16:57:39 +0000
-X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 84.19.233.75)
- smtp.mailfrom=opensource.cirrus.com; dkim=none (message not signed)
- header.d=none;dmarc=fail action=oreject header.from=opensource.cirrus.com;
-Received-SPF: Fail (protection.outlook.com: domain of opensource.cirrus.com
- does not designate 84.19.233.75 as permitted sender)
- receiver=protection.outlook.com; client-ip=84.19.233.75;
- helo=edirelay1.ad.cirrus.com;
-Received: from edirelay1.ad.cirrus.com (84.19.233.75) by
- DS2PEPF00003446.mail.protection.outlook.com (10.167.17.73) with Microsoft
- SMTP Server (version=TLS1_3, cipher=TLS_AES_256_GCM_SHA384) id 15.20.9253.7
- via Frontend Transport; Fri, 17 Oct 2025 16:57:44 +0000
-Received: from ediswmail9.ad.cirrus.com (ediswmail9.ad.cirrus.com [198.61.86.93])
-	by edirelay1.ad.cirrus.com (Postfix) with ESMTPS id 216A1406547;
-	Fri, 17 Oct 2025 16:57:43 +0000 (UTC)
-Received: from lonswws03.ad.cirrus.com (lonswws03.ad.cirrus.com [198.90.188.34])
-	by ediswmail9.ad.cirrus.com (Postfix) with ESMTPSA id BCA37820249;
-	Fri, 17 Oct 2025 16:57:42 +0000 (UTC)
-Date: Fri, 17 Oct 2025 17:57:41 +0100
-From: Vitaly Rodionov <vitalyr@opensource.cirrus.com>
-To: Mark Brown <broonie@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Takashi Iwai <tiwai@suse.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        David Rhodes <david.rhodes@cirrus.com>,
-        Richard Fitzgerald <rf@opensource.cirrus.com>,
-        Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-sound@vger.kernel.org,
-        linux-kernel@vger.kernel.org, patches@opensource.cirrus.com,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 09/11] ASoC: cs530x: Correct MCLK reference frequency
- values
-Message-ID: <aPJ1hS-YD2M6nsJi@lonswws03.ad.cirrus.com>
-References: <20251017161543.214235-1-vitalyr@opensource.cirrus.com>
- <20251017161543.214235-10-vitalyr@opensource.cirrus.com>
- <a16503e6-870a-43ce-a705-27c0ea199303@sirena.org.uk>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56F552F12C6;
+	Fri, 17 Oct 2025 16:59:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=94.112.25.9
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1760720369; cv=none; b=e30hiL90sBGuTxhZa+1JvkgM7caJU4rTWIWVz4Xf0LUn607k++AuSWzRrXnr38KH28zv/N/3VnHLcbOZynh9F3Bly+AEOS91bkkfZt6TQFVY56Q1z9swr4AI7HTaHkqAZ/IizB02hxtDRU9kGMM9RxN9LSLdChlEyFQ71krMTSg=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1760720369; c=relaxed/simple;
+	bh=5G8j2cRRJ6A+Aq1N6J/7Fyblt2SmRs1gwK98e8GGRK4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=hSwUrZ1VVqG8Tbr42kvys3IcCdX1kkKIHevdNv88rz+PYyxn2mVWNGpUtZCQSHu1BCMKWKHvAvlfXuURBzhWm2C41mtJkZEOS5neaSg0R6ntMI87pv3PBVPTAm+6hRhPFPzl3sOcgueYCkZ2vw2IWqCdLE4hl6+ftAf1shdObvA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz; spf=pass smtp.mailfrom=ixit.cz; dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b=unP8fBfB; arc=none smtp.client-ip=94.112.25.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ixit.cz
+Received: from [10.0.0.200] (unknown [10.0.0.1])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange x25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by ixit.cz (Postfix) with ESMTPSA id AD5A553415E5;
+	Fri, 17 Oct 2025 18:59:14 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
+	t=1760720354;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=q/ZTXzRkQm/q6cjhr+kjmelLmOVEaTG5PRmCV3EP2v0=;
+	b=unP8fBfByFAzMN42r+HrQJozH214U5U00bBjZPhnWxydfNs9BxlQy6MqO7aW6C7xcnlEih
+	WsLz9fVgjgKIpTLBgD1JGlx73iXq/KfbvximGrou3NWKGCzbRqSY46bBg66E3D14TXp0+c
+	SFXAUPeBiJoPrvcfqMCJc5ZU4CB9f/w=
+Message-ID: <a5da8d40-f194-4fed-9118-037bd39ebe2e@ixit.cz>
+Date: Fri, 17 Oct 2025 18:59:14 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: Add support for Pixel 3 and Pixel 3
+ XL
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Amit Pundir <amit.pundir@linaro.org>, Casey Connolly <casey@connolly.tech>,
+ Joel Selvaraj <foss@joelselvaraj.com>, Sumit Semwal
+ <sumit.semwal@linaro.org>, Vinod Koul <vkoul@kernel.org>
+References: <20251005-pixel-3-v1-0-ab8b85f6133f@ixit.cz>
+ <20251005-pixel-3-v1-2-ab8b85f6133f@ixit.cz>
+ <n4xims4y5sssqxkchg2tikc7idkzds5ru7ayidcgxdfx77je2d@qo34qucbebnn>
+Content-Language: en-US
+From: David Heidelberg <david@ixit.cz>
+Autocrypt: addr=david@ixit.cz; keydata=
+ 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
+In-Reply-To: <n4xims4y5sssqxkchg2tikc7idkzds5ru7ayidcgxdfx77je2d@qo34qucbebnn>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <a16503e6-870a-43ce-a705-27c0ea199303@sirena.org.uk>
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS2PEPF00003446:EE_|DS4PPFF446EBDEB:EE_
-X-MS-Office365-Filtering-Correlation-Id: bb9ceaaa-62a6-48fa-6e29-08de0d9e4aec
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|36860700013|82310400026|61400799027|376014|7416014;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?TStJaS9SVm9WZnY2VEFkL282dWJYR21FUlpFVW1qTEZHd2ZEUHJ4Q2gxcUlO?=
- =?utf-8?B?UCtFMk96OFpZY1R2b0pDOC9HcFBWV0tYdllFNkRoNEE2WjhBbDAzYXBwTlQ3?=
- =?utf-8?B?UFR4ZzQ2RmJ5M00wYjhEMUlNYXhYbGJRTDBiRTV5NXpuUmMrS3F0eUZhV3Iv?=
- =?utf-8?B?NGlPU0JDNGFuSjRHOVU0Uyt2VHJ1RDhnaC9RT2U3ZDUyamZjVUc3bmtRa1Bh?=
- =?utf-8?B?emxDU0tVdkVubjNERStwRzJFVXFCd2JpdHM5UXJsTXlQbkRsZ0JjSkFXdnJK?=
- =?utf-8?B?djlwc3ZNdUpmazhnRmk1UkN6QTZ1T1RXcm9BanBpVmZLanZvMGxUSEF2WTNY?=
- =?utf-8?B?b25YZWJUeWhjZUdtQlFSTDhjVjZEeGRoQ3ZoY3B6R3NZN0k3emlQaWt6NDhu?=
- =?utf-8?B?bDUwQzFRTG0yMmtUcGRoZUdUdnk3eVhvcmRnOGRpQktXL2M3eU1ZeTJwZzkx?=
- =?utf-8?B?NHRhNlo3L3owM0tXTDdRdXFmbGhnOVlKTnJreUFqeXVQUnJ3TXFHVkx2WVcv?=
- =?utf-8?B?VzdHZ1l2blRrdmRQNWJuclBvNDdFVTRRRUVlSTJsMWNWUjdwYjV3NWtaNTNz?=
- =?utf-8?B?V0hGT1dLRmFPdmNwckFLMURoT2xvbG1mQWtuc2gyQkJXTkVXTEJMYkdCazlZ?=
- =?utf-8?B?Y1FaUlA4ZTRBWVMvNHVpTndLdGFGYUlYbFZDTUtJK2loNGF0L3F5ZlNaV1dP?=
- =?utf-8?B?SVcrYTkvVEdtZ25GeGtwcTZtRTlnVzhFOG5TMC8vVkg5ZkNremNRSVN4NVpp?=
- =?utf-8?B?R1p1UGlaZC8rMHBhYVhFU1JURjh2R01DYjRzQmZIWXdPbkFGdnVZWlpNTkt3?=
- =?utf-8?B?YlNGUHVFcE5QN0xpOGZzNUJneW4rVU1KNVpnbWVRQkd5aS9Ma1lDdnZxaWlD?=
- =?utf-8?B?NDRqZ002UmVJZDNqZGNSNDlWeFFDbEVyWmtUWWpnYnhrMmp6YzJQN0lxb1po?=
- =?utf-8?B?U3VORnZmQzVxZTB2dkpVTyt0QXdTVk85RlRwbWkrY2lVeEhFS0JTUHBRbC9z?=
- =?utf-8?B?MHpWUCtKbVJxdHZCbUo3alU2U0pFNG9GTG5JcEZKSEcyZE8wbUxCYUJ4NGlX?=
- =?utf-8?B?Y1FVMVd3S2xGUWQ5Z002RDE0L2g4YjF0a2NyQkthVWZrNlZVc2RuZ25sWjRF?=
- =?utf-8?B?MGlVMEIrMXNmSXFHZlVmNi8vNnB4QXQ5NkpTeHExWWE4QzJzU2JwNzVwWndN?=
- =?utf-8?B?Z0xSQ0xNSVRnVitHa2FYektHWkl6c2l1V1ZYaUhlS2RSOHJ3WFN1UUJKL2Fm?=
- =?utf-8?B?bnM0Mnd4QWg4bUtXWFNEUEhGcWRhaVphTVh0OUZCcjJMQ0wyTGpCMy9XYk5k?=
- =?utf-8?B?aW9zK0FGeStvcnN3QUY4MWg3bEl1RkNSTG1sQUoxM1prLzZCT0hUU2ZyNUFx?=
- =?utf-8?B?Y3A5c3A4SmtncnZQNFJJaXVzZmUxQ3owUE44eVB3Y3p6SmRTOUEyM1kvbFZO?=
- =?utf-8?B?RldNc1ZSdGdaMWVKSjQzS1REakg2eVhtY1VaTGR6NTNlU3pTZnJQM2JTMlVN?=
- =?utf-8?B?ZkE0Ri9kWk1EMWhhbE9Nbm9obVp0QlB0VHdhOHFqZGU5TjBETEl2U0x3TlJs?=
- =?utf-8?B?NTVwa3hwb1JuTE5BZmVkUmdzb0FKdEZ3ZFJaWW40MDBCWTk5eVF5Vy9sZlZZ?=
- =?utf-8?B?Z0p2R3A5S0JxaWVyWTRMcFdtUHRjY1Z1TWRpUFg5eWZNb3dINmp5MVVlbWR2?=
- =?utf-8?B?WTZDa2x0enZxUGVPU1F0NkdnTVNOcTl0dTc3cW1ESTZUZUNlZk1xWEdXNHps?=
- =?utf-8?B?Q09FUnphWXVPay83NW0zN0l1bkFFWGJTaTVYWG45QlBDOXFhamI4K0xFVGl2?=
- =?utf-8?B?K2JlU0pRRVJXNDh2bU1Pc3g0Zk5GTnM1V3haY1RVSHl1TWYxTzJmUVZqVVpO?=
- =?utf-8?B?bU5NYUZ0MDk5WHo1NUgwTUFtS1d1T1BwQjlnakJtL2dQVXlPS2RFR3p6MkFt?=
- =?utf-8?B?WFRXUG9zSWdtd05XQjVDSTl4dDJXUVN5Ty8rN2hhSFBNSDllZitRZEdseUIy?=
- =?utf-8?B?eFZBVFNhK2N5R0RwVnpzd2hEdDlvNWZhYTczZUtlbFZobisrME5ZWmduTHR4?=
- =?utf-8?B?cTNTb2xta3RMenlrRVBqOFpUTmw5bHJEMTR6eVQ0Uk9tekxKMmRXdnYwTWxQ?=
- =?utf-8?Q?VMA4=3D?=
-X-Forefront-Antispam-Report:
-	CIP:84.19.233.75;CTRY:GB;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:edirelay1.ad.cirrus.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700013)(82310400026)(61400799027)(376014)(7416014);DIR:OUT;SFP:1102;
-X-OriginatorOrg: opensource.cirrus.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Oct 2025 16:57:44.3720
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: bb9ceaaa-62a6-48fa-6e29-08de0d9e4aec
-X-MS-Exchange-CrossTenant-Id: bec09025-e5bc-40d1-a355-8e955c307de8
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=bec09025-e5bc-40d1-a355-8e955c307de8;Ip=[84.19.233.75];Helo=[edirelay1.ad.cirrus.com]
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TreatMessagesAsInternal-DS2PEPF00003446.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS4PPFF446EBDEB
-X-Proofpoint-ORIG-GUID: TIZfYS_l3QyOjZrgMprfq9Ql-1B2GTnh
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDE3MDEyNiBTYWx0ZWRfXw/MqXKxqHotn
- 3wKdZd15iAkAElTADFPqauwKiaw5pG3pLCRYUFAs4dInmka2nUSLAJVfr8AxloFkiRXuBiRVWZw
- toyz7mePXizUS8s+sZz1Qk02zw8iHA19YEqGfaESoSBgcUJsasqs9r50WKTlAa9pk3vqQCAEa2s
- N1fY2uj8j0VDLpsmPfyHyUJCEODqon+efcvRsOaQ0SPz3nACePQFh8MSqnXHqvCUR+wGBF6OltO
- 9wOYOWc40bk03rJHTY6BZGIXoEVQLeYSi9fVaDsixSq9D7vxauWoHAaBWH6fxbsoS44WiWFes0g
- xYOe1tQVnbKRhGC45TT7MIc5mDByLttc1M8RWPA/PX1m4U5mQf6ZhZ6UYK2yKRsNQFbGX4lgrhc
- I40V2v9KoK3gRV5UsGCIQuGWQnz+9g==
-X-Proofpoint-GUID: TIZfYS_l3QyOjZrgMprfq9Ql-1B2GTnh
-X-Authority-Analysis: v=2.4 cv=H7bWAuYi c=1 sm=1 tr=0 ts=68f2758c cx=c_pps
- a=IBJHqVCGmmUWI27oiwGTEA==:117 a=h1hSm8JtM9GN1ddwPAif2w==:17
- a=6eWqkTHjU83fiwn7nKZWdM+Sl24=:19 a=z/mQ4Ysz8XfWz/Q5cLBRGdckG28=:19
- a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=s63m1ICgrNkA:10 a=RWc_ulEos4gA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=qAyo7-W0RYy2w9U-SnQA:9 a=3ZKOabzyN94A:10
- a=QEXdDO2ut3YA:10 a=cPQSjfK2_nFv0Q5t_7PE:22
-X-Proofpoint-Spam-Reason: safe
 
-On Fri, Oct 17, 2025 at 05:44:06PM +0100, Mark Brown wrote:
-> On Fri, Oct 17, 2025 at 05:15:36PM +0100, Vitaly Rodionov wrote:
-> > The MCLK frequency must be 49.152 MHz (for 48 kHz-related
-> > sample rates) or 45.1584 MHz (for 44.1 kHz-related sample rates).
+On 06/10/2025 00:03, Dmitry Baryshkov wrote:
+> On Sun, Oct 05, 2025 at 03:16:29PM +0200, David Heidelberg via B4 Relay wrote:
+>> From: David Heidelberg <david@ixit.cz>
+>>
+>> This adds initial device tree support for the following phones:
+>>
+>>   - Google Pixel 3 (blueline)
+>>   - Google Pixel 3 XL (crosshatch)
 > 
-> >  	switch (source) {
-> >  	case CS530X_SYSCLK_SRC_MCLK:
-> > -		if (freq != 24560000 && freq != 22572000) {
-> > -			dev_err(component->dev, "Invalid MCLK source rate %d\n",
-> > -				freq);
-> > +		switch (freq) {
-> > +		case CS530X_SYSCLK_REF_45_1MHZ:
-> > +		case CS530X_SYSCLK_REF_49_1MHZ:
-> > +			break;
-> > +		default:
-> > +			dev_err(component->dev, "Invalid MCLK source rate %d\n", freq);
-> >  			return -EINVAL;
-> >  		}
-> >  		break;
+> Great to finally see it being submitted!
 > 
-> This will break any existing user that sets MCLK won't it?  Hopefully
-> they were managing to function, even if the clocks were out of spec.
+>>
+>> Both phone boards use the same identifiers and differ only slightly
+>> in their connected peripherals.
+>>
+>> Supported functionality includes:
+>>   - Debug UART
+>>   - UFS
+>>   - Charger
+>>   - USB-C (peripheral mode)
+>>   - Display (Pixel 3 only)
+> 
+> No remoteprocs / IPA / GPU / Venus / WiFi / BT? The firmware is
+> accessible to download from Google and it can be further repackaged (but
+> not redistributed). See [1], [2].
+> 
+> The phones share all firmware except for the bdwlan, so hopefully you
+> can add 'Google/blueline/foo.mbn' to the common file.
 
-Hopefully, there are no existing users yet. This was used only on our development board,
-and we’d like to fix it proactively before any users encounter issues.
+Would it be acceptable to use path format qcom/sdm845/$codename/ e.g. 
+qcom/sdm845/blueline as it's used elsewhere?
 
+As I'm looking at the Google scripts, I assume both blueline/crosshatch 
+use same firmware (which makes sense, as only the battery and display is 
+different).
+
+David
+
+> 
+> [1] https://github.com/linux-msm/meta-qcom-extras/blob/master/recipes-bsp/firmware-nexus/firmware-qcom-pixel3.bb
+> [2] https://github.com/linux-msm/meta-qcom-extras/blob/master/recipes-bsp/firmware-nexus/firmware-qcom-pixel.inc
+> 
+>>
+>> GPIOs 0–3 and 81–84 are not accessible from the application CPUs,
+>> so they are marked as reserved to allow the Pixel 3 to boot.
+>>
+>> The rmtfs region is allocated using UIO, making it technically "dynamic."
+>>
+>> Its address and size can be read from sysfs:
+>>
+>> $ cat /sys/class/uio/uio0/name
+>> /sys/class/uio/uio0/maps/map0/addr
+>> 0x00000000f2701000
+>>
+>> $ cat /sys/class/uio/uio0/maps/map0/size
+>> 0x0000000000200000
+>>
+>> Like the OnePlus 6, the Pixel 3 requires 1 kB of reserved memory on either
+>> side of the rmtfs region to work around an XPU bug that would otherwise
+>> cause erroneous violations when accessing the rmtfs_mem region.
+>>
+>> Co-developed-by: Amit Pundir <amit.pundir@linaro.org>
+>> Signed-off-by: Amit Pundir <amit.pundir@linaro.org>
+>> Co-developed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+>> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+>> Co-developed-by: Casey Connolly <casey@connolly.tech>
+>> Signed-off-by: Casey Connolly <casey@connolly.tech>
+>> Co-developed-by: Joel Selvaraj <foss@joelselvaraj.com>
+>> Signed-off-by: Joel Selvaraj <foss@joelselvaraj.com>
+>> Co-developed-by: Sumit Semwal <sumit.semwal@linaro.org>
+>> Signed-off-by: Sumit Semwal <sumit.semwal@linaro.org>
+>> Co-developed-by: Vinod Koul <vkoul@kernel.org>
+>> Signed-off-by: Vinod Koul <vkoul@kernel.org>
+>> Signed-off-by: David Heidelberg <david@ixit.cz>
+>> ---
+>>   arch/arm64/boot/dts/qcom/Makefile                  |   2 +
+>>   .../arm64/boot/dts/qcom/sdm845-google-blueline.dts | 128 ++++++
+>>   arch/arm64/boot/dts/qcom/sdm845-google-common.dtsi | 467 +++++++++++++++++++++
+>>   .../boot/dts/qcom/sdm845-google-crosshatch.dts     | 137 ++++++
+>>   4 files changed, 734 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+>> index 4bfa926b6a085..ba05dc935dc7c 100644
+>> --- a/arch/arm64/boot/dts/qcom/Makefile
+>> +++ b/arch/arm64/boot/dts/qcom/Makefile
+>> @@ -239,6 +239,8 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-db845c.dtb
+>>   sdm845-db845c-navigation-mezzanine-dtbs	:= sdm845-db845c.dtb sdm845-db845c-navigation-mezzanine.dtbo
+>>   
+>>   dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-db845c-navigation-mezzanine.dtb
+>> +dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-google-crosshatch.dtb
+>> +dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-google-blueline.dtb
+>>   dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-lg-judyln.dtb
+>>   dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-lg-judyp.dtb
+>>   dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-mtp.dtb
+>> diff --git a/arch/arm64/boot/dts/qcom/sdm845-google-blueline.dts b/arch/arm64/boot/dts/qcom/sdm845-google-blueline.dts
+>> new file mode 100644
+>> index 0000000000000..df88982018b9e
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/qcom/sdm845-google-blueline.dts
+>> @@ -0,0 +1,128 @@
+>> +// SPDX-License-Identifier: GPL-2.0-only
+>> +
+>> +/dts-v1/;
+>> +
+>> +#include "sdm845-google-common.dtsi"
+>> +
+>> +/ {
+>> +	model = "Google Pixel 3";
+>> +	compatible = "google,blueline", "qcom,sdm845";
+>> +
+>> +	battery: battery {
+>> +		compatible = "simple-battery";
+>> +
+>> +		charge-full-design-microamp-hours = <2970000>;
+>> +		voltage-min-design-microvolt = <3600000>;
+>> +		voltage-max-design-microvolt = <4400000>;
+>> +	};
+>> +
+>> +	chosen {
+>> +		#address-cells = <2>;
+>> +		#size-cells = <2>;
+>> +		ranges;
+>> +
+>> +		/* for u-boot */
+>> +		framebuffer: framebuffer@9d400000 {
+>> +			compatible = "simple-framebuffer";
+>> +			reg = <0 0x9d400000 0 (2160 * 1080 * 4)>;
+>> +			width = <1080>;
+>> +			height = <2160>;
+>> +			stride = <(1080 * 4)>;
+>> +			format = "a8r8g8b8";
+>> +		};
+>> +	};
+>> +
+>> +	reserved-memory {
+>> +		framebuffer_region@9d400000 {
+> 
+> Can't we use cont_splash_mem and let bootloader set it?
+> 
+>> +			no-map;
+>> +			reg = <0 0x9d400000 0 0x02400000>; // FIXME
+>> +		};
+>> +	};
+>> +};
+>> +
+>> +&gmu {
+>> +	status = "okay";
+>> +};
+> 
+> No need to, it's enabled by default.
+> 
+>> +
+>> +&mdss {
+>> +	status = "okay";
+>> +};
+>> +
+>> +&mdss_dsi0 {
+>> +	status = "okay";
+>> +	vdda-supply = <&vdda_mipi_dsi0_1p2>;
+>> +
+>> +	ports {
+>> +		port@1 {
+>> +			endpoint {
+>> +				remote-endpoint = <&panel_in>;
+>> +				data-lanes = <0 1 2 3>;
+>> +				qcom,te-source = "mdp_vsync_e";
+> 
+> &mdss_dsi1_out {
+> 	remote-endpoint = <&panel_in>;
+> 	.....
+> };
+> 
+> 
+>> +			};
+>> +		};
+>> +	};
+>> +
+>> +	panel@0 {
+>> +		compatible = "lg,sw43408";
+>> +		reg = <0>;
+>> +
+>> +		vddi-supply = <&vreg_l14a_1p88>;
+>> +		vpnl-supply = <&vreg_l28a_3p0>;
+>> +
+>> +		reset-gpios = <&tlmm 6 GPIO_ACTIVE_LOW>;
+>> +
+>> +		pinctrl-names = "default";
+>> +		pinctrl-0 = <&panel_reset_pins &panel_te_pin &panel_pmgpio_pins>;
+>> +
+>> +		port {
+>> +			panel_in: endpoint {
+>> +				remote-endpoint = <&mdss_dsi0_out>;
+>> +			};
+>> +		};
+>> +	};
+>> +};
+>> +
+>> +&mdss_dsi0_out {
+>> +	remote-endpoint = <&panel_in>;
+>> +	data-lanes = <0 1 2 3>;
+>> +};
+>> +
+>> +&mdss_dsi0_phy {
+>> +	vdds-supply = <&vdda_mipi_dsi0_pll>;
+>> +
+>> +	status = "okay";
+>> +};
+>> +
+>> +&pm8998_gpios {
+>> +	panel_pmgpio_pins: panel-pmgpio-active-state {
+> 
+> Are these two actually used by the panel? I think they were only used
+> for sw43402, but not for sw43408.
+> 
+>> +		pins = "gpio2", "gpio5";
+>> +		function = "normal";
+>> +		input-enable;
+>> +		bias-disable;
+>> +		power-source = <0>;
+>> +	};
+>> +};
+>> +
+>> +
+>> +	volume-keys {
+> 
+> gpio-keys ?
+> 
+>> +		compatible = "gpio-keys";
+>> +		label = "Volume keys";
+>> +		autorepeat;
+>> +
+>> +		pinctrl-names = "default";
+>> +		pinctrl-0 = <&volume_up_gpio>;
+>> +
+>> +		key-vol-up {
+>> +			label = "Volume Up";
+>> +			linux,code = <KEY_VOLUMEUP>;
+>> +			gpios = <&pm8998_gpios 6 GPIO_ACTIVE_LOW>;
+>> +			debounce-interval = <15>;
+>> +		};
+>> +	};
+>> +
+>> +	vph_pwr: vph-pwr-regulator {
+> 
+> Nit: BCP is regulator-foo-bar
+> 
+>> +		compatible = "regulator-fixed";
+>> +		regulator-name = "vph_pwr";
+>> +		regulator-min-microvolt = <3700000>;
+>> +		regulator-max-microvolt = <3700000>;
+>> +	};
+>> +
+>> +	vreg_s4a_1p8: vreg-s4a-1p8-regulator {
+>> +		compatible = "regulator-fixed";
+>> +		regulator-name = "vreg_s4a_1p8";
+>> +
+>> +		regulator-min-microvolt = <1800000>;
+>> +		regulator-max-microvolt = <1800000>;
+>> +		regulator-always-on;
+>> +		regulator-boot-on;
+>> +
+>> +		vin-supply = <&vph_pwr>;
+>> +	};
+>> +};
+>> +
+>> diff --git a/arch/arm64/boot/dts/qcom/sdm845-google-crosshatch.dts b/arch/arm64/boot/dts/qcom/sdm845-google-crosshatch.dts
+>> new file mode 100644
+>> index 0000000000000..dc9938ffc0ab8
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/qcom/sdm845-google-crosshatch.dts
+>> @@ -0,0 +1,137 @@
+>> +// SPDX-License-Identifier: GPL-2.0-only
+>> +
+>> +/dts-v1/;
+>> +
+>> +#include "sdm845-google-common.dtsi"
+>> +
+>> +/ {
+>> +	model = "Google Pixel 3 XL";
+>> +	compatible = "google,crosshatch", "qcom,sdm845";
+>> +
+>> +	battery: battery {
+>> +		compatible = "simple-battery";
+>> +
+>> +		charge-full-design-microamp-hours = <3480000>;
+>> +		voltage-min-design-microvolt = <3600000>;
+>> +		voltage-max-design-microvolt = <4400000>;
+>> +	};
+>> +
+>> +	chosen {
+>> +		#address-cells = <2>;
+>> +		#size-cells = <2>;
+>> +		ranges;
+> 
+> These are all the same as the -blueline. Please move common options to
+> the -common.dtsi
+> 
+>> +
+>> +		/* for u-boot */
+>> +		framebuffer: framebuffer@9d400000 {
+>> +			compatible = "simple-framebuffer";
+>> +			reg = <0 0x9d400000 0 (2960 * 1440 * 4)>;
+>> +			width = <1440>;
+>> +			height = <2960>;
+>> +			stride = <(1440 * 4)>;
+>> +			format = "a8r8g8b8";
+>> +		};
+>> +	};
+>> +
+>> +	reserved-memory {
+>> +		framebuffer_region@9d400000 {
+>> +			no-map;
+>> +			reg = <0 0x9d400000 0 0x02400000>;
+>> +		};
+>> +	};
+>> +};
+>> +
+>> +&gmu {
+>> +	status = "okay";
+>> +};
+>> +
+>> +&mdss {
+> 
+> More and more common properties. Please move them to the common file.
+> 
+>> +	status = "okay";
+>> +};
+>> +
+>> +&mdss_dsi0 {
+>> +	vdda-supply = <&vdda_mipi_dsi0_1p2>;
+>> +
+>> +	status = "okay";
+>> +
+>> +	ports {
+>> +		port@1 {
+>> +			endpoint {
+>> +				remote-endpoint = <&panel_in>;
+>> +				data-lanes = <0 1 2 3>;
+>> +				qcom,te-source = "mdp_vsync_e";
+>> +			};
+>> +		};
+>> +	};
+>> +
+>> +	panel@0 {
+>> +		compatible = "samsung,s6e3ha8";
+>> +		reg = <0>;
+>> +
+>> +		vci-supply = <&vreg_l28a_3p0>; // downstream
+>> +		vdd3-supply = <&vreg_l28a_3p0>;
+>> +		vddr-supply = <&vreg_l14a_1p88>;
+>> +
+>> +		reset-gpios = <&tlmm 6 GPIO_ACTIVE_LOW>;
+>> +
+>> +		pinctrl-names = "default";
+>> +		pinctrl-0 = <&panel_reset_pins &panel_te_pin &se8_spiflash &panel_pmgpio_pins>;
+> 
+> - Why do you need spiflash here?
+> - I don't think this uses pmgpios too.
+> 
+>> +
+>> +		port {
+>> +			panel_in: endpoint {
+>> +				remote-endpoint = <&mdss_dsi0_out>;
+>> +			};
+>> +		};
+>> +	};
+>> +};
+>> +
+>> +&mdss_dsi0_out {
+>> +	data-lanes = <0 1 2 3>;
+>> +	remote-endpoint = <&panel_in>;
+>> +};
+>> +
+>> +&mdss_dsi0_phy {
+>> +	vdds-supply = <&vdda_mipi_dsi0_pll>;
+>> +
+>> +	status = "okay";
+>> +};
+>> +
+>> +&pm8998_gpios {
+>> +	panel_pmgpio_pins: panel-pmgpio-active-state {
+>> +		pins = "gpio2", "gpio5";
+>> +		function = "normal";
+>> +		input-enable;
+>> +		bias-disable;
+>> +		power-source = <0>;
+>> +	};
+>> +};
+>> +
+>> +&tlmm {
+>> +	se8_spiflash: se8-spiflash-state {
+>> +		pins = "gpio65", "gpio66", "gpio67", "gpio68";
+>> +		function = "gpio";
+>> +		input-enable;
+>> +		bias-disable;
+>> +	};
+>> +
+>> +	panel_te_pin: panel-te-state {
+>> +		pins = "gpio12";
+>> +		function = "mdp_vsync";
+>> +		drive-strength = <2>;
+>> +		bias-pull-down;
+>> +	};
+>> +
+>> +	panel_reset_pins: panel-active-state {
+>> +		pins = "gpio6";
+>> +		function = "gpio";
+>> +		drive-strength = <8>;
+>> +		bias-disable;
+>> +	};
+>> +
+>> +	panel_suspend: panel-suspend-state {
+>> +		pins = "gpio6";
+>> +		function = "gpio";
+>> +		drive-strength = <2>;
+>> +		bias-pull-down;
+>> +	};
+>> +
+>> +};
+>>
+>> -- 
+>> 2.51.0
+>>
+>>
+> 
+
+-- 
+David Heidelberg
 
 
