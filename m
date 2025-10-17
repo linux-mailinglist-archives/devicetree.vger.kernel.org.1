@@ -1,196 +1,147 @@
-Return-Path: <devicetree+bounces-228200-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228201-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E984BE9A9F
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 17:19:29 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 481D8BE9FAB
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 17:37:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 95E0E585C50
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 15:12:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 386F3741D9D
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 15:13:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68B0E335071;
-	Fri, 17 Oct 2025 15:10:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 665B833291B;
+	Fri, 17 Oct 2025 15:12:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="tzqo0eok"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TqmvhnCx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CDE0335073;
-	Fri, 17 Oct 2025 15:10:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3697B2F12B0;
+	Fri, 17 Oct 2025 15:12:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760713838; cv=none; b=OPa0eLZQAXlXv21ImWwtzFLVA+2YJB/V7+9E9/2z25J1nani9j3AHf9ziXqjWs/HbnGyk4Zn0jiY3Nfy49lPTPABdSZNbQMaeXEQ9NIn7UBK9Gv9UGukWZC2b2P6voDKf28ffphRgSOyz3tPQyH5OAN3YdmOWshfWj7rE8vJFEI=
+	t=1760713958; cv=none; b=cebjW5IhSLFjSqmpa0Zgms8HTp0ZzJ5zds3Woh3kT0+rgQwN8e6HYxRpwmtFoZ1kLRBk05YzbrNR6uR1cycN2dKkFccTalf5Q+OcPUsJXtFvDwVDRA8MUQcqzpcd1zNvoi+LCy+XJLXP/dVtATLsVGmCXgMdM2cyMDAilVAso7s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760713838; c=relaxed/simple;
-	bh=Gm4P2a9S/HHIpbqj/1/WVKWFwzH85G3VJQhBIXcpX5k=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=kTv0xQa3fdK4Bvaf56SlcItI4eFTVrQLDRcfH9qLe9L+CAoqySqzvsEmRbWjPXNihiFCMZQX/Zx+3Y9s+pPARzvEo13ArfABCsV6E3oxidGmsobyQPUmHw8KK6NS27O+eBRhrOGC6YlyMeHiBBYqRFC44P3LnKy45JeKlzMW/JY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=tzqo0eok; arc=none smtp.client-ip=185.246.84.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id A6A4A1A1452;
-	Fri, 17 Oct 2025 15:10:34 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 7AAB3606DB;
-	Fri, 17 Oct 2025 15:10:34 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 11888102F2330;
-	Fri, 17 Oct 2025 17:10:25 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1760713833; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=tz1YrBtjgqKAjBOhZdtsBw6j4wrL2DMmdPaWBNAh2s8=;
-	b=tzqo0eokJ+Cb1HPhb7hvZnwRbkJG3ORsnEhEfsleM9+rDD2KW5srX8MkdOSFv6JWcAGm0a
-	gH31tvSj5/HNhHA7PIUzQyhXTXZeKv4Wn7V4Gvuucs/K9glYAeJPgva0/yTbLvNInIlTIY
-	kE5rZijgGSw7vmKavNRzveTJOgi/AGWfkLFt2Hx01RKnb5YKjCbViXT6qcTsjKZG5ec3Vs
-	7MW+9YP9zxDYPyKBepNLN8mf5K9l9RUhhImLmRdR3l0dy0HnHvlO9Ci1Hevz5VtX2VkfqS
-	Ynk+jtfUQ2ZB2iNlbRGGFuZW+K3B7y4EaCbsRxlhpQM5XqaI6J1HgkayBtFDzg==
-Date: Fri, 17 Oct 2025 17:10:24 +0200
-From: Herve Codina <herve.codina@bootlin.com>
-To: Alexander Sverdlin <alexander.sverdlin@gmail.com>
-Cc: David Rhodes <david.rhodes@cirrus.com>, Richard Fitzgerald	
- <rf@opensource.cirrus.com>, Liam Girdwood <lgirdwood@gmail.com>, Mark Brown
-  <broonie@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski	
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela	
- <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, Nikita Shubin	
- <nikita.shubin@maquefel.me>, Axel Lin <axel.lin@ingics.com>, Brian Austin	
- <brian.austin@cirrus.com>, linux-sound@vger.kernel.org,
- patches@opensource.cirrus.com, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH 1/3] ASoC: cs4271: Fix cs4271 I2C and SPI drivers
- automatic module loading
-Message-ID: <20251017171024.5a16da34@bootlin.com>
-In-Reply-To: <d6bd466a5d11b016183db0ac3c25185fad3036fc.camel@gmail.com>
-References: <20251016130340.1442090-1-herve.codina@bootlin.com>
-	<20251016130340.1442090-2-herve.codina@bootlin.com>
-	<60fbaaef249e6f5af602fe4087eab31cd70905de.camel@gmail.com>
-	<20251017083232.31e53478@bootlin.com>
-	<d6bd466a5d11b016183db0ac3c25185fad3036fc.camel@gmail.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.43; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1760713958; c=relaxed/simple;
+	bh=1IuDydb9LVnh3/OC5wI1BZmlPhEFBAW9Ll+jAbKHxOM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ogAYsYGvimzHhOemM9kDvkfVQKsCbd0YYWoFBAQl8CXcgOUHdIePUX/yeEEPEbHBpUj5Q3js1Q4EqGxDaxo4ZXWZNFtmuyaT3eOe7xF72ch+/rOcaHkSIH7w6s0HX7GxobpZ8+RyKlAxeaUd7N/vFUbS9WDgqSnYIRDAVrAUf/k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TqmvhnCx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 32F68C4CEF9;
+	Fri, 17 Oct 2025 15:12:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1760713958;
+	bh=1IuDydb9LVnh3/OC5wI1BZmlPhEFBAW9Ll+jAbKHxOM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=TqmvhnCx3DrRFih0Hvwau0ZVDoNCUJBx/O3sVu/j1ssqtkREF1YfTzvFlfcOU8RUF
+	 BvcqKmld1ZylivNmpGNRG+umisrT0IU0Hmhookb0+BazONDjWGtolHdNWRmyytUZoW
+	 GPo8oO/pz2i5AsSkGGDG57DxH6z572pZUF45xM7uT+RFmQ5YgDLC3/6jmzhGVOofP1
+	 V6RcGG4IADuHO9+fa3Ww81AX6nfzzaZw0saKuI5pfVW/e9vZNAefSIkgRcukNsv7cE
+	 nsOrylVfJ/ms0A/d1ED1auwPhg5lujqGB2UNjVyDThzlzJg7CK0GP7zbIOl9m06xet
+	 f9YIKqKW9isxg==
+Date: Fri, 17 Oct 2025 20:42:24 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Arnd Bergmann <arnd@arndb.de>
+Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+	Vincent Guittot <vincent.guittot@linaro.org>, Chester Lin <chester62515@gmail.com>, 
+	Matthias Brugger <mbrugger@suse.com>, Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>, 
+	NXP S32 Linux Team <s32@nxp.com>, bhelgaas@google.com, jingoohan1@gmail.com, 
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>, Rob Herring <robh@kernel.org>, krzk+dt@kernel.org, 
+	Conor Dooley <conor+dt@kernel.org>, Ionut.Vicovan@nxp.com, Larisa Grigore <larisa.grigore@nxp.com>, 
+	Ghennadi Procopciuc <Ghennadi.Procopciuc@nxp.com>, ciprianmarian.costea@nxp.com, 
+	Bogdan Hamciuc <bogdan.hamciuc@nxp.com>, Frank Li <Frank.li@nxp.com>, 
+	linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, imx@lists.linux.dev, Niklas Cassel <cassel@kernel.org>
+Subject: Re: [PATCH 1/3 v2] dt-bindings: PCI: s32g: Add NXP PCIe controller
+Message-ID: <nzznoiri4n7krpid4lp4pax2dge6vwdj3eqyxqob4bzf6gmlzy@a6moyj74ehzp>
+References: <20250919155821.95334-2-vincent.guittot@linaro.org>
+ <iom65w7amxqf7miopujxeulyiglhkyjszjc3nd4ivknj5npcz2@bvxej6ymkecd>
+ <aOU0w5Brp6uxjZDr@lpieralisi>
+ <4rghtk5qv4u7vx4nogctquu3skvxis4npxfukgtqeilbofyclr@nhkrkojv3syh>
+ <eba7d968-209d-4acb-ba41-4bebf03e96ba@app.fastmail.com>
+ <4143977f-1e70-4a63-b23b-78f87d9fdcde@app.fastmail.com>
+ <2erycpxudpckmme3k2cpn6wgti4ueyvupo2tzrvmu7aqp7tm6d@itfj7pfrpzzg>
+ <3d480f73-15b4-4fb8-8d2b-f9961c1736ca@app.fastmail.com>
+ <4kvo2qg2til22hlssv7lt2ugo63emr5c4hfjur5m3vnxvpdekx@jcbhaxb2d2j2>
+ <839e3878-ae62-4c8b-a74b-ac4f6f060d98@app.fastmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+In-Reply-To: <839e3878-ae62-4c8b-a74b-ac4f6f060d98@app.fastmail.com>
 
-Hi Alexander,
-
-On Fri, 17 Oct 2025 15:25:42 +0200
-Alexander Sverdlin <alexander.sverdlin@gmail.com> wrote:
-
-> Hi Herve,
+On Thu, Oct 09, 2025 at 11:16:02PM +0200, Arnd Bergmann wrote:
+> On Thu, Oct 9, 2025, at 20:47, Manivannan Sadhasivam wrote:
+> > On Wed, Oct 08, 2025 at 07:56:44PM +0200, Arnd Bergmann wrote:
+> >> On Wed, Oct 8, 2025, at 17:19, Manivannan Sadhasivam wrote:
+> >>
+> >> That is not my impression from reading the code: At least for
+> >> the case where both devices are on the same bridge and they
+> >> use map_type=PCI_P2PDMA_MAP_BUS_ADDR, I would expect the DMA
+> >> to use the plain PCI bus address, not going through the
+> >> dma-ranges+ranges translation that would apply when they are
+> >> on different host bridges.
+> >> 
+> >
+> > Right, but I don't get the overlap issue still. If the P2P client triggers a
+> > write to a P2P PCI address (let's assume 0x8000_0000), and if that address
+> > belongs to a an endpoint in a different domain, the host bridge should still
+> > forward it to the endpoint without triggering write to the RAM.
 > 
-> On Fri, 2025-10-17 at 08:32 +0200, Herve Codina wrote:
-> > ...
-> >   
-> > > > In order to have the I2C or the SPI module loaded automatically, move
-> > > > the MODULE_DEVICE_TABLE(of, ...) the core to I2C and SPI parts.
-> > > > Also move cs4271_dt_ids itself from the core part to I2C and SPI parts
-> > > > as both the call to MODULE_DEVICE_TABLE(of, ...) and the cs4271_dt_ids
-> > > > table itself need to be in the same file.    
-> > > 
-> > > I'm a bit confused by this change.
-> > > What do you have in SYSFS "uevent" entry for the real device?  
-> > 
-> > Here is my uevent content:
-> > --- 8<---
-> > # cat /sys/bus/i2c/devices/3-0010/uevent 
-> > DRIVER=cs4271
-> > OF_NAME=cs4271
-> > OF_FULLNAME=/i2c@ff130000/cs4271@10
-> > OF_COMPATIBLE_0=cirrus,cs4271
-> > OF_COMPATIBLE_N=1
-> > MODALIAS=of:Ncs4271T(null)Ccirrus,cs4271
-> > # 
-> > --- 8< ---  
+> If 0x8000_0000 is an endpoint in a different domain, I would expect the
+> DMA transfer to go to the RAM at that address since the DMA has to leave
+> the PCI host bridge upstream by following its inbound windows.
 > 
-> that's what I get with SPI-connected CS4271, and this is actually what I'd
-> expect (linux-next as of 2433b8476165):
+> This is not the problem I'm talking about though, since cross-domain
+> P2P is not particularly well-defined.
 > 
-> # cat /sys/bus/spi/devices/spi0.0/uevent
-> DRIVER=cs4271
-> OF_NAME=codec
-> OF_FULLNAME=/soc/spi@808a0000/codec@0
-> OF_COMPATIBLE_0=cirrus,cs4271
-> OF_COMPATIBLE_N=1
-> MODALIAS=spi:cs4271
-
-So, this is without my patch applied.
-I don't have any CS4271 connected on SPI bus to perform the same test
-with my patch applied.
-
+> > Atleast, I don't see any concern from the outbound memory translation point of
+> > view.
+> >
+> > Please let me know if there is any gap in my understanding.
 > 
-> > > If you consider spi_uevent() and i2c_device_uevent(), "MODALIAS=" in the
-> > > "uevent" should be prefixed with either "spi:" or "i2c:".
-> > > And this isn't what you adress in your patch.
-> > > 
-> > > You provide [identical] "of:" prefixed modalias to two different modules
-> > > (not sure, how this should work), but cs4271 is not an MMIO device,
-> > > so it should not generate an "of:" prefixed uevent.
-> > > 
-> > > Could you please show the relevant DT snippet for the affected HW?  
-> > 
-> > And this is the related DT part:
-> > --- 8< ---
-> > &i2c3 {
-> >  status = "okay";
-> > 
-> >  cs4271@10 {
-> >  compatible = "cirrus,cs4271";
-> >  reg = <0x10>;
-> >  clocks = <&cru SCLK_I2S_8CH_OUT>;
-> >  clock-names = "mclk";
-> > 
-> >  ...
-> >  };
-> > };
-> > --- 8< ---
-> > 
-> > i2c3 is the following node:
-> > https://elixir.bootlin.com/linux/v6.17.1/source/arch/arm64/boot/dts/rockchip/rk3399-base.dtsi#L732  
+> To clarify: I don't think that programming the output translation this
+> way is the problem here, but assigning memory resources to ambiguous
+> addresses is. The host bridge probe uses the 'ranges' both for
+> setting up the outbound window and the bus resources. 
 > 
-> the above looks OK to me on the first glance, I'm really puzzled what
-> is the reason for "of:" prefixed MODALIAS in the uevent for an i2c device.
-> 
-> I still believe, that the culprit is the creation of a platform device
-> from the DT for an i2c device.
-> 
-> I don't have any real I2C-connected CS4271, but I think I could fake one
-> in any DT just to verify how uevents would look like on my side.
-> 
-> > About the related module, I have the following:  
-> 
-> I assume, this is with your patch applied though.
-
-Yes, exactly.
-
-> 
-> > --- 8< ---
-> > # modinfo snd_soc_cs4271_i2c
-> > filename:       /lib/modules/6.18.0-rc1xxxx-00050-g4fa36970abe5-dirty/kernel/sound/soc/codecs/snd-soc-cs4271-i2c.ko
-> > license:        GPL
-> > author:         Alexander Sverdlin <subaparts@yandex.ru>
-> > description:    ASoC CS4271 I2C Driver
-> > alias:          i2c:cs4271
-> > alias:          of:N*T*Ccirrus,cs4271C*
-> > alias:          of:N*T*Ccirrus,cs4271
-> > depends:        snd-soc-cs4271
-> > intree:         Y
-> > name:           snd_soc_cs4271_i2c
-> > vermagic:       6.18.0-rc1xxxx-00050-g4fa36970abe5-dirty SMP preempt mod_unload aarch64
-> > # 
-> > --- 8< ---  
+> If the PCI bus scan assigns address 0x8000_0000 to the memory BAR
+> of a device, and that device or any other one in the /same/
+> domain tries to DMA to DRAM at address 0x8000_0000, it would likely
+> reach the memory BAR instead of DRAM. If for some reason it does reach
+> DRAM after all, it would be unable to do a P2P DMA into the BAR when
+> it tries.
 > 
 
-Best regards,
-Hervé
+I tried to verify how the Root Port is supposed to behave in this scenario, but
+I couldn't conclude on anything. So it looks like this overlapping *might*
+create issues with P2PDMA and DRAM access. Thanks for spotting and also for
+persisting with my lack of understanding :)
+
+> If the PCI scan already checks for overlap between the DT "ranges"
+> and other resources (DRAM or MMIO) before assigning a BAR, this may
+> be a non-issue, but I haven't found the code that does this.
+> Looking at pci_bus_allocate_dev_resources() it seems that it would
+> attempt to assign an overlapping address to a BAR but then fail
+> to claim it because of the resource conflict. If that is the
+> case, it would not actually have an ambiguous DMA routing
+> but instead the device would fail to be probed because of the
+> conflict.
+> 
+
+AFAICS, the existing resource checks only finds out the overlap between the
+resources assigned to the devices, not between the DRAM or MMIO. This is
+something we should do in devm_of_pci_get_host_bridge_resources() IMO.
+
+- Mani
+
+-- 
+மணிவண்ணன் சதாசிவம்
 
