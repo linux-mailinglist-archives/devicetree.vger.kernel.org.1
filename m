@@ -1,144 +1,105 @@
-Return-Path: <devicetree+bounces-228137-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228139-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5B5FBE8775
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 13:53:26 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 97930BE87A2
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 13:54:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E8D204ECF05
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 11:53:06 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 3D433566C40
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 11:54:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABE662798FA;
-	Fri, 17 Oct 2025 11:53:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D12F82D73B4;
+	Fri, 17 Oct 2025 11:54:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="ML3YeOoZ"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="cVJg5UcR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 004662C11F5
-	for <devicetree@vger.kernel.org>; Fri, 17 Oct 2025 11:53:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C740332EAE;
+	Fri, 17 Oct 2025 11:54:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760701984; cv=none; b=mnWHMZ1IE5I3P1kQJoDdGc6dFQEN+QmRMGBNS2KLgEg2gqgJdFxV8b7XPzD5W84xUqYCKGuHwTRRUA1hiJeToRxc+YgG0tPdYhl8iZ0W0fR2ev7zJF50hroPhnEWBj+ZCZ4Ra53TpkJC8et7+u7JDCFzbMUxahHQPno1ViCGbFw=
+	t=1760702055; cv=none; b=lhvtLNyPgQ+EeWI3L9rH3e1cU6ZnfdH7bnHTAv0XOB70y4094v7V15l0QskVfCV7ngXNyPB5sMT4DtyCGfqMxQDm/JjeO30AiP/M4mTXovtEyk5A0h05r5U1gKsAhIhvqsR3sFjKHU5EYDTCagTm+qN5lOpBG1rKJrIYaAQpbcs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760701984; c=relaxed/simple;
-	bh=SUzpcE7GtmXGvI8wFQ0DdKbyJGu0fVJWNzJBCAVp96w=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=WpaJhyI+DPFo/NNF+gCs1uszSJqyZTwLJW+5d3XKtwe3b1SpmTfCjW2EUhkrCRbiN9QDD1sv0pPHiqWvfkUYV+l7E+umOjS3NC78VOYkwsTzWq5kyYPEcTMDtcKHqcWfb683fi+TEjVyIlLH+0roauY+TWPQSKkMGRjKd16jBgw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=ML3YeOoZ; arc=none smtp.client-ip=170.10.129.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1760701982;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=WxfvbcLLu67MIwlxOvZ0TKOWYqHJfoFEyrjda7z1bsQ=;
-	b=ML3YeOoZU3J9lEjDbUryHfLAW1qv3Gifh+qMCHFaLyMyduByb4sxp0VXOUoPEiAO+Njqdr
-	eJ9ue/NkwTGHwrEzUMbuipqIYzvade7+1JcTiyuEFmDUTCvYQbW8pIkeWSHH3MOsByR39i
-	q1QZB6SNRFZJJDHvcS5tc+YqPHNM5k0=
-Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com
- [209.85.128.72]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-689-kZc-mpnvOlyOB8CL2De2eg-1; Fri, 17 Oct 2025 07:53:00 -0400
-X-MC-Unique: kZc-mpnvOlyOB8CL2De2eg-1
-X-Mimecast-MFC-AGG-ID: kZc-mpnvOlyOB8CL2De2eg_1760701980
-Received: by mail-wm1-f72.google.com with SMTP id 5b1f17b1804b1-46fb328a60eso10685125e9.1
-        for <devicetree@vger.kernel.org>; Fri, 17 Oct 2025 04:53:00 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760701979; x=1761306779;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=WxfvbcLLu67MIwlxOvZ0TKOWYqHJfoFEyrjda7z1bsQ=;
-        b=Lac7tkjS83qilvX4tsGlruxW02LgHMlfW0R+oiISLs4nQcu95NQ64AqLudlUYeUoTL
-         bDbTjqCSdFg5irmjfBICIoGuVCsAegPrBS+Qe/5vqm0rlQ9NHOKFB74JziuGGClaCemU
-         bzt8bE5upLW3aGvqbo+GByaV9rpKDkyPQJ2D2thiICPjcMM02SQRWIbKbix0T09Xqpck
-         mvSmxvYD5q0yCOcTtsDx3ZiuEKcssVG0SHhIFwhPoFgHOYL+3xQ8ymq02+ZbBl9N5G17
-         xziItF6lwKA8mxuZFjOzbpQ6otLF+yI7m/BRvfiaZlNiIx0ir8UchKatp1zHpoUuVs0+
-         w5Ng==
-X-Forwarded-Encrypted: i=1; AJvYcCULVhy6hTWyR/yrhRc/ksl3zV8u/aV/4LG5a5O16ayQrVbSakKaylqrCrb7RlORaYC/tyt5hl/vgtHR@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx8wu/NQLqSzzv111Q8ZTdJTUvCQq3V3DMxsV/qiIoLHmcO/Piy
-	SgamwyTYHPlmd7KvGlwguU6OsNdJso8HrvGjRANWOYMBgROM2nwvjldYij3gQ2hRJGMsjfhU2vN
-	p+Sc6BZZTFGH9hLAcJxH3jTaAT0QiFhKZg+6QGVLNQb6P6FiiMpo1zyw51ZoVYHYEXUjt6/UjjK
-	+3m8SjvMRKcnXBHSiPLMv8d8GdCbxRkA49jJiF1A==
-X-Gm-Gg: ASbGncvhh99YrbSLj5uyGRXF/ed7FZSniLiig5RTuADofjHiLalkB4iInLiT6pzkFz2
-	sc4g+ghBA/Dt+0wymJ0p2rF/a8eKYnd96sGK1sgBjvwKbVCZshqmCeBuhbtH4JH5ozEnt8MeI5s
-	776bKqdwD6ZvSUN/08H9oRj1OUcYTdxGQOJ6L3nTHNyTRvyXwFkbXI+UPOkK71Kkm+2jaL9kNnB
-	OM7Bd/5iAhCHJTh9A==
-X-Received: by 2002:a05:600c:529b:b0:471:350:f7a4 with SMTP id 5b1f17b1804b1-471178a400cmr23491345e9.17.1760701979573;
-        Fri, 17 Oct 2025 04:52:59 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEywczK+EIpYFNZr6LFF+2TgMnXQ228HOGM0S1gJjRCt05BeFqbOEfG8iq+xaitGHL34pj0bRg3/qZRX9c/GpI=
-X-Received: by 2002:a05:600c:529b:b0:471:350:f7a4 with SMTP id
- 5b1f17b1804b1-471178a400cmr23491215e9.17.1760701979206; Fri, 17 Oct 2025
- 04:52:59 -0700 (PDT)
+	s=arc-20240116; t=1760702055; c=relaxed/simple;
+	bh=8//tgWXmNxdqWobF2a1OXqVvkMf09ej0VhPVDO+jtOg=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=OjX8nTV+iedrPpD33BoiZIDUHxQiDIbzLeGXXFQtVjpKc/pB4MKmBufE7APbTBRMqfSF816vB6t8G37ARJE2CIyrLPDJjd+OLLIATutLK9OIjG2MqtLKUZg4bGkAWxljYKHnIEq8almpEk31yGo91wX/wLpu4vwrOjNDLxYxfdo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.helo=lelvem-ot01.ext.ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=cVJg5UcR; arc=none smtp.client-ip=198.47.23.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.helo=lelvem-ot01.ext.ti.com
+Received: from fllvem-sh03.itg.ti.com ([10.64.41.86])
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 59HBrWol262957;
+	Fri, 17 Oct 2025 06:53:32 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1760702012;
+	bh=TwGywLCu02k7fKGwvP9vHvzJ/I432CRVJMIDMFaVut0=;
+	h=From:To:CC:Subject:Date;
+	b=cVJg5UcROrERPRFpYRcWldiRRwQ+ytlXtBzFbOFHrasT9Fg94FF6GdLSQgiIXqSR6
+	 NElrLhD2DLP2NGOmqj7g1buKIIiFdDbbY3N/m20HLiJkN0ioSv10wU09NEJQ82QKI5
+	 0gZ72/VnRKtPB2QJvsLI5GB1BTQhZthJ0mS9OF/U=
+Received: from DFLE204.ent.ti.com (dfle204.ent.ti.com [10.64.6.62])
+	by fllvem-sh03.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 59HBrWlo2385738
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 17 Oct 2025 06:53:32 -0500
+Received: from DFLE210.ent.ti.com (10.64.6.68) by DFLE204.ent.ti.com
+ (10.64.6.62) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Fri, 17 Oct
+ 2025 06:53:32 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE210.ent.ti.com
+ (10.64.6.68) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Fri, 17 Oct 2025 06:53:32 -0500
+Received: from a0512632.dhcp.ti.com (a0512632.dhcp.ti.com [172.24.233.20])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 59HBrPe81246573;
+	Fri, 17 Oct 2025 06:53:26 -0500
+From: Swamil Jain <s-jain1@ti.com>
+To: <nm@ti.com>, <tomi.valkeinen@ideasonboard.com>, <robh@kernel.org>,
+        <jyri.sarha@iki.fi>, <aradhya.bhatia@linux.dev>, <airlied@gmail.com>,
+        <conor+dt@kernel.org>, <h-shenoy@ti.com>, <kristo@kernel.org>,
+        <krzk+dt@kernel.org>, <maarten.lankhorst@linux.intel.com>,
+        <mripard@kernel.org>, <simona@ffwll.ch>, <tzimmermann@suse.de>
+CC: <devarsht@ti.com>, <praneeth@ti.com>, <u-kumar1@ti.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+        <s-jain1@ti.com>
+Subject: [PATCH 0/2] Add SK-LCD1 support for AM62X
+Date: Fri, 17 Oct 2025 17:23:23 +0530
+Message-ID: <20251017115325.1942591-1-s-jain1@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251016084301.27670-1-lzampier@redhat.com> <20251016084301.27670-4-lzampier@redhat.com>
- <87sefj179h.ffs@tglx>
-In-Reply-To: <87sefj179h.ffs@tglx>
-From: Lucas Zampieri <lzampier@redhat.com>
-Date: Fri, 17 Oct 2025 12:52:48 +0100
-X-Gm-Features: AS18NWAyr_OiJTgLStN1G7hKO9txtKoLZhRKznNbGHfdcjMfX9CrDwQ5omJQ6-g
-Message-ID: <CAOOg__AHpFsxU==JPX_usRnkJSL6agadsGZUxdh0L0DriFwcQg@mail.gmail.com>
-Subject: Re: [PATCH v5 3/3] irqchip/plic: add support for UltraRISC DP1000 PLIC
-To: Thomas Gleixner <tglx@linutronix.de>
-Cc: linux-kernel@vger.kernel.org, Charles Mirabile <cmirabil@redhat.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Samuel Holland <samuel.holland@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Alexandre Ghiti <alex@ghiti.fr>, Vivian Wang <dramforever@live.com>, devicetree@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, Zhang Xincheng <zhangxincheng@ultrarisc.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Hi Thomas
+- Add overlay for SK-LCD1[1]
+- Enable ILITEK touch sensor
 
-I'm really sorry for that.
+Thie series depends on OLDI support enablement series[2]. Please apply
+on top of the mentioned series.
 
-On Thu, Oct 16, 2025 at 11:16=E2=80=AFAM Thomas Gleixner <tglx@linutronix.d=
-e> wrote:
->
-> On Thu, Oct 16 2025 at 09:42, Lucas Zampieri wrote:
-> > @@ -430,6 +516,8 @@ static const struct of_device_id plic_match[] =3D {
->       ^^^^^^^^^^^^
-> How on earth did you manage to screw up the hunk header?
->
-I was copying hunks over from one file to another to avoid
-format-patch as it was screwing the email headers, after that I
-learned that there's --[no-]encode-email-headers in format-patch for
-that.
+Links:
+[1]: https://www.ti.com/tool/SK-LCD1
+[2]: https://lore.kernel.org/all/20250913064205.4152249-1-s-jain1@ti.com/
 
-> Applying: irqchip/plic: Add support for UltraRISC DP1000 PLIC
-> error: corrupt patch at line 116
->
-> >         .data =3D (const void *)BIT(PLIC_QUIRK_EDGE_INTERRUPT) },
-> >       { .compatible =3D "thead,c900-plic",
-> >         .data =3D (const void *)BIT(PLIC_QUIRK_EDGE_INTERRUPT) },
-> > +     { .compatible =3D "ultrarisc,cp100-plic",
-> > +       .data =3D (const void *)BIT(PLIC_QUIRK_CP100_CLAIM_REGISTER_ERR=
-ATUM) },
-> >       {}
-> >  };
-> >
-> > @@ -664,12 +752,16 @@ static int plic_probe(struct fwnode_handle *fwnod=
-e)
->      ^^^^^^^^^^^^^^^
-> Ditto here.
->
-> I fixed it up manually. Please be more careful next time.
->
-For sure, wont happen again, thanks for taking the time of manually fixing =
-it.
+Aradhya Bhatia (1):
+  arm64: dts: ti: Add Microtips OLDI SK-LCD1 Overlay for AM625-SK
 
-Lucas Zampieri
+Swamil Jain (1):
+  arm64: defconfig: Enable ILITEK ILI21X & ILI25X family of touch
+    sensors
+
+ arch/arm64/boot/dts/ti/Makefile               |   4 +
+ .../k3-am625-sk-microtips-mf101hie-panel.dtso | 121 ++++++++++++++++++
+ arch/arm64/configs/defconfig                  |   1 +
+ 3 files changed, 126 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am625-sk-microtips-mf101hie-panel.dtso
 
 
