@@ -1,124 +1,148 @@
-Return-Path: <devicetree+bounces-227999-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228001-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 844E9BE6B6F
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 08:36:55 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 77883BE6BD5
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 08:43:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 642FD1A677C5
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 06:37:13 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 576534EE4AB
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 06:43:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22E443101A0;
-	Fri, 17 Oct 2025 06:36:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27B0E30FC09;
+	Fri, 17 Oct 2025 06:43:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="UNcwvPdK"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="WokAg896"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com [210.118.77.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED95830FC2D
-	for <devicetree@vger.kernel.org>; Fri, 17 Oct 2025 06:36:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A93330CD8D
+	for <devicetree@vger.kernel.org>; Fri, 17 Oct 2025 06:43:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760682996; cv=none; b=HqBnitM9MDqUykCuzmQXbCj5r+COBAbwecINe3w0gwtg0HCA6d0EVmVVGeV34sM9Iq72zIO3tiOpQ44U51ZhC0NIesEoUooeTdYv9mXgS9zMcB1m28iKv5F90lmRNbEdnAw9Fyju/gSFhf9/EnVarom2dJYjJnMpNyA3LTwrYbg=
+	t=1760683417; cv=none; b=bg5ezdMSB1GptuKsq7Cx5oGCMYgXA0m5wqfN2ZNfmYuptI2N+iOCWzrCwvAQ4nTopS00jx63gqpjOKfNfhkkP80yUBPrvJtB0djffwCyGd/8eBoaSoP91E6ttZv2X0TEKaEtyCzBPfoosuLkG1SGBXGYYGRI2FJ56IxTQfseWxo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760682996; c=relaxed/simple;
-	bh=STcBceaCHdIlXSeKQ6i20Wg9ICYTLWWg9f/Od09MSeg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=k7oKaS3IrpND+sqt93lkJ+I4KLDaJM/yd6dDjanA+g5gM8DjAs3UsCtObv8rPtqEvn+Cj1/4SGLlotwTPg/UUND1JXRECV0WzcfuxiSi4t/0vMAH+x++4h50bd3NOPRqjXaJB9RbBqRAddqd1JkpeqiNlefr92mvTOlzIKLDTRE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=UNcwvPdK; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=STcB
-	ceaCHdIlXSeKQ6i20Wg9ICYTLWWg9f/Od09MSeg=; b=UNcwvPdK/NlaTng2xkLa
-	oPaSIIl0DS2CV3aHTQMFzIqxIwBkI2tuxmu2Mn9zE4Qn9gXJeZ5sgvSF9bxtSQaY
-	AXaxkIjys7NyFuhWlXo3/1tt6gjjInxCvEdH66WZHWclvjrUvSX5T+bO9D+zj+H3
-	oCNTbPtVQMf8l2rRlYoxRpA1SxF/J48FFjthQnupWvgZEtodDaUF/6IWQeb3m2mS
-	wkwM3Wklfn9AdfKlCh09LdAPtUxv15M6dVhn8dboC8PYZ4VM+/j1xTq/Rzk6VG47
-	Bc4ZKUDGvSLFB+AbeWnC4fdw3TryCGCXh7GWlnEDD4qx8pDecO3wC0Lt4rfjhucC
-	JQ==
-Received: (qmail 4113514 invoked from network); 17 Oct 2025 08:36:31 +0200
-Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 17 Oct 2025 08:36:31 +0200
-X-UD-Smtp-Session: l3s3148p1@4GZF9FRBPuYujntM
-Date: Fri, 17 Oct 2025 08:36:31 +0200
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: "Herve Codina (Schneider Electric)" <herve.codina@bootlin.com>
-Cc: Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, linux-iio@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Pascal Eberhard <pascal.eberhard@se.com>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH 3/4] ARM: dts: renesas: r9a06g032: Add the ADC device
-Message-ID: <aPHj77kAxEmEEPmW@ninjato>
-References: <20251015142816.1274605-1-herve.codina@bootlin.com>
- <20251015142816.1274605-4-herve.codina@bootlin.com>
+	s=arc-20240116; t=1760683417; c=relaxed/simple;
+	bh=goiNe26JI97XimIaJqB0nQh2LC62mtWHX8LAPMghZtc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
+	 Content-Type:References; b=Cf8o5RTW+3QyMkzyrTgeTeiD42Rtir3ojMdQQQgCxYyTzKsSH1CBIsnJAhDhdUUQWF5dmRYPF9Bb5EBx4YnuZkGNRiMT5KxdlQx6KBNv2ywLmOLvN6ENSqjd2i2t/ypQ/qYz646xsK6WZTp+wCHLI6Y1OrhCcTy3ZqoWZRtLQ8A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=WokAg896; arc=none smtp.client-ip=210.118.77.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20251017064327euoutp022e4b807fe12edc78c5b3f584b72beacf~vNDsHNPX62017520175euoutp02U
+	for <devicetree@vger.kernel.org>; Fri, 17 Oct 2025 06:43:27 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20251017064327euoutp022e4b807fe12edc78c5b3f584b72beacf~vNDsHNPX62017520175euoutp02U
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1760683407;
+	bh=pmOERI3SUEXraCgPIeHw+QXcfM6eSSu/gHX94UGDCzg=;
+	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
+	b=WokAg896tCCv63IRBiccsVar42fKcVYzFnOA+JFwG5K7FKWRIYNZZQonCiKxs0uq6
+	 Q3HXOXddKG6MYJL9GkAUI+7PeTOk69m0xIFW1kjpd1kLduazEoiyVrEwE+7VhyrFrQ
+	 iUy4xUJnQ63u9uz54QPWZkDuZ/oHClyNGxJIUWFU=
+Received: from eusmtip2.samsung.com (unknown [203.254.199.222]) by
+	eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+	20251017064327eucas1p29f30c1de202c52dc09548aa9fc6f54b7~vNDrsbPeZ1312513125eucas1p2d;
+	Fri, 17 Oct 2025 06:43:27 +0000 (GMT)
+Received: from [106.210.134.192] (unknown [106.210.134.192]) by
+	eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
+	20251017064324eusmtip201695dfb1cec04fbd125e4f2c643fd35~vNDpvJ8tS0730207302eusmtip2G;
+	Fri, 17 Oct 2025 06:43:24 +0000 (GMT)
+Message-ID: <1731abfc-c7e4-4ff0-a1b3-7d86c8025866@samsung.com>
+Date: Fri, 17 Oct 2025 08:43:24 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="434UvbnTmnzbTDnb"
-Content-Disposition: inline
-In-Reply-To: <20251015142816.1274605-4-herve.codina@bootlin.com>
+User-Agent: Betterbird (Windows)
+Subject: Re: [PATCH v3 00/10] pmdomain: samsung: add supoort for Google
+ GS101
+To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, Krzysztof
+	Kozlowski <krzk@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, Rob
+	Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Krzysztof
+	Kozlowski <krzk+dt@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>
+Cc: Peter Griffin <peter.griffin@linaro.org>, Tudor Ambarus
+	<tudor.ambarus@linaro.org>, Will McVicker <willmcvicker@google.com>,
+	kernel-team@android.com, linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+	stable@vger.kernel.org, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Language: en-US
+From: Marek Szyprowski <m.szyprowski@samsung.com>
+In-Reply-To: <20251016-gs101-pd-v3-0-7b30797396e7@linaro.org>
+Content-Transfer-Encoding: 8bit
+X-CMS-MailID: 20251017064327eucas1p29f30c1de202c52dc09548aa9fc6f54b7
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20251016155848eucas1p193debe70e38b1694bfb250d748f4aa14
+X-EPHeader: CA
+X-CMS-RootMailID: 20251016155848eucas1p193debe70e38b1694bfb250d748f4aa14
+References: <CGME20251016155848eucas1p193debe70e38b1694bfb250d748f4aa14@eucas1p1.samsung.com>
+	<20251016-gs101-pd-v3-0-7b30797396e7@linaro.org>
 
+On 16.10.2025 17:58, André Draszik wrote:
+> This series adds support for the power domains on Google GS101. It's
+> fairly similar to SoCs already supported by this driver, except that
+> register acces does not work via plain ioremap() / readl() / writel().
+> Instead, the regmap created by the PMU driver must be used (which uses
+> Arm SMCC calls under the hood).
+>
+> The DT update to add the new required properties on gs101 will be
+> posted separately.
+>
+> Signed-off-by: André Draszik <andre.draszik@linaro.org>
 
---434UvbnTmnzbTDnb
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Works fine on existing Exynos based boards.
 
-On Wed, Oct 15, 2025 at 04:28:15PM +0200, Herve Codina (Schneider Electric)=
- wrote:
-> The ADC available in the r9a06g032 SoC can use up to two internal ACD
-> cores (ADC1 and ADC2) those internal cores are handled through ADC
-> controller virtual channels.
->=20
-> Describe this device.
->=20
-> Signed-off-by: Herve Codina (Schneider Electric) <herve.codina@bootlin.co=
-m>
+Tested-by: Marek Szyprowski <m.szyprowski@samsung.com>
 
-Looks good given the current bindings. Despite clock-names will need an upd=
-ate:
+> ---
+> Changes in v3:
+> - use additionalProperties, not unevaluatedProperties in patch 2
+> - fix path in $id in patch 2 (Rob)
+> - drop comment around 'select' in patch 2 (Rob)
+> - collect tags
+> - Link to v2: https://lore.kernel.org/r/20251009-gs101-pd-v2-0-3f4a6db2af39@linaro.org
+>
+> Changes in v2:
+> - Krzysztof:
+>    - move google,gs101-pmu binding into separate file
+>    - mark devm_kstrdup_const() patch as fix
+>    - use bool for need_early_sync_state
+>    - merge patches 8 and 10 from v1 series into one patch
+> - collect tags
+> - Link to v1: https://lore.kernel.org/r/20251006-gs101-pd-v1-0-f0cb0c01ea7b@linaro.org
+>
+> ---
+> André Draszik (10):
+>        dt-bindings: power: samsung: add google,gs101-pd
+>        dt-bindings: soc: samsung: exynos-pmu: move gs101-pmu into separate binding
+>        dt-bindings: soc: samsung: gs101-pmu: allow power domains as children
+>        pmdomain: samsung: plug potential memleak during probe
+>        pmdomain: samsung: convert to using regmap
+>        pmdomain: samsung: convert to regmap_read_poll_timeout()
+>        pmdomain: samsung: don't hardcode offset for registers to 0 and 4
+>        pmdomain: samsung: selectively handle enforced sync_state
+>        pmdomain: samsung: add support for google,gs101-pd
+>        pmdomain: samsung: use dev_err() instead of pr_err()
+>
+>   .../devicetree/bindings/power/pd-samsung.yaml      |   1 +
+>   .../bindings/soc/google/google,gs101-pmu.yaml      | 106 +++++++++++++++++
+>   .../bindings/soc/samsung/exynos-pmu.yaml           |  20 ----
+>   MAINTAINERS                                        |   1 +
+>   drivers/pmdomain/samsung/exynos-pm-domains.c       | 126 +++++++++++++++------
+>   5 files changed, 200 insertions(+), 54 deletions(-)
+> ---
+> base-commit: 58e817956925fdc12c61f1cb86915b82ae1603c1
+> change-id: 20251001-gs101-pd-d4dc97d70a84
 
-Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Best regards
+-- 
+Marek Szyprowski, PhD
+Samsung R&D Institute Poland
 
-
---434UvbnTmnzbTDnb
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmjx4+8ACgkQFA3kzBSg
-KbYlVA//brX4gPpHtvlI8akGOMW7khm3j/dmpEerFqmJolr4GeRKas8XfaLSiSfu
-M65DY6Bk9vmADWxn/Zi37aREbr5oR2URCZJK8GAfSkRZDUl7xrxvZm49l00fWggI
-EikQnmqB30n1oESTlEjEQ5gn5T0qjA6VZbn0LOhuZQw3Et/egtNCOA2ZxYuoSf5U
-jLAS7h10To+LChI0OZng9bIamK+M5yYMSTTdiWuCCKySlhj4Oo7EQ5Xnqx0bZUNb
-HDdrzklOP6xSBNfHatdb0wBfHhAPbd4ZHj5NPMLTlRMbM/fD6XhpWkH/R9Hzp00/
-AoZ7dMylpEqvP9DJJwXAmTX+v9NHcHrx+y2yorCCSVB+VdPFYYO0jGyMNe0+tBBw
-4KWepTaesh2jTFnWIB4lVPa+ecnoG8LcQ9H/X/15bdZ6tnREdBhmL1kOWfpxJihU
-Y9AGUvRUADtCJATFdXqH8i8lRLidVcLUCXk79+brUptXHFnKWPC9I1SC/a8NiYEO
-5lkLvndHgkdE/H+alrK735T6fmZ76VWEgP/KkmMEmCVsQ8i/nfMiKnx68VuCZRZR
-UISWVOXbGC1gQGQEj1aynYhs3OQB85PUhzZ42CVRafsU9lx8ENfTeNNi7gog6cwc
-k6j5MKzdA+2n3D1K+sgWJhma3H7zX+GhAmjvOi5LL2M4fs4iKR8=
-=pqT9
------END PGP SIGNATURE-----
-
---434UvbnTmnzbTDnb--
 
