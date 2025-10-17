@@ -1,359 +1,267 @@
-Return-Path: <devicetree+bounces-228187-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228188-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12AB8BE959C
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 16:54:51 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 28AF5BE95D2
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 16:57:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 68F1919A3F9A
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 14:53:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4E3E43B769E
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 14:56:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5EBE335077;
-	Fri, 17 Oct 2025 14:50:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AF8C246783;
+	Fri, 17 Oct 2025 14:56:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="EcZGZZV7"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="LBVRd7IE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-179.mta0.migadu.com (out-179.mta0.migadu.com [91.218.175.179])
+Received: from DUZPR83CU001.outbound.protection.outlook.com (mail-northeuropeazon11012022.outbound.protection.outlook.com [52.101.66.22])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 864A433291D;
-	Fri, 17 Oct 2025 14:50:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.179
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760712633; cv=none; b=K/ea6luZe6jtxiZP728Nd8cbTyajSkQcy7W8PzK9skg3qSPoWW15ZVKXfr41dSsb5A5kTddmK+MkkJXkBFDHW+3FVPwXRA0ZEwDy2O9OONzDJCDRZVxQFy3RxUQy4/vFnkn+N/U8z8LvZflDUS2/Xm3i5gqLSfCKkKxEkGS4Dfg=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760712633; c=relaxed/simple;
-	bh=I41wqT+slyrOuL6RJOlJuJ956m3tqTCbWWeVtDQOgNg=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=In7Jz3+HLfEmLiOHec5bFeQYJ9ZFqYvXWqM8Ipus7VBL2np7/+y+aaslAolMA02ioQkuBYq/0eZ/bNd/228luO2CL87A0va/5Z+dzdIiU04RbxvlDvH3HCDwaczCymv9iFG//rW1eV+7wCQdg2UT0l4riZqLtZjrJiRsnagOSoc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=EcZGZZV7; arc=none smtp.client-ip=91.218.175.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1760712629;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=SQOiwvJHAprcF3S2canSZCrDDGSsG+867bjti4GoEgo=;
-	b=EcZGZZV7COeOQbf9sUcm29ijvjCdR4mYYMV4F02pHzqWPNRrKmbgdLkYdqKIQSUXgJE4vt
-	YES/MPAVcrUDB/cw3T1vFmPTAI92YWcKKMzv397W7/59yoaUzX369quI6CRHZ6RHlUMbgo
-	KqrKmBjhy3ff/kYI1KRHcq24cWX3zmQ=
-From: Ze Huang <huang.ze@linux.dev>
-Date: Fri, 17 Oct 2025 22:49:53 +0800
-Subject: [PATCH v6 2/2] phy: spacemit: support K1 USB2.0 PHY controller
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C7EB22A7E4;
+	Fri, 17 Oct 2025 14:56:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.66.22
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1760712984; cv=fail; b=S5iUHC4sX1SDS/QXVkL30coZQmRVOMRuWjWJAqe/2L25UBVrJVVD2GGXkcQsRNo5+UDf4l5AaltYrr9RCrZaReKVuTy7XmX0fMjtXJ1AZNWDGFQK/N6/z/j/GeXjB9jXkVOnSZQsCeoM70RrNuTpF7EkUSSOIuA/U3vBsjdatTQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1760712984; c=relaxed/simple;
+	bh=fFQ2B7a/fyfaoXkzUemm8+dVZwQOnQeDkoo/cIYVPAA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=R1FHX34M3CffkYJVv465XVVJOrPTBkfbDpWKdOLjUYJ3THvVpZP48G2aXIrQuTpOMfkoSTCjvMPXa0iwBunagWvTuFBbbzYRL3AhTNnV7YSUCWDzmNbPOp2jTJLCDCB+6DmxxqST7guNmxt2xFMS8+2dN9rIGwSoImnBMt5iNOc=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=LBVRd7IE; arc=fail smtp.client-ip=52.101.66.22
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=cNnmqi+bgKgrn/sLf2X72r80a8NUtxD0bs+GkD8SbItbImIJomG6RVmPnP3gEzB38YUN9ojzGmOm3IAEAJ9FpFRxD35AqW9FC+nRGhXX8RadHLj1RrJsgXM0gEVTVhMninxX9DDHGkQYoggXt5NykU0ZXNu3zFI4dcRikAEpRviYE0b3YsCe9AcdyesXILYIx6AUtK2HJjpV1zZpGew2pnaKrEQ7KcuqgQB0QIXnb7/HXEAnBLmCvXsbIPjaqUSvxp3nKkOUefA0StvMmMbOF6JfWPjgZbTjP71RqETNaxykXEowdtad3gti9icHMCHQpebb3CjPe9bFdjQUGj8Kgw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=PF+SENX2a67K1jYwQ3NlVUQ11wwdPdPKFnK9W/wkxr8=;
+ b=UGI5wpi6Mrm35i20NVPC4+tjdMu72JXKPSLhdc+a9owDI8N+hLt/4Df6SIW7iu7NKbIj9qHsDfkh2kuKxw+6kEHIVzs1PIRqO672qgpW6e7iJcszCV08iDXzZYxguKoiO4zk/jvVQi80BWRaJSUQY5DycOrrNChFnr++XwVSDx8dExDNQe0X7Uco8hbJWFxMhcpn8z7iO14GO2XcGjT4IxXHKTCb5EO1Oo59e9a8VE5WMBvSjOew71rgKRWS9UH3yziAB8VCjY+zWy5izLkxIrzXOSc8z+1S15q4apd7otZ/W9j5eOq6bqD5pdFgWFQx9hJzH5B189LlJPYH8im8BQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=PF+SENX2a67K1jYwQ3NlVUQ11wwdPdPKFnK9W/wkxr8=;
+ b=LBVRd7IElTaAno/DUo3EywoNOJiVE4p9UdNUkurgQdtTra59C2QcuWws6gEUVLYXzJ73bkl6CpuewWVuIcOQ6vzZfAhwJaMdoD5ZdMMio7g8hFWbhgK0r+Hn5taWzLHVZTKjur7odvLoBpWt8pvEVN+h1uxD1lzAj2NDmQwGRdChO2BH1qWfq8tp2m4N3H4l8aWUQwDOd8IjWE9IIEYGkLyz82A5+pJD2AsBcj6ZSQOCL9Sic+XauQzCNxsbEFK7iM+MyFJvoTkoCKfDPZaNXKsNYyKRRCjpyh05PK28ZL72NKmoJF7O5rcZbqW3NLOTxFzB5gcG5R8mNCwqt2WBeA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXSPRMB0053.eurprd04.prod.outlook.com (2603:10a6:102:23f::21)
+ by DB9PR04MB8395.eurprd04.prod.outlook.com (2603:10a6:10:247::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9228.13; Fri, 17 Oct
+ 2025 14:56:18 +0000
+Received: from PAXSPRMB0053.eurprd04.prod.outlook.com
+ ([fe80::504f:2a06:4579:5f15]) by PAXSPRMB0053.eurprd04.prod.outlook.com
+ ([fe80::504f:2a06:4579:5f15%6]) with mapi id 15.20.9228.010; Fri, 17 Oct 2025
+ 14:56:18 +0000
+Date: Fri, 17 Oct 2025 10:56:10 -0400
+From: Frank Li <Frank.li@nxp.com>
+To: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
+Cc: Abel Vesa <abelvesa@kernel.org>, Peng Fan <peng.fan@nxp.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Fabio Estevam <festevam@gmail.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Daniel Baluta <daniel.baluta@nxp.com>,
+	Shengjiu Wang <shengjiu.wang@nxp.com>, linux-clk@vger.kernel.org,
+	imx@lists.linux.dev, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Pengutronix Kernel Team <kernel@pengutronix.de>
+Subject: Re: [PATCH v2 6/8] reset: imx8mp-audiomix: Extend the driver usage
+Message-ID: <aPJZCv+iG6cuxsj4@lizhi-Precision-Tower-5810>
+References: <20251017112025.11997-1-laurentiumihalcea111@gmail.com>
+ <20251017112025.11997-7-laurentiumihalcea111@gmail.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251017112025.11997-7-laurentiumihalcea111@gmail.com>
+X-ClientProxiedBy: PH7PR02CA0010.namprd02.prod.outlook.com
+ (2603:10b6:510:33d::29) To PAXSPRMB0053.eurprd04.prod.outlook.com
+ (2603:10a6:102:23f::21)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251017-k1-usb2phy-v6-2-7cf9ea2477a1@linux.dev>
-References: <20251017-k1-usb2phy-v6-0-7cf9ea2477a1@linux.dev>
-In-Reply-To: <20251017-k1-usb2phy-v6-0-7cf9ea2477a1@linux.dev>
-To: Vinod Koul <vkoul@kernel.org>, 
- Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>, 
- Ze Huang <huang.ze@linux.dev>
-Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-riscv@lists.infradead.org, spacemit@lists.linux.dev, 
- linux-kernel@vger.kernel.org, Ze Huang <huangze@whut.edu.cn>
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1760712608; l=9055;
- i=huang.ze@linux.dev; s=20250705; h=from:subject:message-id;
- bh=I41wqT+slyrOuL6RJOlJuJ956m3tqTCbWWeVtDQOgNg=;
- b=L3o5/NhCgqn8Eb9GSbI9hfoM27LN6qOtignRjoVwamsxw9OwPAeYqSggydMoqdlJUjl7flt+u
- PE+bOHlfMQIBm4LB6rr8WIYWNHUAXeLJFW0VmpXo7jhVF00D7LCVglu
-X-Developer-Key: i=huang.ze@linux.dev; a=ed25519;
- pk=Kzc4PMu5PTo8eZZQ5xmTNL9jeXcQ9Wml0cs+vlQpBkg=
-X-Migadu-Flow: FLOW_OUT
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXSPRMB0053:EE_|DB9PR04MB8395:EE_
+X-MS-Office365-Filtering-Correlation-Id: c02c4e16-6a15-4914-4d1e-08de0d8d5419
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|1800799024|19092799006|376014|7416014|52116014|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?9olDhSAyTl13ILeRg+W1bO6MR5ilyv3c61Jjjnj1K9+ghbgiuUa4+aK3QttN?=
+ =?us-ascii?Q?tQsWQ4w9QSPeluxDILouS3FQBloBvhdUF6TBbLg+6SkQXRvBIszIQPB5H/GL?=
+ =?us-ascii?Q?+v6N8MiZlTInXG/tsvEeTC7Ac+IzJX/pkEkkwdbnzPH2nQeO2W9FuNFcExj8?=
+ =?us-ascii?Q?7U3ZN6ZWxueQnILmHPF0nMweyfyNP3WkuMQ/KuF8AZ+Xdq39jIIrrYha+YKe?=
+ =?us-ascii?Q?Eh3JY1lTf6QC0f6T0nxH8Ejqo3s/tOgSruh+4oxg4FuYHnKwSnpC3SBdja/x?=
+ =?us-ascii?Q?T7fZpdyXa5naVabO4kcVO4TMe9DYY8h+/q4rJoh/qjnzAUYNl63sU0qsxMJJ?=
+ =?us-ascii?Q?0iv+/F6NYdBOjLCNm7HU8kTow84Oo0kJyJcPMuRC/E6PtDwtJxJSPJryXAHa?=
+ =?us-ascii?Q?r2dEPlJ2LccJJ84axAvMzMXGLSh1HxLu98hF6qZbCClvIMoRBXD1gmLVfTw1?=
+ =?us-ascii?Q?+Ta6oDup6ObdJhpYnvZ4htl/IVqnuklb7J0TYFzWL5wt5IhFTjyNnNg4wuRP?=
+ =?us-ascii?Q?CXupYR/CIga4SHbAuxARyqTg+57vqZBJFZWU/TkF92tw5kWcB9e71HdsGYv3?=
+ =?us-ascii?Q?gPq0ub170K3ZShIOS/ypYoTxwr6OlI9R4S4VkoJPUbq0MwtVRsWdtp/TcSDi?=
+ =?us-ascii?Q?WKiwiEb4SxEASc7SGG+EgpWYaG5jYllQcdYpRQgz7GfcOmA8oNxSYkTTLaT1?=
+ =?us-ascii?Q?KeXV4NkUVA6EYrjoMK9RZJIgHj6BVP4SfC9/gScBEsUOS34FGB8Cenq0l4lv?=
+ =?us-ascii?Q?07/CPSoNH92vAkSMckOHwaTfhxAhq04HReFZEqTWmW0tN0fNiFfkyigINJuf?=
+ =?us-ascii?Q?p/XxY+HCg/8hu43aSUduzFkW7IQIhY0e4aRNHVGhusH01wnmsoQexg2nNSYK?=
+ =?us-ascii?Q?sOwNNLBILhNOcxld4ZmAYAy4i75hCnH2Ds9jQeqk54KtEfw2HWss4pdzbfT1?=
+ =?us-ascii?Q?8c0DerDer4HHTWV4jjAhoRwI7kLUMamuXCpwnsJZeE9lvnXkLw8YyZON9iR7?=
+ =?us-ascii?Q?UKjmjVOpVXqQ4EIg5CRt/CV2mzlAY6CEDe/VyhX7VfUxMTlkaebpG+Z4InUE?=
+ =?us-ascii?Q?V3MC2SD2B+j2aOIJsvY3gUWrYz+K3gOKVeqgxADuyR5t6gfQWq/Cvwcx9hSU?=
+ =?us-ascii?Q?0Kv1o7BTeEG/hGHTu9LD/GjeALJZMv4qUEoaUco1bxx9Y++pgYMi6D1i14gU?=
+ =?us-ascii?Q?C8pgXnUFld7ucBa3T+ck+IvPSoBekBzoIv+cwirAGPB/+uPmzesBb6VgvL0H?=
+ =?us-ascii?Q?aRVGIk0Jdy4mWapX7iAYH2YPD1YlaZnEgfXhxF7MUZZ/0G2bGanCXPajkMSg?=
+ =?us-ascii?Q?/ts7UtDAjkVPsEwuDA5Cfz6BDeHTFkR8RmT/oY6RZYmXM7k60G4/dWEJw1qC?=
+ =?us-ascii?Q?nhepHOk8TYYS1p9D1gqw+QfSrldgKB83n5s0Df4UET6axJ3r9PGLmNl1unSI?=
+ =?us-ascii?Q?VbcA/g/xvRaOl1Gx2PvQnbor4ABA5sZA90AUufA1AP24J94uAyvkpthmbudJ?=
+ =?us-ascii?Q?50Axv4nSA1Ekpb+de1Q1xy5RCLzlUi0XlgwH?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXSPRMB0053.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(19092799006)(376014)(7416014)(52116014)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?2eBdmJE6mYENQDQmj5PC8kxdKachNdt8kHXjKraDL17aRmp6GmzBuRI4jpyW?=
+ =?us-ascii?Q?IJtGYVEL79lbpTHteDQlSKhYpU/Jll5gQRPiziyotVPNTvjVU6+g4gH31RNI?=
+ =?us-ascii?Q?MO+iqV9p9NxxvwHykf/JK0NiMrdnKkFmJEcoYwvsSLojV2Uz0dgcx1n7RFJ5?=
+ =?us-ascii?Q?aK6LUNSOp/08rEpHla8Ws4mlJzmdA6p3lBU4vsErkMwiTNN2q3GJX9u9AeV2?=
+ =?us-ascii?Q?5p4aRYhjHgbzzMb1Scrnf+bXdOAmEMVNx2zmOO4luLOv8L7zkCXdDXYxKlfM?=
+ =?us-ascii?Q?z9B2r2TlyM14zJzUYOkVsp0Ev4ftnJiml+jzW0JaWF3wlbVaoXWUR9p4QpOg?=
+ =?us-ascii?Q?LHWAOXvyk5OC0y0WtF8UcKW9ppyJWP6xJiPNcKyH0ubnRdMhqOM61kmOHSM0?=
+ =?us-ascii?Q?VNrVXhq6iyg592f8QkzWJJ4cmpMCnDikoEgvSE6ff7TwHqO9hobeyA6n+lmM?=
+ =?us-ascii?Q?E+qzQn/MF6xAKouk6dyf1rl4sa8Dj1UqsYLTsrKaiIQyaYji65JYAXJbDCqc?=
+ =?us-ascii?Q?h96o98cvLC99UUc3RpXxBJ+dLha9iRrIAEajkBLWZXfcI9bR7Pyde3U/mvU3?=
+ =?us-ascii?Q?nyvGtnOV5jVED42mJH4fDC6KDALQT8xJmpK0sspJMTWZiz91wYr1Cm00UKU7?=
+ =?us-ascii?Q?zqNdwWek2CNWiR8g9Vjf1Ppmf6avsteYmqxKs4FWqQqMAtS/Zlwt1D3V8mnv?=
+ =?us-ascii?Q?eJeO1jeI3wWWG7NkMxFG8iFXCh2yRl5sMC8ZQq0qth571BR36SlCSV1saM1G?=
+ =?us-ascii?Q?Ku9MQsqF+CGgAzUom0nPoe57lQ7IjLfg2pKRJ95XP6LrWFbdCtfEaDqHn7j3?=
+ =?us-ascii?Q?8Mgy7XLmA4r0zmC1v5KTpJvxylfS0qw/wc1f8UrvgrMxm/SsDKQxzD7x7nFt?=
+ =?us-ascii?Q?sWc1kSH2MGceOVT25EFzwOOLCaqRZAVXkjCl+czGNZ4dV+cSbT3aVzLrh/oL?=
+ =?us-ascii?Q?vKW0r3bz3IxBpF2Fx4YBHj2QuUvHrklWwHEpixWMoxEu5RI0yaLc2a9FkHcw?=
+ =?us-ascii?Q?YpXwZRZTbhAlQilAb+ARl0SKzFLQvx0FfUAkbSUzP1WSs+uKYAmJJlkkh/i6?=
+ =?us-ascii?Q?ZHs/khHSTVGBgDMvf2ALJpiJ0HNYcxZsaAwNu2QCz5Qj95eoEClo6bCwZFFY?=
+ =?us-ascii?Q?khiEoZE+hCnKDfyUBZMQ5icSMVPPOsx7VDXOk6QKY20jerwnNJ1zKN9TZczI?=
+ =?us-ascii?Q?UUN+om+w7M0yJOSRV5yXXuHRUpIbuHUEM4DHcMhs6+5eV+Lyw6TQACRq9KTg?=
+ =?us-ascii?Q?f+LeNp9UHortnp/8otmU4AEkog6g7rukPz1PZaV/q/ZVNvK6lA4LMkFFZUxx?=
+ =?us-ascii?Q?ROz5GbwcFrkyPk7sQTlSV0zoEaQh3MAgguOc8u85oblQk/SIgowiFKuK/MT4?=
+ =?us-ascii?Q?NTiQ8zrzSy2Z4xOqNSwrbYZOTAsAwlB4MGQrGlOXXovuCBP1+NXz8yxganpW?=
+ =?us-ascii?Q?MLied7/zumzoKksMILv0N83Ln3BSZwy75nsPOThBwsKE9kHTaJ4mglq1CAXc?=
+ =?us-ascii?Q?ZphqV4IJN3N9cFGyQcbPUfql29LyHN5rrbzcrzYAr0NWtAEo2JIQ9LQw8avu?=
+ =?us-ascii?Q?XSkQZThMHihUp8Nf05Y=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c02c4e16-6a15-4914-4d1e-08de0d8d5419
+X-MS-Exchange-CrossTenant-AuthSource: PAXSPRMB0053.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Oct 2025 14:56:18.7922
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: hitwfR+bdIXqod1ecPvWHaVrDDb3TeUBjL6/QfXbb37e+ypnMq2GrOAb92rCbQV4QebFU11El2WWa5XQsqqeUg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB8395
 
-The SpacemiT K1 SoC includes three USB ports:
+On Fri, Oct 17, 2025 at 04:20:23AM -0700, Laurentiu Mihalcea wrote:
+> From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
+>
+> Some NXP SoCs integrate one or more, per-subsystem, block control IPs,
+> which allow users to control the assertion and de-assertion of the
+> reset lines tied to some peripherals present in said subsystems. Some
+> examples of such SoCs include i.MX8MP with AUDIOMIX block control and
+> i.MX8ULP with SIM LPAV.
+>
+> Some of the aformentioned block control IPs exhibit a common pattern with
+> respect to the assertion and de-assertion of the reset lines. Namely, the
+> user is able to control the state of the reset line by toggling a bit from
+> one of the IP's registers.
+>
+> Linux can take advantage of this pattern and, instead of having one driver
+> for each block control IP, a single, more generic driver could be used.
+>
+> To allow this to happen, the previous approach, in which a single reset
+> map is used, is replaced by a per-driver approach, in which each auxiliary
+> device driver holds a reference to a certain reset map.
 
-- One USB2.0 OTG port
-- One USB2.0 host-only port
-- One USB3.0 port with an integrated USB2.0 DRD interface
+Can you shorter your commit message?, basically, you just add
+imx8mp_reset_info for difference auxiliary_device_id.
 
-Each of these ports is connected to a USB2.0 PHY responsible for USB2
-transmission.
+>
+> Reviewed-by: Daniel Baluta <daniel.baluta@nxp.com>
+> Signed-off-by: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
+> ---
+>  drivers/reset/reset-imx8mp-audiomix.c | 18 ++++++++++++++++--
+>  1 file changed, 16 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/reset/reset-imx8mp-audiomix.c b/drivers/reset/reset-imx8mp-audiomix.c
+> index c74ce6e04177..c370913107f5 100644
+> --- a/drivers/reset/reset-imx8mp-audiomix.c
+> +++ b/drivers/reset/reset-imx8mp-audiomix.c
+> @@ -24,7 +24,12 @@ struct imx8mp_reset_map {
+>  	bool active_low;
+>  };
+>
+> -static const struct imx8mp_reset_map reset_map[] = {
+> +struct imx8mp_reset_info {
+> +	const struct imx8mp_reset_map *map;
+> +	int num_lines;
+> +};
+> +
+> +static const struct imx8mp_reset_map imx8mp_reset_map[] = {
+>  	[IMX8MP_AUDIOMIX_EARC_RESET] = {
+>  		.offset	= IMX8MP_AUDIOMIX_EARC_RESET_OFFSET,
+>  		.mask = BIT(0),
+> @@ -45,10 +50,16 @@ static const struct imx8mp_reset_map reset_map[] = {
+>  	},
+>  };
+>
+> +static const struct imx8mp_reset_info imx8mp_reset_info = {
+> +	.map = imx8mp_reset_map,
+> +	.num_lines = ARRAY_SIZE(imx8mp_reset_map),
+> +};
+> +
+>  struct imx8mp_audiomix_reset {
+>  	struct reset_controller_dev rcdev;
+>  	void __iomem *base;
+>  	struct regmap *regmap;
+> +	const struct imx8mp_reset_info *rinfo;
+>  };
+>
+>  static struct imx8mp_audiomix_reset *to_imx8mp_audiomix_reset(struct reset_controller_dev *rcdev)
+> @@ -60,6 +71,7 @@ static int imx8mp_audiomix_update(struct reset_controller_dev *rcdev,
+>  				  unsigned long id, bool assert)
+>  {
+>  	struct imx8mp_audiomix_reset *priv = to_imx8mp_audiomix_reset(rcdev);
+> +	const struct imx8mp_reset_map *reset_map = priv->rinfo->map;
+>  	unsigned int mask, offset, active_low, shift, val;
+>
+>  	mask = reset_map[id].mask;
+> @@ -144,7 +156,8 @@ static int imx8mp_audiomix_reset_probe(struct auxiliary_device *adev,
+>  		return -ENOMEM;
+>
+>  	priv->rcdev.owner     = THIS_MODULE;
+> -	priv->rcdev.nr_resets = ARRAY_SIZE(reset_map);
+> +	priv->rinfo           = (const struct imx8mp_reset_info *)id->driver_data;
 
-This commit adds support for the SpacemiT K1 USB2.0 PHY, which is
-compliant with the USB 2.0 specification and supports both 8-bit 60MHz
-and 16-bit 30MHz parallel interfaces.
+needn't force convert from void*
 
-Signed-off-by: Ze Huang <huang.ze@linux.dev>
----
- drivers/phy/Kconfig                |   1 +
- drivers/phy/Makefile               |   1 +
- drivers/phy/spacemit/Kconfig       |  13 +++
- drivers/phy/spacemit/Makefile      |   2 +
- drivers/phy/spacemit/phy-k1-usb2.c | 200 +++++++++++++++++++++++++++++++++++++
- 5 files changed, 217 insertions(+)
+Frank
 
-diff --git a/drivers/phy/Kconfig b/drivers/phy/Kconfig
-index 1984c2e56122..95ee47f0fbc7 100644
---- a/drivers/phy/Kconfig
-+++ b/drivers/phy/Kconfig
-@@ -134,6 +134,7 @@ source "drivers/phy/rockchip/Kconfig"
- source "drivers/phy/samsung/Kconfig"
- source "drivers/phy/socionext/Kconfig"
- source "drivers/phy/sophgo/Kconfig"
-+source "drivers/phy/spacemit/Kconfig"
- source "drivers/phy/st/Kconfig"
- source "drivers/phy/starfive/Kconfig"
- source "drivers/phy/sunplus/Kconfig"
-diff --git a/drivers/phy/Makefile b/drivers/phy/Makefile
-index a206133a3515..950dd4f14372 100644
---- a/drivers/phy/Makefile
-+++ b/drivers/phy/Makefile
-@@ -37,6 +37,7 @@ obj-y					+= allwinner/	\
- 					   samsung/	\
- 					   socionext/	\
- 					   sophgo/	\
-+					   spacemit/	\
- 					   st/		\
- 					   starfive/	\
- 					   sunplus/	\
-diff --git a/drivers/phy/spacemit/Kconfig b/drivers/phy/spacemit/Kconfig
-new file mode 100644
-index 000000000000..0136aee2e8a2
---- /dev/null
-+++ b/drivers/phy/spacemit/Kconfig
-@@ -0,0 +1,13 @@
-+# SPDX-License-Identifier: GPL-2.0-only
-+#
-+# Phy drivers for SpacemiT platforms
-+#
-+config PHY_SPACEMIT_K1_USB2
-+	tristate "SpacemiT K1 USB 2.0 PHY support"
-+	depends on (ARCH_SPACEMIT || COMPILE_TEST) && OF
-+	depends on COMMON_CLK
-+	depends on USB_COMMON
-+	select GENERIC_PHY
-+	help
-+	  Enable this to support K1 USB 2.0 PHY driver. This driver takes care of
-+	  enabling and clock setup and will be used by K1 udc/ehci/otg/xhci driver.
-diff --git a/drivers/phy/spacemit/Makefile b/drivers/phy/spacemit/Makefile
-new file mode 100644
-index 000000000000..fec0b425a948
---- /dev/null
-+++ b/drivers/phy/spacemit/Makefile
-@@ -0,0 +1,2 @@
-+# SPDX-License-Identifier: GPL-2.0-only
-+obj-$(CONFIG_PHY_SPACEMIT_K1_USB2)		+= phy-k1-usb2.o
-diff --git a/drivers/phy/spacemit/phy-k1-usb2.c b/drivers/phy/spacemit/phy-k1-usb2.c
-new file mode 100644
-index 000000000000..342061380012
---- /dev/null
-+++ b/drivers/phy/spacemit/phy-k1-usb2.c
-@@ -0,0 +1,200 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * SpacemiT K1 USB 2.0 PHY driver
-+ *
-+ * Copyright (C) 2025 SpacemiT (Hangzhou) Technology Co. Ltd
-+ * Copyright (C) 2025 Ze Huang <huang.ze@linux.dev>
-+ */
-+
-+#include <linux/bitfield.h>
-+#include <linux/clk.h>
-+#include <linux/iopoll.h>
-+#include <linux/platform_device.h>
-+#include <linux/regmap.h>
-+#include <linux/usb/of.h>
-+
-+#define PHY_RST_MODE_CTRL		0x04
-+#define  PHY_PLL_RDY			BIT(0)
-+#define  PHY_CLK_CDR_EN			BIT(1)
-+#define  PHY_CLK_PLL_EN			BIT(2)
-+#define  PHY_CLK_MAC_EN			BIT(3)
-+#define  PHY_MAC_RSTN			BIT(5)
-+#define  PHY_CDR_RSTN			BIT(6)
-+#define  PHY_PLL_RSTN			BIT(7)
-+/*
-+ * hs line state sel (Bit 13):
-+ * - 1 (Default): Internal HS line state is set to 01 when usb_hs_tx_en is valid.
-+ * - 0: Internal HS line state is always driven by usb_hs_lstate.
-+ *
-+ * fs line state sel (Bit 14):
-+ * - 1 (Default): FS line state is determined by the output data
-+ * (usb_fs_datain/b).
-+ * - 0: FS line state is always determined by the input data (dmo/dpo).
-+ */
-+#define  PHY_HS_LINE_TX_MODE		BIT(13)
-+#define  PHY_FS_LINE_TX_MODE		BIT(14)
-+
-+#define  PHY_INIT_MODE_BITS		(PHY_FS_LINE_TX_MODE | PHY_HS_LINE_TX_MODE)
-+#define  PHY_CLK_ENABLE_BITS		(PHY_CLK_PLL_EN | PHY_CLK_CDR_EN | \
-+					 PHY_CLK_MAC_EN)
-+#define  PHY_DEASSERT_RST_BITS		(PHY_PLL_RSTN | PHY_CDR_RSTN | \
-+					 PHY_MAC_RSTN)
-+
-+#define PHY_TX_HOST_CTRL		0x10
-+#define  PHY_HST_DISC_AUTO_CLR		BIT(2)		/* autoclear hs host disc when re-connect */
-+
-+#define PHY_HSTXP_HW_CTRL		0x34
-+#define  PHY_HSTXP_RSTN			BIT(2)		/* generate reset for clock hstxp */
-+#define  PHY_CLK_HSTXP_EN		BIT(3)		/* clock hstxp enable */
-+#define  PHY_HSTXP_MODE			BIT(4)		/* 0: force en_txp to be 1; 1: no force */
-+
-+#define PHY_PLL_DIV_CFG			0x98
-+#define  PHY_FDIV_FRACT_8_15		GENMASK(7, 0)
-+#define  PHY_FDIV_FRACT_16_19		GENMASK(11, 8)
-+#define  PHY_FDIV_FRACT_20_21		BIT(12)		/* fdiv_reg<21>, <20>, bit21 == bit20 */
-+/*
-+ * freq_sel<1:0>
-+ * if ref clk freq=24.0MHz-->freq_sel<2:0> == 3b'001, then internal divider value == 80
-+ */
-+#define  PHY_FDIV_FRACT_0_1		GENMASK(14, 13)
-+/*
-+ * pll divider value selection
-+ * 1: divider value will choose internal default value ,dependent on freq_sel<1:0>
-+ * 0: divider value will be over ride by fdiv_reg<21:0>
-+ */
-+#define  PHY_DIV_LOCAL_EN		BIT(15)
-+
-+#define  PHY_SEL_FREQ_24MHZ		0x01
-+#define  FDIV_REG_MASK			(PHY_FDIV_FRACT_20_21 | PHY_FDIV_FRACT_16_19 | \
-+					 PHY_FDIV_FRACT_8_15)
-+#define  FDIV_REG_VAL			0x1ec4		/* 0x100 selects 24MHz, rest are default */
-+
-+#define K1_USB2PHY_RESET_TIME_MS	50
-+
-+struct spacemit_usb2phy {
-+	struct phy *phy;
-+	struct clk *clk;
-+	struct regmap *regmap_base;
-+};
-+
-+static const struct regmap_config phy_regmap_config = {
-+	.reg_bits = 32,
-+	.val_bits = 32,
-+	.reg_stride = 4,
-+	.max_register = 0x200,
-+};
-+
-+static int spacemit_usb2phy_init(struct phy *phy)
-+{
-+	struct spacemit_usb2phy *sphy = phy_get_drvdata(phy);
-+	struct regmap *map = sphy->regmap_base;
-+	u32 val;
-+	int ret;
-+
-+	ret = clk_enable(sphy->clk);
-+	if (ret) {
-+		dev_err(&phy->dev, "failed to enable clock\n");
-+		clk_disable(sphy->clk);
-+		return ret;
-+	}
-+
-+	/*
-+	 * make sure the usb controller is not under reset process before
-+	 * any configuration
-+	 */
-+	usleep_range(150, 200);
-+
-+	/* 24M ref clk */
-+	val = FIELD_PREP(FDIV_REG_MASK, FDIV_REG_VAL) |
-+	      FIELD_PREP(PHY_FDIV_FRACT_0_1, PHY_SEL_FREQ_24MHZ) |
-+	      PHY_DIV_LOCAL_EN;
-+	regmap_write(map, PHY_PLL_DIV_CFG, val);
-+
-+	ret = regmap_read_poll_timeout(map, PHY_RST_MODE_CTRL, val,
-+				       (val & PHY_PLL_RDY),
-+				       500, K1_USB2PHY_RESET_TIME_MS * 1000);
-+	if (ret) {
-+		dev_err(&phy->dev, "wait PLLREADY timeout\n");
-+		clk_disable(sphy->clk);
-+		return ret;
-+	}
-+
-+	/* release usb2 phy internal reset and enable clock gating */
-+	val = (PHY_INIT_MODE_BITS | PHY_CLK_ENABLE_BITS | PHY_DEASSERT_RST_BITS);
-+	regmap_write(map, PHY_RST_MODE_CTRL, val);
-+
-+	val = (PHY_HSTXP_RSTN | PHY_CLK_HSTXP_EN | PHY_HSTXP_MODE);
-+	regmap_write(map, PHY_HSTXP_HW_CTRL, val);
-+
-+	/* auto clear host disc */
-+	regmap_update_bits(map, PHY_TX_HOST_CTRL, PHY_HST_DISC_AUTO_CLR,
-+			   PHY_HST_DISC_AUTO_CLR);
-+
-+	return 0;
-+}
-+
-+static int spacemit_usb2phy_exit(struct phy *phy)
-+{
-+	struct spacemit_usb2phy *sphy = phy_get_drvdata(phy);
-+
-+	clk_disable(sphy->clk);
-+
-+	return 0;
-+}
-+
-+static const struct phy_ops spacemit_usb2phy_ops = {
-+	.init = spacemit_usb2phy_init,
-+	.exit = spacemit_usb2phy_exit,
-+	.owner = THIS_MODULE,
-+};
-+
-+static int spacemit_usb2phy_probe(struct platform_device *pdev)
-+{
-+	struct phy_provider *phy_provider;
-+	struct device *dev = &pdev->dev;
-+	struct spacemit_usb2phy *sphy;
-+	void __iomem *base;
-+
-+	sphy = devm_kzalloc(dev, sizeof(*sphy), GFP_KERNEL);
-+	if (!sphy)
-+		return -ENOMEM;
-+
-+	sphy->clk = devm_clk_get_prepared(&pdev->dev, NULL);
-+	if (IS_ERR(sphy->clk))
-+		return dev_err_probe(dev, PTR_ERR(sphy->clk), "Failed to get clock\n");
-+
-+	base = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(base))
-+		return PTR_ERR(base);
-+
-+	sphy->regmap_base = devm_regmap_init_mmio(dev, base, &phy_regmap_config);
-+	if (IS_ERR(sphy->regmap_base))
-+		return dev_err_probe(dev, PTR_ERR(sphy->regmap_base), "Failed to init regmap\n");
-+
-+	sphy->phy = devm_phy_create(dev, NULL, &spacemit_usb2phy_ops);
-+	if (IS_ERR(sphy->phy))
-+		return dev_err_probe(dev, PTR_ERR(sphy->phy), "Failed to create phy\n");
-+
-+	phy_set_drvdata(sphy->phy, sphy);
-+	phy_provider = devm_of_phy_provider_register(dev, of_phy_simple_xlate);
-+
-+	return PTR_ERR_OR_ZERO(phy_provider);
-+}
-+
-+static const struct of_device_id spacemit_usb2phy_dt_match[] = {
-+	{ .compatible = "spacemit,k1-usb2-phy", },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, spacemit_usb2phy_dt_match);
-+
-+static struct platform_driver spacemit_usb2_phy_driver = {
-+	.probe	= spacemit_usb2phy_probe,
-+	.driver = {
-+		.name   = "spacemit-usb2-phy",
-+		.of_match_table = spacemit_usb2phy_dt_match,
-+	},
-+};
-+module_platform_driver(spacemit_usb2_phy_driver);
-+
-+MODULE_DESCRIPTION("Spacemit USB 2.0 PHY driver");
-+MODULE_LICENSE("GPL");
-
--- 
-2.51.1.dirty
-
+> +	priv->rcdev.nr_resets = priv->rinfo->num_lines;
+>  	priv->rcdev.ops       = &imx8mp_audiomix_reset_ops;
+>  	priv->rcdev.of_node   = dev->parent->of_node;
+>  	priv->rcdev.dev	      = dev;
+> @@ -168,6 +181,7 @@ static int imx8mp_audiomix_reset_probe(struct auxiliary_device *adev,
+>  static const struct auxiliary_device_id imx8mp_audiomix_reset_ids[] = {
+>  	{
+>  		.name = "clk_imx8mp_audiomix.reset",
+> +		.driver_data = (kernel_ulong_t)&imx8mp_reset_info,
+>  	},
+>  	{ }
+>  };
+> --
+> 2.43.0
+>
 
