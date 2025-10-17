@@ -1,147 +1,124 @@
-Return-Path: <devicetree+bounces-228201-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228202-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 481D8BE9FAB
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 17:37:40 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B486BE9D6C
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 17:28:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 386F3741D9D
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 15:13:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B85495E7155
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 15:15:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 665B833291B;
-	Fri, 17 Oct 2025 15:12:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D4EB32F743;
+	Fri, 17 Oct 2025 15:14:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TqmvhnCx"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="aeEPF5Zg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3697B2F12B0;
-	Fri, 17 Oct 2025 15:12:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6D603370FE
+	for <devicetree@vger.kernel.org>; Fri, 17 Oct 2025 15:14:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760713958; cv=none; b=cebjW5IhSLFjSqmpa0Zgms8HTp0ZzJ5zds3Woh3kT0+rgQwN8e6HYxRpwmtFoZ1kLRBk05YzbrNR6uR1cycN2dKkFccTalf5Q+OcPUsJXtFvDwVDRA8MUQcqzpcd1zNvoi+LCy+XJLXP/dVtATLsVGmCXgMdM2cyMDAilVAso7s=
+	t=1760714082; cv=none; b=dYAKGOfgooblEx9SARhTrIlivrXUJDi1tasZMWUQK/9juoN2oiujJeNfyzl+vNHXO9PdBYBKHkLSrFxZVvzS0Zm0p6V69VQ6/DgjhdUUOhWs1wKSuMLNbbfPcRUSgL10dtsKxMBIvp1HO6VE+Sbdj3gAP+VtRN60IEqOOgyMrx4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760713958; c=relaxed/simple;
-	bh=1IuDydb9LVnh3/OC5wI1BZmlPhEFBAW9Ll+jAbKHxOM=;
+	s=arc-20240116; t=1760714082; c=relaxed/simple;
+	bh=p7IYtu7Nv3p1Va76BbrP2fjM79zbzZp0jh60+HNRPDg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ogAYsYGvimzHhOemM9kDvkfVQKsCbd0YYWoFBAQl8CXcgOUHdIePUX/yeEEPEbHBpUj5Q3js1Q4EqGxDaxo4ZXWZNFtmuyaT3eOe7xF72ch+/rOcaHkSIH7w6s0HX7GxobpZ8+RyKlAxeaUd7N/vFUbS9WDgqSnYIRDAVrAUf/k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TqmvhnCx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 32F68C4CEF9;
-	Fri, 17 Oct 2025 15:12:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760713958;
-	bh=1IuDydb9LVnh3/OC5wI1BZmlPhEFBAW9Ll+jAbKHxOM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=TqmvhnCx3DrRFih0Hvwau0ZVDoNCUJBx/O3sVu/j1ssqtkREF1YfTzvFlfcOU8RUF
-	 BvcqKmld1ZylivNmpGNRG+umisrT0IU0Hmhookb0+BazONDjWGtolHdNWRmyytUZoW
-	 GPo8oO/pz2i5AsSkGGDG57DxH6z572pZUF45xM7uT+RFmQ5YgDLC3/6jmzhGVOofP1
-	 V6RcGG4IADuHO9+fa3Ww81AX6nfzzaZw0saKuI5pfVW/e9vZNAefSIkgRcukNsv7cE
-	 nsOrylVfJ/ms0A/d1ED1auwPhg5lujqGB2UNjVyDThzlzJg7CK0GP7zbIOl9m06xet
-	 f9YIKqKW9isxg==
-Date: Fri, 17 Oct 2025 20:42:24 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Arnd Bergmann <arnd@arndb.de>
-Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>, 
-	Vincent Guittot <vincent.guittot@linaro.org>, Chester Lin <chester62515@gmail.com>, 
-	Matthias Brugger <mbrugger@suse.com>, Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>, 
-	NXP S32 Linux Team <s32@nxp.com>, bhelgaas@google.com, jingoohan1@gmail.com, 
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>, Rob Herring <robh@kernel.org>, krzk+dt@kernel.org, 
-	Conor Dooley <conor+dt@kernel.org>, Ionut.Vicovan@nxp.com, Larisa Grigore <larisa.grigore@nxp.com>, 
-	Ghennadi Procopciuc <Ghennadi.Procopciuc@nxp.com>, ciprianmarian.costea@nxp.com, 
-	Bogdan Hamciuc <bogdan.hamciuc@nxp.com>, Frank Li <Frank.li@nxp.com>, 
-	linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, imx@lists.linux.dev, Niklas Cassel <cassel@kernel.org>
-Subject: Re: [PATCH 1/3 v2] dt-bindings: PCI: s32g: Add NXP PCIe controller
-Message-ID: <nzznoiri4n7krpid4lp4pax2dge6vwdj3eqyxqob4bzf6gmlzy@a6moyj74ehzp>
-References: <20250919155821.95334-2-vincent.guittot@linaro.org>
- <iom65w7amxqf7miopujxeulyiglhkyjszjc3nd4ivknj5npcz2@bvxej6ymkecd>
- <aOU0w5Brp6uxjZDr@lpieralisi>
- <4rghtk5qv4u7vx4nogctquu3skvxis4npxfukgtqeilbofyclr@nhkrkojv3syh>
- <eba7d968-209d-4acb-ba41-4bebf03e96ba@app.fastmail.com>
- <4143977f-1e70-4a63-b23b-78f87d9fdcde@app.fastmail.com>
- <2erycpxudpckmme3k2cpn6wgti4ueyvupo2tzrvmu7aqp7tm6d@itfj7pfrpzzg>
- <3d480f73-15b4-4fb8-8d2b-f9961c1736ca@app.fastmail.com>
- <4kvo2qg2til22hlssv7lt2ugo63emr5c4hfjur5m3vnxvpdekx@jcbhaxb2d2j2>
- <839e3878-ae62-4c8b-a74b-ac4f6f060d98@app.fastmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=WUzwHqty+BicXi3Y+a7TAIuNSSFpjFAPKgNKNv4b1XM4KFoLJtw812esn7BP9l5DWFlCOF+hZFlnqVRrjpQP2v1yUAu1zAmO3TFDweCzX185EWQ4RBhF4GT4dIJO3Q4/gY9cJjUApUrJwJZJyggmb1dMAONOgKzVfaaTwkaU1eE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=aeEPF5Zg; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=date:from:to:cc:subject:message-id
+	:references:mime-version:content-type:in-reply-to; s=k1; bh=p7IY
+	tu7Nv3p1Va76BbrP2fjM79zbzZp0jh60+HNRPDg=; b=aeEPF5ZgjRxf5ivMgEP6
+	a96riYOhKW+hG5UdPLqdTcfe5FTjmV3OHJf/2Ai2VKwYSbJR0wC1/D/r8xB5FKy1
+	GFimrI814BL0MTkU/q5p8zRzfWMG6Fh/yESpyCgDfhMxlF/mSz/Ds6P/J4yWCMPU
+	C8BsAzABRdLNnWBwUNATSxNK7QV1NUB3MoVqJCJqA/+jshpLIV4ExS7o2LGkzWWC
+	rCepcfyhftSIouKjY3EEfHbBetJ0pbMGdjvkFgrOMTXjpe0sUGCFCa12GpnpDxYV
+	4xWw2HIu1NJLb35qNr9bhseQdJasRiHRPSgoKT4f7btxD0vJSxw1zciG1ENQqpL+
+	fw==
+Received: (qmail 79180 invoked from network); 17 Oct 2025 17:14:33 +0200
+Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 17 Oct 2025 17:14:33 +0200
+X-UD-Smtp-Session: l3s3148p1@AS3dMFxBjs4gAwDPXwQHAL/S9V79e5yL
+Date: Fri, 17 Oct 2025 17:14:32 +0200
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: Herve Codina <herve.codina@bootlin.com>
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, linux-iio@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Pascal Eberhard <pascal.eberhard@se.com>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH 2/4] iio: adc: Add support for the Renesas RZ/N1 ADC
+Message-ID: <aPJdWHjjwYW5VECZ@shikoro>
+References: <20251015142816.1274605-1-herve.codina@bootlin.com>
+ <20251015142816.1274605-3-herve.codina@bootlin.com>
+ <aPIIVUlHnvi0BXtN@shikoro>
+ <20251017170054.7a7a6d5f@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="eU16krwebNarsjsY"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <839e3878-ae62-4c8b-a74b-ac4f6f060d98@app.fastmail.com>
+In-Reply-To: <20251017170054.7a7a6d5f@bootlin.com>
 
-On Thu, Oct 09, 2025 at 11:16:02PM +0200, Arnd Bergmann wrote:
-> On Thu, Oct 9, 2025, at 20:47, Manivannan Sadhasivam wrote:
-> > On Wed, Oct 08, 2025 at 07:56:44PM +0200, Arnd Bergmann wrote:
-> >> On Wed, Oct 8, 2025, at 17:19, Manivannan Sadhasivam wrote:
-> >>
-> >> That is not my impression from reading the code: At least for
-> >> the case where both devices are on the same bridge and they
-> >> use map_type=PCI_P2PDMA_MAP_BUS_ADDR, I would expect the DMA
-> >> to use the plain PCI bus address, not going through the
-> >> dma-ranges+ranges translation that would apply when they are
-> >> on different host bridges.
-> >> 
-> >
-> > Right, but I don't get the overlap issue still. If the P2P client triggers a
-> > write to a P2P PCI address (let's assume 0x8000_0000), and if that address
-> > belongs to a an endpoint in a different domain, the host bridge should still
-> > forward it to the endpoint without triggering write to the RAM.
-> 
-> If 0x8000_0000 is an endpoint in a different domain, I would expect the
-> DMA transfer to go to the RAM at that address since the DMA has to leave
-> the PCI host bridge upstream by following its inbound windows.
-> 
-> This is not the problem I'm talking about though, since cross-domain
-> P2P is not particularly well-defined.
-> 
-> > Atleast, I don't see any concern from the outbound memory translation point of
-> > view.
-> >
-> > Please let me know if there is any gap in my understanding.
-> 
-> To clarify: I don't think that programming the output translation this
-> way is the problem here, but assigning memory resources to ambiguous
-> addresses is. The host bridge probe uses the 'ranges' both for
-> setting up the outbound window and the bus resources. 
-> 
-> If the PCI bus scan assigns address 0x8000_0000 to the memory BAR
-> of a device, and that device or any other one in the /same/
-> domain tries to DMA to DRAM at address 0x8000_0000, it would likely
-> reach the memory BAR instead of DRAM. If for some reason it does reach
-> DRAM after all, it would be unable to do a P2P DMA into the BAR when
-> it tries.
-> 
 
-I tried to verify how the Root Port is supposed to behave in this scenario, but
-I couldn't conclude on anything. So it looks like this overlapping *might*
-create issues with P2PDMA and DRAM access. Thanks for spotting and also for
-persisting with my lack of understanding :)
+--eU16krwebNarsjsY
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> If the PCI scan already checks for overlap between the DT "ranges"
-> and other resources (DRAM or MMIO) before assigning a BAR, this may
-> be a non-issue, but I haven't found the code that does this.
-> Looking at pci_bus_allocate_dev_resources() it seems that it would
-> attempt to assign an overlapping address to a BAR but then fail
-> to claim it because of the resource conflict. If that is the
-> case, it would not actually have an ambiguous DMA routing
-> but instead the device would fail to be probed because of the
-> conflict.
-> 
 
-AFAICS, the existing resource checks only finds out the overlap between the
-resources assigned to the devices, not between the DRAM or MMIO. This is
-something we should do in devm_of_pci_get_host_bridge_resources() IMO.
+> IMHO, I think the solution you proposed is similar in term of complexity
+> to the RZN1_ADC_NO_CHANNEL approach. On my side, I would prefer the
+> RZN1_ADC_NO_CHANNEL approach to keep the decoupling between IIO chan and
+> ADC core chans.
+>=20
+> That's said, I am still open to move in your direction if you still think
+> it is more relevant than the RZN1_ADC_NO_CHANNEL approach. Just tell me.
 
-- Mani
+Well, in deed, I like "my" approach a tad better, but I am not demanding
+it. It is your driver and you have reasons to do it like you implemented
+it - you chose the way, I am fine with both. But maybe add a comment
+(mention the decoupling) why it was decided this way.
 
--- 
-மணிவண்ணன் சதாசிவம்
+
+--eU16krwebNarsjsY
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmjyXVUACgkQFA3kzBSg
+KbYeug/+MzLs0kUyOuNPsQ7uDp6nj5Vb9AevnkxgNb/eAHHlOb8lEDyatQmbZExt
+i2W1xVVBsqr10n7IpC7ygrrEpaM3PiV4i0a37ppAxoac6wFH01OlewpRS1L61t7W
+c/kPt/7xkdy/emhe5/mGTW4CH3lYK8IkzQtSkxLEdHW4Ku6BGsh/KTjrL05FV1VG
+M2UG20Wp42YyflxdG/U9NAjYpA2g+8zgDI7txX52GNwkoekEX4/cIk1Z0da/fKTo
+jGdeSNu1U4VupTEDap5TGafGledZQZPKuOAdSCu2JHhqXhhxkBWUJZRORbX2ztqR
+VM0o5kCgejDDLhPWijtT2UNTLKf4K36IBQDhjBju7pmfHMypXDCQ+hI6pm46v9+c
+UhraHkPsBG1z8Qez4MVgtXUPUmCjUjCq3pbIMub/ZY18EzadptQmjvGZfZ+D5Iot
+xfTMwGhbpzQNqJ1yQyC1djszbaBWp4t9U6eUE2CLyluu9Vgpw/jvPifCnzLOue0T
+Qi3RES0lAWHw8ttqY8fr04vdAh77Di/z2NNK1cYerlO1E243uPoqru8NWLWkm/OL
+H+lgDLQUFTrO4T+FiJNsp29p8nMACv6S1XAPx3NZc5i+WrulcLaGbPqOgm+Miny5
+qHybCE5xUm+c5tkKc+5jzG6akgft5TEHDkgmRCaVtcE/CpbgV0g=
+=eQ6v
+-----END PGP SIGNATURE-----
+
+--eU16krwebNarsjsY--
 
