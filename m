@@ -1,113 +1,200 @@
-Return-Path: <devicetree+bounces-228114-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228115-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33409BE8110
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 12:29:25 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9CF02BE81A3
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 12:43:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 11F824E6063
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 10:29:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 28CE8188D24A
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 10:44:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 667012E54BC;
-	Fri, 17 Oct 2025 10:29:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3DE9313278;
+	Fri, 17 Oct 2025 10:43:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LX/8vC0g"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dT8aMD5n"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 390F729BDB1;
-	Fri, 17 Oct 2025 10:29:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB131313271;
+	Fri, 17 Oct 2025 10:43:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760696962; cv=none; b=ic3WPkZ0tK1MhTSpZTVtucl/YpR60lwtKs6/pmEEMtg5uSspsM5kmcGiUoHFcC7eGSgCz5hLEfgbOiY4MkXrR/2g9EN3k6an9QhtkRLMdotN2ZqvZG6ODsbdEEnvIUwrLrmqD+qnpeIXBA18tkm6m6Tg4vm/wV5Py/KwC15A+h0=
+	t=1760697810; cv=none; b=EkfndRHOqCqwmTHPejB+vMS7Fd9OiDtEtoxQnHKOPzvgJaQBj1yEqb9SsUOL9OWIqGjXXC2xrO4XktJvS6WvPAH+ccTkF/uv4ZEUws9YVXnLxjirWIis57TapSV0krUmHbDIFn/5eNHAAWiVT0sENydd7tOSBrxNt8z7J53w/tc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760696962; c=relaxed/simple;
-	bh=vV9v5uIhUTlf+FriltYV7pUb+ukR9hrkxuJfHNF0b2w=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nmezfpFe+Pqg75WMa+kYdzpedwI/k217KKbgZZxrFxUj6/oI9U7iMALo1cNGExK1rZ8y6JCgWMT79yjqNTkbo8r8O699oHjyYdx+QVeLU2/6YaZGLXxvb3kWNOmOhpVoKftcafRBKOytAVD4yl1YV25B7lC5FJmUYzWcUFK93+E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LX/8vC0g; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1F6C8C4CEE7;
-	Fri, 17 Oct 2025 10:29:20 +0000 (UTC)
+	s=arc-20240116; t=1760697810; c=relaxed/simple;
+	bh=Xz/ka8uQqulMQJ6eacWCSLmkEPgwFHxvwPH1ZnbJNlU=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=J4Y2J7Pi1881VCa9xeqaNmKHcBatcoojYebCZK9s6W4pb9K870qkqnPm45ViRNcyKX+M7QfKAlEWs5fGKKhSzFwuqA3eGFZ+n9ZVAEzFkQDvjFwVE72FNc5wSbbn1fEywkP9kCg4qP/G3JQSVbY0OxbzA6/diFrzvzYgSUrVoKo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dT8aMD5n; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CE9EBC4CEE7;
+	Fri, 17 Oct 2025 10:43:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760696961;
-	bh=vV9v5uIhUTlf+FriltYV7pUb+ukR9hrkxuJfHNF0b2w=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=LX/8vC0gqlA7oPS9o8mUdVZWHkCEYy91LlN3K4SxDexXVaf7fAzN/Wg/0zCOTyFw6
-	 uDkCj1dQZu1i14hQIhLk2iICgk+hpNc+da1RO7zIfjB+WyHGIJfzWgW4DYqANdWVHe
-	 dHybxGIFs1dfnIobgI71dSoGLiDvEwMU6t5iCMwzjCSoIvjCtV30KKvObkCMQ/SxTl
-	 0fw9FLj/9YSjclJBi33bTzzFsrSWa2erIao2KYxgiUIm9vfn/aMeGs1OCnMKWZ5B2/
-	 fQs49yshL8RB0WXT6tCECAANlx3eBZSZMGKi438TMcnfO80USF5JdPMFgw32e3edKL
-	 89DmH9QeExHiw==
-Date: Fri, 17 Oct 2025 12:29:18 +0200
-From: Andi Shyti <andi.shyti@kernel.org>
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc: Svyatoslav Ryhel <clamor95@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Peter Rosin <peda@axentia.se>, =?utf-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>, 
-	Jonas =?utf-8?B?U2Nod8O2YmVs?= <jonasschwoebel@yahoo.de>, linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Luca Ceresoli <luca@lucaceresoli.net>, 
-	Herve Codina <herve.codina@bootlin.com>
-Subject: Re: [PATCH v1 0/2 RESEND] i2c: muxes: Add GPIO-detected hotplug I2C
-Message-ID: <mgrmrpvqoj5ucknfbtyuu3n54r2cnrqpcvnobzj37c6tfm3qze@m7e5elocpfvu>
-References: <20251013060018.43851-1-clamor95@gmail.com>
- <w3bn5bqxqjhf4uvxov47rwlvmnbic6xnlk25xbpnbmi2eyup7q@tjuiu7pl3mmo>
- <CAPVz0n1-jN5WLFq4e0CZrneExrN_A=GNeGTwGHTCj14NAta+jQ@mail.gmail.com>
- <aPCfiJxyKOXsgNJe@shikoro>
+	s=k20201202; t=1760697810;
+	bh=Xz/ka8uQqulMQJ6eacWCSLmkEPgwFHxvwPH1ZnbJNlU=;
+	h=From:To:Cc:Subject:Date:From;
+	b=dT8aMD5nAIX5M5W2DEBdjWGezkjTIaUgN9q75DrXBmKCBuOBKx4Wky9Sxo2xVOmSz
+	 v+WoRG7bIFXR5Nxg886QJWbcWlkvNL5oQIhoichQhJo763Bojjz6+X1Dkrdz8yj4L6
+	 IxayfqK8cPdrDZfzEWagJuUP7TGdRMfH+TO5w8sq4nOBibaVVLz1U2GR2w8ZZXrAmw
+	 1OYknVVjH4xeNtk+mAJ+JDoXdnU/sX43tfr1fngqrssEM7T0K4sir7B+0aYrTn8YRy
+	 QruZHdXhHS5dy0AsxaNxwsdMwTNywlD5eWjN3lIhggPkPit0CHY0CDNkheGSr9F2FH
+	 4ap5nBoYIbwiQ==
+From: Michael Walle <mwalle@kernel.org>
+To: Nishanth Menon <nm@ti.com>,
+	Bryan Brattlof <bb@ti.com>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Tero Kristo <kristo@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Michael Walle <mwalle@kernel.org>
+Subject: [PATCH RESEND] arm64: dts: ti: k3-j722s: add OPP table
+Date: Fri, 17 Oct 2025 12:42:55 +0200
+Message-ID: <20251017104315.533436-1-mwalle@kernel.org>
+X-Mailer: git-send-email 2.47.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aPCfiJxyKOXsgNJe@shikoro>
+Content-Transfer-Encoding: 8bit
 
-Hi Svyatoslav,
+Add the A53 frequency operation points. The frequencies where taken from
+the AM62P SoC and seem to be chosen rather arbitrary.
+The SoC doesn't contain it's speed grade in the JTAG USER ID efuse
+register, thus it has to be hardcoded in the SoC dtsi and/or board dts.
 
-On Thu, Oct 16, 2025 at 09:32:24AM +0200, Wolfram Sang wrote:
-> > Herve and Luca did not come up with anything meaningful, they provided
-> > just a few rough ideas. It will take an inconsiderate amount of time
-> 
-> Well, IIRC they said that your use case can be mapped onto their
-> approach. Which is meaningful in my book.
-> 
-> > before there will be any consensus between them and schema
-> > maintainers, and even more time would be requited to settle this into
-> > schemas and implement into drivers. Why should I suffer from this? Why
-> > should changes I need be halted due to some incomplete 'ideas'? This
-> > driver uses existing i2c mux framework and fits into it just fine.
-> 
-> I am sorry to bring you bad news, but you need to suffer because this is
-> how development goes. If I get presented a generic solution (see Herve's
-> mail) and a specific solution (your driver), for this case I as a
-> maintainer will prefer the generic solution. Generic solutions need more
-> time because there are more things to handle, of course. This is typical
-> for development, I would say, it is not Linux or Free Software specific.
-> 
-> I appreciate that you tackled your issue and were open to share it with
-> the community. I see the work being done there. However, there are so
-> many things going on independently that I can't really prevent double
-> development from happening despite it having a high priority for me. As
-> soon as I get aware of people working on similar issues, I connect them.
-> That's what I did here as well.
-> 
-> So, if you want upstream supported I2C hot-plugging, you need to wait
-> for Luca's and Herve's work being accepted. Or provide a superior
-> solution. Or, if you want, join the ride. You already have experience in
-> this field (and hardware plus use case), you would be a very welcome
-> contributor, I would say.
+The SoC is binned into just two speed grades with different core
+voltages: J (0.75V, 1.25GHz) and K (0.85V, 1.4GHz). Add the frequencies
+that both speed grades support to the SoC dtsi and if a board has a
+speed grade K SoC add it to the board device tree.
 
-I agree with all what is said above. I just want to add that
-Herve has provided links to all his work and what I would do is
-to rebase all my work on top of theirs; make sure their work
-together with yours work in your system and, perhaps, merge the
-series.
+Signed-off-by: Michael Walle <mwalle@kernel.org>
+---
+ .../arm64/boot/dts/ti/k3-am67a-beagley-ai.dts |  7 ++++
+ arch/arm64/boot/dts/ti/k3-j722s-evm.dts       |  7 ++++
+ arch/arm64/boot/dts/ti/k3-j722s.dtsi          | 40 +++++++++++++++++++
+ 3 files changed, 54 insertions(+)
 
-Please, let me know if this works.
+diff --git a/arch/arm64/boot/dts/ti/k3-am67a-beagley-ai.dts b/arch/arm64/boot/dts/ti/k3-am67a-beagley-ai.dts
+index b697035df04e..464dffd46e59 100644
+--- a/arch/arm64/boot/dts/ti/k3-am67a-beagley-ai.dts
++++ b/arch/arm64/boot/dts/ti/k3-am67a-beagley-ai.dts
+@@ -148,6 +148,13 @@ led-1 {
+ 	};
+ };
+ 
++&a53_opp_table {
++	opp-1400000000 {
++		opp-hz = /bits/ 64 <1400000000>;
++		clock-latency-ns = <6000000>;
++	};
++};
++
+ &main_pmx0 {
+ 	main_i2c0_pins_default: main-i2c0-default-pins {
+ 		pinctrl-single,pins = <
+diff --git a/arch/arm64/boot/dts/ti/k3-j722s-evm.dts b/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
+index e0e303da7e15..ce3ed1b0f24d 100644
+--- a/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
++++ b/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
+@@ -228,6 +228,13 @@ csi23_mux: mux-controller-1 {
+ 	};
+ };
+ 
++&a53_opp_table {
++	opp-1400000000 {
++		opp-hz = /bits/ 64 <1400000000>;
++		clock-latency-ns = <6000000>;
++	};
++};
++
+ &cpsw_mac_syscon {
+ 	bootph-all;
+ };
+diff --git a/arch/arm64/boot/dts/ti/k3-j722s.dtsi b/arch/arm64/boot/dts/ti/k3-j722s.dtsi
+index 0165db6e4437..acb15307addc 100644
+--- a/arch/arm64/boot/dts/ti/k3-j722s.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j722s.dtsi
+@@ -55,6 +55,7 @@ cpu0: cpu@0 {
+ 			d-cache-line-size = <64>;
+ 			d-cache-sets = <128>;
+ 			next-level-cache = <&l2_0>;
++			operating-points-v2 = <&a53_opp_table>;
+ 			clocks = <&k3_clks 135 0>;
+ 			#cooling-cells = <2>;
+ 		};
+@@ -71,6 +72,7 @@ cpu1: cpu@1 {
+ 			d-cache-line-size = <64>;
+ 			d-cache-sets = <128>;
+ 			next-level-cache = <&l2_0>;
++			operating-points-v2 = <&a53_opp_table>;
+ 			clocks = <&k3_clks 136 0>;
+ 			#cooling-cells = <2>;
+ 		};
+@@ -87,6 +89,7 @@ cpu2: cpu@2 {
+ 			d-cache-line-size = <64>;
+ 			d-cache-sets = <128>;
+ 			next-level-cache = <&l2_0>;
++			operating-points-v2 = <&a53_opp_table>;
+ 			clocks = <&k3_clks 137 0>;
+ 			#cooling-cells = <2>;
+ 		};
+@@ -103,11 +106,48 @@ cpu3: cpu@3 {
+ 			d-cache-line-size = <64>;
+ 			d-cache-sets = <128>;
+ 			next-level-cache = <&l2_0>;
++			operating-points-v2 = <&a53_opp_table>;
+ 			clocks = <&k3_clks 138 0>;
+ 			#cooling-cells = <2>;
+ 		};
+ 	};
+ 
++	a53_opp_table: opp-table {
++		compatible = "operating-points-v2";
++		opp-shared;
++
++		opp-200000000 {
++			opp-hz = /bits/ 64 <200000000>;
++			clock-latency-ns = <6000000>;
++		};
++
++		opp-400000000 {
++			opp-hz = /bits/ 64 <400000000>;
++			clock-latency-ns = <6000000>;
++		};
++
++		opp-600000000 {
++			opp-hz = /bits/ 64 <600000000>;
++			clock-latency-ns = <6000000>;
++		};
++
++		opp-800000000 {
++			opp-hz = /bits/ 64 <800000000>;
++			clock-latency-ns = <6000000>;
++		};
++
++		opp-1000000000 {
++			opp-hz = /bits/ 64 <1000000000>;
++			clock-latency-ns = <6000000>;
++		};
++
++		opp-1250000000 {
++			opp-hz = /bits/ 64 <1250000000>;
++			clock-latency-ns = <6000000>;
++			opp-suspend;
++		};
++	};
++
+ 	l2_0: l2-cache0 {
+ 		compatible = "cache";
+ 		cache-unified;
+-- 
+2.47.3
 
-Andi
 
