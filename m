@@ -1,101 +1,97 @@
-Return-Path: <devicetree+bounces-228271-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228218-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80CA3BEAF81
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 19:04:34 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 25E44BEA851
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 18:12:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8027E7C4CB5
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 16:51:19 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D324A58810C
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 15:54:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A51272E8E14;
-	Fri, 17 Oct 2025 16:51:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DD3F1A9FB7;
+	Fri, 17 Oct 2025 15:54:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="VzJzrDRZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kssCRM2C"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E9F52E8E04;
-	Fri, 17 Oct 2025 16:51:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.161
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28235330B06;
+	Fri, 17 Oct 2025 15:54:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760719878; cv=none; b=LIdUaC+WNuNZIEcXMc+f5DipEeRxx54MR7BfAnT+Utup4x+peX+QFGdX4VrveIvhnnRveX1FGEA/FBEzBx7DS2dKS6lJqmGJ9F53xPiBBUtNu6o8G1+VYOrgikpvhXundhFT3TbhqXiyA7XgCpM6jV7MWBFRZD6P7Yoj/klrTWc=
+	t=1760716483; cv=none; b=JkDp0ioiyYkn1Fh0Q54oABURFf/c4PL1dQCBCm6uuyeVPnBz6eMg/gVTcRvqAwyWsZnttQCh/SE8xYCyAwuN86MgZlg6QR2i/ISv7ATN2UTLvHdTTnsdMaNt3/8cVJVFLxxUPvxy2TG5Zdiox1l70LMEv3uj6VVu/wDBv4QjfUA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760719878; c=relaxed/simple;
-	bh=d4VscTSyxB30ZdJhGVzdeUzVIqF+bADfGB9QKwg88VM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=SJxoSn3dvjyogDkegojOJqvdip1t9/x6a5tNsxHJuZzgSj+MI2ycS98ZPeIgChxdPe3J/UVgt9AJDVvs6dk4Zi3jGxvfbAVBbkEHL77h+B4C/r0pxct9dBfuuJFs5KFw+UjjdfKdIWtUb+qFxRs4kY6V2mrSxThbAwn1h8/u0MU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=VzJzrDRZ; arc=none smtp.client-ip=80.241.56.161
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp2.mailbox.org (smtp2.mailbox.org [IPv6:2001:67c:2050:b231:465::2])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4cp9nY4kYTz9t0n;
-	Fri, 17 Oct 2025 18:51:13 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1760719873;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=k+vA4VA3wcmg6yTImrxLCggMqdpiPLMzpNBuNEaeZ7I=;
-	b=VzJzrDRZkioCyWM9BTCDR/H+WlVp/vuSwErX3QlP53vW+pcPv1ngnvKDufQRqOrCS+bGKP
-	dcOxAWGAcpEeb7twE8JxHQTpeJne8uX0Snb3jtzoTO9FngTUjgIpxZJ56Uj6HRL04QWMFP
-	TPhIj2CWfzeJdoPHO1yjpphm41zMf2BFTUds9NZDCkaDTAgz2AAZ/ATdKpfiDEEPKsAZr/
-	xYfLuuBy9bB18Oyvd4EDXc+S7rd+DT5S1McuAXHJdMgnyp5nGuddSR9stu7/6tsacRHfvX
-	MA1nBX6svQ13G0q/TGeJkt9tArCx2jmSRMqg/o6CoNcIreyc7BxRWFW7NWV7Iw==
-Message-ID: <14e7e6e2-c4d8-4d8f-bfdf-81d78c4a4a9f@mailbox.org>
-Date: Fri, 17 Oct 2025 17:49:40 +0200
+	s=arc-20240116; t=1760716483; c=relaxed/simple;
+	bh=AiV13sI/z7rTZFGBbKda8vpX6E/TPvqmyKvZQ4w2ySg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=E5ikAr+PSDcvicz7vQe5+J3raIzESpt4G2IgAcS8zyfJQ60qHu5TpS1BlIX84JpEWFpuEHKX7+vb7jR+IrvJqLMrLTcqK34WJQ0W/ysil1Y15KPt05puaDiIX8nuHV98QZp6u5iPBf96wOPR22Z9I87/FW+Vp+juaJHmF9tQKXY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kssCRM2C; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D1491C113D0;
+	Fri, 17 Oct 2025 15:54:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1760716483;
+	bh=AiV13sI/z7rTZFGBbKda8vpX6E/TPvqmyKvZQ4w2ySg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=kssCRM2CRhnIkyD5tkHf7nZcAcAnql+ZWlQcfpcey06CQbBf6tmHP6rmf+q44B4lz
+	 PbN5R8i2cpE9GoHXjUHs2DBVJ1Q2ccX93WtW4fOunY8g1bIgI3gb2UD8nuIglZTwft
+	 b0+06Zv4lVrJWB0Npnh45xbdiipXKp2LPrKZZdwUTVcblCLeuGjQoQ7j1UFrzpr0xI
+	 BTsLDKK8uUw2nQLE9yoxge9w3dz5hXMgRCzSyTiD1FbHXO1Ufx1hbxStvc9IvUmRil
+	 EuYS1bn567cBIj92jKS/REvA7233ms5hbi8Je0y/Kz7UW+j0Hayr8VWiygbVnfdsA9
+	 hhJCmQpitQ3SA==
+Date: Fri, 17 Oct 2025 16:54:38 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: linux-renesas-soc@vger.kernel.org,
+	Wim Van Sebroeck <wim@linux-watchdog.org>,
+	Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>, linux-watchdog@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] dt-bindings: watchdog: Add Renesas WWDT
+Message-ID: <20251017-elm-fiftieth-36b499ef7f0c@spud>
+References: <20251017101549.4275-4-wsa+renesas@sang-engineering.com>
+ <20251017101549.4275-5-wsa+renesas@sang-engineering.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH 31/39] dt-bindings: clock: Split support for i.MX95 LVDS
- CSR
-To: Frank Li <Frank.li@nxp.com>
-Cc: dri-devel@lists.freedesktop.org, Abel Vesa <abelvesa@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Fabio Estevam <festevam@gmail.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Liu Ying <victor.liu@nxp.com>, Lucas Stach <l.stach@pengutronix.de>,
- Peng Fan <peng.fan@nxp.com>, Pengutronix Kernel Team
- <kernel@pengutronix.de>, Rob Herring <robh@kernel.org>,
- Shawn Guo <shawnguo@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- devicetree@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org
-References: <20251011170213.128907-1-marek.vasut@mailbox.org>
- <20251011170213.128907-32-marek.vasut@mailbox.org>
- <aO1QMD6e1Wx+/hFP@lizhi-Precision-Tower-5810>
-Content-Language: en-US
-From: Marek Vasut <marek.vasut@mailbox.org>
-In-Reply-To: <aO1QMD6e1Wx+/hFP@lizhi-Precision-Tower-5810>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-MBO-RS-ID: b1cbc6cd40a0cc186ef
-X-MBO-RS-META: fxhqboiagin4cddoh4t8gtmp8shoygpn
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="XWPXDyUJPBcJRtQj"
+Content-Disposition: inline
+In-Reply-To: <20251017101549.4275-5-wsa+renesas@sang-engineering.com>
 
-On 10/13/25 9:17 PM, Frank Li wrote:
 
-Hello Frank,
+--XWPXDyUJPBcJRtQj
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-[...]
+On Fri, Oct 17, 2025 at 12:15:48PM +0200, Wolfram Sang wrote:
+> Describe the Window Watchdog Timer found on Renesas R-Car SoCs from late
+> Gen3 onwards.
+>=20
+> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 
->> +  "^phy@[0-9a-f]+$":
->> +    type: object
->> +    additionalProperties: true
-> 
-> Is it standard phy interface? need phy-cells
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+pw-bot: not-applicable
 
-It is drivers/gpu/drm/bridge/fsl-ldb.c .
+--XWPXDyUJPBcJRtQj
+Content-Type: application/pgp-signature; name="signature.asc"
 
-It is LVDS PHY, but modeled as a bridge driver.
+-----BEGIN PGP SIGNATURE-----
 
-The rest is fixed, thanks !
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaPJmvgAKCRB4tDGHoIJi
+0sI0AQCw0eUTkLITQozCtsaJrzVYPhDf0VmjID3br1vCMsucvgEA8UKpR2ucWYOB
+TiqZj/npc5Ya7scoyUZj3f0yvASBAw4=
+=z0tT
+-----END PGP SIGNATURE-----
+
+--XWPXDyUJPBcJRtQj--
 
