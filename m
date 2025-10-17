@@ -1,139 +1,92 @@
-Return-Path: <devicetree+bounces-228177-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228178-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 274A4BE93A4
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 16:36:20 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C682BE93E0
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 16:41:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D61105E634D
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 14:36:18 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id C8BBC4EA71F
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 14:41:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD47232C945;
-	Fri, 17 Oct 2025 14:36:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B0E132E12C;
+	Fri, 17 Oct 2025 14:41:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b="D/qU9q5w"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="l7+7dEQU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f180.google.com (mail-qk1-f180.google.com [209.85.222.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3CE32F6931
-	for <devicetree@vger.kernel.org>; Fri, 17 Oct 2025 14:36:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E879132C928;
+	Fri, 17 Oct 2025 14:41:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760711774; cv=none; b=kS6S4DvVDsyOdZ7U6JKFM5CszCAU7+kQ8U9JsrWxdfqEs//1/LGiV0nporqdCBcET9iy3WYwjxH8rFXBTZswY+Kp1n/vpy/YYk8DJ3cV4FtENmEuQFx62pNrnNAIJE9BABbzPv9yfHiTcsFOx8snBw6EVCVHKJLb/l2nhurOfCQ=
+	t=1760712066; cv=none; b=ukwMV80Y8sQ+M00dKeSv2hajQDjBDtMaq9fJt/vL7pu2g5a/3iZq+evmConw3Jz2222obp/EvEgnQusIPxO4DnHIPpuHA9EdkTWLHYsGlm/W67Jqs640eKYCrxhuDOAXwpePamAHa3dI0MyncOL30XFEhebo3EelUmO2vZrp724=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760711774; c=relaxed/simple;
-	bh=TvfE3jIufmn7EKFPgqdSlHbomRAbci7T8yCTwdTDcAg=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=kcO3FqvMgQGxjgKRv81/DX2XT1kYQRtX0Lcw2NTkUOx+M9Z+j2hGfCORvgPF9OkExAbjU90Wyx4PZ0CKDQM4hbafE/Lkbj3ollZrHgCEDVRaAunCoRkbBvjmXWfb86err+olIGL7/4vzdh/3pL0pC42/AEs3sxuh74RZF2lZzEc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ndufresne.ca; spf=pass smtp.mailfrom=ndufresne.ca; dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b=D/qU9q5w; arc=none smtp.client-ip=209.85.222.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ndufresne.ca
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ndufresne.ca
-Received: by mail-qk1-f180.google.com with SMTP id af79cd13be357-891667bcd82so58262685a.1
-        for <devicetree@vger.kernel.org>; Fri, 17 Oct 2025 07:36:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ndufresne-ca.20230601.gappssmtp.com; s=20230601; t=1760711771; x=1761316571; darn=vger.kernel.org;
-        h=mime-version:user-agent:references:in-reply-to:date:cc:to:from
-         :subject:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=TvfE3jIufmn7EKFPgqdSlHbomRAbci7T8yCTwdTDcAg=;
-        b=D/qU9q5w8CUgxP4UEk6nrfO197jYA3ehG1FIrGwxd3872m6fDBXzNwdCraNrGBSPI3
-         VU+f0huvQThD9aXod6O8JwHngfIDdZ0EUr23b0+9ohjHR5mDzf7Hp94zINvyT5A4ipTm
-         0wGxNevZOuPzY/jiD2qGMSOSaJSvyvqQLi1JjOo4xheci4HYQ6tkgOpSaIOQ91S+gh+2
-         LWSK4nlDZJv5TzxAtzJ9E5wB/EtHEzi3cflHVkCLoSnMoIN0gtLgrUL5EqoE9GaFhzsr
-         066y4gtayV81KAu2bnQa/WlxAFDFrpMg+lvTLO0NSnB8xNv65fS8kSRsN6O+xAAX51qc
-         nrgw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760711771; x=1761316571;
-        h=mime-version:user-agent:references:in-reply-to:date:cc:to:from
-         :subject:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=TvfE3jIufmn7EKFPgqdSlHbomRAbci7T8yCTwdTDcAg=;
-        b=YmIvc7TWtrGRwYTb7U2gdyqyzWQB06bVL2ysq6cHRe8PxWzh14LTcQKHboSMfam6yI
-         AE2aUZSHxqYgxEJsA00IuF5A0+s9nTn+M1fNrPVnvEttOmjMZK1Un0r8BWCfvRXtc1xf
-         a6FFR4CuAY3x2cfo5yYzukwzNf49RM8GdMrlM7v84cxWsEPL4TS2UoZ2pmx5cix5B7XN
-         +yduh+yq3+NObD/S5VJJrtvqkojNS7sww1qZi53GqQEMFP6LEhNuBZiMiEW90MV3nmim
-         mByo6CJTDFOGkL3bLQW/9PJyYER05CnjSo7kmwkOeD3nRL3DXuUoEIVfHyPKx2diGUXN
-         w+LA==
-X-Forwarded-Encrypted: i=1; AJvYcCVk8evaSiq7ehLUn2SQi+Uq1pegtocJvIMZ47MN5m4bGguqdlAsMsByNzRaWrJ6boiw99pcIgKrDbcS@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyb4NOnaAq8ebPHKPm2l1lfZbCfZglwh36pj0OTTez8LBnHAPGB
-	yJiNofg4A5BD1ZXynbKOIG++htVI66EYLSvUci1rk/fnYq17sCAMwRD9L4j71+/Vzts=
-X-Gm-Gg: ASbGnctGXpIVOkGsdGYZ4AGg9thC25234AV9vlwOqrZKh0boIM07FYaqTKjoZmLN6rA
-	5bib3P0jpQPyHcCEa4iZVqEv4wNKI/CO1zcQTIzFsI8F50MMgJbNN0N9C39DrjhAUdnTuRgsLrH
-	1v2t8fBVbt7SvFtj4vxirgLgHOZ4clCOY4dpNKau7K9V0AgGXA23ACJIELhwe0Bsx7DfFYgOG4H
-	tkuCUs/HtfD97MZ/BA0idI7zzwnaOWLA9Tydfms326eD2KsnoeJjf9U8Z/oTWE/JNU0hLebGt2e
-	lkj1fQqZvgWFh+EbAo3s9K9Ht1n3VvfyzlWlMd2HeQGg8GCra1rOBFmPyZNxgBi3xGvFnn60Df0
-	h3IydnISEvIoTr134SMZu9naS6Wqys0Nv/5vYEcvE21iGfr6uf2pzZXozv5SR0CdRuL/jIHMO/0
-	HmLQ+X+WRMZzhyBOgC
-X-Google-Smtp-Source: AGHT+IHi/mFj4rQowrhpz1pz3z8NarVLI7Dlm9kFP0p+CIVB1xwRK+F//hOQ051257IZW6rlPkbzfw==
-X-Received: by 2002:a05:620a:7113:b0:87d:9a55:7566 with SMTP id af79cd13be357-88f10d7c9a9mr1209741485a.28.1760711771181;
-        Fri, 17 Oct 2025 07:36:11 -0700 (PDT)
-Received: from ?IPv6:2606:6d00:17:ebd3::c41? ([2606:6d00:17:ebd3::c41])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-88f35c65b58sm450649585a.24.2025.10.17.07.36.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 17 Oct 2025 07:36:10 -0700 (PDT)
-Message-ID: <579c8667827cb1ac5778b48077f4f84e875b69da.camel@ndufresne.ca>
-Subject: Re: [PATCH v2 0/8] media: iris: add support for video codecs on
- Qcom kaanapali platform
-From: Nicolas Dufresne <nicolas@ndufresne.ca>
-To: Vikash Garodia <vikash.garodia@oss.qualcomm.com>, Dikshita Agarwal	
- <dikshita.agarwal@oss.qualcomm.com>, Abhinav Kumar
- <abhinav.kumar@linux.dev>,  Bryan O'Donoghue	 <bod@kernel.org>, Mauro
- Carvalho Chehab <mchehab@kernel.org>, Rob Herring	 <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley	
- <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, Dmitry
- Baryshkov	 <dmitry.baryshkov@oss.qualcomm.com>, Konrad Dybcio	
- <konrad.dybcio@oss.qualcomm.com>
-Cc: linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Vishnu Reddy
-	 <quic_bvisredd@quicinc.com>, Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Date: Fri, 17 Oct 2025 10:36:08 -0400
-In-Reply-To: <20251017-knp_video-v2-0-f568ce1a4be3@oss.qualcomm.com>
-References: <20251017-knp_video-v2-0-f568ce1a4be3@oss.qualcomm.com>
-Content-Type: multipart/signed; micalg="pgp-sha512";
-	protocol="application/pgp-signature"; boundary="=-t4DPcDu1lQ31oMUQcqQn"
-User-Agent: Evolution 3.56.2 (3.56.2-2.fc42) 
+	s=arc-20240116; t=1760712066; c=relaxed/simple;
+	bh=jMYJasEqi3ay7PvrLC5T+zN3+dFN7Aj08FeWCzReUaM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=KN6ZE8siw9Wye2eJuPS13Mkj1IE8ielQzZ0+GY62uDxESj6+XUeDDka2rcmiHLBerMtrZnO543XKOMYJUDnK+cmZP0SUSRJaIhBFEftLBgBpUaXDqSilYmE4iznt/u79DJa5z22iJVtS6nLX/HuTTEpaNskfwXSDBdAoCn1MpHI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=l7+7dEQU; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=MSBj7p/t8+LNOBqFH9+2YK/Kz0Pi3Cgi9QUtr1JDAKE=; b=l7+7dEQUOkS3Yve+gWZYOOp1jB
+	BZOSzomIg1EJEE5tG8nixcXADTqkHQ+G1/J5Pc92wKExBppSTwd4waDL56j8U+xz45YALYYqIxveC
+	IXfbLJCxHJRvfCNQpz3dTdt+JnbUjYEp2NV8OpVbppxVytnVStcgdbAnA2thNPByjnpg=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1v9ldP-00BI7b-Vu; Fri, 17 Oct 2025 16:40:47 +0200
+Date: Fri, 17 Oct 2025 16:40:47 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Buday Csaba <buday.csaba@prolan.hu>
+Cc: Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <f.fainelli@gmail.com>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 4/4] net: mdio: reset PHY before attempting to access
+ registers in fwnode_mdiobus_register_phy
+Message-ID: <6ceec6c5-a912-494c-852f-1075644ccb74@lunn.ch>
+References: <20251015134503.107925-1-buday.csaba@prolan.hu>
+ <20251015134503.107925-4-buday.csaba@prolan.hu>
+ <aPHxZrLrCyjVO9cR@debianbuilder>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aPHxZrLrCyjVO9cR@debianbuilder>
 
+On Fri, Oct 17, 2025 at 09:33:58AM +0200, Buday Csaba wrote:
+> Dear Maintainers,
+> 
+> I am about the submit the v3 version of these patches, hopefully the last
+> iteration. I think I managed to elimante all failures and almost all of
+> the warnings, except one: patchwork complies, that not all the maintainers
+> are CC'ed.
+> 
+> I have used get_maintainers.pl to get the address list. I am on the
+> net-next tree. Is there a problem with get_maintainers.pl or with
+> patchwork? Can I ignore that warning?
 
---=-t4DPcDu1lQ31oMUQcqQn
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+patchwork might be passing additional parameters to
+get_maintainers.pl. These tests are not go/no-go. We look at the
+results and evaluate what they are saying. Missing
+p.zabel@pengutronix.de is not a big issue.
 
-Hi Vikash,
-
-Le vendredi 17 octobre 2025 =C3=A0 19:46 +0530, Vikash Garodia a
-> [=C2=A0 350.438406] qcom-iris 2000000.video-codec: invalid plane
-> [=C2=A0 350.447079] qcom-iris 2000000.video-codec: invalid plane
-> [=C2=A0 350.458821] qcom-iris 2000000.video-codec: invalid plane
-> [=C2=A0 350.465860] qcom-iris 2000000.video-codec: invalid plane
-
-Just a highlight, the driver should only print stuff on default log level i=
-f
-something is malfunctioning. uAPI miss-use should only be trace on loglevel
-manually enabled by the developers. Mind fixing this up while at it ? Hopef=
-ully
-this will be obvious to you next time you encounter it.
-
-Nicolas
-
---=-t4DPcDu1lQ31oMUQcqQn
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaPJUWAAKCRDZQZRRKWBy
-9KzlAQDdDixE+QpSwmBHXNI30CUJthgEf/U+j0OzH6rs/h816wEAmctKiaWyNDSL
-20vzRt5oLgTPjX8nYcQyvtRFzq1KDA0=
-=zgKR
------END PGP SIGNATURE-----
-
---=-t4DPcDu1lQ31oMUQcqQn--
+	Andrew
 
