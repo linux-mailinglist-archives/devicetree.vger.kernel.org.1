@@ -1,157 +1,134 @@
-Return-Path: <devicetree+bounces-227975-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227976-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A461BE673F
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 07:42:51 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1517ABE67E7
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 07:53:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id E1188354FDF
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 05:42:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8A2BF189B3CA
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 05:54:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1144022173D;
-	Fri, 17 Oct 2025 05:42:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 660C030EF75;
+	Fri, 17 Oct 2025 05:53:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="Hm0yU3a2"
+	dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b="IRrqQSW9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+Received: from smtpbgau2.qq.com (smtpbgau2.qq.com [54.206.34.216])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08B31334686;
-	Fri, 17 Oct 2025 05:42:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 044C51C84BC;
+	Fri, 17 Oct 2025 05:53:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.206.34.216
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760679767; cv=none; b=PbOvOLoJIfHDKmbor6rkHT4Gy7Fg92DBcHJcwD9+erllnda3zmtIdsdUe9Q8lcDsYe2FquDq3X1aN6hgoanGhFWmAGvELiw2nT2OgCbKBTcVmCCMQoE3JwMIw6eOF5sCp10Vw3HTxyn7X1+elk5tFf4CLvtxQw+0/MR9VCcKYRI=
+	t=1760680414; cv=none; b=hxVkTdqDkTovm9ZSd8M+886R7FPxmweVrZviMEBo2WnfR9WUeIyTBDrYFDic2NPh/WhTpuUpME3bdM7srfQVco+6QA8GpwTkNpzSARFQAwY7xz9pPgYSQafxlNDl2o+ZZzgFrizwp31OzGesGCSgBnsL7O3LCu/3Z39vyk5OHcA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760679767; c=relaxed/simple;
-	bh=p4YrhPxAw19YKbCKmeJHaX98uuLYigduGbo1AFpZgTQ=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=BfDX+E6Jp1OBCx52Ok3YImBkF5BlMAzAinxzrpKT+Z2ClGwfVcEQKYT5Fx4lyFJOX5B/o9WV9W4H+lTZMlrnhuOqihrXEEwuirlpfrHOLjZrwRQd4go6rut4i87segNVRW5A0xNaC64zuv9g83WVJYhWMsaxUT7JbR/i87CfQHQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=Hm0yU3a2; arc=none smtp.client-ip=203.29.241.158
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1760679762;
-	bh=FBOBE2lJJ4ubL1SZFxRHcJFjs6sCvB23xdXmM4GToK8=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=Hm0yU3a2z4bD4DKGw34ZbPDfR4rW6dPHM7WeC4kQPhcDJVhiSCwheDLG7f3xa0io2
-	 5H/RYHexWp3moLpTsY05ufX3r1a7hG4pRri3O9/rWF1BwkofObOZcvlSrYycV0aCvw
-	 REsTNvcvGFUcT+RqwUVeaChsa7nLBkhXXYTFN8O8177yP4u0tm+ranaQChlIQQVTQT
-	 QSxuaeyPqBJSz/3EpmlmIJ1R7MiYaGKmPVNyx4yJsBzcQ/5D86RLiQVhPG82yIAogi
-	 0GKMzuIzyg1tVgF91bMvdOtfyWDX4m8iD7aYuO15s1k1US+vBSe2AcUbZpz7Lx2rFF
-	 Rt0o3NL2o9G0g==
-Received: from [192.168.68.113] (unknown [180.150.112.213])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id E4193766F5;
-	Fri, 17 Oct 2025 13:42:41 +0800 (AWST)
-Message-ID: <eb9ed79a820b67d7d3dbb0ab7ec6349bf962fe9c.camel@codeconstruct.com.au>
-Subject: Re: [PATCH v2 2/2] ARM: dts: aspeed: add asrock x470d4u bmc
-From: Andrew Jeffery <andrew@codeconstruct.com.au>
-To: Tan Siewert <tan@siewert.io>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Joel
- Stanley <joel@jms.id.au>
-Cc: Zev Weiss <zev@bewilderbeest.net>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, 
-	linux-kernel@vger.kernel.org
-Date: Fri, 17 Oct 2025 16:12:41 +1030
-In-Reply-To: <20251011112124.17588-3-tan@siewert.io>
-References: <20251011112124.17588-1-tan@siewert.io>
-	 <20251011112124.17588-3-tan@siewert.io>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.1-1 
+	s=arc-20240116; t=1760680414; c=relaxed/simple;
+	bh=ZTb0R1SYkjTNuWQ9FV7qBLfNn8delC/2yfO9jejOBe8=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=EWb0YWNzP7Bl88HGUGlskJLSDU4Am7H0mv6CBdVhsceodCnnjeLQBUWZ9/hZI9y2Stv0LiMcNd+dVuDksQAgQfiqSryZBDdDYOF6SLtGYHzxJZ5fageecRlP9gyglUCI6AmwGob6/SHPzSAwT6gliF0MNIEwpkfWFnaYaRTwVyw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com; spf=none smtp.mailfrom=linux.spacemit.com; dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b=IRrqQSW9; arc=none smtp.client-ip=54.206.34.216
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.spacemit.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.spacemit.com;
+	s=mxsw2412; t=1760680392;
+	bh=9Llik9TC8xsVJr4sY/DZm85aDCV1XohD3eSIWPKun1k=;
+	h=From:Subject:Date:Message-Id:MIME-Version:To;
+	b=IRrqQSW9Dr15FJ9Y3g80gzbSAwfmF4sdcV31zm3xtVc808s/DvetYtNOaFziehNC0
+	 bk8hns/qKEiWpBruNCrTBAshBpMgNQIXkKeJD29qv9L8wmhdPYZvjGMLpWCU4y/BuR
+	 Ok1oiJFwcecr7uVXUeJAbUN0HsJfZxs3gOadRVkw=
+X-QQ-mid: esmtpgz11t1760680390t7159569f
+X-QQ-Originating-IP: 7lBdRt8TZM+XnRQa4An81zQDgcIZsKi2YskrOXxwnMc=
+Received: from = ( [14.123.253.52])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Fri, 17 Oct 2025 13:53:08 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 608102386777863130
+EX-QQ-RecipientCnt: 15
+From: Troy Mitchell <troy.mitchell@linux.spacemit.com>
+Subject: [PATCH v3 0/2] riscv: dts: spacemit: add initial support for
+ MusePi Pro
+Date: Fri, 17 Oct 2025 13:52:24 +0800
+Message-Id: <20251017-k1-musepi-pro-dts-v3-0-40b05491699f@linux.spacemit.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAJjZ8WgC/22NQQ6CMBBFr0K6dkhbChFX3sOwgDLIRKFNpxAM4
+ e5W1i7fS/77u2AMhCxu2S4CrsTk5gTFJRN2bOcnAvWJhZa6lLW+wkvBtDB6Ah8c9JGhNFWvpTV
+ Gt51IOx9woO1sPprEI3F04XNerPpnz5qSSv6prRokVKg6U6uhGgq8v2letpx9a3GimFs3ieY4j
+ i+38EwjuwAAAA==
+X-Change-ID: 20250928-k1-musepi-pro-dts-546d20c442ab
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>, 
+ Paul Walmsley <paul.walmsley@sifive.com>, 
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+ Alexandre Ghiti <alex@ghiti.fr>, Yangyu Chen <cyy@cyyself.name>
+Cc: devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
+ spacemit@lists.linux.dev, linux-kernel@vger.kernel.org, 
+ Troy Mitchell <troy.mitchell@linux.spacemit.com>, 
+ Conor Dooley <conor.dooley@microchip.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1760680388; l=997;
+ i=troy.mitchell@linux.spacemit.com; s=20250710; h=from:subject:message-id;
+ bh=ZTb0R1SYkjTNuWQ9FV7qBLfNn8delC/2yfO9jejOBe8=;
+ b=Ein+MMLXwWUJxWUumo5ZKfwDfJeKWx7mJ0PcHtbcJ7hXWgv8rrLmEdaMGnmyVx76bHLIW9+eI
+ ONJ6wboGNmEACoJNzWv1PkiKc4z1ZaIis74QKP8l63ZtL+Ka5f926uP
+X-Developer-Key: i=troy.mitchell@linux.spacemit.com; a=ed25519;
+ pk=lQa7BzLrq8DfZnChqmwJ5qQk8fP2USmY/4xZ2/MSsXc=
+X-QQ-SENDSIZE: 520
+Feedback-ID: esmtpgz:linux.spacemit.com:qybglogicsvrgz:qybglogicsvrgz3a-0
+X-QQ-XMAILINFO: MzJUY0xoko+MtE4irksyTIHtRnB1IDJ18SdqQfISxL19B5NEq812G/2n
+	YHQ7YtXHmL/0YIRM7Z658qCDGnqgYqHCYqwkUPkUI5XACF80SvNIQAa0fyiqy7TSAHvsfqi
+	AwNVfpqRBbiixJhiNfdYFYwzE6us44J4WtZzFyVo07XnSTVm4yl34a5OkdhpG5w2UmmbSKN
+	vwAi7ngfi+z87Dbw+KmFJXoDpQf0cOqlBC/R6H3bGBtMJoq4/WCBPzSRNX+rcuf6I4p/fQ/
+	kmwLyEV/UecOBWafcWInNgWmvDasGRQCq9eMHyPlrp2i9oDV+aCJBU1TdhInTlAmUGAEO9A
+	hzrmQtYSLVJaty+qo7k/W7x1JgVp+htbI9tsP9NQeBu0UuTnl/T+gYoN0t7PgfMaCtdVaG1
+	tguA3WvjUJkswTdBqj5bjMrmt25Mdwlm3OaVS+vBFgWiLFScignnNVIokOLLhHVw8hSfclE
+	8mYfB+xYQD42GSbCQFOFinQbwhaa5VWoTlyRkadoMAxKGBSm8Bg7vtOkERz3vHpx9RhvK4M
+	b2LTvbG4V3/duzE9ac9HUpdBdI/XgHi+nyG5naeqYylNAQ2G2HHelF/n8gqVdp+2SHjTILG
+	bddbmN1yfHYJJYfpNDQTvCHBiWcpKoG75q9RxDsynh87CBGA++1hqg7fagV3V6KoT6NklDn
+	bUS51Dg4NvXq78AUBo42PHEqM6z4V8xHqnx+IKdxpypymFaI8Mrg0PM83qF4TYCJHAGsCw1
+	pfMj0Xo1sbFMsPdEivJItBd1VlwYKLyCouUecGcQnlvvJ/xWQCAt1C1fS9dBf8Y/E6yigkl
+	lhmiCG5jU7rWS/64//nUZ6yILkKmXmJZjQkOkZRN127qDXvtx+JQMlsd7Sh7EBqz44vQ1Z8
+	rRaXjcCls/uQbWZ5W+k5gRvmuSJUzV9ZfpghZzM9TZY/i8bUWm8zjkAhFW88UOYuZToCEUH
+	tvxtZ+dWPn0OZ6sBdQoNCSd7cf8BLInOCOEWVseiuvte3tmch5Qyf6tBKzk/39AZiw6BKKM
+	COUIeoQQNja33btr2WjsG7f2NTQvy6mW+wIntBxhElhsSlN92iEoijlqwmKtIg/eWYNy2UU
+	5PQCVp2JQop/K6JDy2Lj6Wc3n3ofowkOT1Rz7vWppTstoEpGsX1qmeUOWp5tlgK5w==
+X-QQ-XMRINFO: NyFYKkN4Ny6FSmKK/uo/jdU=
+X-QQ-RECHKSPAM: 0
 
-On Sat, 2025-10-11 at 13:21 +0200, Tan Siewert wrote:
-> The ASRock Rack X470D4U X470D4U is a single-socket X470-based microATX
-> motherboard for Ryzen processors with an AST2500 BMC and either 32MB or
-> 64MB SPI flash.
->=20
-> This mainboard exists in three known "flavors" which only differ in the
-> used host NIC, the BMC SPI size and some parts that may be un-populated.
->=20
-> To keep the complexity low with the BMC SPI, use the 32MB layout
-> regardless of the used SPI or mainboard flavor.
->=20
-> Signed-off-by: Tan Siewert <tan@siewert.io>
-> ---
-> v2:
-> =C2=A0 - fix led node names [robh]
-> =C2=A0 - fix missing gfx memory region and other offenses [Tan]
-> ---
-> =C2=A0arch/arm/boot/dts/aspeed/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 1 +
-> =C2=A0.../dts/aspeed/aspeed-bmc-asrock-x470d4u.dts=C2=A0 | 350 ++++++++++=
-++++++++
-> =C2=A02 files changed, 351 insertions(+)
-> =C2=A0create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-x470d=
-4u.dts
->=20
-> diff --git a/arch/arm/boot/dts/aspeed/Makefile b/arch/arm/boot/dts/aspeed=
-/Makefile
-> index 0f0b5b707654..c601af36915e 100644
-> --- a/arch/arm/boot/dts/aspeed/Makefile
-> +++ b/arch/arm/boot/dts/aspeed/Makefile
-> @@ -13,6 +13,7 @@ dtb-$(CONFIG_ARCH_ASPEED) +=3D \
-> =C2=A0	aspeed-bmc-asrock-e3c256d4i.dtb \
-> =C2=A0	aspeed-bmc-asrock-romed8hm3.dtb \
-> =C2=A0	aspeed-bmc-asrock-spc621d8hm3.dtb \
-> +	aspeed-bmc-asrock-x470d4u.dtb \
-> =C2=A0	aspeed-bmc-asrock-x570d4u.dtb \
-> =C2=A0	aspeed-bmc-asus-x4tf.dtb \
-> =C2=A0	aspeed-bmc-bytedance-g220a.dtb \
-> diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-x470d4u.dts b/arc=
-h/arm/boot/dts/aspeed/aspeed-bmc-asrock-x470d4u.dts
-> new file mode 100644
-> index 000000000000..e9804b0ace9f
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-x470d4u.dts
-> @@ -0,0 +1,350 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +/dts-v1/;
-> +
-> +#include "aspeed-g5.dtsi"
-> +#include <dt-bindings/gpio/aspeed-gpio.h>
-> +#include <dt-bindings/leds/common.h>
-> +#include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +/ {
-> +	model =3D "Asrock Rack X470D4U-series BMC";
-> +	compatible =3D "asrock,x470d4u-bmc", "aspeed,ast2500";
-> +
-> +	aliases {
-> +		serial4 =3D &uart5;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path =3D &uart5;
-> +	};
->=20
->=20
+This patchset adds initial device tree support for the MusePi Pro board.
 
-*snip*
+Muse Pi Pro [1] is a single-board computer integrating a high-performance
+RISC-V 8-core processor, storage, I/O and expansion capabilities into
+a credit card-sized 1.8-inch board.
 
-> nvmem-cell-names =3D "mac-address";
-> +};
-> +
-> +&mac1 {
-> +	status =3D "okay";
-> +	pinctrl-names =3D "default";
-> +	pinctrl-0 =3D <&pinctrl_rmii2_default &pinctrl_mdio2_default>;
+Link:
+https://developer.spacemit.com/documentation?token=YJtdwnvvViPVcmkoPDpcvwfVnrh&type=pdf
+[1]
 
-If you're using NCSI you don't need the MDIO pins here, right?
+Signed-off-by: Troy Mitchell <troy.mitchell@linux.spacemit.com>
+---
+Troy Mitchell (2):
+      dt-bindings: riscv: spacemit: add MusePi Pro board
+      riscv: dts: spacemit: add MusePi Pro board device tree
 
-> +	use-ncsi;
-> +
-> +	nvmem-cells =3D <&eth1_macaddress>;
-> +	nvmem-cell-names =3D "mac-address";
-> +};
-> +
+ .../devicetree/bindings/riscv/spacemit.yaml        |  1 +
+ arch/riscv/boot/dts/spacemit/Makefile              |  1 +
+ arch/riscv/boot/dts/spacemit/k1-musepi-pro.dts     | 78 ++++++++++++++++++++++
+ 3 files changed, 80 insertions(+)
+---
+base-commit: 93e3e1281b369a386a4942bb50111def06902e1f
+change-id: 20250928-k1-musepi-pro-dts-546d20c442ab
 
-Andrew
+Best regards,
+-- 
+Troy Mitchell <troy.mitchell@linux.spacemit.com>
+
 
