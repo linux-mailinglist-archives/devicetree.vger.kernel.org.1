@@ -1,201 +1,122 @@
-Return-Path: <devicetree+bounces-228097-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228098-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8DA3BE7D96
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 11:43:21 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 24275BE7DED
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 11:45:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id AE652580B23
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 09:37:26 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 9D061563235
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 09:38:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B4722E173D;
-	Fri, 17 Oct 2025 09:35:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E10F248176;
+	Fri, 17 Oct 2025 09:38:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PLdYpYAG"
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=163.com header.i=@163.com header.b="WKl+k/D5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.3])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C97002DF14C
-	for <devicetree@vger.kernel.org>; Fri, 17 Oct 2025 09:35:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1C5D2BDC13;
+	Fri, 17 Oct 2025 09:38:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.3
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760693706; cv=none; b=g7kfXSpfBnCzAgu9s8OPDh6n/0FtKuwQn/Cjem3k4vY1OasPuAurM93/UtFAzh9eyIq9fMozXU7sVs+Et3E6tzdB02bmclJDWxxBrLOzAVlHZkqpzvoIph4PQGkpqfZ0orL4kTK4AD0yQyfxN3s5FBWOCbwbgTe9RdJ0mzLCcbA=
+	t=1760693928; cv=none; b=jQv8+464pi57EscfkKP1Xz4jh/Q9VSuUKAlgdor8pb3guK4bN7BqBmxUcXxXOvxMumoc820j3nQy118ee9G7maNbphEfzZ3rowgkVNl5wsv1Yb5qEt6DVslLt4Xy5DHZsIMlGGQxU1ysZAn2yHHhhWOYrmLiIpWd3Ni4eHWNKu8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760693706; c=relaxed/simple;
-	bh=xlVdMJZGBR8dYzgKO/sqP1AR71zVHST1qP49gR6hPGk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=r6HzAbVhmXTBvhqFEpJpn+VGUlMHl0i5hOgcNen1P6CfK6JfsVkIUUmmJF8623gu9U9lDJ14ymR1Qcfh+EyUuLhJ9UU2Wg4Fo87J5XbBlzHH2CgzoIOygu15LQUyvgljTCp6QHWy+SBL2UiibQ8M9xbxnct1mDRist6/aGZkfc0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PLdYpYAG; arc=none smtp.client-ip=209.85.214.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-27c369f898fso24008615ad.3
-        for <devicetree@vger.kernel.org>; Fri, 17 Oct 2025 02:35:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1760693704; x=1761298504; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=6sefhtiMhuuPq8nFOLwvYqf8fe7o6Hmrgpdt61rNn/I=;
-        b=PLdYpYAGee76YNXTPXZxX46HxWhPj3fnKPlhf0zBvEPnLQ7+KQXXK42+YX0xiJ3WiO
-         AsOb0eCM9Jmoy9vCxMy4RyThVjB3gIqgTwI0of0sQ+aVCmk5GL75MGmhkUHh6FMzKaX5
-         GJQwPTku1Wjwv9KJaZy0w/y7Zd+6pp3/DiklJYpORlSch6ivOhz26zBZlBTsr8u1sntv
-         Ay6tEpdfnoXF62c/E+d6I9RkpmnpurQ+57N1GqK31d183brPcC5HdXa/8e2dB+UbHFSr
-         xYkXMyYHtxW7JYgtzHSvKxxoFGTwb0aK1dL2yZld47pDN8l/njllZDFgbuM/oJnBIVVq
-         /8oA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760693704; x=1761298504;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=6sefhtiMhuuPq8nFOLwvYqf8fe7o6Hmrgpdt61rNn/I=;
-        b=M0nJKv3DzAIo0yzowXIB0CW4+l4PL9CG7SQYfWKWatMDIju34WP5A8IXfKoW28ZAmn
-         tUX+o0kXdnHlvlDIL0NZmaX9s3qfKKUlgfwMRYq+STctD4ZnVGBbZpB9vQ64JqSXmaT9
-         ITak3nRsq6mEi8W9wq825V4YwtBrFjm81pPbbB8gDYRJgoqKzW9+OfJ4SHk4Up9H13pQ
-         BYEKp+4W5a4XWWYRm0P9F90fn+jcZuj5NbVV/zJxLILvqOTmQy5iDvf0UHj1R1KSKMlc
-         UVjLRRRaHG0n0qLK4XNeeWY5VdG4VNKMZj7C0lErEk3EOex+Wv/E10v7sQ0T5ti9tKqg
-         ykQQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVljvXgmJ14rSKS3/68kIT9ss/GRRLnTSrtL1+lwXtY5bBFoY93NpmtDTGsTNuwJVK5yyWhz7WbdCTV@vger.kernel.org
-X-Gm-Message-State: AOJu0YwT9G1Gpo8ISlDEbihRPUBx9lSJRrtCjLXFPA8XmVOkygoo+0kD
-	7aVPQqmjbs5M3+acU5PEE+v1Y+Xrj9e7Y+dlEn2f63GP4NoZnQpWp8X0
-X-Gm-Gg: ASbGncv0jFIoWN1PQDn1XM9ZyA96JmNYU87OAI0nhaB55VczrXCMACM6TvyRaNUD097
-	2eWOwTqXsuHA5X125fDy3NnJjNfObQItUQehptDKLT0LEBPdahF3qdYSgW5E42JXjijW2xiEXDq
-	cduc5UmrDt6NpR5uo30WScMWZPRPSXk9idLVz/+5gvi1iV+5eWNJIEHXlB+8qOs1Dwv55v7pn2Z
-	I+7FtsN14AMKJlzjphaSdAbWQ+Rjbzq2Qu4iAqvCx0Hl6O28uKM04fYPbwHq0Ds4XCHS0zdfsiu
-	kyG292VjGb2B8pRZW+cyYaRlM51IGX+7ZbY7+EhuyeeKKNKkcH2NCzeF1zm30PKYbNgkxlCX6B7
-	Mv2L9gEAspxinX0hL52jYS4Fmf1bvtR+/l6iRzNHlIb8hTQktceHaDzb36qJEV+GiPBd1xoRAnM
-	sF
-X-Google-Smtp-Source: AGHT+IFZ4r5YhjGJi2lIzlRtB+okPhBm2JAHvMOho4Si8E/kA0x/N3K19f//5A+MqBicWT22P9DP/g==
-X-Received: by 2002:a17:903:244b:b0:24c:7bc6:7ac7 with SMTP id d9443c01a7336-290c9cb77d1mr36187715ad.18.1760693704058;
-        Fri, 17 Oct 2025 02:35:04 -0700 (PDT)
-Received: from localhost ([2001:19f0:ac00:4eb8:5400:5ff:fe30:7df3])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29099ab4668sm57316645ad.90.2025.10.17.02.35.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 17 Oct 2025 02:35:03 -0700 (PDT)
-Date: Fri, 17 Oct 2025 17:35:00 +0800
-From: Longbin Li <looong.bin@gmail.com>
-To: Rob Herring <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Chen Wang <unicorn_wang@outlook.com>, 
-	Inochi Amaoto <inochiama@gmail.com>, Paul Walmsley <pjw@kernel.org>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Alexandre Ghiti <alex@ghiti.fr>, Alexander Sverdlin <alexander.sverdlin@gmail.com>, 
-	Yixun Lan <dlan@gentoo.org>, Thomas Bonnefille <thomas.bonnefille@bootlin.com>, 
-	Ze Huang <huangze@whut.edu.cn>, devicetree@vger.kernel.org, sophgo@lists.linux.dev, 
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v1 1/3] dt-bindings: soc: sophgo: add TOP syscon for
- CV18XX/SG200X series SoC
-Message-ID: <ief5lt3mxa4epnlhwgsx7kvi556f3fo3gqff36hmzvitexlphx@ztpueijr5nb6>
-References: <20251012022555.6240-1-looong.bin@gmail.com>
- <20251012022555.6240-2-looong.bin@gmail.com>
- <20251015134144.GA3265377-robh@kernel.org>
+	s=arc-20240116; t=1760693928; c=relaxed/simple;
+	bh=kTcxHlEj5c7iI/0V80uuFE3x8ns1iNcbIRuDMWqLeuA=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
+	 MIME-Version:Message-ID; b=PWcaoyRTueOqTUelPrm3N3KtEgGXP6N5XIkpfTh1Rd/yYScqPP2zg7rypdHV74wdL+yehLV/6c2I6IqJ7MdlkxhjjCKEXbwALtqVwufKafJEIQZvP/+xNeywCOmKvupjDqUO7kMDrDJJT8olqvAJrXn/C6AQpU+P+Y3pwQKFWdc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=fail (1024-bit key) header.d=163.com header.i=@163.com header.b=WKl+k/D5 reason="signature verification failed"; arc=none smtp.client-ip=117.135.210.3
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=Date:From:To:Subject:Content-Type:MIME-Version:
+	Message-ID; bh=8ilA4sxFLlSdabkUDG5fdxMV+kXtCGg+zOCuqv9nCa8=; b=W
+	Kl+k/D5Nrq480aVg9oxFP9BbuRSYBSHnBHEOsx3foPzxC8oVBXeyXIum96VLOoaF
+	z4/2amwjRKWj6VeCykMerC7EmVFvcDmnLfEQ9cMcxFLR3rwRJxLQE0bpkKceKNEE
+	OYnYXZwItLEB5NdN1ndlqP8efE5LHc9jw2z8paQhAg=
+Received: from andyshrk$163.com ( [58.22.7.114] ) by
+ ajax-webmail-wmsvr-40-143 (Coremail) ; Fri, 17 Oct 2025 17:36:54 +0800
+ (CST)
+Date: Fri, 17 Oct 2025 17:36:54 +0800 (CST)
+From: "Andy Yan" <andyshrk@163.com>
+To: "Maud Spierings" <maud_spierings@murena.io>
+Cc: Laurent.pinchart@ideasonboard.com, andrzej.hajda@intel.com,
+	andy.yan@rock-chips.com, devicetree@vger.kernel.org,
+	dmitry.baryshkov@oss.qualcomm.com, dri-devel@lists.freedesktop.org,
+	heiko@sntech.de, jernej.skrabec@gmail.com, jonas@kwiboo.se,
+	knaerzche@gmail.com, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
+	maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+	neil.armstrong@linaro.org, rfoss@kernel.org, simona@ffwll.ch,
+	tzimmermann@suse.de
+Subject: Re:Re: [PATCH v8 2/2] MAINTAINERS: Add entry for Innosilicon hdmi
+ bridge library
+X-Priority: 3
+X-Mailer: Coremail Webmail Server Version 2023.4-cmXT build
+ 20250723(a044bf12) Copyright (c) 2002-2025 www.mailtech.cn 163com
+In-Reply-To: <392dc6d7-a0e5-4f9e-85c4-8d811777a697@murena.io>
+References: <20251016083843.76675-3-andyshrk@163.com>
+ <040d8fe8-da2f-4aa5-a2c3-1aec0cf2e8f0@murena.io>
+ <671fc19.84e3.199f162a66c.Coremail.andyshrk@163.com>
+ <392dc6d7-a0e5-4f9e-85c4-8d811777a697@murena.io>
+X-NTES-SC: AL_Qu2dAvqSvEAq4iORbOkfmUgWjuw/WsG1v/Ul1YBSP556jC/r8zkjQUF9DEnN7/uOLACpsBq9WjdwxuR2UoVeWLsLrfo3WJ3P97zyaC3eKzuLkg==
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=UTF-8
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251015134144.GA3265377-robh@kernel.org>
+Message-ID: <7d14fa88.9099.199f187848a.Coremail.andyshrk@163.com>
+X-Coremail-Locale: zh_CN
+X-CM-TRANSID:jygvCgDXP0Q2DvJoKNINAA--.5781W
+X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/xtbBEAbpXmjyCm9rcgACsF
+X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
 
-On Wed, Oct 15, 2025 at 08:41:44AM -0500, Rob Herring wrote:
-> On Sun, Oct 12, 2025 at 10:25:52AM +0800, Longbin Li wrote:
-> > The Sophgo CV1800/SG2000 SoC top misc system controller provides register
-> > access to configure related modules. It includes a usb2 phy and a dma
-> > multiplexer.
-> > 
-> > Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
-> > Signed-off-by: Longbin Li <looong.bin@gmail.com>
-> > ---
-> >  .../soc/sophgo/sophgo,cv1800b-top-syscon.yaml | 59 +++++++++++++++++++
-> >  1 file changed, 59 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/soc/sophgo/sophgo,cv1800b-top-syscon.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/soc/sophgo/sophgo,cv1800b-top-syscon.yaml b/Documentation/devicetree/bindings/soc/sophgo/sophgo,cv1800b-top-syscon.yaml
-> > new file mode 100644
-> > index 000000000000..d1993f2156b4
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/soc/sophgo/sophgo,cv1800b-top-syscon.yaml
-> > @@ -0,0 +1,59 @@
-> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/soc/sophgo/sophgo,cv1800b-top-syscon.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Sophgo CV18XX/SG200X SoC top system controller
-> > +
-> > +maintainers:
-> > +  - Inochi Amaoto <inochiama@outlook.com>
-> > +
-> > +description:
-> > +  The Sophgo CV18XX/SG200X SoC top misc system controller provides
-> > +  register access to configure related modules.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    oneOf:
-> > +      - items:
-> > +          - const: sophgo,cv1800b-top-syscon
-> > +          - const: syscon
-> > +          - const: simple-mfd
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  "#address-cells":
-> > +    const: 1
-> > +
-> > +  "#size-cells":
-> > +    const: 1
-> 
-> Also need 'ranges'
-> 
-> > +
-> > +patternProperties:
-> > +  "dma-router@154":
-> 
-> This allows 'foodma-router@154bar'. It's not a pattern as-is, but 
-> generally we don't put fixed unit-addresses into the schema. So instead, 
-> should be "^dma-router@[0-9a-f]+$".
-> 
-> > +    $ref: /schemas/dma/sophgo,cv1800b-dmamux.yaml#
-> > +    unevaluatedProperties: false
-> > +
-> > +  "phy@48":
-> 
-> And similar here.
-> 
-> > +    $ref: /schemas/phy/sophgo,cv1800b-usb2-phy.yaml#
-> > +    unevaluatedProperties: false
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - "#address-cells"
-> > +  - "#size-cells"
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    syscon@3000000 {
-> > +      compatible = "sophgo,cv1800b-top-syscon", "syscon", "simple-mfd";
-> > +      reg = <0x03000000 0x1000>;
-> > +      #address-cells = <1>;
-> > +      #size-cells = <1>;
-> 
-> Please make the example complete with child nodes.
-> 
-> > +    };
-> > +
-> > +...
-> > --
-> > 2.51.0
-
-Thanks, I will fix it.
-
-longbin li
+SGkgTWF1ZO+8jAoK5ZyoIDIwMjUtMTAtMTcgMTc6MTk6MjHvvIwiTWF1ZCBTcGllcmluZ3MiIDxt
+YXVkX3NwaWVyaW5nc0BtdXJlbmEuaW8+IOWGmemBk++8mgo+SGkgQW5keSwKPgo+T24gMTAvMTcv
+MjUgMTA6NTYsIEFuZHkgWWFuIHdyb3RlOgo+Pgo+PiBIZWxsbyBNYXVk77yMCj4+Cj4+IEF0IDIw
+MjUtMTAtMTcgMTU6NTg6MjIsICJNYXVkIFNwaWVyaW5ncyIgPG1hdWRfc3BpZXJpbmdzQG11cmVu
+YS5pbz4gd3JvdGU6Cj4+PiBIaSBBbmR5LAo+Pj4KPj4+PiBGcm9tOiBBbmR5IFlhbiA8YW5keS55
+YW5Acm9jay1jaGlwcy5jb20+Cj4+Pj4KPj4+PiBBZGQgZW50cnkgZm9yIElubm9zaWxpY29uIGhk
+bWkgYnJpZGdlIGxpYnJhcnkKPj4+Pgo+Pj4+IFNpZ25lZC1vZmYtYnk6IEFuZHkgWWFuIDxhbmR5
+LnlhbkByb2NrLWNoaXBzLmNvbT4KPj4+PiAtLS0KPj4+Pgo+Pj4+IChubyBjaGFuZ2VzIHNpbmNl
+IHYxKQo+Pj4+Cj4+Pj4gICBNQUlOVEFJTkVSUyB8IDggKysrKysrKysKPj4+PiAgIDEgZmlsZSBj
+aGFuZ2VkLCA4IGluc2VydGlvbnMoKykKPj4+Pgo+Pj4+IGRpZmYgLS1naXQgYS9NQUlOVEFJTkVS
+UyBiL01BSU5UQUlORVJTCj4+Pj4gaW5kZXggZjlmOTg1YzdkNzQ3OS4uMGFkY2ZiMWMyNjRhMSAx
+MDA2NDQKPj4+PiAtLS0gYS9NQUlOVEFJTkVSUwo+Pj4+ICsrKyBiL01BSU5UQUlORVJTCj4+Pj4g
+QEAgLTEyMjk5LDYgKzEyMjk5LDE0IEBAIE06CVNhbXVlbCBIb2xsYW5kIDxzYW11ZWxAc2hvbGxh
+bmQub3JnPgo+Pj4+ICAgUzoJTWFpbnRhaW5lZAo+Pj4+ICAgRjoJZHJpdmVycy9wb3dlci9zdXBw
+bHkvaXA1eHh4X3Bvd2VyLmMKPj4+PiAgIAo+Pj4+ICtJTk5PU0lMSUNPTiBIRE1JIEJSSURHRSBE
+UklWRVIKPj4+PiArTToJQW5keSBZYW4gPGFuZHkueWFuQHJvY2stY2hpcHMuY29tPgo+Pj4+ICtM
+OglkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4+Pj4gK1M6CU1haW50YWluZWQKPj4+
+PiArVDoJZ2l0IGh0dHBzOi8vZ2l0bGFiLmZyZWVkZXNrdG9wLm9yZy9kcm0vbWlzYy9rZXJuZWwu
+Z2l0Cj4+Pj4gK0Y6CWRyaXZlcnMvZ3B1L2RybS9icmlkZ2UvaW5uby1oZG1pLmMKPj4+PiArRjoJ
+aW5jbHVkZS9kcm0vYnJpZGdlL2lubm9faGRtaS5oCj4+Pj4gKwo+Pj4+ICAgSU5PVElGWQo+Pj4+
+ICAgTToJSmFuIEthcmEgPGphY2tAc3VzZS5jej4KPj4+PiAgIFI6CUFtaXIgR29sZHN0ZWluIDxh
+bWlyNzNpbEBnbWFpbC5jb20+Cj4+Pj4gLS0gCj4+Pj4gMi40My4wCj4+PiBJIGJlbGlldmUgdGhp
+cyBwYXRjaCBzaG91bGQgYmUgc3F1YXNoZWQgaW50byB0aGUgcGF0Y2ggdGhhdCBhY3R1YWxseQo+
+Pj4gY3JlYXRlcyB0aGUgZmlsZXMgbGlzdGVkIGluIHRoZSBNQUlOVEFJTkVSUyBlbnRyeSwgbGlr
+ZSBJIGRvIGhlcmUgWzFdLgo+Pj4gQ2hlY2twYXRjaCBzaG91bGQgYmUgY29tcGxhaW5pbmcgYWJv
+dXQgcGF0Y2ggWzEvMl0gaWYgSSdtIG5vdCBtaXN0YWtlbiwKPj4+IHdoZW4geW91IHJ1biBgYjQg
+cHJlcCAtLWNoZWNrYC4KPj4gV2UgdGFsa2VkIGFib3V0IHNvbWV0aGluZyBzaW1pbGFyIGhlcmVb
+Ml3vvJoKPj4gTWF4aW1lIGJlbGlldmVzIHRoZXkgc2hvdWxkIGJlIHNlcGFyYXRlIHBhdGNoZXMs
+Cj4+IEFuZCBJJ3ZlIHNlZW4gbWFueSBtZXJnZWQgY29tbWl0cyBpbiB0aGUga2VybmVsIGFyZSBh
+bHNvIGhhbmRsZSBNQUlOVEFJTkVSUyBlbnRyeSBhcyBzZXBhcmF0ZSBwYXRjaGVzCj4+Cj4+Cj4+
+IFsyXWh0dHBzOi8vbG9yZS5rZXJuZWwub3JnL2xpbnV4LXJvY2tjaGlwLzN5Z3FuajRpZGV5N3U0
+bTdsdGx2N3BuZmhra3ZjZXBtcGZkaWpkc3pjdGFlb3BxM2t5QHF0ZWczM2NvbWpsMy8KPgo+SXQg
+c2VlbXMgdGhlcmUgYXJlIGluZGVlZCBvcGluaW9ucyBhYm91dCB0aGlzIFszXSwgZ3Vlc3Mgd2hh
+dGV2ZXIgdGhlIAo+YWN0dWFsIG1haW50YWluZXIgd2FudHMgaXMgd2hhdCB3aWxsIGhhcHBlbiwg
+c29ycnkgdG8gZGlzdHVyYi4KCkl0J3Mgb2theSwgSSBkb24ndCBoYXZlIGEgc3Ryb25nIHByZWZl
+cmVuY2UgZm9yIGVpdGhlciBhcHByb2FjaC4gSXQgdWx0aW1hdGVseSBkZXBlbmRzIG9uIHRoZSBt
+YWludGFpbmVyJ3MgZGVjaXNpb24KCj4KPgo+V291bGQgYmUgbmljZSB0byBnZXQgc29tZSBjZW50
+cmFsIGd1aWRlbGluZSBhYm91dCBob3cgaXQgc2hvdWxkIGJlLgo+Cj4KPlszXSAKPmh0dHBzOi8v
+bG9yZS5rZXJuZWwub3JnL2FsbC81MWI3MjAwMy1lOWE1LTRmMzQtYWQwOC0yNDlmYzI0YjMwNDFA
+a2VybmVsLm9yZy8KPgo+Pgo+Pj4gTGluazoKPj4+IGh0dHBzOi8vbG9yZS5rZXJuZWwub3JnL2Fs
+bC8yMDI1MTAwOS1tYXgyNTAxNC12NC0xLTZhZGIyYTBhYTM1ZkBnb2NvbnRyb2xsLmNvbS8KPj4+
+IFsxXQo+Pj4KPj4+IEtpbmQgcmVnYXJkcywKPj4+IE1hdWQK
 
