@@ -1,205 +1,196 @@
-Return-Path: <devicetree+bounces-228103-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228105-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73F4ABE7EB6
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 11:58:07 +0200 (CEST)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id C0901BE7ED2
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 12:02:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id C09FA4E7181
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 09:57:59 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 3940235126E
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 10:02:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08ED32DC76B;
-	Fri, 17 Oct 2025 09:57:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C6842DC784;
+	Fri, 17 Oct 2025 10:02:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="eWC4xYmJ"
+	dkim=pass (2048-bit key) header.d=rootcommit.com header.i=@rootcommit.com header.b="QNWw0WEw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from panther.cherry.relay.mailchannels.net (panther.cherry.relay.mailchannels.net [23.83.223.141])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5442E2D661D
-	for <devicetree@vger.kernel.org>; Fri, 17 Oct 2025 09:57:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760695075; cv=none; b=fsK7oJJ6bH5dd7AgCwYIz7WZCwbbFjqcBHncqKwFgfKRA2MSJ4PHGdnlmGJtAhe9sohkD2ZzKUc369Ik/qfmMYugw+FcU/NFPSomHEHCWQrXBDrb+qsAEFZOlvTm1EPoB0O4luzFtT0Um+oDPMFEWG/EW8A6xzrpfy3tHlhr4Ds=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760695075; c=relaxed/simple;
-	bh=79n+Qc5yBix+U3wmFnS6g8a/6+I1OaBQNl/w9qZHo+c=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=If1UO+SZJVsnaevEILFyIhTXWOn+2HlUzVmc6zbEt20oDb6aPZGjXN5afK3ZgRA1w0Y2tY/Kh5uegKgZ5jQjEBoZ9iyIOTOaaX0vwhyx/CFKh91AUaicmp+ksy5tGbA5rGxYNSqa8yLK+zGG2OCZTb7T2xqFc/NUdYeoZquqZFY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=eWC4xYmJ; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59H86ZFS020220
-	for <devicetree@vger.kernel.org>; Fri, 17 Oct 2025 09:57:53 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	ZIs6t3bvk1JRGW3dHYxMA/phlwEXTSoBjQ3c0yvwb9U=; b=eWC4xYmJNDSDSXpD
-	oLv9F3SyfQXF43GJxe9B4XT19cWMzUJLWOuV69V+TTnNlRUuIBmdrGnvuQaejN7W
-	jxgm5gQBM12gFJAKBHCrCPPTj3l3WckIEMYeUpGbTUYQKug6AQsqlNF2A4QM8FPK
-	gHSA52Cb9lEtnT52KMgHa9ERYWazEon3O4M/OudfvHj+cD72OBphNbekX/KqoFNR
-	QDvjGk498O0zkLvunJZfXZvNWzmLeP0X2ldyygaesGjMt93xoUgiUAa7iK4vRSNV
-	13xEsjFb9ojoaYdONuhW7j+Gw08XPOv2T08B0YaY2UcY2SsMCabVIAGXOToTLkLM
-	42fA8A==
-Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com [209.85.219.70])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49tqvpn6rr-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 17 Oct 2025 09:57:53 +0000 (GMT)
-Received: by mail-qv1-f70.google.com with SMTP id 6a1803df08f44-87c1c70f1faso6524086d6.3
-        for <devicetree@vger.kernel.org>; Fri, 17 Oct 2025 02:57:53 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760695072; x=1761299872;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZIs6t3bvk1JRGW3dHYxMA/phlwEXTSoBjQ3c0yvwb9U=;
-        b=gYHGesB4LfWgcIujy1YuaHmSHMdhNnGI5RZYpA+8lZXaxsC61aMOpJ4ltA77ISrsJO
-         xjsEm3QoFFJBQh1PAWxxLHt9tNdsrU34JuubTeVtkX5wNMF1FOXI5+nFMl4z5y8G+NfS
-         rBw8aENjHAA3QrQEfineKxq+YSuCVl0IOILxEqlbdIMK4Rq6W8Gn7qgZlQyVTMgvPpUz
-         Zrx4KDXP5Tcg7LP8wj1RTAZZOv19YNt2MPlL+pViXzHPVulpPPnZMN29x4UNtfIumiQl
-         /RiFxBWNkO1d5f+Od6iJNXOyuyfKckBZ9tcxmfUPhLB0dPMtfKainGAeQIFuDbNJf1lS
-         /XqQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXTUxtrSY0aOEiyYQtZ7O1x+FYtKRbTwMQlkHWbasfGbElPjHEXSehPd8Y9dLx6P9ZH/Lkw/HTjVDjn@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz37s9hiyfHnyv22XpnA4vXr4gx8H720tTlPF0mXmvGitVyn6r6
-	HHf3ykg/QZhnfJnkPLoV+4VMtlmIu5RIi49HETiahq39A1lshUUvir7PkCq65FMLGZcaspgMZi7
-	Wc4+VLWSX44ldCsNrR3MCsEzRMqSZWc3/d4x5IyHJCUccnYGO2lI9F4WksAxcmX8k
-X-Gm-Gg: ASbGncuwF7eDkHYw6RTbdl59K+/dHEj/fh2EtYU6B+mIkvK6Nupyd2ZKH7ni+oP5/Jx
-	Q/JZZM0U+g2UR214H85AqcgC1tY4TmXMkE19hTqxrW2FCmMnsawZt0KjHHgv8+SVcAHyC0RVHdB
-	du3wlaogqoHBrsr6OijK5PP6LNLniW2IXGMmbK9BJXUZ0TWCIJY0azpoP9nFgayagkTTOsCOC3/
-	v7j0zjc3OBtYAHHxY0DvQ0Bk1ky2lZjREnDOgzexmIy+BboClmdBNUdDg3Lc5I4cny2U41o5OJP
-	lDwv3tNViPVs8UYhHSy3c/iGn+6xILVjCawCdKYLQb5BUvBWkb9C3D9GnYOmyvHLbqB0xpTAps1
-	75wZ6mT0bg2d0U1OqvDVUasiecpLJJDH7t8Zbv39kRenTEZprwmmqRXQz
-X-Received: by 2002:a05:6214:5093:b0:794:3dd3:a98f with SMTP id 6a1803df08f44-87c20554074mr28562616d6.1.1760695071630;
-        Fri, 17 Oct 2025 02:57:51 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IF+uuhZ2faNWvGjsfla4IBwM8DyZoVgJS2ll2X9Y+bS8GMrP2glkecYidQ6wG3U6fUy/3KYNw==
-X-Received: by 2002:a05:6214:5093:b0:794:3dd3:a98f with SMTP id 6a1803df08f44-87c20554074mr28562496d6.1.1760695071129;
-        Fri, 17 Oct 2025 02:57:51 -0700 (PDT)
-Received: from [192.168.119.202] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-63b6b1f5b24sm16496480a12.20.2025.10.17.02.57.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Oct 2025 02:57:50 -0700 (PDT)
-Message-ID: <8fd387f5-5b4c-48ea-aa3e-f453ddd5b159@oss.qualcomm.com>
-Date: Fri, 17 Oct 2025 11:57:48 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B82B62D595F;
+	Fri, 17 Oct 2025 10:02:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=23.83.223.141
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1760695347; cv=pass; b=GHuWVbCaxLt0MebbOkuTILBJ/h6oFK3Hg/l9ZYuoIb7wFpBe893TY8YJ9yLeA5ZjEOmo0qxWAso8y7fPrY3uPmo1x5frGQQqlnRJ8jsyAxsIwHq7UooAGHYUKi6TwhHzkYaGwqy5+7FdZJpo2a1rWLvl3OfOTB3Orab3/cMulKg=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1760695347; c=relaxed/simple;
+	bh=J7SrZqE2MykqZKqYKMNEjc0AnW3AyYTuOcub7/OESJA=;
+	h=From:To:Cc:Subject:Message-ID:In-Reply-To:References:MIME-Version:
+	 Date; b=QMXeFU9O4jcjBcE0ZtHPGsY7cJAqxbID0BOBlrqgznHkBmoq522rE2ijc+IXvAbIfcPiNFD7HmJEbS0ZBICdZ/s4qvBCxVVDhOlmTcLAwDo+HI7M+W4E2TA2BkK4+izqYNGDIaq2x5Kg/yWMspGv7I/CRT3FP1asxR1zASFjsVA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rootcommit.com; spf=pass smtp.mailfrom=rootcommit.com; dkim=pass (2048-bit key) header.d=rootcommit.com header.i=@rootcommit.com header.b=QNWw0WEw; arc=pass smtp.client-ip=23.83.223.141
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rootcommit.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rootcommit.com
+X-Sender-Id: hostingeremail|x-authuser|michael.opdenacker@rootcommit.com
+Received: from relay.mailchannels.net (localhost [127.0.0.1])
+	by relay.mailchannels.net (Postfix) with ESMTP id 09A642E1B91;
+	Fri, 17 Oct 2025 10:02:18 +0000 (UTC)
+Received: from fr-int-smtpout18.hostinger.io (100-116-176-114.trex-nlb.outbound.svc.cluster.local [100.116.176.114])
+	(Authenticated sender: hostingeremail)
+	by relay.mailchannels.net (Postfix) with ESMTPA id BB4902E1D15;
+	Fri, 17 Oct 2025 10:02:15 +0000 (UTC)
+ARC-Seal: i=1; s=arc-2022; d=mailchannels.net; t=1760695337; a=rsa-sha256;
+	cv=none;
+	b=yWtJxqws8ep8csveUYJdwSVv/4mIBkEMlAgHFQ9aHtSt3I+5yAacKouqTef2S+mqO3qSdF
+	c5LjLt28I3w7I/W03cLskQQeozcEZz3KJxkBcCne7NNLnxzM+Z2sdfUC98R/nyK0O89OM9
+	ZwhsPrrdyHydFvPD4WefEKJGQ4dw6M9Pa74jrGu4w+75j8MHcFOEFxJ61RTTVA8jh0VyLt
+	vpOKGAglwHtlN9hvPUIWM8mPxuurma28CSxuyWGDdwFJBbihNsg4kI/Ku2Y+g4FVy1iCpV
+	5cKk5EDyc9VCizHFQ1nUq/bITYZOudYonrDdMIbMjKGkJZKvPr1H4G6ptFIBtQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=mailchannels.net;
+	s=arc-2022; t=1760695337;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:dkim-signature;
+	bh=e+L4LtthuzsbMVQgg7aAgZxuB88Q7T3LvO1UekWdj/I=;
+	b=r1r0moGr6fzm2AxrQhptbsn2ka8vZgl/CEf2Qso7DxcLy+3fnrwcvfzs4Fn4Op34c3Oaxh
+	U9dujecgpPQHotvNaNBCEo2r1g8PKQn9wfl5gI4+jUZOdNUkVCzvV3i/PVnjshilFgrdco
+	nZqj6CJral2EemWrBH496I3grPO3ajlwPc8u/ZJ79zuo5zy/JGJKTb8GqrluqPFSDqWxs9
+	pgVDXF5dwcPrKDX6DYwr7ZNqxGZun2TueHNZK4HZJUv0238a4lAp8BI36eqZega1s2wxto
+	RhxCoCAVbDn60ep3VNa8g6Unnb5CHZzo7rDrB6cZ2+Vd0Ie3j1Y8IeaSYx477w==
+ARC-Authentication-Results: i=1;
+	rspamd-645b74df65-m6ztf;
+	auth=pass smtp.auth=hostingeremail
+ smtp.mailfrom=michael.opdenacker@rootcommit.com
+X-Sender-Id: hostingeremail|x-authuser|michael.opdenacker@rootcommit.com
+X-MC-Relay: Neutral
+X-MailChannels-SenderId:
+ hostingeremail|x-authuser|michael.opdenacker@rootcommit.com
+X-MailChannels-Auth-Id: hostingeremail
+X-Print-Lyrical: 75b15046794db809_1760695337884_3215376560
+X-MC-Loop-Signature: 1760695337884:1846653184
+X-MC-Ingress-Time: 1760695337884
+Received: from fr-int-smtpout18.hostinger.io (fr-int-smtpout18.hostinger.io
+ [148.222.54.9])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384)
+	by 100.116.176.114 (trex/7.1.3);
+	Fri, 17 Oct 2025 10:02:17 +0000
+Received: from localhost.localdomain (unknown [IPv6:2001:861:4450:d360:2f55:e31:2877:ead4])
+	(Authenticated sender: michael.opdenacker@rootcommit.com)
+	by smtp.hostinger.com (smtp.hostinger.com) with ESMTPSA id 4cp0jZ4lPsz1yVn;
+	Fri, 17 Oct 2025 10:02:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rootcommit.com;
+	s=hostingermail-a; t=1760695331;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=e+L4LtthuzsbMVQgg7aAgZxuB88Q7T3LvO1UekWdj/I=;
+	b=QNWw0WEw74xVcQ7ZAyjUeNOt2xccBDUkZ0E3xP8XS6RYlc6chIOsnkecW415ykuz9dLe/+
+	zx8pExi19d/GT0Kqg/yXv/BQfIMNIPzPPdTwPGFRZQsL2JxfCtBKFk815lkgSRjvmXWkrl
+	xmAV9hA5nDDrw5tQR7w+h1BvlLt0gLg09r0KfJH/60TuspBfqJuJHCksJ68WBCNea39NQ9
+	QQF0HZP1qjZ7SKLIsr4SpivlnIGrRwjuMgMP3YTFCB4CUFYSy7+h5yME1KiV9SjZSNAOcl
+	Bq/a5CukvjAPQ/iYKQjD7POvzoKbN2IyW/cDZ5X5DfF66ljDLBHmKMokD89mrQ==
+From: michael.opdenacker@rootcommit.com
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Walmsley <pjw@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Alexandre Ghiti <alex@ghiti.fr>,
+	Yixun Lan <dlan@gentoo.org>
+Cc: Michael Opdenacker <michael.opdenacker@rootcommit.com>,
+	devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	spacemit@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 1/2] riscv: dts: spacemit: add Ethernet and PDMA to OrangePi RV2
+Message-ID: <20251017100106.3180482-2-michael.opdenacker@rootcommit.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20251017100106.3180482-1-michael.opdenacker@rootcommit.com>
+References: <20251017100106.3180482-1-michael.opdenacker@rootcommit.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: qcom: sdm845-shift-axolotl: fix touchscreen
- properties
-To: Joel Selvaraj <foss@joelselvaraj.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20250919-shift-axolotl-fix-touchscreen-dts-v1-1-60e26ad4e038@joelselvaraj.com>
- <8a5eecdd-d80f-4955-8ab7-cf6fd991a3b7@oss.qualcomm.com>
- <267eb29d-b506-43df-9380-3d79798c772c@joelselvaraj.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <267eb29d-b506-43df-9380-3d79798c772c@joelselvaraj.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=aPD9aL9m c=1 sm=1 tr=0 ts=68f21321 cx=c_pps
- a=oc9J++0uMp73DTRD5QyR2A==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=WFa1dZBpAAAA:8 a=PdSRdi2-gu5LpHnKsfMA:9 a=QEXdDO2ut3YA:10
- a=iYH6xdkBrDN1Jqds4HTS:22 a=MZguhEFr_PtxzKXayD1K:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDE2MDAxNyBTYWx0ZWRfXyC/wZKiQe7sp
- JGsgosWBsYAKsFZ3nff+O68NjErmoh5X7E6VQTdy4Pp6OphmZLaC4sJu59Wt5FR1oZWFfz/5g6a
- AgXkEMzp7VA55pMqjDCGNk9vFBHPrIfFr6BOeRNn6yyRcLss/FazX/pdbV+5Wo0AJiH+AktOnws
- YR9yGLlHx5C1XjqGLk08qHpW/tHWjMdWC9tSOMy0JdTdQ//MsvskgsbRD+I1Ub5pMICgWDwk/CW
- rJKwUuz85jo8loPFEl+LspJwj39JioLwf3rj0b4J+OEaTEZTo5w6B0Q56XhbeZquPeRPEtfjMZW
- uDecUkbVsTDA0ZN1K7Vplquy1Eem3MhuD11s1FS8+0ol2tYRnXzI0YuahckIV/zaLcGBPtyk7cC
- dR39s1QxdIUagAEKVtv7o61D2dN4UQ==
-X-Proofpoint-ORIG-GUID: XMmJqNQfnT2lpZ9vd1yJ9cahw-Zq0Bzj
-X-Proofpoint-GUID: XMmJqNQfnT2lpZ9vd1yJ9cahw-Zq0Bzj
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-10-17_04,2025-10-13_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 adultscore=0 impostorscore=0 lowpriorityscore=0 clxscore=1015
- bulkscore=0 suspectscore=0 malwarescore=0 phishscore=0 priorityscore=1501
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2510020000 definitions=main-2510160017
+Content-Transfer-Encoding: 8bit
+Date: Fri, 17 Oct 2025 10:02:10 +0000 (UTC)
+X-CM-Envelope: MS4xfNEWRm0UNZiN0SV5T6PbToMN20Bt3SC8JFQBUchInAmHgfHddIKs54lWKqEDgPC2Th/egqXIONX72UzV1GR0qFz99D3P5f/YcFFA+0kNyqN59zDPVLFC soOO5sXVNo//pgaEt/S6AYJg+gm2GhGG9CHFgYNMctc1SwRL4DiDip5Xbz6pfojVJxu9hJBU8tYm+UE84zQ+j28XeohS63tTXI7DYXc2+5zjaSnkWJs7X4BG as/H52XpQAw49cRnpaY1vyT6LPw1nBFec3pSdeLPZvaKr8v22oIOGgAmPKVtfKk1bPDpkregEPQI7mkyPalf4L7f2Q3N4bZBYJmLLyaU/NSHKIhLT32o6sL0 7eAnR4h4WQk/1aZz5geGzZojIKD1YO5t61Pu+aLNjBPNwnZpag3nCjro64gT1IiFgtIZ8b3fYXxm3VVTUAfXGYdC2P2dnNLoPj1qrh2CvTT1RINLn3mBrMwq t/nWgj4w+9koqP4esIp7hYwijjuU/nlZqtzvGjcq5Tv6TIgKU7rq0/U3/WooMV74oEMNrnDCNf6s4O+WoEN0QuCJo2ZC5rIxr9/wPEqbyzP35YYeaFxEbY9V sehDDUB3Ccurx6ZFtBPkmfq7+22jS4FTILuLq4ggEIXwiH2o0mg///nCOOpqMknKN+9zm4KpGf9uR130tbD92/3XwLPgHa9/BEJoLIPd+1WcgQ==
+X-CM-Analysis: v=2.4 cv=GbNFnhXL c=1 sm=1 tr=0 ts=68f21423 a=/5xBaVTRis1tCxhfvtIJdg==:617 a=xqWC_Br6kY4A:10 a=d70CFdQeAAAA:8 a=zpIi79OUSNkBXquUYVgA:9 a=NcxpMcIZDGm-g932nG_k:22
+X-AuthUser: michael.opdenacker@rootcommit.com
 
-On 10/17/25 9:13 AM, Joel Selvaraj wrote:
-> Hi Konrad Dybcio,
-> 
-> On 10/6/25 9:49 AM, Konrad Dybcio wrote:
->> On 9/19/25 11:02 AM, Joel Selvaraj via B4 Relay wrote:
->>> From: Joel Selvaraj <foss@joelselvaraj.com>
->>> ---
->>>   arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts | 17 ++++++++---------
->>>   1 file changed, 8 insertions(+), 9 deletions(-)
->>>
->>> diff --git a/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts b/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
->>> index 89260fce6513937224f76a94e1833a5a8d59faa4..d4062844234e33b0d501bcb7d0b6d5386c822937 100644
->>> --- a/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
->>> +++ b/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
->>> @@ -434,20 +434,19 @@ &i2c5 {
->>>   	status = "okay";
->>>
->>>   	touchscreen@38 {
->>> -		compatible = "focaltech,fts8719";
->>> +		compatible = "focaltech,ft5452";
->>>   		reg = <0x38>;
->>> -		wakeup-source;
->>
->> All the changes look good given your commit message, but you dropped
->> this wakeup-source property without explanation. It's fine to do so
->> if it's intended, but please mention it if so
-> 
-> In reference to the touchscreen/edt-ft5x06.c driver which is used here, 
-> I am bit confused how wakeup-source works. Does specifying wakeup-source 
-> in dts automatically makes "device_may_wakeup(dev)" return true, even if 
-> device_init_wakeup is NOT configured in the driver? I noticed some 
-> drivers do:
-> 
-> device_init_wakeup(dev,device_property_read_bool(dev, "wakeup-source"));
-> 
-> but the edt-ft5x06 driver doesnt do the init, but directly checks for 
-> may_wakeup in suspend/resume.
-> 
-> Few scenarios based on the driver code and my understanding:
-> 1. if device_may_wakeup will return true when wakeup-source is 
-> specified, I probably want to just remove it, because irq and regulator 
-> is not disabled during suspend and this will likely cause power drain.
+From: Michael Opdenacker <michael.opdenacker@rootcommit.com>
 
-I think this may be the case
+Aligning with k1-bananapi-f3.dts
 
-> 2. The driver has an option to specify wake-gpio. In which case, the 
-> touchscreen is put in some low power hibernate mode with irq and 
-> regulators still enabled. But the touchscreen controller used in this 
-> device doesn't seem to have support for a wake-gpio (atleast based on 
-> downstream code). So that is not an option.
+Signed-off-by: Michael Opdenacker <michael.opdenacker@rootcommit.com>
+---
+ .../boot/dts/spacemit/k1-orangepi-rv2.dts     | 50 +++++++++++++++++++
+ 1 file changed, 50 insertions(+)
 
-IIRC Shift was pretty open about development collaboration.. maybe you
-could reach out to them to confirm on schematics that the GPIO is
-absent?
-
-> 3. if device_may_wakeup will always return false since 
-> device_init_wakeup is not configured and since no wake-gpio is 
-> available, the irq and regulators will be disabled during suspend. 
-> Therefore, the device will not wake up from sleep even if wakeup-source 
-> is specified as the irq is not going to be triggered.
-> 
-> So probably no point in specifying wakeup-source either way I think? But 
-> I am not sure which of these explanation is correct and thus not sure 
-> what to mention in the v2 patch commit message. Also, there is a 
-> possibility I am not understanding something. A little help from someone 
-> will be very nice and sorry if I am obviously missing something.
-
-I think this is intended for things like double-tap-to-wake, which
-obviously need some hw backing if you don't want to just keep the
-touchscreen online at "full power" 24/7
-
-Konrad
+diff --git a/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts b/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts
+index 337240ebb7b7..2a75ca93b499 100644
+--- a/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts
++++ b/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts
+@@ -33,6 +33,56 @@ led1 {
+ 	};
+ };
+ 
++&eth0 {
++	phy-handle = <&rgmii0>;
++	phy-mode = "rgmii-id";
++	pinctrl-names = "default";
++	pinctrl-0 = <&gmac0_cfg>;
++	rx-internal-delay-ps = <0>;
++	tx-internal-delay-ps = <0>;
++	status = "okay";
++
++	mdio-bus {
++		#address-cells = <0x1>;
++		#size-cells = <0x0>;
++
++		reset-gpios = <&gpio K1_GPIO(110) GPIO_ACTIVE_LOW>;
++		reset-delay-us = <10000>;
++		reset-post-delay-us = <100000>;
++
++		rgmii0: phy@1 {
++			reg = <0x1>;
++		};
++	};
++};
++
++&eth1 {
++	phy-handle = <&rgmii1>;
++	phy-mode = "rgmii-id";
++	pinctrl-names = "default";
++	pinctrl-0 = <&gmac1_cfg>;
++	rx-internal-delay-ps = <0>;
++	tx-internal-delay-ps = <250>;
++	status = "okay";
++
++	mdio-bus {
++		#address-cells = <0x1>;
++		#size-cells = <0x0>;
++
++		reset-gpios = <&gpio K1_GPIO(115) GPIO_ACTIVE_LOW>;
++		reset-delay-us = <10000>;
++		reset-post-delay-us = <100000>;
++
++		rgmii1: phy@1 {
++			reg = <0x1>;
++		};
++	};
++};
++
++&pdma {
++	status = "okay";
++};
++
+ &uart0 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&uart0_2_cfg>;
 
