@@ -1,160 +1,83 @@
-Return-Path: <devicetree+bounces-227996-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227997-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5BD1FBE6BB7
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 08:41:02 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 35D9FBE6B27
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 08:33:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1C54662480A
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 06:32:53 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 1FB8C4FEE6F
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 06:33:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDB0530F54D;
-	Fri, 17 Oct 2025 06:32:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B6D330F933;
+	Fri, 17 Oct 2025 06:33:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="EV5sMN6i"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="STF6XOpt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E299521FF28;
-	Fri, 17 Oct 2025 06:32:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D800C3090C7;
+	Fri, 17 Oct 2025 06:33:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760682769; cv=none; b=M89TMs/D59E/VnDiUJw3QA80EBNz8XsSzhmOcZGg3/UYrDq36y0JeaSFtrSjlDYihJRj9thMkjsswxI8XBnKZ95Bjr/pjRbfszRXg/JoINr53cb9oQeyrUoJv76sG3MOkN4G7bocvK4k0BolFiN1YJcA1hdJjP0wvi0Z3230yUU=
+	t=1760682811; cv=none; b=lV618Zd/Fso8XNBRDwaEk84wdkrzhbjswMeve/vZmH1EKCVWBDk/lSajdVL9TI2OmzB5LmxIfWJk9RGX2HjAwedYSFG+/jPUTEvXkf9MZy6unz9KuJWXFT+vEfLgLEnxwMjFxaX9/a+LtCJlL5B6jr/KFKy87esXnik3Dbw14NQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760682769; c=relaxed/simple;
-	bh=kxWb2v3kc92Dzy3+joMpABr5I3NLk5PWsLbNzW+zSXk=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=lFGjkOsaMt4jAXcqx5rwsB10RB6ug46/YgC67Fh2tOC7OqUVHC6uA4z503ocgpxI9xX+qWMbcVzConjZwjKkeQzAloNU0T2tJvS8fi/TURoyysXSQtmbOGkFRyPQhEHvTI5gp9i3SjNlb2bQ8jnPSRh/34CyyMEffwkjfGSHzBI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=EV5sMN6i; arc=none smtp.client-ip=185.246.85.4
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id C3ED14E41115;
-	Fri, 17 Oct 2025 06:32:43 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 91211606DB;
-	Fri, 17 Oct 2025 06:32:43 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id DE510102F22FF;
-	Fri, 17 Oct 2025 08:32:33 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1760682762; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=Yfh8KNtPJgL5dEOBYcZ+FOqECZ1ufTn2Q+8/o1+dnNU=;
-	b=EV5sMN6iU4XCN0aL+jp41FSTSRIKiBGUfkWtao0P+0srDp3W2VmOkkY4uZN4NahTNNaQJk
-	YPqJb+trP2jIT68qeWbJwojXn99WyoqqidKisnc6Q0rlgWQky2eQ3iKEVMBmUr+QgS8iUg
-	O4PNT7CIipL4qQZ5dv7e9bbZcIuriy+R1hVGPD+coPCMWYW3PhbZ+N6WolmwEw2pRibZMn
-	Y/9xhUQKVSaRqZukJX9wztATTWLwsSQy2G2STtBV6Xabvuv3sb4bTFWbl2rpvp8Zoc4mmf
-	piHedWYoNwcasNLj/217UwGApttb6xmMck4DyAnIuMwG9pxiab19Z5v9lca/Lw==
-Date: Fri, 17 Oct 2025 08:32:32 +0200
-From: Herve Codina <herve.codina@bootlin.com>
-To: Alexander Sverdlin <alexander.sverdlin@gmail.com>
-Cc: David Rhodes	 <david.rhodes@cirrus.com>, Richard Fitzgerald
- <rf@opensource.cirrus.com>, Liam Girdwood <lgirdwood@gmail.com>, Mark Brown
- <broonie@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski	
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela	
- <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, Nikita Shubin	
- <nikita.shubin@maquefel.me>, Axel Lin <axel.lin@ingics.com>, Brian Austin	
- <brian.austin@cirrus.com>, linux-sound@vger.kernel.org,
- patches@opensource.cirrus.com, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Thomas Petazzoni 
- <thomas.petazzoni@bootlin.com>, stable@vger.kernel.org
-Subject: Re: [PATCH 1/3] ASoC: cs4271: Fix cs4271 I2C and SPI drivers
- automatic module loading
-Message-ID: <20251017083232.31e53478@bootlin.com>
-In-Reply-To: <60fbaaef249e6f5af602fe4087eab31cd70905de.camel@gmail.com>
-References: <20251016130340.1442090-1-herve.codina@bootlin.com>
-	<20251016130340.1442090-2-herve.codina@bootlin.com>
-	<60fbaaef249e6f5af602fe4087eab31cd70905de.camel@gmail.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.43; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1760682811; c=relaxed/simple;
+	bh=l4zzfEVXv3kCRK1+tRhEDpGxTNtWTV7qUWhG7JQ8YIo=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=KwzcoWOU83qR6x2suZZsWmrBG5kJQhI2lAU2kAO6mYeXp0oYBCc77XXxwQCFsBrruCLCE/HpeySW54dV2ZH34fAFTFw+iIU4OUyJhN3fRKcT9wxw9FbKShJoexoFgjVnG/HInBj2Odryyen9maLvyQQJdyMegqiKi52KhLqbOAI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=STF6XOpt; arc=none smtp.client-ip=203.29.241.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=codeconstruct.com.au; s=2022a; t=1760682807;
+	bh=l4zzfEVXv3kCRK1+tRhEDpGxTNtWTV7qUWhG7JQ8YIo=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=STF6XOptFjEdvztYJZwPnC0JyF6vqPLgDYj+odIW6iC4xrMsgOUu1dfvk5Hggrdfk
+	 Z1nlI8gOrbCAB5obJh5jS0l47Ed0gTddOrs8sXOSM2qvt+AL3pcz2x3BlrqSPptDfb
+	 Ghzz7Tsp1a83YtdmlKCHDDndNwStg1z+lbxlhI893/kEk5sgabe9Wkj8J/p/xxp0PU
+	 OItXpZqj7Z7cNUNnxhjvgAdyBiYYHEr7ORzntoPlKozXdtE+XbDi5HtEOU8Sv/VsdA
+	 EslNzMXdoPc8kCH2pGRB4AF/2Jjx2sOGSgxLLWhqLltHKnc89xnqVBcK+rHgVO+dVf
+	 O4+fKXtQSvVNw==
+Received: from [192.168.68.113] (unknown [180.150.112.213])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id E420D7702D;
+	Fri, 17 Oct 2025 14:33:26 +0800 (AWST)
+Message-ID: <8bf232de1d4254afc408b415d3476c2c2183a4ac.camel@codeconstruct.com.au>
+Subject: Re: [PATCH] ARM: dts: aspeed: bletchley: remove WDTRST1 assertion
+ from wdt1
+From: Andrew Jeffery <andrew@codeconstruct.com.au>
+To: Cosmo Chou <chou.cosmo@gmail.com>, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, joel@jms.id.au
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
+	cosmo.chou@quantatw.com
+Date: Fri, 17 Oct 2025 17:03:26 +1030
+In-Reply-To: <20251016052727.881576-1-chou.cosmo@gmail.com>
+References: <20251016052727.881576-1-chou.cosmo@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.1-1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
 
-Hi Alexander,
+On Thu, 2025-10-16 at 13:27 +0800, Cosmo Chou wrote:
+> Remove the external signal configuration from wdt1 to prevent the
+> WDTRST1 pin from being asserted during watchdog resets.
 
-On Thu, 16 Oct 2025 20:40:34 +0200
-Alexander Sverdlin <alexander.sverdlin@gmail.com> wrote:
+Yes, this is certainly the immediate impact of the patch.
 
-...
+But what's the motivation? And if asserting WDTRST1 was the wrong thing
+to be doing, why was it done to start with?
 
-> > In order to have the I2C or the SPI module loaded automatically, move
-> > the MODULE_DEVICE_TABLE(of, ...) the core to I2C and SPI parts.
-> > Also move cs4271_dt_ids itself from the core part to I2C and SPI parts
-> > as both the call to MODULE_DEVICE_TABLE(of, ...) and the cs4271_dt_ids
-> > table itself need to be in the same file.  
-> 
-> I'm a bit confused by this change.
-> What do you have in SYSFS "uevent" entry for the real device?
+Please address both questions in an update to the commit message.
 
-Here is my uevent content:
---- 8<---
-# cat /sys/bus/i2c/devices/3-0010/uevent 
-DRIVER=cs4271
-OF_NAME=cs4271
-OF_FULLNAME=/i2c@ff130000/cs4271@10
-OF_COMPATIBLE_0=cirrus,cs4271
-OF_COMPATIBLE_N=1
-MODALIAS=of:Ncs4271T(null)Ccirrus,cs4271
-# 
---- 8< ---
+Thanks,
 
-> 
-> If you consider spi_uevent() and i2c_device_uevent(), "MODALIAS=" in the
-> "uevent" should be prefixed with either "spi:" or "i2c:".
-> And this isn't what you adress in your patch.
-> 
-> You provide [identical] "of:" prefixed modalias to two different modules
-> (not sure, how this should work), but cs4271 is not an MMIO device,
-> so it should not generate an "of:" prefixed uevent.
-> 
-> Could you please show the relevant DT snippet for the affected HW?
-
-And this is the related DT part:
---- 8< ---
-&i2c3 {
-	status = "okay";
-
-	cs4271@10 {
-		compatible = "cirrus,cs4271";
-		reg = <0x10>;
-		clocks = <&cru SCLK_I2S_8CH_OUT>;
-		clock-names = "mclk";
-
-		...
-	};
-};
---- 8< ---
-
-i2c3 is the following node:
-https://elixir.bootlin.com/linux/v6.17.1/source/arch/arm64/boot/dts/rockchip/rk3399-base.dtsi#L732
-
-About the related module, I have the following:
---- 8< ---
-# modinfo snd_soc_cs4271_i2c
-filename:       /lib/modules/6.18.0-rc1xxxx-00050-g4fa36970abe5-dirty/kernel/sound/soc/codecs/snd-soc-cs4271-i2c.ko
-license:        GPL
-author:         Alexander Sverdlin <subaparts@yandex.ru>
-description:    ASoC CS4271 I2C Driver
-alias:          i2c:cs4271
-alias:          of:N*T*Ccirrus,cs4271C*
-alias:          of:N*T*Ccirrus,cs4271
-depends:        snd-soc-cs4271
-intree:         Y
-name:           snd_soc_cs4271_i2c
-vermagic:       6.18.0-rc1xxxx-00050-g4fa36970abe5-dirty SMP preempt mod_unload aarch64
-# 
---- 8< ---
-
-Best regards,
-Hervé
+Andrew
 
