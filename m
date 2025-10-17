@@ -1,242 +1,261 @@
-Return-Path: <devicetree+bounces-228217-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228215-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A370BEA546
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 17:58:01 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 76E40BEA3EA
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 17:52:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 7777A5A2E67
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 15:50:45 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 98A2E588114
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 15:44:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3674B2E62BE;
-	Fri, 17 Oct 2025 15:50:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C380D330B17;
+	Fri, 17 Oct 2025 15:43:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="iVr+wcSN";
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="M2vdZSh1"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="PVWvx2vm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
+Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 363DA330B1E;
-	Fri, 17 Oct 2025 15:50:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06A1A20C00A
+	for <devicetree@vger.kernel.org>; Fri, 17 Oct 2025 15:43:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760716229; cv=none; b=rXo2jkHNByUzW+tTghlTMafKyeCk1WL8KVrj8YH7jgm3xh+tTFdhn/yIcdKwi6e+5Z323O3hwhMX7qvbQW65NbbhEokSGQBn4RvER377eWMq/R37AWAtIBG4OptzN7D5vKDiSLfOzjdiKpgmLpIToEyanahJE4y4geEFzDzXkjQ=
+	t=1760715822; cv=none; b=nksO/IGQ0XzynU5NAvb50NuqlI2l6gWWlW/RAPLFGi6sBv6gdtNY+1nFeY6IPmDQw1F/7FWe1R4tt5lmCzTo6xMBRq+SprGdAaEvK3r4dNjfZj1C36F4lAlNSGxAU46K67ScaG1A8BLRnsZ0mhJHX+2Nice2oFbjp3nH7ahwmds=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760716229; c=relaxed/simple;
-	bh=kZFXgirDnFVfMgug9ztIUHUZy/8kzzUqjm0iBPlnxC4=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=aEhnWlyta393ZjDYFsnxstzJ7udCplxsn51T9bTyBlT3kc/z5n3pB3etelJIzNEMh+KLjI3H2V1frxCoXH6ScXf4Xp91CK7wGgUeC//PMcnHZderWY7sChqeKdDoFI+78WW/QkwZ/hiEqS+En9t4ourYB366Jbuic+UZ8Bm8RwA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=iVr+wcSN; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=M2vdZSh1; arc=none smtp.client-ip=80.241.56.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp1.mailbox.org (smtp1.mailbox.org [IPv6:2001:67c:2050:b231:465::1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4cp8DJ5PL7z9stY;
-	Fri, 17 Oct 2025 17:40:48 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1760715648;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=0w+B/tCledBrlOq6HIpAHqdVg2SY76LtseeOT2jub/4=;
-	b=iVr+wcSNqhY0cAOxIloMmCqxI1pOJ6NLEZ4Ekr1cbwb00IZPv19HJPsVM1jGoQ1Xq/36eb
-	kyEYsc+tvacqMl2tVv4e6rE55SEuEL1yhF3zZZ7nsNEjA+c8m6XHEFXZWl60KJYhVKfZsh
-	Z50hgV2EyM3V4h3s7nzlqiYWbBd0k3mUmLwfB03j50uikADnf/1ux40m1Q/OKoRzhh7cbW
-	6j0eVPY3vbs/F12cYiHxpwz7706+76/RToU7NXXiqtQF8IGUBUs8I1V4domUB+DsKgjvzf
-	KERWlYXYUr8ovm3WpO580jWATqGlONbZomso9AiENEJXUuoJfj8RIMLkinpKxw==
-Authentication-Results: outgoing_mbo_mout;
-	dkim=pass header.d=mailbox.org header.s=mail20150812 header.b=M2vdZSh1;
-	spf=pass (outgoing_mbo_mout: domain of marek.vasut@mailbox.org designates 2001:67c:2050:b231:465::1 as permitted sender) smtp.mailfrom=marek.vasut@mailbox.org
-From: Marek Vasut <marek.vasut@mailbox.org>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1760715646;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=0w+B/tCledBrlOq6HIpAHqdVg2SY76LtseeOT2jub/4=;
-	b=M2vdZSh1ah2zIbwb5jDUsDqLWG3Jj8lJ30k26oXZWEqPg0TCRJnst1D3GrdBFpgCd0plds
-	8a7rghvolSpA2X2nLu6XEv/GDyMHGt/l+0OSvLjOeLT0gsfrEE1S7E4sJHtqmT2CTYd13t
-	qSAlTGKLl2/85Te8WeNTr4hJ4JDLGj/6RQpEVmV48BN1hRccpiZemMGkiuNipSmrKxhT4o
-	Tc6vT+NvfEzG9wIxu2oNrvcpzONVm0Ova/fcseLkPaeT70YEcEAmCNWwZIexXAVZ99O5/e
-	xQph+CDk4t+aHxmuFr1IRP+G7VFeo5i9Sfry1clEYYvktMXPBWlPb2dp/GC+HA==
-To: dri-devel@lists.freedesktop.org
-Cc: Marek Vasut <marek.vasut@mailbox.org>,
-	Abel Vesa <abelvesa@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Liu Ying <victor.liu@nxp.com>,
-	Lucas Stach <l.stach@pengutronix.de>,
-	Peng Fan <peng.fan@nxp.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-clk@vger.kernel.org
-Subject: [PATCH] drm/bridge: fsl-ldb: Parse register offsets from DT
-Date: Fri, 17 Oct 2025 17:39:33 +0200
-Message-ID: <20251017154029.105099-1-marek.vasut@mailbox.org>
+	s=arc-20240116; t=1760715822; c=relaxed/simple;
+	bh=IBzm0BkIQZZsdt4xJw7y+O0Sm5/LFDw6hjYa1sV6J7M=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=NdpJxT/othZHSIKaVtr/dNKaIrdOMwEqLXAFfb39gxlVzBwEQNWzakrH+b/lyVxqycKMHuCd1ML7Ok7kaTul2LsSdr8ZWzuHCL8e8hjluGUlUrwvz5rN1rrITBkX8Iv8/1EuwQNDtQDWohK4FyES0OJjYkbu7R9U2cwWqcM2FLQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=PVWvx2vm; arc=none smtp.client-ip=185.246.85.4
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-03.galae.net (Postfix) with ESMTPS id 4B0714E41145;
+	Fri, 17 Oct 2025 15:43:38 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 1E02F606DB;
+	Fri, 17 Oct 2025 15:43:38 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 34268102F2326;
+	Fri, 17 Oct 2025 17:43:23 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1760715816; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=T3sgtYckKNpZfrVMfRULcu2lLGe70YFSspAezpijEXk=;
+	b=PVWvx2vmTlWIvYh5BJEJwIeglCvikRUVYwmfYiDqyDUGT0g22W9Dz9279iBM9hEHSqEx/X
+	LwhMRobtn4HcGtIcNlimhAkTTqiARlgQ1jyJ+vEaBQFPkSNXBzsXW6axUuOWNMSbKcBv3g
+	Pbl3bQJ0KyNTNRN8Gz92zA7lC4fK47UUIuN3iTbbLGxSfSygnHOrx/ULz/RxfU1iDhWBVH
+	JydHsoDBSks4pvHd9Vwt3Nv/lmUZ74yAkfTudbQtRPhKKcenvHlVXLyUwsWUio8EBONSqC
+	QTJC4Lv0gR63T/NgZyWZwemAAIrRo4eE3LZVJkSB9owqhtMmpfQwqZsdrPiCrw==
+Date: Fri, 17 Oct 2025 17:43:22 +0200
+From: Herve Codina <herve.codina@bootlin.com>
+To: Nuno =?UTF-8?B?U8Oh?= <noname.nuno@gmail.com>
+Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>, Jonathan Cameron	
+ <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, Nuno
+ =?UTF-8?B?U8Oh?=	 <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
+ Rob Herring	 <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley	 <conor+dt@kernel.org>, Geert Uytterhoeven
+ <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, Liam
+ Girdwood <lgirdwood@gmail.com>, Mark Brown	 <broonie@kernel.org>,
+ linux-iio@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Pascal Eberhard
+ <pascal.eberhard@se.com>, Miquel Raynal <miquel.raynal@bootlin.com>, Thomas
+ Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH 2/4] iio: adc: Add support for the Renesas RZ/N1 ADC
+Message-ID: <20251017174322.07997789@bootlin.com>
+In-Reply-To: <10e119ee5a76f1c47d7eb6a15989c8ffc00ffc5f.camel@gmail.com>
+References: <20251015142816.1274605-1-herve.codina@bootlin.com>
+	<20251015142816.1274605-3-herve.codina@bootlin.com>
+	<1e8d7c96cdfaa93bcc0f581103dc0e13dfee17b7.camel@gmail.com>
+	<20251015211420.031c61fa@bootlin.com>
+	<de57f5274b2fe0aac3621dc10cb6d4d0d98d3063.camel@gmail.com>
+	<20251016160202.3d4d0a5e@bootlin.com>
+	<d7576a0bb9a8d5326d77ae434131540b4359bd2a.camel@gmail.com>
+	<20251017085904.07e40e37@bootlin.com>
+	<10e119ee5a76f1c47d7eb6a15989c8ffc00ffc5f.camel@gmail.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.43; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-MBO-RS-ID: 03a1ed152bce17d94f4
-X-MBO-RS-META: pccptyfowt41qqwww3cqkzb3ibd7zxtd
-X-Rspamd-Queue-Id: 4cp8DJ5PL7z9stY
+X-Last-TLS-Session-Version: TLSv1.3
 
-The DT binding for this bridge describe register offsets for the LDB,
-parse the register offsets from DT instead of hard-coding them in the
-driver. No functional change.
+I Nuno,
 
-Signed-off-by: Marek Vasut <marek.vasut@mailbox.org>
----
-Cc: Abel Vesa <abelvesa@kernel.org>
-Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: Fabio Estevam <festevam@gmail.com>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
-Cc: Liu Ying <victor.liu@nxp.com>
-Cc: Lucas Stach <l.stach@pengutronix.de>
-Cc: Peng Fan <peng.fan@nxp.com>
-Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-Cc: Rob Herring <robh@kernel.org>
-Cc: Shawn Guo <shawnguo@kernel.org>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: devicetree@vger.kernel.org
-Cc: dri-devel@lists.freedesktop.org
-Cc: imx@lists.linux.dev
-Cc: linux-arm-kernel@lists.infradead.org
-Cc: linux-clk@vger.kernel.org
----
- drivers/gpu/drm/bridge/fsl-ldb.c | 42 ++++++++++++++++++++------------
- 1 file changed, 26 insertions(+), 16 deletions(-)
+On Fri, 17 Oct 2025 09:26:26 +0100
+Nuno Sá <noname.nuno@gmail.com> wrote:
 
-diff --git a/drivers/gpu/drm/bridge/fsl-ldb.c b/drivers/gpu/drm/bridge/fsl-ldb.c
-index 5c3cf37200bce..c54caea0b63fc 100644
---- a/drivers/gpu/drm/bridge/fsl-ldb.c
-+++ b/drivers/gpu/drm/bridge/fsl-ldb.c
-@@ -61,24 +61,16 @@ enum fsl_ldb_devtype {
- };
- 
- struct fsl_ldb_devdata {
--	u32 ldb_ctrl;
--	u32 lvds_ctrl;
- 	bool lvds_en_bit;
- 	bool single_ctrl_reg;
- };
- 
- static const struct fsl_ldb_devdata fsl_ldb_devdata[] = {
- 	[IMX6SX_LDB] = {
--		.ldb_ctrl = 0x18,
- 		.single_ctrl_reg = true,
- 	},
--	[IMX8MP_LDB] = {
--		.ldb_ctrl = 0x5c,
--		.lvds_ctrl = 0x128,
--	},
-+	[IMX8MP_LDB] = { },
- 	[IMX93_LDB] = {
--		.ldb_ctrl = 0x20,
--		.lvds_ctrl = 0x24,
- 		.lvds_en_bit = true,
- 	},
- };
-@@ -90,6 +82,8 @@ struct fsl_ldb {
- 	struct clk *clk;
- 	struct regmap *regmap;
- 	const struct fsl_ldb_devdata *devdata;
-+	u32 ldb_ctrl;
-+	u32 lvds_ctrl;
- 	bool ch0_enabled;
- 	bool ch1_enabled;
- };
-@@ -204,7 +198,7 @@ static void fsl_ldb_atomic_enable(struct drm_bridge *bridge,
- 		reg |=	(fsl_ldb->ch0_enabled ? LDB_CTRL_DI0_VSYNC_POLARITY : 0) |
- 			(fsl_ldb->ch1_enabled ? LDB_CTRL_DI1_VSYNC_POLARITY : 0);
- 
--	regmap_write(fsl_ldb->regmap, fsl_ldb->devdata->ldb_ctrl, reg);
-+	regmap_write(fsl_ldb->regmap, fsl_ldb->ldb_ctrl, reg);
- 
- 	if (fsl_ldb->devdata->single_ctrl_reg)
- 		return;
-@@ -212,7 +206,7 @@ static void fsl_ldb_atomic_enable(struct drm_bridge *bridge,
- 	/* Program LVDS_CTRL */
- 	reg = LVDS_CTRL_CC_ADJ(2) | LVDS_CTRL_PRE_EMPH_EN |
- 	      LVDS_CTRL_PRE_EMPH_ADJ(3) | LVDS_CTRL_VBG_EN;
--	regmap_write(fsl_ldb->regmap, fsl_ldb->devdata->lvds_ctrl, reg);
-+	regmap_write(fsl_ldb->regmap, fsl_ldb->lvds_ctrl, reg);
- 
- 	/* Wait for VBG to stabilize. */
- 	usleep_range(15, 20);
-@@ -220,7 +214,7 @@ static void fsl_ldb_atomic_enable(struct drm_bridge *bridge,
- 	reg |=	(fsl_ldb->ch0_enabled ? LVDS_CTRL_CH0_EN : 0) |
- 		(fsl_ldb->ch1_enabled ? LVDS_CTRL_CH1_EN : 0);
- 
--	regmap_write(fsl_ldb->regmap, fsl_ldb->devdata->lvds_ctrl, reg);
-+	regmap_write(fsl_ldb->regmap, fsl_ldb->lvds_ctrl, reg);
- }
- 
- static void fsl_ldb_atomic_disable(struct drm_bridge *bridge,
-@@ -231,12 +225,12 @@ static void fsl_ldb_atomic_disable(struct drm_bridge *bridge,
- 	/* Stop channel(s). */
- 	if (fsl_ldb->devdata->lvds_en_bit)
- 		/* Set LVDS_CTRL_LVDS_EN bit to disable. */
--		regmap_write(fsl_ldb->regmap, fsl_ldb->devdata->lvds_ctrl,
-+		regmap_write(fsl_ldb->regmap, fsl_ldb->lvds_ctrl,
- 			     LVDS_CTRL_LVDS_EN);
- 	else
- 		if (!fsl_ldb->devdata->single_ctrl_reg)
--			regmap_write(fsl_ldb->regmap, fsl_ldb->devdata->lvds_ctrl, 0);
--	regmap_write(fsl_ldb->regmap, fsl_ldb->devdata->ldb_ctrl, 0);
-+			regmap_write(fsl_ldb->regmap, fsl_ldb->lvds_ctrl, 0);
-+	regmap_write(fsl_ldb->regmap, fsl_ldb->ldb_ctrl, 0);
- 
- 	clk_disable_unprepare(fsl_ldb->clk);
- }
-@@ -296,7 +290,7 @@ static int fsl_ldb_probe(struct platform_device *pdev)
- 	struct device_node *remote1, *remote2;
- 	struct drm_panel *panel;
- 	struct fsl_ldb *fsl_ldb;
--	int dual_link;
-+	int dual_link, idx, ret;
- 
- 	fsl_ldb = devm_drm_bridge_alloc(dev, struct fsl_ldb, bridge, &funcs);
- 	if (IS_ERR(fsl_ldb))
-@@ -309,6 +303,22 @@ static int fsl_ldb_probe(struct platform_device *pdev)
- 	fsl_ldb->dev = &pdev->dev;
- 	fsl_ldb->bridge.of_node = dev->of_node;
- 
-+	idx = of_property_match_string(dev->of_node, "reg-names", "ldb");
-+	if (idx < 0)
-+		return idx;
-+
-+	ret = of_property_read_u32_index(dev->of_node, "reg", 2 * idx, &fsl_ldb->ldb_ctrl);
-+	if (ret)
-+		return ret;
-+
-+	idx = of_property_match_string(dev->of_node, "reg-names", "lvds");
-+	if (idx < 0)
-+		return idx;
-+
-+	ret = of_property_read_u32_index(dev->of_node, "reg", 2 * idx, &fsl_ldb->lvds_ctrl);
-+	if (ret)
-+		return ret;
-+
- 	fsl_ldb->clk = devm_clk_get(dev, "ldb");
- 	if (IS_ERR(fsl_ldb->clk))
- 		return PTR_ERR(fsl_ldb->clk);
--- 
-2.51.0
+> On Fri, 2025-10-17 at 08:59 +0200, Herve Codina wrote:
+> > Hi Nuno,
+> > 
+> > On Thu, 16 Oct 2025 16:26:28 +0100
+> > Nuno Sá <noname.nuno@gmail.com> wrote:
+> > 
+> > ...
+> > 
+> > ...  
+> > > > > > > > +
+> > > > > > > > +	ret = rzn1_adc_core_get_regulators(rzn1_adc, &rzn1_adc-
+> > > > > > > >       
+> > > > > > > > > adc_core[0],      
+> > > > > > > > +					   "adc1-avdd", "adc1-
+> > > > > > > > vref");
+> > > > > > > > +	if (ret)
+> > > > > > > > +		return ret;
+> > > > > > > > +
+> > > > > > > > +	ret = rzn1_adc_core_get_regulators(rzn1_adc, &rzn1_adc-
+> > > > > > > >       
+> > > > > > > > > adc_core[1],      
+> > > > > > > > +					   "adc2-avdd", "adc2-
+> > > > > > > > vref");
+> > > > > > > > +	if (ret)
+> > > > > > > > +		return ret;        
+> > > > > > > 
+> > > > > > > Hmm, is avdd really an optional regulator? I mean can the ADC power
+> > > > > > > up
+> > > > > > > at
+> > > > > > > all
+> > > > > > > without a supply in AVDD? Even vref seems to be mandatory as we
+> > > > > > > can't
+> > > > > > > properly
+> > > > > > > scale the sample without it.      
+> > > > > > 
+> > > > > > Where do you see that avdd is an optional regulator?      
+> > > > > 
+> > > > > You are using devm_regulator_get_optional(). That's for optional
+> > > > > regulators.
+> > > > >     
+> > > > 
+> > > > Indeed I use devm_regulator_get_optional().
+> > > > 
+> > > > We have two similar function to get regulators:
+> > > > - devm_regulator_get() and
+> > > > - devm_regulator_get_optional().
+> > > > 
+> > > > devm_regulator_get() returns a dummy regulator if the regulator is not
+> > > > described in the device-tree. The calling code has no way to known if
+> > > > the regulator was present or not.    
+> > > 
+> > > Yeah because it's mandatory and the part cannot work without power :). So we
+> > > should not be allowed to operate without a regulator.
+> > >   
+> > > > 
+> > > > On the other hand, devm_regulator_get_optional() returns -ENODEV when the
+> > > > regulator is not described.
+> > > > 
+> > > > That's pretty confusing but it is the reality.
+> > > > 
+> > > > I use devm_regulator_get_optional() but check for -ENODEV to see if the
+> > > > regulator is provided or not.
+> > > > 
+> > > > In order to use the ADC core (is_used flag), I need both the AVDD and the
+> > > > VREF regulator available.    
+> > > 
+> > > And that is why I don't get why are we allowed to proceed if there's no
+> > > regulators? That seems wrong to me. 
+> > > 
+> > > So I think the regulators should be mandatory in the bindings and a dummy
+> > > regulator should also not be allowed in this case because that should get
+> > > you 
+> > > -EINVAL when calling regulator_get_voltage().
+> > >   
+> > 
+> > I have 4 regulators: avdd1, vref1, avvd2, vref2.
+> > 
+> > The ADC controller can work with 2 internal ADC core (adc_core[0] and
+> > adc_core[1])
+> > in the driver. Those internal core are not directly accessed by the driver.
+> > Only
+> > the ADC controller is accesses.
+> > 
+> > Those cores have an AVDD and a VREF power supply.
+> > 
+> > We can use either adc_core[0] only, adc_core[1] only or both adc cores.
+> > 
+> > Depending on regulator described, the driver uses one or two adc cores.
+> > 
+> > This choice is done by:
+> > --- 8< ---
+> > static int rzn1_adc_set_iio_dev_channels(struct rzn1_adc *rzn1_adc,
+> > 					 struct iio_dev *indio_dev)
+> > {
+> > 	int adc_used;
+> > 
+> > 	adc_used = rzn1_adc->adc_core[0].is_used ? 0x01 : 0x00;
+> > 	adc_used |= rzn1_adc->adc_core[1].is_used ? 0x02 : 0x00;
+> > 
+> > 	switch (adc_used) {
+> > 	case 0x01:
+> > 		indio_dev->channels = rzn1_adc1_channels;
+> > 		indio_dev->num_channels = ARRAY_SIZE(rzn1_adc1_channels);
+> > 		return 0;
+> > 	case 0x02:
+> > 		indio_dev->channels = rzn1_adc2_channels;
+> > 		indio_dev->num_channels = ARRAY_SIZE(rzn1_adc2_channels);
+> > 		return 0;
+> > 	case 0x03:
+> > 		indio_dev->channels = rzn1_adc1_adc2_channels;
+> > 		indio_dev->num_channels =
+> > ARRAY_SIZE(rzn1_adc1_adc2_channels);
+> > 		return 0;
+> > 	default:
+> > 		break;
+> > 	}
+> > --- 8< ---
+> > 
+> > In rzn1_adc_core_get_regulators(), looking at one core I do the
+> > following:
+> >  - Try to get AVDD (using get_optional)
+> >  - Try to get VREF (using get_optional)
+> >  - Core is used only if both regulators are present.
+> > 
+> > For one core to be used, both regulators have to be present.
+> > 
+> > Regulators are mandatory but adc core usage is optional.
+> > 
+> > This optional usage depends on related regulator presence.
+> >   
+> 
+> Ok, then we could flip the logic and have boolean properties for the adc core
+> usage and depending on that, requesting the regulators. To me, the intent would
+> be more clear (at the expense of more FW properties).
 
+This introduces a new property and duplicates the information:
+- flag to tell if adc core is used
+- regulators described only if used
+
+And so, the possible flag set to "adc core used" but regulators not
+described. This is error prone.
+
+
+I have chosen to rely only on regulators description to avoid the
+information redundancy.
+  - regulators described -> adc core used
+  - regulators not described -> adc core not used
+
+> 
+> Having said that, the above helps a lot in understanding what's going on and
+> explains the get_optional() usage. I'm not still 100% convinced but bah, fine :)
+> 
+> I would still argue that you should have a comment (likely in get_regulators())
+> explaining the logic and the optional usage.
+> 
+> Given the above I think you could also remove:
+> 
+> if (!adc_core->vref)
+> 	return -ENODEV;
+> 
+> from rzn1_adc_core_get_vref_mv() since the channels are only exposed in case the
+> regulators are present.
+
+Yes indeed, I will remove the adc_core->vref check.
+
+Best regards,
+Hervé
 
