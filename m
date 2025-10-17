@@ -1,115 +1,186 @@
-Return-Path: <devicetree+bounces-228145-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228146-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5AC9BE8864
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 14:13:07 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id A97F7BE89B0
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 14:35:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 78A896269BE
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 12:13:06 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 896414E54CA
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 12:35:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFFDE312810;
-	Fri, 17 Oct 2025 12:13:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C417B2E6CC6;
+	Fri, 17 Oct 2025 12:35:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CsCKHhUA"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KcDifW+C"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C07962E6122;
-	Fri, 17 Oct 2025 12:13:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 097C52DC328
+	for <devicetree@vger.kernel.org>; Fri, 17 Oct 2025 12:35:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760703184; cv=none; b=G4EwsDdAnsp7rLaIh01qka3fRONho1SDV0y28PmC+yreEXffMlJyis+8IrJ26VNa/M9bIeNqgjhV/AT/cOUn9isEVYP6uftQ/jX7nu/pj/kYvFSJj7agfGDe3n07LsoH7i74bds7eBSzlJjDpKxPCebBvo7MqPy+m9hv1xUJADE=
+	t=1760704549; cv=none; b=RdM121Scjhvu19wJ/yTkbQoTS4yklxtbV+TfMg42sQuAKUmnNOlZgjTV8D9R+OhhhRhLCcEtGEbT6q8Ufnp0sEYMgPW4Q9Ql8dofnAaUVwgZBSH0AfsUonMJiYNyQm+5wuQzq7VHH9h7BPOKDC6qkbRuIYxAiROiX2u8CRQl/Tc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760703184; c=relaxed/simple;
-	bh=8BmUp4VDyPpHD3kmyBsQAiKThyIv/1V6ZE7dXLhnVeo=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=khxeDsvZQJMVomeqzooXV9BJyMcOsGnpAO/XzvArSVeWHGIYmciYURx5TK03udLN+hwJijQKyaP9vjyOzanRJ+ImBq2lkEKsqDCDFTWeP7jPhh4iG6qHoLFZCMDac4kCeD6zji8FMGXCjJQqT0AR0lZMexP8evpmw3fqhA44hDU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CsCKHhUA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C280FC4CEE7;
-	Fri, 17 Oct 2025 12:13:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760703184;
-	bh=8BmUp4VDyPpHD3kmyBsQAiKThyIv/1V6ZE7dXLhnVeo=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=CsCKHhUA3/7vqBPMBFreZBAGlwQs/eJTNJHXnHigh1IP61TTRouU6wXBUzkJ+F8mu
-	 SFEAh++jDxVF2XNUpHFefhsVHn5Itu2v75a1yWJgs7LXacq4TCyJN9q0XUpUNao3JG
-	 p1ssQk162uzRDwp60kZUZGGw1lug+tswodeoZFyCPnqTOeFHRYUWViZ795VC9bW8FH
-	 +zAakdVhCSllJpsUR0vxkcQEtr2VId2gkPdts1m9jU4/ec/gpytk3hdE84FtLZnofR
-	 IvQZCfan9JEBWqmYn4IsbFUbQu6ElJNC6RKkR/BWhdqrmJqfeCoUFPCV4R1m5wZ6cq
-	 7t4e3Gs0rO17g==
-From: Mark Brown <broonie@kernel.org>
-To: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
- Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
-Cc: linux-arm-msm@vger.kernel.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
-In-Reply-To: <20250918-glymur-rpmh-regulator-driver-v3-0-184c09678be3@oss.qualcomm.com>
-References: <20250918-glymur-rpmh-regulator-driver-v3-0-184c09678be3@oss.qualcomm.com>
-Subject: Re: [PATCH v3 0/4] rpmh-regulators: Update rpmh-regulator driver
- and dt-bindings for Glymur
-Message-Id: <176070318151.57631.15443673679580823321.b4-ty@kernel.org>
-Date: Fri, 17 Oct 2025 13:13:01 +0100
+	s=arc-20240116; t=1760704549; c=relaxed/simple;
+	bh=5ScMlkpNB3bO9rP0r5PtsUCVGh6+veBjgyd9l3hbzUk=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=tJJ6waxdxer2vmV5ir2W4BMBMcFHm+JfDrAniwvpe55n5g/EPJvpCZlLlnwOFHvSF543JuHaffqyHCKzGHlTTtjNIBMrXQ1IvVv1oQ8nepJlbwGqTZzcDTd/MKNdleg408mg3FOl7Br5fEnJ120mUkKEdUJHEDcDS+CfUk9MnT0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KcDifW+C; arc=none smtp.client-ip=209.85.221.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-3f0ae439b56so1372475f8f.3
+        for <devicetree@vger.kernel.org>; Fri, 17 Oct 2025 05:35:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1760704546; x=1761309346; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=Z3ErgCZMqEpbnKuL5giuJkbnaVmFhSFBsDzPMv4Y24k=;
+        b=KcDifW+C4xv4mVIbrV2VtgtdfylQyjozqrobE9GfVnihZAbmhUDcXtKg5fndcIq6Zy
+         4MIm5biZyDAk38IwnkdmOOwaDYXmIinVU5Zxfe6CVDHA3Vhb7z8aKsJqXg0XtdNmsHvl
+         FkqFC535a0eEZM2LBpJxBCry/Yw3Rs4zksBsDiUmca+a0WypGb1J7TtL59sWYIPYuSKf
+         FcQ7077+KdH2A9mTa+YWD+s7WWSUxBX8+SVWGtAokb5nA2ufuHyxT1YCz9pXkUrHw7Pj
+         MyMxlO28rfdEzo/4zsFRwvFoBGLBCrRY4o0GbDt8zUHrsE/PM0J72n6BLsev23YW9tjW
+         ISVg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1760704546; x=1761309346;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Z3ErgCZMqEpbnKuL5giuJkbnaVmFhSFBsDzPMv4Y24k=;
+        b=KoWfgC6dvLUIpVBRJ2yu5vvDHtf6pKhj/7G3lt2TDesn51EELu9z1v8QRdDPLlIi+I
+         x/AAPcJLAn1pyplSZGFzvD7mk2r6up6G0qeXGQAwbtrAVKc3ZqaFXQUdOH4rzlZ0miV6
+         JzgEE89WzXSMU8uYmIN0xV5GVGeA0KBp5rIZzNFs+ImOy4le8Wc4PcISLJ0Y+hSlHLpm
+         AGFYg3HWmQfOXGMujPi9JP9VNrifdpINB06jGqd4SApEIG7cfrMyFsnwV4gyvxWNheLx
+         SaEFVfMGbP4zsCDOpLky5Oqx55G7SD6hcSkbqG+xvwfqIgbtYKEtz1bm9oPILUky4ES1
+         Chpw==
+X-Forwarded-Encrypted: i=1; AJvYcCU1mQauMvIMojoq9OyUy2AsWrib5ADWxidTDcYeIOGUO3h/paab+8c+2oPEyXX/tUNgIr97ifSwEpFj@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxg+w+shW12qk9zmgZ3znmkNy0Q3Z6V44DIUHsfbvza4+YCyFud
+	P/Fdo+BOFXfGlf/dQqcLwDblVRCLiJakqeDDxpL/r1S9hnrZ4Fuuja3d
+X-Gm-Gg: ASbGnctr5M9IvSVXLAszT58VvPhDPgbJNmIJlQPUgzzJ8OvBOxunLfQJJdUdfKpmwtE
+	PrgiVct0u77l8M4gHyGM7/D9hxxVevje2XJDXpoOu3sqd6JR8EP0ywGf15HPN9VVQ6pN8EJ0vwd
+	Vux3ItNfL6BXhNKeYM+KPGIt8Y2w3R0P+8ramCJO6EZAQpW/LnE304LMOsS89JmeHnYqTkYRs89
+	jroxLREZi6hGQv30vswRfJmD/DDLFlzHNfAMJM1kfc6bddJXwP9817EaxInwFw54NBlh0FsrfLs
+	YNnWoeQ+Zqzg0DGeQLi96XVl+klKpxxkF10LMcTAlFnl4Jqk4PffeaT8AHE87SH30WuZEnfEqQT
+	wl1ZgmFbo/js14T/6pfdseH33Y+tGMfnlYbsjnhGy8+YO2Gy4Ju59ehXjT8v1JhVzmax3mOs34A
+	XPzzoHDsLz/a7fNg==
+X-Google-Smtp-Source: AGHT+IGtc3rElmlZjUCj5LU626fWOPul39pomQ3PRsSjDGqzZiz5b3XHgZGsVeR0STAL9AUxbbUF5w==
+X-Received: by 2002:a05:6000:2008:b0:3df:c5e3:55fe with SMTP id ffacd0b85a97d-42704d9895amr2580238f8f.29.1760704546153;
+        Fri, 17 Oct 2025 05:35:46 -0700 (PDT)
+Received: from [10.5.0.2] ([195.158.248.102])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-426ce5cfe74sm39639352f8f.35.2025.10.17.05.35.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 17 Oct 2025 05:35:45 -0700 (PDT)
+Message-ID: <ccd58e8103e912d0609fbc625f19ec18e605ad4a.camel@gmail.com>
+Subject: Re: [PATCH 3/6] spi: add multi_bus_mode field to struct spi_transfer
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: David Lechner <dlechner@baylibre.com>, Mark Brown <broonie@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+  Conor Dooley <conor+dt@kernel.org>, Marcelo Schmitt
+ <marcelo.schmitt@analog.com>, Michael Hennerich	
+ <michael.hennerich@analog.com>, Nuno =?ISO-8859-1?Q?S=E1?=
+ <nuno.sa@analog.com>,  Jonathan Cameron	 <jic23@kernel.org>, Andy
+ Shevchenko <andy@kernel.org>, Sean Anderson	 <sean.anderson@linux.dev>,
+ linux-spi@vger.kernel.org, 	devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, 	linux-iio@vger.kernel.org
+Date: Fri, 17 Oct 2025 13:36:18 +0100
+In-Reply-To: <66f94eb6-15a9-457f-a7b8-47710652a34b@baylibre.com>
+References: 
+	<20251014-spi-add-multi-bus-support-v1-0-2098c12d6f5f@baylibre.com>
+	 <20251014-spi-add-multi-bus-support-v1-3-2098c12d6f5f@baylibre.com>
+	 <9269eadc1ea593e5bc8f5cad8061b48220f4d2b2.camel@gmail.com>
+	 <409ad505-8846-443e-8d71-baca3c9aef21@sirena.org.uk>
+	 <12db0930458ceb596010655736b0a67a0ad0ae53.camel@gmail.com>
+	 <8c7bf62a-c5dc-4e4d-8059-8abea15ba94e@sirena.org.uk>
+	 <d9455d90-31ca-4be7-b17c-2b339e92f8a0@baylibre.com>
+	 <9024f05854dcc3cc59345c0a3de900f57c4730d9.camel@gmail.com>
+	 <ad929fe5-be03-4628-b95a-5c3523bae0c8@baylibre.com>
+	 <c4b5a42f5f1d3f577cb986946b642b4edc1300e9.camel@gmail.com>
+	 <66f94eb6-15a9-457f-a7b8-47710652a34b@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.15-dev-2a268
 
-On Thu, 18 Sep 2025 14:57:00 +0530, Kamal Wadhwa wrote:
-> This series contains patches to update rpmh-regulator driver and
-> dt-bindings for supporting the PMIC voltage regulators present on the
-> boards with Qualcomm's next gen compute SoC - Glymur.
-> 
-> Device tree changes aren't part of this series and will be posted
-> separately after the official announcement of the Glymur SoC.
-> 
-> [...]
+On Thu, 2025-10-16 at 10:25 -0500, David Lechner wrote:
+> On 10/16/25 4:08 AM, Nuno S=C3=A1 wrote:
+> > On Wed, 2025-10-15 at 13:38 -0500, David Lechner wrote:
+> > > On 10/15/25 11:43 AM, Nuno S=C3=A1 wrote:
+> > > > On Wed, 2025-10-15 at 11:15 -0500, David Lechner wrote:
+> > > > > On 10/15/25 10:18 AM, Mark Brown wrote:
+> > > > > > On Wed, Oct 15, 2025 at 03:43:09PM +0100, Nuno S=C3=A1 wrote:
+> > > > > > > On Wed, 2025-10-15 at 13:01 +0100, Mark Brown wrote:
+> > > > > > > > On Wed, Oct 15, 2025 at 11:16:01AM +0100, Nuno S=C3=A1 wrot=
+e:
+> > > > > > > > > On Tue, 2025-10-14 at 17:02 -0500, David Lechner wrote:
+>=20
+> ...
+>=20
+> > >=20
+> > > The AXI SPI Engine doesn't know how to do the quad SPI part yet thoug=
+h, so
+> > > it isn't something we could implement right now.
+> > >=20
+> > > If we tried to do it with spi-buses =3D <8>; then we would end up wit=
+h the
+> > > "interleaved" bits (or nibbles depending on the wiring) that requires=
+ the
+> > > extra IP block to sort out when using SPI offloading. Technically, we
+> > > could
+> >=20
+> > I think that extra block already exists today. I was thinking the idea =
+was
+> > just:
+> >=20
+> > // the case where we just have one channel with eg: 32 bits words (eg: =
+test
+> > patterns)=20
+> > struct spi_transfer example =3D {
+> > 	rx_buf =3D rx_buf;
+> > 	len =3D 1; /* 1 32bit words */
+>=20
+> This would still need to be len =3D 4; since there are 4 bytes in a
+> 32-bit word. (If this was tx with SPI_MULTI_BUS_MODE_MIRROR, then
+> len =3D 1 would be correct, but for striping, it is still the length
+> of all data combined).
 
-Applied to
+Right, I was still thinking in the old stuff where the spi engine would alw=
+ays
+have len =3D 1 (which is nok)
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
+>=20
+> > 	/* 4 lanes which is actually quadspi */
+> > 	multi_bus_mode =3D SPI_MULTI_BUS_MODE_STRIPE;=20
+> > };
+>=20
+> This will work with the caveat that for non-offload case, the software=
+=20
+> will need to rearrange the bits in rx_buf into the correct order after
+> the spi_sync().
+>=20
+> For example, u8 *rx_buf will contain bits of the 32-bit word in the
+> following order:
+>=20
+> rx_buf[0] =3D b28 b24 b20 b16 b12 b8 b4 b0
+> rx_buf[1] =3D b29 b25 b21 b17 b13 b9 b5 b1
+> rx_buf[2] =3D b30 b26 b22 b18 b14 b10 b6 b2
+> rx_buf[3] =3D b31 b27 b23 b19 b15 b11 b7 b3
+>=20
+> The correct order of course would be (assuming little endian):
+>=20
+>=20
+> rx_buf[0] =3D b7 b6 b5 b4 b3 b2 b1 b0
 
-Thanks!
+I know, that's what the ad4030 driver has to do.
 
-[1/4] dt-bindings: rpmh-regulator : Add compatibles for PMH01XX & PMCX0102
-      commit: 835dfb12fc389f36eb007657f163bd1c539dcd45
-[2/4] dt-bindings: rpmh-regulator: Update pmic-id DT prop info for new CMD-DB
-      commit: 1356c98ef911e14ccfaf374800840ce5bdcb3bbd
-[3/4] regulator: rpmh-regulator: Add support for new resource name format
-      commit: 6a8cdef7dc2a4c0dbde3f7d7100b3d99712a766b
-[4/4] regulator: rpmh-regulator: Add RPMH regulator support for Glymur
-      commit: 65efe5404d151767653c7b7dd39bd2e7ad532c2d
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
+- Nuno S=C3=A1
 
