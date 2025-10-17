@@ -1,48 +1,63 @@
-Return-Path: <devicetree+bounces-227963-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-227965-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id D89B8BE655D
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 06:47:56 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 905DBBE6574
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 06:54:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 783D34E14D2
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 04:47:55 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 4CBBE4E289B
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 04:54:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7C0F213254;
-	Fri, 17 Oct 2025 04:47:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FCDC2DF6E9;
+	Fri, 17 Oct 2025 04:54:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jH54JWc9"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="rbUWxdW4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A947B4204E;
-	Fri, 17 Oct 2025 04:47:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52B2923278D;
+	Fri, 17 Oct 2025 04:54:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760676472; cv=none; b=WAw2IdHWCJun9RbkHqaurW9NnjIL/WdvBZNNIofkdJPH2PNcGB/T8sRQbjxNt+pyouWDyJan+jnCTyFemtTbf0LjbhlEom/9zZJsZhc2xPBi8YPsXLlQVsJWNK16BopQNr0GTSi0R5HUeAE7XOaC245PjUOCC6iW59ePKQEIpCE=
+	t=1760676868; cv=none; b=G4Ul8sZ0symMOtQf09FWQ72cbskTBMZC1B8VErQOdZkqkb4vXO0KAO3UvOGwQFuv2ZrTbo6aYWioMRCkaZZ8ozFvId6CiM0ENi1RoLR8nXlvSt9rJsQZaX+LwKmzOzi8PdZS8dasdRVhNNsshpFHxVy/HXY8SAfySELWkZjRoAU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760676472; c=relaxed/simple;
-	bh=fFBUVrLXLmK+7dkfnlQFimDw5NCqhbq3Uzb47zqYK7I=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NSJzBLv3k2IghDp8MfLfc+0uPkWNhBJsr82HLz5BZ7uu97S92Kx9mAFOI70x5x4etuiHWdsPsrKLQpO9KXU+SdCWnHLojPRv567qmhP1F5RrYP0UGgJqNjkzDkqbErDlGXouDpdBff7Eiy+Fl2CXF2rAl30VKlpqsYYZxipaK/k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jH54JWc9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7D642C4CEE7;
-	Fri, 17 Oct 2025 04:47:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760676472;
-	bh=fFBUVrLXLmK+7dkfnlQFimDw5NCqhbq3Uzb47zqYK7I=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=jH54JWc9ydk4nEXraailgIY0KL9F+Q+8HbHnHEhDyo9PLPLwlFMVF5hkYUXoSG31z
-	 eTtIEsVrikb+QU1GvbaTpkTzFE2HzaWgKk0t/m0YB8jCgWgVFwXcuuWTrbkV2qMrxl
-	 /AVKw+gqRmvnN+FULA4Zahbsby3jrJEzV+VmFAlYCvvGvUT+JL6NPNbahxil8HGEUo
-	 +Oo4eKSphGpak77CX57SkZGhzw9qJGCQwRK1t0FiLmxsuSbucmtWLxvLlurMyDPv/1
-	 TXW8/T3+54FjtPHbcA/Kryt9x8gF0wZW5as8UBTockSFkwco5l3YVPNa3jejT00+Zm
-	 HG9Yq0gutXJIQ==
-Message-ID: <32a14a2e-f61e-422a-ae77-f60ea44581eb@kernel.org>
-Date: Fri, 17 Oct 2025 06:47:46 +0200
+	s=arc-20240116; t=1760676868; c=relaxed/simple;
+	bh=RySiuSJq582Kj49QG8p+043sVEzbpqAv1VT35EMQJG8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=NEhKDHGyDR/XN3CJZJCmOkjXIrLc4hnoMOg46eTYDQ2wm9h6yuVP98WTV0holhWXpSiiTcmzQm+9gD/kkXM/HGySSiJAnaa6wHcLhP6GDmcWM7KMY4OjgVVirw/TsgSBU7cUimN8QxlOdw69yKM1jyiQoNhSN0hJ+fgIgXPcIpM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=rbUWxdW4; arc=none smtp.client-ip=198.47.23.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllvem-sh04.itg.ti.com ([10.64.41.54])
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 59H4rlmL185163;
+	Thu, 16 Oct 2025 23:53:47 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1760676827;
+	bh=WEfkvhel4ThB/iO0axrDdI7cNx6uCy73DOW86j1v+DE=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=rbUWxdW40eFQBdFjXWpLh2PcHUvsTtcltzqbmSE1PI851GaLV7rMTF2wr3M9Utpqt
+	 I/rQB2F+siY0tA62P4CuTQJMdqlZVNWhksUJvwbBdQovUZosCCIVAsUN6lBvO+0Nrg
+	 4SySFnJkHBAm1twUahVs9uUz9aFqoFfImGuz9K4U=
+Received: from DFLE205.ent.ti.com (dfle205.ent.ti.com [10.64.6.63])
+	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 59H4rjiD1733600
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 16 Oct 2025 23:53:45 -0500
+Received: from DFLE200.ent.ti.com (10.64.6.58) by DFLE205.ent.ti.com
+ (10.64.6.63) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 16 Oct
+ 2025 23:53:45 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE200.ent.ti.com
+ (10.64.6.58) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Thu, 16 Oct 2025 23:53:45 -0500
+Received: from [10.249.134.35] ([10.249.134.35])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 59H4rVkX713882;
+	Thu, 16 Oct 2025 23:53:32 -0500
+Message-ID: <ac3a8ca1-634d-40eb-8449-f79054fa385a@ti.com>
+Date: Fri, 17 Oct 2025 10:23:31 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,86 +65,129 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/6] dt-bindings: phy: qcom,sc8280xp-qmp-pcie-phy: Add
- Kaanapali compatible
-To: Qiang Yu <qiang.yu@oss.qualcomm.com>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
- Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>,
- Bjorn Helgaas <bhelgaas@google.com>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>, Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-phy@lists.infradead.org, Jingyi Wang <jingyi.wang@oss.qualcomm.com>
-References: <20251015-kaanapali-pcie-upstream-v2-0-84fa7ea638a1@oss.qualcomm.com>
- <20251015-kaanapali-pcie-upstream-v2-2-84fa7ea638a1@oss.qualcomm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v7 01/16] media: ti: j721e-csi2rx: Remove word size
+ alignment on frame width
+To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, <jai.luthra@linux.dev>,
+        <laurent.pinchart@ideasonboard.com>, <mripard@kernel.org>
+CC: <y-abhilashchandra@ti.com>, <devarsht@ti.com>, <s-jain1@ti.com>,
+        <vigneshr@ti.com>, <mchehab@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <p.zabel@pengutronix.de>, <conor+dt@kernel.org>,
+        <sakari.ailus@linux.intel.com>, <hverkuil-cisco@xs4all.nl>,
+        <jai.luthra@ideasonboard.com>, <changhuang.liang@starfivetech.com>,
+        <jack.zhu@starfivetech.com>, <sjoerd@collabora.com>,
+        <hverkuil+cisco@kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>
+References: <20250911102832.1583440-1-r-donadkar@ti.com>
+ <20250911102832.1583440-2-r-donadkar@ti.com>
+ <4becc7fc-fe25-4f7c-9434-399b1c2c3cce@ideasonboard.com>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20251015-kaanapali-pcie-upstream-v2-2-84fa7ea638a1@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
+From: "Donadkar, Rishikesh" <r-donadkar@ti.com>
+In-Reply-To: <4becc7fc-fe25-4f7c-9434-399b1c2c3cce@ideasonboard.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-
-On 15/10/2025 12:27, Qiang Yu wrote:
-> Document compatible for the QMP PCIe PHY on Kaanapali platform.
-> 
-> Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
-> Signed-off-by: Qiang Yu <qiang.yu@oss.qualcomm.com>
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
 
-Don't mix independent patches from different subsystems into one
-patchset. You only make it difficult for the maintainers.
-
-Really, really pay attention how your work should present itself to the
-maintainers.
+On 22-09-2025 17:26, Tomi Valkeinen wrote:
+> Hi,
 
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Hi Tomi,
 
-Best regards,
-Krzysztof
+
+>
+> On 11/09/2025 13:28, Rishikesh Donadkar wrote:
+>> j721e-csi2rx driver has a limitation of frame width being a multiple
+>> word size. However, there is no such limitation imposed by the
+>> hardware [1].
+>>
+>> Remove this limitation from the driver.
+>>
+>> Link: https://www.ti.com/lit/pdf/spruj16
+>> Reviewed-by: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
+>> Signed-off-by: Rishikesh Donadkar <r-donadkar@ti.com>
+>> ---
+>>   .../platform/ti/j721e-csi2rx/j721e-csi2rx.c   | 23 ++++---------------
+>>   1 file changed, 4 insertions(+), 19 deletions(-)
+>>
+>> diff --git a/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c b/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
+>> index 3992f8b754b7..6a981b5f5d51 100644
+>> --- a/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
+>> +++ b/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
+>> @@ -250,19 +250,12 @@ static void ti_csi2rx_fill_fmt(const struct ti_csi2rx_fmt *csi_fmt,
+>>   			       struct v4l2_format *v4l2_fmt)
+>>   {
+>>   	struct v4l2_pix_format *pix = &v4l2_fmt->fmt.pix;
+>> -	unsigned int pixels_in_word;
+>> -
+>> -	pixels_in_word = PSIL_WORD_SIZE_BYTES * 8 / csi_fmt->bpp;
+> The define for PSIL_WORD_SIZE_BYTES can also be removed, if I'm not
+> mistaken.
+
+
+Yes, Thanks for pointing out !
+
+
+>
+> I assume this has been tested, but I'm still a bit curious. Usually
+> these kind of lines of code don't just appear out of nowhere. You linked
+> to AM62Ax docs. None of the other SoCs have any limitations here either?
+
+
+This has been tested with IMX219 : 1640x1232 -f SRGGB8. Looking at the 
+docs, I don't see such limitation mentioned anywhere for the other SoC 
+as well.
+
+
+Regards,
+
+Rishikesh
+
+>
+> PSIL_WORD_SIZE_BYTES hints to a system DMA level limit, not CSI-2 RX
+> limit, so I wonder if some earlier SoCs had such limitations in the DMA?
+>
+>   Tomi
+>
+>>   
+>>   	/* Clamp width and height to sensible maximums (16K x 16K) */
+>>   	pix->width = clamp_t(unsigned int, pix->width,
+>> -			     pixels_in_word,
+>> -			     MAX_WIDTH_BYTES * 8 / csi_fmt->bpp);
+>> +			     1, MAX_WIDTH_BYTES * 8 / csi_fmt->bpp);
+>>   	pix->height = clamp_t(unsigned int, pix->height, 1, MAX_HEIGHT_LINES);
+>>   
+>> -	/* Width should be a multiple of transfer word-size */
+>> -	pix->width = rounddown(pix->width, pixels_in_word);
+>> -
+>>   	v4l2_fmt->type = V4L2_BUF_TYPE_VIDEO_CAPTURE;
+>>   	pix->pixelformat = csi_fmt->fourcc;
+>>   	pix->bytesperline = pix->width * (csi_fmt->bpp / 8);
+>> @@ -360,23 +353,15 @@ static int ti_csi2rx_enum_framesizes(struct file *file, void *fh,
+>>   				     struct v4l2_frmsizeenum *fsize)
+>>   {
+>>   	const struct ti_csi2rx_fmt *fmt;
+>> -	unsigned int pixels_in_word;
+>>   
+>>   	fmt = find_format_by_fourcc(fsize->pixel_format);
+>>   	if (!fmt || fsize->index != 0)
+>>   		return -EINVAL;
+>>   
+>> -	/*
+>> -	 * Number of pixels in one PSI-L word. The transfer happens in multiples
+>> -	 * of PSI-L word sizes.
+>> -	 */
+>> -	pixels_in_word = PSIL_WORD_SIZE_BYTES * 8 / fmt->bpp;
+>> -
+>>   	fsize->type = V4L2_FRMSIZE_TYPE_STEPWISE;
+>> -	fsize->stepwise.min_width = pixels_in_word;
+>> -	fsize->stepwise.max_width = rounddown(MAX_WIDTH_BYTES * 8 / fmt->bpp,
+>> -					      pixels_in_word);
+>> -	fsize->stepwise.step_width = pixels_in_word;
+>> +	fsize->stepwise.min_width = 1;
+>> +	fsize->stepwise.max_width = MAX_WIDTH_BYTES * 8 / fmt->bpp;
+>> +	fsize->stepwise.step_width = 1;
+>>   	fsize->stepwise.min_height = 1;
+>>   	fsize->stepwise.max_height = MAX_HEIGHT_LINES;
+>>   	fsize->stepwise.step_height = 1;
 
