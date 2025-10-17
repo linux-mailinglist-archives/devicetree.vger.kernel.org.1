@@ -1,108 +1,124 @@
-Return-Path: <devicetree+bounces-228270-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228214-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49B78BEAF6F
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 19:03:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D7723BEA9AA
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 18:18:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0A57E7C4B63
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 16:51:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 84B2D946788
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 15:43:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FA8C2E8DE5;
-	Fri, 17 Oct 2025 16:51:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 107353314B3;
+	Fri, 17 Oct 2025 15:42:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="h6Hy5gZc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KMluMiL5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18E842E8882;
-	Fri, 17 Oct 2025 16:51:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D00D6330B28;
+	Fri, 17 Oct 2025 15:42:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760719876; cv=none; b=Sa5kQvLPIL+OaQgEIeQc4jEA+RYmI+BGBf9q298fK596nK2bbChwzp8Mhydino5UCafdS6akZ5wsib4ab29+wJ5TB8FwEzEG0ifBvlBmaS3VYG0PfDY2bPKSrh91xQJPXgSNzhRXEQBPYuVz8TnXN0YmqW39bwA5oMFpmlWMsZ8=
+	t=1760715737; cv=none; b=cekGUNEalaSOoXxz6zITPw1Dxs3TDF75ge+iT99j/Jiil98jO6f+cJC+JtrZocjRe4lIgNTaIgYfd20dq3GUjnl/YRYIHiPW9XnaiUmIY6sJlCzFuNhBFdMHwVhm3xgp7bJE/MyCAbfwWW5eUVNK48bVWdeG1fLmhLNmyjy6mFQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760719876; c=relaxed/simple;
-	bh=+bx3ZbtK+Njf6yie1UgxB9pNqu+ylqXzsEnvQ5Ki1HM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=IoaMFYVFrxZ75FzIsL/LvFvHeITQD/41X2aHmGnEVWLzPPnqL/OO1wAfAXEVcL/SM8tTknN7QMpZ/WwjPjK5OXDNgSLVGlgQ+PFBHXiXglokc7i6XcnK1EIbowO88gZzy+U+Xl7PhGjaIT/b3kckGAySUkqa1xiyBIh69K7jCdA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=h6Hy5gZc; arc=none smtp.client-ip=80.241.56.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp2.mailbox.org (smtp2.mailbox.org [IPv6:2001:67c:2050:b231:465::2])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4cp9nV4j7Lz9t6b;
-	Fri, 17 Oct 2025 18:51:10 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1760719870;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=57/rHfSQPuGwkuIFvhj50SlUVj/zuEPrhMXR5tNz9rU=;
-	b=h6Hy5gZc8o6DNgD1mXzAXa2gc2pWO2hO2Rc0XEtEFWXvNfYFYVGsGNYrMVgeAm9wxZqzhZ
-	0ZlA5yB7iVwNsDtXUspThbhJAfTlY3+CwCGBv867qgg89/8MReSrTcO5lShKBwXZ+LtVG2
-	gwnEB86TTxV2lXHG6K+wess5+yaqMT1RSfOMfVO0Bxyx3nenlX3oCTH2wdXJnBbq0K10aT
-	Ql4nGGu3ZapgUemyfKQv2gZXZgiCZcKBZsthE5mtQJr2BdwNKDdxnN6ozlJ72oLVPnjLBp
-	NNEZQ6sLxAOnXTMcCpgaeOa7SMq37N3Zfr0CgO47yMHGwbZwC3sFSoZdZWUz3g==
-Message-ID: <809b7867-502b-4c3f-b7c6-f6f7a1226a08@mailbox.org>
-Date: Fri, 17 Oct 2025 17:39:14 +0200
+	s=arc-20240116; t=1760715737; c=relaxed/simple;
+	bh=hH7dF9cQAKchmw5u3mniBQjr14Sz8+exCeFEIusrxh4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=RN6xWtLr7qlhqZh9Y95LkDEfgpUMBpsM9NwTbbaOKmjEc50t8wP3S0jlcKKne1btlzH4jj2NmBGgXJ+p194xkEd8msXKZcnMr3rK9+ekB/QCA0d1JX0sP0H/Uvod19RtbHa2RehKl9pdCmyU+GGN7wqdUGhorO04bf348RpkfEY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KMluMiL5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1137CC113D0;
+	Fri, 17 Oct 2025 15:42:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1760715737;
+	bh=hH7dF9cQAKchmw5u3mniBQjr14Sz8+exCeFEIusrxh4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=KMluMiL5QoCe7NxG9pTDm3lGLS/3U5xqQFUCnxWm0DoLLTuuUJadY6q0V3lhTUjsO
+	 gPBwjhIfAHmmhqf4CHufb+JXCBYBAmyym6CFW6SRyBDtiWwqU07+r3jWcY+Xt/tUhd
+	 YOdzbe45XsTy7ei8kWhzxU4stCxVOpssx9WHvH1veZoMjle8Ay3qD23l3qd7N/d7jf
+	 prACDTrxQAOnWMfoiDNG1gFHA1a7RzyCsz/zqzyA2tczpnjOQRqOJqEemnL1vOrcpF
+	 NL1ADDkF/ZRQsFuYew43aqmuVAM80DDEEmzBwfZUuTL+Ujniwg5GqEtdP+mVDWT/IO
+	 R3Y1XtUbvlHTA==
+Date: Fri, 17 Oct 2025 16:42:10 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Cc: Alim Akhtar <alim.akhtar@samsung.com>,
+	Avri Altman <avri.altman@wdc.com>,
+	Bart Van Assche <bvanassche@acm.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Chunfeng Yun <chunfeng.yun@mediatek.com>,
+	Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Peter Wang <peter.wang@mediatek.com>,
+	Stanley Jhu <chu.stanley@gmail.com>,
+	"James E.J. Bottomley" <James.Bottomley@hansenpartnership.com>,
+	"Martin K. Petersen" <martin.petersen@oracle.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>,
+	kernel@collabora.com, linux-scsi@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org
+Subject: Re: [PATCH v2 1/5] dt-bindings: ufs: mediatek,ufs: Add mt8196-ufshci
+ variant
+Message-ID: <20251017-remnant-spud-a2a21c2385e6@spud>
+References: <20251016-mt8196-ufs-v2-0-c373834c4e7a@collabora.com>
+ <20251016-mt8196-ufs-v2-1-c373834c4e7a@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH 35/39] drm/bridge: fsl-ldb: Parse register offsets from DT
-To: Frank Li <Frank.li@nxp.com>
-Cc: dri-devel@lists.freedesktop.org, Abel Vesa <abelvesa@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Fabio Estevam <festevam@gmail.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Liu Ying <victor.liu@nxp.com>, Lucas Stach <l.stach@pengutronix.de>,
- Peng Fan <peng.fan@nxp.com>, Pengutronix Kernel Team
- <kernel@pengutronix.de>, Rob Herring <robh@kernel.org>,
- Shawn Guo <shawnguo@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- devicetree@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org
-References: <20251011170213.128907-1-marek.vasut@mailbox.org>
- <20251011170213.128907-36-marek.vasut@mailbox.org>
- <aO1RnY4CcKZWqh3s@lizhi-Precision-Tower-5810>
-Content-Language: en-US
-From: Marek Vasut <marek.vasut@mailbox.org>
-In-Reply-To: <aO1RnY4CcKZWqh3s@lizhi-Precision-Tower-5810>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-MBO-RS-ID: e77f929ddf541b74f01
-X-MBO-RS-META: q54r3z8wrx1c3jsp977s3wj1c6ik6snj
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="GINMMiGuzGFK5NYP"
+Content-Disposition: inline
+In-Reply-To: <20251016-mt8196-ufs-v2-1-c373834c4e7a@collabora.com>
 
-On 10/13/25 9:23 PM, Frank Li wrote:
 
-Hello Frank,
+--GINMMiGuzGFK5NYP
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
->> @@ -296,7 +290,7 @@ static int fsl_ldb_probe(struct platform_device *pdev)
->>   	struct device_node *remote1, *remote2;
->>   	struct drm_panel *panel;
->>   	struct fsl_ldb *fsl_ldb;
->> -	int dual_link;
->> +	int dual_link, idx, ret;
->>
->>   	fsl_ldb = devm_drm_bridge_alloc(dev, struct fsl_ldb, bridge, &funcs);
->>   	if (IS_ERR(fsl_ldb))
->> @@ -309,6 +303,22 @@ static int fsl_ldb_probe(struct platform_device *pdev)
->>   	fsl_ldb->dev = &pdev->dev;
->>   	fsl_ldb->bridge.of_node = dev->of_node;
->>
->> +	idx = of_property_match_string(dev->of_node, "reg-names", "ldb");
->> +	if (idx < 0)
->> +		return idx;
-> 
-> Does this broken compatiblity? If yes, need mention at commit message
-Nope, it actually does not, because the binding document used for 
-validation was correct and required these entries. So we can now safely 
-parse them.
+On Thu, Oct 16, 2025 at 02:06:43PM +0200, Nicolas Frattaroli wrote:
+> The MediaTek MT8196 SoC contains the same UFS host controller interface
+> hardware as the MT8195 SoC. Add it as a variant of MT8195, and extend
+> its list of allowed clocks, as well as give it the previously absent
+> resets property.
+>=20
+> Also add examples for both MT8195 and the new MT8196, so that the
+> binding can be verified against examples for these two variants.
+>=20
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collab=
+ora.com>
+> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+
+I provided a review on v1 of this series yesterday, although I think
+after this v2 was posted.
+https://lore.kernel.org/all/20251016-kettle-clobber-2558d9c709de@spud/
+I believe all of my comments still apply.
+
+pw-bot: changes-requested
+
+Thanks,
+Conor.
+
+--GINMMiGuzGFK5NYP
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaPJjzwAKCRB4tDGHoIJi
+0nLnAQCslCfZeTa+X+DOAoIqdM8SHSTrhRFTAANagkMF0n4O0wD9GLihTxkbKovz
+a0mrB8+Q494nk9NX6yCVg7GZYid3yQE=
+=FIdn
+-----END PGP SIGNATURE-----
+
+--GINMMiGuzGFK5NYP--
 
