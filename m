@@ -1,117 +1,232 @@
-Return-Path: <devicetree+bounces-228272-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228219-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DF25BEAEE8
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 18:58:39 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id A6828BEA93A
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 18:16:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8270D7441F8
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 16:51:22 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 894055C00D8
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 16:03:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB75B2E92A2;
-	Fri, 17 Oct 2025 16:51:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3ED624678A;
+	Fri, 17 Oct 2025 16:01:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="F9oG5Aad"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hBoIBZkF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FB6528727D;
-	Fri, 17 Oct 2025 16:51:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.151
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CA25330B35;
+	Fri, 17 Oct 2025 16:01:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760719881; cv=none; b=M1QbI2gOvW5WIoZmAZhG77a7oOcGVwtBJMnkyT58h18RfGbFY3F/nbfFOpPkbNPMmLe1oxp6TqocWh3X8fd/yV8ARP6AYIRSOW5vEkvlYem97E+Mzms83Hag3k7eyTlAhpCYDfvlAY3HZ+7sVLfXRrOROrQyZB+8lGe4umXt65Q=
+	t=1760716918; cv=none; b=WX4IEkZzt4rKUl28pInZauepduvJW1+JOX8cK0cr05QLS0VDpTXZDN09CHaf5GzdGDlmZzgCZZ9hxglXROaJjyuGO8Ufn5aafYpeWT/mGdCzsEp9DVwT2nQE9I6Q51BNkLzBUc1uio8/VVTIpqcyFnOgeNkumkT73FDIUlwQIHs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760719881; c=relaxed/simple;
-	bh=hBS7zXpwgc06YApPZakDHwkP5KDcqLK2xOOP5lYVbh4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=uzKLVSgQkQwwfVluGjXjDTLkzzV1EUp2LzAJbS3/APN7JlLIS9aSfBagUvIp1DejfnluCd1kUsqe8avSt2s/1PhR1t9v/AdEF197Gj5qFPjkHD3K0C8hIGsU2CaQuc41MCfwVa4sxaTQZWW93Iqj4b8nflfCWHY9zI7nd7fnKKw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=F9oG5Aad; arc=none smtp.client-ip=80.241.56.151
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp2.mailbox.org (smtp2.mailbox.org [10.196.197.2])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4cp9nc4Zdtz9sSq;
-	Fri, 17 Oct 2025 18:51:16 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1760719876;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=qnyRJyBxqqT6Z/vke/OGUHeBh7T7CM9FTOlPeQxkIbU=;
-	b=F9oG5AadMHujS4rxilXnq9aHT15NPwRYd0bRa+jQjBORkZi2yiwZRFiq7dMLwqrbEgtGnF
-	uVhQIpmLzP6MgJi2cdKVxACJC+lgTawa2grTfcPCTE74t1YJ3aC07XY1cLofvD7JL8HGlR
-	nEP4xvjIqp+KSA1RKCDRBwm2tvHLT7AkpWoudVKprnU5DQOt4dNGoR/02HOKlT5vGX7whu
-	5bYZetKhuYhZgGKCsGgQZzZLg6GR9J05mwTWHj7BK8Mw9Fi2xnkQ8B7UBiEy31GB+g55OL
-	XxzpVRn74A3h2UUBT39eg38rQ1yrGrICQKFpBHU/PesyL2D7HzyJZo6KXDDN+A==
-Message-ID: <85a35703-fc75-4fde-b9ca-a2ceb1214327@mailbox.org>
-Date: Fri, 17 Oct 2025 17:54:41 +0200
+	s=arc-20240116; t=1760716918; c=relaxed/simple;
+	bh=QKceSGaY38ubIJxFqjBFxdozyMDtA0Dx78G823wgoEQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=BKljDcW6ZnMq+F9HXOMUfQNhfDxX7OZ6jKI3kBHjywt2M9tZ1d5cXixBYRUtpkxw0uIQSTnGlF/7NW1zu0lO9oLx3iairZCAi/QyUv5MMC7EIoP3kHzUWxKAQXHzASMuCpEz6UP5RZheeKJ/UYYsuvGquOUPJd0v+v37Xpjtgt0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hBoIBZkF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EFE7DC4CEE7;
+	Fri, 17 Oct 2025 16:01:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1760716918;
+	bh=QKceSGaY38ubIJxFqjBFxdozyMDtA0Dx78G823wgoEQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=hBoIBZkF/T4PGDBCdEkR8JNVNR7OaJA375S1C1ZwwtHU5ItFsMytfeZaDJmNs/TPK
+	 obQTXDazN6Is5B0tIupFJOKMJGwTl4N1shOpiY3oYsfF6FM6gz0Q2SQKfiGXEYhQSv
+	 t16L29q67/PxAOq+CYjnbAUa2SGZULzC0QVkalxsD1TMcDgS1cOkzQniMLqxODlA41
+	 MQooD3vP2T8tpjZcRt0PGxQ3jOQpWTS3w/qsV9VjKPkeIuW7XRxL22s4uWcpSPTkEC
+	 1OAKUrueyLFsOoU7xzsEV5EyikFrtomK4Yju7SCiqJbu25LYYtL0ZMrvSLmIjBs1hJ
+	 eKGcM9fGWM8UQ==
+Date: Fri, 17 Oct 2025 17:01:53 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Gary Yang <gary.yang@cixtech.com>
+Cc: linus.walleij@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	cix-kernel-upstream@cixtech.com
+Subject: Re: [PATCH v4 1/3] dt-bindings: pinctrl: Add cix,sky1-pinctrl
+Message-ID: <20251017-sporty-public-fca6e77b2368@spud>
+References: <20251017074646.3344924-1-gary.yang@cixtech.com>
+ <20251017074646.3344924-2-gary.yang@cixtech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH 00/39] Add i.MX95 DPU/DSI/LVDS support
-To: Liu Ying <victor.liu@nxp.com>, dri-devel@lists.freedesktop.org
-Cc: Abel Vesa <abelvesa@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Fabio Estevam <festevam@gmail.com>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Lucas Stach <l.stach@pengutronix.de>, Peng Fan <peng.fan@nxp.com>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Rob Herring <robh@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- linux-clk@vger.kernel.org
-References: <20251011170213.128907-1-marek.vasut@mailbox.org>
- <2a22c45e-5de4-49ee-af3e-002941a7e2d0@nxp.com>
- <bf451620-c917-4d4a-999d-32148fbcf11b@mailbox.org>
- <182271f2-4986-4401-a4c5-ca379a02e69b@nxp.com>
-Content-Language: en-US
-From: Marek Vasut <marek.vasut@mailbox.org>
-In-Reply-To: <182271f2-4986-4401-a4c5-ca379a02e69b@nxp.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-MBO-RS-ID: 21f322bb393c42677d5
-X-MBO-RS-META: xow3qztriop681daecnza1kueomurrys
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="fta6H4olrjk+9Tyz"
+Content-Disposition: inline
+In-Reply-To: <20251017074646.3344924-2-gary.yang@cixtech.com>
 
-On 10/15/25 12:09 PM, Liu Ying wrote:
 
-Hello Liu,
+--fta6H4olrjk+9Tyz
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
->>> This has conflicts with my in-flight patch series for adding i.MX8QXP DC
->>> prefetch engine support(though i.MX95 SoC doesn't embed any display controller
->>> prefetch engine).  You probably want to take a look at it, just a heads up.
->>>
->>> https://lore.kernel.org/all/20250929-imx8-dc-prefetch-v3-0-c01d0608add2@nxp.com/
->>
->> Thank you for sharing that.
->>
->> Would it make sense to send 4 and 5 separately , so the fixes can land faster?
-> 
-> Maybe not, since there is no user(DT node is not enabled) so far.
-> But I'd like to have more review/ack for that patch series(it's kind of
-> hard to get sufficient review...).
+On Fri, Oct 17, 2025 at 03:46:44PM +0800, Gary Yang wrote:
+> The pin-controller is used to control the Soc pins.
+> There are two pin-controllers on Cix Sky1 platform.
+> One is used under S0 state, the other is used under
+> S0 and S5 state.
+>=20
+> Signed-off-by: Gary Yang <gary.yang@cixtech.com>
+> ---
+>  .../bindings/pinctrl/cix,sky1-pinctrl.yaml    | 94 +++++++++++++++++++
+>  1 file changed, 94 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/cix,sky1-pi=
+nctrl.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/pinctrl/cix,sky1-pinctrl.y=
+aml b/Documentation/devicetree/bindings/pinctrl/cix,sky1-pinctrl.yaml
+> new file mode 100644
+> index 000000000000..4ad160734353
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pinctrl/cix,sky1-pinctrl.yaml
 
-I could test on the MX95 if we can somehow ... figure this out. Then I 
-can provide RB/TB easily. I don't have MX8qxp device.
+Please use a filename matching a compatible, probably the first one.
 
->> Also, could you please try and avoid the SCU dependency on patch 7 ,
->> and more in that direction , can the PRG be made a bit more optional, so the
-> 
-> Don't think there is any way to address them.
-> 
->> iMX95 can still be supported by the DC driver ?
-> 
-> SCU dependency and PRG(even more other reasons) make me opt to separate
-> modules for i.MX95/8qxp DCs.
-SCU is only a register accessor, PRG is another block in the DC, I think 
-those can be isolated. It seems the whole DC is a composition of 
-multiple reusable blocks, so we can compose them for both MX8qxp and 
-MX95 the right way and reuse most of the code, right ?
+> @@ -0,0 +1,94 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pinctrl/cix,sky1-pinctrl.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Cix Sky1 Soc Pin Controller
+> +
+> +maintainers:
+> +  - Gary Yang <gary.yang@cixtech.com>
+> +
+> +description:
+> +  The pin-controller is used to control Soc pins. There are two pin-cont=
+rollers
+> +  on Cix Sky1 platform. one is used under S0 state, the other one is use=
+d under
+> +  S0 and S5 state.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - cix,sky1-iomuxc
+> +      - cix,sky1-iomuxc-s5
+> +
+> +  reg:
+> +    items:
+> +      - description: gpio base
+> +
+> +# Client device subnode's properties
+
+I'd drop these comments, they're just stating what's "obvious" for
+bindings.
+
+> +patternProperties:
+> +  '-cfg$':
+> +    type: object
+> +    additionalProperties: false
+> +
+> +    description:
+> +      A pinctrl node should contain at least one subnode representing the
+> +      pinctrl groups available on the machine.
+> +
+> +    patternProperties:
+> +      'pins$':
+> +        type: object
+> +        additionalProperties: false
+> +
+> +        description:
+> +          Each subnode will list the pins it needs, and how they should
+> +          be configured, with regard to muxer configuration, bias pull,
+> +          and drive strength.
+> +
+> +        allOf:
+> +          - $ref: pincfg-node.yaml#
+> +          - $ref: pinmux-node.yaml#
+> +
+> +        properties:
+> +          pinmux:
+> +            description:
+> +              Values are constructed from pin number and mux setting
+
+I think this should actually say how the values are constructed, one
+shouldn't have to reverse engineer it from a macro in the example.
+
+> +
+> +          bias-disable: true
+> +
+> +          bias-pull-up: true
+> +
+> +          bias-pull-down: true
+> +
+> +          drive-strength:
+> +            description:
+> +              typical current when output high level.
+> +            enum: [ 2, 3, 5, 6, 8, 9, 11, 12, 13, 14, 17, 18, 20, 21, 23,
+> +                    24 ]
+> +
+> +
+> +        required:
+> +          - pinmux
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  # Pinmux controller node
+
+Drop this comment too.
+
+> +  - |
+> +    #define CIX_PAD_GPIO012_FUNC_GPIO012 (11 << 8 | 0x0)
+
+> +    #define DS_LEVEL4 (8)
+
+Delete this define entirely, it actually just obfuscates the actually
+amperage.
+
+> +    iomuxc: pinctrl@4170000 {
+
+Unused labels should be removed from binding examples.
+
+pw-bot: changes-requested
+
+Thanks,
+Conor.
+
+> +        compatible =3D "cix,sky1-iomuxc";
+> +        reg =3D <0x4170000 0x1000>;
+> +
+> +        wifi_vbat_gpio: wifi-vbat-gpio-cfg {
+> +            pins {
+> +                pinmux =3D <CIX_PAD_GPIO012_FUNC_GPIO012>;
+> +                bias-pull-up;
+> +                drive-strength =3D <DS_LEVEL4>;
+> +           };
+> +        };
+> +    };
+> --=20
+> 2.49.0
+>=20
+
+--fta6H4olrjk+9Tyz
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaPJocQAKCRB4tDGHoIJi
+0iZyAQCXi00+BFpGerAO8331wYcnK7l8ya18y6X2WdMXteZ53gD8CjFUYulWSNl9
+uaPjJOtH6eNa09G51u+sFzFYoBVQCQY=
+=eShT
+-----END PGP SIGNATURE-----
+
+--fta6H4olrjk+9Tyz--
 
