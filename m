@@ -1,119 +1,101 @@
-Return-Path: <devicetree+bounces-228106-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228108-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id AAA4BBE806B
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 12:19:26 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78707BE8028
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 12:16:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 41EF2563CC4
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 10:15:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 19CF71885BA0
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 10:16:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54496217648;
-	Fri, 17 Oct 2025 10:15:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF282311C05;
+	Fri, 17 Oct 2025 10:16:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="DoQ2qivf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96FEF2D77FE
-	for <devicetree@vger.kernel.org>; Fri, 17 Oct 2025 10:15:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03406311973
+	for <devicetree@vger.kernel.org>; Fri, 17 Oct 2025 10:16:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760696141; cv=none; b=pz3FdaY41ZYmyYRvFVTidnFFaP0H6VpiOuSS9wQVIeyo0P4ZviAFYUGdWfxpMVIRDG9PMYWY/fv1ZkE2wQgER2DbiDkqRQfooO3l7sjntUmSdcTrnkkES5Eh/SNaj3jwYmCrkqd1jqIcKIaVYsqdq730h3Z9mLIH+vfW12dRBCs=
+	t=1760696174; cv=none; b=Z3lC9yQBYMesetN4Ni6QMCEhYcTM3plofllf0POOF1qqbJHLeR7vMJvQvEjvG+e6dYM+96QI6hqTI9d6BiZaZQbIozMf+ffYUZv/Cb1GBQ5hKznmH5JoibbR8pp0FfCn/wVSYYKRL4tUkf7vMlBtoF4DIw9VcQvr3LwS+DWxC4A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760696141; c=relaxed/simple;
-	bh=JvApeXOv0FX+Ib72v+YP0lpk09mQjzAd5OsdmdYCMgg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mVgvhP5ookHxd4NxtfbXrFL/bcnceWHbBKfbSnZ3u4dtu25rQL851Kc2X3+PF9ms7m6+SoAOk//p9Om6OuC7eJBCObFrDALzBm2fJUjHlKLs5cI8iMJS5CUNQCXtJn9k9f0g5qr9LXuGwXArJF3/roqr63l8BLh59b/725lP0VY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1v9hUW-0004KA-Ed; Fri, 17 Oct 2025 12:15:20 +0200
-Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1v9hUS-0042fz-22;
-	Fri, 17 Oct 2025 12:15:16 +0200
-Received: from pengutronix.de (p54b152ce.dip0.t-ipconnect.de [84.177.82.206])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	(Authenticated sender: mkl-all@blackshift.org)
-	by smtp.blackshift.org (Postfix) with ESMTPSA id 39238488F55;
-	Fri, 17 Oct 2025 10:15:16 +0000 (UTC)
-Date: Fri, 17 Oct 2025 12:15:15 +0200
-From: Marc Kleine-Budde <mkl@pengutronix.de>
-To: "Markus Schneider-Pargmann (TI.com)" <msp@baylibre.com>
-Cc: Chandrasekar Ramakrishnan <rcsekar@samsung.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Vincent Mailhol <mailhol@kernel.org>, 
-	Vishal Mahaveer <vishalm@ti.com>, Kevin Hilman <khilman@baylibre.com>, Dhruva Gole <d-gole@ti.com>, 
-	Sebin Francis <sebin.francis@ti.com>, Kendall Willis <k-willis@ti.com>, Akashdeep Kaur <a-kaur@ti.com>, 
-	Simon Horman <horms@kernel.org>, linux-can@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v10 0/4] can: m_can: Add am62 wakeup support
-Message-ID: <20251017-hospitable-efficient-firefly-c3f32b-mkl@pengutronix.de>
-References: <20251001-topic-mcan-wakeup-source-v6-12-v10-0-4ab508ac5d1e@baylibre.com>
+	s=arc-20240116; t=1760696174; c=relaxed/simple;
+	bh=2FTuHNjSGvJZAf1LWMC8NRugqg6c8LK0Hzr2Dv7fpYQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Ff0110NiI/n3yiV3jiOJNquBnY8n/VGnVOqUpLX20SCMBKRLTU/PZwJyYohpD47Xnlv/zugk8P2vt3FrTyJp76hqpgkqdpaxtLh1Bx1G+fUrlYy1AAQtFPzWP+XvM6jarG54OjWe2cHB0cyO54DVSwzkMZzswPCmadO3EzowIvw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=DoQ2qivf; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=from:to:cc:subject:date:message-id
+	:mime-version:content-transfer-encoding; s=k1; bh=iNrPd0l4fyyEjN
+	jK3c/izEfD+LBndDM/O9UHeCvxIlE=; b=DoQ2qivfVrqYQmVZ4hLZ3himhq+kSS
+	uSElWEt3laeqCWd6e/dU/oNH9wTvuqO/KF+UhP7+2uQKgmyDP2ZyyGvIhfT8JgBV
+	QZ8Xyh6UK7lGwURO95PnBFSW0OkpIgftrJJExwAbjt0tR3sekSL1cJH5FLhg/UlX
+	Uceyd4er/ltk+LW7kf81gJZqqV9zeigvGwuMO4DEez4u+v91Okkl4MTv7rxLln18
+	A6GUDUm0YX02q7wfouzCJ+xJcwFtaTsUnvJ8GrAhhO6SXRHNdfdgfUJGm64n5SfX
+	/yLe0otgaeWEJG8fb7pTPdrGChW6kQ1PIUUTFDSVQKfTFmg+wlBB+MCw==
+Received: (qmail 4183245 invoked from network); 17 Oct 2025 12:16:05 +0200
+Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 17 Oct 2025 12:16:05 +0200
+X-UD-Smtp-Session: l3s3148p1@snR2BVhBYMQgAwDPXwQHAL/S9V79e5yL
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: linux-renesas-soc@vger.kernel.org
+Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-watchdog@vger.kernel.org,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Wim Van Sebroeck <wim@linux-watchdog.org>
+Subject: [PATCH v3 0/2] watchdog: add Renesas Window Watchdog support
+Date: Fri, 17 Oct 2025 12:15:47 +0200
+Message-ID: <20251017101549.4275-4-wsa+renesas@sang-engineering.com>
+X-Mailer: git-send-email 2.47.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="fozm3zg4iurpuf5k"
-Content-Disposition: inline
-In-Reply-To: <20251001-topic-mcan-wakeup-source-v6-12-v10-0-4ab508ac5d1e@baylibre.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: 8bit
+
+This Window Watchdog is a little peculiar because it can only be setup
+once but we cannot find out if this write already happened. So,
+configuration is delegated to the firmware/bootloader and the driver
+will adapt to whatever is configured. The driver handles all bits
+described in the datasheets. This is really all there is.
+
+Tested on a SparrowHawk board (Renesas R-Car V4H). Based on v6.18-rc1
+and build bot is already happy. Passes also binding checks and dtb
+checks here.
+
+Big picture change since v2 (details mentioned per patch):
+
+* minor improvements to patch 2
+
+Looking forward to comments!
 
 
---fozm3zg4iurpuf5k
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v10 0/4] can: m_can: Add am62 wakeup support
-MIME-Version: 1.0
+Wolfram Sang (2):
+  dt-bindings: watchdog: Add Renesas WWDT
+  watchdog: renesas_wwdt: add driver
 
-On 01.10.2025 16:30:18, Markus Schneider-Pargmann (TI.com) wrote:
-> This series adds support for wakeup capabilities to the m_can driver,
-> which is necessary for enabling Partial-IO functionality on am62, am62a,
-> and am62p SoCs. It implements the wake-on-lan interface for m_can
-> devices and handles the pinctrl states needed for wakeup functionality.
+ .../watchdog/renesas,rcar-gen3-wwdt.yaml      | 114 ++++++++++++
+ drivers/watchdog/Kconfig                      |   8 +
+ drivers/watchdog/Makefile                     |   1 +
+ drivers/watchdog/renesas_wwdt.c               | 163 ++++++++++++++++++
+ 4 files changed, 286 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/watchdog/renesas,rcar-gen3-wwdt.yaml
+ create mode 100644 drivers/watchdog/renesas_wwdt.c
 
-Added to linux-can-next.
+-- 
+2.47.2
 
-Thanks,
-Marc
-
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
-
---fozm3zg4iurpuf5k
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEn/sM2K9nqF/8FWzzDHRl3/mQkZwFAmjyFzAACgkQDHRl3/mQ
-kZwe2AgAnPbCetz/ZW8pmf453IkrJQ9tVaKg6orkrb1BWNSDmwRSwyCI5kBiqbs7
-sycHDvAfjslKfBNKekJRgW/UjWfdcT72QzIrFGFgqivqALwcAMwwcSV8dEnlRBc7
-qk//Vp8BCtuNbGujOBsbFxY8oEFpqdhUb9incywBKFsMHzpFX4Lw93ZpMuv0RF7k
-jhniWakeh1IyA8SWZRCdaMuzykyD+sevWi7+YwzGQ2ajuCn/r2r+k9iROvBwrlw5
-CYvbGfKyBUEvlnV/BW91o8jH3tIkGYC/loWHpt5QSLeRvcnDaMH2Xn1/+uLNoYx/
-sQuxSGk6G9Pzfgrna0pxjUuMpoVxJA==
-=JGCw
------END PGP SIGNATURE-----
-
---fozm3zg4iurpuf5k--
 
