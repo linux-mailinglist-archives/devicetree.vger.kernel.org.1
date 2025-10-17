@@ -1,183 +1,132 @@
-Return-Path: <devicetree+bounces-228132-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228135-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 512D8BE86C4
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 13:39:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BC7EBE8706
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 13:42:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2195D1AA51A2
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 11:39:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E4E561890699
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 11:42:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD15834DCFF;
-	Fri, 17 Oct 2025 11:34:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAADC332EC0;
+	Fri, 17 Oct 2025 11:42:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ReV0lAbr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="P97FLqP9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f46.google.com (mail-pj1-f46.google.com [209.85.216.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 187D034AAFB
-	for <devicetree@vger.kernel.org>; Fri, 17 Oct 2025 11:34:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7258D332EA1;
+	Fri, 17 Oct 2025 11:42:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760700876; cv=none; b=O+0QCjNv+kJXyiQCSYalj5FEqN22lwV41ZlRyqeU5qrEkWPFHpr+8bYamr01xwvJGGFHXf23O7AlGqdYwy2u/96W4VhfX1YmnaK8oyoUEWAh6AmzVdtQBd87cPMqa7762DeeOOfcLpnzd6Bq+1oO+4NlyCHtUgeIVNALeQCMbHs=
+	t=1760701325; cv=none; b=UYjaqWWlioeDgMNPQwZ7CHszNAAD3CkdfyHZNKRcxRI4G7VISEbmwtZSB+hhI46ky7D5+nTQav3hUMiKn4NZGTCGKTvcDykKYTBvWm+vf7rptP6j8c7Bk3JEezEJVoz99x9ZLNwlXPQkAUmHq2hfNyt9O/bqFtag1K07YWA6zJY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760700876; c=relaxed/simple;
-	bh=xPKudPe20LVyFE+p3IxJr16x4wx/uGvtSa6tEowpGec=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KiaetbrzXn5wYU27ZZEoEJ/RXN8svVpk+3heXGdvP2a0u3vUyFqUvBv5yVOeDHDm/iBFY6OWl4g/+V/Xhnn4VB5nA66Nnz33J1FUS2hC8AcLIgqexIv0fFbE8Zk6Y59Bm2YQM6MwT7Cm9xp7hDHQRmW9Ml1MvLF3TygMDlbl8uc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ReV0lAbr; arc=none smtp.client-ip=209.85.216.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f46.google.com with SMTP id 98e67ed59e1d1-33badfbbc48so2380282a91.2
-        for <devicetree@vger.kernel.org>; Fri, 17 Oct 2025 04:34:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1760700874; x=1761305674; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=fYfAPtHB/RHiXWE9XxOgOmtRX2AfdTu8oaK5y1u+j8I=;
-        b=ReV0lAbrEXLoA7ZSlXmh6jSMZz275urgTCRGceEXFqCRCX0VQT54AfF3hsM8TWVFtr
-         FFXpYDARFTcKsWF9Jqn2rfqav0xnJb+eIQwEKp1IKncxnIF188wMUgG5m1EX/uS7Xq4W
-         hYvJsZDQUbAsm4D/IXCsoQ+K4sBPGluodtQvePY7YDwv/TD+m20/Tn4qVIzNkuEUn3WS
-         dmpJZDIauzCUvz4hJYTEDIf2tvp4fL7JroMNGwYZk2+QAcIPxuw5cygFMnlJAjgNwVAY
-         fbcTtt71NozCqFaxE5dyUaGqEcOI1flztoB0QmBLxxC1+xgJwi9U6UM0okiiHHsQws9P
-         ZcKg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760700874; x=1761305674;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=fYfAPtHB/RHiXWE9XxOgOmtRX2AfdTu8oaK5y1u+j8I=;
-        b=fMDWxrUOOCLUKKiBcKuzNzhnORxVDisaHzq9hft8ci2bMGCymyLrWDvYJE8W4sKfRB
-         jkSaIJ5DoQo1nU/5Gn/kbK66+DxbQ0mPR3uKx0qu1APS2M6sF6dcIioWg7be/thOCOtM
-         ixeIRzUoQXVChYkjOxwO+WQUhB0RkIfv3qDp+bimXA3EJjEmrf0dJmeFTNiJnmfTs8OZ
-         lEn9fuP+5FjZ/m8Wcaqh+ZgzZ2TvPqshBdsUY08LRrZA+UVpKmgLGP84UPCyZO/LB775
-         PeErmiw/fg5iUgXd/s5wjtMdEDUzRpCWq00TXsDUAqmWdFCPp4PwwiiZDc/Jmg13MjPb
-         ijGA==
-X-Forwarded-Encrypted: i=1; AJvYcCWzEHQbqEAW/9w6ZV8zFYmhpJhY5vnATAbe6Ivv5MAdsOhS56U7F5ll+htNlZUKe2XR58DGnlaghCJR@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx25gOvy/4w3my8mmcPoYWAeap9Ure0N/QjvrjcCDMdiEC+TYrg
-	DlYc6VCoEoQVoeMsYyBaJwo4SY27uJw8WhfAr2epsyck6oa6kaGgBR0E
-X-Gm-Gg: ASbGncsgE6BnHaENR1N7uYnpKjOcwWYQ8flmtrlanrpKKGxhE5p0O5rSTxm1NI4I+dv
-	oPSYJXoYZu+Dcr0Rc6DyS4POsRelIMhuH9HCc4GvCwBCKfu+T6C4uMG8m/aVM0bYk7d83ZTGUai
-	hpgPU+QoOBaJTZmY6f4rpWY1jdfp05F1zE30XYWE0h2ldwh5N8uyZDNnDde4scqKUnLNuMYjoD0
-	rLoFzcvOYJw7cwO5pZfnWMKxsgPjDjqhgAZEnBTj8PGgGuOr3ukp5YfUVaRuxvn8BHXYsIqGCPd
-	B49IMDI6nHI0SEEwqpmajTJq1yH8dzUee9O+l9Ys7YtRPzoxdyawyOBg3voQmTY00xwZyoP8xPk
-	J+fGzIG2Q14D/QblBPycquc4qb1OMD8+yjptVzSF7YfOolfjqAlWvhhqsABxgbToBZ3QADeIujv
-	OPDX7pq07bpA==
-X-Google-Smtp-Source: AGHT+IFWkL4x7nbwb+9Uvguh+3df9cfdWGeCUM99KzCsQewGs4kLcYRtKcEcc6/or/fk3QS39PWIIA==
-X-Received: by 2002:a17:90b:2f8e:b0:33b:c5f6:40ec with SMTP id 98e67ed59e1d1-33bcf914840mr3603295a91.30.1760700874068;
-        Fri, 17 Oct 2025 04:34:34 -0700 (PDT)
-Received: from localhost ([2804:30c:402b:1a00:ec78:db53:a246:207a])
-        by smtp.gmail.com with UTF8SMTPSA id d2e1a72fcca58-7992bc13543sm25483583b3a.35.2025.10.17.04.34.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 17 Oct 2025 04:34:33 -0700 (PDT)
-Date: Fri, 17 Oct 2025 08:35:38 -0300
-From: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
-To: David Lechner <dlechner@baylibre.com>
-Cc: Marcelo Schmitt <marcelo.schmitt@analog.com>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
-	linux-kernel@vger.kernel.org, jic23@kernel.org,
-	michael.hennerich@analog.com, nuno.sa@analog.com,
-	eblanc@baylibre.com, andy@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, corbet@lwn.net,
-	Trevor Gamblin <tgamblin@baylibre.com>,
-	Axel Haslam <ahaslam@baylibre.com>
-Subject: Re: [PATCH v5 5/7] iio: adc: ad4030: Add SPI offload support
-Message-ID: <aPIqCrvaPQZg7Lo8@debian-BULLSEYE-live-builder-AMD64>
-References: <cover.1760479760.git.marcelo.schmitt@analog.com>
- <c12569f251962ad6034395e53cd6d998ce78a63f.1760479760.git.marcelo.schmitt@analog.com>
- <e677f27a-787a-433c-8516-99ff1d33f2c6@baylibre.com>
+	s=arc-20240116; t=1760701325; c=relaxed/simple;
+	bh=mthe/fF4A22byCBSStC36YOCfUhCaOvhjMSwfA73/EA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=KTugtVKWglc/pwscKlCjTnulhCty/sZ31XyYrfXvZ7zZmb4iEVcBztaMCrEhpN5wNUTism6yZzmxr0QyTEqZqM1f82kQSq2G33+ebNsuAFRZOI95siEg80RiAbxelXQtqD+AJmBNGKD5vKjDWa3Rz6wZvzET65LDBaF93JbxJ40=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=P97FLqP9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E4BDC4CEE7;
+	Fri, 17 Oct 2025 11:42:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1760701324;
+	bh=mthe/fF4A22byCBSStC36YOCfUhCaOvhjMSwfA73/EA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=P97FLqP9G+N+fKUKy53p1Vg6dEouJyimIoskR4qIouCpT5SEnt1tXdRdSZz68f9u3
+	 PJujblplMHVI/eEHv3tLM62AGr1covLYv3SeembHwiIfZuMiHjKkJdPQeSGJxz0EXd
+	 gGXJnO2kKWW14PgJIXgx9v8dIKQW1/w8ToC6UXwSAJNxE00owIGYtanTwt/iPCutw6
+	 I3Gd3az58N4QsWKg65SLqFcDyvHvZ1mCBwOOeUKVqsPzZtLuACEgJuKKKvdWTY2+l0
+	 rj5k+dLE4e+ljxQSqBMGOy2XOMvi6Q4eR84nRrdKnnHDcht4qwCgwoOqcO6mblHQ0o
+	 Fwgw0hf+O5JvA==
+Message-ID: <0e6e1b8a-d9ae-42d1-b1ad-4314e0d76ab7@kernel.org>
+Date: Fri, 17 Oct 2025 12:41:59 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <e677f27a-787a-433c-8516-99ff1d33f2c6@baylibre.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] media: qcom: camss: Enable setting the rate to
+ camnoc_rt_axi clock
+To: Vijay Kumar Tumati <vijay.tumati@oss.qualcomm.com>,
+ Loic Poulain <loic.poulain@oss.qualcomm.com>
+Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Krzysztof Kozlowski <krzk@kernel.org>,
+ Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>, Robert Foss
+ <rfoss@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Todor Tomov <todor.too@gmail.com>,
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, linux-i2c@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-media@vger.kernel.org
+References: <20251014-add-new-clock-in-vfe-matching-list-v1-1-0d965ccc8a3a@oss.qualcomm.com>
+ <9984bc23-05ef-4d46-aeb8-feb0a18e5762@kernel.org>
+ <bc0caeb8-c99b-4bef-a69e-5ce433e6b890@oss.qualcomm.com>
+ <c4fd6bfc-cc9a-4f37-99b3-f36466691a1e@linaro.org>
+ <CAFEp6-2=GJL-gc+PSyAL4=prp_sXdZJS=Ewg5nP2kcp_Gu85Fw@mail.gmail.com>
+ <33513b43-f6d1-4c76-887b-39611a75e1f4@kernel.org>
+ <WnfCknsSyJK68PQZkE2q7COZHRpsLOFlr3dcbwiVR6SBWtF9iRQ4MGzp_9q31O0kyhZwoncQWfHjJQvpz7nyfw==@protonmail.internalid>
+ <ab43c5c9-edc5-459e-8ef7-2aa8bec559c0@oss.qualcomm.com>
+From: Bryan O'Donoghue <bod@kernel.org>
+Content-Language: en-US
+In-Reply-To: <ab43c5c9-edc5-459e-8ef7-2aa8bec559c0@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On 10/16, David Lechner wrote:
-> On 10/14/25 5:22 PM, Marcelo Schmitt wrote:
-> > AD4030 and similar ADCs can capture data at sample rates up to 2 mega
-> > samples per second (MSPS). Not all SPI controllers are able to achieve such
-> > high throughputs and even when the controller is fast enough to run
-> > transfers at the required speed, it may be costly to the CPU to handle
-> > transfer data at such high sample rates. Add SPI offload support for AD4030
-> > and similar ADCs to enable data capture at maximum sample rates.
-> > 
-> > Co-developed-by: Trevor Gamblin <tgamblin@baylibre.com>
-> > Signed-off-by: Trevor Gamblin <tgamblin@baylibre.com>
-> > Co-developed-by: Axel Haslam <ahaslam@baylibre.com>
-> > Signed-off-by: Axel Haslam <ahaslam@baylibre.com>
-> > Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
-> > ---
-> > Change log v4 -> v5
-> > - Made Kconfig entry depend on PWM and select other features.
-> > - Reused ad4030_exit_config_mode() in ad4030_offload_buffer_postenable().
-> > - Dropped common-mode voltage support on SPI offload setup.
+On 16/10/2025 21:53, Vijay Kumar Tumati wrote:
 > 
-> Curious why you chose this. I guess it will be fine to add it later
-> if anyone ever actually needs it.
-> 
-I had coded that in a way I think would work for the dual channel devices, but
-it didn't really work for single-channel adaq4216. And yes, if anyone asks
-for offload with common-mode data, we shall probably be able to it that later.
+> On 10/16/2025 8:31 AM, Bryan O'Donoghue wrote:
+>> On 16/10/2025 13:22, Loic Poulain wrote:
+>>>> I'm - perhaps naively - assuming this clock really is required ... and
+>>>> that both will be needed concurrently.
+>>> AFAIU, the NRT clock is not in use for the capture part, and only
+>>> required for the offline processing engine (IPE, OPE), which will
+>>> likely be described as a separated node.
+>>
+>> Maybe yeah though we already have bindings.
+>>
+>> @Hangxiang I thought we had discussed this clock was required for your
+>> setup.
+>>
+>> Can you confirm with a test and then
+>>
+>> 1. Repost with my RB - I assume you included this on purpose
+>> 2. Respond that you can live without it.
+>>
+>> ---
+>> bod
+>>
+> @Bryan and others, sorry, I am just trying to understand the exact ask
+> here. Just to add a bit more detail here, On certain architectures,
+> there is one CAMNOC module that connects all of the camera modules (RT
+> and NRT) to MMNOC. In these, there is one 'camnoc_axi' clock that needs
+> to be enabled for it's operation. However, on the newer architectures,
+> this single CAMNOC is split into two, one for RT modules (TFEs and IFE
+> Lites) and the other for NRT (IPE and OFE). So, on a given architecture,
+> we either require 'camnoc_axi' or 'camnoc_rt_axi' for RT operation, not
+> both. And yes, one of them is a must. As you know, adding the support
+> for the newer clock in "vfe_match_clock_names" will only enable the
+> newer chip sets to define this in it's resource information and set the
+> rate to it based on the pixel clock. In kaanapali vfe resources, we do
+> not give the 'camnoc_axi_clk'. Hopefully we are all on the same page
+> now, is it the suggestion to use 'camnoc_axi_clk' name for
+> CAM_CC_CAMNOC_RT_AXI_CLK ? We thought it would be clearer to use the
+> name the matches the exact clock. Please advise and thank you.
 
+The ask is to make sure this clock is needed @ the same time as the 
+other camnoc clock.
 
-> > - Adjusted offload trigger period calculation.
-> > - No longer setting data frame mode from ad4030_set_avg_frame_len().
-> > - Rearranged code to reduce patch diff.
-> > 
-> >  drivers/iio/adc/Kconfig  |   5 +
-> >  drivers/iio/adc/ad4030.c | 425 +++++++++++++++++++++++++++++++++++++--
-> >  2 files changed, 416 insertions(+), 14 deletions(-)
-> > 
-> 
-> ...
-> 
-> > @@ -512,11 +643,30 @@ static int ad4030_set_avg_frame_len(struct iio_dev *dev, int avg_val)
-> >  	struct ad4030_state *st = iio_priv(dev);
-> >  	unsigned int avg_log2 = ilog2(avg_val);
-> >  	unsigned int last_avg_idx = ARRAY_SIZE(ad4030_average_modes) - 1;
-> > +	int freq_hz;
-> >  	int ret;
-> >  
-> >  	if (avg_val < 0 || avg_val > ad4030_average_modes[last_avg_idx])
-> >  		return -EINVAL;
-> >  
-> > +	if (st->offload_trigger) {
-> > +		/*
-> > +		 * The sample averaging and sampling frequency configurations
-> > +		 * are mutually dependent one from another. That's because the
-> 
-> s/one from another/on each other/
-> 
-> "one from another" makes it sound like they are independent rather than
-> dependent.
+If so then update the commit log on v2 to address the concerns given 
+that it may not be necessary.
 
-Ack.
-> 
-> > +		 * effective data sample rate is fCNV / 2^N, where N is the
-> > +		 * number of samples being averaged.
-> > +		 *
-> > +		 * When SPI offload is supported and we have control over the
-> > +		 * sample rate, the conversion start signal (CNV) and the SPI
-> > +		 * offload trigger frequencies must be re-evaluated so data is
-> > +		 * fetched only after 'avg_val' conversions.
-> > +		 */
-> > +		ad4030_get_sampling_freq(st, &freq_hz);
-> > +		ret = ad4030_update_conversion_rate(st, freq_hz, avg_log2);
-> > +		if (ret)
-> > +			return ret;
-> > +	}
-> > +
-> LGTM.
-> 
-> Reviewed-by: David Lechner <dlechner@baylibre.com>
-> 
-Thanks,
-Marcelo
+If not then just pining back to this patch "we checked and its not 
+needed" will do.
+
+---
+bod
 
