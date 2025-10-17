@@ -1,132 +1,94 @@
-Return-Path: <devicetree+bounces-228135-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228136-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5BC7EBE8706
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 13:42:10 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1119FBE8748
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 13:51:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E4E561890699
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 11:42:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ABE64624A52
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 11:51:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAADC332EC0;
-	Fri, 17 Oct 2025 11:42:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 061F52798FA;
+	Fri, 17 Oct 2025 11:51:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="P97FLqP9"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="jHvFOOyW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7258D332EA1;
-	Fri, 17 Oct 2025 11:42:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E1A425B1DA
+	for <devicetree@vger.kernel.org>; Fri, 17 Oct 2025 11:51:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760701325; cv=none; b=UYjaqWWlioeDgMNPQwZ7CHszNAAD3CkdfyHZNKRcxRI4G7VISEbmwtZSB+hhI46ky7D5+nTQav3hUMiKn4NZGTCGKTvcDykKYTBvWm+vf7rptP6j8c7Bk3JEezEJVoz99x9ZLNwlXPQkAUmHq2hfNyt9O/bqFtag1K07YWA6zJY=
+	t=1760701906; cv=none; b=dtjh/ZEmA0lP6gfZaEgMddPwVFMBzkzVSdiD2FuQNsHoyiPVeFzHymM2sHGJOGb83N90m6SfsDoAgR36JUETlxLUtZ+ghifKoxzML8BAco50e4sxZxooacMoll5UtbmKGARGnwyvuOjscMaXN2DH0rbjXupMnCF4XSFawY3tFDE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760701325; c=relaxed/simple;
-	bh=mthe/fF4A22byCBSStC36YOCfUhCaOvhjMSwfA73/EA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=KTugtVKWglc/pwscKlCjTnulhCty/sZ31XyYrfXvZ7zZmb4iEVcBztaMCrEhpN5wNUTism6yZzmxr0QyTEqZqM1f82kQSq2G33+ebNsuAFRZOI95siEg80RiAbxelXQtqD+AJmBNGKD5vKjDWa3Rz6wZvzET65LDBaF93JbxJ40=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=P97FLqP9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E4BDC4CEE7;
-	Fri, 17 Oct 2025 11:42:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760701324;
-	bh=mthe/fF4A22byCBSStC36YOCfUhCaOvhjMSwfA73/EA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=P97FLqP9G+N+fKUKy53p1Vg6dEouJyimIoskR4qIouCpT5SEnt1tXdRdSZz68f9u3
-	 PJujblplMHVI/eEHv3tLM62AGr1covLYv3SeembHwiIfZuMiHjKkJdPQeSGJxz0EXd
-	 gGXJnO2kKWW14PgJIXgx9v8dIKQW1/w8ToC6UXwSAJNxE00owIGYtanTwt/iPCutw6
-	 I3Gd3az58N4QsWKg65SLqFcDyvHvZ1mCBwOOeUKVqsPzZtLuACEgJuKKKvdWTY2+l0
-	 rj5k+dLE4e+ljxQSqBMGOy2XOMvi6Q4eR84nRrdKnnHDcht4qwCgwoOqcO6mblHQ0o
-	 Fwgw0hf+O5JvA==
-Message-ID: <0e6e1b8a-d9ae-42d1-b1ad-4314e0d76ab7@kernel.org>
-Date: Fri, 17 Oct 2025 12:41:59 +0100
+	s=arc-20240116; t=1760701906; c=relaxed/simple;
+	bh=BuBLsf7HKrPMO6TDqjOygFjIMQrypaxScr3nn1khTmY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Bn2DtYHWbnZiBnBVBKCK5TPVCGyR90x8pDwe6mNchegl9+2Ylw00XGzjv+vBxuazpRclwRwfSVmYEEfFizqQB7c7JSbKzcaM+LnB+bt9CVDLgIco0tDqotUhB5APnjORiwyyi9RQxuP/QSBq/FK306MCDce5c8H5lpaz/fFxUUA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=jHvFOOyW; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=from:to:cc:subject:date:message-id
+	:mime-version:content-transfer-encoding; s=k1; bh=Q2AGX8dnNvvzvw
+	hpP7d+pi03iieJsU41slbnOSPvwOE=; b=jHvFOOyWZOJ8Q4l9pxtCge3L8R1/6x
+	6Qfhyvi6/38c6cAGY+ZgUS1J3x5/MN5nPB6RFBMvgoT5IbgqEMBPBok+jbY63n8s
+	M8Uel3BuAXh9NSi2uqq7pBK6govFS7yBaJUihEQFSk5y++UPAZWe8h10UuPM9Wx+
+	QiT9ICoYSOE2rb5Dbxl3f1hJkLHnpwbA4VS2nHd5FvbyMa/Y3qxlSkVgsapANAt9
+	3FyEZ3uk8uC0rBcKwLUQrMRad7OoZ8EZaVAl9JAxPdeSZMU+YHurne/J8dAddxy5
+	rBNJ4i6ozEaVZC9kfz0ehtIe3K/uSNtSypAS72WXPwEaYqqFt/UUJM3g==
+Received: (qmail 17832 invoked from network); 17 Oct 2025 13:51:35 +0200
+Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 17 Oct 2025 13:51:35 +0200
+X-UD-Smtp-Session: l3s3148p1@ndr0WllB2OYgAwDPXwQHAL/S9V79e5yL
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: linux-renesas-soc@vger.kernel.org
+Cc: Marek Vasut <marek.vasut@mailbox.org>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org
+Subject: [PATCH] arm64: dts: renesas: sparrow-hawk: don't reserve SWDT
+Date: Fri, 17 Oct 2025 13:51:11 +0200
+Message-ID: <20251017115123.3438-2-wsa+renesas@sang-engineering.com>
+X-Mailer: git-send-email 2.47.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] media: qcom: camss: Enable setting the rate to
- camnoc_rt_axi clock
-To: Vijay Kumar Tumati <vijay.tumati@oss.qualcomm.com>,
- Loic Poulain <loic.poulain@oss.qualcomm.com>
-Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- Krzysztof Kozlowski <krzk@kernel.org>,
- Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>, Robert Foss
- <rfoss@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Todor Tomov <todor.too@gmail.com>,
- Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, linux-i2c@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-media@vger.kernel.org
-References: <20251014-add-new-clock-in-vfe-matching-list-v1-1-0d965ccc8a3a@oss.qualcomm.com>
- <9984bc23-05ef-4d46-aeb8-feb0a18e5762@kernel.org>
- <bc0caeb8-c99b-4bef-a69e-5ce433e6b890@oss.qualcomm.com>
- <c4fd6bfc-cc9a-4f37-99b3-f36466691a1e@linaro.org>
- <CAFEp6-2=GJL-gc+PSyAL4=prp_sXdZJS=Ewg5nP2kcp_Gu85Fw@mail.gmail.com>
- <33513b43-f6d1-4c76-887b-39611a75e1f4@kernel.org>
- <WnfCknsSyJK68PQZkE2q7COZHRpsLOFlr3dcbwiVR6SBWtF9iRQ4MGzp_9q31O0kyhZwoncQWfHjJQvpz7nyfw==@protonmail.internalid>
- <ab43c5c9-edc5-459e-8ef7-2aa8bec559c0@oss.qualcomm.com>
-From: Bryan O'Donoghue <bod@kernel.org>
-Content-Language: en-US
-In-Reply-To: <ab43c5c9-edc5-459e-8ef7-2aa8bec559c0@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 16/10/2025 21:53, Vijay Kumar Tumati wrote:
-> 
-> On 10/16/2025 8:31 AM, Bryan O'Donoghue wrote:
->> On 16/10/2025 13:22, Loic Poulain wrote:
->>>> I'm - perhaps naively - assuming this clock really is required ... and
->>>> that both will be needed concurrently.
->>> AFAIU, the NRT clock is not in use for the capture part, and only
->>> required for the offline processing engine (IPE, OPE), which will
->>> likely be described as a separated node.
->>
->> Maybe yeah though we already have bindings.
->>
->> @Hangxiang I thought we had discussed this clock was required for your
->> setup.
->>
->> Can you confirm with a test and then
->>
->> 1. Repost with my RB - I assume you included this on purpose
->> 2. Respond that you can live without it.
->>
->> ---
->> bod
->>
-> @Bryan and others, sorry, I am just trying to understand the exact ask
-> here. Just to add a bit more detail here, On certain architectures,
-> there is one CAMNOC module that connects all of the camera modules (RT
-> and NRT) to MMNOC. In these, there is one 'camnoc_axi' clock that needs
-> to be enabled for it's operation. However, on the newer architectures,
-> this single CAMNOC is split into two, one for RT modules (TFEs and IFE
-> Lites) and the other for NRT (IPE and OFE). So, on a given architecture,
-> we either require 'camnoc_axi' or 'camnoc_rt_axi' for RT operation, not
-> both. And yes, one of them is a must. As you know, adding the support
-> for the newer clock in "vfe_match_clock_names" will only enable the
-> newer chip sets to define this in it's resource information and set the
-> rate to it based on the pixel clock. In kaanapali vfe resources, we do
-> not give the 'camnoc_axi_clk'. Hopefully we are all on the same page
-> now, is it the suggestion to use 'camnoc_axi_clk' name for
-> CAM_CC_CAMNOC_RT_AXI_CLK ? We thought it would be clearer to use the
-> name the matches the exact clock. Please advise and thank you.
+SparrowHawk may run without ATF but with U-Boot SPL which does not
+reserve the SWDT. Remove the default "reserved" marking.
 
-The ask is to make sure this clock is needed @ the same time as the 
-other camnoc clock.
-
-If so then update the commit log on v2 to address the concerns given 
-that it may not be necessary.
-
-If not then just pining back to this patch "we checked and its not 
-needed" will do.
-
+Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 ---
-bod
+
+Tested it by using the SWDT on my board.
+
+ arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk.dts | 5 -----
+ 1 file changed, 5 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk.dts b/arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk.dts
+index 161c083241f9..1da8e476b219 100644
+--- a/arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk.dts
++++ b/arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk.dts
+@@ -942,8 +942,3 @@ &sensor_thermal_cr52 {
+ &sensor_thermal_ddr1 {
+ 	critical-action = "shutdown";
+ };
+-
+-/* Firmware should reserve it but sadly doesn't */
+-&swdt {
+-	status = "reserved";
+-};
+-- 
+2.47.2
+
 
