@@ -1,185 +1,203 @@
-Return-Path: <devicetree+bounces-228306-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228308-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6111BEB692
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 21:53:50 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id BC46FBEB737
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 22:11:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 502F01AA6EDA
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 19:54:14 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 8434A4EA137
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 20:11:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 497D3287253;
-	Fri, 17 Oct 2025 19:53:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 612FC2FF663;
+	Fri, 17 Oct 2025 20:11:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HBvNa1Ka"
+	dkim=pass (2048-bit key) header.d=iopsys.eu header.i=@iopsys.eu header.b="eVukdDbE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f179.google.com (mail-pg1-f179.google.com [209.85.215.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from AS8PR04CU009.outbound.protection.outlook.com (mail-westeuropeazon11021085.outbound.protection.outlook.com [52.101.70.85])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADFD0246BA7
-	for <devicetree@vger.kernel.org>; Fri, 17 Oct 2025 19:53:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.179
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760730827; cv=none; b=ikWhzdJFQwPj+27VNVJuTgI10pKuYTwjY/TrHdQ86o/2qtrWQ436L9hkOtbCRFvt+lqb/DgPLFpA+V3YosKb0vlGKzvSeFubyH6EFEPLgwe9dMkJJiZVMpFb5ZDX2mH3k6T6oh+WuQn45feH2g+eDpft+Ckqk7QbmtbPzzDdP0U=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760730827; c=relaxed/simple;
-	bh=i5Hk7l6xoSrN+AXcpR4MGOF8Rj8+Hz0UPLQLCeNrNAQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CJMYYRgRGhOtq7ag1ztFTPvXuqO4oFbwKYXhVi/q5XxM4x6bZcHHKKZ+9Wc067O4Tz34SMKe7KJoyyCijer+VmilT1tXiK8iKTEHQbqFI/AhiklJQ9CGAmgpRY+FiEbOOeoTnqJe5CpwBxYpRuJ2OtmHrG70P0gsLRQdbWZBctw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HBvNa1Ka; arc=none smtp.client-ip=209.85.215.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f179.google.com with SMTP id 41be03b00d2f7-b49c1c130c9so1411218a12.0
-        for <devicetree@vger.kernel.org>; Fri, 17 Oct 2025 12:53:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1760730825; x=1761335625; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=66FjiNXaw8TmphFF9eNaWop8aMdiITfbjide+1BjBFk=;
-        b=HBvNa1KaWts9c2rgQWDkU20KWOrpUxl8AmeijyxnjLCTYQ+yX8wZwQBP1+mInRgJU/
-         nDuIMZ3LOacOaNqmO7/rDisXD7QbkgKSFnhRI3vVVV2Rk1Zocd6Qg9ZsXe6kr8D2gTcZ
-         yZ5aK+e3qiqVvqypWxOyx0mIZhNcq+NGNtCk1v9VxxGpqYuGZg+F6BH4qArboXz8CpIV
-         k3UWekdRN1beDAIdt1uztpZWQ+dLekrvQbUbekmVnrXh5+tjezrS/7+76K8oSX1SRV/c
-         EmPO0qDPVpbbDsgTiy8wuNSOAllCtDjcSHPkQ11Pb7VSZ8oUW862fefddu+fzKlY9raP
-         5exA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760730825; x=1761335625;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=66FjiNXaw8TmphFF9eNaWop8aMdiITfbjide+1BjBFk=;
-        b=ASZER7YhirjIgSuuvjFP/W5sK625R0mSHiHHXUsxy1OmI/nxwfm+vss1mIMDqLkDs5
-         BI09Xg0C5Dpze9qI+CFaTZoNu77Mmuwx75mPmiAaDPowP8cGIktmN1WWpGtV4LkBIODi
-         JZ/yMC8nk8TC479D8ppv5+ZFjkMchFa1arSl52i5635weBzt0XtUsPmhL+fwGQlXyzS4
-         3tOqNV7a5qlh8+A6aSDlQYDiASAnFAWQxPP5paY8N/WS0uTM+LZCa824T0FpokkNhvd3
-         GR1smuGNWqnTh5hA3jvWBlK1Ig13va8Kt+NgKsmMHUOEotEmuSGshsYuIEum+B36vPyG
-         VIfw==
-X-Forwarded-Encrypted: i=1; AJvYcCU8subMBVGt/denP8N0I6KHA1N7apCBBC8jji+DzrfQYMwx9xoSjf4Ur2p1QqSNss42JJb9ZGvYBB7f@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz5E4alEf/61JQYvsGtH8PDOx9SM2e3kHFTuX/mtQT1KdMQnln2
-	qFzRUkQ9topw2PN4hgsvo+0TPshCbKw7WBMo620h/DIG67sl3DL9qhVz
-X-Gm-Gg: ASbGncuZ28Qv853UN0XdzkrYu6HDSJ0wK5jnpt1Eh8P+DtCZPZldtJg5kTwjoOfK2ap
-	o0kS8eVWrNOOq6kZJVdu69zlGekmvBuVo2ot36unJPLypArglkYU1IlmPc8oUORDwwhny8BC/vj
-	jpy96ZyQkNIpu60asLx1Z/axF5hWaMuwuC53voebSjFD1XGVcmdbclsfuATVVLazPGqmRkidxxa
-	fggT69uf+swmRRZGR3xaG4//s+L+SDR82rAsm6IbkQsKKMAWMazNjGzXfRBYriRDMlKitctp+ID
-	0LNRke9SmTcVrx5MshcHASKtle4f0OXL3S1aGImEgnCFjpa8HXKU7g1Kafq56y7wBfvYCaY/Zrr
-	XjpC87PtJwrKcnCDz/Q89Z4+UwkZisngBPo0mvbc3Jt8lXusvzWD/YflAmOMDSRLbN4JfvqTE7r
-	qBWiGINbE3oodrZmJDKhlakGR/nfi8qjo=
-X-Google-Smtp-Source: AGHT+IFmw4xfU96UxI5JCpiksAaEuctIniSQG6RkIj6XxJvpDrHo87ypYEHktyPgkIumG9POKqgUKQ==
-X-Received: by 2002:a17:902:f550:b0:269:874c:4e48 with SMTP id d9443c01a7336-290cb65ca69mr70425735ad.47.1760730824956;
-        Fri, 17 Oct 2025 12:53:44 -0700 (PDT)
-Received: from localhost ([2804:30c:402b:1a00:ec78:db53:a246:207a])
-        by smtp.gmail.com with UTF8SMTPSA id d9443c01a7336-292471fd9ddsm3303605ad.89.2025.10.17.12.53.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 17 Oct 2025 12:53:44 -0700 (PDT)
-Date: Fri, 17 Oct 2025 16:54:49 -0300
-From: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
-To: Nuno =?iso-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-Cc: Marcelo Schmitt <marcelo.schmitt@analog.com>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
-	linux-kernel@vger.kernel.org, jic23@kernel.org,
-	michael.hennerich@analog.com, nuno.sa@analog.com,
-	eblanc@baylibre.com, dlechner@baylibre.com, andy@kernel.org,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	corbet@lwn.net, Trevor Gamblin <tgamblin@baylibre.com>,
-	Axel Haslam <ahaslam@baylibre.com>
-Subject: Re: [PATCH v5 5/7] iio: adc: ad4030: Add SPI offload support
-Message-ID: <aPKfCbZSXxaHICel@debian-BULLSEYE-live-builder-AMD64>
-References: <cover.1760479760.git.marcelo.schmitt@analog.com>
- <c12569f251962ad6034395e53cd6d998ce78a63f.1760479760.git.marcelo.schmitt@analog.com>
- <5e3a1d31f3cec340650e2e63db79903b78ab9a1f.camel@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 676942566DD;
+	Fri, 17 Oct 2025 20:11:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.70.85
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1760731907; cv=fail; b=tKCamyh86N7ASB8VAmbPJ7e0Ez7b/rq8cXVAXPOkugzHZSz5eMezBzZ40qWUFbvTIBSNG0vURlXY96jRij2H9W6anLP+2SF77Pqc9JkKH+R/p5KLkMVU7ZV8KuHoQ/6w4/TIxAKggiCSQVxwruE6LOLzm3HoI9Pye9n5l/MlkGw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1760731907; c=relaxed/simple;
+	bh=iTWzeGctc8AcS7LPJEL0z1vsOUblEWcfYQPZkF/2w+0=;
+	h=From:To:Cc:Subject:Date:Message-ID:Content-Type:MIME-Version; b=eK6ugLvYqgfWuBSM42MsFvbBc4Q714Szm5N4nueBmGVSL1DSTE+pd8ydrmz8ZAkkqrPlM7GVf5jH0rqFPcBOFIX9Qf+wCpuM8DGdDd/cE/zD9H9YoRAHeewt11GOjU2nP4KhWkef6llr8vdx8SMG++EuU72j5/NDzmzjvZmTBsQ=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=iopsys.eu; spf=pass smtp.mailfrom=genexis.eu; dkim=pass (2048-bit key) header.d=iopsys.eu header.i=@iopsys.eu header.b=eVukdDbE; arc=fail smtp.client-ip=52.101.70.85
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=iopsys.eu
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=genexis.eu
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=E68ZbYIyp8MZi7s9tWo4iyIToGBwUcN9Etd9KfFP32rx0iUG4h7lwUrYpIbdFVwiAiTOIeUjdsZz7Q3FsymbxFxr0/rI0XcUdvxmyY2dT+ccgVgs1IjZSHsxtRulyYCnHDjDUv2ykgesj7E1k9+/jyayv/3wakOsGrfCKCQTLUHIgt2+v5KDsA8gwBo9ugk8lEOMrwFCFaNpZBlrPLZurwb3VjTgZ2G40CUep++Qej7CGbm4YXTcR1e1uZzEJ6WLelEYZ5SARqEcT6OGLxZO+SwSuCPN3Ut+3KqUpK9QwAgYCkR8IP6/8X4506Vb5CnQLuMI8NKiYfGaSxmuaXUBEQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=XgXBt5Vj7LkEI6yitIIm2GqmR4sgyd0J5qECpzRJKaI=;
+ b=jsDzgJKicgJC4/I2Ne1OQCezijiWHRvemnfv8y4UGr6nMcU2xSgYCgRKSADoePqm9hGbpt5wDy7LUcsXrDdBol5r4hS8fjR77gTdkw1kpKbGAj32Vp9nF+h5UngZ1ipTTSdO8dgL9CWfbL+NOTcuXmpOW+LgiAXRHjFpAgUqJDeJBULJJZNIl2DhEM5H58oPXmlpKR/RUiNaVCubpjC1k8egOUCKD1DSD7ucPIY3AgcuNz/fV91WxVzBfCJuESZKdG7IwvcuZlEy62HQ+3SBudwX/RAcx+l5OGsQ9zxVKeopv2I0P+bpe6zuD70ze3NETGeSsQebBd/8i8V3Psi4pA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=genexis.eu; dmarc=pass action=none header.from=iopsys.eu;
+ dkim=pass header.d=iopsys.eu; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iopsys.eu;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=XgXBt5Vj7LkEI6yitIIm2GqmR4sgyd0J5qECpzRJKaI=;
+ b=eVukdDbE9C/aLeVejdNIuDBPx6ud+edPpXTBUBdJ4HrEKyGRGbnbaN1jSbKqtxW5Cs4cjZDeKbaqohJuJamSWg54em3P7MQ3pGixyAOiwJkqa4bIg2f7VX4r+EbV3yB586newtP80nK7vdhkj8+vAUsZ6yD3BA1s/jLI17tBg7mM1LmwCtaN2cfV+bWibxEHV7ZhcT8lhCE04nR1cgeCSNCzCm7W5ys1859BfDyP47n87KJ/SDXu1kZrNn1IW4EV0fedFmOzBp8acLXab4L98Ty7Aox9gLFhcUR46il5WAxtQkESipiwp9xQKbx5PB6Yd2x+/0HcbaHHyFmDhqYYVQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=iopsys.eu;
+Received: from GV2PR08MB8121.eurprd08.prod.outlook.com (2603:10a6:150:7d::22)
+ by GV1PR08MB11247.eurprd08.prod.outlook.com (2603:10a6:150:283::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9203.11; Fri, 17 Oct
+ 2025 20:11:36 +0000
+Received: from GV2PR08MB8121.eurprd08.prod.outlook.com
+ ([fe80::4cd3:da80:2532:daa0]) by GV2PR08MB8121.eurprd08.prod.outlook.com
+ ([fe80::4cd3:da80:2532:daa0%3]) with mapi id 15.20.9228.012; Fri, 17 Oct 2025
+ 20:11:36 +0000
+From: Mikhail Kshevetskiy <mikhail.kshevetskiy@iopsys.eu>
+To: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Felix Fietkau <nbd@nbd.name>,
+	linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org
+Cc: Mikhail Kshevetskiy <mikhail.kshevetskiy@iopsys.eu>,
+	Andreas Gnau <andreas.gnau@iopsys.eu>
+Subject: [PATCH RESEND v3 0/3] clk: en7523: reset-controller support for EN7523 SoC
+Date: Fri, 17 Oct 2025 23:11:23 +0300
+Message-ID: <20251017201126.493496-1-mikhail.kshevetskiy@iopsys.eu>
+X-Mailer: git-send-email 2.51.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: GVZP280CA0067.SWEP280.PROD.OUTLOOK.COM
+ (2603:10a6:150:270::16) To GV2PR08MB8121.eurprd08.prod.outlook.com
+ (2603:10a6:150:7d::22)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <5e3a1d31f3cec340650e2e63db79903b78ab9a1f.camel@gmail.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: GV2PR08MB8121:EE_|GV1PR08MB11247:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7897d9b6-add4-468e-42fa-08de0db95f9d
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|366016|376014|52116014|7416014|38350700014|921020;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?L2xiHv/3fymll+MnFYSwDxaAYt5N2FRnUgIdT2th9liOYORnbV4infjeNP60?=
+ =?us-ascii?Q?XY+mkmVcJrKdsP24s+jwql32QHj9ysZGUxwrIxtDID8erXPUp9TApXAsFdTm?=
+ =?us-ascii?Q?32ZAou4IFXEoiTtg1XYOWK9FPhD0GllG+7Dw6jN98H91JZiiRFt6C9QsHLSx?=
+ =?us-ascii?Q?uJmfnTdGwK74kmQe+TpC2QYuY7G/MHvqlz4bLLjxNDgppTno4l1xXeYYaJI/?=
+ =?us-ascii?Q?JL8vA4ZhRUWQKDOltX5UTOySAlxynXM1I1dE0ykEQJpJ6AhpkccJKOwIhBe5?=
+ =?us-ascii?Q?QpXvN13RPWPVCcCJ5lKJmniFugUaEPAntBD9w9kYGYIpma4UTDy75Z5dgEkM?=
+ =?us-ascii?Q?xp7n2Cp6XViXVA9pI6HGjn7xwH3G6gmwxmEZv28w1Jt25VzH2bI0CPy5/H9O?=
+ =?us-ascii?Q?AFMfXwduFe6z49bgnkIWa0Np2XA68ZFLkFtygOlCuWn0kFEUSLS1m28ntrCK?=
+ =?us-ascii?Q?bKe+bvEEOWcNUKJuRfwngHtaCGqNSAEKhrpWZhRagcBh0aU87xoCrzvF5lTv?=
+ =?us-ascii?Q?o1rqWu/LT0+O6tOn4e+yTE77Ot+GiJ53I+a87l8WLryRXbWS05Br5a69w28O?=
+ =?us-ascii?Q?HPsyKUcbOQVj8Z3eFT0owU1KBKhB48jOfl4Ip3IN5Ulz7DX19dExtJQJ64BU?=
+ =?us-ascii?Q?ywVL+ZNbjhO12Xj+5wd4iWvS1aHpG7bHe2PLCGf51XhMSKV4Jd49m47bVMt+?=
+ =?us-ascii?Q?jSw8+Svxl+6vGDRj7jk7U5OFBeOZUrOoVfwjw+WdAW99PQXEdMGN90DoAN/V?=
+ =?us-ascii?Q?paq9AM6J5rtYixoefGiyr13K/7fDyxFsV8Cly1a8FV59m+EMfpzvXiYj2mup?=
+ =?us-ascii?Q?mLnWUM4oZaC3xOKaakNmDAefrv1l7k/hkJSi7TvBmX1mS6wfP/qAz+UULG4C?=
+ =?us-ascii?Q?THo5ktllOBxTUIx3dDxnGZey9wfsZOCywWhWlliVEamNsc3dCmrjD+yIMVho?=
+ =?us-ascii?Q?uj1zCcZLagqigiTaagPdzCHDvVkJNt8qffei7dIwbUgBzCq5cBZy1Zij2ord?=
+ =?us-ascii?Q?CBA1GZa4t7n0D6B27wCT6Q0qUnh3+jaUTV2099nqQ2azT/rJQ4ATOe3wfXpc?=
+ =?us-ascii?Q?k5uBEK1uNox9j8P6VQ4KFi4WHUnpsCzm1yXgvX5wbw2SIg6c4unObpPVpbuF?=
+ =?us-ascii?Q?sM5A927giKd64Tx1MmPNiZKQN59hZ8FO1+OIs+7b/HmvPDvh4TsAp0+QIcZT?=
+ =?us-ascii?Q?EDxaY7YYbYIeFfwTFKsW1bsvZ4Rh9anpF/SX7QTIEW/KUiP17qi1+nShqLoI?=
+ =?us-ascii?Q?hdGW05+6KuFTQ5QbGd9j7H8mtcKgCUJPGXTSyRKS0OxzWuK0OAeKuX9Ib/LM?=
+ =?us-ascii?Q?IEcGHso64KJkBVOgEc2/iGREajjiyjxmpBBRI9qGjumCyD2VuYeDZRZI5GjI?=
+ =?us-ascii?Q?uOlDp7TfVKj8e2Ze2NPUPqyt04rVI4uZ+LPp4rMq0KJF7K9lOCMQn8rP4gsO?=
+ =?us-ascii?Q?5uYYgSce2Of5RE4QF6567u8pMYPow/4ZvUze6oCXRqY27j6cH+Bgut8dTLoD?=
+ =?us-ascii?Q?W8enAc8TfZXXWh7F2aSKnxzCZrEVIGsuHUoBu3yJjUFShpL2Epc4IWbrRQ?=
+ =?us-ascii?Q?=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GV2PR08MB8121.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(52116014)(7416014)(38350700014)(921020);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?ZQR9ceGn50rkIgJY/7+odQhhTj7SG/hn5iVlbDfQY6a/98JyN5jVMWxVQnnY?=
+ =?us-ascii?Q?9DQUOBI3JsOEsYxFg/QZo/QdTceocaFKmgwIPXrCSJk6/yYwnM5bKfbLb0sS?=
+ =?us-ascii?Q?8Amvow/jPmXZ2OTlGCPN7GuibOvKIAe6Ui6V5Zf1erM71tHzGpB9+gf41qMj?=
+ =?us-ascii?Q?ZP145ews835iwaahIFIAobGVq+QYH/5QKQLgMTqKzgiLpiSKrI+Vc9REWdW1?=
+ =?us-ascii?Q?qCwdZjBbOzoltslSZzUkjLFyAi08noF9MUkSnHpGXuiMm5f9plMb5KDSTKeZ?=
+ =?us-ascii?Q?qGfZ2Avf6OX4WnG/s3TYaPtVLVdmP0T1J+62rxN4lWxuMC8QP3WFTIBGaKBO?=
+ =?us-ascii?Q?uApauruhuq0a4UuqqgP5axzqQkRE0LY++hJhy4Tfi7EpIX8UF6d8c6IJ2vgm?=
+ =?us-ascii?Q?jDvZXJx76MeCA1bMX32zHLFxYY8Uk0r/6F06ZETz+g7RpehbpTNCnoP1369B?=
+ =?us-ascii?Q?HD93xj+vx+AuXkinLQ8108FhT6VATYP5V7AjvqZtyxFMZYyrXRFX/Epz+LIV?=
+ =?us-ascii?Q?bf++zHOmiiOMyGaoEt8DxgSiNHuJN62p+eag/NNi2KlYQqXcRl5qKYzoCOht?=
+ =?us-ascii?Q?7ZJM3WsRkn21LUnfMUEbYKWY36mZaaMuMw7ilUrrEyoZ0LbwcGX9AM7DeOfD?=
+ =?us-ascii?Q?3SwQMaXbOEAEfCxn+FXiMAVUpOClH3jnGYFqt+zOyanlYhkdfmYNW2R3cj9I?=
+ =?us-ascii?Q?ZmKVmkOwR9Hhk7LR6cocuYby/MZuiSAUz8rbnRhEkl3HTwhnIdWISUw9vXVc?=
+ =?us-ascii?Q?Y3fOrZ8qsbeZVUw69hlbwJZPSS49D3YJn4xXoY3OnV3mCHGnNQMBnE7WxwWc?=
+ =?us-ascii?Q?IkjMxzpVTHND7DtOgHxgAc1RJiDcOXin5NaftHvHHA/O/jqUTcpp3etENSr4?=
+ =?us-ascii?Q?ZKkCHi3B7Oj47oa+JASGgPAWwtUhpKKOoxroLK30D6YuKf7nm6EaAWs6XZu6?=
+ =?us-ascii?Q?g40cG39VaQ2xuFkSzdnl1umMl67pdGEo7WlExyIveC+hw96zKzXVD3cukP0J?=
+ =?us-ascii?Q?DGBiEjF0mTScgwFKacOG/0x3/EAgR6VQg83HkJm9C71VC2IZvIRe1vvYo7yI?=
+ =?us-ascii?Q?mHNQKqlP8JqMWiptiBgRLWlE4QSlHTO4aU2LnCDxYkXHXX4yPSJ/NUW601lx?=
+ =?us-ascii?Q?yX4KIsbLRwvOsAczklPoCzKodA3RL4FkQg5VS6oLV1S+YIMElHiwruy6B09e?=
+ =?us-ascii?Q?t6RDiYOoGL7EuGLR7Qr6AxFY6X/D97vCKQwnv6Vc0jmK7YPBFtrfKsXGkH7m?=
+ =?us-ascii?Q?xa17cUVEi0NGkZAWgHKHFGH4v5zrQGqgHsfVMEUzNdPKOSBerVXAd5xrroo7?=
+ =?us-ascii?Q?jPwd9ICr4jZte+L1H19ySexAVpW7fS2YHG/mihec7D5OtG6Y+DxTWJiWu6ZI?=
+ =?us-ascii?Q?NqhRGXScjWIsgRvnUtVf/7wEWX1rTOTNPCppHHF1RlTYEjIxqf3YUDphoKi+?=
+ =?us-ascii?Q?EgBanFus4TXDQ009MgT+zhTVgqvMDs7Yw5g7ZnGeenpIdVUM6o2HQiRWevWF?=
+ =?us-ascii?Q?3zWM4i0bq+I4y5vpy2gFFh1E/nv6CRoI51VUV25/uy4rSSoMk9nBigLf9VU6?=
+ =?us-ascii?Q?wOa+07vDi2lj9vaAsvaNy07NVBZb/gtR2VDuGmkZItD+jkXyBlxIxQhkklUZ?=
+ =?us-ascii?Q?31f417UgiPbo24aGt6aKKnw=3D?=
+X-OriginatorOrg: iopsys.eu
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7897d9b6-add4-468e-42fa-08de0db95f9d
+X-MS-Exchange-CrossTenant-AuthSource: GV2PR08MB8121.eurprd08.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Oct 2025 20:11:36.0913
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 8d891be1-7bce-4216-9a99-bee9de02ba58
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: zDO+KSWgPmTnigYJzXspa5pbb1g+hiAKMt6mpkuWYFnj1gbWoH4j4DSBG+qPNIMsYkAyu+XIKh7CPL6pRNbYFOiWbaVpnY7drxKqL6hmRGM=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV1PR08MB11247
 
-On 10/17, Nuno Sá wrote:
-> On Tue, 2025-10-14 at 19:22 -0300, Marcelo Schmitt wrote:
-> > AD4030 and similar ADCs can capture data at sample rates up to 2 mega
-> > samples per second (MSPS). Not all SPI controllers are able to achieve such
-> > high throughputs and even when the controller is fast enough to run
-> > transfers at the required speed, it may be costly to the CPU to handle
-> > transfer data at such high sample rates. Add SPI offload support for AD4030
-> > and similar ADCs to enable data capture at maximum sample rates.
-> > 
-> > Co-developed-by: Trevor Gamblin <tgamblin@baylibre.com>
-> > Signed-off-by: Trevor Gamblin <tgamblin@baylibre.com>
-> > Co-developed-by: Axel Haslam <ahaslam@baylibre.com>
-> > Signed-off-by: Axel Haslam <ahaslam@baylibre.com>
-> > Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
-> > ---
-> 
-...
-> > +static int ad4030_offload_buffer_postenable(struct iio_dev *indio_dev)
-> > +{
-> > +	struct ad4030_state *st = iio_priv(indio_dev);
-> > +	unsigned int reg_modes;
-> > +	int ret, ret2;
-> > +
-...
-> > +	ret = spi_offload_trigger_enable(st->offload, st->offload_trigger,
-> > +					 &st->offload_trigger_config);
-> > +	if (ret)
-> > +		goto out_pwm_disable;
-> > +
-> > +	return 0;
-> > +
-> > +out_pwm_disable:
-> > +	pwm_disable(st->cnv_trigger);
-> > +out_unoptimize:
-> > +	spi_unoptimize_message(&st->offload_msg);
-> > +out_reset_mode:
-> > +	/* reenter register configuration mode */
-> > +	ret2 = ad4030_enter_config_mode(st);
-> 
-> nit: if ret2 is not being used at all, maybe just
-ret2 is logged on the error message below so I guess I'll keep it as it is.
-> 
-> if (ad4030_enter_config_mode(st))
-> 	
-> > +	if (ret2)
-> > +		dev_err(&st->spi->dev,
-> > +			"couldn't reenter register configuration mode: %d\n",
-> > +			ret2);
-here we log the error code. We only reach it if reg access fails after
-something on offload buffer enable have failed first. We cannot reuse ret here 
-because we would be shadowing the original error code.
+No any activity for 3 weeks, so resend.
 
-> > +
-> > +	return ret;
-> > +}
-> > 
-> 
-> ...
-> 
-...
-> > +	} else {
-> > +		/*
-> > +		 * One hardware channel is split in two software channels
-> > when
-> > +		 * using common byte mode. Offloaded SPI transfers can't
-> > support
-> > +		 * software timestamp so no additional timestamp channel is
-> > added.
-> > +		 */
-> > +		indio_dev->num_channels = 2 * st->chip->num_voltage_inputs;
-> 
-> Maybe I'm missing something but common mode is not supported for now so isn't
-> the above wrong?
-> 
+These patches:
+ * adds reset-controller support for EN7523 SoC
+ * updates dt-bindings
+ * updates en7523 dtsi
 
-Yes, that was buggy. Dropping common-mode channels as last minute change was a
-bad idea. I did another set of tests with ADAQ4216 and fixed that for v6. I'll
-also re-add common-mode channel support as a separate patch.
+Reset-controller support will allow us more easily reusing of en7581 drivers
+for en7523.
 
-Thanks,
-Marcelo
+Changes v2:
+ * keep '#reset-cells' property optional
+ * put dtsi changes to a separate commit
+ * add missed dtsi include
+
+Changes v3:
+ * keep en7581 prefix for common en7523/en7581 variables and functions
+
+Mikhail Kshevetskiy (3):
+  dt-bindings: clock: airoha: Add reset support to EN7523 clock binding
+  clk: en7523: Add reset-controller support for EN7523 SoC
+  ARM: dts: airoha: update EN7523 dtsi to support resets
+
+ .../bindings/clock/airoha,en7523-scu.yaml     |  3 +-
+ arch/arm/boot/dts/airoha/en7523.dtsi          |  2 +
+ drivers/clk/clk-en7523.c                      | 64 +++++++++++++++++--
+ .../dt-bindings/reset/airoha,en7523-reset.h   | 61 ++++++++++++++++++
+ 4 files changed, 123 insertions(+), 7 deletions(-)
+ create mode 100644 include/dt-bindings/reset/airoha,en7523-reset.h
+
+-- 
+2.51.0
+
 
