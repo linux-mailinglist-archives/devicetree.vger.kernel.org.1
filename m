@@ -1,157 +1,125 @@
-Return-Path: <devicetree+bounces-228221-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228226-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2CDFBEAD79
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 18:45:43 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 34BF0BEAA10
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 18:21:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A8C5C964508
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 16:04:07 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 3BFCD5A6E1C
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 16:11:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82B5B264630;
-	Fri, 17 Oct 2025 16:03:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CACA628A1D5;
+	Fri, 17 Oct 2025 16:10:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="FhUWtwoC"
+	dkim=pass (4096-bit key) header.d=prolan.hu header.i=@prolan.hu header.b="DVJDUqr8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+Received: from fw2.prolan.hu (fw2.prolan.hu [193.68.50.107])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0E23261B99;
-	Fri, 17 Oct 2025 16:03:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19E4A2253EC;
+	Fri, 17 Oct 2025 16:10:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.68.50.107
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760717010; cv=none; b=I8zjyMokQxBUkAtbfjk4KFkkptqvlbpt0yybdCsWobYQbYJi7jLe7Mw4/wlkMAilQ4BtKPR1IdEevaSkCaz8o2stRyJld75XLDi4eteMJFR/5vqUfCUnMJXqjLX/BKbOWzSalzkDo9jNXuO4MndMn+gVOYZZmfGi1tuLdfOKp1U=
+	t=1760717425; cv=none; b=tch38qhLW3+NH+JIapFriNOgbHl6tEGOohb83Y1sDDDsy6Yl3kXemP4yI5Bx/NBbFQvnRsXHRyDG4Eu3rdHHU6cIm5TH4K8/qy0OJiu1Gz1C92Zz55CE/QVo4+EE2tte9uo/Ir000AC6YOpLWicUbVeIwKVdJjf4JBFWE6S4B1Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760717010; c=relaxed/simple;
-	bh=V5nvHHyMpT2oBH9OXx7GRjutbxS7EJ70S9GS3ixgU8g=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=QTvXPn6Mum6p2kPaDk3dtH4SIwUZP88QAsxnRQrbnGNIt2CE/ThRsIQdsaG/QtWhMTtAkcql3hVi09aPRBOSdFsMc/xSC1Y3xYu389RdVJr6NQ/zmj+ovKY4ntZa3x5ecOnEVGLCaiXJPzg1fy6uwvmryciUjiVou9aCnmVGNJY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=FhUWtwoC; arc=none smtp.client-ip=185.171.202.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id A90D8C041F8;
-	Fri, 17 Oct 2025 16:03:06 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id DC1EA606DB;
-	Fri, 17 Oct 2025 16:03:25 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 5C050102F2366;
-	Fri, 17 Oct 2025 18:03:15 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1760717005; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=VRVsgwJpNbMCtPLDUTdNjde66pvJANzuRr/rOO23+SI=;
-	b=FhUWtwoCP04yqOiDmI1EwaKM4t/9LEDySI/yars/wRXf4nwS1KPl3FYGVxS3pmy7ayjfu8
-	dimGqZSBI2FGcQlJrtl6CuIigftt/sPbKmUzjtVWd7ionCy4fpOa/M8nKedz3JOo86KR1u
-	9el4cFyMXPTJGKtxHrFcK8VXxf288PmRZUD8X0dZ7dsGnXh0B64g6B7HVjNsE5EhoT21Wu
-	LCItfKgk3M/74O35AivJ+XyBN42PTfngM8l/su5jrljiUluJ5oMhe6S8C7o2JV2p7GIUAb
-	e29UtSHdxEByIa2NfNLGUUcmCF4en4fOyWC5pCDXbfz22setFP8TodIdDqYWUQ==
-Date: Fri, 17 Oct 2025 18:03:13 +0200
-From: Herve Codina <herve.codina@bootlin.com>
-To: Alexander Sverdlin <alexander.sverdlin@gmail.com>
-Cc: David Rhodes <david.rhodes@cirrus.com>, Richard Fitzgerald	
- <rf@opensource.cirrus.com>, Liam Girdwood <lgirdwood@gmail.com>, Mark Brown
-  <broonie@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski	
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela	
- <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, Nikita Shubin	
- <nikita.shubin@maquefel.me>, Axel Lin <axel.lin@ingics.com>, Brian Austin	
- <brian.austin@cirrus.com>, linux-sound@vger.kernel.org,
- patches@opensource.cirrus.com, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH 1/3] ASoC: cs4271: Fix cs4271 I2C and SPI drivers
- automatic module loading
-Message-ID: <20251017180313.0f0f71d7@bootlin.com>
-In-Reply-To: <336e169019bd3eadc475c981abef3db07149a5db.camel@gmail.com>
-References: <20251016130340.1442090-1-herve.codina@bootlin.com>
-	<20251016130340.1442090-2-herve.codina@bootlin.com>
-	<60fbaaef249e6f5af602fe4087eab31cd70905de.camel@gmail.com>
-	<20251017083232.31e53478@bootlin.com>
-	<d6bd466a5d11b016183db0ac3c25185fad3036fc.camel@gmail.com>
-	<20251017171024.5a16da34@bootlin.com>
-	<336e169019bd3eadc475c981abef3db07149a5db.camel@gmail.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.43; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1760717425; c=relaxed/simple;
+	bh=6KhZzuB5RgPXRnk3z3pqPv5g/6A72xiksTm8KdGgFOc=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=GfVXYIs9he1S7tPtILRY9WghCT5Ax7fCFh+Gh/3oIejn4bqnsViowmF+ZxmUHmn8GkXm4XoMuuoCXX/Qe+cGW49SFcllWxnnpZtG3LDVOK4NJNUVkba/9YWJ5Yyk6irl3kTCX+LSPaIUdI3/q2ls7B2w7kmcLG062f9j6kKrXRc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=prolan.hu; spf=pass smtp.mailfrom=prolan.hu; dkim=pass (4096-bit key) header.d=prolan.hu header.i=@prolan.hu header.b=DVJDUqr8; arc=none smtp.client-ip=193.68.50.107
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=prolan.hu
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=prolan.hu
+Received: from proxmox-mailgw.intranet.prolan.hu (localhost.localdomain [127.0.0.1])
+	by proxmox-mailgw.intranet.prolan.hu (Proxmox) with ESMTP id 2C860A10D7;
+	Fri, 17 Oct 2025 18:10:19 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=prolan.hu; h=cc
+	:cc:content-transfer-encoding:content-type:content-type:date
+	:from:from:message-id:mime-version:reply-to:subject:subject:to
+	:to; s=mail; bh=qdHFeu7J/stvY65dY6buBrBVhFapjPw5TmtVfzS/XXk=; b=
+	DVJDUqr8F1ubGCEo4HU7/D7OEq3IWQUG1YSmnvsprjPJLt49uPYTyOtmAJr1DTaq
+	9BYcrHWj9bUOCBQ0eUoDNWKQrLakhCD3D7JxOuhDw9uQUNY0yfAs03PxYf7FxZr5
+	3aSwEcNaXAV3wKjlwP0G7inQgFY2dYpQ69oWji7rqvFbZR9IIY09x0wZk1iDD8cu
+	CtSGJ5zDvGM939Nz1N2lw2bqH+S8BPvsGLSAm3YxyvNEq99O4DBX213qC+Neh71A
+	n0obF7nPjePKelFGScADayhQD2rMOCsv87/V3Pt1RqwPguhvpWvRg/OCcYLc3roM
+	gToix5XkTrsgZYIIRhHW5IluXOJtXlO33DXfYnItCjLanOHDZn1fc3rRbuC1ExuD
+	+q0g/NbQLYOWZFF3ou9+X1Fw0hIwfr+A6Zu60t6y+O3prQvJsPPEcjUJKS0YFAcE
+	fokUQBNw7bO/bdsIWrNNgNiNUHPoUVH1bCw22+pIps7FLSJ6x/AQn05YW4zF7AJ5
+	XHCrwyZuUWsmnUNIhiFQ7S24tMvEFYXModada3Bi4s3OuELzoVBWdgD6YaZdN2rN
+	X9Sd8aDfXYo1M3t4MfcXNgdDklPFJDRJuQU8oDuf2GF+yKFnk11ns84VUSE+V2ko
+	xeg2dcSg03zMNx787BOo4v+n4EYha8n4v3osBZI4mzk=
+From: Buday Csaba <buday.csaba@prolan.hu>
+To: Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>, "David S. Miller"
+	<davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub Kicinski
+	<kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, "Florian
+ Fainelli" <f.fainelli@gmail.com>, <netdev@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC: Buday Csaba <buday.csaba@prolan.hu>
+Subject: [PATCH net-next v3 0/4] net: mdio: implement optional PHY reset before MDIO access
+Date: Fri, 17 Oct 2025 18:10:07 +0200
+Message-ID: <cover.1760620093.git.buday.csaba@prolan.hu>
+X-Mailer: git-send-email 2.39.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain
+X-ESET-AS: R=OK;S=0;OP=CALC;TIME=1760717418;VERSION=8000;MC=4017348431;ID=38906;TRN=0;CRV=0;IPC=;SP=0;SIPS=0;PI=3;F=0
+X-ESET-Antispam: OK
+X-EsetResult: clean, is OK
+X-EsetId: 37303A2998FD515F647660
 
-Hi Alexander,
+Some Ethernet PHY devices require a hard reset before any MDIO access can
+be safely performed. This includes the auto-detection of the PHY ID, which
+is necessary to bind the correct driver to the device.
 
-On Fri, 17 Oct 2025 17:35:56 +0200
-Alexander Sverdlin <alexander.sverdlin@gmail.com> wrote:
+The kernel currently does not provide a way to assert the reset before
+reading the ID, making these devices usable only when the ID is hardcoded
+in the Device Tree 'compatible' string.
+(One notable exception is the FEC driver and its now deprecated
+`phy-reset-gpios` property).
 
-> Hi Herve,
-> 
-> On Fri, 2025-10-17 at 17:10 +0200, Herve Codina wrote:
-> > > > > > In order to have the I2C or the SPI module loaded automatically, move
-> > > > > > the MODULE_DEVICE_TABLE(of, ...) the core to I2C and SPI parts.
-> > > > > > Also move cs4271_dt_ids itself from the core part to I2C and SPI parts
-> > > > > > as both the call to MODULE_DEVICE_TABLE(of, ...) and the cs4271_dt_ids
-> > > > > > table itself need to be in the same file.      
-> > > > > 
-> > > > > I'm a bit confused by this change.
-> > > > > What do you have in SYSFS "uevent" entry for the real device?    
-> > > > 
-> > > > Here is my uevent content:
-> > > > --- 8<---
-> > > > # cat /sys/bus/i2c/devices/3-0010/uevent 
-> > > > DRIVER=cs4271
-> > > > OF_NAME=cs4271
-> > > > OF_FULLNAME=/i2c@ff130000/cs4271@10
-> > > > OF_COMPATIBLE_0=cirrus,cs4271
-> > > > OF_COMPATIBLE_N=1
-> > > > MODALIAS=of:Ncs4271T(null)Ccirrus,cs4271
-> > > > # 
-> > > > --- 8< ---    
-> > > 
-> > > that's what I get with SPI-connected CS4271, and this is actually what I'd
-> > > expect (linux-next as of 2433b8476165):
-> > > 
-> > > # cat /sys/bus/spi/devices/spi0.0/uevent
-> > > DRIVER=cs4271
-> > > OF_NAME=codec
-> > > OF_FULLNAME=/soc/spi@808a0000/codec@0
-> > > OF_COMPATIBLE_0=cirrus,cs4271
-> > > OF_COMPATIBLE_N=1
-> > > MODALIAS=spi:cs4271  
-> > 
-> > So, this is without my patch applied.  
-> 
-> this is the modalias of the device, it doesn't depend on your patch series.
-> 
-> I'd say that modalias for SPI device is correct but commit c973b8a7dc50
-> lacks MODULE_DEVICE_TABLE(spi, ...) in the driver.
-> 
-> I'd argue that I2C modalias is correct in the driver:
-> 
-> # modinfo snd-soc-cs4271-i2c
-> ...
-> alias:          i2c:cs4271
-> 
-> But I still have to understand what happened to I2C core.
-> 
-> > I don't have any CS4271 connected on SPI bus to perform the same test
-> > with my patch applied.  
-> 
+This patchset implements an optional reset before reading of the PHY ID
+register, allowing such PHYs to be used with auto-detected ID. The reset
+is controlled by a newly defined DT property, so it should not break
+compatibility with existing systems.
 
-In my next iteration, I will fix the MODULE_DEVICE_TABLE() in cs4271-spi.c
-replacing
-  MODULE_DEVICE_TABLE(of, cs4271_dt_ids);
-by
-  MODULE_DEVICE_TABLE(spi, cs4271_dt_ids);
+There have been several earlier attempts to implement such functionality,
+of which I have collected a few in the links section.
 
-For the moment, related to I2C, I keep MODULE_DEVICE_TABLE(of, cs4271_dt_ids)
-in cs4271-i2c.c
+The links to my own v1 and v2 versions are also provided.
 
-Best regards,
-Hervé
+Link: https://lore.kernel.org/lkml/1499346330-12166-2-git-send-email-richard.leitner@skidata.com/
+Link: https://lore.kernel.org/all/20230405-net-next-topic-net-phy-reset-v1-0-7e5329f08002@pengutronix.de/
+Link: https://lore.kernel.org/netdev/20250709133222.48802-4-buday.csaba@prolan.hu/
+Link: https://lore.kernel.org/all/20251013135557.62949-1-buday.csaba@prolan.hu/
+Link: https://lore.kernel.org/all/20251015134503.107925-1-buday.csaba@prolan.hu/
+
+Buday Csaba (4):
+  net: mdio: common handling of phy reset properties
+  net: mdio: change property read from fwnode_property_read_u32() to
+    device_property_read_u32()
+  dt-bindings: net: mdio: add phy-id-read-needs-reset property
+  net: mdio: reset PHY before attempting to access registers in
+    fwnode_mdiobus_register_phy
+
+ .../devicetree/bindings/net/ethernet-phy.yaml |  8 +++
+ drivers/net/mdio/fwnode_mdio.c                | 40 +++++++++++---
+ drivers/net/phy/mdio_bus.c                    | 39 +-------------
+ drivers/net/phy/mdio_device.c                 | 52 +++++++++++++++++++
+ include/linux/mdio.h                          |  2 +
+ 5 files changed, 98 insertions(+), 43 deletions(-)
+
+
+base-commit: 00922eeaca3c5c2001781bcad40e0bd54d0fdbb6
+-- 
+2.39.5
+
+
 
