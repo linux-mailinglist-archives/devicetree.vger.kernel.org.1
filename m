@@ -1,180 +1,233 @@
-Return-Path: <devicetree+bounces-228029-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228031-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 796EFBE6D93
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 08:58:33 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0324BE6DE6
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 09:04:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 09E651891B14
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 06:58:57 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 032F4561E92
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 06:59:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9FB8310623;
-	Fri, 17 Oct 2025 06:58:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49F3230F7EB;
+	Fri, 17 Oct 2025 06:59:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="L0UBp0++"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="fAk5Ef0D"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m19731102.qiye.163.com (mail-m19731102.qiye.163.com [220.197.31.102])
+Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA6C410F2;
-	Fri, 17 Oct 2025 06:58:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.102
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 150EB310644
+	for <devicetree@vger.kernel.org>; Fri, 17 Oct 2025 06:59:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760684308; cv=none; b=Q3lQNkZCmhf9IV97y1Op7vh9YfDvDzvzjGYCl7hX9bvxBmKw5/xAeUNk857ULJnoR4Cw4ESo2/cKzzefHMQ1MxFsFeXx+L8f568jkGfWfERSEgc4MmkD+zQI9vGXlftB1nRGlwGrqOFQzA/d18N0C4pwbmesXUWM8xtifPG0c+Y=
+	t=1760684363; cv=none; b=XprRXlJ0T6SondJYyFwXBRbVoaEtuYJLCialherxjzXbM99ZcK7RyUZEyjpotzpkWen4TTv9nrj1CAb9RfabNWejST6EGSW5Ox049ImzbsEfxd4doXlIH+UymrwRCo5LXFAac564cegxi0taxyzT9ccLIeEtp6OhSVLguqEcjRU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760684308; c=relaxed/simple;
-	bh=BzP3BsnOhDOr6ZVUpGZWwsEMX/DaWnstBUxZMzi+7DI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=sPqgvY04TuOYFk5eZynlExcLgJ/gJh3L1eQq7T9Ffw0FGqIPUv+TOwvzQCVCpIHvMmCZ2M0dYhXfbLpadfn/KpQSGBbdB2/N1kdzJo+6vmCyKRfjQhuW+CDsvQQXLJpsb16gIC3mlSDgC5LgB6z2ks+L9ZVx2lohRwYVvR9r3Yc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=L0UBp0++; arc=none smtp.client-ip=220.197.31.102
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from xf.. (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 263eafd29;
-	Fri, 17 Oct 2025 14:58:21 +0800 (GMT+08:00)
-From: Finley Xiao <finley.xiao@rock-chips.com>
-To: heiko@sntech.de
-Cc: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	ulf.hansson@linaro.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-pm@vger.kernel.org,
-	zhangqing@rock-chips.com,
-	sugar.zhang@rock-chips.com,
-	Finley Xiao <finley.xiao@rock-chips.com>
-Subject: [PATCH v3 2/2] pmdomain: rockchip: Add support for RV1126B
-Date: Fri, 17 Oct 2025 14:56:46 +0800
-Message-ID: <20251017065646.320643-3-finley.xiao@rock-chips.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20251017065646.320643-1-finley.xiao@rock-chips.com>
-References: <20251017065646.320643-1-finley.xiao@rock-chips.com>
+	s=arc-20240116; t=1760684363; c=relaxed/simple;
+	bh=8OQY8QOLNWepduPiOkPoOwkFH3ACC14yEP8MXSuDiMk=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=ILE76WBDzhddof2AiIfvKIItTs6mHqDoHxGmaCkIIxRg7lEbCEHwKX7UdkNNLxQIBDreG/Pe9Ew54f7FGeP+bN6VcBzbAS/IVVC9Z2WtWUcwYcTARh4DDnZDjATsDDs6PZMhnZbr3v0tgY+4TZXMAJ2Mlkgo1kHCOswLMONstL0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=fAk5Ef0D; arc=none smtp.client-ip=185.246.85.4
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-03.galae.net (Postfix) with ESMTPS id 5A22C4E41115;
+	Fri, 17 Oct 2025 06:59:18 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 2C911606DB;
+	Fri, 17 Oct 2025 06:59:18 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 0AE80102F22FF;
+	Fri, 17 Oct 2025 08:59:05 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1760684357; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=6VjiAwlnAaPSfGdrf60Hyg6jUXaFHDvITlfpGvqxAm0=;
+	b=fAk5Ef0DF+6h6xHBiRHRQk91kJx2IEl7f6IDerNI+IHsad5AiDg2/9F66BmxmpFLluvDJF
+	L5WmRKBzzQLcK8GIYKXJp67GUWY/FOI10a63IvKvGudc4Knyb4esZevhL/ary20yTJpV4B
+	nzZxc7Z4qAcxApCXYK1zOqNIh6Qf8t+TKtGGlnR8H9GKIeSKkkDM8RUP4Chotl78DGvsOI
+	hwFo/M1vobrnYHn0nuciBtZ9l0URBA+qLimc+Ak/2rxPp5UQ6AZkvGwfOMQ0bBr5jz7vms
+	eXxvbrlT+GSObjJ5m6rAHQrchLGUTw1DuS5rajwzQe4udfTNgFYkCKwAu+V/6g==
+Date: Fri, 17 Oct 2025 08:59:04 +0200
+From: Herve Codina <herve.codina@bootlin.com>
+To: Nuno =?UTF-8?B?U8Oh?= <noname.nuno@gmail.com>
+Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>, Jonathan Cameron	
+ <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, Nuno
+ =?UTF-8?B?U8Oh?=	 <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
+ Rob Herring	 <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley	 <conor+dt@kernel.org>, Geert Uytterhoeven
+ <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, Liam
+ Girdwood <lgirdwood@gmail.com>, Mark Brown	 <broonie@kernel.org>,
+ linux-iio@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Pascal Eberhard
+ <pascal.eberhard@se.com>, Miquel Raynal <miquel.raynal@bootlin.com>, Thomas
+ Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH 2/4] iio: adc: Add support for the Renesas RZ/N1 ADC
+Message-ID: <20251017085904.07e40e37@bootlin.com>
+In-Reply-To: <d7576a0bb9a8d5326d77ae434131540b4359bd2a.camel@gmail.com>
+References: <20251015142816.1274605-1-herve.codina@bootlin.com>
+	<20251015142816.1274605-3-herve.codina@bootlin.com>
+	<1e8d7c96cdfaa93bcc0f581103dc0e13dfee17b7.camel@gmail.com>
+	<20251015211420.031c61fa@bootlin.com>
+	<de57f5274b2fe0aac3621dc10cb6d4d0d98d3063.camel@gmail.com>
+	<20251016160202.3d4d0a5e@bootlin.com>
+	<d7576a0bb9a8d5326d77ae434131540b4359bd2a.camel@gmail.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.43; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0a99f0f65e1403a9kunmca707a4712448d
-X-HM-MType: 1
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGhofQ1ZMGhpNGEtDQkkeS0pWFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
-	hVSktLVUpCS0tZBg++
-DKIM-Signature: a=rsa-sha256;
-	b=L0UBp0++FJ2reLvUj/7YrSIEYufL3GZhZ3vLVLXddZ6C4b5lZXYC6ttnIj29Gqd4tv+78H0OvUxNW8zOvJ/wqWje6uuD+F968w8mAtUaDS3xJyzlRieb5Ts6PmYqBkeHWc5S+/R1hJkGhiPjnGtD3zg1JUTnw4KNKDQNYab2ZnU=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=DAzFTU/MPkNJze0jgQJtJnOyq06axZG1FGEYccrKKHs=;
-	h=date:mime-version:subject:message-id:from;
+X-Last-TLS-Session-Version: TLSv1.3
 
-Add configuration and power domains for RV1126 SoC.
+Hi Nuno,
 
-Signed-off-by: Finley Xiao <finley.xiao@rock-chips.com>
-Reviewed-by: Heiko Stuebner <heiko@sntech.de>
----
+On Thu, 16 Oct 2025 16:26:28 +0100
+Nuno Sá <noname.nuno@gmail.com> wrote:
 
-Changes in v3: None
+...
 
-Changes in v2:
-- rename AISP to AIISP
-- collect review tag
+...
+> > > > > > +
+> > > > > > +	ret = rzn1_adc_core_get_regulators(rzn1_adc, &rzn1_adc-    
+> > > > > > > adc_core[0],    
+> > > > > > +					   "adc1-avdd", "adc1-vref");
+> > > > > > +	if (ret)
+> > > > > > +		return ret;
+> > > > > > +
+> > > > > > +	ret = rzn1_adc_core_get_regulators(rzn1_adc, &rzn1_adc-    
+> > > > > > > adc_core[1],    
+> > > > > > +					   "adc2-avdd", "adc2-vref");
+> > > > > > +	if (ret)
+> > > > > > +		return ret;      
+> > > > > 
+> > > > > Hmm, is avdd really an optional regulator? I mean can the ADC power up
+> > > > > at
+> > > > > all
+> > > > > without a supply in AVDD? Even vref seems to be mandatory as we can't
+> > > > > properly
+> > > > > scale the sample without it.    
+> > > > 
+> > > > Where do you see that avdd is an optional regulator?    
+> > > 
+> > > You are using devm_regulator_get_optional(). That's for optional regulators.
+> > >   
+> > 
+> > Indeed I use devm_regulator_get_optional().
+> > 
+> > We have two similar function to get regulators:
+> > - devm_regulator_get() and
+> > - devm_regulator_get_optional().
+> > 
+> > devm_regulator_get() returns a dummy regulator if the regulator is not
+> > described in the device-tree. The calling code has no way to known if
+> > the regulator was present or not.  
+> 
+> Yeah because it's mandatory and the part cannot work without power :). So we
+> should not be allowed to operate without a regulator.
+> 
+> > 
+> > On the other hand, devm_regulator_get_optional() returns -ENODEV when the
+> > regulator is not described.
+> > 
+> > That's pretty confusing but it is the reality.
+> > 
+> > I use devm_regulator_get_optional() but check for -ENODEV to see if the
+> > regulator is provided or not.
+> > 
+> > In order to use the ADC core (is_used flag), I need both the AVDD and the
+> > VREF regulator available.  
+> 
+> And that is why I don't get why are we allowed to proceed if there's no
+> regulators? That seems wrong to me. 
+> 
+> So I think the regulators should be mandatory in the bindings and a dummy
+> regulator should also not be allowed in this case because that should get you 
+> -EINVAL when calling regulator_get_voltage().
+> 
 
- drivers/pmdomain/rockchip/pm-domains.c | 41 ++++++++++++++++++++++++++
- 1 file changed, 41 insertions(+)
+I have 4 regulators: avdd1, vref1, avvd2, vref2.
 
-diff --git a/drivers/pmdomain/rockchip/pm-domains.c b/drivers/pmdomain/rockchip/pm-domains.c
-index 1955c6d453e4..281a76947a08 100644
---- a/drivers/pmdomain/rockchip/pm-domains.c
-+++ b/drivers/pmdomain/rockchip/pm-domains.c
-@@ -25,6 +25,7 @@
- #include <soc/rockchip/rockchip_sip.h>
- #include <dt-bindings/power/px30-power.h>
- #include <dt-bindings/power/rockchip,rv1126-power.h>
-+#include <dt-bindings/power/rockchip,rv1126b-power.h>
- #include <dt-bindings/power/rk3036-power.h>
- #include <dt-bindings/power/rk3066-power.h>
- #include <dt-bindings/power/rk3128-power.h>
-@@ -137,6 +138,20 @@ struct rockchip_pmu {
- 	.active_wakeup = wakeup,			\
- }
- 
-+#define DOMAIN_M_G(_name, pwr, status, req, idle, ack, g_mask, wakeup, keepon)	\
-+{							\
-+	.name = _name,					\
-+	.pwr_w_mask = (pwr) << 16,			\
-+	.pwr_mask = (pwr),				\
-+	.status_mask = (status),			\
-+	.req_w_mask = (req) << 16,			\
-+	.req_mask = (req),				\
-+	.idle_mask = (idle),				\
-+	.ack_mask = (ack),				\
-+	.clk_ungate_mask = (g_mask),			\
-+	.active_wakeup = wakeup,			\
-+}
-+
- #define DOMAIN_M_G_SD(_name, pwr, status, req, idle, ack, g_mask, mem, wakeup, keepon)	\
- {							\
- 	.name = _name,					\
-@@ -205,6 +220,9 @@ struct rockchip_pmu {
- #define DOMAIN_RV1126(name, pwr, req, idle, wakeup)		\
- 	DOMAIN_M(name, pwr, pwr, req, idle, idle, wakeup)
- 
-+#define DOMAIN_RV1126B(name, pwr, req, wakeup)			\
-+	DOMAIN_M_G(name, pwr, pwr, req, req, req, req, wakeup, true)
-+
- #define DOMAIN_RK3288(name, pwr, status, req, wakeup)		\
- 	DOMAIN(name, pwr, status, req, req, (req) << 16, wakeup)
- 
-@@ -1104,6 +1122,13 @@ static const struct rockchip_domain_info rv1126_pm_domains[] = {
- 	[RV1126_PD_USB]		= DOMAIN_RV1126("usb", BIT(9), BIT(15), BIT(15),  false),
- };
- 
-+static const struct rockchip_domain_info rv1126b_pm_domains[] = {
-+					      /* name     pwr     req      wakeup */
-+	[RV1126B_PD_NPU]	= DOMAIN_RV1126B("npu",   BIT(0), BIT(8),  false),
-+	[RV1126B_PD_VDO]	= DOMAIN_RV1126B("vdo",   BIT(1), BIT(9),  false),
-+	[RV1126B_PD_AIISP]	= DOMAIN_RV1126B("aiisp", BIT(2), BIT(10), false),
-+};
-+
- static const struct rockchip_domain_info rk3036_pm_domains[] = {
- 	[RK3036_PD_MSCH]	= DOMAIN_RK3036("msch", BIT(14), BIT(23), BIT(30), true),
- 	[RK3036_PD_CORE]	= DOMAIN_RK3036("core", BIT(13), BIT(17), BIT(24), false),
-@@ -1516,6 +1541,18 @@ static const struct rockchip_pmu_info rv1126_pmu = {
- 	.domain_info = rv1126_pm_domains,
- };
- 
-+static const struct rockchip_pmu_info rv1126b_pmu = {
-+	.pwr_offset = 0x210,
-+	.status_offset = 0x230,
-+	.req_offset = 0x110,
-+	.idle_offset = 0x128,
-+	.ack_offset = 0x120,
-+	.clk_ungate_offset = 0x140,
-+
-+	.num_domains = ARRAY_SIZE(rv1126b_pm_domains),
-+	.domain_info = rv1126b_pm_domains,
-+};
-+
- static const struct of_device_id rockchip_pm_domain_dt_match[] = {
- 	{
- 		.compatible = "rockchip,px30-power-controller",
-@@ -1585,6 +1622,10 @@ static const struct of_device_id rockchip_pm_domain_dt_match[] = {
- 		.compatible = "rockchip,rv1126-power-controller",
- 		.data = (void *)&rv1126_pmu,
- 	},
-+	{
-+		.compatible = "rockchip,rv1126b-power-controller",
-+		.data = (void *)&rv1126b_pmu,
-+	},
- 	{ /* sentinel */ },
- };
- 
--- 
-2.43.0
+The ADC controller can work with 2 internal ADC core (adc_core[0] and adc_core[1])
+in the driver. Those internal core are not directly accessed by the driver. Only
+the ADC controller is accesses.
 
+Those cores have an AVDD and a VREF power supply.
+
+We can use either adc_core[0] only, adc_core[1] only or both adc cores.
+
+Depending on regulator described, the driver uses one or two adc cores.
+
+This choice is done by:
+--- 8< ---
+static int rzn1_adc_set_iio_dev_channels(struct rzn1_adc *rzn1_adc,
+					 struct iio_dev *indio_dev)
+{
+	int adc_used;
+
+	adc_used = rzn1_adc->adc_core[0].is_used ? 0x01 : 0x00;
+	adc_used |= rzn1_adc->adc_core[1].is_used ? 0x02 : 0x00;
+
+	switch (adc_used) {
+	case 0x01:
+		indio_dev->channels = rzn1_adc1_channels;
+		indio_dev->num_channels = ARRAY_SIZE(rzn1_adc1_channels);
+		return 0;
+	case 0x02:
+		indio_dev->channels = rzn1_adc2_channels;
+		indio_dev->num_channels = ARRAY_SIZE(rzn1_adc2_channels);
+		return 0;
+	case 0x03:
+		indio_dev->channels = rzn1_adc1_adc2_channels;
+		indio_dev->num_channels = ARRAY_SIZE(rzn1_adc1_adc2_channels);
+		return 0;
+	default:
+		break;
+	}
+--- 8< ---
+
+In rzn1_adc_core_get_regulators(), looking at one core I do the
+following:
+ - Try to get AVDD (using get_optional)
+ - Try to get VREF (using get_optional)
+ - Core is used only if both regulators are present.
+
+For one core to be used, both regulators have to be present.
+
+Regulators are mandatory but adc core usage is optional.
+
+This optional usage depends on related regulator presence.
+
+
+> > 
+> > Hum, do you think it's worth a try?  
+> 
+> Not sure. But it got me thinking about all this handling in the pm runtime
+> routines. So if in the resume() call you fail at some point and then disable
+> stuff in your return path and then we get an unbind won't things (clocks and
+> regulators) be unbalanced leading to splats? In fact by just looking at the
+> unbind path [1] I can see:
+> 
+> 1. We call pm_runtime_get_sync(dev) which can fail;
+> 2. Later on we call pm_runtime_put_sync(dev).
+> 
+> Not really sure if there's special handling in the pm core to be aware that
+> resuming failed (the refcount seems to be incremented [2] before resuming so...)
+> 
+> Maybe I would keep it simple and get and enable clocks/regulators during probe
+> and only care of rzn1_adc_power() in the runtime routines. My 2 cents.
+> 
+> [1]: https://elixir.bootlin.com/linux/v6.17.1/source/drivers/base/dd.c#L1249
+> [2]: https://elixir.bootlin.com/linux/v6.17.1/source/drivers/base/power/runtime.c#L1189
+> 
+
+I see, thanks for those clarifications.
+I will simplify and, as you proposed, I will only take care of rzn1_adc_power().
+
+Best regards,
+Hervé
 
