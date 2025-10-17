@@ -1,97 +1,95 @@
-Return-Path: <devicetree+bounces-228290-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228291-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58ACCBEB23D
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 20:01:44 +0200 (CEST)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B0D8BEB24C
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 20:03:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 5BC3B4E132C
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 18:01:43 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id E639B35DCB2
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 18:03:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 322542FFFBC;
-	Fri, 17 Oct 2025 18:01:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B30D3064AF;
+	Fri, 17 Oct 2025 18:03:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=wp.pl header.i=@wp.pl header.b="LvX26175"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="t5nD1e1d"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx3.wp.pl (mx3.wp.pl [212.77.101.9])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B6CB2F25E6
-	for <devicetree@vger.kernel.org>; Fri, 17 Oct 2025 18:01:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.77.101.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11F5329B77E;
+	Fri, 17 Oct 2025 18:03:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760724101; cv=none; b=Kb5FA1FUmOTIsDM/+QFfzHuTXNcRdeGeOssqSSsfJjke90jIQoiUph9EgPO7JVUxqpqunzh7PGOUI/KInKHnHtX5+FANwozxA6gfhl/nG85VkoIXu4bE9we6qna8LQA4vsQ2FkXAOBvtOk3nBsXZpDylh+1PBqwbXHRWpoLqzQU=
+	t=1760724198; cv=none; b=VqQT+47Ul5ECSsWIRiKxbQST0FEljXGcLhqneVsa2UEOD7mOkX5uqa68P45SyLs2Y6h01jijZrWdMjTLJQFcxmYBXjbt950/V3CRvMErHamQbSuu/RuQ0HgxqxXcqK9IBjmzRSe0tfBvV5BpMOv6/yds+QiZ5hwh9sK7dRdkUos=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760724101; c=relaxed/simple;
-	bh=uEz8JPPhrI+Zgyxi1YiGmOrJxuRQ6sLk9rBqa8GNTCI=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=lHs8ZKxOHMtlcF9A3duK8L25jQG3tm8CzP534jek/dhK+DXNToqfGlkxbtvaJYULQ0UFneZJPnr5KbU5VhQwiAZnxRzJAm9fMjGVEtRCcgveUCaATw27/Yvtwh9IN5V20av5yOdPwkO16BhAARrOHxkNqoF9q2V0yJQQqBbpIw4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=wp.pl; spf=pass smtp.mailfrom=wp.pl; dkim=pass (2048-bit key) header.d=wp.pl header.i=@wp.pl header.b=LvX26175; arc=none smtp.client-ip=212.77.101.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=wp.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wp.pl
-Received: (wp-smtpd smtp.wp.pl 301 invoked from network); 17 Oct 2025 20:01:27 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wp.pl; s=20241105;
-          t=1760724087; bh=55VmtpXFFb4oHifdRS0/Qic3faGPb6qOmUUmEq1Bvpw=;
-          h=From:To:Cc:Subject;
-          b=LvX26175n0nVoaS76aZsMrflTUwWcQTxmLLeZBJTeHBPqri9HBaekcOSo7etxRMR/
-           2h420u/0nL+AD+CLzbk2TUBlfla9JTFtHRHYT6D2d5/3fWLsaX9iU+TZ784+NUOe0t
-           YjxFE7tqvD7yg8MmXjc2FJ2xsmHQ7hEnbW8fuD3t3oIE24W2hncLrAMFFZxYJgq+CE
-           WC5/vmZyCCUWdno/3xK+IX96cO4HVP8i59+ImgqyJsm2Go8wujvN94ayBSD2bt/Omd
-           jnNHYxTRq9HlhJWmZzGerKh9o5fks8p/4RpMKf1kKLQRyFYsXuxxEkD9x2B1cSfpXW
-           FVaTkMy6bhuLA==
-Received: from 83.24.149.147.ipv4.supernova.orange.pl (HELO laptop-olek.lan) (olek2@wp.pl@[83.24.149.147])
-          (envelope-sender <olek2@wp.pl>)
-          by smtp.wp.pl (WP-SMTPD) with ECDHE-RSA-AES256-GCM-SHA384 encrypted SMTP
-          for <jd@cjdns.fr>; 17 Oct 2025 20:01:27 +0200
-From: Aleksander Jan Bajkowski <olek2@wp.pl>
-To: jd@cjdns.fr,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	tsbogend@alpha.franken.de,
-	linux-mips@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Aleksander Jan Bajkowski <olek2@wp.pl>
-Subject: [PATCH] mips: dts: econet: fix EN751221 core type
-Date: Fri, 17 Oct 2025 20:01:19 +0200
-Message-ID: <20251017180124.67687-1-olek2@wp.pl>
-X-Mailer: git-send-email 2.47.3
+	s=arc-20240116; t=1760724198; c=relaxed/simple;
+	bh=Qk0LBZOt8pQIuFxbzo90xAzKgi55jXIwz51NTp5jWuQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=BVV5i/Y0l+/Bpc+mqr+j1vtm/RgEBxLKOrveQn/nj0iC5E2PdAmvv7wFLrx3d9SeyvcUUpKEVnGbH+G2m6RdJgjNogSwdEb+7e4r+kPYzDT1Mdy6Pd/Yul5xx+LKE4CYElAQYGSRWdnC7EvCD6qK0cqWJBWXAvmd0IGifDGoAY8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=t5nD1e1d; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
+	Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
+	Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
+	In-Reply-To:References; bh=6vqYBVQLbTmlLBtdpiLTED/ZIuLahPgg/JXTEnb6jBo=; b=t5
+	nD1e1dGRr+/iOI+Of2lmtenph14Kp4Jp6sg8eFxKTshWRmfg/uVtoTy+UnpgbmgC1bQXjPFg7BSoU
+	oxb+wv3aFU6kB4JsdgyZYWBKKbamMqPb1yZ7gyGCTJycfcmX+pGX6b0mo+Z5d/AZLqact3k/SDHy9
+	IKMUW+fPFZp45/8=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1v9onD-00BJVf-LX; Fri, 17 Oct 2025 20:03:07 +0200
+Date: Fri, 17 Oct 2025 20:03:07 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: =?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	Richard Cochran <richardcochran@gmail.com>,
+	Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
+	Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	=?iso-8859-1?Q?Gr=E9gory?= Clement <gregory.clement@bootlin.com>,
+	=?iso-8859-1?Q?Beno=EEt?= Monin <benoit.monin@bootlin.com>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>
+Subject: Re: [PATCH net-next 08/15] net: macb: move bp->hw_dma_cap flags to
+ bp->caps
+Message-ID: <2409b245-bc66-48fc-9206-a071fe3466ab@lunn.ch>
+References: <20251014-macb-cleanup-v1-0-31cd266e22cd@bootlin.com>
+ <20251014-macb-cleanup-v1-8-31cd266e22cd@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-WP-DKIM-Status: good (id: wp.pl)                                                      
-X-WP-MailID: c5c271ad7cb4d967f2347832fe9b88e7
-X-WP-AV: skaner antywirusowy Poczty Wirtualnej Polski
-X-WP-SPAM: NO 000000A [URMU]                               
+In-Reply-To: <20251014-macb-cleanup-v1-8-31cd266e22cd@bootlin.com>
 
-In fact, it is a multi-threaded MIPS34Kc, not a single-threaded MIPS24Kc.
+On Tue, Oct 14, 2025 at 05:25:09PM +0200, Théo Lebrun wrote:
+> Drop bp->hw_dma_cap field and put its two flags into bp->caps.
+> 
+> On my specific config (eyeq5_defconfig), bloat-o-meter indicates:
+>  - macb_main.o: Before=56251, After=56359, chg +0.19%
+>  - macb_ptp.o:  Before= 3976, After= 3952, chg -0.60%
+> 
+> Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
 
-Fixes: 0ec488700972 ("mips: dts: Add EcoNet DTS with EN751221 and SmartFiber XP8421-B board")
-Signed-off-by: Aleksander Jan Bajkowski <olek2@wp.pl>
----
- arch/mips/boot/dts/econet/en751221.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 
-diff --git a/arch/mips/boot/dts/econet/en751221.dtsi b/arch/mips/boot/dts/econet/en751221.dtsi
-index 66197e73d4f0..2abeef5b744a 100644
---- a/arch/mips/boot/dts/econet/en751221.dtsi
-+++ b/arch/mips/boot/dts/econet/en751221.dtsi
-@@ -18,7 +18,7 @@ cpus: cpus {
- 
- 		cpu@0 {
- 			device_type = "cpu";
--			compatible = "mips,mips24KEc";
-+			compatible = "mips,mips34Kc";
- 			reg = <0>;
- 		};
- 	};
--- 
-2.47.3
-
+    Andrew
 
