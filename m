@@ -1,115 +1,137 @@
-Return-Path: <devicetree+bounces-228034-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228035-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27578BE6E2E
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 09:08:04 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id F11D3BE6E67
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 09:13:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id DC7F93472BF
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 07:07:59 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E96964E34E1
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 07:13:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 758553115B9;
-	Fri, 17 Oct 2025 07:07:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC0A23112DF;
+	Fri, 17 Oct 2025 07:13:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="1tFictYX"
+	dkim=pass (2048-bit key) header.d=joelselvaraj.com header.i=@joelselvaraj.com header.b="mR9mfrq9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+Received: from mail-24420.protonmail.ch (mail-24420.protonmail.ch [109.224.244.20])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B756B3112B6;
-	Fri, 17 Oct 2025 07:07:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FBC123B60C;
+	Fri, 17 Oct 2025 07:13:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=109.224.244.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760684873; cv=none; b=fTJW9dzHBAJi7elhUBfMsG25o9pBSwyIObhTOvR1i1nSAuHN8NBv3UpEYWkCLNSXbyBQMIdvM9ssH+/Db47e0/tzYv7zOnvH36Q7faGl6ZtXHMav4oI7UFpS4hA1kquRullsZetaqBTWzAuSK3ePUcWFjH49AjnetgjzcjLFsgo=
+	t=1760685211; cv=none; b=cxGdM1WZuhOsW49RKjJYG7uh4S5vjswRA4GYCnJrdEnUQYrF+g5bxp3+t53EVXUzQ78uKV8x6TcmPSzH/bOPO1kgYYhmrA/Z9wIsWfDHjikscRKlrOj9XHmn6+5FoXhI22xA3YRfl2pgtYv8oBRTbC/LtPqs77IK27LS/SM01l0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760684873; c=relaxed/simple;
-	bh=nGj8GFjt5qte1lomT2t2u3rGDiz7RAwncQys5pP/YSI=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=fBYid9L2Ii7L7ico6M5nuhoEp2fKjHxPKqE5HeKa9CJA+Y9l0Nrwrm0h2KMMTdnQRgTbQI5brX5EoJzxzc2xtUokbBOF2w4Wrgh7CbrnKph6/jTa6mQ2ae7GaOLrw0DU5jvomPRaPw50m2xURHTQ8Vv3zB/t6v8at9G5LfBeqZE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=1tFictYX; arc=none smtp.client-ip=185.171.202.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id A0237C041DC;
-	Fri, 17 Oct 2025 07:07:30 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id BFFAD606DB;
-	Fri, 17 Oct 2025 07:07:49 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 027FB102F22FF;
-	Fri, 17 Oct 2025 09:07:43 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1760684868; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=YKd2eae/Odja+KvQxWhp56FdbF5sP3xpzCWQkm4UAAA=;
-	b=1tFictYXo+2tYvfpeF0hMYmhrAM0mGooNkpruRH2LKJJdQRoK+ZUIquw65ezYGcrAATwak
-	VZp48QwzJHKjgmpdYeDcBmGTDddlATOqXzt06rXHhlGT/arZbEgYECjWYRuyNdF+UM4MMJ
-	desYOO/ta+2Jep5CJUfnCInAC1jFOiygk1EWmlzTa9ausm3Ts1p2vB3OqG5TpNJ3rk1pbI
-	VDx0+18xbgvDst9FPq90961cqcNiSn8wr2rBTPnIAyfesKyyDn3IDQVvCA4YsiaHxa2cSQ
-	qL70eBnhwx0D8ZRE4hW6zHsiUNOoV41N+/awXOU8NsQJwRWyd6i0MONQGMLB+A==
-Date: Fri, 17 Oct 2025 09:07:42 +0200
-From: Herve Codina <herve.codina@bootlin.com>
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc: Jonathan Cameron <jic23@kernel.org>, David Lechner
- <dlechner@baylibre.com>, Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Andy
- Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Geert
- Uytterhoeven <geert+renesas@glider.be>, Magnus Damm
- <magnus.damm@gmail.com>, Liam Girdwood <lgirdwood@gmail.com>, Mark Brown
- <broonie@kernel.org>, linux-iio@vger.kernel.org,
- linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Pascal Eberhard <pascal.eberhard@se.com>,
- Miquel Raynal <miquel.raynal@bootlin.com>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH 1/4] dt-bindings: iio: adc: Add the Renesas RZ/N1 ADC
-Message-ID: <20251017090742.49f2d628@bootlin.com>
-In-Reply-To: <aPEoqkdatl4G82co@shikoro>
-References: <20251015142816.1274605-1-herve.codina@bootlin.com>
-	<20251015142816.1274605-2-herve.codina@bootlin.com>
-	<aPEoqkdatl4G82co@shikoro>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.43; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1760685211; c=relaxed/simple;
+	bh=xN4LN3ZOHc6lC4RDOQKMn7iNewkLfY6kTLmXWvcDkCs=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=EA85j25kVXRHnwW4Yen1CdHVpJLQh2Lr9ZCx+lwG+4CSbG4GUCB2hHy3Ck5HAQTZKuCdNtC7gXY05/l+vnWQMBwUmTLDIEkFfDssHaBsMCaRrBFVXCQwn+jzFoZpGa42vsZZEhBtAC2RelgFIVaOtckoJJM/V55Vm1Dvqp7/8Rw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=joelselvaraj.com; spf=pass smtp.mailfrom=joelselvaraj.com; dkim=pass (2048-bit key) header.d=joelselvaraj.com header.i=@joelselvaraj.com header.b=mR9mfrq9; arc=none smtp.client-ip=109.224.244.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=joelselvaraj.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=joelselvaraj.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=joelselvaraj.com;
+	s=protonmail3; t=1760685199; x=1760944399;
+	bh=XZ0y0x47KXEaW/FqBaoha0+6MvP5HERJCdzBJ7hziJo=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+	 Message-ID:BIMI-Selector;
+	b=mR9mfrq94vGkrvWy0W0qS7mNkXAcgKzI5fuspU/OBawddPbWmnnUO9EaCPdO3M7lX
+	 pbH04+99ox3kQ376hpnjs/dlghlmu0pK6Wr2+YZ1YbCRdNfnbsizmaCkH9XkT2RCog
+	 apEpkmtspj8lBO1W+zVJrWBKh1+w6b8pyQ87uMgd8m2xAm4oFf51WhEW2C25+iqv9E
+	 FhkpPmay678p9OKWR9S6nParXcTtNTTmId8e63uHAJZ/fCl/9Z3K/m1d4AopVckZ9i
+	 Pk4+BhahsinbY0ujVYJIQrdSl7IEw7CxWNjxayIxL1Nz06nuuhWpRySu6MqJEG4Ixo
+	 OrXiEdzRyH02w==
+Date: Fri, 17 Oct 2025 07:13:15 +0000
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+From: Joel Selvaraj <foss@joelselvaraj.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: qcom: sdm845-shift-axolotl: fix touchscreen properties
+Message-ID: <267eb29d-b506-43df-9380-3d79798c772c@joelselvaraj.com>
+In-Reply-To: <8a5eecdd-d80f-4955-8ab7-cf6fd991a3b7@oss.qualcomm.com>
+References: <20250919-shift-axolotl-fix-touchscreen-dts-v1-1-60e26ad4e038@joelselvaraj.com> <8a5eecdd-d80f-4955-8ab7-cf6fd991a3b7@oss.qualcomm.com>
+Feedback-ID: 113812696:user:proton
+X-Pm-Message-ID: cfc2211d903c068688da7ddae29ce3a7fa9c81b6
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, 16 Oct 2025 19:17:30 +0200
-Wolfram Sang <wsa+renesas@sang-engineering.com> wrote:
+Hi Konrad Dybcio,
 
-> > +description:
-> > +  The Renesas RZ/N1 ADC controller available in the Renesas RZ/N1 SoCs family
-> > +  can use up to two internal ACD cores (ADC1 and ADC2) those internal cores are  
-> 
-> ADC cores?
+On 10/6/25 9:49 AM, Konrad Dybcio wrote:
+> On 9/19/25 11:02 AM, Joel Selvaraj via B4 Relay wrote:
+>> From: Joel Selvaraj <foss@joelselvaraj.com>
+>> ---
+>>   arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts | 17 ++++++++-------=
+--
+>>   1 file changed, 8 insertions(+), 9 deletions(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts b/arch/ar=
+m64/boot/dts/qcom/sdm845-shift-axolotl.dts
+>> index 89260fce6513937224f76a94e1833a5a8d59faa4..d4062844234e33b0d501bcb7=
+d0b6d5386c822937 100644
+>> --- a/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
+>> +++ b/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
+>> @@ -434,20 +434,19 @@ &i2c5 {
+>>   =09status =3D "okay";
+>>
+>>   =09touchscreen@38 {
+>> -=09=09compatible =3D "focaltech,fts8719";
+>> +=09=09compatible =3D "focaltech,ft5452";
+>>   =09=09reg =3D <0x38>;
+>> -=09=09wakeup-source;
+>=20
+> All the changes look good given your commit message, but you dropped
+> this wakeup-source property without explanation. It's fine to do so
+> if it's intended, but please mention it if so
 
-Sure, will be fixed.
+In reference to the touchscreen/edt-ft5x06.c driver which is used here,=20
+I am bit confused how wakeup-source works. Does specifying wakeup-source=20
+in dts automatically makes "device_may_wakeup(dev)" return true, even if=20
+device_init_wakeup is NOT configured in the driver? I noticed some=20
+drivers do:
 
-> 
-> > +  handled through ADC controller virtual channels.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    items:
-> > +      - enum:
-> > +          - renesas,r9a06g032-adc   # RZ/N1D
-> > +      - const: renesas,rzn1-adc  
-> 
-> Do you know of other SoCs with this IP core? If it is only RZ/N for now,
-> we could go with const for N1D. All other N1 variants cannot run Linux
-> because of no SDRAM controller.
-> 
+device_init_wakeup(dev,device_property_read_bool(dev, "wakeup-source"));
 
-I know only about RZ/N1 family.
+but the edt-ft5x06 driver doesnt do the init, but directly checks for=20
+may_wakeup in suspend/resume.
 
-I will keep only "renesas,r9a06g032-adc" in the next iteration.
+Few scenarios based on the driver code and my understanding:
+1. if device_may_wakeup will return true when wakeup-source is=20
+specified, I probably want to just remove it, because irq and regulator=20
+is not disabled during suspend and this will likely cause power drain.
 
-Best regards,
-Hervé
+2. The driver has an option to specify wake-gpio. In which case, the=20
+touchscreen is put in some low power hibernate mode with irq and=20
+regulators still enabled. But the touchscreen controller used in this=20
+device doesn't seem to have support for a wake-gpio (atleast based on=20
+downstream code). So that is not an option.
+
+3. if device_may_wakeup will always return false since=20
+device_init_wakeup is not configured and since no wake-gpio is=20
+available, the irq and regulators will be disabled during suspend.=20
+Therefore, the device will not wake up from sleep even if wakeup-source=20
+is specified as the irq is not going to be triggered.
+
+So probably no point in specifying wakeup-source either way I think? But=20
+I am not sure which of these explanation is correct and thus not sure=20
+what to mention in the v2 patch commit message. Also, there is a=20
+possibility I am not understanding something. A little help from someone=20
+will be very nice and sorry if I am obviously missing something.
+
+Thanks,
+Joel Selvaraj
+
+
+>=20
+> Konrad
+>=20
+
+
 
