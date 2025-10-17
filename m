@@ -1,274 +1,196 @@
-Return-Path: <devicetree+bounces-228199-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228200-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id E37CABE9AE1
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 17:20:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E984BE9A9F
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 17:19:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 006FC585BA1
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 15:12:06 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 95E0E585C50
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 15:12:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 140C7335061;
-	Fri, 17 Oct 2025 15:10:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68B0E335071;
+	Fri, 17 Oct 2025 15:10:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="Ppg9/JHo"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="tzqo0eok"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DUZPR83CU001.outbound.protection.outlook.com (mail-northeuropeazon11012044.outbound.protection.outlook.com [52.101.66.44])
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0629332ECA;
-	Fri, 17 Oct 2025 15:10:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.66.44
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760713834; cv=fail; b=P+xGLYXAiuMQvyB3bBFRDQaWBGwsLz82+zB9BHW2gm4LLtYbxMcxVJXRiC606Ki5m/yR6A9ffElOrz1XJOXcFUNAc2dPaLl3cFDbfIk+PRKsbJEdlGLu3ZT5E8G9LqhyRi8TD5K8OzW6kfmwkKZwa8eAOeaCiWXqk6h0hWXU4ZE=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760713834; c=relaxed/simple;
-	bh=P6d0aWWyvT/ICxwplJMcFpOmzhxx2p7aPrDXvCAAjT0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=WnNMHs91jFGE/dWaDW5sl3SJ8VP4sPgcUC+DPofCzCl5+IsMkmzExSxLDqWW20sE4fFFKVj/4mCDvvbaXX1HzzMtrmq+oEKnIl+OEnosVXkO1QhiJVEwc5QKTTNhLwFsWK12zWOUtl25lSKsExKgHkm8nDbVZEhNf6SMYxhPR6g=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=Ppg9/JHo; arc=fail smtp.client-ip=52.101.66.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=jboEJhDVqZ3OIdoAgajojWnABSDuyCIUWZZbWFaTOmip5NAV4qqczLV3SF0jxEWwruE178F15nPp7okvij+kuC6L+rGwU8NtbEefW6k74OLSwgIC2RWcihPQW9Fnk2HtxduHKQFPJJFS7N5RtOFGM7dhomHN0E1TAWhx0QWSLF/0QSlZPJnmVaMeY3Ln2pv1fduW0HbwxvlMlE7jKlROP2ezRqRdvQOxKn3PSrlsJejRqtwlOg3+5L0vxhmWwcA7XkkIlghP8eEc46ufifnJVlzV4ulWnyhf1aAzPX6hVZuCBf/n6tW7DDdPfAt1HXr9v6OFchQ45PFqw+EGZWAMIg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=hB4sUAKGwxFEIta3DvzyiGmmC9cW9nn+XnOkns/Y750=;
- b=CuE3EWV0zHILwuy/8ZOtsC1kVnv4kgIcS11N3r92r2BPxVddYG93lZVmS75mTBxkffOaHlae7f3x0pzHzgCCubKhZO+2N5V3P4njM4hXLmlyFHT6hOFu9R5dNYsChBs0nr+6v+q/4mgpmeNT1vxPtLjMBrD+Jg+q0ASzXG16ebdAQXnSVrK4PkA4IvZd+Q2s7ODCvdV7phZa+tk4qaXOlIUeRfo9S3XKQmb0Ad8Ypl4h5p8lbZovmBdn7wV+nOXS3CNoXSzoqVd7NYPjCq/v6vqLH05j7TaMEfMkiRg6vB5tOgd4KORj0o+hplvvrH3282NiqrhWL10uz8kVMOfVTQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=hB4sUAKGwxFEIta3DvzyiGmmC9cW9nn+XnOkns/Y750=;
- b=Ppg9/JHoem3OglbuFDlbl4OfzFakXz6Ogvskyjo3zu5L828FY7AQpxFaMu2bPU1ufCFvHvXKMUc05q8X4WSRGFIbG91jvSYKbWqKgCh8l0hha4HWlVJgVy0zxegZXbjGTunJdIptphzXhl8Z/tQ9u6mndBhYvC3XL4+XVk8DHtgRvpJQaFFctFy+TspRTYEDGg+AIMZtKNNWhH3KgSJdmeLJvZmduMcywFc6icOMgHFPGh6IviOcaR35XH4OwUeNYlPDqYd2kZupIj9lJTNEgZWmf08/zvO4Iw7EdnJpFIIrtfSZ9GYuI7DVK+4zwLGXO/kKCWT1Fw/FJt9gl8bXaw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXSPRMB0053.eurprd04.prod.outlook.com (2603:10a6:102:23f::21)
- by PA1PR04MB11455.eurprd04.prod.outlook.com (2603:10a6:102:4f0::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9228.11; Fri, 17 Oct
- 2025 15:10:29 +0000
-Received: from PAXSPRMB0053.eurprd04.prod.outlook.com
- ([fe80::504f:2a06:4579:5f15]) by PAXSPRMB0053.eurprd04.prod.outlook.com
- ([fe80::504f:2a06:4579:5f15%6]) with mapi id 15.20.9228.010; Fri, 17 Oct 2025
- 15:10:29 +0000
-Date: Fri, 17 Oct 2025 11:10:20 -0400
-From: Frank Li <Frank.li@nxp.com>
-To: Marek Vasut <marek.vasut@mailbox.org>
-Cc: dri-devel@lists.freedesktop.org, Abel Vesa <abelvesa@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Liu Ying <victor.liu@nxp.com>, Lucas Stach <l.stach@pengutronix.de>,
-	Peng Fan <peng.fan@nxp.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-clk@vger.kernel.org
-Subject: Re: [PATCH] drm/imx: Add more RGB swizzling options
-Message-ID: <aPJcXLcvX15A0HtA@lizhi-Precision-Tower-5810>
-References: <20251017144626.66918-1-marek.vasut@mailbox.org>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251017144626.66918-1-marek.vasut@mailbox.org>
-X-ClientProxiedBy: PH7P220CA0030.NAMP220.PROD.OUTLOOK.COM
- (2603:10b6:510:326::6) To PAXSPRMB0053.eurprd04.prod.outlook.com
- (2603:10a6:102:23f::21)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CDE0335073;
+	Fri, 17 Oct 2025 15:10:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1760713838; cv=none; b=OPa0eLZQAXlXv21ImWwtzFLVA+2YJB/V7+9E9/2z25J1nani9j3AHf9ziXqjWs/HbnGyk4Zn0jiY3Nfy49lPTPABdSZNbQMaeXEQ9NIn7UBK9Gv9UGukWZC2b2P6voDKf28ffphRgSOyz3tPQyH5OAN3YdmOWshfWj7rE8vJFEI=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1760713838; c=relaxed/simple;
+	bh=Gm4P2a9S/HHIpbqj/1/WVKWFwzH85G3VJQhBIXcpX5k=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=kTv0xQa3fdK4Bvaf56SlcItI4eFTVrQLDRcfH9qLe9L+CAoqySqzvsEmRbWjPXNihiFCMZQX/Zx+3Y9s+pPARzvEo13ArfABCsV6E3oxidGmsobyQPUmHw8KK6NS27O+eBRhrOGC6YlyMeHiBBYqRFC44P3LnKy45JeKlzMW/JY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=tzqo0eok; arc=none smtp.client-ip=185.246.84.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-02.galae.net (Postfix) with ESMTPS id A6A4A1A1452;
+	Fri, 17 Oct 2025 15:10:34 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 7AAB3606DB;
+	Fri, 17 Oct 2025 15:10:34 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 11888102F2330;
+	Fri, 17 Oct 2025 17:10:25 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1760713833; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=tz1YrBtjgqKAjBOhZdtsBw6j4wrL2DMmdPaWBNAh2s8=;
+	b=tzqo0eokJ+Cb1HPhb7hvZnwRbkJG3ORsnEhEfsleM9+rDD2KW5srX8MkdOSFv6JWcAGm0a
+	gH31tvSj5/HNhHA7PIUzQyhXTXZeKv4Wn7V4Gvuucs/K9glYAeJPgva0/yTbLvNInIlTIY
+	kE5rZijgGSw7vmKavNRzveTJOgi/AGWfkLFt2Hx01RKnb5YKjCbViXT6qcTsjKZG5ec3Vs
+	7MW+9YP9zxDYPyKBepNLN8mf5K9l9RUhhImLmRdR3l0dy0HnHvlO9Ci1Hevz5VtX2VkfqS
+	Ynk+jtfUQ2ZB2iNlbRGGFuZW+K3B7y4EaCbsRxlhpQM5XqaI6J1HgkayBtFDzg==
+Date: Fri, 17 Oct 2025 17:10:24 +0200
+From: Herve Codina <herve.codina@bootlin.com>
+To: Alexander Sverdlin <alexander.sverdlin@gmail.com>
+Cc: David Rhodes <david.rhodes@cirrus.com>, Richard Fitzgerald	
+ <rf@opensource.cirrus.com>, Liam Girdwood <lgirdwood@gmail.com>, Mark Brown
+  <broonie@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski	
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela	
+ <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, Nikita Shubin	
+ <nikita.shubin@maquefel.me>, Axel Lin <axel.lin@ingics.com>, Brian Austin	
+ <brian.austin@cirrus.com>, linux-sound@vger.kernel.org,
+ patches@opensource.cirrus.com, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH 1/3] ASoC: cs4271: Fix cs4271 I2C and SPI drivers
+ automatic module loading
+Message-ID: <20251017171024.5a16da34@bootlin.com>
+In-Reply-To: <d6bd466a5d11b016183db0ac3c25185fad3036fc.camel@gmail.com>
+References: <20251016130340.1442090-1-herve.codina@bootlin.com>
+	<20251016130340.1442090-2-herve.codina@bootlin.com>
+	<60fbaaef249e6f5af602fe4087eab31cd70905de.camel@gmail.com>
+	<20251017083232.31e53478@bootlin.com>
+	<d6bd466a5d11b016183db0ac3c25185fad3036fc.camel@gmail.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.43; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXSPRMB0053:EE_|PA1PR04MB11455:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2f823f69-df52-4887-8dea-08de0d8f4eec
-X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
- BCL:0;ARA:13230040|52116014|1800799024|19092799006|7416014|376014|366016|7053199007|38350700014;
-X-Microsoft-Antispam-Message-Info:
- =?us-ascii?Q?HP31/kC/6r/lvazIgPEPgykDNBpaYArUcjyy+dPny/jaVaovVBYOdHfihJRw?=
- =?us-ascii?Q?nKM6RAqKuk0ATDfwMeXLk3rF78/6wwGuphJR3ayDSs/G+oTnxq1x31eMttTd?=
- =?us-ascii?Q?ov2yv8y8LHdahxGia7kNWzBbkLHoA0pTyZNWsrRsVVJRgxuHDz5aNK2SGlKt?=
- =?us-ascii?Q?jDUH/Mw1BYpkmCdKI3yBZlitHiU6yrGCOcDkYA3g2GjBOTUHkwEbqlZ1r5ii?=
- =?us-ascii?Q?Ztbe3nAD4z96I3sTb0M8yCZYcmCtYMHzWIRrnsM7ekE1DvgHmZFcPJ/d7vzX?=
- =?us-ascii?Q?NHvpV9ToXVnHJRyuLFPWUZSIfIyLqzfucA7R2HYEGazkATCqoKjF798SLwUf?=
- =?us-ascii?Q?M30fyWd0CX6RGDzXrSdOrglA1EyAANYOhMrQwXf0qMA3HbGmKOnnwEKqYPVP?=
- =?us-ascii?Q?M8ZctiiybEKC/lDNx2Unonv/StxRuK+zqo4HDr1dUkv7HiTtc22gAQv0sZdb?=
- =?us-ascii?Q?ZZFv7LVxdlqOXy9K46OHha1V/yIF1bmBD/8iNIDRQc7I0c0K/kbwqtSAMyFp?=
- =?us-ascii?Q?bjpvXINE6ddp+9lkcBmSEtVkzOMcMWwow8kdxVwMjhV68WyXf4XjJLFE2LUz?=
- =?us-ascii?Q?queopmOtfZ/k3savBIIByWJF2guAX/tdNUqGoWQ08Yzp+geM7+/ghp6Bq4sL?=
- =?us-ascii?Q?IOgw16WLCYvuNY5ED71g16UDB9AyFA0HLk9nHYgCghB2qdQ8/caDqpIN7lIi?=
- =?us-ascii?Q?TD+z1B7LCu6+LZHFQkPK+z+DaEBoMFtI3VdNIu+HrQMbpVJrSmRD/ZADfW5k?=
- =?us-ascii?Q?7RzH8zhaN7jiqs0OxPX5rRazlMxDjxyO4h+wEodbdYanHMykyp6gTTka4e9w?=
- =?us-ascii?Q?WGNpv8Zvl7UnG9TEUsvnHvW+h5hMo1Cc0L53iKcnjZxPcVcMTRDxk2J5gS2P?=
- =?us-ascii?Q?JO7cNvQtKNLQsOS7K0RfgipGr6jwsGVHPsD2z8hkNLHqe4UDJmhPJVZ0WKCp?=
- =?us-ascii?Q?e3cNAzovTYgdgHLmkZwlAja/ugEisl3HkdUMltPOhGwqfiF2k3pkcVVTbAA5?=
- =?us-ascii?Q?15rXYhKt3hT5gVF3zsUolZ+ywK8e5Err6cX3KDN4joRPyKkLo3oCvYpjw8Tb?=
- =?us-ascii?Q?p7i3NVnhkFDctFHFsmRenLZeEbpFmOBKgGkbjKpVljOSRmUKiFPxEHn+Sslx?=
- =?us-ascii?Q?MUqQ0FCQuDHKguGWTs/zSYQHvyw8Zjb0hxNvmjMRf3BaMTxt8EIp80g/BYXE?=
- =?us-ascii?Q?hbLioOKYlQ9D6ZzFm19ZObCQU94fpVdKAXDCYGyGO+LxUMwFociMg/3WeH5A?=
- =?us-ascii?Q?zZ9r55kJafls6tY5A9jAtQATBMHjUMU1EsMGPkL7G+uTWdlxiUKQa1DK6LYc?=
- =?us-ascii?Q?/G6+lg9HqFKcRwp5NFUcYZC+j05dyiRoT+0LpCBvAadQ2JJ+tgIXAOyW1NCe?=
- =?us-ascii?Q?t0ywpU3DqO4Nm/LnwcW77fLyrXu9QVSPJ36v/U8Jxg1OaIzzw6TZ+wzJ4xQ+?=
- =?us-ascii?Q?m/JZGryBYOG/eogDpA/k50ymmFLp/fj984QdL6Pn3CdVjqr8T1x4KbNRkGOW?=
- =?us-ascii?Q?CXYZd9ai+SIeZmYVQ/qmTv/1DLlB5QgkV+qc?=
-X-Forefront-Antispam-Report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXSPRMB0053.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(1800799024)(19092799006)(7416014)(376014)(366016)(7053199007)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
- =?us-ascii?Q?MrDR5kHO75z5AWMBROkxaLXep7S2ZTDiU6wDavlaE9Y88UID2fgLAQdcY5PV?=
- =?us-ascii?Q?xIRexCp7PzNXdqJMjNL+TrlzkU9S2+Z5mLuqbWJLQ+8Tt8biGyMeiju6ixFO?=
- =?us-ascii?Q?W7QBHsZ8X7zg4RNUihCZ3CzKUgOK3/Ni4+ulG5UR/ZKijX9jrrHMKvifLQ64?=
- =?us-ascii?Q?3s7Py/dwiE+9kS0Y8wg/F81KxduAirI8FFqsnEmZcy2R3YoAE8SEOEpL+e0x?=
- =?us-ascii?Q?AUoVPh2FgN0QfR05FeP6hVdQ2LYwP10GVBlG+yAve6/SzF0NYJuVeIWPru1q?=
- =?us-ascii?Q?JfgqERHlzoNU4XFbdIU9/lKActBREY3NQWNtTsGURa/j8hNCnxoU0eXZDMFu?=
- =?us-ascii?Q?9NoeVRdjrmzfKUkESWhBxc7nPTD94APJquTzdbWQ81Jmd6a/Zhh3dGPGNbQ4?=
- =?us-ascii?Q?DceC1JxfOuq/l0m4JLB/DVM9l+ma3QiBjIf5z3n2ZEzMhoyvTPKurRjXC4kG?=
- =?us-ascii?Q?LtuFp+AjopoeuVtNB46GKcNj3J+UXS2YXA/M9OPCD4e1JMg6Qk/DTKvtr5wN?=
- =?us-ascii?Q?mFHWZlbV05kBuId4l4ulzjfIs2yt9qpSnFAOBCNJgmkdqfoHZIH6liFt5kLx?=
- =?us-ascii?Q?ZgodPV6EwpwlkLSFKic6tu9o31m8h4CQFwJVQBcSjJ+L/Pt/WB26/YHVBZDp?=
- =?us-ascii?Q?1Yg/FvZzKW3VlMMHEKceSm1+4z/DHI1Lrqmouno5RAPflktXO00SN5VEWFok?=
- =?us-ascii?Q?aoqXKrmrU6UUes+zhx93xVeDukjSajRBFppO9ggEgKKoXnphS38Ghi+A5qeJ?=
- =?us-ascii?Q?duNJ9nc2xSjR3/zAne4vzDW9GGIr81slQ0nxZJjNF7qfQ3SgQjPqgLxiBJxf?=
- =?us-ascii?Q?csNYEuVCvFpm5EwJw5z6QQS1kDb4hzgNPJFyw2tHLRgEqdPsSu6oXUGs7QTy?=
- =?us-ascii?Q?8xC2E7HpZvfaiIjcJbuQikpUvvaVlZwr7AKpZ0i1eVkkMFJPuVDPs8f221H1?=
- =?us-ascii?Q?sbzfZYWTzfbWHTGoopIUbuRCAjpI7g/i7x5Baz3LuB/rLCblLNFdhu3SClUu?=
- =?us-ascii?Q?j7wTAl+1B85Li/4jtTKeWlsLdfuBu6HquidfPk1WDpXrctlnCvaqYUKAgwfq?=
- =?us-ascii?Q?wLMdXW2XjiCgJbnhSi8bbHWXRM7oCYTNHWIVV1zpQpyO2KP4ETz9h6/EHgjA?=
- =?us-ascii?Q?NzD91eUsOCbvbezfg3nPsJ6cV5trvo7F5RM77BdQ1hAAv+/E+nWZ76K3IwlM?=
- =?us-ascii?Q?n7MYtlQ8QqBEDgnCHCsEOibwV0lRDZZ6gG5+LNqspko4lfiUzNf6apaJTCiF?=
- =?us-ascii?Q?H3wVK3tnXG2hMFsHIuLw38bxrFEJuGHUdKJd1Hm+puZxjv02AtHcsZP37Yz2?=
- =?us-ascii?Q?J6A2Q3T0EqKI9bdB/WoreL0GaNdTbb7+8XLymv8XZ+7hROgYDlBCMQIyzgEb?=
- =?us-ascii?Q?GzIfZkKZ5q06qEhFw+Cxob2cyGDfsQRaF/nBQOojG2gF+eCuFrk2fXH5iKbI?=
- =?us-ascii?Q?taC6TfakgsTfFaRcDB9Ak+0g/qqT6stpd5DGrdDb/bAsppNvhgBFANI/DId+?=
- =?us-ascii?Q?zDbad1OEf3f8k91ZuucSYUMOVifYA8UiQ5l+o6icFsM3Fo15OijLLYHlNgqY?=
- =?us-ascii?Q?PDjsW1eCqY+uaxcCEFe0upGsmPDI2BM4OhzkikS5?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2f823f69-df52-4887-8dea-08de0d8f4eec
-X-MS-Exchange-CrossTenant-AuthSource: PAXSPRMB0053.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Oct 2025 15:10:29.0504
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Stgnvy/sfcAFzP2asXCQgW25K3/4D4nAeFymfafym14kAwvabRcJdszyylF61psms7bFCSosyyo1X/GxHi/29w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA1PR04MB11455
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-On Fri, Oct 17, 2025 at 04:45:38PM +0200, Marek Vasut wrote:
-> Add additional buffer format swizzling options beyond XR24, the
-> hardware is capable of sampling other formats, fill them in.
->
-> Signed-off-by: Marek Vasut <marek.vasut@mailbox.org>
-> ---
-> Cc: Abel Vesa <abelvesa@kernel.org>
-> Cc: Conor Dooley <conor+dt@kernel.org>
-> Cc: Fabio Estevam <festevam@gmail.com>
-> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> Cc: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
-> Cc: Liu Ying <victor.liu@nxp.com>
-> Cc: Lucas Stach <l.stach@pengutronix.de>
-> Cc: Peng Fan <peng.fan@nxp.com>
-> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: Shawn Guo <shawnguo@kernel.org>
-> Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: devicetree@vger.kernel.org
-> Cc: dri-devel@lists.freedesktop.org
-> Cc: imx@lists.linux.dev
-> Cc: linux-arm-kernel@lists.infradead.org
-> Cc: linux-clk@vger.kernel.org
-> ---
-> Liu, please test on MX8qxp , I do not have that hardware.
-> ---
->  drivers/gpu/drm/imx/dc/dc-fu.c    | 40 +++++++++++++++++++++++++++++++
->  drivers/gpu/drm/imx/dc/dc-plane.c |  8 +++++++
->  2 files changed, 48 insertions(+)
->
-> diff --git a/drivers/gpu/drm/imx/dc/dc-fu.c b/drivers/gpu/drm/imx/dc/dc-fu.c
-> index 1d8f74babef8a..397af0e9b0236 100644
-> --- a/drivers/gpu/drm/imx/dc/dc-fu.c
-> +++ b/drivers/gpu/drm/imx/dc/dc-fu.c
-> @@ -65,6 +65,46 @@ static const struct dc_fu_pixel_format pixel_formats[] = {
->  		DRM_FORMAT_XRGB8888,
->  		R_BITS(8)   | G_BITS(8)   | B_BITS(8)   | A_BITS(0),
->  		R_SHIFT(16) | G_SHIFT(8)  | B_SHIFT(0)  | A_SHIFT(0),
-> +	}, {
-> +		DRM_FORMAT_ARGB8888,
-> +		R_BITS(8)   | G_BITS(8)   | B_BITS(8)   | A_BITS(8),
-> +		R_SHIFT(16) | G_SHIFT(8)  | B_SHIFT(0)  | A_SHIFT(24),
-> +	}, {
-> +		DRM_FORMAT_ABGR8888,
-> +		R_BITS(8)   | G_BITS(8)   | B_BITS(8)   | A_BITS(8),
-> +		R_SHIFT(0)  | G_SHIFT(8)  | B_SHIFT(16) | A_SHIFT(24),
-> +	}, {
-> +		DRM_FORMAT_XBGR8888,
-> +		R_BITS(8)   | G_BITS(8)   | B_BITS(8)   | A_BITS(0),
-> +		R_SHIFT(0)  | G_SHIFT(8)  | B_SHIFT(16) | A_SHIFT(0),
-> +	}, {
-> +		DRM_FORMAT_RGBA8888,
-> +		R_BITS(8)   | G_BITS(8)   | B_BITS(8)   | A_BITS(8),
-> +		R_SHIFT(24) | G_SHIFT(16) | B_SHIFT(8)  | A_SHIFT(0),
-> +	}, {
-> +		DRM_FORMAT_RGBX8888,
-> +		R_BITS(8)   | G_BITS(8)   | B_BITS(8)   | A_BITS(0),
-> +		R_SHIFT(24) | G_SHIFT(16) | B_SHIFT(8)  | A_SHIFT(0),
-> +	}, {
-> +		DRM_FORMAT_BGRA8888,
-> +		R_BITS(8)   | G_BITS(8)   | B_BITS(8)   | A_BITS(8),
-> +		R_SHIFT(8)  | G_SHIFT(16) | B_SHIFT(24) | A_SHIFT(0),
-> +	}, {
-> +		DRM_FORMAT_BGRX8888,
-> +		R_BITS(8)   | G_BITS(8)   | B_BITS(8)   | A_BITS(0),
-> +		R_SHIFT(8)  | G_SHIFT(16) | B_SHIFT(24) | A_SHIFT(0),
-> +	}, {
-> +		DRM_FORMAT_RGB888,
-> +		R_BITS(8)   | G_BITS(8)   | B_BITS(8)   | A_BITS(0),
-> +		R_SHIFT(16) | G_SHIFT(8)  | B_SHIFT(0)  | A_SHIFT(0),
-> +	}, {
-> +		DRM_FORMAT_BGR888,
-> +		R_BITS(8)   | G_BITS(8)   | B_BITS(8)   | A_BITS(0),
-> +		R_SHIFT(0)  | G_SHIFT(8)  | B_SHIFT(16) | A_SHIFT(0),
-> +	}, {
-> +		DRM_FORMAT_RGB565,
-> +		R_BITS(5)   | G_BITS(6)   | B_BITS(5)   | A_BITS(0),
-> +		R_SHIFT(11) | G_SHIFT(5)  | B_SHIFT(0)  | A_SHIFT(0),
->  	},
->  };
->
-> diff --git a/drivers/gpu/drm/imx/dc/dc-plane.c b/drivers/gpu/drm/imx/dc/dc-plane.c
-> index e40d5d66c5c1f..68d32b76fab95 100644
-> --- a/drivers/gpu/drm/imx/dc/dc-plane.c
-> +++ b/drivers/gpu/drm/imx/dc/dc-plane.c
-> @@ -33,6 +33,14 @@ do {									\
->
->  static const uint32_t dc_plane_formats[] = {
->  	DRM_FORMAT_XRGB8888,
-> +	DRM_FORMAT_ARGB8888,
-> +	DRM_FORMAT_ABGR8888,
-> +	DRM_FORMAT_XBGR8888,
-> +	DRM_FORMAT_RGBA8888,
-> +	DRM_FORMAT_RGBX8888,
-> +	DRM_FORMAT_BGRA8888,
-> +	DRM_FORMAT_BGRX8888,
-> +	DRM_FORMAT_RGB565,
+Hi Alexander,
 
-Is it posssible sort by name?
+On Fri, 17 Oct 2025 15:25:42 +0200
+Alexander Sverdlin <alexander.sverdlin@gmail.com> wrote:
 
-Frank
->  };
->
->  static const struct drm_plane_funcs dc_plane_funcs = {
-> --
-> 2.51.0
->
+> Hi Herve,
+> 
+> On Fri, 2025-10-17 at 08:32 +0200, Herve Codina wrote:
+> > ...
+> >   
+> > > > In order to have the I2C or the SPI module loaded automatically, move
+> > > > the MODULE_DEVICE_TABLE(of, ...) the core to I2C and SPI parts.
+> > > > Also move cs4271_dt_ids itself from the core part to I2C and SPI parts
+> > > > as both the call to MODULE_DEVICE_TABLE(of, ...) and the cs4271_dt_ids
+> > > > table itself need to be in the same file.    
+> > > 
+> > > I'm a bit confused by this change.
+> > > What do you have in SYSFS "uevent" entry for the real device?  
+> > 
+> > Here is my uevent content:
+> > --- 8<---
+> > # cat /sys/bus/i2c/devices/3-0010/uevent 
+> > DRIVER=cs4271
+> > OF_NAME=cs4271
+> > OF_FULLNAME=/i2c@ff130000/cs4271@10
+> > OF_COMPATIBLE_0=cirrus,cs4271
+> > OF_COMPATIBLE_N=1
+> > MODALIAS=of:Ncs4271T(null)Ccirrus,cs4271
+> > # 
+> > --- 8< ---  
+> 
+> that's what I get with SPI-connected CS4271, and this is actually what I'd
+> expect (linux-next as of 2433b8476165):
+> 
+> # cat /sys/bus/spi/devices/spi0.0/uevent
+> DRIVER=cs4271
+> OF_NAME=codec
+> OF_FULLNAME=/soc/spi@808a0000/codec@0
+> OF_COMPATIBLE_0=cirrus,cs4271
+> OF_COMPATIBLE_N=1
+> MODALIAS=spi:cs4271
+
+So, this is without my patch applied.
+I don't have any CS4271 connected on SPI bus to perform the same test
+with my patch applied.
+
+> 
+> > > If you consider spi_uevent() and i2c_device_uevent(), "MODALIAS=" in the
+> > > "uevent" should be prefixed with either "spi:" or "i2c:".
+> > > And this isn't what you adress in your patch.
+> > > 
+> > > You provide [identical] "of:" prefixed modalias to two different modules
+> > > (not sure, how this should work), but cs4271 is not an MMIO device,
+> > > so it should not generate an "of:" prefixed uevent.
+> > > 
+> > > Could you please show the relevant DT snippet for the affected HW?  
+> > 
+> > And this is the related DT part:
+> > --- 8< ---
+> > &i2c3 {
+> >  status = "okay";
+> > 
+> >  cs4271@10 {
+> >  compatible = "cirrus,cs4271";
+> >  reg = <0x10>;
+> >  clocks = <&cru SCLK_I2S_8CH_OUT>;
+> >  clock-names = "mclk";
+> > 
+> >  ...
+> >  };
+> > };
+> > --- 8< ---
+> > 
+> > i2c3 is the following node:
+> > https://elixir.bootlin.com/linux/v6.17.1/source/arch/arm64/boot/dts/rockchip/rk3399-base.dtsi#L732  
+> 
+> the above looks OK to me on the first glance, I'm really puzzled what
+> is the reason for "of:" prefixed MODALIAS in the uevent for an i2c device.
+> 
+> I still believe, that the culprit is the creation of a platform device
+> from the DT for an i2c device.
+> 
+> I don't have any real I2C-connected CS4271, but I think I could fake one
+> in any DT just to verify how uevents would look like on my side.
+> 
+> > About the related module, I have the following:  
+> 
+> I assume, this is with your patch applied though.
+
+Yes, exactly.
+
+> 
+> > --- 8< ---
+> > # modinfo snd_soc_cs4271_i2c
+> > filename:       /lib/modules/6.18.0-rc1xxxx-00050-g4fa36970abe5-dirty/kernel/sound/soc/codecs/snd-soc-cs4271-i2c.ko
+> > license:        GPL
+> > author:         Alexander Sverdlin <subaparts@yandex.ru>
+> > description:    ASoC CS4271 I2C Driver
+> > alias:          i2c:cs4271
+> > alias:          of:N*T*Ccirrus,cs4271C*
+> > alias:          of:N*T*Ccirrus,cs4271
+> > depends:        snd-soc-cs4271
+> > intree:         Y
+> > name:           snd_soc_cs4271_i2c
+> > vermagic:       6.18.0-rc1xxxx-00050-g4fa36970abe5-dirty SMP preempt mod_unload aarch64
+> > # 
+> > --- 8< ---  
+> 
+
+Best regards,
+Hervé
 
