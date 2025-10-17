@@ -1,108 +1,170 @@
-Return-Path: <devicetree+bounces-228073-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228074-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A885BE7538
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 11:00:55 +0200 (CEST)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id A370FBE753E
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 11:01:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8EE3E1AA2403
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 09:00:20 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 2885B35AF49
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 09:01:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0722A2C1589;
-	Fri, 17 Oct 2025 08:58:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF0022D24AC;
+	Fri, 17 Oct 2025 09:00:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=163.com header.i=@163.com header.b="BCNdO21o"
+	dkim=pass (1024-bit key) header.d=vayavyalabs.com header.i=@vayavyalabs.com header.b="CkdQjMkM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.2])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com [209.85.128.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EAF0F21B185;
-	Fri, 17 Oct 2025 08:58:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.2
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 598912D1901
+	for <devicetree@vger.kernel.org>; Fri, 17 Oct 2025 09:00:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760691523; cv=none; b=Iywn5GWl4hOZsWkaiIy4TESvxjo9Ia+xkzoPfnOfNGTOqpbvR5L3J/sHVnp3K88Y+VaOuHsYiFaHu+gLrhM5I2WdyxKKaPEwICvcM+kPIxMmDFvVKeh7RZJC/4HG/90CLVOZ4mNOLB0FqD6LLUSLrwezZaamZtpjlNffOUBoNY4=
+	t=1760691654; cv=none; b=MvK19xjwfx0STP+6SHDgz8caRffvom8WwdvpVyWz1Q3Ugwe/4xcu7QYt46LOY4NoxgBJiTjXVqEsPMtq0lKdrFfDgxBxiy8ZRxZySnjDJUvvd0MfbwsE1kByGT7/kNtSa93FOO6ov4iewdW1x4NP6Mt6Bo/yiERh4gLoSV7X7m0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760691523; c=relaxed/simple;
-	bh=Y+TxpN+8v3D/wFUbqbHk8ljRzYJDzRbfCfOGr2ucmQ8=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
-	 MIME-Version:Message-ID; b=YJuXktGLmNgOgLGez46mGNexVEBGF9JijPfnQH1i8Ds3x81y1a4d1G+AoYy9amWxw/Ma++wsiWylG+wAHU6ZjvZqmUHPNIV3zijdQFeo2gGdzOtYInr97/TLGnST7uKGM06PX+f/G6GOuJmfp8xzjh411gSnq1bjY12vJhfQCvY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=fail (1024-bit key) header.d=163.com header.i=@163.com header.b=BCNdO21o reason="signature verification failed"; arc=none smtp.client-ip=117.135.210.2
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=Date:From:To:Subject:Content-Type:MIME-Version:
-	Message-ID; bh=0I00pQnbY1u48SLSbfkjT/kC6CPcVg5dby2NqOBL3+k=; b=B
-	CNdO21oTuVDDYpNEGDxqBTpsymKzpM4FzG/XkmpdVAk9FZEHsrHwtoFzZBBsj6si
-	w7FLyqTo7h1hEPjRZqZUHKJqUkReB0k5FyxNNWSTls0p+d/8FjzRUdF3/twcUef8
-	JkMF4RsTTxEu8yC4QwDVohHV862zRxhK0WwwmR9LcA=
-Received: from andyshrk$163.com ( [58.22.7.114] ) by
- ajax-webmail-wmsvr-40-143 (Coremail) ; Fri, 17 Oct 2025 16:56:38 +0800
- (CST)
-Date: Fri, 17 Oct 2025 16:56:38 +0800 (CST)
-From: "Andy Yan" <andyshrk@163.com>
-To: "Maud Spierings" <maud_spierings@murena.io>
-Cc: Laurent.pinchart@ideasonboard.com, andrzej.hajda@intel.com,
-	andy.yan@rock-chips.com, devicetree@vger.kernel.org,
-	dmitry.baryshkov@oss.qualcomm.com, dri-devel@lists.freedesktop.org,
-	heiko@sntech.de, jernej.skrabec@gmail.com, jonas@kwiboo.se,
-	knaerzche@gmail.com, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
-	maarten.lankhorst@linux.intel.com, mripard@kernel.org,
-	neil.armstrong@linaro.org, rfoss@kernel.org, simona@ffwll.ch,
-	tzimmermann@suse.de
-Subject: Re:Re: [PATCH v8 2/2] MAINTAINERS: Add entry for Innosilicon hdmi
- bridge library
-X-Priority: 3
-X-Mailer: Coremail Webmail Server Version 2023.4-cmXT build
- 20250723(a044bf12) Copyright (c) 2002-2025 www.mailtech.cn 163com
-In-Reply-To: <040d8fe8-da2f-4aa5-a2c3-1aec0cf2e8f0@murena.io>
-References: <20251016083843.76675-3-andyshrk@163.com>
- <040d8fe8-da2f-4aa5-a2c3-1aec0cf2e8f0@murena.io>
-X-NTES-SC: AL_Qu2dAvqSvksi7iKcZekfmUgWjuw/WsG1v/Ul1YBSP556jC/r8zkjQUF9DEnN7/uOLACpsBq9WjdwxuR2UoVeWLsLcVeD6Y6TtCYHViqiBA2GRw==
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset=UTF-8
+	s=arc-20240116; t=1760691654; c=relaxed/simple;
+	bh=o2unYdbluW1Z+y1R5k5exjJD7xPDhjFMTxohbYaU7P8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=k9msbVal1rOs047gipFkw9ihiXrbV6dI6ndCmHfeM5kHJGEI6zEkQUqYHpZXiLEx8uoeIen1dcXLJ7F2tWANJzFoxYizsfs8QnvEoFnADAUuv+gnjk/HZmcntDmcllBpSK0Y1aKPqUxjvXdxOsYi96sZZZVVyst1Zdm+8gz860A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=vayavyalabs.com; spf=pass smtp.mailfrom=vayavyalabs.com; dkim=pass (1024-bit key) header.d=vayavyalabs.com header.i=@vayavyalabs.com header.b=CkdQjMkM; arc=none smtp.client-ip=209.85.128.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=vayavyalabs.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=vayavyalabs.com
+Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-781014f4e12so21803357b3.1
+        for <devicetree@vger.kernel.org>; Fri, 17 Oct 2025 02:00:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=vayavyalabs.com; s=google; t=1760691650; x=1761296450; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=uwqZleTIDiUaAY72cnewgW3ek2rn+IL2kLV7EXZgYnA=;
+        b=CkdQjMkMBG99UCbfQ0O4MgJZ7ADpAaJzueVRDhxaxyG2gUt3LixzuMLTJnufr6jCck
+         OsfNN/pcZgS60qsxoCQXh210uVcJ2+fgJ6xMfYgn/7QSQsPMDLfsAm25nyh0ld9RugKV
+         g//aCZ3TE+e1ZoRcx9DfcP4AhrQfbXGtnhV+Q=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1760691650; x=1761296450;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=uwqZleTIDiUaAY72cnewgW3ek2rn+IL2kLV7EXZgYnA=;
+        b=Qg7tJdMIQsAqdr0mT4bCGbXK7OfwgsTpWFOp9B/Bm/MDl6tGTf/U/ECyiIhVgDdV96
+         LrD2mhQ+DaEcBUEr+XO5+9p7rJicHDGnN5YfHC5g6qzAdtBWsv9mu+ix8DD5spfwo2Vi
+         0h4R0uVIw5xfbN4cy6fE3J8qcKZNzajZ3yj7EURtU9UJgkx60gLO1mc2ir+xqTULOOrq
+         Z4c45R6PUg8j1IQiLQjoKIPhw/eUXXlliV2sOVwD0dOpTpXZO1Qi63CS8cDpCYbgJDXu
+         ImUTS6aaAtl5qiHzOOkeTvNJR+theKYGhzpobFDF7dvNnSYEGYOp85KtZIbrc/JhlA+C
+         tpng==
+X-Forwarded-Encrypted: i=1; AJvYcCWxH8buDxoahrxD3ng1FPTuXq187bwqFwRzJHdbKyn1KnW0Kp9oT3KoJSbxYw7jqTOfedEBVPcGmDgk@vger.kernel.org
+X-Gm-Message-State: AOJu0YzAgTzUaMnGSXANlA9U2zN1m/vZOPUXCBHpWCmglKxJqHDxOEzb
+	QkcFfhKu8JDP+hge9oHomSNZMH491yseQJ4B/Ju7S8XyDEe45eTYq1Z7t++pjTj80HP6yGsoC0a
+	rMmfkt2fGEvVEjnsXBoL7FyOqzPqmUklUgLb+JK0DAQ==
+X-Gm-Gg: ASbGncs4GBAyFaMPHDfG2T4TdSRjCEKrsITmnG3Kzz9YLGDVa6Ghh5SwZdvjjGk5d8L
+	sxJctEU7MQaqsqVwVhpJRrdGIlxaYSUIlkJIitTr3SKkHKpDKUuyyClNoEcLCrHUjnLqLgXXS+m
+	9Fe6zDy5tqO3Z9X/MuaGYRG0JIzc7bYjyYxOslzeeOCsialTJy4AC8Vbd9djTS6F0SrEm813BWP
+	xavO0g5IkTZTtZoc/1GyIpZGv/5IDMRXTCbIbf7GUa0OquImMTESySWno/9Io3dY10eaHzf19n/
+	4v7pVAKeXcIXpGC8Tyw=
+X-Google-Smtp-Source: AGHT+IE5Yi8fhsEehPxy5GJvNImSjw5otDpaKTAtoCLqiAZtdjIs8czq9CS+B6SwkI41+mx3O4jIWn9BUXmt32pT6+M=
+X-Received: by 2002:a05:690e:1401:b0:63e:1e08:daa8 with SMTP id
+ 956f58d0204a3-63e1e08e659mr637758d50.62.1760691650124; Fri, 17 Oct 2025
+ 02:00:50 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <671fc19.84e3.199f162a66c.Coremail.andyshrk@163.com>
-X-Coremail-Locale: zh_CN
-X-CM-TRANSID:jygvCgAnDpjGBPJodsENAA--.5725W
-X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/xtbB0gTpXmjyAwEUgwACss
-X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
+References: <20251007065020.495008-3-pavitrakumarm@vayavyalabs.com> <fe4d7cd9-0566-4d1b-97c0-91cc1f952077@web.de>
+In-Reply-To: <fe4d7cd9-0566-4d1b-97c0-91cc1f952077@web.de>
+From: Pavitrakumar Managutte <pavitrakumarm@vayavyalabs.com>
+Date: Fri, 17 Oct 2025 14:30:39 +0530
+X-Gm-Features: AS18NWCF7ilfnimqJ0juzX5edKoNldB4hCt5XQCmgPU4bAn0tksOTOoAPtkyp78
+Message-ID: <CALxtO0m1R0kf5Am+oEPAgqommQph9zs6+xfTM0GzGHV+YEXT3Q@mail.gmail.com>
+Subject: Re: [PATCH v7 2/4] Add SPAcc ahash support
+To: Markus Elfring <Markus.Elfring@web.de>
+Cc: Bhoomika Kadabi <bhoomikak@vayavyalabs.com>, 
+	Manjunath Hadli <manjunath.hadli@vayavyalabs.com>, Ruud Derwig <Ruud.Derwig@synopsys.com>, 
+	linux-crypto@vger.kernel.org, devicetree@vger.kernel.org, 
+	Herbert Xu <herbert@gondor.apana.org.au>, Rob Herring <robh@kernel.org>, 
+	LKML <linux-kernel@vger.kernel.org>, Aditya Kulkarni <adityak@vayavyalabs.com>, 
+	Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, T Pratham <t-pratham@ti.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-CgpIZWxsbyBNYXVk77yMCgpBdCAyMDI1LTEwLTE3IDE1OjU4OjIyLCAiTWF1ZCBTcGllcmluZ3Mi
-IDxtYXVkX3NwaWVyaW5nc0BtdXJlbmEuaW8+IHdyb3RlOgo+SGkgQW5keSwKPgo+PiBGcm9tOiBB
-bmR5IFlhbiA8YW5keS55YW5Acm9jay1jaGlwcy5jb20+Cj4+IAo+PiBBZGQgZW50cnkgZm9yIElu
-bm9zaWxpY29uIGhkbWkgYnJpZGdlIGxpYnJhcnkKPj4gCj4+IFNpZ25lZC1vZmYtYnk6IEFuZHkg
-WWFuIDxhbmR5LnlhbkByb2NrLWNoaXBzLmNvbT4KPj4gLS0tCj4+IAo+PiAobm8gY2hhbmdlcyBz
-aW5jZSB2MSkKPj4gCj4+ICBNQUlOVEFJTkVSUyB8IDggKysrKysrKysKPj4gIDEgZmlsZSBjaGFu
-Z2VkLCA4IGluc2VydGlvbnMoKykKPj4gCj4+IGRpZmYgLS1naXQgYS9NQUlOVEFJTkVSUyBiL01B
-SU5UQUlORVJTCj4+IGluZGV4IGY5Zjk4NWM3ZDc0NzkuLjBhZGNmYjFjMjY0YTEgMTAwNjQ0Cj4+
-IC0tLSBhL01BSU5UQUlORVJTCj4+ICsrKyBiL01BSU5UQUlORVJTCj4+IEBAIC0xMjI5OSw2ICsx
-MjI5OSwxNCBAQCBNOglTYW11ZWwgSG9sbGFuZCA8c2FtdWVsQHNob2xsYW5kLm9yZz4KPj4gIFM6
-CU1haW50YWluZWQKPj4gIEY6CWRyaXZlcnMvcG93ZXIvc3VwcGx5L2lwNXh4eF9wb3dlci5jCj4+
-ICAKPj4gK0lOTk9TSUxJQ09OIEhETUkgQlJJREdFIERSSVZFUgo+PiArTToJQW5keSBZYW4gPGFu
-ZHkueWFuQHJvY2stY2hpcHMuY29tPgo+PiArTDoJZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9w
-Lm9yZwo+PiArUzoJTWFpbnRhaW5lZAo+PiArVDoJZ2l0IGh0dHBzOi8vZ2l0bGFiLmZyZWVkZXNr
-dG9wLm9yZy9kcm0vbWlzYy9rZXJuZWwuZ2l0Cj4+ICtGOglkcml2ZXJzL2dwdS9kcm0vYnJpZGdl
-L2lubm8taGRtaS5jCj4+ICtGOglpbmNsdWRlL2RybS9icmlkZ2UvaW5ub19oZG1pLmgKPj4gKwo+
-PiAgSU5PVElGWQo+PiAgTToJSmFuIEthcmEgPGphY2tAc3VzZS5jej4KPj4gIFI6CUFtaXIgR29s
-ZHN0ZWluIDxhbWlyNzNpbEBnbWFpbC5jb20+Cj4+IC0tIAo+PiAyLjQzLjAKPgo+SSBiZWxpZXZl
-IHRoaXMgcGF0Y2ggc2hvdWxkIGJlIHNxdWFzaGVkIGludG8gdGhlIHBhdGNoIHRoYXQgYWN0dWFs
-bHkgCj5jcmVhdGVzIHRoZSBmaWxlcyBsaXN0ZWQgaW4gdGhlIE1BSU5UQUlORVJTIGVudHJ5LCBs
-aWtlIEkgZG8gaGVyZSBbMV0uIAo+Q2hlY2twYXRjaCBzaG91bGQgYmUgY29tcGxhaW5pbmcgYWJv
-dXQgcGF0Y2ggWzEvMl0gaWYgSSdtIG5vdCBtaXN0YWtlbiwgCj53aGVuIHlvdSBydW4gYGI0IHBy
-ZXAgLS1jaGVja2AuCgpXZSB0YWxrZWQgYWJvdXQgc29tZXRoaW5nIHNpbWlsYXIgaGVyZVsyXe+8
-mgpNYXhpbWUgYmVsaWV2ZXMgdGhleSBzaG91bGQgYmUgc2VwYXJhdGUgcGF0Y2hlcywgCkFuZCBJ
-J3ZlIHNlZW4gbWFueSBtZXJnZWQgY29tbWl0cyBpbiB0aGUga2VybmVsIGFyZSBhbHNvIGhhbmRs
-ZSBNQUlOVEFJTkVSUyBlbnRyeSBhcyBzZXBhcmF0ZSBwYXRjaGVzCgoKWzJdaHR0cHM6Ly9sb3Jl
-Lmtlcm5lbC5vcmcvbGludXgtcm9ja2NoaXAvM3lncW5qNGlkZXk3dTRtN2x0bHY3cG5maGtrdmNl
-cG1wZmRpamRzemN0YWVvcHEza3lAcXRlZzMzY29tamwzLwoKPgo+TGluazogCj5odHRwczovL2xv
-cmUua2VybmVsLm9yZy9hbGwvMjAyNTEwMDktbWF4MjUwMTQtdjQtMS02YWRiMmEwYWEzNWZAZ29j
-b250cm9sbC5jb20vIAo+WzFdCj4KPktpbmQgcmVnYXJkcywKPk1hdWQK
+Hi Markus,
+   My comments are embedded below.
+
+Warm regards,
+PK
+
+On Fri, Oct 17, 2025 at 12:13=E2=80=AFAM Markus Elfring <Markus.Elfring@web=
+.de> wrote:
+>
+> =E2=80=A6
+> > +++ b/drivers/crypto/dwc-spacc/spacc_ahash.c
+> > @@ -0,0 +1,980 @@
+> =E2=80=A6
+> > +static int do_shash(struct device *dev, unsigned char *name,
+> =E2=80=A6
+> > +{
+> =E2=80=A6
+> > +     sdesc =3D kmalloc(size, GFP_KERNEL);
+> > +     if (!sdesc) {
+> > +             rc =3D -ENOMEM;
+> > +             goto do_shash_err;
+> > +     }
+> =E2=80=A6
+> > +do_shash_err:
+> > +     crypto_free_shash(hash);
+> > +     kfree(sdesc);
+> > +
+> > +     return rc;
+> > +}
+> =E2=80=A6
+>
+> * You may use an additional label for better exception handling.
+PK: Ack, I will go with an additional label.
+
+>
+>   Or
+>
+> * Would you like to benefit more from the attribute =E2=80=9C__free(kfree=
+)=E2=80=9D?
+>   https://elixir.bootlin.com/linux/v6.17.1/source/include/linux/slab.h#L4=
+76
+>
+>
+> =E2=80=A6
+> > +/* Crypto engine hash operation */
+> > +static int spacc_hash_do_one_request(struct crypto_engine *engine, voi=
+d *areq)
+> > +{
+> =E2=80=A6
+> > +     tctx->tmp_sgl =3D kmalloc(sizeof(*tctx->tmp_sgl) * 2, GFP_KERNEL)=
+;
+> > +
+> > +     if (!tctx->tmp_sgl)
+>
+> * Please omit a blank line between such statements.
+PK: Ack, will do the cleanup in code.
+>
+> * Can a kmalloc_array() call be helpful here?
+PK: Ack, added
+>
+>
+> =E2=80=A6
+> > +                     kfree(tctx->tmp_sgl);
+> > +                     tctx->tmp_sgl =3D NULL;
+> > +                     local_bh_disable();
+> > +                     crypto_finalize_hash_request(engine, req, rc);
+> > +                     local_bh_enable();
+> > +                     return 0;
+> > +             }
+> =E2=80=A6
+>
+> Please avoid duplicate source code in such a function implementation.
+PK:Sure, will fix that
+
+>
+> Regards,
+> Markus
 
