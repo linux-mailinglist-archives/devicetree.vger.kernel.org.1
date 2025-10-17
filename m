@@ -1,127 +1,128 @@
-Return-Path: <devicetree+bounces-228042-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228043-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 335F5BE6F83
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 09:40:36 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B858BE6F89
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 09:40:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id A6FAF35B0E5
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 07:40:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4F8A362465F
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 07:40:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4891923A9B0;
-	Fri, 17 Oct 2025 07:40:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12E1323E325;
+	Fri, 17 Oct 2025 07:40:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="J8EQN41r"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ajzyhNDC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f46.google.com (mail-pj1-f46.google.com [209.85.216.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2607245016
-	for <devicetree@vger.kernel.org>; Fri, 17 Oct 2025 07:40:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D802822173A;
+	Fri, 17 Oct 2025 07:40:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760686824; cv=none; b=OFtRRBdSR2qBII0qW7/P7bKWsesbVG4yu2m+kBXU0mRbAfDtKrY/W/z6VNrqJ55VelEYshR5tfFP2wzsSROmwjBJWssAfVXaq5TG46u1k2krop3C0NrZsYOun0MoriiMevQKY47nR0qKu1wvNNw7z/0mdqsR2nAkZwApEmx/tTA=
+	t=1760686835; cv=none; b=I0l4rSQLr/yVEIxh22TygJm5vG7XlXIxp/K+g+tApzITFyW9qgDB+XThdgcBpj3WWjJV19+Luo5Pbhj9hcwgWReTpO7phrOsnPVy6nL2D0IheI2jkOCZM9HdkYmyV5uAUtf+s2zxsCnly4+83tRM5+6vFHLuBiJXmNTEJbAV8cA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760686824; c=relaxed/simple;
-	bh=T5p4ysugil+bNKLSR6F/8xllg8Tu9eWt6vjkSEyOVcM=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=im2NpYyjSfgqpbtkcT+dGuOe3fRw+F/2tfNwFc9ivMHViJ2YT2YWzMMNXc+5WHsc28t1Fe5xlCg2/fcz0V7BctC8d4WcQWVICy1Rutm9ONvQaRhhzYEPUl3lDBGqjxZJ88itGE3OmGSywrCF4tkNSX+Yf9Mzw80hDO+DlgnkvMY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=J8EQN41r; arc=none smtp.client-ip=209.85.216.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f46.google.com with SMTP id 98e67ed59e1d1-33c4252c3c5so175069a91.0
-        for <devicetree@vger.kernel.org>; Fri, 17 Oct 2025 00:40:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1760686822; x=1761291622; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=8bx5Txy8og/O6i1T8MIDUUZY/+F2oP8HDFFEoUUoKHk=;
-        b=J8EQN41rGoTwkw1P4I+j09pSZ6i4toVPuIW75BiMEjTn9kHx3i9eByYJ2UG9t3MDcG
-         +sqJxUSMo/nMllNhMFK+722bJz9Rx6bh38EmBOAMDlgAb1us3xcOePZA9y25wGlbyozk
-         bcIDkx8A8ukp1YI7MLWZC18FGFyKj5qVCYqrxgEQc9wG6nyE42tugxfnpN/aYLhBrZoJ
-         IADBbI3JYsJ4vYH57fGgAwIxqg1iAgH39WAl8M00+ZF1n4UEw17/1JBcPE80zURzAt75
-         Q++P4aY18jZ+VLmb7ZnFIE+xreI/wyqN7iQ7XECs3xAWCGFk+uhJR/NUva6D01HoUwjL
-         AjlA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760686822; x=1761291622;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=8bx5Txy8og/O6i1T8MIDUUZY/+F2oP8HDFFEoUUoKHk=;
-        b=Med8sgACP++i+wWvDZ2OAzTm8W4r6a1bssEqsdbFCSvbcQM7cHTKUNvQJ8NeJ7XfaD
-         147lGFGJJ1PllkyFtBz4k1WHNQzb2gRFO/dLQiHfqreXG+IB9Y3mewQus4XCI0nHVYxZ
-         bGQwwWltnAOjt/2NKd7aH14VPsI4vu9IB4/1TvkA8O53LrthPIap/mB9hPZuIxErIbyx
-         58pTcYwQKYsPgzOGUpeLfCPtZP2y0uWy5iRpx2GFK0h56xrQ5FMPku6vW1vIfICIik1a
-         m/Sx301Jp/uFdxXOhmyyW9SKA5NdmBzLX/fPvDY+pbXsbgtb/kVNC8doifoV7D+tAFHz
-         aWXQ==
-X-Gm-Message-State: AOJu0YwjjKxK/J93dlraPLPqwgLmTlwGVxMlMNVTRP4R0/SFf86g0l+C
-	TIb3ySni/cUU4zU9J1tKcidIf5Aatukn7FOPll0TkEagSEQFnw9KUTnW
-X-Gm-Gg: ASbGncttcpomMwZ+UzzNGySQwHEp8/9CJNC90pfko9LfWNsF713PbwHnGZClrnY4oV2
-	xHsoujS+pxLCWZu1jM6kcRcvox1IFaHZ2qgxCIw/iHnSDdv0L1tKLkbgVZyFiuzi1P6pVa6wD8L
-	EshPN8TVGzcEslU4WLTwXxr9sC3nMAWGbqgkM2xrU+JljJ+5fuKd6Lh09atg8YvMEqtKLTm3AwG
-	RW52fEIC/w3Ow8bbo6Ay/qb5bUpwyYxrvM+ETiR1Mymw9pYXVXWkztSJeGnVkllQ4qf03hS7kO2
-	E63QS2hfXWxzCQxR0vuU9VUsirULtrkKgslbCdnYAzgf60i4QZRVkA+RtUj6yeLvQWRIiZNJ2XS
-	X/uh1EKWG6pvXwjlK2B8kFw7yPOevHwsnwbqf+uypGzzELMDC+dYgQuDqQjYbRUY=
-X-Google-Smtp-Source: AGHT+IE5Wq2LSw/8u7zxDPAEAndLC3TWgGO8LMJfU4cDrcRHWlGtfWo/mBTgBjACKeby5RgogHrlvg==
-X-Received: by 2002:a17:90b:38c7:b0:339:d1f0:c735 with SMTP id 98e67ed59e1d1-33bcf91e032mr3105311a91.28.1760686821347;
-        Fri, 17 Oct 2025 00:40:21 -0700 (PDT)
-Received: from CNSZTL-DEB.lan ([2401:b60:5:2::a])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-33bd7b3173asm1879479a91.12.2025.10.17.00.40.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 17 Oct 2025 00:40:20 -0700 (PDT)
-From: Tianling Shen <cnsztl@gmail.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Grzegorz Sterniczuk <grzegorz@sternicz.uk>,
-	Tianling Shen <cnsztl@gmail.com>,
-	Dragan Simic <dsimic@manjaro.org>,
-	Jonas Karlman <jonas@kwiboo.se>
-Cc: devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: rockchip: fix eMMC corruption on NanoPC-T6 with A3A444 chips
-Date: Fri, 17 Oct 2025 15:39:54 +0800
-Message-ID: <20251017073954.130710-1-cnsztl@gmail.com>
-X-Mailer: git-send-email 2.51.0
+	s=arc-20240116; t=1760686835; c=relaxed/simple;
+	bh=sb/nElh9KMN8mQVtbv98NeQoE2uRu5jwjS2h4VMCK1A=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=vEVlY0l9cSoMxJAID/xiaTysNTuHCHRgeNJP8dopnHdkv3c7ZzACCvLxyrSl4RcCL9KoukvFkcn3BHEYWUAgvl/U7TV6+JU/0ufeRxQef91eYbSf79fPK9/au+9S7MDQ4BY3aW6GLhDp5xrO469CSGfvH6DxPOpMsdBrCWmq10k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ajzyhNDC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 79F47C4CEE7;
+	Fri, 17 Oct 2025 07:40:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1760686834;
+	bh=sb/nElh9KMN8mQVtbv98NeQoE2uRu5jwjS2h4VMCK1A=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=ajzyhNDCNv3tFpAGl/2kxzSDKoyY5sO4ci+57z4j0yIk54h1Eswl5xzKilAMuu6Px
+	 MfqtkkYeHXCaRWue658cKrOdLidcvjHBpnr4RFTdAWPgUKx8l56msfqEbN5I4vxFks
+	 pQH1Ey2qdh3Ucafbu7bRlZHWI3qQ+6KrNdivvqnpJd9SgUKZePb/DF8XokRWVjZjBg
+	 9jaaIayru7fdbwWU7HfIxC1fyq9PzdmP7ZnD6SSsLZQwLreYnOm8XfBbHoOiopuUPK
+	 Ip7sRCHriZ29HlqSVcJSVZhDoLHoObhuPKFcPJysZJrJqRVl/xkeab6NXUDzLF21VG
+	 3+9QDfc6qes1Q==
+Message-ID: <1ce0101b-e6ee-4914-8c41-215a2f1aacf4@kernel.org>
+Date: Fri, 17 Oct 2025 09:40:29 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/2] dt-bindings: power: rockchip: Add support for
+ RV1126B
+To: Finley Xiao <finley.xiao@rock-chips.com>, heiko@sntech.de
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ ulf.hansson@linaro.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+ zhangqing@rock-chips.com, sugar.zhang@rock-chips.com
+References: <20251017065646.320643-1-finley.xiao@rock-chips.com>
+ <20251017065646.320643-2-finley.xiao@rock-chips.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20251017065646.320643-2-finley.xiao@rock-chips.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-From: Grzegorz Sterniczuk <grzegorz@sternicz.uk>
+On 17/10/2025 08:56, Finley Xiao wrote:
+>  
+>        clocks:
+>          minItems: 1
+> diff --git a/include/dt-bindings/power/rockchip,rv1126b-power.h b/include/dt-bindings/power/rockchip,rv1126b-power.h
+> new file mode 100644
+> index 000000000000..beb692bd8e72
+> --- /dev/null
+> +++ b/include/dt-bindings/power/rockchip,rv1126b-power.h
 
-Some NanoPC-T6 boards with A3A444 eMMC chips experience I/O errors and
-corruption when using HS400 mode. Downgrade to HS200 mode to ensure
-stable operation.
 
-Signed-off-by: Grzegorz Sterniczuk <grzegorz@sternicz.uk>
-Signed-off-by: Tianling Shen <cnsztl@gmail.com>
----
- arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+I don't see my comment addressed. You never responded. Please slow down
+with your postings and respond to comments.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
-index fafeabe9adf9..5f63f38f7326 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
-@@ -717,8 +717,7 @@ &sdhci {
- 	no-sd;
- 	non-removable;
- 	max-frequency = <200000000>;
--	mmc-hs400-1_8v;
--	mmc-hs400-enhanced-strobe;
-+	mmc-hs200-1_8v;
- 	status = "okay";
- };
- 
--- 
-2.51.0
-
+Best regards,
+Krzysztof
 
