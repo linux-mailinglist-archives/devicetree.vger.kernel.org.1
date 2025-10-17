@@ -1,61 +1,66 @@
-Return-Path: <devicetree+bounces-228054-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228055-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id B454FBE71DA
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 10:17:45 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 80FEEBE7207
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 10:19:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id AC4254FF496
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 08:17:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2869842460A
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 08:19:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E62D27B4E1;
-	Fri, 17 Oct 2025 08:17:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA7FF27F006;
+	Fri, 17 Oct 2025 08:19:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gondor.apana.org.au header.i=@gondor.apana.org.au header.b="fokktwOv"
+	dkim=pass (2048-bit key) header.d=gondor.apana.org.au header.i=@gondor.apana.org.au header.b="qQKeUL9f"
 X-Original-To: devicetree@vger.kernel.org
 Received: from abb.hmeau.com (abb.hmeau.com [180.181.231.80])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D42CE2773F8;
-	Fri, 17 Oct 2025 08:17:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D569027B34C;
+	Fri, 17 Oct 2025 08:19:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=180.181.231.80
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760689053; cv=none; b=bUrteJPOx6gOislKdAuEdjwEdr9Fw/W6zr6NaSir1qprnHid4A+rXGL63c51fWfD8DEWsX8WlHF9cF5Np6yWMLUz4+2E4DLpOiGqxgW/10m2skodii+WUDE8R4u61edOqApEo5HT+BNIJKTU8ihdKvAsocJazdVznOhfSOrP430=
+	t=1760689178; cv=none; b=FY26ip/PQiLdpVZOxBB2aIt8rgVY8M/L4AtCUar4NdoZTp4Y+QM9gekpkU/gnZ83CESYPY8Mh3JV/8yDDAqJYAct3gNeBHWSGQN3/JEQVcl4mJ4nSLGxXk3ms94e/ee0435Eg4OTh1lcBcNNrL/fYxaHdAC9gZefCI8AeEYc4u4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760689053; c=relaxed/simple;
-	bh=+PYM39Twc/szISPmAYiB6H0ndq/jpjYkUMdbfEeBidw=;
+	s=arc-20240116; t=1760689178; c=relaxed/simple;
+	bh=LWebXPXjK8TZe7NRiXGXFdgiR6KhJ+52RIjtJJXwWoM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=evJLF954k5YU72NQS8k63QL4TBGBvzWnqtep9EoDBG53nv1Fb2+XgSebpfF61ewh4OoB6MdFV0LIr6p736bdiXxvmdd4ZFUDMfQ/2UHCADwYk38TAlq8EA0Rnpbi4eo9J6i5pflNLsPK2sBvfqLIBQhQEdjRdDE7PUiMPiZYyUM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gondor.apana.org.au; spf=pass smtp.mailfrom=gondor.apana.org.au; dkim=pass (2048-bit key) header.d=gondor.apana.org.au header.i=@gondor.apana.org.au header.b=fokktwOv; arc=none smtp.client-ip=180.181.231.80
+	 Content-Type:Content-Disposition:In-Reply-To; b=erPQRDziLAZSKSVFwgh0jbijAn2eUdJl06GDkD2qLeGJOTV800k927OHPL/Ym9IzonlpfMhpt6zgN1wxkwt2J7zmdyqnPZ6pv3vOZa39miz3k2/bQ0YI1z6ZmGeFFJNixJZMplo6LXtfdsTb387AWqrdMmdDXDCNejJ1QVFXHwI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gondor.apana.org.au; spf=pass smtp.mailfrom=gondor.apana.org.au; dkim=pass (2048-bit key) header.d=gondor.apana.org.au header.i=@gondor.apana.org.au header.b=qQKeUL9f; arc=none smtp.client-ip=180.181.231.80
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gondor.apana.org.au
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gondor.apana.org.au
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=gondor.apana.org.au; s=h01; h=In-Reply-To:Content-Type:MIME-Version:
 	References:Message-ID:Subject:Cc:To:From:Date:cc:to:subject:message-id:date:
-	from:content-type:reply-to; bh=0kTgle6u9fm0sJzXddOabsq9uoagx6McwvKCZsvp3tU=; 
-	b=fokktwOvKCGaFhEnU9gD79d7LggqwGIIepD8t6X7z9MrHeGmp9nK/FHMqtLsuUpAVqLK9cMpeO+
-	rsszNN2Ptn83nmuXUZrIGAQykzvf789SQtzd3gaf0Nh3rqu/4XZrnQ6z+56z1HeXd7PD3Y2LlLnZ4
-	WXMnRezQgBtBE7L5oVBn5qHBq/knHWThclQfPcOOnXZ857+bIaQl1ECuQyKdrN45Q5QZcUTrYwfhl
-	x/L4ijQv4p8w5nihbDpOWHU3RgrrS/BvZ7PEudn80FBxMB0+T6/On/SKQkRJMVAoZUraUrJHj0meB
-	wF5+aUsFaPPaU2PJn6eal8RdyxDR1n0beS0A==;
+	from:content-type:reply-to; bh=l0GpXpfo2yqMk8lrtmMl3O2NGLxAtwJghNLZjo4X3Ls=; 
+	b=qQKeUL9fHE3uE+67X6gIs+DScB21ChQBhhFZWFi/KmkEOEwTwkY/BlUVPoDF0fX7vq9/sJenKu0
+	yWq/TmellfQ70k2+/tNwFDJ6baG21JrUty7NVcNZPI2G+2RuFm2EDvBW9RgdkqcY1u7ELfMsSICbV
+	5wW4K62VdHfhS6VhLWIjlgArdab5xV6IkpRqhQ7KDd+kwGqVDLowHtQy4X5AzTXoQkXkBE9BdRzze
+	B6qr27N8Qf263RUZFM1qD2WzLEVjsT6GhwM/dy/udcD/3UT0yExH4tF9MPnV+zUKwzWhi5q87z7EB
+	n5YbSk2Yuq7YhBNUW5pscAOODUW0XmFX/YLA==;
 Received: from loth.rohan.me.apana.org.au ([192.168.167.2])
 	by formenos.hmeau.com with smtp (Exim 4.96 #2 (Debian))
-	id 1v9feG-00DMzA-29;
-	Fri, 17 Oct 2025 16:17:17 +0800
-Received: by loth.rohan.me.apana.org.au (sSMTP sendmail emulation); Fri, 17 Oct 2025 16:17:16 +0800
-Date: Fri, 17 Oct 2025 16:17:16 +0800
+	id 1v9fgQ-00DN35-1C;
+	Fri, 17 Oct 2025 16:19:31 +0800
+Received: by loth.rohan.me.apana.org.au (sSMTP sendmail emulation); Fri, 17 Oct 2025 16:19:30 +0800
+Date: Fri, 17 Oct 2025 16:19:30 +0800
 From: Herbert Xu <herbert@gondor.apana.org.au>
-To: Kael D'Alcamo <dev@kael-k.io>
-Cc: Olivia Mackall <olivia@selenic.com>, Rob Herring <robh@kernel.org>,
+To: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+Cc: "David S. Miller" <davem@davemloft.net>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-crypto@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: rng: microchip,pic32-rng: convert to DT
- schema
-Message-ID: <aPH7jK7lxUFeXldZ@gondor.apana.org.au>
-References: <20250923093330.31649-1-dev@kael-k.io>
+	Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	aiqun.yu@oss.qualcomm.com, tingwei.zhang@oss.qualcomm.com,
+	trilok.soni@oss.qualcomm.com, yijie.yang@oss.qualcomm.com,
+	Gaurav Kashyap <gaurav.kashyap@oss.qualcomm.com>
+Subject: Re: [PATCH] dt-bindings: crypto: qcom,inline-crypto-engine: Document
+ the kaanapali ICE
+Message-ID: <aPH8Er_hJ8WoosPw@gondor.apana.org.au>
+References: <20250924-knp-ice-v1-1-1adfc2d9e83c@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,19 +69,18 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250923093330.31649-1-dev@kael-k.io>
+In-Reply-To: <20250924-knp-ice-v1-1-1adfc2d9e83c@oss.qualcomm.com>
 
-On Tue, Sep 23, 2025 at 11:32:34AM +0200, Kael D'Alcamo wrote:
-> Convert the Devicetree binding documentation for microchip,pic32mzda-rng
-> from plain text to YAML.
+On Wed, Sep 24, 2025 at 04:29:37PM -0700, Jingyi Wang wrote:
+> From: Gaurav Kashyap <gaurav.kashyap@oss.qualcomm.com>
 > 
-> Signed-off-by: Kael D'Alcamo <dev@kael-k.io>
+> Document the Inline Crypto Engine (ICE) on the kaanapali platform.
+> 
+> Signed-off-by: Gaurav Kashyap <gaurav.kashyap@oss.qualcomm.com>
+> Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
 > ---
->  .../bindings/rng/microchip,pic32-rng.txt      | 17 --------
->  .../bindings/rng/microchip,pic32-rng.yaml     | 40 +++++++++++++++++++
->  2 files changed, 40 insertions(+), 17 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/rng/microchip,pic32-rng.txt
->  create mode 100644 Documentation/devicetree/bindings/rng/microchip,pic32-rng.yaml
+>  Documentation/devicetree/bindings/crypto/qcom,inline-crypto-engine.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 
 Patch applied.  Thanks.
 -- 
