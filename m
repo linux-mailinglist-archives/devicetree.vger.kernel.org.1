@@ -1,110 +1,82 @@
-Return-Path: <devicetree+bounces-228140-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228141-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B90F7BE879C
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 13:54:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BCD20BE87A5
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 13:55:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D8BD46257E7
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 11:54:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7B6E362577B
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 11:55:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07BC02D73B4;
-	Fri, 17 Oct 2025 11:54:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE3512D94A5;
+	Fri, 17 Oct 2025 11:54:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="vAIba2Mx"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="kc7V9LSZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
+Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E2962D9EDF;
-	Fri, 17 Oct 2025 11:54:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1931425B1DA;
+	Fri, 17 Oct 2025 11:54:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.161
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760702068; cv=none; b=cN5L1lGLuU+2d6JKptIdjb9s8xnIELbnhe17ifY6PA12FSwYPwcbNJakzK9Evf6S7x58e+/a4NuO9ROfpXSuPFSgfSxpBwE8vxoI3eYSWb212/fQLdp8Bq2h/k0W8eKaWRGG2ogJAv5KDRF8alXTtOHqf2ByrljKB0KSZMMOydI=
+	t=1760702098; cv=none; b=bYEBsevCOF6AoqT9g3g/mv1iK7dH/scddztjJ4zcO6JubxUgQWOr3S0oYNipkP6sPQtLQR6HRMIARjMb1fljOkItnU562t9UFDZneBGhO6g50FbxZ471xOTb7qTpPJoQO1TiZolkzJclZVu1TASHdj6BF0Wrp9hMzjpp3F0gQzQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760702068; c=relaxed/simple;
-	bh=pKkvE0lTyouIBYb6MvO2iIGZkpnvNriQd6pmUEwXrwg=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=UDPRgKOeDMj3ZQImKO6jbKlor4lzbLD9OORW+UH3yX674LXr/ZIWaR295aKo80i05tOExsqUhc6V83gqfCtRQcs8T0dP2Zh3Ypejy4aGUlnJHZlA+NKt8CXlGMgx/ogWb75diyQBtuoQhh8FCKr88LT2nEO6iw5F6zdDDtTkLKs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.helo=fllvem-ot03.ext.ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=vAIba2Mx; arc=none smtp.client-ip=198.47.19.245
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.helo=fllvem-ot03.ext.ti.com
-Received: from fllvem-sh04.itg.ti.com ([10.64.41.54])
-	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTP id 59HBriZG261157;
-	Fri, 17 Oct 2025 06:53:44 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1760702024;
-	bh=pKkvE0lTyouIBYb6MvO2iIGZkpnvNriQd6pmUEwXrwg=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=vAIba2MxY6mudbrJ2TycPRcm5AIukIhEkh22CaUfrMmbE0Cg+N1T1+qGu8qnGIhbM
-	 L45M0Hb9Rlq2wj4sExUcpaK4+esD3hyExsFywzjgC0ENXarCbv4rpGm8rA/ld08+Vu
-	 uuvqbThRxDfcUceo6qv66i0kZ9V3vrdobSkpQDp4=
-Received: from DFLE209.ent.ti.com (dfle209.ent.ti.com [10.64.6.67])
-	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 59HBritK1974019
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 17 Oct 2025 06:53:44 -0500
-Received: from DFLE206.ent.ti.com (10.64.6.64) by DFLE209.ent.ti.com
- (10.64.6.67) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Fri, 17 Oct
- 2025 06:53:44 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE206.ent.ti.com
- (10.64.6.64) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Fri, 17 Oct 2025 06:53:44 -0500
-Received: from a0512632.dhcp.ti.com (a0512632.dhcp.ti.com [172.24.233.20])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 59HBrPeA1246573;
-	Fri, 17 Oct 2025 06:53:38 -0500
-From: Swamil Jain <s-jain1@ti.com>
-To: <nm@ti.com>, <tomi.valkeinen@ideasonboard.com>, <robh@kernel.org>,
-        <jyri.sarha@iki.fi>, <aradhya.bhatia@linux.dev>, <airlied@gmail.com>,
-        <conor+dt@kernel.org>, <h-shenoy@ti.com>, <kristo@kernel.org>,
-        <krzk+dt@kernel.org>, <maarten.lankhorst@linux.intel.com>,
-        <mripard@kernel.org>, <simona@ffwll.ch>, <tzimmermann@suse.de>
-CC: <devarsht@ti.com>, <praneeth@ti.com>, <u-kumar1@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <s-jain1@ti.com>
-Subject: [PATCH 2/2] arm64: defconfig: Enable ILITEK ILI21X & ILI25X family of touch sensors
-Date: Fri, 17 Oct 2025 17:23:25 +0530
-Message-ID: <20251017115325.1942591-3-s-jain1@ti.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20251017115325.1942591-1-s-jain1@ti.com>
-References: <20251017115325.1942591-1-s-jain1@ti.com>
+	s=arc-20240116; t=1760702098; c=relaxed/simple;
+	bh=JdAbJBpF9zCBoKvtDSDBNLnvobggDoj7c0HLygpXH/w=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=k5P1mycXolFJvx1dwQbCa3k67q4AyUJBEHorY/Uc4pMsMrPX/a5lKZuF6hD3tZhPbKIoSIQRb1eRoLWC7A2HL7iAl6xtS1ZDGfGv7WlFBzYaVTcB1cLHuer/OmKHYlu1TYHM8hmENCsCbMXkgavEli0pbqVaK2Zidq+X/zfsONA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=kc7V9LSZ; arc=none smtp.client-ip=80.241.56.161
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp1.mailbox.org (smtp1.mailbox.org [IPv6:2001:67c:2050:b231:465::1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4cp3Cc1h0Tz9skc;
+	Fri, 17 Oct 2025 13:54:52 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1760702092;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=JdAbJBpF9zCBoKvtDSDBNLnvobggDoj7c0HLygpXH/w=;
+	b=kc7V9LSZo66ir7JcUJFGhlBxzRvoxPLTR/Knz7XjYFfumcTY67TphUakUXv+pg4pPI6Ztr
+	wp9vtz7K7OqorSNIb+gSfD3Khbcj4V7y0F/hSrcviyYCCbvNqUJD1XnAWjm1254eDOYFHg
+	U585Kul+RscurBTHevxOSO1Y6iYbnJFEMGhKyKL1gOnVqQ9vFYXyBdDAoaIJ4WR36xCvm7
+	6M8wFCdncpGW10Uz6CIwQnD5+NDOB/NY/kged5JcXBdwattx3GY99s3SzmRuvAi/f/Dbsg
+	9EFzwmZzL4doUaYTjtkHBaamAXC7Qywz5xldLzMPJaHmRtCU4uMVLQPQkTXG7Q==
+Message-ID: <dfef29e0-ac4b-49c6-acc0-dacce63696de@mailbox.org>
+Date: Fri, 17 Oct 2025 13:54:50 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Subject: Re: [PATCH] arm64: dts: renesas: sparrow-hawk: don't reserve SWDT
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ linux-renesas-soc@vger.kernel.org
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
+ Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, devicetree@vger.kernel.org
+References: <20251017115123.3438-2-wsa+renesas@sang-engineering.com>
+Content-Language: en-US
+From: Marek Vasut <marek.vasut@mailbox.org>
+In-Reply-To: <20251017115123.3438-2-wsa+renesas@sang-engineering.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-MBO-RS-META: t9jbm8gacfmjx31xweo6zfzwxoc1fcfg
+X-MBO-RS-ID: 7befe648c9dbbe42869
 
-Microtips Technology USA's LVDS Panel MF-101HIEBCAF0[1] uses
-ILITEK 2511 capacitative touch sensor to provide touch features on the
-display. This panel is used with TI's AM62-SK EVMs.
+On 10/17/25 1:51 PM, Wolfram Sang wrote:
+> SparrowHawk may run without ATF
 
-Enable ILITEK ILI21X touch sensors.
+Nitpick: It is abbreviated "TFA" now.
 
-[1]: https://www.ti.com/tool/SK-LCD1
-
-Signed-off-by: Swamil Jain <s-jain1@ti.com>
----
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 9379cb230f6d..dea15cd20828 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -472,6 +472,7 @@ CONFIG_INPUT_TOUCHSCREEN=y
- CONFIG_TOUCHSCREEN_ATMEL_MXT=m
- CONFIG_TOUCHSCREEN_GOODIX=m
- CONFIG_TOUCHSCREEN_GOODIX_BERLIN_SPI=m
-+CONFIG_TOUCHSCREEN_ILI210X=m
- CONFIG_TOUCHSCREEN_ELAN=m
- CONFIG_TOUCHSCREEN_EDT_FT5X06=m
- CONFIG_INPUT_MISC=y
+Reviewed-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
 
