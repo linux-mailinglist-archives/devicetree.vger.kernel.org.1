@@ -1,63 +1,56 @@
-Return-Path: <devicetree+bounces-228117-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228118-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 705DABE8324
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 12:59:17 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 31BB7BE83E7
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 13:07:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CFC6A1A6605D
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 10:59:40 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 0C3334E2F7F
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 11:07:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 063D1329C4A;
-	Fri, 17 Oct 2025 10:58:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15F093321BD;
+	Fri, 17 Oct 2025 11:07:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="fiYzf6Qp"
+	dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b="qwAL2V6b"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
+Received: from mout.web.de (mout.web.de [212.227.15.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74E04321457;
-	Fri, 17 Oct 2025 10:58:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87565328B5F;
+	Fri, 17 Oct 2025 11:07:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760698735; cv=none; b=gcO+vp3N8pkartVdjAA6R/oWoYimoN2qZu0AiAeykGkSZn6CB1ZdGW8X1orWTiFBO+DPDtwbvQYKh3KWkL/EKeRSCcDoFlNtw/jtm1CCXtj4vmvwGwReJjCK8BgYyMPb27apy0GHMj1YC9rTXkSgYGBCZLcVw7tsGRCUKXvQr9s=
+	t=1760699231; cv=none; b=SviucGxecueu7O6mZQbvXL/j2YWQ5BGWJ9/eLOJmWt4fqcGeUilMaozLQa8BbRF2ONLKiZFJaovfvWfDJpVeI5b/blUxkUw2nkkZ4akp26xbcoZ8ekdwkI5DWYP8ChIgoYjr1N0ahy9gJdXJZKJwLLMTEhwc4jjkBrq8d8DMh9g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760698735; c=relaxed/simple;
-	bh=lx/9Pua2k4+2D0Z8qUeVfaHKKC8xHRg3maUp3g/ReZc=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:CC:References:
-	 In-Reply-To:Content-Type; b=imi9dvBc15J1BUehUJ3me8stR3CxqVKa5VwKXc7aMhj7pZGrq5vdoHXt9iVq0iChWTwj9AaCp3U31ZXVIeVZkc4fXeEPXonMYzNpu4g6cAwCHYNAOiQPoCC7FRDS9+4anoI/Ulo9kjDPc5DW30zRUxlDTGPVslUmWwjTs8tAVPY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=fiYzf6Qp; arc=none smtp.client-ip=198.47.19.245
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllvem-sh03.itg.ti.com ([10.64.41.86])
-	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTP id 59HAwOol252484;
-	Fri, 17 Oct 2025 05:58:24 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1760698704;
-	bh=KTD192e+GHwuTmB/AOyJZZkgH94hw9SU/1NoyZZJevE=;
-	h=Date:Subject:From:To:CC:References:In-Reply-To;
-	b=fiYzf6QpiDzcdgAB4Yzy6YXrIRbHZzqmWBTidch/tF3LHnuU94Is7ZNWwiZJidBHe
-	 x7CV6vKCWnOh5j/QHRDyCohtWK1PgdlpKQtIhaK4NNvhq4hFt6J5WhfcjHcN5G/IRX
-	 r0cLchne4HJyiezJ4yG5oH1CJb6bZYQkCwcuiXTw=
-Received: from DLEE205.ent.ti.com (dlee205.ent.ti.com [157.170.170.85])
-	by fllvem-sh03.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 59HAwOVW2358912
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 17 Oct 2025 05:58:24 -0500
-Received: from DLEE214.ent.ti.com (157.170.170.117) by DLEE205.ent.ti.com
- (157.170.170.85) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Fri, 17 Oct
- 2025 05:58:23 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE214.ent.ti.com
- (157.170.170.117) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Fri, 17 Oct 2025 05:58:23 -0500
-Received: from [172.24.235.208] (hkshenoy.dhcp.ti.com [172.24.235.208])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 59HAwF6J1183031;
-	Fri, 17 Oct 2025 05:58:16 -0500
-Message-ID: <8ace674c-9d57-4500-b155-caa662903774@ti.com>
-Date: Fri, 17 Oct 2025 16:28:15 +0530
+	s=arc-20240116; t=1760699231; c=relaxed/simple;
+	bh=YM1qJhiYW/aJM7mu78MMauGEvaYVNdHVJZF/56mG06A=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Z4kauBaFC5aK6CN0I+tqgEChB9QjzU6jTpffCbjE1zf0ZFFxLvgg0rtozRXDazvh2LY3zeIpjSWUS/gNcFzP9e0mjJyg5bS4DrQob7lQIscBQAk+Auv+878KAgqtRtv3Fg+ZO/ZbCcaOaDnmkH74T3B9IWOsKg3ddnLQOomPFEo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de; spf=pass smtp.mailfrom=web.de; dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b=qwAL2V6b; arc=none smtp.client-ip=212.227.15.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=web.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
+	s=s29768273; t=1760699200; x=1761304000; i=markus.elfring@web.de;
+	bh=mBs//QP/LI/q0shbH30wWUG5UPKzyBqKbrx2NSC0/iA=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
+	 References:From:In-Reply-To:Content-Type:
+	 Content-Transfer-Encoding:cc:content-transfer-encoding:
+	 content-type:date:from:message-id:mime-version:reply-to:subject:
+	 to;
+	b=qwAL2V6bkyx6cmydBafs8WZ0S0BOEVtckYXPJzlqKcsMU/uTEwFV8ffzv2njWc5y
+	 +FVsqIN+ACzBv3T+qcNbzR+XcvdyGYB/lyvXO/kRPlyXWVGwe3nEMESRe2DF+tniA
+	 XvEYuFTlnvA+XJE3BSzwhwShlqbYTFLQVTJklBwmdvTcNPJKHh3EUu9LDtsUy4m7/
+	 yPu9o4c0YSKldWHx3WdsQCUgM4Rbsi6qfmEcGck4aj7MfS9mjroqy6hHct1UjTR0e
+	 UIttH3UQY3j/gOnO6jusnUxBceGFD6V+VJKI3/iVCsxBDvEPGlt7CHTSkZ9KF51O7
+	 bQAOj4oN15FQy6oPbQ==
+X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
+Received: from [192.168.178.29] ([94.31.69.195]) by smtp.web.de (mrweb005
+ [213.165.67.108]) with ESMTPSA (Nemesis) id 1M9ISh-1v69nL1Bvb-0067bb; Fri, 17
+ Oct 2025 13:06:40 +0200
+Message-ID: <51baad8c-6997-4e3b-81df-6d0380fc48d0@web.de>
+Date: Fri, 17 Oct 2025 13:06:27 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,180 +58,115 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/2] dt-bindings: drm/bridge: MHDP8546 bridge binding
- changes for DSC
-From: Harikrishna shenoy <h-shenoy@ti.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: <andrzej.hajda@intel.com>, <neil.armstrong@linaro.org>, <rfoss@kernel.org>,
-        <Laurent.pinchart@ideasonboard.com>, <jonas@kwiboo.se>,
-        <jernej.skrabec@gmail.com>, <airlied@gmail.com>, <simona@ffwll.ch>,
-        <maarten.lankhorst@linux.intel.com>, <mripard@kernel.org>,
-        <tzimmermann@suse.de>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <sjakhade@cadence.com>, <yamonkar@cadence.com>,
-        <lumag@kernel.org>, <dianders@chromium.org>, <jani.nikula@intel.com>,
-        <luca.ceresoli@bootlin.com>, <andy.yan@rock-chips.com>,
-        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devarsht@ti.com>, <u-kumar1@ti.com>,
-        <s-jain1@ti.com>, <tomi.valkeinen@ideasonboard.com>
-References: <20250915103041.3891448-1-h-shenoy@ti.com>
- <20250915103041.3891448-2-h-shenoy@ti.com>
- <20250918-dandelion-guan-of-storm-fa2051@kuoka>
- <d2367789-6b54-4fc2-bb7c-609c0fe084d3@ti.com>
-Content-Language: en-US
-In-Reply-To: <d2367789-6b54-4fc2-bb7c-609c0fe084d3@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Subject: Re: [PATCH v7 2/4] Add SPAcc ahash support
+To: Pavitrakumar Managutte <pavitrakumarm@vayavyalabs.com>,
+ linux-crypto@vger.kernel.org, devicetree@vger.kernel.org
+Cc: Bhoomika Kadabi <bhoomikak@vayavyalabs.com>,
+ Manjunath Hadli <manjunath.hadli@vayavyalabs.com>,
+ Ruud Derwig <Ruud.Derwig@synopsys.com>,
+ Herbert Xu <herbert@gondor.apana.org.au>, Rob Herring <robh@kernel.org>,
+ LKML <linux-kernel@vger.kernel.org>,
+ Aditya Kulkarni <adityak@vayavyalabs.com>, Conor Dooley
+ <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ T Pratham <t-pratham@ti.com>
+References: <20251007065020.495008-3-pavitrakumarm@vayavyalabs.com>
+ <fe4d7cd9-0566-4d1b-97c0-91cc1f952077@web.de>
+ <CALxtO0m1R0kf5Am+oEPAgqommQph9zs6+xfTM0GzGHV+YEXT3Q@mail.gmail.com>
+Content-Language: en-GB, de-DE
+From: Markus Elfring <Markus.Elfring@web.de>
+In-Reply-To: <CALxtO0m1R0kf5Am+oEPAgqommQph9zs6+xfTM0GzGHV+YEXT3Q@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:DOUqFi5mKdhYzqNv9/13UKY+qECSIwj2ZbFzXXp7zmcukapKswf
+ yXlhHpC+NyCtA0zfrD36QrmTHyx1n8cCfIHa25+hDYKRQL//E1UDXQqdBNFsFuj5Y2Fpvxy
+ 8mfDlLaCrLC3kL+YuVvXDwtpOxFgMX6SynxfXF7kgR60OZsjIroA9uG+4qBi+uXPMOHwKQR
+ Q8zeuNt3gGPd8cXTqcBlg==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:cRf46H0vaUY=;rhkQYmVCzYmb72mZbhYIBoGZV33
+ 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
 
-
-
-On 22/09/25 13:11, Harikrishna Shenoy wrote:
-> 
-> 
-> On 9/18/25 07:00, Krzysztof Kozlowski wrote:
->> On Mon, Sep 15, 2025 at 04:00:40PM +0530, Harikrishna Shenoy wrote:
->>> From: Swapnil Jakhade<sjakhade@cadence.com>
->>>
->>> Add binding changes for DSC(Display Stream Compression) in the MHDP8546
->>> DPI/DP bridge.
->>>
->>> Signed-off-by: Swapnil Jakhade<sjakhade@cadence.com>
->>> Signed-off-by: Harikrishna Shenoy<h-shenoy@ti.com>
->>> ---
->>>   .../display/bridge/cdns,mhdp8546.yaml         | 24 ++++++++++++-------
->>>   1 file changed, 15 insertions(+), 9 deletions(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml b/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml
->>> index c2b369456e4e..2a05a7d5847f 100644
->>> --- a/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml
->>> +++ b/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml
->>> @@ -27,13 +27,12 @@ properties:
->>>             Register block for DSS_EDP0_INTG_CFG_VP registers in case of TI J7 SoCs.
->>>         - description:
->>>             Register block of mhdptx sapb registers.
->>> +      - description:
->>> +          Register block for mhdptx DSC encoder registers.
->>>   
->>>     reg-names:
->>> -    minItems: 1
->>> -    items:
->>> -      - const: mhdptx
->>> -      - const: j721e-intg
->>> -      - const: mhdptx-sapb
->>> +    description:
->>> +      Names corresponding to entries in the reg property.
->> No, top-level should have broadest constraints. In your case it is
->> min/maxItems.
+>> =E2=80=A6
+>>> +do_shash_err:
+>>> +     crypto_free_shash(hash);
+>>> +     kfree(sdesc);
+>>> +
+>>> +     return rc;
+>>> +}
+>> =E2=80=A6
 >>
->> Description is completely redundant. Wasn't here before, so why adding
->> it?
->>
-> Noted, will remove description and add minItems:1.
->>>   
->>>     clocks:
->>>       maxItems: 1
->>> @@ -100,18 +99,25 @@ allOf:
->>>         properties:
->>>           reg:
->>>             minItems: 2
->>> -          maxItems: 3
->>> +          maxItems: 4
->>>           reg-names:
->>>             minItems: 2
->>> -          maxItems: 3
->>> +          items:
->>> +            - const: mhdptx
->>> +            - const: j721e-intg
->>> +            - const: mhdptx-sapb
->>> +            - const: dsc
->>>       else:
->>>         properties:
->>>           reg:
->>>             minItems: 1
->>> -          maxItems: 2
->>> +          maxItems: 3
->>>           reg-names:
->>>             minItems: 1
->>> -          maxItems: 2
->>> +          items:
->>> +            - const: mhdptx
->>> +            - const: mhdptx-sapb
->> This is wrong. Previously CDNS variant had two items means it had
->> "j721e-intg". Now it's something else.
->>
->> First, this is an ABI break.
->>
->> Second, there is no explanation at all for it in the commit msg! Looks
->> like random change.
->>
->> Read carefully writing-bindings doc.
->>
->> Best regards,
->> Krzysztof
->>
-> 
-> Hi Krzysztof,
-> 
-> 
-> Keeping this patch series aside, The existing binding-docs clearly have 
-> a bug.
-> 
-> Since even for cadence specific compatible "cdns,mhdp8546" it 
-> compulsorily expects "j721e-intg" register space
-> 
-> which is NOT part of the cadence IP block mhdp8546 and hence not 
-> applicable to "cdns,mhdp8546".
-> 
-> This was also discussed here [1] and can also be referred in this TRM 
-> section [2],
-> 
-> which clearly show that "j721e-intg" is part of TI wrapper IP block and 
-> should be
-> 
-> applicable to "ti,j721e-mhdp8546" compatible.
-> 
-> Yes agreed it breaks the ABI but it also fixes a bug and I don't see any 
-> one using only "cdns,mhdp8546" yet.
-> 
-> so I am thinking it's more appropriate to fix this as a separate patch 
-> independent of this series.
-> 
-> Kindly let me know if I should submit a separate patch to fix this bug 
-> or I should just ignore this bug.
-> 
-> Depending on your suggestion, if it's agreed upon to send the bug fix 
-> patch first, I will send out an independent
-> 
-> bug fix to remove "j721e-intg" for compatible "cdns,mhdp8546" and then 
-> rebase the series for adding DSC reg blocks
-> 
-> on top of bug fix.
-> 
-> [1]: https://lore.kernel.org/all/20250903220312.GA2903503- 
-> robh@kernel.org/ <https://lore.kernel.org/all/20250903220312.GA2903503- 
-> robh@kernel.org/>
-> [2]: Link to TRM ZIP:https://www.ti.com/lit/zip/spruil1 <https:// 
-> www.ti.com/lit/zip/spruil1>
-> Table 2-1. MAIN Domain Memory Map
-> DSS_EDP0_V2A_CORE_VP_REGS_APB are EDP core register identified by name 
-> mhdptx in DT.
-> DSS_EDP0_INTG_CFG_VP identified by j721e-intg in DT.
-> 
-> Section 12.6.6.16.4: EDP_CFG Registers
-> 
-> Driver use: TI j721e Cadence MHDP8546 DP wrapper(drivers/gpu/drm/bridge/ 
-> cadence/cdns-mhdp8546-j721e.c)
-> 
-> 
-> Regards.
+>> * You may use an additional label for better exception handling.
+> PK: Ack, I will go with an additional label.
 
-Hi Krzysztof,
+Can scope-based resource management become applicable for more use cases?
 
-Could you please let us know your thoughts on above, will re-spin it 
-accordingly.
-
-Regards.
-
-> 
-
+Regards,
+Markus
 
