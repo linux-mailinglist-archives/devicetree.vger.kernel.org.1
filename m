@@ -1,181 +1,234 @@
-Return-Path: <devicetree+bounces-228276-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228277-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CCEFBBEAFDC
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 19:08:41 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id EFB88BEB00C
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 19:09:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D24A1746D4E
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 17:00:52 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 44C514EF15D
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 17:09:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4ECEF2F7440;
-	Fri, 17 Oct 2025 17:00:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 774552FDC59;
+	Fri, 17 Oct 2025 17:09:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b="GHNvhdyO"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="oHgOEreW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.20])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8CE52F619A;
-	Fri, 17 Oct 2025 17:00:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF2722FD7C8
+	for <devicetree@vger.kernel.org>; Fri, 17 Oct 2025 17:09:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760720451; cv=none; b=eob2BtUq53xPFs6EAqXEZvIosV6bZPy9XQ5rKZaN6HZ2w66gGbx7oBSiqQo7HsZTOZPRYZolK7ZSpZP4GLmag0DSiRB02Yb0tIubrMjtXjnwHuADusxOUVa6G5OnfYjdM6TrsWnKmcfysDcKrlqEo8+JfryQW0CLdlSFDMpTWUU=
+	t=1760720943; cv=none; b=cXpJhNm4ounJRNSYAtQdkpOZwyanFJevnLAw5I18WpW/Wr9oEpn8Q+SOVLQt8RNcU4TH+a/o7We20KKEQQxnueqjcKTfzUlP36nhu0fDFUGjeYUkecSJZ0vPoL4Vbng2lzNzFyMkalHiuBO6h4zKs3Q3Esx+X5xyyC7BLks1AqM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760720451; c=relaxed/simple;
-	bh=BDpQpTaK8FT02fLieU1z12t2UTrDwWO9TIsJNiEkQtc=;
-	h=MIME-Version:Message-ID:From:To:Cc:Subject:Content-Type:Date:
-	 In-Reply-To:References; b=n1PiDeulLLvJ7MUPJzZZPlS+1i9A2DRTDq4heinVoBdptXdsBk3Mzny1G+qeRL+C7EMSEVknFC2P0hk/QLf1aBfttBt3s/vdtLnDfQaASUF2gdhwBCG5mw3RYKkLTbe8FWQhaQNv3xh3sltontIuMDNWbGUSIL7z/pLi3Agb55I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de; spf=pass smtp.mailfrom=public-files.de; dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b=GHNvhdyO; arc=none smtp.client-ip=212.227.17.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=public-files.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=public-files.de;
-	s=s31663417; t=1760720425; x=1761325225; i=frank-w@public-files.de;
-	bh=eKcQlBPjPB472NaD5zP4wHbT+w80iRDXssOS6Yp5LGU=;
-	h=X-UI-Sender-Class:MIME-Version:Message-ID:From:To:Cc:Subject:
-	 Content-Type:Date:In-Reply-To:References:
-	 Content-Transfer-Encoding:cc:content-transfer-encoding:
-	 content-type:date:from:message-id:mime-version:reply-to:subject:
-	 to;
-	b=GHNvhdyOjKx9DEkuc+CiOWaxpTezwOpUD04IB3bEanFKTSB1DJ9dnzxwB5kx5hqp
-	 371Cveqdw/s8uitSL3XvezoEw09EB8avPsYP5/BvDYOrGosn3muZyE+OOJC22IMou
-	 x2eAuBXzkw1teioOmlM5iqfY7RNNljzBVLbM5YDE/eixiVbOjQ2pC9GLuItxYDxH+
-	 YPp1rI6mRfsRau37u5uhwvbtTbsnF2cdoQY4bzXp0p+7fN+QXCOGGstXFjnDs1lLU
-	 3G0p+7UEQLr/NAH+WkCDpdxhjpR1ZshR5K+zREH13ukMRAGsjH5/juSXxbYxkwb/g
-	 H1XV068d9ZtymvCO1Q==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [194.15.82.42] ([194.15.82.42]) by
- trinity-msg-rest-gmx-gmx-live-654c5495b9-86l6j (via HTTP); Fri, 17 Oct 2025
- 17:00:25 +0000
+	s=arc-20240116; t=1760720943; c=relaxed/simple;
+	bh=TBtnh6miwgQv8qy4YxihSPZwnvBgSc+1qmJKsqgsLRw=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Hh2haveWRtyb5Xf4V8duU2R655keyTuiEr+L2zkIhHq8kifUibub62qOXEJgFiLWs+b57ZsAI/bZAx6IW/KH2MfeeZ4gx6kbt84GReNdh77axahmBp3JGokmeT0t2WVwfn72taExQWG7bePYr5H4TWnH+Nf/Hi7BQ5yYSxGRjCs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=oHgOEreW; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59HGDggj006291
+	for <devicetree@vger.kernel.org>; Fri, 17 Oct 2025 17:09:00 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=T/pxneW0GGPQT6fV2Oc8q6
+	PoK83hK+J2n9XaZIObRAU=; b=oHgOEreWy24QFTZlUVBlwmW5OvR3dOWoGq6HKh
+	293zIN+SJWqTOH2lWYOMklnmI6WCEXhlDc4cjn45WBhMx0woO6FPQfROKrNkbg+H
+	HybTX3igTgms2DN/c3pXqKh/KG6TKjDevjYChtsF7fkI/rxgvcJWsDOMhL0Wk0iZ
+	JZbENgUGB0W3YE1JgD4r1hGsqWm+q7PBMDfL5HdY/UjZTucmMsIwC27n8WeAmpwb
+	vrtHMW4JMknXEsJSD0rMIBdUkllJp957fKMTan4oiBA3HHnzGW9KUbS4l88BmE0g
+	DRI3Tlh9T5q141HcMgY+FyTUJ0Lk4m3EZyLNmTyRJUyFTXVw==
+Received: from mail-pj1-f70.google.com (mail-pj1-f70.google.com [209.85.216.70])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49s6mwye24-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 17 Oct 2025 17:08:59 +0000 (GMT)
+Received: by mail-pj1-f70.google.com with SMTP id 98e67ed59e1d1-33be4db19cfso1575035a91.0
+        for <devicetree@vger.kernel.org>; Fri, 17 Oct 2025 10:08:59 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1760720939; x=1761325739;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=T/pxneW0GGPQT6fV2Oc8q6PoK83hK+J2n9XaZIObRAU=;
+        b=UqSJmh5nSfE0V4m7dXE0TTa2JjG2/41xXr2YqZDGK7GPU/N8sI5xAr27amBZDWwWSZ
+         vBykXJELrUyn8C9mfqcsXCN9Kvg4ZQOkrUs/IkwaDiDsTzMWMmPjMlAUuymLpNC1C5uv
+         v9AZ++u9+vr695UYYnN7zVaqfr7tvAAoV6L8aM9S57VeGhvBlBEpJDSDS4WiQcGV0avU
+         WmqJas64w/6/HOxDZs6aLhu0Y854CDNmelLcuyXIxfKtSiY2qqTjTZXeanukp+bTsFpe
+         GhY8mULdmZMIBGiyvvR2a41TaRG8PgTv6k8lIKTetO3fTKNDjkntIj5UdIdenmFSJZj6
+         yl/g==
+X-Forwarded-Encrypted: i=1; AJvYcCVqNVrgfv+Tzv9TfX8lkpNOh80RF/Rr4y2mPerpaZg3CqadEpVJduBuqO2XBkp8qDGe4DvtSEHbG4V0@vger.kernel.org
+X-Gm-Message-State: AOJu0YxK1gMyjAV+k2MnjIYZML3OWKefSOXbigRoAMw0fWD5EB1ei8GU
+	imFut4F1q9Pv2fsC614656THMDoUwYI6gE60JeQeaA4LNnp7Kux1pV8ABUsPSxmAnHZbq1SRF3F
+	xw5bozZ1x6CEVWzBj/xduJHt7M86eCLF+NC/a4xZtmV8hnz5/L47tUEHBUsYrcqj4
+X-Gm-Gg: ASbGnctbiCwH5ZCcr1hKkXTdN3YI5A+7CsvV4eOcF2DnG5Yei0LGRP/oBnmOqULsOgM
+	8lkQFqVaScD++NZMHDLU+WyqoGJdyaJgClup0N4uBttL16BFwLM+6v2rcZLODVAr2rM02k0BDMg
+	Ymb4zrkyeFuo5uSj5+QWdDZOhxAKr14CMy23uDMV9MLIcqe4ZOCRk/iR2gGR1qqM+aDvxy/Gb+8
+	xlAJWHosvIJPLEgvodE7o76jicqEoZDZn6RORvSF9wFVGZDFDCxFeInUz2k0EjzswAgAgfjismx
+	MYsETehNHNC6DuVJi/S1IdjV5uitpHdeHZIUrMhgsv9P+7UWWGum+1wahzmQeCKcjzJdseUdqug
+	Bl0t22WNlGlVJX+aUm7law7M=
+X-Received: by 2002:a17:902:d4c4:b0:26e:7468:8a99 with SMTP id d9443c01a7336-290ca121e99mr59640175ad.36.1760720938717;
+        Fri, 17 Oct 2025 10:08:58 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IG+KFNhG5PcZbke3N7Al16y0Yp79mNDUlOZzFtifVQr0J9r+kCgoWT/WU7gFhlnqZFx5kLQEw==
+X-Received: by 2002:a17:902:d4c4:b0:26e:7468:8a99 with SMTP id d9443c01a7336-290ca121e99mr59639625ad.36.1760720938250;
+        Fri, 17 Oct 2025 10:08:58 -0700 (PDT)
+Received: from hu-akhilpo-hyd.qualcomm.com ([202.46.23.25])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-292471febc6sm173625ad.86.2025.10.17.10.08.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 17 Oct 2025 10:08:57 -0700 (PDT)
+From: Akhil P Oommen <akhilpo@oss.qualcomm.com>
+Subject: [PATCH 0/6] Support for Adreno 612 GPU - Respin
+Date: Fri, 17 Oct 2025 22:38:28 +0530
+Message-Id: <20251017-qcs615-spin-2-v1-0-0baa44f80905@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <trinity-189d521f-e308-475e-a4bf-3821794cd216-1760720425043@trinity-msg-rest-gmx-gmx-live-654c5495b9-86l6j>
-From: frank-w@public-files.de
-To: laura.nao@collabora.com, srini@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, rafael@kernel.org,
- daniel.lezcano@linaro.org, rui.zhang@intel.com, lukasz.luba@arm.com,
- matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com
-Cc: nfraprado@collabora.com, arnd@arndb.de, colin.i.king@gmail.com,
- u.kleine-koenig@baylibre.com, andrew-ct.chen@mediatek.com,
- lala.lin@mediatek.com, bchihi@baylibre.com, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- kernel@collabora.com, laura.nao@collabora.com
-Subject: Aw: [PATCH RESEND v3 0/9] Add thermal sensor driver support for
- Mediatek MT8196
-Content-Type: text/plain; charset=UTF-8
-Date: Fri, 17 Oct 2025 17:00:25 +0000
-In-Reply-To: <20251016142158.740242-1-laura.nao@collabora.com>
-References: <20251016142158.740242-1-laura.nao@collabora.com>
-X-UI-CLIENT-META-MAIL-DROP: W10=
-X-Provags-ID: V03:K1:P+Yvh/yA0ff0Yl471I+mnmEBCSnB2JA4O9ZcySGW8hcqiIhGA76N3zud4wRV3OLMhC65r
- 8fKbTK2sx2Xv2Q9sEwiMx/Fr1QVBPj2jardHsJ1KdI4Iv3nzb7SH8aWMjnnLIW81OTdGvyKxGfLM
- X1YiuUquo3wO+LMKewInBl0Eykwqowy3Rd4Bl4hTyTariZ4Dcnn5WY5N3Y054oPWuUI31DecW+TA
- Pd31FUGvCwaH7vek68jB6gih3xfut7pG7BQ7uFLeFnRwDMgFu0AKQJtB5uCsECKvWCjW7jccv1sH
- f/eTAM7O7lxjMFxrddAcW5J1gaDqKZo+gNqlI2WZ/ov7Srq8DUXMsv0gdz6TLdrvRo=
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:SjEZhVmOfL0=;mUu1hbKY9O2aQGd+FALgkn7YiZg
- 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
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAx48mgC/yWMQQqDMBBFrxJm3SlJaES9SnFhktHOwqgZlYJ49
+ 4a6+rwP750glJkEWnVCpoOF51TAPBSET59GQo6FwWrrjDYO1yBVGVk4oUWKL+d1JN80NRRnyTT
+ w9997dzdnWveS3e4TfC+EYZ4m3lp1VE9TYw4Guuv6AffKjguMAAAA
+X-Change-ID: 20251015-qcs615-spin-2-ed45b0deb998
+To: Rob Clark <robin.clark@oss.qualcomm.com>, Sean Paul <sean@poorly.run>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Dmitry Baryshkov <lumag@kernel.org>,
+        Abhinav Kumar <abhinav.kumar@linux.dev>,
+        Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Akhil P Oommen <akhilpo@oss.qualcomm.com>,
+        Jie Zhang <quic_jiezh@quicinc.com>,
+        Qingqing Zhou <quic_qqzhou@quicinc.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1760720932; l=3877;
+ i=akhilpo@oss.qualcomm.com; s=20240726; h=from:subject:message-id;
+ bh=TBtnh6miwgQv8qy4YxihSPZwnvBgSc+1qmJKsqgsLRw=;
+ b=4vlqn1FI+5GLuRp7hEPEMU6tpBGe/cYZpbh7e15CysO9nwiTDdXKs7XfOcCbNDUQ9lpt5zfyz
+ vOTIQvH0kErDs3BQI8ITy1aMbf68szIQY7oWYSlrtjxsDwvqSv8bPxn
+X-Developer-Key: i=akhilpo@oss.qualcomm.com; a=ed25519;
+ pk=lmVtttSHmAUYFnJsQHX80IIRmYmXA4+CzpGcWOOsfKA=
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDEzMDA4MyBTYWx0ZWRfX+sH5k0S8GSLb
+ isSORHmsL1yqIlHzWqit1NU7I01NJ8j2v07qgDohtIedup7CNgjotwBbuSAR/bmnMOstwcoYmKq
+ muQl4lzySZTpx50Drx6qN69RrN9wIeXZGDFgOSBtrHFjgVmyD/QLjx5GeyDf50w096yVfaYzYIq
+ MkEgqLV1FGgukwy6V0RtAPEhhNDzyK7qBgzLEEQluTh/DdWuUwjGGrV4B3ekWBHJ55gYuMnzUnn
+ bZkER9+NZhA3VL1tx8l7OUJqLPzQYqjlFPjQ9BGzLRLAa4kj8qxzwzumDHIyasS7XLjNtzAH52m
+ EGsoRTuNGENEBjbazqWj8T8fSV/q447jJLai2890F6Af4QvpRDUCyUQIBngbH4MzMxjkB6cX8xv
+ nAovQ9/zVQLJHPSz8BZgNWq0I5wnAA==
+X-Authority-Analysis: v=2.4 cv=Fr4IPmrq c=1 sm=1 tr=0 ts=68f2782b cx=c_pps
+ a=0uOsjrqzRL749jD1oC5vDA==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
+ a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8 a=tVI0ZWmoAAAA:8
+ a=pGLkceISAAAA:8 a=QyXUC8HyAAAA:8 a=e5mUnYsNAAAA:8 a=vemyJuc05ARF21wryp8A:9
+ a=QEXdDO2ut3YA:10 a=mQ_c8vxmzFEMiUWkPHU9:22 a=TjNXssC_j7lpFel5tvFf:22
+ a=-BPWgnxRz2uhmvdm1NTO:22 a=Vxmtnl_E_bksehYqCbjh:22
+X-Proofpoint-GUID: Hc4nkLel7U4Afw6DjBApYp8ymtcXH02x
+X-Proofpoint-ORIG-GUID: Hc4nkLel7U4Afw6DjBApYp8ymtcXH02x
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-10-17_06,2025-10-13_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 impostorscore=0 spamscore=0 phishscore=0 malwarescore=0
+ adultscore=0 lowpriorityscore=0 bulkscore=0 suspectscore=0 clxscore=1015
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2510020000 definitions=main-2510130083
 
-> Gesendet: Donnerstag, 16. Oktober 2025 um 16:21
-> Von: "Laura Nao" <laura.nao@collabora.com>
-> Betreff: [PATCH RESEND v3 0/9] Add thermal sensor driver support for Med=
-iatek MT8196
->
-> This patch series extends the MediaTek LVTS thermal driver to support th=
-e
-> MT8196 SoC.
->=20
-> MT8196 requires a different implementation of the lvts_temp_to_raw()
-> function.
->=20
-> To support this, the series introduces:
->=20
-> - A new struct lvts_platform_ops to allow platform-specific
->   conversion logic between raw sensor values and temperature
-> - A variant of the lvts_temp_to_raw() implementation
-> - Platform data and controller definitions for MT8196
+This is a respin of an old series [1] that aimed to add support for
+Adreno 612 GPU found in SM6150/QCS615 chipsets. In this version, we
+have consolidated the previously separate series for DT and driver
+support, along with some significant rework.
 
-Hi
+Regarding A612 GPU, it falls under ADRENO_6XX_GEN1 family and is a cut
+down version of A615 GPU. A612 has a new IP called Reduced Graphics
+Management Unit or RGMU, a small state machine which helps to toggle
+GX GDSC (connected to CX rail) to implement the IFPC feature. Unlike a
+full-fledged GMU, the RGMU does not support features such as clock
+control, resource voting via RPMh, HFI etc. Therefore, we require linux
+clock driver support similar to gmu-wrapper implementations to control
+gpu core clock and GX GDSC.
 
-tested the series against mt7988 and mt7987 (support not yet upstreamed, s=
-o added the necessary fields for it to my 6.17 version)=20
-and it does not break these boards.
+In this series, the description of RGMU hardware in devicetree is more
+complete than in previous version. However, the RGMU core is not
+initialized from the driver as there is currently no need for it. We do
+perform a dummy load of RGMU firmware (now available in linux-firmware)
+to ensure that enabling RGMU core in the future won't break backward
+compatibility for users.
 
-Tested-by: Frank Wunderlich <frank-w@public-files.de>
+Due to significant changes compared to the old series, all R-b tags have
+been dropped. Please review with fresh eyes.
 
-regards Frank
+Last 3 patches are for Bjorn and the rest are for Rob Clark for pick up.
+
+[1] Driver: https://lore.kernel.org/lkml/20241213-a612-gpu-support-v3-1-0e9b25570a69@quicinc.com/
+    Devicetree: https://lore.kernel.org/lkml/fu4rayftf3i4arf6l6bzqyzsctomglhpiniljkeuj74ftvzlpo@vklca2giwjlw/
+
+To: Rob Clark <robin.clark@oss.qualcomm.com>
+To: Sean Paul <sean@poorly.run>
+To: Konrad Dybcio <konradybcio@kernel.org>
+To: Dmitry Baryshkov <lumag@kernel.org>
+To: Abhinav Kumar <abhinav.kumar@linux.dev>
+To: Jessica Zhang <jessica.zhang@oss.qualcomm.com>
+To: Marijn Suijten <marijn.suijten@somainline.org>
+To: David Airlie <airlied@gmail.com>
+To: Simona Vetter <simona@ffwll.ch>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: Maxime Ripard <mripard@kernel.org>
+To: Thomas Zimmermann <tzimmermann@suse.de>
+To: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Conor Dooley <conor+dt@kernel.org>
+To: Bjorn Andersson <andersson@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org
+Cc: dri-devel@lists.freedesktop.org
+Cc: freedreno@lists.freedesktop.org
+Cc: linux-kernel@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+
+Signed-off-by: Akhil P Oommen <akhilpo@oss.qualcomm.com>
+---
+Akhil P Oommen (2):
+      dt-bindings: display/msm: gpu: Document A612 GPU
+      dt-bindings: display/msm/gmu: Document A612 RGMU
+
+Jie Zhang (3):
+      drm/msm/a6xx: Add support for Adreno 612
+      arm64: dts: qcom: qcs615: Add gpu and rgmu nodes
+      arm64: dts: qcom: qcs615-ride: Enable Adreno 612 GPU
+
+Qingqing Zhou (1):
+      arm64: dts: qcom: qcs615: add the GPU SMMU node
+
+ .../devicetree/bindings/display/msm/gmu.yaml       |  98 +++++++++++---
+ .../devicetree/bindings/display/msm/gpu.yaml       |  31 ++++-
+ arch/arm64/boot/dts/qcom/qcs615-ride.dts           |   8 ++
+ arch/arm64/boot/dts/qcom/sm6150.dtsi               | 139 ++++++++++++++++++++
+ drivers/gpu/drm/msm/adreno/a6xx_catalog.c          |  16 +++
+ drivers/gpu/drm/msm/adreno/a6xx_gmu.c              |  87 ++++++++++++-
+ drivers/gpu/drm/msm/adreno/a6xx_gpu.c              | 143 ++++++++++++++++++++-
+ drivers/gpu/drm/msm/adreno/a6xx_gpu.h              |   1 +
+ drivers/gpu/drm/msm/adreno/a6xx_gpu_state.c        |   3 +-
+ drivers/gpu/drm/msm/adreno/adreno_gpu.c            |   1 +
+ drivers/gpu/drm/msm/adreno/adreno_gpu.h            |  16 ++-
+ 11 files changed, 511 insertions(+), 32 deletions(-)
+---
+base-commit: cb6649f6217c0331b885cf787f1d175963e2a1d2
+change-id: 20251015-qcs615-spin-2-ed45b0deb998
+
+Best regards,
+-- 
+Akhil P Oommen <akhilpo@oss.qualcomm.com>
+
 
