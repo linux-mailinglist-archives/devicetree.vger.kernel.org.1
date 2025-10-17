@@ -1,135 +1,226 @@
-Return-Path: <devicetree+bounces-228254-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228255-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36260BEACEF
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 18:41:47 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3706EBEAD0C
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 18:43:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B57A319A21CD
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 16:42:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A2B9519C54C2
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 16:43:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CBDB2C0F62;
-	Fri, 17 Oct 2025 16:41:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F21792C21F0;
+	Fri, 17 Oct 2025 16:42:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FUmdqQiw"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="NWcqrPv0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F8342C08BB;
-	Fri, 17 Oct 2025 16:41:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A21F72C08CE
+	for <devicetree@vger.kernel.org>; Fri, 17 Oct 2025 16:42:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760719302; cv=none; b=eC/HsFhWBxJP5emdWXJNW0nXbmD6e8fiXYgb1nDSF8jlN5WN2GVhQIYnS+safJ4g4Qx5bJxlVmE8D+9b1TuEfsVmcVF6B2uWveBecCzpqJGWfYUSESsi10utUgMjV8yGQ8GPB4nC+5FQlgMGADoX12KVGD+cRB/ekEKDExvMtbQ=
+	t=1760719372; cv=none; b=hZ0VpEw7p9Vxw9R3nMaC1ieYPnNnIdulNVcIGUat4lGQ2J5LDWLRbE4UchPAWYrtWwmMi4A1hL2Y9JOMCz1Fqf1W86lJsLKt8erTF9sVpI7r7Ftsu/mgR2sb1r8uchUNFeg75Drgn+4UMq4TJr4EnzsniF7iWcdEBCrLT+kPztc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760719302; c=relaxed/simple;
-	bh=Kluv6meTOXVV/CYoXDaXYdFXj5omH8c8AFCn633N9wM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TyiO/c3ZY3ylAxpfp36/lpfD9abo+O3RNpOBDHbds+84arVRkKPJYR+oPw6SIZw+qNDCRmebZ7qqasFxkX7MOAQ1QGvb9Q01JAM6DMssnd2elJPDvWjjP1OF6KQ1Eg/n0MG3cw2UCtUREyRYdYjYh6vxW+vr8Ls7M/hy/Bhi6IQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FUmdqQiw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9ECCAC4CEE7;
-	Fri, 17 Oct 2025 16:41:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760719301;
-	bh=Kluv6meTOXVV/CYoXDaXYdFXj5omH8c8AFCn633N9wM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=FUmdqQiwUM/WjNay9BbHp1DPnlJq7/YWVm1B970h+DCycwwca++qTTGl6X4Z1ZZPO
-	 OJyM8CyHmxN70NXLDKp7rhw/tr+ToOWKVxkGi95hqSY/xCkMqLxnSGmYzkbK+lxaQi
-	 N8/7QZqmcRzPmRAUoBUp6NMevyV5XlO0bLSnk4lx32AftNLV+zVREzTdJjmZVutnh4
-	 luNy3r2WI8QVEI6eKnicvkitWQvxg7413HDrfuZLlpGw0MJUn7YGOEYN+N1sYtnMXE
-	 fIQkq4X1EzfnOf/7PUlUGO8xE1NrJ1jc9N2QFynKPDz+zMY4HqgPyi22JFgC9xhvXj
-	 D7bAj1o16+UeA==
-Date: Fri, 17 Oct 2025 17:41:35 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Vitaly Rodionov <vitalyr@opensource.cirrus.com>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Takashi Iwai <tiwai@suse.com>,
-	Jaroslav Kysela <perex@perex.cz>,
-	David Rhodes <david.rhodes@cirrus.com>,
-	Richard Fitzgerald <rf@opensource.cirrus.com>,
-	Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-sound@vger.kernel.org,
-	linux-kernel@vger.kernel.org, patches@opensource.cirrus.com,
+	s=arc-20240116; t=1760719372; c=relaxed/simple;
+	bh=v2Xi8BRCop79aLfKUyFbjXnCh53GmVnNIX5OfaejQSE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=j4lIRo1ICqBhyWEdgjnhWFC7bHF9AiEqxgz6x1/L84F85EtLFQeIaa4Cpn8O4SB7tZjQXixgLRslPD3gmpVupW+QMU1b8lcfdtW+yv7kXXB8b6e2TXwBqOEKImu3/x1kOAWFbHO+glBVevOJYLWkLKXZCOWXiywOmyI978CWxEI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=NWcqrPv0; arc=none smtp.client-ip=209.85.128.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-47117e75258so9433775e9.2
+        for <devicetree@vger.kernel.org>; Fri, 17 Oct 2025 09:42:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1760719368; x=1761324168; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=hRDCn2mU4BEifqlYf0hPzCDri6dg23TBWxghZYVQqdg=;
+        b=NWcqrPv0xazKJC5D8dwMdWySPFj934I07f4/ijIMcde2iWZEyi2d1j9W70VFqD17vJ
+         +Q1EQ20TdM5HRSWr0a75FY30TSqRafMfTaIGuwrmpPdILoByf6NWkMwIicWXFrro46/Y
+         lUeV8TtXFZHDHlktb9nVdQYGu4A39OIukhTlBSSrPxKK2SpF8EoczGh881oT4NVQJd/2
+         On4onrI2BwzPy3hscAQ43Z3WFPuH8RRjkAmKwYxT0/5Mi3noPjmVA96fGcYfGMdE11Y9
+         8y1IPtt02Wbk9DDz86ryQWlLYrfDIezbgFT9Z+GqtDMg9RHDNaIRb/JbpGoiMfE9m7aF
+         InvA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1760719368; x=1761324168;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=hRDCn2mU4BEifqlYf0hPzCDri6dg23TBWxghZYVQqdg=;
+        b=FuQXlu99EUVH1Nv4Hs0a6mVwYd6bE8cT3EY/oO+yHrLzOYy9cdWKtgtHIJYUEnl8he
+         5bMC83xfNjy3fStwofMbJvdszJFrBiXkgt145Uutv9BOJChBIyHPGvBmqS0LGpFcjKNS
+         aK4vdcssA8hfvJpK677yD8mTa+L11INlmvYt/msQgdt3kc9LVAd183/6+q2OSjiawUP9
+         r+fpMYkXs9w+1KmiFfA1eqT5MXsg1S5ROhB6Or6CcKe2lX9L34ZB8BPH1FmCvPqYF4gk
+         hfrg0mYGwBT0Edb/y1og1Cy+NuRw2R9VVkc22k28dmrfjui+QtYkNzouPJX1FfwJQC/X
+         sOdw==
+X-Forwarded-Encrypted: i=1; AJvYcCW3HedPfBS4kUp7sBtoeGRIZGl/LNyZIyMfAAQiE4fgsbuw5pMKn7qBql08eiTJCpyTGsCYa+FNOFov@vger.kernel.org
+X-Gm-Message-State: AOJu0YyUfZcnTFtS1kl8NzKAq8pvStDbL7H6G1iWlMOcLLupzG0Svzr2
+	neaHEHhIDcHIkthZHCfBuvVY4DIwyDLbvDPzhythXCDAVp196oHCLGtb//al1bKV3JU=
+X-Gm-Gg: ASbGncs5zCoS/lE0a7CNpa0eBeOzgLXAiDjZEsAkGQtZEo+6G325MWntpLnnuIsB18Q
+	hm2pL63Ig8mnf8BdxNktLn99TDTEbNb9olvxT4W+wiF5PDUrUnP1i2cqC1lH07qSB0miDG7BFkh
+	VcC2OCI40z4OtZlHYrUorVsGMZHMd1ahikg97Jn5W1JUjpmZQ83xPqCdoWu+wgNTUetTEz/LnEy
+	2Kmfqaz/ZN6y8MESA5zEAmfuI3ZWYX05Sbi7vSnl0hbSmHShrxZCrhI7YY0Q//bOUTMbjlIkx6E
+	s4yU63rv0x0g1KDdob0LOk31J0A+TgftFyj+dePRQWWQKRdGWhiuNa3LSDOoqgrk+uS0ghxDaYJ
+	HnLRAC6KmRSa/XFKiAOJsFsZRvKTqQjJvacwXJft2hYgGFtZXs9qntvpm+RNxOwxORPMUJZjkyC
+	LCRMnz7b9+4uPI/Vj32flWI6+yFoXewpY=
+X-Google-Smtp-Source: AGHT+IEFldSqsX/P0Cu6c6dOrmrq1vRQoqiz5CJFLdZxVdw9U7KxznvLxXxb1tOd0Cjkm82QLwlpJg==
+X-Received: by 2002:a05:600c:1907:b0:46e:206a:78cc with SMTP id 5b1f17b1804b1-4711791c3b0mr41013315e9.28.1760719367811;
+        Fri, 17 Oct 2025 09:42:47 -0700 (PDT)
+Received: from mai.box.freepro.com ([2a05:6e02:1041:c10:f253:278f:af81:a956])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4715257d972sm3392125e9.1.2025.10.17.09.42.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 17 Oct 2025 09:42:47 -0700 (PDT)
+From: Daniel Lezcano <daniel.lezcano@linaro.org>
+To: jic23@kernel.org,
+	dlechner@baylibre.com,
+	nuno.sa@analog.com,
+	andy@kernel.org,
+	robh@kernel.org,
+	conor+dt@kernel.org,
+	krzk+dt@kernel.org
+Cc: linux-iio@vger.kernel.org,
+	s32@nxp.com,
+	linux-kernel@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	Simon Trimmer <simont@opensource.cirrus.com>
-Subject: Re: [PATCH v4 07/11] ASoC: cs530x: Add CODEC and DAC support
-Message-ID: <a0944336-e6e0-4ab2-95c3-be446e20230f@sirena.org.uk>
-References: <20251017161543.214235-1-vitalyr@opensource.cirrus.com>
- <20251017161543.214235-8-vitalyr@opensource.cirrus.com>
+	chester62515@gmail.com,
+	mbrugger@suse.com,
+	ghennadi.procopciuc@oss.nxp.com
+Subject: [PATCH v5 0/2] NXP SAR ADC IIO driver for s32g2/3 platforms
+Date: Fri, 17 Oct 2025 18:42:36 +0200
+Message-ID: <20251017164238.1908585-1-daniel.lezcano@linaro.org>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="mtHkEX5ILNkXrGIx"
-Content-Disposition: inline
-In-Reply-To: <20251017161543.214235-8-vitalyr@opensource.cirrus.com>
-X-Cookie: Androphobia:
+Content-Transfer-Encoding: 8bit
 
+The S32G2 and S32G3 platforms have a couple of successive
+approximation register (SAR) ADCs with eight channels and 12-bit
+resolution. These changes provide the driver support for these ADCs
+and the bindings describing them.
 
---mtHkEX5ILNkXrGIx
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+The driver is derived from the BSP driver version. It has been partly
+rewritten to conform to upstream criteria.
 
-On Fri, Oct 17, 2025 at 05:15:34PM +0100, Vitaly Rodionov wrote:
+https://github.com/nxp-auto-linux/linux/blob/release/bsp44.0-6.6.85-rt/drivers/iio/adc/s32cc_adc.c
 
-> --- a/sound/soc/codecs/cs530x.c
-> +++ b/sound/soc/codecs/cs530x.c
-> @@ -45,6 +45,18 @@ static const struct reg_default cs530x_reg_defaults[] = {
->  	{ CS530X_IN_VOL_CTRL3_1, 0x8000 },
->  	{ CS530X_IN_VOL_CTRL4_0, 0x8000 },
->  	{ CS530X_IN_VOL_CTRL4_1, 0x8000 },
-> +	{ CS530X_OUT_ENABLES, 0 },
-> +	{ CS530X_OUT_RAMP_SUM, 0x0022 },
-> +	{ CS530X_OUT_FILTER, 0 },
-> +	{ CS530X_OUT_INV, 0 },
-> +	{ CS530X_OUT_VOL_CTRL1_0, 0x8000 },
-> +	{ CS530X_OUT_VOL_CTRL1_1, 0x8000 },
-> +	{ CS530X_OUT_VOL_CTRL2_0, 0x8000 },
-> +	{ CS530X_OUT_VOL_CTRL2_1, 0x8000 },
-> +	{ CS530X_OUT_VOL_CTRL3_0, 0x8000 },
-> +	{ CS530X_OUT_VOL_CTRL3_1, 0x8000 },
-> +	{ CS530X_OUT_VOL_CTRL4_0, 0x8000 },
-> +	{ CS530X_OUT_VOL_CTRL4_1, 0x8000 },
+After the V1 posting there were some discussions around the DMA code
+to be converted to use the IIO DMA API [1]. Unfortunately this one is
+not yet fully implemented and merged in the framework to support the
+cyclic DMA. The current DMA code in the driver has been used in
+production since several years and even if I agree it can be improved
+with a dedicated IIO DMA API in the future, IMO, it sounds reasonable
+to keep it as is until the IIO DMA API supporting the cyclic DMA is
+merged. I'll be glad to convert the driver code if such an API exists
+and allows to remove code inside the driver.
 
-Do these new registers apply to all parts or just some (I'm guessing
-these might be different packaging/binnings of the same die in which
-case this should be fine if a little messy, but just checking).
+[1] https://lore.kernel.org/all/c30bb4b6328d15a9c213c0fa64b909035dc7bf40.camel@gmail.com/
 
->  	/* Write IN_VU bit for the volume change to take effect */
-> -	regmap_write(regmap, CS530X_IN_VOL_CTRL5, CS530X_IN_VU);
-> +	regmap_write(regmap, CS530X_IN_VOL_CTRL5, CS530X_INOUT_VU);
+Changelog:
+	* V5:
+	  - Rebased against v6.18-rc1
 
-The comment is now out of sync.  I can't help but feel that this change
-might be easier to read if the rename of everything to INOUT were a
-separate patch.
+	  ** Jonathan Cameron
+	  - Replace DRIVER_NAME macro with its literal string
+	  - Used FIELD_MODIFY() wherever it is possible
+	  - Complied with the 80 chars convention
+	  - Combined two variables in a single line declaration
+	  - Removed the 'remove' function as it is useless
+	  - Changed s32g2_sar_adc_data structure indentation / format
 
-> +		cs530x->dac_pairs_count--;
-> +		if (!cs530x->dac_pairs_count) {
-> +			usleep_range(1000, 1100);
-> +			return regmap_write(regmap, CS530X_OUT_VOL_CTRL5,
-> +					    CS530X_INOUT_VU);
-> +		}
+	* V4:
+	  ** Christophe Jaillet **
+	  - Used dmam_alloc_coherent() instead of dma_alloc_coherent()
 
-Should dac_pairs_count be a supply widget?
+	* V3:
+	  ** Jonathan Cameron **
+	  - Removed specific IIO_SYSFS_TRIGGER dependency in Kconfig
+	  - Fixed headers
+	  - Avoided macro generic names
+	  - Used IIO_DECLARE_BUFFER_WITH_TS
+	  - Documented buffer and buffer_chan
+	  - Fixed single line comment
+	  - Commented why channel 32 is the timestamp
+	  - Renamed __<prefixed> functions
+	  - Factored out the raw read function to prevent nested goto in the switch
+	  - Returned -EINVAL instead of break
+	  - Removed explict pointer cast
+	  - Used iio_push_to_buffers_with_ts variant
+	  - Fixed ordering operations in postenable / predisable
+	  - Return IRQ_HANDLED even if there is an error in the isr
+	  - Fixed devm_add_action_or_reset() to return directly
+	  - Used sizeof(*var) instead of sizeof(struct myvar)
+	  - Used model name instead of dev_name()
+	  - Used dev_err_probe() in any case in the probe function
+	  - Fixed indentation
 
---mtHkEX5ILNkXrGIx
-Content-Type: application/pgp-signature; name="signature.asc"
+	  ** David Lechner **
+	  - Kept alphabetical order in Makefile
+	  - Changed explicit GPL-2.0-only
+	  - Removed clock name in when calling devm_clk_get_enabled()
 
------BEGIN PGP SIGNATURE-----
+	  ** Andriy Shevchenko **
+	  - Fixed headers ordering and added the missing ones
+	  - Fixed constant numeric format
+	  - Ran pahole and consolidated the nxp_sar_adc structure
+	  - Fixed semi-column in comments and typos
+	  - Fixed indentation
+	  - Moved data assignment before iio_dev allocation
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmjycb4ACgkQJNaLcl1U
-h9B4Lgf9GKj6aiJbvrg4PMOCSwR7GZWa2kJfni2TF7qcueGWgUFLTTC1KOebwPLx
-w++KWthtXse2sI6LDVdwir2ULzObC2Gy0/8MAu9/370VYp+6IEKnH8OdqKMt3jaQ
-Ue+buS7teJZwZ826j3O3H5IyIVHYCcih+uTWWfZD6E8zzvZ+YICQSO07nKbKIMWO
-ROGJvH0PGuEGsT3pneQ9zZjDid1liLec/866Y89U2g7WDN9oNNT2DXC4DcqYpL/0
-sKUcmwxhlHRacm3Dx2+O5bJ3ICPiB5pr4RQh1cQ4GNv1F5IHBjnVwqYDzHtXqXzu
-EOwWMxzKjUvE6qehCmpgmNIe3XYwHQ==
-=oCtF
------END PGP SIGNATURE-----
+	* V2:
+	  - Massaged the cover letter changelog to explain the DMA
+	  ** Andriy Shevchenko **
+	  - Added missing headers and use proper header for of.h
+	  - Changed macro offset zero to be consistent
+	  - Remove macros REG_ADC_MCR_NRSMPL_* as they are unused
+	  - Changed delays macro under the form 100000 => 100 * USEC_PER_MSEC
+	  - Replaced PAGE_SIZE by a NXP_PAGE_SIZE = SZ_4K macro
+	  - Replaced read_poll_timeout() by readl_poll_timeout()
+	  - Changed error pattern "error first"
+	  - Replaced variable type 'int' to 'unsigned int'
+	  - Fixed bug right instead of left shift, use BIT(channel)
+	  - Returned directly from switch-case
+	  - Used guard(spinlock_irqsave)()
+	  - One liner function call
+	  - Remove redundant {}
+	  - Write default values litterals instead of temporary variables
+	  - Changed variable name vref -> vref_mV
+	  - Removed unneeded error message
+	  - Used dev_err_probe() consistently
+	  - Removed successful driver probe message
+	  - Removed redundant blank line
 
---mtHkEX5ILNkXrGIx--
+	  ** Nuno Sa **
+	  - Replaced of_device_get_match_data() by device_get_match_data()
+	  - Removed iio_device_unregister() because devm_iio_device_register() is used
+	  - Removed "/* sentinel */" comment
+	  - Removed CONFIG_PM_SLEEP defiries
+
+	  ** Krzysztof Kozlowski / David Lechner **
+	  - Removed clock-names in DT bindings
+	  - Fixed minItems by maxItems
+
+	* V1:
+	  - Initial post
+
+Daniel Lezcano (2):
+  dt-bindings: iio: adc: Add the NXP SAR ADC for s32g2/3 platforms
+  iio: adc: Add the NXP SAR ADC support for the s32g2/3 platforms
+
+ .../bindings/iio/adc/nxp,s32g2-sar-adc.yaml   |   63 ++
+ drivers/iio/adc/Kconfig                       |   12 +
+ drivers/iio/adc/Makefile                      |    1 +
+ drivers/iio/adc/nxp-sar-adc.c                 | 1006 +++++++++++++++++
+ 4 files changed, 1082 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/nxp,s32g2-sar-adc.yaml
+ create mode 100644 drivers/iio/adc/nxp-sar-adc.c
+
+-- 
+2.43.0
+
 
