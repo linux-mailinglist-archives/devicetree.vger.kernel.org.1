@@ -1,150 +1,190 @@
-Return-Path: <devicetree+bounces-228038-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228039-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id AED02BE6E92
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 09:20:20 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id D0807BE6F26
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 09:34:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4A40C1A6510F
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 07:20:44 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 84F9B4E2569
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 07:34:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64A3E242D6B;
-	Fri, 17 Oct 2025 07:20:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1E6F1F09A8;
+	Fri, 17 Oct 2025 07:34:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="h/8ed2y5"
+	dkim=pass (4096-bit key) header.d=prolan.hu header.i=@prolan.hu header.b="JS5dCLve"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+Received: from fw2.prolan.hu (fw2.prolan.hu [193.68.50.107])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53F0F23EA80
-	for <devicetree@vger.kernel.org>; Fri, 17 Oct 2025 07:20:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2AF5333469A;
+	Fri, 17 Oct 2025 07:34:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.68.50.107
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760685615; cv=none; b=fyVeQPkKSLasq41Zwxa/1jDG5iWs78CUg//1LYkbjYwRQSVo1X5DLqnZqjyh6w2dZSCganN/Ojy2obVK+uO/eRZ5o4qdzHD6d1s1w/9XvxNF4+zDoyHX5KCxFf7lU+pl/yknRTUWmCQscdlTuSz8sX4xh251qg97NCbybYqBgMI=
+	t=1760686455; cv=none; b=jfysD/SNN+Cg2TwR9gnZgvcW9b3RhHd61h4j6PxU5yMhLrsp3xUDWUY3JD1+4bheuqFHSiRFtACBL2AmCrBDn2cuiXisRUySYWzvWf4iZMxutN9UrW/li4JTsAv1jClJYGKjEswSMYDze9cZRkLKRIzHh9NjOByqwqtzsVSJO4Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760685615; c=relaxed/simple;
-	bh=HXX0/37stiErNT7VNDt6pFF4lGDbSDSS7WuXjl3ZtLQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=hOmOPkMdfmi7snVmJa7+UiriVbYNrij9/Ex4zJbQ96smqKSvOzRVjl0IeyOJqD08RLCJsWnSmMP7UChEqx2SlHH+N3tUQNczv2aOzmP/Rh4ftixSc3+RsBN3XKJ1yO9czaTqrVFuYU7dKuL+ghC5pSnOXQ5e70kk9PX6nLPBqPc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=h/8ed2y5; arc=none smtp.client-ip=185.171.202.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 66EB4C041DC;
-	Fri, 17 Oct 2025 07:19:51 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id A1A83606DB;
-	Fri, 17 Oct 2025 07:20:10 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 0B549102F22FF;
-	Fri, 17 Oct 2025 09:20:01 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1760685609; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=rPwgQwOEbmECpvf2nrCLqVNNoa0+FAgD6K8XsAcWgq4=;
-	b=h/8ed2y5yQEizZbD8esXrBpgqBXhFmiLgBWEIswUEVVHRwN7nO+AQXkfTC2rveQuTI73Ww
-	X5n60Z+Zi4xaO37JnOfqa8wGp0mnd1RMHqYsUt2t7323nQBnSckPWYRmYsbis97AI/Vafp
-	70eqAD8aCXf9WAwWIEUNmIBveBNVrzoGriZ9u6NBL6dvNmgH1PGzCB5fZACX3Er7c+zC8c
-	+OWlvpTTFlozakJ7sTdQmAaIfv+htw3Yj2wufLCRfUxK07U4VMMWOPHUlunCgbvBiV7R+m
-	053o01v9mAU0pMJI2dq2el9DLVmmzTyO9Uc8GdsrOJ2pQ2U09pjgpzLCrngI8A==
-Date: Fri, 17 Oct 2025 09:20:00 +0200
-From: Herve Codina <herve.codina@bootlin.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>, Jonathan Cameron
- <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, Nuno
- =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Geert Uytterhoeven
- <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, Liam
- Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- linux-iio@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Pascal Eberhard
- <pascal.eberhard@se.com>, Miquel Raynal <miquel.raynal@bootlin.com>, Thomas
- Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH 1/4] dt-bindings: iio: adc: Add the Renesas RZ/N1 ADC
-Message-ID: <20251017092000.53b467d3@bootlin.com>
-In-Reply-To: <57def480-6f42-4f84-a9ff-3452520b3c3f@kernel.org>
-References: <20251015142816.1274605-1-herve.codina@bootlin.com>
-	<20251015142816.1274605-2-herve.codina@bootlin.com>
-	<57def480-6f42-4f84-a9ff-3452520b3c3f@kernel.org>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.43; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1760686455; c=relaxed/simple;
+	bh=VhvxgVrumFljJemoHV9Ncc/YSxZDjwvkWBnkmWbWLAc=;
+	h=Date:From:To:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=sokPR/mxIkf1py5MQ7FKNz0WBz0byqDcGfzGDc4kxfToUxulINk8iWvJdRatHQx2kXg5RvL5kYcQD00qLU3tLoN4CSAhNtJF/Van6PoeEVq1V0XL1suMHVA6QebpYaOO6XbrGrs5uifPFALW28quLMPAXJaYF8n8QzPy7n1AclM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=prolan.hu; spf=pass smtp.mailfrom=prolan.hu; dkim=pass (4096-bit key) header.d=prolan.hu header.i=@prolan.hu header.b=JS5dCLve; arc=none smtp.client-ip=193.68.50.107
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=prolan.hu
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=prolan.hu
+Received: from proxmox-mailgw.intranet.prolan.hu (localhost.localdomain [127.0.0.1])
+	by proxmox-mailgw.intranet.prolan.hu (Proxmox) with ESMTP id B6002A0AC4;
+	Fri, 17 Oct 2025 09:33:59 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=prolan.hu; h=cc
+	:content-type:content-type:date:from:from:in-reply-to:message-id
+	:mime-version:references:reply-to:subject:subject:to:to; s=mail;
+	 bh=B+2J7TtA2OH0oL/nV6lvMZERVrVLqe09ngk2BbnJBRw=; b=JS5dCLve0nzk
+	LOS6drqS2NZW+BzhcnDONe7oRMQFXJcR6dZgxD21pPjL+T1mpgmLpF6ydtH3E9UW
+	gydNtrouxzUJAV6F53jNs/4WtTUibqOYHAdagxrN5LK9IEXR28TJja60dq3GEg7Z
+	+opJYbAwlDX29NQhDXsBgvsJG5hppymNt0K37hVKC6QPV+z+EbiJdSWSdHV3gtfq
+	xKwqPS2bpfR1wh9dpq1y267QKePkvWRoBlbrVmLqcf3SclsRw0T8af1lJKkPohFA
+	Fv8jDM6Bojpbwon+Z4GLgXLEg5st3EyLsvsCsYIRqVnFzOkSxTqivH1ZJcWvjeBy
+	XNoZ/nffoE/CRHePYRDUcVdI8lyVbVYhgjmE53V5btfTMg2KC2zLTIy1cvP1RL+3
+	02bNx6lIBPKHd4IvNcYTkCtdJA2xZDNs42Yk9/LlhQhgsVv/vIvYxOlQu/vk3i2v
+	IZjq2RU8lwumql+XjcUDLPf32O/TaJ13yDmWxkBAGdMHZe4R2yNf41OG0+rdAxpa
+	b/SMqaKkAWfLQzMjRwpR5AKSNKcFspSHqCgtficCnwvVQtwhwX7iXal2BwsEhTwx
+	Axye0mk55K4rRRfu4xEl3+0vtF+rP2sAKWDfmx89884/Uk9dV2dgJC4yE2vHEpPK
+	zfAaUHUP/1T6dU/mQeRZXZRG540EnYw=
+Date: Fri, 17 Oct 2025 09:33:58 +0200
+From: Buday Csaba <buday.csaba@prolan.hu>
+To: Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>, "David S. Miller"
+	<davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub Kicinski
+	<kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Florian Fainelli <f.fainelli@gmail.com>,
+	<netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 4/4] net: mdio: reset PHY before attempting to access
+ registers in fwnode_mdiobus_register_phy
+Message-ID: <aPHxZrLrCyjVO9cR@debianbuilder>
+References: <20251015134503.107925-1-buday.csaba@prolan.hu>
+ <20251015134503.107925-4-buday.csaba@prolan.hu>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20251015134503.107925-4-buday.csaba@prolan.hu>
+X-ESET-AS: R=OK;S=0;OP=CALC;TIME=1760686438;VERSION=8000;MC=2892134122;ID=598320;TRN=0;CRV=0;IPC=;SP=0;SIPS=0;PI=3;F=0
+X-ESET-Antispam: OK
+X-EsetResult: clean, is OK
+X-EsetId: 37303A296767155F64776A
 
-Hi Krzysztof,
+Dear Maintainers,
 
-On Thu, 16 Oct 2025 17:49:33 +0200
-Krzysztof Kozlowski <krzk@kernel.org> wrote:
+I am about the submit the v3 version of these patches, hopefully the last
+iteration. I think I managed to elimante all failures and almost all of
+the warnings, except one: patchwork complies, that not all the maintainers
+are CC'ed.
 
-> On 15/10/2025 16:28, Herve Codina (Schneider Electric) wrote:
-> > +  clocks:
-> > +    items:
-> > +      - description: APB internal bus clock
-> > +      - description: ADC clock
-> > +
-> > +  clock-names:
-> > +    items:
-> > +      - const: pclk
-> > +      - const: adc-clk  
+I have used get_maintainers.pl to get the address list. I am on the
+net-next tree. Is there a problem with get_maintainers.pl or with
+patchwork? Can I ignore that warning?
+
+Reference:
+https://patchwork.kernel.org/project/netdevbpf/patch/20251015134503.107925-1-buday.csaba@prolan.hu/
+
+Thank you,
+Csaba
+
+On Wed, Oct 15, 2025 at 03:45:03PM +0200, Buday Csaba wrote:
+> Implement support for the `phy-id-read-needs-reset` device tree
+> property.
 > 
-> Just 'adc'
+> When the ID of an ethernet PHY is not provided by the 'compatible'
+> string in the device tree, its actual ID is read via the MDIO bus.
+> For some PHYs this could be unsafe, since a hard reset may be
+> necessary to safely access the MDIO registers.
 > 
-> clk is redundant
-
-Ok, will be update.
-
-...
-
-> > +
-> > +additionalProperties: false  
+> This patch performs the hard-reset before attempting to read the ID,
+> when the mentioned device tree property is present.
 > 
-> This goes just before example
-
-Ok, will be update
-
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - clocks
-> > +  - clock-names
-> > +  - power-domains
-> > +  - '#io-channel-cells'
-> > +
-> > +dependencies:
-> > +  # None or both adc1-avdd-supply / adc1-vref-supply should be present
-> > +  adc1-avdd-supply: [ adc1-vref-supply ]
-> > +  adc1-vref-supply: [ adc1-avdd-supply ]
-> > +  # None or both adc2-avdd-supply / adc2-vref-supply should be present
-> > +  adc2-avdd-supply: [ adc2-vref-supply ]
-> > +  adc2-vref-supply: [ adc2-avdd-supply ]  
+> There were previous attempts to implement such functionality, I
+> tried to collect a few of these (see links).
 > 
-> Above seems unnecessary. The anyOf below should already enforce that, no?
-
-Yes, I will remove the above dependencies and keep only the anyOf.
-
+> Link: https://lore.kernel.org/lkml/1499346330-12166-2-git-send-email-richard.leitner@skidata.com/
+> Link: https://lore.kernel.org/all/20230405-net-next-topic-net-phy-reset-v1-0-7e5329f08002@pengutronix.de/
+> Link: https://lore.kernel.org/netdev/20250709133222.48802-4-buday.csaba@prolan.hu/
 > 
-> > +
-> > +# At least one of avvd/vref supplies
-> > +anyOf:
-> > +  - required:
-> > +      - adc1-vref-supply
-> > +      - adc1-avdd-supply
-> > +  - required:
-> > +      - adc2-vref-supply
-> > +      - adc2-avdd-supply
-> > +  
+> Signed-off-by: Buday Csaba <buday.csaba@prolan.hu>
+> ---
+> V1 -> V2:
+>  - renamed DT property `reset-phy-before-probe` to
+>   `phy-id-read-needs-reset`
+>  - renamed fwnode_reset_phy_before_probe() to
+>    fwnode_reset_phy()
+>  - added kernel-doc for fwnode_reset_phy()
+>  - improved error handling in fwnode_reset_phy()
+> ---
+>  drivers/net/mdio/fwnode_mdio.c | 37 +++++++++++++++++++++++++++++++++-
+>  1 file changed, 36 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/net/mdio/fwnode_mdio.c b/drivers/net/mdio/fwnode_mdio.c
+> index ba7091518..6987b1a51 100644
+> --- a/drivers/net/mdio/fwnode_mdio.c
+> +++ b/drivers/net/mdio/fwnode_mdio.c
+> @@ -114,6 +114,38 @@ int fwnode_mdiobus_phy_device_register(struct mii_bus *mdio,
+>  }
+>  EXPORT_SYMBOL(fwnode_mdiobus_phy_device_register);
+>  
+> +/**
+> + * fwnode_reset_phy() - Hard-reset a PHY before registration
+> + */
+> +static int fwnode_reset_phy(struct mii_bus *bus, u32 addr,
+> +			    struct fwnode_handle *phy_node)
+> +{
+> +	struct mdio_device *tmpdev;
+> +	int err;
+> +
+> +	tmpdev = mdio_device_create(bus, addr);
+> +	if (IS_ERR(tmpdev))
+> +		return PTR_ERR(tmpdev);
+> +
+> +	fwnode_handle_get(phy_node);
+> +	device_set_node(&tmpdev->dev, phy_node);
+> +	err = mdio_device_register_reset(tmpdev);
+> +	if (err) {
+> +		mdio_device_free(tmpdev);
+> +		return err;
+> +	}
+> +
+> +	mdio_device_reset(tmpdev, 1);
+> +	mdio_device_reset(tmpdev, 0);
+> +
+> +	mdio_device_unregister_reset(tmpdev);
+> +
+> +	mdio_device_free(tmpdev);
+> +	fwnode_handle_put(phy_node);
+> +
+> +	return 0;
+> +}
+> +
+>  int fwnode_mdiobus_register_phy(struct mii_bus *bus,
+>  				struct fwnode_handle *child, u32 addr)
+>  {
+> @@ -129,8 +161,11 @@ int fwnode_mdiobus_register_phy(struct mii_bus *bus,
+>  		return PTR_ERR(mii_ts);
+>  
+>  	is_c45 = fwnode_device_is_compatible(child, "ethernet-phy-ieee802.3-c45");
+> -	if (is_c45 || fwnode_get_phy_id(child, &phy_id))
+> +	if (is_c45 || fwnode_get_phy_id(child, &phy_id)) {
+> +		if (fwnode_property_present(child, "reset-phy-before-probe"))
+> +			fwnode_reset_phy(bus, addr, child);
+>  		phy = get_phy_device(bus, addr, is_c45);
+> +	}
+>  	else
+>  		phy = phy_device_create(bus, addr, phy_id, 0, NULL);
+>  	if (IS_ERR(phy)) {
+> -- 
+> 2.39.5
 > 
 
-Best regards,
-Hervé
 
