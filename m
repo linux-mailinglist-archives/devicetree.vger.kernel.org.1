@@ -1,71 +1,95 @@
-Return-Path: <devicetree+bounces-228225-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228227-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 938BCBEAA16
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 18:21:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id ED97ABEABA7
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 18:31:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id DE7205A1BA6
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 16:11:08 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 03F2D5A77EA
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 16:14:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FBE0287267;
-	Fri, 17 Oct 2025 16:10:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60FE928312E;
+	Fri, 17 Oct 2025 16:14:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (4096-bit key) header.d=prolan.hu header.i=@prolan.hu header.b="om70ofu3"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SZeBBw3s"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fw2.prolan.hu (fw2.prolan.hu [193.68.50.107])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F95E2777E0;
-	Fri, 17 Oct 2025 16:10:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.68.50.107
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9A5027A45C
+	for <devicetree@vger.kernel.org>; Fri, 17 Oct 2025 16:14:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760717425; cv=none; b=mHrkT5ZYyWE3N79erz2PaiXhsf5T2eMcd+k6BRbNtor/DmIcXFGCYjMDu4yalwc/1UIrsAIrDlGgb8WbJq/l+JTrHEJ/1g42sNhR8YKEhwwOu/rtJ40kfUChs5LVG9qnwDfUre5ZWCkVikMzlp8NL8yFx4TJo0LBQ3D45i7Iaus=
+	t=1760717659; cv=none; b=kQJWmE7LRV/D/OttLmWK2YVNrXMEkJLcLSj5rv0GU/gQXbOHeG0fW9dOtpCpxP+OyaivRLS2YeaMiYJqA6VtO110e0O+ATJE5RsAxXf/S5KhMYJazx4Mt3CX46thc6QIJ5uXtncWwuKu4DNhe7REZe6mp+KeElC7iB/KbdG5Xv0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760717425; c=relaxed/simple;
-	bh=g413N2EtaCoE+cYgVBHxXA81wiQqN+EXKGi0nWOzH4o=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=UzFNNcgxN/1NCRI87fpbLbGg/Ta21086BINRlCzBFgf0H9vzD3jLfhfw/seCOq7/LyTPviVyeJR4h0p+xuZaD/C5sZv/mymdz9jm1plPZ0iGkyEZ7xLkn4o4q05a4d6afpJrkzPgXrV0QRrjKWjgmbJJMLDDQ/gJF1jp7PkgV20=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=prolan.hu; spf=pass smtp.mailfrom=prolan.hu; dkim=pass (4096-bit key) header.d=prolan.hu header.i=@prolan.hu header.b=om70ofu3; arc=none smtp.client-ip=193.68.50.107
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=prolan.hu
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=prolan.hu
-Received: from proxmox-mailgw.intranet.prolan.hu (localhost.localdomain [127.0.0.1])
-	by proxmox-mailgw.intranet.prolan.hu (Proxmox) with ESMTP id ED31AA0A26;
-	Fri, 17 Oct 2025 18:10:19 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=prolan.hu; h=cc
-	:cc:content-transfer-encoding:content-type:content-type:date
-	:from:from:in-reply-to:message-id:mime-version:references
-	:reply-to:subject:subject:to:to; s=mail; bh=mIQwReTUSM4NJP0VNgJN
-	29BzTbzQt8jrZ9Cb25wJHqw=; b=om70ofu3asdgwp07pI8ZHK3fnEnGCc/4dhu8
-	k1/PIuGbctoZ2lfMU7v+7YrzMdrceUA6cnRaAuzULsb8bQVvqtpkU6yzbvFDmv+I
-	b1qCWFVENgAUMWFguRQq7y6JyDDAaAQ4tXmzqjdLF7URY8wlVroXEV17APUQXuTj
-	nUtweVfNHqiQbPg/KM0+Xz8sa7+k8JRiwaHEOP5fEWgC4D+WTlDUNIiGiwP8NE10
-	Zbxiy8XYxg3OQMEFn4qgbBVkiWNhL8gd5Zu0cIGF9b+9r5vRVHDt9rZmCgTj8zQm
-	km8UuTOr1LXnBlCmQ2mNeGih6+ZysGN2+NPntDYjIsIBYnayUxL5l3rK4VBiieB2
-	UuWEGbbDoqfyRRJZVZO+Q/Vd2wTJmJQiJpydw8pmvY4y/3Tn4NQOfbfAvNj9JCZN
-	7kWeIP9fIbdFyWR8WEnjlGd/NAtQJBcUBAz6L80hfJdV3mk8fkFY+fhw4dWf+fxp
-	/r0zN1Ui21n0CJlOP4J3ZTpzjNETvDc4lnGJtrpJgbMwsvtKZrxu8uqivCB+Wd05
-	Plf8dgLRev2OjlU/GV0ztrgQsVh81B7J+glLjE9NV7jvJ6/dXF+uakA2S6Ay2F/j
-	BzQaA+X52yoV/yBg4CXiHq1FQR/q5M0+pUW3vgCMWYdcdNvbIrFk1qdXNpUqDL+0
-	QJt21mM=
-From: Buday Csaba <buday.csaba@prolan.hu>
-To: Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>, "David S. Miller"
-	<davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub Kicinski
-	<kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, "Florian
- Fainelli" <f.fainelli@gmail.com>, <netdev@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC: Buday Csaba <buday.csaba@prolan.hu>
-Subject: [PATCH net-next v3 4/4] net: mdio: reset PHY before attempting to access registers in fwnode_mdiobus_register_phy
-Date: Fri, 17 Oct 2025 18:10:11 +0200
-Message-ID: <cb6640fa11e4b148f51d4c8553fe177d5bdb4d37.1760620093.git.buday.csaba@prolan.hu>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <cover.1760620093.git.buday.csaba@prolan.hu>
-References: <cover.1760620093.git.buday.csaba@prolan.hu>
+	s=arc-20240116; t=1760717659; c=relaxed/simple;
+	bh=CZmROVfTD8u1AlAo33CGWQ3lRipjkitrHczW2VKKWkA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Am0KIWTRFOrI/ttDsg3/QFXm66unsH6ScpoJi1bcMDSPCLX+UGq89dR0QzMX0uD9PJkHEN7HutK2UI0sP6tYK8dLmURxBtDxJxauB9ElsatbCukpCeLSimlPkK2hblJ4xqoxR0Qzo7rXj07KdGYEC0TyFfCDTSdYVjXKFmuyp64=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SZeBBw3s; arc=none smtp.client-ip=209.85.218.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-b3d196b7eeeso386038366b.0
+        for <devicetree@vger.kernel.org>; Fri, 17 Oct 2025 09:14:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1760717655; x=1761322455; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=uDBtrf04QYUQbsiCFswby2jYYDrs9vGFSiZ+aqY91Ds=;
+        b=SZeBBw3sMoXBlUBjq3xUWrLzHSBBv/FVyG1mT4NQ1ZS2SvoeoqFlJoXJmOc1esevyg
+         Ymlcr02CdW7mOxEdd8FGAon1BBRu0wFJth1QZXKnzUUhEP2xHB4AyhA0oF+EoD5GDvh/
+         roknxByFG9ye6pZQGV4td0lOFD6ZeKK1jAE/r1yVY+LF1U09K4oLs6PorpFBu1NeLJam
+         dLL0aM8f+BpJvhqvMAV9qB8YOj2rl3Ip1HVi3NUv4qrplJll0SciTeWCMuhT1tqYHu14
+         gRCEEwNPaGZo0Lr1hIGO2Yhrhue5aNjgBQXRTM433NTHSqwnwmni8v6n57P2kJc4VDa+
+         onmw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1760717655; x=1761322455;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=uDBtrf04QYUQbsiCFswby2jYYDrs9vGFSiZ+aqY91Ds=;
+        b=eMq3fTTW9ZbDfDPGfcpkikBqZuawpg84fGXvPtp4WkFplLV+VSiBWy6lezxoMnby+U
+         XXCfgIRZpj5c8nBzd3VtU9HQ7+OkBMTEdjhLdJtmOt98U2BYVp8xizV73SYsVAuqgDar
+         lMnahGAvySoeT61W4x9FadbBgOzUjCJxNB/6io8QVIfVBwj/zg1SfLeK08yvZju3tMz/
+         khXWjHG10wQMFJxaWGf0LZc3T65qhP2zZIJr17wkpe0CXKHHWR37b5UrCK0HGRs3rzEH
+         oOWrtzcLxkjKfbXssoeTWS0zAIndiVBVZHL+1jI1QipKQp2Md2vwCaKGsl3zIEUo1ISq
+         Wxtg==
+X-Forwarded-Encrypted: i=1; AJvYcCVSoorNalsYG1corlPg7j8ineVYfxTsewNCk3ncT7VescVdxJc987JepaUCQt708j2W+G9CtSTLUrHp@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw6ObPBqRzHKxXWxAVrFM38YJ9swuTl1S2ofZC2QtbAPyEv01Rh
+	o6VG6dUufzgkq/+hhQ9DD1ZnljKsOBWT2aWoguA6v7hqOXqx5XxhbshL
+X-Gm-Gg: ASbGncuXMtQQQ5tOH4Ewece/J8jOyFmtE63qE1P8R3NHPNK5aIQxascBjlbJNGiznQN
+	J7lLCyn6XDdtKRCEPjwo8p5313ajqIqA2HxdxvUrLy9k6aXH4HyByeIVvHtHFfIIWkaeLaLVLCI
+	DbL/CkgR1be4Mxpon1RSEXbjKN+Q9hNclFV9pwqDqUmz/rvQtKx03W24pH2UAPdVZ4rncwZB/uZ
+	epYh7MqlKN76ZcesYcRRnxLrKSxrK2rkQA1ghaq93EDmz034l306Tax1jZnnvtl3Q5O3Q51NAvU
+	/j38VNitmwfFVnzSfogZBCcLMXJVu+Nk5G0GEN1l5IgWgqHlVr14HEVePtR/QX6ESwF9Zy7yn7b
+	k6dMOrkgTKH1Y5y64X4b+gdv3a/fqqrIjixynNzn5dbhw1hDmtSGb9iRrizO+p0UIvn5fW1iIKr
+	b6kwT3oyXKXAPQAQz8vLvc3iZEaFA+fyRm2t+jme1Z
+X-Google-Smtp-Source: AGHT+IHK9WQ4a0UK8NwMypKKKManCE9AjC6PIzjyVE2Ox3e8SVeVLpu0Cb9a9BFD18dkt9RME7LIHQ==
+X-Received: by 2002:a17:907:3e1d:b0:b3c:8940:623c with SMTP id a640c23a62f3a-b6472a6a114mr519013666b.14.1760717655010;
+        Fri, 17 Oct 2025 09:14:15 -0700 (PDT)
+Received: from ivaylo-T580.. (79-100-18-255.ip.btc-net.bg. [79.100.18.255])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b65eb036706sm9606466b.41.2025.10.17.09.14.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 17 Oct 2025 09:14:14 -0700 (PDT)
+From: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+	Sylwester Nawrocki <s.nawrocki@samsung.com>,
+	Chanwoo Choi <cw00.choi@samsung.com>
+Cc: Alim Akhtar <alim.akhtar@samsung.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-samsung-soc@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/5] clk: samsung: introduce exynos8890 clock driver
+Date: Fri, 17 Oct 2025 19:13:28 +0300
+Message-ID: <20251017161334.1295955-1-ivo.ivanov.ivanov1@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -73,93 +97,49 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ESET-AS: R=OK;S=0;OP=CALC;TIME=1760717419;VERSION=8000;MC=3822495923;ID=62086;TRN=0;CRV=0;IPC=;SP=0;SIPS=0;PI=3;F=0
-X-ESET-Antispam: OK
-X-EsetResult: clean, is OK
-X-EsetId: 37303A296767155F647660
 
-Implement support for the `phy-id-read-needs-reset` device tree
-property.
+Hey folks,
 
-When the ID of an ethernet PHY is not provided by the 'compatible'
-string in the device tree, its actual ID is read via the MDIO bus.
-For some PHYs this could be unsafe, since a hard reset may be
-necessary to safely access the MDIO registers.
+This patchset adds a pretty much full (except for ISP and camera blocks)
+cmu driver for exynos8890. It's configured to run with gates in manual
+mode, which is done differenetly from other exynos SoCs.
 
-This patch performs the hard-reset before attempting to read the ID,
-when the mentioned device tree property is present.
+Best regards,
+Ivaylo
 
-Signed-off-by: Buday Csaba <buday.csaba@prolan.hu>
----
-V2 -> V3: kernel-doc replaced with a comment (fixed warning)
-V1 -> V2:
- - renamed DT property `reset-phy-before-probe` to
-  `phy-id-read-needs-reset`
- - renamed fwnode_reset_phy_before_probe() to
-   fwnode_reset_phy()
- - added kernel-doc for fwnode_reset_phy()
- - improved error handling in fwnode_reset_phy()
----
- drivers/net/mdio/fwnode_mdio.c | 35 +++++++++++++++++++++++++++++++++-
- 1 file changed, 34 insertions(+), 1 deletion(-)
+Changes from V2:
+patch 2/5:
+- rebase on next and drop the unnecessary new line
+patch 3/5:
+- rebase on next
+- add r-b tag from Peng Fan
+patch 4/5:
+- rebase
+- add r-b tag from Peng Fan
+patch 5/5:
+- include bitfield.h to ease the kernel test robot's pain
+- add a comment that specifies we're disabling hwacg and change
+the commit description as per Peng Fan's suggestion
 
-diff --git a/drivers/net/mdio/fwnode_mdio.c b/drivers/net/mdio/fwnode_mdio.c
-index ba7091518..8e8f9182a 100644
---- a/drivers/net/mdio/fwnode_mdio.c
-+++ b/drivers/net/mdio/fwnode_mdio.c
-@@ -114,6 +114,36 @@ int fwnode_mdiobus_phy_device_register(struct mii_bus *mdio,
- }
- EXPORT_SYMBOL(fwnode_mdiobus_phy_device_register);
- 
-+/* Hard-reset a PHY before registration */
-+static int fwnode_reset_phy(struct mii_bus *bus, u32 addr,
-+			    struct fwnode_handle *phy_node)
-+{
-+	struct mdio_device *tmpdev;
-+	int err;
-+
-+	tmpdev = mdio_device_create(bus, addr);
-+	if (IS_ERR(tmpdev))
-+		return PTR_ERR(tmpdev);
-+
-+	fwnode_handle_get(phy_node);
-+	device_set_node(&tmpdev->dev, phy_node);
-+	err = mdio_device_register_reset(tmpdev);
-+	if (err) {
-+		mdio_device_free(tmpdev);
-+		return err;
-+	}
-+
-+	mdio_device_reset(tmpdev, 1);
-+	mdio_device_reset(tmpdev, 0);
-+
-+	mdio_device_unregister_reset(tmpdev);
-+
-+	mdio_device_free(tmpdev);
-+	fwnode_handle_put(phy_node);
-+
-+	return 0;
-+}
-+
- int fwnode_mdiobus_register_phy(struct mii_bus *bus,
- 				struct fwnode_handle *child, u32 addr)
- {
-@@ -129,8 +159,11 @@ int fwnode_mdiobus_register_phy(struct mii_bus *bus,
- 		return PTR_ERR(mii_ts);
- 
- 	is_c45 = fwnode_device_is_compatible(child, "ethernet-phy-ieee802.3-c45");
--	if (is_c45 || fwnode_get_phy_id(child, &phy_id))
-+	if (is_c45 || fwnode_get_phy_id(child, &phy_id)) {
-+		if (fwnode_property_present(child, "reset-phy-before-probe"))
-+			fwnode_reset_phy(bus, addr, child);
- 		phy = get_phy_device(bus, addr, is_c45);
-+	}
- 	else
- 		phy = phy_device_create(bus, addr, phy_id, 0, NULL);
- 	if (IS_ERR(phy)) {
+Ivaylo Ivanov (5):
+  dt-bindings: clock: add exynos8890 SoC
+  clk: samsung: clk-pll: Add support for pll_141xx
+  clk: samsung: clk-pll: Add support for pll_1419x
+  clk: samsung: clk-pll: Add support for pll_1431x
+  clk: samsung: introduce exynos8890 clock driver
+
+ .../clock/samsung,exynos8890-cmu.yaml         |  477 +
+ drivers/clk/samsung/Makefile                  |    1 +
+ drivers/clk/samsung/clk-exynos8890.c          | 8697 +++++++++++++++++
+ drivers/clk/samsung/clk-pll.c                 |   12 +-
+ drivers/clk/samsung/clk-pll.h                 |   12 +
+ .../clock/samsung,exynos8890-cmu.h            | 1279 +++
+ 6 files changed, 10476 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/samsung,exynos8890-cmu.yaml
+ create mode 100644 drivers/clk/samsung/clk-exynos8890.c
+ create mode 100644 include/dt-bindings/clock/samsung,exynos8890-cmu.h
+
 -- 
-2.39.5
-
+2.43.0
 
 
