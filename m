@@ -1,171 +1,108 @@
-Return-Path: <devicetree+bounces-228249-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228250-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39087BEAA8E
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 18:24:22 +0200 (CEST)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 52020BEAB77
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 18:30:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id B15C135F059
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 16:24:21 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 4572335F75C
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 16:30:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DA462E62A8;
-	Fri, 17 Oct 2025 16:21:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44C0329B8DB;
+	Fri, 17 Oct 2025 16:28:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="z7w1eEHm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bPSE2VfI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-io1-f66.google.com (mail-io1-f66.google.com [209.85.166.66])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C14ED2E2EF2
-	for <devicetree@vger.kernel.org>; Fri, 17 Oct 2025 16:21:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.66
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13392299950;
+	Fri, 17 Oct 2025 16:28:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760718073; cv=none; b=ZcYy7PaqZRd1ZjqUZ/0z2RvftB3KIBwyB2D6HvLdamxh0QZe8qqiUjOLR7fAqsGB52HrpG2rqY5i1AlGTDUQpKWUvXQ+Gko2VyjsfQMViMSsvObhEZmKcB01vSip1heGG07M7UnzxFpLRWo8Rg3qtpkW4pgA69MkTYSUZlRBEFE=
+	t=1760718531; cv=none; b=Kos5PacNqWnqoOt7+Luwe3uT5RKYGgm9MXWjNxuB62aR4RJ3NEetHyZYbN8hmQugy1iOVOEzEsu/0QrIReUX6rkmUc4JqWi/pgmgkQqS0mn0USwEeIDg7okkVSHnT54tr8IaUdJ71ACNBzJukLex6803mYqACkn10dhO+RPcyAM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760718073; c=relaxed/simple;
-	bh=a1NVbX4HwLDN8rNhr+HKeFlbDVEvCUamvM/dlLKhGKU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=UAdoRQLTG6y1zpD4Oy2Ud0h7sURUN829oxBRdRWdUbx3Kh1t+7rarsXwGb1u7Jb466/Y+veRJ3UJPDx3+Ns9A85DYd2ON2xrwZi5alLUnQh7ewXOMj2CRGv02d2GSJsV0Ou6JpDwKQC47/pPyHzSJBe8vXDITIN8XFfx57fSMRA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=z7w1eEHm; arc=none smtp.client-ip=209.85.166.66
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-io1-f66.google.com with SMTP id ca18e2360f4ac-930cfdfabb3so162714639f.1
-        for <devicetree@vger.kernel.org>; Fri, 17 Oct 2025 09:21:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1760718071; x=1761322871; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=a7+Wio6b8w1yNg9Tem9uVrRYlYIL3Mf5C/3BZyCBdIc=;
-        b=z7w1eEHmMK6SJwdLgx3/wkbXboBQ3nMpMugN4K5IyP8BUzm1uCP4DcgOgMibKDzbVX
-         i1MOirs+vNM5KSD6Ifxoh3iO00aSr5kW9OVfXlkvQukAbCmtRVJ+B6j6YAlzb9/O4Z24
-         kCvmZCgFcL/Yx2eO6sqLZxwVhUBuA15bFFvfyw4DISHf2IOa+dO6GkjY+ib526wezw7o
-         SnSxacEbas7wFD2gZvpZSCB808t3bwetk7J603Su2jpsPsrIRmJijWjwt1xv1yclOGrG
-         wYDvKKEO7/aTNgQwJGpD2IwQOPh5qW4kwC7qoSegfU+UtN0q4W2olEm160+nH4BG0nC4
-         HdxQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760718071; x=1761322871;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=a7+Wio6b8w1yNg9Tem9uVrRYlYIL3Mf5C/3BZyCBdIc=;
-        b=xRjOHGHHg+y7SAPxVnHxQ7sGHwFXmUfGFG1R+gciDixHr1abrT+1KYjCb/DaguJKrB
-         4b9lhdc6h9fX1pLulxq3eSGCm5SN3VYwA32DMKbocZ4Zd3m4/SzSw6Af6rnSrZxRU4TV
-         KbUDlr6Fu5g5MUD97A8OamrystzsVM/KkvBg6o6oFI5jsYkTZ72bvc8RUZuARcW3eW1X
-         n1ZTJrIHMbMEpOKsmPiGw1zvy8WxtbaBv6cGW6R16qZPjRB2y1v45pDacxT+XS+NoHRi
-         mbZqNtj6VZ4ibTS+p0eVggH3Eq07fSLlyNgkgzzCDTXuMSBe/3cHSIGy4uUqETh+D+NN
-         r4aw==
-X-Forwarded-Encrypted: i=1; AJvYcCW5zVIK9JCW2d8mnWhv5nkkMw73RI8cy56VbGLwAaMrIV5ygBNQVqEJ7PEYkQVZ88Z0I1pqLocydzG7@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy14oVBuYDUCoPYZn9tKm0bd8FJ0QvJZdEGRjoDCBHBOQNCqudJ
-	0G1R2RfUS8igtAW3VUznXh3rbxi7UDEXyprVXZsDXGEW3pkGV4KzScN1ZsmFJc46Z2o=
-X-Gm-Gg: ASbGncsI62fMpLVnWRD3LZnyJitorJObBLsTO8GAvgp20kkvcnjWI40pdOqCI2ftciU
-	Rt+9ua6DnC+Bg+mI/OKTGPzcrQsCSIJD59RH1+LH2hTd5wRMXD39ksU/nU5Oe1rl6fSi0p2scwE
-	AQtxZM47AYfZVBgTmsXc/xf/c4JjbeHF74AWOs7hIaY3NrCVjZLxsk/YU41p9pD/pJRnRM2COMO
-	DPqN0EqJ70lcLLC2NJW485lYZmPxWuftURMfCnY65lcbQKZjeRcwxUlNJCid/nr00yrOmjTqJCg
-	OnzvZY2nAJxo42GW418eer4kA+bIFKqZlJ8WCfuW0ATznRKW43b+qb+012fiwXAtwRe+5qFOj2c
-	s4OwNuzEl4UeNYlTvsTEOg+ipvh1522LTSLzLIr8UQ+YDSX+jPwBh0YkzFppr4xuoRlZZgp1gtn
-	fEYmu5NtIiCP1uxcq/joMJkufeJ2oCF48Gh7+2J6Q=
-X-Google-Smtp-Source: AGHT+IEIgP2oHx8F177Q7uZqnuNLPeZz2b0M8yBXR1aqrI1laVD3XEel+UPyfoDNXtqbVVX4QNo+pg==
-X-Received: by 2002:a05:6e02:440b:10b0:430:bf84:e94c with SMTP id e9e14a558f8ab-430bf84e9e5mr60046655ab.13.1760718070850;
-        Fri, 17 Oct 2025 09:21:10 -0700 (PDT)
-Received: from [172.22.22.28] (c-75-72-117-212.hsd1.mn.comcast.net. [75.72.117.212])
-        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-5a8a97b92b1sm10677173.68.2025.10.17.09.21.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Oct 2025 09:21:10 -0700 (PDT)
-Message-ID: <92ee253f-bf6a-481a-acc2-daf26d268395@riscstar.com>
-Date: Fri, 17 Oct 2025 11:21:08 -0500
+	s=arc-20240116; t=1760718531; c=relaxed/simple;
+	bh=Una6ZwWE3tWlRlTrxOgpKjKjFn4SWggaefOFaE2LkIY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=BGmaU9Q6/7pTXM9Om0w6TypRhhyuXSb14osaXUpl39LrG7WZS85uBltJgcaLs5Ok1hTNSeNTY02lv1XUPznSy1MwXGM2e0bbaaoA4pC1Hgnw4Fr9pU/+UBmQxzdF7LkTjKzTQO9O3PKFr7jRtSgLraCtv3na5DukyVDAAI/eMVo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bPSE2VfI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 21174C4CEE7;
+	Fri, 17 Oct 2025 16:28:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1760718530;
+	bh=Una6ZwWE3tWlRlTrxOgpKjKjFn4SWggaefOFaE2LkIY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=bPSE2VfIerOM/Uiu3H7RQmBdk4NecpNTc5oyBHdsxzQcHPScUq3qLvVnimuCoIWvN
+	 jwepGfCzzj0iwk3E7R+79A9GL8P1pT+07w92mZe1atRfviiKKBJ1TOKUfv4H3HZLB9
+	 89WuHrm3G4qcSQdBBV2DP6kEDhXPPz3TC28qC/ysEQS9NCgaCdQmq+kZymxxOWxXRE
+	 Big+c6310OvKEvFQYavnu/iB2BXApjo7H1sXV/j7vHdx3m1cNKBojqwax+Mw7VGb8R
+	 gzLlNRbfur6DwiCmZHqwG0+aWpBhpSEK9srmc3D3BYeYU4rP+n/lorSLfuWlyvi5qG
+	 oeD7PZlkZNXKw==
+Date: Fri, 17 Oct 2025 17:28:45 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Vitaly Rodionov <vitalyr@opensource.cirrus.com>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Takashi Iwai <tiwai@suse.com>,
+	Jaroslav Kysela <perex@perex.cz>,
+	David Rhodes <david.rhodes@cirrus.com>,
+	Richard Fitzgerald <rf@opensource.cirrus.com>,
+	Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-sound@vger.kernel.org,
+	linux-kernel@vger.kernel.org, patches@opensource.cirrus.com,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 04/11] ASoC: cs530x: Remove unused struct members and
+ constants
+Message-ID: <4663ea33-d468-4088-a20b-f0910a4a8c4e@sirena.org.uk>
+References: <20251017161543.214235-1-vitalyr@opensource.cirrus.com>
+ <20251017161543.214235-5-vitalyr@opensource.cirrus.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/7] Introduce SpacemiT K1 PCIe phy and host controller
-To: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- bhelgaas@google.com, lpieralisi@kernel.org, kwilczynski@kernel.org,
- mani@kernel.org, vkoul@kernel.org, kishon@kernel.org, dlan@gentoo.org,
- guodong@riscstar.com, pjw@kernel.org, palmer@dabbelt.com,
- aou@eecs.berkeley.edu, alex@ghiti.fr, p.zabel@pengutronix.de,
- christian.bruel@foss.st.com, shradha.t@samsung.com,
- krishna.chundru@oss.qualcomm.com, qiang.yu@oss.qualcomm.com,
- namcao@linutronix.de, thippeswamy.havalige@amd.com, inochiama@gmail.com,
- devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
- linux-phy@lists.infradead.org, spacemit@lists.linux.dev,
- linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20251013153526.2276556-1-elder@riscstar.com>
- <aPEhvFD8TzVtqE2n@aurel32.net>
-Content-Language: en-US
-From: Alex Elder <elder@riscstar.com>
-In-Reply-To: <aPEhvFD8TzVtqE2n@aurel32.net>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="9LoEsAyJsV+yPBG/"
+Content-Disposition: inline
+In-Reply-To: <20251017161543.214235-5-vitalyr@opensource.cirrus.com>
+X-Cookie: Androphobia:
 
-On 10/16/25 11:47 AM, Aurelien Jarno wrote:
-> Hi Alex,
-> 
-> On 2025-10-13 10:35, Alex Elder wrote:
->> This series introduces a PHY driver and a PCIe driver to support PCIe
->> on the SpacemiT K1 SoC.  The PCIe implementation is derived from a
->> Synopsys DesignWare PCIe IP.  The PHY driver supports one combination
->> PCIe/USB PHY as well as two PCIe-only PHYs.  The combo PHY port uses
->> one PCIe lane, and the other two ports each have two lanes.  All PCIe
->> ports operate at 5 GT/second.
->>
->> The PCIe PHYs must be configured using a value that can only be
->> determined using the combo PHY, operating in PCIe mode.  To allow
->> that PHY to be used for USB, the calibration step is performed by
->> the PHY driver automatically at probe time.  Once this step is done,
->> the PHY can be used for either PCIe or USB.
->>
->> Version 2 of this series incorporates suggestions made during the
->> review of version 1.  Specific highlights are detailed below.
-> 
-> With the issues mentioned in patch 4 fixed, this patchset works fine for
-> me. That said I had to disable ASPM by passing pcie_aspm=off on the
-> command line, as it is now enabled by default since 6.18-rc1 [1]. At
-> this stage, I am not sure if it is an issue with my NVME drive or an
-> issue with the controller.
 
-Can you describe what symptoms you had that required you to pass
-"pcie_aspm=off" on the kernel command line?
+--9LoEsAyJsV+yPBG/
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-I see these lines in my boot log related to ASPM (and added by
-the commit you link to), for both pcie1 and pcie2:
+On Fri, Oct 17, 2025 at 05:15:31PM +0100, Vitaly Rodionov wrote:
 
-   pci 0000:01:00.0: ASPM: DT platform, enabling L0s-up L0s-dw L1 AS
-PM-L1.1 ASPM-L1.2 PCI-PM-L1.1 PCI-PM-L1.2
-   pci 0000:01:00.0: ASPM: DT platform, enabling ClockPM
+>  /* Register Fields */
+> =20
+> -/* REVID */
+> -#define CS530X_MTLREVID			GENMASK(3, 0)
+> -#define CS530X_AREVID			GENMASK(7, 4)
+> -
 
-   . . .
+It seems a bit unhelpful to remove register definitions merely because
+they are removed, so long as they're correct they might come in handly
+for something in the future.  I'm not sure if the datasheet for these
+parts is public...
 
-   nvme nvme0: pci function 0000:01:00.0
-   nvme 0000:01:00.0: enabling device (0000 -> 0002)
-   nvme nvme0: allocated 64 MiB host memory buffer (16 segments).
-   nvme nvme0: 8/0/0 default/read/poll queues
-    nvme0n1: p1
+--9LoEsAyJsV+yPBG/
+Content-Type: application/pgp-signature; name="signature.asc"
 
-My NVMe drive on pcie1 works correctly.
-   https://www.crucial.com/ssd/p3/CT1000P3SSD8
+-----BEGIN PGP SIGNATURE-----
 
-   root@bananapif3:~# df /a
-   Filesystem     1K-blocks     Used Available Use% Mounted on
-   /dev/nvme0n1p1 960302804 32063304 879385040   4% /a
-   root@bananapif3:~#
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmjybrwACgkQJNaLcl1U
+h9DB0Qf+Ipy6d5unq9Go1Am6/MXTFAQKjbiqT/Qa/ldOrOlBcbVF+FWe4g7LRqL6
+o5RE17K0+szsubDch53wxEPdXDxoBl84meOrnrmDn+caILU6cVlezSvHC2Ix8t7E
+uXyZx9gEGmDz4WidqDDHULwfR+/5VWZe03EDdRLpePcCGmYjt/wcuRUMaa/+Jex+
+sqNXREfMR31hl1RJ7e4CVz+YjsTy+jlbufRJLdfqv8gl2G99PXmHLNowHAf32A7F
+3E6D9SbzcsB5839mMQUA6rTxJAqMNFs6ElTwJJsQyMcmvGAvZ1a4NjIKbxk79l+O
++hq+KCfJIrMaGyktXIns6PSVfvyooQ==
+=WrE8
+-----END PGP SIGNATURE-----
 
-I basically want to know if there's something I should do with this
-driver to address this.  (Mani, can you explain?)
-
-Thank you.
-
-					-Alex
-
-> Regards
-> Aurelien
-> 
-> [1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=f3ac2ff14834a0aa056ee3ae0e4b8c641c579961
-> 
-
+--9LoEsAyJsV+yPBG/--
 
