@@ -1,34 +1,34 @@
-Return-Path: <devicetree+bounces-228286-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228287-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3474FBEB1D0
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 19:46:16 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E41FBEB1FC
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 19:53:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 096784E67C7
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 17:46:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BDC4E1AE0661
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 17:53:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0918332AAAA;
-	Fri, 17 Oct 2025 17:46:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5140732C94E;
+	Fri, 17 Oct 2025 17:52:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="46dndhZJ"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="GrQYhuD/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C68429DB6A;
-	Fri, 17 Oct 2025 17:46:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B803732B98D;
+	Fri, 17 Oct 2025 17:52:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760723171; cv=none; b=AtP1gt+LtlPG2vOiJc2EzF9MZhuFlZagf2nTtUu93IBeSmRCdSUN88QEWI+j0P2SOcnpelAmUHXlQej/AZi1ut4hK7wzxZK2tVYnb726UQ7EtAnB9zAu3kAyquhbTV94iXzK1y5QLhzT2eSlJPjQcG2QTi+O0mP4L3MCUfJenng=
+	t=1760723575; cv=none; b=N+nF0vakuyfJl4GP8dGCnZ3/v0tHql4/ZoTiglwYcqw+kEdMQg5dE7t4YD0WOqxzvTsZs5yOQmyJiV2EDzjxieKJG07A1XrLnO3sc2gU59J2r0MKrgSCDPzHKWtV7TqZJO8uCJQDHWMF09wISxpubA9Pd+0ziGh1HzJnJyMf/M4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760723171; c=relaxed/simple;
-	bh=AAJgAlguIMOetfHqhbRCkb3E7rW2+ov3rviLWVPySh8=;
+	s=arc-20240116; t=1760723575; c=relaxed/simple;
+	bh=/AAtJbZIzife83BhcEdb7e3iAJ1phzVX1WWoC7hBd/g=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pvXEpt0wAkxXY4PDh2tg0KJ28PuiDU/8AFqU1D5utSTsL9FwbBJaA7bb6Lt9GBWj7wbLdeIeYysvN+1mffzXEUFvZvaG6LjCI/PibmGYW/HDbh13FPEUqS6Wv4rb54au0qqtGztkicGhq1ZXjlM8pfhnKDqmgqoD/uzuvxzUReg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=46dndhZJ; arc=none smtp.client-ip=156.67.10.101
+	 Content-Type:Content-Disposition:In-Reply-To; b=uiPCboHZaDJIXXI4RCKIfNnTtdTjzOAEWYSY5vcF+KxjW1tiFroB0OZww8GGRPwnIRFC7tqgRKI+uicjOiie/c7Yqt+XnFJ2nSppxw4+Wn+dXeJgGPbBNG/zruzZ0nDf2ACDqC1Kt92y7eXPSvuWQLChj+KuKb0I5Tf7Z1HDJ+0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=GrQYhuD/; arc=none smtp.client-ip=156.67.10.101
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
@@ -36,14 +36,14 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
 	Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
 	Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
-	In-Reply-To:References; bh=g9a9Ld8B1QrKqdht/3ZlhdreVZqXI9snGiuRoSsK9lk=; b=46
-	dndhZJAuBlBuquZcBMgFLDkE+FdlbGzDwrakK1+BzQ0X6NYh7COnnSaLdI/Tu6BhPn8FAyGeqh68p
-	/EcXX3ttp7C84DrVKx9+oeqadjHPnTuqpobpXNfa/j9n8sZjXKJtT21XYKQ5MgkonbKpprFo3rTEW
-	8AzWlY4EwwC19AA=;
+	In-Reply-To:References; bh=KmfJCjmokZLUjt62bEkcRDY2jCPPtEcJwREx2XHeVas=; b=Gr
+	QYhuD/nT4iVGP4S1XuHaN+Xuln7kybBwVq+1wYr30kz2IRnK8o+yLRrvov5qXncw9fpQNTowY3vP5
+	qNBfanGF/QX0ILq912ezOoNzLztz6ujF82jf1pDnsLHcqXZFECarNJ6qwdKTi05HCazcX2Vr1ILs1
+	DGBLgOk0e9mI2ic=;
 Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
 	(envelope-from <andrew@lunn.ch>)
-	id 1v9oWb-00BJNM-2a; Fri, 17 Oct 2025 19:45:57 +0200
-Date: Fri, 17 Oct 2025 19:45:57 +0200
+	id 1v9od9-00BJP1-M1; Fri, 17 Oct 2025 19:52:43 +0200
+Date: Fri, 17 Oct 2025 19:52:43 +0200
 From: Andrew Lunn <andrew@lunn.ch>
 To: =?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>
 Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
@@ -63,13 +63,11 @@ Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
 	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
 	=?iso-8859-1?Q?Gr=E9gory?= Clement <gregory.clement@bootlin.com>,
 	=?iso-8859-1?Q?Beno=EEt?= Monin <benoit.monin@bootlin.com>,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH net-next 01/15] dt-bindings: net: cdns,macb: sort
- compatibles
-Message-ID: <ff79586f-2ffc-47b5-80da-4d1d50c8c4aa@lunn.ch>
+	Maxime Chevallier <maxime.chevallier@bootlin.com>
+Subject: Re: [PATCH net-next 03/15] net: macb: remove gap in MACB_CAPS_* flags
+Message-ID: <26db9699-f71a-4e98-8f07-286e333bbeb6@lunn.ch>
 References: <20251014-macb-cleanup-v1-0-31cd266e22cd@bootlin.com>
- <20251014-macb-cleanup-v1-1-31cd266e22cd@bootlin.com>
+ <20251014-macb-cleanup-v1-3-31cd266e22cd@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,12 +77,23 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20251014-macb-cleanup-v1-1-31cd266e22cd@bootlin.com>
+In-Reply-To: <20251014-macb-cleanup-v1-3-31cd266e22cd@bootlin.com>
 
-On Tue, Oct 14, 2025 at 05:25:02PM +0200, Théo Lebrun wrote:
-> Compatibles inside this enum are sorted-ish. Make it sorted.
+On Tue, Oct 14, 2025 at 05:25:04PM +0200, Théo Lebrun wrote:
+> MACB_CAPS_* are bit constants that get used in bp->caps. They occupy
+> bits 0..12 + 24..31. Remove 11..23 gap by moving bits 24..31 to 13..20.
 > 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Occupation bitfields:
+> 
+>    31  29  27  25  23  21  19  17  15  13  11  09  07  05  03  01
+>      30  28  26  24  22  20  18  16  14  12  10  08  06  04  02  00
+>    -- Before ------------------------------------------------------
+>     1 1 1 1 1 1 1 1                       1 1 1 1 1 1 1 1 1 1 1 1 1
+>                     0 0 0 0 0 0 0 0 0 0 0
+>    -- After -------------------------------------------------------
+>                           1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+>     0 0 0 0 0 0 0 0 0 0 0
+> 
 > Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
 
 Reviewed-by: Andrew Lunn <andrew@lunn.ch>
