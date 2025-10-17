@@ -1,220 +1,146 @@
-Return-Path: <devicetree+bounces-228084-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228078-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69628BE770B
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 11:10:25 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0493BE76A0
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 11:09:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 412FD560EE1
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 09:09:29 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D10605031A0
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 09:08:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9990311C3A;
-	Fri, 17 Oct 2025 09:06:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D4B52EB85F;
+	Fri, 17 Oct 2025 09:06:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nMVSSLZi"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="p8PkJAVR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7ED022D7D2E;
-	Fri, 17 Oct 2025 09:06:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E2152DC77A
+	for <devicetree@vger.kernel.org>; Fri, 17 Oct 2025 09:06:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760692004; cv=none; b=e58jVWbkVEJIAUPS+E1uzhiulQl30pLNC9pg8bhu675VNTEcVtXzT39v+5atdwkcsyMzhVLuMGJdKtU5VyvdPBfdfbRyGJI3FMbqENkOEfa+fmrzAQDMLiPmzr2yJK/d9PLeRpQGS/d2r/GTewHVQSAIsUvIVT0i2xl2PJcdydI=
+	t=1760691991; cv=none; b=iq3xdUPMEM1/iy7+AoV++WtezRIUAza2gcdWf9qTwSbv9c+vSF8d7/xHlsxOSL9KMp4KcEskDpCz129dYjU0CTlbmOhO4XRg2TpKxRkACw5nBChVX2OlhLHbkP7DapVRl0+2fjdZiTsGQqClRmMN9wqcFKyNAHe/W9u0yxcEs/8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760692004; c=relaxed/simple;
-	bh=9eaP1roVILFvRVEW4CJKZph/rJGgGj6vCMuzQwQpE+o=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=qUP44+J5xQR9LDBSdyJZVb0Zu35QLOvVuW/zfTn0Ejbvja0hNIcilCgW5SMm7hoZM0T2+bXqDMWbUxZ0aC0WqOJupMw1eHgJlulwRFD7/fz5TqbUhgXVVxVpzOLKDhoJLpr/Q7dYv8iZHSmHw+w4u25pRCvVjmCq/L9TAMz52s4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nMVSSLZi; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C93A0C4CEF9;
-	Fri, 17 Oct 2025 09:06:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760692004;
-	bh=9eaP1roVILFvRVEW4CJKZph/rJGgGj6vCMuzQwQpE+o=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=nMVSSLZipq6064Yp/KKf1oHOXWvKGqR63eC3y3/cq36kk26GbAYhzSwDBZMN/0XRv
-	 8ReFum3eLaOn0V4Ri7eH6ZUe69LiAfr5C7DT9+1/O/R4yjOlgGMJ+IEHHYI+Z1WouV
-	 IM6H0QUH6S2CYIoDcoLzH+WzwWh7pecwikmWPXQKSmEGD3822aOM1Kd/urLKOFPToI
-	 Yh+gXIOk/pT5+27lX8YxjqLVLAtqe5bzT6zQKb0CwB5+vKelpKkecSgEfeK54wo2NW
-	 om2JmFouQnFrwadM3ZzJPHAZE/X7EK6Fn2886EKapBkG0+iaDu4p++6FcC+HAkaYJL
-	 TYEGI72QupM8g==
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-Date: Fri, 17 Oct 2025 11:06:14 +0200
-Subject: [PATCH net-next v3 05/13] net: airoha: Generalize
- airoha_ppe2_is_enabled routine
+	s=arc-20240116; t=1760691991; c=relaxed/simple;
+	bh=tL9LCQhpKIBjQIgS/5f1KpjSDRPB3nJi2aKghBl0jM4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=n1ALEWGy47xg0Lut/WzcRnNhub5JGgET9c1SyMTxzrYClweBFToKoiNEjT4ZSz0GbTxzqkKvyaNBP3IPUAN7j5p8pTgFfXmmEpdCzXj5V4KVfvKDmjgt2h1jmJAVwiuuC05dRyxCNCyR0QPjceYmle8AvkTZVWxhMvu+XZVV14Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=p8PkJAVR; arc=none smtp.client-ip=209.85.218.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-b50206773adso529133666b.0
+        for <devicetree@vger.kernel.org>; Fri, 17 Oct 2025 02:06:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1760691987; x=1761296787; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=418kpMdDHnOQzzDnjco0/swD3OeHn+l/8evRSWETxr8=;
+        b=p8PkJAVRd2Vo0QVBck6JlHDW4H1DfgmBgUNao/9Nxyt77rBPmQMYnnrLCiL5RkCg9F
+         7xOKXf3qxLoKusF2/EHXZkz5XcwpmCBC9VQHrhnlqs5rJUJfDNUFkSX/lA2gE7nYJ+Xm
+         E9uBNrUd87yXlyIindIpkJ2u1iZWt5HaVZkijLxikgHQjmUKd6+oLC9YIKv+AiZUJkFb
+         9j/8iSANWosU8+A+5zyqUOKgpUG8YpPFj4rUtYfiXhauZgIPdHSwOBR/LsFYVled3gcQ
+         le4SDLYgaWgXbzqx8cPJ6UrU3m6tLzByNNerGPfwfG2soIjP6LOC2zEm86p2rMAzwS10
+         JWig==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1760691987; x=1761296787;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=418kpMdDHnOQzzDnjco0/swD3OeHn+l/8evRSWETxr8=;
+        b=h+6HZmigbmzqbBqJ2F9RdnfBXnhcutDC7ZOLSiFPxmLLZrSzK5/rD+LXCiQcbcD20K
+         rVsLHAEUSLOyXnTjP43Wz+aTZz73HsKsVb9K0dFitY0AC34kyJnW6DRKdVHMv9rmwRSu
+         FhlO1YIvgmeugmMJmnyDvbxJ7UHA+nUMrRKYyy12cJHxhmeZKSJzMpDWKeanEy8TqZ56
+         1Cbt+m1GskBS8h6D9LSQoeZg140GsfAWi6XktQfe70X8HJZGbsY7oDMsIEdKOsoSP583
+         v+ePsYYgE9qltsq4CepPHb8pCSzZemE2ecELU5yvK6JK7BnDAU4pS3/HprLA8HKC4r1W
+         cuKA==
+X-Forwarded-Encrypted: i=1; AJvYcCVIK0+U0kPZTtuIrnaitOkzhewBCKiID1MaCINspzCrlm248R1ETiXV3P9fr+H/gjBC3i2BOtyMyTg9@vger.kernel.org
+X-Gm-Message-State: AOJu0YzGjPiRl+p8adsS2+XNdMK/1IH0vIs4VJTAdOWKkFOkX1qD5akp
+	RE8zM9Guc6R4A8FG0At3O4o2PDmV7p2cUgTpXa/6QqhniobT70IpGPSAKh9kRot/uIuqdcsf0bk
+	Fe1p8dm5BH8LfGyk40BV63Yi6yt+x1orCWJ/Cr4Zq+A==
+X-Gm-Gg: ASbGncvV2CUUmYnSF+oI44gvlJ2YX3dts718unPzrEoaoqTgSUyh/LvmYOFLIo7RROi
+	xQkUWOVd5UbpDBNvEOEr2/+/Ks+X0oSfTSq+C5MTQ0/iJAdtqu5rz3fgmQiedOapMhKM7CJ4yFJ
+	TdWYFO47iEM4GYVupUKfkbbOx60cU6Aeyz5KLP4AjiGOmkQE0IF6/8aTz98ZeYp0MAqBWhX/jUH
+	47hujfYGcgzMFnlbvJFWxYTLb1FCl4d+bYre6/j2TEIlYtOcpymJWw6DWODw1fx0FPKr2GlaI9a
+	B7BIU7HkoqNDvbwbnaT+36RhJlU=
+X-Google-Smtp-Source: AGHT+IG+w0UsfxJS4d6pFqa8XviZVfLhRM+rhE1KqiFzit259/+EaKQIY+0egVcn1SrXy9IXtpCbr0Z+t9PVc3PXPa4=
+X-Received: by 2002:a17:907:868f:b0:b41:c602:c75d with SMTP id
+ a640c23a62f3a-b645f7ef255mr378423666b.31.1760691986910; Fri, 17 Oct 2025
+ 02:06:26 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251017-an7583-eth-support-v3-5-f28319666667@kernel.org>
-References: <20251017-an7583-eth-support-v3-0-f28319666667@kernel.org>
-In-Reply-To: <20251017-an7583-eth-support-v3-0-f28319666667@kernel.org>
-To: Andrew Lunn <andrew+netdev@lunn.ch>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
- Lorenzo Bianconi <lorenzo@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, 
- linux-mediatek@lists.infradead.org, netdev@vger.kernel.org, 
- devicetree@vger.kernel.org, Simon Horman <horms@kernel.org>
-X-Mailer: b4 0.14.2
+References: <20251015-arm-psci-system_reset2-vendor-reboots-v16-0-b98aedaa23ee@oss.qualcomm.com>
+ <20251015-arm-psci-system_reset2-vendor-reboots-v16-2-b98aedaa23ee@oss.qualcomm.com>
+ <CACMJSesvTLe28Jz83b=zfHD2rvmf7-i_2+2DoV=dgooVqFEYbA@mail.gmail.com> <fa42adf0-8f15-ad4c-3788-578b1bee1c72@oss.qualcomm.com>
+In-Reply-To: <fa42adf0-8f15-ad4c-3788-578b1bee1c72@oss.qualcomm.com>
+From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Date: Fri, 17 Oct 2025 11:06:15 +0200
+X-Gm-Features: AS18NWCSgzHU1qRYaMmAnFnfeUajlPBrTb0Y5_GWRI3iwaw1dVFHqq2mvJmjYc8
+Message-ID: <CACMJSesxazA7Nf6sAhUT16KfwtiUNjvb5JOEWkEb1B5fJtihMQ@mail.gmail.com>
+Subject: Re: [PATCH v16 02/14] power: reset: reboot-mode: Add device tree
+ node-based registration
+To: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Sudeep Holla <sudeep.holla@arm.com>, Souvik Chakravarty <Souvik.Chakravarty@arm.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Andy Yan <andy.yan@rock-chips.com>, Mark Rutland <mark.rutland@arm.com>, 
+	Lorenzo Pieralisi <lpieralisi@kernel.org>, Arnd Bergmann <arnd@arndb.de>, 
+	Konrad Dybcio <konradybcio@kernel.org>, cros-qcom-dts-watchers@chromium.org, 
+	Vinod Koul <vkoul@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>, 
+	Will Deacon <will@kernel.org>, Florian Fainelli <florian.fainelli@broadcom.com>, 
+	Moritz Fischer <moritz.fischer@ettus.com>, John Stultz <john.stultz@linaro.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, Krzysztof Kozlowski <krzk@kernel.org>, 
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
+	Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>, Stephen Boyd <swboyd@chromium.org>, 
+	Andre Draszik <andre.draszik@linaro.org>, 
+	Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>, linux-pm@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org, 
+	Elliot Berman <quic_eberman@quicinc.com>, Srinivas Kandagatla <srini@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 
-Rename airoha_ppe2_is_enabled() in airoha_ppe_is_enabled() and
-generalize it in order to check if each PPE module is enabled.
-Rely on airoha_ppe_is_enabled routine to properly initialize PPE for
-AN7583 SoC since AN7583 does not support PPE2.
+On Thu, 16 Oct 2025 at 19:19, Shivendra Pratap
+<shivendra.pratap@oss.qualcomm.com> wrote:
+> >>
+> >> -                       info = devm_kzalloc(reboot->dev, sizeof(*info), GFP_KERNEL);
+> >
+> > This change is good - devres should not be used in subsystem library
+> > code, only in drivers - but it doesn't seem to belong here, can you
+> > please separate it out and make it backportable?
+>
+> sure. Just to confirm we should separate out the devm_kzalloc part of the
+> change and add a fixes tag.
+>
 
-Reviewed-by: Simon Horman <horms@kernel.org>
-Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
----
- drivers/net/ethernet/airoha/airoha_eth.c | 32 +++++++++++++++++++++-----------
- drivers/net/ethernet/airoha/airoha_eth.h |  1 +
- drivers/net/ethernet/airoha/airoha_ppe.c | 17 ++++++++++-------
- 3 files changed, 32 insertions(+), 18 deletions(-)
+And preferably put it first in the series to avoid conflicts.
 
-diff --git a/drivers/net/ethernet/airoha/airoha_eth.c b/drivers/net/ethernet/airoha/airoha_eth.c
-index c9cebe6752eb524e58cfa30f937372d6d3baea1c..dea856ddf242d2c4ec3ca44796fc6deb2d784904 100644
---- a/drivers/net/ethernet/airoha/airoha_eth.c
-+++ b/drivers/net/ethernet/airoha/airoha_eth.c
-@@ -297,8 +297,11 @@ static void airoha_fe_pse_ports_init(struct airoha_eth *eth)
- 	int q;
- 
- 	all_rsv = airoha_fe_get_pse_all_rsv(eth);
--	/* hw misses PPE2 oq rsv */
--	all_rsv += PSE_RSV_PAGES * pse_port_num_queues[FE_PSE_PORT_PPE2];
-+	if (airoha_ppe_is_enabled(eth, 1)) {
-+		/* hw misses PPE2 oq rsv */
-+		all_rsv += PSE_RSV_PAGES *
-+			   pse_port_num_queues[FE_PSE_PORT_PPE2];
-+	}
- 	airoha_fe_set(eth, REG_FE_PSE_BUF_SET, all_rsv);
- 
- 	/* CMD1 */
-@@ -335,13 +338,17 @@ static void airoha_fe_pse_ports_init(struct airoha_eth *eth)
- 	for (q = 4; q < pse_port_num_queues[FE_PSE_PORT_CDM4]; q++)
- 		airoha_fe_set_pse_oq_rsv(eth, FE_PSE_PORT_CDM4, q,
- 					 PSE_QUEUE_RSV_PAGES);
--	/* PPE2 */
--	for (q = 0; q < pse_port_num_queues[FE_PSE_PORT_PPE2]; q++) {
--		if (q < pse_port_num_queues[FE_PSE_PORT_PPE2] / 2)
--			airoha_fe_set_pse_oq_rsv(eth, FE_PSE_PORT_PPE2, q,
--						 PSE_QUEUE_RSV_PAGES);
--		else
--			airoha_fe_set_pse_oq_rsv(eth, FE_PSE_PORT_PPE2, q, 0);
-+	if (airoha_ppe_is_enabled(eth, 1)) {
-+		/* PPE2 */
-+		for (q = 0; q < pse_port_num_queues[FE_PSE_PORT_PPE2]; q++) {
-+			if (q < pse_port_num_queues[FE_PSE_PORT_PPE2] / 2)
-+				airoha_fe_set_pse_oq_rsv(eth, FE_PSE_PORT_PPE2,
-+							 q,
-+							 PSE_QUEUE_RSV_PAGES);
-+			else
-+				airoha_fe_set_pse_oq_rsv(eth, FE_PSE_PORT_PPE2,
-+							 q, 0);
-+		}
- 	}
- 	/* GMD4 */
- 	for (q = 0; q < pse_port_num_queues[FE_PSE_PORT_GDM4]; q++)
-@@ -1762,8 +1769,11 @@ static int airoha_dev_init(struct net_device *dev)
- 			airhoha_set_gdm2_loopback(port);
- 		fallthrough;
- 	case 2:
--		pse_port = FE_PSE_PORT_PPE2;
--		break;
-+		if (airoha_ppe_is_enabled(eth, 1)) {
-+			pse_port = FE_PSE_PORT_PPE2;
-+			break;
-+		}
-+		fallthrough;
- 	default:
- 		pse_port = FE_PSE_PORT_PPE1;
- 		break;
-diff --git a/drivers/net/ethernet/airoha/airoha_eth.h b/drivers/net/ethernet/airoha/airoha_eth.h
-index cb7e198e40eeb2f44bd6e035cc7b583f47441d59..81b1e5f273df20fb8aef7a03e94ac14a3cfaf4d5 100644
---- a/drivers/net/ethernet/airoha/airoha_eth.h
-+++ b/drivers/net/ethernet/airoha/airoha_eth.h
-@@ -627,6 +627,7 @@ static inline bool airoha_is_7581(struct airoha_eth *eth)
- bool airoha_is_valid_gdm_port(struct airoha_eth *eth,
- 			      struct airoha_gdm_port *port);
- 
-+bool airoha_ppe_is_enabled(struct airoha_eth *eth, int index);
- void airoha_ppe_check_skb(struct airoha_ppe_dev *dev, struct sk_buff *skb,
- 			  u16 hash, bool rx_wlan);
- int airoha_ppe_setup_tc_block_cb(struct airoha_ppe_dev *dev, void *type_data);
-diff --git a/drivers/net/ethernet/airoha/airoha_ppe.c b/drivers/net/ethernet/airoha/airoha_ppe.c
-index 22ecece0e33ef4d7c9b1e2d6c5c9e510e3e0c040..505a3005f7db1c7804454177bf5b8a6aff54ef3f 100644
---- a/drivers/net/ethernet/airoha/airoha_ppe.c
-+++ b/drivers/net/ethernet/airoha/airoha_ppe.c
-@@ -50,9 +50,12 @@ static int airoha_ppe_get_total_num_stats_entries(struct airoha_ppe *ppe)
- 	return num_stats;
- }
- 
--static bool airoha_ppe2_is_enabled(struct airoha_eth *eth)
-+bool airoha_ppe_is_enabled(struct airoha_eth *eth, int index)
- {
--	return airoha_fe_rr(eth, REG_PPE_GLO_CFG(1)) & PPE_GLO_CFG_EN_MASK;
-+	if (index >= eth->soc->num_ppe)
-+		return false;
-+
-+	return airoha_fe_rr(eth, REG_PPE_GLO_CFG(index)) & PPE_GLO_CFG_EN_MASK;
- }
- 
- static u32 airoha_ppe_get_timestamp(struct airoha_ppe *ppe)
-@@ -120,7 +123,7 @@ static void airoha_ppe_hw_init(struct airoha_ppe *ppe)
- 						 AIROHA_MAX_MTU));
- 	}
- 
--	if (airoha_ppe2_is_enabled(eth)) {
-+	if (airoha_ppe_is_enabled(eth, 1)) {
- 		sram_num_entries = PPE1_SRAM_NUM_ENTRIES;
- 		sram_num_stats_entries =
- 			airoha_ppe_get_num_stats_entries(ppe);
-@@ -518,7 +521,7 @@ static int airoha_ppe_foe_get_flow_stats_index(struct airoha_ppe *ppe,
- 		return ppe_num_stats_entries;
- 
- 	*index = hash;
--	if (airoha_ppe2_is_enabled(ppe->eth) &&
-+	if (airoha_ppe_is_enabled(ppe->eth, 1) &&
- 	    hash >= ppe_num_stats_entries)
- 		*index = *index - PPE_STATS_NUM_ENTRIES;
- 
-@@ -613,7 +616,7 @@ airoha_ppe_foe_get_entry_locked(struct airoha_ppe *ppe, u32 hash)
- 		u32 val;
- 		int i;
- 
--		ppe2 = airoha_ppe2_is_enabled(ppe->eth) &&
-+		ppe2 = airoha_ppe_is_enabled(ppe->eth, 1) &&
- 		       hash >= PPE1_SRAM_NUM_ENTRIES;
- 		airoha_fe_wr(ppe->eth, REG_PPE_RAM_CTRL(ppe2),
- 			     FIELD_PREP(PPE_SRAM_CTRL_ENTRY_MASK, hash) |
-@@ -691,7 +694,7 @@ static int airoha_ppe_foe_commit_entry(struct airoha_ppe *ppe,
- 
- 	if (hash < PPE_SRAM_NUM_ENTRIES) {
- 		dma_addr_t addr = ppe->foe_dma + hash * sizeof(*hwe);
--		bool ppe2 = airoha_ppe2_is_enabled(eth) &&
-+		bool ppe2 = airoha_ppe_is_enabled(eth, 1) &&
- 			    hash >= PPE1_SRAM_NUM_ENTRIES;
- 
- 		err = npu->ops.ppe_foe_commit_entry(npu, addr, sizeof(*hwe),
-@@ -1286,7 +1289,7 @@ static int airoha_ppe_flush_sram_entries(struct airoha_ppe *ppe,
- 	int i, sram_num_entries = PPE_SRAM_NUM_ENTRIES;
- 	struct airoha_foe_entry *hwe = ppe->foe;
- 
--	if (airoha_ppe2_is_enabled(ppe->eth))
-+	if (airoha_ppe_is_enabled(ppe->eth, 1))
- 		sram_num_entries = sram_num_entries / 2;
- 
- 	for (i = 0; i < sram_num_entries; i++)
+> >> @@ -123,8 +136,11 @@ int reboot_mode_register(struct reboot_mode_driver *reboot)
+> >>                 return 0;
+> >>
+> >>  error:
+> >> -               list_for_each_entry(info, &reboot->head, list)
+> >> +               list_for_each_entry_safe(info, next, &reboot->head, list) {
+> >> +                       list_del(&info->list);
+> >
+> > Same here, not deleting the entries currently seems like a bug? Do we
+> > depend on the driver detach to clean up the resources on failure?
+>
+> sure, so this should also go as fixes? and should we remove the other
+> dev_err(printk) also as fixes? or that can still got with the change
+> where we add fwnode based registration?
+>
 
--- 
-2.51.0
+It doesn't seem to be strictly required by current code as the users
+use it "correctly" but if the API becomes used in different ways - for
+instance the structure may be reused after failure - it's a good idea
+to backport it. In general we should undo everything we did in the
+same function if we fail at some point.
 
+Bart
 
