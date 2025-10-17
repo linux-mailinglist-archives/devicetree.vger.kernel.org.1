@@ -1,209 +1,132 @@
-Return-Path: <devicetree+bounces-228340-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228344-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 934B0BEC3D7
-	for <lists+devicetree@lfdr.de>; Sat, 18 Oct 2025 03:35:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C172BEC5EA
+	for <lists+devicetree@lfdr.de>; Sat, 18 Oct 2025 04:48:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 6B09F4E65F8
-	for <lists+devicetree@lfdr.de>; Sat, 18 Oct 2025 01:35:14 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 879FC4E5C1E
+	for <lists+devicetree@lfdr.de>; Sat, 18 Oct 2025 02:48:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 288342236FC;
-	Sat, 18 Oct 2025 01:33:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A35B1271440;
+	Sat, 18 Oct 2025 02:48:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="b5n/i9yd"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Fj9VnqMk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84AC721FF5B
-	for <devicetree@vger.kernel.org>; Sat, 18 Oct 2025 01:33:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99A8126E710;
+	Sat, 18 Oct 2025 02:48:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760751237; cv=none; b=hGIOGNuYrPK+eTCNSi4qv8o1oc6U3DAD9m5hFoRnThJl5AuTeuSH5jsp+vUWvTFsHj0LvK9QNtGPQsxs4JXUiRJhvpZhQCAPosexLLIKQFwbR04n+nza2XLeuOy8J2uSfKUxMlcEtgiIe6XCk0vDcc6pMnMVr5XlCs5AkUVOTMs=
+	t=1760755709; cv=none; b=DcU/V69K+vCD4G4T4NL7mlHkpJUABayzE1a1HY4v0s1w3OZvgSaegMNiIfsXnsifgLHGiwaQ7UN+VSlXYUXkmLNF58JOlzeUWHkpTC3IHIFkM+DwVXOSwAZlnAYrCoNnZACAvIjNrYH7EaDxnS7/y2oXyzqt7OWC38iHTZLgBd4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760751237; c=relaxed/simple;
-	bh=FpDxHLlqUZ+XGHyViui56XmvYboqFqBaLMsyLmHrEjw=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=dibLKleyHLJQYAS6BbZzhPUWKUmFagF0JnA0zDaWpZMgcQFGPeNPRrRw4MkQCAarxbimm4FLrv0Blh7ftBney4K//Ijfyd63FUKUbu99nVXOhINvllZk60VGO1f6bhhxpopYf5ktdTBtSXWMAE8Qc3X1H2YyiLuXhvUd5qlsccY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=b5n/i9yd; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59I0K1w5014204
-	for <devicetree@vger.kernel.org>; Sat, 18 Oct 2025 01:33:54 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	ul01yB/PmIF5rsEoiQYYpJP41+BqBJ4MU+FjnMDvYVQ=; b=b5n/i9ydwyPNRF4C
-	mNwPiE/afJxNHr9XdkDxHnofotjPRlipfBXq30EbfqHwJ09tz3WMhUYDSn62HFLA
-	sCSziuYYsXqdjFp55VSyb9yka5e1hPTsX5O2onngANc9DS6HHtQOluJHFUPvnBlx
-	Dn3uY3cSl/TY7VjJyOphQPGfFXnJ/I/joYP5nY/k7GFcphWNGrWvQD0cGJMHIRlG
-	HICjWA6cFIZY0v1S9ltoBmlgh4oHolmPbnLrGtHA7aidNU94BtqjhTv5g6V7HlT1
-	gQhB+xjR7xct1E9FV5lmlcOwONY27TWOoLRP3xT51RGhV1Yf2jG/dyjUgCR0e1ON
-	W6YyTQ==
-Received: from mail-pj1-f69.google.com (mail-pj1-f69.google.com [209.85.216.69])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49v08p83t1-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Sat, 18 Oct 2025 01:33:54 +0000 (GMT)
-Received: by mail-pj1-f69.google.com with SMTP id 98e67ed59e1d1-33bcb7796d4so1898912a91.0
-        for <devicetree@vger.kernel.org>; Fri, 17 Oct 2025 18:33:54 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760751233; x=1761356033;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ul01yB/PmIF5rsEoiQYYpJP41+BqBJ4MU+FjnMDvYVQ=;
-        b=jxRgoTZumfnLc9QU5xA+xPDClvL6r4UwCkLaDr3YWz0H+WUXn9haTWtdMJqU8xdZ8x
-         P9z1w6URUToRTaNbX1rTflVZqNl5g3hJ8dmUE7TAWlU3EGSbVcQh2rWnOaVaqaSym+uh
-         WcuhS2kvc8RSapT7LG2yKiSGE4QEBHg1kiZtldRmwM8JHd3mho0ZPAeL/DiOVKbKh2KO
-         GZOSGCuX2a0u4vZIA7CjO9FPYdmc/6FeF2LbO91r8rJ8kePl+sJnx3FE3wDx38qQ0JzV
-         2JF+Cp33CzA4K+vmssRuVjNiSQRqELmKe6AJLBI3KAnsB33HY7ZkxLb2I9M74guAoeVF
-         JX2w==
-X-Forwarded-Encrypted: i=1; AJvYcCUmU7hEZTAiAAzdRIUuGymTNxJVCeQt/e/yKYlRWi0HDiJbb6pf4Z6ycm/G/v/UQRsKQHVZAmm2qDIi@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy7JSsmokVXd3QjPLqIfn7TEulUneaygKHUvEhnbDseSYWXFLvE
-	u1yIAbKJij+aDnhjyvoGFImO3PbtOI9RakZaW1BN6LAfV0lG6wA6UID1uTcnxEHY19EuEcOKr2N
-	QbLvwbudMjpESGUYgfO8kkEsXTCvGKQtH8Zxl7Yp03Y3s/brnvq/55yvNhY8a+vzQ
-X-Gm-Gg: ASbGncuD6+hzedq+aVHQdImh+QMFELtza/lBQOnw0OHhEewkzSaAsNHs0Gh+t8uagL2
-	zNZ7wgaOu3fCf8PRqSWTt2+1Scm5tAL0UyE8V7P3dnXm4LeAX+/A3V8jhypXZKt3TAeWPFVYnTD
-	xulQyqn0Fxf9MSFh04QAMELjkdwz3aDR/sUuCDrl1N0GyQ8lTDiEgEYLNn59arCPYr2JEtWizKe
-	UsEil4jgIy/rnYVyFms9qXgupxQNBKi208EJu6cDmzPuhXxfruOjpbcp6ZYxGJuZqpn6P4KbAVQ
-	3nvwDvXvMBkvCaFkaoJuP42SGB07/F7RxnO/Q9s4FY/s9YZQlUADDEApNolZxfxwEXYNdH4nGNj
-	juOgJkypELjNKJx0Bd8/03Sexi6MGl1nrlMKhboKaDfFdgw==
-X-Received: by 2002:a17:90b:4fc6:b0:330:6d5e:f17e with SMTP id 98e67ed59e1d1-33bcf8faaeamr7027702a91.24.1760751233322;
-        Fri, 17 Oct 2025 18:33:53 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFhgd8h+gjYCRAgJsNizEhdpEKTIJOJyi7ZEUs7pkgwCNS/nw/yoWOt3jimgW+A8TBDaTv9cQ==
-X-Received: by 2002:a17:90b:4fc6:b0:330:6d5e:f17e with SMTP id 98e67ed59e1d1-33bcf8faaeamr7027679a91.24.1760751232945;
-        Fri, 17 Oct 2025 18:33:52 -0700 (PDT)
-Received: from hu-qianyu-lv.qualcomm.com (Global_NAT1.qualcomm.com. [129.46.96.20])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-33d5ddf16bcsm791695a91.4.2025.10.17.18.33.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 17 Oct 2025 18:33:52 -0700 (PDT)
-From: Qiang Yu <qiang.yu@oss.qualcomm.com>
-Date: Fri, 17 Oct 2025 18:33:43 -0700
-Subject: [PATCH v5 6/6] phy: qcom: qmp-pcie: Add support for glymur PCIe
- Gen4 x2 PHY
+	s=arc-20240116; t=1760755709; c=relaxed/simple;
+	bh=WVWtfKK+vDqGNd+hHo1rvqT82s5arm/ftAiBJiPTr+o=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fkSa+BU5RC3n7GaiCgvVTacLakGNPwyWIZCcs+GUr30rEHha38gNxiQwHKlIvUBGMrsIqRjqZFU3Cbb01YklPsJQGmQTvUH5C9+/PfAXVHeEsdSR1/rpvNmQ7oTkNhkVVQ4WdTUVIEKys+s59Jt70vRbRwcDYe8xe9lPen6n0as=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Fj9VnqMk; arc=none smtp.client-ip=198.175.65.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1760755708; x=1792291708;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=WVWtfKK+vDqGNd+hHo1rvqT82s5arm/ftAiBJiPTr+o=;
+  b=Fj9VnqMkjBgHMLMvlgVbssXDG6ZVHEoBGpuMe2cq8UwGwEeW4577lF/K
+   7dMx+oP5TFt70FBe2LsgeMBxP21UhlYsa+krM/DXLFzCCV/18Eax0vFjo
+   bCIVDKnjVEGZs6bthJzmV6tTSc9u0rKA+3bL5SQ7nho3U8H9ns2BT1qot
+   K2P/wJJxHj57QpjNMmd8lq9jgEdEqqmOqqXgbcoqBD5CnomCijv4f20yV
+   NUi8bHVEr+n9BXL1GpoQn+M6UaXJV2AtC6x+FeelDQoQKGHLT7a/LH8p8
+   9FiTRz7tyBvBm4sHaQ8Ffqk1mxDZboREeIvQXOQ9qbZSJfHG4rhGtdGYX
+   g==;
+X-CSE-ConnectionGUID: x8veFEuHRcOFEVIXcEKGFA==
+X-CSE-MsgGUID: yYrF6j1IRICAHz3krMEJjA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="62876618"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; 
+   d="scan'208";a="62876618"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Oct 2025 19:48:25 -0700
+X-CSE-ConnectionGUID: HgsJk2K+SoekCEz+hIw0lA==
+X-CSE-MsgGUID: XIcqlnUtQnKoumUUL92cNA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,237,1754982000"; 
+   d="scan'208";a="182512093"
+Received: from ranerica-svr.sc.intel.com ([172.25.110.23])
+  by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Oct 2025 14:02:44 -0700
+Date: Fri, 17 Oct 2025 14:10:15 -0700
+From: Ricardo Neri <ricardo.neri-calderon@linux.intel.com>
+To: "Rafael J. Wysocki" <rafael@kernel.org>
+Cc: x86@kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+	"K. Y. Srinivasan" <kys@microsoft.com>,
+	Haiyang Zhang <haiyangz@microsoft.com>,
+	Wei Liu <wei.liu@kernel.org>, Dexuan Cui <decui@microsoft.com>,
+	Michael Kelley <mhklinux@outlook.com>,
+	Saurabh Sengar <ssengar@linux.microsoft.com>,
+	Chris Oo <cho@microsoft.com>, "Kirill A. Shutemov" <kas@kernel.org>,
+	linux-hyperv@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Ricardo Neri <ricardo.neri@intel.com>,
+	"Rafael J. Wysocki" <rafael.j.wysocki@intel.com>
+Subject: Re: [PATCH v6 01/10] x86/acpi: Add helper functions to setup and
+ access the wakeup mailbox
+Message-ID: <20251017211015.GA7078@ranerica-svr.sc.intel.com>
+References: <20251016-rneri-wakeup-mailbox-v6-0-40435fb9305e@linux.intel.com>
+ <20251016-rneri-wakeup-mailbox-v6-1-40435fb9305e@linux.intel.com>
+ <CAJZ5v0iB4iZFs8C6EZayLVPbLz50MJ9GEniSHfbP31-yHRg1Bw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251017-glymur_pcie-v5-6-82d0c4bd402b@oss.qualcomm.com>
-References: <20251017-glymur_pcie-v5-0-82d0c4bd402b@oss.qualcomm.com>
-In-Reply-To: <20251017-glymur_pcie-v5-0-82d0c4bd402b@oss.qualcomm.com>
-To: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Bjorn Andersson <andersson@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pci@vger.kernel.org, Qiang Yu <qiang.yu@oss.qualcomm.com>,
-        Qiang Yu <quic_qianyu@quicinc.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1760751221; l=2061;
- i=qiang.yu@oss.qualcomm.com; s=20250513; h=from:subject:message-id;
- bh=iLPr+Du4SVVY2HNyB1uA8pllKkcuQDXDVG2QxHgn67Y=;
- b=Efk0/KbSfZj/WjkKqRhvcxliPbFO58kqb9rWUzQCQX8ah7wkDvdoRXAx9aYAlPBHZxJEcO4eq
- PxKIJ6L3AIeCJUKTVCeC6B3F3Bfbvt0rn+CAF9ToLzzCsQA8i1HqlDa
-X-Developer-Key: i=qiang.yu@oss.qualcomm.com; a=ed25519;
- pk=Rr94t+fykoieF1ngg/bXxEfr5KoQxeXPtYxM8fBQTAI=
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDE4MDAwMCBTYWx0ZWRfX5oD0v4P1z+Jx
- knGu878AHhGaymRz/Z+zbk+I8xBLzo2GLpm4q94b/guHFecvIyQdCGAE5qC9JPstHfyienZElEL
- aFpSsOVNIBC0kJ8qw9NYEUfHlKPf2aaDRQbQZgfAV99SAMbTNM69jK5+8bHYE+pEoj+wF7eOZm2
- MHqyin1ESijruajnwOADc8pcczPYbPTKRGQUKQTIABGyqEL6jrao2S7HKo7p6vGY2yMCfOAtzli
- pLASunQKZGN4c+gXJHLq3yb6phN4VBZ4PRYzaF+Nkt36Rz26hdNwlmiICCyNT1PH2uByVQgZAHt
- JPbke8PQ707WBuSLBx2yGCix4k1WqRd9FvwAGtYogfOfEFOx2AZbTG3gvmZDqF39MXmkaPN8hag
- KwcEEWD45aiM35YZalmXRt4gb8nkCA==
-X-Proofpoint-GUID: ef9Mm_rkZ1uICC5URSKHilYyMuQTqrrP
-X-Authority-Analysis: v=2.4 cv=Up1u9uwB c=1 sm=1 tr=0 ts=68f2ee82 cx=c_pps
- a=vVfyC5vLCtgYJKYeQD43oA==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8 a=hii3Kp118aGdntTlwUgA:9 a=QEXdDO2ut3YA:10
- a=rl5im9kqc5Lf4LNbBjHf:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-ORIG-GUID: ef9Mm_rkZ1uICC5URSKHilYyMuQTqrrP
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-10-18_01,2025-10-13_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 adultscore=0 suspectscore=0 malwarescore=0 clxscore=1015
- impostorscore=0 bulkscore=0 priorityscore=1501 spamscore=0 phishscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2510020000 definitions=main-2510180000
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAJZ5v0iB4iZFs8C6EZayLVPbLz50MJ9GEniSHfbP31-yHRg1Bw@mail.gmail.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 
-From: Qiang Yu <quic_qianyu@quicinc.com>
+On Fri, Oct 17, 2025 at 11:46:59AM +0200, Rafael J. Wysocki wrote:
+> On Fri, Oct 17, 2025 at 4:48 AM Ricardo Neri
+> <ricardo.neri-calderon@linux.intel.com> wrote:
+> >
+> > In preparation to move the functionality to wake secondary CPUs up from the
+> > ACPI code, add two helper functions.
+> >
+> > The function acpi_setup_mp_wakeup_mailbox() stores the physical address of
+> > the mailbox and updates the wakeup_secondary_cpu_64() APIC callback.
+> >
+> > There is a slight change in behavior: now the APIC callback is updated
+> > before configuring CPU hotplug offline behavior. This is fine as the APIC
+> > callback continues to be updated unconditionally, regardless of the
+> > restriction on CPU offlining.
+> >
+> > The function acpi_madt_multiproc_wakeup_mailbox() returns a pointer to the
+> > mailbox. Use this helper function only in the portions of the code for
+> > which the variable acpi_mp_wake_mailbox will be out of scope once it is
+> > relocated out of the ACPI directory.
+> >
+> > The wakeup mailbox is only supported for CONFIG_X86_64 and needed only with
+> > CONFIG_SMP=y.
+> >
+> > Reviewed-by: Dexuan Cui <decui@microsoft.com>
+> > Acked-by: Rafael J. Wysocki <rafael.j.wysocki@intel.com>
+> 
+> This should have been
+> 
+> Acked-by: Rafael J. Wysocki (Intel) <rafael.j.wysocki@intel.com>
+> 
+> The "(Intel)" part is missing and I omitted it when I sent the tag.
+> Sorry for the confusion.
 
-Add support for Gen4 x2 PCIe QMP PHY found on Glymur platform.
+Thanks for the clarification Rafael. Does this clarification apply also
+patches 2 and 3?
 
-Signed-off-by: Qiang Yu <qiang.yu@oss.qualcomm.com>
----
- drivers/phy/qualcomm/phy-qcom-qmp-pcie.c | 28 ++++++++++++++++++++++++++++
- 1 file changed, 28 insertions(+)
-
-diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
-index 86b1b7e2da86a8675e3e48e90b782afb21cafd77..2747e71bf865907f139422a9ed33709c4a7ae7ea 100644
---- a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
-+++ b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
-@@ -3363,6 +3363,16 @@ static const struct qmp_pcie_offsets qmp_pcie_offsets_v6_30 = {
- 	.ln_shrd	= 0x8000,
- };
- 
-+static const struct qmp_pcie_offsets qmp_pcie_offsets_v8 = {
-+	.serdes     = 0x1000,
-+	.pcs        = 0x1400,
-+	.pcs_misc	= 0x1800,
-+	.tx		= 0x0000,
-+	.rx		= 0x0200,
-+	.tx2		= 0x0800,
-+	.rx2		= 0x0a00,
-+};
-+
- static const struct qmp_pcie_offsets qmp_pcie_offsets_v8_50 = {
- 	.serdes     = 0x8000,
- 	.pcs        = 0x9000,
-@@ -4441,6 +4451,21 @@ static const struct qmp_phy_cfg glymur_qmp_gen5x4_pciephy_cfg = {
- 	.phy_status		= PHYSTATUS_4_20,
- };
- 
-+static const struct qmp_phy_cfg glymur_qmp_gen4x2_pciephy_cfg = {
-+	.lanes = 2,
-+
-+	.offsets		= &qmp_pcie_offsets_v8,
-+
-+	.reset_list		= sdm845_pciephy_reset_l,
-+	.num_resets		= ARRAY_SIZE(sdm845_pciephy_reset_l),
-+	.vreg_list		= qmp_phy_vreg_l,
-+	.num_vregs		= ARRAY_SIZE(qmp_phy_vreg_l),
-+	.regs			= pciephy_v6_regs_layout,
-+
-+	.pwrdn_ctrl		= SW_PWRDN | REFCLK_DRV_DSBL,
-+	.phy_status		= PHYSTATUS_4_20,
-+};
-+
- static void qmp_pcie_init_port_b(struct qmp_pcie *qmp, const struct qmp_phy_cfg_tbls *tbls)
- {
- 	const struct qmp_phy_cfg *cfg = qmp->cfg;
-@@ -5192,6 +5217,9 @@ static int qmp_pcie_probe(struct platform_device *pdev)
- 
- static const struct of_device_id qmp_pcie_of_match_table[] = {
- 	{
-+		.compatible = "qcom,glymur-qmp-gen4x2-pcie-phy",
-+		.data = &glymur_qmp_gen4x2_pciephy_cfg,
-+	}, {
- 		.compatible = "qcom,glymur-qmp-gen5x4-pcie-phy",
- 		.data = &glymur_qmp_gen5x4_pciephy_cfg,
- 	}, {
-
--- 
-2.34.1
-
+Also, if no further changes are needed in the series, can it be corrected
+when the patches are merged?
 
