@@ -1,158 +1,158 @@
-Return-Path: <devicetree+bounces-228142-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228143-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98DF6BE880F
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 14:04:16 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 80688BE8852
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 14:08:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 36BEF1AA3BC1
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 12:04:40 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 52CA64E0F4D
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 12:08:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D81AF2D77E6;
-	Fri, 17 Oct 2025 12:04:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C15472E0938;
+	Fri, 17 Oct 2025 12:08:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="tZTlu/6O"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aHDf+r6b"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f170.google.com (mail-pg1-f170.google.com [209.85.215.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F69B332EAC;
-	Fri, 17 Oct 2025 12:04:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 471EA332EA2
+	for <devicetree@vger.kernel.org>; Fri, 17 Oct 2025 12:08:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760702651; cv=none; b=keJvHYsjNbaYy3hrAZpNoXPbX1iqmC1Th7s9Bm8MDxWkNwE6YSmToZWGu8XEtqPLscLOW4xw0yKM9Y4hcl1BZPcsS+6wJQR3PcSnUkhyi5EJngQrdbt2UumnB9es1CODAFnv3tBYxQNgrXUoeOHvfEHIpQFpx1L7XeFcuh3k36M=
+	t=1760702890; cv=none; b=C7/qdy4KGo4r/bT7U/+Gptouwp0USCNJNFTVGXQaapyVT+ZIPDv3uYCrQx1l6dSH0Q46fve+VOq3Mm0kx3ZY6bjfe9YojafhoCbLTcCcTWnZjFSFHX3uadMNzbD+3cWS7YQTwc4Uyvat1a4xbtjYMq3w/GiOQiPzhpl7rC/GXH8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760702651; c=relaxed/simple;
-	bh=vdD0DY7vv6B06BpL8Nf6nhwFo1Pzupdq+v4mwBkQhYg=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition; b=RR6tLxBEQURHbx/YUHDKEmeODmuX9d0db+NrMq+ADFm2LBE+VK5FGMpsiYK2Y+doRbDJv8qgOLXKpcHdKOZFHo8yzam4pWBc/+LmRayq8Re98NSzf6FQ5g+sBQeHwzgOCBDxzLNRS6BMToM4UKvYlbrZ771k9u1DFp51cVyG9eE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=tZTlu/6O; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:Content-Type:MIME-Version:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=i8hy4I4lhZmL+EEXM3yS2UscyTn4FYoKIxBvgeZOabU=; b=tZTlu/6OIKaBb+A4VKrWCxXjZN
-	5Rs9ynrQsIONsvNEONgyNruAKzRbBFv6WoMND58aJn4jL2jAv74EzvmPwDUrClpQYNrzJ5W511CV6
-	cDhA4z+jmMNUOZYiLmRYJbqX1CVuV2Kyhf7eakaJ6+9Hnf4aaQ4OkI7KkhD8J2eLeMjYkgUXgXDoS
-	WMzE0zgQ5Pc59xxud7RL03vGiRRfPoCMBopvHFg+lZcsC2wo7wuT4brmhGDHhpT/+qqzqsiOZKvKy
-	xfU3WQLMIZ+EBRMTx7F51cNoLQz0blIHPVFaSjwFT75EErV1sdwC3z46KSHHPTToSZ7WCCAFwpLL5
-	8v5APkNw==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:40520)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1v9jBf-000000007op-1gwt;
-	Fri, 17 Oct 2025 13:03:59 +0100
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.98.2)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1v9jBa-000000004Hj-2XOP;
-	Fri, 17 Oct 2025 13:03:54 +0100
-Date: Fri, 17 Oct 2025 13:03:54 +0100
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Gatien Chevallier <gatien.chevallier@foss.st.com>
-Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	Christophe Roullier <christophe.roullier@foss.st.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"David S. Miller" <davem@davemloft.net>, devicetree@vger.kernel.org,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>, netdev@vger.kernel.org,
-	Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
-	Simon Horman <horms@kernel.org>,
-	Tristram Ha <Tristram.Ha@microchip.com>
-Subject: [PATCH net-next 0/6] net: add phylink managed WoL and convert stmmac
-Message-ID: <aPIwqo9mCEOb7ZQu@shell.armlinux.org.uk>
+	s=arc-20240116; t=1760702890; c=relaxed/simple;
+	bh=pacw/ENbcv+KCNhsoYxWKd5E57eceNXFXgqAbXeIWAg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=tjnEqJGvQWXJBHYzGAF4FHl2FGCJuRWkveKwRah8R3ansfmq3Lua07nfPa4qw7DT0ScffJsYzhv+eE1RCzImLbL6iJujNg/4g5KhDhotWPguAXnpqYTARnXH4fmXOBzmM6M1MkO2+B7Zilj40Ypf14gcbZ+qysZBLz9y2N30LeM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=aHDf+r6b; arc=none smtp.client-ip=209.85.215.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f170.google.com with SMTP id 41be03b00d2f7-b6093f8f71dso1250434a12.3
+        for <devicetree@vger.kernel.org>; Fri, 17 Oct 2025 05:08:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1760702888; x=1761307688; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=D1OQBcJjNvMdiwaszp4KDFRPLfNnLBhAgYvcBECQKgE=;
+        b=aHDf+r6bLAe2akeLxNcvR40L0o0J3ca95uI8CRwCJQ0G+EQw+IKeoKc0o3YOCU83Wt
+         SOqcx9BSx+rWzR4i3c0uPIL+JSwNE+sq1NhjlSPV/Tb/nswX6Qzxz2fy7hBjnbDIs9Q5
+         aI6Wzl8OI5C7K9qIH2qke0QvI4M00QnzncCtjyxcUdbO95Ke96Bxx8/wO1cAxmOi5vTU
+         HCW+XexCM4TzEo/0OD3DwvF6RYREDbcG05ROtCv/j3QbWc8D4FhEh3Thes2eTEGYc+jQ
+         37YTsSfMdC/HfVgKVw9nzZJd40m9OADp94fcm6YLMm3rygqoD193CCeH1kEyoNNj+nej
+         kAgg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1760702888; x=1761307688;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=D1OQBcJjNvMdiwaszp4KDFRPLfNnLBhAgYvcBECQKgE=;
+        b=X7zK63bKiGwOUqSy4TrgmRctt77S70EGhavTGHzIK2iQ6YGYtjI1NgYCLSqnBv95/D
+         81BN1BDPASnvYMtf3ndXTbU99+/AdHzDWXMq5x13AeeKsX+ERzcTZ6ZYzGk3EL5M/uN+
+         656cvMflXlR6YhZmdKIBNHYF4zhxnlkULZMgYURCnAC5MsJVa9kEvK/djLJDNyQKBd24
+         vOZcArpHuR2KISXS9unQBPgkma0BnsofALESDY5hs7hMwhdprBqnJWlDBuruaScc4u0m
+         wNc0mPhkoOsYabX6X3mgf4+CRkcUu9k0F3WM4Am7SbUA5/3YPDDWULxVdxb8F8VMSlGV
+         6pOw==
+X-Forwarded-Encrypted: i=1; AJvYcCVZe7NIDXbG7DnaGzBc1Pf2ch+aNjG7QezYU4bx8MVsSu4NlhFw+o4xg92F3gQuIQEEe7jfeRaF9h0H@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz+LrmWhrVqow2jUqXX3eK5P99DnDxTtVoPZ+HwBvF4urKrWUX2
+	TKI6KGDLXrOil81Z0R//NA4i/pYyJJ9Q9MvGgPZk1XugYenKps99/rma
+X-Gm-Gg: ASbGncsCsmAOzI7RhdrZsPxqrtGrIBoexYhi0crYDz3vyI0ODs+QWMowbhoXV9FzmtE
+	3iV5oT5HMe1uqw0y9P8sg7yZS8jdjiTh7nGDdUVowYx2Gu9w1PHTfrqFN0zQwym0vXXId+IgKNy
+	gupXuLGNskAjTNo7hlAyE2JHwU0HwpETX57Hwt8R12N+PzS92iUNiam76YA85piEYCoLuwAa5TW
+	pGq7vIK+w2gQx584siAWWCMEJYI49uuCsSO/c1LNZf+aijhqiijcsy+c3B2qdCEVZjGqkIBRmRT
+	h+rFazdYph7/AmACnZu88o3jt1w6JbLYV3rSd7lQqpFAeoAJ/6ytE65NcTRwRuxh26l/Nh5Vidy
+	Sv6/iKcKo6UZKySTww2yOrApvwiXB2Y7OcS3C84Jd/E5jmp4XPWBm1BLLHwixlg==
+X-Google-Smtp-Source: AGHT+IFnsq6kZGk/fHm/e4FGVx4CFf8u3uhudH43GQxU6NT4qAtaZrIavqrUcVzL980LCDRQymv9AQ==
+X-Received: by 2002:a17:902:d50a:b0:27d:339c:4b0 with SMTP id d9443c01a7336-290cba4efb1mr43185145ad.35.1760702887862;
+        Fri, 17 Oct 2025 05:08:07 -0700 (PDT)
+Received: from CNSZTL-PC.lan ([2401:b60:5:2::a])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b6a228a5b5csm5822966a12.13.2025.10.17.05.08.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 17 Oct 2025 05:08:07 -0700 (PDT)
+Message-ID: <d9d14ce2-2e65-422e-95fb-eb30b128ad90@gmail.com>
+Date: Fri, 17 Oct 2025 20:08:03 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: rockchip: fix eMMC corruption on NanoPC-T6
+ with A3A444 chips
+To: Dragan Simic <dsimic@manjaro.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Grzegorz Sterniczuk <grzegorz@sternicz.uk>, Jonas Karlman <jonas@kwiboo.se>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20251017073954.130710-1-cnsztl@gmail.com>
+ <7f0b1747-87eb-0b0b-6fb0-304811a4be21@manjaro.org>
+From: Tianling Shen <cnsztl@gmail.com>
+In-Reply-To: <7f0b1747-87eb-0b0b-6fb0-304811a4be21@manjaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi,
+Hi Dragan,
 
-This series is implementing the thoughts of Andrew, Florian and myself
-to improve the quality of Wake-on-Lan (WoL) implementations.
+On 2025/10/17 18:25, Dragan Simic wrote:
+> Hello Tianling,
+> 
+> On Friday, October 17, 2025 09:39 CEST, Tianling Shen <cnsztl@gmail.com> wrote:
+>> From: Grzegorz Sterniczuk <grzegorz@sternicz.uk>
+>>
+>> Some NanoPC-T6 boards with A3A444 eMMC chips experience I/O errors and
+>> corruption when using HS400 mode. Downgrade to HS200 mode to ensure
+>> stable operation.
+> 
+> Could you, please, provide more details about the troublesome eMMC
+> chip that gets identified as A3A444, i.e. what's the actual brand
+> and model?  Maybe you could send a picture of it?  It might also
+> help if you'd send the contents of "/sys/class/block/mmcblkX/device
+> /manfid" from your board (where "X" should equal two).
 
-This changes nothing for MAC drivers that do not wish to participate in
-this, but if they do, then they gain the benefit of phylink configuring
-WoL at the point closest to the media as possible.
+Unfortunately I don't have this board nor this eMMC chip.
+I got the chip model from my friend, it's FORESEE FEMDNN256G-A3A44, 
+manfid is 0x0000d6.
 
-We first need to solve the problem that the multitude of PHY drivers
-report their device supports WoL, but are not capable of waking the
-system. Correcting this is fundamental to choosing where WoL should be
-enabled - a mis-reported WoL support can render WoL completely
-ineffective.
+> 
+> I'm asking for that because I'd like to research it a bit further,
+> if possible, because some other eMMC chips that are also found on
+> the NanoPc-T6 seem to work fine in HS400 mode. [1]  It may be that
+> the A3A444 chip has some issues with the HS400 mode on its own,
+> i.e. the observed issues may not be caused by the board.
 
-The only PHY drivers which uses the driver model's wakeup support is
-drivers/net/phy/broadcom.c, and until recently, realtek. This means
-we have the opportunity for PHY drivers to be _correctly_ converted
-to use this method of signalling wake-up capability only when they can
-actually wake the system, and thus providing a way for phylink to
-know whether to use PHY-based WoL at all.
+Yes, it should be caused by this eMMC chip.
 
-However, a PHY driver not implementing that logic doesn't become a
-blocker to MACs wanting to convert. In full, the logic is:
+Thanks,
+Tianling.
 
-- phylink supports a flag, wol_phy_legacy, which forces phylink to use
-  the PHY-based WoL even if the MDIO device is not marked as wake-up
-  capable.
+> 
+> [1] https://github.com/openwrt/openwrt/issues/18844
+> 
+>> Signed-off-by: Grzegorz Sterniczuk <grzegorz@sternicz.uk>
+>> Signed-off-by: Tianling Shen <cnsztl@gmail.com>
+>> ---
+>>   arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi | 3 +--
+>>   1 file changed, 1 insertion(+), 2 deletions(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
+>> index fafeabe9adf9..5f63f38f7326 100644
+>> --- a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
+>> +++ b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
+>> @@ -717,8 +717,7 @@ &sdhci {
+>>   	no-sd;
+>>   	non-removable;
+>>   	max-frequency = <200000000>;
+>> -	mmc-hs400-1_8v;
+>> -	mmc-hs400-enhanced-strobe;
+>> +	mmc-hs200-1_8v;
+>>   	status = "okay";
+>>   };
+> 
 
-- when wol_phy_legacy is not set, we check whether the PHY MDIO device
-  is wake-up capable. If it is, we offer the WoL request to the PHY.
-
-- if neither wol_phy_legacy is set, or the PHY is not wake-up capable,
-  we do not offer the WoL request to the PHY.
-
-In both cases, after setting any PHY based WoL, we remove the options
-that the PHY now reports are enabled from the options mask, and offer
-these (if any) to the MAC. The mac will get a "mac_set_wol()" method
-call when any settings change.
-
-Phylink mainatains the WoL state for the MAC, so there's no need for
-a "mac_get_wol()" method. There may be the need to set the initial
-state but this is not supported at present.
-
-I've also added support for doing the PHY speed-up/speed-down at
-suspend/resume time depending on the WoL state, which takes another
-issue from the MAC authors.
-
-Lastly, with phylink now having the full picture for WoL, the
-"mac_wol" argument for phylink_suspend() becomes redundant, and for
-MAC drivers that implement mac_set_wol(), the value passed becomes
-irrelevant.
-
-Changes since RFC:
-- patch 3: fix location of phylink_xxx_supports_wol() helpers
-- patch 3: handle sopass for WAKE_MAGICSECURE only when the MAC is
-  handling magic secure.
-
- drivers/net/ethernet/stmicro/stmmac/stmmac.h       | 11 +--
- .../net/ethernet/stmicro/stmmac/stmmac_ethtool.c   | 31 +-------
- drivers/net/ethernet/stmicro/stmmac/stmmac_main.c  | 45 +++++++----
- .../net/ethernet/stmicro/stmmac/stmmac_platform.c  |  4 +-
- drivers/net/phy/phy_device.c                       | 14 +++-
- drivers/net/phy/phylink.c                          | 92 +++++++++++++++++++++-
- include/linux/phy.h                                | 21 +++++
- include/linux/phylink.h                            | 28 +++++++
- 8 files changed, 182 insertions(+), 64 deletions(-)
-
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
