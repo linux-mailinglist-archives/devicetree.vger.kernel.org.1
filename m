@@ -1,79 +1,79 @@
-Return-Path: <devicetree+bounces-228302-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228303-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69C32BEB5C5
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 21:09:47 +0200 (CEST)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43E57BEB5B9
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 21:09:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 11F0A746C49
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 19:09:30 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id BD34435FA46
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 19:09:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FAE5337110;
-	Fri, 17 Oct 2025 19:07:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 226DC337B85;
+	Fri, 17 Oct 2025 19:07:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="g7Bw5wPU"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="BI1JSznC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-io1-f54.google.com (mail-io1-f54.google.com [209.85.166.54])
+Received: from mail-il1-f178.google.com (mail-il1-f178.google.com [209.85.166.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E724A336ECD
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A0BB3328FF
 	for <devicetree@vger.kernel.org>; Fri, 17 Oct 2025 19:07:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.54
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760728077; cv=none; b=n7D5t9RAaZJfeTXmqNmfVuKS6pQU74gdR10C+4J6qPiED2GSn06kaRzPbq5ScUQ+Poy6VVX5enLTyV6jPV+OQfJuMujlxvkBxG3xZFJKteUnw35S7Wc21ooJs2F7sh62nwJCCPKV8TpiKtPlHwmzPvQAxYl0xYAqfjJPwyuI7u4=
+	t=1760728078; cv=none; b=KBh/PqOfgPfnUBTCy0ZemH1SOMZ6vteMPELcHTxrswR+0CcyMZNShSiVEGaDUulAaIzUSyKDY4YC5qWkjux9IFCuPwOaRiToT7yGfqGRrS+T2FF6jUnB6PARQV24VVckwQ8DUcB322d0D4UNkKa39Z/EuG+b38WLU4YPciKkCKU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760728077; c=relaxed/simple;
-	bh=ENUIv7Y5invqW9/JGzvHqg+snh4IuRykpfxDvM9mXnw=;
+	s=arc-20240116; t=1760728078; c=relaxed/simple;
+	bh=WajF4YomrPeBXnIl6Pb3JlCid5sH+q3PqlRmRFnM64M=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=OsYu64kUdbcVDhg/4hWUM/YagS1gnGfkqcyfuq1D8kLkcUvCzgXhKWHSMDuW4ipyQqGCHw715xK4f2w4wbet5JGDnOQDzUXzRzkyijb8ljIJcbBm9/CY7MQNyGJKkE5zChueluLga3qDkLB7LEhvfI5qMCopCm+cTDoh2F3pogw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=g7Bw5wPU; arc=none smtp.client-ip=209.85.166.54
+	 MIME-Version; b=lYHJ6OxcARt4zM2DuBU2q3rNdxzijneZPEZuohUAF7NsO7dgXo6ArylQUD+ODDBZaf5LtbeVO+81r+vJvoZQgUCtvGGLCeWw4pPQh6oesnGTa6Wu94zlprD+OfLWPkJIeysbCjYPd53xpZgK7MPNyWwjAYP0eAVyy9lChOgrzMk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=BI1JSznC; arc=none smtp.client-ip=209.85.166.178
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-io1-f54.google.com with SMTP id ca18e2360f4ac-93e7d3648a8so38817139f.2
+Received: by mail-il1-f178.google.com with SMTP id e9e14a558f8ab-42e2c336adcso9764545ab.1
         for <devicetree@vger.kernel.org>; Fri, 17 Oct 2025 12:07:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1760728074; x=1761332874; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=sfI/HxKZ5aLnk6gHq9CwlPfs/i+7HssnS2IuZUrc0Ms=;
-        b=g7Bw5wPUbKKexD070DW7f5b/zvz8RKv4dL7L1KlYgBiqlPcGryG+mLbtnrF6JpJLeK
-         ZkhN5SX5p6mBxtJHhoPG+6oB3C9cjJn/i0/HLxwuNTF6J/TX+xlr6B/+zeHBmNQsa1U3
-         9hk+S9ZtHIztOZLeg1IBN9jS5OTwTzegs2cb7p/UEdHd17sJfbSm/LooM2J0FVYiAu9L
-         IJ7FpzbQwoPemxN03PJpF0uq5OpbX/MUJXdt6ZA9a91K20pdqP2QaGqcjz1pPd7cshpg
-         4lCYMG0cYjGEruBQDYT8olKVvZ5arqvu+cykYaL5G4NmNqwZgHGckd02NRViGduEqOyi
-         4fTw==
+        bh=jVuMJueWnAkYuh5TQkXI6Y6hYDpxc+wPv4az6s1+IXE=;
+        b=BI1JSznCJQVu8HcPUgDTAQuOhTaRkkcOci1TLcZRawBo7s2toK+JEezxBETa56oVj/
+         45ajGUjSGBSiBeG40XNbOIoY9aKeYyO3vz8JveA8WSHGTiXou0QqUSAz54n+462ZRnlO
+         i4c00gYeeMi/A5fTmZPI7rNswwLKSXZ45UnOWGNniRA44uco79N/5EY539YCigPt+2mH
+         NyD32Qh2bCkfX245tyaUoavunareRpbofiUrZj/csFfjjE21e4n2o0WKG+Nvn4P4pVq/
+         v0FdHH7Cmjpd2/jLNO5JQkQqD5EqRItGjexErn3xIIUIRjtCmf5X08U6yv5q5mlhNJN0
+         lfVQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20230601; t=1760728074; x=1761332874;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=sfI/HxKZ5aLnk6gHq9CwlPfs/i+7HssnS2IuZUrc0Ms=;
-        b=NkkvlOFebgRBfgpK4DE085O0nHfDM/DQ/rww/J1Qo9kKnV7EoaquHQjy8si63T4rW3
-         EVR5aRKWo+2d2HnqQ0FlGlqHzFRQNoQ065uLfKo5ijE54D+LHmpb72A/qULDPGZ6d15s
-         3EmrfNhj2hmghe5i2sf7ZIR40Yeci54mn7ciiXuc1JE/fcd4if0Ut+L2u6BXHtpPek+A
-         BLPawZ67zT9ENfH0bJ/MT+Tu31/I8kZDyoAmR2I3OUUaicA7SES6BdB8uk7iv+paWdEF
-         /6LqqQE6UiiyV8x/cdkg/aFu74sGZVFlsxfMmcXzlMnYueR+E6R68H51+jZ1g+J+fZ5K
-         8xEA==
-X-Forwarded-Encrypted: i=1; AJvYcCWbVYY/8zgQQc+JZTd5jsvyFceCz3YwnvAGVma4aq64wEScVZUPBL+0UJq82rGleOFV7ivbpkdw8jZ5@vger.kernel.org
-X-Gm-Message-State: AOJu0YzrOThDy6lcJ81qbd2Mdx++A7gwTKNuiENPcBzxbj/1DAhnxRlJ
-	4b9i/r1ev9DQHuONMkS/8EAjhX1R1csFiC/s7yjotQl7PsxgbBeQF7uVgOvaNJFQrYA=
-X-Gm-Gg: ASbGncsGXH11IsIQFcf09be/INXl7asu66hBE3xmUfwS3aJG1RFUoYxKf32hLS0i+i0
-	+L2emRM/26gysam8fV41RelymSuQ6mAt1BmIc9HGTFb/lt8zW30CaqcKIwal+MnqHwAsbRuhGa4
-	5iIL9GsW2uXqxPQ0OgHYfs3S/UZtXOh3MI2S3hKhVcHqGYIZ/ZDgIiEuJCkpbuPTkV0D5TBzU64
-	riyDEKob9ePUTtb1QLrN79Z0JPYwiEU1KtNia8vxEjjYPsBysyDev64z/ec6KXS2A76g/SCYLxj
-	/6r+WATUvA/aNKs7WbCG9/p+hYNLOdNnpbxu/A7PEm998X2b2C/9KunBmhuolwaaIZEV63DKGCo
-	BuPi83gFLFCOF0qYkmtjW27Wi/V6tzPfMrc7cPiLXjXwWf36BjsEWHB0nNLZvXgTpEh+8MjQUuG
-	kWk4+eLXJWlla7wx0SZpIFvww0C5fxzwdeM9h5yKs0EGPpzctwWfjwYg==
-X-Google-Smtp-Source: AGHT+IGgZuyks8/SPpqGraEYOHD64JLctbaQzahczxp3t8Isq+v66Q/LNb1tqq+q1CnCV61aP2fWQA==
-X-Received: by 2002:a05:6e02:1a42:b0:430:b338:e55 with SMTP id e9e14a558f8ab-430c53068c3mr81229225ab.29.1760728072707;
-        Fri, 17 Oct 2025 12:07:52 -0700 (PDT)
+        bh=jVuMJueWnAkYuh5TQkXI6Y6hYDpxc+wPv4az6s1+IXE=;
+        b=Zd1g1IkGoS8P2DegyW5kgvjp//a//ElpDZaC+h2b79AL5XCtugPCY4C7Om9kvAXHsa
+         4c96uUHXy07l3d4f2kvMnvqlNLt9HbY4yfkGkIT43OA8Gw/nWXhAdpwzrFzvBHawvv0m
+         oXk6b5sHiUGdy/WBmdtoHTjPP9gyWU9tHObNH0NDcpA6VAs1NoNAiPnkcuqL3viY+iQe
+         ZaY3xL+P1e/boDEDI4jyRc1ZvVJcwHpphMEK5GrZyhut5HdenE67CbsMfJudxvK9Knts
+         +8mZmfT+9+sRj2U/R9LMVl3h2AAwjA9OhnCKqmzfcTUmsXXIelBQDoLWzPUxcEzJMRsD
+         zfAQ==
+X-Forwarded-Encrypted: i=1; AJvYcCW9Tv2yg8cTqbhgi1Y+JXZSHiM6FGZm39PWxVlr2OS4YlX2P2se+5iL3bk0ejgQzL8KCeVl9+y1jM5Z@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx7H0i7Lf7OHYtAFwjubHBcJoRKzb43Gp2ejtQHKKG2X5qDqYnm
+	JubiOQY5llkqVtxURoNVuJFzT47LQLgkjviKUKUmevtQmzf+i7TO0bC6YqOrZhKqoDA=
+X-Gm-Gg: ASbGncuWx3272t8D8mmLZaCJYuatTToCRtMS+W/u0SO9IzR4p6YVIGSGY8LhoD+13O5
+	QiwjsOwK8HBVqnyyT8BwTdzunWTOce/rbj2mgwIdWfc8oFG6IgzoMsg91OrL3hk639j28rAAFHT
+	GqFstelCXAjKkzTdYTqDP4usDFGovGA4m0m2TgghnRpYiVZnh13+1t8GIkMxzXljSP+RXg7WVgq
+	1n1MnzNUT8lv4+CPMIqeHbeZsz8gqCRYbw+ahOOAh6k3UMS1pAFaTGaCHM9V0VX3Wn7wVUXrpHS
+	qmtH9K1kqhl5A6G2bWiDE40p40y76Aly/noyRG3IeOBBDj97DkLtr7kcXnCFepEY6FtLS5y1QL9
+	FO0eQ5PoSnHpCy1Oh3/bfpPlzl8LWmOJ8MdGnka4nT9mCOl+U0YCyHeVoXH53dwpZS4cSy/nKOX
+	nSQcHuVoLaD7PihkLhfL6bf7LNLNVjT5lNyuispww7pnN2KhIN3SLeWQ==
+X-Google-Smtp-Source: AGHT+IES/rfKhlvARUhnX0tfzUfrV5BOC+gvOxLXp1w4hAUg6/0iisUNrZFn1K7mYG1Jq6GYnw5WKw==
+X-Received: by 2002:a92:cd83:0:b0:430:ae8b:d2d8 with SMTP id e9e14a558f8ab-430c526926cmr72010455ab.15.1760728074017;
+        Fri, 17 Oct 2025 12:07:54 -0700 (PDT)
 Received: from zippy.localdomain (c-75-72-117-212.hsd1.mn.comcast.net. [75.72.117.212])
-        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-5a8a9768b98sm153462173.46.2025.10.17.12.07.51
+        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-5a8a9768b98sm153462173.46.2025.10.17.12.07.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 17 Oct 2025 12:07:52 -0700 (PDT)
+        Fri, 17 Oct 2025 12:07:53 -0700 (PDT)
 From: Alex Elder <elder@riscstar.com>
 To: dlan@gentoo.org,
 	robh@kernel.org,
@@ -83,13 +83,14 @@ Cc: pjw@kernel.org,
 	palmer@dabbelt.com,
 	aou@eecs.berkeley.edu,
 	alex@ghiti.fr,
+	guodong@riscstar.com,
 	devicetree@vger.kernel.org,
 	linux-riscv@lists.infradead.org,
 	spacemit@lists.linux.dev,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v3 6/7] riscv: dts: spacemit: add a PCIe regulator
-Date: Fri, 17 Oct 2025 14:07:38 -0500
-Message-ID: <20251017190740.306780-7-elder@riscstar.com>
+Subject: [PATCH v3 7/7] riscv: dts: spacemit: PCIe and PHY-related updates
+Date: Fri, 17 Oct 2025 14:07:39 -0500
+Message-ID: <20251017190740.306780-8-elder@riscstar.com>
 X-Mailer: git-send-email 2.48.1
 In-Reply-To: <20251017190740.306780-1-elder@riscstar.com>
 References: <20251017190740.306780-1-elder@riscstar.com>
@@ -101,33 +102,286 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Define a 3.3v fixed voltage regulator to be used by PCIe on the
-Banana Pi BPI-F3.  On this platform, this regulator is always on.
+Define PCIe and PHY-related Device Tree nodes for the SpacemiT K1 SoC.
+
+Enable the combo PHY and the two PCIe-only PHYs on the Banana Pi BPI-F3
+board.  The combo PHY is used for USB on this board, and that will be
+enabled when USB 3 support is accepted.
+
+The combo PHY must perform a calibration step to determine configuration
+values used by the PCIe-only PHYs.  As a result, it must be enabled if
+either of the other two PHYs is enabled.
 
 Signed-off-by: Alex Elder <elder@riscstar.com>
 ---
- arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ .../boot/dts/spacemit/k1-bananapi-f3.dts      |  30 ++++
+ arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi  |  33 ++++
+ arch/riscv/boot/dts/spacemit/k1.dtsi          | 146 ++++++++++++++++++
+ 3 files changed, 209 insertions(+)
 
 diff --git a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-index 2aaaff77831e1..046ad441b7b4e 100644
+index 046ad441b7b4e..6d566780aed9d 100644
 --- a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
 +++ b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-@@ -30,6 +30,14 @@ led1 {
- 			default-state = "on";
- 		};
+@@ -40,6 +40,12 @@ pcie_vcc_3v3: pcie-vcc3v3 {
  	};
-+
-+	pcie_vcc_3v3: pcie-vcc3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "PCIE_VCC3V3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-always-on;
-+	};
  };
  
++&combo_phy {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pcie0_3_cfg>;
++	status = "okay";
++};
++
  &emmc {
+ 	bus-width = <8>;
+ 	mmc-hs400-1_8v;
+@@ -100,6 +106,30 @@ &pdma {
+ 	status = "okay";
+ };
+ 
++&pcie1_phy {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pcie1_3_cfg>;
++	status = "okay";
++};
++
++&pcie2_phy {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pcie2_4_cfg>;
++	status = "okay";
++};
++
++&pcie1 {
++	phys = <&pcie1_phy>;
++	vpcie3v3-supply = <&pcie_vcc_3v3>;
++	status = "okay";
++};
++
++&pcie2 {
++	phys = <&pcie2_phy>;
++	vpcie3v3-supply = <&pcie_vcc_3v3>;
++	status = "okay";
++};
++
+ &uart0 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&uart0_2_cfg>;
+diff --git a/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi b/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi
+index aff19c86d5ff3..5bacb6aff23f8 100644
+--- a/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi
++++ b/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi
+@@ -69,6 +69,39 @@ uart0-2-pins {
+ 		};
+ 	};
+ 
++	pcie0_3_cfg: pcie0-3-cfg {
++		pcie0-3-pins {
++			pinmux = <K1_PADCONF(54, 3)>,	/* PERST# */
++				 <K1_PADCONF(55, 3)>,	/* WAKE# */
++				 <K1_PADCONF(53, 3)>;	/* CLKREQ# */
++
++			bias-pull-up = <0>;
++			drive-strength = <21>;
++		};
++	};
++
++	pcie1_3_cfg: pcie1-3-cfg {
++		pcie1-3-pins {
++			pinmux = <K1_PADCONF(59, 4)>,	/* PERST# */
++				 <K1_PADCONF(60, 4)>,	/* WAKE# */
++				 <K1_PADCONF(61, 4)>;	/* CLKREQ# */
++
++			bias-pull-up = <0>;
++			drive-strength = <21>;
++		};
++	};
++
++	pcie2_4_cfg: pcie2-4-cfg {
++		pcie2-4-pins {
++			pinmux = <K1_PADCONF(62, 4)>,	/* PERST# */
++				 <K1_PADCONF(112, 3)>,	/* WAKE# */
++				 <K1_PADCONF(117, 4)>;	/* CLKREQ# */
++
++			bias-pull-up = <0>;
++			drive-strength = <21>;
++		};
++	};
++
+ 	pwm14_1_cfg: pwm14-1-cfg {
+ 		pwm14-1-pins {
+ 			pinmux = <K1_PADCONF(44, 4)>;
+diff --git a/arch/riscv/boot/dts/spacemit/k1.dtsi b/arch/riscv/boot/dts/spacemit/k1.dtsi
+index 6cdcd80a7c83b..214216fdecd32 100644
+--- a/arch/riscv/boot/dts/spacemit/k1.dtsi
++++ b/arch/riscv/boot/dts/spacemit/k1.dtsi
+@@ -4,6 +4,7 @@
+  */
+ 
+ #include <dt-bindings/clock/spacemit,k1-syscon.h>
++#include <dt-bindings/phy/phy.h>
+ 
+ /dts-v1/;
+ / {
+@@ -358,6 +359,52 @@ syscon_rcpu2: system-controller@c0888000 {
+ 			#reset-cells = <1>;
+ 		};
+ 
++		combo_phy: phy@c0b10000 {
++			compatible = "spacemit,k1-combo-phy";
++			reg = <0x0 0xc0b10000 0x0 0x1000>;
++			clocks = <&vctcxo_24m>,
++				 <&syscon_apmu CLK_PCIE0_DBI>,
++				 <&syscon_apmu CLK_PCIE0_MASTER>,
++				 <&syscon_apmu CLK_PCIE0_SLAVE>;
++			clock-names = "refclk",
++				      "dbi",
++				      "mstr",
++				      "slv";
++			resets = <&syscon_apmu RESET_PCIE0_GLOBAL>,
++				 <&syscon_apmu RESET_PCIE0_DBI>,
++				 <&syscon_apmu RESET_PCIE0_MASTER>,
++				 <&syscon_apmu RESET_PCIE0_SLAVE>;
++			reset-names = "phy",
++				      "dbi",
++				      "mstr",
++				      "slv";
++			#phy-cells = <1>;
++			spacemit,apmu = <&syscon_apmu>;
++			status = "disabled";
++		};
++
++		pcie1_phy: phy@c0c10000 {
++			compatible = "spacemit,k1-pcie-phy";
++			reg = <0x0 0xc0c10000 0x0 0x1000>;
++			clocks = <&vctcxo_24m>;
++			clock-names = "refclk";
++			resets = <&syscon_apmu RESET_PCIE1_GLOBAL>;
++			reset-names = "phy";
++			#phy-cells = <0>;
++			status = "disabled";
++		};
++
++		pcie2_phy: phy@c0d10000 {
++			compatible = "spacemit,k1-pcie-phy";
++			reg = <0x0 0xc0d10000 0x0 0x1000>;
++			clocks = <&vctcxo_24m>;
++			clock-names = "refclk";
++			resets = <&syscon_apmu RESET_PCIE2_GLOBAL>;
++			reset-names = "phy";
++			#phy-cells = <0>;
++			status = "disabled";
++		};
++
+ 		syscon_apbc: system-controller@d4015000 {
+ 			compatible = "spacemit,k1-syscon-apbc";
+ 			reg = <0x0 0xd4015000 0x0 0x1000>;
+@@ -847,6 +894,105 @@ pcie-bus {
+ 			#size-cells = <2>;
+ 			dma-ranges = <0x0 0x00000000 0x0 0x00000000 0x0 0x80000000>,
+ 				     <0x0 0xb8000000 0x1 0x38000000 0x3 0x48000000>;
++			pcie0: pcie@ca000000 {
++				compatible = "spacemit,k1-pcie";
++				reg = <0x0 0xca000000 0x0 0x00001000>,
++				      <0x0 0xca300000 0x0 0x0001ff24>,
++				      <0x0 0x8f000000 0x0 0x00002000>,
++				      <0x0 0xc0b20000 0x0 0x00001000>;
++				reg-names = "dbi",
++					    "atu",
++					    "config",
++					    "link";
++				#address-cells = <3>;
++				#size-cells = <2>;
++				ranges = <0x01000000 0x0 0x00000000 0x0 0x8f002000 0x0 0x00100000>,
++					 <0x02000000 0x0 0x80000000 0x0 0x80000000 0x0 0x0f000000>;
++				interrupts = <141>;
++				interrupt-names = "msi";
++				clocks = <&syscon_apmu CLK_PCIE0_DBI>,
++					 <&syscon_apmu CLK_PCIE0_MASTER>,
++					 <&syscon_apmu CLK_PCIE0_SLAVE>;
++				clock-names = "dbi",
++					      "mstr",
++					      "slv";
++				resets = <&syscon_apmu RESET_PCIE0_DBI>,
++					 <&syscon_apmu RESET_PCIE0_MASTER>,
++					 <&syscon_apmu RESET_PCIE0_SLAVE>;
++				reset-names = "dbi",
++					      "mstr",
++					      "slv";
++				device_type = "pci";
++				spacemit,apmu = <&syscon_apmu 0x03cc>;
++				status = "disabled";
++			};
++
++			pcie1: pcie@ca400000 {
++				compatible = "spacemit,k1-pcie";
++				reg = <0x0 0xca400000 0x0 0x00001000>,
++				      <0x0 0xca700000 0x0 0x0001ff24>,
++				      <0x0 0x9f000000 0x0 0x00002000>,
++				      <0x0 0xc0c20000 0x0 0x00001000>;
++				reg-names = "dbi",
++					    "atu",
++					    "config",
++					    "link";
++				#address-cells = <3>;
++				#size-cells = <2>;
++				ranges = <0x01000000 0x0 0x00000000 0x0 0x9f002000 0x0 0x00100000>,
++					 <0x02000000 0x0 0x90000000 0x0 0x90000000 0x0 0x0f000000>;
++				interrupts = <142>;
++				interrupt-names = "msi";
++				clocks = <&syscon_apmu CLK_PCIE1_DBI>,
++					 <&syscon_apmu CLK_PCIE1_MASTER>,
++					 <&syscon_apmu CLK_PCIE1_SLAVE>;
++				clock-names = "dbi",
++					      "mstr",
++					      "slv";
++				resets = <&syscon_apmu RESET_PCIE1_DBI>,
++					 <&syscon_apmu RESET_PCIE1_MASTER>,
++					 <&syscon_apmu RESET_PCIE1_SLAVE>;
++				reset-names = "dbi",
++					      "mstr",
++					      "slv";
++				device_type = "pci";
++				spacemit,apmu = <&syscon_apmu 0x3d4>;
++				status = "disabled";
++			};
++
++			pcie2: pcie@ca800000 {
++				compatible = "spacemit,k1-pcie";
++				reg = <0x0 0xca800000 0x0 0x00001000>,
++				      <0x0 0xcab00000 0x0 0x0001ff24>,
++				      <0x0 0xb7000000 0x0 0x00002000>,
++				      <0x0 0xc0d20000 0x0 0x00001000>;
++				reg-names = "dbi",
++					    "atu",
++					    "config",
++					    "link";
++				#address-cells = <3>;
++				#size-cells = <2>;
++				ranges = <0x01000000 0x0 0x00000000 0x0 0xb7002000 0x0 0x00100000>,
++					 <0x42000000 0x0 0xa0000000 0x0 0xa0000000 0x0 0x10000000>,
++					 <0x02000000 0x0 0xb0000000 0x0 0xb0000000 0x0 0x07000000>;
++				interrupts = <143>;
++				interrupt-names = "msi";
++				clocks = <&syscon_apmu CLK_PCIE2_DBI>,
++					 <&syscon_apmu CLK_PCIE2_MASTER>,
++					 <&syscon_apmu CLK_PCIE2_SLAVE>;
++				clock-names = "dbi",
++					      "mstr",
++					      "slv";
++				resets = <&syscon_apmu RESET_PCIE2_DBI>,
++					 <&syscon_apmu RESET_PCIE2_MASTER>,
++					 <&syscon_apmu RESET_PCIE2_SLAVE>;
++				reset-names = "dbi",
++					      "mstr",
++					      "slv";
++				device_type = "pci";
++				spacemit,apmu = <&syscon_apmu 0x3dc>;
++				status = "disabled";
++			};
+ 		};
+ 
+ 		storage-bus {
 -- 
 2.48.1
 
