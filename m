@@ -1,388 +1,234 @@
-Return-Path: <devicetree+bounces-228303-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228304-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43E57BEB5B9
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 21:09:35 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 37B15BEB65C
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 21:40:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id BD34435FA46
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 19:09:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4E54D3AD423
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 19:40:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 226DC337B85;
-	Fri, 17 Oct 2025 19:07:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 218E6330B31;
+	Fri, 17 Oct 2025 19:40:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="BI1JSznC"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ab+lJnO2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f178.google.com (mail-il1-f178.google.com [209.85.166.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A0BB3328FF
-	for <devicetree@vger.kernel.org>; Fri, 17 Oct 2025 19:07:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEB6C241691
+	for <devicetree@vger.kernel.org>; Fri, 17 Oct 2025 19:40:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760728078; cv=none; b=KBh/PqOfgPfnUBTCy0ZemH1SOMZ6vteMPELcHTxrswR+0CcyMZNShSiVEGaDUulAaIzUSyKDY4YC5qWkjux9IFCuPwOaRiToT7yGfqGRrS+T2FF6jUnB6PARQV24VVckwQ8DUcB322d0D4UNkKa39Z/EuG+b38WLU4YPciKkCKU=
+	t=1760730048; cv=none; b=uiIP9Nk6ZitQWVGAszp9JOtXE8Fe2bXvfRpo+TWoNph9joCa5B9OtU1EQQt+vkUwIqKwQ54AUF9mhAz+2lFFAa9yggaxPa7bFVMyh2KeD1JiOtYl9njMnVa0hDwGS4lwjIkPRQK8/zVdeOKPTgdgfeqHA1mxEZB+puN4bF2DFAM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760728078; c=relaxed/simple;
-	bh=WajF4YomrPeBXnIl6Pb3JlCid5sH+q3PqlRmRFnM64M=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=lYHJ6OxcARt4zM2DuBU2q3rNdxzijneZPEZuohUAF7NsO7dgXo6ArylQUD+ODDBZaf5LtbeVO+81r+vJvoZQgUCtvGGLCeWw4pPQh6oesnGTa6Wu94zlprD+OfLWPkJIeysbCjYPd53xpZgK7MPNyWwjAYP0eAVyy9lChOgrzMk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=BI1JSznC; arc=none smtp.client-ip=209.85.166.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-il1-f178.google.com with SMTP id e9e14a558f8ab-42e2c336adcso9764545ab.1
-        for <devicetree@vger.kernel.org>; Fri, 17 Oct 2025 12:07:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1760728074; x=1761332874; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=jVuMJueWnAkYuh5TQkXI6Y6hYDpxc+wPv4az6s1+IXE=;
-        b=BI1JSznCJQVu8HcPUgDTAQuOhTaRkkcOci1TLcZRawBo7s2toK+JEezxBETa56oVj/
-         45ajGUjSGBSiBeG40XNbOIoY9aKeYyO3vz8JveA8WSHGTiXou0QqUSAz54n+462ZRnlO
-         i4c00gYeeMi/A5fTmZPI7rNswwLKSXZ45UnOWGNniRA44uco79N/5EY539YCigPt+2mH
-         NyD32Qh2bCkfX245tyaUoavunareRpbofiUrZj/csFfjjE21e4n2o0WKG+Nvn4P4pVq/
-         v0FdHH7Cmjpd2/jLNO5JQkQqD5EqRItGjexErn3xIIUIRjtCmf5X08U6yv5q5mlhNJN0
-         lfVQ==
+	s=arc-20240116; t=1760730048; c=relaxed/simple;
+	bh=RwXvQjbt7JK3pEL6l7LHRphjooUlJVKHIFoBkWQhKQ4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=XxtGd8wFvpPyRj/PtbZwx5/HxWQ4dXc8mhd27ZbdVuxsaUZwBGZd2+QhnAT1N3L9dOKwqI+XzGgHZJAJT8DDR7cCuaFUmcBBZPpeIJxcRu+u0V73Q1gLZgVs5XiBxZqWKlOrZM4432zTDAKlPTfmQQXs9z9S+uq9T4m9WD6nCJs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ab+lJnO2; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59HJGGWo015781
+	for <devicetree@vger.kernel.org>; Fri, 17 Oct 2025 19:40:44 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	NDFamMd0o9Y7qLZOjscAOp4r8I+m3aYXZeFPwTjn+lI=; b=ab+lJnO2WjDFcY+u
+	4mf4EfvpQGaWjRovEEcZWSSzRphu0skduP7aB5wQRV36e/nVbH1tjK/Zl8duA0tY
+	pGqWIoLNeFXEjanyyJ6fVjmg75ID42a12X8EF01ZSeWIlbiem49Bn4vthoh+Pb6o
+	AVSSTuQT7AscEh8JZlyZYj2YtzB6Ck23A3mr+JT8AuqYcNja4pmRG+Lw/w0OrDzU
+	JytgiPWKz+Iwq5LNNV59sdD60F4tNzFA+OODdp5hmCBipRhVa+79zCXeAq07KcFM
+	pvOFAArsBAwm4GimPMSpRb6dsfJhFIht6ew7jsTZqKsqWM1rGFbkI2aQ86m/yTIM
+	8pvjyA==
+Received: from mail-pj1-f69.google.com (mail-pj1-f69.google.com [209.85.216.69])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49sua8v8cm-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 17 Oct 2025 19:40:44 +0000 (GMT)
+Received: by mail-pj1-f69.google.com with SMTP id 98e67ed59e1d1-33bb4d11f5eso2131711a91.3
+        for <devicetree@vger.kernel.org>; Fri, 17 Oct 2025 12:40:44 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760728074; x=1761332874;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=jVuMJueWnAkYuh5TQkXI6Y6hYDpxc+wPv4az6s1+IXE=;
-        b=Zd1g1IkGoS8P2DegyW5kgvjp//a//ElpDZaC+h2b79AL5XCtugPCY4C7Om9kvAXHsa
-         4c96uUHXy07l3d4f2kvMnvqlNLt9HbY4yfkGkIT43OA8Gw/nWXhAdpwzrFzvBHawvv0m
-         oXk6b5sHiUGdy/WBmdtoHTjPP9gyWU9tHObNH0NDcpA6VAs1NoNAiPnkcuqL3viY+iQe
-         ZaY3xL+P1e/boDEDI4jyRc1ZvVJcwHpphMEK5GrZyhut5HdenE67CbsMfJudxvK9Knts
-         +8mZmfT+9+sRj2U/R9LMVl3h2AAwjA9OhnCKqmzfcTUmsXXIelBQDoLWzPUxcEzJMRsD
-         zfAQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW9Tv2yg8cTqbhgi1Y+JXZSHiM6FGZm39PWxVlr2OS4YlX2P2se+5iL3bk0ejgQzL8KCeVl9+y1jM5Z@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx7H0i7Lf7OHYtAFwjubHBcJoRKzb43Gp2ejtQHKKG2X5qDqYnm
-	JubiOQY5llkqVtxURoNVuJFzT47LQLgkjviKUKUmevtQmzf+i7TO0bC6YqOrZhKqoDA=
-X-Gm-Gg: ASbGncuWx3272t8D8mmLZaCJYuatTToCRtMS+W/u0SO9IzR4p6YVIGSGY8LhoD+13O5
-	QiwjsOwK8HBVqnyyT8BwTdzunWTOce/rbj2mgwIdWfc8oFG6IgzoMsg91OrL3hk639j28rAAFHT
-	GqFstelCXAjKkzTdYTqDP4usDFGovGA4m0m2TgghnRpYiVZnh13+1t8GIkMxzXljSP+RXg7WVgq
-	1n1MnzNUT8lv4+CPMIqeHbeZsz8gqCRYbw+ahOOAh6k3UMS1pAFaTGaCHM9V0VX3Wn7wVUXrpHS
-	qmtH9K1kqhl5A6G2bWiDE40p40y76Aly/noyRG3IeOBBDj97DkLtr7kcXnCFepEY6FtLS5y1QL9
-	FO0eQ5PoSnHpCy1Oh3/bfpPlzl8LWmOJ8MdGnka4nT9mCOl+U0YCyHeVoXH53dwpZS4cSy/nKOX
-	nSQcHuVoLaD7PihkLhfL6bf7LNLNVjT5lNyuispww7pnN2KhIN3SLeWQ==
-X-Google-Smtp-Source: AGHT+IES/rfKhlvARUhnX0tfzUfrV5BOC+gvOxLXp1w4hAUg6/0iisUNrZFn1K7mYG1Jq6GYnw5WKw==
-X-Received: by 2002:a92:cd83:0:b0:430:ae8b:d2d8 with SMTP id e9e14a558f8ab-430c526926cmr72010455ab.15.1760728074017;
-        Fri, 17 Oct 2025 12:07:54 -0700 (PDT)
-Received: from zippy.localdomain (c-75-72-117-212.hsd1.mn.comcast.net. [75.72.117.212])
-        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-5a8a9768b98sm153462173.46.2025.10.17.12.07.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 17 Oct 2025 12:07:53 -0700 (PDT)
-From: Alex Elder <elder@riscstar.com>
-To: dlan@gentoo.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org
-Cc: pjw@kernel.org,
-	palmer@dabbelt.com,
-	aou@eecs.berkeley.edu,
-	alex@ghiti.fr,
-	guodong@riscstar.com,
-	devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	spacemit@lists.linux.dev,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v3 7/7] riscv: dts: spacemit: PCIe and PHY-related updates
-Date: Fri, 17 Oct 2025 14:07:39 -0500
-Message-ID: <20251017190740.306780-8-elder@riscstar.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20251017190740.306780-1-elder@riscstar.com>
-References: <20251017190740.306780-1-elder@riscstar.com>
+        d=1e100.net; s=20230601; t=1760730043; x=1761334843;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=NDFamMd0o9Y7qLZOjscAOp4r8I+m3aYXZeFPwTjn+lI=;
+        b=EvGlWgPeoZuubncG7GeXpgZGhp4jaf1rkgqwStewpBWcRsF0zXm/6csZI9A2mCBgA7
+         icL5tPAHAUSNKdbthXwJA1/6m8jjisyZALpM+jDlQtqkuNqzT9dUyFi2JKSipAt6Bxr/
+         Vz7+vwwBk8JGFmik7khoOsEwSiIlNbjAu4X0xDGHgo4cvOmyhjdXTnDtscXF0xXW5MnU
+         w4E75GXVjhxR/iC4kMjB0YFGwk/6eiKIznHMcGJUGBaJ4Je0l2/B2pnWBTg9LXGEL/UR
+         2BbSUf0azqtXvQK2dL1bjLgo53XHA9R7yHJaJ/dJmc/j7sf0YQebRYSmLu24eFw2ldb8
+         dvOA==
+X-Forwarded-Encrypted: i=1; AJvYcCWzOR0PMY7sVh4OAPbOixJd2RvCbwzbNd3ymes94s3XDmMfnf59nQL9d/pOaksTLCZbbxQ2V2VOhAfa@vger.kernel.org
+X-Gm-Message-State: AOJu0YzVluIl/Qz1nqvwRI0pKW0s44/MasDeji3xlWwJMGAjVdwF5b6e
+	+H3xD38WEuSix1DLd2mD/gOCptG+cDzKxOalfKvyYmqvdiDvz28DfqXVYShRIJHaOkXOaX6fba8
+	ErSbIsJAvxzuEylGHvy9PfoDspki/TJrR9C/29Jnxal4DpMhyEBmne9tR6afA27Gr
+X-Gm-Gg: ASbGncvZnilCAZ4FPH7OmZdTB5ajZM1VD2uHzOKhdC/NE+djpdfwH544q2s+/8+/Wmq
+	5ejcAw6fgLuz9nuSkfNAyGQ2rQOcI/SxsiWuh8CkUcGVyiAiYnRXnz6cnSIC9JXc7/I+iEtRVPM
+	lgfQOIj9emyyyMzXowePPcpmf7gY890R5saC+97lLsUV+fiAB+RuV3yPxRze91NAdVIr7kAH7oc
+	ZC+bVA2oJGUF4P2+A88AXLIlULfQXmhwM0aXbMZFU9NriU2aZcyu2FYRjo0vO/VswNqemAzeVni
+	rErYzp39t7j7V9DKNc4QCy42BfZoALvvUdoeVJeKPq8FjmeLIQ7e9JsHdfi6uHJpqIqqm+85cPp
+	ZXmsG3PNeIc8SaE41WgPGJvHJyq7mbf5Hfg==
+X-Received: by 2002:a17:90b:3f8c:b0:32b:a2b9:b200 with SMTP id 98e67ed59e1d1-33bcf87ab38mr6176219a91.13.1760730043206;
+        Fri, 17 Oct 2025 12:40:43 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGhslTnLw1d44+gxYWnp+m2GVuVioyNzi8Rgxtwtm1YnY0CsEHaMExcmSUWrki5gmUY0K4AhQ==
+X-Received: by 2002:a17:90b:3f8c:b0:32b:a2b9:b200 with SMTP id 98e67ed59e1d1-33bcf87ab38mr6176158a91.13.1760730042699;
+        Fri, 17 Oct 2025 12:40:42 -0700 (PDT)
+Received: from [10.216.52.245] ([202.46.23.19])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-33d5de11392sm200332a91.7.2025.10.17.12.40.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 17 Oct 2025 12:40:42 -0700 (PDT)
+Message-ID: <8fb6e8e0-cdca-0bd5-d0fe-56b5f6d27a5c@oss.qualcomm.com>
+Date: Sat, 18 Oct 2025 01:10:09 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.1
+Subject: Re: [PATCH v16 05/14] power: reset: reboot-mode: Expose sysfs for
+ registered reboot_modes
+Content-Language: en-US
+To: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Sebastian Reichel
+ <sre@kernel.org>, Rob Herring <robh@kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Souvik Chakravarty <Souvik.Chakravarty@arm.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Andy Yan <andy.yan@rock-chips.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>, Konrad Dybcio <konradybcio@kernel.org>,
+        cros-qcom-dts-watchers@chromium.org, Vinod Koul <vkoul@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Florian Fainelli <florian.fainelli@broadcom.com>,
+        John Stultz <john.stultz@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+        Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Andre Draszik
+ <andre.draszik@linaro.org>,
+        Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>,
+        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org,
+        Elliot Berman <quic_eberman@quicinc.com>,
+        Srinivas Kandagatla <srini@kernel.org>
+References: <20251015-arm-psci-system_reset2-vendor-reboots-v16-0-b98aedaa23ee@oss.qualcomm.com>
+ <20251015-arm-psci-system_reset2-vendor-reboots-v16-5-b98aedaa23ee@oss.qualcomm.com>
+ <CACMJSetWthCcJo8v7EuUK-aDKhf5KTNG5WQQ9aTQu62B+E=DMA@mail.gmail.com>
+From: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>
+In-Reply-To: <CACMJSetWthCcJo8v7EuUK-aDKhf5KTNG5WQQ9aTQu62B+E=DMA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: MZUjwqneQ5PcIfufeBJ7ue09-N1Xvh8a
+X-Authority-Analysis: v=2.4 cv=e5MLiKp/ c=1 sm=1 tr=0 ts=68f29bbc cx=c_pps
+ a=vVfyC5vLCtgYJKYeQD43oA==:117 a=j4ogTh8yFefVWWEFDRgCtg==:17
+ a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=EUspDBNiAAAA:8 a=C5lFK0Xs5ZTp69CiT58A:9 a=QEXdDO2ut3YA:10
+ a=rl5im9kqc5Lf4LNbBjHf:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDE0MDEzNCBTYWx0ZWRfXyGh61FCPqvJp
+ Joe1K8PGvqirTC94QKugzgEM10+GWdevod1hXmG0G/p/nrdC67n8MlQM9TB4fz3fSGbqhQ9xnUj
+ zFDdPb542TIAGATVR6Q//0SSUdzDPmm84S2HS6Ms3fh3Woveq1gB70euFLk0hx5sV5zgeljxl/a
+ Kn1hRU5ZstTHm6CcKfGd76fWIQwS7iGSeT9y/XjI6WZ1iFbpfYUCmwtzjXJwihcPQn9Qrchw1ya
+ HNvYIW026ig0TYBBKqDgWEuz2dbLClbVrySmkC6AwAIb/nCU4Fzxrz61YqfEoelh5eWCqbZX9Ml
+ ThXXkCPj8m94Jd1P1eS0v6eymsP99TiUrNqr7pPQ7gbZuBzwa5oTjf09XD+kZg3Cs8Ilhp53IOb
+ sjVVQ7EU/SOWKsj9BfsjPeMfK87Cow==
+X-Proofpoint-ORIG-GUID: MZUjwqneQ5PcIfufeBJ7ue09-N1Xvh8a
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-10-17_07,2025-10-13_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 suspectscore=0 spamscore=0 adultscore=0 clxscore=1015
+ priorityscore=1501 impostorscore=0 malwarescore=0 bulkscore=0
+ lowpriorityscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2510020000
+ definitions=main-2510140134
 
-Define PCIe and PHY-related Device Tree nodes for the SpacemiT K1 SoC.
 
-Enable the combo PHY and the two PCIe-only PHYs on the Banana Pi BPI-F3
-board.  The combo PHY is used for USB on this board, and that will be
-enabled when USB 3 support is accepted.
 
-The combo PHY must perform a calibration step to determine configuration
-values used by the PCIe-only PHYs.  As a result, it must be enabled if
-either of the other two PHYs is enabled.
+On 10/15/2025 8:17 PM, Bartosz Golaszewski wrote:
+> On Wed, 15 Oct 2025 at 06:39, Shivendra Pratap
+> <shivendra.pratap@oss.qualcomm.com> wrote:
+>>
+>> Currently, there is no standardized mechanism for userspace to
+>> discover which reboot-modes are supported on a given platform.
+>> This limitation forces tools and scripts to rely on hardcoded
+>> assumptions about the supported reboot-modes.
+>>
+>> Create a class 'reboot-mode' and a device under it to expose a
+>> sysfs interface to show the available reboot mode arguments to
+>> userspace. Use the driver_name field of the struct
+>> reboot_mode_driver to create the device. For device-based
+>> drivers, configure the device driver name as driver_name.
+>>
+>> This results in the creation of:
+>>   /sys/class/reboot-mode/<driver>/reboot_modes
+>>
+>> This read-only sysfs file will exposes the list of supported
+>> reboot modes arguments provided by the driver, enabling userspace
+>> to query the list of arguments.
+>>
+>> Align the clean up path to maintain backward compatibility for
+>> existing reboot-mode based drivers.
+>>
+>> Signed-off-by: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>
+> 
+> [snip]
+> 
+>> +
+>> +static int create_reboot_mode_device(struct reboot_mode_driver *reboot)
+>> +{
+>> +       struct reboot_mode_driver **dr;
+>> +       int ret = 0;
+>> +
+>> +       if (!rb_class) {
+>> +               rb_class = class_create("reboot-mode");
+>> +               if (IS_ERR(rb_class))
+>> +                       return PTR_ERR(rb_class);
+>> +       }
+>> +
+>> +       reboot->reboot_dev = device_create(rb_class, NULL, 0, NULL, reboot->driver_name);
+>> +       if (IS_ERR(reboot->reboot_dev))
+>> +               return PTR_ERR(reboot->reboot_dev);
+>> +
+>> +       ret = device_create_file(reboot->reboot_dev, &dev_attr_reboot_modes);
+>> +       if (ret)
+>> +               goto create_file_err;
+>> +
+>> +       dr = devres_alloc(release_reboot_mode_device, sizeof(*dr), GFP_KERNEL);
+>> +       if (!dr) {
+>> +               ret = -ENOMEM;
+>> +               goto devres_alloc_error;
+>> +       }
+>> +
+>> +       *dr = reboot;
+>> +       devres_add(reboot->reboot_dev, dr);
+> 
+> If you're using devres here - at least make it obvious by adding the
+> devm_ prefix to the function name and make it take an explicit struct
+> device * parameter so that it's clear who owns the managed resource.
+> 
 
-Signed-off-by: Alex Elder <elder@riscstar.com>
----
- .../boot/dts/spacemit/k1-bananapi-f3.dts      |  30 ++++
- arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi  |  33 ++++
- arch/riscv/boot/dts/spacemit/k1.dtsi          | 146 ++++++++++++++++++
- 3 files changed, 209 insertions(+)
+sure. we can add devm_ prefix to the function name.
+reboot->reboot_dev is an internal member of struct reboot_mode_driver *reboot.
+The struct reboot_mode_driver *reboot is owned by the calling driver.
+If we want to PASS reboot->reboot_dev to the devm_ prefixed function call, we
+will need to kind of split create_reboot_mode_device into two calls - device_create
+in a separate function and then call the devm_ prefix function where we add the devres_alloc.
+Can you suggest a bit more on this?
 
-diff --git a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-index 046ad441b7b4e..6d566780aed9d 100644
---- a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-+++ b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-@@ -40,6 +40,12 @@ pcie_vcc_3v3: pcie-vcc3v3 {
- 	};
- };
- 
-+&combo_phy {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pcie0_3_cfg>;
-+	status = "okay";
-+};
-+
- &emmc {
- 	bus-width = <8>;
- 	mmc-hs400-1_8v;
-@@ -100,6 +106,30 @@ &pdma {
- 	status = "okay";
- };
- 
-+&pcie1_phy {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pcie1_3_cfg>;
-+	status = "okay";
-+};
-+
-+&pcie2_phy {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pcie2_4_cfg>;
-+	status = "okay";
-+};
-+
-+&pcie1 {
-+	phys = <&pcie1_phy>;
-+	vpcie3v3-supply = <&pcie_vcc_3v3>;
-+	status = "okay";
-+};
-+
-+&pcie2 {
-+	phys = <&pcie2_phy>;
-+	vpcie3v3-supply = <&pcie_vcc_3v3>;
-+	status = "okay";
-+};
-+
- &uart0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&uart0_2_cfg>;
-diff --git a/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi b/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi
-index aff19c86d5ff3..5bacb6aff23f8 100644
---- a/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi
-+++ b/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi
-@@ -69,6 +69,39 @@ uart0-2-pins {
- 		};
- 	};
- 
-+	pcie0_3_cfg: pcie0-3-cfg {
-+		pcie0-3-pins {
-+			pinmux = <K1_PADCONF(54, 3)>,	/* PERST# */
-+				 <K1_PADCONF(55, 3)>,	/* WAKE# */
-+				 <K1_PADCONF(53, 3)>;	/* CLKREQ# */
-+
-+			bias-pull-up = <0>;
-+			drive-strength = <21>;
-+		};
-+	};
-+
-+	pcie1_3_cfg: pcie1-3-cfg {
-+		pcie1-3-pins {
-+			pinmux = <K1_PADCONF(59, 4)>,	/* PERST# */
-+				 <K1_PADCONF(60, 4)>,	/* WAKE# */
-+				 <K1_PADCONF(61, 4)>;	/* CLKREQ# */
-+
-+			bias-pull-up = <0>;
-+			drive-strength = <21>;
-+		};
-+	};
-+
-+	pcie2_4_cfg: pcie2-4-cfg {
-+		pcie2-4-pins {
-+			pinmux = <K1_PADCONF(62, 4)>,	/* PERST# */
-+				 <K1_PADCONF(112, 3)>,	/* WAKE# */
-+				 <K1_PADCONF(117, 4)>;	/* CLKREQ# */
-+
-+			bias-pull-up = <0>;
-+			drive-strength = <21>;
-+		};
-+	};
-+
- 	pwm14_1_cfg: pwm14-1-cfg {
- 		pwm14-1-pins {
- 			pinmux = <K1_PADCONF(44, 4)>;
-diff --git a/arch/riscv/boot/dts/spacemit/k1.dtsi b/arch/riscv/boot/dts/spacemit/k1.dtsi
-index 6cdcd80a7c83b..214216fdecd32 100644
---- a/arch/riscv/boot/dts/spacemit/k1.dtsi
-+++ b/arch/riscv/boot/dts/spacemit/k1.dtsi
-@@ -4,6 +4,7 @@
-  */
- 
- #include <dt-bindings/clock/spacemit,k1-syscon.h>
-+#include <dt-bindings/phy/phy.h>
- 
- /dts-v1/;
- / {
-@@ -358,6 +359,52 @@ syscon_rcpu2: system-controller@c0888000 {
- 			#reset-cells = <1>;
- 		};
- 
-+		combo_phy: phy@c0b10000 {
-+			compatible = "spacemit,k1-combo-phy";
-+			reg = <0x0 0xc0b10000 0x0 0x1000>;
-+			clocks = <&vctcxo_24m>,
-+				 <&syscon_apmu CLK_PCIE0_DBI>,
-+				 <&syscon_apmu CLK_PCIE0_MASTER>,
-+				 <&syscon_apmu CLK_PCIE0_SLAVE>;
-+			clock-names = "refclk",
-+				      "dbi",
-+				      "mstr",
-+				      "slv";
-+			resets = <&syscon_apmu RESET_PCIE0_GLOBAL>,
-+				 <&syscon_apmu RESET_PCIE0_DBI>,
-+				 <&syscon_apmu RESET_PCIE0_MASTER>,
-+				 <&syscon_apmu RESET_PCIE0_SLAVE>;
-+			reset-names = "phy",
-+				      "dbi",
-+				      "mstr",
-+				      "slv";
-+			#phy-cells = <1>;
-+			spacemit,apmu = <&syscon_apmu>;
-+			status = "disabled";
-+		};
-+
-+		pcie1_phy: phy@c0c10000 {
-+			compatible = "spacemit,k1-pcie-phy";
-+			reg = <0x0 0xc0c10000 0x0 0x1000>;
-+			clocks = <&vctcxo_24m>;
-+			clock-names = "refclk";
-+			resets = <&syscon_apmu RESET_PCIE1_GLOBAL>;
-+			reset-names = "phy";
-+			#phy-cells = <0>;
-+			status = "disabled";
-+		};
-+
-+		pcie2_phy: phy@c0d10000 {
-+			compatible = "spacemit,k1-pcie-phy";
-+			reg = <0x0 0xc0d10000 0x0 0x1000>;
-+			clocks = <&vctcxo_24m>;
-+			clock-names = "refclk";
-+			resets = <&syscon_apmu RESET_PCIE2_GLOBAL>;
-+			reset-names = "phy";
-+			#phy-cells = <0>;
-+			status = "disabled";
-+		};
-+
- 		syscon_apbc: system-controller@d4015000 {
- 			compatible = "spacemit,k1-syscon-apbc";
- 			reg = <0x0 0xd4015000 0x0 0x1000>;
-@@ -847,6 +894,105 @@ pcie-bus {
- 			#size-cells = <2>;
- 			dma-ranges = <0x0 0x00000000 0x0 0x00000000 0x0 0x80000000>,
- 				     <0x0 0xb8000000 0x1 0x38000000 0x3 0x48000000>;
-+			pcie0: pcie@ca000000 {
-+				compatible = "spacemit,k1-pcie";
-+				reg = <0x0 0xca000000 0x0 0x00001000>,
-+				      <0x0 0xca300000 0x0 0x0001ff24>,
-+				      <0x0 0x8f000000 0x0 0x00002000>,
-+				      <0x0 0xc0b20000 0x0 0x00001000>;
-+				reg-names = "dbi",
-+					    "atu",
-+					    "config",
-+					    "link";
-+				#address-cells = <3>;
-+				#size-cells = <2>;
-+				ranges = <0x01000000 0x0 0x00000000 0x0 0x8f002000 0x0 0x00100000>,
-+					 <0x02000000 0x0 0x80000000 0x0 0x80000000 0x0 0x0f000000>;
-+				interrupts = <141>;
-+				interrupt-names = "msi";
-+				clocks = <&syscon_apmu CLK_PCIE0_DBI>,
-+					 <&syscon_apmu CLK_PCIE0_MASTER>,
-+					 <&syscon_apmu CLK_PCIE0_SLAVE>;
-+				clock-names = "dbi",
-+					      "mstr",
-+					      "slv";
-+				resets = <&syscon_apmu RESET_PCIE0_DBI>,
-+					 <&syscon_apmu RESET_PCIE0_MASTER>,
-+					 <&syscon_apmu RESET_PCIE0_SLAVE>;
-+				reset-names = "dbi",
-+					      "mstr",
-+					      "slv";
-+				device_type = "pci";
-+				spacemit,apmu = <&syscon_apmu 0x03cc>;
-+				status = "disabled";
-+			};
-+
-+			pcie1: pcie@ca400000 {
-+				compatible = "spacemit,k1-pcie";
-+				reg = <0x0 0xca400000 0x0 0x00001000>,
-+				      <0x0 0xca700000 0x0 0x0001ff24>,
-+				      <0x0 0x9f000000 0x0 0x00002000>,
-+				      <0x0 0xc0c20000 0x0 0x00001000>;
-+				reg-names = "dbi",
-+					    "atu",
-+					    "config",
-+					    "link";
-+				#address-cells = <3>;
-+				#size-cells = <2>;
-+				ranges = <0x01000000 0x0 0x00000000 0x0 0x9f002000 0x0 0x00100000>,
-+					 <0x02000000 0x0 0x90000000 0x0 0x90000000 0x0 0x0f000000>;
-+				interrupts = <142>;
-+				interrupt-names = "msi";
-+				clocks = <&syscon_apmu CLK_PCIE1_DBI>,
-+					 <&syscon_apmu CLK_PCIE1_MASTER>,
-+					 <&syscon_apmu CLK_PCIE1_SLAVE>;
-+				clock-names = "dbi",
-+					      "mstr",
-+					      "slv";
-+				resets = <&syscon_apmu RESET_PCIE1_DBI>,
-+					 <&syscon_apmu RESET_PCIE1_MASTER>,
-+					 <&syscon_apmu RESET_PCIE1_SLAVE>;
-+				reset-names = "dbi",
-+					      "mstr",
-+					      "slv";
-+				device_type = "pci";
-+				spacemit,apmu = <&syscon_apmu 0x3d4>;
-+				status = "disabled";
-+			};
-+
-+			pcie2: pcie@ca800000 {
-+				compatible = "spacemit,k1-pcie";
-+				reg = <0x0 0xca800000 0x0 0x00001000>,
-+				      <0x0 0xcab00000 0x0 0x0001ff24>,
-+				      <0x0 0xb7000000 0x0 0x00002000>,
-+				      <0x0 0xc0d20000 0x0 0x00001000>;
-+				reg-names = "dbi",
-+					    "atu",
-+					    "config",
-+					    "link";
-+				#address-cells = <3>;
-+				#size-cells = <2>;
-+				ranges = <0x01000000 0x0 0x00000000 0x0 0xb7002000 0x0 0x00100000>,
-+					 <0x42000000 0x0 0xa0000000 0x0 0xa0000000 0x0 0x10000000>,
-+					 <0x02000000 0x0 0xb0000000 0x0 0xb0000000 0x0 0x07000000>;
-+				interrupts = <143>;
-+				interrupt-names = "msi";
-+				clocks = <&syscon_apmu CLK_PCIE2_DBI>,
-+					 <&syscon_apmu CLK_PCIE2_MASTER>,
-+					 <&syscon_apmu CLK_PCIE2_SLAVE>;
-+				clock-names = "dbi",
-+					      "mstr",
-+					      "slv";
-+				resets = <&syscon_apmu RESET_PCIE2_DBI>,
-+					 <&syscon_apmu RESET_PCIE2_MASTER>,
-+					 <&syscon_apmu RESET_PCIE2_SLAVE>;
-+				reset-names = "dbi",
-+					      "mstr",
-+					      "slv";
-+				device_type = "pci";
-+				spacemit,apmu = <&syscon_apmu 0x3dc>;
-+				status = "disabled";
-+			};
- 		};
- 
- 		storage-bus {
--- 
-2.48.1
-
+thanks,
+Shivendra
 
