@@ -1,255 +1,228 @@
-Return-Path: <devicetree+bounces-228162-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228163-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 746DDBE9105
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 15:52:20 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 261BDBE9196
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 16:06:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C46E81AA506A
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 13:52:26 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id BA9524FD95B
+	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 14:05:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 491792F6922;
-	Fri, 17 Oct 2025 13:51:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03BD036998C;
+	Fri, 17 Oct 2025 14:05:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aAOFxsJE"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="HnzF4Fov"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 140C836CDEB;
-	Fri, 17 Oct 2025 13:51:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9F7936997B
+	for <devicetree@vger.kernel.org>; Fri, 17 Oct 2025 14:05:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760709098; cv=none; b=HKJPRHDPMdWYLltNz8BnIlMl/wGi5HlEcEAKFGQneDVz1xATDzwucO8GlTKIesMWwLJ0rR6Lnog+Ot2g46io6C/I56m8V0Xt+RvBY8uDQ3QD0tPCWjbOLaLwjW4ruNd9Yn+FMf6ifkqb/t6kKgvQhZvBCP8NDqbF8Vx7YVFNJFs=
+	t=1760709954; cv=none; b=UxWhdsYn8tdoZzIm+ISOPfWNucG49XkFkQeLMOggfKA13aTv1eVpM/8MKZ6lqCCwUEA9WuJ6FwpUkptqrI6zffjhYzvNClxVFUQweaG+jMoCJVpxFopwtyXo7JFpWlr722hVyrs/mSNfJDTkjKvvj7zudvG6dnxF3iSgrgQHZOc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760709098; c=relaxed/simple;
-	bh=OI0g2/UqjmcUlkl6DGs+ZqjVWYf3Fa7orcd/oXwaD0Y=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=ed3PqTzi0zworxzbmFbPa1UhU9h7zg16skXCaFeyjmf0eD/TrRgIkxOq7VB251nRapD9baSkTivqMCgugUJHLlGK8u+eqgCG0R58GfjnSmopPGX20K0tkj32ai+dM9qUkNABQMHHZMDkrqtWn5zRlPVzZ8nESj76NKyKjr4bAgc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aAOFxsJE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C01BAC4CEFE;
-	Fri, 17 Oct 2025 13:51:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760709097;
-	bh=OI0g2/UqjmcUlkl6DGs+ZqjVWYf3Fa7orcd/oXwaD0Y=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=aAOFxsJEH144q3EGWYihdVzz90mCfRgjCTiPbgUQ3sPAfGbgoRZ5ANNk5TZdcAOeV
-	 R6KnyKp4UM/3J2S45YDX5wdwZKgSOnLYulzcYpUUJXL7AB/L/59k5Mrq09gAYZxvu3
-	 Hgiaxxi7Zu51Zee0VhWeGoFSUfUi2QO3+GPfQ0BFI7hbbd6Lo4pyM4jMIJAJeipRMF
-	 pAlT3eWtSYSJP1HYtUgVpLXNepRn2tuN1nk85euVJJihmgKGdULmAIhKxc/i11AeXQ
-	 a1PvrezZv5oXbvH1lM20Y3AkLcpKE2zVpGSIQ19ukeqmEltvkc9GU1KOxm+0Kw3TWB
-	 ZT+E4AY76NWAQ==
-From: Michael Walle <mwalle@kernel.org>
-To: Nishanth Menon <nm@ti.com>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Tero Kristo <kristo@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Michael Walle <mwalle@kernel.org>
-Subject: [PATCH v3 3/3] arm64: dts: ti: sa67: add overlay for the ADS2 carrier
-Date: Fri, 17 Oct 2025 15:50:46 +0200
-Message-ID: <20251017135116.548236-4-mwalle@kernel.org>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20251017135116.548236-1-mwalle@kernel.org>
-References: <20251017135116.548236-1-mwalle@kernel.org>
+	s=arc-20240116; t=1760709954; c=relaxed/simple;
+	bh=y2j14fKCfSUEyLu3qKfrbsyP8qXM57xWfcpUmJOscjA=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=VKvXt5+aAK1d2iG1S2ggeFezmd7LYhPlSjYAHIm5Tetbzu3CFqB91WBWu88e+a+xDXOP5fxaQNLWEqSN7D7Thq240SjtfnGaY33VE/F68FAQZo9FkU0j3UzcFvK+XCIZyZYvflcTkfan1l5e2eiLnFAx4hrldBNJa2A9cLmx4zU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=HnzF4Fov; arc=none smtp.client-ip=209.85.208.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
+Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-63bea08a326so2699319a12.3
+        for <devicetree@vger.kernel.org>; Fri, 17 Oct 2025 07:05:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=fairphone.com; s=fair; t=1760709951; x=1761314751; darn=vger.kernel.org;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=NDtFkvW71ZpCBo0DPDG4zvNO/0+/N+iEEt28V0Z9TN4=;
+        b=HnzF4FovcXOObmvLMUbPJTiOwxK3ehxfgyH7u84LetBoLjc5H7FG1kqIFLSH5jTjaf
+         OGh4df+M7VWi13/QZgAdVYq/3yJWXT/MtRt1ezmVRJC/27CTPtD14AdNMaxMQx4jQUwr
+         +2eWFU5CH5l8RWXG+G799vZhBvt6UAQNTpYwFjl/5e/2QuS9JPIu7vj+tuglbusVRJ6u
+         fHPziA8qXIg5RkJreJB+d46gKllAOzl2/ZNC2Scj/By3O2QmhqzRmJwRGgevaBWDagBC
+         W7StOWDa+9qrCUhfxY1/XACFSr50Nvz1kc7byZzZwu6OhAaSkAcQQZ33wR9Np/ynfEG2
+         USjg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1760709951; x=1761314751;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=NDtFkvW71ZpCBo0DPDG4zvNO/0+/N+iEEt28V0Z9TN4=;
+        b=LA5SwHnfjLndYZ6/Nfd3f2Kr7aYywWeCRYLNi5VKxJ32ecl0Xw3XqxH/Fi9POrK8RZ
+         I6B2yq7cZjvLEYQARr1CZCAdRsyPwH411jLP/WCepWt8pqC45hznOgyZ4y1cZ/SSsmAS
+         qIAByim4JZL7fDnpPlujYLu/YqrmVGHMG9mGZyXkazrm3RdQ0cPT2exTWL6/PMIvmH4B
+         mDiZs3mnpN792oWKn8kaaGu1EBvaBtSNOy/ALPi408qys8Pb8TanpbNNf5M/mzZGaXUX
+         YcVOyaRaKDNgyuLtAVMkQjiLcEGZDCoR9TZWBGk21AgQFpZSvkkxzhGua+l45kYyj5mR
+         4apQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVh1Bo7uMnhI4TSzR1e6QoUkNB2e1GrRQ/Q1Var/xM0eh0Wy2cu43pwQKvvEE973zfKYYgcck8UDxiR@vger.kernel.org
+X-Gm-Message-State: AOJu0YwFnmZfgP4d68XvIxEVudyC0U8rrWjaDByF0Qq1bQzy4pEAWOah
+	pYyTdlnGvPcPo+5WYupGDwZOD0D60laoQoVjEIQiDI7u639MaQsJDDDUNstAMuoX51o=
+X-Gm-Gg: ASbGncsaMp7aelHXrNwVS9HzvcwBhjrgo+XVRQwMcVz6I2IMfUpWbYNomSHLWJ5m18r
+	SADTm1pyXL/UAUXAZ3eLQ7Afy5rs6iuahlnE10vL2WbtZZb2izLmH/yD32dTNbAwPv/TktmT3vA
+	eAJWjuvCaJX8l0Kg58S6NXunugtrxbDLBPM4z96HTTef7m3PbW7Tor5ALW7Nw0Ovfllj9fY6jsV
+	HKrpqnj9QQjIGBCgrp6TkoHMD9Wh4chmVOrwHf2TQ5hfoNX67RGeqMyipolOstMlqrNgVpWJBvT
+	oUTKzsCdDrpKaoh1RQT414Nmi4YRZ6FmxzKhIq3qWFswvylda+ND006KFj12WIMePRbSg+l9Ek+
+	DxB2DMtC9OpczqG/2hStQQVYeKJPNu8phAymQGRnEW49InBXwbuiCxSBtd+0ywVC0TjgRoqaGHi
+	39qChnEUxWF1l6tWtBYIM5Xdr7ogyShoNqOA8XvZNpfYJUtIt/SuzBaYib
+X-Google-Smtp-Source: AGHT+IHD0zQCxNlY8i8goUteHIFFoUwCmKep+B7VhLiGVGAGPiHMCDPi+AsNJHLKrrEXZzT+k7ZWpg==
+X-Received: by 2002:a05:6402:3552:b0:639:e30c:2477 with SMTP id 4fb4d7f45d1cf-63c1f636789mr3573697a12.7.1760709951080;
+        Fri, 17 Oct 2025 07:05:51 -0700 (PDT)
+Received: from localhost (144-178-202-139.static.ef-service.nl. [144.178.202.139])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-63a5c134062sm18799571a12.36.2025.10.17.07.05.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 17 Oct 2025 07:05:49 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Fri, 17 Oct 2025 16:05:48 +0200
+Message-Id: <DDKNL43NWFMA.1S03T0SUYFVMY@fairphone.com>
+Cc: "Bjorn Andersson" <andersson@kernel.org>, "Rob Herring"
+ <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Jagadeesh
+ Kona" <quic_jkona@quicinc.com>, "Bryan O'Donoghue"
+ <bryan.odonoghue@linaro.org>, "Michael Turquette"
+ <mturquette@baylibre.com>, "Stephen Boyd" <sboyd@kernel.org>, "Conor
+ Dooley" <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-clk@vger.kernel.org>
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: sm8550: Additionally manage MXC
+ power domain in camcc
+From: "Luca Weiss" <luca.weiss@fairphone.com>
+To: "Taniya Das" <taniya.das@oss.qualcomm.com>, "Luca Weiss"
+ <luca.weiss@fairphone.com>, "Dmitry Baryshkov"
+ <dmitry.baryshkov@oss.qualcomm.com>, "Vladimir Zapolskiy"
+ <vladimir.zapolskiy@linaro.org>
+X-Mailer: aerc 0.21.0-0-g5549850facc2
+References: <20250303225521.1780611-1-vladimir.zapolskiy@linaro.org>
+ <20250303225521.1780611-3-vladimir.zapolskiy@linaro.org>
+ <dbxvzgqs5slrl5edqunal3wplg5jiszqv46dr4nzgowwlhkhxa@qwtfq7nfjwfo>
+ <3210a484-b9c3-4399-bee1-9f5bbc90034c@linaro.org>
+ <CAA8EJprP9Z181VDCT=xfyrBipzgiB0tfb8M_XZ4H=yOrvEnB0w@mail.gmail.com>
+ <f41061a2-cf45-4588-8df7-22270c936ee2@quicinc.com>
+ <D8EZ47Z557OX.37FDVYA5AHET0@fairphone.com>
+ <d64c0776-0b12-42d3-aed3-4e6a13487f51@quicinc.com>
+In-Reply-To: <d64c0776-0b12-42d3-aed3-4e6a13487f51@quicinc.com>
 
-The SMARC module can be used on the Kontron SMARC 2.2 Evaluation carrier
-(ads2). Add an overlay to enable all the devices found on the carrier
-and enable the corresponding peripherals of the SoC.
+Hi Taniya,
 
-Signed-off-by: Michael Walle <mwalle@kernel.org>
----
- arch/arm64/boot/dts/ti/Makefile               |   3 +
- .../dts/ti/k3-am67a-kontron-sa67-ads2.dtso    | 146 ++++++++++++++++++
- 2 files changed, 149 insertions(+)
- create mode 100644 arch/arm64/boot/dts/ti/k3-am67a-kontron-sa67-ads2.dtso
+On Thu Mar 13, 2025 at 12:57 PM CET, Taniya Das wrote:
+>
+>
+> On 3/13/2025 1:22 PM, Luca Weiss wrote:
+>> Hi Taniya,
+>>=20
+>> On Thu Mar 13, 2025 at 5:39 AM CET, Taniya Das wrote:
+>>>
+>>>
+>>> On 3/4/2025 2:10 PM, Dmitry Baryshkov wrote:
+>>>> On Tue, 4 Mar 2025 at 09:37, Vladimir Zapolskiy
+>>>> <vladimir.zapolskiy@linaro.org> wrote:
+>>>>>
+>>>>> On 3/4/25 01:53, Dmitry Baryshkov wrote:
+>>>>>> On Tue, Mar 04, 2025 at 12:55:21AM +0200, Vladimir Zapolskiy wrote:
+>>>>>>> SM8550 Camera Clock Controller shall enable both MXC and MMCX power
+>>>>>>> domains.
+>>>>>>
+>>>>>> Are those really required to access the registers of the cammcc? Or =
+is
+>>>>>> one of those (MXC?) required to setup PLLs? Also, is this applicable
+>>>>>> only to sm8550 or to other similar clock controllers?
+>>>>>
+>>>>> Due to the described problem I experience a fatal CPU stall on SM8550=
+-QRD,
+>>>>> not on any SM8450 or SM8650 powered board for instance, however it do=
+es
+>>>>> not exclude an option that the problem has to be fixed for other cloc=
+k
+>>>>> controllers, but it's Qualcomm to confirm any other touched platforms=
+,
+>>>>
+>>>> Please work with Taniya to identify used power domains.
+>>>>
+>>>
+>>> CAMCC requires both MMCX and MXC to be functional.
+>>=20
+>> Could you check whether any clock controllers on SM6350/SM7225 (Bitra)
+>> need multiple power domains, or in general which clock controller uses
+>> which power domain.
+>>=20
+>> That SoC has camcc, dispcc, gcc, gpucc, npucc and videocc.
+>>=20
+>> That'd be highly appreciated since I've been hitting weird issues there
+>> that could be explained by some missing power domains.
+>>=20
+>
+> Hi Luca,
+>
+> The targets you mentioned does not have any have multiple rail
+> dependency, but could you share the weird issues with respect to clock
+> controller I can take a look.
 
-diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-index d2a40ea642c4..361248dcfff4 100644
---- a/arch/arm64/boot/dts/ti/Makefile
-+++ b/arch/arm64/boot/dts/ti/Makefile
-@@ -139,12 +139,15 @@ dtb-$(CONFIG_ARCH_K3) += k3-j721s2-evm-usb0-type-a.dtbo
- # Boards with J722s SoC
- k3-am67a-kontron-sa67-dtbs := k3-am67a-kontron-sa67-base.dtb \
- 	k3-am67a-kontron-sa67-rtc-rv8263.dtbo k3-am67a-kontron-sa67-gbe1.dtbo
-+k3-am67a-kontron-sa67-ads2-dtbs := k3-am67a-kontron-sa67.dtb k3-am67a-kontron-sa67-ads2.dtbo
- dtb-$(CONFIG_ARCH_K3) += k3-am67a-beagley-ai.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am67a-kontron-sa67.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am67a-kontron-sa67-base.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am67a-kontron-sa67-gbe1.dtbo
- dtb-$(CONFIG_ARCH_K3) += k3-am67a-kontron-sa67-gpios.dtbo
- dtb-$(CONFIG_ARCH_K3) += k3-am67a-kontron-sa67-rtc-rv8263.dtbo
-+dtb-$(CONFIG_ARCH_K3) += k3-am67a-kontron-sa67-ads2.dtb
-+dtb-$(CONFIG_ARCH_K3) += k3-am67a-kontron-sa67-ads2.dtbo
- dtb-$(CONFIG_ARCH_K3) += k3-j722s-evm.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-j722s-evm-csi2-quad-rpi-cam-imx219.dtbo
- dtb-$(CONFIG_ARCH_K3) += k3-j722s-evm-csi2-quad-tevi-ov5640.dtbo
-diff --git a/arch/arm64/boot/dts/ti/k3-am67a-kontron-sa67-ads2.dtso b/arch/arm64/boot/dts/ti/k3-am67a-kontron-sa67-ads2.dtso
-new file mode 100644
-index 000000000000..ae5e2b52594b
---- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-am67a-kontron-sa67-ads2.dtso
-@@ -0,0 +1,146 @@
-+// SPDX-License-Identifier: GPL-2.0-only OR MIT
-+/*
-+ * Kontron SMARC-sa67 board on the Kontron Eval Carrier 2.2.
-+ *
-+ * Copyright (c) 2025 Kontron Europe GmbH
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+#include <dt-bindings/interrupt-controller/irq.h>
-+#include "k3-pinctrl.h"
-+
-+&{/} {
-+	pwm-fan {
-+		compatible = "pwm-fan";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pwm_fan_pins_default>;
-+		interrupts-extended = <&main_gpio1 7 IRQ_TYPE_EDGE_FALLING>;
-+		#cooling-cells = <2>;
-+		pwms = <&epwm2 1 4000000 0>;
-+		cooling-levels = <1 128 192 255>;
-+	};
-+
-+	sound {
-+		compatible = "simple-audio-card";
-+		simple-audio-card,widgets =
-+			"Headphone", "Headphone Jack",
-+			"Line", "Line Out Jack",
-+			"Microphone", "Microphone Jack",
-+			"Line", "Line In Jack";
-+		simple-audio-card,routing =
-+			"Line Out Jack", "LINEOUTR",
-+			"Line Out Jack", "LINEOUTL",
-+			"Headphone Jack", "HPOUTR",
-+			"Headphone Jack", "HPOUTL",
-+			"IN1L", "Line In Jack",
-+			"IN1R", "Line In Jack",
-+			"Microphone Jack", "MICBIAS",
-+			"IN2L", "Microphone Jack",
-+			"IN2R", "Microphone Jack";
-+		simple-audio-card,mclk-fs = <256>;
-+		simple-audio-card,format = "i2s";
-+		simple-audio-card,bitclock-master = <&dailink0_master>;
-+		simple-audio-card,frame-master = <&dailink0_master>;
-+
-+		simple-audio-card,cpu {
-+			sound-dai = <&mcasp0>;
-+		};
-+
-+		dailink0_master: simple-audio-card,codec {
-+			sound-dai = <&wm8904>;
-+			clocks = <&audio_refclk0>;
-+		};
-+	};
-+
-+	cvcc_1p8v_i2s: regulator-carrier-0 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "V_1V8_S0_I2S";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+	};
-+
-+	cvcc_1p8v_s0: regulator-carrier-1 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "V_1V8_S0";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+	};
-+
-+	cvcc_3p3v_s0: regulator-carrier-2 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "V_3V3_S0";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+	};
-+};
-+
-+&audio_refclk0 {
-+	status = "okay";
-+};
-+
-+&epwm2 {
-+	status = "okay";
-+};
-+
-+&main_pmx0 {
-+	pwm_fan_pins_default: pwm-fan-default-pins {
-+		pinctrl-single,pins = <
-+			J722S_IOPAD(0x1ec, PIN_OUTPUT, 8)	/* (A22) I2C1_SDA.EHRPWM2_B */
-+			J722S_IOPAD(0x194, PIN_INPUT, 0)	/* (A25) MCASP0_AXR3.GPIO1_7 */
-+		>;
-+	};
-+};
-+
-+&mcasp0 {
-+	#sound-dai-cells = <0>;
-+	status = "okay";
-+};
-+
-+&mcu_i2c0 {
-+	status = "okay";
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	wm8904: audio-codec@1a {
-+		#sound-dai-cells = <0>;
-+		compatible = "wlf,wm8904";
-+		reg = <0x1a>;
-+		clocks = <&audio_refclk0>;
-+		clock-names = "mclk";
-+		AVDD-supply = <&cvcc_1p8v_i2s>;
-+		CPVDD-supply = <&cvcc_1p8v_i2s>;
-+		DBVDD-supply = <&cvcc_1p8v_i2s>;
-+		DCVDD-supply = <&cvcc_1p8v_i2s>;
-+		MICVDD-supply = <&cvcc_1p8v_i2s>;
-+	};
-+};
-+
-+&mcu_spi0 {
-+	status = "okay";
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	flash@0 {
-+		compatible = "jedec,spi-nor";
-+		reg = <0>;
-+		spi-max-frequency = <104000000>;
-+		m25p,fast-read;
-+		vcc-supply = <&cvcc_1p8v_s0>;
-+	};
-+};
-+
-+&wkup_i2c0 {
-+	status = "okay";
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	/* SMARC Carrier EEPROM */
-+	eeprom@57 {
-+		compatible = "atmel,24c32";
-+		reg = <0x57>;
-+		pagesize = <32>;
-+		vcc-supply = <&cvcc_3p3v_s0>;
-+	};
-+};
--- 
-2.47.3
+Coming back to this, I've taken a shot at camera on SM6350 (Fairphone 4)
+again, but again hitting some clock issues.
+
+For reference, I am testing with following change:
+https://lore.kernel.org/linux-arm-msm/20250911011218.861322-3-vladimir.zapo=
+lskiy@linaro.org/
+
+Trying to enable CAMCC_MCLK1_CLK - wired up to the IMX576 camera sensor
+on this phone - results in following error.
+
+[    3.140232] ------------[ cut here ]------------
+[    3.141264] camcc_mclk1_clk status stuck at 'off'
+[    3.141276] WARNING: CPU: 6 PID: 12 at drivers/clk/qcom/clk-branch.c:87 =
+clk_branch_toggle+0x170/0x190
+
+Checking the driver against downstream driver, it looks like the RCGs
+should be using clk_rcg2_shared_ops because of enable_safe_config in
+downstream, but changing that doesn't really improve the situation, but
+it does change the error message to this:
+
+[    2.933254] ------------[ cut here ]------------
+[    2.933961] camcc_mclk1_clk_src: rcg didn't update its configuration.
+[    2.933970] WARNING: CPU: 7 PID: 12 at drivers/clk/qcom/clk-rcg2.c:136 u=
+pdate_config+0xd4/0xe4
+
+I've also noticed that some camcc drivers take in GCC_CAMERA_AHB_CLK as
+iface clk, could something like this be missing on sm6350?
+
+I'd appreciate any help or tips for resolving this.
+
+Regards
+Luca
+
+>
+>> Regards
+>> Luca
+>>=20
+>>>
+>>>>> for instance x1e80100-camcc has it resolved right at the beginning.
+>>>>>
+>>>>> To my understanding here 'required-opps' shall also be generalized, s=
+o
+>>>>> the done copy from x1e80100-camcc was improper, and the latter dt-bin=
+ding
+>>>>> should be fixed.
+>>>>
+>>>> Yes
+>>>>
+>>>
+>>> required-opps is not mandatory for MXC as we ensure that MxC would neve=
+r
+>>> hit retention.
+>>>
+>>> https://lore.kernel.org/r/20240625-avoid_mxc_retention-v2-1-af9c2f549a5=
+f@quicinc.com
+>>>
+>>>
+>>>>
+>>>>
+>>=20
 
 
