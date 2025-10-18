@@ -1,125 +1,127 @@
-Return-Path: <devicetree+bounces-228433-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228434-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDBE4BEDA80
-	for <lists+devicetree@lfdr.de>; Sat, 18 Oct 2025 21:30:52 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CFBBBEDB07
+	for <lists+devicetree@lfdr.de>; Sat, 18 Oct 2025 21:49:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 4F1284EDFDE
-	for <lists+devicetree@lfdr.de>; Sat, 18 Oct 2025 19:30:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A5EF119A667A
+	for <lists+devicetree@lfdr.de>; Sat, 18 Oct 2025 19:50:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1F3D25A357;
-	Sat, 18 Oct 2025 19:30:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C492428506C;
+	Sat, 18 Oct 2025 19:49:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tr/8YJoc"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="OdedKo8S"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81EAB212556;
-	Sat, 18 Oct 2025 19:30:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05B622417E6;
+	Sat, 18 Oct 2025 19:49:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760815847; cv=none; b=I5vaDwbYLSoWcI6QVJnHJL9V/mUxemXqph03NwVQENdOHSdQ3/6SODknPXT8UnDN3i9EG5UcBGdBZlVqBvRS2vwgx9Ru8G2OLb1UbFOayrciV+JWG1My61NsmkcKwksXNl8hNKVaAy8RR2IgGQqbonJbl0ktJA5atc/2ZalkF+E=
+	t=1760816978; cv=none; b=Qk+JEblsyN7ISO80MS+UqbdXgOW7YS4vEzMBIGr2YVOUt9uyoorgiRkJAeCG8U3FjdbgaXoGqANb4FDN8E/h6yLI/F/r+hNomNk6NsYRv+IoHHUb913B4LLO8WlIBUtOXexzOlnL5GKBmq6epvDbFsfONhdERuwMsNyFDQWjZzE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760815847; c=relaxed/simple;
-	bh=BWhmOAvJgGNoEDDbN/GPY952TFrD7G5uVkkKREEI2m4=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=oo/n/HM5gnBV8+sHAwAm4lkLrPGjEv9L9hgPVcEJScfXcX4OPtrThUN9LXBf9XUDiABSyBu3S+LUls5oxGO/Kp/NEnim3hNCyRcJbxDR1KeC/LSbW1fb8wq5Hw6/GZTsY4qZkrECpXvvX8BMfe4JV82cluoG7sr4VOn3sut5NUY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tr/8YJoc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B9D5FC4CEF8;
-	Sat, 18 Oct 2025 19:30:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760815847;
-	bh=BWhmOAvJgGNoEDDbN/GPY952TFrD7G5uVkkKREEI2m4=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=tr/8YJocD3nqygXmGcjm9YoaZ+47k0g39GeB5yvR0Aw420M5AtCjXoH2yYNsCZHHw
-	 rCURycPv8lxwBCldCv/ysuY8mc6yJnE8i9uslcv/soxF7U5ldXjaDzihUeaHZx2tm9
-	 UCKDC5jw4eAq/Qx6K5na5rLb7R4fygZZbSLjIVTo962dLL1T4J125h0P8aL8Ye4AZu
-	 j1PqVhshwXXle1uUKhzIp5HCli+vsGp7UiJBGRzecImwht90WNGdp0Q30riI6DZEJM
-	 F6x4Gi/22OmCXSgwyaaWKbl2Xm6DdUhZSbTikACNv6rsVRgh5NeDtTcAxgLUuaq+j+
-	 n32fMGlGUbitA==
-Date: Sat, 18 Oct 2025 20:30:38 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
-Cc: Marilene Andrade Garcia <marilene.agarcia@gmail.com>,
- linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, Kim Seer Paller <kimseer.paller@analog.com>,
- Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
- <Michael.Hennerich@analog.com>, David Lechner <dlechner@baylibre.com>, Nuno
- =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Marcelo Schmitt
- <Marcelo.Schmitt@analog.com>, Ceclan Dumitru <dumitru.ceclan@analog.com>,
- Jonathan Santos <Jonathan.Santos@analog.com>, Dragos Bogdan
- <dragos.bogdan@analog.com>
-Subject: Re: [PATCH v13 2/2] iio: adc: max14001: New driver
-Message-ID: <20251018203038.40084197@jic23-huawei>
-In-Reply-To: <aPGlWznNdrPma4jZ@debian-BULLSEYE-live-builder-AMD64>
-References: <830368e5bc303faf04f542268acb95e99d0d1cde.1760502331.git.marilene.agarcia@gmail.com>
-	<2e0e5fadeb3083a79a31776d9e996b865c1b1f5f.1760502331.git.marilene.agarcia@gmail.com>
-	<aPGlWznNdrPma4jZ@debian-BULLSEYE-live-builder-AMD64>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1760816978; c=relaxed/simple;
+	bh=mF146nvxhIPhZlhIovDy9Wf7Gzq7ShDPT997Xmh7MGY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Wf90Y4AdygZuF8M4b2vDdJwCdGc50lDfmSFqUi+s/GuIu0cIxRUY1fefDXTdIVgkzHdFydFmF4Y36Si9cEYKGv+k0A8ccZeqZpIje8OFchEvhLaJFgpo/cd49VqttA1CrVkkZlEpwjt75zT65jBB2V7o9pzqXcQqIX6jArU8Au8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=OdedKo8S; arc=none smtp.client-ip=198.175.65.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1760816978; x=1792352978;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=mF146nvxhIPhZlhIovDy9Wf7Gzq7ShDPT997Xmh7MGY=;
+  b=OdedKo8SmXSKFEqPqw6xCTRpzo4bPwqN8klcbB8XmAk40o6kYfKDkCPq
+   SzQiWCnIUzACQ5e8QII52CVRLKRYQ6LyDms/ssbXLHVmPbWHRtzqvCjQV
+   QYBpPlkGmWywKpjrxF0ats7+7AkmEIPPENIvpJf8F2OJx/E1HZ58KnD1Z
+   WMNJU4eTzb/nbvevts7zpO/zVnhS0n+kmT72sTfd88x9KEpYQspRxfMuP
+   vDJKWzEUCJk0u/4OMDQhXAnECY8f6aiIeUdr36kRl3g/4iiKSvT2WIJo2
+   dFydvbuvgJY6rLFLeqfhO2BKmD7SIHV28gJ0Puub29eCRtJ4ObkKNTGgp
+   A==;
+X-CSE-ConnectionGUID: hUCED5QJQD2oa0SepbQIUA==
+X-CSE-MsgGUID: tOVamD6FTG2hu6pY68bchQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="74114801"
+X-IronPort-AV: E=Sophos;i="6.19,239,1754982000"; 
+   d="scan'208";a="74114801"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Oct 2025 12:49:37 -0700
+X-CSE-ConnectionGUID: e70Wc68JSnC6KsFO4anpnQ==
+X-CSE-MsgGUID: 3mTcsYCaTQqUgbfFTUrMBA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,239,1754982000"; 
+   d="scan'208";a="183487714"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO ashevche-desk.local) ([10.245.244.194])
+  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Oct 2025 12:49:32 -0700
+Received: from andy by ashevche-desk.local with local (Exim 4.98.2)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1vACvh-00000000xoA-0lv2;
+	Sat, 18 Oct 2025 22:49:29 +0300
+Date: Sat, 18 Oct 2025 22:49:28 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: =?iso-8859-1?Q?Beno=EEt?= Monin <benoit.monin@bootlin.com>,
+	Hans Verkuil <hverkuil@kernel.org>
+Cc: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jarkko Nikula <jarkko.nikula@linux.intel.com>,
+	Mika Westerberg <mika.westerberg@linux.intel.com>,
+	Jan Dabros <jsd@semihalf.com>,
+	Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+	Clark Williams <clrkwllms@kernel.org>,
+	Steven Rostedt <rostedt@goodmis.org>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Gregory CLEMENT <gregory.clement@bootlin.com>,
+	=?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>,
+	Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
+	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
+	Dmitry Guzman <dmitry.guzman@mobileye.com>,
+	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-rt-devel@lists.linux.dev
+Subject: Re: [PATCH 0/3] i2c: designware: Improve support of multi-messages
+ transfer
+Message-ID: <aPPvSCNnkzfH-2X7@ashevche-desk.local>
+References: <20251017-i2c-dw-v1-0-7b85b71c7a87@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20251017-i2c-dw-v1-0-7b85b71c7a87@bootlin.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 
-On Thu, 16 Oct 2025 23:09:31 -0300
-Marcelo Schmitt <marcelo.schmitt1@gmail.com> wrote:
++Cc: Hans. Hans, isn't it what you wanted to have for your use-case?
 
-> On 10/15, Marilene Andrade Garcia wrote:
-> > The MAX14001/MAX14002 is configurable, isolated 10-bit ADCs for multi-range
-> > binary inputs. In addition to ADC readings, the MAX14001/MAX14002 offers
-> > more features, like a binary comparator, a filtered reading that can
-> > provide the average of the last 2, 4, or 8 ADC readings, and an inrush
-> > comparator that triggers the inrush current. There is also a fault feature
-> > that can diagnose seven possible fault conditions. And an option to select
-> > an external or internal ADC voltage reference.
-> > 
-> > MAX14001/MAX14002 features implemented so far:
-> > - Raw ADC reading.
-> > - MV fault disable.
-> > - Selection of external or internal ADC voltage reference, depending on
-> > whether it is declared in the device tree.
-> > 
-> > Co-developed-by: Kim Seer Paller <kimseer.paller@analog.com>
-> > Signed-off-by: Kim Seer Paller <kimseer.paller@analog.com>
-> > Signed-off-by: Marilene Andrade Garcia <marilene.agarcia@gmail.com>
-> > Tested-by: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
-> > ---  
-> Reviewed-by: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
+On Fri, Oct 17, 2025 at 04:59:31PM +0200, Benoît Monin wrote:
+> Extend what can be done when transferring multiple messages in a single
+> call to .xfer().
 > 
-> Hmm, I don't know why, but I would have given a different order to the tags
-> Reviewed-by: M. S. <...> # new tag
-> Tested-by: M. S. <...>
-> Co-developed-by: K. S. P. <...>
-> Signed-off-by: K. S. P. <...>
-> Signed-off-by: M. A. G. <...>
+> Allow changing the target address by waiting for a STOP then looping
+> in i2c_dw_xfer() instead of erroring out when a change of address is
+> detected. The loop then re-run i2c_dw_xfer_init() which changes the
+> target address and restart the transfer for the rest of the messages.
 > 
-> Swapping tag lines will probably not be a reason for a v14, though.
-
-There have been many debates on this but no clear rules wrt to whether
-review / testing tags should go earlier (on basis the sign off occurs
-after them if they were on a previous version) or just put them all at the end.
-
-Meh. All the right info is here so I'll just leave it be.
-
-Series applied to the togreg branch of iio.git. Initially pushed out as
-testing to let the autobuilders play with it.
-
-Thanks,
-
-Jonathan
-
+> Handle controllers that lack the ability to emit a RESTART when two
+> consecutive messages have the same address and direction, by waiting
+> for a STOP and restarting the rest of the transfer.
 > 
-> Cheers,
-> Marcelo
+> The i2c controllers found in the EyeQ6Lplus and EyeQ7H SoC from
+> Mobileye lack such capability, so compatible strings are added because
+> this cannot be detected at runtime.
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
 
 
