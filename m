@@ -1,225 +1,125 @@
-Return-Path: <devicetree+bounces-228410-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228411-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FA4ABED3D2
-	for <lists+devicetree@lfdr.de>; Sat, 18 Oct 2025 18:26:39 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08588BED3F3
+	for <lists+devicetree@lfdr.de>; Sat, 18 Oct 2025 18:41:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7E70D189DD0F
-	for <lists+devicetree@lfdr.de>; Sat, 18 Oct 2025 16:27:02 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id BA74B4E223A
+	for <lists+devicetree@lfdr.de>; Sat, 18 Oct 2025 16:41:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DCC723D7E3;
-	Sat, 18 Oct 2025 16:26:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D003244677;
+	Sat, 18 Oct 2025 16:41:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qlaZNbEa"
+	dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b="k0Ut4Lyc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail-43166.protonmail.ch (mail-43166.protonmail.ch [185.70.43.166])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBDC413D521;
-	Sat, 18 Oct 2025 16:26:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 185B4217F33;
+	Sat, 18 Oct 2025 16:41:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.70.43.166
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760804794; cv=none; b=diNlfJpB3oabjSaBFigM5ReLUKfPscbasSMf472n8m/+9EnxPAh43JhE7RK21+lTRRFfiY0ptFv42t231vWlpyG86R4E08g7pNSxEUqAdUFyAV41BvDitygGq4B+U5BQ0yl9oDablta1Nc+OmsztFS8Gm2slLxqeHvvxrot0X3U=
+	t=1760805688; cv=none; b=nP12qdAjSag1ah2DQyQfscdql81CB6uQ52EttpcorwSLB3HF39azlwl9GubkmFb5PAS50miwfJdeQF6k9JMMJOS6qWLfczQqkX7It7AvlNGYnAaTG5ec9EzIDvvYB19HPSwuMy/WQ7rTO1m/ft2P29cDoKyQOpKIJdZ/OthltNs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760804794; c=relaxed/simple;
-	bh=rL1t/wJ1tLvV78IGL+3G159+J8nTlTIq+yCmhW7s30I=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=MtOVvzqeH/GSKwXnNCMvEZjX/pov52SQZGslHpcbEVCDGH8fqYTDPhfNNxDtkua7EZ4RVJnyamCHBU0aGpqJzVBgMjyo1lYYDDfBpU2vRxCbz78V50ackoMeXVECiUTo4HcCBxeAqQurJw+QMke24+5Oxzx5rh80bQ8L7ltYnkU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qlaZNbEa; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E6C86C4CEF8;
-	Sat, 18 Oct 2025 16:26:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760804793;
-	bh=rL1t/wJ1tLvV78IGL+3G159+J8nTlTIq+yCmhW7s30I=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=qlaZNbEaNpThAmrMHJnf+W2A3cuWFsosCEkKdoQoG42CHY8tnOD/zV/u33ry1kHfR
-	 bjppYkKd/8Um4yWbLfUtipm11WJdMvLVV5PCMziigxcAlDJTMuMSuywpI/ChA5u2d8
-	 1BbwPsAKmVg2Y9+v+5/96JRe2v03nkTf09bh9MlSDYAfCz3Wg21fLh/veCLK3czfKq
-	 bFAiWrahETUA7u1TG1rkYX/8oA2/eInj3smRiNrpW04EYM2GxHmYQj/pKGh49BL3Jf
-	 0Iqv/zQsZusBzOS0y81Qxx+UBe8VD/5ipwfXE6KCYim6uh2dKDc1lTQsbgZn63z8Nd
-	 r7qWcoUzk9Twg==
-Date: Sat, 18 Oct 2025 17:26:25 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Jorge Marques <jorge.marques@analog.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
- <Michael.Hennerich@analog.com>, David Lechner <dlechner@baylibre.com>, Nuno
- =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
- <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>
-Subject: Re: [PATCH 7/7] iio: adc: ad4062: Add IIO Events support
-Message-ID: <20251018172625.42f13f4a@jic23-huawei>
-In-Reply-To: <20251013-staging-ad4062-v1-7-0f8ce7fef50c@analog.com>
-References: <20251013-staging-ad4062-v1-0-0f8ce7fef50c@analog.com>
-	<20251013-staging-ad4062-v1-7-0f8ce7fef50c@analog.com>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1760805688; c=relaxed/simple;
+	bh=TcQFWVZGs08q/95sXCl8FOxL8CeUh4aHnSknN21+alc=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=MoO2tvSpSiGlbcWAjN1eLRAND2kCBPAtWeKx517H+a81mLc0NCeCX6bSYIq2310OLeW5w2YT/nY+8N1VMvbazqpowrUCVyAKRcxPn+2oHD+7JHvtuefC7+MX4Zdd6ClzUCa+p8OTZA2CZbjKGNCGXC7KwkvtNei791+qqC3sj9U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=protonmail.com; spf=pass smtp.mailfrom=protonmail.com; dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b=k0Ut4Lyc; arc=none smtp.client-ip=185.70.43.166
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=protonmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=protonmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+	s=protonmail3; t=1760805682; x=1761064882;
+	bh=TcQFWVZGs08q/95sXCl8FOxL8CeUh4aHnSknN21+alc=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+	 Message-ID:BIMI-Selector;
+	b=k0Ut4LycV//jYlWaBMAJ2hJ8M5LPwV7IhEgdYXu7kaePsIzKfZXMOgK80sdAk9BBO
+	 SNjUVe1Os7HeLVHr8e2nny4qK002WgWpSHm45f1bPEvTkzQZ2aiqoO7CGwBlyF7pmw
+	 DOi7pfWbV8vZ9J+wiagJH7NtPiFL6hP64egxmGqqx6RXoRmAdw4bnA7Ykr2GqdoCQt
+	 ps0FiehroiVMdDqIotmq0mwgst4q3eiqHxrukqTUadXqRNCqBoiVHNFZUWFMQ3C9Rt
+	 6+4ocmLZhYXp5ry1D7aHHyJNWigcANkQwHnMzFvQgYoiynmMPKqW518f9BitSCc3Er
+	 UcvBNInyV7OBA==
+Date: Sat, 18 Oct 2025 16:41:17 +0000
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+From: cristian_ci <cristian_ci@protonmail.com>
+Cc: "~postmarketos/upstreaming@lists.sr.ht" <~postmarketosupstreaming@lists.sr.ht>, "cristian_ci@protonmail.com" <cristian_ci@protonmail.com>, "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>, "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>, "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>, "phone-devel@vger.kernel.org" <phone-devel@vger.kernel.org>
+Subject: Re: [PATCH 00/10] ARM: Add support for yarisxl mt6582 board
+Message-ID: <lOMHa6mcw10H8qfGsi25ljIEyIsio6vgGzJvT9FXWc_B4uI2kpes8OP2z_2VqnkVvQWwmQUInen4YOGg92ZgN8vbZDc1KuWNvwxjFIpBhgU=@protonmail.com>
+In-Reply-To: <6657bfa7-9a6e-49a1-890f-81cf655940a7@collabora.com>
+References: <20250920-mt6582-v1-0-b887720f577d@protonmail.com> <6657bfa7-9a6e-49a1-890f-81cf655940a7@collabora.com>
+Feedback-ID: 27475468:user:proton
+X-Pm-Message-ID: 7710293a5ab96e00a613212a51e9b751d2db05ca
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, 13 Oct 2025 09:28:05 +0200
-Jorge Marques <jorge.marques@analog.com> wrote:
+On Monday, September 22nd, 2025 at 13:05, AngeloGioacchino Del Regno <angel=
+ogioacchino.delregno@collabora.com> wrote:
 
-> Adds support for IIO Events. Optionally, gp0 is assigned as Threshold
-> Either signal, if not present, fallback to an I3C IBI with the same
-> role.
-> 
-> Signed-off-by: Jorge Marques <jorge.marques@analog.com>
-The one bit of this that I'm not sure on is the apparent dropping out
-of monitor mode on most userspace interactions that cause register accesses.
-That seems like a fairly unintuitive ABI. It might be better to block the access
-until the events are turned off. Perhaps I missed something?
+> Il 20/09/25 20:23, Cristian Cozzolino via B4 Relay ha scritto:
+>=20
+> > This series adds support for Alcatel Pop C7 (OT-7041D) smartphone
+> > board, named yarisxl, based on MT6582 SoC. It also includes some
+> > preliminary patches. More in detail:
+> > - patches 1 and 2 add support for mt6582 to platform code
+> > (verified by looking at generic mt6582 downstream source code)
+> > - patches 3-6 do some maintenance work to mt6582.dtsi
+> > (I was unsure if squashing timer node patches into one)
+> > - patches 7 and 8 add devicetree and dt-bindings support for yarisxl
+>=20
+>=20
+> That's simply great! Nice cleanup and nice addition - the only thing I ca=
+n say here
+> is that seeing simple-framebuffer is a pity, and that I hope that your pl=
+ans are to
+> continue with systimer, clocks, spi, i2c, apdma, mediatek-drm components,=
+ etc :-)
+>=20
+> In the meanwhile, for the whole series
+>=20
+> Reviewed-by: AngeloGioacchino Del Regno angelogioacchino.delregno@collabo=
+ra.com
+>=20
+>=20
+> Keep up the good work!
+>=20
+> Cheers,
+> Angelo
+>=20
 
-Thanks,
+Hi (sorry for being late)!
+It'd be nice add more support for this old platform, though I've to say tha=
+t I've got inspiration from MT6572 patch series and this series is mostly b=
+ased on that work.
+BTW, I've tested this series together with mt6582 u-boot port (installed as=
+ 2nd stage bootloader), always derived from mt65xx u-boot work.
+Since original port has been tested on mt6580 and mt6572, it's not too much=
+ hard making a port for sibling SoCs like mt6582 (done) and mt6592.
+(I've also managed to boot successfully a 1st stage bootloader mt6582 u-boo=
+t port but I've not yet tried loading linux - and testing these patches - w=
+ith that).
+AS mt65xx platforms share many similarities, I hope more people could take =
+part and extend mainline linux hardware support for mt6580, mt6572 and mt65=
+82 as you wish.
 
-Jonathan
+In the meantime,
 
-> ---
->  drivers/iio/adc/ad4062.c | 351 ++++++++++++++++++++++++++++++++++++++++++++++-
->  1 file changed, 347 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/iio/adc/ad4062.c b/drivers/iio/adc/ad4062.c
-> index 40b7c10b8ce7145b010bb11e8e4698baacb6b3d3..b5b12f81c71b52f244600ed23dad11253290b868 100644
-> --- a/drivers/iio/adc/ad4062.c
-> +++ b/drivers/iio/adc/ad4062.c
-> @@ -13,6 +13,7 @@
+Thank You very nuch and=20
 
-> +/**
-> + * A register access will cause the device to drop from monitor mode
-> + * into configuration mode, update the state to reflect that.
-> + */
-> +static void ad4062_exit_monitor_mode(struct ad4062_state *st)
-> +{
-> +	if (st->wait_event) {
-> +		pm_runtime_mark_last_busy(&st->i3cdev->dev);
+Best Regards,
 
-> +		pm_runtime_put_autosuspend(&st->i3cdev->dev);
-As elsewhere, no longer need to have the mark_last_busy() call here.
+Cristian.
 
-> +		st->wait_event = 0;
-> +	}
-> +}
-
-> +static ssize_t sampling_frequency_available_show(struct device *dev,
-> +						 struct device_attribute *attr,
-> +						 char *buf)
-> +{
-> +	struct ad4062_state *st = iio_priv(dev_to_iio_dev(dev));
-> +	int ret = 0;
-> +
-> +	for (u8 i = AD4062_FS_OFFSET(st->chip->grade);
-> +	     i < AD4062_FS_LEN(st->chip->grade); i++)
-> +		ret += sysfs_emit_at(buf, ret, "%s ", ad4062_conversion_freqs[i]);
-> +
-> +	ret += sysfs_emit_at(buf, ret, "\n");
-> +	return ret;
-
-Has slightly ugly format of " \n" at end rather than "\n"
-There are various ways to handle this perhaps easiest is something like
-	for (u8 i = AD4062_FS_OFFSET(st->chip->grade);
-	     i < AD4062_FS_LEN(st->chip->grade); i++)
-		ret += sysfs_emit_at(buf, ret, "%s%c", ad4062_conversion_freqs[i],
-				      i != (AD4062_FS_LEN(st->chip_grade) - 1) ? "\n", " ");
-
-
-> +}
-
->  static irqreturn_t ad4062_poll_handler(int irq, void *p)
-> @@ -523,6 +645,24 @@ static int ad4062_request_irq(struct iio_dev *indio_dev)
->  	struct device *dev = &st->i3cdev->dev;
->  	int ret;
->  
-> +	ret = fwnode_irq_get_byname(dev_fwnode(&st->i3cdev->dev), "gp0");
-> +	if (ret >= 0) {
-> +		ret = devm_request_threaded_irq(dev, ret, NULL,
-> +						ad4062_irq_handler_thresh,
-> +						IRQF_ONESHOT, indio_dev->name,
-> +						indio_dev);
-> +		if (ret)
-> +			return ret;
-> +	} else if (ret != -EPROBE_DEFER) {
-> +		ret = regmap_update_bits(st->regmap, AD4062_REG_ADC_IBI_EN,
-> +					 AD4062_REG_ADC_IBI_EN_MAX | AD4062_REG_ADC_IBI_EN_MIN,
-> +					 AD4062_REG_ADC_IBI_EN_MAX | AD4062_REG_ADC_IBI_EN_MIN);
-> +		if (ret)
-> +			return ret;
-> +	} else {
-> +		return ret;
-
-As before. I'd prefer error cases handled first. The earlier code suggestion
-doesn't quite work but something along those lines should be doable.
-
-> +	}
-> +
->  	ret = fwnode_irq_get_byname(dev_fwnode(&st->i3cdev->dev), "gp1");
->  	if (ret >= 0) {
->  		ret = devm_request_threaded_irq(dev, ret, NULL,
-
-> @@ -779,6 +923,196 @@ static int ad4062_write_raw(struct iio_dev *indio_dev,
->  	return ret;
->  }
->  
-> +static int ad4062_monitor_mode_enable(struct ad4062_state *st, bool enable)
-> +{
-> +	int ret = 0;
-> +
-> +	if (!enable)
-> +		goto out_suspend;
-> +
-> +	ret = pm_runtime_resume_and_get(&st->i3cdev->dev);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = ad4062_conversion_frequency_set(st, st->events_frequency);
-> +	if (ret)
-> +		goto out_suspend;
-> +
-> +	ret = ad4062_set_operation_mode(st, AD4062_MONITOR_MODE);
-> +	if (ret)
-> +		goto out_suspend;
-> +
-> +	return ret;
-return 0;
-
-> +out_suspend:
-> +	pm_runtime_put_autosuspend(&st->i3cdev->dev);
-> +	return ret;
-> +}
-
->  static int ad4062_triggered_buffer_postenable(struct iio_dev *indio_dev)
->  {
->  	struct ad4062_state *st = iio_priv(indio_dev);
-> @@ -788,6 +1122,7 @@ static int ad4062_triggered_buffer_postenable(struct iio_dev *indio_dev)
->  	ret = pm_runtime_resume_and_get(&st->i3cdev->dev);
->  	if (ret)
->  		return ret;
-> +	ad4062_exit_monitor_mode(st);
-Hmm. So you always exist monitor mode if we enable the buffer. I assume that doesn't
-change detection of events because the buffered mode also allows that?
-
-Do we not need something to turn monitor mode on again once we disable buffered capture?
->  
->  	ret = ad4062_set_operation_mode(st, st->mode);
->  	if (ret)
-> @@ -833,6 +1168,7 @@ static int ad4062_debugfs_reg_access(struct iio_dev *indio_dev, unsigned int reg
->  
->  	if (!iio_device_claim_direct(indio_dev))
->  		return -EBUSY;
-> +	ad4062_exit_monitor_mode(st);
-
-This probably needs a comment. Not obvious to me how you end up in with it enabled
-again after the debugfs read / write finishes.
-
->  
->  	if (readval)
->  		ret = regmap_read(st->regmap, reg, readval);
+P.S. I've made a mistake about cover letter by making reference to a number=
+ of eight patches, while actually there are ten patches. BTW, that's not im=
+portant at this point.
 
