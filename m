@@ -1,79 +1,79 @@
-Return-Path: <devicetree+bounces-228369-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228370-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id D094DBECF1B
-	for <lists+devicetree@lfdr.de>; Sat, 18 Oct 2025 14:12:15 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BED6FBECF1E
+	for <lists+devicetree@lfdr.de>; Sat, 18 Oct 2025 14:12:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id ABA024E5D8C
-	for <lists+devicetree@lfdr.de>; Sat, 18 Oct 2025 12:12:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2D46619C4F13
+	for <lists+devicetree@lfdr.de>; Sat, 18 Oct 2025 12:12:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53AB92D3EC7;
-	Sat, 18 Oct 2025 12:12:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 206A32D6E49;
+	Sat, 18 Oct 2025 12:12:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kK/h7Wzl"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lrBhx+lj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B9CC277C87
-	for <devicetree@vger.kernel.org>; Sat, 18 Oct 2025 12:12:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41A8E29D26D
+	for <devicetree@vger.kernel.org>; Sat, 18 Oct 2025 12:12:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760789524; cv=none; b=Jni9Ou6fQRPpKbGadIVo7zo98tr94x2p0llfcXZ1utiHprWktS39DqlgqQK9Nm6Wr6WhNrQo/TVG2v9iHJA1Q4wyY+4vflotvHKCnFG9rdtEc/P4/cQrWS3zyw+7jLE9LAUEqiIAO3c/j0DYGavqNczI1X7IfyF8GQWSuYuGec4=
+	t=1760789525; cv=none; b=SD1GVsk3BbvDAroXrm1QrUgQ3IrP3UnoqjDGPZlrj/w94DkU7gnDzye1mT7dokjldCWQgrtv4ulA/BmH9b1+S+/cugPsUrKvePvUofDynjHnxmpYa4H2hmX0XqxQ7v0OxsgxqTrD/rmJXATfTITAE2vIa3l3d0V7zVet0Sa79zQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760789524; c=relaxed/simple;
-	bh=Zm/F6uFyMc4nnEbtPWODklxGuzdzraA3ZsA0+iIdu1I=;
+	s=arc-20240116; t=1760789525; c=relaxed/simple;
+	bh=gdXtc2fH7Fyw0MfgnqxFQ0cKYBFkYfBr+/WJv43AoYU=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=eNSKBl2F9JJr5/r7Tyodg6j0jxy2/HLwz/cWdX5B54pLTf6k8VCscSNdHI7yPOoBBcNmr5JSlwyQcdu3gdyma9BfpqP2N4Txn7E2gg0W20aAyblYBLLTZ/G8sxBHRcHBkgUAZD7b7YZVexxbZEfPOR+3zhiIzOqTU3IZL5609nI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kK/h7Wzl; arc=none smtp.client-ip=209.85.221.54
+	 MIME-Version; b=tu2Vf3UCW0qaPrMByvBxlIu1HT30pe9hz8Ln25z8y5qqXav7d9BthvfUFnHCBKaoWZXqnXqLVnNCoi17VYnUyP3O/Hfc3oISeMAK+4vk2iZnO/rB/Ke1HbjCUnpssJFO7vA1Ti0TOjK4TfgZuKc4MKNOKIa6b59mjiniAEp4YZo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lrBhx+lj; arc=none smtp.client-ip=209.85.128.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-4270900c887so188610f8f.1
-        for <devicetree@vger.kernel.org>; Sat, 18 Oct 2025 05:12:01 -0700 (PDT)
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-471810a77c1so837915e9.2
+        for <devicetree@vger.kernel.org>; Sat, 18 Oct 2025 05:12:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1760789520; x=1761394320; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1760789521; x=1761394321; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=/mFohtVVslXrTyo8hMYkLuQEeqxiLiM0O92p+2v9UC8=;
-        b=kK/h7WzlJjjMGW95mE2R5G4XVJ4OIde2XRrdgxdNuxl1k3E7Oa7izSQkdWe7eJhY62
-         w0OgJ3YuRrZz0Bj2OCa05QT1TVSgT29DSZCId4AETCLQ0EROO8X8UyjkEgbTh1X1BOls
-         gH3ChmKvHOnjdpuWS0Ch8c9vTqogOOXXZQJWDuWXU8cPWWcIL8Uq72EZDxnffKqsza5j
-         2YokSavg+5PBeSpglDQ/Xf6jvsPfxck1LQ/x15cfXiXHfUjqJQ1qGDUai5wWhjA7m3O1
-         u+KtNzV9u5FWQJO4svBqaGcI0qi83tiKlaz/MZ6ul5Hpjzn6Z/YcBpI1P4XcSr0yG2Ea
-         K1VA==
+        bh=/aAseuQrGI9nO9oAcToUjoPa5MvV1yHsA/LNt97b5lY=;
+        b=lrBhx+ljb3OKxPLpfroWCi9fXLIGgqBIFmf+tNPgZc/Zmb8U4j9GLK3oSgYIh6IVZu
+         Sd3oW0JDOKZopilv3RreDVENAc2VIeG+g2eFu+7O8Nu8L/Zu4d7FNm2t6/LkkEXSY1cy
+         Glyj+lDY6ln5R9AIr0HbLRM29a8vsFtdFSMy8j66ZeHPFNw0u2UBm9Ttc38qgKPYzPKt
+         cUiF+VAt2oJj5QwjgcSAfXQs9ORK2apYXJDQ3IMMtAEajWS9F0Pt5HzgeZq0uIKc2uKA
+         OrLTQnh4aNwBTH6UpP6U0dfNzwhm0JXT9Ptqk46sYzbYNk2J/g/bYaivhrKUo9wvLmHw
+         8Y5A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760789520; x=1761394320;
+        d=1e100.net; s=20230601; t=1760789521; x=1761394321;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=/mFohtVVslXrTyo8hMYkLuQEeqxiLiM0O92p+2v9UC8=;
-        b=pdUfJ41xb6boY2tNxYmOUoNFHNtR6eMf3SJOTLQUhW+VcdfeED8zRokEDU4FnnhjZr
-         KqiBokkHTxBXHyatsM6L574e169Oy96FzJZ2dtH0KwL25nib/vHxGs1+khWRuvtIO/xI
-         mba5NN/CLKyRyLxDWC7cFEVyX8ok7QazS63Z6Tkl7j2Bkux82rib051CKmF2b1b+KUYy
-         So/UYO7T0PqRSaGCjuBu6yhjoc6jYhI8SZsQjvS+ZMyIsnnHMiAzkgUOIaE8wWgTTngd
-         3A3KUotEtKIisxDH+XVaX0V+D56QcB9P9lkkBjKouMocoBR+ihlAexOikhzYq1CcebcV
-         /RFg==
-X-Forwarded-Encrypted: i=1; AJvYcCWXEsJ50ZjVrJsD9aOForG/vZxxySPHBlOVpI78jZ0wIWqTSTQ7ivm8wbM4k8h7QGYCgOQA+cfOB37K@vger.kernel.org
-X-Gm-Message-State: AOJu0YxI4xcmYbCcikukCgB7yLgmFyP1+ockkF6mpcxcMb1Qf/ujxC8w
-	Nseg8wEekHNJNJPOfw1bwoGlbQ0NxVwx+ckb4yyCbQ0SsbJg8RL+arnL
-X-Gm-Gg: ASbGncukIx3r4Mtpkqkof+OtXfHUsVk/8ch3Rdfv4vFuIyJQkqeEA+BP1P/5x/dsx1J
-	GMkAZd8abpiMWb9IiFim4Fu8EXWHSGb1oPa4OTx9N/SATTonUQqs9GD41Ht4/+w3bip1E09ZzSL
-	EQhlzdSB6jMMvVyhlymU+L7cYFG0buysvlcBGiTKDQjDk3XY+nkbLe2+R01cU9VKDC2uVKxeffz
-	VNArgDCivqWKPhpK848hXATRVB0Qv6J0Oeh6PmnNyW3C/GyJ5Z4pH9P99NToNucPBo2ueWHY26T
-	6DB8YuC4wYSpVW5uIOZgpPOV02IU7DjqhHSCMg3YuKusVozJi736BsgmG+Qmyxxb+4Q4IbX1WBp
-	+wShkqBWk1WlWDUOrQd3jpmeVBErzFEbL6BP17wk2pX5KC5eLPHRckOniNhtcxCaG7wI/QHtItA
-	butxziHMQCXcJHmYOAUf+0F0tipeDZRrBa3QoK6G9m8IjvDbn/W6A=
-X-Google-Smtp-Source: AGHT+IH6Mz87+NrxpXtmwU/KYU3mRF4neYs964czY7WUGPjpjN+OX7ReDKdoBL663BBjzeMtGF0DiQ==
-X-Received: by 2002:a05:6000:2383:b0:425:6794:f19b with SMTP id ffacd0b85a97d-42704d14627mr2731734f8f.2.1760789519475;
-        Sat, 18 Oct 2025 05:11:59 -0700 (PDT)
+        bh=/aAseuQrGI9nO9oAcToUjoPa5MvV1yHsA/LNt97b5lY=;
+        b=QiMCFDDQDJ/suZXCSV+Z9Tg0sW7uMSmiAGvAh3XDFh98xEtLESrDX5NiBYSMrzGKQn
+         NZFpXD2to8y+2xOTTmMjXVCBDXC7dBG33bJS/xc/8NHqng/xdy/RocBMWzxuPvDd6q/a
+         boU5SVtXZ6xGGWLsoV8FrOyspizMz+3px5M6Y5hyMCn20z4e8BvrA4dMEzTGuictgaN6
+         Csj+Y1jUt1xzWlwCTWllwlSvRKmFDLPVMCHNqFUc8Is/eMAxlH303cmPqTxCcHdjw30q
+         qPehJ7xKGgJE/n/XmFNv9VmsMyD9Wm7ycMJV+QgrnU/BgkFCl+X6b8DhjX3MBXQvgfOo
+         Oa/Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUA7C/wKmwUhJVnNDASgVjfx18W9go/JaFFKBo6mk5bBeuCUCJw3MDxMdDb0llLzcQ5v6PIb1C1qj0w@vger.kernel.org
+X-Gm-Message-State: AOJu0YyIxFuXc2syPm0+b8q1cgSmhr8Mvw48cW6hnQ8/OYGY22fpXfyj
+	Y/6aE08eA2hL6kPJaIcHzUkDUfMcEACDeK0hCVtgbWUua9M62Aysj1ug
+X-Gm-Gg: ASbGncsIauqf8hOe9xnz4jE8h30On92Hszx29J65OsMUbfgX8DMJDAD6rDj1uVfyI3H
+	WYIA75onwyJZHw7+07suAbCwPAZhgTUIBZumEd6wUKIdZdNTOGTpVY2+Vq6wOm66U6W2+TQb8sy
+	RPamxLFm8946A99QUtFuqHU/gYJKTlZ7EPSWj829GUJezEHhd80AfT7RlqW0n0Qf2ixVW9uyGCS
+	rFKfH1UZ8PEzsM5mTZJKChi5rjV8qF38v92JIDfkjfB5nuJ64NuU+nCWpOt3h8bQlWicKcCJ44e
+	SamqRfLp3Jq5Slb/D2ocxilr5Ah9WOwCVcNwseZNr+RH1Mm7q9ihvcOw9OCC1CBZA9UvqcBU8LW
+	qmgqc+e5bZGHZySqiOR73qK2ZAn+gL5zsEHGRhMgsCwOzZuXyHwKwh6XoesamaP27Zh0ZY1EFBv
+	xkZ4NTsTGwh3BT9fa/4djTW0JO10gL1jVGUhoekAtr
+X-Google-Smtp-Source: AGHT+IHp4aW/LC99XRnz+vzdjoRAZ1xsDA7hVOImEH+NXfsX7IjCmkqpOBGaoAmreY1mOE++mz/hEQ==
+X-Received: by 2002:a5d:5f49:0:b0:3ee:1125:fb68 with SMTP id ffacd0b85a97d-42704d855ccmr2798930f8f.2.1760789521331;
+        Sat, 18 Oct 2025 05:12:01 -0700 (PDT)
 Received: from localhost.localdomain (84-74-0-139.dclient.hispeed.ch. [84.74.0.139])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-427ea5a0f19sm4763812f8f.9.2025.10.18.05.11.57
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-427ea5a0f19sm4763812f8f.9.2025.10.18.05.11.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 18 Oct 2025 05:11:59 -0700 (PDT)
+        Sat, 18 Oct 2025 05:12:01 -0700 (PDT)
 From: Lothar Rubusch <l.rubusch@gmail.com>
 To: robh@kernel.org,
 	krzk+dt@kernel.org,
@@ -89,9 +89,9 @@ Cc: arnd@arndb.de,
 	tien.fong.chee@altera.com,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v7 01/11] ARM: dts: socfpga: add Enclustra boot-mode dtsi
-Date: Sat, 18 Oct 2025 12:11:45 +0000
-Message-Id: <20251018121155.7743-2-l.rubusch@gmail.com>
+Subject: [PATCH v7 02/11] ARM: dts: socfpga: add Enclustra base-board dtsi
+Date: Sat, 18 Oct 2025 12:11:46 +0000
+Message-Id: <20251018121155.7743-3-l.rubusch@gmail.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <20251018121155.7743-1-l.rubusch@gmail.com>
 References: <20251018121155.7743-1-l.rubusch@gmail.com>
@@ -103,79 +103,142 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Add generic boot-mode support to Enclustra Arria10 and Cyclone5 boards.
-Some Enclustra carrier boards need hardware adjustments specific to the
-selected boot-mode.
-
-Enclustra's Arria10 SoMs allow for booting from different media. By
-muxing certain IO pins, the media can be selected. This muxing can be
-done by gpios at runtime e.g. when flashing QSPI from off the
-bootloader. But also to have statically certain boot media available,
-certain adjustments to the DT are needed:
-- SD: QSPI must be disabled
-- eMMC: QSPI must be disabled, bus width can be doubled to 8 byte
-- QSPI: any mmc is disabled, QSPI then defaults to be enabled
-
-The boot media must be accessible to the bootloader, e.g. to load a
-bitstream file, but also to the system to mount the rootfs and to use
-the specific performance.
+Add generic Enclustra base-board support for the Mercury+ PE1, the
+Mercury+ PE3 and the Mercury+ ST1 board. The carrier boards can be
+freely combined with the SoMs Mercury+ AA1, Mercury SA1 and
+Mercury+ SA2.
 
 Signed-off-by: Andreas Buerkler <andreas.buerkler@enclustra.com>
 Signed-off-by: Lothar Rubusch <l.rubusch@gmail.com>
 ---
- .../socfpga_enclustra_mercury_bootmode_emmc.dtsi     | 12 ++++++++++++
- .../socfpga_enclustra_mercury_bootmode_qspi.dtsi     |  8 ++++++++
- .../socfpga_enclustra_mercury_bootmode_sdmmc.dtsi    |  8 ++++++++
- 3 files changed, 28 insertions(+)
- create mode 100644 arch/arm/boot/dts/intel/socfpga/socfpga_enclustra_mercury_bootmode_emmc.dtsi
- create mode 100644 arch/arm/boot/dts/intel/socfpga/socfpga_enclustra_mercury_bootmode_qspi.dtsi
- create mode 100644 arch/arm/boot/dts/intel/socfpga/socfpga_enclustra_mercury_bootmode_sdmmc.dtsi
+ .../socfpga_enclustra_mercury_pe1.dtsi        | 33 +++++++++++
+ .../socfpga_enclustra_mercury_pe3.dtsi        | 55 +++++++++++++++++++
+ .../socfpga_enclustra_mercury_st1.dtsi        | 15 +++++
+ 3 files changed, 103 insertions(+)
+ create mode 100644 arch/arm/boot/dts/intel/socfpga/socfpga_enclustra_mercury_pe1.dtsi
+ create mode 100644 arch/arm/boot/dts/intel/socfpga/socfpga_enclustra_mercury_pe3.dtsi
+ create mode 100644 arch/arm/boot/dts/intel/socfpga/socfpga_enclustra_mercury_st1.dtsi
 
-diff --git a/arch/arm/boot/dts/intel/socfpga/socfpga_enclustra_mercury_bootmode_emmc.dtsi b/arch/arm/boot/dts/intel/socfpga/socfpga_enclustra_mercury_bootmode_emmc.dtsi
+diff --git a/arch/arm/boot/dts/intel/socfpga/socfpga_enclustra_mercury_pe1.dtsi b/arch/arm/boot/dts/intel/socfpga/socfpga_enclustra_mercury_pe1.dtsi
 new file mode 100644
-index 000000000000..d79cb64da0de
+index 000000000000..abc4bfb7fccf
 --- /dev/null
-+++ b/arch/arm/boot/dts/intel/socfpga/socfpga_enclustra_mercury_bootmode_emmc.dtsi
-@@ -0,0 +1,12 @@
++++ b/arch/arm/boot/dts/intel/socfpga/socfpga_enclustra_mercury_pe1.dtsi
+@@ -0,0 +1,33 @@
 +// SPDX-License-Identifier: GPL-2.0+ OR MIT
 +/*
 + * Copyright (C) 2024 Enclustra GmbH - https://www.enclustra.com
 + */
 +
-+&qspi {
-+	status = "disabled";
++&i2c_encl {
++	status = "okay";
++
++	eeprom@57 {
++		status = "okay";
++		compatible = "microchip,24c128";
++		reg = <0x57>;
++		pagesize = <64>;
++		label = "user eeprom";
++		address-width = <16>;
++	};
++
++	lm96080: temperature-sensor@2f {
++		status = "okay";
++		compatible = "national,lm80";
++		reg = <0x2f>;
++	};
++
++	si5338: clock-controller@70 {
++		compatible = "silabs,si5338";
++		reg = <0x70>;
++	};
++
 +};
 +
-+&mmc {
-+	bus-width = <8>;
++&i2c_encl_fpga {
++	status = "okay";
 +};
-diff --git a/arch/arm/boot/dts/intel/socfpga/socfpga_enclustra_mercury_bootmode_qspi.dtsi b/arch/arm/boot/dts/intel/socfpga/socfpga_enclustra_mercury_bootmode_qspi.dtsi
+diff --git a/arch/arm/boot/dts/intel/socfpga/socfpga_enclustra_mercury_pe3.dtsi b/arch/arm/boot/dts/intel/socfpga/socfpga_enclustra_mercury_pe3.dtsi
 new file mode 100644
-index 000000000000..5ba21dd8f5ba
+index 000000000000..bc57b0680878
 --- /dev/null
-+++ b/arch/arm/boot/dts/intel/socfpga/socfpga_enclustra_mercury_bootmode_qspi.dtsi
-@@ -0,0 +1,8 @@
++++ b/arch/arm/boot/dts/intel/socfpga/socfpga_enclustra_mercury_pe3.dtsi
+@@ -0,0 +1,55 @@
 +// SPDX-License-Identifier: GPL-2.0+ OR MIT
 +/*
 + * Copyright (C) 2024 Enclustra GmbH - https://www.enclustra.com
 + */
 +
-+&mmc {
-+	status = "disabled";
++&i2c_encl {
++	i2c-mux@74 {
++		status = "okay";
++		compatible = "nxp,pca9547";
++		#address-cells = <1>;
++		#size-cells = <0>;
++		reg = <0x74>;
++
++		i2c@0 {
++			#address-cells = <1>;
++			#size-cells = <0>;
++			reg = <0>;
++
++			eeprom@56 {
++				status = "okay";
++				compatible = "microchip,24c128";
++				reg = <0x56>;
++				pagesize = <64>;
++				label = "user eeprom";
++				address-width = <16>;
++			};
++
++			lm96080: temperature-sensor@2f {
++				status = "okay";
++				compatible = "national,lm80";
++				reg = <0x2f>;
++			};
++
++			pcal6416: gpio@20 {
++				status = "okay";
++				compatible = "nxp,pcal6416";
++				reg = <0x20>;
++				gpio-controller;
++				#gpio-cells = <2>;
++			};
++		};
++	};
 +};
-diff --git a/arch/arm/boot/dts/intel/socfpga/socfpga_enclustra_mercury_bootmode_sdmmc.dtsi b/arch/arm/boot/dts/intel/socfpga/socfpga_enclustra_mercury_bootmode_sdmmc.dtsi
++
++&i2c_encl_fpga {
++	status = "okay";
++
++	i2c-mux@75 {
++		status = "okay";
++		compatible = "nxp,pca9547";
++		#address-cells = <1>;
++		#size-cells = <0>;
++		reg = <0x75>;
++	};
++};
+diff --git a/arch/arm/boot/dts/intel/socfpga/socfpga_enclustra_mercury_st1.dtsi b/arch/arm/boot/dts/intel/socfpga/socfpga_enclustra_mercury_st1.dtsi
 new file mode 100644
-index 000000000000..2b102e0b6217
+index 000000000000..4c00475f4303
 --- /dev/null
-+++ b/arch/arm/boot/dts/intel/socfpga/socfpga_enclustra_mercury_bootmode_sdmmc.dtsi
-@@ -0,0 +1,8 @@
++++ b/arch/arm/boot/dts/intel/socfpga/socfpga_enclustra_mercury_st1.dtsi
+@@ -0,0 +1,15 @@
 +// SPDX-License-Identifier: GPL-2.0+ OR MIT
 +/*
 + * Copyright (C) 2024 Enclustra GmbH - https://www.enclustra.com
 + */
 +
-+&qspi {
-+	status = "disabled";
++&i2c_encl {
++	si5338: clock-controller@70 {
++		compatible = "silabs,si5338";
++		reg = <0x70>;
++	};
++};
++
++&i2c_encl_fpga {
++	status = "okay";
 +};
 -- 
 2.39.5
