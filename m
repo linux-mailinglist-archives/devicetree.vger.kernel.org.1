@@ -1,291 +1,150 @@
-Return-Path: <devicetree+bounces-228429-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228430-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71F32BED7C4
-	for <lists+devicetree@lfdr.de>; Sat, 18 Oct 2025 20:31:42 +0200 (CEST)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 091A8BED82D
+	for <lists+devicetree@lfdr.de>; Sat, 18 Oct 2025 21:05:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 271873B1C13
-	for <lists+devicetree@lfdr.de>; Sat, 18 Oct 2025 18:31:41 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 8300634D1C6
+	for <lists+devicetree@lfdr.de>; Sat, 18 Oct 2025 19:05:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C09425F998;
-	Sat, 18 Oct 2025 18:31:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C062027F732;
+	Sat, 18 Oct 2025 19:05:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TyxW1um6"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AutLg8/Y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oo1-f53.google.com (mail-oo1-f53.google.com [209.85.161.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEB541A8F84;
-	Sat, 18 Oct 2025 18:31:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C128F2609FC
+	for <devicetree@vger.kernel.org>; Sat, 18 Oct 2025 19:05:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760812298; cv=none; b=oP111H03BxxImhMR0XHMzrt05kw/9u96TSm8JabTKCwGmhKrscmLv6LZTN42ex2CtJAil7NeZ3v0agsU6FGdwn48X37ziNw1y1NM1n40wLjGgJA4NMsO0ZhYILcxTtz3AjjWTBcpwGvcCmGuVX07+RAYMFhZOFcDe3NsyIktWWA=
+	t=1760814322; cv=none; b=UAGeskhDOzVFsPD5JJwEbrTNQgrx/DABxbu5zASY5jcAeH/rjyQEkSvHRUaSHHM56oJXtHmmAxAW1Zvd4l6MeMjiT8h9+RzkZs8HG7f3ORawKbkV1iRYklgle/y74ZRJ+I1pBSx6crarKSVInei/4pJsbdyr5NkbJpBdzpBS83s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760812298; c=relaxed/simple;
-	bh=RFUGt6wFf1CTHw/GUMp0FvTbQDXkUw9yH0yJJHo+PiU=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=COth+hNYo9TvvNDCLK0lthUgt+cgbn0/3DUxIx2vZnHx3kq2Sso3jvIAszIRvzDytHOSReo8XQwVmG2BUFkR+uEPvGQtoeb1g2QoSI7otkSb3Y+EtsD+nH11KCUtjn+Fm1RrxdH8uJVx9PsXw8nKZBdfMmpEq4C15xly/kO7cHI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TyxW1um6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0240DC4CEF8;
-	Sat, 18 Oct 2025 18:31:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760812297;
-	bh=RFUGt6wFf1CTHw/GUMp0FvTbQDXkUw9yH0yJJHo+PiU=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=TyxW1um6M2aXpQzSvSleD+4nh2+ni9MqDlNeqbdLmckWg3PZZyrwh8hMgrq5KAtW+
-	 RjAaXOVhMWHj2QnfZ6pMDazZnwlmPF5dW8FLum6wmzDdceiFrCnFxjolciIGQwRYMt
-	 2rkvVDKmqOl9AOEDLDJygV2w8iQ1pLKnx5fUFhDlb4UzCABApHQmGWoMT/4MV66OBr
-	 AIJfDAoj4mBOqriz+jLTyV/0lAT1vknOS1kA46hzgMl8DdCJBQF/yr8zJctXq+a6t2
-	 dvLrDv4Y2A9HX9VHBwgslB1gCJ5y8gO4Xs6dDN30HQ8H04QdUbY2g8Q6SSPBMLMDfB
-	 5iSP5J3Fe6MPQ==
-Date: Sat, 18 Oct 2025 19:31:28 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Nuno =?UTF-8?B?U8Oh?= <noname.nuno@gmail.com>
-Cc: Herve Codina <herve.codina@bootlin.com>, Wolfram Sang
- <wsa+renesas@sang-engineering.com>, David Lechner <dlechner@baylibre.com>,
- Nuno =?UTF-8?B?U8Oh?=	 <nuno.sa@analog.com>, Andy Shevchenko
- <andy@kernel.org>, Rob Herring	 <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley	 <conor+dt@kernel.org>, Geert
- Uytterhoeven <geert+renesas@glider.be>, Magnus Damm
- <magnus.damm@gmail.com>, Liam Girdwood <lgirdwood@gmail.com>, Mark Brown	
- <broonie@kernel.org>, linux-iio@vger.kernel.org,
- linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Pascal Eberhard <pascal.eberhard@se.com>,
- Miquel Raynal <miquel.raynal@bootlin.com>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH 2/4] iio: adc: Add support for the Renesas RZ/N1 ADC
-Message-ID: <20251018193128.799490fa@jic23-huawei>
-In-Reply-To: <f73f73e6b2aae53fa6bdae7c9d2970ba1caed7e5.camel@gmail.com>
-References: <20251015142816.1274605-1-herve.codina@bootlin.com>
-	<20251015142816.1274605-3-herve.codina@bootlin.com>
-	<1e8d7c96cdfaa93bcc0f581103dc0e13dfee17b7.camel@gmail.com>
-	<20251015211420.031c61fa@bootlin.com>
-	<de57f5274b2fe0aac3621dc10cb6d4d0d98d3063.camel@gmail.com>
-	<20251016160202.3d4d0a5e@bootlin.com>
-	<d7576a0bb9a8d5326d77ae434131540b4359bd2a.camel@gmail.com>
-	<20251017085904.07e40e37@bootlin.com>
-	<10e119ee5a76f1c47d7eb6a15989c8ffc00ffc5f.camel@gmail.com>
-	<20251017174322.07997789@bootlin.com>
-	<f73f73e6b2aae53fa6bdae7c9d2970ba1caed7e5.camel@gmail.com>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1760814322; c=relaxed/simple;
+	bh=GlkRPCPhPzOU9mLCQrN+RQspS//dfiZHnMCrJx2XjUE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=JEAeJlX/kieTrkUGbzowTg9z6UNAC6SGcTdJFrxsKohO6T6Sd5zBU44M2RPfUJhNUEVv3X3kiCQNlobjttCH6qsBy60GUROipOF80XLWTXH/YKReunNpRg3zttnRgU/FDCvJmtiTozlCgjumo13LCSoU3k14ploj2jaEQ07APII=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AutLg8/Y; arc=none smtp.client-ip=209.85.161.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oo1-f53.google.com with SMTP id 006d021491bc7-64a6cff75e9so813105eaf.0
+        for <devicetree@vger.kernel.org>; Sat, 18 Oct 2025 12:05:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1760814320; x=1761419120; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=npvxteVAfIEKzMeytJ2WmNF7D4AAPzWxw0qzjoJdKTI=;
+        b=AutLg8/YD91s2Pa5W48hZ3OrDxy/xKimxKdqmnQ9L9+1JudCP6yV0yTaPsTHLj9Ng6
+         ayu5A1t4VTvR2u4O4BNdk4UZQdTgAQm38dyU9qLzekSonv6ChcNGevrmv735Owp1ibgJ
+         b3qopqYRQMmPrWfBrDz9c6VcFRTp7gg0RafKw5fx+C6GTJ98hkRuPXE6qL0Nj9ThxvBx
+         M55Dr/GnPxZ6AJ/IGHa49FGKcK5TM3g7w7fRQG7jygaIWPB06Omtdh+ZoQfK6TqmfGpc
+         X1KelEdVtXe0T6BYZEMayKWX7AYx/89PpMW5VWQhEv2I2GVGBehpXaE2rr4/KaeTKGjB
+         ZbVA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1760814320; x=1761419120;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=npvxteVAfIEKzMeytJ2WmNF7D4AAPzWxw0qzjoJdKTI=;
+        b=cWrGx3tC5bu2/9ZKy4QQXj8S2Fv3lrUsZDEkERFAXxqQBggnex2L1xk6xi8iwV3QMx
+         bb/ofr91O+CraZq3rs0ndiKLgV7ys7LIDrQ/dOo9q46ust6GQchkJ/G+98mhekHBZhtK
+         LCzlcXVPSMUOvbpPBqLqp4Rdo1T0G72G5bhSdxGmCnQ3rUtoFy8VfptuGdTYoclig9+s
+         YnfXu051hdgH+7XtdwAggi/WE2CkvA9sGoCTTEtaC9h4c9lH5rNuUG4btDBaF3BkW+YF
+         OSqx7nc5nuKujXr5zbas3Z6dBGXYFcG9CTbf4vLje162Qw/OX8oeyEYMSB0fnqDl5Ok8
+         H3vw==
+X-Forwarded-Encrypted: i=1; AJvYcCUatArwSvkyb/6R/Td2quMGDu9hwrr3uGRooaUzmjLhyFNpErPROaO73uaIgLy556pxb5S81vAe1CNK@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxk1vtZyc9XFSfNtiQLM8NUh8UKd6MdzJD1D6oszWkwAarxj0sy
+	dkBeL19gf+o6M1G8x9iQgi8/3vc83LWJzVA010wxxSS7IHOArrRQ5wRnBs5tqvWRKxreT/6+7m7
+	dziBz2tMm7STxipb5800Gy2NLtb//5V4=
+X-Gm-Gg: ASbGncsL3/EVfLrWC+NZsw9ufopQlt9kAYZU2JvPCm3ByNPQpm4bbwlJ/b5WeKbDKic
+	RqvmGdwjfwKx3W9pwuKBjkC/RnahzpOnK65CK7Wb2KdfEHzkQ5KYYz3xD+0U5V+zGtnM1ALv/KX
+	xY6c4fzNUOyDgz6vYxvctiCggp+ZjrNOChNabZZerqt4mXM0+MQ1ls0yBpK2s6Uy/W8z/R8KcqN
+	eMlcpc2MWsjf5Yk0pYKMrbgALjLibihmq8W+Agilrq05TwUq9QLT73VPJT/AiBx0yso/0mx
+X-Google-Smtp-Source: AGHT+IHn6bYHsxvnnBm5dSpuXWjNC+PBXDBTRxFzgYuC3xttEpimkJMntVWJZ0cZXwANZryVuMF0nNeTd369Q5XITzY=
+X-Received: by 2002:a05:6871:6907:b0:349:de3c:bfc8 with SMTP id
+ 586e51a60fabf-3c98d0c7686mr2520732fac.31.1760814319754; Sat, 18 Oct 2025
+ 12:05:19 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+References: <20251015232015.846282-1-robh@kernel.org>
+In-Reply-To: <20251015232015.846282-1-robh@kernel.org>
+From: Jassi Brar <jassisinghbrar@gmail.com>
+Date: Sat, 18 Oct 2025 14:05:08 -0500
+X-Gm-Features: AS18NWBGMwSlAmXgBiXSGQWXCd5xrZTGccuKfzZwiw4wGpClNDZImruw46Wm-dA
+Message-ID: <CABb+yY2u=XZFdoDrjjYFhARLoaxH4uTnT=GyFmsnV_U1aWn=UQ@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: Fix inconsistent quoting
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Stephen Boyd <sboyd@kernel.org>, Thierry Reding <thierry.reding@gmail.com>, 
+	Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, 
+	Shawn Guo <shawnguo@kernel.org>, Fabio Estevam <festevam@gmail.com>, 
+	=?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
+	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
+	Jonathan Cameron <jic23@kernel.org>, Andy Shevchenko <andy@kernel.org>, 
+	Mauro Carvalho Chehab <mchehab@kernel.org>, Lee Jones <lee@kernel.org>, Joel Stanley <joel@jms.id.au>, 
+	Andrew Jeffery <andrew@codeconstruct.com.au>, Andrew Lunn <andrew@lunn.ch>, 
+	Vladimir Oltean <olteanv@gmail.com>, "David S. Miller" <davem@davemloft.net>, 
+	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+	Daire McNamara <daire.mcnamara@microchip.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+	=?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+	Manivannan Sadhasivam <mani@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, Vinod Koul <vkoul@kernel.org>, 
+	Kishon Vijay Abraham I <kishon@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Nicolas Ferre <nicolas.ferre@microchip.com>, 
+	Alexandre Belloni <alexandre.belloni@bootlin.com>, Claudiu Beznea <claudiu.beznea@tuxon.dev>, 
+	Florian Fainelli <f.fainelli@gmail.com>, Tony Lindgren <tony@atomide.com>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-iio@vger.kernel.org, linux-media@vger.kernel.org, 
+	netdev@vger.kernel.org, linux-pci@vger.kernel.org, 
+	linux-phy@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, 17 Oct 2025 17:29:34 +0100
-Nuno S=C3=A1 <noname.nuno@gmail.com> wrote:
-
-> On Fri, 2025-10-17 at 17:43 +0200, Herve Codina wrote:
-> > I Nuno,
-> >=20
-> > On Fri, 17 Oct 2025 09:26:26 +0100
-> > Nuno S=C3=A1 <noname.nuno@gmail.com> wrote:
-> >  =20
-> > > On Fri, 2025-10-17 at 08:59 +0200, Herve Codina wrote: =20
-> > > > Hi Nuno,
-> > > >=20
-> > > > On Thu, 16 Oct 2025 16:26:28 +0100
-> > > > Nuno S=C3=A1 <noname.nuno@gmail.com> wrote:
-> > > >=20
-> > > > ...
-> > > >=20
-> > > > ...=C2=A0  =20
-> > > > > > > > > > +
-> > > > > > > > > > +	ret =3D rzn1_adc_core_get_regulators(rzn1_adc,
-> > > > > > > > > > &rzn1_adc-
-> > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0  =20
-> > > > > > > > > > > adc_core[0],=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0  =20
-> > > > > > > > > > +					=C2=A0=C2=A0 "adc1-avdd",
-> > > > > > > > > > "adc1-
-> > > > > > > > > > vref");
-> > > > > > > > > > +	if (ret)
-> > > > > > > > > > +		return ret;
-> > > > > > > > > > +
-> > > > > > > > > > +	ret =3D rzn1_adc_core_get_regulators(rzn1_adc,
-> > > > > > > > > > &rzn1_adc-
-> > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0  =20
-> > > > > > > > > > > adc_core[1],=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0  =20
-> > > > > > > > > > +					=C2=A0=C2=A0 "adc2-avdd",
-> > > > > > > > > > "adc2-
-> > > > > > > > > > vref");
-> > > > > > > > > > +	if (ret)
-> > > > > > > > > > +		return ret;=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0  =20
-> > > > > > > > >=20
-> > > > > > > > > Hmm, is avdd really an optional regulator? I mean can the=
- ADC
-> > > > > > > > > power
-> > > > > > > > > up
-> > > > > > > > > at
-> > > > > > > > > all
-> > > > > > > > > without a supply in AVDD? Even vref seems to be mandatory=
- as we
-> > > > > > > > > can't
-> > > > > > > > > properly
-> > > > > > > > > scale the sample without it.=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0  =20
-> > > > > > > >=20
-> > > > > > > > Where do you see that avdd is an optional regulator?=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0  =20
-> > > > > > >=20
-> > > > > > > You are using devm_regulator_get_optional(). That's for optio=
-nal
-> > > > > > > regulators.
-> > > > > > > =C2=A0=C2=A0=C2=A0  =20
-> > > > > >=20
-> > > > > > Indeed I use devm_regulator_get_optional().
-> > > > > >=20
-> > > > > > We have two similar function to get regulators:
-> > > > > > - devm_regulator_get() and
-> > > > > > - devm_regulator_get_optional().
-> > > > > >=20
-> > > > > > devm_regulator_get() returns a dummy regulator if the regulator=
- is not
-> > > > > > described in the device-tree. The calling code has no way to kn=
-own if
-> > > > > > the regulator was present or not.=C2=A0=C2=A0=C2=A0  =20
-> > > > >=20
-> > > > > Yeah because it's mandatory and the part cannot work without powe=
-r :).
-> > > > > So we
-> > > > > should not be allowed to operate without a regulator.
-> > > > > =C2=A0  =20
-> > > > > >=20
-> > > > > > On the other hand, devm_regulator_get_optional() returns -ENODE=
-V when
-> > > > > > the
-> > > > > > regulator is not described.
-> > > > > >=20
-> > > > > > That's pretty confusing but it is the reality.
-> > > > > >=20
-> > > > > > I use devm_regulator_get_optional() but check for -ENODEV to se=
-e if
-> > > > > > the
-> > > > > > regulator is provided or not.
-> > > > > >=20
-> > > > > > In order to use the ADC core (is_used flag), I need both the AV=
-DD and
-> > > > > > the
-> > > > > > VREF regulator available.=C2=A0=C2=A0=C2=A0  =20
-> > > > >=20
-> > > > > And that is why I don't get why are we allowed to proceed if ther=
-e's no
-> > > > > regulators? That seems wrong to me.=C2=A0
-> > > > >=20
-> > > > > So I think the regulators should be mandatory in the bindings and=
- a
-> > > > > dummy
-> > > > > regulator should also not be allowed in this case because that sh=
-ould
-> > > > > get
-> > > > > you=C2=A0
-> > > > > -EINVAL when calling regulator_get_voltage().
-> > > > > =C2=A0  =20
-> > > >=20
-> > > > I have 4 regulators: avdd1, vref1, avvd2, vref2.
-> > > >=20
-> > > > The ADC controller can work with 2 internal ADC core (adc_core[0] a=
-nd
-> > > > adc_core[1])
-> > > > in the driver. Those internal core are not directly accessed by the
-> > > > driver.
-> > > > Only
-> > > > the ADC controller is accesses.
-> > > >=20
-> > > > Those cores have an AVDD and a VREF power supply.
-> > > >=20
-> > > > We can use either adc_core[0] only, adc_core[1] only or both adc co=
-res.
-> > > >=20
-> > > > Depending on regulator described, the driver uses one or two adc co=
-res.
-> > > >=20
-> > > > This choice is done by:
-> > > > --- 8< ---
-> > > > static int rzn1_adc_set_iio_dev_channels(struct rzn1_adc *rzn1_adc,
-> > > > 					 struct iio_dev *indio_dev)
-> > > > {
-> > > > 	int adc_used;
-> > > >=20
-> > > > 	adc_used =3D rzn1_adc->adc_core[0].is_used ? 0x01 : 0x00;
-> > > > 	adc_used |=3D rzn1_adc->adc_core[1].is_used ? 0x02 : 0x00;
-> > > >=20
-> > > > 	switch (adc_used) {
-> > > > 	case 0x01:
-> > > > 		indio_dev->channels =3D rzn1_adc1_channels;
-> > > > 		indio_dev->num_channels =3D ARRAY_SIZE(rzn1_adc1_channels);
-> > > > 		return 0;
-> > > > 	case 0x02:
-> > > > 		indio_dev->channels =3D rzn1_adc2_channels;
-> > > > 		indio_dev->num_channels =3D ARRAY_SIZE(rzn1_adc2_channels);
-> > > > 		return 0;
-> > > > 	case 0x03:
-> > > > 		indio_dev->channels =3D rzn1_adc1_adc2_channels;
-> > > > 		indio_dev->num_channels =3D
-> > > > ARRAY_SIZE(rzn1_adc1_adc2_channels);
-> > > > 		return 0;
-> > > > 	default:
-> > > > 		break;
-> > > > 	}
-> > > > --- 8< ---
-> > > >=20
-> > > > In rzn1_adc_core_get_regulators(), looking at one core I do the
-> > > > following:
-> > > > =C2=A0- Try to get AVDD (using get_optional)
-> > > > =C2=A0- Try to get VREF (using get_optional)
-> > > > =C2=A0- Core is used only if both regulators are present.
-> > > >=20
-> > > > For one core to be used, both regulators have to be present.
-> > > >=20
-> > > > Regulators are mandatory but adc core usage is optional.
-> > > >=20
-> > > > This optional usage depends on related regulator presence.
-> > > > =C2=A0  =20
-> > >=20
-> > > Ok, then we could flip the logic and have boolean properties for the =
-adc
-> > > core
-> > > usage and depending on that, requesting the regulators. To me, the in=
-tent
-> > > would
-> > > be more clear (at the expense of more FW properties). =20
-> >=20
-> > This introduces a new property and duplicates the information:
-> > - flag to tell if adc core is used
-> > - regulators described only if used
-> >=20
-> > And so, the possible flag set to "adc core used" but regulators not
-> > described. This is error prone.
-> >=20
-> >=20
-> > I have chosen to rely only on regulators description to avoid the
-> > information redundancy.
-> > =C2=A0 - regulators described -> adc core used
-> > =C2=A0 - regulators not described -> adc core not used =20
->=20
-> I'll leave it up to you but while I know it introduces new properties, yo=
-u could
-> still do it in a way that minimizes errors:
->=20
->  - In the bindings, if the property is set, then the regulators are a
-> __required__;
->  - In the driver, if the boolean is true, then use devm_regulator_get()
->=20
-> - Nuno S=C3=A1
-
-I'd add a question on this under the --- in the next version of the binding
-doc. This is a fairly unusual situation. I think the regulators presence is
-sufficient but it may surprise people enough to make it worth calling out.
-
-Jonathan
-
-
+On Wed, Oct 15, 2025 at 6:20=E2=80=AFPM Rob Herring (Arm) <robh@kernel.org>=
+ wrote:
+>
+> yamllint has gained a new check which checks for inconsistent quoting
+> (mixed " and ' quotes within a file). Fix all the cases yamllint found
+> so we can enable the check (once the check is in a release). Use
+> whichever quoting is dominate in the file.
+>
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> ---
+>  .../arm/altera/socfpga-clk-manager.yaml       |  4 ++--
+>  .../bindings/clock/nvidia,tegra124-car.yaml   |  8 ++++----
+>  .../bindings/clock/nvidia,tegra20-car.yaml    |  6 +++---
+>  .../devicetree/bindings/gpio/gpio-mxs.yaml    |  9 +++++----
+>  .../bindings/gpio/snps,dw-apb-gpio.yaml       |  4 ++--
+>  .../bindings/iio/temperature/adi,ltc2983.yaml | 20 +++++++++----------
+>  .../mailbox/qcom,apcs-kpss-global.yaml        | 16 +++++++--------
+>  .../mailbox/xlnx,zynqmp-ipi-mailbox.yaml      |  2 +-
+>  .../bindings/media/fsl,imx6q-vdoa.yaml        |  2 +-
+>  .../devicetree/bindings/mfd/aspeed-lpc.yaml   |  4 ++--
+>  .../devicetree/bindings/mfd/ti,twl.yaml       |  4 ++--
+>  .../bindings/net/ethernet-switch.yaml         |  2 +-
+>  .../pci/plda,xpressrich3-axi-common.yaml      |  2 +-
+>  .../bindings/phy/motorola,cpcap-usb-phy.yaml  |  4 ++--
+>  .../pinctrl/microchip,sparx5-sgpio.yaml       | 12 +++++------
+>  .../bindings/pinctrl/qcom,pmic-gpio.yaml      | 10 +++++-----
+>  .../bindings/pinctrl/qcom,pmic-mpp.yaml       |  6 +++---
+>  .../bindings/pinctrl/renesas,pfc.yaml         |  4 ++--
+>  .../bindings/pinctrl/renesas,rza1-ports.yaml  |  2 +-
+>  .../pinctrl/renesas,rzg2l-pinctrl.yaml        |  2 +-
+>  .../pinctrl/renesas,rzv2m-pinctrl.yaml        |  2 +-
+>  .../bindings/power/renesas,sysc-rmobile.yaml  |  4 ++--
+>  .../soc/microchip/atmel,at91rm9200-tcb.yaml   |  8 ++++----
+>  .../soc/tegra/nvidia,tegra20-pmc.yaml         | 12 +++++------
+>  24 files changed, 75 insertions(+), 74 deletions(-)
+>
+For the mailbox changes
+  Acked-by: Jassi Brar <jassisinghbrar@gmail.com>
 
