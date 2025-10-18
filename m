@@ -1,59 +1,62 @@
-Return-Path: <devicetree+bounces-228397-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228398-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E281BED1F1
-	for <lists+devicetree@lfdr.de>; Sat, 18 Oct 2025 17:04:26 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 13602BED214
+	for <lists+devicetree@lfdr.de>; Sat, 18 Oct 2025 17:12:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F060F5E3899
-	for <lists+devicetree@lfdr.de>; Sat, 18 Oct 2025 15:04:24 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 7A5BE4EAAE2
+	for <lists+devicetree@lfdr.de>; Sat, 18 Oct 2025 15:11:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8041B19D07A;
-	Sat, 18 Oct 2025 15:04:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96767EEBB;
+	Sat, 18 Oct 2025 15:11:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MjjhC76e"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JnVJyCmD"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B8A027462;
-	Sat, 18 Oct 2025 15:04:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD6651E9915;
+	Sat, 18 Oct 2025 15:11:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760799862; cv=none; b=nZIaO5wfvc3zBFSdMWpW5CDxKcgL7/KSrz6f3yL/WjFecCZyeso54UsbsUqx60+Lnu4ewSy31YUVrzvweThN6HKivSh7+jz49Jg7kTgKMUjMHOytjaxKgH44JWvbca40kv0NQrVONzt4tD7B83e6IEAmJdEGe3Rm+3lwIDQCBao=
+	t=1760800311; cv=none; b=KKw9UQRhb15P3PIUUG4PYi/JGK6CHkW5cO+AXclSSHjHteDHiBWCKUVu/Y+684+NA51R1CY8ShrwB6+nlHkE8ZE6h0JrU569nluOOr9tECzXFSiQgGis+hkBxJDvNqgrXUtCyat3XAiLRM0tQKQvPz/EWudFd0Dh8ffKEFfkakw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760799862; c=relaxed/simple;
-	bh=mto8f88gLALMyI3SNVJ1Ul1TkcLFVZc2m0V1CadkF+0=;
+	s=arc-20240116; t=1760800311; c=relaxed/simple;
+	bh=NcMUVSP+fxinMuOIMSQ26N9mzwAwXGigQE60prdyrmk=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=aqli1zPYoL1fCp4LnXBKFPgHUFLVxzCcb84uybrVPy2FZnSKL28Yq2KdtK+5ZPJUPI+en0S6hP8HLWwI5FpSG490SQUckX3BKubyjnoC357E112/PxKRbSXpKuGuE9Ctf7Tw6nVsz/M1bfFVEcfDQg8xC9yYUl34TtaKBVGlq+I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MjjhC76e; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D5A95C4CEF8;
-	Sat, 18 Oct 2025 15:04:09 +0000 (UTC)
+	 MIME-Version:Content-Type; b=DoHRe2V5p2JR3w1xYepum+PaEscgEO8jTrigLj0K+aqAAScWY6sXskpRRaFBPDv5HCyxO5hoo2jLf2gZCE6b3rMUnJzIHnRi+NnQWsJ/7ZfAXYIm+un2VXNbg8RteZxMtURJPzm55/szh7cymwPrS8XKo0kWo6+cSoOEJtrinEY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JnVJyCmD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 988C1C4CEF8;
+	Sat, 18 Oct 2025 15:11:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760799861;
-	bh=mto8f88gLALMyI3SNVJ1Ul1TkcLFVZc2m0V1CadkF+0=;
+	s=k20201202; t=1760800311;
+	bh=NcMUVSP+fxinMuOIMSQ26N9mzwAwXGigQE60prdyrmk=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=MjjhC76e1DQoBOd3H6v/7l94fVoDLbKfgOAFk+tpRDkkKZvPfHcQmFnkXOjXSG+fi
-	 nHTQNBFiQwD7V532Qb873EHrUhjI7UdRqDTdBY/Sg5zHYDeTxUFJWgrGltGnlMPCDh
-	 OpD03YIq54oQYc3wtk8ljd1GBXj9v81b5ATNRGpLUP2r08rApa6IN3LyxQP/VSpHMl
-	 QQ1Gv1zSfiLxeZq10g4wlRp/pqDJ99lD81SeNVjY9z2aLcmeSaeCMWF71G1b4XwDno
-	 4kXicIKFP+4JbNfGcZ9gfy2W5f+bsMRlV5eYDPxrj1KzDH1n5Bbs4+BMLtrSPxTFw8
-	 DPL2CftoKjdlQ==
-Date: Sat, 18 Oct 2025 16:04:00 +0100
+	b=JnVJyCmDhsDkNB2cAK2zQsaPE9mLJh7c3bsVzOLvRB9rE0I544YAQ1g5rXHdJdh0L
+	 M6AdA9FBeY23p24lQgGs2EqPgnFNeBXuzXdcMPkukbrMHtSLK1S/wYW8vX9j1wEM+E
+	 8Os4wDdz/fw6f5mzYpvgnQk+4F7TmsQuHjzql2JeESVkNcqlHcyV7JHQJ74OCkAMm0
+	 tvB8bLItSFgDKopwgvCA1cNVRnSrGuxRnlgSbjOP9AV8H6Ih1vV3Lcqng/jiBtqi/0
+	 6ZcIbYdy7fYC+9AteGvblh9TG7ZwMoWSYelrwR+V21ykU1X8VP3y9hMlxlr3PoAwVt
+	 s0U7uVeesLs8g==
+Date: Sat, 18 Oct 2025 16:11:43 +0100
 From: Jonathan Cameron <jic23@kernel.org>
-To: Shrikant Raskar <raskar.shree97@gmail.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org,
- matt@ranostay.sg, skhan@linuxfoundation.org, david.hunter.linux@gmail.com,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-kernel-mentees@lists.linux.dev
-Subject: Re: [PATCH v3 0/2] iio: health: max30100: Add DT LED pulse-width
- support
-Message-ID: <20251018160400.6921df6c@jic23-huawei>
-In-Reply-To: <20251012173035.12536-1-raskar.shree97@gmail.com>
-References: <20251012173035.12536-1-raskar.shree97@gmail.com>
+To: Jorge Marques <jorge.marques@analog.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
+ <Michael.Hennerich@analog.com>, "David Lechner" <dlechner@baylibre.com>,
+ Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Andy Shevchenko
+ <andy@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet
+ <corbet@lwn.net>, <linux-iio@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <linux-doc@vger.kernel.org>
+Subject: Re: [PATCH 1/7] dt-bindings: iio: adc: Add adi,ad4062
+Message-ID: <20251018161143.0a89495b@jic23-huawei>
+In-Reply-To: <20251013-staging-ad4062-v1-1-0f8ce7fef50c@analog.com>
+References: <20251013-staging-ad4062-v1-0-0f8ce7fef50c@analog.com>
+	<20251013-staging-ad4062-v1-1-0f8ce7fef50c@analog.com>
 X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -64,42 +67,19 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On Sun, 12 Oct 2025 23:00:33 +0530
-Shrikant Raskar <raskar.shree97@gmail.com> wrote:
+On Mon, 13 Oct 2025 09:27:59 +0200
+Jorge Marques <jorge.marques@analog.com> wrote:
 
-> Add Device Tree support for configuring the LED pulse-width of the MAX30100
-> sensor, and updates the driver to read and apply this property. 
-> 
-> Testing:
-> - Verify DT property read successfully in probe().
-> - Verify default fallback to 1600 us when DT property is omitted.
-> - Confirm SPO2_CONFIG register programmed correctly using regmap_read().
-> - Validate different DT pulse-width values (200, 400, 800, 1600 us)
->   are applied correctly.
-> - Validate probe() failure for invalid LED pulse-width
-> - Tested-on: Raspberry Pi 3B + MAX30100 breakout board
-> 
-> Changelog:
-> Changes from v2:
-> - Fix DT binding schema errors
-> - Add default value
-> - Remove changelog from commit message
-> - Add missing header file
-> 
-> Shrikant Raskar (2):
->   dt-bindings: iio: health: max30100: Add LED pulse-width property
->   iio: health: max30100: Make LED pulse-width configurable via DT
-> 
->  .../bindings/iio/health/maxim,max30100.yaml   |  8 ++++
->  drivers/iio/health/max30100.c                 | 38 +++++++++++++++++--
->  2 files changed, 43 insertions(+), 3 deletions(-)
-> 
-> 
-> base-commit: 8bd9238e511d02831022ff0270865c54ccc482d6
+> Add dt-bindings for AD4062 family, devices AD4060/AD4062, low-power with
+> monitor capabilities SAR ADCs. Each variant of the family differs in
+> granuality.
 
-Applied to the togreg branch of iio.git and pushed out as testing for now
+Resolution?  I'm not sure what granularity means for an ADC.
 
-Thanks,
-
-Jonathan
+> The device contains two outputs (gp0, gp1). The outputs can
+> be configured for range of options, such as threshold and data ready.
+> The device uses a 2-wire I3C interface.
+> 
+> Signed-off-by: Jorge Marques <jorge.marques@analog.com>
+Otherwise nice simple binding. Nothing to add to Conor's review.
 
