@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-228402-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228403-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A7EFBED2F6
-	for <lists+devicetree@lfdr.de>; Sat, 18 Oct 2025 17:48:11 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D38BBED313
+	for <lists+devicetree@lfdr.de>; Sat, 18 Oct 2025 17:55:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 206E43BB66D
-	for <lists+devicetree@lfdr.de>; Sat, 18 Oct 2025 15:48:10 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 420C14E427C
+	for <lists+devicetree@lfdr.de>; Sat, 18 Oct 2025 15:55:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47582241CB7;
-	Sat, 18 Oct 2025 15:48:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69DCB221714;
+	Sat, 18 Oct 2025 15:55:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WVjJAsYn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nSITN2av"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00C6C22A4F6;
-	Sat, 18 Oct 2025 15:48:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3891576026;
+	Sat, 18 Oct 2025 15:55:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760802487; cv=none; b=N82IlXYl1FzwLS3MdZM8XYKdk7Emh/yO5o+9mrFc3md3GaZGWLDFPhLP/V9EP736yoLxldXXN+7NpHztNQqoo/BMk10Y3uMGuzLz4xhT1lMxbjxZjs2fzP3mtHo7I6cX/XGqxz6Zv0eCU93XmEqBfNDQ9r1nOUBJh6NQwaQCCiA=
+	t=1760802937; cv=none; b=l9Keq1fQQYbgxwyaW6TXRZ/Q4pgRbGDErC1AMrXUQqwtNWzxKB5SGlMldKKiwGrJPdVidoK1kXaR3oBxvzLvv9Pe4uDotgsepiaagR5DTG8EgMWQpoEufO4stIgN3/rglBHtzuugheUqhDtdU+5GDYalOWtzBuiuQuzdTZIWbW4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760802487; c=relaxed/simple;
-	bh=uWpgtJP0YNgQKbW0W4SOynO/zeJGsLOB4hD//kdY9lI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=Yi659J33TthZaIlvtpXKG717afZ7AkehrXr7sP4Xof60MDk0oSvX/tbaYzgrQZgloEnxVqDnkA/8Ut8kQb483xWklOOu31vMYPjPTBVp8sAGuA+521O8kDfXVwOBRkMPrjYU2asio+Qaa+UKOpsJusohkkBtiWEAenPwtINgrFY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WVjJAsYn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 21342C4CEF9;
-	Sat, 18 Oct 2025 15:48:03 +0000 (UTC)
+	s=arc-20240116; t=1760802937; c=relaxed/simple;
+	bh=LPEfYUyGsXVhbHQtIJwDKNX0Ebfd/KMF5lwgnkpKH+g=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=lkNCEIMfxX+AEFAzmIAEcQXsXSnubtVwRtXiyKqhNR4/SJ+0bPnSuZZopONlDMWzDpGgUXq24juuCliHK5aPXXSOQ3sphr46iRIUG90HSLMcZ85NhgYsJJIXRupr+D30EPvCX4DoX9J+800HMB+1d1fhtILLdrVpE1QW1LsjxWM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nSITN2av; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 236ADC4CEF8;
+	Sat, 18 Oct 2025 15:55:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760802486;
-	bh=uWpgtJP0YNgQKbW0W4SOynO/zeJGsLOB4hD//kdY9lI=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=WVjJAsYnK50+OmDWMpm447pSJuu+0PM8ZmSA+OU+8zPlI1EzxYtjju36RCkHI4gbb
-	 Hbnz/+w1fEBo89md7DVekAOLwhPpooibsFZ2qGEFglCYD5fJJJhwP9zuAbYQPTeD6I
-	 8Q+1+PemyT0TEj5nFdGbrEC8/e5XDtSCu+eO9hNW+/AXw6yrIA0Z5e9ao5sqirY+UG
-	 a+t0V9FoUvjj9X04G7KtgXsuGxX80Tpehaf4Qmty7by/Ym0jmi3aVGEe7pp30Rq4r8
-	 Ekt87OhoGyVe7i6k5qK1nDqRY2o868sh7RswvStcr3HC4LfqH4I8Q+yO5ZCaW48AkF
-	 jEkauT/Y3Aciw==
-Message-ID: <6215c723-aeb2-4ef5-940a-a70806c1576f@kernel.org>
-Date: Sat, 18 Oct 2025 17:48:02 +0200
+	s=k20201202; t=1760802936;
+	bh=LPEfYUyGsXVhbHQtIJwDKNX0Ebfd/KMF5lwgnkpKH+g=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=nSITN2avlgnNm9s60pbwh4GaaoMjzyYtk78/8wSTFxVL6c/9mbcJB/P6bwKLrAkyG
+	 RHFvbUtwqqZ6/UgNT023fggkMRzFjwLFCjEXNeso9JmetIjeWeCE5+flDRvc2ZZ8VF
+	 TGeu/NeWvz7xjN+Ryku/Th+KDuW8XtkAjY8vORrCkLxUxEMB6yTCpea+S+XpWoDUCd
+	 4+LNOIZAIKmoImAe+GySh3f2bWNu/klIyY8tM0DawBTPV7IyFWfa81ILHqp2hnJqXs
+	 xLf3biQli+HrnyYIQ6FLU9uiKTjnAvk2PstdILS5rZXiLiK5DPKuO4tsD55E0SyVOC
+	 EoBl484tVNI/Q==
+Message-ID: <11711aca-8595-47c5-a16e-1cd990a9a087@kernel.org>
+Date: Sat, 18 Oct 2025 17:55:29 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,13 +50,26 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] dt-bindings: watchdog: lantiq,wdt: convert bindings to
- dtschema
-To: Aleksander Jan Bajkowski <olek2@wp.pl>, wim@linux-watchdog.org,
- linux@roeck-us.net, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, hauke@hauke-m.de, linux-watchdog@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20251018093229.291419-1-olek2@wp.pl>
+Subject: Re: [PATCH 1/3] dt-bindings: i2c: dw: Add Mobileye I2C controllers
+To: =?UTF-8?Q?Beno=C3=AEt_Monin?= <benoit.monin@bootlin.com>,
+ Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Jarkko Nikula <jarkko.nikula@linux.intel.com>,
+ Mika Westerberg <mika.westerberg@linux.intel.com>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Jan Dabros <jsd@semihalf.com>,
+ Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+ Clark Williams <clrkwllms@kernel.org>, Steven Rostedt <rostedt@goodmis.org>
+Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ Gregory CLEMENT <gregory.clement@bootlin.com>,
+ =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>,
+ Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
+ Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
+ Dmitry Guzman <dmitry.guzman@mobileye.com>, linux-i2c@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-rt-devel@lists.linux.dev
+References: <20251017-i2c-dw-v1-0-7b85b71c7a87@bootlin.com>
+ <20251017-i2c-dw-v1-1-7b85b71c7a87@bootlin.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -102,103 +115,32 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20251018093229.291419-1-olek2@wp.pl>
+In-Reply-To: <20251017-i2c-dw-v1-1-7b85b71c7a87@bootlin.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 18/10/2025 11:29, Aleksander Jan Bajkowski wrote:
-> Convert the Lantiq WDT Watchdog bindings to yaml format.
+On 17/10/2025 16:59, Benoît Monin wrote:
+> Add compatible strings for the I2C controllers present in Mobileye
+> Eyeq6Lplus and EyeQ7H SoCs.
 > 
-> Signed-off-by: Aleksander Jan Bajkowski <olek2@wp.pl>
+> Signed-off-by: Benoît Monin <benoit.monin@bootlin.com>
 > ---
-> v2:
-> - requirement of lantiq,rcu is now expressed as a schema 
-> ---
->  .../bindings/watchdog/lantiq,wdt.yaml         | 63 +++++++++++++++++++
->  .../bindings/watchdog/lantiq-wdt.txt          | 24 -------
->  2 files changed, 63 insertions(+), 24 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/watchdog/lantiq,wdt.yaml
->  delete mode 100644 Documentation/devicetree/bindings/watchdog/lantiq-wdt.txt
+>  Documentation/devicetree/bindings/i2c/snps,designware-i2c.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/watchdog/lantiq,wdt.yaml b/Documentation/devicetree/bindings/watchdog/lantiq,wdt.yaml
-> new file mode 100644
-> index 000000000000..204e16be2a79
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/watchdog/lantiq,wdt.yaml
-> @@ -0,0 +1,63 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/watchdog/lantiq,wdt.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Lantiq WTD watchdog
-> +
-> +maintainers:
-> +  - Hauke Mehrtens <hauke@hauke-m.de>
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - enum:
-> +          - lantiq,falcon-wdt
-> +          - lantiq,wdt
-> +          - lantiq,xrx100-wdt
-> +      - items:
-> +          - enum:
-> +              - lantiq,xrx200-wdt
-> +              - lantiq,xrx300-wdt
+> diff --git a/Documentation/devicetree/bindings/i2c/snps,designware-i2c.yaml b/Documentation/devicetree/bindings/i2c/snps,designware-i2c.yaml
+> index d904191bb0c6e..6d63dc67f7bf0 100644
+> --- a/Documentation/devicetree/bindings/i2c/snps,designware-i2c.yaml
+> +++ b/Documentation/devicetree/bindings/i2c/snps,designware-i2c.yaml
+> @@ -36,6 +36,8 @@ properties:
+>          const: baikal,bt1-sys-i2c
+>        - items:
+>            - enum:
+> +              - mobileye,eyeq6lplus-i2c
+> +              - mobileye,eyeq7h-i2c
 
-
-This wasn't in the old binding. Any change from pure conversion has to
-be explained WHY in the commit msg.
-
-What is more - it does not exist. You cannot just stuff here new
-compatibles and call it "conversion". Conversion from dev/null into new
-compatible?
-
-> +          - const: lantiq,xrx100-wdt
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  lantiq,rcu:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description: Phandle to the RCU syscon node
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: lantiq,xrx100-wdt
-> +    then:
-> +      required:
-> +        - lantiq,rcu
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: lantiq,falcon-wdt
-
-
-That's just enum in previous contains.
-
-> +    then:
-> +      required:
-> +        - lantiq,rcu
-
-
-Missing ref to watchdog. Otherwise why do you have unevaluatedProperties?
-> +
-> +unevaluatedProperties: false
-
-
-
+It seems these are compatible with each other, at least same driver
+match data suggests that, so express it here and in the commit msg.
 
 Best regards,
 Krzysztof
