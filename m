@@ -1,232 +1,179 @@
-Return-Path: <devicetree+bounces-228399-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228400-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DFA6DBED278
-	for <lists+devicetree@lfdr.de>; Sat, 18 Oct 2025 17:21:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 07B03BED2BA
+	for <lists+devicetree@lfdr.de>; Sat, 18 Oct 2025 17:39:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3220718934F2
-	for <lists+devicetree@lfdr.de>; Sat, 18 Oct 2025 15:21:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AE1CB5824C0
+	for <lists+devicetree@lfdr.de>; Sat, 18 Oct 2025 15:39:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99618226D02;
-	Sat, 18 Oct 2025 15:21:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C92CC22B584;
+	Sat, 18 Oct 2025 15:39:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DY3MXu2r"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="p885U9Jy"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60D6421CFEF;
-	Sat, 18 Oct 2025 15:21:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48A63231A21;
+	Sat, 18 Oct 2025 15:39:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760800881; cv=none; b=NQG0mR3ujKz7xZBaFrZLP0dcPJtwGC8hjicjzmsRUV20M+vLLdwthZxL9tdN88qJTopjzu5a1SWHthV5qdTJUuQBpKSN2fLOc+inwcqwiyxa5iToL4yZgeQkNOehek4PyI3q/pC4o4ZdAYgBp4+UfZqI9xJX3cJA97QAa0w4W4M=
+	t=1760801989; cv=none; b=ltBkZAGs0Wk4bcowvfzcUzWTzf43Rk72b9B7uQZLfG1o4iqxezf67m7/9Ou13RYAmgdHWSYezhqVXG6nq9c7ewHQOzhcAr4xthtwBUFCUZpIpnWZWZOfBDMLrwb825EXPIBBeCe8qYGqESzeOniAMttCZBbipPECOmFlIfcz8mk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760800881; c=relaxed/simple;
-	bh=vVYZl4oCLGwM7SQGP//U+44wtpZOiDFyOu33ohtCr0E=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=dJclOGhXCwL/GnHO0+FYAMf56THivJHjkoGX+A2GFDQfegZqesgnz34vq3YZj/BHn6RBGTlK9qPB6E4l7SSaM4DuXgTv8kONGZV/ODbToZeDcjPcnMQSAdIWxoWpvq2MXG++FipWnmNzPWKLJX15MAE5I8Wf/XnmoUHa5uFEzC4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DY3MXu2r; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A70D3C4CEF8;
-	Sat, 18 Oct 2025 15:21:17 +0000 (UTC)
+	s=arc-20240116; t=1760801989; c=relaxed/simple;
+	bh=uPs/OpEf+XULCClITk1PlNX/3UzNgoknxybf2RIh+N0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=te/BzqcMWZRzSL1tLgX3iVqOuviviufBFgaTeUb3EhCJqV89OENPaU3xO7JdHxF77kn+tOMdv6e+uX4wlLQ6uuuCmcvCp8duBSiuJB0Rn6BJ3a4Q/mSGLZVQaQ4ygQBmXcVXGreGsC5iGw3XiIgYwU1tvkA3Dta7eEHSgHoX2iQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=p885U9Jy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 781D4C116B1;
+	Sat, 18 Oct 2025 15:39:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760800880;
-	bh=vVYZl4oCLGwM7SQGP//U+44wtpZOiDFyOu33ohtCr0E=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=DY3MXu2r0KYyVn2cLnp7wVLtb7YgesBYzYVYeu9Sr9VELnZCcds6AwnUbUhJy7qNo
-	 cQf9numgiNhd7IfTcL0h8/FtyhCvnk67DfsKd6DhITjx4K1krWVr2LHcc/fcS75ga0
-	 fP0wLRRZyBIpB/mlE8Ulr12xbbvbBRwcrp7ste4RUS30Gf1plu81WcJpW7agdIe3YW
-	 rlib9LNwnCOWkmxNX9yNf3q3X385/mCd5AYDW3soo1rvvc9tzClZNw6iPL5UA+NO/C
-	 QYxeSRqXlYVxjAyq9tHUCfm2amnWQRrSXtWfSHBG8prKAsyjQLAJ0LGEpeRDCB0eCS
-	 6n0PhnDbUPmnA==
-Date: Sat, 18 Oct 2025 16:21:13 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Jorge Marques <jorge.marques@analog.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
- <Michael.Hennerich@analog.com>, David Lechner <dlechner@baylibre.com>, Nuno
- =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
- <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>
-Subject: Re: [PATCH 2/7] docs: iio: New docs for ad4062 driver
-Message-ID: <20251018162113.002d92f7@jic23-huawei>
-In-Reply-To: <20251013-staging-ad4062-v1-2-0f8ce7fef50c@analog.com>
-References: <20251013-staging-ad4062-v1-0-0f8ce7fef50c@analog.com>
-	<20251013-staging-ad4062-v1-2-0f8ce7fef50c@analog.com>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
+	s=k20201202; t=1760801988;
+	bh=uPs/OpEf+XULCClITk1PlNX/3UzNgoknxybf2RIh+N0=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=p885U9JyuAkB8hB1yBq/H3SQ5c888kfz+QnPugX0oDzFBWUQFEK3wqCQN+abJ28LX
+	 d3Pyolqqjvd00QvVHsfEtGvgAmO6qPMgRHvdE8ObjybIA0pWcy56vS+Qi3Cq+CLVXB
+	 jWFs/owiDqnbJoONpNo8AZCCWehWY5evFdE02s/eY2dbxNm4ZuVKPYIANcMzhNogfB
+	 B1kmNbO1vly2AI2TidbMsyiglMxI9YPfW2j10we5utTH8/094UqzrkffKTIwpm1vyI
+	 7hqooVSBOJ4dUuVHs4r7km87Q1/NCoIwxbqzHOckzUML9qz3YVRk7NjSkdeLcDV6hW
+	 5KnyxGZaxm4fg==
+Message-ID: <78445973-6a5e-4dd8-a661-4e784af49b4e@kernel.org>
+Date: Sat, 18 Oct 2025 17:39:43 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 02/10] dt-bindings: phy: qcom,qmp-usb: Add Glymur USB
+ UNI PHY compatible
+To: Wesley Cheng <wesley.cheng@oss.qualcomm.com>, krzk+dt@kernel.org,
+ conor+dt@kernel.org, konrad.dybcio@oss.qualcomm.com,
+ dmitry.baryshkov@oss.qualcomm.com, kishon@kernel.org, vkoul@kernel.org,
+ gregkh@linuxfoundation.org, robh@kernel.org
+Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+ linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20251006222002.2182777-1-wesley.cheng@oss.qualcomm.com>
+ <20251006222002.2182777-3-wesley.cheng@oss.qualcomm.com>
+ <f5e4ae02-b8fa-4406-b2e0-3602b07b7e23@kernel.org>
+ <00408896-2e25-2dd1-6e6e-2195317ee7fb@oss.qualcomm.com>
+ <14bc2a85-0f1d-3834-9b9c-32654348603a@oss.qualcomm.com>
+ <387c707e-613d-433b-a76d-16ef10dabc59@kernel.org>
+ <2a70f878-269c-1b40-2e8c-77b5851de9a1@oss.qualcomm.com>
+ <99ab26d3-eb44-401d-8a7c-1d9efd2a1a10@kernel.org>
+ <b2b68430-5127-5eca-6bd8-4af31eb9fbed@oss.qualcomm.com>
+ <bb299df0-58b9-4a6e-9625-305785d38eb4@kernel.org>
+ <da34ecf0-c2eb-2afa-bd4d-9dc30fbe5cf5@oss.qualcomm.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <da34ecf0-c2eb-2afa-bd4d-9dc30fbe5cf5@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On Mon, 13 Oct 2025 09:28:00 +0200
-Jorge Marques <jorge.marques@analog.com> wrote:
-
-> This adds a new page to document how to use the ad4062 ADC driver.
+On 18/10/2025 02:20, Wesley Cheng wrote:
 > 
-> Signed-off-by: Jorge Marques <jorge.marques@analog.com>
-Hi Jorge,
-
-Various comments inline.
-
-Thanks,
-
-Jonathan
-
-> ---
->  Documentation/iio/ad4062.rst | 89 ++++++++++++++++++++++++++++++++++++++++++++
->  MAINTAINERS                  |  1 +
->  2 files changed, 90 insertions(+)
 > 
-> diff --git a/Documentation/iio/ad4062.rst b/Documentation/iio/ad4062.rst
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..b486d7fe1916d2963c94581be3696cf58d51ca48
-> --- /dev/null
-> +++ b/Documentation/iio/ad4062.rst
-> @@ -0,0 +1,89 @@
-> +.. SPDX-License-Identifier: GPL-2.0-only
-> +
-> +=============
-> +AD4062 driver
-> +=============
-> +
-> +ADC driver for Analog Devices Inc. AD4060/AD4062 devices. The module name is
-> +``ad4062``.
-> +
-> +Supported devices
-> +=================
-> +
-> +The following chips are supported by this driver:
-> +
-> +* `AD4060 <https://www.analog.com/AD4060>`_
-> +* `AD4062 <https://www.analog.com/AD4062>`_
-> +
-> +Wiring modes
-> +============
-> +
-> +The ADC is interfaced through an I3C bus, and contains two programmable GPIOs.
-This raises a question on whether it makes sense for the binding to support providing
-gpios from the start (as alternative to interrupts).  Seems like the two pins
-are completely interchangeable so one might well be 'left' for use by some other
-device that needs a gpio pin.
-
-I don't mind that much if we want to leave the binding support for that for later
-but in the ideal case we'd have it from the start (even if the driver doesn't
-support it until we have a user).
-
-> +
-> +The ADC convert-start happens on the SDA rising edge of the I3C stop (P) bit
-> +at the end of the read command.
-> +
-> +The two programmable GPIOS are optional and have a role assigned if present in
-> +the devicetree:
-> +
-> +- GP1: Is assigned the role of Data Ready signal.
-
-I assume that's only the case if GP1 is provided?  If GP0 is the only one
-we should allow use that for data ready.  As long as the DT allows that it is
-permissible for the driver to not do so for now.
-
-> +
-> +Device attributes
-> +=================
-> +
-> +The ADC contains only one channel with following attributes:
-> +
-> +.. list-table:: Channel attributes
-> +   :header-rows: 1
-> +
-> +   * - Attribute
-> +     - Description
-> +   * - ``in_voltage_calibscale``
-> +     - Sets the scale factor to multiply the raw value.
-That's confusing.  This should be hardware 'tweak' to compensate for
-calibration or similar.  The text doesn't make it clear where that multiply
-is happening. Sounds too much like _scale.
-
-> +   * - ``in_voltage_oversampling_ratio``
-> +     - Sets device's burst averaging mode to over sample using the
-> +       internal sample rate. Value 1 disable the burst averaging mode.
-> +   * - ``in_voltage_oversampling_ratio_available``
-> +     - List of available oversampling values.
-> +   * - ``in_voltage_raw``
-> +     - Returns the raw ADC voltage value.
-> +   * - ``in_voltage_scale``
-> +     - Returs the channel scale in reference to the reference voltage
-
-Spell check needed.  Also this describes why it might take different values
-but not the bit users care about which is the standard ABI thing of
-Real value in mV = _raw * _scale 
-
-> +       ``ref-supply``.
-> +
-> +Also contain the following device attributes:
-> +
-> +.. list-table:: Device attributes
-> +   :header-rows: 1
-> +
-> +   * - Attribute
-> +     - Description
-> +   * - ``samling_frequency``
-
-Check these.. sampling_frequency.
-
-> +     - Sets the sets the device internal sample rate, used in the burst
-> +       averaging mode.
-
-It's not use otherwise?  That's unusual ABI.  I'd expect it to give
-the right value at least when burst mode isn't used. Or is burst mode
-the only way we do buffered capture?
-
-> +   * - ``sampling_frequency_available``
-> +     - Lists the available device internal sample rates.
-> +
-> +Interrupts
-> +==========
-> +
-> +The interrupts are mapped through the ``interrupt-names`` and ``interrupts``
-> +properties.
-> +
-> +The ``interrupt-names`` ``gp1`` entry sets the role of Data Ready signal.
-> +If it is not present, the driver fallback to enabling the same role as an
-> +I3C IBI.
-
-It feels like it should be easy to use the other GPO pin in this case if that
-is present. 
-
-> +
-> +Low-power mode
-> +==============
-> +
-> +The device enters low-power mode on idle to save power. Enabling an event puts
-> +the device out of the low-power since the ADC autonomously samples to assert
-> +the event condition.
-> +
-> +Unimplemented features
-> +======================
-> +
-> +- Monitor mode
-> +- Trigger mode
-> +- Averaging mode
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index afbfaeba5387b9fbfa9bf1443a059c47dd596d45..ce012c6c719023d3c0355676a335a55d92cf424c 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -1405,6 +1405,7 @@ M:	Jorge Marques <jorge.marques@analog.com>
->  S:	Supported
->  W:	https://ez.analog.com/linux-software-drivers
->  F:	Documentation/devicetree/bindings/iio/adc/adi,ad4062.yaml
-> +F:	Documentation/iio/ad4062.rst
->  
->  ANALOG DEVICES INC AD4080 DRIVER
->  M:	Antoniu Miclaus <antoniu.miclaus@analog.com>
+> On 10/16/2025 9:41 PM, Krzysztof Kozlowski wrote:
+>> On 17/10/2025 02:15, Wesley Cheng wrote:
+>>>>> Technically its all handling the same clock branch (CXO), we have the
+>>>>> TCSR clkref register that allows us to gate the CXO to the USB PHY, as
+>>>>
+>>>>
+>>>> Ah, exactly. Then clkref is not a clock. You need rather proper clock
+>>>> hierarchy.
+>>>>
+>>>>> CXO is shared across several HW blocks, so it allows us to properly
+>>>>> powerdown the PHY even though other clients are voting for CXO on.  Then
+>>>>> we obviously have to remove our vote to the overall CXO, so that it can
+>>>>> potentially be shutdown.
+>>>>>
+>>>>> Maybe we can rename it to "clkref" for the CXO handle and
+>>>>> "clkref_switch" for the TCSRCC handle?
+>>>>
+>>>> Naming is better, but it is still not correct. This is not independent
+>>>> clock signal. It is the same clock.
+>>>>
+>>>
+>>> Hmmm... I guess that's why I kept the same clkref tag, to denote that
+>>> its the same clock, but one is a switch/gate for it.  Would you happen
+>>> to have any suggestions you might have that makes it clearer for
+>>> everyone to understand?
+>> To me it looks like:
+>>
+>> |-----|            |-----------|           |------------------|
+>> |clock|------------|TCSRCC gate|-----------|clkref to this dev|
+>> |-----|            |-----------|           |------------------|
+>>
+>> So you need proper clock controller for TCSR (TCSR Clock Controller, in
+>> short TCSRCC, what a surprise!) which will take input, add gate and
+>> produce clock for this device.
+>>
+>> Nothing non-standard, all Qualcomm SoCs have it, every other platform
+>> has it in some way.
+>>
 > 
+> Hi Krzystof,
+> 
+> Yes, the design is exactly how you outlined it above.  How about clkref 
 
+Hm? There is no connection between the clock and the device. Do you see
+any line going there?
+
+> for the clock and tcsrcc_switch for the clkref switch?  That removes any 
+> notation that the gate/switch is an actual clock...
+
+You really did not get the point of this entire discussion.
+
+
+Best regards,
+Krzysztof
 
