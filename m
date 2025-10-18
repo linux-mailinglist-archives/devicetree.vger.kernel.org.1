@@ -1,245 +1,168 @@
-Return-Path: <devicetree+bounces-228395-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228396-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E02BBED0CA
-	for <lists+devicetree@lfdr.de>; Sat, 18 Oct 2025 15:57:44 +0200 (CEST)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id A78E1BED116
+	for <lists+devicetree@lfdr.de>; Sat, 18 Oct 2025 16:16:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 15EA55E50F7
-	for <lists+devicetree@lfdr.de>; Sat, 18 Oct 2025 13:57:43 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id F004934C5CD
+	for <lists+devicetree@lfdr.de>; Sat, 18 Oct 2025 14:16:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 476ED1E520C;
-	Sat, 18 Oct 2025 13:57:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35BCC19D89E;
+	Sat, 18 Oct 2025 14:16:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="q+ShW8gb"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IvWGG/wU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail1.manjaro.org (mail1.manjaro.org [142.132.176.110])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9ED9D1BC3F;
-	Sat, 18 Oct 2025 13:57:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=142.132.176.110
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58C3517BB35
+	for <devicetree@vger.kernel.org>; Sat, 18 Oct 2025 14:16:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760795861; cv=none; b=NXTM09PZUhH5pnJwgs+xvKDa8pMdqs6vAa4iauhC13JiqQ1wd+dTxv5MSU9UV05GEOuTOy0UV0+hp6buEXCLwpBh+V4YVBgnFnzYxflP4cVC9eCpuI6C1eC+8eqmY8S7qmmuFqJ/W83uIER+HB4grdd1EkGN5iaxg5SB+mijgZM=
+	t=1760796989; cv=none; b=iBS3ja7sxcAxyrr4PzsQBEq1o5+DHw2Y8CF2DwJyKaYw27CmF0WXfkPXUlECEJv1v1mzFFjVa6qb4idtfL+K31jRZwrOn1r7toiPkdzF5j3+f/x1Q/nhcCE3oiZN9wgm4CYX8irDlEQEDxS8EMDMmXWA0D+zrLZePHsPcDtVqhk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760795861; c=relaxed/simple;
-	bh=+PsrH7NEsfuNdrzjcmyWOTRXzpeDJUVdrs97M5RgAZQ=;
-	h=From:In-Reply-To:Content-Type:References:Date:Cc:To:MIME-Version:
-	 Message-ID:Subject; b=tcFYgD/NeMSPWJVZLX0Foh7BkBrmK7PFZ4Ss5H/lqGTu3Z/0o4Ys4Wq7lPh5U8LZ/KzHiig0veuOHQ4J3dlsA6e5lTHdsYvuSp5Syap1Xwkp+sgTLVw8loeBgx/IZ7iAM3vmPiAVVWyj4/LHlg5v41Iw0NquaeNxm2y7zdN+NAI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=q+ShW8gb; arc=none smtp.client-ip=142.132.176.110
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPA id 0CBA540A58;
-	Sat, 18 Oct 2025 15:57:24 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=dkim;
-	t=1760795846; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=+8Vwrx25FHbbCKskadf35mdBQsNbpuT/QB9T+nEdcx0=;
-	b=q+ShW8gbZfu5gfnVK8jFNRS8vnV4Z7AKmeulUm+muBQ29LVoue8E0iN1sxtYiLq7xHn2ui
-	2pCS/jVkmcPr1+r642wSQHsBhVUo6wbdkNoD4Axfl/8xP8hmz/aAaW/v+pojVA2q/WoH5y
-	Mqoekiyt0ziBJEVcY6On8YPMalEeBqTdvvsl+weeZJgwbe1d3wiTvQrBvuZBJWctZs5SNZ
-	QcQ9hiwm15K9fRBjTTkSD7e+irY7ILOJfeXHIlFqNJw4oMZ7q/kSywch6SCx3LZ67h8Ink
-	Ga45s9NcNrLeSnQWJOr+Qs5wWZX5ztf6Y/ovekJSfNco5RNWRb/kAYBKxcADLA==
-From: "Dragan Simic" <dsimic@manjaro.org>
-In-Reply-To: <b22425c3-01e0-4d2e-bf78-5db884d4ec38@gmail.com>
-Content-Type: text/plain; charset="utf-8"
-References: <20251017073954.130710-1-cnsztl@gmail.com>
- <7f0b1747-87eb-0b0b-6fb0-304811a4be21@manjaro.org>
- <d9d14ce2-2e65-422e-95fb-eb30b128ad90@gmail.com>
- <41154cde-a447-0707-4387-cd3dca90b97d@manjaro.org>
- <CALWfF7K0=J3E-zr41wV-28+SCFkT_so55Aee8BvQsB4KJZy6YQ@mail.gmail.com>
- <47931e9e-09db-3909-4531-dae6869171d7@manjaro.org> <b22425c3-01e0-4d2e-bf78-5db884d4ec38@gmail.com>
-Date: Sat, 18 Oct 2025 15:57:24 +0200
-Cc: "Jimmy Hon" <honyuenkwun@gmail.com>, "Tianling Shen" <cnsztl@gmail.com>, "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Heiko Stuebner" <heiko@sntech.de>, "Grzegorz Sterniczuk" <grzegorz@sternicz.uk>, "Jonas Karlman" <jonas@kwiboo.se>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-To: "Hugh Cole-Baker" <sigmaris@gmail.com>
+	s=arc-20240116; t=1760796989; c=relaxed/simple;
+	bh=X29ameIskitCKG39iDo9fnFG74io4N0elFSW5JYWjCU=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=RphkRzbIF0QLGpazdAQ4ysebc7NdzkQcD/TmjaNd4wvXW4Mpk/QT/BN9ZTC/VvXZSl7MzmB44dQtXKorhbBKzsmCJt5z5Te52j12N9AQhpn7Hb++SqsPM1fCH+Zo4LSq4XENx/IWEuRT+WCOWQRdPO/Zvr2pwpzVa4QCPq3mPUY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IvWGG/wU; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-46e542196c7so25330815e9.0
+        for <devicetree@vger.kernel.org>; Sat, 18 Oct 2025 07:16:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1760796986; x=1761401786; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=IlCRwb6ZxMUe1+qjY84Z++qKGjm7fl4y3NpRzyLl6u0=;
+        b=IvWGG/wUtI48CVMZIi9Os8g+nfjkPY39YS79IHWMLT0tVBRwPXOgf8LDfqH+LEcRJ5
+         tx76ayt/kII0DAvvry2RDzch4AdRaKXf6M786FkJR4ES6WADi4A7vhVLStCZTfJY9sxm
+         /SmeQ7F9tMPrTyQKBtPMFxwstaJVZnzeVNzKbYWMAt9ZLLejxQt9IJDn/313AMjPZOsG
+         vPaJFC1HrUgYEFvv2rckwnC6koMxbwMPbcGUWxLH+kPOkcNeiN/XRMO+5MoVtHDoPpUa
+         Z1B9h/EhFHFWI6kyKyUjwq81JvdTW/YmM84hOgkOtaU5ra1S7DoVvrpyzDkjoXgvneDN
+         SyCA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1760796986; x=1761401786;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=IlCRwb6ZxMUe1+qjY84Z++qKGjm7fl4y3NpRzyLl6u0=;
+        b=IQYfIQrWV2zykKhZx4Rr01/QZ4yvyKwMDb2DP00yvmjOOdP0E3uefKK/q4qKLg1bTX
+         LgAKIF/B5xnVajzKX+x01XtdtxwZJI3VkQRRalMxuUSCu4iaktHbBlrzfpaBYqKzbh4M
+         Qe9Kqj85ad8GJXSA7GqrWTCshjkLWmH654rBMtNPOh143uZvTk8EJl9T66jIEW19VTug
+         6JJ+vtlIFS+SM93Xq9NPChyG4/oO1BUGarDv4nY6vxhOjByJM7Yij1l3i8/UM+sgTuw1
+         n9WfQlx5M1A8kD4tRHvPSlSVStxIKACEss3GY5w3HArsLLpqPOuTjGSuFlSlDEaT3wBi
+         L1dA==
+X-Forwarded-Encrypted: i=1; AJvYcCUtWkn44ieC36bb/48h3w5fKTtGUD+E+gAs1glKyNW2gAIYHgBz5q8CW3UQqaw4VkLWfdHVLhGkZkdi@vger.kernel.org
+X-Gm-Message-State: AOJu0YwPpvIf6px3Z+kcLFUBSFSNAtMXogI4uA+th8PswCcNr7HzX18t
+	MbmMr4CadWvq5XjYnyozjEh8QsiSWt+ul4wFrqaeh9SdxW9uZX9pDHFu
+X-Gm-Gg: ASbGncu416anRs8ebZFoSXzfXxlTy1L5FczEDOgSSiUC91B9AhtZE8cKv+FaovQTRc3
+	XOax6gONco15/0R8CZLYcYZo7jIByhlubqrslQ2uZ/gJfl0BIaX+rRJQCpKQ/gFC/0UiaXxFThX
+	pVk2cAJF5lz7giiP2HkWKxdo9Omw+U/lf5o2oLPgtUdyFof2SUKdxA1nK6IB+UaE0pXtxMokMEf
+	Tt6+KYl40OM7kBr1HV/7H2v06izmH3Bxl2w3XhziFm0CzNc1TvPZ/SO9dBJCY5lZhfiCj9aSRK+
+	nsVEXSWiSa2qGELXqoqDIXx6FayYy4W//tvBfsFrsERzJT8TXPGDQT9uU5GxljvR0S1TXpNcdAk
+	ACzWWoGoiyVhzrmVF/PkXEyo4djvGsjPyd1fPMC1zPcc0TvivXd2LKJeIGxZzmOHkq9SwvjksaD
+	T/MD1hZ5wU
+X-Google-Smtp-Source: AGHT+IG3AlPGTUhBjZicoKO2fafPrO3Ym6F/9eWov1dBZ28BCJY0XCxolDXbuHb3nvEg1oKZJQkcwQ==
+X-Received: by 2002:a05:6000:40dc:b0:414:fb6c:e369 with SMTP id ffacd0b85a97d-42704b3db2dmr4898244f8f.5.1760796985415;
+        Sat, 18 Oct 2025 07:16:25 -0700 (PDT)
+Received: from [192.168.1.187] ([161.230.67.253])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-427e1be5d6csm5297975f8f.0.2025.10.18.07.16.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 18 Oct 2025 07:16:25 -0700 (PDT)
+Message-ID: <a5cc1d4850b17569900124e1e4cf7549cedc7692.camel@gmail.com>
+Subject: Re: [PATCH v5 5/7] iio: adc: ad4030: Add SPI offload support
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
+Cc: Marcelo Schmitt <marcelo.schmitt@analog.com>, linux-iio@vger.kernel.org,
+ 	devicetree@vger.kernel.org, linux-doc@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, jic23@kernel.org,
+ michael.hennerich@analog.com, 	nuno.sa@analog.com, eblanc@baylibre.com,
+ dlechner@baylibre.com, andy@kernel.org, 	robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, corbet@lwn.net, Trevor Gamblin
+ <tgamblin@baylibre.com>, Axel Haslam <ahaslam@baylibre.com>
+Date: Sat, 18 Oct 2025 15:16:57 +0100
+In-Reply-To: <aPKfCbZSXxaHICel@debian-BULLSEYE-live-builder-AMD64>
+References: <cover.1760479760.git.marcelo.schmitt@analog.com>
+	 <c12569f251962ad6034395e53cd6d998ce78a63f.1760479760.git.marcelo.schmitt@analog.com>
+	 <5e3a1d31f3cec340650e2e63db79903b78ab9a1f.camel@gmail.com>
+	 <aPKfCbZSXxaHICel@debian-BULLSEYE-live-builder-AMD64>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <de5e8643-49bb-4e0e-45fd-51b25ecf530d@manjaro.org>
-Subject: =?utf-8?q?Re=3A?= [PATCH] =?utf-8?q?arm64=3A?==?utf-8?q?_dts=3A?=
- =?utf-8?q?_rockchip=3A?= fix eMMC corruption on NanoPC-T6 with A3A444 chips
-User-Agent: SOGoMail 5.12.3
-Content-Transfer-Encoding: quoted-printable
-X-Last-TLS-Session-Version: None
 
-Hello Hugh,
-
-On Saturday, October 18, 2025 14:14 CEST, Hugh Cole-Baker <sigmaris@gma=
-il.com> wrote:
-> On 18/10/2025 09:30, Dragan Simic wrote:
-> > On Saturday, October 18, 2025 02:42 CEST, Jimmy Hon <honyuenkwun@gm=
-ail.com> wrote:
-> >> On Fri, Oct 17, 2025 at 10:15=E2=80=AFAM Dragan Simic <dsimic@manj=
-aro.org> wrote:
-> >>> On Friday, October 17, 2025 14:08 CEST, Tianling Shen <cnsztl@gma=
-il.com> wrote:
-> >>>> On 2025/10/17 18:25, Dragan Simic wrote:
-> >>>>> On Friday, October 17, 2025 09:39 CEST, Tianling Shen <cnsztl@g=
-mail.com> wrote:
-> >>>>>> From: Grzegorz Sterniczuk <grzegorz@sternicz.uk>
-> >>>>>>
-> >>>>>> Some NanoPC-T6 boards with A3A444 eMMC chips experience I/O er=
-rors and
-> >>>>>> corruption when using HS400 mode. Downgrade to HS200 mode to e=
-nsure
-> >>>>>> stable operation.
-> >>>>>
-> >>>>> Could you, please, provide more details about the troublesome e=
-MMC
-> >>>>> chip that gets identified as A3A444, i.e. what's the actual bra=
-nd
-> >>>>> and model?  Maybe you could send a picture of it?  It might als=
-o
-> >>>>> help if you'd send the contents of "/sys/class/block/mmcblkX/de=
-vice
-> >>>>> /manfid" from your board (where "X" should equal two).
-> >>>>
-> >>>> Unfortunately I don't have this board nor this eMMC chip.
-> >>>> I got the chip model from my friend, it's FORESEE FEMDNN256G-A3A=
-44,
-> >>>> manfid is 0x0000d6.
-> >>>
-> >>> Thanks for responding and providing the details so quickly!
-> >>>
-> >>>>> I'm asking for that because I'd like to research it a bit furth=
-er,
-> >>>>> if possible, because some other eMMC chips that are also found =
-on
-> >>>>> the NanoPc-T6 seem to work fine in HS400 mode. [1]  It may be t=
-hat
-> >>>>> the A3A444 chip has some issues with the HS400 mode on its own,
-> >>>>> i.e. the observed issues may not be caused by the board.
-> >>>>
-> >>>> Yes, it should be caused by this eMMC chip.
-> >>>
-> >>> I'd suggest that we move forward by "quirking off" the HS400 mode
-> >>> for the FEMDNN256G-A3A44 eMMC chip in the MMC drivers, instead of
-> >>> downgrading the speed of the sdhci interface on the NanoPC-T6.
-> >>>
-> >>> That way, the other similar Foresee eMMC chip that's also found
-> >>> on NanoPC-T6 boards, FEMDNN256G-A3A564, will continue to work in
-> >>> the faster HS400 mode, while the troublesome A3A44 variant will
-> >>> be downgraded to the HS200 globally for everyone's benefit.  It's
-> >>> quite unlikely that the A3A44 variant fails to work reliable in
-> >>> HS400 mode on the NanoPC-T6 only, so quirking it off in the MMC
-> >>> drivers should be a sane and safe choice.
-> >>>
-> >>> If you agree with dropping this patch, I'll be more than happy
-> >>> to implement this HS200 quirk in the MMC drivers.
-> >>>
-> >>> As a note, FEMDNN256G-A3A44 is found in the Rockchip Qualified
-> >>> eMMC Support List v1.84, [2] but the evidence says the opposite,
-> >>> so we should react appropriately by adding this quirk.
-> >>
-> >> When adding the quirk for the A3A44, can we lower the max frequenc=
-y
-> >> and keep the HS400 mode instead?
-> >> That's what the Fedora folks found works [3]. There's more test
-> >> results in Armbian [4]
+On Fri, 2025-10-17 at 16:54 -0300, Marcelo Schmitt wrote:
+> On 10/17, Nuno S=C3=A1 wrote:
+> > On Tue, 2025-10-14 at 19:22 -0300, Marcelo Schmitt wrote:
+> > > AD4030 and similar ADCs can capture data at sample rates up to 2 mega
+> > > samples per second (MSPS). Not all SPI controllers are able to achiev=
+e
+> > > such
+> > > high throughputs and even when the controller is fast enough to run
+> > > transfers at the required speed, it may be costly to the CPU to handl=
+e
+> > > transfer data at such high sample rates. Add SPI offload support for
+> > > AD4030
+> > > and similar ADCs to enable data capture at maximum sample rates.
+> > >=20
+> > > Co-developed-by: Trevor Gamblin <tgamblin@baylibre.com>
+> > > Signed-off-by: Trevor Gamblin <tgamblin@baylibre.com>
+> > > Co-developed-by: Axel Haslam <ahaslam@baylibre.com>
+> > > Signed-off-by: Axel Haslam <ahaslam@baylibre.com>
+> > > Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
+> > > ---
 > >=20
-> > Are there any I/O performance tests that would prove that lowering
-> > the HS400 frequency to 150 MHz ends up working significantly faster
-> > than dropping the eMMC chip to HS200 mode?
+> ...
+> > > +static int ad4030_offload_buffer_postenable(struct iio_dev *indio_de=
+v)
+> > > +{
+> > > +	struct ad4030_state *st =3D iio_priv(indio_dev);
+> > > +	unsigned int reg_modes;
+> > > +	int ret, ret2;
+> > > +
+> ...
+> > > +	ret =3D spi_offload_trigger_enable(st->offload, st-
+> > > >offload_trigger,
+> > > +					 &st->offload_trigger_config);
+> > > +	if (ret)
+> > > +		goto out_pwm_disable;
+> > > +
+> > > +	return 0;
+> > > +
+> > > +out_pwm_disable:
+> > > +	pwm_disable(st->cnv_trigger);
+> > > +out_unoptimize:
+> > > +	spi_unoptimize_message(&st->offload_msg);
+> > > +out_reset_mode:
+> > > +	/* reenter register configuration mode */
+> > > +	ret2 =3D ad4030_enter_config_mode(st);
 > >=20
-> > I'm asking that because lowering the frequency looks much more like
-> > there's some issue with the board, rather than the issue being the
-> > eMMC chip's support for HS400 mode.  Thus, a quirk that would lower
-> > the HS400 mode frequency would likely be frowned upon and rejected,
-> > while a quirk that puts the chip into HS200 mode is much cleaner
-> > and has much higher chances to be accepted.
->=20
-> I also have the NanoPC-T6 with one of the A3A444 eMMCs which suffers
-> from I/O errors in the default HS400 mode. These are its details in
-> /sys/block/mmcblk0/device/:
-> manfid: 0x0000d6
-> oemid: 0x0103
-> name: A3A444
-> fwrev: 0x1100000000000000
-> hwrev: 0x0
-> rev: 0x8
-
-Thanks for reporting the same issue with the same board and
-increasing our sample size to two. :)
-
-> I wasn't sure if I was just unlucky to get a faulty chip, but seeing
-> this thread it seems like a wider issue. On my board, limiting it to
-> HS200 mode gets rid of the I/O errors, and it seems that lowering
-> the frequency to 150MHz also avoids I/O errors.
->=20
-> I did a quick unscientific test with fio; HS400 Enhanced Strobe mode
-> with a 150MHz clock gives slightly better performance than HS200:
->=20
-> HS200 mode:
-> read: IOPS=3D697, BW=3D43.6MiB/s
-> write: IOPS=3D697, BW=3D43.6MiB/s
->=20
-> HS400 mode with 150MHz clock:
-> read: IOPS=3D805, BW=3D50.3MiB/s
-> write: IOPS=3D799, BW=3D50.0MiB/s
->=20
-> so from my perspective, limiting the frequency would be a better fix
-> than disabling HS400 entirely.
-
-Thanks for running these tests!  The measured difference in the
-I/O performance is about 15%, which surely isn't insignificant,
-but IMHO it makes the proposed lowering of the eMMC chip to HS200
-mode fall into the "good safety margin" bracket that I described
-earlier.  I think it's better to sacrifice those 15% to stay on
-the, hopefully, rock-solid side.
-
-I've been thinking more about the 150 MHz HS400 and HS200 quirks,
-and I'm afraid I'm even more sure that the 150 MHz HS400 quirk
-would be frowned upon and rejected.  See, it does make it look
-like a board-level issue, requiring a board-level fix, instead of
-being a chip-level issue, for which a quirk would be fine.  The
-acceptably low difference in the measured performance levels just
-solidifies such a viewpoint, I'm afraid.
-
-> It could also be of interest that the clock used apparently can't
-> provide an exact 200MHz, e.g. in HS200 mode:
->=20
-> root@t6:~# cat /sys/kernel/debug/mmc0/ios
-> clock:		200000000 Hz
-> actual clock:	187500000 Hz
-> vdd:		18 (3.0 ~ 3.1 V)
-> bus mode:	2 (push-pull)
-> chip select:	0 (don't care)
-> power mode:	2 (on)
-> bus width:	3 (8 bits)
-> timing spec:	9 (mmc HS200)
-> signal voltage:	1 (1.80 V)
-> driver type:	0 (driver type B)
-
-Thanks, that's also something to think about.
-
-> > With all that in mind, if the resulting I/O performance difference
-> > between 150 MHz HS400 and HS200 is within 15-20% or so, I'd highly
-> > recommend that we still go with the HS200 quirk.  It also leaves
-> > us with a nice safety margin, which is always good to have when
-> > such hardware instability issues are worked around in software,
-> > unless detailed eye diagrams, protocol dumps and whatnot can be
-> > pulled and analyzed, in which case the resulting safety margin
-> > can be much slimmer.
+> > nit: if ret2 is not being used at all, maybe just
+> ret2 is logged on the error message below so I guess I'll keep it as it i=
+s.
 > >=20
-> > Ideally, we'd have a completely different board with the same
-> > Foresee FEMDNN256G-A3A44 eMMC chip to test how reliably its HS400
-> > mode works there, to see is it really up to this eMMC chip or up
-> > to the board design, but I'm afraid we don't have that (easily)
-> > available, so the only remaining option is to work with what's
-> > actually available, which inevitably leads to a certain amount
-> > of guesswork and some compromises.
-> >=20
-> >>> [1] https://github.com/openwrt/openwrt/issues/18844
-> >>> [2] https://dl.radxa.com/rock5/hw/RKeMMCSupportList%20Ver1.84=5F2=
-0240815.pdf
-> >> [3] https://lists.fedoraproject.org/archives/list/kernel@lists.fed=
-oraproject.org/thread/MCSDYDQVOXS5AZMKA7LLY4QX7JXBWPCA/
-> >> [4] https://github.com/armbian/build/pull/8736#issuecomment-338776=
-0536
+> > if (ad4030_enter_config_mode(st))
+> > =09
+> > > +	if (ret2)
+> > > +		dev_err(&st->spi->dev,
+> > > +			"couldn't reenter register configuration mode:
+> > > %d\n",
+> > > +			ret2);
+> here we log the error code. We only reach it if reg access fails after
+> something on offload buffer enable have failed first. We cannot reuse ret=
+ here
+> because we would be shadowing the original error code.
+
+Right :facepalm:
 
 
