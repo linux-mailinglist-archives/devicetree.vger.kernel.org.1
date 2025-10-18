@@ -1,189 +1,97 @@
-Return-Path: <devicetree+bounces-228362-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228365-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B7FDBECCA1
-	for <lists+devicetree@lfdr.de>; Sat, 18 Oct 2025 11:32:46 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8252BECDED
+	for <lists+devicetree@lfdr.de>; Sat, 18 Oct 2025 12:58:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3731A3A69CE
-	for <lists+devicetree@lfdr.de>; Sat, 18 Oct 2025 09:32:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 324F5585DD1
+	for <lists+devicetree@lfdr.de>; Sat, 18 Oct 2025 10:58:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE87227EFE3;
-	Sat, 18 Oct 2025 09:32:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D65B92FD7AE;
+	Sat, 18 Oct 2025 10:57:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=wp.pl header.i=@wp.pl header.b="v50TmCcY"
+	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="Ty3x/OQf";
+	dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="6gnXh+Or"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx4.wp.pl (mx4.wp.pl [212.77.101.11])
+Received: from mail.mainlining.org (mail.mainlining.org [5.75.144.95])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B93292571C2
-	for <devicetree@vger.kernel.org>; Sat, 18 Oct 2025 09:32:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.77.101.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43A552FB973;
+	Sat, 18 Oct 2025 10:57:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.75.144.95
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760779963; cv=none; b=kSoQWm/eDmLVMkAtuXPe6yfoQ409wr9ZOpHbw9L2Q59ntq89fJqZg1yhBDdnkumALmK3fQx6FJpkUX4tHTEufEDbXMUZ6uRRXsZIoyfkd0i2YE0jfiZ2Ts9ZBB2e85RG+Gtmr8j5q+4/0mpPbbh/SibM6INI19n/GtCG50cjAtc=
+	t=1760785064; cv=none; b=kyk277920G9U8GPYt7qy5FHmJ1V0S6X3PEVO/aIpIrw4V6YLSd2CsMFheGRiXbk6xSawjKBOcFbmi4jsVp+sppGaL59Q7RREVQNPNK/Vvvnn5q+Sq8kkfJC+6uPrCNHkqdAfwF1+Qgeqvft9sqpFOw5IBviwWZ2UUUojmQYxn24=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760779963; c=relaxed/simple;
-	bh=6zqFy0yOQYaM3ba/ZqW5nko4lKjakH5c4aABB4ez9d4=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=fGiR61IzoB9O51/W9Vq1fz8/J800J0Efex+WOPK3yliaHV26Go+/DXMYcw6hdM+z+4VWQhE8bIunz/tnP7NCOkvQhmi3Ce6k/aj+p2X4sl7D7CvlwzcpDzj0kAmx/XbA1YTRHcAI/RmInVSNLiBVXXZzEpxSnew/48ZnyMRssbQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=wp.pl; spf=pass smtp.mailfrom=wp.pl; dkim=pass (2048-bit key) header.d=wp.pl header.i=@wp.pl header.b=v50TmCcY; arc=none smtp.client-ip=212.77.101.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=wp.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wp.pl
-Received: (wp-smtpd smtp.wp.pl 9121 invoked from network); 18 Oct 2025 11:32:35 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wp.pl; s=20241105;
-          t=1760779955; bh=DFC7NfFRKKc2OZCx5rozLzXsNMg4boTyF7qGSrJ9Fms=;
-          h=From:To:Cc:Subject;
-          b=v50TmCcYLsOW9mE6E34NPv6YN3UjprgvEIAcntA1TI0KTJN85N0WdtT9eURJfyQiK
-           b2KNDpxgTzJKQfd5/gKGu66rK/1tNpqIQB+muplW9XILOQBY/rMSMpGJ3OTENk5/yj
-           ApdBgGt7/6qv8Mx7t9Zewonc/lvnNPMAKT4aPsPvuHZOeEVoAzSfMwAcepVmylKTdN
-           S9LEudO6CQ9SoNQSZM32+sTh//N2+JZyyBGrTrWhMvzJr/eq4XHkRPI9Oc1VZarszZ
-           ALXVr+Mpmh6MCMULuMgUsAO8WeqVaPGeVI2W5FGGQS55IPKXxOjrRdobMD/gs6mw2W
-           GXoHt65w7I44g==
-Received: from 83.24.149.147.ipv4.supernova.orange.pl (HELO laptop-olek.lan) (olek2@wp.pl@[83.24.149.147])
-          (envelope-sender <olek2@wp.pl>)
-          by smtp.wp.pl (WP-SMTPD) with ECDHE-RSA-AES256-GCM-SHA384 encrypted SMTP
-          for <wim@linux-watchdog.org>; 18 Oct 2025 11:32:35 +0200
-From: Aleksander Jan Bajkowski <olek2@wp.pl>
-To: wim@linux-watchdog.org,
-	linux@roeck-us.net,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	hauke@hauke-m.de,
-	linux-watchdog@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Aleksander Jan Bajkowski <olek2@wp.pl>
-Subject: [PATCH v2] dt-bindings: watchdog: lantiq,wdt: convert bindings to dtschema
-Date: Sat, 18 Oct 2025 11:29:06 +0200
-Message-ID: <20251018093229.291419-1-olek2@wp.pl>
-X-Mailer: git-send-email 2.47.3
+	s=arc-20240116; t=1760785064; c=relaxed/simple;
+	bh=fDyg/KkB0zb8PdJ8NL8ySCQTKaLa46KOSW3JNHaeRkQ=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=i8QQMB1HTmHPBEzeQEmDvlm9DGJwYvSFJ1v7iMeCJM7sxgZ4zqEgQE5kDtcWv87zwJhnBC8BkGhysaVF2rSZLtMUciXrDOc3ixvi7mdvZ6wbpdRSjElg8T3t38RxCTHi+iASUYX2/n/jskDm3sM86G5aTir6WC1m2sKDL+Kxyxg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=Ty3x/OQf; dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=6gnXh+Or; arc=none smtp.client-ip=5.75.144.95
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
+DKIM-Signature: v=1; a=rsa-sha256; s=202507r; d=mainlining.org; c=relaxed/relaxed;
+	h=To:Message-Id:Date:Subject:From; t=1760785050; bh=1MQIWBdEAkWMsNAJ3IYhQND
+	wGFpSfJYJXx6kNBrIIuM=; b=Ty3x/OQfpkDOkKQ5BYjiUJ7lwFOsvoL7xwGGWJGxur5LAlh4Wn
+	T+OMvNN/2epfYL1r1vTTItFbdg5ksvOEIN0mD8GxYYci5dRXEKzyChKr3nRVtXKvgep6+qevmNy
+	HymzBp8Fod3All9JKyFJ14Mv0b5JfZdPO5SqHuo+jr9O57PG12w0c7RUkMhWoli9TLXlkrslEaK
+	5Y6P3GV5VoXJAcJnEfMYblJYll+5mQxAZ2utxnP/CDyUhSKpsJwhOUt2aT5oSBJ1mN16B0TeJan
+	/OYqkTFR1PF+oAxEaPBYz8oK5FfWqUMwNy6ybP/+ZahzcpUdTnp/EMJrbeiSiYBqi3A==;
+DKIM-Signature: v=1; a=ed25519-sha256; s=202507e; d=mainlining.org; c=relaxed/relaxed;
+	h=To:Message-Id:Date:Subject:From; t=1760785050; bh=1MQIWBdEAkWMsNAJ3IYhQND
+	wGFpSfJYJXx6kNBrIIuM=; b=6gnXh+Or/3tSk0y9Y2RMQN0+JkPCcSLy4MublKBNdBMCcwATKy
+	D2q3Vx2U3P/RHY89mf8WPx3+0vhBnRrkrfCw==;
+From: Nickolay Goppen <setotau@mainlining.org>
+Subject: [PATCH 0/2] Add SDM660 cDSP support
+Date: Sat, 18 Oct 2025 13:57:27 +0300
+Message-Id: <20251018-qcom-sdm660-cdsp-v1-0-042e283db29b@mainlining.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-WP-DKIM-Status: good (id: wp.pl)                                                      
-X-WP-MailID: 738e6f299d59bcc5da0efebb1916b069
-X-WP-AV: skaner antywirusowy Poczty Wirtualnej Polski
-X-WP-SPAM: NO 000000A [8eME]                               
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAJdy82gC/x3MQQqAIBBA0avErBvQQLOuEi1Ep5qFVg5EEN09a
+ fkW/z8gVJgExuaBQhcL77lCtw2EzeeVkGM1dKozWmmHZ9gTSkzWKgxRDjSDj8Y623vtoGZHoYX
+ vfznN7/sBHouYhWIAAAA=
+X-Change-ID: 20251018-qcom-sdm660-cdsp-59ad56867a18
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Manivannan Sadhasivam <mani@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Nickolay Goppen <setotau@mainlining.org>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1760785049; l=655;
+ i=setotau@mainlining.org; s=20250815; h=from:subject:message-id;
+ bh=fDyg/KkB0zb8PdJ8NL8ySCQTKaLa46KOSW3JNHaeRkQ=;
+ b=im+iPPlrSkcf70FHlbLaaMWJ2QiSY5VM84lU/xUz7TLYWRQe6dW5EmZGn02ItjYRtrU4izgXg
+ vJBFOSaMYInADv52qxAHG6J54NmNcZrN74aEFhvs4ycppdfRtrnfnSV
+X-Developer-Key: i=setotau@mainlining.org; a=ed25519;
+ pk=Og7YO6LfW+M2QfcJfjaUaXc8oOr5zoK8+4AtX5ICr4o=
 
-Convert the Lantiq WDT Watchdog bindings to yaml format.
+This series adds an ability to load and boot the cDSP remoteproc
+found in the SDM660 SoC
 
-Signed-off-by: Aleksander Jan Bajkowski <olek2@wp.pl>
+Signed-off-by: Nickolay Goppen <setotau@mainlining.org>
 ---
-v2:
-- requirement of lantiq,rcu is now expressed as a schema 
----
- .../bindings/watchdog/lantiq,wdt.yaml         | 63 +++++++++++++++++++
- .../bindings/watchdog/lantiq-wdt.txt          | 24 -------
- 2 files changed, 63 insertions(+), 24 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/watchdog/lantiq,wdt.yaml
- delete mode 100644 Documentation/devicetree/bindings/watchdog/lantiq-wdt.txt
+Nickolay Goppen (2):
+      dt-bindings: remoteproc: qcom: adsp: Add SDM660 CDSP compatible
+      remoteproc: qcom: pas: Add support for SDM660 CDSP
 
-diff --git a/Documentation/devicetree/bindings/watchdog/lantiq,wdt.yaml b/Documentation/devicetree/bindings/watchdog/lantiq,wdt.yaml
-new file mode 100644
-index 000000000000..204e16be2a79
---- /dev/null
-+++ b/Documentation/devicetree/bindings/watchdog/lantiq,wdt.yaml
-@@ -0,0 +1,63 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/watchdog/lantiq,wdt.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Lantiq WTD watchdog
-+
-+maintainers:
-+  - Hauke Mehrtens <hauke@hauke-m.de>
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - enum:
-+          - lantiq,falcon-wdt
-+          - lantiq,wdt
-+          - lantiq,xrx100-wdt
-+      - items:
-+          - enum:
-+              - lantiq,xrx200-wdt
-+              - lantiq,xrx300-wdt
-+          - const: lantiq,xrx100-wdt
-+
-+  reg:
-+    maxItems: 1
-+
-+  lantiq,rcu:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description: Phandle to the RCU syscon node
-+
-+required:
-+  - compatible
-+  - reg
-+
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: lantiq,xrx100-wdt
-+    then:
-+      required:
-+        - lantiq,rcu
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: lantiq,falcon-wdt
-+    then:
-+      required:
-+        - lantiq,rcu
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    watchdog@803f0 {
-+        compatible = "lantiq,xrx200-wdt", "lantiq,xrx100-wdt";
-+        reg = <0x803f0 0x10>;
-+
-+        lantiq,rcu = <&rcu0>;
-+    };
-diff --git a/Documentation/devicetree/bindings/watchdog/lantiq-wdt.txt b/Documentation/devicetree/bindings/watchdog/lantiq-wdt.txt
-deleted file mode 100644
-index 18d4d8302702..000000000000
---- a/Documentation/devicetree/bindings/watchdog/lantiq-wdt.txt
-+++ /dev/null
-@@ -1,24 +0,0 @@
--Lantiq WTD watchdog binding
--============================
--
--This describes the binding of the Lantiq watchdog driver.
--
---------------------------------------------------------------------------------
--Required properties:
--- compatible		: Should be one of
--				"lantiq,wdt"
--				"lantiq,xrx100-wdt"
--				"lantiq,xrx200-wdt", "lantiq,xrx100-wdt"
--				"lantiq,falcon-wdt"
--- reg			: Address of the watchdog block
--- lantiq,rcu		: A phandle to the RCU syscon (required for
--			  "lantiq,falcon-wdt" and "lantiq,xrx100-wdt")
--
---------------------------------------------------------------------------------
--Example for the watchdog on the xRX200 SoCs:
--		watchdog@803f0 {
--			compatible = "lantiq,xrx200-wdt", "lantiq,xrx100-wdt";
--			reg = <0x803f0 0x10>;
--
--			lantiq,rcu = <&rcu0>;
--		};
+ Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml | 2 ++
+ drivers/remoteproc/qcom_q6v5_pas.c                          | 1 +
+ 2 files changed, 3 insertions(+)
+---
+base-commit: 93f3bab4310d4ff73027cc4f87174284d4977acf
+change-id: 20251018-qcom-sdm660-cdsp-59ad56867a18
+
+Best regards,
 -- 
-2.47.3
+Nickolay Goppen <setotau@mainlining.org>
 
 
