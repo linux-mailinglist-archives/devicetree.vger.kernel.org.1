@@ -1,117 +1,128 @@
-Return-Path: <devicetree+bounces-228421-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228422-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C5A5BED4E5
-	for <lists+devicetree@lfdr.de>; Sat, 18 Oct 2025 19:21:51 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 550B1BED54A
+	for <lists+devicetree@lfdr.de>; Sat, 18 Oct 2025 19:28:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 5A2824EFB60
-	for <lists+devicetree@lfdr.de>; Sat, 18 Oct 2025 17:20:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E402C19C1179
+	for <lists+devicetree@lfdr.de>; Sat, 18 Oct 2025 17:28:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3C3625CC4D;
-	Sat, 18 Oct 2025 17:20:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAFA624886E;
+	Sat, 18 Oct 2025 17:28:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="z5XGF59D"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XLMRLUsT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2534257859
-	for <devicetree@vger.kernel.org>; Sat, 18 Oct 2025 17:20:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 824FB246335;
+	Sat, 18 Oct 2025 17:28:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760808013; cv=none; b=oItBsx/+mq9OldzTnxbro61Jrjh3IQ54O/psHYdwtSD3HPdTUOd3h68azwjY80QdwgJVMNdNvGMocHVznPuODIk+sEUk0ZAnaE7zmE91MSNX6wy3y+zSIB5YvTJPWRKj/cTBkpM2Ooef9csnDXtB37pN8lyKuWyyC4JT+8ggiJs=
+	t=1760808499; cv=none; b=KUNPL6TJAITudTob7Zexf+M814IUwLIg7XmqTHsoQSnDsY3nCWTFOZTzR2PeJkMxYUYDx8M0XiCyRkS12g6Jl800SCD85+WzLbcux8HOMahDpD1hi6MVj89kzpsEH4/4yH62zarNSV7oqLyOHqS4wxFDR8++VllwDI0s1lE7xVE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760808013; c=relaxed/simple;
-	bh=Nr2KfNngiIlvNlLFYS/VgNPZ1obDnQoBFlUmS5D3U7I=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=UOYq8A9YQi/b7u+NyzYSY/Rjg6CYSqpsdlLPmMtkya7BPIE0ClSzQd+IiHY/spT5Rma3Zn1tHT+ETiZbOzhPxE0UShsn1t4m/Z9iDXjdY4YZgyNhoMu8oG0s9Fp6CK4MSRndPuweToMt0v8E8n2D9FM5dzxibBvzLT0I0JPzxWo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=z5XGF59D; arc=none smtp.client-ip=209.85.218.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-b3f8d2180feso47541666b.1
-        for <devicetree@vger.kernel.org>; Sat, 18 Oct 2025 10:20:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1760808010; x=1761412810; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=fTMTmXdQcRic/7O3wI4ilcIkNahM7H+SFceh2d7cSug=;
-        b=z5XGF59D5KNdezqryeaGxo27kG7jlhBasO41io17nGj1VyvZRmrFBhD38NQ/4wN2oD
-         GPHcb3avJGo5ZR9ynGj02NaMjvpGrWO/GOM+foWKZ5TqYpspg8b/b2DwQPKWhaDFI3QF
-         l3YFCzThuclcRgyhSHOaYenBmUl9rnQh/nwRonnY3QuVfP1MgQEDoFEhi/fDEtTTx0Eo
-         mEY0c9unpD/pSyVEEQXN/GikG+Z5vH9e9tqeUUcuiLlQCFn8zsm1UFo7tjV2pLahb1o+
-         Oo292yG8fFc/yL7ksoNkGMBI8IU7y2Tr+rpGZeOxb4IWe4K8D/fERjzQfxTlnH7ZkEY+
-         hovQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760808010; x=1761412810;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=fTMTmXdQcRic/7O3wI4ilcIkNahM7H+SFceh2d7cSug=;
-        b=PeM26iKpvv1ABPIxhqvw1IxxL45ssSgJvEv89k3cVw9dd4OWyMjsho49w3+nSOQoga
-         aZa2LrH5q2eKwfTOzLoDLVb9XnKHTEpKlaR+BcbZMwov7HYxLywaMk0M043YATbBnDDQ
-         SbLKtu/Q0115ByXSVv2O4/l2deBlKVxLHWzokjhC+OGrLhlhZqiCsHq4avb4q8ZR7/Ty
-         ur/duK4oxOsCLQsAUrCf4LK2UFM0WnY5cKtBQh7JZLzoa/r0MYycyoZtaioY8Apegrhz
-         TNh2LyWdZoJK/V67hqmIr25Ubhe8MnYRGlOIe8w6jWk8yyBJD5bw+huX3tmc0lfqLpkD
-         HhhA==
-X-Forwarded-Encrypted: i=1; AJvYcCVd4gUhKhNNWO4TsL4d9PVDbDMioHA9xBs3PHBHux+LDnIJYPHT6cMVy3hgK5h8x8dPGj+rxXXt3tq9@vger.kernel.org
-X-Gm-Message-State: AOJu0YwpfuHq1L3HmlV4Kc0TzZb8soFt2eGFqMJPhYJ453T3btHfMfF3
-	wHmWTiFvlgC+5b1ECTC9FZvYiOPsyg9ybONpPB3O1zXYHouWVrb1ArXVT+4FHboAMFM=
-X-Gm-Gg: ASbGncuYY1l18ZcLRV7YCYhA6jNhLH7agK6HTyLhn9kSXY/ovvgQbwfsY0i4VvbEfMf
-	kSZRdpMWA0zDkSnw7/+M5qmNeim2+rb0S+speAghBmT/6ETJ3VmFv92dXrvkCl8tPtgaR0zJ+Ed
-	A4+2in84VY+mK2udTEKHJMLYzWSL6Lrwoz17bRPNXAbYlW3jHaSdc+C+Z7IhbZLG1i5dSApP8L2
-	cpbUrS+2ysEN163ZDkTWiz6hPL7s53mt6QZn1hj25DZNiNtRP0HViOLU5j/k5utpxeIBV5sEY+p
-	gvqWVDkwizCy2ab8mGoDEZZon9b8acoua8c8zek+uhS51IDzlWq+NO+ZAer9d57arm8lZY2UBwQ
-	shPcCbPiqvaS4gaYC5xuX9nv0CtgNDHLptH9MNS7vLUrQk9ypOVLtCkWfIUgGXR+HG7ETZPWrCw
-	ZtgubAk5prPnZSk9z7QDXvLdDUyyw=
-X-Google-Smtp-Source: AGHT+IFbTirHyIN+XM2fk1IJ2nHqbjUwUwjp9X1pcQvNQEQRFLlqsHZZnLK9IZT+t3DpLgig2ZlJ/Q==
-X-Received: by 2002:a17:907:3da9:b0:b2b:c145:ab8a with SMTP id a640c23a62f3a-b6472352847mr489805466b.3.1760808010183;
-        Sat, 18 Oct 2025 10:20:10 -0700 (PDT)
-Received: from [127.0.1.1] ([178.197.219.123])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b65e7da2bc7sm280666466b.16.2025.10.18.10.20.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 18 Oct 2025 10:20:09 -0700 (PDT)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
- Kaustabh Chakraborty <kauschluss@disroot.org>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
- linux-kernel@vger.kernel.org
-In-Reply-To: <20250928-exynos7870-drm-dts-v3-1-bb7d8e570860@disroot.org>
-References: <20250928-exynos7870-drm-dts-v3-0-bb7d8e570860@disroot.org>
- <20250928-exynos7870-drm-dts-v3-1-bb7d8e570860@disroot.org>
-Subject: Re: (subset) [PATCH v3 1/6] dt-bindings: samsung: exynos-sysreg:
- add exynos7870 sysregs
-Message-Id: <176080800894.47136.16568266339840675495.b4-ty@linaro.org>
-Date: Sat, 18 Oct 2025 19:20:08 +0200
+	s=arc-20240116; t=1760808499; c=relaxed/simple;
+	bh=nkpL8KCY8Mv4kdqNPyJVilkHUZSdiEwxv2jGzWqeGx4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ZBSJYlvBnQ70FsY137qDX+P6V9v2pUXvJYxmw5RpMFtXr4AkGlykygy2kmhY/Vfmwoq/bqnBZk16yFfOCBRYc7bumZ2Z7pgXmW2LuPLAg2E1Zcn8AWIhHn0aEuWZ5vxO+e0DmNjlfY260y8+/FtMB7dEb+Y2y4lNhUB7e6g03/Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XLMRLUsT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0EC80C4CEF8;
+	Sat, 18 Oct 2025 17:28:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1760808499;
+	bh=nkpL8KCY8Mv4kdqNPyJVilkHUZSdiEwxv2jGzWqeGx4=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=XLMRLUsTZ25haHEOiq3fj+rwzViXij4qUl4GZuEHvA2ZRIcLI6AUIhbA3QmBZP73B
+	 skj9XCWXM7Dd77iUR/QVlzM2Mo0x0LeUdsBDComWdt3NBg5Fxmh4MLeV36j7CQKNVL
+	 m3mMKH22qvXKelhmdPh75q8T2uB8g1eFfSDaN9ZaXpwJT3EJd/U4Tnh9IgGOD+8+3A
+	 oeU83mRJ7T1dRjc0+Al0yRFHI5FqiWThJmlshgwZmkLGq30KhgdL/zJCaxV2VU+Dwn
+	 TlxOe+PmWediUZbxK7+WRWQd7e3Ldp0mttozai6MfnO1hBArlQj3ZgNOcHiLUDpHjI
+	 DHwoXbsXbCHqQ==
+Message-ID: <a77ee843-4c7f-4c7b-820d-2d9486887b7e@kernel.org>
+Date: Sat, 18 Oct 2025 19:28:12 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] arm64: defconfig: Enable ILITEK ILI21X & ILI25X
+ family of touch sensors
+To: Swamil Jain <s-jain1@ti.com>, nm@ti.com, tomi.valkeinen@ideasonboard.com,
+ robh@kernel.org, jyri.sarha@iki.fi, aradhya.bhatia@linux.dev,
+ airlied@gmail.com, conor+dt@kernel.org, h-shenoy@ti.com, kristo@kernel.org,
+ krzk+dt@kernel.org, maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+ simona@ffwll.ch, tzimmermann@suse.de
+Cc: devarsht@ti.com, praneeth@ti.com, u-kumar1@ti.com,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
+References: <20251017115325.1942591-1-s-jain1@ti.com>
+ <20251017115325.1942591-3-s-jain1@ti.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20251017115325.1942591-3-s-jain1@ti.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.3
 
-
-On Sun, 28 Sep 2025 23:26:35 +0530, Kaustabh Chakraborty wrote:
-> Add sysreg compatible strings for the Exynos7870 SoC. Two sysregs are
-> added, used for the SoC MIPI PHY's CSIS and DSIM blocks.
+On 17/10/2025 13:53, Swamil Jain wrote:
+> Microtips Technology USA's LVDS Panel MF-101HIEBCAF0[1] uses
+> ILITEK 2511 capacitative touch sensor to provide touch features on the
+> display. This panel is used with TI's AM62-SK EVMs.
 > 
+> Enable ILITEK ILI21X touch sensors.
+> 
+> [1]: https://www.ti.com/tool/SK-LCD1
 > 
 
-Applied, thanks!
-
-[1/6] dt-bindings: samsung: exynos-sysreg: add exynos7870 sysregs
-      https://git.kernel.org/krzk/linux/c/3abd9b087a4cd7430cec2080c67e7a94fd7a44b4
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
--- 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
+Krzysztof
 
