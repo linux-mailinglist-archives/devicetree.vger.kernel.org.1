@@ -1,90 +1,63 @@
-Return-Path: <devicetree+bounces-228348-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228349-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id E17BBBEC728
-	for <lists+devicetree@lfdr.de>; Sat, 18 Oct 2025 06:23:10 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7AC00BEC72F
+	for <lists+devicetree@lfdr.de>; Sat, 18 Oct 2025 06:26:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 29EE94EA3D2
-	for <lists+devicetree@lfdr.de>; Sat, 18 Oct 2025 04:23:07 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 57B6B4E34BD
+	for <lists+devicetree@lfdr.de>; Sat, 18 Oct 2025 04:26:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3FB528C00D;
-	Sat, 18 Oct 2025 04:23:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBE7E2750FB;
+	Sat, 18 Oct 2025 04:26:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FFrG/yRL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WW4OQ5KK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com [209.85.210.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 746D728724D
-	for <devicetree@vger.kernel.org>; Sat, 18 Oct 2025 04:22:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C14AA2512DE;
+	Sat, 18 Oct 2025 04:26:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760761381; cv=none; b=BGF44Hg0dvjUk/dEh2sDLdK44kNWr3XhTQLjk7vcA6s/mf6UcRPfzwJXGnuNX6hdLeVJziZekoyUttJOTxJxKTy6COGS4+0f0Qg9UeBYK5wq/4XRnYXDfcVTQjeYDfy3xLv4SfCMeTqT/TzmVuVupSELyqUFU65vxMiKqUq8TQ8=
+	t=1760761583; cv=none; b=gvU3srwTF77Jtz7LB5/KcafjMWKQqf64KppOZuMc9jw68x1HqQWdkeXSehwP1gJGKsE93AUDvWcjEcLU5MfA2sa8brnYpWyBjE4nU7oeF16vglnNoQ1sJ16q6gMMUA/GRMKntxPBJUpGOyQvOh2dbpC7e4wv87vd18ZEZSNYlHk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760761381; c=relaxed/simple;
-	bh=twucSrQ5gBaSxq5bHh4w/uiMfTGTQSSYFbLCd3U7t1s=;
+	s=arc-20240116; t=1760761583; c=relaxed/simple;
+	bh=MEgE0QRPhEEuk7tndh1iLlixQzBm8L9kEqydt7lrUeA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=biQyuU4G2T2IQYQ7CrBQimNVFjmTOYH+k50Rb+1SGnR4ku2mpELhuC157SMYBquVClDjXMiHF1c26/iKS+cOGkvHjZlfbaZ+Tjps+NAn31jxj7noT1YFFfU+BRAn4HOacPsh5E1l+ys50QnIXbsh/qGi32NlHDYdOP7ZNlc8XZo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FFrG/yRL; arc=none smtp.client-ip=209.85.210.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f173.google.com with SMTP id d2e1a72fcca58-781db5068b8so2145137b3a.0
-        for <devicetree@vger.kernel.org>; Fri, 17 Oct 2025 21:22:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1760761379; x=1761366179; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=9sLob+FuMRhc3oCQLkxbSCKuBsggj1HN+/JP5OBcKrA=;
-        b=FFrG/yRLejUwgHhCLt3PdErv354g7VQQgIlnFWEdFotO6bYVjzdCUMio53YpEOwLwN
-         UbfTiwPA8hXRV8sJdkbvdiXNzSxjruImeLRWeUc6KyVdQPTxs2w2vS99o7mg3rAkeE98
-         z+Adt+XqEumh8b3RqTTHGwDQiixkqa36jP1b0Oz2RLwMeMysI5wdg7WSsZLPR7WUeNAs
-         L3M4h8ahUy4DCXF3oQH40OrKZcFEx9+sM4HfRfAlpH2lAoKjWc+BdHYExsiX+0GqLdjs
-         q7Q0nwFI50m+i7cpXq6+gfmrWsHio93yIc9RUrRH2p91y4dp+d6rJ17xJyPzxJT0YLwA
-         UHVA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760761379; x=1761366179;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9sLob+FuMRhc3oCQLkxbSCKuBsggj1HN+/JP5OBcKrA=;
-        b=xKJ1cZYp2YWDhgmqhkGFukTDiaUF8E/ROSjpuFHDR+tW8l4PJM2lD+tcD98zt3HqcW
-         Oma791oqdw+Om6T8D3kzt3MFNHFMBFTXn0pRSpRVuEwHlyoyyvelojbtvqN+FMdq3caV
-         bccScna0ehvZdvNRVdDTAhiT+WsM6mrRkLjjahLww6s/tf0zq9wwhPudNAN0UevCUAQb
-         rVS8pLeE8SqWL3LsYbFaRab8qvRZOjfgaa1m/p/FYjoK+uqc3kEW1qPp+GW4/6FnaRc/
-         QIHSMnkuQeE8S+2nIrdNinC/uppJo3IDikjAU5OxSvsOSiPHkpkAe7+vq98j2pGjmEM9
-         O/zw==
-X-Forwarded-Encrypted: i=1; AJvYcCV5lBqaL/5e8cVQujPD8Y5S8HKdg/qMoxl66HUDptcfMdMhk/aTaBLChjQIClu6wN/nUedtpwNetFLn@vger.kernel.org
-X-Gm-Message-State: AOJu0YwUpTpu+iT22oinV+/7gOQUvCtPCGk202v0mv5hFiFUsnoOwSKz
-	yHevdwvKOA2CJ2H7kL/N1b7lb1XtRokro6aB83wGm/YPJjUd5ts+Njs2
-X-Gm-Gg: ASbGncu9wVLEjd8NsYGzrjS48aA9uNBN9HjBTTL6HGYEPkHAkVStessOAZWviabyxEF
-	zxx8hZKJ3rGsV5rS7ILodpBlYT7vpTAjILO8jugWgqd6MfCSRSXz7tD+k0tllSyk+sjr5pUoA//
-	eXvE0GOUs2apnF0rq7B+Be3TSPKaYTaOVeoVoYuaLgraY/zsCZTynntJSmJAIcqg+5efyFDGzP+
-	mQxUlaMbm4hLpXYMCwxJA1KpLfLKrjYRj3TqMJwubAy22hd90iThKMgS5jf7yRdVkbrJfK6FP48
-	q15JLkOc/kZOI2Snm3mWYRO9xLigelVu84IFfI5ku+yGE8U2YGGCi7qK5DvcgJ1HPVjHO+TuWMC
-	bOnSQ45YsEObmvY0vI+FhI8h2x4lVpk6da5mI17XQjZjJTk868V5e/c1E2UsqheIDce7d9+3vk2
-	DMJ7EWirh/87G1P7nUlVWCXn1FslV4yo+4qjRI1bAeXIwsZONnRvA=
-X-Google-Smtp-Source: AGHT+IEhKFhi3mFcny1EeYAjFFvibCPRFlOFAaD2YdcMmlpvQjgeW53Ajd4FqG8YZ9mvVIB5YeafcQ==
-X-Received: by 2002:a05:6a00:4288:b0:7a2:2100:1d4b with SMTP id d2e1a72fcca58-7a221001d8cmr7669202b3a.14.1760761378534;
-        Fri, 17 Oct 2025 21:22:58 -0700 (PDT)
-Received: from google.com ([2a00:79e0:2ebe:8:5e2d:c6df:afce:809b])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7a22ff34e98sm1318508b3a.26.2025.10.17.21.22.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 17 Oct 2025 21:22:58 -0700 (PDT)
-Date: Fri, 17 Oct 2025 21:22:55 -0700
-From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	"open list:INPUT (KEYBOARD, MOUSE, JOYSTICK, TOUCHSCREEN)..." <linux-input@vger.kernel.org>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
-Subject: Re: [PATCH v2 2/2] dt-bindings: touchscreen: move ar1021.txt to
- trivial-touch.yaml
-Message-ID: <jxtqhq7u5obj6em7p6hnzqjkmr7svomeptqy5bgvmqr75pbbnq@d5didfx4qqvl>
-References: <20250926184720.391335-1-Frank.Li@nxp.com>
- <20250926184720.391335-2-Frank.Li@nxp.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=EKq27Ks3mdXmnc2VEWBT/pemG++7FgrAP33e6YX8BTgINjFUXW4oXvJBWOC2junVPit+gM+2QYGtYuExgApPqSj+mBuB5PTjWJIMP3LEGOW1Z30Oo+zZdw49tYidu+ZwVw1AHehxfXbzKI5nbBYKwmL3BAK6SfzaA5IBa2RhQU0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WW4OQ5KK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 04702C4CEF8;
+	Sat, 18 Oct 2025 04:26:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1760761583;
+	bh=MEgE0QRPhEEuk7tndh1iLlixQzBm8L9kEqydt7lrUeA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=WW4OQ5KKq/YUAx14hKAI1n6M84ZVfX7iqRTeZxivffvfBhaEKvGsHOzXsd81bxgwx
+	 wsYxP4LAg9+QiY7xRo74GmxKOi1O0edebdmFhxb/Iw2HYC+LqNMQC/MM4AmZCsP59h
+	 ADdGIV6f+SeLwqeWgGlaC9pQCzTaT3mIiGkJ1+dE3t9/pDBgiyNBY5R/nUTDMGXVSK
+	 5+5bVQiCGCcnZxHhEAbWWz8abifKYN/GTIYYH5xjWKVT2p9yedgtdfN1Leu3bP/d6a
+	 uvoKC/Gz03/2mKhg5TZhcyLUjLyJPbdhfv1PGTzD3x4/+uYEMajSkDerulS+OeNtLG
+	 f5zlfIAEvYVRw==
+Date: Fri, 17 Oct 2025 21:26:21 -0700
+From: Drew Fustini <fustini@kernel.org>
+To: Han Gao <rabenda.cn@gmail.com>
+Cc: devicetree@vger.kernel.org, Guo Ren <guoren@kernel.org>,
+	Fu Wei <wefu@redhat.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Inochi Amaoto <inochiama@gmail.com>,
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 0/3] riscv: dts: thead: add more th1520 isa extension
+ support
+Message-ID: <aPMW7ZNjVjy/8Izk@x1>
+References: <cover.1758228055.git.rabenda.cn@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -93,16 +66,40 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250926184720.391335-2-Frank.Li@nxp.com>
+In-Reply-To: <cover.1758228055.git.rabenda.cn@gmail.com>
 
-On Fri, Sep 26, 2025 at 02:47:12PM -0400, Frank Li wrote:
-> ar1021 have only reg and interrupts property beside touch common
-> properties. So move context of ar1021.txt into trivial-touch.yaml.
+On Fri, Sep 19, 2025 at 04:44:46AM +0800, Han Gao wrote:
+> Add xtheadvector & ziccrse & zfh for th1520
 > 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> Updated the commit message for the patchset
+> 
+> Thanks,
+> Han
+> 
+> ---
+> v1: https://lore.kernel.org/all/20250911184528.1512543-1-rabenda.cn@gmail.com/
+> 
+> Han Gao (3):
+>   riscv: dts: thead: add xtheadvector to the th1520 devicetree
+>   riscv: dts: thead: add ziccrse for th1520
+>   riscv: dts: thead: add zfh for th1520
+> 
+>  arch/riscv/boot/dts/thead/th1520.dtsi | 28 +++++++++++++++++++--------
+>  1 file changed, 20 insertions(+), 8 deletions(-)
+> 
+> -- 
+> 2.47.3
+> 
 
-Applied, thank you.
+Applied to thead-dt-for-next, thanks!
 
--- 
-Dmitry
+[1/3] riscv: dts: thead: add xtheadvector to the th1520 devicetree
+      commit aef6dc006696c20ccc58c4c0235a14e7b4b317a0
+[2/3] riscv: dts: thead: add ziccrse for th1520
+      commit bcc3b9c5de5e2a03ede1a8133c05255927d744d6
+[3/3] riscv: dts: thead: add zfh for th1520
+      commit fac4be7b3d49ae7e32d8ae523343d7fe790772f9
+
+
+-Drew
 
