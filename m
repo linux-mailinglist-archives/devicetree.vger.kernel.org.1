@@ -1,146 +1,245 @@
-Return-Path: <devicetree+bounces-228394-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228395-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27BC4BED085
-	for <lists+devicetree@lfdr.de>; Sat, 18 Oct 2025 15:27:17 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E02BBED0CA
+	for <lists+devicetree@lfdr.de>; Sat, 18 Oct 2025 15:57:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 16CE34E4414
-	for <lists+devicetree@lfdr.de>; Sat, 18 Oct 2025 13:27:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 15EA55E50F7
+	for <lists+devicetree@lfdr.de>; Sat, 18 Oct 2025 13:57:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18F272D7DC8;
-	Sat, 18 Oct 2025 13:26:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 476ED1E520C;
+	Sat, 18 Oct 2025 13:57:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="ez8RxCs6"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="q+ShW8gb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+Received: from mail1.manjaro.org (mail1.manjaro.org [142.132.176.110])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDEDC2D7D2E;
-	Sat, 18 Oct 2025 13:26:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9ED9D1BC3F;
+	Sat, 18 Oct 2025 13:57:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=142.132.176.110
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760794001; cv=none; b=YOyRoKQuo5cPXgoVpOy0Vbmu8oSDFyhmZP36yRvSBV8DJouvOTlUWjPI0CeWAyWRVOJISk2ODwoZLPuX7ognuPNMWz8JU5e3ULgkDPDuyMi3BfV5aOV0tq+6CgXz/G6w3AEsYMso1DQmMoGJoDOsAdYSWC31RRORVfPm7wu4V88=
+	t=1760795861; cv=none; b=NXTM09PZUhH5pnJwgs+xvKDa8pMdqs6vAa4iauhC13JiqQ1wd+dTxv5MSU9UV05GEOuTOy0UV0+hp6buEXCLwpBh+V4YVBgnFnzYxflP4cVC9eCpuI6C1eC+8eqmY8S7qmmuFqJ/W83uIER+HB4grdd1EkGN5iaxg5SB+mijgZM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760794001; c=relaxed/simple;
-	bh=C5nGxywVFgoREh4zne4pmgDnPHDvmBiqbUS2gaJRZyk=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=YHzdfOWgMVomDSGjBMVPzoFdf+hynWx3Nr0fpbsR/WFK4evgUNabW40BS3jeiITxhMJ10rlv7RWYAEFylUeDrYoCZJxtNyQZx3PfuyY13OltHLsEzVIS2pabJK+aAodFCXxf6hFU7uaH9vcxwIe34cYBo5s8HsyuBFnkuPY68Aw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=ez8RxCs6; arc=none smtp.client-ip=60.244.123.138
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: 1140bdeaac2611f0ae1e63ff8927bad3-20251018
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=GqSnn4N2+xwCdyaHv2txZ21/LyrmQQPl6bRhFXBkPBc=;
-	b=ez8RxCs6rivwBKmKWW8L1/0WHJ8fdxbr0Ca+r3lQNH+7IrwyTIpVpXqYsk/TV5HdemEhSvlxke+EylXcc3goEPQc9ErQggqPeybcVs9Ppf28Vmb0bvV8D9he8lSRAb+8GQVUH/V+qkSdGENrnz7JwM8CHOYgjNr0wzlg2N5FqhY=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.3.6,REQID:258ecbcd-8b26-46d7-9a1a-08cb9c5b0cd5,IP:0,UR
-	L:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:r
-	elease,TS:0
-X-CID-META: VersionHash:a9d874c,CLOUDID:25335a86-2e17-44e4-a09c-1e463bf6bc47,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:81|82|102|836|888|898,TC:-5,Content:
-	0|15|50,EDM:-3,IP:nil,URL:0,File:130,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,
-	OSI:0,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 2,SSN|SDN
-X-CID-BAS: 2,SSN|SDN,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
-X-UUID: 1140bdeaac2611f0ae1e63ff8927bad3-20251018
-Received: from mtkmbs14n1.mediatek.inc [(172.21.101.75)] by mailgw01.mediatek.com
-	(envelope-from <zhengnan.chen@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 1654531085; Sat, 18 Oct 2025 21:26:34 +0800
-Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
- MTKMBS14N1.mediatek.inc (172.21.101.75) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.26; Sat, 18 Oct 2025 21:26:30 +0800
-Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
- mtkmbs13n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1748.26 via Frontend Transport; Sat, 18 Oct 2025 21:26:29 +0800
-From: Zhengnan Chen <zhengnan.chen@mediatek.com>
-To: Yong Wu <yong.wu@mediatek.com>, Joerg Roedel <joro@8bytes.org>, Will
- Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-CC: <iommu@lists.linux.dev>, <linux-mediatek@lists.infradead.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>,
-	<Project_Global_Chrome_Upstream_Group@mediatek.com>, Zhengnan Chen
-	<zhengnan.chen@mediatek.com>
-Subject: [PATCH v4 5/5] iommu/mediatek: mt8189: Add MM IOMMUs support
-Date: Sat, 18 Oct 2025 21:26:14 +0800
-Message-ID: <20251018132625.14428-6-zhengnan.chen@mediatek.com>
-X-Mailer: git-send-email 2.46.0
-In-Reply-To: <20251018132625.14428-1-zhengnan.chen@mediatek.com>
-References: <20251018132625.14428-1-zhengnan.chen@mediatek.com>
+	s=arc-20240116; t=1760795861; c=relaxed/simple;
+	bh=+PsrH7NEsfuNdrzjcmyWOTRXzpeDJUVdrs97M5RgAZQ=;
+	h=From:In-Reply-To:Content-Type:References:Date:Cc:To:MIME-Version:
+	 Message-ID:Subject; b=tcFYgD/NeMSPWJVZLX0Foh7BkBrmK7PFZ4Ss5H/lqGTu3Z/0o4Ys4Wq7lPh5U8LZ/KzHiig0veuOHQ4J3dlsA6e5lTHdsYvuSp5Syap1Xwkp+sgTLVw8loeBgx/IZ7iAM3vmPiAVVWyj4/LHlg5v41Iw0NquaeNxm2y7zdN+NAI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=q+ShW8gb; arc=none smtp.client-ip=142.132.176.110
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPA id 0CBA540A58;
+	Sat, 18 Oct 2025 15:57:24 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=dkim;
+	t=1760795846; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=+8Vwrx25FHbbCKskadf35mdBQsNbpuT/QB9T+nEdcx0=;
+	b=q+ShW8gbZfu5gfnVK8jFNRS8vnV4Z7AKmeulUm+muBQ29LVoue8E0iN1sxtYiLq7xHn2ui
+	2pCS/jVkmcPr1+r642wSQHsBhVUo6wbdkNoD4Axfl/8xP8hmz/aAaW/v+pojVA2q/WoH5y
+	Mqoekiyt0ziBJEVcY6On8YPMalEeBqTdvvsl+weeZJgwbe1d3wiTvQrBvuZBJWctZs5SNZ
+	QcQ9hiwm15K9fRBjTTkSD7e+irY7ILOJfeXHIlFqNJw4oMZ7q/kSywch6SCx3LZ67h8Ink
+	Ga45s9NcNrLeSnQWJOr+Qs5wWZX5ztf6Y/ovekJSfNco5RNWRb/kAYBKxcADLA==
+From: "Dragan Simic" <dsimic@manjaro.org>
+In-Reply-To: <b22425c3-01e0-4d2e-bf78-5db884d4ec38@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+References: <20251017073954.130710-1-cnsztl@gmail.com>
+ <7f0b1747-87eb-0b0b-6fb0-304811a4be21@manjaro.org>
+ <d9d14ce2-2e65-422e-95fb-eb30b128ad90@gmail.com>
+ <41154cde-a447-0707-4387-cd3dca90b97d@manjaro.org>
+ <CALWfF7K0=J3E-zr41wV-28+SCFkT_so55Aee8BvQsB4KJZy6YQ@mail.gmail.com>
+ <47931e9e-09db-3909-4531-dae6869171d7@manjaro.org> <b22425c3-01e0-4d2e-bf78-5db884d4ec38@gmail.com>
+Date: Sat, 18 Oct 2025 15:57:24 +0200
+Cc: "Jimmy Hon" <honyuenkwun@gmail.com>, "Tianling Shen" <cnsztl@gmail.com>, "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Heiko Stuebner" <heiko@sntech.de>, "Grzegorz Sterniczuk" <grzegorz@sternicz.uk>, "Jonas Karlman" <jonas@kwiboo.se>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+To: "Hugh Cole-Baker" <sigmaris@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+Message-ID: <de5e8643-49bb-4e0e-45fd-51b25ecf530d@manjaro.org>
+Subject: =?utf-8?q?Re=3A?= [PATCH] =?utf-8?q?arm64=3A?==?utf-8?q?_dts=3A?=
+ =?utf-8?q?_rockchip=3A?= fix eMMC corruption on NanoPC-T6 with A3A444 chips
+User-Agent: SOGoMail 5.12.3
+Content-Transfer-Encoding: quoted-printable
+X-Last-TLS-Session-Version: None
 
-Add support for mt8189 MM IOMMUs.
+Hello Hugh,
 
-Signed-off-by: Zhengnan Chen <zhengnan.chen@mediatek.com>
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Reviewed-by: Yong Wu <yong.wu@mediatek.com>
----
- drivers/iommu/mtk_iommu.c | 28 ++++++++++++++++++++++++++++
- 1 file changed, 28 insertions(+)
+On Saturday, October 18, 2025 14:14 CEST, Hugh Cole-Baker <sigmaris@gma=
+il.com> wrote:
+> On 18/10/2025 09:30, Dragan Simic wrote:
+> > On Saturday, October 18, 2025 02:42 CEST, Jimmy Hon <honyuenkwun@gm=
+ail.com> wrote:
+> >> On Fri, Oct 17, 2025 at 10:15=E2=80=AFAM Dragan Simic <dsimic@manj=
+aro.org> wrote:
+> >>> On Friday, October 17, 2025 14:08 CEST, Tianling Shen <cnsztl@gma=
+il.com> wrote:
+> >>>> On 2025/10/17 18:25, Dragan Simic wrote:
+> >>>>> On Friday, October 17, 2025 09:39 CEST, Tianling Shen <cnsztl@g=
+mail.com> wrote:
+> >>>>>> From: Grzegorz Sterniczuk <grzegorz@sternicz.uk>
+> >>>>>>
+> >>>>>> Some NanoPC-T6 boards with A3A444 eMMC chips experience I/O er=
+rors and
+> >>>>>> corruption when using HS400 mode. Downgrade to HS200 mode to e=
+nsure
+> >>>>>> stable operation.
+> >>>>>
+> >>>>> Could you, please, provide more details about the troublesome e=
+MMC
+> >>>>> chip that gets identified as A3A444, i.e. what's the actual bra=
+nd
+> >>>>> and model?  Maybe you could send a picture of it?  It might als=
+o
+> >>>>> help if you'd send the contents of "/sys/class/block/mmcblkX/de=
+vice
+> >>>>> /manfid" from your board (where "X" should equal two).
+> >>>>
+> >>>> Unfortunately I don't have this board nor this eMMC chip.
+> >>>> I got the chip model from my friend, it's FORESEE FEMDNN256G-A3A=
+44,
+> >>>> manfid is 0x0000d6.
+> >>>
+> >>> Thanks for responding and providing the details so quickly!
+> >>>
+> >>>>> I'm asking for that because I'd like to research it a bit furth=
+er,
+> >>>>> if possible, because some other eMMC chips that are also found =
+on
+> >>>>> the NanoPc-T6 seem to work fine in HS400 mode. [1]  It may be t=
+hat
+> >>>>> the A3A444 chip has some issues with the HS400 mode on its own,
+> >>>>> i.e. the observed issues may not be caused by the board.
+> >>>>
+> >>>> Yes, it should be caused by this eMMC chip.
+> >>>
+> >>> I'd suggest that we move forward by "quirking off" the HS400 mode
+> >>> for the FEMDNN256G-A3A44 eMMC chip in the MMC drivers, instead of
+> >>> downgrading the speed of the sdhci interface on the NanoPC-T6.
+> >>>
+> >>> That way, the other similar Foresee eMMC chip that's also found
+> >>> on NanoPC-T6 boards, FEMDNN256G-A3A564, will continue to work in
+> >>> the faster HS400 mode, while the troublesome A3A44 variant will
+> >>> be downgraded to the HS200 globally for everyone's benefit.  It's
+> >>> quite unlikely that the A3A44 variant fails to work reliable in
+> >>> HS400 mode on the NanoPC-T6 only, so quirking it off in the MMC
+> >>> drivers should be a sane and safe choice.
+> >>>
+> >>> If you agree with dropping this patch, I'll be more than happy
+> >>> to implement this HS200 quirk in the MMC drivers.
+> >>>
+> >>> As a note, FEMDNN256G-A3A44 is found in the Rockchip Qualified
+> >>> eMMC Support List v1.84, [2] but the evidence says the opposite,
+> >>> so we should react appropriately by adding this quirk.
+> >>
+> >> When adding the quirk for the A3A44, can we lower the max frequenc=
+y
+> >> and keep the HS400 mode instead?
+> >> That's what the Fedora folks found works [3]. There's more test
+> >> results in Armbian [4]
+> >=20
+> > Are there any I/O performance tests that would prove that lowering
+> > the HS400 frequency to 150 MHz ends up working significantly faster
+> > than dropping the eMMC chip to HS200 mode?
+> >=20
+> > I'm asking that because lowering the frequency looks much more like
+> > there's some issue with the board, rather than the issue being the
+> > eMMC chip's support for HS400 mode.  Thus, a quirk that would lower
+> > the HS400 mode frequency would likely be frowned upon and rejected,
+> > while a quirk that puts the chip into HS200 mode is much cleaner
+> > and has much higher chances to be accepted.
+>=20
+> I also have the NanoPC-T6 with one of the A3A444 eMMCs which suffers
+> from I/O errors in the default HS400 mode. These are its details in
+> /sys/block/mmcblk0/device/:
+> manfid: 0x0000d6
+> oemid: 0x0103
+> name: A3A444
+> fwrev: 0x1100000000000000
+> hwrev: 0x0
+> rev: 0x8
 
-diff --git a/drivers/iommu/mtk_iommu.c b/drivers/iommu/mtk_iommu.c
-index e71acaa292cc..989e07599193 100644
---- a/drivers/iommu/mtk_iommu.c
-+++ b/drivers/iommu/mtk_iommu.c
-@@ -1771,6 +1771,33 @@ static const struct mtk_iommu_plat_data mt8189_data_infra = {
- 	.iova_region_nr	= ARRAY_SIZE(single_domain),
- };
- 
-+static const u32 mt8189_larb_region_msk[MT8192_MULTI_REGION_NR_MAX][MTK_LARB_NR_MAX] = {
-+	[0] = {~0, ~0, ~0, [22] = BIT(0)},	/* Region0: all ports for larb0/1/2 */
-+	[1] = {[3] = ~0, [4] = ~0},		/* Region1: all ports for larb4(3)/7(4) */
-+	[2] = {[5] = ~0, [6] = ~0,		/* Region2: all ports for larb9(5)/11(6) */
-+	       [7] = ~0, [8] = ~0,		/* Region2: all ports for larb13(7)/14(8) */
-+	       [9] = ~0, [10] = ~0,		/* Region2: all ports for larb16(9)/17(10) */
-+	       [11] = ~0, [12] = ~0,		/* Region2: all ports for larb19(11)/20(12) */
-+	       [21] = ~0},			/* Region2: larb21 fake GCE larb */
-+};
-+
-+static const struct mtk_iommu_plat_data mt8189_data_mm = {
-+	.m4u_plat	= M4U_MT8189,
-+	.flags		= HAS_BCLK | HAS_SUB_COMM_3BITS | OUT_ORDER_WR_EN |
-+			  WR_THROT_EN | IOVA_34_EN | MTK_IOMMU_TYPE_MM |
-+			  PGTABLE_PA_35_EN | DL_WITH_MULTI_LARB,
-+	.hw_list	= &m4ulist,
-+	.inv_sel_reg	= REG_MMU_INV_SEL_GEN2,
-+	.banks_num	= 5,
-+	.banks_enable	= {true, false, false, false, false},
-+	.iova_region	= mt8192_multi_dom,
-+	.iova_region_nr	= ARRAY_SIZE(mt8192_multi_dom),
-+	.iova_region_larb_msk = mt8189_larb_region_msk,
-+	.larbid_remap	= {{0}, {1}, {21/* GCE_D */, 21/* GCE_M */, 2},
-+			   {19, 20, 9, 11}, {7}, {4},
-+			   {13, 17}, {14, 16}},
-+};
-+
- static const struct mtk_iommu_plat_data mt8192_data = {
- 	.m4u_plat       = M4U_MT8192,
- 	.flags          = HAS_BCLK | HAS_SUB_COMM_2BITS | OUT_ORDER_WR_EN |
-@@ -1874,6 +1901,7 @@ static const struct of_device_id mtk_iommu_of_ids[] = {
- 	{ .compatible = "mediatek,mt8188-iommu-vpp",   .data = &mt8188_data_vpp},
- 	{ .compatible = "mediatek,mt8189-iommu-apu",   .data = &mt8189_data_apu},
- 	{ .compatible = "mediatek,mt8189-iommu-infra", .data = &mt8189_data_infra},
-+	{ .compatible = "mediatek,mt8189-iommu-mm",    .data = &mt8189_data_mm},
- 	{ .compatible = "mediatek,mt8192-m4u", .data = &mt8192_data},
- 	{ .compatible = "mediatek,mt8195-iommu-infra", .data = &mt8195_data_infra},
- 	{ .compatible = "mediatek,mt8195-iommu-vdo",   .data = &mt8195_data_vdo},
--- 
-2.46.0
+Thanks for reporting the same issue with the same board and
+increasing our sample size to two. :)
+
+> I wasn't sure if I was just unlucky to get a faulty chip, but seeing
+> this thread it seems like a wider issue. On my board, limiting it to
+> HS200 mode gets rid of the I/O errors, and it seems that lowering
+> the frequency to 150MHz also avoids I/O errors.
+>=20
+> I did a quick unscientific test with fio; HS400 Enhanced Strobe mode
+> with a 150MHz clock gives slightly better performance than HS200:
+>=20
+> HS200 mode:
+> read: IOPS=3D697, BW=3D43.6MiB/s
+> write: IOPS=3D697, BW=3D43.6MiB/s
+>=20
+> HS400 mode with 150MHz clock:
+> read: IOPS=3D805, BW=3D50.3MiB/s
+> write: IOPS=3D799, BW=3D50.0MiB/s
+>=20
+> so from my perspective, limiting the frequency would be a better fix
+> than disabling HS400 entirely.
+
+Thanks for running these tests!  The measured difference in the
+I/O performance is about 15%, which surely isn't insignificant,
+but IMHO it makes the proposed lowering of the eMMC chip to HS200
+mode fall into the "good safety margin" bracket that I described
+earlier.  I think it's better to sacrifice those 15% to stay on
+the, hopefully, rock-solid side.
+
+I've been thinking more about the 150 MHz HS400 and HS200 quirks,
+and I'm afraid I'm even more sure that the 150 MHz HS400 quirk
+would be frowned upon and rejected.  See, it does make it look
+like a board-level issue, requiring a board-level fix, instead of
+being a chip-level issue, for which a quirk would be fine.  The
+acceptably low difference in the measured performance levels just
+solidifies such a viewpoint, I'm afraid.
+
+> It could also be of interest that the clock used apparently can't
+> provide an exact 200MHz, e.g. in HS200 mode:
+>=20
+> root@t6:~# cat /sys/kernel/debug/mmc0/ios
+> clock:		200000000 Hz
+> actual clock:	187500000 Hz
+> vdd:		18 (3.0 ~ 3.1 V)
+> bus mode:	2 (push-pull)
+> chip select:	0 (don't care)
+> power mode:	2 (on)
+> bus width:	3 (8 bits)
+> timing spec:	9 (mmc HS200)
+> signal voltage:	1 (1.80 V)
+> driver type:	0 (driver type B)
+
+Thanks, that's also something to think about.
+
+> > With all that in mind, if the resulting I/O performance difference
+> > between 150 MHz HS400 and HS200 is within 15-20% or so, I'd highly
+> > recommend that we still go with the HS200 quirk.  It also leaves
+> > us with a nice safety margin, which is always good to have when
+> > such hardware instability issues are worked around in software,
+> > unless detailed eye diagrams, protocol dumps and whatnot can be
+> > pulled and analyzed, in which case the resulting safety margin
+> > can be much slimmer.
+> >=20
+> > Ideally, we'd have a completely different board with the same
+> > Foresee FEMDNN256G-A3A44 eMMC chip to test how reliably its HS400
+> > mode works there, to see is it really up to this eMMC chip or up
+> > to the board design, but I'm afraid we don't have that (easily)
+> > available, so the only remaining option is to work with what's
+> > actually available, which inevitably leads to a certain amount
+> > of guesswork and some compromises.
+> >=20
+> >>> [1] https://github.com/openwrt/openwrt/issues/18844
+> >>> [2] https://dl.radxa.com/rock5/hw/RKeMMCSupportList%20Ver1.84=5F2=
+0240815.pdf
+> >> [3] https://lists.fedoraproject.org/archives/list/kernel@lists.fed=
+oraproject.org/thread/MCSDYDQVOXS5AZMKA7LLY4QX7JXBWPCA/
+> >> [4] https://github.com/armbian/build/pull/8736#issuecomment-338776=
+0536
 
 
