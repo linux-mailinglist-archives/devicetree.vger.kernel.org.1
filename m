@@ -1,215 +1,187 @@
-Return-Path: <devicetree+bounces-228383-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228381-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5092DBED000
-	for <lists+devicetree@lfdr.de>; Sat, 18 Oct 2025 15:02:26 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA3D9BECFE8
+	for <lists+devicetree@lfdr.de>; Sat, 18 Oct 2025 15:01:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id AA6AE34EDA0
-	for <lists+devicetree@lfdr.de>; Sat, 18 Oct 2025 13:02:25 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 3C8634E1B0D
+	for <lists+devicetree@lfdr.de>; Sat, 18 Oct 2025 13:01:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C35622BE64F;
-	Sat, 18 Oct 2025 13:02:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 050721A3167;
+	Sat, 18 Oct 2025 13:01:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="azNoBMwz";
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="YuwkxWBi"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lTHrvA6X"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70AFC288C2B;
-	Sat, 18 Oct 2025 13:02:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.151
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CAF572629F;
+	Sat, 18 Oct 2025 13:01:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760792539; cv=none; b=rMhK9TTbNtY6Nu/rHZ69vgrmliuIldLjCxOYF8TgcCcVmkbOm9xLKO3u8yU2rT/cZYkrsNaQJMD7FL184IpyfeVDaRYxtMUoQ7r43L9ZH6Lbxy1B/SE8lNvRfUsJfLCuVd6ko9T9lEggnA3f8ynZhL8HyH/jGB4T+iOI+s6OKMc=
+	t=1760792487; cv=none; b=Yyd+FzpXOEsrcRrniVr2D37qMa28IEwkoE9tD9cdcYXF+5kV4I2AlhyF5yvvxbX2oE/36KPpzJdUZk4yWWGIRtSQHCd1jpWqQ/I10eEOtvhXemBB5iuReX6AU8mnQij08XC9YemjMv47fOkalq9XIufEPh0IR/OTfm0HnbYP+a0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760792539; c=relaxed/simple;
-	bh=/rL+3BTZu9uEaoAoVTUDP1vXHRA3oH2xmzzRwaGE18U=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=BtQSnK75jE/UoCoc3UUnbSu1XEx726UL1VJ5Nffd5RttcdzRGSXZtQlv0PCJMVTDPCamgp0JMkFJTOmeT56IHJ3ugZ868wI6EmekXV2BBusTGRqT2uxj6N4H5OHzuMGbciGIsxkdgti93PX12SJYJWpuamyQgIxcl4dg8b0vh5Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=azNoBMwz; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=YuwkxWBi; arc=none smtp.client-ip=80.241.56.151
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp102.mailbox.org (smtp102.mailbox.org [IPv6:2001:67c:2050:b231:465::102])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4cphft12WMz9sd7;
-	Sat, 18 Oct 2025 15:02:14 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1760792534;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=h3qGVfK2SD/LkkPK6FoWnj+YJVjMv068rDYD19OUT+E=;
-	b=azNoBMwzDYu7YN3k2fzHDQECdIcyHRn1mcQ1dycC/bGPFw5P05ux39ntTX5TQHMikSkFah
-	/vJKgnkiGYB7JNODQvYInPlSZYSLt87QOUYxCsStZDyyBc864rS/ZIBvoOh5jlqUn8s2ir
-	XSn2VLSq8aighuR84NTb+5eLSNDoYMSC98CW/LcXT1rbqaozXij6jTpS/4ozMFfpwO2jAo
-	3gIM3+cnsyAMfYxdN9Ddz1iQcaB83twqcBu8ggTxT4ijdQ4hpUJF8XSk0ICTTJZWKX78Ut
-	f1iQrI0xEuQQXDaxCF8NZ0yI/bjfqAvDSnqj8wT8qFm5n8AvFHxQcNcwCEQ/Ig==
-Authentication-Results: outgoing_mbo_mout;
-	dkim=pass header.d=mailbox.org header.s=mail20150812 header.b=YuwkxWBi;
-	spf=pass (outgoing_mbo_mout: domain of marek.vasut+renesas@mailbox.org designates 2001:67c:2050:b231:465::102 as permitted sender) smtp.mailfrom=marek.vasut+renesas@mailbox.org
-From: Marek Vasut <marek.vasut+renesas@mailbox.org>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1760792532;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=h3qGVfK2SD/LkkPK6FoWnj+YJVjMv068rDYD19OUT+E=;
-	b=YuwkxWBiRhkh8yRcvWWEHupD2fZ2TeXeldsxk9WeMX+VcsQhw2EVjvMsZEUyPlnVTRFCsn
-	yiYDbEJUaPIHNboCJSiGEzZ2UHbQVFNh3psjYCsROa26oPCdnCneeEDtyXykU9EjxL65BE
-	2mIrCojKIJcSzIP2VJwihxJBV3tRNakRZPrf8Okgyx4r5zUWw8KFB+Fj/XtPoZqHEn1HAI
-	f1kgooxj1LESFXoOmbjpUbBU0jFEaaLW4XYuECDa1KLhcxusxZpe5g180I1Bg+UwHFwkRn
-	hM+zbCd7GxmSxKJNQYjj47jefN1JGhTdUSxlX7fZBW34FXNWmjlO4fVBwTRuXw==
-To: linux-arm-kernel@lists.infradead.org
-Cc: Marek Vasut <marek.vasut+renesas@mailbox.org>,
-	Adam Ford <aford173@gmail.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	David Airlie <airlied@gmail.com>,
-	Frank Binns <frank.binns@imgtec.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Matt Coster <matt.coster@imgtec.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Simona Vetter <simona@ffwll.ch>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	devicetree@vger.kernel.org,
-	dri-devel@lists.freedesktop.org,
-	linux-renesas-soc@vger.kernel.org
-Subject: [PATCH 2/2] dt-bindings: gpu: img,powervr-rogue: Rework the allOf section
-Date: Sat, 18 Oct 2025 15:00:59 +0200
-Message-ID: <20251018130147.12831-2-marek.vasut+renesas@mailbox.org>
-In-Reply-To: <20251018130147.12831-1-marek.vasut+renesas@mailbox.org>
-References: <20251018130147.12831-1-marek.vasut+renesas@mailbox.org>
+	s=arc-20240116; t=1760792487; c=relaxed/simple;
+	bh=783LtfgNMc5nKir4bVhfU1gejI7YUBKrlMTWPWtqf/Y=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=DxVjJibzMbx0HGhxWZoppWlk4M3Ckb48w4/IN7WC+mEepE54/kNLM7wClUA9z4IqFHNODHJq7uKkX8qF026F6HoLvaxGRdfGtQp+yVMHmGrWJP3ncRpabvTnjaxzAnAvJ8Si80W+YvumcjFD96mdoy+k4k+E99A73hPlhWOCLUM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lTHrvA6X; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 06158C4CEF8;
+	Sat, 18 Oct 2025 13:01:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1760792487;
+	bh=783LtfgNMc5nKir4bVhfU1gejI7YUBKrlMTWPWtqf/Y=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=lTHrvA6XkVq9N+FMwmL9tI+WW5arQfK4XtN12eO07OQhhO0nwi6aGxhYYpalfnOav
+	 jeklVLJEnyD5cx385lytsypFTDQ/I+MJgE07KBQbZ2veow/EQWAwTORfRCuk6yvhKm
+	 pycvme3csnU3mLMC0miz7BzSeg0RnKcChLl/i+6FqqKF+Oyvk5Zg3oesaFz58mUy/W
+	 yOU7WmW6kvXeQdgwgMMCfNqXyg1DKTQkYsFDAvW9QtttziorKHhYzz0nc87CqWxlA4
+	 ubx2OCq4KVLGrbE0ZfTl8dX/P4o64tO0of579Z5GbNnG78unKxQhiB5dml2hHvttY8
+	 hBU1+bUsDRXOw==
+Date: Sat, 18 Oct 2025 14:01:20 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Daniel Lezcano <daniel.lezcano@linaro.org>
+Cc: dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org,
+ robh@kernel.org, conor+dt@kernel.org, krzk+dt@kernel.org,
+ linux-iio@vger.kernel.org, s32@nxp.com, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, chester62515@gmail.com, mbrugger@suse.com,
+ ghennadi.procopciuc@oss.nxp.com
+Subject: Re: [PATCH v4 2/2] iio: adc: Add the NXP SAR ADC support for the
+ s32g2/3 platforms
+Message-ID: <20251018140120.0e6132e6@jic23-huawei>
+In-Reply-To: <0ac22118-fd0f-49c0-9aa8-5739925587d2@linaro.org>
+References: <20250919135618.3065608-1-daniel.lezcano@linaro.org>
+	<20250919135618.3065608-3-daniel.lezcano@linaro.org>
+	<20250920102742.4cadb734@jic23-huawei>
+	<0ac22118-fd0f-49c0-9aa8-5739925587d2@linaro.org>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-MBO-RS-META: 8auxodwaynckaux3p717ss91np4c8kp5
-X-MBO-RS-ID: 6f19813b49d4405774b
-X-Rspamd-Queue-Id: 4cphft12WMz9sd7
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-Rework the current allOf: section such that all handling of
-clocks/clock-names properties happens first, and all handling
-of power-domains/power-domain-names happens second.
+On Wed, 15 Oct 2025 09:17:40 +0200
+Daniel Lezcano <daniel.lezcano@linaro.org> wrote:
 
-This allows the allOf section to limit various GPU models to
-matching clocks count in the first half, and apply the same
-for power-domains count in the second half, without conflating
-the two limits together.
+> Hi Jonathan,
+> 
+> back to this driver after the merge window ...
+> 
+> On 9/20/25 11:27, Jonathan Cameron wrote:
+> > On Fri, 19 Sep 2025 15:56:18 +0200
+> > Daniel Lezcano <daniel.lezcano@linaro.org> wrote:  
+> 
+> [ ... ]
+> 
+> >> +static int nxp_sar_adc_start_conversion(struct nxp_sar_adc *info, bool raw)
+> >> +{
+> >> +	u32 mcr;
+> >> +
+> >> +	mcr = readl(NXP_SAR_ADC_MCR(info->regs));
+> >> +	mcr |= NXP_SAR_ADC_MCR_NSTART;
+> >> +
+> >> +	if (raw)
+> >> +		mcr &= ~NXP_SAR_ADC_MCR_MODE;
+> >> +	else
+> >> +		mcr |= NXP_SAR_ADC_MCR_MODE;  
+> > 
+> > Could use FIELD_MODIFY() for this though saving is minor.
+> > Same applies in various other places in this driver (and
+> > many others!)  
+> 
+> [ ... ]
+> 
+> I gave a try to use the macro FIELD_MODIFY(). Logically, FIELD_GET() 
+> should be used too for consistency. From my POV, the result looks less 
+> readable than the usual annotation but may be I not used to the FIELD_ 
+> usage. Here is a snippet of the changes, do you really want to convert 
+> all the driver ?
 
-This makes addition of GPU models with different clocks and
-power-domains count easier. No functional change intended.
+I'm not against mixing FIELD_GET/PREP etc with single bit booleans where
+it make sense.  However this was definitely a 'maybe' type of review
+comment for exactly the reasons of inconsistency you've identified.
 
-Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
----
-Cc: Adam Ford <aford173@gmail.com>
-Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: David Airlie <airlied@gmail.com>
-Cc: Frank Binns <frank.binns@imgtec.com>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Cc: Magnus Damm <magnus.damm@gmail.com>
-Cc: Matt Coster <matt.coster@imgtec.com>
-Cc: Maxime Ripard <mripard@kernel.org>
-Cc: Rob Herring <robh@kernel.org>
-Cc: Simona Vetter <simona@ffwll.ch>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: devicetree@vger.kernel.org
-Cc: dri-devel@lists.freedesktop.org
-Cc: linux-renesas-soc@vger.kernel.org
----
- .../bindings/gpu/img,powervr-rogue.yaml       | 40 +++++++++++--------
- 1 file changed, 24 insertions(+), 16 deletions(-)
+> 
+>          mcr = readl(NXP_SAR_ADC_MCR(info->regs));
+> 
+>          /* Return the current state. */
+> -       pwdn = mcr & NXP_SAR_ADC_MCR_PWDN;
+> +       pwdn = FIELD_GET(NXP_SAR_ADC_MCR_PWDN, mcr);
 
-diff --git a/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml b/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml
-index bee4ab1a1f805..829febd8e0f40 100644
---- a/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml
-+++ b/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml
-@@ -86,16 +86,13 @@ allOf:
-       properties:
-         compatible:
-           contains:
--            const: img,img-axe-1-16m
-+            enum:
-+              - ti,am62-gpu
-+              - ti,j721s2-gpu
-     then:
-       properties:
--        power-domains:
--          maxItems: 1
--        power-domain-names:
-+        clocks:
-           maxItems: 1
--      required:
--        - power-domains
--        - power-domain-names
- 
-   - if:
-       properties:
-@@ -108,13 +105,21 @@ allOf:
-           minItems: 3
-         clock-names:
-           minItems: 3
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: img,img-axe-1-16m
-+    then:
-+      properties:
-         power-domains:
--          items:
--            - description: The single, unified power domain for the GPU on the
--                TH1520 SoC, integrating all internal IP power domains.
--        power-domain-names: false
-+          maxItems: 1
-+        power-domain-names:
-+          maxItems: 1
-       required:
-         - power-domains
-+        - power-domain-names
- 
-   - if:
-       properties:
-@@ -135,13 +140,16 @@ allOf:
-       properties:
-         compatible:
-           contains:
--            enum:
--              - ti,am62-gpu
--              - ti,j721s2-gpu
-+            const: thead,th1520-gpu
-     then:
-       properties:
--        clocks:
--          maxItems: 1
-+        power-domains:
-+          items:
-+            - description: The single, unified power domain for the GPU on the
-+                TH1520 SoC, integrating all internal IP power domains.
-+        power-domain-names: false
-+      required:
-+        - power-domains
- 
- examples:
-   - |
--- 
-2.51.0
+When it's effectively a boolean I'm not fussed if people use FIELD_GET()
+or not. 
+
+> 
+> -       if (enable)
+> -               mcr &= ~NXP_SAR_ADC_MCR_PWDN;
+> -       else
+> -               mcr |= NXP_SAR_ADC_MCR_PWDN;
+> +       /* When the enabled flag is not set, we set the power down bit */
+> +       FIELD_MODIFY(NXP_SAR_ADC_MCR_PWDN, &mcr, !enable);
+If the comment is more necessary than before (I'm not sure it is but
+then I'm more comfortable with these macros than many!) then the modification
+probably doesn't make sense.
+> 
+>          writel(mcr, NXP_SAR_ADC_MCR(info->regs));
+> 
+> This looks ok but then:
+> 
+>   {
+>          u32 msr, ret;
+> 
+> -       ret = readl_poll_timeout(NXP_SAR_ADC_MSR(base), msr, !(msr & 
+> NXP_SAR_ADC_MSR_CALBUSY),
+> +       ret = readl_poll_timeout(NXP_SAR_ADC_MSR(base), msr,
+> +                                !FIELD_GET(NXP_SAR_ADC_MSR_CALBUSY, msr)),
+
+Similar to above, For a simple boolean we don't need to extract
+the value, a shifted bit is fine.  The compiler might sort that out. I've
+never checked.
+
+>                                   NXP_SAR_ADC_WAIT_US,
+>                                   NXP_SAR_ADC_CAL_TIMEOUT_US);
+>          if (ret)
+>                  return ret;
+> 
+> -       if (msr & NXP_SAR_ADC_MSR_CALFAIL) {
+> +       if (FIELD_GET(NXP_SAR_ADC_MSR_CALFAIL, msr)) {
+>                  /*
+>                   * If the calibration fails, the status register bit
+>                   * must be cleared.
+>                   */
+> -               msr &= ~NXP_SAR_ADC_MSR_CALFAIL;
+> +               FIELD_MODIFY(NXP_SAR_ADC_MSR_CALFAIL, &msr, 0x0);
+>                  writel(msr, NXP_SAR_ADC_MSR(base));
+> 
+>                  return -EAGAIN;
+> 
+> [ ... ]
+> 
+>          ceocfr = readl(NXP_SAR_ADC_CEOCFR0(info->regs));
+> -       if (!(ceocfr & NXP_SAR_ADC_EOC_CH(chan)))
+> +
+> +       /* FIELD_GET() can not be used here because EOC_CH is not 
+> constant */
+> +       if (!(NXP_SAR_ADC_EOC_CH(chan) & ceocfr))
+>                  return -EIO;
+> 
+>          cdr = readl(NXP_SAR_ADC_CDR(info->regs, chan));
+> -       if (!(cdr & NXP_SAR_ADC_CDR_VALID))
+> +       if (!(FIELD_GET(NXP_SAR_ADC_CDR_VALID, cdr)))
+>                  return -EIO;
+> 
+> -       return cdr & NXP_SAR_ADC_CDR_CDATA_MASK;
+> +       return FIELD_GET(NXP_SAR_ADC_CDR_CDATA_MASK, cdr);
+>   }
+> 
+> 
+> 
 
 
