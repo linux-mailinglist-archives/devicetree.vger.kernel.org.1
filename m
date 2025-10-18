@@ -1,148 +1,327 @@
-Return-Path: <devicetree+bounces-228358-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228359-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CCEF7BEC936
-	for <lists+devicetree@lfdr.de>; Sat, 18 Oct 2025 09:23:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DBCDFBEC981
+	for <lists+devicetree@lfdr.de>; Sat, 18 Oct 2025 09:42:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8677B427FA8
-	for <lists+devicetree@lfdr.de>; Sat, 18 Oct 2025 07:23:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 622814055B3
+	for <lists+devicetree@lfdr.de>; Sat, 18 Oct 2025 07:42:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 606BA283FF8;
-	Sat, 18 Oct 2025 07:23:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E2612857FA;
+	Sat, 18 Oct 2025 07:42:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="fUGMoXXk"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="lvMuMg10"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.smtpout.orange.fr (smtp-82.smtpout.orange.fr [80.12.242.82])
-	(using TLSv1.2 with cipher AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E06B5208D0;
-	Sat, 18 Oct 2025 07:22:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.12.242.82
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760772182; cv=none; b=taSEC5rEXsHKNEnjlNgpsmFZpMSrsbqwFV7AlRYIvuIUDqaSaw454SNf0//xyHjF5Pso1H4Hc+3n00MCFJdghUTfskjdtwAk+ogiTn1GLHQcJopvQDZj0N5Wo1ZXZ5pZW+f2vyKU2BZ/537J+moL0zvizjSrhdvIv7vpOh2holg=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760772182; c=relaxed/simple;
-	bh=4uEvlBAYmsltQS176KSJnVy/MXGY8JMIEIF5qO2y3og=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=IYPbgOEdug0X7/UnAUGXCoEwrxe+5QoN+W1SKpDQeKd7U4qZfHBvG8Qp97UVz98dO9b3W6/y1HyH+08YWropR8qfa61zZFhChvt+kVvRLf656ki5OrYBcfhIb3emuFNuBEUHp+9/R3Qq/gcLq0I1GZw/yFBAXUZhm/ubNqCmwBo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr; spf=pass smtp.mailfrom=wanadoo.fr; dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b=fUGMoXXk; arc=none smtp.client-ip=80.12.242.82
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wanadoo.fr
-Received: from [IPV6:2a01:cb10:785:b00:8347:f260:7456:7662]
- ([IPv6:2a01:cb10:785:b00:8347:f260:7456:7662])
-	by smtp.orange.fr with ESMTPA
-	id A1H7v2QUeDOeWA1H7vhyXg; Sat, 18 Oct 2025 09:22:51 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
-	s=t20230301; t=1760772171;
-	bh=Bawd82AsfuFTKM8Stm3LlRDyyfDsEkozbzB6NZp+2xw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:From;
-	b=fUGMoXXkEvq7MJkwe+cHVLCPA/7BVHf6fNaR/JgK6PadY7CVXrGjEzQF81ocx+cfA
-	 DQkDQULC49ZwMKXMvunQtd3nOfy8evXHikvilxPDj8kAuXeCb8eOobJeQzh3GmD53M
-	 Y2XJpFGSOC9R2xhqcDn4rb3ZbqNLTwlmDYdSp1fVj2848tn6e3Sv9F1C1E1TrZDwj+
-	 ZE0B66i3a7LMn1h9sIR4bx5vVkTEc0SZ0Clzylw82N7x4m2A6kHamivFcvErO3GdhA
-	 VH1Z1znws7QxAf1o4ARUcp3m2ST0HW+L29drtxT2x7UmCjrEu9s86mN6dkG/HQLoRI
-	 yKACVjVrx/e2A==
-X-ME-Helo: [IPV6:2a01:cb10:785:b00:8347:f260:7456:7662]
-X-ME-Auth: Y2hyaXN0b3BoZS5qYWlsbGV0QHdhbmFkb28uZnI=
-X-ME-Date: Sat, 18 Oct 2025 09:22:51 +0200
-X-ME-IP: 2a01:cb10:785:b00:8347:f260:7456:7662
-Message-ID: <a9aa5064-5bd8-4340-a1b6-bec6895dde57@wanadoo.fr>
-Date: Sat, 18 Oct 2025 09:22:48 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD051277C9B;
+	Sat, 18 Oct 2025 07:42:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=192.198.163.12
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1760773364; cv=fail; b=WN8igpK7nqnIEcKZLixDucwXAfdsMaWem1xQnTjr0FD24G3g0wZhYc6i+E6hFeWKGoaG453zHK/9irf7vn/82UVuvl3n0mglRkMyIhWG5OUQdcxvwMrMq+8lsQg1pywgj2SrdWpMRB71UKHTYgA9ydaN+VBbS+xzLEQX6BXX72k=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1760773364; c=relaxed/simple;
+	bh=GSkXwKJNGdNDgHUedHFVa1d2rI9aIwh98plwzqqDi0M=;
+	h=Date:From:To:CC:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=o9PeVLJ7iaHmHWmQMV2+XjkEJ3Md5IijSjNuKeGJO9yL1JjaPIjs0fTPuA7FwkmWrXW0vbuF2Q4qhfb+3rfCGCIs/2XsedNCP365nrMUBHg54FznecuwbZdaFEy2EctLfRqw3oD6aAi5DjEr7FR2e7DTNu6Appjy7FuF0qZLVpw=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=lvMuMg10; arc=fail smtp.client-ip=192.198.163.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1760773363; x=1792309363;
+  h=date:from:to:cc:subject:message-id:references:
+   content-transfer-encoding:in-reply-to:mime-version;
+  bh=GSkXwKJNGdNDgHUedHFVa1d2rI9aIwh98plwzqqDi0M=;
+  b=lvMuMg10E09p5viFo9ywqsUrjfkCtOK+b5RLdoydaDM8mikPNowhlDtI
+   Z2/qWnU5dwQSP2Uy8bfQ/fNFHX+gCsiyd1SYkIDUI37F6LtMnkmLAwDp8
+   wZLCx4KPnxIp8XwdNTw+F6zKOwG32DfX6DCPHbf6gQAmfs/yXy2LT4odp
+   yAa3ItuupRZj7ufFAokBDp3M/zRS/dtnS9qjANCHIH9aNl4zrWKWxvYPN
+   tpMakZgf3sMP/Q5q+Hsg/uS8qBbNQJV294xi2ustXPd4t0YvyGEeTEE+g
+   5KCWo3fMAS0gl5TYl1u6kVfkAGArJe26I37JiH8iX+6ovmaKSWHbQ9wjQ
+   g==;
+X-CSE-ConnectionGUID: XSTrdjf3SUi43UpIN1J6fg==
+X-CSE-MsgGUID: 3g0d0fvVS2+jOvz/cNdMiA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11585"; a="66849309"
+X-IronPort-AV: E=Sophos;i="6.19,238,1754982000"; 
+   d="scan'208";a="66849309"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Oct 2025 00:42:42 -0700
+X-CSE-ConnectionGUID: XxKQXqwnTm6VsLFovMfhgg==
+X-CSE-MsgGUID: 84mu//zATMuSdRd0JgsqYw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,238,1754982000"; 
+   d="scan'208";a="186925492"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+  by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Oct 2025 00:42:42 -0700
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.27; Sat, 18 Oct 2025 00:42:41 -0700
+Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.27 via Frontend Transport; Sat, 18 Oct 2025 00:42:41 -0700
+Received: from PH0PR06CU001.outbound.protection.outlook.com (40.107.208.62) by
+ edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.27; Sat, 18 Oct 2025 00:42:41 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=NNnB6xeU8btsoe/AfWSoXylSATAvnhkOnZ/S/83XW7oQWMktiPoGueApbcecfBU7hpM4T66hMv1SrQbfcwycvaxDV65X8o+nh/lkm865YvHcUt5nYVb4xBuPrALJSMxns+VMvUPrZ5X21HEfl/mPL8bqy0YpqsQ7LqoSPby8rIUIys9ORPFUVg+c8TOFWf+ADtbovB1ZvLJY7/8fmX/dMdtBubi4kqJJXBhCos1LmgLcDsX6r1E81SlSlx1av+kD8cGfxAW8WM6FRbudFmf4LHqdgu3vEKDSj1pERvJEyrQz7OMJyCQeFcgDAcL9mTY8uAovuJApNF9GHMEFXVTC6w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=dg4kaIdlF0iLMSxV6PK1NIp47Ya+5moFXAcGLpxUnkM=;
+ b=MMYcYNuTkNFsp4O918S6lI/FIit8nJTK0HqTzG4EeRzmQDLiTDjUCvxfHnjqLM/swhRKr2gq6IeIR93ORo0xyWK9i8tKg9Y7EUXOTiWQjGtcjmGz97StASHNp3mcohE4ri9cSkN+p9Ee7BIujr+BmMnseiw7bI7T/4J5ouWKoBJHa9PpMm4eOlNOXiBVXLO7Vt27eT63d0OU/znzOXOjJinmZRrB7qzjbTJxwTCbZf5mOgRT5SEcM+9FOo3X6FAVJLavt3nImCh47IYw+qmS4BFlTM/Q3dfYLSksiZEjNKI0dyAV7Pp088C+lCfYVR7wocWgPDn3wfGQdI9YgQKrjg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
+ by CY8PR11MB7195.namprd11.prod.outlook.com (2603:10b6:930:93::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9228.13; Sat, 18 Oct
+ 2025 07:42:33 +0000
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::9e94:e21f:e11a:332]) by PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::9e94:e21f:e11a:332%3]) with mapi id 15.20.9228.014; Sat, 18 Oct 2025
+ 07:42:33 +0000
+Date: Sat, 18 Oct 2025 00:42:30 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: Rob Herring <robh@kernel.org>
+CC: Tomeu Vizoso <tomeu@tomeuvizoso.net>, Krzysztof Kozlowski
+	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Oded Gabbay
+	<ogabbay@kernel.org>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, "Sumit
+ Semwal" <sumit.semwal@linaro.org>, Christian =?iso-8859-1?Q?K=F6nig?=
+	<christian.koenig@amd.com>, Robin Murphy <robin.murphy@arm.com>, Steven Price
+	<steven.price@arm.com>, Daniel Stone <daniel@fooishbar.org>, Frank Li
+	<Frank.li@nxp.com>, Sui Jingfeng <sui.jingfeng@linux.dev>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<dri-devel@lists.freedesktop.org>, <linux-media@vger.kernel.org>,
+	<linaro-mm-sig@lists.linaro.org>
+Subject: Re: [PATCH v5 2/2] accel: Add Arm Ethos-U NPU driver
+Message-ID: <aPNE5po45Umson5V@lstrano-desk.jf.intel.com>
+References: <20251016-ethos-v5-0-ba0aece0a006@kernel.org>
+ <20251016-ethos-v5-2-ba0aece0a006@kernel.org>
+ <aPHhXl6qdU1mMCNt@lstrano-desk.jf.intel.com>
+ <20251017153746.GA1579747-robh@kernel.org>
+ <aPM3J2jZcct7ODIp@lstrano-desk.jf.intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <aPM3J2jZcct7ODIp@lstrano-desk.jf.intel.com>
+X-ClientProxiedBy: SJ0PR05CA0068.namprd05.prod.outlook.com
+ (2603:10b6:a03:332::13) To PH7PR11MB6522.namprd11.prod.outlook.com
+ (2603:10b6:510:212::12)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v16 2/3] leds: add basic support for TI/National
- Semiconductor LP5812 LED Driver
-To: Nam Tran <trannamatk@gmail.com>, lee@kernel.org
-Cc: pavel@kernel.org, gregkh@linuxfoundation.org, rdunlap@infradead.org,
- krzk+dt@kernel.org, robh@kernel.org, conor+dt@kernel.org, corbet@lwn.net,
- linux-leds@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-doc@vger.kernel.org
-References: <20251013173551.108205-1-trannamatk@gmail.com>
- <20251013173551.108205-3-trannamatk@gmail.com>
-From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-Content-Language: en-US, fr-FR
-In-Reply-To: <20251013173551.108205-3-trannamatk@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|CY8PR11MB7195:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8f9af854-30ab-47b7-a431-08de0e19e641
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014|7416014;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?bG1mOU5nazJmS215YXB1NkRidVFLQWZVdXIvQkxmYVhYc1VhRHEwNFVZTFJX?=
+ =?utf-8?B?WDFoc1MyWEhBVjNYUE9MWThDaUo5S0p3NVYvQXhkeEZLczN0NU5qMVhuRU9Y?=
+ =?utf-8?B?ZkpURklNbTVFVS9ON20rbzM4aUVtYWFYcFFxMDI2SWxUcjdHbG1meFBMZ3pV?=
+ =?utf-8?B?NGMzT3ZWbWlXcmYzQzhSS0crTUtjYkFGamxkZ1FsMXZFL3EyNGl6eVQ5d1RD?=
+ =?utf-8?B?K1BNMzduNFJ2eGFVTk51L0Q1SHlRYXhkRjQxckIzOThIQzlLaExRTWd3U0xo?=
+ =?utf-8?B?cHBNdHc4U2YvZllVYVpNOFFRRlNlZVRvd3FTWWZaZjZPdmJFWmZQQXBkeGth?=
+ =?utf-8?B?dGxXV3hZbHg3d1NTU0lXUmtOdVpIWnNQQ25wcHBydzdOdFpndzAyeGRZQUZD?=
+ =?utf-8?B?NUx2cVBmVGl4Sk5mNG9EVDdreklJT2NtYmNTaWVjY1JnMExOUDViNHlDVmFo?=
+ =?utf-8?B?dXJacXpEZlUwM0tTYjBYUDJzSlNTNXlJZzM1djljVnVjZWxuVnRFK0VtQVFV?=
+ =?utf-8?B?Rk4yRmliSDRCTk5tOFVTRnI5Zm1ycTg3NWRoQ2ZmZ24wNXNZSUJlRVJOaWdm?=
+ =?utf-8?B?SUU2Q3BOZE5RVTZXSU5lbC9oRlFkd2d5T0VIRjlCNUc2TkF6S21IRzJFck51?=
+ =?utf-8?B?OTgrd3dQVTNHNmtuK25DWHhnc0JoRDA3a3ZmS0R5c25RSmZWLzNrM1NwVHpU?=
+ =?utf-8?B?KzQ2Nk40NitteGg1bER6N0FIUis1NWJPR0c0U2U3aTlQUGFpSk1PVWpLaVpt?=
+ =?utf-8?B?eVFxa0FIcjI5V0RaYmVvWmF0b3RGSnhwWklaQzZrR0FveXRzU1JFZXhuNVEy?=
+ =?utf-8?B?UWdHSmNyMVY1bnZRSjhRYUlhektsNExWWUplU0RLTzhIckJuTnhjY3BxamdH?=
+ =?utf-8?B?Z0ltNlVoQzJOMTE2T1YrTjNVS2p6TnZhVUFvZ3o3a0VZLzVXdHppazJJd3lR?=
+ =?utf-8?B?Z21qMFg1NUJnVkNMNVN4SEFCdUZ2MWM3RWxHUUR4QTJTMS8ydmk1bVZPYXp2?=
+ =?utf-8?B?bDA4Yk94bEZvRFhmYVRkc1dOUnI5Y05LMmtuK3BGbUZ5eGlPK1p4akt0elI1?=
+ =?utf-8?B?M0tDd2xiNzYxdjF4UEt1UFdLL2dXR0pSblYwMGRRWi9sSVBnRDJzc1VuM0NU?=
+ =?utf-8?B?STlqUkZhMkxTbWE3M3NRcllGNnl1MXNKdnZHSzNVejFlWDRaa0JmaDE1ZmN4?=
+ =?utf-8?B?ODV3TmFpOVU4QUdJMDg1QmcvdjhacU9ZaExaVmNNU2c0WGZzZnNtbkhoQmIx?=
+ =?utf-8?B?eXlNdlVndjZ6aUVRYVFUSkcxUXJwRFBsQXJ3NVc0WVNtTW9jODhma09OODlM?=
+ =?utf-8?B?R3k5QnRFUjhIUjJzN010MEdTZ0s4L3RNRHc0TGVaeThSdk14R3drL1pmbnpG?=
+ =?utf-8?B?Y3pDWERBR0R6QXBsS2c4L2MwKzVhQTUzVVNMYks4R3Q0Tlh4ZW85Zi8xMGtp?=
+ =?utf-8?B?TmhvYlZVZEkxK2RpR3dGS01JdUFpRnNCd2V0NGlFcjdwc3NRZFErb2wzSlM5?=
+ =?utf-8?B?RmgveEN0d3IzbEduSU93eHlnSUYxamlzUFlHUVJiSk1DOGFGYXB2SkwwUzVK?=
+ =?utf-8?B?M2JnTklkYzg5VG9aSlF0Y2RTRVlEOFU0VjNPelM3ZEFqZzNyYWpaeTFHcEh1?=
+ =?utf-8?B?bUU5ekVvcTE4MTJmdTdXQ2NEZlkxZnp1M0VyU3pKL3dLWTY4MC8yNmVpTXRk?=
+ =?utf-8?B?ZW00cmtENWFrTThYZC9rZXhVaGx6a2UzVi8wcGpMdXhzdS91dHlpU0laWmZL?=
+ =?utf-8?B?VUVZbUU3ZDVZK3gvaVYyRkNGTnlaak1OdWhnS0FKdGQzTXJuMkJLcVBzQ3dL?=
+ =?utf-8?B?V29HRngvNlgwdXhJcjRoNURZNEpBa2RSdFRmR3BIZHpEblF2eVVrOURWaFJl?=
+ =?utf-8?B?ZUJLb3BYME9sdCtnRWJ6cmtVQzlWL0tvaEt4QmRnT1NSczZMNEp3ZWlzU1Vp?=
+ =?utf-8?Q?Z/0S0AHkVXyaDP6ZqGFjqirzof49w32K?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH7PR11MB6522.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(7416014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TGtqWWxVVmFid0lad0psVDZoL1crRlNtS0dvMk9rZFI1MnlNUXNMMmVCbjB1?=
+ =?utf-8?B?TFZqS2ozQlU0a0RocGE4dkkzVldNbVROUVlrOE9yQnJEYUd2RE1IakY5MnBj?=
+ =?utf-8?B?dXptbW4wRWtRU2k1dlJsNWVCeFpnM0NwdVhlaGRDaE5mRWtDeDNuTWdoR3k5?=
+ =?utf-8?B?ZmJRKzlrR3dua3hiSnBzV0JReUJhMVhMOVMvWURRSzNTRWVXa2gyb3h5UGZx?=
+ =?utf-8?B?U0Z4b0gzblVQZXJvZ1QwTWhlYnFCUlVYTWxEVmwzcXVzTFRvb2crV0M4L2Zs?=
+ =?utf-8?B?ZUdSZTJxbE5VdVNwRXM0eFBPNldMQ0lRVjJxQ0pmU092anhqSXR5ai94Smpw?=
+ =?utf-8?B?emtCZ2VNbFBBN2YwOW5VYVFTU21lVmErWER6T2VBcTVYcTNGWUhDUXFRMEpJ?=
+ =?utf-8?B?S0h6TXdNanZISGhXQjhvTkdWSSsrclFnY2hUOHNyUGdWQ25SRjlia2VhSGdG?=
+ =?utf-8?B?WWhnUFRDb2ZWMWFwL2o5d0tmVVZucmVySDRzNXZLNG1UUHhOMG00Y2xDdjBr?=
+ =?utf-8?B?ajNRWWpFN004V08wYmd1R2VYSlQra3dYT0NLZy9OcldVcUR4NmlTalZLQW44?=
+ =?utf-8?B?YkJ2NUdKVkZtZnpMYTJ4ZDEyeXdUMGhWTi9TZ1FneXY4eWJJMDR5YjBORjZI?=
+ =?utf-8?B?SmRCOVR4NDNvTVhhSlNJRTRLN3k5WE5PajdMZDhpYWVLMnNnVnowTy81bmdy?=
+ =?utf-8?B?NnczL2JsNW0zbWhCeUIwQXdXVXljUUpvbngzS3p0UlpOVmFKV1NQL2NCenkx?=
+ =?utf-8?B?N1JRWTlTQi9DZTdjNDlRTW1PTkJ4ckh4QWNrY3NudVNwWjVjbGlCOGVucmZw?=
+ =?utf-8?B?SmJ0cmx2RjVzUi9ZbzlwQ0dPUm9SWlFldHc0RitqdW1pMGtLTG94ZUVPN0c2?=
+ =?utf-8?B?V1NjU1FrSGlubUdwajBnNkhmUmQ5dzV2Qk5qWWFPZWw3VGVrWHFzc3hscGp0?=
+ =?utf-8?B?OHVncHlQTjFLb2RmSHlDVGk5SDBjekhJT0cyclM0LzRNczZFRmtXV3pIcVJi?=
+ =?utf-8?B?TTViTGtiVVdTNTZKWk0zc3BCclFlN3lVK0dDMjNDNTIzaFZuMXZNT24rL2VR?=
+ =?utf-8?B?TVdEN0pLbnVuK3I2ZUM5UGN1bHJlSVNjakFkT0UrRmNhcUZUeFhXdm5Yd1cw?=
+ =?utf-8?B?SDhaN1QwVVVKMEdkaTk5Z3pkWSs0SE1PK2tKUFpyU2pTbGowdU5UR1lvOHV3?=
+ =?utf-8?B?eVJZV1pmRzJCazVVWDVMVEtnQVRXY1RnN01remExWlNEZlFzS05GL2JZeFlu?=
+ =?utf-8?B?MUt4cG9PWnNRTSs3cW8wZXFNMTZ4elFvdlZQcVZmaFd5Wk9qVm9Wd3Q0WG9L?=
+ =?utf-8?B?MTR5NWtBR0wyeW1qQ0kxRlNIV2w4alVBZXNvWEk5U1RkRE1FRk0rdklBMmJl?=
+ =?utf-8?B?Vk1YYnlJenhEVzgvL0ltTlhTSkVoUU9QQ2RUeC9GUWg3QmVQeVhXVDFncGZB?=
+ =?utf-8?B?aUVLaWJtaUpPMG9CUmI0K0V1VWQyQ2JzNXpRR0wrRURwdERTMURPK2ErMXNT?=
+ =?utf-8?B?Uy9TL3NhWUwxMnp5dzRCS2psM0N3WkFqMURhZVFIQlphQ2pjNUpzMGo2TGtP?=
+ =?utf-8?B?ZlVLeUhqS2dqSlR1S0NmT0wwa2QzRjU3amFwMTVKbXNNZlAxTVB3aHZNUUxK?=
+ =?utf-8?B?TjVxemVqSHFRQUdla1N0SXYzWGpITkdKejRtTjdkQmx3cTlETGpVRmxIam5M?=
+ =?utf-8?B?UUJHVUlza09ZU1FwRkkxUndKYUdZT2NwT3N1eXlXVlBsQ0grZjJFbnJsbG5r?=
+ =?utf-8?B?cFdVME42cjdrdkpHcEZOUzRsWlE3SzFZOUxraGU0UUdwdzg5NWt5S1hQcHE1?=
+ =?utf-8?B?SmNFcDNqRnhkcitHYVl0aUc3bTdDV3VjcEZOWVJucHlCV2dLVjI1WmswdTdU?=
+ =?utf-8?B?SlVEZmhhNDFRVGZ3bFB5cm9od1VDQnlMUEY2MlNpNkZlZ3dEOWYvWGZvVzRB?=
+ =?utf-8?B?eTIwSkVYQ2NVZVFQNm42Q0VrVGVsUDdoZ0RsQ3B1RDRWQ1dyQVQ1b1ZCUTFr?=
+ =?utf-8?B?OGJtY3g3VVVBaC8xWWtmT3hKZDE2WHU2Y2JIck5WTlVKNFdvSWY0VE1FU0RG?=
+ =?utf-8?B?dlBVM1VFWFg2MC8vektiemFhbEJZTjJNL25pV0RNZEo1d1V4ak93cGdiWlli?=
+ =?utf-8?B?NTFDTEtwbW1HaWdYRkJYUklxT1V4SFhsZEViaWtNYjcvRFJvVEp0d3RteHcx?=
+ =?utf-8?B?bXc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8f9af854-30ab-47b7-a431-08de0e19e641
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Oct 2025 07:42:33.4980
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: s97/c+y6+ZVeHaFq4Qvqb+n7ZkZay+UQNVF9KN7cKJry9VvI/6OFHp/pmKE1nb/566sfU8zHY11ygRUEGDgRdg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB7195
+X-OriginatorOrg: intel.com
 
+On Fri, Oct 17, 2025 at 11:43:51PM -0700, Matthew Brost wrote:
+> On Fri, Oct 17, 2025 at 10:37:46AM -0500, Rob Herring wrote:
+> > On Thu, Oct 16, 2025 at 11:25:34PM -0700, Matthew Brost wrote:
+> > > On Thu, Oct 16, 2025 at 04:06:05PM -0500, Rob Herring (Arm) wrote:
+> > > > Add a driver for Arm Ethos-U65/U85 NPUs. The Ethos-U NPU has a
+> > > > relatively simple interface with single command stream to describe
+> > > > buffers, operation settings, and network operations. It supports up to 8
+> > > > memory regions (though no h/w bounds on a region). The Ethos NPUs
+> > > > are designed to use an SRAM for scratch memory. Region 2 is reserved
+> > > > for SRAM (like the downstream driver stack and compiler). Userspace
+> > > > doesn't need access to the SRAM.
+> > 
+> > Thanks for the review.
+> > 
+> > [...]
+> > 
+> > > > +static struct dma_fence *ethosu_job_run(struct drm_sched_job *sched_job)
+> > > > +{
+> > > > +	struct ethosu_job *job = to_ethosu_job(sched_job);
+> > > > +	struct ethosu_device *dev = job->dev;
+> > > > +	struct dma_fence *fence = NULL;
+> > > > +	int ret;
+> > > > +
+> > > > +	if (unlikely(job->base.s_fence->finished.error))
+> > > > +		return NULL;
+> > > > +
+> > > > +	fence = ethosu_fence_create(dev);
+> > > 
+> > > Another reclaim issue: ethosu_fence_create allocates memory using
+> > > GFP_KERNEL. Since we're already in the DMA fence signaling path
+> > > (reclaim), this can lead to a deadlock.
+> > > 
+> > > Without too much thought, you likely want to move this allocation to
+> > > ethosu_job_do_push, but before taking dev->sched_lock or calling
+> > > drm_sched_job_arm.
+> > > 
+> > > We really should fix the DRM scheduler work queue to be tainted with
+> > > reclaim. If I recall correctly, we'd need to update the work queue
+> > > layer. Let me look into that—I've seen this type of bug several times,
+> > > and lockdep should be able to catch it.
+> > 
+> > Likely the rocket driver suffers from the same issues...
+> > 
+> 
+> I am not surprised by this statement.
+> 
+> > > 
+> > > > +	if (IS_ERR(fence))
+> > > > +		return fence;
+> > > > +
+> > > > +	if (job->done_fence)
+> > > > +		dma_fence_put(job->done_fence);
+> > > > +	job->done_fence = dma_fence_get(fence);
+> > > > +
+> > > > +	ret = pm_runtime_get_sync(dev->base.dev);
+> > > 
+> > > I haven't looked at your PM design, but this generally looks quite
+> > > dangerous with respect to reclaim. For example, if your PM resume paths
+> > > allocate memory or take locks that allocate memory underneath, you're
+> > > likely to run into issues.
+> > > 
+> > > A better approach would be to attach a PM reference to your job upon
+> > > creation and release it upon job destruction. That would be safer and
+> > > save you headaches in the long run.
+> > 
+> > Our PM is nothing more than clock enable/disable and register init. 
+> > 
+> > If the runtime PM API doesn't work and needs special driver wrappers, 
+> > then I'm inclined to just not use it and manage clocks directly (as 
+> > that's all it is doing).
+> > 
+> 
+> Yes, then you’re probably fine. More complex drivers can do all sorts of
+> things during a PM wake, which is why PM wakes should generally be the
+> outermost layer. I still suggest, to future-proof your code, that you
+> move the PM reference to an outer layer.
+> 
 
-Le 13/10/2025 à 19:35, Nam Tran a écrit :
-> The LP5812 is a 4x3 matrix RGB LED driver with an autonomous animation
-> engine and time-cross-multiplexing (TCM) support for up to 12 LEDs or
-> 4 RGB LEDs. Each LED can be configured through the related registers
-> to realize vivid and fancy lighting effects.
->
-> This patch adds minimal driver support for the LP5812, implementing
-> only the essential functionality: I2C communication with the device,
-> LED registration, brightness control in manual mode, and basic sysfs
-> interfaces for LED configuration and fault monitoring.
->
-> Signed-off-by: Nam Tran <trannamatk@gmail.com>
+Also, taking a PM reference in a function call — as opposed to tying it
+to a object's lifetime — is risky. It can quickly lead to imbalances in
+PM references if things go sideways or function calls become unbalanced.
+Depending on how your driver uses the DRM scheduler, this seems like a
+real possibility.
 
-Hi,
+Matt
 
-2 small nitpicks, if a v17 is need for other reasons.
-
-...
-
-> +static int lp5812_parse_led(struct device_node *np,
-> +			    struct lp5812_led_config *cfg,
-> +			    int led_index)
-> +{
-> +	int num_colors = 0, ret;
-> +
-> +	of_property_read_string(np, "label", &cfg[led_index].name);
-> +
-> +	ret = of_property_read_u32(np, "reg", &cfg[led_index].chan_nr);
-> +	if (ret)
-> +		return ret;
-> +
-> +	for_each_available_child_of_node_scoped(np, child) {
-> +		ret = lp5812_parse_led_channel(child, cfg, led_index, num_colors);
-
-In order to simplify lp5812_parse_led_channel() and save an argument 
-here, we could pass &cfg[led_index] directly.
-
-> +		if (ret)
-> +			return ret;
-> +		num_colors++;
-> +	}
-> +
-> +	if (num_colors == 0) {
-> +		ret = lp5812_parse_led_channel(np, cfg, led_index, 0);
-> +		if (ret)
-> +			return ret;
-> +		num_colors = 1;
-> +		cfg[led_index].is_sc_led = true;
-> +	} else {
-> +		cfg[led_index].is_sc_led = false;
-> +	}
-> +
-> +	cfg[led_index].num_colors = num_colors;
-> +
-> +	return 0;
-> +}
-
-...
-
-> +/* Chip specific configurations */
-> +static struct lp5812_device_config lp5812_cfg = {
-
-This could be const.
-
-> +	.reg_reset = {
-> +		.addr = LP5812_REG_RESET,
-> +		.val  = LP5812_RESET
-> +	},
-
-CJ
-
+> > > 
+> > > This is what we do in Xe [1] [2].
+> > > 
+> > > Also, in general, this driver has been reviewed (RB’d), but it's not
+> > > great that I spotted numerous issues within just five minutes. I suggest
+> > > taking a step back and thoroughly evaluating everything this driver is
+> > > doing.
+> > 
+> > Well, if it is hard to get simple drivers right, then it's a problem 
+> > with the subsystem APIs IMO.
+> > 
+> 
+> Yes, agreed. We should have assertions and lockdep annotations in place
+> to catch driver-side misuses. This is the second driver I’ve randomly
+> looked at over the past year that has broken DMA fencing and reclaim
+> rules. I’ll take an action item to fix this in the DRM scheduler, but
+> I’m afraid I’ll likely break multiple drivers in the process as misuess
+> / lockdep will complain. 
+> 
+> Matt
+> 
+> > Rob
 
