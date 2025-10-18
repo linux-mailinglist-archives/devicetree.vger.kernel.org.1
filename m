@@ -1,48 +1,50 @@
-Return-Path: <devicetree+bounces-228418-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228419-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 972F3BED45A
-	for <lists+devicetree@lfdr.de>; Sat, 18 Oct 2025 19:06:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B4360BED4D8
+	for <lists+devicetree@lfdr.de>; Sat, 18 Oct 2025 19:20:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 2E8AC4E382A
-	for <lists+devicetree@lfdr.de>; Sat, 18 Oct 2025 17:06:07 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 98E774F1F19
+	for <lists+devicetree@lfdr.de>; Sat, 18 Oct 2025 17:19:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 964D9245033;
-	Sat, 18 Oct 2025 17:06:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 400C5253F3D;
+	Sat, 18 Oct 2025 17:18:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ne/BL92x"
+	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="eRn7YjYp";
+	dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="nb8NctA8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.mainlining.org (mail.mainlining.org [5.75.144.95])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 672CA42065;
-	Sat, 18 Oct 2025 17:06:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70426252900;
+	Sat, 18 Oct 2025 17:18:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.75.144.95
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760807163; cv=none; b=SeDK5J+Jc75ZrALL2ictEN9D+1e2wbV98sorgNICdVWeMFZZ4jIsSRPVET3RMu6f2U0ZbpMq1oANdCnou8+gQVULl4LJZZHV3kBWXhSiQSVl7k/5ouUNS2aRWdIZ7G0qeAxEULruAEEnJTqtlYLnKxgTO2455uJ0WDONAbuhiQg=
+	t=1760807934; cv=none; b=FPBrW5lCU11OTCqos/4RjtMUTCr3d8Or5aud3PEBTLKtJU8RZahTIWfh0GSpQAk7jQUkX9kxVJYQ4oKR4q2r+XhuGDs5IIHEqNbroTKBzHkPjDpLax2E21AQRIgLUJ9AJQwKWhzOWm9f6pzVSuccily8V4B3k2w43xq2sjaBp+0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760807163; c=relaxed/simple;
-	bh=2x+8nVrwYwA8yCfBJaLAbxeu2GjEiw06hcYzBWsfWaw=;
+	s=arc-20240116; t=1760807934; c=relaxed/simple;
+	bh=mZDIfCjgW+4CuS/ZjYde3Fi6Ww9P4szyaVI2r1EcYxU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kpCDbRi1CL98GggJGm6lSC3tnPZTb8nGu9Po3VkUmFk4M0lIxMbxqXc2Bh2jzPaWr3PpbzRN5zEPARZAIn1G5nuRjP5/4+AgoGNoxSWIu7lnkuSY4YoWR/BoLBuP253iKZoQ894XkBLG+eqRiMCyWT6YsoiH6nxC99H4U54F064=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ne/BL92x; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BAAEBC4CEF8;
-	Sat, 18 Oct 2025 17:05:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760807162;
-	bh=2x+8nVrwYwA8yCfBJaLAbxeu2GjEiw06hcYzBWsfWaw=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ne/BL92xXoLlX5oC8Zxa3RfndPNs2+CbW4wirFL6Yc+bB0k0893A4Yr8Hd7E4WwDN
-	 L8pxcvfnyW60imsIqZc7I00X8IXC4eTB/OF1rRC7mBE0ztI0Eqe17zjEyWVgoMKrxK
-	 9p64OEFuUltApFFhRN/HObl3bWXwyoS8HoSXlP/Xm9PQrD/Cp5m7d7ISxjz9EV6Ocg
-	 srINPmuT1Zm9k9j9YXgZuhzEm/w9Njic3582KvOOXmGfHeIjVljBVBe0GzT009sgmU
-	 AGj8Evq2iABNkubLv/y6avRA1PemmrenzvEk3inpciFn05kGm3RdU0XSJ2kj03Y10B
-	 7Aq+WVqphdlJA==
-Message-ID: <884448f6-89bf-49e4-8d1c-e91b666cbe3c@kernel.org>
-Date: Sat, 18 Oct 2025 19:05:57 +0200
+	 In-Reply-To:Content-Type; b=sCLG0fPMV1wJeKYS5RPTjM8m5k8HIt/8+gcJITn5bNQ7CM3eakU2I9YOnLA8yYD4vS9qUX67HRCj4YkN6OwBtjbmioYwSb62lg04RluaQW3/+KMcKqkFNTj0WOr4unkfA5z+R9QQoU6Pab4vIs5tqNwtT53s8jaV51o1ADfxBuc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=eRn7YjYp; dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=nb8NctA8; arc=none smtp.client-ip=5.75.144.95
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
+DKIM-Signature: v=1; a=rsa-sha256; s=202507r; d=mainlining.org; c=relaxed/relaxed;
+	h=From:To:Subject:Date:Message-ID; t=1760807922; bh=VWGBpk/Pb1PaC49QZbcNZ7f
+	NBul+/e7qAHsiMPGVHCE=; b=eRn7YjYp5es+fUVRICoOgNkZkmkzcy+f2ZAltmIEzDsiKird8q
+	GzLQr1Q9CGx4ge5vte0AYUlpfS4YppQfLf0S21AuQqrzHXWzCIlFIrMrcytHCap0AyZ5opnxuyG
+	npCx7eImRrqKQL3pf05wr7NRCBLxqVkmCihJyxOzgATAlqSuJVGBLzUHO0Z4+3tSeV9u5tThU9u
+	WOhZHZNN5T6sBLjGRtMgRWiujaqj0Z5WgGxdEFJTGtYBNZSb2bBd7Ca+r38d7cCDxRX4RHXMaL4
+	PqHrrnMTsetNViwGVOUi6n5CMlYeboI/p0eMw4I5GrXR+/g3G3LdHYmTpVHxSLOhnXw==;
+DKIM-Signature: v=1; a=ed25519-sha256; s=202507e; d=mainlining.org; c=relaxed/relaxed;
+	h=From:To:Subject:Date:Message-ID; t=1760807922; bh=VWGBpk/Pb1PaC49QZbcNZ7f
+	NBul+/e7qAHsiMPGVHCE=; b=nb8NctA8d0rcCiqs3o4N3Q8A4o8nxYvQcx20+iCuxbjD9mmZFN
+	BaadwWPGOqwotjusJqsLQfNL2+P/7d3iZJDw==;
+Message-ID: <3c4b2915-6bf0-4067-966a-8fb13a81eed7@mainlining.org>
+Date: Sat, 18 Oct 2025 20:18:26 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,83 +52,59 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] dt-bindings: soc: samsung: exynos-sysreg: add
- power-domains
-To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
-Cc: Peter Griffin <peter.griffin@linaro.org>,
- Tudor Ambarus <tudor.ambarus@linaro.org>,
- Will McVicker <willmcvicker@google.com>, kernel-team@android.com,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20251010-power-domains-dt-bindings-soc-samsung-exynos-sysreg-v2-1-552f5787a3f3@linaro.org>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20251010-power-domains-dt-bindings-soc-samsung-exynos-sysreg-v2-1-552f5787a3f3@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+Subject: Re: [PATCH 1/2] dt-bindings: remoteproc: qcom: adsp: Add SDM660 CDSP
+ compatible
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Manivannan Sadhasivam <mani@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20251018-qcom-sdm660-cdsp-v1-0-042e283db29b@mainlining.org>
+ <20251018-qcom-sdm660-cdsp-v1-1-042e283db29b@mainlining.org>
+ <57f5083a-cfe3-4a2a-9d0b-fa953b8db52e@kernel.org>
+Content-Language: ru-RU, en-US
+From: Nickolay Goppen <setotau@mainlining.org>
+In-Reply-To: <57f5083a-cfe3-4a2a-9d0b-fa953b8db52e@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-On 10/10/2025 08:29, André Draszik wrote:
-> On gs101 only, sysreg can be part of a power domain, so we need to
-> allow the relevant property 'power-domains' for the relevant
-> compatibles google,gs101-*-sysreg.
-> 
-> Signed-off-by: André Draszik <andre.draszik@linaro.org>
-> ---
-> Changes in v2:
-> - limit to gs101 only (Krzysztof)
-> - Link to v1: https://lore.kernel.org/r/20251008-power-domains-dt-bindings-soc-samsung-exynos-sysreg-v1-1-ab41c517dec6@linaro.org
-> ---
->  .../bindings/soc/samsung/samsung,exynos-sysreg.yaml         | 13 +++++++++++++
->  1 file changed, 13 insertions(+)
-> 
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+18.10.2025 18:42, Krzysztof Kozlowski пишет:
+> On 18/10/2025 12:57, Nickolay Goppen wrote:
+>> Add compatible for the compute DSP remoteproc found in SDM660.
+>>
+>> Signed-off-by: Nickolay Goppen <setotau@mainlining.org>
+>> ---
+>>   Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml | 2 ++
+>>   1 file changed, 2 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml
+>> index 661c2b425da3..19d16c97d8a4 100644
+>> --- a/Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml
+>> +++ b/Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml
+>> @@ -24,6 +24,7 @@ properties:
+>>         - qcom,msm8998-adsp-pas
+>>         - qcom,msm8998-slpi-pas
+>>         - qcom,sdm660-adsp-pas
+>> +      - qcom,sdm660-cdsp-pas
+>>         - qcom,sdm845-adsp-pas
+>>         - qcom,sdm845-cdsp-pas
+>>         - qcom,sdm845-slpi-pas
+>> @@ -178,6 +179,7 @@ allOf:
+>>                 - qcom,msm8998-adsp-pas
+>>                 - qcom,msm8998-slpi-pas
+>>                 - qcom,sdm660-adsp-pas
+> Where is the constrain for everything else? clocks, interrupts and domains?
+I think that cDSP and aDSP compatible should be both added to the "xo" 
+clock, interrupts and "cx" power-domain constrains, but I'm not sure 
+about that.
+> Best regards,
+> Krzysztof
 
+-- 
 Best regards,
-Krzysztof
+Nickolay
+
 
