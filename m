@@ -1,266 +1,189 @@
-Return-Path: <devicetree+bounces-228331-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228332-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DCD59BEC0D8
-	for <lists+devicetree@lfdr.de>; Sat, 18 Oct 2025 01:58:23 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 27E1EBEC294
+	for <lists+devicetree@lfdr.de>; Sat, 18 Oct 2025 02:20:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 82B386E4B04
-	for <lists+devicetree@lfdr.de>; Fri, 17 Oct 2025 23:58:22 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id C4BE84E31E7
+	for <lists+devicetree@lfdr.de>; Sat, 18 Oct 2025 00:20:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBE932E3AF1;
-	Fri, 17 Oct 2025 23:58:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DE8113A3ED;
+	Sat, 18 Oct 2025 00:20:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="XIAHGi7y"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="MXPI+bT2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39D962D7DFC
-	for <devicetree@vger.kernel.org>; Fri, 17 Oct 2025 23:58:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 711A538DE1
+	for <devicetree@vger.kernel.org>; Sat, 18 Oct 2025 00:20:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760745500; cv=none; b=kMgqNnIyaUxhxoEKPVLTdMD8MUif7D9xVXvU+S+A4BdOMEetDG+A2seFZPJcU5m8QiPwtEhJoEq6oFhBP7MScr/wgaBkPzSXHrKnT54x+JQJnokClyd27ozJDNtTqPewq/BxfEH9vW+zNbemkBnrp0CjvzeOfpc0XjYA6+zs2F8=
+	t=1760746834; cv=none; b=ujKlO0jtvNO28S2UUhVq71uXnBhmYmd7aRCXpzPGdWHpsIcA9ccEQdsxf/iVotdSwQp+xew9n7Y0VN/FbTzE+OgtPOUppcnVlpCsJ2yI5UYMhw/87YbM8BJlMH3ubsWN0AdFv16Tj0fsm5vjQTRSiNt8MFoj+kw9LgBCmvvE27w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760745500; c=relaxed/simple;
-	bh=Wr5oFlWql1QGkhb380QWtALsgTu+7Xtxpqvn0vXzUS8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=WQHGA0AYxdyv1bmE9C7VZn99uVjLWvuGox5ul1hzxXuRKkGxsbHfgZlgmXuF5bDbB2LeaB0V10n9k0QsMyFKqblen59VjZ0SOdluPaLtyRkX31hItMNWIgD7hC9YXuyMUklwezzyyt/rIu+T6G07GPk0qEyoU077J+03HveNusQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=XIAHGi7y; arc=none smtp.client-ip=209.85.214.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-27eec33b737so36659175ad.1
-        for <devicetree@vger.kernel.org>; Fri, 17 Oct 2025 16:58:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1760745498; x=1761350298; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=1SE0GPjAFjItjLF86HET23/U9OrOIQ8cx/iNIr3s8Q8=;
-        b=XIAHGi7yWxpkUSM5PU1N17uQ4GloUYtqqK5IaxCtAIXtV9pKXJWA34hxRJAofa/2ui
-         bpy91mNCHE77yFP4NdVFzybCkkzR2swU7HzBIeZaYN7WhwmnhIoPv6Lj2/SFcabVxmNf
-         CUpjQddjV3r5NLwMgrHnbcVNpYUeeHImTRz97g45aIHmI0YB2J7GlmYnPdOi1s5XnuNQ
-         vTETiqb1CnQAJ0elzqyjkU4w4HW6qLuCYigdljI3PnRSBEbh8XIS1X6vRpowreMX3zUd
-         IrAyjIpQMHCOVE8ER5e2nW0iKokYOZY/qPpziCHkbPdv9gpVZi4DBmyz7elJQ3HUnAIa
-         fN7w==
+	s=arc-20240116; t=1760746834; c=relaxed/simple;
+	bh=WvLGMq6zaEqJpDFxOd0WICtejDxrRPkTC0W5GIZXWRg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=YeeVMkbaYhjY+U83x03eeVkaYUiXBy1to9VU27Npb8Fw45LGBRBZJ8qq+uDYNaVE7ZyFOGLmgEn5kPVFIZvVXu/yFj1W5SO2QAJAxfTWOJzL4/I3+Gjbqu3lOh/bdRpTy9wa7bVqGpaJpgvbkyq7wBVvmnu60/y3tM1+65uGFoc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=MXPI+bT2; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59HJGlqu024160
+	for <devicetree@vger.kernel.org>; Sat, 18 Oct 2025 00:20:31 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	DjsyPZCjZ7kk7o9g7SmG+YtODp+fuqqn2GA/QpUkm0c=; b=MXPI+bT2vhUKjU85
+	seAudb4lWbh4zhIYJ4n7mtMLncvAGQy8hEB7AhZh4ouq/KGyZ9aHN1JbfAGLrdVw
+	oS7PK7FhCPB0WeiR469ssPCk0xAUOqdNLnLmWBb7CSpTJhDH7fMYcaBtqFHtI1Yo
+	sU8wdD9Wr/IY41E3KsiOvIeQr3trmAyhp5EOu7zVQe1SVV46xgHAkTshcpI/K0+M
+	YYn0Daz8DLAnXxDpFwt/ayik4CnQ79u9nzUYbaRnK4GZPlQLhuJJAmQoVsBrYe6V
+	5NqccF0tXQgtcSlCTiJiVegzQHZoa/hBV3rCdVBj7SZ93XQkVe1zV/EE4LEm3VAr
+	teVRDw==
+Received: from mail-pg1-f200.google.com (mail-pg1-f200.google.com [209.85.215.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49tqvpqfkp-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Sat, 18 Oct 2025 00:20:31 +0000 (GMT)
+Received: by mail-pg1-f200.google.com with SMTP id 41be03b00d2f7-b471737e673so2944786a12.1
+        for <devicetree@vger.kernel.org>; Fri, 17 Oct 2025 17:20:31 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760745498; x=1761350298;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=1SE0GPjAFjItjLF86HET23/U9OrOIQ8cx/iNIr3s8Q8=;
-        b=txtvE/1xzLxTzhvlC6cNOdXHwYcmtG+Rl49TutDgYR1bwB7HVj87PsTmYFHxWWsBt+
-         ihsy0P9kNoaLgpdXly6FmUtP9Iyg7vmQduC9/X9dw5sQylV47psC51VvILA9fQnftn8O
-         rYGffJJnUlgq6D8WQwpV3+FkBuT13VCtncy+SW5qIz7sbtHAvOOSfN30Y24pZPKe8lIr
-         telcf42y26Y6LKq6kW5/hPe1FEc+EZNDWNISN77mWxr071Jb38hsFEZTHb81kRLXlNrt
-         TprGTXrLBaSsXyVPfWBpQmbRnLtwkHRPm/Tp1IXxxoLzMFz44W49XA03cQUCGFAA2sJs
-         C4dg==
-X-Forwarded-Encrypted: i=1; AJvYcCXZUeS1OqDRvn1rjpyAC2gVtizFhLouuEr6v7TzNrPMzKUkJ90Tist6IuJrjDjpIal/Zs60RcYRbLRG@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw/q2IXY9NZ7mxg5SwDGMXjttnKMJHEcZ7lcv9fVfr9ewxzqqsy
-	v7zEZ/SxAeE6DZefihGxLvRqyrtxyjl8P9XgnF0kzHKRuwdrp/y5L8vItzfObb34rsFGBpxPaHP
-	JGa9FMiznuQp3HRv6adG9em7NumnUWEUM+pV5H8ef
-X-Gm-Gg: ASbGncufnkF/wRFaw5maIWvPzw2tI5JXQLvnt+ZkCzFBXCWQFSIsi54sbIhbdLXfO/A
-	3mC/UEBlDJ6xP3ies7zQhd9xibPxE8yrc82+y75jQm8R4wO/56rhLcpMcH7f+alwluHmLZ3UV0A
-	qX7OPuf7CobLzdZjClnC3hrDu8a5WIyQ3hekn/h56hKukI4tdP2Teoh1wVvQh08VrT04WuuKi8i
-	7LsPwrmgWhtzfCfQNEBe1SC4xbSZxsXrnC/NGq7samdvweXHNhABZiuoeR4ic1qsUXlEkCYxLNG
-	FeEIHbDAycp1hNwYKCa/WISuEA==
-X-Google-Smtp-Source: AGHT+IHCANqLORIt+IrA+YkO6lwZel+K3VDA4WBemP44u6xPVrUe6fi1GWh3Pp23fq65Ylj7U7aD8xTBhXTINQfkvBY=
-X-Received: by 2002:a17:902:d2c4:b0:250:bd52:4cdb with SMTP id
- d9443c01a7336-290ca216351mr67457005ad.32.1760745498073; Fri, 17 Oct 2025
- 16:58:18 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1760746830; x=1761351630;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=DjsyPZCjZ7kk7o9g7SmG+YtODp+fuqqn2GA/QpUkm0c=;
+        b=CMcP1Ef3MFtDFy1B7bt2kvl9fFM1dfsNoWXPiXOLRDAw6gku6VUzOS9VwNpaoL/Yes
+         w5z//aNi9yu1pwLBOOO3qMfY7f7koPthsPxwAzpCv7hV+IJLoTJwwO0fQeBO1pmKYTEg
+         TJGAqkn0LZ6uubymwWIbvbIbxrJGZB/JW8YPpgIXNppjmWp9giH9DVllMzChNX4g6lmC
+         qgb49A6aRSk60I9OitDYeHtG3ttBK3nicbGR83GG8Yt1ARQE+EDhnoSY9LyY/8+wLel2
+         T5mBhTsTItzLNv7gO7zgsGXLtt7U9iHu4OaoOldasjB2Ktf5S4cF3NPwiUfjIMiQZNaw
+         JWiw==
+X-Forwarded-Encrypted: i=1; AJvYcCXfEqxDvHhCC1cX30gAdG3WLeITM6j11/Tu3VjghYRXRoC7Wea/1Te9AL17pCJiwFFwCCeth0pejIiF@vger.kernel.org
+X-Gm-Message-State: AOJu0YwuDphBQGck44udGNSzJSZHxnnkHHMzl0Wv1DJMnRivep3qW4o4
+	D9mLfZpqlfufakSB4vpzQXcIXUwXihf2qHOErh2Yy9UkgxvDUUA/Vb/Z0w/ufn2Wr6udsrKyRHe
+	TGBsuCGopgpC05427KMGzUvgI4KXQNb0QdvypjEvgMfQacXVZI54z7F7QWTZMaMSg
+X-Gm-Gg: ASbGncvqg0C2dtkr32Nf9Y77jVhHuJEtd382TMcVoLcU8eX2XkkGdrXbyLjXeUTvr+X
+	JW66YyqcvEJrg5YdxbwI0ZKFQhp7vkbX7xlwiPse1nt9OHCbbCYoh5aVqJ/zjPCFUbpjpc4hjXm
+	F3cKn7G0sUxZALkRYLRVes/uVQPWW/98wTcZOITO3R3K6LS7cFtORt7USACC/f5CFxn9YFmS7Wr
+	tSmfEAeya0Qh53o3g1af3HuiMy0FGLocyshFua8cbc6WUGYO3MF3YOkTSSwLC3TjMYTklKfLgWh
+	2zO2J5gzCl0tO6Dm8Lpvc3S5f0PcftS8vuXv3IhcJpbl7NA0ZeWUjNkQU+qHM1BNIu7PiYtXq0q
+	v5yWjKepj5NMxAGZxb+SpbNhV9yw/0SJbIjQr1CaL
+X-Received: by 2002:a17:902:f691:b0:278:bfae:3244 with SMTP id d9443c01a7336-290cba4382amr68119035ad.54.1760746829963;
+        Fri, 17 Oct 2025 17:20:29 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFh0Fb6P08hVeeiHZb3EJs27ayrDuP/pdtr+A0nVEst6kPRjwP0b3hwHB5SCbsS0Kix1+iX4w==
+X-Received: by 2002:a17:902:f691:b0:278:bfae:3244 with SMTP id d9443c01a7336-290cba4382amr68118775ad.54.1760746829523;
+        Fri, 17 Oct 2025 17:20:29 -0700 (PDT)
+Received: from [10.73.53.19] (pat_11.qualcomm.com. [192.35.156.11])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29246fcbe80sm7840285ad.29.2025.10.17.17.20.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 17 Oct 2025 17:20:28 -0700 (PDT)
+Message-ID: <da34ecf0-c2eb-2afa-bd4d-9dc30fbe5cf5@oss.qualcomm.com>
+Date: Fri, 17 Oct 2025 17:20:26 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251010201607.1190967-1-royluo@google.com> <20251010201607.1190967-4-royluo@google.com>
- <75756635-b374-4441-8526-175210e01163@kernel.org> <CA+zupgwHFpP5GEwGxOksmLJBU7+Kr_o0p50Pad1NmwNB0AxcGA@mail.gmail.com>
- <20251015130538.GA3214399-robh@kernel.org> <CA+zupgxAhErw4i0Q13hyXE2_sQSowzDgZ4Yv8o1tcZQS7G7a-Q@mail.gmail.com>
-In-Reply-To: <CA+zupgxAhErw4i0Q13hyXE2_sQSowzDgZ4Yv8o1tcZQS7G7a-Q@mail.gmail.com>
-From: Roy Luo <royluo@google.com>
-Date: Fri, 17 Oct 2025 16:57:41 -0700
-X-Gm-Features: AS18NWD5UlV7b-66BMMBU_l_HmLfx0ZDw13ZyAgDAmVkiOjEHLur9mcaNTje0Ak
-Message-ID: <CA+zupgxx9VQ6Mh1=x7EiGSCWeAqf8LM-047fA99tyE0sHsTamQ@mail.gmail.com>
-Subject: Re: [PATCH v3 3/4] dt-bindings: phy: google: Add Google Tensor G5 USB PHY
-To: Rob Herring <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Vinod Koul <vkoul@kernel.org>, 
-	Kishon Vijay Abraham I <kishon@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Thinh Nguyen <Thinh.Nguyen@synopsys.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	Peter Griffin <peter.griffin@linaro.org>, =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
-	Tudor Ambarus <tudor.ambarus@linaro.org>, Joy Chakraborty <joychakr@google.com>, 
-	Naveen Kumar <mnkumar@google.com>, Badhri Jagan Sridharan <badhri@google.com>, linux-phy@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-samsung-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH v5 02/10] dt-bindings: phy: qcom,qmp-usb: Add Glymur USB
+ UNI PHY compatible
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzk@kernel.org>, krzk+dt@kernel.org,
+        conor+dt@kernel.org, konrad.dybcio@oss.qualcomm.com,
+        dmitry.baryshkov@oss.qualcomm.com, kishon@kernel.org, vkoul@kernel.org,
+        gregkh@linuxfoundation.org, robh@kernel.org
+Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20251006222002.2182777-1-wesley.cheng@oss.qualcomm.com>
+ <20251006222002.2182777-3-wesley.cheng@oss.qualcomm.com>
+ <f5e4ae02-b8fa-4406-b2e0-3602b07b7e23@kernel.org>
+ <00408896-2e25-2dd1-6e6e-2195317ee7fb@oss.qualcomm.com>
+ <14bc2a85-0f1d-3834-9b9c-32654348603a@oss.qualcomm.com>
+ <387c707e-613d-433b-a76d-16ef10dabc59@kernel.org>
+ <2a70f878-269c-1b40-2e8c-77b5851de9a1@oss.qualcomm.com>
+ <99ab26d3-eb44-401d-8a7c-1d9efd2a1a10@kernel.org>
+ <b2b68430-5127-5eca-6bd8-4af31eb9fbed@oss.qualcomm.com>
+ <bb299df0-58b9-4a6e-9625-305785d38eb4@kernel.org>
+From: Wesley Cheng <wesley.cheng@oss.qualcomm.com>
+In-Reply-To: <bb299df0-58b9-4a6e-9625-305785d38eb4@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=aPD9aL9m c=1 sm=1 tr=0 ts=68f2dd4f cx=c_pps
+ a=oF/VQ+ItUULfLr/lQ2/icg==:117 a=ZdW6uxA9NKXbfdqeeS2OGA==:17
+ a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=JAPtGALJ81qCqeSEnE8A:9 a=QEXdDO2ut3YA:10 a=3WC7DwWrALyhR5TkjVHa:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDE2MDAxNyBTYWx0ZWRfXz8ccxjxF2GWx
+ 7IfzubKuR1j4vs+4Kj4ZbnZ2I/0Y9khTP//T94qhq71S1F/KisbpiyDk5nO1eFFh9Si2aZk/V31
+ soBURRxY4vE0KpzLElsmjhb0LvfeZEdO4aUGS5XP2+tkI/8rKgGNkfhgjJzjzDQON/Ar0xs2CWt
+ wcwkvnB6C97Ws+R005gGW7UimBPIo/U8eXhNAM7O1VOxDoOqtrWKBJM4UB6d1Rd2sfFWdv8Egjc
+ qRXOJgiUHaMEDOHQWKwZUv4FCTTRvJAjsmIHlgNPcWLiEK3lSGIZgaYNGQdjw9ki9602NNUvFm9
+ iPGEZUAc3uAfKyfls558Igfe3FT/mFlGZhYdR2A7Wis+YZqZ6TefzhVykDyq3syB762VUa8QV50
+ m6rYEcu8Aba/fwSc7HrHtFsFduyBZA==
+X-Proofpoint-ORIG-GUID: LObtkBM3IR25OqrtWszz_lfrmWUMW5Ol
+X-Proofpoint-GUID: LObtkBM3IR25OqrtWszz_lfrmWUMW5Ol
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-10-17_08,2025-10-13_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 adultscore=0 impostorscore=0 lowpriorityscore=0 clxscore=1015
+ bulkscore=0 suspectscore=0 malwarescore=0 phishscore=0 priorityscore=1501
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2510020000 definitions=main-2510160017
 
-On Wed, Oct 15, 2025 at 11:57=E2=80=AFAM Roy Luo <royluo@google.com> wrote:
->
-> On Wed, Oct 15, 2025 at 6:05=E2=80=AFAM Rob Herring <robh@kernel.org> wro=
-te:
-> >
-> > On Mon, Oct 13, 2025 at 06:46:39PM -0700, Roy Luo wrote:
-> > > On Fri, Oct 10, 2025 at 5:11=E2=80=AFPM Krzysztof Kozlowski <krzk@ker=
-nel.org> wrote:
-> > > >
-> > > > On 10/10/2025 22:16, Roy Luo wrote:
-> > > > > +  reg:
-> > > > > +    items:
-> > > > > +      - description: USB2 PHY configuration registers.
-> > > > > +      - description: DisplayPort top-level registers.
-> > > > > +      - description: USB top-level configuration registers.
-> > > > > +
-> > > > > +  reg-names:
-> > > > > +    items:
-> > > > > +      - const: u2phy_cfg
-> > > > > +      - const: dp_top
-> > > > > +      - const: usb_top_cfg
-> > > > > +
-> > > > > +  "#phy-cells":
-> > > > > +    const: 1
-> > > > > +
-> > > > > +  clocks:
-> > > > > +    maxItems: 1
-> > > > > +
-> > > > > +  resets:
-> > > > > +    maxItems: 1
-> > > > > +
-> > > > > +  power-domains:
-> > > > > +    maxItems: 1
-> > > > > +
-> > > > > +  orientation-switch:
-> > > > > +    type: boolean
-> > > > > +    description:
-> > > > > +      Indicates the PHY as a handler of USB Type-C orientation c=
-hanges
-> > > > > +
-> > > > > +required:
-> > > > > +  - compatible
-> > > > > +  - reg
-> > > > > +  - reg-names
-> > > > > +  - "#phy-cells"
-> > > > > +  - clocks
-> > > > > +  - resets
-> > > > > +  - power-domains
-> > > > > +  - orientation-switch
-> > > > > +
-> > > > > +additionalProperties: false
-> > > > > +
-> > > > > +examples:
-> > > > > +  - |
-> > > > > +    soc {
-> > > > > +        #address-cells =3D <2>;
-> > > > > +        #size-cells =3D <2>;
-> > > > > +
-> > > > > +        usb_phy: usb_phy@c410000 {
-> > > > > +            compatible =3D "google,gs5-usb-phy";
-> > > > > +            reg =3D <0 0x0c450014 0 0xc>,
-> > > > > +                  <0 0x0c637000 0 0xa0>,
-> > > >
-> > > > You probably miss DP support and this does not belong here.
-> > >
-> > > This register space isn't solely for DP operation, a significant port=
-ion
-> > > manages the custom combo PHY. Consequently, this space is essential
-> > > even for USB-only operation. We can expect more registers in the spac=
-e
-> > > to be utilized when DP support is added.
-> > >
-> > > While I acknowledge the current name is confusing, it directly reflec=
-ts
-> > > the hardware documentation. We can either adhere to the hardware
-> > > documentation's naming or propose a more descriptive alternative.
-> > > What's your preference?
-> > >
-> > > >
-> > > > > +                  <0 0x0c45002c 0 0x4>;
-> > > >
-> > > > That's not a separate address space. I really, really doubt that
-> > > > hardware engineers came with address spaces of one word long.
-> > >
-> > > I initially created this space to access the usb2only mode register,
-> > > which must be programmed when the controller operates in high-speed
-> > > only mode without the USB3 PHY initialized. Upon review, I now
-> > > believe the controller driver is the better location for this configu=
-ration,
-> > > as the register logically belongs there and the controller can tell
-> > > whether usb3 phy is going to be initialized.
-> > >
-> > > That is, I'm removing this register space in the next patch.
-> >
-> > You are missing the point. What exists from 0x0c450020-2c and
-> > 0x0c450000-0x14 for that matter? Hardware blocks don't just start on
-> > unaligned boundaries like 0x14 or 0x2c. DT describes the h/w blocks, no=
-t
->
-> Rob,
->
-> Thanks for chiming in. Let me elaborate the register layout here:
-> The register space 0x0c450000 - 0x00450043 is supposed to
-> be assigned to the USB controller. However, the USB phy has
-> to access a small portion of it, i.e. 0x0c450014 - 0x0c450020,
-> in order to initialize usb2 phy. This is really unfortunate and
-> makes things more complicated than it should've been.
->
-> The current patch is addressing it by splitting the register space:
-> - USB phy: <0 0x0c450014 0 0xc>
-> - USB controller: <0 0x0c450000 0 0x14>, <0 0x0c450020 0 0x23>
->
-> > just nodes of what a driver needs. So if the 0x2c register needs to be
-> > accessed by the USB driver, that's fine, but the register doesn't go in
-> > the USB controller node 'reg'. A property with a phandle to the node
-> > defining all the 0x0c450000 registers and an offset (if needed) is
-> > typically what we do there. Or you can just find that node by
-> > compatible.
->
-> Just to make sure we're on the same page, are you suggesting
-> making the register space a syscon node [1]? something like this:
->
-> usb_cfg_csr: usb_cfg_csr@c450000 {
->   compatible =3D "syscon";
->   reg =3D <0 0x0c450000 0x0 0x43>;
-> };
->
-> usb@c400000 {
->   ...
->   usb-cfg-syscon =3D <&usb_cfg_csr>;
->   ...
-> };
->
-> usb_phy@c637000 {
->   ...
->   usb-cfg-syscon =3D <&usb_cfg_csr>;
->   ...
-> }
->
-> [1] Documentation/devicetree/bindings/mfd/syscon.yaml
->
-> Thanks,
-> Roy Luo
->
 
-Hi Rob,
 
-I'm sending out a new version of the patchset.
-Although this specific comment isn't fully resolved yet, I've integrated
-enough new content and fixes into this and other patches that I believe
-it's ready for another round of review.
+On 10/16/2025 9:41 PM, Krzysztof Kozlowski wrote:
+> On 17/10/2025 02:15, Wesley Cheng wrote:
+>>>> Technically its all handling the same clock branch (CXO), we have the
+>>>> TCSR clkref register that allows us to gate the CXO to the USB PHY, as
+>>>
+>>>
+>>> Ah, exactly. Then clkref is not a clock. You need rather proper clock
+>>> hierarchy.
+>>>
+>>>> CXO is shared across several HW blocks, so it allows us to properly
+>>>> powerdown the PHY even though other clients are voting for CXO on.  Then
+>>>> we obviously have to remove our vote to the overall CXO, so that it can
+>>>> potentially be shutdown.
+>>>>
+>>>> Maybe we can rename it to "clkref" for the CXO handle and
+>>>> "clkref_switch" for the TCSRCC handle?
+>>>
+>>> Naming is better, but it is still not correct. This is not independent
+>>> clock signal. It is the same clock.
+>>>
+>>
+>> Hmmm... I guess that's why I kept the same clkref tag, to denote that
+>> its the same clock, but one is a switch/gate for it.  Would you happen
+>> to have any suggestions you might have that makes it clearer for
+>> everyone to understand?
+> To me it looks like:
+> 
+> |-----|            |-----------|           |------------------|
+> |clock|------------|TCSRCC gate|-----------|clkref to this dev|
+> |-----|            |-----------|           |------------------|
+> 
+> So you need proper clock controller for TCSR (TCSR Clock Controller, in
+> short TCSRCC, what a surprise!) which will take input, add gate and
+> produce clock for this device.
+> 
+> Nothing non-standard, all Qualcomm SoCs have it, every other platform
+> has it in some way.
+> 
 
-I'm happy to continue the discussion on this specific point here or in
-the new patchset. Here are the links to the new patches FYI:
-- controller https://lore.kernel.org/linux-usb/20251017233459.2409975-1-roy=
-luo@google.com
-- phy https://lore.kernel.org/linux-phy/20251017235159.2417576-1-royluo@goo=
-gle.com
+Hi Krzystof,
 
-Thanks,
-Roy Luo
+Yes, the design is exactly how you outlined it above.  How about clkref 
+for the clock and tcsrcc_switch for the clkref switch?  That removes any 
+notation that the gate/switch is an actual clock...
 
-> >
-> > Rob
+Thanks
+Wesley Cheng
 
