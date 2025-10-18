@@ -1,136 +1,126 @@
-Return-Path: <devicetree+bounces-228386-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228387-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 684E9BED030
-	for <lists+devicetree@lfdr.de>; Sat, 18 Oct 2025 15:08:46 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BE561BED045
+	for <lists+devicetree@lfdr.de>; Sat, 18 Oct 2025 15:16:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 089D84E172A
-	for <lists+devicetree@lfdr.de>; Sat, 18 Oct 2025 13:08:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 746523BDBDC
+	for <lists+devicetree@lfdr.de>; Sat, 18 Oct 2025 13:16:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B12B82D3220;
-	Sat, 18 Oct 2025 13:08:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0674513AA2F;
+	Sat, 18 Oct 2025 13:16:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rMjLUinV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FTY/bGz5"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C862283FF9
-	for <devicetree@vger.kernel.org>; Sat, 18 Oct 2025 13:08:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CAB1C354AFD;
+	Sat, 18 Oct 2025 13:16:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760792920; cv=none; b=aEcLfAUJDlfZlZ6kLS4qO1mbxMjqPXXDsRCOuwKTYzWFj3jyhyl5Sj2btHxPVl66RgtWS1hFMnxqFUBgP9XWGJI2gQkB2+fLlrGiOY14u8rlwMbtosBRba9km6z7PZEN/VC4rgtMCXb7zozGaPT4VRmdziuNYHymw8xO5tLJp8c=
+	t=1760793360; cv=none; b=hAsgI0/EKXmoEA4Tpp9FERlVASfJeFfPdySytZTiKtA9fPiBuf6g5P8y8lJUutZJkHwHYorkpQ0lEMC6l7vwzDJUNWeTBen5OuKi1+/VJ7xCdzQEbh6AZNENaCTmcJf+UR4DT053T/TaGeGl66ifMCD7DVqpd0N3iVVULP3Fgkc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760792920; c=relaxed/simple;
-	bh=7bciMT4CrJgHKV2awrVlF94hyJakdzQzPeC7HV2JNd4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=fKeV2uie0yvzTBVl5DyHTuCqQnkU1LXoTIdk5VMaEMYV4O2HPAOSmx7yhxi/s3e3ZeTnBIVuGJJZJgjonp4cLES8ZZzIf+5gOG7qDCb9yORLzZIkCFw1RCl31NVTTqx2ozNmpPggGiXhv+TOABIlLZFw+4pMGstVAchfKPTsrzk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rMjLUinV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 21C20C2BC9E
-	for <devicetree@vger.kernel.org>; Sat, 18 Oct 2025 13:08:40 +0000 (UTC)
+	s=arc-20240116; t=1760793360; c=relaxed/simple;
+	bh=hysF+JKp4Ag3WbayIb6tgZXGP0K/o0xHdRxBPWpRpuE=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=f+zZP4SeILO2BKimkFogmj0/ZNWe1OmOooXQxT8prTMHO8V5g1T/FGveDXPQGIB4Su2fiqtkA9VNZlCzUi7vdlf6MDKD21ojgg7wzmjKa76flFD7jJN9KE4ePUvspKdcgyfiVmSJuTk24BcrPKbsxMjcIg8sXJmkgJ49r3v21cA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FTY/bGz5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2F5B8C4CEF8;
+	Sat, 18 Oct 2025 13:15:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760792920;
-	bh=7bciMT4CrJgHKV2awrVlF94hyJakdzQzPeC7HV2JNd4=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=rMjLUinVgFSGjl6uoU02+Ak5xAk9RNc+YqOjg9wsr1F7OOLh7/myiRCO3dUtgk1uq
-	 Zqnd8dKyfQuzZmSakgHoKCPPKVZ85s32tJ2flwAhXBQJYvUiw7M6s6iToL7O8p0eeq
-	 tB3lYN7t77unYj9zwavAHOOkQk12btSSeZFUKokCSA4DP+Q4DF1PapVhLd2IMS2LVm
-	 9xYeylz5ORQ6uXlcG1ZrsA353w81aw8qMQiZsRSZ7CewKuA7ck3BGD+txAxncJoCyb
-	 Q8Mw2ZrNJmgvuYt5mWK0W7DlDAfj1txF3ENGKZMLOVizC3KxZkZfyQ/UytzvNgDxwf
-	 Tm3PT3Gm0Vgww==
-Received: by mail-oi1-f181.google.com with SMTP id 5614622812f47-4433456f043so1391373b6e.3
-        for <devicetree@vger.kernel.org>; Sat, 18 Oct 2025 06:08:40 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVcVlw79IsKiE0r3tXupe98wKCyrfXcIBEL9ypWQJwjCBIZOmtf4yS7sn4Z+GFR/CGKm1HPiN31p5Nt@vger.kernel.org
-X-Gm-Message-State: AOJu0YzR7O0kdhIA99DHsllHxyw16v08dy/vKbcQ2LTbmkKW02Dal7Ly
-	BLRBhkHqKOJbE6GmYUFyvT6QvgOQLJ4/Pc9dDD3AWZ5o+fy/Ym5dLHwtriZ42PbFhyQGCFipoN9
-	/gxYyLuYRgCRwyR0T67DFs13JojPvkrU=
-X-Google-Smtp-Source: AGHT+IE3IyWD8mbjzjUkhag2HiyTdsKepKeXqIjdN5kIYqtuyLNUN8wb4rc40oFml3V6Oau69bVfccWUcXlyJTfwtRE=
-X-Received: by 2002:a05:6808:1819:b0:43d:2197:c1e5 with SMTP id
- 5614622812f47-443a2bdc5a2mr3278714b6e.0.1760792919338; Sat, 18 Oct 2025
- 06:08:39 -0700 (PDT)
+	s=k20201202; t=1760793360;
+	bh=hysF+JKp4Ag3WbayIb6tgZXGP0K/o0xHdRxBPWpRpuE=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=FTY/bGz5F3a8sPgALBriMkN5WvJ0ojLBrrwANQhMz+rrRYVlFkt/tZ2nfc3j3vd5F
+	 PPXYmgCmDV1HOXJ3TVz+74sMoFM9ooQxek393jUOzESFnfFjkQx0kOvjfFcOJ9DwFt
+	 UiGoNB6ulQZZ6Vr29bDOB3eG5rBJTvSks+2wIsJ9L28cVhHLy6vFCjIg0v66tHCjSg
+	 nrs4JuznCMcZ5VxlhVHRsQcHsFeIorw+t/XDz/N0+yE81ljS4yYqHr/vj/qgnZcYcI
+	 Ku7CwxVJS9dagT5ue0M1ehdOmgaojTcuf8xHKYWvRt82LwEdxG1yGC010euKg9OWxz
+	 Jgqxx9jC5vqDg==
+Date: Sat, 18 Oct 2025 14:15:51 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc: Frank Li <Frank.Li@nxp.com>, Miquel Raynal <miquel.raynal@bootlin.com>,
+ David Lechner <dlechner@baylibre.com>, Nuno =?UTF-8?B?U8Oh?=
+ <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-i3c@lists.infradead.org,
+ linux-kernel@vger.kernel.org, imx@lists.linux.dev,
+ linux-iio@vger.kernel.org, joshua.yeong@starfivetech.com,
+ devicetree@vger.kernel.org, Carlos Song <carlos.song@nxp.com>, Adrian
+ Fluturel <fluturel.adrian@gmail.com>
+Subject: Re: [PATCH v5 0/5] i3c: Add basic HDR mode support
+Message-ID: <20251018141551.3e5c46c1@jic23-huawei>
+In-Reply-To: <2025101319545551cfb399@mail.local>
+References: <20251007-i3c_ddr-v5-0-444184f7725e@nxp.com>
+	<20251012180327.5d94dda2@jic23-huawei>
+	<2025101319545551cfb399@mail.local>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251016-rneri-wakeup-mailbox-v6-0-40435fb9305e@linux.intel.com>
- <20251016-rneri-wakeup-mailbox-v6-1-40435fb9305e@linux.intel.com>
- <CAJZ5v0iB4iZFs8C6EZayLVPbLz50MJ9GEniSHfbP31-yHRg1Bw@mail.gmail.com> <20251017211015.GA7078@ranerica-svr.sc.intel.com>
-In-Reply-To: <20251017211015.GA7078@ranerica-svr.sc.intel.com>
-From: "Rafael J. Wysocki" <rafael@kernel.org>
-Date: Sat, 18 Oct 2025 15:08:23 +0200
-X-Gmail-Original-Message-ID: <CAJZ5v0j9AnWNzrkpf25Cri0FEcimMs6W=DDjwJ=mBBpZ1zPNyA@mail.gmail.com>
-X-Gm-Features: AS18NWD6fdyJ9GswWIBppzxjyAHenHHv81mhe71Mo9dApeffRiexv-v6zB6M85M
-Message-ID: <CAJZ5v0j9AnWNzrkpf25Cri0FEcimMs6W=DDjwJ=mBBpZ1zPNyA@mail.gmail.com>
-Subject: Re: [PATCH v6 01/10] x86/acpi: Add helper functions to setup and
- access the wakeup mailbox
-To: Ricardo Neri <ricardo.neri-calderon@linux.intel.com>
-Cc: "Rafael J. Wysocki" <rafael@kernel.org>, x86@kernel.org, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>, 
-	"K. Y. Srinivasan" <kys@microsoft.com>, Haiyang Zhang <haiyangz@microsoft.com>, Wei Liu <wei.liu@kernel.org>, 
-	Dexuan Cui <decui@microsoft.com>, Michael Kelley <mhklinux@outlook.com>, 
-	Saurabh Sengar <ssengar@linux.microsoft.com>, Chris Oo <cho@microsoft.com>, 
-	"Kirill A. Shutemov" <kas@kernel.org>, linux-hyperv@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Ricardo Neri <ricardo.neri@intel.com>, "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Sat, Oct 18, 2025 at 4:48=E2=80=AFAM Ricardo Neri
-<ricardo.neri-calderon@linux.intel.com> wrote:
->
-> On Fri, Oct 17, 2025 at 11:46:59AM +0200, Rafael J. Wysocki wrote:
-> > On Fri, Oct 17, 2025 at 4:48=E2=80=AFAM Ricardo Neri
-> > <ricardo.neri-calderon@linux.intel.com> wrote:
-> > >
-> > > In preparation to move the functionality to wake secondary CPUs up fr=
-om the
-> > > ACPI code, add two helper functions.
-> > >
-> > > The function acpi_setup_mp_wakeup_mailbox() stores the physical addre=
-ss of
-> > > the mailbox and updates the wakeup_secondary_cpu_64() APIC callback.
-> > >
-> > > There is a slight change in behavior: now the APIC callback is update=
-d
-> > > before configuring CPU hotplug offline behavior. This is fine as the =
-APIC
-> > > callback continues to be updated unconditionally, regardless of the
-> > > restriction on CPU offlining.
-> > >
-> > > The function acpi_madt_multiproc_wakeup_mailbox() returns a pointer t=
-o the
-> > > mailbox. Use this helper function only in the portions of the code fo=
-r
-> > > which the variable acpi_mp_wake_mailbox will be out of scope once it =
-is
-> > > relocated out of the ACPI directory.
-> > >
-> > > The wakeup mailbox is only supported for CONFIG_X86_64 and needed onl=
-y with
-> > > CONFIG_SMP=3Dy.
-> > >
-> > > Reviewed-by: Dexuan Cui <decui@microsoft.com>
-> > > Acked-by: Rafael J. Wysocki <rafael.j.wysocki@intel.com>
-> >
-> > This should have been
-> >
-> > Acked-by: Rafael J. Wysocki (Intel) <rafael.j.wysocki@intel.com>
-> >
-> > The "(Intel)" part is missing and I omitted it when I sent the tag.
-> > Sorry for the confusion.
->
-> Thanks for the clarification Rafael. Does this clarification apply also
-> patches 2 and 3?
+On Mon, 13 Oct 2025 21:54:55 +0200
+Alexandre Belloni <alexandre.belloni@bootlin.com> wrote:
 
-Yes, it does.
+> On 12/10/2025 18:03:27+0100, Jonathan Cameron wrote:
+> > On Tue, 07 Oct 2025 16:06:12 -0400
+> > Frank Li <Frank.Li@nxp.com> wrote:
+> >   
+> > > Add basic HDR mode support, only support private transfer, not support
+> > > CCC command.
+> > > 
+> > > Update i3c framework API to allow pass down mode and extend driver callback
+> > > function.
+> > > 
+> > > Implement HDR transfer in svc i3c master driver.
+> > > 
+> > > Simplifed HDR flow is (ref i3c spec line 5514) Figure 129
+> > > 
+> > > <--              SDR            ---> | <--- HDR
+> > > START 0x7E RnW(0) ACK CCC(ENTHDR0) T   HDR-CMD(00-7f write, 80--ff read)
+> > >   
+> > >                                     ----> |    
+> > > HDR-DATA HDR-CRC HDR-RESTART .... HDR-EXIT
+> > > 
+> > > Note: HDR-CMD is 16bit data, which included 7bit slave address and 8bit
+> > > read/write command.
+> > > 
+> > > svc hardware can auto issue SDR part.
+> > > 
+> > > Signed-off-by: Frank Li <Frank.Li@nxp.com>  
+> > 
+> > Whilst there will probably have to be a v6 for the ACPI ID issue in patch 5,
+> > I'd like to ask the question of how are we planning to merge this?
+> > 
+> > Maybe an immutable branch either in IIO or I3C trees that the other one picks up?
+> > 
+> > It's a new driver so could gamble on taking the IIO driver the I3C tree but even
+> > then I'd like a topic / immutable branch in case any IIO wide refactors or similar
+> > hit this cycle.
+> >   
+> 
+> I can definitively provide an immutable branch once this goes in or if
+> you are more comfortable with this, I guess there is no urgency and we
+> could apply this over two cycles, first the I3C part and then you can
+> take the driver.
+> 
+Mostly because I'm really forgetful and hence don't like tracking stuff over
+multiple cycles, I'd prefer an immutable once all patches are ready to go.
 
-> Also, if no further changes are needed in the series, can it be corrected
-> when the patches are merged?
+Thanks,
 
-I think so.
+Jonathan
+
+> 
+
 
