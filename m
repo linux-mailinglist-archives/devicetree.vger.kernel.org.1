@@ -1,160 +1,104 @@
-Return-Path: <devicetree+bounces-228521-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228522-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6500EBEE99D
-	for <lists+devicetree@lfdr.de>; Sun, 19 Oct 2025 18:06:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B2355BEE9FD
+	for <lists+devicetree@lfdr.de>; Sun, 19 Oct 2025 18:27:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2C3601896B6E
-	for <lists+devicetree@lfdr.de>; Sun, 19 Oct 2025 16:06:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 822B4189B848
+	for <lists+devicetree@lfdr.de>; Sun, 19 Oct 2025 16:27:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C99C42EC0A0;
-	Sun, 19 Oct 2025 16:06:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 630BA2E613C;
+	Sun, 19 Oct 2025 16:27:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="YSQqmBdB"
+	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="LTF6yo0y";
+	dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="IdtVmqoC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from mail.mainlining.org (mail.mainlining.org [5.75.144.95])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65A54354ACB;
-	Sun, 19 Oct 2025 16:06:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCB4F2ECE85;
+	Sun, 19 Oct 2025 16:27:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.75.144.95
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760889989; cv=none; b=BodusD2CuKkKqMXCcTMQDquKdtcvGpoJi3S3DPvuZ6rt4pvzjzpJnyTa4UBvZi3SdJkj3/qfa0mHvtV9MFMaI9hBDSmg5V+EvXv2myVuHVhw4oavHWVkSGIury0H62UpRiya8jQSOUN8qdJU5DX1sw6gCks+/ok6oy990pvKDVY=
+	t=1760891244; cv=none; b=m9Lt1ur7hsjYc/QWECJkWs5Gdurmh0laZm9+oTX6cxASIX8HGFjR4adBhz0WgPbGhYU0azNd7/sFpN3cMITiS6PiMr6JC6LnHqJ+bwpBEKrqf6OhLVhH7qb0QST7KSe4okebMwlS9l14j0Y/PGNtk3weUDSp+R2ejGEuu7uTsw4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760889989; c=relaxed/simple;
-	bh=u3kZSbKNkPCt3OL2ozQGD9V/5zpA5+QbIEqPM9ZOqb0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=fKuSZ9+Wszv0V6IgctfMxG3axgUF0sGa+y6P15aDU2tTo73HvONfatrzazW++qkr0x2k2cRVFXzwB3DTJivaKp9eqqHBMas0T40CDvP3x93woeSmVRUAWVDsyyoYH9RmVDIGHprcRX+iQSFXHWO36tMAiFvPA535Zjo01RGCNGc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=YSQqmBdB; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
-	bh=AHfKA9U4Qc/kfoVyXIAwIin/0PHtcEBFmI2qkbJlwas=; b=YSQqmBdBp6Cnqio5Q494KslAOs
-	4IwGfKAEq3Yx1gDBSm40vA7TITFzwpl7tzPQiEk9pf91Qljfll83vZg7bFt7U76ye5LcZPZcQihYm
-	rMD+Tm67OaIlxTr+A/J08+ujbQhWSUCniipMMiuOza4Uk5++DBGDynN1uY8xCwi9U84b8/6uex+U2
-	j1wvM7P2YQ7FdQ2dRqlRQoRuMiBSYlHJdZeaT9guLiLTmGrhTfKaKQg3CDVXMApOXZdpL2H7g9MrW
-	EJZfKmepspjCiTWqBBKcPOA0c8/SBZ5P2LDmeCerFlB05cvK3DpuzBCfgIg5pJvMP4BB0Z6X46ldl
-	sRFA5eAA==;
-Received: from i53875a28.versanet.de ([83.135.90.40] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1vAVv4-0001nY-Qi; Sun, 19 Oct 2025 18:06:06 +0200
-From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
-To: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- David Petry <petry103@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- David Petry <petry103@gmail.com>
-Subject: Re: [PATCH] arm64: dts: rockchip: Enable second HDMI output on CM3588
-Date: Sun, 19 Oct 2025 18:06:05 +0200
-Message-ID: <6801712.G0QQBjFxQf@diego>
-In-Reply-To: <20251019142053.11047-1-petry103@gmail.com>
-References: <20251019142053.11047-1-petry103@gmail.com>
+	s=arc-20240116; t=1760891244; c=relaxed/simple;
+	bh=BQ9IFJKbESKzjwKtQB3OgNBpaLL0lRHeebGjF1hqPEM=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=N6fZAWLt957KwZF91TDxm+mFei5NEbuGIyMzGJ49S9e1qlokfpQ5+w0fCKuo186f9qflGoIUTe5HPeRBDyZQGeOt8BNsQD4OlnJarWQgCArvLVWi8jTPRwiwAXQwORAgcZu/KM/yy8aHOOQX77Uce1SUb8C2LkSxFBBRqgO+i8M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=LTF6yo0y; dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=IdtVmqoC; arc=none smtp.client-ip=5.75.144.95
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
+DKIM-Signature: v=1; a=rsa-sha256; s=202507r; d=mainlining.org; c=relaxed/relaxed;
+	h=To:Message-Id:Date:Subject:From; t=1760891234; bh=w0QWjLgqUUCHSyCq5XlwrWc
+	zRcUMNVXdkhnMa3UOQ50=; b=LTF6yo0yn80JyuiLERwcVqAqsIY4D0KHmLCXnfDEdb33ri6otp
+	+y9yIF14F4T5PweTpUnF30Vf8dkFqFXWPDa+DgSvh0X62YQa5tGgEhdBQoN5OtAY02O3PpHT3DJ
+	gJ5cFXJbmN6ddPGGbMrpGrNX1DsEk1ymosPfy+nc1++y5xSHOgBl1ODpHGgckJTyPtu37ZCCSTx
+	QKKuZ2NZWcHLissdWMWtOumyreDPJRq0CpzHO1kOwFc0UA2P9LLEktplhMLMTl79qQnHHh70T0X
+	AeXZHAs8tAyNbnaKdZzJY/EIgXBHcv/zxoyQ6u3KLeuOgverK7sz3E/x7FNFuwjOVrg==;
+DKIM-Signature: v=1; a=ed25519-sha256; s=202507e; d=mainlining.org; c=relaxed/relaxed;
+	h=To:Message-Id:Date:Subject:From; t=1760891234; bh=w0QWjLgqUUCHSyCq5XlwrWc
+	zRcUMNVXdkhnMa3UOQ50=; b=IdtVmqoCo398ORp5qLy7n8M7MuHSmxdUTQyBAbBHZUN0RCWzs0
+	DDvO4lJ3K/jaRP/jJ3YlBqliuhe6NAN+S1Aw==;
+From: Nickolay Goppen <setotau@mainlining.org>
+Subject: [PATCH 0/2] arm64: dts: qcom: Add support for SDM660 CDSP and ADSP
+ FastRPC
+Date: Sun, 19 Oct 2025 19:27:05 +0300
+Message-Id: <20251019-qcom-sdm660-cdsp-adsp-dts-v1-0-9ab5f2865a6e@mainlining.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAFkR9WgC/2WNyQrCMBRFfyVkbSBTM/2KdJFRs+hgUotQ+u+mV
+ nDh5sK5vHfuBmssOVZowAZLXHPN09iAXAD0dzveIsqhMaSYdgQTjR5+GlANgxAY+VBnZI8IS0U
+ qWeeExIypCNv/XGLKr4/72p9c4uPZJpaz/C0Y8PWrf3+nbeiEEtISZVZ6mJ2tEbW7IS8GaJaYs
+ 44zggNPSTJMpfc8KUkkp4oHrqW0PsF+39/EGOOm7wAAAA==
+X-Change-ID: 20251019-qcom-sdm660-cdsp-adsp-dts-8fabb670338e
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, 
+ linux@mainlining.org, Nickolay Goppen <setotau@mainlining.org>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1760891233; l=985;
+ i=setotau@mainlining.org; s=20250815; h=from:subject:message-id;
+ bh=BQ9IFJKbESKzjwKtQB3OgNBpaLL0lRHeebGjF1hqPEM=;
+ b=cZCTb/Ux8XMQy/3l3CkoSZjY0xE2rcvYrNmHKcb7BS9PMMqMjpMIcPtl641wunLMx3DCutuHA
+ at3rk7TVfDrC8cjIruNYaYCHCcxd18a8X8cFXYWpijSBjBDqohjq9qS
+X-Developer-Key: i=setotau@mainlining.org; a=ed25519;
+ pk=Og7YO6LfW+M2QfcJfjaUaXc8oOr5zoK8+4AtX5ICr4o=
 
-Hi David,
+This series adds support for SDM660 CDSP remoteproc and also adds
+FastRPC support for ADSP.
 
-Am Sonntag, 19. Oktober 2025, 16:20:53 Mitteleurop=C3=A4ische Sommerzeit sc=
-hrieb David Petry:
-> Enable the second HDMI output port found on FriendlyElec CM3588 and CM3588
+Signed-off-by: Nickolay Goppen <setotau@mainlining.org>
+---
+Nickolay Goppen (2):
+      arm64: dts: qcom: sdm630/660: Add CDSP-related nodes
+      arm64: dts: qcom: sdm630: Add FastRPC nodes to ADSP
 
-the decription sounds like you're referencing two boards, but the change
-itself only touches one. Is there a 2nd patch missing or does the wording
-above need improvement?
+ arch/arm64/boot/dts/qcom/sdm630.dtsi |  40 ++++++++-
+ arch/arm64/boot/dts/qcom/sdm636.dtsi |  14 ++++
+ arch/arm64/boot/dts/qcom/sdm660.dtsi | 152 +++++++++++++++++++++++++++++++++++
+ 3 files changed, 205 insertions(+), 1 deletion(-)
+---
+base-commit: 93f3bab4310d4ff73027cc4f87174284d4977acf
+change-id: 20251019-qcom-sdm660-cdsp-adsp-dts-8fabb670338e
+prerequisite-change-id: 20251018-qcom-sdm660-cdsp-59ad56867a18:v2
+prerequisite-patch-id: a8c9703aec1663b8226556ba1770bd6c5b4ef060
+prerequisite-patch-id: 5a49b179c69e045e8003f28e8ef0e6e003c0064a
+prerequisite-patch-id: dd158e1214a7e73ac0a8f1da9d3face61ad7d5bd
 
-Thanks
-Heiko
-
->=20
-> Signed-off-by: David Petry <petry103@gmail.com>
-> ---
->  .../rk3588-friendlyelec-cm3588-nas.dts        | 38 +++++++++++++++++++
->  1 file changed, 38 insertions(+)
->=20
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-friendlyelec-cm3588-nas.=
-dts b/arch/arm64/boot/dts/rockchip/rk3588-friendlyelec-cm3588-nas.dts
-> index 5fbbeb6f5a935..10a7d3691a26f 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3588-friendlyelec-cm3588-nas.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3588-friendlyelec-cm3588-nas.dts
-> @@ -101,6 +101,17 @@ hdmi0_con_in: endpoint {
->  		};
->  	};
-> =20
-> +	hdmi1-con {
-> +		compatible =3D "hdmi-connector";
-> +		type =3D "a";
-> +
-> +		port {
-> +			hdmi1_con_in: endpoint {
-> +				remote-endpoint =3D <&hdmi1_out_con>;
-> +			};
-> +		};
-> +	};
-> +
->  	ir-receiver {
->  		compatible =3D "gpio-ir-receiver";
->  		gpios =3D <&gpio0 RK_PD4 GPIO_ACTIVE_LOW>;
-> @@ -335,6 +346,22 @@ hdmi0_out_con: endpoint {
->  	};
->  };
-> =20
-> +&hdmi1 {
-> +	status =3D "okay";
-> +};
-> +
-> +&hdmi1_in {
-> +	hdmi1_in_vp1: endpoint {
-> +		remote-endpoint =3D <&vp1_out_hdmi1>;
-> +	};
-> +};
-> +
-> +&hdmi1_out {
-> +	hdmi1_out_con: endpoint {
-> +		remote-endpoint =3D <&hdmi1_con_in>;
-> +	};
-> +};
-> +
->  &hdmi_receiver_cma {
->  	status =3D "okay";
->  };
-> @@ -350,6 +377,10 @@ &hdptxphy0 {
->  	status =3D "okay";
->  };
-> =20
-> +&hdptxphy1 {
-> +	status =3D "okay";
-> +};
-> +
->  /* Connected to MIPI-DSI0 */
->  &i2c5 {
->  	pinctrl-names =3D "default";
-> @@ -840,3 +871,10 @@ vp0_out_hdmi0: endpoint@ROCKCHIP_VOP2_EP_HDMI0 {
->  		remote-endpoint =3D <&hdmi0_in_vp0>;
->  	};
->  };
-> +
-> +&vp1 {
-> +	vp1_out_hdmi1: endpoint@ROCKCHIP_VOP2_EP_HDMI1 {
-> +		reg =3D <ROCKCHIP_VOP2_EP_HDMI1>;
-> +		remote-endpoint =3D <&hdmi1_in_vp1>;
-> +	};
-> +};
->=20
-
-
-
+Best regards,
+-- 
+Nickolay Goppen <setotau@mainlining.org>
 
 
