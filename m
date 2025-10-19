@@ -1,274 +1,151 @@
-Return-Path: <devicetree+bounces-228455-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228456-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id EAD46BEE158
-	for <lists+devicetree@lfdr.de>; Sun, 19 Oct 2025 10:58:08 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 57C8ABEE16A
+	for <lists+devicetree@lfdr.de>; Sun, 19 Oct 2025 11:05:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 7065234AB67
-	for <lists+devicetree@lfdr.de>; Sun, 19 Oct 2025 08:58:08 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id B7DF54E5A2E
+	for <lists+devicetree@lfdr.de>; Sun, 19 Oct 2025 09:05:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A87A2D3EF6;
-	Sun, 19 Oct 2025 08:58:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7945D2DF6F5;
+	Sun, 19 Oct 2025 09:05:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="js304GW5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LyWAA6Pz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DBA32D29A9
-	for <devicetree@vger.kernel.org>; Sun, 19 Oct 2025 08:57:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48D5E1922FD;
+	Sun, 19 Oct 2025 09:05:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760864283; cv=none; b=akxbFyvWujkpT0f2OOUtmDgObcawYsyfWUZmIsU/Abj0XvhXLhelNhdzs6KHBOAXYPHFPLp4q5TLLvXOkRQaWOLJQTCsxfzn4Re6bBdh2tvTzuN66EvjVwalL7Uz4b+q5zV0N2IVOEFu5gPKxVEyDPn4bsuBA6bP5Cn7mtAMmNU=
+	t=1760864701; cv=none; b=HsL9gjLIy+LpG576glL5T/DRt7PZq6/urg+SjtqXRo0ZS2/mMFeIeZiChStnkuW3m1kggXRGTqqn5bvAl1fB6Wxh90IXdZg+yDeUBz0RboWrVBOnrY2IeqKxYJCts38R2kk5DCYP+GLxXVzkHOZzM7iX5SncSN2BIgzV3I8AJlo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760864283; c=relaxed/simple;
-	bh=Q8g0uYuPJ0HvJDfTBcCJanzK7KYy3ghXHYdZyaJCIOw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gmBKSs/zCcW0zsZHr/9bWbz/puHH7QCKHy6IRTJEjY5HCcLV7hLa0kvQ9pCjAcJzT48s6d9cxhywZTQ0ZalU5TSyf5bBDcLpKwT1rEZZSu9olhvCy+ct5ZwdyD9tBgMTZCdoYU3EwB1KkxAJ1EYpWTVte1dg0XiYn0ESAsGSnp4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=js304GW5; arc=none smtp.client-ip=209.85.214.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-290dc630a07so14272805ad.1
-        for <devicetree@vger.kernel.org>; Sun, 19 Oct 2025 01:57:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1760864279; x=1761469079; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=9rLkUjfmUpuuFgqyXa/IslTGeP3g1HLNLFzp4a7VvL0=;
-        b=js304GW56cfhbXipc+xMvjpGkF3S9mxWU7S3gfPwYA3GlNtJ1iaw332lXJazsm7cV0
-         lOlwffJ+XK9uZdwh6r3MizosfgSXmSakgDdYFuv0K7fHBxaoiAdHiwjzjcVzNg3InvOw
-         dwFEqPWLOnoUApTtTgXZ8tHXlgCoJS54ZyAAzzFZQxc202308icZjqm3XAM1GaRxOEB0
-         QWfPcTj1I9zX1LtYZKbsI0Zp+KA3khUnqoK4Qed/uBOw/cQNZljDjfBvS20StU46Jel9
-         8BPdfJw7GbkyDzZ9VmZQ+XpAmgjJUuM/Orsb1NmPkRF7RUDD3D9dECyd2y2zg15LVMeQ
-         CvtA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760864279; x=1761469079;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9rLkUjfmUpuuFgqyXa/IslTGeP3g1HLNLFzp4a7VvL0=;
-        b=Ns+BB5UpA3ai6bqjqOTMNqtAdq9OH8XP+tftktAQ6nVEH5FjFV1SHQAtjJwnX4cZpa
-         5LIbePmUOOZMSc1C7i4PfCIQvL/1ELZHwlW16pJ741NNxRMrI+p+Ctmi1zm2YOSVIlA5
-         0csU+9786+z1Xq2S0zlHVgec9xCBIzftLpEknj1VuQ/EWrnjbNOuiSo1wtt1YGFh9rLU
-         T1iFrUDxbXThnCfppZTpMWJjheaedmd4zKI/nog+QjH9TSv+cQzJVGQM3nUHMMqHSQ1K
-         YOsUDjEBzQTWfqQQ/y+RjZA3sJLr8FppUzJQINqlTdNPlKcIL5F+aoHsWNNnq933Jsra
-         K32w==
-X-Forwarded-Encrypted: i=1; AJvYcCUmC4sQ5IvnDiA0IbNALQ1guxQ1JmGxQitk0lltJUbwBKOO4ivLpqtWUr02U8y2TSBci6msZvlC83Co@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxfdejdt7ZtZHzt2ZCdso2c7NyuE7FjukZSjItNuvC7LSfIbuiV
-	4ROa+7rynbXnIwxVLPJh9tA/E59QjH5UVXHgeX7RNm21FK3BGfm2PUTl
-X-Gm-Gg: ASbGncvP6HlQN7RSgTHj3+JPGjTXlk+mNE2SWF2W41FmXmwhSuLkq2zxDxiTzSYxjP3
-	seA1QEzNuit0rvuzgv7qEJHP4H0YGy0J70Z1FeUXn1fl+65xOXr3jIHj7XUpXRLXzaYDVAB+U9X
-	AI8H5XTAB8POPgKJA7YIAnBMXaXTYQ/6VDOADWV68DuY0MQkuPi6hBnlnEcsmKKbeTLSU59ziiE
-	B/LtYwcEwOgvxc77mpkA+4295nh9raVoVu0O047f2FLHbHQJtAStEb9qz3bmeSJEaFNzdBB9WVc
-	ssF3Eocqlen/22m+igQ4Wvr56ceD8spO+avUl4OAkXP72zNe1jFUW9wEiJ3kMjiPlTAoIJmsG6r
-	VvYAJg1ABzCXq0EtH8pWjHkyM1NZbhlMc54g0k7JKm1Gu5fb6rcQyH9HHKOtCOLyRJw94FT4rPC
-	v5zwx+QAYtGtQamjqnXi+jooqUHA==
-X-Google-Smtp-Source: AGHT+IGniGBehwgTrgHbJNS41elvKChJOOZoogGwCpqJJzL/0rB3g2ONAI0A7h0Py6t3LZ21L1nT4g==
-X-Received: by 2002:a17:903:244f:b0:261:e1c0:1c44 with SMTP id d9443c01a7336-290cc2f83a5mr120441135ad.40.1760864279337;
-        Sun, 19 Oct 2025 01:57:59 -0700 (PDT)
-Received: from [192.168.1.4] ([223.181.116.113])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2924721980bsm47078665ad.110.2025.10.19.01.57.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 19 Oct 2025 01:57:58 -0700 (PDT)
-Message-ID: <454763e4-8965-4f95-b6ee-e6dd4d62c320@gmail.com>
-Date: Sun, 19 Oct 2025 14:27:47 +0530
+	s=arc-20240116; t=1760864701; c=relaxed/simple;
+	bh=9QA53RxxI3fDWWXDTSxIPob1VCQQzWfdPwsbqIB7Ekw=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=VCx/s2vRvZ8VKONJFEbETblUuEWv/D5VlhYEDIpmuwN8nwMoyfEGjwXCK258M+MSSuEICDkJHqxKQLP3UY7Ft4m8tikRa2U1hNBNyajKUjFiDFFDdoPtNM01gwnEcfGdt6tyJQHpzyxR91THnFju0QTWpjiNyWg/9DLwQniGQIU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LyWAA6Pz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8FBF6C4CEE7;
+	Sun, 19 Oct 2025 09:04:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1760864701;
+	bh=9QA53RxxI3fDWWXDTSxIPob1VCQQzWfdPwsbqIB7Ekw=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=LyWAA6PzLnj/HWuVCoFkNBi9BjEzoo5YqActO5UBI73+j2tCMm7hzvJB5QSlj6ELm
+	 y0dc2ztrizauYzndrAGF5khGSYyJU5N3rOZitNSoU816X9ZebYiJ1FyVwmvjz84Ern
+	 bH/t8z0SG/kQgupjfjnzM6z5ZturKvCn/wn5D2sKrCTbaFy0RzqYg2tETOnkBQgshl
+	 HaJpQqyAEMtVBXqOZ/7EBPBuTn/KYk1iacmPNCwQzucBY7HMwK3fVUabguhYgGzHr2
+	 nqwWZRhcoi/vwr9VO9UCDmhKpNic5I20udlRl6G2zXQbdQ9pm02NpwdIa6n4noxnSE
+	 FNgAbPXbRzlUg==
+Date: Sun, 19 Oct 2025 10:04:54 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Ariana Lazar <ariana.lazar@microchip.com>
+Cc: David Lechner <dlechner@baylibre.com>, Nuno =?UTF-8?B?U8Oh?=
+ <nuno.sa@analog.com>, "Andy Shevchenko" <andy@kernel.org>, Rob Herring
+ <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, <linux-iio@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 1/2] dt-bindings: iio: adc: adding support for PAC1711
+Message-ID: <20251019100454.6bfbc3c7@jic23-huawei>
+In-Reply-To: <20251015-pac1711-v1-1-976949e36367@microchip.com>
+References: <20251015-pac1711-v1-0-976949e36367@microchip.com>
+	<20251015-pac1711-v1-1-976949e36367@microchip.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] dt-bindings: mmc: ti,omap2430-sdhci: convert to DT
- schema
-To: Rob Herring <robh@kernel.org>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Paul Barker <paul.barker@sancloud.com>,
- Marc Murphy <marc.murphy@sancloud.com>, Tony Lindgren <tony@atomide.com>,
- Kishon Vijay Abraham I <kishon@kernel.org>, linux-mmc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-omap@vger.kernel.org
-References: <20251011-ti-sdhci-omap-v3-0-9487ef2de559@gmail.com>
- <20251011-ti-sdhci-omap-v3-2-9487ef2de559@gmail.com>
- <20251015131145.GA3232873-robh@kernel.org>
-Content-Language: en-US
-From: Charan Pedumuru <charan.pedumuru@gmail.com>
-In-Reply-To: <20251015131145.GA3232873-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
+On Wed, 15 Oct 2025 13:12:15 +0300
+Ariana Lazar <ariana.lazar@microchip.com> wrote:
 
-
-On 15-10-2025 18:41, Rob Herring wrote:
-> On Sat, Oct 11, 2025 at 08:40:24AM +0000, Charan Pedumuru wrote:
->> Convert TI OMAP SDHCI Controller binding to YAML format.
->> Changes during Conversion:
->> - Define new properties like "clocks", "clock-names",
->>   "ti,needs-special-reset", "ti,needs-special-hs-handling",
->>   "pbias-supply", "cap-mmc-dual-data-rate" and "power-domains" to
->>   resolve dtb_check errors.
->> - Remove "pinctrl-names" and "pinctrl-<n>"
->>   from required as they are not necessary for all DTS files.
->> - Remove "ti,hwmods" property entirely from the YAML as the
->>   DTS doesn't contain this property for the given compatibles and the
->>   text binding is misleading.
->> - Add "clocks", "clock-names", "max-frequency" and "ti,needs-special-reset"
->>   to the required properties based on the compatible and the text binding
->>   doesn't mention these properties as required.
->> - Add missing strings like "default-rev11", "sdr12-rev11", "sdr25-rev11",
->>   "hs-rev11", "sdr25-rev11" and "sleep" to pinctrl-names string array
->>   to resolve errors detected by dtb_check.
->>
->> Signed-off-by: Charan Pedumuru <charan.pedumuru@gmail.com>
->> ---
->>  .../devicetree/bindings/mmc/sdhci-omap.txt         |  43 -----
->>  .../devicetree/bindings/mmc/ti,omap2430-sdhci.yaml | 202 +++++++++++++++++++++
->>  2 files changed, 202 insertions(+), 43 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/mmc/sdhci-omap.txt b/Documentation/devicetree/bindings/mmc/sdhci-omap.txt
->> deleted file mode 100644
->> index f91e341e6b36c410275e6f993dd08400be3fc1f8..0000000000000000000000000000000000000000
->> --- a/Documentation/devicetree/bindings/mmc/sdhci-omap.txt
->> +++ /dev/null
->> @@ -1,43 +0,0 @@
->> -* TI OMAP SDHCI Controller
->> -
->> -Refer to mmc.txt for standard MMC bindings.
->> -
->> -For UHS devices which require tuning, the device tree should have a "cpu_thermal" node which maps to the appropriate thermal zone. This is used to get the temperature of the zone during tuning.
->> -
->> -Required properties:
->> -- compatible: Should be "ti,omap2430-sdhci" for omap2430 controllers
->> -	      Should be "ti,omap3-sdhci" for omap3 controllers
->> -	      Should be "ti,omap4-sdhci" for omap4 and ti81 controllers
->> -	      Should be "ti,omap5-sdhci" for omap5 controllers
->> -	      Should be "ti,dra7-sdhci" for DRA7 and DRA72 controllers
->> -	      Should be "ti,k2g-sdhci" for K2G
->> -	      Should be "ti,am335-sdhci" for am335x controllers
->> -	      Should be "ti,am437-sdhci" for am437x controllers
->> -- ti,hwmods: Must be "mmc<n>", <n> is controller instance starting 1
->> -	     (Not required for K2G).
->> -- pinctrl-names: Should be subset of "default", "hs", "sdr12", "sdr25", "sdr50",
->> -		 "ddr50-rev11", "sdr104-rev11", "ddr50", "sdr104",
->> -		 "ddr_1_8v-rev11", "ddr_1_8v" or "ddr_3_3v", "hs200_1_8v-rev11",
->> -		 "hs200_1_8v",
->> -- pinctrl-<n> : Pinctrl states as described in bindings/pinctrl/pinctrl-bindings.txt
->> -
->> -Optional properties:
->> -- dmas:		List of DMA specifiers with the controller specific format as described
->> -		in the generic DMA client binding. A tx and rx specifier is required.
->> -- dma-names:	List of DMA request names. These strings correspond 1:1 with the
->> -		DMA specifiers listed in dmas. The string naming is to be "tx"
->> -		and "rx" for TX and RX DMA requests, respectively.
->> -
->> -Deprecated properties:
->> -- ti,non-removable: Compatible with the generic non-removable property
->> -
->> -Example:
->> -	mmc1: mmc@4809c000 {
->> -		compatible = "ti,dra7-sdhci";
->> -		reg = <0x4809c000 0x400>;
->> -		ti,hwmods = "mmc1";
->> -		bus-width = <4>;
->> -		vmmc-supply = <&vmmc>; /* phandle to regulator node */
->> -		dmas = <&sdma 61 &sdma 62>;
->> -		dma-names = "tx", "rx";
->> -	};
->> diff --git a/Documentation/devicetree/bindings/mmc/ti,omap2430-sdhci.yaml b/Documentation/devicetree/bindings/mmc/ti,omap2430-sdhci.yaml
->> new file mode 100644
->> index 0000000000000000000000000000000000000000..7683481204b2e222847244b67f9ae2684db93028
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/mmc/ti,omap2430-sdhci.yaml
->> @@ -0,0 +1,202 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/mmc/ti,omap2430-sdhci.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: TI OMAP SDHCI Controller
->> +
->> +maintainers:
->> +  - Kishon Vijay Abraham I <kishon@ti.com>
->> +
->> +description:
->> +  For UHS devices which require tuning, the device tree should have a
->> +  cpu_thermal node which maps to the appropriate thermal zone. This
->> +  is used to get the temperature of the zone during tuning.
->> +
->> +properties:
->> +  compatible:
->> +    enum:
->> +      - ti,omap2430-sdhci
->> +      - ti,omap3-sdhci
->> +      - ti,omap4-sdhci
->> +      - ti,omap5-sdhci
->> +      - ti,dra7-sdhci
->> +      - ti,k2g-sdhci
->> +      - ti,am335-sdhci
->> +      - ti,am437-sdhci
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  interrupts:
->> +    maxItems: 1
->> +
->> +  clocks:
->> +    maxItems: 2
->> +
->> +  clock-names:
->> +    items:
->> +      - const: fck
->> +      - const: mmchsdb_fck
->> +
->> +  dmas:
->> +    maxItems: 2
->> +
->> +  dma-names:
->> +    items:
->> +      - const: tx
->> +      - const: rx
->> +
->> +  pinctrl-names:
->> +    $ref: /schemas/types.yaml#/definitions/string-array
+> This is the device tree schema for Microchip PAC1711 single-channel power
+> monitor with accumulator. The device uses 12-bit resolution for voltage and
+> current measurements and 24 bits power calculations. The device supports
+> one 56-bit accumulator register.
 > 
-> Drop. Already has a type.
-
-Sure, I will remove the type.
-
+> PAC1711 measures up to 42V Full-Scale Range.
 > 
->> +    minItems: 1
->> +    maxItems: 14
->> +    items:
->> +      enum:
->> +        - default
->> +        - default-rev11
->> +        - hs
->> +        - sdr12
->> +        - sdr12-rev11
->> +        - sdr25
->> +        - sdr25-rev11
->> +        - sdr50
->> +        - ddr50-rev11
->> +        - sdr104-rev11
->> +        - ddr50
->> +        - sdr104
->> +        - ddr_1_8v-rev11
->> +        - ddr_1_8v
->> +        - ddr_3_3v
->> +        - hs-rev11
->> +        - hs200_1_8v-rev11
->> +        - hs200_1_8v
->> +        - sleep
+> Signed-off-by: Ariana Lazar <ariana.lazar@microchip.com>
+> ---
+>  .../bindings/iio/adc/microchip,pac1711.yaml        | 195 +++++++++++++++++++++
+>  MAINTAINERS                                        |   6 +
+>  2 files changed, 201 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/adc/microchip,pac1711.yaml b/Documentation/devicetree/bindings/iio/adc/microchip,pac1711.yaml
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..67edd778981c2f0ed21dda02f14e383a153169b1
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/adc/microchip,pac1711.yaml
 
--- 
-Best Regards,
-Charan.
+> +  microchip,vbus-input-range-microvolt:
+> +    description: |
+> +      Specifies the voltage range in microvolts chosen for the voltage full
+> +      scale range (FSR). The range should be set as <minimum, maximum> by
+> +      hardware design and should not be changed during runtime.
+> +
+> +      The VBUS could be configured into the following full scale range:
+> +        -  VBUS has unipolar 0V to 42V FSR (default)
+> +        -  VBUS has bipolar -42V to 42V FSR
+> +        -  VBUS has bipolar -21V to 21V FSR
+> +    items:
+> +      - enum: [-42000000, -21000000, 0]
+> +      - enum: [21000000, 42000000]
+> +
+> +  microchip,vsense-input-range-microvolt:
+> +    description: |
+> +      Specifies the voltage range in microvolts chosen for the current full
+> +      scale range (FSR). The current is calculated by dividing the vsense
+> +      voltage by the value of the shunt resistor. The range should be set as
+> +      <minimum, maximum> by hardware design and it should not be changed during
+> +      runtime.
+> +
+> +      The VSENSE could be configured into the following full scale range:
+> +        -  VSENSE has unipolar 0 mV to 100V FSR (default)
+> +        -  VSENSE has bipolar -100 mV to 100 mV FSR
+> +        -  VSENSE has bipolar -50 mV to 50 mV FSR
+> +    items:
+> +      - enum: [-100000, -50000, 0]
+> +      - enum: [50000, 100000]
+
+These range setting things are common enough perhaps it's time to standardize
+them as properties of channel sub nodes (the stuff in adc.yaml).
+
+> +
+> +  microchip,accumulation-mode:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: |
+> +      The Hardware Accumulator may be used to accumulate VPOWER, VSENSE or
+> +      VBUS values for any channel. By setting the accumulator for a channel
+> +      to accumulate the VPOWER values gives a measure of accumulated power
+> +      into a time period, which is equivalent to energy. Setting the
+> +      accumulator for a channel to accumulate VSENSE values gives a measure
+> +      of accumulated current, which is equivalent to charge.
+> +
+> +      The Hardware Accumulator could be configured as:
+> +       <0>  -  Accumulator accumulates VPOWER (default)
+> +       <1>  -  Accumulator accumulates VSENSE
+> +       <2>  -  Accumulator accumulates VBUS
+
+This feels like a runtime thing to control. To be in DT it should be related
+to the board wiring rather than being a choice between multiple things
+being measured.
+
+> +    maximum: 2
+> +    default: 0
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - vdd-supply
+> +  - shunt-resistor-micro-ohms
 
 
