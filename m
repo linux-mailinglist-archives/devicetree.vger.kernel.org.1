@@ -1,145 +1,314 @@
-Return-Path: <devicetree+bounces-228531-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228532-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61A31BEEAC1
-	for <lists+devicetree@lfdr.de>; Sun, 19 Oct 2025 19:23:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F3A95BEEAD3
+	for <lists+devicetree@lfdr.de>; Sun, 19 Oct 2025 19:26:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id F23293494C3
-	for <lists+devicetree@lfdr.de>; Sun, 19 Oct 2025 17:23:44 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 7008D34961C
+	for <lists+devicetree@lfdr.de>; Sun, 19 Oct 2025 17:26:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C834215077;
-	Sun, 19 Oct 2025 17:23:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50C6A2E3387;
+	Sun, 19 Oct 2025 17:26:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="N+gJzz3O"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MXC1seOh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31E4618D658;
-	Sun, 19 Oct 2025 17:23:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 469E11DA60D
+	for <devicetree@vger.kernel.org>; Sun, 19 Oct 2025 17:26:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760894620; cv=none; b=rvetVlk29i6EU5ryNAh83BF383wmVgoFhFV5+e3mn3Qqpi+GfrM8tQz+fDcDsyoOv37pP2d/g/tEvZKPSrFiDl9SFqzjaTGZxgTalsImVtZT90hDmoTu+KAimJlryKHt6dZyHoUc/rQZN1Sj4Twe/I4dpfwaZ57HiXPUYaFp8O4=
+	t=1760894776; cv=none; b=AVY2Qo4CApUMCu0pgvn1E05n5o6e6iHFgI6i8N4VOgctWyIKI5uMkQu6+Mrf/a7eNTJ6jIpsZf57fUBuZ/csd8xt25aWax4k5YCm3VHa1j5bfTlyo/q+prtlKJwbMc3RGkiEhiSNBSHM66SpKyetThMtuoQyrZBp3XGngM6W4Lc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760894620; c=relaxed/simple;
-	bh=YjwgU07lTttycLobcPqPwzVy5bTSFOQ+Tt11e6IE6kI=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition; b=o2Z6iA6k21nrEju0P1RO+TRZUkO3mBdgK/4agCULhAyn3UVwdoAMGlWxeLrDbDbgZE8KkV/wGQ3pOkVQr99fZ3APUFx6qpBLjPgyK993WTGFWr6lTuOPiCGbNue/9OMr1uxPGePof317U1evml2sp7ghYPm/NfUjwto2aeziBY0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=N+gJzz3O; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D43DC4CEE7;
-	Sun, 19 Oct 2025 17:23:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760894619;
-	bh=YjwgU07lTttycLobcPqPwzVy5bTSFOQ+Tt11e6IE6kI=;
-	h=Date:From:To:Cc:Subject:From;
-	b=N+gJzz3ORVwoPCxEgwHELlWleaV/eXlwHdSDnoyEk7zopJVpmaxB1E5YGu6Jus3+h
-	 9AJmubMDFHMChgLfXt8EWfNcDiqmGO2Kq8EB31+ApECRdM6uYTpQtBzo5nly75ki2h
-	 adHYWL/VaYc2hohr0YtdWNxLWYHLjSyL0tWxKxDFEhBzBChrPjN6NjMTRxwBfUMsip
-	 P55eJGfSzy9PYd87YFuEE4/w+hdAGSl1M/9OL75GYYQJLzpcuVueuCacaGK4NCjf/f
-	 zioopatQIHDhffQmgmUeyVTZGdVihaKhHxQjn69e/xal7azX95SVU1lisSCLpSpvWu
-	 VzMwt7LscrluQ==
-Date: Sun, 19 Oct 2025 10:23:37 -0700
-From: Drew Fustini <fustini@kernel.org>
-To: soc@kernel.org
-Cc: Arnd Bergmann <arnd@arndb.de>, Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Alexandre Ghiti <alex@ghiti.fr>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Samuel Holland <samuel.holland@sifive.com>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Anup Patel <anup@brainfault.org>, Joel Stanley <joel@jms.id.au>,
-	Joel Stanley <jms@oss.tenstorrent.com>,
-	Nicholas Piggin <npiggin@oss.tenstorrent.com>,
-	Michael Neuling <mikey@neuling.org>,
-	Michael Ellerman <mpe@kernel.org>, Andy Gross <agross@kernel.org>,
-	Anirudh Srinivasan <asrinivasan@oss.tenstorrent.com>,
-	Paul Walmsley <pjw@kernel.org>,
-	Drew Fustini <dfustini@oss.tenstorrent.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org
-Subject: [GIT PULL] RISC-V Tenstorrent Devicetree for v6.19
-Message-ID: <aPUemXdOFZEdkayE@x1>
+	s=arc-20240116; t=1760894776; c=relaxed/simple;
+	bh=tY+of9fymNrfMrfVCzbAi5At2Tdm4yqQDQ2JYQ1Bks4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=jR/ee5FvMYUXLmX6vnBWnA0aOFAqjI7bK5IQwFln/rgs6qDa7xFUH2uAZJnqepNpEUJHA+vq7ir1qpzl4h26h4D16/s+TQ/F2j9A7dbcFX/J03Av4K5+qwZSyE1L3zqDYeHJmZwvfxMdvhgd7+s+4ckoAnsV0bZuF294fOmsV8c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MXC1seOh; arc=none smtp.client-ip=209.85.208.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-63bf76fc9faso6584226a12.2
+        for <devicetree@vger.kernel.org>; Sun, 19 Oct 2025 10:26:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1760894771; x=1761499571; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=dcGvpPgDi7UhVRE9urqo3zdP9h64sZLMpPk0fu55Wjc=;
+        b=MXC1seOhqsyfVXWo6CwLRy54IFaK4rOGL8tO2CrWm1x+cAj1jyud/x3gTEgtiy1ASC
+         brHEOtczv+pgzE5ujj+a49Pv1ngk66x5Sici/+m/m8zqOpz9Li2/JNsokKCHZ+774Btw
+         boRfaTLyiQ6Ckc3aF/viU76CHwonh5ej9F9nlkM5XSwKsuxVz3+lhwjhkN/Q85JOwm/D
+         oZtxfhphNRbEM0qGGXGdUUpoQkAEuuicFnUVr0dMa9jmNNWj8PJZpp9zBTyPhRHKYKCp
+         G++DdfrzueKD7MqiLHSOokr9UYkGo/JDFrwIjuVoiD8ruYxszT6U7tPir/8hdGQ/dNlW
+         RWIQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1760894771; x=1761499571;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=dcGvpPgDi7UhVRE9urqo3zdP9h64sZLMpPk0fu55Wjc=;
+        b=Vnr9wKD1Xl9oMIZOKE0V0ZI300zCEUW1PuNScSbqOsJ7RlGy+xYv4r0Cnh6mQLj9xS
+         h8o7lIuNIUeydDae9L/eQNmkLb8SpGVpcmoL10axOmamZyUK4NNH4P2AOR8Bs0yLbj7D
+         eLQDIDE0V9f74/BWuw+77bXLGVw4RCtSIwbd+BZAeiwIxwEFxhfdVBqhOMw2zymtrbLm
+         Tqbcem7jIGcSEAovC6knUeudMlg3WmAWkZO/RchWDqjt9nxY5aKp2akObYZd421cdKYq
+         VuE2/+iuDrgMyMpRDSTuX5CLTZQ6Vj4Y3Y+FBuDvvDvyGhZi3pgZBHUjBRVrXkIHF77D
+         e/bw==
+X-Forwarded-Encrypted: i=1; AJvYcCV/rqhVcjdy6wTEHecGANRKGvcFfRzcRZHihveMv/mS4TyVvdXhHqjgC/m4HzFVVgprLZi1doY/Cmmv@vger.kernel.org
+X-Gm-Message-State: AOJu0YynuOgbkI4Akc1//VPIgPm1n61fheQ4H8F+RtL4R9/0/sf4eTxR
+	+CvB+l5si5mJ7LWR9paWViLAm5ZI5EG8t+9xYzMJbpLYCNiCWOs5We3eyg8VRU3AZvf7+b88ixs
+	k9rGHTpxFMdNQw9CZp8NAV/2RXjVQD6A=
+X-Gm-Gg: ASbGncuVIkP+DoaDS6AXkRopMUBhNGW0o+h89AN4MxYu7wn+gCAsrOTn++Uy1kZan2F
+	z8kmtwBpaPekMmhVWUSaPKc4dFktd9VxNOgx1gVa/KxqGmfWMhibf4kRZOIwBL4qIFIISEVzv3U
+	GTN3xAZKUo/NZIcc1EaDsk5zMwEMMMlixnTS/VgVh1fdj+Rkmsf3HavdbRi/9hPq2OveJT02GeW
+	QOnp5drlOID+pILxztwi1Sgh1855vpfiYuAuhbOR1NffsgN2QDlIKNYhiI=
+X-Google-Smtp-Source: AGHT+IGFfd5J/ysr3ek+IDavp0eOZzca1RD3tVOMVHu17l6EPjX9/ntDT7tc4dh0oH9ur/ZRJY759LCgAfbwJubVr2k=
+X-Received: by 2002:a05:6402:f23:b0:63c:eb9:478c with SMTP id
+ 4fb4d7f45d1cf-63c1f640c48mr7170724a12.14.1760894771292; Sun, 19 Oct 2025
+ 10:26:11 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+References: <20251017073954.130710-1-cnsztl@gmail.com> <7f0b1747-87eb-0b0b-6fb0-304811a4be21@manjaro.org>
+ <d9d14ce2-2e65-422e-95fb-eb30b128ad90@gmail.com> <41154cde-a447-0707-4387-cd3dca90b97d@manjaro.org>
+ <CALWfF7K0=J3E-zr41wV-28+SCFkT_so55Aee8BvQsB4KJZy6YQ@mail.gmail.com>
+ <47931e9e-09db-3909-4531-dae6869171d7@manjaro.org> <b22425c3-01e0-4d2e-bf78-5db884d4ec38@gmail.com>
+ <de5e8643-49bb-4e0e-45fd-51b25ecf530d@manjaro.org>
+In-Reply-To: <de5e8643-49bb-4e0e-45fd-51b25ecf530d@manjaro.org>
+From: Anand Moon <linux.amoon@gmail.com>
+Date: Sun, 19 Oct 2025 22:55:53 +0530
+X-Gm-Features: AS18NWAFmg8ydtYWZAF7B0PEQDmwlJtX2b2P_doA3LWyhsy_Mw4wWrTiPwga6os
+Message-ID: <CANAwSgTZa7PXBuyh9EdDOXCNuCTOHGsJz18pSjP6WUN8sOaqTQ@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: rockchip: fix eMMC corruption on NanoPC-T6
+ with A3A444 chips
+To: Dragan Simic <dsimic@manjaro.org>
+Cc: Hugh Cole-Baker <sigmaris@gmail.com>, Jimmy Hon <honyuenkwun@gmail.com>, 
+	Tianling Shen <cnsztl@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Heiko Stuebner <heiko@sntech.de>, Grzegorz Sterniczuk <grzegorz@sternicz.uk>, Jonas Karlman <jonas@kwiboo.se>, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Arnd,
+Hi All,
 
-Please pull these changes which add Tenstorrent as a vendor and enable
-support for Blackhole. It adds the appropriate entries in MAINTAINERS.
-The changes all come from a single series [1] posted by myself. Joel
-Stanley has reviewed and tested all the patches. Rob acked or reviewed
-all the bindings patches. W=1 dtbs_check and dt_binding_check produce
-no warnings.
+On Sat, 18 Oct 2025 at 19:27, Dragan Simic <dsimic@manjaro.org> wrote:
+>
+> Hello Hugh,
+>
+> On Saturday, October 18, 2025 14:14 CEST, Hugh Cole-Baker <sigmaris@gmail=
+.com> wrote:
+> > On 18/10/2025 09:30, Dragan Simic wrote:
+> > > On Saturday, October 18, 2025 02:42 CEST, Jimmy Hon <honyuenkwun@gmai=
+l.com> wrote:
+> > >> On Fri, Oct 17, 2025 at 10:15=E2=80=AFAM Dragan Simic <dsimic@manjar=
+o.org> wrote:
+> > >>> On Friday, October 17, 2025 14:08 CEST, Tianling Shen <cnsztl@gmail=
+.com> wrote:
+> > >>>> On 2025/10/17 18:25, Dragan Simic wrote:
+> > >>>>> On Friday, October 17, 2025 09:39 CEST, Tianling Shen <cnsztl@gma=
+il.com> wrote:
+> > >>>>>> From: Grzegorz Sterniczuk <grzegorz@sternicz.uk>
+> > >>>>>>
+> > >>>>>> Some NanoPC-T6 boards with A3A444 eMMC chips experience I/O erro=
+rs and
+> > >>>>>> corruption when using HS400 mode. Downgrade to HS200 mode to ens=
+ure
+> > >>>>>> stable operation.
+> > >>>>>
+> > >>>>> Could you, please, provide more details about the troublesome eMM=
+C
+> > >>>>> chip that gets identified as A3A444, i.e. what's the actual brand
+> > >>>>> and model?  Maybe you could send a picture of it?  It might also
+> > >>>>> help if you'd send the contents of "/sys/class/block/mmcblkX/devi=
+ce
+> > >>>>> /manfid" from your board (where "X" should equal two).
+> > >>>>
+> > >>>> Unfortunately I don't have this board nor this eMMC chip.
+> > >>>> I got the chip model from my friend, it's FORESEE FEMDNN256G-A3A44=
+,
+> > >>>> manfid is 0x0000d6.
+> > >>>
+> > >>> Thanks for responding and providing the details so quickly!
+> > >>>
+> > >>>>> I'm asking for that because I'd like to research it a bit further=
+,
+> > >>>>> if possible, because some other eMMC chips that are also found on
+> > >>>>> the NanoPc-T6 seem to work fine in HS400 mode. [1]  It may be tha=
+t
+> > >>>>> the A3A444 chip has some issues with the HS400 mode on its own,
+> > >>>>> i.e. the observed issues may not be caused by the board.
+> > >>>>
+> > >>>> Yes, it should be caused by this eMMC chip.
+> > >>>
+> > >>> I'd suggest that we move forward by "quirking off" the HS400 mode
+> > >>> for the FEMDNN256G-A3A44 eMMC chip in the MMC drivers, instead of
+> > >>> downgrading the speed of the sdhci interface on the NanoPC-T6.
+> > >>>
+> > >>> That way, the other similar Foresee eMMC chip that's also found
+> > >>> on NanoPC-T6 boards, FEMDNN256G-A3A564, will continue to work in
+> > >>> the faster HS400 mode, while the troublesome A3A44 variant will
+> > >>> be downgraded to the HS200 globally for everyone's benefit.  It's
+> > >>> quite unlikely that the A3A44 variant fails to work reliable in
+> > >>> HS400 mode on the NanoPC-T6 only, so quirking it off in the MMC
+> > >>> drivers should be a sane and safe choice.
+> > >>>
+> > >>> If you agree with dropping this patch, I'll be more than happy
+> > >>> to implement this HS200 quirk in the MMC drivers.
+> > >>>
+> > >>> As a note, FEMDNN256G-A3A44 is found in the Rockchip Qualified
+> > >>> eMMC Support List v1.84, [2] but the evidence says the opposite,
+> > >>> so we should react appropriately by adding this quirk.
+> > >>
+> > >> When adding the quirk for the A3A44, can we lower the max frequency
+> > >> and keep the HS400 mode instead?
+> > >> That's what the Fedora folks found works [3]. There's more test
+> > >> results in Armbian [4]
+> > >
+> > > Are there any I/O performance tests that would prove that lowering
+> > > the HS400 frequency to 150 MHz ends up working significantly faster
+> > > than dropping the eMMC chip to HS200 mode?
+> > >
+> > > I'm asking that because lowering the frequency looks much more like
+> > > there's some issue with the board, rather than the issue being the
+> > > eMMC chip's support for HS400 mode.  Thus, a quirk that would lower
+> > > the HS400 mode frequency would likely be frowned upon and rejected,
+> > > while a quirk that puts the chip into HS200 mode is much cleaner
+> > > and has much higher chances to be accepted.
+> >
+> > I also have the NanoPC-T6 with one of the A3A444 eMMCs which suffers
+> > from I/O errors in the default HS400 mode. These are its details in
+> > /sys/block/mmcblk0/device/:
+> > manfid: 0x0000d6
+> > oemid: 0x0103
+> > name: A3A444
+> > fwrev: 0x1100000000000000
+> > hwrev: 0x0
+> > rev: 0x8
+>
+> Thanks for reporting the same issue with the same board and
+> increasing our sample size to two. :)
+>
+> > I wasn't sure if I was just unlucky to get a faulty chip, but seeing
+> > this thread it seems like a wider issue. On my board, limiting it to
+> > HS200 mode gets rid of the I/O errors, and it seems that lowering
+> > the frequency to 150MHz also avoids I/O errors.
+> >
+> > I did a quick unscientific test with fio; HS400 Enhanced Strobe mode
+> > with a 150MHz clock gives slightly better performance than HS200:
+> >
+> > HS200 mode:
+> > read: IOPS=3D697, BW=3D43.6MiB/s
+> > write: IOPS=3D697, BW=3D43.6MiB/s
+> >
+> > HS400 mode with 150MHz clock:
+> > read: IOPS=3D805, BW=3D50.3MiB/s
+> > write: IOPS=3D799, BW=3D50.0MiB/s
+> >
+> > so from my perspective, limiting the frequency would be a better fix
+> > than disabling HS400 entirely.
+>
+> Thanks for running these tests!  The measured difference in the
+> I/O performance is about 15%, which surely isn't insignificant,
+> but IMHO it makes the proposed lowering of the eMMC chip to HS200
+> mode fall into the "good safety margin" bracket that I described
+> earlier.  I think it's better to sacrifice those 15% to stay on
+> the, hopefully, rock-solid side.
+>
+> I've been thinking more about the 150 MHz HS400 and HS200 quirks,
+> and I'm afraid I'm even more sure that the 150 MHz HS400 quirk
+> would be frowned upon and rejected.  See, it does make it look
+> like a board-level issue, requiring a board-level fix, instead of
+> being a chip-level issue, for which a quirk would be fine.  The
+> acceptably low difference in the measured performance levels just
+> solidifies such a viewpoint, I'm afraid.
+>
+> > It could also be of interest that the clock used apparently can't
+> > provide an exact 200MHz, e.g. in HS200 mode:
+> >
+> > root@t6:~# cat /sys/kernel/debug/mmc0/ios
+> > clock:                200000000 Hz
+> > actual clock: 187500000 Hz
+> > vdd:          18 (3.0 ~ 3.1 V)
+> > bus mode:     2 (push-pull)
+> > chip select:  0 (don't care)
+> > power mode:   2 (on)
+> > bus width:    3 (8 bits)
+> > timing spec:  9 (mmc HS200)
+> > signal voltage:       1 (1.80 V)
+> > driver type:  0 (driver type B)
+>
+> Thanks, that's also something to think about.
+>
+> > > With all that in mind, if the resulting I/O performance difference
+> > > between 150 MHz HS400 and HS200 is within 15-20% or so, I'd highly
+> > > recommend that we still go with the HS200 quirk.  It also leaves
+> > > us with a nice safety margin, which is always good to have when
+> > > such hardware instability issues are worked around in software,
+> > > unless detailed eye diagrams, protocol dumps and whatnot can be
+> > > pulled and analyzed, in which case the resulting safety margin
+> > > can be much slimmer.
+> > >
+> > > Ideally, we'd have a completely different board with the same
+> > > Foresee FEMDNN256G-A3A44 eMMC chip to test how reliably its HS400
+> > > mode works there, to see is it really up to this eMMC chip or up
+> > > to the board design, but I'm afraid we don't have that (easily)
+> > > available, so the only remaining option is to work with what's
+> > > actually available, which inevitably leads to a certain amount
+> > > of guesswork and some compromises.
+> > >
+> > >>> [1] https://github.com/openwrt/openwrt/issues/18844
+> > >>> [2] https://dl.radxa.com/rock5/hw/RKeMMCSupportList%20Ver1.84_20240=
+815.pdf
+> > >> [3] https://lists.fedoraproject.org/archives/list/kernel@lists.fedor=
+aproject.org/thread/MCSDYDQVOXS5AZMKA7LLY4QX7JXBWPCA/
+> > >> [4] https://github.com/armbian/build/pull/8736#issuecomment-33877605=
+36
+>
 
-[1] https://lore.kernel.org/linux-riscv/20251013-tt-bh-dts-v3-0-9f058d4bbbda@oss.tenstorrent.com/
+Would you consider the following patch?
 
-Thanks,
-Drew
+As per the Rockchip RK3588S SoC Technical Reference Manual (TRM) Part 1,
+chapter 21.6, Interface Description, the eMMC signals require careful handl=
+ing
+to ensure signal integrity.
 
-The following changes since commit 3a8660878839faadb4f1a6dd72c3179c1df56787:
+I2C2_SCL_M2 I/O EMMC_RSTN/I2C2_SCL_M2/UART5_RTSN_M1/GPIO2_A3_d
+BUS_IOC_GPIO2A_IOMUX_SEL_L[15:12]=3D0x9
+I2C2_SDA_M2 I/O EMMC_DATA_STROBE/I2C2_SDA_M2/UART5_CTSN_M1/GPIO2_A2_d
+BUS_IOC_GPIO2A_IOMUX_SEL_L[11:8]=3D0x9
 
-  Linux 6.18-rc1 (2025-10-12 13:42:36 -0700)
+$ git diff .
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588-base-pinctrl.dtsi
+b/arch/arm64/boot/dts/rockchip/rk3588-base-pinctrl.dtsi
+index 6584d73660f6..f60a1d8be0ef 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588-base-pinctrl.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3588-base-pinctrl.dtsi
+@@ -327,7 +327,7 @@ emmc {
+                emmc_rstnout: emmc-rstnout {
+                        rockchip,pins =3D
+                                /* emmc_rstn */
+-                               <2 RK_PA3 1 &pcfg_pull_none>;
++                               <2 RK_PA3 1 &pcfg_pull_down_drv_level_2>;
+                };
 
-are available in the Git repository at:
+                /omit-if-no-ref/
+@@ -369,7 +369,7 @@ emmc_cmd: emmc-cmd {
+                emmc_data_strobe: emmc-data-strobe {
+                        rockchip,pins =3D
+                                /* emmc_data_strobe */
+-                               <2 RK_PA2 1 &pcfg_pull_down>;
++                               <2 RK_PA2 1 &pcfg_pull_down_drv_level_2>;
+                };
+        };
 
-  git@github.com:tenstorrent/linux.git tags/tenstorrent-dt-for-v6.19
-
-for you to fetch changes up to a71e6e8eea8ae2d624f097911f43357bba06d2a5:
-
-  riscv: defconfig: Enable Tenstorrent SoCs (2025-10-18 10:44:15 -0700)
-
-----------------------------------------------------------------
-Tenstorrent device tree for v6.19
-
-Add Tenstorrent as a vendor and enable support for the Blackhole SoC
-in Blackhole P100 and P150 PCIe cards. The SoC contains four RISC-V
-CPU tiles consisting of 4x SiFive X280 cores.
-
-There is a virtual UART implemented in OpenSBI firmware that allows a
-console program on the PCIe host to communicate through shared memory
-with Linux running on the Blackhole card.
-
-Link: https://github.com/tenstorrent/tt-bh-linux
-Link: https://github.com/tenstorrent/opensbi/
-Signed-off-by: Drew Fustini <fustini@kernel.org>
-
-----------------------------------------------------------------
-Drew Fustini (8):
-      dt-bindings: vendor-prefixes: Add Tenstorrent AI ULC
-      dt-bindings: riscv: Add Tenstorrent Blackhole compatible
-      dt-bindings: riscv: cpus: Add SiFive X280 compatible
-      dt-bindings: timers: Add Tenstorrent Blackhole compatible
-      dt-bindings: interrupt-controller: Add Tenstorrent Blackhole compatible
-      riscv: dts: Add Tenstorrent Blackhole SoC PCIe cards
-      riscv: Kconfig.socs: Add ARCH_TENSTORRENT for Tenstorrent SoCs
-      riscv: defconfig: Enable Tenstorrent SoCs
-
- .../interrupt-controller/sifive,plic-1.0.0.yaml    |   1 +
- Documentation/devicetree/bindings/riscv/cpus.yaml  |   1 +
- .../devicetree/bindings/riscv/tenstorrent.yaml     |  28 ++++++
- .../devicetree/bindings/timer/sifive,clint.yaml    |   1 +
- .../devicetree/bindings/vendor-prefixes.yaml       |   2 +
- MAINTAINERS                                        |   9 ++
- arch/riscv/Kconfig.socs                            |   8 ++
- arch/riscv/boot/dts/Makefile                       |   1 +
- arch/riscv/boot/dts/tenstorrent/Makefile           |   2 +
- arch/riscv/boot/dts/tenstorrent/blackhole-card.dts |  14 +++
- arch/riscv/boot/dts/tenstorrent/blackhole.dtsi     | 108 +++++++++++++++++++++
- arch/riscv/configs/defconfig                       |   1 +
- 12 files changed, 176 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/riscv/tenstorrent.yaml
- create mode 100644 arch/riscv/boot/dts/tenstorrent/Makefile
- create mode 100644 arch/riscv/boot/dts/tenstorrent/blackhole-card.dts
- create mode 100644 arch/riscv/boot/dts/tenstorrent/blackhole.dtsi
+Thanks
+-Anand
 
