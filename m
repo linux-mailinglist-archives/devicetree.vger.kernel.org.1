@@ -1,61 +1,63 @@
-Return-Path: <devicetree+bounces-228450-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228451-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BE3CBEDFAA
-	for <lists+devicetree@lfdr.de>; Sun, 19 Oct 2025 09:32:11 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C9B10BEDFD0
+	for <lists+devicetree@lfdr.de>; Sun, 19 Oct 2025 09:50:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 0A70A34A9CC
-	for <lists+devicetree@lfdr.de>; Sun, 19 Oct 2025 07:32:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 734B83ABB18
+	for <lists+devicetree@lfdr.de>; Sun, 19 Oct 2025 07:50:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8FDB1F4617;
-	Sun, 19 Oct 2025 07:32:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B00E223DED;
+	Sun, 19 Oct 2025 07:50:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oysZ12Tn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oupI/KhT"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BF1FF9E8;
-	Sun, 19 Oct 2025 07:32:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 254461BC3F;
+	Sun, 19 Oct 2025 07:50:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760859125; cv=none; b=DcoE8VyAIuYQlv76wpFsDMaxnw1mGJ7UYj9kZnPTz8Ih3E9VU/4RWAnEoIrLA3C5MBJrp7dMQmvzK6cB0NlArE9QMqvXqM/vJMw1MkuSqsDaoAgLZZUTv4/Z6PwwOEZtYXle6vAuejBpF43lM2ncIC3DKMptN1e+PQ3mU8BWNXA=
+	t=1760860256; cv=none; b=VBDyIGWo1csUYSeJOZJhfLQvh9JuubXt61VcsRdEn9/m9HKaOFXj9Zj44bAiGk7d3EbUrHZakpWItx6+jM/BUMM+CczorvAJzKG6YhSSmesus6lfxDfucQAQ8+xpfIxZM2OYsn5RUMHgzqks218y66HBhg3a/6e/pAPTNwQ1oiE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760859125; c=relaxed/simple;
-	bh=Q5WZijcRsjXr1RWFkwdQADczeQBWeDR34cnzsxqPN0o=;
+	s=arc-20240116; t=1760860256; c=relaxed/simple;
+	bh=GvSwkt6lVhTuWJEGylfxc7FJevt6hW5T4Sb4DHwzf2g=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EIzsBiwk5ptVzzTeEBK0joHG0SP/rF0BIRHa97nCcb+06HYPNerzBVyBIkfP/RohCRqwGZ4RelPEwFonCrQDOIpSF9lajFLUIblKqTH1KwrEzztNDnV+qRDSt2XUQ/O/jSMHyCgYHGCnF+dLSZV8K9WeI23QeKBolzPVy6YDcJE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oysZ12Tn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DF52DC4CEE7;
-	Sun, 19 Oct 2025 07:31:53 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Voar2lJfJHU87lH9qOvcSwcoptlxAA/M8x1wItkz5mbTJko3Ea1GkcsrBbFZAWQ1gUkhWaYkuqyO2BKxtS1rldy6+mDTNMY0VKWXj5360WeX/p8kHp4r+K7ZDcKv/nDDiqmO2frPcIfp1ymWZ/tJcrFEJikw9KNb0jkS90gikY0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oupI/KhT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EF48BC4CEE7;
+	Sun, 19 Oct 2025 07:50:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760859123;
-	bh=Q5WZijcRsjXr1RWFkwdQADczeQBWeDR34cnzsxqPN0o=;
+	s=k20201202; t=1760860255;
+	bh=GvSwkt6lVhTuWJEGylfxc7FJevt6hW5T4Sb4DHwzf2g=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=oysZ12Tnrxw8qCzJaaW5FvHJsX9RECC9QhUHD4trdla7ylQC1SGPQ9dxBvbwfh4AB
-	 EZuq9TNoFGZKeRbBH5MmkMv3fcI3RkZjkGjXSDd3+cdi4WsjG0b2rv96lVjbHCAhko
-	 KmEaHXcJCviGKhdxY00RrIu2XmkcpgHioxyHCVaYgG7yjyq+cuSpKV6+xGOI73Pm/g
-	 lyAcuHPLAav9ye31NNhcKtGXM8Y4UMZvwgwXL7b2aMfSzjNPIpxbseiRy60DFPUNlb
-	 ktnUvzx6DG1m9szD4Ci9xy3LYv/BIuwrz+O+2qj57v5bPxfRwJ+1CXFQ4bTuhKnZ4Z
-	 aDQTsk24cusQQ==
-Date: Sun, 19 Oct 2025 13:01:44 +0530
+	b=oupI/KhTlAO0V5ekScpTFkt6LTzwqjcDdEAptHCJfbfOX50VMYIgpfj7Dgnl/7a8Y
+	 JtMg0CQv/Tm4Kxc2qSyPasjwBoMS1R9MOa9SoVJZyCvecoEIhH8jXLkomSvNV5LH3B
+	 ZDvloFS4CuKDyVasgMUIOH5QutikeiHC9m7AbAbibFbmlX0AB/GkL0HRZWSfziihB0
+	 Ke0prlyiZG5A7iGDc4r+zlmHqXTELEERkde0ZUF1VnOnjDcIuMQKV470uLcK6AAOnX
+	 4uIANP2UvKV8PMdhcam8pCXWYDb5j+UG4goOSCmwm21exxehwASL1AG+wx90y31s6X
+	 ddUo9yzV/llZw==
+Date: Sun, 19 Oct 2025 13:20:36 +0530
 From: Manivannan Sadhasivam <mani@kernel.org>
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: Ryder Lee <ryder.lee@mediatek.com>, 
-	Jianjun Wang <jianjun.wang@mediatek.com>, Bjorn Helgaas <bhelgaas@google.com>, 
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, linux-pci@vger.kernel.org, linux-mediatek@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, upstream@airoha.com
-Subject: Re: [PATCH v5 5/5] PCI: mediatek: add support for Airoha AN7583 SoC
-Message-ID: <hjyhso2sqgyq4ymzqg6pmjfrfncla24zwsev2mfinolmclm3ih@sol2yoapbykq>
-References: <20251012205900.5948-1-ansuelsmth@gmail.com>
- <20251012205900.5948-6-ansuelsmth@gmail.com>
+To: Anand Moon <linux.amoon@gmail.com>
+Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Bjorn Helgaas <bhelgaas@google.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Thierry Reding <thierry.reding@gmail.com>, 
+	Jonathan Hunter <jonathanh@nvidia.com>, 
+	"open list:PCI NATIVE HOST BRIDGE AND ENDPOINT DRIVERS" <linux-pci@vger.kernel.org>, 
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, 
+	"open list:TEGRA ARCHITECTURE SUPPORT" <linux-tegra@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>, 
+	Mikko Perttunen <mperttunen@nvidia.com>
+Subject: Re: [PATCH v1 3/5] PCI: tegra: Use readl_poll_timeout() for link
+ status polling
+Message-ID: <ose3ww7me26byqwsyk33tipylkx3kolnc3mjwrlmjwsmza2zf3@os7lkt4svaqi>
+References: <20250926072905.126737-1-linux.amoon@gmail.com>
+ <20250926072905.126737-4-linux.amoon@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,101 +67,53 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20251012205900.5948-6-ansuelsmth@gmail.com>
+In-Reply-To: <20250926072905.126737-4-linux.amoon@gmail.com>
 
-On Sun, Oct 12, 2025 at 10:56:59PM +0200, Christian Marangi wrote:
-> Add support for the second PCIe Root Complex present on Airoha AN7583
-> SoC.
+On Fri, Sep 26, 2025 at 12:57:44PM +0530, Anand Moon wrote:
+> Replace the manual `do-while` polling loops with the readl_poll_timeout()
+> helper when checking the link DL_UP and DL_LINK_ACTIVE status bits
+> during link bring-up. This simplifies the code by removing the open-coded
+> timeout logic in favor of the standard, more robust iopoll framework.
+> The change improves readability and reduces code duplication.
 > 
-> This is based on the Mediatek Gen1/2 PCIe driver and similar to Gen3
-> also require workaround for the reset signals.
-> 
-> Introduce a new flag to skip having to reset signals and also introduce
-> some additional logic to configure the PBUS registers required for
-> Airoha SoC.
-> 
-> While at it, also add additional info on the PERST# Signal delay
-> comments and use dedicated macro.
-> 
-
-This belongs to a separate patch which should come before this one.
-
-> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> Cc: Thierry Reding <thierry.reding@gmail.com>
+> Cc: Mikko Perttunen <mperttunen@nvidia.com>
+> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
 > ---
->  drivers/pci/controller/pcie-mediatek.c | 92 ++++++++++++++++++++------
->  1 file changed, 70 insertions(+), 22 deletions(-)
+> v1: dropped the include  <linux/iopoll.h> header file.
+> ---
+>  drivers/pci/controller/pci-tegra.c | 37 +++++++++++-------------------
+>  1 file changed, 14 insertions(+), 23 deletions(-)
 > 
-> diff --git a/drivers/pci/controller/pcie-mediatek.c b/drivers/pci/controller/pcie-mediatek.c
-> index 1678461e56d3..3340c005da4b 100644
-> --- a/drivers/pci/controller/pcie-mediatek.c
-> +++ b/drivers/pci/controller/pcie-mediatek.c
-> @@ -148,6 +148,7 @@ enum mtk_pcie_flags {
->  	NO_MSI = BIT(2), /* Bridge has no MSI support, and relies on an
->  			  * external block
->  			  */
-> +	SKIP_PCIE_RSTB	= BIT(3), /* Skip calling RSTB bits on PCIe probe */
->  };
+> diff --git a/drivers/pci/controller/pci-tegra.c b/drivers/pci/controller/pci-tegra.c
+> index 07a61d902eae..b0056818a203 100644
+> --- a/drivers/pci/controller/pci-tegra.c
+> +++ b/drivers/pci/controller/pci-tegra.c
+> @@ -2169,37 +2169,28 @@ static bool tegra_pcie_port_check_link(struct tegra_pcie_port *port)
+>  	value |= RP_PRIV_MISC_PRSNT_MAP_EP_PRSNT;
+>  	writel(value, port->base + RP_PRIV_MISC);
 >  
->  /**
-> @@ -684,28 +685,32 @@ static int mtk_pcie_startup_port_v2(struct mtk_pcie_port *port)
->  		regmap_update_bits(pcie->cfg, PCIE_SYS_CFG_V2, val, val);
->  	}
+> -	do {
+> -		unsigned int timeout = TEGRA_PCIE_LINKUP_TIMEOUT;
+> +	while (retries--) {
+> +		int err;
 >  
-> -	/* Assert all reset signals */
-> -	writel(0, port->base + PCIE_RST_CTRL);
+> -		do {
+> -			value = readl(port->base + RP_VEND_XP);
 > -
-> -	/*
-> -	 * Enable PCIe link down reset, if link status changed from link up to
-> -	 * link down, this will reset MAC control registers and configuration
-> -	 * space.
-> -	 */
-> -	writel(PCIE_LINKDOWN_RST_EN, port->base + PCIE_RST_CTRL);
+> -			if (value & RP_VEND_XP_DL_UP)
+> -				break;
 > -
-> -	/*
-> -	 * Described in PCIe CEM specification sections 2.2 (PERST# Signal) and
-> -	 * 2.2.1 (Initial Power-Up (G3 to S0)). The deassertion of PERST# should
-> -	 * be delayed 100ms (TPVPERL) for the power and clock to become stable.
-> -	 */
-> -	msleep(100);
+> -			usleep_range(1000, 2000);
+> -		} while (--timeout);
 > -
-> -	/* De-assert PHY, PE, PIPE, MAC and configuration reset	*/
-> -	val = readl(port->base + PCIE_RST_CTRL);
-> -	val |= PCIE_PHY_RSTB | PCIE_PERSTB | PCIE_PIPE_SRSTB |
-> -	       PCIE_MAC_SRSTB | PCIE_CRSTB;
-> -	writel(val, port->base + PCIE_RST_CTRL);
-> +	if (!(soc->flags & SKIP_PCIE_RSTB)) {
-> +		/* Assert all reset signals */
-> +		writel(0, port->base + PCIE_RST_CTRL);
-> +
-> +		/*
-> +		 * Enable PCIe link down reset, if link status changed from
-> +		 * link up to link down, this will reset MAC control registers
-> +		 * and configuration space.
-> +		 */
-> +		writel(PCIE_LINKDOWN_RST_EN, port->base + PCIE_RST_CTRL);
-> +
-> +		/*
-> +		 * Described in PCIe CEM specification revision 3.0 sections
-> +		 * 2.2 (PERST# Signal) and 2.2.1 (Initial Power-Up (G3 to S0)).
-> +		 *
-> +		 * The deassertion of PERST# should be delayed 100ms (TPVPERL)
-> +		 * for the power and clock to become stable.
+> -		if (!timeout) {
+> +		err = readl_poll_timeout(port->base + RP_VEND_XP, value,
+> +					 value & RP_VEND_XP_DL_UP,
+> +					 1000,
 
-You can drop the comments since PCIE_T_PVPERL_MS definition has them.
-
-> +		 */
-> +		msleep(PCIE_T_PVPERL_MS);
-> +
-> +		/* De-assert PHY, PE, PIPE, MAC and configuration reset	*/
-> +		val = readl(port->base + PCIE_RST_CTRL);
-> +		val |= PCIE_PHY_RSTB | PCIE_PERSTB | PCIE_PIPE_SRSTB |
-> +		       PCIE_MAC_SRSTB | PCIE_CRSTB;
-> +		writel(val, port->base + PCIE_RST_CTRL);
-
-If PCIE_LINKDOWN_RST_EN corresponds to PERST# signal, then it should be
-deasserted only after the power and REFCLK are stable. But I'm not sure what the
-above PCIE_RST_CTRL setting is doing. If it somehow affects either power or
-REFCLK, then it should come before PCIE_LINKDOWN_RST_EN.
+The delay between the iterations had range of (1000, 2000), now it will become
+(250, 1000). How can you ensure that this delay is sufficient?
 
 - Mani
 
