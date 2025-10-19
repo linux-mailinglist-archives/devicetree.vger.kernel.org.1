@@ -1,145 +1,125 @@
-Return-Path: <devicetree+bounces-228527-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228528-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A27DCBEEA51
-	for <lists+devicetree@lfdr.de>; Sun, 19 Oct 2025 18:52:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 21D7ABEEA7B
+	for <lists+devicetree@lfdr.de>; Sun, 19 Oct 2025 19:04:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5E51D189A0C3
-	for <lists+devicetree@lfdr.de>; Sun, 19 Oct 2025 16:52:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5D0743E51E8
+	for <lists+devicetree@lfdr.de>; Sun, 19 Oct 2025 17:04:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E4591A9FA8;
-	Sun, 19 Oct 2025 16:52:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D47401A00F0;
+	Sun, 19 Oct 2025 17:04:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cBO8wUWY"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="feN0m9vz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail1.manjaro.org (mail1.manjaro.org [142.132.176.110])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4557536B;
-	Sun, 19 Oct 2025 16:52:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A12B5354AD4;
+	Sun, 19 Oct 2025 17:04:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=142.132.176.110
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760892743; cv=none; b=sPY5TziplzFM7j99EmQ2Syzt+Ng5Y+w5xvD7cwiSb/gPlNpVIe/ERqUdOMmPe7p1CUjcPrE/LNTaCqSj1GOK5jvxFEDRNKVG44W4WBP7deBMO98FLwgR/ZSzAIVlxrJjTwUVv9KafFnJ7l9/tGwf/hHL1k4QWVBToGmbpQkL2FI=
+	t=1760893491; cv=none; b=RhhorQEKFNIF0ee8K2jDmSoTNUn1LcYKwaJxSWZHDaLxEAWJQM7/Y1wrFUaL6ZHTDyQWxNnb01LtkBcWKQAgKjBvensupoTOsagcFxm09xyghj5Ow++uSBQgxwARZ+GifrhJkW+UophK7hAz7fiOzXK3Q7WUjc9phzVHjTLFltM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760892743; c=relaxed/simple;
-	bh=iC2JnoyFPZTH+6RHQk2aI6S4dkacuBcn+z3P0Tadx+E=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ByojJRtwzMmn++7wBE5nqo/uTyD7w3OKUVOtWcZGV/CxsRR1OlGDSElrPhSMAKk5jla6BRLh9Stop6Agn1zUbhVsxs7/pwWDm8kiIerRtwX1VrW6OkFEJNJRSEfSOcgbJeOkOUR2+DZ8FkyaD2hfhAWhfzob1lwfUW141smpl30=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cBO8wUWY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C8B10C4CEE7;
-	Sun, 19 Oct 2025 16:52:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760892742;
-	bh=iC2JnoyFPZTH+6RHQk2aI6S4dkacuBcn+z3P0Tadx+E=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=cBO8wUWYwkzmQNPxSyIko83RDdfnZRaYxhNHxRc4fJsO5LUrLNi8FrBKP6+08Nii9
-	 ULYt7ZxrNMcQE2xR23Vv1hObiLPaq5+9pXrfYRPiVZYYMTKKpiYBqDpFV78/ibB1rV
-	 VLZ908tqiYzVNjW72CODDbIe2IomQgAOnz3KXtp5Lut995d/J9qkyQSXUZKShKzpo3
-	 ZZlMVpm//FQwwYsWFtHbe6Bk/wHGUwNI15+SFlhRuqpFsOyEuJkwhmlojMpKI7hEx7
-	 kVq10mTCGALfO7T6+xwUpCo31Y2F+YbDCOoMUxhFvALWJKJWb7uZ3gOgb7GqV3ZvDJ
-	 Jk7xvXLeDtlkg==
-Message-ID: <9b2be593-8fc6-4089-bbb2-b8c496b1b2a4@kernel.org>
-Date: Sun, 19 Oct 2025 18:52:18 +0200
+	s=arc-20240116; t=1760893491; c=relaxed/simple;
+	bh=tfl+o5MxU6WN5ujGB4yOnO/BWCqJMDK1FJuUP9qbqho=;
+	h=From:In-Reply-To:Content-Type:References:Date:Cc:To:MIME-Version:
+	 Message-ID:Subject; b=QUfP4Aim5cyZHBIiHU8AuXQce8YC0tWvfWMRVj5OCTEt8Nl9i2NcTlYgUnoVqUM15T9g8INZRj4LYOOkZ3tqTIZfWdbNNScr0BDR8rdtvcgYTQWOmQgZhylUKbEZh/hTrnQKhVNP7lrNk2PVbdI8iSa/E7en4tuj9+wq9IxfTaU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=feN0m9vz; arc=none smtp.client-ip=142.132.176.110
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPA id 798F640D07;
+	Sun, 19 Oct 2025 19:04:30 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=dkim;
+	t=1760893480; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=89pcnqHw6GeCqqkxoyyYoM031ZknkpS6TyEdPScCLBQ=;
+	b=feN0m9vz9xepdNVeyszgt4J9lygxtJJV4M+epGRMOa/A1mU8wSgxMaNeobaWfiG9n32OW0
+	0BLpORvYv4TtSZ7ulhp94Crw24Xgj8BDInMP27qsN3RrdY3uaLkakvR9sUOeFvdpBOmT1J
+	DEOnZb5bW2C/grjE8ZOajzOxFmkGubtqYxF/p49k4pv749kwBVwu9lX6credP+5/nFPZxy
+	Q1U4MX2GYVdyyFyCZyKUibY6+2blN2b/qe0viwN079Bz8wWffKpz5h9wT2tAmya7snNdQm
+	CUCSr87CTMvAUoQguQ8FO+I1Wt7UNal84mfHgsD3UZp8bRWTaK2aLofYIWW41w==
+From: "Dragan Simic" <dsimic@manjaro.org>
+In-Reply-To: <CABGV7H_pTkJ_-WQNgVbGE+Ys7jOZaKcRrnMtPr8idfKoYMgKjg@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"
+References: <20251017073954.130710-1-cnsztl@gmail.com> <7f0b1747-87eb-0b0b-6fb0-304811a4be21@manjaro.org> <CABGV7H_pTkJ_-WQNgVbGE+Ys7jOZaKcRrnMtPr8idfKoYMgKjg@mail.gmail.com>
+Date: Sun, 19 Oct 2025 19:04:30 +0200
+Cc: "Tianling Shen" <cnsztl@gmail.com>, "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Heiko Stuebner" <heiko@sntech.de>, "Grzegorz Sterniczuk" <grzegorz@sternicz.uk>, "Jonas Karlman" <jonas@kwiboo.se>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+To: "Grzegorz Sterniczuk" <grzegorz.sterniczuk@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/3] arm64: dts: nuvoton: fix warning and nodes order
-To: Tomer Maimon <tmaimon77@gmail.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- avifishman70@gmail.com, tali.perry1@gmail.com, joel@jms.id.au,
- venture@google.com, yuenn@google.com, benjaminfair@google.com,
- openbmc@lists.ozlabs.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250925200625.573902-1-tmaimon77@gmail.com>
- <20250925200625.573902-2-tmaimon77@gmail.com>
- <cc23d41d-6a5e-44d7-ad4b-1b39566dbce8@kernel.org>
- <CAP6Zq1i7repVa1oAVpyZxWw12-dv0MrVbkfXoqCKga+rp7=8LQ@mail.gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <CAP6Zq1i7repVa1oAVpyZxWw12-dv0MrVbkfXoqCKga+rp7=8LQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Message-ID: <f26601b4-c589-5909-5432-378c496e9010@manjaro.org>
+Subject: =?utf-8?q?Re=3A?= [PATCH] =?utf-8?q?arm64=3A?==?utf-8?q?_dts=3A?=
+ =?utf-8?q?_rockchip=3A?= fix eMMC corruption on NanoPC-T6 with A3A444 chips
+User-Agent: SOGoMail 5.12.3
+Content-Transfer-Encoding: quoted-printable
+X-Last-TLS-Session-Version: None
 
-On 19/10/2025 16:30, Tomer Maimon wrote:
-> Hi Krzysztof,
-> 
-> Thanks for your comments
-> 
-> On Sun, 19 Oct 2025 at 13:35, Krzysztof Kozlowski <krzk@kernel.org> wrote:
->>
->> On 25/09/2025 22:06, Tomer Maimon wrote:
->>> Fix the warning in the gcr and timer nodes, and modify nodes order by
->>
->> What warning?
-> This warning that I got from Andrew mail
-> [I] 0 andrew@heihei ~/s/k/l/o/build.arm64.default ((00e2ab2e))> make
-> CHECK_DTBS=y nuvoton/nuvoton-npcm845-evb.dtb
->   SCHEMA  Documentation/devicetree/bindings/processed-schema.json
->   DTC [C] arch/arm64/boot/dts/nuvoton/nuvoton-npcm845-evb.dtb
-> /home/andrew/src/
-> kernel.org/linux/origin/build.arm64.default/arch/arm64/boot/dts/nuvoton/nuvoton-npcm845-evb.dtb:
-> / (nuvoton,npcm845-evb): memory@0: 'device_type' is a required property
->         from schema $id: http://devicetree.org/schemas/memory.yaml#
+Hello Grzegorz,
 
+On Sunday, October 19, 2025 12:05 CEST, Grzegorz Sterniczuk <grzegorz.s=
+terniczuk@gmail.com> wrote:
+> [image: image.png]
+> [image: IMG=5F0471.jpeg]
 
-Commit msg should explain that. See git history how to add such
-information to the commit msg.
+Nice, thanks for the pictures!  BTW, I'm hoping to get the quirk
+patch(es) done and submitted to the MLs in the next few days.  Of
+course, I'll Cc your and everyone else's email addresses so you
+can perform the required testing and provide Tested-by tags.
 
-Anyway, all other comments stay valid and I expect improved/different fixes.
+> On Fri, 17 Oct 2025 at 12:25, Dragan Simic <dsimic@manjaro.org> wrote=
+:
+> > On Friday, October 17, 2025 09:39 CEST, Tianling Shen <cnsztl@gmail=
+.com>
+> > wrote:
+> > > From: Grzegorz Sterniczuk <grzegorz@sternicz.uk>
+> > >
+> > > Some NanoPC-T6 boards with A3A444 eMMC chips experience I/O error=
+s and
+> > > corruption when using HS400 mode. Downgrade to HS200 mode to ensu=
+re
+> > > stable operation.
+> >
+> > Could you, please, provide more details about the troublesome eMMC
+> > chip that gets identified as A3A444, i.e. what's the actual brand
+> > and model?  Maybe you could send a picture of it?  It might also
+> > help if you'd send the contents of "/sys/class/block/mmcblkX/device
+> > /manfid" from your board (where "X" should equal two).
+> >
+> > I'm asking for that because I'd like to research it a bit further,
+> > if possible, because some other eMMC chips that are also found on
+> > the NanoPc-T6 seem to work fine in HS400 mode. [1]  It may be that
+> > the A3A444 chip has some issues with the HS400 mode on its own,
+> > i.e. the observed issues may not be caused by the board.
+> >
+> > [1] https://github.com/openwrt/openwrt/issues/18844
+> >
+> > > Signed-off-by: Grzegorz Sterniczuk <grzegorz@sternicz.uk>
+> > > Signed-off-by: Tianling Shen <cnsztl@gmail.com>
+> > > ---
+> > >  arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi | 3 +--
+> > >  1 file changed, 1 insertion(+), 2 deletions(-)
+> > >
+> > > diff --git a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
+> > b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
+> > > index fafeabe9adf9..5f63f38f7326 100644
+> > > --- a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
+> > > +++ b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
+> > > @@ -717,8 +717,7 @@ &sdhci {
+> > >       no-sd;
+> > >       non-removable;
+> > >       max-frequency =3D <200000000>;
+> > > -     mmc-hs400-1=5F8v;
+> > > -     mmc-hs400-enhanced-strobe;
+> > > +     mmc-hs200-1=5F8v;
+> > >       status =3D "okay";
+> > >  };
 
-You don't sprinkle random compatibles because someone or something told
-you, right?
-
-Best regards,
-Krzysztof
 
