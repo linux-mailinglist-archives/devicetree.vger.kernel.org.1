@@ -1,681 +1,134 @@
-Return-Path: <devicetree+bounces-228471-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228472-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF6F7BEE243
-	for <lists+devicetree@lfdr.de>; Sun, 19 Oct 2025 11:25:11 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 90F7FBEE249
+	for <lists+devicetree@lfdr.de>; Sun, 19 Oct 2025 11:29:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F31D4189FDA7
-	for <lists+devicetree@lfdr.de>; Sun, 19 Oct 2025 09:25:32 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 3D4FD4E65C0
+	for <lists+devicetree@lfdr.de>; Sun, 19 Oct 2025 09:29:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9A892E62C0;
-	Sun, 19 Oct 2025 09:24:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F2AA2E228D;
+	Sun, 19 Oct 2025 09:29:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="c3svXWsf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iiTneN9M"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86C482E62B5
-	for <devicetree@vger.kernel.org>; Sun, 19 Oct 2025 09:24:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED8932066DE;
+	Sun, 19 Oct 2025 09:29:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760865866; cv=none; b=AL2bBnFHwl3L9b/kKCTehcxksH/4JCADAlD4yCAyQCbWYMJELSliLDC6bGly4qDxW5SNfPhFIgz4JlSrZYlAo9QhRuKcZ+khB9bD0kRbJ7L6VXXWuuth7rUWPXmYw9pQBp57B0KMJtkPd2NspR99Ohtwwzc9QmBoEHwwKbnouUc=
+	t=1760866194; cv=none; b=rfdIbdseh3DQdOyTcwpP/riiijpW0Xr9AIPmqyLn1Vg+tbIK6ZCogRYpgioP23QxnfEKkLEa8fGhJKggmOSeK9QZvRT0LUvTmD/TvTIcBziVFhYHXboi8FKppkNLYUBLI2VOxv+H7fop4b77XomeCe9U8IQs+7S/1utoihZVVX8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760865866; c=relaxed/simple;
-	bh=d2j7NxlV9omc78wZTn08BPA6DouKAaOjv1HfRXDwyrA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=MmpmVr8ewn6LFgXgxUWJGt5i99rLjV5BIs4GKSvQowz9TR18MZnWnn00S4tNIF4O+2iJE/qGEwGcK0PFnB0pbYMaLN0YfshUW0P400SKHWiI1RGu8VhuAe8JT+TzbIXU/PQl3ebdJ8ohNk4yLKr/r7qfc1EZcMlfY9OWZqARggM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=c3svXWsf; arc=none smtp.client-ip=209.85.214.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-27d3540a43fso36169885ad.3
-        for <devicetree@vger.kernel.org>; Sun, 19 Oct 2025 02:24:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1760865863; x=1761470663; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=MhO7MCB3KH4LVHf2spmD2QY+NVBeLZ0tKA7UruoI/6I=;
-        b=c3svXWsfAb4My5ECEskzZJE5dD4x7kR31McufytyLix7YrEhy47vCnBxpwPRVETk8t
-         sRxYm5wWPjODYieZoMVExc+OA3CNaDI0bT4wwUNpvRIecHbQ7946YXL4RoRDWAZfINVC
-         iy96O9dXR8ywyN4+LgpDuaWlKZKTLkPgWyrtCoM9JlzpcNsCR+W8TOIJB7fKmuGJSX/0
-         /SN1WU0KnhqZBZC52l2rSVDOBfKet9n531CQqIP8V1lutWtLokam437r1okmiVte6T4c
-         Hlitq83I+4inHBIiZpMhQvsSfmrBgqlD1bSJHAW126GZiQdwYO5VH+7YNTSjMQa1T50I
-         El0w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760865863; x=1761470663;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=MhO7MCB3KH4LVHf2spmD2QY+NVBeLZ0tKA7UruoI/6I=;
-        b=dObuW5D9adVSCxYysp/WbeMPKoCgZF4DSKUf2huaWOuU3uniL/jtIBn26jx7g4M29/
-         DbfECUiDBj6SZob+o6Ern/4Y+WsqRjHwqnxSPMXg1HI13G6X5GNcGWDDTkcVvBf6ty7R
-         DksHP8YxllM6TGMx/mFiEaRHSIQN5Wr9RNFs1Il/eHmySzl333oOn56KaNo8nBLP2GRL
-         QtK3f4MB3k5ExARuD1Irbx2DPGdIPYZKnjhrR9h/EU9CdHEaNAlGe6T0lxPubEtO6+9B
-         ibWcFf7RnVYqia4v4NZGHNtExjmAoaA7WoUsxVNIJpGMZ4hnqc3MfyKfnR+umj8cwha4
-         hQvQ==
-X-Gm-Message-State: AOJu0Yzg+z//A0So5dufaWQDCGoBSRrKGvfulNX8V6CjzOr7uD1vpRST
-	B0Vhy18fIGP1H2eVS1zVuKQLPEvAUwQHSCh21GQ41rdkMT4Opp9nLXXV
-X-Gm-Gg: ASbGnctuT7pXHCGiO7pvL3D/G5hsmXqVdvkzIcaHmPtgsId7tGITIKewG65hLxi3hhe
-	xh4q/78aZi6p7k2snDo832lz8EsjQQTvlFhstjAClUvg3jIH6NqEQd7IxGm77ATmbTOmCcHBvo8
-	Q60Fwq5DX0OkA2AGZweIf4r2HBMBstOuNOMH9jy/tF84HFfE0ES/xv8Af0lPEfpg/Rre9wwz6pM
-	dXKx1GDWQ3qSB/4sGHwvFDp0AZU8CfX4jly5XS9orUoyKahxLLNNyYs8EeIMZqcVvVFxGw88wUZ
-	Z7ODufbjMQSHsYHRbMJRY9nsCji2eaAdy+SAbHCMV6OaNkDp72ydIf1LpSfRphkU6flgnLLsJd7
-	ViUC3Rl7DUfclejlkajKnu1pPfDMIp/+ZEwmlCI/SL4mCAIaRmmhofL1G64tkZupNJiZtVOCLbu
-	MknaMXnVOQ3d1/B2z5dHY=
-X-Google-Smtp-Source: AGHT+IF9dWfAKn2dpR4POK743I+/yqjEHsSr9P5UpG7nJNAr+rfSu+fgoiAxZlEqwlWkmmDiqWnMFg==
-X-Received: by 2002:a17:903:32c9:b0:249:3efa:3c99 with SMTP id d9443c01a7336-290cba4e6cdmr116696265ad.61.1760865862631;
-        Sun, 19 Oct 2025 02:24:22 -0700 (PDT)
-Received: from MRSPARKLE.localdomain ([206.83.99.72])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29246ebd215sm48313115ad.14.2025.10.19.02.24.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 19 Oct 2025 02:24:22 -0700 (PDT)
-From: Jonathan Brophy <professorjonny98@gmail.com>
-To: lee Jones <lee@kernel.org>,
-	Pavel Machek <pavel@kernel.org>,
-	Jonathan Brophy <professor_jonny@hotmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Radoslav Tsvetkov <rtsvetkov@gradotech.eu>
-Cc: devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-leds@vger.kernel.org
-Subject: [PATCH v3 4/4] leds: Add virtualcolor LED group driver
-Date: Sun, 19 Oct 2025 22:23:27 +1300
-Message-ID: <20251019092331.49531-5-professorjonny98@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20251019092331.49531-1-professorjonny98@gmail.com>
-References: <20251019092331.49531-1-professorjonny98@gmail.com>
+	s=arc-20240116; t=1760866194; c=relaxed/simple;
+	bh=cEmiAejCUSeYDb1o32TLK/cNCU4eQV59ADHywcriXb0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=h3qlyCoAVGph0nNMdrU9ih4+ntzokGin3RjpJ4dvMPYGAQEixkx88fhZm+wMYg+GdGM5FlB1+w1o6mD2P5ej5OGIQgyaypQnBIkjmuwPUe9INJYl9rK3eylm+USofvNo8+/YE+giZxwcSLlK1OYQaga57/L8rvjwZUur0TNm+tY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iiTneN9M; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E1C19C4CEE7;
+	Sun, 19 Oct 2025 09:29:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1760866193;
+	bh=cEmiAejCUSeYDb1o32TLK/cNCU4eQV59ADHywcriXb0=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=iiTneN9MUhgUQCpYId0iMaFP3eHHAykQ2vKUT5mFuscc10O0Y5ZHUgwxoMAJOvver
+	 cuvr8mzYmZoGoAnDDiuhrnjZ39mUoK9t5WUQzoTWL7mEfR+mvbFOSje44nvrTrgwDH
+	 ZHCxLbRvqEvXu8tpebrkQOzcjo3r1pILJOrpzmKWzFGGecbhTLHFFlWRcLpQzu54qk
+	 etLyu2Mzvfcthj/kqatFcpfsr5ux7tLpdKZZIZ/jR9MfBfkNwUAIS6fWuXTLCLJ/Tv
+	 78WTcims63I1MzYyxglZ/vfSf5w30o9ptTJo23FVffc6UrBGjv0inHX/flcgJp5K6O
+	 fUmzhYUKaWslg==
+Message-ID: <67bff695-48ef-4b06-a434-aa5844f8d9c4@kernel.org>
+Date: Sun, 19 Oct 2025 11:29:48 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/6] dt-bindings: rtc: renesas,rz-rtca3: Add RZ/V2H
+ support
+To: Ovidiu Panait <ovidiu.panait.rb@renesas.com>,
+ claudiu.beznea.uj@bp.renesas.com, alexandre.belloni@bootlin.com,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ geert+renesas@glider.be, magnus.damm@gmail.com, mturquette@baylibre.com,
+ sboyd@kernel.org, p.zabel@pengutronix.de
+Cc: linux-rtc@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-clk@vger.kernel.org
+References: <20251019092106.5737-1-ovidiu.panait.rb@renesas.com>
+ <20251019092106.5737-3-ovidiu.panait.rb@renesas.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20251019092106.5737-3-ovidiu.panait.rb@renesas.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-From: Jonathan Brophy <professor_jonny@hotmail.com>
+On 19/10/2025 11:21, Ovidiu Panait wrote:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: renesas,r9a09g057-rtca3
+> +    then:
+> +      properties:
+> +        resets:
+> +          items:
+> +            - description: RTC reset
 
-Introduces a new driver that implements virtual LED groups,
-aggregating multiple monochromatic LEDs into virtual groups and providing
-priority-based control for concurrent state management.
+So this is a completely different type of reset than VBATTB from earlier
+device?
 
-This driver is a work in progress, I am unable to get the read-only diagnostic
-sysfs attributes to show under the led framework.
+> +            - description: Reset for the RTEST registers
+> +
 
-Author: Radoslav Tsvetkov <rtsvetkov@gradotech.eu>
-Co Author: Jonathan Brophy <professor_jonny@hotmail.com>
-Copyright (C) 2024 Jonathan Brophy <professor_jonny@hotmail.com>
-
-Co-developed-by: Radoslav Tsvetkov <rtsvetkov@gradotech.eu>
-Signed-off-by: Radoslav Tsvetkov <rtsvetkov@gradotech.eu>
-Tested-by: Jonathan Brophy <professor_jonny@hotmail.com>
-Signed-off-by: Jonathan Brophy <professor_jonny@hotmail.com>
----
- drivers/leds/rgb/Kconfig                   |  17 +
- drivers/leds/rgb/Makefile                  |   1 +
- drivers/leds/rgb/leds-group-virtualcolor.c | 513 +++++++++++++++++++++
- 3 files changed, 531 insertions(+)
- create mode 100644 drivers/leds/rgb/leds-group-virtualcolor.c
-
-diff --git a/drivers/leds/rgb/Kconfig b/drivers/leds/rgb/Kconfig
-index 222d943d826a..70a80fd46b9c 100644
---- a/drivers/leds/rgb/Kconfig
-+++ b/drivers/leds/rgb/Kconfig
-@@ -75,4 +75,21 @@ config LEDS_MT6370_RGB
- 	  This driver can also be built as a module. If so, the module
- 	  will be called "leds-mt6370-rgb".
-
-+config LEDS_GROUP_VIRTUALCOLOR
-+	tristate "Virtual LED Group Driver with Priority Control"
-+	depends on OF || COMPILE_TEST
-+	help
-+	  This option enables support for virtual LED groups that aggregate
-+	  multiple monochromatic LEDs with priority-based control. It allows
-+	  managing concurrent LED activation requests by ensuring only the
-+	  highest-priority LED state is active at any given time.
-+
-+	  Multiple LEDs can be grouped together and controlled as a single
-+	  virtual LED with priority levels and blinking support. This is
-+	  useful for systems that need to manage multiple LED indicators
-+	  with different priority levels.
-+
-+	  To compile this driver as a module, choose M here: the module
-+	  will be called leds-group-virtualcolor.
-+
- endif # LEDS_CLASS_MULTICOLOR
-diff --git a/drivers/leds/rgb/Makefile b/drivers/leds/rgb/Makefile
-index a501fd27f179..693fd300b849 100644
---- a/drivers/leds/rgb/Makefile
-+++ b/drivers/leds/rgb/Makefile
-@@ -6,3 +6,4 @@ obj-$(CONFIG_LEDS_NCP5623)		+= leds-ncp5623.o
- obj-$(CONFIG_LEDS_PWM_MULTICOLOR)	+= leds-pwm-multicolor.o
- obj-$(CONFIG_LEDS_QCOM_LPG)		+= leds-qcom-lpg.o
- obj-$(CONFIG_LEDS_MT6370_RGB)		+= leds-mt6370-rgb.o
-+obj-$(CONFIG_LEDS_GROUP_VIRTUALCOLOR)	+= leds-group-virtualcolor.o
-diff --git a/drivers/leds/rgb/leds-group-virtualcolor.c b/drivers/leds/rgb/leds-group-virtualcolor.c
-new file mode 100644
-index 000000000000..035985174743
---- /dev/null
-+++ b/drivers/leds/rgb/leds-group-virtualcolor.c
-@@ -0,0 +1,513 @@
-+// PWM RGB LED driver with per-color grouped LED arrays
-+
-+#include <linux/leds.h>
-+#include <linux/module.h>
-+#include <linux/mutex.h>
-+#include <linux/of.h>
-+#include <linux/platform_device.h>
-+#include <linux/slab.h>
-+#include <linux/list.h>
-+
-+#define MAX_LEDS_PER_COLOR 5
-+
-+enum led_color_channel {
-+	LED_RED = 0,
-+	LED_GREEN = 1,
-+	LED_BLUE = 2,
-+	LED_COLOR_MAX
-+};
-+
-+struct color_channel {
-+	struct led_classdev **leds;      // Array of LEDs for this color
-+	int num_leds;                     // Count of LEDs in this color
-+	enum led_brightness brightness;   // Current brightness for this color
-+	char *color_name;
-+};
-+
-+struct virtual_led {
-+	struct led_classdev cdev;
-+	struct led_classdev **monochromatics;     // Regular monochromatic LEDs
-+	struct color_channel colors[LED_COLOR_MAX];  // RGB color channels
-+	int num_monochromatics;
-+	struct leds_virtualcolor *vc_data;
-+	int priority;
-+	struct list_head list;
-+};
-+
-+struct leds_virtualcolor {
-+	struct virtual_led *vleds;
-+	int num_vleds;
-+	struct list_head active_leds;
-+	struct mutex lock;
-+};
-+
-+/**
-+ * Apply brightness to all LEDs of a specific color
-+ */
-+static void color_set_brightness(struct color_channel *color,
-+				  enum led_brightness brightness)
-+{
-+	int i;
-+
-+	for (i = 0; i < color->num_leds; i++)
-+		led_set_brightness(color->leds[i], brightness);
-+
-+	color->brightness = brightness;
-+}
-+
-+/**
-+ * Apply brightness to monochromatic LEDs
-+ */
-+static void virtual_set_monochromatic_brightness(struct virtual_led *vled,
-+						  enum led_brightness brightness)
-+{
-+	int i;
-+
-+	for (i = 0; i < vled->num_monochromatics; i++)
-+		led_set_brightness(vled->monochromatics[i], brightness);
-+}
-+
-+/**
-+ * Apply brightness to all RGB color channels
-+ */
-+static void virtual_set_rgb_brightness(struct virtual_led *vled,
-+				       enum led_brightness brightness)
-+{
-+	int i;
-+
-+	for (i = 0; i < LED_COLOR_MAX; i++) {
-+		if (vled->colors[i].num_leds > 0)
-+			color_set_brightness(&vled->colors[i], brightness);
-+	}
-+}
-+
-+/**
-+ * Set independent brightness per color (R, G, B)
-+ */
-+static void virtual_set_rgb_independent(struct virtual_led *vled,
-+					 enum led_brightness r,
-+					 enum led_brightness g,
-+					 enum led_brightness b)
-+{
-+	if (vled->colors[LED_RED].num_leds > 0)
-+		color_set_brightness(&vled->colors[LED_RED], r);
-+
-+	if (vled->colors[LED_GREEN].num_leds > 0)
-+		color_set_brightness(&vled->colors[LED_GREEN], g);
-+
-+	if (vled->colors[LED_BLUE].num_leds > 0)
-+		color_set_brightness(&vled->colors[LED_BLUE], b);
-+}
-+
-+static ssize_t priority_show(struct device *dev, struct device_attribute *attr, char *buf)
-+{
-+	struct virtual_led *vled = dev_get_drvdata(dev);
-+	int priority;
-+
-+	mutex_lock(&vled->vc_data->lock);
-+	priority = vled->priority;
-+	mutex_unlock(&vled->vc_data->lock);
-+
-+	return sysfs_emit(buf, "%d\n", priority);
-+}
-+
-+static ssize_t priority_store(struct device *dev, struct device_attribute *attr,
-+			      const char *buf, size_t count)
-+{
-+	struct virtual_led *vled = dev_get_drvdata(dev);
-+	int new_priority;
-+	int ret;
-+
-+	ret = kstrtoint(buf, 10, &new_priority);
-+	if (ret < 0)
-+		return ret;
-+
-+	mutex_lock(&vled->vc_data->lock);
-+	vled->priority = new_priority;
-+	mutex_unlock(&vled->vc_data->lock);
-+
-+	return count;
-+}
-+
-+/**
-+ * Per-color brightness sysfs attributes
-+ */
-+static ssize_t red_brightness_show(struct device *dev, struct device_attribute *attr, char *buf)
-+{
-+	struct virtual_led *vled = dev_get_drvdata(dev);
-+	return sysfs_emit(buf, "%d\n", vled->colors[LED_RED].brightness);
-+}
-+
-+static ssize_t red_brightness_store(struct device *dev, struct device_attribute *attr,
-+				    const char *buf, size_t count)
-+{
-+	struct virtual_led *vled = dev_get_drvdata(dev);
-+	int brightness;
-+	int ret;
-+
-+	ret = kstrtoint(buf, 10, &brightness);
-+	if (ret < 0)
-+		return ret;
-+
-+	if (brightness < 0 || brightness > LED_FULL)
-+		return -EINVAL;
-+
-+	mutex_lock(&vled->vc_data->lock);
-+	color_set_brightness(&vled->colors[LED_RED], brightness);
-+	mutex_unlock(&vled->vc_data->lock);
-+
-+	return count;
-+}
-+
-+static ssize_t green_brightness_show(struct device *dev, struct device_attribute *attr, char *buf)
-+{
-+	struct virtual_led *vled = dev_get_drvdata(dev);
-+	return sysfs_emit(buf, "%d\n", vled->colors[LED_GREEN].brightness);
-+}
-+
-+static ssize_t green_brightness_store(struct device *dev, struct device_attribute *attr,
-+				      const char *buf, size_t count)
-+{
-+	struct virtual_led *vled = dev_get_drvdata(dev);
-+	int brightness;
-+	int ret;
-+
-+	ret = kstrtoint(buf, 10, &brightness);
-+	if (ret < 0)
-+		return ret;
-+
-+	if (brightness < 0 || brightness > LED_FULL)
-+		return -EINVAL;
-+
-+	mutex_lock(&vled->vc_data->lock);
-+	color_set_brightness(&vled->colors[LED_GREEN], brightness);
-+	mutex_unlock(&vled->vc_data->lock);
-+
-+	return count;
-+}
-+
-+static ssize_t blue_brightness_show(struct device *dev, struct device_attribute *attr, char *buf)
-+{
-+	struct virtual_led *vled = dev_get_drvdata(dev);
-+	return sysfs_emit(buf, "%d\n", vled->colors[LED_BLUE].brightness);
-+}
-+
-+static ssize_t blue_brightness_store(struct device *dev, struct device_attribute *attr,
-+				     const char *buf, size_t count)
-+{
-+	struct virtual_led *vled = dev_get_drvdata(dev);
-+	int brightness;
-+	int ret;
-+
-+	ret = kstrtoint(buf, 10, &brightness);
-+	if (ret < 0)
-+		return ret;
-+
-+	if (brightness < 0 || brightness > LED_FULL)
-+		return -EINVAL;
-+
-+	mutex_lock(&vled->vc_data->lock);
-+	color_set_brightness(&vled->colors[LED_BLUE], brightness);
-+	mutex_unlock(&vled->vc_data->lock);
-+
-+	return count;
-+}
-+
-+static DEVICE_ATTR_RW(priority);
-+static DEVICE_ATTR_RW(red_brightness);
-+static DEVICE_ATTR_RW(green_brightness);
-+static DEVICE_ATTR_RW(blue_brightness);
-+
-+static struct attribute *virtual_led_attrs[] = {
-+	&dev_attr_priority.attr,
-+	&dev_attr_red_brightness.attr,
-+	&dev_attr_green_brightness.attr,
-+	&dev_attr_blue_brightness.attr,
-+	NULL,
-+};
-+
-+static const struct attribute_group virtual_led_attr_group = {
-+	.attrs = virtual_led_attrs,
-+};
-+
-+static bool virtual_led_is_active(struct list_head *head, struct virtual_led *vled)
-+{
-+	struct virtual_led *entry;
-+
-+	list_for_each_entry(entry, head, list) {
-+		if (entry == vled)
-+			return true;
-+	}
-+
-+	return false;
-+}
-+
-+static int virtual_led_brightness_set(struct led_classdev *cdev,
-+				      enum led_brightness brightness)
-+{
-+	struct virtual_led *vled = container_of(cdev, struct virtual_led, cdev);
-+	struct leds_virtualcolor *vc_data = vled->vc_data;
-+	struct virtual_led *active;
-+
-+	mutex_lock(&vc_data->lock);
-+
-+	active = list_first_entry_or_null(&vc_data->active_leds, struct virtual_led, list);
-+	if (active) {
-+		if (active->priority > vled->priority)
-+			goto out_unlock;
-+
-+		virtual_set_monochromatic_brightness(active, LED_OFF);
-+		virtual_set_rgb_brightness(active, LED_OFF);
-+	}
-+
-+	if (brightness == LED_OFF) {
-+		if (virtual_led_is_active(&vc_data->active_leds, vled))
-+			list_del(&vled->list);
-+
-+		active = list_first_entry_or_null(&vc_data->active_leds, struct virtual_led, list);
-+		if (active) {
-+			virtual_set_monochromatic_brightness(active, active->cdev.brightness);
-+			/* Restore each color to its saved brightness */
-+			virtual_set_rgb_independent(active,
-+						    active->colors[LED_RED].brightness,
-+						    active->colors[LED_GREEN].brightness,
-+						    active->colors[LED_BLUE].brightness);
-+		}
-+	} else {
-+		if (!virtual_led_is_active(&vc_data->active_leds, vled))
-+			list_add(&vled->list, &vc_data->active_leds);
-+
-+		active = list_first_entry_or_null(&vc_data->active_leds, struct virtual_led, list);
-+		if (active) {
-+			virtual_set_monochromatic_brightness(active, brightness);
-+			virtual_set_rgb_brightness(active, brightness);
-+		}
-+	}
-+
-+out_unlock:
-+	mutex_unlock(&vc_data->lock);
-+
-+	return 0;
-+}
-+
-+/**
-+ * Parse monochromatic LEDs from device tree
-+ */
-+static int parse_monochromatic_leds(struct device *dev, struct device_node *child,
-+				    struct virtual_led *vled)
-+{
-+	u32 mono_count;
-+	int ret, i;
-+
-+	mono_count = of_property_count_elems_of_size(child, "leds", sizeof(u32));
-+	if (mono_count <= 0) {
-+		vled->num_monochromatics = 0;
-+		return 0;
-+	}
-+
-+	vled->num_monochromatics = mono_count;
-+	vled->monochromatics = devm_kcalloc(dev, vled->num_monochromatics,
-+					    sizeof(*vled->monochromatics), GFP_KERNEL);
-+	if (!vled->monochromatics)
-+		return -ENOMEM;
-+
-+	for (i = 0; i < vled->num_monochromatics; i++) {
-+		struct led_classdev *led_cdev;
-+
-+		led_cdev = devm_of_led_get(dev, i);
-+		if (IS_ERR(led_cdev)) {
-+			ret = PTR_ERR(led_cdev);
-+			return dev_err_probe(dev, ret,
-+					     "Failed to get monochromatic LED %d\n", i);
-+		}
-+
-+		vled->monochromatics[i] = led_cdev;
-+	}
-+
-+	return 0;
-+}
-+
-+/**
-+ * Parse color-grouped PWM LEDs from device tree
-+ * Format:
-+ *   pwm-leds-red = <&pwm_r0 &pwm_r1>;
-+ *   pwm-leds-green = <&pwm_g0 &pwm_g1>;
-+ *   pwm-leds-blue = <&pwm_b0>;
-+ */
-+static int parse_pwm_color_leds(struct device *dev, struct device_node *child,
-+				struct virtual_led *vled)
-+{
-+	const char *color_props[] = {"pwm-leds-red", "pwm-leds-green", "pwm-leds-blue"};
-+	const char *color_names[] = {"Red", "Green", "Blue"};
-+	int ret, c, i, count;
-+
-+	for (c = 0; c < LED_COLOR_MAX; c++) {
-+		count = of_property_count_elems_of_size(child, color_props[c], sizeof(u32));
-+		if (count < 0) {
-+			vled->colors[c].num_leds = 0;
-+			continue;
-+		}
-+
-+		if (count > MAX_LEDS_PER_COLOR) {
-+			return dev_err_probe(dev, -EINVAL,
-+					     "Too many %s LEDs (%d), max %d\n",
-+					     color_names[c], count, MAX_LEDS_PER_COLOR);
-+		}
-+
-+		vled->colors[c].num_leds = count;
-+		vled->colors[c].color_name = (char *)color_names[c];
-+		vled->colors[c].brightness = LED_OFF;
-+
-+		vled->colors[c].leds = devm_kcalloc(dev, count,
-+						    sizeof(*vled->colors[c].leds), GFP_KERNEL);
-+		if (!vled->colors[c].leds)
-+			return -ENOMEM;
-+
-+		for (i = 0; i < count; i++) {
-+			struct led_classdev *led_cdev;
-+
-+			led_cdev = devm_of_led_get(dev, i);
-+			if (IS_ERR(led_cdev)) {
-+				ret = PTR_ERR(led_cdev);
-+				return dev_err_probe(dev, ret,
-+						     "Failed to get %s LED %d\n",
-+						     color_names[c], i);
-+			}
-+
-+			vled->colors[c].leds[i] = led_cdev;
-+		}
-+
-+		dev_dbg(dev, "Parsed %d %s LEDs\n", count, color_names[c]);
-+	}
-+
-+	return 0;
-+}
-+
-+static int leds_virtualcolor_init_vled(struct device *dev, struct device_node *child,
-+				       struct virtual_led *vled,
-+				       struct leds_virtualcolor *vc_data)
-+{
-+	struct led_init_data init_data = {};
-+	u32 max_brightness;
-+	int ret, total_rgb_leds = 0, c;
-+
-+	ret = of_property_read_u32(child, "priority", &vled->priority);
-+	if (ret)
-+		vled->priority = 0;
-+
-+	INIT_LIST_HEAD(&vled->list);
-+
-+	/* Parse monochromatic LEDs */
-+	ret = parse_monochromatic_leds(dev, child, vled);
-+	if (ret)
-+		return ret;
-+
-+	/* Parse color-grouped PWM LEDs */
-+	ret = parse_pwm_color_leds(dev, child, vled);
-+	if (ret)
-+		return ret;
-+
-+	/* Count total RGB LEDs */
-+	for (c = 0; c < LED_COLOR_MAX; c++)
-+		total_rgb_leds += vled->colors[c].num_leds;
-+
-+	/* At least one type of LED must be present */
-+	if (vled->num_monochromatics == 0 && total_rgb_leds == 0) {
-+		return dev_err_probe(dev, -EINVAL,
-+				     "No LEDs specified for virtual LED\n");
-+	}
-+
-+	ret = of_property_read_u32(child, "max-brightness", &max_brightness);
-+	if (ret)
-+		vled->cdev.max_brightness = LED_FULL;
-+	else
-+		vled->cdev.max_brightness = max_brightness;
-+
-+	vled->cdev.brightness_set_blocking = virtual_led_brightness_set;
-+	vled->cdev.flags = LED_CORE_SUSPENDRESUME;
-+
-+	ret = devm_led_classdev_register_ext(dev, &vled->cdev, &init_data);
-+	if (ret)
-+		return dev_err_probe(dev, ret,
-+				     "Failed to register virtual LED\n");
-+
-+	dev_set_drvdata(vled->cdev.dev, vled);
-+
-+	ret = devm_device_add_group(vled->cdev.dev, &virtual_led_attr_group);
-+	if (ret)
-+		return dev_err_probe(dev, ret,
-+				     "Failed to create sysfs attributes\n");
-+
-+	vled->vc_data = vc_data;
-+
-+	dev_info(dev, "Virtual LED: %d mono, %d red, %d green, %d blue\n",
-+		 vled->num_monochromatics, vled->colors[LED_RED].num_leds,
-+		 vled->colors[LED_GREEN].num_leds, vled->colors[LED_BLUE].num_leds);
-+
-+	return 0;
-+}
-+
-+static int leds_virtualcolor_probe(struct platform_device *pdev)
-+{
-+	struct leds_virtualcolor *vc_data;
-+	struct device *dev = &pdev->dev;
-+	int count = 0;
-+	int ret;
-+
-+	vc_data = devm_kzalloc(dev, sizeof(*vc_data), GFP_KERNEL);
-+	if (!vc_data)
-+		return -ENOMEM;
-+
-+	mutex_init(&vc_data->lock);
-+
-+	ret = devm_add_action_or_reset(dev, (void (*)(void *))mutex_destroy,
-+				       &vc_data->lock);
-+	if (ret)
-+		return ret;
-+
-+	INIT_LIST_HEAD(&vc_data->active_leds);
-+
-+	vc_data->num_vleds = of_get_child_count(dev->of_node);
-+	if (vc_data->num_vleds == 0) {
-+		dev_err(dev, "No virtual LEDs defined\n");
-+		return -EINVAL;
-+	}
-+
-+	vc_data->vleds = devm_kcalloc(dev, vc_data->num_vleds, sizeof(*vc_data->vleds), GFP_KERNEL);
-+	if (!vc_data->vleds)
-+		return -ENOMEM;
-+
-+	for_each_available_child_of_node_scoped(dev->of_node, child) {
-+		struct virtual_led *vled = &vc_data->vleds[count];
-+
-+		ret = leds_virtualcolor_init_vled(dev, child, vled, vc_data);
-+		if (ret)
-+			return ret;
-+
-+		count++;
-+	}
-+
-+	platform_set_drvdata(pdev, vc_data);
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id leds_virtualcolor_of_match[] = {
-+	{ .compatible = "leds-group-virtualcolor" },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, leds_virtualcolor_of_match);
-+
-+static struct platform_driver leds_virtualcolor_driver = {
-+	.probe  = leds_virtualcolor_probe,
-+	.driver = {
-+		.name           = "leds_virtualcolor",
-+		.of_match_table = leds_virtualcolor_of_match,
-+	},
-+};
-+
-+module_platform_driver(leds_virtualcolor_driver);
-+
-+MODULE_AUTHOR("Radoslav Tsvetkov <rtsvetkov@gradotech.eu>");
-+MODULE_DESCRIPTION("Virtual Color LED Driver with RGB Color Grouping");
-+MODULE_LICENSE("GPL");
---
-2.43.0
+Best regards,
+Krzysztof
 
