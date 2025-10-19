@@ -1,175 +1,94 @@
-Return-Path: <devicetree+bounces-228446-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228448-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DB2CBEDF64
-	for <lists+devicetree@lfdr.de>; Sun, 19 Oct 2025 08:57:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 36ACABEDF88
+	for <lists+devicetree@lfdr.de>; Sun, 19 Oct 2025 09:14:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B2831189DCD6
-	for <lists+devicetree@lfdr.de>; Sun, 19 Oct 2025 06:58:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C63AC1895172
+	for <lists+devicetree@lfdr.de>; Sun, 19 Oct 2025 07:14:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEAFF225409;
-	Sun, 19 Oct 2025 06:57:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 584A81D61A3;
+	Sun, 19 Oct 2025 07:14:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GlSjYucB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SXbvxIEX"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A39AF354AEA;
-	Sun, 19 Oct 2025 06:57:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2533333EC;
+	Sun, 19 Oct 2025 07:14:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760857057; cv=none; b=sSXzuGHSpCLnun/LA8ebnPof4Pekn2NaiMU5p+W9yCGTwplRXF29fOxyIOImz1FRi9XEGl33gTvFTxfGuJzlBVg2M96qKzGlHNgYLYOfW5qsOCNfplcB2BYS+alxWDpD5w7lSLrsd/kFA7yiKexplt+e6LhM6Ce/XpyGgZ91qlE=
+	t=1760858057; cv=none; b=TDRDWSzq4SushEuQa/1/U1TdWIHaKSHt7eW+u25Z+vbvUmBRIOuxQvEalGgBzStz6y0aCWsbY1n2SjSVtdur0AoOWlQp3DNnYHJHBMwd6S5G8j4bXXBDhzfaLaEOrGgr9iUhvv8IPxQCw46UkiQOnc6oMNhiBDoeccvffGnfuPQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760857057; c=relaxed/simple;
-	bh=ru0dIsv79/CkC65EDFZOAeN6GugSfAGSJQQD/yGUY/A=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kW6MF8o7h1SBekfJ7yvqap1Uwa43KXA+yek+mB8+l3QIKWI44pKyLaaOwLhmd235tnPCFnLoYiPK5SA/hiWtDf1/f1ncEXFYb/gJuiQaGv4nfE+Y831xqb9jS9BrXCyeLlKASEkL1zTB4xlpvLTUOQeoQeYJL6keYTedoCEm5Fw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GlSjYucB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 010F6C4CEE7;
-	Sun, 19 Oct 2025 06:57:27 +0000 (UTC)
+	s=arc-20240116; t=1760858057; c=relaxed/simple;
+	bh=2nGgPtY4Ugv6e9sF68izBoIQBy4az/v5XFZMXzm2HB4=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=ZWAIvJqfvuFSxA9bvxLPLEthVD/KFj5OmYRijrGrwafmEy+7D/VWDVxxyAHHW0R3AeZyC0G6pYOVE6dMYODvVtZvTY2I1onBsFKyolbFFBKjHP47dGB8vtZ2e56jinobtyXkiPR++lIBwgvZQtVsCjFb3byemCQ6NUTr6FR01aM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SXbvxIEX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EC2ACC4CEF1;
+	Sun, 19 Oct 2025 07:14:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760857057;
-	bh=ru0dIsv79/CkC65EDFZOAeN6GugSfAGSJQQD/yGUY/A=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=GlSjYucB/g/dq+n9o1NmphjYQH4A2FSAN1DPQ7XS1WvcTfWzLCnC8wReukJc81l4L
-	 POY7qA9ffmddLcSnMVh7MM6NoFtiAYO2IwkZ3B4eQ1V5wM5/zYevuEsn1C7mYVJmkH
-	 wOyuBeqpyQHnLHbc05w1BPkyIE6Gb+lYE2xMScKxqP6gZ5mN49xFwZ7H4AaF/SoqWb
-	 t6/elBM82w18vIRgiM8U14HPMO0Y0oEs73u7iUrsnOJgdtC7QfRAWGnP9dibuKACJ2
-	 QFpRC07GvM/0r2olIUXzXnRWVmhP/UKY1dfwd/ZAdIiFfNu4r0L+ZiK+CGrzX5hpLK
-	 qkvwZCs7DjUQQ==
-Date: Sun, 19 Oct 2025 12:27:18 +0530
+	s=k20201202; t=1760858056;
+	bh=2nGgPtY4Ugv6e9sF68izBoIQBy4az/v5XFZMXzm2HB4=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=SXbvxIEXPKRI613TniiG2RcR+Fh76LrNUArBK/vENB2XXSPc7B97Omhkx4+ynMvTR
+	 Y7divWxy5GLASYtT13CduBFYovVVGw4SsJuK7lADx7Hcc1O9y/SBj16NIoHvU6rzmy
+	 Pe9K7EqAwgsjkh3+O3Q7iNu3rotNcNckDL3xH9W4ZiPZhdtAEM0OWz2vFQQh8ReTZP
+	 r/DvY8iWSDGDPWMhCGeb5pqpYc8Mka8tPzmYls61wpim7VaYX+ekiceW8Sk+GswMRi
+	 dstjSCDu6Zjc41WkjpxWEePuYix0KDdyjlKWUZaUDZHQRNjCRfOIyjEWNzVcg4K9am
+	 TZQVQLRJDLYLQ==
 From: Manivannan Sadhasivam <mani@kernel.org>
-To: Claudiu <claudiu.beznea@tuxon.dev>
-Cc: lpieralisi@kernel.org, kwilczynski@kernel.org, robh@kernel.org, 
-	bhelgaas@google.com, krzk+dt@kernel.org, conor+dt@kernel.org, geert+renesas@glider.be, 
-	magnus.damm@gmail.com, p.zabel@pengutronix.de, linux-pci@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>, Wolfram Sang <wsa+renesas@sang-engineering.com>
-Subject: Re: [PATCH v5 3/6] arm64: dts: renesas: r9a08g045: Add PCIe node
-Message-ID: <k75ewk6mnv4w333oqefpgpa46fbg57grz7q6tlpc5evzehnzh5@elgnofa5ud5p>
-References: <20251007133657.390523-1-claudiu.beznea.uj@bp.renesas.com>
- <20251007133657.390523-4-claudiu.beznea.uj@bp.renesas.com>
+To: Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+ =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, 
+ Qiang Yu <qiang.yu@oss.qualcomm.com>
+Cc: linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-phy@lists.infradead.org, Jingyi Wang <jingyi.wang@oss.qualcomm.com>, 
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+In-Reply-To: <20251015-kaanapali-pcie-upstream-v2-0-84fa7ea638a1@oss.qualcomm.com>
+References: <20251015-kaanapali-pcie-upstream-v2-0-84fa7ea638a1@oss.qualcomm.com>
+Subject: Re: (subset) [PATCH v2 0/6] Add PCIe support for Kaanapali
+Message-Id: <176085804731.13415.14186283722551024103.b4-ty@kernel.org>
+Date: Sun, 19 Oct 2025 12:44:07 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20251007133657.390523-4-claudiu.beznea.uj@bp.renesas.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14.2
 
-On Tue, Oct 07, 2025 at 04:36:54PM +0300, Claudiu wrote:
-> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> 
-> The RZ/G3S SoC has a variant (R9A08G045S33) which supports PCIe. Add the
-> PCIe node.
-> 
-> Tested-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> ---
-> 
-> Changes in v5:
-> - updated the last part of ranges and dma-ranges
-> - collected tags
-> 
-> Changes in v4:
-> - moved the node to r9a08g045.dtsi
-> - dropped the "s33" from the compatible string
-> - added port node
-> - re-ordered properties to have them grouped together
-> 
-> Changes in v3:
-> - collected tags
-> - changed the ranges flags
+
+On Wed, 15 Oct 2025 03:27:30 -0700, Qiang Yu wrote:
+> Describe PCIe controller and PHY. Also add required system resources like
+> regulators, clocks, interrupts and registers configuration for PCIe.
 > 
 > Changes in v2:
-> - updated the dma-ranges to reflect the SoC capability; added a
->   comment about it.
-> - updated clock-names, interrupt names
-> - dropped legacy-interrupt-controller node
-> - added interrupt-controller property
-> - moved renesas,sysc at the end of the node to comply with
->   DT coding style
+> - Rewrite commit msg for PATCH[3/6]
+> - Keep keep pcs-pcie reigster definitions sorted.
+> - Add Reviewed-by tag.
+> - Keep qmp_pcie_of_match_table sorted.
+> - Link to v1: https://lore.kernel.org/all/20250924-knp-pcie-v1-0-5fb59e398b83@oss.qualcomm.com/
 > 
->  arch/arm64/boot/dts/renesas/r9a08g045.dtsi | 66 ++++++++++++++++++++++
->  1 file changed, 66 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/renesas/r9a08g045.dtsi b/arch/arm64/boot/dts/renesas/r9a08g045.dtsi
-> index 16e6ac614417..00b43377877e 100644
-> --- a/arch/arm64/boot/dts/renesas/r9a08g045.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/r9a08g045.dtsi
-> @@ -717,6 +717,72 @@ eth1: ethernet@11c40000 {
->  			status = "disabled";
->  		};
->  
-> +		pcie: pcie@11e40000 {
-> +			compatible = "renesas,r9a08g045-pcie";
-> +			reg = <0 0x11e40000 0 0x10000>;
-> +			ranges = <0x02000000 0 0x30000000 0 0x30000000 0 0x08000000>;
-> +			/* Map all possible DRAM ranges (4 GB). */
-> +			dma-ranges = <0x42000000 0 0x40000000 0 0x40000000 1 0x00000000>;
-> +			bus-range = <0x0 0xff>;
-> +			interrupts = <GIC_SPI 395 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 396 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 397 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 398 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 399 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 400 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 401 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 402 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 403 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 404 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 405 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 406 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 407 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 408 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 409 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 410 IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupt-names = "serr", "serr_cor", "serr_nonfatal",
-> +					  "serr_fatal", "axi_err", "inta",
-> +					  "intb", "intc", "intd", "msi",
-> +					  "link_bandwidth", "pm_pme", "dma",
-> +					  "pcie_evt", "msg", "all";
-> +			#interrupt-cells = <1>;
-> +			interrupt-controller;
-> +			interrupt-map-mask = <0 0 0 7>;
-> +			interrupt-map = <0 0 0 1 &pcie 0 0 0 0>, /* INTA */
-> +					<0 0 0 2 &pcie 0 0 0 1>, /* INTB */
-> +					<0 0 0 3 &pcie 0 0 0 2>, /* INTC */
-> +					<0 0 0 4 &pcie 0 0 0 3>; /* INTD */
+> [...]
 
-Why can't you describe the SPI interrupt for INTx in 'interrupt-map' itself?
+Applied, thanks!
 
-> +			clocks = <&cpg CPG_MOD R9A08G045_PCI_ACLK>,
-> +				 <&cpg CPG_MOD R9A08G045_PCI_CLKL1PM>;
-> +			clock-names = "aclk", "pm";
-> +			resets = <&cpg R9A08G045_PCI_ARESETN>,
-> +				 <&cpg R9A08G045_PCI_RST_B>,
-> +				 <&cpg R9A08G045_PCI_RST_GP_B>,
-> +				 <&cpg R9A08G045_PCI_RST_PS_B>,
-> +				 <&cpg R9A08G045_PCI_RST_RSM_B>,
-> +				 <&cpg R9A08G045_PCI_RST_CFG_B>,
-> +				 <&cpg R9A08G045_PCI_RST_LOAD_B>;
-> +			reset-names = "aresetn", "rst_b", "rst_gp_b", "rst_ps_b",
-> +				      "rst_rsm_b", "rst_cfg_b", "rst_load_b";
-> +			power-domains = <&cpg>;
-> +			device_type = "pci";
-> +			#address-cells = <3>;
-> +			#size-cells = <2>;
-> +			max-link-speed = <2>;
+[1/6] dt-bindings: PCI: qcom,pcie-sm8550: Add Kaanapali compatible
+      commit: bc427cd81b2a42be41be87c976cdc847f44353bf
 
-'max-link-speed' is used to limit the link speed. Why do you need to limit the
-link speed all the time for this controller?
-
-- Mani
-
+Best regards,
 -- 
-மணிவண்ணன் சதாசிவம்
+Manivannan Sadhasivam <mani@kernel.org>
+
 
