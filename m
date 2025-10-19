@@ -1,250 +1,190 @@
-Return-Path: <devicetree+bounces-228503-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228504-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A9B7BEE64B
-	for <lists+devicetree@lfdr.de>; Sun, 19 Oct 2025 15:59:05 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id EAC22BEE661
+	for <lists+devicetree@lfdr.de>; Sun, 19 Oct 2025 16:11:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F3F944081DF
-	for <lists+devicetree@lfdr.de>; Sun, 19 Oct 2025 13:59:03 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id A34EE4E1724
+	for <lists+devicetree@lfdr.de>; Sun, 19 Oct 2025 14:11:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38BAD2EA737;
-	Sun, 19 Oct 2025 13:59:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EE902EA476;
+	Sun, 19 Oct 2025 14:11:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="f+ON6Dyk"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MxDe+MS1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 952CA1514E4
-	for <devicetree@vger.kernel.org>; Sun, 19 Oct 2025 13:58:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F36C2E8B97
+	for <devicetree@vger.kernel.org>; Sun, 19 Oct 2025 14:11:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760882341; cv=none; b=CVXP2EMBuUFJ6S5IEkLgK9Jl/iSBG1ZQcWq7b0fCBGFttdwGdVUAqsgZZkwtGNtfkaQP2ylhta9cCfT64fhYpdZp/Nfo5vhYhrZEXJ5DME87J3eU9pO1nF36+MaBn7Xty1rICu/RbrJ5nEsQVGn2EwPovkzNSOpm/+psfmpUA/4=
+	t=1760883066; cv=none; b=Qkf4Z0Vy8tB/GaXd5CliPIach3f1NAj3ECBcDctCINa1IZvfsB02mKrzE2pZUY+d5lDi7889z1MjPlE1DsluHwrx4COV2ZKzVOrAyXhs9AKM5luZWRD5iKNi0auy3kU8/0x0jkVQQHEDZgXpQKqlfZyexBrehpVd2v/gyy7Mslk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760882341; c=relaxed/simple;
-	bh=hRkplG1ra9s4vBIWDyFAgQ3Zlr+bwaWbOINHQ5iTB2c=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PR59GrU3OGCfHOdZIsgVyHUI08PbMSsAiVc1m6vejSLn81JNYauFIMU06VOEn03O2Rbu0aHLMycvKfSSeY4odj8a46tvJYb6SMTtc91T0QTr9zuTZD3jwkrlSuAT83yr6xmhzwG2kXjVqBgZDsEnLxbZ8ELOU1CNl0/sSXwnGJg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=f+ON6Dyk; arc=none smtp.client-ip=209.85.214.172
+	s=arc-20240116; t=1760883066; c=relaxed/simple;
+	bh=it+q/FObsEAhAZZ2vNLVO3G/aVzDgKMtLAKtWKs2Zv0=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=XKtd8JWsJIsmG3NGD343e/OUxBp5Ufnf0T3KCMPqpCK0aM1eMADlBiTi3bQwx+f8ktMGczlpG5rGRRkt534MKVMz6XZFAiR/HbHdqAiEFOkyD3F3eh00EjzPW2kX4EHT7Epst0kZoHiU/AFQjtSpJlofmh8FAPVxUFpfkhF66Lg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MxDe+MS1; arc=none smtp.client-ip=209.85.128.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-26e68904f0eso35556345ad.0
-        for <devicetree@vger.kernel.org>; Sun, 19 Oct 2025 06:58:59 -0700 (PDT)
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-471193a9d9eso28668235e9.2
+        for <devicetree@vger.kernel.org>; Sun, 19 Oct 2025 07:11:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1760882339; x=1761487139; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=uIvRt0vzEtUfOdf1MrHqv5pQ80dvz1yAdmfgYjIUz1s=;
-        b=f+ON6DykLdVDTVIG8s0mkIE7AleRp3w0tj6QJvexYX/p7eCDmR7PTuN1uVMSn4xT9B
-         Smb4EdROcd0zwE7kytA17/4airMvtOgF+WCb2TVKdzwC4NRMWS5GKGmV5+vcvAGC3M81
-         hvd2GD+doDlOlLW+hGzwB/e619Yi6QNCiUkfzuKSEoA9sx4gcGUQK90O8Esyg6JsPI5m
-         1Y7ylMFwsQibgWVznlyrTOsQ8+qL/xakbSikABsboGzW23jcUMI1soq9gp//eXvHtdEl
-         04Zqkx40pmuWeMF4RWwrjizo5OfQSFXzbAPp9/haF2YrCsbExxKM4z8NNDr5A0IbfRgO
-         ItIA==
+        d=gmail.com; s=20230601; t=1760883063; x=1761487863; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=RAuT2pXiG6Soqv7ocY7dz20OVZgzWenocYDje/sN0xQ=;
+        b=MxDe+MS1GBL7couXI5zK/JOaaY+Z23z+yjl5wxBHV2bG0p0irEdw70yuD8dmzlUpXX
+         MVuYOYKsVxdMo97HRgkzVST/FrWRqUzAiJq2qJLd61vgWOWezMCUvxZ8/71HnNmYpB8u
+         TwostWJ4591Q3fHWg7MjBWxX/dBsvj8D1bZHr3vDmaQFM3K400lfOXnxDm32ijk//gNe
+         tIFeGNi16n6g6x0tk95Tn6v1MLFZwtvuzZnNnE0DSUUqoUEyEv68AZHufwurXqKvswFv
+         pSCzoohoXbmJp2IMOJUI795c9Z/3hhPc2yt8N92mRiyVjcRAjUb9n66ohpGMpUJGh6kg
+         j0Wg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760882339; x=1761487139;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=uIvRt0vzEtUfOdf1MrHqv5pQ80dvz1yAdmfgYjIUz1s=;
-        b=fM86fIXYDmjKYpIiQ96Odyx3oBsU6l6+Yd0XfXb8HvJrSPnhx4g1E1b2ExUIJD/iIF
-         eUI1qLRgF0OvI3MMQmfEDNmZ+Ozd0nCwD1EN5d7FHMSgzbfOBtcecR1DkPPiv+qNmNQN
-         MHmDxYIZJGu7AQdchGX3Jca+Bm3PbEmLNysmMX2MdkyfPwad0ZcXB14UmRZG/kiOk4F/
-         AQSOdEgLxnGxYRvxzT0C0KZk4S93kQ71lGNsBNH9mK0Sq+gtF1Tdka9YAAqfQI8msu4F
-         6Pn54aAh7xTvujTjZQnVP147rvCJEanu0q6yfyJ0iIA7pULiTkHBGbxU0RoU3ecZW9Eg
-         JU+g==
-X-Forwarded-Encrypted: i=1; AJvYcCWRwhOyfBrMZx1H1CnXYBm9j/2BeAcO3OOt0bOS1Y4L01wQQ4adKjXNvxsEnk7D+d1wPx4o7mUyruo+@vger.kernel.org
-X-Gm-Message-State: AOJu0YyOQno0gMaVq+QIgNmDdupCZBftjhLrFmN2FD2tnLDm2Lo+4klP
-	6mmXgcRlUvu4XGrzKkCzYIEy2Dy6iqHDdXttkxyMVKr6uOE1BpF0r8XGy86NPA==
-X-Gm-Gg: ASbGncsLVqYftXwykh0nQoqpLpgoHQTOXOiO8IKfv8GKPF49kp7z5Nj8U3WWVmTrYNG
-	bYyiYRQjQIxavNZECbDUI45jjaMNpVPkxIg6ljAT9N50j7B++cJ8SmkNkJupRkgY6hUXjY5q6Tb
-	tKHHICdefl92dJKkSUz+297HVXO06EZtKtsFBNFFuy0N6tKdgbb5FB0C5hs4p78pOp21q1gLBT5
-	NCMej034DerlP6btVGPG46AVGTrn3LH8YBcZlodDZ9kCSWaQ722gAgmZ7C5m72/CAyNEsTfEJPh
-	VEPkG/0k8TwakyomMGg+PTzzTQzg4N4GzU5FGkhUrahHTxcg0ExzYzKeVsngtxNu/PGzhmCwQ4s
-	gk/Th+gC7bYlB9Fz4GKwsAEyBIZFjeRKP9hmHC8x/p/dgStq0d0M4p4aURFJsGdfnOS4lEKhcgf
-	nBN0uaRM70dNWqAWbowvzj4rkrAA==
-X-Google-Smtp-Source: AGHT+IGfMFiuCP3pNp6JLr8ZsJfilLCsq2Iy14veN19sT8WT/30N57bEv0uqUBgvns7qDZN+JiYhLQ==
-X-Received: by 2002:a17:903:32ca:b0:290:b92d:907 with SMTP id d9443c01a7336-290cb376121mr146870135ad.53.1760882338934;
-        Sun, 19 Oct 2025 06:58:58 -0700 (PDT)
-Received: from [192.168.1.4] ([223.181.116.113])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-292471d5995sm54198275ad.70.2025.10.19.06.58.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 19 Oct 2025 06:58:58 -0700 (PDT)
-Message-ID: <bffddadc-4235-4ccf-a0ed-7a0de68e2fbe@gmail.com>
-Date: Sun, 19 Oct 2025 19:28:49 +0530
+        d=1e100.net; s=20230601; t=1760883063; x=1761487863;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=RAuT2pXiG6Soqv7ocY7dz20OVZgzWenocYDje/sN0xQ=;
+        b=OCciLK7DBeEaR5ZBgcWBL9GlHbX/xCOHjip/b0ExrgybpMJ7xxGkFcLEdnqzlFa+ta
+         ROUP3IAwtPBaO3sjaDACq5iBcuYTVcCqHrh0wCMmf6MiBqVNEHmAXDVrX2MJpWHWCsq1
+         77fp3VUJpStt+11cGK06j8itemfMoH8auPA4P03bJlg2FhFYxjaKtlC1fXHlbJ0Hwx5s
+         7fS1uX6mhCrHN8FgXWAFsxYBpGJuXj/eL2WZ9pr0RhJp3QYKiHthCs2oo6zdhtw6XiyC
+         tO7wa3zqYQgTSHgMsJJsK4FIe10y4dGCLIT5yah8NF8kbStCIComFs8Y8zRwMaXPX0rv
+         t9hQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVxrrD0Gq82lUkaoPqidH+zHerGHuZoEGyp3jOERV40kOcvScyk99ZZXtS4XBmPnz5NQqxDTYdugnDp@vger.kernel.org
+X-Gm-Message-State: AOJu0YyJLNfL2qXwAXPmFbJE9j4MC70k5/CEd2oxZW69r9KDm3t4Pipy
+	RQKmbEckBMfF0RWV2bu0kBrzIZpuC+FHjgoIa9F2woFG6Jnz+/SQCqnK
+X-Gm-Gg: ASbGncvaC27cIYigrxCnWYVILe1Aix7IxNfXdeDbhwXaD/JgmFeiez6A/VL6X+UUQIU
+	T71j+0YPCK8A0CfydVhTS7EPC8O3+m4U1fe1ShXDfn9K/F1+vsviIRX51cttZPqE36oFSvB9XUT
+	xFwZyoBgiz3zex/tbyisCAnNX/hg77cSfZjOnqX1O1SKUZ3D+v23zDgfQ6kKGjE/5wE+YfC36vZ
+	pIk57GFrHPdsdDKrYRfs5Tw0r9KRAfZCfyOX5TvZQpIVQdbYdAvDywdbuXs+hUIjwmlAzyfBJuv
+	HUt9Xl6FcmdYJZqKOXawji4uz8Oo9VqtpwVKsZXB2G+4eWcQFwCKgQ8yKGOU+2dTJtgUZrnLpr/
+	t37ozLvtThMaSKPI7/I8o5CkC7lwmFgbkVqX9nfsyeqff5JsJnVJ2RSGAv0aGiyJAmXpkHV5Go4
+	JER0PcwVLS0M32FnrUwpG98YdOmS1JDrHADkrYvKLdk2u3WJzphYfY
+X-Google-Smtp-Source: AGHT+IFUF5/TTFssGAjekhetDDv4LHWcFbL+ak9eq8410dO2fCieGGRn/c440tmYDt+ZI13D1UdhSg==
+X-Received: by 2002:a5d:64e4:0:b0:3ec:dd26:6405 with SMTP id ffacd0b85a97d-42704d900edmr7404769f8f.26.1760883062419;
+        Sun, 19 Oct 2025 07:11:02 -0700 (PDT)
+Received: from pumpkin (82-69-66-36.dsl.in-addr.zen.co.uk. [82.69.66.36])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-427f00ba01bsm10225334f8f.41.2025.10.19.07.11.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 19 Oct 2025 07:11:02 -0700 (PDT)
+Date: Sun, 19 Oct 2025 15:10:59 +0100
+From: David Laight <david.laight.linux@gmail.com>
+To: =?UTF-8?B?VGjDqW8=?= Lebrun <theo.lebrun@bootlin.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub Kicinski
+ <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Nicolas Ferre <nicolas.ferre@microchip.com>, Claudiu
+ Beznea <claudiu.beznea@tuxon.dev>, Richard Cochran
+ <richardcochran@gmail.com>, Russell King <linux@armlinux.org.uk>,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Vladimir Kondratiev
+ <vladimir.kondratiev@mobileye.com>, Tawfik Bayouk
+ <tawfik.bayouk@mobileye.com>, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>, =?UTF-8?B?R3LDqWdvcnk=?= Clement
+ <gregory.clement@bootlin.com>, =?UTF-8?B?QmVub8OudA==?= Monin
+ <benoit.monin@bootlin.com>, Maxime Chevallier
+ <maxime.chevallier@bootlin.com>
+Subject: Re: [PATCH net-next 11/15] net: macb: replace min() with umin()
+ calls
+Message-ID: <20251019151059.10bb5e18@pumpkin>
+In-Reply-To: <20251014-macb-cleanup-v1-11-31cd266e22cd@bootlin.com>
+References: <20251014-macb-cleanup-v1-0-31cd266e22cd@bootlin.com>
+	<20251014-macb-cleanup-v1-11-31cd266e22cd@bootlin.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; arm-unknown-linux-gnueabihf)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] dt-bindings: mmc: ti,da830-mmc: convert to DT schema
-To: Conor Dooley <conor@kernel.org>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-mmc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20251011-davinci-mmc-v2-1-355da3e25123@gmail.com>
- <20251012-nickname-morale-e1e21796f1f1@spud>
-Content-Language: en-US
-From: Charan Pedumuru <charan.pedumuru@gmail.com>
-In-Reply-To: <20251012-nickname-morale-e1e21796f1f1@spud>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+
+On Tue, 14 Oct 2025 17:25:12 +0200
+Th=C3=A9o Lebrun <theo.lebrun@bootlin.com> wrote:
+
+> Whenever min(a, b) is used with a and b unsigned variables or literals,
+> `make W=3D2` complains. Change four min() calls into umin().
+
+It will, and you'll get the same 'error' all over the place.
+Basically -Wtype-limits is broken.
+
+Don't remove valid checks because it bleats.
+
+	David
 
 
-
-On 12-10-2025 19:05, Conor Dooley wrote:
-> On Sat, Oct 11, 2025 at 08:52:07AM +0000, Charan Pedumuru wrote:
->> Convert TI Highspeed MMC host controller binding to YAML format. Define
->> 'clocks' and 'interrupts' properties to resolve errors identified by
->> 'dt_check' and 'dtb_check'.
->>
->> Signed-off-by: Charan Pedumuru <charan.pedumuru@gmail.com>
->> ---
->> Changes in v2:
->> - Modified the commit message.
->> - Removed 'interrupts' from required properties following the old binding.
->> - Changed the maintainer for the binding to "Conor Dooley".
-> 
-> Bro, what? Where did that come from? I know nothing about this device at
-> all. Find someone from TI to put there.
-
-
-I checked for the compatible driver and found the author but no email address, so can I add Ulf Hansson <ulf.hansson@linaro.org> to the maintainers then?
-
-> 
-> Conor.
-> 
-> 
->> - Link to v1: https://lore.kernel.org/r/20250523-davinci-mmc-v1-1-ceebd8352d9c@gmail.com
->> ---
->>  .../devicetree/bindings/mmc/davinci_mmc.txt        | 32 ------------
->>  .../devicetree/bindings/mmc/ti,da830-mmc.yaml      | 61 ++++++++++++++++++++++
->>  2 files changed, 61 insertions(+), 32 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/mmc/davinci_mmc.txt b/Documentation/devicetree/bindings/mmc/davinci_mmc.txt
->> deleted file mode 100644
->> index 516fb0143d4c21d1c8e44a8846d55ea5458d7b74..0000000000000000000000000000000000000000
->> --- a/Documentation/devicetree/bindings/mmc/davinci_mmc.txt
->> +++ /dev/null
->> @@ -1,32 +0,0 @@
->> -* TI Highspeed MMC host controller for DaVinci
->> -
->> -The Highspeed MMC Host Controller on TI DaVinci family
->> -provides an interface for MMC, SD and SDIO types of memory cards.
->> -
->> -This file documents the properties used by the davinci_mmc driver.
->> -
->> -Required properties:
->> -- compatible:
->> - Should be "ti,da830-mmc": for da830, da850, dm365
->> - Should be "ti,dm355-mmc": for dm355, dm644x
->> -
->> -Optional properties:
->> -- bus-width: Number of data lines, can be <1>, <4>, or <8>, default <1>
->> -- max-frequency: Maximum operating clock frequency, default 25MHz.
->> -- dmas: List of DMA specifiers with the controller specific format
->> -	as described in the generic DMA client binding. A tx and rx
->> -	specifier is required.
->> -- dma-names: RX and TX  DMA request names. These strings correspond
->> -	1:1 with the DMA specifiers listed in dmas.
->> -
->> -Example:
->> -mmc0: mmc@1c40000 {
->> -	compatible = "ti,da830-mmc",
->> -	reg = <0x40000 0x1000>;
->> -	interrupts = <16>;
->> -	bus-width = <4>;
->> -	max-frequency = <50000000>;
->> -	dmas = <&edma 16
->> -		&edma 17>;
->> -	dma-names = "rx", "tx";
->> -};
->> diff --git a/Documentation/devicetree/bindings/mmc/ti,da830-mmc.yaml b/Documentation/devicetree/bindings/mmc/ti,da830-mmc.yaml
->> new file mode 100644
->> index 0000000000000000000000000000000000000000..1a97c3e447fd10f14bfe0af9e22f9479304f0f26
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/mmc/ti,da830-mmc.yaml
->> @@ -0,0 +1,61 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/mmc/ti,da830-mmc.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: TI Highspeed MMC host controller for DaVinci
->> +
->> +description:
->> +  The Highspeed MMC Host Controller on TI DaVinci family
->> +  provides an interface for MMC, SD and SDIO types of memory cards.
->> +
->> +allOf:
->> +  - $ref: mmc-controller.yaml
->> +
->> +maintainers:
->> +  - Conor Dooley <conor+dt@kernel.org>
->> +
->> +properties:
->> +  compatible:
->> +    enum:
->> +      - ti,da830-mmc
->> +      - ti,dm355-mmc
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  clocks:
->> +    maxItems: 1
->> +
->> +  interrupts:
->> +    maxItems: 2
->> +
->> +  dmas:
->> +    maxItems: 2
->> +
->> +  dma-names:
->> +    items:
->> +      - const: rx
->> +      - const: tx
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +
->> +unevaluatedProperties: false
->> +
->> +examples:
->> +  - |
->> +    #include <dt-bindings/interrupt-controller/irq.h>
->> +    mmc@1c40000 {
->> +        compatible = "ti,da830-mmc";
->> +        reg = <0x40000 0x1000>;
->> +        interrupts = <16 IRQ_TYPE_LEVEL_HIGH>,
->> +                     <17 IRQ_TYPE_LEVEL_HIGH>;
->> +        bus-width = <4>;
->> +        max-frequency = <50000000>;
->> +        dmas = <&edma 16>, <&edma 17>;
->> +        dma-names = "rx", "tx";
->> +    };
->> +...
->>
->> ---
->> base-commit: 7bac2c97af4078d7a627500c9bcdd5b033f97718
->> change-id: 20250523-davinci-mmc-c704440c3dd0
->>
->> Best regards,
->> -- 
->> Charan Pedumuru <charan.pedumuru@gmail.com>
->>
-
--- 
-Best Regards,
-Charan.
+>=20
+> stderr extract (GCC 11.2.0, MIPS Codescape):
+>=20
+> ./include/linux/minmax.h:68:57: warning: comparison is always true due
+>                           to limited range of data type [-Wtype-limits]
+>    68 | #define __is_nonneg(ux) statically_true((long long)(ux) >=3D 0)
+>       |                                                         ^~
+> drivers/net/ethernet/cadence/macb_main.c:2299:26: note: in expansion of
+>                                                             macro =E2=80=
+=98min=E2=80=99
+>  2299 |              hdrlen =3D min(skb_headlen(skb), bp->max_tx_length);
+>       |                       ^~~
+>=20
+> Signed-off-by: Th=C3=A9o Lebrun <theo.lebrun@bootlin.com>
+> ---
+>  drivers/net/ethernet/cadence/macb_main.c | 10 +++++-----
+>  1 file changed, 5 insertions(+), 5 deletions(-)
+>=20
+> diff --git a/drivers/net/ethernet/cadence/macb_main.c b/drivers/net/ether=
+net/cadence/macb_main.c
+> index 98e28d51a6e12c24ef27c939363eb43c0aec1951..6c6bc6aa23c718772b95b398e=
+807f193a38e141a 100644
+> --- a/drivers/net/ethernet/cadence/macb_main.c
+> +++ b/drivers/net/ethernet/cadence/macb_main.c
+> @@ -2035,7 +2035,7 @@ static unsigned int macb_tx_map(struct macb *bp,
+>  		count++;
+>  		tx_head++;
+> =20
+> -		size =3D min(len, bp->max_tx_length);
+> +		size =3D umin(len, bp->max_tx_length);
+>  	}
+> =20
+>  	/* Then, map paged data from fragments */
+> @@ -2045,7 +2045,7 @@ static unsigned int macb_tx_map(struct macb *bp,
+>  		len =3D skb_frag_size(frag);
+>  		offset =3D 0;
+>  		while (len) {
+> -			size =3D min(len, bp->max_tx_length);
+> +			size =3D umin(len, bp->max_tx_length);
+>  			entry =3D macb_tx_ring_wrap(bp, tx_head);
+>  			tx_skb =3D &queue->tx_skb[entry];
+> =20
+> @@ -2301,7 +2301,7 @@ static netdev_tx_t macb_start_xmit(struct sk_buff *=
+skb, struct net_device *dev)
+>  			return NETDEV_TX_BUSY;
+>  		}
+>  	} else
+> -		hdrlen =3D min(skb_headlen(skb), bp->max_tx_length);
+> +		hdrlen =3D umin(skb_headlen(skb), bp->max_tx_length);
+> =20
+>  #if defined(DEBUG) && defined(VERBOSE_DEBUG)
+>  	netdev_vdbg(bp->dev,
+> @@ -4573,8 +4573,8 @@ static int macb_init(struct platform_device *pdev)
+>  	 * each 4-tuple define requires 1 T2 screener reg + 3 compare regs
+>  	 */
+>  	reg =3D gem_readl(bp, DCFG8);
+> -	bp->max_tuples =3D min((GEM_BFEXT(SCR2CMP, reg) / 3),
+> -			GEM_BFEXT(T2SCR, reg));
+> +	bp->max_tuples =3D umin((GEM_BFEXT(SCR2CMP, reg) / 3),
+> +			      GEM_BFEXT(T2SCR, reg));
+>  	INIT_LIST_HEAD(&bp->rx_fs_list.list);
+>  	if (bp->max_tuples > 0) {
+>  		/* also needs one ethtype match to check IPv4 */
+>=20
 
 
