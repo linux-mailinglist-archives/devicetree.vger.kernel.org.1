@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-228481-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228482-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id F14AEBEE317
-	for <lists+devicetree@lfdr.de>; Sun, 19 Oct 2025 12:35:26 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 422A3BEE32F
+	for <lists+devicetree@lfdr.de>; Sun, 19 Oct 2025 12:39:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id C8B224E71F7
-	for <lists+devicetree@lfdr.de>; Sun, 19 Oct 2025 10:35:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id ED1F4189E90B
+	for <lists+devicetree@lfdr.de>; Sun, 19 Oct 2025 10:39:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 524182E229A;
-	Sun, 19 Oct 2025 10:35:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD1182BD58A;
+	Sun, 19 Oct 2025 10:39:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZLdMyMFr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tFTXEv/1"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 274C423EA84;
-	Sun, 19 Oct 2025 10:35:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E891354AC1;
+	Sun, 19 Oct 2025 10:39:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760870122; cv=none; b=e149HbaB2tr73XkNdZc7Go6HIbc2Czq5KlHzrdkFPDyDyk0RBS46apKVIJMQ3CIe6kOrv/mCqljUMkvwNs1TagL2ZA/u1FRemo0VEj1Qf6yqvCcXbkjY+r/vRkPbocpDorKtyju04JXXY+IdFntjPXE7iBVS0pzVChkcUgCWLqQ=
+	t=1760870363; cv=none; b=omGvOG/yWQ1WA2nF1nqZakoi4ItQLObVkUwUWw1Y8rmQP092G8my0zcowKrAjuGUDJg/KqGOqFEiKipfOevbCE2/JXdEMOnRY6+s8cZ9kB5svEOylfNlRtpxhjfrrwHfoSdkIvnoRCG5i1WkImf9scX/sGBmfOB80PxggW0aVAQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760870122; c=relaxed/simple;
-	bh=cxIdtaRg/BtmdZgED9HMaz+Haxk1Imc5akjd84XESrQ=;
+	s=arc-20240116; t=1760870363; c=relaxed/simple;
+	bh=ds76u8Jx8MbIVK+kKt1bsmI7ARd9Ph/NuaUu2MqFFck=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=SE3mJEcx1THyAyOEE1Mst+NtWD69zKMIiGilApcTK3PHmQO9mx3P1P3DUb8GB3M8fT+CRsdsPPjFywA2JcahgEPrhk1RFNHhe7EfFAW6hheH1K3DzCbrrDZIR3YBF0GTj7MDdLBD+X7pqjBnE1atRk6lRu37Vecp6WHq1IBViro=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZLdMyMFr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 76893C4CEE7;
-	Sun, 19 Oct 2025 10:35:18 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=blt1m34Tz4clDJq6Y/qoJrOMvu/ct7RbVXqkcD8sFOHxuALytR6wf6Id4vHw9G5pdDEPFBwO1aE/+HXfQPAZ2jVBglM/f3gZYxnvD3WU1eeL+Wz4K+SeJM8eRgqsLbyq5dhrANA8B0917qlToGfwfXYVOgdL0ZpQPS8COMguRDE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tFTXEv/1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 78CABC4CEE7;
+	Sun, 19 Oct 2025 10:39:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760870121;
-	bh=cxIdtaRg/BtmdZgED9HMaz+Haxk1Imc5akjd84XESrQ=;
+	s=k20201202; t=1760870363;
+	bh=ds76u8Jx8MbIVK+kKt1bsmI7ARd9Ph/NuaUu2MqFFck=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ZLdMyMFr5LDHZLCZ+Yq//1tvroBQwEIOO+TZ1q44CNhlCjfSYi2zhf4uGN9297++h
-	 ZqguTP0r6A9FE5MQ+zfUjr5+rTA0+CA8USrsv/ugY6K6g0c9Hkw+8xnP3NyN6vML9G
-	 rhWG6Wpc3L1bbRnCV57evr9sn8RF1BKokjcbKuzt4fd/QrfzGeZau8zQu54eMQKVZK
-	 ISoUVvFyjSK/4VKVrytg2i2LBqcsQYzVDkZovaK4IE0mfRPyQGinNkeeu89MVsuieH
-	 ULVRAxMvjKia6kNvzyUprxHH5/KRkhi+V5Z6NdtK/O3Xq97n1tY+d1528gZgOo6TVz
-	 npF66jfDo5NDw==
-Message-ID: <cc23d41d-6a5e-44d7-ad4b-1b39566dbce8@kernel.org>
-Date: Sun, 19 Oct 2025 12:35:16 +0200
+	b=tFTXEv/1x/W4GwmEMzrGNJ4iTicgUdG8ruSDH0i8WibK8O6gbSRHUvSHD4hsv1aAK
+	 857/GxPc+9GsShiKb+lTm7JJIIDKKWoy7Zx9G/uDwkgz2qx+HJLEXN9DQ13GznzI5t
+	 Stjh7HlizqRqBe7Mu+/Suh+S8HjQvIVAKWO7Cipn25gIfg8aPvh2yVIWXAcv9midro
+	 tYbZoyho7h86viKLJKMp7wzWFvzAou5y7LZmOlEWh9CSoXR56dRd247BlrR5n8zDqQ
+	 eHrQaXiUiLN3PoWqMsUPCu6VGdatm5wUF5vOWC5ji3q+VgGGs7J2NpPfXEYFUjsPHK
+	 Idle4PBXhi9Qw==
+Message-ID: <e45be5e9-c347-4ec7-b9e7-2920e9a279bd@kernel.org>
+Date: Sun, 19 Oct 2025 12:39:18 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,14 +50,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/3] arm64: dts: nuvoton: fix warning and nodes order
-To: Tomer Maimon <tmaimon77@gmail.com>, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, avifishman70@gmail.com, tali.perry1@gmail.com,
- joel@jms.id.au, venture@google.com, yuenn@google.com, benjaminfair@google.com
-Cc: openbmc@lists.ozlabs.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250925200625.573902-1-tmaimon77@gmail.com>
- <20250925200625.573902-2-tmaimon77@gmail.com>
+Subject: Re: [PATCH v3 1/4] dt: bindings: Add virtualcolor class dt bindings
+ documentation.
+To: Jonathan Brophy <professorjonny98@gmail.com>, lee Jones <lee@kernel.org>,
+ Pavel Machek <pavel@kernel.org>,
+ Jonathan Brophy <professor_jonny@hotmail.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Radoslav Tsvetkov <rtsvetkov@gradotech.eu>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-leds@vger.kernel.org
+References: <20251019092331.49531-1-professorjonny98@gmail.com>
+ <20251019092331.49531-2-professorjonny98@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -103,42 +107,73 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250925200625.573902-2-tmaimon77@gmail.com>
+In-Reply-To: <20251019092331.49531-2-professorjonny98@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 25/09/2025 22:06, Tomer Maimon wrote:
-> Fix the warning in the gcr and timer nodes, and modify nodes order by
-
-What warning?
-
-> ascending unit address.
-
-Why are you combining multiple issues into one commit. No. Read
-submitting patches how to organize your work.
-
+On 19/10/2025 11:23, Jonathan Brophy wrote:
+> From: Jonathan Brophy <professor_jonny@hotmail.com>
 > 
-> Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
+> Add DT bindings for the LEDs virtualcolor class framework. Add
+
+Why? What part of hardware or real system use case is being solved here?
+
+> LED-FUNCTION-VIRTUAL-STATUS ID to the FUNCTION ID list for device tree
+> bindings.
+> 
+> co-developed-by: Radoslav Tsvetkov <rtsvetkov@gradotech.eu>
+
+That's not a proper tag. See submitting patches.
+
+Please use subject prefixes matching the subsystem. You can get them for
+example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+your patch is touching. For bindings, the preferred subjects are
+explained here:
+https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
+
+I don't understand what is happening with your patchset. It is being
+changed in unexpected way, like something previously correct - like
+subject - now is changed for some unexplained reason.
+
+
+> Signed-off-by: Radoslav Tsvetkov <rtsvetkov@gradotech.eu>
+> Signed-off-by: Jonathan Brophy <professor_jonny@hotmail.com>
 > ---
->  .../dts/nuvoton/nuvoton-common-npcm8xx.dtsi   | 35 +++++++++----------
->  1 file changed, 17 insertions(+), 18 deletions(-)
+>  .../leds/leds-class-virtualcolor.yaml         | 90 +++++++++++++++++++
+>  include/dt-bindings/leds/common.h             |  4 +
+>  2 files changed, 94 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/leds/leds-class-virtualcolor.yaml
 > 
-> diff --git a/arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi b/arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi
-> index 24133528b8e9..a43514f624c0 100644
-> --- a/arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi
-> +++ b/arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi
-> @@ -18,7 +18,7 @@ soc {
->  		ranges;
->  
->  		gcr: system-controller@f0800000 {
-> -			compatible = "nuvoton,npcm845-gcr", "syscon";
-> +			compatible = "nuvoton,npcm845-gcr", "syscon", "simple-mfd";
+> diff --git a/Documentation/devicetree/bindings/leds/leds-class-virtualcolor.yaml b/Documentation/devicetree/bindings/leds/leds-class-virtualcolor.yaml
+> new file mode 100644
+> index 000000000000..8cbbbf0d746c
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/leds/leds-class-virtualcolor.yaml
+> @@ -0,0 +1,90 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/leds/leds-class-virtualcolor.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: virtualcolor LED class
 
-This makes no sense. No children here.
+I don't understand what is "virtualcolor"
 
->  			reg = <0x0 0xf0800000 0x0 0x1000>;
->  		};
->  
+> +
+> +maintainers:
+> +  - Radoslav Tsvetkov <rtsvetkov@gradotech.eu>
+> +
+> +description: |
+
+Do not need '|' unless you need to preserve formatting.
+
+> +  Validates individual virtual LED nodes that aggregate multiple monochromatic
+
+This sentence makes no sense. You describe here hardware in full
+sentence. How hardware can "validates"?
+
+
 Best regards,
 Krzysztof
 
