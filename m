@@ -1,172 +1,145 @@
-Return-Path: <devicetree+bounces-228530-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228531-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2B80BEEAB1
-	for <lists+devicetree@lfdr.de>; Sun, 19 Oct 2025 19:13:44 +0200 (CEST)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 61A31BEEAC1
+	for <lists+devicetree@lfdr.de>; Sun, 19 Oct 2025 19:23:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5740C3E5174
-	for <lists+devicetree@lfdr.de>; Sun, 19 Oct 2025 17:13:43 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id F23293494C3
+	for <lists+devicetree@lfdr.de>; Sun, 19 Oct 2025 17:23:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C75541FDE31;
-	Sun, 19 Oct 2025 17:13:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C834215077;
+	Sun, 19 Oct 2025 17:23:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ofo4JYY+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="N+gJzz3O"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 971CF1E5B63;
-	Sun, 19 Oct 2025 17:13:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31E4618D658;
+	Sun, 19 Oct 2025 17:23:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760894020; cv=none; b=CWfP0h4Bylr+YQLlCD/IWW/2xUv/Of2FB6Y9lFUZZQ8Wf6zttjPIbLTwvL+JPd/yyIhrd9yq0fkr8DtFKNi/WBskHzopWHs9xCqLEKQBjxilNcVvBfxEpwa5ACM35+YsRsKnd0UsFsS3lCnzdR1qh9uDi9Ap681FkDb6jCwiS0M=
+	t=1760894620; cv=none; b=rvetVlk29i6EU5ryNAh83BF383wmVgoFhFV5+e3mn3Qqpi+GfrM8tQz+fDcDsyoOv37pP2d/g/tEvZKPSrFiDl9SFqzjaTGZxgTalsImVtZT90hDmoTu+KAimJlryKHt6dZyHoUc/rQZN1Sj4Twe/I4dpfwaZ57HiXPUYaFp8O4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760894020; c=relaxed/simple;
-	bh=xyEfLRN8ZylZ1U+SxjoVN+rv4eGUG+EVIb9AGdg00OM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=UiRZrTu2/fPLI/HsEiXm5Do93KA370BTggaRfjkm0sKBYpRSfOLN8iRFo33wqlEbujjZtIU8OBK2iaM+ZVra6x5/xp/tpvAaYFZh9wCPy0Stg4qUH1GSnHF0iEL0OAxVwmzhZxztw74k9G3XlAKCKzx/qZ5bJi3cS389WIzGbJU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ofo4JYY+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BFAC4C4CEE7;
-	Sun, 19 Oct 2025 17:13:34 +0000 (UTC)
+	s=arc-20240116; t=1760894620; c=relaxed/simple;
+	bh=YjwgU07lTttycLobcPqPwzVy5bTSFOQ+Tt11e6IE6kI=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=o2Z6iA6k21nrEju0P1RO+TRZUkO3mBdgK/4agCULhAyn3UVwdoAMGlWxeLrDbDbgZE8KkV/wGQ3pOkVQr99fZ3APUFx6qpBLjPgyK993WTGFWr6lTuOPiCGbNue/9OMr1uxPGePof317U1evml2sp7ghYPm/NfUjwto2aeziBY0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=N+gJzz3O; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D43DC4CEE7;
+	Sun, 19 Oct 2025 17:23:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760894020;
-	bh=xyEfLRN8ZylZ1U+SxjoVN+rv4eGUG+EVIb9AGdg00OM=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ofo4JYY+lLe2QPhNy5mzWgfYWwrDE48j9YfVjx7YiJXSOo0DnJyRis/T2jpXm2SuY
-	 JWF7PegfoUrbDw3/v2Dlj5T1WPVmaK3LcNdrZbOMinsmVjRc3DYBI95B1CRGimQP8J
-	 Xab2JQVQNgeWUeh4o+Q/oZWwlid+ntkNNdKXcjjZ1i9IEiBqZZgPhdzBQTxwmqu4xK
-	 SqVMGbSApmdQDvnbHq6nVQ/mM4610CviYIgAhKHuRF71634iBHnikKYmo2pRT7rJtc
-	 JPMNkC6+l3VL0CnMG732S/F9/LPMvYXsLhoxBxqJBtv4A54MfnIndkHUXti6eo9tuI
-	 I2r/wt2YApV+w==
-Message-ID: <58446b2d-560f-4a7e-890a-78ae0bb92908@kernel.org>
-Date: Sun, 19 Oct 2025 19:13:32 +0200
+	s=k20201202; t=1760894619;
+	bh=YjwgU07lTttycLobcPqPwzVy5bTSFOQ+Tt11e6IE6kI=;
+	h=Date:From:To:Cc:Subject:From;
+	b=N+gJzz3ORVwoPCxEgwHELlWleaV/eXlwHdSDnoyEk7zopJVpmaxB1E5YGu6Jus3+h
+	 9AJmubMDFHMChgLfXt8EWfNcDiqmGO2Kq8EB31+ApECRdM6uYTpQtBzo5nly75ki2h
+	 adHYWL/VaYc2hohr0YtdWNxLWYHLjSyL0tWxKxDFEhBzBChrPjN6NjMTRxwBfUMsip
+	 P55eJGfSzy9PYd87YFuEE4/w+hdAGSl1M/9OL75GYYQJLzpcuVueuCacaGK4NCjf/f
+	 zioopatQIHDhffQmgmUeyVTZGdVihaKhHxQjn69e/xal7azX95SVU1lisSCLpSpvWu
+	 VzMwt7LscrluQ==
+Date: Sun, 19 Oct 2025 10:23:37 -0700
+From: Drew Fustini <fustini@kernel.org>
+To: soc@kernel.org
+Cc: Arnd Bergmann <arnd@arndb.de>, Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Alexandre Ghiti <alex@ghiti.fr>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Anup Patel <anup@brainfault.org>, Joel Stanley <joel@jms.id.au>,
+	Joel Stanley <jms@oss.tenstorrent.com>,
+	Nicholas Piggin <npiggin@oss.tenstorrent.com>,
+	Michael Neuling <mikey@neuling.org>,
+	Michael Ellerman <mpe@kernel.org>, Andy Gross <agross@kernel.org>,
+	Anirudh Srinivasan <asrinivasan@oss.tenstorrent.com>,
+	Paul Walmsley <pjw@kernel.org>,
+	Drew Fustini <dfustini@oss.tenstorrent.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org
+Subject: [GIT PULL] RISC-V Tenstorrent Devicetree for v6.19
+Message-ID: <aPUemXdOFZEdkayE@x1>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/3] dt-bindings: display/msm: Add SM6150 DisplayPort
- controller
-To: xiangxu.yin@oss.qualcomm.com, Rob Clark <robin.clark@oss.qualcomm.com>,
- Dmitry Baryshkov <lumag@kernel.org>, Abhinav Kumar
- <abhinav.kumar@linux.dev>, Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
- Sean Paul <sean@poorly.run>, Marijn Suijten <marijn.suijten@somainline.org>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
- freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, fange.zhang@oss.qualcomm.com,
- yongxing.mou@oss.qualcomm.com, li.liu@oss.qualcomm.com
-References: <20251015-add-displayport-support-to-qcs615-devicetree-v4-0-aa2cb8470e9d@oss.qualcomm.com>
- <20251015-add-displayport-support-to-qcs615-devicetree-v4-1-aa2cb8470e9d@oss.qualcomm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20251015-add-displayport-support-to-qcs615-devicetree-v4-1-aa2cb8470e9d@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-On 15/10/2025 03:53, Xiangxu Yin via B4 Relay wrote:
-> From: Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
-> 
-> Describe the DisplayPort controller for Qualcomm SM6150 SoC.
-> 
-> Signed-off-by: Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
-> ---
->  .../devicetree/bindings/display/msm/qcom,sm6150-mdss.yaml     | 11 +++++++++++
->  1 file changed, 11 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sm6150-mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sm6150-mdss.yaml
-> index 9ac24f99d3ada1c197c9654dc9babebccae972ed..935eca23ce6b30b81b3ad778e5fcacc817a230c3 100644
-> --- a/Documentation/devicetree/bindings/display/msm/qcom,sm6150-mdss.yaml
-> +++ b/Documentation/devicetree/bindings/display/msm/qcom,sm6150-mdss.yaml
-> @@ -51,6 +51,16 @@ patternProperties:
->        compatible:
->          const: qcom,sm6150-dpu
->  
-> +  "^displayport-controller@[0-9a-f]+$":
-> +    type: object
-> +    additionalProperties: true
-> +    properties:
-> +      compatible:
-> +        items:
-> +          - const: qcom,sm6150-dp
-> +          - const: qcom,sm8150-dp
+Hi Arnd,
 
-6150 is compatible with 8150 or 8350? I have doubts.
+Please pull these changes which add Tenstorrent as a vendor and enable
+support for Blackhole. It adds the appropriate entries in MAINTAINERS.
+The changes all come from a single series [1] posted by myself. Joel
+Stanley has reviewed and tested all the patches. Rob acked or reviewed
+all the bindings patches. W=1 dtbs_check and dt_binding_check produce
+no warnings.
 
-> +          - const: qcom,sm8350-dp
-> +
->    "^dsi@[0-9a-f]+$":
->      type: object
->      additionalProperties: true
-> @@ -132,6 +142,7 @@ examples:
->                  port@0 {
->                    reg = <0>;
->                    dpu_intf0_out: endpoint {
-> +                      remote-endpoint = <&mdss_dp0_in>;
+[1] https://lore.kernel.org/linux-riscv/20251013-tt-bh-dts-v3-0-9f058d4bbbda@oss.tenstorrent.com/
 
-Mention reason for doing this in the commit msg.
+Thanks,
+Drew
 
-Also, messed up indentation.
+The following changes since commit 3a8660878839faadb4f1a6dd72c3179c1df56787:
 
->                    };
->                  };
->  
-> 
+  Linux 6.18-rc1 (2025-10-12 13:42:36 -0700)
 
+are available in the Git repository at:
 
-Best regards,
-Krzysztof
+  git@github.com:tenstorrent/linux.git tags/tenstorrent-dt-for-v6.19
+
+for you to fetch changes up to a71e6e8eea8ae2d624f097911f43357bba06d2a5:
+
+  riscv: defconfig: Enable Tenstorrent SoCs (2025-10-18 10:44:15 -0700)
+
+----------------------------------------------------------------
+Tenstorrent device tree for v6.19
+
+Add Tenstorrent as a vendor and enable support for the Blackhole SoC
+in Blackhole P100 and P150 PCIe cards. The SoC contains four RISC-V
+CPU tiles consisting of 4x SiFive X280 cores.
+
+There is a virtual UART implemented in OpenSBI firmware that allows a
+console program on the PCIe host to communicate through shared memory
+with Linux running on the Blackhole card.
+
+Link: https://github.com/tenstorrent/tt-bh-linux
+Link: https://github.com/tenstorrent/opensbi/
+Signed-off-by: Drew Fustini <fustini@kernel.org>
+
+----------------------------------------------------------------
+Drew Fustini (8):
+      dt-bindings: vendor-prefixes: Add Tenstorrent AI ULC
+      dt-bindings: riscv: Add Tenstorrent Blackhole compatible
+      dt-bindings: riscv: cpus: Add SiFive X280 compatible
+      dt-bindings: timers: Add Tenstorrent Blackhole compatible
+      dt-bindings: interrupt-controller: Add Tenstorrent Blackhole compatible
+      riscv: dts: Add Tenstorrent Blackhole SoC PCIe cards
+      riscv: Kconfig.socs: Add ARCH_TENSTORRENT for Tenstorrent SoCs
+      riscv: defconfig: Enable Tenstorrent SoCs
+
+ .../interrupt-controller/sifive,plic-1.0.0.yaml    |   1 +
+ Documentation/devicetree/bindings/riscv/cpus.yaml  |   1 +
+ .../devicetree/bindings/riscv/tenstorrent.yaml     |  28 ++++++
+ .../devicetree/bindings/timer/sifive,clint.yaml    |   1 +
+ .../devicetree/bindings/vendor-prefixes.yaml       |   2 +
+ MAINTAINERS                                        |   9 ++
+ arch/riscv/Kconfig.socs                            |   8 ++
+ arch/riscv/boot/dts/Makefile                       |   1 +
+ arch/riscv/boot/dts/tenstorrent/Makefile           |   2 +
+ arch/riscv/boot/dts/tenstorrent/blackhole-card.dts |  14 +++
+ arch/riscv/boot/dts/tenstorrent/blackhole.dtsi     | 108 +++++++++++++++++++++
+ arch/riscv/configs/defconfig                       |   1 +
+ 12 files changed, 176 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/riscv/tenstorrent.yaml
+ create mode 100644 arch/riscv/boot/dts/tenstorrent/Makefile
+ create mode 100644 arch/riscv/boot/dts/tenstorrent/blackhole-card.dts
+ create mode 100644 arch/riscv/boot/dts/tenstorrent/blackhole.dtsi
 
