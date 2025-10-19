@@ -1,248 +1,274 @@
-Return-Path: <devicetree+bounces-228454-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228455-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7A86BEE0CE
-	for <lists+devicetree@lfdr.de>; Sun, 19 Oct 2025 10:42:59 +0200 (CEST)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id EAD46BEE158
+	for <lists+devicetree@lfdr.de>; Sun, 19 Oct 2025 10:58:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 530B43E3113
-	for <lists+devicetree@lfdr.de>; Sun, 19 Oct 2025 08:42:58 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 7065234AB67
+	for <lists+devicetree@lfdr.de>; Sun, 19 Oct 2025 08:58:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B948F17A309;
-	Sun, 19 Oct 2025 08:42:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A87A2D3EF6;
+	Sun, 19 Oct 2025 08:58:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jlLXTfqw"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="js304GW5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 870C542050;
-	Sun, 19 Oct 2025 08:42:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DBA32D29A9
+	for <devicetree@vger.kernel.org>; Sun, 19 Oct 2025 08:57:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760863374; cv=none; b=NTouwtqqoreYq/kEgrMla0RUXbsVWotEu6JrY0us2pY8lLJjjnIPqH1suoNPmMfJrqJelsEPerrjmlADdmVjkaBuYlTS41swsNgj2qvWjfdVjLqb36A4MoER4DyG+tmhvPyQJAj7C2RKrMODjd3CjgkUPxMEv3x/t9mXHgM7YJ4=
+	t=1760864283; cv=none; b=akxbFyvWujkpT0f2OOUtmDgObcawYsyfWUZmIsU/Abj0XvhXLhelNhdzs6KHBOAXYPHFPLp4q5TLLvXOkRQaWOLJQTCsxfzn4Re6bBdh2tvTzuN66EvjVwalL7Uz4b+q5zV0N2IVOEFu5gPKxVEyDPn4bsuBA6bP5Cn7mtAMmNU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760863374; c=relaxed/simple;
-	bh=3rC1rXs13g9kVylyOUE74ytjRnI/cTBx45WIM2YR9F4=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=hoOVOMlbmRC18yNb+nnzNM3NAoqN0ksuiHq8cYoDsnDM+OYXFXRNls7Jrv2HH+6484Jg0rMbl43VBKrZxhU8IMZT/tO8dthLR5XxgL5GKW9BalHYHkYovdXiBMFLJxTNG9rRDDQK+4Ff5g4tjKg0PASjYkhFpEQJzcnHlZRtoRQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jlLXTfqw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6E10AC4CEE7;
-	Sun, 19 Oct 2025 08:42:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760863374;
-	bh=3rC1rXs13g9kVylyOUE74ytjRnI/cTBx45WIM2YR9F4=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=jlLXTfqwuandNhbhBrdc/JsTfqaBN3pts9UR7ARxShCN7y8isp+YXjPf+XdUk132s
-	 h7NUfsdwXtTwUxpqXfGpjEHBmOJV8fsCEKksYQe8u9dOxuOor9TlLNdfW1/vR0A4xM
-	 jn+MHwJK3hmuqCz9JV+081s/PSEc0CXcFJpJTSzA0upSXggrYiQasXrKrAK+CxdOTZ
-	 ZilEryxHo6JDbXF2hmEhMjeZBY2iHE8L2y72YTS47eyVpsuDUkPui8JWJvFo+goOVM
-	 rZbh+/5rbDwL8hDpp43nFtoq+jicpRTiQb5DCNBAb+8hf1SbBMYHPdT2TEDPdkWN7K
-	 1U6jD29KHW87w==
-Date: Sun, 19 Oct 2025 09:42:46 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc: dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org,
- robh@kernel.org, conor+dt@kernel.org, krzk+dt@kernel.org,
- linux-iio@vger.kernel.org, s32@nxp.com, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, chester62515@gmail.com, mbrugger@suse.com,
- ghennadi.procopciuc@oss.nxp.com, Vinod Koul <vkoul@kernel.org>,
- dmaengine@vger.kernel.org
-Subject: Re: [PATCH v5 2/2] iio: adc: Add the NXP SAR ADC support for the
- s32g2/3 platforms
-Message-ID: <20251019094246.38daf7bf@jic23-huawei>
-In-Reply-To: <20251017164238.1908585-3-daniel.lezcano@linaro.org>
-References: <20251017164238.1908585-1-daniel.lezcano@linaro.org>
-	<20251017164238.1908585-3-daniel.lezcano@linaro.org>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1760864283; c=relaxed/simple;
+	bh=Q8g0uYuPJ0HvJDfTBcCJanzK7KYy3ghXHYdZyaJCIOw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=gmBKSs/zCcW0zsZHr/9bWbz/puHH7QCKHy6IRTJEjY5HCcLV7hLa0kvQ9pCjAcJzT48s6d9cxhywZTQ0ZalU5TSyf5bBDcLpKwT1rEZZSu9olhvCy+ct5ZwdyD9tBgMTZCdoYU3EwB1KkxAJ1EYpWTVte1dg0XiYn0ESAsGSnp4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=js304GW5; arc=none smtp.client-ip=209.85.214.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-290dc630a07so14272805ad.1
+        for <devicetree@vger.kernel.org>; Sun, 19 Oct 2025 01:57:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1760864279; x=1761469079; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=9rLkUjfmUpuuFgqyXa/IslTGeP3g1HLNLFzp4a7VvL0=;
+        b=js304GW56cfhbXipc+xMvjpGkF3S9mxWU7S3gfPwYA3GlNtJ1iaw332lXJazsm7cV0
+         lOlwffJ+XK9uZdwh6r3MizosfgSXmSakgDdYFuv0K7fHBxaoiAdHiwjzjcVzNg3InvOw
+         dwFEqPWLOnoUApTtTgXZ8tHXlgCoJS54ZyAAzzFZQxc202308icZjqm3XAM1GaRxOEB0
+         QWfPcTj1I9zX1LtYZKbsI0Zp+KA3khUnqoK4Qed/uBOw/cQNZljDjfBvS20StU46Jel9
+         8BPdfJw7GbkyDzZ9VmZQ+XpAmgjJUuM/Orsb1NmPkRF7RUDD3D9dECyd2y2zg15LVMeQ
+         CvtA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1760864279; x=1761469079;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=9rLkUjfmUpuuFgqyXa/IslTGeP3g1HLNLFzp4a7VvL0=;
+        b=Ns+BB5UpA3ai6bqjqOTMNqtAdq9OH8XP+tftktAQ6nVEH5FjFV1SHQAtjJwnX4cZpa
+         5LIbePmUOOZMSc1C7i4PfCIQvL/1ELZHwlW16pJ741NNxRMrI+p+Ctmi1zm2YOSVIlA5
+         0csU+9786+z1Xq2S0zlHVgec9xCBIzftLpEknj1VuQ/EWrnjbNOuiSo1wtt1YGFh9rLU
+         T1iFrUDxbXThnCfppZTpMWJjheaedmd4zKI/nog+QjH9TSv+cQzJVGQM3nUHMMqHSQ1K
+         YOsUDjEBzQTWfqQQ/y+RjZA3sJLr8FppUzJQINqlTdNPlKcIL5F+aoHsWNNnq933Jsra
+         K32w==
+X-Forwarded-Encrypted: i=1; AJvYcCUmC4sQ5IvnDiA0IbNALQ1guxQ1JmGxQitk0lltJUbwBKOO4ivLpqtWUr02U8y2TSBci6msZvlC83Co@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxfdejdt7ZtZHzt2ZCdso2c7NyuE7FjukZSjItNuvC7LSfIbuiV
+	4ROa+7rynbXnIwxVLPJh9tA/E59QjH5UVXHgeX7RNm21FK3BGfm2PUTl
+X-Gm-Gg: ASbGncvP6HlQN7RSgTHj3+JPGjTXlk+mNE2SWF2W41FmXmwhSuLkq2zxDxiTzSYxjP3
+	seA1QEzNuit0rvuzgv7qEJHP4H0YGy0J70Z1FeUXn1fl+65xOXr3jIHj7XUpXRLXzaYDVAB+U9X
+	AI8H5XTAB8POPgKJA7YIAnBMXaXTYQ/6VDOADWV68DuY0MQkuPi6hBnlnEcsmKKbeTLSU59ziiE
+	B/LtYwcEwOgvxc77mpkA+4295nh9raVoVu0O047f2FLHbHQJtAStEb9qz3bmeSJEaFNzdBB9WVc
+	ssF3Eocqlen/22m+igQ4Wvr56ceD8spO+avUl4OAkXP72zNe1jFUW9wEiJ3kMjiPlTAoIJmsG6r
+	VvYAJg1ABzCXq0EtH8pWjHkyM1NZbhlMc54g0k7JKm1Gu5fb6rcQyH9HHKOtCOLyRJw94FT4rPC
+	v5zwx+QAYtGtQamjqnXi+jooqUHA==
+X-Google-Smtp-Source: AGHT+IGniGBehwgTrgHbJNS41elvKChJOOZoogGwCpqJJzL/0rB3g2ONAI0A7h0Py6t3LZ21L1nT4g==
+X-Received: by 2002:a17:903:244f:b0:261:e1c0:1c44 with SMTP id d9443c01a7336-290cc2f83a5mr120441135ad.40.1760864279337;
+        Sun, 19 Oct 2025 01:57:59 -0700 (PDT)
+Received: from [192.168.1.4] ([223.181.116.113])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2924721980bsm47078665ad.110.2025.10.19.01.57.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 19 Oct 2025 01:57:58 -0700 (PDT)
+Message-ID: <454763e4-8965-4f95-b6ee-e6dd4d62c320@gmail.com>
+Date: Sun, 19 Oct 2025 14:27:47 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/2] dt-bindings: mmc: ti,omap2430-sdhci: convert to DT
+ schema
+To: Rob Herring <robh@kernel.org>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Paul Barker <paul.barker@sancloud.com>,
+ Marc Murphy <marc.murphy@sancloud.com>, Tony Lindgren <tony@atomide.com>,
+ Kishon Vijay Abraham I <kishon@kernel.org>, linux-mmc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-omap@vger.kernel.org
+References: <20251011-ti-sdhci-omap-v3-0-9487ef2de559@gmail.com>
+ <20251011-ti-sdhci-omap-v3-2-9487ef2de559@gmail.com>
+ <20251015131145.GA3232873-robh@kernel.org>
+Content-Language: en-US
+From: Charan Pedumuru <charan.pedumuru@gmail.com>
+In-Reply-To: <20251015131145.GA3232873-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On Fri, 17 Oct 2025 18:42:38 +0200
-Daniel Lezcano <daniel.lezcano@linaro.org> wrote:
 
-> From: Stefan-Gabriel Mirea <stefan-gabriel.mirea@nxp.com>
+
+On 15-10-2025 18:41, Rob Herring wrote:
+> On Sat, Oct 11, 2025 at 08:40:24AM +0000, Charan Pedumuru wrote:
+>> Convert TI OMAP SDHCI Controller binding to YAML format.
+>> Changes during Conversion:
+>> - Define new properties like "clocks", "clock-names",
+>>   "ti,needs-special-reset", "ti,needs-special-hs-handling",
+>>   "pbias-supply", "cap-mmc-dual-data-rate" and "power-domains" to
+>>   resolve dtb_check errors.
+>> - Remove "pinctrl-names" and "pinctrl-<n>"
+>>   from required as they are not necessary for all DTS files.
+>> - Remove "ti,hwmods" property entirely from the YAML as the
+>>   DTS doesn't contain this property for the given compatibles and the
+>>   text binding is misleading.
+>> - Add "clocks", "clock-names", "max-frequency" and "ti,needs-special-reset"
+>>   to the required properties based on the compatible and the text binding
+>>   doesn't mention these properties as required.
+>> - Add missing strings like "default-rev11", "sdr12-rev11", "sdr25-rev11",
+>>   "hs-rev11", "sdr25-rev11" and "sleep" to pinctrl-names string array
+>>   to resolve errors detected by dtb_check.
+>>
+>> Signed-off-by: Charan Pedumuru <charan.pedumuru@gmail.com>
+>> ---
+>>  .../devicetree/bindings/mmc/sdhci-omap.txt         |  43 -----
+>>  .../devicetree/bindings/mmc/ti,omap2430-sdhci.yaml | 202 +++++++++++++++++++++
+>>  2 files changed, 202 insertions(+), 43 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/mmc/sdhci-omap.txt b/Documentation/devicetree/bindings/mmc/sdhci-omap.txt
+>> deleted file mode 100644
+>> index f91e341e6b36c410275e6f993dd08400be3fc1f8..0000000000000000000000000000000000000000
+>> --- a/Documentation/devicetree/bindings/mmc/sdhci-omap.txt
+>> +++ /dev/null
+>> @@ -1,43 +0,0 @@
+>> -* TI OMAP SDHCI Controller
+>> -
+>> -Refer to mmc.txt for standard MMC bindings.
+>> -
+>> -For UHS devices which require tuning, the device tree should have a "cpu_thermal" node which maps to the appropriate thermal zone. This is used to get the temperature of the zone during tuning.
+>> -
+>> -Required properties:
+>> -- compatible: Should be "ti,omap2430-sdhci" for omap2430 controllers
+>> -	      Should be "ti,omap3-sdhci" for omap3 controllers
+>> -	      Should be "ti,omap4-sdhci" for omap4 and ti81 controllers
+>> -	      Should be "ti,omap5-sdhci" for omap5 controllers
+>> -	      Should be "ti,dra7-sdhci" for DRA7 and DRA72 controllers
+>> -	      Should be "ti,k2g-sdhci" for K2G
+>> -	      Should be "ti,am335-sdhci" for am335x controllers
+>> -	      Should be "ti,am437-sdhci" for am437x controllers
+>> -- ti,hwmods: Must be "mmc<n>", <n> is controller instance starting 1
+>> -	     (Not required for K2G).
+>> -- pinctrl-names: Should be subset of "default", "hs", "sdr12", "sdr25", "sdr50",
+>> -		 "ddr50-rev11", "sdr104-rev11", "ddr50", "sdr104",
+>> -		 "ddr_1_8v-rev11", "ddr_1_8v" or "ddr_3_3v", "hs200_1_8v-rev11",
+>> -		 "hs200_1_8v",
+>> -- pinctrl-<n> : Pinctrl states as described in bindings/pinctrl/pinctrl-bindings.txt
+>> -
+>> -Optional properties:
+>> -- dmas:		List of DMA specifiers with the controller specific format as described
+>> -		in the generic DMA client binding. A tx and rx specifier is required.
+>> -- dma-names:	List of DMA request names. These strings correspond 1:1 with the
+>> -		DMA specifiers listed in dmas. The string naming is to be "tx"
+>> -		and "rx" for TX and RX DMA requests, respectively.
+>> -
+>> -Deprecated properties:
+>> -- ti,non-removable: Compatible with the generic non-removable property
+>> -
+>> -Example:
+>> -	mmc1: mmc@4809c000 {
+>> -		compatible = "ti,dra7-sdhci";
+>> -		reg = <0x4809c000 0x400>;
+>> -		ti,hwmods = "mmc1";
+>> -		bus-width = <4>;
+>> -		vmmc-supply = <&vmmc>; /* phandle to regulator node */
+>> -		dmas = <&sdma 61 &sdma 62>;
+>> -		dma-names = "tx", "rx";
+>> -	};
+>> diff --git a/Documentation/devicetree/bindings/mmc/ti,omap2430-sdhci.yaml b/Documentation/devicetree/bindings/mmc/ti,omap2430-sdhci.yaml
+>> new file mode 100644
+>> index 0000000000000000000000000000000000000000..7683481204b2e222847244b67f9ae2684db93028
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/mmc/ti,omap2430-sdhci.yaml
+>> @@ -0,0 +1,202 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/mmc/ti,omap2430-sdhci.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: TI OMAP SDHCI Controller
+>> +
+>> +maintainers:
+>> +  - Kishon Vijay Abraham I <kishon@ti.com>
+>> +
+>> +description:
+>> +  For UHS devices which require tuning, the device tree should have a
+>> +  cpu_thermal node which maps to the appropriate thermal zone. This
+>> +  is used to get the temperature of the zone during tuning.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - ti,omap2430-sdhci
+>> +      - ti,omap3-sdhci
+>> +      - ti,omap4-sdhci
+>> +      - ti,omap5-sdhci
+>> +      - ti,dra7-sdhci
+>> +      - ti,k2g-sdhci
+>> +      - ti,am335-sdhci
+>> +      - ti,am437-sdhci
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  interrupts:
+>> +    maxItems: 1
+>> +
+>> +  clocks:
+>> +    maxItems: 2
+>> +
+>> +  clock-names:
+>> +    items:
+>> +      - const: fck
+>> +      - const: mmchsdb_fck
+>> +
+>> +  dmas:
+>> +    maxItems: 2
+>> +
+>> +  dma-names:
+>> +    items:
+>> +      - const: tx
+>> +      - const: rx
+>> +
+>> +  pinctrl-names:
+>> +    $ref: /schemas/types.yaml#/definitions/string-array
 > 
-> The NXP S32G2 and S32G3 platforms integrate a successive approximation
-> register (SAR) ADC. Two instances are available, each providing 8
-> multiplexed input channels with 12-bit resolution. The conversion rate
-> is up to 1 Msps depending on the configuration and sampling window.
+> Drop. Already has a type.
+
+Sure, I will remove the type.
+
 > 
-> The SAR ADC supports raw, buffer, and trigger modes. It can operate
-> in both single-shot and continuous conversion modes, with optional
-> hardware triggering through the cross-trigger unit (CTU) or external
-> events. An internal prescaler allows adjusting the sampling clock,
-> while per-channel programmable sampling times provide fine-grained
-> trade-offs between accuracy and latency. Automatic calibration is
-> performed at probe time to minimize offset and gain errors.
-> 
-> The driver is derived from the BSP implementation and has been partly
-> rewritten to comply with upstream requirements. For this reason, all
-> contributors are listed as co-developers, while the author refers to
-> the initial BSP driver file creator.
-> 
-> All modes have been validated on the S32G274-RDB2 platform using an
-> externally generated square wave captured by the ADC. Tests covered
-> buffered streaming via IIO, trigger synchronization, and accuracy
-> verification against a precision laboratory signal source.
-> 
-> Co-developed-by: Alexandru-Catalin Ionita <alexandru-catalin.ionita@nxp.com>
-> Signed-off-by: Alexandru-Catalin Ionita <alexandru-catalin.ionita@nxp.com>
-> Co-developed-by: Ciprian Costea <ciprianmarian.costea@nxp.com>
-> Signed-off-by: Ciprian Costea <ciprianmarian.costea@nxp.com>
-> Co-developed-by: Radu Pirea (NXP OSS) <radu-nicolae.pirea@oss.nxp.com>
-> Signed-off-by: Radu Pirea (NXP OSS) <radu-nicolae.pirea@oss.nxp.com>
-> Signed-off-by: Stefan-Gabriel Mirea <stefan-gabriel.mirea@nxp.com>
-> Co-developed-by: Daniel Lezcano <daniel.lezcano@linaro.org>
-> Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
+>> +    minItems: 1
+>> +    maxItems: 14
+>> +    items:
+>> +      enum:
+>> +        - default
+>> +        - default-rev11
+>> +        - hs
+>> +        - sdr12
+>> +        - sdr12-rev11
+>> +        - sdr25
+>> +        - sdr25-rev11
+>> +        - sdr50
+>> +        - ddr50-rev11
+>> +        - sdr104-rev11
+>> +        - ddr50
+>> +        - sdr104
+>> +        - ddr_1_8v-rev11
+>> +        - ddr_1_8v
+>> +        - ddr_3_3v
+>> +        - hs-rev11
+>> +        - hs200_1_8v-rev11
+>> +        - hs200_1_8v
+>> +        - sleep
 
-Hi Daniel,
+-- 
+Best Regards,
+Charan.
 
-Only significant question in here is around lifetimes of the
-dma buffer.
-
-+CC Vinod and dmaengine list. Hopefully someone will rapidly tell me
-my concern is garbage ;)
-
-IIO folk who are familiar with dmaengine channels etc please take
-a look at this as well.  I think all the upstream drivers we have doing
-similar things to this predate devm_ management being a common thing.
-
-Jonathan
-
-
-> diff --git a/drivers/iio/adc/nxp-sar-adc.c b/drivers/iio/adc/nxp-sar-adc.c
-> new file mode 100644
-> index 000000000000..fa390c9d911f
-> --- /dev/null
-> +++ b/drivers/iio/adc/nxp-sar-adc.c
-> @@ -0,0 +1,1006 @@
-
-> +
-> +static void nxp_sar_adc_dma_cb(void *data)
-> +{
-> +	struct nxp_sar_adc *info = iio_priv(data);
-> +	struct iio_dev *indio_dev = data;
-
-Trivial but it would slightly more intuitive to do.
-	struct iio_dev *indio_dev = data;
-	struct nxp_sar_adc *info = iio_priv(indio_dev);
-
-> +	struct dma_tx_state state;
-> +	struct circ_buf *dma_buf;
-> +	struct device *dev_dma;
-> +	u32 *dma_samples;
-> +	s64 timestamp;
-> +	int idx, ret;
-> +
-> +	guard(spinlock_irqsave)(&info->lock);
-> +
-> +	dma_buf = &info->dma_buf;
-> +	dma_samples = (u32 *)dma_buf->buf;
-> +	dev_dma = info->dma_chan->device->dev;
-> +
-> +	dmaengine_tx_status(info->dma_chan, info->cookie, &state);
-> +
-> +	dma_sync_single_for_cpu(dev_dma, info->rx_dma_buf,
-> +				NXP_SAR_ADC_DMA_BUFF_SZ, DMA_FROM_DEVICE);
-> +
-> +	/* Current head position. */
-> +	dma_buf->head = (NXP_SAR_ADC_DMA_BUFF_SZ - state.residue) /
-> +			NXP_SAR_ADC_DMA_SAMPLE_SZ;
-> +
-> +	/* If everything was transferred, avoid an off by one error. */
-> +	if (!state.residue)
-> +		dma_buf->head--;
-> +
-> +	/* Something went wrong and nothing transferred. */
-> +	if (state.residue == NXP_SAR_ADC_DMA_BUFF_SZ)
-> +		goto out;
-> +
-> +	/* Make sure that head is multiple of info->channels_used. */
-> +	dma_buf->head -= dma_buf->head % info->channels_used;
-> +
-> +	/*
-> +	 * dma_buf->tail != dma_buf->head condition will become false
-> +	 * because dma_buf->tail will be incremented with 1.
-> +	 */
-> +	while (dma_buf->tail != dma_buf->head) {
-> +		idx = dma_buf->tail % info->channels_used;
-> +		info->buffer[idx] = dma_samples[dma_buf->tail];
-> +		dma_buf->tail = (dma_buf->tail + 1) % NXP_SAR_ADC_DMA_SAMPLE_CNT;
-> +		if (idx != info->channels_used - 1)
-> +			continue;
-> +
-> +		/*
-> +		 * iio_push_to_buffers_with_timestamp should not be
-
-Comment needs an update as using with_ts()
-
-
-> +		 * called with dma_samples as parameter. The samples
-> +		 * will be smashed if timestamp is enabled.
-> +		 */
-> +		timestamp = iio_get_time_ns(indio_dev);
-> +		ret = iio_push_to_buffers_with_ts(indio_dev, info->buffer,
-> +						  sizeof(info->buffer),
-> +						  timestamp);
-> +		if (ret < 0 && ret != -EBUSY)
-> +			dev_err_ratelimited(&indio_dev->dev,
-> +					    "failed to push iio buffer: %d",
-> +					    ret);
-> +	}
-> +
-> +	dma_buf->tail = dma_buf->head;
-> +out:
-> +	dma_sync_single_for_device(dev_dma, info->rx_dma_buf,
-> +				   NXP_SAR_ADC_DMA_BUFF_SZ, DMA_FROM_DEVICE);
-> +}
-
-
-
-> +static int nxp_sar_adc_dma_probe(struct device *dev, struct nxp_sar_adc *info)
-> +{
-> +	struct device *dev_dma;
-> +	u8 *rx_buf;
-> +
-> +	info->dma_chan = devm_dma_request_chan(dev, "rx");
-> +	if (IS_ERR(info->dma_chan))
-> +		return PTR_ERR(info->dma_chan);
-> +
-> +	dev_dma = info->dma_chan->device->dev;
-> +	rx_buf = dmam_alloc_coherent(dev_dma, NXP_SAR_ADC_DMA_BUFF_SZ,
-> +				     &info->rx_dma_buf, GFP_KERNEL);
-
-Is this setting up the right life time?  Superficially it looks to be
-associating the buffer lifetime with a device related to the dma engine rather
-than the device we are dealing with here.
-
-This particular pattern with devm_dma_request_chan() is vanishingly rare
-so not much prior art to rely on.
-
-If the info->dma_chan->device->dev is instantiated by devm_dma_request_chan()
-and hence torn down as that is unwound it will be fine as this is simply
-nested devm handling, but it seems a struct dma_device has many chans so
-I think that isn't the case.
-
-Given that device parameter is also needed for the buffer allocation and
-making sure we have the right properties / iommu magic etc, I'm not sure
-how to make this work. One option would be to use dma_alloc_coherent() and
-tear down with a devm_add_action_or_reset() handler on dev rather than
-dev_dma.
-
-> +	if (!rx_buf)
-> +		return -ENOMEM;
-> +
-> +	info->dma_buf.buf = rx_buf;
-> +
-> +	return 0;
-> +}
 
