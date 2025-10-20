@@ -1,97 +1,64 @@
-Return-Path: <devicetree+bounces-228697-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228698-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39FD8BF0251
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 11:23:11 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B3D2BBF0310
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 11:34:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B7197189C256
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 09:23:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3FE723A97AF
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 09:33:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A5AA2F532E;
-	Mon, 20 Oct 2025 09:23:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 547F92EA755;
+	Mon, 20 Oct 2025 09:33:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kRFehkgk"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="f+td/ulG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.16])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55FF52E7BBC
-	for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 09:23:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05B1C2F5A3F;
+	Mon, 20 Oct 2025 09:33:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760952185; cv=none; b=KGRlHXSGlHZbZzFv18lubVLROhFX0OSa9EBV+3Ly7IgYatZv3yNc/t2Tds2xzM2msSC9SyfXPTqbUpXLZZoUVD5mR3fRJmvOp30k3oR8OTaWsSocSLp7bcSjuYM9EGXr0vONDK/83eGADzmmJitkGc0afc5sanJTd90ClZ5IXdU=
+	t=1760952793; cv=none; b=n9FqFV8HJfy0q6fRmfDpV323MmFfo/RSVJ92GxQY9cqC6S4UImsM9IALC1qW1GYpHuTAvGDfEEMZctomxCNqaJpTxzBu8bsvSQ1czKO7QiDE7Q5RgV9QyJtURJeUrdK7Fs9+LAF+vKrNxqrByD5mBMoNceeg5zgvtEagEti0hto=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760952185; c=relaxed/simple;
-	bh=hMFzAE+u+nASc8Ayen4g5l9uc68xWJVxUvqNMCpeXuw=;
+	s=arc-20240116; t=1760952793; c=relaxed/simple;
+	bh=kCoTnVBoPmj35rDTdc2u9eHaOcW/hIpTViF68Vm/4C8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Z+OCepCwZ+vSqoppKHc/Qd0V380vqdp4n9HZCWC5xA6+04kU0AfuTJeSOz5rcsBhKE63YhgPa7jwszMPF7HpIl2JrGKAkQSETxQGKXYjtH1fmFZq53FtdanSo2EjBI1p8831JlqMZRGX2T+VmFMnGMF40VRFSvV3tGcu03rrLEI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=kRFehkgk; arc=none smtp.client-ip=209.85.128.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-471191ac79dso32987645e9.3
-        for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 02:23:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1760952182; x=1761556982; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=cdA6CsjifSV/CpZyjz8ziwjcjaEoS8UMM+9gCn6fwe8=;
-        b=kRFehkgkfKCrEw/sHFVwfJ2FHr7wsdeWHSIchATr2vbQ5HRlgSJ+70P8hG4b1t24hr
-         m9/Mk85Fgr7IoqG2q/crW/BJH4bjRHBe5UWKGfbdvdIfECAEZuvN/tKBy9OxsZn193/P
-         rJKzVB/uanWu813YvHohLNrejGD++WeSrxRHdc3yBeQKkLdZ1wH5Uz0/LwHa5XlSctcF
-         8awHmjkm+hVR3Up8anjZSV5f+zxspOmvEQYDiQztbtBVP2y8Jl97izGNlwwez3Tz7nBo
-         Ve0Debc/kKQfa69Hm5Txrj+IUimJirPJLNJpBcpHYmYpVHW7vbGL2q1WMJiEwtekYi7g
-         XcsQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760952182; x=1761556982;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=cdA6CsjifSV/CpZyjz8ziwjcjaEoS8UMM+9gCn6fwe8=;
-        b=L8S4bohviLEBie0ArIwrXhVQsHWcuBniWW2JDCP5gzwPnYrlrO5sWkHdkVkPOuycXf
-         uhnApKPMwv8PZdWiGQez/SN6INDvhRas6hUI6h9NchE0ecxHO/gabNinNURfUU6yQMuv
-         +OWPMv6M/ZIetySz6DCoNYmRcAavZGMOtvHn2bpxa/0XA9VMwlC/ykR84wZNZVNeQT6t
-         gZs53DgnSiWtQywHq+LLZlWMlMLKHUYbY+RWq/WRnh9MHvsqzOZczHEqT6RWYujbF72/
-         At3GalDjE0bSu7iHDgr93pOs1WKOiBfyoiyoiMx2W7dicTkEI4ie3zg2hMQileWM+aBg
-         QPpA==
-X-Forwarded-Encrypted: i=1; AJvYcCXUu7rIRhgXvC6rJpDdEGDXo4etwzShyNOg+bZ4TM2c4s9Y1SJ2JW3UzneJg7AnNk+YimmvAZQQFBeb@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx+Sogki2HSIZ/1XCPDltNeVBIbiaMWIMajQWvsNF14ydeIlUtE
-	ep3vQ8fyf6JBdxqSG6lO3qvSlNVVSCTwlbgVqARaGDAISoxGJps6qfhuckh2rjDWRkA=
-X-Gm-Gg: ASbGncuXxSHlvZArcF3kKc40juZ9U5vtystI98IagKq4bkluukvSj1sOQ5mNoraTghS
-	l7ILMSl6zv5HvMk7RGXlorFWVzYORZbIQQgIBzmm6Ib9OgtQWMCyTsf2rdtPzRQXgL7P0ktZOSz
-	6QYRhRnmJhTgWydsjYlBl3vdECKGgCFUzZrRQaDefPNiXYXtLZvbf1IA4NCOUJlcHiekz/Db58V
-	ZZ/am8MdQcqjG9dSzni1jGts577ezZh1S3y5GMeDxOC8sGQ/LJaYC/RDtJvsB+mGUFaKhV2RLXg
-	8Mracg2yPSJd1WFRuGwef8kglGFhnPm/aW+6h1V7dFCVGNLPd9F171mAsXR+paTDXX/32Db69by
-	xWIsnhbieoO77VY3cPCEIYYiXH9Q4rKMt70LXNQlJc/ts44Ycpha2P8oeqbFMvpcHrtytyGOnHt
-	J6i2T2tlYkhBvqtP9Nf8mr
-X-Google-Smtp-Source: AGHT+IHNJzL0kQawtKy3fF4ivQKWG3FizlSZ82gu6HDNZ3hRrmE0LPQKVq82Mev6dpQnwG8Un0IyIw==
-X-Received: by 2002:a05:600c:3b03:b0:46e:330a:1762 with SMTP id 5b1f17b1804b1-471179079dfmr98103875e9.22.1760952181601;
-        Mon, 20 Oct 2025 02:23:01 -0700 (PDT)
-Received: from linaro.org ([2a02:2454:ff21:30:363f:e987:7dd1:4f47])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47152959b55sm139906525e9.6.2025.10.20.02.23.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Oct 2025 02:23:01 -0700 (PDT)
-Date: Mon, 20 Oct 2025 11:22:56 +0200
-From: Stephan Gerhold <stephan.gerhold@linaro.org>
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-	Robin Murphy <robin.murphy@arm.com>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=A1+ay5FkVTMKIW9klESATmNBsc0Tt/MG9RLbquNuzCtBZJHwDEY7FOc0shUFizwgEvsdAU/nFuaHfgnJMWSElqAa6f9jNgqZnjQsIezmEdm3MvzkHOhdJmFBqPSt7HkKqJtRsMlHuND+BVz34IX1fkh+suNvXEUhxaUdBU5H2oI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=f+td/ulG; arc=none smtp.client-ip=1.95.21.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
+	s=s110527; h=Date:From:To:Subject:Message-ID:MIME-Version:
+	Content-Type; bh=n/CPIzx5KaL4TyTuJmekW/24AWANlyqw3dcl3WFRWCE=;
+	b=f+td/ulGtsPQnMf4UyE9j/iAeHqvY2m6HE3o3yyNzMK9d9OTLoJmJTOHjc25wj
+	YJf6h4X9eVPS8jKXFSIktaRYEv+9nHu7dkShH6/qYgKai+seF6B5DFdOSge0elUr
+	zOpjYkLOmANepEswQHnkajIgM/Z0ouimRwMktRf2qkcYU=
+Received: from dragon (unknown [])
+	by gzsmtp2 (Coremail) with SMTP id Ms8vCgB3zxWZAfZoV+ZTAA--.12317S3;
+	Mon, 20 Oct 2025 17:32:11 +0800 (CST)
+Date: Mon, 20 Oct 2025 17:32:09 +0800
+From: Shawn Guo <shawnguo2@yeah.net>
+To: Vladimir Oltean <olteanv@gmail.com>
+Cc: Shawn Guo <shawnguo@kernel.org>, Frank Li <Frank.Li@nxp.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-	iommu@lists.linux.dev, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Konrad Dybcio <konrad.dybcio@linaro.org>
-Subject: Re: [PATCH v2] dt-bindings: iommu: qcom_iommu: Allow 'tbu' clock
-Message-ID: <aPX_cKtial56AgvU@linaro.org>
-References: <20251015-topic-qciommu_bindings_fix-v2-1-a0f3c705d0f3@oss.qualcomm.com>
- <8e7a145e-6871-4974-ae19-40699747803b@arm.com>
- <56fcl2ip6ecu4inig7ecpjt7qrsdt6sehkrzrk6joysbp6tea7@4xdgxhhe3aso>
- <38c3bf97-4b69-4450-9e23-32ece07e38dc@oss.qualcomm.com>
+	Conor Dooley <conor+dt@kernel.org>, Olof Johansson <olof@lixom.net>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	imx@lists.linux.dev
+Subject: Re: [PATCH 3/3] arm64: dts: fsl-lx2160a: include rev2 chip's dts
+Message-ID: <aPYBmXdpZyO0b62F@dragon>
+References: <20240826-2160r2-v1-0-106340d538d6@nxp.com>
+ <20240826-2160r2-v1-3-106340d538d6@nxp.com>
+ <20250923111038.qluh2kjmc534ytig@skbuf>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -100,62 +67,19 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <38c3bf97-4b69-4450-9e23-32ece07e38dc@oss.qualcomm.com>
+In-Reply-To: <20250923111038.qluh2kjmc534ytig@skbuf>
+X-CM-TRANSID:Ms8vCgB3zxWZAfZoV+ZTAA--.12317S3
+X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
+	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxU2puAUUUUU
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiNRw-pGj2AZwdHAAA3w
 
-On Thu, Oct 16, 2025 at 10:09:58AM +0200, Konrad Dybcio wrote:
-> On 10/15/25 10:10 PM, Dmitry Baryshkov wrote:
-> > On Wed, Oct 15, 2025 at 05:48:05PM +0100, Robin Murphy wrote:
-> >> On 2025-10-15 5:41 pm, Konrad Dybcio wrote:
-> >>> From: Konrad Dybcio <konrad.dybcio@linaro.org>
-> >>>
-> >>> Some IOMMUs on some platforms (there doesn't seem to be a good denominator
-> > 
-> > It would be nice to provide some examples here.
-> > 
-> >>> for this) require the presence of a third clock, specifically for
-> >>> accessing the IOMMU's Translation Buffer Unit (TBU). Allow it.
-> >>
-> >> Hmmm, but isn't the only thing that accesses TBUs the consumer of the
-> >> qcom,tbu binding, which already has its own clock?
-> > 
-> > qcom,tbu is only defined for normal arm,mmu-500 platforms. Here Konrad
-> > is fixing the older and more obscure Qualcomm virtual MMU device.
-> 
-> (for context: this touches upon 2014-ish platforms)
-> 
-> I checked the address map of the physical MMU500 that lies underneath
-> this virtual impl and it doesn't fully expose the same registers that
-> the modern ones do, I only see PWR_STATUS.
-> 
-> The BSP kernels for those oldies don't seem to have a notion of a TBU
-> either, except for toggling clocks that contain "_TBU" in their name
-> at both the IOMMU device and some DMA-capable multimedia blocks, which
-> I suppose makes some sense..
-> 
+On Tue, Sep 23, 2025 at 02:10:38PM +0300, Vladimir Oltean wrote:
+> Sorry for digging up an old thread, but I'm curious why you applied
+> patch 2/3 but not this one? Currently,
+> arch/arm64/boot/dts/freescale/fsl-lx2160a-rev2.dtsi has no user.
 
-On MSM8939 for the &gpu_iommu, the "tbu" clock isn't listed for
-accessing the TBU registers, it's necessary to avoid timeouts during TLB
-flushes. See Qualcomm Snapdragon 410E Processor (APQ8016E) Technical
-Reference Manual, SMMU chapter, section "8.8.3.1.2 Clock gating":
+I'm not sure how I missed it :)  Thanks for asking.  Applied now.
 
-  Clock gating programming guide
+Shawn
 
-    For APPS TCU/TBU (TBU to TCU interface is asynchronous)
-    Software should turn ON clock to APPS TCU
-      - During APPS TCU register programming sequence
-
-    For GPU TCU/TBU (TBU to TCU interface is synchronous)
-    Software should turn ON clock to GPU TBU
-      - During GPU TLB invalidation sequence <=====================
-    Software should turn ON clock to GPU TCU
-      - During GPU TCU register programming sequence
-      - While GPU master clock is Active
-
-Might be worth clarifying this in the commit message. It was also
-mentioned in commit 5bc1cf1466f6 ("iommu/qcom: add optional 'tbu' clock
-for TLB invalidate") (not sure why that commit didn't adjust the
-bindings...).
-
-Thanks,
-Stephan
 
