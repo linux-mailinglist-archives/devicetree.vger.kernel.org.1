@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-228718-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228720-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DF2CBF05FC
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 12:03:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E1267BF0662
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 12:05:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0F4573BA179
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 10:02:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EAD603A96BB
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 10:04:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9513E2F1FE5;
-	Mon, 20 Oct 2025 10:02:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11E502E8B62;
+	Mon, 20 Oct 2025 10:04:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sGy0RrSn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="s59ugeqc"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65D682E9EDA;
-	Mon, 20 Oct 2025 10:02:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D85AF227EB9;
+	Mon, 20 Oct 2025 10:04:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760954556; cv=none; b=NwmPdy9s/C0eGn2ls4A6BJ3Pfc/VHeJX+pk9qV9dQDGB3xQB3wgqp0BVCuMtAd8H985f2p4TZPhFIXRwhFrHgPpVvIWqb6OQwfd+ykrpjkfDbEByhWf7UtJURXgPi8YKfKvFDBvsixaNQM7gC/euYzj3cklNJ9zpYbC6rCfWnd0=
+	t=1760954653; cv=none; b=Y21I3U2klsnkwJ72qrAy+r9zcxl+0uAL88IFxoP4oDYr7aAEV7nSsJDHLlF7X7gG2YQP0Um0edkiJof0OFv11vjOUDManTXuT44+5gvcL+W9gIvX4AO6DP06dJA1wEKS1+88A9qOy5hYshhC2/XAEh0GGsEJT1ssgKmNqLtoRFU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760954556; c=relaxed/simple;
-	bh=OXMj22BFd95MnCA9Pp5zB+u1q9K2KOGCsd/US9btLgQ=;
+	s=arc-20240116; t=1760954653; c=relaxed/simple;
+	bh=O7CSLXdkG96nqjZPq+FkyyDWvL5sJW9UxsJ3bE5vHCg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PSEopNuD51b7tp3bs60MCHoOwM1qU2zoMz5hwgnteV+bBbWAXJ2JfckQvrW63Enxbtxdb1QIreyQ2qbN79KWWSciWgNZaXJxL/EdbuSishjl2bx1fev9HAsHsATaWiJbxGAl+c2YBk5MGLyxNJzyuxOxVaC7jgKmdLrzHialMpU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sGy0RrSn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A6B3C4CEF9;
-	Mon, 20 Oct 2025 10:02:30 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=eVxErccLR1i3YNJ7zBIUj0btzaxGyP1vx/uutNjn3uVUZJ7CziRYUD7ATwaExxPIe3Hgs5hLy6vVl/KIjBWeXQBD8GY3Sy4O0Lghnq41r43JfnDu9rXE83yFnBUZESS4muFrTbe1u6iWqm37A4lO+apXpGQaqd/t9nyV3O38CuM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=s59ugeqc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C5681C4CEF9;
+	Mon, 20 Oct 2025 10:04:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760954556;
-	bh=OXMj22BFd95MnCA9Pp5zB+u1q9K2KOGCsd/US9btLgQ=;
+	s=k20201202; t=1760954652;
+	bh=O7CSLXdkG96nqjZPq+FkyyDWvL5sJW9UxsJ3bE5vHCg=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=sGy0RrSn9lTmeKBPr4KkCFapcIKY2JfBl0FcWvs/pSGDb+HJ4i4UWhPXYSmHKo2cq
-	 oIJXO9ENHBj169tFKmKazLfx8d3zzeVGt8xbbOYP2CubQ5nmYzil84hja4jI/gJJ4P
-	 MXFT4MvngVStgE6lyKqpZdx0ayflqtaYXlBLuduRz4qNFnyMJSBQB0/bomuE+2mbzg
-	 2cjxtin4ToeLnB7FMv0FMTPgLREYJxNXtJ0raP5tViSmmMvC7xufV8EJQviNBomVjO
-	 bJddhSflCQkjMKzV1pX3LgmhkyUdylACzFib3IYcw/nd0dveBsgpqYbHEoDbq/45S6
-	 A5rSRHZyYC8oA==
-Message-ID: <3f5e2d98-4c4a-4a8b-b041-200bb1fc3e7e@kernel.org>
-Date: Mon, 20 Oct 2025 12:02:29 +0200
+	b=s59ugeqc7TgNCHMzuBRi161/pOXpZrL9EhC2iGEoH5/DtfaD0SGPWHWbcY4jibWgC
+	 rWw4FE//CWAnAJPLyn9D4v6vVJoY8577pLovc8ru1avvyz8TUEvxiNt1arcu7xhMqL
+	 luReNlC0C+ZblwiGnqsjnf8SFNRGaUzu04JRjt/GDI/HOApVAo8ZvkZ+16AOoSbHDe
+	 3W7J+f99yWz3sPLR4LMJX2TO7fQq+Fodqbq9UrJhv2HWQRJRl8Ecgiwd0A/+jLvAwp
+	 4HEPwqnGOAlLqLRI47g2PNViZdx5/9bo+uzuPGtZKtwIk0no9JLOK+NH0kxNdKO8Fn
+	 iXiOKLvEDr/4w==
+Message-ID: <62bb4f8d-ffbb-4529-ab0a-70fd8c77078d@kernel.org>
+Date: Mon, 20 Oct 2025 12:04:06 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,41 +50,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/4] dt-bindings: ufs: mediatek,ufs: add MT8195
- compatible and update clock nodes
-To: =?UTF-8?B?UGV0ZXIgV2FuZyAo546L5L+h5Y+LKQ==?= <peter.wang@mediatek.com>,
- "chu.stanley@gmail.com" <chu.stanley@gmail.com>,
- "James.Bottomley@HansenPartnership.com"
- <James.Bottomley@HansenPartnership.com>, "robh@kernel.org"
- <robh@kernel.org>, "bvanassche@acm.org" <bvanassche@acm.org>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- "linux-scsi@vger.kernel.org" <linux-scsi@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- =?UTF-8?B?TWFjcGF1bCBMaW4gKOael+aZuuaWjCk=?= <Macpaul.Lin@mediatek.com>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- "alim.akhtar@samsung.com" <alim.akhtar@samsung.com>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
- "avri.altman@wdc.com" <avri.altman@wdc.com>,
- "martin.petersen@oracle.com" <martin.petersen@oracle.com>
-Cc: "macpaul@gmail.com" <macpaul@gmail.com>,
- =?UTF-8?B?UGFibG8gU3VuICjlravmr5Pnv5Qp?= <pablo.sun@mediatek.com>,
- Project_Global_Chrome_Upstream_Group
- <Project_Global_Chrome_Upstream_Group@mediatek.com>,
- =?UTF-8?B?QmVhciBXYW5nICjokKnljp/mg5/lvrcp?= <bear.wang@mediatek.com>,
- =?UTF-8?B?UmFtYXggTG8gKOe+heaYjumBoCk=?= <Ramax.Lo@mediatek.com>
-References: <20250722085721.2062657-1-macpaul.lin@mediatek.com>
- <20250722085721.2062657-3-macpaul.lin@mediatek.com>
- <b90956e8-adf9-4411-b6f9-9212fcd14b59@collabora.com>
- <438077d191833bb4f628b2c6da3b86b3ecfb40e6.camel@mediatek.com>
- <cb173df9-4c70-4619-b36d-8e99272551b6@kernel.org>
- <a9bf15e48afd8496ca9b015e7f5b03821863a0b2.camel@mediatek.com>
- <7f285723-ecd7-4df6-8c9b-f2e786ce3602@kernel.org>
- <4b3d2678d2b724fb53ec7272ef8daf52197d4a0e.camel@mediatek.com>
+Subject: Re: [PATCH v2 0/3] riscv: sophgo: add top syscon device for cv18xx
+To: Longbin Li <looong.bin@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Chen Wang <unicorn_wang@outlook.com>,
+ Inochi Amaoto <inochiama@gmail.com>, Paul Walmsley <pjw@kernel.org>,
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Alexandre Ghiti <alex@ghiti.fr>,
+ Alexander Sverdlin <alexander.sverdlin@gmail.com>,
+ Thomas Bonnefille <thomas.bonnefille@bootlin.com>,
+ Ze Huang <huangze@whut.edu.cn>
+Cc: devicetree@vger.kernel.org, sophgo@lists.linux.dev,
+ linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+References: <20251020083838.67522-1-looong.bin@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -130,41 +108,33 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <4b3d2678d2b724fb53ec7272ef8daf52197d4a0e.camel@mediatek.com>
+In-Reply-To: <20251020083838.67522-1-looong.bin@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 20/10/2025 11:44, Peter Wang (王信友) wrote:
->>
->> Consider stepping down and choosing them if they better understand
->> how
->> upstream works.
->>
->> As Rob wrote earlier:
->>
->> "Sounds like we need a new maintainer then. They clearly don't
->> understand that downstream doesn't exist."
->>
->>
->> Best regards,
->> Krzysztof
+On 20/10/2025 10:38, Longbin Li wrote:
+> Add top syscon device bindings related DTS change for CV1800.
 > 
-> I must reiterate that I do not oppose patches that are 
-> beneficial to the community; I only object to patches that are 
-> not helpful.
+> ---
+> 
+> Changes in v2:
+> 
+>   - Add ranges property.
+>   - Use proper regex in patternProperties.
+>   - Add complete example including child nodes.
+> 
+> Changes in v1:
+> 
+>   - https://lore.kernel.org/all/20251012022555.6240-1-looong.bin@gmail.com/
+> 
+> Changed by RFC:
+> 
+>   - https://lore.kernel.org/all/20250611082452.1218817-1-inochiama@gmail.com/
 
 
-Let's quote you again:
-
-"*In addition*, it will require MediaTek to put in extra
-effort to migrate the kernel. "
-
-This is ADDITIONAL argument you used. This is what you wrote, this is
-what you claimed to be ADDITIONAL argument.
-
-In your opinion ADDITIONAL argument is downstream and you still do not
-understand why such argument is instant NAK for you as reviewer.
-
+So this is v3, not v2. We do not count from 0, -1 or -2 (of you have
+three RFCs). Please start using b4, so you will get it right. Otherwise
+how can we compare versions between v1 and RFC? Try yourself with `b4 diff`.
 
 Best regards,
 Krzysztof
