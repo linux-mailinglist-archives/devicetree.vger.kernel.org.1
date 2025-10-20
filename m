@@ -1,132 +1,172 @@
-Return-Path: <devicetree+bounces-228994-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228995-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 492C5BF2DE3
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 20:09:40 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B2F1BF2DF8
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 20:09:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E9E914E69C9
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 18:09:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D2BE4426D72
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 18:09:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6AF662C2358;
-	Mon, 20 Oct 2025 18:09:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FD2B32860D;
+	Mon, 20 Oct 2025 18:09:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YFCCCb70"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JgI9XzHu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45B1F2C21E2
-	for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 18:09:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760983773; cv=none; b=tTgeyXu5QevcaBixewb6aFFtcyNsar7eVdWyORvK6i7bYZCW8vxJnG3vpklWjUAtXFvUFalh0N9dyFceR6yk8QrQv2pb/NpyGmX5Afya32wBC6Sd7JxtQTGTo2b4LmVU/xjm6vJrtEU2DAdwgKdoGusiScdaoxbwm+ttvMddwjw=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760983773; c=relaxed/simple;
-	bh=oKPrwAwmPcFNZGmDx1ZWXy1ZmIL+sig1bBBsB/7aJUU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ks8zwkZ904kZXSlzdXSbHbp58yWQiBJ913BrsXAvKwnlxzyObPyszObliRate/uX2UlQWZD31JB0U0RdSIC1UfnM+PUyl1JXSPnORcy7D+Y7CRHNsr05dy82EF354AY+x+9xvhxLCclqt092jnY0+iwWAl7KqdgOR1S6RFrnVoQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YFCCCb70; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E2E88C19425
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53F0C2C21F1
 	for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 18:09:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760983772;
-	bh=oKPrwAwmPcFNZGmDx1ZWXy1ZmIL+sig1bBBsB/7aJUU=;
-	h=References:In-Reply-To:Reply-To:From:Date:Subject:To:Cc:From;
-	b=YFCCCb70vIR/5gJ36RNiA/JDPEl3fZvL6qcwk9wKH0wvoqATkcCmg3pv5UIF+wzGw
-	 do6F3awmohobatU2HIq2Ul1Bg+i/lZ2yTCWSG4CFKYlGtm8riBCmBIVx/Qy9vN0HZM
-	 VBZbg6k7n7aE5qoAnvGU0fUC9x4UBhZpg0Svq2j9PTAWyL0M4SWF3+YgMiUVNYbBLl
-	 dJCfUj2Q4g/FMX+UZGK1SYrZpmhmL2o1ZMnRbUCeFhp14A3Mu3PcfnP6TatWi+Y/CS
-	 dCMdAB4krYqV9W65NKHT9KkEFwj9WwOsLT7wmwOs2gT6S/YwtSLop3wL7QvZ/EwfXe
-	 hQIw35Pb8vSxQ==
-Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-586883eb9fbso5762215e87.1
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1760983775; cv=none; b=b+NFOaeeV1d1wnpTr/NrIqtnujWCLutBDRp9wM+16sT2+zMvaEaxDwsZRobYUHdu2jRRNNaiodRQzLrVMVd5id/DYbCAuzG1Zl/SL8OtDaRKExdNs6AuXrlbOnhwsPxK6Xo6vkqZy7ohD1cPoni1mGVUB5b7fMnvuVz5wIPgCNU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1760983775; c=relaxed/simple;
+	bh=Spo6HloAQdKAcrrCYmr+241UVY+67PAGLn2irZa0EUg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=PQK1lyDrTqFXv9hnBkB4cJ06p1cBv6cqfYBtEKwWscW9/QPceJGElT1jtH6KbEjPkUmRIQPld1fKMmvfKFi3c07E7jTyHLTe++hOHp6RfTUPoU3XjIuYWEAB0iQFO06WxLm4cQ5/03WhEaotc9hbNNk53GTUNeHuXGIax/5GD4c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=JgI9XzHu; arc=none smtp.client-ip=209.85.128.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-47117f92e32so29774275e9.1
         for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 11:09:32 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUvuokiFwUqUbNI0rXP2ZLpVbFTiB1Pg3fOl8iXymTtjaw6VOd6qFrp+OmAQpkhES5IJJfN/Kt8/Jd0@vger.kernel.org
-X-Gm-Message-State: AOJu0YycErTOjOAYmgxxoiuO/Y8VJStkDdxKbs/FEc1CXElAXAqGj0Uw
-	74gzQzCuNxTmM3BVPgGTq05R6o6HQw+YlEudtsmLXJGff1yP9RdgfotY4j1izxXd/Wvew2iYkFp
-	0ePv+sletmUv3CbhV9qrGbodxNopBbks=
-X-Google-Smtp-Source: AGHT+IFuWmZV6QNucFFpgj1UEioCDpFc0/s3jbB+5BwfcLRxENd3iLjRFZ6WKCDjV8YIsE8qTPZM2NSG8F6Mb8oD9G4=
-X-Received: by 2002:a2e:bcc4:0:b0:36d:6ae3:8158 with SMTP id
- 38308e7fff4ca-37797a0daa8mr37580611fa.25.1760983771244; Mon, 20 Oct 2025
- 11:09:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1760983770; x=1761588570; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=7ZdBYEg1NCjQhSeodjmOf4VxyFNAFHDsc711gGKZDrI=;
+        b=JgI9XzHujl2nFNERdazjfyBYzKPvYQX0RZxG1WdzaqSW+M0FJGe9n2FfRphnq8KTKJ
+         bORGp6FQZ/Of0nBJ/X4qAWMV9KApFob1ggqE2WTse+RiT0pebfVmvtmAANALuJSEssoV
+         ABBZANzWSDLqLR8VN6DLP3cDhpZRo/9FDQve5C/Eg5ZLwQb57oWZ7ZWl8MKQ7uG9oP29
+         t2ktN0V5iVnkVBy9HmE6KW74js0bQFbS+f3ORf8HelWK3XDEF+NdQQCpckV8uNn+EGaD
+         D998Vcs8InVl28EQCCCKrARpbDEGggjKfl3vatPBJCv+JDX11ORSUDzNhv80OUw/mgr9
+         /edg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1760983770; x=1761588570;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=7ZdBYEg1NCjQhSeodjmOf4VxyFNAFHDsc711gGKZDrI=;
+        b=vR9lJzytmuo8YXJuNsN8qDMTMacUE/6A50jQWOP94fEiovpAVQ35OO5Wvapm1enX6Q
+         A35sl7OIpRYdVXVwS98x4x+yRAkM2Vam8n2fdTJ1cJS/4ZsR25V6njs1VXifg80uOYsH
+         SepBZaEYMUNmGm+fYUC9aj6/VoApLN9hgzTkThS2064SUazYUjbtR2C6WTbVxlN+hniE
+         zIg//aI54dQWhq4sW7XIBMx/v4tT2jvuHzcOR20jZ8hau2fg8/L0FBteaQRYMJIHVEex
+         qY7L9zIoMduXbq+0nRsHS3IfJNEMq9PBg7KATLBRk8Uqji1Sy1dodYloUob/hFFseG0H
+         yDdA==
+X-Forwarded-Encrypted: i=1; AJvYcCXZa+L4c4B8mlR2v0eGXSP95WRr7mELEteHRAbqTX2gqYRPxP8VIIIi8drCTVE9UIU86fqHEf/rI3bx@vger.kernel.org
+X-Gm-Message-State: AOJu0YxAtkGhBlml8jJyPrBLIkAd2RfVpeMXuejxf1x+1HcEYhWjnQIh
+	Wf61OulgPMFKmBI91/2HurMRGQ3e9Gpb3UpZ4AZGZDTlTwny9Iz1KJe3hidNm/tpHJI=
+X-Gm-Gg: ASbGnctKf1mk4j/eIcJuGfuYpFibBXgY5P4nhTM1UI7YrSP6lM88rKwxKtQN+tCPzuO
+	o+Zskv+sWTUgQDZkKXd8rSHkuu4BsFMymp8r9t/vwqcuJ+ssb63bsOJxoNlKMucx6khmNrdrg1q
+	BQjcMyAazND3gei6+RS19hsMjOr4vS67FnSMV2gNbQ1AGN7RpC0F5sPVk21rSxE6kseFBqgVreQ
+	s+595dX1yggs49U4+VTitpuVZyXL1lqPNGEdqZONSbVKsZagCFzkknPzTlbV0ArSQAiRZ1FUcG2
+	1KFyO5w9SAa2EOtVGrfwRAzLaIPRTLNFhCzLCpg6u3dtgoWdshfTQHwPf3dt1GbKuS2WP67t7SX
+	XiiWmuIsJJq/n78bhJVwHyFwJJgaeWNxChi1+5BGkkzi3GSsjNnea5uKlr2YrlhCyVnbEtnmZVf
+	H21A/h/tCf64qbL8C3511HTZaIv13nnOlTDb47EuSGu00K1paS2TucyxHBZ7kjhel1
+X-Google-Smtp-Source: AGHT+IFNzhmhSoTvu4cZ2Fxsh6eT7ubwrXOKq3S1oS3OV3JiX8/nti6w2bD3gES+I31XuVIOCrVziw==
+X-Received: by 2002:a05:600c:4e89:b0:45d:dc85:c009 with SMTP id 5b1f17b1804b1-471178a236cmr99126355e9.10.1760983770479;
+        Mon, 20 Oct 2025 11:09:30 -0700 (PDT)
+Received: from [192.168.0.163] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4731c95efb9sm116135695e9.8.2025.10.20.11.09.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 20 Oct 2025 11:09:30 -0700 (PDT)
+Message-ID: <872988b5-8802-4cdd-b3bd-e1a8c718bb6a@linaro.org>
+Date: Mon, 20 Oct 2025 19:09:28 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251020171059.2786070-1-wens@kernel.org> <20251020171059.2786070-7-wens@kernel.org>
- <8591609.T7Z3S40VBb@jernej-laptop>
-In-Reply-To: <8591609.T7Z3S40VBb@jernej-laptop>
-Reply-To: wens@kernel.org
-From: Chen-Yu Tsai <wens@kernel.org>
-Date: Tue, 21 Oct 2025 02:09:18 +0800
-X-Gmail-Original-Message-ID: <CAGb2v66osdLJa=_nTxz9wppUkxvu2fuS=NgYN8fKOUOLHw6-Ag@mail.gmail.com>
-X-Gm-Features: AS18NWCT7E5mgPMwg3ZEBu9fYAxffaDigDTAPFUYOPP5rokDOnq4gkBQ9OJvhcg
-Message-ID: <CAGb2v66osdLJa=_nTxz9wppUkxvu2fuS=NgYN8fKOUOLHw6-Ag@mail.gmail.com>
-Subject: Re: [PATCH 06/11] clk: sunxi-ng: sun55i-a523-ccu: Lower audio0 pll
- minimum rate
-To: =?UTF-8?Q?Jernej_=C5=A0krabec?= <jernej.skrabec@gmail.com>
-Cc: Jernej Skrabec <jernej@kernel.org>, Samuel Holland <samuel@sholland.org>, 
-	Mark Brown <broonie@kernel.org>, Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>, 
-	linux-sunxi@lists.linux.dev, linux-sound@vger.kernel.org, 
-	linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	devicetree@vger.kernel.org, dmaengine@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/6] dt-bindings: media: camss: Add qcom,kaanapali-camss
+ binding
+To: Vijay Kumar Tumati <vijay.tumati@oss.qualcomm.com>,
+ Krzysztof Kozlowski <krzk@kernel.org>,
+ Loic Poulain <loic.poulain@oss.qualcomm.com>
+Cc: Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>,
+ Jingyi Wang <jingyi.wang@oss.qualcomm.com>, Robert Foss <rfoss@kernel.org>,
+ Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Bryan O'Donoghue <bod@kernel.org>,
+ Todor Tomov <todor.too@gmail.com>,
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, linux-i2c@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+ aiqun.yu@oss.qualcomm.com, tingwei.zhang@oss.qualcomm.com,
+ trilok.soni@oss.qualcomm.com, yijie.yang@oss.qualcomm.com
+References: <20250924-knp-cam-v1-0-b72d6deea054@oss.qualcomm.com>
+ <20250924-knp-cam-v1-2-b72d6deea054@oss.qualcomm.com>
+ <CAFEp6-1o11B9o3HjdJY-xQhDXquOTknXo0JeW=HfpTxXcEaK3g@mail.gmail.com>
+ <a7be3a42-bd4f-46dc-b6de-2b0c0320cb0d@oss.qualcomm.com>
+ <d8dfe11f-c55a-4eb2-930a-bfa31670bef0@kernel.org>
+ <CAFEp6-1zpobZNLHt1192Ahtn2O7bV+As0P1YvVHrkRsORyH_Aw@mail.gmail.com>
+ <ac96922e-d2a3-4a99-8f34-a822c3dd2d02@kernel.org>
+ <7140b8a8-1380-4859-84a3-681b3f1ce505@kernel.org>
+ <f5a1076f-f06c-404d-88d4-fef4f7694c82@linaro.org>
+ <4fb3c83a-2bef-4b15-b676-73e8e8957452@oss.qualcomm.com>
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Content-Language: en-US
+In-Reply-To: <4fb3c83a-2bef-4b15-b676-73e8e8957452@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Tue, Oct 21, 2025 at 1:52=E2=80=AFAM Jernej =C5=A0krabec <jernej.skrabec=
-@gmail.com> wrote:
->
-> Dne ponedeljek, 20. oktober 2025 ob 19:10:52 Srednjeevropski poletni =C4=
-=8Das je Chen-Yu Tsai napisal(a):
-> > While the user manual states that the PLL's rate should be between 180
-> > MHz and 3 GHz in the register defninition section, it also says the
-> > actual operating frequency is 22.5792*4 MHz in the PLL features table.
-> >
-> > 22.5792*4 MHz is one of the actual clock rates that we want and is
-> > is available in the SDM table. Lower the minimum clock rate to 90 MHz
-> > so that both rates in the SDM table can be used.
->
-> So factor of 2 could be missed somewhere?
+On 20/10/2025 18:37, Vijay Kumar Tumati wrote:
+> Hi @Bryan, @Krzyszto, just my two cents. I think we should consider 
+> separating CSIPHY, CSID, IFE and IFE Lite into distinct DT nodes. Having 
+> a modular DT structure brings in several advantages,
+> 
+>  1. Simple to manage with much better readability.
+>  2. Better control to disable certain HW modules from DT.
+>  3. Less error prone as we don't need to maintain long lists of clocks
+>     or other resources against their names. Accordingly, easy to review.
+>  4. No need to maintain resource lists within the CAMSS driver to
+>     identify the resources specific to the HW block. Offers centralized
+>     control for the HW resources.
+>  5. Allows re use between the platforms when a same version of a subset
+>     of HW modules is carried over to future chip sets.
+>  6. Is more scalable when we add more functionality to the CAMSS driver.
+>  7. Finally, it brings in parallel development ability with engineers
+>     (within the local teams) working on different HW modules within
+>     camera subsystem.
+> 
+> If not for the current patches in the pipeline, if you are comfortable 
+> with this approach, we will try to push the changes for the future chip 
+> sets with the modular bindings, leaving the existing SOC drivers and 
+> bindings untouched (if that's recommended). Please let us know your 
+> thoughts. Thanks.
 
-Not sure what you mean? This PLL only gives *4 and *1 outputs.
+I think the Rockchip breaking up of blocks is structurally nice and how 
+you would do things if you were adding stuff in from scratch.
 
-> >
-> > Fixes: 7cae1e2b5544 ("clk: sunxi-ng: Add support for the A523/T527 CCU =
-PLLs")
-> > Signed-off-by: Chen-Yu Tsai <wens@kernel.org>
->
-> Reviewed-by: Jernej Skrabec <jernej.skrabec@gmail.com>
->
-> Best regards,
-> Jernej
->
-> > ---
-> >  drivers/clk/sunxi-ng/ccu-sun55i-a523.c | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> >
-> > diff --git a/drivers/clk/sunxi-ng/ccu-sun55i-a523.c b/drivers/clk/sunxi=
--ng/ccu-sun55i-a523.c
-> > index acb532f8361b..20dad06b37ca 100644
-> > --- a/drivers/clk/sunxi-ng/ccu-sun55i-a523.c
-> > +++ b/drivers/clk/sunxi-ng/ccu-sun55i-a523.c
-> > @@ -300,7 +300,7 @@ static struct ccu_nm pll_audio0_4x_clk =3D {
-> >       .m              =3D _SUNXI_CCU_DIV(16, 6),
-> >       .sdm            =3D _SUNXI_CCU_SDM(pll_audio0_sdm_table, BIT(24),
-> >                                        0x178, BIT(31)),
-> > -     .min_rate       =3D 180000000U,
-> > +     .min_rate       =3D 90000000U,
-> >       .max_rate       =3D 3000000000U,
-> >       .common         =3D {
-> >               .reg            =3D 0x078,
-> >
->
->
->
->
+Old Irish Joke:
+Man in car stops asks local: "How do I get to Tralee"
+Local scratches head under cap: "Well; I wouldn't start from here"
+
+We have existing bindings and one message that has been repeated is that 
+new bindings should follow old bindings of a similar class.
+
+There's a good argument to separate out the CSIPHY - because it has 
+distinct power-rails and has a real-world effect for users - in that 
+their PCB.
+
+It would really be up to yourselves to justify why it is a whole new 
+binding is required i.e. what benefit does it actually bring, and to 
+show, prove, that existing users of this driver either benefit or don't 
+suffer i.e. doing work for old silicon too, not just the new stuff.
+
+If the only objective you have is to facilitate co-existence of a 
+downstream driver with upstream bindings.
+
+Anyway there's absolutely no reason to hold up this series or any 
+subsequent series on a hypothetical rewrite unless/until that rewrite 
+gets proposed, reviewed and applied.
+
+---
+bod
 
