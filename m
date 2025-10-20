@@ -1,220 +1,248 @@
-Return-Path: <devicetree+bounces-228699-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228700-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D8BCBF03B2
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 11:39:49 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id EFB74BF03A9
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 11:39:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B9D6540031F
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 09:38:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 74F04189FD83
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 09:39:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 416582F6578;
-	Mon, 20 Oct 2025 09:38:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E2E62F7ABB;
+	Mon, 20 Oct 2025 09:38:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cknow-tech.com header.i=@cknow-tech.com header.b="onWXANZn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="t2MMRvxX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-174.mta1.migadu.com (out-174.mta1.migadu.com [95.215.58.174])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 405AC2F6563
-	for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 09:38:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C22DD2F7AA8;
+	Mon, 20 Oct 2025 09:38:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760953110; cv=none; b=Txs+oAU2yBVurrxL+A2NbEGqKUnVB4zlh5QU+NQKqGC99rNW2SMKUHjV074JYusynky445PsEpfBk3nbB7lsChVWxOGf7Of3XxUNBwIqYc0q26tHSApj4Ekoh3rVcaGLr5t6gwKvga//SQOlOcFVZbVWcY7GrnhF4BpaJ2gONnE=
+	t=1760953125; cv=none; b=I1uVJtn6o5FnE+rfNowEWT8K3+7d9jTnTOon5C0tSEmc12tnRO2MTwN8QLRnKoRE2wB39+I2tfNsuVmyYnYjHN2TatQDDuZIY26AmoJCm/7FnInVDVLry97qFhDIbbrUAH3vCBXtseYcbaXp+FhPmQRkjt9ROEQveX8K1CVJPd4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760953110; c=relaxed/simple;
-	bh=ZM99vAaDenOAHQs62WH/1ACKRvDOf/c1+nx6vwi0iiU=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=qrLRwWfoM2xJBV9IXbbYrmUTAgIp78tCd6PaXSBOa0QSM4ISfMDI73saieaUDOnJe6CJ07NFJu+kZr7c1Nv7mBToUMCCHZxEDUoLkeriGtZiB+PBi1cRJ78HZaR50SPOmkLn6asU9Veh4UrKafruIYFHHe2BScyANk6HfbiXjWY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow-tech.com; spf=pass smtp.mailfrom=cknow-tech.com; dkim=pass (2048-bit key) header.d=cknow-tech.com header.i=@cknow-tech.com header.b=onWXANZn; arc=none smtp.client-ip=95.215.58.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow-tech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow-tech.com
+	s=arc-20240116; t=1760953125; c=relaxed/simple;
+	bh=VKCYuth/NqxGJoPPggikV+GdPYEkZJ8g3GjwRJo8xY4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Tg0KUka04Zde/O5zf0dC7B5OSg4UYt2VhTt6WnajKqpIlBDDfxrv1DD3WPz+Z3NvQIGjXcpI6wc3J+Qy3XiniI9Rep5hGs3x1//PcC51Rma3wWclHROz+5Oq4eCdcOFyLpidq0F2kvPZowp5++bqAObMEW/FLHUGkB0zXIsE4mQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=t2MMRvxX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 338F5C4CEF9;
+	Mon, 20 Oct 2025 09:38:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1760953125;
+	bh=VKCYuth/NqxGJoPPggikV+GdPYEkZJ8g3GjwRJo8xY4=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=t2MMRvxXkCGnLs2tcMpgxmjfhn8rEOYvprk0/eWT9SmVw8OadOiZokDelfq2F+/8n
+	 KGolFiXETA/xLXKMKhzt/9aWJGBfKP5R69hZax6lsDOw7+VP4OqbJLOI9sMgYJu6lB
+	 x6F7iZ3qMFheo3XH49PTDW3QePr8kXsX7Njh6uAmWFUp64PRuNLlaH45WUGazMb+3S
+	 vgqKnXN/+Yo1XKgzZV4XMcWGgWtS5HSzSwk43RKhqp6v/4luk+vKQ4m21uTO125GNo
+	 3qylZMK+PKY2+CfEtPtqxSOAH2i5VyyZe3uOqXfM0qMd62wNAwTIYoB66mrTIq2vgh
+	 ZA9WpZVjk/auw==
+Message-ID: <f5e7bb0d-205b-4c10-8c31-bf60e1e42b73@kernel.org>
+Date: Mon, 20 Oct 2025 11:38:38 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow-tech.com;
-	s=key1; t=1760953090;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Q5GKFSb8/CEfXGsPeMSq9twJk4tF7yOdz4CDd5l/dKU=;
-	b=onWXANZnK+qqfixEuAceXS1lWRx+JeiaxMXIWo0ENGg8AfYu6LSCzWRujpeE3aJgRl1MKD
-	5UYyN5Yu3LXWx0Pfe51SQNTWPgNGGwPlQub+f+qcMrlq1Ku3R9tK2sRXTOVmF5Y7wrAam9
-	paPdawkWZi6FjgBdOrwdkMzsQGQdYngyKTiWWVdnTCPE3hdsVUg/YvhuwmP+ZP3RQ+kq6r
-	a1dg7XBXJsQ+fAYnAyg3JrzuJLlaY24b5vin667/995YhHWgvY9Agftc09sFMPjGhnxV6M
-	lEJLdbXKhmGgw7RyRLeRm+zJ5nHdrkUyOLVr8zM7RnWrXoWozQe3ocHOXkRZDg==
-Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/3] i2c: designware: Enable transfer with different
+ target addresses
+To: =?UTF-8?Q?Beno=C3=AEt_Monin?= <benoit.monin@bootlin.com>,
+ Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Jarkko Nikula <jarkko.nikula@linux.intel.com>,
+ Mika Westerberg <mika.westerberg@linux.intel.com>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Jan Dabros <jsd@semihalf.com>,
+ Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+ Clark Williams <clrkwllms@kernel.org>, Steven Rostedt <rostedt@goodmis.org>
+Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ Gregory CLEMENT <gregory.clement@bootlin.com>,
+ =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>,
+ Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
+ Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
+ Dmitry Guzman <dmitry.guzman@mobileye.com>, linux-i2c@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-rt-devel@lists.linux.dev
+References: <20251017-i2c-dw-v1-0-7b85b71c7a87@bootlin.com>
+ <20251017-i2c-dw-v1-2-7b85b71c7a87@bootlin.com>
+From: Hans Verkuil <hverkuil+cisco@kernel.org>
+Content-Language: en-US, nl
+In-Reply-To: <20251017-i2c-dw-v1-2-7b85b71c7a87@bootlin.com>
 Content-Type: text/plain; charset=UTF-8
-Date: Mon, 20 Oct 2025 11:38:02 +0200
-Message-Id: <DDN1RQB4LG0X.30F0A3IMJ4YI4@cknow-tech.com>
-Cc: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
- <linux-clk@vger.kernel.org>, <linux-rockchip@lists.infradead.org>,
- <linux-kernel@vger.kernel.org>, <huangtao@rock-chips.com>
-Subject: Re: [PATCH v3 4/5] dt-bindings: clock: Add support for rockchip
- pvtpll
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: "Diederik de Haas" <diederik@cknow-tech.com>
-To: "Elaine Zhang" <zhangqing@rock-chips.com>, <mturquette@baylibre.com>,
- <sboyd@kernel.org>, <sugar.zhang@rock-chips.com>, <heiko@sntech.de>,
- <robh@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
- <conor+dt@kernel.org>
-References: <20251020023724.2723372-1-zhangqing@rock-chips.com>
- <20251020023724.2723372-5-zhangqing@rock-chips.com>
-In-Reply-To: <20251020023724.2723372-5-zhangqing@rock-chips.com>
-X-Migadu-Flow: FLOW_OUT
+Content-Transfer-Encoding: 8bit
 
-On Mon Oct 20, 2025 at 4:37 AM CEST, Elaine Zhang wrote:
-> Add pvtpll documentation for rockchip.
->
-> Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
+Hi Benoît,
+
+On 17/10/2025 16:59, Benoît Monin wrote:
+> When i2c_dw_xfer() is called with more than one message, it sets the
+> target address according to the first message. If any of the following
+> messages have a different target address, the transfer finishes with
+> an error.
+> 
+> Instead, if the next message has a different target address, wait until
+> all previous messages are sent and the STOP condition is detected. This
+> will complete the current part of the transfer. The next part is then
+> handled by looping in i2c_dw_xfer(), calling i2c_dw_xfer_init() and
+> i2c_dw_wait_transfer() until all messages of the transfer have been
+> processed, or an error is detected.
+> 
+> The RESTART bit is now set after the first message of each part of the
+> transfer, instead of just after the very first message of the whole
+> transfer.
+> 
+> For each address change, i2c_dw_xfer_init() is called, which takes care
+> of disabling the adapter before changing the target address register,
+> then re-enabling it. Given that we cannot know the value of the
+> I2C_DYNAMIC_TAR_UPDATE parameter, this is the only sure way to change
+> the target address.
+
+I have the problem described here:
+
+https://lore.kernel.org/linux-i2c/ee6afdd7-3117-43cd-831f-e0ec5ee46f46@kernel.org/
+
+And it looks like this patch is intended to solve that problem (one transaction
+with two writes to different target addresses).
+
+I tried this patch, but it doesn't work. Instead I get a time out:
+
+[  111.695238] i2c_designware 1f00074000.i2c: controller timed out
+
+Is it indeed meant to solve the problem I have or is it addressing another
+issue?
+
+I'm happy to help test patches.
+
+Regards,
+
+	Hans
+
+> 
+> Based on the work of Dmitry Guzman <dmitry.guzman@mobileye.com>
+> 
+> Signed-off-by: Benoît Monin <benoit.monin@bootlin.com>
 > ---
->  .../bindings/clock/rockchip,clk-pvtpll.yaml   | 100 ++++++++++++++++++
->  1 file changed, 100 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/rockchip,clk-=
-pvtpll.yaml
->
-> diff --git a/Documentation/devicetree/bindings/clock/rockchip,clk-pvtpll.=
-yaml b/Documentation/devicetree/bindings/clock/rockchip,clk-pvtpll.yaml
-> new file mode 100644
-
-Should this file have the 'clk-' part in its name?
-In a way this is different from the other DT binding files, but none of
-the others have the 'clk-' part in their file name:
-
-me@pc:~/linux/Documentation/devicetree/bindings/clock$ ls -lh rockchip,*
--rw-rw-r-- 1 me me 2,9K okt 20 11:32 rockchip,px30-cru.yaml
--rw-rw-r-- 1 me me 1,9K okt 20 11:32 rockchip,rk3036-cru.yaml
--rw-rw-r-- 1 me me 1,8K okt 20 11:32 rockchip,rk3128-cru.yaml
--rw-rw-r-- 1 me me 2,3K okt 20 11:32 rockchip,rk3188-cru.yaml
--rw-rw-r-- 1 me me 2,1K okt 20 11:32 rockchip,rk3228-cru.yaml
--rw-rw-r-- 1 me me 2,6K okt 20 11:32 rockchip,rk3288-cru.yaml
--rw-rw-r-- 1 me me 2,2K okt 20 11:32 rockchip,rk3308-cru.yaml
--rw-rw-r-- 1 me me 2,1K okt 20 11:32 rockchip,rk3328-cru.yaml
--rw-rw-r-- 1 me me 2,4K okt 20 11:32 rockchip,rk3368-cru.yaml
--rw-rw-r-- 1 me me 2,5K okt 20 11:32 rockchip,rk3399-cru.yaml
--rw-rw-r-- 1 me me 1,5K okt 20 11:32 rockchip,rk3528-cru.yaml
--rw-rw-r-- 1 me me 1,1K okt 20 11:32 rockchip,rk3562-cru.yaml
--rw-rw-r-- 1 me me 1,8K okt 20 11:32 rockchip,rk3568-cru.yaml
--rw-rw-r-- 1 me me 1,2K okt 20 11:32 rockchip,rk3576-cru.yaml
--rw-rw-r-- 1 me me 1,6K okt 20 11:32 rockchip,rk3588-cru.yaml
--rw-rw-r-- 1 me me 2,2K okt 20 11:32 rockchip,rv1108-cru.yaml
--rw-rw-r-- 1 me me 1,3K okt 20 11:32 rockchip,rv1126-cru.yaml
-
-> index 000000000000..8be34bcde7b0
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/rockchip,clk-pvtpll.yaml
-> @@ -0,0 +1,100 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/rockchip,clk-pvtpll.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>  drivers/i2c/busses/i2c-designware-master.c | 58 ++++++++++++++++--------------
+>  1 file changed, 31 insertions(+), 27 deletions(-)
+> 
+> diff --git a/drivers/i2c/busses/i2c-designware-master.c b/drivers/i2c/busses/i2c-designware-master.c
+> index c7a72c28786c2..f9a180b145da8 100644
+> --- a/drivers/i2c/busses/i2c-designware-master.c
+> +++ b/drivers/i2c/busses/i2c-designware-master.c
+> @@ -436,6 +436,7 @@ i2c_dw_xfer_msg(struct dw_i2c_dev *dev)
+>  	u8 *buf = dev->tx_buf;
+>  	bool need_restart = false;
+>  	unsigned int flr;
+> +	int first_idx = dev->msg_write_idx;
+>  
+>  	intr_mask = DW_IC_INTR_MASTER_MASK;
+>  
+> @@ -446,11 +447,11 @@ i2c_dw_xfer_msg(struct dw_i2c_dev *dev)
+>  		 * If target address has changed, we need to
+>  		 * reprogram the target address in the I2C
+>  		 * adapter when we are done with this transfer.
+> +		 * This can be done after STOP_DET IRQ flag is raised.
+> +		 * So, disable "TX FIFO empty" interrupt.
+>  		 */
+>  		if (msgs[dev->msg_write_idx].addr != addr) {
+> -			dev_err(dev->dev,
+> -				"%s: invalid target address\n", __func__);
+> -			dev->msg_err = -EINVAL;
+> +			intr_mask &= ~DW_IC_INTR_TX_EMPTY;
+>  			break;
+>  		}
+>  
+> @@ -465,7 +466,7 @@ i2c_dw_xfer_msg(struct dw_i2c_dev *dev)
+>  			 * set restart bit between messages.
+>  			 */
+>  			if ((dev->master_cfg & DW_IC_CON_RESTART_EN) &&
+> -					(dev->msg_write_idx > 0))
+> +					(dev->msg_write_idx > first_idx))
+>  				need_restart = true;
+>  		}
+>  
+> @@ -822,7 +823,6 @@ i2c_dw_xfer(struct i2c_adapter *adap, struct i2c_msg msgs[], int num)
+>  		break;
+>  	}
+>  
+> -	reinit_completion(&dev->cmd_complete);
+>  	dev->msgs = msgs;
+>  	dev->msgs_num = num;
+>  	dev->cmd_err = 0;
+> @@ -841,18 +841,33 @@ i2c_dw_xfer(struct i2c_adapter *adap, struct i2c_msg msgs[], int num)
+>  	if (ret < 0)
+>  		goto done;
+>  
+> -	/* Start the transfers */
+> -	i2c_dw_xfer_init(dev);
+> +	do {
+> +		reinit_completion(&dev->cmd_complete);
+>  
+> -	/* Wait for tx to complete */
+> -	ret = i2c_dw_wait_transfer(dev);
+> -	if (ret) {
+> -		dev_err(dev->dev, "controller timed out\n");
+> -		/* i2c_dw_init_master() implicitly disables the adapter */
+> -		i2c_recover_bus(&dev->adapter);
+> -		i2c_dw_init_master(dev);
+> -		goto done;
+> -	}
+> +		/* Start the transfers */
+> +		i2c_dw_xfer_init(dev);
 > +
-> +title: Rockchip Pvtpll
+> +		/* Wait for tx to complete */
+> +		ret = i2c_dw_wait_transfer(dev);
+> +		if (ret) {
+> +			dev_err(dev->dev, "controller timed out\n");
+> +			/* i2c_dw_init_master() implicitly disables the adapter */
+> +			i2c_recover_bus(&dev->adapter);
+> +			i2c_dw_init_master(dev);
+> +			goto done;
+> +		}
 > +
-> +maintainers:
-> +  - Elaine Zhang <zhangqing@rock-chips.com>
-> +  - Heiko Stuebner <heiko@sntech.de>
+> +		if (dev->msg_err) {
+> +			ret = dev->msg_err;
+> +			goto done;
+> +		}
 > +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - rockchip,rv1103b-core-pvtpll
-> +          - rockchip,rv1103b-enc-pvtpll
-> +          - rockchip,rv1103b-isp-pvtpll
-> +          - rockchip,rv1103b-npu-pvtpll
-> +          - rockchip,rv1126b-core-pvtpll
-> +          - rockchip,rv1126b-isp-pvtpll
-> +          - rockchip,rv1126b-enc-pvtpll
-> +          - rockchip,rv1126b-aisp-pvtpll
-> +          - rockchip,rv1126b-npu-pvtpll
-> +          - rockchip,rk3506-core-pvtpll
-> +      - const: syscon
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  "#clock-cells":
-> +    const: 0
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  clock-output-names:
-> +    maxItems: 1
-> +
-> +  rockchip,cru:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description: |
-> +      Phandle to the main Clock and Reset Unit (CRU) controller.
-> +      Required for PVTPLLs that need to interact with the main CRU
-> +      for clock management operations.
-> +
-> +required:
-> +  - "#clock-cells"
-> +  - compatible
-> +  - reg
-> +  - clock-output-names
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    pvtpll_core: pvtpll-core@20480000 {
-> +      compatible =3D "rockchip,rv1126b-core-pvtpll", "syscon";
-> +      reg =3D <0x20480000 0x100>;
-> +      #clock-cells =3D <0>;
-> +      clock-output-names =3D "clk_core_pvtpll";
-> +    };
-> +
-> +  - |
-> +    pvtpll_isp: pvtpll-isp@21c60000 {
-> +      compatible =3D "rockchip,rv1126b-isp-pvtpll", "syscon";
-> +      reg =3D <0x21c60000 0x100>;
-> +      rockchip,cru =3D <&cru>;
-> +      #clock-cells =3D <0>;
-> +      clock-output-names =3D "clk_isp_pvtpll";
-> +    };
-> +
-> +  - |
-> +    pvtpll_enc: pvtpll-enc@21f00000 {
-> +      compatible =3D "rockchip,rv1126b-enc-pvtpll", "syscon";
-> +      reg =3D <0x21f00000 0x100>;
-> +      #clock-cells =3D <0>;
-> +      clock-output-names =3D "clk_vepu_pvtpll";
-> +    };
-> +
-> +  - |
-> +    pvtpll_aisp: pvtpll-aisp@21fc0000 {
-> +      compatible =3D "rockchip,rv1126b-aisp-pvtpll", "syscon";
-> +      reg =3D <0x21fc0000 0x100>;
-> +      rockchip,cru =3D <&cru>;
-> +      #clock-cells =3D <0>;
-> +      clock-output-names =3D "clk_vcp_pvtpll";
-> +    };
-> +
-> +  - |
-> +    pvtpll_npu: pvtpll-npu@22080000 {
-> +      compatible =3D "rockchip,rv1126b-npu-pvtpll", "syscon";
-> +      reg =3D <0x22080000 0x100>;
-> +      rockchip,cru =3D <&cru>;
-> +      #clock-cells =3D <0>;
-> +      clock-output-names =3D "clk_npu_pvtpll";
-
-rockchip,cru line as the last line?
-
-Cheers,
-  Diederik
-
-> +    };
-> +
-> +...
+> +		/* We have an error */
+> +		if (dev->cmd_err == DW_IC_ERR_TX_ABRT) {
+> +			ret = i2c_dw_handle_tx_abort(dev);
+> +			goto done;
+> +		}
+> +	} while (dev->msg_write_idx < num);
+>  
+>  	/*
+>  	 * This happens rarely (~1:500) and is hard to reproduce. Debug trace
+> @@ -874,23 +889,12 @@ i2c_dw_xfer(struct i2c_adapter *adap, struct i2c_msg msgs[], int num)
+>  	 */
+>  	__i2c_dw_disable_nowait(dev);
+>  
+> -	if (dev->msg_err) {
+> -		ret = dev->msg_err;
+> -		goto done;
+> -	}
+> -
+>  	/* No error */
+>  	if (likely(!dev->cmd_err && !dev->status)) {
+>  		ret = num;
+>  		goto done;
+>  	}
+>  
+> -	/* We have an error */
+> -	if (dev->cmd_err == DW_IC_ERR_TX_ABRT) {
+> -		ret = i2c_dw_handle_tx_abort(dev);
+> -		goto done;
+> -	}
+> -
+>  	if (dev->status)
+>  		dev_err(dev->dev,
+>  			"transfer terminated early - interrupt latency too high?\n");
+> 
 
 
