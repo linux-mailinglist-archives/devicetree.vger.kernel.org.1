@@ -1,168 +1,114 @@
-Return-Path: <devicetree+bounces-228758-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228742-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75B4BBF0800
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 12:19:04 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 59CA9BF0781
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 12:15:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5EE40188D0DD
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 10:17:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 99C4C18888B3
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 10:14:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1BC33002B4;
-	Mon, 20 Oct 2025 10:14:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E660323E334;
+	Mon, 20 Oct 2025 10:13:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="mOLWAHZM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="c9bFlltG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1D752F5A0E
-	for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 10:14:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BADF6191F91;
+	Mon, 20 Oct 2025 10:13:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760955258; cv=none; b=ReQeTdnfZ5UKBNgcuYostXt81Mx2HSJs+RvCCQQ+UMu3N7kRmPcOSH0rK0vO6HQ6H9GFi6zfxAY0q1hWok8Rl31hYTiq++Zlog3ADXeesELn9o5bXPvxpRm9yn7mE4Pj4AsS54++3iHYDzz0jUIp95iqTn41vtyOgwCboZQ0COE=
+	t=1760955226; cv=none; b=J+M6Vwd+sbPdVNWSFEcR+LyUtlTUuhkuSV6VXxgZy/ji3iaM6xSK79cDou0exF7D6GFM/wqeIENNYx2w2tsUWta3SKi2r/1Hw0tyJXK0Imw5uWiOHuudG9aQoJU+XTqUIfVep4r+4Z5HGaTJMjvvBITit1yzAGhQ6Ww/hvW69Zc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760955258; c=relaxed/simple;
-	bh=GgwJ7fWaulAietrHBtr8pXhbFEbm/bkrRwvdjItYaJI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=XHZO/D9pcXjfl0c1QwIeb2/ERBsT1zD8HOJPmPXzaguNev7Ks9mA8BuCsC++XPUgGl1Vlz2WTCaU5LU+Pwy6QsT5akz6LIiEXM/Sxg5Dtbk7GIVBD7UukhIausrpaqGV4wcVX4pYUFpuE/RzWqf00H5YFum46zN/UVMld/73ddI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=mOLWAHZM; arc=none smtp.client-ip=185.246.84.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id 65A721A1547;
-	Mon, 20 Oct 2025 10:14:15 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 3A2E7606D5;
-	Mon, 20 Oct 2025 10:14:15 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id B2346102F23B3;
-	Mon, 20 Oct 2025 12:14:12 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1760955254; h=from:subject:date:message-id:to:cc:mime-version:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=rZByAZ4a1Es55m5EId/mrhQ7knVrzCU0ipEljdw7k+I=;
-	b=mOLWAHZMEHaJ5DWrJzd5+jqoy2/ZuEto+BJiYKEPYIpIZznZ1Qpmclm7yQxwlw9M1ZrM4f
-	QntYP/j3GqyB/SyXjRR16YLDSWgkO0vEQWE3zXUCzWYHZ1RBUmq3XAMBtgVf5m3OacbPlF
-	1LBUPIQp3Ovz4QkHPu8ukKB1TOjDgPxU7aqf3wsAHT7busdUDwGc18E0eUwS/Wyzf68+k3
-	s2vkBLgrjp000yuOw46dETNd/O81ldxNW15bxro6cfvCCl94KF3oYctxWNsFbEG0JHPQLY
-	IaS36Q+uq5lzXVUouUtuWUlp+z1iVWIi3SSPWg0uKkf1a1gLLnJyaSb9Ve71pw==
-From: Richard Genoud <richard.genoud@bootlin.com>
-To: Miquel Raynal <miquel.raynal@bootlin.com>,
-	Richard Weinberger <richard@nod.at>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>
-Cc: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>,
-	Wentao Liang <vulab@iscas.ac.cn>,
-	Johan Hovold <johan@kernel.org>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	linux-mtd@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-sunxi@lists.linux.dev,
-	linux-kernel@vger.kernel.org,
-	Richard Genoud <richard.genoud@bootlin.com>
-Subject: [PATCH v3 15/15] arm64: dts: allwinner: h616: add NAND controller
-Date: Mon, 20 Oct 2025 12:13:11 +0200
-Message-ID: <20251020101311.256819-16-richard.genoud@bootlin.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20251020101311.256819-1-richard.genoud@bootlin.com>
-References: <20251020101311.256819-1-richard.genoud@bootlin.com>
+	s=arc-20240116; t=1760955226; c=relaxed/simple;
+	bh=tIWBCIsaoT4wnAs1pu5i22DQkL3EHE+ksWJLZLB4LAw=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=myRZ27FrgwtgWkJWGsljlEaLwM/X0DbDqn+RfTs9oR30JocAUTvAKJRCEIzYcz4i6YwMdwfviI0KbVj/0/HMaFELYmh7m9AHzT7TOhYP/C6BrMKjqTCzskKnlYLz1xTvupe+AQduwt1Vw7m5J63T5Lqx1gClBaLfVqt9bmJNAsU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=c9bFlltG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 76DC8C4CEF9;
+	Mon, 20 Oct 2025 10:13:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1760955226;
+	bh=tIWBCIsaoT4wnAs1pu5i22DQkL3EHE+ksWJLZLB4LAw=;
+	h=From:Date:Subject:To:Cc:From;
+	b=c9bFlltGFqtt5hJ6R9USJ68fmCn76BJzACz3iwR5BQ9KfWOf1UxofbCAjTGK7+Qv8
+	 Zv982gL32EEs1fvzm+EPDMx0VSa7m1gbqW5QfuGxw2LKZTTI96fGEhdU2V7kQZpjGZ
+	 ZhK28j3GFGCuLYZiXczDz+mc32IO2eTjkWumxHtZU/w9Rah+G/3fxJJ6VdfgMbB/2n
+	 6+u7p+7pIWcDWiGb7mEkpfmeCPV6yZsw5QeEg/lh936EJ66ApQeC4HoP41ClMihKOT
+	 T0iFn+s0CzRd0m6+IJ9u47Z/qjFPlo3hqDEofLkdrh5tHPVgkostv+UmUs/X5ztkj5
+	 XqdaAx2mZPuMw==
+From: Konrad Dybcio <konradybcio@kernel.org>
+Date: Mon, 20 Oct 2025 12:13:38 +0200
+Subject: [PATCH] arm64: dts: qcom: sdx75: Fix the USB interrupt entry order
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20251020-topic-sdx75_usb-v1-1-1a96d5de19c9@oss.qualcomm.com>
+X-B4-Tracking: v=1; b=H4sIAFEL9mgC/x3MQQqAIBBA0avErBPUkqirRETqVLNRcSqC6O5Jy
+ 7f4/wHGTMgwVA9kvIgphgJVV+D2JWwoyBeDltooqaU4YiIn2N+dmU+2QraLs6pvfGNWKFXKuNL
+ 9H8fpfT/Sn2g2YQAAAA==
+X-Change-ID: 20251020-topic-sdx75_usb-04acb193d35f
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1760955223; l=1226;
+ i=konrad.dybcio@oss.qualcomm.com; s=20230215; h=from:subject:message-id;
+ bh=3Bp8P7Ht03R3ivd5SxVXsCR7SjX9DbSkryw+IQzbxBQ=;
+ b=txCiNXt1ROeRMb0luzl/Fx7NoCezQa9HpsH15VDXAKyuZqJCj3jRajOQJeOELwkWsyZRQup+I
+ Zko9huXy4MHBNmryXUyOOG2t30M+TWho933v75enPR/H0bJ0LsVJENf
+X-Developer-Key: i=konrad.dybcio@oss.qualcomm.com; a=ed25519;
+ pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 
-The H616 has a NAND controller quite similar to the A10/A23 ones, but
-with some register differences, more clocks (for ECC and MBUS), more ECC
-strengths, so this requires a new compatible string.
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
-Add the NAND controller node and pins in the device tree.
+The DP and DM interrupts are expected to come in a different order.
+Reorder them to align with bindings.
 
-Signed-off-by: Richard Genoud <richard.genoud@bootlin.com>
+Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 ---
- .../arm64/boot/dts/allwinner/sun50i-h616.dtsi | 52 +++++++++++++++++++
- 1 file changed, 52 insertions(+)
+ arch/arm64/boot/dts/qcom/sdx75.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-index ceedae9e399b..2a4d70298655 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-@@ -304,6 +304,42 @@ mmc2_pins: mmc2-pins {
- 				bias-pull-up;
- 			};
+diff --git a/arch/arm64/boot/dts/qcom/sdx75.dtsi b/arch/arm64/boot/dts/qcom/sdx75.dtsi
+index 75bfc19f412c..f26ba90ba66d 100644
+--- a/arch/arm64/boot/dts/qcom/sdx75.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdx75.dtsi
+@@ -1043,13 +1043,13 @@ usb: usb@a6f8800 {
  
-+			/omit-if-no-ref/
-+			nand_pins: nand-pins {
-+				pins = "PC0", "PC1", "PC2", "PC5", "PC8", "PC9",
-+				       "PC10", "PC11", "PC12", "PC13", "PC14",
-+				       "PC15", "PC16";
-+				function = "nand0";
-+			};
-+
-+			/omit-if-no-ref/
-+			nand_cs0_pin: nand-cs0-pin {
-+				pins = "PC4";
-+				function = "nand0";
-+				bias-pull-up;
-+			};
-+
-+			/omit-if-no-ref/
-+			nand_cs1_pin: nand-cs1-pin {
-+				pins = "PC3";
-+				function = "nand0";
-+				bias-pull-up;
-+			};
-+
-+			/omit-if-no-ref/
-+			nand_rb0_pin: nand-rb0-pin {
-+				pins = "PC6";
-+				function = "nand0";
-+				bias-pull-up;
-+			};
-+
-+			/omit-if-no-ref/
-+			nand_rb1_pin: nand-rb1-pin {
-+				pins = "PC7";
-+				function = "nand0";
-+				bias-pull-up;
-+			};
-+
- 			/omit-if-no-ref/
- 			spi0_pins: spi0-pins {
- 				pins = "PC0", "PC2", "PC4";
-@@ -377,6 +413,22 @@ iommu: iommu@30f0000 {
- 			#iommu-cells = <1>;
- 		};
+ 			interrupts-extended = <&intc GIC_SPI 130 IRQ_TYPE_LEVEL_HIGH>,
+ 					      <&intc GIC_SPI 131 IRQ_TYPE_LEVEL_HIGH>,
+-					      <&pdc 9 IRQ_TYPE_EDGE_RISING>,
+ 					      <&pdc 10 IRQ_TYPE_EDGE_RISING>,
++					      <&pdc 9 IRQ_TYPE_EDGE_RISING>,
+ 					      <&pdc 17 IRQ_TYPE_LEVEL_HIGH>;
+ 			interrupt-names = "pwr_event",
+ 					  "hs_phy_irq",
+-					  "dm_hs_phy_irq",
+ 					  "dp_hs_phy_irq",
++					  "dm_hs_phy_irq",
+ 					  "ss_phy_irq";
  
-+		nfc: nand-controller@4011000 {
-+			compatible = "allwinner,sun50i-h616-nand-controller";
-+			reg = <0x04011000 0x1000>;
-+			interrupts = <GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&ccu CLK_BUS_NAND>, <&ccu CLK_NAND0>,
-+				<&ccu CLK_NAND1>, <&ccu CLK_MBUS_NAND>;
-+			clock-names = "ahb", "mod", "ecc", "mbus";
-+			resets = <&ccu RST_BUS_NAND>;
-+			reset-names = "ahb";
-+			dmas = <&dma 10>;
-+			dma-names = "rxtx";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			status = "disabled";
-+		};
-+
- 		mmc0: mmc@4020000 {
- 			compatible = "allwinner,sun50i-h616-mmc",
- 				     "allwinner,sun50i-a100-mmc";
+ 			power-domains = <&gcc GCC_USB30_GDSC>;
+
+---
+base-commit: 606da5bb165594c052ee11de79bf05bc38bc1aa6
+change-id: 20251020-topic-sdx75_usb-04acb193d35f
+
+Best regards,
+-- 
+Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+
 
