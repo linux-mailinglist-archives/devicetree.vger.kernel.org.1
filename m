@@ -1,87 +1,147 @@
-Return-Path: <devicetree+bounces-228825-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228824-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28556BF0F7F
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 13:59:59 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7583FBF0F6A
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 13:58:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 917B63E6B71
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 11:58:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2778118A391F
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 11:59:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0368C304967;
-	Mon, 20 Oct 2025 11:58:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA2483043B2;
+	Mon, 20 Oct 2025 11:58:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="Nu3jCO5l"
+	dkim=pass (2048-bit key) header.d=sigxcpu.org header.i=@sigxcpu.org header.b="iOkQeLlq";
+	dkim=pass (2048-bit key) header.d=sigxcpu.org header.i=@sigxcpu.org header.b="To6/l9eK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.14])
+Received: from honk.sigxcpu.org (honk.sigxcpu.org [24.134.29.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 381E11FF5E3
-	for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 11:58:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE65324A058;
+	Mon, 20 Oct 2025 11:58:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=24.134.29.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760961522; cv=none; b=FvOEYVW5r/ZNorOrpLUSz72fu9346Dv19sTwWFi5PfaYiyO2k6GgAmF2tx3f71uWXh0BHS+1R1unCzXaEKFER7EIpQd0fNzMb3bh2DZmVCvA2/WmUqNrEDNymCxFJkY+tX0wt7Y40g1oyo5Yivs6+Kgh2CKaVnADRvNGjsF2ZKY=
+	t=1760961522; cv=none; b=AHKap+V6Et9pANkbIaCXpIHCoMcZKuoF+zNPLjqAdGesrin+S29Ct2mR/1qdvaDcetvV+ddkKkFWvGXSBku5+QrcbJrlZRREYGaMbZY03f7gj5cTRAUVT5lZKQP4Ngktpr2fH1C7ZJOILsI1PBHoCy19iqzYFy4nj0ADZJ889/0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1760961522; c=relaxed/simple;
-	bh=xoKSW+wvhHMDPCHttGL5uk5pn9U20ovAsfAY02c3EF0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fLiKACtCz3MnQoTxAtMcS98j3qvLo8wXFnScDZXXTBzkGd9cSLICn4vVR9VS5VSOMhGdE1BYFbtLQQD504WR/wSzbjIlW9n7w5EtYg5GaMusLczgc7I6QfPBl7tz7vNHTECIuzcPKdA5xz4uEm9gGH9HWfXMP4HL1TdS1AdC7tk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=Nu3jCO5l; arc=none smtp.client-ip=1.95.21.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=Date:From:To:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=tk34IRKnBv7hiN7qUW37bwUgSoZget6//bM/ooP9Mgs=;
-	b=Nu3jCO5lKmRuo5fWdE++IsHfPxWG9mp+CWJ3edhFDcdSfzzU6Im9nVhP5czI3g
-	NKdcIpm12uk843V4XpxLwGXPS3uYltEnnLXXQZ9vxIhxvJ8d7Bjm3Y6mKdvhBtnp
-	BHpVecDEmQsrfS7yBNZavpN8S5K4nkxS69I9qpW9dd5WI=
-Received: from dragon (unknown [])
-	by gzsmtp3 (Coremail) with SMTP id M88vCgD3_7HNI_Zowh1TAA--.27863S3;
-	Mon, 20 Oct 2025 19:58:07 +0800 (CST)
-Date: Mon, 20 Oct 2025 19:58:05 +0800
-From: Shawn Guo <shawnguo2@yeah.net>
-To: Fabio Estevam <festevam@gmail.com>
-Cc: shawnguo@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	frank.li@nxp.com
-Subject: Re: [PATCH v2] dt-bindings: soc: imx-iomuxc-gpr: Document the CSI mux
-Message-ID: <aPYjzUGUR2OTPgSD@dragon>
-References: <20250910233402.567245-1-festevam@gmail.com>
+	bh=5ZYpgK4DHkld0Tvb5ZbPmHYNvT3gym/NaPp5l3Exmfw=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=KogxAvrcixG5bS+GQ6NCOid9PqK2TyhanY2bM3oR89dk4eys/wkWxb9LfdQ1cK1sURCF2X1xVsuhn+omA+mbgLCYxAVbPPVypL4uc733CdLdsJikqYwxCeqxEK7Z9N4Ybnq0Ek5uHHARsDy11QbicnhMnYnhWU41C+562QkLE0c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sigxcpu.org; spf=pass smtp.mailfrom=sigxcpu.org; dkim=pass (2048-bit key) header.d=sigxcpu.org header.i=@sigxcpu.org header.b=iOkQeLlq; dkim=pass (2048-bit key) header.d=sigxcpu.org header.i=@sigxcpu.org header.b=To6/l9eK; arc=none smtp.client-ip=24.134.29.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sigxcpu.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sigxcpu.org
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=sigxcpu.org; s=2024;
+	t=1760961515; bh=5ZYpgK4DHkld0Tvb5ZbPmHYNvT3gym/NaPp5l3Exmfw=;
+	h=From:Date:Subject:To:Cc:From;
+	b=iOkQeLlqmtzT8mL31pTDtepS5U2vlYUP7ndeQxfh3i+PEKTC8rm9DV5VziSVL+V9e
+	 lLz7GM63r7sjTLgQ956ow+vEWOgJzDpi2kFF9dxtxxR5MF0ZRNAl8TrZ2Iinr3WpVq
+	 eekRJMimCLGQCIdH8OUryLQirvYalVqI8lZgizmJ2VCr5dFnAnexXVUzbU0P5u/FmH
+	 7xJ+uKg2bHFeCtpXv5MiiTLswm8OnCu9KYu92w/P/l19Nwt8ZiWQv7PA5+ITrTAo+S
+	 1Ex827D2sqlnqYgxHs3mbJqSWON8fD1UKu0LfL+uRgMvG3Cuyd+YvoMaePoX0MhTvc
+	 jkBsGwXWyfvag==
+Received: from localhost (localhost [127.0.0.1])
+	by honk.sigxcpu.org (Postfix) with ESMTP id 0EA2AFB03;
+	Mon, 20 Oct 2025 13:58:35 +0200 (CEST)
+Received: from honk.sigxcpu.org ([127.0.0.1])
+	by localhost (honk.sigxcpu.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id oHfZoafPnd7X; Mon, 20 Oct 2025 13:58:34 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=sigxcpu.org; s=2024;
+	t=1760961514; bh=5ZYpgK4DHkld0Tvb5ZbPmHYNvT3gym/NaPp5l3Exmfw=;
+	h=From:Date:Subject:To:Cc:From;
+	b=To6/l9eKjs+n8I75CZ8dwEcnPStzg9qC/a2FxObMk85/5Y20DQqgvuTG/h5GU52jV
+	 bCBXrBpEML+33jPCM6WkwDQLrr2DMa8HLFcnvxwAls2mBtOQMjA5Y1YYjRsXuklbJf
+	 uvlsPPtBTIyFHAIQ704o84mcoiYzor0lGFw9ltYECl5udiGiRCqUdRNDvASJx6EGvc
+	 vypxu4uq0l/Dkws207lGWBntougEEcPCYyY+nTvmLxBWOAEyR1OKeH7vPmdM8Ayfz/
+	 llNhcyQrMnSQeafCCYjTg2Yfkc9QtKSymZ2WhVRYcpSmJsFfIaCiOt5nETyb3PvFsK
+	 pnPAVy/r8TFTQ==
+From: =?utf-8?q?Guido_G=C3=BCnther?= <agx@sigxcpu.org>
+Date: Mon, 20 Oct 2025 13:58:24 +0200
+Subject: [PATCH v2] arm64: dts: qcom: sdm845-shift-axolotl: Drop address
+ and size cells from panel
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250910233402.567245-1-festevam@gmail.com>
-X-CM-TRANSID:M88vCgD3_7HNI_Zowh1TAA--.27863S3
-X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUU8529EdanIXcx71UUUUU7v73
-	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxU20eHDUUUU
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiNA-TOWj2I88AGAAA37
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+Message-Id: <20251020-shift6mq-dt-v2-1-d8fc3ec71281@sigxcpu.org>
+X-B4-Tracking: v=1; b=H4sIAN8j9mgC/1XMTQ6CMBCG4auQWVvTaRBaV97DsJB2aGchPy0SD
+ OHuVuLGzSTvJN+zQaLIlOBabBBp4cRDn0OdCrDh0XsS7HKDkuqCEo1Igbu5ek7CzYLK1lDtbI2
+ VgbwYI3W8Htq9yR04zUN8H/iC3+/PUfLPWVCg0DWWMh/Urb4l9qsdX+chemj2ff8AeCa7v6gAA
+ AA=
+X-Change-ID: 20251019-shift6mq-dt-e4b9e7dc7169
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org, 
+ =?utf-8?q?Guido_G=C3=BCnther?= <agx@sigxcpu.org>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1320; i=agx@sigxcpu.org;
+ h=from:subject:message-id; bh=5ZYpgK4DHkld0Tvb5ZbPmHYNvT3gym/NaPp5l3Exmfw=;
+ b=LS0tLS1CRUdJTiBQR1AgTUVTU0FHRS0tLS0tCgpvd0VCYlFLUy9aQU5Bd0FJQVNXL2hsSksvT
+ UhqQWNzbVlnQm85aVBrNjNaeFo1ckt1Q1g0UkwzSmdnZTF3RzJSCndTYXdxQ25jeis2MEQvS1Vy
+ TmlKQWpNRUFBRUlBQjBXSVFSajlzemZsaUtkQ1NocktzTWx2NFpTU3Z6QjR3VUMKYVBZajVBQUt
+ DUkFsdjRaU1N2ekI0eFQ1RC93TkxGWVJkQ0hzOVg3SCtSS0wxK25aZmFmbXFFdEZnWmYxUWtxdg
+ ovcTR6MDhaeTBSeWxWQTZWKzFDYUJNMkxiV0lNWUZnTmZJVzIwakNxaDAyb0kzRzR3T0RRTUdlW
+ kE2WkRsbG9QCjAzTWJBL2FHT1JUdTh2bE9Jbkdvc0FlVUZHTEYrdmR3VlhsVmVCQmVEeDZtU3pP
+ cDJVcW5xSXN0a1V5UXlUSU8KQXExTVVGTjlDSDg3ME5SVmJpYlZ3VVdWNnN0UExLaEkzcmV1OUh
+ iWXh3TzdCa0g2OUxBOEVReGJZRy81SGgyQgpxVXB5dHZ6ZzhhVUdKNzFuK2V4WWQxS1I5U25DUE
+ 1aN2tCdDVEcTNtbDZ1bE51N3RwdVpUVGpoUTZBdUJCWkNkClpsZlBUalhBaGhtWEFZajQwVGVxU
+ nA2bEIycDgzY2djWEZvQWtTbzJHQ3EwVjdxYW9GODJLVWhuNzJuN3dhazUKQVovUnQ0alRBWjRz
+ UFJMLzIyWXlWOWg5ZDZPSVNYYmYzV3RYL2ZVR3pmb3l0RE00N1pUTm85SnVRWHdUL1F1RgpjcFU
+ 3N3BFZXNEZW16aklFUmJXVE1DbVB3QnovallFT3dTZWpBa1RaNGlyV0xyTFczdjRpY3cveHBqZ1
+ I0VUVLCnAvWFNQa2U2aHZqTVJQVXFCYmhCL3puK3M2VlNzdkM4dE5JR1JKc3VnT0laSHdkQmlhc
+ UFVeHM3b2ZrT210eFgKbzRwNGdIQi9Gb0VuakpBNGNDOVdFWjI0TjdlWHJZVjAyOUFzb2tVUHJY
+ NmJNUjNoQVJreTNmWWwzblhwN3hXRAovc2RJYlM1M0Q5clVka3c2VXBqaGM3c0hqTGNicllNU21
+ MRXJabGh4R2VxYzNlTDUvREVvY0tnNC9uUHNIeTBECnhCUEJpdz09Cj1LRDVCCi0tLS0tRU5EIF
+ BHUCBNRVNTQUdFLS0tLS0K
+X-Developer-Key: i=agx@sigxcpu.org; a=openpgp;
+ fpr=0DB3932762F78E592F6522AFBB5A2C77584122D3
 
-On Wed, Sep 10, 2025 at 08:34:02PM -0300, Fabio Estevam wrote:
-> On i.MX6Q/6DL the following subnodes exist to describe the CSI port muxing:
-> 
-> - ipu1_csi0_mux
-> - ipu1_csi1_mux
-> - ipu2_csi0_mux
-> - ipu2_csi1_mux
-> 
-> As they were not documented, dt-schema emits warnings like:
-> 
->   'ipu1_csi0_mux', 'ipu1_csi1_mux' do not match any of the regexes:
->   '^pinctrl-[0-9]+$'
-> 
-> Add a top-level patternProperties entry for these CSI mux subnodes
-> and restrict it to i.MX6Q.
-> 
-> Signed-off-by: Fabio Estevam <festevam@gmail.com>
+They're set in the parent to describe the panel's reg property already.
 
-Applied, thanks!
+Fixes the
+
+linux/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dtb: panel@0 (visionox,rm69299-shift): '#address-cells', '#size-cells' do not match any of the regexes: '^pinctrl-[0-9]+$'
+
+warning.
+
+Signed-off-by: Guido Günther <agx@sigxcpu.org>
+---
+Changes in v2:
+- Just remove the lines completely, the parent has them already set
+  (Thanks Konrad Dybcio)
+- Link to v1: https://lore.kernel.org/r/20251020-shift6mq-dt-v1-1-8714087118b8@sigxcpu.org
+---
+ arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts | 3 ---
+ 1 file changed, 3 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts b/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
+index 89260fce6513..46ca4a38a9a8 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
++++ b/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
+@@ -479,9 +479,6 @@ panel@0 {
+ 		vdda-supply = <&vreg_l14a_1p88>;
+ 		vdd3p3-supply = <&vreg_l28a_3p0>;
+ 
+-		#address-cells = <1>;
+-		#size-cells = <0>;
+-
+ 		reset-gpios = <&tlmm 6 GPIO_ACTIVE_HIGH>;
+ 
+ 		pinctrl-names = "default", "sleep";
+
+---
+base-commit: f406055cb18c6e299c4a783fc1effeb16be41803
+change-id: 20251019-shift6mq-dt-e4b9e7dc7169
+
+Best regards,
+-- 
+Guido Günther <agx@sigxcpu.org>
 
 
