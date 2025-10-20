@@ -1,62 +1,68 @@
-Return-Path: <devicetree+bounces-228961-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228962-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5575BF2A99
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 19:16:10 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id C4AF4BF2AA9
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 19:18:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5DDC33A3A4F
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 17:15:39 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id C58CB4EC32B
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 17:18:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E49A7331A44;
-	Mon, 20 Oct 2025 17:15:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B5512874E9;
+	Mon, 20 Oct 2025 17:18:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="J0N7qB7e"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Gl5LTmHI"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7EB11D5CDE;
-	Mon, 20 Oct 2025 17:15:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71E2FC8FE;
+	Mon, 20 Oct 2025 17:18:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760980536; cv=none; b=PP/5Fm/iReGM9lDgKdU78HQyMun1biBLibNxXuXCuvqfVbWF9iW4oNlqW/6qGKNFzdHk+495sjUmabo4NLRBFuJU7Jm5/Zw46PBe1cTUiVxSo2e8Kd3ZZKYEnv+gwB50ge959vJSa84OEWx8sCKJbd5PzmKi2W6j0q893+p0rTc=
+	t=1760980692; cv=none; b=ExFXWEv85bGihZDor/VFoeUjKKJdVn+lipO1zuYDgWMId4R6oB2JhImsFmNMKhjfrKWtYL9tW88eRmzBUsdkGxJEmlfSS4z3oO3lQbYBzLRJheQSfQZsLTHvyil0gLqyH/ub+5diY4gsehLHnHHvOsd14rN4fXT433KUFwANodQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760980536; c=relaxed/simple;
-	bh=QFq5LOrpzBT+0cc2xULTJJjO/I/ewFbE34Rwz7Vzghc=;
+	s=arc-20240116; t=1760980692; c=relaxed/simple;
+	bh=XiFkPjpbRb4EvxWHzM2pnBZEEJZd3/pqX3IeZ6qKzeA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GTfeEvB10bJ/aAlqUMzawGxFrp1LB6cX2kR3GmXjOa59LKOyJseBsAsHPrety6a21cDefyvTfrSohKeeNB2pcauQfGXY/grUyC7pHWhVzj4jo+viBRBGkJmM/wDPQxNbzA5Emtanl5kVrJgB8pd6+C6p/Vkr9RgKmeHhXbSpP1k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=J0N7qB7e; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EC5DFC4CEF9;
-	Mon, 20 Oct 2025 17:15:33 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=lriG+nrcq2lRnWNLUKBANgl6as0cWpt880d9UiWtD6V2WMccDkVLk9hGRr2xbmy2lXNvQrso3kCWm84sIx6t7Uj41x3kkJ4bz3BzUoupZbaC+cvXNx//09zybGLLG5AS1CdyitR7CNtpsijlxfd3KQ2rjBbjXb8cw1GXkfdhJz0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Gl5LTmHI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F8D5C4CEFE;
+	Mon, 20 Oct 2025 17:18:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760980536;
-	bh=QFq5LOrpzBT+0cc2xULTJJjO/I/ewFbE34Rwz7Vzghc=;
+	s=k20201202; t=1760980692;
+	bh=XiFkPjpbRb4EvxWHzM2pnBZEEJZd3/pqX3IeZ6qKzeA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=J0N7qB7eyOf+og4EajM32N6iSDRWii4pM4IRcRrlLHUUVPxxeAz/pUZH5GMV0asoc
-	 a/Df+2Ka9Q2b6okE6DBFL3ITMbpWGE+y+MbvRLu0+t+PJUS719uYEWje+KG8ITeCFH
-	 ozdIKrp0R1hh96xNsggx5xkzmrCKG0fZ1isIa+sTaA/OMuxB+xwEciezZz3clKHFWF
-	 0NtqxouSG8TySG1CitJoiLEi0iSaKLxoJxib5jZhg2ag/9aaE6/VeJXwjXMF+XwYzq
-	 JGR4rmdw9/AMzO0kMie+fivm5M/VNz4r1QkijaZdvhVHaeNmO4QkApK7JwQNJuSqzo
-	 +yaddHAuR95gw==
-Date: Mon, 20 Oct 2025 18:15:31 +0100
+	b=Gl5LTmHInpyxPFKLcyUsCYaiT0yTRN+G+x1IBw6hObRVmPn3hR8ZI3mddOUsa0MJ/
+	 EfkhMjLRk5dPlCKaI0mJY/QoaOEk3/c2zrzBr9KjPzJPZjuF/FdI7BZNGlDoFVhgvq
+	 2xQ3RNEUwc9Pc8MduggMdUO+Nc/eNn0zPPq9NLDAJmlyqdJKIkrSaE1R94vVCmWc/1
+	 iP/xoUTk1geJluzVdSqbzIPIiNKFv+XqmdPTj3HJ1Qc2NAUgj3k4mMuHaIvTWAIxpu
+	 GnV1nSGyD9I8cvJvmuKmESSfhFBw8hjlNYBB2Yuk6AR1PL6JSp5Q4lAY2y/d+lVKiy
+	 0TPW3GLwSPQxw==
+Date: Mon, 20 Oct 2025 18:18:06 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Matthias Schiffer <matthias.schiffer@tq-group.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux@ew.tq-group.com
-Subject: Re: [PATCH v2 1/2] dt-bindings: arm: fsl: add TQ-Systems boards
- MBLS1028A and MBLS1028A-IND
-Message-ID: <20251020-closure-eating-5562565a4032@spud>
-References: <20251020133536.303471-1-alexander.stein@ew.tq-group.com>
+To: Richard Genoud <richard.genoud@bootlin.com>
+Cc: Miquel Raynal <miquel.raynal@bootlin.com>,
+	Richard Weinberger <richard@nod.at>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@baylibre.com>,
+	Wentao Liang <vulab@iscas.ac.cn>, Johan Hovold <johan@kernel.org>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 14/15] dt-bindings: mtd: sunxi: Add H616 compatible
+Message-ID: <20251020-caring-aftermath-32ed83db9a7a@spud>
+References: <20251020101311.256819-1-richard.genoud@bootlin.com>
+ <20251020101311.256819-15-richard.genoud@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,28 +70,28 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="y5gaGBfQOuF8CKPP"
+	protocol="application/pgp-signature"; boundary="ugH87F6woIwS5I8f"
 Content-Disposition: inline
-In-Reply-To: <20251020133536.303471-1-alexander.stein@ew.tq-group.com>
+In-Reply-To: <20251020101311.256819-15-richard.genoud@bootlin.com>
 
 
---y5gaGBfQOuF8CKPP
+--ugH87F6woIwS5I8f
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 
 Acked-by: Conor Dooley <conor.dooley@microchip.com>
 pw-bot: not-applicable
 
---y5gaGBfQOuF8CKPP
+--ugH87F6woIwS5I8f
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaPZuMwAKCRB4tDGHoIJi
-0idqAP99wn9rZ3vdX/HiKOVJU/T6U0epcn96qhI5HbBPOZrMCgD/fDSstymKGmQ+
-e0eW7q6qrX43inmNTqVE9GCARUNQpAU=
-=f5RB
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaPZuzgAKCRB4tDGHoIJi
+0mWmAQCXkfmlRLPpkpogtOPLDai3zd1cQMUD4dehkb1qSH2wTwD/TyAWdD6k93SK
+AeF6ryJefcHUqunzW+LtLTOwecmIFQQ=
+=YaUV
 -----END PGP SIGNATURE-----
 
---y5gaGBfQOuF8CKPP--
+--ugH87F6woIwS5I8f--
 
