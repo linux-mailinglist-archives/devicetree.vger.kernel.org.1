@@ -1,72 +1,65 @@
-Return-Path: <devicetree+bounces-228970-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228971-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A5F2BF2B8D
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 19:31:36 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E507DBF2B96
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 19:32:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DBCD33AF9FF
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 17:31:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3CA9718A6485
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 17:33:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64C63330B39;
-	Mon, 20 Oct 2025 17:31:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B86FA29AB1D;
+	Mon, 20 Oct 2025 17:32:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KVf/5gWI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dxNlxydD"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C0C829AB1D;
-	Mon, 20 Oct 2025 17:31:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9186B2561AE;
+	Mon, 20 Oct 2025 17:32:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760981492; cv=none; b=IOFGSNpGyAb1CPLP/+iaNjFUXF5Kin/tNv+JUnz/SQ+VcIlAfbOM+f12+SR/7BRsfq/N+WCHZyrIfWAZAH1ZAlwXB9tR3MLrkfvBRWuBDmVf53yR3pyvShungpDEPNR1sBNffER3Dh4TCnIi+vaUwsRquRhZ6xdT/7Merl7jLGY=
+	t=1760981553; cv=none; b=BdyFxYIgRzUNSBNeM6+w59buBMmO5ShUSKIrsnewjQcLhR2ADNHeW3W8/Nb4rYgnzGwhoGMaYcIdoOlx14IvRQYOKPzf//UXZy0bqOSL6NHRI8A/giP5FSItnFUiwff/WdTLnZ8f43I5Azq70tlI5HFOzF/lHtjt5J4HGF7Qzos=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760981492; c=relaxed/simple;
-	bh=Rj8TnVP8wPWGT2UvO9eiDZL3aqksBHrM83YzLn2wHRI=;
+	s=arc-20240116; t=1760981553; c=relaxed/simple;
+	bh=cKso7ybb9iJDanB4qNQL4k5Ww5/ll0Fs6J9dM79RXaA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Y67J+SGMsXI/ZO5Wu+JUtqKWZVY/H8VwK3jCDcYrQ/qtwvz/RKOXZmCj4/cHjTiriLqGUwc6ofaPUVp6+9Y6EjszZFnuZNGqAddIa3/LH/FnTZ1xO8KYqyDa0K0/qXl3FTrgvLYj9NQtHuXIXWAztK21+g5pP1UytiQcoaSfECU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KVf/5gWI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DFDDFC4CEF9;
-	Mon, 20 Oct 2025 17:31:26 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=rdczWlW70drAvm28HLAJV0Dm7PzD9VuFqq9Lc7zVc/lsjzsKLj6ksxjVmiZnfJhE7fkT/tN5ONBN5ipJspYzbti2NAf7TjSgUGs5/PABVEyjwFeg+inaeeRLhDwI+qOvqON0uJnjHUeJVLddnUDqwzWxuDGfUhlpn6QSQxII7uw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dxNlxydD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2BAD4C4CEF9;
+	Mon, 20 Oct 2025 17:32:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760981490;
-	bh=Rj8TnVP8wPWGT2UvO9eiDZL3aqksBHrM83YzLn2wHRI=;
+	s=k20201202; t=1760981550;
+	bh=cKso7ybb9iJDanB4qNQL4k5Ww5/ll0Fs6J9dM79RXaA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=KVf/5gWInfOxWLr9UCSHl+uXjgtqZ+92BuMAJPEsB+6mbaoMKbY5mks735Na5ATlB
-	 yZMr3d96jcLPL9mbv9/p5XtJTtpHaRDaow9e0Tl+uKnZljkNc0QoBvBztpcJPaJ4nt
-	 fWaRGHiruJAl3HCL18abEJHPCgSdeJclmLzacOHSqDo6JW2LmQ4HfIADjEBJmvUg2o
-	 wXR1e5GfNtWKdIIQTsjY5l185wyD4rJPThNJM2RRHYYv0ut+SC/7JGRhILjbKxYirJ
-	 qrKNxzMHBjDmmg512MlFcrlRXZVrV3EIBGDha8dKCAeIP0+v5P9uJoIgdnVhMLaL6Z
-	 z+5BGuKDHz3hA==
-Date: Mon, 20 Oct 2025 18:31:24 +0100
+	b=dxNlxydD+pAipulVtdKT1k0HzWG2vQdHfDvfTnx0eEVuwCe9TM3CQtoWtN1QqOc0l
+	 RI7NLPfQxkgkKfh9EPWTrBq+oWWzFXZzakp2ThpB5MlPb/zorCXg1zKTcGSKhk5cmI
+	 a8jlbqQC5rgQmOQ3WyvMW+mElJHzqMEyWP7gZat8dP5U3nc73OBhtBlQ3mCAKLFd70
+	 o010CW37VeeUXx5YIT+56I40L4dq+r9LqEGhBjpE2o/+/QO4FVc9cFB0mD4+hzWVRt
+	 vO8TTHzf0JMdYIDxejH3QPDCVaYZTm+J0f6+x9lajVz9uGkuiHOuCcVyqiaL5jgRDm
+	 s39Aswgovvb6A==
+Date: Mon, 20 Oct 2025 18:32:26 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Matt Coster <Matt.Coster@imgtec.com>
-Cc: Marek Vasut <marek.vasut+renesas@mailbox.org>,
-	Adam Ford <aford173@gmail.com>, Conor Dooley <conor+dt@kernel.org>,
-	David Airlie <airlied@gmail.com>,
-	Frank Binns <Frank.Binns@imgtec.com>,
-	Alessio Belle <Alessio.Belle@imgtec.com>,
-	Alexandru Dadu <Alexandru.Dadu@imgtec.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
+To: Lorenzo Bianconi <lorenzo@kernel.org>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Maxime Ripard <mripard@kernel.org>, Rob Herring <robh@kernel.org>,
-	Simona Vetter <simona@ffwll.ch>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: gpu: img,powervr-rogue: Drop useless
- power domains items
-Message-ID: <20251020-freebee-asleep-702062240cbd@spud>
-References: <20251018130147.12831-1-marek.vasut+renesas@mailbox.org>
- <855fdfad-1df7-43de-8a86-a938cc56a202@imgtec.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next v3 01/13] dt-bindings: net: airoha: Add AN7583
+ support
+Message-ID: <20251020-vision-outspoken-7083858d278c@spud>
+References: <20251017-an7583-eth-support-v3-0-f28319666667@kernel.org>
+ <20251017-an7583-eth-support-v3-1-f28319666667@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -74,42 +67,36 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="Pg9U5fLbI3MpnTw5"
+	protocol="application/pgp-signature"; boundary="ikE/IhHK61RqCyon"
 Content-Disposition: inline
-In-Reply-To: <855fdfad-1df7-43de-8a86-a938cc56a202@imgtec.com>
+In-Reply-To: <20251017-an7583-eth-support-v3-1-f28319666667@kernel.org>
 
 
---Pg9U5fLbI3MpnTw5
+--ikE/IhHK61RqCyon
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Oct 20, 2025 at 03:15:14PM +0000, Matt Coster wrote:
-> Hi Marek,
+On Fri, Oct 17, 2025 at 11:06:10AM +0200, Lorenzo Bianconi wrote:
+> Introduce AN7583 ethernet controller support to Airoha EN7581
+> device-tree bindings. The main difference between EN7581 and AN7583 is
+> the number of reset lines required by the controller (AN7583 does not
+> require hsi-mac).
 >=20
-> On 18/10/2025 14:00, Marek Vasut wrote:
-> > The power-domains items: list is not very informative, replace it
-> > with plain minItems/maxItems instead.
-> >=20
-> > Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
->=20
-> I would R-b this, but I want to wait for feedback from a dt maintainer
-> to make sure this is an approach they're happy with. In the meantime:
+> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
 
-I mean, yeah - they literally provide zero value over the names.
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-pw-bot: not-applicable
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
---Pg9U5fLbI3MpnTw5
+--ikE/IhHK61RqCyon
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaPZx7AAKCRB4tDGHoIJi
-0skAAQDWz7xM6sOMHi+9ICDux0to/OJRLITPWezXMx6MAzC0wgD9EGjMakpX6pVN
-XvM7QU3Rz7z4I2zFS+awmJOC0RKSOAE=
-=btcv
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaPZyKQAKCRB4tDGHoIJi
+0tFvAP9DJl24eno8NxIX9XQVm4OUQPtBYct3ESOFm89Kv/5TiwEAm7Cnd2e3nASD
+TVa9KnbLfOIk4PROrVEsjg2j99tMHw0=
+=RGLT
 -----END PGP SIGNATURE-----
 
---Pg9U5fLbI3MpnTw5--
+--ikE/IhHK61RqCyon--
 
