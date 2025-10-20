@@ -1,55 +1,55 @@
-Return-Path: <devicetree+bounces-228775-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228776-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56990BF0AA0
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 12:50:07 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C1E1CBF0AB8
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 12:50:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 4890B4F1DDA
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 10:50:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E2FBC3B0A01
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 10:50:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A787B2F5469;
-	Mon, 20 Oct 2025 10:49:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87D4A2F744D;
+	Mon, 20 Oct 2025 10:49:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="gBvRol7R"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Av/j9O58"
 X-Original-To: devicetree@vger.kernel.org
 Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D424324DCE9;
-	Mon, 20 Oct 2025 10:49:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B54762EC0A9;
+	Mon, 20 Oct 2025 10:49:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760957381; cv=none; b=nCxdHGvRCh6iFNA9jxkWP0lw4UnQKL4MraQni89rSBtN2WtNQCXLVLTQ35X5vWcAPKbGHsetpeiBgiCB28S/9AlAOh96SX5VMyjN8oob6yaksvScWpb5NgWO3/zpJJNpeos5PSGVmRluPavQO+rGWsNde2Ef2AlkZfE4eCQTizA=
+	t=1760957382; cv=none; b=QzbQgdUWkvU87nsTBimh1a8BgnBl8fYFthaWNIwgvmGCDwUZI80x/gIU1CFAMcbviFOPkQQRCGraQ1anhe/h+MsxtyqtVaNbqqJ2iYz1SfoH31NrcdTxDl7DfVhTU4JEU1MVzMbeEIykYanOpP72/AuwEz4nlr7C8i0SxJkOsIA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760957381; c=relaxed/simple;
-	bh=4q7bStPX7BqVDGCLC1PViWLocjPoO+px7Wi9b1Kj/T4=;
+	s=arc-20240116; t=1760957382; c=relaxed/simple;
+	bh=/VcFb2G/ht3F+guTqL6YvdGc27u72T+KofLlYcljNpQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=A7zpQE6tXPlQIn88XF6cKD+7sXY6sVpu3een+4xdL8zncX6ZsRMtmEkDy7jairAqcMXP5tEptLwzoaw3D0eBAzhp6cP1f44DQNhJvZh0i3EFEncemmvmDTdzZeumf15g+RLXMDqoFai/pY4g1FfrD8n2SXP8niAUEt79QuooWfE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=gBvRol7R; arc=none smtp.client-ip=148.251.105.195
+	 In-Reply-To:Content-Type; b=tP3NV8H1qvzOiTg4uDjDTIOoD864Cbv5ju5J4wDfxy2uSCj9n/NvqiCeX177Fb9OlHwJXdWhuLghXPcDMKH2+95/JVC07T5ermWLCd73MHCJXw5gy3Ft2SlB0LyIaHbTgSNnhN81t6/wFZLFeof+J3SUUuCsEW0jmA1Rznffw/k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Av/j9O58; arc=none smtp.client-ip=148.251.105.195
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1760957378;
-	bh=4q7bStPX7BqVDGCLC1PViWLocjPoO+px7Wi9b1Kj/T4=;
+	s=mail; t=1760957379;
+	bh=/VcFb2G/ht3F+guTqL6YvdGc27u72T+KofLlYcljNpQ=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=gBvRol7Rqry/KkHOfomZ5bphkYi7XMyIjNbgPMPmBLhcTqpvJFSW8Z/+mhrT5yTI4
-	 wFvFzPwK27f+wiEbk8VSn37Trs1zu0j2BkmztH35tqO+Fsb3z2kWAAEXbt5FaxEEOo
-	 W4xqME1YAwkX9+G5Wep5fPsyUnlnMNGxa9Xr7Ejt7ekFH0ugluIucTcTll5IUWrwC3
-	 JBIJJ+hrJDsdzV5muyDrASImeJgUOFd9ENPaTnHNz1ChitJBbQNow4RshEx8Tv18MV
-	 lavAccJsT1E90RwWATPgFR1NHRve2hzrb8H6FYv4Yqmo6pJHcHmx3nIC/6bTy2ZRXm
-	 lhZ3vZKoxEdmA==
+	b=Av/j9O58crHA+r3Y1uu8hjcAwjsDNB9wawfJVPFWriYWirEt6j3kI/4s4DCps7iYH
+	 uU+KCuo64e8ZaA5mNEBjt3ley8gGlOuEzNeVudBUXSPAMxGrUPGey6G8E5y2d+2PJ6
+	 uUg/6ymcAR/EMHoZdxz8TWvRHnkIKjDp6Xzb+atSqJb9FF80/R/NCPgBN5b8kXrRsb
+	 biYB4FJZiEkoieVLTILdouXArxtIvaBsQ6Uc6EhHVy+cSTeYowFFDjZetAAwQ7nmLK
+	 t8b6Gx760BAgG4H64QmbKKJmSl3xBe6wzLisYbyPppGUmrGI1qge3ZzLoUztQDPdC8
+	 dqLLJ66EXdrQQ==
 Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
 	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
 	(No client certificate requested)
 	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 93B1317E0FAD;
-	Mon, 20 Oct 2025 12:49:37 +0200 (CEST)
-Message-ID: <0cb6a85a-1fdd-4ac7-aba7-bb25945b21f9@collabora.com>
-Date: Mon, 20 Oct 2025 12:49:37 +0200
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id B8EB417E108C;
+	Mon, 20 Oct 2025 12:49:38 +0200 (CEST)
+Message-ID: <3df15a75-cc5d-41ea-9a0e-6141b7d2ce39@collabora.com>
+Date: Mon, 20 Oct 2025 12:49:38 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,8 +57,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 06/13] dt-bindings: arm: mediatek: mmsys: add
- compatible for MT8189
+Subject: Re: [PATCH v1 12/13] drm/mediatek: Add support for mt8189 mmsys
+ driver probe
 To: Xiandong Wang <xiandong.wang@mediatek.com>,
  Jassi Brar <jassisinghbrar@gmail.com>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
@@ -69,21 +69,51 @@ Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
  sirius.wang@mediatek.com, vince-wl.liu@mediatek.com, jh.hsu@mediatek.com,
  Project_Global_Chrome_Upstream_Group@mediatek.com
 References: <20251020074211.8942-1-xiandong.wang@mediatek.com>
- <20251020074211.8942-7-xiandong.wang@mediatek.com>
+ <20251020074211.8942-13-xiandong.wang@mediatek.com>
 From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Content-Language: en-US
-In-Reply-To: <20251020074211.8942-7-xiandong.wang@mediatek.com>
+In-Reply-To: <20251020074211.8942-13-xiandong.wang@mediatek.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
 Il 20/10/25 09:40, Xiandong Wang ha scritto:
-> In MT8189, a single HW pipeline was an independent mmsys,
-> which included the OVL module, PQ module, and display interface
-> module.
+> mmsys probe for mt8189
 > 
 > Signed-off-by: Xiandong Wang <xiandong.wang@mediatek.com>
+> ---
+>   drivers/gpu/drm/mediatek/mtk_ddp_comp.c  |  2 ++
+>   drivers/gpu/drm/mediatek/mtk_disp_ovl.c  | 40 ++++++++++++++++++++++++
+>   drivers/gpu/drm/mediatek/mtk_disp_ovl.h  |  2 ++
+>   drivers/gpu/drm/mediatek/mtk_disp_rdma.c |  8 +++++
+>   drivers/gpu/drm/mediatek/mtk_drm_drv.c   | 39 +++++++++++++++++++++++
+>   5 files changed, 91 insertions(+)
+> 
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+..snip..
 
+> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_drv.c b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
+> index 4c19cffafd0f..9e6d949e5d17 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_drm_drv.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
+> @@ -187,11 +187,27 @@ static const unsigned int mt8188_mtk_ddp_main[] = {
+>   	DDP_COMPONENT_DITHER0,
+>   };
+>   
+> +static const unsigned int mt8189_mtk_ddp_main[] = {
+> +	DDP_COMPONENT_OVL0,
+> +	DDP_COMPONENT_RDMA0,
+> +	DDP_COMPONENT_COMP0_OUT_CB4,
+> +};
+> +
+> +static const unsigned int mt8189_mtk_ddp_ext[] = {
+> +	DDP_COMPONENT_OVL1,
+> +	DDP_COMPONENT_RDMA1,
+> +	DDP_COMPONENT_COMP0_OUT_CB5,
+> +};
+
+NACK. Please use OF Graph only. Stop hardcoding paths in mediatek-drm.
+
+Regards,
+Angelo
 
 
