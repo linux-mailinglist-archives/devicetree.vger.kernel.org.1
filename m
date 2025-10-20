@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-228929-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228930-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E841BF239A
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 17:52:59 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 333D8BF23C9
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 17:56:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D1FB33A3749
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 15:50:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 371793A217D
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 15:55:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88BDD275861;
-	Mon, 20 Oct 2025 15:50:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 081B52773D3;
+	Mon, 20 Oct 2025 15:55:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UlUrGhDG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="W/mDPqXo"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57161275105;
-	Mon, 20 Oct 2025 15:50:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2C9D2765EA;
+	Mon, 20 Oct 2025 15:55:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760975443; cv=none; b=tpgeW/vqsQggsQfca0a6M7Q+e/+tYWMXew4s3XfFJrJVskb7WboP95DCWb87H3VN/LCxbaqexm4FHa3Kb2fo0GGhGJ+y3YVMLUIJxjFN9duaIyLuBOSm3wAkAkaHzAMx51UFhqyp67UXpH4HVrIf9/gWeTbvy1I1E1UEEzBiqGs=
+	t=1760975737; cv=none; b=dhH0pxVOXYm2S7096Vyog4YJGj96b67vFMaPgrsFjgFszOEiW4qTd9fJrQON5v5Lpw5igmZSETf4yvuOT3GYf5F7x22FSLoGaq4yovsvc5rbanXjMafEvcFIUqQGcleyIA8Vn0ysHeur1vFCzudoJv7y77fQZVX26LBUsNsZzpU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760975443; c=relaxed/simple;
-	bh=l8m4M2GIde3SF7ii/dLB0xHO/biVzlVY+q5epUJqyd4=;
+	s=arc-20240116; t=1760975737; c=relaxed/simple;
+	bh=Ux+6jo+bKEelFRnI1rAKVhe+llVndMIj95DyyF3IQkA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PiIH/IYiNQ8TdZSUsIUdDSsZtujbbUREX2RTv+cr1elAQ1jJtLTkp0jsRldrRCt8BbIkScGGRAFHXOgnhYSBwrJ7tP49s6eReVI2lMzp3Z07hKTqkChyity3AjhlGVCpN+IPag7z5UqWBVRgnFTS3uJ3DcWyovuaV66b6hvEva8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UlUrGhDG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 85AF6C4CEF9;
-	Mon, 20 Oct 2025 15:50:38 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=kcCUt2d48R4UpC9DOHtzzqa88duaMpmBWkmRX6JKZ0Hf237JQRQUtLdRkJ3ZRhRN9BlcdRit20e52W0bzzRQe765Ox6Du/wXE93fV+dHxLvRrcmu6dScdBpmy30jF01uN6fRVqbOfaXPG8klVKE5y8QxAAaFmkTsJww0NnQ5dRc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=W/mDPqXo; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1CAFFC116C6;
+	Mon, 20 Oct 2025 15:55:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760975442;
-	bh=l8m4M2GIde3SF7ii/dLB0xHO/biVzlVY+q5epUJqyd4=;
+	s=k20201202; t=1760975737;
+	bh=Ux+6jo+bKEelFRnI1rAKVhe+llVndMIj95DyyF3IQkA=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=UlUrGhDGmwt2YWU7VhKf3xkl4TOrFUlSsfIGATYsbWhQgIGFbf6BbFyXGseBKLSm3
-	 5wAfPtCnASu7++fbV0fHdcnl66AGMWatycdzQ6AaQkEXN7KcZ/z/GZISfch8q1hN98
-	 bzgWzJ+8IRY9fNj4AhLOe9/4H903R5rd+nOMDYR/qac3hK3FFZr9v2fA6uzqxLLh34
-	 Y78za+vt2MfYhs+oTvXGw+qIBPkHIgnkhNPQTXvupIcmmaA4CGptWYB9utfuEv/2FY
-	 A97oc4hWFFjqyFmJxYF4iWDERBj41P/HLgrDTxRh3AtmWSgz0UDK2pHL4tkoNHDNS1
-	 6mETWH0pxUZoQ==
-Message-ID: <20e796b1-0895-4cc8-b97f-fe2696b055f8@kernel.org>
-Date: Mon, 20 Oct 2025 17:50:36 +0200
+	b=W/mDPqXoYMArX3Baaai+ndiEGA0AzD5b77GwWuZBqGIrB5R8qlD/9pkilAsrluKoG
+	 t95Lw8iFBhMZBdps7Ysi2Hl6+z5VzpZ6fDddsY9FRDUhQnYvi+dQJ3sXdIUrX0dl67
+	 rMVb9g77Fn1vVxsaCFnm0/Vz1cICDFR1Y/kert2uU3zGJpefUxePAtmyjEZ+lNLFeT
+	 9+iyz1+h4xGqsy0yCCCK4dVzVLBZ0JzU4DUVoieI7Ns9sJSy3igbYSO1qVRwci+sIJ
+	 MMEYvXKGojWbKkIMnDPm1mU4oRy29DC/XPYWzH3g3g+WcxebeviuWz05eT/zgCMlZu
+	 Kp4hH4bwoACSg==
+Message-ID: <4979bd26-0a77-4390-9db2-6d40cd7f963c@kernel.org>
+Date: Mon, 20 Oct 2025 17:55:27 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,24 +50,40 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/8] dt-bindings: clock: document 8ULP's SIM LPAV
-To: Frank Li <Frank.li@nxp.com>
-Cc: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>,
- Abel Vesa <abelvesa@kernel.org>, Peng Fan <peng.fan@nxp.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Fabio Estevam <festevam@gmail.com>, Philipp Zabel <p.zabel@pengutronix.de>,
- Daniel Baluta <daniel.baluta@nxp.com>, Shengjiu Wang
- <shengjiu.wang@nxp.com>, linux-clk@vger.kernel.org, imx@lists.linux.dev,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, Pengutronix Kernel Team <kernel@pengutronix.de>
-References: <20251017112025.11997-1-laurentiumihalcea111@gmail.com>
- <20251017112025.11997-3-laurentiumihalcea111@gmail.com>
- <aPJZ6dDRyyl3Qg4o@lizhi-Precision-Tower-5810>
- <cdecae8a-7fb9-4ac2-a412-1a18c4783ffa@kernel.org>
- <aPZTwf8O8tkqnDhx@lizhi-Precision-Tower-5810>
+Subject: Re: [PATCH V7 3/5] dt-bindings: iio: adc: Add support for QCOM PMIC5
+ Gen3 ADC
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Jonathan Cameron <jic23@kernel.org>, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, agross@kernel.org, andersson@kernel.org,
+ lumag@kernel.org, dmitry.baryshkov@oss.qualcomm.com, konradybcio@kernel.org,
+ daniel.lezcano@linaro.org, sboyd@kernel.org, amitk@kernel.org,
+ thara.gopinath@gmail.com, lee@kernel.org, rafael@kernel.org,
+ subbaraman.narayanamurthy@oss.qualcomm.com, david.collins@oss.qualcomm.com,
+ anjelique.melendez@oss.qualcomm.com, kamal.wadhwa@oss.qualcomm.com,
+ rui.zhang@intel.com, lukasz.luba@arm.com, devicetree@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, linux-iio@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+ cros-qcom-dts-watchers@chromium.org, quic_kotarake@quicinc.com,
+ neil.armstrong@linaro.org, stephan.gerhold@linaro.org,
+ Jonathan Cameron <Jonathan.Cameron@huawei.com>
+References: <20250826083657.4005727-1-jishnu.prakash@oss.qualcomm.com>
+ <20250826083657.4005727-4-jishnu.prakash@oss.qualcomm.com>
+ <20250829-classic-dynamic-clam-addbd8@kuoka>
+ <5d662148-408f-49e1-a769-2a5d61371cae@oss.qualcomm.com>
+ <4e974e77-adfc-49e5-90c8-cf8996ded513@kernel.org>
+ <a0e885be-e87d-411a-884e-3e38a0d761e5@oss.qualcomm.com>
+ <8c90cc3f-115e-4362-9293-05d9bee24214@linaro.org>
+ <5d4edecf-51f3-4d4a-861f-fce419e3a314@oss.qualcomm.com>
+ <20250927144757.4d36d5c8@jic23-huawei>
+ <a3158843-dfac-4adc-838a-35bb4b0cbea4@oss.qualcomm.com>
+ <CAGE=qrrCvq28pr9Y7it-CGMW=szKUnU+XBj1TmpoUwuASM05ig@mail.gmail.com>
+ <31bd08ce-823a-4a71-baca-a9d1e02fcb6a@oss.qualcomm.com>
+ <08eb477f-ea34-4a31-b181-bfc629aef4c8@kernel.org>
+ <68a9b8e8-bdf4-430f-baef-6a293ccea78d@oss.qualcomm.com>
+ <d8a78b7c-e3a9-44b5-986d-8ac32f328eb6@kernel.org>
+ <3a32746a-5b0e-4c0a-8322-00cd3a84394a@oss.qualcomm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -113,81 +129,53 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <aPZTwf8O8tkqnDhx@lizhi-Precision-Tower-5810>
+In-Reply-To: <3a32746a-5b0e-4c0a-8322-00cd3a84394a@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 20/10/2025 17:22, Frank Li wrote:
-> On Sun, Oct 19, 2025 at 12:05:27PM +0200, Krzysztof Kozlowski wrote:
->> On 17/10/2025 16:59, Frank Li wrote:
->>> On Fri, Oct 17, 2025 at 04:20:19AM -0700, Laurentiu Mihalcea wrote:
->>>> From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
->>>>
->>>> Add documentation for i.MX8ULP's SIM LPAV module.
->>>>
->>>> Signed-off-by: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
->>>> ---
->>>>  .../bindings/clock/fsl,imx8ulp-sim-lpav.yaml  | 72 +++++++++++++++++++
->>>>  include/dt-bindings/clock/imx8ulp-clock.h     |  5 ++
->>>>  .../dt-bindings/reset/fsl,imx8ulp-sim-lpav.h  | 16 +++++
->>>>  3 files changed, 93 insertions(+)
->>>>  create mode 100644 Documentation/devicetree/bindings/clock/fsl,imx8ulp-sim-lpav.yaml
->>>>  create mode 100644 include/dt-bindings/reset/fsl,imx8ulp-sim-lpav.h
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/clock/fsl,imx8ulp-sim-lpav.yaml b/Documentation/devicetree/bindings/clock/fsl,imx8ulp-sim-lpav.yaml
->>>> new file mode 100644
->>>> index 000000000000..fb3b9028a4c3
->>>> --- /dev/null
->>>> +++ b/Documentation/devicetree/bindings/clock/fsl,imx8ulp-sim-lpav.yaml
->>>> @@ -0,0 +1,72 @@
->>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>>> +%YAML 1.2
->>>> +---
->>>> +$id: http://devicetree.org/schemas/clock/fsl,imx8ulp-sim-lpav.yaml#
->>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>> +
->>>> +title: NXP i.MX8ULP LPAV System Integration Module (SIM)
->>>> +
->>>> +maintainers:
->>>> +  - Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
->>>> +
->>>> +description:
->>>> +  The i.MX8ULP LPAV subsystem contains a block control module known as
->>>> +  SIM LPAV, which offers functionalities such as clock gating or reset
->>>> +  line assertion/de-assertion.
->>>> +
->>>> +properties:
->>>> +  compatible:
->>>> +    const: fsl,imx8ulp-sim-lpav
->>>> +
->>>> +  reg:
->>>> +    maxItems: 1
->>>> +
->>>> +  clocks:
->>>> +    maxItems: 3
->>>> +
->>>> +  clock-names:
->>>> +    items:
->>>> +      - const: lpav_bus
->>>> +      - const: hifi_core
->>>> +      - const: hifi_plat
+On 20/10/2025 14:51, Konrad Dybcio wrote:
+> On 10/17/25 3:40 PM, Krzysztof Kozlowski wrote:
+>> On 17/10/2025 13:18, Jishnu Prakash wrote:
+>>> Hi Krzysztof,
 >>>
->>> dt prefer use -
->>
->>
->> I don't think we ever expressed such preference. Where did you find it?
+>>> On 10/9/2025 5:22 AM, Krzysztof Kozlowski wrote:
+>>>> On 08/10/2025 23:20, Jishnu Prakash wrote:
+>>>>> Hi Krzysztof,
+>>>>>
+>>>>> On 10/4/2025 12:22 PM, Krzysztof Kozlowski wrote:
+>>>>>> On Sat, 4 Oct 2025 at 11:42, Jishnu Prakash
+>>>>>> <jishnu.prakash@oss.qualcomm.com> wrote:
+>>>>>>>
+>>>>>>> Hi Jonathan,
+>>>>>>>
+>>>>>>> On 9/27/2025 7:17 PM, Jonathan Cameron wrote:
+>>>>>>>> On Fri, 19 Sep 2025 20:17:43 +0530
+>>>>>>>> Jishnu Prakash <jishnu.prakash@oss.qualcomm.com> wrote:
 > 
-> It should come from review message when submit binding-doc patch.  but I
-> can't find it now. But at least, compatible string and node-name use "-".
+> [...]
 > 
-> It'd better to add to writing-bindings.rst. It is hard to search whole
-> linux-devicetree mail list or brain may cheat me. It is good to keep
-> everything consistent.
+>>> Can you please provide your suggestions on changes we can make
+>>> in the above points ?
+>>
+>> You just pasted DT. I asked about SW, software. Please read carefully
+>> previous comments.
+> 
+> Is the problem that Jishnu included some indices in dt-bindings without
+> also adding them in the driver's adc5_gen3_chans_pmic[] array?
+> 
+> As in, would the resolution to this thread be simply handling all of
+> them in the driver correctly?
 
+The solution is to remove them from the bindings, just like we do with
+many other hardware constants. Of course if these are not hardware
+constants, but part of ABI, then solution would be different but no one
+provided proof or argument that this is any binding. All proofs were
+"but I want to use it in my DTS", which proofs nothing. Not a binding.
 
-Yeah, but please don't make up rules and suggest them if you cannot
-justify them. I don't recall such rule and I don't have it in my notes,
-so that's why I asked.
+While this issue is not that important, we keep discussing it because
+author does not try to understand the problem or even keep up the
+discussion. Instead repeats the same without really reading my
+messages... and then disappears for month or more.
 
 Best regards,
 Krzysztof
