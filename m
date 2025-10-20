@@ -1,91 +1,257 @@
-Return-Path: <devicetree+bounces-228857-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228858-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23D2BBF14DD
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 14:46:35 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BB30BF151F
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 14:49:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 3BFA74F4FE6
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 12:46:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 28B953B2619
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 12:48:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E6D91624C0;
-	Mon, 20 Oct 2025 12:46:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C35D825F98E;
+	Mon, 20 Oct 2025 12:48:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="NdX3w7kU"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="GJNyNazG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.16])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E21A33C465;
-	Mon, 20 Oct 2025 12:46:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E43E6354AF2;
+	Mon, 20 Oct 2025 12:48:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760964375; cv=none; b=THn3406ExpxD6BWGv93271oIX3MEWdgzSiL8F/9vSqLnhH7+vWYa5BQNuXJFsdF3oGV1M5MdqB9IyApRn0v7BnCJw8vY5qnt33kZXUkt5gsjRo+jU64asiTZc/30VthaLEUMWGDAbFNim5vFHDWW0fOrvy0rOHXqC+C780STLfQ=
+	t=1760964530; cv=none; b=nl5EexpALGeqQup0eCqmfqFxaV74gac9MGqwSPPczlb8lC2M0fYTPMgVX1OTwEqhZVg2fukPLha9Q/igH8vJ23oZECTzxBdRHukX60B4mk3i5zH7aGKd+fu/VCpuO8GhKBvJ6qtip5HIUMOlpqKaGKNbzt/1myABTms24yMtbpA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760964375; c=relaxed/simple;
-	bh=iCETLYsFibjq+CsukzViDDTORlacs1ZM9GueRkvBoiQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ebLrk4pEiSxOEdEp4a2AHYg8Qt6f5p4FBPZh8Tghun8+SFeeyZeuURk8F8rq/u7RtsGR1kHSOwZs3CynIkC2RitvntdVFyZYtUTJbFVmu9Vh+f5VDDIP7cBC1KbQbqxZJ4NgEdIVmlK/ipnLPi8Wa3YIcW2N+9PyuRmQAYxCdLY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=NdX3w7kU; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
-	bh=iCETLYsFibjq+CsukzViDDTORlacs1ZM9GueRkvBoiQ=; b=NdX3w7kUUi40I3knc1H3016F0j
-	Yag6eG4tQ09/7ItC9tkDkRTOL9esr2bm8Q/ox54JUnDMGCdGrWFNvznVSQJm2nHjvlme+o9RwtJaG
-	449+bJJqQ7F+DqQRoPrcuK9a7mhGZMDOm3FtAOSgl7Nen101eMV4Bk7ruKrwXTKNXisau5my3ijnl
-	KvKnS8P4XLWuinHMB5DWh+JI4fj+uFXM0njHMhpRgZIeyZPsVA8kwlchpyydJZecgGM2VLjs/scFX
-	qTxBRI6xSpwtmu9dE06F2qRSa3B7VxOi8IBv+vMe3Li1Bz6j6G7C4TeXNjpG4NU+v18UuE8JzImiV
-	W3jLpg3A==;
-Received: from [141.76.253.240] (helo=phil.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1vApGZ-0001AI-NB; Mon, 20 Oct 2025 14:45:35 +0200
-From: Heiko Stuebner <heiko@sntech.de>
-To: dmitry.baryshkov@oss.qualcomm.com, Andy Yan <andyshrk@163.com>,
- neil.armstrong@linaro.org, andrzej.hajda@intel.com
-Cc: mripard@kernel.org, jernej.skrabec@gmail.com, jonas@kwiboo.se,
- Laurent.pinchart@ideasonboard.com, maarten.lankhorst@linux.intel.com,
- rfoss@kernel.org, simona@ffwll.ch, tzimmermann@suse.de, knaerzche@gmail.com,
- devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-rockchip@lists.infradead.org, Andy Yan <andy.yan@rock-chips.com>
-Subject: Re: [PATCH v8 1/2] drm/rockchip: inno-hdmi: Convert to drm bridge
-Date: Mon, 20 Oct 2025 14:45:34 +0200
-Message-ID: <8913609.MhkbZ0Pkbq@phil>
-In-Reply-To: <20251016083843.76675-2-andyshrk@163.com>
-References:
- <20251016083843.76675-1-andyshrk@163.com>
- <20251016083843.76675-2-andyshrk@163.com>
+	s=arc-20240116; t=1760964530; c=relaxed/simple;
+	bh=BCK1R0tZ9dNFG0afBBj42c5t3HMFTlWQhHn7snNQLeA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=aUBG9qrWskBKGycmOD0h9AF414xLt4c7ssOLb11XhUE0FIeR9XvdySNAefoC4Zq8krfON5MqzNXkyh9x8MFB8AJw+goR1IrWTYl7nAP/CGDCYc0jC4CkrxwzDv1n2fcTfi4Pa02l/ruuLX3POG1Z5TcsxkM4Fime3+mZAime5wg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=GJNyNazG; arc=none smtp.client-ip=220.197.32.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
+	s=s110527; h=Date:From:To:Subject:Message-ID:MIME-Version:
+	Content-Type; bh=qG38QouOAiJDe70jz6Us+02ZPOy6qlEZVBeSeQllsf4=;
+	b=GJNyNazGNH1J8Z23xlahfIB4N9k1UPOa5jeUmZ8DXTAMdQO1I67Jlq0Uk8toIZ
+	J1haK204p9moPdukvCA4NwSzmBDsujtNmXTsCMTvc3Wt/t6GCzCxrCVIbAQTBsUx
+	4V88hcHLLlhGEfIDbtMswv6J0CtRYphPBJ0yc1BYV1n9Y=
+Received: from dragon (unknown [])
+	by gzsmtp3 (Coremail) with SMTP id M88vCgD3X7GAL_ZocZNTAA--.29215S3;
+	Mon, 20 Oct 2025 20:48:02 +0800 (CST)
+Date: Mon, 20 Oct 2025 20:48:00 +0800
+From: Shawn Guo <shawnguo2@yeah.net>
+To: Andreas Kemnade <akemnade@kernel.org>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Alistair Francis <alistair@alistair23.me>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Frank Li <Frank.li@nxp.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH v3 3/3] ARM: dts: imx: e70k02: add sy7636
+Message-ID: <aPYvgKWNvr0RxOKQ@dragon>
+References: <20250917-sy7636-rsrc-v3-0-331237d507a2@kernel.org>
+ <20250917-sy7636-rsrc-v3-3-331237d507a2@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250917-sy7636-rsrc-v3-3-331237d507a2@kernel.org>
+X-CM-TRANSID:M88vCgD3X7GAL_ZocZNTAA--.29215S3
+X-Coremail-Antispam: 1Uf129KBjvJXoWxtr4kuw4Uuw4fCw1fGF1rZwb_yoW7WrWkpa
+	1Svrs5WrWxWF1fta43AasrCr1fCws2kr1v9w47uFy8Aa1qva4UJF4UKrn3Crn8XFs8Zw4Y
+	vrn5ury7W3Wqv3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jezuAUUUUU=
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiNALDKWj2L4I5uAAA3u
 
-Am Donnerstag, 16. Oktober 2025, 10:38:31 Mitteleurop=C3=A4ische Sommerzeit=
- schrieb Andy Yan:
-> From: Andy Yan <andy.yan@rock-chips.com>
->=20
-> Convert it to drm bridge driver, it will be convenient for us to
-> migrate the connector part to the display driver later.
->=20
-> Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
+On Wed, Sep 17, 2025 at 09:14:31AM +0200, Andreas Kemnade wrote:
+> Add the EPD PMIC for the e70k02 based devices as a step towards full EPD
+> support.
+> 
+> Acked-by: Alistair Francis <alistair@alistair23.me>
+> Reviewed-by: Peng Fan <peng.fan@nxp.com>
+> Signed-off-by: Andreas Kemnade <akemnade@kernel.org>
+> ---
+>  arch/arm/boot/dts/nxp/imx/e70k02.dtsi              | 25 +++++++++++++++++++++-
+>  .../arm/boot/dts/nxp/imx/imx6sl-tolino-vision5.dts | 24 +++++++++++++++++++++
+>  .../arm/boot/dts/nxp/imx/imx6sll-kobo-librah2o.dts | 24 +++++++++++++++++++++
+>  3 files changed, 72 insertions(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm/boot/dts/nxp/imx/e70k02.dtsi b/arch/arm/boot/dts/nxp/imx/e70k02.dtsi
+> index dcc3c9d488a88..b4f42f71c6c49 100644
+> --- a/arch/arm/boot/dts/nxp/imx/e70k02.dtsi
+> +++ b/arch/arm/boot/dts/nxp/imx/e70k02.dtsi
+> @@ -69,6 +69,14 @@ memory@80000000 {
+>  		reg = <0x80000000 0x20000000>;
+>  	};
+>  
+> +	epd_pmic_supply: regulator-epd-pmic-in {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "epd_pmic_supply";
+> +		gpio = <&gpio2 14 GPIO_ACTIVE_HIGH>;
+> +		startup-delay-us = <20000>;
+> +		enable-active-high;
 
-Reviewed-by: Heiko Stuebner <heiko@sntech.de>
+enable-active-high right after gpio = <... GPIO_ACTIVE_HIGH>, as it's a
+supplement description for "gpio" property.
 
-But of course I would be really happy if someone with more experience
-on general bridges could also take a look.
+Shawn
 
-
-Heiko
-
+> +	};
+> +
+>  	reg_wifi: regulator-wifi {
+>  		compatible = "regulator-fixed";
+>  		regulator-name = "SD3_SPWR";
+> @@ -133,7 +141,22 @@ touchscreen@24 {
+>  		vdd-supply = <&ldo5_reg>;
+>  	};
+>  
+> -	/* TODO: SY7636 PMIC for E Ink at 0x62 */
+> +	sy7636: pmic@62 {
+> +		compatible = "silergy,sy7636a";
+> +		reg = <0x62>;
+> +		enable-gpios = <&gpio2 8 GPIO_ACTIVE_HIGH>;
+> +		vcom-en-gpios = <&gpio2 3 GPIO_ACTIVE_HIGH>;
+> +		epd-pwr-good-gpios = <&gpio2 13 GPIO_ACTIVE_HIGH>;
+> +		vin-supply = <&epd_pmic_supply>;
+> +
+> +		#thermal-sensor-cells = <0>;
+> +
+> +		regulators {
+> +			reg_epdpmic: vcom {
+> +				regulator-name = "vcom";
+> +			};
+> +		};
+> +	};
+>  
+>  };
+>  
+> diff --git a/arch/arm/boot/dts/nxp/imx/imx6sl-tolino-vision5.dts b/arch/arm/boot/dts/nxp/imx/imx6sl-tolino-vision5.dts
+> index a2534c422a522..f8709a9524093 100644
+> --- a/arch/arm/boot/dts/nxp/imx/imx6sl-tolino-vision5.dts
+> +++ b/arch/arm/boot/dts/nxp/imx/imx6sl-tolino-vision5.dts
+> @@ -26,6 +26,11 @@ / {
+>  	compatible = "kobo,tolino-vision5", "fsl,imx6sl";
+>  };
+>  
+> +&epd_pmic_supply {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_epd_pmic_supply>;
+> +};
+> +
+>  &gpio_keys {
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&pinctrl_gpio_keys>;
+> @@ -59,6 +64,12 @@ MX6SL_PAD_FEC_RXD1__GPIO4_IO18          0x10059 /* TP_RST */
+>  		>;
+>  	};
+>  
+> +	pinctrl_epd_pmic_supply: epd-pmic-supplygrp {
+> +		fsl,pins = <
+> +			MX6SL_PAD_EPDC_PWRWAKEUP__GPIO2_IO14    0x40010059
+> +		>;
+> +	};
+> +
+>  	pinctrl_gpio_keys: gpio-keysgrp {
+>  		fsl,pins = <
+>  			MX6SL_PAD_FEC_CRS_DV__GPIO4_IO25	0x17059	/* PWR_SW */
+> @@ -159,6 +170,14 @@ MX6SL_PAD_KEY_COL2__GPIO3_IO28		0x1b8b1 /* ricoh619 bat_low_int */
+>  		>;
+>  	};
+>  
+> +	pinctrl_sy7636_gpio: sy7636-gpiogrp {
+> +		fsl,pins = <
+> +			MX6SL_PAD_EPDC_VCOM0__GPIO2_IO03        0x40010059 /* VCOM_CTRL */
+> +			MX6SL_PAD_EPDC_PWRCTRL1__GPIO2_IO08     0x40010059 /* EN */
+> +			MX6SL_PAD_EPDC_PWRSTAT__GPIO2_IO13      0x17059 /* PWR_GOOD */
+> +		>;
+> +	};
+> +
+>  	pinctrl_uart1: uart1grp {
+>  		fsl,pins = <
+>  			MX6SL_PAD_UART1_TXD__UART1_TX_DATA 0x1b0b1
+> @@ -329,6 +348,11 @@ &ricoh619 {
+>  	pinctrl-0 = <&pinctrl_ricoh_gpio>;
+>  };
+>  
+> +&sy7636 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_sy7636_gpio>;
+> +};
+> +
+>  &uart1 {
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&pinctrl_uart1>;
+> diff --git a/arch/arm/boot/dts/nxp/imx/imx6sll-kobo-librah2o.dts b/arch/arm/boot/dts/nxp/imx/imx6sll-kobo-librah2o.dts
+> index 660620d226f71..19bbe60331b36 100644
+> --- a/arch/arm/boot/dts/nxp/imx/imx6sll-kobo-librah2o.dts
+> +++ b/arch/arm/boot/dts/nxp/imx/imx6sll-kobo-librah2o.dts
+> @@ -36,6 +36,11 @@ &cpu0 {
+>  	soc-supply = <&dcdc1_reg>;
+>  };
+>  
+> +&epd_pmic_supply {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_epd_pmic_supply>;
+> +};
+> +
+>  &gpio_keys {
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&pinctrl_gpio_keys>;
+> @@ -69,6 +74,12 @@ MX6SLL_PAD_GPIO4_IO18__GPIO4_IO18	0x10059 /* TP_RST */
+>  		>;
+>  	};
+>  
+> +	pinctrl_epd_pmic_supply: epd-pmic-supplygrp {
+> +		fsl,pins = <
+> +			MX6SLL_PAD_EPDC_PWR_WAKE__GPIO2_IO14    0x40010059
+> +		>;
+> +	};
+> +
+>  	pinctrl_gpio_keys: gpio-keysgrp {
+>  		fsl,pins = <
+>  			MX6SLL_PAD_GPIO4_IO25__GPIO4_IO25	0x17059	/* PWR_SW */
+> @@ -169,6 +180,14 @@ MX6SLL_PAD_KEY_COL2__GPIO3_IO28		0x1b8b1 /* ricoh619 bat_low_int */
+>  		>;
+>  	};
+>  
+> +	pinctrl_sy7636_gpio: sy7636-gpiogrp {
+> +		fsl,pins = <
+> +			MX6SLL_PAD_EPDC_VCOM0__GPIO2_IO03       0x40010059 /* VCOM_CTRL */
+> +			MX6SLL_PAD_EPDC_PWR_CTRL1__GPIO2_IO08   0x40010059 /* EN */
+> +			MX6SLL_PAD_EPDC_PWR_STAT__GPIO2_IO13    0x17059 /* PWR_GOOD */
+> +		>;
+> +	};
+> +
+>  	pinctrl_uart1: uart1grp {
+>  		fsl,pins = <
+>  			MX6SLL_PAD_UART1_TXD__UART1_DCE_TX 0x1b0b1
+> @@ -319,6 +338,11 @@ &ricoh619 {
+>  	pinctrl-0 = <&pinctrl_ricoh_gpio>;
+>  };
+>  
+> +&sy7636 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_sy7636_gpio>;
+> +};
+> +
+>  &uart1 {
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&pinctrl_uart1>;
+> 
+> -- 
+> 2.47.3
+> 
 
 
