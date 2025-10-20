@@ -1,60 +1,59 @@
-Return-Path: <devicetree+bounces-228801-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228802-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB98EBF0C59
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 13:15:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6685FBF0C6B
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 13:16:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D54244F2CD1
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 11:15:06 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 13EB44E8687
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 11:16:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3358D2F83DE;
-	Mon, 20 Oct 2025 11:14:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16E9823183B;
+	Mon, 20 Oct 2025 11:16:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hlZryOFe"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PlwDYxDL"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05FE825229C;
-	Mon, 20 Oct 2025 11:14:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7A681F5825;
+	Mon, 20 Oct 2025 11:16:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760958880; cv=none; b=QLfHxL29bvcDOlJUlzTXyoZb+5HL8D5oSjjoZzGxcCKHJZBiTpE1e0IweTD+IXvs4ppxnhS/n/dm8ZCrLOQ3qyHg2eyPGKrGiwc9UcE2MqsPG7cBYvNctGJcVknPs7RfaCqdKDInTWettjllxNhcviBke0y/bqjvTYoGmPThcGw=
+	t=1760958968; cv=none; b=RdiOjGynddaAaB8Mf5PSl1pKTWVz82FkQ4lXgJn6+Li7+p/BNOb66dBowbImXwThNVUO7NMLtId0mt8TzpmTT3TSzlOGUJv+68Bq7NEQZhnaU+9/Pgf43dQcxPIOqPIHxVBv/nodRF1z2QKu9ybpuurLq4TlIs5VqxtVnNc12VU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760958880; c=relaxed/simple;
-	bh=V62uDvINV9pfoVeOC2Ljq6Nrt7DgmFMZhMqR7vMAx0Q=;
+	s=arc-20240116; t=1760958968; c=relaxed/simple;
+	bh=X0eKZdFlSWj/hHX4OYGh6yBB3JhcwwktgIYdMBCdF7M=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LgNVq1VNIPHnXpedA3ESQWs1+rRU/Qu9fr9NZQfzd1mtQ8J20bYQqa0jD2pnsF0WTygI6GlqpAjmsqJq2Ft1iNxiaDnZA0ejVvNLMHcfE5xwSf4FAZWgMdmj2FxQJfkmWLD1s+Sy+q17wUnCJ4v+DckoRlvyekmDy1valZyX8NM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hlZryOFe; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 37AD3C4CEF9;
-	Mon, 20 Oct 2025 11:14:39 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=CCWPb18Vq5DUq7C5+Zzy9K7yeCEUObSZKz/p7nC92UPBxpmanrPo5pX7878JTluOxOmPL88w+O4g3UiHihuGMrE42kMvFsdCiYRiiLQYa0qBOrR2lLQQyC86swdVUOTDi00LsxwWevB+CDWFtgcZetee7Qaezp7WU7ALF84lvC0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PlwDYxDL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1EDDEC4CEF9;
+	Mon, 20 Oct 2025 11:16:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760958879;
-	bh=V62uDvINV9pfoVeOC2Ljq6Nrt7DgmFMZhMqR7vMAx0Q=;
+	s=k20201202; t=1760958967;
+	bh=X0eKZdFlSWj/hHX4OYGh6yBB3JhcwwktgIYdMBCdF7M=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=hlZryOFeHJf9xG35np+I8SQEsCotqwkDYwGHMmcPhmkWb/+OUt7FEPDQEtoM9Cicq
-	 PtOoFgtyHTf4CkrHhwYQFmRYyDNm/0LyyKw5uMAyA8Hc+fRyzuJqefn7VgeOjk8aWs
-	 l32RAGqkrBvI2scqZqfWAC9h0lW6NFP64HicXaUJKbFG2SYArjryLEhDW+vT9dpwxK
-	 Cm3n5XLDwQYeg54lUlm1e5e1FP5DCHkhNsiQiXD9PJj9p8QLQg+sShRcpTtSSCZ7Dv
-	 y9tJGge0cSSG/Xb+iR31uvMLKrDZ3yLS1KwgYCE3w1d2o5o4Wu/tQdqp5VYeC9W8Xg
-	 fi3j/06XLJAwg==
-Date: Mon, 20 Oct 2025 13:14:37 +0200
+	b=PlwDYxDLexHxuJDjsT8XRWxCtS0pSUGKNFz94TlQjAMaDGnqwlhisoJn3hON91lQO
+	 A1Vli/NxJi66rFDpFrj38VobB1qI8W6KaEJAFuh8Mxg7Sif4UqfIPGvbh4Stb3viEA
+	 gYVQr5zvgexIP0l9QqyInkJDC1sU3V8OHDwZhD6y5a2cpX59zJCi10pby8bJK5W5Zq
+	 lvAdkiE83Ajrg/CgkpS5X6M0aIqJ/Rsegbz1rBnev/nJXTbPU1gfsfISaJhY4a1a1o
+	 6PJO39w3sVjgOdqXMh+BDq2Z5jLgr47YchSGybYwQbk7HV7s0KH/gaKauob9fxJtRB
+	 q3EL/1llhA2MQ==
+Date: Mon, 20 Oct 2025 13:16:05 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Vitor Soares <ivitro@gmail.com>
-Cc: Bjorn Helgaas <bhelgaas@google.com>, 
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
-	Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Kishon Vijay Abraham I <kishon@kernel.org>, Vitor Soares <vitor.soares@toradex.com>, 
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 1/2] dt-bindings: PCI: ti,j721e-pci-host: Add optional
- regulator supplies
-Message-ID: <20251020-kickass-fervent-capybara-9c48a0@kuoka>
-References: <20251014112553.398845-1-ivitro@gmail.com>
- <20251014112553.398845-2-ivitro@gmail.com>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Sakari Ailus <sakari.ailus@linux.intel.com>, 
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
+	"open list:MEDIA INPUT INFRASTRUCTURE (V4L/DVB)" <linux-media@vger.kernel.org>, 
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
+Subject: Re: [PATCH 1/1] media: dt-bindings: video-interfaces: add
+ video-interfaces.h information
+Message-ID: <20251020-majestic-warm-barracuda-06acb3@kuoka>
+References: <20251014170043.2341146-1-Frank.Li@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,43 +62,32 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20251014112553.398845-2-ivitro@gmail.com>
+In-Reply-To: <20251014170043.2341146-1-Frank.Li@nxp.com>
 
-On Tue, Oct 14, 2025 at 12:25:48PM +0100, Vitor Soares wrote:
-> From: Vitor Soares <vitor.soares@toradex.com>
+On Tue, Oct 14, 2025 at 01:00:43PM -0400, Frank Li wrote:
+> Add dt-bindings/media/video-interfaces.h informations to help avoid use
+
+"Mention dt-bindings/media/video-interfaces.h in descriptions to help..."
+
+> hardcode in dts.
 > 
-> Add optional regulator supply properties for PCIe endpoints on TI SoCs.
-> Some boards provide dedicated regulators for PCIe devices, such as
-> 1.5V (miniPCIe), 3.3V (common for M.2 or miniPCIe), or 12V
-> (for high-power devices). These supplies are now described as optional
-> properties to allow the driver to control endpoint power where supported.
-
-Last sentence is completely redundant. Please do not describe DT, we
-all can read the patch. Driver is irrelevant here.
-
-How you described here and in descriptions, suggests these are rather
-port properties, not the controller.
-
-> 
-> Signed-off-by: Vitor Soares <vitor.soares@toradex.com>
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 > ---
->  .../devicetree/bindings/pci/ti,j721e-pci-host.yaml | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
+>  Documentation/devicetree/bindings/media/video-interfaces.yaml | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/pci/ti,j721e-pci-host.yaml b/Documentation/devicetree/bindings/pci/ti,j721e-pci-host.yaml
-> index c704099f134b..a20b03406448 100644
-> --- a/Documentation/devicetree/bindings/pci/ti,j721e-pci-host.yaml
-> +++ b/Documentation/devicetree/bindings/pci/ti,j721e-pci-host.yaml
-> @@ -110,6 +110,18 @@ properties:
->        interrupts:
->          maxItems: 1
->  
-> +  vpcie1v5-supply:
+> diff --git a/Documentation/devicetree/bindings/media/video-interfaces.yaml b/Documentation/devicetree/bindings/media/video-interfaces.yaml
+> index 038e85b45befa..f96cc0e403ddd 100644
+> --- a/Documentation/devicetree/bindings/media/video-interfaces.yaml
+> +++ b/Documentation/devicetree/bindings/media/video-interfaces.yaml
+> @@ -95,7 +95,7 @@ properties:
+>        - 6 # BT.656
+>        - 7 # DPI
+>      description:
+> -      Data bus type.
+> +      Data bus type. See dt-bindings/media/video-interfaces.h.
 
-How is it called in this device datasheet (not the board schematics)?
-
-> +    description: 1.5V regulator used to power PCIe interfaces,
-> +                 typically present on miniPCIe slots.
+Please use full path, so it can be validated by tools.
 
 Best regards,
 Krzysztof
