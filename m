@@ -1,63 +1,60 @@
-Return-Path: <devicetree+bounces-228600-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228601-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84388BEF6C6
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 08:10:53 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B7451BEF6DB
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 08:11:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 2775834936C
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 06:10:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E7ED3189BDFA
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 06:11:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E29812D63E5;
-	Mon, 20 Oct 2025 06:10:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F39D2D3EFC;
+	Mon, 20 Oct 2025 06:10:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="ehB02E5P"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="KGHskoDK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E53E22C0284
-	for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 06:10:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 564952C0284
+	for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 06:10:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760940637; cv=none; b=fVx7iIwWp6PTFU6XTxV39y9vU0chK34Snjb44uWnLuG55rPqVHflJtIkUd3+HWrYr8wtM+lX1OWHJtXp4OZXk17JMp7uBx4HCPtRCujgS2pZu1ityVMX/TRlWLFnIa9VNoXKGUD+6RqcOZcaFTh3mBDmb1WtVK4P7rsiNRyYvmI=
+	t=1760940640; cv=none; b=tZpjoCLJ3zmR5G7NXpFFGM+xfQ3HWxazvRHvyyBMRNGnyYMvstFniLDAG0gMgR8hHMy6yQ2LyZ4LYhhAgeQqwvoYRiTOa21v5bd66Ba2tCuH0LoWXx9Zl7xdFA75jEZF2PZo2HjnITuHBMxFD3C7vgKTQrX/6sWnYHQSI01a6dg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760940637; c=relaxed/simple;
-	bh=3p1M9r8Ct679RdWEhfdTfbQqtkv5MWTUo32xa1uKPOA=;
+	s=arc-20240116; t=1760940640; c=relaxed/simple;
+	bh=W94mpYJxiv21HZhC5xqeB3VFFBW5gguL2QkJLKXrolQ=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=I7uoER0ARkKc0v08jFr3VdJuX826O+u/GiLAUIxhlzJd2i0EW0Bp93V4RJgnjUKhJ2QEpiOr8loD9sZwlu/jQV7dtL6EMYslP4aWUNDczfZHooDlzrjVn0bPdlQuydOAJTvvyZkT5s1b5/fqeMlxbINF4vOQxeq5/GvfOppomXQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=ehB02E5P; arc=none smtp.client-ip=194.117.254.33
+	 MIME-Version; b=JH8I2Il3hD+NBmka/ASsONjtoA5yp2FP4xAM3JSn5N52GAlZlwKGgNRBNwK2X2nSefUqmCJCORJWEf9X3+I9anC/PYoImNsV6ABLWoHY/PV4PUS6Mmd38zAILB6S6pzXfKtyw8kALgdK3gtuP5vmnASdYxJ7cleAMQcG80Y++No=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=KGHskoDK; arc=none smtp.client-ip=194.117.254.33
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
 	sang-engineering.com; h=from:to:cc:subject:date:message-id
 	:in-reply-to:references:mime-version:content-transfer-encoding;
-	 s=k1; bh=2C24+433wJtYbqrC7tIADzE03jy5ELDw2JdjoUreqCc=; b=ehB02E
-	5P7dJBqZ0m+irgllkfMmPaMcYPcKIQDB4SrTrKlEfxfyi/GpjyVUDWhP5l7VaDbH
-	eD7uP/U2tcaozD956oSY+HGnpJwn1JyX0CPaSoQZJOo627veg+BdVdZuv8316nyY
-	jhlflxUaz2/YwvZoxgSJ1It9EtO0O2MvD/8YPKV4Vm3xFs9BKvXLvTCe7kKiQ7tB
-	2rjrUzsrAEOM6ivC3bb0LpJHGUtyKGS87IRNJ8g5MJhkxnWSSxD8skB1JWTTNSIr
-	8yuZs+cNBkPs75iPtIcn7grRCpEcjF9qvfavjr8FmdH7+KXJXtGkFgbdnLYxi53P
-	OcV+CR4VRMk7WQ4A==
-Received: (qmail 941062 invoked from network); 20 Oct 2025 08:10:28 +0200
-Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 20 Oct 2025 08:10:28 +0200
-X-UD-Smtp-Session: l3s3148p1@HuOe8JBBNoggAwDNf0fPAEuMhp6AgTGK
+	 s=k1; bh=KY43oKXxykqxhh3dVt+OgTp6ozmD+TNOu+V5dGLYibM=; b=KGHsko
+	DKD4ym8kp3K66vCmdRd8pjPZOLCZLX6tmu+V/YuDmV4PTM6/QOL6w2zFlSu6jN7R
+	Qh6gQa4qsJToYFs5aejOdSsT7kceG7riAbVrvJSEZKjAlwxW0g+WNrxCD5+Rk93D
+	aDg3T41i0f4KgsXsxSlQgai828iiILyGPsmVPM0YvJFhO6KXrnd/eZCL2CiSXZfz
+	ctLzkZe2CTJdW3cPakvXFMKbjuKngCvRI7cAxsxhLYUjMbyS5o3xhVkRagOCcHPF
+	P3zhDLWmutjNwgWWISKzyHFlm1qeLDpl+7sbjEBia/b++5CsQM9VaVvIuYU6YxbD
+	cVTQQVOUllpYuy8Q==
+Received: (qmail 941082 invoked from network); 20 Oct 2025 08:10:29 +0200
+Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 20 Oct 2025 08:10:29 +0200
+X-UD-Smtp-Session: l3s3148p1@4N6v8JBBQoggAwDNf0fPAEuMhp6AgTGK
 From: Wolfram Sang <wsa+renesas@sang-engineering.com>
 To: devicetree@vger.kernel.org
 Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Srinivas Kandagatla <srini@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
 	Mark Brown <broonie@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-msm@vger.kernel.org,
-	linux-sound@vger.kernel.org
-Subject: [PATCH 3/4] ASoC: dt-bindings: don't check node names
-Date: Mon, 20 Oct 2025 08:09:52 +0200
-Message-ID: <20251020060951.30776-9-wsa+renesas@sang-engineering.com>
+	linux-spi@vger.kernel.org
+Subject: [PATCH 4/4] dt-bindings: spi: don't check node names
+Date: Mon, 20 Oct 2025 08:09:53 +0200
+Message-ID: <20251020060951.30776-10-wsa+renesas@sang-engineering.com>
 X-Mailer: git-send-email 2.47.2
 In-Reply-To: <20251020060951.30776-6-wsa+renesas@sang-engineering.com>
 References: <20251020060951.30776-6-wsa+renesas@sang-engineering.com>
@@ -77,22 +74,36 @@ Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 I'd suggest to give subsystems some time to pick this patch before
 Rob applies it?
 
- Documentation/devicetree/bindings/sound/qcom,wcd934x.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml | 2 +-
+ Documentation/devicetree/bindings/spi/spi-controller.yaml  | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/sound/qcom,wcd934x.yaml b/Documentation/devicetree/bindings/sound/qcom,wcd934x.yaml
-index a65b1d1d5fdd..3a7334e41fd6 100644
---- a/Documentation/devicetree/bindings/sound/qcom,wcd934x.yaml
-+++ b/Documentation/devicetree/bindings/sound/qcom,wcd934x.yaml
-@@ -132,7 +132,7 @@ properties:
-     $ref: /schemas/gpio/qcom,wcd934x-gpio.yaml#
+diff --git a/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml b/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
+index 0543c526b783..5c87fc8a845d 100644
+--- a/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
++++ b/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
+@@ -153,7 +153,7 @@ properties:
+       provides an interface to override the native DWC SSI CS control.
  
  patternProperties:
 -  "^.*@[0-9a-f]+$":
 +  "@[0-9a-f]+$":
      type: object
      additionalProperties: true
-     description: |
+ 
+diff --git a/Documentation/devicetree/bindings/spi/spi-controller.yaml b/Documentation/devicetree/bindings/spi/spi-controller.yaml
+index 82d051f7bd6e..3b8e990e30c4 100644
+--- a/Documentation/devicetree/bindings/spi/spi-controller.yaml
++++ b/Documentation/devicetree/bindings/spi/spi-controller.yaml
+@@ -111,7 +111,7 @@ properties:
+       - compatible
+ 
+ patternProperties:
+-  "^.*@[0-9a-f]+$":
++  "@[0-9a-f]+$":
+     type: object
+     $ref: spi-peripheral-props.yaml
+     additionalProperties: true
 -- 
 2.47.2
 
