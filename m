@@ -1,119 +1,107 @@
-Return-Path: <devicetree+bounces-228914-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228916-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C618BF2165
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 17:26:28 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id F37E6BF2195
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 17:28:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 85A004F52E7
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 15:25:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 418C1188C2F5
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 15:27:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BF1424168D;
-	Mon, 20 Oct 2025 15:25:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A2FB266B67;
+	Mon, 20 Oct 2025 15:25:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="bRn64KPi"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="DgsHzTC8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A8A71E1DE5;
-	Mon, 20 Oct 2025 15:25:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3024266581;
+	Mon, 20 Oct 2025 15:25:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760973912; cv=none; b=dbaKBLrVjY+7VZwTY2Ju3AERvjxpTXjsoUpwng2ahEArnTMtw/j2lI9oAi7D5aXAfaEsiEDy5cpAS90FNxpLgW1H0x0wudEs9uO/9IJpnwh7EhJCSdkWPjtC6zjGPR4DAnSlpYz1QAv6rBIXeREdfaaDhI1nmhPKHW0snqmBRQU=
+	t=1760973937; cv=none; b=ZaJh4cPP/2sKaWXZfF6sqx6YbYBbsv+P2S/nOPjt7UfWwi+z58Zh9F3raCrru5a5O7sYUVYaA7eKVr2l35Z9jXMYYQv/lV8kaMkeaNHoM7qFaMQmMEnqtxAFKndygEm/bENYhwpWzJghRW2qbI1hbDasIZV99bvNyunKwkXXBg0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760973912; c=relaxed/simple;
-	bh=mVTKu/jJ5UZwRggSgWWcaWaPX805fKAyQU7f/+FPJnk=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=F9wcCT+FOfpIK9kjL0cMJzjV+isCaqVl5k8AlWbImbYRRAi1psVQjxqBKHP+k3XaoXSMTgsg+BPU6M+n1SQSEt93qInhkIASkjF5wXfSerBArWdeXrP5c1A7BTLY5mfx4jLOxY6teqr94lffuvDOBHTYAhNxHDDYIfAcEfoqgjE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=bRn64KPi; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
-	bh=CqOPWe4rfsEXq/Axf6YfN7t0vCSfPE7s8YtPOxax4AI=; b=bRn64KPiWoQCVOWet6ScvQRY9l
-	lD4nAkaGrSMWPtzDY5TPGUVSaH+dG6EG48t6Ose6jhmC+sXSmnsBLtz5PqNGAQWqRtmB1p6B+sSUh
-	wB4PXg/iGxxAV0Hf24/DWtqBxjsj4U3763uMJFtsgVErGbQxtt/kI5FLe9RxRtX/CmEuIHhzC2zJ3
-	yIF6LMYioHHVf7FmOaA3LdKLFTLj5nkQ69HmjKGPQFdYq/Dy9GT/5HB1OuDoFVFekj9NPdxHiKRof
-	1V2PrHpTzYht81R4sGXIRryfvMcjyCKNr1M0xX3ZmARsRVM4dZ9ToYbrYWmoziVbqGu/ElenlNEox
-	BVN370cg==;
-Received: from [212.111.240.218] (helo=phil.guestnet.ukdd.de)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1vArka-0002qD-Cy; Mon, 20 Oct 2025 17:24:44 +0200
-From: Heiko Stuebner <heiko@sntech.de>
-To: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	quentin.schulz@cherry.de,
-	kever.yang@rock-chips.com,
-	naoki@radxa.com,
-	honyuenkwun@gmail.com,
-	inindev@gmail.com,
-	ivan8215145640@gmail.com,
-	neil.armstrong@linaro.org,
-	mani@kernel.org,
-	dsimic@manjaro.org,
-	pbrobinson@gmail.com,
-	alchark@gmail.com,
-	didi.debian@cknow.org,
-	jbx6244@gmail.com,
-	andrew@lunn.ch,
-	Liangbin Lian <jjm2473@gmail.com>
-Cc: Heiko Stuebner <heiko@sntech.de>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 0/3] arm64: dts: rockchip: introduce LinkEase EasePi R1
-Date: Mon, 20 Oct 2025 17:24:42 +0200
-Message-ID: <176097387773.44471.5625428430704805786.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20251014051226.64255-1-jjm2473@gmail.com>
-References: <20251014051226.64255-1-jjm2473@gmail.com>
+	s=arc-20240116; t=1760973937; c=relaxed/simple;
+	bh=YIMnYLiXyGoQJdrCsNPRieKK98fVQhstnDhRU3hZ8/4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=p6oA49Qk3578hvNfOHLt7A7/X7LIsQa8yCN35GOgVhAoLeR6B2DHko20FJ/E92jPpr2ZuF7TIDvt/R0X2x3HiPLyzEEOBYrO7jZAZX5Q50aWthTwRzuRdcTfytc4G5HHFDdDRx7kE7wEOkbmAPP7A3FBGrSzk5P9pP7mL0w3nBk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=DgsHzTC8; arc=none smtp.client-ip=80.241.56.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp102.mailbox.org (smtp102.mailbox.org [IPv6:2001:67c:2050:b231:465::102])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4cqzlB5141z9spn;
+	Mon, 20 Oct 2025 17:25:26 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1760973926;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=PC4va8ieZUTwiJKFjsYUc7GcnfemHB6ncy9oeGC6/CI=;
+	b=DgsHzTC8vUoQttocqBG7Rb3P6fORbPUaL1HS+TClgbD4WCuDuScV1SUv6EeodBiOHdzCov
+	ABI9ec3z2KkzHVIUpO29I9NVD+HkLoeyLwfqGKDQErvlvrl35szgbbUWn92JT1LyFblCHI
+	+Aiy1I4AGs0lO4CeUsjyFynwV30IsExl7xh6cx0JImy36XG8fsJ94iCUz8URzMc1nu9y2m
+	rxD/2CHMHBvgbE6xkw5774ibSJtGA3a37+NiHPYM8iOZxRehpKq8GugWVERhRUR4/ZxrGm
+	xmJ30rAd3gNpTz1OoZcy9MzuiS1EtXJk0lwui5e0L5rGl38CqU2zGxwHTBA4uQ==
+Message-ID: <2e12fed7-21c0-48bf-94c4-a3d2850a3f0c@mailbox.org>
+Date: Mon, 20 Oct 2025 17:25:22 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH 2/2] dt-bindings: gpu: img,powervr-rogue: Rework the allOf
+ section
+To: Matt Coster <Matt.Coster@imgtec.com>
+Cc: Adam Ford <aford173@gmail.com>, Conor Dooley <conor+dt@kernel.org>,
+ David Airlie <airlied@gmail.com>, Frank Binns <Frank.Binns@imgtec.com>,
+ Alessio Belle <Alessio.Belle@imgtec.com>,
+ Alexandru Dadu <Alexandru.Dadu@imgtec.com>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Magnus Damm <magnus.damm@gmail.com>, Maxime Ripard <mripard@kernel.org>,
+ Rob Herring <robh@kernel.org>, Simona Vetter <simona@ffwll.ch>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>
+References: <20251018130147.12831-1-marek.vasut+renesas@mailbox.org>
+ <20251018130147.12831-2-marek.vasut+renesas@mailbox.org>
+ <a6d42c7e-1146-4bda-baf6-be04f3185c5a@imgtec.com>
+Content-Language: en-US
+From: Marek Vasut <marek.vasut@mailbox.org>
+In-Reply-To: <a6d42c7e-1146-4bda-baf6-be04f3185c5a@imgtec.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-MBO-RS-ID: a475670c6e47efa9a9d
+X-MBO-RS-META: 36hnykyaspk5t54jm87kde8k79k5kbzw
 
+On 10/20/25 5:12 PM, Matt Coster wrote:
 
-On Tue, 14 Oct 2025 13:12:23 +0800, Liangbin Lian wrote:
-> LinkEase EasePi R1 [1] is a high-performance mini router.
+Hello Matt,
+
+> On 18/10/2025 14:00, Marek Vasut wrote:
+>> Rework the current allOf: section such that all handling of
+>> clocks/clock-names properties happens first, and all handling
+>> of power-domains/power-domain-names happens second.
 > 
-> Specification:
-> - Rockchip RK3568
-> - 2GB/4GB LPDDR4 RAM
-> - 16GB on-board eMMC
-> - 1x M.2 key for 2280 NVMe (PCIe 3.0)
-> - 1x USB 3.0 Type-A
-> - 1x USB 2.0 Type-C (for USB flashing)
-> - 2x 1000 Base-T (native, RTL8211F)
-> - 2x 2500 Base-T (PCIe, RTL8125B)
-> - 1x HDMI 2.0 Output
-> - 12v DC Jack
-> - 1x Power key connected to PMIC
-> - 2x LEDs (one static power supplied, one GPIO controlled)
-> 
-> [...]
+> The original layout of the allOf: section was power-domains first, then
+> clock-domains. The actual ordering really doesn't matter, but I wonder
+> if it would make for a slightly cleaner patch to do it that way round?
 
-Applied, thanks!
+It would, but I also wanted to sort this DT part alphabetically.
 
-[1/3] dt-bindings: vendor-prefixes: Document LinkEase
-      commit: 9e38dc1abce6fb776d4b6731ccc64ad25e525d39
-[2/3] dt-bindings: arm: rockchip: Add LinkEase EasePi R1
-      commit: fc3cd4021eeecb9adbe030b8cf32587126775d8e
-[3/3] arm64: dts: rockchip: add LinkEase EasePi R1
-      commit: deaefeaf3df433d50935b9a85076041040f06d74
+If you want, I can split this patch in two, one which does this 
+splitting, and one which does alphabetical sorting.
 
-Best regards,
--- 
-Heiko Stuebner <heiko@sntech.de>
+[...]
 
