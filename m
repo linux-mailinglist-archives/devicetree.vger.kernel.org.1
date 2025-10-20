@@ -1,241 +1,148 @@
-Return-Path: <devicetree+bounces-228704-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228701-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E080BF04B1
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 11:47:12 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D282CBF0460
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 11:44:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D030418849F9
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 09:47:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2E94F1882D51
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 09:44:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A7B023182D;
-	Mon, 20 Oct 2025 09:47:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4924B2F6588;
+	Mon, 20 Oct 2025 09:41:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=bewilderbeest.net header.i=@bewilderbeest.net header.b="aptjzpRb"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="jW7m505x"
 X-Original-To: devicetree@vger.kernel.org
-Received: from thorn.bewilderbeest.net (thorn.bewilderbeest.net [71.19.156.171])
+Received: from mail1.manjaro.org (mail1.manjaro.org [142.132.176.110])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4E5523D29A;
-	Mon, 20 Oct 2025 09:47:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=71.19.156.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF2342F5A01;
+	Mon, 20 Oct 2025 09:41:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=142.132.176.110
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760953628; cv=none; b=N1Qc+Fn7q18XyZF2gLAo8YjNsq+Z6XHIJV3Aqu/VstN+NeBSxD1PDlXhlXifM4kY9GtNqBbbuGOAfmtUtSYdcoim/bdUiAwaYzEr4NXIo74RX08BdueGjcQCCiTe+6cG8CxQpS2RuzYj/t8PjOn4SpPMSAEHsHcVLtz7iggIzxk=
+	t=1760953302; cv=none; b=UUYnW6FlpaM/p26p0G0MDAPpnmE3KSGoibQIqLh1ZCpOZ6+4MuOWWy9OtJDII7520ezeAVI2qJxtKIJMEOlsdXn9jcMkr6x5RkXd8mZ1e0yXWiLGf/NrdsGq8tVfbw+k1vVf4VcYt9pi+B/dy5JMcHxM/14OTl7MYdqj/7JZUk4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760953628; c=relaxed/simple;
-	bh=I6MEwWVoT8bn+A9rQd+UdRZGsHz/qLFaZYAb75feCiU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Z2I3dwDXUCm80h+suXPmOU+e8RBl4ScqI1FfLOHKgGnHQlb/0N3Sh9ZiddAX+DvLN3/JyOSc+LYtCgu4j34U92PX1s07mYofKf8Us0pk8ZSj/JTW+XRfqa97LZ3aE5rrUX0DWqDR4lV48TOf/9bqpe3eLJLhz/FAsH/bFQ8420c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bewilderbeest.net; spf=pass smtp.mailfrom=bewilderbeest.net; dkim=pass (1024-bit key) header.d=bewilderbeest.net header.i=@bewilderbeest.net header.b=aptjzpRb; arc=none smtp.client-ip=71.19.156.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bewilderbeest.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bewilderbeest.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bewilderbeest.net;
-	s=thorn; t=1760953240;
-	bh=OCbONFN78XpgRKAC0O9n8v5Ot2s4SJuk+oXKqyYYcm4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=aptjzpRbLNK18PePpTlYK3Ta3tm2B6yYpVnLCfkvKXEfjhNNsUocyvhpodPmW0RkQ
-	 XbIVRPvkYeiN+LQR7b4xuv9p8RAWaVVuvm4PvRXEdlpSb/YJmzRcAGorehH7XYDEdi
-	 Oc8ODPoqb2YI4tkvMxpHazLfnCJFMCt6GB29oHdk=
-Received: from hatter.bewilderbeest.net (unknown [IPv6:2602:61:713c:eb00::2])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: zev)
-	by thorn.bewilderbeest.net (Postfix) with ESMTPSA id 94B0B1BF;
-	Mon, 20 Oct 2025 02:40:40 -0700 (PDT)
-Date: Mon, 20 Oct 2025 02:40:33 -0700
-From: Zev Weiss <zev@bewilderbeest.net>
-To: Tan Siewert <tan@siewert.io>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
-	Andrew Jeffery <andrew@codeconstruct.com.au>,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] ARM: dts: aspeed: add asrock x470d4u bmc
-Message-ID: <c6ee0814-1d36-45b5-8598-2a30efeee5a5@hatter.bewilderbeest.net>
-References: <20251011112124.17588-1-tan@siewert.io>
- <20251011112124.17588-3-tan@siewert.io>
+	s=arc-20240116; t=1760953302; c=relaxed/simple;
+	bh=YSVUm8OZlfe3TIJF+Pv92RMSSjIY1/in62vWNQJquJw=;
+	h=From:Content-Type:Date:Cc:To:MIME-Version:Message-ID:Subject; b=GiHQYx3PXmgbhP3H/3aswzaTEh3BjZ5CF24am1QOH9iCcmPNlqoojxGV4ZLlT979eBSd4UzdKAhla8vLbSycDmIaAPSOZPHodSPtEcPxvrbkc2RWzg0f7GgRNIMfapUNN4RyF7VfULfkh7cX5QIdXI9D/D4dA6BtE/qfQpGvLUQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=jW7m505x; arc=none smtp.client-ip=142.132.176.110
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPA id 08DE540D09;
+	Mon, 20 Oct 2025 11:41:29 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=dkim;
+	t=1760953293; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding; bh=QGW0UXPHuAzfUyVJq6SzZa/ZD5eWO7i1MGpbhW7LPcI=;
+	b=jW7m505xbww0KhZcVkm/7a/5SkRhUKtxfzlyMz5EZs1RmvsphJ7m5lYLFyNG+c5m156ksA
+	/iMsmNQq85AYSsMDegTbO8SFQPO0wTJbiZ2Z2RsWhicfRuh1RfxzHJtikBsxmzRGcuLP0z
+	84QlUwkNCQ0xzH+23NnpYd2/yQmUW4JCXB8nru+JEBBgjttN1T+OvIR3R+OMCtDebkYMur
+	oEGWpARae1AueVRbftD9Ao9WiCG5y0laFfwqtqMzdu590msFvWzWbBZMO9cETaL8Tm6Ylu
+	tmDmByAxQCeQamP4oH5KLR/TAtmmQALfWHxDdb6QxvhENPhCw5NrmkqS+zvo8g==
+From: "Dragan Simic" <dsimic@manjaro.org>
+Content-Type: text/plain; charset="utf-8"
+Date: Mon, 20 Oct 2025 11:41:29 +0200
+Cc: "Hugh Cole-Baker" <sigmaris@gmail.com>, "Jimmy Hon" <honyuenkwun@gmail.com>, "Tianling Shen" <cnsztl@gmail.com>, "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Heiko Stuebner" <heiko@sntech.de>, "Grzegorz Sterniczuk" <grzegorz@sternicz.uk>, "Jonas Karlman" <jonas@kwiboo.se>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, "Shawn Lin" <shawn.lin@rock-chips.com>
+To: "Anand Moon" <linux.amoon@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
-Content-Disposition: inline
-In-Reply-To: <20251011112124.17588-3-tan@siewert.io>
+Message-ID: <52537005-b8a3-c202-770c-599efc6a4d17@manjaro.org>
+Subject: =?utf-8?q?Re=3A?= [PATCH] =?utf-8?q?arm64=3A?==?utf-8?q?_dts=3A?=
+ =?utf-8?q?_rockchip=3A?= fix eMMC corruption on NanoPC-T6 with A3A444 chips
+User-Agent: SOGoMail 5.12.3
+Content-Transfer-Encoding: quoted-printable
+X-Last-TLS-Session-Version: None
 
-On Sat, Oct 11, 2025 at 04:21:20AM PDT, Tan Siewert wrote:
->The ASRock Rack X470D4U X470D4U is a single-socket X470-based microATX
->motherboard for Ryzen processors with an AST2500 BMC and either 32MB or
->64MB SPI flash.
->
->This mainboard exists in three known "flavors" which only differ in the
->used host NIC, the BMC SPI size and some parts that may be un-populated.
->
->To keep the complexity low with the BMC SPI, use the 32MB layout
->regardless of the used SPI or mainboard flavor.
->
->Signed-off-by: Tan Siewert <tan@siewert.io>
->---
->v2:
->  - fix led node names [robh]
->  - fix missing gfx memory region and other offenses [Tan]
->---
-> arch/arm/boot/dts/aspeed/Makefile             |   1 +
-> .../dts/aspeed/aspeed-bmc-asrock-x470d4u.dts  | 350 ++++++++++++++++++
-> 2 files changed, 351 insertions(+)
-> create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-x470d4u.dts
->
->diff --git a/arch/arm/boot/dts/aspeed/Makefile b/arch/arm/boot/dts/aspeed/Makefile
->index 0f0b5b707654..c601af36915e 100644
->--- a/arch/arm/boot/dts/aspeed/Makefile
->+++ b/arch/arm/boot/dts/aspeed/Makefile
->@@ -13,6 +13,7 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
-> 	aspeed-bmc-asrock-e3c256d4i.dtb \
-> 	aspeed-bmc-asrock-romed8hm3.dtb \
-> 	aspeed-bmc-asrock-spc621d8hm3.dtb \
->+	aspeed-bmc-asrock-x470d4u.dtb \
-> 	aspeed-bmc-asrock-x570d4u.dtb \
-> 	aspeed-bmc-asus-x4tf.dtb \
-> 	aspeed-bmc-bytedance-g220a.dtb \
->diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-x470d4u.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-x470d4u.dts
->new file mode 100644
->index 000000000000..e9804b0ace9f
->--- /dev/null
->+++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-x470d4u.dts
->@@ -0,0 +1,350 @@
->+// SPDX-License-Identifier: GPL-2.0+
->+/dts-v1/;
->+
->+#include "aspeed-g5.dtsi"
->+#include <dt-bindings/gpio/aspeed-gpio.h>
->+#include <dt-bindings/leds/common.h>
->+#include <dt-bindings/interrupt-controller/irq.h>
->+
->+/ {
->+	model = "Asrock Rack X470D4U-series BMC";
->+	compatible = "asrock,x470d4u-bmc", "aspeed,ast2500";
->+
->+	aliases {
->+		serial4 = &uart5;
->+	};
->+
->+	chosen {
->+		stdout-path = &uart5;
->+	};
->+
->+	iio-hwmon {
->+		compatible = "iio-hwmon";
->+		io-channels = <&adc 0>, <&adc 1>, <&adc 2>, <&adc 3>, <&adc 4>,
->+			<&adc 5>, <&adc 6>, <&adc 7>, <&adc 8>, <&adc 9>,
->+			<&adc 10>, <&adc 11>, <&adc 12>;
->+	};
->+
->+	leds {
->+		compatible = "gpio-leds";
->+
->+		led-heartbeat {
->+			/* led-heartbeat-n */
->+			gpios = <&gpio ASPEED_GPIO(H, 6) GPIO_ACTIVE_LOW>;
->+			color = <LED_COLOR_ID_GREEN>;
->+			function = LED_FUNCTION_HEARTBEAT;
->+			linux,default-trigger = "timer";
->+		};
->+
->+		led-systemfault {
->+			/* led-fault-n */
->+			gpios = <&gpio ASPEED_GPIO(Z, 2) GPIO_ACTIVE_LOW>;
->+			color = <LED_COLOR_ID_AMBER>;
->+			function = LED_FUNCTION_FAULT;
->+			panic-indicator;
->+		};
->+
->+		led-identify {
->+			/* led-identify-n */
->+			gpios = <&gpio ASPEED_GPIO(D, 6) GPIO_ACTIVE_LOW>;
->+		};
->+	};
->+
->+	memory@80000000 {
->+		reg = <0x80000000 0x20000000>;
->+	};
->+
->+	reserved-memory {
->+		#address-cells = <1>;
->+		#size-cells = <1>;
->+		ranges;
->+
->+		pci_memory: region@9a000000 {
->+			no-map;
->+			reg = <0x9a000000 0x00010000>; /* 64K */
->+		};
->+
->+		video_engine_memory: jpegbuffer {
->+			size = <0x02800000>;	/* 40M */
->+			alignment = <0x01000000>;
->+			compatible = "shared-dma-pool";
->+			reusable;
->+		};
->+
->+		gfx_memory: framebuffer {
->+			size = <0x01000000>;
->+			alignment = <0x01000000>;
->+			compatible = "shared-dma-pool";
->+			reusable;
->+		};
->+	};
->+};
->+
->+&adc {
->+	status = "okay";
->+	pinctrl-names = "default";
->+	pinctrl-0 = <&pinctrl_adc0_default		/* 3VSB */
->+			&pinctrl_adc1_default		/* 5VSB */
->+			&pinctrl_adc2_default		/* VCPU */
->+			&pinctrl_adc3_default		/* VSOC */
->+			&pinctrl_adc4_default		/* VCCM */
->+			&pinctrl_adc5_default		/* APU-VDDP */
->+			&pinctrl_adc6_default		/* 1V05-PROM-S5 */
->+			&pinctrl_adc7_default		/* 2V5-PROM */
->+			&pinctrl_adc8_default		/* 1V05-PROM-RUN */
->+			&pinctrl_adc9_default		/* VBAT */
->+			&pinctrl_adc10_default		/* 3V */
->+			&pinctrl_adc11_default		/* 5V */
->+			&pinctrl_adc12_default>;	/* 12V */
->+};
->+
->+&ehci1 {
->+	status = "okay";
->+};
->+
->+/*
->+ * Although some board flavors have a 64MB SPI, use the
->+ * 32MB SPI layout to be compatible with all boards.
->+ */
->+&fmc {
->+	status = "okay";
->+	flash@0 {
->+		status = "okay";
->+		label = "bmc";
->+		m25p,fast-read;
->+		spi-max-frequency = <10000000>;
->+#include "openbmc-flash-layout.dtsi"
->+	};
->+};
+Hello Anand,
 
-Hmm -- I can see the simplicity argument, but it seems a bit of a shame 
-to let the other 32MB go to waste on boards with 64MB chips (especially 
-given how tight a fit OpenBMC is getting in 32MB these days).
+On Monday, October 20, 2025 05:13 CEST, Anand Moon <linux.amoon@gmail.c=
+om> wrote:
+> On Sun, 19 Oct 2025 at 23:40, Dragan Simic <dsimic@manjaro.org> wrote=
+:
+> > On Sunday, October 19, 2025 19:25 CEST, Anand Moon <linux.amoon@gma=
+il.com> wrote:
+> > > Would you consider the following patch?
+> > >
+> > > As per the Rockchip RK3588S SoC Technical Reference Manual (TRM) =
+Part 1,
+> > > chapter 21.6, Interface Description, the eMMC signals require car=
+eful handling
+> > > to ensure signal integrity.
+> > >
+> > > I2C2=5FSCL=5FM2 I/O EMMC=5FRSTN/I2C2=5FSCL=5FM2/UART5=5FRTSN=5FM1=
+/GPIO2=5FA3=5Fd
+> > > BUS=5FIOC=5FGPIO2A=5FIOMUX=5FSEL=5FL[15:12]=3D0x9
+> > > I2C2=5FSDA=5FM2 I/O EMMC=5FDATA=5FSTROBE/I2C2=5FSDA=5FM2/UART5=5F=
+CTSN=5FM1/GPIO2=5FA2=5Fd
+> > > BUS=5FIOC=5FGPIO2A=5FIOMUX=5FSEL=5FL[11:8]=3D0x9
+> > >
+> > > $ git diff .
+> > > diff --git a/arch/arm64/boot/dts/rockchip/rk3588-base-pinctrl.dts=
+i
+> > > b/arch/arm64/boot/dts/rockchip/rk3588-base-pinctrl.dtsi
+> > > index 6584d73660f6..f60a1d8be0ef 100644
+> > > --- a/arch/arm64/boot/dts/rockchip/rk3588-base-pinctrl.dtsi
+> > > +++ b/arch/arm64/boot/dts/rockchip/rk3588-base-pinctrl.dtsi
+> > > @@ -327,7 +327,7 @@ emmc {
+> > >                 emmc=5Frstnout: emmc-rstnout {
+> > >                         rockchip,pins =3D
+> > >                                 /* emmc=5Frstn */
+> > > -                               <2 RK=5FPA3 1 &pcfg=5Fpull=5Fnone=
+>;
+> > > +                               <2 RK=5FPA3 1 &pcfg=5Fpull=5Fdown=
+=5Fdrv=5Flevel=5F2>;
+> > >                 };
+> > >
+> > >                 /omit-if-no-ref/
+> > > @@ -369,7 +369,7 @@ emmc=5Fcmd: emmc-cmd {
+> > >                 emmc=5Fdata=5Fstrobe: emmc-data-strobe {
+> > >                         rockchip,pins =3D
+> > >                                 /* emmc=5Fdata=5Fstrobe */
+> > > -                               <2 RK=5FPA2 1 &pcfg=5Fpull=5Fdown=
+>;
+> > > +                               <2 RK=5FPA2 1 &pcfg=5Fpull=5Fdown=
+=5Fdrv=5Flevel=5F2>;
+> > >                 };
+> > >         };
+> >
+> > Frankly, I'm not really sure how would such changes do something
+> > good regarding the eMMC signal integrity?  In general, signal
+> > integrity depends mostly on the routing of the PCB traces, which
+> > is purely hardware design.  Sure, termination of data lines also
+> > plays a significant role, but that surely isn't at play here.
+> >
+> It is necessary to enhance the signal quality from the controller to
+> the eMMC module
 
-Could we maybe have an aspeed-bmc-asrock-x470d4u-64.dts alongside this 
-one that #includes it and then drops in the 64M layout over the default 
-32?  You could then arrange for a flag in the OpenBMC bitbake recipes to 
-opt in to using that dts if you want to.
+Well, yes, but the proposed change almost surely isn't a way
+to achieve that.  Maybe I'm missing something, but it looks like
+a pretty much random change to me.
 
+> > Moreover, the eMMC RSTn line is already pulled high to VCCIO in
+> > the reference RK3588 design, so pulling it down in the SoC itself
+> > would be pretty much wrong thing to do.
+> >
+> It is specified in the TRM that this is only applicable during
+> initialization.as per my understanding.
 
-Zev
+It doesn't matter what the TRM says in this case, because the
+board-level pull-up and SoC-level pull-down remain the same at
+all times, and having both a pull-up and a pull-down at the same
+time is a typical example of what shouldn't be happening on some
+line until that's intentional and the pull-ups and pull-downs
+deliberately have different strengths.
+
+Anyway, let's see will the patch that Shawn sent [1] fix this
+issue (by the way, thanks, Shawn!).  I'll hold the A3A444 quirk
+patch(es) off until Tianling's friend and Hugh find the time to
+test Shawn's patch.
+
+[1] https://patchwork.kernel.org/project/linux-mmc/patch/1760924981-523=
+39-1-git-send-email-shawn.lin@rock-chips.com/
 
 
