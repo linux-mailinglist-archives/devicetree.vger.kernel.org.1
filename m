@@ -1,217 +1,161 @@
-Return-Path: <devicetree+bounces-228884-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228886-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62418BF19CD
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 15:47:37 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 39CA7BF1A84
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 15:54:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F19AD18838E9
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 13:46:46 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 04E374FCA13
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 13:47:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8242431986F;
-	Mon, 20 Oct 2025 13:46:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D4ED321441;
+	Mon, 20 Oct 2025 13:47:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="iDUw3PpE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ajn8vXuN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 518A431AF1F
-	for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 13:46:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6909932252E
+	for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 13:47:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760967962; cv=none; b=bPmcWuG7AwyQCkZumXsnkksoYWd2R7sCSzbd0XcvyCI44pUhHaexExPiXJIBKSDVIb9NdYGCgAOirhWGbGCX37nXJVCkFrqAnmsyz4gUhdmkU2fWgXTafISftnT+9s/J4EjKRv0O3KDs44k1m6tyZTewfUnXQUn5HrE/g234C4A=
+	t=1760968026; cv=none; b=cQd+4vg7uxqz1LQqH4/7VfrWdXKJDIFNs040ekzmQN5irvrwIfqMKzV9Tg4bwoQQJvZH1dqZpNDaT/d9+yDXV7G2b1zXSszYps3mJVjq/xsXAaiYgJHInIAKi2+m18Ji9i5uTrrjxOFQgzqZiixhTIKVbvHgvgbEP7U0TD6waAs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760967962; c=relaxed/simple;
-	bh=tqmAXFIUqMJJYe2TezHGEYoHz+RbiIgC7MYcdc7oCuo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=SYF+GZKFTPxFwS9npXpFKgrUYkrn3vvxNRZJBa7FYzwcbASADMK/rni5h0k0Eb7aumuSWbJBtceg5PzIuzW9VzJNGEVtqE7P6wiJBe8tgtZtznkRnjmURRy+nF1ySKjzSTM5PDhTHqaPoroEzV3c1MAa0k9tK/b5h+2+ic4YiLU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=iDUw3PpE; arc=none smtp.client-ip=209.85.208.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-63bea08a326so6005084a12.3
-        for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 06:46:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1760967959; x=1761572759; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=UsdSXxtK2e/jSRjlYL+PvN4ai9sNqYnnc+D+KNBqw4s=;
-        b=iDUw3PpENFEx3AmLQ1yCUtH2UCmmfLLQbvPqCMlz46mJahrCoVcXVEJ8832IV/VO+R
-         Gu0RqmwcE7oTAy8szJyHe0SnzqpLsE9e/T8Vn8PhxuW0NivSzZWCX360SM1lbGaXiG/N
-         DQ3M0q06//rJXwKPLKpCpDmFCFZwqDtlmNxSgsj44kAqeHAXklte2mKVpoQDFAp9p5Eq
-         NFkVWjAtlByiJxFCljdJpkZk2xVFs+gAdj9G50G03IX4qmi6VTYT8i0Now1sfnnAib+z
-         on/908xS8lHrsreV2CQwWOWMnQedbmEEmTzIkPP8Msd4y7rEDX7EXRv6uEI6HhGlBwQd
-         t/eQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760967959; x=1761572759;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=UsdSXxtK2e/jSRjlYL+PvN4ai9sNqYnnc+D+KNBqw4s=;
-        b=O8iPgkfn1KXCE3XjhKr8xWm+TCZ5YMMrwk5ntEBMbbYlxEzdSRRFRDkZIgdzh7o/CM
-         ZhOnpsXLOf/PYlaT/o2SOlB+gF4FbT1UzUGy+0vh98iMjcZqjIslbiASaRCwugH1NNn8
-         W7+mAhT/3WXBNdnOYFNZIX16TwYCLomYHyaROvs2eejQsG6j0ld/hv71ZnRRyCwGi3AN
-         SoJkszsPfAA90EPuqODTiHjFkuhc9Rmxk0UcXSNomBR1ADqfzTVKmEAeho2jOU6PR+TW
-         dwPu1mr6ZTdP4p3tTzaqXr94bRD8/tYAHlycw77DQZZUmluajY73KupqLStEArWBekIP
-         zs6w==
-X-Forwarded-Encrypted: i=1; AJvYcCXbxRImA8RGOoE9NgL+Mgk/YXIeCwh6H62RlIqyNOL37YXhAElUUtuqYpEbhPkY59YDQOLimkKnW45o@vger.kernel.org
-X-Gm-Message-State: AOJu0YxoG0gOVIlck6oLGV6N25zSIQrDPPe3q0tkqdIVHH/SFxWaCc59
-	LFmBuI6BTdAoo3sZM5OT8UDnJuWxi84hvqoQSzl7gDs3lPctQv3KLX99hy3cMY8E8dM=
-X-Gm-Gg: ASbGncs0t9DYF87j/PJWy6p7SXoQ/G1dQ17jXAGpBe3OCXcjuGGVj/Mm8/+F76Z5ZkG
-	wXdU6OeG5OfdDoeYmDWGTC25SUqMh5UZqNeY3VhNvol3NVq5vdHT+37FPn64xRcEdKN0JFuFc81
-	v+CoN/hl6UqMaDYxxwNQ4+mXizKBAeydPfnL0EW2LR6yqr57KWmvoEJsnWCs4CoFAe+TGikWBok
-	jY0Bm0DcgKxEXmzcsVuv9Xy5jTjaLmp3OGVOif3OD3PEJFAs2niQoYwT3MFVkz0UalMx3pgG2d0
-	8IaHSsguXPmDkDDoyT2mvHKNiwxxl0ku1f6/59+cGOocH+zlkQfRrFYEFESwM6K2YWtm/ldasv8
-	lpgeYV7O5/Y9cWcPd0GCMkB+TzFxQxTHvYUOVQ+87q7l0h2SaU1mYaTSLJFsitgXQ5dONHG9100
-	D5tRGYW4SceLD4thl9hw6TpiTeHPIna1LYM5ZDEgABDwwjWr5GYV0=
-X-Google-Smtp-Source: AGHT+IGtChbu+BFRFgmruupaHMS+YTJq85VdKiOgnQsI1T0cofPdNHTi4Ln+S+OBz5ucIxqGiunGkw==
-X-Received: by 2002:a17:907:94c1:b0:b4f:ee15:8ae8 with SMTP id a640c23a62f3a-b647453ff06mr1403971766b.58.1760967958539;
-        Mon, 20 Oct 2025 06:45:58 -0700 (PDT)
-Received: from [192.168.1.36] (p5b29e551.dip0.t-ipconnect.de. [91.41.229.81])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b65eb725f3fsm793159666b.68.2025.10.20.06.45.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Oct 2025 06:45:57 -0700 (PDT)
-Message-ID: <aeb9a34a-d9ea-4027-9f61-beae73498266@linaro.org>
-Date: Mon, 20 Oct 2025 15:45:56 +0200
+	s=arc-20240116; t=1760968026; c=relaxed/simple;
+	bh=ANgSQSPVOIlXoVYbP+I9m5tJ0ZaaqeZGLzdTf42qYbc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=JWAh81ciIZbUzFJQZnMZvfdEOAXC68HAlVB3JdwPV28DUCxYC977YhMPmBYd2PwBYAT3jur8sBRUvsH2B9B7ueyuzgGQDCBhFoBSW57qlUZTYdpetjocEVK1xhcJ3OHZCpfN/o2DHNlqo5R58ZAtQh0LV7qp+gG3dGEXCOV/lA8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ajn8vXuN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A1A1C4CEF9
+	for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 13:47:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1760968026;
+	bh=ANgSQSPVOIlXoVYbP+I9m5tJ0ZaaqeZGLzdTf42qYbc=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=Ajn8vXuNnKb1LAbPZxFi0K1SpVKYv6BEENBjvz46Sv9caDB7o+XlW10cYl3uLNOIb
+	 DV1BMPpT9P2ROVtknynYnMUmuw5Yj98O/adWd41Q9N0z5pm5Yg04Zxb8o1YwEdNRWv
+	 /hdbw1ywMjql2m+TwIB/dEWaAe2yJ8HI411QTh7e0dArZNoWSU89ftPtasueR2lic9
+	 yKp2jtGn9yJNS8zZF49TO7B+NfQLEouWx04Xrnig/kWBHsxxrvc8hfCoS/74Mnci7a
+	 pyrpMcPYhrwFib862EgEwt/zugtG1JtfSbo6ARZERY0E0vHdrPUzMtbIGgjJOamR7i
+	 xYKl9K5W5qd0w==
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-46e6a689bd0so41131905e9.1
+        for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 06:47:06 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUbqHnI5ddKuXwzSfNSNpiWgncmh6fVbSGsnOzJpRhXf9d1CPolWjaNw7LVtZqmqAqpaMwzR2ZCuGSK@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw0eGGk9GJruwEBJiDWQskAN+lVTbPeFbGtFIhgRgdsjuKPTEt7
+	yfiBm5TQhUG929axni1rI8Cg6Jv/Zr0JqtFdtXeFY0Bmt7xEvms6iGR2UVKLLdK9Qo021uWjMmI
+	Gypcew/H8AxL9itaWpAvfVoNx4CH3l/E=
+X-Google-Smtp-Source: AGHT+IGpvHBGOazwRpML7L6p+OasmV1SnRg6q1qXry12cbpNN8zhS8TFOb5uYraKUxj/eNcIvfi0sxzsmTyVox3z8JY=
+X-Received: by 2002:a05:600c:3b0c:b0:471:669:ec1f with SMTP id
+ 5b1f17b1804b1-471178785e1mr97856905e9.8.1760968024377; Mon, 20 Oct 2025
+ 06:47:04 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/8] arm64: dts: qcom: sdm845-oneplus: Describe panel
- vci and poc supplies
-Content-Language: en-US
-To: david@ixit.cz, Neil Armstrong <neil.armstrong@linaro.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Thierry Reding
- <thierry.reding@gmail.com>, Sam Ravnborg <sam@ravnborg.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>,
- Jessica Zhang <jesszhan0024@gmail.com>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- phone-devel@vger.kernel.org
-References: <20251016-s6e3fc2x01-v3-0-ce0f3566b903@ixit.cz>
- <20251016-s6e3fc2x01-v3-2-ce0f3566b903@ixit.cz>
-From: Casey Connolly <casey.connolly@linaro.org>
-In-Reply-To: <20251016-s6e3fc2x01-v3-2-ce0f3566b903@ixit.cz>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20251020042056.30283-1-luxu.kernel@bytedance.com> <20251020042056.30283-4-luxu.kernel@bytedance.com>
+In-Reply-To: <20251020042056.30283-4-luxu.kernel@bytedance.com>
+From: Guo Ren <guoren@kernel.org>
+Date: Mon, 20 Oct 2025 21:46:51 +0800
+X-Gmail-Original-Message-ID: <CAJF2gTREY07Eo0EgB9ew1sd6FkMtoFSTgyC5ny2SQKKd83xEtw@mail.gmail.com>
+X-Gm-Features: AS18NWDSEQv09h9pIrv_Q1ibVOSy0wdkcUShHmZExEFgCajrR16Dgx95ctdgozI
+Message-ID: <CAJF2gTREY07Eo0EgB9ew1sd6FkMtoFSTgyC5ny2SQKKd83xEtw@mail.gmail.com>
+Subject: Re: [PATCH v4 03/10] riscv: hwprobe: Export Zalasr extension
+To: Xu Lu <luxu.kernel@bytedance.com>
+Cc: corbet@lwn.net, paul.walmsley@sifive.com, palmer@dabbelt.com, 
+	aou@eecs.berkeley.edu, alex@ghiti.fr, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, will@kernel.org, peterz@infradead.org, 
+	boqun.feng@gmail.com, mark.rutland@arm.com, anup@brainfault.org, 
+	atish.patra@linux.dev, pbonzini@redhat.com, shuah@kernel.org, 
+	parri.andrea@gmail.com, ajones@ventanamicro.com, brs@rivosinc.com, 
+	linux-doc@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, kvm@vger.kernel.org, 
+	kvm-riscv@lists.infradead.org, linux-kselftest@vger.kernel.org, 
+	apw@canonical.com, joe@perches.com, lukas.bulwahn@gmail.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-
-
-On 16/10/2025 18:16, David Heidelberg via B4 Relay wrote:
-> From: Casey Connolly <casey.connolly@linaro.org>
-> 
-> There are two additional supplies used by the panel, both are GPIO
-> controlled and are left enabled by the bootloader for continuous splash.
-> 
-> Previously these were (incorrectly) modelled as pinctrl. Describe them
-> properly so that the panel can control them.
-> 
-> Fixes: 288ef8a42612 ("arm64: dts: sdm845: add oneplus6/6t devices")
-
-This Fixes: is not correct, it should be the commit that first added the
-panel to the DT since it was added after the initial DT.
-
-The driver changes also need to be backported and may not apply properly
-to stable kernels, so we should be careful with this.
-> Signed-off-by: Casey Connolly <casey.connolly@linaro.org>
-> Co-developed-by: David Heidelberg <david@ixit.cz>
-> Signed-off-by: David Heidelberg <david@ixit.cz>
+On Mon, Oct 20, 2025 at 12:21=E2=80=AFPM Xu Lu <luxu.kernel@bytedance.com> =
+wrote:
+>
+> Export the Zalasr extension to userspace using hwprobe.
+>
+> Signed-off-by: Xu Lu <luxu.kernel@bytedance.com>
 > ---
->  .../arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi | 46 +++++++++++++++++++++-
->  1 file changed, 45 insertions(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
-> index dcfffb271fcf3..1cf03047dd7ae 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
-> @@ -162,6 +162,34 @@ ts_1p8_supply: ts-1p8-regulator {
->  		enable-active-high;
->  		regulator-boot-on;
->  	};
-> +
-> +	panel_vci_3v3: panel-vci-3v3-regulator {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "LCD_VCI_3V";
-> +
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +
-> +		gpio = <&tlmm 26 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +		pinctrl-0 = <&panel_vci_default>;
-> +		pinctrl-names = "default";
-> +		regulator-boot-on;
-> +	};
-> +
-> +	panel_vddi_poc_1p8: panel-vddi-poc-regulator {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "VDDI_POC";
-> +
-> +		regulator-min-microvolt = <1800000>;
-> +		regulator-max-microvolt = <1800000>;
-> +
-> +		gpio = <&tlmm 25 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +		pinctrl-0 = <&panel_poc_default>;
-> +		pinctrl-names = "default";
-> +		regulator-boot-on;
-> +	};
->  };
->  
->  &adsp_pas {
-> @@ -429,6 +457,8 @@ display_panel: panel@0 {
->  		reg = <0>;
->  
->  		vddio-supply = <&vreg_l14a_1p88>;
-> +		vci-supply = <&panel_vci_3v3>;
-> +		poc-supply = <&panel_vddi_poc_1p8>;
->  
->  		reset-gpios = <&tlmm 6 GPIO_ACTIVE_LOW>;
->  
-> @@ -803,6 +833,20 @@ hall_sensor_default: hall-sensor-default-state {
->  		bias-disable;
->  	};
->  
-> +	panel_vci_default: vci-state {
-> +		pins = "gpio26";
-> +		function = "gpio";
-> +		drive-strength = <8>;
-> +		bias-disable;
-> +	};
-> +
-> +	panel_poc_default: poc-state {
-> +		pins = "gpio25";
-> +		function = "gpio";
-> +		drive-strength = <8>;
-> +		bias-disable;
-> +	};
-> +
->  	tri_state_key_default: tri-state-key-default-state {
->  		pins = "gpio40", "gpio42", "gpio26";
->  		function = "gpio";
-> @@ -818,7 +862,7 @@ ts_default_pins: ts-int-state {
->  	};
->  
->  	panel_reset_pins: panel-reset-state {
-> -		pins = "gpio6", "gpio25", "gpio26";
-> +		pins = "gpio6";
->  		function = "gpio";
->  		drive-strength = <8>;
->  		bias-disable;
-> 
+>  Documentation/arch/riscv/hwprobe.rst  | 5 ++++-
+>  arch/riscv/include/uapi/asm/hwprobe.h | 1 +
+>  arch/riscv/kernel/sys_hwprobe.c       | 1 +
+>  3 files changed, 6 insertions(+), 1 deletion(-)
+>
+> diff --git a/Documentation/arch/riscv/hwprobe.rst b/Documentation/arch/ri=
+scv/hwprobe.rst
+> index 2aa9be272d5de..067a3595fb9d5 100644
+> --- a/Documentation/arch/riscv/hwprobe.rst
+> +++ b/Documentation/arch/riscv/hwprobe.rst
+> @@ -249,6 +249,9 @@ The following keys are defined:
+>         defined in the in the RISC-V ISA manual starting from commit e874=
+12e621f1
+>         ("integrate Zaamo and Zalrsc text (#1304)").
+>
+> +  * :c:macro:`RISCV_HWPROBE_EXT_ZALASR`: The Zalasr extension is support=
+ed as
+> +       frozen at commit 194f0094 ("Version 0.9 for freeze") of riscv-zal=
+asr.
+"Frozen Version 0.9" might not be proper; it denotes the current
+temporary state, not the goal of the patch.
 
--- 
-// Casey (she/her)
+> +
+>    * :c:macro:`RISCV_HWPROBE_EXT_ZALRSC`: The Zalrsc extension is support=
+ed as
+>         defined in the in the RISC-V ISA manual starting from commit e874=
+12e621f1
+>         ("integrate Zaamo and Zalrsc text (#1304)").
+> @@ -360,4 +363,4 @@ The following keys are defined:
+>
+>      * :c:macro:`RISCV_HWPROBE_VENDOR_EXT_XSFVFWMACCQQQ`: The Xsfvfwmaccq=
+qq
+>          vendor extension is supported in version 1.0 of Matrix Multiply =
+Accumulate
+> -       Instruction Extensions Specification.
+> \ No newline at end of file
+> +       Instruction Extensions Specification.
+> diff --git a/arch/riscv/include/uapi/asm/hwprobe.h b/arch/riscv/include/u=
+api/asm/hwprobe.h
+> index aaf6ad9704993..d3a65f8ff7da4 100644
+> --- a/arch/riscv/include/uapi/asm/hwprobe.h
+> +++ b/arch/riscv/include/uapi/asm/hwprobe.h
+> @@ -82,6 +82,7 @@ struct riscv_hwprobe {
+>  #define                RISCV_HWPROBE_EXT_ZAAMO         (1ULL << 56)
+>  #define                RISCV_HWPROBE_EXT_ZALRSC        (1ULL << 57)
+>  #define                RISCV_HWPROBE_EXT_ZABHA         (1ULL << 58)
+> +#define                RISCV_HWPROBE_EXT_ZALASR        (1ULL << 59)
+>  #define RISCV_HWPROBE_KEY_CPUPERF_0    5
+>  #define                RISCV_HWPROBE_MISALIGNED_UNKNOWN        (0 << 0)
+>  #define                RISCV_HWPROBE_MISALIGNED_EMULATED       (1 << 0)
+> diff --git a/arch/riscv/kernel/sys_hwprobe.c b/arch/riscv/kernel/sys_hwpr=
+obe.c
+> index 0b170e18a2beb..0529e692b1173 100644
+> --- a/arch/riscv/kernel/sys_hwprobe.c
+> +++ b/arch/riscv/kernel/sys_hwprobe.c
+> @@ -99,6 +99,7 @@ static void hwprobe_isa_ext0(struct riscv_hwprobe *pair=
+,
+>                 EXT_KEY(ZAAMO);
+>                 EXT_KEY(ZABHA);
+>                 EXT_KEY(ZACAS);
+> +               EXT_KEY(ZALASR);
+>                 EXT_KEY(ZALRSC);
+>                 EXT_KEY(ZAWRS);
+>                 EXT_KEY(ZBA);
+> --
+> 2.20.1
+>
 
+
+--=20
+Best Regards
+ Guo Ren
 
