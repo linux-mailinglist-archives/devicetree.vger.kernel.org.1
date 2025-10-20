@@ -1,326 +1,173 @@
-Return-Path: <devicetree+bounces-228594-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228595-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A6DCBEF5D3
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 07:37:04 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 32018BEF619
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 07:59:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F238A3B0AD7
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 05:37:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AA14D189538E
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 06:00:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C82CB2C21E6;
-	Mon, 20 Oct 2025 05:36:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F4DA2D0629;
+	Mon, 20 Oct 2025 05:59:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="FRq0JhFA"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="AwvQAiHN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AS8PR04CU009.outbound.protection.outlook.com (mail-westeuropeazon11011068.outbound.protection.outlook.com [52.101.70.68])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5508145355;
-	Mon, 20 Oct 2025 05:36:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.70.68
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760938619; cv=fail; b=sTz8CRBI8JcmR7EMQxJZKj9/9K83+axWxpkhGBTcdBQp0hMk8XDTxsaEdhAfvT3Bv9L7vAZJg9UC5GYu0DnAZBWB6J8zG9xUixGmC8ns5ZqtKQE6F38jHI9PaMsAap/9Cv/Ud4D4vjIwG24GRn0RzoSUGlavIxmvevQDvRoV064=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760938619; c=relaxed/simple;
-	bh=SZ3/by1zoQbuDlLh2vz3/2ul73eKjoWjftE37X9Vqu4=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=Q/Y4eKbjbuDVeIPhoxWDacvB+8PHbLpkupMn6/wvQjyUBgGuBDh3s8f3vJ7PgPYbGfh28QLH/qQswGymTAODk9yvKKw3hPjaAxGmj6ilP2l1kFU3ih3aXUYUHsKz+Ka6vq2naVIbFgOEkIgYMugy/MUuxJChlOKOrWxAYJTg35s=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=FRq0JhFA; arc=fail smtp.client-ip=52.101.70.68
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=GG68on0cT9nhZ6NHf43U9ZIcnUXwIsh7c2PmK0LJKnFQAzwuOB7hni3d+F3IcIo8bGvaC1WxlMynIPnE1xYao64BH+E2RWzsCux9kFZXoSpuInoGv5g0eR6MMhUTksVrqDYNg/RfY0vVuehyeoc/rFnyQ9CYg6ci/3Dfzh4WQ+dW/M6ueIqysGdmY3gcMAUf1bw7np3ajC9/dY+hUMWj8YFY89hUqpVXa+4zzExM+9yEK+S8eI8zFdze0QPt0KcS8BWsDjqbXQT8DGRvzCQKjXRMB2CFdNV98NHG/3TwwMLj5SjF1uuXDQWeaF7e/Kcqgj0wB0H/aFv61vZLUKAfQw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=NdUaAlI5OkxI7HJVnWxsXPZ1CIqiw0vwrwxKUZuTh5Y=;
- b=L4/dXT8Tk7Gb26+fm/sntrmIbFuTnwD2Cwu+QJ8KERmTRGbb4aBNO78tDcpeNnf4X3AB2NQnfmev+qMumqQ6nh2kzzgefC6lJG/3pg077mSFpdcq6oV7TVAQOODevyw43G1vrTy9YMxdPVwyid+qiv8GFc1wb+D6Q0mfmB/EoM0xHyoFjGZ+42zboN6Rr0yPTa57wO8KxGKdEG5NOLzkv0H9CDe3fMZndy7LNj/j1r9sgtwwmZ80vyRDFdADZpydSUY6StutBoE2EOsdi7B9QQwKM1itqGN7a/BBFkEKvu+Dm/qU10VIKBN5ZnD+BKSCQeC8e+9NRAI5KM4q7HRSEg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=NdUaAlI5OkxI7HJVnWxsXPZ1CIqiw0vwrwxKUZuTh5Y=;
- b=FRq0JhFA1mc7FB+4kFvdqy3ArVSUiB+I0qmPkiOFZeEd+JFIawhF3YCn+351A28alnDxxcmUMNxsYy/RMGLwVIO/TvKPIvqVmXSMvih1lwvd9Df5Fvn8c//P0yQx4HyVLvUCKrFBWLEuHoQ5BuI0FZx+oQzH1w2zkmTQijKOKRHDgCibIojy1CkmLoo3wlJ2c/XZnEulcQ63eDxpUARsKuwoG5dEVpqQ5Zv4CYVr7otc7AJXTenWJxC69M9xgSFPDysr3FUHOVlu1qTjWajDTUMedieH+3APblrfr2bPtKKE4pmd6dTGBKx8Nl8lpD13Um/VJEOcemM1VECTygisLg==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
- by AM0PR04MB6883.eurprd04.prod.outlook.com (2603:10a6:208:17f::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9228.11; Mon, 20 Oct
- 2025 05:36:53 +0000
-Received: from AM7PR04MB7046.eurprd04.prod.outlook.com
- ([fe80::4609:64af:8a4b:fd64]) by AM7PR04MB7046.eurprd04.prod.outlook.com
- ([fe80::4609:64af:8a4b:fd64%6]) with mapi id 15.20.9228.015; Mon, 20 Oct 2025
- 05:36:52 +0000
-Message-ID: <c0ebafa0-403b-4576-965d-50f3db259fa1@nxp.com>
-Date: Mon, 20 Oct 2025 13:37:16 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/imx: Add more RGB swizzling options
-To: Marek Vasut <marek.vasut@mailbox.org>, dri-devel@lists.freedesktop.org
-Cc: Abel Vesa <abelvesa@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Fabio Estevam <festevam@gmail.com>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Lucas Stach <l.stach@pengutronix.de>, Peng Fan <peng.fan@nxp.com>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Rob Herring <robh@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- linux-clk@vger.kernel.org
-References: <20251017144626.66918-1-marek.vasut@mailbox.org>
-From: Liu Ying <victor.liu@nxp.com>
-Content-Language: en-US
-In-Reply-To: <20251017144626.66918-1-marek.vasut@mailbox.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SI2PR06CA0008.apcprd06.prod.outlook.com
- (2603:1096:4:186::23) To AM7PR04MB7046.eurprd04.prod.outlook.com
- (2603:10a6:20b:113::22)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0FAE2D0631
+	for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 05:59:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1760939969; cv=none; b=IpeXpll4zMIc140gm9h0FH4U+IXuq7IlI1PMcgeQmjoFjWHTILjTBVB4D5fg3RBtrygglv2LSGZcwRT8CnlplwWvTVPOE/OvK2inC+aZNOx5qmITuCGYTIw97xT1cwLN2+Vf152q/hBPyOt+UWz1LvJjRoc3FHgBNqdJ1NOm0rc=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1760939969; c=relaxed/simple;
+	bh=DfgQhDV2FB+r3jXdeQjlELojhkZCzkVAxCp7ukCYBp4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=SqzNvYa+3TqxZiQea1gnmD9L44zg+qmfS41j5apwitIEEVEeDfTr0+5ZsdcxInANXFJYfphN/tl31+9cVMBee8YPcIU1bcQjoHPtizk7DtZlvF1xTkMUzzZwwHuvulf1tfbYU4seFCX1QuwRh/Nb/RttDHrqwhiXpFkiWhPc01M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=AwvQAiHN; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59JJLr7e022395
+	for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 05:59:26 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	nM+18YfZG3eJcSFCMfzYrqy29nlqANkrqIV1DISydfs=; b=AwvQAiHNZfptJ/sS
+	i5WDMuP2gRVCoBZ68zEz05L2Ju3az2ItKHRmAT6DUhiNLKy8s8ozHmuBu8Kz9ULM
+	eWNZgonQhV+lfmHKBPfDj5xeYC+GMPa0DpRsnba3F3U2YJQS2J6HRTvOb237+m72
+	xQNCGieEZs+l5Bx58+CB37AkYupNbQLU0pB1yJ0kF9GTWwWs6QFjNEIdk8fxxG8s
+	PSeBCIDMqhmWo8KbJx7ayULn/eurVcduffgVD5Rz/MeseGjoQT+7BCLsBtGMefND
+	M7EPR0uxZd/Lh94X7BLvG8Sgw205tdyhip21CZYDrW9OrIItFDnAod1MQ5q6UpYJ
+	8NvWHA==
+Received: from mail-pf1-f198.google.com (mail-pf1-f198.google.com [209.85.210.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49v1w7utuq-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 05:59:26 +0000 (GMT)
+Received: by mail-pf1-f198.google.com with SMTP id d2e1a72fcca58-7a144677fd9so7800535b3a.3
+        for <devicetree@vger.kernel.org>; Sun, 19 Oct 2025 22:59:26 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1760939965; x=1761544765;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=nM+18YfZG3eJcSFCMfzYrqy29nlqANkrqIV1DISydfs=;
+        b=cHoDWQMBvY9b3WJ7Cb/OLzRm5D0nYdJwIvHVAF1Ozrq5mNdvrbpVTlD1buemyGjkEi
+         L5VJ0rCH07ZX8PnBMRxrV8uptaWItwZrahOZ7Y+TOpMJJPBC3r94TdSxkHk2WNnRGi7a
+         rM4C0GCpEJGjcfH5MynD2ob3BWuv/9vbYMuBsbqinvLyAgYqfw6XbjgqtH3EInODvr1I
+         8O7wvEwc41sdwrYNZSPXOhAWom06dcAleNfNEzvZp8KFXzDbHNqkyqgLVvXL9cembmIb
+         DEzxUNo/nBwzscseThIbthY4nI2lrs1WY/+exEvMNwvigMgjzBOJh+x5pcorvZ0Js41/
+         FiIA==
+X-Forwarded-Encrypted: i=1; AJvYcCX3/lpT3FxVbLGhrWTqYwmVqI6Vm2EUweqWucN1S5ugfWlraZ+tXG/+PLdeziv4A3Zd6ldkYeG1NX6Z@vger.kernel.org
+X-Gm-Message-State: AOJu0YxPTEAsqzKH63S0PhASIR13efVrFEle70tb5FNmJtL74gUo1GUv
+	2pmx1eP2ivptQceoQ4VKaBVZOj2E1yaKXUfLwf+3yf8YL7H4FC5QWyeSq+9sWnPqou76rZt3vfO
+	LPZg0+1GB7XsWbGuKaa5CoOx4nBQbFqDzJ8gXNIaAFvipxgmbzVCKKzjbPjaMMc7e
+X-Gm-Gg: ASbGnct8ohAJdb6F/Lbs4ltDrhqK+QyFwoSjyu2LjeslRep/Eshu/7JiuCDDR3tNrYV
+	Hq/KHVhbquBJ905rkv6lvaA8xn+MVm46hR6RWdvQLvtTYAc5DP+SYA+jr5CLC00SbkKAdIV2N7t
+	4kZugXV3HOjLymsTA4dZSyjSrvsr5UX+IBxDxibazN8JMgrvcvtKwQvnMULzEO4cnt3Qa5JVO6E
+	iZI0++bnTpaRCMFxs6o/lrcuy/TQ3OytM/ljCyTz/RH9LokjXIOGyzwHHtL5UwufQ3qvDxVQaUX
+	M5RdzDtcE0lB+GELdPEPtNVEvFLfCXxmWWARThUPceLjAEozovLcvUg2EHexFwLtkLUw6HJBzzm
+	9OBwwpRYOy7cXiiz19TKsYwEFeTf3A+lUygEZbd9NHXSfUAcSsob53a41qu/R/oB3G372Vg==
+X-Received: by 2002:a05:6a00:21c4:b0:772:45ee:9b9e with SMTP id d2e1a72fcca58-7a220aa8c36mr12648439b3a.9.1760939965338;
+        Sun, 19 Oct 2025 22:59:25 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFOnIQKmKM4/wBe+q3U4Vl91ebk6gizKnC7NhQP4NZOp+sNVTSvIrGb+vHkb3XE0F6V5ZNQSg==
+X-Received: by 2002:a05:6a00:21c4:b0:772:45ee:9b9e with SMTP id d2e1a72fcca58-7a220aa8c36mr12648411b3a.9.1760939964922;
+        Sun, 19 Oct 2025 22:59:24 -0700 (PDT)
+Received: from [10.133.33.90] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7a22ff34ba6sm7240595b3a.18.2025.10.19.22.59.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 19 Oct 2025 22:59:24 -0700 (PDT)
+Message-ID: <bc9f58db-c0b2-4c97-8ae6-ee01a5bf49e7@oss.qualcomm.com>
+Date: Mon, 20 Oct 2025 13:59:16 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM7PR04MB7046:EE_|AM0PR04MB6883:EE_
-X-MS-Office365-Filtering-Correlation-Id: ff48230f-8fc3-4796-9918-08de0f9aac63
-X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
- BCL:0;ARA:13230040|1800799024|7416014|366016|376014|19092799006|7053199007;
-X-Microsoft-Antispam-Message-Info:
- =?utf-8?B?dEJKajJvYTd1WCtkYjRyY0JnUWVrNDJnbHowT3FJTkU4dWgxZzV1VE5IZitv?=
- =?utf-8?B?aFZHM0lJdVBRMHBRQnpaa29Fc3pEd3hSL056MjdsVlZaaWNDbWlzZ1BWcDE1?=
- =?utf-8?B?QkQvWE5JNDE0ekVvaHU2eWx0b2lieFJDMVR3b3ZabktuekhGSzBCQ044eVVR?=
- =?utf-8?B?STVCZ0Q0b2xQNGZSOS9EMkxQOUQvOW9scTFyZVVWL1djQ2VkaDVveHBZaEpD?=
- =?utf-8?B?enBNQjZ6Q0xXV2xLYktYOTV4VkZDZHhDNzJleUJPYW9pQ3lGSUk4QmhmZFNt?=
- =?utf-8?B?WjcxL0F1cTB1TW9QbWNIN1h2S3hFWG5NcTBvdlpma0hlUWJTVUtUNU11NVN6?=
- =?utf-8?B?VytLSUNXdWlmcVI0UXpMeDJhdStJZGRBS2JVcVBQNzBvWVRkWjU1WjhGcXQ1?=
- =?utf-8?B?aUdSWUpXZHlCWW9xYmt5VVNwVHJ0MlRlMTNXQnU1QjRQUlJZNFZ2S21Xcm9i?=
- =?utf-8?B?djl2eDJSbDkxeWh4bEJNcmk5ZDFTYnczdHByTXJTbFdXL240NitBMTBoME5t?=
- =?utf-8?B?NS8yWUJyM1ZBUUdYOHNHaC9GM0IxWXdHdnFxT1d0ZW5ITHZzam5WekdCTkFU?=
- =?utf-8?B?ZURyeGgvN3RPYUZVL3Q1MDZiRVI4WkU1Rjc3Y2Iwd3hkWVFsUWdFc0tEbXc5?=
- =?utf-8?B?U1JZRWYzR2pFUDJJUTN0NFluTWZCb3ViMlNVZURaVkZ0WnpQcGhUQVJCT3ov?=
- =?utf-8?B?ei9XN2NpeGVjMFlTbFJzdFR1TGFFRE9ueG04M0lIbS9DVm8zRDIyNU9NTlRO?=
- =?utf-8?B?VG9Hbi9acEgrWXVIWjNuK0l1UVRyWTJHWTlZdkdBQXYvY2pUZXF1eTRTaWZN?=
- =?utf-8?B?SkNXRm5ucDNpMTdtYVJBQm9CelUyQVhsOXpxR25EK0FKZk5yWDRRbTJOaGpo?=
- =?utf-8?B?WklUc3ZUdHFhcmprNUk2Uk1uRTltcHFyWnNTUllBbFBlY3NtYnBPSUlTbUNr?=
- =?utf-8?B?M2d3aTJOandoRktGSFR3VnV2alFIT2NNYnNhNE5KOFFwVTNSajRXdmczRlor?=
- =?utf-8?B?YUQ2MCtLZnEzR253T1BtOFpaMDVudnMwYURQa2xZKzNHWGRaY1EwZ1MxM0c1?=
- =?utf-8?B?MnJNSDNZeDdEMHpEZng0TXJib3o3OUlqVEFqR3AwNG9tbnRXTFd0UXBvRktU?=
- =?utf-8?B?RUd1d0ttWHJ1eGRGU29MeEFtTForVjNUcUhlTytwa3VXcDBuSjJQQ2djeWdX?=
- =?utf-8?B?YVROQ01lbGZKYlU2ajBWZDdwZndzbDJ6YStBYVIzVkhMcEw2NXVXMXJSamVh?=
- =?utf-8?B?WUtTM01WM3VhSytRbnp2RmV3NkdNRnJYVWFsQ3NuOGFnUzN4MWVHOUlPR05t?=
- =?utf-8?B?VWVWaHVXYnZMVHJla0FoRHJTckVMbHZFUkRFMkhJcUVNK3hUakl3U1pwQUxu?=
- =?utf-8?B?SDRDWjNsMkZBb2I3TjlIc1dJTjRqN1NPV211bFhkTnhZNVFjLzc1UkFUQi81?=
- =?utf-8?B?V3FOVy9VYnZCSnZnNHNOTWVRQmQzYkQ2RFAwM2VyVFNRS3VvalFzWXM0MWtO?=
- =?utf-8?B?aE5yQWNlNmpzbVpKQ0dTYXd5L1RDT2VuYWxBemx3WThzWWJZblU0STF0WGhS?=
- =?utf-8?B?Yjk2eG1USUE2eng4TG9pRjlGU0ZqVDFsSU5hMzhqTU5relFyQnc0SG82MmRn?=
- =?utf-8?B?NUxNWmtFTkZ5V2VlTXRhS2NBZW0yR3J3VjVoQy9wSG1RN05IRU9LUk85N0Nt?=
- =?utf-8?B?Nys3MjZkSU0vclNtN2Jra0YrNTlDWWNzaXZVOTBncVVZMXhseTZrbitNT2hH?=
- =?utf-8?B?UXpldEV1UEoyVjh0bEVwc3FrSmlNUTNCcS9BVHM1SXNHV0NWWktZeDRKZXlR?=
- =?utf-8?B?ckZYQzZJWG84V09kcStORk5MTzNjcGVDRnoyMWFVQlVqd3BwYzNZNlZLZzBF?=
- =?utf-8?B?a2g4VUtxRG1kUFJNdXZKRmpBQStYZVJKR01UeG92cVgveDdVWG5vMWlsYWJD?=
- =?utf-8?Q?XitmhvyulLEm/nEDqv2mrgfQTfSc6Ysx?=
-X-Forefront-Antispam-Report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR04MB7046.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(366016)(376014)(19092799006)(7053199007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
- =?utf-8?B?T0hIYVZFK0NZcUpmWEJLbXBTRzJFMXRHWnZjVTIvRUhBcGN1WXBRaUlISFpN?=
- =?utf-8?B?UlF3NnR1c3ZDSEFTVFZSN2dIQ0I2SVkxY1JnVTFXem8zSmNpQTk5eXRnTDk4?=
- =?utf-8?B?L29Bc0RQcUE5MXB3VWphQ3pXRmRsS1hxMlZUNURzenR6emRqalp5eEhvYjg5?=
- =?utf-8?B?dnRCbEhiMCtXNW9EOFBVSkNwMVk2bUN0N2l5SFNza2ZVSS9GVU9aWWoxUkNa?=
- =?utf-8?B?aHNRdlVpdUVBYjVtUHp6elJTcWdJV3RoVlQ2ZDZSTjgwTktsTUhFb0dQMlFJ?=
- =?utf-8?B?OTRPUVo3Qll3dEJsRzdiRmtCYWx3MFRyWVkyWCtFNTF4d0s3WWd0NlVwakNl?=
- =?utf-8?B?ek92elRNU0s0STBrZU5xdUJPUWtFcGkvRFpKWTVTUkZNbU0yZW80K0g0ZC9x?=
- =?utf-8?B?Q2RkQ3diM2hmSlhPRTBrMkR3MXZ6YkVzc2JaVU1ORjNHVXRjak5VcnQzaDFj?=
- =?utf-8?B?TjJjeDQ3Qnl3VUtWZFpoQmI5WHFJYnlpNWgydERmWURsUE8zRVJNZmYvSkNK?=
- =?utf-8?B?MXpKUjNaNmlranM4ditJSUM1cm14bjZsaTJGWUpYaVFYRVFmWXFuSWJGT0R3?=
- =?utf-8?B?d0NCVWZCbEUvWG1jUTNFc05yeXp6OG9Md1QzYlpVTnRMeFJheHVIRmVjRllp?=
- =?utf-8?B?VHdZaUIwZ1RSb0VLRVBMbnlOYUhMWndvaEhZTGZvSk9rMW5hMzFmNkFkeEN5?=
- =?utf-8?B?SFQveHA3N1REc0VPblZuVXNIOUp4K0NqZ2hpS2Z6R0dBNlQ5aWYzMWNYRWFW?=
- =?utf-8?B?dXUzblAxaWttNm9SbmFIYW5ZczMxWEt4L0NpTWhMdEp4V05oL0ljeWhWM1k4?=
- =?utf-8?B?NkN2a0xOK3h4c2NJNFRLTEhIMXVrQm1ZWmpPcHlhNHYwc1c3Rm9wdnYyNEFL?=
- =?utf-8?B?MmYwUlIxVnRmUVlQaHROWHpZVjNtaWh6d3h3cVhSSThCZzkxSnJ6ZnBieG9H?=
- =?utf-8?B?RWVFNDE3NEhubFBBQlJjS3Q5WTNuSG5GaUJCU1lGUjRRd3lwVzFWVjMzNWYy?=
- =?utf-8?B?V1pzMWFtbXRFOFRlbytrZzlLaHhpbVV1blYvL1E2ZVFucUZhRThXUlNVNFh1?=
- =?utf-8?B?MndXSDJ1Ym1Wd015ME5kWVRRY3FKYUhjNFpNaldRdlVpcFF4d3BxWFh6cFlI?=
- =?utf-8?B?ckNxMDNQT2ZkemsvSUsrVG55NC8zNVVnd2J1Y0V5NTlGRTNoQW0xdmtIUFll?=
- =?utf-8?B?UDZhZTRnL3dhTS81NDFBbnVPbWR5WEJXNkl6WUpNR3k3Ly8zZmVqWjZYbS91?=
- =?utf-8?B?WW9tMVg2SzNqVXlrOUhjMzIxenJtNEVYTDlzdkQ5b3o4TC8vUEtqbEdKam9t?=
- =?utf-8?B?NHBUVXRINEE1SU40eThpUDB0bE9qcVhOanV3eXQ1VmdXdjNleGZpay9ibWFV?=
- =?utf-8?B?eVlkVDRSckRZT3VJTDF1eXNsTHBaaDlzUlJORndFekthTjVycURuYjljcHBp?=
- =?utf-8?B?elRLNFJYTkJpdDZmMWtkenI5bUZRNXo3VEE4MzRZUUdmTEJvenRXTlpDdUtE?=
- =?utf-8?B?cE5Yam5UbmlOVnlHdHBPR29rUytCM3ZVS2xrbE5KaWhFVmt2bHVmUUhybGVv?=
- =?utf-8?B?U0x2a2lZV1M5c05IUDYyUHJvMUxrRzhXRGtEWk5ORjc1Y0c0a1E2cW5Md0Jx?=
- =?utf-8?B?aXBwOFlSaDcxODRySXBQaGRqdnk4Q1J3WUF5aytsL0w3LzN4UC8rQ2JvSVY1?=
- =?utf-8?B?VTRmTndPZ1lRMjViOXhMUlJ1ZmtRRDhrMldlRTlxOEI0cHF6ZGtNUXNMRDFB?=
- =?utf-8?B?MGJTeHIxR3J6UXM4eFFIWEJzRDMrUEtWNDAxWU1DeE5vak5xRXFWKzFmNGMv?=
- =?utf-8?B?VFVhMGlxZUoydE1sUC9GTlR6TGkveTFDTFU1QVpWd3VkQW0xV25Cc1VpbnJo?=
- =?utf-8?B?UUNFYVVKd3BYdWxVdlc5dkkySk1TckhLOElyWHE0SkdXb3hweDcybXptTVpm?=
- =?utf-8?B?ZjhINW9YcjRDSk9hUlNzY3ZPUGlhbnpPUVpHNE5NMDRPR25Cb0dGQTcxcFdJ?=
- =?utf-8?B?QkN0d1pzV0VXdDAxakhLc0EvTVdFdTE0OFg0MVVjaVRyTW0reVBJamFWeUdM?=
- =?utf-8?B?TGNWbUEwSjQ3cjQ3R0o3OFRUVEc4bFhMM01idCtheWcyRGw3bVdDTDFvek14?=
- =?utf-8?Q?imSUt0mqTuUkb4xmOF5a52WZw?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ff48230f-8fc3-4796-9918-08de0f9aac63
-X-MS-Exchange-CrossTenant-AuthSource: AM7PR04MB7046.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Oct 2025 05:36:52.7482
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: cT1WMmVsSHvdwbKBXyQMU16SFmtPdBw3vTTUa6tg3CJztHVffNWASvB7RP2x7byf/YNcMhAEt2MP4SiVJLtgbg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB6883
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 5/6] media: qcom: camss: csid: Add support for CSID
+ 1080
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Loic Poulain <loic.poulain@oss.qualcomm.com>,
+        Robert Foss
+ <rfoss@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Todor Tomov <todor.too@gmail.com>,
+        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>
+Cc: linux-i2c@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-media@vger.kernel.org, aiqun.yu@oss.qualcomm.com,
+        tingwei.zhang@oss.qualcomm.com, trilok.soni@oss.qualcomm.com,
+        yijie.yang@oss.qualcomm.com,
+        Jingyi Wang <jingyi.wang@oss.qualcomm.com>,
+        Atiya Kailany <atiya.kailany@oss.qualcomm.com>
+References: <20251014-add-support-for-camss-on-kaanapali-v2-0-f5745ba2dff9@oss.qualcomm.com>
+ <20251014-add-support-for-camss-on-kaanapali-v2-5-f5745ba2dff9@oss.qualcomm.com>
+ <f64bc46b-9c21-49a8-b5d8-3e21614b6695@linaro.org>
+Content-Language: en-US
+From: Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>
+In-Reply-To: <f64bc46b-9c21-49a8-b5d8-3e21614b6695@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDE4MDAxNSBTYWx0ZWRfX8T0+CBw2Dyv5
+ 27Yl+Mwe7cjZbWh8KQicjqnuCvFdQvgipXuxUJXnnlAagNfMHjVE45/AO3xJshJWDA6wztzlvSH
+ gX372CPo3DHuXCy63qP5I8+KHW18PPyG9+4uVfqNA8pYmK36UY7E8Nqh9OqtaAMWXhjFbU+hzEL
+ /3Fw0DmyiuN+dpikroQnu9+oRdvJCnS/QJJ5xNXoHsy64g1013yHE6ltIl36BOSEksm1jJSw+X5
+ nH4aiyCF6Cbdmzj03OfkwN6vclj5XxcYYw764MCI3o4UkSNCi3rWmkSSShWHR6N+MNMLHjTtj0J
+ E8MON49Gv5wp5eMZtnz+Q/VYLOvjVoiAs48h9BIBqkpRENBn3V4eyialCIW/2/MfFm+Kd/v1HxB
+ xTZBeoXMJujqVBEZNt1snjMbZHj8yQ==
+X-Authority-Analysis: v=2.4 cv=bNUb4f+Z c=1 sm=1 tr=0 ts=68f5cfbe cx=c_pps
+ a=m5Vt/hrsBiPMCU0y4gIsQw==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
+ a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=AXp2hmqOj5kKvFkYXygA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=IoOABgeZipijB_acs4fv:22
+X-Proofpoint-GUID: 4vOi0T5E9AQLABOPVSkSQpUqOl_jQDOn
+X-Proofpoint-ORIG-GUID: 4vOi0T5E9AQLABOPVSkSQpUqOl_jQDOn
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-10-20_02,2025-10-13_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 phishscore=0 malwarescore=0 lowpriorityscore=0 clxscore=1015
+ priorityscore=1501 suspectscore=0 adultscore=0 spamscore=0 impostorscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2510020000 definitions=main-2510180015
 
-On 10/17/2025, Marek Vasut wrote:
-> Add additional buffer format swizzling options beyond XR24, the
-> hardware is capable of sampling other formats, fill them in.
-
-This would make me change my patch series of adding i.MX8qxp DC
-prefetch engine support, because that patch series supports only XR24.
-But, I don't mind doing that as long as this doesn't support RG24 and
-BG24.
-
+On 10/16/2025 5:12 PM, Bryan O'Donoghue wrote:
+> On 15/10/2025 03:56, Hangxiang Ma wrote:
+>> +    for (i = 0; i < MSM_CSID_MAX_SRC_STREAMS_1080; i++)
+>> +        if (csid->phy.en_vc & BIT(i)) {
+>> +            val = readl(csid->base + CSID_CSI2_RDIN_IRQ_STATUS(i));
+>> +            writel(val, csid->base + CSID_CSI2_RDIN_IRQ_CLEAR(i));
+>> +
+>> +            if (buf_done_val & BIT(BUF_DONE_IRQ_STATUS_RDI_OFFSET + 
+>> i)) {
+>> +                /*
+>> +                 * buf done and RUP IRQ have been moved to CSID from 
+>> VFE.
+>> +                 * Once CSID received buf done, need notify VFE of this
+>> +                 * event and trigger VFE to handle buf done process.
+>> +                 */
+>> +                camss_buf_done(csid->camss, csid->id, i);
+>> +            }
+>> +        }
+>> +
+> A multi-liner like this should be
 > 
-> Signed-off-by: Marek Vasut <marek.vasut@mailbox.org>
-
-The subject prefix should be specific to "drm/imx: dc-plane:".
-
-> ---
-> Cc: Abel Vesa <abelvesa@kernel.org>
-> Cc: Conor Dooley <conor+dt@kernel.org>
-> Cc: Fabio Estevam <festevam@gmail.com>
-> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> Cc: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
-> Cc: Liu Ying <victor.liu@nxp.com>
-> Cc: Lucas Stach <l.stach@pengutronix.de>
-> Cc: Peng Fan <peng.fan@nxp.com>
-> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: Shawn Guo <shawnguo@kernel.org>
-> Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: devicetree@vger.kernel.org
-> Cc: dri-devel@lists.freedesktop.org
-> Cc: imx@lists.linux.dev
-> Cc: linux-arm-kernel@lists.infradead.org
-> Cc: linux-clk@vger.kernel.org
-> ---
-> Liu, please test on MX8qxp , I do not have that hardware.
-
-I've tested XB24, RX24, BX24 and RG16 on i.MX8qxp MEK board.
-
-> ---
->  drivers/gpu/drm/imx/dc/dc-fu.c    | 40 +++++++++++++++++++++++++++++++
->  drivers/gpu/drm/imx/dc/dc-plane.c |  8 +++++++
->  2 files changed, 48 insertions(+)
+> for (i = 0; i < MSM_CSID_MAX_SRC_STREAMS_1080; i++) {
+>      /* etc */
+> }
 > 
-> diff --git a/drivers/gpu/drm/imx/dc/dc-fu.c b/drivers/gpu/drm/imx/dc/dc-fu.c
-> index 1d8f74babef8a..397af0e9b0236 100644
-> --- a/drivers/gpu/drm/imx/dc/dc-fu.c
-> +++ b/drivers/gpu/drm/imx/dc/dc-fu.c
-> @@ -65,6 +65,46 @@ static const struct dc_fu_pixel_format pixel_formats[] = {
->  		DRM_FORMAT_XRGB8888,
->  		R_BITS(8)   | G_BITS(8)   | B_BITS(8)   | A_BITS(0),
->  		R_SHIFT(16) | G_SHIFT(8)  | B_SHIFT(0)  | A_SHIFT(0),
-> +	}, {
-> +		DRM_FORMAT_ARGB8888,
+> in fact csid_reset_1080() does the right thing, please replicate.
+> 
+Ack. Thanks.
 
-Since we only support primary plane and this one contains alpha component,
-I'd prefer to seeing it being supported when overlay plane is enabled in the
-future, not now.
-
-Same to the other formats with alpha component.
-
-> +		R_BITS(8)   | G_BITS(8)   | B_BITS(8)   | A_BITS(8),
-> +		R_SHIFT(16) | G_SHIFT(8)  | B_SHIFT(0)  | A_SHIFT(24),
-> +	}, {
-> +		DRM_FORMAT_ABGR8888,
-> +		R_BITS(8)   | G_BITS(8)   | B_BITS(8)   | A_BITS(8),
-> +		R_SHIFT(0)  | G_SHIFT(8)  | B_SHIFT(16) | A_SHIFT(24),
-> +	}, {
-> +		DRM_FORMAT_XBGR8888,
-> +		R_BITS(8)   | G_BITS(8)   | B_BITS(8)   | A_BITS(0),
-> +		R_SHIFT(0)  | G_SHIFT(8)  | B_SHIFT(16) | A_SHIFT(0),
-> +	}, {
-> +		DRM_FORMAT_RGBA8888,
-> +		R_BITS(8)   | G_BITS(8)   | B_BITS(8)   | A_BITS(8),
-> +		R_SHIFT(24) | G_SHIFT(16) | B_SHIFT(8)  | A_SHIFT(0),
-> +	}, {
-> +		DRM_FORMAT_RGBX8888,
-> +		R_BITS(8)   | G_BITS(8)   | B_BITS(8)   | A_BITS(0),
-> +		R_SHIFT(24) | G_SHIFT(16) | B_SHIFT(8)  | A_SHIFT(0),
-> +	}, {
-> +		DRM_FORMAT_BGRA8888,
-> +		R_BITS(8)   | G_BITS(8)   | B_BITS(8)   | A_BITS(8),
-> +		R_SHIFT(8)  | G_SHIFT(16) | B_SHIFT(24) | A_SHIFT(0),
-> +	}, {
-> +		DRM_FORMAT_BGRX8888,
-> +		R_BITS(8)   | G_BITS(8)   | B_BITS(8)   | A_BITS(0),
-> +		R_SHIFT(8)  | G_SHIFT(16) | B_SHIFT(24) | A_SHIFT(0),
-> +	}, {
-> +		DRM_FORMAT_RGB888,
-
-This is not in dc_plane_formats[] below.
-
-Also, I don't think the prefetch engines(DPRC + PRG) of i.MX8qxp/qm DC
-support this pixel format, though the DC itself seems to support it(but
-NXP downstream kernel doesn't support it).  So, in order not to support
-bypassing the prefetch engines in runtime(which makes the driver a lot
-more complicated), I hope that we don't bother to support it(even forever).
-
-> +		R_BITS(8)   | G_BITS(8)   | B_BITS(8)   | A_BITS(0),
-> +		R_SHIFT(16) | G_SHIFT(8)  | B_SHIFT(0)  | A_SHIFT(0),
-> +	}, {
-> +		DRM_FORMAT_BGR888,
-
-Ditto.
-
-> +		R_BITS(8)   | G_BITS(8)   | B_BITS(8)   | A_BITS(0),
-> +		R_SHIFT(0)  | G_SHIFT(8)  | B_SHIFT(16) | A_SHIFT(0),
-> +	}, {
-> +		DRM_FORMAT_RGB565,
-> +		R_BITS(5)   | G_BITS(6)   | B_BITS(5)   | A_BITS(0),
-> +		R_SHIFT(11) | G_SHIFT(5)  | B_SHIFT(0)  | A_SHIFT(0),
->  	},
->  };
->  
-> diff --git a/drivers/gpu/drm/imx/dc/dc-plane.c b/drivers/gpu/drm/imx/dc/dc-plane.c
-> index e40d5d66c5c1f..68d32b76fab95 100644
-> --- a/drivers/gpu/drm/imx/dc/dc-plane.c
-> +++ b/drivers/gpu/drm/imx/dc/dc-plane.c
-> @@ -33,6 +33,14 @@ do {									\
->  
->  static const uint32_t dc_plane_formats[] = {
->  	DRM_FORMAT_XRGB8888,
-> +	DRM_FORMAT_ARGB8888,
-> +	DRM_FORMAT_ABGR8888,
-> +	DRM_FORMAT_XBGR8888,
-> +	DRM_FORMAT_RGBA8888,
-> +	DRM_FORMAT_RGBX8888,
-> +	DRM_FORMAT_BGRA8888,
-> +	DRM_FORMAT_BGRX8888,
-> +	DRM_FORMAT_RGB565,
-
-I suppose that this patch may support only the below formats for now.
-
-+	DRM_FORMAT_XBGR8888,
-+	DRM_FORMAT_RGBX8888,
-+	DRM_FORMAT_BGRX8888,
-+	DRM_FORMAT_RGB565,
-
->  };
->  
->  static const struct drm_plane_funcs dc_plane_funcs = {
-
-
--- 
-Regards,
-Liu Ying
+---
+Hangxiang
 
