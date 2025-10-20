@@ -1,134 +1,168 @@
-Return-Path: <devicetree+bounces-228625-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228626-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 109EEBEF974
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 09:08:16 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B09CFBEFA0F
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 09:15:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5C32D3E109E
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 07:08:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7CA043E22D2
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 07:14:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEABE2D8767;
-	Mon, 20 Oct 2025 07:07:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA39F2DF152;
+	Mon, 20 Oct 2025 07:13:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AdJdCbjt"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Dr4M8hUh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F0EC2D063E;
-	Mon, 20 Oct 2025 07:07:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0852B2DF122
+	for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 07:13:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760944075; cv=none; b=h/Qg1xMRDsl4UnUYZZJiQV8hyqnYA93JbWiJmibL6JxzgmCRUjDNtTNVdxokAAJKpGCOTzdd/rLHy3CXoxMmIsTaocBFuTKUTqWw6yBVDU5nyGkhXpVhxkBKIHcjmEzOMZ7MmAvjr6Rt7IJZo4z93r0fxz7OGye12oB4GzyZKzI=
+	t=1760944410; cv=none; b=caCSuTTgJaXKjMdI3lXXr4WC8B80auvXISCoutt2jm9FXPVGUo57Vh69EJGyo7boPwfnByOi2uUPR2xG95BiVZYpcm0p41fEa5wMKTyqXLdccE0SmWWVnK/Y5gpDWor7yHDhAbfcpB12+Do9jq8FTP+Rw2/PdRz6b+sxKPWbaQ0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760944075; c=relaxed/simple;
-	bh=G1r+KTfGuzyMRIAob+ptSeEb3p5H7LvTXJGC/0PVn54=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=C2whinH6F3ot8OC/y/pV/x1P0+ViWqC3SKEPp/0AdWLT7PPWerYRBm88qNALVUmR252UHRw3Y86s1Wp5XMQbWaq4HIX+Of5rKzyFqH3ItXb0FNv0w2Ce2dkUk87NZB/lv2dO3TRr2O3H6x/FHzQFYBKFH5rnpgpybiKuPNe3qHo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AdJdCbjt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E4F84C4CEF9;
-	Mon, 20 Oct 2025 07:07:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760944075;
-	bh=G1r+KTfGuzyMRIAob+ptSeEb3p5H7LvTXJGC/0PVn54=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=AdJdCbjt4w6BaN7KpMv8/RoZsl0ewy7/i74GMvy3asQVV0PTWCMobCnr2W1ssI66u
-	 C8xvJm23mUCFi8X0eonwzLKfSdsMqKCVaCdWh/5Pk/m+cTmxpxLPzKHtItfydoMHpm
-	 yikfAhgp2ZuxUkVE6wQ8TR96QT5Ichp2n5YfYV+yAeRio9s9s3ZF59BaJxzduvzUbZ
-	 bPvVgUFlxJdDBKxVD0z67SSHegeGtZ5AGy1lBU5kbbAA85+EP8hAK3M0QJ97FAZoQV
-	 RzzYbyuijqKvhQxCYaJg7V6vwAYIi2aHiJ5BHl76taixrOcxNrxTLBQwRbY5PkyuqH
-	 ZPJaB2PQVJOsw==
-Message-ID: <8b095395-8c09-45ba-8dcb-48cd81b8c0e0@kernel.org>
-Date: Mon, 20 Oct 2025 09:07:50 +0200
+	s=arc-20240116; t=1760944410; c=relaxed/simple;
+	bh=PeGTn3iFxDHG7Zzquzk+8Eb8iZsO1eg0YMwOWsI8x/Q=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=RijNPfjJ/y1Z1irtP9Zls1StBL8+uaYVc0WdZvPPy1pve33J4/guX5jNLsPUQ1jo+0NMlvZ8hleWLhecmtuPeLB5w7tTy4SBAmXG17Bomxg649kF59jL+W3lURfrYs+VjH4jujdXexQ+O1UFNOHOCtzmhgJeZBx+K2G6Zxbfpfo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Dr4M8hUh; arc=none smtp.client-ip=209.85.221.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-3ee64bc6b90so2525754f8f.0
+        for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 00:13:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1760944406; x=1761549206; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
+         :to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=v29GrQR+ncc3DZUAcuhlbn2tQqEiegD397LZB82cRuo=;
+        b=Dr4M8hUhE+/cBGZLTsBkQyyIzNFDW+rmb/Dxy7sgROQE8OhRNw5grubqMfjp+Ex6v/
+         Ll6ADkHS2z/2ZvABzPxP7kb4Hm9NRwrPZayLIfFAYRsXkejSVtZl5vmuK1jOi88O/yuI
+         4/4sZrjNVOo5KxgCD2Rf3Psqy2KjHYvivDDIFStEF8gzVFXnif/eSTQQMe/lOMq10f2j
+         odhRfjzS6LqWs2fD2h/x55gLv80Wp7cjIKzQA0qAXz2bTP/PBaxZCAz5sE7BfITdKCV8
+         WxnBhMY0vTgtQmPGav8ySENXn0MGBjvvpIaEBJi83FtymZUEx16IJnBSQ4D2auG9DSlM
+         Nm1w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1760944406; x=1761549206;
+        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
+         :to:from:date:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=v29GrQR+ncc3DZUAcuhlbn2tQqEiegD397LZB82cRuo=;
+        b=tJNEb9HTe8xGTM2mQwwWnrYP3LjOUg5E6RyTnsuFK0EuJ6OOoWeiOQ4/aAgDsLI1tX
+         bWAPSU74vkkorTtwv9x+fLGUS8yRL8oKmnPB6TYF41yMOo2Ssybgob9cwIG2ZzLFg0lg
+         iiZULB7PgHKiLCMlkb9c3Fd6E8h2FzGFDX3lZPDYBVWxc5Rf/TAnhlpM2ZklM8dY+cLx
+         /o9jOXuO4flv/N8dd9YzjqFMFDHhmbl88oLAyqrl7UVGA477BOgwAHIhzjgP86Dl/Bln
+         B9hX0sMcGAYbQ2BlpoS+B/x+K284y+n7iQMsZfRq+kn+swgFscHHyMmBfmn04x5nhkZp
+         GnVg==
+X-Forwarded-Encrypted: i=1; AJvYcCX+J2GlmTVyh/uVcIpcJfn/m0KpfM+FUNgaRn8RIHdmIHVa4XBIyGyPuk3awbii84nf2xwiFpDEhG2r@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw6MK9HvcGarMxd2feRVdsR9j+l03cnr8+2Beo4pAf7gqmkrlCg
+	3CFO9F8JT4eCcf36LcYbncPXmA1FCI0qA062mX88SeZ73vTXjLwPIGdu5jTMTvR17QQ=
+X-Gm-Gg: ASbGncvC8ayS6mpiyS/Pwj9dwh+TeoiBZW8XKza9vHC5LvE8kqO+6MOYyriUD3Mcj69
+	e3jN7gVJTVNLbIuhubaJZmZRuz78wNkA4MhFQU2D5I9a5yGUXKmvv5bGIewpe6hLmr2XpJrbUkF
+	0j1pJY1o6ag7tcqx6uS8fafc1vmHWkm17mNMSJ8jG8BO8p+ODVcLPQJUinyLCX5+q4cLCgSgTGl
+	P5K4qpyekyQkqZojkNZtQYbFURUXMe7iKDZKjbdwYA7S/buN5/agTco7iWirvkfb4V3sOCyaX1F
+	TKhMt/ezlhI/bItuMLsa4/CxIzNqYqUQl5CULkK0zR9nPLHSbNX28urG2fSMgeJHlHm4llkSZIP
+	3voItHpNDaECrATUeT12VJ5vUO8U5WU1HOXpKYIUvPeKPqC2havGVHVu+kdEqlA5SxvFRh+ewOD
+	0p+cHK6kZnHqlU5rDC
+X-Google-Smtp-Source: AGHT+IGCWcj+ZeSsBGtAZjJoabbi0svPUJxfv7bQF2wz0Kk+abDltn5J9+7dAFKFJ6moPAKqLR/Rtg==
+X-Received: by 2002:a05:6000:25fd:b0:427:587:d9ae with SMTP id ffacd0b85a97d-4270587d9c1mr6413104f8f.9.1760944406004;
+        Mon, 20 Oct 2025 00:13:26 -0700 (PDT)
+Received: from localhost ([196.207.164.177])
+        by smtp.gmail.com with UTF8SMTPSA id ffacd0b85a97d-427f00b9f71sm13715262f8f.37.2025.10.20.00.13.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 20 Oct 2025 00:13:25 -0700 (PDT)
+Date: Mon, 20 Oct 2025 10:13:22 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: oe-kbuild@lists.linux.dev, Jonathan Brophy <professorjonny98@gmail.com>,
+	lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>,
+	Jonathan Brophy <professor_jonny@hotmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Radoslav Tsvetkov <rtsvetkov@gradotech.eu>
+Cc: lkp@intel.com, oe-kbuild-all@lists.linux.dev,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-leds@vger.kernel.org
+Subject: Re: [PATCH v3 4/4] leds: Add virtualcolor LED group driver
+Message-ID: <202510201457.uOrhkKly-lkp@intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 0/3] arm64: dts: exynos: gs101: add cpufreq support
-To: Tudor Ambarus <tudor.ambarus@linaro.org>,
- Peter Griffin <peter.griffin@linaro.org>,
- =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- willmcvicker@google.com, kernel-team@android.com
-References: <20250924-acpm-dvfs-dt-v4-0-3106d49e03f5@linaro.org>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250924-acpm-dvfs-dt-v4-0-3106d49e03f5@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251019092331.49531-5-professorjonny98@gmail.com>
 
-On 24/09/2025 17:14, Tudor Ambarus wrote:
-> Define the CPU clocks and OPPs.
-> 
-> Patch #2 has a dependency on the ACPM clock bindings sent at:
-> https://lore.kernel.org/linux-samsung-soc/20250924-acpm-clk-v5-1-4cca1fadd00d@linaro.org/T/#u
-> 
-> Thanks,
-> ta
+Hi Jonathan,
 
-Please stop CC-ing address kernel-team@android.com. I receive bounced
-from them:
----
-Your email to group kernel-team@android.com was rejected due to spam
-classification.
----
+kernel test robot noticed the following build warnings:
 
-Cc only public addresses, not internal ones. If any kernel team needs
-these patches, they can easily set lore/lei tracking.
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Best regards,
-Krzysztof
+url:    https://github.com/intel-lab-lkp/linux/commits/Jonathan-Brophy/dt-bindings-Add-virtualcolor-class-dt-bindings-documentation/20251019-172647
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/lee/leds.git for-leds-next
+patch link:    https://lore.kernel.org/r/20251019092331.49531-5-professorjonny98%40gmail.com
+patch subject: [PATCH v3 4/4] leds: Add virtualcolor LED group driver
+config: parisc-randconfig-r072-20251020 (https://download.01.org/0day-ci/archive/20251020/202510201457.uOrhkKly-lkp@intel.com/config)
+compiler: hppa-linux-gcc (GCC) 8.5.0
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
+| Closes: https://lore.kernel.org/r/202510201457.uOrhkKly-lkp@intel.com/
+
+smatch warnings:
+drivers/leds/rgb/leds-group-virtualcolor.c:303 parse_monochromatic_leds() warn: 'mono_count' unsigned <= 0
+drivers/leds/rgb/leds-group-virtualcolor.c:303 parse_monochromatic_leds() warn: error code type promoted to positive: 'mono_count'
+
+vim +/mono_count +303 drivers/leds/rgb/leds-group-virtualcolor.c
+
+bc8d39d8adf81b2 Jonathan Brophy 2025-10-19  296  static int parse_monochromatic_leds(struct device *dev, struct device_node *child,
+bc8d39d8adf81b2 Jonathan Brophy 2025-10-19  297  				    struct virtual_led *vled)
+bc8d39d8adf81b2 Jonathan Brophy 2025-10-19  298  {
+bc8d39d8adf81b2 Jonathan Brophy 2025-10-19  299  	u32 mono_count;
+
+This needs to be an int.
+
+bc8d39d8adf81b2 Jonathan Brophy 2025-10-19  300  	int ret, i;
+bc8d39d8adf81b2 Jonathan Brophy 2025-10-19  301  
+bc8d39d8adf81b2 Jonathan Brophy 2025-10-19  302  	mono_count = of_property_count_elems_of_size(child, "leds", sizeof(u32));
+bc8d39d8adf81b2 Jonathan Brophy 2025-10-19 @303  	if (mono_count <= 0) {
+                                                            ^^^^^^^^^^^^^^^
+
+bc8d39d8adf81b2 Jonathan Brophy 2025-10-19  304  		vled->num_monochromatics = 0;
+bc8d39d8adf81b2 Jonathan Brophy 2025-10-19  305  		return 0;
+bc8d39d8adf81b2 Jonathan Brophy 2025-10-19  306  	}
+bc8d39d8adf81b2 Jonathan Brophy 2025-10-19  307  
+bc8d39d8adf81b2 Jonathan Brophy 2025-10-19  308  	vled->num_monochromatics = mono_count;
+bc8d39d8adf81b2 Jonathan Brophy 2025-10-19  309  	vled->monochromatics = devm_kcalloc(dev, vled->num_monochromatics,
+bc8d39d8adf81b2 Jonathan Brophy 2025-10-19  310  					    sizeof(*vled->monochromatics), GFP_KERNEL);
+bc8d39d8adf81b2 Jonathan Brophy 2025-10-19  311  	if (!vled->monochromatics)
+bc8d39d8adf81b2 Jonathan Brophy 2025-10-19  312  		return -ENOMEM;
+bc8d39d8adf81b2 Jonathan Brophy 2025-10-19  313  
+bc8d39d8adf81b2 Jonathan Brophy 2025-10-19  314  	for (i = 0; i < vled->num_monochromatics; i++) {
+bc8d39d8adf81b2 Jonathan Brophy 2025-10-19  315  		struct led_classdev *led_cdev;
+bc8d39d8adf81b2 Jonathan Brophy 2025-10-19  316  
+bc8d39d8adf81b2 Jonathan Brophy 2025-10-19  317  		led_cdev = devm_of_led_get(dev, i);
+bc8d39d8adf81b2 Jonathan Brophy 2025-10-19  318  		if (IS_ERR(led_cdev)) {
+bc8d39d8adf81b2 Jonathan Brophy 2025-10-19  319  			ret = PTR_ERR(led_cdev);
+bc8d39d8adf81b2 Jonathan Brophy 2025-10-19  320  			return dev_err_probe(dev, ret,
+bc8d39d8adf81b2 Jonathan Brophy 2025-10-19  321  					     "Failed to get monochromatic LED %d\n", i);
+bc8d39d8adf81b2 Jonathan Brophy 2025-10-19  322  		}
+bc8d39d8adf81b2 Jonathan Brophy 2025-10-19  323  
+bc8d39d8adf81b2 Jonathan Brophy 2025-10-19  324  		vled->monochromatics[i] = led_cdev;
+bc8d39d8adf81b2 Jonathan Brophy 2025-10-19  325  	}
+bc8d39d8adf81b2 Jonathan Brophy 2025-10-19  326  
+bc8d39d8adf81b2 Jonathan Brophy 2025-10-19  327  	return 0;
+bc8d39d8adf81b2 Jonathan Brophy 2025-10-19  328  }
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
+
 
