@@ -1,133 +1,151 @@
-Return-Path: <devicetree+bounces-228648-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228649-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52CB2BEFB9C
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 09:46:09 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 28427BEFC0B
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 09:56:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0C6563B1B9A
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 07:46:08 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 0D1E54EE0AC
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 07:55:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A57A2DC359;
-	Mon, 20 Oct 2025 07:46:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C29CB2E22AB;
+	Mon, 20 Oct 2025 07:55:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="BMjVIAXw"
+	dkim=pass (2048-bit key) header.d=sigxcpu.org header.i=@sigxcpu.org header.b="JD7Q1NRv";
+	dkim=pass (2048-bit key) header.d=sigxcpu.org header.i=@sigxcpu.org header.b="eyOd3mB5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from honk.sigxcpu.org (honk.sigxcpu.org [24.134.29.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 643C228030E
-	for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 07:46:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3531E2D780C;
+	Mon, 20 Oct 2025 07:55:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=24.134.29.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760946365; cv=none; b=eq0m0mdXP63rDzRC3NoRSOdLCA9s96MFR3AULGJ1jSXidirAu0Fnx5ayoSEUxm7G0Bz134DGJG/mUf8b7V2HqBJENfNka4aB8VR6wpvR5qfD196L6u3DikqjO/u6aAN614BxGQZXcE/E3Z8tbNyQ6ots/agsDCEmWCa2TQjtdnM=
+	t=1760946952; cv=none; b=KMSYGFG3YdhKzAglJyyNs2Eiss+MBnGnloGEH9Gv4twKbVOSyoJXK4KMIc2k4cx7qyrOv7fPCi7xPjWzvkpmxt6hA2Xdb0KmHmzigWGLAVQI51/D/rofxfzrevbhSuG8AqvDeFnRb0N8D4vhvOcTLx7qhdWrPdDz7gEQZpwYLKc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760946365; c=relaxed/simple;
-	bh=X7/0YOAqO5V2172ZrybLrIHVzwGVuhBmLKlylhJxm1w=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=CEV7g/7fTWsYAty9zAPRZDrRVjS47GvO4oEgHfODMuqlBR6/5TqFLoLMG88qOcodMgUoKZJjDoW1KEKtfQoSzDvyrrUwk0ALT2IZX+qmjvfqLflqX5mAtobPiqfX1rTnY/JN40GuVyiQhQmUHZnHVNflqasXvl1qUpEMb4DO/cw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=BMjVIAXw; arc=none smtp.client-ip=209.85.221.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-427091cd4fdso1672104f8f.1
-        for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 00:46:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1760946362; x=1761551162; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=NeEefsjDjBTzkWLJQXyP/5aObcnLAGWfiU+nORhhDXo=;
-        b=BMjVIAXw/qb0mfPjoMsyfy6xPQmKl4Qu+YGY72C6YEByg7AIqSq5CCpHo5oiYK9GBG
-         p7BYn32ak7gyLIWfxzqngx13/XzqxW8phpWGb0AYyyw6NK4/D/jf0J7x04Lz8u8CJdDG
-         W4/QpjldgFiw16NfNAgRgzjGhXSLGhDKLjiR+EIzzFrYxcbziuZt+kgvsVoz3P6tBXza
-         0Ms5y8Ch+ybQRN1eTTM8hej4h5yGz3Tye5c+iX+XGUuZQGAdUcN5HxtkszUH9wG3VCJq
-         ZRKSCC8Xf43dGOdCTPZ/9vNyNx0I/DjQn+oqtW1yJXyyXNoPxLkorp1T1hqMiiDHxx6c
-         h5BQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760946362; x=1761551162;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=NeEefsjDjBTzkWLJQXyP/5aObcnLAGWfiU+nORhhDXo=;
-        b=I8KeMcr2pFZlpFePsUqvFS6DRb4nMzFKMixYIntVCirbduK1P7GPCfPjjYZZowWPjc
-         5wYPNAj9vpHOhVYlWWqz0xb5Xn6ieubcjhOxS6Dyg9eJdHJ5ztQs9FgbXv6eTBAK7CC2
-         sTil3IclG28LAVMjOY0jl8BULZ8vfYIRZpOvEC8TafShq1gNvt6u0c5WMAPppTmh9s/S
-         no2yvIDDymwu8zblzF5XjVyKPuSNK+96MGHdwF/QrjFN+aA4eHnXQINzv+F6TCnpFdOA
-         VPTtjv90b+an/Ft/uAGZbNWkmaNww0BodSEqhVuLAI8TYlbSMK0bObnVLQN1qaUfVCDp
-         9jZA==
-X-Forwarded-Encrypted: i=1; AJvYcCXc0ZcHNy8QvUtO8CXUPxC1mcEQ4Ao3vnNpqO3fvmZVhJMup0l4W36brvuhc+9d5kBg7Vvz15cOv411@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzg8NskZKs4Gkpr9zzQmtDAzQLV+fMm3YIY26FBTtevQg6tL7C6
-	7osy9hoyB/3Wu3YivgPKROzDzSt38cFLLFtAkd4FEt0KDj5fRshT+If46JdvkpHS0i4=
-X-Gm-Gg: ASbGnct1zlbz4BgsJgPeFjfrG6wpIujzUfl4rGP0txpEPbiT8DuzDKU34EpG0kPBT6M
-	Mc5SG5YwWCXMhJrPgA43Tu+rkni8WCCLnmcFq8HtTkEPHiYGRbQg8bvOPeDVi3QLNroK4vFfAY0
-	07LBWOIP2FZ9fGmiFIKJZgedXhzIa7Viosaau9IYFkkdG1TWXhhDOJ//ISTp500+5yJdkHXViKi
-	so3wMEHoQdJYDWxNJjXWDq2mnf28mBwl4znS1aPcRo0WEJwKS8nIRdzItBrvWvDoKIbVMyschxn
-	mHqtBvP8M8jeBMDWXEpw+TzcVXEJD6Prx9UzuIQyKs8JH6fD7Yje/1XJwnRQhrqsoF50ccZXajb
-	CnuXO1KmSU7L1pglTsxjOMrcyv3ortojCGsmfXWJaw13xqwPG74qWXVtOzfobY0ucv9H9Htk+/Z
-	SQkaHxLCspW8UIIZrhV34=
-X-Google-Smtp-Source: AGHT+IElXYjtpSTA367NjPFbuT2cNOkeZqKtyb865DWWHqYMgZ9skD7DsDruCaof11OozJ+7TkNWCA==
-X-Received: by 2002:a5d:5888:0:b0:426:d587:850d with SMTP id ffacd0b85a97d-42704d78d2amr6946088f8f.28.1760946361718;
-        Mon, 20 Oct 2025 00:46:01 -0700 (PDT)
-Received: from [10.11.12.107] ([79.115.63.145])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-427ea5a102fsm14122755f8f.1.2025.10.20.00.45.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Oct 2025 00:46:01 -0700 (PDT)
-Message-ID: <17695fcf-f33c-4246-8d5c-b2120e9e03b1@linaro.org>
-Date: Mon, 20 Oct 2025 08:45:58 +0100
+	s=arc-20240116; t=1760946952; c=relaxed/simple;
+	bh=HoLScURiP3Pv6o4YbIiJloOE/qlQmDATtnSmzjOgiO0=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=UDSDVR5GobHpmMDSlmmQy41qYyF1c+MDpSVlfaJEajAdHyuvk230dzWst319FemiRKVzM7i5GdpVTkDkg61v5u6emLuSitmGwjvbeuFJgIUzmECusH34oP5hzlSOZwSSWhB0nw4Aj+TADxSbE2/g1e6OIjvIzTT9JsfMn1lzZcg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sigxcpu.org; spf=pass smtp.mailfrom=sigxcpu.org; dkim=pass (2048-bit key) header.d=sigxcpu.org header.i=@sigxcpu.org header.b=JD7Q1NRv; dkim=pass (2048-bit key) header.d=sigxcpu.org header.i=@sigxcpu.org header.b=eyOd3mB5; arc=none smtp.client-ip=24.134.29.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sigxcpu.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sigxcpu.org
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=sigxcpu.org; s=2024;
+	t=1760946938; bh=HoLScURiP3Pv6o4YbIiJloOE/qlQmDATtnSmzjOgiO0=;
+	h=From:Date:Subject:To:Cc:From;
+	b=JD7Q1NRvW3vFmjply4D6KKNGm+B4qS3jQN4+E1g7O8fF1on6bhO6s5SUc4mSTA71o
+	 FORai1167OInQNI9kV6l6AWGhrqSG968JOk+T6WvchPs97ejlCNy4N8Lu437Zxa9Jx
+	 vzNcgt4m3MZ2M4j1eSJJeK73nq8R+FWGM7sZQRSVWYanvZ1nj84AevL+HUQ+lckcYN
+	 zaPjOznvJtIehzjCMeqd09f1EYvT6Y9UouQtk3UuHLCM0aIE9juZK4rKzlVqPQGUr4
+	 KWNiml4ARJnxzKCvm2SnVJ8s19ruARZhVpwucbAmlQm062K/MGwfRCYJYMOQj+tRAP
+	 5Ig8dJBd/alhw==
+Received: from localhost (localhost [127.0.0.1])
+	by honk.sigxcpu.org (Postfix) with ESMTP id CECA3FB03;
+	Mon, 20 Oct 2025 09:55:38 +0200 (CEST)
+Received: from honk.sigxcpu.org ([127.0.0.1])
+	by localhost (honk.sigxcpu.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id gbHSv5zJ0Xt5; Mon, 20 Oct 2025 09:55:36 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=sigxcpu.org; s=2024;
+	t=1760946936; bh=HoLScURiP3Pv6o4YbIiJloOE/qlQmDATtnSmzjOgiO0=;
+	h=From:Date:Subject:To:Cc:From;
+	b=eyOd3mB5kR3pv/tKI+etKBa/Eph3aV0CGExpzJ8axSPLGyJ8FUNXQXwDYXzPyujwA
+	 4tbpxBxPW258RlzE5KZVVL+iyshAuE6uBei3pGF1wDMA5bz2pbpc7JHsbASBSAzL/p
+	 nA443Kfm1Jh/uf0TF27xWnktZJ+F9KSGixnhJlwaFNDnlM//cDwc7/hHGR4qBd67tl
+	 M0/Jo6xA8SgwizcH5oTGd0BEk2U4J3BImmvcvX69TTne0PB4tnnmCorwI9Y6lrR/Zs
+	 wQH4X25R8NTHUinpqKH7MO8uTTDofIpiV3ZgG9IiBllyR6ZQbnXuyNcKdv+yKRXYv3
+	 qCuNX7nxgqyIA==
+From: =?utf-8?q?Guido_G=C3=BCnther?= <agx@sigxcpu.org>
+Date: Mon, 20 Oct 2025 09:55:13 +0200
+Subject: [PATCH] arm64: dts: qcom: sdm845-shift-axolotl: Move address and
+ size cells upwards
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 4/6] clk: samsung: add Exynos ACPM clock driver
-To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Peter Griffin <peter.griffin@linaro.org>,
- =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
- Sylwester Nawrocki <s.nawrocki@samsung.com>,
- Chanwoo Choi <cw00.choi@samsung.com>,
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
-Cc: linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-clk@vger.kernel.org, willmcvicker@google.com, kernel-team@android.com
-References: <20251010-acpm-clk-v6-0-321ee8826fd4@linaro.org>
- <20251010-acpm-clk-v6-4-321ee8826fd4@linaro.org>
- <92f1c027-bacc-4537-a158-2e0890e2e8ee@kernel.org>
-Content-Language: en-US
-From: Tudor Ambarus <tudor.ambarus@linaro.org>
-In-Reply-To: <92f1c027-bacc-4537-a158-2e0890e2e8ee@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+Message-Id: <20251020-shift6mq-dt-v1-1-8714087118b8@sigxcpu.org>
+X-B4-Tracking: v=1; b=H4sIAODq9WgC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1NDA0NL3eKMzLQSs9xC3ZQS3VSTJMtU85Rkc0MzSyWgjoKi1LTMCrBp0bG
+ 1tQAoCiiYXQAAAA==
+X-Change-ID: 20251019-shift6mq-dt-e4b9e7dc7169
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org, 
+ =?utf-8?q?Guido_G=C3=BCnther?= <agx@sigxcpu.org>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1349; i=agx@sigxcpu.org;
+ h=from:subject:message-id; bh=HoLScURiP3Pv6o4YbIiJloOE/qlQmDATtnSmzjOgiO0=;
+ b=LS0tLS1CRUdJTiBQR1AgTUVTU0FHRS0tLS0tCgpvd0VCYlFLUy9aQU5Bd0FJQVNXL2hsSksvT
+ UhqQWNzbVlnQm85ZXJ4N1ZWbTJLcyt2cmFQWDd2WHdmb3dJRTZ1CjVtaVVoQUF5Qk5lcXMxcUVm
+ TnVKQWpNRUFBRUlBQjBXSVFSajlzemZsaUtkQ1NocktzTWx2NFpTU3Z6QjR3VUMKYVBYcThRQUt
+ DUkFsdjRaU1N2ekI0L0xCRC8wWmZucVNUN0swQUFuTitXdEtEY011djIwUFUzZzdycld3OHZnUw
+ pXWmhUWWxsVFVLYUxSamRNdTRnOEdYdU9OZVJyaGxOSFdKOGhKY29Fd1cycVpLd1VSVkJvaXQwR
+ kZJWFVxQ2JJCmNBeUhvZ0FDYlhrT0pvYzFiYUhlaXFHSkV5YWlIaG13cmdVcHRtL0tHWEZsSWVW
+ QndKb25ZeWxPK1VBNis2SkIKelIwS1ptNTJsWnh4R1Yvbm5SOUR1ak9TbjRVWkdlb0I5Rk9PSHR
+ vdlRhQUY2SGhDc3pjUWZNbXV0c2t4UmE5VQppZkNCc2pBNkFnU3JnYnJMRFgwblhCVUdXNDIvdE
+ x5czVGeDBHdGIrM3VlbnlkUkczNlMxcnh4dUZZb3ZGR3kwCkNzQ0kxNU8rUTJ0NHphWElkNjROL
+ zh0c2dzMnMzWkI2Q3FjK2F4WVNmaE4wVGNNZ0xHcm4xNm9FdFdJbDNGVVIKQ2lsSkRpVTNSaDJo
+ MzVXNVdtNmVmMjlycms1YjZKTFFqR3hyNlppekpZdW4vZEFCajdUbGI0WmxjSVcrU1AzTQpQYnN
+ qTlB1bnBKUmYxaDY0UFZleC9OdEV0UzhHT2dNRkVhNGRkM200NWJiRm42L2JhVDNXMHgvRjBlan
+ lYSDBpCms2V1ZRUEJFT2JFei9ZY29pOGMrWmwwSENva1pUMHBmMExJN041WW1lYTBYZXpPNTJJM
+ UFmUmZoVmhXazdidVYKQ1hVcUo1dTRrQUtTc2R4VGtYM3NjRFhJZnkwaGNyZGZEaVhyRUYvdWht
+ S3dIdFpWMVM5VTU5KzBpU09aRHlqVQoxcHlNRFQwOEJKQTA4ck5ya1YwNkNhNUVoR0VieHQ4T0d
+ hZ01HZlhMTUpheTRlbjZHdk1iWVB1a3hNM3JrMW9qCkE4TWk1QT09Cj11aTk0Ci0tLS0tRU5EIF
+ BHUCBNRVNTQUdFLS0tLS0K
+X-Developer-Key: i=agx@sigxcpu.org; a=openpgp;
+ fpr=0DB3932762F78E592F6522AFBB5A2C77584122D3
 
+They're used in the parent to describe the panel's reg property.
 
+Fixes the
 
-On 10/20/25 7:54 AM, Krzysztof Kozlowski wrote:
->> diff --git a/drivers/clk/samsung/Kconfig b/drivers/clk/samsung/Kconfig
->> index 76a494e95027af26272e30876a87ac293bd56dfa..70a8b82a0136b4d0213d8ff95e029c52436e5c7f 100644
->> --- a/drivers/clk/samsung/Kconfig
->> +++ b/drivers/clk/samsung/Kconfig
->> @@ -95,6 +95,16 @@ config EXYNOS_CLKOUT
->>  	  status of the certains clocks from SoC, but it could also be tied to
->>  	  other devices as an input clock.
->>  
->> +config EXYNOS_ACPM_CLK
->> +	tristate "Clock driver controlled via ACPM interface"
->> +	depends on EXYNOS_ACPM_PROTOCOL || (COMPILE_TEST && !EXYNOS_ACPM_PROTOCOL)
-> 
-> I merged the patches but I don't get why we are not enabling it by
-> default, just like every other clock driver. What is so special here?
+linux/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dtb: panel@0 (visionox,rm69299-shift): '#address-cells', '#size-cells' do not match any of the regexes: '^pinctrl-[0-9]+$'
 
-Thanks! Are you referring to the depends on line? I needed it otherwise
-on randconfigs where COMPILE_TEST=y and EXYNOS_ACPM_PROTOCOL=n I get:
+warning.
 
-ERROR: modpost: "devm_acpm_get_by_node" [drivers/clk/samsung/clk-acpm.ko] undefined!
+Signed-off-by: Guido Günther <agx@sigxcpu.org>
+---
+ arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-Cheers,
-ta
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts b/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
+index 89260fce6513..44e7b5015d26 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
++++ b/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
+@@ -472,6 +472,9 @@ &mdss_dsi0 {
+ 	status = "okay";
+ 	vdda-supply = <&vdda_mipi_dsi0_1p2>;
+ 
++	#address-cells = <1>;
++	#size-cells = <0>;
++
+ 	panel@0 {
+ 		compatible = "visionox,rm69299-shift";
+ 		status = "okay";
+@@ -479,9 +482,6 @@ panel@0 {
+ 		vdda-supply = <&vreg_l14a_1p88>;
+ 		vdd3p3-supply = <&vreg_l28a_3p0>;
+ 
+-		#address-cells = <1>;
+-		#size-cells = <0>;
+-
+ 		reset-gpios = <&tlmm 6 GPIO_ACTIVE_HIGH>;
+ 
+ 		pinctrl-names = "default", "sleep";
+
+---
+base-commit: f406055cb18c6e299c4a783fc1effeb16be41803
+change-id: 20251019-shift6mq-dt-e4b9e7dc7169
+
+Best regards,
+-- 
+Guido Günther <agx@sigxcpu.org>
+
 
