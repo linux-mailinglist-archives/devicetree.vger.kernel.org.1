@@ -1,79 +1,79 @@
-Return-Path: <devicetree+bounces-228573-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228574-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 807DEBEF3F6
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 06:22:25 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF865BEF402
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 06:22:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id F1792349194
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 04:22:24 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D812C4EB881
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 04:22:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 972EF2C11C5;
-	Mon, 20 Oct 2025 04:21:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AAE72C026C;
+	Mon, 20 Oct 2025 04:21:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bytedance.com header.i=@bytedance.com header.b="Yj82uOv7"
+	dkim=pass (2048-bit key) header.d=bytedance.com header.i=@bytedance.com header.b="HcriZPmb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f179.google.com (mail-pg1-f179.google.com [209.85.215.179])
+Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3BDD2BF019
-	for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 04:21:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0DCC2BF3CC
+	for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 04:21:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760934099; cv=none; b=sgpVZBNVODu9su40cwzw6F02s2UoQ+Cm/ciRARsjPdgV9uStQLa2aiByuEiFYowEtvzwYqoE/FQ/ltV+ZP5jN0dyj3OBSD+/Z9BG/kWbcTczN0dJseMtGIjILYo2wpk/uUBM7zeDlt2DwYDvBImWIf98y3Avm2KLEDLQW++NJug=
+	t=1760934107; cv=none; b=NazV4qNuY34Lda0EJobu7uHL11STgCVCiR8x63ig5eE/VVEGRGyCA2buKLBBVB8BOExOqsB6QlaYSS09Fct7q669ibTnnFC48qv33XK9ThoumdXSizSMCtAytHNoMZPVR3myz6Ka7iQ1OfFPlZiRmNZMLw96vTqJhjcLQmIIi2A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760934099; c=relaxed/simple;
-	bh=ny7Y87UCldoCAyN22m3dB64S4BMG+0HtGPlSRdbS+ts=;
+	s=arc-20240116; t=1760934107; c=relaxed/simple;
+	bh=HFpqts/W53QUbSMz1faFreS+L9DMcn6zulFxd1eY3xM=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=IoFP8QnzQXMIfuclKzBeXdHsciHbO2kiMHj0LElfvikB3RdOYivL+DdP+CSAue0SCgsbes7MYT7OhXlWdhWrxUDEKWFO2qpXZt0yCxPnlfDL2QoD9jAR9EhDkqqYV4qH9Qke/eWGclCtcuUp0aliE7Cfuwfm/0YBQ+4VlBC9gx4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=bytedance.com; spf=pass smtp.mailfrom=bytedance.com; dkim=pass (2048-bit key) header.d=bytedance.com header.i=@bytedance.com header.b=Yj82uOv7; arc=none smtp.client-ip=209.85.215.179
+	 MIME-Version; b=YINwZRLnK43lQR31xE58VH2XmePOgQKu/3jvgfJ6Gj1aNeiXNrThXta9KOSnIzSwpRkMhN4kJdl/39ZHQrvIfSFFfu3jlVUdnbIrnilCYUlttgyZ3SrdEdRpIi8w9TEZON2sLLPnGZJUyPuM+6iwpe4w5h135m3ywsVbElB9evc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=bytedance.com; spf=pass smtp.mailfrom=bytedance.com; dkim=pass (2048-bit key) header.d=bytedance.com header.i=@bytedance.com header.b=HcriZPmb; arc=none smtp.client-ip=209.85.214.172
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=bytedance.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bytedance.com
-Received: by mail-pg1-f179.google.com with SMTP id 41be03b00d2f7-b5579235200so2478476a12.3
-        for <devicetree@vger.kernel.org>; Sun, 19 Oct 2025 21:21:36 -0700 (PDT)
+Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-2907948c1d2so42041835ad.3
+        for <devicetree@vger.kernel.org>; Sun, 19 Oct 2025 21:21:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bytedance.com; s=google; t=1760934096; x=1761538896; darn=vger.kernel.org;
+        d=bytedance.com; s=google; t=1760934105; x=1761538905; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=TLsLBJWdfVYa2JlLG/bj2PxPL4kYEdygRJ5GLCZsFlo=;
-        b=Yj82uOv7t4l8w08IcuvghlpVSIQNIqdAP3PgQ3T0bSWnZ/deTa27mbyzrTk8HBstmF
-         24gIskfqE83tXsRjPiYBa98NYZnE98sS1GLQ7hP8+O9iAdO65FGSGB/32F/2rFjep+xU
-         JqAQSP0cE0BU+KXy4IwbTpk1474Ud0P7o1UgnO904CGEgb1qOW+OAyht1YM3Dg9oGRaH
-         RYZFQI9qWI4gy64klKPzStRERa2lf3ecozX21lZ8TyRrypKsZsMNOsELA51heVxHftgR
-         Iz58LzlOtrMUrfJem8mwUDxUBni3i8hSTG13iL7Eg5xkPBGce8aQ5CoYsQYt2uqMP+vT
-         6RTQ==
+        bh=+193yncmANzEfIfweyuJi14B+CiP/3dMuVzUWsZjMz4=;
+        b=HcriZPmbGc6f5kx3AsrQgXFgT448MrrhfzeCGYAuyn8n6IYSMx3k7tG+VKGVUvTGCe
+         pTCr2IblLfY5FGJAv64N3efjzUu6FalM6V9gEpGN87M7o2Hj2fxvBx49ZVF71S4qRAkP
+         PygZVFruklfZRdsEjDvw+ugIz6gyewARzconSSSe0o1wdkvFB99ATFsfxdn+1UhrWKN7
+         7jvBzlnprrSzQFDBensWEOLKXq7co99z0oBI4oEJGwy97g4FJ6U8J4JJpVGt5fdW4M+9
+         1tflyTNA5B5R1cCQT9ciSdedexcD1MH4jhF6O4VE1ur6I2MZKuHvU8SxjxYoqcIJ56Wz
+         9H2g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760934096; x=1761538896;
+        d=1e100.net; s=20230601; t=1760934105; x=1761538905;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=TLsLBJWdfVYa2JlLG/bj2PxPL4kYEdygRJ5GLCZsFlo=;
-        b=iWnaZ1C/7QU5WiZ5Fg0iBDqrEiztZ4vqgFySAR/frgW3HXPiYKs2KwZoN8jFDFpF0K
-         2rMs23x7NfKHOGBbJT+5T5TQjlo4j+zfJ4PM480V9Zgiu+sLt09XeYcZ6fDgtBnk8kIC
-         0lq8qR7Y8iXPRJJxeqRuH8/kPxFkPxaor0FX0ig3R3Ey5w/CNXYRW2kxjQ11EX8217pa
-         Lrkj3/aMmwpIDebI5iAY0G3BHBXjfKlUelpxLr58hR42GQd5TyUZTPZ3QvOY1h0Dsev2
-         g2n4JSimDwDEQR/KPPBwYFGrt6FJSVkqNFE2tfc6bZOfNOQ41/TuS2SKNpwkfUwZNH44
-         1a9A==
-X-Forwarded-Encrypted: i=1; AJvYcCUhjf94+eQjpJLTgponLjERqmn36riisDI/1ExjYOAj8L4ixcLgDlLwTlMuqDvaUPp1uqGnstaomcNz@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx2sBVcg4CEHA7OHHuJ02jAEoS10ETOtACPRX/GfOxgxVWPH8Jj
-	nrd1ZU1o3XKz1rwdHFOLVR7JUmy5IEdM2BtPWwJrJBsnYtMrgIj0AUp53qlVFaHh7ck=
-X-Gm-Gg: ASbGncvat0/K3yrtWeNzlISI7QJTMoUa3q8AjPk5+5HoTFIIrenIjTKsWE7BxovkJwp
-	1J8kv89ypfAypAxsCQYx0pfWpuEPOLn1jbFZNkkukaXQ1xa4pRRGj9CZC1Abt2GkSw8VVEBXing
-	xKEokb+Fi6ck/fvXIk2D4SHhtSEIrftrfyEgqHFhGN5kMmCSoTlHgz+WWgLnHEGg38stBXBj0tH
-	M4J0hrx6VD4RWavywFlMEe+kdan6aRwa+sGFOvCm60viR839voj2VV67jcxYfS8coq4r8IP7naT
-	7zaxsPK70NfahJTo3Yuu7MvLcgXWD6U7JWvBXwUCqmW4UDt28OUki/+kp77io/3zgoLpuNLfFwh
-	UKnNx+xZN4ULg6ATOXfFJSetd8E2OsCP5a97Cz5nBT7zmcvp7zL1wfd7LpIDisWx2nrNsXp+VVu
-	6vfjR8bW2pUUf0xA6P14yWTSuoGmCQ3cGaJzpZJIKC/ZgN7nGcuFK0SmHtA9LCZK0=
-X-Google-Smtp-Source: AGHT+IEVDRzQqxz41bjazvzEtq94PPu5+Ha6Ch7yR6vZUeSxKjd1JAWFRYIDj5wLQhSdXdNmOhf0qQ==
-X-Received: by 2002:a17:903:1d1:b0:264:ee2:c3f5 with SMTP id d9443c01a7336-290c9cbcca1mr154193285ad.19.1760934096103;
-        Sun, 19 Oct 2025 21:21:36 -0700 (PDT)
+        bh=+193yncmANzEfIfweyuJi14B+CiP/3dMuVzUWsZjMz4=;
+        b=b5Li7lWY3/cItV4cd+Zt7OSb1mdog6zbHm1n3DOkyE5n2RF8IU9uy8DH9KXhZmR+bZ
+         Ft5txyWHcfT8ECCl15OGWdWDHZWIBV2LpfAI5qq5xYn08N9FV+0aUJgC3ogjLzjd/Udw
+         nTwx6Ows8cjbGumIxQTUn3OT25ebdn+M/h3aNX3im40M/VECDlE6saeMiZd67vEs/vZg
+         eWfu3d+uoyuQ8I1rdeNexCXs0mZejPERtJ2Oc5rnAyogkZ77/L69wYHZTbs01WWaa1g9
+         /Wk3byZ1T1u/yUCgkCGFc2UVbnNzZP21PItoOTtVpP3liU5fcgQZLLtY4R+j8a4Bxahk
+         Mfrw==
+X-Forwarded-Encrypted: i=1; AJvYcCUYqopnqQXdV585X7fusAnm+z7gzdSd6x610vjXUeJ8SzmFOF88Jqt+Wre+MkH/D8G7wy6yNXU4wsjo@vger.kernel.org
+X-Gm-Message-State: AOJu0YzSKsQf0hgwLL+VZBfmlWsSXi+ecVP50WP3lg9ODaE9WX9Njscs
+	QMtBNBULHO7OQjNTzdSRfDAb96+IfR0YBxpyr/TZlq+wYHvCmISJ9e5+5XYpSl+5eD0=
+X-Gm-Gg: ASbGncs99sQWHcmhgoYVbqpLgQl2xq+JsQqFHLI2b1TcVALT5wUkRJhndrMgt9U1Hqj
+	iPDx2KonFXeUaw2RfDaF0opS4zw9dSSzzbmxH6w5Ycuv56b6mCOcCKs+4tKesrzaivB7zA3IVyv
+	c8Rg7B+q54ZaXtvzrNo8GJQSpN3zcYqgp2QKJYHef7P6VXqIyS6dgK6a2/wu4j/kjcIeCBFyNFb
+	iy+uThttOZ5B7RBH0GgZz/3BKMAheFMhsyQMyz0hJ3ZsbmFeq54UQJ+oThVRS62BNoLj+Daj2nP
+	D2sc75yuUuoo1ldalXdZ6cAWVjbqtnB3trVJ/BsZzYcDudfUx/sA1pJWCHs3TlRVSk4dT7bvYeF
+	dgkyWEIvsPDCQW8cOXC20urmS3iiwvKYb02FF6ych9rNVNU19/gYvs+TASGYEPkG468zubvFxTV
+	YsCHKWFMq+PklieYwk7QJl4/hC9le+A4jFa6bpSwTcHIU4Sq/LcV2BsYMwPU8Qna8=
+X-Google-Smtp-Source: AGHT+IF2KqRso1vGWBuxjKtXDzGr3i1rYvJFvWFqIw1C4cToJJg4q9dybEBrOykVwphfwE8jll43DA==
+X-Received: by 2002:a17:902:e5c9:b0:273:daa6:cdf9 with SMTP id d9443c01a7336-290c9cdd599mr133996615ad.22.1760934104704;
+        Sun, 19 Oct 2025 21:21:44 -0700 (PDT)
 Received: from J9GPGXL7NT.bytedance.net ([61.213.176.55])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29246ec14e9sm68762035ad.9.2025.10.19.21.21.27
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29246ec14e9sm68762035ad.9.2025.10.19.21.21.36
         (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
-        Sun, 19 Oct 2025 21:21:35 -0700 (PDT)
+        Sun, 19 Oct 2025 21:21:44 -0700 (PDT)
 From: Xu Lu <luxu.kernel@bytedance.com>
 To: corbet@lwn.net,
 	paul.walmsley@sifive.com,
@@ -106,9 +106,9 @@ Cc: linux-doc@vger.kernel.org,
 	joe@perches.com,
 	lukas.bulwahn@gmail.com,
 	Xu Lu <luxu.kernel@bytedance.com>
-Subject: [PATCH v4 03/10] riscv: hwprobe: Export Zalasr extension
-Date: Mon, 20 Oct 2025 12:20:49 +0800
-Message-ID: <20251020042056.30283-4-luxu.kernel@bytedance.com>
+Subject: [PATCH v4 04/10] riscv: Introduce Zalasr instructions
+Date: Mon, 20 Oct 2025 12:20:50 +0800
+Message-ID: <20251020042056.30283-5-luxu.kernel@bytedance.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20251020042056.30283-1-luxu.kernel@bytedance.com>
 References: <20251020042056.30283-1-luxu.kernel@bytedance.com>
@@ -120,60 +120,111 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Export the Zalasr extension to userspace using hwprobe.
+Introduce l{b|h|w|d}.{aq|aqrl} and s{b|h|w|d}.{rl|aqrl} instruction
+encodings.
 
 Signed-off-by: Xu Lu <luxu.kernel@bytedance.com>
 ---
- Documentation/arch/riscv/hwprobe.rst  | 5 ++++-
- arch/riscv/include/uapi/asm/hwprobe.h | 1 +
- arch/riscv/kernel/sys_hwprobe.c       | 1 +
- 3 files changed, 6 insertions(+), 1 deletion(-)
+ arch/riscv/include/asm/insn-def.h | 79 +++++++++++++++++++++++++++++++
+ 1 file changed, 79 insertions(+)
 
-diff --git a/Documentation/arch/riscv/hwprobe.rst b/Documentation/arch/riscv/hwprobe.rst
-index 2aa9be272d5de..067a3595fb9d5 100644
---- a/Documentation/arch/riscv/hwprobe.rst
-+++ b/Documentation/arch/riscv/hwprobe.rst
-@@ -249,6 +249,9 @@ The following keys are defined:
-        defined in the in the RISC-V ISA manual starting from commit e87412e621f1
-        ("integrate Zaamo and Zalrsc text (#1304)").
+diff --git a/arch/riscv/include/asm/insn-def.h b/arch/riscv/include/asm/insn-def.h
+index d5adbaec1d010..3fec7e66ce50f 100644
+--- a/arch/riscv/include/asm/insn-def.h
++++ b/arch/riscv/include/asm/insn-def.h
+@@ -179,6 +179,7 @@
+ #define RV___RS1(v)		__RV_REG(v)
+ #define RV___RS2(v)		__RV_REG(v)
  
-+  * :c:macro:`RISCV_HWPROBE_EXT_ZALASR`: The Zalasr extension is supported as
-+       frozen at commit 194f0094 ("Version 0.9 for freeze") of riscv-zalasr.
++#define RV_OPCODE_AMO		RV_OPCODE(47)
+ #define RV_OPCODE_MISC_MEM	RV_OPCODE(15)
+ #define RV_OPCODE_OP_IMM	RV_OPCODE(19)
+ #define RV_OPCODE_SYSTEM	RV_OPCODE(115)
+@@ -208,6 +209,84 @@
+ 	__ASM_STR(.error "hlv.d requires 64-bit support")
+ #endif
+ 
++#define LB_AQ(dest, addr)					\
++	INSN_R(OPCODE_AMO, FUNC3(0), FUNC7(26),			\
++	       RD(dest), RS1(addr), __RS2(0))
 +
-   * :c:macro:`RISCV_HWPROBE_EXT_ZALRSC`: The Zalrsc extension is supported as
-        defined in the in the RISC-V ISA manual starting from commit e87412e621f1
-        ("integrate Zaamo and Zalrsc text (#1304)").
-@@ -360,4 +363,4 @@ The following keys are defined:
- 
-     * :c:macro:`RISCV_HWPROBE_VENDOR_EXT_XSFVFWMACCQQQ`: The Xsfvfwmaccqqq
-         vendor extension is supported in version 1.0 of Matrix Multiply Accumulate
--	Instruction Extensions Specification.
-\ No newline at end of file
-+	Instruction Extensions Specification.
-diff --git a/arch/riscv/include/uapi/asm/hwprobe.h b/arch/riscv/include/uapi/asm/hwprobe.h
-index aaf6ad9704993..d3a65f8ff7da4 100644
---- a/arch/riscv/include/uapi/asm/hwprobe.h
-+++ b/arch/riscv/include/uapi/asm/hwprobe.h
-@@ -82,6 +82,7 @@ struct riscv_hwprobe {
- #define		RISCV_HWPROBE_EXT_ZAAMO		(1ULL << 56)
- #define		RISCV_HWPROBE_EXT_ZALRSC	(1ULL << 57)
- #define		RISCV_HWPROBE_EXT_ZABHA		(1ULL << 58)
-+#define		RISCV_HWPROBE_EXT_ZALASR	(1ULL << 59)
- #define RISCV_HWPROBE_KEY_CPUPERF_0	5
- #define		RISCV_HWPROBE_MISALIGNED_UNKNOWN	(0 << 0)
- #define		RISCV_HWPROBE_MISALIGNED_EMULATED	(1 << 0)
-diff --git a/arch/riscv/kernel/sys_hwprobe.c b/arch/riscv/kernel/sys_hwprobe.c
-index 0b170e18a2beb..0529e692b1173 100644
---- a/arch/riscv/kernel/sys_hwprobe.c
-+++ b/arch/riscv/kernel/sys_hwprobe.c
-@@ -99,6 +99,7 @@ static void hwprobe_isa_ext0(struct riscv_hwprobe *pair,
- 		EXT_KEY(ZAAMO);
- 		EXT_KEY(ZABHA);
- 		EXT_KEY(ZACAS);
-+		EXT_KEY(ZALASR);
- 		EXT_KEY(ZALRSC);
- 		EXT_KEY(ZAWRS);
- 		EXT_KEY(ZBA);
++#define LB_AQRL(dest, addr)					\
++	INSN_R(OPCODE_AMO, FUNC3(0), FUNC7(27),			\
++	       RD(dest), RS1(addr), __RS2(0))
++
++#define LH_AQ(dest, addr)					\
++	INSN_R(OPCODE_AMO, FUNC3(1), FUNC7(26),			\
++	       RD(dest), RS1(addr), __RS2(0))
++
++#define LH_AQRL(dest, addr)					\
++	INSN_R(OPCODE_AMO, FUNC3(1), FUNC7(27),			\
++	       RD(dest), RS1(addr), __RS2(0))
++
++#define LW_AQ(dest, addr)					\
++	INSN_R(OPCODE_AMO, FUNC3(2), FUNC7(26),			\
++	       RD(dest), RS1(addr), __RS2(0))
++
++#define LW_AQRL(dest, addr)					\
++	INSN_R(OPCODE_AMO, FUNC3(2), FUNC7(27),			\
++	       RD(dest), RS1(addr), __RS2(0))
++
++#define SB_RL(src, addr)					\
++	INSN_R(OPCODE_AMO, FUNC3(0), FUNC7(29),			\
++	       __RD(0), RS1(addr), RS2(src))
++
++#define SB_AQRL(src, addr)					\
++	INSN_R(OPCODE_AMO, FUNC3(0), FUNC7(31),			\
++	       __RD(0), RS1(addr), RS2(src))
++
++#define SH_RL(src, addr)					\
++	INSN_R(OPCODE_AMO, FUNC3(1), FUNC7(29),			\
++	       __RD(0), RS1(addr), RS2(src))
++
++#define SH_AQRL(src, addr)					\
++	INSN_R(OPCODE_AMO, FUNC3(1), FUNC7(31),			\
++	       __RD(0), RS1(addr), RS2(src))
++
++#define SW_RL(src, addr)					\
++	INSN_R(OPCODE_AMO, FUNC3(2), FUNC7(29),			\
++	       __RD(0), RS1(addr), RS2(src))
++
++#define SW_AQRL(src, addr)					\
++	INSN_R(OPCODE_AMO, FUNC3(2), FUNC7(31),			\
++	       __RD(0), RS1(addr), RS2(src))
++
++#ifdef CONFIG_64BIT
++#define LD_AQ(dest, addr)					\
++	INSN_R(OPCODE_AMO, FUNC3(3), FUNC7(26),			\
++	       RD(dest), RS1(addr), __RS2(0))
++
++#define LD_AQRL(dest, addr)					\
++	INSN_R(OPCODE_AMO, FUNC3(3), FUNC7(27),			\
++	       RD(dest), RS1(addr), __RS2(0))
++
++#define SD_RL(src, addr)					\
++	INSN_R(OPCODE_AMO, FUNC3(3), FUNC7(29),			\
++	       __RD(0), RS1(addr), RS2(src))
++
++#define SD_AQRL(src, addr)					\
++	INSN_R(OPCODE_AMO, FUNC3(3), FUNC7(31),			\
++	       __RD(0), RS1(addr), RS2(src))
++#else
++#define LD_AQ(dest, addr)					\
++	__ASM_STR(.error "ld.aq requires 64-bit support")
++
++#define LD_AQRL(dest, addr)					\
++	__ASM_STR(.error "ld.aqrl requires 64-bit support")
++
++#define SD_RL(dest, addr)					\
++	__ASM_STR(.error "sd.rl requires 64-bit support")
++
++#define SD_AQRL(dest, addr)					\
++	__ASM_STR(.error "sd.aqrl requires 64-bit support")
++#endif
++
+ #define SINVAL_VMA(vaddr, asid)					\
+ 	INSN_R(OPCODE_SYSTEM, FUNC3(0), FUNC7(11),		\
+ 	       __RD(0), RS1(vaddr), RS2(asid))
 -- 
 2.20.1
 
