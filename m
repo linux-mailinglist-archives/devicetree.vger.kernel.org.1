@@ -1,41 +1,48 @@
-Return-Path: <devicetree+bounces-228793-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228794-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22755BF0BD2
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 13:08:29 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id EEB79BF0BDB
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 13:09:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 64E04189F306
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 11:08:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 776161896BCD
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 11:09:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9F0B2F7AD5;
-	Mon, 20 Oct 2025 11:07:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EA152F617F;
+	Mon, 20 Oct 2025 11:09:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="dXqj5NkZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ojMFcVpo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m21467.qiye.163.com (mail-m21467.qiye.163.com [117.135.214.67])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4853424676B;
-	Mon, 20 Oct 2025 11:07:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.214.67
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F65C24676B;
+	Mon, 20 Oct 2025 11:09:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760958477; cv=none; b=oFa3zmzpxxj9lxNJwLHMOw8SEh/V330ZdyyEzamYZaaEmjI5KCkUTBsdwq33S1U77NbQ6jf20ZViaWEkEivoFbJnBRZAyOe9TTWQ04+tQFVsZZQrLCERQeJzim3I8YtlMdLmVjLTWUvfVbv+9owFZIxJEvgg9PXo+w7Y8qdl/yM=
+	t=1760958557; cv=none; b=e8CNM3JJ3AaGNQESMF05KSJrgcIzAjyyEd9Yj421lvr4YnIEY27P64sDMzqeYrlltXNKOqMH9pJGWtNAm/dotTq5H6YA9QYpf4OMBgvL8FvAAQWEeAI+nOAz3nH6rH6T+nwTdO8ZKg0OtvyqQYvJ/GRu25UWb6XmLC7TmCBrZNQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760958477; c=relaxed/simple;
-	bh=XR2VwGVUBY0oNp+PAoWlyn373NkPJfO6YjBid3cI/xM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QaWlY5DJZ0hK93VgLKvxNj+9mznSfz9h1QJfiILy+xvvYslUDrNH0GWggGesZqa1h0ldxN7xzJaUKNy0wV7b8b8qENyYIobBidHZS9PrVGGMeRbFo0HV1HV2q2cZbFb6/AvO9dvgImQ3C4Wyhk62mSU0DKshLVMiN1vt84AvSu0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=dXqj5NkZ; arc=none smtp.client-ip=117.135.214.67
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from [172.16.12.149] (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 268423cdc;
-	Mon, 20 Oct 2025 19:07:48 +0800 (GMT+08:00)
-Message-ID: <954a67d1-1759-4e18-8eef-3fa14fb3cef5@rock-chips.com>
-Date: Mon, 20 Oct 2025 19:07:46 +0800
+	s=arc-20240116; t=1760958557; c=relaxed/simple;
+	bh=gPhw4C5Mc1mlUVzNZ4fRDu3demukRrEs/UJmD6Ao5tI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=dSk5IK5jT5t18FElAdL3IYFkQx9UOYXy5aji7sAZ3LbLhLNslEcsCBCjcEYeZt/qj8mPa0Xc27ebPi7xKcA548538Iwh8oa71Hseg1gyCc2S2HieZShyG+oUvrXxPR0xuFTxzRge2F7gkxxQMbBWQFzYysU6L7HCmqPCqd5R+q8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ojMFcVpo; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 37C63C4CEF9;
+	Mon, 20 Oct 2025 11:09:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1760958556;
+	bh=gPhw4C5Mc1mlUVzNZ4fRDu3demukRrEs/UJmD6Ao5tI=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=ojMFcVpoy+tOys+d0AWRkpwO/JL9MoyUKe0mv2dr++BLdJfb/ae3YIrQY+mgJ8Js9
+	 LaTKrbRkGcDzfWD5WgrI8WTc0aQUKBiqFsiN3bvV3nD1XjCW6Wacs7zwwTQjmwCev5
+	 p/yAY0h7AK7bM9tLRpZk+WTHHM1popxBIua+wPVAniQGO3zGUAzL3J48SKYDJQV9NX
+	 SSDQTfC8oPDMqWbbfvTspNOpmHCocGI/+4kxcnuUizl92+YvJvujb8hg1c5Zfa8pMI
+	 Wvu0S8suxbYrfFvM6pZibYFDvYOrwR45VSKlEuFxLLhOyecvGDi04MKSKX7cSjVY/8
+	 Nd4pdPO3SKH+w==
+Message-ID: <66c1ebf0-1f91-4d9f-985f-71535f1e3d01@kernel.org>
+Date: Mon, 20 Oct 2025 13:09:11 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -43,183 +50,114 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 1/8] usb: typec: Add default HPD device when register
- DisplayPort altmode
-To: Heikki Krogerus <heikki.krogerus@linux.intel.com>,
- Chaoyi Chen <kernel@airkyi.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>, Heiko Stuebner
- <heiko@sntech.de>, Sandy Huang <hjc@rock-chips.com>,
- Andy Yan <andy.yan@rock-chips.com>,
- Yubing Zhang <yubing.zhang@rock-chips.com>,
- Frank Wang <frank.wang@rock-chips.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Amit Sunil Dhamne <amitsd@google.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Dragan Simic <dsimic@manjaro.org>, Johan Jonker <jbx6244@gmail.com>,
- Diederik de Haas <didi.debian@cknow.org>,
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
- Peter Robinson <pbrobinson@gmail.com>, linux-usb@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-phy@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, dri-devel@lists.freedesktop.org
-References: <20251016022741.91-1-kernel@airkyi.com>
- <20251016022741.91-2-kernel@airkyi.com> <aPYImGmesrZWwyqh@kuha.fi.intel.com>
+Subject: Re: [PATCH 2/3] dt-bindings: dma: snps,dw-axi-dmac: Add iommu
+ property
+To: Khairul Anuar Romli <khairul.anuar.romli@altera.com>,
+ Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>, Vinod Koul
+ <vkoul@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>,
+ "open list:DMA GENERIC OFFLOAD ENGINE SUBSYSTEM"
+ <dmaengine@vger.kernel.org>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>,
+ Miquel Raynal <miquel.raynal@bootlin.com>,
+ Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
+ Niravkumar L Rabara <niravkumar.l.rabara@intel.com>,
+ "open list:CADENCE NAND DRIVER" <linux-mtd@lists.infradead.org>,
+ Dinh Nguyen <dinguyen@kernel.org>,
+ Adrian Ng Ho Yin <adrianhoyin.ng@altera.com>
+References: <cover.1760486497.git.khairul.anuar.romli@altera.com>
+ <b9bcc7542afae659d01553c5559e28e4f01966b1.1760486497.git.khairul.anuar.romli@altera.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
-In-Reply-To: <aPYImGmesrZWwyqh@kuha.fi.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <b9bcc7542afae659d01553c5559e28e4f01966b1.1760486497.git.khairul.anuar.romli@altera.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-HM-Tid: 0a9a014dd00203abkunm40e5dafaa0fcfb
-X-HM-MType: 1
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQxlKGVZPGB1KQx1CSU5CSUJWFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSEpOTE
-	9VSktLVUpCS0tZBg++
-DKIM-Signature: a=rsa-sha256;
-	b=dXqj5NkZfi6RdQnKgqMUg8BCh/n152sPRHim3KgJLTuoqkgUqNXBIJ1AlymydVKUpz8pF6HwyNm2AetRmBbh9s5l+IGGlsVFCOmPNAyFWUBGqpTYSkwmiZ3vxoKGCHQdHSj3aXmc2X4h5qhyffGPX+Ek0rtr7mj99qONbKoltJ8=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
-	bh=PW2Gb3KgS1lxfff0TLl++nMBLOL4Uug61XDZnqG+onc=;
-	h=date:mime-version:subject:message-id:from;
 
-Hi Heikki,
+On 15/10/2025 02:13, Khairul Anuar Romli wrote:
+> Agilex5 integrates an ARM SMMU v3 (System Memory Management Unit) with
+> dedicated Translation Buffer Units (TBUs) assigned to various peripherals,
+> including the Synopsys DesignWare AXI DMA controller.
+> 
+> Each TBU handles address translation for its associated device by mapping
+> stream IDs to memory access permissions and virtual-to-physical address
+> mappings via the SMMU core.
+> 
+> The DesignWare AXI DMAC instances on Agilex5 are connected to their
+> respective TBUs. These TBUs forward DMA transactions from the controller
+> through the SMMU, enabling IOMMU-based features such as:
+> - Address translation for DMA operations
+> - Isolation and protection of memory regions accessed by the DMA controller
+> - Support for secure and virtualized environments through enforced access
+>   control
+> 
+> To support this configuration, the `iommus` property must be added to the
+> binding schema for `snps,dw-axi-dmac`. This allows the device tree to
+> associate each DMA controller with the correct SMMU stream ID, enabling
+> the Linux IOMMU framework to configure translation contexts at runtime.
+> 
+> This change documents the IOMMU support for the DMA controller on Agilex5
+> and allows proper integration with the SMMUv3 hardware.
+> 
+> Signed-off-by: Adrian Ng Ho Yin <adrianhoyin.ng@altera.com>
+> Signed-off-by: Khairul Anuar Romli <khairul.anuar.romli@altera.com>
+> ---
+> Changes in v3:
+> 	- Refined commit messages with detailed hardware descriptions.
+> 	- Remove redundant commit message and add hardware use for iommu.
+> Changes in v2:
+>         - Updated the commit message to clarify the need for the changes
+> 	  and the hardware used of this changes.
+> ---
+>  Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml | 3 +++
+>  1 file changed, 3 insertions(+)
 
-On 10/20/2025 6:02 PM, Heikki Krogerus wrote:
-> On Thu, Oct 16, 2025 at 10:27:34AM +0800, Chaoyi Chen wrote:
->> From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
->>
->> Add default DRM AUX HPD bridge device when register DisplayPort
->> altmode. That makes it redundant for each Type-C driver to implement
->> a similar registration process in embedded scenarios.
->>
->> Signed-off-by: Chaoyi Chen <chaoyi.chen@rock-chips.com>
->> ---
->>
->> Changes in v6:
->> - Fix depend in Kconfig.
->>
->> Changes in v5:
->> - Remove the calls related to `drm_aux_hpd_bridge_notify()`.
->> - Place the helper functions in the same compilation unit.
->> - Add more comments about parent device.
->>
->>   drivers/usb/typec/Kconfig         |  2 ++
->>   drivers/usb/typec/class.c         | 26 ++++++++++++++++++++++++++
->>   include/linux/usb/typec_altmode.h |  2 ++
->>   3 files changed, 30 insertions(+)
->>
->> diff --git a/drivers/usb/typec/Kconfig b/drivers/usb/typec/Kconfig
->> index 2f80c2792dbd..a6730fbb576b 100644
->> --- a/drivers/usb/typec/Kconfig
->> +++ b/drivers/usb/typec/Kconfig
->> @@ -2,6 +2,8 @@
->>   
->>   menuconfig TYPEC
->>   	tristate "USB Type-C Support"
->> +	depends on DRM || DRM=n
->> +	select DRM_AUX_HPD_BRIDGE if DRM_BRIDGE && OF
-> This is wrong. DRM should not dictate how this entire subsystem core
-> is configured. The dependency needs to be on the DRM bridge side.
->
-> You can for example use the bus notification there to see when a new
-> alternate mode is being registered, or use some other notification
-> mechanism.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Is it a good idea to implement notification functions like drivers/usb/core/notify.c in TCPM, and then let other subsystems (such as DRM) listen to these notifications?
-
-
->
-> thanks,
->
->>   	help
->>   	  USB Type-C Specification defines a cable and connector for USB where
->>   	  only one type of plug is supported on both ends, i.e. there will not
->> diff --git a/drivers/usb/typec/class.c b/drivers/usb/typec/class.c
->> index 67a533e35150..e9d7772d1a8f 100644
->> --- a/drivers/usb/typec/class.c
->> +++ b/drivers/usb/typec/class.c
->> @@ -8,14 +8,18 @@
->>   
->>   #include <linux/module.h>
->>   #include <linux/mutex.h>
->> +#include <linux/of.h>
->>   #include <linux/property.h>
->>   #include <linux/slab.h>
->>   #include <linux/string_choices.h>
->>   #include <linux/usb/pd_vdo.h>
->> +#include <linux/usb/typec_dp.h>
->>   #include <linux/usb/typec_mux.h>
->>   #include <linux/usb/typec_retimer.h>
->>   #include <linux/usb.h>
->>   
->> +#include <drm/bridge/aux-bridge.h>
->> +
->>   #include "bus.h"
->>   #include "class.h"
->>   #include "pd.h"
->> @@ -538,6 +542,21 @@ const struct device_type typec_altmode_dev_type = {
->>   	.release = typec_altmode_release,
->>   };
->>   
->> +static void dp_altmode_hpd_device_register(struct typec_altmode *alt)
->> +{
->> +	if (alt->svid != USB_TYPEC_DP_SID)
->> +		return;
->> +
->> +	/*
->> +	 * alt->dev.parent->parent : USB-C controller device
->> +	 * alt->dev.parent         : USB-C connector device
->> +	 */
->> +	alt->hpd_dev = drm_dp_hpd_bridge_register(alt->dev.parent->parent,
->> +						  to_of_node(alt->dev.parent->fwnode));
->> +	if (IS_ERR(alt->hpd_dev))
->> +		alt->hpd_dev = NULL;
->> +}
->> +
->>   static struct typec_altmode *
->>   typec_register_altmode(struct device *parent,
->>   		       const struct typec_altmode_desc *desc)
->> @@ -600,6 +619,13 @@ typec_register_altmode(struct device *parent,
->>   		return ERR_PTR(ret);
->>   	}
->>   
->> +	/*
->> +	 * It is too late to register the HPD device when the DisplayPort
->> +	 * altmode device becomes ready. If the current altmode is DP,
->> +	 * register a static HPD device.
->> +	 */
->> +	dp_altmode_hpd_device_register(&alt->adev);
->> +
->>   	return &alt->adev;
->>   }
->>   
->> diff --git a/include/linux/usb/typec_altmode.h b/include/linux/usb/typec_altmode.h
->> index b3c0866ea70f..acb0af1b9d5d 100644
->> --- a/include/linux/usb/typec_altmode.h
->> +++ b/include/linux/usb/typec_altmode.h
->> @@ -21,6 +21,7 @@ struct typec_altmode_ops;
->>    * @desc: Optional human readable description of the mode
->>    * @ops: Operations vector from the driver
->>    * @cable_ops: Cable operations vector from the driver.
->> + * @hpd_dev: HPD device for DisplayPort
->>    */
->>   struct typec_altmode {
->>   	struct device			dev;
->> @@ -32,6 +33,7 @@ struct typec_altmode {
->>   	char				*desc;
->>   	const struct typec_altmode_ops	*ops;
->>   	const struct typec_cable_ops	*cable_ops;
->> +	struct device			*hpd_dev;
->>   };
->>   
->>   #define to_typec_altmode(d) container_of(d, struct typec_altmode, dev)
->> -- 
->> 2.49.0
-
--- 
-Best,
-Chaoyi
-
+Best regards,
+Krzysztof
 
