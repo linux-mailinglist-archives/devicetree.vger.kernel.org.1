@@ -1,149 +1,134 @@
-Return-Path: <devicetree+bounces-228632-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228633-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84000BEFB03
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 09:36:36 +0200 (CEST)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id C4E64BEFB36
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 09:40:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 432CE4E98D2
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 07:36:34 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 49C55345B2A
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 07:40:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E42FB2DE6F3;
-	Mon, 20 Oct 2025 07:36:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AFA72DFA38;
+	Mon, 20 Oct 2025 07:40:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="drXT9rVh"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mW+UemnR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B5292DCC04
-	for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 07:36:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 618412DF6E3
+	for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 07:40:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760945788; cv=none; b=Vhkek8ojbD3IMVPuGE5oFRpu+mAqZDkYT3cE+QWNtR9REeDQDdksqu9uFSirkWJEjLffJUnR84h2tba99fS0z4NAOH8YT5VTnI99GZJgatARBf9QalcPAbhH/EJjikwev3m7PDN6cX1YBF5Xw4NFAsXbFFdbG0XiOvm771vz8xQ=
+	t=1760946025; cv=none; b=GzOquvSIYUyFSogWdH/nXqzDnntdNGqeotuKhuOWbdyP/u7bH3afH72bH6izmyYjcFfsv7AO23z1XpobYNzLHJWOys+Q1p98R6Es56L2oLXwFNEA6F0F3RiLxm4m16A0mdJal4L8PbovQNyD9wGyCOyK8NPjNXgNXEYdAEzi94o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760945788; c=relaxed/simple;
-	bh=Qy1G+EoRAXMHmUHIgMwmRFAQ0JRvR1cM9i4cWeDZdqE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fHBt/ORopL4E+wwU3Hyk9yu8BfIzYaYT75RMtH9QwJsSrmjubBs8BGgUNKwvu8BkOE7f7MEdG5OuYDPSqG4/AFjg/OKsEGMROkh26UYJh4wuz91yH+gZZJdY6XfnkD6WMHIccwxriWidWgffEfJyb5wY0KlDCCq5bWi1kjw3QUM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=drXT9rVh; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59JMaucZ015332
-	for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 07:36:25 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	N054C2w59vHr48/aMRyFcCjv0bDt+WkljDcX19Q73Nw=; b=drXT9rVhle0ylq11
-	xwdFLr8UXRZII2v9blwBsUMCSbzPOjniZ5Szn0Gu3hgUwXPjw1WE1ZlK2Vgz0LJh
-	T0GdJiPRVEuYF6MpliZ3Dy0ePaXIFtn3UJDHbxJAN5vF46SgqE9K1/gxnWJE7Upo
-	qMtsYCO8Sw6x+vxSSgNW0u5QC3bMcc+h9qzmqt2C6UGfh6KXt8tSx4DejUABHXLq
-	fSr4frdouj3b6keRCY99PwgHVb8h+T3hjqSLtY9Y7VbtjedgtqSPcmm/WeGyBszp
-	Cpzrp7feKUjD6ClT+sqDv0viKHnHxfFrsRSEGFiTatbkvGmQC+0YZmGVspjkyMvi
-	N0kiMw==
-Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49v343uycd-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 07:36:25 +0000 (GMT)
-Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-886eaf88e01so183700485a.1
-        for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 00:36:25 -0700 (PDT)
+	s=arc-20240116; t=1760946025; c=relaxed/simple;
+	bh=0wMIPfwxIFmgU2DtKGuEKOz6gPwOombg7G5RLq4Dz+g=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=aiHfnNlWrnhSRE8v1O4SxboW3eFwa229agqyI27IwLHImDvlKnr3vsztehd7fY5CsBWk2C1juEOUBIqZiGm76qy9Tvy/y+b/gZiqEsIe5+u2BCUyoCsKbSc6unaiacXGbe5FLTFmcn5Sxyd4q+3+3moSaZZButpaGsrkBg4vDMM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=mW+UemnR; arc=none smtp.client-ip=209.85.208.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-63c4b41b38cso4398565a12.3
+        for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 00:40:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1760946021; x=1761550821; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=0wMIPfwxIFmgU2DtKGuEKOz6gPwOombg7G5RLq4Dz+g=;
+        b=mW+UemnRCMxYTzmZpUPVdmLtIRd5googovLz4hmOzkrS3Fy3UIPO8jpO8kcKWsMIKt
+         OYBRHDK/bnIyUAHl0hVb9wQOZ5ZP5at4jwa1rnx5Mm1TNSH692Ds8zj1TvnuGxVSf3HH
+         alZYtZmNd3V7H2lyU2VqwJiStITFJotbsnwqEcJhWtZgPbRVJ/JwXLWbzZyMPe6w+s7e
+         FpDTUL6GM2/ZzxAj0wc+6o+apPZqREieC7dnBEGYt0CyoIOQbN9pSr29Mb8B4y/jJMuo
+         wMRl/vhbe7hrVi5rtlqKQWsfZPEIL5E9uKwqRAo2V+m2luupbkMirt30kwOFF/370uPi
+         U5Cw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760945784; x=1761550584;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=N054C2w59vHr48/aMRyFcCjv0bDt+WkljDcX19Q73Nw=;
-        b=egHYrBHGTN3UX7BusKZRJxrF7MLJgrYWcRkEVUgbYmgQtiz95kPd2zfQR65Sht6G/D
-         9ZD1om5Giupj5aXepcqW4YoEmN5SdyApXrmled4qLwV48Pb/YZxnY6LB1QzkonwEAtQ+
-         pTRbTsrhMMR5+Ii0nF9WAAVw4iVGkXiL3AtspsbQMHXXgFpLiVxiXOYo02Iykm2SeY69
-         dbh3ZGrQKvmK5UkQHfBs+S4xDrjKAb6WWTTZMCdw0kx+/kgnjvUW0dTykpF75YEpkIEe
-         /nRrFzV7CGglxGviZe/cTWfGHl0mjmXU4ZvdSzGClkQiaS8NGpef9i1jCss9cjLCTGNV
-         FykA==
-X-Forwarded-Encrypted: i=1; AJvYcCUjMTgTGNIVv3UdL73d7HsLnW1F1IjfY7e7DA2HQni+QNLZ23kN0fjeWpSMmvEtAVxwu0kM42PjaSnZ@vger.kernel.org
-X-Gm-Message-State: AOJu0YxSBeQJquuAeBvsVV7kwcKLz0Ur1Dl0WPqL02mwVvylGZksoHkT
-	BR69yTEMLnJb4Qtov+/vC5Gl/0lHGjtFJf9nJa9tLyx7Dk77OIW+CmK0mHjRKdRNdjKdsK+UGFa
-	lbwKB3JuBxJ/1KAg45mUVdKWDKiBJ0vxEiHgHDHTCrXcku1rBVzaDhJ52YrmWm8Ey
-X-Gm-Gg: ASbGncvIF0I0WMH1h34MuILJedvCCpmy1fGqQfaM605xZPAIml230tnFlRiaIxORRRn
-	IJVqdYHrA8EXuzTOvKqs4mBEPny6ogJEG22qoZ2RqHzA/vYhEAg0QqrdfjOYy52lExyobm2lU5y
-	5Yl3wAa9fOXEXXcvDfSOyFOPc1byfAqkPH4D+uhWv5lrTghbwUvYYs93O/xYgMVdMiqvKeeLyoM
-	8nm3VcqRERJSZYrPTWRGEySVpkhr0rKj6cjz6bczEshrt3HNghpllpu1GK6IES8U/Fnu8o2/czA
-	3awO3l5b8eYBpAO78s90VoUB3zUhFeHMc4ninswPJoaJ/EOuQbxolLwYmaTAq9GOw4EYTYJt6dW
-	eVOZGPD/JyEHmskEyK1OAzOvpz+exqTru+orcQG29B9q19nd4IoUkgXKO
-X-Received: by 2002:a05:622a:189e:b0:4d7:e0ed:421f with SMTP id d75a77b69052e-4e89d207c42mr118106661cf.3.1760945783859;
-        Mon, 20 Oct 2025 00:36:23 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IG9uBljlSH/Wv6NYpLzdajo1XNL7fsX3OsNCz/tXB8dlR9uxsqAlRBW0Renn1fwMMuIYevFBA==
-X-Received: by 2002:a05:622a:189e:b0:4d7:e0ed:421f with SMTP id d75a77b69052e-4e89d207c42mr118106521cf.3.1760945783434;
-        Mon, 20 Oct 2025 00:36:23 -0700 (PDT)
-Received: from [192.168.119.202] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b65eb526464sm705231766b.64.2025.10.20.00.36.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Oct 2025 00:36:22 -0700 (PDT)
-Message-ID: <f725dff2-df3f-440e-bf26-6f828bf0486f@oss.qualcomm.com>
-Date: Mon, 20 Oct 2025 09:36:20 +0200
+        d=1e100.net; s=20230601; t=1760946021; x=1761550821;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=0wMIPfwxIFmgU2DtKGuEKOz6gPwOombg7G5RLq4Dz+g=;
+        b=JP4fglr+zuIWydVpl4MpJXHuq1m3+8piVc3JJZcr1mM5NRwEnP0wxOhXrUeUKD/yx1
+         5w6P0FZXE1sEVkXDg7t1iunR0/tL+xn5A2+gYayPiKFotG204enedOyQeSU7NzL5QqqC
+         kX9owJXtayksEwbq2zCX4LTEE1Rl84yZoNOHOk2rsXAQ5rjsqVIgDaDocU4mzLmugwKU
+         oLVgOCYBdvxTX4Bs4ZjoqN7VTd+ylUIh8pjU0PJy1wGQAvYERYcA/8MOB0nDh7stYpb5
+         yoiYoksWMC49ZmFzRoBBh5feCWRTV/oNe1eJz7QESChsd69WEi6R0Pt1g3L9MA5CRf5i
+         Y6AA==
+X-Forwarded-Encrypted: i=1; AJvYcCWFQy2i+T9nbHox71QW28/2X09XrsoRsAhDI6vSJ5pCt6YXidJJt7auL03kZ1cj0+5xC0qDF+P5b7iB@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz5VD7kvGNTs/3retpfjfoz8b/HA4p3riVi4GZfsclygeaWYf4Y
+	GeTLt8YXd5X50pXXgAO9dmV04yqY5usc7Yb3AirwZIyA4XcbZ2YsWhbjWCrz0bmpECb7eg8z6ai
+	xdpDuREF4+XQ7i05bVwTw4i8c2/xtaFKyUyB46qio6A==
+X-Gm-Gg: ASbGncsUHTY7ZbCm17PP0rzJQ/56dSyUwqzkwqOlU7r9+wrnVjySF3Y5GkNIQvcynba
+	ygl1VeySSQqrgD3mHWViqXLnpnyF6NqB9wVwZfou049w1/AwsR/HvwN+vCY9t3Jdhx/AtwA2o7x
+	blW3rGKJYwEakiY4VBrmbOrXbmo3pZIkkK190LPWmptD+m27dekGXjjyM0eB1HZaW8P+xSN5v3M
+	MeTEzDR/YRUpYmHwasT6oRGUFuqzwQAarh7AvcGpNWdDpbGVWO+Utf6Jvmyle5tInY/op6K2EMq
+	1N2dYRD21RJjpGKJ
+X-Google-Smtp-Source: AGHT+IEO+V8VAFMfi1d+Dpc8VhoXd1xOMdOzj7La5+gPgRBFBmz4EnWtgFm++KSbXHUMJdJsGohBl0OEYJE1bSAL0Zo=
+X-Received: by 2002:a17:907:a07:b0:b42:e3fb:c950 with SMTP id
+ a640c23a62f3a-b6474940089mr1185686466b.42.1760946019110; Mon, 20 Oct 2025
+ 00:40:19 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] arm64: dts: qcom: x1e80100: Fix compile warnings for
- USB HS controller
-To: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>, Abel Vesa <abel.vesa@linaro.org>,
-        Rajendra Nayak <quic_rjendra@quicinc.com>,
-        Sibi Sankar <sibi.sankar@oss.qualcomm.com>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20251019115630.2222720-1-krishna.kurapati@oss.qualcomm.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20251019115630.2222720-1-krishna.kurapati@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: NcUXLp4FR_HuNOvld1FNC1rDPl5StPMG
-X-Proofpoint-ORIG-GUID: NcUXLp4FR_HuNOvld1FNC1rDPl5StPMG
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDE4MDAyMyBTYWx0ZWRfX3qchI2+zJtQC
- sx5uyGvOS6C6s0cWgzY7BcpsNpq7vJDdSVnMn6eS6o1tmNL7DvLtDChskHJk+uKyHs3daDMKMXW
- aBBsNhjJGV4V5EBBFPzdwGg0NmbzNV+s+orzV7PlQgNF/DonzwR57EHk70dyF3IAvAcmV9Oghc0
- iqQtl8/gtNECjPPeuu17g9/lWCEhMdzlSAHhifgddy1nXJiry/ab6/xoTXM33qHRYIKoiPJu+ss
- NLsxFHDp/nZZ0nhnaCRApDUKzqoZrpMS+CSIelEhu3yJrKNcclNqsGe/Hey8sCCXS1H/hOtxEkP
- +YqcF4RSiVOlsjEFKgla1nF6oOVq1AzAUkBMuByxpYbaXhXskuSzW5JDZmyoCLRjsEBqLkRt3Z/
- L9yYlmCqCdv+z+t6LTv5FWwiPmAUqA==
-X-Authority-Analysis: v=2.4 cv=E/vAZKdl c=1 sm=1 tr=0 ts=68f5e679 cx=c_pps
- a=HLyN3IcIa5EE8TELMZ618Q==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=EUspDBNiAAAA:8 a=PrRowSUOeYNWhlAafI0A:9 a=NqO74GWdXPXpGKcKHaDJD/ajO6k=:19
- a=QEXdDO2ut3YA:10 a=bTQJ7kPSJx9SKPbeHEYW:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-10-20_02,2025-10-13_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 spamscore=0 priorityscore=1501 bulkscore=0 suspectscore=0
- lowpriorityscore=0 clxscore=1015 adultscore=0 phishscore=0 malwarescore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2510020000 definitions=main-2510180023
+References: <20251015-arm-psci-system_reset2-vendor-reboots-v16-0-b98aedaa23ee@oss.qualcomm.com>
+ <20251015-arm-psci-system_reset2-vendor-reboots-v16-5-b98aedaa23ee@oss.qualcomm.com>
+ <CACMJSetWthCcJo8v7EuUK-aDKhf5KTNG5WQQ9aTQu62B+E=DMA@mail.gmail.com> <8fb6e8e0-cdca-0bd5-d0fe-56b5f6d27a5c@oss.qualcomm.com>
+In-Reply-To: <8fb6e8e0-cdca-0bd5-d0fe-56b5f6d27a5c@oss.qualcomm.com>
+From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Date: Mon, 20 Oct 2025 09:40:08 +0200
+X-Gm-Features: AS18NWDQAFben5J2E63tcGMgXbcz7DeN5SPmzBXSPc44YmLC1GOGJsimgnGM4cs
+Message-ID: <CACMJSetTrze028iXmH3i=JguJy=aNOMcnkLhO1ewYNiusvVmgA@mail.gmail.com>
+Subject: Re: [PATCH v16 05/14] power: reset: reboot-mode: Expose sysfs for
+ registered reboot_modes
+To: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Sudeep Holla <sudeep.holla@arm.com>, Souvik Chakravarty <Souvik.Chakravarty@arm.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Andy Yan <andy.yan@rock-chips.com>, Mark Rutland <mark.rutland@arm.com>, 
+	Lorenzo Pieralisi <lpieralisi@kernel.org>, Arnd Bergmann <arnd@arndb.de>, 
+	Konrad Dybcio <konradybcio@kernel.org>, cros-qcom-dts-watchers@chromium.org, 
+	Vinod Koul <vkoul@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>, 
+	Will Deacon <will@kernel.org>, Florian Fainelli <florian.fainelli@broadcom.com>, 
+	John Stultz <john.stultz@linaro.org>, Matthias Brugger <matthias.bgg@gmail.com>, 
+	Krzysztof Kozlowski <krzk@kernel.org>, Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
+	Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>, Stephen Boyd <swboyd@chromium.org>, 
+	Andre Draszik <andre.draszik@linaro.org>, 
+	Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>, linux-pm@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org, 
+	Elliot Berman <quic_eberman@quicinc.com>, Srinivas Kandagatla <srini@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 
-On 10/19/25 1:56 PM, Krishna Kurapati wrote:
-> With W=1, the following error comes up:
-> 
-> Warning (graph_child_address): /soc@0/usb@a2f8800/usb@a200000/ports: graph node has single child node 'port@0', #address-cells/#size-cells are not necessary
-> 
-> This could be since the controller is only HS capable and only one port
-> node is added.
-> 
-> Fixes: 4af46b7bd66f ("arm64: dts: qcom: x1e80100: Add USB nodes")
-> Signed-off-by: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
-> ---
+On Fri, 17 Oct 2025 at 21:40, Shivendra Pratap
+<shivendra.pratap@oss.qualcomm.com> wrote:
+>
+> >
+> > If you're using devres here - at least make it obvious by adding the
+> > devm_ prefix to the function name and make it take an explicit struct
+> > device * parameter so that it's clear who owns the managed resource.
+> >
+>
+> sure. we can add devm_ prefix to the function name.
+> reboot->reboot_dev is an internal member of struct reboot_mode_driver *reboot.
+> The struct reboot_mode_driver *reboot is owned by the calling driver.
+> If we want to PASS reboot->reboot_dev to the devm_ prefixed function call, we
+> will need to kind of split create_reboot_mode_device into two calls - device_create
+> in a separate function and then call the devm_ prefix function where we add the devres_alloc.
+> Can you suggest a bit more on this?
+>
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Ah, ok I missed the broken logic here. Devres should only be used in
+devices already *attached* to a driver as all managed resources will
+get released on driver *detach*. What you have here may "work" by
+accident but that's not correct and is very fragile as soon as you
+have some non-standard behavior or error paths. Devres won't fly here,
+please just use regular allocation and free whatever you need in the
+corresponding release/free/whatever routine.
 
-Konrad
+Bart
 
