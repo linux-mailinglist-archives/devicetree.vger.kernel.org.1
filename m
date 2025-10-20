@@ -1,328 +1,197 @@
-Return-Path: <devicetree+bounces-228870-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228873-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96E0ABF1774
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 15:11:50 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C7A9CBF17C9
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 15:14:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4B70C1893346
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 13:12:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8BD513ADBE1
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 13:14:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D26C131691F;
-	Mon, 20 Oct 2025 13:11:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0CD82FB619;
+	Mon, 20 Oct 2025 13:14:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=phytec.de header.i=@phytec.de header.b="T5r84bSR"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="nWfpXYQ9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from OSPPR02CU001.outbound.protection.outlook.com (mail-norwayeastazon11023088.outbound.protection.outlook.com [40.107.159.88])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E7FD3128D9;
-	Mon, 20 Oct 2025 13:11:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.159.88
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760965899; cv=fail; b=RpqSNij15A4bvjx9P5qJto/m67MC++mmPmYd/a6yxpuqj0gflgDjHKqD0TL/OEcKjFieLfC58naeGRtVMqh6ZZ+MylKZtr8skngCOhSjCQs4dzvCj3VP/PtjUbZ4L/VfOZtrKdprXjoDxiPKpU00cfn8wYFj1wCERbqZrvxq3kM=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760965899; c=relaxed/simple;
-	bh=SP6DuasWaL6jthj9RsBGG21BvHk0LgILaxpzK4uEXbY=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=EeF8NRyI1lvKT55KHcvBM5f0QpkiSCGcm/JQu+ZyNULOy5dQbe2d6/8yiPyy11EQOfzbPHwq3wkEkOUunbVJBQHvqzT3PSmh+OJRG3kCTmzOpuMm0GBkEiLecrMb/28JBqld628b/bieJt2C+72L2lnuleFazJFGTrpnJUvqeL8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (2048-bit key) header.d=phytec.de header.i=@phytec.de header.b=T5r84bSR; arc=fail smtp.client-ip=40.107.159.88
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=phytec.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.de
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=waQOyxILTjMwCTCy/RC+u9YkNpFhEe3xj4xTPTR3gCPcDh/z0ukdHMW8IFd1bDxN74uzDmg0gsrwouKEPeIxWENv0U9/ZGfzgCl0j7BKhB+oXiMyBmURrAiRMz8U66ChcSoG0qKSv/dQ6kQ67y7MvtE7UtMa5iSYAqZAuVJ1+1FHEbP77LxB+OD/70Xz7UZENGjixqDKVdFg1/fbotHwwp568gJkVbtVWRXmu4mvAXdTvqipTX09L9VSVjzQgvVDMR44FLQcCQi5NOumIJnw9F9ysZ/vFXAJfRzbf7jKS4V+EmSj9kB+ip9lUrGOUxugblbtdzdwWrLMeqBAHlsnlg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=S1X3pU/vFnHWU1RY3pmRCVnK9ubBj3YmheXU7L2AKT4=;
- b=fxMb9FaLdyJTnO7f1t/a7S3Dyqtwg4ksaC9Xh6534cntmM7zw74TlI1bERIqQNbj4dBlXR4RIrRdDyFlFWfZjAh9DRR3mtjyHqkqM7QNjkkPzO2sj5Cby4STKHQiiZyxddr2BVhRLg6Y1Q+5Lu5hqnyW96qYdZWGaVD6PCc1gkcROz9qCvntrA1MSyjxntns9uBAgVcdcE6uuf6V+YISf/0NOfaMRs9Bk/MzkYyAxHdFj9JODfWgcFcmMmxaUjX8Tkb9Dnmku5SFusM5QKx1g0BAH0CusCkfmmXVaAF8K6ILc0TybrmPnU1mvZXux0a5KC4iGoSSnYBWsgISXMOpyA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=softfail (sender ip
- is 91.26.50.189) smtp.rcpttodomain=kernel.org smtp.mailfrom=phytec.de;
- dmarc=fail (p=quarantine sp=quarantine pct=100) action=quarantine
- header.from=phytec.de; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=phytec.de;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=S1X3pU/vFnHWU1RY3pmRCVnK9ubBj3YmheXU7L2AKT4=;
- b=T5r84bSRMRm+w1nq6Ia9bB2Sjp73ECOYDJED63mWpBHfKzZfzeO2R+kMLKSG+29NXsRo9f5yxuzwdFkaLySJ1Nwmps+oBG2Ct/L8WElBBjU5DGd3+ELrOt0yqnuQuE1OYkdQXX8qczx+uBMzMjcw39ICwnBmosyJMt0qLUgTw6HJm3v/ArnXMDOiXZnvy/Xug9Q0U+UcvnGPLofBG+82sx39MVPCoGQZwIIa+smdYq4ZTTQgbUqUKG23bCChC2CfmM2jFhhGd4w0kWmsga1QbNmObGTo4j4Cgnf8b7nGqKurXpSc7vZUwfu2TH4kt/EqinTv2gtDfVxZrCvV3860Wg==
-Received: from DU7P195CA0019.EURP195.PROD.OUTLOOK.COM (2603:10a6:10:54d::32)
- by DU4P195MB3233.EURP195.PROD.OUTLOOK.COM (2603:10a6:10:61c::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9228.17; Mon, 20 Oct
- 2025 13:11:34 +0000
-Received: from DU6PEPF0000A7E2.eurprd02.prod.outlook.com
- (2603:10a6:10:54d:cafe::68) by DU7P195CA0019.outlook.office365.com
- (2603:10a6:10:54d::32) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9228.17 via Frontend Transport; Mon,
- 20 Oct 2025 13:11:34 +0000
-X-MS-Exchange-Authentication-Results: spf=softfail (sender IP is 91.26.50.189)
- smtp.mailfrom=phytec.de; dkim=none (message not signed)
- header.d=none;dmarc=fail action=quarantine header.from=phytec.de;
-Received-SPF: SoftFail (protection.outlook.com: domain of transitioning
- phytec.de discourages use of 91.26.50.189 as permitted sender)
-Received: from Postix.phytec.de (91.26.50.189) by
- DU6PEPF0000A7E2.mail.protection.outlook.com (10.167.8.42) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9253.7 via Frontend Transport; Mon, 20 Oct 2025 13:11:34 +0000
-Received: from [127.0.1.1] (172.25.39.168) by Postix.phytec.de (172.25.0.11)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.29; Mon, 20 Oct
- 2025 15:11:33 +0200
-From: Yannic Moog <y.moog@phytec.de>
-Date: Mon, 20 Oct 2025 15:11:25 +0200
-Subject: [PATCH 4/4] arm64: dts: imx8mp-phyboard-pollux: add PEB-WLBT-05
- expansion board
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 361E22E8B62
+	for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 13:14:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1760966062; cv=none; b=fTBhWQ0fYOtayw8nF711gF5jh7psdP7UxJEQ3z7tdsigNGBcdzK8b935nkRRaDcbkOgYrKA1axSa9zYz9wz0VSnC83IJFjrgGDCOtsXe4PbjBcci5iiUkctIiUgRHFQOBeGT97ZGzKJd7Sp/dxts+UwjPSC8RMwOAgPLuSNv43k=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1760966062; c=relaxed/simple;
+	bh=K17iZbxErCB7RRdwUDGEfb/50uA3NjulFIzMFcfuHvs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=quMj5RfxK5epHc3Mj5GT0JzDwNu+G3vUeGXmpWM4YWVG0X3jDXdSb+YCo7v9E5DLMWs+xe0E2qsunuCdZ+nnbfaQ706QIvOJuvVpje924r/5WrWXjjHQ2TqY+zKJDS+0ftBiFe3toC4BT/l91wpCwGKyXvKZBfaFjcLjdwPEJmo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=nWfpXYQ9; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59KBePND001287
+	for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 13:14:20 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=ty6BZbhHGNlaZVw/wohTLndH
+	gnCUHm0DYc4+byBpo/M=; b=nWfpXYQ9xcmouPHG1EZo6TIw8VoYILolk9C7y+fw
+	WYOIajmfzo07W01QXctM64WaJQOWCnpi4+0n8V2t6V3f49GxZViKtkRq06BIcXtJ
+	eML9Z88ORwIN5wo1Zxv4zhUb6YrUMExhHS/F8YhllkWq/qh8HBqSdLGBiS4e5qTX
+	5q7M0VUepKsVowEnTmGv0PgegMSpXkw1syvjVYkwb3Y4MYYIXxm5pZmuqWHcc8d2
+	fHbNBA5MwwrSpvwvu7fAx2Tz8QNm5JUFAuSJsR5N/K0WhZeZ5DRJ0uQxq16dSKJp
+	9EAzYvZi85WnnsxbL98L5VQxZghYrXFm1vik1vzJTbpxRA==
+Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49w08w2feb-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 13:14:20 +0000 (GMT)
+Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-86df46fa013so1956243085a.2
+        for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 06:14:20 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1760966059; x=1761570859;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ty6BZbhHGNlaZVw/wohTLndHgnCUHm0DYc4+byBpo/M=;
+        b=UC6otpjQjiajeO8wH1F3rwU3b2JVwrNvtY840yRpQbLj58ywB58ip+b/EGAeJjlxRQ
+         Hd5FK597pzUnZWfEW9J98Z4ty5Z0XlQuGv4k/In7OzuNBMbvbK+4NnyXMZrRyP6RI0vb
+         asecMnhVm7+hSaqHztnfkai8lmNRutSpVUU3qNlgCMNHiGV1isRA0IukBwWOENXiABve
+         TLr9rZo8xVCgmWUt4trHUC5aJvn46lOkWcSQ01RC2QPBrqUnvwG8E56n7TBNUHKrOKEe
+         AKV2luBU6xxjYr4Kp03TQDMyvcXQUJHyMU4r2dvtdM4aUkeUCyHe0cvQ+rvcSazFKLWV
+         oRqQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV1i2Po4KEgW8eHZH1rrRuZ/CkatVJ8ai1afuZ19H+Z7m5kx3IrCPScmZSDIapn0X140nhrRAbaFWVt@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzjsi7r38AEZuCTyFDelV8A2zCIee2/RpSwS8Oo94G6OP+b61Gl
+	8OFZ/wstEodp6loQozGj93QQXJfSfJLTfrnkGmv8xLNT+2ZwLJPi3WyYmBgDtlXJq/Uvvuk9Ll/
+	dssFcXvaBSwQ5/qEkFrYzpC6TJg1BHQi/doUGn8dfKPmsxJ3btRy7o+L9pJY+ZLyz
+X-Gm-Gg: ASbGncvo5+fdt18w4vusG8iodMylplXiN/pq3Z0JpFJkqdomGSCVzibDriGKiI/3aul
+	tL+1Mx+hifxW14C7h7pfkhbMz+mU6lOBxvrPQyyqWER04jByhcv9UQu8cialWS98rI3Lc0Nt/SW
+	AzW92NlwMpMpAU7INyAANAKX4hcRA3WMbkLgASBiRDC5cv2Nu32y/8JiSkfyFQQ/3Fsvp2O4KYX
+	8QpLvGtaKEacXwMtvjQpr2/z0yRONQSarVMW783bJ8rgewu40I4inSFR5qqkOScXFWjtXXgMwhX
+	BeCAqFlJ0t+RU8Az7bBkc4MOYmQY7BSS2nOquXWYt5zqEqT75vqcSY3fs5AjWe3FVG62pGH6Ihu
+	YT6XCI4uTZDZ7roP3g+qCXet4fErWA9hx6c5Pj1ZRStXtXSu2ix0oqvmACajRiw2olBX75YhQKf
+	U7yM6Ni+gNiTM=
+X-Received: by 2002:ac8:5d56:0:b0:4e8:9a7d:90eb with SMTP id d75a77b69052e-4e8c1ab2c39mr47384501cf.38.1760966059127;
+        Mon, 20 Oct 2025 06:14:19 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IE22wgdqny0U3010hR/HovVN2cGDutNcfkMuumHOnhrsL6Tx1eruFqbL+4HBBUX3LaGh5Rxtg==
+X-Received: by 2002:ac8:5d56:0:b0:4e8:9a7d:90eb with SMTP id d75a77b69052e-4e8c1ab2c39mr47383991cf.38.1760966058521;
+        Mon, 20 Oct 2025 06:14:18 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-377a91b7086sm21858881fa.12.2025.10.20.06.14.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 20 Oct 2025 06:14:17 -0700 (PDT)
+Date: Mon, 20 Oct 2025 16:14:15 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Nickolay Goppen <setotau@mainlining.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, linux@mainlining.org
+Subject: Re: [PATCH 1/2] arm64: dts: qcom: sdm630/660: Add CDSP-related nodes
+Message-ID: <5hbc24lihvau7s2opzcxxgxkzugmbqmdtqwy23m45j4po23lnh@jyjlbgfjaddw>
+References: <20251019-qcom-sdm660-cdsp-adsp-dts-v1-0-9ab5f2865a6e@mainlining.org>
+ <20251019-qcom-sdm660-cdsp-adsp-dts-v1-1-9ab5f2865a6e@mainlining.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20251020-imx8mp-dts-additions-v1-4-ea9ac5652b8b@phytec.de>
-References: <20251020-imx8mp-dts-additions-v1-0-ea9ac5652b8b@phytec.de>
-In-Reply-To: <20251020-imx8mp-dts-additions-v1-0-ea9ac5652b8b@phytec.de>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, "Sascha
- Hauer" <s.hauer@pengutronix.de>, Pengutronix Kernel Team
-	<kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>
-CC: <upstream@lists.phytec.de>, <devicetree@vger.kernel.org>,
-	<imx@lists.linux.dev>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, Yannic Moog <y.moog@phytec.de>
-X-Mailer: b4 0.14.2
-X-ClientProxiedBy: Postix.phytec.de (172.25.0.11) To Postix.phytec.de
- (172.25.0.11)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DU6PEPF0000A7E2:EE_|DU4P195MB3233:EE_
-X-MS-Office365-Filtering-Correlation-Id: a535ab50-424c-4f8c-d267-08de0fda3191
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|82310400026|36860700013|7416014|376014;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?czYzV0hXSi9kRk96ZkRHODNLa0dFZnVxRVJQd0ZIYll5RGtLOVA3ZzRwUGlx?=
- =?utf-8?B?czlnaVA1TDdmM2xqSUl6c290ZG14QWJmWnREK2wyZkFERGtrR24vVUhLb0FH?=
- =?utf-8?B?cG1nN2puL1ZNbTBEcHViRTI2NTVlN0dRYzQxSFl6alNDY0hMcFlLQlkySW9h?=
- =?utf-8?B?U0NhY2duTnUwN0tiaFlUYU05amlKZ1I3elkvRHFrMGVybjkxclcveFQyYXJH?=
- =?utf-8?B?akdQdkNkKzBIRFJoTm1DTll1Slcwdjd0MkxaYUgxaERWNFlUcnloN3psN2Fv?=
- =?utf-8?B?WEZKa2dMamNxaUszOEFDdjBVWDFzOUdrZEhwUzM2N2YyZmk4OGJxc1hzTHFT?=
- =?utf-8?B?d2Yzc2hhVllqejJJMHhHK0ZLRDN3am52aWJSUmpsSGhUTTB4eTlYOTh4ZGJE?=
- =?utf-8?B?QXJTUTliZldTR3oxUjkybWtWQmlJVi9qMUhSTENqREVDVDg2eWxSSjhVSTR2?=
- =?utf-8?B?Uit5SlBOa2FUNzh1OEdsVU5rd3pzL3JibnhqV0pjMTVINWt5Q1dUZmp1WWR6?=
- =?utf-8?B?eUdjVkp5ZVMxWERRcGFma2VNTXcveDR5NjJrR3JQSit6QXJOSkcvMTlmSXRI?=
- =?utf-8?B?TG5BSXJQS1BzRDRxMEtYMGJCbHZhbE1LaVdGZHFlOHVyU2NOT0E4NUxCenhh?=
- =?utf-8?B?NXdMMGJwWm9LQ29SR1k0VXlsR0lJV0drK0VsNjEvTjZGOFlkWnZPSy94SHYy?=
- =?utf-8?B?aGpWOUlJNCtDa0YxQ3EyYU9URzUwa0VodTk4cXA1VzJCSWtBMlY1TFg3eGd0?=
- =?utf-8?B?RnFpazBUeXpOZTlEOUNwa2s4cTFXOHNHZUJrNUhwZUpVOHJUTkxQQk9ueG43?=
- =?utf-8?B?TVBhUjNQNVlvR2w5Z1B1dUhlNjhIazV2MC8zeWI2TTMwQVhCT1JMYktLb0Nz?=
- =?utf-8?B?M0xKKzFRUkQvTTJibG5KRERpNFdBaEtrRE5ES1RkUHJHTkNHQUFxRGlNMjR5?=
- =?utf-8?B?YXdwbktzVkNEcHExOTZvQjZVV3VPRU54WUs4S3dnSmQ0eHNMdy9KNHhNU04y?=
- =?utf-8?B?c0VwV3NIUVFBazJiSEM5cG9PQ0ZFSG5Nd1pMeEJBKzhaVnJ6dFpJaWNLNHFu?=
- =?utf-8?B?eWdOTVN1ckdhUXBkMjNNZmVwL1B1UDk4QWRtTTNWVThOZEJZMHUvNzRRdkFX?=
- =?utf-8?B?WWU3dkl6RHNHcVErQmdGa0I1RjZhYUZ4bi8rdWFZcVRCRE9zWVh6M0hSbERQ?=
- =?utf-8?B?SnNXRzlLbm03R3pxOEU2cEZUTDJia00rSHhxYS9kUExrWVlocFp2K2hJd1Mr?=
- =?utf-8?B?ZFZzbDBPc2s2R05WZVhyTFVSOThIeGZqOFlUZUxYUmRBdXh0Z3JCbnZhT25V?=
- =?utf-8?B?TkRpUU5GM2lFQXNIZExUbXlaeHFnM2FsM3Y5eFhwZ0o3UG9HWktuK2pJTUZQ?=
- =?utf-8?B?MS9NbFJJRWlZR2RnYTgrakFHTldvQ045bUJqckJqMmVWODZBN0FtYVZyMWRl?=
- =?utf-8?B?Zi85QkVVVFNGOWNuM256ZHZGMTJMNnNTWlJyQ09FRWM0enpYeUt2bERkdW9k?=
- =?utf-8?B?b0dCTkpsZkRuck5vUmNNMXRtM1J4TkVFSmxXZ3RZQWh6WW13YTJSWUsrakxB?=
- =?utf-8?B?aldNTTUzQWNrZVFjc0h1NTZJOUJMQTR2MXUrV2hPdStSOW5LcWtZaXhUOW9t?=
- =?utf-8?B?ZlgzQlhRR3dvU045em42UWwwQnBxQ3FReWJNSkNVMHNZSy9pekZZeGZiZ0dG?=
- =?utf-8?B?enBjdWhnQTI2aXJEZzJ4SklDdndBNjBDYXdUVWh4Z3VyNDdLcFNXa3FGQk43?=
- =?utf-8?B?QzRJVUJkN25sZkxzTjlxVDJzWVB2M0Q5YmdJZDFiUGRiZW5hbUJza2ZFcVdS?=
- =?utf-8?B?bEVBWWxuM1UvbGtwcS9GU1Nzb2lxbE94NFN3MlJSL1lTSllZK2toMm9WSlpC?=
- =?utf-8?B?TTlhMjdkcXVHQit3WlJYSkFCb2J3RGJJNml5N3k0R2E3WWxVdk02TmhldFda?=
- =?utf-8?B?NTRpZ3gxSlJnb2tnQ0JTU1B4ZVRkVTBHOEwrVWZ6Rm9vTDN3bG9KNFNzQ2lr?=
- =?utf-8?B?V0cwKzlDZm1jdGFMaDhkM0pWQlh4cU5CVmZLT3MwUVE3Lzcya3BDczQzd0Vq?=
- =?utf-8?B?eGFmQU5RQW8xb2Z5M2NtOG56VHhtdDlzNVo3V0kwN1FLUTRuNnJhSFVTUloz?=
- =?utf-8?Q?mMrg=3D?=
-X-Forefront-Antispam-Report:
-	CIP:91.26.50.189;CTRY:DE;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:Postix.phytec.de;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(82310400026)(36860700013)(7416014)(376014);DIR:OUT;SFP:1102;
-X-OriginatorOrg: phytec.de
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Oct 2025 13:11:34.1419
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: a535ab50-424c-4f8c-d267-08de0fda3191
-X-MS-Exchange-CrossTenant-Id: e609157c-80e2-446d-9be3-9c99c2399d29
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e609157c-80e2-446d-9be3-9c99c2399d29;Ip=[91.26.50.189];Helo=[Postix.phytec.de]
-X-MS-Exchange-CrossTenant-AuthSource:
-	DU6PEPF0000A7E2.eurprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU4P195MB3233
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251019-qcom-sdm660-cdsp-adsp-dts-v1-1-9ab5f2865a6e@mainlining.org>
+X-Proofpoint-ORIG-GUID: XSVCEuPbqvAAjwj2BgBmmsaGjpYnnedO
+X-Proofpoint-GUID: XSVCEuPbqvAAjwj2BgBmmsaGjpYnnedO
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDE5MDA5MCBTYWx0ZWRfX2uEF8FlAJRzw
+ 5xmxLRqSt5sagNkllaKvWoVzIdGVHCvQdbAojVhv127MPKUGge1rv1UeQcCI71M6wL+308AbjJR
+ 0LT4Punhn8WkkORzKLItheJlWca6OYEMxgWOI58aQMn5oV9GOsSy3P7/aQxG4VBl7PeREP+SLC1
+ xBPc9UiRKIc9sYvFJ3j4LCbGCuQOJjwcQg+p4ECDjirFJvF77wazNcQnWcyKYZ9IbiVNVMpU5DQ
+ M5AydqtTYi99MfBnyWBaoCvD+y7fpPiMhf9sgM5ZIFwhcBpPxJyV/mkePKolxM/HPgoymZBoWtm
+ UVBrnGk0QRklti03ft1lZdyiFFcHsEcY5ZqObhNijD/1bF+yctB6N37UECtfe2x5Cg1QaKj+ZSE
+ yrD8wUAu3DZr+n1Qyv2AnCG/GZBfyg==
+X-Authority-Analysis: v=2.4 cv=V5NwEOni c=1 sm=1 tr=0 ts=68f635ac cx=c_pps
+ a=HLyN3IcIa5EE8TELMZ618Q==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=x6icFKpwvdMA:10 a=VkNPw1HP01LnGYTKEx00:22 a=OuZLqq7tAAAA:8
+ a=GtE7y4fGcSms5GSDMiYA:9 a=CjuIK1q_8ugA:10 a=bTQJ7kPSJx9SKPbeHEYW:22
+ a=AKGiAy9iJ-JzxKVHQNES:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-10-20_04,2025-10-13_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 malwarescore=0 adultscore=0 priorityscore=1501 lowpriorityscore=0
+ spamscore=0 suspectscore=0 clxscore=1015 phishscore=0 impostorscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2510020000 definitions=main-2510190090
 
-PEB-WLBT-05 is an expansion board that provides WIFI and Bluetooth
-functionality. It features the Ezurio Sterling LWB module [1].
-Add missing regulator to baseboard dts.
+On Sun, Oct 19, 2025 at 07:27:06PM +0300, Nickolay Goppen wrote:
+> In order to enable CDSP support for SDM660 SoC:
+>  * add shared memory p2p nodes for CDSP
+>  * add CDSP-specific smmu node
+>  * add CDSP peripheral image loader node
+> 
+> Memory region for CDSP in SDM660 occupies the same spot as
+> TZ buffer mem defined in sdm630.dtsi (which does not have CDSP).
+> In sdm660.dtsi replace buffer_mem inherited from SDM630 with
+> cdsp_region, which is also larger in size.
+> 
+> SDM636 also doesn't have CDSP, so remove inherited from sdm660.dtsi
+> related nodes and add buffer_mem back.
+> 
+> Signed-off-by: Nickolay Goppen <setotau@mainlining.org>
+> ---
+>  arch/arm64/boot/dts/qcom/sdm630.dtsi |   2 +-
+>  arch/arm64/boot/dts/qcom/sdm636.dtsi |  14 ++++
+>  arch/arm64/boot/dts/qcom/sdm660.dtsi | 152 +++++++++++++++++++++++++++++++++++
+>  3 files changed, 167 insertions(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sdm630.dtsi b/arch/arm64/boot/dts/qcom/sdm630.dtsi
+> index 8b1a45a4e56e..a6a1933229b9 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm630.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sdm630.dtsi
+> @@ -563,7 +563,7 @@ modem_smp2p_in: slave-kernel {
+>  		};
+>  	};
+>  
+> -	soc@0 {
+> +	soc: soc@0 {
+>  		#address-cells = <1>;
+>  		#size-cells = <1>;
+>  		ranges = <0 0 0 0xffffffff>;
+> diff --git a/arch/arm64/boot/dts/qcom/sdm636.dtsi b/arch/arm64/boot/dts/qcom/sdm636.dtsi
+> index ae15d81fa3f9..41e4e97f7747 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm636.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sdm636.dtsi
+> @@ -16,6 +16,20 @@
+>   * be addressed when the aforementioned
+>   * peripherals will be enabled upstream.
+>   */
+> +/delete-node/ &cdsp_pil;
+> +/delete-node/ &cdsp_smmu;
+> +/delete-node/ &cdsp_region;
+> +
+> +/ {
+> +	/delete-node/ smp2p-cdsp;
+> +
+> +	reserved-memory {
+> +		buffer_mem: tzbuffer@94a00000 {
+> +			reg = <0x00 0x94a00000 0x00 0x100000>;
+> +			no-map;
+> +		};
+> +	};
+> +};
 
-[1] https://www.ezurio.com/wireless-modules/wifi-modules-bluetooth/sterling-lwb-24-ghz-wifi-4-bt-51-module
+This probably means that we need to invert things and make SDM636
+inherit SDM630 and SDM660 inherit SDM636. Would you mind doing that as a
+part of this patchset?
 
-Signed-off-by: Yannic Moog <y.moog@phytec.de>
----
- arch/arm64/boot/dts/freescale/Makefile             |   3 +
- .../imx8mp-phyboard-pollux-peb-wlbt-05.dtso        | 108 +++++++++++++++++++++
- .../dts/freescale/imx8mp-phyboard-pollux-rdk.dts   |   9 ++
- 3 files changed, 120 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index d77e6ab8e46fe71ae41087a3b65ca64cc50e2e76..606a25f3323dab51ddff7bab686e69a8d48610a3 100644
---- a/arch/arm64/boot/dts/freescale/Makefile
-+++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -237,12 +237,15 @@ imx8mp-phyboard-pollux-peb-av-10-ph128800t006-dtbs += imx8mp-phyboard-pollux-rdk
- imx8mp-phyboard-pollux-ph128800t006-dtbs += imx8mp-phyboard-pollux-rdk.dtb \
- 	imx8mp-phyboard-pollux-ph128800t006.dtbo
- imx8mp-phyboard-pollux-rdk-no-eth-dtbs += imx8mp-phyboard-pollux-rdk.dtb imx8mp-phycore-no-eth.dtbo
-+imx8mp-phyboard-pollux-wlbt-dtbs += imx8mp-phyboard-pollux-rdk.dtb \
-+	imx8mp-phyboard-pollux-peb-wlbt-05.dtbo
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-phyboard-pollux-etml1010g3dra.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-phyboard-pollux-peb-av-10.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-phyboard-pollux-peb-av-10-etml1010g3dra.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-phyboard-pollux-peb-av-10-ph128800t006.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-phyboard-pollux-ph128800t006.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-phyboard-pollux-rdk-no-eth.dtb
-+dtb-$(CONFIG_ARCH_MXC) += imx8mp-phyboard-pollux-wlbt.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-skov-basic.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-skov-revb-hdmi.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-skov-revb-lt6.dtb
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-peb-wlbt-05.dtso b/arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-peb-wlbt-05.dtso
-new file mode 100644
-index 0000000000000000000000000000000000000000..0e98f4d942716e57f5bc1567924460b618eb0930
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-peb-wlbt-05.dtso
-@@ -0,0 +1,108 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+/*
-+ * Copyright (C) 2025 PHYTEC Messtechnik GmbH
-+ */
-+
-+#include <dt-bindings/clock/imx8mp-clock.h>
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/interrupt-controller/irq.h>
-+#include "imx8mp-pinfunc.h"
-+
-+/dts-v1/;
-+/plugin/;
-+
-+&{/} {
-+	wlbt_clock: clock-32768 {
-+		compatible = "fixed-clock";
-+		clock-accuracy = <20000>;
-+		clock-frequency = <32768>;
-+		clock-output-names = "WIFIBT_SLOW_CLK";
-+		#clock-cells = <0>;
-+	};
-+
-+	usdhc1_pwrseq: pwr-seq {
-+		compatible = "mmc-pwrseq-simple";
-+		post-power-on-delay-ms = <250>;
-+		reset-gpios = <&gpio5 5 GPIO_ACTIVE_LOW>;
-+	};
-+};
-+
-+&iomuxc {
-+	pinctrl_uart3: uart3grp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_SD1_RESET_B__UART3_DCE_RTS	0x140	/* RTS */
-+			MX8MP_IOMUXC_SD1_STROBE__UART3_DCE_CTS	0x140	/* CTS */
-+			MX8MP_IOMUXC_UART3_RXD__UART3_DCE_RX	0x140	/* RX */
-+			MX8MP_IOMUXC_UART3_TXD__UART3_DCE_TX	0x140	/* TX */
-+		>;
-+	};
-+
-+	pinctrl_bluetooth: bluetoothgrp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_SD1_DATA4__GPIO2_IO06	0x106	/* BT_DEV_WAKE_EXP */
-+			MX8MP_IOMUXC_SD1_DATA5__GPIO2_IO07	0x106	/* BT_REG_ON_EXP */
-+			MX8MP_IOMUXC_SD1_DATA7__GPIO2_IO09	0x106	/* BT_HOST_WAKE_EXP */
-+		>;
-+	};
-+
-+	pinctrl_usdhc1: usdhc1grp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_SD1_CLK__USDHC1_CLK	0x190	/* SDIO_CLK */
-+			MX8MP_IOMUXC_SD1_CMD__USDHC1_CMD	0x1d0	/* SDIO_CMD */
-+			MX8MP_IOMUXC_SD1_DATA0__USDHC1_DATA0	0x1d0	/* SDIO_D0 */
-+			MX8MP_IOMUXC_SD1_DATA1__USDHC1_DATA1	0x1d0	/* SDIO_D1 */
-+			MX8MP_IOMUXC_SD1_DATA2__USDHC1_DATA2	0x1d0	/* SDIO_D2 */
-+			MX8MP_IOMUXC_SD1_DATA3__USDHC1_DATA3	0x1d0	/* SDIO_D3 */
-+		>;
-+	};
-+
-+	pinctrl_wifi: wifigrp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_SPDIF_EXT_CLK__GPIO5_IO05	0x106	/* WL_REG_ON_EXP */
-+		>;
-+	};
-+};
-+
-+&uart3 {
-+	assigned-clocks = <&clk IMX8MP_CLK_UART3>;
-+	assigned-clock-parents = <&clk IMX8MP_SYS_PLL1_80M>;
-+	pinctrl-0 = <&pinctrl_uart3>;
-+	pinctrl-names = "default";
-+	uart-has-rtscts;
-+	status = "okay";
-+
-+	bluetooth {
-+		compatible = "brcm,bcm43438-bt";
-+		pinctrl-0 = <&pinctrl_bluetooth>;
-+		pinctrl-names = "default";
-+		clock-names = "lpo";
-+		clocks = <&wlbt_clock>;
-+		device-wakeup-gpios = <&gpio2 6 GPIO_ACTIVE_HIGH>;
-+		host-wakeup-gpios = <&gpio2 9 GPIO_ACTIVE_HIGH>;
-+		max-speed = <3000000>;
-+		shutdown-gpios = <&gpio2 7 GPIO_ACTIVE_HIGH>;
-+		vbat-supply = <&reg_vcc_3v3_sw>;
-+		vddio-supply = <&reg_vcc_1v8_exp_con>;
-+	};
-+};
-+
-+&usdhc1 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	pinctrl-0 = <&pinctrl_usdhc1>;
-+	pinctrl-names = "default";
-+	bus-width = <4>;
-+	max-frequency = <50000000>;
-+	mmc-pwrseq = <&usdhc1_pwrseq>;
-+	non-removable;
-+	vmmc-supply = <&reg_vcc_3v3_sw>;
-+	status = "okay";
-+
-+	wifi@1 {
-+		compatible = "brcm,bcm4329-fmac";
-+		reg = <1>;
-+		pinctrl-0 = <&pinctrl_wifi>;
-+		pinctrl-names = "default";
-+		reset-gpios = <&gpio5 5 GPIO_ACTIVE_LOW>;
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-rdk.dts b/arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-rdk.dts
-index 7d34b820e3213a3832c5be47444d4e9c636a6202..9e25ce1d466b1174c60d2bb350339ca5d68cc025 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-rdk.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-rdk.dts
-@@ -119,6 +119,15 @@ reg_vcc_3v3_sw: regulator-vcc-3v3-sw {
- 		regulator-max-microvolt = <3300000>;
- 	};
- 
-+	reg_vcc_1v8_exp_con: regulator-vcc-1v8 {
-+		compatible = "regulator-fixed";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-max-microvolt = <1800000>;
-+		regulator-min-microvolt = <1800000>;
-+		regulator-name = "VCC_1V8_EXP_CON";
-+	};
-+
- 	thermal-zones {
- 		soc-thermal {
- 			trips {
+>  
+>  &adreno_gpu {
+>  	compatible = "qcom,adreno-509.0", "qcom,adreno";
 
 -- 
-2.51.0
-
+With best wishes
+Dmitry
 
