@@ -1,79 +1,79 @@
-Return-Path: <devicetree+bounces-228798-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228799-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 305F2BF0C1A
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 13:12:34 +0200 (CEST)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 376E1BF0C26
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 13:12:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 40972189FBDF
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 11:12:50 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id D672D34B5B3
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 11:12:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B89F52FC037;
-	Mon, 20 Oct 2025 11:11:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77B672FCC10;
+	Mon, 20 Oct 2025 11:11:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JWHW06Vj"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cMZmj06c"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5B662FB963
-	for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 11:11:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94CE22FBDF5
+	for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 11:11:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760958707; cv=none; b=OZuz55wk6JXrOF9eAlz6Brhhjf0t9Z1wXxZkshYwgmBPOIOPLmwr1QV4Vyktajq16yIsdLrNr7I7xc3dfKeNnTarN6O4wWU7varftxjZ2xQTXRniridgLL2bbGM75JQHlhoGkf9+ZHShKuNcX0evoUCb5RBccJEM+DhaCUjOwFQ=
+	t=1760958709; cv=none; b=uSJKlu1uvCGq2yPVMYWP3/90bDojvwQiXEIXHEbxjpksFStu8AzXI89UjS+LWaWiJ05hmuuSULuY+KKiZxls6eztNTCweJJMskrHEho+vEMfJOrZK9WmezQt/aFc6rKfUofLxf4uXt33Wrz+NYe1o/Gn/doIRZeU9CYNyMBSjFY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760958707; c=relaxed/simple;
-	bh=d6sfJJmsrn4jmlJ0VLaRv55O7ZBthMgGtDA6+FXK5CM=;
+	s=arc-20240116; t=1760958709; c=relaxed/simple;
+	bh=u3O5/Vnm1zd6rOBSlXUrvnWCu5VwPjHgeRbcIJf/UzQ=;
 	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=VUvZsGB76OZtUAxRQ5s4Zppe9zasdEgdF1ymOOJ3WZKg+zx6Ssz1k/aE6YBG2yTaR0d/ROzE3lXR/P9P27m5ynm+iyMAhnOyIv69/6nyIYi3oxPm0zUIkfN/KBFI7u3NXDJwoMWnsnOnafb2cF45zzxyKo2hyobq7J3bsRLckYw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JWHW06Vj; arc=none smtp.client-ip=209.85.128.44
+	 MIME-Version; b=UuYaT7/WIPA0xg5/jAdynBJmTPQwbLnHu50oTdtOaG2YXxkfqAfgvPofrgbCcTL9+T5tFg2qGv9Wdu9vum865xaiOzQbvb7M/ZsLo2uQOmG+ZbetHE0sLm5pLCL9NzTOZ/8BruE+zNZ6xcM/3ow6cyafYQyxvqlAypGn49oks0M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cMZmj06c; arc=none smtp.client-ip=209.85.128.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-4711825a02bso26255655e9.2
-        for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 04:11:44 -0700 (PDT)
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-471193a9d9eso37031555e9.2
+        for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 04:11:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1760958703; x=1761563503; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1760958704; x=1761563504; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=sbIeGWFTYyfsk1cZ4GSr/dZ9OnIwY7Q2HU34N1odmLk=;
-        b=JWHW06Vj/BAixmuSo+oXSZtBLOUraQVRsxPeBpILa1MOR/betLuH1d7bGmHXEfjE86
-         OK7gzZ22NvyD2KNIfqOZsjwhcYDm4RmoRNB40BTIsIfN9bramdUOj+6cFWTjZj8g+cxI
-         mRhYc3acliOySTs0FVzdtxo9MYCTVAbGbBhqDW8zzHA98DeXVz2F7K283o+9ZKe5QeG/
-         VzlTwRMxKLTXm4ZYl7JlX9mSms8FaXdPIF0YvLZnZOtnw6u+wxaLSIOmEzhHlYurHrTF
-         f4xykgysRcFOeAp2LmxPwopg/invQqBnU4jv7DqQQ67+4j3GMdt7z7Ln12/+oTfs9Jfr
-         iO7Q==
+        bh=Mh4C9N1Ju5JAAtnjcdgue8CazsWnd2rnlhBAUlc6beo=;
+        b=cMZmj06cksMOVk/z5IiLs7k6X6gUa1PwL82OjpUT4xRT9f7hXVUhyQb+KUdjiUCBLM
+         PfyaSbR3sDBf8tyZSE2/4q6ETeG3acjfG7Luc+ETjZ+fNVSRrWTIxiv33zNzRzZJl0v3
+         pX2o+YBEfb5QHUFImR98O56uNIzYWnCZxZc9DEgpW+C/ecrzOVn2W87Xx41+fk3Di5Fy
+         2wJSp7SX8VePaTQBkTU4IARiMgBIG5VO4aUpw1QbVCt7tg3DXolG6cYMyJXIdx8rVD4M
+         FBJXBjBE8od+hFEOA+c48qN/MklgtUxqP8lA2hR+98PYG2b/ESewvObGTh/WKKGtoNWe
+         +3tQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760958703; x=1761563503;
+        d=1e100.net; s=20230601; t=1760958704; x=1761563504;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=sbIeGWFTYyfsk1cZ4GSr/dZ9OnIwY7Q2HU34N1odmLk=;
-        b=uP3hpBzWgKZJTi+7S5Pp8h00xztml3w6EdO7GJ8QhERNsE38VAeIWWSl+ryEGf8LS4
-         FuWeAKIpeoPeDK94cw+CibZ20Y4D/thUZdG4Uy/tstaRnIr1YqPM3lyMpeaSfeJY9nEd
-         jR7FX/tI42MthSxNbm3Dv+iqGUFRzNVXF8E0BGAdpC50hh0BWBciY/GvyBgouH/2Hatn
-         GqqCzakJdMQa9GHa8jTkenNuAtQKjh00/6vhHXnGTrb0g2Gur+K/GJBEJLrEZbWfXkvc
-         lCeQbBUkgEQOcZ3bOIDF8C6ohD707fzIlJh4DevAOyIXvvuTxQSrdWsNzYJBcEcLEwOn
-         VMiA==
-X-Forwarded-Encrypted: i=1; AJvYcCXmQvQ4q8FfgDjtUwnUyyhMd/gesp+veWslUvFOxrBrTVQHVig87lHc1/93qZZn73rxl0hAJhWXfR/i@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywq1WEa8brO01ed9bBON4dv8mp32jppNC93s5g5K6jLe2r38mGi
-	5Pq6zRFnsmaAaGe2j+SJZgSFdJNbp5XCR4j1ZnSbPo/nEIAFaW4emYeJ
-X-Gm-Gg: ASbGncvLlsTJKkyT6WwBioWiyhhAMFMlrbQDU7bFyExJekc7fDCYzutmyZZw3gmAB2C
-	Ba7zXm7h1madH5DrTJzdPn4WJdJkNWBRIIBasXQhXFwbasa2IPgalKWS+ns7xmehRVPBWW1YGEN
-	+iw4kjnfX9eMPjKX233OenkJuNSaM3WozOTj/Jul+iBbr7pS0WEp1VkaTSLid2ckKP5LE1L7qvz
-	gELNOht3lKCidgaerHGsttzsHpoleqYR7uDBIyjUXJTYMl2aS3iRfuLIh8G7pIdeElncvj4jfJ0
-	l/J8SQxt7pDFUjBVQBSefbmhOyfaTlkzXFOPFeIbnN37GjB6pXlV5cVlb+QqinrVRhOR/r2hDkh
-	viBjfEfUB9MZZwLP1XHYgDi8MG+V1m9x6KdqPBGM/E1LjOF7cNrorWrTMMcB7z5LRFI0kh00hIm
-	BQ9fcSn7xfyzSIm1UCr0Nndqt2ILsuLhRIXVkCbdHZook=
-X-Google-Smtp-Source: AGHT+IFlMvcsghCbEtYlJFP5IolC9pAMY6FOui1RTLbJZ1uhCFPw3pViibwIRY6AzcnOgeG33heQFg==
-X-Received: by 2002:a05:600c:3b8d:b0:46d:27b7:e7e5 with SMTP id 5b1f17b1804b1-47117917572mr114423345e9.32.1760958702709;
-        Mon, 20 Oct 2025 04:11:42 -0700 (PDT)
+        bh=Mh4C9N1Ju5JAAtnjcdgue8CazsWnd2rnlhBAUlc6beo=;
+        b=Gdqjn4c/k45z+jZxdFvEmPBZQcIyFDPUJYKZhAAN7Md/QNwWxcblfT2S5mn1g1GK2Q
+         TqCs8N+Ic2dgy7SAw5kYJ7Iyzedsqrd5OdtugnXsRiPH3Om3nUbxzWMI8wWsd/ZHmdLK
+         0BHRUxb1bR7pk6rm1YpULCzKHVHL06Qw4NW56ME8MaDvnPtvM6T0uTCXJDImE2eypdyt
+         CvqvtlhPtul8VA46z3Beba8TsmUymHEJ7h2X62I+N1mldaFCpDAXDlAW4D27+1V202bW
+         bEI1+JcqpCAWoKj7zt0Ak/BlCI7bhRMypbo+aAXctPtSmK9AAbKCei1D/1/uwaCVWW/b
+         DlsA==
+X-Forwarded-Encrypted: i=1; AJvYcCXvZsy7mF4HHyAdF5JadMME3UjrH3/hdRI0Itku6RGl/eOi3lMsBZrUTcu8pSJJ4odUpw1CEYwSBD/5@vger.kernel.org
+X-Gm-Message-State: AOJu0YwAsCybGjoTGCnkW7pQIPnCpAV+OuTM6lJ1WfiltAiZNNN7SNAq
+	VUBheWjgUIB1TaPfyVx8pCGjsPM5HciKiBqHrb/1XRiwCvoeD/Svh3c5
+X-Gm-Gg: ASbGncti1UQhvXGWKmQ7AQbjTWjlV2Z6uO3+cCnyOuSWqE9qBEnBjtZ248s2Bkf+2W+
+	L1Wt46NcYkBGRzmKvYsXPvKlUKgv9W6wzBFdo4DCXIGoc+G+dzsXXAdfX/W/WnkzLHcVQzbFshp
+	/gSaDPROl/yqZd0cAbcJLtfZMfgy0r+w45rXQ+r7P6iq8iOO19Lalb/LVOt8jdqp+jeVe2Rbk4a
+	tR5z09NU1n0k4GlqTqgiS5dJ4UzdSHsPFj+4522+wPwDdk27igM4Nf/HN0aCSa9vmlSNFF+ePc3
+	WCRgLpr5Ac+EUo7UAy6hx7tqf4DVWUxW51eL8XY+/gzcWDJH1G5aesfSFohm7JLObYQGeOnKiMS
+	AWkKuvg/M/v1z86ZUdmwuEg5Ewc72y995xnSoAXdTW/rWRKphUPns6cdVntEERr2hBY3oCS+5Uf
+	UkvuSNc87v+nmgbpVstzm8yNsU9a8sG62amIGKN7hbgco=
+X-Google-Smtp-Source: AGHT+IEC/EgoEzWLSutjjbvP1mXzMKOilW3J4zLO71+sEvQNi3rD9SLIUZ1bssHJ/V0ea3felgXDhA==
+X-Received: by 2002:a05:600c:1e06:b0:46f:b43a:aeee with SMTP id 5b1f17b1804b1-4711792089emr93643585e9.39.1760958704255;
+        Mon, 20 Oct 2025 04:11:44 -0700 (PDT)
 Received: from Ansuel-XPS24 (93-34-92-177.ip49.fastwebnet.it. [93.34.92.177])
-        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-4283e7804f4sm12692219f8f.10.2025.10.20.04.11.41
+        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-4283e7804f4sm12692219f8f.10.2025.10.20.04.11.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Oct 2025 04:11:42 -0700 (PDT)
+        Mon, 20 Oct 2025 04:11:43 -0700 (PDT)
 From: Christian Marangi <ansuelsmth@gmail.com>
 To: Ryder Lee <ryder.lee@mediatek.com>,
 	Jianjun Wang <jianjun.wang@mediatek.com>,
@@ -101,9 +101,9 @@ To: Ryder Lee <ryder.lee@mediatek.com>,
 	linux-arm-kernel@lists.infradead.org,
 	netdev@vger.kernel.org,
 	upstream@airoha.com
-Subject: [PATCH v6 3/5] PCI: mediatek: Convert bool to single quirks entry and bitmap
-Date: Mon, 20 Oct 2025 13:11:07 +0200
-Message-ID: <20251020111121.31779-4-ansuelsmth@gmail.com>
+Subject: [PATCH v6 4/5] PCI: mediatek: Use generic MACRO for TPVPERL delay
+Date: Mon, 20 Oct 2025 13:11:08 +0200
+Message-ID: <20251020111121.31779-5-ansuelsmth@gmail.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20251020111121.31779-1-ansuelsmth@gmail.com>
 References: <20251020111121.31779-1-ansuelsmth@gmail.com>
@@ -115,118 +115,32 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-To clean Mediatek SoC PCIe struct, convert all the bool to a bitmap and
-use a single quirks to reference all the values. This permits cleaner
-addition of new quirk without having to define a new bool in the struct.
+Use the generic PCIe MACRO for TPVPERL delay to wait for clock and power
+stabilization after PERST# Signal instead of the raw value of 100 ms.
 
 Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
 ---
- drivers/pci/controller/pcie-mediatek.c | 33 ++++++++++++++++----------
- 1 file changed, 20 insertions(+), 13 deletions(-)
+ drivers/pci/controller/pcie-mediatek.c | 7 +------
+ 1 file changed, 1 insertion(+), 6 deletions(-)
 
 diff --git a/drivers/pci/controller/pcie-mediatek.c b/drivers/pci/controller/pcie-mediatek.c
-index 24cc30a2ab6c..cbffa3156da1 100644
+index cbffa3156da1..313da61a0b8a 100644
 --- a/drivers/pci/controller/pcie-mediatek.c
 +++ b/drivers/pci/controller/pcie-mediatek.c
-@@ -142,24 +142,32 @@
+@@ -697,12 +697,7 @@ static int mtk_pcie_startup_port_v2(struct mtk_pcie_port *port)
+ 	 */
+ 	writel(PCIE_LINKDOWN_RST_EN, port->base + PCIE_RST_CTRL);
  
- struct mtk_pcie_port;
+-	/*
+-	 * Described in PCIe CEM specification sections 2.2 (PERST# Signal) and
+-	 * 2.2.1 (Initial Power-Up (G3 to S0)). The deassertion of PERST# should
+-	 * be delayed 100ms (TPVPERL) for the power and clock to become stable.
+-	 */
+-	msleep(100);
++	msleep(PCIE_T_PVPERL_MS);
  
-+/**
-+ * enum mtk_pcie_quirks - MTK PCIe quirks
-+ * @MTK_PCIE_FIX_CLASS_ID: host's class ID needed to be fixed
-+ * @MTK_PCIE_FIX_DEVICE_ID: host's device ID needed to be fixed
-+ * @MTK_PCIE_NO_MSI: Bridge has no MSI support, and relies on an external block
-+ */
-+enum mtk_pcie_quirks {
-+	MTK_PCIE_FIX_CLASS_ID = BIT(0),
-+	MTK_PCIE_FIX_DEVICE_ID = BIT(1),
-+	MTK_PCIE_NO_MSI = BIT(2),
-+};
-+
- /**
-  * struct mtk_pcie_soc - differentiate between host generations
-- * @need_fix_class_id: whether this host's class ID needed to be fixed or not
-- * @need_fix_device_id: whether this host's device ID needed to be fixed or not
-- * @no_msi: Bridge has no MSI support, and relies on an external block
-  * @device_id: device ID which this host need to be fixed
-  * @ops: pointer to configuration access functions
-  * @startup: pointer to controller setting functions
-  * @setup_irq: pointer to initialize IRQ functions
-+ * @quirks: PCIe device quirks.
-  */
- struct mtk_pcie_soc {
--	bool need_fix_class_id;
--	bool need_fix_device_id;
--	bool no_msi;
- 	unsigned int device_id;
- 	struct pci_ops *ops;
- 	int (*startup)(struct mtk_pcie_port *port);
- 	int (*setup_irq)(struct mtk_pcie_port *port, struct device_node *node);
-+	enum mtk_pcie_quirks quirks;
- };
- 
- /**
-@@ -703,7 +711,7 @@ static int mtk_pcie_startup_port_v2(struct mtk_pcie_port *port)
- 	writel(val, port->base + PCIE_RST_CTRL);
- 
- 	/* Set up vendor ID and class code */
--	if (soc->need_fix_class_id) {
-+	if (soc->quirks & MTK_PCIE_FIX_CLASS_ID) {
- 		val = PCI_VENDOR_ID_MEDIATEK;
- 		writew(val, port->base + PCIE_CONF_VEND_ID);
- 
-@@ -711,7 +719,7 @@ static int mtk_pcie_startup_port_v2(struct mtk_pcie_port *port)
- 		writew(val, port->base + PCIE_CONF_CLASS_ID);
- 	}
- 
--	if (soc->need_fix_device_id)
-+	if (soc->quirks & MTK_PCIE_FIX_DEVICE_ID)
- 		writew(soc->device_id, port->base + PCIE_CONF_DEVICE_ID);
- 
- 	/* 100ms timeout value should be enough for Gen1/2 training */
-@@ -1099,7 +1107,7 @@ static int mtk_pcie_probe(struct platform_device *pdev)
- 
- 	host->ops = pcie->soc->ops;
- 	host->sysdata = pcie;
--	host->msi_domain = pcie->soc->no_msi;
-+	host->msi_domain = !!(pcie->soc->quirks & MTK_PCIE_NO_MSI);
- 
- 	err = pci_host_probe(host);
- 	if (err)
-@@ -1187,9 +1195,9 @@ static const struct dev_pm_ops mtk_pcie_pm_ops = {
- };
- 
- static const struct mtk_pcie_soc mtk_pcie_soc_v1 = {
--	.no_msi = true,
- 	.ops = &mtk_pcie_ops,
- 	.startup = mtk_pcie_startup_port,
-+	.quirks = MTK_PCIE_NO_MSI,
- };
- 
- static const struct mtk_pcie_soc mtk_pcie_soc_mt2712 = {
-@@ -1199,19 +1207,18 @@ static const struct mtk_pcie_soc mtk_pcie_soc_mt2712 = {
- };
- 
- static const struct mtk_pcie_soc mtk_pcie_soc_mt7622 = {
--	.need_fix_class_id = true,
- 	.ops = &mtk_pcie_ops_v2,
- 	.startup = mtk_pcie_startup_port_v2,
- 	.setup_irq = mtk_pcie_setup_irq,
-+	.quirks = MTK_PCIE_FIX_CLASS_ID,
- };
- 
- static const struct mtk_pcie_soc mtk_pcie_soc_mt7629 = {
--	.need_fix_class_id = true,
--	.need_fix_device_id = true,
- 	.device_id = PCI_DEVICE_ID_MEDIATEK_7629,
- 	.ops = &mtk_pcie_ops_v2,
- 	.startup = mtk_pcie_startup_port_v2,
- 	.setup_irq = mtk_pcie_setup_irq,
-+	.quirks = MTK_PCIE_FIX_CLASS_ID | MTK_PCIE_FIX_DEVICE_ID,
- };
- 
- static const struct of_device_id mtk_pcie_ids[] = {
+ 	/* De-assert PHY, PE, PIPE, MAC and configuration reset	*/
+ 	val = readl(port->base + PCIE_RST_CTRL);
 -- 
 2.51.0
 
