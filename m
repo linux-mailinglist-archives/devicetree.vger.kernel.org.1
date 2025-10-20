@@ -1,236 +1,133 @@
-Return-Path: <devicetree+bounces-228645-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228648-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0118ABEFB96
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 09:45:08 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 52CB2BEFB9C
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 09:46:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id EEDC34EEF85
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 07:44:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0C6563B1B9A
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 07:46:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F6912E9741;
-	Mon, 20 Oct 2025 07:42:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A57A2DC359;
+	Mon, 20 Oct 2025 07:46:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="ujfnKOT/"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="BMjVIAXw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EDAD2E8E0D;
-	Mon, 20 Oct 2025 07:42:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 643C228030E
+	for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 07:46:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760946164; cv=none; b=geHFgEdK3XuPcjSPfDR94ClxpfyAhfCGG844O42J6B0I9KrXTm1W6Mzj4cuioM+4DA0aLO8Dhz/qyv6sY+jvpkTB2JtQ1R34nPQ2L0E9YHcTO4HT3sg68j9bJUaADb5h/0XMVjre3ozcTpPM0kaRTLJ8T7+83JDl4KEf1dbSxjc=
+	t=1760946365; cv=none; b=eq0m0mdXP63rDzRC3NoRSOdLCA9s96MFR3AULGJ1jSXidirAu0Fnx5ayoSEUxm7G0Bz134DGJG/mUf8b7V2HqBJENfNka4aB8VR6wpvR5qfD196L6u3DikqjO/u6aAN614BxGQZXcE/E3Z8tbNyQ6ots/agsDCEmWCa2TQjtdnM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760946164; c=relaxed/simple;
-	bh=u85rAd7a6xb2dnzQ/GOw1lCG4truPoUl2x5/rTNdaY4=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=BHeRQqqynfQSSplfQ1g86343tK+ZOHBzw2uvIKwWZBZSp6LZfK6ViUYr96TX0Gr0VFO0HbIavWJecgBKRAOPmZJGaRBC3i+TAQnREZon8yBTUtiCSfHTEklaWSEvmp23bJB1li/hyKq+IMJkrfxs9+CfIrKXZkstfwQ2CvNsw6M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=ujfnKOT/; arc=none smtp.client-ip=60.244.123.138
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: 59fb88fead8811f0ae1e63ff8927bad3-20251020
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=skWTZtYKSk+L0V02K1h9jMQUDLDlNwNtlzucoipLJko=;
-	b=ujfnKOT/2FXo9PT8ZM6g6ZfiTmjMPsgDxV0qBuH15pU41kNmPjv7Hl4TfF4MJ0L8AeQjNi9Ldt4lXZP0uRDKkbikhWVawbc8SYMkGEMOqwHoLI4CMVpQInuFcAXPtbsRQ0L4CNUR0w5iD14pWaOBdtqnUjAgWAb9ZERzacxrXmo=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.3.6,REQID:76503915-3989-4549-bf70-f447cef995be,IP:0,UR
-	L:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:r
-	elease,TS:0
-X-CID-META: VersionHash:a9d874c,CLOUDID:d09c3e51-c509-4cf3-8dc0-fcdaad49a6d3,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:81|82|102|836|888|898,TC:-5,Content:
-	0|15|50,EDM:-3,IP:nil,URL:0,File:130,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,
-	OSI:0,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 2,SSN|SDN
-X-CID-BAS: 2,SSN|SDN,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
-X-UUID: 59fb88fead8811f0ae1e63ff8927bad3-20251020
-Received: from mtkmbs13n1.mediatek.inc [(172.21.101.193)] by mailgw01.mediatek.com
-	(envelope-from <xiandong.wang@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 1237109764; Mon, 20 Oct 2025 15:42:38 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
- mtkmbs13n1.mediatek.inc (172.21.101.193) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.26; Mon, 20 Oct 2025 15:42:33 +0800
-Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
- mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1748.26 via Frontend Transport; Mon, 20 Oct 2025 15:42:32 +0800
-From: Xiandong Wang <xiandong.wang@mediatek.com>
-To: Jassi Brar <jassisinghbrar@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>, Yongqiang Niu
-	<yongqiang.niu@mediatek.com>
-CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>,
-	<sirius.wang@mediatek.com>, <vince-wl.liu@mediatek.com>,
-	<jh.hsu@mediatek.com>, <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-	Xiandong Wang <xiandong.wang@mediatek.com>
-Subject: [PATCH v1 13/13] soc: mediatek: mutex: add mutex support for MT8189
-Date: Mon, 20 Oct 2025 15:40:26 +0800
-Message-ID: <20251020074211.8942-14-xiandong.wang@mediatek.com>
-X-Mailer: git-send-email 2.46.0
-In-Reply-To: <20251020074211.8942-1-xiandong.wang@mediatek.com>
-References: <20251020074211.8942-1-xiandong.wang@mediatek.com>
+	s=arc-20240116; t=1760946365; c=relaxed/simple;
+	bh=X7/0YOAqO5V2172ZrybLrIHVzwGVuhBmLKlylhJxm1w=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=CEV7g/7fTWsYAty9zAPRZDrRVjS47GvO4oEgHfODMuqlBR6/5TqFLoLMG88qOcodMgUoKZJjDoW1KEKtfQoSzDvyrrUwk0ALT2IZX+qmjvfqLflqX5mAtobPiqfX1rTnY/JN40GuVyiQhQmUHZnHVNflqasXvl1qUpEMb4DO/cw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=BMjVIAXw; arc=none smtp.client-ip=209.85.221.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-427091cd4fdso1672104f8f.1
+        for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 00:46:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1760946362; x=1761551162; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=NeEefsjDjBTzkWLJQXyP/5aObcnLAGWfiU+nORhhDXo=;
+        b=BMjVIAXw/qb0mfPjoMsyfy6xPQmKl4Qu+YGY72C6YEByg7AIqSq5CCpHo5oiYK9GBG
+         p7BYn32ak7gyLIWfxzqngx13/XzqxW8phpWGb0AYyyw6NK4/D/jf0J7x04Lz8u8CJdDG
+         W4/QpjldgFiw16NfNAgRgzjGhXSLGhDKLjiR+EIzzFrYxcbziuZt+kgvsVoz3P6tBXza
+         0Ms5y8Ch+ybQRN1eTTM8hej4h5yGz3Tye5c+iX+XGUuZQGAdUcN5HxtkszUH9wG3VCJq
+         ZRKSCC8Xf43dGOdCTPZ/9vNyNx0I/DjQn+oqtW1yJXyyXNoPxLkorp1T1hqMiiDHxx6c
+         h5BQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1760946362; x=1761551162;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=NeEefsjDjBTzkWLJQXyP/5aObcnLAGWfiU+nORhhDXo=;
+        b=I8KeMcr2pFZlpFePsUqvFS6DRb4nMzFKMixYIntVCirbduK1P7GPCfPjjYZZowWPjc
+         5wYPNAj9vpHOhVYlWWqz0xb5Xn6ieubcjhOxS6Dyg9eJdHJ5ztQs9FgbXv6eTBAK7CC2
+         sTil3IclG28LAVMjOY0jl8BULZ8vfYIRZpOvEC8TafShq1gNvt6u0c5WMAPppTmh9s/S
+         no2yvIDDymwu8zblzF5XjVyKPuSNK+96MGHdwF/QrjFN+aA4eHnXQINzv+F6TCnpFdOA
+         VPTtjv90b+an/Ft/uAGZbNWkmaNww0BodSEqhVuLAI8TYlbSMK0bObnVLQN1qaUfVCDp
+         9jZA==
+X-Forwarded-Encrypted: i=1; AJvYcCXc0ZcHNy8QvUtO8CXUPxC1mcEQ4Ao3vnNpqO3fvmZVhJMup0l4W36brvuhc+9d5kBg7Vvz15cOv411@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzg8NskZKs4Gkpr9zzQmtDAzQLV+fMm3YIY26FBTtevQg6tL7C6
+	7osy9hoyB/3Wu3YivgPKROzDzSt38cFLLFtAkd4FEt0KDj5fRshT+If46JdvkpHS0i4=
+X-Gm-Gg: ASbGnct1zlbz4BgsJgPeFjfrG6wpIujzUfl4rGP0txpEPbiT8DuzDKU34EpG0kPBT6M
+	Mc5SG5YwWCXMhJrPgA43Tu+rkni8WCCLnmcFq8HtTkEPHiYGRbQg8bvOPeDVi3QLNroK4vFfAY0
+	07LBWOIP2FZ9fGmiFIKJZgedXhzIa7Viosaau9IYFkkdG1TWXhhDOJ//ISTp500+5yJdkHXViKi
+	so3wMEHoQdJYDWxNJjXWDq2mnf28mBwl4znS1aPcRo0WEJwKS8nIRdzItBrvWvDoKIbVMyschxn
+	mHqtBvP8M8jeBMDWXEpw+TzcVXEJD6Prx9UzuIQyKs8JH6fD7Yje/1XJwnRQhrqsoF50ccZXajb
+	CnuXO1KmSU7L1pglTsxjOMrcyv3ortojCGsmfXWJaw13xqwPG74qWXVtOzfobY0ucv9H9Htk+/Z
+	SQkaHxLCspW8UIIZrhV34=
+X-Google-Smtp-Source: AGHT+IElXYjtpSTA367NjPFbuT2cNOkeZqKtyb865DWWHqYMgZ9skD7DsDruCaof11OozJ+7TkNWCA==
+X-Received: by 2002:a5d:5888:0:b0:426:d587:850d with SMTP id ffacd0b85a97d-42704d78d2amr6946088f8f.28.1760946361718;
+        Mon, 20 Oct 2025 00:46:01 -0700 (PDT)
+Received: from [10.11.12.107] ([79.115.63.145])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-427ea5a102fsm14122755f8f.1.2025.10.20.00.45.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 20 Oct 2025 00:46:01 -0700 (PDT)
+Message-ID: <17695fcf-f33c-4246-8d5c-b2120e9e03b1@linaro.org>
+Date: Mon, 20 Oct 2025 08:45:58 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 4/6] clk: samsung: add Exynos ACPM clock driver
+To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Peter Griffin <peter.griffin@linaro.org>,
+ =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
+ Sylwester Nawrocki <s.nawrocki@samsung.com>,
+ Chanwoo Choi <cw00.choi@samsung.com>,
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
+Cc: linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-clk@vger.kernel.org, willmcvicker@google.com, kernel-team@android.com
+References: <20251010-acpm-clk-v6-0-321ee8826fd4@linaro.org>
+ <20251010-acpm-clk-v6-4-321ee8826fd4@linaro.org>
+ <92f1c027-bacc-4537-a158-2e0890e2e8ee@kernel.org>
+Content-Language: en-US
+From: Tudor Ambarus <tudor.ambarus@linaro.org>
+In-Reply-To: <92f1c027-bacc-4537-a158-2e0890e2e8ee@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Add mutex support for the main and external displays in MT8189:
-- Introduce a new DVO1 output component for the new mutex
-  settings of MT8189.
-- Add a need_sof_mof flag to configure both SOF and MOD settings
-  for the output component.
 
-Signed-off-by: Xiandong Wang <xiandong.wang@mediatek.com>
----
- drivers/soc/mediatek/mtk-mutex.c | 88 ++++++++++++++++++++++++++++++++
- 1 file changed, 88 insertions(+)
 
-diff --git a/drivers/soc/mediatek/mtk-mutex.c b/drivers/soc/mediatek/mtk-mutex.c
-index c48983d8a6cd..743c4b93a39e 100644
---- a/drivers/soc/mediatek/mtk-mutex.c
-+++ b/drivers/soc/mediatek/mtk-mutex.c
-@@ -177,6 +177,48 @@
- #define MT8188_MUTEX_MOD_DISP1_DPI1		38
- #define MT8188_MUTEX_MOD_DISP1_DP_INTF1		39
- 
-+#define MT8189_DISP_MUTEX0_MOD0			0x30
-+#define MT8189_DISP_MUTEX0_MOD1			0x34
-+#define MT8189_DISP_MUTEX0_SOF			0x2C
-+#define MT8189_MUTEX_MOD_DISP_OVL0		0
-+#define MT8189_MUTEX_MOD_DISP_OVL1		1
-+#define MT8189_MUTEX_MOD_DISP_RSZ0		2
-+#define MT8189_MUTEX_MOD_DISP_RSZ1		3
-+#define MT8189_MUTEX_MOD_DISP_RDMA0		4
-+#define MT8189_MUTEX_MOD_DISP_RDMA1		5
-+#define MT8189_MUTEX_MOD_DISP_COLOR0		6
-+#define MT8189_MUTEX_MOD_DISP_COLOR1		4
-+#define MT8189_MUTEX_MOD_DISP_CCORR0		8
-+#define MT8189_MUTEX_MOD_DISP_CCORR1		9
-+#define MT8189_MUTEX_MOD_DISP_CCORR2		10
-+#define MT8189_MUTEX_MOD_DISP_CCORR3		11
-+#define MT8189_MUTEX_MOD_DISP_AAL0		12
-+#define MT8189_MUTEX_MOD_DISP_AAL1		13
-+#define MT8189_MUTEX_MOD_DISP_GAMMA0		14
-+#define MT8189_MUTEX_MOD_DISP_GAMMA1		15
-+#define MT8189_MUTEX_MOD_DISP_DITHER0		16
-+#define MT8189_MUTEX_MOD_DISP_DITHER1		17
-+#define MT8189_MUTEX_MOD_DISP_VPP_MERGE0	18
-+#define MT8189_MUTEX_MOD_DISP_DSC_WRAP0_CORE0	19
-+#define MT8189_MUTEX_MOD_DISP_DSC_WRAP0_CORE1	20
-+#define MT8189_MUTEX_MOD_DISP_DVO0		21
-+#define MT8189_MUTEX_MOD_DISP_DSI0		22
-+#define MT8189_MUTEX_MOD_DISP_DVO1		23
-+#define MT8189_MUTEX_MOD_DISP_DPI0		24
-+#define MT8189_MUTEX_MOD_DISP_WDMA0		25
-+#define MT8189_MUTEX_MOD_DISP_WDMA1		26
-+#define MT8189_MUTEX_MOD_DISP_PWM0		27
-+#define MT8189_MUTEX_MOD_DISP_PWM1		28
-+#define MT8189_MUTEX_MOD_ALL			0xff
-+
-+#define MT8189_MUTEX_SOF_SINGLE_MODE		0
-+#define MT8189_MUTEX_SOF_DSI0			1
-+#define MT8189_MUTEX_EOF_DSI0			(MT8189_MUTEX_SOF_DSI0 << 7)
-+#define MT8189_MUTEX_SOF_DVO			5
-+#define MT8189_MUTEX_EOF_DVO			(MT8189_MUTEX_SOF_DVO << 7)
-+#define MT8189_MUTEX_SOF_DPTX			6
-+#define MT8189_MUTEX_EOF_DPTX			(MT8189_MUTEX_SOF_DPTX << 7)
-+
- #define MT8195_MUTEX_MOD_DISP_OVL0		0
- #define MT8195_MUTEX_MOD_DISP_WDMA0		1
- #define MT8195_MUTEX_MOD_DISP_RDMA0		2
-@@ -554,6 +596,34 @@ static const u8 mt8188_mdp_mutex_table_mod[MUTEX_MOD_IDX_MAX] = {
- 	[MUTEX_MOD_IDX_MDP_WROT3] = MT8195_MUTEX_MOD_MDP_WROT3,
- };
- 
-+static const unsigned int mt8189_mutex_mod[DDP_COMPONENT_ID_MAX] = {
-+	[DDP_COMPONENT_OVL0] = MT8189_MUTEX_MOD_DISP_OVL0,
-+	[DDP_COMPONENT_OVL1] = MT8189_MUTEX_MOD_DISP_OVL1,
-+	[DDP_COMPONENT_RSZ0] = MT8189_MUTEX_MOD_DISP_RSZ0,
-+	[DDP_COMPONENT_RSZ1] = MT8189_MUTEX_MOD_DISP_RSZ1,
-+	[DDP_COMPONENT_RDMA0] = MT8189_MUTEX_MOD_DISP_RDMA0,
-+	[DDP_COMPONENT_RDMA1] = MT8189_MUTEX_MOD_DISP_RDMA1,
-+	[DDP_COMPONENT_COLOR0] = MT8189_MUTEX_MOD_DISP_COLOR0,
-+	[DDP_COMPONENT_COLOR1] = MT8189_MUTEX_MOD_DISP_COLOR1,
-+	[DDP_COMPONENT_CCORR0] = MT8189_MUTEX_MOD_DISP_CCORR0,
-+	[DDP_COMPONENT_CCORR1] = MT8189_MUTEX_MOD_DISP_CCORR1,
-+	[DDP_COMPONENT_AAL0] = MT8189_MUTEX_MOD_DISP_AAL0,
-+	[DDP_COMPONENT_AAL1] = MT8189_MUTEX_MOD_DISP_AAL1,
-+	[DDP_COMPONENT_GAMMA] = MT8189_MUTEX_MOD_DISP_GAMMA0,
-+	[DDP_COMPONENT_DITHER0] = MT8189_MUTEX_MOD_DISP_DITHER0,
-+	[DDP_COMPONENT_DITHER1] = MT8189_MUTEX_MOD_DISP_DITHER1,
-+	[DDP_COMPONENT_MERGE0] = MT8189_MUTEX_MOD_DISP_VPP_MERGE0,
-+	[DDP_COMPONENT_DSC0] = MT8189_MUTEX_MOD_DISP_DSC_WRAP0_CORE0,
-+	[DDP_COMPONENT_DVO0] = MT8189_MUTEX_MOD_DISP_DVO0,
-+	[DDP_COMPONENT_DVO1] = MT8189_MUTEX_MOD_DISP_DVO1,
-+	[DDP_COMPONENT_DSI0] = MT8189_MUTEX_MOD_DISP_DSI0,
-+	[DDP_COMPONENT_WDMA0] = MT8189_MUTEX_MOD_DISP_WDMA0,
-+	[DDP_COMPONENT_PWM0] = MT8189_MUTEX_MOD_DISP_PWM0,
-+	[DDP_COMPONENT_COMP0_OUT_CB4] = MT8189_MUTEX_MOD_ALL,
-+	[DDP_COMPONENT_COMP0_OUT_CB5] = MT8189_MUTEX_MOD_ALL,
-+	[MT8189_MUTEX_MOD_DISP_PWM1] = MT8189_MUTEX_MOD_DISP_PWM1,
-+};
-+
- static const u8 mt8192_mutex_mod[DDP_COMPONENT_ID_MAX] = {
- 	[DDP_COMPONENT_AAL0] = MT8192_MUTEX_MOD_DISP_AAL0,
- 	[DDP_COMPONENT_CCORR] = MT8192_MUTEX_MOD_DISP_CCORR0,
-@@ -718,6 +788,14 @@ static const u16 mt8188_mutex_sof[DDP_MUTEX_SOF_MAX] = {
- 		MT8188_MUTEX_SOF_DP_INTF1 | MT8188_MUTEX_EOF_DP_INTF1,
- };
- 
-+static const unsigned int mt8189_mutex_sof[DDP_MUTEX_SOF_MAX] = {
-+	[MUTEX_SOF_SINGLE_MODE] = MT8189_MUTEX_SOF_SINGLE_MODE,
-+	[MUTEX_SOF_DSI0] =
-+		MT8189_MUTEX_SOF_DSI0 | MT8189_MUTEX_EOF_DSI0,
-+	[MUTEX_SOF_DP_INTF0] =
-+		MT8189_MUTEX_SOF_DPTX | MT8189_MUTEX_EOF_DPTX,
-+};
-+
- static const u16 mt8195_mutex_sof[DDP_MUTEX_SOF_MAX] = {
- 	[MUTEX_SOF_SINGLE_MODE] = MUTEX_SOF_SINGLE_MODE,
- 	[MUTEX_SOF_DSI0] = MT8195_MUTEX_SOF_DSI0 | MT8195_MUTEX_EOF_DSI0,
-@@ -812,6 +890,14 @@ static const struct mtk_mutex_data mt8188_vpp_mutex_driver_data = {
- 	.mutex_table_mod = mt8188_mdp_mutex_table_mod,
- };
- 
-+static const struct mtk_mutex_data mt8189_mutex_driver_data = {
-+	.mutex_mod = mt8189_mutex_mod,
-+	.mutex_sof = mt8189_mutex_sof,
-+	.mutex_mod_reg = MT8189_DISP_MUTEX0_MOD0,
-+	.mutex_sof_reg = MT8189_DISP_MUTEX0_SOF,
-+	.need_sof_mod = true,
-+};
-+
- static const struct mtk_mutex_data mt8192_mutex_driver_data = {
- 	.mutex_mod = mt8192_mutex_mod,
- 	.mutex_sof = mt8183_mutex_sof,
-@@ -903,6 +989,7 @@ static int mtk_mutex_get_output_comp_sof(enum mtk_ddp_comp_id id)
- 	case DDP_COMPONENT_DPI1:
- 		return MUTEX_SOF_DPI1;
- 	case DDP_COMPONENT_DP_INTF0:
-+	case DDP_COMPONENT_DVO1:
- 		return MUTEX_SOF_DP_INTF0;
- 	case DDP_COMPONENT_DP_INTF1:
- 		return MUTEX_SOF_DP_INTF1;
-@@ -1182,6 +1269,7 @@ static const struct of_device_id mutex_driver_dt_match[] = {
- 	{ .compatible = "mediatek,mt8186-mdp3-mutex", .data = &mt8186_mdp_mutex_driver_data },
- 	{ .compatible = "mediatek,mt8188-disp-mutex", .data = &mt8188_mutex_driver_data },
- 	{ .compatible = "mediatek,mt8188-vpp-mutex",  .data = &mt8188_vpp_mutex_driver_data },
-+	{ .compatible = "mediatek,mt8189-disp-mutex", .data = &mt8189_mutex_driver_data },
- 	{ .compatible = "mediatek,mt8192-disp-mutex", .data = &mt8192_mutex_driver_data },
- 	{ .compatible = "mediatek,mt8195-disp-mutex", .data = &mt8195_mutex_driver_data },
- 	{ .compatible = "mediatek,mt8195-vpp-mutex",  .data = &mt8195_vpp_mutex_driver_data },
--- 
-2.46.0
+On 10/20/25 7:54 AM, Krzysztof Kozlowski wrote:
+>> diff --git a/drivers/clk/samsung/Kconfig b/drivers/clk/samsung/Kconfig
+>> index 76a494e95027af26272e30876a87ac293bd56dfa..70a8b82a0136b4d0213d8ff95e029c52436e5c7f 100644
+>> --- a/drivers/clk/samsung/Kconfig
+>> +++ b/drivers/clk/samsung/Kconfig
+>> @@ -95,6 +95,16 @@ config EXYNOS_CLKOUT
+>>  	  status of the certains clocks from SoC, but it could also be tied to
+>>  	  other devices as an input clock.
+>>  
+>> +config EXYNOS_ACPM_CLK
+>> +	tristate "Clock driver controlled via ACPM interface"
+>> +	depends on EXYNOS_ACPM_PROTOCOL || (COMPILE_TEST && !EXYNOS_ACPM_PROTOCOL)
+> 
+> I merged the patches but I don't get why we are not enabling it by
+> default, just like every other clock driver. What is so special here?
 
+Thanks! Are you referring to the depends on line? I needed it otherwise
+on randconfigs where COMPILE_TEST=y and EXYNOS_ACPM_PROTOCOL=n I get:
+
+ERROR: modpost: "devm_acpm_get_by_node" [drivers/clk/samsung/clk-acpm.ko] undefined!
+
+Cheers,
+ta
 
