@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-228782-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228783-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1AD1BF0AFD
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 12:56:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D801BF0B18
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 12:58:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id B53594EFBA5
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 10:56:13 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 84F0E4EFD70
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 10:57:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4180924DCFD;
-	Mon, 20 Oct 2025 10:56:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0ABE7259CA7;
+	Mon, 20 Oct 2025 10:57:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uBhbmlaS"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FNrUILw6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08E57254876
-	for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 10:56:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C2BC2561D1
+	for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 10:57:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760957771; cv=none; b=It+HDHoGpDnasTmHT3Qr3jYdn5WYvqKyn/YJBLfoN4u03B35Yf0bH0MXAWjuHJZiIPFbMTQVKnUbLzey+H3q4WB/nfqDF0aYQhWy5gVNzDlJe8W7s8XNlMC2PPFzKUkEGMPfPWAYWgmOh6b+WKVilGHxlZVua+utxtZm4B3JACM=
+	t=1760957873; cv=none; b=QS7uJig15gN0164GFgyeXY0cSD7xXBt+I3f9fW/HwY45h1Wahpq263Ovz59bBux4G2pGUsgRN6QJJ1Fds4QY55DpeqDWAG3710ndKRwwUD7uDIAEEOfmWGMMfu1k7iu8Z+wfCt5JKlmEUlUZgAkUKR1j9AkcULmT457jE0U2zUs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760957771; c=relaxed/simple;
-	bh=IydQHlopurRsMIlFXXQnBsVqX59j3tYYZ9wp3B4KoGw=;
+	s=arc-20240116; t=1760957873; c=relaxed/simple;
+	bh=Bla6ToecjH8EIjNTcUj1wMY0Ir7o6x4mV6qZgP7BkbE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=qYEeDxUC9CdoJD5OU2eQkAFJ3JoUA47EDVEYEPE8wZLibwGts0fEhC641c3Y2k7nujiK3E9n7CkpTOOLTjNBU33tRBfr4nC9QUyB+2S+F98HRg8D83VM8pM5Vl6DHU2F9ureZR240TGNDm4Wek5aoJY4tb9550vnfQSAfxc8btM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=uBhbmlaS; arc=none smtp.client-ip=209.85.128.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-46e542196c7so33590405e9.0
-        for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 03:56:08 -0700 (PDT)
+	 In-Reply-To:Content-Type; b=K51i9zg77lLt5WekeUHbFJiAVKI2kFTSWR0kqPHwDjpikj63kkInPQf1NA39DQQ8Ejw3d737E/g8tOgApzgS2qQzZCj/AiCLSBGrSvWtpNnneNYc9bcz3g5/ogGTF6NROx8c2x768+1WZBIlKa0ZCbGZT1XEemPP2EDLHE9awoY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FNrUILw6; arc=none smtp.client-ip=209.85.218.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-b3c2c748bc8so536989266b.2
+        for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 03:57:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1760957767; x=1761562567; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
+        d=gmail.com; s=20230601; t=1760957870; x=1761562670; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=O50PUVrDxE9ib0IbMfL05smlWaDICzzt8kT2K5/ErZQ=;
-        b=uBhbmlaSfddAoMrlIpZt99EKU4O+QzROEHKWlEWVOhpxCcHpRkv8nGt+Y5c6WPzV4O
-         Ol1gyPNixSQGIIbgldDyhQcmbCTP1shIv9qiScdknkmRQ217UZGu6jTtMJoORQ0XKzoD
-         T+5xbOh8wSiGQutwtzoEABqZYK8C2/MbM57QU7+lmbf7sHUAR6Mw6SEWV7dE78JpYlsq
-         8XQqm+3k2JV6XqGP9uS8wmlKDgBAIApSOziEQ8np6CfKWrIBJ1L94zj+gddnFf2WxKim
-         qT5konw3qIMntlha4nYJMt1ei7UWkhFmRhJf7RnKwAR8lcQT3OPy4O1Qml8FtGi4FFme
-         Pa2A==
+        bh=PufIutwJX/MUqRq87e43IN62sjFrJG1C0t3fcKqtI5s=;
+        b=FNrUILw6LOtaHQihoIE9wHkvYgf9oOMFbx2ZNVlx2/RxMcvvlSC5+OJZhXVgvUhnY2
+         OvYeHf1m9G9WXkg4POX2hnk/P043OVsTtV57DDR3GJmnTDFoG2Sgjxvx47b/uA740Gha
+         QErYg3bjncYMJzc3PaReMIczVBARZbS14BrI2lgIsgZWlVU0atZXU+M/QE3/fz4MBWSW
+         ldA9S0EGg9qz+K2JEfhKba0SLl+i5oZZoKzc3XlWAsq72s0BvaQkaLaLCfXWmBsFH5dQ
+         sRXlMq1wEnOPPGWWP9kQNMsysFO35GzDoI0PwR2VVsMmHDEAqiFSAHnNTwPIAjDyNup6
+         54OA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760957767; x=1761562567;
-        h=content-transfer-encoding:in-reply-to:content-language:from
+        d=1e100.net; s=20230601; t=1760957870; x=1761562670;
+        h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=O50PUVrDxE9ib0IbMfL05smlWaDICzzt8kT2K5/ErZQ=;
-        b=wtX0u0eRx5Vjsvc7dk0UpqjgaWq0n/e9iHxusti5hMeyRqVa/pmfnFseuVUo0/2sem
-         W7nEeX5qsmXDE1ceXRNVTdiOsIBye4eWyj01jbSzPE6f9pZovxO+Tvk5ueU/VsxZKzOg
-         15HqPuM+xSgTULMIvd0k8gnko2YtS4RCd+4SitHTpk4IJlaUnq+RD12mpOFOlKHJq4j4
-         7T0S0wdQSTsc4lWVS+wLNCneR4BeOm7eHSY65Os5UD0OJbyqbc3roETtd5wY8X1bKPOR
-         0509AkEGYETxsk5xUvsO45GAGyr8W4wgLLxSvGG57G2VuALu0rCmGMqao9OyskfN7Kf3
-         QOQA==
-X-Forwarded-Encrypted: i=1; AJvYcCWEicHQYOI2qIy6TOBkUnwp3bIRtBq65hgAEHaVsd87TTUTpxHwXBG1jKHN9uVpl1oFBvUbBxFR1FNX@vger.kernel.org
-X-Gm-Message-State: AOJu0YyoBeowiLB1xoFyctZ0OMnNHCKa8FdbvsuLb0m/GZT4+jZfu8Hm
-	3BBhQ0PFKIEaQ1iXlPNtMPPCDtcM/uZv1OK9n87h19muq76ERODdwMHAsXxzyU14Rok=
-X-Gm-Gg: ASbGncs11GPx+wEgeEWAnkOtImbk+udcFY6D6fuzh+PzrF6gCl6GkNizWrGWl7k/UkP
-	zAwG08ISxo41X7cafWm3FiX2/Sv1pEQ+5MFQnKSoxtWwIx65/pTbLT1e6dK3mlmtv1ADKjv2AkG
-	VUHMSKGyYxgDWXg99ul7ThDgFAWP8yIoZJQs0nkNABFcUiNYMr3yJls32RusT//oLAYMrzxdhQL
-	BODerHj/xz77iKe7tQhwo11VVXVWU6Q2lE7I8u25UC0fABG0jn+IMTshbkOwY9UJtdpoQunmwmm
-	7Lp5YmXyHFKnEIL9Cq44ZtaTbgJaS/eNGbUMdkR8Gg8hXIKQWb37MCSI2DBM8wfroEFCtyhXPV8
-	4saRv939SuvN2kWJ+EhbeBXanCX+7RzJkJnmZ6UFE3f2dB99C7O7nEguewU7+Nxpp+Wi9Ex+xda
-	JfNBNJM3ZMJ9jvzeq65WhlhYfVjXcGkHx+uFMzLRQSXTQ=
-X-Google-Smtp-Source: AGHT+IEnxRa9WBYZ/xihOvJBRUTwTryLwgmhlm6XUxYYKxvIXYWvfiDdFtfoAj1aZpKnj7X7vI055g==
-X-Received: by 2002:a5d:588b:0:b0:427:1ae:abc7 with SMTP id ffacd0b85a97d-42701aeaffemr10842435f8f.2.1760957767322;
-        Mon, 20 Oct 2025 03:56:07 -0700 (PDT)
-Received: from [192.168.0.163] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-427f00ce06bsm14495252f8f.45.2025.10.20.03.56.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Oct 2025 03:56:06 -0700 (PDT)
-Message-ID: <f5a1076f-f06c-404d-88d4-fef4f7694c82@linaro.org>
-Date: Mon, 20 Oct 2025 11:56:05 +0100
+        bh=PufIutwJX/MUqRq87e43IN62sjFrJG1C0t3fcKqtI5s=;
+        b=AffC8MNinNzR00DwdBzL2yJJvCfLetABgPLAzW4AlaVSuGsnFp7dgy6gw6/Iut0ikv
+         Qq35ur/9Y/junpxVmXOrrT+kJITYtZoJ4YvJX0iXQ6mpsfeOFEgw+WM9PfBEsIUPQzzH
+         BKEzVJRpnyBUcyXeH1ce+Mfm67AUDcNeEwfBU2WbOx+57V1IS11+pTnbYufql96FThid
+         duBBden2Sivm4SfRjJq3UTPeBxZKGpfF7aJ/JVN+hW/xJdapLsBEQwA2rausobDeh+Ht
+         Vz95L32nlV0RryFx9uS3a6RyzWgalPrVbKMr6VR38CeWlJoVRMGk96DG4RgufFVp7H5T
+         V67g==
+X-Forwarded-Encrypted: i=1; AJvYcCXlf2bqcaffRV8JOp8oN3B5Ez1coRppDkfEKZUkUo9K7w5HakMUZUHzOa+U9FF3n79tt2Fyd/kyMoET@vger.kernel.org
+X-Gm-Message-State: AOJu0YwBGTjhFSxE3eqirFIfvegCaTCJn6LP7R152tAN7+MRVjKHXXOf
+	BA4V7IA4A5w+0i1Ul04Xn57EjhMZOzz259dbV0ifPNU+WbZzbMpnK0I0
+X-Gm-Gg: ASbGnctPRFu4NCCSoZ2U9Bvh2kt3oMarCSdlKi+Nh2hEoT5wYvW97MLNcNuX58hhqjd
+	rZQH6hzMIcosKxxbE4JLk5gGu3IYOh5N8iRKbegSQFR14eYphxkYPag5Q2NB/saMyDHqt4rZEu7
+	1O6QGPcjHNsv8XqnhHnqAZz2587lC4vORUxzNvcal7oj7OgzUIFITcPxoPDY63KyFY/z8Ei7pQe
+	SmUqu27MRrUnIGi1eurWV0jwAt4U5eDDu9tyV9ZFRyejffNXbZgzrimLFfFnKIpcFkAqz6ljvL3
+	yI4IYsbITJneJNvAVYDd8xJHJYN+6E+CpDYUpe42UCkspp1xnb3/J1Sn/vNfl/UyNlIQgXO5oWK
+	snzEeKBCmS7aCzkQ8vnHVDmAA942J5wA9E3NL0exQrCo9NVFZ1dcofFH93wZb5LEc0+0hlARl5p
+	jLSK0qsrK23ORuJ+tsNNBSFEoHNddUmyTR4TLVEvvsOAc=
+X-Google-Smtp-Source: AGHT+IEGNGRqyCA4oo2Whj2ekIc3ahNm9oAu93O5XQjpUk9MWXWOqPcdHqIk3lFTx8TLeoPA3wFzBw==
+X-Received: by 2002:a17:907:2687:b0:b57:78fa:db46 with SMTP id a640c23a62f3a-b64764d7dabmr1614004666b.43.1760957870288;
+        Mon, 20 Oct 2025 03:57:50 -0700 (PDT)
+Received: from [10.25.213.231] ([128.77.115.157])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b65e7e984f2sm749179166b.13.2025.10.20.03.57.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 20 Oct 2025 03:57:49 -0700 (PDT)
+Message-ID: <26f1b9ef-2e90-476c-8f95-6bae08f69eb1@gmail.com>
+Date: Mon, 20 Oct 2025 03:57:46 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,122 +83,84 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/6] dt-bindings: media: camss: Add qcom,kaanapali-camss
- binding
-To: Krzysztof Kozlowski <krzk@kernel.org>,
- Loic Poulain <loic.poulain@oss.qualcomm.com>
-Cc: Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>,
- Jingyi Wang <jingyi.wang@oss.qualcomm.com>, Robert Foss <rfoss@kernel.org>,
- Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH v2 1/8] reset: imx8mp-audiomix: Fix bad mask values
+To: Frank Li <Frank.li@nxp.com>
+Cc: Abel Vesa <abelvesa@kernel.org>, Peng Fan <peng.fan@nxp.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Bryan O'Donoghue <bod@kernel.org>,
- Todor Tomov <todor.too@gmail.com>,
- Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, linux-i2c@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
- aiqun.yu@oss.qualcomm.com, tingwei.zhang@oss.qualcomm.com,
- trilok.soni@oss.qualcomm.com, yijie.yang@oss.qualcomm.com
-References: <20250924-knp-cam-v1-0-b72d6deea054@oss.qualcomm.com>
- <20250924-knp-cam-v1-2-b72d6deea054@oss.qualcomm.com>
- <CAFEp6-1o11B9o3HjdJY-xQhDXquOTknXo0JeW=HfpTxXcEaK3g@mail.gmail.com>
- <a7be3a42-bd4f-46dc-b6de-2b0c0320cb0d@oss.qualcomm.com>
- <d8dfe11f-c55a-4eb2-930a-bfa31670bef0@kernel.org>
- <CAFEp6-1zpobZNLHt1192Ahtn2O7bV+As0P1YvVHrkRsORyH_Aw@mail.gmail.com>
- <ac96922e-d2a3-4a99-8f34-a822c3dd2d02@kernel.org>
- <7140b8a8-1380-4859-84a3-681b3f1ce505@kernel.org>
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+ <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Fabio Estevam <festevam@gmail.com>, Philipp Zabel <p.zabel@pengutronix.de>,
+ Daniel Baluta <daniel.baluta@nxp.com>, Shengjiu Wang
+ <shengjiu.wang@nxp.com>, linux-clk@vger.kernel.org, imx@lists.linux.dev,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Pengutronix Kernel Team <kernel@pengutronix.de>
+References: <20251017112025.11997-1-laurentiumihalcea111@gmail.com>
+ <20251017112025.11997-2-laurentiumihalcea111@gmail.com>
+ <aPJSk2spnihEEkas@lizhi-Precision-Tower-5810>
 Content-Language: en-US
-In-Reply-To: <7140b8a8-1380-4859-84a3-681b3f1ce505@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+From: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
+In-Reply-To: <aPJSk2spnihEEkas@lizhi-Precision-Tower-5810>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On 20/10/2025 11:16, Krzysztof Kozlowski wrote:
-> On 16/10/2025 12:43, Krzysztof Kozlowski wrote:
->> On 16/10/2025 10:47, Loic Poulain wrote:
->>> On Thu, Oct 16, 2025 at 7:52 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
->>>>
->>>> On 15/10/2025 05:21, Hangxiang Ma wrote:
->>>>>>> +      - const: csiphy4
->>>>>>> +      - const: csiphy5
->>>>>>> +      - const: vfe0
->>>>>>> +      - const: vfe1
->>>>>>> +      - const: vfe2
->>>>>>> +      - const: vfe_lite0
->>>>>>> +      - const: vfe_lite1
->>>>>> Wouldn't it make sense to simplify this and have different camss nodes
->>>>>> for the 'main' and 'lite' paths?
->>>>>>
->>>>>> [...]
->>>>> No such plan till now. Other series may take this into consideration.
->>>>
->>>> We don't care much about your plan. You are expected to send correct
->>>> hardware description.
->>>
->>> To be fair, other platforms like sc8280xp-camss already have the
->>> all-in big camss node.
->>> Point is that if Lite and Main blocks are distinct enough we could
->>> have two simpler nodes.
->>> Would it make things any better from a dts and camss perspective?
->>>
->>>   camss: isp@9253000 {
->>>      compatible = "qcom,kaanapali-camss";
->>>      [...]
->>> }
->>>
->>> camss-lite:ips@9273000 {
->>>     compatible = "qcom,kaanapali-lite-camss";
->>>      [...]
->>> }
->>>
->>> That approach would create two distinct CAMSS instances and separate
->>> media pipelines.
->>> However, it may not work with the current implementation, as the CSI
->>> PHYs would need to be shared between them.
->>>
->>> I guess this should be part of the broader discussion around
->>> splitting/busifying CAMSS.
+
+On 10/17/2025 7:28 AM, Frank Li wrote:
+> On Fri, Oct 17, 2025 at 04:20:18AM -0700, Laurentiu Mihalcea wrote:
+>> From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
 >>
->> And this discussion CAN happen now, stopping this camss and any future
->> camss till we conclude the discussion. Whatever internal plans of that
->> teams are, rejecting technical discussion based on "no plans for that"
->> is a really bad argument, only stalling this patchset and raising eyebrows.
-> 
-> 
-> To be clear, I expect Loic's comment to be fully and technically
-> addressed, not with "no plan for that".
-> 
-> This blocks this patchset and any new versions.
-> 
-> Best regards,
-> Krzysztof
-
-I think we should stick with the existing bindings.
-
-There is no "lite" ISP there are so-called lite blocks within the CAMSS 
-block.
-
-It makes sense to split out the PHYs from this block as they have their 
-own power-rails but, if you look at the block diagrams for this IP there 
-is no specific ISP lite, there are merely blocks within the camera 
-called lite.
-
-It might be nice to structure things like this 
-arch/arm64/boot/dts/rockchip/rk356x-base.dtsi with each component 
-separated out into its own node with its own compat string but, I'd have 
-a hard time justifying changing up the bindings we already have for that 
-reason - aside from anything else - all of those components in CAMSS 
-live inside of the TITAN_TOP_GDSC which is the power-domain for the 
-whole camera system.
-
-So not meaning to answer for Hangxiang but, I think the compelling logic 
-here is to stick to and extend the existing bindings.
-
-So in fact I have no problem with the bindings as submitted - not 
-including the regular fixups these types of submissions entail.
-
----
-bod
+>> As per the i.MX8MP TRM, section 14.2 "AUDIO_BLK_CTRL", table 14.2.3.1.1
+>> "memory map", the definition of the EARC control register shows that the
+>> EARC controller software reset is controlled via bit 0, while the EARC PHY
+>> software reset is controlled via bit 1.
+>>
+>> This means that the current definitions of IMX8MP_AUDIOMIX_EARC_RESET_MASK
+>> and IMX8MP_AUDIOMIX_EARC_PHY_RESET_MASK are wrong since their values would
+>> imply that the EARC controller software reset is controlled via bit 1 and
+>> the EARC PHY software reset is controlled via bit 2. Fix them.
+>>
+>> Fixes: a83bc87cd30a ("reset: imx8mp-audiomix: Prepare the code for more reset bits")
+>> Cc: stable@vger.kernel.org
+>> Signed-off-by: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
+> Just curious, why previous version can work?
 
 
+good question. I assume this was never tested so I don't think the question
+
+of this working in previous versions or not is applicable here. I also looked for
+
+the usages of these macros in the DTS and there seems to be no consumer.
+
+
+I discovered the issue while testing the patches from this series. As for testing,
+
+I used a dummy consumer driver/node and manually checked the register values
+
+after each reset assert/de-assert operation.
+
+
+>
+> Reviewed-by: Frank Li <Frank.Li@nxp.com>
+>> ---
+>>  drivers/reset/reset-imx8mp-audiomix.c | 4 ++--
+>>  1 file changed, 2 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/drivers/reset/reset-imx8mp-audiomix.c b/drivers/reset/reset-imx8mp-audiomix.c
+>> index 6b357adfe646..eceb37ff5dc5 100644
+>> --- a/drivers/reset/reset-imx8mp-audiomix.c
+>> +++ b/drivers/reset/reset-imx8mp-audiomix.c
+>> @@ -14,8 +14,8 @@
+>>  #include <linux/reset-controller.h>
+>>
+>>  #define IMX8MP_AUDIOMIX_EARC_RESET_OFFSET	0x200
+>> -#define IMX8MP_AUDIOMIX_EARC_RESET_MASK		BIT(1)
+>> -#define IMX8MP_AUDIOMIX_EARC_PHY_RESET_MASK	BIT(2)
+>> +#define IMX8MP_AUDIOMIX_EARC_RESET_MASK		BIT(0)
+>> +#define IMX8MP_AUDIOMIX_EARC_PHY_RESET_MASK	BIT(1)
+>>
+>>  #define IMX8MP_AUDIOMIX_DSP_RUNSTALL_OFFSET	0x108
+>>  #define IMX8MP_AUDIOMIX_DSP_RUNSTALL_MASK	BIT(5)
+>> --
+>> 2.43.0
+>>
 
