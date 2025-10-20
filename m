@@ -1,83 +1,97 @@
-Return-Path: <devicetree+bounces-228853-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228854-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id F270CBF1404
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 14:37:43 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 74B52BF142E
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 14:39:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 9667734C8ED
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 12:37:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 30B7518891BB
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 12:39:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9228320CCC;
-	Mon, 20 Oct 2025 12:35:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCF8223BD02;
+	Mon, 20 Oct 2025 12:39:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="JVb1W5J7"
+	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="sd42TPjP";
+	dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="z7pnsaRI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.19])
+Received: from mail.mainlining.org (mail.mainlining.org [5.75.144.95])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6667D320CAB;
-	Mon, 20 Oct 2025 12:35:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.19
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40BBE481DD;
+	Mon, 20 Oct 2025 12:39:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.75.144.95
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760963741; cv=none; b=hetNjimmA+jtEfslsM/LZtRraYNzZ2SikJMblE7D1qRws5cEllxQTU12oJqW0rWUmo2pRYgA2CCK3h4p2G4OOXNFeiLT3jS2QYAIUsTn79/tSmx7txPznMz0ibiQDaImC1JcATepXxgYyb5hveGzpDLpYUailxTPLtS/kX7hnOA=
+	t=1760963944; cv=none; b=IguC+fMtX28RfW4stL4CzkqQIQTjFuRKojJ4GwVnXaTd4aVW+oG5shUzytznpCY5RxJTBMjlMuoyr8fPweJ0Lm1AIWzlcb5wUOSrjoSFPnhk90XDrhAqi/Vi3R38kAKPRW+F2OLr6MM0ahlCeEVgzpJgTtmTMB3oVFOoTV03He0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760963741; c=relaxed/simple;
-	bh=UOwHOT9lCATSleonXEnf65atAJeJJqB71w5Lev4yfkg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WkrcJYY/bz409MT35+5k+jrGN3pndLyP3ibt9b/6VZ56WachbNZTZ06JYu80UNXOy6TqJg6Nrz38/IhfXYVxMs/Md3vDS0kgCBTtjDh/0MPE71iYfhhi8RRNTtpCjL2XcpnsK2ftIqDJ5S1v5OjvwaHn+HDOVJ94ZBwISx1TmQA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=JVb1W5J7; arc=none smtp.client-ip=220.197.32.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=Date:From:To:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=Cs0Sz4USsSfuwMxi4PfdiqTuZfj+bT5+l8lmaC7NVa0=;
-	b=JVb1W5J73osHVHtj7ZFhwxZPBMxXh3JkPA85TUoQTEpywrzYv1zpboJ2iJyvZK
-	pMFjS9G5U6ehjxL9jV4oDoE8tUAbcxZVBXv75ylpPw7K2YDzJIN5tnCk9tp1BDFu
-	7OVmWhzNGlVVEe/2dZ95mEzuYQiNtNn+gvv+orwDYbsGY=
-Received: from dragon (unknown [])
-	by gzsmtp1 (Coremail) with SMTP id Mc8vCgDHX6t5LPZobttTAA--.29784S3;
-	Mon, 20 Oct 2025 20:35:07 +0800 (CST)
-Date: Mon, 20 Oct 2025 20:35:05 +0800
-From: Shawn Guo <shawnguo2@yeah.net>
-To: Kieran Bingham <kieran.bingham@ideasonboard.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	"open list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <imx@lists.linux.dev>,
-	"moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>,
-	open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] arm64: dts: freescale: debix-som-a-bmb-08: Enable HDMI
- output
-Message-ID: <aPYseXEu6beqgxff@dragon>
-References: <20250916144710.1285650-1-kieran.bingham@ideasonboard.com>
+	s=arc-20240116; t=1760963944; c=relaxed/simple;
+	bh=kRqi69XQNLrfoyWHvocNTpjCpJwacf080nY1DUms01k=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=DI3Qg0xepYSLIQrIBj0tkc/XqJv5TLi5TMBsTpLwl+J3K8L6ZsHd3d0XGsPyIE91i7XrrShBCBMfub3QbnVHT7ChvfZKsVOYmtqmJPKD6FsSQJQbwZCnQLONGVCNpiudeneBD7VxbWN+xgR82O/dVuVWZT9mqrUIL53kRWGs8a0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=sd42TPjP; dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=z7pnsaRI; arc=none smtp.client-ip=5.75.144.95
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
+DKIM-Signature: v=1; a=rsa-sha256; s=202507r; d=mainlining.org; c=relaxed/relaxed;
+	h=From:To:Subject:Date:Message-ID; t=1760963915; bh=15XTphJuHRTHPbvt/FSmBC5
+	2HicYBecaw+Q+beI6kPs=; b=sd42TPjPg7XsYRZ26aPWMMg8DyPSB5yjv7TRgtYFyYqHTslqZD
+	UAxyjp91YiGjvBaXcjQjRVZTWw8WMnfFQsxrM1wGjtCBloq447NCtWMGm2SaPoJSC2byR4v/m4Z
+	U8WRwgNczwHdpXkVxo/61INgluXIzw+1ug+k45XiniFnC4fhg+2DWZmoFbxyK1Mudg4C6Xq4eg7
+	P57FhckdLv8+DH2ueFa/0iUG8tbCqL2EwNr8LFnqMzs021O0sI2GHbzbj8ZGBtuauG9mq2vHUwZ
+	EC+wP8gVbfOXYBOV+HKKQHVndTCNxLic9V3VcJg9FDsdQbJq1bjemufAXTiW1vgdiYg==;
+DKIM-Signature: v=1; a=ed25519-sha256; s=202507e; d=mainlining.org; c=relaxed/relaxed;
+	h=From:To:Subject:Date:Message-ID; t=1760963915; bh=15XTphJuHRTHPbvt/FSmBC5
+	2HicYBecaw+Q+beI6kPs=; b=z7pnsaRIqucJNDqH6fpjCrqBLBRYfAdbaMCxbEpZhSU2p+axCx
+	K3z58t/W3Z00NGdMwpMmJsafYv1P8xrjrBAQ==;
+Message-ID: <35c670f1-6de6-4f78-a452-fcffc57ec93c@mainlining.org>
+Date: Mon, 20 Oct 2025 15:38:34 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250916144710.1285650-1-kieran.bingham@ideasonboard.com>
-X-CM-TRANSID:Mc8vCgDHX6t5LPZobttTAA--.29784S3
-X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
-	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUc89NUUUUU
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiNhsBZmj2LHsiEgAA3z
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] arm64: dts: qcom: sdm630/660: Add CDSP-related nodes
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+ linux@mainlining.org
+References: <20251019-qcom-sdm660-cdsp-adsp-dts-v1-0-9ab5f2865a6e@mainlining.org>
+ <20251019-qcom-sdm660-cdsp-adsp-dts-v1-1-9ab5f2865a6e@mainlining.org>
+ <c605434b-b0f4-4a9a-8b28-cf1c77d5f20f@oss.qualcomm.com>
+Content-Language: ru-RU, en-US
+From: Nickolay Goppen <setotau@mainlining.org>
+In-Reply-To: <c605434b-b0f4-4a9a-8b28-cf1c77d5f20f@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Tue, Sep 16, 2025 at 03:47:09PM +0100, Kieran Bingham wrote:
-> Enable the HDMI output on the Debix SOM A board, using the HDMI encoder
-> present in the i.MX8MP SoC.
-> 
-> Enable and configure all nodes required for the HDMI port usage.
-> 
-> Signed-off-by: Kieran Bingham <kieran.bingham@ideasonboard.com>
 
-Applied, thanks!
+20.10.2025 15:27, Konrad Dybcio пишет:
+> On 10/19/25 6:27 PM, Nickolay Goppen wrote:
+>> In order to enable CDSP support for SDM660 SoC:
+>>   * add shared memory p2p nodes for CDSP
+>>   * add CDSP-specific smmu node
+>>   * add CDSP peripheral image loader node
+[...]
+>>   		ranges = <0 0 0 0xffffffff>;
+>> diff --git a/arch/arm64/boot/dts/qcom/sdm636.dtsi b/arch/arm64/boot/dts/qcom/sdm636.dtsi
+>> index ae15d81fa3f9..41e4e97f7747 100644
+>> --- a/arch/arm64/boot/dts/qcom/sdm636.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sdm636.dtsi
+>> @@ -16,6 +16,20 @@
+>>    * be addressed when the aforementioned
+>>    * peripherals will be enabled upstream.
+>>    */
+> You can now remove the above comment ("Turing IP" is CDSP)
+>
+Remove the whole comment?
+
+-- 
+Best regards,
+Nickolay
 
 
