@@ -1,174 +1,93 @@
-Return-Path: <devicetree+bounces-229087-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229066-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id E202ABF39B5
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 23:01:36 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id D900DBF37B1
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 22:43:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 8F371351BA3
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 21:01:36 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 953814E5D69
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 20:43:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 675CB333744;
-	Mon, 20 Oct 2025 20:56:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9540E2E0419;
+	Mon, 20 Oct 2025 20:43:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=apitzsch.eu header.i=@apitzsch.eu header.b="duFjPyBH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="R69E1IQL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from www637.your-server.de (www637.your-server.de [168.119.26.117])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B2D0333737;
-	Mon, 20 Oct 2025 20:56:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=168.119.26.117
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6718C2DFF18;
+	Mon, 20 Oct 2025 20:43:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760993817; cv=none; b=tuzEaq86M0n529LTpd534IK+lLVzrWKahFAdTBZIbzGCXPC6rFPmR+hL3JiVrosFAnHirldMJRUhiAcosLOIpJ45z254dB/iQ1m+CNrX96nnCxtjew3d6wys9w7qtsX9M/q3cxS9UwDM/XUmC+BjFmuq4Bijuc4Blx12dFi0zi8=
+	t=1760992982; cv=none; b=X7MRM1olAOxA/ElOEjBC6Kbk+JQQyjjcRboEUhSb5jnlTxngJQd6L4n1Opj5fuJW7D1iZZibfoGMFpstma15EccTDXguYeZ2+Ne8E84qtNMcdC0EwYaNUfIQhKhVK1VH22qUAVPRSSmGY9TvwmHzlF0AZrnjVne59rckdy4y9xo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760993817; c=relaxed/simple;
-	bh=McGfNh7ciF5ksFu2NwbJt5zEbKC5VtUeVzsub6mNoyU=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=gXMC0IAwoeVHCCS5IxInCcPMrRqjTZrQA6VS750WH6AVBoovJDFHTKSefm1ryiBicfVnW/78jg/GF6GARLGaNQvMx8W6PeNo0OiiFM2McPHXvRGkvKzBlmlGFplBCoUdnX6JuHlh8LUWhRkiRj2bwgXpUVsUj65cwqPvycAJ2uo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=apitzsch.eu; spf=pass smtp.mailfrom=apitzsch.eu; dkim=pass (2048-bit key) header.d=apitzsch.eu header.i=@apitzsch.eu header.b=duFjPyBH; arc=none smtp.client-ip=168.119.26.117
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=apitzsch.eu
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=apitzsch.eu
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=apitzsch.eu
-	; s=default2410; h=MIME-Version:Content-Transfer-Encoding:Content-Type:
-	References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=McGfNh7ciF5ksFu2NwbJt5zEbKC5VtUeVzsub6mNoyU=; b=duFjPyBHVlXnmjSb8UEBUN7+2l
-	bkrdtG+JT+oOjh8Xzk25DYAspxQv78pdrBh1Gkl2gkaIhBhJ+iK31Bk7il7KE9kG/O7BfGjjOkzl+
-	8NuF5z+l+/ByATShiQb9q6Yo1XmGuNrQa+wkfWjN+9mmqCzPhz10pUXWEkFyT81L1WQSqsLEgoRmy
-	CBjre/IRiEXvBuTG9FbbwRokxeWZVYenV6c3NcZnvvsqBgRPx0+QGZg9qShsL4gi1o/7bjhtnPFgi
-	N8gjzLWl6oNx0VOYxGWeb9Z76g/H+ODQyvS9gfI+TLF+cQBYP60sTs3Lab7Ro3f/YTZob2Zm66a6h
-	+ZYGoVRA==;
-Received: from sslproxy03.your-server.de ([88.198.220.132])
-	by www637.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.96.2)
-	(envelope-from <git@apitzsch.eu>)
-	id 1vAwgZ-0008mw-0b;
-	Mon, 20 Oct 2025 22:40:55 +0200
-Received: from localhost ([127.0.0.1])
-	by sslproxy03.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <git@apitzsch.eu>)
-	id 1vAwgY-00021J-2E;
-	Mon, 20 Oct 2025 22:40:54 +0200
-Message-ID: <790fd7d05fa03f788f0a628a99b2e127db824207.camel@apitzsch.eu>
-Subject: Re: [PATCH v2 0/8] media: i2c: dw9719: add DT compatible and
- DW9718S support
-From: =?ISO-8859-1?Q?Andr=E9?= Apitzsch <git@apitzsch.eu>
-To: Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
- <robh@kernel.org>,  Krzysztof Kozlowski	 <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, 	devicetree@vger.kernel.org, Sakari Ailus
- <sakari.ailus@linux.intel.com>,  Daniel Scally <djrscally@gmail.com>
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
-	linux-media@vger.kernel.org, linux-kernel@vger.kernel.org, Val Packett
-	 <val@packett.cool>
-Date: Mon, 20 Oct 2025 22:40:53 +0200
-In-Reply-To: <20250920-dw9719-v2-0-028cdaa156e5@apitzsch.eu>
-References: <20250920-dw9719-v2-0-028cdaa156e5@apitzsch.eu>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.1 
+	s=arc-20240116; t=1760992982; c=relaxed/simple;
+	bh=ICw2tymwdpgjAi7jhcPJWNLOmDSZpCZMN8Mq3WAbZvU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fR6mDvQHzubP5ngIV1ojXlNptZSlaLJvW3nymaSBJLhd2vMw8nNTkO2aeEeq1hW03ecuk3MbIfvSXz2ixex2wIJVUSV2CTEEwWu8Xg+qkQUo07x7RQzIFm6/1tMhoFZl2NnBEvxtktHKaPq8632fJqKWvYVgZYczzeMvPMNrrC4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=R69E1IQL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A546BC113D0;
+	Mon, 20 Oct 2025 20:43:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1760992980;
+	bh=ICw2tymwdpgjAi7jhcPJWNLOmDSZpCZMN8Mq3WAbZvU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=R69E1IQLHAg+VkCglHtQ7jfYYiZBlMH6G6VVr5UwKG2JKxJUnQmBoyYwUjYTjwpiG
+	 LzbemwGnrE3WwwyCfneg3YNd9kdypNQxp6jCuPXO9ZLEDCAjIpxP+d/YLo9qVrVo9E
+	 VuBIWlDPwi3BcL8735Qcg0NaoNrA4fxqyjGi1IvPBL8h9ceUt3FX8pK8GwOjmE6sTf
+	 OZqBXL0sGjdkIeQUL/GNkcLBJ2r8IaZl5PEjyFWpy07/UPGgwJDLCJw96uAGDULfua
+	 AceGo5xy4hfJtMc8BOarTUexozbSlCMzLbrZ+27NxvQBI+3lqD4a9Wqc5lnJBxp0Kz
+	 PUK899RLlA1vA==
+Date: Mon, 20 Oct 2025 15:42:59 -0500
+From: Rob Herring <robh@kernel.org>
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: devicetree@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Maxime Ripard <mripard@kernel.org>, Liu Ying <victor.liu@nxp.com>,
+	Gatien Chevallier <gatien.chevallier@foss.st.com>,
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+	imx@lists.linux.dev, linux-stm32@st-md-mailman.stormreply.com
+Subject: Re: [PATCH 1/4] dt-bindings: bus: don't check node names
+Message-ID: <20251020204259.GA1591976-robh@kernel.org>
+References: <20251020060951.30776-6-wsa+renesas@sang-engineering.com>
+ <20251020060951.30776-7-wsa+renesas@sang-engineering.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Virus-Scanned: Clear (ClamAV 1.0.9/27798/Mon Oct 20 11:37:28 2025)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251020060951.30776-7-wsa+renesas@sang-engineering.com>
 
-Hi,
-
-Am Samstag, dem 20.09.2025 um 14:03 +0200 schrieb Andr=C3=A9 Apitzsch via B=
-4
-Relay:
-> The DW9718S voice coil motor is found on various smartphones like
-> motorola-nora that are currently being worked on in the postmarketOS
-> community. Since the way it operates is very similar to DW9719, this
-> patch series adds support for it to the existing dw9719 driver.
-> Because
-> that driver did not yet support DT, we also add DT bindings and the
-> dongwoon,dw9719 ofw compatible. With DW9718S, the driver was
-> tested fully, including runtime PM.
->=20
-> This is a follow-up of [1] and [2].
->=20
-> Changes compared to previous submission:
-> * Deprecate dongwoon,vcm-freq in favor of dongwoon,vcm-prescale
-> * Instead of per-device config struct use model ID to handle cases
->=20
-> [1]
-> https://lore.kernel.org/linux-media/20250210082035.8670-1-val@packett.coo=
-l/
-> [2]
-> https://lore.kernel.org/linux-media/20250209-dw9761dts-v3-0-14d3f00f0585@=
-apitzsch.eu/
->=20
-> Signed-off-by: Andr=C3=A9 Apitzsch <git@apitzsch.eu>
+On Mon, Oct 20, 2025 at 08:09:50AM +0200, Wolfram Sang wrote:
+> Node names are already and properly checked by the core schema. No need
+> to do it again.
+> 
+> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 > ---
-> Changes in v2:
-> - Add patch (3) which removes i2c device table
-> - Restructure patches because of that
-> =C2=A0 - keep patches 1 and 2
-> =C2=A0 - add patch 3
-> =C2=A0 - patch 6 becomes patch 4
-> =C2=A0 - patch 3 becomes patch 5
-> =C2=A0 - patch 4 becomes patch 6
-> =C2=A0 - patch 5 becomes patch 7
-> =C2=A0 - patch 7 becomes patch 8
-> - Patch 1 (bindings)
-> =C2=A0 - Remove unneeded 'minimum: 0'
-> =C2=A0 - Remove if/then that handles 'default' to reduce complexity
-> =C2=A0 - Add myself as maintainer
-> - Patch 5
-> =C2=A0 - Fix void-pointer-to-enum-cast warning
-> - Patch 7
-> =C2=A0 - Drop pm_runtime_mark_last_busy(); it is already called by
-> =C2=A0=C2=A0=C2=A0 pm_runtime_put_autosuspend()
-> - Patch 8
-> =C2=A0 - Remove extra parentheses
-> =C2=A0 - Print error if writing to power register fails
-> =C2=A0 - Add reason for doubled waiting time during power up to comment
-> =C2=A0 - Pass NULL instead of unused 'ret' to cci_write()
-> - Link to v1:
-> https://lore.kernel.org/r/20250817-dw9719-v1-0-426f46c69a5a@apitzsch.eu
->=20
-> ---
-> Andr=C3=A9 Apitzsch (3):
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dt-bindings: media: i2c: Add DW9718S, DW97=
-19 and DW9761 VCM
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 media: i2c: dw9719: Deprecate dongwoon,vcm=
--freq
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 media: i2c: dw9719: Remove unused i2c devi=
-ce id table
->=20
-> Val Packett (5):
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 media: i2c: dw9719: Add an of_match_table
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 media: i2c: dw9719: Add driver_data matchi=
-ng
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 media: i2c: dw9719: Add DW9718S support
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 media: i2c: dw9719: Update PM last busy ti=
-me upon close
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 media: i2c: dw9719: Fix power on/off seque=
-nce
->=20
-> =C2=A0.../bindings/media/i2c/dongwoon,dw9719.yaml=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 |=C2=A0 88
-> +++++++++++++++++
-> =C2=A0drivers/media/i2c/dw9719.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 110
-> +++++++++++++++++----
-> =C2=A02 files changed, 178 insertions(+), 20 deletions(-)
-> ---
-> base-commit: 846bd2225ec3cfa8be046655e02b9457ed41973e
-> change-id: 20250709-dw9719-8a8822efc1b1
->=20
+> I'd suggest to give subsystems some time to pick this patch before
+> Rob applies it?
 
-Gentle ping.
+Not really any subsystem for this one, so I've applied it. The rest 
+should go via subsystems.
 
-Best regards,
-Andr=C3=A9
+> 
+>  .../devicetree/bindings/bus/allwinner,sun8i-a23-rsb.yaml        | 2 +-
+>  .../devicetree/bindings/bus/fsl,imx8qxp-pixel-link-msi-bus.yaml | 2 +-
+>  Documentation/devicetree/bindings/bus/st,stm32-etzpc.yaml       | 2 +-
+>  Documentation/devicetree/bindings/bus/st,stm32mp25-rifsc.yaml   | 2 +-
+>  4 files changed, 4 insertions(+), 4 deletions(-)
 
