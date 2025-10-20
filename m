@@ -1,64 +1,58 @@
-Return-Path: <devicetree+bounces-228975-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228976-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21E0CBF2C32
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 19:42:37 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1BF68BF2C41
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 19:43:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id EE53B4FE098
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 17:39:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 765DD463B5C
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 17:39:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 480A03328EC;
-	Mon, 20 Oct 2025 17:38:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5A542561AE;
+	Mon, 20 Oct 2025 17:39:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aq+ctViS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KMFgLSI1"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 106B12BF01D;
-	Mon, 20 Oct 2025 17:38:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 839D9283FC3;
+	Mon, 20 Oct 2025 17:39:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760981923; cv=none; b=cGT9SMJM/SeSIWljc/UoN9/iw0MHOMrxbEVNigcHYXVHmQgvcQQM00NBQl4DyMNkR0JY/+q3J0614ecunFIbXpK7E3tHKLMZ8FK6lax4sPYvGsm7Jjf+IQNXzEB4Ywx+e6+V+NrK0HHwgkn50eMqqOxia/9teispwHjq4qzuWk8=
+	t=1760981971; cv=none; b=ZTyrAzrFMWuUcQnoMdR7Wf/+TVoQdvdSFFlBcm6imoxZpSjpFXojA1c6u/oJ6UrZIjsasCRR/VpHktyuRKDMo2KSGdJ6bXhGEEHnqb8B84KJ6c0numRVJGwEU3J52K1iBx4Xgb64sd1fUYVvN/FEe3Cstl8WRVRaRkQ7aCQuehQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760981923; c=relaxed/simple;
-	bh=z4S/Ek+YldPvINEkGsS4GtyzWXh8+ZPhINVzWN0ZA2A=;
+	s=arc-20240116; t=1760981971; c=relaxed/simple;
+	bh=CrfF6HDbxJVfeklUuZ9rurUFTFP0Q4f+NGC+Mm7jVfQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=D+ycyd8dTm1JZ+u0UnJ0ZAqeDFfA7hy/YdcC6JFFDpZbJPVLmYdGUQBq/vgzli8diVxX3BvK2z4Dhmd/7OLb6n2VxbpR2Op3RyCM/eHPMOGUddOJTgQHQUFmoQNq6dll7eY5zfhdpeUT/dVVIhNU33yl3diIztFCKvVMLGDm99Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aq+ctViS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A5607C4CEF9;
-	Mon, 20 Oct 2025 17:38:39 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=PrUtDGUj+tCo6l0dNIjAYRpz8Vkd35zcW2rUEyml4R8cmpSv8Xih+Jic4dk4l1FZjbnnNHPcqsrcR6Ymvnzo3aYpEh3f+SM/0BVltcDgXLm6VgEEdrwarhKCLrX6RR0DmmaAN7LblIreDkWsxCShy3at1XcmkGnsBCNepn0Q7xg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KMFgLSI1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 60184C4CEF9;
+	Mon, 20 Oct 2025 17:39:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760981922;
-	bh=z4S/Ek+YldPvINEkGsS4GtyzWXh8+ZPhINVzWN0ZA2A=;
+	s=k20201202; t=1760981971;
+	bh=CrfF6HDbxJVfeklUuZ9rurUFTFP0Q4f+NGC+Mm7jVfQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=aq+ctViSTR7UDH16588OT6tm0rAFQZjMOnoBF6DI6S5TW19K6WeHzqvTchnqWOEpR
-	 zJy2DV6vf4h6BBDBSPNWOX/0Er8aLRKjmHJP6Hc7TuceEQDk7C546Ma8Oe9gaURoeA
-	 7deoLDVg1MBbu892khg/huonJO/KjI+sdhZwd2TY2BMpdzY/o1wJiiHRimXh0XAGxD
-	 8EAkwtOyDwCeQa62dyq9uqtAqkxYG7qPJOTa/G8uVehVIFTj+tc6xVFU1wwoxQRl0G
-	 qEGPId1Xgsvdrhwq9AidZVDdneI7kji0pE1x1d4vpakwg8gmJidmGtzK0Cwo1hVftU
-	 JB6tRzy2n4mkg==
-Date: Mon, 20 Oct 2025 18:38:37 +0100
+	b=KMFgLSI1CEJqgyck8ld6dGNIEh9MmHVPLcVhTlTJaO8N1dKogXE0y8tJlggrMaE2e
+	 Ibvzjir7DwlIJ4ACY6wMlRCPKB0cN+EI92VvA/6SVbe8wty59wquEgi2md4bCtTtYr
+	 oQs462VGImx0oeeajqhQCTAYgunYyr/fzah/wu8T3TGqwn9GNLkMtl9BaamWcwWY4M
+	 /NkD2fLKOvBswkbgCQhPzk5Rvi1uIRUCW2x/VDlPc2iy+iuGc1sYSokO7rvGyZZ3yR
+	 ZiB/sg105ruiKfWi4z6jKbBB8YNIxwAOEPjEStCGkhI8qjz5ZgZTkAaI/dyEZS8wpm
+	 Gcz55/aUitH3w==
+Date: Mon, 20 Oct 2025 18:39:26 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Chen-Yu Tsai <wens@kernel.org>
-Cc: Jernej Skrabec <jernej@kernel.org>,
-	Samuel Holland <samuel@sholland.org>,
-	Mark Brown <broonie@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-	linux-sunxi@lists.linux.dev, linux-sound@vger.kernel.org,
-	linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org, dmaengine@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 02/11] ASoC: dt-bindings: allwinner,sun4i-a10-i2s: Add
- compatible for A523
-Message-ID: <20251020-thaw-zippy-16c5abdab66c@spud>
-References: <20251020171059.2786070-1-wens@kernel.org>
- <20251020171059.2786070-3-wens@kernel.org>
+To: Alex Elder <elder@riscstar.com>
+Cc: han.xu@nxp.com, broonie@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, dlan@gentoo.org, guodong@riscstar.com,
+	devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
+	imx@lists.linux.dev, spacemit@lists.linux.dev,
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/8] dt-bindings: spi: fsl-qspi: support SpacemiT K1
+Message-ID: <20251020-blinked-primary-2b69cf37e9fe@spud>
+References: <20251020165152.666221-1-elder@riscstar.com>
+ <20251020165152.666221-3-elder@riscstar.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,28 +60,54 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="YTId/bDtK4GXQ9vH"
+	protocol="application/pgp-signature"; boundary="h9bnZ0Qvvq6hacya"
 Content-Disposition: inline
-In-Reply-To: <20251020171059.2786070-3-wens@kernel.org>
+In-Reply-To: <20251020165152.666221-3-elder@riscstar.com>
 
 
---YTId/bDtK4GXQ9vH
+--h9bnZ0Qvvq6hacya
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-pw-bot: not-applicable
+On Mon, Oct 20, 2025 at 11:51:45AM -0500, Alex Elder wrote:
+> Add the SpacemiT K1 SoC QSPI IP to the list of supported hardware.
+>=20
+> Signed-off-by: Alex Elder <elder@riscstar.com>
+> ---
+>  Documentation/devicetree/bindings/spi/fsl,spi-fsl-qspi.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/spi/fsl,spi-fsl-qspi.yaml =
+b/Documentation/devicetree/bindings/spi/fsl,spi-fsl-qspi.yaml
+> index 0315a13fe319a..5bbda4bc33350 100644
+> --- a/Documentation/devicetree/bindings/spi/fsl,spi-fsl-qspi.yaml
+> +++ b/Documentation/devicetree/bindings/spi/fsl,spi-fsl-qspi.yaml
+> @@ -22,6 +22,7 @@ properties:
+>            - fsl,imx6ul-qspi
+>            - fsl,ls1021a-qspi
+>            - fsl,ls2080a-qspi
+> +          - spacemit,k1-qspi
 
---YTId/bDtK4GXQ9vH
+Are the newly added resets mandatory for the spacemit platform?
+
+>        - items:
+>            - enum:
+>                - fsl,ls1043a-qspi
+> --=20
+> 2.48.1
+>=20
+
+--h9bnZ0Qvvq6hacya
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaPZznQAKCRB4tDGHoIJi
-0iiGAQDbeTZHOT/vrRa0955LNmg6Krx3j8KugyLxUopBb3l9IgD+LdsEL5bwP8r3
-dXQ8jYpAE48r/+VJ7lDuXtTyDe6asgE=
-=/dNm
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaPZzzgAKCRB4tDGHoIJi
+0kswAP9b+/liNkMQCp6Ke+y5UQUGUAbD7vBZB+rfyvxgqBNLcwD/Tv29tJBXshLX
+kh3QQ3TDjVtGX4xd3SvbxGWnXDGO3Qk=
+=idEQ
 -----END PGP SIGNATURE-----
 
---YTId/bDtK4GXQ9vH--
+--h9bnZ0Qvvq6hacya--
 
