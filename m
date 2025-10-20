@@ -1,189 +1,208 @@
-Return-Path: <devicetree+bounces-228819-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228818-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD37CBF0EC5
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 13:51:36 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9EA92BF0EB9
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 13:51:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 8D6264E8642
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 11:51:35 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 896044E1359
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 11:51:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CC6B303C87;
-	Mon, 20 Oct 2025 11:51:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91B492D5930;
+	Mon, 20 Oct 2025 11:51:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="PaL/OAYl"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ajy2SNsN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CD012192F5;
-	Mon, 20 Oct 2025 11:51:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760961091; cv=pass; b=pLA0dM3pIEyqx9t1mQduThddAYRD6l7BEQDTN/NFfwai0HYJ1j1Ksr9Zbl/n3XrLqmIjusZBzynYTWiStgf2dA2Fg2kz/l+nKLpfnaX8YF4BtYlL6CuA/Vz5Uufh2DqCdXZCYehSGXHuNhXkuok8/ghBCX/KrptzptfTETbuHDo=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760961091; c=relaxed/simple;
-	bh=6ynyZRXd+tVSkitkXZRJParXJVETR9hXhC8hUwlemlE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=mafqbWr82DngRFCb7DTlAGeCxDWJAFM7WoikNw7eeIIOgG7cG2BMHbe9TyK0u8IjwU8R1moLaBeBG8A/AISEmden72W5RDOc/ZExj7C3iIP/SamRDaYdZeGQHQBiW///jPd61VHbHSUE/g012J5d1BQ381L7P0kFzdB5VGZXh2Q=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b=PaL/OAYl; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1760961056; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=C6s9lTyHmYNGClzUwi70t4LJADX3+pHHK1XyNHdHK8pkqZ0ewDbfJbwIXWji+uiKKcmUeuBW6l+zGWUuO+03pxUuW4fSbebuqG/S8KLJ5DCvdHU667ISmBHyMLGiEhevq79+UUaFc7vwqAm5S5mMXdCMvSHVgcf314a5waiB5NI=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1760961056; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=A/c/4oL8Z03NjnVaEgMnJiauD1mgyw2BMdnR11SbtOU=; 
-	b=iW82Q/ZctwRGQX/L9mOKuaimgoLOz0fVBR1M3TyCll3uEAfcdqH7w9UXuCqxDvtaM0ZJWtujTQtrBMFIsHz79mKsGlZlxVJUxxPgaOPiETDnmLnSSlwiQ6TTLdJq4ZGBBnB7YHbpk1mKNlRkRjCJStTnqRl8T1J3jkhSJ2wQsK0=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
-	dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1760961056;
-	s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
-	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
-	bh=A/c/4oL8Z03NjnVaEgMnJiauD1mgyw2BMdnR11SbtOU=;
-	b=PaL/OAYlpW7pCWoX/nW8/r5Ars7ZMGegZ6sORd7Ra52eVXY8qtIgTV84a6OuCiti
-	f1QFLSFukxd6rYxUkCCtp1sRRNyjyBoz59JCtIF/7UUcfAFVo1cFMZUeeejGOl4n1WW
-	oo+B23a8e3D8+ZHnwIQTPwmfqEktI30JqVK/GOy4=
-Received: by mx.zohomail.com with SMTPS id 1760961055618931.097867690532;
-	Mon, 20 Oct 2025 04:50:55 -0700 (PDT)
-From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Boris Brezillon <boris.brezillon@collabora.com>,
- Jassi Brar <jassisinghbrar@gmail.com>, Chia-I Wu <olvaffe@gmail.com>,
- Chen-Yu Tsai <wenst@chromium.org>, Steven Price <steven.price@arm.com>,
- Liviu Dudau <liviu.dudau@arm.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Matthias Brugger <matthias.bgg@gmail.com>, Kees Cook <kees@kernel.org>,
- "Gustavo A. R. Silva" <gustavoars@kernel.org>,
- Ulf Hansson <ulf.hansson@linaro.org>, Karunika Choo <karunika.choo@arm.com>
-Cc: kernel@collabora.com, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- linux-hardening@vger.kernel.org, linux-pm@vger.kernel.org, nd@arm.com
-Subject: Re: [PATCH v8 4/5] drm/panthor: Use existing OPP table if present
-Date: Mon, 20 Oct 2025 13:50:47 +0200
-Message-ID: <12781303.O9o76ZdvQC@workhorse>
-In-Reply-To: <386ca96d-34b6-4aab-844d-ea720099cf6b@arm.com>
-References:
- <20251017-mt8196-gpufreq-v8-0-98fc1cc566a1@collabora.com>
- <20251017-mt8196-gpufreq-v8-4-98fc1cc566a1@collabora.com>
- <386ca96d-34b6-4aab-844d-ea720099cf6b@arm.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA16B27462
+	for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 11:51:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1760961073; cv=none; b=VL/E4FQPsMS5jG+4B18riNarWJO3QcHHxIAkWrIvSUGKY18fpKxRRm6uZXtMp5CIgMpyDNuGMVRYyQ0oE+x3ThV2Pmf1ovcbuwOGMpVn/SrBDwyNfvw8qtqf0XcWJhZ7JiqGlKoLbCstUC8ziE4r4+W77HAlr1JPHxb44J3DKK0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1760961073; c=relaxed/simple;
+	bh=3l8Mpe21IMJZ36Vru6F8BdwTtWxRFRzgQWuducNxevk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=jlzE5MjmtVMLoQJIxn1VfAbpr78iSh/cs1E4OxL7BBfJheeggHjoPgw5z2uYDxl91ta+NjcCKhRWDXiuqb21qDy0NYXkMaJxVEMAsnp0A3QsaVMdY1JTeaBS0SLUo5qnYPvsfYDeoLg9bkMudZNtLdKdSQA/e3QPnpYZNaG7bnQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ajy2SNsN; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59KB1K63023441
+	for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 11:51:11 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	snBgGKuWB4UoFzX3BzQo/X9MRDaf9rRWG1mdK2nsjBI=; b=ajy2SNsNq0av0MGQ
+	axcgju1AOR/YNbcoBnpL33vXwNRigab4/PMgpVDIpp2li9zMHr4TRT7WQX+gJnvp
+	vvojYGl6mUR76Ap8Zf8WrrEfnmrQ+lFmjKUz9Bx5jmFNTWRrHbFxcMOX4n5mMzCS
+	CMSwLVEG+swyQ0sIz7xnnmeBCllKn5bdO6RxH7G1rwI8h3+NHnzWxhHYFESiiVkW
+	5qhrn4l3L1/R+b7/6xzLoadii0oCTOIeBOsTlvWjzG8Zkk+pvINx92bqeLSY6xdC
+	RynGgrn2ErDgKodwSclu5JGdoVntrSFe3vE9sdQ+CxhhPwovmumi8MO1/MBqSVlc
+	a5youQ==
+Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com [209.85.219.69])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49v2yv4jst-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 11:51:10 +0000 (GMT)
+Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-87c2d14fc1bso6790896d6.3
+        for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 04:51:10 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1760961070; x=1761565870;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=snBgGKuWB4UoFzX3BzQo/X9MRDaf9rRWG1mdK2nsjBI=;
+        b=L9yNWEYKGPKc1BcUabOZPtDEDt8nfBBk8/2GjlPNnVLSB4ESXr28+G08pOWrglPkd7
+         8W0aaegHCTaTtZa0gRc5wN4hXPatbkULKCtlpEDS/rzf+ukytNC8iBhxRipCMXLZ7rD6
+         vewQNvtPjkKkg5GIESfEqAtJ70MS67AOqadIKKMrJP9kNOIu4/4n/pqs8k6kAeetjRHm
+         xBESTrjsUBoPPFv4JVKqtoDFncIDYgJykDJcjEIdIfbZ22DqGEyqvnAFkRM8VbrdWbE0
+         GPOux1XPs23saGHUR+W5P+lPD+Stl/EyNxvsb8N2YyFSAGOlO8uxgkuoLqSwuAl2kVE0
+         xByQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVTSxD9Z842DfnNpYNrpS4rP3jKYydT5tG8ixZ7exoY95dFbAPnpTHEIRHNWaDZ7oQgX6dB+zLXFveE@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywy1XOfUfWD7pZ5377CHO7mBV9AbuaZdshI/Gn7XquUDGB2bIBa
+	WOhdwnkyp6XRvXWSHsHEYrJxkGVXmAGP4eftdR/gw/FNYYxjuJbAypbW3gPlr4l9JTgt6d03PU1
+	7hxjf5duGQjP7vEjZqwgjuNjH1h7p5Dfc0akQin62zCNM6PP5oOWnCvNY67rFJkCr
+X-Gm-Gg: ASbGncsAx++78judMkRJChGNpLyB5BFjHKMYZ7WmmVFzRFH8njSRisble7byDOStRJF
+	6zW0LgWmvChyq0XmEHhXdZdUZxpO1VuezU9dzt2ByQ1ghW+jsUWKpEzQgwIzFKDtAvsfn5yHBrJ
+	2gx/NICqDONJs6PhjKEnwDvd4OhQT9DNU8FpEAsKxHISXeN/0iUHqZUiWAbusXQsGy25xRTKi0Q
+	AYLAUjBNvUwaHSduoR7djS/DK5VW6xgP5oMm20nZjxDPMd0BjG6rJ+yT6q5hRaljeMfZ3EIUA7m
+	XoomPtFuOfEI0LJWCtQTohbbOqtuYMlEixc8m6C8G8EhEjS+35W6k5STxKHIHODPd+mhpfpG2K3
+	/23KzuR9xxXPuD4TKbV9ESCHyQsIwOjRzTRMpc6TybyaN/pHeqep8pibr
+X-Received: by 2002:ad4:5c62:0:b0:77a:fa17:551d with SMTP id 6a1803df08f44-87c2065bc7emr122377376d6.4.1760961069987;
+        Mon, 20 Oct 2025 04:51:09 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFi4TsWjjriGLTXDyCWtzNZZafmMb2+lKzlJu/Cn821IEoakSsLgIAHwrkmiDI+yaHV2vGUJw==
+X-Received: by 2002:ad4:5c62:0:b0:77a:fa17:551d with SMTP id 6a1803df08f44-87c2065bc7emr122377176d6.4.1760961069463;
+        Mon, 20 Oct 2025 04:51:09 -0700 (PDT)
+Received: from [192.168.119.202] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-63c48ab560esm6477728a12.12.2025.10.20.04.51.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 20 Oct 2025 04:51:08 -0700 (PDT)
+Message-ID: <50ac4730-8c9c-49ae-8a1c-db4c8d87804e@oss.qualcomm.com>
+Date: Mon, 20 Oct 2025 13:51:07 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 06/24] arm64: dts: qcom: glymur: Enable pdp0 mailbox
+To: Sibi Sankar <sibi.sankar@oss.qualcomm.com>,
+        Pankaj Patil <pankaj.patil@oss.qualcomm.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20250925-v3_glymur_introduction-v1-0-24b601bbecc0@oss.qualcomm.com>
+ <20250925-v3_glymur_introduction-v1-6-24b601bbecc0@oss.qualcomm.com>
+ <fec06b27-637a-4923-b07d-1f0a1fdf4922@oss.qualcomm.com>
+ <ca4853a1-67e7-4152-aea1-f92c9c25d7eb@oss.qualcomm.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <ca4853a1-67e7-4152-aea1-f92c9c25d7eb@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-ORIG-GUID: 1dZ5DQuXRZ_muLHF379zGJiX2mI9lqee
+X-Proofpoint-GUID: 1dZ5DQuXRZ_muLHF379zGJiX2mI9lqee
+X-Authority-Analysis: v=2.4 cv=f+5FxeyM c=1 sm=1 tr=0 ts=68f6222e cx=c_pps
+ a=wEM5vcRIz55oU/E2lInRtA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=EUspDBNiAAAA:8 a=WRDRb4xdkbWPci3HNeAA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=OIgjcC2v60KrkQgK7BGD:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDE4MDAyMyBTYWx0ZWRfX4lvZ1Wd+PvRU
+ YrPL1nbd9HsVfBfCO07vgIq8AEarqmiYMDIVpGmt0+WzavkYFSnJu/RWUlGFMT+s44ZIk1qXr6V
+ 6N43IERCDzgxTVfzFBbYj0k/DDWgUBAbeePprCPpX7OwS2IPxEn3ivWBL9NR/br1K775JLBMbQd
+ GmzfTLz6bwpbhzUsEBp5XWGFg5NhAjRNIeBp5KyyoB09OYr6d1vD4wpghnCTHHKcYTCOf7NnvbF
+ AtCXbpavLnklEJR8PfI6uhJEjj2godCo6aBxDFkJVPmba6vaUhhrnR5PdZiAgi8kx7VM/4D+vDd
+ adyQ85KYbAvn1K3u4pTXqodEolkmPHL+JIPg+ZFkh/Lq2lrEm4aINZai8MBIyRxuQrSZKS62Zzl
+ u6bJAkfCG1ABw5Q3t/fd/POXZ2gWZg==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-10-20_02,2025-10-13_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ lowpriorityscore=0 priorityscore=1501 impostorscore=0 suspectscore=0
+ adultscore=0 phishscore=0 bulkscore=0 clxscore=1015 spamscore=0
+ malwarescore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2510020000
+ definitions=main-2510180023
 
-On Monday, 20 October 2025 10:35:04 Central European Summer Time Karunika Choo wrote:
-> On 17/10/2025 16:31, Nicolas Frattaroli wrote:
-> > On SoCs where the GPU's power-domain is in charge of setting performance
-> > levels, the OPP table of the GPU node will have already been populated
-> > during said power-domain's attach_dev operation.
-> > 
-> > To avoid initialising an OPP table twice, only set the OPP regulator and
-> > the OPPs from DT if there's no OPP table present.
-> > 
-> > Reviewed-by: Chia-I Wu <olvaffe@gmail.com>
-> > Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> > Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-> > ---
-> >  drivers/gpu/drm/panthor/panthor_devfreq.c | 32 ++++++++++++++++++++++---------
-> >  1 file changed, 23 insertions(+), 9 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/panthor/panthor_devfreq.c b/drivers/gpu/drm/panthor/panthor_devfreq.c
-> > index a6dca599f0a5..ec63e27f4883 100644
-> > --- a/drivers/gpu/drm/panthor/panthor_devfreq.c
-> > +++ b/drivers/gpu/drm/panthor/panthor_devfreq.c
-> > @@ -141,6 +141,7 @@ int panthor_devfreq_init(struct panthor_device *ptdev)
-> >  	struct thermal_cooling_device *cooling;
-> >  	struct device *dev = ptdev->base.dev;
-> >  	struct panthor_devfreq *pdevfreq;
-> > +	struct opp_table *table;
-> >  	struct dev_pm_opp *opp;
-> >  	unsigned long cur_freq;
-> >  	unsigned long freq = ULONG_MAX;
-> > @@ -152,17 +153,30 @@ int panthor_devfreq_init(struct panthor_device *ptdev)
-> >  
-> >  	ptdev->devfreq = pdevfreq;
-> >  
-> > -	ret = devm_pm_opp_set_regulators(dev, reg_names);
-> > -	if (ret && ret != -ENODEV) {
-> > -		if (ret != -EPROBE_DEFER)
-> > -			DRM_DEV_ERROR(dev, "Couldn't set OPP regulators\n");
-> > -		return ret;
-> > +	/*
-> > +	 * The power domain associated with the GPU may have already added an
-> > +	 * OPP table, complete with OPPs, as part of the platform bus
-> > +	 * initialization. If this is the case, the power domain is in charge of
-> > +	 * also controlling the performance, with a set_performance callback.
-> > +	 * Only add a new OPP table from DT if there isn't such a table present
-> > +	 * already.
-> > +	 */
-> > +	table = dev_pm_opp_get_opp_table(dev);
-> > +	if (IS_ERR_OR_NULL(table)) {
-> > +		ret = devm_pm_opp_set_regulators(dev, reg_names);
-> > +		if (ret && ret != -ENODEV) {
+On 10/9/25 12:43 PM, Sibi Sankar wrote:
 > 
-> Is there a reason to not fail on -ENODEV? I would assume it is a valid 
-> failure path. 
+> On 9/25/2025 3:59 PM, Konrad Dybcio wrote:
+>> On 9/25/25 8:32 AM, Pankaj Patil wrote:
+>>> From: Sibi Sankar <sibi.sankar@oss.qualcomm.com>
+>>>
+>>> Enable pdp0 mailbox node on Glymur SoCs.
+>>>
+>>> Signed-off-by: Sibi Sankar <sibi.sankar@oss.qualcomm.com>
+>>> Signed-off-by: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
+>>> ---
+>>>   arch/arm64/boot/dts/qcom/glymur.dtsi | 8 ++++++++
+>>>   1 file changed, 8 insertions(+)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/qcom/glymur.dtsi b/arch/arm64/boot/dts/qcom/glymur.dtsi
+>>> index 66a548400c720474cde8a8b82ee686be507a795f..ae013c64e096b7c90c0aa4cfc50f078a85518acb 100644
+>>> --- a/arch/arm64/boot/dts/qcom/glymur.dtsi
+>>> +++ b/arch/arm64/boot/dts/qcom/glymur.dtsi
+>>> @@ -4065,6 +4065,14 @@ watchdog@17600000 {
+>>>               interrupts = <GIC_SPI 0 IRQ_TYPE_EDGE_RISING>;
+>>>           };
+>>>   +        pdp0_mbox: mailbox@17610000 {
+>>> +            compatible = "qcom,glymur-cpucp-mbox", "qcom,x1e80100-cpucp-mbox";
+>>> +            reg = <0 0x17610000 0 0x8000>, <0 0x19980000 0 0x8000>;
+>> 1 a line, please
+> 
+> Hey Konrad,
+> 
+> Thanks for taking time to review the series :)
+> 
+> Will fix it in the next re-spin.
+> 
+>>> +            interrupts = <GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>;
+>> I see this has 3 channels, with 3 separate IRQs (but one pair of address
+>> spaces) - should we extend this description?
+> 
+> It has a single IRQ and each bit corresponds to a channel.  The mbox theoretically
+> 
+> hold as many channel as the number of bits. The third channel here is used for
+> 
+> logging and is disabled on devices out in the wild.
 
-Hi,
+Your mailing client injects two '\n's every time you press enter
+Try setting mailnews.wraplength = 0 in your presumably thunderbird config
 
-the -ENODEV logic wasn't added by me, it was added in
-Commit: a8cb5ca53690 ("drm/panthor: skip regulator setup if no such prop")
 
-with the justification
+Is the logging channel useful for us, on internal devices? We can still
+describe it if so
 
-  The regulator is optional, skip the setup instead of returning an
-  error if it is not present
-
-I will not be changing anything about this logic in this patch set,
-as it is not in scope for MT8196 enablement, since MT8196 does not
-use this code path at all.
-
-Kind regards,
-Nicolas Frattaroli
 
 > 
-> Kind regards,
-> Karunika Choo
+>>
+>>> +            #mbox-cells = <1>;
+>>> +            qcom,rx-chans = <0x7>;
+>> This further seems to confirm what I found (BIT(0) | BIT(1) | BIT(2) == 0x7)
+>> however this property doesn't exist upstream..
 > 
-> > +			if (ret != -EPROBE_DEFER)
-> > +				DRM_DEV_ERROR(dev, "Couldn't set OPP regulators\n");
-> > +			return ret;
-> > +		}
-> > +
-> > +		ret = devm_pm_opp_of_add_table(dev);
-> > +		if (ret)
-> > +			return ret;
-> > +	} else {
-> > +		dev_pm_opp_put_opp_table(table);
-> >  	}
-> >  
-> > -	ret = devm_pm_opp_of_add_table(dev);
-> > -	if (ret)
-> > -		return ret;
-> > -
-> >  	spin_lock_init(&pdevfreq->lock);
-> >  
-> >  	panthor_devfreq_reset(pdevfreq);
-> > 
+> Ack, this seems to have picked up erroneously and isn't needed upstream and
 > 
+> can be dropped safely. This was needed downstream because they share the
 > 
+> same rx register space across multiple instances. This wouldn't be possible
+> 
+> upstream and we would be exposing all mailboxes that uses the rx space in
+> 
+> the same instance and extend mbox cells to 2 to support this in case when
+> 
+> it is needed in the future.
 
+This won't fly, as you're essentially saying you're introducing knowingly
+incomplete bindings, which are supposed to stay immutable..
 
-
-
+Konrad
 
