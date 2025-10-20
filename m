@@ -1,135 +1,140 @@
-Return-Path: <devicetree+bounces-229012-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229013-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8325BF2FA3
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 20:42:00 +0200 (CEST)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F472BF307E
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 20:52:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 671994EFDBA
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 18:41:54 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id C72F334E65B
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 18:52:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FF2F2D0C8B;
-	Mon, 20 Oct 2025 18:41:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1FBA2D321A;
+	Mon, 20 Oct 2025 18:52:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ivXVHfp5"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="Rn166uEX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE2932C21F0;
-	Mon, 20 Oct 2025 18:41:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E4FF2C327D;
+	Mon, 20 Oct 2025 18:52:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760985712; cv=none; b=eAja8T+c3oykJigcwZb3F1skiCx8ShRwNwsZ128QluOfRcfdX/tUhckbeuO97gIgaN1qvBiE6QPEWl4n8yAVvDUdTSFuCCUuAuM2ykxQLVNQXUj0YAh7epJagmZZcq5mUl7XroC4Ispr7wKqjzPS5Scs+EGobn7heG9gXYqNbls=
+	t=1760986340; cv=none; b=mj6JDuAFouhukhMd1/2mDftCTZGKmo5HyAGFahWoDTlwRO4/7OP5GRPo9e5+a0hCZOtPKfbECSymODTh7RMoY/eF3CmL6hk/ieDYeCk6SF1yv4TGxOtVHbJNceglOLeZCrb7h5HWMy0ALs1axSiNHUvqpOgwUQEcpnwbHhUob50=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760985712; c=relaxed/simple;
-	bh=KC5ynBTKwAPPm0Ypk6n9KoPtmJH7cvFRh2ciSY8Lgx4=;
+	s=arc-20240116; t=1760986340; c=relaxed/simple;
+	bh=EQ8t7tB+D4tqgjE5FX3+AxWSSwDJe9Zy/EctcpllNj4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=flgYdoyr745ahthlM8BIh46gJrufxv48i+pnwQpK8o2GnBpYMy8yYfcjwR/i3hBP1AUTr2jsBHgAh1fKwtinuIUuwXrnAAMTkUPoN0JCKrlWr8rdweGEMASKdaVVXNWqlqiE6dEK7JIbAOscm4I3i3t2p5hGQPBPLKtjM31Jyjo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ivXVHfp5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D2113C113D0;
-	Mon, 20 Oct 2025 18:41:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760985711;
-	bh=KC5ynBTKwAPPm0Ypk6n9KoPtmJH7cvFRh2ciSY8Lgx4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ivXVHfp5mcc7Qs6T2dGRR3qWo5mpwJ/C2T3UqyXTZjjUdnK8XTbgGKD1yNGbzRcIW
-	 gw1B/EaRizweTxKV2AvTHc85QcneaAaaiw3DQOOXBBFDwFzjXPWL1Ff4yPd7DF+TC1
-	 rpHpJRTUxBmbLk9I7TLdorms7cO23bo5322qnKSt6S8+W8wrC8XVq2dTSqozQrc6QS
-	 1E5NA0nu018nP4UMwxaTEQ8wHg4ySQaY0UcPIs93sM0qYQrGLNxGG1wcoVV+NDwugD
-	 QXr9UdmZGeiY+MZb0KRiDguDywmupXimWUuO/OkULdKE/R7ntbykjAVwvXnLMF83K0
-	 hZ3RiJWg1+h3w==
-Date: Mon, 20 Oct 2025 19:41:46 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Alex Elder <elder@riscstar.com>
-Cc: han.xu@nxp.com, broonie@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, dlan@gentoo.org, guodong@riscstar.com,
-	devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
-	imx@lists.linux.dev, spacemit@lists.linux.dev,
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/8] dt-bindings: spi: fsl-qspi: support SpacemiT K1
-Message-ID: <20251020-unwound-cake-21799c9522a1@spud>
-References: <20251020165152.666221-1-elder@riscstar.com>
- <20251020165152.666221-3-elder@riscstar.com>
- <20251020-utility-remedial-4b4dfc716409@spud>
- <08d99fcd-4d0c-4d81-a314-7e1a8bfaa64c@riscstar.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=sub9IwwUn5ECZEIHYhAo1YM1aerpzSpeY2RG23jh1pCNLtulQe9JWUOCm8Cp0lkvsonOGVrhlVAegXgqk0FMg/Z2N+fshbrhkaz38jYsird556697cxt6pCKXcsZAkXuKxl9Hi70K68gxQ3k3YUzNKaT07v3DtI68xe+QtSo12M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=Rn166uEX; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=tvR/JOCDykbUtNBkJ2YheNXEBp8e8ja99yZKcJe41jk=; b=Rn166uEXHRAoxorCRcipzvbU/Y
+	9LYEOK9yuC6IL2lh2+2j0hi6aIl1fJxE2sNKydc1xihXpchLrcP9i5vDopTNPtE1+PhuYWignc4PL
+	/6YlFTFIs3+FkMKTw723y1lHHMx/rp+8d1Cig0WScb12/aNttg/tNHV2+hjX5GnOcfbo=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1vAuyu-00BY4z-B8; Mon, 20 Oct 2025 20:51:44 +0200
+Date: Mon, 20 Oct 2025 20:51:44 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Inochi Amaoto <inochiama@gmail.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	"Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
+	Han Gao <rabenda.cn@gmail.com>, Icenowy Zheng <uwu@icenowy.me>,
+	Vivian Wang <wangruikang@iscas.ac.cn>, Yao Zi <ziyao@disroot.org>,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	sophgo@lists.linux.dev, linux-kernel@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, Yixun Lan <dlan@gentoo.org>,
+	Longbin Li <looong.bin@gmail.com>
+Subject: Re: [PATCH v2 2/3] net: phy: Add helper for fixing RGMII PHY mode
+ based on internal mac delay
+Message-ID: <8da7450f-ef1a-4d8f-9081-a31585e2da19@lunn.ch>
+References: <20251020095500.1330057-1-inochiama@gmail.com>
+ <20251020095500.1330057-3-inochiama@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="S9zWXF20ApbbyoB6"
-Content-Disposition: inline
-In-Reply-To: <08d99fcd-4d0c-4d81-a314-7e1a8bfaa64c@riscstar.com>
-
-
---S9zWXF20ApbbyoB6
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20251020095500.1330057-3-inochiama@gmail.com>
 
-On Mon, Oct 20, 2025 at 01:06:50PM -0500, Alex Elder wrote:
-> On 10/20/25 12:41 PM, Conor Dooley wrote:
-> > On Mon, Oct 20, 2025 at 11:51:45AM -0500, Alex Elder wrote:
-> > > Add the SpacemiT K1 SoC QSPI IP to the list of supported hardware.
-> >=20
-> > Also, you should really explain why this spacemit device is the first
-> > one to be in what's been an fsl-specific binding for now in the commit
-> > message.
->=20
-> I'm not sure how much of an explanation you're looking for, but
-> yes, I agree with you, it stands out that it's the first one, so
-> I at least should have acknowledged that.  I'll add something
-> here in the next version.
+On Mon, Oct 20, 2025 at 05:54:58PM +0800, Inochi Amaoto wrote:
+> The "phy-mode" property of devicetree indicates whether the PCB has
+> delay now, which means the mac needs to modify the PHY mode based
+> on whether there is an internal delay in the mac.
+> 
+> This modification is similar for many ethernet drivers. To simplify
+> code, define the helper phy_fix_phy_mode_for_mac_delays(speed, mac_txid,
+> mac_rxid) to fix PHY mode based on whether mac adds internal delay.
+> 
+> Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
+> ---
+>  drivers/net/phy/phy-core.c | 43 ++++++++++++++++++++++++++++++++++++++
+>  include/linux/phy.h        |  3 +++
+>  2 files changed, 46 insertions(+)
+> 
+> diff --git a/drivers/net/phy/phy-core.c b/drivers/net/phy/phy-core.c
+> index 605ca20ae192..4f258fb409da 100644
+> --- a/drivers/net/phy/phy-core.c
+> +++ b/drivers/net/phy/phy-core.c
+> @@ -101,6 +101,49 @@ const char *phy_rate_matching_to_str(int rate_matching)
+>  }
+>  EXPORT_SYMBOL_GPL(phy_rate_matching_to_str);
+> 
+> +/**
+> + * phy_fix_phy_mode_for_mac_delays - Convenience function for fixing PHY
+> + * mode based on whether mac adds internal delay
+> + *
+> + * @interface: The current interface mode of the port
+> + * @mac_txid: True if the mac adds internal tx delay
+> + * @mac_rxid: True if the mac adds internal rx delay
+> + *
+> + * Return fixed PHY mode, or PHY_INTERFACE_MODE_NA if the interface can
+> + * not apply the internal delay
+> + */
 
-Even just mentioning that the register interface etc is nigh identical.
-Otherwise this just looks like picking a random file to put the
-compatible in. Remember, this is independent from the driver change and
-must be justified in its own commit message.
+I think a helper like this is a good idea. But there are a couple of
+things i don't like about this implementation.
 
->=20
-> 					-Alex
->=20
-> > pw-bot: changes-requested
-> >=20
-> > >=20
-> > > Signed-off-by: Alex Elder <elder@riscstar.com>
-> > > ---
-> > >   Documentation/devicetree/bindings/spi/fsl,spi-fsl-qspi.yaml | 1 +
-> > >   1 file changed, 1 insertion(+)
-> > >=20
-> > > diff --git a/Documentation/devicetree/bindings/spi/fsl,spi-fsl-qspi.y=
-aml b/Documentation/devicetree/bindings/spi/fsl,spi-fsl-qspi.yaml
-> > > index 0315a13fe319a..5bbda4bc33350 100644
-> > > --- a/Documentation/devicetree/bindings/spi/fsl,spi-fsl-qspi.yaml
-> > > +++ b/Documentation/devicetree/bindings/spi/fsl,spi-fsl-qspi.yaml
-> > > @@ -22,6 +22,7 @@ properties:
-> > >             - fsl,imx6ul-qspi
-> > >             - fsl,ls1021a-qspi
-> > >             - fsl,ls2080a-qspi
-> > > +          - spacemit,k1-qspi
-> > >         - items:
-> > >             - enum:
-> > >                 - fsl,ls1043a-qspi
-> > > --=20
-> > > 2.48.1
-> > >=20
->=20
+I don't like returning PHY_INTERFACE_MODE_NA on error. I would prefer
+-EINVAL.  of_get_phy_mode() passed a phy_interface_t *, and returns an
+errno. The same would be good here.
 
---S9zWXF20ApbbyoB6
-Content-Type: application/pgp-signature; name="signature.asc"
+I find:
 
------BEGIN PGP SIGNATURE-----
+phy_fix_phy_mode_for_mac_delays(interface, true, false)
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaPaCagAKCRB4tDGHoIJi
-0ohiAQDQx8/ngIErenJDLWY4lU6RY+0qmrL51bMTNVAHh7sOwAEAghs7YSCh8Sjd
-Sp5Y5uHh2P8M3xL2JiAL026goVBQXAg=
-=a65U
------END PGP SIGNATURE-----
+hard to read. You cannot see what these true/false mean. Which is Rx
+and which is Tx?
 
---S9zWXF20ApbbyoB6--
+Rather than true false, how about passing an
+PHY_INTERFACE_MODE_RGMII_* values?
+
+PHY_INTERFACE_MODE_RGMII_ID would indicate the MAC is doing both
+delays.  PHY_INTERFACE_MODE_RGMII_RXID the MAC is implementing the RX
+delay? I'm open to other ideas here.
+
+	Andrew
 
