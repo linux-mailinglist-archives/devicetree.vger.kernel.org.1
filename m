@@ -1,59 +1,58 @@
-Return-Path: <devicetree+bounces-229093-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229094-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5537DBF3A21
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 23:05:08 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 50987BF3A27
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 23:05:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4C0924843EA
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 21:03:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3167B3A2953
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 21:03:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F54C2E2F03;
-	Mon, 20 Oct 2025 21:01:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BE322E3B16;
+	Mon, 20 Oct 2025 21:03:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aDaHMmNH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ouIobFV1"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4284D240611;
-	Mon, 20 Oct 2025 21:01:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4707B2DAFD8;
+	Mon, 20 Oct 2025 21:03:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760994113; cv=none; b=U1D2wUf73ia1bOWY0UDTm7Lembn8evldFh7vNi+uesKwZ0CgzPpVdfbHFCX0HtB19gx5ZfY+4MvTpvkT9Q7yh+WJ2XvjAvkwtM5N5J36Mg7Kv31xmQFAfW/rB0uR2+NL02qPu0KLJ/r/vCA0dCoPeeoMwTJo4hZQ+7y5COnS41E=
+	t=1760994182; cv=none; b=cWEegAObMjsbD7+zp7FzXzpKpAzXM6RtCIhozTzoaMh5iSoyeDGGMOLK7pWyvzj/NJOVANaqPn7sZorZQy0Xii9NEyh5rsTbkplAqk9Fn684v1bmClJTqozjRGoDzXV/ADLsvJ3vKWCNqlGhNty7sYP3S19KttOAXH2q3fyOb3E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760994113; c=relaxed/simple;
-	bh=88JGFP/B5Ncgyb7uwzXa0jRVFELTUL2aRbVKpTxgqRs=;
+	s=arc-20240116; t=1760994182; c=relaxed/simple;
+	bh=rl73LAPbGGpQy7mrVVA+/INyZcf/ngN3OHEiLJHKOyw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EV114x4y/apEFxL0RhJZ7UwF38UStiHH6Bj6WLDeaudlKj3rTxWhD5HnaDnEtspQCQ4t/njDiYMmtQKTuvdtrBa3CXtayiygbARcElgPKL3H0g3TI+WzLN1QgJE9O3aL+aNY0QBm7dbho26iZV4aPpWYidgNLQLSsP1v25HFu/k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aDaHMmNH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8E066C113D0;
-	Mon, 20 Oct 2025 21:01:52 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=VdKsUNXU/eYlexcbSCZntkl2JfZw28nwmVKF69E5H/VHuWXj4zUaoU+anvWHjJJKgFrjQ3iT3Vz+rsNAPgpi8y99xvicID9nM+ItzvGZiN9GjKacqemjoSEnXAduFC0jqkXrQMEHNK7Tx5RC7QDMHrZrVrAdXPPAEFTP4lMzRAc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ouIobFV1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7C28AC116C6;
+	Mon, 20 Oct 2025 21:03:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760994112;
-	bh=88JGFP/B5Ncgyb7uwzXa0jRVFELTUL2aRbVKpTxgqRs=;
+	s=k20201202; t=1760994181;
+	bh=rl73LAPbGGpQy7mrVVA+/INyZcf/ngN3OHEiLJHKOyw=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=aDaHMmNHLKJ43/8fFmoN9cOjkq6LRRKed+bmNq9htZmmqo+n0feFWQOeehOoBTl1G
-	 IUssnvPXZeyI6D65zqkeyNGf1DgmCH63X3RdM+WbvURnL5eUM5vLVYni5KJK2ccB4s
-	 +baaSAAI+FQ66pa3ozDrVHD9NrMRYkTvk1sDJEVjBdhYSQp8XA0hnLG+S6omKw21NO
-	 4wzXVk+012ciJHvfVCXVZUBbtVnrUE8ZdCFptBYUYdbDADAMiH593s0DLoxt2J4pNL
-	 ElUJXTCiB5/p1d3TlOzod/chN5+3fC24E6uZ4OUXiKSrAvwp+95VUatA0dCKht2Xnt
-	 5lSkkO1XA4SNA==
-Date: Mon, 20 Oct 2025 16:01:51 -0500
+	b=ouIobFV1as3wMda6uinjBFim60/TLrtZBzdBaPYle29anpuOkOsF9JdzA1trGarLd
+	 tl2iE9I17y6Lx1UxAuU7G9qfiL3fH2e9+fRZwbZMlu1zhZLq2WrvAfihurVHZhuDFo
+	 Np6wr4T316XQCHoZiz/pUIn29o1IuLeAl3SaHuxv6ggXklExTb4k9IglCcrPW4DpaC
+	 lqwrLkWAlwoa3XXlbsAciYXP6OIDqAmeJ4ce221bxkytn2v4Ieei/0J5luCL0xBb55
+	 AlLApvXI0UTV+fqb6Ca7LsKbF3ONvg9sfhsa7kk3+soyEF2iE33Z5hSYRd5snlXFHn
+	 NupzmCoh5JWYA==
+Date: Mon, 20 Oct 2025 16:02:59 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Conor Dooley <conor@kernel.org>
-Cc: Valentina.FernandezAlanis@microchip.com,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, linus.walleij@linaro.org,
-	Conor Dooley <conor.dooley@microchip.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-gpio@vger.kernel.org
-Subject: Re: [PATCH v2 3/5] dt-bindings: pinctrl: document polarfire soc
- iomux0 pinmux
-Message-ID: <176099411059.1819853.2443262969720536579.robh@kernel.org>
-References: <20251014-retype-limit-e6cbe901aa07@spud>
- <20251014-ravioli-ramrod-84b478186bb7@spud>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org,
+	linux-media@vger.kernel.org,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, imx@lists.linux.dev,
+	Tim Harvey <tharvey@gateworks.com>, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/1] dt-bindings: media: convert nxp,tda1997x.txt to
+ yaml format
+Message-ID: <176099417892.1821164.3923406811640179986.robh@kernel.org>
+References: <20251015154817.2500601-1-Frank.Li@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,23 +61,28 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251014-ravioli-ramrod-84b478186bb7@spud>
+In-Reply-To: <20251015154817.2500601-1-Frank.Li@nxp.com>
 
 
-On Tue, 14 Oct 2025 15:35:36 +0100, Conor Dooley wrote:
-> From: Conor Dooley <conor.dooley@microchip.com>
+On Wed, 15 Oct 2025 11:48:11 -0400, Frank Li wrote:
+> Convert nxp,tda1997x.txt to yaml format
 > 
-> On Polarfire SoC, iomux0 is responsible for routing functions to either
-> Multiprocessor Subsystem (MSS) IOs or to the FPGA fabric, where they
-> can either interface with custom RTL or be routed to the FPGA fabric's
-> IOs. Document it.
+> Additional changes:
+> - update audio width to 8, 16, 24, 32.
+> - keep one example only.
 > 
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 > ---
->  .../microchip,mpfs-pinctrl-iomux0.yaml        | 88 +++++++++++++++++++
->  .../microchip,mpfs-mss-top-sysreg.yaml        | 13 ++-
->  2 files changed, 100 insertions(+), 1 deletion(-)
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/microchip,mpfs-pinctrl-iomux0.yaml
+> change in v2
+> - add empty line
+> - add description for matrix's col. add limit for first index. But not
+> sure how to limit it to unique id.
+> ---
+>  .../bindings/media/i2c/nxp,tda19971.yaml      | 162 ++++++++++++++++
+>  .../bindings/media/i2c/nxp,tda1997x.txt       | 178 ------------------
+>  2 files changed, 162 insertions(+), 178 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/media/i2c/nxp,tda19971.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/media/i2c/nxp,tda1997x.txt
 > 
 
 Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
