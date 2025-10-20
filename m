@@ -1,61 +1,65 @@
-Return-Path: <devicetree+bounces-228963-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228964-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7489FBF2AC1
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 19:19:07 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CFB00BF2AE8
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 19:21:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 294D118A4FBA
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 17:19:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8E865460D6C
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 17:21:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2E612D77F7;
-	Mon, 20 Oct 2025 17:19:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F088285042;
+	Mon, 20 Oct 2025 17:21:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qSfz08Ns"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="U2t9lGOf"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D4B2C8FE;
-	Mon, 20 Oct 2025 17:19:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED25B3EA8D;
+	Mon, 20 Oct 2025 17:21:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760980742; cv=none; b=GG/Xjvdp5p9WlmlJM8N0qesOhW2x1SZBRoSYXM1ICBjAnuLtyrxEHQt7ZeXZyUtbogDGwkqiOstP2eRcmhQnn5utcML/Luf5gcPBQrw1ItPBbmuvw1cQ7JOOAdAiJhDy6K+VA8UEPu0WFxb03KpLzH/Qy/ArbWiAldhwafW1kEU=
+	t=1760980913; cv=none; b=Q9vuFL/XuNmAC88v3ZSxvgNKIp4vQMF/LAb7WG9AorFo/1BV1s/R6c9wnl/1z+TOBxfaBBprPLY5xSkOPaylPzTHXLX+Z/BiL3AyA20Bx4xFbY9ZoB2HnqMK+ZpmGKguqURvS4jHYJpbBrpuajKzblTAQ0CaYVstGVh8v/cyvs0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760980742; c=relaxed/simple;
-	bh=d2jINvzcEowHYXUQtyByG0BLnrpPSoNJ9KYOgYddVTI=;
+	s=arc-20240116; t=1760980913; c=relaxed/simple;
+	bh=C8eG7PMjUaKTBS6LaCf8Tbd0+/VSPq+6Aua09Qgzo+I=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=eiWBu7PWdMk6t5oRzzvqcDuse6KmHIkD5u1Sy1OlAWuvHsu2E+PdGPiTzBsG5Y83t2HbYSzGRxJljwBRbDUzwbsAUcfcXmxITNS+KE/kxjMCkInX0nny0lW3poJehFLhB0/Spjuq+SpbdaVFD97bk+UNEde4gkNaMvJ7QIAdWWQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qSfz08Ns; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 559C4C4CEF9;
-	Mon, 20 Oct 2025 17:18:59 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=p4O8xfKkdyF8AC+jXe9KWdDqfsGDubZNHerPbAnhsCQyL2k0rbduxSbjX8HwPm5JXCQ9mZjLOJqkAf387UhEjHZGxUCKUPWcly/XeYevs4CtVXd/D+3OSYXunW3856hO9itTMbrcgE2ksSo1Y9k5w1Ob4HddBh8JhOr8fzeAohg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=U2t9lGOf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 63F6AC4CEF9;
+	Mon, 20 Oct 2025 17:21:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760980742;
-	bh=d2jINvzcEowHYXUQtyByG0BLnrpPSoNJ9KYOgYddVTI=;
+	s=k20201202; t=1760980912;
+	bh=C8eG7PMjUaKTBS6LaCf8Tbd0+/VSPq+6Aua09Qgzo+I=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=qSfz08NsopoJBlCTowu9oCXd//s4JDWGOFYx3omXLXJefUl1UzZL5Mj0T1IQc2mhg
-	 vjerZuHSwJ2gZUmIvMwly4gwcb3GG8PvnLIeOQFv5UMVnBSWDQPQkl7Ceaoy1/zUim
-	 EHm/rD/S4Y36etd0uOEnCn7OZDn1ydWG/SzOlX6bnpkc6qmIht7vX8MBqL0csrtdsr
-	 rzSnz+qwouug/Z1RNrXtIL9Uj9l1WNPC/Q8uQtDFY0pe3+v2UFcdNTL8g887y9APim
-	 Kj0wJCYBA3qdka/oR7GbS4x8E2y+i2znYcmB7Q/42VhGaW+jEYL4Q9VAIiYCvQfFJ9
-	 q17inbhmJaWZg==
-Date: Mon, 20 Oct 2025 18:18:56 +0100
+	b=U2t9lGOfNY6Lkx20w2fVB4DPLQ7RNQAT5k/Gy1bRzoMuCqKvcONn9R5Q8SaF6Mp0u
+	 k5ouH3HNB9g4K8O+zH6Hok3sFRVzqmySNOvidRwN0G43JXPWbn08n/8sTz8wOFY0Od
+	 cjmgS652cobnqMLIWBdx7bjZ9VFEwQX1vJW79Ew9BTcGy9P35lRWrtRMlCuW+fZx+U
+	 /ARWcluXqvCoCLKKW805/Q/cvcm2UAjm6fgf8slnos9VTFSrAZ+Dy17ywAtwrJc4tQ
+	 iBD9KrheD9J7RLnfsiuBJzsqz2En0BSGlcfaxC3mFJhPUDuC3z5PYgP5svbn7Fktoa
+	 NNayKWfubeVcw==
+Date: Mon, 20 Oct 2025 18:21:45 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Heiko Stuebner <heiko@sntech.de>
-Cc: maarten.lankhorst@linux.intel.com, mripard@kernel.org,
-	tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, quentin.schulz@cherry.de,
-	andy.yan@rock-chips.com, dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-	cn.liweihao@gmail.com, Heiko Stuebner <heiko.stuebner@cherry.de>
-Subject: Re: [PATCH 1/9] dt-bindings: display: rockchip: dw-hdmi: Add
- compatible for RK3368 HDMI
-Message-ID: <20251020-showcase-crayon-660e4f67881a@spud>
-References: <20251020082508.3636511-1-heiko@sntech.de>
- <20251020082508.3636511-2-heiko@sntech.de>
+To: Xu Lu <luxu.kernel@bytedance.com>
+Cc: corbet@lwn.net, paul.walmsley@sifive.com, palmer@dabbelt.com,
+	aou@eecs.berkeley.edu, alex@ghiti.fr, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, will@kernel.org,
+	peterz@infradead.org, boqun.feng@gmail.com, mark.rutland@arm.com,
+	anup@brainfault.org, atish.patra@linux.dev, pbonzini@redhat.com,
+	shuah@kernel.org, parri.andrea@gmail.com, ajones@ventanamicro.com,
+	brs@rivosinc.com, guoren@kernel.org, linux-doc@vger.kernel.org,
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, kvm@vger.kernel.org,
+	kvm-riscv@lists.infradead.org, linux-kselftest@vger.kernel.org,
+	apw@canonical.com, joe@perches.com, lukas.bulwahn@gmail.com
+Subject: Re: [PATCH v4 02/10] dt-bindings: riscv: Add Zalasr ISA extension
+ description
+Message-ID: <20251020-kelp-trustful-1c07c69cd534@spud>
+References: <20251020042056.30283-1-luxu.kernel@bytedance.com>
+ <20251020042056.30283-3-luxu.kernel@bytedance.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,28 +67,28 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="7YQcMoFn8RBCI1lI"
+	protocol="application/pgp-signature"; boundary="BFPQpvVg8gUO11Ws"
 Content-Disposition: inline
-In-Reply-To: <20251020082508.3636511-2-heiko@sntech.de>
+In-Reply-To: <20251020042056.30283-3-luxu.kernel@bytedance.com>
 
 
---7YQcMoFn8RBCI1lI
+--BFPQpvVg8gUO11Ws
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 
 Acked-by: Conor Dooley <conor.dooley@microchip.com>
 pw-bot: not-applicable
 
---7YQcMoFn8RBCI1lI
+--BFPQpvVg8gUO11Ws
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaPZvAAAKCRB4tDGHoIJi
-0gdnAP9UKaGnCPV2zaldvnd211nAHuvWh9YTAsetUvI6810yKwEAvc3hLDjMN6Zn
-5Mim/845bWOoq9O19ETLpIYckAc7uAE=
-=7vaE
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaPZvqQAKCRB4tDGHoIJi
+0hvXAP9MBxNLwQ6EaW26x/57UgbQ5Ohba3hlU7D3bJB9ReuoPwEA89307tQnz5Yg
+euZ/obSdJwA33QQLg4HfL//+TgpQAwM=
+=orfO
 -----END PGP SIGNATURE-----
 
---7YQcMoFn8RBCI1lI--
+--BFPQpvVg8gUO11Ws--
 
