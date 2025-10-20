@@ -1,195 +1,147 @@
-Return-Path: <devicetree+bounces-228941-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228942-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48730BF28C5
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 18:54:04 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD440BF28BC
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 18:53:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 99F1246410B
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 16:52:59 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id BCDB74F89D7
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 16:53:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07DFD3321AD;
-	Mon, 20 Oct 2025 16:52:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F385330339;
+	Mon, 20 Oct 2025 16:52:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="1gcssCO8"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wBpO41ED"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-io1-f43.google.com (mail-io1-f43.google.com [209.85.166.43])
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 259E832F775
-	for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 16:52:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7667732ED5C
+	for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 16:52:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760979128; cv=none; b=omSfXc6ZSpytJwriNfTkkayO1P5cqe/op7hIYAJ31+AhsdKLtpVo0ssM8CwY6Zwkca9XCq5izAV4XanbchDiYd+/XhdGbcDP6FSB500nD2+kOaoUk39SXVvEPEjLV8uhIYLlwdDxEiaZ6TRSYQe1oSEMg2E+Sw/K1NOKGBxn8YY=
+	t=1760979154; cv=none; b=Lk63l5oexGhnAdQRR19YsLMTgEFM6VjFZOuIfIAXTTkxergo74+cszVaC3pQmaK2LIH+zqQa8E8ckVDwJr0z5rgEqENsKjcApeDC3WkqG6b/eyzeS4soBJdEKpHjhzfmBsExZoihM59K5wYl1QIrkIkNT3Mz1uuSelSzVyEUpCg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760979128; c=relaxed/simple;
-	bh=wy1ICIdGX60YDFSfUgR2rdxBjAGUo3dI3PFdtxnHMOo=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=nc+H3qyAdUkiG0MGe5FTlBSVaigR61wpUaJMbtBA5y/D4xtqtPosvZx/1rLzn3+5GGmn2Z1GbF4znDH32rpjLGCPwdTYc1Iv6gJ1o/VWwFJzMXN/weI+hfBUnKsk4feAwqzCkm2C2IBzyelt4/ojhobaGvgmkjwZKQrZuJkdXXM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=1gcssCO8; arc=none smtp.client-ip=209.85.166.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-io1-f43.google.com with SMTP id ca18e2360f4ac-93e89a59d68so88609639f.0
-        for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 09:52:07 -0700 (PDT)
+	s=arc-20240116; t=1760979154; c=relaxed/simple;
+	bh=vZieQoaOZdOJrGclPot4iYrFQ6Avj0HaDeuJuEXuAPs=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=bHZKvI91L59GoefoaUnMgJY1K+VZnPaDuyZoeCCakSumi20WRAbOoanp3oZxDFSmZZl/o2FFubfUDNmxeC0sOaA39lIGZo1b6wBwC2mwdTGxe6sCsoz/EqWm4NHAkELC/ts5ze0nt/VtKeYTbehU6rkYuEjGv9f2CHEN1MCpu1s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=wBpO41ED; arc=none smtp.client-ip=209.85.128.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-47105eb92d8so7315305e9.0
+        for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 09:52:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1760979126; x=1761583926; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ME7tN0yU+7BkLvgNaV8YZoYvs3CU33grIokhdTXS5MI=;
-        b=1gcssCO836I7YzjmPM6B9QCTpuHhh0Z0Y2aZYQJN4yx413g/2SJ7IHJO3DazythDoH
-         cx2Bsk8RrTiBkn0cgr77LVQpc4IQnU92E5wcOaocBQ8l2gELhbB2zySqg4Ojw4BlugGZ
-         vSJcaQJp0E/NdQ+cx8g4bXGR3z6tnlzVHombfQ4z55j6ge2F+k9s4O6PqSG8kvASOADQ
-         ZtcwvTIAFylsOWYhQPPvHbMOoBJWJd5obfMnXoy0VnDG6dRRD98txMv4e+47gMJ2xUyM
-         lVoRKVHuaH52eNtJyf6K+Sdko7tnG54NNGkAh5yYPm2dtwEiqkj2ry/lBE5uvNnm7xYW
-         jU4Q==
+        d=linaro.org; s=google; t=1760979150; x=1761583950; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=5KCYjApNddIGmUSFoVSxu6I7kzYfXwxdV5uFV5PNTps=;
+        b=wBpO41EDRHAuN6UNUYM68oS7Betxv5nzZl2zoxFZf9o9JcYMvdzkdqCZn6scjhaYYm
+         Me4ZD+z3Co5KDcOEOWp7KqqvRYrL9kOM0HB9C5LIZsI4d7DF07oJBLRaYrpp37sr3WgT
+         Im3VHgC+JJUIdoB76aoYFppKIOVGvWKD+8NY6Cft5rBqg8nWgTnuHUH6+rbCSwnzCPpz
+         gn1j5mqJDxJCUGQUe32GPGFNTMbrrK2IwTo8qQhnxJVVrrb2ZVhWROIxtj3NKm5S8/fK
+         nuF/aXSz898u6gHy53nHePQ6Q8ICk5btLkFgf45jnzM5AfB3lBP7Ku5P5uy1SrEXQsTI
+         OZlg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760979126; x=1761583926;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ME7tN0yU+7BkLvgNaV8YZoYvs3CU33grIokhdTXS5MI=;
-        b=fxcCvdRy1hPrd+o3+x/bK9mmtElj5b4Zc5/nrCexn5o6RDyg5AMCsR6tHVyHKTm2eq
-         JrnNuqS3dY2VA4oEOOEyJzH3kzG0aBtghKZRIjrboldVzNSnzwhygB/qqtr3RiBC8RfM
-         80MM/flQ8HgGHmCnvujpAWEmXjabaQ3iG8rjwoa8HO/paXxfmPAID4KPlkhpezWm3D51
-         BBCLjEtQ7UbehpH/l0HjB+P6k6ZHzgBWRcaV3x5XU6UokQBs5CyKDsBRM+gAqu44xZ5v
-         /XVocW5G2cwvJ5N3zh+pA3j60Yua/CudMHkNKnhgG8vNBmFZRSlRELQKrE6WIy7qz5lk
-         Ql+w==
-X-Forwarded-Encrypted: i=1; AJvYcCWOSl+vwEYl2EnF65rMw6rHytuzeoSrL4WBu8hoDwkjYNkZmKmNDarCTJW4BzePdSoJabKPJ9TSDhRO@vger.kernel.org
-X-Gm-Message-State: AOJu0YzbCqd8Lnun744MXnnc8uqvEiyQ76jOkGPpY2E5DeeJ+h2SX0iq
-	dCLA3vE7+qccmfMVc52BdXVU9SGb9YSriY5rEoA3gcoPEvyholYyBknPQkK6Syq0b+M=
-X-Gm-Gg: ASbGncv3mxawmgLa0Qmq8sZdZ69rnfv13xcWQCDCAGzJiyCQ4T/y7dXrGILdGaULGiu
-	0BKagexpVTNKM8GAf5KbqH9RbFYD5izeB9xMpeFxvbJDG0r/sWiywX6J2YtgOiM6PCYyliUy/nW
-	Mw1gqRf8xfU9vcam0AvPvYIUWgbItF0vPIDleKDk6Oq1wIi9TrLGDNWAYVB8Kfvn2khAiP10u8r
-	4zP8PzVRMZXjj+VIOyegm+73ZrOh6hkGcvgtCr3bFnnPnazgarlCfxuCt4d4i/1x6zoYAvYR/sQ
-	PSE7PtTqI2RPA6OQOAlnLIW4LjSpProdlNMOzVc2LuQqTUC7GimJsD2lyaTb7gAwBtb8Vn6X9Ra
-	I19iiGwLbIrDz859NOHccvGfFiYiCnDGqzZo5Sr491383xmxHmfMWhelXqoHDl8YlZVTOHlpM/k
-	rghjV2c3FNT9XVACxHiS+b4EQMz6856NGxFALdENrQjlDcfIku+SG2K4GRmTQcFpbP
-X-Google-Smtp-Source: AGHT+IH2irmcbwMULie9OSrSx0zC1Cu9OY8pd1/5qlpoxwTt5tQIMKxjTuK3uX5gEo7j5Pm6IgtfPg==
-X-Received: by 2002:a05:6e02:2301:b0:424:7ef5:aeb with SMTP id e9e14a558f8ab-430c526b27fmr218824855ab.17.1760979126308;
-        Mon, 20 Oct 2025 09:52:06 -0700 (PDT)
-Received: from zippy.localdomain (c-75-72-117-212.hsd1.mn.comcast.net. [75.72.117.212])
-        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-5a8a9799428sm3116783173.63.2025.10.20.09.52.04
+        d=1e100.net; s=20230601; t=1760979150; x=1761583950;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=5KCYjApNddIGmUSFoVSxu6I7kzYfXwxdV5uFV5PNTps=;
+        b=R0DRiRJ/eGVH6KABi81kZTqMxgJTa4Bm5aGIMOJiPc8k9ix9uBUT4xOUmV7dBlGQpx
+         84gXBo4b2Kd+hPU4JNGhe8XWhyJ4sE/DTkaL78fOleYssNY7VIe7ZKNGE9+WKBkNH1db
+         6mufmzjtckfRlJyfungzJqgRTfFGs1CwWnrn9vkkUsFEkhoC7J/cdLUWBNU8ekydyeMy
+         X80lHWSTT4uN8uDhpr3SYmaU4n4LbtMaV/QQBqQ26sZxIP6T2OT7W2hqSiNskBqgr1v0
+         mQ3Ujxo3w23Gj5BumWDWVUVdvN27zceJLwU2sDNTL7D6JsqVTyLtUXIH20qpyFRbF8fR
+         B4aQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWe3NsR/Cxo5CVRpWah5/ffXWpLGrjFFyQvVc5w5xZn0LmJYphcmpTYfvdnt213i78YOKqUlhhbDPqO@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzw/xXMoUv33ex/MdEdFE2e8PrhmVQOIC14ZwmvD5AqTUmmn6kP
+	k63Q44zkWScMz6j2S4YRiXHEL4Aj9fgIJy8/sXwb1YpDBlZ02E7xSIlG6MWLi0LXQmM=
+X-Gm-Gg: ASbGnctvRHW+3njaMqp5I4o4S0o8NRqXkVApzeSbf3bHlJjdpOASCNZKHT9U0gSD2Z7
+	vRyCwAl0/1t45kx4LqRMHg5GplnADRRVP+pyzGwuWnSFVdQ5GNrU2xa8xYzHGETPj2E1KDAMxXO
+	aA4KfHeMl/aZvGs4Ybr+nNY87CBmaA/+M5IVxUsO/5EU5x9en+CyrhXweFAqzdjrA8NAIsyerUc
+	NX5qJtYcGBOkbRnHgK/sK/RCY6a+1kHuOCQjyFQJeq34MpPc5HRRdog6tegvhkeASyoZZWNxXAg
+	+3UL3uewGORm6NYF7jCxbS/x3lI711pFf4qBt13tufU/zgTtO3q5At8jDp4DYwzBaOLbSP7qrRf
+	nk2QgKdPtgOgK988Hd/SCD3Kzr/h2eodNUPQZwYYaGXRk2XnOAfR2IEOq/mCw8ZakVL61kBPl3y
+	bLYhfVZhsXbdTlBwGdG70KXBjY+Ls=
+X-Google-Smtp-Source: AGHT+IFq6eiUybBCcgPn78eYQEMq8UP3MM0hOecYMP9MLQwhWe/dX5I4wohsL36fCYcUPbfIoa28uw==
+X-Received: by 2002:a05:600c:1994:b0:45f:2c33:2731 with SMTP id 5b1f17b1804b1-47117874694mr57176425e9.2.1760979149761;
+        Mon, 20 Oct 2025 09:52:29 -0700 (PDT)
+Received: from [127.0.1.1] ([178.197.219.123])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-471144c82c9sm238324695e9.14.2025.10.20.09.52.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Oct 2025 09:52:05 -0700 (PDT)
-From: Alex Elder <elder@riscstar.com>
-To: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	dlan@gentoo.org
-Cc: pjw@kernel.org,
-	palmer@dabbelt.com,
-	aou@eecs.berkeley.edu,
-	alex@ghiti.fr,
-	guodong@riscstar.com,
-	devicetree@vger.kernel.org,
-	spacemit@lists.linux.dev,
-	linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 7/8] riscv: dts: spacemit: enable K1 SoC QSPI on BPI-F3
-Date: Mon, 20 Oct 2025 11:51:50 -0500
-Message-ID: <20251020165152.666221-8-elder@riscstar.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20251020165152.666221-1-elder@riscstar.com>
-References: <20251020165152.666221-1-elder@riscstar.com>
+        Mon, 20 Oct 2025 09:52:28 -0700 (PDT)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 0/3] mfd/watchdog: dt-bindings: Reference watchdog schema
+ in rohm,bd96801-pmic
+Date: Mon, 20 Oct 2025 18:52:19 +0200
+Message-Id: <20251020-dt-bindings-watchdog-timeout-v1-0-d0f3235eb327@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAMNo9mgC/x3MSwqAIBAA0KvErBswM6iuEi0sJ5tFGmofiO6et
+ Hyb90CkwBShLx4IdHJk7zKqsoB51c4SsskGKWRTCSnQJJzYGXY24qXTvBpvMfFG/khYt0o3Sqp
+ OdC3kYg+08P33w/i+H4t+CO9uAAAA
+X-Change-ID: 20251020-dt-bindings-watchdog-timeout-384a54249098
+To: Wim Van Sebroeck <wim@linux-watchdog.org>, 
+ Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>, 
+ Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Timothy Pearson <tpearson@raptorengineering.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=863;
+ i=krzysztof.kozlowski@linaro.org; h=from:subject:message-id;
+ bh=vZieQoaOZdOJrGclPot4iYrFQ6Avj0HaDeuJuEXuAPs=;
+ b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBo9mjFDlEe6IncaZP9cdnACEoL4jyItNFxIAgtp
+ vLqQXKp6cuJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaPZoxQAKCRDBN2bmhouD
+ 11j/D/0eiV/jMoQ+pi8sTgHdLuyjB5B/Vz75qXlTFc92kE9d14RZtuSenpe2kjPoeB2HEYy1giF
+ gCTSI6jWHM/LPj1uo1h2wMq0CAFst5N1F4v0ayycNsvmS7W+QzhxeMyLjari7ichpajDEL8d/Fv
+ 14QnToHKyEyiLgjwVmyWyJgvvUf4U0d9zJOQVWgiib2DkyYwUauAFFFGA/gMRN/2MPPwPltl3Pk
+ CX+q1axt5729Ict0OPzkUDIFumxbRY0CVSzpuSlUEqxzmfw/AXgZUIlYMaBDKEWI8e98J6Mzwj1
+ 8eHLhFeRMSMQF+GqHefEK7R1IpPhjTLFmK84zHnQ4Gb3Dlyzw3moviQy224zs3r4aMbJffLqatA
+ bYo/lP1nyXaZYjBSc5nHox+g3PR58Dp2pg4BO91z1nwQULv8QHQJzpK9uaK9nlH85/L9l+rEvXQ
+ 4huh2f1KySxWU6HmvdTygAE3+JQFXCeoFrSUSsGOda48w/5nXboFV+8uLGGQB/R5pCdBtOba9qd
+ Cz0Fa0Nhn+cJN0XwFWQKgg/5/kzSaWMdpc36mm2YH7bjh/4JHUuvKDKoni1OOTX77ILa5UXAHqI
+ Wl/X8DCdkctHdO2BnlnLI6ymgQwVgmxYR+6vB/PnsFITF7DDmZ7tlsmLBPAkc9GJx9aCTD9SJEX
+ PjNvAIztOfkAPTA==
+X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp;
+ fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
 
-Define DTS nodes to enable support for QSPI on the K1 SoC, including
-the pin control configuration used.  Enable QSPI on the Banana Pi
-BPI-F3 board.
+Dependency
+==========
+The last MFD patch depends on the previous watchdog.
 
-Signed-off-by: Alex Elder <elder@riscstar.com>
+rohm,bd96801-pmic.yaml binding should reference watchdog.yaml which
+leads to few more patches.
+
+Best regards,
+Krzysztof
+
 ---
- .../boot/dts/spacemit/k1-bananapi-f3.dts      |  6 ++++++
- arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi  | 21 +++++++++++++++++++
- arch/riscv/boot/dts/spacemit/k1.dtsi          | 16 ++++++++++++++
- 3 files changed, 43 insertions(+)
+Krzysztof Kozlowski (3):
+      dt-bindings: watchdog: Restrict timeout-sec to one number
+      dt-bindings: watchdog: Allow node names named 'pmic'
+      dt-bindings: mfd: rohm,bd96801-pmic: Correct timeout-sec length and reference watchdog schema
 
-diff --git a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-index 33ca816bfd4b3..2f3750f7fd6f3 100644
---- a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-+++ b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-@@ -258,6 +258,12 @@ dldo7 {
- 	};
- };
- 
-+&qspi {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&qspi_cfg>;
-+	status = "okay";
-+};
-+
- &uart0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&uart0_2_cfg>;
-diff --git a/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi b/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi
-index 4eef81d583f3d..e922e05ff856d 100644
---- a/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi
-+++ b/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi
-@@ -73,6 +73,27 @@ i2c8-0-pins {
- 		};
- 	};
- 
-+	qspi_cfg: qspi-cfg {
-+		qspi-pins {
-+			pinmux = <K1_PADCONF(98, 0)>,    /* QSPI_DATA3 */
-+				 <K1_PADCONF(99, 0)>,    /* QSPI_DATA2 */
-+				 <K1_PADCONF(100, 0)>,   /* QSPI_DATA1 */
-+				 <K1_PADCONF(101, 0)>,   /* QSPI_DATA0 */
-+				 <K1_PADCONF(102, 0)>;   /* QSPI_CLK */
-+
-+			bias-disable;
-+			drive-strength = <19>;
-+			power-source = <3300>;
-+		};
-+
-+		qspi-cs1-pins {
-+			pinmux = <K1_PADCONF(103, 0)>;   /* QSPI_CS1 */
-+			bias-pull-up = <0>;
-+			drive-strength = <19>;
-+			power-source = <3300>;
-+		};
-+	};
-+
- 	/omit-if-no-ref/
- 	uart0_0_cfg: uart0-0-cfg {
- 		uart0-0-pins {
-diff --git a/arch/riscv/boot/dts/spacemit/k1.dtsi b/arch/riscv/boot/dts/spacemit/k1.dtsi
-index af35f9cd64351..47f97105bff0b 100644
---- a/arch/riscv/boot/dts/spacemit/k1.dtsi
-+++ b/arch/riscv/boot/dts/spacemit/k1.dtsi
-@@ -823,6 +823,22 @@ uart9: serial@d4017800 {
- 				status = "disabled";
- 			};
- 
-+			qspi: spi@d420c000 {
-+				compatible = "spacemit,k1-qspi";
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				reg = <0x0 0xd420c000 0x0 0x1000>,
-+				      <0x0 0xb8000000 0x0 0xc00000>;
-+				reg-names = "QuadSPI", "QuadSPI-memory";
-+				clocks = <&syscon_apmu CLK_QSPI_BUS>,
-+					 <&syscon_apmu CLK_QSPI>;
-+				clock-names = "qspi_en", "qspi";
-+				resets = <&syscon_apmu RESET_QSPI>,
-+					 <&syscon_apmu RESET_QSPI_BUS>;
-+				interrupts = <117>;
-+				status = "disabled";
-+			};
-+
- 			/* sec_uart1: 0xf0612000, not available from Linux */
- 		};
- 
+ Documentation/devicetree/bindings/mfd/rohm,bd96801-pmic.yaml | 8 +++++---
+ Documentation/devicetree/bindings/watchdog/watchdog.yaml     | 3 ++-
+ 2 files changed, 7 insertions(+), 4 deletions(-)
+---
+base-commit: 52ba76324a9d7c39830c850999210a36ef023cde
+change-id: 20251020-dt-bindings-watchdog-timeout-384a54249098
+
+Best regards,
 -- 
-2.48.1
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
