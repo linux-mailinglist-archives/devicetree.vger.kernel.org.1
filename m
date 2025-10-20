@@ -1,162 +1,153 @@
-Return-Path: <devicetree+bounces-228695-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228696-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66B79BF01FD
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 11:16:58 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E6ACBBF0233
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 11:20:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CF1C13BA865
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 09:16:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6208F3E08CC
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 09:20:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60C212F548D;
-	Mon, 20 Oct 2025 09:16:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9ECA62F547A;
+	Mon, 20 Oct 2025 09:20:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mF3rRDMQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9124629DB6A
-	for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 09:16:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF6C72F5313
+	for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 09:20:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760951794; cv=none; b=Puc8hra7V60lVHlCdi14ldY1+Wz3zUO9ZTH721Uq0c48ZPt589RbgBuMZ8Bjlul7Vk8wRrBbiEdx3Ju6OauxhCZr7V+k7peZpHZKMsKToh9A9469otUnX8pfqZHv1sH5zGs/5NXvD1T3tGRa3X/rWv/y9SoV5EDGeSR432K9sTU=
+	t=1760952008; cv=none; b=jCDYlLfX7l9pWj0j2mmXbgG4l8NI/cyORtVWfrkdwI3k464MGCut4L64/r4jB3zZjH2fTfGuVzfwudAUsC86aOLMO67riMmaquaAXM5o8PgW1NmU0Dgi3wVLVX1SxSvt/Mq/wmdhO9UmXbCjQYBCHDIYb87N/r0jG1+Qjd977/k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760951794; c=relaxed/simple;
-	bh=P5qdqIbQJXlpU2AVWwO5CppXIEQ7tRUuCuhzdjaCMI0=;
-	h=Message-ID:Subject:From:To:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=ux4tAz2GEvTQrGV1hGNdwol7alGV1gIUS46x/vcGYOAOSNxW1k1Gf60IjDAknMmyAX8yD7TfEXkZo7XPPtdQtC5pVlETPR0mcoR0kcAWq0WIZoLwdrfltQQsqh7f6N0eHtnOpnGJXLIqk+O9nHqENCyECzAh7n1t2hetWh31xpY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1vAlzx-0000qK-0b; Mon, 20 Oct 2025 11:16:13 +0200
-Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e] helo=lupine)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1vAlzv-004WQH-0r;
-	Mon, 20 Oct 2025 11:16:11 +0200
-Received: from pza by lupine with local (Exim 4.98.2)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1vAlzv-0000000059F-0jvO;
-	Mon, 20 Oct 2025 11:16:11 +0200
-Message-ID: <af5211fbb818c873f22b6622526fa8e0c9eb2fde.camel@pengutronix.de>
-Subject: Re: [PATCH net-next v3 4/4] net: mdio: reset PHY before attempting
- to access registers in fwnode_mdiobus_register_phy
-From: Philipp Zabel <p.zabel@pengutronix.de>
-To: Buday Csaba <buday.csaba@prolan.hu>, Andrew Lunn <andrew@lunn.ch>, 
- Heiner Kallweit <hkallweit1@gmail.com>, Russell King
- <linux@armlinux.org.uk>, "David S. Miller"	 <davem@davemloft.net>, Eric
- Dumazet <edumazet@google.com>, Jakub Kicinski	 <kuba@kernel.org>, Paolo
- Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,  Krzysztof
- Kozlowski	 <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Florian Fainelli	 <f.fainelli@gmail.com>, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, 	linux-kernel@vger.kernel.org
-Date: Mon, 20 Oct 2025 11:16:11 +0200
-In-Reply-To: <cb6640fa11e4b148f51d4c8553fe177d5bdb4d37.1760620093.git.buday.csaba@prolan.hu>
-References: <cover.1760620093.git.buday.csaba@prolan.hu>
-	 <cb6640fa11e4b148f51d4c8553fe177d5bdb4d37.1760620093.git.buday.csaba@prolan.hu>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.1-1 
+	s=arc-20240116; t=1760952008; c=relaxed/simple;
+	bh=iVDOlt8XyF/0gL57nFvuUrvv3rVY9GhGb/oEjhukzyw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=W3B95qV7J1btPa4kYsS4XSfBafuCA0GEghRG0lexAFNwtxJTbU6IDd4StCIwM+OfLqmlkjGPCF6KEfJ20d1KCqitNp0hRq2gQYB5NUOP5rXqTLpNVJngeHyMu4nObp+lqn44eM0Avm2tuYHV4z5Vv+FfBuYt6661Dt35PEhuj2Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=mF3rRDMQ; arc=none smtp.client-ip=209.85.221.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-3f0ae439bc3so2072817f8f.1
+        for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 02:20:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1760952002; x=1761556802; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=0XCJmz4HW13zmCaIQ84NTp39kjqei0obsLTQVEkJ9Dg=;
+        b=mF3rRDMQXSm7smo7UWNVZCkAehPKg9jizKJO6E9LLRlH+/aLfAkrAICg5bBp9XbI+r
+         5+AOUafKYfIOesscShW1dVhPeR0q+IvhHlxFv6hhIGKrv7gycWH0qeaWCMEzAWts+6++
+         s2L06QgbJGZwA08HnnY6Ua5Z6FJXRciE2T766SI128rokZBlOcAYUGpQQ+y84LeVtZmj
+         RMuO6YLqksZ4VujsPIO/7EOpy6mPh1Q/v0Oq3VzMSyZ5Ul/S/kn+Mvl0Js4Y1fR+D7vm
+         K4NXlFwFg7A5Od9N+eGfpLcfnxmlKTFQi51LFqbmDO5TFKNGL3MSdjZfkaGQwsk+1o1i
+         S5YA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1760952002; x=1761556802;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=0XCJmz4HW13zmCaIQ84NTp39kjqei0obsLTQVEkJ9Dg=;
+        b=XQH8H9k9TnjUU8Dc8zOU+5GbkjN6m2U6AqAsReqk455wMd1i4E74IFStSFB9N8oC/w
+         RPOl2EzKQTscnY4BdGIpqJKQolVcllOXjSZCYXqsnKZYKwoOYbE2AWzCi3XWDBLdrvhF
+         BheinoWQ3opdST/dasYnKB5v7lAR9syGjGleoHWIoufdYQhjB1cY5RSkbRz77AQZbVbB
+         dUvBjS3IGEmsVhA38LRGVt+bEUpL/iNxlq15HPdUrfaDqX0hxFqJx9vq4w+XZIVR3R69
+         T424wb+t9WvuCHpWZgAxu/XarnLNEOeaHFZIVAZyfjelF+mDmX2uukxZhZazRXiYVuBi
+         YjIA==
+X-Forwarded-Encrypted: i=1; AJvYcCVxlTboQ0nUnK9ZLmG6Oyf/LJwGHmmrTCZlZzrxL2y4Ifvb4A1YvgA6HDQ0tLmTu0Lr1fmURibboMF2@vger.kernel.org
+X-Gm-Message-State: AOJu0YztTEOfUV8lrzt++ApzeOIwVdKqDGomwcNBbllR37a1/6BbCQgj
+	vDJWDnCgcxXqd4v74AJ+ecmOUavNGKZ+HVwoH3aif5FbHCq8JJ8QLYh3GUKidl1rWns=
+X-Gm-Gg: ASbGncuuNhdOz5pKFrTNqSFWMdVhWJM2nL+HnBkQMZ2evfEvRBuvKUAiB9kIlKhSAIt
+	OglYLe38LXPz7issBnYqmV6qi1OaS5bnmyBYExolisQlyOHnz9dMiEqP9/HZK7G/+FyRW3UY8k7
+	yeU6FOwyqphFyP+eSe79ovUCF9gbQjfI4kEUSFXHV2C9O8yLo3CwEh8UBNGjOlWgg0VnjTfMhOf
+	6hINmkBdkq3o30n7ymxa2WOOuVX4r+hYxB0eB1FQIBEeDNx60uwLxuHMf78lq1sXUtaGZSbEXzC
+	lYO9OYGv/yJecx+c76nkcc+HRpJkIJpKwKrUePxVymlXQHj2EtSFxcJ4no6uGSc837foC1ebytz
+	KGaPqPs1PQYCKYsBVRBvt5FosCAd/7mrWliCalP8ENK4MHLAjPN9s764MiA98BBHX1fCw8+yeRr
+	xU50xCoXpCBdsHZsu7thc=
+X-Google-Smtp-Source: AGHT+IHDfUmNi5eqw691/M33t81cdCOV6g/HJdfYKSgYwXlWSNi3vurpVr1BkRRnhjmGHUqYcBuwxw==
+X-Received: by 2002:a05:6000:4008:b0:428:3bf5:b3b8 with SMTP id ffacd0b85a97d-4283bf5b655mr5592745f8f.44.1760952002139;
+        Mon, 20 Oct 2025 02:20:02 -0700 (PDT)
+Received: from [10.11.12.107] ([79.115.63.145])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-427f00ce3e2sm14354917f8f.47.2025.10.20.02.20.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 20 Oct 2025 02:20:01 -0700 (PDT)
+Message-ID: <a03cd07f-8e9f-4b02-b301-f1bbb69eb7db@linaro.org>
+Date: Mon, 20 Oct 2025 10:19:59 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 4/6] clk: samsung: add Exynos ACPM clock driver
+To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Peter Griffin <peter.griffin@linaro.org>,
+ =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
+ Sylwester Nawrocki <s.nawrocki@samsung.com>,
+ Chanwoo Choi <cw00.choi@samsung.com>,
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
+Cc: linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-clk@vger.kernel.org, willmcvicker@google.com, kernel-team@android.com
+References: <20251010-acpm-clk-v6-0-321ee8826fd4@linaro.org>
+ <20251010-acpm-clk-v6-4-321ee8826fd4@linaro.org>
+ <92f1c027-bacc-4537-a158-2e0890e2e8ee@kernel.org>
+ <17695fcf-f33c-4246-8d5c-b2120e9e03b1@linaro.org>
+ <2f8da425-63d9-4321-9cd3-976bbd29a52f@kernel.org>
+Content-Language: en-US
+From: Tudor Ambarus <tudor.ambarus@linaro.org>
+In-Reply-To: <2f8da425-63d9-4321-9cd3-976bbd29a52f@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Fr, 2025-10-17 at 18:10 +0200, Buday Csaba wrote:
-> Implement support for the `phy-id-read-needs-reset` device tree
-> property.
->=20
-> When the ID of an ethernet PHY is not provided by the 'compatible'
-> string in the device tree, its actual ID is read via the MDIO bus.
-> For some PHYs this could be unsafe, since a hard reset may be
-> necessary to safely access the MDIO registers.
->=20
-> This patch performs the hard-reset before attempting to read the ID,
-> when the mentioned device tree property is present.
->=20
-> Signed-off-by: Buday Csaba <buday.csaba@prolan.hu>
-> ---
-> V2 -> V3: kernel-doc replaced with a comment (fixed warning)
-> V1 -> V2:
->  - renamed DT property `reset-phy-before-probe` to
->   `phy-id-read-needs-reset`
 
-Not completely, see below.
 
->  - renamed fwnode_reset_phy_before_probe() to
->    fwnode_reset_phy()
->  - added kernel-doc for fwnode_reset_phy()
->  - improved error handling in fwnode_reset_phy()
-> ---
->  drivers/net/mdio/fwnode_mdio.c | 35 +++++++++++++++++++++++++++++++++-
->  1 file changed, 34 insertions(+), 1 deletion(-)
->=20
-> diff --git a/drivers/net/mdio/fwnode_mdio.c b/drivers/net/mdio/fwnode_mdi=
-o.c
-> index ba7091518..8e8f9182a 100644
-> --- a/drivers/net/mdio/fwnode_mdio.c
-> +++ b/drivers/net/mdio/fwnode_mdio.c
-> @@ -114,6 +114,36 @@ int fwnode_mdiobus_phy_device_register(struct mii_bu=
-s *mdio,
->  }
->  EXPORT_SYMBOL(fwnode_mdiobus_phy_device_register);
-> =20
-> +/* Hard-reset a PHY before registration */
-> +static int fwnode_reset_phy(struct mii_bus *bus, u32 addr,
-> +			    struct fwnode_handle *phy_node)
-> +{
-> +	struct mdio_device *tmpdev;
-> +	int err;
-> +
-> +	tmpdev =3D mdio_device_create(bus, addr);
-> +	if (IS_ERR(tmpdev))
-> +		return PTR_ERR(tmpdev);
-> +
-> +	fwnode_handle_get(phy_node);
-> +	device_set_node(&tmpdev->dev, phy_node);
-> +	err =3D mdio_device_register_reset(tmpdev);
-> +	if (err) {
-> +		mdio_device_free(tmpdev);
-> +		return err;
-> +	}
-> +
-> +	mdio_device_reset(tmpdev, 1);
-> +	mdio_device_reset(tmpdev, 0);
-> +
-> +	mdio_device_unregister_reset(tmpdev);
-> +
-> +	mdio_device_free(tmpdev);
-> +	fwnode_handle_put(phy_node);
-> +
-> +	return 0;
-> +}
-> +
->  int fwnode_mdiobus_register_phy(struct mii_bus *bus,
->  				struct fwnode_handle *child, u32 addr)
->  {
-> @@ -129,8 +159,11 @@ int fwnode_mdiobus_register_phy(struct mii_bus *bus,
->  		return PTR_ERR(mii_ts);
-> =20
->  	is_c45 =3D fwnode_device_is_compatible(child, "ethernet-phy-ieee802.3-c=
-45");
-> -	if (is_c45 || fwnode_get_phy_id(child, &phy_id))
-> +	if (is_c45 || fwnode_get_phy_id(child, &phy_id)) {
-> +		if (fwnode_property_present(child, "reset-phy-before-probe"))
+On 10/20/25 9:22 AM, Krzysztof Kozlowski wrote:
+> On 20/10/2025 09:45, Tudor Ambarus wrote:
+>>
+>>
+>> On 10/20/25 7:54 AM, Krzysztof Kozlowski wrote:
+>>>> diff --git a/drivers/clk/samsung/Kconfig b/drivers/clk/samsung/Kconfig
+>>>> index 76a494e95027af26272e30876a87ac293bd56dfa..70a8b82a0136b4d0213d8ff95e029c52436e5c7f 100644
+>>>> --- a/drivers/clk/samsung/Kconfig
+>>>> +++ b/drivers/clk/samsung/Kconfig
+>>>> @@ -95,6 +95,16 @@ config EXYNOS_CLKOUT
+>>>>  	  status of the certains clocks from SoC, but it could also be tied to
+>>>>  	  other devices as an input clock.
+>>>>  
+>>>> +config EXYNOS_ACPM_CLK
+>>>> +	tristate "Clock driver controlled via ACPM interface"
+>>>> +	depends on EXYNOS_ACPM_PROTOCOL || (COMPILE_TEST && !EXYNOS_ACPM_PROTOCOL)
+>>>
+>>> I merged the patches but I don't get why we are not enabling it by
+>>> default, just like every other clock driver. What is so special here?
+>>
+>> Thanks! Are you referring to the depends on line? I needed it otherwise
+>> on randconfigs where COMPILE_TEST=y and EXYNOS_ACPM_PROTOCOL=n I get:
+> 
+> 
+> No. I am referring to missing default and defconfig patch.
+> 
 
-Commit message says this should be "phy-id-read-needs-reset" now.
+default m or y would force compilation of EXYNOS_ACPM_CLK and
+EXYNOS_ACPM_PROTOCOL for all ARCH_EXYNOS, even on Exynos platforms that
+don't use ACPM. Since ACPM is not universally required by the Exynos
+architecture, I thought to make it opt-in (default n).
 
-regards
-Philipp
+Setting it as a module in arm64 defconfig makes it available on
+compatible platforms.
+
+Similar clock drivers do the same: CLK_RASPBERRYPI.
+COMMON_CLK_SCPI, COMMON_CLK_SCMI - no defaults and set them as builtin
+in the arm64 defconfig.
+
+Cheers,
+ta
 
