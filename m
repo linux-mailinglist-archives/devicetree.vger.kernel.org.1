@@ -1,82 +1,83 @@
-Return-Path: <devicetree+bounces-228942-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228943-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD440BF28BC
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 18:53:57 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8323FBF28EC
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 18:55:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id BCDB74F89D7
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 16:53:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E37B5463172
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 16:53:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F385330339;
-	Mon, 20 Oct 2025 16:52:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17F60330B12;
+	Mon, 20 Oct 2025 16:52:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wBpO41ED"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="k859wTNc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7667732ED5C
-	for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 16:52:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11769330327
+	for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 16:52:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760979154; cv=none; b=Lk63l5oexGhnAdQRR19YsLMTgEFM6VjFZOuIfIAXTTkxergo74+cszVaC3pQmaK2LIH+zqQa8E8ckVDwJr0z5rgEqENsKjcApeDC3WkqG6b/eyzeS4soBJdEKpHjhzfmBsExZoihM59K5wYl1QIrkIkNT3Mz1uuSelSzVyEUpCg=
+	t=1760979154; cv=none; b=cXL6rSt9UjKi5Il4O0Lqj7Hv0y+MT3cqQkh1j9Pvm3+m3UqjATREXiVl4UP5P1gE5e2dM+L6aLEwuyZUkFQNFdWtz6+F6FuXRAKFu+LXv7WXJKlWQtY5GlC0nqT0lnmq12KTbao1MPdHwv0GsstLAd7EwcxR9EgwvatUaB+0W4w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1760979154; c=relaxed/simple;
-	bh=vZieQoaOZdOJrGclPot4iYrFQ6Avj0HaDeuJuEXuAPs=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=bHZKvI91L59GoefoaUnMgJY1K+VZnPaDuyZoeCCakSumi20WRAbOoanp3oZxDFSmZZl/o2FFubfUDNmxeC0sOaA39lIGZo1b6wBwC2mwdTGxe6sCsoz/EqWm4NHAkELC/ts5ze0nt/VtKeYTbehU6rkYuEjGv9f2CHEN1MCpu1s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=wBpO41ED; arc=none smtp.client-ip=209.85.128.48
+	bh=VGY/x1kIS534CzT9D6vJ0eJzvz/olSx+22wEh+RM81g=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=c7tEkGLCp1h8l+QZi36lwbcD+GNgsVKycF3R9m8Sjy4gCqGbS+Iz3aJZQjF0yrldTP5GCTeVGG+4j4bdvjB+wN3Znik1WnVeMg819nB/a72MdIsGX/2wE47sa02UCr2iibs8ecRQmLb/AVgSXKmpYIqmJavCr2lS1ePs7tpW1sk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=k859wTNc; arc=none smtp.client-ip=209.85.221.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-47105eb92d8so7315305e9.0
-        for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 09:52:31 -0700 (PDT)
+Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-4270a072a0bso433852f8f.0
+        for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 09:52:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1760979150; x=1761583950; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=5KCYjApNddIGmUSFoVSxu6I7kzYfXwxdV5uFV5PNTps=;
-        b=wBpO41EDRHAuN6UNUYM68oS7Betxv5nzZl2zoxFZf9o9JcYMvdzkdqCZn6scjhaYYm
-         Me4ZD+z3Co5KDcOEOWp7KqqvRYrL9kOM0HB9C5LIZsI4d7DF07oJBLRaYrpp37sr3WgT
-         Im3VHgC+JJUIdoB76aoYFppKIOVGvWKD+8NY6Cft5rBqg8nWgTnuHUH6+rbCSwnzCPpz
-         gn1j5mqJDxJCUGQUe32GPGFNTMbrrK2IwTo8qQhnxJVVrrb2ZVhWROIxtj3NKm5S8/fK
-         nuF/aXSz898u6gHy53nHePQ6Q8ICk5btLkFgf45jnzM5AfB3lBP7Ku5P5uy1SrEXQsTI
-         OZlg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760979150; x=1761583950;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=linaro.org; s=google; t=1760979151; x=1761583951; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=5KCYjApNddIGmUSFoVSxu6I7kzYfXwxdV5uFV5PNTps=;
-        b=R0DRiRJ/eGVH6KABi81kZTqMxgJTa4Bm5aGIMOJiPc8k9ix9uBUT4xOUmV7dBlGQpx
-         84gXBo4b2Kd+hPU4JNGhe8XWhyJ4sE/DTkaL78fOleYssNY7VIe7ZKNGE9+WKBkNH1db
-         6mufmzjtckfRlJyfungzJqgRTfFGs1CwWnrn9vkkUsFEkhoC7J/cdLUWBNU8ekydyeMy
-         X80lHWSTT4uN8uDhpr3SYmaU4n4LbtMaV/QQBqQ26sZxIP6T2OT7W2hqSiNskBqgr1v0
-         mQ3Ujxo3w23Gj5BumWDWVUVdvN27zceJLwU2sDNTL7D6JsqVTyLtUXIH20qpyFRbF8fR
-         B4aQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWe3NsR/Cxo5CVRpWah5/ffXWpLGrjFFyQvVc5w5xZn0LmJYphcmpTYfvdnt213i78YOKqUlhhbDPqO@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzw/xXMoUv33ex/MdEdFE2e8PrhmVQOIC14ZwmvD5AqTUmmn6kP
-	k63Q44zkWScMz6j2S4YRiXHEL4Aj9fgIJy8/sXwb1YpDBlZ02E7xSIlG6MWLi0LXQmM=
-X-Gm-Gg: ASbGnctvRHW+3njaMqp5I4o4S0o8NRqXkVApzeSbf3bHlJjdpOASCNZKHT9U0gSD2Z7
-	vRyCwAl0/1t45kx4LqRMHg5GplnADRRVP+pyzGwuWnSFVdQ5GNrU2xa8xYzHGETPj2E1KDAMxXO
-	aA4KfHeMl/aZvGs4Ybr+nNY87CBmaA/+M5IVxUsO/5EU5x9en+CyrhXweFAqzdjrA8NAIsyerUc
-	NX5qJtYcGBOkbRnHgK/sK/RCY6a+1kHuOCQjyFQJeq34MpPc5HRRdog6tegvhkeASyoZZWNxXAg
-	+3UL3uewGORm6NYF7jCxbS/x3lI711pFf4qBt13tufU/zgTtO3q5At8jDp4DYwzBaOLbSP7qrRf
-	nk2QgKdPtgOgK988Hd/SCD3Kzr/h2eodNUPQZwYYaGXRk2XnOAfR2IEOq/mCw8ZakVL61kBPl3y
-	bLYhfVZhsXbdTlBwGdG70KXBjY+Ls=
-X-Google-Smtp-Source: AGHT+IFq6eiUybBCcgPn78eYQEMq8UP3MM0hOecYMP9MLQwhWe/dX5I4wohsL36fCYcUPbfIoa28uw==
-X-Received: by 2002:a05:600c:1994:b0:45f:2c33:2731 with SMTP id 5b1f17b1804b1-47117874694mr57176425e9.2.1760979149761;
-        Mon, 20 Oct 2025 09:52:29 -0700 (PDT)
+        bh=pvrXdPe/IseXzzKyTO9oasxSIj9lw1Wz1YtOS0FGX6A=;
+        b=k859wTNc5mVZdxvkLXOn/7shR1+OoGcJEYNWBjQhFtc8S4yD2onMY2jRbDx1hIP2JV
+         y3RfnOApysmLF6KMnWIyIuYOFwCPGWRPc2JV3MTPltMO2CiME9RNf0zpHOglkZkvHvjy
+         K8UFZbAV09VGsbn0qz+RJdATZxXTeepGQqRkqoXmBmsLOBkyrgWQsS/RH6Fz9DnU6pwf
+         P7eHL8x+RtR5cJjRDOaJGNxIISglZm/jh28lDv+UACICBQtMCPRq8+zCA5WFBMvkfNNN
+         DVqtNdMmK6zcn995JuNeMqTaZaSw5rXiQPwmztaIP5JrLRJoJXbmcblRXqxvdXcETwtY
+         lTsw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1760979151; x=1761583951;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=pvrXdPe/IseXzzKyTO9oasxSIj9lw1Wz1YtOS0FGX6A=;
+        b=Kht4uCQeFtQuEU3C20CCYLfxeyr3kyU2+B14URr46LcGQb2pa361sKPSe58Dbv0ETq
+         DJ9gTW/UIixFPrj85Dke3euKkGMqVn9lVNogi3gSGZ6jz5mc9xrYjNMV0tU4Fg3ydbUi
+         vb4+Ze+G4NVMACjQhAZ/jBaI/KJRnExsjK5PW/uH45MqNbNG7OmlTuV9gBWI0VOdADw8
+         UOL9hAbhnmXc8zOMh1Q3/jrvKfbFcG3tUkRip3MZOGec3x4RbOQYdA5y4255HqmubPPS
+         jlNfNwa9/mPSqGDlZaTWc8Bok3RdvHLePeE6VeNsNvtLZOCL/MIUnGgjLsgkhfxMO43I
+         8R7Q==
+X-Forwarded-Encrypted: i=1; AJvYcCVdh0kqQOOqejw1eYlt1ytUy3KvWyWQ9vka7/fOYJm1g48MviQ6cgLBKetrOjAFm4QWCflttOB7S3ms@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy/VwYCxOcf5hEqeIp6JHi7RSvrLuH4boPsxleA2MZjl0sn/MKA
+	ErpcaH9uHcDjNCRBZmgwFsCD0xjGFAkHmh5dOA0JTB7Kl1p1xgkTsvyODp952cVOTOg=
+X-Gm-Gg: ASbGncvhV1V6sjKoTF24qmQWU4gIyL9Ih/Or5A2B16tsGnfKtvXaV7OIXpLEo/zG9oi
+	f3ScxtsZl3meI+rY44RT4UPDdwBaztFWskyo4ZAOvgWiwZAXbM+a0am1evzF2SxHw647t1Q72LE
+	6Z/731BTnAr6BhuNSBE+TY8j39sApLlWF/RRnH12M2e49BwMlOkvrZRVnYHEQpdSD9IFArmI5Mx
+	PldKzKTCVIoZu7M0gw9qO8yFrsZRhV2GE5Au/4jVYvyLhKvoqZJ71mW8DqjU19+sMiWWsY7wzQD
+	kyGRmadHF2ATooBDDoksJoc3AKCpewJVLe1r2Usu+pLvEAr0RchXZ66rlvBb+pKskMbqP+8Y+NQ
+	78qIx963ZNZUMmyNVmBVcGK30aZ4pA97Es7zRZJxROFfFlEgt2fTeE2Ye9QO3yexHOJew3gCSba
+	nTQZpEJRSZG+rvalNw40hjANMt9qM=
+X-Google-Smtp-Source: AGHT+IFs8+VDD1HwDzXYd2o2JzNV58PxChHEybIBT+0O2/lgmpW4hTOAZB4Fzu7cZ2Sy3ljLLoCDvg==
+X-Received: by 2002:a05:600c:3b0a:b0:46e:3c73:2f9d with SMTP id 5b1f17b1804b1-474943059b7mr2017135e9.6.1760979151310;
+        Mon, 20 Oct 2025 09:52:31 -0700 (PDT)
 Received: from [127.0.1.1] ([178.197.219.123])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-471144c82c9sm238324695e9.14.2025.10.20.09.52.28
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-471144c82c9sm238324695e9.14.2025.10.20.09.52.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Oct 2025 09:52:28 -0700 (PDT)
+        Mon, 20 Oct 2025 09:52:30 -0700 (PDT)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 0/3] mfd/watchdog: dt-bindings: Reference watchdog schema
- in rohm,bd96801-pmic
-Date: Mon, 20 Oct 2025 18:52:19 +0200
-Message-Id: <20251020-dt-bindings-watchdog-timeout-v1-0-d0f3235eb327@linaro.org>
+Date: Mon, 20 Oct 2025 18:52:20 +0200
+Subject: [PATCH 1/3] dt-bindings: watchdog: Restrict timeout-sec to one
+ number
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,10 +86,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAMNo9mgC/x3MSwqAIBAA0KvErBswM6iuEi0sJ5tFGmofiO6et
- Hyb90CkwBShLx4IdHJk7zKqsoB51c4SsskGKWRTCSnQJJzYGXY24qXTvBpvMfFG/khYt0o3Sqp
- OdC3kYg+08P33w/i+H4t+CO9uAAAA
-X-Change-ID: 20251020-dt-bindings-watchdog-timeout-384a54249098
+Message-Id: <20251020-dt-bindings-watchdog-timeout-v1-1-d0f3235eb327@linaro.org>
+References: <20251020-dt-bindings-watchdog-timeout-v1-0-d0f3235eb327@linaro.org>
+In-Reply-To: <20251020-dt-bindings-watchdog-timeout-v1-0-d0f3235eb327@linaro.org>
 To: Wim Van Sebroeck <wim@linux-watchdog.org>, 
  Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -99,49 +99,47 @@ Cc: linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
  Timothy Pearson <tpearson@raptorengineering.com>, 
  Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=863;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=857;
  i=krzysztof.kozlowski@linaro.org; h=from:subject:message-id;
- bh=vZieQoaOZdOJrGclPot4iYrFQ6Avj0HaDeuJuEXuAPs=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBo9mjFDlEe6IncaZP9cdnACEoL4jyItNFxIAgtp
- vLqQXKp6cuJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaPZoxQAKCRDBN2bmhouD
- 11j/D/0eiV/jMoQ+pi8sTgHdLuyjB5B/Vz75qXlTFc92kE9d14RZtuSenpe2kjPoeB2HEYy1giF
- gCTSI6jWHM/LPj1uo1h2wMq0CAFst5N1F4v0ayycNsvmS7W+QzhxeMyLjari7ichpajDEL8d/Fv
- 14QnToHKyEyiLgjwVmyWyJgvvUf4U0d9zJOQVWgiib2DkyYwUauAFFFGA/gMRN/2MPPwPltl3Pk
- CX+q1axt5729Ict0OPzkUDIFumxbRY0CVSzpuSlUEqxzmfw/AXgZUIlYMaBDKEWI8e98J6Mzwj1
- 8eHLhFeRMSMQF+GqHefEK7R1IpPhjTLFmK84zHnQ4Gb3Dlyzw3moviQy224zs3r4aMbJffLqatA
- bYo/lP1nyXaZYjBSc5nHox+g3PR58Dp2pg4BO91z1nwQULv8QHQJzpK9uaK9nlH85/L9l+rEvXQ
- 4huh2f1KySxWU6HmvdTygAE3+JQFXCeoFrSUSsGOda48w/5nXboFV+8uLGGQB/R5pCdBtOba9qd
- Cz0Fa0Nhn+cJN0XwFWQKgg/5/kzSaWMdpc36mm2YH7bjh/4JHUuvKDKoni1OOTX77ILa5UXAHqI
- Wl/X8DCdkctHdO2BnlnLI6ymgQwVgmxYR+6vB/PnsFITF7DDmZ7tlsmLBPAkc9GJx9aCTD9SJEX
- PjNvAIztOfkAPTA==
+ bh=VGY/x1kIS534CzT9D6vJ0eJzvz/olSx+22wEh+RM81g=;
+ b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBo9mjJ8OEV9qUVjKuKJKKlc/IRRYs1ynjO+igSJ
+ g9Z/tH9QTqJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaPZoyQAKCRDBN2bmhouD
+ 16XfD/9rrYKLQfAJSyG6Tsw9kWsTq9GZLMH5lp38IseC6ZnSDkH/mighSdw4exin9C8VcTzSPF5
+ qFksakzrJrs5ARrgorvyK+2vtznBHstBXSjOVYMLSCXhrBiFZYGUCPGNUpyf4Yg3wvY13UBS4N0
+ TDGMqf1qbwIJdiUugff94Jrw9FLuTJlVjcoktBb+Gg9R5sf3nDxl9oF1hlurHr86UHI49JzNwq1
+ kbQfQwiQPrctM96lR1rLAV4MMki6O/qEVKtsgq0JTvIpJmL9kacAIunUzzjkpA2nzZY+iEXvUHw
+ Oe3lfKDI+7UU5QnVN2StwzaRTIIaNcxqN+Zj3F8k/hL3F4eZph7QtOozvoFK/VgF7C2hf9OphYG
+ xtjQUYefJkVOHHF4aE35ePxtGYm1wC9Ur0UY3dBl1wQMu5lDAIMZmMv1uJiMqvB5h6ufo/YOo7w
+ clhGq5l9KGVypDUA2hEqXTHURkgnZjUIQWpVgQBS/Tw3pW+I1Yxh+XHQss6AD3PCAt7pzhM0xhk
+ 9B9Hm1rV0TPGiexiHzn55suF2E8DmrW0MuevC+WoRPmPwTzdERSjC2Zn+aTuZ7t1vREG8FDJBnm
+ DSCzBaUnDFBUBKtA+UThzqruNLRiJfdqXDdGoBKeyX6kbaAQrW/8E6WP4WgWxLfqDYTBCw1DgXs
+ ur6Zm5LCck24LiQ==
 X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp;
  fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
 
-Dependency
-==========
-The last MFD patch depends on the previous watchdog.
+Linux kernel expects only one number for the watchdog timeout and the
+type is an array (defined in property-units.yaml in DT schema), so
+restrict the property.
 
-rohm,bd96801-pmic.yaml binding should reference watchdog.yaml which
-leads to few more patches.
-
-Best regards,
-Krzysztof
-
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
-Krzysztof Kozlowski (3):
-      dt-bindings: watchdog: Restrict timeout-sec to one number
-      dt-bindings: watchdog: Allow node names named 'pmic'
-      dt-bindings: mfd: rohm,bd96801-pmic: Correct timeout-sec length and reference watchdog schema
+ Documentation/devicetree/bindings/watchdog/watchdog.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
- Documentation/devicetree/bindings/mfd/rohm,bd96801-pmic.yaml | 8 +++++---
- Documentation/devicetree/bindings/watchdog/watchdog.yaml     | 3 ++-
- 2 files changed, 7 insertions(+), 4 deletions(-)
----
-base-commit: 52ba76324a9d7c39830c850999210a36ef023cde
-change-id: 20251020-dt-bindings-watchdog-timeout-384a54249098
+diff --git a/Documentation/devicetree/bindings/watchdog/watchdog.yaml b/Documentation/devicetree/bindings/watchdog/watchdog.yaml
+index f0a584af1223..be0327f587eb 100644
+--- a/Documentation/devicetree/bindings/watchdog/watchdog.yaml
++++ b/Documentation/devicetree/bindings/watchdog/watchdog.yaml
+@@ -24,6 +24,7 @@ properties:
+     pattern: "^(timer|watchdog)(@.*|-([0-9]|[1-9][0-9]+))?$"
+ 
+   timeout-sec:
++    maxItems: 1
+     description:
+       Contains the watchdog timeout in seconds.
+ 
 
-Best regards,
 -- 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+2.48.1
 
 
