@@ -1,201 +1,174 @@
-Return-Path: <devicetree+bounces-229065-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229087-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 108BBBF3775
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 22:37:45 +0200 (CEST)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id E202ABF39B5
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 23:01:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id A1F2A4EF0EB
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 20:37:43 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 8F371351BA3
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 21:01:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B594C2E0408;
-	Mon, 20 Oct 2025 20:37:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 675CB333744;
+	Mon, 20 Oct 2025 20:56:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="L22xhfUo"
+	dkim=pass (2048-bit key) header.d=apitzsch.eu header.i=@apitzsch.eu header.b="duFjPyBH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from www637.your-server.de (www637.your-server.de [168.119.26.117])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 827312DFA21;
-	Mon, 20 Oct 2025 20:37:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B2D0333737;
+	Mon, 20 Oct 2025 20:56:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=168.119.26.117
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760992658; cv=none; b=ttr7sG5c8ut0yDoTJeRzn715sKdWyp3dc6+TYxBFWdjAONb8qN9JjMZEwRdBe147U1RolZ+bmF9m4G6ZNLS6EqTB78wjW3ztIvPo10vk9gTngeYUaw/Nk+jTUD4kxOkJqfenYFgYAe6A7G+6cqMvcpoELsJszKd7GvFFVE2JBo0=
+	t=1760993817; cv=none; b=tuzEaq86M0n529LTpd534IK+lLVzrWKahFAdTBZIbzGCXPC6rFPmR+hL3JiVrosFAnHirldMJRUhiAcosLOIpJ45z254dB/iQ1m+CNrX96nnCxtjew3d6wys9w7qtsX9M/q3cxS9UwDM/XUmC+BjFmuq4Bijuc4Blx12dFi0zi8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760992658; c=relaxed/simple;
-	bh=s9q6M3Nz8O4IFWyipi6t77TPJj8JKPI6t+9s5Og4Ybs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WROzaVx5DR4Aj1Mh+mVGMyoDtKhavn47b4/6UCf9OQfx6XXwfTBZT5u72dBGweyXrDqrIREDicSS0qAC95+xCvNX+Gd7YeXOnMnNgLUU1rFCwDS84fqx7SasSX0n/EvVaHGlTz0ALDzJi+PgB6/W6RTy/nvqBQf4ubOOKwgpP3s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=L22xhfUo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9208CC113D0;
-	Mon, 20 Oct 2025 20:37:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760992658;
-	bh=s9q6M3Nz8O4IFWyipi6t77TPJj8JKPI6t+9s5Og4Ybs=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=L22xhfUon5IZac6+wKGvK7yb59ZgO4EeY+l+LYKCflSDQUqu+ewLCKIj9TpJO6WO5
-	 1rS1yRiYeusLoWHztatdJbfcmoj59LOMAtwJWeadfmHUElqbDbhBCnhIFkuioOZaW/
-	 dH4WfNLUbI6sZfr7MIkDndRTGQB4iOXx4gyO3sB0pzEvZczxlANe9uWAKlBP5QHJVM
-	 RDhpVSUf7nS1cRMz4xymF8jXLuVThEXN2yy55KaIwX4T7gxd+w6kj/8bbC6WGPPWUG
-	 0i9s2zZvAWd1MeGBAptv+Cnk0Fm8pc6+tq6jfV0NKlQL0lH6QYmp9+zzECwGLRDrQb
-	 Y3JT/JHZ2eU9Q==
-Message-ID: <49258645-d4d8-44a5-a4fc-b403c926a5d1@kernel.org>
-Date: Mon, 20 Oct 2025 22:37:33 +0200
+	s=arc-20240116; t=1760993817; c=relaxed/simple;
+	bh=McGfNh7ciF5ksFu2NwbJt5zEbKC5VtUeVzsub6mNoyU=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=gXMC0IAwoeVHCCS5IxInCcPMrRqjTZrQA6VS750WH6AVBoovJDFHTKSefm1ryiBicfVnW/78jg/GF6GARLGaNQvMx8W6PeNo0OiiFM2McPHXvRGkvKzBlmlGFplBCoUdnX6JuHlh8LUWhRkiRj2bwgXpUVsUj65cwqPvycAJ2uo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=apitzsch.eu; spf=pass smtp.mailfrom=apitzsch.eu; dkim=pass (2048-bit key) header.d=apitzsch.eu header.i=@apitzsch.eu header.b=duFjPyBH; arc=none smtp.client-ip=168.119.26.117
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=apitzsch.eu
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=apitzsch.eu
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=apitzsch.eu
+	; s=default2410; h=MIME-Version:Content-Transfer-Encoding:Content-Type:
+	References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=McGfNh7ciF5ksFu2NwbJt5zEbKC5VtUeVzsub6mNoyU=; b=duFjPyBHVlXnmjSb8UEBUN7+2l
+	bkrdtG+JT+oOjh8Xzk25DYAspxQv78pdrBh1Gkl2gkaIhBhJ+iK31Bk7il7KE9kG/O7BfGjjOkzl+
+	8NuF5z+l+/ByATShiQb9q6Yo1XmGuNrQa+wkfWjN+9mmqCzPhz10pUXWEkFyT81L1WQSqsLEgoRmy
+	CBjre/IRiEXvBuTG9FbbwRokxeWZVYenV6c3NcZnvvsqBgRPx0+QGZg9qShsL4gi1o/7bjhtnPFgi
+	N8gjzLWl6oNx0VOYxGWeb9Z76g/H+ODQyvS9gfI+TLF+cQBYP60sTs3Lab7Ro3f/YTZob2Zm66a6h
+	+ZYGoVRA==;
+Received: from sslproxy03.your-server.de ([88.198.220.132])
+	by www637.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.96.2)
+	(envelope-from <git@apitzsch.eu>)
+	id 1vAwgZ-0008mw-0b;
+	Mon, 20 Oct 2025 22:40:55 +0200
+Received: from localhost ([127.0.0.1])
+	by sslproxy03.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <git@apitzsch.eu>)
+	id 1vAwgY-00021J-2E;
+	Mon, 20 Oct 2025 22:40:54 +0200
+Message-ID: <790fd7d05fa03f788f0a628a99b2e127db824207.camel@apitzsch.eu>
+Subject: Re: [PATCH v2 0/8] media: i2c: dw9719: add DT compatible and
+ DW9718S support
+From: =?ISO-8859-1?Q?Andr=E9?= Apitzsch <git@apitzsch.eu>
+To: Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
+ <robh@kernel.org>,  Krzysztof Kozlowski	 <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, 	devicetree@vger.kernel.org, Sakari Ailus
+ <sakari.ailus@linux.intel.com>,  Daniel Scally <djrscally@gmail.com>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
+	linux-media@vger.kernel.org, linux-kernel@vger.kernel.org, Val Packett
+	 <val@packett.cool>
+Date: Mon, 20 Oct 2025 22:40:53 +0200
+In-Reply-To: <20250920-dw9719-v2-0-028cdaa156e5@apitzsch.eu>
+References: <20250920-dw9719-v2-0-028cdaa156e5@apitzsch.eu>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/8] Support dynamic EMC frequency scaling on
- Tegra186/Tegra194
-To: Aaron Kling <webgeek1234@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Thierry Reding <thierry.reding@gmail.com>,
- Jonathan Hunter <jonathanh@nvidia.com>, "Rafael J. Wysocki"
- <rafael@kernel.org>, Viresh Kumar <viresh.kumar@linaro.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
- linux-pm@vger.kernel.org
-References: <20250909-tegra186-icc-v2-0-09413724e781@gmail.com>
- <5d7491b1-8f9a-4040-b854-ff0b94bfd24e@kernel.org>
- <CALHNRZ-okVZ8tzKYa=jqudDu3dZ_Yq1CkeErdcvxi5xJEgJFbg@mail.gmail.com>
- <113725e3-3e82-4921-b045-8d5be3fed8bf@kernel.org>
- <CALHNRZ8r_bg-Pm1ZCoJT9sk++zQcq85R=8N6enL_Vcq=VziNwA@mail.gmail.com>
- <CALHNRZ-2Hv2ix0Hr9veOPWdO=ekgpEWKBWtCiCsQa29DcfdkUA@mail.gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <CALHNRZ-2Hv2ix0Hr9veOPWdO=ekgpEWKBWtCiCsQa29DcfdkUA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: Clear (ClamAV 1.0.9/27798/Mon Oct 20 11:37:28 2025)
 
-On 20/10/2025 22:14, Aaron Kling wrote:
-> On Sun, Oct 12, 2025 at 9:31 PM Aaron Kling <webgeek1234@gmail.com> wrote:
->>
->> On Sun, Oct 12, 2025 at 9:25 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
->>>
->>> On 13/10/2025 04:18, Aaron Kling wrote:
->>>> On Wed, Oct 8, 2025 at 7:05 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
->>>>>
->>>>> On 09/09/2025 15:21, Aaron Kling via B4 Relay wrote:
->>>>>> This series borrows the concept used on Tegra234 to scale EMC based on
->>>>>> CPU frequency and applies it to Tegra186 and Tegra194. Except that the
->>>>>> bpmp on those archs does not support bandwidth manager, so the scaling
->>>>>> iteself is handled similar to how Tegra124 currently works.
->>>>>>
->>>>>
->>>>> Nothing improved:
->>>>> https://lore.kernel.org/all/20250902-glittering-toucan-of-feminism-95fd9f@kuoka/
->>>>
->>>> The dt changes should go last. The cpufreq and memory pieces can go in
->>>> either order because the new code won't be used unless the dt pieces
->>>> activate them.
->>>
->>>
->>> Then cpufreq and memory should never have been part of same patchset.
->>> Instead of simple command to apply it, maintainers need multiple steps.
->>> Really, when you send patches, think how this should be handled and how
->>> much effort this needs on maintainer side.
->>
->> To be honest, I was expecting all of these to go through the tegra
->> tree, since all the drivers I touch are owned by the tegra
->> maintainers. But getting stuff moved through that tree has been like
->> pulling teeth recently. So Krzysztof, what's the alternative you're
->> suggesting here?
-> 
-> What is the expectation for the series here, and related, the tegra210
-> actmon series? Everything put together here accomplishes the single
-> logical task of enabling dynamic frequency scaling for emc on tegra186
-> and tegra194. The driver subsystems do not have hard dependencies in
+Hi,
 
-There are comments from Viresh so I dropped the patchset from my queue.
+Am Samstag, dem 20.09.2025 um 14:03 +0200 schrieb Andr=C3=A9 Apitzsch via B=
+4
+Relay:
+> The DW9718S voice coil motor is found on various smartphones like
+> motorola-nora that are currently being worked on in the postmarketOS
+> community. Since the way it operates is very similar to DW9719, this
+> patch series adds support for it to the existing dw9719 driver.
+> Because
+> that driver did not yet support DT, we also add DT bindings and the
+> dongwoon,dw9719 ofw compatible. With DW9718S, the driver was
+> tested fully, including runtime PM.
+>=20
+> This is a follow-up of [1] and [2].
+>=20
+> Changes compared to previous submission:
+> * Deprecate dongwoon,vcm-freq in favor of dongwoon,vcm-prescale
+> * Instead of per-device config struct use model ID to handle cases
+>=20
+> [1]
+> https://lore.kernel.org/linux-media/20250210082035.8670-1-val@packett.coo=
+l/
+> [2]
+> https://lore.kernel.org/linux-media/20250209-dw9761dts-v3-0-14d3f00f0585@=
+apitzsch.eu/
+>=20
+> Signed-off-by: Andr=C3=A9 Apitzsch <git@apitzsch.eu>
+> ---
+> Changes in v2:
+> - Add patch (3) which removes i2c device table
+> - Restructure patches because of that
+> =C2=A0 - keep patches 1 and 2
+> =C2=A0 - add patch 3
+> =C2=A0 - patch 6 becomes patch 4
+> =C2=A0 - patch 3 becomes patch 5
+> =C2=A0 - patch 4 becomes patch 6
+> =C2=A0 - patch 5 becomes patch 7
+> =C2=A0 - patch 7 becomes patch 8
+> - Patch 1 (bindings)
+> =C2=A0 - Remove unneeded 'minimum: 0'
+> =C2=A0 - Remove if/then that handles 'default' to reduce complexity
+> =C2=A0 - Add myself as maintainer
+> - Patch 5
+> =C2=A0 - Fix void-pointer-to-enum-cast warning
+> - Patch 7
+> =C2=A0 - Drop pm_runtime_mark_last_busy(); it is already called by
+> =C2=A0=C2=A0=C2=A0 pm_runtime_put_autosuspend()
+> - Patch 8
+> =C2=A0 - Remove extra parentheses
+> =C2=A0 - Print error if writing to power register fails
+> =C2=A0 - Add reason for doubled waiting time during power up to comment
+> =C2=A0 - Pass NULL instead of unused 'ret' to cci_write()
+> - Link to v1:
+> https://lore.kernel.org/r/20250817-dw9719-v1-0-426f46c69a5a@apitzsch.eu
+>=20
+> ---
+> Andr=C3=A9 Apitzsch (3):
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dt-bindings: media: i2c: Add DW9718S, DW97=
+19 and DW9761 VCM
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 media: i2c: dw9719: Deprecate dongwoon,vcm=
+-freq
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 media: i2c: dw9719: Remove unused i2c devi=
+ce id table
+>=20
+> Val Packett (5):
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 media: i2c: dw9719: Add an of_match_table
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 media: i2c: dw9719: Add driver_data matchi=
+ng
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 media: i2c: dw9719: Add DW9718S support
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 media: i2c: dw9719: Update PM last busy ti=
+me upon close
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 media: i2c: dw9719: Fix power on/off seque=
+nce
+>=20
+> =C2=A0.../bindings/media/i2c/dongwoon,dw9719.yaml=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 |=C2=A0 88
+> +++++++++++++++++
+> =C2=A0drivers/media/i2c/dw9719.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 110
+> +++++++++++++++++----
+> =C2=A02 files changed, 178 insertions(+), 20 deletions(-)
+> ---
+> base-commit: 846bd2225ec3cfa8be046655e02b9457ed41973e
+> change-id: 20250709-dw9719-8a8822efc1b1
+>=20
 
-
-> that the new driver code has fallbacks to not fail to probe if the
-> complementary driver changes are missing. But if I was to split them
-> up, how would it work? I send the cpufreq patch by itself, the memory
-
-Please open MAINTAINERS file or read the output of get_maintainers.pl.
-This will tell you what is the subsystem here. Currently you mixed a
-lot: three subsystems which has only drawbacks. There is no single
-benefit of that approach, unless you have dependencies (REAL
-dependencies), but you said you don't have such. If you have
-dependencies this must be FIRST, the most important thing you mention in
-the cover letter. Many maintainers appreciate if you mention in patch
-changelogs as well, because they (me included) do not read cover letters.
-
-So if you open the MAINTAINERS file you will find subsystems: cpufreq,
-Tegra SoC and memory controllers (where DT bindings belong)
-
-You split your patchset per subsystem, with the difference (explained in
-DT submitting patches) is that DT bindings for drivers belong to the
-driver subsystem.
-
-The DTS patches using newly introduced bindings should carry lore links
-to patchsets with the bindings, so the SoC maintainer can apply them
-once bindings hit next.
-
-I also described the entire process before:
-https://lore.kernel.org/linux-samsung-soc/CADrjBPq_0nUYRABKpskRF_dhHu+4K=duPVZX==0pr+cjSL_caQ@mail.gmail.com/T/#m2d9130a1342ab201ab49670fa6c858ee3724c83c
-
-so now I repeated it second time. It is the last time I repeat the
-basics of organizing patchsets.
-
-> changes in a group, then the dt changes in a group with b4 deps lines
-> for the two driver sets? That seems crazy complicated for something
-
-That's pretty standard, nothing complicated. You should have seen
-complicated posting here:
-https://lore.kernel.org/all/20231121-topic-sm8650-upstream-dt-v3-0-db9d0507ffd3@linaro.org/
-
-We all send multiple patchsets, with or without dependencies.
+Gentle ping.
 
 Best regards,
-Krzysztof
+Andr=C3=A9
 
