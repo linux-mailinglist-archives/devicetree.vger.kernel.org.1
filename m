@@ -1,287 +1,182 @@
-Return-Path: <devicetree+bounces-228842-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228843-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC77CBF1290
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 14:27:38 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 84ED4BF12B7
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 14:28:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id B73674EBAD8
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 12:27:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1734E18A0442
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 12:29:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77AAF30F53E;
-	Mon, 20 Oct 2025 12:27:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="QZde2LkU"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FBAF30DD33;
+	Mon, 20 Oct 2025 12:28:41 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC9D931197C
-	for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 12:27:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D3CB1917ED;
+	Mon, 20 Oct 2025 12:28:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760963241; cv=none; b=DrMeLwSTC+UFsPt2zykt13V5mDTzRviErxLmnjxI+qp0zpVZj5jphj2h7vU1oGWDkpudk1cVrDNe1nwk8EfPBZIqnlWsVIN+I+K98rVSguaWJq9p5oM3+f1criwVRjm2/iTBlDzOhuDUOe1+YzsFCc0mVKKpXopuNkvRrnDaQwI=
+	t=1760963321; cv=none; b=bjkKbNTIPuofl3hx/HKwWJavig7EzRbhB9Inye7ErrcbKDNlqmdhgIxfcQPde5loLPUASu4oUxUC3WrKfAdQqdbAlDQvzuNu55uBwuZdfN77Hii0Ap3Gv/BoKsJ5ktT2R/1Z7od/Fe8KKJHC20oDvuumsKUJzaX7cEUK17Lq7ww=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760963241; c=relaxed/simple;
-	bh=EQq+kUGZ6/zTFwt1stzUq7yNuv4FsBcmBa1ZHergOaU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=XYTipAX9Z0PBklW6ZMHuEcpzS7XPA2eKbPZe/mQnio7T8cl7gZ37AWxJqtJ1133rkhXrggj1d2fqGTEkIDux046xdV10khpTOYg0eACh4CUPtsiiuyoivOTF1u1UqJKjiKTbaV2YhErfWB5zHUp6py+6lVTVsV0QCzFF6pNDzLE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=QZde2LkU; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59KCR7u2016668
-	for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 12:27:15 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	EJikePWqy0tCQGU0F8IOeREMGe4Yit4HwOUigKort0w=; b=QZde2LkU1+U3acp3
-	uFill/SXMV+560TMAme9O7GndBG7Cegcs+S30jJjMk6FOHBUDUQXmxmdlUAF0NVF
-	Tu1by+E7aUxxGad6KYsNvy7U9QQwt/RZ1IIxspgG5QTL4FnvG4cV9s3NDvWLAMK9
-	sPoWbf5QR6zaUdcylv+wg6jHN6QPGGTByA8tDA1BfdOdK9c/rTuqzkvP7dWydgdf
-	DlRYUBbTA6GMPWVWpOZ59rlhrZMxRiowtzCtcA/4WZxOe/x0Xn/eFasQXFEsbI+Y
-	ew6Qch1b7rx0axr6D0iW6DzbKohlBAvb8nQ16Y3jOgWqmQMPtsHVUGVh8yXtu733
-	tJpQlg==
-Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49v08pcxr7-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 12:27:15 +0000 (GMT)
-Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-89083a0e150so116483385a.2
-        for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 05:27:15 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760963235; x=1761568035;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=EJikePWqy0tCQGU0F8IOeREMGe4Yit4HwOUigKort0w=;
-        b=ihkG02YDq7/iIEwWY7JOb264+fKZ5ok/Fhctyavx5A9K5GH3z60iHfamENIyV9pySh
-         be+J6jx+mItI1wrqTLcin+Jrl/OMrfAr3Sa18P5IW52IAty/IJlAoSbwzCZs690+hfVk
-         Yta74M/KwQrwYouoAQq8o0q7g04tEvk59crDh5Y+vsNXpFRnX2Px6rcJwGa2asQoDUXw
-         Z6JIUeaJ0DkMMBFrKSx4ASDIP/iFpJLigkNi3V/E8LBYjOlyAHnIvnVs56Uwli0LVMVS
-         wXXxK7PtdEgoSjfvf5UY6Cc1Wk4Yvqpge5VeKqGvfxOk0q33uvVgpDkNesE0IbOZUaR+
-         BGTQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUhBugrKSBsMs7bDJdJwYMv0hNPMopXYjyCXNYEeX2MIN5krqDrPUi0OdFVJFgnA/iN3mfUenANGrTh@vger.kernel.org
-X-Gm-Message-State: AOJu0YzEubquNJ7mNRcslvwMzz4kGnaTjyvdfkrAyuxzW8MESMNF6Ecf
-	/VQIKrnVF0y0xzI9Io1NjlbAHxJP4EzgDCOT0uAR3VySx5AE4YEIt/vR9eQScFhEICgjO/9ofKl
-	RSBVtJTqMBl5Sgo/CtLp3wydzynU4TdjHp+pA64+scV5bHkmEZQ0rLebsDJkyxASH
-X-Gm-Gg: ASbGncucTU9cr6fd4dAw8PinC1MHdPVY7FRcGYPFF8F/hytWUWDCWZpEpTyBuiZOhnB
-	SlVcgeP/C6nD3IU1SNj/GIIa0ACcwjHQgq+90/lvaQZSmDh1170AUVzoi+HJBllm2O4lhkzh+hV
-	BLptjwqEMvd5uIK0e3SXg2PUHOUZx0D5Va7bH59m+crx26a4xnFhBdGQraRiZnRqRLhnJjphUMv
-	nWP59DJMiSn8YHN/zn6qn+HL8kEyj7+OejZ6UqjpkNN5suUVN7Cedxz/hF51tDdSxgmrWDlpNz7
-	TkYY8vwx4EbjI6ML3kdTB6uk35CK3FvwHfTwWVz4VCpr/jPGmD12EvjSeGlT4EFY0MESdE32JeY
-	jGecnwzxG3AmlFF1XZgQASMnX0ee0wfP+C3sOWqWPv0Ca1v0cedSI2yiV
-X-Received: by 2002:a05:622a:164c:b0:4d0:3985:e425 with SMTP id d75a77b69052e-4e89d30e815mr106997931cf.7.1760963234603;
-        Mon, 20 Oct 2025 05:27:14 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEnRSc0gX0xF3iPNiTo9blxag/0ZjyTcEbZyOP5gC7t0dOrIBiJtT6Xid+ZqFQvGdsGzYk5Yg==
-X-Received: by 2002:a05:622a:164c:b0:4d0:3985:e425 with SMTP id d75a77b69052e-4e89d30e815mr106997591cf.7.1760963234020;
-        Mon, 20 Oct 2025 05:27:14 -0700 (PDT)
-Received: from [192.168.119.202] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-63c4949998csm6582475a12.38.2025.10.20.05.27.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Oct 2025 05:27:13 -0700 (PDT)
-Message-ID: <c605434b-b0f4-4a9a-8b28-cf1c77d5f20f@oss.qualcomm.com>
-Date: Mon, 20 Oct 2025 14:27:11 +0200
+	s=arc-20240116; t=1760963321; c=relaxed/simple;
+	bh=DofzcR0NQwkRhmZTsBxnrzKL84BAOs+RTSxhxO2pjsk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=okzCtyWAnQgABsJ+DB0eiBxOGPcGmTq7MzvyR+CjHIxYqkb7bEaZdEptGoASMCk8RHtj8biyIKEi5RGgoMQzzvB9PaCTFDzInD1F5ZE64Zu727Sotd9Z998zXQZs1+6KfFXNzjbySUFc6Nmvo0m+X5wHJZDDRaqtCWfy8TL/3ls=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
+Received: from local
+	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+	 (Exim 4.98.2)
+	(envelope-from <daniel@makrotopia.org>)
+	id 1vAozt-000000003am-1Wtt;
+	Mon, 20 Oct 2025 12:28:21 +0000
+Date: Mon, 20 Oct 2025 13:28:17 +0100
+From: Daniel Golle <daniel@makrotopia.org>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: Sjoerd Simons <sjoerd@collabora.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	Ryder Lee <ryder.lee@mediatek.com>,
+	Jianjun Wang <jianjun.wang@mediatek.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Chunfeng Yun <chunfeng.yun@mediatek.com>,
+	Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Lee Jones <lee@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Lorenzo Bianconi <lorenzo@kernel.org>, Felix Fietkau <nbd@nbd.name>,
+	kernel@collabora.com, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, linux-pci@vger.kernel.org,
+	linux-phy@lists.infradead.org, netdev@vger.kernel.org,
+	Bryan Hinton <bryan@bryanhinton.com>
+Subject: Re: [PATCH 02/15] arm64: dts: mediatek: mt7981b-openwrt-one:
+ Configure UART0 pinmux
+Message-ID: <aPYq4cnaAHu5ags5@makrotopia.org>
+References: <20251016-openwrt-one-network-v1-0-de259719b6f2@collabora.com>
+ <20251016-openwrt-one-network-v1-2-de259719b6f2@collabora.com>
+ <aPDnT4tuSzNDzyAE@makrotopia.org>
+ <5f430ff9-d701-426a-bf93-5290e6912eb4@collabora.com>
+ <aPEfUBl6fMe6QYdY@makrotopia.org>
+ <82594ce7-f093-4753-b808-cd234845aed8@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] arm64: dts: qcom: sdm630/660: Add CDSP-related nodes
-To: Nickolay Goppen <setotau@mainlining.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-        linux@mainlining.org
-References: <20251019-qcom-sdm660-cdsp-adsp-dts-v1-0-9ab5f2865a6e@mainlining.org>
- <20251019-qcom-sdm660-cdsp-adsp-dts-v1-1-9ab5f2865a6e@mainlining.org>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20251019-qcom-sdm660-cdsp-adsp-dts-v1-1-9ab5f2865a6e@mainlining.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDE4MDAwMCBTYWx0ZWRfX7CwhquP74aNR
- 0++o5Ag+OxN6UQf1t18bIbQh4nk7yoSLRm1WBmFXaj1TQPLcGbjlgJh+YsqVvFknmrpSFgNbDcG
- CSzex21Q6Tc4vmFYwEcsNutGZypv+Tui40nGyoEPWTHP7WceXLgtVy4dNJDTNJ3zyXxf12vLXqX
- ea0GXh04liNP2ljoAXQW3Cg+3qEPfa5n9kB9udmIHwlIPqQykIixpkmOzzyzrdq6Menj0ajKpFT
- b3O96JWuqqSheXfg8lrXyhE5f9nJRYbR+psGcG/CnBUYcKOrDKxsqK2/pNo2ch/xD7tLCtTaVDn
- b38HiDGnvEbNvKKOqe7/okFt56icYYvlSwTUJbYpyCBvQhCf4fopYugoNxZQcV17TIar7zTQ5hs
- guuJwW1X/5wfR+w4fexyEM7o0kkXrQ==
-X-Proofpoint-GUID: Eb7nItlw317oH6-Z9gOUUqU4Pd1y5tbV
-X-Authority-Analysis: v=2.4 cv=Up1u9uwB c=1 sm=1 tr=0 ts=68f62aa3 cx=c_pps
- a=50t2pK5VMbmlHzFWWp8p/g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=OuZLqq7tAAAA:8 a=sATdV5nvz0x-xMse27EA:9 a=QEXdDO2ut3YA:10
- a=IoWCM6iH3mJn3m4BftBB:22 a=AKGiAy9iJ-JzxKVHQNES:22
-X-Proofpoint-ORIG-GUID: Eb7nItlw317oH6-Z9gOUUqU4Pd1y5tbV
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-10-20_03,2025-10-13_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 adultscore=0 suspectscore=0 malwarescore=0 clxscore=1015
- impostorscore=0 bulkscore=0 priorityscore=1501 spamscore=0 phishscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2510020000 definitions=main-2510180000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <82594ce7-f093-4753-b808-cd234845aed8@collabora.com>
 
-On 10/19/25 6:27 PM, Nickolay Goppen wrote:
-> In order to enable CDSP support for SDM660 SoC:
->  * add shared memory p2p nodes for CDSP
->  * add CDSP-specific smmu node
->  * add CDSP peripheral image loader node
+On Mon, Oct 20, 2025 at 12:23:14PM +0200, AngeloGioacchino Del Regno wrote:
+> Il 16/10/25 18:37, Daniel Golle ha scritto:
+> > On Thu, Oct 16, 2025 at 04:29:14PM +0200, AngeloGioacchino Del Regno wrote:
+> > > Il 16/10/25 14:38, Daniel Golle ha scritto:
+> > > > On Thu, Oct 16, 2025 at 12:08:38PM +0200, Sjoerd Simons wrote:
+> > > > > Add explicit pinctrl configuration for UART0 on the OpenWrt One board,
+> > > > > 
+> > > > > Signed-off-by: Sjoerd Simons <sjoerd@collabora.com>
+> > > > > ---
+> > > > >    arch/arm64/boot/dts/mediatek/mt7981b-openwrt-one.dts | 11 +++++++++++
+> > > > >    1 file changed, 11 insertions(+)
+> > > > > 
+> > > > > diff --git a/arch/arm64/boot/dts/mediatek/mt7981b-openwrt-one.dts b/arch/arm64/boot/dts/mediatek/mt7981b-openwrt-one.dts
+> > > > > index 968b91f55bb27..f836059d7f475 100644
+> > > > > --- a/arch/arm64/boot/dts/mediatek/mt7981b-openwrt-one.dts
+> > > > > +++ b/arch/arm64/boot/dts/mediatek/mt7981b-openwrt-one.dts
+> > > > > @@ -22,6 +22,17 @@ memory@40000000 {
+> > > > >    	};
+> > > > >    };
+> > > > > +&pio {
+> > > > > +	uart0_pins: uart0-pins {
+> > > > > +		mux {
+> > > > > +			function = "uart";
+> > > > > +			groups = "uart0";
+> > > > > +		};
+> > > > > +	};
+> > > > > +};
+> > > > > +
+> > > > >    &uart0 {
+> > > > > +	pinctrl-names = "default";
+> > > > > +	pinctrl-0 = <&uart0_pins>;
+> > > > >    	status = "okay";
+> > > > >    };
+> > > > 
+> > > > As there is only a single possible pinctrl configuration for uart0,
+> > > > both the pinmux definition as well as the pinctrl properties should go
+> > > > into mt7981b.dtsi rather than in the board's dts.
+> > > 
+> > > If there's really one single possible pin configuration for the UART0 pins,
+> > > as in, those pins *do not* have a GPIO mode, then yes I agree.
+> > > 
+> > > If those pins can be as well configured as GPIOs, this goes to board DTS.
+> > 
+> > I respectfully disagree and will explain below.
+> > 
 > 
-> Memory region for CDSP in SDM660 occupies the same spot as
-> TZ buffer mem defined in sdm630.dtsi (which does not have CDSP).
-> In sdm660.dtsi replace buffer_mem inherited from SDM630 with
-> cdsp_region, which is also larger in size.
+> Thanks a lot for taking the time to write all this - explains everything,
+> and even too much :) :)
 > 
-> SDM636 also doesn't have CDSP, so remove inherited from sdm660.dtsi
-> related nodes and add buffer_mem back.
+> Though, there's something funny here! The following snippet of "main" text
+> does explain stuff that is interesting, but that I (not other people, so
+> thanks again for saying all this) know already, but.....
 > 
-> Signed-off-by: Nickolay Goppen <setotau@mainlining.org>
-> ---
->  arch/arm64/boot/dts/qcom/sdm630.dtsi |   2 +-
->  arch/arm64/boot/dts/qcom/sdm636.dtsi |  14 ++++
->  arch/arm64/boot/dts/qcom/sdm660.dtsi | 152 +++++++++++++++++++++++++++++++++++
->  3 files changed, 167 insertions(+), 1 deletion(-)
+> > All pinmux pins on the MediaTek platform also allow being configured as
+> > GPIOs. However, if you configure those as GPIOs the consequence is that
+> > you cannot use UART0 any more at all. So using UART0 at all always
+> > implies using exactly those pins, there is no alternative to that.
+> > 
+> > Hence every board with every possible uses of pins 32 and 33 (there is
+> > only RX and TX for UART0, RTS/CTS flow-control is not possible) can be
+> > represented without needing to configure the pinctrl for uart0 on the
+> > board level. There isn't going to be any variation on the board-level
+> > when it comes to uart0. Either it is enabled (status = "okay";), and
+> > that will always imply using the 'uart0' group in mode 'uart', or, in
+> > case any of the two pins of uart0 is used for something else that means
+> > uart0 cannot be enabled. Simple as that.
+> > 
+> > Hence there is no need to duplicate that pinctrl settings on each and
+> > every board, as controlling the 'status' property on the board-level
+> > already gives 100% freedom.
+> > 
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sdm630.dtsi b/arch/arm64/boot/dts/qcom/sdm630.dtsi
-> index 8b1a45a4e56e..a6a1933229b9 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm630.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sdm630.dtsi
-> @@ -563,7 +563,7 @@ modem_smp2p_in: slave-kernel {
->  		};
->  	};
->  
-> -	soc@0 {
-> +	soc: soc@0 {
->  		#address-cells = <1>;
->  		#size-cells = <1>;
->  		ranges = <0 0 0 0xffffffff>;
-> diff --git a/arch/arm64/boot/dts/qcom/sdm636.dtsi b/arch/arm64/boot/dts/qcom/sdm636.dtsi
-> index ae15d81fa3f9..41e4e97f7747 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm636.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sdm636.dtsi
-> @@ -16,6 +16,20 @@
->   * be addressed when the aforementioned
->   * peripherals will be enabled upstream.
->   */
+> ...all of this is not justifying your point.
 
-You can now remove the above comment ("Turing IP" is CDSP)
+So what is the rule then? I understand the logic of describing the
+pins eg. for uart1 only on board-level as there are actual alternatives
+regarding the pins to be used, and if also including RTS/CTS pins.
+Hence, for uart1, there are several possible pingroups which can be
+used. What would be the argument to keep a pinctrl description for
+which the SoC doesn't offer any alternatives to be on the board-level?
+There is nothing to be decided by the board, literally 0 freedom.
 
-> +	reserved-memory {
-> +		cdsp_region: cdsp@94a00000 {
-> +			reg = <0x00 0x94a00000 0x00 0x600000>;
+> 
+> > (Sidenote: As even the BootROM already uses those two pins as UART for
+> > debug output,
+> 
+> Funny thing is, your side note is what *fully* justifies your disagreement
+> and it's also what triggers me to say that you're right, lol :)
+> 
+> Okay then, I am fine with this commit now and I can renew my
+> 
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-One zero for 0x0 is good
-
-[...]
-
-> +&soc {
-> +	cdsp_smmu: iommu@5180000 {
-> +		compatible = "qcom,sdm630-smmu-v2", "qcom,smmu-v2";
-> +		reg = <0x5180000 0x40000>;
-> +		#iommu-cells = <1>;
-> +
-> +		clocks = <&gcc GCC_HLOS1_VOTE_TURING_ADSP_SMMU_CLK>;
-> +		clock-names = "bus";
-> +
-> +		power-domains = <&gcc HLOS1_VOTE_TURING_ADSP_GDSC>;
-> +
-> +		#global-interrupts = <2>;
-> +		interrupts =
-> +			<GIC_SPI 229 IRQ_TYPE_LEVEL_HIGH>,
-
-Please don't break the line in this weird way, put the < right after
-a '=' followed with a space, and align the '<' below one another
-
-> +			<GIC_SPI 231 IRQ_TYPE_LEVEL_HIGH>,
-> +			<GIC_SPI 533 IRQ_TYPE_LEVEL_HIGH>,
-> +			<GIC_SPI 534 IRQ_TYPE_LEVEL_HIGH>,
-> +			<GIC_SPI 535 IRQ_TYPE_LEVEL_HIGH>,
-> +			<GIC_SPI 536 IRQ_TYPE_LEVEL_HIGH>,
-> +			<GIC_SPI 537 IRQ_TYPE_LEVEL_HIGH>,
-> +			<GIC_SPI 538 IRQ_TYPE_LEVEL_HIGH>,
-> +			<GIC_SPI 539 IRQ_TYPE_LEVEL_HIGH>,
-> +			<GIC_SPI 540 IRQ_TYPE_LEVEL_HIGH>,
-> +			<GIC_SPI 541 IRQ_TYPE_LEVEL_HIGH>,
-> +			<GIC_SPI 542 IRQ_TYPE_LEVEL_HIGH>,
-> +			<GIC_SPI 543 IRQ_TYPE_LEVEL_HIGH>,
-> +			<GIC_SPI 544 IRQ_TYPE_LEVEL_HIGH>,
-> +			<GIC_SPI 545 IRQ_TYPE_LEVEL_HIGH>,
-> +			<GIC_SPI 546 IRQ_TYPE_LEVEL_HIGH>,
-> +			<GIC_SPI 547 IRQ_TYPE_LEVEL_HIGH>,
-> +			<GIC_SPI 548 IRQ_TYPE_LEVEL_HIGH>,
-> +			<GIC_SPI 549 IRQ_TYPE_LEVEL_HIGH>;
-
-It would be neat to match the order of properites for this type of
-node to e.g. the rather fresh x1e80100.dtsi, so:
-
-interrupts
-clocks
-clock-names
-power-domains
-
-
-> +	};
-> +
-> +	cdsp_pil: remoteproc@1a300000 {
-
-"remoteproc_cdsp:"> +		compatible = "qcom,sdm660-cdsp-pas";
-> +		reg = <0x1a300000 0x00100>;
-> +		interrupts-extended =
-> +			<&intc GIC_SPI 518 IRQ_TYPE_EDGE_RISING>,
-
-(same comment about line breaks)
-
-> +			<&cdsp_smp2p_in 0 IRQ_TYPE_EDGE_RISING>,
-> +			<&cdsp_smp2p_in 1 IRQ_TYPE_EDGE_RISING>,
-> +			<&cdsp_smp2p_in 2 IRQ_TYPE_EDGE_RISING>,
-> +			<&cdsp_smp2p_in 3 IRQ_TYPE_EDGE_RISING>;
-> +		interrupt-names = "wdog", "fatal", "ready",
-> +			"handover", "stop-ack";
-
-1 a line, please> +
-> +		clocks = <&rpmcc RPM_SMD_XO_CLK_SRC>;
-> +		clock-names = "xo";
-> +
-> +		memory-region = <&cdsp_region>;
-> +		power-domains = <&rpmpd SDM660_VDDCX>;
-> +		power-domain-names = "cx";
-> +
-> +		qcom,smem-states = <&cdsp_smp2p_out 0>;
-> +		qcom,smem-state-names = "stop";
-> +
-> +		glink-edge {
-> +			interrupts = <GIC_SPI 513 IRQ_TYPE_EDGE_RISING>;
-> +
-> +			label = "turing";
-> +			mboxes = <&apcs_glb 29>;
-> +			qcom,remote-pid = <5>;
-> +
-> +			fastrpc {
-> +				compatible = "qcom,fastrpc";
-> +				qcom,glink-channels = "fastrpcglink-apps-dsp";
-> +				label = "cdsp";
-> +				qcom,non-secure-domain;
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +
-> +				compute-cb@5 {
-> +					compatible = "qcom,fastrpc-compute-cb";
-> +					reg = <5>;
-> +					iommus = <&cdsp_smmu 3>;
-> +				};
-> +				compute-cb@6 {
-
-Please add a \n between each subsequent subnode
-
-LGTM for the actual meat and potatoes, nice!
-
-Konrad
+Note that the patch you have just added your Reviewed-by:-tag to does
+*not* add the uart0 pinctrl on SoC-level but board-level, so different
+from what I argued for above. Did you mean to add Reviewed-by: for that
+(which contraticts what you just wrote) or rather to the to-be-submitted
+v2 of this series which includes the change to move the uart0 pinctrl
+to mt7981b.dtsi?
 
