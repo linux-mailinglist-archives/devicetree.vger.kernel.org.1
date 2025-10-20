@@ -1,163 +1,158 @@
-Return-Path: <devicetree+bounces-228794-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228795-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id EEB79BF0BDB
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 13:09:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EEE59BF0BFC
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 13:11:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 776161896BCD
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 11:09:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 790BF18901EC
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 11:12:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EA152F617F;
-	Mon, 20 Oct 2025 11:09:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C26C2FAC1E;
+	Mon, 20 Oct 2025 11:11:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ojMFcVpo"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RhEOgi5U"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F65C24676B;
-	Mon, 20 Oct 2025 11:09:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22F5B2F83DF
+	for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 11:11:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760958557; cv=none; b=e8CNM3JJ3AaGNQESMF05KSJrgcIzAjyyEd9Yj421lvr4YnIEY27P64sDMzqeYrlltXNKOqMH9pJGWtNAm/dotTq5H6YA9QYpf4OMBgvL8FvAAQWEeAI+nOAz3nH6rH6T+nwTdO8ZKg0OtvyqQYvJ/GRu25UWb6XmLC7TmCBrZNQ=
+	t=1760958702; cv=none; b=ZATb3pL/wvbE9vrcD5/uJia6KgqzmtWMWXLJcyhnwWJEzzGGn3rhmJmR4CYJwIzhnsKdqzsnwtVpQTjrRP18fSYnB1bubr7WtvSXF8wa/5RcLx69XszO4pHbhINO6ep5VZaGUwGzlXHhqVfujPA2k6fpOiiBG2zX1pD2az8TxHc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760958557; c=relaxed/simple;
-	bh=gPhw4C5Mc1mlUVzNZ4fRDu3demukRrEs/UJmD6Ao5tI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=dSk5IK5jT5t18FElAdL3IYFkQx9UOYXy5aji7sAZ3LbLhLNslEcsCBCjcEYeZt/qj8mPa0Xc27ebPi7xKcA548538Iwh8oa71Hseg1gyCc2S2HieZShyG+oUvrXxPR0xuFTxzRge2F7gkxxQMbBWQFzYysU6L7HCmqPCqd5R+q8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ojMFcVpo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 37C63C4CEF9;
-	Mon, 20 Oct 2025 11:09:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760958556;
-	bh=gPhw4C5Mc1mlUVzNZ4fRDu3demukRrEs/UJmD6Ao5tI=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=ojMFcVpoy+tOys+d0AWRkpwO/JL9MoyUKe0mv2dr++BLdJfb/ae3YIrQY+mgJ8Js9
-	 LaTKrbRkGcDzfWD5WgrI8WTc0aQUKBiqFsiN3bvV3nD1XjCW6Wacs7zwwTQjmwCev5
-	 p/yAY0h7AK7bM9tLRpZk+WTHHM1popxBIua+wPVAniQGO3zGUAzL3J48SKYDJQV9NX
-	 SSDQTfC8oPDMqWbbfvTspNOpmHCocGI/+4kxcnuUizl92+YvJvujb8hg1c5Zfa8pMI
-	 Wvu0S8suxbYrfFvM6pZibYFDvYOrwR45VSKlEuFxLLhOyecvGDi04MKSKX7cSjVY/8
-	 Nd4pdPO3SKH+w==
-Message-ID: <66c1ebf0-1f91-4d9f-985f-71535f1e3d01@kernel.org>
-Date: Mon, 20 Oct 2025 13:09:11 +0200
+	s=arc-20240116; t=1760958702; c=relaxed/simple;
+	bh=/u/sHVZSfi2e7MdgOitq2zS+yVeC+SRdoWU5NFexqrU=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version; b=hX5RbE2vGw6i25+zjTZ8UY9lbH8Ko8/FVzNhnXEAIHepJIzGuyVs/IEmMbDNWYCDIf/bCmjzbDw0WMpALBCloVcep3a2i9cEXCs4fCDr3uu7iJ1D0IQKEoM/99UKo+uIRKGyADKijWZyxSmTASWqWXnRCVMAHMPHxrAKfvjeNnc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RhEOgi5U; arc=none smtp.client-ip=209.85.128.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-4710ff3ae81so14613065e9.0
+        for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 04:11:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1760958698; x=1761563498; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=1J6WMqH03oILDs2/tT5ntrxwega9iCwgysVz89dOfmY=;
+        b=RhEOgi5UXsSU8vNyKz4oBwYPFx1Uzzzf9JTlFu2Dd88WadnggN+nWEI/T3+a3D6eLC
+         d0GwMBepUd+UXj7RMdPkiRnX4EKTdsT9dWfKhmXemlBPqdRj5c92UYEC48OyYy89C7PY
+         DkNxeN6uPpUX00JOG2niIt6fsxg5IOmXgL/7QX+J8k0NLZm14AYWNr9whKDyTH/csKuG
+         Nvk3MQB8LR+f3XUGeKOKvDxWS3WoRb9u92JE+Q0A07o0MWWQsis3FquRfH6UjK6PrS45
+         GYkMEiHdhr0A4Fs4trwPxn7LfErpW69Er5PA13bURCu4Mnb7ICobaqdb8fHZZ8Fwv8QF
+         fSaw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1760958698; x=1761563498;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=1J6WMqH03oILDs2/tT5ntrxwega9iCwgysVz89dOfmY=;
+        b=ts0gPhZYcLu91kRSxWOkZwxhDS7eEpc/nbBg6mAg61IhAvkv0P93BhX6MgRGESIh/k
+         RSG1nRkW3AKQu+sJYFK73JaBX1LhG31KQP0CpNXTk5MfdqrpZffb481Anl8BVcyhGsNu
+         qqP2cHG1OMGrWI3qIi3ljXOLCtJqhxGw/n4HQWGXOfMS6SDUoUNXApwT1/DdPrcfKqvh
+         6SY0/I6qskqrQN0WQnIEEROdBasoa6BhMy3R6s4svBdqmnju9wMCDRTixPY6AfD1eN6C
+         SI6l+semmojEGls35L31KqrcNNjGaCKRVL0QlxpSXngGLLA5KbbHZOL9JZVe17/OezRj
+         yi7w==
+X-Forwarded-Encrypted: i=1; AJvYcCV3idnkfWR07+jwerRxUAoIhdH1qsbJVXcPDLVKUfbxp0JSZ0eDIHvAnAmvv5LeU0JicW3X/obsJM2E@vger.kernel.org
+X-Gm-Message-State: AOJu0YxX3G2/EgfTAXuW070sOuDZB8ABt5yH+t6SgmCt0JO4CI8gLw2F
+	5HsS76aUtVSpdVPRHtyaTJcTgjPx2JIpbnaI6Dj2PXHnB+K2uEMusLHh
+X-Gm-Gg: ASbGncs6QGVsJRKPW+VwnT4kQ+9R98g1XrtUiJZsH90ZpE8PqPW+NuYnJlrkHDDZ1mx
+	gusSW2d3W1erF1JklRBfWQUcYA9EmXLoQCitWFKfUmrAsUgBdvuRc9Kk/x+KrBLk0/wiph87NqU
+	O27MT885bhnju2VpDEvwN9GBnfPasXxSzGOACcpBxQKuqbeo5l0EpZUqrrIHnGfG6OJdGeTva6Z
+	ZSyucXMjmA4IRhPraBEdJQrXEVISKz9GEr6HtkDIAIv2AKlo39or4hmUpEBbJiOj4QwD2HE0rfa
+	GS1aNTMiiUMqtqutAF4E0JRVqTDQHJ2eEPMBv3qA0EH75rT/UVY4BKCuB4FAUlnzGkqmkQgxTrW
+	1IRFCOTN+oSOzfG7JhjXKpenPMMSubMqd55nxI9gGjyb1mx4/+pPyBiV1JYx4wcrqCl49v8seuY
+	qvuerJq4zMsWhY1zNz4dnpxKZU7e9Cnb3HnGL/b8mmeOY=
+X-Google-Smtp-Source: AGHT+IHVbG6TZHa2zycGcNFH3hDK5XZiaq2XHp38I80LU/N8i2ztgAzL/k/rCSUQlcdD5KrEG0KaOA==
+X-Received: by 2002:a05:600c:3492:b0:46e:33b2:c8da with SMTP id 5b1f17b1804b1-4711791cadfmr110884785e9.32.1760958697834;
+        Mon, 20 Oct 2025 04:11:37 -0700 (PDT)
+Received: from Ansuel-XPS24 (93-34-92-177.ip49.fastwebnet.it. [93.34.92.177])
+        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-4283e7804f4sm12692219f8f.10.2025.10.20.04.11.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 20 Oct 2025 04:11:37 -0700 (PDT)
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: Ryder Lee <ryder.lee@mediatek.com>,
+	Jianjun Wang <jianjun.wang@mediatek.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Christian Marangi <ansuelsmth@gmail.com>,
+	linux-pci@vger.kernel.org,
+	linux-mediatek@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	netdev@vger.kernel.org,
+	upstream@airoha.com
+Subject: [PATCH v6 0/5] PCI: mediatek: add support AN7583 + YAML rework
+Date: Mon, 20 Oct 2025 13:11:04 +0200
+Message-ID: <20251020111121.31779-1-ansuelsmth@gmail.com>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] dt-bindings: dma: snps,dw-axi-dmac: Add iommu
- property
-To: Khairul Anuar Romli <khairul.anuar.romli@altera.com>,
- Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>, Vinod Koul
- <vkoul@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>,
- "open list:DMA GENERIC OFFLOAD ENGINE SUBSYSTEM"
- <dmaengine@vger.kernel.org>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>,
- Miquel Raynal <miquel.raynal@bootlin.com>,
- Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
- Niravkumar L Rabara <niravkumar.l.rabara@intel.com>,
- "open list:CADENCE NAND DRIVER" <linux-mtd@lists.infradead.org>,
- Dinh Nguyen <dinguyen@kernel.org>,
- Adrian Ng Ho Yin <adrianhoyin.ng@altera.com>
-References: <cover.1760486497.git.khairul.anuar.romli@altera.com>
- <b9bcc7542afae659d01553c5559e28e4f01966b1.1760486497.git.khairul.anuar.romli@altera.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
- QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
- +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
- ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
- 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
- hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
- tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
- 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
- naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
- hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
- whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
- qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
- RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
- Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
- H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
- dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
- AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
- jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
- zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
- XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <b9bcc7542afae659d01553c5559e28e4f01966b1.1760486497.git.khairul.anuar.romli@altera.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 15/10/2025 02:13, Khairul Anuar Romli wrote:
-> Agilex5 integrates an ARM SMMU v3 (System Memory Management Unit) with
-> dedicated Translation Buffer Units (TBUs) assigned to various peripherals,
-> including the Synopsys DesignWare AXI DMA controller.
-> 
-> Each TBU handles address translation for its associated device by mapping
-> stream IDs to memory access permissions and virtual-to-physical address
-> mappings via the SMMU core.
-> 
-> The DesignWare AXI DMAC instances on Agilex5 are connected to their
-> respective TBUs. These TBUs forward DMA transactions from the controller
-> through the SMMU, enabling IOMMU-based features such as:
-> - Address translation for DMA operations
-> - Isolation and protection of memory regions accessed by the DMA controller
-> - Support for secure and virtualized environments through enforced access
->   control
-> 
-> To support this configuration, the `iommus` property must be added to the
-> binding schema for `snps,dw-axi-dmac`. This allows the device tree to
-> associate each DMA controller with the correct SMMU stream ID, enabling
-> the Linux IOMMU framework to configure translation contexts at runtime.
-> 
-> This change documents the IOMMU support for the DMA controller on Agilex5
-> and allows proper integration with the SMMUv3 hardware.
-> 
-> Signed-off-by: Adrian Ng Ho Yin <adrianhoyin.ng@altera.com>
-> Signed-off-by: Khairul Anuar Romli <khairul.anuar.romli@altera.com>
-> ---
-> Changes in v3:
-> 	- Refined commit messages with detailed hardware descriptions.
-> 	- Remove redundant commit message and add hardware use for iommu.
-> Changes in v2:
->         - Updated the commit message to clarify the need for the changes
-> 	  and the hardware used of this changes.
-> ---
->  Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml | 3 +++
->  1 file changed, 3 insertions(+)
+This little series convert the PCIe GEN2 Documentation to YAML schema
+and adds support for Airoha AN7583 GEN2 PCIe Controller.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Changes v6:
+- Flags -> quirks
+- Align commit title to previous titles
+- Drop redundant comment for PCIE_T_PVPERL_MS
+- Drop DT merged patch
+- Add Review tag from Rob
+Changes v5:
+- Drop redudant entry from AN7583 patch
+- Fix YAML error for AN7583 patch (sorry)
+Changes v4:
+- Additional fix/improvement for YAML conversion
+- Add review tag
+- Fix wording on hifsys patch
+- Rework PCI driver to flags and improve PBus logic
+Changes v3:
+- Rework patch 1 to drop syscon compatible
+Changes v2:
+- Add cover letter
+- Describe skip_pcie_rstb variable
+- Fix hifsys schema (missing syscon)
+- Address comments on the YAML schema for PCIe GEN2
+- Keep alphabetical order for AN7583
 
-Best regards,
-Krzysztof
+Christian Marangi (5):
+  dt-bindings: PCI: mediatek: Convert to YAML schema
+  dt-bindings: PCI: mediatek: Add support for Airoha AN7583
+  PCI: mediatek: Convert bool to single quirks entry and bitmap
+  PCI: mediatek: Use generic MACRO for TPVPERL delay
+  PCI: mediatek: Add support for Airoha AN7583 SoC
+
+ .../bindings/pci/mediatek-pcie-mt7623.yaml    | 164 +++++++
+ .../devicetree/bindings/pci/mediatek-pcie.txt | 289 ------------
+ .../bindings/pci/mediatek-pcie.yaml           | 438 ++++++++++++++++++
+ drivers/pci/controller/pcie-mediatek.c        | 113 +++--
+ 4 files changed, 683 insertions(+), 321 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/pci/mediatek-pcie-mt7623.yaml
+ delete mode 100644 Documentation/devicetree/bindings/pci/mediatek-pcie.txt
+ create mode 100644 Documentation/devicetree/bindings/pci/mediatek-pcie.yaml
+
+-- 
+2.51.0
+
 
