@@ -1,83 +1,83 @@
-Return-Path: <devicetree+bounces-229053-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229054-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 566CABF3660
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 22:24:20 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E7B48BF3685
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 22:25:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 28CC234253A
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 20:24:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 320EE485C50
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 20:24:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 424D933372A;
-	Mon, 20 Oct 2025 20:22:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6760733375C;
+	Mon, 20 Oct 2025 20:22:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc.com header.i=@rivosinc.com header.b="ZeOMHHk4"
+	dkim=pass (2048-bit key) header.d=rivosinc.com header.i=@rivosinc.com header.b="L65d7rih"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com [209.85.210.178])
+Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com [209.85.210.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A0B8332EC7
-	for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 20:22:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE295333457
+	for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 20:22:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760991772; cv=none; b=b6ioGjfJJAT9RNCoqPwhuGlU+lqGBQNjBgsYUupy6t807AuBdMpels9VUVCMuHlLg3KJQLURW1sar+b/YLBjA/3Laeua+4RydJkyNwJLltP8emyROuxVUB5qABWECuurjeY8TiY/ICnwalrYmQaUO0tRk3AlS024+YkcVPYEOWs=
+	t=1760991774; cv=none; b=IMj3bLMfAZ7CyBPPMzg3vuVdg/3BLN3v1qvlU6N34++Cifh/6VY8Dtxgucd0rvOTjQMxssM/JkxxvS0OrRL6ws2+003ZUpybgPEU83aI35s/Ktgvk0FzzOqO9eVrhPMKF4LGUb1AAcJr4AxH1mXcqRPmf7rk3wYFz4h7eur5sq0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760991772; c=relaxed/simple;
-	bh=z891D/scj7TnRd6/7qamiCXEmjdYr6X2Z7RrjLJwhH8=;
+	s=arc-20240116; t=1760991774; c=relaxed/simple;
+	bh=5BjKvcc/tENK3IyHGYbYH8RdeZGuMoAH+q4KjM10at8=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=R91pyFD4NISApFB2ei/1wEjV2iPXx8LAnsZXTE2qNBXX/psX8cwyt85jf51jhbc9tU9Kf0A81GtJEFKNvwxS9fUiGc0jAt5DPi3DzvJ3epLP3xtzNaDWK1GFjQvkczO9IE4t/6HqBXTPgIolMsGDNFVyBSylvyuhjWU8E+J8o0U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc.com header.i=@rivosinc.com header.b=ZeOMHHk4; arc=none smtp.client-ip=209.85.210.178
+	 In-Reply-To:To:Cc; b=GN9cpwVmr08ozNfDY5q35xnkg+BV+0qViDoA6opvI4i0qe13PO8KL23Mp2NsCBwWCxVQCeJEVZdBFPydAmkgsnXDfeUiXQeyr8+CBy7yjQOs8adSvvoRjBF5eBHEpY6G7v5zroDnUgqqc3cBBXq/2zgUpKjf3HLUegw/E4HHtpw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc.com header.i=@rivosinc.com header.b=L65d7rih; arc=none smtp.client-ip=209.85.210.174
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rivosinc.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-pf1-f178.google.com with SMTP id d2e1a72fcca58-781251eec51so3765151b3a.3
-        for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 13:22:49 -0700 (PDT)
+Received: by mail-pf1-f174.google.com with SMTP id d2e1a72fcca58-782023ca359so4680017b3a.2
+        for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 13:22:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc.com; s=google; t=1760991769; x=1761596569; darn=vger.kernel.org;
+        d=rivosinc.com; s=google; t=1760991771; x=1761596571; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=kmXOZQ62j3QRaIvranq25arWdnxAPtQ6fIpADhvgWuw=;
-        b=ZeOMHHk4zSrAils1zEJ74BNVwerwb4TqoVrofeulrTr0Lkl0hfsmIyI2YODwYijCh+
-         ccRjNHnVbCq0ydNkBy1LNlQ38yztWTzbrty5hvEUtwlzBl1bwHscEh6uIjLeJovFgrne
-         6N114QZl9XS002IWuCnunZFYuFTC+Is6cnnvEsSEUo90dH478rC4miUNxGUBjMpu1Sj8
-         nCfuSUAgE7mih0JNpYpmO/+27f2sm5+qDTNJfJCuOabRLtGcW52LlItypW9wssRm/fwH
-         Etfo0bKilExgZuAcom5+rF04gZInrrgEAI/9wVvGagJ1+Dmcz6QcejwJK74E1/PLFWIU
-         sDhw==
+        bh=pyem79rLJLXQpzWR0JwioWbcU+J8r0OLXTuCA/SaFvw=;
+        b=L65d7rihkNEkn7e0sUQs9IbyPmgY87ggDZyQrP2WkPlKQLnHh2qQXsZ5n4Dh9eWaDl
+         YY5zpNH++OKcG8oAX1Q41JS/SnNVBHBFJDS4LBPHUC6PBj5W9fLVg0/P64HT3OSE5nMi
+         qBo0cNf0n7HsBNRTSMEjYT4q++RIbYu4BRnMxPbTxBc8iIfk4CvQw/ZZcZ0H3DXJQlFl
+         gOcXyWkqppRjtXC48sPAUZhOA76mubmOh0kw1+9mlkR8tonbSl7BhnliqjUzpxQmiGRi
+         Kbld0u5dZQ0mE70oilYIei2MNYYyyn/U3PdC+O2TAaYlijdN8nhO/Vj1dd6Pk3vNcjf2
+         8dPQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760991769; x=1761596569;
+        d=1e100.net; s=20230601; t=1760991771; x=1761596571;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=kmXOZQ62j3QRaIvranq25arWdnxAPtQ6fIpADhvgWuw=;
-        b=sM35h9HNCkpg39tOFU+ihB/iXEPDU8qwbvldrH7Sr5rU7Dh80urw5UiC5JxP3hKnNV
-         iKw98803OVnyVc/Iw4oeruPkmV31meXeK9MrPfz+qQY51GvFHXZIuu6pbLFHuxPv5eCl
-         Jb24Jz8XsmDQZARX8M6Ry1uqTDhqMYbZoCVqbUg5ozWI9+C1YS1slF0prIFT70WA05uA
-         vLtU/TzDkHT9JRek3mfAcakCMDFoHtFDRdl3GPLv7hILUcfE0FeCj+KP3OMgoltgdyJK
-         /Z40m+2m7NtpZPKv0UnqgTFkCdY3gDKrTqILzX0bz5uUMWPoJp0CZrL+GSrTWNNeD4lt
-         TNEg==
-X-Forwarded-Encrypted: i=1; AJvYcCV07frAhrXX6B3xay63E2D+FAjVbTLRjGybdSruqfSCUjwr/vBb48AC6qiulGCR0/rx4kz/WnbDWtB5@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzdk/B/4893PcXUJWpv0wM7PmzN6utyR3K69E5CnjgGx/bp151T
-	3i9Btyn5y322OwliiDef3Cbms2HkYEloX5O5fI+V6gqEHZiVfKUzDj8BWfVpOgQAkNw=
-X-Gm-Gg: ASbGnctcVzQiFvsgW4h/PKxsmwAZKlAVl2epG4Qc0d/051chGvstWQDhFn0OJS8yP3B
-	sNmRevYTm9/UORBWL6HZpUtOdAsMutSWFSsOUxLYVYkCUGNddV7Vgni+cT0dbHAU2H9OgH+TDNx
-	hq3QePGq8tDrMtEO9Huf/KeQTgcgGDUaWiHQ62zJp6us8h4nVSQFDGdxNdgDWy4YzAd94pKOToQ
-	8yJXUpsC21tyRDc2hhxlAncRIdy7wQ3evgY2VsT2ejj1fGX/XLzEvlP8tl7cR85+nCA6ZmlKzrD
-	uca/80dkR6hQvSn3MZRV1Gob60M/3Ne9FH89DUjq6ccpkai/XpnObEOq4Ea93rik0FzMnlnB2kd
-	qc0lZGGEJH0RI6mGuoWkCHRDa22QF6nnMKuFcbh4ZAMmLZrhpg+s/v4fkcuzvS8oouDdi4QI1IK
-	U8vb7Wb2UOEeoaQPmbOIvP
-X-Google-Smtp-Source: AGHT+IGUaINT3sa79WISIy/eLZ+hkAOyOwADyHTku6BZCvJw9SjQaU2SzGHZctxGHYC+zUUXdUn7sA==
-X-Received: by 2002:a17:90b:2fcc:b0:32d:d5f1:fe7f with SMTP id 98e67ed59e1d1-33bcf89380bmr17749555a91.15.1760991768726;
-        Mon, 20 Oct 2025 13:22:48 -0700 (PDT)
+        bh=pyem79rLJLXQpzWR0JwioWbcU+J8r0OLXTuCA/SaFvw=;
+        b=bM+Tf0P1b9DUpu60t1kG1y/V2o8cqHVZL5rK/f2aBhv9GSngdUC0wk5IEYztbLpV6G
+         aJ8UzzgXxRCye+O9kPpjnJ5yyHuy74+22ohGALL8pmlKJE88CVuU1YDrYu6BOfCeJVDv
+         aVhoqSbmjAm/di/Q5F3dUe+hyvx6Z47pRAoL9hDHTS61sV+pDNtz6G7BYgmDD6waY2AA
+         puE2S/gkQZc6R6YJheyWbUChJxuh3ON00CSLQKgSJF1RbQJQQUeULYUYc43uHQJvWxwi
+         lBam3jODyOe6UXgOq8ZlEh61Tw1+luF22gWaxQFGRS6DHMhyAlfbAeP+8APnPqeezHle
+         Yqkg==
+X-Forwarded-Encrypted: i=1; AJvYcCVLEOPJUh0Nl8t0QmcrDpeSym0k+eLYTpXvYN6UyVd6+qarw5NmHeVQ3CkCD9FSpoujIlUjdP2EFPvv@vger.kernel.org
+X-Gm-Message-State: AOJu0YxHdZvaM59wHIqZTf8MxdfMslR81jf+OTv+JFF2BLKDvdRPhKUA
+	h29zGPdXV87B4qi36iBF76pjCWbVoFlpTF/fzzsufx271tsednTUuRBo8axFEk09Yik=
+X-Gm-Gg: ASbGncvd5nEg0JR1YiWF+x5OLo3N9ZBt0Php9J7cqLjOHyn36GodbLDcFcnOz3vKn2C
+	kBDsSo0yTBLMUMu6dgkP8Rz13cF2NuwPOt5ZEoox/aWs1C67iz2ZT+eDUnQuGBXS5II67UheK1j
+	dp8RtveEEl0rN+kojoffs5tnR+rg5uTH41OM94a0tH+lg88OyG0Hovuy1HZ4dn6tShnowam+6H2
+	z8X4tVO7+m9eRc7MUQqVoVBODbm7lNKJQlkU8eJ98fhk1718sZKID6p5kAJ75Oi/YLCEXNHiZi8
+	gRdTmvuR0t9RlxbUPUStzEvhsk/x0tJpUPnrr/RJCM5C+Ve8EMskTVqi2zYDSqf7M5/AreY0p4h
+	1r6ayNnC1Zzs9xiLJsAhBTsMWpY8v/qMU4fUs7VHtLInwXvR0qLmm2TsNoPoYuNCPnq2fX6MKvK
+	7VtutbS9oFHQ==
+X-Google-Smtp-Source: AGHT+IHCUggIPMFs3p3YqDKdkPO2jCwhmhi/bL773/KhCAQLWB8ulShW9Lr2mVwOqzrGgVQh6gVvsg==
+X-Received: by 2002:a05:6a20:42a3:b0:334:a82b:97d0 with SMTP id adf61e73a8af0-334a84cf411mr17749764637.22.1760991770903;
+        Mon, 20 Oct 2025 13:22:50 -0700 (PDT)
 Received: from debug.ba.rivosinc.com ([64.71.180.162])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b6a766745dasm8443240a12.14.2025.10.20.13.22.46
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b6a766745dasm8443240a12.14.2025.10.20.13.22.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Oct 2025 13:22:48 -0700 (PDT)
+        Mon, 20 Oct 2025 13:22:50 -0700 (PDT)
 From: Deepak Gupta <debug@rivosinc.com>
-Date: Mon, 20 Oct 2025 13:22:34 -0700
-Subject: [PATCH v22 05/28] riscv: usercfi state for task and save/restore
- of CSR_SSP on trap entry/exit
+Date: Mon, 20 Oct 2025 13:22:35 -0700
+Subject: [PATCH v22 06/28] riscv/mm : ensure PROT_WRITE leads to VM_READ |
+ VM_WRITE
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -86,7 +86,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20251020-v5_user_cfi_series-v22-5-66732256ad8f@rivosinc.com>
+Message-Id: <20251020-v5_user_cfi_series-v22-6-66732256ad8f@rivosinc.com>
 References: <20251020-v5_user_cfi_series-v22-0-66732256ad8f@rivosinc.com>
 In-Reply-To: <20251020-v5_user_cfi_series-v22-0-66732256ad8f@rivosinc.com>
 To: Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>, 
@@ -122,164 +122,113 @@ Cc: linux-kernel@vger.kernel.org, linux-fsdevel@vger.kernel.org,
  Zong Li <zong.li@sifive.com>, Deepak Gupta <debug@rivosinc.com>
 X-Mailer: b4 0.13.0
 
-Carves out space in arch specific thread struct for cfi status and shadow
-stack in usermode on riscv.
+`arch_calc_vm_prot_bits` is implemented on risc-v to return VM_READ |
+VM_WRITE if PROT_WRITE is specified. Similarly `riscv_sys_mmap` is
+updated to convert all incoming PROT_WRITE to (PROT_WRITE | PROT_READ).
+This is to make sure that any existing apps using PROT_WRITE still work.
 
-This patch does following
-- defines a new structure cfi_status with status bit for cfi feature
-- defines shadow stack pointer, base and size in cfi_status structure
-- defines offsets to new member fields in thread in asm-offsets.c
-- Saves and restore shadow stack pointer on trap entry (U --> S) and exit
-  (S --> U)
+Earlier `protection_map[VM_WRITE]` used to pick read-write PTE encodings.
+Now `protection_map[VM_WRITE]` will always pick PAGE_SHADOWSTACK PTE
+encodings for shadow stack. Above changes ensure that existing apps
+continue to work because underneath kernel will be picking
+`protection_map[VM_WRITE|VM_READ]` PTE encodings.
 
-Shadow stack save/restore is gated on feature availiblity and implemented
-using alternative. CSR can be context switched in `switch_to` as well but
-soon as kernel shadow stack support gets rolled in, shadow stack pointer
-will need to be switched at trap entry/exit point (much like `sp`). It can
-be argued that kernel using shadow stack deployment scenario may not be as
-prevalant as user mode using this feature. But even if there is some
-minimal deployment of kernel shadow stack, that means that it needs to be
-supported. And thus save/restore of shadow stack pointer in entry.S instead
-of in `switch_to.h`.
-
-Reviewed-by: Charlie Jenkins <charlie@rivosinc.com>
 Reviewed-by: Zong Li <zong.li@sifive.com>
 Reviewed-by: Alexandre Ghiti <alexghiti@rivosinc.com>
+Signed-off-by: Arnd Bergmann <arnd@arndb.de>
 Signed-off-by: Deepak Gupta <debug@rivosinc.com>
 ---
- arch/riscv/include/asm/processor.h   |  1 +
- arch/riscv/include/asm/thread_info.h |  3 +++
- arch/riscv/include/asm/usercfi.h     | 23 +++++++++++++++++++++++
- arch/riscv/kernel/asm-offsets.c      |  4 ++++
- arch/riscv/kernel/entry.S            | 31 +++++++++++++++++++++++++++++++
- 5 files changed, 62 insertions(+)
+ arch/riscv/include/asm/mman.h    | 26 ++++++++++++++++++++++++++
+ arch/riscv/include/asm/pgtable.h |  1 +
+ arch/riscv/kernel/sys_riscv.c    | 10 ++++++++++
+ arch/riscv/mm/init.c             |  2 +-
+ 4 files changed, 38 insertions(+), 1 deletion(-)
 
-diff --git a/arch/riscv/include/asm/processor.h b/arch/riscv/include/asm/processor.h
-index da5426122d28..4c3dd94d0f63 100644
---- a/arch/riscv/include/asm/processor.h
-+++ b/arch/riscv/include/asm/processor.h
-@@ -16,6 +16,7 @@
- #include <asm/insn-def.h>
- #include <asm/alternative-macros.h>
- #include <asm/hwcap.h>
-+#include <asm/usercfi.h>
- 
- #define arch_get_mmap_end(addr, len, flags)			\
- ({								\
-diff --git a/arch/riscv/include/asm/thread_info.h b/arch/riscv/include/asm/thread_info.h
-index 836d80dd2921..36918c9200c9 100644
---- a/arch/riscv/include/asm/thread_info.h
-+++ b/arch/riscv/include/asm/thread_info.h
-@@ -73,6 +73,9 @@ struct thread_info {
- 	 */
- 	unsigned long		a0, a1, a2;
- #endif
-+#ifdef CONFIG_RISCV_USER_CFI
-+	struct cfi_state	user_cfi_state;
-+#endif
- };
- 
- #ifdef CONFIG_SHADOW_CALL_STACK
-diff --git a/arch/riscv/include/asm/usercfi.h b/arch/riscv/include/asm/usercfi.h
+diff --git a/arch/riscv/include/asm/mman.h b/arch/riscv/include/asm/mman.h
 new file mode 100644
-index 000000000000..4c5233e8f3f9
+index 000000000000..0ad1d19832eb
 --- /dev/null
-+++ b/arch/riscv/include/asm/usercfi.h
-@@ -0,0 +1,23 @@
-+/* SPDX-License-Identifier: GPL-2.0
-+ * Copyright (C) 2024 Rivos, Inc.
-+ * Deepak Gupta <debug@rivosinc.com>
-+ */
-+#ifndef _ASM_RISCV_USERCFI_H
-+#define _ASM_RISCV_USERCFI_H
++++ b/arch/riscv/include/asm/mman.h
+@@ -0,0 +1,26 @@
++/* SPDX-License-Identifier: GPL-2.0 */
++#ifndef __ASM_MMAN_H__
++#define __ASM_MMAN_H__
 +
-+#ifndef __ASSEMBLER__
++#include <linux/compiler.h>
 +#include <linux/types.h>
++#include <linux/mm.h>
++#include <uapi/asm/mman.h>
 +
-+#ifdef CONFIG_RISCV_USER_CFI
-+struct cfi_state {
-+	unsigned long ubcfi_en : 1; /* Enable for backward cfi. */
-+	unsigned long user_shdw_stk; /* Current user shadow stack pointer */
-+	unsigned long shdw_stk_base; /* Base address of shadow stack */
-+	unsigned long shdw_stk_size; /* size of shadow stack */
-+};
++static inline unsigned long arch_calc_vm_prot_bits(unsigned long prot,
++						   unsigned long pkey __always_unused)
++{
++	unsigned long ret = 0;
 +
-+#endif /* CONFIG_RISCV_USER_CFI */
++	/*
++	 * If PROT_WRITE was specified, force it to VM_READ | VM_WRITE.
++	 * Only VM_WRITE means shadow stack.
++	 */
++	if (prot & PROT_WRITE)
++		ret = (VM_READ | VM_WRITE);
++	return ret;
++}
 +
-+#endif /* __ASSEMBLER__ */
++#define arch_calc_vm_prot_bits(prot, pkey) arch_calc_vm_prot_bits(prot, pkey)
 +
-+#endif /* _ASM_RISCV_USERCFI_H */
-diff --git a/arch/riscv/kernel/asm-offsets.c b/arch/riscv/kernel/asm-offsets.c
-index 7d42d3b8a32a..8a2b2656cb2f 100644
---- a/arch/riscv/kernel/asm-offsets.c
-+++ b/arch/riscv/kernel/asm-offsets.c
-@@ -51,6 +51,10 @@ void asm_offsets(void)
- #endif
++#endif /* ! __ASM_MMAN_H__ */
+diff --git a/arch/riscv/include/asm/pgtable.h b/arch/riscv/include/asm/pgtable.h
+index 29e994a9afb6..4c4057a2550e 100644
+--- a/arch/riscv/include/asm/pgtable.h
++++ b/arch/riscv/include/asm/pgtable.h
+@@ -182,6 +182,7 @@ extern struct pt_alloc_ops pt_ops __meminitdata;
+ #define PAGE_READ_EXEC		__pgprot(_PAGE_BASE | _PAGE_READ | _PAGE_EXEC)
+ #define PAGE_WRITE_EXEC		__pgprot(_PAGE_BASE | _PAGE_READ |	\
+ 					 _PAGE_EXEC | _PAGE_WRITE)
++#define PAGE_SHADOWSTACK       __pgprot(_PAGE_BASE | _PAGE_WRITE)
  
- 	OFFSET(TASK_TI_CPU_NUM, task_struct, thread_info.cpu);
-+#ifdef CONFIG_RISCV_USER_CFI
-+	OFFSET(TASK_TI_CFI_STATE, task_struct, thread_info.user_cfi_state);
-+	OFFSET(TASK_TI_USER_SSP, task_struct, thread_info.user_cfi_state.user_shdw_stk);
-+#endif
- 	OFFSET(TASK_THREAD_F0,  task_struct, thread.fstate.f[0]);
- 	OFFSET(TASK_THREAD_F1,  task_struct, thread.fstate.f[1]);
- 	OFFSET(TASK_THREAD_F2,  task_struct, thread.fstate.f[2]);
-diff --git a/arch/riscv/kernel/entry.S b/arch/riscv/kernel/entry.S
-index d3d92a4becc7..8410850953d6 100644
---- a/arch/riscv/kernel/entry.S
-+++ b/arch/riscv/kernel/entry.S
-@@ -92,6 +92,35 @@
- 	REG_L	a0, TASK_TI_A0(tp)
- .endm
+ #define PAGE_COPY		PAGE_READ
+ #define PAGE_COPY_EXEC		PAGE_READ_EXEC
+diff --git a/arch/riscv/kernel/sys_riscv.c b/arch/riscv/kernel/sys_riscv.c
+index 795b2e815ac9..22fc9b3268be 100644
+--- a/arch/riscv/kernel/sys_riscv.c
++++ b/arch/riscv/kernel/sys_riscv.c
+@@ -7,6 +7,7 @@
  
-+/*
-+ * If previous mode was U, capture shadow stack pointer and save it away
-+ * Zero CSR_SSP at the same time for sanitization.
-+ */
-+.macro save_userssp tmp, status
-+	ALTERNATIVE("nops(4)",
-+		__stringify(				\
-+		andi \tmp, \status, SR_SPP;		\
-+		bnez \tmp, skip_ssp_save;		\
-+		csrrw \tmp, CSR_SSP, x0;		\
-+		REG_S \tmp, TASK_TI_USER_SSP(tp);	\
-+		skip_ssp_save:),
-+		0,
-+		RISCV_ISA_EXT_ZICFISS,
-+		CONFIG_RISCV_USER_CFI)
-+.endm
+ #include <linux/syscalls.h>
+ #include <asm/cacheflush.h>
++#include <asm-generic/mman-common.h>
+ 
+ static long riscv_sys_mmap(unsigned long addr, unsigned long len,
+ 			   unsigned long prot, unsigned long flags,
+@@ -16,6 +17,15 @@ static long riscv_sys_mmap(unsigned long addr, unsigned long len,
+ 	if (unlikely(offset & (~PAGE_MASK >> page_shift_offset)))
+ 		return -EINVAL;
+ 
++	/*
++	 * If PROT_WRITE is specified then extend that to PROT_READ
++	 * protection_map[VM_WRITE] is now going to select shadow stack encodings.
++	 * So specifying PROT_WRITE actually should select protection_map [VM_WRITE | VM_READ]
++	 * If user wants to create shadow stack then they should use `map_shadow_stack` syscall.
++	 */
++	if (unlikely((prot & PROT_WRITE) && !(prot & PROT_READ)))
++		prot |= PROT_READ;
 +
-+.macro restore_userssp tmp, status
-+	ALTERNATIVE("nops(4)",
-+		__stringify(				\
-+		andi \tmp, \status, SR_SPP;		\
-+		bnez \tmp, skip_ssp_restore;		\
-+		REG_L \tmp, TASK_TI_USER_SSP(tp);	\
-+		csrw CSR_SSP, \tmp;			\
-+		skip_ssp_restore:),
-+		0,
-+		RISCV_ISA_EXT_ZICFISS,
-+		CONFIG_RISCV_USER_CFI)
-+.endm
- 
- SYM_CODE_START(handle_exception)
- 	/*
-@@ -148,6 +177,7 @@ SYM_CODE_START(handle_exception)
- 
- 	REG_L s0, TASK_TI_USER_SP(tp)
- 	csrrc s1, CSR_STATUS, t0
-+	save_userssp s2, s1
- 	csrr s2, CSR_EPC
- 	csrr s3, CSR_TVAL
- 	csrr s4, CSR_CAUSE
-@@ -243,6 +273,7 @@ SYM_CODE_START_NOALIGN(ret_from_exception)
- 	call riscv_v_context_nesting_end
- #endif
- 	REG_L a0, PT_STATUS(sp)
-+	restore_userssp s3, a0
- 	/*
- 	 * The current load reservation is effectively part of the processor's
- 	 * state, in the sense that load reservations cannot be shared between
+ 	return ksys_mmap_pgoff(addr, len, prot, flags, fd,
+ 			       offset >> (PAGE_SHIFT - page_shift_offset));
+ }
+diff --git a/arch/riscv/mm/init.c b/arch/riscv/mm/init.c
+index d85efe74a4b6..62ab2c7de7c8 100644
+--- a/arch/riscv/mm/init.c
++++ b/arch/riscv/mm/init.c
+@@ -376,7 +376,7 @@ pgd_t early_pg_dir[PTRS_PER_PGD] __initdata __aligned(PAGE_SIZE);
+ static const pgprot_t protection_map[16] = {
+ 	[VM_NONE]					= PAGE_NONE,
+ 	[VM_READ]					= PAGE_READ,
+-	[VM_WRITE]					= PAGE_COPY,
++	[VM_WRITE]					= PAGE_SHADOWSTACK,
+ 	[VM_WRITE | VM_READ]				= PAGE_COPY,
+ 	[VM_EXEC]					= PAGE_EXEC,
+ 	[VM_EXEC | VM_READ]				= PAGE_READ_EXEC,
 
 -- 
 2.45.0
