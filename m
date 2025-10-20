@@ -1,102 +1,90 @@
-Return-Path: <devicetree+bounces-228971-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228972-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E507DBF2B96
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 19:32:38 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A6595BF2BBE
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 19:37:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3CA9718A6485
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 17:33:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E9F7D405170
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 17:37:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B86FA29AB1D;
-	Mon, 20 Oct 2025 17:32:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41C5E31355F;
+	Mon, 20 Oct 2025 17:37:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dxNlxydD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="A6YX0EwU"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9186B2561AE;
-	Mon, 20 Oct 2025 17:32:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18C4017A2F0;
+	Mon, 20 Oct 2025 17:37:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760981553; cv=none; b=BdyFxYIgRzUNSBNeM6+w59buBMmO5ShUSKIrsnewjQcLhR2ADNHeW3W8/Nb4rYgnzGwhoGMaYcIdoOlx14IvRQYOKPzf//UXZy0bqOSL6NHRI8A/giP5FSItnFUiwff/WdTLnZ8f43I5Azq70tlI5HFOzF/lHtjt5J4HGF7Qzos=
+	t=1760981823; cv=none; b=vDvtUbN/tYW+2+CivXkAVImz2udTIcDn+Z6uhdi3a/yenUJk3hqBIQsx1olLfxMPwJkWWSynHGrRqOpZUTC8TwQKrLqOmMQXoC505g94mxN51b+u50KtTbdPp10+Ak0iASSEOAinhJz4N4VT6Ezlej9MKaSoQqGkZM7vAHOVHY8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760981553; c=relaxed/simple;
-	bh=cKso7ybb9iJDanB4qNQL4k5Ww5/ll0Fs6J9dM79RXaA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rdczWlW70drAvm28HLAJV0Dm7PzD9VuFqq9Lc7zVc/lsjzsKLj6ksxjVmiZnfJhE7fkT/tN5ONBN5ipJspYzbti2NAf7TjSgUGs5/PABVEyjwFeg+inaeeRLhDwI+qOvqON0uJnjHUeJVLddnUDqwzWxuDGfUhlpn6QSQxII7uw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dxNlxydD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2BAD4C4CEF9;
-	Mon, 20 Oct 2025 17:32:27 +0000 (UTC)
+	s=arc-20240116; t=1760981823; c=relaxed/simple;
+	bh=K9wyPo0cQ9GL77ffKurdZDil7DRu7VmOSh2SzUXV9Z0=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=PIoOwJDvHxv2+s48Dquu3XdWoXbo5mYvPcp0z0sDtwzPZ3ywUoUZujU01qB3JPGWtHI5Z+tI9fDydbyZYRUt6eD2tWwQtnyq69t2Bgf6aUsYkVAh3ia//jogHZUOEewf7GT5dzL6IPaLAGAMuLlRDU3puFX+ZU8fCIEGZQKsAyw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=A6YX0EwU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 37B0BC4CEF9;
+	Mon, 20 Oct 2025 17:36:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760981550;
-	bh=cKso7ybb9iJDanB4qNQL4k5Ww5/ll0Fs6J9dM79RXaA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=dxNlxydD+pAipulVtdKT1k0HzWG2vQdHfDvfTnx0eEVuwCe9TM3CQtoWtN1QqOc0l
-	 RI7NLPfQxkgkKfh9EPWTrBq+oWWzFXZzakp2ThpB5MlPb/zorCXg1zKTcGSKhk5cmI
-	 a8jlbqQC5rgQmOQ3WyvMW+mElJHzqMEyWP7gZat8dP5U3nc73OBhtBlQ3mCAKLFd70
-	 o010CW37VeeUXx5YIT+56I40L4dq+r9LqEGhBjpE2o/+/QO4FVc9cFB0mD4+hzWVRt
-	 vO8TTHzf0JMdYIDxejH3QPDCVaYZTm+J0f6+x9lajVz9uGkuiHOuCcVyqiaL5jgRDm
-	 s39Aswgovvb6A==
-Date: Mon, 20 Oct 2025 18:32:26 +0100
+	s=k20201202; t=1760981822;
+	bh=K9wyPo0cQ9GL77ffKurdZDil7DRu7VmOSh2SzUXV9Z0=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=A6YX0EwUNddz7jSUTd+A9NGqHxywGBuhRnEQJRd9ZBRuRov6j9u1snN9kAN62S8Da
+	 +KDXwR32plJI3GpPETtNIb6zvlf/AUzcVm6qiBBx44aIEMaokVecBjuBAFjNIBMB8k
+	 Zxwyvt0im46G101RmnLOD+wLAsVZFXFmpN+ssQTOMt8zTr+pGyGMs52XZYMo0+M/KY
+	 SUoxfUPuwzxy7+MxM/Lp9acyZZObl3otC1eByaA0Sk/6y2FGCE5KZJLo/J+1I726n4
+	 lGnljDqCmswM1aboQ0jY9+xl295zuKveVSzoanSVMYFCKdC+G1bUBSDhpt+T40msR1
+	 DYWVHa7mRkYhw==
 From: Conor Dooley <conor@kernel.org>
-To: Lorenzo Bianconi <lorenzo@kernel.org>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+To: Emil Renner Berthing <kernel@esmil.dk>,
+	Conor Dooley <conor@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next v3 01/13] dt-bindings: net: airoha: Add AN7583
- support
-Message-ID: <20251020-vision-outspoken-7083858d278c@spud>
-References: <20251017-an7583-eth-support-v3-0-f28319666667@kernel.org>
- <20251017-an7583-eth-support-v3-1-f28319666667@kernel.org>
+	Paul Walmsley <pjw@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Alexandre Ghiti <alex@ghiti.fr>,
+	E Shattow <e@freeshell.de>
+Cc: Conor Dooley <conor.dooley@microchip.com>,
+	linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dts: starfive: jh7110-common: split out mmc0 reset pins from common into boards
+Date: Mon, 20 Oct 2025 18:36:53 +0100
+Message-ID: <20251020-eel-skipper-c71e1f8fb679@spud>
+X-Mailer: git-send-email 2.51.0
+In-Reply-To: <20251005174450.1949110-1-e@freeshell.de>
+References: <20251005174450.1949110-1-e@freeshell.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="ikE/IhHK61RqCyon"
-Content-Disposition: inline
-In-Reply-To: <20251017-an7583-eth-support-v3-1-f28319666667@kernel.org>
+Content-Type: text/plain; charset="utf-8"
+X-Developer-Signature: v=1; a=openpgp-sha256; l=412; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=XWKHqVXwJok2pbqQ588FkM+xUoRw0fT4JIvExX2Fkz8=; b=owGbwMvMwCVWscWwfUFT0iXG02pJDBnfis2+dnJ8FN+Xvk7QbCbLm81Rt0Rarz77ouezSbv/Y 1mTlMKDjlIWBjEuBlkxRZbE230tUuv/uOxw7nkLM4eVCWQIAxenAExEUo6RYU/tSW8TRnXLpXEO 36Zp7d0r/n6LW9PclzMVJwlN275w1xOGf1qfNgu0LXBYJv9CR/Tj74/dSoZyfLJTTSoUVGrmlqb OZQYA
+X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
+Content-Transfer-Encoding: 8bit
 
+From: Conor Dooley <conor.dooley@microchip.com>
 
---ikE/IhHK61RqCyon
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Sun, 05 Oct 2025 10:44:28 -0700, E Shattow wrote:
+> Prepare for Orange Pi RV using jh7110-common.dtsi having GPIO62 assignment
+> different than mmc0 reset by splitting this out into each board dts.
+> 
+> 
 
-On Fri, Oct 17, 2025 at 11:06:10AM +0200, Lorenzo Bianconi wrote:
-> Introduce AN7583 ethernet controller support to Airoha EN7581
-> device-tree bindings. The main difference between EN7581 and AN7583 is
-> the number of reset lines required by the controller (AN7583 does not
-> require hsi-mac).
->=20
-> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+Applied to riscv-dt-for-next, thanks!
 
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+[1/1] dts: starfive: jh7110-common: split out mmc0 reset pins from common into boards
+      https://git.kernel.org/conor/c/fa939a287224
 
---ikE/IhHK61RqCyon
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaPZyKQAKCRB4tDGHoIJi
-0tFvAP9DJl24eno8NxIX9XQVm4OUQPtBYct3ESOFm89Kv/5TiwEAm7Cnd2e3nASD
-TVa9KnbLfOIk4PROrVEsjg2j99tMHw0=
-=RGLT
------END PGP SIGNATURE-----
-
---ikE/IhHK61RqCyon--
+Thanks,
+Conor.
 
