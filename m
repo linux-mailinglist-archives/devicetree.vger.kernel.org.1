@@ -1,79 +1,80 @@
-Return-Path: <devicetree+bounces-228578-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228579-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE98ABEF43C
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 06:26:18 +0200 (CEST)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 074C1BEF44B
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 06:26:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7DE473E39A8
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 04:26:17 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 8142C3492B6
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 04:26:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A25812C0260;
-	Mon, 20 Oct 2025 04:25:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C4122C15A9;
+	Mon, 20 Oct 2025 04:25:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bytedance.com header.i=@bytedance.com header.b="Stmy11bH"
+	dkim=pass (2048-bit key) header.d=bytedance.com header.i=@bytedance.com header.b="XGPSyqSR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f181.google.com (mail-pg1-f181.google.com [209.85.215.181])
+Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03F402BFC70
-	for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 04:25:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CABDD2C0268
+	for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 04:25:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760934338; cv=none; b=sql0W+fHavXWceD4VtaW8bEu0AVs/9soJ3Uqu/ucePNLw/QnLckyuke9CnvlwzLeWAr4Vss6gs0ofWY3wAy+BfEPP53+jcoTisgduqkclXs6fld9tnrN3C/4Y6xOIuomNimQoLUPoBdrEsdyQKQ/12UZ/WCfUrzPsRLMsUjvhGQ=
+	t=1760934347; cv=none; b=EBQ1DM6hiKqz6Y4jCBHgW3AlVsFv9iN2OJL++vc6+7gV3uP2Sr4uIPRjj/W/PmVSBN2ea3auSQqaOFH5N831YRugkknaI3WKatTBg6nXTcpf9a5DL+SFr0kw2tl8EwL3x7UD00FLX0SPNaxLH5bicBLNlnE3e1QAuWonwOlxtL0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760934338; c=relaxed/simple;
-	bh=8hNEznhKZts7nsJ+/Md1hqEm+KtJGCPHkBh501JLIEI=;
+	s=arc-20240116; t=1760934347; c=relaxed/simple;
+	bh=B02ziWQmo5WsV+VWudXschLhIhlEAVaMv4vSaAYkoAo=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=OGOYRFaKzBrIQI2YlDux8XTGpjNCTuitPW9tShhLrPJVG7AUl/41K9PfvgjAng0giyMxT/wY0RJbJtyukqEBEPIcaadv22z3PvO6kWOCwCXyLPV8Ta8uMtgwn116UCvcq5YSiIaJ2S5TANPP65Ox72r4pRzwYPqOQyaslQHtFqA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=bytedance.com; spf=pass smtp.mailfrom=bytedance.com; dkim=pass (2048-bit key) header.d=bytedance.com header.i=@bytedance.com header.b=Stmy11bH; arc=none smtp.client-ip=209.85.215.181
+	 MIME-Version; b=t/i3URQN5Dz3ttOs6JvMAD3FxKDjGwLwfrCt/DMQCskg52PnpRMjoN/JTrZVeyatNDIKuoCamEsCpd0egj9zQRp6KHSAr1nZGGXX8oDKBzV6VIR7coyxLa+oK46eiQ18wFKfGau57PoK6eFjlfAKu0BXaeNHtXVy7RNNo7hA7Us=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=bytedance.com; spf=pass smtp.mailfrom=bytedance.com; dkim=pass (2048-bit key) header.d=bytedance.com header.i=@bytedance.com header.b=XGPSyqSR; arc=none smtp.client-ip=209.85.214.175
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=bytedance.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bytedance.com
-Received: by mail-pg1-f181.google.com with SMTP id 41be03b00d2f7-b593def09e3so2615787a12.2
-        for <devicetree@vger.kernel.org>; Sun, 19 Oct 2025 21:25:36 -0700 (PDT)
+Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-290a3a4c7ecso42001955ad.0
+        for <devicetree@vger.kernel.org>; Sun, 19 Oct 2025 21:25:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bytedance.com; s=google; t=1760934336; x=1761539136; darn=vger.kernel.org;
+        d=bytedance.com; s=google; t=1760934345; x=1761539145; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=3Dx3bjUZwp+FDi5HGHRvFmbVTrXXeKiS0FzRK/EiFHI=;
-        b=Stmy11bHlbtB+FCDM3N72lvFypHEqmDaCdkIBk4dvYHEXWSYbZjkmUaCLg9ibvm+aV
-         +tBJT7JrQ+OWBwWUW+V7RvOPp7+dBAKV9NtfQCMefduyrAondxZDckMqpCFrzKHIX6Fa
-         uYy2RuZQUJsWzih7+a77KtJvu2TlZlWNKSXR8xpia4RXDKdAQc6Vuq4YCd9jrz/4qsg4
-         /tQUIb+B/uSJuNcuwZTTmuYjteul+9jOPHrFQ47XSAviBXnD1RnSYeL7mcohffacyoeN
-         Y6lEFIunSYFtAh3whVE20Pzbi31sbVNEbffHHXiEMGYPXfck/E81aYv+N7roEMHMPPo7
-         oViA==
+        bh=nvb+N79+1rz+7OJYvNB/1WfSxRwqST+oSw7w/swSoZg=;
+        b=XGPSyqSRnRhq5JmulstB1NXdKZIsaEyEk5/nwN1cBuSSDVPpH1LoGGVlnP8clTE/aE
+         my4xciFeoPjbtJRO/3H1D6AXEgKk3pna5kfEOLDSaRVTprBYPj94nkdjxgWTPDkWI5/J
+         fiCqGnJXalcvfT7223jn6dqZTs5nGGBHEp7di2alh48AR53v+J9ViKkdy9RNoSRSG+Mf
+         Mz+g/E0pOUZpxEa6UJEAuHAGLEfSKHNy2zE1qthztfi+RF2fLhZi0cA9tfVL6k42+ymy
+         tHQYcAHS8xUBZqlE63JTOV3ygUPL14ISJbRktfNbt8Ewpp7PGEHZ5XFDCR3jwd1f6lEg
+         8BXQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760934336; x=1761539136;
+        d=1e100.net; s=20230601; t=1760934345; x=1761539145;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=3Dx3bjUZwp+FDi5HGHRvFmbVTrXXeKiS0FzRK/EiFHI=;
-        b=Tq0AyNT1m8wY2ZC2nYEIThOL/16ykeRSVbU9OO9BTtI125fphS+1WO0hkni8bwqJ4o
-         mItrvL+Cb1C/2bnBL/MWqiEU+7qBqjYvngmHl72f/0GM/j+kTImY1D4kmUZ4gVPunw+4
-         34VBktxQr5x52O+03KCvgq6WCIorNSdMxZQXq+2/1FpKIXDL0UPkZtZlgE+wKC/Xebel
-         vGBJIOn2AAN/bsHwFFwcBbAfGzjxyg2RIEuZHYPD0dPH15mNNFqLHSwRIuYMQ14+GId1
-         I+3fd5nhDiwhhRUAyPc69NJCnVI6S30zR8CYLVeB8HjEltD3h5wFqa6hSg7HeE/NrR8C
-         VfTQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUaY0c8I7WYIBhMmkb3ERoEt8fbdl3QSvRE58oEUF3MKQY6CRPHla5mK2Co1KnbWXKZQ1Kw+EDZDq7L@vger.kernel.org
-X-Gm-Message-State: AOJu0YxfYruTjZLg9hHPFV+LLOiagx++Gjj8RkB4eyIXlYAJ1ZfWZAX/
-	BiMwTlHXd3/WqcGcbtOuW8w4CUDoFZbeD5evyGHbpsGNXItxHmNWHYm01ki3WH8cY9U=
-X-Gm-Gg: ASbGnctumeINACiOaJR1gNQy2GwOqPXge61S8GVS4X3FagS2Po0L+TNTxxWtsXqlGAk
-	dtiUNEbF7HNjlXApNPf+ardYOfNF9uc6vIkL/h7Fnq0y0C+asPVp7ik489VkIfcrXH8njR6tzhu
-	1eWEOB46+EiXfdblT+IoYDySg8efzOWpze+dXty1GAZYngPl++5R7nktK//nXXXvb2ClyXBeYBw
-	SdO+GYyXEJCdlKXeJ7r+gF0fJFH6yR5Oqh15iJgI0mOW6nfSFslvnx5Z2JvPIB2SQb53ezp+zA3
-	RoKG7vchqsX7lRQnQ8xqvCKTFYWrXSnd9d5LvT1KqxhLS6wrssqJU9Nz7c6c9ApJeJJTuJ4LEHV
-	s6AD8UIAMS2A4OCHwiSiGFctQFteKSpUrUQVFfj6yj6FNRkWei7E468Ft8utSQC2r2yFwsKojGM
-	mjKyxT3QyXQvlS5dNtuVxkzphrs3lwGfLn/k4CRrY2/pQnIFdXkapJvC9pN4yzfT0=
-X-Google-Smtp-Source: AGHT+IHd1kF3POpTVpfQwriGdz/AzJEchqY/kwdyjm7t3VNt+rro2wzxG/dmQOsLktQwlvjqL1Trmw==
-X-Received: by 2002:a17:903:b48:b0:290:29ba:340f with SMTP id d9443c01a7336-290cb17c05fmr150708105ad.42.1760934336328;
-        Sun, 19 Oct 2025 21:25:36 -0700 (PDT)
+        bh=nvb+N79+1rz+7OJYvNB/1WfSxRwqST+oSw7w/swSoZg=;
+        b=d3BZTeuHWLWarFvCaX4UWrTSsDUSf7hJ8zdxpIsumrs82ar77Syvv7u4CqoqEq1iFR
+         vGdAVRUO3nZnSCI7mRFxEr/3WVVtOAB1YODAJPSAz0eOV0ZxvTrrARUYfG6R7YRuOP0E
+         MbBvKaNZSWMXPyS2KHfMou7P8Y6rDeDIOY6cE85zgLwWTXTCGlU1XB6gtpckT3QoXafK
+         rmesCHoiVxghZDRS7oEbrzj6IgvpBDChwpc/cgvtgyGhkrvfnTke3dcQnuvd3iH4lBir
+         45b76ptaKxwO9HdhcOohsVzvpTZPP7OaQUTHJiscJl+jiMFXy9FFZdEsRrhUPDN5gXog
+         fQZQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWs+eiUKeZ1K+GbeYjpkSVLCndDVhx/pQzIMnzSv99A5JHZR3wX2k/1BrqiC3PTHROTV2kqXXNosQUP@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx5qBKnxstCN2KAhvUtylx2lYpajLn6/psYrWi60f0sAMx6LxQH
+	yrcbTlufwHyMUpCRZ23l6QKfqckfETdp2vCROTszZAAP5xbNEqdEW7wb3ZemTW9TGII=
+X-Gm-Gg: ASbGncvoPcbmKQy4eAEySpaLQVhuR12NTts97sm/Z90E9azJfNUZVHuyxAmncw6g75e
+	ZyyEp4CN+Eu/sLPOzQWt/fG4jjeYY43OUOcNb+PWSarKYVyKI9B84B/jd5TsrHUjiQMFtirSiBI
+	viRNEyyMGDjlLuZd3dnOJPbQb5POHHymNJteZBwddjcRtQG5U5+KGzx7yL07JK/D2p75ReiO+Fl
+	fVO4wPB4boTRS7kFbjmUmxhhESEzab7++fVW9DQOU4dSrZ7c/Fxo/Wy5yzL672iuXUpXUonqqDZ
+	bOIcw8Z6qDayuJWWz+FsHcsT7FJs8aHBo8Hk8Uh1gelbCZXL3xEitHc2Av0FXK2iwSvr0k2Bf2F
+	x9B+7NN/ASIiWcXe8cEV1oN5EBOhtqYHmQw7JQVSiLrsS7kLDpdAft2RNeXzmUmFx1aT/GiaA0E
+	zR1ECPWN161aBsgNq9VIh5T40zAtdeNIPfgka5GGePpqka9/Z2IGSFSu9Le8u3YbgljFFIiGNqO
+	g==
+X-Google-Smtp-Source: AGHT+IH0j6CDe697/Hu2JYLa69TXmwS2tLcGClfdWod/OVynSzlnBv0UTOF6Th9AWlAgJGMUHpIxww==
+X-Received: by 2002:a17:903:3c24:b0:269:8f2d:5221 with SMTP id d9443c01a7336-290c9c89cd4mr136224525ad.9.1760934344799;
+        Sun, 19 Oct 2025 21:25:44 -0700 (PDT)
 Received: from J9GPGXL7NT.bytedance.net ([61.213.176.56])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29246ec20a4sm68319325ad.7.2025.10.19.21.25.28
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29246ec20a4sm68319325ad.7.2025.10.19.21.25.36
         (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
-        Sun, 19 Oct 2025 21:25:36 -0700 (PDT)
+        Sun, 19 Oct 2025 21:25:44 -0700 (PDT)
 From: Xu Lu <luxu.kernel@bytedance.com>
 To: corbet@lwn.net,
 	paul.walmsley@sifive.com,
@@ -106,9 +107,9 @@ Cc: linux-doc@vger.kernel.org,
 	joe@perches.com,
 	lukas.bulwahn@gmail.com,
 	Xu Lu <luxu.kernel@bytedance.com>
-Subject: [PATCH v4 08/10] riscv: Remove arch specific __atomic_acquire/release_fence
-Date: Mon, 20 Oct 2025 12:24:55 +0800
-Message-ID: <20251020042457.30915-4-luxu.kernel@bytedance.com>
+Subject: [PATCH v4 09/10] RISC-V: KVM: Allow Zalasr extensions for Guest/VM
+Date: Mon, 20 Oct 2025 12:24:56 +0800
+Message-ID: <20251020042457.30915-5-luxu.kernel@bytedance.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20251020042457.30915-1-luxu.kernel@bytedance.com>
 References: <20251020042457.30915-1-luxu.kernel@bytedance.com>
@@ -120,54 +121,47 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Remove arch specific __atomic_acquire/release_fence() operations since
-they use fence instruction to simulate acquire/release order and can not
-work well with real acquire/release instructions.
-
-The default generic __atomic_acuire/release_fence() now provide sequential
-order via 'fennce rw, rw'. They are rarely called since we use real
-acquire/release instructions in most of times.
+Extend the KVM ISA extension ONE_REG interface to allow KVM user space
+to detect and enable Zalasr extensions for Guest/VM.
 
 Signed-off-by: Xu Lu <luxu.kernel@bytedance.com>
 ---
- arch/riscv/include/asm/atomic.h | 6 ------
- arch/riscv/include/asm/fence.h  | 4 ----
- 2 files changed, 10 deletions(-)
+ arch/riscv/include/uapi/asm/kvm.h | 1 +
+ arch/riscv/kvm/vcpu_onereg.c      | 2 ++
+ 2 files changed, 3 insertions(+)
 
-diff --git a/arch/riscv/include/asm/atomic.h b/arch/riscv/include/asm/atomic.h
-index 86291de07de62..6ed50a283bf8b 100644
---- a/arch/riscv/include/asm/atomic.h
-+++ b/arch/riscv/include/asm/atomic.h
-@@ -18,12 +18,6 @@
+diff --git a/arch/riscv/include/uapi/asm/kvm.h b/arch/riscv/include/uapi/asm/kvm.h
+index ef27d4289da11..4fbc32ef888fa 100644
+--- a/arch/riscv/include/uapi/asm/kvm.h
++++ b/arch/riscv/include/uapi/asm/kvm.h
+@@ -185,6 +185,7 @@ enum KVM_RISCV_ISA_EXT_ID {
+ 	KVM_RISCV_ISA_EXT_ZICCRSE,
+ 	KVM_RISCV_ISA_EXT_ZAAMO,
+ 	KVM_RISCV_ISA_EXT_ZALRSC,
++	KVM_RISCV_ISA_EXT_ZALASR,
+ 	KVM_RISCV_ISA_EXT_MAX,
+ };
  
- #include <asm/cmpxchg.h>
- 
--#define __atomic_acquire_fence()					\
--	__asm__ __volatile__(RISCV_ACQUIRE_BARRIER "" ::: "memory")
--
--#define __atomic_release_fence()					\
--	__asm__ __volatile__(RISCV_RELEASE_BARRIER "" ::: "memory");
--
- static __always_inline int arch_atomic_read(const atomic_t *v)
- {
- 	return READ_ONCE(v->counter);
-diff --git a/arch/riscv/include/asm/fence.h b/arch/riscv/include/asm/fence.h
-index 182db7930edc2..9ce83e4793948 100644
---- a/arch/riscv/include/asm/fence.h
-+++ b/arch/riscv/include/asm/fence.h
-@@ -7,12 +7,8 @@
- 	({ __asm__ __volatile__ (RISCV_FENCE_ASM(p, s) : : : "memory"); })
- 
- #ifdef CONFIG_SMP
--#define RISCV_ACQUIRE_BARRIER		RISCV_FENCE_ASM(r, rw)
--#define RISCV_RELEASE_BARRIER		RISCV_FENCE_ASM(rw, w)
- #define RISCV_FULL_BARRIER		RISCV_FENCE_ASM(rw, rw)
- #else
--#define RISCV_ACQUIRE_BARRIER
--#define RISCV_RELEASE_BARRIER
- #define RISCV_FULL_BARRIER
- #endif
- 
+diff --git a/arch/riscv/kvm/vcpu_onereg.c b/arch/riscv/kvm/vcpu_onereg.c
+index cce6a38ea54f2..6ae5f9859f25b 100644
+--- a/arch/riscv/kvm/vcpu_onereg.c
++++ b/arch/riscv/kvm/vcpu_onereg.c
+@@ -50,6 +50,7 @@ static const unsigned long kvm_isa_ext_arr[] = {
+ 	KVM_ISA_EXT_ARR(ZAAMO),
+ 	KVM_ISA_EXT_ARR(ZABHA),
+ 	KVM_ISA_EXT_ARR(ZACAS),
++	KVM_ISA_EXT_ARR(ZALASR),
+ 	KVM_ISA_EXT_ARR(ZALRSC),
+ 	KVM_ISA_EXT_ARR(ZAWRS),
+ 	KVM_ISA_EXT_ARR(ZBA),
+@@ -184,6 +185,7 @@ static bool kvm_riscv_vcpu_isa_disable_allowed(unsigned long ext)
+ 	case KVM_RISCV_ISA_EXT_ZAAMO:
+ 	case KVM_RISCV_ISA_EXT_ZABHA:
+ 	case KVM_RISCV_ISA_EXT_ZACAS:
++	case KVM_RISCV_ISA_EXT_ZALASR:
+ 	case KVM_RISCV_ISA_EXT_ZALRSC:
+ 	case KVM_RISCV_ISA_EXT_ZAWRS:
+ 	case KVM_RISCV_ISA_EXT_ZBA:
 -- 
 2.20.1
 
