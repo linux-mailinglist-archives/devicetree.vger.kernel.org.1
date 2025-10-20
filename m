@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-228621-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228622-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECBE7BEF8C5
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 08:57:48 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 25E4EBEF92B
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 09:03:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 98FD63487C6
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 06:57:48 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id AE5504E3CAE
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 07:03:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15F3C2D979F;
-	Mon, 20 Oct 2025 06:57:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE0452C2340;
+	Mon, 20 Oct 2025 07:03:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="h/c2r9fK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dWQta6xq"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBDD62D949A;
-	Mon, 20 Oct 2025 06:57:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72D6B22173F;
+	Mon, 20 Oct 2025 07:03:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760943464; cv=none; b=V1gnrvbYp37jvypVyI0iylT5Ft0CGdQHU4wqxy6/RUa6aAPh4aDDu3qg5+3JtF86hPeno/K+1+sunBi3BUE1asLD+YLvTMu/u3eqHwLx8eUXVoo8yephl0FTaAr1cESlCjjhPogOyxn5uCXuuolIq8noV3DUbwIezBkiDNZtEFI=
+	t=1760943801; cv=none; b=MRnTFcsDstA0VJaVgh45ruFFhAKC0NLGxOqr96MVe77S8IuvMTMAMEB2EKsbjsPjAagcqqdFVs5jGJQ3ck/yXpkwlCioLbi+kUAFF24o3mFV/56x1QGOLWUyCD3246VAVobym8jWC41IVbvHu8fs91g9GtG6jM2QN3KexE/JyM8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760943464; c=relaxed/simple;
-	bh=3zKcbSMPDP4MWcdlhzd5uYSC4CKRpKj4OpV+hFKX4mQ=;
+	s=arc-20240116; t=1760943801; c=relaxed/simple;
+	bh=XP/iXY31pwnAwtKE9Vnx2Txoc0iaUX/VhtGFvpcioEE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=HmOxyYCJ78GnfZYhicEWPrWnTSAOy+sz8vMcgg0W1+wTRyKijiWDpgmK00lE678wLzm/GYYMVwgT/z9dKVl+fXfIapF4ZsXJi1LVgxBen1Gz8ZlUthtweW0oGWMgh587UOaMDVq1YCnLdQbhpfBnCg+u8xqw1b4ccUwKoDh2Dm8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=h/c2r9fK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6B54AC4CEF9;
-	Mon, 20 Oct 2025 06:57:39 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=IP6W3GZJF5qMCkceXuQsMOHZHrPZLrdiZxebBSMdvMHMxa75n86wGtjhF0Se2o+wGLUu3fJw9s4SPLANfQ1sKPiQNmKLY77c4lbgVvJ93jPoztov/Pr+YpwpbZcjRGc09D0L70ZxwJMd1uUiMwuCdDeiTCm84jsymZ+uBIR8UtE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dWQta6xq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7D7FCC4CEF9;
+	Mon, 20 Oct 2025 07:03:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760943463;
-	bh=3zKcbSMPDP4MWcdlhzd5uYSC4CKRpKj4OpV+hFKX4mQ=;
+	s=k20201202; t=1760943801;
+	bh=XP/iXY31pwnAwtKE9Vnx2Txoc0iaUX/VhtGFvpcioEE=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=h/c2r9fKO5C/9wOuhV2YrXDqKfIorKXbdecYWIkwER6qlgC4ozMkjC3qAQYwLs9AP
-	 tJujPtHztTZtW1geiCoa7E+GpLfLeaCFgheEaST3T7PqeIu/fO3HDpXXjTv/wANzNu
-	 jPgS3SOgbJSJGRTBIaQPG0mbRofhtVsRnxL48eSNkIdOXoPsjU4jFUr5o1HQFmGnti
-	 6lWhqEANjU7EhoKEzFa/mrIJrm18WQmKZUiKblQvz8YeTdFw12rgY7j2X+rg/EK1bt
-	 a3WFWZSQgBoWddUnY5ISPlI3c3Ne2EzbffjZilRWpShSXu0LheYnqbeuccIH6pZ3Jw
-	 McoKR2jNhgSNg==
-Message-ID: <737b57e6-6d91-49fc-b52d-32e40861d25f@kernel.org>
-Date: Mon, 20 Oct 2025 08:57:37 +0200
+	b=dWQta6xq2NGa/nT3MYwNJm0UBqECC0Zg+I8d0X80DpgPG521S4MwVawe1+5Flufkv
+	 qSpLSyHt+kkeliVUiDR7xPqmQ9ch8YxTEiOsBVU4dg96eKXDWtqyppyu5eoXJV6Da/
+	 atPKfCjEhlgfTLDSXrc2rMNhhv8wQ2RnCndFjGK6IB81etj+SgPn32mAQBFh+Bi1pz
+	 QNZPAWS9AfZMlUbJgl899wDMSnJBvHAbL/qb5m/wRbsbaTu4bzVXQmb6ubfbYxOcLk
+	 +2IMNUUYnFgmMeRlb8/RLPi7JVqwhisJxyMzcdIhwGl3hGrzL/bnGXpLb3waDH/8ug
+	 yBkc9oU30SeSg==
+Message-ID: <4a436c40-0fb4-47b7-bfd4-0bc499e85b5a@kernel.org>
+Date: Mon, 20 Oct 2025 09:03:14 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,22 +50,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/5] dt-bindings: mediatek: mt8189: Add bindings for MM
- & APU & INFRA IOMMU
-To: Zhengnan Chen <zhengnan.chen@mediatek.com>, Yong Wu
- <yong.wu@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
- Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: iommu@lists.linux.dev, linux-mediatek@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,
- Project_Global_Chrome_Upstream_Group@mediatek.com,
- Conor Dooley <conor.dooley@microchip.com>
-References: <20251015125532.9041-1-zhengnan.chen@mediatek.com>
- <20251015125532.9041-2-zhengnan.chen@mediatek.com>
+Subject: Re: [PATCH v6 0/6] exynos-acpm: add DVFS protocol and clock driver
+To: Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Peter Griffin <peter.griffin@linaro.org>,
+ =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
+ Sylwester Nawrocki <s.nawrocki@samsung.com>,
+ Chanwoo Choi <cw00.choi@samsung.com>,
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
+Cc: linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-clk@vger.kernel.org, willmcvicker@google.com, kernel-team@android.com
+References: <20251010-acpm-clk-v6-0-321ee8826fd4@linaro.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -111,26 +109,22 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20251015125532.9041-2-zhengnan.chen@mediatek.com>
+In-Reply-To: <20251010-acpm-clk-v6-0-321ee8826fd4@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 15/10/2025 14:55, Zhengnan Chen wrote:
-> There are three iommu in total, namely MM_IOMMU, APU_IOMMU, INFRA_IOMMU,
-> Add bindings for them.
+On 10/10/2025 14:46, Tudor Ambarus wrote:
+> Dependencies description:
+> All patches should go through the Samsung SoC tree.
+> The acpm-clk driver (#4) depends on the ACPM DVFS ops (#2).
+> If the clock subsystem needs to merge the new clock driver, it will
+> need an immutable tag with the 2 patches.
 > 
-> Signed-off-by: Zhengnan Chen <zhengnan.chen@mediatek.com>
-> Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> ---
->  .../bindings/iommu/mediatek,iommu.yaml        |   8 +
->  .../memory/mediatek,mt8189-memory-port.h      | 283 ++++++++++++++++++
->  2 files changed, 291 insertions(+)
->  create mode 100644 include/dt-bindings/memory/mediatek,mt8189-memory-port.h
-> 
-For memory-controller:
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> The following DT patches depend on the bindings from #1:
+> https://lore.kernel.org/linux-samsung-soc/20250924-acpm-dvfs-dt-v4-0-3106d49e03f5@linaro.org/
+
+You forgot to mention that this patchset adds new dtbs_check warnings,
+which are fixed ONLY after applying DT patches.
 
 Best regards,
 Krzysztof
