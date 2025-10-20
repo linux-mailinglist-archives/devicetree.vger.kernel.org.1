@@ -1,95 +1,134 @@
-Return-Path: <devicetree+bounces-229008-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229009-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82630BF2F2E
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 20:34:45 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 335EDBF2F5E
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 20:37:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 2ED28343FF1
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 18:34:45 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id F1EE54F23F7
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 18:37:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A8D71F151C;
-	Mon, 20 Oct 2025 18:34:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C13CA2C0262;
+	Mon, 20 Oct 2025 18:37:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="oO/nBleE"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="nhhMIwRC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-il1-f173.google.com (mail-il1-f173.google.com [209.85.166.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EF8418871F;
-	Mon, 20 Oct 2025 18:34:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0081B202961
+	for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 18:37:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760985281; cv=none; b=Vj6LQ7tHOGhon3v5waYe5d1GNaHZFBqSVAq8RiCjCrvufXNu0RlQJpF/m9AMh09hGEsFIblBLyJNiwa95ZxddIZAVwgDvNTMFWtmG8zA3LjJNDVZgaDHOJr6T9CrbiAW1kxfFt0SszgJoJoRsFnCJxnUqAZ2dsKw9v6PLL0tXfo=
+	t=1760985438; cv=none; b=u1rGz/and8SK6nMLKDHx4rD9ZOv+l7YB5CWSOrEUk/52/8N+iOKVxpggbZBcbFGDnaeC3n4iRvaWMtjjLeR1cwHk/Bh3AKQlXANEkk7/M4J+mXI4MH1tgNmXltJw4BnOdOilOc0l4EEb2uI0obq/Gadr9uGFI8cgNDt9TUJqIik=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760985281; c=relaxed/simple;
-	bh=gjS3HaZTB70SN0CMIVUcsMKXvKTA6y0cr7ybQ3Mlt9c=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CM3afk4ypwtXOy+jaAXeZkopa/Pfl6moiQdgceJ8VrANk2zsR+VvfjPcfqAAK/w98uCP1kFvROle+UcPSm9rg6V9IhQCWzBcd4bUWYMz8HNgyaC29Jb+jdwsBZpf1wZ8a9QoYGLhYlkz8EVp6duNiWdLEi/A8pIcCpuYQ1oSNZc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=oO/nBleE; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=mvskDAhgWUe7l3foP8MvPa+nL/C2ovcPgG7OHEUBg4A=; b=oO/nBleEU72BSGluGqPQJeZ+wr
-	D4SLjlJ6hrZ2ZyhkPwVIQjHhqmHpnCF6G40Yyt8xewCREWNbzvrea4YgbKnyFqWXpf/5m34v47FEu
-	1PH3dY5n5BR2wb2L5HW/EaJv+C2zuuvRHDSAMjLaxlZaB46Tbhd0qYJE7sIImVhE8ly8=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1vAui0-00BY2M-30; Mon, 20 Oct 2025 20:34:16 +0200
-Date: Mon, 20 Oct 2025 20:34:16 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Gregor Herburger <gregor.herburger@tq-group.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux@ew.tq-group.com
-Subject: Re: [PATCH v2 2/2] arm64: dts: ls1028a: Add mbls1028a and
- mbls1028a-ind devicetrees
-Message-ID: <14f52170-cc5b-4808-8fc1-28685ba349dd@lunn.ch>
-References: <20251020133536.303471-1-alexander.stein@ew.tq-group.com>
- <20251020133536.303471-2-alexander.stein@ew.tq-group.com>
+	s=arc-20240116; t=1760985438; c=relaxed/simple;
+	bh=1vFXt6XRVipPdMLkxRp5oxg38DR886N+xgXmYyeXzbs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=GyNEW7PYwQDU9OS9YGQhgcIm+uLTyNhjG6nCqMllJrCLYEGFgosmEsP8uWQH9wdAL4l0yO75b3XxieKd4Q6Vt4MQ8DSxIkc6nriEsaFvPwKI9EqNmQm3HgC1V7hujUCu6MfrfX9P2KpRAsPkAeaAGCfHw1j41/pGSS9ntOI/Jrg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=nhhMIwRC; arc=none smtp.client-ip=209.85.166.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
+Received: by mail-il1-f173.google.com with SMTP id e9e14a558f8ab-430ab5ee3afso43382935ab.2
+        for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 11:37:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1760985436; x=1761590236; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Jr/vYXNnHg5mvV0vPYpieCO6Isu4juKQ+h7apsb/fSI=;
+        b=nhhMIwRCE0g1nky9C1Te47U7tSWrjASdLQaabFTv5ct3taXghMHTI6X6eyBfmV+Kcd
+         aMAicmtW2JNX/1A3vJ8tIw68AdiW/v5mzyVSOuUq9DnkCZcNaLKCZZLxqKCOqjrL+Q56
+         BgRw4jlHQXKIkL6nDwSbQQvC0VKfJ30/WIphj2UdSXg30PXgVEgSAJMQpOSlfzIxWgxa
+         inH6o+MLpnKIzuiZGJqbg6I+Foit96pCWurCA3PV6R1SmB22N1C7GNTVCOTmrJsVUkQY
+         5epO9ZJA7M8x9EDdNUlr9Iv1qry+0lueILCwiNy9VRrTOwOLgG1Q0mid9NLAukFx5LSo
+         bYxA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1760985436; x=1761590236;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Jr/vYXNnHg5mvV0vPYpieCO6Isu4juKQ+h7apsb/fSI=;
+        b=QeA/cB0/2hlQzrB38K9OfW6JYZsWam/dzuZmAUpoN/85AURCjJxzuTTFf+mr7KKcyp
+         t2UgHraHAqKDcQc9rY7tIhR7kSaeI4mMfOeo8cAnyZYJhuu5RGuzR/xYXmFF/ticSTNi
+         YhbH/WkN4gapyst0fzIVEXFpc5VyBnVDALmtoaCRsNTGnzmurPdGuXWnY1dycuHMnlfM
+         gmjxdLCtEhUZ37IagEe9IBnYuiTv8GBrvGYbEZ9rh9MHIUj1KghkF4Us8L/Du6T2NmSe
+         PDhNYNXOHKkxZ/EDQ6gf0YeGjLSgGjmrR+1qTuI/bzkMNbNlPicAHbiEjkvrlnFyF2yK
+         22/g==
+X-Forwarded-Encrypted: i=1; AJvYcCVhsF3vMplj5LP8CoP3RMf9HGrfE+uV38HEN17aNZSJCx89OMDja5JxDCdofFWI7V5nWvLqMy2vxznK@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw5X0t2ljHWlesyogMb0p6OIh0VhIYe2XNxFRM/NoBi5OyTac7a
+	Nfx8n7ZDacqIYoGAI06NNd0t6ighA4iXBnMZkqPlBYWe/gZ8z32kzapny7YIpjqlQ34=
+X-Gm-Gg: ASbGncv4rn0f54uF1MotRS6OWp+U08gbEtg0sVcoDlTdybZggFZMG3Z2aKTFZf7/Yxe
+	KLthIPqMVA9SvnpPiaRfqcLkfLaSLXWY0nxsnkdVYR7FPGtXbZAztRJtmkxtjUoUgybVCCqRrhb
+	1/4B5L0oMS4dngFKcMIq01ezEek1/pqnO+tAi/u8OYUB1YBOyt8QPU06JhRolPJA0N5EqRCJ87d
+	Nig7N4UBoGjtHz8KiA7JbLJoVDSfqSRRJs+DN8VZB0StmSo+EkYofuS3dnvhpmkBCPXm0nto+aH
+	t7ZjIZMMegP7AY8QpRycuc76ZybGWHJsX51dD6nQ6HyzzA8pmIpqzOToIUTpXUpMPofQ9u3kmgc
+	ud54/p9cmChHU7gRRh8qkDntpGvLs70uPS6PApi6d9EBWi2T5xjX9z/DdYf2viOtE6TxTnHhbBl
+	VAfPY8WpUgEZzYnVBM9vP0fEWvu4VHHCZVJPijl20tndkFUs59
+X-Google-Smtp-Source: AGHT+IElNLjj7kkxLdaR/W624I/459FfOH+dYJAUUw0iEYH3D4Q87WRcXxpP//DJVpw9S08uE/P7Hw==
+X-Received: by 2002:a05:6e02:1523:b0:430:a973:7e53 with SMTP id e9e14a558f8ab-430c5294ff1mr183507015ab.21.1760985436041;
+        Mon, 20 Oct 2025 11:37:16 -0700 (PDT)
+Received: from [10.211.55.5] (c-75-72-117-212.hsd1.mn.comcast.net. [75.72.117.212])
+        by smtp.gmail.com with ESMTPSA id e9e14a558f8ab-430d070ba35sm33475995ab.10.2025.10.20.11.37.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 20 Oct 2025 11:37:15 -0700 (PDT)
+Message-ID: <e40f28a2-960e-4002-8384-d99343b4fdd1@riscstar.com>
+Date: Mon, 20 Oct 2025 13:37:13 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251020133536.303471-2-alexander.stein@ew.tq-group.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/8] dt-bindings: spi: fsl-qspi: support SpacemiT K1
+To: Mark Brown <broonie@kernel.org>
+Cc: Conor Dooley <conor@kernel.org>, han.xu@nxp.com, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, dlan@gentoo.org,
+ guodong@riscstar.com, devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
+ imx@lists.linux.dev, spacemit@lists.linux.dev,
+ linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20251020165152.666221-1-elder@riscstar.com>
+ <20251020165152.666221-3-elder@riscstar.com>
+ <20251020-blinked-primary-2b69cf37e9fe@spud>
+ <b28d71c4-d632-4ee5-8c4b-270649fca882@riscstar.com>
+ <710c36f2-3551-4738-a965-f1564416348c@sirena.org.uk>
+Content-Language: en-US
+From: Alex Elder <elder@riscstar.com>
+In-Reply-To: <710c36f2-3551-4738-a965-f1564416348c@sirena.org.uk>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-> +&enetc_mdio_pf3 {
-> +	mdio0_rgmii_phy00: ethernet-phy@0 {
-> +		compatible = "ethernet-phy-ieee802.3-c22";
-> +		reg = <0x00>;
-> +		reset-gpios = <&gpio_exp_1v8 1 GPIO_ACTIVE_LOW>;
-> +		reset-assert-us = <1>;
-> +		reset-deassert-us = <200>;
-> +		interrupt-parent = <&gpio_exp_1v8>;
-> +		interrupts = <0 IRQ_TYPE_EDGE_FALLING>;
+On 10/20/25 1:26 PM, Mark Brown wrote:
+> On Mon, Oct 20, 2025 at 01:06:46PM -0500, Alex Elder wrote:
+>> On 10/20/25 12:39 PM, Conor Dooley wrote:
+> 
+>>>> +          - spacemit,k1-qspi
+> 
+>>> Are the newly added resets mandatory for the spacemit platform?
+> 
+>> This is interesting.  I never even tried it without specifying them.
+> 
+>> I just tried it, and at least on my system QSPI functioned without
+>> defining these resets.  I will ask SpacemiT about this.  If they are
+>> not needed I will omit the first patch (which added optional resets),
+>> and won't use them.
+> 
+> It might be safer to describe them, otherwise things are vulnerable to
+> issues like the bootloader not leaving things in a predictable state.
 
-PHY interrupts are generally level not edge. So this is probably
-wrong.
+I mentioned exactly this in my message to SpacemiT just now.
 
-> +		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_50_NS>;
-> +		ti,tx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
-> +		ti,led-function = <0x05b0>;
-> +		ti,led-ctrl = <0x1001>;
+And yes, regardless of their answer, you're probably right.
+It is *possible* that these resets must be de-asserted, so
+it's safest to describe them.
 
-I really would prefer /sys/class/leds was used. In fact, these are not
-documented, and don't even seem to be implemented in mainline. So you
-need to drop them.
+Conor please if you disagree with this, please say so.
+Otherwise I think I'll keep them in the next version
 
-     Andrew
+Thanks.
+
+					-Alex
 
