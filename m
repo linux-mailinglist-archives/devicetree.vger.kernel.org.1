@@ -1,107 +1,142 @@
-Return-Path: <devicetree+bounces-228916-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228917-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id F37E6BF2195
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 17:28:48 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 83637BF21CB
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 17:31:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 418C1188C2F5
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 15:27:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 61A8E18C21A8
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 15:28:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A2FB266B67;
-	Mon, 20 Oct 2025 15:25:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E9DE212549;
+	Mon, 20 Oct 2025 15:28:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="DgsHzTC8"
+	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="Vgq3IS7l";
+	dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="MEgsiaTc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
+Received: from mail.mainlining.org (mail.mainlining.org [5.75.144.95])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3024266581;
-	Mon, 20 Oct 2025 15:25:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA4E01D7999;
+	Mon, 20 Oct 2025 15:28:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.75.144.95
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760973937; cv=none; b=ZaJh4cPP/2sKaWXZfF6sqx6YbYBbsv+P2S/nOPjt7UfWwi+z58Zh9F3raCrru5a5O7sYUVYaA7eKVr2l35Z9jXMYYQv/lV8kaMkeaNHoM7qFaMQmMEnqtxAFKndygEm/bENYhwpWzJghRW2qbI1hbDasIZV99bvNyunKwkXXBg0=
+	t=1760974100; cv=none; b=ZvF+vQraQ5vqBPOj4pCwQ5uP8yeF17N+/KF1PqQ+GtSw2z0s+nKhRKdAC4eVQqeBlPWG6HzMbjkq8d/JX5cpXCnubjbMAtAzczIJSZ3UTWJ7mZkdAXMMQEUhA25ZNWMyr0J5uGiA+JQFzh10XN7LY+syEep4p/vbv0gtWYx3LBk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760973937; c=relaxed/simple;
-	bh=YIMnYLiXyGoQJdrCsNPRieKK98fVQhstnDhRU3hZ8/4=;
+	s=arc-20240116; t=1760974100; c=relaxed/simple;
+	bh=QIdVTWAu9JmWstd8hxDuQZHQnkvu2LLuopzHoOz/FmY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=p6oA49Qk3578hvNfOHLt7A7/X7LIsQa8yCN35GOgVhAoLeR6B2DHko20FJ/E92jPpr2ZuF7TIDvt/R0X2x3HiPLyzEEOBYrO7jZAZX5Q50aWthTwRzuRdcTfytc4G5HHFDdDRx7kE7wEOkbmAPP7A3FBGrSzk5P9pP7mL0w3nBk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=DgsHzTC8; arc=none smtp.client-ip=80.241.56.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp102.mailbox.org (smtp102.mailbox.org [IPv6:2001:67c:2050:b231:465::102])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4cqzlB5141z9spn;
-	Mon, 20 Oct 2025 17:25:26 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1760973926;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=PC4va8ieZUTwiJKFjsYUc7GcnfemHB6ncy9oeGC6/CI=;
-	b=DgsHzTC8vUoQttocqBG7Rb3P6fORbPUaL1HS+TClgbD4WCuDuScV1SUv6EeodBiOHdzCov
-	ABI9ec3z2KkzHVIUpO29I9NVD+HkLoeyLwfqGKDQErvlvrl35szgbbUWn92JT1LyFblCHI
-	+Aiy1I4AGs0lO4CeUsjyFynwV30IsExl7xh6cx0JImy36XG8fsJ94iCUz8URzMc1nu9y2m
-	rxD/2CHMHBvgbE6xkw5774ibSJtGA3a37+NiHPYM8iOZxRehpKq8GugWVERhRUR4/ZxrGm
-	xmJ30rAd3gNpTz1OoZcy9MzuiS1EtXJk0lwui5e0L5rGl38CqU2zGxwHTBA4uQ==
-Message-ID: <2e12fed7-21c0-48bf-94c4-a3d2850a3f0c@mailbox.org>
-Date: Mon, 20 Oct 2025 17:25:22 +0200
+	 In-Reply-To:Content-Type; b=m93NAcYObCaH7DBBuzR7O2tz9egi19K25mEfcsENO9SrtodLwd9Mc+qksvLgtx1v99JHgs6oj+dqlgq8JMBtEtCpg1+ReADhYykuMsShXODN4yrEQvb4DbYlY+s3cLexv10NNO27V00YCgPvVDJe+5zZtalxmthVyxeeG6C1Mts=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=Vgq3IS7l; dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=MEgsiaTc; arc=none smtp.client-ip=5.75.144.95
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
+DKIM-Signature: v=1; a=rsa-sha256; s=202507r; d=mainlining.org; c=relaxed/relaxed;
+	h=From:To:Subject:Date:Message-ID; t=1760974046; bh=dOChvKw2cLCTAXVmwdbp+1Q
+	RCAZ5fLtON0OwmWn5rbY=; b=Vgq3IS7lzVH1Tj1KXs1Ucl3wiUOi3mKICcHUaN9EX0vF2+MiUU
+	MJfcITgCCCfbucbI+D5UwF7hy/EBDqEbXWl1dosvrAU3Z2mCUdsAQ2WA/W60VhKXu64hseA+2UZ
+	W8LagC/RkwId6FWJjR4Ki170uv89cYJ5EsFTH82TdPUI/3JZuFKmss52+vaBwMpgpG7NMJKfI1Q
+	9EoZ/HocACzyZUEsGl2cmPL0k9ecet74S3q85SSjVUr6k99HCSwxqPFwRta3C7qyzmm5JEd1jFR
+	7S1qvNlaef4FvHNdTjMugun6Z1h/9jALreo7Um/ugqhjHMPSk1qoCOEQ2EuwJO7U+kQ==;
+DKIM-Signature: v=1; a=ed25519-sha256; s=202507e; d=mainlining.org; c=relaxed/relaxed;
+	h=From:To:Subject:Date:Message-ID; t=1760974046; bh=dOChvKw2cLCTAXVmwdbp+1Q
+	RCAZ5fLtON0OwmWn5rbY=; b=MEgsiaTcGi8XWowPdhweJ79trCkydgubQvTdIhxopJXGtWUC40
+	KmiLKzBx4W8hahmE12NItrE3/m02ZZ27jbDg==;
+Message-ID: <f8daddfd-e0ec-4acd-afc5-cf0969aebb9f@mainlining.org>
+Date: Mon, 20 Oct 2025 18:27:25 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH 2/2] dt-bindings: gpu: img,powervr-rogue: Rework the allOf
- section
-To: Matt Coster <Matt.Coster@imgtec.com>
-Cc: Adam Ford <aford173@gmail.com>, Conor Dooley <conor+dt@kernel.org>,
- David Airlie <airlied@gmail.com>, Frank Binns <Frank.Binns@imgtec.com>,
- Alessio Belle <Alessio.Belle@imgtec.com>,
- Alexandru Dadu <Alexandru.Dadu@imgtec.com>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Magnus Damm <magnus.damm@gmail.com>, Maxime Ripard <mripard@kernel.org>,
- Rob Herring <robh@kernel.org>, Simona Vetter <simona@ffwll.ch>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>
-References: <20251018130147.12831-1-marek.vasut+renesas@mailbox.org>
- <20251018130147.12831-2-marek.vasut+renesas@mailbox.org>
- <a6d42c7e-1146-4bda-baf6-be04f3185c5a@imgtec.com>
-Content-Language: en-US
-From: Marek Vasut <marek.vasut@mailbox.org>
-In-Reply-To: <a6d42c7e-1146-4bda-baf6-be04f3185c5a@imgtec.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] arm64: dts: qcom: sdm630/660: Add CDSP-related nodes
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ ~postmarketos/upstreaming@lists.sr.ht, linux@mainlining.org
+References: <20251019-qcom-sdm660-cdsp-adsp-dts-v1-0-9ab5f2865a6e@mainlining.org>
+ <20251019-qcom-sdm660-cdsp-adsp-dts-v1-1-9ab5f2865a6e@mainlining.org>
+ <5hbc24lihvau7s2opzcxxgxkzugmbqmdtqwy23m45j4po23lnh@jyjlbgfjaddw>
+Content-Language: ru-RU, en-US
+From: Nickolay Goppen <setotau@mainlining.org>
+In-Reply-To: <5hbc24lihvau7s2opzcxxgxkzugmbqmdtqwy23m45j4po23lnh@jyjlbgfjaddw>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-MBO-RS-ID: a475670c6e47efa9a9d
-X-MBO-RS-META: 36hnykyaspk5t54jm87kde8k79k5kbzw
+Content-Transfer-Encoding: 8bit
 
-On 10/20/25 5:12 PM, Matt Coster wrote:
 
-Hello Matt,
+20.10.2025 16:14, Dmitry Baryshkov пишет:
+> On Sun, Oct 19, 2025 at 07:27:06PM +0300, Nickolay Goppen wrote:
+>> In order to enable CDSP support for SDM660 SoC:
+>>   * add shared memory p2p nodes for CDSP
+>>   * add CDSP-specific smmu node
+>>   * add CDSP peripheral image loader node
+>>
+>> Memory region for CDSP in SDM660 occupies the same spot as
+>> TZ buffer mem defined in sdm630.dtsi (which does not have CDSP).
+>> In sdm660.dtsi replace buffer_mem inherited from SDM630 with
+>> cdsp_region, which is also larger in size.
+>>
+>> SDM636 also doesn't have CDSP, so remove inherited from sdm660.dtsi
+>> related nodes and add buffer_mem back.
+>>
+>> Signed-off-by: Nickolay Goppen <setotau@mainlining.org>
+>> ---
+>>   arch/arm64/boot/dts/qcom/sdm630.dtsi |   2 +-
+>>   arch/arm64/boot/dts/qcom/sdm636.dtsi |  14 ++++
+>>   arch/arm64/boot/dts/qcom/sdm660.dtsi | 152 +++++++++++++++++++++++++++++++++++
+>>   3 files changed, 167 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sdm630.dtsi b/arch/arm64/boot/dts/qcom/sdm630.dtsi
+>> index 8b1a45a4e56e..a6a1933229b9 100644
+>> --- a/arch/arm64/boot/dts/qcom/sdm630.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sdm630.dtsi
+>> @@ -563,7 +563,7 @@ modem_smp2p_in: slave-kernel {
+>>   		};
+>>   	};
+>>   
+>> -	soc@0 {
+>> +	soc: soc@0 {
+>>   		#address-cells = <1>;
+>>   		#size-cells = <1>;
+>>   		ranges = <0 0 0 0xffffffff>;
+>> diff --git a/arch/arm64/boot/dts/qcom/sdm636.dtsi b/arch/arm64/boot/dts/qcom/sdm636.dtsi
+>> index ae15d81fa3f9..41e4e97f7747 100644
+>> --- a/arch/arm64/boot/dts/qcom/sdm636.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sdm636.dtsi
+>> @@ -16,6 +16,20 @@
+>>    * be addressed when the aforementioned
+>>    * peripherals will be enabled upstream.
+>>    */
+>> +/delete-node/ &cdsp_pil;
+>> +/delete-node/ &cdsp_smmu;
+>> +/delete-node/ &cdsp_region;
+>> +
+>> +/ {
+>> +	/delete-node/ smp2p-cdsp;
+>> +
+>> +	reserved-memory {
+>> +		buffer_mem: tzbuffer@94a00000 {
+>> +			reg = <0x00 0x94a00000 0x00 0x100000>;
+>> +			no-map;
+>> +		};
+>> +	};
+>> +};
+> This probably means that we need to invert things and make SDM636
+> inherit SDM630 and SDM660 inherit SDM636. Would you mind doing that as a
+> part of this patchset?
+I'd mind
+>>   
+>>   &adreno_gpu {
+>>   	compatible = "qcom,adreno-509.0", "qcom,adreno";
 
-> On 18/10/2025 14:00, Marek Vasut wrote:
->> Rework the current allOf: section such that all handling of
->> clocks/clock-names properties happens first, and all handling
->> of power-domains/power-domain-names happens second.
-> 
-> The original layout of the allOf: section was power-domains first, then
-> clock-domains. The actual ordering really doesn't matter, but I wonder
-> if it would make for a slightly cleaner patch to do it that way round?
+-- 
+Best regards,
+Nickolay
 
-It would, but I also wanted to sort this DT part alphabetically.
-
-If you want, I can split this patch in two, one which does this 
-splitting, and one which does alphabetical sorting.
-
-[...]
 
