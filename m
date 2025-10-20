@@ -1,122 +1,225 @@
-Return-Path: <devicetree+bounces-228980-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228981-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 007BEBF2C5C
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 19:44:15 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B15DBF2CCB
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 19:49:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 98EA334CAF5
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 17:44:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 79C5718C1002
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 17:50:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 136C03321A1;
-	Mon, 20 Oct 2025 17:44:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC76B32B99E;
+	Mon, 20 Oct 2025 17:49:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XKRbJojv"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="K25zH5y9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D36B5278779;
-	Mon, 20 Oct 2025 17:44:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9F9B17A2F0
+	for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 17:49:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760982249; cv=none; b=rzgnsrF914xlqeoF/whCzmIaKo6QYF6xBOphztmIII3qb9jW6W9kvp9tTFY6BR2kS8JMvY8w+EiHXib/HE3g0A/3LkjhjEFRbi7LfgCxz2aNozkc/uGwI4edmDuHZSEAKk49mPHazjOPcO4rOsO/fOOGkHEpjGIXcs07SRkBymY=
+	t=1760982579; cv=none; b=H/1fnUenPYqf0IuTtrhyeDD1VWQ5dMRw+es6tbaJUe8SjvX+xw91DCI66huOmZkCxBiQqxzJ/XxOgPgqKQ4ASAXTzhGs30620ZoLgkowyRCrKbp1DvT2yuepAZV4lmFEtIaLIRa891BFTmX/Hy7iNS1519dp8t3P5ti5qtw3om8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760982249; c=relaxed/simple;
-	bh=UGG12C0YM5gqVQtZMlTCg/cATtlJaDQQ0Fiijdez2oE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NQKFo0aWnwMyyePjauhvjY6KNu4EnlL/jVypO7aod3pmuXS4p+ngDNguSQNS6asMWh4vn16WAZ06pLbENJxIjHoq2Fmi1kLd5sDc8oa5Kfni5Lq5RH4cKu81S8qXbUq49jImFa/hLxvXM2eYxxwNyFLF8w+3c3u06PNZywdK36w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XKRbJojv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A6A86C4CEF9;
-	Mon, 20 Oct 2025 17:44:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760982248;
-	bh=UGG12C0YM5gqVQtZMlTCg/cATtlJaDQQ0Fiijdez2oE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=XKRbJojvIKHCqkefW/DpMAV1M99m0j6YO0Tj1OD2zHTj+bDqqx7TobNR5L0KtHDCW
-	 dBNEVA6/rs08/Hyexa8t+YPNOO7QqVjqd6TsMc/F90aC9RQLEV+eT2ANXNJT16Q+A+
-	 yhxcI+1wCPK5fYXygRLV8YEpWRZ++mJ++LzlyKz3oKfWuFNhaJIYQqcsCimCd6J8vi
-	 cJNfdX4YsK4LIYPa9pO7bCBJ1cQwmLl+V/pDJCoKjDnJn7t9LtSmZuGZ+cQyn9+6gI
-	 0N9BhFNhWtEkRGpvQMNhUdU+6lHGZATGMnfJTGy+Up3DoIhidC1yWjIMtiHHbP4JBZ
-	 yN+H12d67oRNQ==
-Date: Mon, 20 Oct 2025 18:44:03 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Alex Elder <elder@riscstar.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	han.xu@nxp.com, broonie@kernel.org, dlan@gentoo.org,
-	guodong@riscstar.com, devicetree@vger.kernel.org,
-	linux-spi@vger.kernel.org, imx@lists.linux.dev,
-	spacemit@lists.linux.dev, linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/8] dt-bindings: spi: fsl-qspi: add optional resets
-Message-ID: <20251020-henna-headache-fae4440ec7a8@spud>
-References: <20251020165152.666221-1-elder@riscstar.com>
- <20251020165152.666221-2-elder@riscstar.com>
+	s=arc-20240116; t=1760982579; c=relaxed/simple;
+	bh=xOrPsbGqKSS2XyeFNV4ELqt4UHoe2WbEgpv+4VqM/Is=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=S0O1Sj3p8s1TzmUHxKooBKYT7H4nWibuz+7MB/UzZlYzcysYPXkn7stPTOKsEZoOsrPLaQORSH0B3XBOXZqFe732Puk25RZOG483+d8QwXwfWkdepMB1uloiEEq84EG3ZtS8gG89PKH05HRgU54MGfIbv2cQiBDvGw6nPZLcBjE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=K25zH5y9; arc=none smtp.client-ip=209.85.221.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-3ee64bc6b85so6342832f8f.3
+        for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 10:49:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1760982576; x=1761587376; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=uyCd/4JIj55gxSeGf4+DJdNpJNeCwDGuxusuHQkGxZw=;
+        b=K25zH5y9ffuiLrCpG3kE75L6TD3muWG3iAtqc/uKRp9OgpBCF1azYj2g+/3k/TS73M
+         PNgXCpiR+3LGrZ0XPTgrwJ3KS/sy2BF2HL1UK6ikQWBK48LTLo+MX0/mXd6SJwV4KB1v
+         kLoL2GEhPcn+2qKR8dBZpD0mZMngY5bVuvCVrpJ2hcIV9CI1xhHONt/54DXdz/RbKowe
+         P6u7IA9DcqrpA8hd3fIf15IrreZ8S6gr6Jk+ikv/fFMljRqOrf11adHr6jwYPJtYDO1f
+         krhrxSjZpeWM0f2jaDTJN+3iJYJbLVfnP7J5YSgaJvmuOXpS10qbnQmyfZ95a6OgCN4V
+         vuWw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1760982576; x=1761587376;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=uyCd/4JIj55gxSeGf4+DJdNpJNeCwDGuxusuHQkGxZw=;
+        b=hPWVlwU97YislgW3QDgLOp68ImZxdC3M4CcbYV9O8ph9Lx5EJ5Jas2m74ba05Jb7ii
+         9rpjeP3kNjwhAKXrtPgCjVQx8D7rlq2idyZC8krbDhCeiycCAE+70RZFYGBRNGp9J267
+         dNT3gf4nDbN+2OESxhIs2zh+DtxInEyAK/4MF+awz/6p7XCubgJ8v/eJpCraEFymaWvs
+         IieASe5iRx3q/BElur4WNm++nZuUDDbigyUJO4bQRG08qU56iTt1FR+dRKoWrDH4No7l
+         JhS/f4YXSyRJyvvvm2G+ZqNzIxIbq5DGyaUkfYoEfiwoiFBH7p3Q6o8zZU5cIGwhfnxK
+         v/nw==
+X-Forwarded-Encrypted: i=1; AJvYcCW0wHdUB7j02kPMWsGPx+jGNJynPOBdH6N2oRXa9dzV+0sTcKhEywZXXAtvpcs+fg4YHn3foOmHyEYK@vger.kernel.org
+X-Gm-Message-State: AOJu0YyPxpMnC4gUMbhs/gk4uXGMsYNgJa/mYmgXXCM1JZvxXqOUWryY
+	hUf21Q+t+9pZOd1zrqbTu0wPiUxLdBjU6jSfyKCCWMSMgFbJ8VN4tWyG
+X-Gm-Gg: ASbGncvxntEVfAprFhww/OlSbv6vbxqI012JtH6fV5FLTmwa+owwCW6a3L+ALE26KsW
+	mGr/SE7JEJwIRAyMSkioaoAzCCIIP99y2GPYPUlV2aEGz44Ma8qAwCTRAX2o+k9PoJ9Zg+jzKEt
+	23/L0dNyXTFpOGmjNqbwS62mpe1+2N264Em0qSdwz5rBodLNkcm/MD8tr1r7v6c6c/NlpxB8WUT
+	R38dCBFTPpBKuTq36BJSOM37chKsplYbq5u5kIxUUWTj9GlkrCHvR8C6wSKE7LznGfQ/0iu677p
+	7/yUB3RVVt1cNlzA6QHBy/FlXXkvP3UkR2BEbchNL0Juan9y57gDVbpG8s4NJHMdG4QfuBgPgq2
+	lY8njgRior+YHsBu3LATkFAFm7rJLp8kCAMm6PLr0YhL76kh/R3SFHVF8KAXmHpmWhPUYR+vBJQ
+	AVx5iJwyNmVPvLK5hQPTViUHla0VOpo5LfjR97OUpQ28kpMC+/jhKPMMfOb3V0esNzu5xeVqkT9
+	R8GGQ==
+X-Google-Smtp-Source: AGHT+IFVJfltDBGpXshwdA6ycK/H046cTrEtcv4sm/ksCoAaIUW3ZG+YpLxzBGC+3OrZRm/196984w==
+X-Received: by 2002:a05:6000:4021:b0:427:8b:441a with SMTP id ffacd0b85a97d-42704d7e960mr9407198f8f.11.1760982575740;
+        Mon, 20 Oct 2025 10:49:35 -0700 (PDT)
+Received: from jernej-laptop.localnet (178-79-73-218.dynamic.telemach.net. [178.79.73.218])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-427ea5b3c34sm16212597f8f.17.2025.10.20.10.49.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 20 Oct 2025 10:49:35 -0700 (PDT)
+From: Jernej =?UTF-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To: Chen-Yu Tsai <wens@kernel.org>, Jernej Skrabec <jernej@kernel.org>,
+ Samuel Holland <samuel@sholland.org>, Mark Brown <broonie@kernel.org>,
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Vinod Koul <vkoul@kernel.org>, Chen-Yu Tsai <wens@kernel.org>
+Cc: linux-sunxi@lists.linux.dev, linux-sound@vger.kernel.org,
+ linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, dmaengine@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject:
+ Re: [PATCH 04/11] ASoC: sun4i-spdif: Support SPDIF output on A523 family
+Date: Mon, 20 Oct 2025 19:49:34 +0200
+Message-ID: <13867454.uLZWGnKmhe@jernej-laptop>
+In-Reply-To: <20251020171059.2786070-5-wens@kernel.org>
+References:
+ <20251020171059.2786070-1-wens@kernel.org>
+ <20251020171059.2786070-5-wens@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="17adE0b1pBWXLXwb"
-Content-Disposition: inline
-In-Reply-To: <20251020165152.666221-2-elder@riscstar.com>
-
-
---17adE0b1pBWXLXwb
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 
-On Mon, Oct 20, 2025 at 11:51:44AM -0500, Alex Elder wrote:
-> Allow two resets to be optionally included for the Freescale QSPI driver.
+Hi,
 
-This is a binding, please don't mention the driver here.
-
-> Signed-off-by: Alex Elder <elder@riscstar.com>
+Dne ponedeljek, 20. oktober 2025 ob 19:10:50 Srednjeevropski poletni =C4=8D=
+as je Chen-Yu Tsai napisal(a):
+> The TX side of the SPDIF block on the A523 is almost the same the
+> previous generations, the only difference being that it has separate
+> module clock inputs for the TX and RX side.
+>=20
+> Since this driver currently only supports TX, add support for a
+> different clock name so that TX and RX clocks can be separated
+> if RX support is ever added. Then add support for the A523.
+>=20
+> Signed-off-by: Chen-Yu Tsai <wens@kernel.org>
 > ---
->  Documentation/devicetree/bindings/spi/fsl,spi-fsl-qspi.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
+>  sound/soc/sunxi/sun4i-spdif.c | 28 +++++++++++++++++++++++++---
+>  1 file changed, 25 insertions(+), 3 deletions(-)
 >=20
-> diff --git a/Documentation/devicetree/bindings/spi/fsl,spi-fsl-qspi.yaml =
-b/Documentation/devicetree/bindings/spi/fsl,spi-fsl-qspi.yaml
-> index f2dd20370dbb3..0315a13fe319a 100644
-> --- a/Documentation/devicetree/bindings/spi/fsl,spi-fsl-qspi.yaml
-> +++ b/Documentation/devicetree/bindings/spi/fsl,spi-fsl-qspi.yaml
-> @@ -54,6 +54,11 @@ properties:
->        - const: qspi_en
->        - const: qspi
+> diff --git a/sound/soc/sunxi/sun4i-spdif.c b/sound/soc/sunxi/sun4i-spdif.c
+> index 34e5bd94e9af..6a58dc4311de 100644
+> --- a/sound/soc/sunxi/sun4i-spdif.c
+> +++ b/sound/soc/sunxi/sun4i-spdif.c
+> @@ -177,6 +177,7 @@ struct sun4i_spdif_quirks {
+>  	bool has_reset;
+>  	unsigned int val_fctl_ftx;
+>  	unsigned int mclk_multiplier;
+> +	const char *tx_clk_name;
+>  };
 > =20
-> +  resets:
-> +    items:
-> +      - description: SoC QSPI reset
-> +      - description: SoC QSPI bus reset
+>  struct sun4i_spdif_dev {
+> @@ -323,6 +324,7 @@ static int sun4i_spdif_hw_params(struct snd_pcm_subst=
+ream *substream,
+>  	}
+>  	mclk *=3D host->quirks->mclk_multiplier;
+> =20
+> +	dev_info(&pdev->dev, "Setting SPDIF clock rate to %u\n", mclk);
+>  	ret =3D clk_set_rate(host->spdif_clk, mclk);
+>  	if (ret < 0) {
+>  		dev_err(&pdev->dev,
+> @@ -542,7 +544,6 @@ static struct snd_soc_dai_driver sun4i_spdif_dai =3D {
+>  		.formats =3D SUN4I_FORMATS,
+>  	},
+>  	.ops =3D &sun4i_spdif_dai_ops,
+> -	.name =3D "spdif",
 
-If none of the fsl devices have resets, this should be added alongside
-the new spacemit compatible and not permitted for the other compatibles.
+Why this change?
 
-
+>  };
+> =20
+>  static const struct sun4i_spdif_quirks sun4i_a10_spdif_quirks =3D {
+> @@ -572,6 +573,14 @@ static const struct sun4i_spdif_quirks sun50i_h6_spd=
+if_quirks =3D {
+>  	.mclk_multiplier =3D 1,
+>  };
+> =20
+> +static const struct sun4i_spdif_quirks sun55i_a523_spdif_quirks =3D {
+> +	.reg_dac_txdata =3D SUN8I_SPDIF_TXFIFO,
+> +	.val_fctl_ftx   =3D SUN50I_H6_SPDIF_FCTL_FTX,
+> +	.has_reset      =3D true,
+> +	.mclk_multiplier =3D 1,
+> +	.tx_clk_name	=3D "tx",
+> +};
 > +
->  required:
->    - compatible
->    - reg
-> --=20
-> 2.48.1
+>  static const struct of_device_id sun4i_spdif_of_match[] =3D {
+>  	{
+>  		.compatible =3D "allwinner,sun4i-a10-spdif",
+> @@ -594,6 +603,15 @@ static const struct of_device_id sun4i_spdif_of_matc=
+h[] =3D {
+>  		/* Essentially the same as the H6, but without RX */
+>  		.data =3D &sun50i_h6_spdif_quirks,
+>  	},
+> +	{
+> +		.compatible =3D "allwinner,sun55i-a523-spdif",
+> +		/*
+> +		 * Almost the same as H6, but has split the TX and RX clocks,
+> +		 * has a separate reset bit for the RX side, and has some
+> +		 * expanded features for the RX side.
+> +		 */
+> +		.data =3D &sun55i_a523_spdif_quirks,
+> +	},
+>  	{ /* sentinel */ }
+>  };
+>  MODULE_DEVICE_TABLE(of, sun4i_spdif_of_match);
+> @@ -635,6 +653,7 @@ static int sun4i_spdif_probe(struct platform_device *=
+pdev)
+>  	const struct sun4i_spdif_quirks *quirks;
+>  	int ret;
+>  	void __iomem *base;
+> +	const char *tx_clk_name =3D "spdif";
+
+Reverse tree?
+
+Otherwise it looks good.
+
+Best regards,
+Jernej
+
+> =20
+>  	dev_dbg(&pdev->dev, "Entered %s\n", __func__);
+> =20
+> @@ -671,9 +690,12 @@ static int sun4i_spdif_probe(struct platform_device =
+*pdev)
+>  		return PTR_ERR(host->apb_clk);
+>  	}
+> =20
+> -	host->spdif_clk =3D devm_clk_get(&pdev->dev, "spdif");
+> +	if (quirks->tx_clk_name)
+> +		tx_clk_name =3D quirks->tx_clk_name;
+> +	host->spdif_clk =3D devm_clk_get(&pdev->dev, tx_clk_name);
+>  	if (IS_ERR(host->spdif_clk)) {
+> -		dev_err(&pdev->dev, "failed to get a spdif clock.\n");
+> +		dev_err(&pdev->dev, "failed to get the \"%s\" clock.\n",
+> +			tx_clk_name);
+>  		return PTR_ERR(host->spdif_clk);
+>  	}
+> =20
 >=20
 
---17adE0b1pBWXLXwb
-Content-Type: application/pgp-signature; name="signature.asc"
 
------BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaPZ04wAKCRB4tDGHoIJi
-0lEKAP4tn2+XRwM5eBj2d46u1mM+jjxVgwNB08I2twSsMQSpRQEAupOGQFen6YpA
-+RHiekfk56oRh7/fLzUhP5reWtEMSQc=
-=KgvV
------END PGP SIGNATURE-----
 
---17adE0b1pBWXLXwb--
 
