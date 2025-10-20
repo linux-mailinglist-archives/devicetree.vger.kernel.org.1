@@ -1,59 +1,61 @@
-Return-Path: <devicetree+bounces-228852-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228853-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0AE2BF13F7
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 14:37:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F270CBF1404
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 14:37:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 42B9B34C88A
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 12:37:32 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 9667734C8ED
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 12:37:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B30A13128D9;
-	Mon, 20 Oct 2025 12:34:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9228320CCC;
+	Mon, 20 Oct 2025 12:35:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="JJWBAiQV"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="JVb1W5J7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.17])
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 431E43054FB;
-	Mon, 20 Oct 2025 12:34:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6667D320CAB;
+	Mon, 20 Oct 2025 12:35:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760963667; cv=none; b=EA274ty+AVK5c5hnIWeT9jOpAFoQCHJlWOTA5v08McDMJ0cXlcjHtYoJJcN4+zlGi7mQP+L6l8qwyvgHboAWy+Ao9OOPhZV/W0UB1VeBoELptyBDUzwWHDhg0WzcPutrvRB+S/LxDQoMzKMC7MWcbd+uPJHnL/WZACgshZw7J2Y=
+	t=1760963741; cv=none; b=hetNjimmA+jtEfslsM/LZtRraYNzZ2SikJMblE7D1qRws5cEllxQTU12oJqW0rWUmo2pRYgA2CCK3h4p2G4OOXNFeiLT3jS2QYAIUsTn79/tSmx7txPznMz0ibiQDaImC1JcATepXxgYyb5hveGzpDLpYUailxTPLtS/kX7hnOA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760963667; c=relaxed/simple;
-	bh=h0WJFmupmKN0XJHhCP+qudmQBuXxIDkH9/Kp13xFuk4=;
+	s=arc-20240116; t=1760963741; c=relaxed/simple;
+	bh=UOwHOT9lCATSleonXEnf65atAJeJJqB71w5Lev4yfkg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ALa4RXred1tDy4Mbgrp4tp3/xffHKYtxf3sndNjWnfBXDdJfCjgZOkfetaglERONwlh0hUg7+77SSwhV9eWzcrcTeWHl8BjgcFWz3/EVIykcsKRGN3xdFehLhRDXVQoS2CmgqvZHEqY4MCksVL83CKo9y/9NIuGtMXbQpfqfRXE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=JJWBAiQV; arc=none smtp.client-ip=220.197.32.17
+	 Content-Type:Content-Disposition:In-Reply-To; b=WkrcJYY/bz409MT35+5k+jrGN3pndLyP3ibt9b/6VZ56WachbNZTZ06JYu80UNXOy6TqJg6Nrz38/IhfXYVxMs/Md3vDS0kgCBTtjDh/0MPE71iYfhhi8RRNTtpCjL2XcpnsK2ftIqDJ5S1v5OjvwaHn+HDOVJ94ZBwISx1TmQA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=JVb1W5J7; arc=none smtp.client-ip=220.197.32.19
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
 	s=s110527; h=Date:From:To:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=reS54wtQHBJnB6K8azXiapyA5fEgeenFU64t0v4P6Mw=;
-	b=JJWBAiQVrg/NiYwkUfQZee3ahGKYJLfCd1hGqLyttCCXK4nvW1Ty+u40D4CG3V
-	/2SJr+7SpgCVCbTnt7kqOUEyTcT50UIGkhz2ZLniW1e1J/LHkP8qt+eVh+3QF1ct
-	UMKJBzJUg34+JEKCmZOtan3WcgAsg2Crst7aseJjkvxEw=
+	Content-Type; bh=Cs0Sz4USsSfuwMxi4PfdiqTuZfj+bT5+l8lmaC7NVa0=;
+	b=JVb1W5J73osHVHtj7ZFhwxZPBMxXh3JkPA85TUoQTEpywrzYv1zpboJ2iJyvZK
+	pMFjS9G5U6ehjxL9jV4oDoE8tUAbcxZVBXv75ylpPw7K2YDzJIN5tnCk9tp1BDFu
+	7OVmWhzNGlVVEe/2dZ95mEzuYQiNtNn+gvv+orwDYbsGY=
 Received: from dragon (unknown [])
-	by gzsmtp2 (Coremail) with SMTP id Ms8vCgD3H1ncK_Zo3plVAA--.16314S3;
-	Mon, 20 Oct 2025 20:32:30 +0800 (CST)
-Date: Mon, 20 Oct 2025 20:32:28 +0800
+	by gzsmtp1 (Coremail) with SMTP id Mc8vCgDHX6t5LPZobttTAA--.29784S3;
+	Mon, 20 Oct 2025 20:35:07 +0800 (CST)
+Date: Mon, 20 Oct 2025 20:35:05 +0800
 From: Shawn Guo <shawnguo2@yeah.net>
-To: Primoz Fiser <primoz.fiser@norik.com>
+To: Kieran Bingham <kieran.bingham@ideasonboard.com>
 Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
 	Sascha Hauer <s.hauer@pengutronix.de>,
 	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, upstream@lists.phytec.de
-Subject: Re: [PATCH 1/2] arm64: dts: freescale: imx93-phyboard-nash: Add USB
- vbus regulators
-Message-ID: <aPYr3DRVerHvWN0i@dragon>
-References: <20250916080635.1520551-1-primoz.fiser@norik.com>
+	Fabio Estevam <festevam@gmail.com>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	"open list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <imx@lists.linux.dev>,
+	"moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>,
+	open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] arm64: dts: freescale: debix-som-a-bmb-08: Enable HDMI
+ output
+Message-ID: <aPYseXEu6beqgxff@dragon>
+References: <20250916144710.1285650-1-kieran.bingham@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,23 +64,20 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250916080635.1520551-1-primoz.fiser@norik.com>
-X-CM-TRANSID:Ms8vCgD3H1ncK_Zo3plVAA--.16314S3
-X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUU8529EdanIXcx71UUUUU7v73
-	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxU7JKsUUUUU
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiNB7ZP2j2K94p1wAA3Z
+In-Reply-To: <20250916144710.1285650-1-kieran.bingham@ideasonboard.com>
+X-CM-TRANSID:Mc8vCgDHX6t5LPZobttTAA--.29784S3
+X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
+	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUc89NUUUUU
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiNhsBZmj2LHsiEgAA3z
 
-On Tue, Sep 16, 2025 at 10:06:34AM +0200, Primoz Fiser wrote:
-> Add USB vbus regulators to silence the following kernel warnings:
+On Tue, Sep 16, 2025 at 03:47:09PM +0100, Kieran Bingham wrote:
+> Enable the HDMI output on the Debix SOM A board, using the HDMI encoder
+> present in the i.MX8MP SoC.
 > 
->   usb_phy_generic usbphynop1: dummy supplies not allowed for exclusive requests (id=vbus)
->   usb_phy_generic usbphynop2: dummy supplies not allowed for exclusive requests (id=vbus)
+> Enable and configure all nodes required for the HDMI port usage.
 > 
-> Because generic USB PHY driver requires exclusive vbus regulators since
-> commit 75fd6485ccce ("usb: phy: generic: Get the vbus supply").
-> 
-> Signed-off-by: Primoz Fiser <primoz.fiser@norik.com>
+> Signed-off-by: Kieran Bingham <kieran.bingham@ideasonboard.com>
 
-Applied both, thanks!
+Applied, thanks!
 
 
