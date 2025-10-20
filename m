@@ -1,664 +1,720 @@
-Return-Path: <devicetree+bounces-229047-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229048-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84764BF35C5
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 22:18:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4BB58BF35FE
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 22:22:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E54A040683F
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 20:17:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F0D4C424A18
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 20:22:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C67CC2DF3FD;
-	Mon, 20 Oct 2025 20:17:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8054D2E03E8;
+	Mon, 20 Oct 2025 20:22:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ftDzgrxF"
+	dkim=pass (2048-bit key) header.d=rivosinc.com header.i=@rivosinc.com header.b="elf0Aw99"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com [209.85.210.179])
+Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com [209.85.210.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B97D276041
-	for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 20:17:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 575BB2D94B8
+	for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 20:22:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760991463; cv=none; b=mUM/02txpIWlI+NT8Zg6HucjlA4/idloLLGLqH/RVpgmk6HUBxLaiLBRM7aE/rRbTa8aAbhBKnv+IeL1qcu4AnDTuvAVZrtAhQO4L0TcMl8IlBE1/v/byOrErqymLK8qxW+lFAWOyghMosr3H4N+PA1zfQ4U8ZEjLWySKFyXvjA=
+	t=1760991761; cv=none; b=tvwE+SSuHtTWcwKg/PIFzmqYdNxDifMrknyiQxFinjB+cNX4mfqUm6GRsyci+pDzZRQUzK6ozFvFXHneLcxQ59QqwOvaOJltsfPDr0xTJvMRaZ0v1N4+bxFHlhTJkrRwX4ZfDZiMjwryIYH0zFfAVVE20+VpxlzrLkGeD66AIXI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760991463; c=relaxed/simple;
-	bh=1WRhBSbclDvrVVgwK+g58YJcFcb3Bhe37HfEQREtH5A=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=NwFIfd0TG2lsBhx/bwW+vK2P9MHVX8hsoeNAzkRMT/H+fXEkGPYxA53c2Q/Tno98e/ejVrXh1796ew0RWADfDa8kjUjVRGcJKUjP9NdbQIFaYwQhc2amo/bU5TNtH+8QdnIL20qhVak3VvF8TwRtv6cD4JHxwjpAj0f1WYChi98=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ftDzgrxF; arc=none smtp.client-ip=209.85.210.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f179.google.com with SMTP id d2e1a72fcca58-782023ca359so4675442b3a.2
-        for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 13:17:41 -0700 (PDT)
+	s=arc-20240116; t=1760991761; c=relaxed/simple;
+	bh=nXRmvGO3C/bPrlIIFA9iRn92TekqyVP5R5eclk8Sozo=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=mGypJXJj3PdAJ/atwAoNTz4F1pRRsflV0CyzkkmC+k8Ic+2Iq+TLGCQ6n5OBRS2736ktn4Vjy5aiBJctUEPsSJ8PbczkSClaNYEN1bMWKSlWpS61UbadUHS6AgD7wLdLTeo72hq9BZzlKYvvj3obrp9C6OzvC6UEOOhxzF8/JKE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc.com header.i=@rivosinc.com header.b=elf0Aw99; arc=none smtp.client-ip=209.85.210.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rivosinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
+Received: by mail-pf1-f174.google.com with SMTP id d2e1a72fcca58-781997d195aso3638417b3a.3
+        for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 13:22:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1760991461; x=1761596261; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=2HiIag4gojntGeG3Lt/25yjUryhrv0nCmHlT9/AhVAY=;
-        b=ftDzgrxFcEIVZOqIIFnyeM/Jh0OWV2QDJ0CgNAGnUVeE9D3gY0q7yvGznlEOZnYHv4
-         3+fRlReI7OjxzQMAieF+41QyJPq2AvFb1tAyGW6QqGKgqfyASXBs7pt19PtQMQvbKIfu
-         8yR6/hNI4a/1hnmBSEl7BfapJE/UFFlDCYAPpvSIvk3QWEMXwHWdT/M9qh5p5AY/HYXj
-         HPQ2juV9PWfeYWgsgOvPKIgr2UfaKf/QeL1cXkB+clBI1Do9/1jeEbjlOzDoaUcfYvZS
-         kbrBWGe0QJ4SVl7OoLY3HeCoN2jDn0lXO1sZ9k2bqiAt3ttVQn2MTAb5dwERKJSbUiWJ
-         Ic8g==
+        d=rivosinc.com; s=google; t=1760991757; x=1761596557; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=P2if7CaIdPH0unnJmSHWWwgDLL6W6fi/YsPxIRo0zI4=;
+        b=elf0Aw99+pQ1aaQcj0sSyNI9jXJ7haCUSbtxo8Lnw+ti73a4aRakp1g2ZcCuNosoWg
+         pUJy5kBqqXgdfekRU74Mq2GTOEuoFdrLTG4djNyv4vlQ1tYD2rBH2OlkaVw7pzZu0OpE
+         WSChrXoNY7VHp8Pu7Wg0OhEVN+Z3kAyiUVPxIZQfBxpNM9/SCjkszeAIUXLFyGznO1ms
+         b32ymDREDTr+bMQjDXQp4IvNbYi681M7rMZJuWL3O3WjUgpJDOUxlvCRvDioaSYyFehv
+         mo0cvUXtREKl7AqS/HM1yzv+7TtnXnjBcjSKnKc39EEsTX+tanz0CzDsFZsk8nF/SaiY
+         EAPA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760991461; x=1761596261;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=2HiIag4gojntGeG3Lt/25yjUryhrv0nCmHlT9/AhVAY=;
-        b=EvviQLkxCgSm06LzOlhoIjepSbE8kVGsZzw1zjiRdooxEnC/3bv6pikYaT5IOylsGF
-         Irec+e28YN/RdV3xpIh/wa73W+pPMSyiNyb9eG/ZaCzs8YmjjghNpp2SJm22706lfuYY
-         Piz/9V0JQWoCKtwfpVBoN0RRM4YlNMfU/hjl7GOA9K/gwzoeFNed9NrQiq/GAh7QoYMS
-         QdO8qNJD9elswOPzi15Lx9I44dUwCmcpekd/Np9uMFDfgztgBRr7IYo3rASN5F3NAMVw
-         F6YxHFe4jTPE3WmppKTtuF164qOyP0SuPP+YN5Czz/oPXL8/uDcSbmBi8TW7vwQrUcKx
-         Dnew==
-X-Forwarded-Encrypted: i=1; AJvYcCX86+Non28OM0634rwFwZ6UgBei5luoPXelxbBXJvFrSYAEsfACcUiKHDoLd8m3YXlCP9Sw5dL+ZMKt@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzt3HJsjyPeBRgYk2gePUNlWT4rVmPieR2ciYNC+wpPNaMiTDPz
-	8APBJO491Kztai+vmjytIJ3eqp6EVRjsR/rnH+QxkrsgpIRsnBdVg/Jmgo/k63j3
-X-Gm-Gg: ASbGnctSIDWxYYbsmbnPyANEpKBde7J8YIs0UvshxLDe3sa81iCW7g8s2JfIif6wFKi
-	to5SwdaxWsYZ7aEbmTewezKw+7oqsLq7hesihrKlkz+3oWeqaTP6sW6vG57Y3i6F9JFLaYRnLu3
-	qflJ4JIayQFvVk4jE1aYwvuV53lQ1F8A3xQjfMNDxKKFf6zLi3c215DLVvscka+m+Deeeil3r1d
-	Q+AWFcIuu8K0boaN59xjwI9453B2iwS8Sm7xum41GltXkfW1FWH+imvHmScGBBZ2v0+W2I+DoEb
-	mRHBQY7yVp1eawl4DJ9KKlvaqva2n4r/z/paj+/30RSYCm8d43Paw+1MS2TEk9tBEBtLRuh2k02
-	o02mlEb0idMuOmvyuv6YR6qOdtK4pEUcomlR+5F/TfGkks42AROyBEybE6GsuW8vzwbmuIlX91G
-	Dx
-X-Google-Smtp-Source: AGHT+IEvd5nURSzwvSsvWjh5RX4S5kfjpUNPVi8RB0b2/CoVUy3A5JGhmyGLHB+ukqu3imN65zC+bA==
-X-Received: by 2002:a05:6a00:21c5:b0:771:fdd9:efa0 with SMTP id d2e1a72fcca58-7a220d232a7mr20401061b3a.15.1760991460664;
-        Mon, 20 Oct 2025 13:17:40 -0700 (PDT)
-Received: from pop-os.. ([106.222.200.146])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7a23010df83sm9104263b3a.59.2025.10.20.13.17.34
+        d=1e100.net; s=20230601; t=1760991757; x=1761596557;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=P2if7CaIdPH0unnJmSHWWwgDLL6W6fi/YsPxIRo0zI4=;
+        b=Q3ZtweBhzDAQYzblUDPl6gxFRilUYOLUGOSggaiSUEmsbWVwlDZaXU34d2bPrsUkZ5
+         SzVgQZ6yeErIHDVdZ9qMaTSugOm2vM3HiL3ywkYPH6id5dx/39pdwS/yE86oGw0XBNR8
+         wTeUlbcwBREyuNlwMc4IKUGDGd9sIo/v3MW3y/LDrWZQ1CJ2D3DCrxq+EEmh7M6YtB8Y
+         gFhCu5NexZBeNxSK61BKu1n5FSYPGkaxAwHLHEFsct6D51VHSqeYrXDeXxa1o0aUOKlx
+         GrEzgJ/3uZJB6R1DMr54AbIrr+uUSovdRVwdML6rXkJ9bx4k/wDSVZduU6XhOo8Lo1Fy
+         AeZw==
+X-Forwarded-Encrypted: i=1; AJvYcCXO++UCuokM+sDHAnL2dPhvV2aRBrRbkx1fUAbmQ/td2HiNoAv1KnOxqN6/voqUN91sYSvGeIn6CodZ@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxu4ONUVd9bytThjHs7i+tXFQ4dmjxyR5IniIiJfZUB2Gm7P6oN
+	6VCML2Xb5Fd3ueIwwBVmadO6cK72Xj+Ohch1at6eLs0tKWeD5Z9QV7vaA99omcu0cL0=
+X-Gm-Gg: ASbGnctKg0aqSNtiv0jKgroLoo+FMcyp758AqV2S10rJYzVQHGuVOpkwnG+XPluTNm6
+	Z9XiMkmDC/64csMKgUweq9xrk+MUVylEYJy7aBXrXQrQNDkAbNqc03JYEJXj6GcCuCIixg6FFR3
+	Zu4yLyiPEyfTUA4s2IMidU0TgtekYl6oyAj68EPddHIzT45ZnSJ8gDeueN9Pu+3QBVD6fFxGPkX
+	w/Dt6Rw7lK2xxA/FT8nXb9UW1e3nBcXZgI/1OgQt8MmGq5xfJpp4Xkdnms8UriRH5LXbmSc7Hux
+	TJUIfAng14slpmsF1ls8AdhP8KHM+6OAa1SemgZLGnKf9/NfPN6fnXsg6Yn6XoDjhdTDjozp3Kz
+	iqc+oR5gEMmnsRib/iYeQV1wlzZuvMJMqEMRVqz8pTE6C5obi4igAmnr36+K4hzmIebqJc6DvwU
+	31lHD7HwWYtJiPHoZ2nmN+
+X-Google-Smtp-Source: AGHT+IHHCFkJpXEPNYVapEP9KSyIuqlo9B5UzBeznTckE8lwERlBIRcRbOLtF3IIVXAzMsxPPpxQ/A==
+X-Received: by 2002:a05:6a20:3945:b0:334:9b5d:387b with SMTP id adf61e73a8af0-334a850d76emr18732050637.1.1760991756924;
+        Mon, 20 Oct 2025 13:22:36 -0700 (PDT)
+Received: from debug.ba.rivosinc.com ([64.71.180.162])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b6a766745dasm8443240a12.14.2025.10.20.13.22.34
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Oct 2025 13:17:40 -0700 (PDT)
-From: Aditya Dutt <duttaditya18@gmail.com>
-To: Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	=?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Frank Zago <frank@zago.net>
-Cc: Aditya Dutt <duttaditya18@gmail.com>,
-	linux-kernel@vger.kernel.org,
-	linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-doc@vger.kernel.org
-Subject: [PATCH 2/2] iio: position: Add support for ams AS5600 angle sensor
-Date: Tue, 21 Oct 2025 01:46:53 +0530
-Message-Id: <20251020201653.86181-3-duttaditya18@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20251020201653.86181-1-duttaditya18@gmail.com>
-References: <20251020201653.86181-1-duttaditya18@gmail.com>
+        Mon, 20 Oct 2025 13:22:36 -0700 (PDT)
+From: Deepak Gupta <debug@rivosinc.com>
+Subject: [PATCH v22 00/28] riscv control-flow integrity for usermode
+Date: Mon, 20 Oct 2025 13:22:29 -0700
+Message-Id: <20251020-v5_user_cfi_series-v22-0-66732256ad8f@rivosinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAAWa9mgC/3XTzY7UMAwH8FdZ9UyRPxIn4cR7IDRK0oTtgZlVB
+ yrQat4ddxBqJdzeUiW/uvY/78O9LXO7D59e3oelrfN9vl11QfThZaiv+fqtjfOkLwYCcpAYxtV
+ ffuqhS+3z5e/hkafKTD12X2jQg29L6/Ovp/rlq65f5/uP2/L7+ZEVt7dPDgHQ4lYcYeSSxRdp3
+ kP/vMzr7T5f68d6+z5s4ipHJZqKqCIwpd4gcOdgKOGgUDKVoAoFCrWlxFKLocRd0cdUoipTbeh
+ yZiCwakn/FK8bnKkkVQqH7FL1BL4aCsKBQbDbC+qg6NR6ZqwCloO7w2fONqcoZWtLLwlNh46O/
+ VtI6jSPuql4Ro6Ww7vj6MRhdVJAx2FqPkq2HHd07JFrmTB64qSpmADJdPzuaKdtx2/1oEsiLmC
+ M3nLk4NCJ80yy64KZfWvNSg+G3ZGT+OCWZefFV6o9SrLuFcbdCSdhxi3NObYm1FPn2CznEOfAJ
+ 86WZ0jFSZxCadm6W7TnGUEHbDm05bmkqbmilxTJqofw6Hjb2fIsGUL00hL81+fH4/EHOy3icjA
+ FAAA=
+To: Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>, 
+ Borislav Petkov <bp@alien8.de>, Dave Hansen <dave.hansen@linux.intel.com>, 
+ x86@kernel.org, "H. Peter Anvin" <hpa@zytor.com>, 
+ Andrew Morton <akpm@linux-foundation.org>, 
+ "Liam R. Howlett" <Liam.Howlett@oracle.com>, 
+ Vlastimil Babka <vbabka@suse.cz>, 
+ Lorenzo Stoakes <lorenzo.stoakes@oracle.com>, 
+ Paul Walmsley <paul.walmsley@sifive.com>, 
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+ Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>, 
+ Christian Brauner <brauner@kernel.org>, 
+ Peter Zijlstra <peterz@infradead.org>, Oleg Nesterov <oleg@redhat.com>, 
+ Eric Biederman <ebiederm@xmission.com>, Kees Cook <kees@kernel.org>, 
+ Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>, 
+ Jann Horn <jannh@google.com>, Conor Dooley <conor+dt@kernel.org>, 
+ Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
+ Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
+ =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+ Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, 
+ Trevor Gross <tmgross@umich.edu>, Benno Lossin <lossin@kernel.org>
+Cc: linux-kernel@vger.kernel.org, linux-fsdevel@vger.kernel.org, 
+ linux-mm@kvack.org, linux-riscv@lists.infradead.org, 
+ devicetree@vger.kernel.org, linux-arch@vger.kernel.org, 
+ linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org, 
+ alistair.francis@wdc.com, richard.henderson@linaro.org, jim.shu@sifive.com, 
+ andybnac@gmail.com, kito.cheng@sifive.com, charlie@rivosinc.com, 
+ atishp@rivosinc.com, evan@rivosinc.com, cleger@rivosinc.com, 
+ alexghiti@rivosinc.com, samitolvanen@google.com, broonie@kernel.org, 
+ rick.p.edgecombe@intel.com, rust-for-linux@vger.kernel.org, 
+ Zong Li <zong.li@sifive.com>, David Hildenbrand <david@redhat.com>, 
+ Deepak Gupta <debug@rivosinc.com>, Charles Mirabile <cmirabil@redhat.com>, 
+ Andy Chiu <andybnac@gmail.com>
+X-Mailer: b4 0.13.0
 
-The AS5600 is a Hall-based rotary magnetic position sensor using
-planar sensors that convert the magnetic field component perpendicular
-to the surface of the chip into a voltage, or a numerical value
-available through i2c.
+v22: fixing build error due to -march=zicfiss being picked in gcc-13 and above
+but not actually doing any codegen or recognizing instruction for zicfiss.
+Change in v22 makes dependence on `-fcf-protection=full` compiler flag to
+ensure that toolchain has support and then only CONFIG_RISCV_USER_CFI will be
+visible in menuconfig.
 
-The driver registers the chip as an IIO_ANGL device.
-It also exposes the raw registers through debugfs for further configuration.
+v21: fixed build errors.
 
-Datasheet: https://ams-osram.com/products/sensor-solutions/position-sensors/ams-as5600-position-sensor
-Co-developed-by: Frank Zago <frank@zago.net>
-Signed-off-by: Frank Zago <frank@zago.net>
-Signed-off-by: Aditya Dutt <duttaditya18@gmail.com>
+Basics and overview
+===================
+
+Software with larger attack surfaces (e.g. network facing apps like databases,
+browsers or apps relying on browser runtimes) suffer from memory corruption
+issues which can be utilized by attackers to bend control flow of the program
+to eventually gain control (by making their payload executable). Attackers are
+able to perform such attacks by leveraging call-sites which rely on indirect
+calls or return sites which rely on obtaining return address from stack memory.
+
+To mitigate such attacks, risc-v extension zicfilp enforces that all indirect
+calls must land on a landing pad instruction `lpad` else cpu will raise software
+check exception (a new cpu exception cause code on riscv).
+Similarly for return flow, risc-v extension zicfiss extends architecture with
+
+- `sspush` instruction to push return address on a shadow stack
+- `sspopchk` instruction to pop return address from shadow stack
+  and compare with input operand (i.e. return address on stack)
+- `sspopchk` to raise software check exception if comparision above
+  was a mismatch
+- Protection mechanism using which shadow stack is not writeable via
+  regular store instructions
+
+More information an details can be found at extensions github repo [1].
+
+Equivalent to landing pad (zicfilp) on x86 is `ENDBRANCH` instruction in Intel
+CET [3] and branch target identification (BTI) [4] on arm.
+Similarly x86's Intel CET has shadow stack [5] and arm64 has guarded control
+stack (GCS) [6] which are very similar to risc-v's zicfiss shadow stack.
+
+x86 and arm64 support for user mode shadow stack is already in mainline.
+
+Kernel awareness for user control flow integrity
+================================================
+
+This series picks up Samuel Holland's envcfg changes [2] as well. So if those are
+being applied independently, they should be removed from this series.
+
+Enabling:
+
+In order to maintain compatibility and not break anything in user mode, kernel
+doesn't enable control flow integrity cpu extensions on binary by default.
+Instead exposes a prctl interface to enable, disable and lock the shadow stack
+or landing pad feature for a task. This allows userspace (loader) to enumerate
+if all objects in its address space are compiled with shadow stack and landing
+pad support and accordingly enable the feature. Additionally if a subsequent
+`dlopen` happens on a library, user mode can take a decision again to disable
+the feature (if incoming library is not compiled with support) OR terminate the
+task (if user mode policy is strict to have all objects in address space to be
+compiled with control flow integirty cpu feature). prctl to enable shadow stack
+results in allocating shadow stack from virtual memory and activating for user
+address space. x86 and arm64 are also following same direction due to similar
+reason(s).
+
+clone/fork:
+
+On clone and fork, cfi state for task is inherited by child. Shadow stack is
+part of virtual memory and is a writeable memory from kernel perspective
+(writeable via a restricted set of instructions aka shadow stack instructions)
+Thus kernel changes ensure that this memory is converted into read-only when
+fork/clone happens and COWed when fault is taken due to sspush, sspopchk or
+ssamoswap. In case `CLONE_VM` is specified and shadow stack is to be enabled,
+kernel will automatically allocate a shadow stack for that clone call.
+
+map_shadow_stack:
+
+x86 introduced `map_shadow_stack` system call to allow user space to explicitly
+map shadow stack memory in its address space. It is useful to allocate shadow
+for different contexts managed by a single thread (green threads or contexts)
+risc-v implements this system call as well.
+
+signal management:
+
+If shadow stack is enabled for a task, kernel performs an asynchronous control
+flow diversion to deliver the signal and eventually expects userspace to issue
+sigreturn so that original execution can be resumed. Even though resume context
+is prepared by kernel, it is in user space memory and is subject to memory
+corruption and corruption bugs can be utilized by attacker in this race window
+to perform arbitrary sigreturn and eventually bypass cfi mechanism.
+Another issue is how to ensure that cfi related state on sigcontext area is not
+trampled by legacy apps or apps compiled with old kernel headers.
+
+In order to mitigate control-flow hijacting, kernel prepares a token and place
+it on shadow stack before signal delivery and places address of token in
+sigcontext structure. During sigreturn, kernel obtains address of token from
+sigcontext struture, reads token from shadow stack and validates it and only
+then allow sigreturn to succeed. Compatiblity issue is solved by adopting
+dynamic sigcontext management introduced for vector extension. This series
+re-factor the code little bit to allow future sigcontext management easy (as
+proposed by Andy Chiu from SiFive)
+
+config and compilation:
+
+Introduce a new risc-v config option `CONFIG_RISCV_USER_CFI`. Selecting this
+config option picks the kernel support for user control flow integrity. This
+optin is presented only if toolchain has shadow stack and landing pad support.
+And is on purpose guarded by toolchain support. Reason being that eventually
+vDSO also needs to be compiled in with shadow stack and landing pad support.
+vDSO compile patches are not included as of now because landing pad labeling
+scheme is yet to settle for usermode runtime.
+
+To get more information on kernel interactions with respect to
+zicfilp and zicfiss, patch series adds documentation for
+`zicfilp` and `zicfiss` in following:
+Documentation/arch/riscv/zicfiss.rst
+Documentation/arch/riscv/zicfilp.rst
+
+How to test this series
+=======================
+
+Toolchain
+---------
+$ git clone git@github.com:sifive/riscv-gnu-toolchain.git -b cfi-dev
+$ riscv-gnu-toolchain/configure --prefix=<path-to-where-to-build> --with-arch=rv64gc_zicfilp_zicfiss --enable-linux --disable-gdb  --with-extra-multilib-test="rv64gc_zicfilp_zicfiss-lp64d:-static"
+$ make -j$(nproc)
+
+Qemu
+----
+Get the lastest qemu
+$ cd qemu
+$ mkdir build
+$ cd build
+$ ../configure --target-list=riscv64-softmmu
+$ make -j$(nproc)
+
+Opensbi
+-------
+$ git clone git@github.com:deepak0414/opensbi.git -b v6_cfi_spec_split_opensbi
+$ make CROSS_COMPILE=<your riscv toolchain> -j$(nproc) PLATFORM=generic
+
+Linux
+-----
+Running defconfig is fine. CFI is enabled by default if the toolchain
+supports it.
+
+$ make ARCH=riscv CROSS_COMPILE=<path-to-cfi-riscv-gnu-toolchain>/build/bin/riscv64-unknown-linux-gnu- -j$(nproc) defconfig
+$ make ARCH=riscv CROSS_COMPILE=<path-to-cfi-riscv-gnu-toolchain>/build/bin/riscv64-unknown-linux-gnu- -j$(nproc)
+
+Running
+-------
+
+Modify your qemu command to have:
+-bios <path-to-cfi-opensbi>/build/platform/generic/firmware/fw_dynamic.bin
+-cpu rv64,zicfilp=true,zicfiss=true,zimop=true,zcmop=true
+
+References
+==========
+[1] - https://github.com/riscv/riscv-cfi
+[2] - https://lore.kernel.org/all/20240814081126.956287-1-samuel.holland@sifive.com/
+[3] - https://lwn.net/Articles/889475/
+[4] - https://developer.arm.com/documentation/109576/0100/Branch-Target-Identification
+[5] - https://www.intel.com/content/dam/develop/external/us/en/documents/catc17-introduction-intel-cet-844137.pdf
+[6] - https://lwn.net/Articles/940403/
+
+To: Thomas Gleixner <tglx@linutronix.de>
+To: Ingo Molnar <mingo@redhat.com>
+To: Borislav Petkov <bp@alien8.de>
+To: Dave Hansen <dave.hansen@linux.intel.com>
+To: x86@kernel.org
+To: H. Peter Anvin <hpa@zytor.com>
+To: Andrew Morton <akpm@linux-foundation.org>
+To: Liam R. Howlett <Liam.Howlett@oracle.com>
+To: Vlastimil Babka <vbabka@suse.cz>
+To: Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
+To: Paul Walmsley <paul.walmsley@sifive.com>
+To: Palmer Dabbelt <palmer@dabbelt.com>
+To: Albert Ou <aou@eecs.berkeley.edu>
+To: Conor Dooley <conor@kernel.org>
+To: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Arnd Bergmann <arnd@arndb.de>
+To: Christian Brauner <brauner@kernel.org>
+To: Peter Zijlstra <peterz@infradead.org>
+To: Oleg Nesterov <oleg@redhat.com>
+To: Eric Biederman <ebiederm@xmission.com>
+To: Kees Cook <kees@kernel.org>
+To: Jonathan Corbet <corbet@lwn.net>
+To: Shuah Khan <shuah@kernel.org>
+To: Jann Horn <jannh@google.com>
+To: Conor Dooley <conor+dt@kernel.org>
+To: Miguel Ojeda <ojeda@kernel.org>
+To: Alex Gaynor <alex.gaynor@gmail.com>
+To: Boqun Feng <boqun.feng@gmail.com>
+To: Gary Guo <gary@garyguo.net>
+To: Björn Roy Baron <bjorn3_gh@protonmail.com>
+To: Benno Lossin <benno.lossin@proton.me>
+To: Andreas Hindborg <a.hindborg@kernel.org>
+To: Alice Ryhl <aliceryhl@google.com>
+To: Trevor Gross <tmgross@umich.edu>
+Cc: linux-kernel@vger.kernel.org
+Cc: linux-fsdevel@vger.kernel.org
+Cc: linux-mm@kvack.org
+Cc: linux-riscv@lists.infradead.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-arch@vger.kernel.org
+Cc: linux-doc@vger.kernel.org
+Cc: linux-kselftest@vger.kernel.org
+Cc: alistair.francis@wdc.com
+Cc: richard.henderson@linaro.org
+Cc: jim.shu@sifive.com
+Cc: andybnac@gmail.com
+Cc: kito.cheng@sifive.com
+Cc: charlie@rivosinc.com
+Cc: atishp@rivosinc.com
+Cc: evan@rivosinc.com
+Cc: cleger@rivosinc.com
+Cc: alexghiti@rivosinc.com
+Cc: samitolvanen@google.com
+Cc: broonie@kernel.org
+Cc: rick.p.edgecombe@intel.com
+Cc: rust-for-linux@vger.kernel.org
+
+changelog
+---------
+v22:
+- CONFIG_RISCV_USER_CFI was by default "n". With dual vdso support it is
+  default "y" (if toolchain supports it). Fixing build error due to
+  "-march=zicfiss" being picked in gcc-13 partially. gcc-13 only recognizes the
+  flag but not actually doing any codegen or recognizing instruction for zicfiss.
+  Change in v22 makes dependence on `-fcf-protection=full` compiler flag to
+  ensure that toolchain has support and then only CONFIG_RISCV_USER_CFI will be
+  visible in menuconfig.
+- picked up tags and some cosmetic changes in commit message for dual vdso
+  patch.
+  
+
+v21:
+- Fixing build errors due to changes in arch/riscv/include/asm/vdso.h
+  Using #ifdef instead of IS_ENABLED in arch/riscv/include/asm/vdso.h
+  vdso-cfi-offsets.h should be included only when CONFIG_RISCV_USER_CFI
+  is selected.
+
+v20:
+- rebased on v6.18-rc1.
+- Added two vDSO support. If `CONFIG_RISCV_USER_CFI` is selected
+  two vDSOs are compiled (one for hardware prior to RVA23 and one
+  for RVA23 onwards). Kernel exposes RVA23 vDSO if hardware/cpu
+  implements zimop else exposes existing vDSO to userspace.
+- default selection for `CONFIG_RISCV_USER_CFI` is "Yes".
+- replaced "__ASSEMBLY__" with "__ASSEMBLER__"
+
+v19:
+- riscv_nousercfi was `int`. changed it to unsigned long.
+  Thanks to Alex Ghiti for reporting it. It was a bug.
+- ELP is cleared on trap entry only when CONFIG_64BIT.
+- restore ssp back on return to usermode was being done
+  before `riscv_v_context_nesting_end` on trap exit path.
+  If kernel shadow stack were enabled this would result in
+  kernel operating on user shadow stack and panic (as I found
+  in my testing of kcfi patch series). So fixed that.
+
+v18:
+- rebased on 6.16-rc1
+- uprobe handling clears ELP in sstatus image in pt_regs
+- vdso was missing shadow stack elf note for object files.
+  added that. Additional asm file for vdso needed the elf marker
+  flag. toolchain should complain if `-fcf-protection=full` and
+  marker is missing for object generated from asm file. Asked
+  toolchain folks to fix this. Although no reason to gate the merge
+  on that.
+- Split up compile options for march and fcf-protection in vdso
+  Makefile
+- CONFIG_RISCV_USER_CFI option is moved under "Kernel features" menu
+  Added `arch/riscv/configs/hardening.config` fragment which selects
+  CONFIG_RISCV_USER_CFI
+
+v17:
+- fixed warnings due to empty macros in usercfi.h (reported by alexg)
+- fixed prefixes in commit titles reported by alexg
+- took below uprobe with fcfi v2 patch from Zong Li and squashed it with
+  "riscv/traps: Introduce software check exception and uprobe handling"
+  https://lore.kernel.org/all/20250604093403.10916-1-zong.li@sifive.com/
+
+v16:
+- If FWFT is not implemented or returns error for shadow stack activation, then
+  no_usercfi is set to disable shadow stack. Although this should be picked up
+  by extension validation and activation. Fixed this bug for zicfilp and zicfiss
+  both. Thanks to Charlie Jenkins for reporting this.
+- If toolchain doesn't support cfi, cfi kselftest shouldn't build. Suggested by
+  Charlie Jenkins.
+- Default for CONFIG_RISCV_USER_CFI is set to no. Charlie/Atish suggested to
+  keep it off till we have more hardware availibility with RVA23 profile and
+  zimop/zcmop implemented. Else this will start breaking people's workflow
+- Includes the fix if "!RV64 and !SBI" then definitions for FWFT in
+  asm-offsets.c error.
+
+v15:
+- Toolchain has been updated to include `-fcf-protection` flag. This
+  exists for x86 as well. Updated kernel patches to compile vDSO and
+  selftest to compile with `fcf-protection=full` flag.
+- selecting CONFIG_RISCV_USERCFI selects CONFIG_RISCV_SBI.
+- Patch to enable shadow stack for kernel wasn't hidden behind
+  CONFIG_RISCV_USERCFI and CONFIG_RISCV_SBI. fixed that.
+
+v14:
+- rebased on top of palmer/sbi-v3. Thus dropped clement's FWFT patches
+  Updated RISCV_ISA_EXT_XXXX in hwcap and hwprobe constants.
+- Took Radim's suggestions on bitfields.
+- Placed cfi_state at the end of thread_info block so that current situation
+  is not disturbed with respect to member fields of thread_info in single
+  cacheline.
+
+v13:
+- cpu_supports_shadow_stack/cpu_supports_indirect_br_lp_instr uses
+  riscv_has_extension_unlikely()
+- uses nops(count) to create nop slide
+- RISCV_ACQUIRE_BARRIER is not needed in `amo_user_shstk`. Removed it
+- changed ternaries to simply use implicit casting to convert to bool.
+- kernel command line allows to disable zicfilp and zicfiss independently.
+  updated kernel-parameters.txt.
+- ptrace user abi for cfi uses bitmasks instead of bitfields. Added ptrace
+  kselftest.
+- cosmetic and grammatical changes to documentation.
+
+v12:
+- It seems like I had accidently squashed arch agnostic indirect branch
+  tracking prctl and riscv implementation of those prctls. Split them again.
+- set_shstk_status/set_indir_lp_status perform CSR writes only when CPU
+  support is available. As suggested by Zong Li.
+- Some minor clean up in kselftests as suggested by Zong Li.
+
+v11:
+- patch "arch/riscv: compile vdso with landing pad" was unconditionally
+  selecting `_zicfilp` for vDSO compile. fixed that. Changed `lpad 1` to
+  to `lpad 0`. 
+v10:
+- dropped "mm: helper `is_shadow_stack_vma` to check shadow stack vma". This patch
+  is not that interesting to this patch series for risc-v. There are instances in
+  arch directories where VM_SHADOW_STACK flag is anyways used. Dropping this patch
+  to expedite merging in riscv tree.
+- Took suggestions from `Clement` on "riscv: zicfiss / zicfilp enumeration" to
+  validate presence of cfi based on config.
+- Added a patch for vDSO to have `lpad 0`. I had omitted this earlier to make sure
+  we add single vdso object with cfi enabled. But a vdso object with scheme of 
+  zero labeled landing pad is least common denominator and should work with all
+  objects of zero labeled as well as function-signature labeled objects.
+
+v9:
+- rebased on master (39a803b754d5 fix braino in "9p: fix ->rename_sem exclusion")
+- dropped "mm: Introduce ARCH_HAS_USER_SHADOW_STACK" (master has it from arm64/gcs)
+- dropped "prctl: arch-agnostic prctl for shadow stack" (master has it from arm64/gcs)
+
+v8:
+- rebased on palmer/for-next
+- dropped samuel holland's `envcfg` context switch patches.
+  they are in parlmer/for-next
+  
+v7:
+- Removed "riscv/Kconfig: enable HAVE_EXIT_THREAD for riscv"
+  Instead using `deactivate_mm` flow to clean up.
+  see here for more context
+  https://lore.kernel.org/all/20230908203655.543765-1-rick.p.edgecombe@intel.com/#t
+- Changed the header include in `kselftest`. Hopefully this fixes compile
+  issue faced by Zong Li at SiFive.
+- Cleaned up an orphaned change to `mm/mmap.c` in below patch
+  "riscv/mm : ensure PROT_WRITE leads to VM_READ | VM_WRITE"
+- Lock interfaces for shadow stack and indirect branch tracking expect arg == 0
+  Any future evolution of this interface should accordingly define how arg should
+  be setup.
+- `mm/map.c` has an instance of using `VM_SHADOW_STACK`. Fixed it to use helper
+  `is_shadow_stack_vma`.
+- Link to v6: https://lore.kernel.org/r/20241008-v5_user_cfi_series-v6-0-60d9fe073f37@rivosinc.com
+
+v6:
+- Picked up Samuel Holland's changes as is with `envcfg` placed in
+  `thread` instead of `thread_info`
+- fixed unaligned newline escapes in kselftest
+- cleaned up messages in kselftest and included test output in commit message
+- fixed a bug in clone path reported by Zong Li
+- fixed a build issue if CONFIG_RISCV_ISA_V is not selected
+  (this was introduced due to re-factoring signal context
+  management code)
+
+v5:
+- rebased on v6.12-rc1
+- Fixed schema related issues in device tree file
+- Fixed some of the documentation related issues in zicfilp/ss.rst
+  (style issues and added index)
+- added `SHADOW_STACK_SET_MARKER` so that implementation can define base
+  of shadow stack.
+- Fixed warnings on definitions added in usercfi.h when
+  CONFIG_RISCV_USER_CFI is not selected.
+- Adopted context header based signal handling as proposed by Andy Chiu
+- Added support for enabling kernel mode access to shadow stack using
+  FWFT
+  (https://github.com/riscv-non-isa/riscv-sbi-doc/blob/master/src/ext-firmware-features.adoc)
+- Link to v5: https://lore.kernel.org/r/20241001-v5_user_cfi_series-v1-0-3ba65b6e550f@rivosinc.com
+  (Note: I had an issue in my workflow due to which version number wasn't
+  picked up correctly while sending out patches)
+
+v4:
+- rebased on 6.11-rc6
+- envcfg: Converged with Samuel Holland's patches for envcfg management on per-
+thread basis.
+- vma_is_shadow_stack is renamed to is_vma_shadow_stack
+- picked up Mark Brown's `ARCH_HAS_USER_SHADOW_STACK` patch
+- signal context: using extended context management to maintain compatibility.
+- fixed `-Wmissing-prototypes` compiler warnings for prctl functions
+- Documentation fixes and amending typos.
+- Link to v4: https://lore.kernel.org/all/20240912231650.3740732-1-debug@rivosinc.com/
+
+v3:
+- envcfg
+  logic to pick up base envcfg had a bug where `ENVCFG_CBZE` could have been
+  picked on per task basis, even though CPU didn't implement it. Fixed in
+   this series.
+
+- dt-bindings
+  As suggested, split into separate commit. fixed the messaging that spec is
+  in public review
+
+- arch_is_shadow_stack change
+  arch_is_shadow_stack changed to vma_is_shadow_stack
+
+- hwprobe
+  zicfiss / zicfilp if present will get enumerated in hwprobe
+
+- selftests
+  As suggested, added object and binary filenames to .gitignore
+  Selftest binary anyways need to be compiled with cfi enabled compiler which
+  will make sure that landing pad and shadow stack are enabled. Thus removed
+  separate enable/disable tests. Cleaned up tests a bit.
+
+- Link to v3: https://lore.kernel.org/lkml/20240403234054.2020347-1-debug@rivosinc.com/
+
+v2:
+- Using config `CONFIG_RISCV_USER_CFI`, kernel support for riscv control flow
+  integrity for user mode programs can be compiled in the kernel.
+
+- Enabling of control flow integrity for user programs is left to user runtime
+
+- This patch series introduces arch agnostic `prctls` to enable shadow stack
+  and indirect branch tracking. And implements them on riscv.
+
 ---
- Documentation/iio/as5600.rst  |  84 ++++++++
- Documentation/iio/index.rst   |   1 +
- MAINTAINERS                   |   8 +
- drivers/iio/position/Kconfig  |  10 +
- drivers/iio/position/Makefile |   1 +
- drivers/iio/position/as5600.c | 373 ++++++++++++++++++++++++++++++++++
- 6 files changed, 477 insertions(+)
- create mode 100644 Documentation/iio/as5600.rst
- create mode 100644 drivers/iio/position/as5600.c
+Changes in v22:
+- Link to v21: https://lore.kernel.org/r/20251015-v5_user_cfi_series-v21-0-6a07856e90e7@rivosinc.com
 
-diff --git a/Documentation/iio/as5600.rst b/Documentation/iio/as5600.rst
-new file mode 100644
-index 000000000000..d74c4052e590
---- /dev/null
-+++ b/Documentation/iio/as5600.rst
-@@ -0,0 +1,84 @@
-+.. SPDX-License-Identifier: GPL-2.0-or-later
-+
-+=================
-+ams AS5600 driver
-+=================
-+
-+
-+Overview
-+========
-+
-+The ams AS5600 is a 12-Bit Programmable Contactless Potentiometer. Its
-+i2c address is 0x36.
-+
-+For more information, see the datasheet at
-+
-+  https://ams-osram.com/products/sensor-solutions/position-sensors/ams-as5600-position-sensor
-+
-+
-+Channels
-+========
-+
-+The driver provides **two channels**:
-+
-+- **Channel 0**: raw, unscaled angle measurement
-+- **Channel 1**: scaled angle measurement according to the configured
-+  ``ZPOS`` / ``MPOS`` range
-+
-+``ZPOS`` and ``MPOS`` let a user restrict the angle returned, which improves
-+the precision returned, since the angle returned is still in the 0 to
-+4095 range. The minimal angle recommended is 18 degrees.
-+
-+The following files are exposed under ``/sys/bus/iio/devices/iio:deviceX``
-+where X is the IIO index of the device.
-+
-++----------------+-------------------------------------------------+
-+| File           | Description                                     |
-++================+=================================================+
-+| in_angl0_raw   | Raw angle measurement                           |
-++----------------+-------------------------------------------------+
-+| in_angl0_scale | Scale for channel 0                             |
-++----------------+-------------------------------------------------+
-+| in_angl1_raw   | Adjusted angle measurement, scaled by ZPOS/MPOS |
-++----------------+-------------------------------------------------+
-+| in_angl1_scale | Scale for channel 1                             |
-++----------------+-------------------------------------------------+
-+
-+
-+Accessing the device registers
-+==============================
-+
-+The driver exposes direct register access via debugfs. This allows reading and
-+writing I2C registers for debugging or configuration.
-+
-+Assuming the device is iio:deviceX, its debugfs path will be:
-+
-+.. code-block:: sh
-+
-+  $ AS5600=/sys/kernel/debug/iio/iio:deviceX/direct_reg_access
-+
-+Locate the index of a register to access in the datasheet, then use
-+the following commands to read a value:
-+
-+.. code-block:: sh
-+
-+  $ echo <reg> > $AS5600/direct_reg_access
-+  $ cat $AS5600/direct_reg_access
-+
-+or this to write a value:
-+
-+.. code-block:: sh
-+
-+  $ echo <reg> <value> > $AS5600/direct_reg_access
-+
-+For instance, this would return the lower byte of RAW ANGLE.
-+
-+.. code-block:: sh
-+
-+  $ echo 0x0D > $AS5600/direct_reg_access
-+  $ cat $AS5600/direct_reg_access
-+
-+.. warning::
-+
-+   Register ``BURN`` (0xFF) permanently modifies device behavior.
-+   Use with caution after reading the datasheet carefully.
-diff --git a/Documentation/iio/index.rst b/Documentation/iio/index.rst
-index 315ae37d6fd4..14d097f753f1 100644
---- a/Documentation/iio/index.rst
-+++ b/Documentation/iio/index.rst
-@@ -35,6 +35,7 @@ Industrial I/O Kernel Drivers
-    adxl313
-    adxl380
-    adxl345
-+   as5600
-    bno055
-    ep93xx_adc
-    opt4060
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 46126ce2f968..ffef001ea7c4 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -1368,6 +1368,14 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/media/amphion,vpu.yaml
- F:	drivers/media/platform/amphion/
- 
-+AMS AS5600 DRIVER
-+M:	Aditya Dutt <duttaditya18@gmail.com>
-+L:	linux-iio@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/iio/position/ams,as5600.yaml
-+F:	Documentation/iio/as5600.rst
-+F:	drivers/iio/position/as5600.c
-+
- AMS AS73211 DRIVER
- M:	Christian Eggers <ceggers@arri.de>
- L:	linux-iio@vger.kernel.org
-diff --git a/drivers/iio/position/Kconfig b/drivers/iio/position/Kconfig
-index 1576a6380b53..111ed551ae79 100644
---- a/drivers/iio/position/Kconfig
-+++ b/drivers/iio/position/Kconfig
-@@ -6,6 +6,16 @@
- 
- menu "Linear and angular position sensors"
- 
-+config AS5600
-+	tristate "ams AS5600 angular position sensor"
-+	depends on I2C
-+	help
-+	  Say Y here if you want to build support for the ams 5600
-+	  12-Bit Programmable Contactless Potentiometer.
-+
-+	  To compile this driver as a module, choose M here: the module
-+	  will be called as5600.
-+
- config IQS624_POS
- 	tristate "Azoteq IQS624/625 angular position sensors"
- 	depends on MFD_IQS62X || COMPILE_TEST
-diff --git a/drivers/iio/position/Makefile b/drivers/iio/position/Makefile
-index d70902f2979d..53930681e6a4 100644
---- a/drivers/iio/position/Makefile
-+++ b/drivers/iio/position/Makefile
-@@ -4,5 +4,6 @@
- 
- # When adding new entries keep the list in alphabetical order
- 
-+obj-$(CONFIG_AS5600)		+= as5600.o
- obj-$(CONFIG_HID_SENSOR_CUSTOM_INTEL_HINGE) += hid-sensor-custom-intel-hinge.o
- obj-$(CONFIG_IQS624_POS)	+= iqs624-pos.o
-diff --git a/drivers/iio/position/as5600.c b/drivers/iio/position/as5600.c
-new file mode 100644
-index 000000000000..fe716d521548
---- /dev/null
-+++ b/drivers/iio/position/as5600.c
-@@ -0,0 +1,373 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/*
-+ * ams AS5600 -- 12-Bit Programmable Contactless Potentiometer
-+ *
-+ * Copyright (c) 2021 Frank Zago
-+ * Copyright (c) 2025 Aditya Dutt
-+ *
-+ * datasheet
-+ *    https://ams-osram.com/products/sensor-solutions/position-sensors/ams-as5600-position-sensor
-+ *
-+ * The rotating magnet is installed from 0.5mm to 3mm parallel to and
-+ * above the chip.
-+ *
-+ * The raw angle value returned by the chip is [0..4095]. The channel
-+ * 0 (in_angl0_raw) returns the unscaled and unmodified angle, always
-+ * covering the 360 degrees. The channel 1 returns the chip adjusted
-+ * angle, covering from 18 to 360 degrees, as modified by its
-+ * ZPOS/MPOS/MANG values,
-+ *
-+ * ZPOS and MPOS can be programmed through their debugfs entries. The
-+ * MANG register doesn't appear to be programmable without flashing
-+ * the chip.
-+ *
-+ * If the DIR pin is grounded, angles will increase when the magnet is
-+ * turned clockwise. If DIR is connected to Vcc, it will be the opposite.
-+ *
-+ * The i2c address of the device is 0x36.
-+ */
-+
-+#include <linux/bitfield.h>
-+#include <linux/delay.h>
-+#include <linux/i2c.h>
-+#include <linux/iio/iio.h>
-+#include <linux/module.h>
-+
-+/* Register definitions */
-+#define AS5600_REG_ZMCO              0x00
-+#define     AS5600_MASK_ZMCO         GENMASK(1, 0)
-+#define AS5600_REG_ZPOS_H            0x01
-+#define     AS5600_MASK_ZPOS_H       GENMASK(3, 0) /* bits 11:8 */
-+#define AS5600_REG_ZPOS_L            0x02
-+#define AS5600_REG_MPOS_H            0x03
-+#define     AS5600_MASK_MPOS_H       GENMASK(3, 0) /* bits 11:8 */
-+#define AS5600_REG_MPOS_L            0x04
-+#define AS5600_REG_MANG_H            0x05
-+#define     AS5600_MASK_MANG_H       GENMASK(3, 0) /* bits 11:8 */
-+#define AS5600_REG_MANG_L            0x06
-+#define AS5600_REG_CONF_H            0x07
-+#define     AS5600_MASK_CONF_H       GENMASK(5, 0)
-+#define     AS5600_MASK_SF           GENMASK(1, 0)
-+#define     AS5600_MASK_FTH          GENMASK(4, 2)
-+#define     AS5600_MASK_WD           BIT(5)
-+#define AS5600_REG_CONF_L            0x08
-+#define     AS5600_MASK_PM           GENMASK(1, 0)
-+#define     AS5600_MASK_HYST         GENMASK(3, 2)
-+#define     AS5600_MASK_OUTS         GENMASK(5, 4)
-+#define     AS5600_MASK_PWMF         GENMASK(7, 6)
-+#define AS5600_REG_STATUS            0x0B
-+#define     AS5600_MASK_STATUS       GENMASK(5, 3)
-+#define     AS5600_MASK_MH           BIT(3)
-+#define     AS5600_MASK_ML           BIT(4)
-+#define     AS5600_MASK_MD           BIT(5)
-+#define AS5600_REG_RAW_ANGLE_H       0x0C
-+#define     AS5600_MASK_RAW_ANGLE_H  GENMASK(3, 0) /* bits 11:8 */
-+#define AS5600_REG_RAW_ANGLE_L       0x0D
-+#define AS5600_REG_ANGLE_H           0x0E
-+#define     AS5600_MASK_ANGLE_H      GENMASK(3, 0) /* bits 11:8 */
-+#define AS5600_REG_ANGLE_L           0x0F
-+#define AS5600_REG_AGC               0x1A
-+#define AS5600_REG_MAGN_H            0x1B
-+#define     AS5600_MASK_MAGN_H       GENMASK(3, 0) /* bits 11:8 */
-+#define AS5600_REG_MAGN_L            0x1C
-+#define AS5600_REG_BURN              0xFF
-+
-+/* Combined 16-bit register addresses for clarity */
-+#define AS5600_REG_ZPOS              0x01
-+#define AS5600_REG_MPOS              0x03
-+#define AS5600_REG_RAW_ANGLE         0x0C
-+#define AS5600_REG_ANGLE             0x0E
-+
-+/* Field masks for the entire 2 byte */
-+#define AS5600_FIELD_ZPOS            GENMASK(11, 0)
-+#define AS5600_FIELD_MPOS            GENMASK(11, 0)
-+#define AS5600_FIELD_RAW_ANGLE       GENMASK(11, 0)
-+#define AS5600_FIELD_ANGLE           GENMASK(11, 0)
-+
-+struct as5600_priv {
-+	struct i2c_client *client;
-+	struct mutex lock;
-+	u16 zpos;
-+	u16 mpos;
-+};
-+
-+static int as5600_read_raw(struct iio_dev *indio_dev,
-+			   struct iio_chan_spec const *chan,
-+			   int *val, int *val2, long mask)
-+{
-+	struct as5600_priv *priv = iio_priv(indio_dev);
-+	u16 bitmask;
-+	s32 ret;
-+	u16 reg;
-+
-+	switch (mask) {
-+	case IIO_CHAN_INFO_RAW:
-+		if (chan->channel == 0) {
-+			reg = AS5600_REG_RAW_ANGLE;
-+			bitmask = AS5600_FIELD_RAW_ANGLE;
-+		} else {
-+			reg = AS5600_REG_ANGLE;
-+			bitmask = AS5600_FIELD_ANGLE;
-+		}
-+		ret = i2c_smbus_read_word_swapped(priv->client, reg);
-+
-+		if (ret < 0)
-+			return ret;
-+		*val = ret & bitmask;
-+
-+		return IIO_VAL_INT;
-+
-+	case IIO_CHAN_INFO_SCALE:
-+		/* Always 4096 steps, but angle range varies between
-+		 * 18 and 360 degrees.
-+		 */
-+		if (chan->channel == 0) {
-+			/* Whole angle range = 2*pi / 4096 */
-+			*val = 2 * 3141592;
-+			*val2 = 4096000000;
-+		} else {
-+			s32 range;
-+
-+			/* MPOS - ZPOS defines the active angle selection */
-+			/* Partial angle = (range / 4096) * (2*pi / 4096) */
-+			mutex_lock(&priv->lock);
-+			range = priv->mpos - priv->zpos;
-+			mutex_unlock(&priv->lock);
-+			if (range <= 0)
-+				range += 4096;
-+
-+			*val = range * 2 * 314159;
-+			*val /= 4096;
-+			*val2 = 409600000;
-+		}
-+
-+		return IIO_VAL_FRACTIONAL;
-+
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static ssize_t as5600_reg_access_read(struct as5600_priv *priv,
-+				      unsigned int reg, unsigned int *val)
-+{
-+	int ret;
-+	u8 mask;
-+
-+	switch (reg) {
-+	case AS5600_REG_ZMCO:
-+		mask = AS5600_MASK_ZMCO;
-+		break;
-+	case AS5600_REG_ZPOS_H:
-+		mask = AS5600_MASK_ZPOS_H;
-+		break;
-+	case AS5600_REG_MPOS_H:
-+		mask = AS5600_MASK_MPOS_H;
-+		break;
-+	case AS5600_REG_MANG_H:
-+		mask = AS5600_MASK_MANG_H;
-+		break;
-+	case AS5600_REG_CONF_H:
-+		mask = AS5600_MASK_CONF_H;
-+		break;
-+	case AS5600_REG_STATUS:
-+		mask = AS5600_MASK_STATUS;
-+		break;
-+	case AS5600_REG_RAW_ANGLE_H:
-+		mask = AS5600_MASK_RAW_ANGLE_H;
-+		break;
-+	case AS5600_REG_ANGLE_H:
-+		mask = AS5600_MASK_ANGLE_H;
-+		break;
-+	case AS5600_REG_MAGN_H:
-+		mask = AS5600_MASK_MAGN_H;
-+		break;
-+	case AS5600_REG_ZPOS_L:
-+	case AS5600_REG_MPOS_L:
-+	case AS5600_REG_MANG_L:
-+	case AS5600_REG_CONF_L:
-+	case AS5600_REG_RAW_ANGLE_L:
-+	case AS5600_REG_ANGLE_L:
-+	case AS5600_REG_AGC:
-+	case AS5600_REG_MAGN_L:
-+		mask = 0xFF;
-+		break;
-+	default:
-+		/* Not a readable register */
-+		return -EINVAL;
-+	}
-+
-+
-+	ret = i2c_smbus_read_byte_data(priv->client, reg);
-+	if (ret < 0)
-+		return ret;
-+
-+	/* because the chip may return garbage data in the unused bits */
-+	*val = ret & mask;
-+	return 0;
-+}
-+
-+static ssize_t as5600_reg_access_write(struct as5600_priv *priv,
-+				       unsigned int reg, unsigned int writeval)
-+{
-+	int ret;
-+	u8 mask;
-+
-+	if (writeval > 0xFF)
-+		return -EINVAL;
-+
-+	switch (reg) {
-+	case AS5600_REG_ZPOS_H:
-+		mask = AS5600_MASK_ZPOS_H;
-+		break;
-+	case AS5600_REG_MPOS_H:
-+		mask = AS5600_MASK_MPOS_H;
-+		break;
-+	case AS5600_REG_MANG_H:
-+		mask = AS5600_MASK_MANG_H;
-+		break;
-+	case AS5600_REG_CONF_H:
-+		mask = AS5600_MASK_CONF_H;
-+		break;
-+	case AS5600_REG_ZPOS_L:
-+	case AS5600_REG_MPOS_L:
-+	case AS5600_REG_MANG_L:
-+	case AS5600_REG_CONF_L:
-+	case AS5600_REG_BURN:
-+		mask = 0xFF;
-+		break;
-+	default:
-+		/* Not a writable register */
-+		return -EINVAL;
-+	}
-+
-+	ret = i2c_smbus_write_byte_data(priv->client, reg, writeval & mask);
-+	if (ret < 0)
-+		return ret;
-+
-+	/* update priv->zpos and priv->mpos */
-+	mutex_lock(&priv->lock);
-+	switch (reg) {
-+	case AS5600_REG_ZPOS_H:
-+		priv->zpos = (priv->zpos & 0x00FF) | ((writeval & mask) << 8);
-+		break;
-+	case AS5600_REG_ZPOS_L:
-+		priv->zpos = (priv->zpos & 0xFF00) | (writeval & mask);
-+		break;
-+	case AS5600_REG_MPOS_H:
-+		priv->mpos = (priv->mpos & 0x00FF) | ((writeval & mask) << 8);
-+		break;
-+	case AS5600_REG_MPOS_L:
-+		priv->mpos = (priv->mpos & 0xFF00) | (writeval & mask);
-+		break;
-+	}
-+	mutex_unlock(&priv->lock);
-+	return 0;
-+}
-+
-+static int as5600_reg_access(struct iio_dev *indio_dev, unsigned int reg,
-+			     unsigned int writeval, unsigned int *readval)
-+{
-+	struct as5600_priv *priv = iio_priv(indio_dev);
-+	int ret;
-+
-+	if (readval) {
-+		ret = as5600_reg_access_read(priv, reg, readval);
-+	} else {
-+		ret = as5600_reg_access_write(priv, reg, writeval);
-+	}
-+
-+	return ret;
-+}
-+
-+static const struct iio_chan_spec as5600_channels[] = {
-+	{
-+		.type = IIO_ANGL,
-+		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
-+			BIT(IIO_CHAN_INFO_SCALE),
-+		.indexed = 1,
-+		.channel = 0,
-+	},
-+	{
-+		.type = IIO_ANGL,
-+		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
-+			BIT(IIO_CHAN_INFO_SCALE),
-+		.indexed = 1,
-+		.channel = 1,
-+	},
-+};
-+
-+static const struct iio_info as5600_info = {
-+	.read_raw = &as5600_read_raw,
-+	.debugfs_reg_access = &as5600_reg_access,
-+};
-+
-+static int as5600_probe(struct i2c_client *client)
-+{
-+	struct as5600_priv *priv;
-+	struct iio_dev *indio_dev;
-+	int ret;
-+
-+	indio_dev = devm_iio_device_alloc(&client->dev, sizeof(*priv));
-+	if (!indio_dev)
-+		return -ENOMEM;
-+
-+	priv = iio_priv(indio_dev);
-+	i2c_set_clientdata(client, indio_dev);
-+	priv->client = client;
-+	mutex_init(&priv->lock);
-+
-+	indio_dev->info = &as5600_info;
-+	indio_dev->name = "as5600";
-+	indio_dev->modes = INDIO_DIRECT_MODE;
-+	indio_dev->channels = as5600_channels;
-+	indio_dev->num_channels = ARRAY_SIZE(as5600_channels);
-+
-+	ret = i2c_smbus_read_byte_data(client, AS5600_REG_STATUS);
-+	if (ret < 0)
-+		return ret;
-+
-+	/* No magnet present could be a problem. */
-+	if ((ret & AS5600_MASK_MD) == 0)
-+		dev_warn(&client->dev, "Magnet not detected\n");
-+
-+	ret = i2c_smbus_read_word_swapped(client, AS5600_REG_ZPOS);
-+	if (ret < 0)
-+		return ret;
-+	priv->zpos = ret & AS5600_FIELD_ZPOS;
-+
-+	ret = i2c_smbus_read_word_swapped(client, AS5600_REG_MPOS);
-+	if (ret < 0)
-+		return ret;
-+	priv->mpos = ret & AS5600_FIELD_MPOS;
-+
-+	return devm_iio_device_register(&client->dev, indio_dev);
-+}
-+
-+static const struct i2c_device_id as5600_id[] = {
-+	{ "as5600" },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(i2c, as5600_id);
-+
-+static const struct of_device_id as5600_match[] = {
-+	{ .compatible = "ams,as5600" },
-+	{ },
-+};
-+MODULE_DEVICE_TABLE(of, as5600_match);
-+
-+static struct i2c_driver as5600_driver = {
-+	.driver = {
-+		.name = "as5600",
-+		.of_match_table = as5600_match,
-+	},
-+	.probe = as5600_probe,
-+	.id_table   = as5600_id,
-+};
-+
-+module_i2c_driver(as5600_driver);
-+
-+MODULE_AUTHOR("Frank Zago <frank@zago.net>");
-+MODULE_AUTHOR("Aditya Dutt <duttaditya18@gmail.com>");
-+MODULE_DESCRIPTION("ams AS5600 Position Sensor");
-+MODULE_LICENSE("GPL");
--- 
-2.34.1
+Changes in v21:
+- Link to v20: https://lore.kernel.org/r/20251013-v5_user_cfi_series-v20-0-b9de4be9912e@rivosinc.com
+
+Changes in v20:
+- Link to v19: https://lore.kernel.org/r/20250731-v5_user_cfi_series-v19-0-09b468d7beab@rivosinc.com
+
+Changes in v19:
+- Link to v18: https://lore.kernel.org/r/20250711-v5_user_cfi_series-v18-0-a8ee62f9f38e@rivosinc.com
+
+Changes in v18:
+- Link to v17: https://lore.kernel.org/r/20250604-v5_user_cfi_series-v17-0-4565c2cf869f@rivosinc.com
+
+Changes in v17:
+- Link to v16: https://lore.kernel.org/r/20250522-v5_user_cfi_series-v16-0-64f61a35eee7@rivosinc.com
+
+Changes in v16:
+- Link to v15: https://lore.kernel.org/r/20250502-v5_user_cfi_series-v15-0-914966471885@rivosinc.com
+
+Changes in v15:
+- changelog posted just below cover letter
+- Link to v14: https://lore.kernel.org/r/20250429-v5_user_cfi_series-v14-0-5239410d012a@rivosinc.com
+
+Changes in v14:
+
+- changelog posted just below cover letter
+- Link to v13: https://lore.kernel.org/r/20250424-v5_user_cfi_series-v13-0-971437de586a@rivosinc.com
+
+Changes in v13:
+- changelog posted just below cover letter
+- Link to v12: https://lore.kernel.org/r/20250314-v5_user_cfi_series-v12-0-e51202b53138@rivosinc.com
+
+Changes in v12:
+- changelog posted just below cover letter
+- Link to v11: https://lore.kernel.org/r/20250310-v5_user_cfi_series-v11-0-86b36cbfb910@rivosinc.com
+
+Changes in v11:
+- changelog posted just below cover letter
+- Link to v10: https://lore.kernel.org/r/20250210-v5_user_cfi_series-v10-0-163dcfa31c60@rivosinc.com
+
+---
+Andy Chiu (1):
+      riscv: signal: abstract header saving for setup_sigcontext
+
+Deepak Gupta (26):
+      mm: VM_SHADOW_STACK definition for riscv
+      dt-bindings: riscv: zicfilp and zicfiss in dt-bindings (extensions.yaml)
+      riscv: zicfiss / zicfilp enumeration
+      riscv: zicfiss / zicfilp extension csr and bit definitions
+      riscv: usercfi state for task and save/restore of CSR_SSP on trap entry/exit
+      riscv/mm : ensure PROT_WRITE leads to VM_READ | VM_WRITE
+      riscv/mm: manufacture shadow stack pte
+      riscv/mm: teach pte_mkwrite to manufacture shadow stack PTEs
+      riscv/mm: write protect and shadow stack
+      riscv/mm: Implement map_shadow_stack() syscall
+      riscv/shstk: If needed allocate a new shadow stack on clone
+      riscv: Implements arch agnostic shadow stack prctls
+      prctl: arch-agnostic prctl for indirect branch tracking
+      riscv: Implements arch agnostic indirect branch tracking prctls
+      riscv/traps: Introduce software check exception and uprobe handling
+      riscv/signal: save and restore of shadow stack for signal
+      riscv/kernel: update __show_regs to print shadow stack register
+      riscv/ptrace: riscv cfi status and state via ptrace and in core files
+      riscv/hwprobe: zicfilp / zicfiss enumeration in hwprobe
+      riscv: kernel command line option to opt out of user cfi
+      riscv: enable kernel access to shadow stack memory via FWFT sbi call
+      arch/riscv: dual vdso creation logic and select vdso based on hw
+      riscv: create a config for shadow stack and landing pad instr support
+      riscv: Documentation for landing pad / indirect branch tracking
+      riscv: Documentation for shadow stack on riscv
+      kselftest/riscv: kselftest for user mode cfi
+
+Jim Shu (1):
+      arch/riscv: compile vdso with landing pad and shadow stack note
+
+ Documentation/admin-guide/kernel-parameters.txt    |   8 +
+ Documentation/arch/riscv/index.rst                 |   2 +
+ Documentation/arch/riscv/zicfilp.rst               | 115 +++++
+ Documentation/arch/riscv/zicfiss.rst               | 179 +++++++
+ .../devicetree/bindings/riscv/extensions.yaml      |  14 +
+ arch/riscv/Kconfig                                 |  22 +
+ arch/riscv/Makefile                                |   8 +-
+ arch/riscv/configs/hardening.config                |   4 +
+ arch/riscv/include/asm/asm-prototypes.h            |   1 +
+ arch/riscv/include/asm/assembler.h                 |  44 ++
+ arch/riscv/include/asm/cpufeature.h                |  12 +
+ arch/riscv/include/asm/csr.h                       |  16 +
+ arch/riscv/include/asm/entry-common.h              |   2 +
+ arch/riscv/include/asm/hwcap.h                     |   2 +
+ arch/riscv/include/asm/mman.h                      |  26 +
+ arch/riscv/include/asm/mmu_context.h               |   7 +
+ arch/riscv/include/asm/pgtable.h                   |  30 +-
+ arch/riscv/include/asm/processor.h                 |   1 +
+ arch/riscv/include/asm/thread_info.h               |   3 +
+ arch/riscv/include/asm/usercfi.h                   |  95 ++++
+ arch/riscv/include/asm/vdso.h                      |  13 +-
+ arch/riscv/include/asm/vector.h                    |   3 +
+ arch/riscv/include/uapi/asm/hwprobe.h              |   2 +
+ arch/riscv/include/uapi/asm/ptrace.h               |  34 ++
+ arch/riscv/include/uapi/asm/sigcontext.h           |   1 +
+ arch/riscv/kernel/Makefile                         |   2 +
+ arch/riscv/kernel/asm-offsets.c                    |  10 +
+ arch/riscv/kernel/cpufeature.c                     |  27 +
+ arch/riscv/kernel/entry.S                          |  38 ++
+ arch/riscv/kernel/head.S                           |  27 +
+ arch/riscv/kernel/process.c                        |  27 +-
+ arch/riscv/kernel/ptrace.c                         |  95 ++++
+ arch/riscv/kernel/signal.c                         | 148 +++++-
+ arch/riscv/kernel/sys_hwprobe.c                    |   2 +
+ arch/riscv/kernel/sys_riscv.c                      |  10 +
+ arch/riscv/kernel/traps.c                          |  54 ++
+ arch/riscv/kernel/usercfi.c                        | 545 +++++++++++++++++++++
+ arch/riscv/kernel/vdso.c                           |   7 +
+ arch/riscv/kernel/vdso/Makefile                    |  40 +-
+ arch/riscv/kernel/vdso/flush_icache.S              |   4 +
+ arch/riscv/kernel/vdso/gen_vdso_offsets.sh         |   4 +-
+ arch/riscv/kernel/vdso/getcpu.S                    |   4 +
+ arch/riscv/kernel/vdso/note.S                      |   3 +
+ arch/riscv/kernel/vdso/rt_sigreturn.S              |   4 +
+ arch/riscv/kernel/vdso/sys_hwprobe.S               |   4 +
+ arch/riscv/kernel/vdso/vgetrandom-chacha.S         |   5 +-
+ arch/riscv/kernel/vdso_cfi/Makefile                |  25 +
+ arch/riscv/kernel/vdso_cfi/vdso-cfi.S              |  11 +
+ arch/riscv/mm/init.c                               |   2 +-
+ arch/riscv/mm/pgtable.c                            |  16 +
+ include/linux/cpu.h                                |   4 +
+ include/linux/mm.h                                 |   7 +
+ include/uapi/linux/elf.h                           |   2 +
+ include/uapi/linux/prctl.h                         |  27 +
+ kernel/sys.c                                       |  30 ++
+ tools/testing/selftests/riscv/Makefile             |   2 +-
+ tools/testing/selftests/riscv/cfi/.gitignore       |   3 +
+ tools/testing/selftests/riscv/cfi/Makefile         |  16 +
+ tools/testing/selftests/riscv/cfi/cfi_rv_test.h    |  82 ++++
+ tools/testing/selftests/riscv/cfi/riscv_cfi_test.c | 173 +++++++
+ tools/testing/selftests/riscv/cfi/shadowstack.c    | 385 +++++++++++++++
+ tools/testing/selftests/riscv/cfi/shadowstack.h    |  27 +
+ 62 files changed, 2475 insertions(+), 41 deletions(-)
+---
+base-commit: 3a8660878839faadb4f1a6dd72c3179c1df56787
+change-id: 20240930-v5_user_cfi_series-3dc332f8f5b2
+--
+- debug
 
 
