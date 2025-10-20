@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-228803-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228804-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFCD4BF0CA0
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 13:18:54 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1721BBF0CD0
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 13:22:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A96D83E1833
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 11:18:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8AE8518A275C
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 11:22:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 610F224886F;
-	Mon, 20 Oct 2025 11:18:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B166258CEF;
+	Mon, 20 Oct 2025 11:22:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="C1JwrdS/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YfCWxJYu"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3342D208D0;
-	Mon, 20 Oct 2025 11:18:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48D5D24886F;
+	Mon, 20 Oct 2025 11:22:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760959131; cv=none; b=HNLwLD7LA/TAWlJin8mQZQ2yZ/vff3SGFf9BTJa4DckYY+G/JKfvv4OtkX2gd9AY4TjxqA7hSGnmEJup+iNN5DlZ6id4hNsuh+40AfiUeTxCfwqtnX8o4jAzqLcF4oViy2Q2KQAFQrzcXZUlC8ynl9AoLNX/snWb/96D8WVJTvo=
+	t=1760959321; cv=none; b=HEo3BHm/m+OHEvZ67H09rH87LoC2xLIqKBoHK4nC/3qm6EsL+2SZe/LjEsN3T9RNmo2SaBhPt0yaMF2P0Sh/MRhCbyZnBk8LxN0l/K2Q+ubMUMLEn2wB/xJhNcK852URPNsaR3QTm3P9u+8N9TsBTbhrv1MaQzaNUP028hku2XY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760959131; c=relaxed/simple;
-	bh=Iy3FMNU5JJj4+eobaequ5U9DsJS3Eu2JCPZfUoHRLM0=;
+	s=arc-20240116; t=1760959321; c=relaxed/simple;
+	bh=LSHVI2VLtnjMI4kRWYUVFoVw5grvJWjCEzPh2CrLB9U=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PREPvQI88sEZIwe1KB2TS4ulaozeWhx/CZuW87cSz7tZp7Mkj0YEsxN+MPYY4YnRSN8UDDAe3IwQ62EBE8EzGue/XA8A7+VNP3BRpDdPxCF0t49OqTXugI0vugWIRxOJBI6y1nyDxdXlL2HQ5vFqdZFKa9CqtbTNhAutWTqlyXI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=C1JwrdS/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3CD51C4CEF9;
-	Mon, 20 Oct 2025 11:18:44 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=cYzj/6owDoghY2Kn0WBqLoJFjoZqDgHw0W/7kT0K1baxDQ6IvKjCxYINWVBC1t5FENQyLxjnmB6aVdQhE8VZpt0GLDX+5g0ahiYIde72l1yaM1Y2zet1sqDPLi0uVqv7DgXzsmyAeaEpD8glN9vNzArb4P4O86u6Y184HCbOhGM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YfCWxJYu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ACF8FC4CEF9;
+	Mon, 20 Oct 2025 11:21:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760959131;
-	bh=Iy3FMNU5JJj4+eobaequ5U9DsJS3Eu2JCPZfUoHRLM0=;
+	s=k20201202; t=1760959320;
+	bh=LSHVI2VLtnjMI4kRWYUVFoVw5grvJWjCEzPh2CrLB9U=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=C1JwrdS/G9cyZBVz70TdUPL5CDw4bxQC7K/UKxcbX3pIQw4jA9CPEPCJz3qzNiDJr
-	 xfrZ8qt0NuHseRzPdlugNgT1mtMdBhrm5YWRM5rMHgMyr4fJIwtYXVmLu8TwEMn3D2
-	 nWme45d69LMWaKx/HcloNPDqIXuRnNLNI2uzVLMqYv65uIPYy0lVVjOOHcpnCO1QJ5
-	 C+y57GeZXMvAZ8dyWf2gmXPuBecIsHzhtpMS+rJ4x9PO1oaYatt4Z2V1J9V/NPFfI1
-	 ULuLMnns6lTPJCXShpffMxBJExnx+W40wwyVa4jw1UFMu3XmfhxInInHRD8F7gmfZH
-	 utBZp4qVtSV3g==
-Message-ID: <a3994a92-0a36-411e-97a3-b01fd406ddd1@kernel.org>
-Date: Mon, 20 Oct 2025 13:18:43 +0200
+	b=YfCWxJYus6FG0VhGEPHSD8Fv+hUPHuzdgxzvI/yj/ZVQO+yhR1lnZxExLt1uJ+Q9j
+	 b1WuQP0XLv0ksoPGuIYH+IHHDfp5VdwtfBYHgQMxij7Scc2qyqcTcYaZ5FaO/Z8Q7A
+	 pfOX5ug/YaKv9hRFViLXK2g0Rbsln0oERYmRj/VowBzXFeMoYQot23+nguqhIdzUtU
+	 KBtNjWTBnmkeBywrJFHehgpRO2viLQXKH7W0x4MfoEYfeZk8+5+p2rgNUDwXWJSgC6
+	 nh5ebyYJ5fuhhAhhWtP0Hvny47X5+bWq1bO08Kr6GW09Df2IpqcSVXecL9a60UMnTU
+	 uNBZwtVal3QkA==
+Message-ID: <c5712c26-439f-4c20-8d36-4179f345cca1@kernel.org>
+Date: Mon, 20 Oct 2025 13:21:54 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,27 +50,27 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/3] dt-bindings: display/msm: Add SM6150 DisplayPort
- controller
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: xiangxu.yin@oss.qualcomm.com, Rob Clark <robin.clark@oss.qualcomm.com>,
- Dmitry Baryshkov <lumag@kernel.org>, Abhinav Kumar
- <abhinav.kumar@linux.dev>, Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
- Sean Paul <sean@poorly.run>, Marijn Suijten <marijn.suijten@somainline.org>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
- dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- fange.zhang@oss.qualcomm.com, yongxing.mou@oss.qualcomm.com,
- li.liu@oss.qualcomm.com
-References: <20251015-add-displayport-support-to-qcs615-devicetree-v4-0-aa2cb8470e9d@oss.qualcomm.com>
- <20251015-add-displayport-support-to-qcs615-devicetree-v4-1-aa2cb8470e9d@oss.qualcomm.com>
- <58446b2d-560f-4a7e-890a-78ae0bb92908@kernel.org>
- <f4dihh4z2nnkjcpsrmopycm6opellvv4mkpee72xjbn26nw544@sfc4oy6c2xci>
+Subject: Re: [PATCH v6 4/6] clk: samsung: add Exynos ACPM clock driver
+To: Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Peter Griffin <peter.griffin@linaro.org>,
+ =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
+ Sylwester Nawrocki <s.nawrocki@samsung.com>,
+ Chanwoo Choi <cw00.choi@samsung.com>,
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
+Cc: linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-clk@vger.kernel.org, willmcvicker@google.com, kernel-team@android.com
+References: <20251010-acpm-clk-v6-0-321ee8826fd4@linaro.org>
+ <20251010-acpm-clk-v6-4-321ee8826fd4@linaro.org>
+ <92f1c027-bacc-4537-a158-2e0890e2e8ee@kernel.org>
+ <17695fcf-f33c-4246-8d5c-b2120e9e03b1@linaro.org>
+ <2f8da425-63d9-4321-9cd3-976bbd29a52f@kernel.org>
+ <a03cd07f-8e9f-4b02-b301-f1bbb69eb7db@linaro.org>
+ <f6812244-8e8e-45b9-87b9-fe96d740a843@kernel.org>
+ <de77e673-c2f2-4293-88bf-be9c6779a5dc@linaro.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -116,52 +116,68 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <f4dihh4z2nnkjcpsrmopycm6opellvv4mkpee72xjbn26nw544@sfc4oy6c2xci>
+In-Reply-To: <de77e673-c2f2-4293-88bf-be9c6779a5dc@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 20/10/2025 13:07, Dmitry Baryshkov wrote:
-> On Sun, Oct 19, 2025 at 07:13:32PM +0200, Krzysztof Kozlowski wrote:
->> On 15/10/2025 03:53, Xiangxu Yin via B4 Relay wrote:
->>> From: Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
->>>
->>> Describe the DisplayPort controller for Qualcomm SM6150 SoC.
->>>
->>> Signed-off-by: Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
->>> ---
->>>  .../devicetree/bindings/display/msm/qcom,sm6150-mdss.yaml     | 11 +++++++++++
->>>  1 file changed, 11 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sm6150-mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sm6150-mdss.yaml
->>> index 9ac24f99d3ada1c197c9654dc9babebccae972ed..935eca23ce6b30b81b3ad778e5fcacc817a230c3 100644
->>> --- a/Documentation/devicetree/bindings/display/msm/qcom,sm6150-mdss.yaml
->>> +++ b/Documentation/devicetree/bindings/display/msm/qcom,sm6150-mdss.yaml
->>> @@ -51,6 +51,16 @@ patternProperties:
->>>        compatible:
->>>          const: qcom,sm6150-dpu
->>>  
->>> +  "^displayport-controller@[0-9a-f]+$":
->>> +    type: object
->>> +    additionalProperties: true
->>> +    properties:
->>> +      compatible:
->>> +        items:
->>> +          - const: qcom,sm6150-dp
->>> +          - const: qcom,sm8150-dp
->>
->> 6150 is compatible with 8150 or 8350? I have doubts.
+On 20/10/2025 13:02, Tudor Ambarus wrote:
 > 
-> SM6150 has the same DP controller as SM8150. SM8150 is compatible with
-> SM8350.
+> 
+> On 10/20/25 10:58 AM, Krzysztof Kozlowski wrote:
+>> On 20/10/2025 11:19, Tudor Ambarus wrote:
+>>>
+>>>
+>>> On 10/20/25 9:22 AM, Krzysztof Kozlowski wrote:
+>>>> On 20/10/2025 09:45, Tudor Ambarus wrote:
+>>>>>
+>>>>>
+>>>>> On 10/20/25 7:54 AM, Krzysztof Kozlowski wrote:
+>>>>>>> diff --git a/drivers/clk/samsung/Kconfig b/drivers/clk/samsung/Kconfig
+>>>>>>> index 76a494e95027af26272e30876a87ac293bd56dfa..70a8b82a0136b4d0213d8ff95e029c52436e5c7f 100644
+>>>>>>> --- a/drivers/clk/samsung/Kconfig
+>>>>>>> +++ b/drivers/clk/samsung/Kconfig
+>>>>>>> @@ -95,6 +95,16 @@ config EXYNOS_CLKOUT
+>>>>>>>  	  status of the certains clocks from SoC, but it could also be tied to
+>>>>>>>  	  other devices as an input clock.
+>>>>>>>  
+>>>>>>> +config EXYNOS_ACPM_CLK
+>>>>>>> +	tristate "Clock driver controlled via ACPM interface"
+>>>>>>> +	depends on EXYNOS_ACPM_PROTOCOL || (COMPILE_TEST && !EXYNOS_ACPM_PROTOCOL)
+>>>>>>
+>>>>>> I merged the patches but I don't get why we are not enabling it by
+>>>>>> default, just like every other clock driver. What is so special here?
+>>>>>
+>>>>> Thanks! Are you referring to the depends on line? I needed it otherwise
+>>>>> on randconfigs where COMPILE_TEST=y and EXYNOS_ACPM_PROTOCOL=n I get:
+>>>>
+>>>>
+>>>> No. I am referring to missing default and defconfig patch.
+>>>>
+>>>
+>>> default m or y would force compilation of EXYNOS_ACPM_CLK and
+>>> EXYNOS_ACPM_PROTOCOL for all ARCH_EXYNOS, even on Exynos platforms that
+>>> don't use ACPM. Since ACPM is not universally required by the Exynos
+>>> architecture, I thought to make it opt-in (default n).
+>>
+>>
+>> Just like every clock driver. So again - how is it different?
+> 
+> The key difference lies in the universality of the hardware interface
+> across the ARCH_EXYNOS family. If EXYNOS_AUDSS_CLK_CON, EXYNOS_CLKOUT
+> are considered core, integral, or nearly universal features across
+> Exynos SoCs, then it's alright to have them by default. I can't tell how
+> common is ACPM across the Samsung Exynos SoCs. I know it's present on
+> gs{1,2)01 and e850. Heard it mentioned around some other phone but I
+> can't remember which. Maybe we shall set to a default m when more users
+> reveal themselves? I'm of course open to drop the defconfig patch and
+> follow up with a patch setting EXYNOS_ACPM_CLK to
+> "default m if ARCH_EXYNOS" if you think it's common enough.
 
 
-So if SM6150 is EXACTLY the same as SM8150, then describe it in commit
-msg. If NOT EXACTLY the same, then probably this should be just
-compatible with 8350. Anyway, proper justification is missing.
-
-Existing commit msg is pretty useless, repeat the diff. I can read the
-diff. Commit msg should explain all the background which is not obvious.
-
+OK, we can wait till one more user appears. Although the choice is less
+about universality, but rather if this is a core SoC element. If this is
+a core SoC element, then SoC ARCH should select it (not allow to disable
+it), even if this is only for one ARCH_EXYNOS SoC.
 
 Best regards,
 Krzysztof
