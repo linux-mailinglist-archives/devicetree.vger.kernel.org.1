@@ -1,157 +1,113 @@
-Return-Path: <devicetree+bounces-228627-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228630-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3963DBEFA79
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 09:22:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 55756BEFAC1
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 09:30:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 538194ED134
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 07:20:12 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 52F654E5900
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 07:30:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39A762D9795;
-	Mon, 20 Oct 2025 07:20:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="jlDP9fC7"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5CFF2DC779;
+	Mon, 20 Oct 2025 07:30:07 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+Received: from rmisp-mx-out2.tele.net (rmisp-mx-out2.tele.net [194.208.23.37])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87DFD29ACD7;
-	Mon, 20 Oct 2025 07:20:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BB3F2DC32A;
+	Mon, 20 Oct 2025 07:30:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.208.23.37
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760944809; cv=none; b=toSVk+puDfhE8blrp4CwcCFQaCbsIx7ZKIr9km+nq6ojT1Fvekxr9nKbqOC9UfZnbNTHYeqMpDi9oz7cb1qImIAMGqwU5bFmndvfCEKhgpJ3+dTBKQ1sAXBlY2r7E0diKITTL7yUtn8fdofqgGAV5YK008wA0CLPrDfdgfVz1Tc=
+	t=1760945407; cv=none; b=fW9mdqOJ/mwoFssZ0C1MLr7aeODYMWsJ8goT3x728xof1y3HtigNRkeqwOajphwKUO8lYfZfxQknL7LHHKekdBwA3u1mLQPv5MwzTPTxgOj3YI9QUcmTjJbhsc+1Dm8Y6j7V4Og3a+CuUppLFkOEsX7C5c1Zp9deI57/tiWTKto=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760944809; c=relaxed/simple;
-	bh=UUFihtK4Ok4cUMT7emCE/58qLLeQEky4Qc5eIDDDrrg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SEFIeIbBTDRVGqP5y2cE7dzV3GHJQDqBCas4NWMwzfQd4vc8ITKYyDQee9wjsNy3hisMRf5WdoI3ZmTdQSi2EFnA5Qe53n3Maqw3jy48c0luYvtiSRiSyjD786lOXNN+9wwaZUnyGRFZcljzQSDzPNZ6UNcWrtXOGEf4tSboiJA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=jlDP9fC7; arc=none smtp.client-ip=192.198.163.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1760944807; x=1792480807;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=UUFihtK4Ok4cUMT7emCE/58qLLeQEky4Qc5eIDDDrrg=;
-  b=jlDP9fC7cqImlFqioOyL3Ucbb7kcNVjGS2wZo3OfYnLDFui27mlSYKhd
-   ZI1M54AS6qpHPxkvsC6Edvhu6ijzLcpPduxvNGjiPtIVjJnqzkrDKN0ZA
-   SBVp7ZelTUuvhg2D4fRyhn0ynphwqf/snEQkqDAtweT/NYr3EW5qubteA
-   siWUQbq4jKo/B1wtn8e9QHFkqauDfkrvnRQlB40K5SdMn9ePTHWQ1D2xD
-   d7S/7q2rJHLeprgNhJlMyryRzq2TAXopIXg6A9IDoMQC477ZxRcBlkPED
-   rBaVh1ns8QgHKdKN69xy3a6AI5VpZwhtOHrpRljxSynwv7KXEfNene6Dg
-   A==;
-X-CSE-ConnectionGUID: 4fEUnsuaSZqcSmy3qW9F5w==
-X-CSE-MsgGUID: T9Srv4kHQmu1C7K4uaanww==
-X-IronPort-AV: E=McAfee;i="6800,10657,11587"; a="63099337"
-X-IronPort-AV: E=Sophos;i="6.19,242,1754982000"; 
-   d="scan'208";a="63099337"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
-  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Oct 2025 00:20:06 -0700
-X-CSE-ConnectionGUID: QSZApNFnR6+WKt45uNjbJQ==
-X-CSE-MsgGUID: 9IjP+zuSTS6864fyXuru/Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,242,1754982000"; 
-   d="scan'208";a="214228153"
-Received: from lkp-server02.sh.intel.com (HELO 66d7546c76b2) ([10.239.97.151])
-  by fmviesa001.fm.intel.com with ESMTP; 20 Oct 2025 00:20:02 -0700
-Received: from kbuild by 66d7546c76b2 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1vAkBU-0009an-0H;
-	Mon, 20 Oct 2025 07:20:00 +0000
-Date: Mon, 20 Oct 2025 15:19:34 +0800
-From: kernel test robot <lkp@intel.com>
-To: hans.zhang@cixtech.com, bhelgaas@google.com, helgaas@kernel.org,
-	lpieralisi@kernel.org, kw@linux.com, mani@kernel.org,
-	robh@kernel.org, kwilczynski@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	mpillai@cadence.com, fugang.duan@cixtech.com,
-	guoyin.chen@cixtech.com, peter.chen@cixtech.com,
-	cix-kernel-upstream@cixtech.com, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Hans Zhang <hans.zhang@cixtech.com>
-Subject: Re: [PATCH v10 04/10] PCI: cadence: Add support for High Perf
- Architecture (HPA) controller
-Message-ID: <202510201553.x7S0SaZ1-lkp@intel.com>
-References: <20251020042857.706786-5-hans.zhang@cixtech.com>
+	s=arc-20240116; t=1760945407; c=relaxed/simple;
+	bh=9Kv38v3pXX1RQ2lUomC953RpK4CdfHZugSxrpBIqqRA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=C7zbSzMP823vh17BJ4CHDWev4vUJtfK/A5GLhOf/hkhduW9DdVKDUBaOmNUe+DjSY1hYaKE+MKxTPGUR3/ZMIenOfmOc2J3xEVwbSFQx3Ah9jSbr0xovP1ff6DT8qPvj825ocfDNzceWun/W3n7pK5eDKSVDyUfh1OkT+dZhw4M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=emfend.at; spf=fail smtp.mailfrom=emfend.at; arc=none smtp.client-ip=194.208.23.37
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=emfend.at
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=emfend.at
+Received: from [192.168.0.207] (194-208-208-245.tele.net [194.208.208.245])
+	by rmisp-mx-out2.tele.net (Postfix) with ESMTPA id 0C28A10E3CAC;
+	Mon, 20 Oct 2025 09:21:15 +0200 (CEST)
+Message-ID: <c5406a18-0f2b-41c8-854c-e91e74225b61@emfend.at>
+Date: Mon, 20 Oct 2025 09:21:10 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251020042857.706786-5-hans.zhang@cixtech.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/2] media: i2c: add Himax HM1246 image sensor driver
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Hans Verkuil <hverkuil@kernel.org>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>, Hans de Goede
+ <hansg@kernel.org>, Ricardo Ribalda <ribalda@chromium.org>,
+ =?UTF-8?Q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>,
+ Tarang Raval <tarang.raval@siliconsignals.io>,
+ Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
+ Sylvain Petinot <sylvain.petinot@foss.st.com>,
+ Dongcheng Yan <dongcheng.yan@intel.com>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Alan Stern <stern@rowland.harvard.edu>,
+ Jingjing Xiong <jingjing.xiong@intel.com>,
+ Heimir Thor Sverrisson <heimir.sverrisson@gmail.com>,
+ Mehdi Djait <mehdi.djait@linux.intel.com>,
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>,
+ linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Hao Yao <hao.yao@intel.com>,
+ bsp-development.geo@leica-geosystems.com
+References: <20251017-hm1246-v4-0-e3388ea2f08c@emfend.at>
+ <20251017-hm1246-v4-2-e3388ea2f08c@emfend.at>
+ <aPP40yh7--VGpd0O@ashevche-desk.local>
+Content-Language: de-DE
+From: Matthias Fend <matthias.fend@emfend.at>
+In-Reply-To: <aPP40yh7--VGpd0O@ashevche-desk.local>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi,
+Hi Andy,
 
-kernel test robot noticed the following build warnings:
+thanks for your comment.
 
-[auto build test WARNING on 211ddde0823f1442e4ad052a2f30f050145ccada]
+Am 18.10.2025 um 22:30 schrieb Andy Shevchenko:
+> On Fri, Oct 17, 2025 at 12:49:39PM +0200, Matthias Fend wrote:
+>> Add a V4L2 sub-device driver for Himax HM1246 image sensor.
+>>
+>> The Himax HM1246-AWD is a 1/3.7-Inch CMOS image sensor SoC with an active
+>> array size of 1296 x 976. It is programmable through an I2C interface and
+>> connected via parallel bus.
+>>
+>> The sensor has an internal ISP with a complete image processing pipeline
+>> including control loops. However, this driver uses the sensor in raw mode
+>> and the entire ISP is bypassed.
+> 
+> ...
+> 
+>> +	hm1246->reset_gpio =
+>> +		devm_gpiod_get_optional(hm1246->dev, "reset", GPIOD_OUT_HIGH);
+>> +	if (IS_ERR(hm1246->reset_gpio))
+>> +		return dev_err_probe(hm1246->dev, PTR_ERR(hm1246->reset_gpio),
+>> +				     "failed to get reset GPIO\n");
+> 
+> Rely on the reset-gpio driver instead of this.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/hans-zhang-cixtech-com/PCI-cadence-Add-module-support-for-platform-controller-driver/20251020-123246
-base:   211ddde0823f1442e4ad052a2f30f050145ccada
-patch link:    https://lore.kernel.org/r/20251020042857.706786-5-hans.zhang%40cixtech.com
-patch subject: [PATCH v10 04/10] PCI: cadence: Add support for High Perf Architecture (HPA) controller
-config: i386-buildonly-randconfig-002-20251020 (https://download.01.org/0day-ci/archive/20251020/202510201553.x7S0SaZ1-lkp@intel.com/config)
-compiler: clang version 20.1.8 (https://github.com/llvm/llvm-project 87f0227cb60147a26a1eeb4fb06e3b505e9c7261)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251020/202510201553.x7S0SaZ1-lkp@intel.com/reproduce)
+Do you mean that I should use devm_reset_control_get_optional, for 
+example, to handle the reset GPIO pin?
+Unless I've missed something, no I2C image sensor seems to use that.
+The recently added driver for the OV2735 also uses the standard GPIO 
+framework for the reset pin.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202510201553.x7S0SaZ1-lkp@intel.com/
+For these reasons, I'm not quite sure if I've understood this correctly.
 
-All warnings (new ones prefixed by >>):
+Thanks
+  ~Matthias
 
->> drivers/pci/controller/cadence/pcie-cadence-host-hpa.c:96:6: warning: variable 'ret' is used uninitialized whenever 'if' condition is false [-Wsometimes-uninitialized]
-      96 |         if (rc->quirk_retrain_flag)
-         |             ^~~~~~~~~~~~~~~~~~~~~~
-   drivers/pci/controller/cadence/pcie-cadence-host-hpa.c:98:9: note: uninitialized use occurs here
-      98 |         return ret;
-         |                ^~~
-   drivers/pci/controller/cadence/pcie-cadence-host-hpa.c:96:2: note: remove the 'if' if its condition is always true
-      96 |         if (rc->quirk_retrain_flag)
-         |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~
-      97 |                 ret = cdns_pcie_retrain(pcie);
-   drivers/pci/controller/cadence/pcie-cadence-host-hpa.c:84:18: note: initialize the variable 'ret' to silence this warning
-      84 |         int retries, ret;
-         |                         ^
-         |                          = 0
-   1 warning generated.
-
-
-vim +96 drivers/pci/controller/cadence/pcie-cadence-host-hpa.c
-
-    79	
-    80	static int cdns_pcie_hpa_host_wait_for_link(struct cdns_pcie *pcie)
-    81	{
-    82		struct device *dev = pcie->dev;
-    83		struct cdns_pcie_rc *rc;
-    84		int retries, ret;
-    85	
-    86		rc = container_of(pcie, struct cdns_pcie_rc, pcie);
-    87	
-    88		/* Check if the link is up or not */
-    89		for (retries = 0; retries < LINK_WAIT_MAX_RETRIES; retries++) {
-    90			if (cdns_pcie_hpa_link_up(pcie)) {
-    91				dev_info(dev, "Link up\n");
-    92				return 0;
-    93			}
-    94			usleep_range(LINK_WAIT_USLEEP_MIN, LINK_WAIT_USLEEP_MAX);
-    95		}
-  > 96		if (rc->quirk_retrain_flag)
-    97			ret = cdns_pcie_retrain(pcie);
-    98		return ret;
-    99	}
-   100	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
 
