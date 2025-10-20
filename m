@@ -1,148 +1,113 @@
-Return-Path: <devicetree+bounces-228667-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228675-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id B860DBEFE68
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 10:22:55 +0200 (CEST)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D4FCBEFEDC
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 10:27:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 6D62D4EF3D8
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 08:22:54 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id ACD4734A3C9
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 08:27:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF5262EB5BF;
-	Mon, 20 Oct 2025 08:22:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FB9C2F12B6;
+	Mon, 20 Oct 2025 08:25:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CO7riAtY"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="UbhZz0bX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD1CC1FF60A;
-	Mon, 20 Oct 2025 08:22:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64D0E2EBB99;
+	Mon, 20 Oct 2025 08:25:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760948572; cv=none; b=KQsXGXDgpUWV21bbT6Kyh0+gJab1ZJo+Oz8Fwkj2KwU07bgm/chOXQ0cKEMuIlYNyDb6pu4Ky745PpAA8jk7pJrEPRHcekVFa90dYY7pEG3p0eAhrA03MkZzEasACVQtuXU/Pr6drcCGa1n+kTUfzxc8/2/lHcw49Svyjqid1VE=
+	t=1760948759; cv=none; b=PAODSLxUgGZHaubH1YWNUQ4h2xYwignYL9HUYG6XX2cAPyGBuO0JrCz7iEIMD0hy/kb5P/XtP6hSq24bN6yQtKVB8jdZJHXGQ/LPDxyMWA6T8Qa+GuEt4xwsIx1ZlWgQpTVD/r1fTFkb9F0VvF+SaUxABJc7sZERCob0SuXmR0k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760948572; c=relaxed/simple;
-	bh=8v23XW0hAwdFQYfOtD8IgyDFuPnLGjKXYO+djDjJjG0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=tCV7tzOODyZUAT+0QYwFJAX8cQ4ZURqMYVSHA+ZDCj26e0rto9DJho4dK8q28lCve+U2i3rdv8SEnxhi7z+isps1gF8mDoiXar3ifaitQQpBInb+/SlBOefMuN4b/m3OSwM1lCbfLquRBWQTa4f+XWUAaEe6NvypRqZ1G6fhLu4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CO7riAtY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D9242C4CEFE;
-	Mon, 20 Oct 2025 08:22:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760948572;
-	bh=8v23XW0hAwdFQYfOtD8IgyDFuPnLGjKXYO+djDjJjG0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=CO7riAtYyjd3ndpj4ZESkP2rNvWii9tOnrQYxKO+6ne6Ca0nYzmbQ8izewzcWp7mG
-	 CkDHN0/Qs8Zjr2Oq9TY5bCFNaQdTfmR7ecBoerf+kxxVm7AEzJll2A8hCq6zm56M/X
-	 w91KslbEp8kgrefO+MdYKZp/+UKM4O/7rH80DUEqqvYdMqwyZin5FbxEIc9svWS7iP
-	 mocOHcnwyQHqpIMcvrq3pNwJ+Qt+whC+Qfyg5gG3hhdAJzslvWRVgFRhqubWGOa1JM
-	 oIbuDI8DvoSJTnxphq5uPkTCswYvfQDBYj1HW36sl0P/0QTxZZodheDNxVCBOveV+O
-	 OaJ9oIdVnk4oQ==
-Message-ID: <2f8da425-63d9-4321-9cd3-976bbd29a52f@kernel.org>
-Date: Mon, 20 Oct 2025 10:22:45 +0200
+	s=arc-20240116; t=1760948759; c=relaxed/simple;
+	bh=6rUczfMk0139hnj6WC/mItzsddJzFcXLQO6QjFYakvA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ogOhPHp1cDONULoC/zwkLj5XNDWFh7xFSn9ALsQyzHSAMGQJ14qreShifaGEkvxPORpWzB+0hPZy4M3RvS/QiqldlIdlZQspzGxrA9EpVw1zBrES674Wc2EYyFc59mHBGsDctloIEO4hXfjc5jJe7gpX1GHrBGhW83rbTfxxMgI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=UbhZz0bX; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Transfer-Encoding:MIME-Version:Message-ID:Date:
+	Subject:Cc:To:From:Reply-To:Content-Type:In-Reply-To:References;
+	bh=wGVaL8ZXz08MYLs41kERmlA/MzErRlXr5si+49dXDbw=; b=UbhZz0bXI2wfJ4VRYaZGhN0+pe
+	PxbtZDraakyULxzeZn++PGmRjHhrq9DFRFuiZjgWGo2m2jhzlavDfE0uWCtmVRHi9zr5m+ASNct1R
+	F26pghlil5tKauQeoCKutKVaI1TxOt38HigcDS/DzZfFkEI+dRPJWEus33p8j8IQfwo58XNfuIVaR
+	owRLKwvDZ0JVSoFNZv/4ddCzSWNEXVLDrAFqh0c/5EVHiEwP7h4CujSSoDChHQ/TIEvCScXMyP8WC
+	yqD2oTPSOqpfRVdof1U7yeJWb5OyW8EXK+a0VZkg+Z2op8/tc7MzgqaW6rcJmpZbOlI+C28E0gQrB
+	4AK3P8wQ==;
+Received: from [141.76.253.240] (helo=phil.eduroam.local)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1vAlCx-00078O-M9; Mon, 20 Oct 2025 10:25:35 +0200
+From: Heiko Stuebner <heiko@sntech.de>
+To: heiko@sntech.de
+Cc: maarten.lankhorst@linux.intel.com,
+	mripard@kernel.org,
+	tzimmermann@suse.de,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	quentin.schulz@cherry.de,
+	andy.yan@rock-chips.com,
+	dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	cn.liweihao@gmail.com
+Subject: [PATCH 0/9] Gernal RK3368 HDMI support and 2 outputs for RK3368-Lion
+Date: Mon, 20 Oct 2025 10:24:59 +0200
+Message-ID: <20251020082508.3636511-1-heiko@sntech.de>
+X-Mailer: git-send-email 2.47.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 4/6] clk: samsung: add Exynos ACPM clock driver
-To: Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Peter Griffin <peter.griffin@linaro.org>,
- =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
- Sylwester Nawrocki <s.nawrocki@samsung.com>,
- Chanwoo Choi <cw00.choi@samsung.com>,
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
-Cc: linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-clk@vger.kernel.org, willmcvicker@google.com, kernel-team@android.com
-References: <20251010-acpm-clk-v6-0-321ee8826fd4@linaro.org>
- <20251010-acpm-clk-v6-4-321ee8826fd4@linaro.org>
- <92f1c027-bacc-4537-a158-2e0890e2e8ee@kernel.org>
- <17695fcf-f33c-4246-8d5c-b2120e9e03b1@linaro.org>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <17695fcf-f33c-4246-8d5c-b2120e9e03b1@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 20/10/2025 09:45, Tudor Ambarus wrote:
-> 
-> 
-> On 10/20/25 7:54 AM, Krzysztof Kozlowski wrote:
->>> diff --git a/drivers/clk/samsung/Kconfig b/drivers/clk/samsung/Kconfig
->>> index 76a494e95027af26272e30876a87ac293bd56dfa..70a8b82a0136b4d0213d8ff95e029c52436e5c7f 100644
->>> --- a/drivers/clk/samsung/Kconfig
->>> +++ b/drivers/clk/samsung/Kconfig
->>> @@ -95,6 +95,16 @@ config EXYNOS_CLKOUT
->>>  	  status of the certains clocks from SoC, but it could also be tied to
->>>  	  other devices as an input clock.
->>>  
->>> +config EXYNOS_ACPM_CLK
->>> +	tristate "Clock driver controlled via ACPM interface"
->>> +	depends on EXYNOS_ACPM_PROTOCOL || (COMPILE_TEST && !EXYNOS_ACPM_PROTOCOL)
->>
->> I merged the patches but I don't get why we are not enabling it by
->> default, just like every other clock driver. What is so special here?
-> 
-> Thanks! Are you referring to the depends on line? I needed it otherwise
-> on randconfigs where COMPILE_TEST=y and EXYNOS_ACPM_PROTOCOL=n I get:
+This series adds the necessary bits for HDMI output on RK3368 and enables
+this on RK3368-Lion. At the same time, use the recently added DSI support
+to enable the generic Video-Demo-adapter as an overlay on Lion as well.
 
 
-No. I am referring to missing default and defconfig patch.
+The reason I'm shaving this Yak is that the recently added DSI support
+created DTC warnings about a single endpoint with an address.
+
+So it was either removing the @0 from the endpoint, or adding a second
+output option :-) .
 
 
+Heiko Stuebner (9):
+  dt-bindings: display: rockchip: dw-hdmi: Add compatible for RK3368
+    HDMI
+  drm/rockchip: hdmi: add RK3368 controller variant
+  soc: rockchip: grf: Add select correct PWM implementation on RK3368
+  arm64: dts: rockchip: Add power-domain to RK3368 DSI controller
+  arm64: dts: rockchip: Add power-domain to RK3368 VOP controller
+  arm64: dts: rockchip: Use phandle for i2c_lvds_blc on rk3368-lion
+    haikou
+  arm64: dts: rockchip: Add HDMI node to RK3368
+  arm64: dts: rockchip: Enable HDMI output on RK3368-Lion-Haikou
+  arm64: dts: rockchip: Add the Video-Demo overlay for Lion Haikou
 
-Best regards,
-Krzysztof
+ .../display/rockchip/rockchip,dw-hdmi.yaml    |   1 +
+ arch/arm64/boot/dts/rockchip/Makefile         |   5 +
+ .../rk3368-lion-haikou-video-demo.dtso        | 174 ++++++++++++++++++
+ .../boot/dts/rockchip/rk3368-lion-haikou.dts  |  36 +++-
+ arch/arm64/boot/dts/rockchip/rk3368.dtsi      |  45 +++++
+ drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c   |  16 ++
+ drivers/soc/rockchip/grf.c                    |   1 +
+ 7 files changed, 268 insertions(+), 10 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3368-lion-haikou-video-demo.dtso
+
+-- 
+2.47.2
+
 
