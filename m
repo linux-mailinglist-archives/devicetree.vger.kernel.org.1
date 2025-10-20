@@ -1,55 +1,54 @@
-Return-Path: <devicetree+bounces-228889-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228890-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7AC84BF1B30
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 16:03:09 +0200 (CEST)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 172E2BF1B51
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 16:04:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0677518A29A2
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 14:03:33 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 90AF434CF97
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 14:04:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27FBB31DD82;
-	Mon, 20 Oct 2025 14:03:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 200E7320CAD;
+	Mon, 20 Oct 2025 14:04:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="VDIf1diV"
+	dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b="JogvuJnh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from ixit.cz (ip-94-112-25-9.bb.vodafone.cz [94.112.25.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1755E1607A4;
-	Mon, 20 Oct 2025 14:03:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 483A61684B0;
+	Mon, 20 Oct 2025 14:03:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=94.112.25.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760968985; cv=none; b=er6/HhnW2FtAVOdaSTg8QfA5VhAzBPauoBgnaTg8ADX6ehiSR1rMefNa03wYRkFFVZzRTEbdHOOHFqUdQCLuaYJKO9WBvSOKrvq3OYhCm82Vpk+RhQZfp6SVtavCZTKs0ddMpsyK1oIqEK2acvKW5hFqsR7fBR9I4o8OZOolaiE=
+	t=1760969040; cv=none; b=F/4kL/yvil0oclp6UhjVlMM6Xo4vhainyqW89OSyBaLVzzNWk21J37Bvip2X1Yja3cPbq3AFrP6aMIGf5v+A5KMRbNoL7p01j1jIw1wmKDo1R/vr+WV6P/bW0R5Sb4wYDpywbdKpuBNg3bMPfw6xxkHhEiaz5vMZmAQ8Qb6yYa8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760968985; c=relaxed/simple;
-	bh=wa/LFx+3nxvEsI8+aKge1iAS1QhaGGNlrbnB3buk7SI=;
+	s=arc-20240116; t=1760969040; c=relaxed/simple;
+	bh=btjEQO5WGFEITSL2Qu0TwJo19bxva8VXFu4dsNQmnr0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=HftYHxLPBzUlqB084iKcrqOIuVmj5d7lNMD2bMxYCZjoDRhMnflXYr2YdZ6XAXPeGU2c4+tUPVuqh4CTM9wl7tci9vBkLUz+Lcq4zfP4WxNirXrVuMAs1V5MuyGdixgQx29K/vXedFxxVJIBJ3sqYVqgj4wpbdpfRuqlmzAgafA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=VDIf1diV; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1760968980;
-	bh=wa/LFx+3nxvEsI8+aKge1iAS1QhaGGNlrbnB3buk7SI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=VDIf1diVrnftwL38ZREdQLDRwHdtKgievZhFbibJhQFutwAztvjM5o0Ofy8B+MuJ1
-	 gbB2fB5zCNc+lFbJoxBbEDZzf1uheBzC+Nlx9sun+NUI/d/KYBq3Ff28STT0H965tq
-	 nnrbsAdRosSrONRkoiNeZgNC8PuvSRPgPpkICA0Q54jAzdpR5hhw1tu2Y1cS27zwJX
-	 FRg9vM1KZf5TCg1umqLDbOg3lDUSE36e1IEZJfrh77+iTevPfFGOU0jL5YfxqKJ1H/
-	 gzueE+BKPyTjIQVERY1kpaRD5P4l5aKwVvJQygCbM/bzM0GDjLk7n4Ja3+QPhI/Axl
-	 9w4l4cXjKqsWA==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	 In-Reply-To:Content-Type; b=kOg6Qctw5drBsEO8ueYBLe5xpAs5PNFhLqbmqHb0O+61eQpLQ+8hoKDUdI/f/AxDETXULIINbwofd4S5OapeIjb85iAgq5BSufbDWUHP/FhJpxlECVlbsGk7Jq0Hm0sbZFzAiNNwVPkDteSt/XAcRgaK3DDoPFPKv6RgNZ9v7IE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz; spf=pass smtp.mailfrom=ixit.cz; dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b=JogvuJnh; arc=none smtp.client-ip=94.112.25.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ixit.cz
+Received: from [10.0.0.200] (unknown [10.0.0.1])
 	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	 key-exchange x25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
 	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 0AF5A17E0456;
-	Mon, 20 Oct 2025 16:02:59 +0200 (CEST)
-Message-ID: <8453efd3-630e-4f2c-950d-88a73927cc54@collabora.com>
-Date: Mon, 20 Oct 2025 16:02:58 +0200
+	by ixit.cz (Postfix) with ESMTPSA id 63DA1534109C;
+	Mon, 20 Oct 2025 16:03:47 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
+	t=1760969027;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=wDhqgp76WpC+4iEmVhkxCNYgjRz0pZYukTW/oudD/PA=;
+	b=JogvuJnhkU7w8xxRuUmAQBjfEORbVkv37sZTFxQkyvzh2Hc6RTPWa/st4Des27rWcGGjpn
+	AU9w+fqEXCb9+tsr64v/s2jEC0OxoBYlDTWL/aiv1ZhtTct2pfrf6xs6FwPR3VUd9sE1hX
+	6A/nyE02wP4t7wlOlBaJbWl6JGPdWHg=
+Message-ID: <d3603461-c6ef-4385-9574-b708ae8ddcb4@ixit.cz>
+Date: Mon, 20 Oct 2025 16:03:47 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,191 +56,197 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 02/15] arm64: dts: mediatek: mt7981b-openwrt-one:
- Configure UART0 pinmux
-To: Daniel Golle <daniel@makrotopia.org>
-Cc: Sjoerd Simons <sjoerd@collabora.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
- Ryder Lee <ryder.lee@mediatek.com>, Jianjun Wang
- <jianjun.wang@mediatek.com>, Bjorn Helgaas <bhelgaas@google.com>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
- Manivannan Sadhasivam <mani@kernel.org>,
- Chunfeng Yun <chunfeng.yun@mediatek.com>, Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>, Lee Jones <lee@kernel.org>,
- Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Lorenzo Bianconi <lorenzo@kernel.org>, Felix Fietkau <nbd@nbd.name>,
- kernel@collabora.com, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, linux-pci@vger.kernel.org,
- linux-phy@lists.infradead.org, netdev@vger.kernel.org,
- Bryan Hinton <bryan@bryanhinton.com>
-References: <20251016-openwrt-one-network-v1-0-de259719b6f2@collabora.com>
- <20251016-openwrt-one-network-v1-2-de259719b6f2@collabora.com>
- <aPDnT4tuSzNDzyAE@makrotopia.org>
- <5f430ff9-d701-426a-bf93-5290e6912eb4@collabora.com>
- <aPEfUBl6fMe6QYdY@makrotopia.org>
- <82594ce7-f093-4753-b808-cd234845aed8@collabora.com>
- <aPYq4cnaAHu5ags5@makrotopia.org>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Subject: Re: [PATCH v3 2/8] arm64: dts: qcom: sdm845-oneplus: Describe panel
+ vci and poc supplies
+To: Casey Connolly <casey.connolly@linaro.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Thierry Reding
+ <thierry.reding@gmail.com>, Sam Ravnborg <sam@ravnborg.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>,
+ Jessica Zhang <jesszhan0024@gmail.com>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ phone-devel@vger.kernel.org
+References: <20251016-s6e3fc2x01-v3-0-ce0f3566b903@ixit.cz>
+ <20251016-s6e3fc2x01-v3-2-ce0f3566b903@ixit.cz>
+ <aeb9a34a-d9ea-4027-9f61-beae73498266@linaro.org>
 Content-Language: en-US
-In-Reply-To: <aPYq4cnaAHu5ags5@makrotopia.org>
+From: David Heidelberg <david@ixit.cz>
+Autocrypt: addr=david@ixit.cz; keydata=
+ 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
+In-Reply-To: <aeb9a34a-d9ea-4027-9f61-beae73498266@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-Il 20/10/25 14:28, Daniel Golle ha scritto:
-> On Mon, Oct 20, 2025 at 12:23:14PM +0200, AngeloGioacchino Del Regno wrote:
->> Il 16/10/25 18:37, Daniel Golle ha scritto:
->>> On Thu, Oct 16, 2025 at 04:29:14PM +0200, AngeloGioacchino Del Regno wrote:
->>>> Il 16/10/25 14:38, Daniel Golle ha scritto:
->>>>> On Thu, Oct 16, 2025 at 12:08:38PM +0200, Sjoerd Simons wrote:
->>>>>> Add explicit pinctrl configuration for UART0 on the OpenWrt One board,
->>>>>>
->>>>>> Signed-off-by: Sjoerd Simons <sjoerd@collabora.com>
->>>>>> ---
->>>>>>     arch/arm64/boot/dts/mediatek/mt7981b-openwrt-one.dts | 11 +++++++++++
->>>>>>     1 file changed, 11 insertions(+)
->>>>>>
->>>>>> diff --git a/arch/arm64/boot/dts/mediatek/mt7981b-openwrt-one.dts b/arch/arm64/boot/dts/mediatek/mt7981b-openwrt-one.dts
->>>>>> index 968b91f55bb27..f836059d7f475 100644
->>>>>> --- a/arch/arm64/boot/dts/mediatek/mt7981b-openwrt-one.dts
->>>>>> +++ b/arch/arm64/boot/dts/mediatek/mt7981b-openwrt-one.dts
->>>>>> @@ -22,6 +22,17 @@ memory@40000000 {
->>>>>>     	};
->>>>>>     };
->>>>>> +&pio {
->>>>>> +	uart0_pins: uart0-pins {
->>>>>> +		mux {
->>>>>> +			function = "uart";
->>>>>> +			groups = "uart0";
->>>>>> +		};
->>>>>> +	};
->>>>>> +};
->>>>>> +
->>>>>>     &uart0 {
->>>>>> +	pinctrl-names = "default";
->>>>>> +	pinctrl-0 = <&uart0_pins>;
->>>>>>     	status = "okay";
->>>>>>     };
->>>>>
->>>>> As there is only a single possible pinctrl configuration for uart0,
->>>>> both the pinmux definition as well as the pinctrl properties should go
->>>>> into mt7981b.dtsi rather than in the board's dts.
->>>>
->>>> If there's really one single possible pin configuration for the UART0 pins,
->>>> as in, those pins *do not* have a GPIO mode, then yes I agree.
->>>>
->>>> If those pins can be as well configured as GPIOs, this goes to board DTS.
->>>
->>> I respectfully disagree and will explain below.
->>>
->>
->> Thanks a lot for taking the time to write all this - explains everything,
->> and even too much :) :)
->>
->> Though, there's something funny here! The following snippet of "main" text
->> does explain stuff that is interesting, but that I (not other people, so
->> thanks again for saying all this) know already, but.....
->>
->>> All pinmux pins on the MediaTek platform also allow being configured as
->>> GPIOs. However, if you configure those as GPIOs the consequence is that
->>> you cannot use UART0 any more at all. So using UART0 at all always
->>> implies using exactly those pins, there is no alternative to that.
->>>
->>> Hence every board with every possible uses of pins 32 and 33 (there is
->>> only RX and TX for UART0, RTS/CTS flow-control is not possible) can be
->>> represented without needing to configure the pinctrl for uart0 on the
->>> board level. There isn't going to be any variation on the board-level
->>> when it comes to uart0. Either it is enabled (status = "okay";), and
->>> that will always imply using the 'uart0' group in mode 'uart', or, in
->>> case any of the two pins of uart0 is used for something else that means
->>> uart0 cannot be enabled. Simple as that.
->>>
->>> Hence there is no need to duplicate that pinctrl settings on each and
->>> every board, as controlling the 'status' property on the board-level
->>> already gives 100% freedom.
->>>
->>
->> ...all of this is not justifying your point.
+On 20/10/2025 15:45, Casey Connolly wrote:
 > 
-> So what is the rule then? I understand the logic of describing the
-> pins eg. for uart1 only on board-level as there are actual alternatives
-> regarding the pins to be used, and if also including RTS/CTS pins.
-> Hence, for uart1, there are several possible pingroups which can be
-> used. What would be the argument to keep a pinctrl description for
-> which the SoC doesn't offer any alternatives to be on the board-level?
-> There is nothing to be decided by the board, literally 0 freedom.
+> 
+> On 16/10/2025 18:16, David Heidelberg via B4 Relay wrote:
+>> From: Casey Connolly <casey.connolly@linaro.org>
+>>
+>> There are two additional supplies used by the panel, both are GPIO
+>> controlled and are left enabled by the bootloader for continuous splash.
+>>
+>> Previously these were (incorrectly) modelled as pinctrl. Describe them
+>> properly so that the panel can control them.
+>>
+>> Fixes: 288ef8a42612 ("arm64: dts: sdm845: add oneplus6/6t devices")
+> 
+> This Fixes: is not correct, it should be the commit that first added the
+> panel to the DT since it was added after the initial DT.
+
+I double checked, it's the right commit, the panel node was added in the 
+initial commit (it's also mentioned in the commit itself)
+...
+  * Display
+...
+
+> 
+> The driver changes also need to be backported and may not apply properly
+> to stable kernels, so we should be careful with this.
+But the OnePlus 6T driver never worked before, that's why I assume the 
+backport here play very small role.
+
+If no other objection, I'll keep the Fixes tag in next version, but if 
+maintainers decides to remove it, I'm fine with it too.
+
+David
+
+>> Signed-off-by: Casey Connolly <casey.connolly@linaro.org>
+>> Co-developed-by: David Heidelberg <david@ixit.cz>
+>> Signed-off-by: David Heidelberg <david@ixit.cz>
+>> ---
+>>   .../arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi | 46 +++++++++++++++++++++-
+>>   1 file changed, 45 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
+>> index dcfffb271fcf3..1cf03047dd7ae 100644
+>> --- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
+>> @@ -162,6 +162,34 @@ ts_1p8_supply: ts-1p8-regulator {
+>>   		enable-active-high;
+>>   		regulator-boot-on;
+>>   	};
+>> +
+>> +	panel_vci_3v3: panel-vci-3v3-regulator {
+>> +		compatible = "regulator-fixed";
+>> +		regulator-name = "LCD_VCI_3V";
+>> +
+>> +		regulator-min-microvolt = <3300000>;
+>> +		regulator-max-microvolt = <3300000>;
+>> +
+>> +		gpio = <&tlmm 26 GPIO_ACTIVE_HIGH>;
+>> +		enable-active-high;
+>> +		pinctrl-0 = <&panel_vci_default>;
+>> +		pinctrl-names = "default";
+>> +		regulator-boot-on;
+>> +	};
+>> +
+>> +	panel_vddi_poc_1p8: panel-vddi-poc-regulator {
+>> +		compatible = "regulator-fixed";
+>> +		regulator-name = "VDDI_POC";
+>> +
+>> +		regulator-min-microvolt = <1800000>;
+>> +		regulator-max-microvolt = <1800000>;
+>> +
+>> +		gpio = <&tlmm 25 GPIO_ACTIVE_HIGH>;
+>> +		enable-active-high;
+>> +		pinctrl-0 = <&panel_poc_default>;
+>> +		pinctrl-names = "default";
+>> +		regulator-boot-on;
+>> +	};
+>>   };
+>>   
+>>   &adsp_pas {
+>> @@ -429,6 +457,8 @@ display_panel: panel@0 {
+>>   		reg = <0>;
+>>   
+>>   		vddio-supply = <&vreg_l14a_1p88>;
+>> +		vci-supply = <&panel_vci_3v3>;
+>> +		poc-supply = <&panel_vddi_poc_1p8>;
+>>   
+>>   		reset-gpios = <&tlmm 6 GPIO_ACTIVE_LOW>;
+>>   
+>> @@ -803,6 +833,20 @@ hall_sensor_default: hall-sensor-default-state {
+>>   		bias-disable;
+>>   	};
+>>   
+>> +	panel_vci_default: vci-state {
+>> +		pins = "gpio26";
+>> +		function = "gpio";
+>> +		drive-strength = <8>;
+>> +		bias-disable;
+>> +	};
+>> +
+>> +	panel_poc_default: poc-state {
+>> +		pins = "gpio25";
+>> +		function = "gpio";
+>> +		drive-strength = <8>;
+>> +		bias-disable;
+>> +	};
+>> +
+>>   	tri_state_key_default: tri-state-key-default-state {
+>>   		pins = "gpio40", "gpio42", "gpio26";
+>>   		function = "gpio";
+>> @@ -818,7 +862,7 @@ ts_default_pins: ts-int-state {
+>>   	};
+>>   
+>>   	panel_reset_pins: panel-reset-state {
+>> -		pins = "gpio6", "gpio25", "gpio26";
+>> +		pins = "gpio6";
+>>   		function = "gpio";
+>>   		drive-strength = <8>;
+>>   		bias-disable;
+>>
 > 
 
-As you described - the BootROM is using those two pins as UART0.
+-- 
+David Heidelberg
 
-Should you want those pins to be used as GPIOs, you'd at least get HW glitches in
-early boot phases, or you'd render emergency download mode unusable - which is not
-a good idea, not practical, and also, well, almost a stupid thing to do from the
-hardware perspective.
-
-This means that it is very, very, very unlikely (to the point that it's practically
-impossible) that those pins can ever be used for anything else that is not *the*
-one of the two functions that are supported for them (which is UART0 in this case).
-
-In this case, adding the pins at the board level would only create unnecessary
-duplication and nothing else, because, well, noone could possibly ever use those
-for anything else, again.
-
-That's the criteria.
-
-If the BootROM didn't use those pins, and those could support both GPIO mode and
-HW function mode (any: uart0, 1, 2...n, spi, i2c, whatever else), even though it
-is likely for boards to use them for one specific function, there is nothing that
-stops a HW engineer to decide to route those elsewhere and use them as a GPIO
-instead, so that's not a SoC configuration, but rather a HW implementation decision
-at the PCB level.
-
-See it like this (although this is an oversimplified view):
-  - SoC DT describes the SoC (the chip) - in this case the MT7981B chip
-  - Board DT describes decisions that were taken by the HW engineer that developed
-    the PCB on which the MT7981B was placed.
-
-Clearly, if there's a board design (usually, a "base project") that has derivatives
-(for example, a device with eMMC, one with UFS, one with both, one with two SFP,
-one with one SFP and one soldered ethernet chip on a non-exposed SFP interface,
-etc) it is ok to have a "board-common" dtsi and specific board variants on top,
-like it is done with some bananapi and some genio boards.
-
-Lots of text here - yet oversimplified. There is much more to say, but I think
-(and hope) that this is enough to make you understand the main point (of course
-feel free to throw more questions if what I wrote doesn't fully satisfy you).
-
->>
->>> (Sidenote: As even the BootROM already uses those two pins as UART for
->>> debug output,
->>
->> Funny thing is, your side note is what *fully* justifies your disagreement
->> and it's also what triggers me to say that you're right, lol :)
->>
->> Okay then, I am fine with this commit now and I can renew my
->>
->> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> 
-> Note that the patch you have just added your Reviewed-by:-tag to does
-> *not* add the uart0 pinctrl on SoC-level but board-level, so different
-> from what I argued for above.
-
-Ewwww I'm doing too may things at once. Pretty crazy days around here :)))
-
- >> Did you mean to add Reviewed-by: for that
-> (which contraticts what you just wrote) or rather to the to-be-submitted
-> v2 of this series which includes the change to move the uart0 pinctrl
-> to mt7981b.dtsi?
-
-Yeah. Sorry.
-
-I repeat then, so that this is clear: you are right, the pinctrl for UART0 on the
-MT7981B SoC must go to mt7981b.dtsi and *not* to mt7981b-openwrt-one.
-
-Cheers,
-Angelo
 
