@@ -1,80 +1,79 @@
-Return-Path: <devicetree+bounces-228577-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228578-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC55CBEF430
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 06:26:01 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BE98ABEF43C
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 06:26:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 820BA189088D
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 04:26:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7DE473E39A8
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 04:26:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C2362C08BD;
-	Mon, 20 Oct 2025 04:25:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A25812C0260;
+	Mon, 20 Oct 2025 04:25:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bytedance.com header.i=@bytedance.com header.b="NKop3VHj"
+	dkim=pass (2048-bit key) header.d=bytedance.com header.i=@bytedance.com header.b="Stmy11bH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com [209.85.210.175])
+Received: from mail-pg1-f181.google.com (mail-pg1-f181.google.com [209.85.215.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F10F72C0284
-	for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 04:25:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03F402BFC70
+	for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 04:25:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760934330; cv=none; b=ST7udQ/NfsuCZb3WZTJoZ1uyK8GbS0fB+5Zzu+gUTFgr703NirSrE2zLdJY6QsHl9fhwgHP29+xuAgDMI/kikpR5U8H4jFHogMREwRezMyXZIgWIkojgBV4lvb6skbi08K02ZVB6i6oyJJoWHMiWcev74CAQNoz5xojblt8wOhQ=
+	t=1760934338; cv=none; b=sql0W+fHavXWceD4VtaW8bEu0AVs/9soJ3Uqu/ucePNLw/QnLckyuke9CnvlwzLeWAr4Vss6gs0ofWY3wAy+BfEPP53+jcoTisgduqkclXs6fld9tnrN3C/4Y6xOIuomNimQoLUPoBdrEsdyQKQ/12UZ/WCfUrzPsRLMsUjvhGQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760934330; c=relaxed/simple;
-	bh=XEtg6rWP1BpsOjgDYdlCSvgySUgbTJhRQilYKVrS164=;
+	s=arc-20240116; t=1760934338; c=relaxed/simple;
+	bh=8hNEznhKZts7nsJ+/Md1hqEm+KtJGCPHkBh501JLIEI=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Xm05vIxnVAnbjMfU+OPU+8FYT35MBWgKD6hVP+4Tp8LKIDmbAyCbY0a9bkugxM6L0cQ1xeMgLQ44WXIcCscWkWMbB85tIoIZ9lWQCFw/I6cm6nRttqPByDPzT7fWMEo2HitWEoke/10ldS+8Xsa8lFrj5ZJCDMiYJrnD6OdJFsY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=bytedance.com; spf=pass smtp.mailfrom=bytedance.com; dkim=pass (2048-bit key) header.d=bytedance.com header.i=@bytedance.com header.b=NKop3VHj; arc=none smtp.client-ip=209.85.210.175
+	 MIME-Version; b=OGOYRFaKzBrIQI2YlDux8XTGpjNCTuitPW9tShhLrPJVG7AUl/41K9PfvgjAng0giyMxT/wY0RJbJtyukqEBEPIcaadv22z3PvO6kWOCwCXyLPV8Ta8uMtgwn116UCvcq5YSiIaJ2S5TANPP65Ox72r4pRzwYPqOQyaslQHtFqA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=bytedance.com; spf=pass smtp.mailfrom=bytedance.com; dkim=pass (2048-bit key) header.d=bytedance.com header.i=@bytedance.com header.b=Stmy11bH; arc=none smtp.client-ip=209.85.215.181
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=bytedance.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bytedance.com
-Received: by mail-pf1-f175.google.com with SMTP id d2e1a72fcca58-78f3bfe3f69so3396455b3a.2
-        for <devicetree@vger.kernel.org>; Sun, 19 Oct 2025 21:25:28 -0700 (PDT)
+Received: by mail-pg1-f181.google.com with SMTP id 41be03b00d2f7-b593def09e3so2615787a12.2
+        for <devicetree@vger.kernel.org>; Sun, 19 Oct 2025 21:25:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bytedance.com; s=google; t=1760934328; x=1761539128; darn=vger.kernel.org;
+        d=bytedance.com; s=google; t=1760934336; x=1761539136; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=eAhCsGBB1TH5AMM7lpe2ReTjbDoEFVDwsghvbOsONac=;
-        b=NKop3VHjNqndGso2Dc5/KrqRYSMNBB/m8vkCgKZq7naIyrNlhvnOxxeYodugm3Mmjf
-         nAc6xXMFx3E9kDIXoh9Tm3W7ndVMFacmPgomIdI4UEJ0yDsJB8elSX0O3VoHIq8lT1GH
-         iOJHCzBC3fOXv/p1S7+qTnDpL191zh7u2tEogBHgqhvm6+QSOF+ya4ntYkg+G1R8nDFg
-         dnnVIT6YodLJpchkL4zhLHAQqxd3p/Yl6Y1KHevjgoxJqRm5sws2jIyYXopaUg7wKEOR
-         6b70N4poNwydwUmB6renildTxQWjyK+WIX4qUJyjgo29eyocnxu+amQsgRcn0nyP4G1Y
-         BHnA==
+        bh=3Dx3bjUZwp+FDi5HGHRvFmbVTrXXeKiS0FzRK/EiFHI=;
+        b=Stmy11bHlbtB+FCDM3N72lvFypHEqmDaCdkIBk4dvYHEXWSYbZjkmUaCLg9ibvm+aV
+         +tBJT7JrQ+OWBwWUW+V7RvOPp7+dBAKV9NtfQCMefduyrAondxZDckMqpCFrzKHIX6Fa
+         uYy2RuZQUJsWzih7+a77KtJvu2TlZlWNKSXR8xpia4RXDKdAQc6Vuq4YCd9jrz/4qsg4
+         /tQUIb+B/uSJuNcuwZTTmuYjteul+9jOPHrFQ47XSAviBXnD1RnSYeL7mcohffacyoeN
+         Y6lEFIunSYFtAh3whVE20Pzbi31sbVNEbffHHXiEMGYPXfck/E81aYv+N7roEMHMPPo7
+         oViA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760934328; x=1761539128;
+        d=1e100.net; s=20230601; t=1760934336; x=1761539136;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=eAhCsGBB1TH5AMM7lpe2ReTjbDoEFVDwsghvbOsONac=;
-        b=dVKoEaZTcqF7mx/Al3FzNAOW7wU7Fa82DxocK79eKh6z8ZcacGH89CLvGlsojDUl/J
-         uk3d5Ylmnczr6Td415j5WCDcmEHlaemYRJMMW//siu5vYyTLFXNxQUyi4SdF5kR9wf+B
-         3KZ/Qu4Nib173X0MhVyjtGo8j1s/U30IgJQ3chjOGpKV5HmDezKfwRCbkmWHFzaY2mAN
-         UvNc8rpJFfohhTJtx+Rw38OBWeG8zo6ao6RUiyj4ICKNxP8OcrZNjK578lzq1oWJhPcV
-         Ncfq4tsze9Ia+4FyQST49BpVPpIoRtzP5MEPsH2sxkROSjX8nApXJDZnmGpKtBGQpXX1
-         T2KQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVeYX86GuyIf8m9ycKANquP5j2HvnRRecRkbi/x54afTqo3yBNdItsf1Pqr6tAR/Ra1QE77rQ8gFHoM@vger.kernel.org
-X-Gm-Message-State: AOJu0YzX1c9j0DYsdgCBtA+IkQoN5VY5e/iaMIGgbDKuc+sceWmkxXQJ
-	q7GderILPpukC0rkv826N2tmkBLHoAGYzIgPhsM1ahvaBcAT1r4+jOwByG8FZlsnGXwID0nZnQJ
-	isyKupEU=
-X-Gm-Gg: ASbGnctUTS1AKJEo320UcmbOefacOKR6+AiliAB3s9oquiT7Ym6vh+4xaiznNAJuIpA
-	Jn9UF3O6gq61b51/M/FtheSyqmU1XuPjOfslPhTRoPaZdVnh0dCjAQeSKWnJDY7EKOLD0rPRidf
-	z/iO+wsyEdbS37ZD0lU518YKmBHWHZW2nAiFtTzfYUVAY3TfaskDi5nTPtUEn+utgxon30ePXu8
-	0X9Te6MoaScrfWHPWTV2ed52Zal/eu6RsecnqO13NyjRFysRPuRwW4cEs2XNV/LheIVpiVZo/CL
-	+tJKwhicYix25zvuhN30rgQUqyvRrn/j2nzKeNutMkZ0KeTJt26LWjFPtZ7CNTaz/1zLI3XSSxn
-	BwrAs4msDjkPubE9gi1Z8AHT7mBblaVyVJu8WPzS9M+D1SB8oa+cay/TmC380RlH4f7XP1HpiT2
-	5Fc9bo0b0lgT+A9W9d1JyM0TL1F8nk37ehTb9dhU1Ssd5RwJvVzJYuL0fcjDLumTI=
-X-Google-Smtp-Source: AGHT+IFQr4LFijryTWzGKs84661TKpJBBbN75/B4QXkAS0iMqNHAgeauwTcUjRd7kZl/MznePhToLw==
-X-Received: by 2002:a17:902:e552:b0:290:ac36:2ed8 with SMTP id d9443c01a7336-290c9ce63d6mr128754015ad.24.1760934328020;
-        Sun, 19 Oct 2025 21:25:28 -0700 (PDT)
+        bh=3Dx3bjUZwp+FDi5HGHRvFmbVTrXXeKiS0FzRK/EiFHI=;
+        b=Tq0AyNT1m8wY2ZC2nYEIThOL/16ykeRSVbU9OO9BTtI125fphS+1WO0hkni8bwqJ4o
+         mItrvL+Cb1C/2bnBL/MWqiEU+7qBqjYvngmHl72f/0GM/j+kTImY1D4kmUZ4gVPunw+4
+         34VBktxQr5x52O+03KCvgq6WCIorNSdMxZQXq+2/1FpKIXDL0UPkZtZlgE+wKC/Xebel
+         vGBJIOn2AAN/bsHwFFwcBbAfGzjxyg2RIEuZHYPD0dPH15mNNFqLHSwRIuYMQ14+GId1
+         I+3fd5nhDiwhhRUAyPc69NJCnVI6S30zR8CYLVeB8HjEltD3h5wFqa6hSg7HeE/NrR8C
+         VfTQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUaY0c8I7WYIBhMmkb3ERoEt8fbdl3QSvRE58oEUF3MKQY6CRPHla5mK2Co1KnbWXKZQ1Kw+EDZDq7L@vger.kernel.org
+X-Gm-Message-State: AOJu0YxfYruTjZLg9hHPFV+LLOiagx++Gjj8RkB4eyIXlYAJ1ZfWZAX/
+	BiMwTlHXd3/WqcGcbtOuW8w4CUDoFZbeD5evyGHbpsGNXItxHmNWHYm01ki3WH8cY9U=
+X-Gm-Gg: ASbGnctumeINACiOaJR1gNQy2GwOqPXge61S8GVS4X3FagS2Po0L+TNTxxWtsXqlGAk
+	dtiUNEbF7HNjlXApNPf+ardYOfNF9uc6vIkL/h7Fnq0y0C+asPVp7ik489VkIfcrXH8njR6tzhu
+	1eWEOB46+EiXfdblT+IoYDySg8efzOWpze+dXty1GAZYngPl++5R7nktK//nXXXvb2ClyXBeYBw
+	SdO+GYyXEJCdlKXeJ7r+gF0fJFH6yR5Oqh15iJgI0mOW6nfSFslvnx5Z2JvPIB2SQb53ezp+zA3
+	RoKG7vchqsX7lRQnQ8xqvCKTFYWrXSnd9d5LvT1KqxhLS6wrssqJU9Nz7c6c9ApJeJJTuJ4LEHV
+	s6AD8UIAMS2A4OCHwiSiGFctQFteKSpUrUQVFfj6yj6FNRkWei7E468Ft8utSQC2r2yFwsKojGM
+	mjKyxT3QyXQvlS5dNtuVxkzphrs3lwGfLn/k4CRrY2/pQnIFdXkapJvC9pN4yzfT0=
+X-Google-Smtp-Source: AGHT+IHd1kF3POpTVpfQwriGdz/AzJEchqY/kwdyjm7t3VNt+rro2wzxG/dmQOsLktQwlvjqL1Trmw==
+X-Received: by 2002:a17:903:b48:b0:290:29ba:340f with SMTP id d9443c01a7336-290cb17c05fmr150708105ad.42.1760934336328;
+        Sun, 19 Oct 2025 21:25:36 -0700 (PDT)
 Received: from J9GPGXL7NT.bytedance.net ([61.213.176.56])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29246ec20a4sm68319325ad.7.2025.10.19.21.25.19
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29246ec20a4sm68319325ad.7.2025.10.19.21.25.28
         (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
-        Sun, 19 Oct 2025 21:25:27 -0700 (PDT)
+        Sun, 19 Oct 2025 21:25:36 -0700 (PDT)
 From: Xu Lu <luxu.kernel@bytedance.com>
 To: corbet@lwn.net,
 	paul.walmsley@sifive.com,
@@ -107,9 +106,9 @@ Cc: linux-doc@vger.kernel.org,
 	joe@perches.com,
 	lukas.bulwahn@gmail.com,
 	Xu Lu <luxu.kernel@bytedance.com>
-Subject: [PATCH v4 07/10] riscv: Apply acquire/release semantics to arch_atomic operations
-Date: Mon, 20 Oct 2025 12:24:54 +0800
-Message-ID: <20251020042457.30915-3-luxu.kernel@bytedance.com>
+Subject: [PATCH v4 08/10] riscv: Remove arch specific __atomic_acquire/release_fence
+Date: Mon, 20 Oct 2025 12:24:55 +0800
+Message-ID: <20251020042457.30915-4-luxu.kernel@bytedance.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20251020042457.30915-1-luxu.kernel@bytedance.com>
 References: <20251020042457.30915-1-luxu.kernel@bytedance.com>
@@ -121,154 +120,54 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The existing arch_atomic operations are implemented by inserting fence
-instrucitons before or after atomic instructions. This commit replaces
-them with real acquire/release semantics.
+Remove arch specific __atomic_acquire/release_fence() operations since
+they use fence instruction to simulate acquire/release order and can not
+work well with real acquire/release instructions.
 
-|-----------------------------------------------|
-|    | arch_atomic(64)_{add|sub}_return_release |
-| rl |------------------------------------------|
-|    |                amoadd.rl                 |
-|-----------------------------------------------|
-|    | arch_atomic(64)_{add|sub}_return_acquire |
-| aq |------------------------------------------|
-|    |                amoadd.aq                 |
-|-----------------------------------------------|
-
-|---------------------------------------------------------|
-|    | arch_atomic(64)_fetch_{add|sub|and|or|xor}_release |
-| rl |----------------------------------------------------|
-|    |               amo{add|and|or|xor}.rl               |
-|---------------------------------------------------------|
-|    | arch_atomic(64)_fetch_{add|sub|and|or|xor}_acquire |
-| aq |----------------------------------------------------|
-|    |               amo{add|and|or|xor}.aq               |
-|---------------------------------------------------------|
+The default generic __atomic_acuire/release_fence() now provide sequential
+order via 'fennce rw, rw'. They are rarely called since we use real
+acquire/release instructions in most of times.
 
 Signed-off-by: Xu Lu <luxu.kernel@bytedance.com>
 ---
- arch/riscv/include/asm/atomic.h | 64 +++++++++++++++++++++++++++++++++
- 1 file changed, 64 insertions(+)
+ arch/riscv/include/asm/atomic.h | 6 ------
+ arch/riscv/include/asm/fence.h  | 4 ----
+ 2 files changed, 10 deletions(-)
 
 diff --git a/arch/riscv/include/asm/atomic.h b/arch/riscv/include/asm/atomic.h
-index 5b96c2f61adb5..86291de07de62 100644
+index 86291de07de62..6ed50a283bf8b 100644
 --- a/arch/riscv/include/asm/atomic.h
 +++ b/arch/riscv/include/asm/atomic.h
-@@ -98,6 +98,30 @@ c_type arch_atomic##prefix##_fetch_##op##_relaxed(c_type i,		\
- 	return ret;							\
- }									\
- static __always_inline							\
-+c_type arch_atomic##prefix##_fetch_##op##_acquire(c_type i,		\
-+						  atomic##prefix##_t *v)	\
-+{									\
-+	register c_type ret;						\
-+	__asm__ __volatile__ (						\
-+		"	amo" #asm_op "." #asm_type ".aq %1, %2, %0"	\
-+		: "+A" (v->counter), "=r" (ret)				\
-+		: "r" (I)						\
-+		: "memory");						\
-+	return ret;							\
-+}									\
-+static __always_inline							\
-+c_type arch_atomic##prefix##_fetch_##op##_release(c_type i,		\
-+						  atomic##prefix##_t *v)	\
-+{									\
-+	register c_type ret;						\
-+	__asm__ __volatile__ (						\
-+		"	amo" #asm_op "." #asm_type ".rl %1, %2, %0"	\
-+		: "+A" (v->counter), "=r" (ret)				\
-+		: "r" (I)						\
-+		: "memory");						\
-+	return ret;							\
-+}									\
-+static __always_inline							\
- c_type arch_atomic##prefix##_fetch_##op(c_type i, atomic##prefix##_t *v)	\
- {									\
- 	register c_type ret;						\
-@@ -117,6 +141,18 @@ c_type arch_atomic##prefix##_##op##_return_relaxed(c_type i,		\
-         return arch_atomic##prefix##_fetch_##op##_relaxed(i, v) c_op I;	\
- }									\
- static __always_inline							\
-+c_type arch_atomic##prefix##_##op##_return_acquire(c_type i,		\
-+						   atomic##prefix##_t *v)	\
-+{									\
-+	return arch_atomic##prefix##_fetch_##op##_acquire(i, v) c_op I;	\
-+}									\
-+static __always_inline							\
-+c_type arch_atomic##prefix##_##op##_return_release(c_type i,		\
-+						   atomic##prefix##_t *v)	\
-+{									\
-+	return arch_atomic##prefix##_fetch_##op##_release(i, v) c_op I;	\
-+}									\
-+static __always_inline							\
- c_type arch_atomic##prefix##_##op##_return(c_type i, atomic##prefix##_t *v)	\
- {									\
-         return arch_atomic##prefix##_fetch_##op(i, v) c_op I;		\
-@@ -139,22 +175,38 @@ ATOMIC_OPS(sub, add, +, -i)
+@@ -18,12 +18,6 @@
  
- #define arch_atomic_add_return_relaxed	arch_atomic_add_return_relaxed
- #define arch_atomic_sub_return_relaxed	arch_atomic_sub_return_relaxed
-+#define arch_atomic_add_return_acquire	arch_atomic_add_return_acquire
-+#define arch_atomic_sub_return_acquire	arch_atomic_sub_return_acquire
-+#define arch_atomic_add_return_release	arch_atomic_add_return_release
-+#define arch_atomic_sub_return_release	arch_atomic_sub_return_release
- #define arch_atomic_add_return		arch_atomic_add_return
- #define arch_atomic_sub_return		arch_atomic_sub_return
+ #include <asm/cmpxchg.h>
  
- #define arch_atomic_fetch_add_relaxed	arch_atomic_fetch_add_relaxed
- #define arch_atomic_fetch_sub_relaxed	arch_atomic_fetch_sub_relaxed
-+#define arch_atomic_fetch_add_acquire	arch_atomic_fetch_add_acquire
-+#define arch_atomic_fetch_sub_acquire	arch_atomic_fetch_sub_acquire
-+#define arch_atomic_fetch_add_release	arch_atomic_fetch_add_release
-+#define arch_atomic_fetch_sub_release	arch_atomic_fetch_sub_release
- #define arch_atomic_fetch_add		arch_atomic_fetch_add
- #define arch_atomic_fetch_sub		arch_atomic_fetch_sub
+-#define __atomic_acquire_fence()					\
+-	__asm__ __volatile__(RISCV_ACQUIRE_BARRIER "" ::: "memory")
+-
+-#define __atomic_release_fence()					\
+-	__asm__ __volatile__(RISCV_RELEASE_BARRIER "" ::: "memory");
+-
+ static __always_inline int arch_atomic_read(const atomic_t *v)
+ {
+ 	return READ_ONCE(v->counter);
+diff --git a/arch/riscv/include/asm/fence.h b/arch/riscv/include/asm/fence.h
+index 182db7930edc2..9ce83e4793948 100644
+--- a/arch/riscv/include/asm/fence.h
++++ b/arch/riscv/include/asm/fence.h
+@@ -7,12 +7,8 @@
+ 	({ __asm__ __volatile__ (RISCV_FENCE_ASM(p, s) : : : "memory"); })
  
- #ifndef CONFIG_GENERIC_ATOMIC64
- #define arch_atomic64_add_return_relaxed	arch_atomic64_add_return_relaxed
- #define arch_atomic64_sub_return_relaxed	arch_atomic64_sub_return_relaxed
-+#define arch_atomic64_add_return_acquire	arch_atomic64_add_return_acquire
-+#define arch_atomic64_sub_return_acquire	arch_atomic64_sub_return_acquire
-+#define arch_atomic64_add_return_release	arch_atomic64_add_return_release
-+#define arch_atomic64_sub_return_release	arch_atomic64_sub_return_release
- #define arch_atomic64_add_return		arch_atomic64_add_return
- #define arch_atomic64_sub_return		arch_atomic64_sub_return
- 
- #define arch_atomic64_fetch_add_relaxed	arch_atomic64_fetch_add_relaxed
- #define arch_atomic64_fetch_sub_relaxed	arch_atomic64_fetch_sub_relaxed
-+#define arch_atomic64_fetch_add_acquire	arch_atomic64_fetch_add_acquire
-+#define arch_atomic64_fetch_sub_acquire	arch_atomic64_fetch_sub_acquire
-+#define arch_atomic64_fetch_add_release	arch_atomic64_fetch_add_release
-+#define arch_atomic64_fetch_sub_release	arch_atomic64_fetch_sub_release
- #define arch_atomic64_fetch_add		arch_atomic64_fetch_add
- #define arch_atomic64_fetch_sub		arch_atomic64_fetch_sub
+ #ifdef CONFIG_SMP
+-#define RISCV_ACQUIRE_BARRIER		RISCV_FENCE_ASM(r, rw)
+-#define RISCV_RELEASE_BARRIER		RISCV_FENCE_ASM(rw, w)
+ #define RISCV_FULL_BARRIER		RISCV_FENCE_ASM(rw, rw)
+ #else
+-#define RISCV_ACQUIRE_BARRIER
+-#define RISCV_RELEASE_BARRIER
+ #define RISCV_FULL_BARRIER
  #endif
-@@ -177,6 +229,12 @@ ATOMIC_OPS(xor, xor, i)
- #define arch_atomic_fetch_and_relaxed	arch_atomic_fetch_and_relaxed
- #define arch_atomic_fetch_or_relaxed	arch_atomic_fetch_or_relaxed
- #define arch_atomic_fetch_xor_relaxed	arch_atomic_fetch_xor_relaxed
-+#define arch_atomic_fetch_and_acquire	arch_atomic_fetch_and_acquire
-+#define arch_atomic_fetch_or_acquire	arch_atomic_fetch_or_acquire
-+#define arch_atomic_fetch_xor_acquire	arch_atomic_fetch_xor_acquire
-+#define arch_atomic_fetch_and_release	arch_atomic_fetch_and_release
-+#define arch_atomic_fetch_or_release	arch_atomic_fetch_or_release
-+#define arch_atomic_fetch_xor_release	arch_atomic_fetch_xor_release
- #define arch_atomic_fetch_and		arch_atomic_fetch_and
- #define arch_atomic_fetch_or		arch_atomic_fetch_or
- #define arch_atomic_fetch_xor		arch_atomic_fetch_xor
-@@ -185,6 +243,12 @@ ATOMIC_OPS(xor, xor, i)
- #define arch_atomic64_fetch_and_relaxed	arch_atomic64_fetch_and_relaxed
- #define arch_atomic64_fetch_or_relaxed	arch_atomic64_fetch_or_relaxed
- #define arch_atomic64_fetch_xor_relaxed	arch_atomic64_fetch_xor_relaxed
-+#define arch_atomic64_fetch_and_acquire	arch_atomic64_fetch_and_acquire
-+#define arch_atomic64_fetch_or_acquire	arch_atomic64_fetch_or_acquire
-+#define arch_atomic64_fetch_xor_acquire	arch_atomic64_fetch_xor_acquire
-+#define arch_atomic64_fetch_and_release	arch_atomic64_fetch_and_release
-+#define arch_atomic64_fetch_or_release	arch_atomic64_fetch_or_release
-+#define arch_atomic64_fetch_xor_release	arch_atomic64_fetch_xor_release
- #define arch_atomic64_fetch_and		arch_atomic64_fetch_and
- #define arch_atomic64_fetch_or		arch_atomic64_fetch_or
- #define arch_atomic64_fetch_xor		arch_atomic64_fetch_xor
+ 
 -- 
 2.20.1
 
