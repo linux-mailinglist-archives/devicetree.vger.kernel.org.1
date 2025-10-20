@@ -1,126 +1,244 @@
-Return-Path: <devicetree+bounces-229115-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229116-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 147DEBF3C47
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 23:35:32 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 140EDBF3C7D
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 23:45:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id B4F84351D8E
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 21:35:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 86C1218A718C
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 21:46:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6007C2EC087;
-	Mon, 20 Oct 2025 21:35:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C64F2E54BF;
+	Mon, 20 Oct 2025 21:45:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="PE7buZHj"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YF7KdDVf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f173.google.com (mail-yw1-f173.google.com [209.85.128.173])
+Received: from mail-pg1-f182.google.com (mail-pg1-f182.google.com [209.85.215.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B39F2DE71B
-	for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 21:35:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECE61225761
+	for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 21:45:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760996126; cv=none; b=bdofNHuyDNooAuXWJCAJ7JhYIj1jLqeAKMzPtU+k+hjWdQGasarT3zpHyI6AlCzPKj4HS0Sixqq31kYoizQd8heBdmzktfrQim3FvKtrnVRw8dTBT1et7iR5I8lGiccmCHQLFIiJg3UZE7AQZO8cHoX4xMETumKvQKVI9thoiqM=
+	t=1760996740; cv=none; b=QUhRYSq+8LjLnN3N/fmXixjw4lPhYLxqobB3ZY2HDIlWN0QBcY+g2CnhDhDb11p9FyDm42aR60dZZywGjw6dUyT1V0x46wh1AzsvFD/Xm7csTTT6fXD4I/s1xiragitwHeKPQM4daTy8vNyWjfYAc+YpMlAS49waHRkH2xZuozI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760996126; c=relaxed/simple;
-	bh=p+3sYnwm/zVmUqqbZ6Lan1Fe/EeeP/Xr5dbG7CHwG7Y=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=XFrchrl/qfe2wBNl9ZiqtIa+FKN0QrDOv1Z0c9vP0rqxdgnl4qVVhVMwdYeVZ/Lo8NzOvWI/F/Mbe0/CqzFC3aIOzw/RYuWpI+gcAfWrDJQtMSBdBG93akyVC1KBSew5qfElG4qQ7WbcN5WiyYfzp1YhZgbrAPtoPL4CK/sxUDo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=PE7buZHj; arc=none smtp.client-ip=209.85.128.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f173.google.com with SMTP id 00721157ae682-784966ad073so20732007b3.1
-        for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 14:35:24 -0700 (PDT)
+	s=arc-20240116; t=1760996740; c=relaxed/simple;
+	bh=G54UBFISBWTDHX0TIE9etDJVaHduShicBItI1j7PkVw=;
+	h=From:To:Cc:References:In-Reply-To:Subject:Date:Message-ID:
+	 MIME-Version:Content-Type; b=s7DJCB1wQUEr2ls2GFpmuZEfrs5nI4r3tmwlNnV23n7z1czD79q35AqQRr+l0ZCE4s1qozI5tBd/6QggaWzWG0wof2LGngNcZfkYexdkpB36sLUZg221/5zNQJvvne0a3kbSOP0aBXOguCsP2apzW8YsynegR03bvpGEkJJJas4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YF7KdDVf; arc=none smtp.client-ip=209.85.215.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f182.google.com with SMTP id 41be03b00d2f7-b556284db11so4141163a12.0
+        for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 14:45:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1760996123; x=1761600923; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=p+3sYnwm/zVmUqqbZ6Lan1Fe/EeeP/Xr5dbG7CHwG7Y=;
-        b=PE7buZHjoYUMImtbfQNuaX+nnmlXX0XVVE4OhOMIKupSEDMANMsRMetsBK08uqy9At
-         1ukTlNhpTEXQrM8BahxXobWCEbiHW7aWVf1NWaIFS3gablTeWO93iMG4LU1l9+cCvhYH
-         7tPLZf8TCIvYEugcAzJA5ee8dZgQLC2ZY6qu12KFYAw022n6+w2D/bEPPh8qiOB6GmHy
-         nGo9fDaU0220t0tuLMv4f2WWl0fLIrDUMy5DWw2lnePBzMljbpA7pzYa5Ni8uDXxb7Yb
-         +Yn+cMf8PyBX6KFf1okxtiAiwDvRW9AVz1yHmzxK4J9XtSee1T7ifpwWG2hxFnDKzp2Y
-         EPPA==
+        d=gmail.com; s=20230601; t=1760996738; x=1761601538; darn=vger.kernel.org;
+        h=thread-index:content-language:content-transfer-encoding
+         :mime-version:message-id:date:subject:in-reply-to:references:cc:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=z2/4gND7Mx7r/qp2wrFqSXY+KceudyeUTazz1//alO0=;
+        b=YF7KdDVfxJxkM25NtcSGi9Qub3VgRa6jz3uvQVLNJiU1/Y96mqmzNurujNl85NKz95
+         GxjWnQ9Es6pHO67+r11HxHKI8+NkmN5AoZR8QbDWixKajd/LqEx2qSjwPXEbxRWoEeMw
+         bhhyGHWDYk6el8EYuPDboKlAdrvZnHUU5CIqpLiIb/1urS6DMWgJGOoHu72O5aNLBttv
+         zs85hzp90HBvpE/GkFQinwozrT9sVvcxE4G56zJoGWNbhTpC++63h5b7mDp8KvXgGb7S
+         NdQHEkhJ8H8bQE0NwGE6SsZdvjjCMjdcNpBc8OeUuAjoAauFwTan4gAbvSLUwM9PFdtQ
+         F4hA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760996123; x=1761600923;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=p+3sYnwm/zVmUqqbZ6Lan1Fe/EeeP/Xr5dbG7CHwG7Y=;
-        b=bn/fmGpdecftMMeGcSF3DafcxwV6v92Tt1TL7NrHNHL91EEj3iVjJyAKMFeXXk+wC+
-         Y9Fu+ejwywOVrSJraMjr+/WJL4albBE1lGu9W9IVu/wY9/yUz6T2nsfstebVF5oq1F3Q
-         mCP38/uMqebr5tq//OegN74bqt+6BTrGo6b2lSthUxjYmzF7CKqeTi1aNlv0j4f+JJCH
-         tJ5RebNL/E99UCHtsUG8da3FkRFCQgxUMfBASVzjAyEfxoXT6Rg8vLvS9FYo131sIOCf
-         SapXCbVN2pqv5uYjTofyvhZy9NETVyksWHhm2QjySEER/8klIHhTG0EArghS5OWWmLhV
-         Btwg==
-X-Forwarded-Encrypted: i=1; AJvYcCUCj1p9pM2iYUFaDUySm1bw2SYo0JdmiE6ZsOrcR4LcISLkJ2/cyF+hB01eIyvUFaBTs/KrqhD48G9H@vger.kernel.org
-X-Gm-Message-State: AOJu0YxteTz0VBp9oda2mPNWyP4eLdVZyio4hHRkl2mAwT+4o5YQd1Kh
-	F7Dn6wRNksxWt84rNsdQEUz8L7jjZTFfc9zK6kMIsiCI3eBer+oQCbaRVd4E30ZiW6IP7ymv7up
-	kcMz+JBPHOrbFrwgrIscrw1K1Wl09KtJryJPmmilHzQ==
-X-Gm-Gg: ASbGncueuwHH99+mJq+GIsNOxcXtTIT7oTtUEgWBQ5hhSvnROECvOCLoRF9lcJUa9Fe
-	KWgFCMzwlcl5Uvt8CPzEbGyXkxTCUUEtFH9TrlZh410pdAuk5r474ARBru3+PFQ7UDJiYRXd+5v
-	YJYRI1Tok3UJsYadfZQbyxxjS5voUv5fmlpgLi3WXcxRrWOG9y98AISxpy3stfuo6cx1cMXBFjq
-	kJOBFF6D+5yVKCRYL7crT95gYLm3e583DZcKcdOb9Cmu7tHjKJF7d89Zf8gCuAwKeHdr5M=
-X-Google-Smtp-Source: AGHT+IHcbLV8sjcTUSW/kYKLFIDfgxSVgbG/hCotLfs+E1Yurw11PQwO89zUraRAtmdIvysGYrHzIqa+Gk+I+qbLfMk=
-X-Received: by 2002:a05:690e:408b:b0:63e:221e:bd38 with SMTP id
- 956f58d0204a3-63e221ebe30mr9755360d50.64.1760996123201; Mon, 20 Oct 2025
- 14:35:23 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1760996738; x=1761601538;
+        h=thread-index:content-language:content-transfer-encoding
+         :mime-version:message-id:date:subject:in-reply-to:references:cc:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=z2/4gND7Mx7r/qp2wrFqSXY+KceudyeUTazz1//alO0=;
+        b=G3DVarZ58awfryVlLJeyTsNriFr9aMrafGWfgNIE10ii6vgQ/ZatmPJkoM9IVmVzYd
+         kbSk6yqPkQJrVpIgtdoBm2waJotA018cdH9Pdev6QMutUeEOQQjsWZfZ/okqnE5OB/XU
+         34ErH/62DCUWb56yH0WyRKWVXW/4d0ofkOdpmqImp0M4XjBTlnTdLDZYJz1KKb6RfKwA
+         rJIeWIHcboQab3eMOHqnaoWUYgbxU0Rb3yPXclcRPO1v5mCTTnLtILI3gZhClcSMskzV
+         YNeJ6kGrt2qjeIMnBUHiOJkp07dpXfAD8SeGNShghftuts6F7jy8bwhF0/ogeFwH4b5w
+         d2dg==
+X-Gm-Message-State: AOJu0YyxcxvjpZinsQYxFZrqhSEkWdOS6fIXNtPJa3N5kWQPR9+Bb44O
+	MUfjWHtMSBG1czO6vknXiCIWQAXGDbxDM4q+oSi8ekGAFZvMKaVfapjK
+X-Gm-Gg: ASbGnct/nz0Do/6RdfljG5L3KZ5ReqHfh8ZEDZPvKUxeJW0Ivh0Me24Sd5JOEzTB7C7
+	IDdKU1xspf/kqRcExADVtoLdnmd1hcV9x2aey2jzYH2EFXScLd7GKtECn1dHRjWfR2IzLHaZu93
+	IzqWBKBIr2VbE4p/32sdOqAs2r1McYhHSTzFH5lW0ES2AXEE8Ou9nnbhGEHchUWceJhvHNPySdN
+	B/JWz+IUr02ZHVzCish92dYRVvRnRWyb9MvE+sRMhT4Ih1gCkGBZCePXM/TeJPu5uviGQ53pYmu
+	y5/vyV24JeBsZaE2IyBS+yYnNsZzz0xDMXYJzMHnmiMGdG0mf2CBTecMeaZYtVz26V8MQRGuTZd
+	2yfjlg1r0ieNrLJR21gV2E87Wex9hefw9Q5R+ver2WPpPxsNohBdE1yapYLnBXVTVkAq7/VxT9U
+	G+x3+qovhFHfQ=
+X-Google-Smtp-Source: AGHT+IEj4671OtILVKuHlsngYufu3DllwA9wgr0FhJ8jpb+MGiFZKLK2XCDCINjoEZzm79n5pF8KXw==
+X-Received: by 2002:a17:902:ec87:b0:258:f033:3ff9 with SMTP id d9443c01a7336-290cb65c9f1mr191393215ad.48.1760996738137;
+        Mon, 20 Oct 2025 14:45:38 -0700 (PDT)
+Received: from AIOJono ([43.243.60.50])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-33d5de7c0b7sm8938355a91.16.2025.10.20.14.45.33
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 20 Oct 2025 14:45:37 -0700 (PDT)
+From: <professorjonny98@gmail.com>
+To: "'Jacek Anaszewski'" <jacek.anaszewski@gmail.com>,
+	"'Jonathan Brophy'" <Professor_jonny@hotmail.com>,
+	"'lee Jones'" <lee@kernel.org>,
+	"'Pavel Machek'" <pavel@kernel.org>,
+	"'Rob Herring'" <robh@kernel.org>,
+	"'Krzysztof Kozlowski'" <krzk+dt@kernel.org>,
+	"'Conor Dooley'" <conor+dt@kernel.org>,
+	"'Radoslav Tsvetkov'" <rtsvetkov@gradotech.eu>
+Cc: <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>,
+	<linux-leds@vger.kernel.org>
+References: <20251019092331.49531-1-professorjonny98@gmail.com> <3df51774-9774-40e6-ae65-7621bdce0f91@gmail.com> <DS0PR84MB37465DFAA8E8994B503A69829FF4A@DS0PR84MB3746.NAMPRD84.PROD.OUTLOOK.COM> <f76b9004-46ba-4cf6-993b-004242005d07@gmail.com>
+In-Reply-To: <f76b9004-46ba-4cf6-993b-004242005d07@gmail.com>
+Subject: RE: [PATCH v3 0/4] leds: Add a virtual LED driver for groups of
+Date: Tue, 21 Oct 2025 10:45:32 +1300
+Message-ID: <003e01dc420a$df26a430$9d73ec90$@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251015232015.846282-1-robh@kernel.org>
-In-Reply-To: <20251015232015.846282-1-robh@kernel.org>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Mon, 20 Oct 2025 23:35:10 +0200
-X-Gm-Features: AS18NWBAzh5HU2QEiT3WGw7lWd7_MVL73oGUD23tlLIja0Rs_422Nhq3kpTmHsU
-Message-ID: <CACRpkdZFXxBY2AopX2bgFGE_nhXmV3YirfRwuo4L6qWzzAC4rg@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: Fix inconsistent quoting
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Stephen Boyd <sboyd@kernel.org>, Thierry Reding <thierry.reding@gmail.com>, 
-	Bartosz Golaszewski <brgl@bgdev.pl>, Shawn Guo <shawnguo@kernel.org>, Fabio Estevam <festevam@gmail.com>, 
-	=?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
-	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
-	Jonathan Cameron <jic23@kernel.org>, Andy Shevchenko <andy@kernel.org>, 
-	Jassi Brar <jassisinghbrar@gmail.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
-	Lee Jones <lee@kernel.org>, Joel Stanley <joel@jms.id.au>, 
-	Andrew Jeffery <andrew@codeconstruct.com.au>, Andrew Lunn <andrew@lunn.ch>, 
-	Vladimir Oltean <olteanv@gmail.com>, "David S. Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	Daire McNamara <daire.mcnamara@microchip.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
-	=?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
-	Manivannan Sadhasivam <mani@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, Vinod Koul <vkoul@kernel.org>, 
-	Kishon Vijay Abraham I <kishon@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Nicolas Ferre <nicolas.ferre@microchip.com>, 
-	Alexandre Belloni <alexandre.belloni@bootlin.com>, Claudiu Beznea <claudiu.beznea@tuxon.dev>, 
-	Florian Fainelli <f.fainelli@gmail.com>, Tony Lindgren <tony@atomide.com>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-iio@vger.kernel.org, linux-media@vger.kernel.org, 
-	netdev@vger.kernel.org, linux-pci@vger.kernel.org, 
-	linux-phy@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain;
+	charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
+X-Mailer: Microsoft Outlook 16.0
+Content-Language: en-nz
+Thread-Index: AQDAA4bHOIcbizYcgYktuxAF83niAAHm7xLBAL6hVhYBfb39Vbbi7GZg
 
-On Thu, Oct 16, 2025 at 1:20=E2=80=AFAM Rob Herring (Arm) <robh@kernel.org>=
- wrote:
+Hi Jacek
 
-> yamllint has gained a new check which checks for inconsistent quoting
-> (mixed " and ' quotes within a file). Fix all the cases yamllint found
-> so we can enable the check (once the check is in a release). Use
-> whichever quoting is dominate in the file.
+>From: Jacek Anaszewski <jacek.anaszewski@gmail.com>=20
+>Sent: Tuesday, 21 October 2025 7:57 AM
+>To: Jonathan Brophy <Professor_jonny@hotmail.com>; Jonathan Brophy
+<professorjonny98@gmail.com>; lee Jones <lee@kernel.org>; Pavel Machek
+<pavel@kernel.org>; Rob Herring <robh@kernel.org>; Krzysztof Kozlowski
+<krzk+dt@kernel.org>; Conor Dooley <conor+dt@kernel.org>; Radoslav =
+Tsvetkov
+><rtsvetkov@gradotech.eu>
+>Cc: devicetree@vger.kernel.org; linux-kernel@vger.kernel.org;
+linux-leds@vger.kernel.org
+>Subject: Re: [PATCH v3 0/4] leds: Add a virtual LED driver for groups =
+of
 >
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+>On 10/19/25 23:17, Jonathan Brophy wrote:
+>> on 10/20/25 3:25am Jacek Anaszewski wrote:
+>>> On 10/19/25 11:23, Jonathan Brophy wrote:
+>>=20
+>>>> From: Jonathan Brophy <professor_jonny@hotmail.com>
+>>>>
+>>>> Introduce a new driver that implements virtual LED groups,=20
+>>>> aggregating multiple monochromatic LEDs into virtual groups and=20
+>>>> providing priority-based control for concurrent state management.
+>>>
+>>>Aren't you trying to reinvent LED trigger mechanism?
+>>>
+>>>--
+>>>Best regards,
+>>>Jacek Anaszewski
+>>=20
+>> It is much simpler than that, I'm just trying to group LEDs into a =
+new=20
+>> virtual (fake) leds with some priority rules and define all this in=20
+>> the DTS.
+>>=20
+>> Consider below is a dts of my router as an example.
+>>=20
+>> The leds node is the actual status LED I have in my router three=20
+>> elements red, green and blue:
+>>=20
+>> Then I have my virtualcolor_leds node defining my groups that consist =
 
-Acked-by: Linus Walleij <linus.walleij@linaro.org>
+>> of these elements.
+>>=20
+>> I have two leds defined in each color I wish to display one that=20
+>> blinks and one that does not.
+>>=20
+>>  From here I can define all my led colors and logic pattern in the=20
+>> device tree.
+>>=20
+>> These virtual LEDs just appear as regular LEDs in sysfs.
+>>=20
+>> After a factory reset of my device I would expect the status led to =
+be=20
+>> solid yellow when it starts up then when ready to setup blink blue=20
+>> ready for setup.
+>>=20
+>> It I connected these ot standard triggers I would end up with a mess=20
+>> not knowing the status if multiple triggers operated at the same =
+time.
+>>=20
+>> Without the logic I would likely after boot have a yellow led that=20
+>> flashes white as the solid yellow would mix with the flashing blue by =
 
-Yours,
-Linus Walleij
+>> mixing of the power =A0and setting up triggers.
+>>=20
+>> I can define aliases to the virtual leds for access within user space =
+
+>> and have all the features of a normal led with out the logic =
+headache.
+>>=20
+>> My alternative is to create a driver defining logic in userspace with =
+
+>> a cronjob or as such or with a custom binary.
+>
+>Userspace "driver" or rather a service would be for sure an approach
+quicker to implement, that would not need lengthy discussion here to =
+achieve
+a consensus on the design.
+>
+>Otherwise, I would see this solution rather as a new LED trigger, that
+would allow to define the LEDs to be grouped under it. The trigger =
+interface
+would need also to allow defining patterns according to which the LEDs =
+would
+be lit.
+>
+>Still, the trigger would be a task for months, and would need much =
+analysis
+to come up with a reasonable user interface.
+>
+>--
+>Best regards,
+>Jacek Anaszewski
+
+
+The initial reason for this driver was to define aliases to point to
+standard triggers in OpenWrt I'm happy that this driver will fit my =
+purpose
+and will solve a long-standing issue of control of status LEDs without =
+other
+complicated means.
+
+If there is a better Idea to do this awesome but I am not very skilled =
+and I
+don=92t know if I will be able to implement this myself.
+Having these things bound in the DTS enable status LEDs to be able to
+connect directly to hardware triggers on things like Ethernet ports.
+
+I also have security concerns with being able to alter triggers for
+important things like warning lights from userspace for the things I =
+wish to
+attach them too.
+
+What I come up with is secure and easy to work out what is going on and =
+does
+not alter major parts of the framework.
+
+With drivers everyone creates their own driver to effectively manage LED =
+in
+their device, and it becomes a problem where the OpenWrt community has =
+to
+reverse engineer their efforts this makes it a little bit more unified =
+if
+ manufactures adopt a standard approach to led control of grouped LEDs =
+to
+format color-based status indication.
+
+My TPlink x80-5g modem router had the basis of a similar grouping =
+function
+with a similar structure in the DTS from the manufacturer but it was =
+very
+basic compared to what I have created.
+
+Best regards
+Jonathan Brophy
+
 
