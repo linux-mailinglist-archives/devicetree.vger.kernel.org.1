@@ -1,64 +1,63 @@
-Return-Path: <devicetree+bounces-228599-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228600-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8769BEF6D5
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 08:11:01 +0200 (CEST)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 84388BEF6C6
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 08:10:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1FD6E189BD5C
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 06:11:16 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 2775834936C
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 06:10:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 615BE2D3A96;
-	Mon, 20 Oct 2025 06:10:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E29812D63E5;
+	Mon, 20 Oct 2025 06:10:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="S3yl3n/b"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="ehB02E5P"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 672932D320E
-	for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 06:10:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E53E22C0284
+	for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 06:10:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760940636; cv=none; b=egfI0oAwajywuW0aXuljVB9fIMo1uXqF+RzlqWh0fBUExQKx9IHSI3rnx3qFiJ8SA/XHlKNGyYlo7ENZUkQj4h8qbajgdx7wtmSAtyF3nRgQ3IdTYQVh9jJoT+nxS4pp8sWOCh53+WGyjUZvLmu3cMp3G5hMcQKipVqXU03MbKY=
+	t=1760940637; cv=none; b=fVx7iIwWp6PTFU6XTxV39y9vU0chK34Snjb44uWnLuG55rPqVHflJtIkUd3+HWrYr8wtM+lX1OWHJtXp4OZXk17JMp7uBx4HCPtRCujgS2pZu1ityVMX/TRlWLFnIa9VNoXKGUD+6RqcOZcaFTh3mBDmb1WtVK4P7rsiNRyYvmI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760940636; c=relaxed/simple;
-	bh=OObe4ErLkWgVnTTNcfeolQYkDMV9uQu3nhmRSg3aGj0=;
+	s=arc-20240116; t=1760940637; c=relaxed/simple;
+	bh=3p1M9r8Ct679RdWEhfdTfbQqtkv5MWTUo32xa1uKPOA=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=aZMXplAQTmoo2XaG+ubCFQP7981fg/AkBS7wcVhoXuEq3DNFDvqXbEVvm6dGKAXVXZ95K96QK5pXM25KHo7ujWzS5geTa9tKDBMKlg/RwLIu3fuEQbyh8FadSsebSPBUWOgFhxJfaq+TcMVnh8fnZAA70NCF6M2k6Pd8x1hp1y0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=S3yl3n/b; arc=none smtp.client-ip=194.117.254.33
+	 MIME-Version; b=I7uoER0ARkKc0v08jFr3VdJuX826O+u/GiLAUIxhlzJd2i0EW0Bp93V4RJgnjUKhJ2QEpiOr8loD9sZwlu/jQV7dtL6EMYslP4aWUNDczfZHooDlzrjVn0bPdlQuydOAJTvvyZkT5s1b5/fqeMlxbINF4vOQxeq5/GvfOppomXQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=ehB02E5P; arc=none smtp.client-ip=194.117.254.33
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
 	sang-engineering.com; h=from:to:cc:subject:date:message-id
 	:in-reply-to:references:mime-version:content-transfer-encoding;
-	 s=k1; bh=0nTkCtsKIgXr2WMA6t7lMsVluJvzGAOx7z1QS1X8Rvs=; b=S3yl3n
-	/bTCMfub6fBlpTU6KMcToSn/P9SMzCjvCdJY9zZpSrmRItahmsDKYED33XC9g2pP
-	8fTCRMmuUwqi7m8Ok3IbqNIW8jlAko0JoP8TlLDisTBEtH7Xf4McbD6p92JqMXt2
-	GV7LAO1jNO3brf6aWek6JV9Lfi5mwtCXiX6uGxDgvKicQqTwH9j85rgoIv/8tHui
-	M1vzDeY2pfjzmy1+vM4qWZ4oKXtmK1yyseTcwgXBSCDMjUWDpKdbI8S2eUuHdZin
-	DEMtjrGVtGdm/Vkt8vjtBZSQna9RlPOf6grg3Fmi1BxT0QOnfLeT9wC25nUI8wZS
-	qHCKKRNnIkKgBwDw==
-Received: (qmail 941049 invoked from network); 20 Oct 2025 08:10:27 +0200
-Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 20 Oct 2025 08:10:27 +0200
-X-UD-Smtp-Session: l3s3148p1@BhWR8JBBLoggAwDNf0fPAEuMhp6AgTGK
+	 s=k1; bh=2C24+433wJtYbqrC7tIADzE03jy5ELDw2JdjoUreqCc=; b=ehB02E
+	5P7dJBqZ0m+irgllkfMmPaMcYPcKIQDB4SrTrKlEfxfyi/GpjyVUDWhP5l7VaDbH
+	eD7uP/U2tcaozD956oSY+HGnpJwn1JyX0CPaSoQZJOo627veg+BdVdZuv8316nyY
+	jhlflxUaz2/YwvZoxgSJ1It9EtO0O2MvD/8YPKV4Vm3xFs9BKvXLvTCe7kKiQ7tB
+	2rjrUzsrAEOM6ivC3bb0LpJHGUtyKGS87IRNJ8g5MJhkxnWSSxD8skB1JWTTNSIr
+	8yuZs+cNBkPs75iPtIcn7grRCpEcjF9qvfavjr8FmdH7+KXJXtGkFgbdnLYxi53P
+	OcV+CR4VRMk7WQ4A==
+Received: (qmail 941062 invoked from network); 20 Oct 2025 08:10:28 +0200
+Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 20 Oct 2025 08:10:28 +0200
+X-UD-Smtp-Session: l3s3148p1@HuOe8JBBNoggAwDNf0fPAEuMhp6AgTGK
 From: Wolfram Sang <wsa+renesas@sang-engineering.com>
 To: devicetree@vger.kernel.org
 Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
 	Srinivas Kandagatla <srini@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 2/4] dt-bindings: nvmem: don't check node names
-Date: Mon, 20 Oct 2025 08:09:51 +0200
-Message-ID: <20251020060951.30776-8-wsa+renesas@sang-engineering.com>
+	linux-arm-msm@vger.kernel.org,
+	linux-sound@vger.kernel.org
+Subject: [PATCH 3/4] ASoC: dt-bindings: don't check node names
+Date: Mon, 20 Oct 2025 08:09:52 +0200
+Message-ID: <20251020060951.30776-9-wsa+renesas@sang-engineering.com>
 X-Mailer: git-send-email 2.47.2
 In-Reply-To: <20251020060951.30776-6-wsa+renesas@sang-engineering.com>
 References: <20251020060951.30776-6-wsa+renesas@sang-engineering.com>
@@ -78,22 +77,22 @@ Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 I'd suggest to give subsystems some time to pick this patch before
 Rob applies it?
 
- Documentation/devicetree/bindings/nvmem/st,stm32-romem.yaml | 2 +-
+ Documentation/devicetree/bindings/sound/qcom,wcd934x.yaml | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/nvmem/st,stm32-romem.yaml b/Documentation/devicetree/bindings/nvmem/st,stm32-romem.yaml
-index 3b2aa605a551..ab4cdc4e3614 100644
---- a/Documentation/devicetree/bindings/nvmem/st,stm32-romem.yaml
-+++ b/Documentation/devicetree/bindings/nvmem/st,stm32-romem.yaml
-@@ -31,7 +31,7 @@ properties:
-     maxItems: 1
+diff --git a/Documentation/devicetree/bindings/sound/qcom,wcd934x.yaml b/Documentation/devicetree/bindings/sound/qcom,wcd934x.yaml
+index a65b1d1d5fdd..3a7334e41fd6 100644
+--- a/Documentation/devicetree/bindings/sound/qcom,wcd934x.yaml
++++ b/Documentation/devicetree/bindings/sound/qcom,wcd934x.yaml
+@@ -132,7 +132,7 @@ properties:
+     $ref: /schemas/gpio/qcom,wcd934x-gpio.yaml#
  
  patternProperties:
 -  "^.*@[0-9a-f]+$":
 +  "@[0-9a-f]+$":
      type: object
-     $ref: layouts/fixed-cell.yaml
-     unevaluatedProperties: false
+     additionalProperties: true
+     description: |
 -- 
 2.47.2
 
