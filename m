@@ -1,232 +1,141 @@
-Return-Path: <devicetree+bounces-228990-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228991-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3AE2CBF2D86
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 20:00:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 48FD7BF2DB9
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 20:06:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id B4A5A34E249
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 18:00:58 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id BCED3347920
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 18:06:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5328127C178;
-	Mon, 20 Oct 2025 18:00:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 998892C21E2;
+	Mon, 20 Oct 2025 18:06:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Oq9mmExE"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="yL2syj3y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com [209.85.210.181])
+Received: from mail-il1-f171.google.com (mail-il1-f171.google.com [209.85.166.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCC2E149C7B
-	for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 18:00:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A372828DB46
+	for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 18:06:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760983255; cv=none; b=T8lbTT+uN2wUKk6xD8JxFtAclqCZwuN+mTZLXSquile0iAJwbbUJ/M6Zr42VWOEFJOEcNRNrOdy9/TPU8kBSViZG6L5epx+FYkF2JgR8n2VLkZVlmqx8aTq0UrwHTcHa9K1/DGL2jOctt4KJ4bhHP/NSixSxl9JMGthX+H6Mmsk=
+	t=1760983611; cv=none; b=pvy4CrzUqe/Dvy5X6xVOcbBMa3OpFyFxxFREOojtsbFhEhG5XRGkkeK4bZ3qbOJbEwmfNXpkOON9ZCNtN+UTw7vbTVzC3cnqyBxEql8V3u/rG4vA2PI3u3lSujDM9lRWYecZNUnuIE+XDKF769WALYDgUazDKKjm33XXKo2EduM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760983255; c=relaxed/simple;
-	bh=+ouTqeK8KjHhGyZubwi3mpbqQWmjMmEjydzA19keOOA=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=VLAmOImG9GwBAjn91p8aiR1efBJqKbwHUMiPsCAl7/afKh84W9V4pflVFKgeqzRgI2F1KiDkVVkMGGK5dIDaIXBlNlhInpJbKD/CGqh3lb12JatDataA2maYNmMRuiEr7euOVscyWitg4j0EvJiefi3rS912OIN3CknATfIQAyI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Oq9mmExE; arc=none smtp.client-ip=209.85.210.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f181.google.com with SMTP id d2e1a72fcca58-781206cce18so4740675b3a.0
-        for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 11:00:53 -0700 (PDT)
+	s=arc-20240116; t=1760983611; c=relaxed/simple;
+	bh=JSD7zMinFfnI7sgmhr156UXVmdLj4D4xD4iX+dvck18=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=bmTKVTOxBpKQAedpbU9FsIxZ8sLIGWhPsSeX5xdDaLKLZqz3wGKWjQCnToYkkuqxRqn4f2mSEZ7aVzgYwvzDHrNM12J5LDkXaL77VwY1Q1h0XXnGI8d0Y6n0sgXsvZW9bxcxBd+3me9oO3AJERPl3inMDa0lbBxR6MACvx25fjE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=yL2syj3y; arc=none smtp.client-ip=209.85.166.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
+Received: by mail-il1-f171.google.com with SMTP id e9e14a558f8ab-430c151ca28so17965755ab.2
+        for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 11:06:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1760983253; x=1761588053; darn=vger.kernel.org;
-        h=mime-version:content-transfer-encoding:msip_labels:content-language
-         :accept-language:in-reply-to:references:message-id:date:thread-index
-         :thread-topic:subject:cc:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=+ouTqeK8KjHhGyZubwi3mpbqQWmjMmEjydzA19keOOA=;
-        b=Oq9mmExEZL4ZdA7i7UXfvwZ6w+EwAAFEGa3w34rikHgKESzAOKzYEpVfQletv96uwG
-         E9RsoCtDqfrzO5mdrR7wqeonFrtzPKzzt0Q3EazJSPfRk/u/Ow4KwzGv0kNhGB57Z1H/
-         mW3lt5s6MYYRWenEs34RCTv34itJorycykLcuyWrLYQfTeRqpH8mCsStsUSxvkmG631w
-         Sc+re2UbLOWG/uQUzq+MOdqoTns4vXJIBeE1/KhE17bsnmBaisa19OPqfk1geZupuv0J
-         kRNncSB7pcj7jvjNtrnalM4WPjP5k+WjNIGdWVsaSfgOpGq0fe/+03nHMOjQ4yJfpC/I
-         /O/A==
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1760983609; x=1761588409; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=5AQlGU0mYQ6QSlBwOOl9dIxsMJVc/9az/WvQw51SeIA=;
+        b=yL2syj3yBgiXoEj8bb/B4DosqxIP+OWLeFYusqaYaOFKse1m9BUCVCw2xd6rosL4Ge
+         b61WVl1U8teBPjgTYcAZ485yPevfWJVl16PANjLe/pSOxFb/M69XPbFZqikhj2YcfuCm
+         2VnEYENQX5mhJdGrn1p1WG61d0g9FB7Xo3aT4YnawCag4KKV5ItO7xDw6u9YUNNWoThr
+         RDPfNB/+oc/dDBpfkOBfeR1SIk/RhCiklfJYLe+wc8UCOyuRJHG5p7zx+o4ejt2MxtRv
+         nfTIFI2/fpsNT4W6VULv+NLKqAD2JlTJ4uS2eJBIP6o5mS3YrrsMxwAcOx+QZTcMyA8H
+         uskw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760983253; x=1761588053;
-        h=mime-version:content-transfer-encoding:msip_labels:content-language
-         :accept-language:in-reply-to:references:message-id:date:thread-index
-         :thread-topic:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=+ouTqeK8KjHhGyZubwi3mpbqQWmjMmEjydzA19keOOA=;
-        b=ucS/lUryGxOBze1UztnZqqErVXOwlwV33TgqGEPMWlbSX0JZd0PZzWl/NJlTy/8JCJ
-         3x6pBrlJs4apYfeZGamMAsbMm2VRCOfcH/Fvuur0mSvE3jMHfCxvS7wGldGfW870uccS
-         vqk3eQAW37TjW3H/RABT5B4OOpu7qI3sOYkohB/4h2gPrIxYgmWQwpujYjNJSioy5BA3
-         LCZha15eyFwU9cvEI2rqQX/7bHc1JI+PGt/gGjuvJbby4yqCoovn+Bp5Xcr32wM1yOZH
-         nq2tdpzMqbzt5eF6beZGbJkspRUG8n2zG5ochuRgxdPnS5MeERENxvI3FUOIr2UxGiDA
-         qHZQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWym9DDFAY6EY5aXOv4OdQjHv8yRHIAknDP2LxZ5JWtclvWzuKtPzcfyT7Y9uGw3+z1gEnjSulgQr2v@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxwm7hGRM4rhc611mMfsNxmYB5q1q1gogRHtSyFec4rT4nvSSk+
-	30ofUN6lhMJtMatqvUk9EaSc1U/QkxTNtpEzmE4jKaZ5Qb306MS6jG5r
-X-Gm-Gg: ASbGncvtOqAQC4kTfNd452p66gHqNKNZ7uihZRoutVOrYfHcvGU1kRyPXwDsCCFQRgc
-	jgKD5sdR1Zk2JKbc03uszuPv1JcxufPl0Qa2hw/1jGuFVTAkqloz8vAovAKXII18jX2hbLNV8zW
-	mBpfEdpTJgKmzy8dCkGC/5fLrn7wASM3R40sOR46MyPZwsBYM+BnfnlfQUMR2RJ7QXHVctyTom3
-	UtbPozJZOHyxMU0nCrRqKBq+rKLtIaDtMlHmYF+lEelKl9j4F9aqGoDSjPIgQNBF1o/L/0Qb3+2
-	IBorqvSaSm+w1KXUtWTLF1T8ihBXVefgSRnTj0zXSIgtCdIeHjRwpLpqOouJ0SCRyLCe1D6UWcw
-	MHMLSwCYHPhI5hMbM2j0Qejr0B0SLGZItYCBZrhLE9FfeBFJq6UiZyYQby96oEjbVuecNBjSjhs
-	X7P5p2QsmyDATsVpQYAvdgJteAiP5FipnoeBoLetmNvTdTqrsGgJjlvP+KwRH8G3tmhXcCigY=
-X-Google-Smtp-Source: AGHT+IFyEI5povAc8sFYaguQEVG54DJVwm3UpywxXfyVqK9JFR92iJ+L7mTz5exo3Mj/xjg9HqAs9Q==
-X-Received: by 2002:a05:6a00:1393:b0:784:27cb:a2c6 with SMTP id d2e1a72fcca58-7a210d899c8mr20387861b3a.2.1760983252776;
-        Mon, 20 Oct 2025 11:00:52 -0700 (PDT)
-Received: from TY4PR01MB17309.jpnprd01.prod.outlook.com ([2603:1046:c09:20a6::5])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7a230122380sm8855641b3a.77.2025.10.20.11.00.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Oct 2025 11:00:52 -0700 (PDT)
-From: jonathan brophy <professorjonny98@gmail.com>
-To: "Rob Herring (Arm)" <robh@kernel.org>
-CC: Jonathan Brophy <Professor_jonny@hotmail.com>, Pavel Machek
-	<pavel@kernel.org>, "linux-leds@vger.kernel.org"
-	<linux-leds@vger.kernel.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Radoslav Tsvetkov <rtsvetkov@gradotech.eu>, lee Jones
-	<lee@kernel.org>
-Subject: Re: [PATCH v3 2/4] dt-bindings: leds: Add virtualcolor group dt
- bindings documentation.
-Thread-Topic: [PATCH v3 2/4] dt-bindings: leds: Add virtualcolor group dt
- bindings documentation.
-Thread-Index: AQHcQOxnIJ58J1ZGPEecG/r284d6fbTK6VoAgABojfM=
-X-MS-Exchange-MessageSentRepresentingType: 1
-Date: Mon, 20 Oct 2025 18:00:47 +0000
-Message-ID:
-	<TY4PR01MB17309CB1B7797B52FF031A27EF0F5A@TY4PR01MB17309.jpnprd01.prod.outlook.com>
-References: <20251019092331.49531-1-professorjonny98@gmail.com>
- <20251019092331.49531-3-professorjonny98@gmail.com>
- <176096011281.22748.15975544575193365055.robh@kernel.org>
-In-Reply-To: <176096011281.22748.15975544575193365055.robh@kernel.org>
-Accept-Language: en-GB, en-US
-Content-Language: en-GB
-X-MS-Has-Attach:
-X-MS-Exchange-Organization-SCL: -1
-X-MS-TNEF-Correlator:
-X-MS-Exchange-Organization-RecordReviewCfmType: 0
-msip_labels:
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+        d=1e100.net; s=20230601; t=1760983609; x=1761588409;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=5AQlGU0mYQ6QSlBwOOl9dIxsMJVc/9az/WvQw51SeIA=;
+        b=UEGNro5/T0gFXgF6av/bPfl86UVbOOvFqMFxYKpgP7LBY+/S+NOC60nNzzi9SQDJg2
+         p5U1i/h/9fqEOsA9ojl7JXlV3LBeGHzrVL3Vm9mc51GSaKdEDm8ERBCb9yu4IO9p4fF9
+         UH+vt6HTdbh96HoEhT5RnQAjVn336UNjU7wsTfSg+1hYb9gjuUVC6Ao1WDdOTzP50Qw3
+         FPZ9ia7zI8bKsGs/XYc2swKNA0cXGXEvypXIkBwLR0al4cD4yJge5y/m8cfqEyylJ/3Q
+         bXzqoKx8vwgZC4S+b2bgT4wBwWpaRab+mkUWW16HkTEzECdYmqtUAyCv9Y3MboFBn/n5
+         J6wg==
+X-Forwarded-Encrypted: i=1; AJvYcCWWbumKp4fiBmSuUip96M6GQYvOEWr0bd5ryCXTIfEeMoU61zZlZaNwBI6pgnj98pPT5oPF2CIYqi4Q@vger.kernel.org
+X-Gm-Message-State: AOJu0YxPVUtOHf8nsHBcNwiG4SoqMc7RiX8ptEeqdC3Ox6B1pcTU1rFU
+	vPgHhVdDYhM/1irlggMPBo0ZyP8V27HCcMJ4+w6pBxUY63D+i+U/8KgaU22jAgOrvtY=
+X-Gm-Gg: ASbGnctyaxBlo6WTCUbJW6mlNCpuE8OJyYk2CCC1JuWoDPNIH4rqbhkjD7bRJ+tMnMZ
+	u3ccwE6NIguugG3bRZAIk0T2FuCdzgjRQtqQ4zhZBtMBzk66ExGfkh58dMIBGpvZ9dRvvx24WBS
+	Cy5YRPnx9GP9QE4MYYv/IfDOWWd9kVt/ZXN841KbAzR9diBOUFiUaej/At1v6RQbcmWZUEIq6Pl
+	WTlZ/uE1733ZeRkWu997PuHwvTqSob1wuvCRrRO7QBX4KVxgL3CSuP73tY20pd2JCoxKT4Ku8e4
+	g67iSDXqaeOaEzEd1+Qqf+9NBrxAOhFSoGRdqtI0kTYgoCXRuxrvfhC6Otndr+ftbtleLQq0149
+	5EphCC5p6cj4xdd2FtoL9GFZB+lLh69TFN6lnYmrRSrs+RoPSAMcnoEGw9oL0MbbSFwu+IhlgFy
+	KjLAfXKL8rqz2X+yRG1dz4/ZasnFwwwbILIXhqdKc=
+X-Google-Smtp-Source: AGHT+IHBHKCx2YHdGAi+SFpNeca9RlxGKdmS/mH/TPdmxuSdnx64GJbh4fpZfHVsL9gExE3U3dhRbA==
+X-Received: by 2002:a92:cda3:0:b0:430:b4ca:2696 with SMTP id e9e14a558f8ab-430c514e290mr212982775ab.0.1760983608698;
+        Mon, 20 Oct 2025 11:06:48 -0700 (PDT)
+Received: from [172.22.22.28] (c-75-72-117-212.hsd1.mn.comcast.net. [75.72.117.212])
+        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-5a8a961e88csm3172542173.15.2025.10.20.11.06.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 20 Oct 2025 11:06:47 -0700 (PDT)
+Message-ID: <b28d71c4-d632-4ee5-8c4b-270649fca882@riscstar.com>
+Date: Mon, 20 Oct 2025 13:06:46 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/8] dt-bindings: spi: fsl-qspi: support SpacemiT K1
+To: Conor Dooley <conor@kernel.org>
+Cc: han.xu@nxp.com, broonie@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, dlan@gentoo.org, guodong@riscstar.com,
+ devicetree@vger.kernel.org, linux-spi@vger.kernel.org, imx@lists.linux.dev,
+ spacemit@lists.linux.dev, linux-riscv@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20251020165152.666221-1-elder@riscstar.com>
+ <20251020165152.666221-3-elder@riscstar.com>
+ <20251020-blinked-primary-2b69cf37e9fe@spud>
+Content-Language: en-US
+From: Alex Elder <elder@riscstar.com>
+In-Reply-To: <20251020-blinked-primary-2b69cf37e9fe@spud>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-=0A=
-=0A=
-=0A=
-On Sun, 21 October 2025 12:35 AM, JRob Herring (Arm) wrote:=0A=
->=0A=
->=0A=
->On Sun, 19 Oct 2025 22:23:25 +1300, Jonathan Brophy wrote:>=0A=
->=0A=
-> From: Jonathan Brophy <professor_jonny@hotmail.com>=0A=
->=0A=
->=0A=
->=0A=
->> Add device tree binding documentation for the virtual LED group driver=
-=0A=
->>=0A=
->> that implements virtual LED groups by aggregating multiple monochromatic=
-=0A=
->>=0A=
->> LEDs=0A=
->>=0A=
->>=0A=
->=0A=
->> Bindings for the virtual driver are not describing hardware LEDs they=0A=
->=0A=
->> describe virtual devices made from groups of hardware LEDs created from =
-an array=0A=
->=0A=
->> of LED phandles.=0A=
->=0A=
->=0A=
->=0A=
->> Normally the device tree is used to describe hardware not virtual hardwa=
-re=0A=
->=0A=
->> but it is particularly useful in situations where you require an LED to =
-be a=0A=
->=0A=
->> specific color by mixing primary colors, such as multi element multi col=
-or LEDs=0A=
->=0A=
->> to be operated from a device tree binding.=0A=
->=0A=
->=0A=
->> It also becomes useful with multiple LEDs operating the same indicator s=
-uch as=0A=
->=0A=
->> ring of light indicators where the LEDs are driven From different GPIO o=
-utputs=0A=
->=0A=
->> unifying the control that can give basic indication during system startu=
-p,=0A=
->=0A=
->> shutdown upgrade etc...=0A=
->=0A=
->>=0A=
->=0A=
->> co-developed-by: Radoslav Tsvetkov <rtsvetkov@gradotech.eu>=0A=
->=0A=
->> Signed-off-by: Radoslav Tsvetkov <rtsvetkov@gradotech.eu>=0A=
->=0A=
->> Signed-off-by: Jonathan Brophy <professor_jonny@hotmail.com>=0A=
->=0A=
->> ---=0A=
->=0A=
->>=A0 .../leds/leds-group-virtualcolor.yaml=A0=A0=A0=A0=A0=A0=A0=A0 | 110 +=
-+++++++++++++++++=0A=
->=0A=
->>=A0 1 file changed, 110 insertions(+)=0A=
->=0A=
->>=A0 create mode 100644 Documentation/devicetree/bindings/leds/leds-group-=
-virtualcolor.yaml=0A=
->=0A=
->=0A=
->My bot found errors running 'make dt_binding_check' on your patch:=0A=
->=0A=
->=0A=
->=0A=
->yamllint warnings/errors:=0A=
->=0A=
->=0A=
->=0A=
->dtschema/dtc warnings/errors:=0A=
->=0A=
->/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/le=
-ds/leds-group-virtualcolor.example.dtb: pwm-led->controller (pwm-leds): led=
--1: 'max-brightness' is a required property=0A=
->=0A=
->=A0=A0=A0=A0=A0=A0 from schema $id: http://devicetree.org/schemas/leds/led=
-s-pwm.yaml#=0A=
->=0A=
->/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/le=
-ds/leds-group-virtualcolor.example.dtb: pwm-led->controller (pwm-leds): led=
--2: 'max-brightness' is a required property=0A=
->=0A=
->=A0=A0=A0=A0=A0=A0 from schema $id: http://devicetree.org/schemas/leds/led=
-s-pwm.yaml#=0A=
->=0A=
->/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/le=
-ds/leds-group-virtualcolor.example.dtb: pwm-led->controller (pwm-leds): led=
--3: 'max-brightness' is a required property=0A=
->=0A=
->=A0=A0=A0=A0=A0=A0 from schema $id: http://devicetree.org/schemas/leds/led=
-s-pwm.yaml#=0A=
->=0A=
->/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/le=
-ds/leds-group-virtualcolor.example.dtb: pwm-led->controller (pwm-leds): led=
--4: 'max-brightness' is a required property=0A=
->=0A=
->=A0=A0=A0=A0=A0 from schema $id: http://devicetree.org/schemas/leds/leds-p=
-wm.yaml#=0A=
->=0A=
-=0A=
-sorry this was me checking my yaml's without validating the whole structure=
- as those are covered by their own Yaml's=0A=
-In futurre I will validate the whole structure.=
+On 10/20/25 12:39 PM, Conor Dooley wrote:
+> On Mon, Oct 20, 2025 at 11:51:45AM -0500, Alex Elder wrote:
+>> Add the SpacemiT K1 SoC QSPI IP to the list of supported hardware.
+>>
+>> Signed-off-by: Alex Elder <elder@riscstar.com>
+>> ---
+>>   Documentation/devicetree/bindings/spi/fsl,spi-fsl-qspi.yaml | 1 +
+>>   1 file changed, 1 insertion(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/spi/fsl,spi-fsl-qspi.yaml b/Documentation/devicetree/bindings/spi/fsl,spi-fsl-qspi.yaml
+>> index 0315a13fe319a..5bbda4bc33350 100644
+>> --- a/Documentation/devicetree/bindings/spi/fsl,spi-fsl-qspi.yaml
+>> +++ b/Documentation/devicetree/bindings/spi/fsl,spi-fsl-qspi.yaml
+>> @@ -22,6 +22,7 @@ properties:
+>>             - fsl,imx6ul-qspi
+>>             - fsl,ls1021a-qspi
+>>             - fsl,ls2080a-qspi
+>> +          - spacemit,k1-qspi
+> 
+> Are the newly added resets mandatory for the spacemit platform?
+
+This is interesting.  I never even tried it without specifying them.
+
+I just tried it, and at least on my system QSPI functioned without
+defining these resets.  I will ask SpacemiT about this.  If they are
+not needed I will omit the first patch (which added optional resets),
+and won't use them.
+
+Thanks for pointing this out.
+					-Alex
+
+> 
+>>         - items:
+>>             - enum:
+>>                 - fsl,ls1043a-qspi
+>> -- 
+>> 2.48.1
+>>
+
 
