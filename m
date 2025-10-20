@@ -1,124 +1,86 @@
-Return-Path: <devicetree+bounces-228534-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228535-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id EDA9ABEEB2B
-	for <lists+devicetree@lfdr.de>; Sun, 19 Oct 2025 20:10:17 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6124BBEEF9B
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 03:01:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9428A189860B
-	for <lists+devicetree@lfdr.de>; Sun, 19 Oct 2025 18:10:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 61A863BB2CF
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 01:01:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E0532E03E0;
-	Sun, 19 Oct 2025 18:10:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="VtVGybfY"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5D183FB31;
+	Mon, 20 Oct 2025 01:00:56 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail1.manjaro.org (mail1.manjaro.org [142.132.176.110])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D553315B971;
-	Sun, 19 Oct 2025 18:10:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=142.132.176.110
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 396B528E0F;
+	Mon, 20 Oct 2025 01:00:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760897413; cv=none; b=g5t1nuK6pDjsTNzDXowNa4a/avYAeokkYP7NojA3pFdfRr0ADBWQ/sY9jy591v88OFl8Qa1w25X5t5+dLmj3oRj4CVO3d5IAzwB6HkMsa0CXq4rjZSF9KRkTdv9E0V5twUeBpWxYKC+9EnMOMryFUBVM9ufc0Ri1Rsk/TEQMAbk=
+	t=1760922056; cv=none; b=FXHF41nibh0mjjdOiydG54Brkd/ZdsdNldzGC9dHroKPNr8hdUH5gnDjzc3S1xT2ZFoNxWXB7Ua74iSsynO+NBKbLboI1sG5SLC0oaxpbH7BmEi9qp+Oq4V+OirbHYH0UrcZ91PGq45Vj3D4EiZGxgYHWOiwtTaa157IlXFGtdo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760897413; c=relaxed/simple;
-	bh=WjTcD2YR8AGyqKpV036AzUTE8zrH4rstRTSX0VAYPh8=;
-	h=From:In-Reply-To:Content-Type:References:Date:Cc:To:MIME-Version:
-	 Message-ID:Subject; b=A3KgmF/8SJemtSQYT03dLXakXnEZoqsazKZnZfHVyYU4+9EbDLv6p/JZzwrhXddsII3TUb3R05xojhsCTm7QHrnbH9lDdcWdeS8qC5GmMvlKNbamDLbRSkoEwP1qcZTGZgcTNfSMRuzwDKp5JxR1SG7qeVK2V5uiiiPjp9Z6e6E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=VtVGybfY; arc=none smtp.client-ip=142.132.176.110
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPA id 4684640A58;
-	Sun, 19 Oct 2025 20:09:59 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=dkim;
-	t=1760897402; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=ERRtoG7bB418wgjyE9jDggkfu2QPAbzjTsBuPu44/cA=;
-	b=VtVGybfY5fuB19L+2yb0xkzW1Ddf2ptzniOmXG98nENyurifzlZGRSMOGmOBOcD6SteVZG
-	gm7eoN3oiKzyiLIAkrNryM5s2iWKpuLNQoglrmoT2jDE3sx/FNRfXAYU5KckAwevx3G6yR
-	pRwplGe3bcp2d30R2QOBIMLcPhVpVTD6dRvS7g9FwvR8DdYSz4+8zv6uhEVCuIhXgs/wS4
-	7Kv7iUfw1vhNO7JAfMFvGA0P96U4e2CYvpFNtG0wGCIINxoEkr5/b0bkLn6vSaqzBY/Hkq
-	h4Ki5L4PC6QnTmnQiLacZoiWxsBwXAj+I5uroQrE9LvEVAkLx9NggaFoIDIP5w==
-From: "Dragan Simic" <dsimic@manjaro.org>
-In-Reply-To: <CANAwSgTZa7PXBuyh9EdDOXCNuCTOHGsJz18pSjP6WUN8sOaqTQ@mail.gmail.com>
-Content-Type: text/plain; charset="utf-8"
-References: <20251017073954.130710-1-cnsztl@gmail.com> <7f0b1747-87eb-0b0b-6fb0-304811a4be21@manjaro.org>
- <d9d14ce2-2e65-422e-95fb-eb30b128ad90@gmail.com> <41154cde-a447-0707-4387-cd3dca90b97d@manjaro.org>
- <CALWfF7K0=J3E-zr41wV-28+SCFkT_so55Aee8BvQsB4KJZy6YQ@mail.gmail.com>
- <47931e9e-09db-3909-4531-dae6869171d7@manjaro.org> <b22425c3-01e0-4d2e-bf78-5db884d4ec38@gmail.com>
- <de5e8643-49bb-4e0e-45fd-51b25ecf530d@manjaro.org> <CANAwSgTZa7PXBuyh9EdDOXCNuCTOHGsJz18pSjP6WUN8sOaqTQ@mail.gmail.com>
-Date: Sun, 19 Oct 2025 20:09:59 +0200
-Cc: "Hugh Cole-Baker" <sigmaris@gmail.com>, "Jimmy Hon" <honyuenkwun@gmail.com>, "Tianling Shen" <cnsztl@gmail.com>, "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Heiko Stuebner" <heiko@sntech.de>, "Grzegorz Sterniczuk" <grzegorz@sternicz.uk>, "Jonas Karlman" <jonas@kwiboo.se>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-To: "Anand Moon" <linux.amoon@gmail.com>
+	s=arc-20240116; t=1760922056; c=relaxed/simple;
+	bh=9P02REmymp2Kk/aoe2vYdmNmxMB7VtHTASIN4rji1oQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hTzIsdjaVA3yr7Vmc/Iu2l6bnYgR0NxaUn6F81ILzJA8EWS447656j6QRZ9gyc3g5lKsGHCmE19llnuXW6YltMW8uz4VIDqbnJ/O7tFtd+nyGwIXpeKde13/AVB9BvR9yZXS1WzRZqSUh8yHMv5xhA/zVZdThoUy60RKYRWYm/I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
+Received: from localhost (unknown [116.232.147.23])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: dlan)
+	by smtp.gentoo.org (Postfix) with ESMTPSA id 39512340D7F;
+	Mon, 20 Oct 2025 01:00:53 +0000 (UTC)
+Date: Mon, 20 Oct 2025 09:00:50 +0800
+From: Yixun Lan <dlan@gentoo.org>
+To: michael.opdenacker@rootcommit.com
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+	spacemit@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] riscv: dts: spacemit: add Ethernet and PDMA to
+ OrangePi RV2
+Message-ID: <20251020010050-GYD1506524@gentoo.org>
+References: <20251017100106.3180482-1-michael.opdenacker@rootcommit.com>
+ <20251017100106.3180482-2-michael.opdenacker@rootcommit.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <047fe2b8-0f94-0f0f-5964-b65844834706@manjaro.org>
-Subject: =?utf-8?q?Re=3A?= [PATCH] =?utf-8?q?arm64=3A?==?utf-8?q?_dts=3A?=
- =?utf-8?q?_rockchip=3A?= fix eMMC corruption on NanoPC-T6 with A3A444 chips
-User-Agent: SOGoMail 5.12.3
-Content-Transfer-Encoding: quoted-printable
-X-Last-TLS-Session-Version: None
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251017100106.3180482-2-michael.opdenacker@rootcommit.com>
 
-Hello Anand,
+Hi Michael,
 
-On Sunday, October 19, 2025 19:25 CEST, Anand Moon <linux.amoon@gmail.c=
-om> wrote:
-> Would you consider the following patch?
->=20
-> As per the Rockchip RK3588S SoC Technical Reference Manual (TRM) Part=
- 1,
-> chapter 21.6, Interface Description, the eMMC signals require careful=
- handling
-> to ensure signal integrity.
->=20
-> I2C2=5FSCL=5FM2 I/O EMMC=5FRSTN/I2C2=5FSCL=5FM2/UART5=5FRTSN=5FM1/GPI=
-O2=5FA3=5Fd
-> BUS=5FIOC=5FGPIO2A=5FIOMUX=5FSEL=5FL[15:12]=3D0x9
-> I2C2=5FSDA=5FM2 I/O EMMC=5FDATA=5FSTROBE/I2C2=5FSDA=5FM2/UART5=5FCTSN=
-=5FM1/GPIO2=5FA2=5Fd
-> BUS=5FIOC=5FGPIO2A=5FIOMUX=5FSEL=5FL[11:8]=3D0x9
->=20
-> $ git diff .
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-base-pinctrl.dtsi
-> b/arch/arm64/boot/dts/rockchip/rk3588-base-pinctrl.dtsi
-> index 6584d73660f6..f60a1d8be0ef 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3588-base-pinctrl.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3588-base-pinctrl.dtsi
-> @@ -327,7 +327,7 @@ emmc {
->                 emmc=5Frstnout: emmc-rstnout {
->                         rockchip,pins =3D
->                                 /* emmc=5Frstn */
-> -                               <2 RK=5FPA3 1 &pcfg=5Fpull=5Fnone>;
-> +                               <2 RK=5FPA3 1 &pcfg=5Fpull=5Fdown=5Fd=
-rv=5Flevel=5F2>;
->                 };
->=20
->                 /omit-if-no-ref/
-> @@ -369,7 +369,7 @@ emmc=5Fcmd: emmc-cmd {
->                 emmc=5Fdata=5Fstrobe: emmc-data-strobe {
->                         rockchip,pins =3D
->                                 /* emmc=5Fdata=5Fstrobe */
-> -                               <2 RK=5FPA2 1 &pcfg=5Fpull=5Fdown>;
-> +                               <2 RK=5FPA2 1 &pcfg=5Fpull=5Fdown=5Fd=
-rv=5Flevel=5F2>;
->                 };
->         };
+On 10:02 Fri 17 Oct     , michael.opdenacker@rootcommit.com wrote:
+> From: Michael Opdenacker <michael.opdenacker@rootcommit.com>
+> 
+> Aligning with k1-bananapi-f3.dts
+> 
+The DTS change looks good, but the commit message is kind of obscure
+and unclear, I'd like to have an explict brief description for what
+have done in the patch, without people looking at the actual DT code,
+although in this case the title already says about it, but we could
+still give slightly more info/context:
 
-Frankly, I'm not really sure how would such changes do something
-good regarding the eMMC signal integrity?  In general, signal
-integrity depends mostly on the routing of the PCB traces, which
-is purely hardware design.  Sure, termination of data lines also
-plays a significant role, but that surely isn't at play here.
+The OrangePi RV2 board ships two RGMII ethernet ports with each
+has an external Motorcomm YT8531C PHY attached, the PHY use gpio
+for the reset pin control.
 
-Moreover, the eMMC RSTn line is already pulled high to VCCIO in
-the reference RK3588 design, so pulling it down in the SoC itself
-would be pretty much wrong thing to do.
+Enable PDMA for OrangePi RV2 board which provided by SpacemiT K1-based SoC.
 
+> Signed-off-by: Michael Opdenacker <michael.opdenacker@rootcommit.com>
+
+-- 
+Yixun Lan (dlan)
 
