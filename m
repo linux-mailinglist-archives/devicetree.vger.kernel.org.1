@@ -1,124 +1,152 @@
-Return-Path: <devicetree+bounces-229032-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229033-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 370F5BF3343
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 21:28:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DBCACBF3355
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 21:30:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E05CB48488D
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 19:28:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B456E3A8F7A
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 19:30:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33FE22FF66A;
-	Mon, 20 Oct 2025 19:28:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91F9832BF46;
+	Mon, 20 Oct 2025 19:30:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TJGO/Lg/"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VblrGhtG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
+Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DCEF2D594D
-	for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 19:28:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29DD42D9ED5
+	for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 19:30:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760988520; cv=none; b=H8CIg3uvXDcBOPDw8yub6KHe0dq3cbZwn5ehfhlwBDUVM91iXvNJT5tactke/LO8hB9a8dfLM0qvT5TzrsxoEZHrFKnkFLA5vFsPy/L36bKkFwCVeZnfdAdWzJSrbEBND0qLY4+vV5D4f/AfsA4q+bDjVVUUroW9MYgIlKRZKAE=
+	t=1760988611; cv=none; b=DBjUZk7XD2CuT5H5BiEKdq7GdN8L9Cbx6k+T63bptrdOhcZXC3W1xODF5WbRugEf/TcjjcDn2R7sHpXnDoO0D+AWZBSvANI2xVsfsM8fBDLbPsnBwut1eT5Cw9WUErDKozGzqA3TxD4Yr41DXwHDAXK7go1KJQYtFdgNR1cmXUo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760988520; c=relaxed/simple;
-	bh=p7xYeF0WlMh71JeISQYSQHf2LpPiKT+ylBcdVGC2AqU=;
+	s=arc-20240116; t=1760988611; c=relaxed/simple;
+	bh=9GdDL7+3mULH8MsHFnHWRsu7pRMHDK4Pcihd8YMTY1I=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=IO25SWen/o/DTzMIH7+vW6XjzFvX6+KhDYpabA/ifsiHvo2M+Qgn5y+G0m026FIRWu0xLklauwdPoMBgIfTgjh16SuK94MBwhMuyVURMbgbxKVmaTgswYrfpH3EPNugzAqpW4PgYi0k3Pv/3W6NfQ+XS7LErX4koK5Nb4iq74KA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TJGO/Lg/; arc=none smtp.client-ip=209.85.167.47
+	 To:Cc:Content-Type; b=e4k9KmyfVHS1XkzF7xDOgNlbrOLhIHKYJz1yDFliKDqqaQSaY1JLNwM0uF0/a1HL0o8NrSjbMKDGVYb5nKsev/uTtLEkShOCgwH+hONpffeGXT7SY0jrj93OWHYSZKCdkow+D3WAJpBN80uT9WFaOYG4NULw7dkJYgeQhME3scM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VblrGhtG; arc=none smtp.client-ip=209.85.167.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-591c98ebe90so5252762e87.3
-        for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 12:28:37 -0700 (PDT)
+Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-58d29830058so5576677e87.0
+        for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 12:30:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1760988515; x=1761593315; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1760988606; x=1761593406; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=mMg83nd2YrTgwcvW3RZ6bW/OIA8b6kbsYQV4BXY32dU=;
-        b=TJGO/Lg/3ZI93Doa2cyBSYdG6jGqWq5DvF/eqVzDpPPyMRBa6AD0YhzNX6Jd4wcAfA
-         vsCuM3uiNUVCwqVJDiG8onEnDMq3gnhXC3i7sJuGv/JQ61TVrUcnRPyBvEy2hAmJyRwV
-         ygZD2Ep/HAgDkZWgN8pIeclFa8whL6MXt9cCH9gAmXxoOOzETXTG2dfr3NkQfN17hrA8
-         P2oIWCCVoPU4Fgq06zo5DNzQhUcg5Zyl7DzUMNqyzsaCSLXmjcE2kxIkczEjobnlHxaW
-         WPImJXTGIUmsPXISTMrgoO7xZKATCaEDgVSn/GrsQWhBBoDaeB0PhYtbwynLVgt4nGvJ
-         V39A==
+        bh=NFZNqT2D+DsLVgY6VgSkl2denBx7SAaoL+y9bEiDZII=;
+        b=VblrGhtGbfm69ssIpjv2TWOn+ijpOO53JaiJUpKmahR5auwsbMn/07Zs4gIfq9cE9n
+         3Gorffv94xvKmBvC0pcwPN26rJJHDZ+VHC33+NVztcH558wuPA+xFXC5HNO+QZy7b6Op
+         g4clcf0spNrzrHe4tZLhJaoelyUCL/sHOkOAvts1chcLZAiKLBynq87IzBNxP3Y7N9xl
+         jts4h6IXuLKZiqJGj/939urWXzsXhgMYL8ON90xZRfquCDd7TddzOAWe0tcHTPjqM0S/
+         4+yRLRxmGFvN5uM8fKz12BzhNTVjK24ksa5zvazSrMaeNfCYZIq82C9Hx5McaBHXrMLO
+         wjTA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760988515; x=1761593315;
+        d=1e100.net; s=20230601; t=1760988606; x=1761593406;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=mMg83nd2YrTgwcvW3RZ6bW/OIA8b6kbsYQV4BXY32dU=;
-        b=lyiV15MYV2PQJxbE9jIn136mTyPBMvw4xfsjwvLvFy8QO7nBze8qtLzJ71UDlWA6DJ
-         aFv8jqe6YAtctEzXyCANADctWOTlE7XxNuF/z44bP7dxT2OMyG+R4A6G5bZPCOsx8uLI
-         Hk1M1txhN7423P83HO4RFyT1TsWmfM8/wvYQNpx2jiH2youaPyvftcjYbJcxFIduKVRl
-         05bcPzCpCxHsA0aEHn88s11iUZ94NvS8V86FTpB/lvVFFs0VMN+eUwMQwQAbZhjzTDs5
-         rA/s3Ft54KSUdx5usVLa7gxmy/Pk40SlzZ9XFSf952KRIHi+Xj2UzImMjp7A/cfnuWLK
-         QNew==
-X-Forwarded-Encrypted: i=1; AJvYcCWl1Cu2cSVE7lu4yNy9AWOI2uCYupz1qPYy6sX//3R9SQqnnSR8ZNnVrrlLsV/mbcMGTGlFISTEAHZj@vger.kernel.org
-X-Gm-Message-State: AOJu0YwIahaKMw7lrlwB2Hk+D0vcJeU5mOR6OTxT57tUMu+eYybaHPKE
-	k9m2c166GoyxiqaaovOXBXZwXKmMrVs14rr4/tOAt6R0SbIDl48W+E3rooCWYUkCTKFPbdaMUVy
-	KoZOniV4gUTvPUeRkv6s7+fMdZGPa3gA=
-X-Gm-Gg: ASbGncv2Rcr6P1je8YKQlxHd+chmQaWJ1LbguLWt+ASFa//s6o2pE8fdURwo3JkVGSN
-	rlA+bbmWWCpfEjSqNuvo0iGZKc0pkTI4jR7T/kF0DwJEbLLtwcMSDqFggoteC9sozgBePuNA4nU
-	hTjaT/ZspNxsww7CyHjXrquRzeYkzd88I3ows2vF7RQgqYDCJsYIMmLbniXdO4iJUkihEFxW7o7
-	GL9RC0ZylXVMErsuJUZAVR6bx5pxR+pu9mKmMoMf2o/Yw5IXTkI5R/QsWHEedsZMhABWKLrUa1F
-	rhEZ4O1NS8s81NfiEA==
-X-Google-Smtp-Source: AGHT+IGBoVkVev7OLhVh5KiRwW/MZskLumEnnwL6WLxBkk2eAfCxIeEvBR17BmPX3b8GgUCopYGwgBk2P/JNXv/x5+E=
-X-Received: by 2002:a05:6512:1307:b0:57e:b9a:9c82 with SMTP id
- 2adb3069b0e04-591d85836e7mr4364166e87.39.1760988515325; Mon, 20 Oct 2025
- 12:28:35 -0700 (PDT)
+        bh=NFZNqT2D+DsLVgY6VgSkl2denBx7SAaoL+y9bEiDZII=;
+        b=Eu1PqJ9uMjzGhpG/Nj+QpE2ww6d6nVrBtIAALSzfhAOfK9refh+T3AWhVW0gSoNaJJ
+         SGFpO+nP0y/o7GJGZZYlNmHkClOqIX10riEWAcw63tg4hNtoDlQwQ3+jQHCNpicrc+c0
+         d61QHvVdZh7UzJ0YIGSdYM/ABxlQENwmh0OD6Oy9/gRed/aae3DdilN1CE72QjRWp1Y9
+         2NIcGgHRCAmXZ0pq/IUdEah7C6Y6s99uzFARdLulTOqYvBjBBZ3MnQU5jdBWb7xWOlDh
+         aGlT3gkTe+xgnqYARtdgJ+2bnnqbtoSwfrzkAns1ssmWcI2pcJF8Nu8l7SbJrjg4tyBY
+         WxXg==
+X-Forwarded-Encrypted: i=1; AJvYcCUp1UqoE9rP/7pjJlu94vU6wLvMdVj+i1iXnYapHBElezHR2FmvQDh8OL0Pc2lH1ssuLHCuCidxhXTL@vger.kernel.org
+X-Gm-Message-State: AOJu0YxKeImE+ITJB54RXm5w+q6NJJDu+1EX/Zm4HHfIlfEyWs6oPEbq
+	H9Cb+E9fv351YqBya6OnSDaEXtjo1pXyjZBjvqkZ6gFW9Fpkwkh3EaQfZ8nF05BSZ1pl0JGW8Gm
+	GW/UaOptH1M/UBLVusSxU6bd7/83dago=
+X-Gm-Gg: ASbGnctlxsu+OiZ00uh4AunRZy8wttYjQHdS6Hro4xxaoIe45JvjjuWSmRPu2LI+xJd
+	f5YcrAThmqkPR8rZ9FN5cpPx74kN7+w3nzTDoqJtgCm8dpIiutsDoGsR6FogJxnh4eX+eKdv9Mc
+	QEHf46uP0/p9c3j0hil7xKfC9hsImr/2rbPiQs11XR8ap0ilyFhP54Bb8VHf/qk+RNZVOIf+5yG
+	Q2EIRKmQB0UEaOLskmquegfgPASp/R0Chah5VJcbNgntSGMK4Szqx7pDLA4byd0XF3GAdCk+dEL
+	FuxfqS0JelSQfufAIw==
+X-Google-Smtp-Source: AGHT+IH8pJ/l725F7jpzit86CNm+iBx7HYI5g7kErnw7UkpgGPy+kn1LJM6uau/6mX+yCgesQsO7k/FLWd0sn0ytGhY=
+X-Received: by 2002:a05:6512:682:b0:583:ac7e:4e1a with SMTP id
+ 2adb3069b0e04-591d8502b29mr4582945e87.23.1760988606107; Mon, 20 Oct 2025
+ 12:30:06 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250803-p3450-mts-bug-v2-0-6307125408c3@gmail.com>
-In-Reply-To: <20250803-p3450-mts-bug-v2-0-6307125408c3@gmail.com>
+References: <20250526-p3450-otg-v1-1-acb80ca2dc63@gmail.com>
+ <CALHNRZ-pE4EA=x-7LuJev60=aOwGt2eDf9mGVHWJ8SPGisBchg@mail.gmail.com>
+ <CALHNRZ_W6gQknMr=eKEcB6-k5HBBkE6JfJ9LFntX9L+NTo5hUQ@mail.gmail.com> <iiooyryqjbfutvyycrk4wxgkhow42bnks7ndkkqy2zujv47bly@2f3sgagl6yte>
+In-Reply-To: <iiooyryqjbfutvyycrk4wxgkhow42bnks7ndkkqy2zujv47bly@2f3sgagl6yte>
 From: Aaron Kling <webgeek1234@gmail.com>
-Date: Mon, 20 Oct 2025 14:28:22 -0500
-X-Gm-Features: AS18NWBlNKt3MmTfiejt6ZGCRffbefMOPo_ko_DLqTSSs5UW2n7AtLASjfzoSFc
-Message-ID: <CALHNRZ8ycMNA-OLx=hWNmetqxioDSbt2mRH=_NXr2zLu_pbJoA@mail.gmail.com>
-Subject: Re: [PATCH v2 0/2] arm64: tegra: Add reserved-memory node to L4T
- Tegra210 devices
-To: webgeek1234@gmail.com
+Date: Mon, 20 Oct 2025 14:29:53 -0500
+X-Gm-Features: AS18NWBRKorxOsoZ_E9SDZMzdQeGC1t6Wb2mP6Y3s6-jRK4cbkxihFxXMR8bUok
+Message-ID: <CALHNRZ9OTfYqKzP4Dk80q8bFY8ZWF1=bTCBPRuVNJKGNe-L=hQ@mail.gmail.com>
+Subject: Re: [PATCH] arm64: tegra: Set usb micro-b port to otg mode on P3450
+To: Thierry Reding <thierry.reding@gmail.com>
 Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Thierry Reding <thierry.reding@gmail.com>, 
-	Jonathan Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org, 
+	Conor Dooley <conor+dt@kernel.org>, Jonathan Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org, 
 	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Sun, Aug 3, 2025 at 10:14=E2=80=AFPM Aaron Kling via B4 Relay
-<devnull+webgeek1234.gmail.com@kernel.org> wrote:
+On Fri, Aug 1, 2025 at 4:41=E2=80=AFAM Thierry Reding <thierry.reding@gmail=
+.com> wrote:
 >
-> Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
-> ---
-> Changes in v2:
-> - Add patch for P2180
-> - Link to v1: https://lore.kernel.org/r/20250526-p3450-mts-bug-v1-1-78500=
-613f02c@gmail.com
+> On Thu, Jul 31, 2025 at 04:40:05PM -0500, Aaron Kling wrote:
+> > On Mon, Jun 30, 2025 at 2:35=E2=80=AFPM Aaron Kling <webgeek1234@gmail.=
+com> wrote:
+> > >
+> > > On Mon, May 26, 2025 at 8:22=E2=80=AFPM Aaron Kling via B4 Relay
+> > > <devnull+webgeek1234.gmail.com@kernel.org> wrote:
+> > > >
+> > > > From: Aaron Kling <webgeek1234@gmail.com>
+> > > >
+> > > > The usb micro-b port on p3450 is capable of otg and doesn't need
+> > > > hardcoded to peripheral. No other supported tegra device is set up =
+like
+> > > > this, so align for consistency.
+> > > >
+> > > > Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
+> > > > ---
+> > > >  arch/arm64/boot/dts/nvidia/tegra210-p3450-0000.dts | 2 +-
+> > > >  1 file changed, 1 insertion(+), 1 deletion(-)
+> > > >
+> > > > diff --git a/arch/arm64/boot/dts/nvidia/tegra210-p3450-0000.dts b/a=
+rch/arm64/boot/dts/nvidia/tegra210-p3450-0000.dts
+> > > > index 0ecdd7243b2eb1abba9adbe9a404b226c29b85ef..019484a271c396edc30=
+200e8592c713455a8e1a4 100644
+> > > > --- a/arch/arm64/boot/dts/nvidia/tegra210-p3450-0000.dts
+> > > > +++ b/arch/arm64/boot/dts/nvidia/tegra210-p3450-0000.dts
+> > > > @@ -514,7 +514,7 @@ pcie-6 {
+> > > >                 ports {
+> > > >                         usb2-0 {
+> > > >                                 status =3D "okay";
+> > > > -                               mode =3D "peripheral";
+> > > > +                               mode =3D "otg";
+> > > >                                 usb-role-switch;
+> > > >
+> > > >                                 vbus-supply =3D <&vdd_5v0_usb>;
+> > > >
+> > > > ---
+> > > > base-commit: 405e6c37c89ef0df2bfc7a988820a3df22dacb1b
+> > > > change-id: 20250513-p3450-otg-b947f31843d8
+> > > >
+> > > > Best regards,
+> > > > --
+> > > > Aaron Kling <webgeek1234@gmail.com>
+> > >
+> > > Friendly reminder about this patch.
+> >
+> > Re-reminder about this patch.
 >
-> ---
-> Aaron Kling (2):
->       arm64: tegra: Add reserved-memory node for P3450
->       arm64: tegra: Add reserved-memory node for P2180
->
->  arch/arm64/boot/dts/nvidia/tegra210-p2180.dtsi     | 6 ++++++
->  arch/arm64/boot/dts/nvidia/tegra210-p3450-0000.dts | 6 ++++++
->  2 files changed, 12 insertions(+)
-> ---
-> base-commit: 0ff41df1cb268fc69e703a08a57ee14ae967d0ca
-> change-id: 20250526-p3450-mts-bug-02394af31f0a
->
-> Best regards,
-> --
-> Aaron Kling <webgeek1234@gmail.com>
+> Sorry for missing this earlier. We're in the middle of the merge window
+> now, so I can't apply this to a tree that feeds into linux-next, but I
+> will pick it up once the merge window closes.
 
-Reminder to review or pick up this series.
+Reminder to pick up this patch.
 
 Aaron
 
