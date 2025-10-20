@@ -1,94 +1,119 @@
-Return-Path: <devicetree+bounces-228964-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228965-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CFB00BF2AE8
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 19:21:56 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 459B1BF2B1B
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 19:24:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8E865460D6C
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 17:21:55 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id B67AA4F7ADA
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 17:24:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F088285042;
-	Mon, 20 Oct 2025 17:21:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 534B92FB618;
+	Mon, 20 Oct 2025 17:24:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="U2t9lGOf"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="doYASs8i"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com [209.85.208.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED25B3EA8D;
-	Mon, 20 Oct 2025 17:21:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8746256C7E
+	for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 17:24:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760980913; cv=none; b=Q9vuFL/XuNmAC88v3ZSxvgNKIp4vQMF/LAb7WG9AorFo/1BV1s/R6c9wnl/1z+TOBxfaBBprPLY5xSkOPaylPzTHXLX+Z/BiL3AyA20Bx4xFbY9ZoB2HnqMK+ZpmGKguqURvS4jHYJpbBrpuajKzblTAQ0CaYVstGVh8v/cyvs0=
+	t=1760981061; cv=none; b=hduNECPBYn/jkQ2fM7Lu1EH3whPeqVGbedX2hk1GhU+BCxYVnZNw5j7ROd6PAqgxZN6X/bYBZj7NIzzAVbq3gUI+CmM2WB70F6xt+qRxOGDDNM5uKoR1IzSEl2kdrWumSIwBhiM2H0SP3fhLF1YXYjkj4r9lQ/aSpmTG8b+6k70=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760980913; c=relaxed/simple;
-	bh=C8eG7PMjUaKTBS6LaCf8Tbd0+/VSPq+6Aua09Qgzo+I=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=p4O8xfKkdyF8AC+jXe9KWdDqfsGDubZNHerPbAnhsCQyL2k0rbduxSbjX8HwPm5JXCQ9mZjLOJqkAf387UhEjHZGxUCKUPWcly/XeYevs4CtVXd/D+3OSYXunW3856hO9itTMbrcgE2ksSo1Y9k5w1Ob4HddBh8JhOr8fzeAohg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=U2t9lGOf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 63F6AC4CEF9;
-	Mon, 20 Oct 2025 17:21:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760980912;
-	bh=C8eG7PMjUaKTBS6LaCf8Tbd0+/VSPq+6Aua09Qgzo+I=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=U2t9lGOfNY6Lkx20w2fVB4DPLQ7RNQAT5k/Gy1bRzoMuCqKvcONn9R5Q8SaF6Mp0u
-	 k5ouH3HNB9g4K8O+zH6Hok3sFRVzqmySNOvidRwN0G43JXPWbn08n/8sTz8wOFY0Od
-	 cjmgS652cobnqMLIWBdx7bjZ9VFEwQX1vJW79Ew9BTcGy9P35lRWrtRMlCuW+fZx+U
-	 /ARWcluXqvCoCLKKW805/Q/cvcm2UAjm6fgf8slnos9VTFSrAZ+Dy17ywAtwrJc4tQ
-	 iBD9KrheD9J7RLnfsiuBJzsqz2En0BSGlcfaxC3mFJhPUDuC3z5PYgP5svbn7Fktoa
-	 NNayKWfubeVcw==
-Date: Mon, 20 Oct 2025 18:21:45 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Xu Lu <luxu.kernel@bytedance.com>
-Cc: corbet@lwn.net, paul.walmsley@sifive.com, palmer@dabbelt.com,
-	aou@eecs.berkeley.edu, alex@ghiti.fr, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, will@kernel.org,
-	peterz@infradead.org, boqun.feng@gmail.com, mark.rutland@arm.com,
-	anup@brainfault.org, atish.patra@linux.dev, pbonzini@redhat.com,
-	shuah@kernel.org, parri.andrea@gmail.com, ajones@ventanamicro.com,
-	brs@rivosinc.com, guoren@kernel.org, linux-doc@vger.kernel.org,
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, kvm@vger.kernel.org,
-	kvm-riscv@lists.infradead.org, linux-kselftest@vger.kernel.org,
-	apw@canonical.com, joe@perches.com, lukas.bulwahn@gmail.com
-Subject: Re: [PATCH v4 02/10] dt-bindings: riscv: Add Zalasr ISA extension
- description
-Message-ID: <20251020-kelp-trustful-1c07c69cd534@spud>
-References: <20251020042056.30283-1-luxu.kernel@bytedance.com>
- <20251020042056.30283-3-luxu.kernel@bytedance.com>
+	s=arc-20240116; t=1760981061; c=relaxed/simple;
+	bh=hydKm2NZFUTr/tv1313cV/5VEAs1svpkfDCqMkUr4gs=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=WL+hthN5zuBfOQkpPas9i26xPEz5sTyKziFHycLKAumUKwZeYGoX9ELkkOCuJZQrIhlWedU6A3zelv9Pno1mEz1OtLRJnrYtmA06keW0dGKjtdyKBfvcT/7tlqeRii21mGSFu087tX9178msdURh7Z4AYVXgZUl3Er3wvHCTAR4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=doYASs8i; arc=none smtp.client-ip=209.85.208.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-367444a3e2aso56651251fa.2
+        for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 10:24:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1760981058; x=1761585858; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=JJL3ymzyML+diLAVT9nhgdl7Vx9TWLZbPp7QEm8FssI=;
+        b=doYASs8if3X0e9jHaFnSxYzodoUB+uoec1+yI5KUPtn366ibEUEbyFdOBRiUxfw7zd
+         8UBHYMK/Z7U2ZapjDY7pO2NaRo9z0vgj4EcRB6xhMTJfEQOZ+T544rkp2C1Eh8NcGgmZ
+         wSVIZb+lLgq10HCZ87DPvRNGsC+CNflUloHvmAA9ChZOzqWtoaQEQc09wPG2rzfCffqn
+         hcqpN8OUwXQrqO+dHI4hoepNdiD5Drwho2h1FTwYBVyhPCIOTbqnJ+ckcUQkg8Ik4k73
+         BhfIYMQ1+z+RAR4IschG8EUHbJGjWtskrWgY98GQG0z+QoFLmR8CXM1gXFWjXpZgQlNj
+         mSSA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1760981058; x=1761585858;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=JJL3ymzyML+diLAVT9nhgdl7Vx9TWLZbPp7QEm8FssI=;
+        b=VuXhtgZemUvh9ZXJzT4uv0hs7PVITmdfw5kxq1KnAmiNhPCkSRfCdSbgBwN+zq8AUL
+         rYTmEjoROvKrdfvqTdGT72A9hr12Ix8N6hDgcJfnEQYVYxYTEFfJ7RTUQAtv7pDR7GUi
+         KNaZZQtMnvMLWK2sPLERnMsIPJYiro73S2bBk9VbJl3FgUyKM0DiZ54BhI8WqB3YK2A+
+         J1PY/J20yErQlETiax0a/x+t3dmcr4bFAm7YhxZTlyIE96chIxONTS9Ky5Bj9ZoUikjs
+         8KcgsA5tX5OKZLJ8Q57jbRzP93JXEIQWkxDUnEAekAeO4fUUg5y8IRu7rVySaLyIDzqU
+         srxg==
+X-Forwarded-Encrypted: i=1; AJvYcCUqNAYv7aYb2ehRBVuMQA22M2zDUDG7BeeT1gONzSMPReGnonVG3kifFPU3c3Aw7xA8fYNYmdu3H0hq@vger.kernel.org
+X-Gm-Message-State: AOJu0YyEuavVcun5zFvOxXcg6ZDmmqzVcYdeogg7e8olSPn7JsP4+fRL
+	Fq/f4x5iVjHgwGuWWgSMju1scu7bhYq1ovXPH8DWFqlm9pPe3FtuA7WnxHHHwzoHRhJQJVpQ4EE
+	AAD2yFS4a1JmkdDqiWXd91h0L4/u2qpk=
+X-Gm-Gg: ASbGncvhxW8Qc+6UG/Hw3d/hxNIOCBk6zdC8f7aCfgF1aMEAhX7i1eMmWO9G3BGyefr
+	bokQ1RG4NC77Mvv1x+jxMyDmdS79RiiGR+Km0ArkgRRfO//f1v7Cz9cSfUMDuqr9kAIgqOdI0GD
+	8mQdh18GIlti/rmXhgl7NsgBk5qHx7ehdITWeRwKBRnAmwFK/BB33zQ0xtT/LNItNxA5MIsQX3b
+	xHpZmXQUU8LL9stMSeha40jrhoOkCWGxoMr6bS3Blhcjj9boqW6XkZcwHJ7S6FxPPn9DjJRbBuK
+	3VZWlv85p9xdvmlc
+X-Google-Smtp-Source: AGHT+IFGvquo7dKjulQge3D4nLth2WI8das3/MTTYuoViw5UYS7r0NQDoBhHAaPE++J0d5/68a7BWV0yZERz90yIgHQ=
+X-Received: by 2002:a05:651c:1990:b0:375:f6b9:c948 with SMTP id
+ 38308e7fff4ca-377978d7927mr37082001fa.15.1760981056694; Mon, 20 Oct 2025
+ 10:24:16 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="BFPQpvVg8gUO11Ws"
-Content-Disposition: inline
-In-Reply-To: <20251020042056.30283-3-luxu.kernel@bytedance.com>
+References: <20251013205155.1187947-1-festevam@gmail.com> <4bd512fd-b3df-484a-8a04-a1ed066c42fa@nxp.com>
+In-Reply-To: <4bd512fd-b3df-484a-8a04-a1ed066c42fa@nxp.com>
+From: Fabio Estevam <festevam@gmail.com>
+Date: Mon, 20 Oct 2025 14:24:05 -0300
+X-Gm-Features: AS18NWDxC1BDffoJ0EW6ktW9w7SITyz7Fejydue0HKFG2UIjYNHc8u5VIdoiknI
+Message-ID: <CAOMZO5AGRejEwNvkH0Di0HVi8QPduTeCSud+_GqOkD4tqEcsdA@mail.gmail.com>
+Subject: Re: [PATCH RESEND v4 1/3] dt-bindings: lcdif: Document a imx6sx-lcdif fallback
+To: Liu Ying <victor.liu@nxp.com>
+Cc: marex@denx.de, stefan@agner.ch, airlied@gmail.com, simona@ffwll.ch, 
+	maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	shawnguo@kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, Ahmad Fatoum <a.fatoum@pengutronix.de>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+Hi Liu,
 
---BFPQpvVg8gUO11Ws
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+On Tue, Oct 14, 2025 at 1:12=E2=80=AFAM Liu Ying <victor.liu@nxp.com> wrote=
+:
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-pw-bot: not-applicable
+> Strictly speaking, I don't think i.MX6SX LCDIF is compatible with i.MX28 =
+LCDIF
+> because at least i.MX28 LCDIF has the version and debug{0,1,2} registers(=
+at
+> 0x1c0, 0x1d0, 0x1e0 and 0x1f0) while i.MX6SX LCDIF hasn't.
 
---BFPQpvVg8gUO11Ws
-Content-Type: application/pgp-signature; name="signature.asc"
+There are some DT users, such as Barebox that matches against
+fsl,imx28-lcdif, so we cannot remove it.
 
------BEGIN PGP SIGNATURE-----
+In my first attempt,  I tried removing it:
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaPZvqQAKCRB4tDGHoIJi
-0hvXAP9MBxNLwQ6EaW26x/57UgbQ5Ohba3hlU7D3bJB9ReuoPwEA89307tQnz5Yg
-euZ/obSdJwA33QQLg4HfL//+TgpQAwM=
-=orfO
------END PGP SIGNATURE-----
+https://lore.kernel.org/linux-devicetree/20241028180844.154349-2-festevam@g=
+mail.com/
 
---BFPQpvVg8gUO11Ws--
+but this was rejected due to potential dtb compatibility breakage:
+
+https://lore.kernel.org/linux-devicetree/4addc413-dd13-4867-8c49-45539af7b4=
+5b@pengutronix.de/
 
