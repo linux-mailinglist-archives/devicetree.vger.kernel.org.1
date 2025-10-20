@@ -1,83 +1,83 @@
-Return-Path: <devicetree+bounces-229005-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229006-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62297BF2ED1
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 20:27:38 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0565BF2EE3
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 20:28:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id A17F334B449
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 18:27:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7C28D18A55A1
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 18:28:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0693C3321A4;
-	Mon, 20 Oct 2025 18:27:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70F50332ECE;
+	Mon, 20 Oct 2025 18:28:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gi8SRe2K"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NK7EioqS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com [209.85.210.174])
+Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com [209.85.210.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C6DE3176E7
-	for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 18:27:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA453332919
+	for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 18:28:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760984852; cv=none; b=DhN/aM2Hw8BOI6TZVofeveVnlkRi6TgKT/z6nbbm4Lx/pV8b4lQxehP8a01iSADu7NkY9xLILSnUzYWzkudilz9YdqLHF2T54+NdR8ZgBg9HVGuu2Oe1GITFnkiT7PDeKBbWZgagv1nX16ZQwVs6CYsVcaDKadS83Z32rJsSwek=
+	t=1760984896; cv=none; b=LbKCCNJhs4VQME/+LfGsU+Tyzly3FSWdanCDnDcPmBDKh3rlTSGJ3HpMuxSu/dK4Kv21QPR6ELLJai9Lx/OH00nqpiCY/w0Ut2ZfnnYjxBKgzwFgFH4hIRYvwMOHI2BPXibagaYeVE6Fi5KbNTmCFwGLgrWsZI4q2Kb2yqpfYQ4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760984852; c=relaxed/simple;
-	bh=sYVWUSKsNXqyLkSateWcXYUk5hCBzr+F+MG40EHbSaQ=;
+	s=arc-20240116; t=1760984896; c=relaxed/simple;
+	bh=SsEF18SdcbxARL97VlTND2ETEKSS7WjiPQkcE6caLPA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Fb9Cbijv2/fZBv+ZWvB9xBm5BObb9ac3dx6IPM9n2p4GeJa6wb58V/ew8ncN2fpGK9nefKlN0e1X9MNOX1+lAPRqm2V9HM2d27qk6SKcbGkc5h7h2LNWpuIIEKvoIKZf5CtVOeidBCTPG3EXlf/zXWj/K5NfdDwugWJ4ru6liXM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gi8SRe2K; arc=none smtp.client-ip=209.85.210.174
+	 In-Reply-To:Content-Type; b=eRzd1WhPf4hevoOwiJlFqSm8XzgIHj0UjLrsnAN93DNDXDC+za+EkFULFmaly6WV8WQLg8ANEDnDinJ+YDnoeC7EMs8c8nKmYyskttvjLZQzmlDxQEwyTP5pufXUczh+sA5PYNfAhUKh4kEvy3eSt9UXOqxqLnUV1tYQFmF8ctU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NK7EioqS; arc=none smtp.client-ip=209.85.210.171
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f174.google.com with SMTP id d2e1a72fcca58-7841da939deso4348161b3a.2
-        for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 11:27:31 -0700 (PDT)
+Received: by mail-pf1-f171.google.com with SMTP id d2e1a72fcca58-782e93932ffso3968347b3a.3
+        for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 11:28:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1760984850; x=1761589650; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1760984892; x=1761589692; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=FTvwgqpXQZ+o6L/m4LchDT1vFh5niSq5QC1VWoGB/ow=;
-        b=gi8SRe2KuvXlLPk+Lnem5NfyF5d9pLRwTe9I+fOGbNOQAelhwek6CdqA2s+JZqFqqU
-         Orzfensu4Q19Jw9meLdoPG1ftCcqaqYxlKNhMS3ygeLkbHR6CEI2DubdSW7cd0khf5r8
-         Rw/wJa/MBqLrRSMYJL2EFoYUKZc9rUydAh0KPKBQq8vXQ9X+J6KSehC92yrzZoG9hTSJ
-         dEHtZTn8/NhVsaP+iOVLr8SrzzH4500q5cFozwPKG6ehL3WBnLlMXtPCWVZP5kEXtCqt
-         JpofjX41leVpyxnQAI+2djB3vW5hqs9A5zAGkRZKCoCkJ20txMg6h3oiKXaW39L2x2Db
-         fA7A==
+        bh=O11l6c/6WNY6EuzWxhhuUfeETXk68wKUAKWksFL62x4=;
+        b=NK7EioqSHL5MVHe/GnBv+lruc4ZfcyBty0Njrn0FSvK7dZXT4ai79NeIyY/73JjiD7
+         cIo8HrO5DAyolUtsQSqDxWm3BmaZ6LkZt3cZ6szFXgFRihs0+DHu2vVF55U6Rpvx9AVP
+         2b0MKYao1T5FF0hkX0Nek7QLdibF3XrVUVxKFuiHXzU/Kh7oULulBaGceNMZn7bdmT6z
+         Q7RBXcJo2yriBWjQxlylG63ltM6okNq4NHgztG0R5HhDZ14JbqMD2u1lQcI9ZkDBEXXF
+         UMh9N4F+XcN0HdPqB4DRRC78sorQRYqsa0DpPWjuhLsAOqgL5TdTGUxidOTHl9yihvKi
+         bZGA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760984850; x=1761589650;
+        d=1e100.net; s=20230601; t=1760984892; x=1761589692;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=FTvwgqpXQZ+o6L/m4LchDT1vFh5niSq5QC1VWoGB/ow=;
-        b=ntiD455sIYkZ+tbjyLfnw/Og6MGttZBwIsGygXlkZLq/jt16JF9PBWm729zgBtm6Qs
-         8cA8Oh4iWyKVYnwW1Ghqtq8jTsxBgWsaFLFRwSu2nY9ydbmfX4DUlduXd0cL7jY+15Nj
-         pkyttFavlKaDuJOhGy+z9x2oMGKJSGZyyHd7McYrC2gGm22cCvQ3Xj5DCIwc7rkG4DxB
-         ClVQvWb26w8fMnY3gC2C7YchxH0lA+c7l6HfwHhDm3LXDbz1XnPO6SypcN4zZEQfMJEf
-         77QwMT2iAuoYNnxDKL9pwBgnydE5aISC1uMElV17WgcrckvUEs8l8UIlGvEA8jl9XUQ/
-         xZHA==
-X-Forwarded-Encrypted: i=1; AJvYcCXYZgg3eLsBF1Y/oNLo3SLqvnlvn1Els2pnb6Hadd73ka9H/cW+NUWahovlDA6gntIOoTrBbwzEiilv@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywh9Dm47iZf5+VDrT8EpxRtOavteIyu8NuKgFXqJMHUxZFqgVnU
-	q0kecSs13bWQRmS92HsAH+NkXm7GubyZw3P+8Qyab+pavsbeCHKaHA7M
-X-Gm-Gg: ASbGnctFyB07B0NDUtjAY0p5R+bEHWEuxTKzE/M0SKvhiMMrPWwqr50vKARd0kBkmC+
-	WH7NQUTl3CC+WUj2XU3Hjc54lBdZCI/IrGRtE2Qi+Dg3ChOI44YTzTWM6pv4qcqYv2vkP1luwPZ
-	sxnmjDMp+NkDoLLA4FouxOBki+0mMW63/bclslKEKErebVZdKRWDRTNUfRxAE/xkfo0iDdHchMv
-	DRuBbaHJ0WG1mIRVRucQZ80NFSFqX/rygzsluJfKxLJooaJmwqGF/m8MuZA6nvgCQSYDPJ6SK/K
-	tmweNZ9k9+XQT83FoJJA4CMDJuzUW2meE/Kq7+bUEqLBZKFOAZ8QQY/GJJiSVk5YmBnj/lkiqKj
-	CTdBO4V0tOd9Q+wQIDtC3s9nGt/QOnTEZKEVqYUfh2w/yUB5YxypaTbXAVIxVM/7tTjdaswO8Tn
-	/NqEISA23EoEDMmcbZtWqq39j4OAkVvaaOdg9ruMJweQ324m9Hsel1VLbhkU4=
-X-Google-Smtp-Source: AGHT+IEjH3dSW9ulk4E4mIrpvO9Jn1AcEOGkaGJJ9HKRt+Ccb0xvg2qf5L9jZNunaz4Ts5RCZXrPOw==
-X-Received: by 2002:a05:6a00:4099:b0:7a2:23cd:418c with SMTP id d2e1a72fcca58-7a223cd42b2mr14024213b3a.3.1760984850497;
-        Mon, 20 Oct 2025 11:27:30 -0700 (PDT)
+        bh=O11l6c/6WNY6EuzWxhhuUfeETXk68wKUAKWksFL62x4=;
+        b=N+fckp+kSkIztrXliUNAt1/iZbdP2vMnia8BmroDXNBhWDcSaCuJooE8BJY96eFY8K
+         CSFU0+G0J3FiCPP69uYENZdyKgEukVXnYCMYH43klgm7mHvGzrj16p2QDbgTEJgGaPXe
+         UGJaeBWhwJeYg4YgBuz383s02Ub8XTVxELzSUo9GMl1U+4rOQL/+CMJEXwnvfVrlbXKa
+         CeVODfd8ZoXhLILGG1Rmd+pS3RUseWuOuD6SnUB3Snk45wAqinFwGjjyLkNGrb0jZAg5
+         wIbgPXAGDRTpl/w4ROFyTXJHuhSDRRnVOFJzuYnnnE4H7biu72aUePfNuUBdeEq9BLBv
+         abDQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUc01+mX9jaqd5DFidoshJHk0qMPDDKJGJN2SjQJ+u9tNF+d9lj90Ogv/ZX5jFmtNjn5DROB1U+B0/v@vger.kernel.org
+X-Gm-Message-State: AOJu0YzB0uDefD0UnHgm3NfzPO6u9vUNuAwmxXhbcR1zt8MggDZ/s+6s
+	F/CRsamejvwUHC+odms4ejHEQOSMHfYUS+j24wFMKaWH8oEH9r3HT3fO
+X-Gm-Gg: ASbGnctcwUqkim+S4cMpgtlQKneV2iwunLtCWLI7JXFDtpcZNkNbagJqv88x7oXsvyX
+	JxQemahSSz6AVzUGGlDqyy31bdWUxgUC9dln6DENAGLogH9UUFegCu/ZwG89IyNP0nN3cAVUHw5
+	HIQj9xjQz4YdjPrZPEIS6kxJFz4DH0bCY+Wn4gT0NwzyuWr7Pnm2zjnC4RjFyUW5/TJ+WA/2Uys
+	w9UBkE4XF83wFTUvAM+oEGeAZhaloMETuWBe7QQhqE2cMG0g3d3NvsnYRD36gA0MICCUDFjPOWN
+	HrQpWkxusDmCpRIhfnbyfJ62QnzrFNVed2UnLBTOxXc0kliyC2X31eleoi6nkQYICdUEbP51CNK
+	7cUNFkDS6Rv9ecHxFqUhnUYX0k0CnqOFNMSGcYauFiCdMSl40LKgk6nUGOFtKt4iUDt7Hb2bOU2
+	Dz/NS3NMnVV4Ffo9ipgORXOjtxCThmx0qQ87GBH7LXncBv1nws
+X-Google-Smtp-Source: AGHT+IGxOtMDTcCkSSe1r7ijbi+tu9WmGE3vb/BccPHTGQ1lE+8Q4yHdexM+nwMk8emt8GMaB+ehRA==
+X-Received: by 2002:a05:6a20:7351:b0:334:a022:d7ab with SMTP id adf61e73a8af0-334a8629434mr18752755637.43.1760984892032;
+        Mon, 20 Oct 2025 11:28:12 -0700 (PDT)
 Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7a2301230a1sm8880632b3a.71.2025.10.20.11.27.29
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b6a76676a2esm8200311a12.15.2025.10.20.11.28.10
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Oct 2025 11:27:30 -0700 (PDT)
+        Mon, 20 Oct 2025 11:28:11 -0700 (PDT)
 Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <aa552c02-b8f0-42ea-8075-415d193f8cb3@roeck-us.net>
-Date: Mon, 20 Oct 2025 11:27:27 -0700
+Message-ID: <49228a45-7e53-40e3-a5bb-49a4dd1823e8@roeck-us.net>
+Date: Mon, 20 Oct 2025 11:28:10 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,8 +85,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: watchdog: Restrict timeout-sec to one
- number
+Subject: Re: [PATCH 2/3] dt-bindings: watchdog: Allow node names named 'pmic'
 To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
  Wim Van Sebroeck <wim@linux-watchdog.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
@@ -96,7 +95,7 @@ Cc: linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org,
  Timothy Pearson <tpearson@raptorengineering.com>
 References: <20251020-dt-bindings-watchdog-timeout-v1-0-d0f3235eb327@linaro.org>
- <20251020-dt-bindings-watchdog-timeout-v1-1-d0f3235eb327@linaro.org>
+ <20251020-dt-bindings-watchdog-timeout-v1-2-d0f3235eb327@linaro.org>
 Content-Language: en-US
 From: Guenter Roeck <linux@roeck-us.net>
 Autocrypt: addr=linux@roeck-us.net; keydata=
@@ -142,35 +141,37 @@ Autocrypt: addr=linux@roeck-us.net; keydata=
  F0WaMvQMNrk9UAUziVcUkLU52NS9SXqpVg8vgrO0JKx97IXFPcNh0DWsSj/0Y8HO/RDkGXYn
  FDMj7fZSPKyPQPmEHg+W/KzxSSfdgWIHF2QaQ0b2q1wOSec4Rti52ohmNSY+KNIW/zODhugJ
  np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
-In-Reply-To: <20251020-dt-bindings-watchdog-timeout-v1-1-d0f3235eb327@linaro.org>
+In-Reply-To: <20251020-dt-bindings-watchdog-timeout-v1-2-d0f3235eb327@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
 On 10/20/25 09:52, Krzysztof Kozlowski wrote:
-> Linux kernel expects only one number for the watchdog timeout and the
-> type is an array (defined in property-units.yaml in DT schema), so
-> restrict the property.
+> Watchdog is often part of more complex devices like Power Management ICs
+> (PMIC), e.g. on rohm,bd96801, and the schema can be referenced by a
+> binding describing parent (main) node.  Allow another typical name for
+> such PMIC devices: pmic.
 > 
 > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Reviewed-by: Guenter Roeck <linux@roeck-us.net>
 
 > ---
->   Documentation/devicetree/bindings/watchdog/watchdog.yaml | 1 +
->   1 file changed, 1 insertion(+)
+>   Documentation/devicetree/bindings/watchdog/watchdog.yaml | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
 > 
 > diff --git a/Documentation/devicetree/bindings/watchdog/watchdog.yaml b/Documentation/devicetree/bindings/watchdog/watchdog.yaml
-> index f0a584af1223..be0327f587eb 100644
+> index be0327f587eb..77ac23516d6d 100644
 > --- a/Documentation/devicetree/bindings/watchdog/watchdog.yaml
 > +++ b/Documentation/devicetree/bindings/watchdog/watchdog.yaml
-> @@ -24,6 +24,7 @@ properties:
->       pattern: "^(timer|watchdog)(@.*|-([0-9]|[1-9][0-9]+))?$"
+> @@ -21,7 +21,7 @@ select:
+>   
+>   properties:
+>     $nodename:
+> -    pattern: "^(timer|watchdog)(@.*|-([0-9]|[1-9][0-9]+))?$"
+> +    pattern: "^(pmic|timer|watchdog)(@.*|-([0-9]|[1-9][0-9]+))?$"
 >   
 >     timeout-sec:
-> +    maxItems: 1
->       description:
->         Contains the watchdog timeout in seconds.
->   
+>       maxItems: 1
 > 
 
 
