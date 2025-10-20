@@ -1,55 +1,55 @@
-Return-Path: <devicetree+bounces-228727-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228729-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2159DBF06AA
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 12:07:48 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 755F4BF067D
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 12:06:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A10703A56DB
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 10:05:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 15E5F18A0EC9
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 10:06:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF2A92F8BFF;
-	Mon, 20 Oct 2025 10:04:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 623112FB609;
+	Mon, 20 Oct 2025 10:04:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="UZpHQW33"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="kU21S4tL"
 X-Original-To: devicetree@vger.kernel.org
 Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1AD02F83AE;
-	Mon, 20 Oct 2025 10:04:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 976222FB092;
+	Mon, 20 Oct 2025 10:04:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760954676; cv=none; b=qunIfrS7M884VCnzgZsnwnckpoMgzHr0Wx7fXiOIOm8+7LpLoh28IL5kTbnkVcp/k8MPRsNDR6z3PocrriL/lkJYRRY1aik6DBKpIpLw9T85mc3hbXB3+TZ6o/Qnw3kxL7YUFxtSdasvYgkf6wiOS8zNGIZfUGCDXVXPERleBDg=
+	t=1760954683; cv=none; b=QROpHcoQ+P0YHQ12iWkdxqUuwkVcq+/OMsiCAPOlEbelEQpJeWUuwAE9Rxk5iTzPhnoD00ghtk27bQiCd53yRSJTfUSRlsXo+Ikpqe/dfIvUA1ftTHmVhzPC7JuVgSr5Bx3kaou8ByQOmnrcpKUtGUudm2FTDu0Q8cQZIK5kbU0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760954676; c=relaxed/simple;
-	bh=h3N0Gm87ALyNcMBnk14h1KKNXe9sbhc0PNDBK6yXbfU=;
+	s=arc-20240116; t=1760954683; c=relaxed/simple;
+	bh=LemVXctvae+74luWmuzpmpLlI7eUe5tI3CrLuksCccA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=KeyWc62+4yn0j2+PyhHMfRPeMdsehv2MAaQw7WYuaCaGkyTQZsYkqreROsQgPmhnuIIERK0m9JWH/uqIlJAxWfdEXhZaPeE8jB5hcRbYF2iXcoj+rQeoEfhCmwSvDWGqs+EXvgBQT++US6LaG/+CB7Eh5jf+7f+r+ThzesbtvLE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=UZpHQW33; arc=none smtp.client-ip=148.251.105.195
+	 In-Reply-To:Content-Type; b=NQPt3mxrRIK7cz9Mp5oVEuU/LJJg6SjXnGaCc1JCPJXRbbVAmk83JNnA2//7v4KR448KfQ0vzzAov4Yyw6he7ROjCXij59dbIHTIX7Rc9yJqJi1zZHai8EunkMa7qGn2jExD8yiogJAAgtbUubTc2ooUskDU/8PPrFoxO2vkZWo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=kU21S4tL; arc=none smtp.client-ip=148.251.105.195
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1760954673;
-	bh=h3N0Gm87ALyNcMBnk14h1KKNXe9sbhc0PNDBK6yXbfU=;
+	s=mail; t=1760954680;
+	bh=LemVXctvae+74luWmuzpmpLlI7eUe5tI3CrLuksCccA=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=UZpHQW33ZW2yMdrw+jf9iIk/dEEIrtba/DdToyFk+k5pA+T78Z/DdZQAHjTbGoJX5
-	 YttNV59CQ1DBx10iPVo+BaVOKjXQ7Vc2WUPRxPQxkhwKTOsQRBEImPfb1NKxvvVI+t
-	 jgTHaf/Wg1UYDlfBp3cZyhlbxVp7hNPp6KinhjUVmL0a9/Awts4aVRvpjJq+S92YuR
-	 1M135gTH7zV75y/WKxrYQ+evqiLqm0XZPx3mdrOo2C5jHsdz/C5DDrfHZtFiGjR9+a
-	 Q0irX2k8l3ES8/gySgnuN8yccLqR8GkPiec1CreRONBzl0HPQCeLX7esVrL1fcF28t
-	 6pn1zf97lIiRA==
+	b=kU21S4tLVJoq2/DVWFB4W4qUPhpmUJj6xfUGAniqDZ8p+j1ZKl4uDfGuU6pU1DPxa
+	 qkjIWZQeGS6KQmeSZcyI2/aOBzQs9ncrA5rXUQmik0EMQAGuylme1T/Q+jvyRiOSxd
+	 dLJBNRurrOH8rUct14t8hzMm97GsfE46qQi67Sx8+ccpEMwKxgOMGqXdomEabFYAv0
+	 /ESc4H4PIplRZ+kfSZ7Nm4olrLMkX7STVREMXRUYdphIowPQQuxa6G0wq158qVY9cO
+	 oIyB7UmCf3TyVdVJIs/ck4D2Tvpl4rHD/I/t62ZCnl9QG4NrvzdEEbz7s5jenEWjV3
+	 pgAeQ368TPxfQ==
 Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
 	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 731F217E108C;
-	Mon, 20 Oct 2025 12:04:32 +0200 (CEST)
-Message-ID: <9258e1ca-56b2-4fb6-bf17-40c86b8c05b6@collabora.com>
-Date: Mon, 20 Oct 2025 12:04:32 +0200
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 5242117E108C;
+	Mon, 20 Oct 2025 12:04:39 +0200 (CEST)
+Message-ID: <a44bf667-316b-4e20-81ce-41902d68ba1b@collabora.com>
+Date: Mon, 20 Oct 2025 12:04:39 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,8 +57,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 14/20] media: platform: mtk-mdp3: Refactor CMDQ writes
- for CMDQ API change
+Subject: Re: [PATCH v8 13/20] drm/mediatek:Use reg_write function pointer for
+ subsys ID compatibility
 To: Jason-JH Lin <jason-jh.lin@mediatek.com>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
  <conor+dt@kernel.org>, Jassi Brar <jassisinghbrar@gmail.com>,
@@ -76,23 +76,17 @@ Cc: Matthias Brugger <matthias.bgg@gmail.com>,
  dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
  linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org
 References: <20251017065028.1676930-1-jason-jh.lin@mediatek.com>
- <20251017065028.1676930-15-jason-jh.lin@mediatek.com>
+ <20251017065028.1676930-14-jason-jh.lin@mediatek.com>
 From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Content-Language: en-US
-In-Reply-To: <20251017065028.1676930-15-jason-jh.lin@mediatek.com>
+In-Reply-To: <20251017065028.1676930-14-jason-jh.lin@mediatek.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
 Il 17/10/25 08:44, Jason-JH Lin ha scritto:
-> Update CMDQ register writes to use subsys-aware APIs,
-> cmdq_pkt_write_subsys() and cmdq_pkt_write_mask_subsys().
-> This conforms to recent CMDQ API changes that split access by
-> subsys ID support.
-> 
-> Since all current MDP SoCs support subsys ID, and future MDP
-> deployments will not run on SoCs without subsys ID, only
-> subsys-specific API calls are needed. No logic for non-subsys ID
-> hardware is required.
+> Switch to reg_write and reg_write_mask function pointers for register
+> access, enabling compatibility with platforms regardless of subsys ID
+> support.
 > 
 > Signed-off-by: Jason-JH Lin <jason-jh.lin@mediatek.com>
 
