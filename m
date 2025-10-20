@@ -1,223 +1,225 @@
-Return-Path: <devicetree+bounces-228788-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228789-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3B67BF0B93
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 13:05:28 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E310BF0B9F
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 13:06:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5460A3B34F2
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 11:04:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 37E783E3A64
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 11:04:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22BB32F6577;
-	Mon, 20 Oct 2025 11:04:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 029DB2F1FC5;
+	Mon, 20 Oct 2025 11:04:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BdL9heF/"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="pXHJc2FN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81EEE24E4C3
-	for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 11:04:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6ED0728030E;
+	Mon, 20 Oct 2025 11:04:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760958251; cv=none; b=Dosf9Fy5cjqItJ/F0m+lRcvMiyum9nYASEyFXpJ3WTXbxUGSo/0Onlwl+IbZG0eji+HLsq9+kJ0PXnXwRTHZgoYyiV/qrChLHpRI6KHuJ2SrctIsz0Tjybq49E0RrDpn3UeEBkK03wacbxn/t/Iq4C4pAIsie9mD10HsEzIMXFY=
+	t=1760958282; cv=none; b=qdo5PjTRR4cQtF5liUe6v9qfcp7ibC7y0cIDNbaC8xUDio4eUxjQDg9ifMKxfQm24p9ZbGQi87F39XMehYnljHMpj55zXhfpBRmeTQjLzDt8v6rHAdK6oSA+Vptu4upsEC8/gJiZ3Iv2YAvT8Fl+v2304ERrw2SoAwCKOeCHsj8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760958251; c=relaxed/simple;
-	bh=0LNVKhKYvOfzeoMYGReCyEwIb7Zs223HMIrQWreAmBM=;
-	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Ss+vBrgLE+8SEvw4sl0VknAUVKLQHfc0DRRqOgDyNEwqOPQNJ6AD+dquXIKiCiIu7t8Hvwj8RHNAfeRfZXVBu0JPe/Ju9nghiaZUgnTnNyG+jp2OUL+ndHoKzFiSD0p7WfXPxIBZbpWpQmK6XBCJ3LwWISHzMg+H6AUaO5yK6Qg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BdL9heF/; arc=none smtp.client-ip=209.85.128.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-47157119d8bso3987445e9.3
-        for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 04:04:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1760958247; x=1761563047; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:subject:cc:to:from:date:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=FYOfZuoNHQ6zfb1eIHdQ/g7m/nIgJIBArSgWVNXdu3o=;
-        b=BdL9heF/9RoWLaly4MIo/TZi90jEtDnWuV3fW2GwBtjDTGqCaironsSdTzpUyhzJu6
-         YiYJ9jewGZ/zWG14il+lqoWrUm9m0tqyIFnzBagGGYaVPkSNcyARNp5dn6hOxiIA8EB1
-         U6utXdZf44unXcuLPDSmog8ugi+giNXIjm5NF1PTJtUTVnATMUvevmLDWmd6obhXwf1x
-         zQw/PPsyTO02u1QDlo9rtBBneZ9W2qGVMqNzcPy9B/NTnViTIXq18SV3swDLfqyAJa0g
-         AfGqeuHB5f22KX8L2RFtE7eyjOeQcowWsSB57XHwfLQuyH+IZKl75jmIZg9yT+uguGg+
-         6UnA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760958247; x=1761563047;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:subject:cc:to:from:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=FYOfZuoNHQ6zfb1eIHdQ/g7m/nIgJIBArSgWVNXdu3o=;
-        b=YgmYeKJXzLV2gNaHoLr1VbgxdCJEICPjRcMlUefyrbT63BgtDQ/IF9mbON4GtuA0vr
-         UWulowlIUkGOhl7znqD0apEy5pZ/eIBL+hbfyS8tTCLpl1r2+8f/L5FpgjoDUgNJTYKO
-         IF5WEQmqHX+ewlDPxsvyjWBrtA5yqFjitjot21B6t6yLApJw5EsdpKYkF/eUrfuHdxEe
-         DbQKazrXwkVIRMUh/8Kf5yr9gBon7B9dJR2uaFKoHv/R1TJfaKN7NgcbW3OpeClfLs7J
-         Kn1OztOcoSBwljbyu1yvxme1FK97zmRFA/5EVci7NRRsJIbtUHHek5LTwv2aY7zZ0E2e
-         kPLg==
-X-Forwarded-Encrypted: i=1; AJvYcCXXIEpFbSH1e2RxCY/5D53Bf8g3GJM/qPEQ3fwmHf4huqm9mlR7+l6+KvGS0r8Bzm3nBrIuSaQTSjXH@vger.kernel.org
-X-Gm-Message-State: AOJu0YwnjAsm47YOiMGLPpGB+yaR9pI1K1Ir4DPJJhC4JEe/z83P10mm
-	/oSOeiTG6xGdmVgJyZ55ICvzwEMDV+u9QVfHAp7XzDSAXInEnWShYq8r
-X-Gm-Gg: ASbGncuiEelQ/a5bsMtvKZh9oi7ZnACoJAEorEw2MMJYtC7sKUs2mbDsbjrKosDNaGT
-	fnWNMWbHM03xhVcHJCpy4Yw7n/RrDmZ5dRBiWUL+Ss+QJtQ4xlDhq7tYpvcMcpFpnMTr8iECaES
-	xUnRcGZxDELCY5rxnEesWC+FB3Ep4h2NGt+2tKQt4Idv9F8VrSoEdgBpPvj63Z9K2tXzGfKv5xv
-	ObqQCZe8xFGinRfIYhvSI1Y0jrO0QHH5Y4zp8/S3vyNX5a+xVKvpu4jEcFNxXTf6DCgc4Vy6Ze7
-	EqcERfTeE3dpm/CB96H0T+jocm0xaM8861WNqI3PYxpanN2LXtoyVjaYdHTNEfhJ7+YSCL032rh
-	IvbSDWk5gRhV032v2Kd/Js9xRbkEelSAB5DuHrko4vCoeCvNQulirqgiv5RQ7VL0rUgxpR2vgpI
-	EX79Rh98KlhVUswKg1JwJTmeCgEsWzBOgzuS7AmSHFqw==
-X-Google-Smtp-Source: AGHT+IGgJEIPMXEXNKI395DmJYirOVPGUv9eBwNI0mKNkT1iDHPejiG58osCYccM9drAAu3VR8kn5A==
-X-Received: by 2002:a05:600c:34d5:b0:46f:b42e:e394 with SMTP id 5b1f17b1804b1-4711793473fmr92013195e9.41.1760958246642;
-        Mon, 20 Oct 2025 04:04:06 -0700 (PDT)
-Received: from Ansuel-XPS. (93-34-92-177.ip49.fastwebnet.it. [93.34.92.177])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4715520dd65sm137840795e9.15.2025.10.20.04.04.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Oct 2025 04:04:05 -0700 (PDT)
-Message-ID: <68f61725.050a0220.343129.f1f0@mx.google.com>
-X-Google-Original-Message-ID: <aPYXHZQYtY_jcRhd@Ansuel-XPS.>
-Date: Mon, 20 Oct 2025 13:03:57 +0200
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: Manivannan Sadhasivam <mani@kernel.org>
-Cc: Ryder Lee <ryder.lee@mediatek.com>,
-	Jianjun Wang <jianjun.wang@mediatek.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	linux-pci@vger.kernel.org, linux-mediatek@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, upstream@airoha.com
-Subject: Re: [PATCH v5 5/5] PCI: mediatek: add support for Airoha AN7583 SoC
-References: <20251012205900.5948-1-ansuelsmth@gmail.com>
- <20251012205900.5948-6-ansuelsmth@gmail.com>
- <hjyhso2sqgyq4ymzqg6pmjfrfncla24zwsev2mfinolmclm3ih@sol2yoapbykq>
+	s=arc-20240116; t=1760958282; c=relaxed/simple;
+	bh=S0gr+beW66g6d7RoCiZR+zG9DA0elSFkbETKy2N04NQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=V0rOehDLGAuTdfhkdOPembiQWqGmn3yyyUEaeP+Wddu/z9+EqFFLTkm+0SpdiwOA9fC+ct8p+NbeFikxkVVHzR4I6S+cKGQRHBmM3B1eggsKORTCVqN1eO8nkwV3DbsOuPE31Ki8cu5exuvoxccwdtCNhfo1XEsigGsLEZWtUlE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=pXHJc2FN; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1760958278;
+	bh=S0gr+beW66g6d7RoCiZR+zG9DA0elSFkbETKy2N04NQ=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=pXHJc2FNtClHFj9eM8P+MyxeRQdr3hjyYE/NHTr5gplDQ6b0FiKkWh5+fuUUQkh3P
+	 vxdY1/NaeT9+p2F3MhtS2T9bHSVCDDKn1xekNXcd7dj4hrGGIMWnF5KMnw9eU5rLDj
+	 YF4t+XHI6biYGH551ZAOJy6amFub7ICBmQhDdLNSajlQNojcVHxGWvTEawdLIS+tZT
+	 6Iv3iigIVPbECkhtd8AHkNijp7q1myT076F/rJA9Vtwby0IcWla2ll8T8TEdhq3h75
+	 aDaCIsbsp/5qnbTNJvb1vW5fe/ZY+G82ZRdY3ETCuFL1X91mTu5xt0fa0/hMCrzNV9
+	 hgJulVcqYJNcw==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id A83D117E0C54;
+	Mon, 20 Oct 2025 13:04:37 +0200 (CEST)
+Message-ID: <6de4477a-5c2e-413f-9aa2-77b7262ebb38@collabora.com>
+Date: Mon, 20 Oct 2025 13:04:37 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 3/4] dt-bindings: ufs: mediatek,ufs: add MT8195
+ compatible and update clock nodes
+To: =?UTF-8?B?UGV0ZXIgV2FuZyAo546L5L+h5Y+LKQ==?= <peter.wang@mediatek.com>,
+ "chu.stanley@gmail.com" <chu.stanley@gmail.com>,
+ "James.Bottomley@HansenPartnership.com"
+ <James.Bottomley@HansenPartnership.com>, "robh@kernel.org"
+ <robh@kernel.org>, "bvanassche@acm.org" <bvanassche@acm.org>,
+ "linux-scsi@vger.kernel.org" <linux-scsi@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ =?UTF-8?B?TWFjcGF1bCBMaW4gKOael+aZuuaWjCk=?= <Macpaul.Lin@mediatek.com>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+ "alim.akhtar@samsung.com" <alim.akhtar@samsung.com>,
+ "krzk@kernel.org" <krzk@kernel.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+ "avri.altman@wdc.com" <avri.altman@wdc.com>,
+ "martin.petersen@oracle.com" <martin.petersen@oracle.com>
+Cc: "macpaul@gmail.com" <macpaul@gmail.com>,
+ =?UTF-8?B?UGFibG8gU3VuICjlravmr5Pnv5Qp?= <pablo.sun@mediatek.com>,
+ Project_Global_Chrome_Upstream_Group
+ <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+ =?UTF-8?B?QmVhciBXYW5nICjokKnljp/mg5/lvrcp?= <bear.wang@mediatek.com>,
+ =?UTF-8?B?UmFtYXggTG8gKOe+heaYjumBoCk=?= <Ramax.Lo@mediatek.com>
+References: <20250722085721.2062657-1-macpaul.lin@mediatek.com>
+ <20250722085721.2062657-3-macpaul.lin@mediatek.com>
+ <b90956e8-adf9-4411-b6f9-9212fcd14b59@collabora.com>
+ <438077d191833bb4f628b2c6da3b86b3ecfb40e6.camel@mediatek.com>
+ <cb173df9-4c70-4619-b36d-8e99272551b6@kernel.org>
+ <a9bf15e48afd8496ca9b015e7f5b03821863a0b2.camel@mediatek.com>
+ <7f285723-ecd7-4df6-8c9b-f2e786ce3602@kernel.org>
+ <4b3d2678d2b724fb53ec7272ef8daf52197d4a0e.camel@mediatek.com>
+ <4dc420a3-cf89-4f45-84e7-4d0079240681@kernel.org>
+ <95d3fe686abcd4a6070c6613392fdb9605bdd73e.camel@mediatek.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <95d3fe686abcd4a6070c6613392fdb9605bdd73e.camel@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <hjyhso2sqgyq4ymzqg6pmjfrfncla24zwsev2mfinolmclm3ih@sol2yoapbykq>
 
-On Sun, Oct 19, 2025 at 01:01:44PM +0530, Manivannan Sadhasivam wrote:
-> On Sun, Oct 12, 2025 at 10:56:59PM +0200, Christian Marangi wrote:
-> > Add support for the second PCIe Root Complex present on Airoha AN7583
-> > SoC.
-> > 
-> > This is based on the Mediatek Gen1/2 PCIe driver and similar to Gen3
-> > also require workaround for the reset signals.
-> > 
-> > Introduce a new flag to skip having to reset signals and also introduce
-> > some additional logic to configure the PBUS registers required for
-> > Airoha SoC.
-> > 
-> > While at it, also add additional info on the PERST# Signal delay
-> > comments and use dedicated macro.
-> > 
+Il 20/10/25 12:46, Peter Wang (王信友) ha scritto:
+> On Mon, 2025-10-20 at 11:56 +0200, Krzysztof Kozlowski wrote:
+>>
+>> On 20/10/2025 11:44, Peter Wang (王信友) wrote:
+>>> On Mon, 2025-10-20 at 10:28 +0200, Krzysztof Kozlowski wrote:
+>>>>>
+>>>>>
+>>>>> Hi Krzysztof Kozlowski,
+>>>>>
+>>>>> The main reason for my objection was also clearly stated:
+>>>>> "removing these DTS settings will make what was originally
+>>>>> a simple task more complicated."
+>>>>> I’m not sure if you are quoting only the "In addition"
+>>>>> part to take it out of context?
+>>>>
+>>>> It is not out of context. It was the statement on its own.
+>>>
+>>> Hi Krzysztof Kozlowski,
+>>>
+>>> However, you haven’t addressed the main reason for my objection.
+>>> "removing these DTS settings will make what was originally
+>>> a simple task more complicated."
+>>
+>>
+>> You did not object in technical matter at all here:
+>> https://lore.kernel.org/all/ce0f9785f8f488010cd81adbbdb5ac07742fc988.camel@mediatek.com/
+>>
+>> Look at this patch.
+>>
+>> You said nothing about actual change, except blocking the community
+>> maintainer. You did not raise any other concerns so what are you
+>> speaking about "other main concerns"?
+>>
+>> Even if such existed, they did not matter, because YOU WROTE ONLY:
+>>
+>> "The role of MediaTek UFS maintainer is not suitable to be handed
+>> over
+>> to someone outside of MediaTek."
+>>
+>> This is what we discuss here.
+>>
+>> Do you even read your own comments and where did you place them? Do
+>> you
+>> understand that we discuss emails, not some unsaid or other threads?
+>>
+>> Look at this:
+>>
+>> https://lore.kernel.org/all/ce0f9785f8f488010cd81adbbdb5ac07742fc988.camel@mediatek.com/
+>>
+>>
+>>> But it’s clear that you haven’t carefully considered the main
+>>> reason for my objection?
+>>
+>> Main reason for objection? What?
+>>
 > 
-> This belongs to a separate patch which should come before this one.
+> Hi Krzysztof Kozlowski,
 > 
-> > Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-> > ---
-> >  drivers/pci/controller/pcie-mediatek.c | 92 ++++++++++++++++++++------
-> >  1 file changed, 70 insertions(+), 22 deletions(-)
-> > 
-> > diff --git a/drivers/pci/controller/pcie-mediatek.c b/drivers/pci/controller/pcie-mediatek.c
-> > index 1678461e56d3..3340c005da4b 100644
-> > --- a/drivers/pci/controller/pcie-mediatek.c
-> > +++ b/drivers/pci/controller/pcie-mediatek.c
-> > @@ -148,6 +148,7 @@ enum mtk_pcie_flags {
-> >  	NO_MSI = BIT(2), /* Bridge has no MSI support, and relies on an
-> >  			  * external block
-> >  			  */
-> > +	SKIP_PCIE_RSTB	= BIT(3), /* Skip calling RSTB bits on PCIe probe */
-> >  };
-> >  
-> >  /**
-> > @@ -684,28 +685,32 @@ static int mtk_pcie_startup_port_v2(struct mtk_pcie_port *port)
-> >  		regmap_update_bits(pcie->cfg, PCIE_SYS_CFG_V2, val, val);
-> >  	}
-> >  
-> > -	/* Assert all reset signals */
-> > -	writel(0, port->base + PCIE_RST_CTRL);
-> > -
-> > -	/*
-> > -	 * Enable PCIe link down reset, if link status changed from link up to
-> > -	 * link down, this will reset MAC control registers and configuration
-> > -	 * space.
-> > -	 */
-> > -	writel(PCIE_LINKDOWN_RST_EN, port->base + PCIE_RST_CTRL);
-> > -
-> > -	/*
-> > -	 * Described in PCIe CEM specification sections 2.2 (PERST# Signal) and
-> > -	 * 2.2.1 (Initial Power-Up (G3 to S0)). The deassertion of PERST# should
-> > -	 * be delayed 100ms (TPVPERL) for the power and clock to become stable.
-> > -	 */
-> > -	msleep(100);
-> > -
-> > -	/* De-assert PHY, PE, PIPE, MAC and configuration reset	*/
-> > -	val = readl(port->base + PCIE_RST_CTRL);
-> > -	val |= PCIE_PHY_RSTB | PCIE_PERSTB | PCIE_PIPE_SRSTB |
-> > -	       PCIE_MAC_SRSTB | PCIE_CRSTB;
-> > -	writel(val, port->base + PCIE_RST_CTRL);
-> > +	if (!(soc->flags & SKIP_PCIE_RSTB)) {
-> > +		/* Assert all reset signals */
-> > +		writel(0, port->base + PCIE_RST_CTRL);
-> > +
-> > +		/*
-> > +		 * Enable PCIe link down reset, if link status changed from
-> > +		 * link up to link down, this will reset MAC control registers
-> > +		 * and configuration space.
-> > +		 */
-> > +		writel(PCIE_LINKDOWN_RST_EN, port->base + PCIE_RST_CTRL);
-> > +
-> > +		/*
-> > +		 * Described in PCIe CEM specification revision 3.0 sections
-> > +		 * 2.2 (PERST# Signal) and 2.2.1 (Initial Power-Up (G3 to S0)).
-> > +		 *
-> > +		 * The deassertion of PERST# should be delayed 100ms (TPVPERL)
-> > +		 * for the power and clock to become stable.
+> I think you misunderstood—these are different patches.
+> This one only changes the maintainer. What I was referring to
+> is another patch that removes parts of the DTS setting.
+> https://lore.kernel.org/all/eb47587159484abca8e6d65dddcf0844822ce99f.camel@mediatek.com/
 > 
-> You can drop the comments since PCIE_T_PVPERL_MS definition has them.
 > 
-> > +		 */
-> > +		msleep(PCIE_T_PVPERL_MS);
-> > +
-> > +		/* De-assert PHY, PE, PIPE, MAC and configuration reset	*/
-> > +		val = readl(port->base + PCIE_RST_CTRL);
-> > +		val |= PCIE_PHY_RSTB | PCIE_PERSTB | PCIE_PIPE_SRSTB |
-> > +		       PCIE_MAC_SRSTB | PCIE_CRSTB;
-> > +		writel(val, port->base + PCIE_RST_CTRL);
+> I don’t know who AngeloGioacchino is,
+
+Sorry Peter, but a 10 seconds research on your side would have made you aware of
+who I am.
+
+https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/MAINTAINERS?h=v6.6#n2346
+
+...then a 60 seconds research would reveal way more than just that about me,
+and also your colleagues know me quite a bit :-)
+
+Besides, you don't really need to know who somebody is to make an upstream review:
+this is a community, and a good patch may come from old and recognized contributors
+as much as from new ones sending their first patch upstream.
+
+> so isn’t it reasonable for
+> me to oppose directly changing the maintainer?
+> Or do you think everyone should know who AngeloGioacchino is
+> and just accept this change?
 > 
-> If PCIE_LINKDOWN_RST_EN corresponds to PERST# signal, then it should be
-> deasserted only after the power and REFCLK are stable. But I'm not sure what the
-> above PCIE_RST_CTRL setting is doing. If it somehow affects either power or
-> REFCLK, then it should come before PCIE_LINKDOWN_RST_EN.
->
-
-Hi I checked MT7622 programming guide for this.
-
-The order of operation for reset is exactly what you have described.
-
-Indded, first everything is reset (assert all signals) then we set
-PCIE_LINKDOWN_RST_EN that in unrelated. We wait for clock stabilization
-with the msleep and only AFTER we deassert the PCIE_PERSTB.
-
-So no, PCIE_LINKDOWN_RST_EN is not PERST# signal sw but it's actually
-PCIE_PERSTB.
-
 > 
-> -- 
-> மணிவண்ணன் சதாசிவம்
+> Let’s put it this way: if a strager you don’t know suddenly comes
+> to your home and says they’re now the maintainer of your house,
+> would you be comfortable with that?
+> 
+> 
+> 
+>>
+>>
+>> You are twisting the problem, like anyone denied you being the
+>> maintainer.
+>>
+>> YOU DENIED OTHER PEOPLE!
+>>
+>> I finish the discussion here, I am considering your explanations
+>> intentionally twisting the point thus I find it still harmful
+>> behavior.
 
--- 
-	Ansuel
+Krzysztof, many thanks for taking time to defend the community.
+
+Regards,
+Angelo
+
+>>
+>> Best regards,
+>> Krzysztof
+> 
+> I think you’re the one twisting my words.
+> What I said was that I oppose people OUTSIDE of MediaTek becoming
+> maintainers, not that I oppose other people in GENERAL.
+> In fact, I also mentioned that other MediaTek maintainers
+> would be joining.
+> 
+> 
+> Thanks
+> Peter
+> 
+> 
+
 
