@@ -1,248 +1,241 @@
-Return-Path: <devicetree+bounces-228700-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228704-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFB74BF03A9
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 11:39:39 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E080BF04B1
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 11:47:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 74F04189FD83
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 09:39:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D030418849F9
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 09:47:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E2E62F7ABB;
-	Mon, 20 Oct 2025 09:38:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A7B023182D;
+	Mon, 20 Oct 2025 09:47:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="t2MMRvxX"
+	dkim=pass (1024-bit key) header.d=bewilderbeest.net header.i=@bewilderbeest.net header.b="aptjzpRb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from thorn.bewilderbeest.net (thorn.bewilderbeest.net [71.19.156.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C22DD2F7AA8;
-	Mon, 20 Oct 2025 09:38:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4E5523D29A;
+	Mon, 20 Oct 2025 09:47:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=71.19.156.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760953125; cv=none; b=I1uVJtn6o5FnE+rfNowEWT8K3+7d9jTnTOon5C0tSEmc12tnRO2MTwN8QLRnKoRE2wB39+I2tfNsuVmyYnYjHN2TatQDDuZIY26AmoJCm/7FnInVDVLry97qFhDIbbrUAH3vCBXtseYcbaXp+FhPmQRkjt9ROEQveX8K1CVJPd4=
+	t=1760953628; cv=none; b=N1Qc+Fn7q18XyZF2gLAo8YjNsq+Z6XHIJV3Aqu/VstN+NeBSxD1PDlXhlXifM4kY9GtNqBbbuGOAfmtUtSYdcoim/bdUiAwaYzEr4NXIo74RX08BdueGjcQCCiTe+6cG8CxQpS2RuzYj/t8PjOn4SpPMSAEHsHcVLtz7iggIzxk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760953125; c=relaxed/simple;
-	bh=VKCYuth/NqxGJoPPggikV+GdPYEkZJ8g3GjwRJo8xY4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Tg0KUka04Zde/O5zf0dC7B5OSg4UYt2VhTt6WnajKqpIlBDDfxrv1DD3WPz+Z3NvQIGjXcpI6wc3J+Qy3XiniI9Rep5hGs3x1//PcC51Rma3wWclHROz+5Oq4eCdcOFyLpidq0F2kvPZowp5++bqAObMEW/FLHUGkB0zXIsE4mQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=t2MMRvxX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 338F5C4CEF9;
-	Mon, 20 Oct 2025 09:38:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760953125;
-	bh=VKCYuth/NqxGJoPPggikV+GdPYEkZJ8g3GjwRJo8xY4=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=t2MMRvxXkCGnLs2tcMpgxmjfhn8rEOYvprk0/eWT9SmVw8OadOiZokDelfq2F+/8n
-	 KGolFiXETA/xLXKMKhzt/9aWJGBfKP5R69hZax6lsDOw7+VP4OqbJLOI9sMgYJu6lB
-	 x6F7iZ3qMFheo3XH49PTDW3QePr8kXsX7Njh6uAmWFUp64PRuNLlaH45WUGazMb+3S
-	 vgqKnXN/+Yo1XKgzZV4XMcWGgWtS5HSzSwk43RKhqp6v/4luk+vKQ4m21uTO125GNo
-	 3qylZMK+PKY2+CfEtPtqxSOAH2i5VyyZe3uOqXfM0qMd62wNAwTIYoB66mrTIq2vgh
-	 ZA9WpZVjk/auw==
-Message-ID: <f5e7bb0d-205b-4c10-8c31-bf60e1e42b73@kernel.org>
-Date: Mon, 20 Oct 2025 11:38:38 +0200
+	s=arc-20240116; t=1760953628; c=relaxed/simple;
+	bh=I6MEwWVoT8bn+A9rQd+UdRZGsHz/qLFaZYAb75feCiU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Z2I3dwDXUCm80h+suXPmOU+e8RBl4ScqI1FfLOHKgGnHQlb/0N3Sh9ZiddAX+DvLN3/JyOSc+LYtCgu4j34U92PX1s07mYofKf8Us0pk8ZSj/JTW+XRfqa97LZ3aE5rrUX0DWqDR4lV48TOf/9bqpe3eLJLhz/FAsH/bFQ8420c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bewilderbeest.net; spf=pass smtp.mailfrom=bewilderbeest.net; dkim=pass (1024-bit key) header.d=bewilderbeest.net header.i=@bewilderbeest.net header.b=aptjzpRb; arc=none smtp.client-ip=71.19.156.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bewilderbeest.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bewilderbeest.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bewilderbeest.net;
+	s=thorn; t=1760953240;
+	bh=OCbONFN78XpgRKAC0O9n8v5Ot2s4SJuk+oXKqyYYcm4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=aptjzpRbLNK18PePpTlYK3Ta3tm2B6yYpVnLCfkvKXEfjhNNsUocyvhpodPmW0RkQ
+	 XbIVRPvkYeiN+LQR7b4xuv9p8RAWaVVuvm4PvRXEdlpSb/YJmzRcAGorehH7XYDEdi
+	 Oc8ODPoqb2YI4tkvMxpHazLfnCJFMCt6GB29oHdk=
+Received: from hatter.bewilderbeest.net (unknown [IPv6:2602:61:713c:eb00::2])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: zev)
+	by thorn.bewilderbeest.net (Postfix) with ESMTPSA id 94B0B1BF;
+	Mon, 20 Oct 2025 02:40:40 -0700 (PDT)
+Date: Mon, 20 Oct 2025 02:40:33 -0700
+From: Zev Weiss <zev@bewilderbeest.net>
+To: Tan Siewert <tan@siewert.io>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] ARM: dts: aspeed: add asrock x470d4u bmc
+Message-ID: <c6ee0814-1d36-45b5-8598-2a30efeee5a5@hatter.bewilderbeest.net>
+References: <20251011112124.17588-1-tan@siewert.io>
+ <20251011112124.17588-3-tan@siewert.io>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] i2c: designware: Enable transfer with different
- target addresses
-To: =?UTF-8?Q?Beno=C3=AEt_Monin?= <benoit.monin@bootlin.com>,
- Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jarkko Nikula <jarkko.nikula@linux.intel.com>,
- Mika Westerberg <mika.westerberg@linux.intel.com>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Jan Dabros <jsd@semihalf.com>,
- Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
- Clark Williams <clrkwllms@kernel.org>, Steven Rostedt <rostedt@goodmis.org>
-Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- Gregory CLEMENT <gregory.clement@bootlin.com>,
- =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>,
- Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
- Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
- Dmitry Guzman <dmitry.guzman@mobileye.com>, linux-i2c@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-rt-devel@lists.linux.dev
-References: <20251017-i2c-dw-v1-0-7b85b71c7a87@bootlin.com>
- <20251017-i2c-dw-v1-2-7b85b71c7a87@bootlin.com>
-From: Hans Verkuil <hverkuil+cisco@kernel.org>
-Content-Language: en-US, nl
-In-Reply-To: <20251017-i2c-dw-v1-2-7b85b71c7a87@bootlin.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Disposition: inline
+In-Reply-To: <20251011112124.17588-3-tan@siewert.io>
 
-Hi Benoît,
+On Sat, Oct 11, 2025 at 04:21:20AM PDT, Tan Siewert wrote:
+>The ASRock Rack X470D4U X470D4U is a single-socket X470-based microATX
+>motherboard for Ryzen processors with an AST2500 BMC and either 32MB or
+>64MB SPI flash.
+>
+>This mainboard exists in three known "flavors" which only differ in the
+>used host NIC, the BMC SPI size and some parts that may be un-populated.
+>
+>To keep the complexity low with the BMC SPI, use the 32MB layout
+>regardless of the used SPI or mainboard flavor.
+>
+>Signed-off-by: Tan Siewert <tan@siewert.io>
+>---
+>v2:
+>  - fix led node names [robh]
+>  - fix missing gfx memory region and other offenses [Tan]
+>---
+> arch/arm/boot/dts/aspeed/Makefile             |   1 +
+> .../dts/aspeed/aspeed-bmc-asrock-x470d4u.dts  | 350 ++++++++++++++++++
+> 2 files changed, 351 insertions(+)
+> create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-x470d4u.dts
+>
+>diff --git a/arch/arm/boot/dts/aspeed/Makefile b/arch/arm/boot/dts/aspeed/Makefile
+>index 0f0b5b707654..c601af36915e 100644
+>--- a/arch/arm/boot/dts/aspeed/Makefile
+>+++ b/arch/arm/boot/dts/aspeed/Makefile
+>@@ -13,6 +13,7 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
+> 	aspeed-bmc-asrock-e3c256d4i.dtb \
+> 	aspeed-bmc-asrock-romed8hm3.dtb \
+> 	aspeed-bmc-asrock-spc621d8hm3.dtb \
+>+	aspeed-bmc-asrock-x470d4u.dtb \
+> 	aspeed-bmc-asrock-x570d4u.dtb \
+> 	aspeed-bmc-asus-x4tf.dtb \
+> 	aspeed-bmc-bytedance-g220a.dtb \
+>diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-x470d4u.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-x470d4u.dts
+>new file mode 100644
+>index 000000000000..e9804b0ace9f
+>--- /dev/null
+>+++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-x470d4u.dts
+>@@ -0,0 +1,350 @@
+>+// SPDX-License-Identifier: GPL-2.0+
+>+/dts-v1/;
+>+
+>+#include "aspeed-g5.dtsi"
+>+#include <dt-bindings/gpio/aspeed-gpio.h>
+>+#include <dt-bindings/leds/common.h>
+>+#include <dt-bindings/interrupt-controller/irq.h>
+>+
+>+/ {
+>+	model = "Asrock Rack X470D4U-series BMC";
+>+	compatible = "asrock,x470d4u-bmc", "aspeed,ast2500";
+>+
+>+	aliases {
+>+		serial4 = &uart5;
+>+	};
+>+
+>+	chosen {
+>+		stdout-path = &uart5;
+>+	};
+>+
+>+	iio-hwmon {
+>+		compatible = "iio-hwmon";
+>+		io-channels = <&adc 0>, <&adc 1>, <&adc 2>, <&adc 3>, <&adc 4>,
+>+			<&adc 5>, <&adc 6>, <&adc 7>, <&adc 8>, <&adc 9>,
+>+			<&adc 10>, <&adc 11>, <&adc 12>;
+>+	};
+>+
+>+	leds {
+>+		compatible = "gpio-leds";
+>+
+>+		led-heartbeat {
+>+			/* led-heartbeat-n */
+>+			gpios = <&gpio ASPEED_GPIO(H, 6) GPIO_ACTIVE_LOW>;
+>+			color = <LED_COLOR_ID_GREEN>;
+>+			function = LED_FUNCTION_HEARTBEAT;
+>+			linux,default-trigger = "timer";
+>+		};
+>+
+>+		led-systemfault {
+>+			/* led-fault-n */
+>+			gpios = <&gpio ASPEED_GPIO(Z, 2) GPIO_ACTIVE_LOW>;
+>+			color = <LED_COLOR_ID_AMBER>;
+>+			function = LED_FUNCTION_FAULT;
+>+			panic-indicator;
+>+		};
+>+
+>+		led-identify {
+>+			/* led-identify-n */
+>+			gpios = <&gpio ASPEED_GPIO(D, 6) GPIO_ACTIVE_LOW>;
+>+		};
+>+	};
+>+
+>+	memory@80000000 {
+>+		reg = <0x80000000 0x20000000>;
+>+	};
+>+
+>+	reserved-memory {
+>+		#address-cells = <1>;
+>+		#size-cells = <1>;
+>+		ranges;
+>+
+>+		pci_memory: region@9a000000 {
+>+			no-map;
+>+			reg = <0x9a000000 0x00010000>; /* 64K */
+>+		};
+>+
+>+		video_engine_memory: jpegbuffer {
+>+			size = <0x02800000>;	/* 40M */
+>+			alignment = <0x01000000>;
+>+			compatible = "shared-dma-pool";
+>+			reusable;
+>+		};
+>+
+>+		gfx_memory: framebuffer {
+>+			size = <0x01000000>;
+>+			alignment = <0x01000000>;
+>+			compatible = "shared-dma-pool";
+>+			reusable;
+>+		};
+>+	};
+>+};
+>+
+>+&adc {
+>+	status = "okay";
+>+	pinctrl-names = "default";
+>+	pinctrl-0 = <&pinctrl_adc0_default		/* 3VSB */
+>+			&pinctrl_adc1_default		/* 5VSB */
+>+			&pinctrl_adc2_default		/* VCPU */
+>+			&pinctrl_adc3_default		/* VSOC */
+>+			&pinctrl_adc4_default		/* VCCM */
+>+			&pinctrl_adc5_default		/* APU-VDDP */
+>+			&pinctrl_adc6_default		/* 1V05-PROM-S5 */
+>+			&pinctrl_adc7_default		/* 2V5-PROM */
+>+			&pinctrl_adc8_default		/* 1V05-PROM-RUN */
+>+			&pinctrl_adc9_default		/* VBAT */
+>+			&pinctrl_adc10_default		/* 3V */
+>+			&pinctrl_adc11_default		/* 5V */
+>+			&pinctrl_adc12_default>;	/* 12V */
+>+};
+>+
+>+&ehci1 {
+>+	status = "okay";
+>+};
+>+
+>+/*
+>+ * Although some board flavors have a 64MB SPI, use the
+>+ * 32MB SPI layout to be compatible with all boards.
+>+ */
+>+&fmc {
+>+	status = "okay";
+>+	flash@0 {
+>+		status = "okay";
+>+		label = "bmc";
+>+		m25p,fast-read;
+>+		spi-max-frequency = <10000000>;
+>+#include "openbmc-flash-layout.dtsi"
+>+	};
+>+};
 
-On 17/10/2025 16:59, Benoît Monin wrote:
-> When i2c_dw_xfer() is called with more than one message, it sets the
-> target address according to the first message. If any of the following
-> messages have a different target address, the transfer finishes with
-> an error.
-> 
-> Instead, if the next message has a different target address, wait until
-> all previous messages are sent and the STOP condition is detected. This
-> will complete the current part of the transfer. The next part is then
-> handled by looping in i2c_dw_xfer(), calling i2c_dw_xfer_init() and
-> i2c_dw_wait_transfer() until all messages of the transfer have been
-> processed, or an error is detected.
-> 
-> The RESTART bit is now set after the first message of each part of the
-> transfer, instead of just after the very first message of the whole
-> transfer.
-> 
-> For each address change, i2c_dw_xfer_init() is called, which takes care
-> of disabling the adapter before changing the target address register,
-> then re-enabling it. Given that we cannot know the value of the
-> I2C_DYNAMIC_TAR_UPDATE parameter, this is the only sure way to change
-> the target address.
+Hmm -- I can see the simplicity argument, but it seems a bit of a shame 
+to let the other 32MB go to waste on boards with 64MB chips (especially 
+given how tight a fit OpenBMC is getting in 32MB these days).
 
-I have the problem described here:
+Could we maybe have an aspeed-bmc-asrock-x470d4u-64.dts alongside this 
+one that #includes it and then drops in the 64M layout over the default 
+32?  You could then arrange for a flag in the OpenBMC bitbake recipes to 
+opt in to using that dts if you want to.
 
-https://lore.kernel.org/linux-i2c/ee6afdd7-3117-43cd-831f-e0ec5ee46f46@kernel.org/
 
-And it looks like this patch is intended to solve that problem (one transaction
-with two writes to different target addresses).
-
-I tried this patch, but it doesn't work. Instead I get a time out:
-
-[  111.695238] i2c_designware 1f00074000.i2c: controller timed out
-
-Is it indeed meant to solve the problem I have or is it addressing another
-issue?
-
-I'm happy to help test patches.
-
-Regards,
-
-	Hans
-
-> 
-> Based on the work of Dmitry Guzman <dmitry.guzman@mobileye.com>
-> 
-> Signed-off-by: Benoît Monin <benoit.monin@bootlin.com>
-> ---
->  drivers/i2c/busses/i2c-designware-master.c | 58 ++++++++++++++++--------------
->  1 file changed, 31 insertions(+), 27 deletions(-)
-> 
-> diff --git a/drivers/i2c/busses/i2c-designware-master.c b/drivers/i2c/busses/i2c-designware-master.c
-> index c7a72c28786c2..f9a180b145da8 100644
-> --- a/drivers/i2c/busses/i2c-designware-master.c
-> +++ b/drivers/i2c/busses/i2c-designware-master.c
-> @@ -436,6 +436,7 @@ i2c_dw_xfer_msg(struct dw_i2c_dev *dev)
->  	u8 *buf = dev->tx_buf;
->  	bool need_restart = false;
->  	unsigned int flr;
-> +	int first_idx = dev->msg_write_idx;
->  
->  	intr_mask = DW_IC_INTR_MASTER_MASK;
->  
-> @@ -446,11 +447,11 @@ i2c_dw_xfer_msg(struct dw_i2c_dev *dev)
->  		 * If target address has changed, we need to
->  		 * reprogram the target address in the I2C
->  		 * adapter when we are done with this transfer.
-> +		 * This can be done after STOP_DET IRQ flag is raised.
-> +		 * So, disable "TX FIFO empty" interrupt.
->  		 */
->  		if (msgs[dev->msg_write_idx].addr != addr) {
-> -			dev_err(dev->dev,
-> -				"%s: invalid target address\n", __func__);
-> -			dev->msg_err = -EINVAL;
-> +			intr_mask &= ~DW_IC_INTR_TX_EMPTY;
->  			break;
->  		}
->  
-> @@ -465,7 +466,7 @@ i2c_dw_xfer_msg(struct dw_i2c_dev *dev)
->  			 * set restart bit between messages.
->  			 */
->  			if ((dev->master_cfg & DW_IC_CON_RESTART_EN) &&
-> -					(dev->msg_write_idx > 0))
-> +					(dev->msg_write_idx > first_idx))
->  				need_restart = true;
->  		}
->  
-> @@ -822,7 +823,6 @@ i2c_dw_xfer(struct i2c_adapter *adap, struct i2c_msg msgs[], int num)
->  		break;
->  	}
->  
-> -	reinit_completion(&dev->cmd_complete);
->  	dev->msgs = msgs;
->  	dev->msgs_num = num;
->  	dev->cmd_err = 0;
-> @@ -841,18 +841,33 @@ i2c_dw_xfer(struct i2c_adapter *adap, struct i2c_msg msgs[], int num)
->  	if (ret < 0)
->  		goto done;
->  
-> -	/* Start the transfers */
-> -	i2c_dw_xfer_init(dev);
-> +	do {
-> +		reinit_completion(&dev->cmd_complete);
->  
-> -	/* Wait for tx to complete */
-> -	ret = i2c_dw_wait_transfer(dev);
-> -	if (ret) {
-> -		dev_err(dev->dev, "controller timed out\n");
-> -		/* i2c_dw_init_master() implicitly disables the adapter */
-> -		i2c_recover_bus(&dev->adapter);
-> -		i2c_dw_init_master(dev);
-> -		goto done;
-> -	}
-> +		/* Start the transfers */
-> +		i2c_dw_xfer_init(dev);
-> +
-> +		/* Wait for tx to complete */
-> +		ret = i2c_dw_wait_transfer(dev);
-> +		if (ret) {
-> +			dev_err(dev->dev, "controller timed out\n");
-> +			/* i2c_dw_init_master() implicitly disables the adapter */
-> +			i2c_recover_bus(&dev->adapter);
-> +			i2c_dw_init_master(dev);
-> +			goto done;
-> +		}
-> +
-> +		if (dev->msg_err) {
-> +			ret = dev->msg_err;
-> +			goto done;
-> +		}
-> +
-> +		/* We have an error */
-> +		if (dev->cmd_err == DW_IC_ERR_TX_ABRT) {
-> +			ret = i2c_dw_handle_tx_abort(dev);
-> +			goto done;
-> +		}
-> +	} while (dev->msg_write_idx < num);
->  
->  	/*
->  	 * This happens rarely (~1:500) and is hard to reproduce. Debug trace
-> @@ -874,23 +889,12 @@ i2c_dw_xfer(struct i2c_adapter *adap, struct i2c_msg msgs[], int num)
->  	 */
->  	__i2c_dw_disable_nowait(dev);
->  
-> -	if (dev->msg_err) {
-> -		ret = dev->msg_err;
-> -		goto done;
-> -	}
-> -
->  	/* No error */
->  	if (likely(!dev->cmd_err && !dev->status)) {
->  		ret = num;
->  		goto done;
->  	}
->  
-> -	/* We have an error */
-> -	if (dev->cmd_err == DW_IC_ERR_TX_ABRT) {
-> -		ret = i2c_dw_handle_tx_abort(dev);
-> -		goto done;
-> -	}
-> -
->  	if (dev->status)
->  		dev_err(dev->dev,
->  			"transfer terminated early - interrupt latency too high?\n");
-> 
+Zev
 
 
