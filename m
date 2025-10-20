@@ -1,119 +1,248 @@
-Return-Path: <devicetree+bounces-228965-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228966-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 459B1BF2B1B
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 19:24:30 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 72777BF2B2D
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 19:25:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id B67AA4F7ADA
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 17:24:27 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 66F004F202F
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 17:25:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 534B92FB618;
-	Mon, 20 Oct 2025 17:24:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 307063161AC;
+	Mon, 20 Oct 2025 17:25:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="doYASs8i"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hvFaRQws"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com [209.85.208.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8746256C7E
-	for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 17:24:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04F58221FC8;
+	Mon, 20 Oct 2025 17:25:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760981061; cv=none; b=hduNECPBYn/jkQ2fM7Lu1EH3whPeqVGbedX2hk1GhU+BCxYVnZNw5j7ROd6PAqgxZN6X/bYBZj7NIzzAVbq3gUI+CmM2WB70F6xt+qRxOGDDNM5uKoR1IzSEl2kdrWumSIwBhiM2H0SP3fhLF1YXYjkj4r9lQ/aSpmTG8b+6k70=
+	t=1760981133; cv=none; b=QtDEPV0RvmVwOwbulZyKnBh8ycVGXcY7ULVIrI6tI2SUzzQZZPke2Xhfb7Ei2VW9iD7Qqt85J5AF+1fk4nqYVFgHBtf5VceKVIISYJ0DXA888Z/5+uHjLdr08Az6+clgX2XMmxZDURbuneR11V9+xlowtXqWWvLtJrPWBAk6OO8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760981061; c=relaxed/simple;
-	bh=hydKm2NZFUTr/tv1313cV/5VEAs1svpkfDCqMkUr4gs=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=WL+hthN5zuBfOQkpPas9i26xPEz5sTyKziFHycLKAumUKwZeYGoX9ELkkOCuJZQrIhlWedU6A3zelv9Pno1mEz1OtLRJnrYtmA06keW0dGKjtdyKBfvcT/7tlqeRii21mGSFu087tX9178msdURh7Z4AYVXgZUl3Er3wvHCTAR4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=doYASs8i; arc=none smtp.client-ip=209.85.208.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-367444a3e2aso56651251fa.2
-        for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 10:24:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1760981058; x=1761585858; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=JJL3ymzyML+diLAVT9nhgdl7Vx9TWLZbPp7QEm8FssI=;
-        b=doYASs8if3X0e9jHaFnSxYzodoUB+uoec1+yI5KUPtn366ibEUEbyFdOBRiUxfw7zd
-         8UBHYMK/Z7U2ZapjDY7pO2NaRo9z0vgj4EcRB6xhMTJfEQOZ+T544rkp2C1Eh8NcGgmZ
-         wSVIZb+lLgq10HCZ87DPvRNGsC+CNflUloHvmAA9ChZOzqWtoaQEQc09wPG2rzfCffqn
-         hcqpN8OUwXQrqO+dHI4hoepNdiD5Drwho2h1FTwYBVyhPCIOTbqnJ+ckcUQkg8Ik4k73
-         BhfIYMQ1+z+RAR4IschG8EUHbJGjWtskrWgY98GQG0z+QoFLmR8CXM1gXFWjXpZgQlNj
-         mSSA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760981058; x=1761585858;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=JJL3ymzyML+diLAVT9nhgdl7Vx9TWLZbPp7QEm8FssI=;
-        b=VuXhtgZemUvh9ZXJzT4uv0hs7PVITmdfw5kxq1KnAmiNhPCkSRfCdSbgBwN+zq8AUL
-         rYTmEjoROvKrdfvqTdGT72A9hr12Ix8N6hDgcJfnEQYVYxYTEFfJ7RTUQAtv7pDR7GUi
-         KNaZZQtMnvMLWK2sPLERnMsIPJYiro73S2bBk9VbJl3FgUyKM0DiZ54BhI8WqB3YK2A+
-         J1PY/J20yErQlETiax0a/x+t3dmcr4bFAm7YhxZTlyIE96chIxONTS9Ky5Bj9ZoUikjs
-         8KcgsA5tX5OKZLJ8Q57jbRzP93JXEIQWkxDUnEAekAeO4fUUg5y8IRu7rVySaLyIDzqU
-         srxg==
-X-Forwarded-Encrypted: i=1; AJvYcCUqNAYv7aYb2ehRBVuMQA22M2zDUDG7BeeT1gONzSMPReGnonVG3kifFPU3c3Aw7xA8fYNYmdu3H0hq@vger.kernel.org
-X-Gm-Message-State: AOJu0YyEuavVcun5zFvOxXcg6ZDmmqzVcYdeogg7e8olSPn7JsP4+fRL
-	Fq/f4x5iVjHgwGuWWgSMju1scu7bhYq1ovXPH8DWFqlm9pPe3FtuA7WnxHHHwzoHRhJQJVpQ4EE
-	AAD2yFS4a1JmkdDqiWXd91h0L4/u2qpk=
-X-Gm-Gg: ASbGncvhxW8Qc+6UG/Hw3d/hxNIOCBk6zdC8f7aCfgF1aMEAhX7i1eMmWO9G3BGyefr
-	bokQ1RG4NC77Mvv1x+jxMyDmdS79RiiGR+Km0ArkgRRfO//f1v7Cz9cSfUMDuqr9kAIgqOdI0GD
-	8mQdh18GIlti/rmXhgl7NsgBk5qHx7ehdITWeRwKBRnAmwFK/BB33zQ0xtT/LNItNxA5MIsQX3b
-	xHpZmXQUU8LL9stMSeha40jrhoOkCWGxoMr6bS3Blhcjj9boqW6XkZcwHJ7S6FxPPn9DjJRbBuK
-	3VZWlv85p9xdvmlc
-X-Google-Smtp-Source: AGHT+IFGvquo7dKjulQge3D4nLth2WI8das3/MTTYuoViw5UYS7r0NQDoBhHAaPE++J0d5/68a7BWV0yZERz90yIgHQ=
-X-Received: by 2002:a05:651c:1990:b0:375:f6b9:c948 with SMTP id
- 38308e7fff4ca-377978d7927mr37082001fa.15.1760981056694; Mon, 20 Oct 2025
- 10:24:16 -0700 (PDT)
+	s=arc-20240116; t=1760981133; c=relaxed/simple;
+	bh=DuBiH9luvdFsYtFQDPaPHiGDRbY0ctxFlHUj5m7vjTM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=CIOkkX1FWFFp90i70n9oihcZIu5BJqRPNWadpESzVatn0OScUFI0TnZUjFTxqEnEvrEn3nyu5/Wt8A49dwdEpVYlj8iY52u/A6/oYySqvrVNix3HHTkVQRrBdUpONnbUZBg8gW3aJHCUfXcb4iueZzPeSIuUuzgGHWm/SoDcZos=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hvFaRQws; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AFB16C4CEF9;
+	Mon, 20 Oct 2025 17:25:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1760981132;
+	bh=DuBiH9luvdFsYtFQDPaPHiGDRbY0ctxFlHUj5m7vjTM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=hvFaRQws7bdXPnuSz/e9AOAPBP5vBrh4radRk3rQm+sefnQSGzRu3/alDZVhArAuJ
+	 yqau7dOASZUNWselQ2tzgdz4BRYTmRsG8tR34AwICJaEHX/Ykdo+soiQJHDc9WUUwM
+	 xKHW8fopijbL08IfGG3DQhUlvUTxbYi6nZgJi6g2Ws4TRclTKbt4NnZ0lVHp3C+uwV
+	 rrZawovEREr+Y7GLeuGXQ8DGukbkIklwlmxAm81VJojIA/ghY/D5EDKX1U8ayM6JbW
+	 s5k3AJECYx/FbjGxyKs8GhBxmxq0VEKeLzCE27bSgT5pFwyTF7O5Urv8HCQwB6SnKM
+	 78qcZBhgNad0g==
+Date: Mon, 20 Oct 2025 18:25:27 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Diederik de Haas <diederik@cknow-tech.com>
+Cc: Elaine Zhang <zhangqing@rock-chips.com>, mturquette@baylibre.com,
+	sboyd@kernel.org, sugar.zhang@rock-chips.com, heiko@sntech.de,
+	robh@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+	huangtao@rock-chips.com
+Subject: Re: [PATCH v3 4/5] dt-bindings: clock: Add support for rockchip
+ pvtpll
+Message-ID: <20251020-pureness-portion-61cef49b6042@spud>
+References: <20251020023724.2723372-1-zhangqing@rock-chips.com>
+ <20251020023724.2723372-5-zhangqing@rock-chips.com>
+ <DDN1RQB4LG0X.30F0A3IMJ4YI4@cknow-tech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251013205155.1187947-1-festevam@gmail.com> <4bd512fd-b3df-484a-8a04-a1ed066c42fa@nxp.com>
-In-Reply-To: <4bd512fd-b3df-484a-8a04-a1ed066c42fa@nxp.com>
-From: Fabio Estevam <festevam@gmail.com>
-Date: Mon, 20 Oct 2025 14:24:05 -0300
-X-Gm-Features: AS18NWDxC1BDffoJ0EW6ktW9w7SITyz7Fejydue0HKFG2UIjYNHc8u5VIdoiknI
-Message-ID: <CAOMZO5AGRejEwNvkH0Di0HVi8QPduTeCSud+_GqOkD4tqEcsdA@mail.gmail.com>
-Subject: Re: [PATCH RESEND v4 1/3] dt-bindings: lcdif: Document a imx6sx-lcdif fallback
-To: Liu Ying <victor.liu@nxp.com>
-Cc: marex@denx.de, stefan@agner.ch, airlied@gmail.com, simona@ffwll.ch, 
-	maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	shawnguo@kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, Ahmad Fatoum <a.fatoum@pengutronix.de>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="zDbktCb2H3iO4Q0A"
+Content-Disposition: inline
+In-Reply-To: <DDN1RQB4LG0X.30F0A3IMJ4YI4@cknow-tech.com>
+
+
+--zDbktCb2H3iO4Q0A
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Hi Liu,
+On Mon, Oct 20, 2025 at 11:38:02AM +0200, Diederik de Haas wrote:
+> On Mon Oct 20, 2025 at 4:37 AM CEST, Elaine Zhang wrote:
+> > Add pvtpll documentation for rockchip.
+> >
+> > Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
+> > ---
+> >  .../bindings/clock/rockchip,clk-pvtpll.yaml   | 100 ++++++++++++++++++
+> >  1 file changed, 100 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/clock/rockchip,cl=
+k-pvtpll.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/clock/rockchip,clk-pvtpl=
+l.yaml b/Documentation/devicetree/bindings/clock/rockchip,clk-pvtpll.yaml
+> > new file mode 100644
+>=20
+> Should this file have the 'clk-' part in its name?
+> In a way this is different from the other DT binding files, but none of
+> the others have the 'clk-' part in their file name:
 
-On Tue, Oct 14, 2025 at 1:12=E2=80=AFAM Liu Ying <victor.liu@nxp.com> wrote=
-:
+Normally we would ask for a filename matching the compatible, which IIRC
+is what these -cru ones are doing.
 
-> Strictly speaking, I don't think i.MX6SX LCDIF is compatible with i.MX28 =
-LCDIF
-> because at least i.MX28 LCDIF has the version and debug{0,1,2} registers(=
-at
-> 0x1c0, 0x1d0, 0x1e0 and 0x1f0) while i.MX6SX LCDIF hasn't.
+>=20
+> me@pc:~/linux/Documentation/devicetree/bindings/clock$ ls -lh rockchip,*
+> -rw-rw-r-- 1 me me 2,9K okt 20 11:32 rockchip,px30-cru.yaml
+> -rw-rw-r-- 1 me me 1,9K okt 20 11:32 rockchip,rk3036-cru.yaml
+> -rw-rw-r-- 1 me me 1,8K okt 20 11:32 rockchip,rk3128-cru.yaml
+> -rw-rw-r-- 1 me me 2,3K okt 20 11:32 rockchip,rk3188-cru.yaml
+> -rw-rw-r-- 1 me me 2,1K okt 20 11:32 rockchip,rk3228-cru.yaml
+> -rw-rw-r-- 1 me me 2,6K okt 20 11:32 rockchip,rk3288-cru.yaml
+> -rw-rw-r-- 1 me me 2,2K okt 20 11:32 rockchip,rk3308-cru.yaml
+> -rw-rw-r-- 1 me me 2,1K okt 20 11:32 rockchip,rk3328-cru.yaml
+> -rw-rw-r-- 1 me me 2,4K okt 20 11:32 rockchip,rk3368-cru.yaml
+> -rw-rw-r-- 1 me me 2,5K okt 20 11:32 rockchip,rk3399-cru.yaml
+> -rw-rw-r-- 1 me me 1,5K okt 20 11:32 rockchip,rk3528-cru.yaml
+> -rw-rw-r-- 1 me me 1,1K okt 20 11:32 rockchip,rk3562-cru.yaml
+> -rw-rw-r-- 1 me me 1,8K okt 20 11:32 rockchip,rk3568-cru.yaml
+> -rw-rw-r-- 1 me me 1,2K okt 20 11:32 rockchip,rk3576-cru.yaml
+> -rw-rw-r-- 1 me me 1,6K okt 20 11:32 rockchip,rk3588-cru.yaml
+> -rw-rw-r-- 1 me me 2,2K okt 20 11:32 rockchip,rv1108-cru.yaml
+> -rw-rw-r-- 1 me me 1,3K okt 20 11:32 rockchip,rv1126-cru.yaml
+>=20
+> > index 000000000000..8be34bcde7b0
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/clock/rockchip,clk-pvtpll.yaml
+> > @@ -0,0 +1,100 @@
+> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/clock/rockchip,clk-pvtpll.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Rockchip Pvtpll
+> > +
+> > +maintainers:
+> > +  - Elaine Zhang <zhangqing@rock-chips.com>
+> > +  - Heiko Stuebner <heiko@sntech.de>
+> > +
+> > +properties:
+> > +  compatible:
+> > +    items:
+> > +      - enum:
+> > +          - rockchip,rv1103b-core-pvtpll
+> > +          - rockchip,rv1103b-enc-pvtpll
+> > +          - rockchip,rv1103b-isp-pvtpll
+> > +          - rockchip,rv1103b-npu-pvtpll
+> > +          - rockchip,rv1126b-core-pvtpll
+> > +          - rockchip,rv1126b-isp-pvtpll
+> > +          - rockchip,rv1126b-enc-pvtpll
+> > +          - rockchip,rv1126b-aisp-pvtpll
+> > +          - rockchip,rv1126b-npu-pvtpll
+> > +          - rockchip,rk3506-core-pvtpll
+> > +      - const: syscon
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  "#clock-cells":
+> > +    const: 0
+> > +
+> > +  clocks:
+> > +    maxItems: 1
+> > +
+> > +  clock-output-names:
+> > +    maxItems: 1
+> > +
+> > +  rockchip,cru:
+> > +    $ref: /schemas/types.yaml#/definitions/phandle
+> > +    description: |
+> > +      Phandle to the main Clock and Reset Unit (CRU) controller.
+> > +      Required for PVTPLLs that need to interact with the main CRU
+> > +      for clock management operations.
+> > +
+> > +required:
+> > +  - "#clock-cells"
+> > +  - compatible
+> > +  - reg
+> > +  - clock-output-names
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    pvtpll_core: pvtpll-core@20480000 {
 
-There are some DT users, such as Barebox that matches against
-fsl,imx28-lcdif, so we cannot remove it.
+Additionally, none of the labels are being used and should be removed.
+"pvtpll-anything" is also not a generic node name, so those should get
+changed too.
 
-In my first attempt,  I tried removing it:
+> > +      compatible =3D "rockchip,rv1126b-core-pvtpll", "syscon";
+> > +      reg =3D <0x20480000 0x100>;
+> > +      #clock-cells =3D <0>;
+> > +      clock-output-names =3D "clk_core_pvtpll";
+> > +    };
+> > +
+> > +  - |
+> > +    pvtpll_isp: pvtpll-isp@21c60000 {
+> > +      compatible =3D "rockchip,rv1126b-isp-pvtpll", "syscon";
+> > +      reg =3D <0x21c60000 0x100>;
+> > +      rockchip,cru =3D <&cru>;
+> > +      #clock-cells =3D <0>;
+> > +      clock-output-names =3D "clk_isp_pvtpll";
+> > +    };
+> > +
+> > +  - |
+> > +    pvtpll_enc: pvtpll-enc@21f00000 {
+> > +      compatible =3D "rockchip,rv1126b-enc-pvtpll", "syscon";
+> > +      reg =3D <0x21f00000 0x100>;
+> > +      #clock-cells =3D <0>;
+> > +      clock-output-names =3D "clk_vepu_pvtpll";
+> > +    };
+> > +
+> > +  - |
+> > +    pvtpll_aisp: pvtpll-aisp@21fc0000 {
+> > +      compatible =3D "rockchip,rv1126b-aisp-pvtpll", "syscon";
+> > +      reg =3D <0x21fc0000 0x100>;
+> > +      rockchip,cru =3D <&cru>;
+> > +      #clock-cells =3D <0>;
+> > +      clock-output-names =3D "clk_vcp_pvtpll";
+> > +    };
+> > +
+> > +  - |
+> > +    pvtpll_npu: pvtpll-npu@22080000 {
+> > +      compatible =3D "rockchip,rv1126b-npu-pvtpll", "syscon";
+> > +      reg =3D <0x22080000 0x100>;
+> > +      rockchip,cru =3D <&cru>;
+> > +      #clock-cells =3D <0>;
+> > +      clock-output-names =3D "clk_npu_pvtpll";
+>=20
+> rockchip,cru line as the last line?
+>=20
+> Cheers,
+>   Diederik
+>=20
+> > +    };
+> > +
+> > +...
+>=20
 
-https://lore.kernel.org/linux-devicetree/20241028180844.154349-2-festevam@g=
-mail.com/
+--zDbktCb2H3iO4Q0A
+Content-Type: application/pgp-signature; name="signature.asc"
 
-but this was rejected due to potential dtb compatibility breakage:
+-----BEGIN PGP SIGNATURE-----
 
-https://lore.kernel.org/linux-devicetree/4addc413-dd13-4867-8c49-45539af7b4=
-5b@pengutronix.de/
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaPZwhwAKCRB4tDGHoIJi
+0iLPAP94ZMFR0xuWCqtCuslKikrX4Ilvj42EKuYV0Wo1K3G3xgEA6RkNCbvO3yRX
+ZW3mmydndwZgdwfiMuW03QLeH0FEnwI=
+=Kr3S
+-----END PGP SIGNATURE-----
+
+--zDbktCb2H3iO4Q0A--
 
