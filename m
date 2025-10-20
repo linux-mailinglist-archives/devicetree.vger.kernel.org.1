@@ -1,79 +1,79 @@
-Return-Path: <devicetree+bounces-228565-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228566-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9782BEF32B
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 05:39:37 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0EC7BEF331
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 05:40:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3D2503BFF41
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 03:39:36 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E17364E2225
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 03:40:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 872B62BD590;
-	Mon, 20 Oct 2025 03:39:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DC9D2BDC0E;
+	Mon, 20 Oct 2025 03:40:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="L26fsBei"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OycazayL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f52.google.com (mail-ot1-f52.google.com [209.85.210.52])
+Received: from mail-ot1-f51.google.com (mail-ot1-f51.google.com [209.85.210.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF2521EE02F
-	for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 03:39:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE5DC1E3762
+	for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 03:40:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760931574; cv=none; b=nM3POUlwbEcDVs/8/pBLH8SPUwrKLHOKBKkwuBh3wDEv+6fWXfclX4rQmb0nBB9sIgdTqjSzsWm0/YPXTQgxOC6ZxayfbDq73MWVuJwr9Viw4xxxOEW+VANoH5O1QYhFeuaV0ge4FpaPoP8XG5fUm83wXkFcdAqCsC4wee5Bfs8=
+	t=1760931619; cv=none; b=XHoFBsZRpktcP8j1Yy9wQYwEoBCH0L6id0/3HxaffCmQAyigsAk+VYiJYqknB0po8qeKFCfvEp0dEQZq/STCZfLiVlCqg3ZyuYGGqbmPzksVLLXZtoUyo+zU52XLc9RSywyDWsEG0ABN4uUBcSuw5XbGQzMixvR05q5eEzHPZcU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760931574; c=relaxed/simple;
-	bh=7ZMKBRn7WTwBL6qsn+lHI9SZa+lKRdoNg2FdbjpyDqE=;
+	s=arc-20240116; t=1760931619; c=relaxed/simple;
+	bh=+sDUkA3o71u4xm0yCZaBibtMSUQ/NK+r5JUrUR+q7Ew=;
 	h=From:To:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=u4niMhtHpE9glM6FmuiihoOI1uJiGqR5HssEhYlWt0oAG98q7b5LErnlMtCljb/TW4fWZENH6ZceIc+ozuR2dOvgUGn87qMvew68Q5JaWMrjSGASOLfWoa4CoSksIq0hXpGf271UPt4lcRdO+k+IorMSDuL0JSaPThcVmjneD6A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=L26fsBei; arc=none smtp.client-ip=209.85.210.52
+	 MIME-Version; b=BYOtZjdnSSTpwlry5lP3lAuycFSNq4LCd2MzSjxG3VUv6/vhHSaW9lwVzK4nQJBOqxFDbh5qoqn8XjOvD3xz7DWOPQMsOawud0+dBafxndqsWvfBZ+rib87xBHqeyDb8CPINED3lpEBW7a4VmkQRW0H6g3O434SzaErFxT40YB4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OycazayL; arc=none smtp.client-ip=209.85.210.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ot1-f52.google.com with SMTP id 46e09a7af769-7c27951fcbeso1120636a34.3
-        for <devicetree@vger.kernel.org>; Sun, 19 Oct 2025 20:39:32 -0700 (PDT)
+Received: by mail-ot1-f51.google.com with SMTP id 46e09a7af769-7c28378681cso890256a34.1
+        for <devicetree@vger.kernel.org>; Sun, 19 Oct 2025 20:40:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1760931572; x=1761536372; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1760931617; x=1761536417; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=a0NX4YDlfnF2moHa0Gi9m7awPoXSV0rkM143rN50kIc=;
-        b=L26fsBeiNIWfpU6mC8TwXsdHWKXYuq5u+Vj9jPR3EfP0dcNoxJ9EHeRRLzFSS9gz87
-         Fq4fyq1qEsvnVBlPWXBHDmfSP2EsdYTFmVecl1UWJsc5ms8bZ8pS63gM0WDSCW7s54Kg
-         XLSVc0Qxa/nKwIqDg58L1h/3SApG+ggWKurLpXEmrQlTDNMK35esm7n2JlOSzOJV344p
-         /BpZ4Z1y0m6WY8DGo7r1ABRSqdc/jipWE7IuQTXGxjH0g9cSDhyaokRGHUcWgWY459LA
-         RrejtR826S9LojuiqtWf+VicjFk4n2gUhyd9baZWX2+cozXqTh470fmPygtKFyFghX+c
-         KPOQ==
+        bh=/8dXK+URwMz/QYwLwmlxkiqTgmS0zDdGrSZfnYxwO4o=;
+        b=OycazayLuc21zYUDqYAON198ZetLiDvjX7YIUDT9YKlrfPNXXSn9tEJgqhI0irc9Ru
+         GvFyTkX5fz/FdqeMlrEeOXJM0oGiQlXnenpBAuCLMuGZ7nUagQ9REIwk1uKI2Eloj0Dh
+         hxPPlW7N9T9sZEJS5ATOIJ4b8bMmH/LwfUz1sSipFE7N4UMVH3xjcwVHYMM3SFJ5Euht
+         6cVVHb7Ho73qkiSwrRyAoICD3BOnMhbzZNB+pSFxNPxgmHl0pvyFPYicnNqnSWF3giKy
+         UCSvjsEjDD/M+MwBvDh/Qc/2Jp3i9x8DtXuuNL21cyB/sdB8mllrhal+qOVqJCsmg2jM
+         kfLg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760931572; x=1761536372;
+        d=1e100.net; s=20230601; t=1760931617; x=1761536417;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=a0NX4YDlfnF2moHa0Gi9m7awPoXSV0rkM143rN50kIc=;
-        b=SSga2LwCRvk2QLSTUmY++VowpOBGHYI975TYi5K0VC6odL/Q2sPc4JZB28hiNINu8l
-         iyssNDHQgsFwfOrHShRewGJHfp8y4uDLkKINjdam1ZqKDUbeBJcZrCQ8G/GTtwJFPPi5
-         DfpGJQsx8qT8Rpax4lklwB3TfQMdI1EUEuggWWcNxTWkZyg+omn3Q5sqMoPRi1azaJ0s
-         vS+lRGXrPa5aC6IORPc6TZEUJ8JrGgDxl2aUmUQPN1PP2YjYw5TpHviybmJYInbqMmyF
-         PPpUh5rtUw+9meEVllqgdeyX5irZ8xt877l+IxEQD+wFsV7jjE7d06nyhBh2bAYxBWWI
-         sg9A==
-X-Forwarded-Encrypted: i=1; AJvYcCV1mavuhQgn+jvODzTHuNKru0HhotWqt4pSGxu/wWXZR3Nb7m2Sus7MSEJRNmCO1sN9qpbimIWcT2D1@vger.kernel.org
-X-Gm-Message-State: AOJu0YwV10YppbcWvSQiblSm7dlOmSLX9fnvgYWNwxk9pgULPW8ldGC1
-	UWCqegY5njhWjYY0ThIPxdyHBAWDONLjrzJOhoBxhl3utZTYv0C3P508
-X-Gm-Gg: ASbGncuskLZgVtQDhrTvCBQ55+Ux1Fq+dKUGzAC2rj0Atxg1LXpEKY/GqMP+5FP/AGD
-	c0UVvRqybdKcnyntumeeYt7n0RDIpVeHaf7qFlYNLQ25JYon38sgbm21wvkWPba9ekXfvnBW0kX
-	aezEFuizkMltpyG+SNS3fqyBJsT2Tmui+LnIcB1hWKDn8ODVHL+Fbn8/UBd49D5MQdhfZLrb2q8
-	R70Oput9YP3CoxEnhgjzzta5WykRB84Db6uqfCrQYLMqxNVgokmEipHLtL42IO/NRpsesel2B3O
-	YccLjU2T1FS50p6OvpDIHRTvGrH2qmNshjB1EWRWOgbS7uG8TaZP3xnRnZmOOoHWVyCInvIynBQ
-	dQ08uFei/NQuA2tdjak1dtEkhhLGbtUHSRRgs6zPZ3A5wue73MNY1AZV2OcEMtPi1clO4HC0Bq9
-	qRiGDf/1x9xA==
-X-Google-Smtp-Source: AGHT+IHOs0K/WHwSdDIh+Y1Yr2b9rRO8V71RUx/TA5imJO1TgmZR2tfJC9CXblqfxCEeOeM8R6VM+w==
-X-Received: by 2002:a05:6830:4985:b0:745:a30c:b088 with SMTP id 46e09a7af769-7c27c912669mr6299929a34.5.1760931572053;
-        Sun, 19 Oct 2025 20:39:32 -0700 (PDT)
+        bh=/8dXK+URwMz/QYwLwmlxkiqTgmS0zDdGrSZfnYxwO4o=;
+        b=uRkA6Vnd2NXPFnMuJ9VpMrGrtgk2MIvk9/udehmUK8ICA74Zr28DN75bwHXrRupvsX
+         WRCYGLBHHYcmf+mvv6qFACtWC/okjzJZylSMgg9yV3PVzdIAenhcHyPZZ4ECwwLw3zvZ
+         dIB/qqYDeQQLzyREXpp9RNjkOOO1WuipBRBm0hnp1iZGTXzpb9iRC+Akf6BKSgVMKrXx
+         EOtJeduiLyBOcSvtzVdVu3DBrwdGvXJPE4VzMeMRagzULNwKHs1XuAQsjXEXSkeIOqQS
+         fu/iEjxLkjQ6eqcnL/yLc76cxXB8EBMnrFGQHHnm88bq/E2SR5d6xbucUVoN1Af+vS+f
+         quvA==
+X-Forwarded-Encrypted: i=1; AJvYcCX6JGJAERdwmD0XJy1Lqguc0TD3TO0bOp8pyOHwjdUUNBh7sSuZflw/hUcxKLTLVPS+FeO4RMQERUmd@vger.kernel.org
+X-Gm-Message-State: AOJu0YxNIVeOEorIEN2/OhaXixnLnzBclV3BsXK5YdnpxGd2KkvWngCb
+	DlktX0Dyat0CoS8q+xBB/dunfAA1bsPqN3o9lD5++Rw5TuUsx/GCcAlq
+X-Gm-Gg: ASbGncsUm+0T3Nwia5vHAg6CA/yQJEP9gcdeEz4VAeu6DoQnDI0pVvmZYx6J6U3DkaY
+	FM3nHN565mhA4ugKPyV+9gpyDyt5r45eneV98fMWTc1iVpCNgo2ZZcmK2mTn740pOmijJav03Qg
+	0i0yXc1ezkgodF6blaQDedUyIdX4P49oAaHxGT2TYFbcYtPe+yj9biEXMQPI82z3hCNESRVk5yd
+	CIt3MAsRAiEhlphBMzk1zBiTUFJb+3y823AbSQjL8Ph3yxrD/IAUYCXktD7CRCRgr0fWII9pNPu
+	iR2BZhWSPeIQnRdfEk9yEvIaiFPkG0mYV3wOOsPPPz60TiE3gbh6Te2E8YEJKU2Eh+48emYjcej
+	LP9LBP3vgRDbo4DDf4O9rchbszBHuqlwvQL8UtVZxNNIWb8g0AHcIu+Ka0j+BBT2LeruzAfPYln
+	jp98FnC6OHzA==
+X-Google-Smtp-Source: AGHT+IEVqNvKS9S5hpOT/qYLHXX7hyjUj6rvW+z7uFgHoCnVtZJK6EaIoHbVUJTxxJ6dp8W5m9QPZQ==
+X-Received: by 2002:a05:6830:910:b0:7bf:75e6:5ba with SMTP id 46e09a7af769-7c27cb0a0dfmr6276999a34.15.1760931616913;
+        Sun, 19 Oct 2025 20:40:16 -0700 (PDT)
 Received: from localhost.localdomain ([122.8.183.87])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7c28890f2a6sm2259202a34.24.2025.10.19.20.39.28
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7c28879e8d5sm2272678a34.5.2025.10.19.20.40.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 19 Oct 2025 20:39:30 -0700 (PDT)
+        Sun, 19 Oct 2025 20:40:16 -0700 (PDT)
 From: Chen Wang <unicornxw@gmail.com>
 To: u.kleine-koenig@baylibre.com,
 	aou@eecs.berkeley.edu,
@@ -97,9 +97,9 @@ To: u.kleine-koenig@baylibre.com,
 	chao.wei@sophgo.com,
 	xiaoguang.xing@sophgo.com,
 	fengchun.li@sophgo.com
-Subject: [PATCH 3/4] riscv: sophgo: dts: enable PCIe for SG2042_EVB_V1.X
-Date: Mon, 20 Oct 2025 11:39:22 +0800
-Message-Id: <1ad96631cc9d9d7403a2bed5585d856fa101a2ef.1760929111.git.unicorn_wang@outlook.com>
+Subject: [PATCH 4/4] riscv: sophgo: dts: enable PCIe for SG2042_EVB_V2.0
+Date: Mon, 20 Oct 2025 11:40:09 +0800
+Message-Id: <50a753f9b8cbd5a90b5b2df737f87fc77a9b33a7.1760929111.git.unicorn_wang@outlook.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <cover.1760929111.git.unicorn_wang@outlook.com>
 References: <cover.1760929111.git.unicorn_wang@outlook.com>
@@ -113,20 +113,20 @@ Content-Transfer-Encoding: 8bit
 
 From: Chen Wang <unicorn_wang@outlook.com>
 
-Enable PCIe controllers for Sophgo SG2042_EVB_V1.X board,
+Enable PCIe controllers for Sophgo SG2042_EVB_V2.0 board,
 which uses SG2042 SoC.
 
 Signed-off-by: Han Gao <rabenda.cn@gmail.com>
 Signed-off-by: Chen Wang <unicorn_wang@outlook.com>
 ---
- arch/riscv/boot/dts/sophgo/sg2042-evb-v1.dts | 12 ++++++++++++
+ arch/riscv/boot/dts/sophgo/sg2042-evb-v2.dts | 12 ++++++++++++
  1 file changed, 12 insertions(+)
 
-diff --git a/arch/riscv/boot/dts/sophgo/sg2042-evb-v1.dts b/arch/riscv/boot/dts/sophgo/sg2042-evb-v1.dts
-index 3320bc1dd2c6..a186d036cf36 100644
---- a/arch/riscv/boot/dts/sophgo/sg2042-evb-v1.dts
-+++ b/arch/riscv/boot/dts/sophgo/sg2042-evb-v1.dts
-@@ -164,6 +164,18 @@ phy0: phy@0 {
+diff --git a/arch/riscv/boot/dts/sophgo/sg2042-evb-v2.dts b/arch/riscv/boot/dts/sophgo/sg2042-evb-v2.dts
+index 46980e41b886..0cd0dc0f537c 100644
+--- a/arch/riscv/boot/dts/sophgo/sg2042-evb-v2.dts
++++ b/arch/riscv/boot/dts/sophgo/sg2042-evb-v2.dts
+@@ -152,6 +152,18 @@ phy0: phy@0 {
  	};
  };
  
