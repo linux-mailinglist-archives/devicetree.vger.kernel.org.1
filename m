@@ -1,231 +1,171 @@
-Return-Path: <devicetree+bounces-228717-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228718-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9265BF05D8
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 12:02:17 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DF2CBF05FC
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 12:03:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4177E188E3F2
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0F4573BA179
 	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 10:02:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7163823EAAA;
-	Mon, 20 Oct 2025 10:02:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9513E2F1FE5;
+	Mon, 20 Oct 2025 10:02:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="R/LWpNQW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sGy0RrSn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EBC01FDA92;
-	Mon, 20 Oct 2025 10:02:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65D682E9EDA;
+	Mon, 20 Oct 2025 10:02:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760954532; cv=none; b=D5TD0PLjxW0ZwvlAL9ALyXIsqWuvYeBr1cm61O55y1kEni1dJNTtwLUiXs36AocC/kO6Kb5DtiFtM6lYzDFg5TmJsWsar8C9PgcGnLU8pz5UTMqo1Z4jmn747h9jjLZb9KegW69GeJ3+o4IVGfFqUdmlbnWz6WbRq/vqCZT/nxc=
+	t=1760954556; cv=none; b=NwmPdy9s/C0eGn2ls4A6BJ3Pfc/VHeJX+pk9qV9dQDGB3xQB3wgqp0BVCuMtAd8H985f2p4TZPhFIXRwhFrHgPpVvIWqb6OQwfd+ykrpjkfDbEByhWf7UtJURXgPi8YKfKvFDBvsixaNQM7gC/euYzj3cklNJ9zpYbC6rCfWnd0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760954532; c=relaxed/simple;
-	bh=7OgHgc7V9jCA/aH/wZmpPfoG6Zo6Xb08lXUbbydETp4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DezsMH/jOW5itxFF7sWfdIbtk51IvMp0OLHo2lnz3CaXgYSqc1tjrj4esUfQJHdmIS5Z7zU08CERHXlkMbDdypSV2mdqoJ91DSebqblafW0+e4w1J0eEwAlWGZXgKjZM9eien6NPCIZ0SVji+RKwImTqcvYk6Oy46C05AV8L4WY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=R/LWpNQW; arc=none smtp.client-ip=198.175.65.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1760954530; x=1792490530;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=7OgHgc7V9jCA/aH/wZmpPfoG6Zo6Xb08lXUbbydETp4=;
-  b=R/LWpNQWWM3L/XZmBjliJSsO0Y2An53b0bOdONEg7N9VGNJFYSWDt23e
-   AsmhspAJFEUbQjJVVft4XzkgKgeXGXDBq9KITZ3DPvzNi8pHZ1wF1UBG8
-   x+MGxlflHLObPtaRN3ws+W3MOVurm1yub6CUBnH/FO8TUnL6e6XzbPI6C
-   ODBwbfbEo/JbH63LyDK4IKDoFl9MhdcLx55zURZuY3wWh2iQ+chRHEnK0
-   njSS37aoEigSFiA05dkn0zIsaUQV7d/jdxsfVPyVOD4akZ1MSu0EQyXb6
-   VMOAKJzlkCoc1y8er3EAM6j1GyCylAtpxZXAtUIpkifQ9HFPoKmUvl7UT
-   A==;
-X-CSE-ConnectionGUID: WoL9UeLSQ3uvZldMQlrgAQ==
-X-CSE-MsgGUID: 3bEYd26bQx+rHZnMmagMuA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11587"; a="80506993"
-X-IronPort-AV: E=Sophos;i="6.19,242,1754982000"; 
-   d="scan'208";a="80506993"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
-  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Oct 2025 03:02:10 -0700
-X-CSE-ConnectionGUID: Rbwng+eMQgabSBT8iqlHxg==
-X-CSE-MsgGUID: 5PEY46adTHK0yIfKFWIaWg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,242,1754982000"; 
-   d="scan'208";a="183308787"
-Received: from aschofie-mobl2.amr.corp.intel.com (HELO kuha.fi.intel.com) ([10.124.220.112])
-  by orviesa008.jf.intel.com with SMTP; 20 Oct 2025 03:02:01 -0700
-Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Mon, 20 Oct 2025 13:02:00 +0300
-Date: Mon, 20 Oct 2025 13:02:00 +0300
-From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-To: Chaoyi Chen <kernel@airkyi.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>, Sandy Huang <hjc@rock-chips.com>,
-	Andy Yan <andy.yan@rock-chips.com>,
-	Yubing Zhang <yubing.zhang@rock-chips.com>,
-	Frank Wang <frank.wang@rock-chips.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Amit Sunil Dhamne <amitsd@google.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Chaoyi Chen <chaoyi.chen@rock-chips.com>,
-	Dragan Simic <dsimic@manjaro.org>, Johan Jonker <jbx6244@gmail.com>,
-	Diederik de Haas <didi.debian@cknow.org>,
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-	Peter Robinson <pbrobinson@gmail.com>, linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-phy@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH v6 1/8] usb: typec: Add default HPD device when register
- DisplayPort altmode
-Message-ID: <aPYImGmesrZWwyqh@kuha.fi.intel.com>
-References: <20251016022741.91-1-kernel@airkyi.com>
- <20251016022741.91-2-kernel@airkyi.com>
+	s=arc-20240116; t=1760954556; c=relaxed/simple;
+	bh=OXMj22BFd95MnCA9Pp5zB+u1q9K2KOGCsd/US9btLgQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=PSEopNuD51b7tp3bs60MCHoOwM1qU2zoMz5hwgnteV+bBbWAXJ2JfckQvrW63Enxbtxdb1QIreyQ2qbN79KWWSciWgNZaXJxL/EdbuSishjl2bx1fev9HAsHsATaWiJbxGAl+c2YBk5MGLyxNJzyuxOxVaC7jgKmdLrzHialMpU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sGy0RrSn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A6B3C4CEF9;
+	Mon, 20 Oct 2025 10:02:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1760954556;
+	bh=OXMj22BFd95MnCA9Pp5zB+u1q9K2KOGCsd/US9btLgQ=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=sGy0RrSn9lTmeKBPr4KkCFapcIKY2JfBl0FcWvs/pSGDb+HJ4i4UWhPXYSmHKo2cq
+	 oIJXO9ENHBj169tFKmKazLfx8d3zzeVGt8xbbOYP2CubQ5nmYzil84hja4jI/gJJ4P
+	 MXFT4MvngVStgE6lyKqpZdx0ayflqtaYXlBLuduRz4qNFnyMJSBQB0/bomuE+2mbzg
+	 2cjxtin4ToeLnB7FMv0FMTPgLREYJxNXtJ0raP5tViSmmMvC7xufV8EJQviNBomVjO
+	 bJddhSflCQkjMKzV1pX3LgmhkyUdylACzFib3IYcw/nd0dveBsgpqYbHEoDbq/45S6
+	 A5rSRHZyYC8oA==
+Message-ID: <3f5e2d98-4c4a-4a8b-b041-200bb1fc3e7e@kernel.org>
+Date: Mon, 20 Oct 2025 12:02:29 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251016022741.91-2-kernel@airkyi.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 3/4] dt-bindings: ufs: mediatek,ufs: add MT8195
+ compatible and update clock nodes
+To: =?UTF-8?B?UGV0ZXIgV2FuZyAo546L5L+h5Y+LKQ==?= <peter.wang@mediatek.com>,
+ "chu.stanley@gmail.com" <chu.stanley@gmail.com>,
+ "James.Bottomley@HansenPartnership.com"
+ <James.Bottomley@HansenPartnership.com>, "robh@kernel.org"
+ <robh@kernel.org>, "bvanassche@acm.org" <bvanassche@acm.org>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ "linux-scsi@vger.kernel.org" <linux-scsi@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ =?UTF-8?B?TWFjcGF1bCBMaW4gKOael+aZuuaWjCk=?= <Macpaul.Lin@mediatek.com>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+ "alim.akhtar@samsung.com" <alim.akhtar@samsung.com>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+ "avri.altman@wdc.com" <avri.altman@wdc.com>,
+ "martin.petersen@oracle.com" <martin.petersen@oracle.com>
+Cc: "macpaul@gmail.com" <macpaul@gmail.com>,
+ =?UTF-8?B?UGFibG8gU3VuICjlravmr5Pnv5Qp?= <pablo.sun@mediatek.com>,
+ Project_Global_Chrome_Upstream_Group
+ <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+ =?UTF-8?B?QmVhciBXYW5nICjokKnljp/mg5/lvrcp?= <bear.wang@mediatek.com>,
+ =?UTF-8?B?UmFtYXggTG8gKOe+heaYjumBoCk=?= <Ramax.Lo@mediatek.com>
+References: <20250722085721.2062657-1-macpaul.lin@mediatek.com>
+ <20250722085721.2062657-3-macpaul.lin@mediatek.com>
+ <b90956e8-adf9-4411-b6f9-9212fcd14b59@collabora.com>
+ <438077d191833bb4f628b2c6da3b86b3ecfb40e6.camel@mediatek.com>
+ <cb173df9-4c70-4619-b36d-8e99272551b6@kernel.org>
+ <a9bf15e48afd8496ca9b015e7f5b03821863a0b2.camel@mediatek.com>
+ <7f285723-ecd7-4df6-8c9b-f2e786ce3602@kernel.org>
+ <4b3d2678d2b724fb53ec7272ef8daf52197d4a0e.camel@mediatek.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
+ QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
+ +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
+ ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
+ 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
+ hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
+ tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
+ 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
+ naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
+ hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
+ whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
+ qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
+ RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
+ Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
+ H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
+ dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
+ AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
+ jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
+ zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
+ XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
+In-Reply-To: <4b3d2678d2b724fb53ec7272ef8daf52197d4a0e.camel@mediatek.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Thu, Oct 16, 2025 at 10:27:34AM +0800, Chaoyi Chen wrote:
-> From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+On 20/10/2025 11:44, Peter Wang (王信友) wrote:
+>>
+>> Consider stepping down and choosing them if they better understand
+>> how
+>> upstream works.
+>>
+>> As Rob wrote earlier:
+>>
+>> "Sounds like we need a new maintainer then. They clearly don't
+>> understand that downstream doesn't exist."
+>>
+>>
+>> Best regards,
+>> Krzysztof
 > 
-> Add default DRM AUX HPD bridge device when register DisplayPort
-> altmode. That makes it redundant for each Type-C driver to implement
-> a similar registration process in embedded scenarios.
-> 
-> Signed-off-by: Chaoyi Chen <chaoyi.chen@rock-chips.com>
-> ---
-> 
-> Changes in v6:
-> - Fix depend in Kconfig.
-> 
-> Changes in v5:
-> - Remove the calls related to `drm_aux_hpd_bridge_notify()`.
-> - Place the helper functions in the same compilation unit.
-> - Add more comments about parent device.
-> 
->  drivers/usb/typec/Kconfig         |  2 ++
->  drivers/usb/typec/class.c         | 26 ++++++++++++++++++++++++++
->  include/linux/usb/typec_altmode.h |  2 ++
->  3 files changed, 30 insertions(+)
-> 
-> diff --git a/drivers/usb/typec/Kconfig b/drivers/usb/typec/Kconfig
-> index 2f80c2792dbd..a6730fbb576b 100644
-> --- a/drivers/usb/typec/Kconfig
-> +++ b/drivers/usb/typec/Kconfig
-> @@ -2,6 +2,8 @@
->  
->  menuconfig TYPEC
->  	tristate "USB Type-C Support"
-> +	depends on DRM || DRM=n
-> +	select DRM_AUX_HPD_BRIDGE if DRM_BRIDGE && OF
+> I must reiterate that I do not oppose patches that are 
+> beneficial to the community; I only object to patches that are 
+> not helpful.
 
-This is wrong. DRM should not dictate how this entire subsystem core
-is configured. The dependency needs to be on the DRM bridge side.
 
-You can for example use the bus notification there to see when a new
-alternate mode is being registered, or use some other notification
-mechanism.
+Let's quote you again:
 
-thanks,
+"*In addition*, it will require MediaTek to put in extra
+effort to migrate the kernel. "
 
->  	help
->  	  USB Type-C Specification defines a cable and connector for USB where
->  	  only one type of plug is supported on both ends, i.e. there will not
-> diff --git a/drivers/usb/typec/class.c b/drivers/usb/typec/class.c
-> index 67a533e35150..e9d7772d1a8f 100644
-> --- a/drivers/usb/typec/class.c
-> +++ b/drivers/usb/typec/class.c
-> @@ -8,14 +8,18 @@
->  
->  #include <linux/module.h>
->  #include <linux/mutex.h>
-> +#include <linux/of.h>
->  #include <linux/property.h>
->  #include <linux/slab.h>
->  #include <linux/string_choices.h>
->  #include <linux/usb/pd_vdo.h>
-> +#include <linux/usb/typec_dp.h>
->  #include <linux/usb/typec_mux.h>
->  #include <linux/usb/typec_retimer.h>
->  #include <linux/usb.h>
->  
-> +#include <drm/bridge/aux-bridge.h>
-> +
->  #include "bus.h"
->  #include "class.h"
->  #include "pd.h"
-> @@ -538,6 +542,21 @@ const struct device_type typec_altmode_dev_type = {
->  	.release = typec_altmode_release,
->  };
->  
-> +static void dp_altmode_hpd_device_register(struct typec_altmode *alt)
-> +{
-> +	if (alt->svid != USB_TYPEC_DP_SID)
-> +		return;
-> +
-> +	/*
-> +	 * alt->dev.parent->parent : USB-C controller device
-> +	 * alt->dev.parent         : USB-C connector device
-> +	 */
-> +	alt->hpd_dev = drm_dp_hpd_bridge_register(alt->dev.parent->parent,
-> +						  to_of_node(alt->dev.parent->fwnode));
-> +	if (IS_ERR(alt->hpd_dev))
-> +		alt->hpd_dev = NULL;
-> +}
-> +
->  static struct typec_altmode *
->  typec_register_altmode(struct device *parent,
->  		       const struct typec_altmode_desc *desc)
-> @@ -600,6 +619,13 @@ typec_register_altmode(struct device *parent,
->  		return ERR_PTR(ret);
->  	}
->  
-> +	/*
-> +	 * It is too late to register the HPD device when the DisplayPort
-> +	 * altmode device becomes ready. If the current altmode is DP,
-> +	 * register a static HPD device.
-> +	 */
-> +	dp_altmode_hpd_device_register(&alt->adev);
-> +
->  	return &alt->adev;
->  }
->  
-> diff --git a/include/linux/usb/typec_altmode.h b/include/linux/usb/typec_altmode.h
-> index b3c0866ea70f..acb0af1b9d5d 100644
-> --- a/include/linux/usb/typec_altmode.h
-> +++ b/include/linux/usb/typec_altmode.h
-> @@ -21,6 +21,7 @@ struct typec_altmode_ops;
->   * @desc: Optional human readable description of the mode
->   * @ops: Operations vector from the driver
->   * @cable_ops: Cable operations vector from the driver.
-> + * @hpd_dev: HPD device for DisplayPort
->   */
->  struct typec_altmode {
->  	struct device			dev;
-> @@ -32,6 +33,7 @@ struct typec_altmode {
->  	char				*desc;
->  	const struct typec_altmode_ops	*ops;
->  	const struct typec_cable_ops	*cable_ops;
-> +	struct device			*hpd_dev;
->  };
->  
->  #define to_typec_altmode(d) container_of(d, struct typec_altmode, dev)
-> -- 
-> 2.49.0
+This is ADDITIONAL argument you used. This is what you wrote, this is
+what you claimed to be ADDITIONAL argument.
 
--- 
-heikki
+In your opinion ADDITIONAL argument is downstream and you still do not
+understand why such argument is instant NAK for you as reviewer.
+
+
+Best regards,
+Krzysztof
 
