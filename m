@@ -1,173 +1,91 @@
-Return-Path: <devicetree+bounces-228959-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228961-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78500BF2A2A
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 19:12:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E5575BF2A99
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 19:16:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1C77E426409
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 17:12:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5DDC33A3A4F
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 17:15:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64AFC33345D;
-	Mon, 20 Oct 2025 17:11:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E49A7331A44;
+	Mon, 20 Oct 2025 17:15:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PJrLsn+g"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="J0N7qB7e"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 344C93321A3;
-	Mon, 20 Oct 2025 17:11:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7EB11D5CDE;
+	Mon, 20 Oct 2025 17:15:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760980283; cv=none; b=DJZS4jICjWXofzbQMHadpaPSpsgcm7bNvwvzdOlLiVwN/IB6MPyQ46NaOpSqNPX/lPPVzTBhryJ70cYpjy/t6SI1VE9o4q321454LKJRr9wLtOdMU+F7+kXeK/qUk4pOSqhBP8TuGe4p6T9UPZUADVohX0tbYo8S+AErOnYBpV8=
+	t=1760980536; cv=none; b=PP/5Fm/iReGM9lDgKdU78HQyMun1biBLibNxXuXCuvqfVbWF9iW4oNlqW/6qGKNFzdHk+495sjUmabo4NLRBFuJU7Jm5/Zw46PBe1cTUiVxSo2e8Kd3ZZKYEnv+gwB50ge959vJSa84OEWx8sCKJbd5PzmKi2W6j0q893+p0rTc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760980283; c=relaxed/simple;
-	bh=7WylpHCfl5v2xSL09jxwrG9Ik/L6u+sN2kDjKM+sdbI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=O4N186eKhWzJDqTvjLwZlVGQoGTEMaEe1uI+tX+Y3caD4djuDHty+gq3SrbaCRjP6W0TqvNOUYtMdjS1QMoVsv9K+yCNXvKMVyfpNQiD/a2MCNu7KbwopegSy7bPB4Ct32OCHLJdlNuhG9MpJtv9ZI8/6/9D7xtMGXQhGBiT0b0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PJrLsn+g; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B2964C16AAE;
-	Mon, 20 Oct 2025 17:11:22 +0000 (UTC)
+	s=arc-20240116; t=1760980536; c=relaxed/simple;
+	bh=QFq5LOrpzBT+0cc2xULTJJjO/I/ewFbE34Rwz7Vzghc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=GTfeEvB10bJ/aAlqUMzawGxFrp1LB6cX2kR3GmXjOa59LKOyJseBsAsHPrety6a21cDefyvTfrSohKeeNB2pcauQfGXY/grUyC7pHWhVzj4jo+viBRBGkJmM/wDPQxNbzA5Emtanl5kVrJgB8pd6+C6p/Vkr9RgKmeHhXbSpP1k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=J0N7qB7e; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EC5DFC4CEF9;
+	Mon, 20 Oct 2025 17:15:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760980282;
-	bh=7WylpHCfl5v2xSL09jxwrG9Ik/L6u+sN2kDjKM+sdbI=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=PJrLsn+galda3bYPgMdWQJEffSywb41/LmjAd3z8v3a1YlYtdfLc559jdDWnv+Wig
-	 V9XGVO7dvkaKETtdhrtDbwL1y9p4bGq0oaIm1VZnnsL3gxWWMGyB4BYIpznNMbhv9/
-	 iE3GnEpXGzgF5rKyQepzeFz28YxLcHMSmpunD2BzmOPrZr9ODGzvMSautCJ+vgyBvn
-	 5dFRNlAsNBy9vXs69lt1bt7xpy3CRUCo5IOxKaFLISOyUIW2HQwXFGsqjT3Zr4l5l7
-	 hPMWkX+bX1Vqa+cvLZ/wNKrCZeWN06GAe3D4bkHjNCajAywnufCgqFk8G/JKeMnkvB
-	 Bf6MvlnlxwuVw==
-Received: by wens.tw (Postfix, from userid 1000)
-	id 811E45FF56; Tue, 21 Oct 2025 01:11:18 +0800 (CST)
-From: Chen-Yu Tsai <wens@kernel.org>
-To: Chen-Yu Tsai <wens@kernel.org>,
-	Jernej Skrabec <jernej@kernel.org>,
-	Samuel Holland <samuel@sholland.org>,
-	Mark Brown <broonie@kernel.org>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Vinod Koul <vkoul@kernel.org>
-Cc: linux-sunxi@lists.linux.dev,
-	linux-sound@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	dmaengine@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 11/11] [EXAMPLE] arm64: dts: allwinner: a527-cubie-a5e: Enable I2S and SPDIF output
-Date: Tue, 21 Oct 2025 01:10:57 +0800
-Message-ID: <20251020171059.2786070-12-wens@kernel.org>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20251020171059.2786070-1-wens@kernel.org>
-References: <20251020171059.2786070-1-wens@kernel.org>
+	s=k20201202; t=1760980536;
+	bh=QFq5LOrpzBT+0cc2xULTJJjO/I/ewFbE34Rwz7Vzghc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=J0N7qB7eyOf+og4EajM32N6iSDRWii4pM4IRcRrlLHUUVPxxeAz/pUZH5GMV0asoc
+	 a/Df+2Ka9Q2b6okE6DBFL3ITMbpWGE+y+MbvRLu0+t+PJUS719uYEWje+KG8ITeCFH
+	 ozdIKrp0R1hh96xNsggx5xkzmrCKG0fZ1isIa+sTaA/OMuxB+xwEciezZz3clKHFWF
+	 0NtqxouSG8TySG1CitJoiLEi0iSaKLxoJxib5jZhg2ag/9aaE6/VeJXwjXMF+XwYzq
+	 JGR4rmdw9/AMzO0kMie+fivm5M/VNz4r1QkijaZdvhVHaeNmO4QkApK7JwQNJuSqzo
+	 +yaddHAuR95gw==
+Date: Mon, 20 Oct 2025 18:15:31 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Matthias Schiffer <matthias.schiffer@tq-group.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux@ew.tq-group.com
+Subject: Re: [PATCH v2 1/2] dt-bindings: arm: fsl: add TQ-Systems boards
+ MBLS1028A and MBLS1028A-IND
+Message-ID: <20251020-closure-eating-5562565a4032@spud>
+References: <20251020133536.303471-1-alexander.stein@ew.tq-group.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="y5gaGBfQOuF8CKPP"
+Content-Disposition: inline
+In-Reply-To: <20251020133536.303471-1-alexander.stein@ew.tq-group.com>
 
-This is an example change.
 
-The Radxa Cubie A5E exposes I2S2 and SPDIF on the 40-pin header. Enable
-both.
+--y5gaGBfQOuF8CKPP
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-In this example, I2S2 is connected to adafruit speaker bonnet, which
-sports a pair of MAX98357A for speaker amplication. SPDIF is connected
-to a SPDIF interface card for PCs, which has both coaxial and optical
-outputs. The output was connected via optical cable to a dumb SPDIF to
-analog audio converter.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+pw-bot: not-applicable
 
-Signed-off-by: Chen-Yu Tsai <wens@kernel.org>
----
- .../dts/allwinner/sun55i-a527-cubie-a5e.dts   | 52 +++++++++++++++++++
- 1 file changed, 52 insertions(+)
+--y5gaGBfQOuF8CKPP
+Content-Type: application/pgp-signature; name="signature.asc"
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun55i-a527-cubie-a5e.dts b/arch/arm64/boot/dts/allwinner/sun55i-a527-cubie-a5e.dts
-index bfdf1728cd14..828d101d28e8 100644
---- a/arch/arm64/boot/dts/allwinner/sun55i-a527-cubie-a5e.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun55i-a527-cubie-a5e.dts
-@@ -64,6 +64,46 @@ reg_usb_vbus: vbus {
- 		gpio = <&r_pio 0 8 GPIO_ACTIVE_HIGH>;	/* PL8 */
- 		enable-active-high;
- 	};
-+
-+	codec: audio-codec {
-+		compatible = "maxim,max98360a";
-+		#sound-dai-cells = <0>;
-+	};
-+
-+	sound-i2s {
-+		compatible = "simple-audio-card";
-+		simple-audio-card,name = "I2S";
-+		simple-audio-card,format = "left_j";
-+		simple-audio-card,bitclock-master = <&dailink_cpu>;
-+		simple-audio-card,frame-master = <&dailink_cpu>;
-+		simple-audio-card,mclk-fs = <128>;
-+
-+		dailink_cpu: simple-audio-card,cpu {
-+			sound-dai = <&i2s2>;
-+		};
-+
-+		dailink0_master: simple-audio-card,codec {
-+			sound-dai = <&codec>;
-+		};
-+	};
-+
-+	sound-spdif {
-+		compatible = "simple-audio-card";
-+		simple-audio-card,name = "spdif-out";
-+
-+		simple-audio-card,cpu {
-+			sound-dai = <&spdif>;
-+		};
-+
-+		simple-audio-card,codec {
-+			sound-dai = <&spdif_out>;
-+		};
-+	};
-+
-+	spdif_out: spdif-out {
-+		#sound-dai-cells = <0>;
-+		compatible = "linux,spdif-dit";
-+	};
- };
- 
- &ehci0 {
-@@ -101,6 +141,12 @@ &gpu {
- 	status = "okay";
- };
- 
-+&i2s2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2s2_pi_pins>;
-+	status = "okay";
-+};
-+
- &mdio0 {
- 	ext_rgmii0_phy: ethernet-phy@1 {
- 		compatible = "ethernet-phy-ieee802.3-c22";
-@@ -344,6 +390,12 @@ &r_pio {
- 	vcc-pm-supply = <&reg_aldo3>;
- };
- 
-+&spdif {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&spdif_out_pi_pin>;
-+	status = "okay";
-+};
-+
- &uart0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&uart0_pb_pins>;
--- 
-2.47.3
+-----BEGIN PGP SIGNATURE-----
 
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaPZuMwAKCRB4tDGHoIJi
+0idqAP99wn9rZ3vdX/HiKOVJU/T6U0epcn96qhI5HbBPOZrMCgD/fDSstymKGmQ+
+e0eW7q6qrX43inmNTqVE9GCARUNQpAU=
+=f5RB
+-----END PGP SIGNATURE-----
+
+--y5gaGBfQOuF8CKPP--
 
