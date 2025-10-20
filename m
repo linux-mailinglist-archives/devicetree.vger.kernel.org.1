@@ -1,125 +1,126 @@
-Return-Path: <devicetree+bounces-228933-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-228934-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id F25EDBF246F
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 18:01:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 659A7BF24B1
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 18:04:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5F01618A4190
-	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 16:02:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BF40618A763F
+	for <lists+devicetree@lfdr.de>; Mon, 20 Oct 2025 16:04:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAD96283683;
-	Mon, 20 Oct 2025 16:01:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06CE22820A0;
+	Mon, 20 Oct 2025 16:03:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=raptorengineering.com header.i=@raptorengineering.com header.b="QNkQ3EIZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rQeUNVAX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from raptorengineering.com (mail.raptorengineering.com [23.155.224.40])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15881283FF9;
-	Mon, 20 Oct 2025 16:01:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=23.155.224.40
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D25E727AC48;
+	Mon, 20 Oct 2025 16:03:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760976093; cv=none; b=Rc/VBgq0B4iiFyyDA15N/kutEjzKttHSCXDAPxyMFdqcIQW4boKJCl/9G+8XGNUKS5ld+CApno7mHvWVte1sv9lswFeDFWUjQmD5AuAtKiWOiyM9XYEaDJ0lIkphNQXfOAi6F3nw2Urfe4CYOp0i7OvtJmFa9Uq4vgzgTlsPoOU=
+	t=1760976235; cv=none; b=Qrbpr+p+EnFHfq3YU1Zb5a9qx0y08dQIJTygU438YiahWMv/PWdwc2M/evaUPCq/5fyyiD3l4L+Nm6fJXlNEpdO95JDJ9kOw1TR9trwD14Q5jwKeVRpuCFQxFq95MZLuT4okVHOJBqiTXmIIiqhQBGxfjUSOyOKpezgnj9HB4zQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760976093; c=relaxed/simple;
-	bh=6UAYYbRl6gVxoWFWJmquglKp4qMFnwIKcWIe1rtXLbg=;
-	h=Date:From:To:Cc:Message-ID:In-Reply-To:References:Subject:
-	 MIME-Version:Content-Type; b=T289z1O8g+K4LDJbEQFzr1vf5LWmJx6Z4/c7OT0KgNuiptlYRmRlFYeqW2zQzj3xKv/65fR9MUhVHbCTtiXvt0F9hHKG23bExf12qxp4H5ieI77kuM+uqgra3B/rYyMX/bk8Kuzvzv+idc0vqhJKt7bIkparx6kBtpJucS49xp0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=raptorengineering.com; spf=pass smtp.mailfrom=raptorengineering.com; dkim=pass (1024-bit key) header.d=raptorengineering.com header.i=@raptorengineering.com header.b=QNkQ3EIZ; arc=none smtp.client-ip=23.155.224.40
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=raptorengineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=raptorengineering.com
-Received: from localhost (localhost [127.0.0.1])
-	by mail.rptsys.com (Postfix) with ESMTP id 2641782854A5;
-	Mon, 20 Oct 2025 11:01:31 -0500 (CDT)
-Received: from mail.rptsys.com ([127.0.0.1])
-	by localhost (vali.starlink.edu [127.0.0.1]) (amavisd-new, port 10032)
-	with ESMTP id 6o93uEcNXNI3; Mon, 20 Oct 2025 11:01:29 -0500 (CDT)
-Received: from localhost (localhost [127.0.0.1])
-	by mail.rptsys.com (Postfix) with ESMTP id 9A8B7828851D;
-	Mon, 20 Oct 2025 11:01:29 -0500 (CDT)
-DKIM-Filter: OpenDKIM Filter v2.10.3 mail.rptsys.com 9A8B7828851D
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=raptorengineering.com; s=B8E824E6-0BE2-11E6-931D-288C65937AAD;
-	t=1760976089; bh=9XOvRKZB3ZHxwazpGMcpCeHjuLjttzMXe5TLIp4gLwQ=;
-	h=Date:From:To:Message-ID:MIME-Version;
-	b=QNkQ3EIZlV+10wfyNPSUJwaX1AJh4R3JpucrJc8ooITpdIhyvJ7G1fmq8HYjisO3U
-	 wiNUHduXl6At9Xg1WnGkXm2iTI39JSILVTduAzaeiA9T3KPJ3tmKNvpQ9HmA9QbHa0
-	 LR6xK9LY3dMenwsi+59F8E8iZcSGDJf7nuyuDeWQ=
-X-Virus-Scanned: amavisd-new at rptsys.com
-Received: from mail.rptsys.com ([127.0.0.1])
-	by localhost (vali.starlink.edu [127.0.0.1]) (amavisd-new, port 10026)
-	with ESMTP id Mn7UjrjG7kFk; Mon, 20 Oct 2025 11:01:29 -0500 (CDT)
-Received: from vali.starlink.edu (localhost [127.0.0.1])
-	by mail.rptsys.com (Postfix) with ESMTP id 6F9BD82854A5;
-	Mon, 20 Oct 2025 11:01:29 -0500 (CDT)
-Date: Mon, 20 Oct 2025 11:01:26 -0500 (CDT)
-From: Timothy Pearson <tpearson@raptorengineering.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: robh <robh@kernel.org>, devicetree <devicetree@vger.kernel.org>, 
-	linux-kernel <linux-kernel@vger.kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Lee Jones <lee@kernel.org>, 
-	Georgy Yakovlev <Georgy.Yakovlev@sony.com>
-Message-ID: <1626454153.1801886.1760976086710.JavaMail.zimbra@raptorengineeringinc.com>
-In-Reply-To: <f6f9cfc9-b26e-4358-8781-6ce75075d13f@linaro.org>
-References: <948400747.1748562.1758824253627.JavaMail.zimbra@raptorengineeringinc.com> <20250929141113.GA3987541-robh@kernel.org> <924260297.1801829.1760974499327.JavaMail.zimbra@raptorengineeringinc.com> <f6f9cfc9-b26e-4358-8781-6ce75075d13f@linaro.org>
-Subject: Re: [PATCH 1/4] dt-bindings: mfd: Add sony,cronos-cpld
+	s=arc-20240116; t=1760976235; c=relaxed/simple;
+	bh=PTSBkKOFzjQfn3WycpT5x6OZ24XSKTqM3cXc2NT58hw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=uMZRQoAbHMblyohhlZJpd+Zb1RVNBCVnvU41f/w++KZLAvst961oVwWtBiUfjdRBtWz77lPjW6x+P3aRBHods72rt8M7T3IqpmFqaycnEHGAkETe7AHaHNrdc3iMx0Dmu7LvNYDAlfVwrl5gY2Oc8vF8k/k8i+MTIP1Y43fq+qA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rQeUNVAX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F145CC4CEF9;
+	Mon, 20 Oct 2025 16:03:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1760976235;
+	bh=PTSBkKOFzjQfn3WycpT5x6OZ24XSKTqM3cXc2NT58hw=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=rQeUNVAXwVMxDa7klmBpKqPkBd0QDMjH3nB7u4DpeXk6dTkTROx3cVWm/iw5r08GS
+	 7o9+WV9sHCf5uUvJsf+kEo5IvaYG8kpJoIX4xo5wGh9l4KyGTgtyp1oU+YbAhoex/l
+	 REkrSyP1dqTOAP2UeyTMa4BgDCcFbusz8ZYvxqX/Lr1FU4+0bDkv6+BhgWpUxAXnK1
+	 vyx25e5V3ibrhZkFJ+/RLVdqX4/ai/mkgMC2o8DMjIFC9zNFjHxbGyUQVdaeEJ0xiy
+	 w90i/6s2mBSiwjs+BKcANjMW6UMt96hah6qyg2SrOkxH5VRBGDF+Sk4/OWb4mpmWi6
+	 64ul2XvTpqEHg==
+Message-ID: <aab92ea9-60a4-43e5-bbee-96484d15f3a7@kernel.org>
+Date: Mon, 20 Oct 2025 11:03:53 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RESEND v6 0/4] stratix10: Add framework for asynchronous
+ communication with SDM
+To: mahesh.rao@altera.com, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Richard Gong <richard.gong@intel.com>,
+ Alan Tull <atull@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: Matthew Gerlach <matthew.gerlach@altera.com>,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20250924-sip_svc_upstream-v6-0-c88ef68bf24e@altera.com>
+Content-Language: en-US
+From: Dinh Nguyen <dinguyen@kernel.org>
+In-Reply-To: <20250924-sip_svc_upstream-v6-0-c88ef68bf24e@altera.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Mailer: Zimbra 8.5.0_GA_3042 (ZimbraWebClient - GC141 (Linux)/8.5.0_GA_3042)
-Thread-Topic: dt-bindings: mfd: Add sony,cronos-cpld
-Thread-Index: +XTYI2SaT+vzvvqrHcY8ELCXWJUT7g==
 
 
 
------ Original Message -----
-> From: "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>
-> To: "Timothy Pearson" <tpearson@raptorengineering.com>, "robh" <robh@kernel.org>
-> Cc: "devicetree" <devicetree@vger.kernel.org>, "linux-kernel" <linux-kernel@vger.kernel.org>, "Conor Dooley"
-> <conor+dt@kernel.org>, "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>, "Lee Jones" <lee@kernel.org>, "Georgy
-> Yakovlev" <Georgy.Yakovlev@sony.com>, "Shawn Anastasio" <sanastasio@raptorengineering.com>
-> Sent: Monday, October 20, 2025 10:58:40 AM
-> Subject: Re: [PATCH 1/4] dt-bindings: mfd: Add sony,cronos-cpld
-
-> On 20/10/2025 17:34, Timothy Pearson wrote:
->>>> +  watchdog:
->>>> +    type: object
->>>> +    description: Cronos Platform Watchdog Timer
->>>> +
->>>> +    allOf:
->>>> +      - $ref: watchdog.yaml#
->>>> +
->>>> +    properties:
->>>> +      compatible:
->>>> +        const: sony,cronos-watchdog
->>>
->>> There's no need for a child node here. 'timeout-sec' can just go in the
->>> parent node.
->> 
->> Could you elaborate on this please?  As far as I can tell we ref watchdog.yaml
->> and need some kind of compatible string, so why would I break out timeout-sec
->> directly here?
+On 9/24/25 02:39, Mahesh Rao via B4 Relay wrote:
+> The patch set includes the following changes:
 > 
+> - Add protection for querying memory objects in multi-threaded flow.
+> - Add support to generate and maintain message id and client id for
+>    asynchronous communication with SDM.
+> - Add framework to communicate with Secure Device Manager (SDM)
+>    asynchronously by sending a request and polling for response.
+> - Add commands for performing Remote System Update (RSU) operations
+>    asynchronously.
+> - Migrate RSU driver to use the asynchronous communication framework.
 > 
-> Please look where the comment was placed. Under $ref? No. Under this
-> compatible. $ref goes to the parent, obviously.
+> ---
+> - Link to v6: https://lore.kernel.org/r/20250901-sip_svc_upstream-v6-0-b4db7f07cbb2@altera.com
+> 
+> Changes in v6:
+> - Use guard() helper function for svc_mem_lock.
+> - Fixed comment message style according to kernel coding style.
+> - Added fixes tag to commit message.
+> - Removed id generation patch and use in house ida allocator.
+> - Changed lock of hashmap db lock from rcu to spinlock for better latency.
+> 
+> - Link to v5: https://lore.kernel.org/r/20250708-sip_svc_upstream-v5-0-9c4289256d54@altera.com
+> 
+> - Link to v5: https://lore.kernel.org/r/20250620-sip_svc_upstream-v5-0-732d4ac08a32@altera.com
+> 
+> Changes in v5:
+> - Use FIELD_PREP, FIELD_GET() and GENMASK() for bit
+>    manipulation for ids.
+> - Bring down probing when stratix10_svc_async_init()
+>    fails.
+> - Other minor fixes.
+> 
+> - Link to v4: https://lore.kernel.org/r/20250610-sip_svc_upstream-v4-0-bcd9d6089071@altera.com
+> 
+> Changes in v4:
+> - Added description for svc_mem_lock mutex.
+> - Wrapped commit message and comments in source
+>    code to kernel coding style as per coding style.
+> - Added minor code fixes.
+> - Moved variables to the top of the function
+> - Removed HWMON support from in the patch-set, this
+>    will be sent in a separate patch-set.
+> - Added support for RSU commands to asynchronously
+>    communicate with SDM.
+> - Migrated RSU driver to use the supported
+>    asynchronous commands
 
-This is not an area of the kernel I'm normally changing, so I appreciate the insight.  None of this yaml syntax is particularly obvious the first time it's encountered, at least not to me.
+Can you please rebase this series on my latest tree:
 
-> You do not need kind of compatible string. Parent already has one. You
-> do not need compatible strings at all to instantiate Linux drivers.
-> That's pretty common pattern for most of MFD-like devices, plenty of
-> examples in the kernel.
+https://git.kernel.org/pub/scm/linux/kernel/git/dinguyen/linux.git/log/?h=svc_driver_for_v6.19
 
-Understood.
+Patch 2 is not applying correctly.
+
+Thanks,
+Dinh
 
