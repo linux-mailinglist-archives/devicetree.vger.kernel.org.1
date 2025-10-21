@@ -1,234 +1,267 @@
-Return-Path: <devicetree+bounces-229294-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229295-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 685DBBF5B0F
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 12:07:21 +0200 (CEST)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id EB3DCBF5B15
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 12:07:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 03944401680
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 10:07:20 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 70571352888
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 10:07:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C3D82E2F03;
-	Tue, 21 Oct 2025 10:07:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7D5A32ABFF;
+	Tue, 21 Oct 2025 10:07:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=norik.com header.i=@norik.com header.b="fide4FWO"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="B+mjJcHi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from cp2.siel.si (cp2.siel.si [46.19.12.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D83E1285CA4;
-	Tue, 21 Oct 2025 10:07:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.19.12.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 401982F7477
+	for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 10:07:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761041237; cv=none; b=n6k6HTFJKK37jFpWfIacGgweHBbI0ZxrTpSj39cnzZujqd5f79rnne1F466YfFGfJrp9BRYsCQEFvd8rjWslwluaRSSkmTbmMcmL6J1xbpvyDPgVguzoTKhSpBI8vGCgvItwldLGipl/EyQsyWTD4sGZecsGi3VH/0ITjUPRiHQ=
+	t=1761041244; cv=none; b=Fx+DxDQPI/5ck0Hes3m8RATavSnGuKlD6IQQgI87lc+BUgfZPM7ZhgS4VFExNdcshvDLR8OnlagvW0aSci7QMhRRS/NxR16M54RGDGYV7AvQAfZFwC2Irshxltgb4agzuiPtkr31w0Wovxt5Vy0HoL+VufaWX8hEQEkMbL+3x8g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761041237; c=relaxed/simple;
-	bh=gLPZsHaAMIsi+aNMg+ASOcMcbOHSebKSOY9bm4cCz4I=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=roZeHrhxGOzOvtnIvX6ADDwylb94wkqt/UCJHYAjgxpX3f2jOnKb3Tc50G8AybzCsdt3f7TuOC9/3zGi9ZRj/KszDzGQqFGh+MoCWmZ913GW8BjQJ+KWX7F9GfjPoIvk45Zrm69staoiNJlBu5bNLYAh+s0k5NTEhv669UzbReE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com; spf=pass smtp.mailfrom=norik.com; dkim=pass (2048-bit key) header.d=norik.com header.i=@norik.com header.b=fide4FWO; arc=none smtp.client-ip=46.19.12.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=norik.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
-	s=default; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
-	References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=z19yKbO3LCKIzQcz2PHHAI/22TUE4jSnaLNrPGkt5ME=; b=fide4FWO8OBpK3HmHLqFwieuP+
-	F5boLy0JKRmGFRUd7DrV9XMBjKFKErS0xtQ46xaUxjaplqFJxnHsqZfafGZ+uWUTo26+4peQR5r+A
-	Ly+5W/GZx9u+Ta6fdSQz/dyDiS1lXPUdHyqs4bRvcOpOaAv/oC5XPh/vkmkwz402GOamO7ji3yFdz
-	FMzaNUJeyBsEN4mPzc4PBxZdtflMIlIVoSNX8XOq0+in+bJMipZrGnzrfyfdh2OVsV3LQqrncG56M
-	w1wywUU+faxTQvsuZkFmjYHYVsRJgojlb4pJDntsIWFl95xKkXY0wu9rvdArgaXyXSqTOkvDR52+C
-	04I7BzVg==;
-Received: from 89-212-21-243.static.t-2.net ([89.212.21.243]:48078 helo=[192.168.69.116])
-	by cp2.siel.si with esmtpsa  (TLS1.3) tls TLS_AES_128_GCM_SHA256
-	(Exim 4.98.2)
-	(envelope-from <primoz.fiser@norik.com>)
-	id 1vB9Gu-00000004MzS-34CR;
-	Tue, 21 Oct 2025 12:07:14 +0200
-Message-ID: <4979a32f-f938-4956-8293-eca5667bf1c4@norik.com>
-Date: Tue, 21 Oct 2025 12:07:13 +0200
+	s=arc-20240116; t=1761041244; c=relaxed/simple;
+	bh=I7DyZLJ3Iazvqmr4I8bU5Hh7eNjCwiaf/bBPAW9IEME=;
+	h=Mime-Version:Content-Type:Date:Message-Id:To:Cc:Subject:From:
+	 References:In-Reply-To; b=rpuocl1+82YJOFhAHV4JeeltlNIIaMsnQlm1pM5qhmTfisVEVg7sHkA5D98uU8Pa7m6yKG9w2xf+KaM/g9r/yOdpSarTETAth5EyCtJRDG8HeGoxZfepOv0ZX4fn4wf0VAW0NmgG5vlCKWeY8AjT6pad/1yJLN529QGuJtybT08=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=B+mjJcHi; arc=none smtp.client-ip=209.85.218.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
+Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-b660019ac2aso731691966b.3
+        for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 03:07:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=fairphone.com; s=fair; t=1761041240; x=1761646040; darn=vger.kernel.org;
+        h=in-reply-to:references:from:subject:cc:to:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=2yIXunPpdaKXzgAWd57qmRrCbK+tiVclGWo7FE9d4Oc=;
+        b=B+mjJcHijrZznk/hfz1dt+FEng4rTlPxkAf1NJHnD9Ryd49G9NMWn9uq10oR0+hD8U
+         xFElMtYhaN9yUJmW892K3qXJxsNj0dmR7Vulbh54uhr4c2eLSAhJ4kIbyDEfE2IHxKaO
+         HrBVFC6/LKXukQkrrqNyWvuueNVk09/HCwaD10Y+DHvyYejhm7Z4uR8j2R6/uRmqvUo8
+         UceMT0d8ajZJL8dNHJ7lqT9F7d9Oa5SeZ3oU2T36vXlS5/lyc0vDKQzrIXj5K9Cb0NEF
+         2ZJM0neFS+vWw1na52hT8WYwyYjdTbrsEULoVo4ULNOAGxwhSOy17y98iMwioJPjcdEs
+         44LA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761041240; x=1761646040;
+        h=in-reply-to:references:from:subject:cc:to:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=2yIXunPpdaKXzgAWd57qmRrCbK+tiVclGWo7FE9d4Oc=;
+        b=WWedq6AaQvVYcLnnLKXL6hp/g7iEGCOIZ93Fp5FehynXJHuzengijZ0Qh+ZyVio4B+
+         6y5CjZNAiXz5s4ta4yez1a6wjw/h45P78ey0yxRg7xKpgd6H8UD4kXb06BIHPYyD9/KI
+         9pdC9YzVrvqwX7C3wgmq8vwfW+578JBNnTyehOAXwtnBLua2i5YWln7vq7Zjxx7rWQ6S
+         LaU9sYMLctwZT+zBcIMSG4aL+72+wErTEaUHBcGJ70y5kgI+2G6JGXdzQ1gEyqFPk6O4
+         E6Ed9cbfzy3BQyib/vo4hshyJdbD9jVnF9Yeb6SxU+JMyJ/OMwErJohQlzz/5ZDeqOBl
+         0NyQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWV73/MUe1XE9zYvmV8EbyB7Y8k+WM8DRstHL1fYuu6SBq+dlBJk0Wnqqjng2afoaRB9qQultybVNWZ@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx+nhK+wu1Oka/ZW263QUaksTL3kEfWisnG71fixgMcpK+Taktr
+	ocRZsP7nI7CXU7irASv0qjrAO9JRqgKdK2/IsZAymdNOSMce4HkoRiu/RtNAiacW1n4=
+X-Gm-Gg: ASbGncs1zhN4F/0GS5MaUtsRE+Biok8RmO/dhJ+54puDVCf2SHSTWphyl4A1u9390n/
+	FvnAq9brHFR4RqtE+kRr4l6sUfMfC4LAmV55AEmYhf7lOVjP5h6qSMioDf38hUwq+sMu+5dHArP
+	qwoeiwNVie39oWFlTEKXIFYV/vbej7EIg8t+5waRVhVNpu/jTKdPE89YERz9rIFqGcu/TJ6VlHK
+	OimQ6f3RH9nr5sukJ5msDQ1dUF4PbAm3drKfwjTdr4NeEH3ZrfvWVv6jZ7ZqRi8GrDbkzHlC/Vt
+	7unSjfehSkKEc0gWVmnyjkv1qerq3Y53wU5NLajzg8QNokgS5y5DTJ4mGyVsfVHcQ9/HzfnDQUl
+	dETuvtRUrtNOyppswDg0Ub8EGOp7FLUGl0dAJqmMo8kkg1CeME89ghV7F8Ro9OxlAhAgDWwO+VC
+	59KsCqOTVMvAW+mSvfwi+k/Z98htG0BcCXurR8janbJBYMvXiAcyJpt2hebpOdy2YuY5UxKPmrp
+	mpUxDKj0bTZNM8=
+X-Google-Smtp-Source: AGHT+IGT5O0EwwTgQI5biVWMTarEM6XRRzXUYCaml46RmNq5/SgxDGRQZI+WycdQafTWSW008s1Q0w==
+X-Received: by 2002:a17:907:86a2:b0:b41:1657:2b15 with SMTP id a640c23a62f3a-b6472b5ed07mr1694075266b.6.1761041240395;
+        Tue, 21 Oct 2025 03:07:20 -0700 (PDT)
+Received: from localhost (2001-1c00-3b8a-ea00-4b34-6694-d9bd-5210.cable.dynamic.v6.ziggo.nl. [2001:1c00:3b8a:ea00:4b34:6694:d9bd:5210])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b65eb035bafsm1045122866b.42.2025.10.21.03.07.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 21 Oct 2025 03:07:20 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: freescale: Add phyBOARD-Segin-i.MX91
- support
-To: Marc Kleine-Budde <mkl@pengutronix.de>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
- upstream@lists.phytec.de, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev
-References: <20251021093704.690410-1-primoz.fiser@norik.com>
- <20251021093704.690410-2-primoz.fiser@norik.com>
- <20251021-bright-brave-dolphin-906891-mkl@pengutronix.de>
-Content-Language: en-US
-From: Primoz Fiser <primoz.fiser@norik.com>
-Autocrypt: addr=primoz.fiser@norik.com; keydata=
- xjMEZrROOxYJKwYBBAHaRw8BAQdAADVOb5tiLVTUAC9nu/FUl4gj/+4fDLqbc3mk0Vz8riTN
- JVByaW1veiBGaXNlciA8cHJpbW96LmZpc2VyQG5vcmlrLmNvbT7CiQQTFggAMRYhBK2YFSAH
- ExsBZLCwJGoLbQEHbnBPBQJmtE47AhsDBAsJCAcFFQgJCgsFFgIDAQAACgkQagttAQducE+T
- gAD+K4fKlIuvH75fAFwGYG/HT3F9mN64majvqJqvp3gTB9YBAL12gu+cm11m9JMyOyN0l6Os
- jStsQFghPkzBSDWSDN0NzjgEZrROPBIKKwYBBAGXVQEFAQEHQP2xtEOhbgA+rfzvvcFkV1zK
- 6ym3/c/OUQObCp50BocdAwEIB8J4BBgWCAAgFiEErZgVIAcTGwFksLAkagttAQducE8FAma0
- TjwCGwwACgkQagttAQducE8ucAD9F1sXtQD4iA7Qu+SwNUAp/9x7Cqr37CSb2p6hbRmPJP8B
- AMYR91JYlFmOJ+ScPhQ8/MgFO+V6pa7K2ebk5xYqsCgA
-Organization: Norik systems d.o.o.
-In-Reply-To: <20251021-bright-brave-dolphin-906891-mkl@pengutronix.de>
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - cp2.siel.si
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - norik.com
-X-Get-Message-Sender-Via: cp2.siel.si: authenticated_id: primoz.fiser@norik.com
-X-Authenticated-Sender: cp2.siel.si: primoz.fiser@norik.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+Date: Tue, 21 Oct 2025 12:07:19 +0200
+Message-Id: <DDNX0OY5X26T.1K2YOKTW49RDP@fairphone.com>
+To: "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>, "Konrad Dybcio"
+ <konrad.dybcio@oss.qualcomm.com>, "Luca Weiss" <luca.weiss@fairphone.com>,
+ "Taniya Das" <taniya.das@oss.qualcomm.com>, "Dmitry Baryshkov"
+ <dmitry.baryshkov@oss.qualcomm.com>, "Vladimir Zapolskiy"
+ <vladimir.zapolskiy@linaro.org>
+Cc: "Bjorn Andersson" <andersson@kernel.org>, "Rob Herring"
+ <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Jagadeesh
+ Kona" <quic_jkona@quicinc.com>, "Michael Turquette"
+ <mturquette@baylibre.com>, "Stephen Boyd" <sboyd@kernel.org>, "Conor
+ Dooley" <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-clk@vger.kernel.org>
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: sm8550: Additionally manage MXC
+ power domain in camcc
+From: "Luca Weiss" <luca.weiss@fairphone.com>
+X-Mailer: aerc 0.21.0-0-g5549850facc2
+References: <20250303225521.1780611-1-vladimir.zapolskiy@linaro.org>
+ <20250303225521.1780611-3-vladimir.zapolskiy@linaro.org>
+ <dbxvzgqs5slrl5edqunal3wplg5jiszqv46dr4nzgowwlhkhxa@qwtfq7nfjwfo>
+ <3210a484-b9c3-4399-bee1-9f5bbc90034c@linaro.org>
+ <CAA8EJprP9Z181VDCT=xfyrBipzgiB0tfb8M_XZ4H=yOrvEnB0w@mail.gmail.com>
+ <f41061a2-cf45-4588-8df7-22270c936ee2@quicinc.com>
+ <D8EZ47Z557OX.37FDVYA5AHET0@fairphone.com>
+ <d64c0776-0b12-42d3-aed3-4e6a13487f51@quicinc.com>
+ <DDKNL43NWFMA.1S03T0SUYFVMY@fairphone.com>
+ <85bf3468-24bf-4f14-afcd-28878ad84dc9@oss.qualcomm.com>
+ <a3943a95-b232-4534-bd70-6d1bd405c4bd@linaro.org>
+In-Reply-To: <a3943a95-b232-4534-bd70-6d1bd405c4bd@linaro.org>
 
-Hi Marc,
+On Mon Oct 20, 2025 at 3:00 PM CEST, Bryan O'Donoghue wrote:
+> On 20/10/2025 13:21, Konrad Dybcio wrote:
+>> On 10/17/25 4:05 PM, Luca Weiss wrote:
+>>> Hi Taniya,
+>>>
+>>> On Thu Mar 13, 2025 at 12:57 PM CET, Taniya Das wrote:
+>>>>
+>>>>
+>>>> On 3/13/2025 1:22 PM, Luca Weiss wrote:
+>>>>> Hi Taniya,
+>>>>>
+>>>>> On Thu Mar 13, 2025 at 5:39 AM CET, Taniya Das wrote:
+>>>>>>
+>>>>>>
+>>>>>> On 3/4/2025 2:10 PM, Dmitry Baryshkov wrote:
+>>>>>>> On Tue, 4 Mar 2025 at 09:37, Vladimir Zapolskiy
+>>>>>>> <vladimir.zapolskiy@linaro.org> wrote:
+>>>>>>>>
+>>>>>>>> On 3/4/25 01:53, Dmitry Baryshkov wrote:
+>>>>>>>>> On Tue, Mar 04, 2025 at 12:55:21AM +0200, Vladimir Zapolskiy wrot=
+e:
+>>>>>>>>>> SM8550 Camera Clock Controller shall enable both MXC and MMCX po=
+wer
+>>>>>>>>>> domains.
+>>>>>>>>>
+>>>>>>>>> Are those really required to access the registers of the cammcc? =
+Or is
+>>>>>>>>> one of those (MXC?) required to setup PLLs? Also, is this applica=
+ble
+>>>>>>>>> only to sm8550 or to other similar clock controllers?
+>>>>>>>>
+>>>>>>>> Due to the described problem I experience a fatal CPU stall on SM8=
+550-QRD,
+>>>>>>>> not on any SM8450 or SM8650 powered board for instance, however it=
+ does
+>>>>>>>> not exclude an option that the problem has to be fixed for other c=
+lock
+>>>>>>>> controllers, but it's Qualcomm to confirm any other touched platfo=
+rms,
+>>>>>>>
+>>>>>>> Please work with Taniya to identify used power domains.
+>>>>>>>
+>>>>>>
+>>>>>> CAMCC requires both MMCX and MXC to be functional.
+>>>>>
+>>>>> Could you check whether any clock controllers on SM6350/SM7225 (Bitra=
+)
+>>>>> need multiple power domains, or in general which clock controller use=
+s
+>>>>> which power domain.
+>>>>>
+>>>>> That SoC has camcc, dispcc, gcc, gpucc, npucc and videocc.
+>>>>>
+>>>>> That'd be highly appreciated since I've been hitting weird issues the=
+re
+>>>>> that could be explained by some missing power domains.
+>>>>>
+>>>>
+>>>> Hi Luca,
+>>>>
+>>>> The targets you mentioned does not have any have multiple rail
+>>>> dependency, but could you share the weird issues with respect to clock
+>>>> controller I can take a look.
+>>>
+>>> Coming back to this, I've taken a shot at camera on SM6350 (Fairphone 4=
+)
+>>> again, but again hitting some clock issues.
+>>>
+>>> For reference, I am testing with following change:
+>>> https://lore.kernel.org/linux-arm-msm/20250911011218.861322-3-vladimir.=
+zapolskiy@linaro.org/
+>>>
+>>> Trying to enable CAMCC_MCLK1_CLK - wired up to the IMX576 camera sensor
+>>> on this phone - results in following error.
+>>>
+>>> [    3.140232] ------------[ cut here ]------------
+>>> [    3.141264] camcc_mclk1_clk status stuck at 'off'
+>>> [    3.141276] WARNING: CPU: 6 PID: 12 at drivers/clk/qcom/clk-branch.c=
+:87 clk_branch_toggle+0x170/0x190
+>>>
+>>> Checking the driver against downstream driver, it looks like the RCGs
+>>> should be using clk_rcg2_shared_ops because of enable_safe_config in
+>>> downstream, but changing that doesn't really improve the situation, but
+>>> it does change the error message to this:
+>>>
+>>> [    2.933254] ------------[ cut here ]------------
+>>> [    2.933961] camcc_mclk1_clk_src: rcg didn't update its configuration=
+.
+>>> [    2.933970] WARNING: CPU: 7 PID: 12 at drivers/clk/qcom/clk-rcg2.c:1=
+36 update_config+0xd4/0xe4
+>>>
+>>> I've also noticed that some camcc drivers take in GCC_CAMERA_AHB_CLK as
+>>> iface clk, could something like this be missing on sm6350?
+>>>
+>>> I'd appreciate any help or tips for resolving this.
+>>=20
+>> Is CAMCC_PLL2 online?
+>>=20
+>> Konrad
+>
+> Usually if you can't switch on a clock its because a power-domain is off=
+=20
+> or a GDSC is off.
+>
+> I'd guess one of the power-domains is missing.
+>
+> Looks...
+>
+> @Luca Is this actually right ?
+>
+> camcc: clock-controller@ad00000 {
+>           compatible =3D "qcom,sm6350-camcc";
+>           reg =3D <0x0 0x0ad00000 0x0 0x16000>;
+>           clocks =3D <&rpmhcc RPMH_CXO_CLK>;
+>           #clock-cells =3D <1>;
+>           #reset-cells =3D <1>;
+>           #power-domain-cells =3D <1>;
+> };
+>
+> Isn't this clock controller missing at least one power-domain ?
+>
+> camcc: clock-controller@ad00000 {
+>           compatible =3D "qcom,sm6350-camcc";
+>           reg =3D <0x0 0x0ad00000 0x0 0x16000>;
+>           clocks =3D <&rpmhcc RPMH_CXO_CLK>;
+> +        power-domains =3D <&rpmhpd SM6350_CX>;
+>           #clock-cells =3D <1>;
+>           #reset-cells =3D <1>;
+>           #power-domain-cells =3D <1>;
+> };
+>
+> Hmm but CX should already be on realistically..
 
-On 21. 10. 25 11:50, Marc Kleine-Budde wrote:
-> On 21.10.2025 11:37:04, Primoz Fiser wrote:
->> Add initial support for the PHYTEC phyBOARD-Segin-i.MX91 board [1] based
->> on the PHYTEC phyCORE-i.MX91 SoM (System-on-Module) [2].
->>
->> Supported features:
->> * Audio
->> * CAN
->> * eMMC
->> * Ethernet
->> * I2C
->> * RTC
->> * SD-Card
->> * UART
->> * USB
->>
->> For more details see the product pages for the development board and the
->> SoM:
->>
->> [1] https://www.phytec.eu/en/produkte/development-kits/phyboard-segin-kit/
->> [2] https://www.phytec.eu/en/produkte/system-on-modules/phycore-imx-91-93/
->>
->> Signed-off-by: Primoz Fiser <primoz.fiser@norik.com>
->> ---
->>  arch/arm64/boot/dts/freescale/Makefile        |   1 +
->>  .../dts/freescale/imx91-phyboard-segin.dts    | 344 ++++++++++++++++++
->>  .../boot/dts/freescale/imx91-phycore-som.dtsi | 304 ++++++++++++++++
->>  3 files changed, 649 insertions(+)
->>  create mode 100644 arch/arm64/boot/dts/freescale/imx91-phyboard-segin.dts
->>  create mode 100644 arch/arm64/boot/dts/freescale/imx91-phycore-som.dtsi
->>
->> diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
->> index 525ef180481d..34a81d34de39 100644
->> --- a/arch/arm64/boot/dts/freescale/Makefile
->> +++ b/arch/arm64/boot/dts/freescale/Makefile
->> @@ -344,6 +344,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx8qxp-tqma8xqps-mb-smarc-2.dtb
->>  dtb-$(CONFIG_ARCH_MXC) += imx8ulp-9x9-evk.dtb
->>  dtb-$(CONFIG_ARCH_MXC) += imx8ulp-evk.dtb
->>  dtb-$(CONFIG_ARCH_MXC) += imx91-11x11-evk.dtb
->> +dtb-$(CONFIG_ARCH_MXC) += imx91-phyboard-segin.dtb
->>  dtb-$(CONFIG_ARCH_MXC) += imx91-tqma9131-mba91xxca.dtb
->>  dtb-$(CONFIG_ARCH_MXC) += imx93-9x9-qsb.dtb
->>  
->> diff --git a/arch/arm64/boot/dts/freescale/imx91-phyboard-segin.dts b/arch/arm64/boot/dts/freescale/imx91-phyboard-segin.dts
->> new file mode 100644
->> index 000000000000..bb631439f9cf
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/freescale/imx91-phyboard-segin.dts
->> @@ -0,0 +1,344 @@
->> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
->> +/*
->> + * Copyright (C) 2025 PHYTEC Messtechnik GmbH
->> + * Author: Christoph Stoidner <c.stoidner@phytec.de>
->> + *
->> + * Product homepage:
->> + * phyBOARD-Segin carrier board is reused for the i.MX91 design.
->> + * https://www.phytec.eu/en/produkte/single-board-computer/phyboard-segin-imx6ul/
->> + */
->> +/dts-v1/;
->> +
->> +#include "imx91-phycore-som.dtsi"
->> +
->> +/{
->> +	model = "PHYTEC phyBOARD-Segin-i.MX91";
->> +	compatible = "phytec,imx91-phyboard-segin", "phytec,imx91-phycore-som",
->> +		     "fsl,imx91";
->> +
->> +	aliases {
->> +		ethernet1 = &eqos;
->> +		gpio0 = &gpio1;
->> +		gpio1 = &gpio2;
->> +		gpio2 = &gpio3;
->> +		gpio3 = &gpio4;
->> +		i2c0 = &lpi2c1;
->> +		i2c1 = &lpi2c2;
->> +		mmc0 = &usdhc1;
->> +		mmc1 = &usdhc2;
->> +		rtc0 = &i2c_rtc;
->> +		rtc1 = &bbnsm_rtc;
->> +		serial0 = &lpuart1;
->> +	};
->> +
->> +	chosen {
->> +		stdout-path = &lpuart1;
->> +	};
->> +
->> +	flexcan1_tc: can-phy0 {
->> +		compatible = "ti,tcan1043";
->> +		#phy-cells = <0>;
->> +		max-bitrate = <1000000>;
->> +		pinctrl-names = "default";
->> +		pinctrl-0 = <&pinctrl_flexcan1_tc>;
->> +		enable-gpios = <&gpio4 16 GPIO_ACTIVE_HIGH>;
->> +	};
-> 
-> I think the tcan1043 is a CAN-FD transceiver. According to the datasheet
-> it support 2 MBit/s and 5 MBit/s in the "G" variant. However due to the
-> board layout, etc, the actual bit rate might still be limited to 1
-> MBit/s. Ask the HW engineers if in doubt.
+Downstream does reference both CX and MX in the camcc-lagoon.c driver
 
-phyBOARD-Segin actually uses a TI SN65HVD234D CAN transceiver chip which
-supports up to 1MBps. See [1].
+static DEFINE_VDD_REGULATORS(vdd_cx, VDD_NUM, 1, vdd_corner);
+static DEFINE_VDD_REGULATORS(vdd_mx, VDD_NUM, 1, vdd_corner);
 
-However since there is no direct support for SN65HVD234D we model the
-enable signal with the generic PHY driver and use "ti,tcan1043" jsut as
-compatible. Suggested by Frank and you in [2].
+I'd expect both to be enabled at boot though, CX and MX is at least both
+used for display (which is already on from bootloader).
 
-[1]
-https://lore.kernel.org/all/20250415043311.3385835-12-primoz.fiser@norik.com/
+Also adding "power-domains =3D <&rpmhpd SM6350_MX>;" to camcc
+unsurprisingly doesn't change anything.
 
-[2]
-https://lore.kernel.org/all/1571414e-5e7d-4c9e-b69d-11a6fdf454e2@norik.com/
+Regards
+Luca
 
-BR,
-Primoz
-
-> 
-> regards,
-> Marc
-> 
-
--- 
-Primoz Fiser
-phone: +386-41-390-545
-email: primoz.fiser@norik.com
---
-Norik systems d.o.o.
-Your embedded software partner
-Slovenia, EU
-phone: +386-41-540-545
-email: info@norik.com
+>
+> ---
+> bod
 
 
