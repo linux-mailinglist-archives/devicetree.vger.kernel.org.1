@@ -1,117 +1,120 @@
-Return-Path: <devicetree+bounces-229504-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229523-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D92AFBF8655
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 21:56:58 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A03F2BF8F61
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 23:42:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 93F30484D2D
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 19:56:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5BBDF18A5355
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 21:42:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBF40274B44;
-	Tue, 21 Oct 2025 19:56:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BFFC28DEE9;
+	Tue, 21 Oct 2025 21:41:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=apitzsch.eu header.i=@apitzsch.eu header.b="cbgE6ZIp"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="M2qf1d6p"
 X-Original-To: devicetree@vger.kernel.org
-Received: from www637.your-server.de (www637.your-server.de [168.119.26.117])
+Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC5FF274652;
-	Tue, 21 Oct 2025 19:56:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=168.119.26.117
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA88926A0BD;
+	Tue, 21 Oct 2025 21:41:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.152
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761076615; cv=none; b=mRbPqu+9FoT//3huVgzfXXORQ/hPmZoAQ7UC4UVEXeZ7cmwiwKOl0PfA64XddDbZhE3rSJxVsWbAGb/MTl6dK7JcIpYXZfFvOWITtpXjpprklB7St90m3pjR6bdDxf175Owx5cAAtlcP+qt8mWCtyDsds+5nDnHuKJVngE8gfNg=
+	t=1761082918; cv=none; b=q2z0HxV6QuF78mqc0yAxxsN5fZWWewm+LxAMumgYfh9Sj8hefpqg+B1tXPixnvY+YKVJOsp3ARkSFTBjTxphHrURS+y0+eIpCd1UA6ZjQtrGTj1vu0GENCDYFf2gkVyuPIfvXVDDhzkWtgcO5VUnpwjnOALwufzlq5luDJU5IGo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761076615; c=relaxed/simple;
-	bh=uyJ4+ZYdJDSiyU7gttduHt1TnkKidYtyKbIBzHJ8G9w=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=Vf6WAmTi9qoWZ5mQATdYbW7s+ti9RUIBbI4rXVHt9AeXAu/ilhABAwMVFvZexZHMRtvlwn80U5XRJpaXZ2/EhDcRDNVnYU9A+gKbs07l2eNUp8CDiJFm5tB9CLzoOR8GeZ9X593BcVr+jQpHQuYaoMFcTIE9qqb2w53NKx+EYrI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=apitzsch.eu; spf=pass smtp.mailfrom=apitzsch.eu; dkim=pass (2048-bit key) header.d=apitzsch.eu header.i=@apitzsch.eu header.b=cbgE6ZIp; arc=none smtp.client-ip=168.119.26.117
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=apitzsch.eu
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=apitzsch.eu
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=apitzsch.eu
-	; s=default2410; h=MIME-Version:Content-Transfer-Encoding:Content-Type:
-	References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=uyJ4+ZYdJDSiyU7gttduHt1TnkKidYtyKbIBzHJ8G9w=; b=cbgE6ZIp/E9bDXLrB81/nrYiGK
-	H94siNBqttYGGgOX01Tcv4+5wSe9MvCNnwqxGUkR2sg830i4fJqzg3OW60IaHIRhJ2wTz4ScBatSy
-	hnJsqbizC5hVpNKecJ5z34EpCWH99dmD08Bizv43I5jXIGRxiCnZviUIHFJ7jb6JAAP7CVyY1inzd
-	E+srhcOaFBsMAy/CzXmCLgUMISxNnGL2Rfot6WwKBZHVsWOhOHkyEZ6S0Hoo5L6jKnUBhhSy1wQPz
-	vyBgS+qQhSyQq4afJ73SVy26oMR6ScIJejVqfHlMu3EgWu8H32qDRee4S8BEfXmh8wNVC9SAh2prd
-	BPFpDfFQ==;
-Received: from sslproxy07.your-server.de ([78.47.199.104])
-	by www637.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.96.2)
-	(envelope-from <git@apitzsch.eu>)
-	id 1vBITQ-000IMp-3A;
-	Tue, 21 Oct 2025 21:56:49 +0200
-Received: from localhost ([127.0.0.1])
-	by sslproxy07.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <git@apitzsch.eu>)
-	id 1vBITQ-000I1x-1D;
-	Tue, 21 Oct 2025 21:56:48 +0200
-Message-ID: <e7086b14b7585ffe1215afbd85c15599e6c51714.camel@apitzsch.eu>
-Subject: Re: [PATCH v2 0/8] media: i2c: dw9719: add DT compatible and
- DW9718S support
-From: =?ISO-8859-1?Q?Andr=E9?= Apitzsch <git@apitzsch.eu>
-To: Krzysztof Kozlowski <krzk@kernel.org>, Mauro Carvalho Chehab
-	 <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
-	 <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	devicetree@vger.kernel.org, Sakari Ailus <sakari.ailus@linux.intel.com>, 
- Daniel Scally <djrscally@gmail.com>
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
-	linux-media@vger.kernel.org, linux-kernel@vger.kernel.org, Val Packett
-	 <val@packett.cool>
-Date: Tue, 21 Oct 2025 21:56:46 +0200
-In-Reply-To: <750398e8-1781-47be-bccd-e2679a58d449@kernel.org>
-References: <20250920-dw9719-v2-0-028cdaa156e5@apitzsch.eu>
-	 <790fd7d05fa03f788f0a628a99b2e127db824207.camel@apitzsch.eu>
-	 <750398e8-1781-47be-bccd-e2679a58d449@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.1 
+	s=arc-20240116; t=1761082918; c=relaxed/simple;
+	bh=b7OKiSki/tCMTRrt0dBMViJXf0liJ4/T36AynTEyICc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=r73x4jDKeRkj7AnwIlPZBO70dk0K36kGlIM/7gEcYpo4OJcwqblwWbRhNf0JPbHiBxP8cQh8OFf4d3JONx7tXCV0GGXsqU5wYAqcBsyttA63MF25yCMVREnsuC5fcjO2ivgvdqkSJ3CHNV4t3Lc/5ctt4NyldXWbap/HEs69Qcw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=M2qf1d6p; arc=none smtp.client-ip=80.241.56.152
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp202.mailbox.org (smtp202.mailbox.org [10.196.197.202])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4crm3369nhz9sdm;
+	Tue, 21 Oct 2025 23:41:51 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1761082911;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=IHMfHGscns/uuf0cbZ28f9BJPu1+JO7oqC4JQfoPKi4=;
+	b=M2qf1d6pG7sRd3Kw3/HNrD7lWnKFcmuM9ZWl/hwoKOCaoAV/+kcP5SPJfZKPzo+7uGaf27
+	HAHfrmE+tXWGC+POfg+gLmC/Y4EjhVZ2ej+d8SMcEBCl5dnoJ0FzMJbgKgiUEu/9/XzN6K
+	cKLZcboaSenOvoNJSN6DQRWjwKhNdWrQ7g5m5cshAVYX2DLdHRrJf5HLbOzsyIsA/D6fAv
+	qyte6jJNIK5IrX7SFMlo6HcH/mu7AlCsxASyGRUUvja9KJT3W2rvM1DJQaK3vYfcug08Mm
+	L1xe0mlUOuVnV4Cr4cJwTKqqngJBnxLCDy507p/2icGoG9Hzf7zMua712vqGag==
+Message-ID: <fd7a144c-cb3e-4d6c-af13-8a63160759ac@mailbox.org>
+Date: Tue, 21 Oct 2025 13:29:04 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Virus-Scanned: Clear (ClamAV 1.0.9/27799/Tue Oct 21 11:30:25 2025)
+Subject: Re: [PATCH 2/2] dt-bindings: gpu: img,powervr-rogue: Rework the allOf
+ section
+To: Matt Coster <Matt.Coster@imgtec.com>
+Cc: Adam Ford <aford173@gmail.com>, Conor Dooley <conor+dt@kernel.org>,
+ David Airlie <airlied@gmail.com>, Frank Binns <Frank.Binns@imgtec.com>,
+ Alessio Belle <Alessio.Belle@imgtec.com>,
+ Alexandru Dadu <Alexandru.Dadu@imgtec.com>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Magnus Damm <magnus.damm@gmail.com>, Maxime Ripard <mripard@kernel.org>,
+ Rob Herring <robh@kernel.org>, Simona Vetter <simona@ffwll.ch>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>
+References: <20251018130147.12831-1-marek.vasut+renesas@mailbox.org>
+ <20251018130147.12831-2-marek.vasut+renesas@mailbox.org>
+ <a6d42c7e-1146-4bda-baf6-be04f3185c5a@imgtec.com>
+ <2e12fed7-21c0-48bf-94c4-a3d2850a3f0c@mailbox.org>
+ <47a4b178-87cb-4137-ac2f-0c9e9f0ea9db@imgtec.com>
+Content-Language: en-US
+From: Marek Vasut <marek.vasut@mailbox.org>
+In-Reply-To: <47a4b178-87cb-4137-ac2f-0c9e9f0ea9db@imgtec.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-MBO-RS-ID: 34531d245c5084c9ddf
+X-MBO-RS-META: ykcgya5zhihkawricyazh644j9nc91co
 
-Hi Krzysztof,
-
-Am Montag, dem 20.10.2025 um 22:45 +0200 schrieb Krzysztof Kozlowski:
-> On 20/10/2025 22:40, Andr=C3=A9 Apitzsch wrote:
-> > > =C2=A0.../bindings/media/i2c/dongwoon,dw9719.yaml=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 88
-> > > +++++++++++++++++
-> > > =C2=A0drivers/media/i2c/dw9719.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 110
-> > > +++++++++++++++++----
-> > > =C2=A02 files changed, 178 insertions(+), 20 deletions(-)
-> > > ---
-> > > base-commit: 846bd2225ec3cfa8be046655e02b9457ed41973e
-> > > change-id: 20250709-dw9719-8a8822efc1b1
-> > >=20
-> >=20
-> > Gentle ping.
->=20
-> Please apply the patch and run checkpatch. Probably you received
-> checkpatch warnings from media patchwork, no?
->=20
-> Best regards,
-> Krzysztof
-
-I run "b4 prep --check" before submitting the series and it didn't
-complain about the wrong separator, that you have spotted in patch 1.
-There was also no email from media patchwork. Should it send one if
-checks fail?
-
-Best regards,
-Andr=C3=A9
+On 10/21/25 10:39 AM, Matt Coster wrote:
+> On 20/10/2025 16:25, Marek Vasut wrote:
+>> On 10/20/25 5:12 PM, Matt Coster wrote:
+>>
+>> Hello Matt,
+>>
+>>> On 18/10/2025 14:00, Marek Vasut wrote:
+>>>> Rework the current allOf: section such that all handling of
+>>>> clocks/clock-names properties happens first, and all handling
+>>>> of power-domains/power-domain-names happens second.
+>>>
+>>> The original layout of the allOf: section was power-domains first, then
+>>> clock-domains. The actual ordering really doesn't matter, but I wonder
+>>> if it would make for a slightly cleaner patch to do it that way round?
+>>
+>> It would, but I also wanted to sort this DT part alphabetically.
+>>
+>> If you want, I can split this patch in two, one which does this
+>> splitting, and one which does alphabetical sorting.
+>>
+>> [...]
+> 
+> That's fair enough, I missed the alphabetical part! It's probably not
+> worth splitting, the change isn't that large. This one is also:
+> 
+> Reviewed-by: Matt Coster <matt.coster@imgtec.com>
+> 
+> And I'll take these via drm-misc-next later today if there are no
+> objections.
+Thank you
 
