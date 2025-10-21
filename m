@@ -1,152 +1,131 @@
-Return-Path: <devicetree+bounces-229459-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229460-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57A98BF7BD8
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 18:41:35 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8ED6BBF7D25
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 19:05:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id B38785489F4
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 16:37:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5AE3919C156C
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 17:05:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A7DD347BC8;
-	Tue, 21 Oct 2025 16:36:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 787E2342CBF;
+	Tue, 21 Oct 2025 17:05:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="TBNxILAZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BfuC1iWz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AF9A347BBC;
-	Tue, 21 Oct 2025 16:36:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A019341650;
+	Tue, 21 Oct 2025 17:05:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761064601; cv=none; b=tR909rv6n6Wq672lGq4MB+NlGLMeX2W1H7tl7CPmKeil280RKC0S0SNOS0jjeJZZ661xI+6k1vhoyIQOE3B+vTkX91C7iRMlxOgdHpfqg9nz+l7+Q88lgwYozYmwHsTc7yPfgXNLhbxlFN0K/+8yrkVcGEWOdMbdEnnm2PYQZT8=
+	t=1761066318; cv=none; b=qpyeFBf5yCsnKFivhbHSEhaJsVcaMcr3X8Gk+SubcR3SfDwD5DL9RYSruYNLNFEvmAE59PpG0T1K27iMDI3KERxTavJl1A+L5O2MWL4DtnkxeDmkGyGf55ohfsO5KQhTMggTwB6/khO4WovV35+6XlSYnDlJ6Uwen8oFo6Fp8RE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761064601; c=relaxed/simple;
-	bh=DVrwumkkr5SZ61R+aJi6TAQQwRK3yb6x0kw2lkyk8uI=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=cz1DXXanPyxjH3LDaexMlpGckJskQ+TVn6VrGfRLAhOXl13EtyZnJrw1lxmVJzglxQax/yAfiarSiQd9u9q2NN5R1RyLoYATiFrdKrxgmeOc0I2hqEhq0ibgVH6vfrpIc5p7cueBq2CShVYXZ/w521Wvtgq7N+rGwGG5PgYK458=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=TBNxILAZ; arc=none smtp.client-ip=178.238.236.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=kemnade.info; s=20220719; h=References:In-Reply-To:Cc:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=f+3XfcfI7PAxJh75DtOxQWWY3IPGdxhd0iLpj5h8rgU=; b=TBNxILAZZ5NJT3FqILwfu+4JPp
-	AcvLYpdWMkyrVp0gesCWxqqDlkyyuD8sABnCaANaOg9eNK048kU08D44e5XXbBM7x3vncvUE0Ie8P
-	XU+SmuaMganm0TCf50E7EkYmSt1Zs7XeK2Iyuo71hW5U68IEG8AQNBc24EIOsw1RjruRferk3QhFJ
-	ZoV+XjJzvhsSf9Hor/oduxKBQIwaR0fmq3/L9F4TVBvNCUNXQuxgo9YZHL2t2D6m6iJIuXjrLYbPw
-	N0TmE63JAOQV+ajgRDHyG3GXNUkZnMQhOrIqIeipg+bGaNDu9TzhmSpHXY+4kdvPvUzoj0PqBf4LS
-	Uo+32VyQ==;
-Date: Tue, 21 Oct 2025 18:36:24 +0200
-From: Andreas Kemnade <andreas@kemnade.info>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Dmitry
- Torokhov <dmitry.torokhov@gmail.com>, Tony Lindgren <tony@atomide.com>,
- Kevin Hilman <khilman@kernel.org>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
- linux-omap@vger.kernel.org
-Subject: Re: [PATCH 1/3] dt-bindings: mfd: twl: enable power button also for
- twl603x
-Message-ID: <20251021183624.6fde0a15@kemnade.info>
-In-Reply-To: <beabb9f7-fcf4-4c1d-a259-6c48e82fbcf5@kernel.org>
-References: <20251020-twl6030-button-v1-0-93e4644ac974@kernel.org>
-	<20251020-twl6030-button-v1-1-93e4644ac974@kernel.org>
-	<5fd43d2c-3a08-4a51-abb6-38883ee86bf2@kernel.org>
-	<20251021104515.5e25bec1@kemnade.info>
-	<beabb9f7-fcf4-4c1d-a259-6c48e82fbcf5@kernel.org>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; aarch64-unknown-linux-gnu)
+	s=arc-20240116; t=1761066318; c=relaxed/simple;
+	bh=nTdwv3Rks8hDE9igPxkMOcHeAQ1oHeXXF17Qtt8UWNo=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=h4iu3l5jfbja2ro9zolCCsCY+glh7fiNtXek5gpD/62Fd8ZFXo3XUXQwrHrAcjdJSGnQNgCKn2jpVPh1/8eQh0Xe4IbeFu3x6xQv7LaO0v4qVlle9yuSuWmeNOFjWqtAWZTQt6OnMe6nNl3RfXE+bmE569YaAixdfZioyZFlZsk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BfuC1iWz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9A2BEC4CEF1;
+	Tue, 21 Oct 2025 17:05:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761066317;
+	bh=nTdwv3Rks8hDE9igPxkMOcHeAQ1oHeXXF17Qtt8UWNo=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=BfuC1iWzEwI9u9n3LOJLbQ9s2OOkABW/X5O5BnhDVairX7hiGIwwWZR016oUFlwhd
+	 fLc9xJixm03Nir31F+8FRS2DqKVHlOaKQoMiET30k8XwvAI9JuvZQQlw6Suz9KFJDQ
+	 ox4zVMwDHa3Rit7JDT8rwHqFrFE2t7TbqFaIFpnPm5fDtgU+imc8VUidXrarKuoXkR
+	 ALUwTwN4+BKPW31Ig46yCYPeG5IKzsXqLPLqkDUKMQ/vfEEH0WkdhZDguNgR5ZfI7A
+	 JX7fkvUJzy58mZr5oCilgJPOLWAjHKSuzubpSWTJ22XmZl+JWxkIBF7kI/eJqMo0FQ
+	 K4d13AKGqsNnA==
+Date: Tue, 21 Oct 2025 12:05:16 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Randolph Lin <randolph@andestech.com>
+Cc: linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+	jingoohan1@gmail.com, mani@kernel.org, lpieralisi@kernel.org,
+	kwilczynski@kernel.org, robh@kernel.org, bhelgaas@google.com,
+	krzk+dt@kernel.org, conor+dt@kernel.org, alex@ghiti.fr,
+	aou@eecs.berkeley.edu, palmer@dabbelt.com, paul.walmsley@sifive.com,
+	ben717@andestech.com, inochiama@gmail.com,
+	thippeswamy.havalige@amd.com, namcao@linutronix.de,
+	shradha.t@samsung.com, pjw@kernel.org, randolph.sklin@gmail.com,
+	tim609@andestech.com
+Subject: Re: [PATCH v8 4/5] PCI: andes: Add Andes QiLai SoC PCIe host driver
+ support
+Message-ID: <20251021170516.GA1193376@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251014120349.656553-5-randolph@andestech.com>
 
-On Tue, 21 Oct 2025 11:58:49 +0200
-Krzysztof Kozlowski <krzk@kernel.org> wrote:
+On Tue, Oct 14, 2025 at 08:03:48PM +0800, Randolph Lin wrote:
+> Add driver support for DesignWare based PCIe controller in Andes
+> QiLai SoC. The driver only supports the Root Complex mode.
 
-> On 21/10/2025 10:45, Andreas Kemnade wrote:
-> > On Tue, 21 Oct 2025 09:10:28 +0200
-> > Krzysztof Kozlowski <krzk@kernel.org> wrote:
-> >   
-> >> On 20/10/2025 14:31, akemnade@kernel.org wrote:  
-> >>> From: Andreas Kemnade <andreas@kemnade.info>
-> >>>
-> >>> TWL603x has also a power button, so add the corresponding subnode.    
-> >>
-> >> No, we don't add subnodes just because there is a power button. This
-> >> needs broader explanation, see also my further comment.
-> >>  
-> > Hmm, what is the general pattern to follow if a mfd device has some
-> > functionality which depends on some optional external components?  
-> 
-> Please describe it better - how these nodes depend on external
-> component? The power button logic/IC is in this device always. It is not
-> optional.
->
-The power button logic is always there, yes, but it depends on an optional
-actual mechanical button connected to a pad of this device, which is
-not always there. The logic will not work if I just put my finger on the PMIC,
-but it will work if there is a mechanical button which I can press connected to
-the PMIC.
+> + * Setup the Qilai PCIe IOCP (IO Coherence Port) Read/Write Behaviors to the
+> + * Write-Back, Read and Write Allocate mode.
 
-> > The might be a power button connected to it or not. I find it ugly
-> > to have non-existent stuff in the system.
-> > In general, yes I understand the argument against the subnode.
-> >   
-> >>>
-> >>> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
-> >>> ---
-> >>>  Documentation/devicetree/bindings/mfd/ti,twl.yaml | 40 ++++++++++++++++++-----
-> >>>  1 file changed, 32 insertions(+), 8 deletions(-)
-> >>>
-> >>> diff --git a/Documentation/devicetree/bindings/mfd/ti,twl.yaml b/Documentation/devicetree/bindings/mfd/ti,twl.yaml
-> >>> index 776b04e182cb2..3527fee32cb07 100644
-> >>> --- a/Documentation/devicetree/bindings/mfd/ti,twl.yaml
-> >>> +++ b/Documentation/devicetree/bindings/mfd/ti,twl.yaml
-> >>> @@ -55,6 +55,15 @@ allOf:
-> >>>  
-> >>>          gpadc: false
-> >>>  
-> >>> +        pwrbutton:
-> >>> +          properties:
-> >>> +            compatible:
-> >>> +              const: ti,twl4030-pwrbutton
-> >>> +            interrupts:
-> >>> +              items:
-> >>> +                - items:
-> >>> +                    const: 8    
-> >>
-> >> What is the point of defining const interrupts? If they are const, then
-> >> it is implied by compatible and defined in the driver.
-> >>
-> >> Anyway, double items does not look right here. This is an odd syntax.
-> >>  
-> > Quoting Rob:
-> > As 'interrupts' is a matrix, this needs to be:
-> > 
-> > interrupts:
-> >   items:
-> >     - items:
-> >         - const: 8
-> > 
-> > https://lore.kernel.org/linux-omap/20240318150750.GA4000895-robh@kernel.org/  
-> 
-> 
-> OK, this answers second part but I don't understand why even having this
-> in DT. If this is fixed, should be implied by the compatible?
-> 
-correct, they do not need to come from DT. The same is true for all
-subnodes of the twl[46]03X. I just followed the usual
-pattern there, which is of course not recommended for new designs.
+s/Setup/Set up/
+s/Qilai/QiLai/
 
-Regards,
-Andreas
+> + * The QiLai SoC PCIe controller's outbound iATU region supports
+> + * a maximum size of SZ_4G - 1. To prevent programming failures,
+> + * only consider bridge->windows with sizes within this limit.
+> + *
+> + * To ensure compatibility with most endpoint devices, at least
+> + * one memory region must be mapped within the 32-bits address space.
+> + */
+> +static int qilai_pcie_host_fix_ob_iatu_count(struct dw_pcie_rp *pp)
+> +{
+> +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
+> +	struct device *dev = pci->dev;
+> +	struct resource_entry *entry;
+> +	/* Reserved 1 ob iATU for config space */
+> +	int count = 1;
+> +	bool ranges_32bits = false;
+> +	u64 pci_addr;
+> +	u64 size;
+> +
+> +	resource_list_for_each_entry(entry, &pp->bridge->windows) {
+> +		if (resource_type(entry->res) != IORESOURCE_MEM)
+> +			continue;
+> +
+> +		size = resource_size(entry->res);
+> +		if (size < SZ_4G)
+> +			count++;
+> +
+> +		pci_addr = entry->res->start - entry->offset;
+> +		if (pci_addr < SZ_4G)
+> +			ranges_32bits = true;
+> +	}
+> +
+> +	if (!ranges_32bits) {
+> +		dev_err(dev, "Bridge window must contain 32-bits address\n");
+> +		return -EINVAL;
+
+Is this really a PCI host controller driver probe failure?  I assume
+there are devices that only have 64-bit BARs and could work fine
+without a 32-bit window?
+
+If a device requires a 32-bit BAR, and the PCI core can't assign such
+an address, and gracefully decline to enable a device where we
+couldn't assign the BAR, I think that would be preferable and would
+identify the specific device that doesn't work.
+
+> +	}
+> +
+> +	pci->num_ob_windows = count;
+> +
+> +	return 0;
+> +}
+
 
