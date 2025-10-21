@@ -1,88 +1,48 @@
-Return-Path: <devicetree+bounces-229494-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229496-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D01DBF839D
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 21:20:11 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D573BF83C1
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 21:22:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C55E03AE9D7
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 19:20:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6C6BE5436CB
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 19:22:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75FA3351FAB;
-	Tue, 21 Oct 2025 19:20:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E47B1351FB8;
+	Tue, 21 Oct 2025 19:22:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="lQPmCT2J"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KIiYuJnq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92B3234A765
-	for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 19:20:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3801338903;
+	Tue, 21 Oct 2025 19:22:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761074404; cv=none; b=awpSrKl3vHH/Yv7JeCQ2zzSOwQMbB1j4FseMsdKH3bAFnrd4e+Z6KIMo6OyyF2vox4MS44kr641Z4Zwd8YF6Z0QhUHBaFdWgBEE0LLVkQgPRQcmxAAoWwL2d9KcZJujMiHhe3pjd0NnfCpcU3uW8LuGxJPwCUtWlNI0cawB1Yfk=
+	t=1761074554; cv=none; b=k0snty9iVXDSw5o2V9fy84eji+0+0YNPtCotsr88OybLadgdhjIhSRJIhQhbEQdvqLVdqh5CuCS/UPZJ5ISPYjTEPIG3g//fzIq+aq/WJJ9W9HelKe5oUk998YpoKA0Kwd/Tsar65nVLLvmYDG5gKvA+ThBqpFCcdLZ1tq2OKa4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761074404; c=relaxed/simple;
-	bh=icdfz+0C3epGfwWHPEjvmyz6WsUsB5GdRxqjMmyOUg4=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=Ssw6zmd6CjJCfNpBqaJSuwKkPGP93yaON2FmtfLslBbjuRSszuHn3MshNQlexzzm7/mThGZpdtQTGUD4WXmeQtSplA92MwobftwOHhopinrosQ+PwSo9G1Yz3FjVAaqowZng3mKs1NpJdJYDKsk6ambzXi84VobeD3IGGNu2vC0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=lQPmCT2J; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59LEplxo002360
-	for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 19:20:02 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	tb17VQBk2tdCoY70urDMdkOeUUuDTnyLp9/IV4Atljk=; b=lQPmCT2JsChx0D3u
-	+rzdRCFgNfQ9fvw1QwwRrLSGUbtkSzbFxPu+XQyJeYem2azGxjJr1pDfMkH8uCpj
-	d1BcmvL0xlY25FJW1WXYZS8Hp+ombTpwQg5Mot1UrcCxNHL2WFvUM/2uIOH/uL9x
-	R5AdcVYrOoJ4SGCk18sz9rQ3ezlwqJbUP0lY3B5PZ6VpD2pJdKK5V51AZwQBnL/I
-	0KNMcD0cH2sPWBxCk3gQ2sZsQHUsuWInVfSBCB3CrMrK7wjtszcNLOhwZffUHA+w
-	MEIiLkfokYNEwmG0WwI7lJ7dD4Asisvl8yuMde5QIQLYii9vDafjBW3YoWa+J/vC
-	ZNdcqw==
-Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com [209.85.214.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49w08w7jme-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 19:20:01 +0000 (GMT)
-Received: by mail-pl1-f199.google.com with SMTP id d9443c01a7336-28c58e009d1so133082955ad.3
-        for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 12:20:01 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761074401; x=1761679201;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=tb17VQBk2tdCoY70urDMdkOeUUuDTnyLp9/IV4Atljk=;
-        b=P6rqM4RjrtOm7zvWNwIOnU+xhE2yMC6f/X0/Hb+IdP+LfQtpHJDwEk3+YMggEIdfn9
-         jjHPuckzMmzpCZLBDbHMtuSoTVyIGyi7eI90BCf8K09fx8MUAmYJ8dh3KQMCiGubF8KY
-         BFum9frvAgr2wFh8RKeY0eIr3/BXDnZ83casZkcso/huK+cO7IwaIeQzM6vLVSy28MHZ
-         s+j+zAYth9zdExGcswdiZNCivQWNrxz+OcTfUAcoUt9UWQT3YOBKLOVV7W9J3L8qKIKM
-         0+WYdhyDYsTLXnvO/40lEkaaWzOft6TN2vuI2WMfmr0R7cTX0RbisUzl0GWQm3nU9q+8
-         puqA==
-X-Forwarded-Encrypted: i=1; AJvYcCUB9nQpYis5AtCHLO8MrNWutUi9YaAUqTs0+feIZwcDC6sR/tKY0SnDzQFnK6aFzKMhihvWq9Lh+Ukt@vger.kernel.org
-X-Gm-Message-State: AOJu0YyqB64nqxPkYH1dh+A5LjIlplAFMBbYky4LX7/l8uGpwOFdZ+6n
-	8xgGTzXplvSN0P76J+EqNYHjwT/SShT4TNU5xfOH3ZdkNDe+SoKyMMC/0IMXDuHZXQ2qEZCbBna
-	ffw7v2V6GHamQEHDSDiHEu58RiS0FZIDy7MVUySxetkAjIvCRl2d8rL0FX/0m3LyTD7deqo1O
-X-Gm-Gg: ASbGncs2LS3On27V5LLQCG5TpVzv5ViwPlsj9d1ariyK4Aid0CTINxAWxVAK90xR2z7
-	+WBHIMFlk64p5H8//OobTWUCAEW36M9pbWhNd4CTHus7NZxcZEQJ5sAeIfcX12pWwou05Q7M3cN
-	bdLZX9NWgHYDnNPZTb/0oqri2OnwKX9g9M1spxJ3d4rXIAvhjGbKGCMrpBe0pG8HFOg/vN8oGvX
-	EcMlwxStdAJ8ZJk54RNTSLoWQs4/qVg29mfeM3hUZEdLNJswbgRJfyOhYCaDc+5awkaEC7DVti1
-	r8N9czp0vqJZXz9X0MAEL9/NuuqAb6QJR1qn8VD6QHWe7Z6H4XXGrnRembQhySCSkoH1qYZ4Jp1
-	xwRwduaXC6G9ohy9WMwDXgz7m3RW8PaBuP1O8b9yR6p5hXm0/OaGU+Q==
-X-Received: by 2002:a17:903:1212:b0:290:c5c8:941c with SMTP id d9443c01a7336-290cb9477a3mr243680905ad.29.1761074400757;
-        Tue, 21 Oct 2025 12:20:00 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IF5FuKV5UWNZi1AF0AqP4B0g+2U1MpHnnZaZ9py0QpSNnOIDjRJ9J1f99apbxEL2gYYXrIhcQ==
-X-Received: by 2002:a17:903:1212:b0:290:c5c8:941c with SMTP id d9443c01a7336-290cb9477a3mr243680395ad.29.1761074400065;
-        Tue, 21 Oct 2025 12:20:00 -0700 (PDT)
-Received: from [10.62.37.19] (i-global254.qualcomm.com. [199.106.103.254])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29246ec20a4sm116942875ad.7.2025.10.21.12.19.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 21 Oct 2025 12:19:59 -0700 (PDT)
-Message-ID: <6efe686a-fdd5-4f17-a0dd-d44a16a67a36@oss.qualcomm.com>
-Date: Tue, 21 Oct 2025 12:19:58 -0700
+	s=arc-20240116; t=1761074554; c=relaxed/simple;
+	bh=IedmbNipS6znWib9hB4ynpV/yMH3BWVObpFXIyJ/VA8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=kAF7vmSULcl2x3YYHEOM7rHRHJeTJRK548q87nzujG4kb1ZWeJ0Kb939FmIX3ht8sQqXZ8pBo22PRjBpes3Xj4rrhuoftn7Y0vKO4NB6BrTSZFJ5dxMaaucV1tL/s6xQyhoMkUvX5SauwKb+8l8GmHj1AB+4Bjn9Afe26cmm0IE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KIiYuJnq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0B23CC4CEF7;
+	Tue, 21 Oct 2025 19:22:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761074553;
+	bh=IedmbNipS6znWib9hB4ynpV/yMH3BWVObpFXIyJ/VA8=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=KIiYuJnqoNF7+ysQ69ZkyxSrYH5i6vrRIpxgG9S76lGCpABxppkdM6PUXzP1lGi8T
+	 MvW5cNuxaD6iZQ/A4DVBFbx66nM1KzP0bTtcqaZi+aUn2rpRMhLGIa17VlwYoLly4t
+	 Akh/yT/7PUE32kDfQvijbBx/xRG/WcLIp2GIsj37xiu3icD+EXIw6dhBjUNdpT20uS
+	 bWQvrOWl6ssUpK8bocssmGbNQppYQ17FP5NnBoBe6Cc59n/9c677c9Z4sCXc9XaFHe
+	 Cq8lU6xCASpDwsvE5J3mdb0bcj9R9KiJIUhdJla4PXqBXuaSRXnefV7qUPvM0fxZWI
+	 1k0XZVdyRiR/Q==
+Message-ID: <4a6251da-fe12-4992-af0d-9336dc254c4f@kernel.org>
+Date: Tue, 21 Oct 2025 21:22:27 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,190 +50,110 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] media: qcom: camss: Enable setting the rate to
- camnoc_rt_axi clock
-From: Vijay Kumar Tumati <vijay.tumati@oss.qualcomm.com>
-To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-        Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>,
-        Loic Poulain <loic.poulain@oss.qualcomm.com>
-Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>, Robert Foss <rfoss@kernel.org>,
-        Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>, Todor Tomov <todor.too@gmail.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>, linux-i2c@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
-        Bryan O'Donoghue <bod@kernel.org>
-References: <20251014-add-new-clock-in-vfe-matching-list-v1-1-0d965ccc8a3a@oss.qualcomm.com>
- <9984bc23-05ef-4d46-aeb8-feb0a18e5762@kernel.org>
- <bc0caeb8-c99b-4bef-a69e-5ce433e6b890@oss.qualcomm.com>
- <c4fd6bfc-cc9a-4f37-99b3-f36466691a1e@linaro.org>
- <CAFEp6-2=GJL-gc+PSyAL4=prp_sXdZJS=Ewg5nP2kcp_Gu85Fw@mail.gmail.com>
- <33513b43-f6d1-4c76-887b-39611a75e1f4@kernel.org>
- <WnfCknsSyJK68PQZkE2q7COZHRpsLOFlr3dcbwiVR6SBWtF9iRQ4MGzp_9q31O0kyhZwoncQWfHjJQvpz7nyfw==@protonmail.internalid>
- <ab43c5c9-edc5-459e-8ef7-2aa8bec559c0@oss.qualcomm.com>
- <0e6e1b8a-d9ae-42d1-b1ad-4314e0d76ab7@kernel.org>
- <2c0011d3-a692-457c-9ac0-a445fc82df37@oss.qualcomm.com>
- <48bede40-584a-409a-9bca-7ae3cc420667@linaro.org>
- <124be1cd-1cc8-4c04-8aca-eede808e736c@oss.qualcomm.com>
+Subject: Re: [PATCH 2/9] dt-bindings: clock: google,gs101-clock: add
+ samsung,sysreg property as required
+To: Peter Griffin <peter.griffin@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
+ =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
+ Tudor Ambarus <tudor.ambarus@linaro.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Sam Protsenko <semen.protsenko@linaro.org>,
+ Sylwester Nawrocki <s.nawrocki@samsung.com>,
+ Chanwoo Choi <cw00.choi@samsung.com>
+Cc: Will McVicker <willmcvicker@google.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, kernel-team@android.com
+References: <20251013-automatic-clocks-v1-0-72851ee00300@linaro.org>
+ <20251013-automatic-clocks-v1-2-72851ee00300@linaro.org>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-In-Reply-To: <124be1cd-1cc8-4c04-8aca-eede808e736c@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
+ QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
+ +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
+ ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
+ 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
+ hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
+ tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
+ 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
+ naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
+ hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
+ whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
+ qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
+ RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
+ Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
+ H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
+ dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
+ AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
+ jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
+ zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
+ XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
+In-Reply-To: <20251013-automatic-clocks-v1-2-72851ee00300@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: J8xdNI3kAtEiAgxzAPWvRlcYIBZjJW79
-X-Proofpoint-GUID: J8xdNI3kAtEiAgxzAPWvRlcYIBZjJW79
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDE5MDA5MCBTYWx0ZWRfXyWl1mXEDJXag
- m9p8Yda9O70Fvsf14yf5RPvAadOUl8MlcoGVjeEDnudl7OAgrahXL8b2gXJ4nV6zYYRkcstEPy9
- 2G33XLlzzJkgMVRfH0s1DgApTElI+V5t4Gi2jzCJf32LFOFi5e6o5SirBvos3RMkEgrbLKOAjnD
- B5k27ycN6d8ofyDSFBkSiHSMOc7SxsrQ0gz3jbOg7KLGfjUw2cSTTzOcxcUC2xfBpigUAy6SDlk
- O5Dt2idN93ya2krj7abOfAjySTU+loOu9LtleugRNhHh3glRUzJZi7y8AeurxpKEmIxpij4Z4/B
- MW7RMNSqyyuU71B1C46y86LWn+H8mIRhoydqTWeR/pR5mt40XtVsHCl8+oIT6YOTNUomH8FBZIa
- mZXKOMnKJJyoaCCBsDI5yTKYRqF2Bw==
-X-Authority-Analysis: v=2.4 cv=V5NwEOni c=1 sm=1 tr=0 ts=68f7dce1 cx=c_pps
- a=JL+w9abYAAE89/QcEU+0QA==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
- a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=VwQbUJbxAAAA:8 a=KKAkSRfTAAAA:8 a=nXZdPX8rIRQHg8fUIg0A:9 a=QEXdDO2ut3YA:10
- a=324X-CrmTo6CU4MGRt3R:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-10-21_03,2025-10-13_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 malwarescore=0 adultscore=0 priorityscore=1501 lowpriorityscore=0
- spamscore=0 suspectscore=0 clxscore=1015 phishscore=0 impostorscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2510020000 definitions=main-2510190090
+
+On 13/10/2025 22:51, Peter Griffin wrote:
+> Update the bindings documentation so that all CMUs (with the exception of
+> gs101-cmu-top) have samsung,sysreg as a required property.
 
 
-On 10/20/2025 6:46 AM, Vijay Kumar Tumati wrote:
->
-> On 10/20/2025 6:35 AM, Vladimir Zapolskiy wrote:
->> Hi Hangxiang.
->>
->> On 10/20/25 06:23, Hangxiang Ma wrote:
->>> On 10/17/2025 7:41 PM, Bryan O'Donoghue wrote:
->>>> On 16/10/2025 21:53, Vijay Kumar Tumati wrote:
->>>>>
->>>>> On 10/16/2025 8:31 AM, Bryan O'Donoghue wrote:
->>>>>> On 16/10/2025 13:22, Loic Poulain wrote:
->>>>>>>> I'm - perhaps naively - assuming this clock really is required 
->>>>>>>> ... and
->>>>>>>> that both will be needed concurrently.
->>>>>>> AFAIU, the NRT clock is not in use for the capture part, and only
->>>>>>> required for the offline processing engine (IPE, OPE), which will
->>>>>>> likely be described as a separated node.
->>>>>>
->>>>>> Maybe yeah though we already have bindings.
->>>>>>
->>>>>> @Hangxiang I thought we had discussed this clock was required for 
->>>>>> your
->>>>>> setup.
->>>>>>
->>>>>> Can you confirm with a test and then
->>>>>>
->>>>>> 1. Repost with my RB - I assume you included this on purpose
->>>>>> 2. Respond that you can live without it.
->>>>>>
->>>>>> ---
->>>>>> bod
->>>>>>
->>>>> @Bryan and others, sorry, I am just trying to understand the exact 
->>>>> ask
->>>>> here. Just to add a bit more detail here, On certain architectures,
->>>>> there is one CAMNOC module that connects all of the camera modules 
->>>>> (RT
->>>>> and NRT) to MMNOC. In these, there is one 'camnoc_axi' clock that 
->>>>> needs
->>>>> to be enabled for it's operation. However, on the newer 
->>>>> architectures,
->>>>> this single CAMNOC is split into two, one for RT modules (TFEs and 
->>>>> IFE
->>>>> Lites) and the other for NRT (IPE and OFE). So, on a given 
->>>>> architecture,
->>>>> we either require 'camnoc_axi' or 'camnoc_rt_axi' for RT 
->>>>> operation, not
->>>>> both. And yes, one of them is a must. As you know, adding the support
->>>>> for the newer clock in "vfe_match_clock_names" will only enable the
->>>>> newer chip sets to define this in it's resource information and 
->>>>> set the
->>>>> rate to it based on the pixel clock. In kaanapali vfe resources, 
->>>>> we do
->>>>> not give the 'camnoc_axi_clk'. Hopefully we are all on the same page
->>>>> now, is it the suggestion to use 'camnoc_axi_clk' name for
->>>>> CAM_CC_CAMNOC_RT_AXI_CLK ? We thought it would be clearer to use the
->>>>> name the matches the exact clock. Please advise and thank you.
->>>>
->>>> The ask is to make sure this clock is needed @ the same time as the
->>>> other camnoc clock.
->>>>
->>>> If so then update the commit log on v2 to address the concerns given
->>>> that it may not be necessary.
->>>>
->>>> If not then just pining back to this patch "we checked and its not
->>>> needed" will do.
->>>>
->>>> ---
->>>> bod
->>>
->>> @Bryan, I test two scenarios individually that also consider 
->>> @Vladimir's
->>> concern. I confirm this clock rate setting is necessary.
->>> 1. Remove 'camnoc_rt_axi' from the vfe clock matching function.
->>> 2. Remove 'camnoc_nrt_axi' from the vfe clock resources in camss.c.
->>> Both of them block the image buffer write operation. More clearly, we
->>> will stuck at the stage when all buffers acquired but CAMSS takes no 
->>> action.
->>>
->>> I agree with @Vijay to keep 'camnoc_rt_axi' to distinguish between the
->>> new one and 'camnoc_axi'. The disagreement concerns how to standardize
->>> the camnoc clock name or how to differentiate between RT and NRT clock
->>> names if a new RT clock name is introduced. Other chips like sm8550,
->>> sm8775p depend on 'camnoc_axi'. Meanwhile, 'camnoc_rt_axi' and
->>> 'camnoc_nrt_axi' are both necessary for QCM2290 and X1E80100. But chips
->>> like QCM2290 and X1E80100 may not need to set the clock rate but
->>> Kaanapali needs. @Vladimir
->>
->> Thank you so much for performing the tests.
->>
->> I would want to add that I've made right the same tests for SM8650 
->> CAMSS,
->> which also has two 'camnoc_rt_axi' and 'camnoc_nrt_axi' clocks, and due
->> to my tests the latter one is not needed for the raw image producing, 
->> you
->> may notice that I've excluded it from the v3 series sent for review:
-> I agree. The NRT AXI clock shouldn't be required even for Kaanapali 
-> for RT blocks. @Hangxiang, can we please try to understand this 
-> better? Either way, I think the NRT clock part is not connected to 
-> this patch series I guess? Just as Bryan advised, we confirm that the 
-> 'camnoc_axi_clk' is not required for Kaanapali to close out the 
-> comments on this series. Perhaps, we can continue the discussion on 
-> the NRT AXI clock in the Kaanapali patch series? Please advise.
+Why? You described the patch contents, which I can see. I don't
+understand why we need it, especially that this is ABI break.
 
-Some more clarification on this . Starting Kaanapali, we have PDX NOC 
-after RT / NRT CAMNOCs and before MMNOC for domain crossing. Our HW team 
-has confirmed that, for the PDX NOC to ensure that there is no traffic 
-from either RT or NRT at the beginning of a session (it's called 
-qchannel handshake) and start functioning, we need both the RT AXI and 
-NRT AXI clocks. So two things,
+> 
+> Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
+> ---
+>  .../bindings/clock/google,gs101-clock.yaml         | 23 +++++++++++++++++++++-
+>  1 file changed, 22 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/google,gs101-clock.yaml b/Documentation/devicetree/bindings/clock/google,gs101-clock.yaml
+> index caf442ead24bda57e531420d8a7d8de8713032ae..5cfe98d9ba895d5207fffc82f3fd55b602b4a2bb 100644
+> --- a/Documentation/devicetree/bindings/clock/google,gs101-clock.yaml
+> +++ b/Documentation/devicetree/bindings/clock/google,gs101-clock.yaml
+> @@ -49,6 +49,11 @@ properties:
+>    reg:
+>      maxItems: 1
+>  
+> +  samsung,sysreg:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description:
+> +      Phandle to system registers interface.
 
-1. Like I said, this patch is required regardless as it is about RT_AXI 
-clock, which is required for Kaanapali.
 
-2. In the other Kaanapali patch series, we will keep the NRT AXI clock 
-in the VFE resources.
+Your description should say here: for what purpose, how this device is
+going to use it.
 
-Hope this clarifies. Please let us know if you have any further 
-questions. Thank you very much.
-
->>
->> https://lore.kernel.org/linux-media/20251017031131.2232687-2-vladimir.zapolskiy@linaro.org 
->>
->>
->>> We now prefer to add 'camnoc_rt_axi' (Right?). Maybe its better to add
->>> comment lines to remove the ambiguity whether 'camnoc_axi' denotes 
->>> to RT
->>> or NRT. Please advise and correct me. Willing to receive feedback and
->>> suggestions. Thanks you for all.
->>
+> +
+>  required:
+>    - compatible
+>    - "#clock-cells"
+> @@ -163,6 +168,22 @@ allOf:
+>              - const: bus
+>              - const: ip
+Best regards,
+Krzysztof
 
