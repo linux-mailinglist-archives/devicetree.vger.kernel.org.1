@@ -1,80 +1,52 @@
-Return-Path: <devicetree+bounces-229143-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229146-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 077A5BF478C
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 05:15:57 +0200 (CEST)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B95FBF47BB
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 05:18:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ABFB4405D68
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 03:15:55 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id C592A350C22
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 03:18:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50056157493;
-	Tue, 21 Oct 2025 03:15:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D516B2253B0;
+	Tue, 21 Oct 2025 03:18:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="P9FmyixS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZnqrSbzR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f171.google.com (mail-pg1-f171.google.com [209.85.215.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C21CA72618
-	for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 03:15:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A871D72618;
+	Tue, 21 Oct 2025 03:18:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761016553; cv=none; b=alLdexu1Cj4yPiCud9LpY8fNdkbN5G2Z0D5pxOVzDJUdMlWHwyOzG74IEM3u3vln6aVQ2dPD0CRSJvcpnFOhsYc3TnqXE9/H+MScH1nAN/ZnSfQn6Xz2ThpP4HC2bU5DXNdUkopJ6DnVRznWDISotPCkxBJC8V+Fq9MzBqdrG9g=
+	t=1761016708; cv=none; b=uCbus1j/dU7ctUbzgaw3WrOdwo+UZXkz8XyYtZSnx6wJ6uiAaVMmpjcxmVALfjB8HD4X8BbwXgR+JKqQ+EjEM1Xr5/U7Ff7rC0OgEsxbiExzJftlzsQwPO4zTwdkiLtvmIXSPRIJMvuiPOgKqRRVr2h3YUCCb7BJEo2w8zWuKPg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761016553; c=relaxed/simple;
-	bh=FozCj5Qtilnm6MTFQqUJJBi0+f5aDzs/7epoDnQr8Rw=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=eZw877HkXajrrEq9UsGQVUrN+pvWqpHd0jVTVKi+Hu7AYDDQvHCaBbG9csKSrUc3QB7QOBjUewL9EmQrTDMYg7CeLXJOoujVL/v9TFkChZPko9Qfl3jvWxJAuSnJWJAhZHSOZtf8kVdw6Up4Ys64jh/G6rtLigLujrv2PvB9tk4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=P9FmyixS; arc=none smtp.client-ip=209.85.215.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f171.google.com with SMTP id 41be03b00d2f7-b608df6d2a0so4497991a12.1
-        for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 20:15:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1761016551; x=1761621351; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=MIc5Jk6uXrpT5vKhUN3R3BidtAKxdUPzX/dU/naleU8=;
-        b=P9FmyixSb94cxMLRqyW/OTZj/wzKWawTCu1NAN3EYTDUgInaRAy3rt3KyCj/JDnuew
-         kprRO9iS03CtTySFOlfSiDFCUvvLpB+9sdvN7tF2noUBA3Ewj2dIG6oMbjpuDA5B+EWJ
-         FsW0kxOMOqeRWVHpD/t3rYq7T4+VIFeIvBPJGaIdj+ZeKxRbB4RhDdwjEAJ6adWPPPga
-         +wnHKPBf/erEGhEUs+eIaYkdTJjk9rx9tU+w6jQTAyxRk6bXdZQqP9Y3joaB/HjFAFsn
-         TiHyyaXugJxC8QvqjVNptYZ0hru0NcnD94dnL2xF5w1IB1bqgdclItju4l9qZaj3cdxC
-         4eOw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761016551; x=1761621351;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=MIc5Jk6uXrpT5vKhUN3R3BidtAKxdUPzX/dU/naleU8=;
-        b=hDR6g5EVCcMgQX2OhniPNoQQBV3D38MRtt09lLevilfWbvMXyBU/48rWUX7xrf+xvI
-         BQeiBldsAyycD3jKo176Q5m1lC2kor/n+53J+89iyCNqzw8HIjeI8ANVg/tDPWduqBpq
-         QV1h7GbqjWmZ0ISTCsLN2legSI8wV0ij3ECndjrIWcvz9ROO2JnEjiJcDjyu2y8wBTEQ
-         8UsNC/+4dg5jDbSvHDTcplbIbx2cpabsTlM4wXggR0LtySNM91gY9GL9FbviK2vxWDk1
-         sXcIVrjQRxEhxysjne8kxu+p9FNwBZkuH2VBGgIfxcyy3N2JrDWuInPu6AlXb8afzwrz
-         H8SQ==
-X-Gm-Message-State: AOJu0Ywvz1z85EdvC1zvOxeEg8scYjHpGit6uQQeQH6vh7dFE512CqWH
-	BBQ7xOSeKOILjqOZh2SwRVQRSb3hj5XRgaUuEIdk975prynUvRSs5wFr
-X-Gm-Gg: ASbGncuk3YOmFThlHQvl1wN95w/VDtTt6DMYfdTjwV455jg+bznPCzIIIjTO/tqxuOp
-	RKi6rpHBDj7xv7Qm4nSrkfB5MAZ/y2GbzsoqferT+r1iRkmrPAI5QTDZNM8LUFT4VeOph12sQ4P
-	DqQ2rsMFp0NK+8E6ObCq5fust7YUupWc2U434bpyYTYqnj5wK2ewB4HrekIc9DfLN/QzJ4DHVxB
-	Ypks6+7K8HsQiY82pH9cTdwvx63KkPDVx4Mog0utNWgBsJT8EExl3z2YQQ0x3xgWN2Z6d+/yTXA
-	TPZZz6CFz4qzBENhC9kFBWcPcBYaB2BklCr3wZ08Xo8Hyud9Y1O8u+dp/fehg4fO5u23JdFQKuD
-	Q0JJ7dXC47vdL75X0GpWqPYuwly/pKgeEfOfI0KAbitYKT9Easo1e5/S1ztOp4XntkolQ0mlrGy
-	E2Cs2n/jes6KWdBh8tgFlx6UWXOQ2JAfJt0Z0v
-X-Google-Smtp-Source: AGHT+IHvc2OdIns7Dhqd5TV4LyvC/HJfGjCUatzoXh06HQxZAcairq7EJA2klU28lcwGsK1CQQDx2g==
-X-Received: by 2002:a17:903:2b0d:b0:272:f9c3:31f7 with SMTP id d9443c01a7336-290cbe2ae84mr56298125ad.50.1761016551034;
-        Mon, 20 Oct 2025 20:15:51 -0700 (PDT)
-Received: from [172.17.0.2] (125-227-29-20.hinet-ip.hinet.net. [125.227.29.20])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29246fcc2b1sm94889765ad.27.2025.10.20.20.15.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Oct 2025 20:15:50 -0700 (PDT)
-From: Leo Wang <leo.jt.wang@gmail.com>
-Date: Tue, 21 Oct 2025 11:15:39 +0800
-Subject: [PATCH] ARM: dts: aspeed: clemente: Add EEPROMs for boot and data
- drive FRUs
+	s=arc-20240116; t=1761016708; c=relaxed/simple;
+	bh=8w/R8eSiIH88AvVwjsFZLEjod8iCl8HZVcBE0+UvQ7c=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=GXDLfBBps7tHMM4RInSANwQZBmGf9ND16cPAuNOGZryixTmiurP0iCH7sil2mdjSp57oaZCJWl6OBCS9vWcatXvPKB++8awImEEYNmDm8zXuuVeAyrY4Q1eahAFbkaHZ7gAPPvjsDDwGZJRXBWF3VrNY870imEH12YD1vHyaJpY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZnqrSbzR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 247A1C4CEFB;
+	Tue, 21 Oct 2025 03:18:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761016708;
+	bh=8w/R8eSiIH88AvVwjsFZLEjod8iCl8HZVcBE0+UvQ7c=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=ZnqrSbzRoglTdk8roCwlS2Sjb+FB6Hl8cqj34K/4UHWHxXxSlz8DC0FU12toYouCb
+	 LHLraFRsjOGF1bEI5u9gmLsyymS50fQKuv/kOVU8MQgraUjUMwiVX3gj0mSiKF1hgR
+	 nFYvN1DoxheSekYj4TeQOSGB2P27dVoI7U3nOYAN550fywsZ35QkbPxzg9GWYy5UW8
+	 UEOgvd692YLkEAMlln751k/vWxhIgkT/UJyIH5c/TTn2/yBVJQV8Py42t7dfD0mml+
+	 nZkCoxOCkGUifMqUe1Kh7qsJZTwntKpyg4IU/Ht1VHtquC8Vyk+z/wIR8t+3s5Y2rj
+	 0nwxbDAawBBxQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0EF6ACCD193;
+	Tue, 21 Oct 2025 03:18:28 +0000 (UTC)
+From: Xiangxu Yin via B4 Relay <devnull+xiangxu.yin.oss.qualcomm.com@kernel.org>
+Subject: [PATCH v5 0/3] Add DisplayPort support to QCS615 devicetree
+Date: Tue, 21 Oct 2025 11:18:06 +0800
+Message-Id: <20251021-add-displayport-support-to-qcs615-devicetree-v5-0-92f0f3bf469f@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,112 +55,113 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20251021-leo-dts-add-nvme-eeprom-v1-1-33166b3665b4@gmail.com>
-X-B4-Tracking: v=1; b=H4sIANr69mgC/x3MQQqEMBAF0atIr21IZ3REryIuxHy1YUwkERkQ7
- 25w+RZVFyVERaKuuCji1KTBZ0hZ0LSOfgGryyZrbC3GCv8Q2B2JR+fYnxsY2GPY+CPfqpG2bid
- rKNd7xKz/99wP9/0A40cKRWkAAAA=
-X-Change-ID: 20251021-leo-dts-add-nvme-eeprom-316471959c20
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
- Andrew Jeffery <andrew@codeconstruct.com.au>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
- george.kw.lee@fii-foxconn.com, bruce.jy.hung@fii-foxconn.com, 
- leo.jt.wang@fii-foxconn.com, Leo Wang <leo.jt.wang@gmail.com>
+X-B4-Tracking: v=1; b=H4sIAHH79mgC/6XSzWrDMAwH8FcJOc/Fdm0nKWP0PcYOsq2shiRO7
+ TSslL77nJRuHUthHycjHfRDf/mURwwOY77JTnnA0UXnu1TIhyw3O+hekTib6pxTLhllgoC1xLr
+ YN3DsfRhIPPTzO3iyN1ExSWwaY3AIiAQNgFW8AFpDnkb2AWv3NnPPL6neuTj4cJz1kU3dCRKMM
+ /o7aGSEEsrrUkDFjRB6uz844zqzMr7NJ2rk1/F/2GPkaTzjtLJ1IaxgdOtjXO0P0KTx7aex/o+
+ xTkYh0FRKQ8mEuGOIW0P+0hDJAOBGl6KgWNkF43y5U8CUYHTD5Vh5izHC/Bs22eOE04qub/EPu
+ PbhKqf+kMqWjOW0W1UwQ6VlXPFv7tP0PRYQpi5IT4zvhuCbBsMXKrZJolN6jFirKGptUzD4Y4G
+ ruxkurlKkVayRaAGMMlwvQxoikqnjhk2mqLIgtWZKyhTw+R1SC9GFdgMAAA==
+X-Change-ID: 20251014-add-displayport-support-to-qcs615-devicetree-ecaad627a0fa
+To: Rob Clark <robin.clark@oss.qualcomm.com>, 
+ Dmitry Baryshkov <lumag@kernel.org>, 
+ Abhinav Kumar <abhinav.kumar@linux.dev>, 
+ Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>, 
+ Marijn Suijten <marijn.suijten@somainline.org>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+ freedreno@lists.freedesktop.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, fange.zhang@oss.qualcomm.com, 
+ yongxing.mou@oss.qualcomm.com, li.liu@oss.qualcomm.com, 
+ Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>, 
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1761016548; l=2272;
- i=leo.jt.wang@gmail.com; s=20250618; h=from:subject:message-id;
- bh=FozCj5Qtilnm6MTFQqUJJBi0+f5aDzs/7epoDnQr8Rw=;
- b=8BInr5iA6wBDcAL4sY8DnyKW4muBdm9myjKyhrNgz4zvC7PgZByz+aciemOqaw2l3lP+Dk17F
- WiRuYEfnT9MAdWDDJm8CfcmcWioWtAmA94gNx57lZN4uJoHCmtiSswe
-X-Developer-Key: i=leo.jt.wang@gmail.com; a=ed25519;
- pk=x+DKjAtU/ZbbMkkAVdwfZzKpvNUVgiV1sLJbidVIwSQ=
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1761016706; l=3836;
+ i=xiangxu.yin@oss.qualcomm.com; s=20241125; h=from:subject:message-id;
+ bh=8w/R8eSiIH88AvVwjsFZLEjod8iCl8HZVcBE0+UvQ7c=;
+ b=tvf88zGjZkiYq1fV+tn3zjt0yR7gpglqH1BX/qqwrFkhH4yNpTaswQRY0Nbui6/yMp0kD43JB
+ iaFMFWvXN2iDhoy2LkdXzcc6MuXOhYgzO/OhphUiM4VFi6xystI3UH/
+X-Developer-Key: i=xiangxu.yin@oss.qualcomm.com; a=ed25519;
+ pk=F1TwipJzpywfbt3n/RPi4l/A4AVF+QC89XzCHgZYaOc=
+X-Endpoint-Received: by B4 Relay for xiangxu.yin@oss.qualcomm.com/20241125
+ with auth_id=542
+X-Original-From: Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
+Reply-To: xiangxu.yin@oss.qualcomm.com
 
-Add EEPROM devices on the I2C buses used for the boot and data NVMe
-drives. These EEPROMs store FRU information for each drive, allowing
-the BMC to identify.
+This series enables DisplayPort functionality on QCS615 platforms.
+It introduces the required bindings, updates SM6150 dtsi for DP controller
+and QMP USB3-DP PHY, and enables DP on the QCS615 Ride board with
+connector and link configuration.
 
-Signed-off-by: Leo Wang <leo.jt.wang@gmail.com>
+Depends-on:
+https://lore.kernel.org/all/20250903-add-display-support-for-qcs615-platform-v8-1-7971c05d1262@oss.qualcomm.com/
+https://lore.kernel.org/all/20250916-add-dp-controller-support-for-sm6150-v3-1-dd60ebbd101e@oss.qualcomm.com/
+https://lore.kernel.org/all/20250926-add-displayport-support-for-qcs615-platform-v7-1-dc5edaac6c2b@oss.qualcomm.com/
+
+Signed-off-by: Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
 ---
- .../dts/aspeed/aspeed-bmc-facebook-clemente.dts    | 30 ++++++++++++++++++++++
- 1 file changed, 30 insertions(+)
+Changes in v5:
+- Update commit message and fix example indentation in binding [Krzysztof]
+- Update order in dtsi includes [Krzysztof]
+- Link to v4: https://lore.kernel.org/r/20251015-add-displayport-support-to-qcs615-devicetree-v4-0-aa2cb8470e9d@oss.qualcomm.com
 
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-clemente.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-clemente.dts
-index 450446913e36b1418fab901cde44280468990c7a..885c50a7d66593dfa8493d2d031700174b452382 100644
---- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-clemente.dts
-+++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-clemente.dts
-@@ -311,6 +311,12 @@ i2c0mux0ch1mux0ch0: i2c@0 {
- 					#address-cells = <1>;
- 					#size-cells = <0>;
- 					reg = <0>;
-+
-+					// HDD NVMe SSD FRU 0
-+					eeprom@53 {
-+						compatible = "atmel,24c02";
-+						reg = <0x53>;
-+					};
- 				};
- 
- 				i2c0mux0ch1mux0ch1: i2c@1 {
-@@ -323,6 +329,12 @@ i2c0mux0ch1mux0ch2: i2c@2 {
- 					#address-cells = <1>;
- 					#size-cells = <0>;
- 					reg = <2>;
-+
-+					// HDD NVMe SSD FRU 1
-+					eeprom@53 {
-+						compatible = "atmel,24c02";
-+						reg = <0x53>;
-+					};
- 				};
- 
- 				i2c0mux0ch1mux0ch3: i2c@3 {
-@@ -493,6 +505,12 @@ i2c0mux3ch1mux0ch0: i2c@0 {
- 					#address-cells = <1>;
- 					#size-cells = <0>;
- 					reg = <0>;
-+
-+					// HDD NVMe SSD FRU 2
-+					eeprom@53 {
-+						compatible = "atmel,24c02";
-+						reg = <0x53>;
-+					};
- 				};
- 
- 				i2c0mux3ch1mux0ch1: i2c@1 {
-@@ -505,6 +523,12 @@ i2c0mux3ch1mux0ch2: i2c@2 {
- 					#address-cells = <1>;
- 					#size-cells = <0>;
- 					reg = <2>;
-+
-+					// HDD NVMe SSD FRU 3
-+					eeprom@53 {
-+						compatible = "atmel,24c02";
-+						reg = <0x53>;
-+					};
- 				};
- 
- 				i2c0mux3ch1mux0ch3: i2c@3 {
-@@ -619,6 +643,12 @@ i2c0mux5ch1: i2c@1 {
- 			#address-cells = <1>;
- 			#size-cells = <0>;
- 			reg = <1>;
-+
-+			// BOOT DRIVE FRU
-+			eeprom@53 {
-+				compatible = "atmel,24c02";
-+				reg = <0x53>;
-+			};
- 		};
- 
- 		i2c0mux5ch2: i2c@2 {
+Changes in v4:
+- Update commit message to reflect data-lanes changes.
+- Link to v3: https://lore.kernel.org/r/20251014-add-displayport-support-to-qcs615-devicetree-v3-0-74ec96ba8144@oss.qualcomm.com
+
+Changes in v3:
+- Move data-lanes from board DTS to SoC DTS [Dmitry]
+- Add missing assigned-clock PIXEL1_CLK_SRC [Dmitry]
+- Update subject prefix to qcom: qcs615-ride: for DTS patch [Konrad]
+- Link to v2: https://lore.kernel.org/r/20251014-add-displayport-support-to-qcs615-devicetree-v2-0-1209df74d410@oss.qualcomm.com
+
+Changes in v2:
+- Update register padding and ordering [Dmitry]
+- Rebase the series on the latest driver
+- Link to v1: https://lore.kernel.org/all/20241210-add-displayport-support-to-qcs615-devicetree-v1-0-02f84a92c44b@quicinc.com/
 
 ---
-base-commit: 6953afcd81a2cc73784e3dd23faa0a1aaf97441a
-change-id: 20251021-leo-dts-add-nvme-eeprom-316471959c20
+Xiangxu Yin (3):
+      dt-bindings: display/msm: Add SM6150 DisplayPort controller
+      arm64: dts: qcom: Add DisplayPort and QMP USB3DP PHY for SM6150
+      arm64: dts: qcom: qcs615-ride: Enable DisplayPort
+
+ .../bindings/display/msm/qcom,sm6150-mdss.yaml     |  13 ++-
+ arch/arm64/boot/dts/qcom/qcs615-ride.dts           |  30 ++++++
+ arch/arm64/boot/dts/qcom/sm6150.dtsi               | 113 ++++++++++++++++++++-
+ 3 files changed, 153 insertions(+), 3 deletions(-)
+---
+base-commit: 606da5bb165594c052ee11de79bf05bc38bc1aa6
+change-id: 20251014-add-displayport-support-to-qcs615-devicetree-ecaad627a0fa
+prerequisite-message-id: <20250903-add-display-support-for-qcs615-platform-v8-0-7971c05d1262@oss.qualcomm.com>
+prerequisite-patch-id: 58be7053007469980bd7cc9fe315b66bbe021c31
+prerequisite-patch-id: 3c2120117f72c64f69beff32c0239fbc7f808f36
+prerequisite-message-id: <20250916-add-dp-controller-support-for-sm6150-v3-1-dd60ebbd101e@oss.qualcomm.com>
+prerequisite-patch-id: eb07ea58347e77ee18fb6dade040affb0ab68954
+prerequisite-message-id: <20250926-add-displayport-support-for-qcs615-platform-v7-0-dc5edaac6c2b@oss.qualcomm.com>
+prerequisite-patch-id: 8c6c905df7ee55a92a4e52362c8fa7cd9742de04
+prerequisite-patch-id: 0dba0fafd032bbd6cd117175f61efd1e56ae9228
+prerequisite-patch-id: d954b18774cfc0cfdb23de09aab3c56cefb8e1ea
+prerequisite-patch-id: 13f2d2efbcee6337001b5f8519a6da9a41d05276
+prerequisite-patch-id: 3a7144645ede23ccc7d54420e5a32e5bfa3bb776
+prerequisite-patch-id: b3ea55e92953c1526eaf7c5c21d939a5f8502711
+prerequisite-patch-id: 977189ef7cecbe7237175a8ef611fffb814193b0
+prerequisite-patch-id: 3a12c1b4f00eb1d074e51d586f2dae3a44de0613
+prerequisite-patch-id: 7f80e93057c1fd088ac6b4b0652cdfe2ea221cd5
+prerequisite-patch-id: 8b29d292717782982e4450a509f4428fe6e895f2
+prerequisite-patch-id: 621c3ba6bcf5b5782a5264faed72fdadfd47c630
+prerequisite-patch-id: 9c63f2c5bb39527e3031b2d168e3c9419441e8df
+prerequisite-patch-id: 364f6a7d8f4e1bc79a8f236b8d5a2425ffd225fe
+prerequisite-patch-id: eb09ea48625b5c0d39ffb37babe7d8c32a4b3122
 
 Best regards,
 -- 
-Leo Wang <leo.jt.wang@gmail.com>
+Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
+
 
 
