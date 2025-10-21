@@ -1,58 +1,50 @@
-Return-Path: <devicetree+bounces-229329-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229330-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB437BF5FFE
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 13:21:28 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FCEABF600D
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 13:23:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id ED6AC4FA77C
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 11:20:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7AAA13B128A
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 11:21:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4AE482F60A2;
-	Tue, 21 Oct 2025 11:20:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 997F22F4A14;
+	Tue, 21 Oct 2025 11:20:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YW1znFsu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35B622F5A12;
-	Tue, 21 Oct 2025 11:20:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FDE02F3C27;
+	Tue, 21 Oct 2025 11:20:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761045632; cv=none; b=ghuoL52/L3cO2v0prqltMsJ9abPahl8eBpRgPnaMu7XM4T7cc8tlcQ58pwGxBSCQVEVLo4G+MfPK4DXRUhlK7Hcl2QmW65+7kgDgleUI23zqdQmdhXjzRYkwJAVv9Qk2XBAXaP8DAkxKzMgN7SzHYp+QpBCMIQUKCsnAaUghqrg=
+	t=1761045640; cv=none; b=S7g2ng6zoXGxkCtFV30egj6L1orIuF6w+LpGb5mLI+e2o9RCutnLwXJZNuZzhxG9nbDUkJTo+S4isjJYCC30Pwn5K9sezZr6iUGXVEQS1OUv4uHIWUBqBwiLixDzYQMtd84BdRlAtUgPPOQoHUThhJTt5Mt8m5IFykALfyYKbbQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761045632; c=relaxed/simple;
-	bh=57DjMLvyluK+RPMb+DZBpBd69QssS/ngcLXxNsgXYbM=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=hLutHcqqDBn6d9R7t0Rv9REV3HcGmxWnVLza33reX/k5FV7khDIaBWfMS1kRDD/h8DqC4HP7uW1OI157OZrne140QMT2QarCSJnP5n96AWMmT8Z5xNypQiLKiyS6KrFOzhq0tFQJvnqjfw/mAIow1KpDl34AR8IUGBJNfaPtcG0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 958E7150C;
-	Tue, 21 Oct 2025 04:20:21 -0700 (PDT)
-Received: from donnerap.arm.com (donnerap.manchester.arm.com [10.33.8.67])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id B285A3F63F;
-	Tue, 21 Oct 2025 04:20:27 -0700 (PDT)
-From: Andre Przywara <andre.przywara@arm.com>
-To: Lee Jones <lee@kernel.org>,
-	Chen-Yu Tsai <wens@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Samuel Holland <samuel@sholland.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>
-Cc: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Yixun Lan <dlan@gentoo.org>,
-	devicetree@vger.kernel.org,
-	linux-sunxi@lists.linux.dev,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 3/3] regulator: axp20x: add support for the AXP318W
-Date: Tue, 21 Oct 2025 12:20:12 +0100
-Message-Id: <20251021112013.2710903-4-andre.przywara@arm.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20251021112013.2710903-1-andre.przywara@arm.com>
-References: <20251021112013.2710903-1-andre.przywara@arm.com>
+	s=arc-20240116; t=1761045640; c=relaxed/simple;
+	bh=+VaSZVBmZz5ORjS1Wb6KdbQodfWLfvpUe4sWk4+bHv4=;
+	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
+	 In-Reply-To:To:Cc; b=b+D7Q4Xh9I6w4Cw/styGrHe8+vca61TOx1hFMFamRoHCrzX54ai7FSpgx4ch5Ks12lGGX40oxaQxejekAlHjsBp0umYy/erUms+YV5U3ZvM6BKvaXYV0kmAffrVvtKuEd16mo4W6lELfZEy01HL1W0tF3jldAbBolXEDTBNlneU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YW1znFsu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D4677C4CEF1;
+	Tue, 21 Oct 2025 11:20:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761045639;
+	bh=+VaSZVBmZz5ORjS1Wb6KdbQodfWLfvpUe4sWk4+bHv4=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=YW1znFsumFVytyxSSC/x9NGDtSKDa95wxqD2GVitcp9zBDvj58z7i4UVfsYqyMESb
+	 0756yvamIZ5JBhICt1yrOhmGulkkWKUjuXg9nEXtxL2d1R5NXWyktgM1ONo1BM3+9D
+	 eM3u7SzC32ZvUTi8W9M9Npo2v2ZkjZ9NH1QfoVbSzjcBX6tRiUSkmRnEQsffdaiw0y
+	 na/QZqlQUaeMUVNggBSrFzt607Gl9yD8TApx2OmB/txPEG33msJMaGvo4oi432rB/6
+	 EsFxp0BhffTuDlM20IErb2ih6IgyYqB8TfoMmyUlMdQAgug5V45/0r9BQMV4F9FUx1
+	 C9mqq2/7zXWdA==
+Received: from [10.30.226.235] (localhost [IPv6:::1])
+	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id ADE3A3A55ED9;
+	Tue, 21 Oct 2025 11:20:22 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,295 +52,73 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH net-next v3 00/13] net: airoha: Add AN7583 ethernet
+ controller support
+From: patchwork-bot+netdevbpf@kernel.org
+Message-Id: 
+ <176104562151.1030909.1115814969731162849.git-patchwork-notify@kernel.org>
+Date: Tue, 21 Oct 2025 11:20:21 +0000
+References: <20251017-an7583-eth-support-v3-0-f28319666667@kernel.org>
+In-Reply-To: <20251017-an7583-eth-support-v3-0-f28319666667@kernel.org>
+To: Lorenzo Bianconi <lorenzo@kernel.org>
+Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
+ kuba@kernel.org, pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, p.zabel@pengutronix.de,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org, horms@kernel.org,
+ ansuelsmth@gmail.com
 
-The X-Powers AXP318W is a typical PMIC from X-Powers, featuring nine
-DC/DC converters and 28 LDOs, on the regulator side.
+Hello:
 
-Describe the chip's voltage settings and switch registers, how the
-voltages are encoded, and connect this to the MFD device via its
-regulator ID.
-We use just "318" for the internal identifiers, for easier typing and
-less churn. If something else other than the "AXP318W" shows up, that's
-an easy change, externally visible strings carry the additional letter
-already.
+This series was applied to netdev/net-next.git (main)
+by Paolo Abeni <pabeni@redhat.com>:
 
-Signed-off-by: Andre Przywara <andre.przywara@arm.com>
----
- drivers/regulator/axp20x-regulator.c | 170 ++++++++++++++++++++++++++-
- include/linux/mfd/axp20x.h           |  43 +++++++
- 2 files changed, 211 insertions(+), 2 deletions(-)
+On Fri, 17 Oct 2025 11:06:09 +0200 you wrote:
+> Introduce support for AN7583 ethernet controller to airoha-eth dirver.
+> The main differences between EN7581 and AN7583 is the latter runs a
+> single PPE module while EN7581 runs two of them. Moreover PPE SRAM in
+> AN7583 SoC is reduced to 8K (while SRAM is 16K on EN7581).
+> 
+> ---
+> Changes in v3:
+> - improve device-tree binding
+> - rebase on top of net-next main branch
+> - Link to v2: https://lore.kernel.org/r/20251016-an7583-eth-support-v2-0-ea6e7e9acbdb@kernel.org
+> 
+> [...]
 
-diff --git a/drivers/regulator/axp20x-regulator.c b/drivers/regulator/axp20x-regulator.c
-index da891415efc0b..1576bf4178f8f 100644
---- a/drivers/regulator/axp20x-regulator.c
-+++ b/drivers/regulator/axp20x-regulator.c
-@@ -138,6 +138,15 @@
- #define AXP313A_DCDC_V_OUT_MASK		GENMASK(6, 0)
- #define AXP313A_LDO_V_OUT_MASK		GENMASK(4, 0)
- 
-+#define AXP318_DCDC1_V_OUT_MASK		GENMASK(4, 0)
-+#define AXP318_DCDC2_V_OUT_MASK		GENMASK(6, 0)
-+#define AXP318_LDO_V_OUT_MASK		GENMASK(4, 0)
-+#define AXP318_ELDO_V_OUT_MASK		GENMASK(5, 0)
-+#define AXP318_DCDC2_NUM_VOLTAGES	88
-+#define AXP318_DCDC6_NUM_VOLTAGES	128
-+#define AXP318_DCDC7_NUM_VOLTAGES	103
-+#define AXP318_DCDC8_NUM_VOLTAGES	119
-+
- #define AXP717_DCDC1_NUM_VOLTAGES	88
- #define AXP717_DCDC2_NUM_VOLTAGES	107
- #define AXP717_DCDC3_NUM_VOLTAGES	103
-@@ -765,6 +774,155 @@ static const struct regulator_desc axp313a_regulators[] = {
- 	AXP_DESC_FIXED(AXP313A, RTC_LDO, "rtc-ldo", "vin1", 1800),
- };
- 
-+static const struct linear_range axp318_dcdc2_ranges[] = {
-+	REGULATOR_LINEAR_RANGE(500000,   0, 70, 10000),
-+	REGULATOR_LINEAR_RANGE(1220000, 71, 87, 20000),
-+};
-+
-+static const struct linear_range axp318_dcdc6_ranges[] = {
-+	REGULATOR_LINEAR_RANGE(500000,    0,  70,  10000),
-+	REGULATOR_LINEAR_RANGE(1220000,  71,  87,  20000),
-+	REGULATOR_LINEAR_RANGE(1800000,  88, 118,  20000),
-+	REGULATOR_LINEAR_RANGE(2440000, 119, 127,  40000),
-+};
-+
-+static const struct linear_range axp318_dcdc7_ranges[] = {
-+	REGULATOR_LINEAR_RANGE(500000,   0,  70, 10000),
-+	REGULATOR_LINEAR_RANGE(1220000, 71, 102, 20000),
-+};
-+
-+static const struct linear_range axp318_dcdc8_ranges[] = {
-+	REGULATOR_LINEAR_RANGE(500000,    0,  70,  10000),
-+	REGULATOR_LINEAR_RANGE(1220000,  71, 102,  20000),
-+	REGULATOR_LINEAR_RANGE(1900000, 103, 118, 100000),
-+};
-+
-+static const struct regulator_desc axp318_regulators[] = {
-+	AXP_DESC(AXP318, DCDC1, "dcdc1", "vin19", 1000, 3400, 100,
-+		 AXP318_DCDC1_CONTROL, AXP318_DCDC1_V_OUT_MASK,
-+		 AXP318_DCDC_OUTPUT_CONTROL1, BIT(0)),
-+	AXP_DESC_RANGES(AXP318, DCDC2, "dcdc2", "vin23",
-+			axp318_dcdc2_ranges, AXP318_DCDC2_NUM_VOLTAGES,
-+			AXP318_DCDC2_CONTROL, AXP318_DCDC2_V_OUT_MASK,
-+			AXP318_DCDC_OUTPUT_CONTROL1, BIT(1)),
-+	AXP_DESC_RANGES(AXP318, DCDC3, "dcdc3", "vin23",
-+			axp318_dcdc2_ranges, AXP318_DCDC2_NUM_VOLTAGES,
-+			AXP318_DCDC3_CONTROL, AXP318_DCDC2_V_OUT_MASK,
-+			AXP318_DCDC_OUTPUT_CONTROL1, BIT(2)),
-+	AXP_DESC_RANGES(AXP318, DCDC4, "dcdc4", "vin45",
-+			axp318_dcdc2_ranges, AXP318_DCDC2_NUM_VOLTAGES,
-+			AXP318_DCDC4_CONTROL, AXP318_DCDC2_V_OUT_MASK,
-+			AXP318_DCDC_OUTPUT_CONTROL1, BIT(3)),
-+	AXP_DESC_RANGES(AXP318, DCDC5, "dcdc5", "vin45",
-+			axp318_dcdc2_ranges, AXP318_DCDC2_NUM_VOLTAGES,
-+			AXP318_DCDC5_CONTROL, AXP318_DCDC2_V_OUT_MASK,
-+			AXP318_DCDC_OUTPUT_CONTROL1, BIT(4)),
-+	AXP_DESC_RANGES(AXP318, DCDC6, "dcdc6", "vin678",
-+			axp318_dcdc6_ranges, AXP318_DCDC6_NUM_VOLTAGES,
-+			AXP318_DCDC6_CONTROL, AXP318_DCDC2_V_OUT_MASK,
-+			AXP318_DCDC_OUTPUT_CONTROL1, BIT(5)),
-+	AXP_DESC_RANGES(AXP318, DCDC7, "dcdc7", "vin678",
-+			axp318_dcdc7_ranges, AXP318_DCDC7_NUM_VOLTAGES,
-+			AXP318_DCDC7_CONTROL, AXP318_DCDC2_V_OUT_MASK,
-+			AXP318_DCDC_OUTPUT_CONTROL1, BIT(6)),
-+	AXP_DESC_RANGES(AXP318, DCDC8, "dcdc8", "vin678",
-+			axp318_dcdc8_ranges, AXP318_DCDC8_NUM_VOLTAGES,
-+			AXP318_DCDC8_CONTROL, AXP318_DCDC2_V_OUT_MASK,
-+			AXP318_DCDC_OUTPUT_CONTROL1, BIT(7)),
-+	AXP_DESC_RANGES(AXP318, DCDC9, "dcdc9", "vin19",
-+			axp318_dcdc8_ranges, AXP318_DCDC8_NUM_VOLTAGES,
-+			AXP318_DCDC9_CONTROL, AXP318_DCDC2_V_OUT_MASK,
-+			AXP318_DCDC_OUTPUT_CONTROL2, BIT(0)),
-+	AXP_DESC_SW(AXP318, SWOUT1, "swout1", NULL,
-+		    AXP318_DCDC_OUTPUT_CONTROL2, BIT(3)),
-+	AXP_DESC_SW(AXP318, SWOUT2, "swout2", NULL,
-+		    AXP318_DCDC_OUTPUT_CONTROL2, BIT(4)),
-+	AXP_DESC(AXP318, ALDO1, "aldo1", "aldo156in", 500, 3400, 100,
-+		 AXP318_ALDO1_CONTROL, AXP318_LDO_V_OUT_MASK,
-+		 AXP318_LDO_OUTPUT_CONTROL1, BIT(0)),
-+	AXP_DESC(AXP318, ALDO2, "aldo2", "aldo234in", 500, 3400, 100,
-+		 AXP318_ALDO2_CONTROL, AXP318_LDO_V_OUT_MASK,
-+		 AXP318_LDO_OUTPUT_CONTROL1, BIT(1)),
-+	AXP_DESC(AXP318, ALDO3, "aldo3", "aldo234in", 500, 3400, 100,
-+		 AXP318_ALDO3_CONTROL, AXP318_LDO_V_OUT_MASK,
-+		 AXP318_LDO_OUTPUT_CONTROL1, BIT(2)),
-+	AXP_DESC(AXP318, ALDO4, "aldo4", "aldo234in", 500, 3400, 100,
-+		 AXP318_ALDO4_CONTROL, AXP318_LDO_V_OUT_MASK,
-+		 AXP318_LDO_OUTPUT_CONTROL1, BIT(3)),
-+	AXP_DESC(AXP318, ALDO5, "aldo5", "aldo156in", 500, 3400, 100,
-+		 AXP318_ALDO5_CONTROL, AXP318_LDO_V_OUT_MASK,
-+		 AXP318_LDO_OUTPUT_CONTROL1, BIT(4)),
-+	AXP_DESC(AXP318, ALDO6, "aldo6", "aldo156in", 500, 3400, 100,
-+		 AXP318_ALDO6_CONTROL, AXP318_LDO_V_OUT_MASK,
-+		 AXP318_LDO_OUTPUT_CONTROL1, BIT(5)),
-+	AXP_DESC(AXP318, BLDO1, "bldo1", "bldoin", 500, 3400, 100,
-+		 AXP318_BLDO1_CONTROL, AXP318_LDO_V_OUT_MASK,
-+		 AXP318_LDO_OUTPUT_CONTROL1, BIT(6)),
-+	AXP_DESC(AXP318, BLDO2, "bldo2", "bldoin", 500, 3400, 100,
-+		 AXP318_BLDO2_CONTROL, AXP318_LDO_V_OUT_MASK,
-+		 AXP318_LDO_OUTPUT_CONTROL1, BIT(7)),
-+	AXP_DESC(AXP318, BLDO3, "bldo3", "bldoin", 500, 3400, 100,
-+		 AXP318_BLDO3_CONTROL, AXP318_LDO_V_OUT_MASK,
-+		 AXP318_LDO_OUTPUT_CONTROL2, BIT(0)),
-+	AXP_DESC(AXP318, BLDO4, "bldo4", "bldoin", 500, 3400, 100,
-+		 AXP318_BLDO4_CONTROL, AXP318_LDO_V_OUT_MASK,
-+		 AXP318_LDO_OUTPUT_CONTROL2, BIT(1)),
-+	AXP_DESC(AXP318, BLDO5, "bldo5", "bldoin", 500, 3400, 100,
-+		 AXP318_BLDO5_CONTROL, AXP318_LDO_V_OUT_MASK,
-+		 AXP318_LDO_OUTPUT_CONTROL2, BIT(2)),
-+	AXP_DESC(AXP318, CLDO1, "cldo1", "cldoin", 500, 3400, 100,
-+		 AXP318_CLDO1_CONTROL, AXP318_LDO_V_OUT_MASK,
-+		 AXP318_LDO_OUTPUT_CONTROL2, BIT(3)),
-+	AXP_DESC(AXP318, CLDO2, "cldo2", "cldoin", 500, 3400, 100,
-+		 AXP318_CLDO2_CONTROL, AXP318_LDO_V_OUT_MASK,
-+		 AXP318_LDO_OUTPUT_CONTROL2, BIT(4)),
-+	AXP_DESC(AXP318, CLDO3, "cldo3", "cldoin", 500, 3400, 100,
-+		 AXP318_CLDO3_CONTROL, AXP318_LDO_V_OUT_MASK,
-+		 AXP318_LDO_OUTPUT_CONTROL2, BIT(5)),
-+	AXP_DESC(AXP318, CLDO4, "cldo4", "cldoin", 500, 3400, 100,
-+		 AXP318_CLDO4_CONTROL, AXP318_LDO_V_OUT_MASK,
-+		 AXP318_LDO_OUTPUT_CONTROL2, BIT(6)),
-+	AXP_DESC(AXP318, CLDO5, "cldo5", "cldoin", 500, 3400, 100,
-+		 AXP318_CLDO5_CONTROL, AXP318_LDO_V_OUT_MASK,
-+		 AXP318_LDO_OUTPUT_CONTROL2, BIT(7)),
-+	AXP_DESC(AXP318, DLDO1, "dldo1", "dldoin", 500, 3400, 100,
-+		 AXP318_DLDO1_CONTROL, AXP318_LDO_V_OUT_MASK,
-+		 AXP318_LDO_OUTPUT_CONTROL3, BIT(0)),
-+	AXP_DESC(AXP318, DLDO2, "dldo2", "dldoin", 500, 3400, 100,
-+		 AXP318_DLDO2_CONTROL, AXP318_LDO_V_OUT_MASK,
-+		 AXP318_LDO_OUTPUT_CONTROL3, BIT(1)),
-+	AXP_DESC(AXP318, DLDO3, "dldo3", "dldoin", 500, 3400, 100,
-+		 AXP318_DLDO3_CONTROL, AXP318_LDO_V_OUT_MASK,
-+		 AXP318_LDO_OUTPUT_CONTROL3, BIT(2)),
-+	AXP_DESC(AXP318, DLDO4, "dldo4", "dldoin", 500, 3400, 100,
-+		 AXP318_DLDO4_CONTROL, AXP318_LDO_V_OUT_MASK,
-+		 AXP318_LDO_OUTPUT_CONTROL3, BIT(3)),
-+	AXP_DESC(AXP318, DLDO5, "dldo5", "dldoin", 500, 3400, 100,
-+		 AXP318_DLDO5_CONTROL, AXP318_LDO_V_OUT_MASK,
-+		 AXP318_LDO_OUTPUT_CONTROL3, BIT(4)),
-+	AXP_DESC(AXP318, DLDO6, "dldo6", "dldoin", 500, 3400, 100,
-+		 AXP318_DLDO6_CONTROL, AXP318_LDO_V_OUT_MASK,
-+		 AXP318_LDO_OUTPUT_CONTROL3, BIT(5)),
-+	AXP_DESC(AXP318, ELDO1, "eldo1", "eldoin", 500, 1500, 25,
-+		 AXP318_ELDO1_CONTROL, AXP318_ELDO_V_OUT_MASK,
-+		 AXP318_LDO_OUTPUT_CONTROL3, BIT(6)),
-+	AXP_DESC(AXP318, ELDO2, "eldo2", "eldoin", 500, 1500, 25,
-+		 AXP318_ELDO2_CONTROL, AXP318_ELDO_V_OUT_MASK,
-+		 AXP318_LDO_OUTPUT_CONTROL3, BIT(7)),
-+	AXP_DESC(AXP318, ELDO3, "eldo3", "eldoin", 500, 1500, 25,
-+		 AXP318_ELDO3_CONTROL, AXP318_ELDO_V_OUT_MASK,
-+		 AXP318_LDO_OUTPUT_CONTROL4, BIT(0)),
-+	AXP_DESC(AXP318, ELDO4, "eldo4", "eldoin", 500, 1500, 25,
-+		 AXP318_ELDO4_CONTROL, AXP318_ELDO_V_OUT_MASK,
-+		 AXP318_LDO_OUTPUT_CONTROL4, BIT(1)),
-+	AXP_DESC(AXP318, ELDO5, "eldo5", "eldoin", 500, 1500, 25,
-+		 AXP318_ELDO5_CONTROL, AXP318_ELDO_V_OUT_MASK,
-+		 AXP318_LDO_OUTPUT_CONTROL4, BIT(2)),
-+	AXP_DESC(AXP318, ELDO6, "eldo6", "eldoin", 500, 1500, 25,
-+		 AXP318_ELDO6_CONTROL, AXP318_ELDO_V_OUT_MASK,
-+		 AXP318_LDO_OUTPUT_CONTROL4, BIT(3)),
-+};
-+
- static const struct linear_range axp717_dcdc1_ranges[] = {
- 	REGULATOR_LINEAR_RANGE(500000,   0, 70, 10000),
- 	REGULATOR_LINEAR_RANGE(1220000, 71, 87, 20000),
-@@ -1347,6 +1505,7 @@ static int axp20x_set_dcdc_freq(struct platform_device *pdev, u32 dcdcfreq)
- 		step = 150;
- 		break;
- 	case AXP313A_ID:
-+	case AXP318_ID:
- 	case AXP323_ID:
- 	case AXP717_ID:
- 	case AXP15060_ID:
-@@ -1585,6 +1744,10 @@ static int axp20x_regulator_probe(struct platform_device *pdev)
- 		regulators = axp313a_regulators;
- 		nregulators = AXP313A_REG_ID_MAX;
- 		break;
-+	case AXP318_ID:
-+		regulators = axp318_regulators;
-+		nregulators = AXP318_REG_ID_MAX;
-+		break;
- 	case AXP717_ID:
- 		regulators = axp717_regulators;
- 		nregulators = AXP717_REG_ID_MAX;
-@@ -1651,7 +1814,9 @@ static int axp20x_regulator_probe(struct platform_device *pdev)
- 		if ((regulators == axp22x_regulators && i == AXP22X_DC1SW) ||
- 		    (regulators == axp803_regulators && i == AXP803_DC1SW) ||
- 		    (regulators == axp809_regulators && i == AXP809_DC1SW) ||
--		    (regulators == axp15060_regulators && i == AXP15060_SW)) {
-+		    (regulators == axp15060_regulators && i == AXP15060_SW) ||
-+		    (regulators == axp318_regulators && i == AXP318_SWOUT1) ||
-+		    (regulators == axp318_regulators && i == AXP318_SWOUT2)) {
- 			new_desc = devm_kzalloc(&pdev->dev, sizeof(*desc),
- 						GFP_KERNEL);
- 			if (!new_desc)
-@@ -1709,7 +1874,8 @@ static int axp20x_regulator_probe(struct platform_device *pdev)
- 		 */
- 		if ((regulators == axp22x_regulators && i == AXP22X_DCDC1) ||
- 		    (regulators == axp809_regulators && i == AXP809_DCDC1) ||
--		    (regulators == axp15060_regulators && i == AXP15060_DCDC1))
-+		    (regulators == axp15060_regulators && i == AXP15060_DCDC1) ||
-+		    (regulators == axp318_regulators && i == AXP318_DCDC1))
- 			of_property_read_string(rdev->dev.of_node,
- 						"regulator-name",
- 						&dcdc1_name);
-diff --git a/include/linux/mfd/axp20x.h b/include/linux/mfd/axp20x.h
-index a871789f6cfa9..9957185458d63 100644
---- a/include/linux/mfd/axp20x.h
-+++ b/include/linux/mfd/axp20x.h
-@@ -559,6 +559,49 @@ enum {
- 	AXP313A_REG_ID_MAX,
- };
- 
-+enum {
-+	AXP318_DCDC1 = 0,
-+	AXP318_DCDC2,
-+	AXP318_DCDC3,
-+	AXP318_DCDC4,
-+	AXP318_DCDC5,
-+	AXP318_DCDC6,
-+	AXP318_DCDC7,
-+	AXP318_DCDC8,
-+	AXP318_DCDC9,
-+	AXP318_ALDO1,
-+	AXP318_ALDO2,
-+	AXP318_ALDO3,
-+	AXP318_ALDO4,
-+	AXP318_ALDO5,
-+	AXP318_ALDO6,
-+	AXP318_BLDO1,
-+	AXP318_BLDO2,
-+	AXP318_BLDO3,
-+	AXP318_BLDO4,
-+	AXP318_BLDO5,
-+	AXP318_CLDO1,
-+	AXP318_CLDO2,
-+	AXP318_CLDO3,
-+	AXP318_CLDO4,
-+	AXP318_CLDO5,
-+	AXP318_DLDO1,
-+	AXP318_DLDO2,
-+	AXP318_DLDO3,
-+	AXP318_DLDO4,
-+	AXP318_DLDO5,
-+	AXP318_DLDO6,
-+	AXP318_ELDO1,
-+	AXP318_ELDO2,
-+	AXP318_ELDO3,
-+	AXP318_ELDO4,
-+	AXP318_ELDO5,
-+	AXP318_ELDO6,
-+	AXP318_SWOUT1,
-+	AXP318_SWOUT2,
-+	AXP318_REG_ID_MAX,
-+};
-+
- enum {
- 	AXP717_DCDC1 = 0,
- 	AXP717_DCDC2,
+Here is the summary with links:
+  - [net-next,v3,01/13] dt-bindings: net: airoha: Add AN7583 support
+    https://git.kernel.org/netdev/net-next/c/51538c0c9d8c
+  - [net-next,v3,02/13] net: airoha: ppe: Dynamically allocate foe_check_time array in airoha_ppe struct
+    https://git.kernel.org/netdev/net-next/c/6d5b601d52a2
+  - [net-next,v3,03/13] net: airoha: Add airoha_ppe_get_num_stats_entries() and airoha_ppe_get_num_total_stats_entries()
+    https://git.kernel.org/netdev/net-next/c/15f357cd4581
+  - [net-next,v3,04/13] net: airoha: Add airoha_eth_soc_data struct
+    https://git.kernel.org/netdev/net-next/c/5863b4e065e2
+  - [net-next,v3,05/13] net: airoha: Generalize airoha_ppe2_is_enabled routine
+    https://git.kernel.org/netdev/net-next/c/ef9449f080b6
+  - [net-next,v3,06/13] net: airoha: ppe: Move PPE memory info in airoha_eth_soc_data struct
+    https://git.kernel.org/netdev/net-next/c/5bd1d1fd48ea
+  - [net-next,v3,07/13] net: airoha: ppe: Remove airoha_ppe_is_enabled() where not necessary
+    https://git.kernel.org/netdev/net-next/c/41139125f5c7
+  - [net-next,v3,08/13] net: airoha: ppe: Configure SRAM PPE entries via the cpu
+    https://git.kernel.org/netdev/net-next/c/306b78f5035a
+  - [net-next,v3,09/13] net: airoha: ppe: Flush PPE SRAM table during PPE setup
+    https://git.kernel.org/netdev/net-next/c/620d7b91aadb
+  - [net-next,v3,10/13] net: airoha: Select default ppe cpu port in airoha_dev_init()
+    https://git.kernel.org/netdev/net-next/c/c71a7a861ef0
+  - [net-next,v3,11/13] net: airoha: Refactor src port configuration in airhoha_set_gdm2_loopback
+    https://git.kernel.org/netdev/net-next/c/9d5b5219f672
+  - [net-next,v3,12/13] net: airoha: ppe: Do not use magic numbers in airoha_ppe_foe_get_entry_locked()
+    https://git.kernel.org/netdev/net-next/c/63f283d36b1f
+  - [net-next,v3,13/13] net: airoha: Add AN7583 SoC support
+    https://git.kernel.org/netdev/net-next/c/e4e5ce823bdd
+
+You are awesome, thank you!
 -- 
-2.25.1
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
 
 
