@@ -1,199 +1,257 @@
-Return-Path: <devicetree+bounces-229436-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229437-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72FF9BF780D
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 17:52:41 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D175BF78B2
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 17:59:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id B2C65505363
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 15:52:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 024041889040
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 16:00:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 992B8341AC1;
-	Tue, 21 Oct 2025 15:52:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12B87340A6C;
+	Tue, 21 Oct 2025 15:59:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="AWyfM2ao"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Of9pNhp3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AS8PR04CU009.outbound.protection.outlook.com (mail-westeuropeazon11011043.outbound.protection.outlook.com [52.101.70.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com [209.85.210.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A57C32E6CA8;
-	Tue, 21 Oct 2025 15:52:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.70.43
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761061931; cv=fail; b=JuoiTEs4DAIJE8xnXJEkQWVsHM1z633+JvjpbLW+9iCw5nRxygSnHPJ96MTgxGHLTm88rShHOIdxolS2CpcTfkoPSugMwJIfWXgmVUZInTrKb8oA6CH5Lu+tKvjxQ7fW4QP8kHLr2LCe5jyHMyZIKDz3NGhUrdOvJ2bqeyPvtXY=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761061931; c=relaxed/simple;
-	bh=d0jHF+SAO6HB4ugHyUkF5B6dr8Dvlh8i34xHSt4biYI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=kjtVzMnD4rKHFegvKY+zxmjFWVJTYYd9WB+zf8FiNx6UYrdevi6Zvw+luDIcX0VcQass4mnfxFoTPAXfadlJXcTGPEz9dbmA9jM4KI7Fvre+1/st5x3+G4/qpChTE3pShCHqXHfOv4PEC7uPOe0TPQroKCEM+MrEjPUgrMlMzQA=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=AWyfM2ao; arc=fail smtp.client-ip=52.101.70.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=I+kF/P179d8RrGMIAnViIN3wSgFXaBEPc2onnnLpWdRAL1GB0OaTrg37C5tYjz+VJhqdy05CvhS0M25WXqj5aSClc/UHzsCTldDga/QcS4+GckAb50sRhS154yVUdwT+bk75OoJgUuWYcCRcJtIUv4nHs+6T43/+fr3ihK8W1wEdXnnvNmiM+Zvhnrm3DMTU7WgpdmimydZbeDDBh/CzCA62fWeJGhBcyPL/ZcyYAc9jgNy7DAquuTI2ZbYDCMuWzXH6Xkgg0DrUwT1KA0xiizCovDlkikEm8vIUMbOM0KUl5qKe5YUD/wCCSavVGSYdkBFUTlsYvl2qepOqzEOBQA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ukiJqTKTui/2u5uhtQmS63H2uQ0VsJs6NkLwV0ugjYA=;
- b=hlKEzLzduli5LeZJASMyuMZBUCjsrQLXpRQl7qEbmviyXOWbHHO4E5UsQ1E3VjraLBP7ilxpoHEodF1wQFQsmlbwiIEh8VDZ29zdG1Q3A76XO/OPBQa05gxGEE4JGHaLDiMKJZH6h7cmHHyGoUaxu5eAfni7Swy3xLSHAI+lSyvFKaDiu+RNLft3fWlvWo+6TK2X80QnRgtLWoJgK26BlqXXCsS3Z80MMt98ceDYeD8RFYHw+uwcZKC7W+9+osDqa4havtK+1UPmRjb316/Dd0VtKkwEbtPglUJYDKj+IxUWqQbHy15f6DTII7uwjCPxRwUFf97AwXOL8lPczmpAbw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ukiJqTKTui/2u5uhtQmS63H2uQ0VsJs6NkLwV0ugjYA=;
- b=AWyfM2aoglTAsRjcWypr1EWZy7Wj4EaxARZTXbf5OvbG2YaxiYsKXqKItrimGLzkGkmrekWxLASd3w7vSzTjXnAP2GIm6JFByygjjqK1RwUbjZ1U2ncsC7d2135gHYD0oLqw3bbwLbW/j5TDl1AreLy3ocVZ6DtaGWRMnsMh8r26L8XFJlTxpTgZYa3SVVbl3FufLdTfhcCna7D3dYNTe14h0dwqb4Dtj5X53qamfglmkTfnNt0lYQAUoRZXAXQ+LYxbpd/K5ijqoSgC12xzFekmgXFd9DMXo+9fWjPqRrbOoDezb8Bqf8RQ9yKWs6iyoXllvB7pJqeTczXSg/zYRQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXSPRMB0053.eurprd04.prod.outlook.com (2603:10a6:102:23f::21)
- by DU4PR04MB11385.eurprd04.prod.outlook.com (2603:10a6:10:5d8::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9253.12; Tue, 21 Oct
- 2025 15:52:05 +0000
-Received: from PAXSPRMB0053.eurprd04.prod.outlook.com
- ([fe80::504f:2a06:4579:5f15]) by PAXSPRMB0053.eurprd04.prod.outlook.com
- ([fe80::504f:2a06:4579:5f15%6]) with mapi id 15.20.9253.011; Tue, 21 Oct 2025
- 15:52:05 +0000
-Date: Tue, 21 Oct 2025 11:51:56 -0400
-From: Frank Li <Frank.li@nxp.com>
-To: alice.guo@oss.nxp.com
-Cc: Srinivas Kandagatla <srini@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, Alice Guo <alice.guo@nxp.com>
-Subject: Re: [PATCH v2 3/3] arm64: dts: imx94: Add OCOTP node
-Message-ID: <aPesHPM9tk+f4N4F@lizhi-Precision-Tower-5810>
-References: <20251020-imx94-v1-0-0b4b58a57bf9@nxp.com>
- <20251020-imx94-v1-3-0b4b58a57bf9@nxp.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251020-imx94-v1-3-0b4b58a57bf9@nxp.com>
-X-ClientProxiedBy: BYAPR03CA0018.namprd03.prod.outlook.com
- (2603:10b6:a02:a8::31) To PAXSPRMB0053.eurprd04.prod.outlook.com
- (2603:10a6:102:23f::21)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5249B2EBDC0
+	for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 15:59:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.171
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1761062378; cv=none; b=BZAuxMW9VBLr4T+vVfUyQSsyslznFN7z26Y05MuvzZ/JoU/3t35Vu+36vOeuAQSz6Scsr5eFEfa2R2UvilnSM6/rgp0u8PZA3MbTM2xb+JsYWpF01UALRaU+H07Dnqt9L9F2C3gtj1Jl3fygObq9eKTovtwtAnygGVdBMRBm/C8=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1761062378; c=relaxed/simple;
+	bh=HY4tmLumu95tnZO0PIKEWZ3nWyj5KlbUgjh5Ls7YHk4=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=P/2iiPnBb2L+BIgHRJdjF9WSHUu7l6VfvKfNQ4TqoyvIPBvaj3n11/9FcQk4RAmupqZ4OzbkSYP7hj73G1gtDjcOwdX9azu6SHvQQWKoCnJY6iVK9Ycg/EH8p3NWv50jzew2TTiP2NEYoD8en2ZEa0+7IY6GlHweS0Tr42I4oaU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Of9pNhp3; arc=none smtp.client-ip=209.85.210.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f171.google.com with SMTP id d2e1a72fcca58-79ef9d1805fso5321632b3a.1
+        for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 08:59:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1761062376; x=1761667176; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=xxvY0zACXGHCFvKyeyfV8ZRkEVH8a6vlxZ7eEqgahjc=;
+        b=Of9pNhp38cas/U5Dwev06HaXfDmlOII7PgUMrAUCPDizZbSLImI/PliJFlt6icatVP
+         wBlIZSmTX8mwyTi7dUFLvJKI1Ezi0+bUL7VEE/6+/0GO8UFIQ/eN2m3HX8AuXaa1QVLc
+         0QzIalCu+VgRg0rg5Lnf0p0Nz4RKyVo08EWA38lr6s6VOEFMp77qkxoNsKl/4o7WRR0m
+         ZNnTDZjbmaqiunrlXz9Yl8he6SMWv650cDfL642hxUtqeGAF65Ng3Orv9Co5VCq7Cjmk
+         0mShyWLcoPtZtYjzGxQJr26jG0gLVYQQW9HedFHXhJngfEolaO/1bRRB8Nhzykr/a3Hw
+         c3Uw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761062376; x=1761667176;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=xxvY0zACXGHCFvKyeyfV8ZRkEVH8a6vlxZ7eEqgahjc=;
+        b=e3tV4fPSgI67Q+BKarFHgLpx7u9fTFb+Hoa3IkXiy4oI2EuRFNnu9wNHROTt2ke46Q
+         0PJkWdVY+OHg4mWOljIMgkmQlcUSSSNlCxD4Nom1DYVMAOXweViH2EKVggzIQhrkiDjk
+         +q17rrKMfOccTh2Mxbt6++4y/KZ+Djcq87OAQfo4uFahypZJDoQNXMgfw1VisrRaRGCc
+         QGSA1uSNePIwY2cwmPGKl+s/KiHlTnCuv7zIPW9jumw4dBLMjMjVq9tlN8ThjHAH3Nde
+         lo298Sw7Ato1wX77du9XBLMgA2wa7VzPlo/N5ukSNn8T/+byZB8eYA8FpJ9r5SuWoZI5
+         QmqA==
+X-Forwarded-Encrypted: i=1; AJvYcCWdUBiHPfR71AT3sGoHGWQuvUQssaqirxhsQ9AFX4DOhLRv5ocb/ab0AHTbb3KmLQDP///aCUXq/jda@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywc05GZVpOPXMxcYlwSHyH3MXEw2Hqjw4I5VRZWTi8Cyt7ArohX
+	g9QIX3+491mAG1gOWVdP9TYJuCJegQMzdBreNcGaTKMJeFy+xRC7+VQN
+X-Gm-Gg: ASbGncvRVEkoP97u0reix2S/+I/qmpcHOa3wkgrW3qgupb3Cm+KBsgb37B28cItT/Sp
+	xAOgOUXvEanfKQKUuLXLxM6tPl4dHJKP8ruQKM5r2sev1Bwap8knIkoZ0jHJvuqVYbfF2hJKtrk
+	H7TtOA89J8+lopMGzb1dw1YrSiUgCIe7iTWk5PL2eevY/vQE0FAenRHTtQCsnSmo8OCi7F0vOHI
+	xibRQ0/TKDfb66fWADbhFkGTv7N/NiWXZm4rYJHYKsMgn9S3+gZyDWG5GdJdh6YIBzRrcB3f+4G
+	qOOKZECAoyb1BPQfYUOYZyFO4XjNS8ccS28QOTZo8V7LBXXOn1yDvzI/6yLC5NHZwXb0AFxtr62
+	gIboU0KjuvufLWxJ/3EQ2bIDTQZzQPBp0dL7QEhDZ8aOdxx5dsMw7IZPG8Sece4Z5CXZWyZMqIt
+	mfdNrRzmX7owXyIRRBCZ3EVA==
+X-Google-Smtp-Source: AGHT+IFhUOHgURXgjIUJKEgyJevDB1W3rgBXc5OSEt2LXmyI7xcqGgDAfzABEQH8LSRe15j7wdHHFQ==
+X-Received: by 2002:a05:6a00:998:b0:781:1b5a:959b with SMTP id d2e1a72fcca58-7a220d315e6mr19933953b3a.30.1761062375385;
+        Tue, 21 Oct 2025 08:59:35 -0700 (PDT)
+Received: from DESKTOP-P76LG1N.lan ([42.118.149.214])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7a22ff184basm11793032b3a.15.2025.10.21.08.59.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 21 Oct 2025 08:59:34 -0700 (PDT)
+From: Nam Tran <trannamatk@gmail.com>
+To: lee@kernel.org
+Cc: pavel@kernel.org,
+	gregkh@linuxfoundation.org,
+	rdunlap@infradead.org,
+	christophe.jaillet@wanadoo.fr,
+	krzk+dt@kernel.org,
+	robh@kernel.org,
+	conor+dt@kernel.org,
+	corbet@lwn.net,
+	linux-leds@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-doc@vger.kernel.org,
+	Nam Tran <trannamatk@gmail.com>
+Subject: [PATCH v17 0/3] leds: add new LED driver for TI LP5812
+Date: Tue, 21 Oct 2025 22:59:24 +0700
+Message-Id: <20251021155927.140929-1-trannamatk@gmail.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXSPRMB0053:EE_|DU4PR04MB11385:EE_
-X-MS-Office365-Filtering-Correlation-Id: 377bf249-49a6-4a00-7d89-08de10b9c89a
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|7416014|376014|1800799024|366016|52116014|19092799006|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?dOPqB6EDhUVEDUUup5hfg5tBP6I1f8eHZUQGyNX5LYJdgLVwyxdXbG9ZpB0W?=
- =?us-ascii?Q?lABivvgiK1ZYrylXHi7EnAIShzNxnN5Jw1kRMCvlrpWgJPAwkgdw79Dg3NFE?=
- =?us-ascii?Q?89UZrjrugLZqMdkL2c6cn6NTxZb/tjbQswH5IGZu9j1Q+VG/hdV8cQYfsyag?=
- =?us-ascii?Q?eTVCVCv6+r+gs3jClPw7GcuAj5VFHc07ik5ztx/vX1zTbdnmtrvlQT0jwqhd?=
- =?us-ascii?Q?zfwXMMcmTQ9h6XEY5JkNfOy3EzxhVD0N9ovogfnmapcJXbVOzU34qbhOMQMl?=
- =?us-ascii?Q?VRFathrbUO6OFNotphMk+Vk4Su1rUn29+HDH8ZIkuNoj78eRXBC5mTA1ZsJN?=
- =?us-ascii?Q?po7i6bV+FRNXIptd3i2dkSGY4u/SduRDseNBCdl4DGfVgflFi7Ng0Bcx2OV3?=
- =?us-ascii?Q?HYzPWrcewXnnpYUgc7z+qBFTUZmSiQG9ZP0Cx7saBbj25VzMJRBNVmrR7jvz?=
- =?us-ascii?Q?0OURL8F8K4ssnfY/2fhC/iNdQkM8AqSQoLaFpONFhEHVCr7dw7Tfur0teQYh?=
- =?us-ascii?Q?TNShA3vCXtoCJaRjEQ99vNLOdr27h+q1ROlolX0uLlWTA1vI2vGm1pL+TinL?=
- =?us-ascii?Q?aYsW1CDNiB0OW7uvfnGXsmq9ATpAvy+hMLH2FzJOmjfaYgegik0TvHKNQvzD?=
- =?us-ascii?Q?6tUGV5/n2jwo470MpDRb2hLPo20Gs5qpRegOLXGM/uwt/nS42d6I06FHuC+b?=
- =?us-ascii?Q?k1euodudvXk/ECd/M2YSCXUtucdMhngx8DCllFYUiD6xeUWDmF5Ar8dntgg1?=
- =?us-ascii?Q?Pe9Wfvjyc7pGxtILuRP+gWnx1kJFhdgU4NXkCSgOyjVXXk4q+6JFfI3FT+uO?=
- =?us-ascii?Q?QhvH6NuNcZFK+P1/12FLA5tRWImjEVOVdhYWWnecS63TVb+1fFieTWYVyFJ/?=
- =?us-ascii?Q?gQP3jmu2JIJMRKqtcKp8VvK5mqLBZKQ5G/Diic8/pagZ+mk8pIDUHnDiHjzv?=
- =?us-ascii?Q?puEh1AsFAcGun5fjPy6FFCGWQ+ndM++RcAT9AF+I1VaqBjVB4XAO5qSpkHtW?=
- =?us-ascii?Q?0GVrAvsnupa9WRnx4Q+lRI2rR/DOaP2S+hJgRLFPcYEo0avMKb5KYU0zaRXm?=
- =?us-ascii?Q?pGGHKIWpcsLgj7Pp3zB8hyKxqVdAbvhC/UnaztzK/ao1sidavDAaYgQDEciE?=
- =?us-ascii?Q?tcaHWBi48LLeOFZl5CPBpF32fjlvi2si9YWcJfOPGJx6TKSOFjQ+tNrRuZPe?=
- =?us-ascii?Q?6OpBKlhvqsMiq4OdyJEXPbgLBPwHG6K11shl2M4s8PEoTNDbrDXz9C9PdqNs?=
- =?us-ascii?Q?yX34ZGUtTlzB7IctINlGR4aSUuMgqxf0THNmLeD9gtQ7Rr80ZCzv1wVewfxE?=
- =?us-ascii?Q?A9EL3aW394uSXbyfoas5BcK9P/W8+fmgu2/ItWGWck0EGLI+cpGzZtHiYONk?=
- =?us-ascii?Q?OMSAO10gbcWybzF7crQ8CiNaoCMajCK+2LTxqGaYA3ezZIN60iYkIedZfQh0?=
- =?us-ascii?Q?2+Vjbh+euw/z6xPHEADBKshXTNQPt4gcwWd61PmJ6CyoG4I97idMNpyT4Yy2?=
- =?us-ascii?Q?JCGAbaDjarMKlNBRTzd0hucXckl4fTa/KgoM?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXSPRMB0053.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(1800799024)(366016)(52116014)(19092799006)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?Jx4e3UVsAqxB0lWPv/TLAfdIbp3mBxlawgY3y0ZZMp4XDU5bAFPpvLSWGwad?=
- =?us-ascii?Q?bApVevSAWgjasTD5oFFlD5IcozviOEAdH0TMO6ndSr7XcxWOKIBUOX/aROAw?=
- =?us-ascii?Q?0vM1q67G62Pd1OuCOAunEVBB54/k8pV8Dmi/lGUqFft42AdTfp/U2SCUaMR5?=
- =?us-ascii?Q?crsKC+snkEas+lGNzRv6/PvHcDNiMfX97RxPV6eovMPcxs+hbKq7cJnEBVVK?=
- =?us-ascii?Q?EDWwxtfCTjjgC1HPJCXY1DqPvqxAP/8FQhICxvv+7Md2Rgk8Ud452KZ0yZOx?=
- =?us-ascii?Q?iDDiQ1mwK+q7jMAzPGJvgEW3eoOxoHEdFlaAAtnJDGnEscn4gs1o0UvNzrQU?=
- =?us-ascii?Q?ia0jB0EO9QsZD80bG+v4UbzZ9jzYstkXZM1G+YVhrZLf06NO7tIT+JkX2bsS?=
- =?us-ascii?Q?xYISre1eNYWgOUE5xQrxr/rdkRhCJFs+c7KuUxYkVI06G/1LI8ubGKf2SiCB?=
- =?us-ascii?Q?Yhc8WEwe9F6rqfnUBpXbACT8UOf0rM6PlMjiSFQUtaIm7n9ylGhicwcEHjiV?=
- =?us-ascii?Q?wCpxDSikAsEipbyjGTG4bmhyGtPU9l7F4aRdNz4E2u/iHSgFfrBU7ZZVaFW7?=
- =?us-ascii?Q?fvOzV6mAmnhMBlF/CpAvpjSt10LxgSq064qVO3ipxKxb+GBo5sFNeWbPZui+?=
- =?us-ascii?Q?mEy4kSGwwhKIRv188krvmQIKYKOgPQFhgutg4KCf0fxL0wd+adIZgXapcfqj?=
- =?us-ascii?Q?1gWZU/Y7KyCD7JCuxkehgZzGSW2CdXI63EjJYHva4Lzw8K1BSlDYapSWdn3w?=
- =?us-ascii?Q?0iJW8u7Gpgt5VOwjbVJcfxYIIibymsd+x4WNH/bs3anPTzahJb5TX/A1JsAs?=
- =?us-ascii?Q?AR86mrMJNQhfzrd8VQt/EjnLqf2ZH7skH9Frr3cQx5o+vfiTbtirgKAFvh4H?=
- =?us-ascii?Q?vVPbB4U7eq7iPzMRa9UTGe7woD2LMtStj8kHQQIF2EidjAvWwTMRV4c7ZGb7?=
- =?us-ascii?Q?sq8iLjK4VpSkdf56asY84s2reI2CeTUq+e3x+zpdDvAfmtiNZL10GBZLN9bs?=
- =?us-ascii?Q?N5Au0H7EVrWVaiQz3KqkVQ+mShD5Kiu/qaF/4+NBHsuVGzRypg7K7vNumHce?=
- =?us-ascii?Q?2fIE8EuS12tsHM1NAl3gw0rT1+AAG2cowp2cmD9PJHcx7J4ihtN3mbg/EZRp?=
- =?us-ascii?Q?l8nGmCaxUOfgHHn+O+Dg2KpPownTMJEMY0r/vdSiJ4zBT8FbUllp+G+As6I6?=
- =?us-ascii?Q?ffCHp3cdwZV69isFiGeUoVZ3pIV5/qHH7dFJ8gLyqW5XqSv6IJJ6BNEGhDjw?=
- =?us-ascii?Q?abI5S0B587WXx5Yz0OVDt71yDR/ydh4xj3IcRHp9PnXarfukDP2G/3VFOhAy?=
- =?us-ascii?Q?2Uc1qlJcRMA4cZ2P5n6+0mut3qiSJMzKJy/ba8xZ6Hqi4d7HoYAstY8e0mYB?=
- =?us-ascii?Q?chnkhW96V7rc06fntAaW+EO411EwxCaODmTO/MzSU4Kn1ustvdYCdbo8PFzm?=
- =?us-ascii?Q?2HhEUdd8KKdxZN5r8rwplcaIBLQP+1G9sNs13+2KXOvEcpiX3OamPapbiYs6?=
- =?us-ascii?Q?eLbnas5E4J2NTBf4cRGJDikzN8+Ic3wZ2BjJb2tWWUvKbjEECZxySnLyRyX8?=
- =?us-ascii?Q?qGVdQLhylRmfaw97ZDoi2pdAO/0C8GbIxqnARn9H?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 377bf249-49a6-4a00-7d89-08de10b9c89a
-X-MS-Exchange-CrossTenant-AuthSource: PAXSPRMB0053.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Oct 2025 15:52:05.5604
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: S2Vyu7HHKz+3a0U23x5NWhd0iARHSLYCNm6uXNLigju3GeLmPXsdbNq7AIXm7vbVvVstvHN9KUQkdMEAmIQ5Kg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU4PR04MB11385
+Content-Transfer-Encoding: 8bit
 
-On Mon, Oct 20, 2025 at 06:50:44PM +0800, alice.guo@oss.nxp.com wrote:
-> From: Alice Guo <alice.guo@nxp.com>
->
-> Add OCOTP node to the i.MX94 device tree. This enables support for
-> accessing eFuse on i.MX94 SoCs via the NVMEM subsystem.
->
-> Signed-off-by: Alice Guo <alice.guo@nxp.com>
+This patch series adds initial support for the TI LP5812,
+a 4x3 matrix RGB LED driver with autonomous engine control.
+This version provides a minimal, clean implementation focused
+on core functionality only. The goal is to upstream a solid
+foundation, with the expectation that additional features can
+be added incrementally in future patches.
 
-Reviewed-by: Frank Li <Frank.Li@nxp.com>
+The driver integrates with the LED multicolor framework and
+supports a set of basic sysfs interfaces for LED control and
+chip management.
 
-> ---
->  arch/arm64/boot/dts/freescale/imx94.dtsi | 7 +++++++
->  1 file changed, 7 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/freescale/imx94.dtsi b/arch/arm64/boot/dts/freescale/imx94.dtsi
-> index d4a880496b0e..8728b3aa15a7 100644
-> --- a/arch/arm64/boot/dts/freescale/imx94.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx94.dtsi
-> @@ -1173,6 +1173,13 @@ a55_irqsteer: interrupt-controller@446a0000 {
->  			};
->  		};
->
-> +		ocotp: efuse@47510000 {
-> +			compatible = "fsl,imx94-ocotp", "syscon";
-> +			reg = <0x0 0x47510000 0x0 0x10000>;
-> +			#address-cells = <1>;
-> +			#size-cells = <1>;
-> +		};
-> +
->  		aips4: bus@49000000 {
->  			compatible = "fsl,aips-bus", "simple-bus";
->  			reg = <0x0 0x49000000 0x0 0x800000>;
->
-> --
-> 2.43.0
->
+Signed-off-by: Nam Tran <trannamatk@gmail.com>
+---
+Changes in v17:
+- Dropped direct_mode from ti,scan-mode property.
+- Updated logic so that omitting ti,scan-mode now implies direct-drive mode by default.
+- Refactor lp5812_parse_led_channel() to simplify function arguments.
+- Mark lp5812_cfg as const since it contains only static configuration data.
+- Link to v16: https://lore.kernel.org/linux-leds/20251013173551.108205-1-trannamatk@gmail.com/
+
+Changes in v16:
+- Renamed property 'ti,operation-mode' to 'ti,scan-mode'.
+- Simplified allowed values using regex pattern instead of long enum list.
+- Updated description accordingly and noted 'direct_mode' as default.
+- Updated core driver to match the binding change.
+- Link to v15: https://lore.kernel.org/linux-leds/20251005153337.94025-1-trannamatk@gmail.com/
+
+Changes in v15:
+- Removed all custom sysfs attributes; driver now fully relies on standard LED multicolor class interfaces.
+- Added new device tree property `ti,operation-mode` to configure direct, TCM, and mix scan modes.
+- Dropped previous Reviewed-by tag from the binding patch due to property addition.
+- Removed ABI documentation since no new sysfs entries are created.
+- Updated lp5812.rst documentation accordingly.
+- Link to v14: https://lore.kernel.org/linux-leds/20250907160944.149104-1-trannamatk@gmail.com/
+
+Changes in v14:
+- Replaced inline constants with proper macros for readability and maintainability.
+- Refactored lp5812_read() and lp5812_write() to simplify logic and improve clarity.
+- Updated lp5812_fault_clear() to use switch() instead of if/else chain.
+- Refactored parse_drive_mode() for cleaner logic, removed string parsing of concatenated data.
+- Updated activate_store() and led_current_store() to replace strsep()/kstrtoint() parsing with sscanf().
+- Removed redundant comments and renamed variables for better clarity.
+- Link to v13: https://lore.kernel.org/lkml/20250818012654.143058-1-trannamatk@gmail.com/
+
+Changes in v13:
+- Fixes build warnings reported by kernel test robot:
+  - Inconsistent indent in lp5812_probe()
+  - Uninitialized variable 'ret' in lp5812_multicolor_brightness()
+- Drop of_match_ptr() and directly assign of_match_table, as the driver is DT-only.
+- Link to v12: https://lore.kernel.org/lkml/20250728065814.120769-1-trannamatk@gmail.com/
+
+Changes in v12:
+- Reordered helper functions above lp5812_probe() for better structure.
+- Clarified DT-only support by removing fallback paths and i2c_device_id table.
+- Directly assign platform_data to the correct pointer instead of relying on
+  string comparisons (LP5812_SC_LED, LP5812_MC_LED) and container_of() casting.
+  This simplifies the logic and avoids unnecessary type checks.
+- Removed redundant messages.
+- Update ABI documentation to reflect reduced feature set.
+- Link to v11: https://lore.kernel.org/lkml/20250714172355.84609-1-trannamatk@gmail.com/
+
+Changes in v11:
+- Drop autonomous animation and other advanced features; reduce driver to core functionality only.
+- Simplify LED parsing to use a unified path.
+- Clean up and streamline code
+  - Use alphabetically ordered includes
+  - Remove redundant comments
+  - Fix style issues (e.g., comment capitalization, code placement)
+- Update ABI documentation to reflect reduced feature set.
+- Link to v10: https://lore.kernel.org/lkml/20250618183205.113344-1-trannamatk@gmail.com/
+
+Changes in v10:
+- Address feedback on v9 regarding missing Reviewed-by tag
+- Added explanation: binding structure changed significantly to integrate
+  with the standard leds-class-multicolor.yaml schema and support multi-led@
+  nodes with nested led@ subnodes. This change introduced a new patternProperties
+  hierarchy and removed the previous flat led@ layout used in the earlier versions.
+  So the Reviewed-by tag was dropped out of caution.
+- Address binding document feedback
+  - Use consistent quotes
+  - Replace 'max-cur' with the standard 'led-max-microamp'
+  - Remove 'led-cur' property
+  - Fix mixed indentation
+- Updated core driver to align with the updated binding schema.
+- Address core driver feedback
+  - Use for_each_available_child_of_node_scoped() to simplify the code
+  - Add a return checks for lp5812_write() and lp5812_read()
+  - Remove unneeded trailing commas
+  - Fix unsafe usage of stack-allocated strings
+- Link to v9: https://lore.kernel.org/lkml/20250617154020.7785-1-trannamatk@gmail.com/
+
+Changes in v9:
+- Move driver back to drivers/leds/rgb/
+- Integrate with LED multicolor framework
+- Refactor and simplify custom sysfs handling
+- Extend Device Tree binding to support multi-led@ nodes using leds-class-multicolor.yaml
+- Update documentation to reflect the updated sysfs.
+- Link to v8: https://lore.kernel.org/lkml/20250427082447.138359-1-trannamatk@gmail.com/
+
+Changes in v8:
+- Move driver to drivers/auxdisplay/ instead of drivers/leds/.
+- Rename files from leds-lp5812.c/.h to lp5812.c/.h.
+- Move ti,lp5812.yaml binding to auxdisplay/ directory,
+  and update the title and $id to match new path.
+- No functional changes to the binding itself (keep Reviewed-by).
+- Update commit messages and patch titles to reflect the move.
+- Link to v7: https://lore.kernel.org/linux-leds/20250422190121.46839-1-trannamatk@gmail.com/
+
+Changes in v7:
+- Mark `chip_leds_map` as const.
+- Use consistent `ret` initialization.
+- Simplify the function `set_mix_sel_led()`.
+- Refactor `dev_config_show()` and `led_auto_animation_show()` to avoid temp buffer, malloc/free.
+- Simplify the code and ensure consistent use of mutex lock/unlock in show/store functions.
+- Remove `total_leds` and `total_aeu`.
+- Link to v6: https://lore.kernel.org/linux-leds/20250419184333.56617-1-trannamatk@gmail.com/
+
+Changes in v6:
+- Add `vcc-supply` property to describe the LP5812 power supply.
+- Remove `chan-name` property and entire LED subnodes, as they are not needed.
+- Update LP5812 LED driver node to Raspberry Pi 4 B Device Tree, based on updated binding.
+- Link to v5: https://lore.kernel.org/linux-leds/20250414145742.35713-1-trannamatk@gmail.com/
+
+Changes in v5:
+- Rebase on v6.15-rc2
+- Removed unused functions (lp5812_dump_regs, lp5812_update_bit).
+- Address Krzysztof's review comments
+- Link to v4: https://lore.kernel.org/linux-leds/20250405183246.198568-1-trannamatk@gmail.com/
+---
+
+Nam Tran (3):
+  dt-bindings: leds: add TI/National Semiconductor LP5812 LED Driver
+  leds: add basic support for TI/National Semiconductor LP5812 LED
+    Driver
+  docs: leds: Document TI LP5812 LED driver
+
+ .../devicetree/bindings/leds/ti,lp5812.yaml   | 246 ++++++
+ Documentation/leds/index.rst                  |   1 +
+ Documentation/leds/leds-lp5812.rst            |  50 ++
+ MAINTAINERS                                   |  11 +
+ drivers/leds/rgb/Kconfig                      |  13 +
+ drivers/leds/rgb/Makefile                     |   1 +
+ drivers/leds/rgb/leds-lp5812.c                | 730 ++++++++++++++++++
+ drivers/leds/rgb/leds-lp5812.h                | 197 +++++
+ 8 files changed, 1249 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/leds/ti,lp5812.yaml
+ create mode 100644 Documentation/leds/leds-lp5812.rst
+ create mode 100644 drivers/leds/rgb/leds-lp5812.c
+ create mode 100644 drivers/leds/rgb/leds-lp5812.h
+
+
+base-commit: 6548d364a3e850326831799d7e3ea2d7bb97ba08
+-- 
+2.25.1
+
 
