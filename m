@@ -1,142 +1,193 @@
-Return-Path: <devicetree+bounces-229356-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229359-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4730CBF6745
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 14:30:14 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E2217BF67DE
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 14:41:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8F3DA19A3A5D
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 12:30:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 61B171898F50
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 12:42:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90E1332F746;
-	Tue, 21 Oct 2025 12:29:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A718331A70;
+	Tue, 21 Oct 2025 12:41:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="KRU54xX1"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LFZS8w5W"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
+Received: from mail-yx1-f54.google.com (mail-yx1-f54.google.com [74.125.224.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAB16224AF9
-	for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 12:29:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6AC73314DE
+	for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 12:41:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.224.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761049790; cv=none; b=DBSFk6uYHFU3yX+b4QWNmNaq3wZy74lA0QANVDVMMjtVfbup+YS3pRXaXa7SKhIa4x14Ap92rn+HPufiEZd7zJfbNhnxzICpSkJb49Rnrl6Camprc+nTBWPfhLu8s0iVzM20W9tVKNEaQ/z3UEU72jJ3hJt/1rJ8tSrtwNRGsfk=
+	t=1761050474; cv=none; b=pZdTzF3tmclBRUos+7U+dQGVKml1Eh3BR4zRXeKf/gk6rQ+SNqhzxLkw2xUfnC2i4sgrKBWkvRcgAXy6czzWgS0g0ritUU4xTJKrNfydwqrwMBzkfCfaKT/yPr3e2Yjywpd/pE0HgfqPNzgO90pVSnfOaIqDc8LOI5xgzakSbuI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761049790; c=relaxed/simple;
-	bh=tI/abLRM6RRTkjpi7bp0htXWDFC6rN0dzDuIsEtxgMA=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=mFImAwX2W6N71MFKYPPjs9FDFbfzYYUeIDrN2lWo+8YX4kCxzn0MO8JaKD+zJP4U9HX617gXGwmoIQ4Z4mrX+n2j3v0dUsL9is3vAGV9aiqZdmevZ8zRZaJM+jryoS371I2YGY3m6Q0IK/SY906gMfJIUux4P/hKhtn4NxFCX48=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=KRU54xX1; arc=none smtp.client-ip=209.85.221.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-427015003eeso864470f8f.0
-        for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 05:29:47 -0700 (PDT)
+	s=arc-20240116; t=1761050474; c=relaxed/simple;
+	bh=/m0TOcjgBRnhBy4k9+IOc4oUHAiMNdiqCjb/Sku6fKI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ikD3QlDa3gV+Q0s9yVPSlrDlLbKxRz1T1vB1g3ftnJs5b+ghyCZ0EXE9P1j7luwvDb4wyJeczlnbBRWGAQ8PxyAgnUmPOdjl+9xa/CYAEX79NrP9jSCJnxun17gt8BaQGlSz+Sf6kT3ISDeoKtWNKovqHvtYk0o8xGy1iSY0MRQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LFZS8w5W; arc=none smtp.client-ip=74.125.224.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yx1-f54.google.com with SMTP id 956f58d0204a3-63cdbb02faaso1054631d50.3
+        for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 05:41:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1761049786; x=1761654586; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1761050471; x=1761655271; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=QfSnV9t1F/SDBYI2zrfencQ/tnUy59bzGcgByOeP5HQ=;
-        b=KRU54xX1+UWf6Ux8S3urtZpTMteYLj8lWdCjWRc9baYKCEqI1gmvxQbIz758dKPqWW
-         cJjtBI4CDqDThLG+SmGxSf1oP562+GFYfFJPwQQqcuSIycJgQUM1JJ4XSjRSASRuAm9z
-         jfSgQgV5ajg8Lt31icVquTVxdcNtUG19xTgXHHbjwfVabmaN1xgSZQoV2jhoAokvF630
-         Cd440xMbyVcDammePjBF0DRN2C8ceVn4oeZoCyTMUf2X1BYxUv5LcfauS+cw6giJb/BR
-         DsNL/y0O+CRqfPZzpVXU4mIrSpCSOzdqSqZHMUOyoTqnBDtGTxs7Rwam3BquXehT6tJ/
-         GoWQ==
+        bh=/m0TOcjgBRnhBy4k9+IOc4oUHAiMNdiqCjb/Sku6fKI=;
+        b=LFZS8w5WY2MUjkq16tEYFnxjQhC90cpPxd+GpmwV1jDwgRvqv9JN1y0UoXKgg8kPIg
+         y+M7J9qOqriioozg5yQdm0uvy7skjiEZJf2p3Knenmi6XCYa1qXWM4Qx/KI13g3NPubd
+         UHcQahlGpiUrKP3s6SQQmFn8obHsesB548vaj3mH+Yi/6QyAmm2AqPL4mE4YcOtaEpqd
+         lPAwngWnPnLl1l2kcU8NXdxag2QjV6IP52RBoYINURvd37q9dQrQX7Gr6xMfn4WdwBG/
+         ULtv83k3K2BYSV/QtEfeTOMC3NOsEv1Dd/hagKlCcnHZCFarBw6wWvTLI0CJolBh8Ntr
+         +a8Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761049786; x=1761654586;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1761050471; x=1761655271;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=QfSnV9t1F/SDBYI2zrfencQ/tnUy59bzGcgByOeP5HQ=;
-        b=wKDkEkMGq+QDnm4ZG6tBKQpLegwwyd5rlJ4kXwcHHVviAwP+L4aeI5mDeqSv5ikv6U
-         aJM94xc/j28gVqdvNZFUrNmY16SYma1Rv6kYN1+AUUweuLwKI31fQvOYLeSjEq2jHjfp
-         zUQyGphFWtlj85hRBJQ2VeXqbOzudDbxV9iznXV68RBjBBdVlXawhXo0mjpx24UguRgY
-         5nnfXbZFiNa1cczqzxX49vTWCLwg4OO0zAzROwBtOgJE1QKR+ut1I6rzs5Mo6VEdlHPP
-         Ai1Opgej+FuhJfu6dZLyqcirq2by4zGippVHib9Pg/bGp+DeWJNRhXFDBUVuVGbUT8yK
-         f0jw==
-X-Forwarded-Encrypted: i=1; AJvYcCUxW9BUR+PzouGsiXqvfRJkWxQls8hwOx8/iWlO1FI3wyxO7i7u/6Si8EtntVvrj4aXDILq6nvjKHJ2@vger.kernel.org
-X-Gm-Message-State: AOJu0YwWhdgKFehb6fZM7fnk5Vcdi4cTso9n/N3cpUcUqyKO4xj3k/9R
-	y2KbIiD1e2QFZtInmfI54GZ5GNoqT84TwqEMOG8FL1Eu2xWXd1VKsomS3iM0seaYazM=
-X-Gm-Gg: ASbGnctpwL/HEZC3l5ouHE/beAx64pS5xjcEGbAwrladenEkoSiTJu1yEuSPUpw2Vsc
-	Kd29ZEbXgPip/yurcz2DJst0tEpN5mMqM3zlzWMW7AWZ6Ph6zlqSoPx4NZ+y+T1tD1MvKYDAUMY
-	F3fiZdvjBehH/DqmbF9OokoqwJjiHSQGss5efURd+hF0XuAaB5XXTpPd42CV6l/a+2ZdIJjUD/X
-	arMGaSuRGowVHjv69V3Ed01nXSmunPYFqWlP3mKgFR0BhK1dKy9KLqGVHl9eYHw/pzybyuroztp
-	eyOchpxOLdPN1Zwk8fDqMXAEVSAqB50HeN7ify7RtN+TBJC7ry4MX2RZI0dgqgf6d0Sjv4Tu4GP
-	Wdu3lwAMLDBLLMmXA+/zxo3kN8F+lX/UtU7nldS1AKJW8f7oF44CID8SK5F/ndHttUoEWdXldKI
-	V9ETIzBg0E89DmgmCsXLj3YtDZ98QMfVw=
-X-Google-Smtp-Source: AGHT+IEpSASoRALREWuHJtczt+cRiPjUi8QW3wo+6igdJHTvMSXLltYmWA/nv4zRiVtwUcuiVTG1NQ==
-X-Received: by 2002:a05:6000:4382:b0:427:a6a:fd44 with SMTP id ffacd0b85a97d-4270a6b0aa2mr10341671f8f.61.1761049785881;
-        Tue, 21 Oct 2025 05:29:45 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:3d9:2080:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-427ea5b3c34sm20057043f8f.17.2025.10.21.05.29.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Oct 2025 05:29:45 -0700 (PDT)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-To: Kevin Hilman <khilman@baylibre.com>, 
- Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Keke Li <keke.li@amlogic.com>
-Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20250918-b4-c3isp-v1-1-5f48db6516c9@amlogic.com>
-References: <20250918-b4-c3isp-v1-1-5f48db6516c9@amlogic.com>
-Subject: Re: [PATCH RESEND] dts: arm64: amlogic: Add ISP related nodes for
- C3
-Message-Id: <176104978523.3075289.16180550527361572624.b4-ty@linaro.org>
-Date: Tue, 21 Oct 2025 14:29:45 +0200
+        bh=/m0TOcjgBRnhBy4k9+IOc4oUHAiMNdiqCjb/Sku6fKI=;
+        b=ES51Z98zeIciOaMiZKfiXwlUu1dWYW4kjrB46zaigHQhBlDFqlDo4/NSkodfldMn1R
+         JugkKa1Ov35mKLGP6uZoSeBac0f/gmk/701/W092yNnYu3S89oHZc/53IS5QwPaJWxMn
+         +sm017wXgIbOs68CdzCxOTkB6FYuuLeSJp0oC2S+gH/nlAqRKvQrs8t9f8uDH4pli++q
+         DQDsDa6ePXokxQqwiNYcNfT865+UFL8M0aXUJakbDqjKeVvhccVFaRvy36y0lu9V8aPw
+         fJxngx94rId2yFsFDDPN17t7r1gGBK/VBS1xt/O+5GNHdnZN6I/Hgpf0vDfUK6qZn2HU
+         S8mA==
+X-Forwarded-Encrypted: i=1; AJvYcCXhKXV0rrygAHd2Wa74mTPU8Lz1DmZIxzibHok2Gc5Q+LuKXUUQQkTDOel3IgiJvyvSeX8ov+ZJNDHd@vger.kernel.org
+X-Gm-Message-State: AOJu0YwxJOzzw0fcou9DtL1+JFEZromBHWNVgI94wZmLxe1+qdVFoSw1
+	2KQ7ZPdz0M1jEvkgDUf8wPRQfEJ/bSJ1si3SyNQcsgS05K0dmX8sUFBX7ADVOTGSfKX8Tv3+PFz
+	gXB7RBSZAfICZnTShE2Z9srA1vvmPZT2bPrld
+X-Gm-Gg: ASbGncu3aWJLiB9CEn9j2Yg+xImOzOWj4yc53e6lEyWUE90FkhkPni1mWK3kwjT4dcn
+	GwOXYoLH7pRxwR/aEgtxe43HP3g6wTBS1NWhErWPCUSsf9FSOO8l6fDa0Z8ET73KtIQk+dYvaaU
+	pvcLWUrhzwRwriULhzfO7lmyBi+oVCB37EwvBY9sOJ1ktIEEe8KE8h3SkR43/MXxX6UpfwuukNX
+	Y9GRFOaqsaNQO+SW66+b1urOVoaTQjnQ31gWZDkJeyro89+KMk8/ApCQcO9rJV9O+Cj
+X-Google-Smtp-Source: AGHT+IF8o20za+HTwMDWY2fwaRggRCYsTC+c9edEkcBpF7TwAQ/7MOepRnR80Z4kaLbWV/H+95He/Puc0FNo6tREKAY=
+X-Received: by 2002:a05:690e:140a:b0:63e:f1f:6f8b with SMTP id
+ 956f58d0204a3-63e9e01afe1mr1486967d50.2.1761050471406; Tue, 21 Oct 2025
+ 05:41:11 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.3
+References: <20251018121155.7743-1-l.rubusch@gmail.com> <f875b4ec-4917-49c5-becf-e32c0d872f7c@kernel.org>
+In-Reply-To: <f875b4ec-4917-49c5-becf-e32c0d872f7c@kernel.org>
+From: Lothar Rubusch <l.rubusch@gmail.com>
+Date: Tue, 21 Oct 2025 14:40:35 +0200
+X-Gm-Features: AS18NWAzb5kZNdjnkXIbfwZmIgbMYzxR5zcbrsV-bNqml_zi5ri2z-ZaRX-06G4
+Message-ID: <CAFXKEHYUKSFVyyZS7v2tUeAuBkS8+_p9qCXOzfvMsUQGNHf2Aw@mail.gmail.com>
+Subject: Re: [PATCH v7 00/11] Add Enclustra Arria10 and Cyclone5 SoMs
+To: Dinh Nguyen <dinguyen@kernel.org>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	martin.petersen@oracle.com, pabeni@redhat.com, rostedt@goodmis.org, 
+	bhelgaas@google.com, arnd@arndb.de, matthew.gerlach@altera.com, 
+	tien.fong.chee@altera.com, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi,
+Hi Dinh!
 
-On Thu, 18 Sep 2025 16:35:09 +0800, Keke Li wrote:
-> Add the IMX290 sensor node description to the device tree file,
-> which will be controlled via I2C bus with image data transmission
-> through MIPI CSI-2 interface.
-> 
-> Add CSI-2, adapter and ISP nodes for C3 family.
-> 
-> 
-> [...]
+On Mon, Oct 20, 2025 at 6:11=E2=80=AFPM Dinh Nguyen <dinguyen@kernel.org> w=
+rote:
+>
+> Hi Lothar,
+>
+> On 10/18/25 07:11, Lothar Rubusch wrote:
+> > This series was already presented in November 2024.
+> > https://lkml.org/lkml/2024/11/16/198
+> >
+> > Due to the ongoing complex situation with Intel's maintainership,
+> > the series likely did not progress further at the time. In early
+> > 2025, Tien Fong Chee (in CC) informed me that Altera is expected
+> > to resume maintainership in late 2025. I was referred to Matthew
+> > Gerlach (also CC'd), who, as I understand, is taking over at least
+> > part of the Intel/Altera-related responsibilities.
+> >
+>
+> I am actively monitoring and responding to patches. I will get to this
+> series as soon as I can. Trust me, I have a decent pile of patches to
+> work through. This series is on my radar.
+>
 
-Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.19/arm64-dt)
+What a great news that you're carrying on with Altera. I really
+appreciate, that you came
+back and answered to this request here. Pls, take your time, no stress
+for this series.
 
-[1/1] dts: arm64: amlogic: Add ISP related nodes for C3
-      https://git.kernel.org/amlogic/c/63aa70a1f84f5dfabbac28d60e12949705876648
+> > At this year=E2=80=99s OSS in Amsterdam, I had an encouraging discussio=
+n
+> > with Arnd Bergmann (CC=E2=80=99d), which motivated me to continue pursu=
+ing
+> > this patch series.
+> >
+> > Hence, a slightly reworded update goes now again to the mailing lists
+> > and will drive the binding check bot crazy. While not all Altera
+> > bindings may be fully resolved yet, this series should not introduce
+> > any new issues.
+> > I=E2=80=99m submitting it based on prior acknowledgments and will wait =
+a few
+> > weeks to see if a maintainer responds. If it remains orphaned, I=E2=80=
+=99ll
+> > follow up with you, Arnd, as previously mentioned - this is just a
+> > heads-up for now.
+> >
+> > I hope this approach is acceptable. Please let me know otherwise.
+> > Thank you for all the support in this so far.
+> >
+> > Add device-tree support for the following SoMs:
+> > - Mercury SA1 (cyclone5)
+> > - Mercury+ SA2 (cyclone5)
+> > - Mercury+ AA1 (arria10)
+> >
+> > Further add device-tree support for the corresponding carrier boards:
+> > - Mercury+ PE1
+> > - Mercury+ PE3
+> > - Mercury+ ST1
+> >
+> > Finally, provide generic support for combinations of the above with
+> > one of the boot-modes
+> > - SD
+> > - eMMC
+> > - QSPI
+> >
+> > All of the above elements can be freely combined, with the combinations
+> > specified in the provided .dts files. This renders the existing .dts fi=
+le
+> > unnecessary. Any additional minor fixes to the dtbs_checks are applied
+> > separately.
+> >
+> > This approach is also necessary for integrating with the corresponding
+> > bootloader using dts/upstream, which is one of the reasons for the .dts=
+i
+> > split.
+> >
+> > Note: I used AI tools to help refine the wording of the commit messages=
+.
+> >
+>
+> There were a slew of bindings check warnings from V6. I'm also working
+> on fixing up the existing warnings as well.
+>
 
-These changes has been applied on the intermediate git tree [1].
+Yes, that's what I saw, too. Since there were still bindings in TXT
+form and no real way of accepting changes, it felt like a deadlock.
+I became aware how difficult the situation for Intel & CO maintenance
+seemed to have been during
+past months. So, my actually old cyclone5 patches were really not top prio =
+;o)
 
-The v6.19/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
-for inclusion in their intermediate git branches in order to be sent to Linus during
-the next merge window, or sooner if it's a set of fixes.
+Anyway, is there anything I can help you with converting bindings?
+Anything to have a look into?
+I'm aware that also getting into would probably request more time than
+to help out, but if there is
+anything I might be helpful, just let me know. I might give it a try.
 
-In the cases of fixes, those will be merged in the current release candidate
-kernel and as soon they appear on the Linux master branch they will be
-backported to the previous Stable and Long-Stable kernels [2].
-
-The intermediate git branches are merged daily in the linux-next tree [3],
-people are encouraged testing these pre-release kernels and report issues on the
-relevant mailing-lists.
-
-If problems are discovered on those changes, please submit a signed-off-by revert
-patch followed by a corrective changeset.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
-[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
-[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
-
--- 
-Neil
-
+Best,
+L
 
