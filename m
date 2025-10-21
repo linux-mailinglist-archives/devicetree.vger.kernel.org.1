@@ -1,139 +1,152 @@
-Return-Path: <devicetree+bounces-229458-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229459-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F702BF7B93
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 18:38:26 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 57A98BF7BD8
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 18:41:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5A664484569
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 16:36:56 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id B38785489F4
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 16:37:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 421A234A76D;
-	Tue, 21 Oct 2025 16:33:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A7DD347BC8;
+	Tue, 21 Oct 2025 16:36:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="gb8fpeWi"
+	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="TBNxILAZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78C40347BC0;
-	Tue, 21 Oct 2025 16:33:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AF9A347BBC;
+	Tue, 21 Oct 2025 16:36:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761064425; cv=none; b=g0cBixZtdOsY379DozyTFdcNoZNfYh6lKf9eu5s3ntvvwadXoIdOVF10EJLp6qhz6/wy7utSWATjWU7dHFZGF5/fAj9xo4gFlFpS2wgoCFdn15p5akVXxKdvszHrVeN6sAmG7Z9XAPh9wgvfXGr7D4eIPTW7Jd6BSxXb9DCyFDE=
+	t=1761064601; cv=none; b=tR909rv6n6Wq672lGq4MB+NlGLMeX2W1H7tl7CPmKeil280RKC0S0SNOS0jjeJZZ661xI+6k1vhoyIQOE3B+vTkX91C7iRMlxOgdHpfqg9nz+l7+Q88lgwYozYmwHsTc7yPfgXNLhbxlFN0K/+8yrkVcGEWOdMbdEnnm2PYQZT8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761064425; c=relaxed/simple;
-	bh=nBWa0ag7woJY2vPCiQSnDe7vW7z+266sYVbZE0b/SD4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=PSQ2BcL+9Aii69A/nzLcr9kpVO0nC+IEikIbOo/sdOnH2Z23JK5tHpW9Jzjo3iskRZ4Lx10E/vo3Rf3ST/8szwL4rdQ99HW+A6+0KHMJvI0QJaaA6R6B8GEMv48OwaHkp7sT0kh2g5Vkjg9ij/gzGs85C+OrWVAG+4M6c+CysZg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=gb8fpeWi; arc=none smtp.client-ip=185.246.84.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id 166741A15A2;
-	Tue, 21 Oct 2025 16:33:42 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id DDE9E60680;
-	Tue, 21 Oct 2025 16:33:41 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 184FE102F241C;
-	Tue, 21 Oct 2025 18:33:38 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1761064420; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=iTiW6J9ezHzkr5T/PBNfpX9M9qHogdCahO4t6SNr+IY=;
-	b=gb8fpeWij1R7TR5EcR9xOhp65un2u2vMHve52XCk+CehX/rN5+aYJSr+eMRz3+OvkDLRyh
-	IUezuhhx2r/AsGirkrBvcBxXD4oku6EdoNgZkkyufPIJXarnFSCuJe6wFqIFcx6r5ftBaO
-	ZOXmi+t5SkBCwJ8lJlGbWY1V98BgkmrsfRNj6jhsz1zUSdOA7+by2/t32456j/bttUccBY
-	0JbncKWdr7jfGXY2jheA2XhglDCJXoP1SB5Qoxqx1SnM+tcthz6CTEOHkj13G9wHf0ruwP
-	cZnPE1kdUpwKCuSnl3vwuo/KoWF/wg8UsPUjGgQxGhJPnkRGNZT77PgnU47ZGQ==
-From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-Date: Tue, 21 Oct 2025 18:32:53 +0200
-Subject: [PATCH net-next 12/12] MIPS: mobileye: eyeq5-epm: add two Cadence
- GEM Ethernet PHYs
+	s=arc-20240116; t=1761064601; c=relaxed/simple;
+	bh=DVrwumkkr5SZ61R+aJi6TAQQwRK3yb6x0kw2lkyk8uI=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=cz1DXXanPyxjH3LDaexMlpGckJskQ+TVn6VrGfRLAhOXl13EtyZnJrw1lxmVJzglxQax/yAfiarSiQd9u9q2NN5R1RyLoYATiFrdKrxgmeOc0I2hqEhq0ibgVH6vfrpIc5p7cueBq2CShVYXZ/w521Wvtgq7N+rGwGG5PgYK458=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=TBNxILAZ; arc=none smtp.client-ip=178.238.236.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=kemnade.info; s=20220719; h=References:In-Reply-To:Cc:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=f+3XfcfI7PAxJh75DtOxQWWY3IPGdxhd0iLpj5h8rgU=; b=TBNxILAZZ5NJT3FqILwfu+4JPp
+	AcvLYpdWMkyrVp0gesCWxqqDlkyyuD8sABnCaANaOg9eNK048kU08D44e5XXbBM7x3vncvUE0Ie8P
+	XU+SmuaMganm0TCf50E7EkYmSt1Zs7XeK2Iyuo71hW5U68IEG8AQNBc24EIOsw1RjruRferk3QhFJ
+	ZoV+XjJzvhsSf9Hor/oduxKBQIwaR0fmq3/L9F4TVBvNCUNXQuxgo9YZHL2t2D6m6iJIuXjrLYbPw
+	N0TmE63JAOQV+ajgRDHyG3GXNUkZnMQhOrIqIeipg+bGaNDu9TzhmSpHXY+4kdvPvUzoj0PqBf4LS
+	Uo+32VyQ==;
+Date: Tue, 21 Oct 2025 18:36:24 +0200
+From: Andreas Kemnade <andreas@kemnade.info>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Dmitry
+ Torokhov <dmitry.torokhov@gmail.com>, Tony Lindgren <tony@atomide.com>,
+ Kevin Hilman <khilman@kernel.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
+ linux-omap@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: mfd: twl: enable power button also for
+ twl603x
+Message-ID: <20251021183624.6fde0a15@kemnade.info>
+In-Reply-To: <beabb9f7-fcf4-4c1d-a259-6c48e82fbcf5@kernel.org>
+References: <20251020-twl6030-button-v1-0-93e4644ac974@kernel.org>
+	<20251020-twl6030-button-v1-1-93e4644ac974@kernel.org>
+	<5fd43d2c-3a08-4a51-abb6-38883ee86bf2@kernel.org>
+	<20251021104515.5e25bec1@kemnade.info>
+	<beabb9f7-fcf4-4c1d-a259-6c48e82fbcf5@kernel.org>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; aarch64-unknown-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20251021-macb-eyeq5-v1-12-3b0b5a9d2f85@bootlin.com>
-References: <20251021-macb-eyeq5-v1-0-3b0b5a9d2f85@bootlin.com>
-In-Reply-To: <20251021-macb-eyeq5-v1-0-3b0b5a9d2f85@bootlin.com>
-To: Andrew Lunn <andrew+netdev@lunn.ch>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Nicolas Ferre <nicolas.ferre@microchip.com>, 
- Claudiu Beznea <claudiu.beznea@tuxon.dev>, 
- Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, 
- =?utf-8?q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>, 
- Russell King <linux@armlinux.org.uk>, Vinod Koul <vkoul@kernel.org>, 
- Kishon Vijay Abraham I <kishon@kernel.org>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, 
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
- Philipp Zabel <p.zabel@pengutronix.de>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org, 
- linux-phy@lists.infradead.org, linux-clk@vger.kernel.org, 
- Tawfik Bayouk <tawfik.bayouk@mobileye.com>, 
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- =?utf-8?q?Beno=C3=AEt_Monin?= <benoit.monin@bootlin.com>, 
- Maxime Chevallier <maxime.chevallier@bootlin.com>, 
- =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>, 
- Andrew Lunn <andrew@lunn.ch>
-X-Mailer: b4 0.14.3
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-The Mobileye EyeQ5 eval board (EPM) embeds two MDIO PHYs.
+On Tue, 21 Oct 2025 11:58:49 +0200
+Krzysztof Kozlowski <krzk@kernel.org> wrote:
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
-Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
----
- arch/mips/boot/dts/mobileye/eyeq5-epm5.dts | 26 ++++++++++++++++++++++++++
- 1 file changed, 26 insertions(+)
+> On 21/10/2025 10:45, Andreas Kemnade wrote:
+> > On Tue, 21 Oct 2025 09:10:28 +0200
+> > Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> >   
+> >> On 20/10/2025 14:31, akemnade@kernel.org wrote:  
+> >>> From: Andreas Kemnade <andreas@kemnade.info>
+> >>>
+> >>> TWL603x has also a power button, so add the corresponding subnode.    
+> >>
+> >> No, we don't add subnodes just because there is a power button. This
+> >> needs broader explanation, see also my further comment.
+> >>  
+> > Hmm, what is the general pattern to follow if a mfd device has some
+> > functionality which depends on some optional external components?  
+> 
+> Please describe it better - how these nodes depend on external
+> component? The power button logic/IC is in this device always. It is not
+> optional.
+>
+The power button logic is always there, yes, but it depends on an optional
+actual mechanical button connected to a pad of this device, which is
+not always there. The logic will not work if I just put my finger on the PMIC,
+but it will work if there is a mechanical button which I can press connected to
+the PMIC.
 
-diff --git a/arch/mips/boot/dts/mobileye/eyeq5-epm5.dts b/arch/mips/boot/dts/mobileye/eyeq5-epm5.dts
-index 9fc1a1b0a81b..babf52731ea6 100644
---- a/arch/mips/boot/dts/mobileye/eyeq5-epm5.dts
-+++ b/arch/mips/boot/dts/mobileye/eyeq5-epm5.dts
-@@ -29,3 +29,29 @@ temperature-sensor@48 {
- 		label = "U60";
- 	};
- };
-+
-+&macb0 {
-+	phy-mode = "sgmii";
-+	phy-handle = <&macb0_phy>;
-+
-+	mdio {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		macb0_phy: ethernet-phy@e {
-+			reg = <0xe>;
-+		};
-+	};
-+};
-+
-+&macb1 {
-+	phy-mode = "rgmii-id";
-+	phy-handle = <&macb1_phy>;
-+
-+	mdio {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		macb1_phy: ethernet-phy@e {
-+			reg = <0xe>;
-+		};
-+	};
-+};
+> > The might be a power button connected to it or not. I find it ugly
+> > to have non-existent stuff in the system.
+> > In general, yes I understand the argument against the subnode.
+> >   
+> >>>
+> >>> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+> >>> ---
+> >>>  Documentation/devicetree/bindings/mfd/ti,twl.yaml | 40 ++++++++++++++++++-----
+> >>>  1 file changed, 32 insertions(+), 8 deletions(-)
+> >>>
+> >>> diff --git a/Documentation/devicetree/bindings/mfd/ti,twl.yaml b/Documentation/devicetree/bindings/mfd/ti,twl.yaml
+> >>> index 776b04e182cb2..3527fee32cb07 100644
+> >>> --- a/Documentation/devicetree/bindings/mfd/ti,twl.yaml
+> >>> +++ b/Documentation/devicetree/bindings/mfd/ti,twl.yaml
+> >>> @@ -55,6 +55,15 @@ allOf:
+> >>>  
+> >>>          gpadc: false
+> >>>  
+> >>> +        pwrbutton:
+> >>> +          properties:
+> >>> +            compatible:
+> >>> +              const: ti,twl4030-pwrbutton
+> >>> +            interrupts:
+> >>> +              items:
+> >>> +                - items:
+> >>> +                    const: 8    
+> >>
+> >> What is the point of defining const interrupts? If they are const, then
+> >> it is implied by compatible and defined in the driver.
+> >>
+> >> Anyway, double items does not look right here. This is an odd syntax.
+> >>  
+> > Quoting Rob:
+> > As 'interrupts' is a matrix, this needs to be:
+> > 
+> > interrupts:
+> >   items:
+> >     - items:
+> >         - const: 8
+> > 
+> > https://lore.kernel.org/linux-omap/20240318150750.GA4000895-robh@kernel.org/  
+> 
+> 
+> OK, this answers second part but I don't understand why even having this
+> in DT. If this is fixed, should be implied by the compatible?
+> 
+correct, they do not need to come from DT. The same is true for all
+subnodes of the twl[46]03X. I just followed the usual
+pattern there, which is of course not recommended for new designs.
 
--- 
-2.51.1
-
+Regards,
+Andreas
 
