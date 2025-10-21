@@ -1,81 +1,40 @@
-Return-Path: <devicetree+bounces-229539-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229540-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6410BBF93B5
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 01:29:36 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71B9EBF9400
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 01:35:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id C591C4EF677
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 23:29:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 249A058109C
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 23:35:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 898672C15BB;
-	Tue, 21 Oct 2025 23:29:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="KFrlPpKe"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6056E296BB2;
+	Tue, 21 Oct 2025 23:35:17 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from freeshell.de (freeshell.de [116.202.128.144])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59D902C0284
-	for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 23:29:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80D39350A02;
+	Tue, 21 Oct 2025 23:35:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.202.128.144
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761089367; cv=none; b=LokhjpXWYsOGZjCqjxuhvW7BgM55Ykr+d3meOITFdEaiJ1c/d97miMryJF6l1nCWehBjeteWAXVK+aB+c66J7fc5rV03MOqXV0sMk9Gan0EohpLzLWg2MHZC7CuowlDBSYp1HkB41uhgNR5GiwKKojGahHXfpXr8bLEp5FNSMV4=
+	t=1761089717; cv=none; b=anXfKfaeEzdUl5/kxTv2unseIR71YfoiYNwf7jf6h0TUYiu2hrD4qnq9raawXJj8MiH5z4Khk7rTAWMVkUPn4ejjPINbbgNV4xq549K/ZZ0L2GGT3RdWka9XlGe77FnWkmX1c/MlnJ1aSHad9HJ95hzETAHMmKF2y+0cRu7vpGE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761089367; c=relaxed/simple;
-	bh=YiQ00PfEVe/ppBZId7C3yI+O9veQpCNxtgG44l2FUIk=;
+	s=arc-20240116; t=1761089717; c=relaxed/simple;
+	bh=r+m8U0iErE67jQlOhGvNAC61ytioTgA98Z2QAM1yMrY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QsUq9myjmtilAUXjQak6+LTF03GTCfmFasgj92Q3zhsZkShDIB80V7KC8S5lC9As7NmCm49YtTDm1uS1ccK5EyYeq77IZg8U5AdYUED3VOi5ayUJXa+5RNt6do4UEo64x7eyXlKru9MAH3AMauByuojtsij8bNZgPFq6nK1dnKo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=KFrlPpKe; arc=none smtp.client-ip=209.85.221.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-3ece0e4c5faso5960532f8f.1
-        for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 16:29:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1761089363; x=1761694163; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=FAyZeaoohpS3+LaKQX81UzP2EtFamTxJm01ohQDDaaE=;
-        b=KFrlPpKejI5BJjV0J2TGaHxQZt8IPkRanUNmlGEqP2yVE2AmbG/p4P9dTyj2KDPtEg
-         WBSIyKCK6Lz3hxPz2SByzokcbErqp8wvj0KXNm3TXHmya3iIGkIuiZfchLVppFDkZtb2
-         eteHcaxZDf+KlHPnkf1APrYXYqju5DFJ3UOMbhNeA86R61Q2OQ4+aOgDPtRm/e9ncKov
-         zkLeIsPmaTir3KuO0HWb/facpv989goth0kin5UaZbDchP5izxT1bv9tdbyimb+XHVk2
-         BYb8hkEZJj5JJPO++PC/X4DLomiexSJdIdTM2333zyWpOsKPBApX6gHf8AFe3GknZH6L
-         4hEQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761089363; x=1761694163;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=FAyZeaoohpS3+LaKQX81UzP2EtFamTxJm01ohQDDaaE=;
-        b=CGSooBqfHRd2Y9X5lNjPOJKTFheTWBq5hRSasgOsXx+Xk73jFiDvRYPsnUsYES3w6A
-         9QjXGIEElgk6Nf9DDQMK67JRE0+FdR3qiRbXy7uVMQNT+6ohkOV56idd86ylu4IQnuoI
-         SD3KSFe/DN9qXWFa/Sux2LOBOi7IhuAv+bDnZkv0eOoojAdeCxd6fFlXpcH5Rph7QBSP
-         dsakp6pViYOCOKDaxXh5Jivauoasd48H5IMOzOS/BWC1SXoE1UwGK+9w9F5LAUFbINxF
-         fap3OKBZT+uy/9m9vEfAovluy7Q+0KbPoTrnpCTSzYw4jdODSb3Pa3aUjaMuGRZOQNvh
-         xWEg==
-X-Forwarded-Encrypted: i=1; AJvYcCVjTNeHwMnypNLwMW8uKvwWyap3VtQAI4QZBGRxnqZ8xIJFAdEr5nlGCGIfImnHeAb0mwDmHALRrQ6f@vger.kernel.org
-X-Gm-Message-State: AOJu0YxNj3SPm+D9TVzBx8w8e10EmYsLdxd6L/FWw1C5Gmputf+R7do3
-	9+HDabZGVoQISdUsMxBHdAHJtgsdMMLFdAY8aWGTN/DrOPaNbyUxci27lFmkrW5fRqA=
-X-Gm-Gg: ASbGnctjnTEyob8NMZjivT0XcVR/ahO8ivTk1ZGdd7LBoF1kvc6ux3fW1tukLIvEexL
-	Fwlz6RE5Z6iT/BmS3PpNUj//yzrWQFKFB3VShrbEG9AgfculAyq9jpvS9Hki618Cyy1JQW6aABb
-	xJkpJihU6JA9pqTkaVD9PkFhLZt34I8EpjDAY7K/L/1ck3y4LwnPFP3MHUq+gtlJUMIo8e98Bl8
-	KTw35G/R1murU+Wyu6iwbmt0cOc0boDwKWKyoJyAzjizeADF2/+bMaAaxzw+DNGA2kR0BUUjPec
-	O7ugmnL8J3vaZF8z/0GT9/geuOEaWnF7uC9kibAA78f05dNikYWSxgJrFroZBaujaYpjTTjsrd/
-	C/ag5kztc3wBj2OWxwi4m30Nu3Ut+39wOeoxCWvJfaDpzBRE7RzRViNwlFrstbIVMU0ptiLxJOZ
-	5HLNt3R4Y3s6PjdalW2aedPtYeMUH/mcU4RU0nVho/yFVrLhcgJJGLRA==
-X-Google-Smtp-Source: AGHT+IHWzjXNf79+J8aLTry20W4/lygdn2za8gdSboDCpo44LAcAQwR2pdJvA2zh6AmSrxgxe8gfIw==
-X-Received: by 2002:a5d:5f82:0:b0:426:fb28:7962 with SMTP id ffacd0b85a97d-42704dd3690mr13737820f8f.61.1761089362534;
-        Tue, 21 Oct 2025 16:29:22 -0700 (PDT)
-Received: from [192.168.0.163] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-474949df22csm27535345e9.0.2025.10.21.16.29.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 21 Oct 2025 16:29:22 -0700 (PDT)
-Message-ID: <43580b96-1b68-413c-9a1c-9ce66c20a856@linaro.org>
-Date: Wed, 22 Oct 2025 00:29:20 +0100
+	 In-Reply-To:Content-Type; b=Z95cRltjpv5YZJpYz3Kw8gWaOQ2liZ/I9YMS5xf4IKYX3EVC47gTtwkKkf74pzKqJGa5xG+mhsdV2Bbuo1ZEmpQbyFpfqCRGmPixlL7DbHevHiCYVD9VBkjanNOc40gHkV4/tlqROhd2U8eQlwT+ttmwkNrmBo3BvlxMPhm0zTU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de; spf=pass smtp.mailfrom=freeshell.de; arc=none smtp.client-ip=116.202.128.144
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freeshell.de
+Received: from [192.168.2.54] (unknown [216.234.200.240])
+	(Authenticated sender: e)
+	by freeshell.de (Postfix) with ESMTPSA id E38E5B220DAA;
+	Wed, 22 Oct 2025 01:35:03 +0200 (CEST)
+Message-ID: <cbb18fb1-200f-40b4-89a1-c29522fdaae5@freeshell.de>
+Date: Tue, 21 Oct 2025 16:35:02 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,429 +42,277 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 6/8] media: iris: Move vpu35 specific api to common to
- use for vpu4
-To: Vikash Garodia <vikash.garodia@oss.qualcomm.com>,
- Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>,
- Abhinav Kumar <abhinav.kumar@linux.dev>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH v2 2/2] riscv: dts: starfive: add DT for Orange Pi RV
+To: Icenowy Zheng <uwu@icenowy.me>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Vishnu Reddy <quic_bvisredd@quicinc.com>
-References: <20251017-knp_video-v2-0-f568ce1a4be3@oss.qualcomm.com>
- <iptBLGVWieCJzMJ5EeIz_W-50FdfdIDp_WI0go73dC9hhg9SgtkAOF-SxawmD4nV6m50_dHpszKGk4JhHMbXAQ==@protonmail.internalid>
- <20251017-knp_video-v2-6-f568ce1a4be3@oss.qualcomm.com>
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+ <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Alexandre Ghiti <alex@ghiti.fr>, Emil Renner Berthing <kernel@esmil.dk>,
+ Michael Zhu <michael.zhu@starfivetech.com>,
+ Drew Fustini <drew@beagleboard.org>, Yao Zi <ziyao@disroot.org>
+Cc: devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20250930100318.2131968-1-uwu@icenowy.me>
+ <20250930100318.2131968-2-uwu@icenowy.me>
+ <579dad6b4ab0c981b8d51383af2db3a9f4394609.camel@icenowy.me>
+ <b8db0cdf-163e-416d-94b8-c9e1f10c8011@freeshell.de>
+ <2e6ce092996f2717bc274e1c82873c42b2ab18ce.camel@icenowy.me>
 Content-Language: en-US
-In-Reply-To: <20251017-knp_video-v2-6-f568ce1a4be3@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+From: E Shattow <e@freeshell.de>
+In-Reply-To: <2e6ce092996f2717bc274e1c82873c42b2ab18ce.camel@icenowy.me>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On 17/10/2025 15:16, Vikash Garodia wrote:
-> Some of the sequence and calculations for vpu4 is identical to vpu35,
-> namely power sequence for vpu controller and the clock frequency
-> calculation. Move those to common file that can be shared for both vpu35
-> and vpu4. This patch prepares for power sequence for vpu4 which is added
-> in subsequent patch.
+
+
+On 10/6/25 00:39, Icenowy Zheng wrote:
+> 在 2025-10-05星期日的 11:47 -0700，E Shattow写道：
+>> Hi Icenowy,
+>>
+>> On 9/30/25 08:51, Icenowy Zheng wrote:
+>>> 在 2025-09-30星期二的 18:03 +0800，Icenowy Zheng写道：
+>>>> Orange Pi RV is a newly released SBC with JH7110 SoC, single GbE
+>>>> port
+>>>> (connected to JH7110 GMAC0 via a YT8531 PHY), 4 USB ports (via a
+>>>> VL805
+>>>> PCIe USB controller connected to JH7110 PCIE0), a M.2 M-key slot
+>>>> (connected to JH7110 PCIE1), a HDMI video output, a 3.5mm audio
+>>>> output
+>>>> and a microSD slot.
+>>>>
+>>>> Other Onboard peripherals contain a SPI NOR (which contains the
+>>>> U-
+>>>> Boot
+>>>> firmware), a 24c02 EEPROM storing some StarFive-specific
+>>>> information
+>>>> (factory programmed and read only by default) and an Ampak AP6256
+>>>> SDIO
+>>>> Wi-Fi module.
+>>>>
+>>>> Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
+>>>> ---
+>>>> Changes in v2:
+>>>> - Property order change mentioned in the review of v1.
+>>>> - Added Wi-Fi (along with the always on VCC3V3_PCIE regulator,
+>>>> which
+>>>> is
+>>>>   used to power up WIFI_3V3). The OOB IRQ is still not possible
+>>>> to
+>>>> use
+>>>>   because of some incompatibility between StarFive pinctrl driver
+>>>> and
+>>>>   brcmfmac.
+>>>> - Removed the LED because it's in common DTSI.
+>>>>
+>>>>  arch/riscv/boot/dts/starfive/Makefile         |  1 +
+>>>>  .../boot/dts/starfive/jh7110-orangepi-rv.dts  | 87
+>>>> +++++++++++++++++++
+>>>>  2 files changed, 88 insertions(+)
+>>>>  create mode 100644 arch/riscv/boot/dts/starfive/jh7110-orangepi-
+>>>> rv.dts
+>>>>
+>>>> diff --git a/arch/riscv/boot/dts/starfive/Makefile
+>>>> b/arch/riscv/boot/dts/starfive/Makefile
+>>>> index b3bb12f78e7d5..24f1a44828350 100644
+>>>> --- a/arch/riscv/boot/dts/starfive/Makefile
+>>>> +++ b/arch/riscv/boot/dts/starfive/Makefile
+>>>> @@ -10,6 +10,7 @@ dtb-$(CONFIG_ARCH_STARFIVE) += jh7100-starfive-
+>>>> visionfive-v1.dtb
+>>>>  
+>>>>  dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-deepcomputing-fml13v01.dtb
+>>>>  dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-milkv-mars.dtb
+>>>> +dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-orangepi-rv.dtb
+>>>>  dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-pine64-star64.dtb
+>>>>  dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-starfive-visionfive-2-
+>>>> v1.2a.dtb
+>>>>  dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-starfive-visionfive-2-
+>>>> v1.3b.dtb
+>>>> diff --git a/arch/riscv/boot/dts/starfive/jh7110-orangepi-rv.dts
+>>>> b/arch/riscv/boot/dts/starfive/jh7110-orangepi-rv.dts
+>>>> new file mode 100644
+>>>> index 0000000000000..5a917b7db6f78
+>>>> --- /dev/null
+>>>> +++ b/arch/riscv/boot/dts/starfive/jh7110-orangepi-rv.dts
+>>>> @@ -0,0 +1,87 @@
+>>>> +// SPDX-License-Identifier: GPL-2.0 OR MIT
+>>>> +/*
+>>>> + * Copyright (C) 2025 Icenowy Zheng <uwu@icenowy.me>
+>>>> + */
+>>>> +
+>>>> +/dts-v1/;
+>>>> +#include "jh7110-common.dtsi"
+>>>> +
+>>>> +/ {
+>>>> +       model = "Xunlong Orange Pi RV";
+>>>> +       compatible = "xunlong,orangepi-rv", "starfive,jh7110";
+>>>> +
+>>>> +       /* This regulator is always on by hardware */
+>>>> +       reg_vcc3v3_pcie: regulator-vcc3v3-pcie {
+>>>> +               compatible = "regulator-fixed";
+>>>> +               regulator-name = "vcc3v3-pcie";
+>>>> +               regulator-min-microvolt = <3300000>;
+>>>> +               regulator-max-microvolt = <3300000>;
+>>>> +               regulator-always-on;
+>>>> +       };
+>>>> +
+>>>> +       wifi_pwrseq: wifi-pwrseq {
+>>>> +               compatible = "mmc-pwrseq-simple";
+>>>> +               reset-gpios = <&sysgpio 62 GPIO_ACTIVE_LOW>;
+>>>> +       };
+>>>> +};
+>>>> +
+>>>> +&gmac0 {
+>>>> +       assigned-clocks = <&aoncrg JH7110_AONCLK_GMAC0_TX>;
+>>>> +       assigned-clock-parents = <&aoncrg
+>>>> JH7110_AONCLK_GMAC0_RMII_RTX>;
+>>>> +       starfive,tx-use-rgmii-clk;
+>>>> +       status = "okay";
+>>>> +};
+>>>> +
+>>>> +&mmc0 {
+>>>> +       #address-cells = <1>;
+>>>> +       #size-cells = <0>;
+>>>> +       cap-sd-highspeed;
+>>>> +       mmc-pwrseq = <&wifi_pwrseq>;
+>>>> +       vmmc-supply = <&reg_vcc3v3_pcie>;
+>>>> +       vqmmc-supply = <&vcc_3v3>;
+>>>> +       status = "okay";
+>>>> +
+>>>> +       ap6256: wifi@1 {
+>>>> +               compatible = "brcm,bcm43456-fmac", "brcm,bcm4329-
+>>>> fmac";
+>>>> +               reg = <1>;
+>>>> +               /* TODO: out-of-band IRQ on GPIO21 */
+>>>> +       };
+>>>> +};
+>>>> +
+>>
+>>>> +&mmc0_pins {
+>>>> +       /*
+>>>> +        * As the MMC0 bus is used to connect a SDIO Wi-Fi card
+>>>> instead of
+>>>> +        * an eMMC card, and the eMMC RST is repurposed to be an
+>>>> enablement
+>>>> +        * pin of the SDIO Wi-Fi, remove it from the pinctrl node
+>>>> and
+>>>> manage
+>>>> +        * it as a GPIO instead.
+>>>> +        */
+>>>> +       /delete-node/ rst-pins;
+>>>> +};
+>>>> +
+>>
+>> Listed on the schematic [1] as:
+>> Default function SDIO0 RSTn GPIO62 for eMMC:J9
+>> Highlighted (non-default?) function GPIO62 D17 << WIFI_EN_H_GPIO62
+>> WIFI_EN_H_GPIO62 >> WIFI_PWREN (pin 12 WL_REG_ON of module AP6256)
+>>
+>> I've sent a patch [2] to portion out mmc0 reset pins from jh7110-
+>> common.dtsi
+>>
+>>>> +&mmc1 {
+>>>> +       /delete-property/ cd-gpios;
+>>>> +       broken-cd;
+>>>
+>>> Well it's found that the card detect is working, although with
+>>> different polarity with other boards.
+>>>
+>>> Here should be:
+>>> ```
+>>>         cd-gpios = <&sysgpio 41 GPIO_ACTIVE_HIGH>;
+>>> ```
+>>>
+>>> Will be fixed in the next revision.
+>>
+>> Yes, listed on the schematic [1] as:
+>> SD SDIO0 CD GPIO41 for MicroSD:J10
+>>
+>> There is not a mention of active high or active low on the schematic
+>> label, however there is listed a 10Kohm pull-up to +Vdd1.833 for the
+>> circuit diagram of the Micro SD Card. The card holder is referenced
+>> to
+>> ground and could reasonably be N/O or N/C switch operation depending
+>> on
+>> the exact part selected for manufacture.
+>>
+>>>
+>>>> +};
+>>>> +
+>>>> +&pcie0 {
+>>>> +       status = "okay";
+>>>> +};
+>>>> +
+>>>> +&pcie1 {
+>>>> +       status = "okay";
+>>>> +};
+>>>> +
+>>
+>>>> +&phy0 {
+>>>> +       rx-internal-delay-ps = <1500>;
+>>>> +       tx-internal-delay-ps = <1500>;
+>>>> +       motorcomm,tx-clk-adj-enabled;
+>>>> +       motorcomm,tx-clk-10-inverted;
+>>>> +       motorcomm,tx-clk-100-inverted;
+>>>> +       motorcomm,tx-clk-1000-inverted;
+>>>> +       motorcomm,rx-clk-drv-microamp = <3970>;
+>>>> +       motorcomm,rx-data-drv-microamp = <2910>;
+>>>> +};
+>>
+>> 'motorcomm,rx' before 'motorcomm,tx' in `LANG=C sort` of vendor-
+>> specific
+>> properties.
+>>
+>>>> +
+>>>> +&pwmdac {
+>>>> +       status = "okay";
+>>>> +};
+>>>
+>> Additional non-default GPIO as listed in the Orange Pi design:
+>> GPIO21 WIFI_WAKE_HOST_H /* default vf2 function PCIE_PWREN_H_GPIO21
+>> */
+>> GPIO22 >> BT_UART_RXD /* default vf2 function MIPI_PWR_EN */
+>> GPIO23 << BT_UART_TXD /* default vf2 function LCD RESET */
+>> GPIO24 << BT_UART_CTS /* default vf2 function MIPI_LCD_BL */
+>> GPIO25 << BT_UART_RTS /* default vf2 function TP_DET_GPIO25 */
+>> GPIO30 << BT_EN_H_GPIO30 /* default vf2 function TP_INT_L */
+>> GPIO31 << BT_WAKE_GPIO31 /* default vf2 function TP_RST_L */
+>>
+>> Of all the above, GPIO21 is defined in jh7110-common.dtsi
+>> &pcie1_pins/wake-pins and may need consideration.
+>>
+>> There is a note about "PMIC_PWRON as Key" and so does this have the
+>> meaning of it is used as an input device?
+>>
+>> Also noted is that the USB over-current circuit appears to be
+>> implemented, different than being absent in other VF2 designs.
+>>
+>> 1:
+>> http://www.orangepi.org/html/hardWare/computerAndMicrocontrollers/service-and-support/Orange-Pi-RV.html
+>> 2:
+>> https://lore.kernel.org/lkml/20251005174450.1949110-1-e@freeshell.de/
+>>
+>> With the card detect describing hardware corrected, and clean up the
+>> vendor property sort, then please confirm if you think GPIO21 is
+>> described correctly.
 > 
-> Co-developed-by: Vishnu Reddy <quic_bvisredd@quicinc.com>
-> Signed-off-by: Vishnu Reddy <quic_bvisredd@quicinc.com>
-> Signed-off-by: Vikash Garodia <vikash.garodia@oss.qualcomm.com>
-> ---
->   drivers/media/platform/qcom/iris/iris_vpu3x.c      | 159 +--------------------
->   drivers/media/platform/qcom/iris/iris_vpu_common.c | 143 ++++++++++++++++++
->   drivers/media/platform/qcom/iris/iris_vpu_common.h |   4 +
->   3 files changed, 153 insertions(+), 153 deletions(-)
+> Well yes, GPIO21 should be splitted from PCIe pinctrl and assigned to
+> be the out-of-band IRQ of the Wi-Fi module. My DT omits this because
+> the jh7110 pinctrl driver is currently not compatible with brcmfmac
+> out-of-band IRQ code.
 > 
-> diff --git a/drivers/media/platform/qcom/iris/iris_vpu3x.c b/drivers/media/platform/qcom/iris/iris_vpu3x.c
-> index 0ac6373c33b7ced75ac94ac86a1a8fc303f28b5d..3abfb74dbb10974c8fe3cedaf67e8b4fca421015 100644
-> --- a/drivers/media/platform/qcom/iris/iris_vpu3x.c
-> +++ b/drivers/media/platform/qcom/iris/iris_vpu3x.c
-> @@ -12,8 +12,6 @@
->   #include "iris_vpu_register_defines.h"
+> Should I add /delete-node/ for it?
 > 
->   #define CORE_CLK_RUN				0x0
-> -/* VPU v3.5 */
-> -#define WRAPPER_IRIS_VCODEC_VPU_WRAPPER_SPARE_0	(WRAPPER_BASE_OFFS + 0x78)
+
+No, and thank you for the confirmation. This special change for GPIO21
+can be something for future fix/enhancement. The "dts: starfive:
+jh7110-common: split out mmc0 reset pins from common into boards" patch
+has landed in riscv-dt-for-next so it is good now to address the other
+review comments and send v3.
+
+>>
+>> Acked-by: E Shattow <e@freeshell.de>
+>>
 > 
->   #define VIDEO_NOC_RESET_REQ			(BIT(0) | BIT(1))
-> 
-> @@ -22,8 +20,6 @@
->   #define AON_WRAPPER_MVP_NOC_CORE_CLK_CONTROL	(AON_BASE_OFFS + 0x20)
->   #define NOC_HALT				BIT(0)
->   #define AON_WRAPPER_SPARE			(AON_BASE_OFFS + 0x28)
-> -#define AON_WRAPPER_MVP_VIDEO_CTL_NOC_LPI_CONTROL	(AON_BASE_OFFS + 0x2C)
-> -#define AON_WRAPPER_MVP_VIDEO_CTL_NOC_LPI_STATUS	(AON_BASE_OFFS + 0x30)
-> 
->   static bool iris_vpu3x_hw_power_collapsed(struct iris_core *core)
->   {
-> @@ -268,155 +264,12 @@ static void iris_vpu35_power_off_hw(struct iris_core *core)
->   	iris_disable_unprepare_clock(core, IRIS_AXI_CLK);
->   }
-> 
-> -static int iris_vpu35_power_off_controller(struct iris_core *core)
-> -{
-> -	u32 clk_rst_tbl_size = core->iris_platform_data->clk_rst_tbl_size;
-> -	unsigned int count = 0;
-> -	u32 val = 0;
-> -	bool handshake_done, handshake_busy;
-> -	int ret;
-> -
-> -	writel(MSK_SIGNAL_FROM_TENSILICA | MSK_CORE_POWER_ON, core->reg_base + CPU_CS_X2RPMH);
-> -
-> -	writel(REQ_POWER_DOWN_PREP, core->reg_base + WRAPPER_IRIS_CPU_NOC_LPI_CONTROL);
-> -
-> -	ret = readl_poll_timeout(core->reg_base + WRAPPER_IRIS_CPU_NOC_LPI_STATUS,
-> -				 val, val & BIT(0), 200, 2000);
-> -	if (ret)
-> -		goto disable_power;
-> -
-> -	writel(0, core->reg_base + WRAPPER_IRIS_CPU_NOC_LPI_CONTROL);
-> -
-> -	/* Retry up to 1000 times as recommended by hardware documentation */
-> -	do {
-> -		/* set MNoC to low power */
-> -		writel(REQ_POWER_DOWN_PREP, core->reg_base + AON_WRAPPER_MVP_VIDEO_CTL_NOC_LPI_CONTROL);
-> -
-> -		udelay(15);
-> -
-> -		val = readl(core->reg_base + AON_WRAPPER_MVP_VIDEO_CTL_NOC_LPI_STATUS);
-> -
-> -		handshake_done = val & NOC_LPI_STATUS_DONE;
-> -		handshake_busy = val & (NOC_LPI_STATUS_DENY | NOC_LPI_STATUS_ACTIVE);
-> -
-> -		if (handshake_done || !handshake_busy)
-> -			break;
-> -
-> -		writel(0, core->reg_base + AON_WRAPPER_MVP_VIDEO_CTL_NOC_LPI_CONTROL);
-> -
-> -		udelay(15);
-> -
-> -	} while (++count < 1000);
-> -
-> -	if (!handshake_done && handshake_busy)
-> -		dev_err(core->dev, "LPI handshake timeout\n");
-> -
-> -	ret = readl_poll_timeout(core->reg_base + AON_WRAPPER_MVP_VIDEO_CTL_NOC_LPI_STATUS,
-> -				 val, val & BIT(0), 200, 2000);
-> -	if (ret)
-> -		goto disable_power;
-> -
-> -	writel(0, core->reg_base + AON_WRAPPER_MVP_VIDEO_CTL_NOC_LPI_CONTROL);
-> -
-> -	writel(0, core->reg_base + WRAPPER_DEBUG_BRIDGE_LPI_CONTROL);
-> -
-> -	ret = readl_poll_timeout(core->reg_base + WRAPPER_DEBUG_BRIDGE_LPI_STATUS,
-> -				 val, val == 0, 200, 2000);
-> -	if (ret)
-> -		goto disable_power;
-> -
-> -disable_power:
-> -	iris_disable_unprepare_clock(core, IRIS_CTRL_CLK);
-> -	iris_disable_unprepare_clock(core, IRIS_CTRL_FREERUN_CLK);
-> -	iris_disable_unprepare_clock(core, IRIS_AXI1_CLK);
-> -
-> -	iris_disable_power_domains(core, core->pmdomain_tbl->pd_devs[IRIS_CTRL_POWER_DOMAIN]);
-> -
-> -	reset_control_bulk_reset(clk_rst_tbl_size, core->resets);
-> -
-> -	return 0;
-> -}
-> -
-> -static int iris_vpu35_power_on_controller(struct iris_core *core)
-> -{
-> -	int ret;
-> -
-> -	ret = iris_enable_power_domains(core, core->pmdomain_tbl->pd_devs[IRIS_CTRL_POWER_DOMAIN]);
-> -	if (ret)
-> -		return ret;
-> -
-> -	ret = iris_prepare_enable_clock(core, IRIS_AXI1_CLK);
-> -	if (ret)
-> -		goto err_disable_power;
-> -
-> -	ret = iris_prepare_enable_clock(core, IRIS_CTRL_FREERUN_CLK);
-> -	if (ret)
-> -		goto err_disable_axi1_clk;
-> -
-> -	ret = iris_prepare_enable_clock(core, IRIS_CTRL_CLK);
-> -	if (ret)
-> -		goto err_disable_ctrl_free_clk;
-> -
-> -	return 0;
-> -
-> -err_disable_ctrl_free_clk:
-> -	iris_disable_unprepare_clock(core, IRIS_CTRL_FREERUN_CLK);
-> -err_disable_axi1_clk:
-> -	iris_disable_unprepare_clock(core, IRIS_AXI1_CLK);
-> -err_disable_power:
-> -	iris_disable_power_domains(core, core->pmdomain_tbl->pd_devs[IRIS_CTRL_POWER_DOMAIN]);
-> -
-> -	return ret;
-> -}
-> -
-> -static void iris_vpu35_program_bootup_registers(struct iris_core *core)
-> -{
-> -	writel(0x1, core->reg_base + WRAPPER_IRIS_VCODEC_VPU_WRAPPER_SPARE_0);
-> -}
-> -
-> -static u64 iris_vpu3x_calculate_frequency(struct iris_inst *inst, size_t data_size)
-> -{
-> -	struct platform_inst_caps *caps = inst->core->iris_platform_data->inst_caps;
-> -	struct v4l2_format *inp_f = inst->fmt_src;
-> -	u32 height, width, mbs_per_second, mbpf;
-> -	u64 fw_cycles, fw_vpp_cycles;
-> -	u64 vsp_cycles, vpp_cycles;
-> -	u32 fps = DEFAULT_FPS;
-> -
-> -	width = max(inp_f->fmt.pix_mp.width, inst->crop.width);
-> -	height = max(inp_f->fmt.pix_mp.height, inst->crop.height);
-> -
-> -	mbpf = NUM_MBS_PER_FRAME(height, width);
-> -	mbs_per_second = mbpf * fps;
-> -
-> -	fw_cycles = fps * caps->mb_cycles_fw;
-> -	fw_vpp_cycles = fps * caps->mb_cycles_fw_vpp;
-> -
-> -	vpp_cycles = mult_frac(mbs_per_second, caps->mb_cycles_vpp, (u32)inst->fw_caps[PIPE].value);
-> -	/* 21 / 20 is minimum overhead factor */
-> -	vpp_cycles += max(div_u64(vpp_cycles, 20), fw_vpp_cycles);
-> -
-> -	/* 1.059 is multi-pipe overhead */
-> -	if (inst->fw_caps[PIPE].value > 1)
-> -		vpp_cycles += div_u64(vpp_cycles * 59, 1000);
-> -
-> -	vsp_cycles = fps * data_size * 8;
-> -	vsp_cycles = div_u64(vsp_cycles, 2);
-> -	/* VSP FW overhead 1.05 */
-> -	vsp_cycles = div_u64(vsp_cycles * 21, 20);
-> -
-> -	if (inst->fw_caps[STAGE].value == STAGE_1)
-> -		vsp_cycles = vsp_cycles * 3;
-> -
-> -	return max3(vpp_cycles, vsp_cycles, fw_cycles);
-> -}
-> -
->   const struct vpu_ops iris_vpu3_ops = {
->   	.power_off_hw = iris_vpu3_power_off_hardware,
->   	.power_on_hw = iris_vpu_power_on_hw,
->   	.power_off_controller = iris_vpu_power_off_controller,
->   	.power_on_controller = iris_vpu_power_on_controller,
-> -	.calc_freq = iris_vpu3x_calculate_frequency,
-> +	.calc_freq = iris_vpu3x_vpu4x_calculate_frequency,
->   };
-> 
->   const struct vpu_ops iris_vpu33_ops = {
-> @@ -424,14 +277,14 @@ const struct vpu_ops iris_vpu33_ops = {
->   	.power_on_hw = iris_vpu_power_on_hw,
->   	.power_off_controller = iris_vpu33_power_off_controller,
->   	.power_on_controller = iris_vpu_power_on_controller,
-> -	.calc_freq = iris_vpu3x_calculate_frequency,
-> +	.calc_freq = iris_vpu3x_vpu4x_calculate_frequency,
->   };
-> 
->   const struct vpu_ops iris_vpu35_ops = {
->   	.power_off_hw = iris_vpu35_power_off_hw,
->   	.power_on_hw = iris_vpu35_power_on_hw,
-> -	.power_off_controller = iris_vpu35_power_off_controller,
-> -	.power_on_controller = iris_vpu35_power_on_controller,
-> -	.program_bootup_registers = iris_vpu35_program_bootup_registers,
-> -	.calc_freq = iris_vpu3x_calculate_frequency,
-> +	.power_off_controller = iris_vpu35_vpu4x_power_off_controller,
-> +	.power_on_controller = iris_vpu35_vpu4x_power_on_controller,
-> +	.program_bootup_registers = iris_vpu35_vpu4x_program_bootup_registers,
-> +	.calc_freq = iris_vpu3x_vpu4x_calculate_frequency,
->   };
-> diff --git a/drivers/media/platform/qcom/iris/iris_vpu_common.c b/drivers/media/platform/qcom/iris/iris_vpu_common.c
-> index a7b1fb8173e02d22e6f2af4ea170738c6408f65b..dd0990d143a624d83e241d9970297ce1abe37f74 100644
-> --- a/drivers/media/platform/qcom/iris/iris_vpu_common.c
-> +++ b/drivers/media/platform/qcom/iris/iris_vpu_common.c
-> @@ -8,6 +8,7 @@
->   #include <linux/reset.h>
-> 
->   #include "iris_core.h"
-> +#include "iris_instance.h"
->   #include "iris_vpu_common.h"
->   #include "iris_vpu_register_defines.h"
-> 
-> @@ -48,6 +49,10 @@
-> 
->   #define WRAPPER_TZ_CPU_STATUS			(WRAPPER_TZ_BASE_OFFS + 0x10)
-> 
-> +#define WRAPPER_IRIS_VCODEC_VPU_WRAPPER_SPARE_0	(WRAPPER_BASE_OFFS + 0x78)
-> +#define AON_WRAPPER_MVP_VIDEO_CTL_NOC_LPI_CONTROL	(AON_BASE_OFFS + 0x2C)
-> +#define AON_WRAPPER_MVP_VIDEO_CTL_NOC_LPI_STATUS	(AON_BASE_OFFS + 0x30)
-> +
->   static void iris_vpu_interrupt_init(struct iris_core *core)
->   {
->   	u32 mask_val;
-> @@ -309,6 +314,144 @@ int iris_vpu_power_on_hw(struct iris_core *core)
->   	return ret;
->   }
-> 
-> +int iris_vpu35_vpu4x_power_off_controller(struct iris_core *core)
-> +{
-> +	u32 clk_rst_tbl_size = core->iris_platform_data->clk_rst_tbl_size;
-> +	bool handshake_done, handshake_busy;
-> +	u32 count = 0, val = 0;
-> +	int ret;
-> +
-> +	writel(MSK_SIGNAL_FROM_TENSILICA | MSK_CORE_POWER_ON, core->reg_base + CPU_CS_X2RPMH);
-> +
-> +	writel(REQ_POWER_DOWN_PREP, core->reg_base + WRAPPER_IRIS_CPU_NOC_LPI_CONTROL);
-> +
-> +	ret = readl_poll_timeout(core->reg_base + WRAPPER_IRIS_CPU_NOC_LPI_STATUS,
-> +				 val, val & BIT(0), 200, 2000);
-> +	if (ret)
-> +		goto disable_power;
-> +
-> +	writel(0, core->reg_base + WRAPPER_IRIS_CPU_NOC_LPI_CONTROL);
-> +
-> +	/* Retry up to 1000 times as recommended by hardware documentation */
-> +	do {
-> +		/* set MNoC to low power */
-> +		writel(REQ_POWER_DOWN_PREP, core->reg_base +
-> +		       AON_WRAPPER_MVP_VIDEO_CTL_NOC_LPI_CONTROL);
-> +		usleep_range(10, 20);
-> +		val = readl(core->reg_base + AON_WRAPPER_MVP_VIDEO_CTL_NOC_LPI_STATUS);
-> +
-> +		handshake_done = val & NOC_LPI_STATUS_DONE;
-> +		handshake_busy = val & (NOC_LPI_STATUS_DENY | NOC_LPI_STATUS_ACTIVE);
-> +
-> +		if (handshake_done || !handshake_busy)
-> +			break;
-> +
-> +		writel(0, core->reg_base + AON_WRAPPER_MVP_VIDEO_CTL_NOC_LPI_CONTROL);
-> +		usleep_range(10, 20);
-> +
-> +	} while (++count < 1000);
-> +
-> +	if (!handshake_done && handshake_busy)
-> +		dev_err(core->dev, "LPI handshake timeout\n");
-> +
-> +	ret = readl_poll_timeout(core->reg_base + AON_WRAPPER_MVP_VIDEO_CTL_NOC_LPI_STATUS,
-> +				 val, val & BIT(0), 200, 2000);
-> +	if (ret)
-> +		goto disable_power;
-> +
-> +	writel(0, core->reg_base + AON_WRAPPER_MVP_VIDEO_CTL_NOC_LPI_CONTROL);
-> +
-> +	writel(0, core->reg_base + WRAPPER_DEBUG_BRIDGE_LPI_CONTROL);
-> +
-> +	readl_poll_timeout(core->reg_base + WRAPPER_DEBUG_BRIDGE_LPI_STATUS,
-> +			   val, val == 0, 200, 2000);
-> +
-> +disable_power:
-> +	iris_disable_unprepare_clock(core, IRIS_CTRL_CLK);
-> +	iris_disable_unprepare_clock(core, IRIS_CTRL_FREERUN_CLK);
-> +	iris_disable_unprepare_clock(core, IRIS_AXI1_CLK);
-> +
-> +	iris_disable_power_domains(core, core->pmdomain_tbl->pd_devs[IRIS_CTRL_POWER_DOMAIN]);
-> +
-> +	reset_control_bulk_reset(clk_rst_tbl_size, core->resets);
-> +
-> +	return 0;
-> +}
-> +
-> +int iris_vpu35_vpu4x_power_on_controller(struct iris_core *core)
-> +{
-> +	int ret;
-> +
-> +	ret = iris_enable_power_domains(core, core->pmdomain_tbl->pd_devs[IRIS_CTRL_POWER_DOMAIN]);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = iris_prepare_enable_clock(core, IRIS_AXI1_CLK);
-> +	if (ret)
-> +		goto err_disable_power;
-> +
-> +	ret = iris_prepare_enable_clock(core, IRIS_CTRL_FREERUN_CLK);
-> +	if (ret)
-> +		goto err_disable_axi1_clk;
-> +
-> +	ret = iris_prepare_enable_clock(core, IRIS_CTRL_CLK);
-> +	if (ret)
-> +		goto err_disable_ctrl_free_clk;
-> +
-> +	return 0;
-> +
-> +err_disable_ctrl_free_clk:
-> +	iris_disable_unprepare_clock(core, IRIS_CTRL_FREERUN_CLK);
-> +err_disable_axi1_clk:
-> +	iris_disable_unprepare_clock(core, IRIS_AXI1_CLK);
-> +err_disable_power:
-> +	iris_disable_power_domains(core, core->pmdomain_tbl->pd_devs[IRIS_CTRL_POWER_DOMAIN]);
-> +
-> +	return ret;
-> +}
-> +
-> +void iris_vpu35_vpu4x_program_bootup_registers(struct iris_core *core)
-> +{
-> +	writel(0x1, core->reg_base + WRAPPER_IRIS_VCODEC_VPU_WRAPPER_SPARE_0);
-> +}
-> +
-> +u64 iris_vpu3x_vpu4x_calculate_frequency(struct iris_inst *inst, size_t data_size)
-> +{
-> +	struct platform_inst_caps *caps = inst->core->iris_platform_data->inst_caps;
-> +	struct v4l2_format *inp_f = inst->fmt_src;
-> +	u32 height, width, mbs_per_second, mbpf;
-> +	u64 fw_cycles, fw_vpp_cycles;
-> +	u64 vsp_cycles, vpp_cycles;
-> +	u32 fps = DEFAULT_FPS;
-> +
-> +	width = max(inp_f->fmt.pix_mp.width, inst->crop.width);
-> +	height = max(inp_f->fmt.pix_mp.height, inst->crop.height);
-> +
-> +	mbpf = NUM_MBS_PER_FRAME(height, width);
-> +	mbs_per_second = mbpf * fps;
-> +
-> +	fw_cycles = fps * caps->mb_cycles_fw;
-> +	fw_vpp_cycles = fps * caps->mb_cycles_fw_vpp;
-> +
-> +	vpp_cycles = mult_frac(mbs_per_second, caps->mb_cycles_vpp, (u32)inst->fw_caps[PIPE].value);
-> +	/* 21 / 20 is minimum overhead factor */
-> +	vpp_cycles += max(div_u64(vpp_cycles, 20), fw_vpp_cycles);
-> +
-> +	/* 1.059 is multi-pipe overhead */
-> +	if (inst->fw_caps[PIPE].value > 1)
-> +		vpp_cycles += div_u64(vpp_cycles * 59, 1000);
-> +
-> +	vsp_cycles = fps * data_size * 8;
-> +	vsp_cycles = div_u64(vsp_cycles, 2);
-> +	/* VSP FW overhead 1.05 */
-> +	vsp_cycles = div_u64(vsp_cycles * 21, 20);
-> +
-> +	if (inst->fw_caps[STAGE].value == STAGE_1)
-> +		vsp_cycles = vsp_cycles * 3;
-> +
-> +	return max3(vpp_cycles, vsp_cycles, fw_cycles);
-> +}
-> +
->   int iris_vpu_power_on(struct iris_core *core)
->   {
->   	u32 freq;
-> diff --git a/drivers/media/platform/qcom/iris/iris_vpu_common.h b/drivers/media/platform/qcom/iris/iris_vpu_common.h
-> index d636e287457adf0c44540af5c85cfa69decbca8b..7cf4304604cca590544a938c7e811c202cea3d93 100644
-> --- a/drivers/media/platform/qcom/iris/iris_vpu_common.h
-> +++ b/drivers/media/platform/qcom/iris/iris_vpu_common.h
-> @@ -33,5 +33,9 @@ int iris_vpu_power_on(struct iris_core *core);
->   int iris_vpu_power_off_controller(struct iris_core *core);
->   void iris_vpu_power_off_hw(struct iris_core *core);
->   void iris_vpu_power_off(struct iris_core *core);
-> +int iris_vpu35_vpu4x_power_off_controller(struct iris_core *core);
-> +int iris_vpu35_vpu4x_power_on_controller(struct iris_core *core);
-> +void iris_vpu35_vpu4x_program_bootup_registers(struct iris_core *core);
-> +u64 iris_vpu3x_vpu4x_calculate_frequency(struct iris_inst *inst, size_t data_size);
-> 
->   #endif
-> 
-> --
-> 2.34.1
-> 
-> 
-Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+
+-E
 
