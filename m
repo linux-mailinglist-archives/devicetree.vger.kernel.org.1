@@ -1,144 +1,136 @@
-Return-Path: <devicetree+bounces-229266-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229268-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7CC7BF57D9
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 11:25:53 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F88CBF58FE
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 11:42:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 99E7B3A3F40
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 09:25:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4733018A765C
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 09:42:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68F8B2D594D;
-	Tue, 21 Oct 2025 09:25:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4B962E54DB;
+	Tue, 21 Oct 2025 09:42:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="GOpUeXjn"
+	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="YfPu/PPl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1606221F0C;
-	Tue, 21 Oct 2025 09:25:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.15
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7C3E231845;
+	Tue, 21 Oct 2025 09:42:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761038750; cv=none; b=fYYIM2yR+vwowBr8CvgtqygU3jH73zBddhC89pxqHht+U7lEPGIUsbWqaKk8OUYgFmVlG8Z2iDxzQGtdew2Ygou3KeeZAgluh9vHU0w/9blfMKXKR+gUIYsxlOlNS9nW1BQPd72sp4dMqDxBYXg8MWK5Zg4d5c3ciRhVocm0xnU=
+	t=1761039735; cv=none; b=h/mXmkEa0NIxguFqqnTJVnFi3oTApNXPOq3cCVjVE3/uhKls5pNWcPbILz1XWLCt4v/aL0BbLEGUR9hmNl3tFkwhk92WucrpPgvHWoGo3l8pbtV5bvq9ZyIlR8JP2D0GUA6tFAAVXWrNegBLYt3wYEP6n0upyZFr74YEbgJBsUs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761038750; c=relaxed/simple;
-	bh=1/VK7hhoLILt5AJ4kRlkTSbhWrjSipFmR4OK9HdA9Bw=;
+	s=arc-20240116; t=1761039735; c=relaxed/simple;
+	bh=B3Jy7cA+N4KH4QnWIOx/sol3r3bRZVymO5EXRRR8cSA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HPWJSMBjz2qA6to4LYDgpmMdacRoNMhx7eop/1KJJ3ospFK9/+5UqgLn0Qs7bGwjlDns3l+/RlT0+fJt8CqdfPMFb15bxUs6dUoV9DeX1QePVVgWWtN4tFCncTnA7OJrygNE27G05eUEznkdTPQNO2pRKmYCDNORr81O99HuJqo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=GOpUeXjn; arc=none smtp.client-ip=198.175.65.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1761038749; x=1792574749;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=1/VK7hhoLILt5AJ4kRlkTSbhWrjSipFmR4OK9HdA9Bw=;
-  b=GOpUeXjnA1zU+KveMPSHOqEdBQ+OGr3PokskRMo/rNxZhYtZow9sszqH
-   CPr7RfmTXyswsjkXqkz5+3OkdgCHbXTXXXvV7Rh+a0Xfq9C4PzUzovkmd
-   0MkK2G60rCny/xKm/rJb/dHRD6ytY+KykfJGEWTFBQt5339L7bwCbbNNq
-   zVLtaO34lJIK+qGNcvucB5les91DUm6BrH0oOesUbSx+bwEM8gfBC3gVl
-   8DJiXbIbvrEoOesvcpWzyvngh5/a2CFH0Adk8kHKY8Cq1S3gY6YVMuLZj
-   nwmy1I1DuRYbZEefmvEPkMmshufUHpOl5qDIfr52Feunm6EdfHGgFITbc
-   A==;
-X-CSE-ConnectionGUID: 3fkBPCdBQM26Md3Tt5WZXA==
-X-CSE-MsgGUID: MPOAbBDDSXea+3GPlO92ZQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="66801751"
-X-IronPort-AV: E=Sophos;i="6.19,244,1754982000"; 
-   d="scan'208";a="66801751"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
-  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Oct 2025 02:25:48 -0700
-X-CSE-ConnectionGUID: RRKuRbnZSkaaiJwRZuVHzA==
-X-CSE-MsgGUID: By8zqz4IRp+Lxhn3sRgNQA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,244,1754982000"; 
-   d="scan'208";a="183949410"
-Received: from egrumbac-mobl6.ger.corp.intel.com (HELO kekkonen.fi.intel.com) ([10.245.245.134])
-  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Oct 2025 02:25:46 -0700
-Received: from kekkonen.localdomain (localhost [IPv6:::1])
-	by kekkonen.fi.intel.com (Postfix) with SMTP id E54681202B5;
-	Tue, 21 Oct 2025 12:25:43 +0300 (EEST)
-Date: Tue, 21 Oct 2025 12:25:43 +0300
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6 krs, Bertel Jungin Aukio 5, 02600 Espoo
-From: Sakari Ailus <sakari.ailus@linux.intel.com>
-To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Hans Verkuil <hverkuil@kernel.org>,
-	Hans de Goede <hansg@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] media: i2c: add Samsung S5KJN1 image sensor
- device driver
-Message-ID: <aPdRlygxV1TCCUU3@kekkonen.localdomain>
-References: <20251016020419.2137290-1-vladimir.zapolskiy@linaro.org>
- <20251016020419.2137290-3-vladimir.zapolskiy@linaro.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=R5RP/Bm44SEHnvcVva8DTBN7yZaNOhZYcsfML3J9RPe32XHnaa/uLAaWVIsDwaVCnLzmc4Pbb0/WH3CFD8ka/+EC3tB8Qp7VcouzEzgJ/McR16gvHf6ehyvBDeuBOwhyOayXxkTVOko9zSAzgdkBWHVWxtT7PH6eSl7Yi3Nawkc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=YfPu/PPl; arc=none smtp.client-ip=217.194.8.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
+Received: from francesco-nb (248.201.173.83.static.wline.lns.sme.cust.swisscom.ch [83.173.201.248])
+	by mail11.truemail.it (Postfix) with ESMTPA id EB6942125B;
+	Tue, 21 Oct 2025 11:34:23 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
+	s=default; t=1761039265;
+	bh=8o+wETYksP8ccjEosz8Cbz5sDcAm+lKn1MXus85N6hk=; h=From:To:Subject;
+	b=YfPu/PPlq2HCEYCkZ6DMBbfM0yvF6ZC7n12d9hkKdj1MW9iFrUpGbN65nH0cIiBv5
+	 7g9HNVFSTM6pKIk+d95YldohlYU6EfMAPBOgbGMVJRp7T0C86mFnTpfUDxI0VJIT5h
+	 yTQD8LLRTku7cjc8PtWy0zOQum5BXOFH5Y+Z6zrXwcOy2wWPGksj8QCK/ZIAK4x9si
+	 c/2knDKelHt2/GZva+si3bcwSwa4sjZflo1rrU6vuGbV7rZoCJYN2D/wS/kKb3tjHY
+	 NSdliuWB8h9HyN7JwSfMiQ8sYo9r4hkLvNhB4zAN8cwQ4vj1oz3Eo6cHiKWw6MaNZm
+	 7KZrWVWc24MRA==
+Date: Tue, 21 Oct 2025 11:34:20 +0200
+From: Francesco Dolcini <francesco@dolcini.it>
+To: Beleswar Prasad Padhi <b-padhi@ti.com>
+Cc: Hiago De Franco <hiagofranco@gmail.com>, nm@ti.com, vigneshr@ti.com,
+	kristo@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, afd@ti.com, u-kumar1@ti.com, hnagalla@ti.com,
+	jm@ti.com, d-gole@ti.com, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	Robert Nelson <robertcnelson@gmail.com>,
+	=?iso-8859-1?Q?Jo=E3o_Paulo_Gon=E7alves?= <joao.goncalves@toradex.com>,
+	Emanuele Ghidoli <emanuele.ghidoli@toradex.com>,
+	Francesco Dolcini <francesco.dolcini@toradex.com>,
+	Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
+	Logan Bristol <logan.bristol@utexas.edu>,
+	Josua Mayer <josua@solid-run.com>, John Ma <jma@phytec.com>,
+	Nathan Morrisson <nmorrisson@phytec.com>,
+	Garrett Giordano <ggiordano@phytec.com>,
+	Matt McKee <mmckee@phytec.com>, Wadim Egorov <w.egorov@phytec.de>,
+	Max Krummenacher <max.krummenacher@toradex.com>,
+	Stefan Eichenberger <stefan.eichenberger@toradex.com>,
+	Hiago De Franco <hiago.franco@toradex.com>,
+	Diogo Ivo <diogo.ivo@siemens.com>,
+	Li Hua Qian <huaqian.li@siemens.com>,
+	Jan Kiszka <jan.kiszka@siemens.com>,
+	Baocheng Su <baocheng.su@siemens.com>,
+	Benedikt Niedermayr <benedikt.niedermayr@siemens.com>,
+	regressions@lists.linux.dev
+Subject: Re: [REGRESSION] Suspend to RAM does not work anymore with
+ k3-am62-ti-ipc-firmware.dtsi
+Message-ID: <20251021093420.GA28462@francesco-nb>
+References: <sid7gtg5vay5qgicsl6smnzwg5mnneoa35cempt5ddwjvedaio@hzsgcx6oo74l>
+ <e60dd8d6-2bd5-41f0-bf8a-b0a5822a7f88@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20251016020419.2137290-3-vladimir.zapolskiy@linaro.org>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <e60dd8d6-2bd5-41f0-bf8a-b0a5822a7f88@ti.com>
 
-Hi Vladimir,
+On Tue, Oct 21, 2025 at 02:33:10PM +0530, Beleswar Prasad Padhi wrote:
+> On 20/10/25 19:47, Hiago De Franco wrote:
+> > DM R5 sends a message that is never consumed, since no firmware is
+> > running on the M4 (the core is offline).
+> 
+> 
+> May I know why you are not running any firmware on the M4
+> rproc? If the intention is just to run the DM R5 core on the SoC,
+> you can disable the IPC by NOT including the
+> "k3-am62-ti-ipc-firmware.dtsi". That was the motivation for the
+> refactoring.
 
-On Thu, Oct 16, 2025 at 05:04:19AM +0300, Vladimir Zapolskiy wrote:
-> +	{ S5KJN1_REG_X_ADDR_START,  0x0000 },
-> +	{ S5KJN1_REG_Y_ADDR_START,  0x0000 },
-> +	{ S5KJN1_REG_X_ADDR_END,    0x1fff },
-> +	{ S5KJN1_REG_Y_ADDR_END,    0x181f },
-> +	{ S5KJN1_REG_X_OUTPUT_SIZE, 0x0ff0 },
-> +	{ S5KJN1_REG_Y_OUTPUT_SIZE, 0x0c00 },
-> +	{ CCI_REG16(0x0350), 0x0008 },
-> +	{ CCI_REG16(0x0352), 0x0008 },
-> +	{ CCI_REG16(0x0900), 0x0122 },
-> +	{ CCI_REG16(0x0380), 0x0002 },
-> +	{ CCI_REG16(0x0382), 0x0002 },
-> +	{ CCI_REG16(0x0384), 0x0002 },
-> +	{ CCI_REG16(0x0386), 0x0002 },
-> +	{ CCI_REG16(0x0110), 0x1002 },
-> +	{ CCI_REG16(0x0114), 0x0301 },
-> +	{ CCI_REG16(0x0116), 0x3000 },
-> +
-> +	/* Clock settings */
-> +	{ CCI_REG16(0x0136), 0x1800 },
-> +	{ CCI_REG16(0x013e), 0x0000 },
-> +	{ CCI_REG16(0x0300), 0x0006 },
-> +	{ CCI_REG16(0x0302), 0x0001 },
-> +	{ CCI_REG16(0x0304), 0x0004 },
-> +	{ CCI_REG16(0x0306), 0x008c },
-> +	{ CCI_REG16(0x0308), 0x0008 },
-> +	{ CCI_REG16(0x030a), 0x0001 },
-> +	{ CCI_REG16(0x030c), 0x0000 },
-> +	{ CCI_REG16(0x030e), 0x0004 },
-> +	{ CCI_REG16(0x0310), 0x0092 },
-> +	{ CCI_REG16(0x0312), 0x0000 },
-> +
-> +	{ CCI_REG16(0x080e), 0x0000 },
-> +	{ S5KJN1_REG_VTS,    0x10c0 },
-> +	{ S5KJN1_REG_HTS,    0x1100 },
-> +	{ CCI_REG16(0x0702), 0x0000 },
-> +	{ S5KJN1_REG_EXPOSURE, 0x0100 },
-> +	{ CCI_REG16(0x0200), 0x0100 },
-> +	{ CCI_REG16(0x0d00), 0x0101 },
-> +	{ CCI_REG16(0x0d02), 0x0101 },
-> +	{ CCI_REG16(0x0d04), 0x0102 },
-> +	{ CCI_REG16(0x6226), 0x0000 },
-> +	{ CCI_REG16(0x0816), 0x1c00 },
+Verdin AM62 and AM62P are generic SoMs, that can be used for a multitude
+of different use cases. And not having anything running on the M4 is the
+default use case.
 
-This looks interestingly CCS compliant. It might be worth taking the MSRs
-and trying with the CCS driver.
+I think having the node in the DT is the correct way forward, if you
+want to start the M4 firmware you need such a node, so this is enabling
+a valid and useful use case.
 
-Where is this sensor found?
+> List of suggestions/solutions in order of preference:
+> 1. If no intention to enable IPC on rprocs:
+>       Do _not_ include k3-am62-ti-ipc-firmware.dtsi
+> 2. If intention is to enable IPC on rprocs:
+>       Make sure rproc firmware is available in rootfs.
+>       rproc would boot up and consume the mbox
+>       msg, suspend would be successful. Tested this
+>       on TI AM62x-sk with commit 1d6161617c, works
+> 3. Add support in mbox driver to flush the pending
+>     queues.
 
--- 
-Kind regards,
+2 is not applicable here, and 1 to me is not a good solution. So this
+means that we need #3.
 
-Sakari Ailus
+> > #regzbot introduced: 1d6161617c
+> 
+> Would not see this as a regression, but rather a new
+> bug for the omap-mailbox driver...
+
+As a user this is just a regression. It worked fine before, it's not
+working anymore now.
+
+The fact that the solution might not be in the same file that introduced
+the issue is not a reason for this not being considered a regression.
+
+Francesco
+
 
