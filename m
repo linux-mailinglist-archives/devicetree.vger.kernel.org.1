@@ -1,83 +1,82 @@
-Return-Path: <devicetree+bounces-229389-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229390-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB39ABF6E5D
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 15:53:38 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4AD7EBF6E2D
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 15:51:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 8AAE85062F4
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 13:51:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C106C18801A4
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 13:51:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92D52339B53;
-	Tue, 21 Oct 2025 13:51:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DD0333A033;
+	Tue, 21 Oct 2025 13:51:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mHxZknXh"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lbr8IPQW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4E6A338937
-	for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 13:51:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97C6C338930
+	for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 13:51:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761054666; cv=none; b=dvq1mFoncLojSpAmVR534WEGytLS1SPwkYKCvudlOGHijzEbuS1lnwIOLS27zG8J3jLz1gIxKJsEbEg4WnB52OxOzEcegPopnqbhm6z+moix3W87vokPiXkWnVVRWeuWmQW20bLIVG4VJ8a2GKrUZ9IfOiOC4cSsehR1oDETH6Q=
+	t=1761054667; cv=none; b=roeXbwmOTk2ILikfaJ5bCq1yR2BxvCUSbx+CL/CL35ShKUW+qJEwxsUfvM3fACp0n4919nnzwYOII4KarNV0B9GB5wrTPaXetZJ2P/mSjcUpxlhKYqYiswW6Tf8kCJXOGDpgOVPNYnk8ZDu2qEyfxSNdsLiX3TUcsCFYcuPkFx0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761054666; c=relaxed/simple;
-	bh=4qWmFWV6usDb2WlbnIA9nnwCzxgqGMt4OeZOHW/cja0=;
+	s=arc-20240116; t=1761054667; c=relaxed/simple;
+	bh=K2jOnkW1IsfbbGeogypIYlrDxXiV/U7Y6TILjFAX1/c=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=S2bvpzsGSAwCkyqkEQjYVdt2hg3MmHwmtKtXP21na8X0KmLiE1bImNUl2RGQDBH/Zs44kc0AhIH8ru5+iJHXAxCyYjjV8JzflmY7efAmz/HIzKixjz54/mX77q2XOuMt7D5vem2qFQhLY4rHEP9kmtQAUhUnmzDKoqEZGiLbkpY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=mHxZknXh; arc=none smtp.client-ip=209.85.221.43
+	 In-Reply-To:To:Cc; b=bT31g5LM9pDT8IeMpnlHWarI6uDBxpT0u560wOIBV9DqatbLuPEX55CtdZyXey4QRHPxK8YOzuYhLruGryQohklEjFkEoBGpvQc+i9SXRnpZAHCp8BRqYZYAR7lajxk03stiA0sb+eB6vinolb8na486a1U9edWQq3bWMpcYfu0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=lbr8IPQW; arc=none smtp.client-ip=209.85.221.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-3f0ae439b56so4169324f8f.3
-        for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 06:51:03 -0700 (PDT)
+Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-3f99ac9acc4so1151016f8f.3
+        for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 06:51:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1761054662; x=1761659462; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1761054664; x=1761659464; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=qIKAmk/sr3iPYuDq3IopdvjJm8cBIcm5+Vkp1UdclNE=;
-        b=mHxZknXhD+VXL+qgE1NmR+FeUJHsGytOqC7oblPGXddMq95YJD6BG8YlH8QBYnWc++
-         sUXxo2gJPLjKKJkJFFPbTUTjHAS6ZtVP+3SarVNnTtV6OFuN9dViTyYGvs/lWbNE1yXw
-         CgmQ+m8JMpovU2CCggxcNuN3Ojo1pCafxnpZs6fTdA0JZB/8O4lIMIKi6j5V3PUlhPEV
-         PhE+gsJfTrlU1gNX/ZV+tI/D0PVLKidk0IXBoo7ApRuFliGin7aeAmjpRCXGMnYw23fI
-         w6QtTJJ8YrnGf5D03VossnzJ0+aqh0DXuhY/3QJZmmRPQUK2oADFQKXEG9MPblD1k/Bu
-         hQSw==
+        bh=bWW5rpiL3fXVP4SacOcVtEnuu9Zwh6Lw21oGD01RkRw=;
+        b=lbr8IPQWRYG9GBBw8BCwSfaJyYR6moo9IodUx5J7cJf/Z+s+r4FaXz9DeHe9natYHP
+         Bw6/o9Ll4Le6chTKdp5eZWIapnL0rTnmrRjPyooppXoSprODKpGJj9CsoQkg3borTFXI
+         QVddDrGEk+/A5AwxClXx/4AH5rmPesgHSag09HczNRg9W6isaItWGR6SJ5kcBYreAaUu
+         86RGbRbHlGhvWVfAc5jZSi2JqBKeftr87Swwkm8puY+zLP+fDVwwqcCspUKut4R8iaQq
+         qLI6KFlQPzfx/3vDV13ido3kwKPNdue6EIvJxBAMTtnS7C2hUeJdMXcueRpzSbgIjx5q
+         E+ZA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761054662; x=1761659462;
+        d=1e100.net; s=20230601; t=1761054664; x=1761659464;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=qIKAmk/sr3iPYuDq3IopdvjJm8cBIcm5+Vkp1UdclNE=;
-        b=i9RL+luXC2Qc+Y7W9462QtATWRkiBI8rWpKylftbSZoE06facWXZXO2GwpD1yWxwIT
-         ct1OaHhfPG2tjwCJowI4BNuFjWoZ/Po6xo4J+ApOqHMY+l7GMPCLe0x7QNvQ2sCTIPfO
-         xWC4Ky6DqNDn0/JXhi3TlIsgWzbq/hcP4m9EXHedl5KJvjd8jgbrvR/7HG/B08KCFukQ
-         71iAws87LukZ+mydGElRpNuwzWsMDdXl62/bqoTpjv9fA0fRd86x46AgoVB0RhaNv0RC
-         KiLIERfxMNbZXKj1prWtrQ+iNBgRDmFu002nN1qT5lJLJtvlnvnYjbNbmrvOq+SDzwH8
-         u6aw==
-X-Forwarded-Encrypted: i=1; AJvYcCUR0CaoWuJJ/Hq4jXtcCW9x/zBjfHMxeZBLpz9WuD19dsIsv9Av1abdrcFT0wWR/P8L8UY/9aT4C4ZR@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw8UMUCMMYUd5PUW3kiiOGnELs/eu9XL1pHpRtOueZwy8jkjDcZ
-	00a3FzX4RauUbQqXtC3jQ3F0atBO0QDuq6CrrYlIZunQ1PDdvPgyU20j/L7qjgeAxYs=
-X-Gm-Gg: ASbGncuA/50bGxyE7xNVBx09miBYlrfeTLhbtFM5oQBmnjMgchoMMn+KdegbR4u8FjH
-	ePYOwEW30mM7D66gehrdoIgP22hsBoOUZfLQarhbdUj/x/5bJGB7uWwKhyC/kFLYPn44Y2nxYAV
-	8VrOes+M9e7+isQzsYvRxkB4i/7DNlZQaRImunlz9/WXK4SeT7ErnFxRCGCjnz33RaIbM64ulni
-	Qnb0omx4lHfwJT7BgwmiKtshW491e9stpoYAq83KP9qQWGQLWAqNZVAte0fW97VYDQa6MzI92qo
-	lqGEYazl0EEalRuC81c7C2sHiIz3v3w4PTC2JNQRbMXL1L0IVF/Y4EJAws/E73w5wpswn7at4U/
-	q0lOz2craFnXWCSHh9ZNqAnCMxueXY7yCOKpzMoXlTGykx9X9WXu364FriBjEW+sR48yJIFxHzQ
+        bh=bWW5rpiL3fXVP4SacOcVtEnuu9Zwh6Lw21oGD01RkRw=;
+        b=OGgyEznw6onHo3x1GDGPjeINQ1aDo4YapwQRAPlnBXETmKGQ81lhXGyvfqVBprQ5hw
+         14BoMr5qwK6RNtpLhe0sYtCabiMcSPodUdSf/X3cSYZzHo2v1sa91j9KU9FVBUqEmE/9
+         smFuvrKgCpqUV4BnXs2ZDoACaqg+dyTC/+khN7with6PLiC1DqGKpyHMj6Iuth2Uuf+l
+         a2FWAWtxjVH2yj9/81jqT2j/4IPpebJWHHfzVgAoJNY12QL4RMdG3CGTZiGlRnu+LU6R
+         oj4iIbSxXrYSTbRUdHizXpDdjH6z+P0S9EywDOXLTFZxOmYmRlnL1R59EtykwpuyAPLn
+         7GRw==
+X-Forwarded-Encrypted: i=1; AJvYcCWnOjrK6fMkIs+HWHdp9DxTGtpgENXfPUoNYUsZtoS5zHj44xfwCXhd9CTRcz6hG4AdMg3JHiWX/OpN@vger.kernel.org
+X-Gm-Message-State: AOJu0YwE54PdIdUVMGfHnADN9MTodUq5WqmUGJ1zv1YXmWp+miTtOraT
+	2G/IV3gyuQ2QEYEDoRDDvR5X6SLmBI1EfQsw776JuwgXa7SbhbQOnOU31idVMm+6CHk=
+X-Gm-Gg: ASbGncvpSwP8X4GIwonLIAGyUEEs9+e1nYw1hgKO7VmH4TYgBZzTRwSsUOjGNN3YUjk
+	bgzoDKRkSQt5+1pz9OU+9e31THqWkYwaQF5TQe/stL17bIEz9g185MA3sxOjz9uwFEJuIVePW94
+	nHaTS0d3eJ4ZjyUHl9BpTHzY0X4Ou4HpdXlNca+O86u3JNJYGw0BulRT5/mmUNnZsrbKd/oter+
+	hi7nk43lKOlcpkophfVmg0GBLR0frobZpNKFB0qEvqxOIet5iP0sIkdPPWZ3bBWl87mTDCIrv6+
+	p/HxriTBDf9jxZkk6CDXAo81q0V3nAQMmFxDutph6Vl6cwzSJ3wxra9vy9Yta2weaHxVFcZSAAc
+	x6Fx4xHndtl4YKikojFHd2NlG1Z2DKbKK/BMxvOrvj9uBt0hB4rXr4kK/IpsJkXibd2GJrtZIDg
 	==
-X-Google-Smtp-Source: AGHT+IHNP+f8E91/1pOZh8cHUEUpGtLiB8NKRXERNLSH594KfBNTZxiqvP7VkzGge4eOg5d1BGU9/w==
-X-Received: by 2002:a5d:5d0a:0:b0:3e7:6104:35a8 with SMTP id ffacd0b85a97d-42704d98e81mr11781943f8f.35.1761054661868;
-        Tue, 21 Oct 2025 06:51:01 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEVarB8hPd9oTaPMzVW88VSh7bgsSwShOtuu9cb1VFtLqYXTOEOEnjKaYmdkaTGgMDCDNPnsw==
+X-Received: by 2002:a05:6000:3101:b0:3ff:17ac:a34b with SMTP id ffacd0b85a97d-42704db8d8fmr12866650f8f.42.1761054663604;
+        Tue, 21 Oct 2025 06:51:03 -0700 (PDT)
 Received: from hackbox.lan ([86.121.7.169])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-427f00b97f8sm20124378f8f.36.2025.10.21.06.51.00
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-427f00b97f8sm20124378f8f.36.2025.10.21.06.51.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Oct 2025 06:51:01 -0700 (PDT)
+        Tue, 21 Oct 2025 06:51:02 -0700 (PDT)
 From: Abel Vesa <abel.vesa@linaro.org>
-Date: Tue, 21 Oct 2025 16:50:44 +0300
-Subject: [PATCH RFC 1/3] ASoC: dt-bindings: qcom,sm8250: Add Dell XPS13
- 9345 sound card
+Date: Tue, 21 Oct 2025 16:50:45 +0300
+Subject: [PATCH RFC 2/3] ASoC: qcom: x1e80100: Add Dell XPS13 9345 support
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -86,7 +85,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20251021-dell-xps13-9345-enable-audio-v1-1-6f3f6bbd977b@linaro.org>
+Message-Id: <20251021-dell-xps13-9345-enable-audio-v1-2-6f3f6bbd977b@linaro.org>
 References: <20251021-dell-xps13-9345-enable-audio-v1-0-6f3f6bbd977b@linaro.org>
 In-Reply-To: <20251021-dell-xps13-9345-enable-audio-v1-0-6f3f6bbd977b@linaro.org>
 To: Srinivas Kandagatla <srini@kernel.org>, 
@@ -99,46 +98,128 @@ Cc: linux-sound@vger.kernel.org, linux-arm-msm@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
  Abel Vesa <abel.vesa@linaro.org>
 X-Mailer: b4 0.15-dev-dedf8
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1017; i=abel.vesa@linaro.org;
- h=from:subject:message-id; bh=4qWmFWV6usDb2WlbnIA9nnwCzxgqGMt4OeZOHW/cja0=;
- b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBo94++xan16D0H5OsxYqfa71JS3sbzr6bLQ2e+v
- api1hS//j+JAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCaPePvgAKCRAbX0TJAJUV
- VgQ9D/0aM9A9YNTlPu4PveLAsEJG2wE5g3OTHxFvLCruh4g0O8emfw976SwMNA5xbFWxJl+2271
- Rpmese605PkKOkEkUhlmjU5QR4Flp/jV51vE3O4sZAqqzO05uUtZgDTfNADiVWGhsYwfLAmBgYx
- J1tIf5bimXnX/OnyvA+7V9oP/fRBlb/JtK0aBv2Ons2C9fSXY9lTL65KKPrJsCfKnl4NrKO0S7T
- vAZs+0LsQzC7UxqDU6E2y4Lczmmt9Jc89PlAK0By7kK0QEPcQ2rWkKypn5Y5zIMoS9yCwz4Ei1o
- gTUSj6rBmnl4gL+ieubpCz/k5IWPrH5lhOgLuVe5+uVtqtz5Ls2UjHlzUNmkJl6bSSSNUTK5YBa
- c1PbdfvUAezF92c80t1BTN948AOlHRsmtCmLBzh6Y7ZevmyO3y6YjB8z1+OUzBaDDtVep8RAaZt
- T17FQNkASovjBqbzR29N1aO0ofV2APkbiDbrKpNEmmEGl1bSbMcf+21Ru8UhIDUbn9llqQFCwDq
- QCKRypfhTKbX+MJnCw0XdGtlrpTIYnNigf4hwnTwu34pUIHisio/o+g/GAi3LnvaDvDttJRW3K/
- Fa26D6cjcuv+xWW6BTa+Da5ly1R7s8P9P8rcXBH0+e4yo7Fzoa6XTCBKDqDlOZ2K4N0C9TZ5Xy/
- m1xfF7sg+a24oBg==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3561; i=abel.vesa@linaro.org;
+ h=from:subject:message-id; bh=K2jOnkW1IsfbbGeogypIYlrDxXiV/U7Y6TILjFAX1/c=;
+ b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBo94+/wao7msGfzrKycnoNRBsxGkf+jr3yIVSag
+ doPwABdLfmJAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCaPePvwAKCRAbX0TJAJUV
+ Vik0D/9yRlW7mzDOHEZOM4jU8YAieeym5Qv4zPGKoJZs2lKTlP77jfPT+8ouLYC/f6lUvG43tpq
+ fgWnbwhFpZI5mAmZM1NZ/q8Eph63OH8zrCh+ei3r+IhefciJ1FxlujC9RUOjMzQByrA83141md1
+ 0qSgE6YQwgqNT1Rq0xSV+QgEo6IdPIFC2B1NaJVnUVEBpXhrzlvng9WH0sRIpgGSiwTFP6pUgCi
+ VvPhfza6NsrEKTpPUiK4qJckRcRQjVYFJbRM2KSfMuSJFxmrKJint/PgIKT0j34Dl0gq2MNefX1
+ hVHdRD31Ctmv/0pBz9g6Ll8pRr6GW7lq0LSehX1lD2dl2AE6nbUa+v2ErDLz1wUbYs+mV7Kdk1S
+ 9fEN7GXLKX+pwzZxxJGITtuoR+Nqx6poFcnkZob2UHb2lk/fKUf79HlEYLkWL7xIDdkuXoFgLIO
+ R2iOxtqH32/tkaUWU74VF7DWI22wp1oU7yZ/H/HO7HFJa45LKpKiyNlC83wwfZPNfthz84YFPSp
+ /X7AI4jJMtG4dcolrPS9x2wXzUS18/V/ubyT3wqDFGMXigpwotemHsfNQ7A8JffbXRStfjTX32T
+ APjxSfVyXPeF9nlrMUk2vYF8ERvnxgzn4KnoTjAi9cR47Ux26yrSjon476SQw/SoevCoQmXspIK
+ YSFzwxWlX8ZiTew==
 X-Developer-Key: i=abel.vesa@linaro.org; a=openpgp;
  fpr=6AFF162D57F4223A8770EF5AF7BF214136F41FAE
 
-The Dell XPS13 9345 maps the speakers and tweeters starting from
-the right side instead of left, which means we need to handle it
-differently then the rest of the X Elite platforms.
+On Dell XPS13 9345, the PCM channels are mapped starting with right
+hand side instead of left. So in order to support this, we need to
+hardcode the mapping and tie it up to a dedicated board compatible.
 
-So document its new compatible.
+So define a match data that brings the mapping as well, for the XPS 13,
+while the rest of the boards will fallback to use the mapping based
+on number of channels.
 
 Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
 ---
- Documentation/devicetree/bindings/sound/qcom,sm8250.yaml | 1 +
- 1 file changed, 1 insertion(+)
+ sound/soc/qcom/x1e80100.c | 49 ++++++++++++++++++++++++++++++++++++++++++-----
+ 1 file changed, 44 insertions(+), 5 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml b/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
-index 868acc077046596120ea7f427e802282ed03c853..20566224d2e42574ab96f93c11924bbeae22f0bc 100644
---- a/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
-+++ b/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
-@@ -29,6 +29,7 @@ properties:
-               - qcom,sm8750-sndcard
-           - const: qcom,sm8450-sndcard
-       - enum:
-+          - dell,xps13-9345-sndcard
-           - fairphone,fp4-sndcard
-           - fairphone,fp5-sndcard
-           - qcom,apq8096-sndcard
+diff --git a/sound/soc/qcom/x1e80100.c b/sound/soc/qcom/x1e80100.c
+index 444f2162889f7d9d4b6b06bddc980d8a15dd988b..e21cf534b2ac3875b694f381f260164acb2e3ae4 100644
+--- a/sound/soc/qcom/x1e80100.c
++++ b/sound/soc/qcom/x1e80100.c
+@@ -15,10 +15,17 @@
+ #include "qdsp6/q6dsp-common.h"
+ #include "sdw.h"
+ 
++struct x1e80100_snd_cfg {
++	const char *driver_name;
++	const unsigned int *channels_map;
++	int channels_num;
++};
++
+ struct x1e80100_snd_data {
+ 	bool stream_prepared[AFE_PORT_MAX];
+ 	struct snd_soc_card *card;
+ 	struct sdw_stream_runtime *sruntime[AFE_PORT_MAX];
++	const struct x1e80100_snd_cfg *cfg;
+ 	struct snd_soc_jack jack;
+ 	struct snd_soc_jack dp_jack[8];
+ 	bool jack_setup;
+@@ -95,8 +102,16 @@ static int x1e80100_snd_hw_params(struct snd_pcm_substream *substream,
+ 	return qcom_snd_sdw_hw_params(substream, params, &data->sruntime[cpu_dai->id]);
+ }
+ 
+-static int x1e80100_snd_hw_map_channels(unsigned int *ch_map, int num)
++static int x1e80100_snd_hw_map_channels(struct x1e80100_snd_data *data,
++					unsigned int *ch_map, int num)
+ {
++	if (data->cfg->channels_map) {
++		for (int i = 0; i < data->cfg->channels_num; i++)
++			ch_map[i] = data->cfg->channels_map[i];
++
++		return 0;
++	}
++
+ 	switch (num) {
+ 	case 1:
+ 		ch_map[0] = PCM_CHANNEL_FC;
+@@ -136,7 +151,7 @@ static int x1e80100_snd_prepare(struct snd_pcm_substream *substream)
+ 	switch (cpu_dai->id) {
+ 	case WSA_CODEC_DMA_RX_0:
+ 	case WSA_CODEC_DMA_RX_1:
+-		ret = x1e80100_snd_hw_map_channels(rx_slot, channels);
++		ret = x1e80100_snd_hw_map_channels(data, rx_slot, channels);
+ 		if (ret)
+ 			return ret;
+ 
+@@ -210,15 +225,39 @@ static int x1e80100_platform_probe(struct platform_device *pdev)
+ 	if (ret)
+ 		return ret;
+ 
+-	card->driver_name = of_device_get_match_data(dev);
++	data->cfg = of_device_get_match_data(dev);
++
++	card->driver_name = data->cfg->driver_name;
+ 	x1e80100_add_be_ops(card);
+ 
+ 	return devm_snd_soc_register_card(dev, card);
+ }
+ 
++static const struct x1e80100_snd_cfg x1e80100_cfg = {
++	.driver_name = "x1e80100",
++};
++
++static const struct x1e80100_snd_cfg glymur_cfg = {
++	.driver_name = "glymur",
++};
++
++static const unsigned int right_left_4_channels_map[] = {
++	PCM_CHANNEL_FR,
++	PCM_CHANNEL_RB,
++	PCM_CHANNEL_FL,
++	PCM_CHANNEL_LB,
++};
++
++static const struct x1e80100_snd_cfg dell_xps13_9345_cfg = {
++	.driver_name = "x1e80100",
++	.channels_map = right_left_4_channels_map,
++	.channels_num = ARRAY_SIZE(right_left_4_channels_map),
++};
++
+ static const struct of_device_id snd_x1e80100_dt_match[] = {
+-	{ .compatible = "qcom,x1e80100-sndcard", .data = "x1e80100" },
+-	{ .compatible = "qcom,glymur-sndcard", .data = "glymur" },
++	{ .compatible = "qcom,x1e80100-sndcard", .data = &x1e80100_cfg, },
++	{ .compatible = "dell,xps13-9345-sndcard", .data = &dell_xps13_9345_cfg, },
++	{ .compatible = "qcom,glymur-sndcard", .data = &glymur_cfg, },
+ 	{}
+ };
+ MODULE_DEVICE_TABLE(of, snd_x1e80100_dt_match);
 
 -- 
 2.48.1
