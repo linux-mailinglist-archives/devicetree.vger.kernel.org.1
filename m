@@ -1,83 +1,147 @@
-Return-Path: <devicetree+bounces-229148-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229149-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CFA2EBF47F3
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 05:22:03 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id C5334BF483F
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 05:38:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8901D18C4236
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 03:22:27 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 6C2204E6445
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 03:38:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA038191F66;
-	Tue, 21 Oct 2025 03:22:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B14EF1DF269;
+	Tue, 21 Oct 2025 03:38:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b="JuKGwTFa"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="jIG4z4kG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-180.mta0.migadu.com (out-180.mta0.migadu.com [91.218.175.180])
+Received: from mail-m3270.qiye.163.com (mail-m3270.qiye.163.com [220.197.32.70])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FD941F16B;
-	Tue, 21 Oct 2025 03:21:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99718800;
+	Tue, 21 Oct 2025 03:38:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.70
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761016920; cv=none; b=ghSncDx3JkIUk0Vwp0s3YQi7OHnnFhOYYrDPUD3RINBXjmXEfY/p1eOFmghmhFSVgvaslSRE4K09dZtx0PAElKk2QSXcm8IhYbPC6YC2yldtd9GEmPnZ5l3Mt7gaJ5oIeon/STLqCmDQAmzGTJZ5S8PW7KXncwshT7IXZRerxKE=
+	t=1761017922; cv=none; b=rSl74Jn9yK7C3nd0GM1Wr3o4IKZNRyVy1VZx5fEiIUVi5amZmcPkwP1EN1mJAGjDdsym6i5TnAGNuEAUG5aiK2lTAtvlfNBiX/qwIPNPSPayWifKZjBiJNBSvfygmv1po9F41dXiKNt2aJ77cJFwRU8kOTDnk05fJez2S4r4rAM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761016920; c=relaxed/simple;
-	bh=kpy3W3KmYTz6pOIyAUYRAp5lOnGa6xTDAN096KTZUYQ=;
-	h=MIME-Version:Date:Content-Type:From:Message-ID:Subject:To:Cc:
-	 In-Reply-To:References; b=VilvAo0XaWMdoXhHbCkUCnvLVpFjIp+9MBVhUcoxPzkENL2dYyhXM529MoRwRtpM3MI2cC0wp8iacQLDswUMjb2mMA2jHZx+iD3kLEiOd5ta5xTpRewp32Qr0rPVFYOMTxU2GEfiChr0Vs5cJDrYUPtnjxAEiQjirLFVCcoDvKk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org; spf=pass smtp.mailfrom=postmarketos.org; dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b=JuKGwTFa; arc=none smtp.client-ip=91.218.175.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=postmarketos.org
+	s=arc-20240116; t=1761017922; c=relaxed/simple;
+	bh=AJ2VNE3C/ral2H18ryByPpEHs9xXyE1wotA6RTyZFpg=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=MKdNJ/rxRnta5J6KzYDKFpYCewJVvJ+OhTv3ifiNybV7uok9hx2OdsOjH3yz+xyh++QkVJ7KDmtHD4G7re6iHyHFuy5EsJMag5lUoro9kn3oLaxh5zGNiI6O+Sie8soTtz5yZkWV25uqGudUI71jzNoxzfgslR/+mnzFnfyOQZI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=jIG4z4kG; arc=none smtp.client-ip=220.197.32.70
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from rockchip.. (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 26993a9ab;
+	Tue, 21 Oct 2025 11:38:35 +0800 (GMT+08:00)
+From: Elaine Zhang <zhangqing@rock-chips.com>
+To: mturquette@baylibre.com,
+	sboyd@kernel.org,
+	sugar.zhang@rock-chips.com,
+	zhangqing@rock-chips.com,
+	heiko@sntech.de,
+	robh@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org
+Cc: devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-clk@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	huangtao@rock-chips.com,
+	finley.xiao@rock-chips.com
+Subject: [PATCH v4 0/7] clk: rockchip: Add clock controller for the RV1126B and RK3506
+Date: Tue, 21 Oct 2025 11:38:27 +0800
+Message-Id: <20251021033834.1390006-1-zhangqing@rock-chips.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=postmarketos.org;
-	s=key1; t=1761016916;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=kpy3W3KmYTz6pOIyAUYRAp5lOnGa6xTDAN096KTZUYQ=;
-	b=JuKGwTFaYnULDG+s+GOm1ktKMpfexM4vQ6rV9MKIC2NVmj0pJjLOG6FDlPJ+R4dQl9P+86
-	OTzOzVBp/DgYeIGSrPhU3zHkepHsf17SvYfdSnKyFGroup2B2AWYglqDkooPkAW7zkKNv7
-	7IqjZ9s7eNqbnZHWnqvDtv7lrR1f2ReHoSo0lswGZqlxeR8FQaRMLGGiWMjfdjFyTMa1oj
-	OueVrE2eRRiUrDBsAGS1OnbpACF2Lxjo9J7h9bz/gKnDTbhu8RhgpdZGpok9AvqXO7Bo9Q
-	z2LwsZsbLnMG16VAMIs/cNTr8+Bdr0KsTe/cTLvncNI8qhF4FLfNDvuI44wjaA==
-Date: Tue, 21 Oct 2025 03:21:54 +0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: "Paul Sajna" <sajattack@postmarketos.org>
-Message-ID: <07611bad51014c3699966c0deb5edd7ce65c21aa@postmarketos.org>
-TLS-Required: No
-Subject: Re: [PATCH] arm64: dts: qcom: sdm845: Define guard pages within the
- rmtfs region
-To: david@ixit.cz, "Bjorn Andersson" <andersson@kernel.org>, "Konrad Dybcio"
- <konradybcio@kernel.org>, "Rob Herring" <robh@kernel.org>, "Krzysztof 
- Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org, "David 
- Heidelberg" <david@ixit.cz>
-In-Reply-To: <789a2ffa637842215084a39eeee94993a315ccbe@postmarketos.org>
-References: <20251020-sdm845-use-guard-pages-v1-1-64d714f8bd73@ixit.cz>
- <789a2ffa637842215084a39eeee94993a315ccbe@postmarketos.org>
-X-Migadu-Flow: FLOW_OUT
+Content-Transfer-Encoding: 8bit
+X-HM-Tid: 0a9a04d8e84103a3kunma5e74fcc5b4d0d
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQk4YHVZOQkgaGkIdQk5JSUxWFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
+	hVSktLVUpCS0tZBg++
+DKIM-Signature: a=rsa-sha256;
+	b=jIG4z4kG5uFJmEK4iJczcXbKC012BlzlZ/Dxs/2Xwdhlrn3FE5GXwmjDZirWCJ/fJTOvQDanV8T9pXsDSCN3QddJ6mqC3KtzdbdgOqleSK3iOpt+AzHADroJs6Mc2nEESzzyOcmkjjzR4xkdyRKAcum9Msxk0TvwWUyOoldV4II=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
+	bh=+RaFaMRd14vArqyAkmb0yjsiqsVcSivnEnRkSyz1WDQ=;
+	h=date:mime-version:subject:message-id:from;
 
-October 21, 2025 at 2:49 AM, "Paul Sajna" <sajattack@postmarketos.org mai=
-lto:sajattack@postmarketos.org?to=3D%22Paul%20Sajna%22%20%3Csajattack%40p=
-ostmarketos.org%3E > wrote:
-> I tried something similar before and didn't have much luck with it. I'l=
-l test your patch when I have time.
+Add yaml and dt-bindings for the RV1126B and RK3506.
+RK3506 depend on patches 1/7 and 5/7, so it is merged and submitted.
 
-Your version works as far as I can tell.=20
-ModemManager=20always reports sim-missing on judyln, so I can't fully tes=
-t it, but no crashes and qrtr-lookup shows rmtfs is working.
+Change in V4:
+[PATCH v4 1/7]: No change
+[PATCH v4 2/7]: remove label
+[PATCH v4 3/7]: No change
+[PATCH v4 4/7]: remove label,fix order
+[PATCH v4 5/7]: No change
+[PATCH v4 6/7]: Add yaml and dt-bindings for the RK3506
+[PATCH v4 7/7]: Add clock controller for the RK3506
 
-Tested-By: Paul Sajna <sajattack@postmarketos.org>
+Change in V3:
+[PATCH v3 1/5]: No change
+[PATCH v3 2/5]: Fix define error
+[PATCH v3 3/5]: update driver,fix errir
+[PATCH v3 4/5]: fix error
+[PATCH v3 5/5]: No change
+
+Change in V2:
+[PATCH v2 1/5]: update commit message, rename v2 to multi_pll
+[PATCH v2 2/5]: Modify DT binding headers license
+[PATCH v2 3/5]: update driver
+[PATCH v2 4/5]: fix error
+[PATCH v2 5/5]: update commit message
+
+Elaine Zhang (6):
+  clk: rockchip: Implement rockchip_clk_register_armclk_multi_pll()
+  dt-bindings: clock, reset: Add support for rv1126b
+  clk: rockchip: Add clock controller for the RV1126B
+  dt-bindings: clock: Add support for rockchip pvtpll
+  clk: rockchip: add support for pvtpll clk
+  clk: rockchip: Add clock and reset driver for RK3506
+
+Finley Xiao (1):
+  dt-bindings: clock: rockchip: Add RK3506 clock and reset unit
+
+ .../bindings/clock/rockchip,pvtpll.yaml       |  100 ++
+ .../bindings/clock/rockchip,rk3506-cru.yaml   |   45 +
+ .../bindings/clock/rockchip,rv1126b-cru.yaml  |   52 +
+ drivers/clk/rockchip/Kconfig                  |   14 +
+ drivers/clk/rockchip/Makefile                 |    2 +
+ drivers/clk/rockchip/clk-cpu.c                |  165 +++
+ drivers/clk/rockchip/clk-pvtpll.c             |  925 ++++++++++++++
+ drivers/clk/rockchip/clk-rk3506.c             |  871 +++++++++++++
+ drivers/clk/rockchip/clk-rv1126b.c            | 1105 +++++++++++++++++
+ drivers/clk/rockchip/clk.c                    |   24 +
+ drivers/clk/rockchip/clk.h                    |   96 ++
+ drivers/clk/rockchip/rst-rk3506.c             |  226 ++++
+ drivers/clk/rockchip/rst-rv1126b.c            |  444 +++++++
+ .../dt-bindings/clock/rockchip,rk3506-cru.h   |  285 +++++
+ .../dt-bindings/clock/rockchip,rv1126b-cru.h  |  392 ++++++
+ .../dt-bindings/reset/rockchip,rk3506-cru.h   |  211 ++++
+ .../dt-bindings/reset/rockchip,rv1126b-cru.h  |  405 ++++++
+ 17 files changed, 5362 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/rockchip,pvtpll.yaml
+ create mode 100644 Documentation/devicetree/bindings/clock/rockchip,rk3506-cru.yaml
+ create mode 100644 Documentation/devicetree/bindings/clock/rockchip,rv1126b-cru.yaml
+ create mode 100644 drivers/clk/rockchip/clk-pvtpll.c
+ create mode 100644 drivers/clk/rockchip/clk-rk3506.c
+ create mode 100644 drivers/clk/rockchip/clk-rv1126b.c
+ create mode 100644 drivers/clk/rockchip/rst-rk3506.c
+ create mode 100644 drivers/clk/rockchip/rst-rv1126b.c
+ create mode 100644 include/dt-bindings/clock/rockchip,rk3506-cru.h
+ create mode 100644 include/dt-bindings/clock/rockchip,rv1126b-cru.h
+ create mode 100644 include/dt-bindings/reset/rockchip,rk3506-cru.h
+ create mode 100644 include/dt-bindings/reset/rockchip,rv1126b-cru.h
+
+
+base-commit: 9893549e592ad22d0a18de97acfb30204109290a
+-- 
+2.34.1
+
 
