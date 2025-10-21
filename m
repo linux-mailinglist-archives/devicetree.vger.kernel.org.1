@@ -1,108 +1,242 @@
-Return-Path: <devicetree+bounces-229375-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229376-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A920BF6B59
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 15:15:42 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 46763BF6B6B
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 15:17:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1933D3B74DC
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 13:14:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A5FE7189BCC2
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 13:17:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2085033343D;
-	Tue, 21 Oct 2025 13:14:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E013F333433;
+	Tue, 21 Oct 2025 13:16:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="xRxrEqrB"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GgKvRn6m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7CC5328629;
-	Tue, 21 Oct 2025 13:14:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.151
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACD1F2F49EE
+	for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 13:16:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761052482; cv=none; b=DOJeVLvQzNrQPQwS+UZKatF+DY9CXuj09yKNljLyfYzonhiv5Qjs6R3prssqtq3X8ugct0BTzTzX4KIDdGK//ygJeE5s7u9qpQ3wrVHn0PX3zEighoZ9MjBi6GrHpN1AGyOsg6Ay3MtVyCOzUj9EE+fUMT5zaGM7TGw/Yvlp7eU=
+	t=1761052608; cv=none; b=b6ZFO7uowbjDNe1OZXgpgIeIGPy90PuzxSZFqucpGBrDtcEWX+jlGR0mGSqJa81+EpPQASCv9UCo/+6FnepKHCzA8Aadv8ZNsJ9w8wC++NjRBgpb6uYHDTYU3dp5KYcB3/N23HnN4NO6/nqTaDnVb1VbAROnfws+1xkm763BHSo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761052482; c=relaxed/simple;
-	bh=/CBY5XyDoYp57hZ59ItzVntpFvB/9eNEPFE/lL6ab2M=;
+	s=arc-20240116; t=1761052608; c=relaxed/simple;
+	bh=knG1/6Zq0XiYPG2BG5s77b/+W0LTFGc5Cok0Z3vP3bA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PTSfe4fIDgVyC5lCvDQQa4zN25wbuG0PQv6ZtAWNDQXjj34X3V8FuZpGqD1j5qBMmKCbFTEGH7GWe/mJUkd5uW8rT0T8qlIlXdO4IrgRz/QloAX3pR0LuawkepzkilB4HPkyONFRiHc6oKJhVuUiT7mX2gTxazql7S6CFuwbl6w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=xRxrEqrB; arc=none smtp.client-ip=80.241.56.151
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp102.mailbox.org (smtp102.mailbox.org [IPv6:2001:67c:2050:b231:465::102])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4crXnl74qNz9tK4;
-	Tue, 21 Oct 2025 15:14:35 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1761052476;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=6/zEd5xqpUOFkILaZxmM5oruTGgqFYEwqRpwn4E7Czw=;
-	b=xRxrEqrBI56SFMgp9hWE/1ebdGZmXyv030YtGhmYJAUDI5HAuaLX0SEVTAmtvRkj1GJ4/8
-	KLSdPTPsrRNnmyZkODzbjxuns336oTy1PGTJpF6tl/Jm9RLH7W93b05pb2oumhfaDo4Rla
-	gqTlsDxgNATrdLUYp7D5+D6CEcgyHKDpN6xj4MIJoqm8EBKt7jXxrYELTGeMJ15hv3GbZp
-	V3ZmgbEFTygkNKeB7agkCfDi7g73DcnNc9ppFDajvviGQdQQgcAdwTptUVALVCtEXKnK62
-	M/4oxntZS9ox0QQaLXwey2N/ITzTEjD9lXof8WuDlKJp7+r7P10NFkK+ABqrhw==
-Message-ID: <fba13116-2495-49a3-a1b5-2eecb33bb448@mailbox.org>
-Date: Tue, 21 Oct 2025 15:14:33 +0200
+	 In-Reply-To:Content-Type; b=Nq9LAigVBxVdWaTMe/9W+I/1LzY2gp9V2JefqWrC6xcDyUJxKRLtJH5uZbwqoSq0VNIeTN/GQer9g20qII/07gYlKtMFyApsS4RzdY1zPwNRB7lS3O2a5kWphwfvHcRktY18/IzOghlJFd90MS6n+zt256U3H3BVE/otw3KyfU0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GgKvRn6m; arc=none smtp.client-ip=209.85.218.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-b5b823b4f3dso1065750366b.3
+        for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 06:16:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1761052605; x=1761657405; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=/0jubacFDSdFcQnHYVbBIaUUxwO2V0rJTSsvBZVmUXc=;
+        b=GgKvRn6m/DuPSC3wiV8SG8odvNRTXd+OGVddf7MakmLU9w7e4EggAcTcWO5Y720nWv
+         2lKrXzc9KJZvUrc14y2cgkG64FId6FDcuG6VNzVt0xeXSVlknvAQmuaTq2XI/uO7T1Ka
+         Dngq3hl96cOPya2vjVzzAB4kufGjl3WrDQvrHQ76MEzQDrrjweP4/g14p0rEOt2eaN9i
+         xsx8gzcJUJrlOBcOp5e2QdCSU797GYjcTVsMY9zWKgaKHYmzxKQPXfMgu+Figo7wcJFF
+         VEuAplV8yZf+J1yZ5VVwYZ0ez5XlV7fzQ8ojASIJMXqurhTRP9YfwHAhq1VxIuWlspZ4
+         j3LQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761052605; x=1761657405;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=/0jubacFDSdFcQnHYVbBIaUUxwO2V0rJTSsvBZVmUXc=;
+        b=PIahNfavuyJlWVihwdg9E5L0zAniadDGMcwdg11kXhxRaM1Tj3r6ikqzyPL7D9G5Jx
+         pUCfzpR4XzR8inb51LctxzXS+HDCOmee6Q5lCTS0LL41lOYcq+W6CyEKLxxe1QLWa1Yq
+         zkmcfn3ikzAt/6d0NKG5HF6OZAXjo5M9VVWKRl1Pr2XrraZ9vafIfb4soOL6NlDINA5r
+         H2Yz1FjxhaPvTnvxA4Xb/ZCcRmcfUbyKAHbC8vP6XRuZkR1egAjmqTSSnk/TFWkVmWli
+         fGi7pTvYovqrYUHZsOrzj9H88mgLep1G11egzFK4kMJ7muW+QzS4Jt6rTgJbg86G/vQc
+         N04A==
+X-Forwarded-Encrypted: i=1; AJvYcCXHk/PjC1yc2GsIXl33UKqrpcypKzKZkGC46wTrmTW+9kbE+0jlLezhaRmDDmtPWSjebPnlFPnGfP2H@vger.kernel.org
+X-Gm-Message-State: AOJu0YwbNs4esx2aNQtpcb1eLHipExP7kzENmaujqwYmgRESAjR+DAC3
+	Y38CJfEVQGShRLnd9c2do+t+3qP2+SdKsT3tiHbBduuQCbsnG4DyeM61
+X-Gm-Gg: ASbGncuSQSzdkkV3CFTX3AdsB3yn4jTKCWzLKV2vSMBe8IRTGPTqa6bcozk/nWjMXWD
+	5oCYymsOrVMiJd+1ges+bvHOw0nOzslHj+kXY5SlvDrm7Su8AVXAlMIKekD9GgzmmEkVj2YSOZ7
+	q6TCT9QDvtXA8tKowf35znpRUy70qUe38hdg5wx98vUReHtk9wa15ZNUHzKVES7SCNn9WjCrK15
+	pgi/MJFWTRgyazdOlS3N8IvF6EzY1ou79WwQ9NThvaYNTmSE550Aa19rnED26WNlefw38giFmgb
+	sUTWaqOJNrlHHjgk5Kz3qEv29+2v7cekoRfzkSSf+DxhVhRYg0j9/cGWAbU8COroSIooXH5nJxO
+	9ojhzfFBFW547ZKwZgbnsTEEOuNgpU/lTrP47Xxy+xmBg2FrKtlezEFHLh95huGRgUP0P1bGrUa
+	bwS6nQNWUQiBRtyYNO5Zx1WgyMEO6Vo6b3nf17XZa9I+w=
+X-Google-Smtp-Source: AGHT+IGLK2EmnFCqdftdxAKB6j+6Ma2jSdfUwKotGCFRUzw3RKdiF0RM9WMxavQ7l+6jXDABf8pL5A==
+X-Received: by 2002:a17:907:3f25:b0:b30:ea06:af06 with SMTP id a640c23a62f3a-b647324404cmr1795728766b.24.1761052604632;
+        Tue, 21 Oct 2025 06:16:44 -0700 (PDT)
+Received: from [10.25.219.115] ([128.77.115.158])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b65e8391523sm1069741966b.18.2025.10.21.06.16.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 21 Oct 2025 06:16:44 -0700 (PDT)
+Message-ID: <f1bbd303-2798-4476-921a-62b45fdb67ea@gmail.com>
+Date: Tue, 21 Oct 2025 06:16:41 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH] arm64: dts: renesas: sparrow-hawk: don't reserve SWDT
-To: Geert Uytterhoeven <geert@linux-m68k.org>,
- Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc: linux-renesas-soc@vger.kernel.org, Magnus Damm <magnus.damm@gmail.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
-References: <20251017115123.3438-2-wsa+renesas@sang-engineering.com>
- <CAMuHMdUCSRKAbD=DfJxfFGpfKTRkt=a2BO+HnwTqALBeeECOkA@mail.gmail.com>
- <aPaSF2lokJ748cTx@shikoro>
- <CAMuHMdXv_R6POTQe=MEcEOraKhjhzwrW5skkWnzgvijF2qAykw@mail.gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 7/8] reset: imx8mp-audiomix: Support i.MX8ULP SIM LPAV
+To: Frank Li <Frank.li@nxp.com>
+Cc: Abel Vesa <abelvesa@kernel.org>, Peng Fan <peng.fan@nxp.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Fabio Estevam <festevam@gmail.com>, Philipp Zabel <p.zabel@pengutronix.de>,
+ Daniel Baluta <daniel.baluta@nxp.com>, Shengjiu Wang
+ <shengjiu.wang@nxp.com>, linux-clk@vger.kernel.org, imx@lists.linux.dev,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Pengutronix Kernel Team <kernel@pengutronix.de>
+References: <20251017112025.11997-1-laurentiumihalcea111@gmail.com>
+ <20251017112025.11997-8-laurentiumihalcea111@gmail.com>
+ <aPJZdAQwdoOP3cqN@lizhi-Precision-Tower-5810>
+ <64b28a11-337a-42ba-8765-d94b19070d66@gmail.com>
+ <aPZMJb9VwylTIiCM@lizhi-Precision-Tower-5810>
 Content-Language: en-US
-From: Marek Vasut <marek.vasut@mailbox.org>
-In-Reply-To: <CAMuHMdXv_R6POTQe=MEcEOraKhjhzwrW5skkWnzgvijF2qAykw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-MBO-RS-ID: c46a08b9ef3b2cdfa6f
-X-MBO-RS-META: qufb5q9rxdj7417677rhtgrwinh4stk3
+From: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
+In-Reply-To: <aPZMJb9VwylTIiCM@lizhi-Precision-Tower-5810>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On 10/21/25 9:09 AM, Geert Uytterhoeven wrote:
 
-Hello everyone,
-
-> On Mon, 20 Oct 2025 at 21:48, Wolfram Sang
-> <wsa+renesas@sang-engineering.com> wrote:
->>> Or better: drop all these swdt = reserved commits?
+On 10/20/2025 7:50 AM, Frank Li wrote:
+> On Mon, Oct 20, 2025 at 07:29:28AM -0700, Laurentiu Mihalcea wrote:
+>> On 10/17/2025 7:57 AM, Frank Li wrote:
+>>> On Fri, Oct 17, 2025 at 04:20:24AM -0700, Laurentiu Mihalcea wrote:
+>>>> From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
+>>>>
+>>>> Support i.MX8ULP's SIM LPAV by adding its reset map definition.
+>>>>
+>>>> Reviewed-by: Daniel Baluta <daniel.baluta@nxp.com>
+>>>> Signed-off-by: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
+>>>> ---
+>>>>  drivers/reset/reset-imx8mp-audiomix.c | 51 +++++++++++++++++++++++++++
+>>>>  1 file changed, 51 insertions(+)
+>>>>
+>>>> diff --git a/drivers/reset/reset-imx8mp-audiomix.c b/drivers/reset/reset-imx8mp-audiomix.c
+>>>> index c370913107f5..b333d7c1442a 100644
+>>>> --- a/drivers/reset/reset-imx8mp-audiomix.c
+>>>> +++ b/drivers/reset/reset-imx8mp-audiomix.c
+>>>> @@ -3,6 +3,7 @@
+>>>>   * Copyright 2024 NXP
+>>>>   */
+>>>>
+>>>> +#include <dt-bindings/reset/fsl,imx8ulp-sim-lpav.h>
+>>>>  #include <dt-bindings/reset/imx8mp-reset-audiomix.h>
+>>>>
+>>>>  #include <linux/auxiliary_bus.h>
+>>>> @@ -17,6 +18,8 @@
+>>>>  #define IMX8MP_AUDIOMIX_EARC_RESET_OFFSET	0x200
+>>>>  #define IMX8MP_AUDIOMIX_DSP_RUNSTALL_OFFSET	0x108
+>>>>
+>>>> +#define IMX8ULP_SIM_LPAV_SYSCTRL0_OFFSET	0x8
+>>>> +
+>>>>  struct imx8mp_reset_map {
+>>>>  	unsigned int offset;
+>>>>  	unsigned int mask;
+>>>> @@ -55,6 +58,50 @@ static const struct imx8mp_reset_info imx8mp_reset_info = {
+>>>>  	.num_lines = ARRAY_SIZE(imx8mp_reset_map),
+>>>>  };
+>>>>
+>>>> +static const struct imx8mp_reset_map imx8ulp_reset_map[] = {
+>>>> +	[IMX8ULP_SIM_LPAV_HIFI4_DSP_DBG_RST] = {
+>>>> +		.offset = IMX8ULP_SIM_LPAV_SYSCTRL0_OFFSET,
+>>>> +		.mask = BIT(25),
+>>> Register defination still perfer use macro. If not, let me know.
+>> I see no value in adding defines for the masks (see patch 4 commit message)
 >>
->> Maybe. Since Marek is maybe interested in fixing FW...
+>> in this particular scenario.
 >>
->>> TBH, I always had my doubts about making them reserved in the upstream
->>> DTS, and there does not seem to be much gain in doing so...
 >>
->> No strong opinion here. With "reserved" I think I followed your
->> suggestion but I personally don't mind.
-> 
-> Well, the proper mechanism would be that firmware using SWDT would
-> override the status to reserved, preventing the user from using it if
-> it was enabled in the DTB passed by the user.  But (a) the current
-> firmware doesn't do that, and (b) we currently do not have a use-case
-> for enabling SWDT in the DTB.
+>> Is the assignment of the "mask" field for the "struct imx8mp_reset_map" item found
+>>
+>> at index  IMX8ULP_SIM_LPAV_HIFI4_DSP_DBG_RST not enough to deduce that the
+>>
+>> constant we're using is the mask for the DSP_DBG_RST bit?
+> This bit is NOT software choose bit, which must be align hardware spec.
+> Define macro help map name to spec and easy to look for spec by use macro.
 
-Upstream TFA does enable SWDT for R-Car Gen3, but not for Gen4.
 
-I can pass SWDT node from upstream TFA to next stage on Gen3 if you 
-would like that ?
+yeah, we already have the DT binding macros for that which perfectly match the name
 
--- 
-Best regards,
-Marek Vasut
+of the corresponding bit in the SYSCTRL0 register. I don't see how adding 6 more macros
+
+with the SAME name as the DT binding macros and the "_MASK" suffix would help you in
+
+this regard?
+
+
+>
+> There are over thousand result to seach bit 25.
+>
+> eventhough search SYSCTRL0, may have many SYSCTRL0 in RM.
+>
+> Frank
+>>
+>>> Frank
+>>>> +		.shift = 25,
+>>>> +		.active_low = false,
+>>>> +	},
+>>>> +	[IMX8ULP_SIM_LPAV_HIFI4_DSP_RST] = {
+>>>> +		.offset = IMX8ULP_SIM_LPAV_SYSCTRL0_OFFSET,
+>>>> +		.mask = BIT(16),
+>>>> +		.shift = 16,
+>>>> +		.active_low = false,
+>>>> +	},
+>>>> +	[IMX8ULP_SIM_LPAV_HIFI4_DSP_STALL] = {
+>>>> +		.offset = IMX8ULP_SIM_LPAV_SYSCTRL0_OFFSET,
+>>>> +		.mask = BIT(13),
+>>>> +		.shift = 13,
+>>>> +		.active_low = false,
+>>>> +	},
+>>>> +	[IMX8ULP_SIM_LPAV_DSI_RST_BYTE_N] = {
+>>>> +		.offset = IMX8ULP_SIM_LPAV_SYSCTRL0_OFFSET,
+>>>> +		.mask = BIT(5),
+>>>> +		.shift = 5,
+>>>> +		.active_low = true,
+>>>> +	},
+>>>> +	[IMX8ULP_SIM_LPAV_DSI_RST_ESC_N] = {
+>>>> +		.offset = IMX8ULP_SIM_LPAV_SYSCTRL0_OFFSET,
+>>>> +		.mask = BIT(4),
+>>>> +		.shift = 4,
+>>>> +		.active_low = true,
+>>>> +	},
+>>>> +	[IMX8ULP_SIM_LPAV_DSI_RST_DPI_N] = {
+>>>> +		.offset = IMX8ULP_SIM_LPAV_SYSCTRL0_OFFSET,
+>>>> +		.mask = BIT(3),
+>>>> +		.shift = 3,
+>>>> +		.active_low = true,
+>>>> +	},
+>>>> +};
+>>>> +
+>>>> +static const struct imx8mp_reset_info imx8ulp_reset_info = {
+>>>> +	.map = imx8ulp_reset_map,
+>>>> +	.num_lines = ARRAY_SIZE(imx8ulp_reset_map),
+>>>> +};
+>>>> +
+>>>>  struct imx8mp_audiomix_reset {
+>>>>  	struct reset_controller_dev rcdev;
+>>>>  	void __iomem *base;
+>>>> @@ -183,6 +230,10 @@ static const struct auxiliary_device_id imx8mp_audiomix_reset_ids[] = {
+>>>>  		.name = "clk_imx8mp_audiomix.reset",
+>>>>  		.driver_data = (kernel_ulong_t)&imx8mp_reset_info,
+>>>>  	},
+>>>> +	{
+>>>> +		.name = "clk_imx8ulp_sim_lpav.reset",
+>>>> +		.driver_data = (kernel_ulong_t)&imx8ulp_reset_info,
+>>>> +	},
+>>>>  	{ }
+>>>>  };
+>>>>  MODULE_DEVICE_TABLE(auxiliary, imx8mp_audiomix_reset_ids);
+>>>> --
+>>>> 2.43.0
+>>>>
 
