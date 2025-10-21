@@ -1,64 +1,58 @@
-Return-Path: <devicetree+bounces-229178-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229182-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82EACBF4BF0
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 08:52:49 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF53CBF4C23
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 08:54:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 3BE3D4E44F5
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 06:52:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B063218C51FB
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 06:54:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48D5C25EF81;
-	Tue, 21 Oct 2025 06:52:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2334B26D4C3;
+	Tue, 21 Oct 2025 06:53:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ufgJENoW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="p4yD81KZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19C59224245;
-	Tue, 21 Oct 2025 06:52:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E89B826CE34;
+	Tue, 21 Oct 2025 06:53:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761029565; cv=none; b=dN5AQXQkv6dIDR7BkSJH0QOZI7IKY7s7VJAp866CgmnWwIUEAcCWqlZLISoAExLReGp/gU+KigA23GMSI8hgNHNlkSynfHEx9l7t80ZlmX9hsbpOeiLl+2NUCmlE5TCv6AbBQ/4THfMSGvJ+axl/ptuSiBddbZgP4PqFpHIY4PE=
+	t=1761029628; cv=none; b=ZJhTjLE3NqcSMPW8tZXWVR8cWkFNl+It6ccT1sEZERyCEowWWJDbrhZj85vreS9537rEVBnatDpccIPGjhfOgX7KrNhaDAjOmjOCQZnWXNub+dj5E16WgtThlIgz70OzUZTg1BVcvpTK/8fXUnxzSdvdTRRck7qWKhZXu0DPZIo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761029565; c=relaxed/simple;
-	bh=kEveI288R5aLgEy1LfWmXLzg1vJMJmJhDW/u+SLA3ys=;
+	s=arc-20240116; t=1761029628; c=relaxed/simple;
+	bh=m4LFaAIzZI1Eef6ivEIcMLDkN6twcWE4plP0xAbRano=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=h0We3WHs/T8x44wN3TvWV1GUXKs2FOsuNhtKqweQrtYTXX8Ee+QPyL1D85Ho+UXmbP82tIJQytqSg8h+sUl5hc1nU0go7gNnHZRCzgDCXzeI0mRO4m1IfufzJUHNhe6qC9AxRgIR0LDI+r4NPg5odeX1G+0NQFXHi+KtEFDBaJg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ufgJENoW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 119D9C4CEF5;
-	Tue, 21 Oct 2025 06:52:43 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=gXdA9rBYFWjkX+68M0xfsLQsGZDZR2h4J29JGGqBwYe8OXcAm3LnwtqwZoJy2w1WCdsT0AZN+osp7QGFc6sUBoVKthe3NcRoxZBI8SbbYAJt/Z75zeap1gTJEobgdBuSxOUFXx0/A2zazpD04GT6R7VW82jc471CDNRyrGKPi+I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=p4yD81KZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E3788C4CEF1;
+	Tue, 21 Oct 2025 06:53:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761029564;
-	bh=kEveI288R5aLgEy1LfWmXLzg1vJMJmJhDW/u+SLA3ys=;
+	s=k20201202; t=1761029627;
+	bh=m4LFaAIzZI1Eef6ivEIcMLDkN6twcWE4plP0xAbRano=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ufgJENoWaQrbt1LbWl7US2kpvPAXm6hP4SYC0sBEkppguWvqx4odoeREOZ1hzvcGH
-	 T9puAiLpk8ER0bHDe+9wfqX+bS1+J00ibNQc5Q34vqQUr2Z/VbZaiNtXT5b7nPfxE9
-	 x3thfr7qGTtlUbZ/qk+m0cjtv6PT/V+URbn6Ar+0wMPpOtKABk2ZHCO4ISJUlIxFIl
-	 sBujnreUL9haT+U2tsiifPloDnhX93Helsh60Bhwd484BroWUlphn78V/HSabn7DSR
-	 nEpicEoTQiKy2nsGxdymT+5neEkdjAHbVQW6Df7K3aQe7y0lwCaNsBw10mJ7voRV9f
-	 al5JbcNESGw/g==
-Date: Tue, 21 Oct 2025 08:52:41 +0200
+	b=p4yD81KZMaJ0dYbvKvdOzLXBUJ5pLeXBoicGz5+b543c5agzUVWOXYOYtxCEtb255
+	 BeigKmh/bOCQ/019iXI9C6gvh/ra8bj7z/df4jMwUahp844OSW+7EkPaAoUeKfLo63
+	 vMQL6aSir+ODNAkzXlm7fMi+UiHOfuGPmmcS7rjUcFT91Rx9YEzFlM4rU5OWGXAgvS
+	 qFiEazT4Tk/jZUt+bTbLXpuBZ22d7bmnOxuPmkc6o+ST0c3mUXW/4GdXvSpd3JQLC4
+	 UyL1P3DCbvqJ3bSoDpd+jhuawzlNpAyfGX/BdGGCgW9uEzdL4aWwbKigK7c0K1MMIl
+	 RKO8ES+JtXmgg==
+Date: Tue, 21 Oct 2025 08:53:44 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Liu Ying <victor.liu@nxp.com>
-Cc: Rob Herring <robh@kernel.org>, Marek Vasut <marek.vasut@mailbox.org>, 
-	dri-devel@lists.freedesktop.org, Abel Vesa <abelvesa@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Fabio Estevam <festevam@gmail.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
-	Lucas Stach <l.stach@pengutronix.de>, Peng Fan <peng.fan@nxp.com>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org
-Subject: Re: [PATCH 01/39] dt-bindings: display: imx: Document i.MX95 Display
- Controller DomainBlend
-Message-ID: <20251021-mighty-artichoke-crayfish-dc85b7@kuoka>
-References: <20251011170213.128907-1-marek.vasut@mailbox.org>
- <20251011170213.128907-2-marek.vasut@mailbox.org>
- <20251015132442.GA3241958-robh@kernel.org>
- <5c5bb009-3463-4282-946f-3ae93fab11ec@nxp.com>
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>, 
+	Lukasz Luba <lukasz.luba@arm.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Talel Shenhar <talel@amazon.com>, linux-pm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: thermal: Convert amazon,al-thermal to DT
+ schema
+Message-ID: <20251021-invaluable-lynx-of-enterprise-314a7a@kuoka>
+References: <20251013215820.783272-1-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,24 +61,19 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <5c5bb009-3463-4282-946f-3ae93fab11ec@nxp.com>
+In-Reply-To: <20251013215820.783272-1-robh@kernel.org>
 
-On Thu, Oct 16, 2025 at 10:07:26AM +0800, Liu Ying wrote:
-> On 10/15/2025, Rob Herring wrote:
-> >> +properties:
-> >> +  compatible:
-> >> +    const: fsl,imx95-dc-domainblend
-> >> +
-> >> +  reg:
-> >> +    maxItems: 1
-> > 
-> > No clocks or other resources?
+On Mon, Oct 13, 2025 at 04:58:18PM -0500, Rob Herring (Arm) wrote:
+> Convert amazon,al-thermal binding to DT schema format. It's a
+> straight-forward conversion.
 > 
-> As patch 39 shows, there are 3 interrupts - domainblend{0,1}_shdload,
-> domainblend{0,1}_framecomplete and domainblend{0,1}_seqcomplete.
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> ---
+>  .../bindings/thermal/amazon,al-thermal.txt    | 33 ------------
+>  .../bindings/thermal/amazon,al-thermal.yaml   | 50 +++++++++++++++++++
+>  MAINTAINERS                                   |  2 +-
 
-So they should be here. Just like all other resources, because bindings
-should be complete (see writing-bindings doc).
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
