@@ -1,122 +1,159 @@
-Return-Path: <devicetree+bounces-229521-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229522-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F847BF8EA8
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 23:14:46 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA01FBF8F30
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 23:35:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id EADF34E7A17
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 21:14:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6D279566E05
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 21:35:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97372286D4E;
-	Tue, 21 Oct 2025 21:14:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3E8528CF5E;
+	Tue, 21 Oct 2025 21:35:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="BaR7OxGX"
+	dkim=pass (2048-bit key) header.d=jannau.net header.i=@jannau.net header.b="LDDwlNL/";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="trU68A4Y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+Received: from fhigh-a6-smtp.messagingengine.com (fhigh-a6-smtp.messagingengine.com [103.168.172.157])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1874A27FD5D;
-	Tue, 21 Oct 2025 21:14:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9774127FD71;
+	Tue, 21 Oct 2025 21:35:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.157
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761081282; cv=none; b=NK9pRNlrULbLrf4bfz9eFLcC9NhSfVqKjBQgD9BCqEy45uvyE4oTOIA2PYPebUzaqXvAijbwgLRSaVd+B+WTGFYKxPzAbYqm9GhqPFk0Hy2CtoafBJV5MznKFo1sSKi0y28S24BEbLEPtVqM7Qw/xGzJ6I2OuWdnSvMG+kg9tsg=
+	t=1761082526; cv=none; b=eL89Dr4EkaFAkL1BbC0XNCrzn363i1sz1pP0t0OZIJjGvo8KghsXrGKs4NqlD4LNnRsNDyy1wEADEpmuKXvGlk/r7k0xJy7TOH5u8Q4DdjaeK8QF2xzXWBjD0Ylc1dbERNOh3CwU2Iim+MsRAj6uCBYGbl9iNbfTne73Z1jmG0g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761081282; c=relaxed/simple;
-	bh=YQidWeBQThI4lFjuPpKQQPtrlVPDUTen2IXLFencNZg=;
+	s=arc-20240116; t=1761082526; c=relaxed/simple;
+	bh=YOmO0aTYC7u74cdNwBX4yqTPJteWYgGn+TnC9SPFm5c=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=aw9791Z8X+2/ZSRyvAJ+vqEB9A9BSLmsYM9rEdhW2L8GiqiSzd6hKlVYoDmXLnP+ijgr7ivBb4kViIj/WIwU/pWs7vC/+AEWxByvxzrhFb3VvZxmH0rJ2DyeBOJGbYWYAzN8nfRJ/E1c91qmOf+4AnTx3rTnx9f0xSX3kYQSR14=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=BaR7OxGX; arc=none smtp.client-ip=198.175.65.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1761081281; x=1792617281;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=YQidWeBQThI4lFjuPpKQQPtrlVPDUTen2IXLFencNZg=;
-  b=BaR7OxGXHHT/mVpNv2Y6U7cCO/dPAjk3r001s6swgow+40dalA++6tsl
-   R0g2lv/uNRVnVAznmgsGTDU5vZM/UcgGm0GXbgjnJ33WvWmDoMUzx7hIQ
-   rKhR0gfVhyw5dRWhUB48AgqBwkXVQTqViB1/wsPe3aysSY+2KjWSY3ptV
-   aOhTg0AYzztcQ/r5YeTf4AXzpIQrC19PnkBoI6QOt0XCtR7P535XV8NNL
-   znVzIwQTgau3E49SvoMeHXEshkAy2Eew22waCCcbV+s7P+DPPCiqMVy24
-   5uFLRQEwyNCJkjeV89NUZnvTkkp84xYtk1VhGM+0o9kFIF/bjyc4hfoCh
-   g==;
-X-CSE-ConnectionGUID: G6Zgw3joRQCDOPp24MfpdQ==
-X-CSE-MsgGUID: MI38fL+bS6uI2Jk3XgGoUQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="67055832"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; 
-   d="scan'208";a="67055832"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
-  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Oct 2025 14:14:40 -0700
-X-CSE-ConnectionGUID: GNdgFLJ0Ta2cVivOZcsn6A==
-X-CSE-MsgGUID: N2vP9ISWSX2pfQevM9jjTA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,245,1754982000"; 
-   d="scan'208";a="187959834"
-Received: from lkp-server02.sh.intel.com (HELO 66d7546c76b2) ([10.239.97.151])
-  by orviesa004.jf.intel.com with ESMTP; 21 Oct 2025 14:14:35 -0700
-Received: from kbuild by 66d7546c76b2 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1vBJgf-000Bm5-1n;
-	Tue, 21 Oct 2025 21:14:33 +0000
-Date: Wed, 22 Oct 2025 05:14:13 +0800
-From: kernel test robot <lkp@intel.com>
-To: Chen-Yu Tsai <wens@kernel.org>, Jernej Skrabec <jernej@kernel.org>,
-	Samuel Holland <samuel@sholland.org>,
-	Mark Brown <broonie@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=JIJO2DYjUyeYA/LzfFd5dzOcij03UIPftgx1RSBBzSOYwWGTioNA5rVvRYLKT9kpyCU3yp20r3JnFtzVYhDG3gZKD6I2bHKhQ1LuYiuO3rDap+bFGbEWNTZ9yDBAg6daQ8ETVeVBXIT/uMyEXWas3tGNH1wkxWia4cxIoUf92sI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jannau.net; spf=pass smtp.mailfrom=jannau.net; dkim=pass (2048-bit key) header.d=jannau.net header.i=@jannau.net header.b=LDDwlNL/; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=trU68A4Y; arc=none smtp.client-ip=103.168.172.157
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jannau.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jannau.net
+Received: from phl-compute-07.internal (phl-compute-07.internal [10.202.2.47])
+	by mailfhigh.phl.internal (Postfix) with ESMTP id C07911400152;
+	Tue, 21 Oct 2025 17:35:23 -0400 (EDT)
+Received: from phl-mailfrontend-01 ([10.202.2.162])
+  by phl-compute-07.internal (MEProxy); Tue, 21 Oct 2025 17:35:23 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=jannau.net; h=cc
+	:cc:content-type:content-type:date:date:from:from:in-reply-to
+	:in-reply-to:message-id:mime-version:references:reply-to:subject
+	:subject:to:to; s=fm1; t=1761082523; x=1761168923; bh=SSmc773k1o
+	hUjKBtXPg8Ooubnfa2H2zZUHk2E3oNqks=; b=LDDwlNL/Civ8KvUV+4wSIqn9Fp
+	dC6gnUKVTULSO8HojwWFrG0YZyvJvkw047KbdqBA7pfC00sxISkseQmGwM8ejAOE
+	99UrKxGX2dVr3c3gC+DjTGIx7gUjwczI48oyUPRmuP6bFpRZS4oWtedTLRd6IALo
+	1NhTCrbJvbY4KxFA0AJWSHCdhJHb1JW1Vm64AgpwnRzV6gpxaH1eLNqkyUmFz3N0
+	f8GCTKCEaLeOLmz1SEjBIrPUGjcg2MUHuMOPyRBv+S335R3kR441Ij5gQhh+aTvZ
+	9kSHQTNM8/8s8x5ZMPB3nmz5rpEKs9sh7GU+H9oXK2lB7VTeFTthCfJeHJ3Q==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-type:content-type:date:date
+	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
+	:message-id:mime-version:references:reply-to:subject:subject:to
+	:to:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=
+	1761082523; x=1761168923; bh=SSmc773k1ohUjKBtXPg8Ooubnfa2H2zZUHk
+	2E3oNqks=; b=trU68A4YzeRx8nSBoXV7wr6rGsygStp9hhqPoTrWvrwH7020yWy
+	LbwZZQTk1JTQFfsyu7YxbX8GIQDPk4hF8h/qLr8e1zhJpVDaCn0gd+jvvHc/St8U
+	PfTGJ7mUgGZQ5LLORJQiWSHFwv97yTDg8ML1SY5Ehe4Z8JJyFs5kp8VGijgdW12w
+	H+q6zOyeZWpERBinzuxMlrx4mvf/1P20p36MaDEI1FyWT+5HWJGykX2U17KDxH63
+	iuZk4CH7K6ZGiBXNSbr/Te3xOiAL2H0nqorV6bVY4LYcmqrCVlBbeh3pTiWs087G
+	fIURyiYh/cVImYO19CBb9EWzpskuQ3u70GA==
+X-ME-Sender: <xms:mvz3aH6CC7ccxitepgQOV4dRf5ycIb3MyGp5fup00yTr9aRmZcxk8w>
+    <xme:mvz3aNR3WqFDe4caBONWo_J67I3zv6_Kgwz3EemEAqUyQhrxbPcQqCmnF4S39S-wp
+    PzKQ_6NQAcYn3zqdXJ_tGN-swiq389HUvU72M0EfweI5HMXfgcT9pc>
+X-ME-Received: <xmr:mvz3aPmKV8lSi3JXACietOeMwXek-wkDaW7hS6ij3kVUWd7Fu3q5gI9k3nMzzl27h7VZ18xiElJUB3-Q2apck-1pizG1VUQUTK2WKBWCyrun-YkCsA1vAkLbbQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdeggddugedujeelucetufdoteggodetrf
+    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceu
+    rghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujf
+    gurhepfffhvfevuffkfhggtggujgesthdtredttddtjeenucfhrhhomheplfgrnhhnvgcu
+    ifhruhhnrghuuceojhesjhgrnhhnrghurdhnvghtqeenucggtffrrghtthgvrhhnpefgvd
+    ffveelgedujeeffeehheekheelheefgfejffeftedugeethfeuudefheefteenucevlhhu
+    shhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehjsehjrghnnhgruh
+    drnhgvthdpnhgspghrtghpthhtohepvddtpdhmohguvgepshhmthhpohhuthdprhgtphht
+    thhopegumhhithhrhidrthhorhhokhhhohhvsehgmhgrihhlrdgtohhmpdhrtghpthhtoh
+    epjhgtrghllhhighgvrhhoshelleesghhmrghilhdrtghomhdprhgtphhtthhopehsvhgv
+    nheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprghlhihsshgrsehrohhsvghniiifvg
+    highdrihhopdhrtghpthhtohepnhgvrghlsehgohhmphgrrdguvghvpdhrtghpthhtohep
+    lhgvvgeskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdroh
+    hrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthho
+    pegtohhnohhrodgutheskhgvrhhnvghlrdhorhhg
+X-ME-Proxy: <xmx:mvz3aEKTfwowrvGhnvf4-EXiYQ8vvIQIVEZ1iWF8JuUJEl7pOxPTwQ>
+    <xmx:mvz3aKQDpq6pdomkmnXR8DESBXdjiu6JkQoLsyLelbx_7tE1yw2-gg>
+    <xmx:mvz3aKSM4MHm3ClKfeaqTHWz-nMYXtQafAIa1bNW_e28Sx97dtMPEg>
+    <xmx:mvz3aEzXTHBa5YFFaUthIK9hhDlQyKhib1n9PXB56vtmvPVKipSSUA>
+    <xmx:m_z3aIN6XjMCVaeHimR80BQvfCuR37CLmoygwdxALuTo15O-_yFWnP9x>
+Feedback-ID: i47b949f6:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
+ 21 Oct 2025 17:35:21 -0400 (EDT)
+Date: Tue, 21 Oct 2025 23:35:20 +0200
+From: Janne Grunau <j@jannau.net>
+To: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc: James Calligeros <jcalligeros99@gmail.com>,
+	Sven Peter <sven@kernel.org>,
+	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+	Neal Gompa <neal@gompa.dev>, Lee Jones <lee@kernel.org>,
 	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>
-Cc: oe-kbuild-all@lists.linux.dev, linux-sunxi@lists.linux.dev,
-	linux-sound@vger.kernel.org, linux-clk@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Jean Delvare <jdelvare@suse.com>,
+	Guenter Roeck <linux@roeck-us.net>, asahi@lists.linux.dev,
 	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	dmaengine@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 11/11] [EXAMPLE] arm64: dts: allwinner: a527-cubie-a5e:
- Enable I2S and SPDIF output
-Message-ID: <202510220453.UbrhVlRH-lkp@intel.com>
-References: <20251020171059.2786070-12-wens@kernel.org>
+	linux-kernel@vger.kernel.org, linux-rtc@vger.kernel.org,
+	linux-hwmon@vger.kernel.org, linux-input@vger.kernel.org,
+	Hector Martin <marcan@marcan.st>
+Subject: Re: [PATCH v2 07/11] input: macsmc-hid: New driver to handle the
+ Apple Mac SMC buttons/lid
+Message-ID: <20251021213520.GA2546203@robin.jannau.net>
+References: <20250827-macsmc-subdevs-v2-0-ce5e99d54c28@gmail.com>
+ <20250827-macsmc-subdevs-v2-7-ce5e99d54c28@gmail.com>
+ <qffp7kadq3xojla5k6f5pr37irgytqfsqvabr6ydvulxnkcgnn@bv5mrraxrhhe>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20251020171059.2786070-12-wens@kernel.org>
+In-Reply-To: <qffp7kadq3xojla5k6f5pr37irgytqfsqvabr6ydvulxnkcgnn@bv5mrraxrhhe>
 
-Hi Chen-Yu,
+On Fri, Aug 29, 2025 at 11:11:22AM +0000, Dmitry Torokhov wrote:
+> Hi James,
+> 
+> On Wed, Aug 27, 2025 at 09:22:41PM +1000, James Calligeros wrote:
+> > +static void macsmc_hid_event_button(struct macsmc_hid *smchid, unsigned long event)
+> > +{
+> > +	u8 button = (event >> 8) & 0xff;
+> > +	u8 state = !!(event & 0xff);
+> > +
+> > +	switch (button) {
+> > +	case BTN_POWER:
+> > +	case BTN_TOUCHID:
+> > +		if (smchid->wakeup_mode) {
+> > +			if (state)
+> > +				pm_wakeup_hard_event(smchid->dev);
+> > +		} else {
+> > +			input_report_key(smchid->input, KEY_POWER, state);
+> > +			input_sync(smchid->input);
+> > +		}
+> 
+> I believe you should be using pm_wakeup_event() in all cases so that
+> pressing power would interrupt suspend even if resume() handler has not
+> been run yet.
 
-kernel test robot noticed the following build errors:
+pm_wakeup_event() does not wake from s2idle. pm_wakeup_dev_event()'s
+`hard` parameter is explicitily documented to wake from s2idle. So using
+pm_wakeup_dev_event and use `smchid->wakeup_mode && state` as hard
+parameter seems the correct thing to do.
 
-[auto build test ERROR on sunxi/sunxi/for-next]
-[also build test ERROR on broonie-sound/for-next vkoul-dmaengine/next linus/master v6.18-rc2 next-20251021]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+> Also I do not think suppressing KEY_POWER is needed.
+> Userspace should be smart and decide whether to shutdown the system or
+> not when receiving KEY_POWER depending on the overall system state.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Chen-Yu-Tsai/dt-bindings-dma-allwinner-sun50i-a64-dma-Add-compatibles-for-A523/20251021-011340
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/sunxi/linux.git sunxi/for-next
-patch link:    https://lore.kernel.org/r/20251020171059.2786070-12-wens%40kernel.org
-patch subject: [PATCH 11/11] [EXAMPLE] arm64: dts: allwinner: a527-cubie-a5e: Enable I2S and SPDIF output
-config: arm64-defconfig (https://download.01.org/0day-ci/archive/20251022/202510220453.UbrhVlRH-lkp@intel.com/config)
-compiler: aarch64-linux-gcc (GCC) 15.1.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251022/202510220453.UbrhVlRH-lkp@intel.com/reproduce)
+Not all user space. Using the power button to wake from s2idle while
+showing agetty's login prompt on a tty results in an immediate shutdown.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202510220453.UbrhVlRH-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   also defined at arch/arm64/boot/dts/allwinner/sun55i-a527-cubie-a5e.dts:393.8-397.3
->> ERROR: Input tree has errors, aborting (use -f to force output)
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Janne
 
