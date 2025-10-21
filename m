@@ -1,100 +1,94 @@
-Return-Path: <devicetree+bounces-229440-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229441-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71D95BF78D4
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 18:00:20 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id F1031BF7937
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 18:06:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AC2A519A09CB
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 16:00:43 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D09F04F75B6
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 16:06:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD3D93451C8;
-	Tue, 21 Oct 2025 15:59:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC7E5345CC1;
+	Tue, 21 Oct 2025 16:06:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gQ85YwYx"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Vm2bICuG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f172.google.com (mail-pf1-f172.google.com [209.85.210.172])
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C645B345CA5
-	for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 15:59:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 209D3341AC1
+	for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 16:06:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761062394; cv=none; b=oba0tZQrN+ubjCVG5Eb+4pySfkd3O7K1bQHoyP1AIDg8R+HdpC9JanSIRhnsaE4/2CLfKtbZyWi9Z2fFH7TBe9xNLr0KNlU5B6zYMO/o6I1J23ObN3mMSWS9+3pXKuj/sne1AKXPyLa7o1biUH/a6ToSxYzq/8O98fJjhCVsJYE=
+	t=1761062776; cv=none; b=uGIEghBYFAEEan0Fdki216XUKkhYareWAfqYIPDGXVFb2wF4ioi9AW3SNnhOMB9fUuA8BZBcajCJL3QDoIncyI07SsNFV9MZhOaxHG5IWM5/qFvCVZ1fr3EeMl7gRzPNyY1bRusQvPzwNylOaWjgxY4UgCM+8IcWEgwsgmVN3fk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761062394; c=relaxed/simple;
-	bh=OvzQEjk9Z+kNwdL+nyKcEGI+zIVN8IcYYwNUwhy68ZU=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=ETmpJsc/6C8+W6Iym8Y0Fo1H3lyw9kk1mSgdQtYoVDH+K9B/sEMz34/F+wRE5FCSNYmSEKanwnrVJn51SXqOEBRXEdVdQHY+prjxORC9tMu6Nogqq4/fDWnDk20k45oZZ/k6BR0aIpQDThSXnDzL6T7jjuzMHmpgNN2xKpznRiY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gQ85YwYx; arc=none smtp.client-ip=209.85.210.172
+	s=arc-20240116; t=1761062776; c=relaxed/simple;
+	bh=uk7aoZWw/Pmc3N7zSyYQt2iO1kp7lxeZJc8qrKXCzcs=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=fpAm4mDT0rAAC5lR40lIGjAPVL97OnufNU7WRFqx8uQxUPOBA3+8JbVqt3BLBIdQPot7xFTDikzTx/jyPOrr7Bx9XYDDxxZjId4s/EWYKtHkuuAbh90zeRh+z4l0vzXTL6Z27YBkuJ0mLpQeXrvRhXb8klhwwgm09+uVUOeaLII=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Vm2bICuG; arc=none smtp.client-ip=209.85.128.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f172.google.com with SMTP id d2e1a72fcca58-782bfd0a977so4256495b3a.3
-        for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 08:59:51 -0700 (PDT)
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-4710022571cso48968805e9.3
+        for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 09:06:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1761062391; x=1761667191; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=31zB0Oe8e9Hc7S4uto+lasK2Iw1fFo70PUdA7eQz/go=;
-        b=gQ85YwYxYsOd8d6zf37gjlsTLmIJ3+mos3c/FhJBC0wEVEugpEqvIv2Du0isse4Wrb
-         Pmi06BqhhT3ZCRnJvvtOz/2WRH/zVl3+VUy1A4CjfLG6bO0p8U7EpTAIwjWQzv7IjVXS
-         C4AX7wOru4D38K9PUEqYHzNGIqshUy+g/Yir3yNcLyC2D/ZvSy+qNCBxpa2agq6Tywfb
-         KHISWck3JoGSnPWZzyy7hWvaPHEh9eonXNba+SddfaFBsMuC+ktoua1KlPwGeKMB0YL5
-         aQm7FGwYWcE2Ij4io+M/ONrbNmnYP5e24vcAF1Do9zJh46Tney0+3Vav7eBZej83IvhF
-         KJjA==
+        d=gmail.com; s=20230601; t=1761062773; x=1761667573; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=I+ODemdtelodNngZ+cnMjkBp0uDC6f3Gz3zokiA/WGA=;
+        b=Vm2bICuGtbAFEpjj0K6dZmoQp3l5Jkkqms6D5FMGWx3FjuKJCCUyVyhiGzMHn9275p
+         2QdGkdRPCh0qaXF6+WvqNARHerb34VeB1ZqIet3dQLuE0tYaDyDRYlSkhOuWihjBOB35
+         2M356mxHwmC/SQBMWD9roi+WeoNiwraEg7kq7mgJTyFyS0MJNoW9qJ5cZTmiMrkjmbVn
+         DRRR+yrVdQnHdxvZa0kPvAdxoSXpyv+ceAvL4qZIEvyMVmzmlednSF8OaQX1HG97Tmzo
+         XB/mh3MuoVGLb7BrHzr6fgQWdYWNE+trHX+sOu8T3OPkMcn/cHSjE97kZ1PyRGkzFIHN
+         leXg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761062391; x=1761667191;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=31zB0Oe8e9Hc7S4uto+lasK2Iw1fFo70PUdA7eQz/go=;
-        b=DKp+zH7K6nsMBidzXOWaFYdbygICdOLquG8A+BW4A1jLSy7/qprV0kCwb4vgSO7D/Z
-         TliU2IaJrBKosipXwefke7PNp9JD+L5V9IHkibXQZYueAigAiE4rJvuI7swP5JrsXBLO
-         lcYe5chKgIISMIgstYqoFOV5LYWi+EmRpD0Zt0YXfwvWoD9RUn4J7LJUYW2OorymzBz6
-         yJyNy8Xrwy3pcOvDfyEuFtFCJqJ3Y4rUxokY2NsfrG9ZPRYqvap76qqAJSAMCsfB5yVt
-         UyZVsXP3DMeQvGjApxEDCGxugHXHvNXNinFPEFhBNvc/DTe0L8vjt5qSvN2gBaZkI0te
-         fGtA==
-X-Forwarded-Encrypted: i=1; AJvYcCUbt06GIGTp1B5PEfmDVLnJWAes/Ysg4kZJL3diDiKfYs0rtxjyYmZhlB9EMic+V/Nq5wruJ/fbKmo0@vger.kernel.org
-X-Gm-Message-State: AOJu0YyHLrqK6mYHxePMb7ppjkdH5atyvoS4z0vdDvV19AwDMB5h1YGi
-	1aH37uCRUVdFFr/0GAvMc3MNE4mNskO4KZa6FyKc+TxWS12kSK0krB/M
-X-Gm-Gg: ASbGncsHNo7+3gTdcaiz07vYLWzwzHwNoZrDeG0u2bkU73aGYsaqwiaIxHFpk5AQvMC
-	I+3/yk2srJS5GJNyXI272CL0Y55Y5vy/6sG9gDa7AaxjjB/Gay5XaoDPq3qklS2FqW8r9eBhOvv
-	xMcsP20O1IANuM9ThDd0Te9V73ixeEYJCKI+BcEpFTw3O0qBd28Iu35KMB8waBXaKUrBx3hqjRX
-	MsfWN9K8jIPxAjYQd1Cqir3NyK65udhYQe2hHluoFDhwEIGy4XsGkoa8QFTFTDJZN+G1aLD7Alp
-	eJc5AOTnQlabUMa5lOV/KWX64EUtIupuBSZ9vnHuiWDca/SBYzZTEiC9qQJEEvQUXzNv72A7VwS
-	UhgbjE3bAN79Hm6/urxd2+Qom8JwJktZtim0UkmWDCtuDIV2jOT8+cFeu32uBfiIhxUhGJnKpcW
-	rmfBJxCgOvrLg=
-X-Google-Smtp-Source: AGHT+IFHyxdovVUG7ErjF/W0Pm/JpV4pdokG+r4FQlIUPgCH+t8rkT/w1I/IIPF1mdilfn4cOBFi9A==
-X-Received: by 2002:a05:6a00:4b16:b0:78c:99a8:d294 with SMTP id d2e1a72fcca58-7a220428903mr20764664b3a.0.1761062390987;
-        Tue, 21 Oct 2025 08:59:50 -0700 (PDT)
-Received: from DESKTOP-P76LG1N.lan ([42.118.149.214])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7a22ff184basm11793032b3a.15.2025.10.21.08.59.47
+        d=1e100.net; s=20230601; t=1761062773; x=1761667573;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=I+ODemdtelodNngZ+cnMjkBp0uDC6f3Gz3zokiA/WGA=;
+        b=e0XaMTql0rShaI0B1C6yqoxLpZMC82HaVyJSGD12/+UVnQX/yJgSVVCCaOEIt88Djq
+         g/49cPwXDRVPHFRrwjPrv7hvMjtLaZuClp0dKsmLKCGiDdaJ6Vh/ps8f6Ah7vlOPvco1
+         KpKq+eDM1umgb8T+R4y3vS16dFcjmUP7FQolVHRhEHba+RHBoEejQmyZ2Zioy+SGm5Ae
+         PeniJJGS8nQrRA1F/DxNMCSptaUb2U0xtVx/RIYTxpw/NcwyNJjtvTXXZWBYALwZ3nsL
+         /XIMUP9Ooj9GQjEjckgBqMpSMHQ0qufDLnk7KoKHN3B+A4CTVJ342VhRJyV36pgG/OHs
+         HY3A==
+X-Forwarded-Encrypted: i=1; AJvYcCVQgHkA8GRRQQkCa4U9h0ZqESLpDvW0juBbQKid41HN6drCc68LnPdGEimPkj8nF5vNRC4TZaYuQ7ot@vger.kernel.org
+X-Gm-Message-State: AOJu0YxHquTGJvSFCT2fF5qfUKpJw++5wNMFnr74pUSkxxHzGDAKlagE
+	EkIYCzP46N0ltDIc9LehOPUexWmAMFfMe45pUnqeEP/BHC4V6gm6FUPq
+X-Gm-Gg: ASbGncvJ+BgOVrDV1mT9w9UjnwqWon75ImKx/LbfN7ecNEX9TlcN+bHZROvbmTNEhBI
+	YPO/OUZRg9EgQIwFH9GzUoQKFkjdfBx6sEqDopK34QV1IQRXut6gCzKGK7LmhX/x0LAjTt6jgZs
+	hlARsySgktUtsxvJmjiNF++JpBnR8D1RPr/+qcmQ6yLcvA9C2QUOuSd7C0mAgT7vyyULYANOPVr
+	BSRpV1VB04eiPmpZPJD0tLTNeNffMJp2MNgPd9P9TserugA1n0gpAm7ly3eBKTkX3YXP9kTBUpF
+	IW6UJBn/DseyRg7eLo8RsXJD6qgHhgDM9wujl8Lc5gOiGUh0AbgW1pfHv9Rwf5YHufu31pNjK8Z
+	S0s7tFd781YcjWXly+F4MDsPiusIXG7PWtMrmPUkngHL/2wdYhNSj0iDbghy5Fw+TZvgHeTohY4
+	tzjYW1
+X-Google-Smtp-Source: AGHT+IFJFL2AbUhadEu3zoiSmflGJqqKLGGnSqi38T2TvHgGSGw3DXC14Yf1ANAfxEsqrqF6d4xXtg==
+X-Received: by 2002:a05:600c:450c:b0:46e:38cc:d3e2 with SMTP id 5b1f17b1804b1-47117906a23mr136429645e9.22.1761062773077;
+        Tue, 21 Oct 2025 09:06:13 -0700 (PDT)
+Received: from debian.. ([193.42.96.237])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47496d26affsm18543965e9.12.2025.10.21.09.06.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Oct 2025 08:59:50 -0700 (PDT)
-From: Nam Tran <trannamatk@gmail.com>
-To: lee@kernel.org
-Cc: pavel@kernel.org,
-	gregkh@linuxfoundation.org,
-	rdunlap@infradead.org,
-	christophe.jaillet@wanadoo.fr,
-	krzk+dt@kernel.org,
-	robh@kernel.org,
-	conor+dt@kernel.org,
-	corbet@lwn.net,
-	linux-leds@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
+        Tue, 21 Oct 2025 09:06:12 -0700 (PDT)
+From: David Petry <petry103@gmail.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	Damon Ding <damon.ding@rock-chips.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	David Petry <petry103@gmail.com>,
+	=?UTF-8?q?Valentin=20H=C4=83loiu?= <valentin.haloiu@gmail.com>,
 	devicetree@vger.kernel.org,
-	linux-doc@vger.kernel.org,
-	Nam Tran <trannamatk@gmail.com>
-Subject: [PATCH v17 3/3] docs: leds: Document TI LP5812 LED driver
-Date: Tue, 21 Oct 2025 22:59:27 +0700
-Message-Id: <20251021155927.140929-4-trannamatk@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20251021155927.140929-1-trannamatk@gmail.com>
-References: <20251021155927.140929-1-trannamatk@gmail.com>
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2] arm64: dts: rockchip: Enable second HDMI output on CM3588
+Date: Tue, 21 Oct 2025 18:06:02 +0200
+Message-ID: <20251021160603.96934-1-petry103@gmail.com>
+X-Mailer: git-send-email 2.47.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -103,101 +97,84 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The driver provides sysfs interfaces to control and configure the
-LP5812 device and its LED channels.
+Enable the second HDMI output port found on FriendlyElec CM3588 and CM3588 Plus
 
-The documetation describes the chip's capabilities, sysfs interface,
-and usage examples.
-
-Signed-off-by: Nam Tran <trannamatk@gmail.com>
+Signed-off-by: David Petry <petry103@gmail.com>
 ---
- Documentation/leds/index.rst       |  1 +
- Documentation/leds/leds-lp5812.rst | 50 ++++++++++++++++++++++++++++++
- MAINTAINERS                        |  1 +
- 3 files changed, 52 insertions(+)
- create mode 100644 Documentation/leds/leds-lp5812.rst
+Changes in v2:
+ - Fixed commit message according to feedback from Heiko Stuebner
+---
+ .../rk3588-friendlyelec-cm3588-nas.dts        | 38 +++++++++++++++++++
+ 1 file changed, 38 insertions(+)
 
-diff --git a/Documentation/leds/index.rst b/Documentation/leds/index.rst
-index 76fae171039c..bebf44004278 100644
---- a/Documentation/leds/index.rst
-+++ b/Documentation/leds/index.rst
-@@ -25,6 +25,7 @@ LEDs
-    leds-lp5523
-    leds-lp5562
-    leds-lp55xx
-+   leds-lp5812
-    leds-mlxcpld
-    leds-mt6370-rgb
-    leds-sc27xx
-diff --git a/Documentation/leds/leds-lp5812.rst b/Documentation/leds/leds-lp5812.rst
-new file mode 100644
-index 000000000000..4c22d9a79d14
---- /dev/null
-+++ b/Documentation/leds/leds-lp5812.rst
-@@ -0,0 +1,50 @@
-+.. SPDX-License-Identifier: GPL-2.0
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588-friendlyelec-cm3588-nas.dts b/arch/arm64/boot/dts/rockchip/rk3588-friendlyelec-cm3588-nas.dts
+index 5fbbeb6f5a935..10a7d3691a26f 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588-friendlyelec-cm3588-nas.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3588-friendlyelec-cm3588-nas.dts
+@@ -101,6 +101,17 @@ hdmi0_con_in: endpoint {
+ 		};
+ 	};
+ 
++	hdmi1-con {
++		compatible = "hdmi-connector";
++		type = "a";
 +
-+========================
-+Kernel driver for lp5812
-+========================
++		port {
++			hdmi1_con_in: endpoint {
++				remote-endpoint = <&hdmi1_out_con>;
++			};
++		};
++	};
 +
-+* TI/National Semiconductor LP5812 LED Driver
-+* Datasheet: https://www.ti.com/product/LP5812#tech-docs
+ 	ir-receiver {
+ 		compatible = "gpio-ir-receiver";
+ 		gpios = <&gpio0 RK_PD4 GPIO_ACTIVE_LOW>;
+@@ -335,6 +346,22 @@ hdmi0_out_con: endpoint {
+ 	};
+ };
+ 
++&hdmi1 {
++	status = "okay";
++};
 +
-+Authors: Jared Zhou <jared-zhou@ti.com>
++&hdmi1_in {
++	hdmi1_in_vp1: endpoint {
++		remote-endpoint = <&vp1_out_hdmi1>;
++	};
++};
 +
-+Description
-+===========
++&hdmi1_out {
++	hdmi1_out_con: endpoint {
++		remote-endpoint = <&hdmi1_con_in>;
++	};
++};
 +
-+The LP5812 is a 4x3 matrix LED driver with support for both manual and
-+autonomous animation control. This driver provides sysfs interfaces to
-+control and configure the LP5812 device and its LED channels.
+ &hdmi_receiver_cma {
+ 	status = "okay";
+ };
+@@ -350,6 +377,10 @@ &hdptxphy0 {
+ 	status = "okay";
+ };
+ 
++&hdptxphy1 {
++	status = "okay";
++};
 +
-+Sysfs Interface
-+===============
+ /* Connected to MIPI-DSI0 */
+ &i2c5 {
+ 	pinctrl-names = "default";
+@@ -840,3 +871,10 @@ vp0_out_hdmi0: endpoint@ROCKCHIP_VOP2_EP_HDMI0 {
+ 		remote-endpoint = <&hdmi0_in_vp0>;
+ 	};
+ };
 +
-+This driver uses the standard multicolor LED class interfaces defined
-+in `Documentation/ABI/testing/sysfs-class-led-multicolor`.
-+
-+Each LP5812 LED output appears under ``/sys/class/leds/`` with its
-+assigned label (for example ``LED_A``).
-+
-+The following attributes are exposed:
-+  - multi_intensity: Per-channel RGB intensity control.
-+  - brightness: Standard brightness control (0-255)
-+
-+Autonomous Control Modes
-+========================
-+
-+The driver also supports autonomous control through pattern configuration
-+(e.g., direct, tcmscan, or mixscan modes) defined in the device tree.
-+When configured, the LP5812 can generate transitions and color effects
-+without CPU intervention.
-+
-+Refer to the device tree binding document for valid mode strings and
-+configuration examples.
-+
-+Example Usage
-+=============
-+
-+To control LED_A::
-+    # Set RGB intensity (R=50, G=50, B=50)
-+    echo 50 50 50 > /sys/class/leds/LED_A/multi_intensity
-+    # Set overall brightness to maximum
-+    echo 255 > /sys/class/leds/LED_A/brightness
-diff --git a/MAINTAINERS b/MAINTAINERS
-index ee56b68e54cd..e35ae62b7c1a 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -25429,6 +25429,7 @@ M:	Nam Tran <trannamatk@gmail.com>
- L:	linux-leds@vger.kernel.org
- S:	Maintained
- F:	Documentation/devicetree/bindings/leds/ti,lp5812.yaml
-+F:	Documentation/leds/leds-lp5812.rst
- F:	drivers/leds/rgb/Kconfig
- F:	drivers/leds/rgb/Makefile
- F:	drivers/leds/rgb/leds-lp5812.c
++&vp1 {
++	vp1_out_hdmi1: endpoint@ROCKCHIP_VOP2_EP_HDMI1 {
++		reg = <ROCKCHIP_VOP2_EP_HDMI1>;
++		remote-endpoint = <&hdmi1_in_vp1>;
++	};
++};
 -- 
-2.25.1
+2.47.3
 
 
