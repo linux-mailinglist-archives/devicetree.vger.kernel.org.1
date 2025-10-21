@@ -1,55 +1,58 @@
-Return-Path: <devicetree+bounces-229158-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229159-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADC6DBF4900
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 06:02:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B92ABF4903
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 06:02:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5D4F4464DD9
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 04:02:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 23DAE464DD9
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 04:02:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1D1C8615A;
-	Tue, 21 Oct 2025 04:02:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 381E6229B18;
+	Tue, 21 Oct 2025 04:02:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VSPXB6fI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oDPj8OUx"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C1A42556E
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14956224B09
 	for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 04:02:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761019364; cv=none; b=QDV6+mrhlJtT3RCF+Elfi9ZHStcaDG2L9ZQMty4gH/HUloKr89nnOMu/H7sfznd84KNiQKvYSTKTpFEkwO+aX1EZcawbL2qv8g60cTXzEqgairPQ/TfE/V0wlfc3guTBrT12RansOeQLdAhdX0S9aXhhynBBKmq4mwNfiFXn8gs=
+	t=1761019365; cv=none; b=IBO3E00N8T5zQ6vLV3sa4+0zjTYtcWxleTZtXPJVAbhrV7pdAvs0+94IxHGccXZkypT4WOa8O5LnJEpYLXh+G9Egz0/vJZXaocKuHE4xYp6rjS/0hLDlqQQRkCtALziZNrSkFLTsW17naAWWcEELZyawLwKbSv5+bZEiwyyffTQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761019364; c=relaxed/simple;
-	bh=oMIL2boHagMSa1tBywQN370zBuWYPvdhUTxhA8V4S1Q=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=bP3UiUJkEAjBh01DA1L9d//DZF7AimF0Kd7as9oRGyeVXmkRKTwsl7CwNIh4YC2GRkG+wLwAIGKd9VmlITFGJgI0nF7V7kNVOUGw8C1NaQFTouWHBs+yLqH7V8zQDTYU+nMJgWaTcrjxe4MpbwkbiBktM9UkRnsK7dFxsiqjsOA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VSPXB6fI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6E39BC4CEF1;
-	Tue, 21 Oct 2025 04:02:43 +0000 (UTC)
+	s=arc-20240116; t=1761019365; c=relaxed/simple;
+	bh=nETL1zVkkpG9XcNBl1VFFiJaRcYD4B1yp+oXHgqx1sM=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=Oc+98qtug8FpgkN/ZwbuQAIvpbM5tP7KR7ovViX+UzmBmis0JquD4oFVSoj0shwaCYwZ5UhiInNx4dhYT0IcU/X1jZ4vTPhgRRzTZgiMDP0fexwnj9RKuh+V+UHcpOswDvhBlSaYDu3MhIF5MDqNaOytOaKvkzZHanAusL1gpy0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oDPj8OUx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2CBBAC19421;
+	Tue, 21 Oct 2025 04:02:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1761019364;
-	bh=oMIL2boHagMSa1tBywQN370zBuWYPvdhUTxhA8V4S1Q=;
-	h=From:To:Cc:Subject:Date:From;
-	b=VSPXB6fIThKXxQ9Pl24Qf8cQgjoc5csVqXGSUq3rIUVHu36NwsBopcAZSfZfzG6td
-	 WljJ5HVHLUcecoVRYL7Pjvv2aUAFmZghaA5cblFkt3W+cuhcH5dDPCYD9a++4RPEtO
-	 bEHMyRw1u7GvnYeXzfLpn2snT7+Ter6kjcGEq+RgaDn9tjWx3E5j+3m7bhOnuSVq5T
-	 m8scwTN9REjpbOxMsQ0nLJcSjkeZOS15+oXmAXwQlKiznyLJnwJPp2jegjOb029uAv
-	 5HrSMSJc5FOUwgLLfPjYomnkmcRaMU0h+6lJXRXa3aDnIjSM2dny3qMYJEOxQJxY+2
-	 oiKY0ROj5IFww==
+	bh=nETL1zVkkpG9XcNBl1VFFiJaRcYD4B1yp+oXHgqx1sM=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=oDPj8OUxMtf/SQTIQmNpE3TYLu99W9qWFrywYM9F60CsIP5A6RYh0Ffhme/XJIVPq
+	 lOWo8IO05eMho7Gl5XirfHDfcZiJZpcr6H0B6xhm5Qk4ej4iaaxmAvYB+ndYbNsHf7
+	 WI/hkFBYxabjO7FhrZFItJOHdVbDF48UnT1K7EsvcGdziJbItVogPOCIybjP99Ieix
+	 K53TUBrTLVJolmPgvUdpAz4i+yUAdtg7g3nqClBVnpBUKuHegzWCMiSAcun83NUi8j
+	 nqCJwKbLAol0LUmOapIpJ4ND9a59FCSU4f+liqL1XuqK5IhX353ufqq1xWuTyMlY8n
+	 vkRf3Ig+3b0Zg==
 From: Dinh Nguyen <dinguyen@kernel.org>
 To: devicetree@vger.kernel.org
 Cc: dinguyen@kernel.org,
 	robh+dt@kernel.org,
 	krzysztof.kozlowskii+dt@linaro.org,
 	conor+dt@kernel.org
-Subject: [PATCH 1/3] arm64: dts: socfpga: move sdmmc-ecc to the base DTSI file
-Date: Mon, 20 Oct 2025 23:02:28 -0500
-Message-ID: <20251021040230.759832-1-dinguyen@kernel.org>
+Subject: [PATCH 2/3] arm64: dts: socfpga: stratix10: fix bindings warning for ecc manager
+Date: Mon, 20 Oct 2025 23:02:29 -0500
+Message-ID: <20251021040230.759832-2-dinguyen@kernel.org>
 X-Mailer: git-send-email 2.42.0.411.g813d9a9188
+In-Reply-To: <20251021040230.759832-1-dinguyen@kernel.org>
+References: <20251021040230.759832-1-dinguyen@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,84 +61,36 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The ECC manager entry for sdmmc should be a chip level entry, not a
-board entry.
+Fix ranges warning: Warning (simple_bus_reg): /soc@0/eccmgr: missing or
+empty reg/ranges property
 
 Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
 ---
- arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi   |  9 +++++++++
- .../boot/dts/altera/socfpga_stratix10_socdk.dts     | 13 -------------
- .../dts/altera/socfpga_stratix10_socdk_nand.dts     | 13 -------------
- 3 files changed, 9 insertions(+), 26 deletions(-)
+ arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi b/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
-index effd242f6bf7..657e986e5dba 100644
+index 657e986e5dba..d72d998adb7b 100644
 --- a/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
 +++ b/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
-@@ -630,6 +630,15 @@ emac0-tx-ecc@ff8c0400 {
- 				interrupts = <5 4>;
- 			};
- 
-+			sdmmca-ecc@ff8c8c00 {
-+				compatible = "altr,socfpga-s10-sdmmc-ecc",
-+					     "altr,socfpga-sdmmc-ecc";
-+				reg = <0xff8c8c00 0x100>;
-+				altr,ecc-parent = <&mmc>;
-+				interrupts = <14 4>,
-+					     <15 4>;
-+			};
-+
+@@ -581,7 +581,7 @@ sdr: sdr@f8011100 {
+ 			reg = <0xf8011100 0xc0>;
  		};
  
- 		qspi: spi@ff8d2000 {
-diff --git a/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dts b/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dts
-index 4eee777ef1a1..6aa262fc7f99 100644
---- a/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dts
-+++ b/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dts
-@@ -50,19 +50,6 @@ ref_033v: regulator-v-ref {
- 		regulator-min-microvolt = <330000>;
- 		regulator-max-microvolt = <330000>;
- 	};
--
--	soc@0 {
 -		eccmgr {
--			sdmmca-ecc@ff8c8c00 {
--				compatible = "altr,socfpga-s10-sdmmc-ecc",
--					     "altr,socfpga-sdmmc-ecc";
--				reg = <0xff8c8c00 0x100>;
--				altr,ecc-parent = <&mmc>;
--				interrupts = <14 4>,
--					     <15 4>;
--			};
--		};
--	};
- };
++		eccmgr: eccmgr@ff8c0000 {
+ 			compatible = "altr,socfpga-s10-ecc-manager",
+ 				     "altr,socfpga-a10-ecc-manager";
+ 			altr,sysmgr-syscon = <&sysmgr>;
+@@ -590,7 +590,7 @@ eccmgr {
+ 			interrupts = <0 15 4>;
+ 			interrupt-controller;
+ 			#interrupt-cells = <2>;
+-			ranges;
++			ranges = <0 0xff8c0000 0x10000>;
  
- &pinctrl0 {
-diff --git a/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk_nand.dts b/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk_nand.dts
-index 7c53cb9621e5..92954c5beb54 100644
---- a/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk_nand.dts
-+++ b/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk_nand.dts
-@@ -50,19 +50,6 @@ ref_033v: regulator-v-ref {
- 		regulator-min-microvolt = <330000>;
- 		regulator-max-microvolt = <330000>;
- 	};
--
--	soc@0 {
--		eccmgr {
--			sdmmca-ecc@ff8c8c00 {
--				compatible = "altr,socfpga-s10-sdmmc-ecc",
--					     "altr,socfpga-sdmmc-ecc";
--				reg = <0xff8c8c00 0x100>;
--				altr,ecc-parent = <&mmc>;
--				interrupts = <14 4>,
--					     <15 4>;
--			};
--		};
--	};
- };
- 
- &gpio1 {
+ 			sdramedac {
+ 				compatible = "altr,sdram-edac-s10";
 -- 
 2.42.0.411.g813d9a9188
 
