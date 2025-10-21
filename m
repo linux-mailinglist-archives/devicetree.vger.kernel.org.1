@@ -1,303 +1,347 @@
-Return-Path: <devicetree+bounces-229324-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229325-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA057BF5F88
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 13:12:46 +0200 (CEST)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id C5C21BF5FD1
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 13:19:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 71B56188FC66
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 11:13:10 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 4B2EF3536D1
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 11:19:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 641422F2619;
-	Tue, 21 Oct 2025 11:12:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="bn/RiCrx"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E28C82E62D9;
+	Tue, 21 Oct 2025 11:17:56 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A9A82F0C69
-	for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 11:12:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEEB0264FB5;
+	Tue, 21 Oct 2025 11:17:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761045161; cv=none; b=eiIlC/5IKByq3ov4lcLepyjCSN2uXMoNHRF2wSqIrVFLqtWa0zrepdV28IDjw7LWcoRKcGsMesjQwZdP+5WqI+/QZsk5EGPFG+vAITo2dvqcYsJ5CdD+1Si5Gk7sdtgVvVdmRmSACifKJjBx61BTSSlV+CrUWURFniCxLvuXAWQ=
+	t=1761045476; cv=none; b=nMEop7X5hbhugXXRK4XRuboFmTRXO0ZnhbfYuoTzd7bF4FE7yds+zBWGpFlZIKjZGHtdDxz3nFMHDQYEgk46THk5wdy6orlQmYNBtNmUAnVtK9q5g+GbYDN7EZASd7CJZpkdbIq6ulBOBR69KusfhZg/Visor0giy2dSnQ3/n9s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761045161; c=relaxed/simple;
-	bh=n9q0McISN0xADdXG1hSwSPQJGCo+g4xzhg4ndlV5iwo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=oLz4GwS8zg3nqhXBZ6bl8ur300eDcRJGVZUzC3LQJVicvOP7tLvYBhXxqAwi51Ah2TSibfyQ+017wwWQIiYZJX2pTT0pZo3nzw1cLWfQ2LB61AFqfOpXgwhP1ibyj8p9GTGcuesorDV1aO2gZ4aRa1ayc60iztly9cpkBSJnyCg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=bn/RiCrx; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59L8IWXQ028420
-	for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 11:12:38 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	iuqZq2WiXRu2EPl06OgObOqPz4wqzbYylk4WoFwyL7I=; b=bn/RiCrxzTBIVf6V
-	ZuEMUnpnxjOCMh03iaT+mOpzGeSSvLv2rwI6J8fzDebZjVL/QjIrVM2uQRrtF1gm
-	HZ0XWOmZVWE3gI/aabLK0MAUNBwCQjTyye5BuOjakuIMmzQLGiWm9gh7Dargniz8
-	03qnpuSTqUV1BcPyu88W1hKxGvmSwb8EgJdd0frzWK8syycReZXfgfx669WoS2XT
-	OxIx4EqdHsvkhy28DeqPHi0uffx17AHYnxo2KWxE6DaVWuYJH/qFMP3NlRs8/MiQ
-	I/9YmGzCNBw4LtJ76f/Cd13CnzQ5N4AK4OLpIouEtT/bNYRdf6L4eZNceDKNN7UZ
-	nylq6g==
-Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com [209.85.214.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49v08pgpme-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 11:12:38 +0000 (GMT)
-Received: by mail-pl1-f199.google.com with SMTP id d9443c01a7336-2909daa65f2so57513015ad.0
-        for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 04:12:38 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761045156; x=1761649956;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=iuqZq2WiXRu2EPl06OgObOqPz4wqzbYylk4WoFwyL7I=;
-        b=XmzLEOhG+7owvAjoSCBKX2EnFPpEjAosPIudP0dsDhDcdWhVxdX5TPvoLOgcoZ25OP
-         KWvjV0RCIo2KovpbZbY2WNQALTtDY44M4Z7pMcKSEBuCNt1KzWlVODwkBPtSWSHHkHWa
-         5YPGcikD+iJKkUEQWfCQK7p56JvdaGuCIndnL6jzs86A/U8k6lmqIlpUr/7V1jnHxTK1
-         fnZCfUFGp7zmuVhpJrIvy2MT5Ek88/vG4RV99Lmog+CNLQ6bCa0lx/OpAmrk9cNO3gw5
-         ZniNsn4Xwduxa3lXWUHseaUf28Yn6lXeOx7er9SKXNTgMijDf3r8n41jJbSL/CMa4/wX
-         NM4Q==
-X-Forwarded-Encrypted: i=1; AJvYcCVCQqveOR9ENAy4gBq/vMRmS2BSfQptSP1fjbKV2o6LcKIWGkVN+qAh3PGIpAy7i8puLfPsdQJM3CZM@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz13xrh4oBsCeZqTY6DldFjHnI/XJGkx0fiT/bo++FPP3iKBZ6a
-	E8UEgjGVeJykCGWhKCrmCsBY4btaTjJY1IkeQbcdFNr7orci9YzzbKy4S1yI1KBiYmeSg61XtRq
-	9pBMdCZ/xedFHaB0ZFu4vPF23odSnvH6T4kCZBdiyMpYBk9cPCgdhlKCErArJT71CNcQ6gLBd
-X-Gm-Gg: ASbGnctFfhPdfyRfkgpiXBDEgERonwZPmu5VPZ1Ouy0Degzc+oNDzB1IO2/F3SuIcrf
-	h6u6vFNYYACXdkQ8sRXJL08Av82u0HMhDGRoPxkCqx4iZ4OFdhDBL+7m3p62RfU1vH3Z5/vjuKL
-	pGtiStOfGxc/qjoU/d0zBJ7O9qAY4zT36RUxDTdmCVzPXZEZTfjxdyKuCRIQaOiP/02qsVoYSef
-	AC/pAZa6eONwrNyxMMSCxPMgcm1ybP8QD+/JJv819UWMnyz65ODDcp1g78ECc3cSoP8ai/yF5Wt
-	HqTOaAiCxOzZj4DnKrCGGcNGWG/g9dO9LlfOJzo2lsy5jhXadIoM+7et4Zw/9zRimax1nSXLmdC
-	jcWk7+fWJe7scS6jcmUJL+tgamw==
-X-Received: by 2002:a17:902:f78b:b0:269:a6b2:2463 with SMTP id d9443c01a7336-290c72e635emr200972435ad.16.1761045156416;
-        Tue, 21 Oct 2025 04:12:36 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IF+PgLVmPDKx0lxdL3uoEJJ7FiKNnXlD7MYjyKAWRUh+5GgUYU2AkoDEecKbbjDz9zAJiP5hw==
-X-Received: by 2002:a17:902:f78b:b0:269:a6b2:2463 with SMTP id d9443c01a7336-290c72e635emr200971915ad.16.1761045155877;
-        Tue, 21 Oct 2025 04:12:35 -0700 (PDT)
-Received: from [192.168.0.195] ([49.204.25.36])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29246ebf40dsm106375525ad.13.2025.10.21.04.12.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 21 Oct 2025 04:12:35 -0700 (PDT)
-Message-ID: <dca13de5-b027-4938-a854-2538fce52b7c@oss.qualcomm.com>
-Date: Tue, 21 Oct 2025 16:42:30 +0530
+	s=arc-20240116; t=1761045476; c=relaxed/simple;
+	bh=JyjFwgKHLzfdctM7c//hRkO6zs7uRd8S9Ciewr9m0os=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=IujzmX64kVHYm3zRK7FMYbsKBCbDxCPLkv74dUDNZcP4He2KbcbzL7NBqpCLBf/OEx8h9YhUJrcAFYWGWFPo6/zsZbdXxj6uGPm0wAiaZjn8u2GnldFqSVcviwfjCgcLWrUHBGSKA7EVZCrr9B2HfEWmZTl1q7bHf7GH9dWzRNQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4D0B81063;
+	Tue, 21 Oct 2025 04:17:45 -0700 (PDT)
+Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 8216D3F63F;
+	Tue, 21 Oct 2025 04:17:51 -0700 (PDT)
+Date: Tue, 21 Oct 2025 12:17:49 +0100
+From: Andre Przywara <andre.przywara@arm.com>
+To: Yixun Lan <dlan@gentoo.org>
+Cc: Lee Jones <lee@kernel.org>, Chen-Yu Tsai <wens@csie.org>, Liam Girdwood
+ <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Samuel Holland
+ <samuel@sholland.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-sunxi@lists.linux.dev>, <linux-kernel@vger.kernel.org>
+Subject: Re: [RFC PATCH 3/3] regulator: axp20x: add support for the AXP318W
+Message-ID: <20251021121749.6a881198@donnerap.manchester.arm.com>
+In-Reply-To: <20250819133650-GYA1055626@gentoo>
+References: <20250813235330.24263-1-andre.przywara@arm.com>
+	<20250813235330.24263-4-andre.przywara@arm.com>
+	<20250819133650-GYA1055626@gentoo>
+Organization: ARM
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: sm8550: Additionally manage MXC
- power domain in camcc
-To: Luca Weiss <luca.weiss@fairphone.com>,
-        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Jagadeesh Kona <quic_jkona@quicinc.com>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd
- <sboyd@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org,
-        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-References: <20250303225521.1780611-1-vladimir.zapolskiy@linaro.org>
- <20250303225521.1780611-3-vladimir.zapolskiy@linaro.org>
- <dbxvzgqs5slrl5edqunal3wplg5jiszqv46dr4nzgowwlhkhxa@qwtfq7nfjwfo>
- <3210a484-b9c3-4399-bee1-9f5bbc90034c@linaro.org>
- <CAA8EJprP9Z181VDCT=xfyrBipzgiB0tfb8M_XZ4H=yOrvEnB0w@mail.gmail.com>
- <f41061a2-cf45-4588-8df7-22270c936ee2@quicinc.com>
- <D8EZ47Z557OX.37FDVYA5AHET0@fairphone.com>
- <d64c0776-0b12-42d3-aed3-4e6a13487f51@quicinc.com>
- <DDKNL43NWFMA.1S03T0SUYFVMY@fairphone.com>
- <3854e3a0-744c-4317-a6ed-e28edbabc4a3@linaro.org>
- <DDNWU7DVDGJJ.2K19P7FFZU272@fairphone.com>
-Content-Language: en-US
-From: Taniya Das <taniya.das@oss.qualcomm.com>
-In-Reply-To: <DDNWU7DVDGJJ.2K19P7FFZU272@fairphone.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDE4MDAwMCBTYWx0ZWRfXxWAyvLzczNEq
- AxjCLAPu155ZE72970ZOy8MAnTiEaF/zKuAM6mdZqOW1ZrlYUDyrQc3Q9r7PIZBRSxumceARayf
- OPnBZlz9uaOFbdBg0XR439+H6EBgWLUmm0HnyYXgJF6TTqzKe/lV9CLC937ldyEMHFBX0dDLxqh
- Mt9fHweplZ4HG9LrG0x1QY7ImS4oCAB+q+p77CPL9SC+LpIBkOqFhw+5Bsu9cExWeUIros0c3PA
- scNASHKHTkke56xumJSfpc/thUCNTYpcnCD828rDppG5rvSDWlkPBdevgDzLHCYab3l9BIzzViD
- 38dBh0z1k1jYodK3O6awIQwYO5ELLzOIieU2xPo+JIGSS1BUFaD1yIDOK/2yGuZNxLq0+/b067g
- 0ynVhoES1irP+vPOPv4aFEGHTkNv0w==
-X-Proofpoint-GUID: 0LfY9qBirJpYUocu7pJ8tHHzlmPT-2XW
-X-Authority-Analysis: v=2.4 cv=Up1u9uwB c=1 sm=1 tr=0 ts=68f76aa6 cx=c_pps
- a=JL+w9abYAAE89/QcEU+0QA==:117 a=ViRRArT13J1GJOVJkQsX9Q==:17
- a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=VwQbUJbxAAAA:8 a=KKAkSRfTAAAA:8 a=IwZ_CSZzpzfRW61KRVcA:9 a=QEXdDO2ut3YA:10
- a=324X-CrmTo6CU4MGRt3R:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-ORIG-GUID: 0LfY9qBirJpYUocu7pJ8tHHzlmPT-2XW
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-10-21_01,2025-10-13_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 adultscore=0 suspectscore=0 malwarescore=0 clxscore=1015
- impostorscore=0 bulkscore=0 priorityscore=1501 spamscore=0 phishscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2510020000 definitions=main-2510180000
 
+On Tue, 19 Aug 2025 21:36:50 +0800
+Yixun Lan <dlan@gentoo.org> wrote:
 
+Hi,
 
-On 10/21/2025 3:28 PM, Luca Weiss wrote:
-> Hi Vladimir,
+> Hi Andre,
 > 
-> On Tue Oct 21, 2025 at 11:48 AM CEST, Vladimir Zapolskiy wrote:
->> Hi Luca.
->>
->> On 10/17/25 17:05, Luca Weiss wrote:
->>> Hi Taniya,
->>>
->>> On Thu Mar 13, 2025 at 12:57 PM CET, Taniya Das wrote:
->>>>
->>>>
->>>> On 3/13/2025 1:22 PM, Luca Weiss wrote:
->>>>> Hi Taniya,
->>>>>
->>>>> On Thu Mar 13, 2025 at 5:39 AM CET, Taniya Das wrote:
->>>>>>
->>>>>>
->>>>>> On 3/4/2025 2:10 PM, Dmitry Baryshkov wrote:
->>>>>>> On Tue, 4 Mar 2025 at 09:37, Vladimir Zapolskiy
->>>>>>> <vladimir.zapolskiy@linaro.org> wrote:
->>>>>>>>
->>>>>>>> On 3/4/25 01:53, Dmitry Baryshkov wrote:
->>>>>>>>> On Tue, Mar 04, 2025 at 12:55:21AM +0200, Vladimir Zapolskiy wrote:
->>>>>>>>>> SM8550 Camera Clock Controller shall enable both MXC and MMCX power
->>>>>>>>>> domains.
->>>>>>>>>
->>>>>>>>> Are those really required to access the registers of the cammcc? Or is
->>>>>>>>> one of those (MXC?) required to setup PLLs? Also, is this applicable
->>>>>>>>> only to sm8550 or to other similar clock controllers?
->>>>>>>>
->>>>>>>> Due to the described problem I experience a fatal CPU stall on SM8550-QRD,
->>>>>>>> not on any SM8450 or SM8650 powered board for instance, however it does
->>>>>>>> not exclude an option that the problem has to be fixed for other clock
->>>>>>>> controllers, but it's Qualcomm to confirm any other touched platforms,
->>>>>>>
->>>>>>> Please work with Taniya to identify used power domains.
->>>>>>>
->>>>>>
->>>>>> CAMCC requires both MMCX and MXC to be functional.
->>>>>
->>>>> Could you check whether any clock controllers on SM6350/SM7225 (Bitra)
->>>>> need multiple power domains, or in general which clock controller uses
->>>>> which power domain.
->>>>>
->>>>> That SoC has camcc, dispcc, gcc, gpucc, npucc and videocc.
->>>>>
->>>>> That'd be highly appreciated since I've been hitting weird issues there
->>>>> that could be explained by some missing power domains.
->>>>>
->>>>
->>>> Hi Luca,
->>>>
->>>> The targets you mentioned does not have any have multiple rail
->>>> dependency, but could you share the weird issues with respect to clock
->>>> controller I can take a look.
->>>
->>> Coming back to this, I've taken a shot at camera on SM6350 (Fairphone 4)
->>> again, but again hitting some clock issues.
->>>
->>> For reference, I am testing with following change:
->>> https://lore.kernel.org/linux-arm-msm/20250911011218.861322-3-vladimir.zapolskiy@linaro.org/
->>>
->>> Trying to enable CAMCC_MCLK1_CLK - wired up to the IMX576 camera sensor
->>> on this phone - results in following error.
->>>
->>> [    3.140232] ------------[ cut here ]------------
->>> [    3.141264] camcc_mclk1_clk status stuck at 'off'
->>> [    3.141276] WARNING: CPU: 6 PID: 12 at drivers/clk/qcom/clk-branch.c:87 clk_branch_toggle+0x170/0x190
->>>
->>> Checking the driver against downstream driver, it looks like the RCGs
->>> should be using clk_rcg2_shared_ops because of enable_safe_config in
->>> downstream, but changing that doesn't really improve the situation, but
->>> it does change the error message to this:
->>>
->>> [    2.933254] ------------[ cut here ]------------
->>> [    2.933961] camcc_mclk1_clk_src: rcg didn't update its configuration.
->>> [    2.933970] WARNING: CPU: 7 PID: 12 at drivers/clk/qcom/clk-rcg2.c:136 update_config+0xd4/0xe4
->>>
->>> I've also noticed that some camcc drivers take in GCC_CAMERA_AHB_CLK as
->>> iface clk, could something like this be missing on sm6350?
->>>
->>> I'd appreciate any help or tips for resolving this.
->>>
->>
->> Recently one particular problem related to MCLK was identified by me on
->> QRB5165/RB5, and it was reported to Bjorn over IRC, namely it's not possible
->> to toggle MCLK clock enable/disable state, when TITAN GDSC power domain is
->> set off. I'm working on fixing the issue (a change under clk/qcom), since
->> it's of an importance for a customer as well.
->>
->> I can't be totally sure that it's right the same problem as the one reported
->> by you above, but it looks very similar, as a fast workaround please consider
->> to set an ALWAYS_ON flag of TITAN GDSC, and at least a report from you that
->> this actually helps would be nice to get.
-> 
-> Unfortunately that doesn't seem to help on sm6350.
-> 
-> diff --git a/drivers/clk/qcom/camcc-sm6350.c b/drivers/clk/qcom/camcc-sm6350.c
-> index 12a469ce7e2f..cf87ad55d318 100644
-> --- a/drivers/clk/qcom/camcc-sm6350.c
-> +++ b/drivers/clk/qcom/camcc-sm6350.c
-> @@ -1767,6 +1767,7 @@ static struct gdsc titan_top_gdsc = {
->  		.name = "titan_top_gdsc",
->  	},
->  	.pwrsts = PWRSTS_OFF_ON,
-> +	.flags = ALWAYS_ON,
->  };
->  
->  static struct clk_hw *camcc_sm6350_hws[] = {
-> 
-> 
-> $ cat /sys/kernel/debug/pm_genpd/pm_genpd_summary
-> [...]
-> titan_top_gdsc                  on                              0
->                                                 bps_gdsc, ipe_0_gdsc, ife_0_gdsc, ife_1_gdsc, ife_2_gdsc
->     ac4a000.cci                     suspended                   0           SW
->     ac4b000.cci                     suspended                   0           SW
->     genpd:3:acb3000.camss           suspended                   0           SW
-> [...]
-> 
-> but still the same clock stuck warning...
-> 
-> [    3.093431] ------------[ cut here ]------------
-> [    3.094614] camcc_mclk1_clk status stuck at 'off'
-> [    3.094629] WARNING: CPU: 6 PID: 65 at drivers/clk/qcom/clk-branch.c:87 clk_branch_toggle+0x170/0x190
-> 
-> Thanks for the suggestion though.
-> 
+> On 00:53 Thu 14 Aug     , Andre Przywara wrote:
+> > The X-Powers AXP318W is a typical PMIC from X-Powers, featuring nine
+> > DC/DC converters and 28 LDOs, on the regulator side.
+> > 
+> > Describe the chip's voltage settings and switch registers, how the
+> > voltages are encoded, and connect this to the MFD device via its
+> > regulator ID.
+> > We use just "318" for the internal identifiers, for easier typing and
+> > less churn. If something else other than the "AXP318W" shows up, that's
+> > an easy change, externally visible strings carry the additional letter
+> > already.
+> > 
+> > Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> > ---
+> >  drivers/regulator/axp20x-regulator.c | 159 +++++++++++++++++++++++++++
+> >  include/linux/mfd/axp20x.h           |  41 +++++++
+> >  2 files changed, 200 insertions(+)
+> > 
+> > diff --git a/drivers/regulator/axp20x-regulator.c b/drivers/regulator/axp20x-regulator.c
+> > index da891415efc0b..eb2c45b5b9eb0 100644
+> > --- a/drivers/regulator/axp20x-regulator.c
+> > +++ b/drivers/regulator/axp20x-regulator.c
+> > @@ -138,6 +138,15 @@
+> >  #define AXP313A_DCDC_V_OUT_MASK		GENMASK(6, 0)
+> >  #define AXP313A_LDO_V_OUT_MASK		GENMASK(4, 0)
+> >  
+> > +#define AXP318_DCDC1_V_OUT_MASK		GENMASK(4, 0)
+> > +#define AXP318_DCDC2_V_OUT_MASK		GENMASK(6, 0)
+> > +#define AXP318_LDO_V_OUT_MASK		GENMASK(4, 0)
+> > +#define AXP318_ELDO_V_OUT_MASK		GENMASK(5, 0)
+> > +#define AXP318_DCDC2_NUM_VOLTAGES	88
+> > +#define AXP318_DCDC6_NUM_VOLTAGES	128
+> > +#define AXP318_DCDC7_NUM_VOLTAGES	103
+> > +#define AXP318_DCDC8_NUM_VOLTAGES	119
+> > +
+> >  #define AXP717_DCDC1_NUM_VOLTAGES	88
+> >  #define AXP717_DCDC2_NUM_VOLTAGES	107
+> >  #define AXP717_DCDC3_NUM_VOLTAGES	103
+> > @@ -765,6 +774,151 @@ static const struct regulator_desc axp313a_regulators[] = {
+> >  	AXP_DESC_FIXED(AXP313A, RTC_LDO, "rtc-ldo", "vin1", 1800),
+> >  };
+> >  
+> > +static const struct linear_range axp318_dcdc2_ranges[] = {
+> > +	REGULATOR_LINEAR_RANGE(500000,   0, 70, 10000),
+> > +	REGULATOR_LINEAR_RANGE(1220000, 71, 87, 20000),
+> > +};
+> > +
+> > +static const struct linear_range axp318_dcdc6_ranges[] = {
+> > +	REGULATOR_LINEAR_RANGE(500000,    0,  70,  10000),
+> > +	REGULATOR_LINEAR_RANGE(1220000,  71,  87,  20000),
+> > +	REGULATOR_LINEAR_RANGE(1800000,  88, 118,  20000),
+> > +	REGULATOR_LINEAR_RANGE(2440000, 119, 127,  40000),
+> > +};
+> > +
+> > +static const struct linear_range axp318_dcdc7_ranges[] = {
+> > +	REGULATOR_LINEAR_RANGE(500000,   0,  70, 10000),
+> > +	REGULATOR_LINEAR_RANGE(1220000, 71, 102, 20000),
+> > +};
+> > +
+> > +static const struct linear_range axp318_dcdc8_ranges[] = {
+> > +	REGULATOR_LINEAR_RANGE(500000,    0,  70,  10000),
+> > +	REGULATOR_LINEAR_RANGE(1220000,  71, 102,  20000),
+> > +	REGULATOR_LINEAR_RANGE(1900000, 103, 118, 100000),
+> > +};
+> > +
+> > +static const struct regulator_desc axp318_regulators[] = {
+> > +	AXP_DESC(AXP318, DCDC1, "dcdc1", "vin1", 1000, 3400, 100,
+> > +		 AXP318_DCDC1_CONTROL, AXP318_DCDC1_V_OUT_MASK,
+> > +		 AXP318_DCDC_OUTPUT_CONTROL1, BIT(0)),
+> > +	AXP_DESC_RANGES(AXP318, DCDC2, "dcdc2", "vin2",
+> > +			axp318_dcdc2_ranges, AXP318_DCDC2_NUM_VOLTAGES,
+> > +			AXP318_DCDC2_CONTROL, AXP318_DCDC2_V_OUT_MASK,
+> > +			AXP318_DCDC_OUTPUT_CONTROL1, BIT(1)),
+> > +	AXP_DESC_RANGES(AXP318, DCDC3, "dcdc3", "vin3",
+> > +			axp318_dcdc2_ranges, AXP318_DCDC2_NUM_VOLTAGES,
+> > +			AXP318_DCDC3_CONTROL, AXP318_DCDC2_V_OUT_MASK,
+> > +			AXP318_DCDC_OUTPUT_CONTROL1, BIT(2)),
+> > +	AXP_DESC_RANGES(AXP318, DCDC4, "dcdc4", "vin4",
+> > +			axp318_dcdc2_ranges, AXP318_DCDC2_NUM_VOLTAGES,
+> > +			AXP318_DCDC4_CONTROL, AXP318_DCDC2_V_OUT_MASK,
+> > +			AXP318_DCDC_OUTPUT_CONTROL1, BIT(3)),
+> > +	AXP_DESC_RANGES(AXP318, DCDC5, "dcdc5", "vin5",
+> > +			axp318_dcdc2_ranges, AXP318_DCDC2_NUM_VOLTAGES,
+> > +			AXP318_DCDC5_CONTROL, AXP318_DCDC2_V_OUT_MASK,
+> > +			AXP318_DCDC_OUTPUT_CONTROL1, BIT(4)),
+> > +	AXP_DESC_RANGES(AXP318, DCDC6, "dcdc6", "vin6",
+> > +			axp318_dcdc6_ranges, AXP318_DCDC6_NUM_VOLTAGES,
+> > +			AXP318_DCDC6_CONTROL, AXP318_DCDC2_V_OUT_MASK,
+> > +			AXP318_DCDC_OUTPUT_CONTROL1, BIT(5)),
+> > +	AXP_DESC_RANGES(AXP318, DCDC7, "dcdc7", "vin7",
+> > +			axp318_dcdc7_ranges, AXP318_DCDC7_NUM_VOLTAGES,
+> > +			AXP318_DCDC7_CONTROL, AXP318_DCDC2_V_OUT_MASK,
+> > +			AXP318_DCDC_OUTPUT_CONTROL1, BIT(6)),
+> > +	AXP_DESC_RANGES(AXP318, DCDC8, "dcdc8", "vin8",
+> > +			axp318_dcdc8_ranges, AXP318_DCDC8_NUM_VOLTAGES,
+> > +			AXP318_DCDC8_CONTROL, AXP318_DCDC2_V_OUT_MASK,
+> > +			AXP318_DCDC_OUTPUT_CONTROL1, BIT(7)),
+> > +	AXP_DESC_RANGES(AXP318, DCDC9, "dcdc9", "vin9",
+> > +			axp318_dcdc8_ranges, AXP318_DCDC8_NUM_VOLTAGES,
+> > +			AXP318_DCDC9_CONTROL, AXP318_DCDC2_V_OUT_MASK,
+> > +			AXP318_DCDC_OUTPUT_CONTROL2, BIT(0)),  
+> I think there are two switches missing (which is SWOUT1/2 in datsheet)
+> it's BIT(3), BIT(4) of AXP318_DCDC_OUTPUT_CONTROL2
 
-Hi Luca,
+Ah, right, I saw them, but then forgot to add them. Fixed now.
 
-Seems like the CAMCC_PLL2_OUT_EARLY output could be OFF here, which is
-sourcing the mclk RCG's.
-
-The user_ctl is not properly configured to enable the PLL early output.
-Can you please try below change and check if it helps?
-
-diff --git a/drivers/clk/qcom/camcc-sm6350.c
-b/drivers/clk/qcom/camcc-sm6350.c
-index 8aac97d29ce3..d33db530b7c9 100644
---- a/drivers/clk/qcom/camcc-sm6350.c
-+++ b/drivers/clk/qcom/camcc-sm6350.c
-@@ -154,6 +154,7 @@ static const struct alpha_pll_config
-camcc_pll2_config = {
-        .config_ctl_hi_val = 0x400003d2,
-        .test_ctl_val = 0x04000400,
-        .test_ctl_hi_val = 0x00004000,
-+       .user_ctl_val = 0x0000030F,
-};
-
--- 
 Thanks,
-Taniya Das
+Andre
+
+> 
+> btw, I don't understand what's the meaning of BIT(1) BIT(2) - DCDC_EN1/2
+> or if they has any connection with those two switches..
+> 
+> > +	AXP_DESC(AXP318, ALDO1, "aldo1", "aldo156in", 500, 3400, 100,
+> > +		 AXP318_ALDO1_CONTROL, AXP318_LDO_V_OUT_MASK,
+> > +		 AXP318_LDO_OUTPUT_CONTROL1, BIT(0)),
+> > +	AXP_DESC(AXP318, ALDO2, "aldo2", "aldo234in", 500, 3400, 100,
+> > +		 AXP318_ALDO2_CONTROL, AXP318_LDO_V_OUT_MASK,
+> > +		 AXP318_LDO_OUTPUT_CONTROL1, BIT(1)),
+> > +	AXP_DESC(AXP318, ALDO3, "aldo3", "aldo234in", 500, 3400, 100,
+> > +		 AXP318_ALDO3_CONTROL, AXP318_LDO_V_OUT_MASK,
+> > +		 AXP318_LDO_OUTPUT_CONTROL1, BIT(2)),
+> > +	AXP_DESC(AXP318, ALDO4, "aldo4", "aldo234in", 500, 3400, 100,
+> > +		 AXP318_ALDO4_CONTROL, AXP318_LDO_V_OUT_MASK,
+> > +		 AXP318_LDO_OUTPUT_CONTROL1, BIT(3)),
+> > +	AXP_DESC(AXP318, ALDO5, "aldo5", "aldo156in", 500, 3400, 100,
+> > +		 AXP318_ALDO5_CONTROL, AXP318_LDO_V_OUT_MASK,
+> > +		 AXP318_LDO_OUTPUT_CONTROL1, BIT(4)),
+> > +	AXP_DESC(AXP318, ALDO6, "aldo6", "aldo156in", 500, 3400, 100,
+> > +		 AXP318_ALDO6_CONTROL, AXP318_LDO_V_OUT_MASK,
+> > +		 AXP318_LDO_OUTPUT_CONTROL1, BIT(5)),
+> > +	AXP_DESC(AXP318, BLDO1, "bldo1", "bldoin", 500, 3400, 100,
+> > +		 AXP318_BLDO1_CONTROL, AXP318_LDO_V_OUT_MASK,
+> > +		 AXP318_LDO_OUTPUT_CONTROL1, BIT(6)),
+> > +	AXP_DESC(AXP318, BLDO2, "bldo2", "bldoin", 500, 3400, 100,
+> > +		 AXP318_BLDO2_CONTROL, AXP318_LDO_V_OUT_MASK,
+> > +		 AXP318_LDO_OUTPUT_CONTROL1, BIT(7)),
+> > +	AXP_DESC(AXP318, BLDO3, "bldo3", "bldoin", 500, 3400, 100,
+> > +		 AXP318_BLDO3_CONTROL, AXP318_LDO_V_OUT_MASK,
+> > +		 AXP318_LDO_OUTPUT_CONTROL2, BIT(0)),
+> > +	AXP_DESC(AXP318, BLDO4, "bldo4", "bldoin", 500, 3400, 100,
+> > +		 AXP318_BLDO4_CONTROL, AXP318_LDO_V_OUT_MASK,
+> > +		 AXP318_LDO_OUTPUT_CONTROL2, BIT(1)),
+> > +	AXP_DESC(AXP318, BLDO5, "bldo5", "bldoin", 500, 3400, 100,
+> > +		 AXP318_BLDO5_CONTROL, AXP318_LDO_V_OUT_MASK,
+> > +		 AXP318_LDO_OUTPUT_CONTROL2, BIT(2)),
+> > +	AXP_DESC(AXP318, CLDO1, "cldo1", "cldoin", 500, 3400, 100,
+> > +		 AXP318_CLDO1_CONTROL, AXP318_LDO_V_OUT_MASK,
+> > +		 AXP318_LDO_OUTPUT_CONTROL2, BIT(3)),
+> > +	AXP_DESC(AXP318, CLDO2, "cldo2", "cldoin", 500, 3400, 100,
+> > +		 AXP318_CLDO2_CONTROL, AXP318_LDO_V_OUT_MASK,
+> > +		 AXP318_LDO_OUTPUT_CONTROL2, BIT(4)),
+> > +	AXP_DESC(AXP318, CLDO3, "cldo3", "cldoin", 500, 3400, 100,
+> > +		 AXP318_CLDO3_CONTROL, AXP318_LDO_V_OUT_MASK,
+> > +		 AXP318_LDO_OUTPUT_CONTROL2, BIT(5)),
+> > +	AXP_DESC(AXP318, CLDO4, "cldo4", "cldoin", 500, 3400, 100,
+> > +		 AXP318_CLDO4_CONTROL, AXP318_LDO_V_OUT_MASK,
+> > +		 AXP318_LDO_OUTPUT_CONTROL2, BIT(6)),
+> > +	AXP_DESC(AXP318, CLDO5, "cldo5", "cldoin", 500, 3400, 100,
+> > +		 AXP318_CLDO5_CONTROL, AXP318_LDO_V_OUT_MASK,
+> > +		 AXP318_LDO_OUTPUT_CONTROL2, BIT(7)),
+> > +	AXP_DESC(AXP318, DLDO1, "dldo1", "dldoin", 500, 3400, 100,
+> > +		 AXP318_DLDO1_CONTROL, AXP318_LDO_V_OUT_MASK,
+> > +		 AXP318_LDO_OUTPUT_CONTROL3, BIT(0)),
+> > +	AXP_DESC(AXP318, DLDO2, "dldo2", "dldoin", 500, 3400, 100,
+> > +		 AXP318_DLDO2_CONTROL, AXP318_LDO_V_OUT_MASK,
+> > +		 AXP318_LDO_OUTPUT_CONTROL3, BIT(1)),
+> > +	AXP_DESC(AXP318, DLDO3, "dldo3", "dldoin", 500, 3400, 100,
+> > +		 AXP318_DLDO3_CONTROL, AXP318_LDO_V_OUT_MASK,
+> > +		 AXP318_LDO_OUTPUT_CONTROL3, BIT(2)),
+> > +	AXP_DESC(AXP318, DLDO4, "dldo4", "dldoin", 500, 3400, 100,
+> > +		 AXP318_DLDO4_CONTROL, AXP318_LDO_V_OUT_MASK,
+> > +		 AXP318_LDO_OUTPUT_CONTROL3, BIT(3)),
+> > +	AXP_DESC(AXP318, DLDO5, "dldo5", "dldoin", 500, 3400, 100,
+> > +		 AXP318_DLDO5_CONTROL, AXP318_LDO_V_OUT_MASK,
+> > +		 AXP318_LDO_OUTPUT_CONTROL3, BIT(4)),
+> > +	AXP_DESC(AXP318, DLDO6, "dldo6", "dldoin", 500, 3400, 100,
+> > +		 AXP318_DLDO6_CONTROL, AXP318_LDO_V_OUT_MASK,
+> > +		 AXP318_LDO_OUTPUT_CONTROL3, BIT(5)),
+> > +	AXP_DESC(AXP318, ELDO1, "eldo1", "eldoin", 500, 1500, 25,
+> > +		 AXP318_ELDO1_CONTROL, AXP318_ELDO_V_OUT_MASK,
+> > +		 AXP318_LDO_OUTPUT_CONTROL3, BIT(6)),
+> > +	AXP_DESC(AXP318, ELDO2, "eldo2", "eldoin", 500, 1500, 25,
+> > +		 AXP318_ELDO2_CONTROL, AXP318_ELDO_V_OUT_MASK,
+> > +		 AXP318_LDO_OUTPUT_CONTROL3, BIT(7)),
+> > +	AXP_DESC(AXP318, ELDO3, "eldo3", "eldoin", 500, 1500, 25,
+> > +		 AXP318_ELDO3_CONTROL, AXP318_ELDO_V_OUT_MASK,
+> > +		 AXP318_LDO_OUTPUT_CONTROL4, BIT(0)),
+> > +	AXP_DESC(AXP318, ELDO4, "eldo4", "eldoin", 500, 1500, 25,
+> > +		 AXP318_ELDO4_CONTROL, AXP318_ELDO_V_OUT_MASK,
+> > +		 AXP318_LDO_OUTPUT_CONTROL4, BIT(1)),
+> > +	AXP_DESC(AXP318, ELDO5, "eldo5", "eldoin", 500, 1500, 25,
+> > +		 AXP318_ELDO5_CONTROL, AXP318_ELDO_V_OUT_MASK,
+> > +		 AXP318_LDO_OUTPUT_CONTROL4, BIT(2)),
+> > +	AXP_DESC(AXP318, ELDO6, "eldo6", "eldoin", 500, 1500, 25,
+> > +		 AXP318_ELDO6_CONTROL, AXP318_ELDO_V_OUT_MASK,
+> > +		 AXP318_LDO_OUTPUT_CONTROL4, BIT(3)),
+> > +};
+> > +
+> >  static const struct linear_range axp717_dcdc1_ranges[] = {
+> >  	REGULATOR_LINEAR_RANGE(500000,   0, 70, 10000),
+> >  	REGULATOR_LINEAR_RANGE(1220000, 71, 87, 20000),
+> > @@ -1347,6 +1501,7 @@ static int axp20x_set_dcdc_freq(struct platform_device *pdev, u32 dcdcfreq)
+> >  		step = 150;
+> >  		break;
+> >  	case AXP313A_ID:
+> > +	case AXP318_ID:
+> >  	case AXP323_ID:
+> >  	case AXP717_ID:
+> >  	case AXP15060_ID:
+> > @@ -1585,6 +1740,10 @@ static int axp20x_regulator_probe(struct platform_device *pdev)
+> >  		regulators = axp313a_regulators;
+> >  		nregulators = AXP313A_REG_ID_MAX;
+> >  		break;
+> > +	case AXP318_ID:
+> > +		regulators = axp318_regulators;
+> > +		nregulators = AXP318_REG_ID_MAX;
+> > +		break;
+> >  	case AXP717_ID:
+> >  		regulators = axp717_regulators;
+> >  		nregulators = AXP717_REG_ID_MAX;
+> > diff --git a/include/linux/mfd/axp20x.h b/include/linux/mfd/axp20x.h
+> > index a871789f6cfa9..f4217c4763669 100644
+> > --- a/include/linux/mfd/axp20x.h
+> > +++ b/include/linux/mfd/axp20x.h
+> > @@ -559,6 +559,47 @@ enum {
+> >  	AXP313A_REG_ID_MAX,
+> >  };
+> >  
+> > +enum {
+> > +	AXP318_DCDC1 = 0,
+> > +	AXP318_DCDC2,
+> > +	AXP318_DCDC3,
+> > +	AXP318_DCDC4,
+> > +	AXP318_DCDC5,
+> > +	AXP318_DCDC6,
+> > +	AXP318_DCDC7,
+> > +	AXP318_DCDC8,
+> > +	AXP318_DCDC9,
+> > +	AXP318_ALDO1,
+> > +	AXP318_ALDO2,
+> > +	AXP318_ALDO3,
+> > +	AXP318_ALDO4,
+> > +	AXP318_ALDO5,
+> > +	AXP318_ALDO6,
+> > +	AXP318_BLDO1,
+> > +	AXP318_BLDO2,
+> > +	AXP318_BLDO3,
+> > +	AXP318_BLDO4,
+> > +	AXP318_BLDO5,
+> > +	AXP318_CLDO1,
+> > +	AXP318_CLDO2,
+> > +	AXP318_CLDO3,
+> > +	AXP318_CLDO4,
+> > +	AXP318_CLDO5,
+> > +	AXP318_DLDO1,
+> > +	AXP318_DLDO2,
+> > +	AXP318_DLDO3,
+> > +	AXP318_DLDO4,
+> > +	AXP318_DLDO5,
+> > +	AXP318_DLDO6,
+> > +	AXP318_ELDO1,
+> > +	AXP318_ELDO2,
+> > +	AXP318_ELDO3,
+> > +	AXP318_ELDO4,
+> > +	AXP318_ELDO5,
+> > +	AXP318_ELDO6,
+> > +	AXP318_REG_ID_MAX,
+> > +};
+> > +
+> >  enum {
+> >  	AXP717_DCDC1 = 0,
+> >  	AXP717_DCDC2,
+> > -- 
+> > 2.46.3
+> >   
+> 
 
 
