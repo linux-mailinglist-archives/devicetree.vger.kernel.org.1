@@ -1,208 +1,108 @@
-Return-Path: <devicetree+bounces-229374-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229375-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3CB1BF6B35
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 15:14:35 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A920BF6B59
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 15:15:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 1D8A4503A56
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 13:14:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1933D3B74DC
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 13:14:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE2A333507E;
-	Tue, 21 Oct 2025 13:14:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2085033343D;
+	Tue, 21 Oct 2025 13:14:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="OHYh3WfO"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="xRxrEqrB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 281B1355033
-	for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 13:14:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7CC5328629;
+	Tue, 21 Oct 2025 13:14:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.151
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761052444; cv=none; b=mkWa52f32XvOhZA4/g/DhPH6xjV2eJfg3vQZ/76PWbzUl50Tz/wVq9ls+joQYRrxKl6xJigWmnwzD95vR97+hiX7ZFIvSsBO3YIVHB8BXObXyKTqQDkuuYqRDZS8uZPB9g5Gq2jLebGyXHRWfp2al52FHZr0rrHUoMTt7F6VjKc=
+	t=1761052482; cv=none; b=DOJeVLvQzNrQPQwS+UZKatF+DY9CXuj09yKNljLyfYzonhiv5Qjs6R3prssqtq3X8ugct0BTzTzX4KIDdGK//ygJeE5s7u9qpQ3wrVHn0PX3zEighoZ9MjBi6GrHpN1AGyOsg6Ay3MtVyCOzUj9EE+fUMT5zaGM7TGw/Yvlp7eU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761052444; c=relaxed/simple;
-	bh=w2i+FxONBXXx3PvM+d1TKTp00ehfZPIgAaTK1j0wkl4=;
+	s=arc-20240116; t=1761052482; c=relaxed/simple;
+	bh=/CBY5XyDoYp57hZ59ItzVntpFvB/9eNEPFE/lL6ab2M=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WKrwan8ZBNwx5zXGOJG2nv9LO7h2fB+nudCCf4MaBsLTZEjwb3y9vIp0EFd2ikKa9q0BZultYm8NwUVXKUqTyTyIkrHV+qvvg/sh183gVvDxX6x3WsECI7TeSNT5nKYDlSA6m2JTNZOI3Am9PtViP6vBHT96BBg22tDvVbvRDE0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=OHYh3WfO; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59L8LvSu026895
-	for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 13:14:02 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	1J3FwMBpLhx8fYWCDWyhBCXacIdXPm0xifRPcXHEaJ8=; b=OHYh3WfONtQnQIWN
-	jqNqPFtwtmIP6JuNtltLlO5uECBdbthXS+cv6w0vMPNXrYjgT5OBozJ9FUOWeSF3
-	0vVU4zQyf1ABp5ByavV32Z1Yw8QYcFVMMZQMOgSJA9+/jGsbkhevmCz1xVF5rt9D
-	dmYUdrckZy/8d/BHg5/j5SvzlJqXwBM9xwMWTRywIVniZ9uSD72wA2TWzyVaXldO
-	Tf3ftUzKy/lwH3jKzWcQskpsraeuzVDqItzYJ7YcrrwX54OoOgUSLzxcJ7Gv5yP4
-	6jEIIbojQtWjgzoOTtbed8Dg4M/+TVBqcFR6yV0WtdZDRRRDfkwF+rweUBiPzAld
-	o4uFRA==
-Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com [209.85.219.69])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49v08ph156-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 13:14:01 +0000 (GMT)
-Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-79a3c16b276so173981476d6.0
-        for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 06:14:01 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761052441; x=1761657241;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=1J3FwMBpLhx8fYWCDWyhBCXacIdXPm0xifRPcXHEaJ8=;
-        b=tDdFDD4hvCnDB7gADhGj45u2GHfWEH1LetWhsEF3gLgqI0t6x5bBgRPGjUK5pcZqx1
-         1qYgdS1434n8TdFRyXaNs23iGrwjxjreThj+MRYAje4OQqZIwMBv9VQIAaEJe60qg5x/
-         U0PihC4jYQtCG9JGXb7+Rhwai7RR/rS3B6ziEiZbRxN3vRFysIn+HeLOsdhaOPhJtT7O
-         m5kC++CsK9apk1JHhw1Z5ZPOjFbrLR4In+RO1g9sFMA95kvTskKdC2oyfOXlZ3sRl7m7
-         Z8gSPrUKFfCYjdQ2zKLaikTnPZT427SGrpd28bXwiztQd1EnFfGS8wDblU1MOH9nB1p3
-         F0Zw==
-X-Forwarded-Encrypted: i=1; AJvYcCUtc1FgtCeJbpc9n7KVmVmHzhN0DoHCXSDu9gOPJ64mvQGLJDdhQcbL6IS78IwPn4U5OTpECfEPYlkP@vger.kernel.org
-X-Gm-Message-State: AOJu0YyfB2aHMla5lYdl42RvSfTMRABoC2C/Iglc5gHNJe1gY20S8nsZ
-	+wZSeZAg3pbglYZ0wIJTxAgGfMzslanCnDRAkk0GSe00OmJhzhy90iBA8h7t2y0iyhGDx6PTg4d
-	WsMpi6kCkTeJELQyvDpXhciMXD5RlHJP7JZl1fqfCkbDCDf7atcqjZt9iM6sBZXt+
-X-Gm-Gg: ASbGnctTt0Q21qcz1anm8JKu4K9/fFu4m35BfxMjkyz9tiBTwD5kuuCKmhtJ+G+PE5W
-	7OQjDGnCXSWgh5AUjCS0nSquWYL9f92AEI3lWovEbIhdEnsWOmJ7YUpUjD1uJypsrOTFES5u5LR
-	JhUFwLMlyqBp655k/au8JUjJgu7jhX5XkuLnqGrM6bVR8zFIMLoSL7xM5k3MR+qtwZ3AoPLh/0O
-	TcRQ/elYQCEiCrSMMwNuBLIEW2PFdjhbGggUY22gSFPaGikArhS21VdCLw/GS+tw3pDUfXU0gSW
-	8OTZpWrCRhUnuqJ71Yp3MMn08X0Igl1+rFMr+3+lrfPmL9fe8iQeyya8+X3DbD2hZOz8INddhMU
-	Tvqh4WLUhzug7fPTBCLdcmuGdrQ==
-X-Received: by 2002:ac8:5fd0:0:b0:4df:a3f1:2b41 with SMTP id d75a77b69052e-4e89d2f2d22mr191979361cf.37.1761052441011;
-        Tue, 21 Oct 2025 06:14:01 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGMR85aYmO0SlEiPplaQeeABFnTh46S57hFvtLZYcoP7my3aQJA/qcKSdNST7j3T+8HnZ1Sug==
-X-Received: by 2002:ac8:5fd0:0:b0:4df:a3f1:2b41 with SMTP id d75a77b69052e-4e89d2f2d22mr191978891cf.37.1761052440479;
-        Tue, 21 Oct 2025 06:14:00 -0700 (PDT)
-Received: from [192.168.68.121] ([5.133.47.210])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-474949e0a3csm18730905e9.0.2025.10.21.06.13.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 21 Oct 2025 06:14:00 -0700 (PDT)
-Message-ID: <450cac8b-598b-4f47-8bf0-43c805038e7c@oss.qualcomm.com>
-Date: Tue, 21 Oct 2025 14:13:57 +0100
+	 In-Reply-To:Content-Type; b=PTSfe4fIDgVyC5lCvDQQa4zN25wbuG0PQv6ZtAWNDQXjj34X3V8FuZpGqD1j5qBMmKCbFTEGH7GWe/mJUkd5uW8rT0T8qlIlXdO4IrgRz/QloAX3pR0LuawkepzkilB4HPkyONFRiHc6oKJhVuUiT7mX2gTxazql7S6CFuwbl6w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=xRxrEqrB; arc=none smtp.client-ip=80.241.56.151
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp102.mailbox.org (smtp102.mailbox.org [IPv6:2001:67c:2050:b231:465::102])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4crXnl74qNz9tK4;
+	Tue, 21 Oct 2025 15:14:35 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1761052476;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=6/zEd5xqpUOFkILaZxmM5oruTGgqFYEwqRpwn4E7Czw=;
+	b=xRxrEqrBI56SFMgp9hWE/1ebdGZmXyv030YtGhmYJAUDI5HAuaLX0SEVTAmtvRkj1GJ4/8
+	KLSdPTPsrRNnmyZkODzbjxuns336oTy1PGTJpF6tl/Jm9RLH7W93b05pb2oumhfaDo4Rla
+	gqTlsDxgNATrdLUYp7D5+D6CEcgyHKDpN6xj4MIJoqm8EBKt7jXxrYELTGeMJ15hv3GbZp
+	V3ZmgbEFTygkNKeB7agkCfDi7g73DcnNc9ppFDajvviGQdQQgcAdwTptUVALVCtEXKnK62
+	M/4oxntZS9ox0QQaLXwey2N/ITzTEjD9lXof8WuDlKJp7+r7P10NFkK+ABqrhw==
+Message-ID: <fba13116-2495-49a3-a1b5-2eecb33bb448@mailbox.org>
+Date: Tue, 21 Oct 2025 15:14:33 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/4] arm64: dts: qcom: qcm2290: add LPASS LPI pin
- controller
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-        Alexey Klimov <alexey.klimov@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Srinivas Kandagatla <srini@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-sound@vger.kernel.org
-References: <20251007-rb1_hdmi_audio-v2-0-821b6a705e4c@linaro.org>
- <20251007-rb1_hdmi_audio-v2-3-821b6a705e4c@linaro.org>
- <b6223af9-2d9e-4ccd-b297-79f63167242b@oss.qualcomm.com>
- <DDEN5NSLDIHD.C1IELQW0VOG3@linaro.org>
- <zmi5grjg2znxddqzfsdsr35ad5olj3xgwwt6hvkiaynxzm5z33@gsgrdguj563n>
- <DDO0LYS7UTEW.3A9WGTAA5DKVO@linaro.org>
- <56vmqgrjy3je7omzirxnfxtuocebbj356iaew5thgkagi35464@hh34y7efssow>
+Subject: Re: [PATCH] arm64: dts: renesas: sparrow-hawk: don't reserve SWDT
+To: Geert Uytterhoeven <geert@linux-m68k.org>,
+ Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: linux-renesas-soc@vger.kernel.org, Magnus Damm <magnus.damm@gmail.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
+References: <20251017115123.3438-2-wsa+renesas@sang-engineering.com>
+ <CAMuHMdUCSRKAbD=DfJxfFGpfKTRkt=a2BO+HnwTqALBeeECOkA@mail.gmail.com>
+ <aPaSF2lokJ748cTx@shikoro>
+ <CAMuHMdXv_R6POTQe=MEcEOraKhjhzwrW5skkWnzgvijF2qAykw@mail.gmail.com>
 Content-Language: en-US
-From: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
-In-Reply-To: <56vmqgrjy3je7omzirxnfxtuocebbj356iaew5thgkagi35464@hh34y7efssow>
-Content-Type: text/plain; charset=UTF-8
+From: Marek Vasut <marek.vasut@mailbox.org>
+In-Reply-To: <CAMuHMdXv_R6POTQe=MEcEOraKhjhzwrW5skkWnzgvijF2qAykw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDE4MDAwMCBTYWx0ZWRfX/v4HVSiPRCYf
- jnvYbWbxlzF9D+8WaukmQHkM5SuU0rh9+T7uuvu3SekBrGqX23dxwK0Ppatz4TiC+wLtjH2t4SO
- qewnTqcaOglyLspPEEokiq6RL8T18KO1wLYe/zI5sRx5vJ1SSAP7tIWzvA3zywQEk5Ff+AyGlF7
- S0Dls/DW2gM/vxR6cKxo5ZuZ0bN6yXJsV2POWtgy4x7Bfo1tUs5fCh+ZrqNYVLWx8B3opMFGDTr
- DZc2BBMVUbIhadWjbFgnN0TsS2KccnBWWu4Cyzl8Wm+eRsSIMxCQd2Dd2kXkO9r1yzxrgXAus8n
- a81WJ826gQgWp9nxWFiGRtQW8FMIAuRAaDhrBWPuAyTBb3GHXugSdDLCBPDzGF46UAjvQnW15jW
- TszcFwiCe3+ivxHMkpKpeIkfYNT0wg==
-X-Proofpoint-GUID: On10lYUVlF-Xkrcv-YKrvSDDEZwyCPju
-X-Authority-Analysis: v=2.4 cv=Up1u9uwB c=1 sm=1 tr=0 ts=68f78719 cx=c_pps
- a=wEM5vcRIz55oU/E2lInRtA==:117 a=ZsC4DHZuhs/kKio7QBcDoQ==:17
- a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=VwQbUJbxAAAA:8 a=KKAkSRfTAAAA:8 a=S47CMrjrQcjTfVtel-AA:9 a=QEXdDO2ut3YA:10
- a=OIgjcC2v60KrkQgK7BGD:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-ORIG-GUID: On10lYUVlF-Xkrcv-YKrvSDDEZwyCPju
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-10-21_01,2025-10-13_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 adultscore=0 suspectscore=0 malwarescore=0 clxscore=1015
- impostorscore=0 bulkscore=0 priorityscore=1501 spamscore=0 phishscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2510020000 definitions=main-2510180000
+X-MBO-RS-ID: c46a08b9ef3b2cdfa6f
+X-MBO-RS-META: qufb5q9rxdj7417677rhtgrwinh4stk3
 
+On 10/21/25 9:09 AM, Geert Uytterhoeven wrote:
 
+Hello everyone,
 
-On 10/21/25 2:03 PM, Dmitry Baryshkov wrote:
-> On Tue, Oct 21, 2025 at 01:56:09PM +0100, Alexey Klimov wrote:
->> On Fri Oct 17, 2025 at 11:42 PM BST, Bjorn Andersson wrote:
->>> On Fri, Oct 10, 2025 at 01:29:38PM +0100, Alexey Klimov wrote:
->>>> On Tue Oct 7, 2025 at 1:39 PM BST, Konrad Dybcio wrote:
->>>>> On 10/7/25 4:03 AM, Alexey Klimov wrote:
->>>>>> Add the Low Power Audio SubSystem Low Power Island (LPASS LPI) pin
->>>>>> controller device node required for audio subsystem on Qualcomm
->>>>>> QRB2210 RB1. QRB2210 is based on qcm2290 which is based on sm6115.
->>>>>>
->>>>>> While at this, also add description of lpi_i2s2 pins (active state)
->>>>>> required for audio playback via HDMI/I2S.
->>>>>>
->>>>>> Cc: Srinivas Kandagatla <srini@kernel.org>
->>>>>> Signed-off-by: Alexey Klimov <alexey.klimov@linaro.org>
->>>>>> ---
->>>>>
->>>>> [...]
->>>>>
->>>>>> +			lpi_i2s2_active: lpi-i2s2-active-state {
->>>>>> +				data-pins {
->>>>>> +					pins = "gpio12";
->>>>>> +					function = "i2s2_data";
->>>>>> +					bias-disable;
->>>>>> +					drive-strength = <8>;
->>>>>> +					output-high;
->>>>>
->>>>> I.. doubt output-high is what you want?
->>>>
->>>> Why? Or is it because of some in-kernel gpiod?
->>>>
->>>
->>> What does "output-high" mean for a non-gpio function?
+> On Mon, 20 Oct 2025 at 21:48, Wolfram Sang
+> <wsa+renesas@sang-engineering.com> wrote:
+>>> Or better: drop all these swdt = reserved commits?
 >>
->> This is not efficient. It will be more useful to go straight to
->> the point.
+>> Maybe. Since Marek is maybe interested in fixing FW...
+>>
+>>> TBH, I always had my doubts about making them reserved in the upstream
+>>> DTS, and there does not seem to be much gain in doing so...
+>>
+>> No strong opinion here. With "reserved" I think I followed your
+>> suggestion but I personally don't mind.
 > 
-> It is efficient. It makes everybody think about it (and ask the same
-> question in future) instead of just depending on maintainers words.
-> 
->> This description of pins was taken from Qualcomm downstream code
->> and the similar patch was applied (see provided URL in the prev email).
-> 
-> And we all know that downstream can be buggy, incomplete, etc.
-> 
->> Back to your question -- does it matter here if it is gpio or non-gpio
->> function?
-> 
-> It does. The I2S data pin is supposed to be toggled in some way by a
-> certain IP core. What would it mean if we program output-high? Will the
-> pin still be toggled (by the function) or stay pulled up (because of the
-> output being programmed)?
-I2S lines are configured in push-pull mode which means that the lines
-are driven high and low actively, am not sure why output-high is needed
-an what it means here as these lines are actively driven by the controller.
+> Well, the proper mechanism would be that firmware using SWDT would
+> override the status to reserved, preventing the user from using it if
+> it was enabled in the DTB passed by the user.  But (a) the current
+> firmware doesn't do that, and (b) we currently do not have a use-case
+> for enabling SWDT in the DTB.
 
-@Alexey, what issues do you see without this?
+Upstream TFA does enable SWDT for R-Car Gen3, but not for Gen4.
 
-Am not sure if pinctrl driver even cares about this if we are in alt mode.
+I can pass SWDT node from upstream TFA to next stage on Gen3 if you 
+would like that ?
 
-
---srini>
-
+-- 
+Best regards,
+Marek Vasut
 
