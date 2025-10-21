@@ -1,131 +1,144 @@
-Return-Path: <devicetree+bounces-229321-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229322-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4A71BF5F2B
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 13:07:24 +0200 (CEST)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DBA9BF5F67
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 13:11:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E39334E3315
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 11:07:21 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 9018E3533F5
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 11:11:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B58A2F3623;
-	Tue, 21 Oct 2025 11:07:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15E2F2F361B;
+	Tue, 21 Oct 2025 11:11:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="OtoMAP7n"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ko5PChQT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A3212F2619;
-	Tue, 21 Oct 2025 11:07:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34E2F2E0B69
+	for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 11:11:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761044839; cv=none; b=snfDXdQP2bTmhW8iMdwAPgndyWS1+9nf9Xpwy4MaypkXYLLY6orkcMyQS0BICuMP+4TynRUsu4qiUKDT00+fX6Po7xGRhkSYq2f54Gsh29pxYC8KOLfsUKdAnAC33fF8onhifqpydQMFQipdLEi5Y21PTuJRkaGL6knLfAS3Mp0=
+	t=1761045062; cv=none; b=OQhZwyhq14nBAuKIXJJtPRmRFBnjWtnxdcUmhuFBJh1yywtBL3RKS1IknXUTCBlc86XXABM3FTA5EqwqPEuJXcFrGpSmDakIwH55j1JQ81cByHwkhoyIFO096utPjvl7MaW8AcalmigBcP6Dx3vOfUWWa6VeKmBiMMZYAjBoyho=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761044839; c=relaxed/simple;
-	bh=n9l01WVOdLYsNtWLeGEEkur1oK8Lb6bJ3MmOA1JZiig=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TWFzQLHhO+RLjDw49eeSDaVp9ATlmiNwdYzI8LCZNPj1877NMLMqPU0UDBeXzipOyqcREs+jKLzULFH7NbdDfHXBmGXMTyqoeGeMvLKW8Bdfb22DQTfHXN6+bU/hfFjNVwI8I7ScQcclNX0iA39ky0HbmtXT2oP+YSStuyRw0P8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=OtoMAP7n; arc=none smtp.client-ip=217.194.8.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
-Received: from francesco-nb (248.201.173.83.static.wline.lns.sme.cust.swisscom.ch [83.173.201.248])
-	by mail11.truemail.it (Postfix) with ESMTPA id 03BB61F83F;
-	Tue, 21 Oct 2025 13:07:13 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
-	s=default; t=1761044835;
-	bh=Pwk8DjJA8z0oysJkbtvk8bhihXS0Rs1EqYDINNJtUYQ=; h=From:To:Subject;
-	b=OtoMAP7nFhJluGnIc3sDNdXjGWYpJaez2TDKP0ZmPxYsijtx3eHfzWXyvZMYXox6T
-	 nz5KMvxUbJlLumhO/ydCbevrpqttlVuWEZrGcy86glWsMeY2HPqEMwFGtda1VL1Ovw
-	 VWHYcACHoezmtNDUaIDeCrVyRA+SvporIMJoAfcmJe6yaLdbDRXQJxD3uOvm+loVYb
-	 npNGjPMXuvne9ZPSg7N2I4iWgzDC4XkYtyF6I7ZNfrlZV9VKN7ddFvU00HRo1vr/6C
-	 y+THkqeb6aaYN6ExTXihWGWvyVzneq/aoOL6f1BBgsUvVgFt6KByfva+pJLk3fLmMA
-	 TwuD1njbb8LSw==
-Date: Tue, 21 Oct 2025 13:07:10 +0200
-From: Francesco Dolcini <francesco@dolcini.it>
-To: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
-Cc: Beleswar Prasad Padhi <b-padhi@ti.com>,
-	Francesco Dolcini <francesco@dolcini.it>,
-	Hiago De Franco <hiagofranco@gmail.com>, nm@ti.com, vigneshr@ti.com,
-	kristo@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, afd@ti.com, u-kumar1@ti.com, hnagalla@ti.com,
-	jm@ti.com, d-gole@ti.com, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	Robert Nelson <robertcnelson@gmail.com>,
-	=?iso-8859-1?Q?Jo=E3o_Paulo_Gon=E7alves?= <joao.goncalves@toradex.com>,
-	Emanuele Ghidoli <emanuele.ghidoli@toradex.com>,
-	Francesco Dolcini <francesco.dolcini@toradex.com>,
-	Logan Bristol <logan.bristol@utexas.edu>,
-	Josua Mayer <josua@solid-run.com>, John Ma <jma@phytec.com>,
-	Nathan Morrisson <nmorrisson@phytec.com>,
-	Garrett Giordano <ggiordano@phytec.com>,
-	Matt McKee <mmckee@phytec.com>, Wadim Egorov <w.egorov@phytec.de>,
-	Max Krummenacher <max.krummenacher@toradex.com>,
-	Stefan Eichenberger <stefan.eichenberger@toradex.com>,
-	Hiago De Franco <hiago.franco@toradex.com>,
-	Diogo Ivo <diogo.ivo@siemens.com>,
-	Li Hua Qian <huaqian.li@siemens.com>,
-	Jan Kiszka <jan.kiszka@siemens.com>,
-	Baocheng Su <baocheng.su@siemens.com>,
-	Benedikt Niedermayr <benedikt.niedermayr@siemens.com>,
-	regressions@lists.linux.dev
-Subject: Re: [REGRESSION] Suspend to RAM does not work anymore with
- k3-am62-ti-ipc-firmware.dtsi
-Message-ID: <20251021110710.GA40034@francesco-nb>
-References: <sid7gtg5vay5qgicsl6smnzwg5mnneoa35cempt5ddwjvedaio@hzsgcx6oo74l>
- <e60dd8d6-2bd5-41f0-bf8a-b0a5822a7f88@ti.com>
- <20251021093420.GA28462@francesco-nb>
- <cf10f312-3ba1-4226-96da-d2c9a149c1c7@ti.com>
- <1a849a0b515c77faebe28456d6537d39d4ca32d0.camel@ew.tq-group.com>
+	s=arc-20240116; t=1761045062; c=relaxed/simple;
+	bh=rx99oBPed2XJKc5oyfumby0hPyGNK0fC4ws05bQ8ryI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=aEO8nuiR9+I3Su8gkeqgpoKFcWhrouyi6Py0vCSGhvBFCTPPt7y/tLgEedYHheUIKmoI0to9+G4qB6lPMnnNor2egR/0aMV+8oyxQWisYzutAktVScZEU2p8cBg36muV8yFCH5COqHDo2u1Q9ra/xdkAAjzyEiEJc+odoJAKrNs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ko5PChQT; arc=none smtp.client-ip=209.85.221.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-4270a072a0bso573814f8f.0
+        for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 04:11:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1761045059; x=1761649859; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=JZxh2RHqPkMdvbwb2L7q+GZUxl/+aVRyGR8X3MbWpuw=;
+        b=ko5PChQTG5U4GLD9ym5HO0hJe6ioEBrROyasQr9lQHS+GJ1T5O4FFt5osxsGi/9jtK
+         eTfnrmALGE1s0sdBEG3gJHnvYnHjViMnrG7GPOgco/o65Km5CJLiNL4yHLPJl5PnsWlA
+         DonJSCwA1HdWMiKfrYeGng7S2H8vWeZbITW6bUxp3enH65HIYCvsLoJOJdYUX6m2cUqk
+         JpiTmX/hj2J8kpan5PEmuxMSKseSV2p5u+fMhrcuDpongFenuDEJBA7oRQgBjq7jhZeS
+         hVkurbMMTzNstBfufa2iX8RbRkMTPqAbiGRg0vKon8Dsz+JQlM5jENQXCdcuTTguNAXJ
+         dG5g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761045059; x=1761649859;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=JZxh2RHqPkMdvbwb2L7q+GZUxl/+aVRyGR8X3MbWpuw=;
+        b=ljRi0DqNBz2oYnZ8+TGJvVFCTQAb6zxFLhuDGKkKFEHTSZv2qCD0GgX3Xv8fWLRWD2
+         vxx+qNfLGNtBEIS0uMcECuu+G+dvRMGZg6Vmc8EIuKhBAiqnqLnCj1izapSQbOWpV7c1
+         ZyephGAHevZxsIUX1xQGJz/H+7u4UYurhwl6Wb2sTOjBH3eOoOp9m9NDT6yukaUH5iuy
+         t0QKU8NlUfjcbbpRRfpRlqfcfeg6i4QG9C46/ChlmlYmOBkUFVrira9hnc9xgtb6Hk1O
+         sQOPt2DCbuLwsCdH3BCCL4weZ/fTmha66E3CogEpHiQKF28nBgLWHjjpbMH//X9Vjr2D
+         BPyw==
+X-Forwarded-Encrypted: i=1; AJvYcCXtAbOV74zg6GrtIE//9wYAHbdPvIzMifdKHOaKKooi4OhlIYIn5IaGqE7oFjVWs4fgVwELfualGjrZ@vger.kernel.org
+X-Gm-Message-State: AOJu0YzwbWSOXTd4a2MkG7RCz3xAr18dq0uOOaFu+oA4ww17ATlbUwf5
+	JSD5mFRWuAdkB/I7CM9FJ96wZAMdWhw+MvTp4dkRLbkLYZg9HbW0BpvzUYZy1nyGPes=
+X-Gm-Gg: ASbGncuv2zMoeqW/jb8ZpovokL6UVB1JVG0oq3kVftyfN5pNFzLiH1QJpqWVljpLZDd
+	O96vN9Lus6sHlgsBOLsygEOjxTY+fxJ0UhjCtVtMBBiok2XQULEc4iETgqn27HRFH9DsE7ojfHM
+	D8MAcN3SVmrWoYS5jtqMp8jt27qnGK1D2G5vWeuoJ/1iLkFYYkpqXsER2nrzWm2MEAoqyqEhCOn
+	9UvBSylo7Z4s1PbAKhzgaAGnjwZERc1N5p4UUz+/cZ6AM1t+JUaDhx9bM2pVUrXRxTMfHvqZLSt
+	2hF72s62jkqkH25Qc0cud9NvyTBmJ/amBdLT4gxNIFmINeanb+99KWsxxXfgsHRzzlC+dwx6Cn1
+	7ni2bFKhx6ew+VjoS/wqF57rYICVNdkl+C1OtfmksGBnojIiON2BZ81EwpkYO2x93R326Itchgf
+	6zm/El4FR7BhtF9DxzfmpHUr9dQzBBbvQI
+X-Google-Smtp-Source: AGHT+IGVDBYsOBdDa5NG0DSZa5Yr0ZnxdYzLYQZD37fgSLb7c/VmYVbHh3NUBKG7BjssK7ci3BmYKg==
+X-Received: by 2002:a05:6000:2311:b0:427:52a:7ca4 with SMTP id ffacd0b85a97d-4284e52da1fmr1195908f8f.4.1761045059441;
+        Tue, 21 Oct 2025 04:10:59 -0700 (PDT)
+Received: from kuoka.. ([178.197.219.123])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-427f00ce06bsm19510485f8f.45.2025.10.21.04.10.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 21 Oct 2025 04:10:58 -0700 (PDT)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Rob Clark <robin.clark@oss.qualcomm.com>,
+	Dmitry Baryshkov <lumag@kernel.org>,
+	Abhinav Kumar <abhinav.kumar@linux.dev>,
+	Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
+	Sean Paul <sean@poorly.run>,
+	Marijn Suijten <marijn.suijten@somainline.org>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Kuogee Hsieh <quic_khsieh@quicinc.com>,
+	linux-arm-msm@vger.kernel.org,
+	dri-devel@lists.freedesktop.org,
+	freedreno@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 1/2] dt-bindings: display/msm: Reference DAI schema for DAI properties
+Date: Tue, 21 Oct 2025 13:10:51 +0200
+Message-ID: <20251021111050.28554-3-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1a849a0b515c77faebe28456d6537d39d4ca32d0.camel@ew.tq-group.com>
+Content-Transfer-Encoding: 8bit
 
-On Tue, Oct 21, 2025 at 12:06:32PM +0200, Matthias Schiffer wrote:
-> On Tue, 2025-10-21 at 15:26 +0530, Beleswar Prasad Padhi wrote:
-> > On 21/10/25 15:04, Francesco Dolcini wrote:
-> > > On Tue, Oct 21, 2025 at 02:33:10PM +0530, Beleswar Prasad Padhi wrote:
-> > > > On 20/10/25 19:47, Hiago De Franco wrote:
-> > > > > DM R5 sends a message that is never consumed, since no firmware is
-> > > > > running on the M4 (the core is offline).
-> > > > 
-> > > > May I know why you are not running any firmware on the M4
-> > > > rproc? If the intention is just to run the DM R5 core on the SoC,
-> > > > you can disable the IPC by NOT including the
-> > > > "k3-am62-ti-ipc-firmware.dtsi". That was the motivation for the
-> > > > refactoring.
-> > > Verdin AM62 and AM62P are generic SoMs, that can be used for a multitude
-> > > of different use cases. And not having anything running on the M4 is the
-> > > default use case.
-> > 
-> > 
-> > If not having anything on M4 is the default use case, it should
-> > be marked as "status=disabled" in the DT.
-> > 
-> > > 
-> > > I think having the node in the DT is the correct way forward, if you
-> > > want to start the M4 firmware you need such a node, so this is enabling
-> > > a valid and useful use case.
-> > 
-> > 
-> > Having the node is fine, you can still choose to keep it
-> > disabled by default.
-> 
-> I agree with Francenso that it would be nice to keep the node enabled by default
-> - whether something is running on the M4 can be controlled via sysfs after all,
-> and may change over the runtime of the OS.
+DisplayPort nodes are DAIs (Digital Audio Interfaces): they have already
+'sound-dai-cells'.  Reference the common DAI schema to bring common
+properties for them, which allows also customizing DAI name prefix.
 
-In addition, from what I know, this is required even if you want to
-to start the firmware of the M4 from U-Boot.
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ .../devicetree/bindings/display/msm/dp-controller.yaml         | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-Francesco
+diff --git a/Documentation/devicetree/bindings/display/msm/dp-controller.yaml b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
+index aeb4e4f36044..08c273f707c1 100644
+--- a/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
++++ b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
+@@ -198,6 +198,7 @@ allOf:
+                 - qcom,sa8775p-dp
+                 - qcom,x1e80100-dp
+       then:
++        $ref: /schemas/sound/dai-common.yaml#
+         oneOf:
+           - required:
+               - aux-bus
+@@ -295,7 +296,7 @@ allOf:
+           minItems: 6
+           maxItems: 8
+ 
+-additionalProperties: false
++unevaluatedProperties: false
+ 
+ examples:
+   - |
+-- 
+2.48.1
 
 
