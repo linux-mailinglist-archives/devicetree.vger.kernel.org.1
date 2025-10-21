@@ -1,113 +1,221 @@
-Return-Path: <devicetree+bounces-229417-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229418-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id B72BFBF7429
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 17:10:52 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id D5770BF743F
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 17:12:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id A7FC250708A
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 15:08:27 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 2D3844FF13E
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 15:09:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 125BD3431E9;
-	Tue, 21 Oct 2025 15:08:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D70C334216B;
+	Tue, 21 Oct 2025 15:08:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="sWV0ZhOh"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="aES7UE7N"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 462E3342CB3;
-	Tue, 21 Oct 2025 15:08:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761059301; cv=none; b=Fvju+/DiHgObKBDWDtlNEVBAr3ItR+TR1mAIZc2JikzjZDrnEiGoDo2uJ0fjo3MTrghRX9OpW4b+sqR0bq4f/1K8bniQ3dgY1JsV8ksDLffEZ1VEJ45wuphC2ngnwAiplfeWb5mYw+0In044+qAknVvTOHu3OVQKM+DKB0e1ros=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761059301; c=relaxed/simple;
-	bh=IGjOUBUClndtvZGsgegWC43Da37BaC6DfKMErVwR34Q=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=jxP4z8oOn3hGLQ5AZZOGneSnkxBfji/jKXDjP2yNhC6zVg3Cjnh7yipyUWcOYJxg1iXFYQN3FtQnKsJElASd8PEj4G9bSau0nIq2gUvLkL/F5Apg+ACz18L9R9s6X86RmAx/uZqbm5Rg4qrufbHJzg/Id44Wh8b6rPrDYv1Q944=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=sWV0ZhOh; arc=none smtp.client-ip=185.171.202.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id A9929C0B896;
-	Tue, 21 Oct 2025 15:07:55 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 423FE60680;
-	Tue, 21 Oct 2025 15:08:15 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 58768102F2401;
-	Tue, 21 Oct 2025 17:07:54 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1761059293; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:content-language:in-reply-to:references;
-	bh=7SnhTdf3/ZnBb/Auo/xtgJWFGAq+ocBosOYhh6RlpME=;
-	b=sWV0ZhOhrBGkxxTsVko6gsm7SFgXKpZfniXDYQ+53CvCE3bHfz1UVt9V/FoRu3uemhbpzp
-	jB+jLCo/zHeHi7GnJ2VUZzLrIe6TBV78WrURJ1VwRc0uUPQ64as+OQbLKQoVQSfSgmZ2Wv
-	NEvux7I9qCCmbdTowGnMeiVgVc/sLqcv1vMUXRiFIzQIw7y2vnemItpnsTUE7oh1k7QWMJ
-	xGi3s/FR3fDgX4bdRPhMmRXkspskq4ULH6LiADl/zV1zQMb/1yYfNREBBPfcZU/bhQogZF
-	Ek3DxRNL14OEAxh47i2QrP+RiFYWdUtv+urGqqcVAIbuOn++ipgHmo+WQhzA9Q==
-Message-ID: <0e71d2b2-a08d-4ec9-b0d3-9094d3802065@bootlin.com>
-Date: Tue, 21 Oct 2025 17:07:52 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0D10340279;
+	Tue, 21 Oct 2025 15:08:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1761059323; cv=pass; b=upmPZ1tqW0/VZPjrXVMBHkSxyl1HS41zIlbRCyh5UZCtuLQMJ6cbgoKL9DqZHYTu/uLWmj0nXs004HmQLCJTxSMpsTB805wdVSjxWpr7FpxtrzHE9LlD33jt5zuJ+BKHqY2e2adQGlAhLXGuRFOmFXWnwki6cAEzTsX5YebIb+U=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1761059323; c=relaxed/simple;
+	bh=jOi580EyQSmcoI5v60O3cGEoiOAMSU0CHjNcr8NS4y0=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=L7Bt4ezFtWgqczXXBECdHMP0wVN28F4rPC2HF+pVZEiqW1f3SmgBvUkzVootUEQqC+2AT9Pj4XppDZc4KV1cre0l+TeTijv17h3Ia1lF4WR/GyaaFILyMjc7CmJM+eWmGKqepGcDeNUm1zBnv0NwW2EK5ABJ88wW7Beqx5bJ1Mc=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b=aES7UE7N; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1761059310; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=jabRgxmdYieIuSmzbQEv6/12y7UNuUzDmuhgk/fZB8KplsevXQ11e9oDZWbF8So8bIau/7jlY62YPItM92bdjO23459+sIzEhaRCMPz+J4bC5GRvJgpcJgEgF3LOp/QgozPSLnFxukTf3FTFVaqln5BA62NVkUw+worGzLU3Rng=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1761059310; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=muYkugUoG9YqEYkgErcXeBKpGdr1rwIW2Et193mgABk=; 
+	b=QAi+XOY6Vm/sX6346oDcN0UC8OyxBpK00jEoXU6FEdD6VSqa3iCF4jGKFHOELVif1t79Nguf3J08pf/OajJVdgFw1Q4eptT+OUSyiMcByQjk9modzfOL/leS/rC8JTrg7l0HpjCfgmqZ9yNS/f8ptg8OH29ssMzERjvuxGJDQv4=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
+	dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1761059310;
+	s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
+	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
+	bh=muYkugUoG9YqEYkgErcXeBKpGdr1rwIW2Et193mgABk=;
+	b=aES7UE7N5ujn90NBR5GYRDsaJ4BxJ6NPJhCUPqFne0LskCzNhY1U5pBoFSD1PdL2
+	qCko5TUib/A6ra9wuevl09OIN3qy9xRLxWl6IgZ3AUUd60lpGGf3QCnYeESG1paeYJl
+	ppajE83RLFAzArRCAp9yDTeqVStkpMrUvO5OMn5U=
+Received: by mx.zohomail.com with SMTPS id 1761059307844467.5063031417683;
+	Tue, 21 Oct 2025 08:08:27 -0700 (PDT)
+From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+To: Alexey Charkov <alchark@gmail.com>, Heiko Stuebner <heiko@sntech.de>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: rockchip: Add DSI LCD display on rk3576-evb1
+Date: Tue, 21 Oct 2025 17:08:23 +0200
+Message-ID: <2063876.tdWV9SEqCh@workhorse>
+In-Reply-To: <12339028.CDJkKcVGEf@phil>
+References:
+ <20250925-rk3576-evb1-dsi-v1-1-c76fc3740abc@gmail.com>
+ <748fd61a-31fb-436f-b028-b47807a4860c@gmail.com> <12339028.CDJkKcVGEf@phil>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v14 00/16] net: phy: Introduce PHY ports
- representation
-To: Jakub Kicinski <kuba@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
- Russell King <linux@armlinux.org.uk>, Heiner Kallweit
- <hkallweit1@gmail.com>, Vladimir Oltean <vladimir.oltean@nxp.com>
-Cc: davem@davemloft.net, netdev@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- thomas.petazzoni@bootlin.com, Eric Dumazet <edumazet@google.com>,
- Paolo Abeni <pabeni@redhat.com>, linux-arm-kernel@lists.infradead.org,
- Christophe Leroy <christophe.leroy@csgroup.eu>,
- Herve Codina <herve.codina@bootlin.com>,
- Florian Fainelli <f.fainelli@gmail.com>,
- =?UTF-8?Q?K=C3=B6ry_Maincent?= <kory.maincent@bootlin.com>,
- =?UTF-8?Q?Marek_Beh=C3=BAn?= <kabel@kernel.org>,
- Oleksij Rempel <o.rempel@pengutronix.de>,
- =?UTF-8?Q?Nicol=C3=B2_Veronese?= <nicveronese@gmail.com>,
- Simon Horman <horms@kernel.org>, mwojtas@chromium.org,
- Antoine Tenart <atenart@kernel.org>, devicetree@vger.kernel.org,
- Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
- Romain Gantois <romain.gantois@bootlin.com>,
- Daniel Golle <daniel@makrotopia.org>,
- Dimitri Fedrau <dimitri.fedrau@liebherr.com>
-References: <20251013143146.364919-1-maxime.chevallier@bootlin.com>
- <20251020185249.32d93799@kernel.org>
-From: Maxime Chevallier <maxime.chevallier@bootlin.com>
-Content-Language: en-US
-In-Reply-To: <20251020185249.32d93799@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 
-Hi Jakub, Andrew, Rusell, Heiner,
+On Monday, 20 October 2025 14:31:12 Central European Summer Time Heiko Stue=
+bner wrote:
+> Am Montag, 20. Oktober 2025, 10:50:58 Mitteleurop=C3=A4ische Sommerzeit s=
+chrieb Alexey Charkov:
+> >=20
+> > On Mon, Oct 20, 2025 at 12:31=E2=80=AFPM Heiko Stuebner <heiko@sntech.d=
+e> wrote:
+> > >
+> > > Am Montag, 20. Oktober 2025, 10:19:51 Mitteleurop=C3=A4ische Sommerze=
+it schrieb Alexey Charkov:
+> > > > On Thu, Sep 25, 2025 at 12:38=E2=80=AFAM Alexey Charkov <alchark@gm=
+ail.com> wrote:
+> > > > >
+> > > > > Add support for the Rockchip W552793DBA-V10 LCD+touchscreen assem=
+bly which
+> > > > > comes physically attached to Rockchip RK3576 EVB1 boards.
+> > > > >
+> > > > > The display part is driven by the on-chip MIPI DSI controller, an=
+d the
+> > > > > touchscreen is connected over I2C.
+> > > > >
+> > > > > Signed-off-by: Alexey Charkov <alchark@gmail.com>
+> > > > > ---
+> > > > > Note that backlight support is left out for now, as it depends on=
+ PWM
+> > > > > support [0] which has not yet been merged.
+> > > > >
+> > > > > A workaround is simply `gpioset -c 0 13=3D1` to set the respectiv=
+e GPIO
+> > > > > pin high and thus to light up the display unconditionally.
+> > > > >
+> > > > > [0] https://lore.kernel.org/lkml/20250602-rk3576-pwm-v2-0-a6434b0=
+ce60c@collabora.com/
+> > > > > ---
+> > > > >  arch/arm64/boot/dts/rockchip/rk3576-evb1-v10.dts | 89 ++++++++++=
+++++++++++++++
+> > > > >  1 file changed, 89 insertions(+)
+> > > >
+> > > > Hi Heiko,
+> > > >
+> > > > Any thoughts about this one? Can we perhaps get it merged for -next?
+> > >
+> > > Does the gpio-backlight work on that device?
+> > > That would make the gpioset hack unnecessary.
+> >=20
+> > I've got a local patch using pwm-gpio and pwm-backlight as a stop-gap=20
+> > solution, but I don't think it's worth merging upstream, because the=20
+> > backlight is supposed to be driven by the hardware PWM on the same pin=
+=20
+> > (not bit-banging the GPIO line). After all, Nicolas has been working on=
+=20
+> > adding a proper hardware PWM driver for RK3576.
+> >=20
+> > The display itself works without PWM support, and so does the touchscre=
+en.
+>=20
+> Right now, I don't think we have an actual timeline if/when Nicolas will
+> be able to work on the pwm again.
 
-On 21/10/2025 03:52, Jakub Kicinski wrote:
-> On Mon, 13 Oct 2025 16:31:26 +0200 Maxime Chevallier wrote:
->> Hi everyone,
->>
->> Here is a V14 for the phy_port work, aiming at representing the
->> connectors and outputs of PHY devices.
-> 
-> I can't help but read the lack of replies from PHY maintainers
-> here as a tacit rejection. Not entirely sure what to do here.
-> Should we discuss this at the netdev call tomorrow (8:30am PT)?
-> Would any PHY maintainer be willing to share their opinion?
+Soon(TM), I've locally reworked the PWM output stuff and core driver
+into an MFD. I just need to rework the counter driver now and set up
+a proper way to test that the counter works.
 
-I may have gotten my timezones wrong, but this call is in ~20 minutes,
-right ?
+I'm hoping to have something next week. If not, then the week after
+that.
 
-I didn't see any annouce for this netdev call, it may be of too short
-notice for the PHY folks ? I'd be happy to discuss that in any manner :)
+> So my idea was if we want to
+> integrate the baclight as you described below, to have an actual usable
+> display and then when the new pwm has landed switch over to that one?
 
-Maxime
+But Heikooooo, DTs should describe hardware, not the lack of Linux
+drivers! ;)
+
+=46or what it's worth, the implementation move to MFD didn't change the
+bindings as we don't leak that into the DT at all. If it took any
+longer for me to get it done I'd have suggested picking the bindings
+and then adding a stub GPIO PWM driver that binds to it as an interim
+solution, but it's not worth the ickyness when I'm basically just
+a day's work away from having this done.
+
+Kind regards,
+Nicolas Frattaroli
+
+>=20
+>=20
+> Heiko
+>=20
+>=20
+> > My temp patch goes like this:
+> >=20
+> > ---
+> >   arch/arm64/boot/dts/rockchip/rk3576-evb1-v10.dts | 15 +++++++++++++++
+> >   1 file changed, 15 insertions(+)
+> >=20
+> > diff --git a/arch/arm64/boot/dts/rockchip/rk3576-evb1-v10.dts=20
+> > b/arch/arm64/boot/dts/rockchip/rk3576-evb1-v10.dts
+> > index f20cd6f2c079..5c27fff03569 100644
+> > --- a/arch/arm64/boot/dts/rockchip/rk3576-evb1-v10.dts
+> > +++ b/arch/arm64/boot/dts/rockchip/rk3576-evb1-v10.dts
+> > @@ -58,6 +58,14 @@ button-vol-up {
+> >   		};
+> >   	};
+> >=20
+> > +	backlight: backlight {
+> > +		compatible =3D "pwm-backlight";
+> > +		brightness-levels =3D <20 220>;
+> > +		default-brightness-level =3D <100>;
+> > +		num-interpolated-steps =3D <200>;
+> > +		pwms =3D <&lcd_bl_pwm 0 25000 0>;
+> > +	};
+> > +
+> >   	hdmi-con {
+> >   		compatible =3D "hdmi-connector";
+> >   		type =3D "a";
+> > @@ -78,6 +86,12 @@ work_led: led-0 {
+> >   		};
+> >   	};
+> >=20
+> > +	lcd_bl_pwm: pwm {
+> > +		#pwm-cells =3D <3>;
+> > +		compatible =3D "pwm-gpio";
+> > +		gpios =3D <&gpio0 RK_PB5 GPIO_ACTIVE_HIGH>;
+> > +	};
+> > +
+> >   	vbus5v0_typec: regulator-vbus5v0-typec {
+> >   		compatible =3D "regulator-fixed";
+> >   		regulator-name =3D "vbus5v0_typec";
+> > @@ -277,6 +291,7 @@ panel@0 {
+> >   		compatible =3D "wanchanglong,w552793baa", "raydium,rm67200";
+> >   		reg =3D <0>;
+> >=20
+> > +		backlight =3D <&backlight>;
+> >   		iovcc-supply =3D <&vcc3v3_lcd_n>;
+> >   		reset-gpios =3D <&gpio3 RK_PB5 GPIO_ACTIVE_LOW>;
+> >   		vdd-supply =3D <&vcc3v3_lcd_n>;
+> >=20
+>=20
+>=20
+>=20
+>=20
+>=20
+
+
+
+
 
