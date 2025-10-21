@@ -1,94 +1,94 @@
-Return-Path: <devicetree+bounces-229136-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229137-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 111AEBF46CC
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 04:59:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D6D5BF46D5
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 04:59:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BA7DE421661
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 02:59:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 32B90421D63
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 02:59:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 289FE284B26;
-	Tue, 21 Oct 2025 02:59:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 358D7285CAA;
+	Tue, 21 Oct 2025 02:59:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="IO/rxQkV"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="KC+ttvry"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4978F27A904
-	for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 02:59:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D29D27F75C
+	for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 02:59:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761015573; cv=none; b=mpNZAMEec4ubdmm1LfId/CgxuF/LTpMddSe7CE1i6+pXiHIa0D6mEnuljLeBlXO2pKk/LSZdpWYJN1GE5h+lFjG53Bxr/64U9Aft08pB6eYS8j5vJE5GxcRgGyX5LJHXfRx37QUf1Jmcmlf+yb6uPrNiMqAG4i/4fxjj7eN02SU=
+	t=1761015575; cv=none; b=MZDy1xYcLLkoKcQ2I3NwYP+XpbVS6TymXrUHV1I0kIIwH/g45hT76usgFHwBc8ElcIlYlhhP5RIAVm9XbjFbrmEmR/FS45Iz/WBvlM4yo839qG2jPCQffLD6rNNj8C773pSzalzqBWN16+OJHTYOcCL60eZG5h9bv7LvVj4ZvtQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761015573; c=relaxed/simple;
-	bh=QqJm6H+axsb7Sp+Fv3c7hv2LdUqbjAz0fIGMTf+ZcmA=;
+	s=arc-20240116; t=1761015575; c=relaxed/simple;
+	bh=S9aC/8BrKzjw1DWibOYDHtDkjoBQbfLxJHWt8ezAdv8=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=m6PYSXA6exNhh5USlRfVXdjNv/CyAYzwj7Lfhll1IQQmPPgwTwiAtHEme0u+rLlL5e4DtQspMv7H84WGMRWe0x12enZ9zE05jUYYvzPcWFV+V7cMKIKx/giVtFd7xf7DTsRmk1SPpe6qePiqoRNhOPaUdEPH9E/xUnyKBMNMjC8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=IO/rxQkV; arc=none smtp.client-ip=205.220.180.131
+	 MIME-Version; b=YX7Usf4ZIxsn8bGgQvxzhjskCiFb+h3uqnofEAOP+v/xV8sjI5Lfcex1EgkdxiVRnMfOFNRiRq8PPwugnkArVI4wwzZK6D/9K9rHenShw2/FwomEdYj8AYpDeOJGCuan6xx+S7Omfy1uhiWsfHMpNiDNQAfRMK52hFdn7/qoAaU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=KC+ttvry; arc=none smtp.client-ip=205.220.180.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59KL1aK7028420
-	for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 02:59:30 GMT
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59KL148N030207
+	for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 02:59:32 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=7DXoW44CUEx
-	XzSENB3F34QRGOi0zzg2uAwhUx9G16EY=; b=IO/rxQkVfjmf7LYwYAdSb7rPlEQ
-	HxL4OEZPTN/l3dtgC9ixP5LEh2JCLtNrEAiAmtRMqEiJc1fXCmRigsQSXxyXCytx
-	mXl2b5OAY64VmpVRaveuJEZJSJ13/2oEI26YBCAX2wELqoUDWR8RT+l3KaKhKDax
-	XqWglr9Yy5X6+jAKqrg0DM99hi5ThviwvYl6WtVhTwJUr0CEf1S/6vFxx7q0xnir
-	9+sXoms8kMx4gN8XKK38goiT0DjoSQgPdTU6Mh3+JsdkBSe3DqceAGPlDZmt8n+8
-	XbyBU4Bhped+A2P0knS6ikECIO0/raaLitfzK7Wz30Lqs+KOYkhqm3Nu6Ig==
-Received: from mail-pj1-f71.google.com (mail-pj1-f71.google.com [209.85.216.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49v08pf4gr-1
+	:mime-version:references:subject:to; s=qcppdkim1; bh=kmaKSSHZo7N
+	JKVJZNLRyloXpRdsP8k48nmCT/BfJT9w=; b=KC+ttvrypG7FCfoVaoE+WLX2Awg
+	2Kd3jf+0U7BEk/Sij/grr7T8PzFrf/cNCPd1PFM5/1OmN5eGCGiBysILg6sksqdD
+	5YajxlGstJjKvuiVH2y9O6wUhN4akVAF+OtTbWewNh2lUkgjkR1Cv4Htl09YAkAo
+	S3N/uJBfusCa9IQucQCxR05pgvKaPRt+/a4PuQgHdNCHUOB9qm9sHxTEoog1cJLn
+	RD1Ocalg67ceSfVGsRaMvRNcgbMM2a8h8QMhxNHMu+2JNZai2T6lIhngBKB9JPy5
+	FNtC50aBwYnnjngDFLsPwb1516otRrOqwTtr4xp7+2/in8fsRPzXpdWWEyQ==
+Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com [209.85.214.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49v2gdxwh1-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 02:59:30 +0000 (GMT)
-Received: by mail-pj1-f71.google.com with SMTP id 98e67ed59e1d1-33bbbb41a84so10289340a91.1
-        for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 19:59:30 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 02:59:32 +0000 (GMT)
+Received: by mail-pl1-f199.google.com with SMTP id d9443c01a7336-2909a67aed4so44052495ad.1
+        for <devicetree@vger.kernel.org>; Mon, 20 Oct 2025 19:59:31 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761015569; x=1761620369;
+        d=1e100.net; s=20230601; t=1761015571; x=1761620371;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=7DXoW44CUExXzSENB3F34QRGOi0zzg2uAwhUx9G16EY=;
-        b=LXSKaTJ4M/VG8Zop7K0H89+NsaE5Lh2RjMoNMD5oKqHehMujVihNQKHCTiaX3BVqkA
-         vU09kcqphJ21o+sCga67RE8/Dm7uE7nFnjBozsdx7lOrCcLMa7cMmsINg0zSKiXYcRbn
-         qzYvf3AvpW3nkJlRbpvmKjXZ7UDIbenFioFubOPmp2bEMI8Eluj+cCSleDFQ20ZmiP9e
-         k+EiZspjHocHUirBy8N71oOf9wKN6jjd/KuN6gWlkmIvBJXXFJ3HiojhWIg4cJmHKiMG
-         Abtux+EX6KYxJJPV1BpNdy9vGXlWhj72WONVOo/RzkldSpDEgrJAm++6emUdPtTOz9eh
-         IGeQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVxFym1HJIKF5WwwgJ5uM5rf5YZi8toU6yP1TM7i9eVrxUhtYk5DhwVglMmubzZD5nv1x/opZIJOnoR@vger.kernel.org
-X-Gm-Message-State: AOJu0YzkC8K9RyuY7OUfjV++oqpQEtEGPkGsUa6bgZntJT0f//nX2KeQ
-	RkmbX0YoYA43c/w3djl1g5fHtN9uI8ikMlPyEctzHwOr5mgahU11JQ41onqguifLJAnD+FkhYtk
-	ZAiFaxKZaMS1tekGxzo+I7TBAubvoC50oDQzrNdOKTrJE2REhm+zhBAdWvVSX0HSL
-X-Gm-Gg: ASbGncvwEHHGMvVrn0BNTgp0AMD6dBTgVmYOvfP2bskqksMYAQ/vV1otu24Cc32bA16
-	p4FHY0qFENdUucsLaINYB/NILBOKpD65uc4whbU3QJ1mbeH54sGtH9C5t+Qz2ZrgSHBXiHCd1UF
-	SA92N/XVvuD6CyL1hvFVPa6O9WqSlDZAu19GVGF557fvRDq6nHPDyeF6LjBPIz0tHHSIDhx9Sxv
-	TGkFJkiuZzQV000VXnSYrLIIR0O0vLUbHAIaeyuF1yhSXH1djH+3JB2R9XlUA4OgvvTTIlof7RQ
-	heFh23Fm9TJl53oZpblZH2WNyZmbw2vOqh43jXZLS2jN28aAoAKuZvJ1BLmkv5k0PkFyZ7YF8H6
-	lNtxMv2ongMy49wnH9t8q8fIj8/VHL66t/QIFhtKW9PrOtfGPml/X9A==
-X-Received: by 2002:a17:90b:38c7:b0:332:793e:c2d1 with SMTP id 98e67ed59e1d1-33bcf91c603mr16981883a91.36.1761015568749;
-        Mon, 20 Oct 2025 19:59:28 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEfONH+YEJVS/DAl2NGHJErEJq0DNR3DpCG2ZRbsj1KhbAnDKeowuWFqEs7F895so9PNNgFGw==
-X-Received: by 2002:a17:90b:38c7:b0:332:793e:c2d1 with SMTP id 98e67ed59e1d1-33bcf91c603mr16981865a91.36.1761015568234;
-        Mon, 20 Oct 2025 19:59:28 -0700 (PDT)
+        bh=kmaKSSHZo7NJKVJZNLRyloXpRdsP8k48nmCT/BfJT9w=;
+        b=u57+16ZRJ77UzFCE2UfT8rGVpkcHIOu3RPyMr/b7QAHGzoPo9mIkWU0pokhFq/6yBd
+         H6uS77V3rmI1LB5MqeyBREdRIaNCvizAXQJ+4Ljc6DAkGCN+MpUgStK7FjdxhvzvD3yK
+         Zj9uXf4xYdoMSkyDCyyFFR76POkxnIIuPQq8qArgTbpYb8haP8k1orY1f++2Sa+sAhP7
+         lc3w4BF9XpX0pqJ7W7iNVl1DoWGIoEyqjE40191d7mtiUUxF77cA+oBVC/rvH4nr/R9x
+         b8yGh/atUy6dqD3XFeivgckQG1bd+GL14Bae5JJsmLu/GZ3x31TvWauD3sE+mf25rLdU
+         aSdw==
+X-Forwarded-Encrypted: i=1; AJvYcCUVIZg9aFlLHA79Z6LxnBN4X/gYcRVsRebyCIUd+F5jqVwscdIbC0XzAYusYmJOXMuGqhM0uTyAxBuI@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy/PmhOLwx5CPVTbHgqpBfLiSwyO3IfJpD29cjVm5KrkXtnAQgD
+	alGesFhNs9/F85RINqGll66t+AR80m9kD2pfx6hcgcyuQ4imDtyUSyUD7EVwrnpSgfJs/Tegb9j
+	5gF07SazOdR9saX6A6F7uCmv1eM1nbeCsxSJc6ryUpVlG7p4A+nXdPayJnsfSTtnD
+X-Gm-Gg: ASbGncsFvR8X7AhrSh11UK5ZNJUdY6UnC7QA7SLQQJ4keniz3KVjjsoCbZqNIlEQqLr
+	4c/ggMHrgCFhNJUlBLJXy6tfCAXu5PSAh0CvR8j5xGy3PnDinC12hTWCgmJ6R7+prKkK1k3ANFY
+	Bv50UPaY7spyvpttpzC0bjqb6H40VDM7G0/ZkIqNNKw4TuUzh6eanBZ1Nx80UzmsduIW5dDlSKn
+	OpyXzEMlCMXM7jQ9k8/pc7FAMXALZMDFsSxSfPKMSga+6bDNV22J/MAQZT1cOdb6f/Iox9ZjiGM
+	2aSIGDPCDQ1o8TxnOiOHwYB7EGoJMNY/bugNoWOKGCb2/hmDkfIil+dkgvvBJMDh0wi035MLejC
+	FmycyCyUwna2Oq/0gmDRceFLG6WwdhP1fQ0gYGiy4avPkyB9toE7KRA==
+X-Received: by 2002:a17:902:d58d:b0:265:b60f:d18 with SMTP id d9443c01a7336-290c66d9f6amr169982275ad.1.1761015570703;
+        Mon, 20 Oct 2025 19:59:30 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFrIjeFPe3nuy5aaQMAatxgG1ZMdmYWaSnl+shINjPxLXmz5TSOZC3UIymk9xPJPqv7HvGRRg==
+X-Received: by 2002:a17:902:d58d:b0:265:b60f:d18 with SMTP id d9443c01a7336-290c66d9f6amr169982025ad.1.1761015570175;
+        Mon, 20 Oct 2025 19:59:30 -0700 (PDT)
 Received: from hu-songchai-lv.qualcomm.com (Global_NAT1.qualcomm.com. [129.46.96.20])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b6a76673a86sm8855787a12.10.2025.10.20.19.59.27
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b6a76673a86sm8855787a12.10.2025.10.20.19.59.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Oct 2025 19:59:27 -0700 (PDT)
+        Mon, 20 Oct 2025 19:59:29 -0700 (PDT)
 From: Songwei Chai <songwei.chai@oss.qualcomm.com>
 To: andersson@kernel.org, alexander.shishkin@linux.intel.com,
         kernel@oss.qualcomm.com, mike.leach@linaro.org, suzuki.poulose@arm.com
 Cc: Songwei Chai <songwei.chai@oss.qualcomm.com>, linux-kernel@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
         coresight@lists.linaro.org, devicetree@vger.kernel.org
-Subject: [RESEND RFC PATCH 1/7] dt-bindings: arm: Add support for Qualcomm TGU trace
-Date: Mon, 20 Oct 2025 19:59:03 -0700
-Message-Id: <20251021025909.3627254-2-songwei.chai@oss.qualcomm.com>
+Subject: [RESEND RFC PATCH 2/7] qcom-tgu: Add TGU driver
+Date: Mon, 20 Oct 2025 19:59:04 -0700
+Message-Id: <20251021025909.3627254-3-songwei.chai@oss.qualcomm.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251021025909.3627254-1-songwei.chai@oss.qualcomm.com>
 References: <20251021025909.3627254-1-songwei.chai@oss.qualcomm.com>
@@ -99,169 +99,374 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDE4MDAwMCBTYWx0ZWRfXxZG7f43iPBSm
- D+f7YSS3vkPZR7ll0fafzWfyw4szVUd+LY+c6vVgFHELlglw6hJ5rEqhpfTqiNGH5Z9UruhnIPy
- bcNB0NI0PNfADOndaVyZLcDrSkXZ4kRsYob1UrMEL3re8N13n0/sKEBp7c/tdIX2VIXOYJDpGO6
- KiciLxoHroLqdnq3ciZjQ6gjXquP1AEUkW/bSSjN7HRp2Xrvc+BKccL+gLBuwhVFb1Swr/PYNGF
- IL8Ao3qBnZC6l6dMeabDmkJ1NRI5DURw5RimBybdY64StQAAjpD5XyA/r1UC9lsGSnRQErV+DrR
- SwFbDdmK3IN1Hkp+RzzCfTpg419GyC+Q0SVDDgRNMgC4vg2744tWNAmQSfu0riJLHuobV/gYgQ/
- 1QzI7fGi9UzsrqqN3raqAfhfNqt3wg==
-X-Proofpoint-GUID: yMG60mZp1iC2zGoZILNzmoh5ffC-VFLp
-X-Authority-Analysis: v=2.4 cv=Up1u9uwB c=1 sm=1 tr=0 ts=68f6f712 cx=c_pps
- a=UNFcQwm+pnOIJct1K4W+Mw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=x6icFKpwvdMA:10 a=VkNPw1HP01LnGYTKEx00:22 a=gEfo2CItAAAA:8 a=EUspDBNiAAAA:8
- a=N3VNWiZ0WD7Ir0aJMQYA:9 a=uKXjsCUrEbL0IQVhDsJ9:22 a=sptkURWiP4Gy88Gu7hUp:22
-X-Proofpoint-ORIG-GUID: yMG60mZp1iC2zGoZILNzmoh5ffC-VFLp
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDE4MDAyMCBTYWx0ZWRfX+PoWgURNAtNs
+ ajU0S2wj7O/eJ0naK3hAAp74eQTbcE0rZQbAB5PnNwmfi5eZJP+V1kcmlWAqt4zYwOY4N4J15ng
+ TIUK9lF8SMZ4WNtP78rM+kkzvU6IT163Hgh3j5tRnVozZ8MUHz1pRVhbD4ncycy+4dgv/R2CsCg
+ fgfEgbdZe38F5aKrF4l9PwbT2yyDjmNEMPRwwc9gwVPOIZ7gZd81J6Y+89Hb3nXVPsbb/qV+hhH
+ Hb8zrtb55HTFyuxoKW8Wbb6/oa7kDDBzHsKcNXn2kSsfwrPOgP87lsDXqazZnRn+1BWiVOFSzL3
+ T6ay5j8DsWNJaRktWmPus2GMt3mdo9lRlsD0j8PndnECP+XC1ojQre9nNeiFKchz5QqrDAPtJ4s
+ kWg+UVLjItU/d1HLXl+UqhYhRXvrSg==
+X-Authority-Analysis: v=2.4 cv=KqFAGGWN c=1 sm=1 tr=0 ts=68f6f714 cx=c_pps
+ a=JL+w9abYAAE89/QcEU+0QA==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=x6icFKpwvdMA:10 a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8
+ a=h99DN6MNysFgGb7_OMAA:9 a=324X-CrmTo6CU4MGRt3R:22
+X-Proofpoint-GUID: J7ttPIlxChpF-e-AQaRJHj4JYRFT0Aml
+X-Proofpoint-ORIG-GUID: J7ttPIlxChpF-e-AQaRJHj4JYRFT0Aml
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
  definitions=2025-10-20_07,2025-10-13_01,2025-03-28_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 adultscore=0 suspectscore=0 malwarescore=0 clxscore=1011
- impostorscore=0 bulkscore=0 priorityscore=1501 spamscore=0 phishscore=0
+ bulkscore=0 clxscore=1011 phishscore=0 malwarescore=0 impostorscore=0
+ lowpriorityscore=0 adultscore=0 priorityscore=1501 spamscore=0 suspectscore=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2510020000 definitions=main-2510180000
+ reason=mlx scancount=1 engine=8.19.0-2510020000 definitions=main-2510180020
 
-The Trigger Generation Unit (TGU) is designed to detect patterns or
-sequences within a specific region of the System on Chip (SoC). Once
-configured and activated, it monitors sense inputs and can detect a
-pre-programmed state or sequence across clock cycles, subsequently
-producing a trigger.
-
-   TGU configuration space
-        offset table
- x-------------------------x
- |                         |
- |                         |
- |                         |                           Step configuration
- |                         |                             space layout
- |   coresight management  |                           x-------------x
- |        registers        |                     |---> |             |
- |                         |                     |     |  reserve    |
- |                         |                     |     |             |
- |-------------------------|                     |     |-------------|
- |                         |                     |     | priority[3] |
- |         step[7]         |<--                  |     |-------------|
- |-------------------------|   |                 |     | priority[2] |
- |                         |   |                 |     |-------------|
- |           ...           |   |Steps region     |     | priority[1] |
- |                         |   |                 |     |-------------|
- |-------------------------|   |                 |     | priority[0] |
- |                         |<--                  |     |-------------|
- |         step[0]         |-------------------->      |             |
- |-------------------------|                           |  condition  |
- |                         |                           |             |
- |     control and status  |                           x-------------x
- |           space         |                           |             |
- x-------------------------x                           |Timer/Counter|
-                                                       |             |
-						       x-------------x
-TGU Configuration in Hardware
-
-The TGU provides a step region for user configuration, similar
-to a flow chart. Each step region consists of three register clusters:
-
-1.Priority Region: Sets the required signals with priority.
-2.Condition Region: Defines specific requirements (e.g., signal A
-reaches three times) and the subsequent action once the requirement is
-met.
-3.Timer/Counter (Optional): Provides timing or counting functionality.
-
-Add a new tgu.yaml file to describe the bindings required to
-define the TGU in the device trees.
+Add driver to support device TGU (Trigger Generation Unit).
+TGU is a Data Engine which can be utilized to sense a plurality of
+signals and create a trigger into the CTI or generate interrupts to
+processors. Add probe/enable/disable functions for tgu.
 
 Signed-off-by: Songwei Chai <songwei.chai@oss.qualcomm.com>
 ---
- .../devicetree/bindings/arm/qcom,tgu.yaml     | 82 +++++++++++++++++++
- 1 file changed, 82 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/arm/qcom,tgu.yaml
+ .../testing/sysfs-bus-coresight-devices-tgu   |   9 +
+ drivers/Makefile                              |   1 +
+ drivers/hwtracing/Kconfig                     |   2 +
+ drivers/hwtracing/qcom/Kconfig                |  18 ++
+ drivers/hwtracing/qcom/Makefile               |   3 +
+ drivers/hwtracing/qcom/tgu.c                  | 210 ++++++++++++++++++
+ drivers/hwtracing/qcom/tgu.h                  |  33 +++
+ 7 files changed, 276 insertions(+)
+ create mode 100644 Documentation/ABI/testing/sysfs-bus-coresight-devices-tgu
+ create mode 100644 drivers/hwtracing/qcom/Kconfig
+ create mode 100644 drivers/hwtracing/qcom/Makefile
+ create mode 100644 drivers/hwtracing/qcom/tgu.c
+ create mode 100644 drivers/hwtracing/qcom/tgu.h
 
-diff --git a/Documentation/devicetree/bindings/arm/qcom,tgu.yaml b/Documentation/devicetree/bindings/arm/qcom,tgu.yaml
+diff --git a/Documentation/ABI/testing/sysfs-bus-coresight-devices-tgu b/Documentation/ABI/testing/sysfs-bus-coresight-devices-tgu
 new file mode 100644
-index 000000000000..557bc16b422b
+index 000000000000..353961e7b61c
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/arm/qcom,tgu.yaml
-@@ -0,0 +1,82 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+# Copyright (c) 2025 Qualcomm Innovation Center, Inc. All rights reserved.
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/arm/qcom,tgu.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
++++ b/Documentation/ABI/testing/sysfs-bus-coresight-devices-tgu
+@@ -0,0 +1,9 @@
++What:		/sys/bus/coresight/devices/<tgu-name>/enable_tgu
++Date:		October 2025
++KernelVersion	6.18
++Contact:	Jinlong Mao <jinlong.mao@oss.qualcomm.com>, Songwei Chai <songwei.chai@oss.qualcomm.com>
++Description:
++		(RW) Set/Get the enable/disable status of TGU
++		Accepts only one of the 2 values -  0 or 1.
++		0 : disable TGU.
++		1 : enable TGU.
+diff --git a/drivers/Makefile b/drivers/Makefile
+index 8e1ffa4358d5..acade03f5942 100644
+--- a/drivers/Makefile
++++ b/drivers/Makefile
+@@ -176,6 +176,7 @@ obj-$(CONFIG_RAS)		+= ras/
+ obj-$(CONFIG_USB4)		+= thunderbolt/
+ obj-$(CONFIG_CORESIGHT)		+= hwtracing/coresight/
+ obj-y				+= hwtracing/intel_th/
++obj-y				+= hwtracing/qcom/
+ obj-$(CONFIG_STM)		+= hwtracing/stm/
+ obj-$(CONFIG_HISI_PTT)		+= hwtracing/ptt/
+ obj-y				+= android/
+diff --git a/drivers/hwtracing/Kconfig b/drivers/hwtracing/Kconfig
+index 911ee977103c..8a640218eed8 100644
+--- a/drivers/hwtracing/Kconfig
++++ b/drivers/hwtracing/Kconfig
+@@ -7,4 +7,6 @@ source "drivers/hwtracing/intel_th/Kconfig"
+ 
+ source "drivers/hwtracing/ptt/Kconfig"
+ 
++source "drivers/hwtracing/qcom/Kconfig"
 +
-+title: Trigger Generation Unit - TGU
+ endmenu
+diff --git a/drivers/hwtracing/qcom/Kconfig b/drivers/hwtracing/qcom/Kconfig
+new file mode 100644
+index 000000000000..d6f6d4b0f28e
+--- /dev/null
++++ b/drivers/hwtracing/qcom/Kconfig
+@@ -0,0 +1,18 @@
++# SPDX-License-Identifier: GPL-2.0-only
++#
++# QCOM specific hwtracing drivers
++#
++menu "Qualcomm specific hwtracing drivers"
 +
-+description: |
-+  The Trigger Generation Unit (TGU) is a Data Engine which can be utilized
-+  to sense a plurality of signals and create a trigger into the CTI or
-+  generate interrupts to processors. The TGU is like the trigger circuit
-+  of a Logic Analyzer. The corresponding trigger logic can be realized by
-+  configuring the conditions for each step after sensing the signal.
-+  Once setup and enabled, it will observe sense inputs and based upon
-+  the activity of those inputs, even over clock cycles, may detect a
-+  preprogrammed state/sequence and then produce a trigger or interrupt.
++config QCOM_TGU
++	tristate "QCOM Trigger Generation Unit driver"
++	help
++	  This driver provides support for Trigger Generation Unit that is
++	  used to detect patterns or sequences on a given set of signals.
++	  TGU is used to monitor a particular bus within a given region to
++	  detect illegal transaction sequences or slave responses. It is also
++	  used to monitor a data stream to detect protocol violations and to
++	  provide a trigger point for centering data around a specific event
++	  within the trace data buffer.
 +
-+  The primary use case of the TGU is to detect patterns or sequences on a
-+  given set of signals within some region to identify the issue in time
-+  once there is abnormal behavior in the subsystem.
++endmenu
+diff --git a/drivers/hwtracing/qcom/Makefile b/drivers/hwtracing/qcom/Makefile
+new file mode 100644
+index 000000000000..5a0a868c1ea0
+--- /dev/null
++++ b/drivers/hwtracing/qcom/Makefile
+@@ -0,0 +1,3 @@
++# SPDX-License-Identifier: GPL-2.0
 +
-+maintainers:
-+  - Mao Jinlong <jinlong.mao@oss.qualcomm.com>
-+  - Songwei Chai <songwei.chai@oss.qualcomm.com>
++obj-$(CONFIG_QCOM_TGU) += tgu.o
+diff --git a/drivers/hwtracing/qcom/tgu.c b/drivers/hwtracing/qcom/tgu.c
+new file mode 100644
+index 000000000000..0d3c62f2d5e6
+--- /dev/null
++++ b/drivers/hwtracing/qcom/tgu.c
+@@ -0,0 +1,210 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * Copyright (c) 2024-2025 Qualcomm Innovation Center, Inc. All rights reserved.
++ */
 +
-+properties:
-+  compatible:
-+    items:
-+      - const: qcom,tgu
-+      - const: arm,primecell
++#include <linux/amba/bus.h>
++#include <linux/coresight.h>
++#include <linux/device.h>
++#include <linux/err.h>
++#include <linux/io.h>
++#include <linux/kernel.h>
++#include <linux/module.h>
++#include <linux/of.h>
 +
-+  reg:
-+    maxItems: 1
++#include "../coresight/coresight-priv.h"
++#include "tgu.h"
 +
-+  clocks:
-+    maxItems: 1
++DEFINE_CORESIGHT_DEVLIST(tgu_devs, "tgu");
 +
-+  clock-names:
-+    items:
-+      - const: apb_pclk
++static void tgu_write_all_hw_regs(struct tgu_drvdata *drvdata)
++{
++	CS_UNLOCK(drvdata->base);
++	/* Enable TGU to program the triggers */
++	writel(1, drvdata->base + TGU_CONTROL);
++	CS_LOCK(drvdata->base);
++}
 +
-+  in-ports:
-+    $ref: /schemas/graph.yaml#/properties/ports
-+    additionalProperties: false
++static int tgu_enable(struct coresight_device *csdev, enum cs_mode mode,
++		      void *data)
++{
++	struct tgu_drvdata *drvdata = dev_get_drvdata(csdev->dev.parent);
 +
-+    properties:
-+      port:
-+        description:
-+          The port mechanism here ensures the relationship between TGU and
-+          TPDM, as TPDM is one of the inputs for TGU. It will allow TGU to
-+          function as TPDM's helper and enable TGU when the connected
-+          TPDM is enabled.
-+        $ref: /schemas/graph.yaml#/properties/port
++	guard(spinlock)(&drvdata->spinlock);
++	if (drvdata->enable)
++		return -EBUSY;
 +
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - clock-names
++	tgu_write_all_hw_regs(drvdata);
++	drvdata->enable = true;
 +
-+additionalProperties: false
++	return 0;
++}
 +
-+examples:
-+  - |
-+    tgu@10b0e000 {
-+        compatible = "qcom,tgu", "arm,primecell";
-+        reg = <0x10b0e000 0x1000>;
++static int tgu_disable(struct coresight_device *csdev, void *data)
++{
++	struct tgu_drvdata *drvdata = dev_get_drvdata(csdev->dev.parent);
 +
-+        clocks = <&aoss_qmp>;
-+        clock-names = "apb_pclk";
++	spin_lock(&drvdata->spinlock);
++	if (drvdata->enable) {
++		CS_UNLOCK(drvdata->base);
++		writel(0, drvdata->base + TGU_CONTROL);
++		CS_LOCK(drvdata->base);
 +
-+        in-ports {
-+            port {
-+                tgu_in_tpdm_swao: endpoint{
-+                    remote-endpoint = <&tpdm_swao_out_tgu>;
-+                };
-+            };
-+        };
-+    };
-+...
++		drvdata->enable = false;
++	}
++	spin_unlock(&drvdata->spinlock);
++	return 0;
++}
++
++static ssize_t enable_tgu_show(struct device *dev,
++			       struct device_attribute *attr, char *buf)
++{
++	bool enabled;
++	struct tgu_drvdata *drvdata = dev_get_drvdata(dev->parent);
++
++	spin_lock(&drvdata->spinlock);
++	enabled = drvdata->enable;
++	spin_unlock(&drvdata->spinlock);
++
++	return sysfs_emit(buf, "%d\n", enabled);
++}
++
++/* enable_tgu_store - Configure Trace and Gating Unit (TGU) triggers. */
++static ssize_t enable_tgu_store(struct device *dev,
++				struct device_attribute *attr,
++				const char *buf,
++				size_t size)
++{
++	int ret = 0;
++	unsigned long val;
++	struct tgu_drvdata *drvdata = dev_get_drvdata(dev->parent);
++
++	ret = kstrtoul(buf, 0, &val);
++	if (ret)
++		return ret;
++
++	if (val) {
++		ret = pm_runtime_resume_and_get(dev->parent);
++		if (ret)
++			return ret;
++		ret = tgu_enable(drvdata->csdev, CS_MODE_SYSFS, NULL);
++		if (ret)
++			pm_runtime_put(dev->parent);
++	} else {
++		ret = tgu_disable(drvdata->csdev, NULL);
++		pm_runtime_put(dev->parent);
++	}
++
++	if (ret)
++		return ret;
++	return size;
++}
++static DEVICE_ATTR_RW(enable_tgu);
++
++static const struct coresight_ops_helper tgu_helper_ops = {
++	.enable = tgu_enable,
++	.disable = tgu_disable,
++};
++
++static const struct coresight_ops tgu_ops = {
++	.helper_ops = &tgu_helper_ops,
++};
++
++static struct attribute *tgu_common_attrs[] = {
++	&dev_attr_enable_tgu.attr,
++	NULL,
++};
++
++static const struct attribute_group tgu_common_grp = {
++	.attrs = tgu_common_attrs,
++	NULL,
++};
++
++static const struct attribute_group *tgu_attr_groups[] = {
++	&tgu_common_grp,
++	NULL,
++};
++
++static int tgu_probe(struct amba_device *adev, const struct amba_id *id)
++{
++	int ret = 0;
++	struct device *dev = &adev->dev;
++	struct coresight_desc desc = { 0 };
++	struct coresight_platform_data *pdata;
++	struct tgu_drvdata *drvdata;
++
++	desc.name = coresight_alloc_device_name(&tgu_devs, dev);
++	if (!desc.name)
++		return -ENOMEM;
++
++	pdata = coresight_get_platform_data(dev);
++	if (IS_ERR(pdata))
++		return PTR_ERR(pdata);
++
++	adev->dev.platform_data = pdata;
++
++	drvdata = devm_kzalloc(dev, sizeof(*drvdata), GFP_KERNEL);
++	if (!drvdata)
++		return -ENOMEM;
++
++	drvdata->dev = &adev->dev;
++	dev_set_drvdata(dev, drvdata);
++
++	drvdata->base = devm_ioremap_resource(dev, &adev->res);
++	if (!drvdata->base)
++		return -ENOMEM;
++
++	spin_lock_init(&drvdata->spinlock);
++
++	drvdata->enable = false;
++	desc.type = CORESIGHT_DEV_TYPE_HELPER;
++	desc.pdata = adev->dev.platform_data;
++	desc.dev = &adev->dev;
++	desc.ops = &tgu_ops;
++	desc.groups = tgu_attr_groups;
++
++	drvdata->csdev = coresight_register(&desc);
++	if (IS_ERR(drvdata->csdev)) {
++		ret = PTR_ERR(drvdata->csdev);
++		goto err;
++	}
++
++	pm_runtime_put(&adev->dev);
++	return 0;
++err:
++	pm_runtime_put(&adev->dev);
++	return ret;
++}
++
++static void tgu_remove(struct amba_device *adev)
++{
++	struct tgu_drvdata *drvdata = dev_get_drvdata(&adev->dev);
++
++	coresight_unregister(drvdata->csdev);
++}
++
++static const struct amba_id tgu_ids[] = {
++	{
++		.id = 0x000f0e00,
++		.mask = 0x000fffff,
++		.data = "TGU",
++	},
++	{ 0, 0, NULL },
++};
++
++MODULE_DEVICE_TABLE(amba, tgu_ids);
++
++static struct amba_driver tgu_driver = {
++	.drv = {
++		.name = "qcom-tgu",
++		.suppress_bind_attrs = true,
++	},
++	.probe = tgu_probe,
++	.remove = tgu_remove,
++	.id_table = tgu_ids,
++};
++
++module_amba_driver(tgu_driver);
++
++MODULE_LICENSE("GPL");
++MODULE_DESCRIPTION("Qualcomm TGU driver");
+diff --git a/drivers/hwtracing/qcom/tgu.h b/drivers/hwtracing/qcom/tgu.h
+new file mode 100644
+index 000000000000..b60ac0f3bda1
+--- /dev/null
++++ b/drivers/hwtracing/qcom/tgu.h
+@@ -0,0 +1,33 @@
++/* SPDX-License-Identifier: GPL-2.0 */
++/*
++ * Copyright (c) 2024-2025 Qualcomm Innovation Center, Inc. All rights reserved.
++ */
++
++#ifndef _QCOM_TGU_H
++#define _QCOM_TGU_H
++
++/* Register addresses */
++#define TGU_CONTROL 0x0000
++
++/**
++ * struct tgu_drvdata - Data structure for a TGU (Trigger Generator Unit)
++ * @base: Memory-mapped base address of the TGU device
++ * @dev: Pointer to the associated device structure
++ * @csdev: Pointer to the associated coresight device
++ * @spinlock: Spinlock for handling concurrent access
++ * @enable: Flag indicating whether the TGU device is enabled
++ *
++ * This structure defines the data associated with a TGU device,
++ * including its base address, device pointers, clock, spinlock for
++ * synchronization, trigger data pointers, maximum limits for various
++ * trigger-related parameters, and enable status.
++ */
++struct tgu_drvdata {
++	void __iomem *base;
++	struct device *dev;
++	struct coresight_device *csdev;
++	spinlock_t spinlock;
++	bool enable;
++};
++
++#endif
 
 
