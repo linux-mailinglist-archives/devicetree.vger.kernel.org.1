@@ -1,75 +1,59 @@
-Return-Path: <devicetree+bounces-229488-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229489-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EAF7EBF82DF
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 21:00:28 +0200 (CEST)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 93FE0BF832A
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 21:09:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A4F7D3B651E
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 19:00:27 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 089DE34658C
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 19:09:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BCF834A3A3;
-	Tue, 21 Oct 2025 19:00:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C678534A3DF;
+	Tue, 21 Oct 2025 19:09:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="p+uho2GA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="C9A8QkA/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 268CA26F299;
-	Tue, 21 Oct 2025 19:00:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DB8234D925;
+	Tue, 21 Oct 2025 19:09:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761073225; cv=none; b=Jo4Hlf4mJ6DyIVgQOKi3YvfRpS078c75yfwClSraM5SbjQFw+uXXhuKUUghwRQP1WKTyT2sRuIf1bn6oxoXnhEFiCkUXQpXHmnLoICGbhidJJZJNVhXXF/cOBmEhoNdijzopjMBOUaD0mNZtT4Wl7c/7c8GkKPDUUZ6puJ5jRRM=
+	t=1761073771; cv=none; b=R6XeXo+B+nsbak4YR5xp/cKOWHNwFI3Ibfwc10OSpPGW2PF1r1H/8PLyG8kj8eK/1kYu/vG0gzqDW5zPDfNj0xuTXhGfK6qYLTH3Lq4eS+zeacgqeqtxNifDNWssW0/XRGelayK2yeb6aVJJLPFZP5Lj6ck+8l090UIj1sD7gzo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761073225; c=relaxed/simple;
-	bh=Sf0Qca7JPp4GCBsTXBvE+iV8s2TZnluhENYJ53JTcCM=;
+	s=arc-20240116; t=1761073771; c=relaxed/simple;
+	bh=1ZpcLoZSoXJDjtDxiz4gSdpEpIyYXDeKX6uMtMztT3Y=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IofKjkvWGTYWVcOIDlO2cE979ITyCuiwzuGqiucUjqNV6ErNywCUnq+LU8X6dU742+xamss25lpcmjPQtU+6MT4kK12IJgkaZlPjVSBDLMmXa2kiJ0GM82DACVof3WwBKva5bVYAqxLk9dOOFWLzMqMiStMgY/slrJAYepItwic=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=p+uho2GA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1E837C4CEF1;
-	Tue, 21 Oct 2025 19:00:16 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=MT+mFTafvzg9n7gh3IKZWlxPabFrQVwv69U3vt46yuTfMZeF9PEL6VlaL6rHt9kBirOi7DslRNxjP7rNcWmFp8PePntkKfbfcrUx2TY80SXzkrGh+hnhkwSzxOXxAQVy7NGzMvvcGBfRbtB+9q7XtXMDbw0Ez3RIkrgS9GUxIIg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=C9A8QkA/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6358AC4CEF1;
+	Tue, 21 Oct 2025 19:09:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761073224;
-	bh=Sf0Qca7JPp4GCBsTXBvE+iV8s2TZnluhENYJ53JTcCM=;
+	s=k20201202; t=1761073771;
+	bh=1ZpcLoZSoXJDjtDxiz4gSdpEpIyYXDeKX6uMtMztT3Y=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=p+uho2GAf8Vjb4A4SydAjBzWs0/5EGqsqBYFt/vQ9TE+rzlCFJvT/o1w9y53nvfaL
-	 0IxfDiVsOxNmhhu97BZBqmLsFZ9nJ2kC0pGyvUIDjNw7bmZV/rW3A26Q2rsEyXPFGP
-	 vx3OjhPHuFq9163mJ0jj1/c5WhYZRBgZCu3TxsKxxzfjlmoHKcz2SFR5wO0lOX6oY/
-	 UDGeiYUibskItbUPi3MNNMU6YHJgt+KTj/S3fc0vHr50+56DYsLOrawuTA9c6W79GU
-	 WhzZonIuC+acHjPBVh6+/U0xk8BzV3mrdbUS5jMpZBQROo+9eoj1Ofw5OW4D6IOw0l
-	 9fDl7ifm5kSBQ==
-Date: Tue, 21 Oct 2025 20:00:13 +0100
+	b=C9A8QkA/fi8WFDL5y8ml8FomW8Szdae1zj92V3zhedoVafs/nqeWyM/0kg87QxAvh
+	 la/IdHu9noB90BsVX37QLs78hySHUu4b/wnIEo5NSVTkJPQI6TRhGpNxPjcpMTIuOK
+	 8IP5aRKRg6ahrDtaKJpH5Bt8xrH7/sLhSFLqdkudKciv3Q8k92iTsK/ZB+HImcGNGF
+	 i/jFJEMmqOs6sfl+gwhMCs4S018gQpV0C8FeNs/uspKxkcexccabl3xGaqqUb4a5VW
+	 SXA8nsyEnonVj4eLt4Jk5cejK9R26uGQbA+iQcwaaYFDqwtezLJymHvzLWWtfmOmbc
+	 1wjVI8kEQX11A==
+Date: Tue, 21 Oct 2025 20:09:25 +0100
 From: Mark Brown <broonie@kernel.org>
-To: Alexander Sverdlin <alexander.sverdlin@gmail.com>
-Cc: Javier Martinez Canillas <javierm@redhat.com>,
-	Wolfram Sang <wsa@the-dreams.de>,
-	Herve Codina <herve.codina@bootlin.com>,
-	David Rhodes <david.rhodes@cirrus.com>,
-	Richard Fitzgerald <rf@opensource.cirrus.com>,
-	Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	Nikita Shubin <nikita.shubin@maquefel.me>,
-	Axel Lin <axel.lin@ingics.com>,
-	Brian Austin <brian.austin@cirrus.com>, linux-sound@vger.kernel.org,
-	patches@opensource.cirrus.com, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH 1/3] ASoC: cs4271: Fix cs4271 I2C and SPI drivers
- automatic module loading
-Message-ID: <42f11845-35f2-40e0-b860-c25ba6f8d503@sirena.org.uk>
-References: <20251016130340.1442090-1-herve.codina@bootlin.com>
- <20251016130340.1442090-2-herve.codina@bootlin.com>
- <60fbaaef249e6f5af602fe4087eab31cd70905de.camel@gmail.com>
- <20251017083232.31e53478@bootlin.com>
- <d6bd466a5d11b016183db0ac3c25185fad3036fc.camel@gmail.com>
- <4b851d47bf1d03988a27671ae21208cdeed76837.camel@gmail.com>
- <5f2aeb66-97d6-41b7-8c80-87674c1b14d8@sirena.org.uk>
- <d51a3e4e0ea960df60d5ba91817ae50eba0a4026.camel@gmail.com>
+To: Md Sadre Alam <quic_mdalam@quicinc.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	andersson@kernel.org, konradybcio@kernel.org, vkoul@kernel.org,
+	linux-arm-msm@vger.kernel.org, linux-spi@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	dmaengine@vger.kernel.org, quic_varada@quicinc.com
+Subject: Re: [PATCH v3 1/9] spi: dt-bindings: spi-qpic-snand: Add IPQ5424
+ compatible
+Message-ID: <dd1e4289-5e36-4b24-9afd-f09569459a96@sirena.org.uk>
+References: <20251014110534.480518-1-quic_mdalam@quicinc.com>
+ <20251014110534.480518-2-quic_mdalam@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,48 +61,37 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="RRkNqY/s75ow4Lmx"
+	protocol="application/pgp-signature"; boundary="5HMXsR3PIyPFDxBq"
 Content-Disposition: inline
-In-Reply-To: <d51a3e4e0ea960df60d5ba91817ae50eba0a4026.camel@gmail.com>
-X-Cookie: Accordion, n.:
+In-Reply-To: <20251014110534.480518-2-quic_mdalam@quicinc.com>
+X-Cookie: Absinthe makes the tart grow fonder.
 
 
---RRkNqY/s75ow4Lmx
+--5HMXsR3PIyPFDxBq
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 
-On Fri, Oct 17, 2025 at 08:14:43PM +0200, Alexander Sverdlin wrote:
+On Tue, Oct 14, 2025 at 04:35:26PM +0530, Md Sadre Alam wrote:
+> IPQ5424 contains the QPIC-SPI-NAND flash controller which is the same as
+> the one found in IPQ9574. So let's document the IPQ5424 compatible and
+> use IPQ9574 as the fallback.
 
-> "Reparing" them as Herve proposed would result in I2C modules being
-> loaded only via "of:" style modalias and SPI still via "spi:". Which
-> sounds all but consistent.
+This doesn't apply against current code, please check and resend.
 
-> If SPI ever adopts the same of_device_uevent_modalias(), both backends
-> would require "of:" prefixed modalias, and it will not be possible to
-> load the proper one for the corresponding bus type.
-
-> What are your thoughs on this?
-
-Or at least you'd get both modules loaded with one being redundant.  TBH
-I'm very reluctant to touch this stuff for SPI without some very careful
-analysis that it's not going to cause things to explode on people, right
-now things seem to be working well enough so I'm not clear we'd be
-solving an actual problem.
-
---RRkNqY/s75ow4Lmx
+--5HMXsR3PIyPFDxBq
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmj32D0ACgkQJNaLcl1U
-h9B4/gf/Qw59HOWc4ilMWJnjdUicTkgCUxQ3osOR8HN/nvogeVLYFIAI2fnWKTj2
-7+ko/Het774CE6g63V+xH1QzprNvkJWXEOvzZ4kYtHg9x9dA0TS2VsfwuMNn5fSm
-e+wGtFLnoxkLklNmMNQdUwNQPPt3pxZntpnt8DPBZl8jSJv6KoEwFVgWpRq4OA9u
-Td9dQDcov8GT221pj3pm5+Mkw7DJO49d+NA3yvkLPjFttWtpK0bbpi5wAUeoW1cp
-+08yG1rglqTB/GHKN0+m+4tdbUe4U3M6yBOXe+pcGXFDjWDsJux0RT0S8VF9ZPdg
-T73vPe6Jw5f8wjJmpm2jWMyv1snv+A==
-=w1Tc
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmj32mQACgkQJNaLcl1U
+h9C/uQf+PdpQR2TcWPjk1rtRwSf5/3CwqidMjRkxczfM3UFPW6a0lrsv4BqmhyAC
+SxDdB3eCjgn4UkFQ/NiOtKAykJuusvUr9Aa2gGFzzojWSAFNC7B7KpP+geiv5UUP
+zSJtiuvEVadVj6UjiEv48nWI+BxlFOQi331kCRQJKYXMIqWc/EurvOUI3EnZyOey
+LtWy/vwXKilPCy5/idM4MzAHk1nsyG8xpt3/Tepj2dOWUYQiJmzEsqEP+0bDn7Ta
+CJwxQrcPzPSvJI4oTox2aa3op7mJzkAzAiM8C9VTxSqFSy0ez1gcBkKgONr69r5I
+zJKvUPjAVYto+P0uVFzrNN1TbPAMxg==
+=EPX2
 -----END PGP SIGNATURE-----
 
---RRkNqY/s75ow4Lmx--
+--5HMXsR3PIyPFDxBq--
 
