@@ -1,60 +1,59 @@
-Return-Path: <devicetree+bounces-229128-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229129-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BD27BF45C9
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 04:16:23 +0200 (CEST)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 63838BF45DC
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 04:18:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B64AD1885298
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 02:16:46 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id E14E334E5B5
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 02:18:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41C9A19B5B1;
-	Tue, 21 Oct 2025 02:16:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64185257835;
+	Tue, 21 Oct 2025 02:18:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="geQbXYjQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Pbm/pwjf"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FE31199D8;
-	Tue, 21 Oct 2025 02:16:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33F6B4AEE2;
+	Tue, 21 Oct 2025 02:18:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761012979; cv=none; b=Cs3/Nin7bgCJ5x92+osZsUgsb0QN+bspqdjbIHozRqZ8c9djgNAA4L44nWY9IkRQYJsjRMr2zZqk0FRwFy/bhXdo6uSKHSRCKhXnd5rDrCEE2DxELHi8m9C3kAv+H4/6oK1Z6fBznZBqfRRTWSPlcw7XIxdYamAqFRdfJsl2sNA=
+	t=1761013119; cv=none; b=udzL/9QBvWDVtz1Tem29ka2GaltdkvGKAuj+nHyCHq8gyteyu7JiORIqhG8Imuxj2AOww+fwfqLTuZZR7vdVmC3rLP+z+mWhHqszY01boJxZVXuyYEiz6eCVRGMCS1SVmZK36EPpqSsT9cDG6N1CcpmW8A0k8YCghQbLl7jD6m8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761012979; c=relaxed/simple;
-	bh=BTFNDm4Itzck0+WolcanaKwCwbJd24TnvyBW8Vf27dg=;
+	s=arc-20240116; t=1761013119; c=relaxed/simple;
+	bh=5hmayQpWFEnlj9lk15TbX3e+RKDmLihg12bokDKp9ZI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FEofr1V6iRb90NLeGv2SS6s+nvyL4hlBwTy630r6fU/+e9NSOVlcTWS0B7RMqA83a7Hkkv81I+wQyRfsEkWrSEVFaGsZ6wje6qjqUhbs/W53Ogv7DhAD4vZQPjs5avQaFgHhdVdzQr9FaED5My8r1aKZ02AgQxU8UtSgvLx3i1A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=geQbXYjQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F0D85C4CEFB;
-	Tue, 21 Oct 2025 02:16:12 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=WQdZAuTeJQcJz6jthTuSDy3zxW151wskGHE2VBN/efswxkEvntM428iSVmHjbjw8DJGa+yhOMRIugjLvyFNhWHEmC3D068yzDnmVFWgKSmgZGdsvpWwuqQau7CUjSHnVqWdvXMgjwwHhre4ldKiaprrOs7Xj/TpQX20PJ3LBKjk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Pbm/pwjf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B2908C4CEFB;
+	Tue, 21 Oct 2025 02:18:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761012978;
-	bh=BTFNDm4Itzck0+WolcanaKwCwbJd24TnvyBW8Vf27dg=;
+	s=k20201202; t=1761013118;
+	bh=5hmayQpWFEnlj9lk15TbX3e+RKDmLihg12bokDKp9ZI=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=geQbXYjQto0Rqi0/fy+oytHI6WbFjPBZnrFKa2mouO8NWrMvqZBtccDD3oUCcQIIA
-	 cBGvPSto7/WvPWgksvmb4vp6EcwzCNruDHk4yjDj7JbdcF0gcXPERweztp5zTfUVTf
-	 +YcA7q+N0/Ae9mKDcyiEPSITyTvVBS7wrU0Pgf7FcWhvB0hV07ac89nDHQBVQhz/mO
-	 MNobTRjU+Wfpx2h1tI2rQaSgj6pGe4MzS1GEvK1nROuIr2+6q1VDgAlXx8xeMG5HJK
-	 UmOfZDV++hnY1T/ZOk4aVyZxffQNmg11ueFEslVpfazm7cJzogI/yntafqCnedNxED
-	 /ehqHkAv3TLyQ==
-Date: Tue, 21 Oct 2025 07:46:06 +0530
+	b=Pbm/pwjftMIp/AwO4wvL4bYMwnvwdXZiWczqSa3upKmlJZ6/uXV0+HrI3U5lILK2J
+	 fg82t6Qb7Sn0htJIqHVw8z3SPxsHqZEiLuo+YzhtT9dVPW+uV+4Y1iuUcgZw1WrlwA
+	 YemqlRHFcbXAU8jv0/Pe0vZrprw9drHIBYxK3ToPC8X+BZHuCSRPaDGqoGTQZJEiQC
+	 kENCOpUNYtNbyZ5O3Acu/u2La9pX9uSKE96aCBnwhn+aDb0vmL0Huy9FVA4lof1fN8
+	 9MAqrG4R1amC8DhJg0hWEFkwzlysOy+qibWYmjMyLbVabNJgTvchfsy9ucRtKNzuNv
+	 QMLi2umTaU0tA==
+Date: Tue, 21 Oct 2025 07:48:29 +0530
 From: Manivannan Sadhasivam <mani@kernel.org>
-To: Claudiu Beznea <claudiu.beznea@tuxon.dev>
-Cc: lpieralisi@kernel.org, kwilczynski@kernel.org, robh@kernel.org, 
-	bhelgaas@google.com, krzk+dt@kernel.org, conor+dt@kernel.org, geert+renesas@glider.be, 
-	magnus.damm@gmail.com, p.zabel@pengutronix.de, linux-pci@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>, Wolfram Sang <wsa+renesas@sang-engineering.com>
-Subject: Re: [PATCH v5 3/6] arm64: dts: renesas: r9a08g045: Add PCIe node
-Message-ID: <p4k4gkolfudxhvnrj4kkwpnyphdulga3fjovxqjqhmkhnts37o@y3jxdljb5oeo>
-References: <20251007133657.390523-1-claudiu.beznea.uj@bp.renesas.com>
- <20251007133657.390523-4-claudiu.beznea.uj@bp.renesas.com>
- <k75ewk6mnv4w333oqefpgpa46fbg57grz7q6tlpc5evzehnzh5@elgnofa5ud5p>
- <a40a4a52-3dc0-4e17-8c55-548068976b8f@tuxon.dev>
+To: Linus Walleij <linus.walleij@linaro.org>
+Cc: "Rob Herring (Arm)" <robh@kernel.org>, 
+	Andreas =?utf-8?Q?F=C3=A4rber?= <afaerber@suse.de>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org, 
+	linux-actions@lists.infradead.org, linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: pinctrl: Convert actions,s700-pinctrl to DT
+ schema
+Message-ID: <3br66j7ghxg3yegzrlc4fpvfv5ttkjrlqtc624mmnuixre5pnn@gsnugcnk3c3l>
+References: <20251013191207.4135075-1-robh@kernel.org>
+ <CACRpkdZDM8zMtuPQ6rQQ+TZhz4bAYOepeETVQ34_MfDYx0LMmA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,138 +63,22 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <a40a4a52-3dc0-4e17-8c55-548068976b8f@tuxon.dev>
+In-Reply-To: <CACRpkdZDM8zMtuPQ6rQQ+TZhz4bAYOepeETVQ34_MfDYx0LMmA@mail.gmail.com>
 
-On Mon, Oct 20, 2025 at 09:15:47AM +0300, Claudiu Beznea wrote:
-> Hi, Mani,
+On Mon, Oct 20, 2025 at 10:55:58PM +0200, Linus Walleij wrote:
+> On Mon, Oct 13, 2025 at 9:12 PM Rob Herring (Arm) <robh@kernel.org> wrote:
 > 
-> On 10/19/25 09:57, Manivannan Sadhasivam wrote:
-> > On Tue, Oct 07, 2025 at 04:36:54PM +0300, Claudiu wrote:
-> >> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> >>
-> >> The RZ/G3S SoC has a variant (R9A08G045S33) which supports PCIe. Add the
-> >> PCIe node.
-> >>
-> >> Tested-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
-> >> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> >> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> >> ---
-> >>
-> >> Changes in v5:
-> >> - updated the last part of ranges and dma-ranges
-> >> - collected tags
-> >>
-> >> Changes in v4:
-> >> - moved the node to r9a08g045.dtsi
-> >> - dropped the "s33" from the compatible string
-> >> - added port node
-> >> - re-ordered properties to have them grouped together
-> >>
-> >> Changes in v3:
-> >> - collected tags
-> >> - changed the ranges flags
-> >>
-> >> Changes in v2:
-> >> - updated the dma-ranges to reflect the SoC capability; added a
-> >>   comment about it.
-> >> - updated clock-names, interrupt names
-> >> - dropped legacy-interrupt-controller node
-> >> - added interrupt-controller property
-> >> - moved renesas,sysc at the end of the node to comply with
-> >>   DT coding style
-> >>
-> >>  arch/arm64/boot/dts/renesas/r9a08g045.dtsi | 66 ++++++++++++++++++++++
-> >>  1 file changed, 66 insertions(+)
-> >>
-> >> diff --git a/arch/arm64/boot/dts/renesas/r9a08g045.dtsi b/arch/arm64/boot/dts/renesas/r9a08g045.dtsi
-> >> index 16e6ac614417..00b43377877e 100644
-> >> --- a/arch/arm64/boot/dts/renesas/r9a08g045.dtsi
-> >> +++ b/arch/arm64/boot/dts/renesas/r9a08g045.dtsi
-> >> @@ -717,6 +717,72 @@ eth1: ethernet@11c40000 {
-> >>  			status = "disabled";
-> >>  		};
-> >>  
-> >> +		pcie: pcie@11e40000 {
-> >> +			compatible = "renesas,r9a08g045-pcie";
-> >> +			reg = <0 0x11e40000 0 0x10000>;
-> >> +			ranges = <0x02000000 0 0x30000000 0 0x30000000 0 0x08000000>;
-> >> +			/* Map all possible DRAM ranges (4 GB). */
-> >> +			dma-ranges = <0x42000000 0 0x40000000 0 0x40000000 1 0x00000000>;
-> >> +			bus-range = <0x0 0xff>;
-> >> +			interrupts = <GIC_SPI 395 IRQ_TYPE_LEVEL_HIGH>,
-> >> +				     <GIC_SPI 396 IRQ_TYPE_LEVEL_HIGH>,
-> >> +				     <GIC_SPI 397 IRQ_TYPE_LEVEL_HIGH>,
-> >> +				     <GIC_SPI 398 IRQ_TYPE_LEVEL_HIGH>,
-> >> +				     <GIC_SPI 399 IRQ_TYPE_LEVEL_HIGH>,
-> >> +				     <GIC_SPI 400 IRQ_TYPE_LEVEL_HIGH>,
-> >> +				     <GIC_SPI 401 IRQ_TYPE_LEVEL_HIGH>,
-> >> +				     <GIC_SPI 402 IRQ_TYPE_LEVEL_HIGH>,
-> >> +				     <GIC_SPI 403 IRQ_TYPE_LEVEL_HIGH>,
-> >> +				     <GIC_SPI 404 IRQ_TYPE_LEVEL_HIGH>,
-> >> +				     <GIC_SPI 405 IRQ_TYPE_LEVEL_HIGH>,
-> >> +				     <GIC_SPI 406 IRQ_TYPE_LEVEL_HIGH>,
-> >> +				     <GIC_SPI 407 IRQ_TYPE_LEVEL_HIGH>,
-> >> +				     <GIC_SPI 408 IRQ_TYPE_LEVEL_HIGH>,
-> >> +				     <GIC_SPI 409 IRQ_TYPE_LEVEL_HIGH>,
-> >> +				     <GIC_SPI 410 IRQ_TYPE_LEVEL_HIGH>;
-> >> +			interrupt-names = "serr", "serr_cor", "serr_nonfatal",
-> >> +					  "serr_fatal", "axi_err", "inta",
-> >> +					  "intb", "intc", "intd", "msi",
-> >> +					  "link_bandwidth", "pm_pme", "dma",
-> >> +					  "pcie_evt", "msg", "all";
-> >> +			#interrupt-cells = <1>;
-> >> +			interrupt-controller;
-> >> +			interrupt-map-mask = <0 0 0 7>;
-> >> +			interrupt-map = <0 0 0 1 &pcie 0 0 0 0>, /* INTA */
-> >> +					<0 0 0 2 &pcie 0 0 0 1>, /* INTB */
-> >> +					<0 0 0 3 &pcie 0 0 0 2>, /* INTC */
-> >> +					<0 0 0 4 &pcie 0 0 0 3>; /* INTD */
-> > 
-> > Why can't you describe the SPI interrupt for INTx in 'interrupt-map' itself?
+> > Convert the actions,s700-pinctrl binding to DT schema format. It's a
+> > straight-forward conversion.
+> >
+> > Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 > 
-> Because the INTx need to be controlled at PCIe controller level, too.
-> Driver implements struct irq_chip::{irq_ack, irq_mask, irq_unmask} for
-> these interrupts. Describing them like:
-> 
-> interrupt-map = <0 0 0 1 &gic GIC_SPI 400 IRQ_TYPE_LEVEL_HIGH>,
->                 <0 0 0 2 &gic GIC_SPI 401 IRQ_TYPE_LEVEL_HIGH>,
->                 <0 0 0 3 &gic GIC_SPI 400 IRQ_TYPE_LEVEL_HIGH>,
->                 <0 0 0 4 &gic GIC_SPI 400 IRQ_TYPE_LEVEL_HIGH>;
-> 
-> wouldn't allow for this, AFAICT.
+> No comments for a week so patch applied.
 > 
 
-Ah, so these interrupts are masked at the PCI controller level... Fine then.
+FWIW,
 
-> > 
-> >> +			clocks = <&cpg CPG_MOD R9A08G045_PCI_ACLK>,
-> >> +				 <&cpg CPG_MOD R9A08G045_PCI_CLKL1PM>;
-> >> +			clock-names = "aclk", "pm";
-> >> +			resets = <&cpg R9A08G045_PCI_ARESETN>,
-> >> +				 <&cpg R9A08G045_PCI_RST_B>,
-> >> +				 <&cpg R9A08G045_PCI_RST_GP_B>,
-> >> +				 <&cpg R9A08G045_PCI_RST_PS_B>,
-> >> +				 <&cpg R9A08G045_PCI_RST_RSM_B>,
-> >> +				 <&cpg R9A08G045_PCI_RST_CFG_B>,
-> >> +				 <&cpg R9A08G045_PCI_RST_LOAD_B>;
-> >> +			reset-names = "aresetn", "rst_b", "rst_gp_b", "rst_ps_b",
-> >> +				      "rst_rsm_b", "rst_cfg_b", "rst_load_b";
-> >> +			power-domains = <&cpg>;
-> >> +			device_type = "pci";
-> >> +			#address-cells = <3>;
-> >> +			#size-cells = <2>;
-> >> +			max-link-speed = <2>;
-> > 
-> > 'max-link-speed' is used to limit the link speed. Why do you need to limit the
-> > link speed all the time for this controller?
-> 
-> I though it is to describe the max link speed supported by controller. This
-> controller max link speed is 5GT/s. Should I drop this property?
-> 
-
-Yes. The driver should be able to query the Link Capabilities register and get
-the max supported link speed of the hardware. This property should only be used
-when the firmware decides to override the hardware supported max link speed.
+Acked-by: Manivannan Sadhasivam <mani@kernel.org>
 
 - Mani
 
