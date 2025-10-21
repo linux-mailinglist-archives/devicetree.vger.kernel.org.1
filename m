@@ -1,59 +1,62 @@
-Return-Path: <devicetree+bounces-229379-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229380-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 247B2BF6C20
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 15:26:35 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D1198BF6C67
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 15:30:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D5CAA18866AA
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 13:26:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id ED6C1188B59B
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 13:30:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 991173370F6;
-	Tue, 21 Oct 2025 13:26:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF473338586;
+	Tue, 21 Oct 2025 13:30:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kp7mGeKy"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PrCDX60S"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F5713370E7;
-	Tue, 21 Oct 2025 13:26:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D1C122B8CB;
+	Tue, 21 Oct 2025 13:30:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761053191; cv=none; b=r0GCKia5ZOwda4fP6CWFJ3eUab4l0HyHIa5Gvt/FKW7ITetk3AEWUG6ADjAcjqHi9rOi4LgeIsFcfXE5qRSzC9FP65ilsZIMdqZsHDFK0Yz9KuqLtDZlodkLHYW8hk2t00lrVdett2bPQlYbsrR2ZSeGuzum0f++NgaBu1FSnow=
+	t=1761053422; cv=none; b=YlMBejXTEijw+UchkEi3loMG0bKmj5GhFAUo1URUfPYNe8MseObu/8VHNqxsbAAn24LZYkqX1dWYI3fRPk2iB4nOFD6gkFTCmChvoq/vBMXkYivFKIOqRcoL2J74KMwWf8m+KKrxtP1oOnqjQBfGCQbq3ja8y3WBbI+vRhxsNrg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761053191; c=relaxed/simple;
-	bh=mMSvgzeevb/tNsBtbMj0XDd/jCMbDeUuPxUm0ECM0uU=;
+	s=arc-20240116; t=1761053422; c=relaxed/simple;
+	bh=TYwNPmQgCPJl15/tu+lF46PWA2zAyxHpdfqlwEfJl4Q=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Ef4g4AILX1+EUHoO2q/6VXvzkFZYLSXpcJPthYa04c3vIiBHAtco2z+h5UmlSufq0DQZNbGZCUUl1oEAj0ykbiiJbzS0PmsnCuJuzNli5Bz9bQYLWTLq/hY/FgOfVuKpWDio3IUR165nWTCTqG7Cg3CK9Dtuf8KSMAxXd0zPghg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kp7mGeKy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA8A4C4CEFD;
-	Tue, 21 Oct 2025 13:26:30 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=tCDDKJQV1N8/lKzPCwgJ0bqT/2dlfsIJrAx8UQ/BzF4wSEPP/8Ny++5yIOuludmvbuHYINwAnCC0Aj1N3WUhH+RzP06i9N58V4smRVl2X1gH2bywyb9xs2Iw/Jxc5Mdk6MMWsXGDtffah0PjqFHzwDp5riGIuS9iy9rbfSOwjGQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PrCDX60S; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7F2ACC4CEF1;
+	Tue, 21 Oct 2025 13:30:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761053190;
-	bh=mMSvgzeevb/tNsBtbMj0XDd/jCMbDeUuPxUm0ECM0uU=;
+	s=k20201202; t=1761053420;
+	bh=TYwNPmQgCPJl15/tu+lF46PWA2zAyxHpdfqlwEfJl4Q=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=kp7mGeKybFExcxsSXsFQhYctj5YpaiLa67zVBsCwpKg0da2fFSm05GE2vkEoORwVP
-	 NtBbJxuJ+AK74dRywC/fCs5Grpi/maWkMcuaJkejRNbOz4Y4t9gul8L/GDHCIhLhZs
-	 3KWmdftqeO7Lf6k736beFglJ1WWqPe9+m3YR8Y6YSxadMl8t76bfKmJQTrRNuyvk2N
-	 fY8ZDq2TV/PuTF0XN8RBJ9IFh9jaaV63xOPoRpR605saPLWCRMGhQ5YmuE4WY9HAvw
-	 jXzH97sgoJtWZjwoPWXYYZo5YtoC7mr205oe1ntrW1J2D8v45bWeOvj7ybVFB0uWn/
-	 2hIpkHZlIqJ9g==
-Date: Tue, 21 Oct 2025 08:26:29 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Manivannan Sadhasivam <mani@kernel.org>,
-	linux-actions@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
-	devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: power: Convert Actions Owl SPS to DT schema
-Message-ID: <176105318705.11992.2891926937989289463.robh@kernel.org>
-References: <20251013215834.783501-1-robh@kernel.org>
+	b=PrCDX60SgwFPULyfPpayppmJ0fqejs4Do7UsqATkShfhF5rxG1k4uEylrzMJm+m3B
+	 1l688jkyk/D8vvN+0J1fS70ZtplBnD7m/I/eLqBJ1mCaNYoIW9Np7Q+/p4NEBekV4c
+	 +D9gWhjlve317aEJdKadfeUwvydjCYfXsMNssAnL5q3ECMvINcKZW8poc5bO5oioT4
+	 TE/n9HHwauOHVcE31U4zSyp8hmg2zM6RqXKViYYX8nq/pL+3ePslNhzfY4bK1jHtQ7
+	 MOrTN4U3P0C07h+IgOj5nJMhJKYljKbxG+ESXMcFBVrwlOqu9gmfve50I89KsCxQ4C
+	 zcE7dmx7mfG7A==
+Date: Tue, 21 Oct 2025 08:30:18 -0500
+From: Rob Herring <robh@kernel.org>
+To: Randolph Lin <randolph@andestech.com>
+Cc: linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+	jingoohan1@gmail.com, mani@kernel.org, lpieralisi@kernel.org,
+	kwilczynski@kernel.org, bhelgaas@google.com, krzk+dt@kernel.org,
+	conor+dt@kernel.org, alex@ghiti.fr, aou@eecs.berkeley.edu,
+	palmer@dabbelt.com, paul.walmsley@sifive.com, ben717@andestech.com,
+	inochiama@gmail.com, thippeswamy.havalige@amd.com,
+	namcao@linutronix.de, shradha.t@samsung.com, pjw@kernel.org,
+	randolph.sklin@gmail.com, tim609@andestech.com
+Subject: Re: [PATCH v8 2/5] dt-bindings: PCI: Add Andes QiLai PCIe support
+Message-ID: <20251021133018.GA13337-robh@kernel.org>
+References: <20251014120349.656553-1-randolph@andestech.com>
+ <20251014120349.656553-3-randolph@andestech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,22 +65,116 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251013215834.783501-1-robh@kernel.org>
+In-Reply-To: <20251014120349.656553-3-randolph@andestech.com>
 
-
-On Mon, 13 Oct 2025 16:58:26 -0500, Rob Herring (Arm) wrote:
-> Convert the Actions S500/S700/S900 Smart Power System binding to DT
-> schema format. It's a straight-forward conversion.
+On Tue, Oct 14, 2025 at 08:03:46PM +0800, Randolph Lin wrote:
+> Add the Andes QiLai PCIe node, which includes 3 Root Complexes.
+> Only one example is required in the DTS bindings YAML file.
 > 
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> Signed-off-by: Randolph Lin <randolph@andestech.com>
 > ---
->  .../bindings/power/actions,owl-sps.txt        | 21 ----------
->  .../bindings/power/actions,s500-sps.yaml      | 39 +++++++++++++++++++
->  2 files changed, 39 insertions(+), 21 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/power/actions,owl-sps.txt
->  create mode 100644 Documentation/devicetree/bindings/power/actions,s500-sps.yaml
+>  .../bindings/pci/andestech,qilai-pcie.yaml    | 84 +++++++++++++++++++
+>  1 file changed, 84 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pci/andestech,qilai-pcie.yaml
 > 
+> diff --git a/Documentation/devicetree/bindings/pci/andestech,qilai-pcie.yaml b/Documentation/devicetree/bindings/pci/andestech,qilai-pcie.yaml
+> new file mode 100644
+> index 000000000000..ca444e4766ec
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pci/andestech,qilai-pcie.yaml
+> @@ -0,0 +1,84 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pci/andestech,qilai-pcie.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Andes QiLai PCIe host controller
+> +
+> +description:
+> +  Andes QiLai PCIe host controller is based on the Synopsys DesignWare
+> +  PCI core. It shares common features with the PCIe DesignWare core and
+> +  inherits common properties defined in
+> +  Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml.
 
-Applied, thanks!
+Drop the 2nd sentence as the schema says the same thing with the $ref.
 
+> +
+> +maintainers:
+> +  - Randolph Lin <randolph@andestech.com>
+> +
+> +allOf:
+> +  - $ref: /schemas/pci/snps,dw-pcie.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: andestech,qilai-pcie
+> +
+> +  reg:
+> +    items:
+> +      - description: Data Bus Interface (DBI) registers.
+> +      - description: APB registers.
+> +      - description: PCIe configuration space region.
+> +
+> +  reg-names:
+> +    items:
+> +      - const: dbi
+> +      - const: apb
+> +      - const: config
+> +
+> +  ranges:
+> +    maxItems: 2
+> +
+> +  interrupts:
+> +    maxItems: 1
+
+interrupt-names:
+  const: msi
+
+> +
+> +required:
+> +  - reg
+> +  - reg-names
+> +  - interrupts
+> +  - interrupt-names
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +    soc {
+> +      #address-cells = <2>;
+> +      #size-cells = <2>;
+> +
+> +      pcie@80000000 {
+> +        compatible = "andestech,qilai-pcie";
+> +        device_type = "pci";
+> +        reg = <0x0 0x80000000 0x0 0x20000000>,
+> +              <0x0 0x04000000 0x0 0x00001000>,
+> +              <0x0 0x00000000 0x0 0x00010000>;
+> +        reg-names = "dbi", "apb", "config";
+> +
+> +        linux,pci-domain = <0>;
+> +        #address-cells = <3>;
+> +        #size-cells = <2>;
+> +        ranges = <0x02000000 0x00 0x10000000 0x00 0x10000000 0x0 0xf0000000>,
+> +                 <0x43000000 0x01 0x00000000 0x01 0x0000000 0x1f 0x00000000>;
+> +
+> +        #interrupt-cells = <1>;
+> +        interrupts = <0xf>;
+> +        interrupt-names = "msi";
+> +        interrupt-parent = <&plic0>;
+> +        interrupt-map-mask = <0 0 0 7>;
+> +        interrupt-map = <0 0 0 1 &plic0 0xf IRQ_TYPE_LEVEL_HIGH>,
+> +                        <0 0 0 2 &plic0 0xf IRQ_TYPE_LEVEL_HIGH>,
+> +                        <0 0 0 3 &plic0 0xf IRQ_TYPE_LEVEL_HIGH>,
+> +                        <0 0 0 4 &plic0 0xf IRQ_TYPE_LEVEL_HIGH>;
+> +      };
+> +    };
+> +...
+> -- 
+> 2.34.1
+> 
 
