@@ -1,148 +1,194 @@
-Return-Path: <devicetree+bounces-229331-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229334-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4E63BF6034
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 13:26:10 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 01647BF6076
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 13:30:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 3C8F83534D4
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 11:26:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8F1821896994
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 11:31:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C04430595A;
-	Tue, 21 Oct 2025 11:26:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C48D132E698;
+	Tue, 21 Oct 2025 11:30:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="TwMyeaVa"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="DpS7jj0b"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx-relay138-hz1.antispameurope.com (mx-relay138-hz1.antispameurope.com [94.100.132.197])
+Received: from CH4PR04CU002.outbound.protection.outlook.com (mail-northcentralusazon11013020.outbound.protection.outlook.com [40.107.201.20])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45C652FB99D
-	for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 11:26:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=94.100.132.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DBE032E695;
+	Tue, 21 Oct 2025 11:30:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.201.20
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761045966; cv=pass; b=LiR62bfGhmM5TvQ2jmWAI9Kldv8PRpemPQyP14MDzPrcTmAWPWwA3U1BaSz39Sh8xREqEozwxOgl4g1QSKnpIlysFQo02ZUEnoslb1RbHhiSuM5PZdNI06ShikfuyrDuH2vOXHV25GsOe1i4zAzqQd/by0YN4bWRp89DKpfHSjE=
+	t=1761046251; cv=fail; b=HM+ktiaUe31Me+11x2souNt6Qhgf5l5wolXi5PBNECuOo/PbpPDMlXh9iJZ4IhPbGa9QiBauMuQE9JGt6/7B2t2C79GUatgpoOnIPXVZu+fJyx1mcVbofdr26WI73BUbvBNmv7+7bM4z9dZYxEm11ozUsNwEwUBaX1tSbX/KO2k=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761045966; c=relaxed/simple;
-	bh=n4mhlRhzzFm3V7tkh8PEoEN4chx5mQY5EISlduNBssk=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=C94ziRP/FiHzO3WXmIFLCTXnrIQHPBmBV9X3HSJMQCRM4lRRJXTosePveQ/VBtMee5587PDevcN/stL419BHihm1pTqdMJpCZtCoYStXsRQZ9I7ndMPUjeDgSGaaYkwtB2kOrnmRZEnmPtm0F8M3gjDpSfNanFqprCTa1j2lxyI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=TwMyeaVa; arc=pass smtp.client-ip=94.100.132.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-ARC-Authentication-Results: i=1; mx-gate138-hz1.hornetsecurity.com 1;
- spf=pass reason=mailfrom (ip=94.100.132.6, headerfrom=ew.tq-group.com)
- smtp.mailfrom=ew.tq-group.com smtp.helo=smtp-out01-hz1.hornetsecurity.com;
- dmarc=pass header.from=ew.tq-group.com orig.disposition=pass
-ARC-Message-Signature: a=rsa-sha256;
- bh=qPRSdSQE0bLnU693LJLxkchAwzL3R1o8wQQaHCAimXE=; c=relaxed/relaxed;
- d=hornetsecurity.com; h=from:to:date:subject:mime-version:; i=1; s=hse1;
- t=1761045903;
- b=U0A4rPBUBpS+c7EtqRzoOMURUCEtD9XyJv9Qg4DUdVwzErEfhOazu1pFvHVqQcV9uRFLLma/
- f/QIYeJbttuP17Vepswpi4b1ZMT1kGOq8XONKyL8nr0vmjtLdYifqhnePmWg87BvaEv0qBNHnCq
- 7ScN6S/83y/CMgeu6Vz8JGEgCtnoNDIZ5xz2nvrlHD+wo6olxTpyoM4mQKPCUYEDJUWqvq1OvkW
- ln+gSldF7nohCoGznD8nJewMwav4i/Vp71wsB1pzTBn6rtIu0cDkMVBbHQQnA/IXIOKc4sA58iD
- zZyazNC69C6Prnum4NL21viAz5jZ1y9JkIhJ8f/kkIUCg==
-ARC-Seal: a=rsa-sha256; cv=none; d=hornetsecurity.com; i=1; s=hse1;
- t=1761045903;
- b=CsBbZta9WYtG5WAYNo63EIJ9IzMute5ukhQj19kMebdRwWLZqw6BiBPqaDTHzfpOEaK+2xLE
- SteqQkCQhvzfYWr3NvfP7RUeevFKjg2iv81l5BOawKStSTQ/dzpwqO6rCoNgxun8KXD2Q+W9T/z
- YDufQtgvV+igzfIxjQtrPObLAshfTSFkLh0TtqY0eyvV0C0k7bbaTrBJKxCGol2XrnCgq5z4vkb
- gZNue3D1655WSnsQECjyMwD7dVH/SmnzDymSJAvTJSg5JJf+vMM07BeREALfABSFRoMjNKgv5c7
- ZweZl1LgwBUShBIGyTaWBGS10LiM1aW1YPAofYFJDHtNw==
-Received: from he-nlb01-hz1.hornetsecurity.com ([94.100.132.6]) by mx-relay138-hz1.antispameurope.com;
- Tue, 21 Oct 2025 13:25:02 +0200
-Received: from steina-w.localnet (host-82-135-125-110.customer.m-online.net [82.135.125.110])
-	(Authenticated sender: alexander.stein@ew.tq-group.com)
-	by smtp-out01-hz1.hornetsecurity.com (Postfix) with ESMTPSA id 56DCEA404BD;
-	Tue, 21 Oct 2025 13:24:53 +0200 (CEST)
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>,
- Gregor Herburger <gregor.herburger@tq-group.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux@ew.tq-group.com
-Subject:
- Re: [PATCH v2 2/2] arm64: dts: ls1028a: Add mbls1028a and mbls1028a-ind
- devicetrees
-Date: Tue, 21 Oct 2025 13:24:52 +0200
-Message-ID: <13873811.uLZWGnKmhe@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <14f52170-cc5b-4808-8fc1-28685ba349dd@lunn.ch>
-References:
- <20251020133536.303471-1-alexander.stein@ew.tq-group.com>
- <20251020133536.303471-2-alexander.stein@ew.tq-group.com>
- <14f52170-cc5b-4808-8fc1-28685ba349dd@lunn.ch>
+	s=arc-20240116; t=1761046251; c=relaxed/simple;
+	bh=hGyZGQhd/29AyRUjPPtckbmVe99dpsTJj8G94+uydjg=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=ZYV7BOsN9hZ1KzP7GEHnSHk7tzwDYRVJfEiRhPBUU/bVkIRyQuE1C0tLiGdDFC5ONxF7tjPI8Y0X+/ncnNFV8D7tBIUpx8tXqfGPKxaDIA5eWeFT8iXICFhUwBrXedbMJ7kzfM7fGAKGEu5ppJtCWAyujPE0jMWrHDNT+4tamTo=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=DpS7jj0b; arc=fail smtp.client-ip=40.107.201.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Uj3nM6pvdmCkVhl1RT8sTL7Qxlk9PepFsVT49lkY0yC+N6O7V6xLuOwHwhfEcIdQMOFUdaPgIv3iTXr8g2YgpgSIMnG90cDMowHGwdcOGs7cBzU1SqWdafHt2VLxvvIGmO/XA9JBhHJdX8YDsjb5T/lA9enTwygdXN9wO9NKCHWsX+6w/9xTtskTzDtnhN4yuW8rWSi6/tfxRLjivHG54E3pL/V3Yyz2KqxkEdZDgVND+99u7kNENnWHIaWdRV60zWHW2Fm/qXyWxcfi/FCviFkosmUUOD9txIFpZuqmiGmqFxbdEBikoarXzROW8G0aJNc5c2YLFX4dTriY+UoCpg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=GCCeCLn6q8jlaafYurJzq1M9V4WE3QNuEQR1v90tbFY=;
+ b=shreWA30LB1v4jGZfPDK2H2Yah6aTCDE7/zvOVA1y7xXGy25g9kNQZhr0a33oKcHUQYHLlQla/NdlKbZzhSUx2PGAp//G0AjG/i8X58krRnDapOKY0X7Mau1dagXp+JgSwj8E9pe6if8NQcqQbnTPfpoiR8dctEwR9cH+hyVgC5WFtOYuebUm3+Pb00S0rGNU3/P//b0UAS/noDZJuHU54SrCfdOOSOrjNnZKMaT+n4jRO4L1IaG9/J1VLKTmXATMhTiQK2Hi9dm7UyIztBQtRG6Z2iPISsleWnhWR5/usIxnlGoVcaSs3g2qwR6Uw2sxiTj0zHKh4WZleDM6fmmkQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=oracle.com smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=GCCeCLn6q8jlaafYurJzq1M9V4WE3QNuEQR1v90tbFY=;
+ b=DpS7jj0b+L5avx0Y6AJ8cnWhghJbo/UuAgdUEWF/+CzJr1Y8lcNPVhuxuIYrE+MZkC+ze4QpR1Cs9q+Xk53UFVa0Yyds6v7E4hbA9VSWJAL72QWdmf4n78dD/vEIP+Cnt8Oek6T52IQH01EQfUFCDrPMBISP8VmfwDHfGyDq6ZQ=
+Received: from SJ0PR03CA0149.namprd03.prod.outlook.com (2603:10b6:a03:33c::34)
+ by IA0PR12MB8840.namprd12.prod.outlook.com (2603:10b6:208:490::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9228.15; Tue, 21 Oct
+ 2025 11:30:43 +0000
+Received: from SJ5PEPF000001D7.namprd05.prod.outlook.com
+ (2603:10b6:a03:33c:cafe::dd) by SJ0PR03CA0149.outlook.office365.com
+ (2603:10b6:a03:33c::34) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9253.12 via Frontend Transport; Tue,
+ 21 Oct 2025 11:30:43 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb08.amd.com; pr=C
+Received: from satlexmb08.amd.com (165.204.84.17) by
+ SJ5PEPF000001D7.mail.protection.outlook.com (10.167.242.59) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9253.7 via Frontend Transport; Tue, 21 Oct 2025 11:30:42 +0000
+Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb08.amd.com
+ (10.181.42.217) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Tue, 21 Oct
+ 2025 04:30:10 -0700
+Received: from xhdharinik40.xilinx.com (10.180.168.240) by satlexmb08.amd.com
+ (10.181.42.217) with Microsoft SMTP Server id 15.2.2562.17 via Frontend
+ Transport; Tue, 21 Oct 2025 04:30:06 -0700
+From: Ajay Neeli <ajay.neeli@amd.com>
+To: <martin.petersen@oracle.com>, <James.Bottomley@HansenPartnership.com>,
+	<robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+	<pedrom.sousa@synopsys.com>
+CC: <alim.akhtar@samsung.com>, <avri.altman@wdc.com>, <bvanassche@acm.org>,
+	<linux-scsi@vger.kernel.org>, <devicetree@vger.kernel.org>, <git@amd.com>,
+	<michal.simek@amd.com>, <srinivas.goud@amd.com>,
+	<radhey.shyam.pandey@amd.com>, Ajay Neeli <ajay.neeli@amd.com>
+Subject: [PATCH v2 0/4] ufs: Add support for AMD Versal Gen2 UFS
+Date: Tue, 21 Oct 2025 16:59:59 +0530
+Message-ID: <20251021113003.13650-1-ajay.neeli@amd.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-cloud-security-sender:alexander.stein@ew.tq-group.com
-X-cloud-security-recipient:devicetree@vger.kernel.org
-X-cloud-security-crypt: load encryption module
-X-cloud-security-Mailarchiv: E-Mail archived for: alexander.stein@ew.tq-group.com
-X-cloud-security-Mailarchivtype:outbound
-X-cloud-security-Virusscan:CLEAN
-X-cloud-security-disclaimer: This E-Mail was scanned by E-Mailservice on mx-relay138-hz1.antispameurope.com with 4crVMB1Y5zz1NGLl
-X-cloud-security-connect: he-nlb01-hz1.hornetsecurity.com[94.100.132.6], TLS=1, IP=94.100.132.6
-X-cloud-security-Digest:0a6c4bbb931b6e0c1b6e99bc4c54eeb4
-X-cloud-security:scantime:2.297
-DKIM-Signature: a=rsa-sha256;
- bh=qPRSdSQE0bLnU693LJLxkchAwzL3R1o8wQQaHCAimXE=; c=relaxed/relaxed;
- d=ew.tq-group.com;
- h=content-type:mime-version:subject:from:to:message-id:date; s=hse1;
- t=1761045902; v=1;
- b=TwMyeaVak74FhRE92SNY3BsCnE/bv1ZHanGoxfPE+My34VH66Q2J++GOs8ZzpI3IMMZlozOK
- /JZrM3u9Hx0zbMMxQUYm23DEOwcORdeHZl371uif2NDcVQnEsV2N7X1YZMcZkHpOOyQPB1LBxM3
- Lcx/dQU6HgVVz38aymk1ylpkrJEDIhSCIycDDbOKDeM5ViCRDkJY72IacaNobJhoFpdn6UD9/pM
- vn/AUBs2tlwW+XcccazSo/h/D3/f788SnIbDUUnbOlQLSwLkgu7QA44U6uc4WzNUyE2+Gsy2hQf
- G1/ClZztQvwPy9JbuOYs6cmdF0oC/LhF7QUNzHnpD3Vvg==
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ5PEPF000001D7:EE_|IA0PR12MB8840:EE_
+X-MS-Office365-Filtering-Correlation-Id: f6b91750-5829-4c1e-c930-08de10954526
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|36860700013|1800799024|7416014|376014|82310400026;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?Ug9GtyrXUeXIEUmAiy/nNw4FdfYQm2Sf8vlXmje4y6Phj7epFxZEic4+UfXE?=
+ =?us-ascii?Q?gC9FjTLBW5KNhH0S2DbuoWTqvOfSwARplQ/7l18oGHwBTTflFDdJyTgjagbE?=
+ =?us-ascii?Q?xe9voulCyKdXo4wi0JpDzbIERuTMpTYLrQbpdSs109Z7NBT2NtYsSzb536oS?=
+ =?us-ascii?Q?NNcO2WIF9eMj+AiYFo58q4qaN96fw32xvcar+/szrauT+6WDVzz/qa+Omr0v?=
+ =?us-ascii?Q?GZZByKBhHheUzwwPZgRye+VOxn/7ZK79VOq4xFArr/4FeFcKWfuZXplaSIAb?=
+ =?us-ascii?Q?riHDQDOqERQWUpgmBltnRibhsNEYB+Y6a5wzeDpJn/Z55M3GprXMKQVZRtg8?=
+ =?us-ascii?Q?cmwm3Mloh+4Udwk4jpTnj1Pygd+jAaSnjy2IJVAvoDvIgAWK9PgO7ok3ltqZ?=
+ =?us-ascii?Q?guLDXY+Mb0n1fPi/QngxTCqsSswiPLArdUKpHm6IyG+ArKLPxBPF8K79zjRj?=
+ =?us-ascii?Q?AayiQERwrqAJ5u5gZUu5LCrwn0yX6/n/qLQC7C9cqyQGBTBcDFD6F9nVb3Z6?=
+ =?us-ascii?Q?OmjP8Z3IsR55K/Pf4EJbvPMA3t7SWA4P0T3ofSn8kfhKP23MBogRJZOdOB3F?=
+ =?us-ascii?Q?RbQoyt8z1fHS8ikrq5oDQP8/vcVgxnXrgHvF0qpd7B3LSVi/TEVRJZSdPAnU?=
+ =?us-ascii?Q?pxPlej54x+wvGV7lTisiN5biEERlo1i1j83D5ObVx8Lq020wz0CmFOjr9Rn4?=
+ =?us-ascii?Q?ttDb70G5tq1WVxgJN8qYoK9wRePglnqnxpeNQPUazHUsAhGTX5Su60xSmocK?=
+ =?us-ascii?Q?y8bHE4ilFATBxhrc9e0ihzvFT/1JkRDzBELONwCQzXxcfKpZlBTUUb0IBTKf?=
+ =?us-ascii?Q?shBt3Y4k4hGiUx7DK0nk9gjtgjPM6vieL1/tqLM8iNeGJytPxKPJC/zKkLUp?=
+ =?us-ascii?Q?u/ndSPxlQ4no3qmbbXIQ0U0RzcOBr3ZTs38cMG59T9VwR+waEsXCzxDavXSi?=
+ =?us-ascii?Q?ptKZf7i+laqYCXPThrDsxVe3Q6snaShpqxfOnIRGIYLju1OsWOz9nVwkzhmj?=
+ =?us-ascii?Q?LpRUcNSJ4q2gKMT//P4cIVETxHjZ7NyELoQ2AYVF60VWHaKiuS/UX2BOQBPc?=
+ =?us-ascii?Q?0mbaP1EPNIxRZTB7R2wKS6W2vST2f8ybsnwXE8KXLKAjbhf2dbRe5r3kFML6?=
+ =?us-ascii?Q?CAnKP5tBFpA6r9O5IhOTYFxfT0fGBh7ZGP3r2TTWuqZRz2YGOBkFhjgyEpEp?=
+ =?us-ascii?Q?btyCllHkxzJ4J5G2QUwqU0ddzswdOV59Z0oOV7iG9DhEmbexGG49OetEniTZ?=
+ =?us-ascii?Q?3emPvVFVV6rxFWRcNKeIq2Dt9akoBUZjgjZHWpTZau2PVEvc3PRm+19zu6B7?=
+ =?us-ascii?Q?pUekh7rGoevhaBx++K2IXyu98UGT302KR5PscEvL2fClyWyuLDU3TraQdVu3?=
+ =?us-ascii?Q?lhHwg/4ScGUXRzY7HKcDJdMtp6lrHH9OogW0F4mfpaczKyWomqs+k2UiGzpU?=
+ =?us-ascii?Q?fjV0lEru5Psn85KL8TGJt+b65Z5lahvU0fB89JSjbfiSP+N/bBMeM+lrnzKx?=
+ =?us-ascii?Q?offPFXCP3ZiwX+/4tW/Siidhbi1WT/AHgV7eavDYwyolKtzqa5+WawFtD5el?=
+ =?us-ascii?Q?E3zW4nZ5qEaaOg8CiY4=3D?=
+X-Forefront-Antispam-Report:
+	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:satlexmb08.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700013)(1800799024)(7416014)(376014)(82310400026);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Oct 2025 11:30:42.8179
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: f6b91750-5829-4c1e-c930-08de10954526
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[satlexmb08.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	SJ5PEPF000001D7.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR12MB8840
 
-Hi Andrew,
+This patch series adds support for the UFS driver on the AMD Versal Gen 2 SoC.
+It includes:
+- Device tree bindings and driver implementation.
+- Secure read support for the secure retrieval of UFS calibration values.
 
-Am Montag, 20. Oktober 2025, 20:34:16 CEST schrieb Andrew Lunn:
-> > +&enetc_mdio_pf3 {
-> > +	mdio0_rgmii_phy00: ethernet-phy@0 {
-> > +		compatible =3D "ethernet-phy-ieee802.3-c22";
-> > +		reg =3D <0x00>;
-> > +		reset-gpios =3D <&gpio_exp_1v8 1 GPIO_ACTIVE_LOW>;
-> > +		reset-assert-us =3D <1>;
-> > +		reset-deassert-us =3D <200>;
-> > +		interrupt-parent =3D <&gpio_exp_1v8>;
-> > +		interrupts =3D <0 IRQ_TYPE_EDGE_FALLING>;
->=20
-> PHY interrupts are generally level not edge. So this is probably
-> wrong.
+The UFS host driver is based upon the Synopsis DesignWare (DWC) UFS architecture,
+utilizing the existing UFSHCD_DWC and UFSHCD_PLATFORM drivers.
 
-Thanks for the pointer.
+---
+Changes in v1->v2:
+- Address review comments from v1:
+  Rewritten commit message to clarify this as UFS driver for AMD Versal Gen 2 SoC.
+  Removed patch that utilized reserved bits for vendor-specific interrupts.
+  Moved the PHY reset logic to ufs-host-init to prevent unhandled interrupts.
 
-> > +		ti,rx-internal-delay =3D <DP83867_RGMIIDCTL_2_50_NS>;
-> > +		ti,tx-internal-delay =3D <DP83867_RGMIIDCTL_2_00_NS>;
-> > +		ti,led-function =3D <0x05b0>;
-> > +		ti,led-ctrl =3D <0x1001>;
->=20
-> I really would prefer /sys/class/leds was used. In fact, these are not
-> documented, and don't even seem to be implemented in mainline. So you
-> need to drop them.
+v1 link: https://lore.kernel.org/linux-scsi/20250919123835.17899-1-ajay.neeli@amd.com/
+---
 
-Ah, sorry, this slipped in from downstream kernel. Will be removed.
+Ajay Neeli (1):
+  firmware: xilinx: Add APIs for UFS PHY initialization
 
-Thanks and best regards,
-Alexander
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
+Izhar Ameer Shaikh (1):
+  firmware: xilinx: Add support for secure read/write ioctl interface
 
+Sai Krishna Potthuri (2):
+  dt-bindings: ufs: amd-versal2: Add UFS Host Controller for AMD Versal
+    Gen 2 SoC
+  ufs: amd-versal2: Add UFS support for AMD Versal Gen 2 SoC
+
+ .../devicetree/bindings/ufs/amd,versal2-ufs.yaml   |  61 +++
+ MAINTAINERS                                        |   7 +
+ drivers/firmware/xilinx/Makefile                   |   2 +-
+ drivers/firmware/xilinx/zynqmp-ufs.c               | 118 +++++
+ drivers/firmware/xilinx/zynqmp.c                   |  46 ++
+ drivers/ufs/host/Kconfig                           |  13 +
+ drivers/ufs/host/Makefile                          |   1 +
+ drivers/ufs/host/ufs-amd-versal2.c                 | 564 +++++++++++++++++++++
+ drivers/ufs/host/ufshcd-dwc.h                      |  46 ++
+ include/linux/firmware/xlnx-zynqmp-ufs.h           |  38 ++
+ include/linux/firmware/xlnx-zynqmp.h               |  16 +
+ include/ufs/unipro.h                               |   1 +
+ 12 files changed, 912 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/ufs/amd,versal2-ufs.yaml
+ create mode 100644 drivers/firmware/xilinx/zynqmp-ufs.c
+ create mode 100644 drivers/ufs/host/ufs-amd-versal2.c
+ create mode 100644 include/linux/firmware/xlnx-zynqmp-ufs.h
+
+-- 
+1.8.3.1
 
 
