@@ -1,174 +1,147 @@
-Return-Path: <devicetree+bounces-229432-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229433-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id BEB3FBF7723
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 17:43:13 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C5EBBF776B
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 17:46:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 071BF34AE37
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 15:43:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 511003A1671
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 15:45:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 314BB338937;
-	Tue, 21 Oct 2025 15:43:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04024340A57;
+	Tue, 21 Oct 2025 15:45:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ryuKTo8W"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lDAFYe4z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 703E733970C
-	for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 15:43:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE2773FC2;
+	Tue, 21 Oct 2025 15:45:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761061383; cv=none; b=a/gmBIaGq65AH1isnXQl1snDwBLwClvU7/DjmjenAcPC/hf9ZTsoCIRnjvZRmpWQ0Ex8RMenzFJhvA6aEbafLr8NbCaVqfZN7fY4ctaOex35XjrpJZYqy6RbLyYKj4IqFRknToh/EOONXCFI4/ELZxwUZUUVs3Az4x+giwUZB8k=
+	t=1761061531; cv=none; b=D98kEvK3DqYvr8umoozjZsyHEjuVDSNI5S1CL1MONautsSAgZQEje3ZKwBmdwdjCPVxv5EZ5ay2FGuZY+0s/BFfrWuV8yyFUH/ynO1Z6NOqjul9D0vZBbDcfGpXda3VTcTjjHrt2B2NvID2Z9Jr9jTEw5GFuC9Xr3xGwgpWQpV8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761061383; c=relaxed/simple;
-	bh=75YAXkRpS5AYEhu5CiBSWx6SM3C/ihZP1jjcOFswJjQ=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=Px0GrEktfcvt5MkN8cLiUGOsDGNWooJzJuXGQMo4pdsm/hkodfv+FITZ/unevAGNyjIDzOeuvq000unG0KVcf0CKDmopaKBUjBFyTj8HPeltKg8JAbegDL+fsb2n7FSf2eEbhp1IuqcmbJPBRwqQ2LIDYPMda9GhvbkJuDFPwnc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ryuKTo8W; arc=none smtp.client-ip=209.85.128.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-4711f3c386eso28356325e9.0
-        for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 08:43:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1761061379; x=1761666179; darn=vger.kernel.org;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=AhuCz+PGVZVkdCu2Fi23G6TX91sa3helKlTwcjtnmzg=;
-        b=ryuKTo8WANBP2UwKrgzWZgGqU2v43XPXv1l01txN1LTT3+xHVQnLWTKPVrJaP8iamT
-         FuehqICTzqWuU1cfq7yptj/g/C2ZBKv5PDdADz+olNq/oKYwzOIUIlh1bOG8+whT1CdQ
-         GEctkBKY53F5GxoBqeYyhq948ZTzOC94fQNEboUHfgSJVVtjvCDZYVMH1iKr5AsOPbtz
-         VEg/cVrR6Nqde3Slst1tffnTbUC11fiWQ3LvUr07R1OX4UMDkXdNFoWGQ+hzyDgVuQxB
-         niuzsHCAREJ/BLpkQX3fX7lGh0lueEkUj9iHF44t47qChuUtAcny3w9cpU/C6B5CjpIM
-         6vPQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761061379; x=1761666179;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=AhuCz+PGVZVkdCu2Fi23G6TX91sa3helKlTwcjtnmzg=;
-        b=M9xVH0a+aI8aGqbtC4eQVGxH7RfVcHc9n6kV8zCj+G56Z6YFkYfPzLy5WW53/VpjZY
-         SbZ9r+7sujhOD8DfcPaOSRIwsQrtryWunWQX+rkYd3b0Ecl+Ko7YuKZGPM0czKru08l9
-         AIgayPKAk0HZfxDflUP6oa4PYP8VDDrpK15ZEc3LY57RNBDVfbV6jZF2E5TLvNPeICKA
-         XqwgCTyYauuSnGjauqgjdbB6tne+o2uK+RjXJhcDrDPyFy3qkPLa/qkwHBsAawnVKDYx
-         XU+5RASQeDQ96aLv+3m/aeQbUv9FpkeV/7sqklWJzxK/mniXuISbIFu2TVX/zn6Lmnh2
-         0xgg==
-X-Forwarded-Encrypted: i=1; AJvYcCW9HBTZJpGJJ+/zUce3NyzBuSekYfsIrLm1y8JuDhLLkAwcWPLonmsVtFIhYdvcm86xjWogoQEO169G@vger.kernel.org
-X-Gm-Message-State: AOJu0YzWQbuRsQNF2YQILoIvRiJuNZzk7IEbgE1AaXTEjkrVfk1pEry9
-	Ps9sWezrUTHEjyY2JR8i3pXcRuj9ptLd5xo0D0ejU/7Atlijl1eZZNYSVH22Spu9quk=
-X-Gm-Gg: ASbGncsdDENmB00uiQwJcwHUzg8Ey+DgwKrlIWFS4Jj3Zmb7zprHe2N5hIMBjGBcU6V
-	DcfgV5RBzgldMi7yXDWXQji9eJizzp7dVOAzYU8Rj48bKoziv70Dbe9imjnr0LfA6I1Dsp0ndVi
-	BmYCfD6yUIfs0wfu5tTqGidHLmpJsCRpi4GjLarrCx0PoyP/NwoDq436N3oJND1KxxQBDFAz6U8
-	Mfsf+opwxeHC+HOwMo7XEaIEG2QMpbLVJ8N9WDtCt5ubF5KVowcx8g4dlP3nj2qgzfSg1fjNhUQ
-	7NCrMY4/3fc4omVI6GSr6i39JSM6FAFO7VEfxmOvXWQQwiLVsb5qKoFNQdXgyJ6VMVShdoM6QeH
-	hZw9ep1T7Q269jxxpG8UN84Ts0jhsJwOmh1J7av71jm7m8bZdpUp+92JW5rmzjPGYZhTfwBF29V
-	cS2aG78UcUVx64gzo=
-X-Google-Smtp-Source: AGHT+IHp7MSIsvZ3s51V1ZsAKBgYboS1prMkRndq+IeFpziSbp+//AH/rUos6US1MvtXcjHxE4wiZw==
-X-Received: by 2002:a05:600c:1d9b:b0:46e:652e:16a1 with SMTP id 5b1f17b1804b1-47117878458mr130704545e9.7.1761061378667;
-        Tue, 21 Oct 2025 08:42:58 -0700 (PDT)
-Received: from localhost ([2a02:c7c:7259:a00:8d4e:2f09:764b:8b5a])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-474949dd479sm21881025e9.0.2025.10.21.08.42.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 21 Oct 2025 08:42:58 -0700 (PDT)
+	s=arc-20240116; t=1761061531; c=relaxed/simple;
+	bh=dlcvFtDb6OWOoHzfzh8r4khgVAAzJlONTZXsa6DBayk=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=tXCJLxiinoeYm7xGUp3rwFpZazeSnIrZUSUGk7YDwXgvPsFsvpzxe0bL9kTO1bp+Aqa1nlX9iho1BgHayKngbdCRPL8b6N43ntUTDsoci0zxBU+bwH1PQd6GesC+BFcYVkm1q/ClcwxlYLbX9qFaTwDDez+j7daweB0HWiFWERg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lDAFYe4z; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 39119C4CEF1;
+	Tue, 21 Oct 2025 15:45:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761061531;
+	bh=dlcvFtDb6OWOoHzfzh8r4khgVAAzJlONTZXsa6DBayk=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=lDAFYe4zauOxm0ztpPeoaTFpH+ptcIs3FnZjeFSTMg1PKwu2LGzLqEOJEtlEONbTl
+	 tqTTRXbE1NgxbjCRU2lxwchhMEMZbFbAPhUBJrpxMYYU8GBiPGWhV/rLul5d+isNQc
+	 X/I+brRNwBetrzgcZiO84FF2bP8+XXVlDqCw4A3F5iXKJI21eujGXea5uAK6DVMGmV
+	 phcPPxU0HbX1eeyDEfeOkBfDBXkVW2o4sUsSUZRp15wKS2Q+SJFazMG1XRO5i0t94F
+	 Fs+cfYpeGmXFdSOi3SZDF1webtGEOOlQ7ffVW14p+H7Cnz9hO3boNQpE4q2o2R3thg
+	 djeA1fhcseOEw==
+Date: Tue, 21 Oct 2025 10:45:29 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Lorenzo Pieralisi <lpieralisi@kernel.org>
+Cc: linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
+	Frank Li <Frank.Li@nxp.com>, Scott Branden <sbranden@broadcom.com>,
+	Bjorn Helgaas <bhelgaas@google.com>, Rob Herring <robh@kernel.org>,
+	Ray Jui <rjui@broadcom.com>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+	Sascha Bischoff <sascha.bischoff@arm.com>,
+	Thomas Gleixner <tglx@linutronix.de>, Marc Zyngier <maz@kernel.org>
+Subject: Re: [PATCH v4 4/5] PCI: iproc: Implement MSI controller node
+ detection with of_msi_xlate()
+Message-ID: <20251021154529.GA1191613@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Tue, 21 Oct 2025 16:42:57 +0100
-Message-Id: <DDO45O787X9V.1KOKIB22SVSN7@linaro.org>
-Cc: "Bjorn Andersson" <andersson@kernel.org>, "Konrad Dybcio"
- <konrad.dybcio@oss.qualcomm.com>, "Linus Walleij"
- <linus.walleij@linaro.org>, "Rob Herring" <robh@kernel.org>, "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
- "Konrad Dybcio" <konradybcio@kernel.org>, "Srinivas Kandagatla"
- <srini@kernel.org>, <linux-arm-msm@vger.kernel.org>,
- <linux-gpio@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <linux-sound@vger.kernel.org>
-Subject: Re: [PATCH v2 3/4] arm64: dts: qcom: qcm2290: add LPASS LPI pin
- controller
-From: "Alexey Klimov" <alexey.klimov@linaro.org>
-To: "Dmitry Baryshkov" <dmitry.baryshkov@oss.qualcomm.com>
-X-Mailer: aerc 0.20.0
-References: <20251007-rb1_hdmi_audio-v2-0-821b6a705e4c@linaro.org>
- <20251007-rb1_hdmi_audio-v2-3-821b6a705e4c@linaro.org>
- <b6223af9-2d9e-4ccd-b297-79f63167242b@oss.qualcomm.com>
- <DDEN5NSLDIHD.C1IELQW0VOG3@linaro.org>
- <zmi5grjg2znxddqzfsdsr35ad5olj3xgwwt6hvkiaynxzm5z33@gsgrdguj563n>
- <DDO0LYS7UTEW.3A9WGTAA5DKVO@linaro.org>
- <56vmqgrjy3je7omzirxnfxtuocebbj356iaew5thgkagi35464@hh34y7efssow>
-In-Reply-To: <56vmqgrjy3je7omzirxnfxtuocebbj356iaew5thgkagi35464@hh34y7efssow>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20251021124103.198419-5-lpieralisi@kernel.org>
 
-On Tue Oct 21, 2025 at 2:03 PM BST, Dmitry Baryshkov wrote:
-> On Tue, Oct 21, 2025 at 01:56:09PM +0100, Alexey Klimov wrote:
->> On Fri Oct 17, 2025 at 11:42 PM BST, Bjorn Andersson wrote:
->> > On Fri, Oct 10, 2025 at 01:29:38PM +0100, Alexey Klimov wrote:
->> >> On Tue Oct 7, 2025 at 1:39 PM BST, Konrad Dybcio wrote:
->> >> > On 10/7/25 4:03 AM, Alexey Klimov wrote:
->> >> >> Add the Low Power Audio SubSystem Low Power Island (LPASS LPI) pin
->> >> >> controller device node required for audio subsystem on Qualcomm
->> >> >> QRB2210 RB1. QRB2210 is based on qcm2290 which is based on sm6115.
->> >> >>=20
->> >> >> While at this, also add description of lpi_i2s2 pins (active state=
-)
->> >> >> required for audio playback via HDMI/I2S.
->> >> >>=20
->> >> >> Cc: Srinivas Kandagatla <srini@kernel.org>
->> >> >> Signed-off-by: Alexey Klimov <alexey.klimov@linaro.org>
->> >> >> ---
->> >> >
->> >> > [...]
->> >> >
->> >> >> +			lpi_i2s2_active: lpi-i2s2-active-state {
->> >> >> +				data-pins {
->> >> >> +					pins =3D "gpio12";
->> >> >> +					function =3D "i2s2_data";
->> >> >> +					bias-disable;
->> >> >> +					drive-strength =3D <8>;
->> >> >> +					output-high;
->> >> >
->> >> > I.. doubt output-high is what you want?
->> >>=20
->> >> Why? Or is it because of some in-kernel gpiod?
->> >>=20
->> >
->> > What does "output-high" mean for a non-gpio function?
->>=20
->> This is not efficient. It will be more useful to go straight to
->> the point.
->
-> It is efficient. It makes everybody think about it (and ask the same
-> question in future) instead of just depending on maintainers words.
+On Tue, Oct 21, 2025 at 02:41:02PM +0200, Lorenzo Pieralisi wrote:
+> The functionality implemented in the iproc driver in order to detect an
+> OF MSI controller node is now fully implemented in of_msi_xlate().
+> 
+> Replace the current msi-map/msi-parent parsing code with of_msi_xlate().
+> 
+> Since of_msi_xlate() is also a deviceID mapping API, pass in a fictitious
+> 0 as deviceID - the driver only requires detecting the OF MSI controller
+> node not the deviceID mapping per-se (of_msi_xlate() return value is
+> ignored for the same reason).
+> 
+> Signed-off-by: Lorenzo Pieralisi <lpieralisi@kernel.org>
+> Reviewed-by: Frank Li <Frank.Li@nxp.com>
+> Cc: Scott Branden <sbranden@broadcom.com>
+> Cc: Bjorn Helgaas <bhelgaas@google.com>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: Ray Jui <rjui@broadcom.com>
+> Cc: Manivannan Sadhasivam <mani@kernel.org>
+> Cc: "Krzysztof Wilczyński" <kwilczynski@kernel.org>
 
-No. Imagine instead of this email you've got smth like this:
-"I.. doubt efficient is what you want?"
+Acked-by: Bjorn Helgaas <bhelgaas@google.com>
 
->> This description of pins was taken from Qualcomm downstream code
->> and the similar patch was applied (see provided URL in the prev email).
->
-> And we all know that downstream can be buggy, incomplete, etc.
->
->> Back to your question -- does it matter here if it is gpio or non-gpio
->> function?
->
-> It does. The I2S data pin is supposed to be toggled in some way by a
-> certain IP core. What would it mean if we program output-high? Will the
-> pin still be toggled (by the function) or stay pulled up (because of the
-> output being programmed)?
+I assume this is material for Rob or Thomas?
 
-Here the topic was switched/replaced. And the other referenced email
-suggests that they don't want to see output property regardless.
-
-Anyway, as it was indicated in my previous email the problem they
-were trying to refer to was kinda understood.
-
-Thanks,
-Alexey
+> ---
+>  drivers/pci/controller/pcie-iproc.c | 22 +++++-----------------
+>  1 file changed, 5 insertions(+), 17 deletions(-)
+> 
+> diff --git a/drivers/pci/controller/pcie-iproc.c b/drivers/pci/controller/pcie-iproc.c
+> index 22134e95574b..ccf71993ea35 100644
+> --- a/drivers/pci/controller/pcie-iproc.c
+> +++ b/drivers/pci/controller/pcie-iproc.c
+> @@ -17,6 +17,7 @@
+>  #include <linux/irqchip/arm-gic-v3.h>
+>  #include <linux/platform_device.h>
+>  #include <linux/of_address.h>
+> +#include <linux/of_irq.h>
+>  #include <linux/of_pci.h>
+>  #include <linux/of_platform.h>
+>  #include <linux/phy/phy.h>
+> @@ -1337,29 +1338,16 @@ static int iproc_pcie_msi_steer(struct iproc_pcie *pcie,
+>  
+>  static int iproc_pcie_msi_enable(struct iproc_pcie *pcie)
+>  {
+> -	struct device_node *msi_node;
+> +	struct device_node *msi_node = NULL;
+>  	int ret;
+>  
+>  	/*
+>  	 * Either the "msi-parent" or the "msi-map" phandle needs to exist
+>  	 * for us to obtain the MSI node.
+>  	 */
+> -
+> -	msi_node = of_parse_phandle(pcie->dev->of_node, "msi-parent", 0);
+> -	if (!msi_node) {
+> -		const __be32 *msi_map = NULL;
+> -		int len;
+> -		u32 phandle;
+> -
+> -		msi_map = of_get_property(pcie->dev->of_node, "msi-map", &len);
+> -		if (!msi_map)
+> -			return -ENODEV;
+> -
+> -		phandle = be32_to_cpup(msi_map + 1);
+> -		msi_node = of_find_node_by_phandle(phandle);
+> -		if (!msi_node)
+> -			return -ENODEV;
+> -	}
+> +	of_msi_xlate(pcie->dev, &msi_node, 0);
+> +	if (!msi_node)
+> +		return -ENODEV;
+>  
+>  	/*
+>  	 * Certain revisions of the iProc PCIe controller require additional
+> -- 
+> 2.50.1
+> 
 
