@@ -1,141 +1,141 @@
-Return-Path: <devicetree+bounces-229312-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229313-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5461BF5DEC
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 12:48:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E8D7DBF5E65
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 12:54:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 984FF19803C2
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 10:48:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 789CF1896298
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 10:54:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B56E32E6CAB;
-	Tue, 21 Oct 2025 10:47:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D024F32AADD;
+	Tue, 21 Oct 2025 10:54:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="T9xcWVJC"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="y6Ggoros"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87390221FC8;
-	Tue, 21 Oct 2025 10:47:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28DD32EE263;
+	Tue, 21 Oct 2025 10:54:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761043677; cv=none; b=Z04bn4X7ZzOxJ3CiLgo89b5NYHSCqx1xgTaQA5lrVvefQ+ZK/aAHY1S1hcpWX/41SO++lTkPSstSVvI/vkB+opVajZ1MR+lJXXY1BUQA/BVZNSBVKoON4lUbI+uu2grDEMdGEnKi5R6RXtHNmXx8XyN+vUhRipLOFOpFgUjNC9o=
+	t=1761044056; cv=none; b=PNnF8FKum2VwY+n+zpnrBz692F2+MJLeoBaFsZGGxsgh7cC/Zr0d7XBtE5qH+Wd7uauWFI9LLGUvSkm6T/bed7YgkwOTMSW4lJ67FfpXpvbJZOPe6AwAqZ/uQCHEDXFmosdYgwe6U8wSgi146M5I7EJ0THEdRheP8WAGkGk9kX4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761043677; c=relaxed/simple;
-	bh=Er3rC4K67KcfOOZ9kFeULF6yyYyRLlEqI1cu686pGgg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=R+fFtN5SNwx3OKBnOLMUBwGmesYqXf/QwVpE8JBZUGLJUV0bPw1S8qINH2CY3OoCZA3cZgb0osTbSyH0ocPfgyh3cw8bHlZAzgRxcWuY+lQAy9ArRxgtsahQ8dKr/fRm/EwOuncVpQcCkzFUaSfI0lLPxicdEuuXnwfxWWlso4U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=T9xcWVJC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9AC3EC4CEF1;
-	Tue, 21 Oct 2025 10:47:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761043677;
-	bh=Er3rC4K67KcfOOZ9kFeULF6yyYyRLlEqI1cu686pGgg=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=T9xcWVJCFQ5WgexCAZcZ0UP0rkbrUojuml04Itj+1UGT3FEZWYmbfbvgDkQETKTMm
-	 E/8USDX1pjetJVyJfNtq1ansJfULtZ0aNCHg7ngWMdq9ueugd6qNwPPQY+53poKJ7K
-	 y4fsy+cMb3C2JjDH0AxFhHrjg5fvzpusaQ8suY0TwyKfaZlXGxyQ8II4mTiBbk+cbH
-	 HVhHbwN2WvedLBZfg/i9UsLWrjdOlatqG3WE/vF2D5pd65EntRC0hOcNPHcGYRAFJA
-	 vwgiOtsFQGLy7HDWOw1dju3QIv4zMS/IhCdg/yNG5shZM4FDTTGO3roj1sA6XEye+R
-	 J9lWqwbsf/52A==
-Message-ID: <b041fde6-afea-4233-b00b-4e8cbb294c4a@kernel.org>
-Date: Tue, 21 Oct 2025 12:47:52 +0200
+	s=arc-20240116; t=1761044056; c=relaxed/simple;
+	bh=QA7zZbPrHE/N16ZUwYubJEEwrzdcbm5YqCVo0vzb2oI=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=G+DJHkkbvzvBzy+elKLuxYyv/ZNDJVRe9GubbfJX/zwo2WRQwCH+oZfOmXQI2dAwv2AlRvpkQIvNiiDjqM0IMKD2/OCTFcgnnFL5ZPtwVqOUdZbaJJF6Co17MjFn1+YSOr1qA++q+M5Mt/+9hOYeDTwtnGzY5il8mMJI8fp9tP0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=y6Ggoros; arc=none smtp.client-ip=148.163.135.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
+	by mx0a-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59L9qf5B026565;
+	Tue, 21 Oct 2025 06:54:12 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=DKIM; bh=PlkVErwF/spnR+hzWlLrq+IBcGA
+	oaLKdUbIfvjdLTLs=; b=y6Ggorosz5sEI9BImiqTDP+iP+pxaNXknaSK2k5O/fU
+	0rnTIf3fdfpoebv5ftiuzybg3eqAEz5GoxK77DVSFvGvWiWHQLUXxX7UGrAcu5zo
+	21zbTL5oSj1FGfHtIV2VJsivf4uzlX1fmbUXfF9/zdJOItqBgFoajQ825Peqc2+D
+	YRNd6iAnUEJPbLzjG8ts/u7lDSn6X2tyEPDTq3Cf37Y816riD/kvGUyMO57Ozhtr
+	tKtWUDkv+LAqwUhhKZYYa2tM4vNbxQGYvuhbg3Ef9Vo+fLCuvrjJgUqpvuF5DJzO
+	A4hruaOXiESvflodYxOTChqicGwIOyPhfwd63Zn5pFQ==
+Received: from nwd2mta3.analog.com ([137.71.173.56])
+	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 49v7t3f453-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 21 Oct 2025 06:54:12 -0400 (EDT)
+Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
+	by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 59LAsBGS051714
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 21 Oct 2025 06:54:11 -0400
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by ASHBMBX9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.37; Tue, 21 Oct
+ 2025 06:54:11 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server id 15.2.1748.37 via Frontend
+ Transport; Tue, 21 Oct 2025 06:54:11 -0400
+Received: from Ubuntu.ad.analog.com (AMICLAUS-L01.ad.analog.com [10.48.65.161])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 59LAs1Ki002507;
+	Tue, 21 Oct 2025 06:54:03 -0400
+From: Antoniu Miclaus <antoniu.miclaus@analog.com>
+To: <jic23@kernel.org>, <robh@kernel.org>, <conor+dt@kernel.org>,
+        <linux-iio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+CC: Antoniu Miclaus <antoniu.miclaus@analog.com>
+Subject: [PATCH 0/6] iio: adc: ad4080: add support for AD4083, AD4086, and AD4087
+Date: Tue, 21 Oct 2025 10:53:42 +0000
+Message-ID: <20251021105349.21145-1-antoniu.miclaus@analog.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] pwm: rz-mtu3: Share parent device node to MTU3 PWM
-To: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
- Martyn Welch <martyn.welch@collabora.com>
-Cc: kernel@collabora.com, Sebastian Reichel
- <sebastian.reichel@collabora.com>, linux-pwm@vger.kernel.org,
- linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>,
- Saravana Kannan <saravanak@google.com>, devicetree@vger.kernel.org
-References: <20251009162445.701589-1-martyn.welch@collabora.com>
- <7uuuqhmkmmucmeeo5fybzld62rybyq6fjxwqqnxqr6eufis2ze@xfc2owdzfcs5>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <7uuuqhmkmmucmeeo5fybzld62rybyq6fjxwqqnxqr6eufis2ze@xfc2owdzfcs5>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDE4MDA2MiBTYWx0ZWRfX0UXogsbquNey
+ JvDpYLv/vDK4Url1qRolViHhxML+0y48AIvk/gFeRSlJIgZkTWLNGB0jYUAopxiDgpQEJ9ccy4J
+ E6nBAIeT4TpvjLcNbHm5Xqd/T8j/19iW+BPKJPCnDymRBh+Ri8j3w8QuAxhZ2/YMrdev9VgvrQs
+ 8rvHsn2Pksg4Qxo94F9ShafoJXitJH7SC2o/e4dxAiJ8WcNsoSCASB5GawInAb2VIWxw2tL9jFG
+ lFI76N1ym4BHTojpmNckIr6fArDTPxvs0XqSYHQfzbYyLanR51WzWRO9rNpj7u+c6rEad26Uo+4
+ R1+bVYAFzfvZ2oHnrivrvPfXFSCdGk9SNvPAVxaPz7YAYJao9UKExhFD09tcE2GxTz+2u0j/bs4
+ vJvPg8z2cwXV7RGIefAHcF+BIw4a4g==
+X-Authority-Analysis: v=2.4 cv=UPPQ3Sfy c=1 sm=1 tr=0 ts=68f76654 cx=c_pps
+ a=PpDZqlmH/M8setHirZLBMw==:117 a=PpDZqlmH/M8setHirZLBMw==:17
+ a=x6icFKpwvdMA:10 a=VkNPw1HP01LnGYTKEx00:22 a=JeAymjvy0TpzZO54nA0A:9
+ a=cPQSjfK2_nFv0Q5t_7PE:22
+X-Proofpoint-ORIG-GUID: HDqIAVHEKQ_fhqWZUSU61G8FhEGsiYuY
+X-Proofpoint-GUID: HDqIAVHEKQ_fhqWZUSU61G8FhEGsiYuY
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-10-21_01,2025-10-13_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 bulkscore=0 spamscore=0 malwarescore=0 priorityscore=1501
+ lowpriorityscore=0 impostorscore=0 clxscore=1015 phishscore=0 adultscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2510020000 definitions=main-2510180062
 
-On 21/10/2025 12:19, Uwe Kleine-König wrote:
->> diff --git a/drivers/pwm/pwm-rz-mtu3.c b/drivers/pwm/pwm-rz-mtu3.c
->> index ab39bd37edafc..5825875fa0128 100644
->> --- a/drivers/pwm/pwm-rz-mtu3.c
->> +++ b/drivers/pwm/pwm-rz-mtu3.c
->> @@ -523,6 +523,12 @@ static int rz_mtu3_pwm_probe(struct platform_device *pdev)
->>  	if (ret < 0)
->>  		return ret;
->>  
->> +	/*
->> +	 * There is only one DT node, get it from the parent MFD device, so
->> +	 * that the PWM channels can be referenced via phandles
->> +	 */
->> +	dev->of_node = dev->parent->of_node;
->> +
-> 
-> I (very quickly) talked to Krzysztof about this. He said that
-> of_node_get() should probably be used here. I wonder if
-> device_add_of_node() is the right function to use (which uses
-> of_node_get(), also handles fwnode and implements some safeguards).
+This patch series extends the AD4080 driver to support three additional
+variants in the AD408x family of high-speed SAR ADCs: AD4083, AD4086,
+and AD4087.
 
+Each variant has different specifications that require separate driver
+configurations:
 
-I am not so sure about device_add_of_node(). You do not need to
-get_device(), because reference is already hold. Although setting
-dev->fwnode might make sense... But, not that important I think, works
-with me.
+- AD4083: 16-bit resolution, LVDS CNV clock count max = 5
+- AD4086: 14-bit resolution, LVDS CNV clock count max = 4
+- AD4087: 14-bit resolution, LVDS CNV clock count max = 1
 
+The series follows a consistent pattern for each new device:
+1. Add device tree binding support with appropriate compatible string
+2. Implement driver support with chip-specific configuration
 
-Best regards,
-Krzysztof
+All new devices reuse the existing driver infrastructure established for
+the AD4080/AD4081/AD4084 family, requiring only chip-specific channel
+definitions and chip info structures.
+
+The devices cannot use fallback compatible strings to the base AD4080
+as they have significantly different resolutions and timing requirements
+that necessitate distinct driver configurations.
+
+Antoniu Miclaus (6):
+  dt-bindings: iio: adc: adi,ad4080: add support for AD4083
+  iio: adc: ad4080: add support for AD4083
+  dt-bindings: iio: adc: adi,ad4080: add support for AD4086
+  iio: adc: ad4080: add support for AD4086
+  dt-bindings: iio: adc: adi,ad4080: add support for AD4087
+  iio: adc: ad4080: add support for AD4087
+
+ .../bindings/iio/adc/adi,ad4080.yaml          |  3 ++
+ drivers/iio/adc/ad4080.c                      | 45 +++++++++++++++++++
+ 2 files changed, 48 insertions(+)
+
+-- 
+2.43.0
+
 
