@@ -1,280 +1,270 @@
-Return-Path: <devicetree+bounces-229519-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229520-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C28F3BF8E09
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 23:03:45 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 855E1BF8E5D
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 23:08:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7CACF3ADAED
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 21:03:44 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 398AF4F5EB1
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 21:08:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 019EB27FB2B;
-	Tue, 21 Oct 2025 21:03:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F810286400;
+	Tue, 21 Oct 2025 21:08:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lC7NtZwG"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="kfXkYWgL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f45.google.com (mail-oo1-f45.google.com [209.85.161.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D010228000C
-	for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 21:03:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6572327B324
+	for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 21:08:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761080620; cv=none; b=gx+MriM+On6Mys5RT4tuOUyPqErfOOM/z9T3+w9C50lA8wJTjw0/71sqoTkaro4P8UsdAdJ5x9z9cNUBMoDH5ub8gzzK9SRrJnFBEF+22pSMvwMbeJsflYjda5hE/xaLPNfVq4MT+SSjmYbqxgR4kcPicYWG7yPEA2l1TadWw9c=
+	t=1761080891; cv=none; b=liCfug/+Sh0vZn3OSeREY4k2mw/8lW3fI4wieK9UwmdEg9Sun+VavisAkf07fxWerDx+HXpj7sjljLbpe3RgMRe56SxYt4Bwkqpq2B8p1SqehH9APJjxZqCvm6JzL8KKy2ZlhVXMIKuPNYBE2ob4qjrZC4dv6l/CsVZWBs+YE+Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761080620; c=relaxed/simple;
-	bh=fsNzpsKif2XiBWrqxMzGb+TCCzigMM4Kzyxjq7uUsEY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=il/2Z+5ygSJoEf9AKyb1Pt/oTMCysnJWnNxn0OpS39/kGNWVvZM4B6w8vAdzwq8KhudDeaAw8Gt/3yr0T0YTqazsoMJjcGACst5QOQPjj74xE4bwqezKJOGAu77G5ByZE0+1/kd9KQuEBiZ5G8KTW9eZjyucCLsvAd8ed21ULLM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=lC7NtZwG; arc=none smtp.client-ip=209.85.161.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-oo1-f45.google.com with SMTP id 006d021491bc7-651cda151f0so2519848eaf.3
-        for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 14:03:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1761080618; x=1761685418; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=tMiBejLPKhYPEtqA8D8Oln6QNM1cO/EDknKj+TQbAkw=;
-        b=lC7NtZwGod3lqgdTMQkq0Pd/FPzDYv6OQuX36tUrXktms5FdY5oVd1j94iP/1sqSGp
-         G5v80beK/8dIzZ1HJsb1howfnJYiMwhg0MbbmDQaHEuNJRVtGVN9BDX9WJrzzpnND4n9
-         3nqCX4BdMeWJ9v+7NJ8fkTnTAUNOliNDgCLXEX8jely1G8YJRtAcUydvDAyMPbKUXkpl
-         6iw8Z3BM4DK3vsnBR0i8lHcHzzv72MqDInH93NuM8BcmuJl514Z7EHvgLqbefuHSt2BJ
-         X/kutIdcHnLb9gVCmbnbnaUFq2cGknUYzjKRDRtnpgChOAbwioDZ2tTO5omUQHFsM0Jk
-         Hq0A==
+	s=arc-20240116; t=1761080891; c=relaxed/simple;
+	bh=hKP7hv2q/vLR9OB/KNuT7rmHgtOvMGEK2wehJ7tZQGs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=WZEEvO/VdDFYXiyqT9D0U0xsW73YNGhV4smRc2koaUAL+09gAiMlyMvZ7FkV/DvDMiqjRQ6vq1O/W9TocCpuMNQPO75w0QJ2i5ML66D+4Wk17/m+udLjDtLrEj9uadTul0gN7mec1CMVQwFGUfxUFkxWsH9fltLC50C4qdMMSMA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=kfXkYWgL; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59LExOTf027006
+	for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 21:08:09 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	kUHcX9qshXGQudm9WWiL14vKBawx4q0zuajE6NVvFCA=; b=kfXkYWgLZ9WSmfrm
+	+c2+EYRsE8AppJZGlB+pzMgB5LzUyRuzknjgqbeMQsYuAWojcxD05Ffuo4qTreHc
+	w5f3GkXtDXuDopf5/Ns2FcItb3TabLiPWANSR9ekBCdJbR7wGhYDS4Ew7Yx84BEm
+	OMKvPE2LOzMlD6DnXqvu3+zmTLqDv9AFpRD7j6kY0++X5gQ0kbq1K+hz8A8UYO0D
+	pjhnL7znYNbtb1BZAJGMeNPWx/myo+tuWXGUiXLbBxTX0RugG7I2JgB0JCmnD3Ye
+	LIw/RCqbcdTy3vp6ZLaKPYs4bXv9/XNVISlWtUMOhOO93+A2aOpp1c4B0KJ0WfdA
+	g2gOCA==
+Received: from mail-pf1-f200.google.com (mail-pf1-f200.google.com [209.85.210.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49v08pjeks-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 21:08:08 +0000 (GMT)
+Received: by mail-pf1-f200.google.com with SMTP id d2e1a72fcca58-7900f597d08so5333017b3a.1
+        for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 14:08:08 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761080618; x=1761685418;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=tMiBejLPKhYPEtqA8D8Oln6QNM1cO/EDknKj+TQbAkw=;
-        b=GDRhz03t7nKRhr9xZZ9GFu2jB+X4ZgauXArVLoG3tXrWjnDO9mHfbuUGvRh+OGAPXt
-         e47PQARwWiaNNxuz56Y7jsYrzZbPEqTApDNpnhb9jjfzrhD3tbCWXuEbHg5SoeJG0qRJ
-         1Q6n4UkP/F/vzrPvT4TmwETJExeetxt6HL+6bQSQ5Tn5R8vCDFNHHshfMfHLQlM0ptO8
-         p6CZNTlJk4I2B38FEDwZEoSeavFQBQ0BTKiVsPkaK1roNCU+Y8ENLF7nIlfLspUyfG5f
-         EWfbQbUCxomSCvMslVhjv+WH9rvkEGU7oqyZLO3ObmLaJ2cfhkYnS8WYeRr+rmBK/Qq9
-         t3qQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW9910m74ifL5t3llJNVPNREGa/qe9BQfHsnkoEQ1WOYN6fdP7GLf8OgD4Ck235U9XmCPLkdhOKauAj@vger.kernel.org
-X-Gm-Message-State: AOJu0YzqUzbjzjtrCCF55TxVJ/CZyzzIn0ZLcLkK6N2u8pnNXDZPlBgx
-	gi6KKXQZZHGv4vH/Kn9LejsaPbWrj9jg3CZcFkwYrxmNtmqugRG+SQCfd56OqfTka/jygsP+l/w
-	S3r/V346sRUJKDwGltq/HNobs9WgHqopnLl4tzmtLJg==
-X-Gm-Gg: ASbGncuttD4leSKCUz98R1KQ2WlmgErVNd19+2y+jbwpSS8G+gHoCliGAXaXEHoxAmu
-	7SCOHzVAzgzLPjB273US5rNdGcQoyX4gv1twZy1C2cvEbzM5YBOAc3rKHOy/Ij2yfkU2jHm9BhN
-	oD9+kLpIWX6jhvccuPSXSVCwQB3Dsd3DFY6mhOsJp4SuNBPH2zO33fNAHU8HJaa1iDbg4JtdOSv
-	bEbxnwZdobbDB3LEBq/buNgG9FQyJaI83P2Ga3f9CWIHMt1Vbe2iwFB6vQIfoV24IGxH/gHKUB9
-	vHjnEWs=
-X-Google-Smtp-Source: AGHT+IGhhxXOWUhypLR513EstnVpxP2n9PBtNjWPgYEhC5md6NPI4NHWrGoHnBDHjXCimVbmmxclmA3LGRFQCjGw+oI=
-X-Received: by 2002:a05:6820:201:b0:64e:8106:bb91 with SMTP id
- 006d021491bc7-651c7e6c8c2mr7330485eaf.8.1761080617763; Tue, 21 Oct 2025
- 14:03:37 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1761080887; x=1761685687;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=kUHcX9qshXGQudm9WWiL14vKBawx4q0zuajE6NVvFCA=;
+        b=Z+fZsrNw8KRNEzRfUYpFQtpb7vceVbeHGbOi8L+GkqtyADahAgh2o4z2Bo47tYbwh8
+         FUZUu9vLmWkB5ymMJHnr5aKU7vuDpZBxxFuNNgnFJyN8ZE4aPTCYwLD77oROJsQ92FQ8
+         G7Z9bcM5qvUN2PmF/YX5GWqG+7pCeaW4xIO+jBx0ojqI5VoQyIc0A4zJtKO7ROara4K0
+         JUFO9hJpsgnubLsMhyimzJ+5wbuyQg1f3IvNHBG2uWT9/+AAFwuJIbe9DHufiPAcWGt7
+         Byy0FBWwswQ961PccLGuwy4vC+bG/plP/bRg0rr2vxOEPIdPJyPkRqAaVTWc8/k2EeOf
+         T+Og==
+X-Forwarded-Encrypted: i=1; AJvYcCVCYrErlVXwuG8jTrpUmNY7nTmo145O1F9j+EPkNm3fxc+cpe1JPdoGjqIoOyM95wueoEhajS5RDcwu@vger.kernel.org
+X-Gm-Message-State: AOJu0YxZ5PQJEbtGZStlyZux7ho3beqw/byOVEHpXpCKX1mUTnnmJUFS
+	9LNkO0IaeeMDnouw2kC8F9KN7dhoYRuqAD+YErK3vjGkthvRroQ1dNN+NvZN2qiFnOV81g+372Z
+	5JWFSXw3plL5Fe0Lgvp1BLsy+f2YwmJj5IWRtdkZGp+D/18irtLUFO1CnoBO94cM1
+X-Gm-Gg: ASbGncvy1ia2kuNfpQll1dud32VD/ZjDk3UesWwoIOVNH5pQc3wjG2EuRtEVeZA+uke
+	8BTCn1Pnqfp++colFXjtdr5+ioFaEpBmBoyRB1WHNJiGp5ZzvEqlSv+SeyJOj1vroyBwOEUhOuo
+	izHl1rWSQ+eDVsqU61qoAwtd4mfW/7HhZitn5OfiMK5L/YC4mkccMsSjPWVI1KipBKguNRjf6TP
+	q9LHwGKRJo2bj0z9Qfo4frLcST5awVgHYfHnQMDIdwZ9rRWrfS3irSA18OfVZDfPbuwXPZ1oZpV
+	UzrdC8nfIFK7IyUOcBo7m+oNXFKK+wFYjG1fIVfwwFIiw/cL/i8bUmWYdomXKJdvbcwJozHaHTI
+	1yJHTERcx4Vtl5bOR6lviJ166wGT0ieSrvA==
+X-Received: by 2002:a05:6a20:7287:b0:262:82a6:d932 with SMTP id adf61e73a8af0-334a86256f9mr22761788637.48.1761080887340;
+        Tue, 21 Oct 2025 14:08:07 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IESdm7op53/MzUS5K7s1gaOrJSGLx+p35WP7TbnHImOwmOCXg89kxayJjZ68H5wLE/Jqdy/hA==
+X-Received: by 2002:a05:6a20:7287:b0:262:82a6:d932 with SMTP id adf61e73a8af0-334a86256f9mr22761758637.48.1761080886737;
+        Tue, 21 Oct 2025 14:08:06 -0700 (PDT)
+Received: from [192.168.0.166] ([49.205.248.205])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b6cdafadb8dsm607908a12.1.2025.10.21.14.08.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 21 Oct 2025 14:08:06 -0700 (PDT)
+Message-ID: <e1bfadd4-2d53-1953-beef-1350594c5010@oss.qualcomm.com>
+Date: Wed, 22 Oct 2025 02:37:59 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251013-automatic-clocks-v1-0-72851ee00300@linaro.org>
- <20251013-automatic-clocks-v1-8-72851ee00300@linaro.org> <4383c2fb-5267-4b7b-90e9-6046c2686912@kernel.org>
-In-Reply-To: <4383c2fb-5267-4b7b-90e9-6046c2686912@kernel.org>
-From: Peter Griffin <peter.griffin@linaro.org>
-Date: Tue, 21 Oct 2025 22:03:26 +0100
-X-Gm-Features: AS18NWDGDGo3ssrAJMIVVsew6HYnxHA2tTZVJevoKlj0HODQs8C9nRRKXRt97mU
-Message-ID: <CADrjBPov=7t876dqpTS71j_xNFOrJv7_Ym7abYVLzjypoOYKng@mail.gmail.com>
-Subject: Re: [PATCH 8/9] clk: samsung: gs101: Enable auto_clock_gate mode for
- each gs101 CMU
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
-	=?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
-	Tudor Ambarus <tudor.ambarus@linaro.org>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Sam Protsenko <semen.protsenko@linaro.org>, 
-	Sylwester Nawrocki <s.nawrocki@samsung.com>, Chanwoo Choi <cw00.choi@samsung.com>, 
-	Will McVicker <willmcvicker@google.com>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, kernel-team@android.com
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH v2 1/8] media: dt-bindings: qcom-kaanapali-iris: Add
+ kaanapali video codec binding
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+        Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>,
+        Abhinav Kumar <abhinav.kumar@linux.dev>,
+        Bryan O'Donoghue <bod@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Vishnu Reddy <quic_bvisredd@quicinc.com>
+References: <20251017-knp_video-v2-0-f568ce1a4be3@oss.qualcomm.com>
+ <20251017-knp_video-v2-1-f568ce1a4be3@oss.qualcomm.com>
+ <c9d8f76a-513f-4a09-bba4-cb8f0df1d2fe@kernel.org>
+ <034bf6f4-0a49-4973-8536-28526b3409d1@oss.qualcomm.com>
+ <d19b1279-3031-43b9-ac73-7e5f990802ed@kernel.org>
+From: Vikash Garodia <vikash.garodia@oss.qualcomm.com>
+In-Reply-To: <d19b1279-3031-43b9-ac73-7e5f990802ed@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDE4MDAwMCBTYWx0ZWRfX18K8qCJhd9o6
+ hosXCI9xdC+IYVSm46T2JiZ7SxIng8jAB7ow6dwUaJbE5yxwS7M05V+hI0EvmqqT9BCNuUhcIU9
+ g1k/Lk3QUDVUFG2lf+EQaMCkQ583uCSpZE5Qn/6qpuIc5yfD3pH/yQvA2mSc7Z9plEMwcF6JND/
+ ebhxPgQ/Q1EFGWlPHN4DGjCHtmHz0NvYCxB+SGh+y3UkspnhK2diGpcajqKQK45HxMveQk8bixu
+ wwqX6C06xUEwiGMKnjJhxSvEU6ItFhh74kI5zotIja4CZ+5oGuquSr+E353z2I1rkd/5Gy+Myp2
+ lSFcHze+V2gv6SsGjY06TScx7MFRuhEfNCNfpIRBzNz/Wq26goiE4r3OKkZ+Ba/4awSydCy+FeM
+ O2t3xC5kd0MnSHqnB7LPR/yyTMP3pA==
+X-Proofpoint-GUID: A5KORuBodlwohzmpHnYZQRODRb58ZokN
+X-Authority-Analysis: v=2.4 cv=Up1u9uwB c=1 sm=1 tr=0 ts=68f7f638 cx=c_pps
+ a=mDZGXZTwRPZaeRUbqKGCBw==:117 a=Ysf2FyB+yl5xZy2y99iGVQ==:17
+ a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=mYW7RsAQjGC2aXFlLLIA:9 a=QEXdDO2ut3YA:10 a=zc0IvFSfCIW2DFIPzwfm:22
+X-Proofpoint-ORIG-GUID: A5KORuBodlwohzmpHnYZQRODRb58ZokN
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-10-21_03,2025-10-13_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ lowpriorityscore=0 adultscore=0 suspectscore=0 malwarescore=0 clxscore=1015
+ impostorscore=0 bulkscore=0 priorityscore=1501 spamscore=0 phishscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2510020000 definitions=main-2510180000
 
-Hi Krzysztof,
 
-Thanks for the review feedback.
+On 10/22/2025 12:45 AM, Krzysztof Kozlowski wrote:
+> On 21/10/2025 20:55, Vikash Garodia wrote:
+>>
+>> On 10/18/2025 9:28 PM, Krzysztof Kozlowski wrote:
+>>> On 17/10/2025 16:16, Vikash Garodia wrote:
+>>>> +  clock-names:
+>>>> +    items:
+>>>> +      - const: iface
+>>>> +      - const: core
+>>>> +      - const: vcodec0_core
+>>>> +      - const: iface1
+>>>> +      - const: core_freerun
+>>>> +      - const: vcodec0_core_freerun
+>>>> +      - const: vcodec_bse
+>>>> +      - const: vcodec_vpp0
+>>>> +      - const: vcodec_vpp1
+>>>> +      - const: vcodec_apv
+>>>> +
+>>>> +  dma-coherent: true
+>>>> +
+>>>> +  firmware-name:
+>>>> +    maxItems: 1
+>>>> +
+>>>> +  interconnects:
+>>>> +    maxItems: 2
+>>>> +
+>>>> +  interconnect-names:
+>>>> +    items:
+>>>> +      - const: cpu-cfg
+>>>> +      - const: video-mem
+>>>> +
+>>>> +  interrupts:
+>>>> +    maxItems: 1
+>>>> +
+>>>> +  iommus:
+>>>> +    minItems: 3
+>>>> +    maxItems: 8
+>>>
+>>> I don't understand why this is flexible. Make it fixed size and anyway -
+>>> list the items.
+>>
+>> kaanapali vpu generates 8 different stream-ids. Now, boards running kernel in
+>> EL2 mode can list all of them, while boards running in EL1 can have only non
+>> secure stream IDs. Min have the list of stream ids which can be enabled for all
+>> type of boards, while max is for boards which can list all in HLOS given kernel
+>> is in EL2 mode.
+>>
+>> Below crash would be seen if boards running kernel in EL1 mode lists the secure
+>> ones.
+> 
+> 
+> That has to be explained somewhere, e.g. comment, 
 
-On Tue, 21 Oct 2025 at 20:48, Krzysztof Kozlowski <krzk@kernel.org> wrote:
->
-> On 13/10/2025 22:51, Peter Griffin wrote:
-> > Enable auto clock mode, and define the additional fields which are used
-> > when this mode is enabled.
-> >
-> > /sys/kernel/debug/clk/clk_summary now reports approximately 308 running
-> > clocks and 298 disabled clocks. Prior to this commit 586 clocks were
-> > running and 17 disabled. To ensure compatability with older DTs the
->
-> Typo
+Sure, will add a description for iommus property explaining the same.
 
-Will fix.
+and still we need then
+> EL2 DTS in the kernel. I did not see such so far, but maybe I missed it
+> - can you link it?
+> 
 
->
-> > resource size is checked and an error issued if the DT needs updating.
->
-> I fail to see how you keek it compatible. See further.
->
-> >
-> > Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
-> > ---
-> >  drivers/clk/samsung/clk-gs101.c | 80 +++++++++++++++++++++++++++++++++++++++++
-> >  1 file changed, 80 insertions(+)
-> >
-> > diff --git a/drivers/clk/samsung/clk-gs101.c b/drivers/clk/samsung/clk-gs101.c
-> > index 70b26db9b95ad0b376d23f637c7683fbc8c8c600..baf41ae6c9e2480cb83531acf7eae190c6aff819 100644
-> > --- a/drivers/clk/samsung/clk-gs101.c
-> > +++ b/drivers/clk/samsung/clk-gs101.c
-> > @@ -9,6 +9,7 @@
-> >  #include <linux/clk-provider.h>
-> >  #include <linux/mod_devicetable.h>
-> >  #include <linux/of.h>
-> > +#include <linux/of_address.h>
-> >  #include <linux/platform_device.h>
-> >
-> >  #include <dt-bindings/clock/google,gs101.h>
-> > @@ -17,6 +18,8 @@
-> >  #include "clk-exynos-arm64.h"
-> >  #include "clk-pll.h"
-> >
-> > +int check_cmu_res_size(struct device_node *np);
-> > +
-> >  /* NOTE: Must be equal to the last clock ID increased by one */
-> >  #define CLKS_NR_TOP  (CLK_GOUT_CMU_TPU_UART + 1)
-> >  #define CLKS_NR_APM  (CLK_APM_PLL_DIV16_APM + 1)
-> > @@ -26,6 +29,10 @@
-> >  #define CLKS_NR_PERIC0       (CLK_GOUT_PERIC0_SYSREG_PERIC0_PCLK + 1)
-> >  #define CLKS_NR_PERIC1       (CLK_GOUT_PERIC1_SYSREG_PERIC1_PCLK + 1)
-> >
-> > +#define GS101_GATE_DBG_OFFSET 0x4000
-> > +#define GS101_DRCG_EN_OFFSET  0x104
-> > +#define GS101_MEMCLK_OFFSET   0x108
-> > +
-> >  /* ---- CMU_TOP ------------------------------------------------------------- */
-> >
-> >  /* Register Offset definitions for CMU_TOP (0x1e080000) */
-> > @@ -1433,6 +1440,9 @@ static const struct samsung_cmu_info top_cmu_info __initconst = {
-> >       .nr_clk_ids             = CLKS_NR_TOP,
-> >       .clk_regs               = cmu_top_clk_regs,
-> >       .nr_clk_regs            = ARRAY_SIZE(cmu_top_clk_regs),
-> > +     .auto_clock_gate        = true,
-> > +     .gate_dbg_offset        = GS101_GATE_DBG_OFFSET,
-> > +     .option_offset          = CMU_CMU_TOP_CONTROLLER_OPTION,
-> >  };
-> >
-> >  static void __init gs101_cmu_top_init(struct device_node *np)
-> > @@ -1900,6 +1910,11 @@ static const struct samsung_gate_clock apm_gate_clks[] __initconst = {
-> >            CLK_CON_GAT_GOUT_BLK_APM_UID_XIU_DP_APM_IPCLKPORT_ACLK, 21, CLK_IS_CRITICAL, 0),
-> >  };
-> >
-> > +static const unsigned long dcrg_memclk_sysreg[] __initconst = {
-> > +     GS101_DRCG_EN_OFFSET,
-> > +     GS101_MEMCLK_OFFSET,
-> > +};
-> > +
-> >  static const struct samsung_cmu_info apm_cmu_info __initconst = {
-> >       .mux_clks               = apm_mux_clks,
-> >       .nr_mux_clks            = ARRAY_SIZE(apm_mux_clks),
-> > @@ -1912,6 +1927,12 @@ static const struct samsung_cmu_info apm_cmu_info __initconst = {
-> >       .nr_clk_ids             = CLKS_NR_APM,
-> >       .clk_regs               = apm_clk_regs,
-> >       .nr_clk_regs            = ARRAY_SIZE(apm_clk_regs),
-> > +     .sysreg_clk_regs        = dcrg_memclk_sysreg,
-> > +     .nr_sysreg_clk_regs     = ARRAY_SIZE(dcrg_memclk_sysreg),
-> > +     .auto_clock_gate        = true,
-> > +     .gate_dbg_offset        = GS101_GATE_DBG_OFFSET,
-> > +     .drcg_offset            = GS101_DRCG_EN_OFFSET,
-> > +     .memclk_offset          = GS101_MEMCLK_OFFSET,
-> >  };
-> >
-> >  /* ---- CMU_HSI0 ------------------------------------------------------------ */
-> > @@ -2375,7 +2396,14 @@ static const struct samsung_cmu_info hsi0_cmu_info __initconst = {
-> >       .nr_clk_ids             = CLKS_NR_HSI0,
-> >       .clk_regs               = hsi0_clk_regs,
-> >       .nr_clk_regs            = ARRAY_SIZE(hsi0_clk_regs),
-> > +     .sysreg_clk_regs        = dcrg_memclk_sysreg,
-> > +     .nr_sysreg_clk_regs     = ARRAY_SIZE(dcrg_memclk_sysreg),
-> >       .clk_name               = "bus",
-> > +     .auto_clock_gate        = true,
-> > +     .gate_dbg_offset        = GS101_GATE_DBG_OFFSET,
-> > +     .option_offset          = HSI0_CMU_HSI0_CONTROLLER_OPTION,
-> > +     .drcg_offset            = GS101_DRCG_EN_OFFSET,
-> > +     .memclk_offset          = GS101_MEMCLK_OFFSET,
-> >  };
-> >
-> >  /* ---- CMU_HSI2 ------------------------------------------------------------ */
-> > @@ -2863,7 +2891,14 @@ static const struct samsung_cmu_info hsi2_cmu_info __initconst = {
-> >       .nr_clk_ids             = CLKS_NR_HSI2,
-> >       .clk_regs               = cmu_hsi2_clk_regs,
-> >       .nr_clk_regs            = ARRAY_SIZE(cmu_hsi2_clk_regs),
-> > +     .sysreg_clk_regs        = dcrg_memclk_sysreg,
-> > +     .nr_sysreg_clk_regs     = ARRAY_SIZE(dcrg_memclk_sysreg),
-> >       .clk_name               = "bus",
-> > +     .auto_clock_gate        = true,
-> > +     .gate_dbg_offset        = GS101_GATE_DBG_OFFSET,
-> > +     .option_offset          = HSI2_CMU_HSI2_CONTROLLER_OPTION,
-> > +     .drcg_offset            = GS101_DRCG_EN_OFFSET,
-> > +     .memclk_offset          = GS101_MEMCLK_OFFSET,
-> >  };
-> >
-> >  /* ---- CMU_MISC ------------------------------------------------------------ */
-> > @@ -3423,11 +3458,37 @@ static const struct samsung_cmu_info misc_cmu_info __initconst = {
-> >       .nr_clk_ids             = CLKS_NR_MISC,
-> >       .clk_regs               = misc_clk_regs,
-> >       .nr_clk_regs            = ARRAY_SIZE(misc_clk_regs),
-> > +     .sysreg_clk_regs        = dcrg_memclk_sysreg,
-> > +     .nr_sysreg_clk_regs     = ARRAY_SIZE(dcrg_memclk_sysreg),
-> >       .clk_name               = "bus",
-> > +     .auto_clock_gate        = true,
-> > +     .gate_dbg_offset        = GS101_GATE_DBG_OFFSET,
-> > +     .option_offset          = MISC_CMU_MISC_CONTROLLER_OPTION,
-> > +     .drcg_offset            = GS101_DRCG_EN_OFFSET,
-> > +     .memclk_offset          = GS101_MEMCLK_OFFSET,
-> >  };
-> >
-> > +/* for old DT compatbility with incorrect CMU size*/
-> > +int check_cmu_res_size(struct device_node *np)
-> > +{
-> > +     struct resource res;
-> > +     resource_size_t size;
-> > +
-> > +     if (of_address_to_resource(np, 0, &res))
-> > +             return -ENODEV;
-> > +
-> > +     size = resource_size(&res);
-> > +     if (size != 0x10000) {
-> > +             pr_warn("%pOF: resource to small. Please update your DT\n", np);
-> > +             return -ENODEV;
-> > +     }
-> > +     return 0;
-> > +}
-> > +
-> >  static void __init gs101_cmu_misc_init(struct device_node *np)
-> >  {
-> > +     if (check_cmu_res_size(np))
-> > +             return;
->
-> You will not register CMU on old DTB.
+EL2 DTS for kaanapali is not yet posted to handle secure SIDs. While it is in
+development, describing the secure stream-ids would ensure to cover all the
+hardware generated IDs.
 
-By "compatible" I meant the driver detects an old DTB with an
-incorrect reg size and issues an error message on the console to
-update your DT (as opposed to crashing trying to access a register
-that hasn't been mapped).
+>>
+>> [    1.361157] pc : qcom_smmu_write_s2cr+0x64/0xa4
+>> [    1.361165] lr : arm_smmu_write_s2cr+0x2c/0xbc
+>> [    1.361168] sp : ffff80008005b8f0
+>> [    1.361169] x29: ffff80008005b8f0 x28: 0000000000000000 x27: ffffc7f252f45320
+>> ....
+>> [    1.361195] x2 : ffff800081200c48 x1 : 0000000000000048 x0 : ffff800081200000
+>> [    1.361198] Call trace:
+>> [    1.361199]  qcom_smmu_write_s2cr+0x64/0xa4 (P)
+>> [    1.361203]  arm_smmu_master_install_s2crs+0x7c/0xac
+>> [    1.361207]  arm_smmu_attach_dev+0xb0/0x1d4
+>>
+>> Could you please suggest on listing the iommu items ? I did not find the
+>> relevant references in other bindings where flexible iommus is being listed.
+> 
+> 
+> Just like every other list property - clocks, resets, power-domains.
+> 
+something like
 
-Is it enough to re-word the commit message to make it clearer what will happen?
+iommu-names:
+  items:
+    - const: 0x1943
+    - const: 0x1940
+...
 
-An alternative might be to try registering all the gates in manual
-mode, but that seems like it would add more complexity for not much
-benefit. It would also require that clk_ignore_unused kernel parameter
-to have been passed (as manual clock mode has never worked without it)
-and whilst it might boot today I imagine it would bitrot fast as
-additional CMUs are added (and thus probably crash in a much more
-obscure way).
+given that one of vpu sub hardware generates multiple SIDs, if we go with sub
+hardware name in the list, the names would be repeated.
 
-Peter
+>>
+>>>
+>>> I already asked this.
+>>>
+>>>> +
+>>>> +  memory-region:
+>>>> +    minItems: 1
+>>>> +    maxItems: 2
+>>>
+>>> Same comment. I already asked this about iommus.
+>>
+>> Same here, there aren't any bindings which lists for flexible memory-region.
+>> Please suggest if there are any such references.
+> 
+> Because they do not matter for all other bindings, but it turned out
+> recently it might matter for this device.
+
+memory-region:
+  minItems: 1
+  maxItems: 2
+
+memory-region-names:
+  items:
+    - const video_mem
+    - const iris_resv
+
+Regards,
+Vikash
+
+> 
+> 
+> Best regards,
+> Krzysztof
 
