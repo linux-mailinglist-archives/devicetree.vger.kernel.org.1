@@ -1,63 +1,72 @@
-Return-Path: <devicetree+bounces-229485-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229486-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14D96BF824F
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 20:52:13 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A5209BF8261
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 20:52:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id BC6594E3253
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 18:52:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EF4B118C1EAC
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 18:52:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3872234C81E;
-	Tue, 21 Oct 2025 18:52:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F0BD34F260;
+	Tue, 21 Oct 2025 18:52:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="A2Gt+gY8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="F411smwq"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03AEB34D904;
-	Tue, 21 Oct 2025 18:52:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2985334A3D4;
+	Tue, 21 Oct 2025 18:52:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761072730; cv=none; b=JSdZ09VK1NMewP21UzpyeHR9BKqNJiaspMXExhw/y6Lhg7eA3r8eZmEZIOYVSG6pVAUd7On18UL6VSQd4R5Mqg9pbPNZv6+CftcO2frCW1A3eg09YbnOxCI/po2NaXNnic22B01erWW6KPXurV6BVFnWuzO0dfFHP6Kp67wwlK0=
+	t=1761072742; cv=none; b=Rx3KgA1aWeZ4/OG0xt62N/eGAjai7F3wxEJhWNwfU7htKM3bXA6CLmOh9AGvz7+vIjKMeYHE3GV+HvjdIHjyz1g0WAkYiGqoafR+ysJEmZxc8yI5tfZczybpRSnXuVRLJG7Bt/ds7H8toy165pV3BBOsBXvHb06eyxnY1Lc1k3I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761072730; c=relaxed/simple;
-	bh=ZB/5wKX4GVjMeMhEKGtvplG5a7Ce/5sBVRDkGuxOt3M=;
+	s=arc-20240116; t=1761072742; c=relaxed/simple;
+	bh=/CjlmkvSVehb9uKQ22ITRCOwatYs4Z+DyN9C4O9799g=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=XA6sQzfFq5ilRQ1JNpZvU4KVSrukL6/GKtEsbxGeVQGMki4NmFf8uTZpLkA/4Fp5mZEaCHzLdsd+EX7BwUPlRFLm7mmed4teMIo8xUxoGXWkoSBC5e33y3pM5ZS7G8LFidolqWepNY+rDJl1NQPaAQI/JUyiFG11NwI/IDW2bt0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=A2Gt+gY8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CF73FC4CEF5;
-	Tue, 21 Oct 2025 18:52:06 +0000 (UTC)
+	 MIME-Version:Content-Type; b=Mxb1X7JRuY5nNUPbvvk26lWAZPpnkMN/eZjW0tYjJEPWCKw5Eob7xEsJyPKCikckBifEM7fL8Xk1gp3WZSxi1Zv6oPWN7VIHdHswCVJ/cWOG2dLAM2nlwl5tgt3o7TBLMhWrQjxFkcQHrW+KlbExrU/15r9PY+8ZNgM0fQik8lM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=F411smwq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DAADFC4CEF5;
+	Tue, 21 Oct 2025 18:52:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761072729;
-	bh=ZB/5wKX4GVjMeMhEKGtvplG5a7Ce/5sBVRDkGuxOt3M=;
+	s=k20201202; t=1761072739;
+	bh=/CjlmkvSVehb9uKQ22ITRCOwatYs4Z+DyN9C4O9799g=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=A2Gt+gY86NYJ/LAdB+LpKwMh85+yFVerVokAhh3p0IkNdwU7w6s2VqoXIY/5I1DIH
-	 pKlY7YgXK6qu080HdHW1QJAti7ZaK5Rz5yelMpcMHi5lyMc7Qe/9KanV/X6dwyeXDr
-	 CoJ+iFOutyybefoNFGV+y2AXt3D7lHbh/wIxaylU2HuxrebyZGoJhGvQJOTimZoZzR
-	 EEmLzSjjC/YVcryETcytDbImk9aSIFgPCSYV04vJFWE4wX3ezUk/eqfW9+adSEtp43
-	 A3UaQYxavho4EsrhPiV0PtRKrTiDMGm+5liHVfpT48cNdptaLf4mIn0W88caG212oB
-	 y/Q6jNMWqD78Q==
+	b=F411smwqWcOG0d2J5NZJxXys/QHFqMqfadrXHqCOrLNcMA8WW8cRWSk5m/BcXF9zx
+	 jZCozPqw0LLbKMe9Xg/7Q/5qNkvpUcFxLmVtHtolTatemNDXN1nSJTjrUI9VuvXwq7
+	 WKFwmr+7x/pp0G6AK4RBsvqGwJnVh2cymY/fGszwyWytaKA9KDj4sVfS+KG78BgSZY
+	 bcEELUX1vIfLE0lvoGBje+ts88QjDTQ9wZrrgDSKAnoSPNtxc3GvyBNpQxBQo8hSIt
+	 06Xj4Zp0li6SsLoBTKYt5YN1COKgyPPPWPNwy3+TOWEwT4Yde6TiJdiW4MfOXFPNpO
+	 KQR4u8ujsV9Eg==
 From: Mark Brown <broonie@kernel.org>
-To: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>, 
+To: devicetree@vger.kernel.org, 
+ Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+ Chen-Yu Tsai <wens@csie.org>, Conor Dooley <conor+dt@kernel.org>, 
+ Fabio Estevam <festevam@gmail.com>, 
+ Fabrice Gasnier <fabrice.gasnier@foss.st.com>, 
+ Gatien Chevallier <gatien.chevallier@foss.st.com>, imx@lists.linux.dev, 
+ Jernej Skrabec <jernej.skrabec@gmail.com>, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>, 
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
- Philipp Zabel <p.zabel@pengutronix.de>, 
- Troy Mitchell <troy.mitchell@linux.spacemit.com>
-Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-riscv@lists.infradead.org, spacemit@lists.linux.dev, 
- linux-kernel@vger.kernel.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
- Jinmei Wei <weijinmei@linux.spacemit.com>
-In-Reply-To: <20251017-k1-i2s-v5-0-401ae3775fcd@linux.spacemit.com>
-References: <20251017-k1-i2s-v5-0-401ae3775fcd@linux.spacemit.com>
-Subject: Re: [PATCH v5 0/2] ASoC: spacemit: add i2s support to K1 SoC
-Message-Id: <176107272657.196841.17126892413935160644.b4-ty@kernel.org>
-Date: Tue, 21 Oct 2025 19:52:06 +0100
+ Liam Girdwood <lgirdwood@gmail.com>, linux-arm-kernel@lists.infradead.org, 
+ linux-arm-msm@vger.kernel.org, linux-sound@vger.kernel.org, 
+ linux-spi@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
+ linux-sunxi@lists.linux.dev, Liu Ying <victor.liu@nxp.com>, 
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+ Maxime Ripard <mripard@kernel.org>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Rob Herring <robh@kernel.org>, Samuel Holland <samuel@sholland.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>, 
+ Srinivas Kandagatla <srini@kernel.org>
+In-Reply-To: <20251020060951.30776-6-wsa+renesas@sang-engineering.com>
+References: <20251020060951.30776-6-wsa+renesas@sang-engineering.com>
+Subject: Re: (subset) [PATCH 0/4] dt-bindings: treewide: don't check node
+ names
+Message-Id: <176107273462.196841.10566474992325623883.b4-ty@kernel.org>
+Date: Tue, 21 Oct 2025 19:52:14 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,15 +77,16 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.15-dev-2a268
 
-On Fri, 17 Oct 2025 11:16:16 +0800, Troy Mitchell wrote:
-> On the K1 SoC, there is a full-duplex I2S controller.
+On Mon, 20 Oct 2025 08:09:49 +0200, Wolfram Sang wrote:
+> Node names are already and properly checked by the core schema. No need
+> to do it again.
 > 
-> The I2S is programmable, with the sample width configurable
-> to 8, 16, 18, or 32 bits.
-> 
-> A dedicated FIFO is provided for transmit (TXFIFO) and another
-> for receive (RXFIFO). In non-packed mode, both FIFOs are 32
-> entries deep and 32 bits wide, giving a total of 32 samples each.
+> These are all occurrences I found in linux-next as of 20251015. I did
+> run dt_bindings_check successfully. I haven't done a way to run
+> dtbs_check yet because I would need to identify the proper architecture
+> first, right? Is there some tool which tests all DTs of a certain
+> binding? At least build bot is happy, I don't know if it checks DTs as
+> well, though.
 > 
 > [...]
 
@@ -86,10 +96,8 @@ Applied to
 
 Thanks!
 
-[1/2] ASoC: dt-bindings: Add bindings for SpacemiT K1
-      commit: 73978d274eba0d9081bc9b5aedebb0bc6abb832c
-[2/2] ASoC: spacemit: add i2s support for K1 SoC
-      commit: fce217449075d59b29052b8cdac567f0f3e22641
+[3/4] ASoC: dt-bindings: don't check node names
+      commit: 6a4f29bc66294d44d61a294e5bdc623eae74587b
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
