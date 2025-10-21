@@ -1,124 +1,148 @@
-Return-Path: <devicetree+bounces-229330-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229331-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FCEABF600D
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 13:23:11 +0200 (CEST)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id A4E63BF6034
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 13:26:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7AAA13B128A
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 11:21:11 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 3C8F83534D4
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 11:26:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 997F22F4A14;
-	Tue, 21 Oct 2025 11:20:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C04430595A;
+	Tue, 21 Oct 2025 11:26:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YW1znFsu"
+	dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="TwMyeaVa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx-relay138-hz1.antispameurope.com (mx-relay138-hz1.antispameurope.com [94.100.132.197])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FDE02F3C27;
-	Tue, 21 Oct 2025 11:20:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761045640; cv=none; b=S7g2ng6zoXGxkCtFV30egj6L1orIuF6w+LpGb5mLI+e2o9RCutnLwXJZNuZzhxG9nbDUkJTo+S4isjJYCC30Pwn5K9sezZr6iUGXVEQS1OUv4uHIWUBqBwiLixDzYQMtd84BdRlAtUgPPOQoHUThhJTt5Mt8m5IFykALfyYKbbQ=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761045640; c=relaxed/simple;
-	bh=+VaSZVBmZz5ORjS1Wb6KdbQodfWLfvpUe4sWk4+bHv4=;
-	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
-	 In-Reply-To:To:Cc; b=b+D7Q4Xh9I6w4Cw/styGrHe8+vca61TOx1hFMFamRoHCrzX54ai7FSpgx4ch5Ks12lGGX40oxaQxejekAlHjsBp0umYy/erUms+YV5U3ZvM6BKvaXYV0kmAffrVvtKuEd16mo4W6lELfZEy01HL1W0tF3jldAbBolXEDTBNlneU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YW1znFsu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D4677C4CEF1;
-	Tue, 21 Oct 2025 11:20:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761045639;
-	bh=+VaSZVBmZz5ORjS1Wb6KdbQodfWLfvpUe4sWk4+bHv4=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=YW1znFsumFVytyxSSC/x9NGDtSKDa95wxqD2GVitcp9zBDvj58z7i4UVfsYqyMESb
-	 0756yvamIZ5JBhICt1yrOhmGulkkWKUjuXg9nEXtxL2d1R5NXWyktgM1ONo1BM3+9D
-	 eM3u7SzC32ZvUTi8W9M9Npo2v2ZkjZ9NH1QfoVbSzjcBX6tRiUSkmRnEQsffdaiw0y
-	 na/QZqlQUaeMUVNggBSrFzt607Gl9yD8TApx2OmB/txPEG33msJMaGvo4oi432rB/6
-	 EsFxp0BhffTuDlM20IErb2ih6IgyYqB8TfoMmyUlMdQAgug5V45/0r9BQMV4F9FUx1
-	 C9mqq2/7zXWdA==
-Received: from [10.30.226.235] (localhost [IPv6:::1])
-	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id ADE3A3A55ED9;
-	Tue, 21 Oct 2025 11:20:22 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45C652FB99D
+	for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 11:26:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=94.100.132.197
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1761045966; cv=pass; b=LiR62bfGhmM5TvQ2jmWAI9Kldv8PRpemPQyP14MDzPrcTmAWPWwA3U1BaSz39Sh8xREqEozwxOgl4g1QSKnpIlysFQo02ZUEnoslb1RbHhiSuM5PZdNI06ShikfuyrDuH2vOXHV25GsOe1i4zAzqQd/by0YN4bWRp89DKpfHSjE=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1761045966; c=relaxed/simple;
+	bh=n4mhlRhzzFm3V7tkh8PEoEN4chx5mQY5EISlduNBssk=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=C94ziRP/FiHzO3WXmIFLCTXnrIQHPBmBV9X3HSJMQCRM4lRRJXTosePveQ/VBtMee5587PDevcN/stL419BHihm1pTqdMJpCZtCoYStXsRQZ9I7ndMPUjeDgSGaaYkwtB2kOrnmRZEnmPtm0F8M3gjDpSfNanFqprCTa1j2lxyI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=TwMyeaVa; arc=pass smtp.client-ip=94.100.132.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+ARC-Authentication-Results: i=1; mx-gate138-hz1.hornetsecurity.com 1;
+ spf=pass reason=mailfrom (ip=94.100.132.6, headerfrom=ew.tq-group.com)
+ smtp.mailfrom=ew.tq-group.com smtp.helo=smtp-out01-hz1.hornetsecurity.com;
+ dmarc=pass header.from=ew.tq-group.com orig.disposition=pass
+ARC-Message-Signature: a=rsa-sha256;
+ bh=qPRSdSQE0bLnU693LJLxkchAwzL3R1o8wQQaHCAimXE=; c=relaxed/relaxed;
+ d=hornetsecurity.com; h=from:to:date:subject:mime-version:; i=1; s=hse1;
+ t=1761045903;
+ b=U0A4rPBUBpS+c7EtqRzoOMURUCEtD9XyJv9Qg4DUdVwzErEfhOazu1pFvHVqQcV9uRFLLma/
+ f/QIYeJbttuP17Vepswpi4b1ZMT1kGOq8XONKyL8nr0vmjtLdYifqhnePmWg87BvaEv0qBNHnCq
+ 7ScN6S/83y/CMgeu6Vz8JGEgCtnoNDIZ5xz2nvrlHD+wo6olxTpyoM4mQKPCUYEDJUWqvq1OvkW
+ ln+gSldF7nohCoGznD8nJewMwav4i/Vp71wsB1pzTBn6rtIu0cDkMVBbHQQnA/IXIOKc4sA58iD
+ zZyazNC69C6Prnum4NL21viAz5jZ1y9JkIhJ8f/kkIUCg==
+ARC-Seal: a=rsa-sha256; cv=none; d=hornetsecurity.com; i=1; s=hse1;
+ t=1761045903;
+ b=CsBbZta9WYtG5WAYNo63EIJ9IzMute5ukhQj19kMebdRwWLZqw6BiBPqaDTHzfpOEaK+2xLE
+ SteqQkCQhvzfYWr3NvfP7RUeevFKjg2iv81l5BOawKStSTQ/dzpwqO6rCoNgxun8KXD2Q+W9T/z
+ YDufQtgvV+igzfIxjQtrPObLAshfTSFkLh0TtqY0eyvV0C0k7bbaTrBJKxCGol2XrnCgq5z4vkb
+ gZNue3D1655WSnsQECjyMwD7dVH/SmnzDymSJAvTJSg5JJf+vMM07BeREALfABSFRoMjNKgv5c7
+ ZweZl1LgwBUShBIGyTaWBGS10LiM1aW1YPAofYFJDHtNw==
+Received: from he-nlb01-hz1.hornetsecurity.com ([94.100.132.6]) by mx-relay138-hz1.antispameurope.com;
+ Tue, 21 Oct 2025 13:25:02 +0200
+Received: from steina-w.localnet (host-82-135-125-110.customer.m-online.net [82.135.125.110])
+	(Authenticated sender: alexander.stein@ew.tq-group.com)
+	by smtp-out01-hz1.hornetsecurity.com (Postfix) with ESMTPSA id 56DCEA404BD;
+	Tue, 21 Oct 2025 13:24:53 +0200 (CEST)
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>,
+ Gregor Herburger <gregor.herburger@tq-group.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux@ew.tq-group.com
+Subject:
+ Re: [PATCH v2 2/2] arm64: dts: ls1028a: Add mbls1028a and mbls1028a-ind
+ devicetrees
+Date: Tue, 21 Oct 2025 13:24:52 +0200
+Message-ID: <13873811.uLZWGnKmhe@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <14f52170-cc5b-4808-8fc1-28685ba349dd@lunn.ch>
+References:
+ <20251020133536.303471-1-alexander.stein@ew.tq-group.com>
+ <20251020133536.303471-2-alexander.stein@ew.tq-group.com>
+ <14f52170-cc5b-4808-8fc1-28685ba349dd@lunn.ch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH net-next v3 00/13] net: airoha: Add AN7583 ethernet
- controller support
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: 
- <176104562151.1030909.1115814969731162849.git-patchwork-notify@kernel.org>
-Date: Tue, 21 Oct 2025 11:20:21 +0000
-References: <20251017-an7583-eth-support-v3-0-f28319666667@kernel.org>
-In-Reply-To: <20251017-an7583-eth-support-v3-0-f28319666667@kernel.org>
-To: Lorenzo Bianconi <lorenzo@kernel.org>
-Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
- kuba@kernel.org, pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, p.zabel@pengutronix.de,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- netdev@vger.kernel.org, devicetree@vger.kernel.org, horms@kernel.org,
- ansuelsmth@gmail.com
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-cloud-security-sender:alexander.stein@ew.tq-group.com
+X-cloud-security-recipient:devicetree@vger.kernel.org
+X-cloud-security-crypt: load encryption module
+X-cloud-security-Mailarchiv: E-Mail archived for: alexander.stein@ew.tq-group.com
+X-cloud-security-Mailarchivtype:outbound
+X-cloud-security-Virusscan:CLEAN
+X-cloud-security-disclaimer: This E-Mail was scanned by E-Mailservice on mx-relay138-hz1.antispameurope.com with 4crVMB1Y5zz1NGLl
+X-cloud-security-connect: he-nlb01-hz1.hornetsecurity.com[94.100.132.6], TLS=1, IP=94.100.132.6
+X-cloud-security-Digest:0a6c4bbb931b6e0c1b6e99bc4c54eeb4
+X-cloud-security:scantime:2.297
+DKIM-Signature: a=rsa-sha256;
+ bh=qPRSdSQE0bLnU693LJLxkchAwzL3R1o8wQQaHCAimXE=; c=relaxed/relaxed;
+ d=ew.tq-group.com;
+ h=content-type:mime-version:subject:from:to:message-id:date; s=hse1;
+ t=1761045902; v=1;
+ b=TwMyeaVak74FhRE92SNY3BsCnE/bv1ZHanGoxfPE+My34VH66Q2J++GOs8ZzpI3IMMZlozOK
+ /JZrM3u9Hx0zbMMxQUYm23DEOwcORdeHZl371uif2NDcVQnEsV2N7X1YZMcZkHpOOyQPB1LBxM3
+ Lcx/dQU6HgVVz38aymk1ylpkrJEDIhSCIycDDbOKDeM5ViCRDkJY72IacaNobJhoFpdn6UD9/pM
+ vn/AUBs2tlwW+XcccazSo/h/D3/f788SnIbDUUnbOlQLSwLkgu7QA44U6uc4WzNUyE2+Gsy2hQf
+ G1/ClZztQvwPy9JbuOYs6cmdF0oC/LhF7QUNzHnpD3Vvg==
 
-Hello:
+Hi Andrew,
 
-This series was applied to netdev/net-next.git (main)
-by Paolo Abeni <pabeni@redhat.com>:
+Am Montag, 20. Oktober 2025, 20:34:16 CEST schrieb Andrew Lunn:
+> > +&enetc_mdio_pf3 {
+> > +	mdio0_rgmii_phy00: ethernet-phy@0 {
+> > +		compatible =3D "ethernet-phy-ieee802.3-c22";
+> > +		reg =3D <0x00>;
+> > +		reset-gpios =3D <&gpio_exp_1v8 1 GPIO_ACTIVE_LOW>;
+> > +		reset-assert-us =3D <1>;
+> > +		reset-deassert-us =3D <200>;
+> > +		interrupt-parent =3D <&gpio_exp_1v8>;
+> > +		interrupts =3D <0 IRQ_TYPE_EDGE_FALLING>;
+>=20
+> PHY interrupts are generally level not edge. So this is probably
+> wrong.
 
-On Fri, 17 Oct 2025 11:06:09 +0200 you wrote:
-> Introduce support for AN7583 ethernet controller to airoha-eth dirver.
-> The main differences between EN7581 and AN7583 is the latter runs a
-> single PPE module while EN7581 runs two of them. Moreover PPE SRAM in
-> AN7583 SoC is reduced to 8K (while SRAM is 16K on EN7581).
-> 
-> ---
-> Changes in v3:
-> - improve device-tree binding
-> - rebase on top of net-next main branch
-> - Link to v2: https://lore.kernel.org/r/20251016-an7583-eth-support-v2-0-ea6e7e9acbdb@kernel.org
-> 
-> [...]
+Thanks for the pointer.
 
-Here is the summary with links:
-  - [net-next,v3,01/13] dt-bindings: net: airoha: Add AN7583 support
-    https://git.kernel.org/netdev/net-next/c/51538c0c9d8c
-  - [net-next,v3,02/13] net: airoha: ppe: Dynamically allocate foe_check_time array in airoha_ppe struct
-    https://git.kernel.org/netdev/net-next/c/6d5b601d52a2
-  - [net-next,v3,03/13] net: airoha: Add airoha_ppe_get_num_stats_entries() and airoha_ppe_get_num_total_stats_entries()
-    https://git.kernel.org/netdev/net-next/c/15f357cd4581
-  - [net-next,v3,04/13] net: airoha: Add airoha_eth_soc_data struct
-    https://git.kernel.org/netdev/net-next/c/5863b4e065e2
-  - [net-next,v3,05/13] net: airoha: Generalize airoha_ppe2_is_enabled routine
-    https://git.kernel.org/netdev/net-next/c/ef9449f080b6
-  - [net-next,v3,06/13] net: airoha: ppe: Move PPE memory info in airoha_eth_soc_data struct
-    https://git.kernel.org/netdev/net-next/c/5bd1d1fd48ea
-  - [net-next,v3,07/13] net: airoha: ppe: Remove airoha_ppe_is_enabled() where not necessary
-    https://git.kernel.org/netdev/net-next/c/41139125f5c7
-  - [net-next,v3,08/13] net: airoha: ppe: Configure SRAM PPE entries via the cpu
-    https://git.kernel.org/netdev/net-next/c/306b78f5035a
-  - [net-next,v3,09/13] net: airoha: ppe: Flush PPE SRAM table during PPE setup
-    https://git.kernel.org/netdev/net-next/c/620d7b91aadb
-  - [net-next,v3,10/13] net: airoha: Select default ppe cpu port in airoha_dev_init()
-    https://git.kernel.org/netdev/net-next/c/c71a7a861ef0
-  - [net-next,v3,11/13] net: airoha: Refactor src port configuration in airhoha_set_gdm2_loopback
-    https://git.kernel.org/netdev/net-next/c/9d5b5219f672
-  - [net-next,v3,12/13] net: airoha: ppe: Do not use magic numbers in airoha_ppe_foe_get_entry_locked()
-    https://git.kernel.org/netdev/net-next/c/63f283d36b1f
-  - [net-next,v3,13/13] net: airoha: Add AN7583 SoC support
-    https://git.kernel.org/netdev/net-next/c/e4e5ce823bdd
+> > +		ti,rx-internal-delay =3D <DP83867_RGMIIDCTL_2_50_NS>;
+> > +		ti,tx-internal-delay =3D <DP83867_RGMIIDCTL_2_00_NS>;
+> > +		ti,led-function =3D <0x05b0>;
+> > +		ti,led-ctrl =3D <0x1001>;
+>=20
+> I really would prefer /sys/class/leds was used. In fact, these are not
+> documented, and don't even seem to be implemented in mainline. So you
+> need to drop them.
 
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
+Ah, sorry, this slipped in from downstream kernel. Will be removed.
+
+Thanks and best regards,
+Alexander
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
 
 
 
