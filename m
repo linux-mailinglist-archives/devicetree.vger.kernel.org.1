@@ -1,138 +1,116 @@
-Return-Path: <devicetree+bounces-229377-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229378-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4DB4DBF6BC6
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 15:22:36 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 247B3BF6C08
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 15:25:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id A49C04EF3E9
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 13:22:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D7B4118C740C
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 13:25:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D723280CC1;
-	Tue, 21 Oct 2025 13:22:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C0BC3370FB;
+	Tue, 21 Oct 2025 13:25:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uschmAth"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f181.google.com (mail-vk1-f181.google.com [209.85.221.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F8DF23313E
-	for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 13:22:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40D60334C38;
+	Tue, 21 Oct 2025 13:25:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761052941; cv=none; b=Yb794Lu5v+lXyJXuN6cHD0/EzjY65Q9FVLnLdtr6iuQE+vSoZIqZRypHVY/UmeYqa9hn/NEr5OuU9ktpkanN3Uuwta4TPaTpGelDveNh62if7L9a939TzMqq/7Zf5gY7eCtre+uc+/UCOOzjOjO7BuHjwdZytVr2JMRUuXsRF9M=
+	t=1761053131; cv=none; b=IID/gbBOoRD+a5V8gnJK0sEQng7xqquYxJurUuo5/Xkkvrkw8ge5+g0YqExraZfP0y1i4IAKl5IVOQlDAbohp+dshARF3nMM/bRpT7t5v0bD1o2ilgchr0HW4RKAnNB1f4dYh5fqDo3+AiuqI8FZn95kN2v/aMCLWnmHqRXi1Y0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761052941; c=relaxed/simple;
-	bh=0uBoagiYHO+cyUPZLgM55Q/MvfDRnviDbb0BFOjR7+Y=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=rRjVnRB7UZhMnx4Zi2i/D/TPN0gYiLo/LsGQapMEjXwSl0tRSQtBHZL15yLM8mM3EDywtpVk5cM3gNFADZJZkagy4LO7a0xXHwGaNq+E3lTMSRvuvBJNq7ljMSPc6AcSbxAU86ET/0SsUWGsTCrISkjmlB4qfQ0nGaiBLbFxhRE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f181.google.com with SMTP id 71dfb90a1353d-54aa6a0babeso5338371e0c.0
-        for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 06:22:18 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761052937; x=1761657737;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=mvZqifROs3RUIga+LmVYgxTzui6YYka8rzDZzlcR0C4=;
-        b=M+v86EajmbWQxLUCUERdoB+UUBPA7G5DDx5egbE8Yd57alIvnHvpRq74vZtDqvvl5V
-         PWc1hXlomxVaQZeDQ++M3G8+WbcH2JyDtDAB52teJA1qUaPbUiqaf8U/ISsJnKK2AF05
-         /PZD/XEbv8jcRL4em3jK9bNrQsYCwGEhWqA6Ra0utiFuqLm5+PQs+EmWCL6Qs5uTcyND
-         rYFQEfexYAAtwb6zOhYobO15PMs3TEGZYXV7Yk1XiW3p5kZrT0jbRDFCxCavVi+rtsDg
-         pC8ndWumb+bEBjKURan4IJhDUKHQQtNYMeeIm6K+wjeHQzzIPN8z3OswkaF24K8mxibK
-         CGuw==
-X-Forwarded-Encrypted: i=1; AJvYcCXbqNiBB4nrcx+QSiEprOkK8H/454PT9aREKBgEFfc8o1Kd7oTlRsBj3Eu6RH/MPo3SUICJmZYV19nc@vger.kernel.org
-X-Gm-Message-State: AOJu0YyqM4EarKTg7HRGzM6efmzthQ8H5mmP3k0mC+EBY+fKBvgEJ1by
-	x/+u3nGX2ta/XDYuNSPA+LYiMSkjOOHk+jmHgm78xR4xtEOEEXoxeq8fOkGIP/xY
-X-Gm-Gg: ASbGnctWx3SWvNUwPp8NPfjjMuGSg1R3MI5yigTL/jCmcojmdpzS58EwCJCogEj4Iw8
-	Gmy51tF9YfNKQPSTdHLnFUA5NcY5/v8qnQI3PJv5P0I7Yf7pIMEkpyvasSV+f//U6nAfBOy/EJ/
-	F/cGN/RrO1FBg4tHkGBGg3Gbo/fRLPRqSgqCxEul9QhW/m9RWN3xPAIvOBYPAyrcG/8+EDSYScj
-	Ni7R4moT9ZQ+0g2w8N0d5GW6J7JeDIiQPl2iQcM2boQ8HFgAwpQrFTf/gBeBjnIinLn+9W+GW/X
-	qCN+J1QfGkCYsI76DHKJONAIFOGpEN59JYQgTNN3alzOr1KpxP8lBkLGD9pDjP6GJ27/K86NKcs
-	xBRJ9YH8FIa2C8Jm/Spp689p9snHC68o9G+vVBiac5bV9Y7wjVz2N8s+1YfVhgHBauCviYfapo2
-	Avs0orSYtFTWdM7ViD0u44fuBx+3o3T1fxdyALvQ==
-X-Google-Smtp-Source: AGHT+IG3Je12Kylczz85gMvvSwcrdQ/b25hHaERkAinyyIkFU0FDCsNztz8wcWrUM5jJDXwW6zMGJQ==
-X-Received: by 2002:a05:6122:1695:b0:54a:a782:47d6 with SMTP id 71dfb90a1353d-5564eee8ab1mr5144636e0c.7.1761052937443;
-        Tue, 21 Oct 2025 06:22:17 -0700 (PDT)
-Received: from mail-ua1-f41.google.com (mail-ua1-f41.google.com. [209.85.222.41])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-55662117c75sm3324842e0c.23.2025.10.21.06.22.15
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 21 Oct 2025 06:22:16 -0700 (PDT)
-Received: by mail-ua1-f41.google.com with SMTP id a1e0cc1a2514c-932e88546a8so636369241.0
-        for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 06:22:15 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCWub3XlH73UAjlkOdzqP9PoYvRlwWuWnyIXAvxWQjGrAaCG6CArSbu8ZWXKgcYVCpSXIpcVBvbut0wi@vger.kernel.org
-X-Received: by 2002:a05:6102:304a:b0:59c:d78:dca with SMTP id
- ada2fe7eead31-5d7dd6aaed1mr6029714137.15.1761052935327; Tue, 21 Oct 2025
- 06:22:15 -0700 (PDT)
+	s=arc-20240116; t=1761053131; c=relaxed/simple;
+	bh=UxdXMpBkmMYt2F6O9GJR6GOTDbEq+GfjCaarrbDuIcA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=MDfBCh4mdK70XDW+RL8pfKQKUsX3Qn1gojP1jLmpZ8Qx4UkUjBG4rR7hxGAwRAFdPDG7QG/WbJYI8q8bzRq/RBTXIRNpo6kAfHkSX2CPE4NnEuFhkPbiFeIkoicSZdTXDsz0mQckYGK6RGnQBCGpzLVhHLEXP4BLnv/hf6YsY+U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uschmAth; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D2610C4CEF1;
+	Tue, 21 Oct 2025 13:25:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761053131;
+	bh=UxdXMpBkmMYt2F6O9GJR6GOTDbEq+GfjCaarrbDuIcA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=uschmAthkJJF9k8kw65HohAiVw4eODormgudhOZ+JwsTTMIwLd6b81t5E1UjNFy6Z
+	 fkUsZ9fu18JMnNkSNxZE7XN6MAP62TfkbjeXQUMqA9L3nATor5/FUAl5m1SiMmdtbb
+	 zpYiU5wCmoqKYPBTCMM2OBnrPOexV+twe/YjETCjXWpi7KaBVswMARAT6hbffEMQni
+	 XuMV/K1ojumVbGg9cBqnd/5ayA70j/RXwKcDIJ71R5Dt56pR3GvkWsZzM7rEQfk1qf
+	 GtYrx1IMMTR+/aqpJOvO96S29gBMN9AHDPXvjgn8+XkK18rFyo5R6w1xEzktq+WJeP
+	 FpQkHk7dxqsKw==
+Date: Tue, 21 Oct 2025 08:25:29 -0500
+From: Rob Herring <robh@kernel.org>
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: Svyatoslav Ryhel <clamor95@gmail.com>,
+	Andi Shyti <andi.shyti@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Peter Rosin <peda@axentia.se>,
+	=?utf-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>,
+	Jonas =?iso-8859-1?Q?Schw=F6bel?= <jonasschwoebel@yahoo.de>,
+	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Luca Ceresoli <luca@lucaceresoli.net>,
+	Herve Codina <herve.codina@bootlin.com>
+Subject: Re: [PATCH v1 0/2 RESEND] i2c: muxes: Add GPIO-detected hotplug I2C
+Message-ID: <20251021132529.GA4133357-robh@kernel.org>
+References: <20251013060018.43851-1-clamor95@gmail.com>
+ <w3bn5bqxqjhf4uvxov47rwlvmnbic6xnlk25xbpnbmi2eyup7q@tjuiu7pl3mmo>
+ <CAPVz0n1-jN5WLFq4e0CZrneExrN_A=GNeGTwGHTCj14NAta+jQ@mail.gmail.com>
+ <aPCfiJxyKOXsgNJe@shikoro>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251017115123.3438-2-wsa+renesas@sang-engineering.com>
- <CAMuHMdUCSRKAbD=DfJxfFGpfKTRkt=a2BO+HnwTqALBeeECOkA@mail.gmail.com>
- <aPaSF2lokJ748cTx@shikoro> <CAMuHMdXv_R6POTQe=MEcEOraKhjhzwrW5skkWnzgvijF2qAykw@mail.gmail.com>
- <fba13116-2495-49a3-a1b5-2eecb33bb448@mailbox.org>
-In-Reply-To: <fba13116-2495-49a3-a1b5-2eecb33bb448@mailbox.org>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 21 Oct 2025 15:22:04 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdUP_bH5WW3=3J1H=6SocKzQXPdP7PFfYDrgaj4EhYTaYQ@mail.gmail.com>
-X-Gm-Features: AS18NWDXxXzByrAwA63AeQ3A7tiTE8rGRfiOTREJO5xJyBq7hy3jZBwr2WwZDio
-Message-ID: <CAMuHMdUP_bH5WW3=3J1H=6SocKzQXPdP7PFfYDrgaj4EhYTaYQ@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: renesas: sparrow-hawk: don't reserve SWDT
-To: Marek Vasut <marek.vasut@mailbox.org>
-Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>, linux-renesas-soc@vger.kernel.org, 
-	Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aPCfiJxyKOXsgNJe@shikoro>
 
-Hi Marek,
+On Thu, Oct 16, 2025 at 09:32:24AM +0200, Wolfram Sang wrote:
+> Hi Svyatoslav,
+> 
+> > Herve and Luca did not come up with anything meaningful, they provided
+> > just a few rough ideas. It will take an inconsiderate amount of time
+> 
+> Well, IIRC they said that your use case can be mapped onto their
+> approach. Which is meaningful in my book.
+> 
+> > before there will be any consensus between them and schema
+> > maintainers, and even more time would be requited to settle this into
+> > schemas and implement into drivers. Why should I suffer from this? Why
+> > should changes I need be halted due to some incomplete 'ideas'? This
+> > driver uses existing i2c mux framework and fits into it just fine.
+> 
+> I am sorry to bring you bad news, but you need to suffer because this is
+> how development goes. If I get presented a generic solution (see Herve's
+> mail) and a specific solution (your driver), for this case I as a
+> maintainer will prefer the generic solution. Generic solutions need more
+> time because there are more things to handle, of course. This is typical
+> for development, I would say, it is not Linux or Free Software specific.
+> 
+> I appreciate that you tackled your issue and were open to share it with
+> the community. I see the work being done there. However, there are so
+> many things going on independently that I can't really prevent double
+> development from happening despite it having a high priority for me. As
+> soon as I get aware of people working on similar issues, I connect them.
+> That's what I did here as well.
+> 
+> So, if you want upstream supported I2C hot-plugging, you need to wait
+> for Luca's and Herve's work being accepted. Or provide a superior
+> solution. Or, if you want, join the ride. You already have experience in
+> this field (and hardware plus use case), you would be a very welcome
+> contributor, I would say.
 
-On Tue, 21 Oct 2025 at 15:14, Marek Vasut <marek.vasut@mailbox.org> wrote:
-> On 10/21/25 9:09 AM, Geert Uytterhoeven wrote:
-> > On Mon, 20 Oct 2025 at 21:48, Wolfram Sang
-> > <wsa+renesas@sang-engineering.com> wrote:
-> >>> Or better: drop all these swdt = reserved commits?
-> >>
-> >> Maybe. Since Marek is maybe interested in fixing FW...
-> >>
-> >>> TBH, I always had my doubts about making them reserved in the upstream
-> >>> DTS, and there does not seem to be much gain in doing so...
-> >>
-> >> No strong opinion here. With "reserved" I think I followed your
-> >> suggestion but I personally don't mind.
-> >
-> > Well, the proper mechanism would be that firmware using SWDT would
-> > override the status to reserved, preventing the user from using it if
-> > it was enabled in the DTB passed by the user.  But (a) the current
-> > firmware doesn't do that, and (b) we currently do not have a use-case
-> > for enabling SWDT in the DTB.
->
-> Upstream TFA does enable SWDT for R-Car Gen3, but not for Gen4.
+Agreed.
 
-Oh, so this is a "generic" R-Car Gen4 issue?
-Does that mean we can use SWDT in Linux on R-Car Gen4 with TF-A,
-or does TF-A still block access to it?
+What really slows things down is when there is only 1 user of a new 
+binding. Too many times have I accepted one only for the 2nd user to 
+show up right after accepting it and wanting something different. So 
+now I just require more than 1 user and it is on the submitter(s) to do 
+that. After all, it is their itch, not mine.
 
-> I can pass SWDT node from upstream TFA to next stage on Gen3 if you
-> would like that ?
-
-I guess that would be a good thing to do.  But I am afraid it is a bit
-late in the product life cycle.  Ideally, everything that is used by
-firmware should be marked reserved...
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Rob
 
