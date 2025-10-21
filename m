@@ -1,151 +1,109 @@
-Return-Path: <devicetree+bounces-229472-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229473-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D8E6BF80C1
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 20:27:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 786C1BF80CD
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 20:28:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 7FC9B4E6DC0
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 18:27:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3744B546AC3
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 18:28:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C1D734A3DA;
-	Tue, 21 Oct 2025 18:27:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A300234A3A4;
+	Tue, 21 Oct 2025 18:27:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cLtGLmQt"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="BM8z6Ani"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A49E34A3CF
-	for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 18:27:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B844A34A3A2;
+	Tue, 21 Oct 2025 18:27:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761071240; cv=none; b=Tv/dfzOKN4bO0VByRqrJzQBdSd64s4FCmhw5/QewnfbxQTX7bO1pc+R2141pJ7DrodK9nt+lQCYpIIyezL0NgTOkVhq+I4SDcDIKEcqwpt/APpFrmiGD9AZhCFEoJg+mxd22C6aYi9f+1xIrxiYGFCnwbXzIvIZ5LgLFc/fXCkg=
+	t=1761071257; cv=none; b=n2GItQDgJQx2Rj0nuvsZGNMXJlfyZ/ZkHLOt9udTA9A3Scee6PVnsb9R299o9sL5Q2PKBKnOXTpE72eMY8dcRKC62Zjs1/IQYdD1ON2TGSN557oInRAuyGotoy3NiUp6YMUSq0Kbc0sZZHFx9SrfpkMK+oWWVbWWcDCOgl9fuUE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761071240; c=relaxed/simple;
-	bh=3r3xUiz+nLNpkD5qTeW+3ABt35tVXdPHQ5mVpksysXM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=EGh/Wpfi6EXltp2abQ/KZ/EgbWEzwiyfVkywqRnH7ZFRo2f9GbFwgMAdsogcjTmLEqGOqZnEnasTo+3XEU/mjcvS+MI0NdAoeem98+WQhZ8teIQCi66ggzdBogC30+YdNxpdnrHQsh7fnlJbOuV4KQ/IQEHfuyxcOS/fUzVHRpk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cLtGLmQt; arc=none smtp.client-ip=209.85.221.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-421851bca51so4808142f8f.1
-        for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 11:27:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1761071237; x=1761676037; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=cE8uSQwXWgST8uXT/C8GC45uDsa31ftgODHC5Ezx8BU=;
-        b=cLtGLmQtqPBe3lxB/xpZKMcQiZXLtK7+w/gfvxiI9DT2hV2r56IPfcry+utKUKCnZf
-         yIz9ShPYovz1CqeJ/NcS+ksnMIOUaM1REZhjea3gHjoLHBDa76aykskX895lDdwSG1DQ
-         Ak5UnimiJciAYbTle04ve9lgRlc8QMrTSrBq3FGtfBcioI96Aiw5AZvFmzdDtMtVQWla
-         aAd2AaManAUzA+OE9tH6qR7hZ6ghNn/OScB6pmppVY1GqmaUcgLSIzIuc8YLOy4aBrlt
-         YiquZehxLURcgM6BxW9Z19vRCxH0Z6cFY3jITZvVBGmOu5jLHtYTKXiBD9G+z9emd3ut
-         qhkg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761071237; x=1761676037;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=cE8uSQwXWgST8uXT/C8GC45uDsa31ftgODHC5Ezx8BU=;
-        b=hjzyX3uS4NZuHvBxU17iKpUJbltLkm8ZNYoQy2bUIqvbYSOjCGaqRAYdQP0tAUn1dM
-         axdECJXEUHmDcbBlKsFhD7hIAwXsMcQ7/WnKpmbaFkwDU5SmJhBLyIe5kbpuCmj62QwD
-         u3yv7ybK+PZZGLUiA4Nso3nTgIPQc7BTef6ZSQqoSN50HOG+mrEbYWJDCwSqVH+3fGY5
-         Sto3Y6ATs6YdrA2+AjdM3phOFi6TIK6FW/I+CAt/i7pisx9fUoUDMVmkzS88cvixY4ZX
-         YGRD71gZ6sNBKMbg8eFhZTGmmni4o6eGuhZ9x5KSU7TES24sNbPNZ5sIN0q4GK7kl94R
-         IlBA==
-X-Forwarded-Encrypted: i=1; AJvYcCVEiX8RectiepAr+EN/fPufGgGK2qh9yWd6Ii2pP66VcbGwz1Kuso/seeE7DzZG5jxYtOO5VjWt4P/P@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx5PXjRixirzltIqbjdIbAcKq9lH4quXtt4jj6Hl6fDQF8c54ax
-	Mu+jr9kr2BRqI+r8bs3uzyJ4a6OiedTeHel8eAI4GChKW/RvUMnM2nbipN+GBostr561FDM9Aob
-	N7/8SYJtBAfDPzuwgR3FSwsPIAMCZ4OE=
-X-Gm-Gg: ASbGnctXU/jZY1Y/Xl28a3TedsXQr16oygTQF/u4lj0TPHb+s5czD5Ocf2vSNaWayHQ
-	nkyqdCHGxqPAwqHYaFUFqcVTPSuwCA7Nwx+YzAEHU5VBVDxAEOW7I8yClle5weECUW+31kfN2ka
-	h69iKOUirvmrGkSZlViF6FZFtc3V0Lw98PPqZBDYz+niTMfAgyRASSUZFaM7FDN/uVgI8nww6+R
-	ulPw7dUlrzqK5OfDWhrLvvFX/5oAOhke4WeGN/hiIgjvgE3ZMF3V1EUUL/MgtPU4hDGIPhM
-X-Google-Smtp-Source: AGHT+IFk6i+z+s45x3Y/ZNnj0WEKOgAukvQOG+Cb2z0ro+7s902CDutfSXGh6tJcQ/iD0+vijYGT9n6qo6qo7pst6HM=
-X-Received: by 2002:a5d:64e4:0:b0:427:45f:ee21 with SMTP id
- ffacd0b85a97d-42704d90029mr13980937f8f.27.1761071236448; Tue, 21 Oct 2025
- 11:27:16 -0700 (PDT)
+	s=arc-20240116; t=1761071257; c=relaxed/simple;
+	bh=NaYfgN8Zb1nRUW7A2uuvjc3Tefw/HHLRfHVUVZD9B7k=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=nuciYfQGc4VzW/OajomGYNBXVgfpjtVhfHCJ1387YrdG+GKgujTP43NWlEHeoiNS5BBmQJtoZ8Gey92TwyipjngCB6OoyaAljXRq2+czvaEhBzlSuPOWZD0GJfQ7jpiunRs86Fld+W7T2t+Nk5dKEySpOZhzIvCt374xWjVKzqw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=BM8z6Ani; arc=none smtp.client-ip=198.47.19.246
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelvem-sh02.itg.ti.com ([10.180.78.226])
+	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTP id 59LIRHdf075992;
+	Tue, 21 Oct 2025 13:27:17 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1761071237;
+	bh=mUVm0VJ27hD8g3Bqpc/Op3swKN9mzmjhzdFSlvMfnbs=;
+	h=From:To:CC:Subject:Date;
+	b=BM8z6AniTim4R5I/kNC5lCaY/X1uCEr4VGrPQTKuNxYHqKIUBkaJrGsrOZd7F6hYZ
+	 W329CDWG87qrFz7gJOEaATzEYXWY9rCanC2yJqu+o+5POqG2Az2ZMTwCwCR3b3uG4z
+	 pW6GWwnKynbx/HgKHPvhU5rYVti+5YFFs0GS4ef4=
+Received: from DFLE210.ent.ti.com (dfle210.ent.ti.com [10.64.6.68])
+	by lelvem-sh02.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 59LIRGDw1758699
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 21 Oct 2025 13:27:16 -0500
+Received: from DFLE208.ent.ti.com (10.64.6.66) by DFLE210.ent.ti.com
+ (10.64.6.68) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Tue, 21 Oct
+ 2025 13:27:16 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE208.ent.ti.com
+ (10.64.6.66) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Tue, 21 Oct 2025 13:27:16 -0500
+Received: from DMZ007XYY.dhcp.ti.com (dmz007xyy.dhcp.ti.com [128.247.29.251])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 59LIRG684164064;
+	Tue, 21 Oct 2025 13:27:16 -0500
+From: Shree Ramamoorthy <s-ramamoorthy@ti.com>
+To: <lee@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC: <praneeth@ti.com>, <m-leonard@ti.com>, <rklein@nvidia.com>, <jm@ti.com>,
+        <khilman@baylibre.com>, <kory.maincent@bootlin.com>,
+        <thomas.petazzoni@bootlin.com>
+Subject: [PATCH v1] dt-bindings: mfd: tps65910: make interrupt properties optional
+Date: Tue, 21 Oct 2025 13:27:16 -0500
+Message-ID: <20251021182716.292652-1-s-ramamoorthy@ti.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251015192611.241920-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdW1B7Yk1hUU9MSJsiL8wSmjAUGN7Qd_wgBHv8Ct=-wi4Q@mail.gmail.com>
-In-Reply-To: <CAMuHMdW1B7Yk1hUU9MSJsiL8wSmjAUGN7Qd_wgBHv8Ct=-wi4Q@mail.gmail.com>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Tue, 21 Oct 2025 19:26:49 +0100
-X-Gm-Features: AS18NWC2o60rc9cSL9khBvVcjIsmZkA_NFsLdA-38mFv9XLbwQriIqJBrdcPrNg
-Message-ID: <CA+V-a8uY11uWoQ_en5QC=W4HPHRwT6rKQQJ-knT8Gi-+czm05w@mail.gmail.com>
-Subject: Re: [PATCH v11 0/7] Add support for DU/DSI clocks and DSI driver
- support for the Renesas RZ/V2H(P) SoC
-To: Geert Uytterhoeven <geert@linux-m68k.org>, Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, 
-	Biju Das <biju.das.jz@bp.renesas.com>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Robert Foss <rfoss@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
-	Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Hi Geert,
+Mark 'interrupts', 'interrupt-controller', and 'interrupt-cells' as
+optional in the binding schema.
 
+The 'interrupts' property should not be required for the TPS65910 PMIC.
+On the AM335x-ICEV2 SoC, there is no hardware connection from the PMIC_INT
+pin to the SoC. Without the 'interrupts' property defined, the PMIC cannot
+forward interrupts.
 
-On Tue, Oct 21, 2025 at 11:26=E2=80=AFAM Geert Uytterhoeven
-<geert@linux-m68k.org> wrote:
->
-> Hi Prabhakar et al,
->
-> On Wed, 15 Oct 2025 at 21:26, Prabhakar <prabhakar.csengg@gmail.com> wrot=
-e:
-> > This patch series adds DU/DSI clocks and provides support for the
-> > MIPI DSI interface on the RZ/V2H(P) SoC.
-> >
-> > v10->v11:
-> > - Split CPG_PLL_CLK1_K/M/PDIV macro change into separate patch
-> > - Updated rzv2h_cpg_plldsi_div_determine_rate()
-> >   while iterating over the divider table
-> > - Added Acked-by tag from Tomi for patch 2/7 and 3/7
-> > - Added Reviewed-by tag from Geert for patch 2/7 and 3/7
->
-> I think this series is ready for merging.
->
-\o/
+Signed-off-by: Shree Ramamoorthy <s-ramamoorthy@ti.com>
+---
+ Documentation/devicetree/bindings/mfd/ti,tps65910.yaml | 3 ---
+ 1 file changed, 3 deletions(-)
 
-> > Lad Prabhakar (7):
-> >   clk: renesas: rzv2h-cpg: Add instance field to struct pll
-> >   clk: renesas: rzv2h-cpg: Use GENMASK for PLL fields
-> >   clk: renesas: rzv2h-cpg: Add support for DSI clocks
-> >   clk: renesas: r9a09g057: Add clock and reset entries for DSI and LCDC
-> >   dt-bindings: display: bridge: renesas,dsi: Document RZ/V2H(P) and
-> >     RZ/V2N
-> >   drm: renesas: rz-du: mipi_dsi: Add LPCLK clock support
-> >   drm: renesas: rz-du: mipi_dsi: Add support for RZ/V2H(P) SoC
->
-> As this touches both clk and drm, let's discuss the merge strategy.
-> My proposal:
->   1. I queue patches 1-3 in an immutable branch with a signed tag,
->      to be used as a base for the remaining patches,
->   2. I queue patch 4 on top of 1 in renesas-clk for v6.19,
->   3. The DRM people queue patches 5-7 on top of 1.
->
-> Does that sound fine for you?
-Sounds good to me.
+diff --git a/Documentation/devicetree/bindings/mfd/ti,tps65910.yaml b/Documentation/devicetree/bindings/mfd/ti,tps65910.yaml
+index a2668fc30a7b..f1a76f88fc0c 100644
+--- a/Documentation/devicetree/bindings/mfd/ti,tps65910.yaml
++++ b/Documentation/devicetree/bindings/mfd/ti,tps65910.yaml
+@@ -166,9 +166,6 @@ patternProperties:
+ required:
+   - compatible
+   - reg
+-  - interrupts
+-  - interrupt-controller
+-  - '#interrupt-cells'
+   - gpio-controller
+   - '#gpio-cells'
+   - regulators
+-- 
+2.43.0
 
-Biju/Tomi, are you OK with the above?
-
-Cheers,
-Prabhakar
 
