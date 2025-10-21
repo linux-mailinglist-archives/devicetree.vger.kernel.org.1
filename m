@@ -1,180 +1,127 @@
-Return-Path: <devicetree+bounces-229441-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229442-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1031BF7937
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 18:06:30 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8C14BF7964
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 18:08:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D09F04F75B6
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 16:06:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B6A3319C2437
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 16:07:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC7E5345CC1;
-	Tue, 21 Oct 2025 16:06:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9201C345738;
+	Tue, 21 Oct 2025 16:07:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Vm2bICuG"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="aI5oFskQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 209D3341AC1
-	for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 16:06:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBFAD3451B7;
+	Tue, 21 Oct 2025 16:07:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.151
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761062776; cv=none; b=uGIEghBYFAEEan0Fdki216XUKkhYareWAfqYIPDGXVFb2wF4ioi9AW3SNnhOMB9fUuA8BZBcajCJL3QDoIncyI07SsNFV9MZhOaxHG5IWM5/qFvCVZ1fr3EeMl7gRzPNyY1bRusQvPzwNylOaWjgxY4UgCM+8IcWEgwsgmVN3fk=
+	t=1761062832; cv=none; b=Tp2s0hHks0t5zMhFZGvp64qN3DJAGL+vHP5AZcFHMXb+868YlzATc0f9HpkqAFKIuPkRYxRqdpRpu5uX5WyiH3Btn0ZSseManLON/zuk6+h37uULO6deU/gcbPwhoFXdZcWDIDVWMW09PRE2XSjJ8ENiLulHzkbTiXQ8RiUbxK4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761062776; c=relaxed/simple;
-	bh=uk7aoZWw/Pmc3N7zSyYQt2iO1kp7lxeZJc8qrKXCzcs=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=fpAm4mDT0rAAC5lR40lIGjAPVL97OnufNU7WRFqx8uQxUPOBA3+8JbVqt3BLBIdQPot7xFTDikzTx/jyPOrr7Bx9XYDDxxZjId4s/EWYKtHkuuAbh90zeRh+z4l0vzXTL6Z27YBkuJ0mLpQeXrvRhXb8klhwwgm09+uVUOeaLII=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Vm2bICuG; arc=none smtp.client-ip=209.85.128.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-4710022571cso48968805e9.3
-        for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 09:06:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1761062773; x=1761667573; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=I+ODemdtelodNngZ+cnMjkBp0uDC6f3Gz3zokiA/WGA=;
-        b=Vm2bICuGtbAFEpjj0K6dZmoQp3l5Jkkqms6D5FMGWx3FjuKJCCUyVyhiGzMHn9275p
-         2QdGkdRPCh0qaXF6+WvqNARHerb34VeB1ZqIet3dQLuE0tYaDyDRYlSkhOuWihjBOB35
-         2M356mxHwmC/SQBMWD9roi+WeoNiwraEg7kq7mgJTyFyS0MJNoW9qJ5cZTmiMrkjmbVn
-         DRRR+yrVdQnHdxvZa0kPvAdxoSXpyv+ceAvL4qZIEvyMVmzmlednSF8OaQX1HG97Tmzo
-         XB/mh3MuoVGLb7BrHzr6fgQWdYWNE+trHX+sOu8T3OPkMcn/cHSjE97kZ1PyRGkzFIHN
-         leXg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761062773; x=1761667573;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=I+ODemdtelodNngZ+cnMjkBp0uDC6f3Gz3zokiA/WGA=;
-        b=e0XaMTql0rShaI0B1C6yqoxLpZMC82HaVyJSGD12/+UVnQX/yJgSVVCCaOEIt88Djq
-         g/49cPwXDRVPHFRrwjPrv7hvMjtLaZuClp0dKsmLKCGiDdaJ6Vh/ps8f6Ah7vlOPvco1
-         KpKq+eDM1umgb8T+R4y3vS16dFcjmUP7FQolVHRhEHba+RHBoEejQmyZ2Zioy+SGm5Ae
-         PeniJJGS8nQrRA1F/DxNMCSptaUb2U0xtVx/RIYTxpw/NcwyNJjtvTXXZWBYALwZ3nsL
-         /XIMUP9Ooj9GQjEjckgBqMpSMHQ0qufDLnk7KoKHN3B+A4CTVJ342VhRJyV36pgG/OHs
-         HY3A==
-X-Forwarded-Encrypted: i=1; AJvYcCVQgHkA8GRRQQkCa4U9h0ZqESLpDvW0juBbQKid41HN6drCc68LnPdGEimPkj8nF5vNRC4TZaYuQ7ot@vger.kernel.org
-X-Gm-Message-State: AOJu0YxHquTGJvSFCT2fF5qfUKpJw++5wNMFnr74pUSkxxHzGDAKlagE
-	EkIYCzP46N0ltDIc9LehOPUexWmAMFfMe45pUnqeEP/BHC4V6gm6FUPq
-X-Gm-Gg: ASbGncvJ+BgOVrDV1mT9w9UjnwqWon75ImKx/LbfN7ecNEX9TlcN+bHZROvbmTNEhBI
-	YPO/OUZRg9EgQIwFH9GzUoQKFkjdfBx6sEqDopK34QV1IQRXut6gCzKGK7LmhX/x0LAjTt6jgZs
-	hlARsySgktUtsxvJmjiNF++JpBnR8D1RPr/+qcmQ6yLcvA9C2QUOuSd7C0mAgT7vyyULYANOPVr
-	BSRpV1VB04eiPmpZPJD0tLTNeNffMJp2MNgPd9P9TserugA1n0gpAm7ly3eBKTkX3YXP9kTBUpF
-	IW6UJBn/DseyRg7eLo8RsXJD6qgHhgDM9wujl8Lc5gOiGUh0AbgW1pfHv9Rwf5YHufu31pNjK8Z
-	S0s7tFd781YcjWXly+F4MDsPiusIXG7PWtMrmPUkngHL/2wdYhNSj0iDbghy5Fw+TZvgHeTohY4
-	tzjYW1
-X-Google-Smtp-Source: AGHT+IFJFL2AbUhadEu3zoiSmflGJqqKLGGnSqi38T2TvHgGSGw3DXC14Yf1ANAfxEsqrqF6d4xXtg==
-X-Received: by 2002:a05:600c:450c:b0:46e:38cc:d3e2 with SMTP id 5b1f17b1804b1-47117906a23mr136429645e9.22.1761062773077;
-        Tue, 21 Oct 2025 09:06:13 -0700 (PDT)
-Received: from debian.. ([193.42.96.237])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47496d26affsm18543965e9.12.2025.10.21.09.06.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Oct 2025 09:06:12 -0700 (PDT)
-From: David Petry <petry103@gmail.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Heiko Stuebner <heiko@sntech.de>,
-	Damon Ding <damon.ding@rock-chips.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	David Petry <petry103@gmail.com>,
-	=?UTF-8?q?Valentin=20H=C4=83loiu?= <valentin.haloiu@gmail.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2] arm64: dts: rockchip: Enable second HDMI output on CM3588
-Date: Tue, 21 Oct 2025 18:06:02 +0200
-Message-ID: <20251021160603.96934-1-petry103@gmail.com>
-X-Mailer: git-send-email 2.47.3
+	s=arc-20240116; t=1761062832; c=relaxed/simple;
+	bh=Z8Z45Yh74qlqoROn/D5Z7pkE63DX4wDr9y145M3BGmk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=iZ2PFrmsqzC/QYUOp3SNZu/O1OySYoUUdmc5txvw8AYmIVjHfDCo97Md0gBb03r8xwSt72jRPDdpw9KD03ttdTR9XApViLeZKU1bye3N+Sm9JiAU00GEHvod2y9nGYxQgymBgsxXpZLuTVHEdTD0HOXslptN4pcF9RSq64EO3lw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=aI5oFskQ; arc=none smtp.client-ip=80.241.56.151
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp202.mailbox.org (smtp202.mailbox.org [10.196.197.202])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4crccq0klBz9svN;
+	Tue, 21 Oct 2025 18:07:07 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1761062827;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=58QwQ0d6ddlVQwt1yt7loHo/bKQZqW/rus6AD7Mcw1E=;
+	b=aI5oFskQEXHIokraiqSrvW7Ekjoagz5LsJQY6WsooS2ZwIykHaSu11XjktEApNQt0e9RPk
+	3YWU+2RiEnmUaKTCgrSvlzFK6k/gvvPZHZSndJg++AkjdNX1YwAXapufyWyiEw7+niger0
+	hc90/ZnMqlirxLuSgwE9Phga/2iNNgLD6rp0ZBU11mKZIuOx7gTNdQZAaJu9q03o1Rs+61
+	tFctkbfq4ilfUcPZMDTZUXBbzaod89pb6h4GHNf4XCdUubnLOrEmS0t6mLlZ4kQaxn62K/
+	NfbMjBr4dfXaYzXqxVvhKAVYRf88V2Ec13YQ2iDf1hfY3c6LYtmU3dJOGHJcXg==
+Message-ID: <0e81437f-a13f-4605-b7f7-6e6640411f30@mailbox.org>
+Date: Tue, 21 Oct 2025 18:07:04 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH] arm64: dts: renesas: sparrow-hawk: don't reserve SWDT
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ linux-renesas-soc@vger.kernel.org, Magnus Damm <magnus.damm@gmail.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
+References: <20251017115123.3438-2-wsa+renesas@sang-engineering.com>
+ <CAMuHMdUCSRKAbD=DfJxfFGpfKTRkt=a2BO+HnwTqALBeeECOkA@mail.gmail.com>
+ <aPaSF2lokJ748cTx@shikoro>
+ <CAMuHMdXv_R6POTQe=MEcEOraKhjhzwrW5skkWnzgvijF2qAykw@mail.gmail.com>
+ <fba13116-2495-49a3-a1b5-2eecb33bb448@mailbox.org>
+ <CAMuHMdUP_bH5WW3=3J1H=6SocKzQXPdP7PFfYDrgaj4EhYTaYQ@mail.gmail.com>
+Content-Language: en-US
+From: Marek Vasut <marek.vasut@mailbox.org>
+In-Reply-To: <CAMuHMdUP_bH5WW3=3J1H=6SocKzQXPdP7PFfYDrgaj4EhYTaYQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-MBO-RS-ID: a0008dc800233e8b927
+X-MBO-RS-META: iaems8tq65apnwufqpu5oy6gkh6kz5jw
 
-Enable the second HDMI output port found on FriendlyElec CM3588 and CM3588 Plus
+On 10/21/25 3:22 PM, Geert Uytterhoeven wrote:
 
-Signed-off-by: David Petry <petry103@gmail.com>
----
-Changes in v2:
- - Fixed commit message according to feedback from Heiko Stuebner
----
- .../rk3588-friendlyelec-cm3588-nas.dts        | 38 +++++++++++++++++++
- 1 file changed, 38 insertions(+)
+Hello Geert,
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-friendlyelec-cm3588-nas.dts b/arch/arm64/boot/dts/rockchip/rk3588-friendlyelec-cm3588-nas.dts
-index 5fbbeb6f5a935..10a7d3691a26f 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-friendlyelec-cm3588-nas.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-friendlyelec-cm3588-nas.dts
-@@ -101,6 +101,17 @@ hdmi0_con_in: endpoint {
- 		};
- 	};
- 
-+	hdmi1-con {
-+		compatible = "hdmi-connector";
-+		type = "a";
-+
-+		port {
-+			hdmi1_con_in: endpoint {
-+				remote-endpoint = <&hdmi1_out_con>;
-+			};
-+		};
-+	};
-+
- 	ir-receiver {
- 		compatible = "gpio-ir-receiver";
- 		gpios = <&gpio0 RK_PD4 GPIO_ACTIVE_LOW>;
-@@ -335,6 +346,22 @@ hdmi0_out_con: endpoint {
- 	};
- };
- 
-+&hdmi1 {
-+	status = "okay";
-+};
-+
-+&hdmi1_in {
-+	hdmi1_in_vp1: endpoint {
-+		remote-endpoint = <&vp1_out_hdmi1>;
-+	};
-+};
-+
-+&hdmi1_out {
-+	hdmi1_out_con: endpoint {
-+		remote-endpoint = <&hdmi1_con_in>;
-+	};
-+};
-+
- &hdmi_receiver_cma {
- 	status = "okay";
- };
-@@ -350,6 +377,10 @@ &hdptxphy0 {
- 	status = "okay";
- };
- 
-+&hdptxphy1 {
-+	status = "okay";
-+};
-+
- /* Connected to MIPI-DSI0 */
- &i2c5 {
- 	pinctrl-names = "default";
-@@ -840,3 +871,10 @@ vp0_out_hdmi0: endpoint@ROCKCHIP_VOP2_EP_HDMI0 {
- 		remote-endpoint = <&hdmi0_in_vp0>;
- 	};
- };
-+
-+&vp1 {
-+	vp1_out_hdmi1: endpoint@ROCKCHIP_VOP2_EP_HDMI1 {
-+		reg = <ROCKCHIP_VOP2_EP_HDMI1>;
-+		remote-endpoint = <&hdmi1_in_vp1>;
-+	};
-+};
+> On Tue, 21 Oct 2025 at 15:14, Marek Vasut <marek.vasut@mailbox.org> wrote:
+>> On 10/21/25 9:09 AM, Geert Uytterhoeven wrote:
+>>> On Mon, 20 Oct 2025 at 21:48, Wolfram Sang
+>>> <wsa+renesas@sang-engineering.com> wrote:
+>>>>> Or better: drop all these swdt = reserved commits?
+>>>>
+>>>> Maybe. Since Marek is maybe interested in fixing FW...
+>>>>
+>>>>> TBH, I always had my doubts about making them reserved in the upstream
+>>>>> DTS, and there does not seem to be much gain in doing so...
+>>>>
+>>>> No strong opinion here. With "reserved" I think I followed your
+>>>> suggestion but I personally don't mind.
+>>>
+>>> Well, the proper mechanism would be that firmware using SWDT would
+>>> override the status to reserved, preventing the user from using it if
+>>> it was enabled in the DTB passed by the user.  But (a) the current
+>>> firmware doesn't do that, and (b) we currently do not have a use-case
+>>> for enabling SWDT in the DTB.
+>>
+>> Upstream TFA does enable SWDT for R-Car Gen3, but not for Gen4.
+> 
+> Oh, so this is a "generic" R-Car Gen4 issue?
+> Does that mean we can use SWDT in Linux on R-Car Gen4 with TF-A,
+> or does TF-A still block access to it?
+
+I think this can be tested on Sparrow Hawk easily , with and without 
+TFA. Wolfram, how do I test the SWDT ?
+
+>> I can pass SWDT node from upstream TFA to next stage on Gen3 if you
+>> would like that ?
+> 
+> I guess that would be a good thing to do.  But I am afraid it is a bit
+> late in the product life cycle.  Ideally, everything that is used by
+> firmware should be marked reserved...
+
+It seems SWDT is not used by upstream TFA, but maybe it is used by 
+downstream one (or downstream loader). I can enable SWDT in either TFA 
+or U-Boot if that would be preferable, or leave it available for Linux.
+
 -- 
-2.47.3
-
+Best regards,
+Marek Vasut
 
