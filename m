@@ -1,170 +1,194 @@
-Return-Path: <devicetree+bounces-229234-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229235-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75185BF524C
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 10:04:35 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 071F0BF5252
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 10:05:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AA424462C69
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 08:03:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 20AD64004D6
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 08:03:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FC762EA16A;
-	Tue, 21 Oct 2025 08:03:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12BD62E62C5;
+	Tue, 21 Oct 2025 08:03:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ffwll.ch header.i=@ffwll.ch header.b="FM7/+tP+"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="QROdFjdg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F1D32BE658
-	for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 08:03:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BEA71D61B7;
+	Tue, 21 Oct 2025 08:03:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761033824; cv=none; b=ryeBnrCe0j94eMZtz8xEvsij1GCo6eXEMn+oC7m8v0ffIySf9f3+0w1nivsUv0Sn90i7wiHMsoZv8HDwg2NhvLv4DdFAJ2YiJqEgkzBDoHpePqdRD6AJDxeG/XWjvgUl+4qGZtiLjBGROhkMdEGSpdkUao0ha021EU5OnngeAYs=
+	t=1761033838; cv=none; b=OfKxMVu09ECzKKWg3Z98tg8L7YYpd1+VlvhV3ef66MtVa4lsByhoCuiZXtL9jkIotBar30hxjr9p2ucEN5H+9l2jR8qMAQNkG/kAOi1qZAyxC8t+OfEHY/f+t99pRG2J3PKH1XJH7z3uq8AkQPSuB38LXsPutmmCo/4PbFZF9RQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761033824; c=relaxed/simple;
-	bh=6Mv7HAoZABWuGvs2JyOm9HSzUH3AHVBCynCtVRwyJAE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PCvq3Y+27tr5E/5NfCl56HrCOUcmD6iLiETxR4TdXUVJrMdeqTGVBF3vNmZKX8BE0/ehN/WlUKCbZeNQZrA80TahrFAiQWFGCocw4pt3fsEIyVFI+D80JugM8M2A7LynBDw/jyGtcFGCgGqcmgu496rxp/dtLJcywNyDPoTdxp0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ffwll.ch; spf=none smtp.mailfrom=ffwll.ch; dkim=pass (1024-bit key) header.d=ffwll.ch header.i=@ffwll.ch header.b=FM7/+tP+; arc=none smtp.client-ip=209.85.218.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ffwll.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=ffwll.ch
-Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-b403bb7843eso978457766b.3
-        for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 01:03:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ffwll.ch; s=google; t=1761033820; x=1761638620; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references
-         :mail-followup-to:message-id:subject:cc:to:from:date:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=1eZOCk0G+WIeYYVlPWpiKCZVOUjneoPQzsl6dTiB4tA=;
-        b=FM7/+tP+EKbj+UA6g5fOHhfJreNzSMKP+JpMgOF/U8IigPesS5v5MNxSr8D3y+6g5w
-         5tdueylmRsGBZoY21maiZU/f9Ne79UfV10jgyKgQf+n7N7aZ70nUsyGQCYQaJc1G+pB4
-         PhnwE76FSFbhl7JJCkVlCL/CEBkGPf+DNktxA=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761033820; x=1761638620;
-        h=in-reply-to:content-disposition:mime-version:references
-         :mail-followup-to:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=1eZOCk0G+WIeYYVlPWpiKCZVOUjneoPQzsl6dTiB4tA=;
-        b=g7m72ZKqmjO5WufVUAXjC4pWt4rLcN++4JZoaf3RZthHY/btwXcGaC0tfGQ+gotQW6
-         yXGBckl6uVl8+lnq/C2vFKNQSJ8v62KnSlJeY00uk2OKLoRFnpngdJQ2Fqv3ISvLtSus
-         dbY+KjbRJPWx94+7DDTs7L1zGOC18bttz6as5n2KDH8g74dgddjRcW1u3occlWFnyLcG
-         UktoOWixBtEhDa581DXz8dwt14ppV6QgcgkeRZnZTJkUUH2WE1Vd8Fv/IxK8FOpFM/ij
-         8gb70Gzsne5kqsgJ5tPrgQAjfGWkYLbIHNEmlaDFevQguPrhpr+VCg74SARcnvG+A6Lf
-         ibyg==
-X-Forwarded-Encrypted: i=1; AJvYcCVU1Ubh3MvzBJUXVoTl+EG6VThwIrB6hftZdhKNkZz8zvDtWanPVW+Bv03RqY8qIqJoFRG7ETGWhtbq@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw0rJdrg+dCVD6zVNXxfDr6+y0viEE3EgYnG/fIVDAhyjOQEMuU
-	4Y5hm469aE0xbzpXFLZAEZn8mGWIwIdU+5lkAdkYtSFrkRq8ALFpCEu+ZLRiyHGH6iA=
-X-Gm-Gg: ASbGnct6BgXl8nN++WcOHiXS+PUpkn8CNcOMmeIknENHTd3mkj4Maodrpk6uHo32vTN
-	E6r6azW645mJtBeplfxi5g/bRpLwobtFQOSrjWbIs5okmGqUwfGvQn0E1YpHEh++++O6dICmGTC
-	F1LGngmNFLtsmdP09lk1/37D8Smz3/93lPXz55bcjsEm4o6yqbux1l8RCTXnL56WFnDvdCZ2hIX
-	zRbOLgb24DUaZi3tUrpJjok25esGrQM3Untk90BWC/YgHOWNo7ITvbQ40sUbSNas9ME5TdeH+AE
-	f8yRvs8JNRCM+H7gv8XtZjT+Tem2eIa9I34JFg9TdHQCEf/+wCmJZmmle/R5yH47GYPjdojasmH
-	VXEYCTEFVs8og/PkC+oMiS4Eb5Nm+1m7l8sTUNefzGHHix+hP/HENyHcVfdFS/2YAznFNAKP/r7
-	HD4wPSGQu13yU=
-X-Google-Smtp-Source: AGHT+IEbmSLB+yRFZ86qxeD7wG4TxM9uG6ayZpPpFTz88clAHcJph5RIG47VQ/I34aUFg3RPcxflIg==
-X-Received: by 2002:a17:906:fe41:b0:b04:aadd:b8d7 with SMTP id a640c23a62f3a-b6471d48347mr1967108166b.13.1761033819926;
-        Tue, 21 Oct 2025 01:03:39 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:5485:d4b2:c087:b497])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b65e8581780sm992513566b.31.2025.10.21.01.03.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Oct 2025 01:03:39 -0700 (PDT)
-Date: Tue, 21 Oct 2025 10:03:37 +0200
-From: Simona Vetter <simona.vetter@ffwll.ch>
-To: Shengjiu Wang <shengjiu.wang@nxp.com>
-Cc: andrzej.hajda@intel.com, neil.armstrong@linaro.org, rfoss@kernel.org,
-	Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
-	jernej.skrabec@gmail.com, maarten.lankhorst@linux.intel.com,
-	mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com,
-	simona@ffwll.ch, lumag@kernel.org, dianders@chromium.org,
-	cristian.ciocaltea@collabora.com, luca.ceresoli@bootlin.com,
-	dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-	victor.liu@nxp.com, shawnguo@kernel.org, s.hauer@pengutronix.de,
-	kernel@pengutronix.de, festevam@gmail.com, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, p.zabel@pengutronix.de,
-	devicetree@vger.kernel.org, l.stach@pengutronix.de,
-	shengjiu.wang@gmail.com, perex@perex.cz, tiwai@suse.com,
-	linux-sound@vger.kernel.org
-Subject: Re: [PATCH v7 2/7] ALSA: Add definitions for the bits in IEC958
- subframe
-Message-ID: <aPc-Wad85lQWbqfa@phenom.ffwll.local>
-Mail-Followup-To: Shengjiu Wang <shengjiu.wang@nxp.com>,
-	andrzej.hajda@intel.com, neil.armstrong@linaro.org,
-	rfoss@kernel.org, Laurent.pinchart@ideasonboard.com,
-	jonas@kwiboo.se, jernej.skrabec@gmail.com,
-	maarten.lankhorst@linux.intel.com, mripard@kernel.org,
-	tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch,
-	lumag@kernel.org, dianders@chromium.org,
-	cristian.ciocaltea@collabora.com, luca.ceresoli@bootlin.com,
-	dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-	victor.liu@nxp.com, shawnguo@kernel.org, s.hauer@pengutronix.de,
-	kernel@pengutronix.de, festevam@gmail.com, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, p.zabel@pengutronix.de,
-	devicetree@vger.kernel.org, l.stach@pengutronix.de,
-	shengjiu.wang@gmail.com, perex@perex.cz, tiwai@suse.com,
-	linux-sound@vger.kernel.org
-References: <20250923053001.2678596-1-shengjiu.wang@nxp.com>
- <20250923053001.2678596-3-shengjiu.wang@nxp.com>
+	s=arc-20240116; t=1761033838; c=relaxed/simple;
+	bh=uRJHPyETDsTCj2+OQ1mRFlr8Bbks2lxPY6twkMXsU2I=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Ey8CnO3tGWa3BvORnMmCcFC9AmFBj/V1Gdbx/Cl1l/2/pTeguvvCA1OG0mbPFbr/r9p23+yO4faW+hTPyvpxhJ4IX4jSMxIuhH0RYX5Q542+uH6z1xCPMvFdxlqMT9LeNlE3pCIGZ7BRfYF0huUZUde0g9wscQgG/9Os4POsiyI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=QROdFjdg; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1761033833;
+	bh=uRJHPyETDsTCj2+OQ1mRFlr8Bbks2lxPY6twkMXsU2I=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=QROdFjdgod/ROylJgy2Guz/ooeoHdSBvVBAh5Je/NIPZVw8Id9oRiFxWXCVHFjshj
+	 rsRD6xnfsiXOoIPMpzKWa6gwzqBRxnJMMUIlnqUbKP4ybKE7I6R4GhedPFsJ3ZE0cn
+	 Fyat/tvas5N+DYhHCkOokWzRItq5v/Zd0JQSmtES+G9vqj1rpn4RTI4NNADxdS9hrh
+	 LXFtS0yZsdBIuIYbxVdQSQpkvqS3ytSXDQfTh0SgTgTNByE7O342gjxdPj5kPaOuN7
+	 H4/zTP9IVJTZUkHvAUNgPFqiZR4fy2QKTfr5H1t2/iaoHCAlUctjMHye0LLH0p2Rjt
+	 4/RNQDNBGf7PA==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 08DC317E081A;
+	Tue, 21 Oct 2025 10:03:52 +0200 (CEST)
+Message-ID: <0e5ca992-730d-42c5-b5b8-5ad04116b8d4@collabora.com>
+Date: Tue, 21 Oct 2025 10:03:52 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250923053001.2678596-3-shengjiu.wang@nxp.com>
-X-Operating-System: Linux phenom 6.12.38+deb13-amd64 
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 0/3] Add Mali GPU support for Mediatek MT8365 SoC
+To: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>
+Cc: kernel@collabora.com, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ Conor Dooley <conor.dooley@microchip.com>
+References: <20251021-mt8365-enable-gpu-v2-0-17e05cff2c86@collabora.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <20251021-mt8365-enable-gpu-v2-0-17e05cff2c86@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Tue, Sep 23, 2025 at 01:29:56PM +0800, Shengjiu Wang wrote:
-> The IEC958 subframe format SNDRV_PCM_FMTBIT_IEC958_SUBFRAME_LE are used
-> in HDMI and DisplayPort to describe the audio stream, but hardware device
-> may need to reorder the IEC958 bits for internal transmission, so need
-> these standard bits definitions for IEC958 subframe format.
+Il 21/10/25 09:30, Louis-Alexis Eyraud ha scritto:
+> This patchset adds the support of the ARM Mali G52 MC1 GPU (Bifrost),
+> integrated to the Mediatek MT8365 SoC, and its enablement to the
+> Mediatek Genio 350-EVK board.
 > 
-> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
-> Reviewed-by: Takashi Iwai <tiwai@suse.de>
-> Tested-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> I've tested this patchset on a Mediatek Genio 350-EVK board,
+> with a kernel based on linux-next (tag: next-20251021).
+> 
 
-Would be good to get a formal ack from alsa maintainers before merging
-through drm, just to be sure.
+Thanks for this one! This series is ready to be merged.
 
-Thanks, Sima
+However, in order to take the DT patches I need someone to pick the binding first.
 
+Cheers,
+Angelo
+
+> The panfrost driver probed with the following messages:
+> ```
+> panfrost 13040000.gpu: clock rate = 450000031
+> panfrost 13040000.gpu: mali-g52 id 0x7402 major 0x1 minor 0x0 status
+>    0x0
+> panfrost 13040000.gpu: features: 00000000,00000df7, issues: 00000000,
+>    00000400
+> panfrost 13040000.gpu: Features: L2:0x07110206 Shader:0x00000003
+>   Tiler:0x00000209 Mem:0x1 MMU:0x00002823 AS:0xff JS:0x7
+> panfrost 13040000.gpu: shader_present=0x1 l2_present=0x1
+> [drm] Initialized panfrost 1.5.0 for 13040000.gpu on minor 0
+> ```
+> 
+> Running glmark2-es2-drm with MESA 25.2 is also OK:
+> ```
+> =======================================================
+>      glmark2 2023.01
+> =======================================================
+>      OpenGL Information
+>      GL_VENDOR:      Mesa
+>      GL_RENDERER:    Mali-G52 r1 (Panfrost)
+>      GL_VERSION:     OpenGL ES 3.1 Mesa 25.2.5-1
+>      Surface Config: buf=32 r=8 g=8 b=8 a=8 depth=24 stencil=0 samples=0
+>      Surface Size:   1200x1920 fullscreen
+> =======================================================
+> [build] use-vbo=false: FPS: 513 FrameTime: 1.952 ms
+> [build] use-vbo=true: FPS: 514 FrameTime: 1.947 ms
+> [texture] texture-filter=nearest: FPS: 489 FrameTime: 2.046 ms
+> [texture] texture-filter=linear: FPS: 486 FrameTime: 2.061 ms
+> [texture] texture-filter=mipmap: FPS: 476 FrameTime: 2.101 ms
+> [shading] shading=gouraud: FPS: 436 FrameTime: 2.296 ms
+> [shading] shading=blinn-phong-inf: FPS: 387 FrameTime: 2.585 ms
+> [shading] shading=phong: FPS: 253 FrameTime: 3.955 ms
+> [shading] shading=cel: FPS: 232 FrameTime: 4.328 ms
+> [bump] bump-render=high-poly: FPS: 266 FrameTime: 3.765 ms
+> [bump] bump-render=normals: FPS: 421 FrameTime: 2.376 ms
+> [bump] bump-render=height: FPS: 343 FrameTime: 2.922 ms
+> [effect2d] kernel=0,1,0;1,-4,1;0,1,0;: FPS: 133 FrameTime: 7.521 ms
+> [effect2d] kernel=1,1,1,1,1;1,1,1,1,1;1,1,1,1,1;: FPS: 46 FrameTime:
+>    21.990 ms
+> [pulsar] light=false:quads=5:texture=false: FPS: 379 FrameTime: 2.645 ms
+> [desktop] blur-radius=5:effect=blur:passes=1:separable=true:windows=4:
+>    FPS: 57 FrameTime: 17.735 ms
+> [desktop] effect=shadow:windows=4: FPS: 249 FrameTime: 4.018 ms
+> [buffer] columns=200:interleave=false:update-dispersion=0.9:update-fraction
+>    =0.5:update-method=map: FPS: 81 FrameTime: 12.447 ms
+> [buffer] columns=200:interleave=false:update-dispersion=0.9:update-fraction
+>    =0.5:update-method=subdata: FPS: 81 FrameTime: 12.388 ms
+> [buffer] columns=200:interleave=true:update-dispersion=0.9:update-fraction
+>    =0.5:update-method=map: FPS: 99 FrameTime: 10.127 ms
+> [ideas] speed=duration: FPS: 287 FrameTime: 3.492 ms
+> [jellyfish] <default>: FPS: 114 FrameTime: 8.842 ms
+> [terrain] <default>: FPS: 14 FrameTime: 76.911 ms
+> [shadow] <default>: FPS: 156 FrameTime: 6.432 ms
+> [refract] <default>: FPS: 29 FrameTime: 34.791 ms
+> [conditionals] fragment-steps=0:vertex-steps=0: FPS: 529 FrameTime: 1.890 ms
+> [conditionals] fragment-steps=5:vertex-steps=0: FPS: 326 FrameTime: 3.076 ms
+> [conditionals] fragment-steps=0:vertex-steps=5: FPS: 532 FrameTime: 1.880 ms
+> [function] fragment-complexity=low:fragment-steps=5: FPS: 475 FrameTime:
+>    2.106 ms
+> [function] fragment-complexity=medium:fragment-steps=5: FPS: 227
+>    FrameTime: 4.417 ms
+> [loop] fragment-loop=false:fragment-steps=5:vertex-steps=5: FPS: 475
+>    FrameTime: 2.108 ms
+> [loop] fragment-steps=5:fragment-uniform=false:vertex-steps=5: FPS: 474
+>    FrameTime: 2.110 ms
+> [loop] fragment-steps=5:fragment-uniform=true:vertex-steps=5: FPS: 226
+>    FrameTime: 4.428 ms
+> =======================================================
+>                                    glmark2 Score: 296
+> =======================================================
+> ```
+> 
+> Signed-off-by: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
 > ---
->  include/sound/asoundef.h | 9 +++++++++
->  1 file changed, 9 insertions(+)
+> Changes in v2:
+> - Rebased on next-20251021 tag
+> - Fixed missing blank lines in 'arm64: dts: mediatek: mt8365: Add GPU
+>    support' patch
+> - Added reviewed-by and acked-by trailers
+> - Updated cover letter
+> - Link to v1: https://lore.kernel.org/r/20250813-mt8365-enable-gpu-v1-0-46c44c6c1566@collabora.com
 > 
-> diff --git a/include/sound/asoundef.h b/include/sound/asoundef.h
-> index 09b2c3dffb30..c4a929d4fd51 100644
-> --- a/include/sound/asoundef.h
-> +++ b/include/sound/asoundef.h
-> @@ -12,6 +12,15 @@
->   *        Digital audio interface					    *
->   *                                                                          *
->   ****************************************************************************/
-> +/* IEC958 subframe format */
-> +#define IEC958_SUBFRAME_PREAMBLE_MASK	(0xfU)
-> +#define IEC958_SUBFRAME_AUXILIARY_MASK	(0xfU << 4)
-> +#define IEC958_SUBFRAME_SAMPLE_24_MASK	(0xffffffU << 4)
-> +#define IEC958_SUBFRAME_SAMPLE_20_MASK	(0xfffffU << 8)
-> +#define IEC958_SUBFRAME_VALIDITY	(0x1U << 28)
-> +#define IEC958_SUBFRAME_USER_DATA	(0x1U << 29)
-> +#define IEC958_SUBFRAME_CHANNEL_STATUS	(0x1U << 30)
-> +#define IEC958_SUBFRAME_PARITY		(0x1U << 31)
->  
->  /* AES/IEC958 channel status bits */
->  #define IEC958_AES0_PROFESSIONAL	(1<<0)	/* 0 = consumer, 1 = professional */
-> -- 
-> 2.34.1
+> ---
+> Louis-Alexis Eyraud (3):
+>        dt-bindings: gpu: mali-bifrost: Add compatible for MT8365 SoC
+>        arm64: dts: mediatek: mt8365: Add GPU support
+>        arm64: dts: mediatek: mt8365-evk: Enable GPU support
 > 
+>   .../devicetree/bindings/gpu/arm,mali-bifrost.yaml  |  1 +
+>   arch/arm64/boot/dts/mediatek/mt8365-evk.dts        |  9 +++++
+>   arch/arm64/boot/dts/mediatek/mt8365.dtsi           | 43 +++++++++++++++++++++-
+>   3 files changed, 52 insertions(+), 1 deletion(-)
+> ---
+> base-commit: 853c202e4aec8006c2c1367b052c9f8949db019a
+> change-id: 20250812-mt8365-enable-gpu-a39835dca7fc
+> 
+> Best regards,
 
--- 
-Simona Vetter
-Software Engineer
-http://blog.ffwll.ch
+
 
