@@ -1,268 +1,227 @@
-Return-Path: <devicetree+bounces-229291-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229296-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B016BF5AAB
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 11:59:05 +0200 (CEST)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 50CD2BF5B1D
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 12:07:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A1B424846D5
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 09:59:02 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id A7AF635122C
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 10:07:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED29B329C63;
-	Tue, 21 Oct 2025 09:58:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7A2F32ABF9;
+	Tue, 21 Oct 2025 10:07:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="BQK0aoUA"
+	dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="B4/bYZuO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx-relay47-hz3.antispameurope.com (mx-relay47-hz3.antispameurope.com [94.100.134.236])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D41302F7477
-	for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 09:58:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761040735; cv=none; b=CTEhlgQk4XtlsnzAPkY/0G+s4iv9DKS4hq2a4vMEVjp2HtCDWyKzGZ3c2S4UazFt7GPbFC3Xtktz3NHXQiPCXD2PcSQ2LvrnF0e932zhUU//0snGuy0VfTaflx6iZFknc/7b77xvhmf0q6puNYiw5Y+qGcy26DQXFqZSVh8KoTc=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761040735; c=relaxed/simple;
-	bh=jL5PiRJcqKuNtEtR529Q+1ag7NmYrhDagjAzjFjAk+s=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=X93MwgX5aw0p19OxKjmaeRje/7wARKZD31JppQGeP6FjZTIapQysc7+5IEb0x7IjOjkrJZTw8DHCl9lxNm66OOS+niT7NBXO8Hr9Mm6Ihg8H9RmnP/Y4q7KnSAU8E8V/3A5IaMEYitYyLffsrG6ULVw4ldXMQ8vJtm9s6TjdDxs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=BQK0aoUA; arc=none smtp.client-ip=209.85.208.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-63c4b5a1b70so6613426a12.1
-        for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 02:58:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1761040732; x=1761645532; darn=vger.kernel.org;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Jfc+hYYkM7bFtd7hc1ZsC7zgHKLWgJd0muBJbt3zQ7g=;
-        b=BQK0aoUAjVkbvq5PTSRZ9xqpTPqVLUBwxecJNCh3KN7f1eu5J1Byux82uzMFo865j/
-         QsBMlXB0KZy5I7iCpd8V+3W+wdEauefyKSgIEEjLc+LioiXSOiSvulDx8LY8rg76rcmk
-         QoRxmupi8+1wds0KIUznq2Fq+vMwcztwvzzRur9J3GgbMZO7sZffBxUZrjeKyS+9IMCe
-         zfxn+pMFE2Ny5n7qjKGxLQGvyWAIi/TjlAQPPFCEaLGWsonPvZZr6dGkU6TX0/znK+JB
-         UUeyjlc5tz3Zdm8SmHyV5cnEN7jbG6OnIqc0KdExqCwsXpyDXDRFqeC0N/jpY/uRNq0d
-         7jQw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761040732; x=1761645532;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=Jfc+hYYkM7bFtd7hc1ZsC7zgHKLWgJd0muBJbt3zQ7g=;
-        b=p121YtLUaFQCLJ00brJrfSh3gQbAQlRGi9FX1vyEWvGNb6G0jNVF5Lr1IPF93vKQhe
-         cgcSwn5JCPqKpuYSpQgn6/y7qGtIPrllPUYaSpUI26bIa8ZJAslXHO5WUH7/sRsN+KFl
-         YOQzVngu3NWtDI3japrK8wcZE/ZfHPTiVLa6W4Kk+39Cbw2qxuEGikR1piyMBM1yx7TT
-         oknjQB20KQAA4ADTBM4Sh9/13OMeIQg3L+oO0jZvZ9LBrV9WSxavhzXrFLHZdc4HIEYn
-         UuT+oc3vvcoTuiLkBxKH4CLJx1ihgIwobZENfxebh8BbSBFKwciBK0a/A/pzFVh4DH4u
-         ME1g==
-X-Forwarded-Encrypted: i=1; AJvYcCWiwtu9JoAso3ZTJkAAZP0Ivd53vmEkT5b5l4C0YLRNS4en01XGo7SMNXFVf8FGrFpf3eXvA5VYUrzb@vger.kernel.org
-X-Gm-Message-State: AOJu0YwpU/S1fo2GPWskpBikOoNpTzxdT6tXKLj7ZvU4m9xtOV3IeYdr
-	nt4JArke03lDpfpKtnnxva22yFMqznIsmeYyviQdUEjPKxewxm4crdbi7EQETi6DViTvMPF9/tl
-	7y5O8OUo=
-X-Gm-Gg: ASbGncvsxnfVuXMU7yoA4SowPGDR56oBxqaM+P9jbFgx4BNcu0er/CmPtbCSpLglB/4
-	JhkikmpCvZtWvY+gp6CLJnkmq4niIl76RTjUcCFbVxvfM0603keB7+ZmIBlQ64ctIYU9KUsqlwE
-	NxF/Qv22lOvoaA4MZqjoFwmtIekfWZ5uCq8zopEaCOSggsV/6e2z/NuRItywiW2MpZYShg8A05+
-	zVk0IbH1dWkOyc2TfMpwcmzLSHjh0/Vm06742kcBpURM9KxF/HG8yLM5JvSXGvaQcIbVvC6AJJp
-	m9a1gAuYhYKqlon3K9CVf2TyKGlntz1/QzSonZ+dFK1h9HhkAMlV1BwL0UjmcSq5/VRgRy6eA2t
-	HcFiO7Opzx+DgzgBtaXdaqWGnrSp5ycyndRppFcziKBEm32ZPiPGBrFJRmTFH1K3dUdk2lOoD7A
-	V849xJ1X7Jhqw4di7L2HQo1aVCSKkZ2wXTN5WJjHaUofZjlONpYiT69yxFQhBcHlcMbcg1j/KC4
-	CsM9z1a2vKwpqEmJEll1g4nXg==
-X-Google-Smtp-Source: AGHT+IGJHerhY1ys1hn8/V3TkFHhEbPbkgZHzY3kFbXZSLcPo/U1Nws0n7oq1SwARwLhYfdcHrxddQ==
-X-Received: by 2002:a05:6402:13ca:b0:634:5297:e3bc with SMTP id 4fb4d7f45d1cf-63c1f629a40mr17634517a12.6.1761040732108;
-        Tue, 21 Oct 2025 02:58:52 -0700 (PDT)
-Received: from localhost (2001-1c00-3b8a-ea00-4b34-6694-d9bd-5210.cable.dynamic.v6.ziggo.nl. [2001:1c00:3b8a:ea00:4b34:6694:d9bd:5210])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-63c4949bfd3sm8865958a12.41.2025.10.21.02.58.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 21 Oct 2025 02:58:51 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94AC0328B70
+	for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 10:07:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=94.100.134.236
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1761041272; cv=pass; b=XkyGbydA8k7jKK+32jgKm1YI2VvGtlZWN7rMWObGH73J03FRvV8kTCxlnIH0zOgeh6/2eVhP5VCVI27ZWb1bnGjlr1nhlNgvo+pTgn1xdBZJCSL6THk362SehQaiOho5MjmwW/EK7P0C3Qtpp6hajzcX2kPxLpUzUXe8b6lBHwE=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1761041272; c=relaxed/simple;
+	bh=Zy+YIx4wOUtLteMs5mbXIF/xPPefUp5YEVyDK3zwUFQ=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=gkp0XnZAJi3sVtT07giNgCjqXN+viQsRQzmI62QT9B+wOCCWDkZAKXjbc+B4vBf3cEt7Drw8BcjKFdBu+n7FkedBGMfgqbWqU//QzFEyH6G7Hm6nUtjkamg0881cQE0yUGpAWHXDv9qBDddNiaLqW0VF1si4WWLlbEzZYFofdYM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=B4/bYZuO; arc=pass smtp.client-ip=94.100.134.236
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+ARC-Authentication-Results: i=1; mx-gate47-hz3.hornetsecurity.com 1; spf=pass
+ reason=mailfrom (ip=94.100.132.6, headerfrom=ew.tq-group.com)
+ smtp.mailfrom=ew.tq-group.com smtp.helo=smtp-out02-hz1.hornetsecurity.com;
+ dmarc=pass header.from=ew.tq-group.com orig.disposition=pass
+ARC-Message-Signature: a=rsa-sha256;
+ bh=jofrQ0T7wEpqVhNL9sL4aUoJ4MX3kqIvOomYczAKOzs=; c=relaxed/relaxed;
+ d=hornetsecurity.com; h=from:to:date:subject:mime-version:; i=1; s=hse1;
+ t=1761041210;
+ b=fnGWJ0rAOnGqRJt+oR92I5PjBdHPbHdYSvxXB04YUTlvHxSTvrn0GlYx3BSHjD+Tk9DfxRJ/
+ kBsOClAMRR33Gjeu+Zp6yJzFn2BlihZu5JkWcmktoyiPK6A/bOS7ppF1LvvWjIpAsf2h4vNFL/c
+ xILsdvYfeme5C28rX53gpgXhz8AiYFt8zGhTlsq2ViRiu8LEBWfkPnnl5bxHFEbquL0TqjmhE5d
+ DuyyqpQ5ILUhG4tleRgvBEwvtCDumH84iUHaIFOY/cEhwzqeilr37DO0Zsz0DTOHyGC0CnR8cxw
+ qmly20Ifs5qIZMMhVrMbqVNxN0weFFFz9xCrWnc91MgaQ==
+ARC-Seal: a=rsa-sha256; cv=none; d=hornetsecurity.com; i=1; s=hse1;
+ t=1761041210;
+ b=S5jbZgeAhl127L5qxZ/ZB7hF4KCaKg8Oon6zHoUhftdeR7A5g42Izf4hfaKB8XyVQeqngPTf
+ srbzgvfSIMch8Qpjrh8yXZMAY2G4Zy07Z6r2RSTj4WpUO+k3il83iacGEeF5CEzhsigcdnp5UtB
+ SGr3FUc+PzMAdEJGh9kRxPH2uHNiWtcWhA2D8Ke1rwyyDVj6ZrC6/MVZKPfLj4AhTD/ZDhEXysd
+ s0m8X4sNlykfDTckp8C560/6scX8vgneCB7nsPNAtOWZFu910Q1z7A9DRNoBBp8r3gbjEpsuk8/
+ aWzO0j4jZ8hfEI4ELotC4xKDf6E5risMt15D6/RlaYsaw==
+Received: from he-nlb01-hz1.hornetsecurity.com ([94.100.132.6]) by mx-relay47-hz3.antispameurope.com;
+ Tue, 21 Oct 2025 12:06:50 +0200
+Received: from [192.168.153.128] (host-82-135-125-110.customer.m-online.net [82.135.125.110])
+	(Authenticated sender: matthias.schiffer@ew.tq-group.com)
+	by smtp-out02-hz1.hornetsecurity.com (Postfix) with ESMTPSA id D25185A0EFE;
+	Tue, 21 Oct 2025 12:06:32 +0200 (CEST)
+Message-ID: <1a849a0b515c77faebe28456d6537d39d4ca32d0.camel@ew.tq-group.com>
+Subject: Re: [REGRESSION] Suspend to RAM does not work anymore with
+ k3-am62-ti-ipc-firmware.dtsi
+From: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
+To: Beleswar Prasad Padhi <b-padhi@ti.com>, Francesco Dolcini
+	 <francesco@dolcini.it>
+Cc: Hiago De Franco <hiagofranco@gmail.com>, nm@ti.com, vigneshr@ti.com, 
+ kristo@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org,  afd@ti.com, u-kumar1@ti.com, hnagalla@ti.com,
+ jm@ti.com, d-gole@ti.com,  devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org,  linux-arm-kernel@lists.infradead.org, Robert
+ Nelson <robertcnelson@gmail.com>,  =?ISO-8859-1?Q?Jo=E3o?= Paulo
+ =?ISO-8859-1?Q?Gon=E7alves?= <joao.goncalves@toradex.com>, Emanuele Ghidoli
+ <emanuele.ghidoli@toradex.com>,  Francesco Dolcini
+ <francesco.dolcini@toradex.com>, Logan Bristol <logan.bristol@utexas.edu>,
+ Josua Mayer <josua@solid-run.com>, John Ma <jma@phytec.com>, Nathan
+ Morrisson <nmorrisson@phytec.com>, Garrett Giordano <ggiordano@phytec.com>,
+ Matt McKee <mmckee@phytec.com>, Wadim Egorov <w.egorov@phytec.de>, Max
+ Krummenacher <max.krummenacher@toradex.com>, Stefan Eichenberger
+ <stefan.eichenberger@toradex.com>, Hiago De Franco
+ <hiago.franco@toradex.com>,  Diogo Ivo <diogo.ivo@siemens.com>, Li Hua Qian
+ <huaqian.li@siemens.com>, Jan Kiszka <jan.kiszka@siemens.com>, Baocheng Su
+ <baocheng.su@siemens.com>, Benedikt Niedermayr
+ <benedikt.niedermayr@siemens.com>, regressions@lists.linux.dev
+Date: Tue, 21 Oct 2025 12:06:32 +0200
+In-Reply-To: <cf10f312-3ba1-4226-96da-d2c9a149c1c7@ti.com>
+References: 
+	<sid7gtg5vay5qgicsl6smnzwg5mnneoa35cempt5ddwjvedaio@hzsgcx6oo74l>
+	 <e60dd8d6-2bd5-41f0-bf8a-b0a5822a7f88@ti.com>
+	 <20251021093420.GA28462@francesco-nb>
+	 <cf10f312-3ba1-4226-96da-d2c9a149c1c7@ti.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.52.3-0ubuntu1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Tue, 21 Oct 2025 11:58:51 +0200
-Message-Id: <DDNWU7DVDGJJ.2K19P7FFZU272@fairphone.com>
-Cc: "Bjorn Andersson" <andersson@kernel.org>, "Rob Herring"
- <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Jagadeesh
- Kona" <quic_jkona@quicinc.com>, "Bryan O'Donoghue"
- <bryan.odonoghue@linaro.org>, "Michael Turquette"
- <mturquette@baylibre.com>, "Stephen Boyd" <sboyd@kernel.org>, "Conor
- Dooley" <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-clk@vger.kernel.org>, "Dmitry
- Baryshkov" <dmitry.baryshkov@oss.qualcomm.com>
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: sm8550: Additionally manage MXC
- power domain in camcc
-From: "Luca Weiss" <luca.weiss@fairphone.com>
-To: "Vladimir Zapolskiy" <vladimir.zapolskiy@linaro.org>, "Luca Weiss"
- <luca.weiss@fairphone.com>, "Taniya Das" <taniya.das@oss.qualcomm.com>
-X-Mailer: aerc 0.21.0-0-g5549850facc2
-References: <20250303225521.1780611-1-vladimir.zapolskiy@linaro.org>
- <20250303225521.1780611-3-vladimir.zapolskiy@linaro.org>
- <dbxvzgqs5slrl5edqunal3wplg5jiszqv46dr4nzgowwlhkhxa@qwtfq7nfjwfo>
- <3210a484-b9c3-4399-bee1-9f5bbc90034c@linaro.org>
- <CAA8EJprP9Z181VDCT=xfyrBipzgiB0tfb8M_XZ4H=yOrvEnB0w@mail.gmail.com>
- <f41061a2-cf45-4588-8df7-22270c936ee2@quicinc.com>
- <D8EZ47Z557OX.37FDVYA5AHET0@fairphone.com>
- <d64c0776-0b12-42d3-aed3-4e6a13487f51@quicinc.com>
- <DDKNL43NWFMA.1S03T0SUYFVMY@fairphone.com>
- <3854e3a0-744c-4317-a6ed-e28edbabc4a3@linaro.org>
-In-Reply-To: <3854e3a0-744c-4317-a6ed-e28edbabc4a3@linaro.org>
+MIME-Version: 1.0
+X-cloud-security-sender:matthias.schiffer@ew.tq-group.com
+X-cloud-security-recipient:devicetree@vger.kernel.org
+X-cloud-security-crypt: load encryption module
+X-cloud-security-Mailarchiv: E-Mail archived for: matthias.schiffer@ew.tq-group.com
+X-cloud-security-Mailarchivtype:outbound
+X-cloud-security-Virusscan:CLEAN
+X-cloud-security-disclaimer: This E-Mail was scanned by E-Mailservice on mx-relay47-hz3.antispameurope.com with 4crScp6Fzyz4MZyc
+X-cloud-security-connect: he-nlb01-hz1.hornetsecurity.com[94.100.132.6], TLS=1, IP=94.100.132.6
+X-cloud-security-Digest:0a2fbe90152789f9a2452f0c191400a4
+X-cloud-security:scantime:2.520
+DKIM-Signature: a=rsa-sha256;
+ bh=jofrQ0T7wEpqVhNL9sL4aUoJ4MX3kqIvOomYczAKOzs=; c=relaxed/relaxed;
+ d=ew.tq-group.com;
+ h=content-type:mime-version:subject:from:to:message-id:date; s=hse1;
+ t=1761041209; v=1;
+ b=B4/bYZuOnQfEWIl9udKXRL+T1E5mIiGx5A1pVPrPbb9DlpH7RBk85OsOS2Es+o5A748PP2au
+ zZc4d+Jod7bA3E4poZsXilTvTyigzeTus+anrUlyItPXnnmlyDukaL/xQg3Db79Q4c7zlAnxojy
+ ERanGDaGkXbT4peznSByQF4GOCp7wckj/ifsGB05QYhJyeAHa36ajpKq/P3qp8vP10PovVK2Cou
+ litx7ow8n5yLy+/UJ+768XF6x6GsfMrSLRZ5+JW3tuRbahp73kkICqbIYfI9ZYguxC0HID+VQyr
+ gHTF+e70/Ob632kTU9QnSLokoVdohRKCf5fGTELA6iFLg==
 
-Hi Vladimir,
-
-On Tue Oct 21, 2025 at 11:48 AM CEST, Vladimir Zapolskiy wrote:
-> Hi Luca.
->
-> On 10/17/25 17:05, Luca Weiss wrote:
->> Hi Taniya,
->>=20
->> On Thu Mar 13, 2025 at 12:57 PM CET, Taniya Das wrote:
->>>
->>>
->>> On 3/13/2025 1:22 PM, Luca Weiss wrote:
->>>> Hi Taniya,
->>>>
->>>> On Thu Mar 13, 2025 at 5:39 AM CET, Taniya Das wrote:
->>>>>
->>>>>
->>>>> On 3/4/2025 2:10 PM, Dmitry Baryshkov wrote:
->>>>>> On Tue, 4 Mar 2025 at 09:37, Vladimir Zapolskiy
->>>>>> <vladimir.zapolskiy@linaro.org> wrote:
->>>>>>>
->>>>>>> On 3/4/25 01:53, Dmitry Baryshkov wrote:
->>>>>>>> On Tue, Mar 04, 2025 at 12:55:21AM +0200, Vladimir Zapolskiy wrote=
-:
->>>>>>>>> SM8550 Camera Clock Controller shall enable both MXC and MMCX pow=
-er
->>>>>>>>> domains.
->>>>>>>>
->>>>>>>> Are those really required to access the registers of the cammcc? O=
-r is
->>>>>>>> one of those (MXC?) required to setup PLLs? Also, is this applicab=
-le
->>>>>>>> only to sm8550 or to other similar clock controllers?
->>>>>>>
->>>>>>> Due to the described problem I experience a fatal CPU stall on SM85=
-50-QRD,
->>>>>>> not on any SM8450 or SM8650 powered board for instance, however it =
-does
->>>>>>> not exclude an option that the problem has to be fixed for other cl=
-ock
->>>>>>> controllers, but it's Qualcomm to confirm any other touched platfor=
-ms,
->>>>>>
->>>>>> Please work with Taniya to identify used power domains.
->>>>>>
->>>>>
->>>>> CAMCC requires both MMCX and MXC to be functional.
->>>>
->>>> Could you check whether any clock controllers on SM6350/SM7225 (Bitra)
->>>> need multiple power domains, or in general which clock controller uses
->>>> which power domain.
->>>>
->>>> That SoC has camcc, dispcc, gcc, gpucc, npucc and videocc.
->>>>
->>>> That'd be highly appreciated since I've been hitting weird issues ther=
+On Tue, 2025-10-21 at 15:26 +0530, Beleswar Prasad Padhi wrote:
+> On 21/10/25 15:04, Francesco Dolcini wrote:
+> > On Tue, Oct 21, 2025 at 02:33:10PM +0530, Beleswar Prasad Padhi wrote:
+> > > On 20/10/25 19:47, Hiago De Franco wrote:
+> > > > DM R5 sends a message that is never consumed, since no firmware is
+> > > > running on the M4 (the core is offline).
+> > >=20
+> > > May I know why you are not running any firmware on the M4
+> > > rproc? If the intention is just to run the DM R5 core on the SoC,
+> > > you can disable the IPC by NOT including the
+> > > "k3-am62-ti-ipc-firmware.dtsi". That was the motivation for the
+> > > refactoring.
+> > Verdin AM62 and AM62P are generic SoMs, that can be used for a multitud=
 e
->>>> that could be explained by some missing power domains.
->>>>
->>>
->>> Hi Luca,
->>>
->>> The targets you mentioned does not have any have multiple rail
->>> dependency, but could you share the weird issues with respect to clock
->>> controller I can take a look.
->>=20
->> Coming back to this, I've taken a shot at camera on SM6350 (Fairphone 4)
->> again, but again hitting some clock issues.
->>=20
->> For reference, I am testing with following change:
->> https://lore.kernel.org/linux-arm-msm/20250911011218.861322-3-vladimir.z=
-apolskiy@linaro.org/
->>=20
->> Trying to enable CAMCC_MCLK1_CLK - wired up to the IMX576 camera sensor
->> on this phone - results in following error.
->>=20
->> [    3.140232] ------------[ cut here ]------------
->> [    3.141264] camcc_mclk1_clk status stuck at 'off'
->> [    3.141276] WARNING: CPU: 6 PID: 12 at drivers/clk/qcom/clk-branch.c:=
-87 clk_branch_toggle+0x170/0x190
->>=20
->> Checking the driver against downstream driver, it looks like the RCGs
->> should be using clk_rcg2_shared_ops because of enable_safe_config in
->> downstream, but changing that doesn't really improve the situation, but
->> it does change the error message to this:
->>=20
->> [    2.933254] ------------[ cut here ]------------
->> [    2.933961] camcc_mclk1_clk_src: rcg didn't update its configuration.
->> [    2.933970] WARNING: CPU: 7 PID: 12 at drivers/clk/qcom/clk-rcg2.c:13=
-6 update_config+0xd4/0xe4
->>=20
->> I've also noticed that some camcc drivers take in GCC_CAMERA_AHB_CLK as
->> iface clk, could something like this be missing on sm6350?
->>=20
->> I'd appreciate any help or tips for resolving this.
->>=20
->
-> Recently one particular problem related to MCLK was identified by me on
-> QRB5165/RB5, and it was reported to Bjorn over IRC, namely it's not possi=
-ble
-> to toggle MCLK clock enable/disable state, when TITAN GDSC power domain i=
-s
-> set off. I'm working on fixing the issue (a change under clk/qcom), since
-> it's of an importance for a customer as well.
->
-> I can't be totally sure that it's right the same problem as the one repor=
-ted
-> by you above, but it looks very similar, as a fast workaround please cons=
-ider
-> to set an ALWAYS_ON flag of TITAN GDSC, and at least a report from you th=
-at
-> this actually helps would be nice to get.
+> > of different use cases. And not having anything running on the M4 is th=
+e
+> > default use case.
+>=20
+>=20
+> If not having anything on M4 is the default use case, it should
+> be marked as "status=3Ddisabled" in the DT.
+>=20
+> >=20
+> > I think having the node in the DT is the correct way forward, if you
+> > want to start the M4 firmware you need such a node, so this is enabling
+> > a valid and useful use case.
+>=20
+>=20
+> Having the node is fine, you can still choose to keep it
+> disabled by default.
 
-Unfortunately that doesn't seem to help on sm6350.
+I agree with Francenso that it would be nice to keep the node enabled by de=
+fault
+- whether something is running on the M4 can be controlled via sysfs after =
+all,
+and may change over the runtime of the OS.
 
-diff --git a/drivers/clk/qcom/camcc-sm6350.c b/drivers/clk/qcom/camcc-sm635=
-0.c
-index 12a469ce7e2f..cf87ad55d318 100644
---- a/drivers/clk/qcom/camcc-sm6350.c
-+++ b/drivers/clk/qcom/camcc-sm6350.c
-@@ -1767,6 +1767,7 @@ static struct gdsc titan_top_gdsc =3D {
- 		.name =3D "titan_top_gdsc",
- 	},
- 	.pwrsts =3D PWRSTS_OFF_ON,
-+	.flags =3D ALWAYS_ON,
- };
-=20
- static struct clk_hw *camcc_sm6350_hws[] =3D {
+On our TQ starterkit mainboards, we'd like to provide the option to build t=
+he
+BSP with or without M4 firmware without having to modify the DTS (which is
+supposed to describe the hardware after all - I'm aware that this principle=
+ has
+its limits, as the DT also needs to reserve memory ranges for MCU firmware
+usage, but having a few unused memory reservations isn't as disruptive as
+breaking suspend when the M4 is not running).
+
+Best,
+Matthias
 
 
-$ cat /sys/kernel/debug/pm_genpd/pm_genpd_summary
-[...]
-titan_top_gdsc                  on                              0
-                                                bps_gdsc, ipe_0_gdsc, ife_0=
-_gdsc, ife_1_gdsc, ife_2_gdsc
-    ac4a000.cci                     suspended                   0          =
- SW
-    ac4b000.cci                     suspended                   0          =
- SW
-    genpd:3:acb3000.camss           suspended                   0          =
- SW
-[...]
+>=20
+> >=20
+> > > List of suggestions/solutions in order of preference:
+> > > 1. If no intention to enable IPC on rprocs:
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Do _not_ include k3-am62-ti-ipc-firmwa=
+re.dtsi
+> > > 2. If intention is to enable IPC on rprocs:
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Make sure rproc firmware is available =
+in rootfs.
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 rproc would boot up and consume the mb=
+ox
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 msg, suspend would be successful. Test=
+ed this
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 on TI AM62x-sk with commit 1d6161617c,=
+ works
+> > > 3. Add support in mbox driver to flush the pending
+> > > =C2=A0=C2=A0=C2=A0 queues.
+> > 2 is not applicable here, and 1 to me is not a good solution.
+>=20
+>=20
+> Why not? Why would you power on the rproc, enable
+> the mailboxes, carveout some memory if you never
+> intend to use it?
+>=20
+> >  So this
+> > means that we need #3.
+> >=20
+> > > > #regzbot introduced: 1d6161617c
+> > > Would not see this as a regression, but rather a new
+> > > bug for the omap-mailbox driver...
+> > As a user this is just a regression. It worked fine before, it's not
+> > working anymore now.
+>=20
+>=20
+> Isn't this partly dependent on the filesystem as well?
+> You would not see this behavior if you package the
+> firmware in rootfs, which I assume you did while
+> testing a49f991e740f
+>=20
+> https://lore.kernel.org/all/20250908142826.1828676-17-b-padhi@ti.com/
+>=20
+> >=20
+> > The fact that the solution might not be in the same file that introduce=
+d
+> > the issue is not a reason for this not being considered a regression.
+> >=20
+> > Francesco
+> >=20
 
-but still the same clock stuck warning...
-
-[    3.093431] ------------[ cut here ]------------
-[    3.094614] camcc_mclk1_clk status stuck at 'off'
-[    3.094629] WARNING: CPU: 6 PID: 65 at drivers/clk/qcom/clk-branch.c:87 =
-clk_branch_toggle+0x170/0x190
-
-Thanks for the suggestion though.
-
-Regards
-Luca
+--=20
+TQ-Systems GmbH | M=C3=BChlstra=C3=9Fe 2, Gut Delling | 82229 Seefeld, Germ=
+any
+Amtsgericht M=C3=BCnchen, HRB 105018
+Gesch=C3=A4ftsf=C3=BChrer: Detlef Schneider, R=C3=BCdiger Stahl, Stefan Sch=
+neider
+https://www.tq-group.com/
 
