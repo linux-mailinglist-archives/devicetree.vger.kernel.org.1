@@ -1,109 +1,115 @@
-Return-Path: <devicetree+bounces-229473-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229474-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 786C1BF80CD
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 20:28:08 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71482BF80FD
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 20:29:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3744B546AC3
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 18:28:07 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 5C3AF4F2260
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 18:29:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A300234A3A4;
-	Tue, 21 Oct 2025 18:27:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C15734A3C7;
+	Tue, 21 Oct 2025 18:29:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="BM8z6Ani"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JsGKt5pP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B844A34A3A2;
-	Tue, 21 Oct 2025 18:27:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DD3F34A3AB;
+	Tue, 21 Oct 2025 18:29:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761071257; cv=none; b=n2GItQDgJQx2Rj0nuvsZGNMXJlfyZ/ZkHLOt9udTA9A3Scee6PVnsb9R299o9sL5Q2PKBKnOXTpE72eMY8dcRKC62Zjs1/IQYdD1ON2TGSN557oInRAuyGotoy3NiUp6YMUSq0Kbc0sZZHFx9SrfpkMK+oWWVbWWcDCOgl9fuUE=
+	t=1761071388; cv=none; b=FvumKZNGOcT8S/obtKfdnB2JqGfJZxzYGZNCfekvSTKoafiSoZkW3Sq7S8Nypmq7BbbArcAuMyPXjTu1Y10woY17v3emACLxDYSl5tcO8wB4h4/OQr6Y5rnYxs32PzlLlkF/W2l5m2F5DkpBKqw5xvP0qoh9mC8Fu/r9YtQRcgY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761071257; c=relaxed/simple;
-	bh=NaYfgN8Zb1nRUW7A2uuvjc3Tefw/HHLRfHVUVZD9B7k=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=nuciYfQGc4VzW/OajomGYNBXVgfpjtVhfHCJ1387YrdG+GKgujTP43NWlEHeoiNS5BBmQJtoZ8Gey92TwyipjngCB6OoyaAljXRq2+czvaEhBzlSuPOWZD0GJfQ7jpiunRs86Fld+W7T2t+Nk5dKEySpOZhzIvCt374xWjVKzqw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=BM8z6Ani; arc=none smtp.client-ip=198.47.19.246
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelvem-sh02.itg.ti.com ([10.180.78.226])
-	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTP id 59LIRHdf075992;
-	Tue, 21 Oct 2025 13:27:17 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1761071237;
-	bh=mUVm0VJ27hD8g3Bqpc/Op3swKN9mzmjhzdFSlvMfnbs=;
-	h=From:To:CC:Subject:Date;
-	b=BM8z6AniTim4R5I/kNC5lCaY/X1uCEr4VGrPQTKuNxYHqKIUBkaJrGsrOZd7F6hYZ
-	 W329CDWG87qrFz7gJOEaATzEYXWY9rCanC2yJqu+o+5POqG2Az2ZMTwCwCR3b3uG4z
-	 pW6GWwnKynbx/HgKHPvhU5rYVti+5YFFs0GS4ef4=
-Received: from DFLE210.ent.ti.com (dfle210.ent.ti.com [10.64.6.68])
-	by lelvem-sh02.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 59LIRGDw1758699
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 21 Oct 2025 13:27:16 -0500
-Received: from DFLE208.ent.ti.com (10.64.6.66) by DFLE210.ent.ti.com
- (10.64.6.68) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Tue, 21 Oct
- 2025 13:27:16 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE208.ent.ti.com
- (10.64.6.66) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Tue, 21 Oct 2025 13:27:16 -0500
-Received: from DMZ007XYY.dhcp.ti.com (dmz007xyy.dhcp.ti.com [128.247.29.251])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 59LIRG684164064;
-	Tue, 21 Oct 2025 13:27:16 -0500
-From: Shree Ramamoorthy <s-ramamoorthy@ti.com>
-To: <lee@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC: <praneeth@ti.com>, <m-leonard@ti.com>, <rklein@nvidia.com>, <jm@ti.com>,
-        <khilman@baylibre.com>, <kory.maincent@bootlin.com>,
-        <thomas.petazzoni@bootlin.com>
-Subject: [PATCH v1] dt-bindings: mfd: tps65910: make interrupt properties optional
-Date: Tue, 21 Oct 2025 13:27:16 -0500
-Message-ID: <20251021182716.292652-1-s-ramamoorthy@ti.com>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1761071388; c=relaxed/simple;
+	bh=daEGchRbrB82O1mBoWQ5N40AQ1EPwEMYN8krVbdjopo=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=QkBSdyCcDYiDoWIYXfksT7ZWG7ZRresnkSCZAQ4VWWP7ICcFYRB1kooMN3uuPIRoiT+oh4VxwNv+CN+dFqe1GVenpBGlFxcZgr90xQm+NfmsOG4sHjzr2v2IG2qFrxrYUMKmpeUrt8nNOoUNIxnvnQaPJaQ0RP+QCMW4KzrmXuM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JsGKt5pP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 9A6ECC4CEF1;
+	Tue, 21 Oct 2025 18:29:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761071387;
+	bh=daEGchRbrB82O1mBoWQ5N40AQ1EPwEMYN8krVbdjopo=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=JsGKt5pPP4c+LwHwMsImsngWt2sRFv84Q+XezXHCKiWuYS8Gt1wbKO6LqCpzK/bh6
+	 4VbcYnW6PMrq1Sbjhge7J39BACtR5QCDAJzoAIku5h1ECg8n3ccCRqpW074BXiYAtv
+	 RjjY6At9MMR88GCoulBrqrKxchUoYjxwQLguvh8t4HAANICqx4cjd5YVqkpZDbCxKC
+	 EuMD3h6MtYofcpaz+S6zAF9rHw7kdDzGwivVLJvQ9qdWmApljiAQYPufl7xw6YZ0kN
+	 6neHENZuIr3+I4jNFtPZZhOCsHgtkwTxkgeczBbQyGWTJ0pwIhZOMaQti3TdttrhNf
+	 lDx4HJCA7Zb/Q==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 90034CCD1A7;
+	Tue, 21 Oct 2025 18:29:47 +0000 (UTC)
+From: Aaron Kling via B4 Relay <devnull+webgeek1234.gmail.com@kernel.org>
+Subject: [PATCH 0/5] memory: tegra: Support EMC dfs on Tegra186/Tegra194
+Date: Tue, 21 Oct 2025 13:29:39 -0500
+Message-Id: <20251021-tegra186-icc-p2-v1-0-39d53bdc9aab@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIABPR92gC/x3MQQqAIBBA0avIrBvIIcW6SrQIHW02FRoRhHdPW
+ r7F/y8UzsIFJvVC5luKHHuD7hT4bd0To4RmoJ6M7knjxSmv2lkU7/EkdHaIwVkydhyhVWfmKM9
+ /nJdaP/Euh21hAAAA
+X-Change-ID: 20251021-tegra186-icc-p2-864fd8625699
+To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Thierry Reding <thierry.reding@gmail.com>, 
+ Jonathan Hunter <jonathanh@nvidia.com>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-tegra@vger.kernel.org, Aaron Kling <webgeek1234@gmail.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1761071387; l=1375;
+ i=webgeek1234@gmail.com; s=20250217; h=from:subject:message-id;
+ bh=daEGchRbrB82O1mBoWQ5N40AQ1EPwEMYN8krVbdjopo=;
+ b=ILWchI7y7cIlEiR6AA5tMPVLbFCIYiAPQLyfq+4Ktw+krK5CNPab8D2fnm/VrLzJjZkBY9QuE
+ X0tkMdOO9ROCfQ+vmW9peQOJ+rfjsbQjW759arw3dqL5l2x8K6qVUTz
+X-Developer-Key: i=webgeek1234@gmail.com; a=ed25519;
+ pk=TQwd6q26txw7bkK7B8qtI/kcAohZc7bHHGSD7domdrU=
+X-Endpoint-Received: by B4 Relay for webgeek1234@gmail.com/20250217 with
+ auth_id=342
+X-Original-From: Aaron Kling <webgeek1234@gmail.com>
+Reply-To: webgeek1234@gmail.com
 
-Mark 'interrupts', 'interrupt-controller', and 'interrupt-cells' as
-optional in the binding schema.
+This series borrows the concept used on Tegra234 to scale EMC based on
+CPU frequency and applies it to Tegra186 and Tegra194. Except that the
+bpmp on those archs does not support bandwidth manager, so the scaling
+iteself is handled similar to how Tegra124 currently works.
 
-The 'interrupts' property should not be required for the TPS65910 PMIC.
-On the AM335x-ICEV2 SoC, there is no hardware connection from the PMIC_INT
-pin to the SoC. Without the 'interrupts' property defined, the PMIC cannot
-forward interrupts.
+This was originally part of a larger series [0], but it was requested to
+be split into smaller series.
 
-Signed-off-by: Shree Ramamoorthy <s-ramamoorthy@ti.com>
+[0] https://lore.kernel.org/r/20250909-tegra186-icc-v2-0-09413724e781@gmail.com
+
+Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
 ---
- Documentation/devicetree/bindings/mfd/ti,tps65910.yaml | 3 ---
- 1 file changed, 3 deletions(-)
+Aaron Kling (5):
+      dt-bindings: memory: tegra186-mc: Add dummy client IDs for Tegra186
+      dt-bindings: memory: tegra194-mc: Add dummy client IDs for Tegra194
+      memory: tegra186-emc: Support non-bpmp icc scaling
+      memory: tegra186: Support icc scaling
+      memory: tegra194: Support icc scaling
 
-diff --git a/Documentation/devicetree/bindings/mfd/ti,tps65910.yaml b/Documentation/devicetree/bindings/mfd/ti,tps65910.yaml
-index a2668fc30a7b..f1a76f88fc0c 100644
---- a/Documentation/devicetree/bindings/mfd/ti,tps65910.yaml
-+++ b/Documentation/devicetree/bindings/mfd/ti,tps65910.yaml
-@@ -166,9 +166,6 @@ patternProperties:
- required:
-   - compatible
-   - reg
--  - interrupts
--  - interrupt-controller
--  - '#interrupt-cells'
-   - gpio-controller
-   - '#gpio-cells'
-   - regulators
+ drivers/memory/tegra/tegra186-emc.c      | 132 ++++++++++++++++++++++++++++++-
+ drivers/memory/tegra/tegra186.c          |  48 +++++++++++
+ drivers/memory/tegra/tegra194.c          |  59 +++++++++++++-
+ include/dt-bindings/memory/tegra186-mc.h |   4 +
+ include/dt-bindings/memory/tegra194-mc.h |   6 ++
+ 5 files changed, 246 insertions(+), 3 deletions(-)
+---
+base-commit: 211ddde0823f1442e4ad052a2f30f050145ccada
+change-id: 20251021-tegra186-icc-p2-864fd8625699
+
+Best regards,
 -- 
-2.43.0
+Aaron Kling <webgeek1234@gmail.com>
+
 
 
