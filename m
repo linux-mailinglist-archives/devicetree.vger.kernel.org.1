@@ -1,63 +1,48 @@
-Return-Path: <devicetree+bounces-229289-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229290-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D14FBF5A8D
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 11:57:36 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA5C7BF5AA2
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 11:58:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 70E854FEE34
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 09:57:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7866918848C8
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 09:59:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BF722EBDD7;
-	Tue, 21 Oct 2025 09:57:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A836A31329A;
+	Tue, 21 Oct 2025 09:58:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="thhEMRO8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fVbRG9Gb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A484E2D77F7;
-	Tue, 21 Oct 2025 09:57:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4532E303A0F;
+	Tue, 21 Oct 2025 09:58:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761040651; cv=none; b=gNh4rwHk+I8Dk6vrl5gogdQJOXVqy3enEELyQrqQJMI69CB9LqhSd3hpZh2f/Fx/TFBtKI9SH/iZVUCJgk/zdADaet3keAfipZt/VB6SDDiaZsiHQgTofyLhPnOkqWTfCpM76zDUlltppJUpacm6CfmeWPuCy2IiTQZKOCrWd8Y=
+	t=1761040734; cv=none; b=jLwytwa06xFsGWvsPE0i0LzIiq5Im2Em66EhujMhBHrP6QRw3AFEHCFRSxQbGrGJ15D7v6oW+HWFT8LUFRRq86lG5flXYjW3ZXB5+KnwWR1rXUhA84UT15A9YRPxrEK+2Z0Sfk7LzlqWEgvPAkTO3yK+OtY1D8Dje+/iVWnCZFQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761040651; c=relaxed/simple;
-	bh=uJDMfMk0FDiNF+LAIATAEVdDyXBlepdQ6p2f0t9tJjM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=bRujFfwIFjlXfT2DCrsE0MVZEAiEUZ9xOBtx8iVp11oS+XHJftTk4gmtU6gDjmeHMUOUKCDHY9PmO1RrvrDTF9EtbPbd7MdfFUIi3t53vdxK/KbHdD8Ws6eDKKiEkO7pg7sa8qr/YdRYLsspVR/US5p0PKOAXMnNziQ1dXDSNfg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=thhEMRO8; arc=none smtp.client-ip=198.47.19.245
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
-	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTP id 59L9uRAY1121769;
-	Tue, 21 Oct 2025 04:56:28 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1761040588;
-	bh=jYCe3lkSPCb2Hc0E21Vy3Hl4e6Ov3za1LHe8G0I1rNs=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=thhEMRO8A5XfHuIPnumSTPetjUUmaaozss8J6GroMAfEPPXPd5z7TBD/JSkX5k0CL
-	 OXXuwZNIGkchcrz9KIyGXxvYuMEjr7nvF/Ujx/zlV+uzZ//1pU+P5ozmrrVvAllSDx
-	 lGk8jTydu3wFjVaQL0fPF0vtZsgfGRwRKoAzG65c=
-Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
-	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 59L9uRv11065000
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Tue, 21 Oct 2025 04:56:27 -0500
-Received: from DFLE209.ent.ti.com (10.64.6.67) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Tue, 21
- Oct 2025 04:56:27 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE209.ent.ti.com
- (10.64.6.67) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Tue, 21 Oct 2025 04:56:27 -0500
-Received: from [172.24.234.212] (uda0510294.dhcp.ti.com [172.24.234.212])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 59L9uHo43566169;
-	Tue, 21 Oct 2025 04:56:18 -0500
-Message-ID: <cf10f312-3ba1-4226-96da-d2c9a149c1c7@ti.com>
-Date: Tue, 21 Oct 2025 15:26:17 +0530
+	s=arc-20240116; t=1761040734; c=relaxed/simple;
+	bh=VhDUw5yaJciCbjfTsfry0m5nlobkCPkxCtvaLJ84lD4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=XzowYOP7bPD8stO14+MwPnoxzbnca9cvvqIPv959/mAzgMSG7mxOm0fsdcjdvZeSB1EGufaJSWn3j0IF11x2VdHIczaei9OoEu8zeZhdBnJRGaw4oNfBwENqXV7SAd8dJsRiMnwwpJlhrTnM1ZBcedOBN8vZAoPwdw3K6gqBfwA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fVbRG9Gb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D3EE6C4CEF1;
+	Tue, 21 Oct 2025 09:58:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761040733;
+	bh=VhDUw5yaJciCbjfTsfry0m5nlobkCPkxCtvaLJ84lD4=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=fVbRG9GbDK6/ieSHto40kPeuu6XPHaOIOH1TfPp40DLh04ClrQkXcLAfMYi15nrWM
+	 RF0gYHXtjcSOV/g4Ol9W7n0kedJjQc8fS5E/b13RsIS5VqiP2YbOB8m8ZOa/ApqoY5
+	 HVv2Tg2YBVcLJXZqjL60S6XYyvaSbexkpc/5kPcHv+2npHbB5ShUhs4/S8q8Zc/BH9
+	 hHn2s2GExtwi5f6dMh55LaVpxSlG9OxYP1YKkxTD2l/xL86/4M8cjVdfLojesC8ZQb
+	 +FTS8ecxs5ibaaCvzDvjMPF48DgwTv2WOE8QVA7yKBhT4RPOD20fIdjj8Z37HlWYa7
+	 +RaO3UewzxrVg==
+Message-ID: <beabb9f7-fcf4-4c1d-a259-6c48e82fbcf5@kernel.org>
+Date: Tue, 21 Oct 2025 11:58:49 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,123 +50,135 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [REGRESSION] Suspend to RAM does not work anymore with
- k3-am62-ti-ipc-firmware.dtsi
-To: Francesco Dolcini <francesco@dolcini.it>
-CC: Hiago De Franco <hiagofranco@gmail.com>, <nm@ti.com>, <vigneshr@ti.com>,
-        <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <afd@ti.com>, <u-kumar1@ti.com>,
-        <hnagalla@ti.com>, <jm@ti.com>, <d-gole@ti.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Robert Nelson <robertcnelson@gmail.com>,
-        =?UTF-8?Q?Jo=C3=A3o_Paulo_Gon=C3=A7alves?= <joao.goncalves@toradex.com>,
-        Emanuele Ghidoli <emanuele.ghidoli@toradex.com>,
-        Francesco Dolcini
-	<francesco.dolcini@toradex.com>,
-        Matthias Schiffer
-	<matthias.schiffer@ew.tq-group.com>,
-        Logan Bristol
-	<logan.bristol@utexas.edu>,
-        Josua Mayer <josua@solid-run.com>, John Ma
-	<jma@phytec.com>,
-        Nathan Morrisson <nmorrisson@phytec.com>,
-        Garrett Giordano
-	<ggiordano@phytec.com>,
-        Matt McKee <mmckee@phytec.com>, Wadim Egorov
-	<w.egorov@phytec.de>,
-        Max Krummenacher <max.krummenacher@toradex.com>,
-        Stefan
- Eichenberger <stefan.eichenberger@toradex.com>,
-        Hiago De Franco
-	<hiago.franco@toradex.com>,
-        Diogo Ivo <diogo.ivo@siemens.com>,
-        Li Hua Qian
-	<huaqian.li@siemens.com>,
-        Jan Kiszka <jan.kiszka@siemens.com>,
-        Baocheng Su
-	<baocheng.su@siemens.com>,
-        Benedikt Niedermayr
-	<benedikt.niedermayr@siemens.com>,
-        <regressions@lists.linux.dev>
-References: <sid7gtg5vay5qgicsl6smnzwg5mnneoa35cempt5ddwjvedaio@hzsgcx6oo74l>
- <e60dd8d6-2bd5-41f0-bf8a-b0a5822a7f88@ti.com>
- <20251021093420.GA28462@francesco-nb>
+Subject: Re: [PATCH 1/3] dt-bindings: mfd: twl: enable power button also for
+ twl603x
+To: Andreas Kemnade <andreas@kemnade.info>
+Cc: akemnade@kernel.org, Lee Jones <lee@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>, Tony Lindgren
+ <tony@atomide.com>, Kevin Hilman <khilman@kernel.org>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-input@vger.kernel.org, linux-omap@vger.kernel.org
+References: <20251020-twl6030-button-v1-0-93e4644ac974@kernel.org>
+ <20251020-twl6030-button-v1-1-93e4644ac974@kernel.org>
+ <5fd43d2c-3a08-4a51-abb6-38883ee86bf2@kernel.org>
+ <20251021104515.5e25bec1@kemnade.info>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Beleswar Prasad Padhi <b-padhi@ti.com>
-In-Reply-To: <20251021093420.GA28462@francesco-nb>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
+ QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
+ +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
+ ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
+ 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
+ hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
+ tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
+ 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
+ naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
+ hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
+ whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
+ qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
+ RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
+ Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
+ H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
+ dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
+ AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
+ jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
+ zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
+ XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
+In-Reply-To: <20251021104515.5e25bec1@kemnade.info>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-
-On 21/10/25 15:04, Francesco Dolcini wrote:
-> On Tue, Oct 21, 2025 at 02:33:10PM +0530, Beleswar Prasad Padhi wrote:
->> On 20/10/25 19:47, Hiago De Franco wrote:
->>> DM R5 sends a message that is never consumed, since no firmware is
->>> running on the M4 (the core is offline).
+On 21/10/2025 10:45, Andreas Kemnade wrote:
+> On Tue, 21 Oct 2025 09:10:28 +0200
+> Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> 
+>> On 20/10/2025 14:31, akemnade@kernel.org wrote:
+>>> From: Andreas Kemnade <andreas@kemnade.info>
+>>>
+>>> TWL603x has also a power button, so add the corresponding subnode.  
 >>
->> May I know why you are not running any firmware on the M4
->> rproc? If the intention is just to run the DM R5 core on the SoC,
->> you can disable the IPC by NOT including the
->> "k3-am62-ti-ipc-firmware.dtsi". That was the motivation for the
->> refactoring.
-> Verdin AM62 and AM62P are generic SoMs, that can be used for a multitude
-> of different use cases. And not having anything running on the M4 is the
-> default use case.
+>> No, we don't add subnodes just because there is a power button. This
+>> needs broader explanation, see also my further comment.
+>>
+> Hmm, what is the general pattern to follow if a mfd device has some
+> functionality which depends on some optional external components?
+
+Please describe it better - how these nodes depend on external
+component? The power button logic/IC is in this device always. It is not
+optional.
+
+> The might be a power button connected to it or not. I find it ugly
+> to have non-existent stuff in the system.
+> In general, yes I understand the argument against the subnode.
+> 
+>>>
+>>> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+>>> ---
+>>>  Documentation/devicetree/bindings/mfd/ti,twl.yaml | 40 ++++++++++++++++++-----
+>>>  1 file changed, 32 insertions(+), 8 deletions(-)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/mfd/ti,twl.yaml b/Documentation/devicetree/bindings/mfd/ti,twl.yaml
+>>> index 776b04e182cb2..3527fee32cb07 100644
+>>> --- a/Documentation/devicetree/bindings/mfd/ti,twl.yaml
+>>> +++ b/Documentation/devicetree/bindings/mfd/ti,twl.yaml
+>>> @@ -55,6 +55,15 @@ allOf:
+>>>  
+>>>          gpadc: false
+>>>  
+>>> +        pwrbutton:
+>>> +          properties:
+>>> +            compatible:
+>>> +              const: ti,twl4030-pwrbutton
+>>> +            interrupts:
+>>> +              items:
+>>> +                - items:
+>>> +                    const: 8  
+>>
+>> What is the point of defining const interrupts? If they are const, then
+>> it is implied by compatible and defined in the driver.
+>>
+>> Anyway, double items does not look right here. This is an odd syntax.
+>>
+> Quoting Rob:
+> As 'interrupts' is a matrix, this needs to be:
+> 
+> interrupts:
+>   items:
+>     - items:
+>         - const: 8
+> 
+> https://lore.kernel.org/linux-omap/20240318150750.GA4000895-robh@kernel.org/
 
 
-If not having anything on M4 is the default use case, it should
-be marked as "status=disabled" in the DT.
-
->
-> I think having the node in the DT is the correct way forward, if you
-> want to start the M4 firmware you need such a node, so this is enabling
-> a valid and useful use case.
+OK, this answers second part but I don't understand why even having this
+in DT. If this is fixed, should be implied by the compatible?
 
 
-Having the node is fine, you can still choose to keep it
-disabled by default.
-
->
->> List of suggestions/solutions in order of preference:
->> 1. If no intention to enable IPC on rprocs:
->>       Do _not_ include k3-am62-ti-ipc-firmware.dtsi
->> 2. If intention is to enable IPC on rprocs:
->>       Make sure rproc firmware is available in rootfs.
->>       rproc would boot up and consume the mbox
->>       msg, suspend would be successful. Tested this
->>       on TI AM62x-sk with commit 1d6161617c, works
->> 3. Add support in mbox driver to flush the pending
->>     queues.
-> 2 is not applicable here, and 1 to me is not a good solution.
-
-
-Why not? Why would you power on the rproc, enable
-the mailboxes, carveout some memory if you never
-intend to use it?
-
->  So this
-> means that we need #3.
->
->>> #regzbot introduced: 1d6161617c
->> Would not see this as a regression, but rather a new
->> bug for the omap-mailbox driver...
-> As a user this is just a regression. It worked fine before, it's not
-> working anymore now.
-
-
-Isn't this partly dependent on the filesystem as well?
-You would not see this behavior if you package the
-firmware in rootfs, which I assume you did while
-testing a49f991e740f
-
-https://lore.kernel.org/all/20250908142826.1828676-17-b-padhi@ti.com/
-
->
-> The fact that the solution might not be in the same file that introduced
-> the issue is not a reason for this not being considered a regression.
->
-> Francesco
->
+Best regards,
+Krzysztof
 
