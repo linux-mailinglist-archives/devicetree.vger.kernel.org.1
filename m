@@ -1,135 +1,202 @@
-Return-Path: <devicetree+bounces-229392-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229395-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6EC7BF6EBB
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 15:56:41 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8971BBF6F9F
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 16:10:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0FA34543A53
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 13:53:30 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 25ECD5054AD
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 14:08:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66BC83385BB;
-	Tue, 21 Oct 2025 13:53:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 787E833A027;
+	Tue, 21 Oct 2025 14:07:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="erg9Vheu"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="COd4ZwD/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 659E0337BB1
-	for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 13:53:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1C30339B4B;
+	Tue, 21 Oct 2025 14:07:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761054807; cv=none; b=q6xEPFjUFC2qOLzUyGkTrx3e4NVmpXN9yNYEFeAI2huaFjsyZvCeA9Vjg3wYcNArz3vOH13dBzKcWQa+lAJ+LemxWhs5e5Ju710Rk9lT+/f/cw86Bv/fDIVfjS2t+Vdt5/k2i3UZrHYpce3gW67NnIYfGhq2MZaOo6KamCT0F6g=
+	t=1761055673; cv=none; b=ODBoVaHzjR4jugungenKZwQX6F1Tt2b/zV2AfV+x+6jO9oKKlFSpYMPt/oRyLv/ZWWxHlxpkt11ZccxHWZSro5XdWMtUCitF0VzGKKj+p91O0vsJbivfGU1PJ5QkgUlmnwJjvT+qs7Q5P1gDhhsSIcdf7J9tAIoNbT23hjw2EHo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761054807; c=relaxed/simple;
-	bh=cc8ZBZFtHpD3W3PnRGNl7cj96+fGL6tAhxbLcqlVuDk=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=K8utXzQU+Fw9/eGAVBW1gY2ukiNfMc8lDvlo27c4OghK/nKXbSebHnZQVt2eVTUCwZTcg4nf0UfrRdsQDIODwbeI42dIoNHRXnZxtZRlej8TFZOGhgzZcvOgktIzd4lgRzAJMTeGmDhL/bOtHLoclzs1YP0S0gtlEEZFR0dRsBM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=erg9Vheu; arc=none smtp.client-ip=209.85.218.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
-Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-b4539dddd99so1022221066b.1
-        for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 06:53:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=suse.com; s=google; t=1761054803; x=1761659603; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=GqUCglb+0FDwyycEK2V2KsoX30Sw+xzpkkOZ9ZURSbo=;
-        b=erg9Vheu6gQPJ7kJeAykcipLXSsfzTWkNbuzpZIwPUcqhmeDE3TYeInFSKNL4SuUDC
-         CUFYLPRTRplazp6NQ3xuqCW2PBXJ4iBLM2nFVdHHcbKJIIlp9R2oXgOavW5cim2Q0uAd
-         qU4GtMhChH0JOY2NfyS5+NnG5lZoahJgEoOyp2BFBAVuSz6GNCas3NQspXsSl1AauEpb
-         Evb1Gm+4f8LG+2ypmlKxf5Dk1MW3MG+lWX6QJsS5g3hOWft8dBvcYlQ/kHebjqy7aMaZ
-         SDbzHCa1aIz+wtHby+ungo2IpQwtuRMGuRKZDfwhdbdE9pDRhmP8OowZc2TZrDBRE8uU
-         yjqg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761054803; x=1761659603;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=GqUCglb+0FDwyycEK2V2KsoX30Sw+xzpkkOZ9ZURSbo=;
-        b=VvNcoIEIthcX32oDB+83bj+vL+jUi1dkYbx7fEgIBkAZ36hJ7M56OnFNAXB5wnP0EQ
-         /Nc5m2bhGNdt6DcP626JkjmRC3TGJ4Fo5nPK9X7Yxtpvcu4Ef5MR4yfBaAnf5art6J5H
-         y49dj3S4cnF/WDF7WbP4BDrMSobtqdKwo1bae/pFWXBJJjyY+ABDfq7FYJSAujZ/vccc
-         auMlTDhEncKxr6i6MjCJLCOVXTQpGZDeOegnoNgz2pBY7N/n3FlXlr4H82+0Yu2/IMaW
-         QJ4gbxe35XuY86BwND/N24uOP17ALu/y6g7bCjzI9TLpMnSB/BBQ4sgp3BROim3PS2YO
-         CIjA==
-X-Forwarded-Encrypted: i=1; AJvYcCUKWk4kRd1NNZYNZs7nfIq7V2u3o6kYmGWneUHTqsIxflAbMKJXxTCF2qjhZDANaF56/pGqT8cuFwQO@vger.kernel.org
-X-Gm-Message-State: AOJu0YwvencDXgDncum5LShKO460/qnnJ5wT+ZZcJXn71lUXocMSbGsv
-	enK+lJvEpOwoRMUXJUwHVAE1Bh4QBaE0m8g7FkltvMKTNfqehyCJK/BJAUQdsCkAe/4=
-X-Gm-Gg: ASbGncu02dkICuI1h/20TTda/Yfjqhs/UoYlBQNSpIGVnthnDFvgavgB7d+t6Srp6Qv
-	7n6+kd4aygfjUxGZMlEeY70YcTd6Oc5cCzHEnroSh/Q/IaV2srbRU/xV7OiMnnzFaiKGiTh1VaX
-	F0g5AdbXebSphnzkhOFXALg2LFlajgX6Xx0D/imwhTNj7Y3ATkNaG/QJ9ZNhsQxJu4lcUBeuaZH
-	7EdAhDtPiLCR4HsF/mmUSGWZsFIXqYM7Sp0re/jmtbpKNZRbzWudJAVmeYZeEwZI6NT8pUS5Pu+
-	CyIfQSROEuAoswxkC+t1eNlIQ08vcO5PybFKRMwIG8LrnVphH5OwQ3JrPQfHUBmYRLsRHvP9v55
-	w2ouaS9mZR09YCbC7PqYhymujRnpFXYxIlJdg8i+9ZpDpEZqT0alTaE5jNlCVi5soKPpwoxyY7G
-	vuTpti4Ib0meAW+xg8l1ZqkgiaiV8tquyUabQ0Z66Iu09HwtytTz+xtJ3PMeSfIQ==
-X-Google-Smtp-Source: AGHT+IGzJ1sMZhzOVfrRQ+JvVbLUEVExvUKiHVvXUfDKq0+hkvumJylkHNfbe6040lXwumRTHkh/Vg==
-X-Received: by 2002:a17:906:9f8c:b0:b40:5463:3afd with SMTP id a640c23a62f3a-b6473147238mr1967688766b.26.1761054803200;
-        Tue, 21 Oct 2025 06:53:23 -0700 (PDT)
-Received: from localhost (host-87-9-62-200.retail.telecomitalia.it. [87.9.62.200])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b65e50da6a6sm1106448666b.0.2025.10.21.06.53.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Oct 2025 06:53:22 -0700 (PDT)
-From: Andrea della Porta <andrea.porta@suse.com>
-To: Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1761055673; c=relaxed/simple;
+	bh=MLoAqGWmWG0tS39BHCw04giIQ56RcWiSSu/4KePK/yY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=sgmGlrKUdb4tksrHQsZ1HcjDvoKlG0Kh70mbQ0CCMcREOXY6c5yPSlsnUz3WslxCc7HQagKPneHaMhv7rcPcg8yhev8MuwPWxF6PfhwPEelNH4lkPTFC93dOGqIJpO72OgBcXakJxEuqunPYxXWscmxcAd8brb9ez0CQl8X+6BM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=COd4ZwD/; arc=none smtp.client-ip=192.198.163.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1761055671; x=1792591671;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=MLoAqGWmWG0tS39BHCw04giIQ56RcWiSSu/4KePK/yY=;
+  b=COd4ZwD/UvEs7tmxenfEITc1kFvq/9VVf2748orKc9eEky4SF+Skqk8O
+   t4WVJ8jyg/v1Qur6lvugsLGVFcSEX6y9fbdPogNgOFSS4oUxeGiPV6B68
+   aWhWngrml6SKQdM/HtmaVCyuQXic+iRKOEctS/HJE7WswZEO0dgRHaEh8
+   /fcTHQzdAdC4J7Flf4Gk5E9TIZRuBTjFlhVdHvyih+DssVZUmGPX0PH5x
+   fR+Of66GBQoX/TZ5sAlmvKIg7H+dyvJLJVrpqpFMxjPPVxsKbj4Qaca5+
+   R6M/c9+CbshllIuABBawbgQYi42jNfOeCv2tbTGyFpTxLQ4FxLptEjYCi
+   Q==;
+X-CSE-ConnectionGUID: oJTT6URlQIi3BtwyR79hig==
+X-CSE-MsgGUID: YUZFebCiQHSJzRYuFTV9Hw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="73788480"
+X-IronPort-AV: E=Sophos;i="6.19,245,1754982000"; 
+   d="scan'208";a="73788480"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Oct 2025 07:07:50 -0700
+X-CSE-ConnectionGUID: OIuqUSuiRNiNI7aTyE6D3g==
+X-CSE-MsgGUID: pogwMQpnS7K/l603s2LfBg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,245,1754982000"; 
+   d="scan'208";a="184081155"
+Received: from fpallare-mobl4.ger.corp.intel.com (HELO ashevche-desk.local) ([10.245.245.148])
+  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Oct 2025 07:07:39 -0700
+Received: from andy by ashevche-desk.local with local (Exim 4.98.2)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1vBD1S-00000001VzY-2SRO;
+	Tue, 21 Oct 2025 17:07:34 +0300
+Date: Tue, 21 Oct 2025 17:07:34 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Herve Codina <herve.codina@bootlin.com>
+Cc: Andrew Lunn <andrew@lunn.ch>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	devicetree@vger.kernel.org,
-	linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Stanimir Varbanov <svarbanov@suse.de>,
-	Andrew Lunn <andrew@lunn.ch>,
-	iivanov@suse.de,
-	mbrugger@suse.com,
-	Phil Elwell <phil@raspberrypi.com>
-Cc: Andrea della Porta <andrea.porta@suse.com>
-Subject: [PATCH] arm64: dts: broadcom: Assign clock rates in eth node for RPi5
-Date: Tue, 21 Oct 2025 15:55:33 +0200
-Message-ID: <20251021135533.5517-1-andrea.porta@suse.com>
-X-Mailer: git-send-email 2.51.0
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Danilo Krummrich <dakr@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Peter Rosin <peda@axentia.se>, Arnd Bergmann <arnd@arndb.de>,
+	Saravana Kannan <saravanak@google.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Charles Keepax <ckeepax@opensource.cirrus.com>,
+	Richard Fitzgerald <rf@opensource.cirrus.com>,
+	David Rhodes <david.rhodes@cirrus.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Ulf Hansson <ulf.hansson@linaro.org>,
+	Mark Brown <broonie@kernel.org>,
+	Daniel Scally <djrscally@gmail.com>,
+	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Len Brown <lenb@kernel.org>, Davidlohr Bueso <dave@stgolabs.net>,
+	Jonathan Cameron <jonathan.cameron@huawei.com>,
+	Dave Jiang <dave.jiang@intel.com>,
+	Alison Schofield <alison.schofield@intel.com>,
+	Vishal Verma <vishal.l.verma@intel.com>,
+	Ira Weiny <ira.weiny@intel.com>,
+	Dan Williams <dan.j.williams@intel.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Wolfram Sang <wsa@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+	linux-i2c@vger.kernel.org, linux-pci@vger.kernel.org,
+	linux-sound@vger.kernel.org, patches@opensource.cirrus.com,
+	linux-gpio@vger.kernel.org, linux-pm@vger.kernel.org,
+	linux-spi@vger.kernel.org, linux-acpi@vger.kernel.org,
+	linux-cxl@vger.kernel.org,
+	Allan Nielsen <allan.nielsen@microchip.com>,
+	Horatiu Vultur <horatiu.vultur@microchip.com>,
+	Steen Hegelund <steen.hegelund@microchip.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v4 06/29] bus: Introduce simple-platorm-bus
+Message-ID: <aPeTppUgRC1wWQU9@smile.fi.intel.com>
+References: <20251015071420.1173068-1-herve.codina@bootlin.com>
+ <20251015071420.1173068-7-herve.codina@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251015071420.1173068-7-herve.codina@bootlin.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 
-In Raspberry Pi 5 DTS, the Ethernet clock rates must be assigned
-as the default clock register values are not valid for the
-Ethernet interface to function.
-This can be done either in rp1_clocks node or in rp1_eth node.
+On Wed, Oct 15, 2025 at 09:13:53AM +0200, Herve Codina wrote:
+> The simple-pm-bus driver handles several simple busses. When it is used
+> with busses other than a compatible "simple-pm-bus", it doesn't populate
+> its child devices during its probe.
+> 
+> This confuses fw_devlink and results in wrong or missing devlinks.
+> 
+> Once a driver is bound to a device and the probe() has been called,
+> device_links_driver_bound() is called.
+> 
+> This function performs operation based on the following assumption:
+>     If a child firmware node of the bound device is not added as a
+>     device, it will never be added.
+> 
+> Among operations done on fw_devlinks of those "never be added" devices,
+> device_links_driver_bound() changes their supplier.
+> 
+> With devices attached to a simple-bus compatible device, this change
+> leads to wrong devlinks where supplier of devices points to the device
+> parent (i.e. simple-bus compatible device) instead of the device itself
+> (i.e. simple-bus child).
+> 
+> When the device attached to the simple-bus is removed, because devlinks
+> are not correct, its consumers are not removed first.
+> 
+> In order to have correct devlinks created, make the simple-bus driver
+> compliant with the devlink assumption and create its child devices
+> during its probe.
+> 
+> Doing that leads to other issues due to the fact that simple-bus is
+> closely related to of_platform_populate().
+> 
+> Indeed, of_platform_populate() can probe child devices if a simple-bus
+> compatible node is detected. This behavior is expected by some drivers
+> such as some MFD drivers. Those drivers perform some operations in their
+> probe() but rely on the core (simple-mfd, simple-bus compatible) to
+> populate child devices [1].
+> 
+> Avoiding recursive probing in of_platform_populate() and let the
+> simple-bus driver probe its child devices will break some system.
+> 
+> For this reason, keep the current behavior of the simple-bus driver and
+> of_platform_populate() as they are and introduce simple-platform-bus
+> driver.
+> 
+> This driver doesn't interfere with of_platform_populate() and populates
+> child devices during its probe() as expected by fw_devlink.
+> 
+> [1] https://lore.kernel.org/all/20250715095201.1bcb4ab7@bootlin.com/
 
-Define the rates in rp1_eth node, as those clocks are 'leaf' clocks
-used specifically by the Ethernet device only.
+Link tag?
 
-Fixes: 43456fdfc014 ("arm64: dts: broadcom: Enable RP1 ethernet for Raspberry Pi 5")
-Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
----
- arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dts | 4 ++++
- 1 file changed, 4 insertions(+)
+...
 
-diff --git a/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dts b/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dts
-index b8f256545022..09a849dd09b1 100644
---- a/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dts
-+++ b/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dts
-@@ -23,6 +23,10 @@ &pcie2 {
- };
- 
- &rp1_eth {
-+	assigned-clocks = <&rp1_clocks RP1_CLK_ETH_TSU>,
-+			  <&rp1_clocks RP1_CLK_ETH>;
-+	assigned-clock-rates = <50000000>,
-+			       <125000000>;
- 	status = "okay";
- 	phy-mode = "rgmii-id";
- 	phy-handle = <&phy1>;
+The below is simply wrong. The luck that you got no errors is due to CONFIG_OF
+being bool and not tristate in Kconfig. I dunno if this driver ever gets the
+'m' capability, but currently it uses tons of dead code (such as MODULE_*()
+macros). Disregard of that, the proposed change should go to the separate
+compilation unit at bare minimum.
+
+...
+
+>  module_platform_driver(simple_pm_bus_driver);
+
+> +module_platform_driver(simple_platform_bus_driver);
+
+^^^ WRONG!
+
 -- 
-2.35.3
+With Best Regards,
+Andy Shevchenko
+
 
 
