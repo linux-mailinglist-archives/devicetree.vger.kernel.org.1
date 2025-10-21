@@ -1,55 +1,55 @@
-Return-Path: <devicetree+bounces-229159-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229160-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B92ABF4903
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 06:02:50 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id CBB18BF4906
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 06:02:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 23DAE464DD9
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 04:02:49 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 7799E4E40CA
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 04:02:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 381E6229B18;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74BF5238159;
 	Tue, 21 Oct 2025 04:02:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oDPj8OUx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gdrNLX8E"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14956224B09
-	for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 04:02:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 517AB22DF9E
+	for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 04:02:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761019365; cv=none; b=IBO3E00N8T5zQ6vLV3sa4+0zjTYtcWxleTZtXPJVAbhrV7pdAvs0+94IxHGccXZkypT4WOa8O5LnJEpYLXh+G9Egz0/vJZXaocKuHE4xYp6rjS/0hLDlqQQRkCtALziZNrSkFLTsW17naAWWcEELZyawLwKbSv5+bZEiwyyffTQ=
+	t=1761019365; cv=none; b=tlEk8q0EYBQE+hYMvzq+/moHyTVp+wfyBRNifylnQ/xKxVECgYWtELCEUhmaEAf7xhzmvXeiLZCiTrhmklHaRCofTqDolkIoH1YJuysoPQulqD+anbOvkL1ndqYqvNKmOus5Ia4c7lkGlTL4e01fmm+KKf9S6ZXctYyGumnlZ/8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1761019365; c=relaxed/simple;
-	bh=nETL1zVkkpG9XcNBl1VFFiJaRcYD4B1yp+oXHgqx1sM=;
+	bh=p8cX9muVbBFHAJf8ejUtf+AAzhYamFPN0B12+buOQ7c=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Oc+98qtug8FpgkN/ZwbuQAIvpbM5tP7KR7ovViX+UzmBmis0JquD4oFVSoj0shwaCYwZ5UhiInNx4dhYT0IcU/X1jZ4vTPhgRRzTZgiMDP0fexwnj9RKuh+V+UHcpOswDvhBlSaYDu3MhIF5MDqNaOytOaKvkzZHanAusL1gpy0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oDPj8OUx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2CBBAC19421;
+	 MIME-Version; b=df+1XWAwY7c9d1suSNKKCGz1kMxrW8wvoRhbk9pFgJ4JrUc+Hc66gs9+hooMYDTPymYa9SonTUx7Wwus7JuJv0M7ULVh9b36OkRKvh1r+XVgaVKU6M6QqxItOa3F6OWP/ZD6Rsbp8ZHokEQN11yUnR23k634giVLZwtkk3HZRdE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gdrNLX8E; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C392DC19424;
 	Tue, 21 Oct 2025 04:02:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761019364;
-	bh=nETL1zVkkpG9XcNBl1VFFiJaRcYD4B1yp+oXHgqx1sM=;
+	s=k20201202; t=1761019365;
+	bh=p8cX9muVbBFHAJf8ejUtf+AAzhYamFPN0B12+buOQ7c=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=oDPj8OUxMtf/SQTIQmNpE3TYLu99W9qWFrywYM9F60CsIP5A6RYh0Ffhme/XJIVPq
-	 lOWo8IO05eMho7Gl5XirfHDfcZiJZpcr6H0B6xhm5Qk4ej4iaaxmAvYB+ndYbNsHf7
-	 WI/hkFBYxabjO7FhrZFItJOHdVbDF48UnT1K7EsvcGdziJbItVogPOCIybjP99Ieix
-	 K53TUBrTLVJolmPgvUdpAz4i+yUAdtg7g3nqClBVnpBUKuHegzWCMiSAcun83NUi8j
-	 nqCJwKbLAol0LUmOapIpJ4ND9a59FCSU4f+liqL1XuqK5IhX353ufqq1xWuTyMlY8n
-	 vkRf3Ig+3b0Zg==
+	b=gdrNLX8E2myYoGxeMan6Zr9uylY+1MahKTAfykkimcxvfisJgkiLMqQW0dPQ9xocD
+	 t2aCh+PWAf2nVMLBPVe8hSysNg6vEqdIDuUxyRhEOLjWATyo93gBmIgnybFkAr8dLG
+	 ZSza5ujEGjivLNBlwlQ8LuSaI0ZK4/j4Oru2rPq0YZuG6UQrB6NmBZK6sPZUnVk6+m
+	 oC/8HFnG766kjfj2zki/5wT2cmLj6flFBmqxot1O++6OgYijMsXUY+h0hYwtuCtdgM
+	 xJzAUiSqrD2VbwWU93dFDJvAj+S5lOPwA185SoUVyQHBTHlTzQaGTU0rvXoWYfuyx/
+	 wE4g1uqaXk73w==
 From: Dinh Nguyen <dinguyen@kernel.org>
 To: devicetree@vger.kernel.org
 Cc: dinguyen@kernel.org,
 	robh+dt@kernel.org,
 	krzysztof.kozlowskii+dt@linaro.org,
 	conor+dt@kernel.org
-Subject: [PATCH 2/3] arm64: dts: socfpga: stratix10: fix bindings warning for ecc manager
-Date: Mon, 20 Oct 2025 23:02:29 -0500
-Message-ID: <20251021040230.759832-2-dinguyen@kernel.org>
+Subject: [PATCH 3/3] arm64: dts: socfpga: agilex: fix bindings warning for ecc manager
+Date: Mon, 20 Oct 2025 23:02:30 -0500
+Message-ID: <20251021040230.759832-3-dinguyen@kernel.org>
 X-Mailer: git-send-email 2.42.0.411.g813d9a9188
 In-Reply-To: <20251021040230.759832-1-dinguyen@kernel.org>
 References: <20251021040230.759832-1-dinguyen@kernel.org>
@@ -66,14 +66,14 @@ empty reg/ranges property
 
 Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
 ---
- arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi | 4 ++--
+ arch/arm64/boot/dts/intel/socfpga_agilex.dtsi | 4 ++--
  1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi b/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
-index 657e986e5dba..d72d998adb7b 100644
---- a/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
-+++ b/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
-@@ -581,7 +581,7 @@ sdr: sdr@f8011100 {
+diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi b/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi
+index c1e66db0f4c5..b8e2f2c3c558 100644
+--- a/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi
++++ b/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi
+@@ -608,7 +608,7 @@ sdr: sdr@f8011100 {
  			reg = <0xf8011100 0xc0>;
  		};
  
@@ -82,8 +82,8 @@ index 657e986e5dba..d72d998adb7b 100644
  			compatible = "altr,socfpga-s10-ecc-manager",
  				     "altr,socfpga-a10-ecc-manager";
  			altr,sysmgr-syscon = <&sysmgr>;
-@@ -590,7 +590,7 @@ eccmgr {
- 			interrupts = <0 15 4>;
+@@ -617,7 +617,7 @@ eccmgr {
+ 			interrupts = <GIC_SPI 15 IRQ_TYPE_LEVEL_HIGH>;
  			interrupt-controller;
  			#interrupt-cells = <2>;
 -			ranges;
