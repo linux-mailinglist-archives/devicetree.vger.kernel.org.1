@@ -1,83 +1,140 @@
-Return-Path: <devicetree+bounces-229399-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229400-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F60ABF706C
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 16:21:36 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6436FBF709F
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 16:24:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 424424EEA0D
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 14:21:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E99B01896C08
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 14:25:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 116C026A1AF;
-	Tue, 21 Oct 2025 14:21:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED7393396F1;
+	Tue, 21 Oct 2025 14:24:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Xeut2wRk"
+	dkim=pass (2048-bit key) header.d=svanheule.net header.i=@svanheule.net header.b="Wy6RUOp6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from polaris.svanheule.net (polaris.svanheule.net [84.16.241.116])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D327822FDFF;
-	Tue, 21 Oct 2025 14:21:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E775E274B56
+	for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 14:24:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=84.16.241.116
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761056492; cv=none; b=o9uM35Nd3OF69W7TxVmvg3W6SXSfJoKJY5WO6SX433YxUCtU2yBZ4O2XEsLAxQfV9j/fof9fO4ZCb7OgK0EODL7NkUDpdZVkLpXdKDVsB38pzWyQBREPzBEIgjK2jDKukt5r/rA16tT9UHGDBX9ezrErkDZSq2AtfJydDlIjGbo=
+	t=1761056674; cv=none; b=VE3yW/Qt09N5Cq93esQk9w0he9V6gRkxTeO9v8V0i/5UjBb+jumHeBSYJGNi9+SynyOov+9rVP3jGg+Rp3uRliMDa8nubXikmm8E4RW8mGLqYymg8FD7X0oO4G/IEzGID2kBQpR81IWPxcYq6ijL5kfPx2NvhNnM/aKLSj2D2Dw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761056492; c=relaxed/simple;
-	bh=SXu2kCneESoXCkpfGtRLyiuYbh2vZwF+jNxVAoF42Wo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OAF1LfIkwsTo5DK6O3ViQ8H3vOEt5+Ictz2udGtFNqY62609I2LphtxQ5IbsoIdkwm3QztOhFHGPxoiIqKC7EdRAA3H6pEJmoJZ3rKQPs7GjWSOCbmxQPvamQJOx6uKtdIRlsbDSr3D7iIsZjat42b0um/xiDIwTjsaF7dfub+Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Xeut2wRk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 391B4C4CEF1;
-	Tue, 21 Oct 2025 14:21:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761056491;
-	bh=SXu2kCneESoXCkpfGtRLyiuYbh2vZwF+jNxVAoF42Wo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Xeut2wRkpHOhdNj2qnGiB5GhnESam4Ne9KqRd7Lds9PUSsdDTumIeJBWhU64HjZVp
-	 pAcRFJJjJP6qDARWnfCG8AvOndFwLqPxCgfo/1b00AMApZ8+vAHnCC7LpwQbZyQa/i
-	 T6oNstpEy0y/s4lit/fg5thHOfX+OiDTXL/u2VfgmsG/Ldx7erNpqqhXg3T61f6gAF
-	 7ORCf2cNVRpL7iemjQo6Bjc9I6uyOfyIkVv+R029+X7yiC3ri0dBPwVIhm+fw+3Ovd
-	 dz64QO4ZazG+PTB6Sg+zoNxLRGvy0/YLIftMSrwnoh27n/v88b8HobZV9uY1ke+mvT
-	 YsEHJtjx/wNZA==
-Date: Tue, 21 Oct 2025 09:21:29 -0500
-From: Rob Herring <robh@kernel.org>
-To: David Lechner <dlechner@baylibre.com>
-Cc: Mark Brown <broonie@kernel.org>,
+	s=arc-20240116; t=1761056674; c=relaxed/simple;
+	bh=ohQxc9QRortHfyjylGhHg5pwqrzIoB+7Amrx3g6gjTI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=a3RZs56YGGIlbIxllxfYI5DfuaTa4cKnaYwJsfEoBB78lAMEZp3M1qvWKU0rTlVYC+1JkvAzR8cRdSifA+2gcioQspm9xewotlec8nETMnc9fpaSY/dClJIGFyLtdq3YeCyaQFU+6ytf74y9RoImq8OFQ0I1yloHQigC4487598=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=svanheule.net; spf=pass smtp.mailfrom=svanheule.net; dkim=pass (2048-bit key) header.d=svanheule.net header.i=@svanheule.net header.b=Wy6RUOp6; arc=none smtp.client-ip=84.16.241.116
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=svanheule.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=svanheule.net
+Received: from terra.vega.svanheule.net (2a02-1812-162c-8f00-1e2d-b404-3319-eba8.ip6.access.telenet.be [IPv6:2a02:1812:162c:8f00:1e2d:b404:3319:eba8])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: sander@svanheule.net)
+	by polaris.svanheule.net (Postfix) with ESMTPSA id CA54D68A1CB;
+	Tue, 21 Oct 2025 16:24:30 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svanheule.net;
+	s=mail1707; t=1761056671;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=eDBcuRTLNpGudD5KeS5Seips/GXVRZi09VXovBDipw4=;
+	b=Wy6RUOp61nyTt1Csv+GVjrswLkebZvZq+WUqh2RdKiHDS4AL36zEc/vvSAuh70QZFP/dxf
+	Cs8KPg75TZ0rbYQV0VtINTX5qevEghXH9sBzl9Rjby37MIdESARee7Th8Q8m8pOJWPe0cH
+	HNGA/ZvzFAR5jJ0vtah6IH9fEeRbNuWSHrtSTshtijR27sEstdcDvtfMRR+OR02e1P1yaz
+	LMiIzVjAl+5bwBDS5hBfj0nuXfdqemvm6jtttznB5aEt/XHYbULm2YGjmrMKrDvksxKdO+
+	54iZr/oALFLgVmLHMbcylyZ2KydktBrS9iPY3zwBwir87r63BfW8Nx2wCp2xQg==
+From: Sander Vanheule <sander@svanheule.net>
+To: Michael Walle <mwalle@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	linux-gpio@vger.kernel.org,
+	Lee Jones <lee@kernel.org>,
+	Pavel Machek <pavel@kernel.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Marcelo Schmitt <marcelo.schmitt@analog.com>,
-	Michael Hennerich <michael.hennerich@analog.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Andy Shevchenko <andy@kernel.org>,
-	Sean Anderson <sean.anderson@linux.dev>, linux-spi@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-iio@vger.kernel.org
-Subject: Re: [PATCH 1/6] dt-bindings: spi: Add spi-buses property
-Message-ID: <20251021142129.GA34073-robh@kernel.org>
-References: <20251014-spi-add-multi-bus-support-v1-0-2098c12d6f5f@baylibre.com>
- <20251014-spi-add-multi-bus-support-v1-1-2098c12d6f5f@baylibre.com>
+	linux-leds@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org,
+	Sander Vanheule <sander@svanheule.net>
+Subject: [PATCH v6 0/8] RTL8231 GPIO expander support
+Date: Tue, 21 Oct 2025 16:23:55 +0200
+Message-ID: <20251021142407.307753-1-sander@svanheule.net>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251014-spi-add-multi-bus-support-v1-1-2098c12d6f5f@baylibre.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Tue, Oct 14, 2025 at 05:02:11PM -0500, David Lechner wrote:
-> Add a spi-buses property to the spi-peripheral-props binding to allow
-> specifying the SPI data bus or buses that a peripheral is connected to
-> in cases where the SPI controller has more than one physical SPI data
-> bus.
+The RTL8231 GPIO and LED expander can be configured for use as an MDIO
+or SMI bus device. Currently only the MDIO mode is supported, although
+SMI mode support should be fairly straightforward, once an SMI bus
+driver is available.
 
-Is there a reason why spi-rx-bus-width property doesn't work for you? 
-The only thing I see would be you need to define the order of the pins 
-like "data-lanes" property.
+Provided features by the RTL8231:
+  - Up to 37 GPIOs
+    - Configurable drive strength: 8mA or 4mA (currently unsupported)
+    - Input debouncing on GPIOs 31-36
+  - Up to 88 LEDs in multiple scan matrix groups
+    - On, off, or one of six toggling intervals
+    - "single-color mode": 2×36 single color LEDs + 8 bi-color LEDs
+    - "bi-color mode": (12 + 2×6) bi-color LEDs + 24 single color LEDs
+  - Up to one PWM output (currently unsupported)
+    - Fixed duty cycle, 8 selectable frequencies (1.2kHz - 4.8kHz)
 
-Rob
+The patches have been in use downstream by OpenWrt for some months. As
+the original patches are already a few years old, I would like to request
+all patches to be reviewed again (and I've dropped all provided tags and
+changelogs).
+---
+RFC for gpio-regmap changes:
+Link: https://lore.kernel.org/lkml/20251020115636.55417-1-sander@svanheule.net/
+
+Patch series v5 (June 2021):
+Link: https://lore.kernel.org/lkml/cover.1623532208.git.sander@svanheule.net/
+
+Sander Vanheule (8):
+  gpio: regmap: Force writes for aliased data regs
+  gpio: regmap: Bypass cache for aliased inputs
+  dt-bindings: leds: Binding for RTL8231 scan matrix
+  dt-bindings: mfd: Binding for RTL8231
+  mfd: Add RTL8231 core device
+  pinctrl: Add RTL8231 pin control and GPIO support
+  leds: Add support for RTL8231 LED scan matrix
+  MAINTAINERS: Add RTL8231 MFD driver
+
+ .../bindings/leds/realtek,rtl8231-leds.yaml   | 167 ++++++
+ .../bindings/mfd/realtek,rtl8231.yaml         | 189 ++++++
+ MAINTAINERS                                   |  10 +
+ drivers/gpio/gpio-regmap.c                    |  18 +-
+ drivers/leds/Kconfig                          |  10 +
+ drivers/leds/Makefile                         |   1 +
+ drivers/leds/leds-rtl8231.c                   | 285 ++++++++++
+ drivers/mfd/Kconfig                           |   9 +
+ drivers/mfd/Makefile                          |   1 +
+ drivers/mfd/rtl8231.c                         | 193 +++++++
+ drivers/pinctrl/Kconfig                       |  11 +
+ drivers/pinctrl/Makefile                      |   1 +
+ drivers/pinctrl/pinctrl-rtl8231.c             | 538 ++++++++++++++++++
+ include/linux/mfd/rtl8231.h                   |  71 +++
+ 14 files changed, 1500 insertions(+), 4 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/leds/realtek,rtl8231-leds.yaml
+ create mode 100644 Documentation/devicetree/bindings/mfd/realtek,rtl8231.yaml
+ create mode 100644 drivers/leds/leds-rtl8231.c
+ create mode 100644 drivers/mfd/rtl8231.c
+ create mode 100644 drivers/pinctrl/pinctrl-rtl8231.c
+ create mode 100644 include/linux/mfd/rtl8231.h
+
+-- 
+2.51.0
+
 
