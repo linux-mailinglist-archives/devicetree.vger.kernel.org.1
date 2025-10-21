@@ -1,64 +1,83 @@
-Return-Path: <devicetree+bounces-229367-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229368-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2A5FBF68E9
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 14:53:00 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id D37BABF691B
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 14:56:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 98F0E4240B4
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 12:52:05 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 4F0F14E9E80
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 12:56:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D15E932B9AD;
-	Tue, 21 Oct 2025 12:52:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97A6D333733;
+	Tue, 21 Oct 2025 12:56:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eRjJ+BvE"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="RxsK1kQM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9ABA5322C99;
-	Tue, 21 Oct 2025 12:52:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B34E62F2619;
+	Tue, 21 Oct 2025 12:56:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761051123; cv=none; b=YRnxlYjEPqXwkRLZfAPQwam/7XMADkdrNFyFqbRfnF+G27xTmcJSz1jwnGdAJOLNKkKkK7aVvjHcFCoFRXVe8o1qnmaH2fVXl97xTSC+AUHV6NJKvcwAd0MvZzD1daCcVSbdtHce8pIuC2qAcc3vqd+I/eVHZywrarRhqsK3Ipg=
+	t=1761051374; cv=none; b=birP8lmglh9IvqXx6Dg13D8kZEphRrh0rQNu7oyZOI9puKymD+MT9zP7Vide2L+gcANjZCp9Ore6NfU03DS31LKutG9xYE/TFJLN4AIhNHZ6FkZFdwbtLc1+VFOGXq1filFqmrceskqMmfRsDwSAJ6ljB8eOviMvu1gg8Fy5loY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761051123; c=relaxed/simple;
-	bh=xl5f2KWZjnQ0VT+pwG5gNrmtrc3seJnlxSjRbDKcWN4=;
+	s=arc-20240116; t=1761051374; c=relaxed/simple;
+	bh=+CO+/an1hiocjSGMGzZYAKHx4UcThwwf4NGM2r5oRxc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lLSMwmxktW4CPuMCtL46n+7cYpjL4ofSesrk87F3iMU3469icif5OXuO2VuziyHUNjB1be2XSQcnYxU2MvQIv3O5ZLfe6XmhB8daqISnDvzPMrL2FhHhV10ensnHeM4NORrlp/kfgPq0NEa4Wtnx0VxRU/DcAyY9G/EEw47O9qs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eRjJ+BvE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 80339C4CEF1;
-	Tue, 21 Oct 2025 12:51:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761051123;
-	bh=xl5f2KWZjnQ0VT+pwG5gNrmtrc3seJnlxSjRbDKcWN4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=eRjJ+BvEoDGSHu34gpVnNaa44gGA0cHKta96VRDLRlAf5tNR7ZIjaJ1DSPYzgxhza
-	 pwhIu22SSHWCUbrb5Ywk0kena7WF6W8i3r5QZicFutmPrxn/kUAJt/822j7fMvCR8P
-	 mmdltnpqYakNtNQhpJQPXt/rjU39SRIGc0AjX+RatiX5Y+MERgucXaLx4xKGPkMKT1
-	 Yw1rRfN2/z9rjlcTe9GI9DEY19tHfLDpAVQqsL6oRNfXHwzPBiqVHHUXPwGwFbH26n
-	 99Ux+gYEzaPkqjIvyFH/Tj3GGIELr4L5wZ6HdcBElUIn+ovpoxSOM2fI7Py/K6392r
-	 jPLlXwa/DwmCw==
-Date: Tue, 21 Oct 2025 14:51:55 +0200
-From: Lorenzo Pieralisi <lpieralisi@kernel.org>
-To: Rob Herring <robh@kernel.org>
-Cc: linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-	Sascha Bischoff <sascha.bischoff@arm.com>,
-	Marc Zyngier <maz@kernel.org>,
-	Scott Branden <sbranden@broadcom.com>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Bjorn Helgaas <bhelgaas@google.com>, Ray Jui <rjui@broadcom.com>,
-	Frank Li <Frank.Li@nxp.com>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>
-Subject: Re: [PATCH v3 1/5] of/irq: Add msi-parent check to of_msi_xlate()
-Message-ID: <aPeB6wQKC27gKyQv@lpieralisi>
-References: <20251017084752.1590264-1-lpieralisi@kernel.org>
- <20251017084752.1590264-2-lpieralisi@kernel.org>
- <20251021115517.GA3713879-robh@kernel.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=cFg8EJM7MBdJqQn6CpzvHMZioBo2JthXAwS53JBpb0C8M+U/OhEhgYTu7DCZkoYruv4ffG6mTk2OT1K6JQkhPbQz0NI/iwOzHSCf9Wi9QW+FNjQrsL6Wt4I/bYLgsP0mc/9FB6HMbpRMFRgxnqAdDs8snPvvcSvvz/bPs6c7/N8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=RxsK1kQM; arc=none smtp.client-ip=192.198.163.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1761051373; x=1792587373;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=+CO+/an1hiocjSGMGzZYAKHx4UcThwwf4NGM2r5oRxc=;
+  b=RxsK1kQMpNNwkTSt8tnwbuqfdOt8sseF4XYKpkt6nUa4sh9MDbJDIDmP
+   8aK60dAnuU5jnKd1SvkcrkJLGCAZGF9fAdYu2ug1iI4CMhu/1hg8SN2Kx
+   zm1dHgZnH7HmwpXpXY/z7U1DIZt53XsiSJvh+U6tZ9UMWSe81Rs74hXsd
+   cMcII6FLEuNsdDBMARJrlfBljkWsjF2866SQkfX59AV4mxC16DCdouGQ5
+   wkpauo6zy/z8D5tsqUvLEw/i9NmFpQKgUm+gSDIY0D2i829goM1rWaclp
+   GuDCwMTZyM9EXZ79jgkhBHRcc6CxN75hBmqL4B2XkckyV5Fm/Nw12M9sG
+   g==;
+X-CSE-ConnectionGUID: ZiJEx3DmTMK+kAbMXBxPCg==
+X-CSE-MsgGUID: pUlZgJ3qQMuBqUojy/Ap5g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="62205843"
+X-IronPort-AV: E=Sophos;i="6.19,245,1754982000"; 
+   d="scan'208";a="62205843"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Oct 2025 05:56:12 -0700
+X-CSE-ConnectionGUID: BxovcXqjQZemzDJ3BcibFQ==
+X-CSE-MsgGUID: qYr8i8VcSOqS+siN1Hg8+g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,245,1754982000"; 
+   d="scan'208";a="183443263"
+Received: from lkp-server02.sh.intel.com (HELO 66d7546c76b2) ([10.239.97.151])
+  by orviesa007.jf.intel.com with ESMTP; 21 Oct 2025 05:56:08 -0700
+Received: from kbuild by 66d7546c76b2 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1vBBuI-000App-0T;
+	Tue, 21 Oct 2025 12:56:06 +0000
+Date: Tue, 21 Oct 2025 20:55:47 +0800
+From: kernel test robot <lkp@intel.com>
+To: Chen-Yu Tsai <wens@kernel.org>, Jernej Skrabec <jernej@kernel.org>,
+	Samuel Holland <samuel@sholland.org>,
+	Mark Brown <broonie@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>
+Cc: oe-kbuild-all@lists.linux.dev, linux-sunxi@lists.linux.dev,
+	linux-sound@vger.kernel.org, linux-clk@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	dmaengine@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 04/11] ASoC: sun4i-spdif: Support SPDIF output on A523
+ family
+Message-ID: <202510212039.XiolKgXp-lkp@intel.com>
+References: <20251020171059.2786070-5-wens@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,124 +86,37 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251021115517.GA3713879-robh@kernel.org>
+In-Reply-To: <20251020171059.2786070-5-wens@kernel.org>
 
-On Tue, Oct 21, 2025 at 06:55:17AM -0500, Rob Herring wrote:
-> On Fri, Oct 17, 2025 at 10:47:48AM +0200, Lorenzo Pieralisi wrote:
-> > In some legacy platforms the MSI controller for a PCI host bridge is
-> > identified by an msi-parent property whose phandle points at an MSI
-> > controller node with no #msi-cells property, that implicitly
-> > means #msi-cells == 0.
-> > 
-> > For such platforms, mapping a device ID and retrieving the MSI controller
-> > node becomes simply a matter of checking whether in the device hierarchy
-> > there is an msi-parent property pointing at an MSI controller node with
-> > such characteristics.
-> > 
-> > Add a helper function to of_msi_xlate() to check the msi-parent property in
-> > addition to msi-map and retrieve the MSI controller node (with a 1:1 ID
-> > deviceID-IN<->deviceID-OUT  mapping) to provide support for deviceID
-> > mapping and MSI controller node retrieval for such platforms.
-> > 
-> > Fixes: 57d72196dfc8 ("irqchip/gic-v5: Add GICv5 ITS support")
-> > Signed-off-by: Lorenzo Pieralisi <lpieralisi@kernel.org>
-> > Cc: Sascha Bischoff <sascha.bischoff@arm.com>
-> > Cc: Rob Herring <robh@kernel.org>
-> > Cc: Marc Zyngier <maz@kernel.org>
-> > ---
-> >  drivers/of/irq.c | 38 +++++++++++++++++++++++++++++++++++---
-> >  1 file changed, 35 insertions(+), 3 deletions(-)
-> 
-> It all looks good to me other than 1 nit below. How do you propose 
-> merging the series? I can take the first 3 for 6.18 and then patches 4 
-> and 5 can go via their respective trees for 6.19?
+Hi Chen-Yu,
 
-Yep, though patch (3) isn't really a fix so not sure it is v6.18 material
-but that's up to you.
+kernel test robot noticed the following build warnings:
 
-I'd leave patch (1) brewing in -next if possible a little bit - it should
-not cause any issues but it might.
+[auto build test WARNING on sunxi/sunxi/for-next]
+[also build test WARNING on broonie-sound/for-next vkoul-dmaengine/next linus/master v6.18-rc2 next-20251021]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-> > 
-> > diff --git a/drivers/of/irq.c b/drivers/of/irq.c
-> > index 65c3c23255b7..e67b2041e73b 100644
-> > --- a/drivers/of/irq.c
-> > +++ b/drivers/of/irq.c
-> > @@ -671,6 +671,35 @@ void __init of_irq_init(const struct of_device_id *matches)
-> >  	}
-> >  }
-> >  
-> > +static int of_check_msi_parent(struct device_node *dev_node, struct device_node **msi_node)
-> > +{
-> > +	struct of_phandle_args msi_spec;
-> > +	int ret;
-> > +
-> > +	/*
-> > +	 * An msi-parent phandle with a missing or == 0 #msi-cells
-> > +	 * property identifies a 1:1 ID translation mapping.
-> > +	 *
-> > +	 * Set the msi controller node if the firmware matches this
-> > +	 * condition.
-> > +	 */
-> > +	ret = of_parse_phandle_with_optional_args(dev_node, "msi-parent", "#msi-cells",
-> > +						  0, &msi_spec);
-> > +	if (!ret) {
-> 
-> if (ret)
-> 	return ret;
-> 
-> And then save a level of indentation.
+url:    https://github.com/intel-lab-lkp/linux/commits/Chen-Yu-Tsai/dt-bindings-dma-allwinner-sun50i-a64-dma-Add-compatibles-for-A523/20251021-011340
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/sunxi/linux.git sunxi/for-next
+patch link:    https://lore.kernel.org/r/20251020171059.2786070-5-wens%40kernel.org
+patch subject: [PATCH 04/11] ASoC: sun4i-spdif: Support SPDIF output on A523 family
+config: loongarch-allyesconfig (https://download.01.org/0day-ci/archive/20251021/202510212039.XiolKgXp-lkp@intel.com/config)
+compiler: clang version 22.0.0git (https://github.com/llvm/llvm-project 754ebc6ebb9fb9fbee7aef33478c74ea74949853)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251021/202510212039.XiolKgXp-lkp@intel.com/reproduce)
 
-Fixed - sent v4.
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202510212039.XiolKgXp-lkp@intel.com/
 
-Thanks !
-Lorenzo
+All warnings (new ones prefixed by >>):
 
-> > +		if ((*msi_node && *msi_node != msi_spec.np) || msi_spec.args_count != 0)
-> > +			ret = -EINVAL;
-> > +
-> > +		if (!ret) {
-> > +			/* Return with a node reference held */
-> > +			*msi_node = msi_spec.np;
-> > +			return 0;
-> > +		}
-> > +		of_node_put(msi_spec.np);
-> > +	}
-> > +
-> > +	return ret;
-> > +}
-> > +
-> >  /**
-> >   * of_msi_xlate - map a MSI ID and find relevant MSI controller node
-> >   * @dev: device for which the mapping is to be done.
-> > @@ -678,7 +707,7 @@ void __init of_irq_init(const struct of_device_id *matches)
-> >   * @id_in: Device ID.
-> >   *
-> >   * Walk up the device hierarchy looking for devices with a "msi-map"
-> > - * property. If found, apply the mapping to @id_in.
-> > + * or "msi-parent" property. If found, apply the mapping to @id_in.
-> >   * If @msi_np points to a non-NULL device node pointer, only entries targeting
-> >   * that node will be matched; if it points to a NULL value, it will receive the
-> >   * device node of the first matching target phandle, with a reference held.
-> > @@ -692,12 +721,15 @@ u32 of_msi_xlate(struct device *dev, struct device_node **msi_np, u32 id_in)
-> >  
-> >  	/*
-> >  	 * Walk up the device parent links looking for one with a
-> > -	 * "msi-map" property.
-> > +	 * "msi-map" or an "msi-parent" property.
-> >  	 */
-> > -	for (parent_dev = dev; parent_dev; parent_dev = parent_dev->parent)
-> > +	for (parent_dev = dev; parent_dev; parent_dev = parent_dev->parent) {
-> >  		if (!of_map_id(parent_dev->of_node, id_in, "msi-map",
-> >  				"msi-map-mask", msi_np, &id_out))
-> >  			break;
-> > +		if (!of_check_msi_parent(parent_dev->of_node, msi_np))
-> > +			break;
-> > +	}
-> >  	return id_out;
-> >  }
-> >  
-> > -- 
-> > 2.50.1
-> > 
+   Warning: sound/soc/sunxi/sun4i-spdif.c:180 struct member 'mclk_multiplier' not described in 'sun4i_spdif_quirks'
+>> Warning: sound/soc/sunxi/sun4i-spdif.c:180 struct member 'tx_clk_name' not described in 'sun4i_spdif_quirks'
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
