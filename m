@@ -1,194 +1,99 @@
-Return-Path: <devicetree+bounces-229235-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229236-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 071F0BF5252
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 10:05:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C3935BF5288
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 10:07:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 20AD64004D6
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 08:03:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2610B403591
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 08:07:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12BD62E62C5;
-	Tue, 21 Oct 2025 08:03:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="QROdFjdg"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AA442D7DE2;
+	Tue, 21 Oct 2025 08:07:16 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BEA71D61B7;
-	Tue, 21 Oct 2025 08:03:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73F2B26CE39;
+	Tue, 21 Oct 2025 08:07:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761033838; cv=none; b=OfKxMVu09ECzKKWg3Z98tg8L7YYpd1+VlvhV3ef66MtVa4lsByhoCuiZXtL9jkIotBar30hxjr9p2ucEN5H+9l2jR8qMAQNkG/kAOi1qZAyxC8t+OfEHY/f+t99pRG2J3PKH1XJH7z3uq8AkQPSuB38LXsPutmmCo/4PbFZF9RQ=
+	t=1761034036; cv=none; b=K8jr+nLSRHmbIzdF2hHa7poQoTAEwMwmllU8feastLbLGl85HbHCNOtRSfJjhGNRVqvngWzfS2AtpEiHggFrYTk0m5Ikyu90NJVlqhkAWEbKyHA7Kvy/73CwC/TNQvvQw3wJMwhMPTA7/dcEFwEJ2xJ5wMo1xwSc3rHmBy29lKg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761033838; c=relaxed/simple;
-	bh=uRJHPyETDsTCj2+OQ1mRFlr8Bbks2lxPY6twkMXsU2I=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Ey8CnO3tGWa3BvORnMmCcFC9AmFBj/V1Gdbx/Cl1l/2/pTeguvvCA1OG0mbPFbr/r9p23+yO4faW+hTPyvpxhJ4IX4jSMxIuhH0RYX5Q542+uH6z1xCPMvFdxlqMT9LeNlE3pCIGZ7BRfYF0huUZUde0g9wscQgG/9Os4POsiyI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=QROdFjdg; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1761033833;
-	bh=uRJHPyETDsTCj2+OQ1mRFlr8Bbks2lxPY6twkMXsU2I=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=QROdFjdgod/ROylJgy2Guz/ooeoHdSBvVBAh5Je/NIPZVw8Id9oRiFxWXCVHFjshj
-	 rsRD6xnfsiXOoIPMpzKWa6gwzqBRxnJMMUIlnqUbKP4ybKE7I6R4GhedPFsJ3ZE0cn
-	 Fyat/tvas5N+DYhHCkOokWzRItq5v/Zd0JQSmtES+G9vqj1rpn4RTI4NNADxdS9hrh
-	 LXFtS0yZsdBIuIYbxVdQSQpkvqS3ytSXDQfTh0SgTgTNByE7O342gjxdPj5kPaOuN7
-	 H4/zTP9IVJTZUkHvAUNgPFqiZR4fy2QKTfr5H1t2/iaoHCAlUctjMHye0LLH0p2Rjt
-	 4/RNQDNBGf7PA==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 08DC317E081A;
-	Tue, 21 Oct 2025 10:03:52 +0200 (CEST)
-Message-ID: <0e5ca992-730d-42c5-b5b8-5ad04116b8d4@collabora.com>
-Date: Tue, 21 Oct 2025 10:03:52 +0200
+	s=arc-20240116; t=1761034036; c=relaxed/simple;
+	bh=4kb2HYMejoySv9w9Q1uqYRANRQcyxQHbsxi04sg7A6A=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Gy8aX6US54lJWQUOyLcSOiDIdotsNJrDuJYCpP+vSu+KLdSE2y+8KuwMIDertuBEgOM3QYNYPol9S9V2hhVTFN8/NstU9Z4JPcRSQ5XEaFqy5ga9OjLgAF4yj6IvMwgQdDQjytdhAg6MyzXqXqJV7XlmLxLILVe0mdjCWj4l6sY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; arc=none smtp.client-ip=210.160.252.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
+X-CSE-ConnectionGUID: bir40SgjT8iYeXF1XOMc2A==
+X-CSE-MsgGUID: HbllEn4QR+m06bUdj35H6Q==
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie6.idc.renesas.com with ESMTP; 21 Oct 2025 17:07:12 +0900
+Received: from vm01.adwin.renesas.com (unknown [10.226.92.145])
+	by relmlir6.idc.renesas.com (Postfix) with ESMTP id 5F6724141C98;
+	Tue, 21 Oct 2025 17:07:07 +0900 (JST)
+From: Ovidiu Panait <ovidiu.panait.rb@renesas.com>
+To: claudiu.beznea.uj@bp.renesas.com,
+	alexandre.belloni@bootlin.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	geert+renesas@glider.be,
+	magnus.damm@gmail.com,
+	mturquette@baylibre.com,
+	sboyd@kernel.org,
+	p.zabel@pengutronix.de
+Cc: linux-rtc@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-clk@vger.kernel.org
+Subject: [PATCH v2 0/6] Add RTC support for the Renesas RZ/V2H SoC
+Date: Tue, 21 Oct 2025 08:06:59 +0000
+Message-ID: <20251021080705.18116-1-ovidiu.panait.rb@renesas.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/3] Add Mali GPU support for Mediatek MT8365 SoC
-To: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>
-Cc: kernel@collabora.com, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- Conor Dooley <conor.dooley@microchip.com>
-References: <20251021-mt8365-enable-gpu-v2-0-17e05cff2c86@collabora.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20251021-mt8365-enable-gpu-v2-0-17e05cff2c86@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-Il 21/10/25 09:30, Louis-Alexis Eyraud ha scritto:
-> This patchset adds the support of the ARM Mali G52 MC1 GPU (Bifrost),
-> integrated to the Mediatek MT8365 SoC, and its enablement to the
-> Mediatek Genio 350-EVK board.
-> 
-> I've tested this patchset on a Mediatek Genio 350-EVK board,
-> with a kernel based on linux-next (tag: next-20251021).
-> 
+Hi,
 
-Thanks for this one! This series is ready to be merged.
+This series adds RTC support for the Renesas RZ/V2H SoC.
 
-However, in order to take the DT patches I need someone to pick the binding first.
+The Renesas RZ/V2H RTC IP is based on the same RTCA3 IP as RZ/G3S
+(r9a08g045), with the following differences:
+- it lacks the time capture functionality
+- the maximum supported periodic interrupt frequency is 128Hz instead
+  of 256Hz
+- it requires two reset lines instead of one
 
-Cheers,
-Angelo
+Best regards,
+Ovidiu
 
-> The panfrost driver probed with the following messages:
-> ```
-> panfrost 13040000.gpu: clock rate = 450000031
-> panfrost 13040000.gpu: mali-g52 id 0x7402 major 0x1 minor 0x0 status
->    0x0
-> panfrost 13040000.gpu: features: 00000000,00000df7, issues: 00000000,
->    00000400
-> panfrost 13040000.gpu: Features: L2:0x07110206 Shader:0x00000003
->   Tiler:0x00000209 Mem:0x1 MMU:0x00002823 AS:0xff JS:0x7
-> panfrost 13040000.gpu: shader_present=0x1 l2_present=0x1
-> [drm] Initialized panfrost 1.5.0 for 13040000.gpu on minor 0
-> ```
-> 
-> Running glmark2-es2-drm with MESA 25.2 is also OK:
-> ```
-> =======================================================
->      glmark2 2023.01
-> =======================================================
->      OpenGL Information
->      GL_VENDOR:      Mesa
->      GL_RENDERER:    Mali-G52 r1 (Panfrost)
->      GL_VERSION:     OpenGL ES 3.1 Mesa 25.2.5-1
->      Surface Config: buf=32 r=8 g=8 b=8 a=8 depth=24 stencil=0 samples=0
->      Surface Size:   1200x1920 fullscreen
-> =======================================================
-> [build] use-vbo=false: FPS: 513 FrameTime: 1.952 ms
-> [build] use-vbo=true: FPS: 514 FrameTime: 1.947 ms
-> [texture] texture-filter=nearest: FPS: 489 FrameTime: 2.046 ms
-> [texture] texture-filter=linear: FPS: 486 FrameTime: 2.061 ms
-> [texture] texture-filter=mipmap: FPS: 476 FrameTime: 2.101 ms
-> [shading] shading=gouraud: FPS: 436 FrameTime: 2.296 ms
-> [shading] shading=blinn-phong-inf: FPS: 387 FrameTime: 2.585 ms
-> [shading] shading=phong: FPS: 253 FrameTime: 3.955 ms
-> [shading] shading=cel: FPS: 232 FrameTime: 4.328 ms
-> [bump] bump-render=high-poly: FPS: 266 FrameTime: 3.765 ms
-> [bump] bump-render=normals: FPS: 421 FrameTime: 2.376 ms
-> [bump] bump-render=height: FPS: 343 FrameTime: 2.922 ms
-> [effect2d] kernel=0,1,0;1,-4,1;0,1,0;: FPS: 133 FrameTime: 7.521 ms
-> [effect2d] kernel=1,1,1,1,1;1,1,1,1,1;1,1,1,1,1;: FPS: 46 FrameTime:
->    21.990 ms
-> [pulsar] light=false:quads=5:texture=false: FPS: 379 FrameTime: 2.645 ms
-> [desktop] blur-radius=5:effect=blur:passes=1:separable=true:windows=4:
->    FPS: 57 FrameTime: 17.735 ms
-> [desktop] effect=shadow:windows=4: FPS: 249 FrameTime: 4.018 ms
-> [buffer] columns=200:interleave=false:update-dispersion=0.9:update-fraction
->    =0.5:update-method=map: FPS: 81 FrameTime: 12.447 ms
-> [buffer] columns=200:interleave=false:update-dispersion=0.9:update-fraction
->    =0.5:update-method=subdata: FPS: 81 FrameTime: 12.388 ms
-> [buffer] columns=200:interleave=true:update-dispersion=0.9:update-fraction
->    =0.5:update-method=map: FPS: 99 FrameTime: 10.127 ms
-> [ideas] speed=duration: FPS: 287 FrameTime: 3.492 ms
-> [jellyfish] <default>: FPS: 114 FrameTime: 8.842 ms
-> [terrain] <default>: FPS: 14 FrameTime: 76.911 ms
-> [shadow] <default>: FPS: 156 FrameTime: 6.432 ms
-> [refract] <default>: FPS: 29 FrameTime: 34.791 ms
-> [conditionals] fragment-steps=0:vertex-steps=0: FPS: 529 FrameTime: 1.890 ms
-> [conditionals] fragment-steps=5:vertex-steps=0: FPS: 326 FrameTime: 3.076 ms
-> [conditionals] fragment-steps=0:vertex-steps=5: FPS: 532 FrameTime: 1.880 ms
-> [function] fragment-complexity=low:fragment-steps=5: FPS: 475 FrameTime:
->    2.106 ms
-> [function] fragment-complexity=medium:fragment-steps=5: FPS: 227
->    FrameTime: 4.417 ms
-> [loop] fragment-loop=false:fragment-steps=5:vertex-steps=5: FPS: 475
->    FrameTime: 2.108 ms
-> [loop] fragment-steps=5:fragment-uniform=false:vertex-steps=5: FPS: 474
->    FrameTime: 2.110 ms
-> [loop] fragment-steps=5:fragment-uniform=true:vertex-steps=5: FPS: 226
->    FrameTime: 4.428 ms
-> =======================================================
->                                    glmark2 Score: 296
-> =======================================================
-> ```
-> 
-> Signed-off-by: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
-> ---
-> Changes in v2:
-> - Rebased on next-20251021 tag
-> - Fixed missing blank lines in 'arm64: dts: mediatek: mt8365: Add GPU
->    support' patch
-> - Added reviewed-by and acked-by trailers
-> - Updated cover letter
-> - Link to v1: https://lore.kernel.org/r/20250813-mt8365-enable-gpu-v1-0-46c44c6c1566@collabora.com
-> 
-> ---
-> Louis-Alexis Eyraud (3):
->        dt-bindings: gpu: mali-bifrost: Add compatible for MT8365 SoC
->        arm64: dts: mediatek: mt8365: Add GPU support
->        arm64: dts: mediatek: mt8365-evk: Enable GPU support
-> 
->   .../devicetree/bindings/gpu/arm,mali-bifrost.yaml  |  1 +
->   arch/arm64/boot/dts/mediatek/mt8365-evk.dts        |  9 +++++
->   arch/arm64/boot/dts/mediatek/mt8365.dtsi           | 43 +++++++++++++++++++++-
->   3 files changed, 52 insertions(+), 1 deletion(-)
-> ---
-> base-commit: 853c202e4aec8006c2c1367b052c9f8949db019a
-> change-id: 20250812-mt8365-enable-gpu-a39835dca7fc
-> 
-> Best regards,
+v2:
+- Updated bindings and RTC dts node with "reset-names" property.
 
+Ovidiu Panait (6):
+  clk: renesas: r9a09g057: Add clock and reset entries for RTC
+  dt-bindings: rtc: renesas,rz-rtca3: Add RZ/V2H support
+  rtc: renesas-rtca3: Use OF data for configuration
+  rtc: renesas-rtca3: Add support for RZ/V2H SoC
+  arm64: dts: renesas: r9a09g057: Add RTC node
+  arm64: dts: renesas: r9a09g057h44-rzv2h-evk: Enable RTC
+
+ .../bindings/rtc/renesas,rz-rtca3.yaml        | 45 ++++++++++++++++---
+ arch/arm64/boot/dts/renesas/r9a09g057.dtsi    | 15 +++++++
+ .../dts/renesas/r9a09g057h44-rzv2h-evk.dts    |  4 ++
+ drivers/clk/renesas/r9a09g057-cpg.c           |  4 ++
+ drivers/rtc/rtc-renesas-rtca3.c               | 27 +++++++++--
+ 5 files changed, 87 insertions(+), 8 deletions(-)
+
+-- 
+2.51.0
 
 
