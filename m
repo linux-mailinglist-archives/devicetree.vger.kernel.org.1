@@ -1,151 +1,122 @@
-Return-Path: <devicetree+bounces-229357-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229358-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 957D6BF67C3
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 14:41:19 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9FB7DBF67E4
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 14:41:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F144A188C30A
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 12:41:42 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 38EB350259D
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 12:41:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2946E330322;
-	Tue, 21 Oct 2025 12:41:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B19EA32ED3B;
+	Tue, 21 Oct 2025 12:41:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="IXuFI9KG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Gnrk9jKg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46AA332E6A8
-	for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 12:41:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 863DC32E6A4;
+	Tue, 21 Oct 2025 12:41:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761050465; cv=none; b=QQXRg2HtsI45uLSUaPMFzsCdwEGlp99EI0mmrAO7gB9eNYEcJWlENIvYPXIBPpPPRKbGm0UjzPBIG5TOCGRWtYxJvOCk6B4U68UTC3S0DAR5OGvFTyrr/vFHiYDqMxDudGZdFm+M+06UI9FOfLjtxzuYAJMWn809yCmLMBtWV2g=
+	t=1761050470; cv=none; b=h3D2ROgmnA9dcMvYxLr9ik3Ihh4D98f/SjV0e/fHkgvThqKnYv1TMl+NR5vHCEb2cwjFWTB8ocfzeRMglGmE7uvNHPR/Xgye+xhDMUSCXSmbqMzfTffEUoSzx0klsAGQheUx/n3wAUTSgYDIyR9A58aiRFBVLPNIfAaQRkPrkws=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761050465; c=relaxed/simple;
-	bh=yuVQZTDGjvvcPalMUgTg4epkdUaGdD4g6/GxObBxEI0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ilvziUySswfOnIsuTwsIhrf/O66XMs2ryFGdDTN94R5CJZNAQPlI/gnIoLjX/qA1BMougf/XPyAer6aYpKrRWgiQlBZbaM0lHREihOxE1jIf3jLTzJIOOubpu9sQJTsLSnDfy2yjmWTlFkKre7X7FE3c3SERAhfkyCVF1lLSEkQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=IXuFI9KG; arc=none smtp.client-ip=209.85.167.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-591eb980286so994356e87.2
-        for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 05:41:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1761050459; x=1761655259; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=NWb3L2HC5GL7gJV88qPeFIZPSp/OKkdc2F2PK/9kqwo=;
-        b=IXuFI9KG4A3E4U5Fibyo6SAZNeh861N5dZ2edgvOUXsjhDgufvCVHz/9zsQZEjK3BW
-         MjdzfFJgfVaycKMJmwOmMDVjWwXkD7nlGV67Jf8zvmtPIwiJnQ2Hi16/68lWT3XbNX0q
-         7UCzdCkaXSC/d6+2uyK1aPWErerdzs6Igm9Tb1vs/sYCNuAVd6bEm8yBMPW3HV7o+6lR
-         oKyQWdMb9O1alofphP99ZmDTFd+Qzv6AnI2dCfLRhj8HNObmEMBPQTn+FgswF+1mdw56
-         trf8UoHLlB9JpJl1xWI4L0iPsJJXVTFXUuRVtCxZ3EA8ysrGASRUvQ/StiZWJHbSyx4X
-         GBuw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761050459; x=1761655259;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=NWb3L2HC5GL7gJV88qPeFIZPSp/OKkdc2F2PK/9kqwo=;
-        b=SyQP7PW8mYxpYTko2vU7G/8iQbcGPfxKfXuruF8bOAeOJeveMJnqRj6hvLs1ea7mmZ
-         r8NAqJgOPDC/VcZzvqw9V/tNy0XNaL4eHAF0iY9p8Y7U4BV+mWEpm9Q45Z11RQcd0FUr
-         xRV8HfX1sAytR7pR6TzOfVIcALroxeqOjePIlXt68qMCisWdrrUKlgSFmmDYUx6ayQNf
-         kPwN+Mjm7rafKyucf0dCNfE8nW3zY46oczvfFvoLi70rd7PMXi4REcpcnYd4V4tmbQvn
-         6YUbZqMnvpaF7jGlVOs44yDBAFBtfdiLQduRyyoqz8DV3iPQv2fGfkqWFXvWP/7lZc/b
-         emaQ==
-X-Forwarded-Encrypted: i=1; AJvYcCX+agR0qadf/tlLe2wQrTOv/krZx0SjR1/Ev4JE5zIS4rCmT2Ye2zV5QuWtitOCOCaVUwDwlBAq6Ub7@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx68AiJHdKjO2StcIMsvrJQ/w73nfoKm541kaeG7OzkKjuRYdc8
-	pB9LI1G+f5BQ5gb4EsmAf4LgPH+AkCZ19qAVwHI6Ev0xilDmiW2feYIwxSak18NJEgYMu9PdU+l
-	a09HMK7sW3kWSQkcHAlBYjv3f+42Puu8QoND5AnGqeg==
-X-Gm-Gg: ASbGnct5W8qQJE/GSGSnY2DGpsoGTlRa8fs3Z3lJwc3YwWeeiCG64rNbvx6eeWKCEOd
-	IcdXdEQZjyb4nb71tHwZc8g46MATcdlsArf8tIsB7yayMNnufgW3WGAzgAFLfIJEpT9iVZYTLAY
-	wumvjYsB5HaEvC0uLc7qZkSN0tz/NETAwhWybg5Q6ZiQuoE9XnrJggW7UC3tpr7NT+ocOnMGGpO
-	KY8F9MAGvC7ub+6/5av/WCSXKXZ5hs1IyY6O33Cm3J3i34sLkcF+/alEM/hEhQ5r4cRF8IEcLMh
-	fy27CGzKKzFbP1PR6QdgylPVpHo=
-X-Google-Smtp-Source: AGHT+IHJJi40QO2j+AEEIXG+FSVZbH+WW1DwyjfojmvqVA8OuBIji8cOMNjvhsKfbFVOj/fVZy/UensL3Bqq96jG85U=
-X-Received: by 2002:a05:6512:3b0c:b0:57a:310:66a8 with SMTP id
- 2adb3069b0e04-591d85773ffmr5098755e87.55.1761050459418; Tue, 21 Oct 2025
- 05:40:59 -0700 (PDT)
+	s=arc-20240116; t=1761050470; c=relaxed/simple;
+	bh=uAhf200dsvIo89TJRuvH8/3+8lhJkw1+gk7dnaDCeJg=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=g6MSmqgCSn6UFny1uZuYaULb5W1pgXRllpz0aBpC3WlQ8jaFWZPYumzH3rZ37fsO/NkXx0/3S6/ngEdu3I3se1QJLcbM/ssvFHwjej6gWLuxtm8Hy8EU+B5eViBxD+RhtO7Z+cwD2YjbaLDMUkm8Hy9yasWitBeijrJ08GX3tiE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Gnrk9jKg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EE154C4CEF1;
+	Tue, 21 Oct 2025 12:41:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761050470;
+	bh=uAhf200dsvIo89TJRuvH8/3+8lhJkw1+gk7dnaDCeJg=;
+	h=From:To:Cc:Subject:Date:From;
+	b=Gnrk9jKgRAeBg5owfO6OldAN0DipPYh+Ou55m/NtzHfLkYGr38AaBczwOHZHpfMQn
+	 jHuNoA8pxwtmnzpFUmugivMeFY1V40OglVJ9OQ43DcG8infqwxJrM9hFGnceAdSdaI
+	 Lby0VFOMBeUZO7yVYYq/zsQCmeYNXMZFgjNQNTLWMbDoGSXlEgfUV4x5uS+NNTZ0Pm
+	 IMWO8UEgEIix1brXfb+uRtlj+nTmoj3gBO2MzUW3u0+RXvM4vd+96pKMbUBfOnMNzx
+	 mTLos9q3rK0o1dF4I3FoeKFEdPDN2hPubu9mU4hVnYfeKafaUy0pZOSN7sRZGF7kGF
+	 4lG3b1W9CHyhw==
+From: Lorenzo Pieralisi <lpieralisi@kernel.org>
+To: linux-kernel@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-pci@vger.kernel.org,
+	Sascha Bischoff <sascha.bischoff@arm.com>,
+	Scott Branden <sbranden@broadcom.com>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Rob Herring <robh@kernel.org>,
+	Ray Jui <rjui@broadcom.com>,
+	Frank Li <Frank.Li@nxp.com>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+	Marc Zyngier <maz@kernel.org>
+Subject: [PATCH v4 0/5] of/irq: Misc msi-parent handling fixes/clean-ups
+Date: Tue, 21 Oct 2025 14:40:58 +0200
+Message-ID: <20251021124103.198419-1-lpieralisi@kernel.org>
+X-Mailer: git-send-email 2.50.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251015232015.846282-1-robh@kernel.org>
-In-Reply-To: <20251015232015.846282-1-robh@kernel.org>
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Tue, 21 Oct 2025 14:40:47 +0200
-X-Gm-Features: AS18NWCQWmhq7gNfZEHIkGW0O-gEdDRZh4gksyliLmXKxwOZhptAVz-Dcd8I0sA
-Message-ID: <CAMRc=Mf++cYPVrFH5_1KggTQi2Tew_MaeHMHSiczkVfM+=Y4rg@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: Fix inconsistent quoting
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Stephen Boyd <sboyd@kernel.org>, Thierry Reding <thierry.reding@gmail.com>, 
-	Linus Walleij <linus.walleij@linaro.org>, Shawn Guo <shawnguo@kernel.org>, 
-	Fabio Estevam <festevam@gmail.com>, =?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
-	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
-	Jonathan Cameron <jic23@kernel.org>, Andy Shevchenko <andy@kernel.org>, 
-	Jassi Brar <jassisinghbrar@gmail.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
-	Lee Jones <lee@kernel.org>, Joel Stanley <joel@jms.id.au>, 
-	Andrew Jeffery <andrew@codeconstruct.com.au>, Andrew Lunn <andrew@lunn.ch>, 
-	Vladimir Oltean <olteanv@gmail.com>, "David S. Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	Daire McNamara <daire.mcnamara@microchip.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
-	=?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
-	Manivannan Sadhasivam <mani@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, Vinod Koul <vkoul@kernel.org>, 
-	Kishon Vijay Abraham I <kishon@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Nicolas Ferre <nicolas.ferre@microchip.com>, 
-	Alexandre Belloni <alexandre.belloni@bootlin.com>, Claudiu Beznea <claudiu.beznea@tuxon.dev>, 
-	Florian Fainelli <f.fainelli@gmail.com>, Tony Lindgren <tony@atomide.com>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-iio@vger.kernel.org, linux-media@vger.kernel.org, 
-	netdev@vger.kernel.org, linux-pci@vger.kernel.org, 
-	linux-phy@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Thu, Oct 16, 2025 at 1:20=E2=80=AFAM Rob Herring (Arm) <robh@kernel.org>=
- wrote:
->
-> yamllint has gained a new check which checks for inconsistent quoting
-> (mixed " and ' quotes within a file). Fix all the cases yamllint found
-> so we can enable the check (once the check is in a release). Use
-> whichever quoting is dominate in the file.
->
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
-> ---
->  .../arm/altera/socfpga-clk-manager.yaml       |  4 ++--
->  .../bindings/clock/nvidia,tegra124-car.yaml   |  8 ++++----
->  .../bindings/clock/nvidia,tegra20-car.yaml    |  6 +++---
->  .../devicetree/bindings/gpio/gpio-mxs.yaml    |  9 +++++----
->  .../bindings/gpio/snps,dw-apb-gpio.yaml       |  4 ++--
->  .../bindings/iio/temperature/adi,ltc2983.yaml | 20 +++++++++----------
->  .../mailbox/qcom,apcs-kpss-global.yaml        | 16 +++++++--------
->  .../mailbox/xlnx,zynqmp-ipi-mailbox.yaml      |  2 +-
->  .../bindings/media/fsl,imx6q-vdoa.yaml        |  2 +-
->  .../devicetree/bindings/mfd/aspeed-lpc.yaml   |  4 ++--
->  .../devicetree/bindings/mfd/ti,twl.yaml       |  4 ++--
->  .../bindings/net/ethernet-switch.yaml         |  2 +-
->  .../pci/plda,xpressrich3-axi-common.yaml      |  2 +-
->  .../bindings/phy/motorola,cpcap-usb-phy.yaml  |  4 ++--
->  .../pinctrl/microchip,sparx5-sgpio.yaml       | 12 +++++------
->  .../bindings/pinctrl/qcom,pmic-gpio.yaml      | 10 +++++-----
->  .../bindings/pinctrl/qcom,pmic-mpp.yaml       |  6 +++---
->  .../bindings/pinctrl/renesas,pfc.yaml         |  4 ++--
->  .../bindings/pinctrl/renesas,rza1-ports.yaml  |  2 +-
->  .../pinctrl/renesas,rzg2l-pinctrl.yaml        |  2 +-
->  .../pinctrl/renesas,rzv2m-pinctrl.yaml        |  2 +-
->  .../bindings/power/renesas,sysc-rmobile.yaml  |  4 ++--
->  .../soc/microchip/atmel,at91rm9200-tcb.yaml   |  8 ++++----
->  .../soc/tegra/nvidia,tegra20-pmc.yaml         | 12 +++++------
+This is series is a follow up to [1] - with additional patches that are
+addressing Rob's feedback (pcie-layerscape-gen4 was removed from the
+kernel, Yay !) and other bits and bobs I noticed while staring at the code.
 
-For GPIO:
+Patch (1) is a fix and technically we would like to get it in v6.18 please.
 
-Acked-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Patch (4) is compile-tested only, I can not run it on HW, I do not have it,
+Scott, Ray please test it if you can.
+
+v3 -> v4:
+	- Addressed Rob's review
+	- Added trailers
+	- Rebased against v6.18-rc2
+
+v2 -> v3:
+	- Added additional patch to export of_msi_xlate()
+	- Addressed review feedback
+
+v3: https://lore.kernel.org/lkml/20251017084752.1590264-1-lpieralisi@kernel.org/
+v2: https://lore.kernel.org/lkml/20251014095845.1310624-1-lpieralisi@kernel.org/
+v1: https://lore.kernel.org/lkml/20250916091858.257868-1-lpieralisi@kernel.org/
+
+[1] https://lore.kernel.org/lkml/20250916091858.257868-1-lpieralisi@kernel.org/
+
+Cc: Sascha Bischoff <sascha.bischoff@arm.com>
+Cc: Scott Branden <sbranden@broadcom.com>
+Cc: Thomas Gleixner <tglx@linutronix.de>
+Cc: Bjorn Helgaas <bhelgaas@google.com>
+Cc: Rob Herring <robh@kernel.org>
+Cc: Ray Jui <rjui@broadcom.com>
+Cc: Frank Li <Frank.Li@nxp.com>
+Cc: Manivannan Sadhasivam <mani@kernel.org>
+Cc: "Krzysztof Wilczyński" <kwilczynski@kernel.org>
+Cc: Marc Zyngier <maz@kernel.org>
+
+Lorenzo Pieralisi (5):
+  of/irq: Add msi-parent check to of_msi_xlate()
+  of/irq: Fix OF node refcount in of_msi_get_domain()
+  of/irq: Export of_msi_xlate() for module usage
+  PCI: iproc: Implement MSI controller node detection with
+    of_msi_xlate()
+  irqchip/gic-its: Rework platform MSI deviceID detection
+
+ drivers/irqchip/irq-gic-its-msi-parent.c | 91 ++++++------------------
+ drivers/of/irq.c                         | 44 ++++++++++--
+ drivers/pci/controller/pcie-iproc.c      | 22 ++----
+ 3 files changed, 68 insertions(+), 89 deletions(-)
+
+-- 
+2.50.1
+
 
