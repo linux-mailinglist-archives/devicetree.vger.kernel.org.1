@@ -1,221 +1,113 @@
-Return-Path: <devicetree+bounces-229418-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229419-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5770BF743F
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 17:12:18 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 10C4EBF748B
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 17:19:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 2D3844FF13E
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 15:09:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4392F404A8B
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 15:15:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D70C334216B;
-	Tue, 21 Oct 2025 15:08:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A028733F8B9;
+	Tue, 21 Oct 2025 15:15:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="aES7UE7N"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mznYIcle"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0D10340279;
-	Tue, 21 Oct 2025 15:08:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761059323; cv=pass; b=upmPZ1tqW0/VZPjrXVMBHkSxyl1HS41zIlbRCyh5UZCtuLQMJ6cbgoKL9DqZHYTu/uLWmj0nXs004HmQLCJTxSMpsTB805wdVSjxWpr7FpxtrzHE9LlD33jt5zuJ+BKHqY2e2adQGlAhLXGuRFOmFXWnwki6cAEzTsX5YebIb+U=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761059323; c=relaxed/simple;
-	bh=jOi580EyQSmcoI5v60O3cGEoiOAMSU0CHjNcr8NS4y0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=L7Bt4ezFtWgqczXXBECdHMP0wVN28F4rPC2HF+pVZEiqW1f3SmgBvUkzVootUEQqC+2AT9Pj4XppDZc4KV1cre0l+TeTijv17h3Ia1lF4WR/GyaaFILyMjc7CmJM+eWmGKqepGcDeNUm1zBnv0NwW2EK5ABJ88wW7Beqx5bJ1Mc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b=aES7UE7N; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1761059310; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=jabRgxmdYieIuSmzbQEv6/12y7UNuUzDmuhgk/fZB8KplsevXQ11e9oDZWbF8So8bIau/7jlY62YPItM92bdjO23459+sIzEhaRCMPz+J4bC5GRvJgpcJgEgF3LOp/QgozPSLnFxukTf3FTFVaqln5BA62NVkUw+worGzLU3Rng=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1761059310; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=muYkugUoG9YqEYkgErcXeBKpGdr1rwIW2Et193mgABk=; 
-	b=QAi+XOY6Vm/sX6346oDcN0UC8OyxBpK00jEoXU6FEdD6VSqa3iCF4jGKFHOELVif1t79Nguf3J08pf/OajJVdgFw1Q4eptT+OUSyiMcByQjk9modzfOL/leS/rC8JTrg7l0HpjCfgmqZ9yNS/f8ptg8OH29ssMzERjvuxGJDQv4=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
-	dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1761059310;
-	s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
-	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
-	bh=muYkugUoG9YqEYkgErcXeBKpGdr1rwIW2Et193mgABk=;
-	b=aES7UE7N5ujn90NBR5GYRDsaJ4BxJ6NPJhCUPqFne0LskCzNhY1U5pBoFSD1PdL2
-	qCko5TUib/A6ra9wuevl09OIN3qy9xRLxWl6IgZ3AUUd60lpGGf3QCnYeESG1paeYJl
-	ppajE83RLFAzArRCAp9yDTeqVStkpMrUvO5OMn5U=
-Received: by mx.zohomail.com with SMTPS id 1761059307844467.5063031417683;
-	Tue, 21 Oct 2025 08:08:27 -0700 (PDT)
-From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-To: Alexey Charkov <alchark@gmail.com>, Heiko Stuebner <heiko@sntech.de>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: rockchip: Add DSI LCD display on rk3576-evb1
-Date: Tue, 21 Oct 2025 17:08:23 +0200
-Message-ID: <2063876.tdWV9SEqCh@workhorse>
-In-Reply-To: <12339028.CDJkKcVGEf@phil>
-References:
- <20250925-rk3576-evb1-dsi-v1-1-c76fc3740abc@gmail.com>
- <748fd61a-31fb-436f-b028-b47807a4860c@gmail.com> <12339028.CDJkKcVGEf@phil>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72E1933509F;
+	Tue, 21 Oct 2025 15:15:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1761059727; cv=none; b=DOe5LEOaiUwq1SA7fbzvQnYYGWcu1MBSaB9zBYaJg9kFEemwChApdi0cGwlKkirVRk/j0/LHuhz1/6cq1qloN1TXPwlG30fpqLE3Itu4ROS1719KGe3JRRHLrGlERdTpw36/cv173ax6ag+rcOZ5jihqgC8wDpo8btfqZVpiPxE=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1761059727; c=relaxed/simple;
+	bh=MgCXam1/mW0SmqZK+U1KcPTrQ31DfIrbzGnwcNoUJAo=;
+	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=EsToM7RZTmm7UDQQef4Y0M1Yyvcuj4dPZihIDAJ0Z+cC4FN/PClhyxIf56B9JPoaHh75HBFHkqNSiezjDw7/qIngrnrzQwXr+U3vKROKwq5Uf8TSyJlySMGz1mXfBrRkSzOF38UDikU/Dsvgp7vdCSsv8UNnJdN3EjGcD0H5AwY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mznYIcle; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D4771C4CEF1;
+	Tue, 21 Oct 2025 15:15:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761059726;
+	bh=MgCXam1/mW0SmqZK+U1KcPTrQ31DfIrbzGnwcNoUJAo=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=mznYIclegWDskvSCmLAaalFM0uFXHZtex0TSHbihITxS2pbRir/3KXk12MRxco4ss
+	 Z8CpuUCd+ihY4fF6y/N+uC4e5rGHSynPC2qICWCclMsiCmkaNlxc4lyhNaX5ThNiMi
+	 gT3G1cdtAxeDwCGhcXw4dx5BesSxIwN1CebQOIQ5wdtgFICJw0acGIKSsgK0Azyv+9
+	 56VAWXZcu50+l0yevg4Woj2qtQIfJlwF/FuN4YgkRPPSfx+Lr79GHc3W5dg28nhz3P
+	 QEo/SUdvo5rHFMgzLhtDIwwy2czuuNhi9rHoLK16f1ufJZdV8DyZ8E7pikDkaLgjay
+	 C1iIkch+9VX+A==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
+	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.98.2)
+	(envelope-from <maz@kernel.org>)
+	id 1vBE56-0000000FtDi-1fUu;
+	Tue, 21 Oct 2025 15:15:24 +0000
+Date: Tue, 21 Oct 2025 16:15:23 +0100
+Message-ID: <868qh4wak4.wl-maz@kernel.org>
+From: Marc Zyngier <maz@kernel.org>
+To: Lorenzo Pieralisi <lpieralisi@kernel.org>
+Cc: linux-kernel@vger.kernel.org,	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,	linux-pci@vger.kernel.org,	Frank Li
+ <Frank.Li@nxp.com>,	Sascha Bischoff <sascha.bischoff@arm.com>,	Thomas
+ Gleixner <tglx@linutronix.de>,	Rob Herring <robh@kernel.org>,	Scott Branden
+ <sbranden@broadcom.com>,	Bjorn Helgaas <bhelgaas@google.com>,	Ray Jui
+ <rjui@broadcom.com>,	Manivannan Sadhasivam <mani@kernel.org>,	Krzysztof
+ =?UTF-8?B?V2lsY3p5xYRza2k=?= <kwilczynski@kernel.org>
+Subject: Re: [PATCH v4 5/5] irqchip/gic-its: Rework platform MSI deviceID detection
+In-Reply-To: <20251021124103.198419-6-lpieralisi@kernel.org>
+References: <20251021124103.198419-1-lpieralisi@kernel.org>
+	<20251021124103.198419-6-lpieralisi@kernel.org>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/30.1
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: lpieralisi@kernel.org, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, linux-pci@vger.kernel.org, Frank.Li@nxp.com, sascha.bischoff@arm.com, tglx@linutronix.de, robh@kernel.org, sbranden@broadcom.com, bhelgaas@google.com, rjui@broadcom.com, mani@kernel.org, kwilczynski@kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 
-On Monday, 20 October 2025 14:31:12 Central European Summer Time Heiko Stue=
-bner wrote:
-> Am Montag, 20. Oktober 2025, 10:50:58 Mitteleurop=C3=A4ische Sommerzeit s=
-chrieb Alexey Charkov:
-> >=20
-> > On Mon, Oct 20, 2025 at 12:31=E2=80=AFPM Heiko Stuebner <heiko@sntech.d=
-e> wrote:
-> > >
-> > > Am Montag, 20. Oktober 2025, 10:19:51 Mitteleurop=C3=A4ische Sommerze=
-it schrieb Alexey Charkov:
-> > > > On Thu, Sep 25, 2025 at 12:38=E2=80=AFAM Alexey Charkov <alchark@gm=
-ail.com> wrote:
-> > > > >
-> > > > > Add support for the Rockchip W552793DBA-V10 LCD+touchscreen assem=
-bly which
-> > > > > comes physically attached to Rockchip RK3576 EVB1 boards.
-> > > > >
-> > > > > The display part is driven by the on-chip MIPI DSI controller, an=
-d the
-> > > > > touchscreen is connected over I2C.
-> > > > >
-> > > > > Signed-off-by: Alexey Charkov <alchark@gmail.com>
-> > > > > ---
-> > > > > Note that backlight support is left out for now, as it depends on=
- PWM
-> > > > > support [0] which has not yet been merged.
-> > > > >
-> > > > > A workaround is simply `gpioset -c 0 13=3D1` to set the respectiv=
-e GPIO
-> > > > > pin high and thus to light up the display unconditionally.
-> > > > >
-> > > > > [0] https://lore.kernel.org/lkml/20250602-rk3576-pwm-v2-0-a6434b0=
-ce60c@collabora.com/
-> > > > > ---
-> > > > >  arch/arm64/boot/dts/rockchip/rk3576-evb1-v10.dts | 89 ++++++++++=
-++++++++++++++
-> > > > >  1 file changed, 89 insertions(+)
-> > > >
-> > > > Hi Heiko,
-> > > >
-> > > > Any thoughts about this one? Can we perhaps get it merged for -next?
-> > >
-> > > Does the gpio-backlight work on that device?
-> > > That would make the gpioset hack unnecessary.
-> >=20
-> > I've got a local patch using pwm-gpio and pwm-backlight as a stop-gap=20
-> > solution, but I don't think it's worth merging upstream, because the=20
-> > backlight is supposed to be driven by the hardware PWM on the same pin=
-=20
-> > (not bit-banging the GPIO line). After all, Nicolas has been working on=
-=20
-> > adding a proper hardware PWM driver for RK3576.
-> >=20
-> > The display itself works without PWM support, and so does the touchscre=
-en.
->=20
-> Right now, I don't think we have an actual timeline if/when Nicolas will
-> be able to work on the pwm again.
+On Tue, 21 Oct 2025 13:41:03 +0100,
+Lorenzo Pieralisi <lpieralisi@kernel.org> wrote:
+> 
+> Current code retrieving platform devices MSI devID in the GIC ITS MSI
+> parent helpers suffers from some minor issues:
+> 
+> - It leaks a struct device_node reference
+> - It is duplicated between GICv3 and GICv5 for no good reason
+> - It does not use the OF phandle iterator code that simplifies
+>   the msi-parent property parsing
+> 
+> Consolidate GIC v3 and v5 deviceID retrieval in a function that addresses
+> the full set of issues in one go by merging GIC v3 and v5 code and
+> converting the msi-parent parsing loop to the more modern OF phandle
+> iterator API, fixing the struct device_node reference leak in the process.
+> 
+> Signed-off-by: Lorenzo Pieralisi <lpieralisi@kernel.org>
+> Reviewed-by: Frank Li <Frank.Li@nxp.com>
+> Cc: Sascha Bischoff <sascha.bischoff@arm.com>
+> Cc: Thomas Gleixner <tglx@linutronix.de>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: Frank Li <Frank.Li@nxp.com>
+> Cc: Marc Zyngier <maz@kernel.org>
+> ---
+>  drivers/irqchip/irq-gic-its-msi-parent.c | 91 ++++++------------------
+>  1 file changed, 23 insertions(+), 68 deletions(-)
 
-Soon(TM), I've locally reworked the PWM output stuff and core driver
-into an MFD. I just need to rework the counter driver now and set up
-a proper way to test that the counter works.
+Reviewed-by: Marc Zyngier <maz@kernel.org>
 
-I'm hoping to have something next week. If not, then the week after
-that.
+	M.
 
-> So my idea was if we want to
-> integrate the baclight as you described below, to have an actual usable
-> display and then when the new pwm has landed switch over to that one?
-
-But Heikooooo, DTs should describe hardware, not the lack of Linux
-drivers! ;)
-
-=46or what it's worth, the implementation move to MFD didn't change the
-bindings as we don't leak that into the DT at all. If it took any
-longer for me to get it done I'd have suggested picking the bindings
-and then adding a stub GPIO PWM driver that binds to it as an interim
-solution, but it's not worth the ickyness when I'm basically just
-a day's work away from having this done.
-
-Kind regards,
-Nicolas Frattaroli
-
->=20
->=20
-> Heiko
->=20
->=20
-> > My temp patch goes like this:
-> >=20
-> > ---
-> >   arch/arm64/boot/dts/rockchip/rk3576-evb1-v10.dts | 15 +++++++++++++++
-> >   1 file changed, 15 insertions(+)
-> >=20
-> > diff --git a/arch/arm64/boot/dts/rockchip/rk3576-evb1-v10.dts=20
-> > b/arch/arm64/boot/dts/rockchip/rk3576-evb1-v10.dts
-> > index f20cd6f2c079..5c27fff03569 100644
-> > --- a/arch/arm64/boot/dts/rockchip/rk3576-evb1-v10.dts
-> > +++ b/arch/arm64/boot/dts/rockchip/rk3576-evb1-v10.dts
-> > @@ -58,6 +58,14 @@ button-vol-up {
-> >   		};
-> >   	};
-> >=20
-> > +	backlight: backlight {
-> > +		compatible =3D "pwm-backlight";
-> > +		brightness-levels =3D <20 220>;
-> > +		default-brightness-level =3D <100>;
-> > +		num-interpolated-steps =3D <200>;
-> > +		pwms =3D <&lcd_bl_pwm 0 25000 0>;
-> > +	};
-> > +
-> >   	hdmi-con {
-> >   		compatible =3D "hdmi-connector";
-> >   		type =3D "a";
-> > @@ -78,6 +86,12 @@ work_led: led-0 {
-> >   		};
-> >   	};
-> >=20
-> > +	lcd_bl_pwm: pwm {
-> > +		#pwm-cells =3D <3>;
-> > +		compatible =3D "pwm-gpio";
-> > +		gpios =3D <&gpio0 RK_PB5 GPIO_ACTIVE_HIGH>;
-> > +	};
-> > +
-> >   	vbus5v0_typec: regulator-vbus5v0-typec {
-> >   		compatible =3D "regulator-fixed";
-> >   		regulator-name =3D "vbus5v0_typec";
-> > @@ -277,6 +291,7 @@ panel@0 {
-> >   		compatible =3D "wanchanglong,w552793baa", "raydium,rm67200";
-> >   		reg =3D <0>;
-> >=20
-> > +		backlight =3D <&backlight>;
-> >   		iovcc-supply =3D <&vcc3v3_lcd_n>;
-> >   		reset-gpios =3D <&gpio3 RK_PB5 GPIO_ACTIVE_LOW>;
-> >   		vdd-supply =3D <&vcc3v3_lcd_n>;
-> >=20
->=20
->=20
->=20
->=20
->=20
-
-
-
-
+-- 
+Without deviation from the norm, progress is not possible.
 
