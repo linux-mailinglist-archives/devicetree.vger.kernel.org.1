@@ -1,119 +1,154 @@
-Return-Path: <devicetree+bounces-229281-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229269-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95C07BF599D
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 11:48:04 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 96A5CBF593A
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 11:45:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 53ED24837EB
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 09:48:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EB33018C7CA1
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 09:45:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2948932B98A;
-	Tue, 21 Oct 2025 09:46:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DBDD3126B8;
+	Tue, 21 Oct 2025 09:44:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=pigmoral.tech header.i=junhui.liu@pigmoral.tech header.b="j/wRoNwR"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="g6OhVZ/y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-op-o15.zoho.com (sender4-op-o15.zoho.com [136.143.188.15])
+Received: from mail-m19731102.qiye.163.com (mail-m19731102.qiye.163.com [220.197.31.102])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FEEB23BF9C;
-	Tue, 21 Oct 2025 09:46:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.15
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761040004; cv=pass; b=dxR+BhQGkEjy4cc846K5QSIlvoeYKpt/UXfZONiROw6h0dmMf6GdK7xnFIQIPTFJsffFYr/nUUIvboQAUQZsSIpfgiBAUTcQ89xaqkgOovoLL571X7lB/jOR+j7IC1L53j2pwSRtDsUs5JcGd/luTj999z8zomkn8tCZNRk+Pes=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761040004; c=relaxed/simple;
-	bh=BT1BbYf1Y5yXL3hJlz/v6ZRCueJkWknoQha5McKnBcs=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=A5r+yPrF2VBrdkxVuwm5a6/ibAJXEFOdOwmstmCyQ47C6BkmGHngX2fV1hoI9O532HarQIdHZhtHhTrsy2J7OUqbBFKT5yK93/SLRuQt2M0Aw3tj9U5MyKrzlybCyfaJwFy30V47Z7dLV0rLOcngUT8T8CgUuFO/r5VZ1CA1SEA=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pigmoral.tech; spf=pass smtp.mailfrom=pigmoral.tech; dkim=pass (1024-bit key) header.d=pigmoral.tech header.i=junhui.liu@pigmoral.tech header.b=j/wRoNwR; arc=pass smtp.client-ip=136.143.188.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pigmoral.tech
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pigmoral.tech
-ARC-Seal: i=1; a=rsa-sha256; t=1761039979; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=mSP5o11emiP2ro00kcTDnJIawgB51rtVQfA//mCOOsvGn1ArSHWMVlvbA79H9zeRwZsRdXNBUtDSYTYRug5W9/gJ451tx/s/4jt2huNIJ4wm1zVwSMj7+ujmvAiSHX9k6fSIu1EC6Ix2yGClH2BECsXJo0SBw6gEuzm0W011m8g=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1761039979; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=fM/OFmnj6so77IHYlA1fi4R93kba5pRm23lZo7zfC2g=; 
-	b=gXeLq88jQe415g4hLSIb8sa9cLHPByswYiqYZZdE9M5JcDsAQd2QeXe9thQxKBaN+rxM1kIfR7wpAuf3iIjvlIgSMnKocrBAdtZyDR+HI2m4PblBHq0r1YApLANTjzKCUsgzu6Nm7lXiPjTFC66qu8Nt+FoSm/D1ElhgkXSWemw=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=pigmoral.tech;
-	spf=pass  smtp.mailfrom=junhui.liu@pigmoral.tech;
-	dmarc=pass header.from=<junhui.liu@pigmoral.tech>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1761039979;
-	s=zmail; d=pigmoral.tech; i=junhui.liu@pigmoral.tech;
-	h=From:From:Date:Date:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Message-Id:References:In-Reply-To:To:To:Cc:Cc:Reply-To;
-	bh=fM/OFmnj6so77IHYlA1fi4R93kba5pRm23lZo7zfC2g=;
-	b=j/wRoNwRzVGbWhyuuP5wJ3+hG3OY9kc3SreZFpaBr4/jbGPhMn7jTBQ2y+3Hv+Cp
-	85XjVIultHSc8GviJdenuXONcPaoR2EgMkEZlQ3NQDYnFvHyvq2GjqLwcKgoWESueDv
-	aiyk8lQaaJmxGr6YzuTNs8eftvSZUw4yR2e9RlO8=
-Received: by mx.zohomail.com with SMTPS id 176103997777640.235295843942595;
-	Tue, 21 Oct 2025 02:46:17 -0700 (PDT)
-From: Junhui Liu <junhui.liu@pigmoral.tech>
-Date: Tue, 21 Oct 2025 17:41:48 +0800
-Subject: [PATCH v3 13/13] riscv: defconfig: Enable Anlogic SoC
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2AEB32B9B8;
+	Tue, 21 Oct 2025 09:44:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.102
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1761039862; cv=none; b=TFd3rLQPo83dpJKDpQi3wkYjrlhinP9qySJKv2s+pWz8Bawbv/TaLaPQT5tQpndjQlK05TKYI4TvBs2HREklIS+VG+TqivKe9FcKOtwLqT3vjdTEOvZbi3DxHknVofC6IEqgWRzbGEo/5J4p8nMbXCZhAuwqe2xB/1/LfpSncbQ=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1761039862; c=relaxed/simple;
+	bh=QzGk1F4Oghc7q1SK/0Q0gWE+qslFRrGUIMBxavAMLZ4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=FLOyvcUVNxkToYeW73jvZnW48+M2hERoGAhORNNQyS7wNl/WdEvp4zDmshAF+ZeeTStQSuAiwZeopKMLu47aKS6KsbXHtZOGFX+el+a/3gCZMuJ4+1Nm8REhK8fmsHdThEOl7wmFJL56EFVBBax5TKoCOYb31C7KfAMlUs/oeqA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=g6OhVZ/y; arc=none smtp.client-ip=220.197.31.102
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from [172.16.12.149] (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 26a698a5f;
+	Tue, 21 Oct 2025 17:44:12 +0800 (GMT+08:00)
+Message-ID: <1221dd6c-2035-4e5d-8052-341da279fe81@rock-chips.com>
+Date: Tue, 21 Oct 2025 17:44:11 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 1/8] usb: typec: Add default HPD device when register
+ DisplayPort altmode
+To: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+Cc: Chaoyi Chen <kernel@airkyi.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>, Heiko Stuebner
+ <heiko@sntech.de>, Sandy Huang <hjc@rock-chips.com>,
+ Andy Yan <andy.yan@rock-chips.com>,
+ Yubing Zhang <yubing.zhang@rock-chips.com>,
+ Frank Wang <frank.wang@rock-chips.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Amit Sunil Dhamne <amitsd@google.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Dragan Simic <dsimic@manjaro.org>, Johan Jonker <jbx6244@gmail.com>,
+ Diederik de Haas <didi.debian@cknow.org>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ Peter Robinson <pbrobinson@gmail.com>, linux-usb@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-phy@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, dri-devel@lists.freedesktop.org
+References: <20251016022741.91-1-kernel@airkyi.com>
+ <20251016022741.91-2-kernel@airkyi.com> <aPYImGmesrZWwyqh@kuha.fi.intel.com>
+ <954a67d1-1759-4e18-8eef-3fa14fb3cef5@rock-chips.com>
+ <aPdI7Vb_djrfCfbT@kuha.fi.intel.com>
+Content-Language: en-US
+From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+In-Reply-To: <aPdI7Vb_djrfCfbT@kuha.fi.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-Id: <20251021-dr1v90-basic-dt-v3-13-5478db4f664a@pigmoral.tech>
-References: <20251021-dr1v90-basic-dt-v3-0-5478db4f664a@pigmoral.tech>
-In-Reply-To: <20251021-dr1v90-basic-dt-v3-0-5478db4f664a@pigmoral.tech>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>, 
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
- Alexandre Ghiti <alex@ghiti.fr>, Junhui Liu <junhui.liu@pigmoral.tech>, 
- Thomas Gleixner <tglx@linutronix.de>, 
- Samuel Holland <samuel.holland@sifive.com>, 
- Chen Wang <unicorn_wang@outlook.com>, Inochi Amaoto <inochiama@gmail.com>, 
- Daniel Lezcano <daniel.lezcano@linaro.org>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Jiri Slaby <jirislaby@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Paul Walmsley <paul.walmsley@sifive.com>, 
- Palmer Dabbelt <palmer@sifive.com>, Conor Dooley <conor@kernel.org>, 
- linux-riscv@lists.infradead.org, Inochi Amaoto <inochiama@outlook.com>, 
- sophgo@lists.linux.dev, linux-serial@vger.kernel.org, 
- Conor Dooley <conor.dooley@microchip.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1761039846; l=773;
- i=junhui.liu@pigmoral.tech; s=20250910; h=from:subject:message-id;
- bh=BT1BbYf1Y5yXL3hJlz/v6ZRCueJkWknoQha5McKnBcs=;
- b=jcnGaIRVMmeBHgf8lPTP3BWGl5CDI1pC/z14YdPdQ5DLNGbyxSnAFXo+G1X3o/6cqyFe0nlOZ
- 6vuZFktycyWCCFp4fUDiPh/HVNOxMJAchZ3OH302AXEO3yUlN118mig
-X-Developer-Key: i=junhui.liu@pigmoral.tech; a=ed25519;
- pk=cgATWSU1KfGWmdwNmkPyHGnWgofhqqhE8Vts58wyxe4=
-X-ZohoMailClient: External
+X-HM-Tid: 0a9a0627a3a903abkunm5cd7977fb8e2b1
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGUpDS1YaGRpIHUpDTBlKGU1WFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSEpOTE
+	9VSktLVUpCS0tZBg++
+DKIM-Signature: a=rsa-sha256;
+	b=g6OhVZ/yiqpa03UuI1XX7K9vWZ8zWP3G2Gzz5rhk0AcJK/U+UJws7ashU78Y+//2Cp1XYy8iR5A+1sB1SdjmB78dMX58786reFgEn7dhTHoMucj84RbJ6zYHbg7CDu7vWXLe8oopZFd6uuDFaXjD2L3+MUHefnrApM/1yNbvoa0=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=qUewYvs5quWL8CZ5KUc8yRAa2rvIV3/2PN0yp7OZqoo=;
+	h=date:mime-version:subject:message-id:from;
 
-Enable Anlogic SoC config in defconfig to allow the default upstream
-kernel booting on Milianke MLKPAI-FS01 board.
+On 10/21/2025 4:48 PM, Heikki Krogerus wrote:
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-Signed-off-by: Junhui Liu <junhui.liu@pigmoral.tech>
----
- arch/riscv/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+> Hi,
+>
+> On Mon, Oct 20, 2025 at 07:07:46PM +0800, Chaoyi Chen wrote:
+>> Hi Heikki,
+>>
+>> On 10/20/2025 6:02 PM, Heikki Krogerus wrote:
+>>> On Thu, Oct 16, 2025 at 10:27:34AM +0800, Chaoyi Chen wrote:
+>>>> From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+>>>>
+>>>> Add default DRM AUX HPD bridge device when register DisplayPort
+>>>> altmode. That makes it redundant for each Type-C driver to implement
+>>>> a similar registration process in embedded scenarios.
+>>>>
+>>>> Signed-off-by: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+>>>> ---
+>>>>
+>>>> Changes in v6:
+>>>> - Fix depend in Kconfig.
+>>>>
+>>>> Changes in v5:
+>>>> - Remove the calls related to `drm_aux_hpd_bridge_notify()`.
+>>>> - Place the helper functions in the same compilation unit.
+>>>> - Add more comments about parent device.
+>>>>
+>>>>    drivers/usb/typec/Kconfig         |  2 ++
+>>>>    drivers/usb/typec/class.c         | 26 ++++++++++++++++++++++++++
+>>>>    include/linux/usb/typec_altmode.h |  2 ++
+>>>>    3 files changed, 30 insertions(+)
+>>>>
+>>>> diff --git a/drivers/usb/typec/Kconfig b/drivers/usb/typec/Kconfig
+>>>> index 2f80c2792dbd..a6730fbb576b 100644
+>>>> --- a/drivers/usb/typec/Kconfig
+>>>> +++ b/drivers/usb/typec/Kconfig
+>>>> @@ -2,6 +2,8 @@
+>>>>    menuconfig TYPEC
+>>>>    	tristate "USB Type-C Support"
+>>>> +	depends on DRM || DRM=n
+>>>> +	select DRM_AUX_HPD_BRIDGE if DRM_BRIDGE && OF
+>>> This is wrong. DRM should not dictate how this entire subsystem core
+>>> is configured. The dependency needs to be on the DRM bridge side.
+>>>
+>>> You can for example use the bus notification there to see when a new
+>>> alternate mode is being registered, or use some other notification
+>>> mechanism.
+>> Is it a good idea to implement notification functions like
+>> drivers/usb/core/notify.c in TCPM, and then let other subsystems (such as DRM)
+>> listen to these notifications?
+> Don't limit this to tcpm only. I would suggest something similar what
+> we have for usb bus: drivers/usb/core/notify.c
+>
+> So that, but for the typec bus. Then in DRM bridge code you just use
+> typec_register/unregister_notify().
 
-diff --git a/arch/riscv/configs/defconfig b/arch/riscv/configs/defconfig
-index fc2725cbca1879c181d179a3d59ac3a0ce206061..14b82f770efe1dc8abe1ef68b523023d89d1f4e5 100644
---- a/arch/riscv/configs/defconfig
-+++ b/arch/riscv/configs/defconfig
-@@ -23,6 +23,7 @@ CONFIG_CHECKPOINT_RESTORE=y
- CONFIG_BLK_DEV_INITRD=y
- CONFIG_PROFILING=y
- CONFIG_ARCH_ANDES=y
-+CONFIG_ARCH_ANLOGIC=y
- CONFIG_ARCH_MICROCHIP=y
- CONFIG_ARCH_SIFIVE=y
- CONFIG_ARCH_SOPHGO=y
+I will try to add drivers/usb/typec/notify.c in v7 to implement this. Thank you.
 
+
+>
+> thanks,
+>
 -- 
-2.51.1
+Best,
+Chaoyi
 
 
