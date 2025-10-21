@@ -1,59 +1,84 @@
-Return-Path: <devicetree+bounces-229247-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229248-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A73BEBF5463
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 10:35:07 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 94F05BF546C
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 10:35:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 035AC18C610B
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 08:35:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 52D8C18C5FAC
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 08:36:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36A23305071;
-	Tue, 21 Oct 2025 08:33:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A73D3126DF;
+	Tue, 21 Oct 2025 08:34:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="ZMisxgFw"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="aNCX0qbs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.17])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D897B29617D;
-	Tue, 21 Oct 2025 08:33:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9167230F53E;
+	Tue, 21 Oct 2025 08:33:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761035618; cv=none; b=o1rx4dhif5RJS5szvORLb7izd0DguRO3ZvWnRQn3eE2leK2ceg51XxsTnC9V+0jvemx3XM+HHuogU6I1tWYzj2ViSZ7HtV6267wMwEY1wcBdnEn6/WwNTs2zJ0iI54CCNpmN+PrU2IZ+2vYZIbd/ev6Pr+eUH61LE5ItAC5hm5k=
+	t=1761035639; cv=none; b=Hr/4sCTUPghxZvnHV4Uqjn24m8W3Z8WzLtZGS7yrrQ5pQ1taCzZuQIB6CXTXPIlIpO9frmn3PKf4QIYL+uDMrSDDCZvXCvh0JJH6iqkkZE4xtjtE9JAQIVEuZtPmm3/UdbGapzpTy9QcPfcZSWBlg1tb86LRUw/NAD3NaQBxS9k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761035618; c=relaxed/simple;
-	bh=7iU7CJTvsGK9QB7AoMy91TybH/xefVCLXzcsEBKxdlU=;
+	s=arc-20240116; t=1761035639; c=relaxed/simple;
+	bh=7AAkSbpCo8jTHoVHtc7747VTNL+ybmCSlgJI6u1AuBQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=A2yLFLaICyedk3S1bxy36AaG9ZEjjqdjqx3et3siUj1NiQqlRcw+juUtWvJEvA/UHGqfdBJfLBaaRvKw5Yd1/cBmeCkV59cpGv+b7fAfg2ufTbnJEU2wMJlaae17fe2CYmoMf52nqe0iFvPl25gwF5jciCQZMHupHLXRY2U2ARA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=ZMisxgFw; arc=none smtp.client-ip=1.95.21.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=Date:From:To:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=wVH8qj8Pg0otsfGSWfNaf2orFhrbu2S797ibxbYfU1o=;
-	b=ZMisxgFwfZYcUxQVgOeJ8r907ZvHQcT3D08YfXgNn0ihnWGJZcHh+PCWeTEuW/
-	LGIH2YC/aIhi/PZbv3FmY8n0az1rD0T71PjmNsvS0L1AAFtdcm2nZffuot/zOEP2
-	7evX+vB1UfaNzgSg+ZV6rCLhTEEg34mPwvoDIKXa2uLm4=
-Received: from dragon (unknown [])
-	by gzsmtp3 (Coremail) with SMTP id M88vCgD3d7A9Rfdo_wZeAA--.47555S3;
-	Tue, 21 Oct 2025 16:33:03 +0800 (CST)
-Date: Tue, 21 Oct 2025 16:33:01 +0800
-From: Shawn Guo <shawnguo2@yeah.net>
-To: Joy Zou <joy.zou@nxp.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Frank Li <Frank.Li@nxp.com>,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: imx95-15x15-evk: add fan-supply property for
- pwm-fan
-Message-ID: <aPdFPdXD6MhZRvQZ@dragon>
-References: <20250919-b4-imx95-fan-v1-1-c9127bd975e9@nxp.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=IzphZDSrbaqa75aANuza83C8D7+lqw8if4MEneQ8mIaS/+9X1JUE0dNu8O3FRHWQRH1ZEYB0rV9VlGJeC67YWiuE9mi6xbX7+7OKJAHgFYsty4oxo/MwMwe0NPXjxPmBCwiYGqdZEkGeaBFa0uz4jrq4lL+VLSKvpTDhfHpi3VM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=aNCX0qbs; arc=none smtp.client-ip=192.198.163.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1761035638; x=1792571638;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=7AAkSbpCo8jTHoVHtc7747VTNL+ybmCSlgJI6u1AuBQ=;
+  b=aNCX0qbs1lZFMiiDk0UutogmUkbKIqZug6/2ODluJiXGNNxzFwPZe7sf
+   LmXdIMt7hZb3SzUFzdNJ3cCVgQzUNxRKmOJqY8dBNBMgK4Whi4lnSvGwc
+   OonLoqMazQFDj9y4LRkwIpMMIvLa7KLjW+Hy8z7pSiDvWuHx31mmItVm8
+   QiFZF9geuFny4Yx/Uh+U5zMQVr+aSaJdlNyuMDRY1Y2xIailnJo7zL8xt
+   ynhpvi6V/bOZTxrCxpoyqxo+xvuzubF+vDlwSKoufMiV9LNbjPvzJJBdG
+   IS12JBV2hpCLR807QQlGaDftLLvhRiC6CtzeJsJcgbLp6rHGLu3uuK6nF
+   Q==;
+X-CSE-ConnectionGUID: M2ISxljRTqWyE6OGhfl+Ug==
+X-CSE-MsgGUID: bcZURwu9RcOTORoe1KVo6A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="50731106"
+X-IronPort-AV: E=Sophos;i="6.19,244,1754982000"; 
+   d="scan'208";a="50731106"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Oct 2025 01:33:57 -0700
+X-CSE-ConnectionGUID: ut0RFvqtQrKQBfNNscBISg==
+X-CSE-MsgGUID: BakoZdPnQzmbK4b1wYotHQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,244,1754982000"; 
+   d="scan'208";a="183242308"
+Received: from egrumbac-mobl6.ger.corp.intel.com (HELO kekkonen.fi.intel.com) ([10.245.245.134])
+  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Oct 2025 01:33:55 -0700
+Received: from kekkonen.localdomain (localhost [IPv6:::1])
+	by kekkonen.fi.intel.com (Postfix) with SMTP id 20BC71202B5;
+	Tue, 21 Oct 2025 11:33:52 +0300 (EEST)
+Date: Tue, 21 Oct 2025 11:33:52 +0300
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6 krs, Bertel Jungin Aukio 5, 02600 Espoo
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Hans Verkuil <hverkuil@kernel.org>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	David Heidelberg <david@ixit.cz>,
+	"open list:MEDIA INPUT INFRASTRUCTURE (V4L/DVB)" <linux-media@vger.kernel.org>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
+Subject: Re: [PATCH 1/1] dt-bindings: media: Convert ti,tvp5150.txt to yaml
+ format.
+Message-ID: <aPdFcGvX5p3RQPt2@kekkonen.localdomain>
+References: <20251014185515.2354668-1-Frank.Li@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,18 +87,46 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250919-b4-imx95-fan-v1-1-c9127bd975e9@nxp.com>
-X-CM-TRANSID:M88vCgD3d7A9Rfdo_wZeAA--.47555S3
-X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
-	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUxwvKUUUUU
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiNB943Wj3RT81VwAA3J
+In-Reply-To: <20251014185515.2354668-1-Frank.Li@nxp.com>
 
-On Fri, Sep 19, 2025 at 10:27:04AM +0800, Joy Zou wrote:
-> Add fan-supply regulator to pwm-fan node to specify power source.
-> 
-> Fixes: e3e8b199aff8 ("arm64: dts: imx95: Add imx95-15x15-evk support")
-> Signed-off-by: Joy Zou <joy.zou@nxp.com>
+Hi Frank,
 
-Applied, thanks!
+Thanks for the patch.
 
+On Tue, Oct 14, 2025 at 02:55:09PM -0400, Frank Li wrote:
+> +examples:
+> +  - |
+> +    #include <dt-bindings/display/sdtv-standards.h>
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        bridge@5c {
+> +            compatible = "ti,tvp5150";
+> +            reg = <0x5c>;
+> +            pdn-gpios = <&gpio4 30 GPIO_ACTIVE_LOW>;
+> +            reset-gpios = <&gpio6 7 GPIO_ACTIVE_LOW>;
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +
+> +            port@0 {
+> +                #address-cells = <1>;
+> +                #size-cells = <0>;
+> +                reg = <0>;
+> +
+> +                endpoint@0 {
+> +                    reg = <0>;
+> +                     remote-endpoint = <&composite0_to_tvp5150>;
+> +                };
+> +
+> +                endpoint@1 {
+> +                   reg = <1>;
+> +                   remote-endpoint = <&svideo_luma_to_tvp5150>;
+
+I aligned these while applying the patch.
+
+-- 
+Sakari Ailus
 
