@@ -1,76 +1,78 @@
-Return-Path: <devicetree+bounces-229421-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229423-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22E76BF74B0
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 17:23:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FC39BF74BF
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 17:23:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id DCE214E20E8
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 15:23:08 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 1C5594EAF8E
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 15:23:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61A3A342175;
-	Tue, 21 Oct 2025 15:23:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CCCB343D9D;
+	Tue, 21 Oct 2025 15:23:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eZ4FxT6w"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WvffEN+H"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
+Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E76C2236FA
-	for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 15:23:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02D3F340DB8
+	for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 15:23:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761060185; cv=none; b=tscBRQ7a05TYiSzBShUBayVm7f7B/0XwHWlU3bhI2AW2pEAB/8f0mLozbZmoGEKByD6KdJmjpirPfvE4dXt4C/rerjLK4biILQA8NpEbochkKwKTDYTxPWHTeCsyEe/XvDTArnbi2yxYvwYltWL8141c2+Jch9tfMOYGhgmUxxw=
+	t=1761060189; cv=none; b=qp/myLODip4j6DIFK9cEJarYKyw8g7b3d1WLl3eUFhFDCQfppxxs4sk1ybfnZ3k/cTxZcZ4qr3LpM3DOx9jQ2i37Y87I2s4JFFNliRZz9dlsoRAI3teWJqixsG+BGDcMNv2cMj/WLmPfmKRaU26wgNzHtr6aW+U+MN/do85IRvI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761060185; c=relaxed/simple;
-	bh=GQ3ckhum8IdvzzEfZpff72BYrgiczqI0CxjLSfyEQoA=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=APegdcqpXo4/G6iXfHFg6R79ewnXc9KtOJeFSgJ2Ia5R0eMfL817OHchC+eEqONkJkaSpVxcui5Ywi63O8cPM0v/tBpI270xMUjsuUlZGdVQM6TmGxHEI+szgYRPnqtAZHceuZyXFIYbAyxYFBPqfKkUA+/68qf0SsVksl9EGU8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eZ4FxT6w; arc=none smtp.client-ip=209.85.218.53
+	s=arc-20240116; t=1761060189; c=relaxed/simple;
+	bh=PQHRQLkaOpocDVovjq9TPa+wLtVR6j8ujZmxOlMN0iQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=gOQkiQ40V4OWorxawHm9QzV3iChn6a7/342oIzk2pVyETzxfW+FP1Y7DRzXuagKErxeeT+0FJ3o8IZMqfXxEqejp3q4GSZVxpOppJeBYFUrC8enO0O+i9rXb7DYFMNI5SYFDBkDV9zUi/q0Otkv4fP/0eiti2i/+LpzP+VG9+6g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WvffEN+H; arc=none smtp.client-ip=209.85.218.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-b48d8deaef9so1122290766b.2
-        for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 08:23:03 -0700 (PDT)
+Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-b5e19810703so940946866b.2
+        for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 08:23:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1761060182; x=1761664982; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=TMVheGalK8FFbFn0JWrh/VoA/5vQNhUL74QB4lSqKMU=;
-        b=eZ4FxT6w997rHUrczmVrUqNk53JNKCSsVVt6mIb38l8yw+Gu78DVMlREwo73z5czyZ
-         DFltY+qFFM0lAFyqbl+aBx0zN2bTUOuyzlXu2zVji+dTZXDggxv+L9234z/IgMT6wLYq
-         MjCmgsR0FvTFR1QqKNXQX9oKjoOkpwNhRbXfid6qJ7LrD+RW5sZ2+NlEYtP8ojA4ENRp
-         6Mvj+VB4W5zbYsxiRNv7rFw0e+4AhjG6bHDQVZdogo3oPtqLF9MH/SdZGEQqRZy0AOnG
-         OfnLoK3zfKu8ZQI3XRIHeuyOK6tQL/YjQ4mjPUwcGGBLS666GRCsPOByWQESkStzOVqX
-         oo1g==
+        d=gmail.com; s=20230601; t=1761060185; x=1761664985; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=iRUWZKJz8QXcL7JDWXMsqyjuK/+v8dxv2RUaG2Er49I=;
+        b=WvffEN+HXsNxwsmIX6BjV53e9GzOA0KzMuEg3fUpOA4nYpqfEsFLMNOVDGYY+uXyOF
+         /3i4GlCuF7JYNaTZeQJQsrYplQUaLknxEAlNACAxWfldiJVOgtGVeXRIvxHJu0i8wvRK
+         SfCQCQcYxSF+1fuxT22NnhYsE+DEmh7ROF3P2lbQyBmWJ/YFwVcyEamf2SINh1mh7C8m
+         qfO1Z05YHn80ItWJ8MsIQQrPdwYNDOw2ZZr+tm3pWbalb5u+aT29/DcODcnhxI/7tNnE
+         b+/bW+Az6NZ+ioSSB2t1HVxKinIMcMePd/bDrvNRNn2AY1B9Y9YyN6F2xoCcHZ7tFg8R
+         duOQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761060182; x=1761664982;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=TMVheGalK8FFbFn0JWrh/VoA/5vQNhUL74QB4lSqKMU=;
-        b=qdKmoCDqgfoyQijR47jZE8hQl3frRzfLSWvCI5Yo/5xIuDhWIpuZuekhiZjRXj0wnJ
-         0N7nKwStMN/Dsu/lvC7xDFBnWPuYRobvkz4V4olHdckyYtQIT+hoNxm1Hur/HpZ55ATF
-         na72yY3hBbrF9Tm/g8/USAnpyA3yNODX8HQExJ7uchj6n2KMt13RYVdpPw9WRNTj42Sp
-         ggMEXhBvH8zr90E944xW7XbGKNl0wrSMvVlUgPHSbrU2oC8WVFuby6VDRpNtskqXEuYs
-         7SzJyiPGh+yr+ws5XhOH+l7rk0LR5DvFtDLpW8obgjt2tqiExmeQVPNetRoFQxKhUwWA
-         MPTQ==
-X-Gm-Message-State: AOJu0Yy0S1kw+9cgw0JejOYVhHbo/Kr3C/CnWG3HSyQVCOwPVrxURS/o
-	SILwL/oi2TdITrFWkt2Zz5fP5vCwy8/Bj9XE4RI6/SpS84Uz99yR1DgmhcDPh42/
-X-Gm-Gg: ASbGncvO8KJymQRuae/6Levq+1VWQjMeY1MeRmty6hbQhv5MiBLFJsqVeDuKrKiMfCV
-	9o34zlaVlH6glv/W6f9kFMfASt6npwzLj9D0cFkH6t+iOY68GIbEqKS6PQUgdJyzzq6khUZYgdy
-	XrdFXFxsWERDu7UFgm/JBOmO0iRbirkkmwwwZbLhc2e/t8SPXP65y6egKCuOmZ7GWsQmNBtKv+O
-	yW2ywCIwtNKgmdWz5hF4kT1RGNQIXirZ3jV3baQ6lXobFtDlR5i+quGTND7OlZzEhXuI61U0uLu
-	Tq6uJT/PbEOAd/KeUFJjWIfqldXASY+LaIF75Xq32+MTAQ7NEBVh/TPxw/DZwbRXcj3g0JFGSWw
-	1LS41Dl2E9/eaPgOdO3M7dQi55BkFbVPs23s3Mnj5VbZVJ7oWOoKRws/heUhmBYiQJ+22onvCE8
-	28wQiQydL3Kv1vrWjSF+oIYG6cGgULR0vydAxj+g==
-X-Google-Smtp-Source: AGHT+IFjAc5AXcoHcQ988nnPs6wGFM+kl8yEEIE8fwdc9oeO900YlPPXdG3f/j1Bm9ul8xq81jy+LQ==
-X-Received: by 2002:a17:906:fd87:b0:b07:c5b1:b129 with SMTP id a640c23a62f3a-b647195b8c3mr2176066166b.1.1761060181709;
-        Tue, 21 Oct 2025 08:23:01 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1761060185; x=1761664985;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=iRUWZKJz8QXcL7JDWXMsqyjuK/+v8dxv2RUaG2Er49I=;
+        b=vD7TWL4tC9fPSqOFsH2JcD2FwA1B5xouyLp+Q9E55AoGEsc0948oOVI+4oO/PnS8S1
+         z4UOv+jpiJtSXNhS1qHpfe9S3/uSO8f52m89o3m7fsdxRqw5jciSr8uggah6iHY47pOd
+         PgQRAggwLsM56S8i1VL4/2KEtg4/ZnKd7MztuEofHi10cF4OdHL2T4rQN2wfN8rThhXO
+         q6jhkQvmIVZGIDor3uR5FkJLuKpwrBjgvV60jeNwlMkyCcfknkaAQr8C49Vgw7qpyz0p
+         oHLo78Wl59L9CmHE2+sWCqaaEtr0aeNJAUpwS8OzRJdF4Co/tnVp/Dzc8n5Yb/DxPoHh
+         +SPw==
+X-Gm-Message-State: AOJu0Yz8EcwdezjmNnFZPKfB0Uap5TIsqM0mMVXQm5iLRRlLw+zAHNuc
+	DVrKQcHcamE5NWyQnpAP1ucFNnWbzu7LlQ44v399fqxuOsoxmwWtqak1
+X-Gm-Gg: ASbGncuHD1nMfcoXEN6j5Hd44hu8UPgjKzBwfMxMY6HbUbzBtKaILhlrwJvPCrD45py
+	3xAlp8s+8If5ahfW768lLKRZmGs8hkiPdOyX17NiWO9yeVPCkBFeKkg/+FsbxdMBBNVbN5f4ZKi
+	bEIDO3kZLlWqyTab1fKLjY9p9SigGAiDkC00ZWCBOkzvoZSz+GliOGeF5Df0YMvkPh06g4VlflD
+	zlvo6XjD23QtIgsGfD/bERiwm8KrMqyznBuNQPNfno6iJ4nexqGB6EIY7hXT7XAQ//4gTTvpvxn
+	f74+Whywr575US+XQ+JKSjFMm23W4Bo8xWJ51yrV9aRsOaXjK9ckjn98hlss4b3fHyZ6UXg1jLK
+	ee9VOCWl7w4D+iD19wUckFX76XVjverqR5lPdg/FMw1sco+cR9GUBqtcRYbhm8xa/nRhU3dTtsP
+	cz2jzK+ibCs/w8dnttDJKZWLvKwxY=
+X-Google-Smtp-Source: AGHT+IE+grqHyHjvdfn/+GTlut2T9pN+smpWyR3Zmo3k/imM3uqNFy7DYPHxH9YOxjwJjGQsNYol+A==
+X-Received: by 2002:a17:907:1b15:b0:b48:4966:91a5 with SMTP id a640c23a62f3a-b6474439497mr2369303966b.30.1761060185029;
+        Tue, 21 Oct 2025 08:23:05 -0700 (PDT)
 Received: from tearch (pc142.ds2-s.us.edu.pl. [155.158.56.142])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b65e8581780sm1082737866b.31.2025.10.21.08.23.00
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b65e8581780sm1082737866b.31.2025.10.21.08.23.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Oct 2025 08:23:01 -0700 (PDT)
+        Tue, 21 Oct 2025 08:23:04 -0700 (PDT)
 From: muhammed.efecetin.67@gmail.com
 X-Google-Original-From: muhammed.efecetin67@gmail.com
 To: linux-rockchip@lists.infradead.org
@@ -85,10 +87,12 @@ Cc: devicetree@vger.kernel.org,
 	rafael@kernel.org,
 	efectn@protonmail.com,
 	daniel.lezcano@linaro.org
-Subject: [PATCH v3 0/5] Add Khadas MCU and fan control support for Khadas Edge 2
-Date: Tue, 21 Oct 2025 17:22:40 +0200
-Message-ID: <cover.1761059314.git.efectn@protonmail.com>
+Subject: [PATCH v3 1/5] dt-bindings: mfd: khadas-mcu: add new compatible for Khadas Edge 2
+Date: Tue, 21 Oct 2025 17:22:41 +0200
+Message-ID: <0e604eca9ad9ce71f74b6f3aae60bbb949697590.1761059314.git.efectn@protonmail.com>
 X-Mailer: git-send-email 2.51.1.dirty
+In-Reply-To: <cover.1761059314.git.efectn@protonmail.com>
+References: <cover.1761059314.git.efectn@protonmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -99,37 +103,35 @@ Content-Transfer-Encoding: 8bit
 
 From: Muhammed Efe Cetin <efectn@protonmail.com>
 
-This patch series adds support for the Khadas MCU and fan control for Khadas Edge 2 board.
+Add new khadas,mcu-edge2 compatible which is going to be used with Khadas
+Edge 2.
 
-The first patch updates the device tree bindings to add new "khadas,mcu-edge2" compatible for Khadas Edge 2.
-The second mfd patch removes unused nvmem code.
-The third patch adds the Khadas Edge 2 registers to the mfd driver.
-The fourth patch adds support for Khadas Edge 2's new fan control registers to MCU thermal driver and the last one adds the Khadas Edge 2 device tree node for the MCU and fan control.
-And the final patch adds the Khadas Edge 2 device tree node for the MCU and fan control.
+Signed-off-by: Muhammed Efe Cetin <efectn@protonmail.com>
+---
+ Documentation/devicetree/bindings/mfd/khadas,mcu.yaml | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
-Changes in v3:
-- Renamed the compatible "khadas,mcu-v2" to "khadas,mcu-edge2" for Khadas Edge 2.
-- Renamed KHADAS_MCU_V2 registers prefix to KHADAS_MCU_EDGE2.
-- Used of_device_get_match_data instead of of_device_is_compatible to identify the MCU variant.
-
-Changes in v2:
-- Added a new compatible "khadas,mcu-v2" for Khadas Edge 2 instead of cooling-levels property in old variant.
-- Added Khadas Edge 2 registers with KHADAS_MCU_EDGE2 prefix.
-
-Muhammed Efe Cetin (5):
-  dt-bindings: mfd: khadas-mcu: add new compatible for Khadas Edge 2
-  mfd: khadas-mcu: drop unused nvmem code
-  mfd: add Khadas Edge 2 registers to khadas-mcu.
-  thermal: khadas_mcu_fan: add support for Khadas Edge 2
-  arm64: dts: rockchip: add Khadas MCU and fan control nodes
-
- .../devicetree/bindings/mfd/khadas,mcu.yaml   |  5 +-
- .../dts/rockchip/rk3588s-khadas-edge2.dts     | 58 +++++++++++++++++++
- drivers/mfd/khadas-mcu.c                      | 58 ++++++++++++++-----
- drivers/thermal/khadas_mcu_fan.c              | 20 +++++--
- include/linux/mfd/khadas-mcu.h                | 32 ++++++++++
- 5 files changed, 153 insertions(+), 20 deletions(-)
-
+diff --git a/Documentation/devicetree/bindings/mfd/khadas,mcu.yaml b/Documentation/devicetree/bindings/mfd/khadas,mcu.yaml
+index 084960fd5a1fd..c0f91eedfa8ab 100644
+--- a/Documentation/devicetree/bindings/mfd/khadas,mcu.yaml
++++ b/Documentation/devicetree/bindings/mfd/khadas,mcu.yaml
+@@ -11,13 +11,14 @@ maintainers:
+ 
+ description: |
+   Khadas embeds a microcontroller on their VIM and Edge boards adding some
+-  system feature as PWM Fan control (for VIM2 rev14 or VIM3), User memory
++  system feature as PWM Fan control (for VIM2 rev14, VIM3, Edge2), User memory
+   storage, IR/Key resume control, system power LED control and more.
+ 
+ properties:
+   compatible:
+     enum:
+-      - khadas,mcu # MCU revision is discoverable
++      - khadas,mcu    # Used by VIM2 rev14, VIM3
++      - khadas,mcu-edge2 # Used by Edge2
+ 
+   "#cooling-cells": # Only needed for boards having FAN control feature
+     const: 2
 -- 
 2.51.1.dirty
 
