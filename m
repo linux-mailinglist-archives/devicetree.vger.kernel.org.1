@@ -1,264 +1,104 @@
-Return-Path: <devicetree+bounces-229310-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229311-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA124BF5DBC
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 12:44:29 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 02D26BF5DD1
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 12:46:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 602961886E26
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 10:44:53 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id A5F5A4E3A1B
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 10:46:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 991462F1FCC;
-	Tue, 21 Oct 2025 10:44:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A85B261B9A;
+	Tue, 21 Oct 2025 10:46:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="G0Dqe4uw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n4SqDOKV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC5B82ED167
-	for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 10:44:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3A1FAD24;
+	Tue, 21 Oct 2025 10:46:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761043465; cv=none; b=FDLHv0MoIXRorGUR5x71k8Z6JnuZ8T0UIvapDgpLCqlhXluxSmiCEQSePaV/NQm77vlN5BweEnch7eiVncm4yUDMdH0DKk7O+ElFh+kQif98GX25Rmc7dxlrrljOeYnM6zfhsvfAJXeq6WT+6nC3gnL+eOOeDPat95xF/Mlb3Ws=
+	t=1761043583; cv=none; b=oS+DElkLuq683FgD7ogMdmd+rPTxm+vjF7uH4vS12ZbmRPitMPvrHJHeL86C/l4ceDuUg+zW+lp+B3qLeBcubLIEjqD8d4z/FgxBq6g99eutR4gMBM5iYe6JoN9ePCgGVxOQEgpLQO7tExw5kHhPaPODgLpzoMkIDEWXK5LeUWU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761043465; c=relaxed/simple;
-	bh=e3IMvVedBqfEjFLCSEowShucMDlxYs8t/v7ILi0x3V8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=WT7/jR/ZhnTc9WyLV3XEWoyD7+MiYjzXInnpUpReWDq3iK/UgGMn1X8kkzhTymDqCv35lzfUM258aEOtgBu5RZeoapDAMnCkys7x0wwOdBQtucYM5yxFqA96vwrHzSH0OVPWE6DoDjnuqr9BT/qvMRg0bOrWZQywYCJrzQ/kvAY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=G0Dqe4uw; arc=none smtp.client-ip=209.85.128.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-47116aaf345so6235455e9.1
-        for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 03:44:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1761043462; x=1761648262; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=0f/FYjEk/V+C1sQ52NQZj2N9GUstTQXv62cwWX4veF4=;
-        b=G0Dqe4uw1sc+7zZvCcTkdK5kHEs1FDbkYZz/7WdMSEuxYFhlkMKn/NmoRqFseikDjq
-         MAx1SLHHevRY3v8ryKZAWWvCiZFeLtoDOHkKzBZgXaBm/4BZiiFYY2xdj6G3fhIK+xhk
-         lIUp2uECBHKVgN7jZhL9CHXCrc0iRFwAGIkA/yDrm/Ir7M8Qe/ee7We02Fc4WEH56Mte
-         eeToGT9zBAgCRMn2oa6ESNSyfbOp/E6ujjaBQzOVjdMt2OpQbU19KdQP8yi1wB+7OiAE
-         QoAMd72nNzYYMY6ZWwbjVZfYu/ZLulFqA2KhdKohOeLm00QBTg3y/SCOBC9574deLklO
-         YIoA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761043462; x=1761648262;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0f/FYjEk/V+C1sQ52NQZj2N9GUstTQXv62cwWX4veF4=;
-        b=KptWyA09nX3UXI4/w73sK5m9GzmXt7CWEm1lMF5HHm9Swpzsw/pr976KK4c5VO+An/
-         IN3ou+7PXUK4CTjV6ETKVU6amFf/SJWFuEhVB5wtiujcuQl3R/JId1q5t7mDn3E6KCY3
-         eUCbwqvV8n4ISYIPDYLsaJHl5K9L/b9RJja2q7I7Wl+jKf5FC5bvkDaD1iSQXyHZLdmf
-         MrLXUfo4xt9GYL68GFdvH6GSDqYxg70hr8XVdgqgcQALdoDzRsO50N0zro98+qM+jk2G
-         HuVSk0Pv1mgmSbuoxRqVgnty4qduujlUuxdP3+rqYTprHWoTAloqRur2m80XMnntr0pA
-         DMOQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWL+MaTusLQyFD8rS4KyeW2AHJdr0gyXq7HgQSKl/yN8G//DkHIz80yy6Je2BuIN0lmB+NSzxbMV+am@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxkh25b8GbPeP2WqFbwW3L7BsEsQ+1PYd+fgXeT6nuDOB3wtpIZ
-	bAlR257/qHZRlqprAJnAU9+ThA1OFGTJCXtGePTshGGub7WAtobkyaHJwn0YCzJcYiE=
-X-Gm-Gg: ASbGncvWDxiUMn0Akib+8vPRIS6M91MhCKlU/QQQo6ARbjTHyZ63XUF0Zi5dCJ54Zgd
-	pbcp87fUw7HX8c+VYsfzSJ4TKAmPebB65IbhzD8K7PR4JLGac+DeQpAIps2M7NuDkQ2Y/pKDRP1
-	97KZSpEpfe47D/xSlDeuNaWYCOL+YqV+M5wiZ2ZZWN0rTqfJGUAyyw0vUVoxc8A0l5mpKrZSAsr
-	IMi6THxKelqYm2JV8uTEN2I9Sv/2k+Ikf43TvtgnKhyF4i90zvhwbCPj8kp7D6V4UD0F9Hc9hZ+
-	hJOq1diX36DifPzghofpeORh3jCdw+9bCitikCqDbb0MRypwFUs3PezedL4rHVoyk2vo+LMqdLR
-	xkHvZHBgCXulomXFA88ohfwuVBvCwIkTdAZz+DrVONb1EIx30+J46fh1n1Wm9+tlP2kqEFk4TnR
-	0VDRN2YTwdBynnW9AFXpftj8PJKu1ahzdKzRaJQq1J1Q==
-X-Google-Smtp-Source: AGHT+IF3NSziRPrbhxXTm98kuwwXO/z1y6F/Hzp2XZIk65XU/KBHeRfxgcDMUYvJ1ZAMA1FDO2S4JQ==
-X-Received: by 2002:a05:6000:4009:b0:3e6:270e:3f64 with SMTP id ffacd0b85a97d-42704dc3594mr6050259f8f.8.1761043462033;
-        Tue, 21 Oct 2025 03:44:22 -0700 (PDT)
-Received: from [192.168.1.29] ([178.197.219.123])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-427f00b9fa8sm20075497f8f.38.2025.10.21.03.44.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 21 Oct 2025 03:44:21 -0700 (PDT)
-Message-ID: <c7630eb1-2686-491e-81ed-fb43fff2dd31@linaro.org>
-Date: Tue, 21 Oct 2025 12:44:20 +0200
+	s=arc-20240116; t=1761043583; c=relaxed/simple;
+	bh=EL/deV2+NAe7Ey9GQFKqJtn+XrkhgmRGr22p3S0Ukmo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=IjQayGFUu70Rd7nsE4X9YWyq/SClTEopJh335DHZDJnT3GcvN/3KdocdBD+5+e4PEQDJ/uId0cJGOSzCMz4jzObPFhKLNVdhaGmd9fEb92mXJ6Y7UiWVdBCjKDk6HlGT1gabWS9xSiv0NKkvw4JyiMWRsOjDcBlgWx+Dzzv0Wj4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n4SqDOKV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D135AC4CEF1;
+	Tue, 21 Oct 2025 10:46:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761043582;
+	bh=EL/deV2+NAe7Ey9GQFKqJtn+XrkhgmRGr22p3S0Ukmo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=n4SqDOKVh+gJNEHY6HdSDpJmWHOIESAZr124vQ1HNd9RrID/5qAeW5AFTR9YzyUZ8
+	 6JnV49iP8P0Si37Q26PuJ9CHjoZnSIBfR/Ew4+8FQa2/awpAPlPUaYrwgPSxVMvbnz
+	 e9IXfTOLz4mlD+PHdm1ORdulFBGR6yk2B6PwXSktNEQopM2H6/AI2ocSx0EPEp9yD4
+	 ycvZoUpgIH+h0hPNue38tY+at0Mc3tI//M+QlKL6aiNUU112LGWYYBdvH3J7KBX0p7
+	 liGreE+LhOiiL4lNhfRJWnSBPK9kxFCORd40b+1ZviJnaAJz2211jdLmKN20H4sQWu
+	 4vyqrMeqtbdgQ==
+Date: Tue, 21 Oct 2025 11:46:15 +0100
+From: Lee Jones <lee@kernel.org>
+To: Andreas Kemnade <andreas@kemnade.info>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Alistair Francis <alistair@alistair23.me>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Frank Li <Frank.li@nxp.com>,
+	Andreas Kemnade <akemnade@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: (subset) [PATCH v3 1/3] dt-bindings: mfd: sy7636a: Add missing
+ gpio pins and supply
+Message-ID: <20251021104615.GC475031@google.com>
+References: <20250917-sy7636-rsrc-v3-1-331237d507a2@kernel.org>
+ <175993751776.2584245.7441294249150226238.b4-ty@kernel.org>
+ <20251020151511.1fd8611b@kemnade.info>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/4] dt-bindings: mfd: Add sony,cronos-smc
-To: Timothy Pearson <tpearson@raptorengineering.com>,
- devicetree <devicetree@vger.kernel.org>,
- linux-kernel <linux-kernel@vger.kernel.org>, Rob Herring
- <robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Lee Jones <lee@kernel.org>, Georgy Yakovlev <Georgy.Yakovlev@sony.com>
-References: <1787448596.1802034.1760983830792.JavaMail.zimbra@raptorengineeringinc.com>
- <1587929609.1802041.1760983921227.JavaMail.zimbra@raptorengineeringinc.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Language: en-US
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- 2+47PN9NZAOyb771QoVr8A==
-In-Reply-To: <1587929609.1802041.1760983921227.JavaMail.zimbra@raptorengineeringinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20251020151511.1fd8611b@kemnade.info>
 
-On 20/10/2025 20:12, Timothy Pearson wrote:
-> +
-> +properties:
-> +  compatible:
-> +    const: sony,cronos-smc
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  timeout-sec: true
+On Mon, 20 Oct 2025, Andreas Kemnade wrote:
 
-Drop, not needed.
+> On Wed, 08 Oct 2025 16:31:57 +0100
+> Lee Jones <lee@kernel.org> wrote:
+> 
+> > On Wed, 17 Sep 2025 09:14:29 +0200, Andreas Kemnade wrote:
+> > > To be able to fully describe how the SY7636A is connected to the system,
+> > > add properties for the EN and VCOM_EN pins. To squeeze out every bit
+> > > of unused current, in many devices it is possible to power off the
+> > > complete chip. Add an input regulator to allow that.
+> > > 
+> > >   
+> > 
+> > Applied, thanks!
+> > 
+> > [1/3] dt-bindings: mfd: sy7636a: Add missing gpio pins and supply
+> >       commit: 7d983e997cb53d4c48b61b105163c31c92a35823
+> > 
+> hmm, what is the fate of this? I remember having seen this in your
+> for-mfd-next-next branch. But now I cannot find it neither in
+> your mfd-next nor your mfd-next-next nor general linux-next.
 
-> +
-> +  leds:
-> +    type: object
-> +    additionalProperties: false
-> +    description: |
-> +      The Cronos LED controller is a subfunction of the Cronos platform
-> +      controller, which is a multi-function device.
-> +
-> +      Each led is represented as a child node of sony,cronos-led. Fifteen RGB
-> +      LEDs are supported by the platform.
+It's still applied, only with a different subject line:
 
-Fifteen?
+https://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git/commit/?h=for-mfd-next&id=cb62b0ea2c88c8a3d38b7b4991adbc0aacdb1418
 
-> +
-> +    properties:
-> +      compatible:
-> +        const: sony,cronos-led
-> +
-> +      reg:
-> +        maxItems: 1
-> +
-> +      "#address-cells":
-> +        const: 1
-> +
-> +      "#size-cells":
-> +        const: 0
-> +
-> +    patternProperties:
-> +      "^multi-led@[0-15]$":
-
-Unit addresses are hex.
-
-> +        type: object
-> +        $ref: leds-class-multicolor.yaml#
-> +        unevaluatedProperties: false
-> +
-> +        properties:
-> +          reg:
-> +            description:
-> +              LED channel number (0..15)
-
-but here is sixteen...
-
-> +            minimum: 0
-> +            maximum: 15
-> +
-> +        required:
-> +          - reg
-> +
-> +    required:
-> +      - compatible
-> +      - "#address-cells"
-> +      - "#size-cells"
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +allOf:
-> +  - $ref: /schemas/watchdog/watchdog.yaml
-
-Come with sensible, generic node name and update the schema like I did.
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +
-> +    #include <dt-bindings/leds/common.h>
-> +
-> +    i2c {
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +
-> +      smc@3f {
-> +        compatible = "sony,cronos-smc";
-> +        reg = <0x3f>;
-> +
-> +        timeout-sec = <20>;
-> +
-> +        leds {
-> +            compatible = "sony,cronos-led";
-
-Keep consistent indentation. Use 4 spaces for example indentation.
-
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +
-> +            multi-led@0 {
-> +                /*
-> +                 * No subnodes are needed, this controller only supports RGB
-> +                 * LEDs.
-> +                 */
-> +                reg = <0>;
-> +                color = <LED_COLOR_ID_MULTI>;
-> +                function = LED_FUNCTION_STATUS;
-> +            };
-> +        };
-> +      };
-> +    };
-
-
-Best regards,
-Krzysztof
+-- 
+Lee Jones [李琼斯]
 
