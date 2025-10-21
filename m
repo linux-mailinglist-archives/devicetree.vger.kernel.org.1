@@ -1,149 +1,119 @@
-Return-Path: <devicetree+bounces-229206-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229207-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2241BF4F44
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 09:27:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 832A5BF4F5F
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 09:29:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 41D76425C94
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 07:27:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3F5663B0EB4
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 07:29:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A04D4279918;
-	Tue, 21 Oct 2025 07:26:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4F9227B342;
+	Tue, 21 Oct 2025 07:29:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="MTrjUrKG"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="jZoyUurd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F23B327B331
-	for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 07:26:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3FCE279DB7;
+	Tue, 21 Oct 2025 07:29:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761031616; cv=none; b=Sc2Q/YvGL0ja7EWsSyv78B3b99D7kbcRdHKaHHj7pkP8Uvn0nwzrUMRg41NmZyZdaI0WlPfrULuHPA2MOq0YyXhhOf7Mhq5My8L6hM4RNNsq24K9p9N9VcQ13v+qJU3YioTccuSr1Py4uY1/XU//esmu/DHmxmqb6452RJk9oEk=
+	t=1761031750; cv=none; b=NxieQ1BLa+WIVpeRbw9VZCDb5O8leev9pmEOsSlJPn1LT+gGP5KQ8TSYMyTONxUn0cZPxqhmPrffmQQaouUNp+VUJrXehsIHh8ViO4d/ga8QUgNN01p787lnpBh6QHpewhrfGW35sukD7rP0j1dVY2qgJVu/vsHzCPm3YpCZ1KM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761031616; c=relaxed/simple;
-	bh=8fNE3NX1DUD2apr4HvgC0SPEdbANrnlUs0eoTh5oeGk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=SxwLSsd0nbNS0d1FmaDlvaXCsg5xRpUMZzDFmRnVFQDIlZ1QWq+BmM/Xudn0OCBrZk2AtQkJsjg+loYw7ec0dQp83QPTCZkSpEwDXKw+L+gvhU1K3MzTLbyvReNFX8WN7qu8sa926QjB0JeKwCplDbmyFgC3OMToUELxnFc+sLQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=MTrjUrKG; arc=none smtp.client-ip=170.10.129.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1761031614;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=EJDvXzMxMi1pDcKxo2a9jJgMq2W5icRpzq+zghF2eEk=;
-	b=MTrjUrKGivUZmx1L9y7bte6AamEnSpi/tBXUBwKttrZA8LSVMApHEjGN3eg6FfJuJmFQkx
-	BfiQogJHY3f5k/3fDE6iIzLmT8FKgLNIAq+V4+g3tbA8J7Rlk4np3cgz7R0QhEVdfH+FG+
-	/wG2JIY6bjDBRd31DX89NjoyYnOZtV8=
-Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com
- [209.85.128.72]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-31-bsReO0EdPPyeRLqf33LCjA-1; Tue, 21 Oct 2025 03:26:52 -0400
-X-MC-Unique: bsReO0EdPPyeRLqf33LCjA-1
-X-Mimecast-MFC-AGG-ID: bsReO0EdPPyeRLqf33LCjA_1761031611
-Received: by mail-wm1-f72.google.com with SMTP id 5b1f17b1804b1-47113dfdd20so16385495e9.1
-        for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 00:26:51 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761031611; x=1761636411;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=EJDvXzMxMi1pDcKxo2a9jJgMq2W5icRpzq+zghF2eEk=;
-        b=bKKZdtEOvdv2eyh7g+hAaAzrPuIJyvplJV55QuRcXVGK4YPbxMqc87mYdp7zGlODgL
-         24ue+NEwud3cLStVIf/Khw0bAwjVqVTI1VixOsGDrqw0HeHr/b8TAdv6qPhlSl7nuWI7
-         PIWReBU5UQ0eOqrk+6WL5/RAHIFrr7CzK5KpBvR2BnouT71/89MC98oSLDz/+Ei5KoW3
-         6Ipa7MfWEtPah3KLOPyRTvTSZ86/YpyLQRNFwWrmyeswUhSZQ5ZdS3RD4gGK+hNuviDh
-         mMOyQ1sgfiE9/cCE0WgZZN4ix821Ymy3XoNo2rcUbnbJZ9h51UdKEodgoYxoHtnwEfq/
-         8f8g==
-X-Forwarded-Encrypted: i=1; AJvYcCVPfbr89PWHwvr2lAMv7J7f9YhVg9s30swy8s1UWWQtihWsscfO30QXXAG/quPXRaSqSCAx1wXUR9In@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyzb0V/Ng5/x/O0uxmLDczJBN0QuWq7OLMwz7knJiZ2MAnEjHYi
-	ZP4jxUxscjE2CBgAeLUApNMtsCCTVuMVZkunIncDZrH57o0vGX2HcCucdDjlDKnwVRhZX/vrl88
-	KnOBdTQ0HsHOR61S4zhYhikAypF/7/mx1+H0S533M6funkj5vqg5QPYtmzoRexCM=
-X-Gm-Gg: ASbGnctDY/cAng5ZJiuS4WFj2nDTodQ7+1k9uGDajBcw4MiWW7ap2abjM3JgWxwtDqC
-	dejprGdHESqIU7dI/Vq13Jj0xU6hqSVoN99iPaN1fYMC0hVGJLWfS8DUfn2zjG/WdHUwF27T0u0
-	IrC50SKD1om18xbLF8MpkCsTjoRXaOtDvBXz4dEAgS+K8ysIJvWjU7MuzSK0VgLV8YznQ/Dzgfv
-	fb+Z4bAw9FpbfaBHx/orOWODeTlQyICHqw/Z9PWNUDpSqQnDz8ZeUYFQXwgiS1JOqrVuenQRIGJ
-	dgiZ10Igv5itmKeSA8sfYggQ4jNr9J3QRts/1G8iTrnv3mhOgb1bCeGy0+0Howa0PL00GMDZt7Q
-	fFboRNj4gpAROjIO+VAE+O5qbBUqBvMj2RZBYub2rHenEBqg=
-X-Received: by 2002:a05:600c:540c:b0:471:12be:743 with SMTP id 5b1f17b1804b1-471178a3f93mr118161575e9.15.1761031610911;
-        Tue, 21 Oct 2025 00:26:50 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFkWSWmUORa+H15T+v49lrEDk0detT0U6yn7DgHaIoUivTMeJ3869JPfks9PXOdp64Mjfcqeg==
-X-Received: by 2002:a05:600c:540c:b0:471:12be:743 with SMTP id 5b1f17b1804b1-471178a3f93mr118161325e9.15.1761031610532;
-        Tue, 21 Oct 2025 00:26:50 -0700 (PDT)
-Received: from ?IPV6:2a0d:3344:2712:7e10:4d59:d956:544f:d65c? ([2a0d:3344:2712:7e10:4d59:d956:544f:d65c])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4715257d916sm176481805e9.4.2025.10.21.00.26.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 21 Oct 2025 00:26:49 -0700 (PDT)
-Message-ID: <11ffb7d0-4e52-496e-84c7-0d93bf03e4cf@redhat.com>
-Date: Tue, 21 Oct 2025 09:26:48 +0200
+	s=arc-20240116; t=1761031750; c=relaxed/simple;
+	bh=e6fMCWbmpUtZcRxSl3ZBtobW+DNa+kzWyu7xbqW/VkA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=j/V/oYknOBqvkG3yZxv4ky+BWCiznghjeCpmP1ccYuqHBoMTYoB8jZeQKn2NP1Pl63sNQZRczrcLIlRmEB7rGfij9e8hFR9d3bD6ZMdr0CvAtueK7SsYlbX5ZgDuw0Nd5O7FOzH0aakCOPn1JM6S5SOR46dOsJWYpcvjXdA1YlA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=jZoyUurd; arc=none smtp.client-ip=192.198.163.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1761031749; x=1792567749;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=e6fMCWbmpUtZcRxSl3ZBtobW+DNa+kzWyu7xbqW/VkA=;
+  b=jZoyUurdA7tnproH/XeGG8hdp7Wz0/MjAVUorx7FpgVAH3LH/hL2FduW
+   +6C4YicTQ9ApgUCOCrXi9keNArqRHZd5p2Jip2dFzjyuHI2v7b1CpQUg4
+   uzYhe4M0T2OC2tbXrpS31PwvI2VvGADhI7fT3N5wt3Od2DUVv0BwiDmMR
+   PNvAlCld8Lkr4R4mlSoCYkE1cDHoAGY4nQsx5TQRHaQ/oxyzrujA+PP9w
+   Xc4Wy5FIMnSvB50p9yZTZZWPM1s/t4cIBJjp1UJz/fhEbQLX6/NrVSdBt
+   ICk0/3w83Uk1TYbT95OzGcKMGbL/XtKhU1BmwVylH2FWylOR6z1KOBT5l
+   Q==;
+X-CSE-ConnectionGUID: +8JgjcyjQYmdKk8dOkXk5w==
+X-CSE-MsgGUID: LKbYOEz4ShaALpyEXvPLnQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="73757856"
+X-IronPort-AV: E=Sophos;i="6.19,244,1754982000"; 
+   d="scan'208";a="73757856"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Oct 2025 00:29:08 -0700
+X-CSE-ConnectionGUID: KGKmE5TbTEqXl2dTs5rO4g==
+X-CSE-MsgGUID: EP3ix8R9TT2ZXkgvOoMQbw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,244,1754982000"; 
+   d="scan'208";a="183469149"
+Received: from egrumbac-mobl6.ger.corp.intel.com (HELO kekkonen.fi.intel.com) ([10.245.245.134])
+  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Oct 2025 00:29:05 -0700
+Received: from kekkonen.localdomain (localhost [IPv6:::1])
+	by kekkonen.fi.intel.com (Postfix) with ESMTP id CB76211FCC3;
+	Tue, 21 Oct 2025 10:29:02 +0300 (EEST)
+Date: Tue, 21 Oct 2025 10:29:02 +0300
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6 krs, Bertel Jungin Aukio 5, 02600 Espoo
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: =?iso-8859-1?Q?Andr=E9?= Apitzsch <git@apitzsch.eu>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	Daniel Scally <djrscally@gmail.com>,
+	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+	linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Val Packett <val@packett.cool>
+Subject: Re: [PATCH v2 0/8] media: i2c: dw9719: add DT compatible and DW9718S
+ support
+Message-ID: <aPc2PoGa8mTx7KT1@kekkonen.localdomain>
+References: <20250920-dw9719-v2-0-028cdaa156e5@apitzsch.eu>
+ <790fd7d05fa03f788f0a628a99b2e127db824207.camel@apitzsch.eu>
+ <750398e8-1781-47be-bccd-e2679a58d449@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next 6/8] net: enetc: add basic support for the ENETC
- with pseudo MAC for i.MX94
-To: Wei Fang <wei.fang@nxp.com>, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, claudiu.manoil@nxp.com, vladimir.oltean@nxp.com,
- xiaoning.wang@nxp.com, Frank.Li@nxp.com, andrew+netdev@lunn.ch,
- davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
- richardcochran@gmail.com
-Cc: imx@lists.linux.dev, netdev@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20251016102020.3218579-1-wei.fang@nxp.com>
- <20251016102020.3218579-7-wei.fang@nxp.com>
-Content-Language: en-US
-From: Paolo Abeni <pabeni@redhat.com>
-In-Reply-To: <20251016102020.3218579-7-wei.fang@nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <750398e8-1781-47be-bccd-e2679a58d449@kernel.org>
 
-On 10/16/25 12:20 PM, Wei Fang wrote:
-> @@ -635,28 +649,10 @@ static void enetc4_pl_mac_config(struct phylink_config *config, unsigned int mod
->  
->  static void enetc4_set_port_speed(struct enetc_ndev_priv *priv, int speed)
->  {
-> -	u32 old_speed = priv->speed;
-> -	u32 val;
-> -
-> -	if (speed == old_speed)
-> -		return;
-> -
-> -	val = enetc_port_rd(&priv->si->hw, ENETC4_PCR);
-> -	val &= ~PCR_PSPEED;
-> -
-> -	switch (speed) {
-> -	case SPEED_100:
-> -	case SPEED_1000:
-> -	case SPEED_2500:
-> -	case SPEED_10000:
-> -		val |= (PCR_PSPEED & PCR_PSPEED_VAL(speed));
-> -		break;
-> -	case SPEED_10:
-> -	default:
-> -		val |= (PCR_PSPEED & PCR_PSPEED_VAL(SPEED_10));
-> -	}
-> +	u32 val = enetc_port_rd(&priv->si->hw, ENETC4_PCR);
->  
->  	priv->speed = speed;
-> +	val = u32_replace_bits(val, PCR_PSPEED_VAL(speed), PCR_PSPEED);
->  	enetc_port_wr(&priv->si->hw, ENETC4_PCR, val);
->  }
+Hi Krzysztof, André,
 
-The above chunk looks unrelated from the rest of this patch. Perhaps
-worth moving to a separate patch in this series? Or add some comments
-explaining why it's needed.
+On Mon, Oct 20, 2025 at 10:45:51PM +0200, Krzysztof Kozlowski wrote:
+> On 20/10/2025 22:40, André Apitzsch wrote:
+> >>  .../bindings/media/i2c/dongwoon,dw9719.yaml        |  88
+> >> +++++++++++++++++
+> >>  drivers/media/i2c/dw9719.c                         | 110
+> >> +++++++++++++++++----
+> >>  2 files changed, 178 insertions(+), 20 deletions(-)
+> >> ---
+> >> base-commit: 846bd2225ec3cfa8be046655e02b9457ed41973e
+> >> change-id: 20250709-dw9719-8a8822efc1b1
+> >>
+> > 
+> > Gentle ping.
+> 
+> Please apply the patch and run checkpatch. Probably you received
+> checkpatch warnings from media patchwork, no?
 
-Thanks,
+I've fixed it this time while applying it.
 
-Paolo
+-- 
+Regards,
 
+Sakari Ailus
 
