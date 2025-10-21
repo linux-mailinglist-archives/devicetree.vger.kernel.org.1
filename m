@@ -1,347 +1,126 @@
-Return-Path: <devicetree+bounces-229413-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229414-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id F063FBF7321
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 16:56:52 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C234BF739F
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 17:02:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 73E8B35589A
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 14:56:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1F70E18A5D60
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 15:00:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 229BD340D98;
-	Tue, 21 Oct 2025 14:56:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B333B340DA5;
+	Tue, 21 Oct 2025 14:59:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="mZppEYbr"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="cKblhV2o"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
+Received: from mail-oi1-f180.google.com (mail-oi1-f180.google.com [209.85.167.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1441340A7B
-	for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 14:56:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CECDD340D8D
+	for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 14:59:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761058577; cv=none; b=HRFr7osiCnUAVx5N4KdmheZa7Fh5JrXAjFY7/33l8jj7W2scZc8RJORPiyWBxtX8BJQGycEwg92mxRc8Gv9NgoCcd+gHNI64itczXWIf+p8bR0HZYVdrOa/iHYFLSP2Z3m1GCTMDeABtTY46z2wuHKi0mL4I8Ai0tht+BcSGffU=
+	t=1761058766; cv=none; b=pKzm6qklPAS8EvMLD7xVHdPg8MuzW6yFQxPzOSm8lDbrQTA5Bvx2NqUelSAJpf9d0jRnU4PXULXKbDWMfvobwCELy49JV+qt0qrH9Hw/S15QlHwdx86r375gIKX4Lkl9/Qqt/kzBbcDswgvJrhwv6j5luzvcwaBnrh11ihPIL4c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761058577; c=relaxed/simple;
-	bh=KyNo6thQEOTJXsThDPVdD5NrRwqVtey8BPK2uJX6UTA=;
-	h=Mime-Version:Content-Type:Date:Message-Id:To:Cc:Subject:From:
-	 References:In-Reply-To; b=K+wYqmB+pEirn8o0JxPPZ38s3Hyo1/TN/uYI70mnfeQOUdVfCHL6SdFOU0wBcf/d7YrfdCqpR9DN1XsIJpjTXTMWSj9Zqn/gGLx8sYp2O767wJLfLhmLNS596JtzY4AQaNpIAM9K39C8aDFop5fRtw6X1JqUsBPP3IeQ4d7NI9E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=mZppEYbr; arc=none smtp.client-ip=209.85.218.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-b6bbfc57b75so347275266b.0
-        for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 07:56:14 -0700 (PDT)
+	s=arc-20240116; t=1761058766; c=relaxed/simple;
+	bh=BF7CnhuFTJ7vA3b9I0uk6rAuh9/EJC3i+BVltZT70Vg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=CqLTnA7DsFg1AlyPg8TZUBoUl7TmPkrabobtyXdGtnyLcklR7WAGL65EvPT8L13NLXQ64XN4l+moTJOLE0dzGArYnhLLiLhlbEdgAEWBViofGi7dqh96pJvzzAeAhtAQjPn4TeOQJl1fRq9oWBtn0iIbIOXlWNA39Ovthio46sE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=cKblhV2o; arc=none smtp.client-ip=209.85.167.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oi1-f180.google.com with SMTP id 5614622812f47-43f9cc65f66so3237887b6e.2
+        for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 07:59:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1761058573; x=1761663373; darn=vger.kernel.org;
-        h=in-reply-to:references:from:subject:cc:to:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=U6+v9PlKDyKuyf0Qjke6DSmKcv77GPvo265+QAbD/UI=;
-        b=mZppEYbrGOlwB4+c+PcVZHLV6DRFby/K2LtWEPx4q566N+4tuQlfZYcw/pOy9S6ONK
-         FaXdS7r47pe7jWTx0TnHrT8ztftwwq3wq1A3AzysVqWSdSp3uO2rsXnOs6VepkjiZJz3
-         E9wbPadxn6hVke7365t0xMupiPPfcmmFqWOgzjC4x5RTrjDMOiY/Xi966lPdJevvdWw5
-         AgfIEvI1OCkISgOnUEPW6FvprRt1D0DaVcISXZ5CE1WNicBWXoQ2D0XwDBBTGjHmHXTX
-         ZExaJ+ebduObsRo0NHmEV1qveeP9/4P1ABdp8bUrMSBj0dgWHFYSZz7LHfPtwth7oGwN
-         xa4Q==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1761058764; x=1761663564; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=q/yTo+AWdbIYNazgbweD584J68eS2cC9KXUZcXNE/O4=;
+        b=cKblhV2oWvaUFQpPpCcBxgf7IwespGrZjyPeqThSz1IqdyrM7h9Wmi1lBOkgHzpPMn
+         oRHkjGEDXWurJD/qvy91Y0l9CV04K1Onv7obUUZZ/N1SadkL/ZmByxaBk7WQvT7GrjcN
+         8VQo0+Ft5UBo1hVNztx8uOhqIcSj+ZDw0uW2lt0vPfuYBQTzFKrsd88J2ujtz5cTB4ch
+         iSRmRgvdrqmtZIJF0sFIWUab9rMh+1kmJydoiHrSBZNmArzjjVGpb678d5cQK3yoDxtB
+         Qzjk0xmdY/cXA+88o7b+1riz6zUkl+oF5KPPM/md0C/NBfcqqpl26lSP13OtgzcaqJo5
+         Zoxg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761058573; x=1761663373;
-        h=in-reply-to:references:from:subject:cc:to:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=U6+v9PlKDyKuyf0Qjke6DSmKcv77GPvo265+QAbD/UI=;
-        b=dWelxQ+tWwHrTYJDVT2AB+uGfV7Q0zDduHE41oBkh7ul3/7vhMuaxhLN7U6PhhcYXM
-         U424JVpyfLeTwdFCUn1EISsBiP2Xi11lXLHSef46npof/ZuerAffQ24Juzf6dyY2MQ/I
-         SHj7oZ06Qo3RJj9+sozplG80Z3KsKEVuhxi3AZd1ieKAPbb5urIa/hxRW/SuuhOABtjT
-         88TCLIIuViDh0J+gKU2fRdj5V8eUJeCBPfb3DylJ9Odeoc9Cfh9SVZLrajW+pZH4Q6R7
-         iIp4t4NPgDdm1vJPgvFEY/Vz7iWGN5FPSxeLj6L4MesmTP/85nJGFpWUaghANx7A6a1Z
-         8U/A==
-X-Forwarded-Encrypted: i=1; AJvYcCWJygQxN3wPOGRiaz1C3KxeHzTv+cZEPvf+JgOHRfCQl1zfhMQJ8FO9csuA4WJZX3v9/T9nLxEP7ISQ@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw8yIUL5O/JT5hJFHooOMXh1hT3BzuUK/ofJjB5CeRKpvEnUzwV
-	RhOymi9EGD+EphrFjXAdD9vWRiLVS8qGtNCvN0K8/030RyfbQhNYRerjUNnQB1AZv4o=
-X-Gm-Gg: ASbGncuPPwJL2PhGHzr2owl421UCL5LsfRYzuzncLBojl9PtdUYaJn/VjJlt+lZA9gR
-	rPWzRpOSedwDUL9NQqY9nJJ0mTRzgRqRfebPcFFlt4c5p2yns+ds6B27/SsGeJa4l7AmC3cQy/d
-	/IXNx3Y8D3V6lSubIhHFNOzBdw3mLRLW5rcdqeMUwnhhIK9pO9DURl6wLrJSkymK2voQ9EPWF1E
-	w0ZtmzTpkSQeO+qpWO2tH+C8S9T/smDLqxbQUx8kh5JYYKwQ0BOy/ff8XRBzqQ0ga1r60kNoIIr
-	vaYUqzuVc/aeWAzFcuxEN3tNIHMHzHPg7e8JKw/kmuo3Jp0bdhStZi13qOACz0R9opogPPub16Q
-	EBGtrbJWMYSophFNsIyAcNxnQdj8fFwC/PPu7Eh6st3nMuLajNtwI1/dZxyZe8mnoNNHdqdwdPN
-	qt0MRCZI3Wb+h03HffJAEqhmlECPXSnqN+Ceo7crA1KxtGBupp8S1cCBBcjKSCyMP85ePqUsyUt
-	TFf4k5bvTABy/c=
-X-Google-Smtp-Source: AGHT+IETvZRvD5jNdS67zvf1E9MqOP8k7cWq+8VKCliU1S1QhyrIzj8Lu65VbulmNCZ2Mz9ZC+1rYw==
-X-Received: by 2002:a17:906:fe09:b0:b3a:8070:e269 with SMTP id a640c23a62f3a-b6d2c00a06fmr6056366b.14.1761058572645;
-        Tue, 21 Oct 2025 07:56:12 -0700 (PDT)
-Received: from localhost (2001-1c00-3b8a-ea00-4b34-6694-d9bd-5210.cable.dynamic.v6.ziggo.nl. [2001:1c00:3b8a:ea00:4b34:6694:d9bd:5210])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b65e83937a3sm1105133866b.23.2025.10.21.07.56.11
+        d=1e100.net; s=20230601; t=1761058764; x=1761663564;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=q/yTo+AWdbIYNazgbweD584J68eS2cC9KXUZcXNE/O4=;
+        b=jbGgkxv7TXQJB8/gSUA5VGSeg2MIzqfpIJDBBrBBCWgNsZrGq3nIiZcG9M4ScDYHp1
+         ZnH+JuwJS0uAhiKitST+xfUzYHJdli4OjI6gcDX60OmS6FSZAv40VdrmxDSdDrXCevUn
+         NEOtiuInTIOjn5OS6gHZd/VuhV6JxFF9W9ta+OjECmFP1g9k+Vjb29BHF82RRL6nVvAt
+         XVMcWM/xBQwRvJE5QiirNfawFag1xwqiLlucAasvkujsvjQsKEeVHzmlxN0HJpz+y+Q6
+         EXF1mAu/3NdcXjDWjGaBLyVT5/PR2QCjsqY930p0ycZ5Y7/9j+wWjf4YcmD30T9rZvuw
+         +RvA==
+X-Forwarded-Encrypted: i=1; AJvYcCWqEfWHMbhrpKDUSxvGuIGpjpxvQ7OXhf3pbbnWT+lPmSzba9Zcx/EwD7IYyXi81IBqBe9wxO9bF8aJ@vger.kernel.org
+X-Gm-Message-State: AOJu0YzE4zpVWD7J+x4WZPpOMsSzVskicoYYRZsQP/Cz+xVsVH6o2fdb
+	osSNiJj8l5RVxUTIfSO383yKIt8aaRMfJ8vYWn9gocUZvL7VRDSYRu4JEEo4CWRylgo=
+X-Gm-Gg: ASbGncuxIPgdcZqM91BiOXwdZfjvexvN9Jo0dasr454T6z79RzSZn+AOkmAuFOCsLr6
+	PCRG9JBBK0GymGPZ84oNRwoKLnFG36Z0sZybodTwJn5dd5B2hNqiGXkALfrJnwjILQHXoJhbbFX
+	UIc4KCKUAlpmLghlH9CVPbIjq6R8RGNSjAj25yVosAQNSrlfd6kfRA0XTZ7XLGweXRVv5iLg9RE
+	6xonoP9GLE71Wnm8fAk1wZw4O2MlW8Feo7jZuSV4LPAJJx8Cv9NVZY+dYtwRWdWsgpnXFz6LAOR
+	CTMMJ3EAjG6g1u6FRjyftQYjSBrk+YLQkRc4WuS+EMPYDlv/lNCtbJa2RCG9CuKnyjhUSrD+LH/
+	Tp2r2qsSEPo2KPFC3j6hnJsvoc5zE8UTtWctpvp0XB02VJIJ3GanbBiNwxIlpoo7N7xFWEF0lXT
+	ez/L3Xise8LulnpPZJqfkLQ2hVyuXGmYFa5PJAOgeUve6AEtfsynOFefjLOgyw
+X-Google-Smtp-Source: AGHT+IEkFVfsSviTuxzMCB8iw1UUta4Rc99+J99lU5MJAgNaQS84secYXlQwYi3GsiXRW9f0mMBMdA==
+X-Received: by 2002:a05:6808:6909:b0:43b:9be2:2f45 with SMTP id 5614622812f47-443a2f17cd5mr7696038b6e.22.1761058763912;
+        Tue, 21 Oct 2025 07:59:23 -0700 (PDT)
+Received: from ?IPV6:2600:8803:e7e4:500:b5c0:1844:fb75:2a91? ([2600:8803:e7e4:500:b5c0:1844:fb75:2a91])
+        by smtp.gmail.com with ESMTPSA id 5614622812f47-443df722e5csm2662753b6e.24.2025.10.21.07.59.22
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 21 Oct 2025 07:56:12 -0700 (PDT)
+        Tue, 21 Oct 2025 07:59:23 -0700 (PDT)
+Message-ID: <14ae0769-341b-4325-b925-7bba6d57bbdf@baylibre.com>
+Date: Tue, 21 Oct 2025 09:59:22 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/6] dt-bindings: spi: Add spi-buses property
+To: Rob Herring <robh@kernel.org>
+Cc: Mark Brown <broonie@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Marcelo Schmitt <marcelo.schmitt@analog.com>,
+ Michael Hennerich <michael.hennerich@analog.com>,
+ =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
+ Jonathan Cameron <jic23@kernel.org>, Andy Shevchenko <andy@kernel.org>,
+ Sean Anderson <sean.anderson@linux.dev>, linux-spi@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-iio@vger.kernel.org
+References: <20251014-spi-add-multi-bus-support-v1-0-2098c12d6f5f@baylibre.com>
+ <20251014-spi-add-multi-bus-support-v1-1-2098c12d6f5f@baylibre.com>
+ <20251021142129.GA34073-robh@kernel.org>
+Content-Language: en-US
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <20251021142129.GA34073-robh@kernel.org>
 Content-Type: text/plain; charset=UTF-8
-Date: Tue, 21 Oct 2025 16:56:11 +0200
-Message-Id: <DDO35V8IMUNE.2VXRN239GETSB@fairphone.com>
-To: "Luca Weiss" <luca.weiss@fairphone.com>, "Taniya Das"
- <taniya.das@oss.qualcomm.com>, "Vladimir Zapolskiy"
- <vladimir.zapolskiy@linaro.org>
-Cc: "Bjorn Andersson" <andersson@kernel.org>, "Rob Herring"
- <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Jagadeesh
- Kona" <quic_jkona@quicinc.com>, "Bryan O'Donoghue"
- <bryan.odonoghue@linaro.org>, "Michael Turquette"
- <mturquette@baylibre.com>, "Stephen Boyd" <sboyd@kernel.org>, "Conor
- Dooley" <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-clk@vger.kernel.org>, "Dmitry
- Baryshkov" <dmitry.baryshkov@oss.qualcomm.com>
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: sm8550: Additionally manage MXC
- power domain in camcc
-From: "Luca Weiss" <luca.weiss@fairphone.com>
-X-Mailer: aerc 0.21.0-0-g5549850facc2
-References: <20250303225521.1780611-1-vladimir.zapolskiy@linaro.org>
- <20250303225521.1780611-3-vladimir.zapolskiy@linaro.org>
- <dbxvzgqs5slrl5edqunal3wplg5jiszqv46dr4nzgowwlhkhxa@qwtfq7nfjwfo>
- <3210a484-b9c3-4399-bee1-9f5bbc90034c@linaro.org>
- <CAA8EJprP9Z181VDCT=xfyrBipzgiB0tfb8M_XZ4H=yOrvEnB0w@mail.gmail.com>
- <f41061a2-cf45-4588-8df7-22270c936ee2@quicinc.com>
- <D8EZ47Z557OX.37FDVYA5AHET0@fairphone.com>
- <d64c0776-0b12-42d3-aed3-4e6a13487f51@quicinc.com>
- <DDKNL43NWFMA.1S03T0SUYFVMY@fairphone.com>
- <3854e3a0-744c-4317-a6ed-e28edbabc4a3@linaro.org>
- <DDNWU7DVDGJJ.2K19P7FFZU272@fairphone.com>
- <dca13de5-b027-4938-a854-2538fce52b7c@oss.qualcomm.com>
- <DDO2HYG8H2XJ.1MZLPJH36PR85@fairphone.com>
-In-Reply-To: <DDO2HYG8H2XJ.1MZLPJH36PR85@fairphone.com>
+Content-Transfer-Encoding: 7bit
 
-On Tue Oct 21, 2025 at 4:24 PM CEST, Luca Weiss wrote:
-> Hi Taniya,
->
-> On Tue Oct 21, 2025 at 1:12 PM CEST, Taniya Das wrote:
->>
->>
->> On 10/21/2025 3:28 PM, Luca Weiss wrote:
->>> Hi Vladimir,
->>>=20
->>> On Tue Oct 21, 2025 at 11:48 AM CEST, Vladimir Zapolskiy wrote:
->>>> Hi Luca.
->>>>
->>>> On 10/17/25 17:05, Luca Weiss wrote:
->>>>> Hi Taniya,
->>>>>
->>>>> On Thu Mar 13, 2025 at 12:57 PM CET, Taniya Das wrote:
->>>>>>
->>>>>>
->>>>>> On 3/13/2025 1:22 PM, Luca Weiss wrote:
->>>>>>> Hi Taniya,
->>>>>>>
->>>>>>> On Thu Mar 13, 2025 at 5:39 AM CET, Taniya Das wrote:
->>>>>>>>
->>>>>>>>
->>>>>>>> On 3/4/2025 2:10 PM, Dmitry Baryshkov wrote:
->>>>>>>>> On Tue, 4 Mar 2025 at 09:37, Vladimir Zapolskiy
->>>>>>>>> <vladimir.zapolskiy@linaro.org> wrote:
->>>>>>>>>>
->>>>>>>>>> On 3/4/25 01:53, Dmitry Baryshkov wrote:
->>>>>>>>>>> On Tue, Mar 04, 2025 at 12:55:21AM +0200, Vladimir Zapolskiy wr=
-ote:
->>>>>>>>>>>> SM8550 Camera Clock Controller shall enable both MXC and MMCX =
-power
->>>>>>>>>>>> domains.
->>>>>>>>>>>
->>>>>>>>>>> Are those really required to access the registers of the cammcc=
-? Or is
->>>>>>>>>>> one of those (MXC?) required to setup PLLs? Also, is this appli=
-cable
->>>>>>>>>>> only to sm8550 or to other similar clock controllers?
->>>>>>>>>>
->>>>>>>>>> Due to the described problem I experience a fatal CPU stall on S=
-M8550-QRD,
->>>>>>>>>> not on any SM8450 or SM8650 powered board for instance, however =
-it does
->>>>>>>>>> not exclude an option that the problem has to be fixed for other=
- clock
->>>>>>>>>> controllers, but it's Qualcomm to confirm any other touched plat=
-forms,
->>>>>>>>>
->>>>>>>>> Please work with Taniya to identify used power domains.
->>>>>>>>>
->>>>>>>>
->>>>>>>> CAMCC requires both MMCX and MXC to be functional.
->>>>>>>
->>>>>>> Could you check whether any clock controllers on SM6350/SM7225 (Bit=
-ra)
->>>>>>> need multiple power domains, or in general which clock controller u=
-ses
->>>>>>> which power domain.
->>>>>>>
->>>>>>> That SoC has camcc, dispcc, gcc, gpucc, npucc and videocc.
->>>>>>>
->>>>>>> That'd be highly appreciated since I've been hitting weird issues t=
-here
->>>>>>> that could be explained by some missing power domains.
->>>>>>>
->>>>>>
->>>>>> Hi Luca,
->>>>>>
->>>>>> The targets you mentioned does not have any have multiple rail
->>>>>> dependency, but could you share the weird issues with respect to clo=
-ck
->>>>>> controller I can take a look.
->>>>>
->>>>> Coming back to this, I've taken a shot at camera on SM6350 (Fairphone=
- 4)
->>>>> again, but again hitting some clock issues.
->>>>>
->>>>> For reference, I am testing with following change:
->>>>> https://lore.kernel.org/linux-arm-msm/20250911011218.861322-3-vladimi=
-r.zapolskiy@linaro.org/
->>>>>
->>>>> Trying to enable CAMCC_MCLK1_CLK - wired up to the IMX576 camera sens=
-or
->>>>> on this phone - results in following error.
->>>>>
->>>>> [    3.140232] ------------[ cut here ]------------
->>>>> [    3.141264] camcc_mclk1_clk status stuck at 'off'
->>>>> [    3.141276] WARNING: CPU: 6 PID: 12 at drivers/clk/qcom/clk-branch=
-.c:87 clk_branch_toggle+0x170/0x190
->>>>>
->>>>> Checking the driver against downstream driver, it looks like the RCGs
->>>>> should be using clk_rcg2_shared_ops because of enable_safe_config in
->>>>> downstream, but changing that doesn't really improve the situation, b=
-ut
->>>>> it does change the error message to this:
->>>>>
->>>>> [    2.933254] ------------[ cut here ]------------
->>>>> [    2.933961] camcc_mclk1_clk_src: rcg didn't update its configurati=
-on.
->>>>> [    2.933970] WARNING: CPU: 7 PID: 12 at drivers/clk/qcom/clk-rcg2.c=
-:136 update_config+0xd4/0xe4
->>>>>
->>>>> I've also noticed that some camcc drivers take in GCC_CAMERA_AHB_CLK =
-as
->>>>> iface clk, could something like this be missing on sm6350?
->>>>>
->>>>> I'd appreciate any help or tips for resolving this.
->>>>>
->>>>
->>>> Recently one particular problem related to MCLK was identified by me o=
-n
->>>> QRB5165/RB5, and it was reported to Bjorn over IRC, namely it's not po=
-ssible
->>>> to toggle MCLK clock enable/disable state, when TITAN GDSC power domai=
-n is
->>>> set off. I'm working on fixing the issue (a change under clk/qcom), si=
-nce
->>>> it's of an importance for a customer as well.
->>>>
->>>> I can't be totally sure that it's right the same problem as the one re=
-ported
->>>> by you above, but it looks very similar, as a fast workaround please c=
-onsider
->>>> to set an ALWAYS_ON flag of TITAN GDSC, and at least a report from you=
- that
->>>> this actually helps would be nice to get.
->>>=20
->>> Unfortunately that doesn't seem to help on sm6350.
->>>=20
->>> diff --git a/drivers/clk/qcom/camcc-sm6350.c b/drivers/clk/qcom/camcc-s=
-m6350.c
->>> index 12a469ce7e2f..cf87ad55d318 100644
->>> --- a/drivers/clk/qcom/camcc-sm6350.c
->>> +++ b/drivers/clk/qcom/camcc-sm6350.c
->>> @@ -1767,6 +1767,7 @@ static struct gdsc titan_top_gdsc =3D {
->>>  		.name =3D "titan_top_gdsc",
->>>  	},
->>>  	.pwrsts =3D PWRSTS_OFF_ON,
->>> +	.flags =3D ALWAYS_ON,
->>>  };
->>> =20
->>>  static struct clk_hw *camcc_sm6350_hws[] =3D {
->>>=20
->>>=20
->>> $ cat /sys/kernel/debug/pm_genpd/pm_genpd_summary
->>> [...]
->>> titan_top_gdsc                  on                              0
->>>                                                 bps_gdsc, ipe_0_gdsc, i=
-fe_0_gdsc, ife_1_gdsc, ife_2_gdsc
->>>     ac4a000.cci                     suspended                   0      =
-     SW
->>>     ac4b000.cci                     suspended                   0      =
-     SW
->>>     genpd:3:acb3000.camss           suspended                   0      =
-     SW
->>> [...]
->>>=20
->>> but still the same clock stuck warning...
->>>=20
->>> [    3.093431] ------------[ cut here ]------------
->>> [    3.094614] camcc_mclk1_clk status stuck at 'off'
->>> [    3.094629] WARNING: CPU: 6 PID: 65 at drivers/clk/qcom/clk-branch.c=
-:87 clk_branch_toggle+0x170/0x190
->>>=20
->>> Thanks for the suggestion though.
->>>=20
->>
->> Hi Luca,
->>
->> Seems like the CAMCC_PLL2_OUT_EARLY output could be OFF here, which is
->> sourcing the mclk RCG's.
->>
->> The user_ctl is not properly configured to enable the PLL early output.
->> Can you please try below change and check if it helps?
->>
->> diff --git a/drivers/clk/qcom/camcc-sm6350.c
->> b/drivers/clk/qcom/camcc-sm6350.c
->> index 8aac97d29ce3..d33db530b7c9 100644
->> --- a/drivers/clk/qcom/camcc-sm6350.c
->> +++ b/drivers/clk/qcom/camcc-sm6350.c
->> @@ -154,6 +154,7 @@ static const struct alpha_pll_config
->> camcc_pll2_config =3D {
->>         .config_ctl_hi_val =3D 0x400003d2,
->>         .test_ctl_val =3D 0x04000400,
->>         .test_ctl_hi_val =3D 0x00004000,
->> +       .user_ctl_val =3D 0x0000030F,
->> };
->
-> Yes! Indeed that makes the clock not be stuck, and debugcc is also
-> correctly reporting ~24MHz from that clock when it's enabled!
->
->   cam_cc_mclk1_clk: 23.999592MHz (23999592Hz)
->
-> Is this PLL also missing a value for .user_ctl_hi_val? The other PLLs
-> have that set as well.
->
-> Out of curiousity, where's this magic value from? Only some sort of HPG
-> doc, or is this also somewhere referenced in downstream? Curious why
-> this is not set there for this PLL.
+On 10/21/25 9:21 AM, Rob Herring wrote:
+> On Tue, Oct 14, 2025 at 05:02:11PM -0500, David Lechner wrote:
+>> Add a spi-buses property to the spi-peripheral-props binding to allow
+>> specifying the SPI data bus or buses that a peripheral is connected to
+>> in cases where the SPI controller has more than one physical SPI data
+>> bus.
+> 
+> Is there a reason why spi-rx-bus-width property doesn't work for you? 
+> The only thing I see would be you need to define the order of the pins 
+> like "data-lanes" property.
+> 
+> Rob
 
-Ah, just saw this part in downstream
-https://git.codelinaro.org/clo/la/kernel/msm-4.19/-/blob/LA.UM.9.12.c25-028=
-00-SMxx50.QSSI13c28.0/drivers/clk/qcom/clk-alpha-pll.c#L2443-2463
+Because we can have both at the same time. In one of the other threads,
+we talked about the AD4630 ADC that will require this since it has 2 data
+buses each with a width of 4 (total of 8 lines).
 
-That's quite different to the simple
+See: https://lore.kernel.org/linux-iio/ad929fe5-be03-4628-b95a-5c3523bae0c8@baylibre.com/
 
-	clk_alpha_pll_write_config(regmap, PLL_USER_CTL(pll),
-							config->user_ctl_val);
-
-that's in upstream.
-
-Also explains makes it clear that .user_ctl_hi_val is not applicable to
-this agera PLL.
-
-From looking at camcc-sm7150, I guess they have the same problem over
-there. A bunch of post_div and _mask's set, but no .user_ctl_val set for
-PLL2. But camcc-sc7180 is fine though.
-
-Regards
-Luca
-
->
-> This is one major step toward camss & camera support for this phone!
->
-> Regards
-> Luca
 
 
