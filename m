@@ -1,119 +1,196 @@
-Return-Path: <devicetree+bounces-229207-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229208-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 832A5BF4F5F
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 09:29:15 +0200 (CEST)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id D008ABF4F71
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 09:31:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3F5663B0EB4
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 07:29:14 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 5A33A341D60
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 07:31:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4F9227B342;
-	Tue, 21 Oct 2025 07:29:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50CA127FD68;
+	Tue, 21 Oct 2025 07:31:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="jZoyUurd"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="oG2a18Rg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3FCE279DB7;
-	Tue, 21 Oct 2025 07:29:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 044A62690D9;
+	Tue, 21 Oct 2025 07:31:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761031750; cv=none; b=NxieQ1BLa+WIVpeRbw9VZCDb5O8leev9pmEOsSlJPn1LT+gGP5KQ8TSYMyTONxUn0cZPxqhmPrffmQQaouUNp+VUJrXehsIHh8ViO4d/ga8QUgNN01p787lnpBh6QHpewhrfGW35sukD7rP0j1dVY2qgJVu/vsHzCPm3YpCZ1KM=
+	t=1761031910; cv=none; b=BNDLhCuBeqJP3T1YjUHhqgrnwzA8an3Vk7nFMREO36I/nt1+egJf5jGzqiLaR9yjNryUVCDdZPMN48oEA6f7QhnMQyEK6kKu0IKE0SBCJKscDL5pwvRsdYk4xLiNdJ4ZG4IFMHMJ5V9vNB2x3GlsnXFWW/EvCd35lMddUu7Mb60=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761031750; c=relaxed/simple;
-	bh=e6fMCWbmpUtZcRxSl3ZBtobW+DNa+kzWyu7xbqW/VkA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=j/V/oYknOBqvkG3yZxv4ky+BWCiznghjeCpmP1ccYuqHBoMTYoB8jZeQKn2NP1Pl63sNQZRczrcLIlRmEB7rGfij9e8hFR9d3bD6ZMdr0CvAtueK7SsYlbX5ZgDuw0Nd5O7FOzH0aakCOPn1JM6S5SOR46dOsJWYpcvjXdA1YlA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=jZoyUurd; arc=none smtp.client-ip=192.198.163.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1761031749; x=1792567749;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=e6fMCWbmpUtZcRxSl3ZBtobW+DNa+kzWyu7xbqW/VkA=;
-  b=jZoyUurdA7tnproH/XeGG8hdp7Wz0/MjAVUorx7FpgVAH3LH/hL2FduW
-   +6C4YicTQ9ApgUCOCrXi9keNArqRHZd5p2Jip2dFzjyuHI2v7b1CpQUg4
-   uzYhe4M0T2OC2tbXrpS31PwvI2VvGADhI7fT3N5wt3Od2DUVv0BwiDmMR
-   PNvAlCld8Lkr4R4mlSoCYkE1cDHoAGY4nQsx5TQRHaQ/oxyzrujA+PP9w
-   Xc4Wy5FIMnSvB50p9yZTZZWPM1s/t4cIBJjp1UJz/fhEbQLX6/NrVSdBt
-   ICk0/3w83Uk1TYbT95OzGcKMGbL/XtKhU1BmwVylH2FWylOR6z1KOBT5l
-   Q==;
-X-CSE-ConnectionGUID: +8JgjcyjQYmdKk8dOkXk5w==
-X-CSE-MsgGUID: LKbYOEz4ShaALpyEXvPLnQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="73757856"
-X-IronPort-AV: E=Sophos;i="6.19,244,1754982000"; 
-   d="scan'208";a="73757856"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
-  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Oct 2025 00:29:08 -0700
-X-CSE-ConnectionGUID: KGKmE5TbTEqXl2dTs5rO4g==
-X-CSE-MsgGUID: EP3ix8R9TT2ZXkgvOoMQbw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,244,1754982000"; 
-   d="scan'208";a="183469149"
-Received: from egrumbac-mobl6.ger.corp.intel.com (HELO kekkonen.fi.intel.com) ([10.245.245.134])
-  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Oct 2025 00:29:05 -0700
-Received: from kekkonen.localdomain (localhost [IPv6:::1])
-	by kekkonen.fi.intel.com (Postfix) with ESMTP id CB76211FCC3;
-	Tue, 21 Oct 2025 10:29:02 +0300 (EEST)
-Date: Tue, 21 Oct 2025 10:29:02 +0300
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6 krs, Bertel Jungin Aukio 5, 02600 Espoo
-From: Sakari Ailus <sakari.ailus@linux.intel.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: =?iso-8859-1?Q?Andr=E9?= Apitzsch <git@apitzsch.eu>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	Daniel Scally <djrscally@gmail.com>,
-	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-	linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Val Packett <val@packett.cool>
-Subject: Re: [PATCH v2 0/8] media: i2c: dw9719: add DT compatible and DW9718S
- support
-Message-ID: <aPc2PoGa8mTx7KT1@kekkonen.localdomain>
-References: <20250920-dw9719-v2-0-028cdaa156e5@apitzsch.eu>
- <790fd7d05fa03f788f0a628a99b2e127db824207.camel@apitzsch.eu>
- <750398e8-1781-47be-bccd-e2679a58d449@kernel.org>
+	s=arc-20240116; t=1761031910; c=relaxed/simple;
+	bh=fThOjIpJ51j1u9puDbZEjtaSpCV0y1RmEGAAeXFfBAI=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=rCmAvD6FZHARH8VOC/M0bOPSmqdKXVKnlk+TmLEwdJoAmcdo1yNQmGrOvJXTfRiPD/5H2MjR4Ychc/MlNwPlNZp8Y7hnIGxYRMd+VrlfW2hODUk2kZ7yeORXnwayB2B0jBnZxLmXagZn4IaCvpaGTOIMUJNYFxGPLdF74ZXq5cI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=oG2a18Rg; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1761031905;
+	bh=fThOjIpJ51j1u9puDbZEjtaSpCV0y1RmEGAAeXFfBAI=;
+	h=From:Subject:Date:To:Cc:From;
+	b=oG2a18RgRiZrp3UxgirDSTViUXLjNOGi6ktlgrwfwYAaKhOt+Qf/iclaelJS/euE/
+	 z7EjwJf5H21xVPFZqi7ESKvb0/sIxBuFIWgsSQmhFquft2QgkpnEWZiGGifeN+hMNM
+	 KP1oDecJW2Le4cqXdqMd7MpmQtDK0SW0kYOF6T4Q0xRU/D6WEIgLxUAbTXu8GhYQAx
+	 QeCKOoPQ9O0EWfiiJSVYub5DvWx915KGJevl+mAikYVpKDfVrZxcRBRjewyo7yLwdm
+	 lD22SqUB9LaIlrD1p3fEZbfx0uUsr8RTc9nHVtkg3fosniAtb0VRM0v7APm1dSXJHa
+	 iPY8F+ijPh2Mw==
+Received: from yukiji.home (amontpellier-657-1-116-247.w83-113.abo.wanadoo.fr [83.113.51.247])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: laeyraud)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 3823617E013C;
+	Tue, 21 Oct 2025 09:31:45 +0200 (CEST)
+From: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+Subject: [PATCH v2 0/3] Add Mali GPU support for Mediatek MT8365 SoC
+Date: Tue, 21 Oct 2025 09:30:50 +0200
+Message-Id: <20251021-mt8365-enable-gpu-v2-0-17e05cff2c86@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <750398e8-1781-47be-bccd-e2679a58d449@kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAKo292gC/22OQQ6CMBBFr0Jm7RhaoCIr72FYlDJgE6DYFoIh3
+ N0CLl2+Sd77s4Ijq8lBEa1gadZOmyEAv0SgXnJoCXUdGHjMszhnHHufJyJDGmTVEbbjhDK550l
+ WK3lrFARvtNTo5Wg+y5MtvaeQ9ucRKukIlel77YtooMXjnmcxZ7ALL+28sZ/jp5kdxm8++TM/M
+ 4wxFSpNlVAsE+KhTNfJylh5DRtQbtv2BUWyCiHnAAAA
+X-Change-ID: 20250812-mt8365-enable-gpu-a39835dca7fc
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: kernel@collabora.com, dri-devel@lists.freedesktop.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+ Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>, 
+ Conor Dooley <conor.dooley@microchip.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1761031905; l=4986;
+ i=louisalexis.eyraud@collabora.com; s=20250113; h=from:subject:message-id;
+ bh=fThOjIpJ51j1u9puDbZEjtaSpCV0y1RmEGAAeXFfBAI=;
+ b=ZUu64f4KP1+oEchEpduCp3me9TKTPN48oDNFSe1UEWGZtm4zaH+fCnsNbp/pNQUNmEFpq8Gul
+ g2l4tFzde9vAjd8Cyj5CgvnVhwUWHMVxMYrTiTuo8C+EY9IvTq9zhl8
+X-Developer-Key: i=louisalexis.eyraud@collabora.com; a=ed25519;
+ pk=CHFBDB2Kqh4EHc6JIqFn69GhxJJAzc0Zr4e8QxtumuM=
 
-Hi Krzysztof, André,
+This patchset adds the support of the ARM Mali G52 MC1 GPU (Bifrost),
+integrated to the Mediatek MT8365 SoC, and its enablement to the
+Mediatek Genio 350-EVK board.
 
-On Mon, Oct 20, 2025 at 10:45:51PM +0200, Krzysztof Kozlowski wrote:
-> On 20/10/2025 22:40, André Apitzsch wrote:
-> >>  .../bindings/media/i2c/dongwoon,dw9719.yaml        |  88
-> >> +++++++++++++++++
-> >>  drivers/media/i2c/dw9719.c                         | 110
-> >> +++++++++++++++++----
-> >>  2 files changed, 178 insertions(+), 20 deletions(-)
-> >> ---
-> >> base-commit: 846bd2225ec3cfa8be046655e02b9457ed41973e
-> >> change-id: 20250709-dw9719-8a8822efc1b1
-> >>
-> > 
-> > Gentle ping.
-> 
-> Please apply the patch and run checkpatch. Probably you received
-> checkpatch warnings from media patchwork, no?
+I've tested this patchset on a Mediatek Genio 350-EVK board,
+with a kernel based on linux-next (tag: next-20251021).
 
-I've fixed it this time while applying it.
+The panfrost driver probed with the following messages:
+```
+panfrost 13040000.gpu: clock rate = 450000031
+panfrost 13040000.gpu: mali-g52 id 0x7402 major 0x1 minor 0x0 status
+  0x0
+panfrost 13040000.gpu: features: 00000000,00000df7, issues: 00000000,
+  00000400
+panfrost 13040000.gpu: Features: L2:0x07110206 Shader:0x00000003
+ Tiler:0x00000209 Mem:0x1 MMU:0x00002823 AS:0xff JS:0x7
+panfrost 13040000.gpu: shader_present=0x1 l2_present=0x1
+[drm] Initialized panfrost 1.5.0 for 13040000.gpu on minor 0
+```
 
+Running glmark2-es2-drm with MESA 25.2 is also OK:
+```
+=======================================================
+    glmark2 2023.01
+=======================================================
+    OpenGL Information
+    GL_VENDOR:      Mesa
+    GL_RENDERER:    Mali-G52 r1 (Panfrost)
+    GL_VERSION:     OpenGL ES 3.1 Mesa 25.2.5-1
+    Surface Config: buf=32 r=8 g=8 b=8 a=8 depth=24 stencil=0 samples=0
+    Surface Size:   1200x1920 fullscreen
+=======================================================
+[build] use-vbo=false: FPS: 513 FrameTime: 1.952 ms
+[build] use-vbo=true: FPS: 514 FrameTime: 1.947 ms
+[texture] texture-filter=nearest: FPS: 489 FrameTime: 2.046 ms
+[texture] texture-filter=linear: FPS: 486 FrameTime: 2.061 ms
+[texture] texture-filter=mipmap: FPS: 476 FrameTime: 2.101 ms
+[shading] shading=gouraud: FPS: 436 FrameTime: 2.296 ms
+[shading] shading=blinn-phong-inf: FPS: 387 FrameTime: 2.585 ms
+[shading] shading=phong: FPS: 253 FrameTime: 3.955 ms
+[shading] shading=cel: FPS: 232 FrameTime: 4.328 ms
+[bump] bump-render=high-poly: FPS: 266 FrameTime: 3.765 ms
+[bump] bump-render=normals: FPS: 421 FrameTime: 2.376 ms
+[bump] bump-render=height: FPS: 343 FrameTime: 2.922 ms
+[effect2d] kernel=0,1,0;1,-4,1;0,1,0;: FPS: 133 FrameTime: 7.521 ms
+[effect2d] kernel=1,1,1,1,1;1,1,1,1,1;1,1,1,1,1;: FPS: 46 FrameTime:
+  21.990 ms
+[pulsar] light=false:quads=5:texture=false: FPS: 379 FrameTime: 2.645 ms
+[desktop] blur-radius=5:effect=blur:passes=1:separable=true:windows=4:
+  FPS: 57 FrameTime: 17.735 ms
+[desktop] effect=shadow:windows=4: FPS: 249 FrameTime: 4.018 ms
+[buffer] columns=200:interleave=false:update-dispersion=0.9:update-fraction
+  =0.5:update-method=map: FPS: 81 FrameTime: 12.447 ms
+[buffer] columns=200:interleave=false:update-dispersion=0.9:update-fraction
+  =0.5:update-method=subdata: FPS: 81 FrameTime: 12.388 ms
+[buffer] columns=200:interleave=true:update-dispersion=0.9:update-fraction
+  =0.5:update-method=map: FPS: 99 FrameTime: 10.127 ms
+[ideas] speed=duration: FPS: 287 FrameTime: 3.492 ms
+[jellyfish] <default>: FPS: 114 FrameTime: 8.842 ms
+[terrain] <default>: FPS: 14 FrameTime: 76.911 ms
+[shadow] <default>: FPS: 156 FrameTime: 6.432 ms
+[refract] <default>: FPS: 29 FrameTime: 34.791 ms
+[conditionals] fragment-steps=0:vertex-steps=0: FPS: 529 FrameTime: 1.890 ms
+[conditionals] fragment-steps=5:vertex-steps=0: FPS: 326 FrameTime: 3.076 ms
+[conditionals] fragment-steps=0:vertex-steps=5: FPS: 532 FrameTime: 1.880 ms
+[function] fragment-complexity=low:fragment-steps=5: FPS: 475 FrameTime:
+  2.106 ms
+[function] fragment-complexity=medium:fragment-steps=5: FPS: 227 
+  FrameTime: 4.417 ms
+[loop] fragment-loop=false:fragment-steps=5:vertex-steps=5: FPS: 475
+  FrameTime: 2.108 ms
+[loop] fragment-steps=5:fragment-uniform=false:vertex-steps=5: FPS: 474
+  FrameTime: 2.110 ms
+[loop] fragment-steps=5:fragment-uniform=true:vertex-steps=5: FPS: 226
+  FrameTime: 4.428 ms
+=======================================================
+                                  glmark2 Score: 296 
+=======================================================
+```
+
+Signed-off-by: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+---
+Changes in v2:
+- Rebased on next-20251021 tag
+- Fixed missing blank lines in 'arm64: dts: mediatek: mt8365: Add GPU
+  support' patch
+- Added reviewed-by and acked-by trailers
+- Updated cover letter
+- Link to v1: https://lore.kernel.org/r/20250813-mt8365-enable-gpu-v1-0-46c44c6c1566@collabora.com
+
+---
+Louis-Alexis Eyraud (3):
+      dt-bindings: gpu: mali-bifrost: Add compatible for MT8365 SoC
+      arm64: dts: mediatek: mt8365: Add GPU support
+      arm64: dts: mediatek: mt8365-evk: Enable GPU support
+
+ .../devicetree/bindings/gpu/arm,mali-bifrost.yaml  |  1 +
+ arch/arm64/boot/dts/mediatek/mt8365-evk.dts        |  9 +++++
+ arch/arm64/boot/dts/mediatek/mt8365.dtsi           | 43 +++++++++++++++++++++-
+ 3 files changed, 52 insertions(+), 1 deletion(-)
+---
+base-commit: 853c202e4aec8006c2c1367b052c9f8949db019a
+change-id: 20250812-mt8365-enable-gpu-a39835dca7fc
+
+Best regards,
 -- 
-Regards,
+Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
 
-Sakari Ailus
 
