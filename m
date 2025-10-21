@@ -1,199 +1,147 @@
-Return-Path: <devicetree+bounces-229300-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229301-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 139ECBF5C1B
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 12:23:42 +0200 (CEST)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FB57BF5C93
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 12:32:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B536A3A504A
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 10:23:40 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id C8F2235256F
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 10:32:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C704C32038D;
-	Tue, 21 Oct 2025 10:23:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="iWBddjNw"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7336C2F0C69;
+	Tue, 21 Oct 2025 10:32:04 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com [209.85.208.175])
+Received: from mail-qk1-f169.google.com (mail-qk1-f169.google.com [209.85.222.169])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2F152EC541
-	for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 10:23:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE2452EBBAF
+	for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 10:32:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761042217; cv=none; b=elci0xuFZ3mr2ul2ZOpOaZsiI04T7PKsjSNXhoKJ9qK7PM1WkPKvDTzA5yfdGL/VTmP+Ae5lfbaojVzlcQJJwveP6f1rTK8ghNpLNHdLb7R+FQQp5iHG8eIamO0ubJnTsrhnHp4Ng3uuBPTavcACVSJVFqNyuJZzeXfYZiIxSFA=
+	t=1761042724; cv=none; b=pHn7XW55AnZXZb3oC3SkWaD2SYmBXSLI/du/PaJX5epNgsXVgsZydTKvU7X+5KyzGqsVfiwmrFxsHp6ijEeig2W/tLHXJaK6cKtef5NLSdkXVVvKKX+GxjrGSPftNI9xjMjKhvtzF7VXGbZjEqhlLWJOYVAL9CfhmQUIlm2EDtw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761042217; c=relaxed/simple;
-	bh=X6IIhRe0Q9eNfiS+uuiP44nevUMCv7gW+vko/Kql2Gs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=afwas8Bbyl+rF+GtVyQilNEq4pw7hUUmLDL7/W7PoWx1a0f1KT+aSgRoEOCTmr7pM7G4a9zeoEGqHHVFAp+/KlyQNKbyiXLmGopkfhNRe+FDXV+gO3vp+faF5LBb1BHMUvyWnymbkyzxqL+ght/lOh8EfxUpfP7P1N5YBhQRv/k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=iWBddjNw; arc=none smtp.client-ip=209.85.208.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f175.google.com with SMTP id 38308e7fff4ca-3776999686dso7915141fa.1
-        for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 03:23:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1761042214; x=1761647014; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=LUXq1wMCFkLfNEQhg7BlbcPT5IjdyWTTFBn75zMt1J8=;
-        b=iWBddjNwgL1E0AB1E2aG0/nJrHpJnYoyMNCBrqXKlLzKEE8kwFLnkopJonIICQ7Qig
-         PUlbmMctH6g0gBPVbjoGv1O3aSUHKE1fApmYKMhrZCrHDcVYQZiJoIgNeoF219c+gfYT
-         24pEE49ZMVZkDdF0vWqB2YHvYVt7HBQsJ5ONddHao6S4jO66p2xPDWfieilc0YOQQEew
-         y+jVnmEqAvBXmMXZdw9zcdCSS5F7M7uUfcP+be9Sc0K7jICtcQjpyc8LNmA6QEcLa8vY
-         ud9p8JO2iS6cRHSDnjkkrK/AN1E30KW7Ql1pvj2CzuArkoUUARG3rg6B2dpEJAA7uZw8
-         LQkA==
+	s=arc-20240116; t=1761042724; c=relaxed/simple;
+	bh=va4WxH64kPG8XCl6w3KCXlFAiPzGBJtiTtCajxRETjY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=DUICNvMzzXnL9whSRng7T00qo4zhydX3KBu4Pg2tVqa5ckZ8q8soY7Ld3j/vBKc4RWz7TuWwvlheqgob/m8TMSz+T4683qq8hd7OH5s/xgOIs3MM7r6wlkWStCcygGkZ7hlJtm87CBRgPjTILLgJgpJiYv9o2VI80j92OIsRoik=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qk1-f169.google.com with SMTP id af79cd13be357-816ac9f9507so893996085a.1
+        for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 03:32:02 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761042214; x=1761647014;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=LUXq1wMCFkLfNEQhg7BlbcPT5IjdyWTTFBn75zMt1J8=;
-        b=XuPvkq2CjJTJcYKEnuPQTvQVKF8YtlA2XrKUpN/t+A01YEl3E3KhIrmFTtNT6x624I
-         mGMIEfwCqJjMxWmfJDK7OIHBj8107s/BbPbCrnmd4XErV5en3VLPAS4naSr3ZR2DULL/
-         WZ1xNOuT970Xy3Lp4qa/tCOwMnuKkF4gausj9JEIdyZ2RtiSu40yS6YwnK1tUAb2+Nad
-         grEsXcrithzC/5fi0I6Ig4gxxLLbYCLOg1p0nbFqmtjlIFpTZpH8YOPX6K6z0n8zgzZu
-         5hXN7ElS6A9Ad1npSQ7siW4cTiY77YeedE1zppbKd+Y0Z9kJc4W8D+mJH3+YWaIZ+CCe
-         nnpw==
-X-Forwarded-Encrypted: i=1; AJvYcCVpLZy6aDxUgMAqrn4/bO8Jlx8labS0m641vTX4NOWt/gtRNcTRayJ8b4Pv4TGP4TTeB1lb2YVoi+FA@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx+xLFrQ4BJNCRCgEfGPU5CmP/Uw5g0iJOtVcka4PK3YTB9QltJ
-	g54j0DJ/7xPSvlYB8VoZYexARgDe2jMA409yAPzTY1opY/356EcOsP720TWzQpWmHGU=
-X-Gm-Gg: ASbGncu/mtQFfG1Um0ZZcrpj7MfC+y6zKj+OqgY5rkkEdOzM7FnLKaYioGpOA3cEWAI
-	yqDda2fZOwbPfIkTmJzPx6lpD6gX8KAR7GJvIqw7CzNXE/A39SzMvXnj7raO7J7zqN+T9zUMRBV
-	8avcCFGu0lChV4JoiZoKCQ81PYIiBLUD+dI1XZbvHAQvsWmu9vMjYt9JCGpWRok3JyzdoJe6X9A
-	AZ7x93YcX0I8tSi0a+SMD2oHcbWTvtHBf1uW/gJcpnVZWtPDWB/rC0ZM3vz18njLXaUcB4O04i5
-	E2oXJ9HrHsjmCZP8NYxyiWT9rvOxaD3tkLg5+lXFa0+BSBp3L3Ag7uXepvzrNbV3HhJHAprcnwT
-	FxjZMSy98nXECTCMFH6xel7ZPCmMa35pXnfM2TGbqUwTONDfgpuvGD57d7bI0i97VV4wsa89DSa
-	EqN/xVTrO758IFYTdhD/IGfl/XIuFx4B+P/LNAe4UsPR9ynAPahu7v1TdJa+mfHrH3nA==
-X-Google-Smtp-Source: AGHT+IEmPJoxY08aLmDM49o2ysU16rKo0CM7DE9R2OnTtCJfVmyvlQ+fs6BweAM4cs7iO7W0+JAWDg==
-X-Received: by 2002:a05:6512:3181:b0:581:8db3:d5fe with SMTP id 2adb3069b0e04-591ea2eef26mr526688e87.2.1761042213800;
-        Tue, 21 Oct 2025 03:23:33 -0700 (PDT)
-Received: from [192.168.1.100] (91-159-24-186.elisa-laajakaista.fi. [91.159.24.186])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-591def1b261sm3492866e87.85.2025.10.21.03.23.31
+        d=1e100.net; s=20230601; t=1761042721; x=1761647521;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=tDNH9pDF9LBAisWYpnrCUtwA+9hrIVu2UeAytlJC/r0=;
+        b=rZT0n/SjKQO9U09LMPm2J+ge3rQs6JFNKzTyd0Vw3A1mqTj0aVa91P+PbuJTxfrBSh
+         WQM1hwYTSgTJumtvgcO2Lx8e8XnRD2iwXBggSjMA9R2+5r7n2dEWp5WvCfRvDiSIN9Ym
+         14rJbUKb5l1DofT+A5nPdzDHwTQnYtSAusUw3V0Sc3ZbysYInL/b/TlcMG+23zvkFKZG
+         MyLkxJHhDOFODIkfy4oC6JTHM5eG3Jy/iTjbH6J87s9R7PPkMgyu3FYHDs26WhDf9Lac
+         5dWBtRFaeHGXCqzPtYjZYloFZ8JbowUlThF+hijwjPJXIZ8ZH089uZHcDO23Ii+wwVuo
+         ZY5A==
+X-Forwarded-Encrypted: i=1; AJvYcCWMunIJiu1jDjprwnRRP8KlIn3NxCHGqcv94KkP+o1pwwrzGMVRrTrYSaZ/AocTBK6fD3gCPXfjlPa+@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxc7j62fhCPnYbYprtWeWcQ3bn7Hwf9jlXm5QRVYPy7f/NOy7l5
+	cfh8E4oxUXfKfX2wp7HxnSVVpnB5N7T/u+QKZJfc0cjRmE441oZRG6erfAmroHnU
+X-Gm-Gg: ASbGncv6/PoaHKB3BdBO6mVBctj9XwHUf9ejXsxAvk8MijROFvb6p/OUbsfll7Kxq4U
+	pR9ulZiOYNRfLQtRa1w0yImPBcH+9xci6dppNhgnmHKqkxROy00U571oUQ8JVD9w5H/s2V6mbAU
+	uACS5YCFxxgRh/UhQiWYKLH9w7nHmu4/fJ52llzi8mffCMi/QYfK5oloJZUXDqqDNO9zkSTSCVW
+	o2zAzxtRde6La6a305Tu0uHaG6xHpbRNWZYrq8d4KluCBoxG1XGcKa7WrTcsDzawG4qqOtgSC1r
+	ueYPX6fHmKm2lfvE8fWn8teYwxDlz+ARJMcOijJq7khWq+ZUE0k0CVx0GwDri2NEDDuDp5U85mH
+	0YIISGEFjRpyGkkM7Xr/9pJbZpzD3K0Z/rSmTj0gJ5PPwMoR8JhNBcoX6LFJD07XUMwLukw9IqM
+	E8mH6NhImg1pWB51v6USb72Lg+n3qRBjpc560qwowmKg==
+X-Google-Smtp-Source: AGHT+IEd8R16U8wBljP4bxJk2p7YJmFPN2rGWSck+uM0cCLN1168WUW3ymYJn2hKQhQujDy3w1rktg==
+X-Received: by 2002:a05:622a:1ba1:b0:4df:3139:d204 with SMTP id d75a77b69052e-4e89ce17c5amr171224841cf.10.1761042721500;
+        Tue, 21 Oct 2025 03:32:01 -0700 (PDT)
+Received: from mail-qk1-f175.google.com (mail-qk1-f175.google.com. [209.85.222.175])
+        by smtp.gmail.com with ESMTPSA id d75a77b69052e-4e8ab0c78bfsm71961061cf.19.2025.10.21.03.32.01
+        for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 21 Oct 2025 03:23:33 -0700 (PDT)
-Message-ID: <f3e66a7e-873b-4299-9ec9-be3aa7e100d6@linaro.org>
-Date: Tue, 21 Oct 2025 13:23:31 +0300
+        Tue, 21 Oct 2025 03:32:01 -0700 (PDT)
+Received: by mail-qk1-f175.google.com with SMTP id af79cd13be357-893c373500cso286496585a.0
+        for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 03:32:01 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUrTUX86rvi7vlLO1MNg7SkQaZXX1sbmf0oR0+Bdr26vQbY2i5gT8Dln/8vrVNypf0cPFsssB297Ww3@vger.kernel.org
+X-Received: by 2002:a05:6102:e08:b0:529:7c2f:ceb5 with SMTP id
+ ada2fe7eead31-5d7dd5035afmr5261434137.1.1761042379969; Tue, 21 Oct 2025
+ 03:26:19 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: media: i2c: Add Samsung S5KJN1 image
- sensor
-To: Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
- Hans Verkuil <hverkuil@kernel.org>, Hans de Goede <hansg@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20251016020419.2137290-1-vladimir.zapolskiy@linaro.org>
- <20251016020419.2137290-2-vladimir.zapolskiy@linaro.org>
- <aPaaLZoLMH3TfyJl@kekkonen.localdomain>
- <060938d1-9c9e-4a0b-a4ca-838b4b9cfa1d@linaro.org>
- <aPdOICr8bqP5a-EM@kekkonen.localdomain>
-From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-In-Reply-To: <aPdOICr8bqP5a-EM@kekkonen.localdomain>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20251015192611.241920-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20251015192611.241920-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 21 Oct 2025 12:26:08 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdW1B7Yk1hUU9MSJsiL8wSmjAUGN7Qd_wgBHv8Ct=-wi4Q@mail.gmail.com>
+X-Gm-Features: AS18NWA5TDVRnTdlKeYEusciZZnf69CtVCQ6CEB6928Ztx_Tex5oqUI1hZkbQkE
+Message-ID: <CAMuHMdW1B7Yk1hUU9MSJsiL8wSmjAUGN7Qd_wgBHv8Ct=-wi4Q@mail.gmail.com>
+Subject: Re: [PATCH v11 0/7] Add support for DU/DSI clocks and DSI driver
+ support for the Renesas RZ/V2H(P) SoC
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Robert Foss <rfoss@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+	Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Biju Das <biju.das.jz@bp.renesas.com>, Magnus Damm <magnus.damm@gmail.com>, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	linux-clk@vger.kernel.org, Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
+	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Content-Type: text/plain; charset="UTF-8"
 
-On 10/21/25 12:10, Sakari Ailus wrote:
-> Hi Vladimir,
-> 
-> On Tue, Oct 21, 2025 at 11:00:35AM +0300, Vladimir Zapolskiy wrote:
->> Hi Sakari.
->>
->> On 10/20/25 23:23, Sakari Ailus wrote:
->>> Hi Vladimir,
->>>
->>> Thanks for the set.
->>>
->>> On Thu, Oct 16, 2025 at 05:04:18AM +0300, Vladimir Zapolskiy wrote:
->>>> Add device tree bindings documentation for Samsung S5KJN1 image sensor.
->>>>
->>>> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
->>>> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
->>>> ---
->>>>    .../bindings/media/i2c/samsung,s5kjn1.yaml    | 95 +++++++++++++++++++
->>>>    1 file changed, 95 insertions(+)
->>>>    create mode 100644 Documentation/devicetree/bindings/media/i2c/samsung,s5kjn1.yaml
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/media/i2c/samsung,s5kjn1.yaml b/Documentation/devicetree/bindings/media/i2c/samsung,s5kjn1.yaml
->>>> new file mode 100644
->>>> index 000000000000..2220b3e528d4
->>>> --- /dev/null
->>>> +++ b/Documentation/devicetree/bindings/media/i2c/samsung,s5kjn1.yaml
->>>> @@ -0,0 +1,95 @@
->>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>>> +%YAML 1.2
->>>> +---
->>>> +$id: http://devicetree.org/schemas/media/i2c/samsung,s5kjn1.yaml#
->>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>> +
->>>> +title: Samsung S5KJN1 Image Sensor
->>>> +
->>>> +description:
->>>> +  Samsung S5KJN1 (ISOCELL JN1) image sensor is a 50MP image sensor.
->>>> +  The sensor is controlled over a serial camera control bus protocol,
->>>> +  the widest supported output image frame size is 8160x6144 at 10 frames
->>>> +  per second rate, data output format is RAW10 transferred over 4-lane
->>>> +  MIPI D-PHY interface.
->>>
->>> Can the sensor work with fewer lanes? This is almost always the case. In
->>> this case you'd need data-lanes property but feel free to make 4 the
->>> default if you like.
->>
->> As usual I don't have access to the sensor datasheet, what is known to me
->> is that
->>
->> 1) there is no examples in the downstream, when MIPI CSI interface is
->> configured in any other mode but 4 lanes D-PHY RAW10,
->>
->> 2) right the same information is given in the official scarce booklet:
->>
->> https://semiconductor.samsung.com/image-sensor/mobile-image-sensor/isocell-jn1/
->>
->> The same reasoning as above is directly applicable to the second sent
->> sensor driver of Samsung S5K3M5.
->>
->> There is a known practical pattern that if it happens to be of necessity
->> any new properties can be added to device's dt bindings later on, thus
->> it should be safe to omit any presumably non-configurable hardware
->> properties from the description on an early stage.
-> 
-> Even if the driver supports four lanes only, it's very unlikely the sensor
+Hi Prabhakar et al,
 
-Well, the second point given above is not about the driver, but it leads
-to the shortest possible sensor hardware spec:
+On Wed, 15 Oct 2025 at 21:26, Prabhakar <prabhakar.csengg@gmail.com> wrote:
+> This patch series adds DU/DSI clocks and provides support for the
+> MIPI DSI interface on the RZ/V2H(P) SoC.
+>
+> v10->v11:
+> - Split CPG_PLL_CLK1_K/M/PDIV macro change into separate patch
+> - Updated rzv2h_cpg_plldsi_div_determine_rate()
+>   while iterating over the divider table
+> - Added Acked-by tag from Tomi for patch 2/7 and 3/7
+> - Added Reviewed-by tag from Geert for patch 2/7 and 3/7
 
-https://semiconductor.samsung.com/image-sensor/mobile-image-sensor/isocell-jn1/
+I think this series is ready for merging.
 
-If you scroll right to the bottom, it says
+> Lad Prabhakar (7):
+>   clk: renesas: rzv2h-cpg: Add instance field to struct pll
+>   clk: renesas: rzv2h-cpg: Use GENMASK for PLL fields
+>   clk: renesas: rzv2h-cpg: Add support for DSI clocks
+>   clk: renesas: r9a09g057: Add clock and reset entries for DSI and LCDC
+>   dt-bindings: display: bridge: renesas,dsi: Document RZ/V2H(P) and
+>     RZ/V2N
+>   drm: renesas: rz-du: mipi_dsi: Add LPCLK clock support
+>   drm: renesas: rz-du: mipi_dsi: Add support for RZ/V2H(P) SoC
 
-Interface: 4 lanes (2.15 Gbps per lane)
+As this touches both clk and drm, let's discuss the merge strategy.
+My proposal:
+  1. I queue patches 1-3 in an immutable branch with a signed tag,
+     to be used as a base for the remaining patches,
+  2. I queue patch 4 on top of 1 in renesas-clk for v6.19,
+  3. The DRM people queue patches 5-7 on top of 1.
 
-It does not completely or clearly exclude 1 or 2 lane configuration,
-I know, but "exclusions" are not documented anyway, only something
-presenting gets documented.
+Does that sound fine for you?
+Thanks!
 
-> is limited to this. There are two options here:
-> 
-> 1. make data-lanes mandatory or
-> 
-> 2. add data-lanes as optional with default of four, which the driver
->     supports and which is known to function.
+Gr{oetje,eeting}s,
 
-If you ask, I'd rather prefer to implement the second option in the dt
-binding documentation and driver, let me know if there are any other
-asked changes to be done in a bulk.
+                        Geert
 
-Thank you for review!
 
--- 
-Best wishes,
-Vladimir
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
