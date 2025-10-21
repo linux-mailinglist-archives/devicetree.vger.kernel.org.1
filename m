@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-229502-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229503-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0988BF84F9
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 21:48:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C3B1CBF8514
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 21:50:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6A3D119A534A
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 19:48:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5F58D1894B21
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 19:50:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D945826B0BE;
-	Tue, 21 Oct 2025 19:48:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 861B826B2AD;
+	Tue, 21 Oct 2025 19:50:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gS8Bo8Eu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Vdofap9m"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A89C8350A00;
-	Tue, 21 Oct 2025 19:48:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5716A350A34;
+	Tue, 21 Oct 2025 19:50:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761076082; cv=none; b=XDOf9fgKYqZgpyU1O1Q/OkmyiXVg7NHKDYS7+6S9q3SFkkEVCL4WnLXAduQrFm7lzdNVCYVgPOXdp3t8V1BUVGB6llKkX6m+kDcDqXwvxyvqpeVg9Psapz3j7UR/YDDWkOJQkDxG1Xadp2G9tmKWLVuRmEpZhB/APG3tP3Svpqo=
+	t=1761076206; cv=none; b=R0/fX8gz8rwM1FqdxL+U6dUDAu5pseV8fCyMIhNntI7ViVreGG5z+33IcdSdiU3N3nyliDgCM2xvoOiC2UyFoyu72Ay6GVVOgd8VII1miHHl/lSoFO6rFThzuWCmlaQ8/GFMOAM9sB1DBX9124qdvmAR53Wbne7yE6i2viPxOnI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761076082; c=relaxed/simple;
-	bh=pB7GSP7G4YxBhBhWUOMCD9Tej+czMSzqWpxdvGBf5Kw=;
+	s=arc-20240116; t=1761076206; c=relaxed/simple;
+	bh=scbDqlVwwhiuUcweIByTM6Pz93MVCn/SPZxSxem+ilk=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=jteTUeyzjtSY+t+6GElH0olq7+RqtOr5kbBw6uHeue0mZruojyqKTvW64m3nIGrhcw75DifkPrwGuXPbIJaXWFhydEsMZS44YlnQm2keM2KOUdX+G/o70jdF18Oew2F1DHmUvfkrXcGoWflyQ+y29pwX+MtppyJJ1clALt5p/Zc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gS8Bo8Eu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E2ADC4CEF1;
-	Tue, 21 Oct 2025 19:47:58 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=Nhw5//EcL6dXGKtjVWmTB1hsBFTlU7BAcCYCrmUj4xvlYghX5Ul4DEQVAXwmYUtyaDF6EUsrdFXohcVqprUauIQD31itdEJkgdHi7mUZJhhC5MoHemyyVhNHo4CJHIbVixGekMZvZozA3obGsOwO+EXQdFABkBrq2HA8IF3wZSQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Vdofap9m; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DD28DC4CEF1;
+	Tue, 21 Oct 2025 19:50:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761076082;
-	bh=pB7GSP7G4YxBhBhWUOMCD9Tej+czMSzqWpxdvGBf5Kw=;
+	s=k20201202; t=1761076205;
+	bh=scbDqlVwwhiuUcweIByTM6Pz93MVCn/SPZxSxem+ilk=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=gS8Bo8EuS96pdQldVEpjTTTRKTI+mk3DvpKxim3Ev2CF+gZ46wo+gGbQVKFyQBpox
-	 yLd5N3iWSS04CwnVCRVa+deEm+LgvK6pb2n3qLj+exyn1QXnmkr4hQJ8VCYDCIQLFO
-	 m5qqgxq1/rgiB871umt/+GGztmbMsjcOSGJINw62VJRIEOAJJkkFLA+CXm0M9W1yzn
-	 97UFo71YxCBO/k54rg1v3OCFJz7VJ1DCPiQKvz54ugJj+db5vx3xMUfsk07di0gUwn
-	 6f+J5W+zMTf1oSaKfyiGdQWdZBWzsjvc1aKuD9euYmymfwOsWLyjVLkgctm+/rI92v
-	 MtdDVPMdXpb+g==
-Message-ID: <4383c2fb-5267-4b7b-90e9-6046c2686912@kernel.org>
-Date: Tue, 21 Oct 2025 21:47:56 +0200
+	b=Vdofap9md2kxoyzWTJWcbXVLos3HV7kzNdlbjoVK5kIjyA2RC6x0gKOYW7RNvleed
+	 0Ldfij3JLmOz+DK1mWgVIt/zm91+uOtc/g8cnNVjbs0iDy8VfdR6sg6p9kRNrn65Ew
+	 4rgQvT2w3/xYUOP8/z52T/PW6f9CwQSAEqG89xahjVVXe9BdLaFv1iBPDEKZN6HLkY
+	 iqSbBHkEYInRRVASJh0U7sCOmPBslV7QZlnKKikha/HakILFWNAoPABWdclSW/ajfq
+	 ourFyNtn9SIZyD+khlbb80hToHKnkKEqhuf/LD96pxY0tPTFCGTiGUnU9lFnxgiPDy
+	 BBhoZDl/Ro5rQ==
+Message-ID: <da53e358-2d14-4dc7-ba88-79f8eceb2011@kernel.org>
+Date: Tue, 21 Oct 2025 21:50:02 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,23 +50,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 8/9] clk: samsung: gs101: Enable auto_clock_gate mode for
- each gs101 CMU
-To: Peter Griffin <peter.griffin@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
- =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
- Tudor Ambarus <tudor.ambarus@linaro.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Sam Protsenko <semen.protsenko@linaro.org>,
- Sylwester Nawrocki <s.nawrocki@samsung.com>,
- Chanwoo Choi <cw00.choi@samsung.com>
-Cc: Will McVicker <willmcvicker@google.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, kernel-team@android.com
-References: <20251013-automatic-clocks-v1-0-72851ee00300@linaro.org>
- <20251013-automatic-clocks-v1-8-72851ee00300@linaro.org>
+Subject: Re: [PATCH 0/5] memory: tegra: Support EMC dfs on Tegra186/Tegra194
+To: Aaron Kling <webgeek1234@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Thierry Reding <thierry.reding@gmail.com>,
+ Jonathan Hunter <jonathanh@nvidia.com>, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
+References: <20251021-tegra186-icc-p2-v1-0-39d53bdc9aab@gmail.com>
+ <ee6b80a7-4505-466e-a433-5f186d747945@kernel.org>
+ <CALHNRZ9nXYRgjmpbR5KiQpsSf4hu4=qcgoh8F9_5b9yXF_5Btw@mail.gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -112,222 +104,46 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20251013-automatic-clocks-v1-8-72851ee00300@linaro.org>
+In-Reply-To: <CALHNRZ9nXYRgjmpbR5KiQpsSf4hu4=qcgoh8F9_5b9yXF_5Btw@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 13/10/2025 22:51, Peter Griffin wrote:
-> Enable auto clock mode, and define the additional fields which are used
-> when this mode is enabled.
+On 21/10/2025 21:19, Aaron Kling wrote:
+> On Tue, Oct 21, 2025 at 2:11 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>>
+>> On 21/10/2025 20:29, Aaron Kling via B4 Relay wrote:
+>>> This series borrows the concept used on Tegra234 to scale EMC based on
+>>> CPU frequency and applies it to Tegra186 and Tegra194. Except that the
+>>> bpmp on those archs does not support bandwidth manager, so the scaling
+>>> iteself is handled similar to how Tegra124 currently works.
+>>>
+>>> This was originally part of a larger series [0], but it was requested to
+>>> be split into smaller series.
+>>>
+>>> [0] https://lore.kernel.org/r/20250909-tegra186-icc-v2-0-09413724e781@gmail.com
+>>
+>> Please keep correct versioning and changelog in the future. Try yourself:
+>>
+>> b4 diff '<20251021-tegra186-icc-p2-v1-0-39d53bdc9aab@gmail.com>'
+>> Grabbing thread from
+>> lore.kernel.org/all/20251021-tegra186-icc-p2-v1-0-39d53bdc9aab@gmail.com/t.mbox.gz
+>> ---
+>> Analyzing 6 messages in the thread
+>> Could not find lower series to compare against.
+>>
+>> I think I emphasized last time how important is to make it readable and
+>> easy for maintainers.
 > 
-> /sys/kernel/debug/clk/clk_summary now reports approximately 308 running
-> clocks and 298 disabled clocks. Prior to this commit 586 clocks were
-> running and 17 disabled. To ensure compatability with older DTs the
+> You said to split it, which I don't see how that means anything other
+> than 'make new series'. How am I supposed to keep versioning when I
 
-Typo
+New series with old changelog! Why splitting means that entire old
+discussions, old tags, old reviews, everything should be discarded?
 
-> resource size is checked and an error issued if the DT needs updating.
+> had to make three entirely new series?
 
-I fail to see how you keek it compatible. See further.
-
-> 
-> Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
-> ---
->  drivers/clk/samsung/clk-gs101.c | 80 +++++++++++++++++++++++++++++++++++++++++
->  1 file changed, 80 insertions(+)
-> 
-> diff --git a/drivers/clk/samsung/clk-gs101.c b/drivers/clk/samsung/clk-gs101.c
-> index 70b26db9b95ad0b376d23f637c7683fbc8c8c600..baf41ae6c9e2480cb83531acf7eae190c6aff819 100644
-> --- a/drivers/clk/samsung/clk-gs101.c
-> +++ b/drivers/clk/samsung/clk-gs101.c
-> @@ -9,6 +9,7 @@
->  #include <linux/clk-provider.h>
->  #include <linux/mod_devicetable.h>
->  #include <linux/of.h>
-> +#include <linux/of_address.h>
->  #include <linux/platform_device.h>
->  
->  #include <dt-bindings/clock/google,gs101.h>
-> @@ -17,6 +18,8 @@
->  #include "clk-exynos-arm64.h"
->  #include "clk-pll.h"
->  
-> +int check_cmu_res_size(struct device_node *np);
-> +
->  /* NOTE: Must be equal to the last clock ID increased by one */
->  #define CLKS_NR_TOP	(CLK_GOUT_CMU_TPU_UART + 1)
->  #define CLKS_NR_APM	(CLK_APM_PLL_DIV16_APM + 1)
-> @@ -26,6 +29,10 @@
->  #define CLKS_NR_PERIC0	(CLK_GOUT_PERIC0_SYSREG_PERIC0_PCLK + 1)
->  #define CLKS_NR_PERIC1	(CLK_GOUT_PERIC1_SYSREG_PERIC1_PCLK + 1)
->  
-> +#define GS101_GATE_DBG_OFFSET 0x4000
-> +#define GS101_DRCG_EN_OFFSET  0x104
-> +#define GS101_MEMCLK_OFFSET   0x108
-> +
->  /* ---- CMU_TOP ------------------------------------------------------------- */
->  
->  /* Register Offset definitions for CMU_TOP (0x1e080000) */
-> @@ -1433,6 +1440,9 @@ static const struct samsung_cmu_info top_cmu_info __initconst = {
->  	.nr_clk_ids		= CLKS_NR_TOP,
->  	.clk_regs		= cmu_top_clk_regs,
->  	.nr_clk_regs		= ARRAY_SIZE(cmu_top_clk_regs),
-> +	.auto_clock_gate	= true,
-> +	.gate_dbg_offset	= GS101_GATE_DBG_OFFSET,
-> +	.option_offset		= CMU_CMU_TOP_CONTROLLER_OPTION,
->  };
->  
->  static void __init gs101_cmu_top_init(struct device_node *np)
-> @@ -1900,6 +1910,11 @@ static const struct samsung_gate_clock apm_gate_clks[] __initconst = {
->  	     CLK_CON_GAT_GOUT_BLK_APM_UID_XIU_DP_APM_IPCLKPORT_ACLK, 21, CLK_IS_CRITICAL, 0),
->  };
->  
-> +static const unsigned long dcrg_memclk_sysreg[] __initconst = {
-> +	GS101_DRCG_EN_OFFSET,
-> +	GS101_MEMCLK_OFFSET,
-> +};
-> +
->  static const struct samsung_cmu_info apm_cmu_info __initconst = {
->  	.mux_clks		= apm_mux_clks,
->  	.nr_mux_clks		= ARRAY_SIZE(apm_mux_clks),
-> @@ -1912,6 +1927,12 @@ static const struct samsung_cmu_info apm_cmu_info __initconst = {
->  	.nr_clk_ids		= CLKS_NR_APM,
->  	.clk_regs		= apm_clk_regs,
->  	.nr_clk_regs		= ARRAY_SIZE(apm_clk_regs),
-> +	.sysreg_clk_regs	= dcrg_memclk_sysreg,
-> +	.nr_sysreg_clk_regs	= ARRAY_SIZE(dcrg_memclk_sysreg),
-> +	.auto_clock_gate	= true,
-> +	.gate_dbg_offset	= GS101_GATE_DBG_OFFSET,
-> +	.drcg_offset		= GS101_DRCG_EN_OFFSET,
-> +	.memclk_offset		= GS101_MEMCLK_OFFSET,
->  };
->  
->  /* ---- CMU_HSI0 ------------------------------------------------------------ */
-> @@ -2375,7 +2396,14 @@ static const struct samsung_cmu_info hsi0_cmu_info __initconst = {
->  	.nr_clk_ids		= CLKS_NR_HSI0,
->  	.clk_regs		= hsi0_clk_regs,
->  	.nr_clk_regs		= ARRAY_SIZE(hsi0_clk_regs),
-> +	.sysreg_clk_regs	= dcrg_memclk_sysreg,
-> +	.nr_sysreg_clk_regs	= ARRAY_SIZE(dcrg_memclk_sysreg),
->  	.clk_name		= "bus",
-> +	.auto_clock_gate        = true,
-> +	.gate_dbg_offset        = GS101_GATE_DBG_OFFSET,
-> +	.option_offset		= HSI0_CMU_HSI0_CONTROLLER_OPTION,
-> +	.drcg_offset		= GS101_DRCG_EN_OFFSET,
-> +	.memclk_offset		= GS101_MEMCLK_OFFSET,
->  };
->  
->  /* ---- CMU_HSI2 ------------------------------------------------------------ */
-> @@ -2863,7 +2891,14 @@ static const struct samsung_cmu_info hsi2_cmu_info __initconst = {
->  	.nr_clk_ids		= CLKS_NR_HSI2,
->  	.clk_regs		= cmu_hsi2_clk_regs,
->  	.nr_clk_regs		= ARRAY_SIZE(cmu_hsi2_clk_regs),
-> +	.sysreg_clk_regs	= dcrg_memclk_sysreg,
-> +	.nr_sysreg_clk_regs	= ARRAY_SIZE(dcrg_memclk_sysreg),
->  	.clk_name		= "bus",
-> +	.auto_clock_gate        = true,
-> +	.gate_dbg_offset        = GS101_GATE_DBG_OFFSET,
-> +	.option_offset		= HSI2_CMU_HSI2_CONTROLLER_OPTION,
-> +	.drcg_offset		= GS101_DRCG_EN_OFFSET,
-> +	.memclk_offset		= GS101_MEMCLK_OFFSET,
->  };
->  
->  /* ---- CMU_MISC ------------------------------------------------------------ */
-> @@ -3423,11 +3458,37 @@ static const struct samsung_cmu_info misc_cmu_info __initconst = {
->  	.nr_clk_ids		= CLKS_NR_MISC,
->  	.clk_regs		= misc_clk_regs,
->  	.nr_clk_regs		= ARRAY_SIZE(misc_clk_regs),
-> +	.sysreg_clk_regs	= dcrg_memclk_sysreg,
-> +	.nr_sysreg_clk_regs	= ARRAY_SIZE(dcrg_memclk_sysreg),
->  	.clk_name		= "bus",
-> +	.auto_clock_gate	= true,
-> +	.gate_dbg_offset	= GS101_GATE_DBG_OFFSET,
-> +	.option_offset		= MISC_CMU_MISC_CONTROLLER_OPTION,
-> +	.drcg_offset		= GS101_DRCG_EN_OFFSET,
-> +	.memclk_offset		= GS101_MEMCLK_OFFSET,
->  };
->  
-> +/* for old DT compatbility with incorrect CMU size*/
-> +int check_cmu_res_size(struct device_node *np)
-> +{
-> +	struct resource res;
-> +	resource_size_t size;
-> +
-> +	if (of_address_to_resource(np, 0, &res))
-> +		return -ENODEV;
-> +
-> +	size = resource_size(&res);
-> +	if (size != 0x10000) {
-> +		pr_warn("%pOF: resource to small. Please update your DT\n", np);
-> +		return -ENODEV;
-> +	}
-> +	return 0;
-> +}
-> +
->  static void __init gs101_cmu_misc_init(struct device_node *np)
->  {
-> +	if (check_cmu_res_size(np))
-> +		return;
-
-You will not register CMU on old DTB.
-
->  	exynos_arm64_register_cmu(NULL, np, &misc_cmu_info);
->  }
->  
-> @@ -4010,6 +4071,10 @@ static const struct samsung_gate_clock peric0_gate_clks[] __initconst = {
->  	     21, 0, 0),
->  };
->  
-> +static const unsigned long dcrg_sysreg[] __initconst = {
-> +	GS101_DRCG_EN_OFFSET,
-> +};
-> +
->  static const struct samsung_cmu_info peric0_cmu_info __initconst = {
->  	.mux_clks		= peric0_mux_clks,
->  	.nr_mux_clks		= ARRAY_SIZE(peric0_mux_clks),
-> @@ -4020,7 +4085,13 @@ static const struct samsung_cmu_info peric0_cmu_info __initconst = {
->  	.nr_clk_ids		= CLKS_NR_PERIC0,
->  	.clk_regs		= peric0_clk_regs,
->  	.nr_clk_regs		= ARRAY_SIZE(peric0_clk_regs),
-> +	.sysreg_clk_regs	= dcrg_sysreg,
-> +	.nr_sysreg_clk_regs	= ARRAY_SIZE(dcrg_sysreg),
->  	.clk_name		= "bus",
-> +	.auto_clock_gate        = true,
-> +	.gate_dbg_offset        = GS101_GATE_DBG_OFFSET,
-> +	.option_offset		= PERIC0_CMU_PERIC0_CONTROLLER_OPTION,
-> +	.drcg_offset		= GS101_DRCG_EN_OFFSET,
->  };
->  
->  /* ---- CMU_PERIC1 ---------------------------------------------------------- */
-> @@ -4368,7 +4439,13 @@ static const struct samsung_cmu_info peric1_cmu_info __initconst = {
->  	.nr_clk_ids		= CLKS_NR_PERIC1,
->  	.clk_regs		= peric1_clk_regs,
->  	.nr_clk_regs		= ARRAY_SIZE(peric1_clk_regs),
-> +	.sysreg_clk_regs	= dcrg_sysreg,
-> +	.nr_sysreg_clk_regs	= ARRAY_SIZE(dcrg_sysreg),
->  	.clk_name		= "bus",
-> +	.auto_clock_gate        = true,
-> +	.gate_dbg_offset        = GS101_GATE_DBG_OFFSET,
-> +	.option_offset		= PERIC1_CMU_PERIC1_CONTROLLER_OPTION,
-> +	.drcg_offset		= GS101_DRCG_EN_OFFSET,
->  };
->  
->  /* ---- platform_driver ----------------------------------------------------- */
-> @@ -4378,6 +4455,9 @@ static int __init gs101_cmu_probe(struct platform_device *pdev)
->  	const struct samsung_cmu_info *info;
->  	struct device *dev = &pdev->dev;
->  
-> +	if (check_cmu_res_size(dev->of_node))
-> +		return -ENODEV;
-
-And here you will really bail out with error.
-
-> +
->  	info = of_device_get_match_data(dev);
->  	exynos_arm64_register_cmu(dev, dev->of_node, info);
->  
-> 
-
+I do not see where is the problem - it is trivial. If you use git, you
+just keep numbering. If you use b4, you just force-revision n+1.
 
 Best regards,
 Krzysztof
