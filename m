@@ -1,129 +1,84 @@
-Return-Path: <devicetree+bounces-229463-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229464-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F2B9BF7E4F
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 19:27:59 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 06378BF7F98
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 19:53:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 451595075F3
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 17:27:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BA120188EC7A
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 17:53:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DEA734D4F4;
-	Tue, 21 Oct 2025 17:25:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="i4IH1Jzf"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F77D34D4E8;
+	Tue, 21 Oct 2025 17:53:27 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3865E34C125;
-	Tue, 21 Oct 2025 17:25:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 510553557ED;
+	Tue, 21 Oct 2025 17:53:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761067551; cv=none; b=clQLDmADRadX5s4CmKXrr9MCCv43+4MtD+ZPP72rpFsD3HsQeAZDK3TPUox5YgEsafDxxaCrlHPKT73AV0WTrAAujScnFV8hkAlrjcPESsAVuEtFJGCI+fym3Ojy+AXNZrSA7daYFQLpZ/oNKF2eNx2xIQC4hsBTwFFGrXZ4Hrw=
+	t=1761069207; cv=none; b=P4t4vMU43t5qxBgJCzgP1TGfay4E2NP7a+DH/RV/KijWKKxD9Sq5LZBGj5M/LR5PxuHvP0hXnT4ZWoFxmAxW+o33FdWpYGCYvRqDr0P8DbWgp37XiApmtpBfH/FzdnFF+AH8InP9e7qT+Ib8e3PmHkhf2G6HBKoeKuGzqT9MKn8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761067551; c=relaxed/simple;
-	bh=Yo2d8BmvVI13BXWvC99teKJSqgRJdMWLCDpoER2v3Zc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bydswRGKZothYnRYCIUJKZemuVXEqCB6jHKenOW0BPlm+D982V75N2QyBqpNtjwHoFsUsJjoNsttjB71i0TSXY1YLXUEa57ykaXaRzZ+AkXuALqXonQ4rtpM84pw8zXOWSXxMgxE0i5bTcp5L8Jd9U8j8ggZArqhLMbll4DunS8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=i4IH1Jzf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9C58EC4CEF7;
-	Tue, 21 Oct 2025 17:25:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761067551;
-	bh=Yo2d8BmvVI13BXWvC99teKJSqgRJdMWLCDpoER2v3Zc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=i4IH1JzfOOHjChES92XubVNDo3V21W2oVfPiNul1oNL5LoGNB6VqU0uGa08m046rM
-	 CYcSeHNFevZVZQZUQRCsJ0vyHcV/kJod0zQA9TfTYs3l9+E/kJIclwmDCLkdt64/+8
-	 2m4yENiuUoF6uY6ITCGd4xLZIK0MLXcncjggJPUdogYcGdvOEdCNDey5yH1gZQlcXe
-	 qmU+Qkk+PtVNKdi0zqlfHmCMeJ8aMchRmzyO6NCUVw7fc9/IOAJz8jFAMvZAs5j+xi
-	 R4zKSbhIsYzlfDSbH5MG4fX2y9GS+NAz6fdXOcBchVllXyMjZ9VxxGZUXBeRcazt2p
-	 eJryhMEcrJh1A==
-Date: Tue, 21 Oct 2025 18:25:43 +0100
-From: Lee Jones <lee@kernel.org>
-To: samuel.kayode@savoirfairelinux.com
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Sebastian Reichel <sre@kernel.org>, Frank Li <Frank.li@nxp.com>,
-	imx@lists.linux.dev, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
-	linux-pm@vger.kernel.org, Abel Vesa <abelvesa@kernel.org>,
-	Abel Vesa <abelvesa@linux.com>, Robin Gong <b38343@freescale.com>,
-	Robin Gong <yibin.gong@nxp.com>,
-	Enric Balletbo i Serra <eballetbo@gmail.com>,
-	Sean Nyekjaer <sean@geanix.com>,
-	Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Sebastian Reichel <sebastian.reichel@collabora.com>
-Subject: [GIT PULL] Immutable branch between MFD, Input, Power and Regulator
- due for the v6.19 merge window
-Message-ID: <20251021172543.GL475031@google.com>
-References: <20251001-pf1550-v12-0-a3302aa41687@savoirfairelinux.com>
+	s=arc-20240116; t=1761069207; c=relaxed/simple;
+	bh=TWXOv5Mdy2U7Y72TfpTFWHWBB0MlAP/zZFp/GDplpuQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=EJu1e+gGQqf47cwjfugR7UbdTwSk7cr0AeYf6oP3s/dvTzQzE1NQQO2grBo/+c4VWNEh1ky6jnPOUmr76g3C6TvafuHDV4R/01/KFBOyXsesES4GcubYFVrqYojFJtCN23jTBGJrXV6oW/EFB463AE7uoJjJyagyjGrRnEDDsgs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; arc=none smtp.client-ip=210.160.252.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
+X-CSE-ConnectionGUID: mYCLAkorRimnIgxsyhB2gA==
+X-CSE-MsgGUID: 81K4wOQxQyyQlIVGZETLaw==
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie5.idc.renesas.com with ESMTP; 22 Oct 2025 02:53:17 +0900
+Received: from vm01.adwin.renesas.com (unknown [10.226.92.145])
+	by relmlir6.idc.renesas.com (Postfix) with ESMTP id 1FA064031FFC;
+	Wed, 22 Oct 2025 02:53:12 +0900 (JST)
+From: Ovidiu Panait <ovidiu.panait.rb@renesas.com>
+To: biju.das.jz@bp.renesas.com,
+	geert+renesas@glider.be,
+	magnus.damm@gmail.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	mturquette@baylibre.com,
+	sboyd@kernel.org
+Cc: linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-clk@vger.kernel.org
+Subject: [PATCH 0/4] Add versaclock3 support for RZ/V2H EVK
+Date: Tue, 21 Oct 2025 17:53:07 +0000
+Message-ID: <20251021175311.19611-1-ovidiu.panait.rb@renesas.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20251001-pf1550-v12-0-a3302aa41687@savoirfairelinux.com>
 
-Enjoy!
+Hi,
 
-The following changes since commit 3a8660878839faadb4f1a6dd72c3179c1df56787:
+This series extends the versaclock3 driver to support the internal
+freerunning 32.768 kHz clock, which is used on the RZ/V2H SoC as RTC
+counter clock. It also adds the dts node for the RZ/V2H EVK.
 
-  Linux 6.18-rc1 (2025-10-12 13:42:36 -0700)
+Best regards,
+Ovidiu
 
-are available in the Git repository at:
+Ovidiu Panait (4):
+  clk: versaclock3: Remove unused SE2 clock select macro
+  clk: versaclock3: Use clk_parent_data arrays for clk_mux
+  clk: versaclock3: Add freerunning 32.768kHz clock support
+  arm64: dts: renesas: r9a09g057h44-rzv2h-evk: Add versa3 clock
+    generator node
 
-  git://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git ib-mfd-input-power-regulator-v6.19
-
-for you to fetch changes up to a7d6255a0bf302c028ac680564633a6aac5f611d:
-
-  MAINTAINERS: Add an entry for PF1550 MFD driver (2025-10-21 16:59:07 +0100)
-
-----------------------------------------------------------------
-Immutable branch between MFD, Input, Power and Regulator due for the v6.19 merge window
-
-----------------------------------------------------------------
-Samuel Kayode (6):
-      dt-bindings: mfd: Add binding for the PF1550 PMIC
-      mfd: pf1550: Add core driver for the PF1550 PMIC
-      regulator: pf1550: Add support for regulator
-      Input: pf1550 - add onkey support
-      power: supply: pf1550: add battery charger support
-      MAINTAINERS: Add an entry for PF1550 MFD driver
-
- .../devicetree/bindings/mfd/nxp,pf1550.yaml        | 161 ++++++
- MAINTAINERS                                        |  11 +
- drivers/input/misc/Kconfig                         |  11 +
- drivers/input/misc/Makefile                        |   1 +
- drivers/input/misc/pf1550-onkey.c                  | 197 +++++++
- drivers/mfd/Kconfig                                |  16 +
- drivers/mfd/Makefile                               |   2 +
- drivers/mfd/pf1550.c                               | 367 ++++++++++++
- drivers/power/supply/Kconfig                       |  11 +
- drivers/power/supply/Makefile                      |   1 +
- drivers/power/supply/pf1550-charger.c              | 641 +++++++++++++++++++++
- drivers/regulator/Kconfig                          |   9 +
- drivers/regulator/Makefile                         |   1 +
- drivers/regulator/pf1550-regulator.c               | 429 ++++++++++++++
- include/linux/mfd/pf1550.h                         | 273 +++++++++
- 15 files changed, 2131 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/mfd/nxp,pf1550.yaml
- create mode 100644 drivers/input/misc/pf1550-onkey.c
- create mode 100644 drivers/mfd/pf1550.c
- create mode 100644 drivers/power/supply/pf1550-charger.c
- create mode 100644 drivers/regulator/pf1550-regulator.c
- create mode 100644 include/linux/mfd/pf1550.h
+ .../dts/renesas/r9a09g057h44-rzv2h-evk.dts    |  25 ++++
+ drivers/clk/clk-versaclock3.c                 | 126 +++++++++++++-----
+ 2 files changed, 120 insertions(+), 31 deletions(-)
 
 -- 
-Lee Jones [李琼斯]
+2.51.0
+
 
