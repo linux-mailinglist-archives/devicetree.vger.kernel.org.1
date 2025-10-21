@@ -1,219 +1,303 @@
-Return-Path: <devicetree+bounces-229323-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229324-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D259BF5F6D
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 13:11:14 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA057BF5F88
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 13:12:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6975E3B5076
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 11:11:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 71B56188FC66
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 11:13:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECE1B2F363A;
-	Tue, 21 Oct 2025 11:11:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 641422F2619;
+	Tue, 21 Oct 2025 11:12:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="rjsV+D+/"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="bn/RiCrx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E69BB2F3607
-	for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 11:11:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A9A82F0C69
+	for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 11:12:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761045064; cv=none; b=Z7lrMG+k72REJS76w8xtNGXCqmQh9lyobzGdsJglJIAJHo6LUWKh8AczdAyPlJFgXm892eolr4cagCK/gzzZds2mdRvisxWfKtOgZnNbmi1yLU8W86KRnGIBzo6HbzmBsVxV0u9Q+ohUXeycOBq/T7bIhgITK1M19hLov5i2tYk=
+	t=1761045161; cv=none; b=eiIlC/5IKByq3ov4lcLepyjCSN2uXMoNHRF2wSqIrVFLqtWa0zrepdV28IDjw7LWcoRKcGsMesjQwZdP+5WqI+/QZsk5EGPFG+vAITo2dvqcYsJ5CdD+1Si5Gk7sdtgVvVdmRmSACifKJjBx61BTSSlV+CrUWURFniCxLvuXAWQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761045064; c=relaxed/simple;
-	bh=ksFlsenVG5BLSjQ9Fd4ZX90f73sEys91+3sYDn06OyM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=q9SFiJqcWsLqTRk3zxcc57HPc16dt9JWQlx5t+7ULsMn4eEw+4rNqMcb0woc6JTRloPo4QSEwAxM1I7Ytz0Mtj6i5d1/j7bW/rFfjCLxzdGEfJZmZRZ15ut6xY4jrY+fF8LUwnX+D56/qqwiWZWC5lM9lV0+5gMSfSa1ed0O6Ow=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=rjsV+D+/; arc=none smtp.client-ip=209.85.221.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-427054641f0so805247f8f.1
-        for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 04:11:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1761045061; x=1761649861; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=q5EyTqZZ7MGdSDa8l4x23g921Hy97xpn6zc3palSUX4=;
-        b=rjsV+D+/SrANC3r+qem8Fq2BHxg0FUbYXjRpNb76S2VvsAL8pHlj8VMBORNK5+o1bh
-         rJM3gV175XLtZQpOSx++IDYnOsOzV8T1dq1lhcuie8ssN5HyqJ/xiGtJua88lHuBsxfm
-         mz/+n4ffcFOJNubyaknd71RcToPNMpwgd4A9vnPIY6xgjSCHfeLcopy5XAFwM8YSF22x
-         KNVHauV5vMfR0zLWBxYZkrtFvBD9XIkOQo4z1ywbrkF+zJiA7SnKShesfQQ8OMckGK1T
-         khee3EYjSwzGciY8BpOjms4gBWfJz02NoD5v5vgrbDYvNaeo+LHRcNG64QdNiaYGImKf
-         g3gg==
+	s=arc-20240116; t=1761045161; c=relaxed/simple;
+	bh=n9q0McISN0xADdXG1hSwSPQJGCo+g4xzhg4ndlV5iwo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=oLz4GwS8zg3nqhXBZ6bl8ur300eDcRJGVZUzC3LQJVicvOP7tLvYBhXxqAwi51Ah2TSibfyQ+017wwWQIiYZJX2pTT0pZo3nzw1cLWfQ2LB61AFqfOpXgwhP1ibyj8p9GTGcuesorDV1aO2gZ4aRa1ayc60iztly9cpkBSJnyCg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=bn/RiCrx; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59L8IWXQ028420
+	for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 11:12:38 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	iuqZq2WiXRu2EPl06OgObOqPz4wqzbYylk4WoFwyL7I=; b=bn/RiCrxzTBIVf6V
+	ZuEMUnpnxjOCMh03iaT+mOpzGeSSvLv2rwI6J8fzDebZjVL/QjIrVM2uQRrtF1gm
+	HZ0XWOmZVWE3gI/aabLK0MAUNBwCQjTyye5BuOjakuIMmzQLGiWm9gh7Dargniz8
+	03qnpuSTqUV1BcPyu88W1hKxGvmSwb8EgJdd0frzWK8syycReZXfgfx669WoS2XT
+	OxIx4EqdHsvkhy28DeqPHi0uffx17AHYnxo2KWxE6DaVWuYJH/qFMP3NlRs8/MiQ
+	I/9YmGzCNBw4LtJ76f/Cd13CnzQ5N4AK4OLpIouEtT/bNYRdf6L4eZNceDKNN7UZ
+	nylq6g==
+Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com [209.85.214.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49v08pgpme-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 11:12:38 +0000 (GMT)
+Received: by mail-pl1-f199.google.com with SMTP id d9443c01a7336-2909daa65f2so57513015ad.0
+        for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 04:12:38 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761045061; x=1761649861;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=q5EyTqZZ7MGdSDa8l4x23g921Hy97xpn6zc3palSUX4=;
-        b=Y1LzKbU0x+ZNjeJatVzis2uLyvIrao6jny3HemnebqpTZXnAwaQUFG/zuM2oeW+KEm
-         yaFYt+kCCcU0lXX3PankEBCms45NnjY4CJj60Azj2AqQo0ukciS5XBDHYZ86teB1OCcd
-         VwTveYjXdjrLJN+QzU9IdZ6x+w84ZTQTQoPqmRBwrpoCQXeX3akeOSknm6zyb0sWB5dK
-         LOccSh+ij9tkvJ8gvIB6KpWntq1lc7TMzokuBFfQrjEfWVetXEihP3ihbgeOq7xJ+SWi
-         vuRm1x+57VdABkm512nSspqM3M4Ft1KofIcUgWiM8LN2JrCtc0JltTkFtesjuJ4gRTQy
-         X34A==
-X-Forwarded-Encrypted: i=1; AJvYcCWLWsoZaHvyNBe6aZuE6WHJBOQDZrqCh4ntt2RADXaxVeayE6q5Ycep1HfAVNKLxJWxMOxwFazyrRa6@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxarri2Z1AU0jZ6UaHmeWMsWr0DReOXppNh0zHWuOxzmFtA2ZD2
-	0PPVv8ix5nFNc9e0ZnPKFlaglSa5y1mFt+M47Gp8ubQbtXWY6w/cbA2h3LcFugLBpbk=
-X-Gm-Gg: ASbGncvnAluvH4vYhiVnJTnKzX28R6HizGVJOs7tf4ddriB2rGdwfKxxE3ZW/JRMoKA
-	WaKOusP6+CZWmetcO/HOKdk4OE9EiqIMrXeriz/ayBS7yG+Akw9mM7YOIiVHBXyHN9vQDYz54Ik
-	mSeYmdPom8NIi6hisbAUvsiRH4AY6uSnj8EzIL/NzejuIVeblbAiBbOxPQwzIg6yggp2ap4pTX0
-	lWKaxUPzMAh2VhhjHhK9v8jXwZyqcK9oFLY1QyDY5E3Ao6+28sRiknhSW07GKvgIoBMV4EI5OVG
-	N1KkHij9uegolqnFmd1noG2VWE0P6m175k1yB8Ifuk9H0HbQUhX95bz701ktybkZfKTIPMhcLNt
-	Idf5IvFrxFNNEEtpWbBl/ogUxnrP6Z4TUC8iO502Pvnz3Gd7S6V4qPs3gt+NBKVb1OwM2BQ9Rue
-	axJYSWxSYwoxo=
-X-Google-Smtp-Source: AGHT+IE6kW17wi16G56epg97Q5LRZhtLyC50m5D+iXMza5wlR5ua98abI/s6v0YwjekhlOLH+56S6w==
-X-Received: by 2002:a05:600c:19c7:b0:471:152a:e57d with SMTP id 5b1f17b1804b1-474942d9c6fmr12082165e9.3.1761045061205;
-        Tue, 21 Oct 2025 04:11:01 -0700 (PDT)
-Received: from kuoka.. ([178.197.219.123])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-427f00ce06bsm19510485f8f.45.2025.10.21.04.10.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Oct 2025 04:11:00 -0700 (PDT)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Rob Clark <robin.clark@oss.qualcomm.com>,
-	Dmitry Baryshkov <lumag@kernel.org>,
-	Abhinav Kumar <abhinav.kumar@linux.dev>,
-	Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
-	Sean Paul <sean@poorly.run>,
-	Marijn Suijten <marijn.suijten@somainline.org>,
-	David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Kuogee Hsieh <quic_khsieh@quicinc.com>,
-	linux-arm-msm@vger.kernel.org,
-	dri-devel@lists.freedesktop.org,
-	freedreno@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 2/2] arm64: dts: qcom: x1e78100-t14s: Add audio playback over DisplayPort
-Date: Tue, 21 Oct 2025 13:10:52 +0200
-Message-ID: <20251021111050.28554-4-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20251021111050.28554-3-krzysztof.kozlowski@linaro.org>
-References: <20251021111050.28554-3-krzysztof.kozlowski@linaro.org>
+        d=1e100.net; s=20230601; t=1761045156; x=1761649956;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=iuqZq2WiXRu2EPl06OgObOqPz4wqzbYylk4WoFwyL7I=;
+        b=XmzLEOhG+7owvAjoSCBKX2EnFPpEjAosPIudP0dsDhDcdWhVxdX5TPvoLOgcoZ25OP
+         KWvjV0RCIo2KovpbZbY2WNQALTtDY44M4Z7pMcKSEBuCNt1KzWlVODwkBPtSWSHHkHWa
+         5YPGcikD+iJKkUEQWfCQK7p56JvdaGuCIndnL6jzs86A/U8k6lmqIlpUr/7V1jnHxTK1
+         fnZCfUFGp7zmuVhpJrIvy2MT5Ek88/vG4RV99Lmog+CNLQ6bCa0lx/OpAmrk9cNO3gw5
+         ZniNsn4Xwduxa3lXWUHseaUf28Yn6lXeOx7er9SKXNTgMijDf3r8n41jJbSL/CMa4/wX
+         NM4Q==
+X-Forwarded-Encrypted: i=1; AJvYcCVCQqveOR9ENAy4gBq/vMRmS2BSfQptSP1fjbKV2o6LcKIWGkVN+qAh3PGIpAy7i8puLfPsdQJM3CZM@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz13xrh4oBsCeZqTY6DldFjHnI/XJGkx0fiT/bo++FPP3iKBZ6a
+	E8UEgjGVeJykCGWhKCrmCsBY4btaTjJY1IkeQbcdFNr7orci9YzzbKy4S1yI1KBiYmeSg61XtRq
+	9pBMdCZ/xedFHaB0ZFu4vPF23odSnvH6T4kCZBdiyMpYBk9cPCgdhlKCErArJT71CNcQ6gLBd
+X-Gm-Gg: ASbGnctFfhPdfyRfkgpiXBDEgERonwZPmu5VPZ1Ouy0Degzc+oNDzB1IO2/F3SuIcrf
+	h6u6vFNYYACXdkQ8sRXJL08Av82u0HMhDGRoPxkCqx4iZ4OFdhDBL+7m3p62RfU1vH3Z5/vjuKL
+	pGtiStOfGxc/qjoU/d0zBJ7O9qAY4zT36RUxDTdmCVzPXZEZTfjxdyKuCRIQaOiP/02qsVoYSef
+	AC/pAZa6eONwrNyxMMSCxPMgcm1ybP8QD+/JJv819UWMnyz65ODDcp1g78ECc3cSoP8ai/yF5Wt
+	HqTOaAiCxOzZj4DnKrCGGcNGWG/g9dO9LlfOJzo2lsy5jhXadIoM+7et4Zw/9zRimax1nSXLmdC
+	jcWk7+fWJe7scS6jcmUJL+tgamw==
+X-Received: by 2002:a17:902:f78b:b0:269:a6b2:2463 with SMTP id d9443c01a7336-290c72e635emr200972435ad.16.1761045156416;
+        Tue, 21 Oct 2025 04:12:36 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IF+PgLVmPDKx0lxdL3uoEJJ7FiKNnXlD7MYjyKAWRUh+5GgUYU2AkoDEecKbbjDz9zAJiP5hw==
+X-Received: by 2002:a17:902:f78b:b0:269:a6b2:2463 with SMTP id d9443c01a7336-290c72e635emr200971915ad.16.1761045155877;
+        Tue, 21 Oct 2025 04:12:35 -0700 (PDT)
+Received: from [192.168.0.195] ([49.204.25.36])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29246ebf40dsm106375525ad.13.2025.10.21.04.12.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 21 Oct 2025 04:12:35 -0700 (PDT)
+Message-ID: <dca13de5-b027-4938-a854-2538fce52b7c@oss.qualcomm.com>
+Date: Tue, 21 Oct 2025 16:42:30 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: sm8550: Additionally manage MXC
+ power domain in camcc
+To: Luca Weiss <luca.weiss@fairphone.com>,
+        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+Cc: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Jagadeesh Kona <quic_jkona@quicinc.com>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd
+ <sboyd@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org,
+        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+References: <20250303225521.1780611-1-vladimir.zapolskiy@linaro.org>
+ <20250303225521.1780611-3-vladimir.zapolskiy@linaro.org>
+ <dbxvzgqs5slrl5edqunal3wplg5jiszqv46dr4nzgowwlhkhxa@qwtfq7nfjwfo>
+ <3210a484-b9c3-4399-bee1-9f5bbc90034c@linaro.org>
+ <CAA8EJprP9Z181VDCT=xfyrBipzgiB0tfb8M_XZ4H=yOrvEnB0w@mail.gmail.com>
+ <f41061a2-cf45-4588-8df7-22270c936ee2@quicinc.com>
+ <D8EZ47Z557OX.37FDVYA5AHET0@fairphone.com>
+ <d64c0776-0b12-42d3-aed3-4e6a13487f51@quicinc.com>
+ <DDKNL43NWFMA.1S03T0SUYFVMY@fairphone.com>
+ <3854e3a0-744c-4317-a6ed-e28edbabc4a3@linaro.org>
+ <DDNWU7DVDGJJ.2K19P7FFZU272@fairphone.com>
+Content-Language: en-US
+From: Taniya Das <taniya.das@oss.qualcomm.com>
+In-Reply-To: <DDNWU7DVDGJJ.2K19P7FFZU272@fairphone.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDE4MDAwMCBTYWx0ZWRfXxWAyvLzczNEq
+ AxjCLAPu155ZE72970ZOy8MAnTiEaF/zKuAM6mdZqOW1ZrlYUDyrQc3Q9r7PIZBRSxumceARayf
+ OPnBZlz9uaOFbdBg0XR439+H6EBgWLUmm0HnyYXgJF6TTqzKe/lV9CLC937ldyEMHFBX0dDLxqh
+ Mt9fHweplZ4HG9LrG0x1QY7ImS4oCAB+q+p77CPL9SC+LpIBkOqFhw+5Bsu9cExWeUIros0c3PA
+ scNASHKHTkke56xumJSfpc/thUCNTYpcnCD828rDppG5rvSDWlkPBdevgDzLHCYab3l9BIzzViD
+ 38dBh0z1k1jYodK3O6awIQwYO5ELLzOIieU2xPo+JIGSS1BUFaD1yIDOK/2yGuZNxLq0+/b067g
+ 0ynVhoES1irP+vPOPv4aFEGHTkNv0w==
+X-Proofpoint-GUID: 0LfY9qBirJpYUocu7pJ8tHHzlmPT-2XW
+X-Authority-Analysis: v=2.4 cv=Up1u9uwB c=1 sm=1 tr=0 ts=68f76aa6 cx=c_pps
+ a=JL+w9abYAAE89/QcEU+0QA==:117 a=ViRRArT13J1GJOVJkQsX9Q==:17
+ a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=VwQbUJbxAAAA:8 a=KKAkSRfTAAAA:8 a=IwZ_CSZzpzfRW61KRVcA:9 a=QEXdDO2ut3YA:10
+ a=324X-CrmTo6CU4MGRt3R:22 a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-ORIG-GUID: 0LfY9qBirJpYUocu7pJ8tHHzlmPT-2XW
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-10-21_01,2025-10-13_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ lowpriorityscore=0 adultscore=0 suspectscore=0 malwarescore=0 clxscore=1015
+ impostorscore=0 bulkscore=0 priorityscore=1501 spamscore=0 phishscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2510020000 definitions=main-2510180000
 
-Add necessary DAI links and DAI name prefixes to enable audio playback
-over USB/DisplayPort and HDMI.  The HDMI port is not yet enabled, but it
-should carry respective DAI name prefix regardless.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
----
+On 10/21/2025 3:28 PM, Luca Weiss wrote:
+> Hi Vladimir,
+> 
+> On Tue Oct 21, 2025 at 11:48 AM CEST, Vladimir Zapolskiy wrote:
+>> Hi Luca.
+>>
+>> On 10/17/25 17:05, Luca Weiss wrote:
+>>> Hi Taniya,
+>>>
+>>> On Thu Mar 13, 2025 at 12:57 PM CET, Taniya Das wrote:
+>>>>
+>>>>
+>>>> On 3/13/2025 1:22 PM, Luca Weiss wrote:
+>>>>> Hi Taniya,
+>>>>>
+>>>>> On Thu Mar 13, 2025 at 5:39 AM CET, Taniya Das wrote:
+>>>>>>
+>>>>>>
+>>>>>> On 3/4/2025 2:10 PM, Dmitry Baryshkov wrote:
+>>>>>>> On Tue, 4 Mar 2025 at 09:37, Vladimir Zapolskiy
+>>>>>>> <vladimir.zapolskiy@linaro.org> wrote:
+>>>>>>>>
+>>>>>>>> On 3/4/25 01:53, Dmitry Baryshkov wrote:
+>>>>>>>>> On Tue, Mar 04, 2025 at 12:55:21AM +0200, Vladimir Zapolskiy wrote:
+>>>>>>>>>> SM8550 Camera Clock Controller shall enable both MXC and MMCX power
+>>>>>>>>>> domains.
+>>>>>>>>>
+>>>>>>>>> Are those really required to access the registers of the cammcc? Or is
+>>>>>>>>> one of those (MXC?) required to setup PLLs? Also, is this applicable
+>>>>>>>>> only to sm8550 or to other similar clock controllers?
+>>>>>>>>
+>>>>>>>> Due to the described problem I experience a fatal CPU stall on SM8550-QRD,
+>>>>>>>> not on any SM8450 or SM8650 powered board for instance, however it does
+>>>>>>>> not exclude an option that the problem has to be fixed for other clock
+>>>>>>>> controllers, but it's Qualcomm to confirm any other touched platforms,
+>>>>>>>
+>>>>>>> Please work with Taniya to identify used power domains.
+>>>>>>>
+>>>>>>
+>>>>>> CAMCC requires both MMCX and MXC to be functional.
+>>>>>
+>>>>> Could you check whether any clock controllers on SM6350/SM7225 (Bitra)
+>>>>> need multiple power domains, or in general which clock controller uses
+>>>>> which power domain.
+>>>>>
+>>>>> That SoC has camcc, dispcc, gcc, gpucc, npucc and videocc.
+>>>>>
+>>>>> That'd be highly appreciated since I've been hitting weird issues there
+>>>>> that could be explained by some missing power domains.
+>>>>>
+>>>>
+>>>> Hi Luca,
+>>>>
+>>>> The targets you mentioned does not have any have multiple rail
+>>>> dependency, but could you share the weird issues with respect to clock
+>>>> controller I can take a look.
+>>>
+>>> Coming back to this, I've taken a shot at camera on SM6350 (Fairphone 4)
+>>> again, but again hitting some clock issues.
+>>>
+>>> For reference, I am testing with following change:
+>>> https://lore.kernel.org/linux-arm-msm/20250911011218.861322-3-vladimir.zapolskiy@linaro.org/
+>>>
+>>> Trying to enable CAMCC_MCLK1_CLK - wired up to the IMX576 camera sensor
+>>> on this phone - results in following error.
+>>>
+>>> [    3.140232] ------------[ cut here ]------------
+>>> [    3.141264] camcc_mclk1_clk status stuck at 'off'
+>>> [    3.141276] WARNING: CPU: 6 PID: 12 at drivers/clk/qcom/clk-branch.c:87 clk_branch_toggle+0x170/0x190
+>>>
+>>> Checking the driver against downstream driver, it looks like the RCGs
+>>> should be using clk_rcg2_shared_ops because of enable_safe_config in
+>>> downstream, but changing that doesn't really improve the situation, but
+>>> it does change the error message to this:
+>>>
+>>> [    2.933254] ------------[ cut here ]------------
+>>> [    2.933961] camcc_mclk1_clk_src: rcg didn't update its configuration.
+>>> [    2.933970] WARNING: CPU: 7 PID: 12 at drivers/clk/qcom/clk-rcg2.c:136 update_config+0xd4/0xe4
+>>>
+>>> I've also noticed that some camcc drivers take in GCC_CAMERA_AHB_CLK as
+>>> iface clk, could something like this be missing on sm6350?
+>>>
+>>> I'd appreciate any help or tips for resolving this.
+>>>
+>>
+>> Recently one particular problem related to MCLK was identified by me on
+>> QRB5165/RB5, and it was reported to Bjorn over IRC, namely it's not possible
+>> to toggle MCLK clock enable/disable state, when TITAN GDSC power domain is
+>> set off. I'm working on fixing the issue (a change under clk/qcom), since
+>> it's of an importance for a customer as well.
+>>
+>> I can't be totally sure that it's right the same problem as the one reported
+>> by you above, but it looks very similar, as a fast workaround please consider
+>> to set an ALWAYS_ON flag of TITAN GDSC, and at least a report from you that
+>> this actually helps would be nice to get.
+> 
+> Unfortunately that doesn't seem to help on sm6350.
+> 
+> diff --git a/drivers/clk/qcom/camcc-sm6350.c b/drivers/clk/qcom/camcc-sm6350.c
+> index 12a469ce7e2f..cf87ad55d318 100644
+> --- a/drivers/clk/qcom/camcc-sm6350.c
+> +++ b/drivers/clk/qcom/camcc-sm6350.c
+> @@ -1767,6 +1767,7 @@ static struct gdsc titan_top_gdsc = {
+>  		.name = "titan_top_gdsc",
+>  	},
+>  	.pwrsts = PWRSTS_OFF_ON,
+> +	.flags = ALWAYS_ON,
+>  };
+>  
+>  static struct clk_hw *camcc_sm6350_hws[] = {
+> 
+> 
+> $ cat /sys/kernel/debug/pm_genpd/pm_genpd_summary
+> [...]
+> titan_top_gdsc                  on                              0
+>                                                 bps_gdsc, ipe_0_gdsc, ife_0_gdsc, ife_1_gdsc, ife_2_gdsc
+>     ac4a000.cci                     suspended                   0           SW
+>     ac4b000.cci                     suspended                   0           SW
+>     genpd:3:acb3000.camss           suspended                   0           SW
+> [...]
+> 
+> but still the same clock stuck warning...
+> 
+> [    3.093431] ------------[ cut here ]------------
+> [    3.094614] camcc_mclk1_clk status stuck at 'off'
+> [    3.094629] WARNING: CPU: 6 PID: 65 at drivers/clk/qcom/clk-branch.c:87 clk_branch_toggle+0x170/0x190
+> 
+> Thanks for the suggestion though.
+> 
 
-ALSA UCM and audioreach topology will follow up as well.
----
- .../qcom/x1e78100-lenovo-thinkpad-t14s.dtsi   | 56 +++++++++++++++++++
- 1 file changed, 56 insertions(+)
+Hi Luca,
 
-diff --git a/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi b/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi
-index 654cbce9d6ec..103c4ca97adb 100644
---- a/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi
-+++ b/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi
-@@ -351,6 +351,54 @@ sound {
- 				"VA DMIC1", "VA MIC BIAS1",
- 				"TX SWR_INPUT1", "ADC2_OUTPUT";
- 
-+		displayport-0-dai-link {
-+			link-name = "DisplayPort0 Playback";
-+
-+			codec {
-+				sound-dai = <&mdss_dp0>;
-+			};
-+
-+			cpu {
-+				sound-dai = <&q6apmbedai DISPLAY_PORT_RX_0>;
-+			};
-+
-+			platform {
-+				sound-dai = <&q6apm>;
-+			};
-+		};
-+
-+		displayport-1-dai-link {
-+			link-name = "DisplayPort1 Playback";
-+
-+			codec {
-+				sound-dai = <&mdss_dp1>;
-+			};
-+
-+			cpu {
-+				sound-dai = <&q6apmbedai DISPLAY_PORT_RX_1>;
-+			};
-+
-+			platform {
-+				sound-dai = <&q6apm>;
-+			};
-+		};
-+
-+		displayport-2-dai-link {
-+			link-name = "DisplayPort2 Playback";
-+
-+			codec {
-+				sound-dai = <&mdss_dp2>;
-+			};
-+
-+			cpu {
-+				sound-dai = <&q6apmbedai DISPLAY_PORT_RX_2>;
-+			};
-+
-+			platform {
-+				sound-dai = <&q6apm>;
-+			};
-+		};
-+
- 		wcd-playback-dai-link {
- 			link-name = "WCD Playback";
- 
-@@ -1013,6 +1061,8 @@ &mdss {
- };
- 
- &mdss_dp0 {
-+	sound-name-prefix = "DisplayPort0";
-+
- 	status = "okay";
- };
- 
-@@ -1021,6 +1071,8 @@ &mdss_dp0_out {
- };
- 
- &mdss_dp1 {
-+	sound-name-prefix = "DisplayPort1";
-+
- 	status = "okay";
- };
- 
-@@ -1028,6 +1080,10 @@ &mdss_dp1_out {
- 	link-frequencies = /bits/ 64 <1620000000 2700000000 5400000000 8100000000>;
- };
- 
-+&mdss_dp2 {
-+	sound-name-prefix = "DisplayPort2";
-+};
-+
- &mdss_dp3 {
- 	/delete-property/ #sound-dai-cells;
- 
+Seems like the CAMCC_PLL2_OUT_EARLY output could be OFF here, which is
+sourcing the mclk RCG's.
+
+The user_ctl is not properly configured to enable the PLL early output.
+Can you please try below change and check if it helps?
+
+diff --git a/drivers/clk/qcom/camcc-sm6350.c
+b/drivers/clk/qcom/camcc-sm6350.c
+index 8aac97d29ce3..d33db530b7c9 100644
+--- a/drivers/clk/qcom/camcc-sm6350.c
++++ b/drivers/clk/qcom/camcc-sm6350.c
+@@ -154,6 +154,7 @@ static const struct alpha_pll_config
+camcc_pll2_config = {
+        .config_ctl_hi_val = 0x400003d2,
+        .test_ctl_val = 0x04000400,
+        .test_ctl_hi_val = 0x00004000,
++       .user_ctl_val = 0x0000030F,
+};
+
 -- 
-2.48.1
+Thanks,
+Taniya Das
 
 
