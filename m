@@ -1,124 +1,103 @@
-Return-Path: <devicetree+bounces-229211-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229212-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB3EABF4F86
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 09:32:03 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6C4CBF4FB0
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 09:34:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 57D9D341D60
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 07:32:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 75C383B38BE
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 07:34:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C4C7280CF6;
-	Tue, 21 Oct 2025 07:31:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28EC92690D9;
+	Tue, 21 Oct 2025 07:34:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="dW0gTjge"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="ZGmpJuog"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6194C27FD6E;
-	Tue, 21 Oct 2025 07:31:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 673A527B331
+	for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 07:34:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761031912; cv=none; b=pRyKHs+ves04BLkmSLBa7zUoYf1daT6JwRsNhGR3j2M8NgDKxiSPYZYFTGkKjvJnoPXMzPePSA76MdAzoV4ovUg0LvH/728AEaaCK09VJs3RTCXgLteWXiHF6AyZlzksrRnyzy3Lo2apQaPptB7pd369Vu2UswE2QctJF6vWPHI=
+	t=1761032073; cv=none; b=S20S8eAKSmEAeZuIKrJViC1NeKXBZ+a3PISqEF6rQNSFzZ55cNlWkCpJVAqgCTHc5ol283t6Yfs0ZjJPt/Dna3c8ElFOvgeW6nLWnq0xkS1bSJ+3ufWhOzXG3jjKPo/2PHxYm1e8k3i3vH4GNRLf1vkj5SuGYCbXvYZ/LyED3NE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761031912; c=relaxed/simple;
-	bh=qr9XyEgoKDrOvlQ/a4EvmrD00l7EvEI7RmtYodAKgIY=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=GRI1thHU5jXSxX6IqGsx2eVDApEcWlsW5Qn0ym1ltJbgG9Q/eKWfHf2jbSLo0lqbsXWVGYAS7T2WGIg90G9MAgiWZgmsTLRJUTdKR/pdPw7+qfh6dEd53Q1RYU+QA51s3Ny9iAoIKtl4R8lMNvdYgV2x4j/PSX1/ZZ3xnjOFAYE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=dW0gTjge; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1761031908;
-	bh=qr9XyEgoKDrOvlQ/a4EvmrD00l7EvEI7RmtYodAKgIY=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=dW0gTjgeOApqnGqmEI57D2DqO0dLmHAF2ruzdQQoe0xxt+dy4PLcasIdyPbR6HG0M
-	 Lv0N9El/lXwuwcdtP3baYFAASpLznKjJVFzGHzrrPddXI9d+GrifdBJQbgOWd84CnD
-	 tsHOVG1yVeJ/xvC8z/hKQgKS7jT6ZsP+OIlj+U7pAXZOHFZRVl+PehVydDi6yZPSOH
-	 6C2kEb9w8JrpQkWd1cznIflMWViMXLIleiCQvxdFWgRZbsTfJFoet1qAajhlcEOZ4t
-	 EbqWu00tZ+ZkOYHrGfaLS3nYoixj0yblyor/1v6rnjZGReJ9HcLYNmPen+TxPfZqra
-	 GXqqXZXkldPPg==
-Received: from yukiji.home (amontpellier-657-1-116-247.w83-113.abo.wanadoo.fr [83.113.51.247])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: laeyraud)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id AF99D17E1404;
-	Tue, 21 Oct 2025 09:31:47 +0200 (CEST)
-From: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
-Date: Tue, 21 Oct 2025 09:30:53 +0200
-Subject: [PATCH v2 3/3] arm64: dts: mediatek: mt8365-evk: Enable GPU
- support
+	s=arc-20240116; t=1761032073; c=relaxed/simple;
+	bh=Vvzttjl7tjT80pVkw2Q3B38I9Z2O/vYbEAO91Ciss1E=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=KevcYp/argq9gsM2avaclAp7XpQEFAg4ZtN0pfbuPCVS6zRpEyIEoECSHHbrPo1rJYdc+tFJzAO1gx/kNeeE2QPEA7F35R45mJeJ0flxfOcYc4dM0MsbddEGZB3Xwl2Mqpn0hWDNpqXG/ucrzlpQcIKChBA4gjtGuSSM/bK/Lj0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=ZGmpJuog; arc=none smtp.client-ip=185.246.85.4
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-03.galae.net (Postfix) with ESMTPS id 4990A4E4122A;
+	Tue, 21 Oct 2025 07:34:28 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 1CC1A606DC;
+	Tue, 21 Oct 2025 07:34:28 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 402C5102F23EB;
+	Tue, 21 Oct 2025 09:34:17 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1761032067; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding; bh=k8izWHbKqzUmMmmsOINNCS8K5Jl2Km69X2C2UUxs0cg=;
+	b=ZGmpJuogJrl8d9hqJ14Da08yy4HUxuO2dbr85y1EEu7gyS6qJ3TJJasWI7GJ2F/1UG4YlP
+	BnNz0nC1iZ7tyS0weufg11hOWdu0WV9Q+APgCPU8zTPd/SmIGvDbPkeAujbLb5QNPud+F5
+	fyWh8O3C+Dp7Ic8ZFatjSxxovCCAzSlP/fncP0kHu0Wuxm6B42uAjSdoAlOqGJh2U3ZQsc
+	JAALIU/etH8jVqPmB45g5i82QrAz6ktvRSDYHRXsm0i3GA4bujNZvCrH8ANlIAJmgrHgyA
+	Da48R0IGjFrYHsxOHyVDir1Ct5dQoEti4CendgvBVrKCbWHrtrEub2RiH3MJ2w==
+From: Herve Codina <herve.codina@bootlin.com>
+To: Herve Codina <herve.codina@bootlin.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: [PATCH 0/3] Add support for the Leadtek LTK028QV25BYL display panel
+Date: Tue, 21 Oct 2025 09:34:02 +0200
+Message-ID: <20251021073408.195959-1-herve.codina@bootlin.com>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251021-mt8365-enable-gpu-v2-3-17e05cff2c86@collabora.com>
-References: <20251021-mt8365-enable-gpu-v2-0-17e05cff2c86@collabora.com>
-In-Reply-To: <20251021-mt8365-enable-gpu-v2-0-17e05cff2c86@collabora.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: kernel@collabora.com, dri-devel@lists.freedesktop.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
- Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1761031905; l=1137;
- i=louisalexis.eyraud@collabora.com; s=20250113; h=from:subject:message-id;
- bh=qr9XyEgoKDrOvlQ/a4EvmrD00l7EvEI7RmtYodAKgIY=;
- b=BTk5evTjx76vWj0BG4kqs51CoKzKQA0I1u53jD7R8c+No3fzOaD/cj8PcW5jg7FGhngEcjNh5
- lfTS+ARGzmiB2mjtHq+TygszS/qCGstK24Iinm/XVo45JtYMCefdsmE
-X-Developer-Key: i=louisalexis.eyraud@collabora.com; a=ed25519;
- pk=CHFBDB2Kqh4EHc6JIqFn69GhxJJAzc0Zr4e8QxtumuM=
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-Enable for the Mediatek Genio 350-EVK board the support of the
-Arm Mali G52 MC1 GPU integrated in the MT8365 SoC.
+Hi,
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Signed-off-by: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
----
- arch/arm64/boot/dts/mediatek/mt8365-evk.dts | 9 +++++++++
- 1 file changed, 9 insertions(+)
+The Leadtek LTK08QV25BYL is a 2.8" 240x320 DSI display.
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8365-evk.dts b/arch/arm64/boot/dts/mediatek/mt8365-evk.dts
-index 3de04ae70cc5fcd203a9cb745dfb3575ace66801..92ecde96dfeb4bdbc85a8fd869b405ef6cc1cdc0 100644
---- a/arch/arm64/boot/dts/mediatek/mt8365-evk.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt8365-evk.dts
-@@ -284,6 +284,11 @@ eth_phy: ethernet-phy@0 {
- 	};
- };
- 
-+&gpu {
-+	mali-supply = <&mt6357_vcore_reg>;
-+	status = "okay";
-+};
-+
- &i2c0 {
- 	clock-frequency = <100000>;
- 	pinctrl-0 = <&i2c0_pins>;
-@@ -354,6 +359,10 @@ touchscreen@5d {
- 	};
- };
- 
-+&mfg {
-+	domain-supply = <&mt6357_vsram_others_reg>;
-+};
-+
- &mmc0 {
- 	assigned-clock-parents = <&topckgen CLK_TOP_MSDCPLL>;
- 	assigned-clocks = <&topckgen CLK_TOP_MSDC50_0_SEL>;
+This series adds support for this device.
+
+Best regards,
+Hervé
+
+Herve Codina (3):
+  dt-bindings: display: panel: Add the Leadtek LTK08QV25BYL panel
+  drm/panel: Add support for the Leadtek LTK08QV25BYL panel
+  MAINTAINERS: Add the Leadtek LTK028QV25BYL panel driver entry
+
+ .../display/panel/leadtek,ltk028qv25byl.yaml  |  55 ++++
+ MAINTAINERS                                   |   7 +
+ drivers/gpu/drm/panel/Kconfig                 |  12 +
+ drivers/gpu/drm/panel/Makefile                |   1 +
+ .../drm/panel/panel-leadtek-ltk028qv25byl.c   | 304 ++++++++++++++++++
+ 5 files changed, 379 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/leadtek,ltk028qv25byl.yaml
+ create mode 100644 drivers/gpu/drm/panel/panel-leadtek-ltk028qv25byl.c
 
 -- 
 2.51.0
