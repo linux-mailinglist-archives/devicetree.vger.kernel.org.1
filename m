@@ -1,208 +1,217 @@
-Return-Path: <devicetree+bounces-229286-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229287-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5303DBF5A33
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 11:50:52 +0200 (CEST)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4CB5FBF5A21
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 11:50:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 59969500951
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 09:50:09 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id C5F7A3538AF
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 09:50:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0A1532B9A9;
-	Tue, 21 Oct 2025 09:49:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qsVt+URK"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 194882E2F03;
+	Tue, 21 Oct 2025 09:50:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A38532D0E8
-	for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 09:48:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3649029B239
+	for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 09:50:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761040140; cv=none; b=hyMaIBq+6icUcfvBjK/PhjmP1RQVJCSLqFGht0Sbacl4UC0ScsqkJcVcdvxXn4P0dkHMaJwVqgP4Qo/bg5lGIVu05jb1lMxgmDsXLUBP61ZDKaX12bPTwE/SXQelzJOKZTAvlZHb6EJ4pdZAYYT0efVE65WlRD9xNNOcdOfLais=
+	t=1761040235; cv=none; b=RpKtfqwQFgDfCLTxEwsgd4//lrEJnVNJTuqrxXDEGiIFh8NjbvzlfS7LdLEwH8OFBEKFsQTrJCsu4y6mreWEx5Cyo55yy8LWryPfnMdhTuzmRl8aAddMUS0SSxbc9NZQrkP40n2xcq0Ha8d3qwlB/j2rx72KE2RMYVG2TrfwmlU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761040140; c=relaxed/simple;
-	bh=Urii5iS0FhFbA8VJNfixvzWMxw1LHSaVksjMI1C9gh0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rTbA0X4oy44zFr1C3u22GXqUKtbLVmf/6lD8+VqX3tq9ZTqLSZrCayu11WVWxI67WYSmlFGJVHM4fICuv7Kub+uGSP5J9SJp79RW1xBE9ICBOl3bKMTPj5qiRNKt3Sn6caK9dXsNlVVfuAJbQTIaM0jWBLUsHN5OeBvkA9GltUs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=qsVt+URK; arc=none smtp.client-ip=209.85.167.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-591d7a9af94so731448e87.1
-        for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 02:48:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1761040136; x=1761644936; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=640l7eT0N+MsxbJx7EeYo7wg5aE7l2Z+pdg2rWOLL0Q=;
-        b=qsVt+URKa3QTZRywQEgsuB6HiFJR2UiisACuvZWcsvdinQwCE8pDivxOL3uGps5vUx
-         TzNF+/zzifJF4N3xrxSVOBZV4ifspPesxJfTlgwP2T40JNcn1LftyTAEFCN7eZVSZbTl
-         CabckDXo65YMQ0YIAD4zv/VtGK844H1mgQ8VcQDI1JletDQUB+Pt5PAqTAjU9tKQ5yze
-         YeSjzxiB7zYCMeYaxAHm1gMgn+2+a2sDkkYdMFY+lzflabUnZ35tL9bB0oqcg+yTB8aq
-         yUKw64RQWBt1UNDGXndIY12SUinwGmBZdSyFclW0CqNIjlsV1ZX0vXS89j6h7wy80bK6
-         oxFA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761040136; x=1761644936;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=640l7eT0N+MsxbJx7EeYo7wg5aE7l2Z+pdg2rWOLL0Q=;
-        b=Y1ClpoZMrDJRgNcOXwS+bKPaLyE9vTqXrMrOHJukuyIpGUFKFVuojZPls6dxwsgZ7K
-         pES+ucxB7ylHSSkzo3cD4UeCnoiR1a8Gxg8mKrEDTF9giv7YgjuJmE7tZzHUS8DQT026
-         DgG9NRrmmppOYiCt/iRyTFwHMpAm/ZVS28QE8BS1XJow+7geSlhT6CBs9rpP1bOBs8JF
-         TWh1/wfz5q9Hq0hQS63zIo157+0t/Z7CGjD1Ypa3QLu4bSBSQM6sB1QGjEQhVdh3XC71
-         xREStG2gyzfjSoNZcbE1M90H/0WLstUyCVDEz7rcyysH1Dx1U/pO1fU0rGvBntSpGYsm
-         EbOg==
-X-Forwarded-Encrypted: i=1; AJvYcCXV5cJzf6bJanpiFKFxkDbkHQGS6FzsW0SwMLIHd6VeXO5y4JPfMfXn4FqtbqSiK/UmmNpQFylVvQX8@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzi8/5YRzk77RtunsyGYVmLPRuJ5wbmJ/Qzgbf/vgjkLOMnUXZB
-	5oPnrWwubhe0PKjrSfpBPZn4b9VZvcNeoZOEzeCmvrVb3I1heX7gu45OJO8rtlo+3aA=
-X-Gm-Gg: ASbGncuoxXdxSRita5T77T1M2e8ZAHTE93QIIJNdauCAYNzw+b42bruyv2vEnNc1GR3
-	dfrJNwzxg7lu1Nl29VbBSHVkI1mW1CPjLA0RQdabq1Q+2RXD+nV7Jgu1vOPfdaCEUNcd+Lo0sZB
-	CrAxR6Q8qC5r8AaHcqZTPnuZ8Vxyb4hXXU8bT7ZpHA/CQdY22NvIjOXSM07lnvN5c5LFjWuAgLb
-	SijAFj1JdoyO409l3LOHlxrakUfvbnFw8ZIkrNMZ4BYav/3NduaFGgjE2D8LAaWbgKZT9pa4wpP
-	LAfrObOrptFQDpEPpiuIAdHpaaFNdsAGuL5ha2rTFKHhtcq4k/KJlHh2Exmurd9Exf2kX3LzrV8
-	lerLaKgVLkaQ0MtTZ2FxDbHb9VJW38WcDLpqMl6HES+EKxv9aRJ1vijvGaBf4l4l1bYpct+mACS
-	RciVAnZ8AW2Mn/Svw7uef0EXOoyJkIVdP6MnJ2CpCch/YFlP7v3DJvoXWnec+CAQ+QZA==
-X-Google-Smtp-Source: AGHT+IFwNjRiyfAAPzJORtMnct1hAhGnn7VXU61bxa/Ycsnt+eqvcugl3rjHUlPkl7DsvG1Rv3GmDQ==
-X-Received: by 2002:a05:6512:15a3:b0:57b:5254:d247 with SMTP id 2adb3069b0e04-591d8464653mr2677406e87.0.1761040135951;
-        Tue, 21 Oct 2025 02:48:55 -0700 (PDT)
-Received: from [192.168.1.100] (91-159-24-186.elisa-laajakaista.fi. [91.159.24.186])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-591def1b2f6sm3462711e87.84.2025.10.21.02.48.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 21 Oct 2025 02:48:55 -0700 (PDT)
-Message-ID: <3854e3a0-744c-4317-a6ed-e28edbabc4a3@linaro.org>
-Date: Tue, 21 Oct 2025 12:48:54 +0300
+	s=arc-20240116; t=1761040235; c=relaxed/simple;
+	bh=U59wPa1kpEXASCCSExiRaG74dGhaSNDe85YYYgBTIEo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=FHeQL08Edeh2AvmMW1+5Dj1D9D46RIwARC3l0HOKm5TVXNhmkOZB2G6X3yErK2vCV10s55sQVS0SpeS+7Mw5OSgfmdvi9mYQFfx1S1oCQnLzrXKsWCh8yn3nSG4taTUsUY+yS2yU8B3RZf0dnid2xjdc1tO+d3Sbj+EulJGIwHQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1vB90U-0007Cl-PC; Tue, 21 Oct 2025 11:50:18 +0200
+Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1vB90S-004hSx-16;
+	Tue, 21 Oct 2025 11:50:16 +0200
+Received: from pengutronix.de (p54b152ce.dip0.t-ipconnect.de [84.177.82.206])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	(Authenticated sender: mkl-all@blackshift.org)
+	by smtp.blackshift.org (Postfix) with ESMTPSA id 087BF48BFEE;
+	Tue, 21 Oct 2025 09:50:16 +0000 (UTC)
+Date: Tue, 21 Oct 2025 11:50:13 +0200
+From: Marc Kleine-Budde <mkl@pengutronix.de>
+To: Primoz Fiser <primoz.fiser@norik.com>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org, 
+	upstream@lists.phytec.de, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev
+Subject: Re: [PATCH 2/2] arm64: dts: freescale: Add phyBOARD-Segin-i.MX91
+ support
+Message-ID: <20251021-bright-brave-dolphin-906891-mkl@pengutronix.de>
+References: <20251021093704.690410-1-primoz.fiser@norik.com>
+ <20251021093704.690410-2-primoz.fiser@norik.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: sm8550: Additionally manage MXC
- power domain in camcc
-To: Luca Weiss <luca.weiss@fairphone.com>,
- Taniya Das <taniya.das@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Jagadeesh Kona <quic_jkona@quicinc.com>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-clk@vger.kernel.org,
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-References: <20250303225521.1780611-1-vladimir.zapolskiy@linaro.org>
- <20250303225521.1780611-3-vladimir.zapolskiy@linaro.org>
- <dbxvzgqs5slrl5edqunal3wplg5jiszqv46dr4nzgowwlhkhxa@qwtfq7nfjwfo>
- <3210a484-b9c3-4399-bee1-9f5bbc90034c@linaro.org>
- <CAA8EJprP9Z181VDCT=xfyrBipzgiB0tfb8M_XZ4H=yOrvEnB0w@mail.gmail.com>
- <f41061a2-cf45-4588-8df7-22270c936ee2@quicinc.com>
- <D8EZ47Z557OX.37FDVYA5AHET0@fairphone.com>
- <d64c0776-0b12-42d3-aed3-4e6a13487f51@quicinc.com>
- <DDKNL43NWFMA.1S03T0SUYFVMY@fairphone.com>
-From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-In-Reply-To: <DDKNL43NWFMA.1S03T0SUYFVMY@fairphone.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="7y2hkmghfrzgq4ye"
+Content-Disposition: inline
+In-Reply-To: <20251021093704.690410-2-primoz.fiser@norik.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Hi Luca.
 
-On 10/17/25 17:05, Luca Weiss wrote:
-> Hi Taniya,
-> 
-> On Thu Mar 13, 2025 at 12:57 PM CET, Taniya Das wrote:
->>
->>
->> On 3/13/2025 1:22 PM, Luca Weiss wrote:
->>> Hi Taniya,
->>>
->>> On Thu Mar 13, 2025 at 5:39 AM CET, Taniya Das wrote:
->>>>
->>>>
->>>> On 3/4/2025 2:10 PM, Dmitry Baryshkov wrote:
->>>>> On Tue, 4 Mar 2025 at 09:37, Vladimir Zapolskiy
->>>>> <vladimir.zapolskiy@linaro.org> wrote:
->>>>>>
->>>>>> On 3/4/25 01:53, Dmitry Baryshkov wrote:
->>>>>>> On Tue, Mar 04, 2025 at 12:55:21AM +0200, Vladimir Zapolskiy wrote:
->>>>>>>> SM8550 Camera Clock Controller shall enable both MXC and MMCX power
->>>>>>>> domains.
->>>>>>>
->>>>>>> Are those really required to access the registers of the cammcc? Or is
->>>>>>> one of those (MXC?) required to setup PLLs? Also, is this applicable
->>>>>>> only to sm8550 or to other similar clock controllers?
->>>>>>
->>>>>> Due to the described problem I experience a fatal CPU stall on SM8550-QRD,
->>>>>> not on any SM8450 or SM8650 powered board for instance, however it does
->>>>>> not exclude an option that the problem has to be fixed for other clock
->>>>>> controllers, but it's Qualcomm to confirm any other touched platforms,
->>>>>
->>>>> Please work with Taniya to identify used power domains.
->>>>>
->>>>
->>>> CAMCC requires both MMCX and MXC to be functional.
->>>
->>> Could you check whether any clock controllers on SM6350/SM7225 (Bitra)
->>> need multiple power domains, or in general which clock controller uses
->>> which power domain.
->>>
->>> That SoC has camcc, dispcc, gcc, gpucc, npucc and videocc.
->>>
->>> That'd be highly appreciated since I've been hitting weird issues there
->>> that could be explained by some missing power domains.
->>>
->>
->> Hi Luca,
->>
->> The targets you mentioned does not have any have multiple rail
->> dependency, but could you share the weird issues with respect to clock
->> controller I can take a look.
-> 
-> Coming back to this, I've taken a shot at camera on SM6350 (Fairphone 4)
-> again, but again hitting some clock issues.
-> 
-> For reference, I am testing with following change:
-> https://lore.kernel.org/linux-arm-msm/20250911011218.861322-3-vladimir.zapolskiy@linaro.org/
-> 
-> Trying to enable CAMCC_MCLK1_CLK - wired up to the IMX576 camera sensor
-> on this phone - results in following error.
-> 
-> [    3.140232] ------------[ cut here ]------------
-> [    3.141264] camcc_mclk1_clk status stuck at 'off'
-> [    3.141276] WARNING: CPU: 6 PID: 12 at drivers/clk/qcom/clk-branch.c:87 clk_branch_toggle+0x170/0x190
-> 
-> Checking the driver against downstream driver, it looks like the RCGs
-> should be using clk_rcg2_shared_ops because of enable_safe_config in
-> downstream, but changing that doesn't really improve the situation, but
-> it does change the error message to this:
-> 
-> [    2.933254] ------------[ cut here ]------------
-> [    2.933961] camcc_mclk1_clk_src: rcg didn't update its configuration.
-> [    2.933970] WARNING: CPU: 7 PID: 12 at drivers/clk/qcom/clk-rcg2.c:136 update_config+0xd4/0xe4
-> 
-> I've also noticed that some camcc drivers take in GCC_CAMERA_AHB_CLK as
-> iface clk, could something like this be missing on sm6350?
-> 
-> I'd appreciate any help or tips for resolving this.
-> 
+--7y2hkmghfrzgq4ye
+Content-Type: text/plain; protected-headers=v1; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH 2/2] arm64: dts: freescale: Add phyBOARD-Segin-i.MX91
+ support
+MIME-Version: 1.0
 
-Recently one particular problem related to MCLK was identified by me on
-QRB5165/RB5, and it was reported to Bjorn over IRC, namely it's not possible
-to toggle MCLK clock enable/disable state, when TITAN GDSC power domain is
-set off. I'm working on fixing the issue (a change under clk/qcom), since
-it's of an importance for a customer as well.
+On 21.10.2025 11:37:04, Primoz Fiser wrote:
+> Add initial support for the PHYTEC phyBOARD-Segin-i.MX91 board [1] based
+> on the PHYTEC phyCORE-i.MX91 SoM (System-on-Module) [2].
+>=20
+> Supported features:
+> * Audio
+> * CAN
+> * eMMC
+> * Ethernet
+> * I2C
+> * RTC
+> * SD-Card
+> * UART
+> * USB
+>=20
+> For more details see the product pages for the development board and the
+> SoM:
+>=20
+> [1] https://www.phytec.eu/en/produkte/development-kits/phyboard-segin-kit/
+> [2] https://www.phytec.eu/en/produkte/system-on-modules/phycore-imx-91-93/
+>=20
+> Signed-off-by: Primoz Fiser <primoz.fiser@norik.com>
+> ---
+>  arch/arm64/boot/dts/freescale/Makefile        |   1 +
+>  .../dts/freescale/imx91-phyboard-segin.dts    | 344 ++++++++++++++++++
+>  .../boot/dts/freescale/imx91-phycore-som.dtsi | 304 ++++++++++++++++
+>  3 files changed, 649 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/freescale/imx91-phyboard-segin.dts
+>  create mode 100644 arch/arm64/boot/dts/freescale/imx91-phycore-som.dtsi
+>=20
+> diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts=
+/freescale/Makefile
+> index 525ef180481d..34a81d34de39 100644
+> --- a/arch/arm64/boot/dts/freescale/Makefile
+> +++ b/arch/arm64/boot/dts/freescale/Makefile
+> @@ -344,6 +344,7 @@ dtb-$(CONFIG_ARCH_MXC) +=3D imx8qxp-tqma8xqps-mb-smar=
+c-2.dtb
+>  dtb-$(CONFIG_ARCH_MXC) +=3D imx8ulp-9x9-evk.dtb
+>  dtb-$(CONFIG_ARCH_MXC) +=3D imx8ulp-evk.dtb
+>  dtb-$(CONFIG_ARCH_MXC) +=3D imx91-11x11-evk.dtb
+> +dtb-$(CONFIG_ARCH_MXC) +=3D imx91-phyboard-segin.dtb
+>  dtb-$(CONFIG_ARCH_MXC) +=3D imx91-tqma9131-mba91xxca.dtb
+>  dtb-$(CONFIG_ARCH_MXC) +=3D imx93-9x9-qsb.dtb
+> =20
+> diff --git a/arch/arm64/boot/dts/freescale/imx91-phyboard-segin.dts b/arc=
+h/arm64/boot/dts/freescale/imx91-phyboard-segin.dts
+> new file mode 100644
+> index 000000000000..bb631439f9cf
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/freescale/imx91-phyboard-segin.dts
+> @@ -0,0 +1,344 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright (C) 2025 PHYTEC Messtechnik GmbH
+> + * Author: Christoph Stoidner <c.stoidner@phytec.de>
+> + *
+> + * Product homepage:
+> + * phyBOARD-Segin carrier board is reused for the i.MX91 design.
+> + * https://www.phytec.eu/en/produkte/single-board-computer/phyboard-segi=
+n-imx6ul/
+> + */
+> +/dts-v1/;
+> +
+> +#include "imx91-phycore-som.dtsi"
+> +
+> +/{
+> +	model =3D "PHYTEC phyBOARD-Segin-i.MX91";
+> +	compatible =3D "phytec,imx91-phyboard-segin", "phytec,imx91-phycore-som=
+",
+> +		     "fsl,imx91";
+> +
+> +	aliases {
+> +		ethernet1 =3D &eqos;
+> +		gpio0 =3D &gpio1;
+> +		gpio1 =3D &gpio2;
+> +		gpio2 =3D &gpio3;
+> +		gpio3 =3D &gpio4;
+> +		i2c0 =3D &lpi2c1;
+> +		i2c1 =3D &lpi2c2;
+> +		mmc0 =3D &usdhc1;
+> +		mmc1 =3D &usdhc2;
+> +		rtc0 =3D &i2c_rtc;
+> +		rtc1 =3D &bbnsm_rtc;
+> +		serial0 =3D &lpuart1;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path =3D &lpuart1;
+> +	};
+> +
+> +	flexcan1_tc: can-phy0 {
+> +		compatible =3D "ti,tcan1043";
+> +		#phy-cells =3D <0>;
+> +		max-bitrate =3D <1000000>;
+> +		pinctrl-names =3D "default";
+> +		pinctrl-0 =3D <&pinctrl_flexcan1_tc>;
+> +		enable-gpios =3D <&gpio4 16 GPIO_ACTIVE_HIGH>;
+> +	};
 
-I can't be totally sure that it's right the same problem as the one reported
-by you above, but it looks very similar, as a fast workaround please consider
-to set an ALWAYS_ON flag of TITAN GDSC, and at least a report from you that
-this actually helps would be nice to get.
+I think the tcan1043 is a CAN-FD transceiver. According to the datasheet
+it support 2 MBit/s and 5 MBit/s in the "G" variant. However due to the
+board layout, etc, the actual bit rate might still be limited to 1
+MBit/s. Ask the HW engineers if in doubt.
 
--- 
-Best wishes,
-Vladimir
+regards,
+Marc
+
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde          |
+Embedded Linux                   | https://www.pengutronix.de |
+Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
+
+--7y2hkmghfrzgq4ye
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEn/sM2K9nqF/8FWzzDHRl3/mQkZwFAmj3V1IACgkQDHRl3/mQ
+kZxWzAf/fxSz9NDY21Y3KxeV/w5epdWrucWsqqjsdEU0ACBO7vaDLgzQBWrWylM3
+SbMwTG47o3YVQKQN9VZAz+niqnsspW+Zd5rka7aOkKN0m7omFZ0WZOqiLlURa1Xb
+rXCDGM6ac6ZoCR9QBQkOvFjEEdPriF/nF5IUNiL+ks5846ZXclCTvoEjtDTuioxP
+3Hjb3c3QyssbVWhUaHrSqnhqasjk54wRXEpnJjylB/Q2Qp5uuaETw2X4J1bowuDf
+Z4GCVUwENM2y5kG7PW5Jz4fQgHc+AZJiMBPDQ3viDtZHBNlAJjybRdJE9k/p9ONq
+gjwagBiM9rNg3GWhkkg0k8VTAv+5mw==
+=pBli
+-----END PGP SIGNATURE-----
+
+--7y2hkmghfrzgq4ye--
 
