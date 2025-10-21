@@ -1,104 +1,114 @@
-Return-Path: <devicetree+bounces-229383-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229384-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98DE2BF6C91
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 15:32:16 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1ED9FBF6D0F
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 15:37:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6932018A4D59
-	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 13:32:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DDF3F1885A94
+	for <lists+devicetree@lfdr.de>; Tue, 21 Oct 2025 13:36:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31B312F39D0;
-	Tue, 21 Oct 2025 13:32:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Cil8iBtA"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58B8D33891E;
+	Tue, 21 Oct 2025 13:35:28 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vs1-f46.google.com (mail-vs1-f46.google.com [209.85.217.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05436169AD2;
-	Tue, 21 Oct 2025 13:32:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C88E2328B5A
+	for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 13:35:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761053525; cv=none; b=KsU97Dl606SArTe0GQtvZMUvZdkCU+NPDOdNT+LUolFKFgfulVhT9WOB/y6VlSZ+PnoDf4gFMFymTynmvGYtWha8cL0HNsbdSB3QudEajKaNO/TecM0d/q/R12HTelCwU7LNkBAH5hzdt992v2MHPyUoD/Pw7yZLJjQBIuzxHnE=
+	t=1761053728; cv=none; b=qFe4sNh6oaoOrPAwyrWiCUxjRUCcl6E5N8wCdt0AOzUtDvN8vDZ0tuN+zu+jaAIcAeR3mVnPba7/R/evfjW5GuzSfH18tTReNKgGdqiLh3EOWtnxzHS6PzU+mtgNkDBTYaxTEzhmc3pApDEFrTFszTQlbL59fpeqpgxCnPclWwM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761053525; c=relaxed/simple;
-	bh=nyuiyacr165FLqxyWKt1B4gvgh4RzY/Ij1hXstDErIo=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=rput1g+eTDkR/uDkO3E2wjNF4p5BVsx5LJBW/Y02J2jiYMetBIG3MMi3SNgq0VQOXqnqGHPgeb6FHr69wXLrnkAGlGw0iygQQmJrZP2GwxQojz3WooJi5Af90QAq4Gi3olI3mopdyJsAA7YeMQZk5h2Ni6JsCK4LxxUvNpWvZZs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Cil8iBtA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BC8D1C4CEF1;
-	Tue, 21 Oct 2025 13:32:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761053524;
-	bh=nyuiyacr165FLqxyWKt1B4gvgh4RzY/Ij1hXstDErIo=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=Cil8iBtA/atoolDBeOsa4U9BKo1ptHWOAXfTcEX6czp1OYcyYe3FnYKwM4/oxkR2R
-	 dSLthkOzJaOdujRm2PUgDWgMFkOUiQqQ8fK9apV8sf/ae00SHABN2XIlK8MDNk+1bD
-	 5lKJ7sIi6pMd0+oMBVfvuhkmGT4oGxIP59P2jD1Q93wbZHx8HjnIDatzhsoJ9EW56z
-	 HzXW5VLv0n5Nbat7KvmLT74fqrR33YWgmiCqAePyIc9IiwGxzC6uSilvrN6wmRqNdw
-	 ORe2T5RsCIZLmK31YgJiu/AjUlpPY8R5WMQm0bt4JcYjydmzKELDLmHT5OIFkFk+qH
-	 8QtMEigusE5Hw==
-From: Conor Dooley <conor@kernel.org>
-To: claudiu.beznea@tuxon.dev,
-	Conor Dooley <conor@kernel.org>
-Cc: Conor Dooley <conor.dooley@microchip.com>,
-	Daire McNamara <daire.mcnamara@microchip.com>,
-	pierre-henry.moussay@microchip.com,
-	valentina.fernandezalanis@microchip.com,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	linux-riscv@lists.infradead.org,
-	linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: (subset) [PATCH v5 0/9] Redo PolarFire SoC's mailbox/clock devicestrees and related code
-Date: Tue, 21 Oct 2025 14:31:29 +0100
-Message-ID: <20251021-ranked-attendee-8caed80461b2@spud>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20251013-album-bovine-faf9f5ebc5d4@spud>
-References: <20251013-album-bovine-faf9f5ebc5d4@spud>
+	s=arc-20240116; t=1761053728; c=relaxed/simple;
+	bh=gnF9AkJgPkgv+c5e70+0S/TuXUz2qGPWDAKnDZ2oFUs=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ATYDpU2I11Wbpv0AqmRKnYh9FPjFdKW5Y1Tw78+4w/PuFvcMrn68GPYBrScMY+4h0eBNLDz04URB5iStMKp1gJQRHoqKQAHJcEYrz4n/1p6gPwx6pBQd2Br6ulUJVQhE3RQ/qdwAG8FJaBIs++KyNq20AON4kwZPeULBThRUL6I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vs1-f46.google.com with SMTP id ada2fe7eead31-5d6266f1a33so2481277137.3
+        for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 06:35:26 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761053725; x=1761658525;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=2TkKqx+vxrv5wCaSsuSiP+PuBVA5+FMh9B80POq+sr0=;
+        b=WFzHvn/a/5bXCbUUoTKn1h1VInybJh0BNltPnfywQ0XuQBnEt4p5jcjBkRRZr/W20p
+         OrUwBBb5x35KmC7rqUrNOvvksWWkdLkWBV3PWLEgk+ajBQXwRmUSU6j9FyxCdOx2hpjG
+         YOYMrW6/ZWlYXnxjRClXVQQXxwcmzPkOG+Upwe0aL6YAoxnZVj1JvjngxRppcJuOMu1c
+         gNOm33fLDkYDlW1p0JHluag65WOkzYDUcEYBjDMtwQWEIbdAU8fCuB5ShISgU1xkM/Jr
+         OmAkTazY1eIC+8xrsrtr58bAA5eLH47TQ4eGaeBENluzy1FBbwsJGlnbI4ZTeQK38J2O
+         tTPA==
+X-Forwarded-Encrypted: i=1; AJvYcCXbb89sfarPecFJAuY6HgNy/dRALlk+dx9yBEhQmEUo6tpIwQc9WDXvUtuAE2kvu1PuJ4phanLhr1Wd@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw7yF5otb1xyR4D77kQ1bggQlN32yQW0x+kDpirwijM/ZNwA3nd
+	zq66zfxt8+LuacBiukHYrFpmZ0UIr0XGqZ7uxm+uerFFmEy1aCtXFlDUuxTHTXEQ
+X-Gm-Gg: ASbGncvnGZDlFisc8cMe/sOosUtUmf0FQB6BRGgbu69ZjPv6M03KO9p6IXjAbPQcgnn
+	hfbV55fj77ppP6rl6NNGNtPlfGWpx5BtAhHYdHXQagc7ikfwwSXeR6Uo/oNuh8BYduzp0xtw1T9
+	vYa9Sszp7ftiCuvdFfHf0v2EMl/1kFUBvw8WLpMCs9Bz7GGyRVQqFp7A2X/2rPvAmh17ydNtCIH
+	lIE9ZCpCqp6fZ66EEeTpEF4BGvKQzZoWHpe7rMDlG/C1XSCNbILLAI/60BwroIS5hzCYGxG3M/I
+	HqdetRo/VmeMozs/JQ2xXB2+LTn/DCG0G6I5E+U9MQHsX8+MYLDM50WHqA/UgcTKpJfrpnX6LMq
+	n6zOj1h037MwD2iivAp6XeqHjgxXZKZ8JH8XO19KZj6Ljkbx4PpUsNQll0vi7yzrJfczKmjf/8K
+	yafEftOSQPG60Yl55D5Fh3TDYnYolsszHLmAMFCzPZS+urqypv
+X-Google-Smtp-Source: AGHT+IEbDluidQsytz4y8WFKFSP3DBoeQHP+wHP1u8DiXkuiKrvImZBClLqo/EJwE0ezBRAu/LPyxA==
+X-Received: by 2002:a05:6102:3255:10b0:5d7:dddb:3e5d with SMTP id ada2fe7eead31-5d7dddb3e88mr3816868137.0.1761053725467;
+        Tue, 21 Oct 2025 06:35:25 -0700 (PDT)
+Received: from mail-vs1-f52.google.com (mail-vs1-f52.google.com. [209.85.217.52])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-932c3e32d5dsm3405055241.10.2025.10.21.06.35.24
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 21 Oct 2025 06:35:24 -0700 (PDT)
+Received: by mail-vs1-f52.google.com with SMTP id ada2fe7eead31-5d980e08e06so1105819137.0
+        for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 06:35:24 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCX7ndASzPqCzLtDNVcCnUoKim6yics9Cx3BvHBtz/iXlJf5QrcoqgHCcRiu4BMuvEkBwbUv+aTdN/+e@vger.kernel.org
+X-Received: by 2002:a05:6102:390a:b0:5d5:f6ae:38de with SMTP id
+ ada2fe7eead31-5d7dd6ba33emr4614068137.41.1761053723732; Tue, 21 Oct 2025
+ 06:35:23 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1060; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=zvlQ9UDW5VIJo68sV6XLu9TdJq0uO5RaIpr0pIhrGlg=; b=owGbwMvMwCVWscWwfUFT0iXG02pJDBnfuw06L5at+38rrWfu8afsV76WCMUoX4lrm9jUtfqY2 6uLW7qmd5SyMIhxMciKKbIk3u5rkVr/x2WHc89bmDmsTCBDGLg4BWAimfoM/z37vjSa3JwhXCId rvtJ63+VqiCLSra9U2mIo0f7hc7wUwz/y9qblsk3b7iqXppjsnVu/Kvo7cukfl9XcrQ9udS7PGw uFwA=
-X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
-Content-Transfer-Encoding: 8bit
+References: <20251021080705.18116-1-ovidiu.panait.rb@renesas.com> <20251021080705.18116-2-ovidiu.panait.rb@renesas.com>
+In-Reply-To: <20251021080705.18116-2-ovidiu.panait.rb@renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 21 Oct 2025 15:35:10 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdU+=c-HseXicppm+185qq3fcc7=qq3Nu4LjoKZuYF0d-A@mail.gmail.com>
+X-Gm-Features: AS18NWDE7aRGEcmYizQFJmtQta7msQIG0JXTbcDHGFqFLxinOoGCd4ViST3rwwc
+Message-ID: <CAMuHMdU+=c-HseXicppm+185qq3fcc7=qq3Nu4LjoKZuYF0d-A@mail.gmail.com>
+Subject: Re: [PATCH v2 1/6] clk: renesas: r9a09g057: Add clock and reset
+ entries for RTC
+To: Ovidiu Panait <ovidiu.panait.rb@renesas.com>
+Cc: claudiu.beznea.uj@bp.renesas.com, alexandre.belloni@bootlin.com, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	magnus.damm@gmail.com, mturquette@baylibre.com, sboyd@kernel.org, 
+	p.zabel@pengutronix.de, linux-rtc@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-From: Conor Dooley <conor.dooley@microchip.com>
+On Tue, 21 Oct 2025 at 10:07, Ovidiu Panait
+<ovidiu.panait.rb@renesas.com> wrote:
+> Add module clock and reset entries for the RTC module on the Renesas RZ/V2H
+> (R9A09G057) SoC.
+>
+> Signed-off-by: Ovidiu Panait <ovidiu.panait.rb@renesas.com>
 
-On Mon, 13 Oct 2025 18:45:32 +0100, Conor Dooley wrote:
-> From: Conor Dooley <conor.dooley@microchip.com>
-> 
-> In v5 the only real change is that I removed the attempt at a common
-> implementation of regmap-based divider/gate clocks. The series hasn't
-> managed to receive feedback on my approach in 2025, despite sending
-> several revisions and bumps, and it is blocking support for both new
-> drivers (gpio interrupt support, pinctrl and hwmon off the top of my
-> head) and a new platform so I have decided to strip out the attempt at
-> making something common in exchange for something that can be merged
-> through the clk-microchip tree without relying on feedback from the
-> clock maintainers.
-> 
-> [...]
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-clk for v6.19.
 
-Applied to riscv-soc-drivers-for-next, because the pinctrl series that
-I am working on needs them.
+Gr{oetje,eeting}s,
 
-[1/9] dt-bindings: soc: microchip: document the simple-mfd syscon on PolarFire SoC
-      https://git.kernel.org/conor/c/feaa716adc51
-[2/9] soc: microchip: add mfd drivers for two syscon regions on PolarFire SoC
-      https://git.kernel.org/conor/c/5b59e62532fc
+                        Geert
 
-Thanks,
-Conor.
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
