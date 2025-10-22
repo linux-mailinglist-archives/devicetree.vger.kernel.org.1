@@ -1,156 +1,151 @@
-Return-Path: <devicetree+bounces-229710-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229711-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66E6ABFAFD6
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 10:53:32 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7ABA1BFAFE2
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 10:54:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CA81D567DE0
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 08:53:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 34F9C5829A3
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 08:54:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7ECE430E0E2;
-	Wed, 22 Oct 2025 08:53:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F245B305976;
+	Wed, 22 Oct 2025 08:54:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="G4vS6xCu"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="sz9Wv6lq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9789930CDB7
-	for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 08:53:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3B70266584
+	for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 08:54:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761123191; cv=none; b=Ep54Cx7x0syNjGiHayavpTQQP5348c7lJuqVrumVVjAVGzgmlwCL5i0YhEA4JUkULBf8NdSm4dZ335DTkQiEmK6zoAIIbCTmtdiiNW9vwe5RO62gB/o8hXsOWeJRdkDxCGIbmswjuEcnYxPudf21jYGj7pWs/9yQLm5Laum8F2A=
+	t=1761123257; cv=none; b=T3rWmSCZVwmyhhvHIcf1eX8o0XW7MrSZxsIPCA6+fnSiNx5LUb2+1aXCbrnr7Lz/M9OnQSKg4AvAbNEBaaEBmCoa+Wxlyj7cnBWwAFYfcxDfzgjpFoumUu2aIcuIuIXoEE0NwsFgg0o3oVsIF/pEDDbwSRKy2NdIyilREo3ta0g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761123191; c=relaxed/simple;
-	bh=AlKCgkSnSSPFD9Skbx2D0rMe1wy7Q92Jl+BlrTjwwZk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hVI1xWyKW05tvQOGwCi6/QrLONvYzJBt2wvjXrP8Yy8+AteapP4jWDQaMWR1ENeCGJyxubku7ePPlEYPDSJcAbXNQhN78+EduoxHmoP6BObhWb82RNW43gqaAYswtc0QUzs0Awfv3EOL9ZBMSVeDJ4JTnLb0Ok5xS1Qmg4hOX5o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=G4vS6xCu; arc=none smtp.client-ip=209.85.128.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-471131d6121so50022965e9.1
-        for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 01:53:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1761123185; x=1761727985; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=1VMT8mKYgwMl8yULjLBpYiH70IVjoTMUBL7pjvnp2wU=;
-        b=G4vS6xCumFze4PR247HPqJYnkGR9llZ6rtlALjCnSKX74MYDu2f4Ot6NQrJXdNlH/5
-         sZ9c8lEqjTnBf0H0cooxsz/5q74PKFm+WolFbi8VmJOwz70X3h5bJ7w4088mK+gqX8HM
-         ff3he7k/0PQcLGI1FU7ZJtqQaYqHHrp9YA2vWKC8WYAh9wXfqjLvvXnt1EWgGZFSavKF
-         Kj34zx9lpF9r8pF/21lmKCU9J1KZqDy8uJ7A0+Qsj508CJLTkCUgQGc7B0Zk1HIZf+yv
-         CfizMTFh/1py0kB4O6J3q30+LpjjbiYaMN9zQbIILr+K8pJqV7g/uMKycFjPcCKudplp
-         Ixww==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761123185; x=1761727985;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=1VMT8mKYgwMl8yULjLBpYiH70IVjoTMUBL7pjvnp2wU=;
-        b=VJAsD90bQaIWMi8lT/wleiphp/xrKo++DbEpMGFEXUppAMEsG+mWhKm3FydjIxRjF/
-         f3QhgiqpBOuQ9i2QZUyC3VCkNqnhTXXXhxJbxRdAhfSl8JKY8WRsKb+HGVvqL/2TdgAk
-         M+8YUR5mKzQoI6Ga5NAJYnigliLPNXC0UsSyYr8pArFTeiX9KclPDv8fu6W01WhymcNR
-         oz5Al0O1XWRnJiFkyB2eUhLhz2KU+mtHvx9QV5iorEfD/iwfuhUn36pbNkTOWQLYOoxR
-         Zgk1LYMywPyzJPNCLAcQunhWh1dU/1CwZyO6uXEm4cNYx37qkyB2VgtOPWfIwBb6XkIe
-         pdCA==
-X-Forwarded-Encrypted: i=1; AJvYcCW6uUCabTTePE71sEj1S0NG0BgCvDGFUXziuWQxL0BPETXSZHk1lwShs3M+QQMHpcXxy9EnIUCbZyJa@vger.kernel.org
-X-Gm-Message-State: AOJu0YzwjuG83S93RFrYV2Z+rR4/t37tV4BXYVggcW6WImj7U/W827HF
-	kd6ezkAhwecdD1SqTWsYISTUe/iOp/3lyPtvRNVDhohImoavHUrJtqQRFKsMod/Ylpk=
-X-Gm-Gg: ASbGnct7qbFbZ7Y2kpeWjxTUtbdPzTrwXUlLO5U+Nt4rB2sYz7/befLt1w9u4RwF8ho
-	aQy5zNacZ8XKM9iRQQ3XxW1NMutr3jtEMFpZTH1YaX1MgSffMKE+l4UUfJLqPDyyTHDgWTq+gQo
-	IUSLps9nzbDFDtMpBvjpn8l72A9TPWUje0yTKf4SysTZtWx09iKCWTNAR4D61PaGtQHS+iqNbvo
-	AxNdQD4mozqJvt+lNfV21t75OjJd2jz+bN1rsx4fzGmNL3U+KmdMko3CAApWOh5QgKWdW9GTDsO
-	9GFGCkhbF7LQdsWkqUkN+8MBeL3A9lt+8Nuzkn1Uq5uuC1aJAcH3G0kYnnyNJW/H+q0Z37r3kir
-	hC3fXXcvvb3LmRYTxt09MDBnqSMVEJnr0ZEERovGTwgMkelPtGWWawirJ8pklkI4bt3WGWA7Ur9
-	zZj2Jr3SA=
-X-Google-Smtp-Source: AGHT+IHwyfFfA2sTV/MUe2VyGQQg2MXtrnaRyMgy8UiRtfTE0dePiGALEoLXmNajHTlU4ohhAIWQFg==
-X-Received: by 2002:a05:600c:3513:b0:471:1415:b545 with SMTP id 5b1f17b1804b1-4711786d625mr156424065e9.7.1761123184620;
-        Wed, 22 Oct 2025 01:53:04 -0700 (PDT)
-Received: from linaro.org ([86.121.7.169])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-475c428f709sm34692415e9.8.2025.10.22.01.53.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 Oct 2025 01:53:03 -0700 (PDT)
-Date: Wed, 22 Oct 2025 11:53:01 +0300
-From: Abel Vesa <abel.vesa@linaro.org>
-To: Qiang Yu <qiang.yu@oss.qualcomm.com>
-Cc: Vinod Koul <vkoul@kernel.org>, 
-	Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
-	Manivannan Sadhasivam <mani@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
-	Bjorn Andersson <andersson@kernel.org>, linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, 
-	Qiang Yu <quic_qianyu@quicinc.com>
-Subject: Re: [PATCH v5 6/6] phy: qcom: qmp-pcie: Add support for glymur PCIe
- Gen4 x2 PHY
-Message-ID: <rxju35izazp7zrzs6vyy2cxuynzc6k4i4iot5pjahwl2bfoka5@cutpfodvixmp>
-References: <20251017-glymur_pcie-v5-0-82d0c4bd402b@oss.qualcomm.com>
- <20251017-glymur_pcie-v5-6-82d0c4bd402b@oss.qualcomm.com>
+	s=arc-20240116; t=1761123257; c=relaxed/simple;
+	bh=DEYRFaSu1tmNBtnf/PK4zwzFUdG2RV3KAPhG/SSA4/E=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=shEIVhhAzcV4wFW0fL6Xi5q4jxQddFIX/OT//HbGX43LUzIaEqtxHaB+ryVIURDLfzo5aHZMtbmhH2YLHrxKzfYgOvk9lZA//gQEabflSbXCRTZL+s51OwtbOgm9qiwGqQawLGOSHrFFPB+InMomoYdec0Ei6A9zi33xGYwC+XM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=sz9Wv6lq; arc=none smtp.client-ip=185.171.202.116
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-04.galae.net (Postfix) with ESMTPS id 69BC5C0B8B2;
+	Wed, 22 Oct 2025 08:53:52 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 0E381606DC;
+	Wed, 22 Oct 2025 08:54:12 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 557A8102F242F;
+	Wed, 22 Oct 2025 10:54:03 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1761123251; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=UdkqHbshapC7nZY4/zFoditcNqEk/iGcG2EMytEmpUc=;
+	b=sz9Wv6lqYxBw+efub1O+67sRO5hj1GJKSrnQlOg8RP6sH79keyWGAzsK4Q+4n1BMEdB7VS
+	TYOlusTcal3NLBThus+SARMOan5OGVRHZIorH9GQCpJoigQOUA9yFIoEoNLMT3yx+Sjvdd
+	aWFll3rPZFjgq12I1YFpGxjlTEjVrsIAMG94T945WWTouRh4oilP/lVIsQ9J9DYlk3fS0D
+	RCns2kaBXugtb8nVvJoIciKphHOiT+lUAdK7dT+UZflZ4C4hdMp+ZOrBIv5J5MOX5exH06
+	3pUkH8Zf3TmQhgbiLKKoyN6L/DLMNpHiQDj1Jx5+laX7Shvkj31BB/uuvktcWg==
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+To: Richard Genoud <richard.genoud@bootlin.com>
+Cc: Richard Weinberger <richard@nod.at>,  Vignesh Raghavendra
+ <vigneshr@ti.com>,  Rob Herring <robh@kernel.org>,  Krzysztof Kozlowski
+ <krzk+dt@kernel.org>,  Conor Dooley <conor+dt@kernel.org>,  Chen-Yu Tsai
+ <wens@csie.org>,  Jernej Skrabec <jernej.skrabec@gmail.com>,  Samuel
+ Holland <samuel@sholland.org>,  Uwe =?utf-8?Q?Kleine-K=C3=B6nig?=
+ <u.kleine-koenig@baylibre.com>,  Wentao Liang <vulab@iscas.ac.cn>,  Johan
+ Hovold <johan@kernel.org>,  Maxime Ripard <mripard@kernel.org>,  Thomas
+ Petazzoni <thomas.petazzoni@bootlin.com>,  linux-mtd@lists.infradead.org,
+  devicetree@vger.kernel.org,  linux-arm-kernel@lists.infradead.org,
+  linux-sunxi@lists.linux.dev,  linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 04/15] mtd: rawnand: sunxi: introduce reg_user_data
+ in sunxi_nfc_caps
+In-Reply-To: <20251020101311.256819-5-richard.genoud@bootlin.com> (Richard
+	Genoud's message of "Mon, 20 Oct 2025 12:13:00 +0200")
+References: <20251020101311.256819-1-richard.genoud@bootlin.com>
+	<20251020101311.256819-5-richard.genoud@bootlin.com>
+User-Agent: mu4e 1.12.7; emacs 30.2
+Date: Wed, 22 Oct 2025 10:54:02 +0200
+Message-ID: <87y0p3tiz9.fsf@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251017-glymur_pcie-v5-6-82d0c4bd402b@oss.qualcomm.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Last-TLS-Session-Version: TLSv1.3
 
-On 25-10-17 18:33:43, Qiang Yu wrote:
-> From: Qiang Yu <quic_qianyu@quicinc.com>
-> 
-> Add support for Gen4 x2 PCIe QMP PHY found on Glymur platform.
-> 
-> Signed-off-by: Qiang Yu <qiang.yu@oss.qualcomm.com>
+Hi Richard,
 
-Since this is something I already sent upstream here and it is more correct:
+On 20/10/2025 at 12:13:00 +02, Richard Genoud <richard.genoud@bootlin.com> =
+wrote:
 
-https://lore.kernel.org/all/20251015-phy-qcom-pcie-add-glymur-v1-2-1af8fd14f033@linaro.org/
-
+> The H6/H616 USER_DATA register is not at the same offset as the
+> A10/A23 one, so move its offset into sunxi_nfc_caps
+>
+> No functional change.
+>
+> Signed-off-by: Richard Genoud <richard.genoud@bootlin.com>
 > ---
->  drivers/phy/qualcomm/phy-qcom-qmp-pcie.c | 28 ++++++++++++++++++++++++++++
->  1 file changed, 28 insertions(+)
-> 
-> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
-> index 86b1b7e2da86a8675e3e48e90b782afb21cafd77..2747e71bf865907f139422a9ed33709c4a7ae7ea 100644
-> --- a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
-> +++ b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
-> @@ -3363,6 +3363,16 @@ static const struct qmp_pcie_offsets qmp_pcie_offsets_v6_30 = {
->  	.ln_shrd	= 0x8000,
->  };
->  
-> +static const struct qmp_pcie_offsets qmp_pcie_offsets_v8 = {
-> +	.serdes     = 0x1000,
-> +	.pcs        = 0x1400,
-> +	.pcs_misc	= 0x1800,
-> +	.tx		= 0x0000,
-> +	.rx		= 0x0200,
-> +	.tx2		= 0x0800,
-> +	.rx2		= 0x0a00,
-> +};
-> +
->  static const struct qmp_pcie_offsets qmp_pcie_offsets_v8_50 = {
->  	.serdes     = 0x8000,
->  	.pcs        = 0x9000,
-> @@ -4441,6 +4451,21 @@ static const struct qmp_phy_cfg glymur_qmp_gen5x4_pciephy_cfg = {
->  	.phy_status		= PHYSTATUS_4_20,
->  };
->  
-> +static const struct qmp_phy_cfg glymur_qmp_gen4x2_pciephy_cfg = {
-> +	.lanes = 2,
-> +
-> +	.offsets		= &qmp_pcie_offsets_v8,
-> +
-> +	.reset_list		= sdm845_pciephy_reset_l,
-> +	.num_resets		= ARRAY_SIZE(sdm845_pciephy_reset_l),
-> +	.vreg_list		= qmp_phy_vreg_l,
-> +	.num_vregs		= ARRAY_SIZE(qmp_phy_vreg_l),
-> +	.regs			= pciephy_v6_regs_layout,
+>  drivers/mtd/nand/raw/sunxi_nand.c | 13 +++++++++----
+>  1 file changed, 9 insertions(+), 4 deletions(-)
+>
+> diff --git a/drivers/mtd/nand/raw/sunxi_nand.c b/drivers/mtd/nand/raw/sun=
+xi_nand.c
+> index 0285e4d0ca7f..8f5d8df19e33 100644
+> --- a/drivers/mtd/nand/raw/sunxi_nand.c
+> +++ b/drivers/mtd/nand/raw/sunxi_nand.c
+> @@ -48,7 +48,8 @@
+>  #define NFC_REG_DEBUG		0x003C
+>  #define NFC_REG_A10_ECC_ERR_CNT	0x0040
+>  #define NFC_REG_ECC_ERR_CNT(nfc, x)	((nfc->caps->reg_ecc_err_cnt + (x)) =
+& ~0x3)
+> -#define NFC_REG_USER_DATA(x)	(0x0050 + ((x) * 4))
+> +#define NFC_REG_A10_USER_DATA	0x0050
+> +#define NFC_REG_USER_DATA(nfc, x)	(nfc->caps->reg_user_data + ((x) * 4))
+>  #define NFC_REG_SPARE_AREA	0x00A0
+>  #define NFC_REG_PAT_ID		0x00A4
+>  #define NFC_REG_MDMA_ADDR	0x00C0
+> @@ -214,6 +215,7 @@ static inline struct sunxi_nand_chip *to_sunxi_nand(s=
+truct nand_chip *nand)
+>   *			through MBUS on A23/A33 needs extra configuration.
+>   * @reg_io_data:	I/O data register
+>   * @reg_ecc_err_cnt:	ECC error counter register
+> + * @reg_user_data:	User data register
+>   * @dma_maxburst:	DMA maxburst
+>   * @ecc_strengths:	Available ECC strengths array
+>   * @nstrengths:		Size of @ecc_strengths
+> @@ -222,6 +224,7 @@ struct sunxi_nfc_caps {
+>  	bool has_mdma;
+>  	unsigned int reg_io_data;
+>  	unsigned int reg_ecc_err_cnt;
+> +	unsigned int reg_user_data;
+>  	unsigned int dma_maxburst;
+>  	const u8 *ecc_strengths;
+>  	unsigned int nstrengths;
+> @@ -723,8 +726,8 @@ static void sunxi_nfc_hw_ecc_get_prot_oob_bytes(struc=
+t nand_chip *nand, u8 *oob,
+>  {
+>  	struct sunxi_nfc *nfc =3D to_sunxi_nfc(nand->controller);
+>=20=20
+> -	sunxi_nfc_user_data_to_buf(readl(nfc->regs + NFC_REG_USER_DATA(step)),
+> -				   oob);
+> +	sunxi_nfc_user_data_to_buf(readl(nfc->regs +
+> +					 NFC_REG_USER_DATA(nfc, step)),
+> oob);
 
-Definitely not v6 regs here. Needs to be v8.
+Minor nit, column limit is 100 now, so typically for this kind of
+situation everything would fit on a single line.
 
-NAK.
+Don't respin just for that if there is nothing else later, but if a v4
+is needed you can change it.
+
+Looks neat otherwise so far.
+
+Thanks,
+Miqu=C3=A8l
 
