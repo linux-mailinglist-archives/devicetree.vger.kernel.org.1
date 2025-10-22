@@ -1,151 +1,116 @@
-Return-Path: <devicetree+bounces-229711-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229712-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7ABA1BFAFE2
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 10:54:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 51885BFAFF8
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 10:55:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 34F9C5829A3
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 08:54:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 61BE3584438
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 08:55:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F245B305976;
-	Wed, 22 Oct 2025 08:54:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD40F309EFB;
+	Wed, 22 Oct 2025 08:55:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="sz9Wv6lq"
+	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="1KaWRcOO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3B70266584
-	for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 08:54:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19787309EF4;
+	Wed, 22 Oct 2025 08:55:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761123257; cv=none; b=T3rWmSCZVwmyhhvHIcf1eX8o0XW7MrSZxsIPCA6+fnSiNx5LUb2+1aXCbrnr7Lz/M9OnQSKg4AvAbNEBaaEBmCoa+Wxlyj7cnBWwAFYfcxDfzgjpFoumUu2aIcuIuIXoEE0NwsFgg0o3oVsIF/pEDDbwSRKy2NdIyilREo3ta0g=
+	t=1761123323; cv=none; b=DE2jc0Y23A9eMJjvIUWhJiGKNQh2O+gKwqGgrDXnSpj0CaPnhOsTY9NC4/kAPJvB0sM0wIT5CKoVXg5eUpEqEg3v2yosS88edzRlP//2QBrFqfQqpQx32se1LDtLcA5hywYRo5+RXioDixK9y/boTXK4jIqZxSi2Dz1lqFRhHAQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761123257; c=relaxed/simple;
-	bh=DEYRFaSu1tmNBtnf/PK4zwzFUdG2RV3KAPhG/SSA4/E=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=shEIVhhAzcV4wFW0fL6Xi5q4jxQddFIX/OT//HbGX43LUzIaEqtxHaB+ryVIURDLfzo5aHZMtbmhH2YLHrxKzfYgOvk9lZA//gQEabflSbXCRTZL+s51OwtbOgm9qiwGqQawLGOSHrFFPB+InMomoYdec0Ei6A9zi33xGYwC+XM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=sz9Wv6lq; arc=none smtp.client-ip=185.171.202.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 69BC5C0B8B2;
-	Wed, 22 Oct 2025 08:53:52 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 0E381606DC;
-	Wed, 22 Oct 2025 08:54:12 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 557A8102F242F;
-	Wed, 22 Oct 2025 10:54:03 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1761123251; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=UdkqHbshapC7nZY4/zFoditcNqEk/iGcG2EMytEmpUc=;
-	b=sz9Wv6lqYxBw+efub1O+67sRO5hj1GJKSrnQlOg8RP6sH79keyWGAzsK4Q+4n1BMEdB7VS
-	TYOlusTcal3NLBThus+SARMOan5OGVRHZIorH9GQCpJoigQOUA9yFIoEoNLMT3yx+Sjvdd
-	aWFll3rPZFjgq12I1YFpGxjlTEjVrsIAMG94T945WWTouRh4oilP/lVIsQ9J9DYlk3fS0D
-	RCns2kaBXugtb8nVvJoIciKphHOiT+lUAdK7dT+UZflZ4C4hdMp+ZOrBIv5J5MOX5exH06
-	3pUkH8Zf3TmQhgbiLKKoyN6L/DLMNpHiQDj1Jx5+laX7Shvkj31BB/uuvktcWg==
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Richard Genoud <richard.genoud@bootlin.com>
-Cc: Richard Weinberger <richard@nod.at>,  Vignesh Raghavendra
- <vigneshr@ti.com>,  Rob Herring <robh@kernel.org>,  Krzysztof Kozlowski
- <krzk+dt@kernel.org>,  Conor Dooley <conor+dt@kernel.org>,  Chen-Yu Tsai
- <wens@csie.org>,  Jernej Skrabec <jernej.skrabec@gmail.com>,  Samuel
- Holland <samuel@sholland.org>,  Uwe =?utf-8?Q?Kleine-K=C3=B6nig?=
- <u.kleine-koenig@baylibre.com>,  Wentao Liang <vulab@iscas.ac.cn>,  Johan
- Hovold <johan@kernel.org>,  Maxime Ripard <mripard@kernel.org>,  Thomas
- Petazzoni <thomas.petazzoni@bootlin.com>,  linux-mtd@lists.infradead.org,
-  devicetree@vger.kernel.org,  linux-arm-kernel@lists.infradead.org,
-  linux-sunxi@lists.linux.dev,  linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 04/15] mtd: rawnand: sunxi: introduce reg_user_data
- in sunxi_nfc_caps
-In-Reply-To: <20251020101311.256819-5-richard.genoud@bootlin.com> (Richard
-	Genoud's message of "Mon, 20 Oct 2025 12:13:00 +0200")
-References: <20251020101311.256819-1-richard.genoud@bootlin.com>
-	<20251020101311.256819-5-richard.genoud@bootlin.com>
-User-Agent: mu4e 1.12.7; emacs 30.2
-Date: Wed, 22 Oct 2025 10:54:02 +0200
-Message-ID: <87y0p3tiz9.fsf@bootlin.com>
+	s=arc-20240116; t=1761123323; c=relaxed/simple;
+	bh=LxySeUIScT7NWfE61hz2tNtsBcPsmPf5b4Rc3nNLoQI=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=EH5JX/n7V5EJEV3B1f1zwtro4A1FSMQlhUQfnIpwZ5u+wqvkCj1IpX9Chdh856NWZ58KdN3G1UNbkvrFk+dIjc0du2ikFMw321Wly4g4Kc5THegz5vf8/CKU5St1eSvmHx4sMNcgRv08Twg2ZT8S1f9bugGoPMopdsyAIODPMZQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=1KaWRcOO; arc=none smtp.client-ip=178.238.236.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=kemnade.info; s=20220719; h=References:In-Reply-To:Cc:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=oHvZB4NwUXXPrGHOyAB04zW2NhfaHBxub/V9ezZt/vs=; b=1KaWRcOOBm9ve1gG5wAFhu0uPP
+	eXKaMPZ9KidhNXk+56C1MtoDgyLaPTyyf1EqOnaJPyvE/R7MDzBQdQTd1i0Wj/7tZhCbZK2ougha4
+	VSomg2cEoGiS/Rn684+DUoup0rsT9jFcano4bsvDdjGAcJDYu8k+Zr0SEcwIpDShsuHoPB4YZUvtp
+	Fw+7vgvNso+J8ZrKhU6w2/4hiU4RARWR5R0KwzHviggxcEgRla82xLaY1DVGfAuecMDdi2/tkWZ10
+	13ShfYCZRx6qoanodjflVQh+Fp8ANTBlpSD3Rg4chji6KZPANDomZnIDKUbVwhqq2M0LDslLBDqHU
+	XmohzhDw==;
+Date: Wed, 22 Oct 2025 10:55:16 +0200
+From: Andreas Kemnade <andreas@kemnade.info>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Dmitry
+ Torokhov <dmitry.torokhov@gmail.com>, Tony Lindgren <tony@atomide.com>,
+ Kevin Hilman <khilman@kernel.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
+ linux-omap@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: mfd: twl: enable power button also for
+ twl603x
+Message-ID: <20251022105516.2ffea183@kemnade.info>
+In-Reply-To: <7702e4f6-4913-4d9e-bbc4-1fb849507e4c@kernel.org>
+References: <20251020-twl6030-button-v1-0-93e4644ac974@kernel.org>
+	<20251020-twl6030-button-v1-1-93e4644ac974@kernel.org>
+	<5fd43d2c-3a08-4a51-abb6-38883ee86bf2@kernel.org>
+	<20251021104515.5e25bec1@kemnade.info>
+	<beabb9f7-fcf4-4c1d-a259-6c48e82fbcf5@kernel.org>
+	<20251021183624.6fde0a15@kemnade.info>
+	<7702e4f6-4913-4d9e-bbc4-1fb849507e4c@kernel.org>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; aarch64-unknown-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-Hi Richard,
+On Tue, 21 Oct 2025 19:18:25 +0200
+Krzysztof Kozlowski <krzk@kernel.org> wrote:
 
-On 20/10/2025 at 12:13:00 +02, Richard Genoud <richard.genoud@bootlin.com> =
-wrote:
+> On 21/10/2025 18:36, Andreas Kemnade wrote:
+> > On Tue, 21 Oct 2025 11:58:49 +0200
+> > Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> >   
+> >> On 21/10/2025 10:45, Andreas Kemnade wrote:  
+> >>> On Tue, 21 Oct 2025 09:10:28 +0200
+> >>> Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> >>>     
+> >>>> On 20/10/2025 14:31, akemnade@kernel.org wrote:    
+> >>>>> From: Andreas Kemnade <andreas@kemnade.info>
+> >>>>>
+> >>>>> TWL603x has also a power button, so add the corresponding subnode.      
+> >>>>
+> >>>> No, we don't add subnodes just because there is a power button. This
+> >>>> needs broader explanation, see also my further comment.
+> >>>>    
+> >>> Hmm, what is the general pattern to follow if a mfd device has some
+> >>> functionality which depends on some optional external components?    
+> >>
+> >> Please describe it better - how these nodes depend on external
+> >> component? The power button logic/IC is in this device always. It is not
+> >> optional.
+> >>  
+> > The power button logic is always there, yes, but it depends on an optional
+> > actual mechanical button connected to a pad of this device, which is
+> > not always there. The logic will not work if I just put my finger on the PMIC,
+> > but it will work if there is a mechanical button which I can press connected to
+> > the PMIC.  
+> 
+> 
+> Hm... how do you represent this logic now? By adding status=disabled to
+> the pwrbutton node?
+> 
+Yes, or by simply not adding tho pwrbutton node at all. Well, if we break
+the legacy pattern here, we can probably add a property for this.
 
-> The H6/H616 USER_DATA register is not at the same offset as the
-> A10/A23 one, so move its offset into sunxi_nfc_caps
->
-> No functional change.
->
-> Signed-off-by: Richard Genoud <richard.genoud@bootlin.com>
-> ---
->  drivers/mtd/nand/raw/sunxi_nand.c | 13 +++++++++----
->  1 file changed, 9 insertions(+), 4 deletions(-)
->
-> diff --git a/drivers/mtd/nand/raw/sunxi_nand.c b/drivers/mtd/nand/raw/sun=
-xi_nand.c
-> index 0285e4d0ca7f..8f5d8df19e33 100644
-> --- a/drivers/mtd/nand/raw/sunxi_nand.c
-> +++ b/drivers/mtd/nand/raw/sunxi_nand.c
-> @@ -48,7 +48,8 @@
->  #define NFC_REG_DEBUG		0x003C
->  #define NFC_REG_A10_ECC_ERR_CNT	0x0040
->  #define NFC_REG_ECC_ERR_CNT(nfc, x)	((nfc->caps->reg_ecc_err_cnt + (x)) =
-& ~0x3)
-> -#define NFC_REG_USER_DATA(x)	(0x0050 + ((x) * 4))
-> +#define NFC_REG_A10_USER_DATA	0x0050
-> +#define NFC_REG_USER_DATA(nfc, x)	(nfc->caps->reg_user_data + ((x) * 4))
->  #define NFC_REG_SPARE_AREA	0x00A0
->  #define NFC_REG_PAT_ID		0x00A4
->  #define NFC_REG_MDMA_ADDR	0x00C0
-> @@ -214,6 +215,7 @@ static inline struct sunxi_nand_chip *to_sunxi_nand(s=
-truct nand_chip *nand)
->   *			through MBUS on A23/A33 needs extra configuration.
->   * @reg_io_data:	I/O data register
->   * @reg_ecc_err_cnt:	ECC error counter register
-> + * @reg_user_data:	User data register
->   * @dma_maxburst:	DMA maxburst
->   * @ecc_strengths:	Available ECC strengths array
->   * @nstrengths:		Size of @ecc_strengths
-> @@ -222,6 +224,7 @@ struct sunxi_nfc_caps {
->  	bool has_mdma;
->  	unsigned int reg_io_data;
->  	unsigned int reg_ecc_err_cnt;
-> +	unsigned int reg_user_data;
->  	unsigned int dma_maxburst;
->  	const u8 *ecc_strengths;
->  	unsigned int nstrengths;
-> @@ -723,8 +726,8 @@ static void sunxi_nfc_hw_ecc_get_prot_oob_bytes(struc=
-t nand_chip *nand, u8 *oob,
->  {
->  	struct sunxi_nfc *nfc =3D to_sunxi_nfc(nand->controller);
->=20=20
-> -	sunxi_nfc_user_data_to_buf(readl(nfc->regs + NFC_REG_USER_DATA(step)),
-> -				   oob);
-> +	sunxi_nfc_user_data_to_buf(readl(nfc->regs +
-> +					 NFC_REG_USER_DATA(nfc, step)),
-> oob);
 
-Minor nit, column limit is 100 now, so typically for this kind of
-situation everything would fit on a single line.
-
-Don't respin just for that if there is nothing else later, but if a v4
-is needed you can change it.
-
-Looks neat otherwise so far.
-
-Thanks,
-Miqu=C3=A8l
+Regards,
+Andreas
 
