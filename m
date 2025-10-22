@@ -1,212 +1,210 @@
-Return-Path: <devicetree+bounces-229692-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229694-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EB12BFADC7
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 10:22:06 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0DE1BFADEA
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 10:24:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A1D141A00A17
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 08:22:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C338456160A
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 08:24:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA28C26FA5E;
-	Wed, 22 Oct 2025 08:21:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D9E23081B5;
+	Wed, 22 Oct 2025 08:24:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=arista.com header.i=@arista.com header.b="PxBc25pC"
+	dkim=pass (2048-bit key) header.d=gocontrollcom.onmicrosoft.com header.i=@gocontrollcom.onmicrosoft.com header.b="B3DM2sCs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f171.google.com (mail-pg1-f171.google.com [209.85.215.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from PA4PR04CU001.outbound.protection.outlook.com (mail-francecentralazon11023123.outbound.protection.outlook.com [40.107.162.123])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42A54305070
-	for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 08:21:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.171
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761121319; cv=none; b=LZaxxIYVHWKlt9rnaFG2PZsiLT7rTQnmZ6cjewbHuHNoQdhVsz0wFcth1KwLmTHWYQiIHZ6fScLGvhQ7id7xD7oQ3E3/klYoZALPh+zY04Win9l9DoZZ+C+R00B+nhSfzMHQm5QM8puKNRbIeyRu8ncMgLMdz0ibHZ36CCF+12c=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761121319; c=relaxed/simple;
-	bh=lv2uVhZqfWH9WVsgYRtW9amrl5GZHACKCdqnmaRN7GY=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=VCWAtQD42HO1Z6XEcI6POqnWeOY6ZQ/IdbpNbNl9X7SFvUiboe+9Fr0Va1aszZzcdFJt+5UUDJ9S8ZU071xRL4cAGXmD3tU7JdRwbyklo18iPs6XXtziqf8kHb9rQhUi+qAMZcSdw1nTWFYV7iVaNbHnzoMpR3RHzbFaAa7SdBM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=arista.com; spf=pass smtp.mailfrom=arista.com; dkim=pass (2048-bit key) header.d=arista.com header.i=@arista.com header.b=PxBc25pC; arc=none smtp.client-ip=209.85.215.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=arista.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arista.com
-Received: by mail-pg1-f171.google.com with SMTP id 41be03b00d2f7-b47174b335bso447484a12.2
-        for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 01:21:57 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7CE227990B;
+	Wed, 22 Oct 2025 08:23:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.162.123
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1761121440; cv=fail; b=As7wqBMn4n/GLxE88Ma8lMvLWWCdY4ecHPJU9/AvBhbcHIVQPP165hJkCx/ipgtEBGWngp1wrdBaIc/5TSreic59AQiJ7lrRd2qMrR2J2wU9gR3kET7PHszKVV9Bi5oI7R/03EPba4GComL8lSG6jwecRvcE2NkoEKeYM+ca0Gk=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1761121440; c=relaxed/simple;
+	bh=dM1L5QynGKv5fIwLOgrcbQIabq0gsdPnLea8NRrbFqk=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=C7b3A7W/N3QoJyJxdpea2Q/TuwG6zoNH3DlWXvKtYYOqqqMpyLz5mcK4PZN07AYxDneI7sM8lZjTzhlJkqZ7/C8LLEZ167U7oqBFMjwq0wpgIYhSvJ0z5rTAN0hoD4uUoPd2Gf9jS7YLt/C3zdt+mxDQBc8SOXhaCHg319a86d0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gocontroll.com; spf=pass smtp.mailfrom=gocontroll.com; dkim=pass (2048-bit key) header.d=gocontrollcom.onmicrosoft.com header.i=@gocontrollcom.onmicrosoft.com header.b=B3DM2sCs; arc=fail smtp.client-ip=40.107.162.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gocontroll.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gocontroll.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=f7JPdP2JKN1mB4A/MLl99JZ5jJGcTcIsZNjJ6h8wV/Xog1/6B0PIFI8XJuWFFMdOxLuUT8wo+M3LDp65HgNSLrcXfUqmuLc3YiZlJf29iiarHYbTELa48W6oDEtM54yAqaHPWlzlCvkD8kQMG1pWrFVREzIaFyLeIIjVg7kzCBqO9o2gCm6yqbg4vlBfZeei6b+OKbnUceePYNn49A7wb95KnRiLEIynRxjhEtY6krRricXJkdAYNVASHi6gH/3ylgbWHd83jk+cUqFpolEw9LlWip6fo61OAluLk+WEIfpaU1hcOFlYQVTfj7RPlpCYIxxeDAIP8dUYQ7dKTvz+Uw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=rdbey67hm/PDcSx/B9O0V6NL3zLcDLKlGyeyDreZ4k8=;
+ b=mqlJnGpjt86etaDJK9drUHAgv9C8wtKOF69RlPH7b6qdm2YR0z50FcJIe3mj7ZNoPq4C5syrpKhdB74A9CjW18FL3s9D3fHQncQB+PZjJEm789X7RqOvQ2FG3OFsF7eImzqNuCsiH1t5xpG/vJ2GoWwcL8yV6DR90V9olSfY9QcFiyokaNAefcy/gzzyy9sXCuZfVSKGL9Prq0Aw5uYQdBfKjp3ePJBa3E8GTAz9ugWuP/LHjdSvQpNjUuoyK9EXn7SG6l7YUSOoJHY9xUVoh0whcSuuEvSgYp90Z62rLY8W0jun/EHoWx+rfKwGhiGLHc95W3GRaeUnFJlAF3roQQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=gocontroll.com; dmarc=pass action=none
+ header.from=gocontroll.com; dkim=pass header.d=gocontroll.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=arista.com; s=google; t=1761121316; x=1761726116; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=rbLHC9QwAR9eOpe2xgT+y+OECBmxM2cqKB9QacBZTUs=;
-        b=PxBc25pCLCfHnGVE4yrG9ZdK3XFrGGJb5WstUYZDRNgXjPBqy1ztPTURS9jo24QQcf
-         3DE6JXdAWWZ+1NThIw3bUBUxjrP2M+Jf7G/CRKNFSzCcNTK1cktWM3GC23L95FQpozIm
-         F3i4Y/mo5+aEBYfAFDiEEveENp1TTddYHwGRT7blxj8eUf9GL2S9JNZOWsHdQYYZMX+3
-         lTqyyjvUuVXPM6LuRveBxrjshIgltC11lfnLiUMntUsrhas6Dx1Sc6pAcPvvKuOOT7FZ
-         TBdnYUXVzyGm5gHp7v6tE9LmOFwqM+s/Wqa/NKnsaxl3wRZK12NW6cOurZPAxz706xB4
-         z82g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761121316; x=1761726116;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=rbLHC9QwAR9eOpe2xgT+y+OECBmxM2cqKB9QacBZTUs=;
-        b=mhzVuUkvFF95SCSurZe5zYUa5+MlEXzUGzgZFjZORnR2tnYp3d6ouduzqKveTYBllm
-         Q4kWIUYzgOPVjtENUKAkmWFUwO81kuDEGk85m75Nrfm/Jz3KFp7FarBjSZZyZDJ/4t/7
-         jmq6k34khcnuShol5fhbT2EgBZ+FC9C78uIqtKaAETpD8Qw0V3X33Vm11ZYbkKCOdzJD
-         0xwZtbUKopEkgbjBtqENHThJToUBWLVQGwBgfq4U9pw8V0nr5CHtwRGUhncjjPiNu5/g
-         8zMxmj7T3tMEGZPjr8deJXdy6na8hsoAoqFlP6a3870qqLO4okn6em9z7DwrcKoiucdU
-         lrgw==
-X-Forwarded-Encrypted: i=1; AJvYcCV/TR3JuqVsCPRqB+E/QA4makC9Lc6ntm2RFZrxKpfwF0jqY4CRUKb3ZW34tLQC/zGyhOScXPWXuJQm@vger.kernel.org
-X-Gm-Message-State: AOJu0YzcKraMHWmI1O+oRq2Oh6leEYn89ucmMfOC4ZmiUUpQ4qz86S3q
-	OYvo9QqdCxx0BiiVIwb11G5JMKoGfe9c4/3PFc4EE0DLuRgys8dsFppul/WGy/k8pw==
-X-Gm-Gg: ASbGncsBSn2pTiZTXP5EfpmvjvxIPoY8qVZoHCcc0+7KSCP0zyNwlX+xEe1tCGsZvOT
-	jd8h+jYwVRxh8cEqaxk35p6TgBY56e0ErgaJP48ODcaxSnrHU2qcZMXiZ0CBj4HZC/ZrXFDmC5G
-	kBm4y8YeN7Tobj6bTZF0mA1x7FSXnKIlPteSNQfC4TiMZOnO8OzXVo2+eCvdc9/1lfXle8JgxD7
-	GlMSqjX/DltiEMCSYZq1w0ZpqeB/E5206NXjblc+JCVZ0aMvuCEOHHpfZ8FyJM1WgCtSQBl6cSZ
-	i9N/XsRpU8+nqzW23AFUT4dj1I7iUBZn3ktV58BotyX7G/IyYdN0NVgMqVde91a6N2v/306nMcK
-	Im3uck3+nDzL2xfpjfiTtSfpf0PJfkbD/BLJU0ihj6tkH8RejsrFRqbkxo8Bkmf2kMtlye7DZRb
-	RoMbsPRXGFmr2VOnXvr7Si04MtrKQQorGZ5E7wIPx/WezkIk52yBewMw==
-X-Google-Smtp-Source: AGHT+IEq1VTnJQxlOmueu6s2GebaKNeFLbAzcYm2sgg1sCqMQhIRzeaeT1dxwWuPL3kl8Wo0a8Ua8A==
-X-Received: by 2002:a05:6a20:430a:b0:334:8d22:f94a with SMTP id adf61e73a8af0-3392f61dc01mr4867714637.1.1761121316207;
-        Wed, 22 Oct 2025 01:21:56 -0700 (PDT)
-Received: from adriana-show-mem3.sjc.aristanetworks.com ([74.123.28.13])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-33e223cba14sm1854292a91.2.2025.10.22.01.21.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 Oct 2025 01:21:55 -0700 (PDT)
-From: adriana@arista.com
-To: linux-arm-kernel@lists.infradead.org,
-	jdelvare@suse.com,
-	devicetree@vger.kernel.org,
-	robh+dt@kernel.org,
-	frowand.list@gmail.com
-Cc: linux-kernel@vger.kernel.org,
-	vasilykh@arista.com,
-	Adriana Nicolae <adriana@arista.com>
-Subject: [PATCH 1/1] DMI: Scan for DMI table from DTS info
-Date: Wed, 22 Oct 2025 01:21:29 -0700
-Message-ID: <20251022082129.138217-1-adriana@arista.com>
-X-Mailer: git-send-email 2.47.0
+ d=gocontrollcom.onmicrosoft.com; s=selector1-gocontrollcom-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=rdbey67hm/PDcSx/B9O0V6NL3zLcDLKlGyeyDreZ4k8=;
+ b=B3DM2sCs1ks/yJRzXeNFEFai/HP8B7UHiRJB4HA9Z1jeRRODRAp/uC3cz9qW6P+3ImChpAXfNdEUX9aJptJUNzmFp5XQtQ/KqQKdqntKfAC0ts7W0pAKPfDEnY2BscANFM+v2xLUREd7/0fxgl2Ut6vZUp/3CYBRflZttUIHiCxF2qD8SRSwiHHTrHFMzbE85BQK+iZ7RjIU9WC/MoKbZXUR1fHaV8y3uUOFstXc1kHP1qhhwRXYeWq85Ml6tsQwSm1J9otXmhIt8cGTgDDnT2RLVtAdqn4yDxwD6a2XxaAg31/T6ncKc6GI75B+ARluePBr6xTCReewAeT/1QBSxw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=gocontroll.com;
+Received: from PA4PR04MB7630.eurprd04.prod.outlook.com (2603:10a6:102:ec::16)
+ by DU0PR04MB9299.eurprd04.prod.outlook.com (2603:10a6:10:356::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9253.12; Wed, 22 Oct
+ 2025 08:23:53 +0000
+Received: from PA4PR04MB7630.eurprd04.prod.outlook.com
+ ([fe80::311b:ad3a:4a62:7b5f]) by PA4PR04MB7630.eurprd04.prod.outlook.com
+ ([fe80::311b:ad3a:4a62:7b5f%6]) with mapi id 15.20.9253.011; Wed, 22 Oct 2025
+ 08:23:53 +0000
+Message-ID: <05fbf53d-63d7-4087-af56-361fe655ec76@gocontroll.com>
+Date: Wed, 22 Oct 2025 10:23:00 +0200
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 4/5] arm64: dts: freescale: Add the GOcontroll Moduline
+ IV
+To: Marc Kleine-Budde <mkl@pengutronix.de>,
+ Maud Spierings via B4 Relay <devnull+maudspierings.gocontroll.com@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ imx@lists.linux.dev
+References: <20251022-mini_iv-v2-0-20af8f9aac14@gocontroll.com>
+ <20251022-mini_iv-v2-4-20af8f9aac14@gocontroll.com>
+ <20251022-innocent-micro-reindeer-5baf06-mkl@pengutronix.de>
+Content-Language: en-US
+From: Maud Spierings <maudspierings@gocontroll.com>
+In-Reply-To: <20251022-innocent-micro-reindeer-5baf06-mkl@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: AS4P192CA0005.EURP192.PROD.OUTLOOK.COM
+ (2603:10a6:20b:5da::11) To PA4PR04MB7630.eurprd04.prod.outlook.com
+ (2603:10a6:102:ec::16)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PA4PR04MB7630:EE_|DU0PR04MB9299:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5e9dfd30-1ee9-4b14-b389-08de1144561f
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|1800799024|7416014|366016|10070799003;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?Nzd0OXErN2pxMUZ5MXlpU2llT0ozN2JJNnR4djBVRyttUUkvVWhqajhDakJ5?=
+ =?utf-8?B?NVREdkNRMW5OcExCRlpCY002ZkY0Ni9NU3hFUFRqcHpCRjg5RlBEZ2hQZEc4?=
+ =?utf-8?B?Uk5xUk5JS28wMzVDZHRRUzQ3RHJKRC9iZktXWkV3R3Z3UWxENGVFdGxzeFlz?=
+ =?utf-8?B?NHVJZk42NmZuK21iQXRZcWMwSlJVZHlvVDQ4c2Q5anRWb0FIUWxZeUVDM1Iw?=
+ =?utf-8?B?S1M2MWJ1Qll3NXpUWndSK0o4UGg2SFE3M3FmRExNaVBHWWEzbkdlcWU0cmpD?=
+ =?utf-8?B?R1FvM0dESEhhQVNzV0l5ZmpWZWNtdkJ4eXZGbVFkUEduQXN2eTdDQlpFK3B6?=
+ =?utf-8?B?VDZNMW5WaktQMktlb08vQzBXZHJEbC84OVdVb0l3b29FU3pVWm9wUkovMmZO?=
+ =?utf-8?B?d3hUa1NpcmQyTkJiZElva1pjQjRsSjdkcWNMY25SY1RrNnpBMVZhaU8rQWlH?=
+ =?utf-8?B?U0V6U0RTamE3cVlTZEgwbjZSMFJtTzBZdE9DN2ZRVWRlYUI5WGpZUnRQSGtr?=
+ =?utf-8?B?aFhwLzN0ZzlPakNmS2paS0VnRGJWaThiODVXczV0MitZdGtWMDh0QVVrU3du?=
+ =?utf-8?B?eTBpOGJqZWp5d2liS3Y2UURuU21QMVlwNlJVakk0enBYWFJmNmpvbEsxUUxo?=
+ =?utf-8?B?QjlyRkJabU9yaGcyWUlzTWxDRlhUN1VUQ2NFQTRnR2tLNXBHZisxdHVXSm1o?=
+ =?utf-8?B?SXJYL2Q4SVB3N0VHQm9EV2tMMmZLVDMrRGFsTW5kM3YwdXpXZHBYN1Zud0dW?=
+ =?utf-8?B?QVZkRlQ4c1k4OHZuSHNuaW1EMEFYTVV6Lyt5QkJEU0FreTNmMGFkTTkvajdC?=
+ =?utf-8?B?b1VwU2x1MExSM1M0Wi90V0hGbXpmU3ZGWkNVemtBM0xzZ1BMYVpIWDJEY3hR?=
+ =?utf-8?B?SXhqaGI5OFBqTDdNcCtjMU9ZK3NEL202b3YxWEN2ek9xbmFVbXdWbW9HUWRp?=
+ =?utf-8?B?eHAvb25PVi9YMlRycDdrRWZyYytDNFRKeGxCYlpwamJWZFhEVG5lT2ZwaHp5?=
+ =?utf-8?B?Q1RoNVgrRE9UckplRXg2Mm9sQzNrd0ZJNDJiQS80ZzJobkc5TW8raXVvT3o2?=
+ =?utf-8?B?b3I5cWN1Sm5jSm1aajBLdk90bytRTVBoeEhyWk1sQzJTOEVFMVIyQnNrZjly?=
+ =?utf-8?B?ZWNtVkEyUld2bS8vSEZLSDAxblFHeGlwcVJBSmpQNVZsKzhWY3FqelZPZlZh?=
+ =?utf-8?B?UnhGVzBpSTJVREd2QTRlenNtN29DVW00SUQ4a1pucWdERG9KaTRXOWlzT1do?=
+ =?utf-8?B?YTFmcVZKMUFQNFhaa3lCd1VTWTFieVJFejVXRDl4YW85eFRqdkUycDk4ZWNk?=
+ =?utf-8?B?Znlkd1U2OWVxbFVieE9nWjM2c21QNmYwTzZDb2VoS1N3emZkTGVDdFZBdzBj?=
+ =?utf-8?B?TWZ1clRYbURqbkljbjdPbkEzOXZOSElKbmV2QlQvVk1jZlhSQXUzQmxNZVlZ?=
+ =?utf-8?B?YitvMHgvekhHVm0zek9QMWhWc2V3VElzK3BPL2ZTYWdqVWJiMTFOMmdnRzBS?=
+ =?utf-8?B?aE1TNVVnRWQzUkZVc0lVaXpZalFwVnpsenZ4UkxwV09ydzRuTzlDOForQm1j?=
+ =?utf-8?B?bXppRDVsc3RpeHNzQ0FMMmhTUHdpWEU3cXFncnI2NkY3dm00RTBXYlZtUElQ?=
+ =?utf-8?B?MmIrRVJvRDRlTzJWK2xObm45UkpBL2x6bFc0bXZYWWlqaklVaGNoaFRIMWJR?=
+ =?utf-8?B?V3NYWUJtYnAyalVJY29xaURzV28wQk1kT0ZsNjFRUFppUkx2eDlCNkpObGN0?=
+ =?utf-8?B?bnh4UURZUUpwUWxIWlREZGl4WkhnOE5NOWE5QjNDWnMxeDgyZUZ1M09NR1B5?=
+ =?utf-8?B?S29DWTlhTGlIQ0tGVk1EUUpzOGtmNkVsVnFiNlRMeFNMRkJydnVoSHVDV0hw?=
+ =?utf-8?B?dUNDSVI3QkFZQWlzSXQ2V0t0Y2xhR2FuT3Zna3ZmRDZXY1p3cHZiMzhtc05O?=
+ =?utf-8?Q?/ZzmPxKEM/wudaGQGx1rcTrwOlms/KPO?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB7630.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(1800799024)(7416014)(366016)(10070799003);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?di9CL1loQlJQNkFDRWQ3NitLRHBwMmcvb0dDSzJGK20wbGpvclFBVzZaQ1B3?=
+ =?utf-8?B?d0o5QVpPNUNiZ2luT2JRMHErOVJkanp3NVpJbDhvSmh3RXNQN0dpZkxiWGhY?=
+ =?utf-8?B?RUluVUhFc2loY1MxRHNPak9GSjJNb3dwZVliRmFRTTg4d0NoMmhqSkVDckRB?=
+ =?utf-8?B?N09JZ2FuQjVNOTJhalY2UlNsWEFmZXFVWVhVRGp0a2ZTcnExQXF2MGdiZTdS?=
+ =?utf-8?B?cUVOeFpFRDhlTW1wbStnaldIM05jT3lCY1E1Q2NIUm9tWkMwWi9DZWtlRE5E?=
+ =?utf-8?B?Q24wRG1ub1RYQXB2THppa2VFTDI3NHBGQW03NzV5OXZuZW9ya2Vpd2tzQzZZ?=
+ =?utf-8?B?L09UZVJxbFRJVFZXNTdjZnBxcitjNzJBc2xDQWJidlpGTFVJcVpUOUx5SzUr?=
+ =?utf-8?B?bTFSa2lGTzBEZGllM3EzV1NUOWZUZ1Rkc20vRElIMXZES3NmbXFvYnY5VEd2?=
+ =?utf-8?B?S1huVVR3YjV0ekVZbDVyZ3NubXRnL0dKNzFaMC9KbkhOdmFBMnBEd0dXRmlr?=
+ =?utf-8?B?TmF1YTJQRTFNMHNSMFZ4d2o3VUFiMStkVmpFVDBsTS83SEZVMzBKS2FRdlpU?=
+ =?utf-8?B?K3RqZ3V6UW5kNmN0WnNjQ3FHZGRUa0RsNm9FbStUTWY5Y1JHQU5KNEpiTUlo?=
+ =?utf-8?B?UWNWdXNxeGpWemFkVXNla0VrUVlxb0FZSFd3bDRWajdNeUg2K3pYbC9YOWNX?=
+ =?utf-8?B?ZUFHdmY5VWYvelpwTE1Uekxwa3VGck5WV2p1WUQxRFlySlRhMlZmc1duVkE1?=
+ =?utf-8?B?RUxINElLMHBTZlBkWFZDVkpPMnJHOUhVNmtzbllLK01HUHJPUEJmeW80KzdL?=
+ =?utf-8?B?c0lQejVSL3FOOE5taDNJZHd1UlA3U29tNWc4c1Jtc05DMngrck1rUVpDQlc3?=
+ =?utf-8?B?TzMwMFVUMUhWRTBHRENVeXFMV3RUNkl3a3o5OHlqOHcwOXRZWkF4Z0dsbEYv?=
+ =?utf-8?B?bkovR1VaOWJwaElBSmVjZkRDYTZ0aTZISFZDeE92MFU4TnJKU0ZJeWxVKzZ6?=
+ =?utf-8?B?VjlvWDJ6eHRsaitVMG03bDg5M1hseDZFNlhBemZXdXdBT3d5eEZHdmo1c1lQ?=
+ =?utf-8?B?RmRxRjcvb01Kd2R1RXRQUUVxckhYaGdpTGhhOGhoZDhTbS85MmRwNDhWa1I1?=
+ =?utf-8?B?eWV6MjNuRzVTdnJoWjF2WVhaRlFzNHlCbWVaNXBtMEdId0pGWEF2UmE5emxV?=
+ =?utf-8?B?SXg5SjN4enFHLzRnUUFTeDhUWlNxRFRKUzRZeFZURWNrdWU4UHlMa0NVZFJT?=
+ =?utf-8?B?LzdkMFUzWXRwMFdRd0ZDRHAxdzREWHpHRXVKRHR1bVNtNnIyMDhsZ3NGRGMr?=
+ =?utf-8?B?ckNVVEtiTHpJZkI2VTRsdFF1TFVHbVk1eDBDMkFldVllejNicHRPR3hHNlJF?=
+ =?utf-8?B?Ym1xYjV0TnhiOUJ3ZGVHa1QrRm1SK3pqNk80T1FIVzNWQzlQc1RIVG1zUi80?=
+ =?utf-8?B?TEZ1YTh5Z082WllLb1g2VWtTSWptMXIrWFhybTlKcXdNY1E0SkNqSXNINnFw?=
+ =?utf-8?B?UWZGS0t4Y2ZVaFkxQTVNdy9QK1ZLOFpKZEU1YjJBQk9MOE5leklZOGlWZ3R5?=
+ =?utf-8?B?VHEvZ1FXZHJBMHR0Z2hYK0JPdkpGZTNDSnZIT0J1VUZzbVJ0NmJiQnNpU0Vq?=
+ =?utf-8?B?WUxsRFBWOEprNjZLMnNOOHhNWDg3STBINEYrbFlJSkcxa2p5NDQyZE9TOE9E?=
+ =?utf-8?B?T09uY2ViSk9pODJaZ0tEQmlwaHFFeUo3M0xWVHRjdU43Y2c4Y1p0M2N3K1NM?=
+ =?utf-8?B?eW4rMmFOVHoxWTZDcjl6MHpTL1czQ1VmOHFCb0RGZUpqK1BZUTdhaExscWdV?=
+ =?utf-8?B?SlNlMVZTM2Q3NGNUNjNVbjlQWU9SV3ZRTUpQYjN3VElwVmdlRmxwK25EWXpa?=
+ =?utf-8?B?SkFEVW5QYTFiOHBXdTBMNGt6ZFo1NEI4NmY1SVhPeTZPbURsTkhSaHE0c1Bm?=
+ =?utf-8?B?U2owNmJPejd6M2tEckJ6VkFUSlk2ZmZhNHlzL2ZLdElFRS80Sk9MZ0RNclpv?=
+ =?utf-8?B?RGFidmZuLytxMDlKbkxUUjgyYUpma3pGek9NYmx6ZFpwMENYRWR0SFNuZEVH?=
+ =?utf-8?B?clRFbXVWVzJHdVZnaW14ODBSL0JhM3BleGd0RnVBWWdBYkwra1V3NjMwSlFj?=
+ =?utf-8?B?TUNXMWdsV0piUlJiYVNwMldXbXNCNHBHS1FxalZvZ1FPdVd1amtCa3hsQnYx?=
+ =?utf-8?B?cjhBNWdveGVzU2pHQWdnWWdEekRIYUJhUUw4VEpWQ3Z0VmNnSlV6dEhjeE9N?=
+ =?utf-8?B?UEhuK2VlWGJSY3IzSkV5RStDcG9RPT0=?=
+X-OriginatorOrg: gocontroll.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5e9dfd30-1ee9-4b14-b389-08de1144561f
+X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB7630.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Oct 2025 08:23:53.6026
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 4c8512ff-bac0-4d26-919a-ee6a4cecfc9d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: zLmevsECXgx/AekWtrnjhBWpGtXnpM5oQAqVqpghFVDt/ADevPp+9+x9glMm7uA2uQVNapgKw+HI7KhJBeotPFje6sEa4F401tyiq7OnZcM=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU0PR04MB9299
 
-Some bootloaders like U-boot, particularly for the ARM architecture,
-provide SMBIOS/DMI tables at a specific memory address. However, these
-systems often do not boot using a full UEFI environment, which means the
-kernel's standard EFI DMI scanner cannot find these tables.
+Hi Marc,
 
-The bootloader can specify the physical addresses of the SMBIOS and
-SMBIOS3 tables in the /chosen node using the "linux,smbios-table" and
-linux,smbios3-table properties. This patch hooks into the DMI
-initialization process to read these properties, map the tables,
-and parse the DMI information.
+Thanks for the review
 
-This extra scan is performed after the standard EFI check fails but
-before the fallback memory scan, not to alter the order of DMI scanning
-for current implementation.
+On 10/22/25 09:57, Marc Kleine-Budde wrote:
+> On 22.10.2025 09:22:40, Maud Spierings via B4 Relay wrote:
+>> +	can@2 { // reg vdd?
+> 
+> What about this comment?
 
-Signed-off-by: Adriana Nicolae <adriana@arista.com>
+Thought I resolved that oops, will be fixed in the next version
+>> +		compatible = "microchip,mcp25625";
+>> +		reg = <2>;
+>> +		clocks = <&mcp_clock>;
+>> +		interrupt-parent = <&gpio3>;
+>> +		interrupts = <4 IRQ_TYPE_LEVEL_LOW>;
+>> +		pinctrl-0 = <&pinctrl_can1>;
+>> +		pinctrl-names = "default";
+>> +		spi-max-frequency = <10000000>;
+>> +		xceiver-supply = <&reg_can1_stby>;
+>> +	};
 
-diff --git a/drivers/firmware/dmi_scan.c b/drivers/firmware/dmi_scan.c
-index 70d39adf50dc..ea3ed40d0370 100644
---- a/drivers/firmware/dmi_scan.c
-+++ b/drivers/firmware/dmi_scan.c
-@@ -10,6 +10,9 @@
- #include <linux/random.h>
- #include <asm/dmi.h>
- #include <linux/unaligned.h>
-+#if IS_ENABLED(CONFIG_OF)
-+#include <linux/of.h>
-+#endif
- 
- #ifndef SMBIOS_ENTRY_POINT_SCAN_START
- #define SMBIOS_ENTRY_POINT_SCAN_START 0xF0000
-@@ -670,6 +673,70 @@ static int __init dmi_smbios3_present(const u8 *buf)
- 	return 1;
- }
- 
-+#if IS_ENABLED(CONFIG_OF)
-+/**
-+ * dmi_scan_from_dt - Find and parse DMI/SMBIOS tables from the Device Tree
-+ *
-+ * Checks if the bootloader has passed SMBIOS table addresses via the /chosen
-+ * node in the Device Tree. This follows the standard kernel DT bindings and
-+ * assumes a fixed 32-byte mapping for the entry point.
-+ * Returns true if a valid table is found and successfully parsed.
-+ */
-+static bool __init dmi_scan_from_dt(void)
-+{
-+	struct device_node *chosen;
-+	const __be64 *prop;
-+	char buf[32];
-+	void __iomem *p;
-+	bool dmi_available = false;
-+	u64 addr;
-+	int len;
-+
-+	chosen = of_find_node_by_path("/chosen");
-+	if (!chosen)
-+		return false;
-+
-+	/* SMBIOSv3 (64-bit entry point) has priority */
-+	prop = of_get_property(chosen, "linux,smbios3-table", &len);
-+	if (prop && len >= sizeof(u64)) {
-+		addr = be64_to_cpup(prop);
-+
-+		p = dmi_early_remap(addr, 32);
-+		if (p == NULL)
-+			goto out;
-+
-+		memcpy_fromio(buf, p, sizeof(buf));
-+		dmi_early_unmap(p, 32);
-+
-+		if (!dmi_smbios3_present(buf)) {
-+			dmi_available = true;
-+			goto out;
-+		}
-+	}
-+
-+	prop = of_get_property(chosen, "linux,smbios-table", &len);
-+	if (prop && len >= sizeof(u64)) {
-+		addr = be64_to_cpup(prop);
-+
-+		p = dmi_early_remap(addr, 32);
-+		if (p == NULL)
-+			goto out;
-+
-+		memcpy_fromio(buf, p, sizeof(buf));
-+		dmi_early_unmap(p, 32);
-+
-+		if (!dmi_present(buf))
-+			dmi_available = true;
-+	}
-+
-+out:
-+	of_node_put(chosen);
-+	return dmi_available;
-+}
-+#else
-+static bool __init dmi_scan_from_dt(void) { return false; }
-+#endif /* IS_ENABLED(CONFIG_OF) */
-+
- static void __init dmi_scan_machine(void)
- {
- 	char __iomem *p, *q;
-@@ -718,6 +785,13 @@ static void __init dmi_scan_machine(void)
- 			dmi_available = 1;
- 			return;
- 		}
-+	} else if (IS_ENABLED(CONFIG_OF) && dmi_scan_from_dt()) {
-+		/*
-+		 * If EFI is not present or failed, try getting SMBIOS
-+		 * tables from the Device Tree.
-+		 */
-+		dmi_available = 1;
-+		return;
- 	} else if (IS_ENABLED(CONFIG_DMI_SCAN_MACHINE_NON_EFI_FALLBACK)) {
- 		p = dmi_early_remap(SMBIOS_ENTRY_POINT_SCAN_START, 0x10000);
- 		if (p == NULL)
+Kind regards,
+Maud
 
