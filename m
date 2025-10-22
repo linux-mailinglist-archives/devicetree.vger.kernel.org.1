@@ -1,52 +1,53 @@
-Return-Path: <devicetree+bounces-229565-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229568-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE344BF9C99
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 05:09:50 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4AFC5BF9CC9
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 05:13:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 82BA14E65FE
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 03:09:49 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 1568B4E8CD3
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 03:13:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0881224AF2;
-	Wed, 22 Oct 2025 03:09:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BCF222FDFF;
+	Wed, 22 Oct 2025 03:13:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WbsbtsmM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="F8NsJU3E"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 833391D5CF2;
-	Wed, 22 Oct 2025 03:09:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7A8A2222C0;
+	Wed, 22 Oct 2025 03:13:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761102586; cv=none; b=HDo9cvl+FtB9GjpmRxDeyh8cdPA7eHhIb6XnDn10GR6gwAVUmtUGSMb0IMea65hz9LYH2ivC/R9A/l0Vv3On3PPmel4YkeSZP+w0TyrQUA33L24BRxS9jrCyvqX9/fW0wtnpG9gs+j5Rfdgi9R83rFnHN3CyVHUtJV5rBrpxi2w=
+	t=1761102806; cv=none; b=vB+K1ZRK1OhtFoC6ZSKV520ONJf5w9rleCVYGQSJ7hdsB01z2+cwZS2CVvh/wP6B7YnR7xUKS6hq5oSFmA8z5dIsa8wqMlE/dJ2FOtvvpqCRSvfToeD8G0uNbpBJURp1Fz0NhIuke2Nj8LVgFSY4DQ8j5yWzF20b9RA7rVAgYB4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761102586; c=relaxed/simple;
-	bh=3dG02UCUztaBPWNbNKvRv4U+aD1d2E0+ME3Sd2LNTCk=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=KGK3ic12nbygxutXZepzKoNQ8PnNfIWZ+7M2QEmZ1BFyWW/oOt2yQX9id48VhFUe7ELh1T4aYOS4IfcOAl1o/X/j/jNzUx7Qm0u6pMzIYm0huTHV60wpcNVyv+eifRQie529vUQEp4DWwY6fq716QKxmFOw2ec9D1gr5kXXFQdk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WbsbtsmM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 0BB03C4CEE7;
-	Wed, 22 Oct 2025 03:09:46 +0000 (UTC)
+	s=arc-20240116; t=1761102806; c=relaxed/simple;
+	bh=sY0LMNg4G27hdJljmt+cFEfQtETCUh15GCY4IWkxMSY=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=oq+RztcZtZweHFZK24Q51rVit+UrmP9+/OiUoEvjjDWqALO+x1oCGz95m6J/osc91i8mfARyqXWm3+Zu0uznc3bo0zHaTU/hGcLpq337v288loTL3NKYKxwtVAcPz7MQ90316uPJkng0Plgf+aTKnFjETSwhfM4qJKDKv/YXYOQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=F8NsJU3E; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 4AAE4C4CEF5;
+	Wed, 22 Oct 2025 03:13:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761102586;
-	bh=3dG02UCUztaBPWNbNKvRv4U+aD1d2E0+ME3Sd2LNTCk=;
-	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=WbsbtsmMVbDFA/G7qdobLssa9uUHasLdy/n7E49tpEzGv9WvX6zTpsmS7/OPkVYXq
-	 CyxyEwnSCfwt1UDpJDO1KHZjPArAYxjnCMTlv0ogPOMqVwzxMt8kZcbSA+4vYzXz9v
-	 Rw1AlMmREeVBeA0Q6AZHraAOpOXDzDeH+a61+pMawejU82oyzT/E5/Fc4kUC1mcnfq
-	 XVfYaelmglXfnxUnFqdt4KDtopNUULz6KnB6QUyvPHOnIeGxqWoYpYK983F6cJOVMQ
-	 wYbtQWJw6wi9DPYBOCeFWhn+OkbQwkINptXtng5Y61yVtfsnI1FTCwU1tJ7FvILoZ0
-	 2UjvKP3sqC2PQ==
+	s=k20201202; t=1761102806;
+	bh=sY0LMNg4G27hdJljmt+cFEfQtETCUh15GCY4IWkxMSY=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=F8NsJU3EwORgNv92pnv2538k2eHtTqYU7w/gJl6YgZEFyCQbQsn91g5tDHLH3inN3
+	 lGc9FiKW/UlVtHyMonjSDHNlNJyYBkpXVgpbuTSHeU7ILIg8OnK+rIdaETL2nDIpC6
+	 ++RH5KBCLH5InX1NFsvAY+VaFiILLzwyOnrDMyD9JD/BC6XmFPuNR5bdybgf884mGV
+	 Z1FSmyY/Vdo4KFBCozYuLY4/tLtqFZUY3n9lzvfu+Ni56Lp1jVqV9CavSyfUwrGAp9
+	 cJJ39Pe2fbv7zR33SchvFsSgISUTFyZPMR+FOjE/p8VQLq3najwj8HvYlAa2aT2Bk6
+	 OCstiZjKww0QQ==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id EB28ACCD1B9;
-	Wed, 22 Oct 2025 03:09:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3A017CCD1AB;
+	Wed, 22 Oct 2025 03:13:26 +0000 (UTC)
 From: Aaron Kling via B4 Relay <devnull+webgeek1234.gmail.com@kernel.org>
-Date: Tue, 21 Oct 2025 22:09:26 -0500
-Subject: [PATCH v5] dt-bindings: devfreq: tegra30-actmon: Add Tegra124
- fallback for Tegra210
+Subject: [PATCH v5 0/3] arm64: tegra: Enable Tegra210 actmon for EMC
+ scaling
+Date: Tue, 21 Oct 2025 22:13:21 -0500
+Message-Id: <20251021-t210-actmon-p4-v5-0-4a4dbc49fbc8@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -55,29 +56,22 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20251021-t210-actmon-p1-v5-1-1bc8f9221917@gmail.com>
-X-B4-Tracking: v=1; b=H4sIAOVK+GgC/x3MPQqAMAxA4atIZgNJsIJeRRz8iZrBKq2IULy7x
- fEb3ksQNZhGaIsEQW+LdvgMVxYwbYNfFW3OBiFxTMJ4CRMO07UfHk9GXWRsuK6I3Aw5OoMu9vz
- Drn/fDx9QEj9gAAAA
-X-Change-ID: 20251021-t210-actmon-p1-ef2b9164005d
-To: MyungJoo Ham <myungjoo.ham@samsung.com>, 
- Kyungmin Park <kyungmin.park@samsung.com>, 
- Chanwoo Choi <cw00.choi@samsung.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+X-B4-Tracking: v=1; b=H4sIANFL+GgC/x3MQQqAIBBA0avErBtQMYKuEi3MmWoWmahEEN49a
+ fkW/7+QOQlnmLoXEt+S5QoNQ9+BP1zYGYWawSgzaGU0FqMVOl/OK2C0aIk8qW0kdiu0KCbe5Pm
+ H81LrB1n1bU1gAAAA
+X-Change-ID: 20251021-t210-actmon-p4-4ddcd0f7deab
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, 
  Thierry Reding <thierry.reding@gmail.com>, 
- Jonathan Hunter <jonathanh@nvidia.com>, Dmitry Osipenko <digetx@gmail.com>
-Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Chanwoo Choi <cw00c.choi@samsung.com>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
- Aaron Kling <webgeek1234@gmail.com>
+ Jonathan Hunter <jonathanh@nvidia.com>
+Cc: devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Aaron Kling <webgeek1234@gmail.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1761102585; l=2361;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1761102805; l=1891;
  i=webgeek1234@gmail.com; s=20250217; h=from:subject:message-id;
- bh=mg8XT9vcS48SE8URDi3TR+Wy+mQQFKQFXQRT3zUHsb0=;
- b=mZx+g9VaQ/AsA+KvIG57AVILTDDkK1rY9Hsjnu4uds6noRNEOI4n7Ahs955iTc0FLF1yOPed9
- Oe1DAewlGE2BjBWI2ikc0sssC7WV59ThWK0tx3j8IyvZ+X4tsBVmUKR
+ bh=sY0LMNg4G27hdJljmt+cFEfQtETCUh15GCY4IWkxMSY=;
+ b=FbnXxhEB/ukDDzBDlmyXcngghzCYG9Gw//yf+iw9AO55OiCOfAXPZEeJYZkMJrUnXdn91Gdd5
+ Zu6Ms4e9gPEBoODc49WZnPKqR8n1dqCJNcf0lHiwWocx8KMnek/jQL/
 X-Developer-Key: i=webgeek1234@gmail.com; a=ed25519;
  pk=TQwd6q26txw7bkK7B8qtI/kcAohZc7bHHGSD7domdrU=
 X-Endpoint-Received: by B4 Relay for webgeek1234@gmail.com/20250217 with
@@ -85,13 +79,18 @@ X-Endpoint-Received: by B4 Relay for webgeek1234@gmail.com/20250217 with
 X-Original-From: Aaron Kling <webgeek1234@gmail.com>
 Reply-To: webgeek1234@gmail.com
 
-From: Aaron Kling <webgeek1234@gmail.com>
+Bindings Dependencies:
+- https://lore.kernel.org/r/20251021-t210-actmon-p1-v5-1-1bc8f9221917@gmail.com
 
-The Tegra210 actmon is compatible with the existing Tegra124 driver.
-Describe the compatibles as such.
+Runtime/Probe Dependencies:
+- https://lore.kernel.org/r/20251021-t210-actmon-p2-v5-1-a07dc70e948d@gmail.com
 
-Acked-by: Chanwoo Choi <cw00c.choi@samsung.com>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Logical Dependencies:
+- https://lore.kernel.org/r/20251021-t210-actmon-p3-v5-1-e1ef5e93909d@gmail.com
+
+Merge Strategy:
+- Merge all patches only after all dependencies are picked up
+
 Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
 ---
 Changes in v5:
@@ -115,38 +114,19 @@ Changes in v2:
 - Add dt-bindings patch to document the new properties on the
   tegra210-emc node.
 - Link to v1: https://lore.kernel.org/r/20250828-t210-actmon-v1-0-aeb19ec1f244@gmail.com
+
 ---
- .../devicetree/bindings/devfreq/nvidia,tegra30-actmon.yaml  | 13 ++++++++-----
- 1 file changed, 8 insertions(+), 5 deletions(-)
+Aaron Kling (3):
+      arm64: tegra: tegra210: Add actmon
+      arm64: tegra: Add interconnect properties to Tegra210 device-tree
+      arm64: tegra: Add OPP tables on Tegra210
 
-diff --git a/Documentation/devicetree/bindings/devfreq/nvidia,tegra30-actmon.yaml b/Documentation/devicetree/bindings/devfreq/nvidia,tegra30-actmon.yaml
-index e3379d1067283e36d1bee303187c0205b410f610..ea1dc86bc31f635f91a0e36f908f5c0c4f9a804c 100644
---- a/Documentation/devicetree/bindings/devfreq/nvidia,tegra30-actmon.yaml
-+++ b/Documentation/devicetree/bindings/devfreq/nvidia,tegra30-actmon.yaml
-@@ -19,11 +19,14 @@ description: |
- 
- properties:
-   compatible:
--    enum:
--      - nvidia,tegra30-actmon
--      - nvidia,tegra114-actmon
--      - nvidia,tegra124-actmon
--      - nvidia,tegra210-actmon
-+    oneOf:
-+      - enum:
-+          - nvidia,tegra30-actmon
-+          - nvidia,tegra114-actmon
-+          - nvidia,tegra124-actmon
-+      - items:
-+          - const: nvidia,tegra210-actmon
-+          - const: nvidia,tegra124-actmon
- 
-   reg:
-     maxItems: 1
-
+ .../boot/dts/nvidia/tegra210-peripherals-opp.dtsi  | 135 +++++++++++++++++++++
+ arch/arm64/boot/dts/nvidia/tegra210.dtsi           |  43 +++++++
+ 2 files changed, 178 insertions(+)
 ---
 base-commit: 211ddde0823f1442e4ad052a2f30f050145ccada
-change-id: 20251021-t210-actmon-p1-ef2b9164005d
+change-id: 20251021-t210-actmon-p4-4ddcd0f7deab
 
 Best regards,
 -- 
