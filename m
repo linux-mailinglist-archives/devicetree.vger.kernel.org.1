@@ -1,134 +1,160 @@
-Return-Path: <devicetree+bounces-229882-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229885-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 630BBBFD512
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 18:44:41 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A7124BFD693
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 18:57:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 912EC1883936
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 16:43:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A51E33B0D83
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 16:46:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5E4D35A936;
-	Wed, 22 Oct 2025 16:31:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2004B2C0290;
+	Wed, 22 Oct 2025 16:38:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OhORvJvv"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NjOQz/Jl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9182D35A92E;
-	Wed, 22 Oct 2025 16:31:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC054200C2
+	for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 16:38:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761150671; cv=none; b=UjQk2cvmi6AK+jL+6uNa1G4XMbNrf5TWkA8+LYXbVfQmbwxJeyUc7vlCwtg3ftrtG8hVTUx6CFszH11lVhIQ2jcPjBAHKDML0u50YRuoEYc3xNzqaoonihu649cuyjFhjhMcQTF0BcrktYYEtbeMkxqBMecmlk8Gbgii3iFnW5w=
+	t=1761151093; cv=none; b=AQYOLCCx3mrTVXA3AYdrKfJrgisyN7dZ4L/8yAaK2XDl4e0Sc7NqG56ROuVL4/ok9Ao3bfiROkPVzlb6ipTJHc7VGxKxH8AfshrFpTkkCSuYbv8a1HbZf7w44wIq9Y7mlSy9iT2zxUoEE9y1r4ypXnZkfAb49GWatlKheUwLi2I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761150671; c=relaxed/simple;
-	bh=Cqctev3zr4r6SJScwYfCN1B9WhFCbP6FZYJ7toOtRRo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pe4t47nsUcZudkzm+gBw6uUjryVEurCyJu5bMZ6gtjrao2j3nMb8qeVDAgoIZaDl/UK62x5FaPcWsVnfAQaW/xrLxQyZeCF6lRZPYdQStyoH+AW/nRtsPohS6JaTHPuKMuDfU27gi7yvgtUnsY9NLhk8Rzch6m8LyPubULmbzws=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OhORvJvv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2CA32C4CEE7;
-	Wed, 22 Oct 2025 16:31:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761150671;
-	bh=Cqctev3zr4r6SJScwYfCN1B9WhFCbP6FZYJ7toOtRRo=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=OhORvJvv4MPlrGFjrRKOoEtf/pc6bZ9lIsJ7YIuMA5Awo+jQz/T2cuvexWtDcP/+J
-	 KG9lChBZM8jWCE5+qSoukhEdJa8o0NBhLPzkds8VY3O6Kg4jKgIt+t+iVtIiqKrKV2
-	 rr/xW1ZTqhrSyfI0u5k6KZtPHVD+eMiACflDdrvxOVj2ud3bPL4QV23AehxoUGaRy2
-	 dieN/C3JdacxaYaaUeDknbZlVKROZ48Qklme70nUlYUAzBtQJylDPwFTSTD7nhIvhw
-	 VhcGuS5fOexBHUZ//B46j6UAJHo7S21PZiIhM98b1Kyk2LR7Iep/VuAVVV4oGIfe1/
-	 SRAAylvYzykDg==
-Message-ID: <113ee339-566a-4cc2-9786-89252ae072e0@kernel.org>
-Date: Wed, 22 Oct 2025 18:31:05 +0200
+	s=arc-20240116; t=1761151093; c=relaxed/simple;
+	bh=jd8PdGQoO6wTovaPAdg29/u29zMw+SHvYlnQa0aQ+7g=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=LGyoKN4kJEf3Ue5IXgtC1ZrCqF7++i3rlQmSh/bLyNVL8daaUiUefh5op7QT9tFZ3zY3JBGn+DOhoG3JX96dEeA+kC5Cn0juv5R6Gl2fPQHiNZMQ874uRW+20d8e4v5huIvrVnq4BU8Kr6Uk9hJaCeX7DqmPAPI2zxgouBKImd4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NjOQz/Jl; arc=none smtp.client-ip=209.85.218.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-b64cdbb949cso1194984966b.1
+        for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 09:38:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1761151089; x=1761755889; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=wjxtDCCPNJq4IFLZpgA+ZFNOHtoqxbpot9L2X2MUg3M=;
+        b=NjOQz/Jl8aMO4hJ8aw494qLUh/97MjGMDmzMeRrnyH7kkcARdqv3SD9LsOMRjZZqEN
+         L+pq6V61Mm5ueAlKRsZGg8cJMSoH8eIg3HPIY3KMLTqvxyE/Zn2kolsPAe+6EJJtebc5
+         bNRxDYulpkJTGg1GnZcZjslVAjgTZcLpbXIyQKZoKKMju471u/6zMTiM/nGKky0z74TG
+         K/JL1k0YqTP2XmBm4n64vpgperOUb84bEvctdVo2JC6nZtVABN690A9KfGKkOpH9ovHo
+         2jlYXT9lkpFomDebZ6MORoGtF/9sgTrLwVwWcjYtgkjyz9pSk54n2VHBrtUcwjdpey6m
+         eXmQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761151089; x=1761755889;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=wjxtDCCPNJq4IFLZpgA+ZFNOHtoqxbpot9L2X2MUg3M=;
+        b=EtkP9/d0tlESWcryxyuNGU+Gnk3J8yXak9C1wmqCkqWHV9FeluYB0WggxREhXMtAHd
+         p/povMwfhZ0UIJj1bBjfj8/PB2z8yKerF7bQLkL75lamqf/kSNNw8n1XmTZKO2WK8paQ
+         NonrDozNPp0vpncmT2sQujLwqLCiz+8PFdOSCL7XhpkWVCgpyPGFid3GnlFxE+LoRliW
+         dZ8Nm2LGWvck3Lh38goiSo/PChE1NDsc9fTD5OTbbZ5pQxOtyn2b8wsxojoiSpLXVHu6
+         9qy1O9kk5iFmvHrh6bu04fSEsRbb9F2fysg/WNIxcDkvkLIOQyNKQuZvnY9BHa3gj4Mw
+         Qtfg==
+X-Forwarded-Encrypted: i=1; AJvYcCWd2G9DQ36DA963GLTFRhS8GGAHEByV7wLZ2P4p07ZtrcNLMb0RQPiefM4G9c+56wY4qbjc9f3zhO+Q@vger.kernel.org
+X-Gm-Message-State: AOJu0YzpI7ECylP9U+NEXuuNTR8iV35K4zveQPQ34ilCOMS6D6nQuQgz
+	zEC4apbOp1i+4ko28pWdX35DS2bttdFq6KVS3zSEonYfW/hrv/8AHKfttgDl/1IxxR2ZibotTQ/
+	u7LFJLuXefCfGV0L99R/TY2Vc2Wn+m2s=
+X-Gm-Gg: ASbGncsPkfZRJKZYS8pGFiyrHgFCHzqGv308+sSEOOV5HV9Xe61+vVC7hIw6xkslV6n
+	/6hvWezb+rNMAQHahnZJNrmALpdhD1BY3EXYqzxHSmcr5eBZvNoUTm1nQWInptb0OUzMJIM+te3
+	hWa0VOK5/ocfd2j+Q0ZSdPCphrZ9BID0H5hAk3NNVpp4EIGVm+hvMnsORmW4EiPlidPvra9FuW3
+	Jm4wCTFQpcBEsg2wA4i5mnIdhksBkxgIERnd2bpf8bvj9ADPqmpOkIfEq0m5A/i1qLiwzho
+X-Google-Smtp-Source: AGHT+IEQhlldZHkbkWIwjsiQOYHZwHY9bjnkrg5Qfxs+V+/uUM20EoHZr/oHelRYTZyLRY98uAb0GmKzUqC/ua22PeI=
+X-Received: by 2002:a17:907:86a2:b0:b40:f7dd:f8ee with SMTP id
+ a640c23a62f3a-b6473732c83mr2641304266b.28.1761151088562; Wed, 22 Oct 2025
+ 09:38:08 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: rng: add google,gs101-trng compatible
-To: Tudor Ambarus <tudor.ambarus@linaro.org>,
- =?UTF-8?Q?=C5=81ukasz_Stelmach?= <l.stelmach@samsung.com>,
- Olivia Mackall <olivia@selenic.com>, Herbert Xu
- <herbert@gondor.apana.org.au>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
- Peter Griffin <peter.griffin@linaro.org>,
- =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-Cc: semen.protsenko@linaro.org, willmcvicker@google.com,
- kernel-team@android.com, linux-samsung-soc@vger.kernel.org,
- linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20251022-gs101-trng-v1-0-8817e2d7a6fc@linaro.org>
- <20251022-gs101-trng-v1-1-8817e2d7a6fc@linaro.org>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20251022-gs101-trng-v1-1-8817e2d7a6fc@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20250925-ltm8054-driver-v2-0-bb61a401a0dc@bootlin.com>
+ <20250925-ltm8054-driver-v2-5-bb61a401a0dc@bootlin.com> <3500149.e9J7NaK4W3@fw-rgant>
+In-Reply-To: <3500149.e9J7NaK4W3@fw-rgant>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Wed, 22 Oct 2025 19:37:31 +0300
+X-Gm-Features: AS18NWAmKA0qY-4_Rj927l4qjhXHin0NfP7SGgwOLqwGW9gM3-1uP_V8yDyCw2g
+Message-ID: <CAHp75VciOagW2grjYNxsBLKtwrEqaJZa-mKmUQgW8L8X3mky7A@mail.gmail.com>
+Subject: Re: [PATCH v2 5/5] regulator: ltm8054: Support output current limit control
+To: Romain Gantois <romain.gantois@bootlin.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
+	=?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
+	Andy Shevchenko <andy@kernel.org>, Hans de Goede <hansg@kernel.org>, 
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-iio@vger.kernel.org, 
+	Herve Codina <herve.codina@bootlin.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 22/10/2025 13:19, Tudor Ambarus wrote:
-> Add support for the TRNG found on GS101. It works well with the current
-> exynos850 TRNG support.
-> 
-> Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
-> ---
->  .../devicetree/bindings/rng/samsung,exynos5250-trng.yaml       | 10 +++++++---
->  1 file changed, 7 insertions(+), 3 deletions(-)
+On Wed, Oct 22, 2025 at 11:06=E2=80=AFAM Romain Gantois
+<romain.gantois@bootlin.com> wrote:
 
+...
 
-No power domains here? I would prefer to see such additions together
-with the compatible, if that is possible.
+> I've encountered a lockdep splat while testing these callbacks. I've
+> included a summary of the splat at the end of this email [1].
+>
+> After investigating, it seems like the issue lies with IIO callbacks in t=
+he
+> ad5592r driver being called with the LTM8054 regulator device lock held.
+>
+> The ad5592r callbacks themselves call into the regulator core to enable t=
+he
+> DAC's regulators, which might try the LTM8054 lock again in the same
+> thread, causing a deadlock. This would only happen if the LTM8054 was
+> supplying voltage to the ad5592r.
+>
+> There are two parts to this issue:
+>
+> 1. Making sure that the CTL IIO channel used by an LTM8054 device isn't
+> supplied by the LTM8054 itself (or a consumer of the LTM8054). Solving th=
+is
+> removes the risk of an actual deadlock.
+>
+> 2. Silencing the lockdep splat. The splat seems to be triggered by the II=
+O
+> driver taking the general regulator ww_mutex context, which means it will
+> still occur even if we've made sure that the IIO channel isn't a consumer
+> of the LTM8054 regulator.
+>
+> For part 1., a potential solution would be to create a device link with t=
+he
+> LTM8054 device as a consumer and the CTL IIO channel as a supplier. IIUC
+> device links do not tolerate cycles, so this should ensure that the IIO
+> channel isn't a direct or indirect consumer of the LTM8054.
+>
+> However, the LTM8054 driver cannot access the IIO device struct to create=
+ the
+> link, so adding a new IIO consumer API function could be necessary.
+>
+> For part 2., I'm having more trouble finding a proper solution. One
+> potential fix would be to put the IIO channel reads/writes in a LTM8054
+> driver work item and have them run without the regulator lock held. This
+> would incidentally also solve part 1., however it would make the current
+> limit operations asynchronous, and it seems like a lot of unnecessary
+> complexity.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Interesting that locking a single  regulator, there is no context and
+hence the lock class is global. Hence whoever calls a regulator will
+have the same lockdep splat, even when false positive. Basically the
+solution for those cases (and I don't know if yours / this one falls
+into the category) is to enable context for the single regulator
+locking and set up a lockdep class (so the regulator core should call
+lockdep_set_class() at mutex initialisation).
 
-Best regards,
-Krzysztof
+> Please tell me if you have any suggestions for solving this, I'll keep
+> searching on my side in the meantime.
+
+--
+With Best Regards,
+Andy Shevchenko
 
