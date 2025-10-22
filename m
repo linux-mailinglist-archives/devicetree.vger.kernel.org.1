@@ -1,174 +1,167 @@
-Return-Path: <devicetree+bounces-229584-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229586-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7AF9CBF9FD0
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 06:48:10 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 375B3BFA060
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 07:05:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3B61F564491
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 04:48:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 42EF94630E3
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 05:05:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 224252DC339;
-	Wed, 22 Oct 2025 04:47:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E81922E1C55;
+	Wed, 22 Oct 2025 05:04:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=reznichenko.net header.i=@reznichenko.net header.b="j4d9Ouqh"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="PzDIUEzF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f51.google.com (mail-pj1-f51.google.com [209.85.216.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C13FC2D978C
-	for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 04:47:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F38DA2E0930;
+	Wed, 22 Oct 2025 05:04:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761108439; cv=none; b=D2eFIYDDJ/nUQY2mkdXgHUWvCbKs2Dp72KsCIxouUjB3YLmG4jC83XY81sA1Yhhu2cjrIJCWXEhvtfp3RFXx8qVRBw6T5C0umzvyZMdQPYxlfO8x0u9UfWHc4ymwAtLZKRtuOOP1Ya4H4dPpD2x5JrPtQw8UaZLZoUyadp6q+n8=
+	t=1761109494; cv=none; b=cgsam/n9tdqETLd4jP/nZpDBVs4tWvvEVvgnQ/TUa8J7snUx9iPDdh3BMilK3SqeZRJiYu9ZNy8jSWOLNNghM0wv7bAfftJRgT4SeI1ERr1GBwetlYElypnSYLpjftDDWmcoikhKOG7U7b130412lMYHUDntqSBLzmuO3Xlnbp0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761108439; c=relaxed/simple;
-	bh=tRmg0nM0yOi19ddPpyllwAng8EhI2p+zBWRtANG9g3k=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=JhbeSLqXwu0HUVmNb8M4+KZu46XOL9K5vm5Kwq5OWgZp6unhHLTz/rYrsbFiOcOrgJGYW/eQEgV8PFX8gbiggkwbW1zVEnwph+Ke0HCCDXS3W5eRHnvcFkk+ei1Y2sS1+TnO/7EY8po6mW3gYlul/5RAAuh9dm3mENp36RHUh/I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=reznichenko.net; spf=none smtp.mailfrom=dpplabs.com; dkim=pass (2048-bit key) header.d=reznichenko.net header.i=@reznichenko.net header.b=j4d9Ouqh; arc=none smtp.client-ip=209.85.216.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=reznichenko.net
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=dpplabs.com
-Received: by mail-pj1-f51.google.com with SMTP id 98e67ed59e1d1-33292adb180so6371342a91.3
-        for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 21:47:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=reznichenko.net; s=google; t=1761108436; x=1761713236; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+g3w2/WDXSoRhXJMMBp8Ljyd85I3LbiCuNCDyo4g5rM=;
-        b=j4d9OuqhMHAUkHo181/Gg+2LpYBMjVOn+EjuqLI6WnAJ4m/nNctyqVRH8sYABxkuP5
-         puLk0Ajaz9HJSG0Ra2VoOO4AC+MaW2CYBm2PDWBkrLt6YhXvBPnthMW+Gop0hhqtrlj3
-         gQ6vJ4CNYmvAg9Ys7n1zL0KirVbzmtVnD+R+2sLCeHM3aJxgnjjEttHrQXdhS1u/TzVy
-         T5xmxh4E5/N3zIh6JuFl+YVKkxz+5c3FIAqfBgOdNVZcuPhRD3iu6PCYCDEOE81YmZoy
-         yd3vbhQAMQKGJYhjf72jyVBWhyRtg2gAnmdxkO+Vx65QInG1jfeidKqU3Vr/xqaGWzNo
-         x0WA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761108436; x=1761713236;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=+g3w2/WDXSoRhXJMMBp8Ljyd85I3LbiCuNCDyo4g5rM=;
-        b=XKI0rla0j3MnHULghEaiWIAxh1JqrJbTYL+oF3YKw/ZTAZ03U0AzKJL8b+GdnRF2mf
-         XVdDjMtlbjHeNcvl83g6OxjTltGalnVhTBFT6Aws4UamBaRXTtrz8d2LE4qmmlZRnOnj
-         cKOUQuXt/iJAxnkWCn2l9zp6JZvyijpzbexvcfxo0taNrWdIrDXfAgi1eC9tFe/tlpSM
-         jadQNUyzsPl3QBtHH1wM0mych5n3L6Bj1pl7NmNDaC4RvWhRHe4ngdYfuGI+M+dOoiIa
-         0BJXBKIz8G11tDefM+VrV2qeigmII/bUXOzvH8yd3Qa6+aOXzF4CmdqwQMegMPbG3CHi
-         1LxQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW2a8axjfUvjVNOkV6AFwDRbPthu9XONAFbyUtPxnAYb8IlqRA6O0chuSSs4xWVplQwXTWVvxGc+PBe@vger.kernel.org
-X-Gm-Message-State: AOJu0YyyMDzrvXgKFiJqLErCVO1BOQ7tDdGcamgctgu1hHegeixJTYLS
-	kEbrq3A1wzpNifx10BaLSTROShIRPr+7caEGn/s45if+yhQ2lNBQU1l+BUB6adeCFL4=
-X-Gm-Gg: ASbGncvZAey10iMFpaSTGY4pGZYhFGvw+3h6lxi2SfK7Q/S87lKsVyQnxe8+2DhNBWC
-	8P6xc168ecerSMYxRrJj1m9iuTO1wO8x8Sg/iEmMx0pQYa0FOACLbjoNnjizIahChqTycVfX/3E
-	PWp4KPQNObCP2wMKRkJomONsci5Qn2/vTYyTJSWA4MdD4SfD1F0DDArp6rIqbqqE8ucdZt4vy66
-	3+nnXSN606jyJ6IuUyWBUfx0T7EUqeyzO5COwFkPx4EN+C8PbjZ+TDtgIIGgwy5B3nTn/KtIgSZ
-	vemG7sTlIpvFf+XxpmEeAz/azgN/xhUPusmDiVbntMvmw6JFldscqmMR1f9I52/L+oX9ZNpmWBq
-	Pi5+exZDfSqB8DKEW8+h6bz9136s37aqSjY/cvpQIVLy+3GHOEhICFYWiwRhov7KUyKBg2eIES9
-	7/Nx4y
-X-Google-Smtp-Source: AGHT+IFW1zF3iL/OYtMt8e8D26V/k4CY22GYL4vfqmAbUGpIaxRLd5gEXU0u21nkZey/eOJ5HimP6w==
-X-Received: by 2002:a17:90b:2d8b:b0:336:bfce:13c9 with SMTP id 98e67ed59e1d1-33bcf8e3d37mr25973339a91.20.1761108436088;
-        Tue, 21 Oct 2025 21:47:16 -0700 (PDT)
-Received: from z440.. ([2601:1c0:4502:2d00:8004:e310:f3d:dd0])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-33e223dd9d6sm1257413a91.7.2025.10.21.21.47.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Oct 2025 21:47:15 -0700 (PDT)
-From: Igor Reznichenko <igor@reznichenko.net>
-To: linux@roeck-us.net,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	corbet@lwn.net,
-	skhan@linuxfoundation.org,
-	david.hunter.linux@gmail.com
-Cc: linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org
-Subject: [PATCH 5/5] Documentation/devicetree/bindings/hwmon: Add TSC1641 binding
-Date: Tue, 21 Oct 2025 21:47:08 -0700
-Message-ID: <20251022044708.314287-6-igor@reznichenko.net>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20251022044708.314287-1-igor@reznichenko.net>
-References: <20251022044708.314287-1-igor@reznichenko.net>
+	s=arc-20240116; t=1761109494; c=relaxed/simple;
+	bh=t4fVfuI1HdHc+jpCjhLSlAa3pfyB6tpSdTYZs5svI1M=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=XpVn6YeJ45cLIa0kKVnMvbGdPslRlsJfs1bxjuESpRiCKm3GumUFoFgyNsBwd6lRGOgXIYNPsVj+vXjvAxR84Rw08zyps0R/LRGNKkT5+mNZ9BffMtZ+d2gDO7yJEdtNvbuiO3n5OTFrp+z0QZIlvxSs0/cevMVw+ec/x9lFKVA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=PzDIUEzF; arc=none smtp.client-ip=198.175.65.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1761109493; x=1792645493;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=t4fVfuI1HdHc+jpCjhLSlAa3pfyB6tpSdTYZs5svI1M=;
+  b=PzDIUEzFc0POfPBSlzvOA4NHX7HUQZim14uTZ4OAqzEDp+HTf/kap/2q
+   hvlmgDETJZkZqWW5kj9ZPZXFcHQhOxCi7tZuxl4Q5vZSjpnJ7XbXImEVy
+   y9+ylw0HWS4mwGD2lTy3t24yD5RE3nwKBZVC9u++L/h2gA4ceH3LkAWWb
+   R//zGEVz1Syn4aKIhibIQJWW32IxbYVJtIjhfuxCL6+Icml5nJK5kmlRY
+   tSL7LYmlQOsoy9strntVgQU7970PYKlbPKLbJq5M37is9lPo74tej4ATa
+   Ve/yTA1JmDP/ccW2PPfbBVneB7tjJuXexgXmc9D1JDF13vkrCUzToTLHf
+   w==;
+X-CSE-ConnectionGUID: NXkZFk5zROaPpbTL7EWE6w==
+X-CSE-MsgGUID: CSxFDOoIS4iHK2TF7JWHNQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="63143445"
+X-IronPort-AV: E=Sophos;i="6.19,246,1754982000"; 
+   d="scan'208";a="63143445"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Oct 2025 22:04:52 -0700
+X-CSE-ConnectionGUID: uqZlMfscTbGXlOyP80R4jg==
+X-CSE-MsgGUID: yTCBgEp6Ts6RrnrU7T3ySw==
+X-ExtLoop1: 1
+Received: from lkp-server02.sh.intel.com (HELO 66d7546c76b2) ([10.239.97.151])
+  by fmviesa003.fm.intel.com with ESMTP; 21 Oct 2025 22:04:44 -0700
+Received: from kbuild by 66d7546c76b2 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1vBR0f-000C0l-2a;
+	Wed, 22 Oct 2025 05:03:55 +0000
+Date: Wed, 22 Oct 2025 13:01:46 +0800
+From: kernel test robot <lkp@intel.com>
+To: Sander Vanheule <sander@svanheule.net>,
+	Michael Walle <mwalle@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>, linux-gpio@vger.kernel.org,
+	Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-leds@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: oe-kbuild-all@lists.linux.dev, linux-kernel@vger.kernel.org,
+	Sander Vanheule <sander@svanheule.net>
+Subject: Re: [PATCH v6 6/8] pinctrl: Add RTL8231 pin control and GPIO support
+Message-ID: <202510221215.irTQwvxA-lkp@intel.com>
+References: <20251021142407.307753-7-sander@svanheule.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251021142407.307753-7-sander@svanheule.net>
 
-Add a devicetree binding for the TSC1641 I2C power monitor.
+Hi Sander,
 
-Signed-off-by: Igor Reznichenko <igor@reznichenko.net>
----
- .../devicetree/bindings/hwmon/st,tsc1641.yaml | 54 +++++++++++++++++++
- 1 file changed, 54 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/hwmon/st,tsc1641.yaml
+kernel test robot noticed the following build warnings:
 
-diff --git a/Documentation/devicetree/bindings/hwmon/st,tsc1641.yaml b/Documentation/devicetree/bindings/hwmon/st,tsc1641.yaml
-new file mode 100644
-index 000000000000..e79f6dab4a87
---- /dev/null
-+++ b/Documentation/devicetree/bindings/hwmon/st,tsc1641.yaml
-@@ -0,0 +1,54 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/hwmon/st,tsc1641.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: ST Microelectronics TSC1641 I2C power monitor
-+
-+maintainers:
-+  - Igor Reznichenko <igor@reznichenko.net>
-+
-+description: |
-+  TSC1641 is a 60 V, 16-bit high-precision power monitor with I2C and MIPI I3C interface
-+
-+  Datasheets:
-+    https://www.st.com/resource/en/datasheet/tsc1641.pdf
-+
-+properties:
-+  compatible:
-+    const: st,tsc1641
-+
-+  reg:
-+    maxItems: 1
-+
-+  shunt-resistor:
-+    description:
-+      Shunt resistor value in micro-ohms.
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+
-+  st,alert-polarity-active-high:
-+    description: Default value is 0 which configures the normal polarity of the ALERT pin, being active low open-drain.
-+      Setting this to 1 configures the polarity of the ALERT pin to be inverted and active high open-drain.
-+      Specify this property to set the alert polarity to active-high.
-+    $ref: /schemas/types.yaml#/definitions/flag
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        power-sensor@40 {
-+            compatible = "st,tsc1641";
-+            reg = <0x40>;
-+            shunt-resistor = <5000>;
-+            st,alert-polarity-active-high;
-+        };
-+    };
+[auto build test WARNING on lee-mfd/for-mfd-next]
+[also build test WARNING on lee-mfd/for-mfd-fixes linusw-pinctrl/devel linusw-pinctrl/for-next lee-leds/for-leds-next linus/master v6.18-rc2 next-20251021]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Sander-Vanheule/gpio-regmap-Force-writes-for-aliased-data-regs/20251021-222846
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git for-mfd-next
+patch link:    https://lore.kernel.org/r/20251021142407.307753-7-sander%40svanheule.net
+patch subject: [PATCH v6 6/8] pinctrl: Add RTL8231 pin control and GPIO support
+config: alpha-allyesconfig (https://download.01.org/0day-ci/archive/20251022/202510221215.irTQwvxA-lkp@intel.com/config)
+compiler: alpha-linux-gcc (GCC) 15.1.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251022/202510221215.irTQwvxA-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202510221215.irTQwvxA-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+   drivers/pinctrl/pinctrl-rtl8231.c: In function 'rtl8231_pinctrl_init_functions':
+>> drivers/pinctrl/pinctrl-rtl8231.c:354:67: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
+     354 |                 err = pinmux_generic_add_pinfunction(pctl, &func, (void *) flag);
+         |                                                                   ^
+
+
+vim +354 drivers/pinctrl/pinctrl-rtl8231.c
+
+   321	
+   322	static int rtl8231_pinctrl_init_functions(struct pinctrl_dev *pctl,
+   323		const struct pinctrl_desc *pctl_desc)
+   324	{
+   325		struct pinfunction func;
+   326		const char **groups;
+   327		unsigned int f_idx;
+   328		unsigned int flag;
+   329		const char *name;
+   330		unsigned int pin;
+   331		int num_groups;
+   332		int err;
+   333	
+   334		for (f_idx = 0; f_idx < ARRAY_SIZE(rtl8231_pin_functions); f_idx++) {
+   335			name = rtl8231_pin_functions[f_idx].name;
+   336			flag = rtl8231_pin_functions[f_idx].flag;
+   337	
+   338			for (pin = 0, num_groups = 0; pin < pctl_desc->npins; pin++)
+   339				if (rtl8231_pin_data[pin].functions & flag)
+   340					num_groups++;
+   341	
+   342			groups = devm_kcalloc(pctl->dev, num_groups, sizeof(*groups), GFP_KERNEL);
+   343			if (!groups)
+   344				return -ENOMEM;
+   345	
+   346			for (pin = 0, num_groups = 0; pin < pctl_desc->npins; pin++)
+   347				if (rtl8231_pin_data[pin].functions & flag)
+   348					groups[num_groups++] = rtl8231_pins[pin].name;
+   349	
+   350			func = PINCTRL_PINFUNCTION(name, groups, num_groups);
+   351			if (flag == RTL8231_PIN_FUNCTION_GPIO)
+   352				func.flags |= PINFUNCTION_FLAG_GPIO;
+   353	
+ > 354			err = pinmux_generic_add_pinfunction(pctl, &func, (void *) flag);
+   355			if (err < 0)
+   356				return err;
+   357		}
+   358	
+   359		return 0;
+   360	}
+   361	
+
 -- 
-2.43.0
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
