@@ -1,119 +1,136 @@
-Return-Path: <devicetree+bounces-229741-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229742-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1ACB4BFB4BF
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 12:05:42 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED803BFB531
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 12:10:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D077E4E6F00
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 10:05:40 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 436544FF0F2
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 10:10:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 046CE30146F;
-	Wed, 22 Oct 2025 10:05:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF5FC31986D;
+	Wed, 22 Oct 2025 10:10:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MsPsk/xz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f53.google.com (mail-ua1-f53.google.com [209.85.222.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7AF0027281C
-	for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 10:05:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3CFE3164B1;
+	Wed, 22 Oct 2025 10:10:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761127537; cv=none; b=Ae3EXPs8lDGnLwVdU6DsSx9Ii8Fo6LKJNNuRZDSPFAS+0O1I8wt0399sKDbLyRDrK4fFiG7LwdYYycRkaZHO388t39Vv8mbttdImD6qlfecKfROKFaxWNpwD3vH0647uglHPuJjNV5677gBynB04+d2bvCt+7KcKc1z/01mxqnI=
+	t=1761127826; cv=none; b=AUJ1Hw8qbHWXB5dlHbzCJL3mFV1SRbyYM7PFHnlHm4UsEY95oGliR0KXpDn7vP8MvVxUdfO75yMEsgd9Cc96gcjn6D403uJoxCJqdESKQNQ02c5CzG6S6cMRT/UwioSKgge0S7n6Wrbj+s+nJ9+eD4bw0bWz0hHd4IYqwVYsdPw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761127537; c=relaxed/simple;
-	bh=59/49K3ZN1tUBWEWYa+DC5Kzr4dbDuxfMnqefZEkseg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=MWVujNHLZk3Cg5GVlSzsYQA6esNmF7ISqUfxoticqS22HQyDwZrW0zmQbzb0frjFaM7x0JMhJ3f04sriC9CUlCCTdIJPr5EO4Xu7EDOpa3lxPCXyLfw3dlobyTqmx96iVLg0H30jMN9taEj7rMd8x3b1KEzBUKpnCjaZq/pcAgk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f53.google.com with SMTP id a1e0cc1a2514c-932cb562289so1149839241.3
-        for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 03:05:36 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761127535; x=1761732335;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=j9nsZS9cf0Yesyto3hqsvaV4sJKL6LJk8tudSlukngM=;
-        b=O9Ha54gJ0+7CNIX16g58Hh2sP1nus7bd2PACs4bIxb5YRnjE09MhaCdZ6geXr9Kawq
-         o20Gaui9OHKQ5LPYiTGT5jJlwNSUWml+dZjQVeK58HJ7Ha5FcfPGBTCZY6MhoEZExm1R
-         +GdC6bpPiX1mZKX9I6SLZufLj/DgczhmLx11/LKPbMLRgoCVk6ghE3t/8b9h15Y5U/CM
-         tnZtsufrE4HW5Jwh6+u6sD+rP2J7YFB8S49/R6sxUZeH/BWrYbkOz94jnkCT+GGR4ISf
-         +0bZrZW8SgOUPFFKK0qxI8O0M54n/fd40Ojyq+ETmsudwE3Um293afQIUmrZ4G/PzBDH
-         N28g==
-X-Forwarded-Encrypted: i=1; AJvYcCUkv/q1bgrAd2AlkEW6hLZ+bboD+P2Y9kJ3jsjHiKgObl85sVRieCPrfzjl+fsN4COZ5Wcb/zUfgH+T@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyr9V3KC3pfJSKEy01eOnFOTDz/1w+Gd/xTRhLhYlbn9isWe/H7
-	Y8jM0/3CDibwjFBdunKMbepE/CWAL8LyUeS1dRQYZw7YltHCz1JwqH2jaZM11eBK
-X-Gm-Gg: ASbGncskw6OiGTPNQf+JKtjjcfgGCX5S3efs4Bs/6a6Dum877As6Nf9dUzur3DYHUZf
-	wOxWqXQIFHxD5vbtPX8L/eW3YRIgtKDPm8bmCk93kXL7hOVN8hBT458PjtTHFPMuPQGIurMyFD9
-	xYC3/165NgCJ3UEMC4YxwuIys8SlCkb339IJFjFk/CB/lp4+8GVGkz3L6Wjvmigl/PA/v1mfce3
-	pu9zwsv2GC1OiCqr+w1bd0eVhLqPtS7jtY6rPv5cnZoKGheTKJadmsqrm5L3yH14yEA55mrqJ2N
-	d2S21OO1v0FnzYRMmkBmeYylH4UAtMzOEn1WFAfH/OpqHhr0rTkPbVA5LRKWe0/nAa7UvvQUH/w
-	a1M4b1tK94JjKngher5cy1hxhoAjPzuS2S+zHQ3XW8Xn6vuiZLVRByiEmNq0EsezzgDybEK/51p
-	c+Xh1TMh3OwYl6nPkZSy5czEHlXD/ua4NZ23CDXvxVy1t0nm7ybzHLyOhvVKI=
-X-Google-Smtp-Source: AGHT+IFjG4es7i1pLPFPFbqdSuacR4dg+IUVfKWcNoO3be6YJVV3cen6bEv4QOegWf2qBnu4H3A7Wg==
-X-Received: by 2002:a05:6102:30c5:10b0:5d5:f6ae:38bb with SMTP id ada2fe7eead31-5d7dd6ddffamr5061648137.36.1761127535170;
-        Wed, 22 Oct 2025 03:05:35 -0700 (PDT)
-Received: from mail-ua1-f54.google.com (mail-ua1-f54.google.com. [209.85.222.54])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-932c3e46c39sm4244027241.13.2025.10.22.03.05.31
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Oct 2025 03:05:32 -0700 (PDT)
-Received: by mail-ua1-f54.google.com with SMTP id a1e0cc1a2514c-932bbd6ba76so1617171241.0
-        for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 03:05:31 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUhbjv+Qd/KZbVzWKyn/uTEsdZ8L8GrwR+irPIrc1/gNsfV6MWrwHxlxeEinXAWQ8uEthH4zibSlM6w@vger.kernel.org
-X-Received: by 2002:a05:6102:32d3:b0:5d6:fcd:dc86 with SMTP id
- ada2fe7eead31-5d7dd568745mr5376089137.4.1761127531051; Wed, 22 Oct 2025
- 03:05:31 -0700 (PDT)
+	s=arc-20240116; t=1761127826; c=relaxed/simple;
+	bh=KcpHIh2NiJ8Pm4+tZb/r09mFVlwELwD9hRpxdQwhsdA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=UyQF5Y1qYginUojQj3dsvOy2CJFSJieukSr4NUefacchGi5GGxYwNZBQAtEABGvUrngHtV8i9DfS+u3Ipl7jDW369PXnX8XzMLNhaHQvDE0MBHZZV5b6F+EDDrPTBCWGxEsAuazsUStlzRHcaRPVb+2bAl+UZHAsBrKgNzkXckk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MsPsk/xz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5AF8BC4CEF5;
+	Wed, 22 Oct 2025 10:10:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761127826;
+	bh=KcpHIh2NiJ8Pm4+tZb/r09mFVlwELwD9hRpxdQwhsdA=;
+	h=From:To:Cc:Subject:Date:From;
+	b=MsPsk/xz7Wb9JzTJJpillBjCFymCN/4sxSbdvQiq974dH/UiZlIFkFtXifMZ+YaCk
+	 tP46iYXuraFNTb/mMMkY6sv9fUwifZxVkMIzWS5jBBPRMy978EZWk+Z1SApuZq5czd
+	 EEY/zJauU2wBIbSLTuF8RjM4iywmGns/hR2KWB+r9sLur75SE6uqWyhxVV38RZK9cn
+	 4zKbW8vf6m3M4EPgVdh7Alb4sXwM+VcTHTqSuBDIBibyowFvLto/9ijkEjAhNGzaam
+	 v1wQorFJDxHYkesMN7b7RLM+srU7nULor8MZkpVxzLGkayrdVPWpKLCR2Ax6hy4Kki
+	 VnQ3a9XMkvTCg==
+From: Conor Dooley <conor@kernel.org>
+To: linus.walleij@linaro.org
+Cc: conor@kernel.org,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-kernel@vger.kernel.org,
+	linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Valentina.FernandezAlanis@microchip.com
+Subject: [PATCH v3 0/5] Microchip mpfs/pic64gx pinctrl
+Date: Wed, 22 Oct 2025 11:09:08 +0100
+Message-ID: <20251022-dash-refinance-ac3387657ae4@spud>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251020101311.256819-1-richard.genoud@bootlin.com> <20251020101311.256819-6-richard.genoud@bootlin.com>
-In-Reply-To: <20251020101311.256819-6-richard.genoud@bootlin.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 22 Oct 2025 12:05:20 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdUVf2dgWqsfVt9HCytJmmRLYiCkhzSJVp3drZ6KDq0Wwg@mail.gmail.com>
-X-Gm-Features: AS18NWDWB3ss9iz68cJvppf6RUhrU6v4v0GhpWefkhntn5szf5Osn3JvNoovQ3I
-Message-ID: <CAMuHMdUVf2dgWqsfVt9HCytJmmRLYiCkhzSJVp3drZ6KDq0Wwg@mail.gmail.com>
-Subject: Re: [PATCH v3 05/15] mtd: rawnand: sunxi: rework pattern found registers
-To: Richard Genoud <richard.genoud@bootlin.com>
-Cc: Miquel Raynal <miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>, 
-	Vignesh Raghavendra <vigneshr@ti.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
-	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@baylibre.com>, 
-	Wentao Liang <vulab@iscas.ac.cn>, Johan Hovold <johan@kernel.org>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, linux-mtd@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2578; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=daO8WkZ3qWEA6XQ9SEdpimlvNKc0kNZUUmrQYnrz5cg=; b=owGbwMvMwCVWscWwfUFT0iXG02pJDBk/1rop8284+Wd3Qurh+HkJn9aGZ10+42b/+/+szkIei WfXwuJsO0pZGMS4GGTFFFkSb/e1SK3/47LDuectzBxWJpAhDFycAjCRq9YM/9NkGsPs1igvfD/B UeEnQ59d+6UZMVmqN39FyblXCdZVfGVkWHeKUWbn5AM3FosxtfPpfAyal7muJPvipiDt3J13C98 9YgUA
+X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
+Content-Transfer-Encoding: 8bit
 
-On Tue, 21 Oct 2025 at 22:51, Richard Genoud <richard.genoud@bootlin.com> wrote:
-> On H6/H616, the register ECC_PAT_FOUND is at its own address, and not
-> part of ECC status register.
-> So, introduce the pattern found register offset in sunxi_nfc_caps, along
-> with its mask.
->
-> Also, introduce a non compile-time field_get() because FIELD_GET() and
-> u32_get_bits() don't work with non compile-time constant.
-> https://lore.kernel.org/lkml/cover.1739540679.git.geert+renesas@glider.be/
+From: Conor Dooley <conor.dooley@microchip.com>
 
-FTR, v4 at
-https://lore.kernel.org/all/cover.1760696560.git.geert+renesas@glider.be
+Hey Linus,
 
-Gr{oetje,eeting}s,
+Here's a v3, with the COMPILE_TEST added, and a select that the lkp bot
+told me that I was missing when I pushed it yesterday for testing.
 
-                        Geert
+There's a tag below for you to pull that has the syscon binding that
+gets edited in this series, since that's not in mainline yet.
+
+Cheers,
+Conor.
+
+Changes in v3:
+- Add COMPILE_TEST to drivers
+- Drop a TODO
+- Add select for GENERIC_PINCONF
+
+The binding dep mentioned above is available here:
+
+  https://git.kernel.org/pub/scm/linux/kernel/git/conor/linux.git/ tags/mpfs-pinctrl-binding-base
+
+for you to fetch changes up to feaa716adc514fb5fbcb60b3e1620ac5dcf8505a:
+
+  dt-bindings: soc: microchip: document the simple-mfd syscon on PolarFire SoC (2025-10-21 14:29:34 +0100)
+
+----------------------------------------------------------------
+mpfs pinctrl binding base
+
+The pinctrl binding patch for iomux0 mpfs adds a ref to itself to the
+syscon/mfd mss-top-sysreg binding, and therefore needs that file to
+exist.
+
+Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+
+----------------------------------------------------------------
+
+CC: Linus Walleij <linus.walleij@linaro.org>
+CC: Rob Herring <robh@kernel.org>
+CC: Krzysztof Kozlowski <krzk+dt@kernel.org>
+CC: linux-kernel@vger.kernel.org
+CC: linux-gpio@vger.kernel.org
+CC: devicetree@vger.kernel.org
+CC: Valentina.FernandezAlanis@microchip.com
+
+Conor Dooley (5):
+  dt-bindings: pinctrl: document pic64gx "gpio2" pinmux
+  pinctrl: add pic64gx "gpio2" pinmux driver
+  dt-bindings: pinctrl: document polarfire soc iomux0 pinmux
+  pinctrl: add polarfire soc iomux0 pinmux driver
+  MAINTAINERS: add Microchip RISC-V pinctrl drivers/bindings to entry
+
+ .../microchip,mpfs-pinctrl-iomux0.yaml        |  88 +++++
+ .../microchip,pic64gx-pinctrl-gpio2.yaml      |  73 ++++
+ .../microchip,mpfs-mss-top-sysreg.yaml        |  13 +-
+ MAINTAINERS                                   |   4 +
+ drivers/pinctrl/Kconfig                       |  16 +
+ drivers/pinctrl/Makefile                      |   2 +
+ drivers/pinctrl/pinctrl-mpfs-iomux0.c         | 278 ++++++++++++++
+ drivers/pinctrl/pinctrl-pic64gx-gpio2.c       | 356 ++++++++++++++++++
+ 8 files changed, 829 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/microchip,mpfs-pinctrl-iomux0.yaml
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/microchip,pic64gx-pinctrl-gpio2.yaml
+ create mode 100644 drivers/pinctrl/pinctrl-mpfs-iomux0.c
+ create mode 100644 drivers/pinctrl/pinctrl-pic64gx-gpio2.c
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.51.0
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
 
