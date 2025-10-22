@@ -1,173 +1,113 @@
-Return-Path: <devicetree+bounces-229666-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229667-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 828E9BFA9DF
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 09:40:06 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id C1E0BBFAA42
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 09:43:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 2B1B84E8D94
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 07:40:02 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id C369A5050C8
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 07:42:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 916372FD690;
-	Wed, 22 Oct 2025 07:38:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FE802FC02D;
+	Wed, 22 Oct 2025 07:41:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="M5W3DVxt"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="PkTnWtr1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FE4E2FCC17
-	for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 07:38:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C04D2F7AA8;
+	Wed, 22 Oct 2025 07:41:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761118727; cv=none; b=UVS+pTZLXleMh83G6MlkRIMZXQDAFB561xYOrA4R7Xg1M1CNGK3wxsW7TdwGhhFzFk4iuEteTQVL+H/D3pt9R6Lt6fujqCeHG32qLJZ3Lk537bDyytkEhhHM6UYl7feBNQviGUSL/vs/tPEMwX9vX9Bv9TdxEeTDs27bAxMeVYM=
+	t=1761118897; cv=none; b=qMwBKBc1mY/H1Vij9VEv5p/3V89uaoAw3JAtWn4ce6Krh9vMVRA/Zqi8EnGyGT5KTSMkTKZoPsM+TNq9iaYB6OIPbkCgpeuIUe5LFnhhn2sJy3yMADPW8k970u+auqO1gHPvzcMi/2ikfXfFZJODKwdz6aEB6/bUlCKqOv630Zo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761118727; c=relaxed/simple;
-	bh=1ZeIIsp8tJcHFQgz2Xfvqz7CZIB2p2BXgkSO/2IVTog=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ixkTR3sa7Dj5sWPZpVPu11O+zFuE3GHhfLrtNBj4Hw+ZS7tqBqpdy2MpPkSnO71gOgxV+rY5YYVv01yTYFdOwmtSjwI3MrQvm7jmUSRrCS23SPQg1nXunIl+tz/W2XqWa9chPljqBcUQ6jZsqbLQfvf68nGtQP/7Nd5zxX9H4/0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=M5W3DVxt; arc=none smtp.client-ip=185.246.84.56
+	s=arc-20240116; t=1761118897; c=relaxed/simple;
+	bh=w6Pk318+uWlJig7kSmhciOgwzKqt9hCCrIYqqL4yqNY=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:To:From:
+	 References:In-Reply-To; b=ogsdqPFBv8wiVq5N9cCniPcwftrOyfiBsR8M9mzeHT4x+OkplVhbX6jxsyrCyRvDFoDtrtS1PStyc2j+A2VLoGT0acKbGatD8X4hfFdIjopgQED9fCBYSA6/Bmo39KbnTb4OEK2B3oG2CJ0p8TWPQb/F1YtGF7u6VAlR4mbdvlk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=PkTnWtr1; arc=none smtp.client-ip=185.171.202.116
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id CA47F1A15C7;
-	Wed, 22 Oct 2025 07:38:43 +0000 (UTC)
+	by smtpout-04.galae.net (Postfix) with ESMTPS id 4F841C0B8BF;
+	Wed, 22 Oct 2025 07:41:14 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 9F65D606DC;
-	Wed, 22 Oct 2025 07:38:43 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 2841E102F242A;
-	Wed, 22 Oct 2025 09:38:41 +0200 (CEST)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 0A58E606DC;
+	Wed, 22 Oct 2025 07:41:34 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 68B39102F241B;
+	Wed, 22 Oct 2025 09:41:25 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1761118722; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	t=1761118892; h=from:subject:date:message-id:to:cc:mime-version:content-type:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=ZZVaF5BoYgXRmfee23HnDH9NWUBGz7WnOPiHHT4qsbo=;
-	b=M5W3DVxtTPW4ls9GZh6bRhB2ZbmMT71AAQO4/IdCCAKp6t+hq2RgM2GkQ1vYqFQSX7uxH5
-	Rg8WZoepgg1vQAWIaXMoeHeFkkRjcIk+EVUnlNyVhsY+4lUnnSsdBjLo17vXU6Rf4jJzZl
-	t/oiIBtTEPx16xIo6pQwudCoYgEDeyz9ymdriOcXXQjx9MDqBWswcRH5/4ufnAMujXuI3S
-	YLtdF5wSGf4GK6M5DbuzWc6CdwKESykkLre3ktSGgBhLpC/ktYr49aCVHHJt8lbPTWYZJX
-	DOoygNMoAPyNBC4FTFryRBOcJBCBxD0XOuHrFPtgk+IEmymMupbxyqMT3n/IBQ==
-From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-Date: Wed, 22 Oct 2025 09:38:14 +0200
-Subject: [PATCH net-next v2 5/5] net: macb: Add "mobileye,eyeq5-gem"
- compatible
+	bh=w6Pk318+uWlJig7kSmhciOgwzKqt9hCCrIYqqL4yqNY=;
+	b=PkTnWtr1jkPN412arglI0mz2NhL3TRAuP2uayrqji+VoDe4d/FIjOWZ1cc63SLUc2Lo+Jd
+	FIt6sYzMUROvjKK/8SgV+CUFUlBPL8rb9ABg11NRZs/srHm3UId29ZEnEIgtzwZi7hu8Bk
+	kMs8qKh0az23BYaou/Ar5XWg2AlYUT9Siy4Oo04ojU8ZXk4QSchJV9XKZvEZQhXNDpszvs
+	oAABVn1+T2IIXdMSECtUVh5yyhkYANZOUz39ovz7lY/SSCagG40w0uUti1Mtx1aEyaKc5L
+	g+6yf9EKsEizPO15T9Qt6fJBKtKZp2axtAOPGBbrxKquY0a8h1C/XZ9rgavKgA==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20251022-macb-eyeq5-v2-5-7c140abb0581@bootlin.com>
-References: <20251022-macb-eyeq5-v2-0-7c140abb0581@bootlin.com>
-In-Reply-To: <20251022-macb-eyeq5-v2-0-7c140abb0581@bootlin.com>
-To: Andrew Lunn <andrew+netdev@lunn.ch>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Nicolas Ferre <nicolas.ferre@microchip.com>, 
- Claudiu Beznea <claudiu.beznea@tuxon.dev>, 
- Russell King <linux@armlinux.org.uk>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- =?utf-8?q?Beno=C3=AEt_Monin?= <benoit.monin@bootlin.com>, 
- =?utf-8?q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>, 
- Maxime Chevallier <maxime.chevallier@bootlin.com>, 
- Tawfik Bayouk <tawfik.bayouk@mobileye.com>, 
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, 
- =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-X-Mailer: b4 0.14.3
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Wed, 22 Oct 2025 09:41:24 +0200
+Message-Id: <DDOOJIQS8DK2.1QUEWN5FYYQ32@bootlin.com>
+Subject: Re: [PATCH net-next 00/12] net: macb: EyeQ5 support (alongside
+ generic PHY driver in syscon)
+Cc: "Andrew Lunn" <andrew+netdev@lunn.ch>, "David S. Miller"
+ <davem@davemloft.net>, "Eric Dumazet" <edumazet@google.com>, "Paolo Abeni"
+ <pabeni@redhat.com>, "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski"
+ <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Nicolas Ferre"
+ <nicolas.ferre@microchip.com>, "Claudiu Beznea" <claudiu.beznea@tuxon.dev>,
+ "Vladimir Kondratiev" <vladimir.kondratiev@mobileye.com>,
+ =?utf-8?q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>, "Russell
+ King" <linux@armlinux.org.uk>, "Vinod Koul" <vkoul@kernel.org>, "Kishon
+ Vijay Abraham I" <kishon@kernel.org>, "Michael Turquette"
+ <mturquette@baylibre.com>, "Stephen Boyd" <sboyd@kernel.org>, "Thomas
+ Bogendoerfer" <tsbogend@alpha.franken.de>, "Philipp Zabel"
+ <p.zabel@pengutronix.de>, <netdev@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <linux-mips@vger.kernel.org>, <linux-phy@lists.infradead.org>,
+ <linux-clk@vger.kernel.org>, "Tawfik Bayouk" <tawfik.bayouk@mobileye.com>,
+ "Thomas Petazzoni" <thomas.petazzoni@bootlin.com>,
+ =?utf-8?q?Beno=C3=AEt_Monin?= <benoit.monin@bootlin.com>, "Maxime
+ Chevallier" <maxime.chevallier@bootlin.com>, "Andrew Lunn"
+ <andrew@lunn.ch>, "Jerome Brunet" <jbrunet@baylibre.com>
+To: "Jakub Kicinski" <kuba@kernel.org>, =?utf-8?q?Th=C3=A9o_Lebrun?=
+ <theo.lebrun@bootlin.com>
+From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
+X-Mailer: aerc 0.21.0-0-g5549850facc2
+References: <20251021-macb-eyeq5-v1-0-3b0b5a9d2f85@bootlin.com>
+ <20251021171430.579211b2@kernel.org>
+In-Reply-To: <20251021171430.579211b2@kernel.org>
 X-Last-TLS-Session-Version: TLSv1.3
 
-Add support for the two GEM instances inside Mobileye EyeQ5 SoCs, using
-compatible "mobileye,eyeq5-gem". With it, add a custom init sequence
-that must grab a generic PHY and initialise it.
+On Wed Oct 22, 2025 at 2:14 AM CEST, Jakub Kicinski wrote:
+> On Tue, 21 Oct 2025 18:32:41 +0200 Th=C3=A9o Lebrun wrote:
+>> Merging all this won't be easy, sorry. Is this split across trees OK?
+>> The net-next part is pretty evident, it is the rest that appears
+>> complex to merge to me. I can resend the series exploded if useful
+>> (or at least split net-next versus the rest).
+>
+> Yes, please respin just the patches that need to go via net-next
+> for us (1,3-6?). The rest I don't car^W know :)
 
-We use bp->phy in both RGMII and SGMII cases. Tell our mode by adding a
-phy_set_mode_ext() during macb_open(), before phy_power_on(). We are
-the first users of bp->phy that use it in non-SGMII cases.
+Sure thing! Only net beauty is present in V2.
 
-Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
----
- drivers/net/ethernet/cadence/macb_main.c | 38 ++++++++++++++++++++++++++++++++
- 1 file changed, 38 insertions(+)
+https://lore.kernel.org/lkml/20251022-macb-eyeq5-v2-0-7c140abb0581@bootlin.=
+com/
 
-diff --git a/drivers/net/ethernet/cadence/macb_main.c b/drivers/net/ethernet/cadence/macb_main.c
-index 914677f30f2c..c45c6a7f42e6 100644
---- a/drivers/net/ethernet/cadence/macb_main.c
-+++ b/drivers/net/ethernet/cadence/macb_main.c
-@@ -2963,6 +2963,10 @@ static int macb_open(struct net_device *dev)
- 
- 	macb_init_hw(bp);
- 
-+	err = phy_set_mode_ext(bp->phy, PHY_MODE_ETHERNET, bp->phy_interface);
-+	if (err)
-+		goto reset_hw;
-+
- 	err = phy_power_on(bp->phy);
- 	if (err)
- 		goto reset_hw;
-@@ -5187,6 +5191,28 @@ static int init_reset_optional(struct platform_device *pdev)
- 	return ret;
- }
- 
-+static int eyeq5_init(struct platform_device *pdev)
-+{
-+	struct net_device *netdev = platform_get_drvdata(pdev);
-+	struct macb *bp = netdev_priv(netdev);
-+	struct device *dev = &pdev->dev;
-+	int ret;
-+
-+	bp->phy = devm_phy_get(dev, NULL);
-+	if (IS_ERR(bp->phy))
-+		return dev_err_probe(dev, PTR_ERR(bp->phy),
-+				     "failed to get PHY\n");
-+
-+	ret = phy_init(bp->phy);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "failed to init PHY\n");
-+
-+	ret = macb_init(pdev);
-+	if (ret)
-+		phy_exit(bp->phy);
-+	return ret;
-+}
-+
- static const struct macb_usrio_config sama7g5_usrio = {
- 	.mii = 0,
- 	.rmii = 1,
-@@ -5341,6 +5367,17 @@ static const struct macb_config versal_config = {
- 	.usrio = &macb_default_usrio,
- };
- 
-+static const struct macb_config eyeq5_config = {
-+	.caps = MACB_CAPS_GIGABIT_MODE_AVAILABLE | MACB_CAPS_JUMBO |
-+		MACB_CAPS_GEM_HAS_PTP | MACB_CAPS_QUEUE_DISABLE |
-+		MACB_CAPS_NO_LSO,
-+	.dma_burst_length = 16,
-+	.clk_init = macb_clk_init,
-+	.init = eyeq5_init,
-+	.jumbo_max_len = 10240,
-+	.usrio = &macb_default_usrio,
-+};
-+
- static const struct macb_config raspberrypi_rp1_config = {
- 	.caps = MACB_CAPS_GIGABIT_MODE_AVAILABLE | MACB_CAPS_CLK_HW_CHG |
- 		MACB_CAPS_JUMBO |
-@@ -5372,6 +5409,7 @@ static const struct of_device_id macb_dt_ids[] = {
- 	{ .compatible = "microchip,mpfs-macb", .data = &mpfs_config },
- 	{ .compatible = "microchip,sama7g5-gem", .data = &sama7g5_gem_config },
- 	{ .compatible = "microchip,sama7g5-emac", .data = &sama7g5_emac_config },
-+	{ .compatible = "mobileye,eyeq5-gem", .data = &eyeq5_config },
- 	{ .compatible = "raspberrypi,rp1-gem", .data = &raspberrypi_rp1_config },
- 	{ .compatible = "xlnx,zynqmp-gem", .data = &zynqmp_config},
- 	{ .compatible = "xlnx,zynq-gem", .data = &zynq_config },
+Thanks,
 
--- 
-2.51.1
+--
+Th=C3=A9o Lebrun, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
 
