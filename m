@@ -1,116 +1,197 @@
-Return-Path: <devicetree+bounces-229714-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229715-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D45D3BFB061
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 11:00:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C3C4BFB075
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 11:01:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9F73E1A04E7D
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 09:00:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1E3B51885B32
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 09:01:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D25F730FC36;
-	Wed, 22 Oct 2025 09:00:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA92A30F54C;
+	Wed, 22 Oct 2025 09:01:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="fEMx8uIM"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Sueq6TsG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D440930EF88
-	for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 09:00:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB3E730EF88
+	for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 09:01:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761123614; cv=none; b=YInkXKbGDxG8Him/vBneW3b7Jwig+3r6hx5yu2gQFMnXXxkDyBbH5WzKTYKbaP1VYwc8u1cqIAoNNKnBeqUG4ijqgYuQmvbhrF2Vi6VLRBf1uaxu7r1JO4UTVFIXcYcLxoDavpaP1dAZ4LPIxIATTw+iEqmyIu3w6g91nTAla/I=
+	t=1761123685; cv=none; b=QZM+LPNCE46a/eo5UYSWJRMXh7q7NRujtM+AFV/FoYSf6iTvXo3xn28W8aN6q0OjLm7Ef0Ce/2mu4MYQl12no4pBQlnzZzZLpXEPPCcc6jHZeoSkt37CMHbgHpN85Lx2xrvcxIK++rAytD3G61JpVwdmRjDS9XYRlSA2X8CJgTE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761123614; c=relaxed/simple;
-	bh=nyHMc68wsGGwLDug/tIHbcAo1CB08oUJBliYMKzONHI=;
+	s=arc-20240116; t=1761123685; c=relaxed/simple;
+	bh=5sCwvusLGqime2/Jy9aXr2cPI9fkv2LkkGeuCX9BmbA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=t4upUcWG0ZrY63FOcQHCa046RbeQcnW4WbzSslqq51l9svCEhZSSaHqoXb8ZyQF4ifxISPhkpDQbL9F3gFp064g2c8d2bZlcmW1ZmOnS7p2qDnRuUAAlzNn1dnaUVKYCLesZQBlU4H2vWlR0Ea0I5Pc2IKKALakB/YSjtydywUs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=fEMx8uIM; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=nyHM
-	c68wsGGwLDug/tIHbcAo1CB08oUJBliYMKzONHI=; b=fEMx8uIMpiTZEBIeYB0c
-	l1qs0tu979S2+e8KbLdfW/ZPdfDPVMB8eEN7nRFvKoLDGlF6yXgZe3Bf6qRGSMA2
-	fkObS2ScDsi4o8S28nWeWfngH0q11zXv9KESrbImb1ZOAkXEhTaEHdCIL1G7NQWu
-	F47fpfnTlS9GmOVp+E/T0AiLNyiEbdGjd42NBxk3M38YeGaBa+OvHsoyypQQhk8r
-	ShJL25QJgg+wcFt7FP9LgzgVbkk5KuR89Q6KNL24b6lxg8udf781U/gHReMgqFG9
-	nEwSQfjjB/D2qTy8MHPWx02OQwMhvf5VihIUne6i1fINmtgrCdR85B8VjftOvBFt
-	ag==
-Received: (qmail 1759633 invoked from network); 22 Oct 2025 11:00:10 +0200
-Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 22 Oct 2025 11:00:10 +0200
-X-UD-Smtp-Session: l3s3148p1@Jfowi7tBLBJtKPGR
-Date: Wed, 22 Oct 2025 11:00:09 +0200
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: "Herve Codina (Schneider Electric)" <herve.codina@bootlin.com>
-Cc: Thomas Gleixner <tglx@linutronix.de>,
-	Hoan Tran <hoan@os.amperecomputing.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Saravana Kannan <saravanak@google.com>,
-	Serge Semin <fancer.lancer@gmail.com>,
-	Phil Edworthy <phil.edworthy@renesas.com>,
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-	Pascal Eberhard <pascal.eberhard@se.com>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v5 0/8] gpio: renesas: Add support for GPIO and related
- interrupts in RZ/N1 SoC
-Message-ID: <aPidGU_4NattHKKG@shikoro>
-References: <20251020080648.13452-1-herve.codina@bootlin.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=m+Iaveu5yKYH8669Vx26ReFyr16UWp8VSRjlJpAv1AFU5BIKs1mvciRRenNoSAqNISAqSmWt3/udviWclrrXYDDeD6w/5SE4mnhIlOLUjJqomPCAmmiY6CtdaDWBJibA3iJMq/DFGEgiysfaeC0q0D8b8GEjdWgBVjCdzGa9fEY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Sueq6TsG; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59M2Euel020555
+	for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 09:01:23 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=ivByTKhSESO0VcSxSaiYVhLG
+	ISoDBO/7JhIXLIxz05I=; b=Sueq6TsGpWeoJOGBcFLsAoEpnNOT5Zb3CGY8mvZv
+	gfOPV7k9z6T2f0I4pY5ky6HGf1X3WfGCpYKcwdW3b0oju+29JAlCw7rCH/ZHTvNc
+	GeVIh467mrIM7SQThMhMtAX+diha7PqnQq7lzfhdLl6RGLU77jbfu2Y9MNsH3bKK
+	LFX+P6QG/ANcyg7YTtLA5ArjjNVXGKIEC7q8sMLP5O6GbCI86mnLZBUG/x7qoxYU
+	aO9HyHXoKSu6vOQYriUK4f7K3tzly/Pm+GspcFlmtPu6EgPDS2MzxP5x/t+/6j3F
+	WSOJl/FYYfUlSJzXQCAikJHggiJmwnvoV9ZRJj6q2gum8A==
+Received: from mail-pf1-f200.google.com (mail-pf1-f200.google.com [209.85.210.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49v34440a8-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 09:01:23 +0000 (GMT)
+Received: by mail-pf1-f200.google.com with SMTP id d2e1a72fcca58-77f610f7325so5596588b3a.1
+        for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 02:01:23 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761123682; x=1761728482;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ivByTKhSESO0VcSxSaiYVhLGISoDBO/7JhIXLIxz05I=;
+        b=wfgv9zVyae54GYGa95jSsIDOSnW41gq02tE6R67EB6lPbf4GqDCVXLyzddiPww8ORi
+         qDSYbCop0dJwk6Q97dn91uu6TnJZFH41H1xHBFJmj1+rMmvtSjrXtzEutEQlgogMZg+K
+         1/NSlx3o7N76e3zNSvLkk7xNj6Nykg9jecDH0boBfu7eLRKzgKEJSyUqOVMf8VvQXHx2
+         Ge1IxvocJREDUXa1q/GNDg88ZmUXA8y4V83U051YXNBSIgfsJSRv57KuHwhLqu3Ub6Ug
+         Q24e2gHp6bGm3R9YENTxKb1hoycPE0KX6mQOTWAIfz5BMfEaokN5iZc9i6lNu6ESxKEn
+         1Maw==
+X-Forwarded-Encrypted: i=1; AJvYcCVHI4TpiDuXANUaqc0iAKz7GitKGCZZooYyb2NtHnu6kW0dtqNi7FZ0kc/odl2Z/MnigYr/HC0cLwbV@vger.kernel.org
+X-Gm-Message-State: AOJu0YzzMpWJcRZCqDFT45Kuum6rH5mr0JuLjLBAsRGkh8UgO7AWpoaS
+	MUDqF2GlbUuw8QCTddO/kSWwjgtXd5rzn8ge6iaD0KiT8r0j3I+mer9+09BHs5p3cOXVwlXcN+9
+	xZzRWmC6VVUlIOfquQohKlrZ99Bb7yDmYieZiPFWHRWfT7gl01ytxB+j3h0hnGcA0
+X-Gm-Gg: ASbGnctz3v3+ZHjLgCXdBBCyC7CTH+t4koi+cDEfBHVUMlxo8KKn0+LGCFLjv0dADvW
+	fQlCNPnsoR6RyIfP0iA92U3GwyzUftePSibk1rzMXq3Oj0ZDBDGlVRgT0CqSjqwv01mBzR9VrMy
+	/xWYHT5Lrqpwp9QCushWh/n0K9mpq3K3Azp2On7+v2ZDkSG92L9jOdRVFfrVMJcwjzM0cg97EjX
+	Kq/qMIiHSWbEx6VJadIINKeG9dlm7G1K/yCvqLnYlPjMi/jVJIKE3NCi29v2kXI/FbyTRFekgij
+	nDNKKi3JTNG4uCOJdYPzjQuI7LMc/rpx6LxHByOSKVyNHFYDZCwFn7pv9CRQVPLmREJ2Q/oFiZh
+	nDa8eT8wt9Ml0TyW2Rvo59zb8KTNzs/1yKUHcmGqIsivgBg==
+X-Received: by 2002:a05:6a20:72a4:b0:246:354:e0ff with SMTP id adf61e73a8af0-334a85242b0mr26308727637.8.1761123682230;
+        Wed, 22 Oct 2025 02:01:22 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHrlAYEvjmvObgyZJEcggou/JfliOLpgFt5Kg0VJQSp8IlUPjr3+XSTnue892eZTAwBzkWAUA==
+X-Received: by 2002:a05:6a20:72a4:b0:246:354:e0ff with SMTP id adf61e73a8af0-334a85242b0mr26308680637.8.1761123681758;
+        Wed, 22 Oct 2025 02:01:21 -0700 (PDT)
+Received: from hu-qianyu-lv.qualcomm.com (Global_NAT1.qualcomm.com. [129.46.96.20])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b6cd9005e2dsm2273885a12.9.2025.10.22.02.01.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 22 Oct 2025 02:01:21 -0700 (PDT)
+Date: Wed, 22 Oct 2025 02:01:19 -0700
+From: Qiang Yu <qiang.yu@oss.qualcomm.com>
+To: Abel Vesa <abel.vesa@linaro.org>
+Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Bjorn Andersson <andersson@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+        Qiang Yu <quic_qianyu@quicinc.com>
+Subject: Re: [PATCH v5 6/6] phy: qcom: qmp-pcie: Add support for glymur PCIe
+ Gen4 x2 PHY
+Message-ID: <aPidX8h5z7/A059s@hu-qianyu-lv.qualcomm.com>
+References: <20251017-glymur_pcie-v5-0-82d0c4bd402b@oss.qualcomm.com>
+ <20251017-glymur_pcie-v5-6-82d0c4bd402b@oss.qualcomm.com>
+ <rxju35izazp7zrzs6vyy2cxuynzc6k4i4iot5pjahwl2bfoka5@cutpfodvixmp>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="0AwDRnA12mcMm4ja"
-Content-Disposition: inline
-In-Reply-To: <20251020080648.13452-1-herve.codina@bootlin.com>
-
-
---0AwDRnA12mcMm4ja
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+In-Reply-To: <rxju35izazp7zrzs6vyy2cxuynzc6k4i4iot5pjahwl2bfoka5@cutpfodvixmp>
+X-Proofpoint-GUID: ueT8AMB933FN1GVqCoyWovMBuwWr7vBg
+X-Proofpoint-ORIG-GUID: ueT8AMB933FN1GVqCoyWovMBuwWr7vBg
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDE4MDAyMyBTYWx0ZWRfXwIWEb5DG4fM5
+ FdRKVi5PLSnavCl2e+0jZRg2UxGqJK16XzJi40xVXLzqzUcaKR8nnqDh8sn4pa9r3xuXlZCyBQi
+ CeeChv/C2FWi/re6Leea4SfgeASpYQCjer/BFcgMle7QbD/lSV6G3lHDmVA70uDIsv6V5g9uDA4
+ P8G9YI2tntuPjPKrznWYKx3v1XCfqcIuFbgcKPzzP/N0DhB4/m4DvWWg56z/yDMHjF7fShC3ZNm
+ iJrgrOWV/ZjOswOLzx2tu+RgEP0OqIY2ask20d9C8NQj1B2KV7bYP9EnmV9+0t1PRb2/e7hsqk9
+ BwU1FWQlOSOX4HKWFHSEfDNIkg0A5FIX/qgR9eDGJtq7tVUBQRfmwvAxGZbTkzZOo2+xt1kT6ew
+ yfBITv7cQbi02KnURo0S/A9mGmEJXQ==
+X-Authority-Analysis: v=2.4 cv=E/vAZKdl c=1 sm=1 tr=0 ts=68f89d63 cx=c_pps
+ a=mDZGXZTwRPZaeRUbqKGCBw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=kj9zAlcOel0A:10 a=x6icFKpwvdMA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=VwQbUJbxAAAA:8 a=KKAkSRfTAAAA:8 a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8
+ a=YTQ-dMB4pklsVi_CFI8A:9 a=CjuIK1q_8ugA:10 a=zc0IvFSfCIW2DFIPzwfm:22
+ a=cvBusfyB2V15izCimMoJ:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-10-22_03,2025-10-13_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 spamscore=0 priorityscore=1501 bulkscore=0 suspectscore=0
+ lowpriorityscore=0 clxscore=1015 adultscore=0 phishscore=0 malwarescore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2510020000 definitions=main-2510180023
 
-On Mon, Oct 20, 2025 at 10:06:36AM +0200, Herve Codina (Schneider Electric) wrote:
+On Wed, Oct 22, 2025 at 11:53:01AM +0300, Abel Vesa wrote:
+> On 25-10-17 18:33:43, Qiang Yu wrote:
+> > From: Qiang Yu <quic_qianyu@quicinc.com>
+> > 
+> > Add support for Gen4 x2 PCIe QMP PHY found on Glymur platform.
+> > 
+> > Signed-off-by: Qiang Yu <qiang.yu@oss.qualcomm.com>
+> 
+> Since this is something I already sent upstream here and it is more correct:
+> 
+> https://lore.kernel.org/all/20251015-phy-qcom-pcie-add-glymur-v1-2-1af8fd14f033@linaro.org/
+> 
+> > ---
+> >  drivers/phy/qualcomm/phy-qcom-qmp-pcie.c | 28 ++++++++++++++++++++++++++++
+> >  1 file changed, 28 insertions(+)
+> > 
+> > diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
+> > index 86b1b7e2da86a8675e3e48e90b782afb21cafd77..2747e71bf865907f139422a9ed33709c4a7ae7ea 100644
+> > --- a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
+> > +++ b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
+> > @@ -3363,6 +3363,16 @@ static const struct qmp_pcie_offsets qmp_pcie_offsets_v6_30 = {
+> >  	.ln_shrd	= 0x8000,
+> >  };
+> >  
+> > +static const struct qmp_pcie_offsets qmp_pcie_offsets_v8 = {
+> > +	.serdes     = 0x1000,
+> > +	.pcs        = 0x1400,
+> > +	.pcs_misc	= 0x1800,
+> > +	.tx		= 0x0000,
+> > +	.rx		= 0x0200,
+> > +	.tx2		= 0x0800,
+> > +	.rx2		= 0x0a00,
+> > +};
+> > +
+> >  static const struct qmp_pcie_offsets qmp_pcie_offsets_v8_50 = {
+> >  	.serdes     = 0x8000,
+> >  	.pcs        = 0x9000,
+> > @@ -4441,6 +4451,21 @@ static const struct qmp_phy_cfg glymur_qmp_gen5x4_pciephy_cfg = {
+> >  	.phy_status		= PHYSTATUS_4_20,
+> >  };
+> >  
+> > +static const struct qmp_phy_cfg glymur_qmp_gen4x2_pciephy_cfg = {
+> > +	.lanes = 2,
+> > +
+> > +	.offsets		= &qmp_pcie_offsets_v8,
+> > +
+> > +	.reset_list		= sdm845_pciephy_reset_l,
+> > +	.num_resets		= ARRAY_SIZE(sdm845_pciephy_reset_l),
+> > +	.vreg_list		= qmp_phy_vreg_l,
+> > +	.num_vregs		= ARRAY_SIZE(qmp_phy_vreg_l),
+> > +	.regs			= pciephy_v6_regs_layout,
+> 
+> Definitely not v6 regs here. Needs to be v8.
+> 
 
-> This series adds support for GPIO and GPIO IRQ mux available in the
-> RZ/N1 SoCs.
+Hey Abel, please ignore this phy patch and dt binding patch for gen4x2,
+Krzysztof reminded me you have posted patches for it.
 
-I definitely want to review and test this series. But I can do this on
-Friday earliest, more likely next Monday.
-
-
---0AwDRnA12mcMm4ja
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmj4nRkACgkQFA3kzBSg
-KbYW0g/+NG2O5U/YAwoYvkAQdUeheX+WSMqYJFXS8N+FL8/cnvU1sNI1CB6M250P
-dEvvUKicMpNX4+KQ6Kf1ofQ0h6e4nbNRtwLTP8Ztqh7u8ZpNsn96lcRiw7p3Mc7V
-VzeIMAY5kPugu251q6iale3EX2OQiSQmezybDxftGZeHc/PmjhJyllbi9QStbgLB
-f/IVKO2HS9g2jhC+rzRhfpuO7/fpWMkY2fiF5pQPHO7BbO2AhhwkeXaPEqS/OXwl
-FPaYyFyrWLrBIngRLO93xQsqePENC02T1AwY3u5/D2e3XQHhR2hQ04rqvdFydTzN
-A8ogtE/yh8AI191TDAkqcCZFtUhdkIg/1F2u7o4m9jCvkQTo1KZX2oS1OMuvoql+
-xQzCZVxMdYJ4y0uiPmCf7J65E5A9S8JpSMjr5zs4F/fTe2cqoAVJe5YGLKUytDtp
-aBBS0iO30iE+PYZEfvLr7Ola872oevzZJ9xaY2dhDV9FQZxYquza+axVddsaV6nu
-2+VneRPvqr0BPGhFbCN0BGZO0oHy4kH7FlKp0v0ie5PVZuOjrIvQXo/4ZTbJvRM4
-2KnxdS/z4ERRoStCST1gKFGfoKE/EZWAZdfnGdMQqUb1+1UDvpe7pI/8CJR7vWmS
-zFOAhsj1sZZUrENfCCgJGR5I1+rTiXSCer2rFajCN3sa9nrs/sU=
-=3GeV
------END PGP SIGNATURE-----
-
---0AwDRnA12mcMm4ja--
+- Qiang Yu
+> NAK.
 
