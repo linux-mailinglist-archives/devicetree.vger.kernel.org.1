@@ -1,130 +1,127 @@
-Return-Path: <devicetree+bounces-229726-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229727-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83E67BFB2DA
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 11:35:28 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E0EAEBFB2E6
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 11:36:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 16DB74F4687
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 09:35:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AB0651891C4A
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 09:37:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE19F28C840;
-	Wed, 22 Oct 2025 09:35:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="ohsb2QDS"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90B37288502;
+	Wed, 22 Oct 2025 09:36:37 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vs1-f50.google.com (mail-vs1-f50.google.com [209.85.217.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 139C1289376
-	for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 09:35:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF5FB287254
+	for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 09:36:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761125718; cv=none; b=oplNeWsDXFNdLVuor4lXEg+iha+zPZWBao9W65MW9Sl1+ebdfg0B6bpoF4jmPnkG0/q8DarnaEyCMe0M8FsuxtWNL9DydZHr4me0kiFcAg2bpQGrDN1tGlNOozVcnp6L9adPMCsTpaUe6hNlfCFHaygKbft/CDO0fo9pk7ryNjc=
+	t=1761125797; cv=none; b=nh/XDvWRSo03f9HRc0Ad5OjfJ8pB5dWIKyZYU7inY8x2T4KPesuu/56vETAO2H1WQoBEEiMGO9Y8CeLgd2Q4iy/+RB8FMgo9x1hrx88458RFHOa6KESJKlUnKSSkqZQaJuQomi3SrqYUFiuC6OLlCCqTahG/GHo3SbyF/gfrhbQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761125718; c=relaxed/simple;
-	bh=gAGTYlrv3peCnoKoKyQkmGHD1Y4H6wFcmuTQ2CtK1KI=;
-	h=Mime-Version:Content-Type:Date:Message-Id:From:Subject:Cc:To:
-	 References:In-Reply-To; b=VMHxuZIfcfOEUlMlABm27PyWJCZQ6kAmsVQolBsvja/fcbBRvn1ZeJxb+1zttSNUL/BugchuuF3qqhlFGuXkVkHRQin4zMZ4eOVghbF+Yalwrthz5J7S+u9rGQu8H1xNBTDrTv9+q9bB0iXPRcg7d0V68Mcumvz5Vy9oNb3qdmM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=ohsb2QDS; arc=none smtp.client-ip=185.171.202.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 86B5BC0B8B2;
-	Wed, 22 Oct 2025 09:34:54 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 22C3A606DC;
-	Wed, 22 Oct 2025 09:35:14 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id C7FC6102F2393;
-	Wed, 22 Oct 2025 11:34:59 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1761125713; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=iz18myQGlANOuMjPJ93wuoMnm9zIKbiW/Ro470MHKvE=;
-	b=ohsb2QDSPfs68sPgSK2YMtGS8IvoAEsRIv4REzPmbXPUXtc0jPxe8nr75Fh02JiwuJ8x1V
-	OQu1/vlIuZVkIhQ6DaBvDZAwcF/wX4TDHBKb9bU66DqXHErrKbzATmZvSmpl2Qt+r0Trei
-	4v7/5VE+WKT5OboQRk0j9Ub4LFvtEsRMI+sONPyEd3j89LDTb+ZYIoK1UdeNkw/hSJasey
-	7ydYsRI5iMhGIirptX1UerdCzV7CGtIRR1LAhe/K27BcASQ5yBEywY9tEbi1xlTRJ8vIp2
-	EKnSspugCXbLgk5cXcfV+1AGW5OdAIxtc9PoLaskPBnlnGH1Yc9MAOvxpNTDYg==
+	s=arc-20240116; t=1761125797; c=relaxed/simple;
+	bh=/U97FWIz/LyKdJ/+ZFKjfhGLMW9FhpjIIYGZMTsBXJk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=SLiqr1fPRRXPGvCT/FVB75tKxKYZrFKvb4MVApqF8HwdJt9PiB3GDg0QgSw9Qj06f+xxySolobCGQ7s4Tp/kUEjbyUZHBQxbPAnVnjSkburiS5BtzeXtKnzNxjVsbUgcapD6GBcspSD+v3uxtgPDtklD2NPd50PwF/EVuA6FuwM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vs1-f50.google.com with SMTP id ada2fe7eead31-5a7b2a6b13bso4979588137.3
+        for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 02:36:35 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761125795; x=1761730595;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=iC35CdUT3A8sztuK5L0Sfjwp3dV7/QYG5xsuOQkj92Q=;
+        b=ErciUHX1BckCFJSN5ONJqtIyxzKSyOhVg9kHoiBeToMTBUAErjtKcM079oddSKKVD8
+         5pNEQc/o1CeQ5KujXW8hijYOrU5XzNV/7uXSqnUW2WAFdRvAosfyr58eg9KYoeSz2t8M
+         pI5xhmm++Xfmn9W99i4sshmR4p2VV2oApD2ZKbybTqNeTq/Xhvr8bbJKjapWCIc/Pc0y
+         7+M+9RSOqXFU8DU2V7Lk5NH4WZ2voukcp7zItP1EW5uz6VG7TXRXKOjFpR9ZfgzM+/tE
+         rrBiLSxMlFK3QB4/4XtpG8gm1d4HdELn39kGNr/HmsMwC29F/sbb8Bd9Ut0EypUNINoP
+         yb6w==
+X-Forwarded-Encrypted: i=1; AJvYcCV42+6m21MA14JZXMMc9hGT963l/tKlCYTakWboBijEvtAybpU2j4M1K1wALgdUAEWhkgKZ4q02rO9J@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyz0vmMYJcodSA886lt7LELHRR9x4VPRtLSJxM4Fx5uM01BHMO8
+	j2VcXdoFwABVumJWvxGQdVJY+vEWmMmW6u8IMHpRqoLOawI+Y7ef100HTkhGnrOz
+X-Gm-Gg: ASbGncu2k4UyFsh187Mz1rIv9auUYNV+LfsjqlIYYr4LrotomnIvKKO3VC3dRdyXPMT
+	78fWF70pqaDoRMTBdt9W34Qz7061RRkwZUDEHDFOtcYzfFpLaS+IuzQGJRvfLv7VQpN02yl5bdH
+	/ZeZEtCmp14uQ3n47PEvMJUdVVESMTbNKhiPBB4r8vZ2bnsan4FXT/XvIJnBSjF9lkDlO8suw1h
+	0SMMDIQBc2jLvo9wbUiTtKupAtCp4qocx9ZIL2ey4ohKKo70JQc9mhi0Rrzbnh7DavKK6ZA5oEA
+	+CsTxFBfagFm7tagFku7UqwmDMsCO+ard+ifyBcLJPjmwqCL/pG9Os6T958VAeKbuMiW3abd0f0
+	DaO1co6MrDp74OD8qV3QqdYLknufMhr+SetWFAeSR0us9Da3x/huEuVDJRBs1KbavqI339P1Acv
+	6Ui2SsLkGD1L/qKHy6hP0twz061pzwWcK3Uz4mOA==
+X-Google-Smtp-Source: AGHT+IGJorBDJWpBXhkTPuZOmESd65Z5ERZ12xjk7c69RDAUIvfyLqYAvhiNR1TOFv9Qmby3Sl/hbw==
+X-Received: by 2002:a05:6102:b02:b0:528:92b8:6c3e with SMTP id ada2fe7eead31-5d7dd501a23mr6636542137.1.1761125794693;
+        Wed, 22 Oct 2025 02:36:34 -0700 (PDT)
+Received: from mail-ua1-f45.google.com (mail-ua1-f45.google.com. [209.85.222.45])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-932c3da29f5sm4405207241.6.2025.10.22.02.36.34
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 22 Oct 2025 02:36:34 -0700 (PDT)
+Received: by mail-ua1-f45.google.com with SMTP id a1e0cc1a2514c-932e885467cso1475746241.0
+        for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 02:36:34 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVyIPCMmwFWI9DwzqNfjfyp0DfyljuxBCwLYHER+qAHk20PafAKmLTLN8xDE4RJoR3nMPCI0NurBEtH@vger.kernel.org
+X-Received: by 2002:a05:6102:d91:b0:5d6:101a:9f31 with SMTP id
+ ada2fe7eead31-5d7dd6a12f8mr6743560137.31.1761125793941; Wed, 22 Oct 2025
+ 02:36:33 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Wed, 22 Oct 2025 11:34:59 +0200
-Message-Id: <DDOQYH87ZV1H.1QZH1R36WMIC6@bootlin.com>
-From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-Subject: Re: [PATCH net-next v2 5/5] net: macb: Add "mobileye,eyeq5-gem"
- compatible
-Cc: <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, =?utf-8?q?Beno=C3=AEt_Monin?=
- <benoit.monin@bootlin.com>, =?utf-8?q?Gr=C3=A9gory_Clement?=
- <gregory.clement@bootlin.com>, "Tawfik Bayouk"
- <tawfik.bayouk@mobileye.com>, "Thomas Petazzoni"
- <thomas.petazzoni@bootlin.com>, "Vladimir Kondratiev"
- <vladimir.kondratiev@mobileye.com>
-To: "Maxime Chevallier" <maxime.chevallier@bootlin.com>,
- =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>, "Andrew Lunn"
- <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, "Eric
- Dumazet" <edumazet@google.com>, "Jakub Kicinski" <kuba@kernel.org>, "Paolo
- Abeni" <pabeni@redhat.com>, "Rob Herring" <robh@kernel.org>, "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
- "Nicolas Ferre" <nicolas.ferre@microchip.com>, "Claudiu Beznea"
- <claudiu.beznea@tuxon.dev>, "Russell King" <linux@armlinux.org.uk>
-X-Mailer: aerc 0.21.0-0-g5549850facc2
-References: <20251022-macb-eyeq5-v2-0-7c140abb0581@bootlin.com>
- <20251022-macb-eyeq5-v2-5-7c140abb0581@bootlin.com>
- <ef92f3be-176d-4e83-8c96-7bd7f5af365f@bootlin.com>
-In-Reply-To: <ef92f3be-176d-4e83-8c96-7bd7f5af365f@bootlin.com>
-X-Last-TLS-Session-Version: TLSv1.3
+MIME-Version: 1.0
+References: <20251022033847.471106-1-marek.vasut+renesas@mailbox.org>
+In-Reply-To: <20251022033847.471106-1-marek.vasut+renesas@mailbox.org>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 22 Oct 2025 11:36:23 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVW3j6BKdRQyNPYoZ8Y6zHgWKocncvOCFRnE+TzPDhpJg@mail.gmail.com>
+X-Gm-Features: AS18NWA7snoGhRQxOaxa6kVLMYHHHQNhnIPgqBT0Sy_KqfLK2Lq6CACxKqN_A0M
+Message-ID: <CAMuHMdVW3j6BKdRQyNPYoZ8Y6zHgWKocncvOCFRnE+TzPDhpJg@mail.gmail.com>
+Subject: Re: [PATCH v3 1/3] dt-bindings: gpu: img,powervr-rogue: Document
+ GX6250 GPU in Renesas R-Car M3-W/M3-W+
+To: Marek Vasut <marek.vasut+renesas@mailbox.org>
+Cc: linux-arm-kernel@lists.infradead.org, 
+	Conor Dooley <conor.dooley@microchip.com>, Adam Ford <aford173@gmail.com>, 
+	Conor Dooley <conor+dt@kernel.org>, David Airlie <airlied@gmail.com>, 
+	Frank Binns <frank.binns@imgtec.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Magnus Damm <magnus.damm@gmail.com>, 
+	Matt Coster <matt.coster@imgtec.com>, Maxime Ripard <mripard@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Simona Vetter <simona@ffwll.ch>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On Wed Oct 22, 2025 at 10:09 AM CEST, Maxime Chevallier wrote:
-> On 22/10/2025 09:38, Th=C3=A9o Lebrun wrote:
->> Add support for the two GEM instances inside Mobileye EyeQ5 SoCs, using
->> compatible "mobileye,eyeq5-gem". With it, add a custom init sequence
->> that must grab a generic PHY and initialise it.
->>=20
->> We use bp->phy in both RGMII and SGMII cases. Tell our mode by adding a
->> phy_set_mode_ext() during macb_open(), before phy_power_on(). We are
->> the first users of bp->phy that use it in non-SGMII cases.
->>=20
->> Signed-off-by: Th=C3=A9o Lebrun <theo.lebrun@bootlin.com>
+On Wed, 22 Oct 2025 at 05:39, Marek Vasut
+<marek.vasut+renesas@mailbox.org> wrote:
+> Document Imagination Technologies PowerVR Rogue GX6250 BNVC 4.45.2.58
+> present in Renesas R-Car R8A77960 M3-W and R8A77961 M3-W+ SoC.
 >
-> This seems good to me. I was worried that introducing the unconditionnal
-> call to phy_set_mode_ext() could trigger spurious errors should the
-> generic PHY driver not support the requested interface, but AFAICT
-> there's only the zynqmp in-tree that use the 'phys' property with macb,
-> and the associated generic PHY driver (drivers/phy/phy-zynqmp.c) doesn't
-> implement a .set_mode, so that looks safe.
->
-> Reviewed-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
 
-Ah, good catch. I checked that both !phy || !phy->ops->set_mode lead to
-return 0, but I hadn't checked if other PHY drivers could have a
-.set_mode() implementation that failed on this new call.
+> See https://gitlab.freedesktop.org/imagination/linux-firmware/-/issues/13
+> for related userspace bits.
+> ---
+> V2: - Add RB from Conor
+>     - Fill in allOf section for Renesas GPU, set fixed clock/clock-names
+>       maxItems count to 3 and power-domains/power-domain-names count to 2.
+>     - Use renesas,r8a7796-gpu for R8A77960 compatible string
+> V3: Split up the allOf section addition
 
-Compatibles that might read a "phys" DT property:
- - cdns,zynqmp-gem =3D> no DT upstream
- - microchip,mpfs-macb =3D> no DT upstream
- - xlnx,versal-gem =3D> xilinx/versal-net.dtsi, &gem0..1, no PHY attached.
- - xlnx,zynqmp-gem =3D> xilinx/zynqmp.dtsi, &gem0..3, PHY attached in
-   xilinx/zynqmp-sck-kr-g-rev*.dtso. PHY provider is &psgtr,
-   "xlnx,zynqmp-psgtr-v1.1", drivers/phy/xilinx/phy-zynqmp.c
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-So as you pointed out, only xilinx/phy-zynqmp.c is used according to
-upstream DTs. I also checked lkml, no patches adding a .set_mode().
-We shouldn't be breaking upstream DTs with the current patch.
+Gr{oetje,eeting}s,
 
-Thanks for the review Maxime,
+                        Geert
 
---
-Th=C3=A9o Lebrun, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
