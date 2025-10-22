@@ -1,172 +1,134 @@
-Return-Path: <devicetree+bounces-229627-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229628-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 537C2BFA565
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 08:52:23 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id BFE97BFA5AB
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 08:55:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1662F3B7E32
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 06:51:23 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 7153E4E8A57
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 06:55:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C38CE2F49F4;
-	Wed, 22 Oct 2025 06:50:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="R+QzKRGR"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D3802F2608;
+	Wed, 22 Oct 2025 06:55:19 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from TWMBX01.aspeed.com (mail.aspeedtech.com [211.20.114.72])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B05C22F39BF
-	for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 06:50:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B3422F25F7;
+	Wed, 22 Oct 2025 06:55:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.20.114.72
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761115840; cv=none; b=XwHqi5Hfb1XveoOYwd+itiMQ4nLbsgIpFjyiXsTQArskPPspsPLXWfpUmuFouyuEf5HZc+6mCBebEQn/2NrfZI5KHCvuPwYDEAZO2NnPwtURBWCZ+omVIo+C99Skk0GDxD3XrYQ7ry8+NDon0IEpBkECpRWgiDqffrS0dXoSxFA=
+	t=1761116119; cv=none; b=rJb3rC+H0tke1FgrZ7/W5fowZ425j7WZXA+AdRxlihQyrd9ACOixnznp/xYU0NWTJ9HQzx+FMZgFcXL+LtvG37aXc0yfzBqpXoDSVn/QLvkzBoUVXITUdhwq0BHzl3mihMmYuoZB4pqdxlSD2lmHo2cv+N26Q4/E6U2W7GiEloA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761115840; c=relaxed/simple;
-	bh=gHF+4pA6FtZnBUqOQl0MtcfoeZVl4BA/oIYisaYmmWo=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=dfN/9/928xRuqWwrKGbGbjsAfnwHSaCsOTm7g40evK9XQD92irSJ6Vd6VmG3elWd/169YidTFLfpMT6TfTY/kGmKwz/bAp67GICd4CNA/lvhJKDQIoeC9qBbMl9PeIThYbTcJ8OGd+/3ZHwtgQG9jFBlOV2WkrXmy5zCNnjHjVM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=R+QzKRGR; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59M32CW1030308
-	for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 06:50:37 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	UZEDudDcCpTGZPPYZsISbbU3+prU+iJo6gJxhAsFFbA=; b=R+QzKRGR1NgelHIg
-	OeYeqbbcd4hjwxWGhLyUMDHKfzdYksC6GvigQGUVH9RVPVGKhH5iPbpl35pXxWn8
-	i+dTKgNzu7aEek3VvYOm1paZpey4yFiQINnNF9VsRPxCb4FvPjBn1el2nzQvetYS
-	NpqTPfCnXjGU2grMwsWo2kYghVhPH4ZwEFav+fxBh68vRLBVK0lbg5UVC3b+rOyC
-	Le8n5MBU1pm9qyKQRAJ7q9o0z1A2Gz58eNVbX8Pc4jFiPnSGJ5Gwde0u32TNkbW4
-	p+tE6NzOq8/muskCumGJG2YUV5BOP5p7ZEGaL82Ud94behDDmBQbkMu4MoWRxxqX
-	yLxvqQ==
-Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com [209.85.214.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49v2ge3j5r-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 06:50:37 +0000 (GMT)
-Received: by mail-pl1-f198.google.com with SMTP id d9443c01a7336-29085106b99so63847655ad.1
-        for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 23:50:37 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761115836; x=1761720636;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=UZEDudDcCpTGZPPYZsISbbU3+prU+iJo6gJxhAsFFbA=;
-        b=uaiXtBt7doCK6vROWT9FAFQSwHHQuoCuPXVEpvjq477Msm0qF1A7yvFcByZxSmwNv5
-         CH2Q8y/mYZF6Fy1qCy1e6WJAm8emfhLXrx4LfAI68cE2ttYtjDS03Lqq2Lpges6MNrpX
-         x1Y+Hvux2Y30I7TKT2/Bgxh/fHNy32m6PTn1er5s+U0bCMC75gYe7cDJiwmVnIveu4zG
-         QFmEB4yLE76AMLhr3RauwaMSAaqrJfoAxyjaC+EMLzsc2p5+bUH4/Xkq298EA67SByOZ
-         FeuNYBQduvV7pFvJ6DElhSTycjSoBYmwhigf4GYvXcJR/kGum0CIz10sDSfItu6/NlCx
-         1QXA==
-X-Forwarded-Encrypted: i=1; AJvYcCVexP5BlmnAr7LGA4b0DEGcPendHjSqmaF3Q+XI7vMaLVhiPt1vFkhv10pMWyH/BKMtHbeZPXUfo5EV@vger.kernel.org
-X-Gm-Message-State: AOJu0YzvgTNBzR5took/EXGag9KRSWxaOPPSxaqgWTF140KqI4un5yrl
-	Kl44wwGVe4vTnY2+yI4a4Zn9J/4AI+syr1Gpihn19sptIn2HrZUXq/2WP96awmd7/NLRchEwJUw
-	Nt2/eJ9vFoJbmKzuANzv7AilnZGdhq1bB+JmQFEO2tnoyr5LRdyXfmnsYmZ370nWS
-X-Gm-Gg: ASbGnctW0hf4QCvQHjY8zN0xJXCSp0IjrqrL5/Iwczvri/MSxWxgwLG3IC0Y18XgkCo
-	mKlHogBV3cyT/N3hxl9oi2GL5xnDcXKNr+D2c7i27rOTG2MfG9Fpk1j7NIpakjL3aXvw6tF00YN
-	r1uXCR5ft02KqX3OZqk4Igv0+SN8Qpvu6SddCdkR6XZwvOCpoY4gy2cgDFKLUlSW03xDbP4XOuD
-	sNPK3F+6DLXlxaKfvpS6CSr8vLv3d5nEJdKbpbgGg2yRLlD0wkt3s1ukXiEu7aMwV/vJ4JCTFEl
-	RqeJJ1AqM7457HxwyhFB3ZC/MC9lIbExWbd4ktwjYsLCwDMAS6eA0vtGStS19NET5CxtKCqcaQT
-	KfyLkukXcyaCmugG7ZeIN/xc6Eh6lDu3hqtdHZLG3mWtfa7oVoA==
-X-Received: by 2002:a17:903:298b:b0:282:ee0e:5991 with SMTP id d9443c01a7336-290caf831f8mr255694505ad.30.1761115836287;
-        Tue, 21 Oct 2025 23:50:36 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFCpodpjCxx4fmCbEkBSzBkPT2S5EgIPUUrmaWcMLrK/fxVAvVzC8itWrjTf66DpjqIW4r/8w==
-X-Received: by 2002:a17:903:298b:b0:282:ee0e:5991 with SMTP id d9443c01a7336-290caf831f8mr255694115ad.30.1761115835763;
-        Tue, 21 Oct 2025 23:50:35 -0700 (PDT)
-Received: from hu-jingyw-lv.qualcomm.com (Global_NAT1.qualcomm.com. [129.46.96.20])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-33e223e334fsm1560285a91.8.2025.10.21.23.50.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Oct 2025 23:50:35 -0700 (PDT)
-From: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
-Date: Tue, 21 Oct 2025 23:50:30 -0700
-Subject: [PATCH v2 4/4] arm64: defconfig: Add M31 eUSB2 PHY config
+	s=arc-20240116; t=1761116119; c=relaxed/simple;
+	bh=EiQSRNGTHLdZpN+0NcBZ+2IyylgiuzCdjU6E9xsQZhQ=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=F4NDJ1zFUheUVBMkxOetyrhLsznx2odNR7Jxv64hIBP67Ts0loPY5VYZCFut6TLjBzl/KFVroVFdmpviQYv8o761pa1MkVScr8wMa5oYYafvFKkBC/1VzonqREpVLPhjWzyggqkN1uOBwVBnoRYf+0pUtdpMQNqp+lwtRFBVtuo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; arc=none smtp.client-ip=211.20.114.72
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
+Received: from TWMBX01.aspeed.com (192.168.0.62) by TWMBX01.aspeed.com
+ (192.168.0.62) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Wed, 22 Oct
+ 2025 14:55:07 +0800
+Received: from twmbx02.aspeed.com (192.168.10.13) by TWMBX01.aspeed.com
+ (192.168.0.62) with Microsoft SMTP Server id 15.2.1748.10 via Frontend
+ Transport; Wed, 22 Oct 2025 14:55:07 +0800
+From: Ryan Chen <ryan_chen@aspeedtech.com>
+To: ryan_chen <ryan_chen@aspeedtech.com>, Thomas Gleixner
+	<tglx@linutronix.de>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Joel Stanley
+	<joel@jms.id.au>, Andrew Jeffery <andrew@codeconstruct.com.au>,
+	<jk@codeconstruct.com.au>, Kevin Chen <kevin_chen@aspeedtech.com>,
+	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-aspeed@lists.ozlabs.org>
+Subject: [PATCH v5 0/3] AST2700 interrupt controller hierarchy support
+Date: Wed, 22 Oct 2025 14:55:04 +0800
+Message-ID: <20251022065507.1152071-1-ryan_chen@aspeedtech.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251021-knp-usb-v2-4-a2809fffcfab@oss.qualcomm.com>
-References: <20251021-knp-usb-v2-0-a2809fffcfab@oss.qualcomm.com>
-In-Reply-To: <20251021-knp-usb-v2-0-a2809fffcfab@oss.qualcomm.com>
-To: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Wesley Cheng <quic_wcheng@quicinc.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: aiqun.yu@oss.qualcomm.com, tingwei.zhang@oss.qualcomm.com,
-        trilok.soni@oss.qualcomm.com, yijie.yang@oss.qualcomm.com,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-usb@vger.kernel.org, Jingyi Wang <jingyi.wang@oss.qualcomm.com>,
-        Melody Olvera <melody.olvera@oss.qualcomm.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-X-Mailer: b4 0.15-dev-99b12
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1761115829; l=989;
- i=jingyi.wang@oss.qualcomm.com; s=20250911; h=from:subject:message-id;
- bh=N04B8FuADvzjDPvyuTKyodc40jM2jOda/r7xCjpf/i4=;
- b=lyc1bzXd8D3qrqhkPjdIO4ToLd856fsMOQjTqs+gbO9UGKnkm09XbzvKE5ab1HNflxNdwWWYS
- aCllmsoNgwDCGZ+KAUg1vYrJBono8GVFYpjDq1xuqz8mek8HQWTqdZw
-X-Developer-Key: i=jingyi.wang@oss.qualcomm.com; a=ed25519;
- pk=PSoHZ6KbUss3IW8FPRVMHMK0Jkkr/jV347mBYJO3iLo=
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDE4MDAyMCBTYWx0ZWRfX0OtJEKgoMlXx
- vpyRja5vGrwyaSNUYQWiBwtn/KqocNN7uOcXuXl6tJvml8p7fg4tg0N1UpToGhUI0hAWZ29+oY/
- iiYDyti+ZnVKkP2ETGpdra8L36EeoadOATY8EexbmpQQ0HK/unJQd3nylt6XOuKs3/n0osOA3Eb
- 5H5MJmHGwMADQY9Ha//UO2lgdJI//nfuAB29lHoX25eFSV8f0S1h2+AnHIGMegvKzRAqVIHMqSI
- LcRk4uzjHx+LFr43aQLQctvsFeptP/9c72F4D2RA1tWlaTFlcg1R1Ztth60SpZDS4pKAKN9iqsy
- O/EVnwnSNARxVCkokOdkvVqwhEA7HikE6SozGela+fzbxsF7vcq101tiAUjwFCNTNYRN++uqBBt
- iXf+8UbPSBKneS87FgxCcAcxhoEVMA==
-X-Authority-Analysis: v=2.4 cv=KqFAGGWN c=1 sm=1 tr=0 ts=68f87ebd cx=c_pps
- a=MTSHoo12Qbhz2p7MsH1ifg==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=EUspDBNiAAAA:8 a=4ROhr7NTa0bsJorruOEA:9 a=QEXdDO2ut3YA:10
- a=GvdueXVYPmCkWapjIL-Q:22
-X-Proofpoint-GUID: K3samMD3V0c9_rc-P1SRJbZhniBxwB_y
-X-Proofpoint-ORIG-GUID: K3samMD3V0c9_rc-P1SRJbZhniBxwB_y
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-10-22_02,2025-10-13_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 clxscore=1015 phishscore=0 malwarescore=0 impostorscore=0
- lowpriorityscore=0 adultscore=0 priorityscore=1501 spamscore=0 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2510020000 definitions=main-2510180020
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-From: Melody Olvera <melody.olvera@oss.qualcomm.com>
+This series introduces YAML bindings and driver support for the
+ASPEED AST2700 interrupt controller hierarchy. The AST2700 SoC
+contains two top-level interrupt controller blocks, INTC0 and
+INTC1, each responsible for routing different interrupt groups
+to various CPU targets.
 
-The Qualcomm SM8750 SoCs use an eUSB2 PHY driver different from the
-already existing M31 USB driver because it requires a connection
-to an eUSB2 repeater. Thus, for USB to probe and work properly on
-the Qualcomm SM8750 SoCs, enable the additional driver.
+v5:
+- Adds two new YAML bindings:
+ - aspeed,ast2700-intc0.yaml
+ - aspeed,ast2700-intc1.yaml
+- irq-aspeed-intc.c
+ - add aspeed,ast2700-intc0-ic, aspeed,ast2700-intc0-ic compatible.
 
-Signed-off-by: Melody Olvera <melody.olvera@oss.qualcomm.com>
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
----
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+v4:
+- aspeed,ast2700-intc.yaml
+ - Clarify the relationship between INTC0/INTC1 parent nodes, the
+   aspeed,ast2700-intc-ic child nodes, and the GIC.
+ - Add a block diagram and DT examples showing the cascaded wiring
+   (GIC <- INTC0 <- INTC1 children).
+ - Mirrors the datasheet-described topology and register map, including
+   the separation of INTC0/INTC1 regions.
+ - Lets DT unambiguously express first-level (GIC parent) and cascaded
+   second-level (INTC0 parent) interrupt controllers via examples that
+   use `interrupts` for INTC0 children and `interrupts-extended` for
+   INTC1 children routed into INTC0.
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 630fc798570f..a600d9b86a7b 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -1680,6 +1680,7 @@ CONFIG_PHY_QCOM_QMP=m
- CONFIG_PHY_QCOM_QUSB2=m
- CONFIG_PHY_QCOM_EUSB2_REPEATER=m
- CONFIG_PHY_QCOM_M31_USB=m
-+CONFIG_PHY_QCOM_M31_EUSB=m
- CONFIG_PHY_QCOM_USB_HS=m
- CONFIG_PHY_QCOM_USB_SNPS_FEMTO_V2=m
- CONFIG_PHY_QCOM_USB_HS_28NM=m
+- irq-ast2700-intc.c
+ - Drop all string decoding and human readable tables.
+   Debugfs now dumps raw routing/protection registers only.
+ - Split into a separate source file and made it modular
+ - If the compatible not match ast2700-intc0/1, bail out return -ENODEV.
+
+v3:
+- aspeed,ast2700-intc.yaml
+  - Clarify the relationship between INTC0/INTC1 parent nodes, the
+    aspeed,ast2700-intc-ic child nodes, and the GIC.
+  - Add a block diagram and DT examples showing the cascaded wiring
+    (GIC <- INTC0 <- INTC1 children).
+  - Mirrors the datasheet-described topology and register map, including
+    the separation of INTC0/INTC1 regions and their routing/protection
+    registers.
+  - Lets DT unambiguously express first-level (GIC parent) and cascaded
+    second-level (INTC0 parent) interrupt controllers via examples that
+    use `interrupts` for INTC0 children and `interrupts-extended` for
+    INTC1 children routed into INTC0.
+  
+- irq-aspeed-intc.c
+  - separate c file from irq-aspeed-intc.c
+  - make m
+
+v2:
+- fix dt bindingcheck
+
+Ryan Chen (3):
+  dt-bindings: interrupt-controller: aspeed,ast2700: Add support for
+    INTC hierarchy
+  Irqchip/ast2700-intc: add debugfs support for routing/protection
+    display
+  irqchip: aspeed: add compatible strings for ast2700-intc0-ic and
+    ast2700-intc1-ic
+
+ .../aspeed,ast2700-intc0.yaml                 |  97 ++++++++++
+ .../aspeed,ast2700-intc1.yaml                 |  94 ++++++++++
+ drivers/irqchip/Kconfig                       |   6 +
+ drivers/irqchip/Makefile                      |   1 +
+ drivers/irqchip/irq-aspeed-intc.c             |   2 +
+ drivers/irqchip/irq-ast2700-intc.c            | 174 ++++++++++++++++++
+ 6 files changed, 374 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/aspeed,ast2700-intc0.yaml
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/aspeed,ast2700-intc1.yaml
+ create mode 100644 drivers/irqchip/irq-ast2700-intc.c
 
 -- 
-2.25.1
+2.34.1
 
 
