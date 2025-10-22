@@ -1,79 +1,79 @@
-Return-Path: <devicetree+bounces-229830-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229831-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91954BFC8FA
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 16:33:46 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id A5CB5BFC795
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 16:23:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CB0C85E7EF5
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 14:23:07 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 871644F74FB
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 14:23:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 813AF34D905;
-	Wed, 22 Oct 2025 14:21:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E382834DB76;
+	Wed, 22 Oct 2025 14:21:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UucIpg2n"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lT3YQ9Gc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B3A234CFB9
-	for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 14:21:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9592834D4EF
+	for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 14:21:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761142900; cv=none; b=BQrBDFthatE0SuUy0zYWko9pZtZVF6TfN5MtNemPH0yR23piWe+ac7MgkknUk8h0RJ1SeufUvBAQsdNiN63XEZwQgTTSHtL/sBQv2bIja6ub4s+oFEMcBG4ORbkIfovmPSZichizZbqcwtNZ9PJFVtlD/AbUZFNMfvpcgWcSfDI=
+	t=1761142903; cv=none; b=cx47mT5/MVCtFqTrFup3YzuHWWd3Yv9ioW+HvS4uRxG1MPK7kgQJQ066EZPwmipdC0VrWnmsFhzGXQve238/PQaGNFm4IdZ5vMiXrpAyZ276OMnMkUjR7uZWsroSKV5zsW0thFDguaqAwJiPLruYGC39kwdQrCh1YreOFVsrN4U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761142900; c=relaxed/simple;
-	bh=unhDWU3j7HXm8tKnMiJwHfKNJbf2ZhuKuePm6ASfLQM=;
+	s=arc-20240116; t=1761142903; c=relaxed/simple;
+	bh=EkGBXhItwLWxgQ/aIBX1I+SuRG7//x8trI9XTwjIFpA=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=VmMLq+GVx5xKuyJ6bl3/CYvAW+HWLja5n7thGAAnG6S4/lG5fjubE7r8/QDOSvkuZ5v57YK8YvUx4SDxTl08ZfEhlpYjGdd8lSXaS8CZsUwPRjZ30UA6ABhTzuceuku5w5MsaW5W0VKZQ4OFcCZEya1qs92Xq8MBc6wTLj4nOms=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UucIpg2n; arc=none smtp.client-ip=209.85.128.43
+	 MIME-Version; b=aHOj34PKAkA9V7SmcISrH/4lQGK2d76mbd2CiMT+hVpwN1J41CyqQdjpncivlrBsi0ZX8Bpbzh558anlZnAon+c5VWs/p7ekpnNKLuImDDl6hA5DVr/Y33CprI//3yxyRVpHPMC/ySPD+aJCmPwRNSfwXutOpe/prV5+qKstwog=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lT3YQ9Gc; arc=none smtp.client-ip=209.85.221.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-471b80b994bso52779185e9.3
-        for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 07:21:37 -0700 (PDT)
+Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-427091cd4fdso3418425f8f.1
+        for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 07:21:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1761142895; x=1761747695; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1761142897; x=1761747697; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=rAO9OwRfZdFmlMl3mS0tub2HzSBi7qv3ODFvIZHKgFU=;
-        b=UucIpg2njXrElxJXn0QVRH13QlN1mvRoiWg0ERm3uZvdhE50xg5vLmw3mwWc3qdkcp
-         WjqWpoE0C3UDFjRfOuMJ3Kcek05+mnxMAuVWw3EwVEOMx0vRm+lRuk+zfxlTMsLsrxTB
-         P77z2S1TPqGH/CAH60uPaRBO6QrbIi3e2CV1XXiRE8ug2ZABlinb1BMlLFE+KP8mpPMY
-         nuSqvCckxpnXWdzgOHrkI6q42+NtqQReoIWMrWdcp/2vGf4+PKGVH4f2/HG2TXpDmA6z
-         aq49WcEjPYH/9QzJdcshTXkIVN5GJZg4VB6lHuYFQKf4a/aJjIfZb69Gy77RDP3gybA8
-         o/aw==
+        bh=PboKxjSSvW6h8IWsKUFqt3oWZleCNVGyc+XkVJL1pxE=;
+        b=lT3YQ9GcruPN+lVPATeN+AeMLQ9HuT9T3lRtwrQTTtpiAeeEyeDgV11dPEy+lRdIcs
+         dB5tdNavAiXbZusN/vPISKlN5VA9I518xHEukkRh0vgyCi8IFuQXi8K+SOlMcFTjBWrh
+         TuOUkuige4UxvD7CENUTFhOSd5Pdm/zkgm/PdoVZBp2m9B/6C3I/j/VaUEFuJaP00gpF
+         +NN4xmNSBd/c+vnntwWQd7d5ad6s9gz48KKsI0t9b6Ij790/47VBssEdqoXIblxrG36H
+         BI/+SsVzrIEsSVg8j61Aqgjd+6oXP6WLSWwW/aRZayFaQ9CTWhjXQtSaa7S5J2EXAXvd
+         L7LQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761142895; x=1761747695;
+        d=1e100.net; s=20230601; t=1761142897; x=1761747697;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=rAO9OwRfZdFmlMl3mS0tub2HzSBi7qv3ODFvIZHKgFU=;
-        b=j95Xpdk5tLCxhP9EiYygWai820gtXdy4IA3UmiCHjwg7WIZt26D54vWa5iMWX+urSf
-         3r62Y+bqFXQ0grQBphcYNn6xvAM508yU5Z+DMEkUfoUeSnmh/QgdMR7mGXwU1x5yNlJk
-         ARypiNRdHWRKgQB6204gFoha816rMqhzFzcegrjeTWTz570HyJKaLrv9jKYjz4z+iwGd
-         jwe+UK5Berccp7EWGo7HONEr3RxdPlaZp+XL1+Ult+U90z9n/cIkbXrSDlR5gPMhhPeP
-         +/oo8wKi/zD/SkKOtN0KJ6TRMs3+ftewISj6/5hhqVLPKZjHnTIc+SytDzySroJS7D/d
-         DyuQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUkcgPlOzp+pJGjthqGycqeZdzwe5S8qBMWgFC4EX8pMtQtDaRfbyr4HTLc4A0sMQExrm2vitUgDDL5@vger.kernel.org
-X-Gm-Message-State: AOJu0YyDkS/hOODiYThQVb1Q9qD7bXQApMzPADuTNFEI72vP9ekGsSny
-	P4ceQsQpQ58T0AaqKAK4Bh+c1mHUWC7uluiqjCmMViooR/cC54Exwldl
-X-Gm-Gg: ASbGnctxW1ZgfpafiR82PKcnLfq8oCtNb0xzClmJ228Yf2fzleFd+e4p/v1lCvbDU7F
-	fXevqYo/tq0w77mpO1F06LcRZA9MnXXVoXJLHdJM/Xptt1ITZgv6WCQfsojObFirXMH8xiVShmP
-	/RFvXiG2i4FVp8cdEvzYt6kQZOb4B8KCAjP3fCtG0PS8X8NbZfIA0B3v7Jmvq7XnE6uNA1d2a1X
-	YoJcc071zAZdgPfC2dbfC95GSlFZ9Vit+2ha+YBkpiVMF3sPYyYJk8dXWDBdd7OrTzqIylaW0wG
-	4WDEvEIZ6zIsgSoJQ5yYaGFTOkihFq0MjSsSD62iH1IAdwvbYpfclQbXb6mfOkuZIHQ8njqOtK9
-	rsaGJKzbDr5cKW8HZUdUXY1nSJy8JS+Fku7rAPm94GeK7yGcqMql6W6WPk7lbq8FEaHmcAKjsYw
-	Cx6Q==
-X-Google-Smtp-Source: AGHT+IGaJGEihzS9F6fnNyhHVGRwXCsOXdE9dlWNhp4wiYwBqGQCgmFf5u4C0KR9SkCEnEJDDokDBg==
-X-Received: by 2002:a05:600c:8284:b0:46f:b43a:aedf with SMTP id 5b1f17b1804b1-47117925da1mr126433075e9.38.1761142895124;
-        Wed, 22 Oct 2025 07:21:35 -0700 (PDT)
+        bh=PboKxjSSvW6h8IWsKUFqt3oWZleCNVGyc+XkVJL1pxE=;
+        b=JkNVfq8a0mCm5SlQVT6oEVgXCdyziFZbkGUEFJ8YcEKZTuhaA9P4e2lSxyy0sn7EQn
+         17YlCKJFu9iay1ARDygDhYxo2RIGtt7RMrF0EETJJ55EhtADpUNDse+PsnYNBljA+zKX
+         BujGB/qXjaw6T9KiSnfGnc5Ir7f2bTBbeONhoU9f6xrfFLPlBEzc5sOAetHhC0xhm8OY
+         +A2xUiZm6b/pSDaW0bT4bAae3aDxMTOtBvX3QfOCtsvLSfBd7UYUB6eRgns9qoxjRXXZ
+         5cLgh447ihjMAbzsvUQGdr5Juym5qbbgR7myOSbn1mNYo8aMnowZ03IhroaV6uxSPfrM
+         qneA==
+X-Forwarded-Encrypted: i=1; AJvYcCWr8NqJqw25UWvF0OARBtnSanq7l+9gF+kjRM0fwV785qwrtQQXx5LG1SBFZuzvQtikpw6cxQaHOsrm@vger.kernel.org
+X-Gm-Message-State: AOJu0YzoPXZnqnlGzkQRpxh5ymwDeVKHI34bz7PI9d1Bi2NYr6pXdPrd
+	vQhRJJl2TEUlXzVjkRVqNovCnZy1B5IrhWtHkrbmCtVdkaNiU1NHGFGF
+X-Gm-Gg: ASbGncsldmpKVvZNo7ZmA2DGLkmmgHA9MYVEnWwZpbKe8MSURhbqAt+2yMiMhDcZp17
+	yBcg2POCR4lwO0xZ4+htyBJ096a5sz1UuZW6numxRgYOY3VxH/9WWaX7FfzTpiHpcUQBNiJBsoR
+	Y7b4lPEPsSUUN3OGagTuNt0JaPovUemOlZIOkkvwM40Tnh6qJjSZb6iSDQAadlVJvo4UQhxX7Uy
+	RfEPizAWV2xWQ2LWqDfpbgBY3seA+kz6jEkcYQ67yunmkBr9rpPJ39cn5xQ61xUXhKkoC8K7dKn
+	TWRYMEXKeNRi7ywHTbO7Ah29STBl42J0l0D2dtmHL2qDsKnz2kL2ABfGO7Qt1Y7gRU8KxshEtLs
+	jVmgS7v0Dqsde4ovgwyvTdIi380qLt+EDyZ/qOsKzc4dMD5Lr9kPbNcRGu08ukGbCDNei8vbRN1
+	VHqA==
+X-Google-Smtp-Source: AGHT+IEQ89eeh/r2+ipRz7waSS8oqSfLxP7wC0ZsoklWA5VZX65aruo6BpxwArM9GCWrpFvdCs8Ryw==
+X-Received: by 2002:a05:6000:2308:b0:428:55c3:cea8 with SMTP id ffacd0b85a97d-42855c3d365mr1542726f8f.50.1761142897063;
+        Wed, 22 Oct 2025 07:21:37 -0700 (PDT)
 Received: from xeon.. ([188.163.112.61])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-427ea5b3d4csm24803518f8f.19.2025.10.22.07.21.33
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-427ea5b3d4csm24803518f8f.19.2025.10.22.07.21.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 Oct 2025 07:21:34 -0700 (PDT)
+        Wed, 22 Oct 2025 07:21:36 -0700 (PDT)
 From: Svyatoslav Ryhel <clamor95@gmail.com>
 To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
 	Maxime Ripard <mripard@kernel.org>,
@@ -107,9 +107,9 @@ Cc: dri-devel@lists.freedesktop.org,
 	linux-media@vger.kernel.org,
 	linux-clk@vger.kernel.org,
 	linux-staging@lists.linux.dev
-Subject: [PATCH v5 07/23] staging: media: tegra-video: vi: add flip controls only if no source controls are provided
-Date: Wed, 22 Oct 2025 17:20:35 +0300
-Message-ID: <20251022142051.70400-8-clamor95@gmail.com>
+Subject: [PATCH v5 08/23] staging: media: tegra-video: csi: move CSI helpers to header
+Date: Wed, 22 Oct 2025 17:20:36 +0300
+Message-ID: <20251022142051.70400-9-clamor95@gmail.com>
 X-Mailer: git-send-email 2.48.1
 In-Reply-To: <20251022142051.70400-1-clamor95@gmail.com>
 References: <20251022142051.70400-1-clamor95@gmail.com>
@@ -121,46 +121,58 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Because the current Tegra video driver is video-centric, it exposes all
-controls via /dev/video. If both the camera sensor and the VI provide
-hflip and vflip, the driver will fail because only one control is allowed.
-To address this, hflip and vflip should be added from the SoC only if the
-camera sensor doesn't provide those controls.
+Move CSI helpers into the header for easier access from SoC-specific video
+driver parts.
 
 Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
 ---
- drivers/staging/media/tegra-video/vi.c | 9 ++++++---
- 1 file changed, 6 insertions(+), 3 deletions(-)
+ drivers/staging/media/tegra-video/csi.c | 11 -----------
+ drivers/staging/media/tegra-video/csi.h | 10 ++++++++++
+ 2 files changed, 10 insertions(+), 11 deletions(-)
 
-diff --git a/drivers/staging/media/tegra-video/vi.c b/drivers/staging/media/tegra-video/vi.c
-index 856b7c18b551..90473729b546 100644
---- a/drivers/staging/media/tegra-video/vi.c
-+++ b/drivers/staging/media/tegra-video/vi.c
-@@ -961,6 +961,7 @@ static int tegra_channel_setup_ctrl_handler(struct tegra_vi_channel *chan)
- 	}
- #else
- 	struct v4l2_subdev *subdev;
-+	struct v4l2_ctrl *hflip, *vflip;
+diff --git a/drivers/staging/media/tegra-video/csi.c b/drivers/staging/media/tegra-video/csi.c
+index 604185c00a1a..74c92db1032f 100644
+--- a/drivers/staging/media/tegra-video/csi.c
++++ b/drivers/staging/media/tegra-video/csi.c
+@@ -20,17 +20,6 @@
  
- 	/* custom control */
- 	v4l2_ctrl_new_custom(&chan->ctrl_handler, &syncpt_timeout_ctrl, NULL);
-@@ -986,11 +987,13 @@ static int tegra_channel_setup_ctrl_handler(struct tegra_vi_channel *chan)
- 		return ret;
- 	}
+ #define MHZ			1000000
  
--	if (chan->vi->soc->has_h_v_flip) {
-+	hflip = v4l2_ctrl_find(subdev->ctrl_handler, V4L2_CID_HFLIP);
-+	if (chan->vi->soc->has_h_v_flip && !hflip)
- 		v4l2_ctrl_new_std(&chan->ctrl_handler, &vi_ctrl_ops, V4L2_CID_HFLIP, 0, 1, 1, 0);
--		v4l2_ctrl_new_std(&chan->ctrl_handler, &vi_ctrl_ops, V4L2_CID_VFLIP, 0, 1, 1, 0);
--	}
+-static inline struct tegra_csi *
+-host1x_client_to_csi(struct host1x_client *client)
+-{
+-	return container_of(client, struct tegra_csi, client);
+-}
+-
+-static inline struct tegra_csi_channel *to_csi_chan(struct v4l2_subdev *subdev)
+-{
+-	return container_of(subdev, struct tegra_csi_channel, subdev);
+-}
+-
+ /*
+  * CSI is a separate subdevice which has 6 source pads to generate
+  * test pattern. CSI subdevice pad ops are used only for TPG and
+diff --git a/drivers/staging/media/tegra-video/csi.h b/drivers/staging/media/tegra-video/csi.h
+index 3e6e5ee1bb1e..3ed2dbc73ce9 100644
+--- a/drivers/staging/media/tegra-video/csi.h
++++ b/drivers/staging/media/tegra-video/csi.h
+@@ -151,6 +151,16 @@ struct tegra_csi {
+ 	struct list_head csi_chans;
+ };
  
-+	vflip = v4l2_ctrl_find(subdev->ctrl_handler, V4L2_CID_VFLIP);
-+	if (chan->vi->soc->has_h_v_flip && !vflip)
-+		v4l2_ctrl_new_std(&chan->ctrl_handler, &vi_ctrl_ops, V4L2_CID_VFLIP, 0, 1, 1, 0);
- #endif
- 
- 	/* setup the controls */
++static inline struct tegra_csi *host1x_client_to_csi(struct host1x_client *client)
++{
++	return container_of(client, struct tegra_csi, client);
++}
++
++static inline struct tegra_csi_channel *to_csi_chan(struct v4l2_subdev *subdev)
++{
++	return container_of(subdev, struct tegra_csi_channel, subdev);
++}
++
+ void tegra_csi_error_recover(struct v4l2_subdev *subdev);
+ void tegra_csi_calc_settle_time(struct tegra_csi_channel *csi_chan,
+ 				u8 csi_port_num,
 -- 
 2.48.1
 
