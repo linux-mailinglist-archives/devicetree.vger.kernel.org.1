@@ -1,188 +1,293 @@
-Return-Path: <devicetree+bounces-229949-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229950-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55E01BFDF08
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 20:54:37 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 21753BFDF5F
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 21:04:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 2DF834E1B49
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 18:54:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D26CA1A03636
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 19:04:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63A5C34D4F1;
-	Wed, 22 Oct 2025 18:54:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 392B32F3605;
+	Wed, 22 Oct 2025 19:04:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rootcommit.com header.i=@rootcommit.com header.b="ARd1dIo6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NSN9tBv0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from cyan.elm.relay.mailchannels.net (cyan.elm.relay.mailchannels.net [23.83.212.47])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD2B62EBB9B;
-	Wed, 22 Oct 2025 18:54:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=23.83.212.47
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761159273; cv=pass; b=HBLhbpBqixd8k9xXKTC3h092owgSC2ccGtptYuE94qN+shYDB07A0WRf5OVO/C99od6p/odoO7TMZqe4dufjwSjgLHvHfbfngiTQtuWrJKHnByonYFSHDQ/wVguPR+J7WDFKR65tSmBlaEgy75WaQoWG3Nd8Hhz6FgVtLzzwo1Q=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761159273; c=relaxed/simple;
-	bh=2ulWJaEoWvjLywnhaUSzWTPoHkh3JId5s2DEyjFVJI8=;
-	h=Message-ID:MIME-Version:Cc:Subject:To:References:From:In-Reply-To:
-	 Content-Type:Date; b=CyZ9mht51xC2md1/zwH2ZF/Z2OCa86WBYY//LLO0D4ShUmqK7HYVBo9GIsD/yOd4MrKayfSRj/icCNYqzo4JznHWTlfKR45IOLcxviOqwglXwqzt6VUq70wZ89VcNe/+T7s9LgKLHbN0assJl/J5y464gJAg8yo6KbzDSFnSyLQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rootcommit.com; spf=pass smtp.mailfrom=rootcommit.com; dkim=pass (2048-bit key) header.d=rootcommit.com header.i=@rootcommit.com header.b=ARd1dIo6; arc=pass smtp.client-ip=23.83.212.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rootcommit.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rootcommit.com
-X-Sender-Id: hostingeremail|x-authuser|michael.opdenacker@rootcommit.com
-Received: from relay.mailchannels.net (localhost [127.0.0.1])
-	by relay.mailchannels.net (Postfix) with ESMTP id 22C32103691;
-	Wed, 22 Oct 2025 18:54:24 +0000 (UTC)
-Received: from fr-int-smtpout29.hostinger.io (trex-green-1.trex.outbound.svc.cluster.local [100.121.87.108])
-	(Authenticated sender: hostingeremail)
-	by relay.mailchannels.net (Postfix) with ESMTPA id 3BB36103494;
-	Wed, 22 Oct 2025 18:54:17 +0000 (UTC)
-ARC-Seal: i=1; s=arc-2022; d=mailchannels.net; t=1761159259; a=rsa-sha256;
-	cv=none;
-	b=GzFl2yaxjy9MxWzicd19ci4u+1NnGnrWZ5bdTBkLc7P1t8GbI8p2zvZGVitccDrJqBFywv
-	Mw3Is2+VlbgAteAFLkbr5H9vkZSKgrNpZl1ucfPyXtadjmswlGeNBQPBQXA05w/OSA3LXW
-	4veF0E4IJuEBZIobQ+3Y792nGV0ibAo/elt3+OZp/1IAnVx2xaDswkOjxNrXiKEGVHliZl
-	VEYOYVxbj86JluPF8EWU3Evt9ftlnZYdKTlvvhUuEdK1QIQVPdyklXoF+QbTsdCk2tF9rQ
-	hMuYKCRWhsy9roofZZXwRoQP6CekXjk1cStuf0RTmBLc9ooggfOFFp5RdkscmQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=mailchannels.net;
-	s=arc-2022; t=1761159259;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=run8585B0ZdBJhpgD2/vSbhEQ6c1X3Id7wa2MwUm3kE=;
-	b=b1+7zaYu3wDmoDQaR7MHCUnlyAjMxt03TAP/OvHlbQU/JjSApRkHuppArRAECjbzdgkusQ
-	yRoTkoZhBHBaPs5Pn8z4UfVy+6pk1LMquK/OOfQypHWEb9sEcJ146lcmnnQMgp1U6vpk6g
-	Y7+V/ZKQ3RiFBuPywHQWp7SBnYVddz1d8tm5Ce8SaYDurMJhSq1/r1gAIn+Y9BMJpvnO1h
-	4e//afvga0p7sWECtgG66H6xDPBKhJORTfdml5utjx/QyuMSF3hwV/Hb7bpgpnmr6DU2TY
-	x7IUzMHgfgjsJrA3MaRauhTOKMikW9+78H9iPUKLMJVBrfbQ/Lejza06DJC3xA==
-ARC-Authentication-Results: i=1;
-	rspamd-5b5956c7c7-6m7zr;
-	auth=pass smtp.auth=hostingeremail
- smtp.mailfrom=michael.opdenacker@rootcommit.com
-X-Sender-Id: hostingeremail|x-authuser|michael.opdenacker@rootcommit.com
-X-MC-Relay: Neutral
-X-MailChannels-SenderId:
- hostingeremail|x-authuser|michael.opdenacker@rootcommit.com
-X-MailChannels-Auth-Id: hostingeremail
-X-Abortive-Stretch: 28872bb229118efc_1761159263913_3055418994
-X-MC-Loop-Signature: 1761159263913:2795527620
-X-MC-Ingress-Time: 1761159263913
-Received: from fr-int-smtpout29.hostinger.io (fr-int-smtpout29.hostinger.io
- [148.222.54.18])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384)
-	by 100.121.87.108 (trex/7.1.3);
-	Wed, 22 Oct 2025 18:54:23 +0000
-Received: from [IPV6:2001:861:4450:d360:df8b:aa61:9538:1b7a] (unknown [IPv6:2001:861:4450:d360:df8b:aa61:9538:1b7a])
-	(Authenticated sender: michael.opdenacker@rootcommit.com)
-	by smtp.hostinger.com (smtp.hostinger.com) with ESMTPSA id 4csJHB226tz2xwK;
-	Wed, 22 Oct 2025 18:54:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rootcommit.com;
-	s=hostingermail-a; t=1761159255;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=run8585B0ZdBJhpgD2/vSbhEQ6c1X3Id7wa2MwUm3kE=;
-	b=ARd1dIo662Hv62WYZUQuQersJEZeHBprRD1cAC8gfCOTHyjys/frF6pyzhxVUC4DshZNdt
-	ByAAPEtJ8dR0mg0WxlWIFnMb2e1yn38NdVz1xou+LIQVnT0FF3K26t41bX4nMtKJEA756R
-	XauhiSpr/cB3Xk7YAvCDhWaHNCD0i+Z0V9fVkvtVsKdYbRJ+XSbqr0JPfaKo4HNmT3vnG9
-	aPDwu845z3N9tWgIvkvAhxocQZs4gWHmcxfM2dErDrpWzqcWU3WkGe79Q0kablI3N4QqgU
-	W0K8aAciPuCv8M0jKzqzawBhgy+n/EuVFzzErBI7TgFWJuDu1JNaK1huopPwAw==
-Message-ID: <da4748ed-01f9-48a6-9939-320e83aa9eb0@rootcommit.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04D8D2F069E;
+	Wed, 22 Oct 2025 19:04:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1761159844; cv=none; b=mXLWbIYUiDK5VMcuRqRPZGDbEpjCwdb91lg5fbt80X3vGVmTclKKyOBSdXZbdy6B8/Rf9lqGgEiDtPZYdzCGdUytuRZ6clXlHSTrBrKV6eacbG3olKCidN7h7SE0QUOaFoHnE++4pkIv2yAAWulTaWwtI6hZmL3+gfh1OLPBBN8=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1761159844; c=relaxed/simple;
+	bh=HynxvFvL63x3qBAv6jyUnbljlrqHMAy78xfcOCsEeHI=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=qHiffhCKqk0AbSstgt9jL/41OeFoBUC0eKJ5+NFCRMbdS1x8aS21vq/ypDHhSx1SgvPSpJ7kZBt8dfJVlb5oHIWC3Fe4AHZALbY7A31GPaTE/C8Zx3pA/i4I1F2ipMpX+FdmU+wTbCSsanauKTGhRi+dsT8GbaOiECDf+ZwLFp8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NSN9tBv0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 662DCC4CEE7;
+	Wed, 22 Oct 2025 19:04:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761159843;
+	bh=HynxvFvL63x3qBAv6jyUnbljlrqHMAy78xfcOCsEeHI=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=NSN9tBv0CifB0arwpVmfBmqmRO3mJaAIUdXhdzNTFPa4msh/y2tHxQiwcHbr/DwcA
+	 z1N7+0NQju/bE5zoxNg1TGM7GBw420UlQCuaXYRJ3wmy0nexThFKJtMqsf5Dcs2FgX
+	 tpN3WAZBAMXoqQnA8R62MNnpjvolmTl5kvnlu7A6FZjEI0hx+/2QdeICA1p0IelyEe
+	 jrOpLfyO4ZO0EYFVpc8ci7iRiYZ3/f7dwjUPUa5AdFgVAhS/KoFXUc9FDHwjRgdc7B
+	 l1d+gi+PrflsqymNwaVZwrxyYzozhbhysAwFXF6BJrS/PHOxPDQMgWY2+YuQUf1yzx
+	 d/d0YZi/M30kg==
+Date: Wed, 22 Oct 2025 14:04:02 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Vincent Guittot <vincent.guittot@linaro.org>
+Cc: chester62515@gmail.com, mbrugger@suse.com,
+	ghennadi.procopciuc@oss.nxp.com, s32@nxp.com, bhelgaas@google.com,
+	jingoohan1@gmail.com, lpieralisi@kernel.org, kwilczynski@kernel.org,
+	mani@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, Ionut.Vicovan@nxp.com, larisa.grigore@nxp.com,
+	Ghennadi.Procopciuc@nxp.com, ciprianmarian.costea@nxp.com,
+	bogdan.hamciuc@nxp.com, Frank.li@nxp.com,
+	linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev, cassel@kernel.org
+Subject: Re: [PATCH 3/4 v3] PCI: s32g: Add initial PCIe support (RC)
+Message-ID: <20251022190402.GA1262472@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Cc: michael.opdenacker@rootcommit.com, devicetree@vger.kernel.org,
- linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
- linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Alexandre Ghiti <alex@ghiti.fr>, Yixun Lan <dlan@gentoo.org>
-Subject: Re: [PATCH 1/2] riscv: dts: spacemit: add Ethernet and PDMA to
- OrangePi RV2
-To: Vivian Wang <wangruikang@iscas.ac.cn>
-References: <20251017100106.3180482-1-michael.opdenacker@rootcommit.com>
- <20251017100106.3180482-2-michael.opdenacker@rootcommit.com>
- <002e0b15-57b6-4433-a9fe-8b7ce4b8dcd9@iscas.ac.cn>
-Content-Language: en-US, fr
-From: Michael Opdenacker <michael.opdenacker@rootcommit.com>
-Organization: Root Commit
-In-Reply-To: <002e0b15-57b6-4433-a9fe-8b7ce4b8dcd9@iscas.ac.cn>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Date: Wed, 22 Oct 2025 18:54:13 +0000 (UTC)
-X-CM-Analysis: v=2.4 cv=fpGOZ04f c=1 sm=1 tr=0 ts=68f92857 a=XzW6OEp4kASjoDH3AA+DzQ==:617 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10 a=d70CFdQeAAAA:8 a=lNCKr4LvwL6Du062nSQA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=Hc5yV98H2ep6aNAGOANv:22 a=NcxpMcIZDGm-g932nG_k:22
-X-CM-Envelope: MS4xfLWRuLxrpFpBnj8c4GNDeyMskPRz/xu/oVbY1JLfaK1xSywhsC8umc/oLYGQMH0J+8A/28MVYcgsBx3vvfK64zxyuWWPQMZvWFQg1jBIeGmUuRWhIwS+ EC6qYBi4HlrcQZOzqxL0odTvXwHDxkRy2BPl6GIOiTcrpuvurek6t93KjadTmvwELinbNBCOAShyHN2q7q8EdB1DdeetuUbNu/F9A+wOn8W+Yr2e/z5pKhGx KkPioBBD5zas8PjSXAs+14V0UZqMmUJN52dAUWxHVj0AT3o4ZzEs3n5GF6QZO7jzP313qoDRw809dzAacZr9ZC0loJa5a9guirpAr4PSMWX1pvXLGTuZ5DdO +93ZnVrXnQUxNLALBoi/4ga/nUhq3MOnTL+uoULvYIqd5pbhDyrSibZWlDTMwhohmWgWxZLxtEJR8ROy96afT5r0st1K8fMGlpzT6RgCXtpUm1yKXzF/71sA 2f0rvvWZRRIns3SUdZIeEGredTS2j7J9yQ4pPJzfI0+G8zrtGV6WpjWax5UN+UsUc5XH6wDtMjhhpQ8fajLsI0NdIV/4CBTIAYQAE3iJ34r9J7IJGIvnvgVI aKFqAtNpS9Z2+XkxnOrg14PMQ/p9+BRRkr2bQ/tGOgvX6pIGUOaFw7GxHJ7QgtoRu4PlwV4FGvqAaX+odw5GhT5dVRbHYAy8hY3QV+fewRuPOvmv7BYR96xG /vmYjyY5wdy1/Ce7fuwBO+zO5+uFEVwlCHcZUvFjcmEs6RYCNs2fxw==
-X-AuthUser: michael.opdenacker@rootcommit.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251022174309.1180931-4-vincent.guittot@linaro.org>
 
-Hi Vivian
+On Wed, Oct 22, 2025 at 07:43:08PM +0200, Vincent Guittot wrote:
+> Add initial support of the PCIe controller for S32G Soc family. Only
+> host mode is supported.
 
-Thanks for the guidance and help!
+> +++ b/drivers/pci/controller/dwc/Kconfig
+> @@ -406,6 +406,16 @@ config PCIE_UNIPHIER_EP
+>  	  Say Y here if you want PCIe endpoint controller support on
+>  	  UniPhier SoCs. This driver supports Pro5 SoC.
+>  
+> +config PCIE_NXP_S32G
+> +	tristate "NXP S32G PCIe controller (host mode)"
+> +	depends on ARCH_S32 || COMPILE_TEST
+> +	select PCIE_DW_HOST
+> +	help
+> +	  Enable support for the PCIe controller in NXP S32G based boards to
+> +	  work in Host mode. The controller is based on DesignWare IP and
+> +	  can work either as RC or EP. In order to enable host-specific
+> +	  features PCIE_S32G must be selected.
 
-On 10/20/25 11:07, Vivian Wang wrote:
-> Hi Michael,
->
-> Thank you. I had meant to do this after v6.18-rc1 (which is now), but I
-> didn't have this hardware to test.
-Happy to help testing, if you have code to share :)
->
-> On 10/17/25 18:02, michael.opdenacker@rootcommit.com wrote:
->> From: Michael Opdenacker <michael.opdenacker@rootcommit.com>
->>
->> Aligning with k1-bananapi-f3.dts
->>
->> Signed-off-by: Michael Opdenacker <michael.opdenacker@rootcommit.com>
->> ---
->>   .../boot/dts/spacemit/k1-orangepi-rv2.dts     | 50 +++++++++++++++++++
->>   1 file changed, 50 insertions(+)
->>
->> diff --git a/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts b/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts
->> index 337240ebb7b7..2a75ca93b499 100644
->> --- a/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts
->> +++ b/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts
->> @@ -33,6 +33,56 @@ led1 {
->>   	};
->>   };
->>   
->> +&eth0 {
-> Please add eth0 and eth1 to /aliases so that U-Boot, udev, ... can
-> recognize them. This is used by U-Boot to set the mac-address to the
-> same value used in booting, and by (systemd) udev to set the interface name.
-Done. I'll submit a V2 soon.
->
->> +	phy-handle = <&rgmii0>;
->> +	phy-mode = "rgmii-id";
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&gmac0_cfg>;
->> +	rx-internal-delay-ps = <0>;
->> +	tx-internal-delay-ps = <0>;
-> The hardware design of OPI-RV2 is not the same as BPI-F3, so the
-> parameters here deserves some scruitiny. Same for eth1 below.
->
-> I would appreciate at least iperf TCP tests in both directions on both
-> ethernet ports. The expected speed should be at least 940 Mbit/sec - if
-> it's much lower than that something is wrong.
+Reorder this so the menu item is sorted by vendor name.
 
+> +++ b/drivers/pci/controller/dwc/pcie-nxp-s32g-regs.h
 
-Fortunately, the results are good. They are even better than the ones 
-from the vendor kernel in OrangePi OS 😂.
-I'll share the results in my V2 cover letter.
-Thanks again
-Michael.
+> +/* Link Interrupt Control And Status */
+> +#define PCIE_S32G_LINK_INT_CTRL_STS		0x40
+> +#define LINK_REQ_RST_NOT_INT_EN			BIT(1)
+> +#define LINK_REQ_RST_NOT_CLR			BIT(2)
 
--- 
-Michael Opdenacker
-Root Commit
-Yocto Project and OpenEmbedded Training course - Learn by doing:
-https://rootcommit.com/training/yocto/
+None of these are used; remove until you need them.
 
+> +/* PCIe controller 0 General Control 1 */
+> +#define PCIE_S32G_PE0_GEN_CTRL_1		0x50
+> +#define DEVICE_TYPE_MASK			GENMASK(3, 0)
+> +#define DEVICE_TYPE(x)				FIELD_PREP(DEVICE_TYPE_MASK, x)
+
+Not sure this adds much over just doing this:
+
+  #define DEVICE_TYPE   GENMASK(3, 0)
+
+  val |= FIELD_PREP(DEVICE_TYPE, PCI_EXP_TYPE_ROOT_PORT);
+
+> +++ b/drivers/pci/controller/dwc/pcie-nxp-s32g.c
+
+> +static void s32g_pcie_reset_mstr_ace(struct dw_pcie *pci, u64 ddr_base_addr)
+> +{
+> +	u32 ddr_base_low = lower_32_bits(ddr_base_addr);
+> +	u32 ddr_base_high = upper_32_bits(ddr_base_addr);
+> +
+> +	dw_pcie_dbi_ro_wr_en(pci);
+> +	dw_pcie_writel_dbi(pci, COHERENCY_CONTROL_3_OFF, 0x0);
+> +
+> +	/*
+> +	 * Ncore is a cache-coherent interconnect module that enables the
+> +	 * integration of heterogeneous coherent and non-coherent agents in
+> +	 * the chip. Ncore Transactions to peripheral should be non-coherent
+> +	 * or it might drop them.
+> +	 * One example where this is needed are PCIe MSIs, which use NoSnoop=0
+> +	 * and might end up routed to Ncore.
+> +	 * Define the start of DDR as seen by Linux as the boundary between
+> +	 * "memory" and "peripherals", with peripherals being below.
+
+Add blank lines between paragraphs.
+
+> +	 */
+> +	dw_pcie_writel_dbi(pci, COHERENCY_CONTROL_1_OFF,
+> +			   (ddr_base_low & CFG_MEMTYPE_BOUNDARY_LOW_ADDR_MASK));
+> +	dw_pcie_writel_dbi(pci, COHERENCY_CONTROL_2_OFF, ddr_base_high);
+> +	dw_pcie_dbi_ro_wr_dis(pci);
+> +}
+> +
+> +static void s32g_init_pcie_controller(struct s32g_pcie *s32g_pp)
+> +{
+> +	struct dw_pcie *pci = &s32g_pp->pci;
+> +	u8 offset = dw_pcie_find_capability(pci, PCI_CAP_ID_EXP);
+> +	u32 val;
+> +
+> +	/* Set RP mode */
+> +	val = s32g_pcie_readl_ctrl(s32g_pp, PCIE_S32G_PE0_GEN_CTRL_1);
+> +	val &= ~DEVICE_TYPE_MASK;
+> +	val |= DEVICE_TYPE(PCI_EXP_TYPE_ROOT_PORT);
+> +
+> +	/* Use default CRNS */
+> +	val &= ~SRIS_MODE;
+> +
+> +	s32g_pcie_writel_ctrl(s32g_pp, PCIE_S32G_PE0_GEN_CTRL_1, val);
+> +
+> +	/* Disable phase 2,3 equalization */
+> +	s32g_pcie_disable_equalization(pci);
+> +
+> +	/*
+> +	 * Make sure we use the coherency defaults (just in case the settings
+> +	 * have been changed from their reset values)
+> +	 */
+> +	s32g_pcie_reset_mstr_ace(pci, memblock_start_of_DRAM());
+
+This seems sketchy and no other driver uses memblock_start_of_DRAM().
+Shouldn't a physical memory address like this come from devicetree
+somehow?
+
+> +	dw_pcie_dbi_ro_wr_en(pci);
+> +
+> +	val = dw_pcie_readl_dbi(pci, PCIE_PORT_FORCE);
+> +	val |= PORT_FORCE_DO_DESKEW_FOR_SRIS;
+> +	dw_pcie_writel_dbi(pci, PCIE_PORT_FORCE, val);
+> +
+> +	/*
+> +	 * Set max payload supported, 256 bytes and
+> +	 * relaxed ordering.
+> +	 */
+> +	val = dw_pcie_readl_dbi(pci, offset + PCI_EXP_DEVCTL);
+> +	val &= ~(PCI_EXP_DEVCTL_RELAX_EN |
+> +		 PCI_EXP_DEVCTL_PAYLOAD |
+> +		 PCI_EXP_DEVCTL_READRQ);
+> +	val |= PCI_EXP_DEVCTL_RELAX_EN |
+> +	       PCI_EXP_DEVCTL_PAYLOAD_256B |
+> +	       PCI_EXP_DEVCTL_READRQ_256B;
+> +	dw_pcie_writel_dbi(pci, offset + PCI_EXP_DEVCTL, val);
+
+MPS and relaxed ordering should be configured by the PCI core.  Is
+there some s32g-specific restriction about these?
+
+> +	/* Enable errors */
+> +	val = dw_pcie_readl_dbi(pci, offset + PCI_EXP_DEVCTL);
+> +	val |= PCI_EXP_DEVCTL_CERE |
+> +	       PCI_EXP_DEVCTL_NFERE |
+> +	       PCI_EXP_DEVCTL_FERE |
+> +	       PCI_EXP_DEVCTL_URRE;
+> +	dw_pcie_writel_dbi(pci, offset + PCI_EXP_DEVCTL, val);
+
+Enabling these errors doesn't really seem device-specific, and
+pci_enable_pcie_error_reporting() would enable all these.
+
+But that only happens with CONFIG_PCIEAER=y, and since this is
+DWC-based, you probably don't have standard interrupts for AER and
+CONFIG_PCIEAER isn't useful.  Someday we might have support for
+non-standard AER interrupts, but we don't have it yet.
+
+I guess you get platform-specific System Errors when any of these
+errors are detected (see PCIe r7.0, sec 6.2.6)?  What is the handler
+for these?
+
+> +static int s32g_pcie_host_init(struct s32g_pcie *s32g_pp)
+> +{
+> +	struct dw_pcie *pci = &s32g_pp->pci;
+> +	struct dw_pcie_rp *pp = &pci->pp;
+> +	int ret;
+> +
+> +	pp->ops = &s32g_pcie_host_ops;
+> +
+> +	ret = dw_pcie_host_init(pp);
+> +
+> +	return ret;
+
+  return dw_pcie_host_init(pp);
+
+Not sure this is really worth a wrapper.
+
+> +static int s32g_pcie_get_resources(struct platform_device *pdev,
+> +				   struct s32g_pcie *s32g_pp)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct dw_pcie *pci = &s32g_pp->pci;
+> +
+> +	s32g_pp->phy = devm_phy_get(dev, NULL);
+> +	if (IS_ERR(s32g_pp->phy))
+> +		return dev_err_probe(dev, PTR_ERR(s32g_pp->phy),
+> +				"Failed to get serdes PHY\n");
+
+Add blank line here.
+
+> +	s32g_pp->ctrl_base = devm_platform_ioremap_resource_byname(pdev, "ctrl");
+> +	if (IS_ERR(s32g_pp->ctrl_base))
+> +		return PTR_ERR(s32g_pp->ctrl_base);
+
+This looks like the first DWC driver that uses a "ctrl" resource.  Is
+this something unique to s32g, or do other drivers have something
+similar but use a different name?
+
+> +	pci->dbi_base = devm_platform_ioremap_resource_byname(pdev, "dbi");
+> +	if (IS_ERR(pci->dbi_base))
+> +		return PTR_ERR(pci->dbi_base);
+
+Isn't this already done by dw_pcie_get_resources()?
+
+> +static int s32g_pcie_suspend_noirq(struct device *dev)
+> +{
+> +	struct s32g_pcie *s32g_pp = dev_get_drvdata(dev);
+> +	struct dw_pcie *pci = &s32g_pp->pci;
+> +
+> +	if (!dw_pcie_link_up(pci))
+> +		return 0;
+
+Does something bad happen if you omit the link up check and the link
+is not up when we get here?  The check is racy (the link could go down
+between dw_pcie_link_up() and dw_pcie_suspend_noirq()), so it's not
+completely reliable.
+
+If you have to check, please add a comment about why this driver needs
+it when no other driver does.
+
+> +	return dw_pcie_suspend_noirq(pci);
+> +}
+> +
+> +static int s32g_pcie_resume_noirq(struct device *dev)
+> +{
+> +	struct s32g_pcie *s32g_pp = dev_get_drvdata(dev);
+> +	struct dw_pcie *pci = &s32g_pp->pci;
+> +
+> +	s32g_init_pcie_controller(s32g_pp);
+
+Odd that you need this.  Other drivers really don't do anything
+similar, probably because this could be done by the
+pci->pp.ops->init() call in dw_pcie_resume_noirq().
+
+> +	return dw_pcie_resume_noirq(pci);
+> +}
+
+> +static const struct of_device_id s32g_pcie_of_match[] = {
+> +	{ .compatible = "nxp,s32g2-pcie"},
+
+Add space before "}"
+
+> +	{ /* sentinel */ },
+> +};
 
