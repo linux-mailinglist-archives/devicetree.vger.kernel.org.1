@@ -1,56 +1,59 @@
-Return-Path: <devicetree+bounces-229917-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229918-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 232EABFD99C
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 19:34:21 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id F1AB7BFD9D5
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 19:37:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F2F2C1A01A83
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 17:34:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B5F1A1A0625A
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 17:37:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2ADD2C3247;
-	Wed, 22 Oct 2025 17:34:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B60452D2498;
+	Wed, 22 Oct 2025 17:37:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Zq80/uHD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="M8Nl1Ov/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7690B2C21F7;
-	Wed, 22 Oct 2025 17:34:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D597291C33;
+	Wed, 22 Oct 2025 17:37:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761154455; cv=none; b=VJ5pyQt8SKaR/OHUb7indNrAn1su1yLlEKerFWypacrPbFWdcz+7XVjpTOpXsLTmk5YY6OzaCiw9z24SfCFAfNk8aWy4r+yn9Nl9HdFJ6n75/nnvmhHGRFqm7q3HZfsSbAPhKyG3HGS9W9MOyA9vhR3d76GDusty5l+X97ABJvg=
+	t=1761154641; cv=none; b=nCHuzuYuE6D0WCIh/jEj8ZFJ9w2IYf/mLUFW7GCuZXILgqA7xfnsj7JOUd0Y8zgVdBxisa294J2RZ0Gst59DS6W6vFDkBZsX98xVVjIokAl2buKxW8tcwmGqrnEsqsPiWZqjj730OPhC1U3h0L1B0DwAPWnwi+2vczivfrKn35g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761154455; c=relaxed/simple;
-	bh=IwwIW3BEI8nbvSzJkmoBQXNv8KNbBLMtxPFTZovswOk=;
+	s=arc-20240116; t=1761154641; c=relaxed/simple;
+	bh=5C7JSiw2cENDeyIwTcB8RFCSbO1mNJYYryNwgOrWVso=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZZ3ibQMvlIKKmP3//R+DTLRW8txxGukk2uQoJf8GznfI+q5p9CvZavUzdxr7xZit6g2nQ1aBx8B+/9ugnzaVlKUF19QjiMM6zKjvt2zSsp7JtEg9ccV35x586zAuNYSrdfHySHjd9EDhJb3I5TJf38QGjrwQSvRmUfRdlqbBdDQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Zq80/uHD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 03F0CC4CEE7;
-	Wed, 22 Oct 2025 17:34:12 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=d3fPk4RsiA3Cl/r+atZ8hemVgtUtsXrKptilLGzQ1ZgUZCONojmnrDTcFPe8sC+5QKWLdGXYROY+4PrQfufHXQ/biVhA8bDxUGzTvvrWbK0mK69LRutN/67QLt+n7JMjyHp+2v2L875F2w9FswoY6qYmzM/QFAZE0MSWHaJEvkA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=M8Nl1Ov/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2825DC4CEE7;
+	Wed, 22 Oct 2025 17:37:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761154455;
-	bh=IwwIW3BEI8nbvSzJkmoBQXNv8KNbBLMtxPFTZovswOk=;
+	s=k20201202; t=1761154640;
+	bh=5C7JSiw2cENDeyIwTcB8RFCSbO1mNJYYryNwgOrWVso=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Zq80/uHD81ACUaIBjoDguxKIBaV0cx4h8HWWgxW7Va8n0CDRtWZxbo3IGQYQrqenF
-	 6x/cAj8ehd/sJAWa7QqSMFR4D2cx/M19Fs9Oed2+vIiWiAnWsRwC8Ci37r2+IUI7B7
-	 +A7MzQUXh276Z4eLnxW8+LnCWWrHfZ/lX/M/xyi2t2+ybq3miqDl3v/MgZzjCy+YBP
-	 5YvWmItjtIJiXK6xC2pEak0h1oTvfkp6a/Uhr9OJVsAvSxCmHZoG8Y96ALr8R+4ncP
-	 kat0ohAfogDwi079V5RtW6oIYRmDgD5wI938sOA79n47CIfxL2XgcvMAWponK/dN7C
-	 ZSe7QkVMHb1cA==
-Date: Wed, 22 Oct 2025 18:34:10 +0100
+	b=M8Nl1Ov/VjLVySoMBa78J9a7d+ZFX4EVzcA2t3sF6Y2j7WIyymK/M6nuqwI90VbDj
+	 /unVVkTbOx72B2O8rKfle59it6XB63few2+KuCdIdrzHYmPb4812prFN3sMyiBsTfV
+	 MK7atH+JfMMZ5rcdVDdjbL+1FxkCDoW7Epj+MR6rMYIR71L31Li+D3BL9s0YS0PZpq
+	 pokqPeXjSUyOXDoG2uRvjZFee7XAt5ydHlBDxlS3A8Gav3gEtE66EntVLbnnfQV6BK
+	 dxGj9uwu4E4Gmcp03KPeh7RhUwa9Yi/HNHSncKG3h+0IbI3pwbraYviBppNDJl4XpX
+	 G4HKT0h8KgMNQ==
+Date: Wed, 22 Oct 2025 18:37:15 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Heiko Stuebner <heiko@sntech.de>
-Cc: broonie@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, linux-spi@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: spi: spi-rockchip: Add RK3506 compatible
-Message-ID: <20251022-fifteen-jolliness-eeeaa5d74d58@spud>
-References: <20251022004200.204276-1-heiko@sntech.de>
+To: muhammed.efecetin.67@gmail.com
+Cc: linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	heiko@sntech.de, neil.armstrong@linaro.org, lee@kernel.org,
+	rafael@kernel.org, efectn@protonmail.com, daniel.lezcano@linaro.org
+Subject: Re: [PATCH v3 1/5] dt-bindings: mfd: khadas-mcu: add new compatible
+ for Khadas Edge 2
+Message-ID: <20251022-maturity-driller-86e2b686066b@spud>
+References: <cover.1761059314.git.efectn@protonmail.com>
+ <0e604eca9ad9ce71f74b6f3aae60bbb949697590.1761059314.git.efectn@protonmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,28 +61,38 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="y33srT0fleC7re05"
+	protocol="application/pgp-signature"; boundary="fkgy7qwVQJZANVWh"
 Content-Disposition: inline
-In-Reply-To: <20251022004200.204276-1-heiko@sntech.de>
+In-Reply-To: <0e604eca9ad9ce71f74b6f3aae60bbb949697590.1761059314.git.efectn@protonmail.com>
 
 
---y33srT0fleC7re05
+--fkgy7qwVQJZANVWh
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Tue, Oct 21, 2025 at 05:22:41PM +0200, muhammed.efecetin.67@gmail.com wr=
+ote:
+> From: Muhammed Efe Cetin <efectn@protonmail.com>
+>=20
+> Add new khadas,mcu-edge2 compatible which is going to be used with Khadas
+> Edge 2.
+>=20
+> Signed-off-by: Muhammed Efe Cetin <efectn@protonmail.com>
 
 Acked-by: Conor Dooley <conor.dooley@microchip.com>
 pw-bot: not-applicable
 
---y33srT0fleC7re05
+--fkgy7qwVQJZANVWh
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaPkVkgAKCRB4tDGHoIJi
-0uv8AQCg+B7in0rxKZmiRavHVO1DhquZm9zLiamKC1Pj3BWsggEAi1FL15GdPWKm
-okez5gyKLRA+AIlysXTjHOUW+d7m6Qw=
-=LeqB
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaPkWSwAKCRB4tDGHoIJi
+0mKOAQCBpjYa4ZhdL2trp7ttjTHXvdg7cdGJcZm3u9Hngw8AAwEA83IZEKUFHqo2
+e7poEnoQa42kR0WbPNoO3Xjg3NFgygs=
+=OllD
 -----END PGP SIGNATURE-----
 
---y33srT0fleC7re05--
+--fkgy7qwVQJZANVWh--
 
