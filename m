@@ -1,170 +1,180 @@
-Return-Path: <devicetree+bounces-229619-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229620-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5EE42BFA4E4
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 08:48:13 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 429F3BFA4F9
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 08:48:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 80999426163
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 06:47:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id ED1181891020
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 06:49:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC93C2F28FB;
-	Wed, 22 Oct 2025 06:47:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C15602F2603;
+	Wed, 22 Oct 2025 06:48:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="n1VyAoBj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="f52VkERP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD7B92F28E3;
-	Wed, 22 Oct 2025 06:47:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92A342E11AA;
+	Wed, 22 Oct 2025 06:48:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761115663; cv=none; b=je4UcdCVkBIknNRCkPNZxNtHkHXwu2QFAdf5y6hbRLm1M2PhCpvL59043mLYmytT+SmQnqRZnvSHZPxGnWgqgbwts1E7k4QNI89aQ3dBaY1CJX85GAX3tWxWsvZGZpbkIOz4OwahvC/iKnvibC7XD/S93e9YS4ZoBzdRkzWOQIQ=
+	t=1761115728; cv=none; b=dQBybSfRokhmutCrNaxA7IR+KxoliRNaLJaSP7OhELqt2jW1hIi1jxtbi4KO8+f74XDfYcRgQG25+3WxCOMGXeDDsiVLrDzzVu9Dl2/KnNBYrhwNKu2NZBSSkcQBHmxHwUHkzca0xI1m9SmRUHZB24n1w9K48rA/tpI9V250ICY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761115663; c=relaxed/simple;
-	bh=ALgviHrcmTySF8+IZ0SfQ0Ca0hGXSV4wn90tAj5w4Xg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=OiFp915HGblMti3bgtiwvvYBh339Y+/OMVqNswu84uknLhXXQplCG36X6Bq3u9jsgNsxEOEHhb6Q95W4aHKNLelvl+7y0VGgoY4XPnJL0rrvKGvsnFJ9rWyP7qVQJ5kxgJ6hMKZMVKpg68vI7RjZWt5Zh8mG4HH2bozmfuz9WaM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=n1VyAoBj; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59LKgBTN013592;
-	Wed, 22 Oct 2025 06:47:33 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	aTva7Kgviua/9WwAt7xR6VKt9gLR+Zs215bxSnCeN5w=; b=n1VyAoBj+e4bElwg
-	gyUTtvbRsWNxLR3C6KoheTgPZXms4vo2CmYN9JUkNgzX140tPv0ZbfibdKv6b3IU
-	U5TOoc/yt36M+m+qJPmLDJ8866nP9io5mBRv8altI6Cpbx7zeRp9jg+Rpgqyg4TQ
-	WIvJTbb+r/O9AtlMCxawqbKixMGG5XG/LsLVBlBHaklOgAhruQLC7H55u0C22rJo
-	3AKUf0Jx7O23LVwrul+tSwe1XZWykZYV63JJfBVozHuMONZQN7VBBYniQG+5lZd1
-	KfMwVfhT8LJkdGgo9vpSHKmUap9VGd5ZOaccUI6w8lqYJSHUxpXSFsbdmr2T6oiP
-	6c8fFQ==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49xhe0hd8c-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 22 Oct 2025 06:47:33 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 59M6lWfI007765
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 22 Oct 2025 06:47:32 GMT
-Received: from [10.217.216.18] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.24; Tue, 21 Oct
- 2025 23:47:27 -0700
-Message-ID: <aaa3c616-a317-7a87-e6ef-82ebbb06d67d@quicinc.com>
-Date: Wed, 22 Oct 2025 12:17:24 +0530
+	s=arc-20240116; t=1761115728; c=relaxed/simple;
+	bh=bux0MpiefE0E0udPEyLkyVKKTF7xnuFg2f9MRlWs8GY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=cgBDZ7POUQMzKihnc7S4JOLP7uO1WXIo6IzC65NqHAvjCjrnTHFEPRxtQvawXBswqX/UK96mPFLjGb6Gr5j0KcHoGawYgt75FlyOhwHksQ6ODZsjFDazSkM5wws0L0EpQ37Psj4MB3PHZ1rWnL+bMMmP2OdbqdiLGyseCetEpbA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=f52VkERP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 63B95C4CEE7;
+	Wed, 22 Oct 2025 06:48:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761115728;
+	bh=bux0MpiefE0E0udPEyLkyVKKTF7xnuFg2f9MRlWs8GY=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=f52VkERPw/+okQoOmeKa9eUCOQn1TM5lnDAiv3ekN3P/yEYgLJ+dz5+JO/7vnrI4L
+	 W9cjAgJUKBW6yAVO94hSZ7UUEnyyQd8GlCzh/QBn2v8+t4SEpO3KeFFHNc92KgX4b1
+	 lNxHihy+XKRm3oWUEARB8Cep5kv/ZBTFTflDvSrNXHyveYed0xCUoGThOR+WLZtd/V
+	 L37/BHXGm/FzdeqEq+784VIwyfZLskBBhPTuOccVmr3iM9OEDauVMLaS6iPvVGzmWC
+	 lyudEmwvrhS6ENFYjg7tLrtbZ8gCNOzgfypsAz8Yht0bStd5jInrsyckYzXnD4IubI
+	 rPlNC5kvIsqVw==
+Message-ID: <e396d81b-0f61-4a05-873e-354339b5e50e@kernel.org>
+Date: Wed, 22 Oct 2025 08:48:43 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH v5 1/4] dt-bindings: mmc: Add dll-presets values for HS400
- and HS200 modes
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 5/5] Documentation/devicetree/bindings/hwmon: Add TSC1641
+ binding
+To: Igor Reznichenko <igor@reznichenko.net>, linux@roeck-us.net,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, corbet@lwn.net,
+ skhan@linuxfoundation.org, david.hunter.linux@gmail.com
+Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
+References: <20251022044708.314287-1-igor@reznichenko.net>
+ <20251022044708.314287-6-igor@reznichenko.net>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-To: Krzysztof Kozlowski <krzk@kernel.org>,
-        Ulf Hansson
-	<ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Adrian Hunter
-	<adrian.hunter@intel.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        "Konrad
- Dybcio" <konradybcio@kernel.org>
-CC: <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <dmitry.baryshkov@oss.qualcomm.com>, <quic_pragalla@quicinc.com>,
-        <quic_sayalil@quicinc.com>, <quic_nitirawa@quicinc.com>,
-        <quic_bhaskarv@quicinc.com>, <kernel@oss.qualcomm.com>,
-        Sachin Gupta
-	<quic_sachgupt@quicinc.com>
-References: <20251013145316.1087274-1-quic_rampraka@quicinc.com>
- <20251013145316.1087274-2-quic_rampraka@quicinc.com>
- <cb753c72-70ca-44b9-a33c-af2b1c7e69c8@kernel.org>
- <20251020-talented-inquisitive-bulldog-64aba0@kuoka>
-From: Ram Prakash Gupta <quic_rampraka@quicinc.com>
-In-Reply-To: <20251020-talented-inquisitive-bulldog-64aba0@kuoka>
-Content-Type: text/plain; charset="UTF-8"
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20251022044708.314287-6-igor@reznichenko.net>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDIxMDE2NyBTYWx0ZWRfXzL+ej0JXxK69
- 2fv2GFnnlyeeirBCkuwCiq3Zog/+RFVooYFJDtKePvL92+8hmvO4iJC/JrDwy3ud7J0WunrqTJI
- 1osPmIaFEjg1q/GzbLfzvp4NME+uAz7mS6ztjTbsXsnuzE8Q5z9+tNSU/960lDCfmL1aGlXnZRg
- 01b5lZeWQdb9TJ3NlGaJRhNztl8MG12JAXYZFT3RiuirGohoEXr3UearpatCUpH74SyPI05EtBy
- 2mQhigd6YUUY2JZg/OyUWM3+YeFgTNwhfSEU6JxMbvGF+aklQe1o6sw/BFIupuginDxfRdPl3PU
- CC1pbBivOvlthUrQrm5IaUJxDy7C/cIOW2cyKKkVJ5HuM7MdrV8mbOIIUsVht08dPAKuSACUEBo
- GWdehl/5KIkI9WQd/lBIvH0kWN6BIA==
-X-Proofpoint-ORIG-GUID: g599ba8Dk9NYkIKWhXHs33IUlC_Xr7ey
-X-Authority-Analysis: v=2.4 cv=WYUBqkhX c=1 sm=1 tr=0 ts=68f87e05 cx=c_pps
- a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=COk6AnOGAAAA:8 a=NiIIUeHpgDCADS5x9L0A:9
- a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22 a=cPQSjfK2_nFv0Q5t_7PE:22
-X-Proofpoint-GUID: g599ba8Dk9NYkIKWhXHs33IUlC_Xr7ey
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-10-22_02,2025-10-13_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 adultscore=0 bulkscore=0 impostorscore=0 spamscore=0
- priorityscore=1501 clxscore=1015 malwarescore=0 lowpriorityscore=0
- phishscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2510020000
- definitions=main-2510210167
+
+On 22/10/2025 06:47, Igor Reznichenko wrote:
+> Add a devicetree binding for the TSC1641 I2C power monitor.
+
+Please use subject prefixes matching the subsystem. You can get them for
+example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+your patch is touching. For bindings, the preferred subjects are
+explained here:
+https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
+
+A nit, subject: drop second/last, redundant "binding". The "dt-bindings"
+prefix is already stating that these are bindings.
+See also:
+https://elixir.bootlin.com/linux/v6.17-rc3/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
+
+Please organize the patch documenting compatible (DT bindings) before
+their user.
+See also:
+https://elixir.bootlin.com/linux/v6.14-rc6/source/Documentation/devicetree/bindings/submitting-patches.rst#L46
 
 
-On 10/20/2025 3:39 PM, Krzysztof Kozlowski wrote:
-> On Tue, Oct 14, 2025 at 02:06:46AM +0200, Krzysztof Kozlowski wrote:
->> On 13/10/2025 16:53, Ram Prakash Gupta wrote:
->>> From: Sachin Gupta <quic_sachgupt@quicinc.com>
->>>
->>> Document the 'dll-presets' property for MMC device tree bindings.
->>> The 'dll-presets' property defines the DLL configurations for HS400
->>> and HS200 modes.
->>>
->>> QC SoCs can have 0 to 4 SDHCI instances, and each one may need
->>> different tuning.
->>>
->>> Signed-off-by: Sachin Gupta <quic_sachgupt@quicinc.com>
->>> Signed-off-by: Ram Prakash Gupta <quic_rampraka@quicinc.com>
->>> ---
->>>  Documentation/devicetree/bindings/mmc/sdhci-msm.yaml | 5 +++++
->>>  1 file changed, 5 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
->>> index 594bd174ff21..f7b3b1ced3ce 100644
->>> --- a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
->>> +++ b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
->>> @@ -138,6 +138,11 @@ properties:
->>>      $ref: /schemas/types.yaml#/definitions/uint32
->>>      description: platform specific settings for DLL_CONFIG reg.
->>>  
->>> +  qcom,dll-presets:
->>> +    maxItems: 10
->>> +    $ref: /schemas/types.yaml#/definitions/uint32-array
->>> +    description: platform specific settings for DLL registers.
->> One of my questions, never answered in original submission and in your
->> versions, was to see the DTS user of it. I still do not see the DTS user.
-> There is no answer, so I mark the patch as changes requested.
->
-> Best regards,
-> Krzysztof
+> 
+> Signed-off-by: Igor Reznichenko <igor@reznichenko.net>
+> ---
+>  .../devicetree/bindings/hwmon/st,tsc1641.yaml | 54 +++++++++++++++++++
+>  1 file changed, 54 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/hwmon/st,tsc1641.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/hwmon/st,tsc1641.yaml b/Documentation/devicetree/bindings/hwmon/st,tsc1641.yaml
+> new file mode 100644
+> index 000000000000..e79f6dab4a87
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/hwmon/st,tsc1641.yaml
+> @@ -0,0 +1,54 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/hwmon/st,tsc1641.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: ST Microelectronics TSC1641 I2C power monitor
+> +
+> +maintainers:
+> +  - Igor Reznichenko <igor@reznichenko.net>
+> +
+> +description: |
+> +  TSC1641 is a 60 V, 16-bit high-precision power monitor with I2C and MIPI I3C interface
 
-ok, I will provide this in next patchset.
+Please wrap code according to the preferred limit expressed in Kernel
+coding style, so at 80.
 
-Thanks,
-Ram
+> +
+> +  Datasheets:
+> +    https://www.st.com/resource/en/datasheet/tsc1641.pdf
+> +
+> +properties:
+> +  compatible:
+> +    const: st,tsc1641
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  shunt-resistor:
 
->
+Use existing property, git grep shunt.
+
+And then test it...
+
+Best regards,
+Krzysztof
 
