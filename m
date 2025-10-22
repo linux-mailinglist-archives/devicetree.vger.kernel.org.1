@@ -1,153 +1,174 @@
-Return-Path: <devicetree+bounces-229634-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229635-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70029BFA67D
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 09:00:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A7CD2BFA68C
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 09:00:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9BD1B487A7B
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 06:59:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F137A3ACC0B
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 07:00:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F4322F2916;
-	Wed, 22 Oct 2025 06:59:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DF422F3C09;
+	Wed, 22 Oct 2025 07:00:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=iki.fi header.i=@iki.fi header.b="OuGmIJ8O"
+	dkim=pass (2048-bit key) header.d=me-ssier-org.20230601.gappssmtp.com header.i=@me-ssier-org.20230601.gappssmtp.com header.b="lOKW89gt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lahtoruutu.iki.fi (lahtoruutu.iki.fi [185.185.170.37])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qk1-f173.google.com (mail-qk1-f173.google.com [209.85.222.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B09172F2909;
-	Wed, 22 Oct 2025 06:59:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=185.185.170.37
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761116395; cv=pass; b=j7nwr1KzbRUxHlj14Lf8+9DRA/KsgdAA8waruROYbYD6wbnX/CfEaw7s4JMbYQtBZ0/asmIGnev5QlN+rKTnEDZYJiibTWn+Ixj9Meir4rH0tK9LcsV+D6bWerFxCh9ErOt4t+tHUYST7zkecfKMc9B8ooVPjx4R4/qNd7XoBpE=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761116395; c=relaxed/simple;
-	bh=RsWchHbELTivadR+0rIWFwyZFY5yk9Z2SlOJZ7YoLlo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rFqrjWEPWW3WDOdjh7aF6w576biUg/8m4vyn+/2l+hMaO7/El/M0YmpMczob3BkyESwmiCWf2EHMGtIGFu+y1oXoFq8wyd+Dhj6n0X49ClBUlb9PF9mVv9K7cOoBE/UwLyszSOlMENWybiFN0WqLAAEC26+TYcOacXLtpHCHB/k=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iki.fi; spf=pass smtp.mailfrom=iki.fi; dkim=pass (2048-bit key) header.d=iki.fi header.i=@iki.fi header.b=OuGmIJ8O; arc=pass smtp.client-ip=185.185.170.37
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iki.fi
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iki.fi
-Received: from hillosipuli.retiisi.eu (91-158-51-183.elisa-laajakaista.fi [91.158.51.183])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: sailus)
-	by lahtoruutu.iki.fi (Postfix) with ESMTPSA id 4cs0Qj2FTnz49Q6J;
-	Wed, 22 Oct 2025 09:59:41 +0300 (EEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=lahtoruutu;
-	t=1761116381;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=5s9tZ0plDw04XwnJ5ZHGqexlhG4hJB0+iwmd9AJaK6w=;
-	b=OuGmIJ8O0bNLXyfl/DOR87mbWDaGq8s7nrUYgaZdUNx+S2t0ROBOcgxdwOn8gD9jNLtGYm
-	FhWtHLm7XvXW+zrnoGmC9O9QQxaGCnesp5vBwOUZeJmHPiZgIILHYkKjlpRmyRIotkVv0N
-	ZU47G0eHkhD7Y/6iQNXWfi2Lugw2UR+bOmxqqtN1VG1bnr2/m7iLHiY5QjD2lda9a7mtXW
-	xkalyMPp4MRRbpho5Ka0MGoTEt4jNzRpvZDzOXJLP4K8VgR3lGk/gpeNazM/Fy1EeyMh5e
-	ImT5plat6EHVohgjDaY/juuTwc86ECUmwqr88iuizFi6foWRl5mvcYC0MsEtew==
-ARC-Seal: i=1; s=lahtoruutu; d=iki.fi; t=1761116381; a=rsa-sha256;
-	cv=none;
-	b=AsLWqzwwpeSWK7s89tLugPc5/LYNXM8zDE5kJ7H9uLCl36VRGwO25QswhfQSsg5PejbWk4
-	T5xqk7oVZj3l5vheEyvY3+S6t2VXLGTkBKXL/6iJgHyyTj01nbI5gJc+4actapHD1F/ymI
-	yQvW/Wf0YJEdiNXwtOFmwg0qgBsN3wRN58NpYAkI+XfbxEx0OmHNdH+vDRUmUHCsoWQu5l
-	ae9Le61iS3vSQ0tpEyyICym2lNxgD1KJGrUIQRMd6z8Rx2ZuSzwV8b/u0VosObXmF6THOS
-	452ahEM1gqB9Ve6lE2tpb7hZvCUa9LJrN7v4OwXt22SePD4xZpchI+MyBv5acg==
-ARC-Authentication-Results: i=1;
-	ORIGINATING;
-	auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
-	s=lahtoruutu; t=1761116381;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=5s9tZ0plDw04XwnJ5ZHGqexlhG4hJB0+iwmd9AJaK6w=;
-	b=UrwaRpOdekIoCIzNLX/haEcKkfIGnlHb3Arz6cIjfgonkRGB13JVMsfFDiygkN1L3hTuuc
-	OcOJ7TZ+MdLj/H7b45z5TopCkIiWEc2gYH+09VEigvGBOIFneWVkzJO3kltYdZfPDW2uRJ
-	3JBCHc9bgaI/baCgMMGYAxYPqITTJ8S/QdBI4+lOxyuoxfKEhxcun+dEH/8EOSYODWJE4E
-	tHcd487GFCiNJV73gwhU98LS7/oMCYPu98yLfTv8QStULq3tYWToZAt+gCvIBbFUmt/965
-	SAGIzPBceOMRyJLKd8TYKXfhzRdjRWcgVKaSimjGvJ8ZMjTzJUbOajSm1+xgPA==
-Received: from valkosipuli.retiisi.eu (valkosipuli.local [192.168.4.2])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by hillosipuli.retiisi.eu (Postfix) with ESMTPS id E5D6F634C50;
-	Wed, 22 Oct 2025 09:59:40 +0300 (EEST)
-Date: Wed, 22 Oct 2025 09:59:40 +0300
-From: Sakari Ailus <sakari.ailus@iki.fi>
-To: Frank Li <Frank.li@nxp.com>
-Cc: Rui Miguel Silva <rmfrfs@gmail.com>, Hans de Goede <hansg@kernel.org>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"open list:OMNIVISION OV2680 SENSOR DRIVER" <linux-media@vger.kernel.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
-Subject: Re: [PATCH 1/1] media: dt-bindings: ovti,ov2680: Use
- unevaluatedProperties for endpoint
-Message-ID: <aPiA3G9x_RsTL9Mv@valkosipuli.retiisi.eu>
-References: <20250827194919.82725-1-Frank.Li@nxp.com>
- <aPdLmWM8a_ikhJfK@valkosipuli.retiisi.eu>
- <aPepRZOL1Ys4PH/u@lizhi-Precision-Tower-5810>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D8922F39A1
+	for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 07:00:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.173
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1761116416; cv=none; b=MxuSZvj7nH9iYsa+DWs+KDEhzNF3LQMX5lmG54ChhsTMI/x0QfZfiZ4cBSusBljYLP9p4MmkNFvuhAitjS8e9oC9ARqplD94IvqOagAvcRfIzXNeoM+I01e4sW6ssUo71SkS6KOQIN40wehWaQlhy97Djq0scIK8evIxAMdUgOY=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1761116416; c=relaxed/simple;
+	bh=2ovcfzW0TZxfflXJ1CWAc3hKGj0ELxUHga64V8M6ot4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=VIuWvvuC+a28EMPj4QJ7Mp28Q8M2UVSG3nrKHwSjypb5JPFvwMnwx9/Y6wbzntfJpx8fnDcNUoUKlHR1Gz12RURp/EoY/DN1FRgVuBB/+N8xNwFq8w94DLs78P4mjFWuMB3E++6CZWqdEj7EgzxkFcc+k0sJvK5Potv+2YvcZF0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=me.ssier.org; spf=pass smtp.mailfrom=me.ssier.org; dkim=pass (2048-bit key) header.d=me-ssier-org.20230601.gappssmtp.com header.i=@me-ssier-org.20230601.gappssmtp.com header.b=lOKW89gt; arc=none smtp.client-ip=209.85.222.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=me.ssier.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=me.ssier.org
+Received: by mail-qk1-f173.google.com with SMTP id af79cd13be357-8909f01bd00so736400485a.0
+        for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 00:00:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=me-ssier-org.20230601.gappssmtp.com; s=20230601; t=1761116413; x=1761721213; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=UZ0zLiQMjHfWfIrETWEpgf86vfPQWqa3rEBNo24tR5I=;
+        b=lOKW89gtGbwipcluEaEJlQSRPk4HOVPDoeTtBsPgzX4VBK4WR0IppUMuRypIaDitkE
+         zYz+C3PQ0ZOjl4CeieIT7XgNO90JKwkkn44aUQAlXM/ugqZ0qflvyOYA+LEJPaIYfsSC
+         orcFnv0bhf7u6vAlHN6ySJjTQvffohW85jgxpvVcq6zvEiGZRyEguUA3hZfa2GISSJVK
+         pmn51Aiu0yGX6Ysj64T7ntOim463s8mqk48IwzDjoEqb5KiRgNRKph7RT6Bm/+LBD2/M
+         RFjFlfVMkTNon2LMLAoCc5pSrzXLUZMNff/J9Q+YCciS8hDfv6WCvV1zhvL7EuKNUIoj
+         /eaA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761116413; x=1761721213;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=UZ0zLiQMjHfWfIrETWEpgf86vfPQWqa3rEBNo24tR5I=;
+        b=llxUcQztpTjR0eSYSvZpWfy3Igc8qsQNk0ZG4frKQK49coaN1DuNAsvAQUYQpsJSEP
+         mhFxX91GSy/dfluSN+zm2rHSv9FE75R0jxDlQVqPBRxEsK0HnoC2rjT8dxq5qJVBVkSX
+         pHBY6Ah4at2III2u5cstrUZTloWJff56y2oY4SdAkIXMa6yIx/EfyNiJcpZPURsfvp1s
+         gZybMMhubMaynauafVydx7Nb5dygVV/sjSRIkHc3Wy0kyHlFICGJT60qRRahmRd72QLe
+         IkEVmX+Tv2y+e7zdBJnS8ng4s63ckAr7uidvlXTr1SLG+7YZLj6dPsre+VZoeGz3P+ZK
+         4K1g==
+X-Forwarded-Encrypted: i=1; AJvYcCVwgMISJz2qXfr3eDPEzG05rZW05q4e2/o+LQSaOipzB8pZ0Kw8fDNIA3RdJD9L2g2C3hc2cIbQansV@vger.kernel.org
+X-Gm-Message-State: AOJu0YwM2KUKl6hADhqinC3CZ7sVQ/T1XbYf83i9mmRoFWbShwd73V5T
+	EjjkSZBTqg+w89BpsJ/nHudbgLzYiG2oPAJMLSbYPuuVZa8txVjeQ+5SlqLlrXCWjr0=
+X-Gm-Gg: ASbGncsNWokT7wZkXjagvg1NUlXWyfvfCoVzOwYlQutj56KSOIXuyzZtwWkZm//RkI7
+	dneSNamGlfEKdMWHvolOo2Vwi/AUgYhHQpG9zN7gNek9TNLAeFBiNB0M4Xw4LmiOcf2RW74NDdW
+	fSGR1P5RmuZz2C1+E66v9kJPvA4sW3YNNJNN8oQECegQxB3ClCjujBbWLjuvVbvcRcpTjwc598k
+	SFQx58lJoOF0mQ7QhPzBVyR9FaNdoy++DH9FZwpN4BL/AJE/QMOVI+tfGh6OmUQWnxD8e9Ppcl3
+	iaues0sKWXR55t3Yq3O/wQ5Sgq/DAOFc1Aw8kBdNeMRAbsmPe2cg4nkbM2xUCNYaQCByKUx7sps
+	jaZt0iedEF8YXIrBTZAlR+XdJL6Tv0IAA0fcDyV+4fDSPMj/QhvFJ64WXGj0tIiYX3ebaeUqK6G
+	0wkG07F/pq/w==
+X-Google-Smtp-Source: AGHT+IFP1Egld4e4M3O9ldes+hPt4it1nCGP1bODqWck6WjBakPWZGeujTTjHQoGUKEqPL4vEcQSIw==
+X-Received: by 2002:a05:620a:4621:b0:88f:228c:c6a0 with SMTP id af79cd13be357-8906e8af048mr2096261085a.24.1761116412834;
+        Wed, 22 Oct 2025 00:00:12 -0700 (PDT)
+Received: from [192.168.2.8] ([74.14.126.215])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-891cd6717desm915892985a.26.2025.10.22.00.00.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 22 Oct 2025 00:00:12 -0700 (PDT)
+Message-ID: <77efe2a2-ee81-4096-9145-a76e35954e84@me.ssier.org>
+Date: Wed, 22 Oct 2025 03:00:01 -0400
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aPepRZOL1Ys4PH/u@lizhi-Precision-Tower-5810>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/4] ARM: dts: qcom: msm8974pro-htc-m8: add status LEDs
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Pavel Machek <pavel@kernel.org>
+Cc: Luca Weiss <luca@lucaweiss.eu>, linux-arm-kernel@lists.infradead.org,
+ linux-arm-msm@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+ phone-devel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20251007-m8-dts-additions-v1-0-53d7ab3594e7@me.ssier.org>
+ <20251007-m8-dts-additions-v1-1-53d7ab3594e7@me.ssier.org>
+ <6c791f05-70e7-49c9-a3ce-50fb82b0c894@oss.qualcomm.com>
+ <fef52764-3092-4375-b9c7-793d85adc102@me.ssier.org>
+ <41c63020-9226-45d9-979d-429b7299da41@oss.qualcomm.com>
+Content-Language: en-US
+From: Alexandre Messier <alex@me.ssier.org>
+In-Reply-To: <41c63020-9226-45d9-979d-429b7299da41@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Frank,
-
-On Tue, Oct 21, 2025 at 11:39:49AM -0400, Frank Li wrote:
-> On Tue, Oct 21, 2025 at 12:00:09PM +0300, Sakari Ailus wrote:
-> > Hi Frank,
-> >
-> > On Wed, Aug 27, 2025 at 03:49:18PM -0400, Frank Li wrote:
-> > > The endpoint ref to /schemas/media/video-interfaces.yaml#, so replace
-> > > additionalProperties with unevaluatedProperties to allow use common
-> > > properties.
-> > >
-> > > Fix below CHECK_DTBS warnings:
-> > >   arch/arm/boot/dts/nxp/imx/imx7s-warp.dtb: camera@36 (ovti,ov2680): port:endpoint: 'clock-lanes', 'data-lanes' do not match any of the regexes: '^pinctrl-[0-9]+$'
-> > > 	from schema $id: http://devicetree.org/schemas/media/i2c/ovti,ov2680.yaml
-> > >
-> > > Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> > > ---
-> > >  Documentation/devicetree/bindings/media/i2c/ovti,ov2680.yaml | 2 +-
-> > >  1 file changed, 1 insertion(+), 1 deletion(-)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov2680.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov2680.yaml
-> > > index 634d3b821b8c7..ec5c40684b6bd 100644
-> > > --- a/Documentation/devicetree/bindings/media/i2c/ovti,ov2680.yaml
-> > > +++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov2680.yaml
-> > > @@ -58,7 +58,7 @@ properties:
-> > >      properties:
-> > >        endpoint:
-> > >          $ref: /schemas/media/video-interfaces.yaml#
-> > > -        additionalProperties: false
-> > > +        unevaluatedProperties: false
-> >
-> > There are a lot more than just data-lanes in video-interfaces.yaml.
-> >
-> > Could you instead drop data-lanes and clock-lanes from the bindings? They
-> > are redundant.
+On 2025-10-20 08:02, Konrad Dybcio wrote:
+> On 10/12/25 8:03 AM, Alexandre Messier wrote:
+>> On 2025-10-07 06:03, Konrad Dybcio wrote:
+>>> On 10/7/25 7:55 AM, Alexandre Messier via B4 Relay wrote:
+>>>> From: Alexandre Messier <alex@me.ssier.org>
+>>>>
+>>>> Add support for the notification LEDs on the HTC One M8.
+>>>>
+>>>> Two LEDs are available, one amber and one green.
+>>>
+>>> Do they form a single notification led, or are they supposed
+>>> to act separately?
+>>
+>> Good point, I had to check the phone user manual to confirm. Indeed, it is
+>> referred to as a one logical notification LED. It also mentions the color can
+>> be either green or orange, it does not mention using the combined color of
+>> the two LEDs.
+>>
+>> So I would say they are supposed to act separately.
+>>
+>> Hope this answers your question, and let me know if more details are needed.
+>>
+>> BTW: I will be sending a V2 to update the color name, since the user
+>> manual says the color is orange, not amber.
 > 
-> What's your means?  drop data-lanes and clock-lanes from the dts file?
+> Let's describe it as a single LED then:
 > 
-> The board design may use less data-lanes, why it is reduntant?
+> multi-led {
+>         color = <LED_COLOR_ID_MULTI>; // notice it's not RGB
+>         function = LED_FUNCTION_STATUS;
+> 
+>         #address-cells = <1>;
+>         #size-cells = <0>;
+> 
+>         led@6 {
+>                 reg = <6>;
+>                 color = <LED_COLOR_ID_GREEN>;
+>         };
+> 
+>         led@7 {
+>                 reg = <7>;
+>                 color = <LED_COLOR_ID_ORANGE>;
+>         };
+> };
 
-That would be no data lanes at all then. The sensor supports a single lane
-only, which is why data-lanes isn't listed as a property in bindings.
+Using multi-led is fine for me.
 
--- 
-Regards,
+But currently, the "qcom-lpg" driver doesn't support LED_COLOR_ID_MULTI, only
+LED_COLOR_ID_RGB. Adding support for LED_COLOR_ID_MULTI is trivial, I tested it
+and it works.
 
-Sakari Ailus
+Or I can also use the "leds-group-multicolor" driver, using the two individual
+LEDs. I also tested this method and it works.
+
+> 
+> + Pavel the LED maintainer, please take a look if you think it makes sense
+
+If Pavel agrees using multi-led makes sense, I think the first option is the
+best. I will separate the LED patch into a new series, along with the change to
+the qcom-lpg driver to support LED_COLOR_ID_MULTI.
+
+Thanks
+Alex
+
+> 
+> Konrad
+
 
