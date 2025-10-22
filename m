@@ -1,77 +1,79 @@
-Return-Path: <devicetree+bounces-229787-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229788-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F82BBFC39F
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 15:42:48 +0200 (CEST)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CA74BFC2D3
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 15:35:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 91ECE626352
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 13:35:10 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 6E3A4357AB5
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 13:35:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 704A4348880;
-	Wed, 22 Oct 2025 13:34:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A92B134889D;
+	Wed, 22 Oct 2025 13:34:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gBhLgU/o"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UrqLx2jX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E306F34886C
-	for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 13:34:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CACF6347FF4
+	for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 13:34:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761140073; cv=none; b=cOPUGf56mcXG1Lld1YgGO545ykm2T1a/6sXUbbjQQzd2ooT2tucWwAaS2JO+s/KK9pYOUMNjaH0i93ALUrbYo5K3BJREVlBC5dPg157E3hEvzBFolkvrYTWN9fGcSgkT4+b16M4dIdXSe1giCpIv3XWspif5Cw6ovpHNv2mVPsM=
+	t=1761140074; cv=none; b=E00fsHK9GBhmkqoJBLuPs19b3NikpVLq6N48hQ32pfpBfjQmGxUQaad473k8Ogz0r78Iovj6YHPwdnmCMgRUc2TggjNIqhYg5C6Q5vV6d937Eh+7usJG9I/+0bZ4GsYNBxZcPWWzEnziLAeYbPtfK8/m+iF2oeLthZAbd6Q9HiA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761140073; c=relaxed/simple;
-	bh=t58k7nuf9fXppT7leLM5wPeiFjCn4yr98+SyB7CjCIg=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=m6tlMI9jc/CJ195LDQFIXII90vgBZMUrfrd5Vvx4aiCaaGfjf1FvPORAvLCb3l2Jils/gR2nYQdj7FaCcB1LSBhh6qOO1CgBbL0hBRKcLVq+WfUy/mJLxW/24kuU9FJG0pncYLjJu33+hFPUaDSF6y9kG69+U+eJe8JZ9KBvbwI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=gBhLgU/o; arc=none smtp.client-ip=209.85.221.51
+	s=arc-20240116; t=1761140074; c=relaxed/simple;
+	bh=T0KheH9SmHYRG9S90aXs4rewCJfStqdviPw1bBq61oA=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=K/xgAD/tiK8QpV5o8PA1RuKanXWec4RSAmlwuKiTMbfUAPPTlAfQIVXqr46NGsVANkUs5Z1AvzEJ4mP1nIETuUFdiZELLKOttbzC5O0mqC7/J+CsZDPjddViAH6UWKRk9S2i//whExGIKU3nf4utKCz60nuHuUHQG0g6hmHLAGA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=UrqLx2jX; arc=none smtp.client-ip=209.85.221.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-427087ee59cso765804f8f.3
-        for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 06:34:29 -0700 (PDT)
+Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-42702037a01so1026335f8f.3
+        for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 06:34:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1761140068; x=1761744868; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=rFXbojovxWliJMkNJdsF09HvmueXHOHMsMOPKrCfmZA=;
-        b=gBhLgU/ojivpduN2gcdB3lUg9+9Jw7ht01gSzRJMbpFRrvZ+TsIcl3tzsrQ06XaBYG
-         b/LGE6I5n81903wXqo+Oj8YUcX9v2nTq2N3tkW6GZQpPck8w/Pum/0u/RAJu4722PNgX
-         OOsuBrDMVTccEUBqEflyQojt028JOadAoosJXDH/K6f8MsDlY8PWnKXQXFfQPmBNAMEL
-         aVvi//PoQF0unp1IUDv2llfwZ/pM3QWUMpzFeeS50lXHlD5BtgE+jCq96b1pGGBPcasy
-         OZQkOTuqoW7zZiyVw3/KiA/3NKHozYEDWHNd8RRJKErg7Ik0/uuPM66ay3u9bxalaaxV
-         5fmA==
+        d=linaro.org; s=google; t=1761140069; x=1761744869; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=X6bRIK7N0Lc6wOEz1pBT1Kkom/tSArzPgk5+y4nbPsU=;
+        b=UrqLx2jXTyMJkQCoL6eYFx82cCydhZ2Q1yowuxxOpVg41IMr+b3AWk5Qzc0UOSptmH
+         YLxG/0dZ46P76ApNmc9iuQraPntbthmKCmpcVSilrmE+bkVmkPhZr7p2Pd5jAsXrJVjW
+         o01Thw29jYBLuYdhAiZ80H4qh8Htqr/Oa6UtjcPBsej7EHKJCZAVZHXK6ank9Y7gKzwx
+         NfxMHZZg9OSdfBmvAZDTqTgCQkV9ty8fSE+UOqMbwBDnj8Z2yADlAYJdf5wEVkRJFxn5
+         39GNn2Nk2Np80n3/4xnsbSV42CQQaibbirfFF2ajUD+VeElYu3ck4RlO6NywhD0zCSHN
+         OoAw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761140068; x=1761744868;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=rFXbojovxWliJMkNJdsF09HvmueXHOHMsMOPKrCfmZA=;
-        b=s34M+qtAwmalw1B8CvcGjsRUin765Uo9hmdAOH5BXnqsoFdvWyzvI7cTSOxmE/0+ZP
-         sQWNvdtuk5+lHBlKC2tHsEqgnorfPmqy7UtL3kc/87JbZVHbuseBar7t05RbL4yc8jFS
-         IKcy6cBRPR7yHkPA+UQ4wGhVZkWCz4R2au4OKTJBcTWnOEO6P31GzJX2VJHHZjf5mmy9
-         lazXTIU3L8QJANWPUJ55nOncpqIQRCzz2O77GEXd2eP0PZBSsZtN5k/3rU8utNQS6C+u
-         SBvrzpqlFAkmELJhoJ4vUPRB3qZdn/TGn6ucqCsWSOyaa2REs8xizjCQW1WYGu1f1qiD
-         6hFw==
-X-Forwarded-Encrypted: i=1; AJvYcCXbk3Sb2OnHaECDqX04MAszLGSp2Tv8sFPKG2kg1AEaCTi71kNsgzbPKXOxY5Nz6+r8uZtE308BSjWg@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx+IkSIJXBju9LOsTzpiFJw1FzY20PQQsth9LNMlg8Q1HZpxxtx
-	Uh15w6ZCDFvPON11MNevSanRvFFkL4CTDthBnHZZNhYp9qrEn+cvU9ZERVPrdqnPg8U=
-X-Gm-Gg: ASbGncuh62PaghSQ6qDj+mk/kQFI1BSviZwyqeQz2mmGEHllT4t9gSZpT3DmeiQeogZ
-	DbwokkWBOLh5VmKPO2CyvNWDYhpe1R1IhUhUVdFWo2qOepTC6JmJbI/CVu+Ufebn70br93N1OR0
-	UqYnDlDktBFoUYaD72GTAyCAEfL1BGhmNXXeolNhunQUUCP0lVecMYUPKKd/B3bhH5fk7K+lPTV
-	sP9ZXYbWRUFsM2uENBKhzu8luEM5IfGrkZ9c5k2xMIUprIY2CkkVJ8gEvAbbvU1HgAJ9rLbjNhC
-	JssdVKJTNlRt9SrZ8tI9kVqx1tAkK5fJ2YjwaHUKk55cqxJ38SeziwJiWvTgHd/deN06tyWFZNi
-	oUVoiz/45SJQ822WVkXM3xaBL1cD5+RgcpLUODKhLcIMjQ8tpIn8krZWoblle3qd5tJWDAUinGH
-	JmKHlwSc5sMybHs3Qtmhqzdg==
-X-Google-Smtp-Source: AGHT+IEWcnZIaP2wLBKfRqry0HILeS5KfSEJcKKwt34JV4PPLBebPsmgOhwbhA8EkzXLqs8P73MPpA==
-X-Received: by 2002:a5d:55d1:0:b0:426:fff3:5d0c with SMTP id ffacd0b85a97d-4284e531afamr2257012f8f.1.1761140068108;
-        Wed, 22 Oct 2025 06:34:28 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1761140069; x=1761744869;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=X6bRIK7N0Lc6wOEz1pBT1Kkom/tSArzPgk5+y4nbPsU=;
+        b=W49OTDIZhzeVkTvTt0rvN9vTJDde+hDjthu8N4XGpDumpbPKB9e9idl+8n3XkVnJ/E
+         36jQJzaZLjmkfkz7pzndVZFyjtZ4EiEcVzeYernijxhABz0WEIGMVzJnTZBKKL/EsWJc
+         whnj9/eUPIWR4E2G+XkJSHl6MUktdclr5w2L2ehr5I54vNjr2WS892dv1z4A7F6DzS9a
+         LJpBGVEKaLCV2d+///s5yKJIEdbHccu9UTKCgt3GG98btlORtcDNuF6bcynHA6rGUYUs
+         OmrFWdGxE88/Qb5yM+xFfQsV+HzcL2M26prrN7LNOrFerP8QmZSByAiommrZLFOXvwwi
+         nF/A==
+X-Forwarded-Encrypted: i=1; AJvYcCVo9JH1AxK7187c6SEzKQb1iryMf7gLtERV5lVdaZMCHbvZX8TgNfFDJTGVIXgXRSFkKNwY9oF6S5RU@vger.kernel.org
+X-Gm-Message-State: AOJu0YxASJFvfgorpn0GOY964IhJSVWXI9hkEMqD3gfijF+BpijftLkJ
+	Y9SZrkbn81UnOHC9usMyT7Ob0HpLkJ9GdHV7KG9ZwFouqfYkwi3kjPggImWK09d+IO0=
+X-Gm-Gg: ASbGnctIYgs5crGPt0kw0iZ995AWa16lCQGjWRedyd000n5oV8fWk9LFN8rWIKMVFMM
+	cOIE2zTZBnQj97KWM5cEO5+6MVAUw78UW6Vo009o3JfShH2dq23WIo96zffOW4J0HmL2EamByrC
+	lNCNECkd6gbrs/Fv5dg6Hg+wx5AilkIWpWPRRrAv8TbAY0PX4cy93nliaVuYGfcvZoCJfoHQB7c
+	T/sLAdwTadJWkBBv3cndJ/JL2zbScSFtjh/DBO3X66BQZNKvgZTdfTNRPzc+EgQ+TfM5RGSE/OM
+	qVFrRwKpeF/GL3Gq5ZpSzUiFlTJsIhcZbE9HEjtrWnJIW4G2g8rDiOB3AdWV6bSft7Puglci7f4
+	IvDLGBKS4nL2MtPzDAe3FVdTPiwBuBQ3Th8wfTTTxckwy8QRIJdQ3uyrpNn8DHa4IYy7HppmD+p
+	XbvQ2XXBS7lj2vA6y4vWYZQQ==
+X-Google-Smtp-Source: AGHT+IH/eS0bO2rVpOyBa4Ba5RIcrattnMm2FYtHvflh6MkB0GWk0k3OOmlqwAxRAezHhj8eTykIgA==
+X-Received: by 2002:a05:6000:184f:b0:425:86cf:43bb with SMTP id ffacd0b85a97d-4284e55735cmr2864362f8f.5.1761140069463;
+        Wed, 22 Oct 2025 06:34:29 -0700 (PDT)
 Received: from kuoka.. ([178.197.219.123])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42855c2fb92sm2981201f8f.46.2025.10.22.06.34.26
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42855c2fb92sm2981201f8f.46.2025.10.22.06.34.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 Oct 2025 06:34:27 -0700 (PDT)
+        Wed, 22 Oct 2025 06:34:29 -0700 (PDT)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To: Linus Walleij <linus.walleij@linaro.org>,
 	Rob Herring <robh@kernel.org>,
@@ -83,12 +85,13 @@ To: Linus Walleij <linus.walleij@linaro.org>,
 	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	stable@vger.kernel.org
-Subject: [PATCH 1/2] dt-bindings: pinctrl: toshiba,visconti: Fix number of items in groups
-Date: Wed, 22 Oct 2025 15:34:26 +0200
-Message-ID: <20251022133425.61988-3-krzysztof.kozlowski@linaro.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 2/2] dt-bindings: pinctrl: toshiba,visconti: Drop redundant functions type
+Date: Wed, 22 Oct 2025 15:34:27 +0200
+Message-ID: <20251022133425.61988-4-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.48.1
+In-Reply-To: <20251022133425.61988-3-krzysztof.kozlowski@linaro.org>
+References: <20251022133425.61988-3-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -97,58 +100,26 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The "groups" property can hold multiple entries (e.g.
-toshiba/tmpv7708-rm-mbrc.dts file), so allow that by dropping incorrect
-type (pinmux-node.yaml schema already defines that as string-array) and
-adding constraints for items.  This fixes dtbs_check warnings like:
+Referenced pinmux-node.yaml schema already defines type for "functions"
+so $ref is redundant.
 
-  toshiba/tmpv7708-rm-mbrc.dtb: pinctrl@24190000 (toshiba,tmpv7708-pinctrl):
-    pwm-pins:groups: ['pwm0_gpio16_grp', 'pwm1_gpio17_grp', 'pwm2_gpio18_grp', 'pwm3_gpio19_grp'] is too long
-
-Fixes: 1825c1fe0057 ("pinctrl: Add DT bindings for Toshiba Visconti TMPV7700 SoC")
-Cc: <stable@vger.kernel.org>
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- .../pinctrl/toshiba,visconti-pinctrl.yaml     | 26 ++++++++++---------
- 1 file changed, 14 insertions(+), 12 deletions(-)
+ .../devicetree/bindings/pinctrl/toshiba,visconti-pinctrl.yaml    | 1 -
+ 1 file changed, 1 deletion(-)
 
 diff --git a/Documentation/devicetree/bindings/pinctrl/toshiba,visconti-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/toshiba,visconti-pinctrl.yaml
-index 19d47fd414bc..ce04d2eadec9 100644
+index ce04d2eadec9..0eff0a0ee9e9 100644
 --- a/Documentation/devicetree/bindings/pinctrl/toshiba,visconti-pinctrl.yaml
 +++ b/Documentation/devicetree/bindings/pinctrl/toshiba,visconti-pinctrl.yaml
-@@ -50,18 +50,20 @@ patternProperties:
-       groups:
+@@ -42,7 +42,6 @@ patternProperties:
+       function:
          description:
-           Name of the pin group to use for the functions.
+           Function to mux.
 -        $ref: /schemas/types.yaml#/definitions/string
--        enum: [i2c0_grp, i2c1_grp, i2c2_grp, i2c3_grp, i2c4_grp,
--               i2c5_grp, i2c6_grp, i2c7_grp, i2c8_grp,
--               spi0_grp, spi0_cs0_grp, spi0_cs1_grp, spi0_cs2_grp,
--               spi1_grp, spi2_grp, spi3_grp, spi4_grp, spi5_grp, spi6_grp,
--               uart0_grp, uart1_grp, uart2_grp, uart3_grp,
--               pwm0_gpio4_grp, pwm0_gpio8_grp, pwm0_gpio12_grp,
--               pwm0_gpio16_grp, pwm1_gpio5_grp, pwm1_gpio9_grp,
--               pwm1_gpio13_grp, pwm1_gpio17_grp, pwm2_gpio6_grp,
--               pwm2_gpio10_grp, pwm2_gpio14_grp, pwm2_gpio18_grp,
--               pwm3_gpio7_grp, pwm3_gpio11_grp, pwm3_gpio15_grp,
--               pwm3_gpio19_grp, pcmif_out_grp, pcmif_in_grp]
-+        items:
-+          enum: [i2c0_grp, i2c1_grp, i2c2_grp, i2c3_grp, i2c4_grp,
-+                 i2c5_grp, i2c6_grp, i2c7_grp, i2c8_grp,
-+                 spi0_grp, spi0_cs0_grp, spi0_cs1_grp, spi0_cs2_grp,
-+                 spi1_grp, spi2_grp, spi3_grp, spi4_grp, spi5_grp, spi6_grp,
-+                 uart0_grp, uart1_grp, uart2_grp, uart3_grp,
-+                 pwm0_gpio4_grp, pwm0_gpio8_grp, pwm0_gpio12_grp,
-+                 pwm0_gpio16_grp, pwm1_gpio5_grp, pwm1_gpio9_grp,
-+                 pwm1_gpio13_grp, pwm1_gpio17_grp, pwm2_gpio6_grp,
-+                 pwm2_gpio10_grp, pwm2_gpio14_grp, pwm2_gpio18_grp,
-+                 pwm3_gpio7_grp, pwm3_gpio11_grp, pwm3_gpio15_grp,
-+                 pwm3_gpio19_grp, pcmif_out_grp, pcmif_in_grp]
-+        minItems: 1
-+        maxItems: 8
- 
-       drive-strength:
-         enum: [2, 4, 6, 8, 16, 24, 32]
+         enum: [i2c0, i2c1, i2c2, i2c3, i2c4, i2c5, i2c6, i2c7, i2c8,
+                spi0, spi1, spi2, spi3, spi4, spi5, spi6,
+                uart0, uart1, uart2, uart3, pwm, pcmif_out, pcmif_in]
 -- 
 2.48.1
 
