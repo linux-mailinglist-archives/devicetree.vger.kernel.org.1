@@ -1,127 +1,213 @@
-Return-Path: <devicetree+bounces-229727-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229728-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0EAEBFB2E6
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 11:36:40 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BEFDBFB2EF
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 11:37:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AB0651891C4A
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 09:37:04 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 1A2D64E20E6
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 09:37:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90B37288502;
-	Wed, 22 Oct 2025 09:36:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27C1728D8D9;
+	Wed, 22 Oct 2025 09:37:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="gh+EwBkl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f50.google.com (mail-vs1-f50.google.com [209.85.217.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF5FB287254
-	for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 09:36:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9224B28DB49
+	for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 09:37:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761125797; cv=none; b=nh/XDvWRSo03f9HRc0Ad5OjfJ8pB5dWIKyZYU7inY8x2T4KPesuu/56vETAO2H1WQoBEEiMGO9Y8CeLgd2Q4iy/+RB8FMgo9x1hrx88458RFHOa6KESJKlUnKSSkqZQaJuQomi3SrqYUFiuC6OLlCCqTahG/GHo3SbyF/gfrhbQ=
+	t=1761125861; cv=none; b=GZH2NEKHonkrItU/7Wu1HN5J9e5cmMeGczfji/Vyvl+lS1eclukZ6GHUrV9xaJgfgiolI7tmsEHJ35XrLZ86qaDOCekBXuYNVzRCEqH5xKGgBKN0wysGHYHlvOPMVzHJYAh6y7ioUSo1hK6Q5qrY/bW7DlcpYIBdw87sMGfBie8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761125797; c=relaxed/simple;
-	bh=/U97FWIz/LyKdJ/+ZFKjfhGLMW9FhpjIIYGZMTsBXJk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=SLiqr1fPRRXPGvCT/FVB75tKxKYZrFKvb4MVApqF8HwdJt9PiB3GDg0QgSw9Qj06f+xxySolobCGQ7s4Tp/kUEjbyUZHBQxbPAnVnjSkburiS5BtzeXtKnzNxjVsbUgcapD6GBcspSD+v3uxtgPDtklD2NPd50PwF/EVuA6FuwM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vs1-f50.google.com with SMTP id ada2fe7eead31-5a7b2a6b13bso4979588137.3
-        for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 02:36:35 -0700 (PDT)
+	s=arc-20240116; t=1761125861; c=relaxed/simple;
+	bh=+/MjwfbZvPam/0xlcWCDrWKB23vGSjkX/nOorqR0QbA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=twPrYTT0fMHBA3Nnc8sNTVw7XdIMC5FWWkJOmE7zQ+r/gT/ZUvp7nuuFcT5OX+wx7CzlsI00cY0lEdxRnGhpU6iqOTANA05E53fmp7HCN+KAjp36y74d0+wwou+iEEw6QZJxvq4jDKGtyzO+L3JXWTmTShsWitRemQsB5R9X1nM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=gh+EwBkl; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59M484pc029853
+	for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 09:37:38 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=wlAiuhzDMbNQ1Fw8Ews+PID2
+	RPtvP6Wo25eJKEmIUEQ=; b=gh+EwBkl4qsCs7HhmSFWn28pRpHeG6IjmIFVe7rm
+	To6R5wI2NT9fzE7S/jHLQZFn6jH62ldmrPmzbWK2Vt1pP/upE0bQn4AyKRZCOqGV
+	1nFd2wW3MAFIAyiKrvyb1s34iHS3bm3txpP0G0eQ2JENL3PLrRaFuJ1GSOy18Lpw
+	A8yhlzSvgJQWAoaipGgHHMaH3xTA85z9WYkUcErhkUhKhBBwjf0/62Wi77fgqPhM
+	oONeSzmzrUJTq276d9/WU8bDZkP7MxOapRCXn5e/zapo33Z2ZUHdtosWE0e+z3Hy
+	TKCRQ4csvlsYJsBUdolyAw/Tksf6hwF/aWzl9aRgFaL2Sg==
+Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49v2ge43e6-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 09:37:38 +0000 (GMT)
+Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-4e8a802113bso26476071cf.2
+        for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 02:37:38 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761125795; x=1761730595;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=iC35CdUT3A8sztuK5L0Sfjwp3dV7/QYG5xsuOQkj92Q=;
-        b=ErciUHX1BckCFJSN5ONJqtIyxzKSyOhVg9kHoiBeToMTBUAErjtKcM079oddSKKVD8
-         5pNEQc/o1CeQ5KujXW8hijYOrU5XzNV/7uXSqnUW2WAFdRvAosfyr58eg9KYoeSz2t8M
-         pI5xhmm++Xfmn9W99i4sshmR4p2VV2oApD2ZKbybTqNeTq/Xhvr8bbJKjapWCIc/Pc0y
-         7+M+9RSOqXFU8DU2V7Lk5NH4WZ2voukcp7zItP1EW5uz6VG7TXRXKOjFpR9ZfgzM+/tE
-         rrBiLSxMlFK3QB4/4XtpG8gm1d4HdELn39kGNr/HmsMwC29F/sbb8Bd9Ut0EypUNINoP
-         yb6w==
-X-Forwarded-Encrypted: i=1; AJvYcCV42+6m21MA14JZXMMc9hGT963l/tKlCYTakWboBijEvtAybpU2j4M1K1wALgdUAEWhkgKZ4q02rO9J@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyz0vmMYJcodSA886lt7LELHRR9x4VPRtLSJxM4Fx5uM01BHMO8
-	j2VcXdoFwABVumJWvxGQdVJY+vEWmMmW6u8IMHpRqoLOawI+Y7ef100HTkhGnrOz
-X-Gm-Gg: ASbGncu2k4UyFsh187Mz1rIv9auUYNV+LfsjqlIYYr4LrotomnIvKKO3VC3dRdyXPMT
-	78fWF70pqaDoRMTBdt9W34Qz7061RRkwZUDEHDFOtcYzfFpLaS+IuzQGJRvfLv7VQpN02yl5bdH
-	/ZeZEtCmp14uQ3n47PEvMJUdVVESMTbNKhiPBB4r8vZ2bnsan4FXT/XvIJnBSjF9lkDlO8suw1h
-	0SMMDIQBc2jLvo9wbUiTtKupAtCp4qocx9ZIL2ey4ohKKo70JQc9mhi0Rrzbnh7DavKK6ZA5oEA
-	+CsTxFBfagFm7tagFku7UqwmDMsCO+ard+ifyBcLJPjmwqCL/pG9Os6T958VAeKbuMiW3abd0f0
-	DaO1co6MrDp74OD8qV3QqdYLknufMhr+SetWFAeSR0us9Da3x/huEuVDJRBs1KbavqI339P1Acv
-	6Ui2SsLkGD1L/qKHy6hP0twz061pzwWcK3Uz4mOA==
-X-Google-Smtp-Source: AGHT+IGJorBDJWpBXhkTPuZOmESd65Z5ERZ12xjk7c69RDAUIvfyLqYAvhiNR1TOFv9Qmby3Sl/hbw==
-X-Received: by 2002:a05:6102:b02:b0:528:92b8:6c3e with SMTP id ada2fe7eead31-5d7dd501a23mr6636542137.1.1761125794693;
-        Wed, 22 Oct 2025 02:36:34 -0700 (PDT)
-Received: from mail-ua1-f45.google.com (mail-ua1-f45.google.com. [209.85.222.45])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-932c3da29f5sm4405207241.6.2025.10.22.02.36.34
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Oct 2025 02:36:34 -0700 (PDT)
-Received: by mail-ua1-f45.google.com with SMTP id a1e0cc1a2514c-932e885467cso1475746241.0
-        for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 02:36:34 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVyIPCMmwFWI9DwzqNfjfyp0DfyljuxBCwLYHER+qAHk20PafAKmLTLN8xDE4RJoR3nMPCI0NurBEtH@vger.kernel.org
-X-Received: by 2002:a05:6102:d91:b0:5d6:101a:9f31 with SMTP id
- ada2fe7eead31-5d7dd6a12f8mr6743560137.31.1761125793941; Wed, 22 Oct 2025
- 02:36:33 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1761125858; x=1761730658;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=wlAiuhzDMbNQ1Fw8Ews+PID2RPtvP6Wo25eJKEmIUEQ=;
+        b=Mxwt5Ni4Nq/hUIR/doCU5sC9CQZIharsvSu96v8n1E1dNFmuaDVZli1NDdqjyjBEmF
+         8yN7NaXk93Y4Af6q1kRpTXlnsivdT84Aj1ulQFLP7iOJ1RS/6ds5SlyUeGw+GJMewN2l
+         9t5zJ5mog40sGS7hZrnqzCkTc3+hnx1LmudYQzVD56tVLlAEeDjLHl8NI87yt2XRRD22
+         NoZWepriS7rxlLzoR3PnZD/LE7K6qJkKjEIWNsZAwJhnf1RpUsN0Th72YTkL8FdNcnO5
+         Sz33XMzbMATOy/99lHO2ZAK2TejADRs5Huj84Wio8Sbdryg79N03Y13uBKc/ftmXJ5Hp
+         ViIQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVBZjKFwrtY5S/y7VAoGN2KxCbuLXBcb7Elzlhqs9dGPGWV0JLVxeAIC/ScV4JIB7IWyjn23UCH1BqT@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywm4Mw2MIMp9gEprtdYnZBM62eRJiegvRMnbqIvMOA7Js8OEeSa
+	cCAooP+Xzk19ato8s0OCjok/EVXx1wdHitXW7Bh0TZNaAjtdBeAjxeHT5CT9FlH5NkFUHBmBO2v
+	JCRqXcncoyftC43QTAgJBZltL2VHa4RqTMGj9k5E50J1uhQMtc9QDdiSec2hKm0J0
+X-Gm-Gg: ASbGnctBRrtVx4CNb9m+GipiDBORfddRSaz6mXK9xBnnAXmFp56OGgxf5KORgqwLweI
+	uL7pxukRr2j90eYjS6muF//dC/z5wn8AYcNPo88vdH3MFHKgK7z4WnoVilQHHS7SJbH3erOLQ+9
+	rcjfsvoDG9ujywcO1Vh5knN3i0cNSKc34/dUY4PGqZTgQsIxD1tFRDgkRewmMRcZc3rAIKc7tuv
+	BibK6fftDhmAEZrb1K8zC4GdRoCMz0CT440O52LkOcT0A4Kg+LugSMNFxQVHTfYanOCPnDRCyQK
+	heMJ54iHjrLSvDCdbBZxaL0z02429eBYLVaqs20SEcBSjk1gUwQF237bT/hjrsm1hr6shMY/9J8
+	6dUTDKGWw3eplzFrkHZixMukLufVX5NZui3menQQ8gNLWRtHu+XfIvsg2JHhPrpMsQ29lcEpbpR
+	QvKdkr6+ervq8=
+X-Received: by 2002:a05:622a:138a:b0:4e7:2d83:59b7 with SMTP id d75a77b69052e-4e89d2b96efmr232633331cf.37.1761125857581;
+        Wed, 22 Oct 2025 02:37:37 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IE70UH8P0+7IUvRLiwSQa4wdN/h/jWfuzbCFIRtzRPc21GQfKi9T7kEbCCKp2X/mu4mW5+IJw==
+X-Received: by 2002:a05:622a:138a:b0:4e7:2d83:59b7 with SMTP id d75a77b69052e-4e89d2b96efmr232632981cf.37.1761125857114;
+        Wed, 22 Oct 2025 02:37:37 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-592ed7e6168sm702834e87.51.2025.10.22.02.37.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 22 Oct 2025 02:37:36 -0700 (PDT)
+Date: Wed, 22 Oct 2025 12:37:34 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Vikash Garodia <vikash.garodia@oss.qualcomm.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>,
+        Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>,
+        Abhinav Kumar <abhinav.kumar@linux.dev>,
+        Bryan O'Donoghue <bod@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Vishnu Reddy <quic_bvisredd@quicinc.com>
+Subject: Re: [PATCH v2 1/8] media: dt-bindings: qcom-kaanapali-iris: Add
+ kaanapali video codec binding
+Message-ID: <mtlwpa3m46qwrfjcpa7wapjjnllxopoip4mpnomw2ngteb6btf@2z4hrjr74bts>
+References: <20251017-knp_video-v2-0-f568ce1a4be3@oss.qualcomm.com>
+ <20251017-knp_video-v2-1-f568ce1a4be3@oss.qualcomm.com>
+ <c9d8f76a-513f-4a09-bba4-cb8f0df1d2fe@kernel.org>
+ <034bf6f4-0a49-4973-8536-28526b3409d1@oss.qualcomm.com>
+ <d19b1279-3031-43b9-ac73-7e5f990802ed@kernel.org>
+ <e1bfadd4-2d53-1953-beef-1350594c5010@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251022033847.471106-1-marek.vasut+renesas@mailbox.org>
-In-Reply-To: <20251022033847.471106-1-marek.vasut+renesas@mailbox.org>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 22 Oct 2025 11:36:23 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdVW3j6BKdRQyNPYoZ8Y6zHgWKocncvOCFRnE+TzPDhpJg@mail.gmail.com>
-X-Gm-Features: AS18NWA7snoGhRQxOaxa6kVLMYHHHQNhnIPgqBT0Sy_KqfLK2Lq6CACxKqN_A0M
-Message-ID: <CAMuHMdVW3j6BKdRQyNPYoZ8Y6zHgWKocncvOCFRnE+TzPDhpJg@mail.gmail.com>
-Subject: Re: [PATCH v3 1/3] dt-bindings: gpu: img,powervr-rogue: Document
- GX6250 GPU in Renesas R-Car M3-W/M3-W+
-To: Marek Vasut <marek.vasut+renesas@mailbox.org>
-Cc: linux-arm-kernel@lists.infradead.org, 
-	Conor Dooley <conor.dooley@microchip.com>, Adam Ford <aford173@gmail.com>, 
-	Conor Dooley <conor+dt@kernel.org>, David Airlie <airlied@gmail.com>, 
-	Frank Binns <frank.binns@imgtec.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Magnus Damm <magnus.damm@gmail.com>, 
-	Matt Coster <matt.coster@imgtec.com>, Maxime Ripard <mripard@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Simona Vetter <simona@ffwll.ch>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <e1bfadd4-2d53-1953-beef-1350594c5010@oss.qualcomm.com>
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDE4MDAyMCBTYWx0ZWRfX7I+iZRmvHmdh
+ X+UGTPTjMC8eXvE8Z6mhpEMc+2TywrQBUKxtKSSgARpntNkA6B0QDo9xbA6gInvRhXMcfi2lM2l
+ Qr3cIKr+7QFY0tiXdOVcl/GNpjjfPCPxYdeIpoOCPoUepWGULgt72uuOeB5t62eOr6LkgpVv0bS
+ gaQYLj6aAyV8fVo+jNZop41m+qZCLAEHu/kS83QVFokeI+2/cTMJXwrjTaKKAm0VJJ8U+BER/+b
+ ASxDXU1dxQzLAvUBqIJyuox5uQBucdKXFW5tRechDNMQfSrgtkkTtLfOtcvzzUF780FshS3N9k8
+ rSD2fzFqgnLaJrPM8muOG6LFZ0U8wjPMc4WLB2oll/GitLAAFEiTxunX/nW2oxuvqs1llOs0AB/
+ r6IC3DW4sejZpIlGCIzOL+l8//d5jg==
+X-Authority-Analysis: v=2.4 cv=KqFAGGWN c=1 sm=1 tr=0 ts=68f8a5e2 cx=c_pps
+ a=JbAStetqSzwMeJznSMzCyw==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=x6icFKpwvdMA:10 a=VkNPw1HP01LnGYTKEx00:22 a=vTb42-yg0zSnFd-snlMA:9
+ a=CjuIK1q_8ugA:10 a=uxP6HrT_eTzRwkO_Te1X:22
+X-Proofpoint-GUID: 1UT4SiNHpDcjzWAddjMgRQHEBSZUO8P2
+X-Proofpoint-ORIG-GUID: 1UT4SiNHpDcjzWAddjMgRQHEBSZUO8P2
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-10-22_03,2025-10-13_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 clxscore=1015 phishscore=0 malwarescore=0 impostorscore=0
+ lowpriorityscore=0 adultscore=0 priorityscore=1501 spamscore=0 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2510020000 definitions=main-2510180020
 
-On Wed, 22 Oct 2025 at 05:39, Marek Vasut
-<marek.vasut+renesas@mailbox.org> wrote:
-> Document Imagination Technologies PowerVR Rogue GX6250 BNVC 4.45.2.58
-> present in Renesas R-Car R8A77960 M3-W and R8A77961 M3-W+ SoC.
->
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
+On Wed, Oct 22, 2025 at 02:37:59AM +0530, Vikash Garodia wrote:
+> 
+> On 10/22/2025 12:45 AM, Krzysztof Kozlowski wrote:
+> > On 21/10/2025 20:55, Vikash Garodia wrote:
+> >>
+> >> On 10/18/2025 9:28 PM, Krzysztof Kozlowski wrote:
+> >>> On 17/10/2025 16:16, Vikash Garodia wrote:
+> >>>> +  clock-names:
+> >>>> +    items:
+> >>>> +      - const: iface
+> >>>> +      - const: core
+> >>>> +      - const: vcodec0_core
+> >>>> +      - const: iface1
+> >>>> +      - const: core_freerun
+> >>>> +      - const: vcodec0_core_freerun
+> >>>> +      - const: vcodec_bse
+> >>>> +      - const: vcodec_vpp0
+> >>>> +      - const: vcodec_vpp1
+> >>>> +      - const: vcodec_apv
+> >>>> +
+> >>>> +  dma-coherent: true
+> >>>> +
+> >>>> +  firmware-name:
+> >>>> +    maxItems: 1
+> >>>> +
+> >>>> +  interconnects:
+> >>>> +    maxItems: 2
+> >>>> +
+> >>>> +  interconnect-names:
+> >>>> +    items:
+> >>>> +      - const: cpu-cfg
+> >>>> +      - const: video-mem
+> >>>> +
+> >>>> +  interrupts:
+> >>>> +    maxItems: 1
+> >>>> +
+> >>>> +  iommus:
+> >>>> +    minItems: 3
+> >>>> +    maxItems: 8
+> >>>
+> >>> I don't understand why this is flexible. Make it fixed size and anyway -
+> >>> list the items.
+> >>
+> >> kaanapali vpu generates 8 different stream-ids. Now, boards running kernel in
+> >> EL2 mode can list all of them, while boards running in EL1 can have only non
+> >> secure stream IDs. Min have the list of stream ids which can be enabled for all
+> >> type of boards, while max is for boards which can list all in HLOS given kernel
+> >> is in EL2 mode.
+> >>
+> >> Below crash would be seen if boards running kernel in EL1 mode lists the secure
+> >> ones.
+> > 
+> > 
+> > That has to be explained somewhere, e.g. comment, 
+> 
+> Sure, will add a description for iommus property explaining the same.
+> 
+> and still we need then
+> > EL2 DTS in the kernel. I did not see such so far, but maybe I missed it
+> > - can you link it?
+> > 
+> 
+> EL2 DTS for kaanapali is not yet posted to handle secure SIDs. While it is in
+> development, describing the secure stream-ids would ensure to cover all the
+> hardware generated IDs.
 
-> See https://gitlab.freedesktop.org/imagination/linux-firmware/-/issues/13
-> for related userspace bits.
-> ---
-> V2: - Add RB from Conor
->     - Fill in allOf section for Renesas GPU, set fixed clock/clock-names
->       maxItems count to 3 and power-domains/power-domain-names count to 2.
->     - Use renesas,r8a7796-gpu for R8A77960 compatible string
-> V3: Split up the allOf section addition
-
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-
-Gr{oetje,eeting}s,
-
-                        Geert
+EL2 is a slightly different topic, it most likely requires additional
+changes, etc. I'd suggest focusing on a normal usecase first and getting
+the EL2 sorted out separately.
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+With best wishes
+Dmitry
 
