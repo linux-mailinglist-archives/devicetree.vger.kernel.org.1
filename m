@@ -1,59 +1,61 @@
-Return-Path: <devicetree+bounces-229918-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229919-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1AB7BFD9D5
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 19:37:25 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E16ABFDA04
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 19:39:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B5F1A1A0625A
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 17:37:49 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id EDD6A4E639B
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 17:39:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B60452D2498;
-	Wed, 22 Oct 2025 17:37:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FB3E2D978C;
+	Wed, 22 Oct 2025 17:38:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="M8Nl1Ov/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nXwRMOxQ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D597291C33;
-	Wed, 22 Oct 2025 17:37:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 564A42D978A;
+	Wed, 22 Oct 2025 17:38:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761154641; cv=none; b=nCHuzuYuE6D0WCIh/jEj8ZFJ9w2IYf/mLUFW7GCuZXILgqA7xfnsj7JOUd0Y8zgVdBxisa294J2RZ0Gst59DS6W6vFDkBZsX98xVVjIokAl2buKxW8tcwmGqrnEsqsPiWZqjj730OPhC1U3h0L1B0DwAPWnwi+2vczivfrKn35g=
+	t=1761154710; cv=none; b=nZsLejocZEapg5a4ic+NOH+NiyBmdlKRlKnyOpYnWI4esN6CAdkuM4ybiyo/vS9YZYAaFxGvpz3AdWfxB6L8qhu6DVaHeBi+AWT/4QxZOhH9x0h0omulhzgQAY4ko2WVh3BE00cZ0CYFK07331LdqlgizcsdbfEQH0boqWSsqqw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761154641; c=relaxed/simple;
-	bh=5C7JSiw2cENDeyIwTcB8RFCSbO1mNJYYryNwgOrWVso=;
+	s=arc-20240116; t=1761154710; c=relaxed/simple;
+	bh=a1713ONLo4RRLM5SYdpDsSJ1reTF4CU+Bkx3+uaYeUk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=d3fPk4RsiA3Cl/r+atZ8hemVgtUtsXrKptilLGzQ1ZgUZCONojmnrDTcFPe8sC+5QKWLdGXYROY+4PrQfufHXQ/biVhA8bDxUGzTvvrWbK0mK69LRutN/67QLt+n7JMjyHp+2v2L875F2w9FswoY6qYmzM/QFAZE0MSWHaJEvkA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=M8Nl1Ov/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2825DC4CEE7;
-	Wed, 22 Oct 2025 17:37:17 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=UYGO5dKuDb5Qmm5TfZXFhg53DgsK/cnoHi7oGRcDeFEIuqIzKy6qDF3mznd5qobMxBZy+M99oP25KtgRSeiTK8czKzcILE89Si0bXXKojP3S6TphZz2VEh7XlHk5PyjAIcOB5xshbaHDT9mJWCRsxwCmH56Wrfd1yo2+ObbMkzc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nXwRMOxQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AAF5BC4CEE7;
+	Wed, 22 Oct 2025 17:38:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761154640;
-	bh=5C7JSiw2cENDeyIwTcB8RFCSbO1mNJYYryNwgOrWVso=;
+	s=k20201202; t=1761154709;
+	bh=a1713ONLo4RRLM5SYdpDsSJ1reTF4CU+Bkx3+uaYeUk=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=M8Nl1Ov/VjLVySoMBa78J9a7d+ZFX4EVzcA2t3sF6Y2j7WIyymK/M6nuqwI90VbDj
-	 /unVVkTbOx72B2O8rKfle59it6XB63few2+KuCdIdrzHYmPb4812prFN3sMyiBsTfV
-	 MK7atH+JfMMZ5rcdVDdjbL+1FxkCDoW7Epj+MR6rMYIR71L31Li+D3BL9s0YS0PZpq
-	 pokqPeXjSUyOXDoG2uRvjZFee7XAt5ydHlBDxlS3A8Gav3gEtE66EntVLbnnfQV6BK
-	 dxGj9uwu4E4Gmcp03KPeh7RhUwa9Yi/HNHSncKG3h+0IbI3pwbraYviBppNDJl4XpX
-	 G4HKT0h8KgMNQ==
-Date: Wed, 22 Oct 2025 18:37:15 +0100
+	b=nXwRMOxQzPi/uWx8kqqPhc105lzgifneVm0cxnDOtGQZpxG0jhlcCiYYxqeF57x+g
+	 C0uBg5A0OnKTklrIp6vQ+TKzGGi2WZr7Oi1vCr/JvABCJrQGGD9iJngCe7n5IC57ij
+	 ngHZuz2F8jd0IE5JutXqMcyrioQNPGDyvqh7NarKU1tyd+RvVQEYbye3KxCn+yZd9W
+	 u773CHia1mMu36022nIQz0IY9aUae4qpApaiBCYno25C6DnCIh3M+jpbccTi9oMhhO
+	 lCtUpBg2C5Hhp12ONLh8MkF9IjDfy9grc44k4IwnQIvnQDSh6c3KlqEU9IyfHD7pNz
+	 uAorG/wL6vL2w==
+Date: Wed, 22 Oct 2025 18:38:24 +0100
 From: Conor Dooley <conor@kernel.org>
-To: muhammed.efecetin.67@gmail.com
-Cc: linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	heiko@sntech.de, neil.armstrong@linaro.org, lee@kernel.org,
-	rafael@kernel.org, efectn@protonmail.com, daniel.lezcano@linaro.org
-Subject: Re: [PATCH v3 1/5] dt-bindings: mfd: khadas-mcu: add new compatible
- for Khadas Edge 2
-Message-ID: <20251022-maturity-driller-86e2b686066b@spud>
-References: <cover.1761059314.git.efectn@protonmail.com>
- <0e604eca9ad9ce71f74b6f3aae60bbb949697590.1761059314.git.efectn@protonmail.com>
+To: Ajay Neeli <ajay.neeli@amd.com>
+Cc: martin.petersen@oracle.com, James.Bottomley@hansenpartnership.com,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	pedrom.sousa@synopsys.com, alim.akhtar@samsung.com,
+	avri.altman@wdc.com, bvanassche@acm.org, linux-scsi@vger.kernel.org,
+	devicetree@vger.kernel.org, git@amd.com, michal.simek@amd.com,
+	srinivas.goud@amd.com, radhey.shyam.pandey@amd.com,
+	Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
+Subject: Re: [PATCH v2 1/4] dt-bindings: ufs: amd-versal2: Add UFS Host
+ Controller for AMD Versal Gen 2 SoC
+Message-ID: <20251022-collar-relation-48c77e7649cb@spud>
+References: <20251021113003.13650-1-ajay.neeli@amd.com>
+ <20251021113003.13650-2-ajay.neeli@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,38 +63,39 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="fkgy7qwVQJZANVWh"
+	protocol="application/pgp-signature"; boundary="YMFu5lM+sEy/WU91"
 Content-Disposition: inline
-In-Reply-To: <0e604eca9ad9ce71f74b6f3aae60bbb949697590.1761059314.git.efectn@protonmail.com>
+In-Reply-To: <20251021113003.13650-2-ajay.neeli@amd.com>
 
 
---fkgy7qwVQJZANVWh
+--YMFu5lM+sEy/WU91
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Oct 21, 2025 at 05:22:41PM +0200, muhammed.efecetin.67@gmail.com wr=
-ote:
-> From: Muhammed Efe Cetin <efectn@protonmail.com>
+On Tue, Oct 21, 2025 at 05:00:00PM +0530, Ajay Neeli wrote:
+> From: Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
 >=20
-> Add new khadas,mcu-edge2 compatible which is going to be used with Khadas
-> Edge 2.
+> Add devicetree document for UFS Host Controller on AMD Versal Gen 2 SoC.
+> This includes clocks and clock-names as mandated by UFS common bindings.
 >=20
-> Signed-off-by: Muhammed Efe Cetin <efectn@protonmail.com>
+> Signed-off-by: Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
+> Co-developed-by: Ajay Neeli <ajay.neeli@amd.com>
+> Signed-off-by: Ajay Neeli <ajay.neeli@amd.com>
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 pw-bot: not-applicable
 
---fkgy7qwVQJZANVWh
+--YMFu5lM+sEy/WU91
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaPkWSwAKCRB4tDGHoIJi
-0mKOAQCBpjYa4ZhdL2trp7ttjTHXvdg7cdGJcZm3u9Hngw8AAwEA83IZEKUFHqo2
-e7poEnoQa42kR0WbPNoO3Xjg3NFgygs=
-=OllD
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaPkWkAAKCRB4tDGHoIJi
+0tFeAQC5wO+4QHuc/nza8lgJiNnzXpQpd/t7M113YD3RktfwbwEA7H9xWVRI2j60
+O4mTnvVfLvvWAHKmkj03OzvdIt95/Ao=
+=ZXJP
 -----END PGP SIGNATURE-----
 
---fkgy7qwVQJZANVWh--
+--YMFu5lM+sEy/WU91--
 
