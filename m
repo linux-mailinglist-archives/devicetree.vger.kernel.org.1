@@ -1,101 +1,155 @@
-Return-Path: <devicetree+bounces-229660-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229662-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C9FABFA93C
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 09:32:39 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C817BFA9BB
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 09:38:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2EBD73B7077
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 07:32:24 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 6AF974E7672
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 07:38:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BAA22F99A8;
-	Wed, 22 Oct 2025 07:32:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E8A72FB61B;
+	Wed, 22 Oct 2025 07:38:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="vkCHCsnZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC3062F7AC5;
-	Wed, 22 Oct 2025 07:32:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.172
+Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA5FA2FB09E;
+	Wed, 22 Oct 2025 07:38:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761118337; cv=none; b=TtncAdUXxtttR2YRd+ErpLZ2iYqn9Yz3qJZsp1G6ZnygPdknHLtPpd3TwXRruNMKrhAkbG0Fr0SHIjFvwSLyeHTZrH8IqfmHCNYFE4xcaOZzaK1PO/1HCDvVnOlpGTOoyRC5vVFwKIwzXORGHZ19lW1PBAOJT1j9mV/01UTiPTo=
+	t=1761118721; cv=none; b=JbyG1RlLvbBiwCCge8DB+yaAmvWk2el+igfIPB7o8vvG5bQYWzqKU2X0ubJPkTs3jyiwwlIyWTL/nu8H+0F2gtFljYlBZYgQP0G7JPidPsa1FA5jbLV5qrNYdmPbY3ZF1Hj3wCx+DLxikDl1D/JR9yF9WsSyVWw0LWnLYRI1OQI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761118337; c=relaxed/simple;
-	bh=fbmpowwIGOGjX7sxBebaPxaQBBqiVGOj37KOsM1rbQM=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=lHOESAmnzKepcmEsb1E4WZnPqxXJouEFD6v/2JBY7+GIQZRRBBHpkaAVJEckOx9+zUIoX9kBgTK4Zm/kiA9CjUjsYdWGLWovod5qCVP8OFkAjQM0LIbgkt793SAtErK8nwYLe2wNmbz2chvv/HCz+Imsi2DDgs6xP8sG+irpNV4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; arc=none smtp.client-ip=210.160.252.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
-X-CSE-ConnectionGUID: AAatNDd/SY2pcXBaQXukfA==
-X-CSE-MsgGUID: 3CGR4ZVXSYWYgIwTHi/CtA==
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie6.idc.renesas.com with ESMTP; 22 Oct 2025 16:32:12 +0900
-Received: from demon-pc.localdomain (unknown [10.226.93.88])
-	by relmlir5.idc.renesas.com (Postfix) with ESMTP id 938914012B1A;
-	Wed, 22 Oct 2025 16:32:09 +0900 (JST)
-From: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
-To: 
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
-Subject: [PATCH] arm64: dts: renesas: rzt2h/rzn2h-evk: add note about SD1 1.8V modes
-Date: Wed, 22 Oct 2025 10:31:40 +0300
-Message-ID: <20251022073141.1989762-1-cosmin-gabriel.tanislav.xa@renesas.com>
-X-Mailer: git-send-email 2.51.1.dirty
+	s=arc-20240116; t=1761118721; c=relaxed/simple;
+	bh=fEc/ZWEpPt1tUfU52P+K+EeBWDiHXPIPf98V6FgFyeE=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=tnhZygCjYvleSvYlYvXST1eaLhcEz9KYOq36k+ZbRLh9Waer0XEKG9z56R8xoCWcWHWJZZ+NOdFugTGstV7txYR7UEC+dy5OYb+SdFoH0ZAO42uH6AptHltD2lThRm3eeU5aOoHvZzFLSZLr/gHJFhuj96xxUoRIsH+oTEHg4bI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=vkCHCsnZ; arc=none smtp.client-ip=185.171.202.116
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-04.galae.net (Postfix) with ESMTPS id 49EADC0B8B7;
+	Wed, 22 Oct 2025 07:38:15 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id DB4A2606DC;
+	Wed, 22 Oct 2025 07:38:34 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 5CF2F102F2426;
+	Wed, 22 Oct 2025 09:38:12 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1761118713; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding; bh=Cnq8is3Gecu3RIKhzK0SA/syO2DgLWXh6Z3YQxQFw9I=;
+	b=vkCHCsnZsPWgWOAsSXRFZ+6iJL341OQwkiKRLqzhjXaT2D2nVElyNKwPuObmBjs32Ab4VH
+	gwUqDzOTxnXVSHOmyed0VYT1l5NptBKIq8iFp1JT02tql//R8VaZ1Fw3agKWUSXRQLQ+ar
+	CKup/WOKZa31aHkkveOx57Q8yydSkoOPVk0IcIppQK/tl1Sox9tcirNZN5fC4LnfEv13yI
+	y5bPVI2w6zqGTl8Q0Z1ds1eNDsLlevklrUpBaBlbUdcYJs6SEB6Da4raLoA0X4va8IbeWW
+	kc+Hx50ydnPiMfNmjZeUF6Dzb4mzOEOEQw8h9hfLF71Va94KuTGnsFaXfTtF/g==
+From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
+Subject: [PATCH net-next v2 0/5] net: macb: EyeQ5 support
+Date: Wed, 22 Oct 2025 09:38:09 +0200
+Message-Id: <20251022-macb-eyeq5-v2-0-7c140abb0581@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAOGJ+GgC/02NywrDIBBFfyXMulPUIn2s+h8li6iTZqDRViUkB
+ P+9Il10eTjcc3dIFJkS3LodIi2cOPgK6tCBnQb/JGRXGZRQWgolcB6sQdroo3EkZYWT5OxZQx2
+ 8I428ttgDPGX0tGboq5k45RC39rLI5n9B+R9cJAo8GWH0cHVqvOi7CSG/2B9tmKEvpXwBFxpQC
+ rAAAAA=
+X-Change-ID: 20251020-macb-eyeq5-fe2c0d1edc75
+To: Andrew Lunn <andrew+netdev@lunn.ch>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Nicolas Ferre <nicolas.ferre@microchip.com>, 
+ Claudiu Beznea <claudiu.beznea@tuxon.dev>, 
+ Russell King <linux@armlinux.org.uk>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ =?utf-8?q?Beno=C3=AEt_Monin?= <benoit.monin@bootlin.com>, 
+ =?utf-8?q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>, 
+ Maxime Chevallier <maxime.chevallier@bootlin.com>, 
+ Tawfik Bayouk <tawfik.bayouk@mobileye.com>, 
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, 
+ =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>, 
+ Andrew Lunn <andrew@lunn.ch>
+X-Mailer: b4 0.14.3
+X-Last-TLS-Session-Version: TLSv1.3
 
-1.8V operation of SD1 requires the jumper to be placed on the correct
-pins of a connector on these Evaluation Kits. 1.8V is needed to achieve
-the higher rated speeds like SDR104. Add a note about it to make sure no
-one else spends too much time figuring this out.
+This series' goal is adding support to the MACB driver for EyeQ5 GEM.
+The specifics for this compatible are:
 
-Signed-off-by: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
+ - HW cannot add dummy bytes at the start of IP packets for alignment
+   purposes. The behavior can be detected using DCFG6 so it isn't
+   attached to compatible data.
+
+ - The hardware LSO/TSO is known to be buggy: add a compatible
+   capability flag to force disable it.
+
+ - At init, we have to wiggle two syscon registers that configure the
+   PHY integration.
+
+   In past attempts [0] we did it in macb_config->init() using a syscon
+   regmap. That was far from ideal so now a generic PHY driver
+   abstracts that away. We reuse the bp->sgmii_phy field used by some
+   compatibles.
+
+   We have to add a phy_set_mode() call as the PHY power on sequence
+   depends on whether we do RGMII or SGMII.
+
+This V2 sees the generic PHY driver drivers/phy/phy-eyeq5-eth.c move
+into its separate series. Here you only get net-next patches.
+
+Thanks,
+Have a nice day,
+Théo
+
+[0]: https://lore.kernel.org/lkml/20250627-macb-v2-15-ff8207d0bb77@bootlin.com/
+
+Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
 ---
- arch/arm64/boot/dts/renesas/r9a09g077m44-rzt2h-evk.dts | 3 +++
- arch/arm64/boot/dts/renesas/r9a09g087m44-rzn2h-evk.dts | 3 +++
- 2 files changed, 6 insertions(+)
+Changes in v2:
+- Drop non net-next patches.
+- Re-run get_maintainers.pl to shorten the To/Cc list.
+- Rebase upon latest net-next; no changes. Tested on HW.
+- Link to v1: https://lore.kernel.org/r/20251021-macb-eyeq5-v1-0-3b0b5a9d2f85@bootlin.com
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a09g077m44-rzt2h-evk.dts b/arch/arm64/boot/dts/renesas/r9a09g077m44-rzt2h-evk.dts
-index e94b84393bd9..7269bca8c8cc 100644
---- a/arch/arm64/boot/dts/renesas/r9a09g077m44-rzt2h-evk.dts
-+++ b/arch/arm64/boot/dts/renesas/r9a09g077m44-rzt2h-evk.dts
-@@ -26,6 +26,9 @@
-  * P17_4 = SD1_CD; SW2[3] = ON
-  * P08_5 = SD1_PWEN; SW2[3] = ON
-  * P08_6 = SD1_IOVS; SW2[3] = ON; SW5[3] = OFF; SW5[4] = ON
-+ * To enable proper operation in 1.8V modes, CN77 must have pins 2 and 3
-+ * connected by the jumper. This connects SD1 power-supply control IC output
-+ * back to VCC1833_7.
-  */
- #define SD1_MICRO_SD	1
- 
-diff --git a/arch/arm64/boot/dts/renesas/r9a09g087m44-rzn2h-evk.dts b/arch/arm64/boot/dts/renesas/r9a09g087m44-rzn2h-evk.dts
-index d27da157c6d6..c87cb6510edc 100644
---- a/arch/arm64/boot/dts/renesas/r9a09g087m44-rzn2h-evk.dts
-+++ b/arch/arm64/boot/dts/renesas/r9a09g087m44-rzn2h-evk.dts
-@@ -30,6 +30,9 @@
- /*
-  * P17_4 = SD1_CD; DSW5[3] = ON; DSW19[1] = OFF; DSW19[2] = ON
-  * P08_6 = SD1_IOVS; DSW5[3] = ON
-+ * To enable proper operation in 1.8V modes, JP21 must have pins 2 and 3
-+ * connected by the jumper. This connects SD1 power-supply control IC output
-+ * back to VCC1833_7.
-  */
- #define SD1_MICRO_SD	1
- 
+Past versions of the MACB EyeQ5 patches:
+ - March 2025: [PATCH net-next 00/13] Support the Cadence MACB/GEM
+   instances on Mobileye EyeQ5 SoCs
+   https://lore.kernel.org/lkml/20250321-macb-v1-0-537b7e37971d@bootlin.com/
+ - June 2025: [PATCH net-next v2 00/18] Support the Cadence MACB/GEM
+   instances on Mobileye EyeQ5 SoCs
+   https://lore.kernel.org/lkml/20250627-macb-v2-0-ff8207d0bb77@bootlin.com/
+ - August 2025: [PATCH net v3 00/16] net: macb: various fixes & cleanup
+   https://lore.kernel.org/lkml/20250808-macb-fixes-v3-0-08f1fcb5179f@bootlin.com/
+
+---
+Théo Lebrun (5):
+      dt-bindings: net: cdns,macb: add Mobileye EyeQ5 ethernet interface
+      net: macb: match skb_reserve(skb, NET_IP_ALIGN) with HW alignment
+      net: macb: add no LSO capability (MACB_CAPS_NO_LSO)
+      net: macb: rename bp->sgmii_phy field to bp->phy
+      net: macb: Add "mobileye,eyeq5-gem" compatible
+
+ .../devicetree/bindings/net/cdns,macb.yaml         | 10 +++
+ drivers/net/ethernet/cadence/macb.h                |  6 +-
+ drivers/net/ethernet/cadence/macb_main.c           | 92 +++++++++++++++++-----
+ 3 files changed, 89 insertions(+), 19 deletions(-)
+---
+base-commit: 962ac5ca99a5c3e7469215bf47572440402dfd59
+change-id: 20251020-macb-eyeq5-fe2c0d1edc75
+
+Best regards,
 -- 
-2.51.1.dirty
+Théo Lebrun <theo.lebrun@bootlin.com>
 
 
