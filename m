@@ -1,103 +1,231 @@
-Return-Path: <devicetree+bounces-229878-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229879-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 429BEBFD731
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 19:05:40 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1078BFD4F7
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 18:44:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8113F400C04
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 16:35:57 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 559C65688E5
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 16:36:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE755354AF5;
-	Wed, 22 Oct 2025 16:20:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16F162C11DB;
+	Wed, 22 Oct 2025 16:22:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="U+kfXMFK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FGumm2YL"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB2A1279789;
-	Wed, 22 Oct 2025 16:20:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E53C92C15AE
+	for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 16:22:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761150003; cv=none; b=sB66qEs/O2xa7LXHnbKjDlMIGYssWmTbVA9DbjO+YDWnmFNauI5RlksqddBsSF9g5kJaaFi5feKXxnIlz4UzNDkmgNJ64l4lNM387pn1cKIT2z7f1lpYLWei8HSJNGdh370F+/AZ1hXWUG5Okci8A3J2V78Jn/4o6TymyXAS5OA=
+	t=1761150161; cv=none; b=N6CQqVAkG5aNfWtfRAKB75uqliZNGAOq5aa3LnytH32IVMHvi/diq8XFC+DN/bf+hqH1GViej+bgFu126Z4Sfun0v5g0DVvKsx0c+L65H/3R26x2/uNFN9A3tHYgVGjhwBT1MawNdwhhKnbwMOuq69uDwfHJMCwcKt87sKHOzzE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761150003; c=relaxed/simple;
-	bh=2rpBH3Z2TDWwm6DGdmwsKxKTQftRqWP2IU7YUsOpuoc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Fp/AJ9IZe6kTVf0hYStJA90PDVhCiHZZTteWj11dAi0N2KQe/bB2pW/XXzYTPTKZZSB2ki6RGkSOB01sInuPTMxND/lO7Sz0rcT4rRRl2QAmDQpn/g5MttfXTIQZKSnVpftdwI4YPzvpk/vBmboFdW5PuNCdBgnbKkZkXmqohV8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=U+kfXMFK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 418B3C4CEE7;
-	Wed, 22 Oct 2025 16:20:00 +0000 (UTC)
+	s=arc-20240116; t=1761150161; c=relaxed/simple;
+	bh=YCov4x0BqOSH2/C6y9Fgj+4zowfsuwuCXjatGY7QUkY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=FAEL/QIqT4VPYYIhxK0quI7zzBPB5Kd3MkezI/DSel9Vw8ySPlxuNlha1EshwWcj7VCBtPFWFLuiXXQei2D23WpAFdHcKEpEvWecIQgejdGjJtmWnv006Jde2HS5l038PrrCKnQav6E8H7TAH05UDkGbTIwsEdLnWpCVpa5mBKI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FGumm2YL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 76961C116D0
+	for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 16:22:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761150003;
-	bh=2rpBH3Z2TDWwm6DGdmwsKxKTQftRqWP2IU7YUsOpuoc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=U+kfXMFKK8LZZ+YN/R1gwlZwEoTsimkZLuPcLj4lk+116L1M8dQbubpiKfg9RYVq7
-	 ujZ3x6ZP648GC9NC41PgoFTuVqXf930e25kwAOOCEdtoipkFGYTIJzEXTIrGIMpK0d
-	 uwWdw/dGcpsQqZTLMvdbADYO73zKWECPWPQjseIIRLf0diiFPFuZI066BABR7wjzjZ
-	 4HhAYLDnXLcSH0dKv6yJgF5e9NYHU+3F//gQ5aAWUo2p49XOgvaiZReIkZBa1CkB/E
-	 5fqmsFJk7n5J0a1DoylBoXJonOBONJCvYGzlBLcaXfFpjwb1o8EmiZJioBmvKAUWWZ
-	 470oeIsJMVGaA==
-Date: Wed, 22 Oct 2025 18:19:57 +0200
-From: Nathan Chancellor <nathan@kernel.org>
-To: kernel test robot <lkp@intel.com>
-Cc: Jonathan Brophy <professorjonny98@gmail.com>,
-	lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>,
-	Jonathan Brophy <professor_jonny@hotmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Radoslav Tsvetkov <rtsvetkov@gradotech.eu>, llvm@lists.linux.dev,
-	oe-kbuild-all@lists.linux.dev, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org
-Subject: Re: [PATCH v3 4/4] leds: Add virtualcolor LED group driver
-Message-ID: <20251022161957.GA1228040@ax162>
-References: <20251019092331.49531-5-professorjonny98@gmail.com>
- <202510201144.TwTDnjSJ-lkp@intel.com>
+	s=k20201202; t=1761150160;
+	bh=YCov4x0BqOSH2/C6y9Fgj+4zowfsuwuCXjatGY7QUkY=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=FGumm2YLbqk2q5dVH7k9NbkHOlkzGKQ9m+2ARM6o5gptaxrA5N/6nKstvNDdTijmx
+	 XiZNNNo4BgrifPtpiZ98sumxspcln0bWzs5M/7nrJNf3zYclXeYtHjR64wb16zB7nc
+	 sEGHmfnI/GE6OqhqwFFCT/2sTUnTSxCh1SuaVzLCrGSqRataQf7UjPYfhu2QCHyU9R
+	 TK8t1f8W1xyvVJfBb2qFk/EczlY1D6aGQjHx87+qy2bhEKBm2JY6/b/+X93ktW7088
+	 CqUL5Y0YSg+AJ83T7D/vK6t2WCYRuacGg+Ga1HlI1oSJkhbT6EjC5AKwz//p1y1N6I
+	 2hkXFnWTinzZA==
+Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-b6d345d7ff7so158156066b.1
+        for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 09:22:40 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCU14LKUwZLHTkPzuNYsagriWt9SKGvw3FRSM0Ur/XpmOQuBuJaFjaNBE4MoDQByUokS0Fs5M6eLNRPZ@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywlq2RFUzXq0Y2OgjOdQcPJCkMLyGacEo0dcsgLTAbgmun2K9Bm
+	Ozb3KxRg65+wRRUxecATIKfvy1GUMOeqWix+LsYC/TP779UrpBwLHY5ANfDj1mO9wXM/jLQ9qmf
+	viYfrAJ8tOleQoqAeEKkLXOrvIQVsbg==
+X-Google-Smtp-Source: AGHT+IGphdHfOqtuSMrfZHHKoMtu86beDx79AwnS5WmHT0uStu32DJJ/Ln6QYAVqoGfNCp7zAA/jO70wft27b2yZyjA=
+X-Received: by 2002:a17:907:845:b0:b2a:47c9:8ff5 with SMTP id
+ a640c23a62f3a-b6d2c71f62amr555812966b.10.1761150158929; Wed, 22 Oct 2025
+ 09:22:38 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <202510201144.TwTDnjSJ-lkp@intel.com>
+References: <20251016-ethos-v5-0-ba0aece0a006@kernel.org> <20251016-ethos-v5-2-ba0aece0a006@kernel.org>
+ <aPHhXl6qdU1mMCNt@lstrano-desk.jf.intel.com> <20251017153746.GA1579747-robh@kernel.org>
+ <aPM3J2jZcct7ODIp@lstrano-desk.jf.intel.com> <aPNE5po45Umson5V@lstrano-desk.jf.intel.com>
+ <aPf+ZLJ2KIsz+lZx@lstrano-desk.jf.intel.com>
+In-Reply-To: <aPf+ZLJ2KIsz+lZx@lstrano-desk.jf.intel.com>
+From: Rob Herring <robh@kernel.org>
+Date: Wed, 22 Oct 2025 11:22:27 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqK+WUk-cs0ZgiQ-nEQTmdn=faCCnoPED2HnhKx0vJ=uCQ@mail.gmail.com>
+X-Gm-Features: AS18NWCRsuFSavTaQ2ZXGKmNF4KE6LZuGI0Wke6UF8bHIQFS03d1VhZlH-NVkSw
+Message-ID: <CAL_JsqK+WUk-cs0ZgiQ-nEQTmdn=faCCnoPED2HnhKx0vJ=uCQ@mail.gmail.com>
+Subject: Re: [PATCH v5 2/2] accel: Add Arm Ethos-U NPU driver
+To: Matthew Brost <matthew.brost@intel.com>
+Cc: Tomeu Vizoso <tomeu@tomeuvizoso.net>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Oded Gabbay <ogabbay@kernel.org>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Sumit Semwal <sumit.semwal@linaro.org>, =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+	Robin Murphy <robin.murphy@arm.com>, Steven Price <steven.price@arm.com>, 
+	Daniel Stone <daniel@fooishbar.org>, Frank Li <Frank.li@nxp.com>, 
+	Sui Jingfeng <sui.jingfeng@linux.dev>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+	linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Oct 20, 2025 at 11:29:28AM +0800, kernel test robot wrote:
-...
-> url:    https://github.com/intel-lab-lkp/linux/commits/Jonathan-Brophy/dt-bindings-Add-virtualcolor-class-dt-bindings-documentation/20251019-172647
-> base:   https://git.kernel.org/pub/scm/linux/kernel/git/lee/leds.git for-leds-next
-> patch link:    https://lore.kernel.org/r/20251019092331.49531-5-professorjonny98%40gmail.com
-> patch subject: [PATCH v3 4/4] leds: Add virtualcolor LED group driver
-> config: i386-randconfig-001-20251020 (https://download.01.org/0day-ci/archive/20251020/202510201144.TwTDnjSJ-lkp@intel.com/config)
-> compiler: clang version 20.1.8 (https://github.com/llvm/llvm-project 87f0227cb60147a26a1eeb4fb06e3b505e9c7261)
-> reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251020/202510201144.TwTDnjSJ-lkp@intel.com/reproduce)
-> 
-> If you fix the issue in a separate patch/commit (i.e. not just a new version of
-> the same patch/commit), kindly add following tags
-> | Reported-by: kernel test robot <lkp@intel.com>
-> | Closes: https://lore.kernel.org/oe-kbuild-all/202510201144.TwTDnjSJ-lkp@intel.com/
-> 
-> All warnings (new ones prefixed by >>):
-> 
-> >> drivers/leds/rgb/leds-group-virtualcolor.c:463:38: warning: cast from 'void (*)(struct mutex *)' to 'void (*)(void *)' converts to incompatible function type [-Wcast-function-type-strict]
->      463 |         ret = devm_add_action_or_reset(dev, (void (*)(void *))mutex_destroy,
->          |                                             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
->    include/linux/device/devres.h:166:34: note: expanded from macro 'devm_add_action_or_reset'
->      166 |         __devm_add_action_or_reset(dev, action, data, #action)
->          |                                         ^~~~~~
->    1 warning generated.
+On Tue, Oct 21, 2025 at 4:43=E2=80=AFPM Matthew Brost <matthew.brost@intel.=
+com> wrote:
+>
+> On Sat, Oct 18, 2025 at 12:42:30AM -0700, Matthew Brost wrote:
+> > On Fri, Oct 17, 2025 at 11:43:51PM -0700, Matthew Brost wrote:
+> > > On Fri, Oct 17, 2025 at 10:37:46AM -0500, Rob Herring wrote:
+> > > > On Thu, Oct 16, 2025 at 11:25:34PM -0700, Matthew Brost wrote:
+> > > > > On Thu, Oct 16, 2025 at 04:06:05PM -0500, Rob Herring (Arm) wrote=
+:
+> > > > > > Add a driver for Arm Ethos-U65/U85 NPUs. The Ethos-U NPU has a
+> > > > > > relatively simple interface with single command stream to descr=
+ibe
+> > > > > > buffers, operation settings, and network operations. It support=
+s up to 8
+> > > > > > memory regions (though no h/w bounds on a region). The Ethos NP=
+Us
+> > > > > > are designed to use an SRAM for scratch memory. Region 2 is res=
+erved
+> > > > > > for SRAM (like the downstream driver stack and compiler). Users=
+pace
+> > > > > > doesn't need access to the SRAM.
+> > > >
+> > > > Thanks for the review.
+> > > >
+> > > > [...]
+> > > >
+> > > > > > +static struct dma_fence *ethosu_job_run(struct drm_sched_job *=
+sched_job)
+> > > > > > +{
+> > > > > > +     struct ethosu_job *job =3D to_ethosu_job(sched_job);
+> > > > > > +     struct ethosu_device *dev =3D job->dev;
+> > > > > > +     struct dma_fence *fence =3D NULL;
+> > > > > > +     int ret;
+> > > > > > +
+> > > > > > +     if (unlikely(job->base.s_fence->finished.error))
+> > > > > > +             return NULL;
+> > > > > > +
+> > > > > > +     fence =3D ethosu_fence_create(dev);
+> > > > >
+> > > > > Another reclaim issue: ethosu_fence_create allocates memory using
+> > > > > GFP_KERNEL. Since we're already in the DMA fence signaling path
+> > > > > (reclaim), this can lead to a deadlock.
+> > > > >
+> > > > > Without too much thought, you likely want to move this allocation=
+ to
+> > > > > ethosu_job_do_push, but before taking dev->sched_lock or calling
+> > > > > drm_sched_job_arm.
+> > > > >
+> > > > > We really should fix the DRM scheduler work queue to be tainted w=
+ith
+> > > > > reclaim. If I recall correctly, we'd need to update the work queu=
+e
+> > > > > layer. Let me look into that=E2=80=94I've seen this type of bug s=
+everal times,
+> > > > > and lockdep should be able to catch it.
+> > > >
+> > > > Likely the rocket driver suffers from the same issues...
+> > > >
+> > >
+> > > I am not surprised by this statement.
+> > >
+> > > > >
+> > > > > > +     if (IS_ERR(fence))
+> > > > > > +             return fence;
+> > > > > > +
+> > > > > > +     if (job->done_fence)
+> > > > > > +             dma_fence_put(job->done_fence);
+> > > > > > +     job->done_fence =3D dma_fence_get(fence);
+> > > > > > +
+> > > > > > +     ret =3D pm_runtime_get_sync(dev->base.dev);
+> > > > >
+> > > > > I haven't looked at your PM design, but this generally looks quit=
+e
+> > > > > dangerous with respect to reclaim. For example, if your PM resume=
+ paths
+> > > > > allocate memory or take locks that allocate memory underneath, yo=
+u're
+> > > > > likely to run into issues.
+> > > > >
+> > > > > A better approach would be to attach a PM reference to your job u=
+pon
+> > > > > creation and release it upon job destruction. That would be safer=
+ and
+> > > > > save you headaches in the long run.
+> > > >
+> > > > Our PM is nothing more than clock enable/disable and register init.
+> > > >
+> > > > If the runtime PM API doesn't work and needs special driver wrapper=
+s,
+> > > > then I'm inclined to just not use it and manage clocks directly (as
+> > > > that's all it is doing).
+> > > >
+> > >
+> > > Yes, then you=E2=80=99re probably fine. More complex drivers can do a=
+ll sorts of
+> > > things during a PM wake, which is why PM wakes should generally be th=
+e
+> > > outermost layer. I still suggest, to future-proof your code, that you
+> > > move the PM reference to an outer layer.
+> > >
+> >
+> > Also, taking a PM reference in a function call =E2=80=94 as opposed to =
+tying it
+> > to a object's lifetime =E2=80=94 is risky. It can quickly lead to imbal=
+ances in
+> > PM references if things go sideways or function calls become unbalanced=
+.
+> > Depending on how your driver uses the DRM scheduler, this seems like a
+> > real possibility.
+> >
+> > Matt
+> >
+> > > > >
+> > > > > This is what we do in Xe [1] [2].
+> > > > >
+> > > > > Also, in general, this driver has been reviewed (RB=E2=80=99d), b=
+ut it's not
+> > > > > great that I spotted numerous issues within just five minutes. I =
+suggest
+> > > > > taking a step back and thoroughly evaluating everything this driv=
+er is
+> > > > > doing.
+> > > >
+> > > > Well, if it is hard to get simple drivers right, then it's a proble=
+m
+> > > > with the subsystem APIs IMO.
+> > > >
+> > >
+> > > Yes, agreed. We should have assertions and lockdep annotations in pla=
+ce
+> > > to catch driver-side misuses. This is the second driver I=E2=80=99ve =
+randomly
+> > > looked at over the past year that has broken DMA fencing and reclaim
+> > > rules. I=E2=80=99ll take an action item to fix this in the DRM schedu=
+ler, but
+> > > I=E2=80=99m afraid I=E2=80=99ll likely break multiple drivers in the =
+process as misuess
+> > > / lockdep will complain.
+>
+> I've posted a series [1] for the DRM scheduler which will complain about =
+the
+> things I've pointed out here.
 
-This should use a dedicated wrapper function like a patch that I just
-sent for the same issue in another driver [1] to avoid a kernel control
-flow integrity violation at run time with CONFIG_CFI=y.
+Thanks. I ran v6 with them and no lockdep splats.
 
-[1]: https://lore.kernel.org/20251022-ishtp-fix-function-cast-warn-v1-1-bfb06464f8ca@kernel.org/
-
-Cheers,
-Nathan
+Rob
 
