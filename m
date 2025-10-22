@@ -1,91 +1,104 @@
-Return-Path: <devicetree+bounces-229943-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229944-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 593DBBFDC10
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 20:02:52 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7ABB7BFDC76
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 20:11:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D31084F0DB1
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 18:02:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A7CD618848EB
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 18:11:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D92942D94A2;
-	Wed, 22 Oct 2025 18:02:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCB8E2EACF9;
+	Wed, 22 Oct 2025 18:11:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kRSQfzQb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o0RyvbQA"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD5CF2C15A3;
-	Wed, 22 Oct 2025 18:02:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2D5B2DC770;
+	Wed, 22 Oct 2025 18:11:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761156166; cv=none; b=CqVXU8zK7Jqstc0XcTvLLT7Wz4FY5YTw8JGmRi3WnWwc56/25uYlTf8ZbjKVOjpKi2U27LiCN6e+YN2t2HJSQgyHYRpBTvjKUwtvcE/nj1zZ9yJ41jqlWlJyx+CEj1JKesdGcYI5s027IoBn0+xlQenbkU4Q0lOZ/dOj9ZRp6DU=
+	t=1761156681; cv=none; b=F+pgqUPJyIOjhgNRXjYNL+CVymUammFUh48d0VYeWRM3m8GMlQIlg5WOU6kmX8+XgTvRsbmCQSFWaLndJUeRL+DN1qdy8fvnxpGxMr9J9eF/VwOK2sMSjoTyaxbQPEIoFEs7ZtvRA5cBv/a7drggg+PDm8vCMmJz9nOifc04QZ8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761156166; c=relaxed/simple;
-	bh=t6re2ND5xvyQd8HtMTpq3kkOWyOG9TYuAIaDpEvjOQg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Jv7c0aWb2I1ZVkRd5UIXfdC/tJLKDmMlcRedXsH+kC0CA8Wz5au+37UWB1PEDHzvOmRWzdvPKZzfN8x5AEQ3b2q5h++8OT4dAn317EzsYWqBXqdTAgkDgvnbV3nqnV5IjOVknepFovvxUO8Xul5x2A/fVtxb136gCQMKw/NzE3w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kRSQfzQb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AD82FC4CEF7;
-	Wed, 22 Oct 2025 18:02:44 +0000 (UTC)
+	s=arc-20240116; t=1761156681; c=relaxed/simple;
+	bh=Kg9bj8dltL2quBuLo0LPL/S1RrUO7siegCEIv0GXcug=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=NONcuKJrkKdpJ700W6SG77arpK/vlEhpFA8V7LT5efYQM/jaH6s4BR5JE6eGe4nG+AiRR9tRDaTU6o9cgSIosUhXK61ihPsiLdVHcCuVjGbx5jR4ZF70kDcyHXLayc6E3CdmJ5+Fo7S98kGlJ9SJvfC6gB8QwxdInh5aeAr3VK0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o0RyvbQA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B79BAC4CEE7;
+	Wed, 22 Oct 2025 18:11:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761156166;
-	bh=t6re2ND5xvyQd8HtMTpq3kkOWyOG9TYuAIaDpEvjOQg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=kRSQfzQbRzHGOr8/Ez2kbRgscly43BftApw4dJ0BsLb/ejI+ra7B+xvXDMQd9ooBQ
-	 mgBsOUDV0WE2xW3CaUxonL67Jx6apEW6UoGmo3JRnQ5ZVZJ3sRmyoKJ7MEkMxjNOXB
-	 6Uc3YJlCVF6BsqEDJjG8W6kLcvbJh/kTOni6dejWT/xUSCjfvT5Y6l9YfeP0q3XKt9
-	 xSMfJ2af8HZ+Xj8h5fwCfnOdVmVemPNUyGZI9OADlRQcc3KO33F/VArTf6wQ4ylIB7
-	 JhCW/pSQGesJabSaDj5R3tPikBonHjcC8dMcd/x8mGPpp38AA5uKdr6RQLvUgvCoot
-	 lLpth379YZ2HQ==
-Date: Wed, 22 Oct 2025 19:02:42 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Antoniu Miclaus <antoniu.miclaus@analog.com>
-Cc: jic23@kernel.org, robh@kernel.org, conor+dt@kernel.org,
-	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH 0/6] iio: adc: ad4080: add support for AD4083, AD4086,
- and AD4087
-Message-ID: <20251022-humility-deplored-6b57f6a003de@spud>
-References: <20251021105349.21145-1-antoniu.miclaus@analog.com>
+	s=k20201202; t=1761156680;
+	bh=Kg9bj8dltL2quBuLo0LPL/S1RrUO7siegCEIv0GXcug=;
+	h=From:To:Cc:Subject:Date:From;
+	b=o0RyvbQAxoWtf5oGwZ8PFX9BSQD24HyxEmWY/+BjO5hY7RuGcxomGptJkg3DNAh1K
+	 8F3CJ6PHtb/9zJM7EahXJkUuQW1KIY4K8DHgqlZ4Lai3ZHZUBrLLGd9oZ27Y1COAXH
+	 RpNEfMs1pY+X/F66smwstsc6ZswcgO7mHdksbtGD04JzJAUiN5omvsC91wWn49iOdS
+	 b+Im5UWXHeCOFJy5vOer1fdnDaq4Uezh7ZnciDtuyFAZiKS2Q4/xTt1WYACMWFgAXN
+	 B+qN+amNvwvjjoG7pNVbbvsBn3TPMfMjmMXUfBfRmQ8MP+cfxAtP8OL+KtlZx8P8D2
+	 GkZNWW00Fflgg==
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>,
+	Tom Lendacky <thomas.lendacky@amd.com>
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: arm: Add missing AMD Seattle SoC platforms
+Date: Wed, 22 Oct 2025 13:11:11 -0500
+Message-ID: <20251022181112.4147188-1-robh@kernel.org>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="ycL1A/d2LH3RopiF"
-Content-Disposition: inline
-In-Reply-To: <20251021105349.21145-1-antoniu.miclaus@analog.com>
+Content-Transfer-Encoding: 8bit
 
+AMD Seattle SoC has been in use for some time, but the root compatibles
+have not been documented. Add them.
 
---ycL1A/d2LH3RopiF
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+---
+ .../devicetree/bindings/arm/amd,seattle.yaml  | 24 +++++++++++++++++++
+ 1 file changed, 24 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/arm/amd,seattle.yaml
 
-On Tue, Oct 21, 2025 at 10:53:42AM +0000, Antoniu Miclaus wrote:
+diff --git a/Documentation/devicetree/bindings/arm/amd,seattle.yaml b/Documentation/devicetree/bindings/arm/amd,seattle.yaml
+new file mode 100644
+index 000000000000..7a3fc05b19eb
+--- /dev/null
++++ b/Documentation/devicetree/bindings/arm/amd,seattle.yaml
+@@ -0,0 +1,24 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/arm/amd,seattle.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: AMD Seattle SoC Platforms
++
++maintainers:
++  - Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>
++  - Tom Lendacky <thomas.lendacky@amd.com>
++
++properties:
++  $nodename:
++    const: "/"
++  compatible:
++    oneOf:
++      - description: Boards with AMD Seattle SoC
++        items:
++          - const: amd,seattle-overdrive
++          - const: amd,seattle
++
++additionalProperties: true
++...
+-- 
+2.51.0
 
->   dt-bindings: iio: adc: adi,ad4080: add support for AD4083
->   dt-bindings: iio: adc: adi,ad4080: add support for AD4086
->   dt-bindings: iio: adc: adi,ad4080: add support for AD4087
-
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-
-
---ycL1A/d2LH3RopiF
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaPkcQgAKCRB4tDGHoIJi
-0koeAQCoXdpuPKX9OLkK1soR9DBnPA6rXtb4J6ikRHT+2EpyCwEA9sRs2WP+Bl08
-wzvW9xfY1cYsnP3naSW+Wvco9RH+KwY=
-=0fYs
------END PGP SIGNATURE-----
-
---ycL1A/d2LH3RopiF--
 
