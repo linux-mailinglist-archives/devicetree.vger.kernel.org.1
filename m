@@ -1,142 +1,131 @@
-Return-Path: <devicetree+bounces-229614-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229615-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1CB0BFA448
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 08:39:41 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4CF83BFA46F
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 08:43:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BF08358411E
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 06:39:29 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 1E8394EC685
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 06:43:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D43942EFDB5;
-	Wed, 22 Oct 2025 06:39:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7437425784B;
+	Wed, 22 Oct 2025 06:43:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tA5kH5d8"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="eplp/Jif"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 852102EC569;
-	Wed, 22 Oct 2025 06:39:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C5CF224AEF;
+	Wed, 22 Oct 2025 06:43:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761115161; cv=none; b=YXDdiTzcav/houI2C/gX4QBvklcv2ZceMkZVG/BtPwPnn5iKioiECUITCDuJzD+sbYMav8vUb0WrmHecWCIGGSQwVHQZuE0aN2Ur90XlydXrda4lYnLP3tO/5QmhIDiwcrQxT6pIOqVWVE4tABuxwm5H/3WbQSyMDoPU8z00MeY=
+	t=1761115429; cv=none; b=rjh7IgTRqM/nlEYMzpfL2IhncQ0JR7SLHoe/iVFLHYHmfOMrCjqMQMdRFjj0CNyJdLAQOqkXLl4dtobrTjHaX0l4nld2rojIkVenHM/jToBBkpVV54XQeGDZnuxbg4Tr2ZCf1/b7i1rCJfCUT0vpL2nByP/oLG1KO+PVy7D2WDg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761115161; c=relaxed/simple;
-	bh=cjz+4FLk0fJPFbORna7dS+dCkdfSE0IQ1LJUuc7G8xY=;
+	s=arc-20240116; t=1761115429; c=relaxed/simple;
+	bh=MhzvnFVmPRiQtq/rW0RZfyHbgqu43fsyooR80W/iQqA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AFZx5VzRPtCdy/AJjZXYCUusL3W3m8V5IKblbv7YukXAXHNM1N43XhflAxk/Jby27l3CqF/ePyOvqustavmAL+FnxiW/MhEXxzX1yLy796HcOao8bpKI6uCjGlGVRvM26H5bHk+NZt3mWb5xdEQ7ArWYzBRMyMMR9/7VX3x5d/o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tA5kH5d8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ACB49C4CEE7;
-	Wed, 22 Oct 2025 06:39:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761115161;
-	bh=cjz+4FLk0fJPFbORna7dS+dCkdfSE0IQ1LJUuc7G8xY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=tA5kH5d8tnc4x0lWs6nncAVn4lcZFa6Ei/FUoLmKOibYiWV5QeEutr90QUpA9F0EC
-	 gEB7QE+Ll41XfqMiHtsehht+Jm3lk9mbkbWZgyO6JynnyklJQmCRNjue2qsqBofsw3
-	 2CL4Gb/NzJC7wKw+1o9yAKiV1enxChDt0U2J1YIE6ApiQWqPa9xM93ha/+KGp91+yJ
-	 1dL97UO/RrfOHbGzoWuZt9e3dGAG9KmB+bdsOy/lphn+j9PuPrsygutxdKxArro7h5
-	 bdd6NJDe4VCmQikvWUrFQJI2HZ4n6kwq0bgNVbydcOFC7HPMnpf8SZcWbfXiAgY65w
-	 1byX8U4PKuKtg==
-Date: Wed, 22 Oct 2025 08:39:18 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: =?utf-8?B?QW5kcsOp?= Draszik <andre.draszik@linaro.org>
-Cc: Alim Akhtar <alim.akhtar@samsung.com>, Rob Herring <robh@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Ulf Hansson <ulf.hansson@linaro.org>, Marek Szyprowski <m.szyprowski@samsung.com>, 
-	Peter Griffin <peter.griffin@linaro.org>, Tudor Ambarus <tudor.ambarus@linaro.org>, 
-	Will McVicker <willmcvicker@google.com>, kernel-team@android.com, linux-arm-kernel@lists.infradead.org, 
-	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-pm@vger.kernel.org
-Subject: Re: [PATCH v3 03/10] dt-bindings: soc: samsung: gs101-pmu: allow
- power domains as children
-Message-ID: <20251022-uncovered-soft-uakari-4b52e3@kuoka>
-References: <20251016-gs101-pd-v3-0-7b30797396e7@linaro.org>
- <20251016-gs101-pd-v3-3-7b30797396e7@linaro.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=luwqT1ztIQJsNsyTeYghKYGsVNAHI8hjOeMESNWRrKyS3IQGoAPayAfUqHwUL/I3K63rE9A2ZDVI2Ay0z94TE9/WRHvAcwYoXjzsoirpS2Q8cUJ0pPfpjoJvGO1yVqj5HLMIS9GMXI2glsBtMuh6rJViKls5HyGVs+E1c3bzAuE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=eplp/Jif; arc=none smtp.client-ip=192.198.163.8
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1761115427; x=1792651427;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=MhzvnFVmPRiQtq/rW0RZfyHbgqu43fsyooR80W/iQqA=;
+  b=eplp/JifYgcY0SRmC8toAML55CQ01ipU3FhIh0kcsWJoYZhp5WNqQYdN
+   mk20iMA2+B2/sWcL6DaaPEOvJjPNmt/jMxSna5tW5XIy9rgU8/babHzTK
+   0Cil7ZyXeJM8h8SaLoCFoLnjSZ9BOdOE2EUD3MC911AGwTuvNxNJk7FGz
+   SWC5+C1n2EI/0/V09jSL4XvjalVBOndf0auZYJVVBxp3ewu6NJJ9fMh+n
+   Km2Epotk4SCpfdIokx4oZ5/xIS/W8WFjn7VBJeBAPhywdgROBAW4YfJzK
+   XrY8Y2JfMS+CxjGd0AiAoeUiuNwWAm5vFSzo8N1FGw9lv2phEQZ5d7OJc
+   w==;
+X-CSE-ConnectionGUID: txFWC6gnTLqda7i/dThukg==
+X-CSE-MsgGUID: q649Jod2TSeQhyWeD5ORmQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="80877816"
+X-IronPort-AV: E=Sophos;i="6.19,246,1754982000"; 
+   d="scan'208";a="80877816"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Oct 2025 23:43:46 -0700
+X-CSE-ConnectionGUID: UJ+WENF2QCWznUc8A/NHoQ==
+X-CSE-MsgGUID: aSUB8PRTQgGdyezSV5jx3Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,246,1754982000"; 
+   d="scan'208";a="182957991"
+Received: from egrumbac-mobl6.ger.corp.intel.com (HELO kekkonen.fi.intel.com) ([10.245.244.28])
+  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Oct 2025 23:43:44 -0700
+Received: from kekkonen.localdomain (localhost [IPv6:::1])
+	by kekkonen.fi.intel.com (Postfix) with ESMTP id 8222311F87B;
+	Wed, 22 Oct 2025 09:43:40 +0300 (EEST)
+Date: Wed, 22 Oct 2025 09:43:40 +0300
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6 krs, Bertel Jungin Aukio 5, 02600 Espoo
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+To: =?iso-8859-1?Q?Andr=E9?= Apitzsch <git@apitzsch.eu>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	Daniel Scally <djrscally@gmail.com>,
+	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+	linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Val Packett <val@packett.cool>
+Subject: Re: [PATCH v2 0/8] media: i2c: dw9719: add DT compatible and DW9718S
+ support
+Message-ID: <aPh9HDN-z4VsNz5_@kekkonen.localdomain>
+References: <20250920-dw9719-v2-0-028cdaa156e5@apitzsch.eu>
+ <790fd7d05fa03f788f0a628a99b2e127db824207.camel@apitzsch.eu>
+ <750398e8-1781-47be-bccd-e2679a58d449@kernel.org>
+ <aPc2PoGa8mTx7KT1@kekkonen.localdomain>
+ <2232bf5e29f04b3af7ceb5f5d2a9edda295691f9.camel@apitzsch.eu>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20251016-gs101-pd-v3-3-7b30797396e7@linaro.org>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <2232bf5e29f04b3af7ceb5f5d2a9edda295691f9.camel@apitzsch.eu>
 
-On Thu, Oct 16, 2025 at 04:58:36PM +0100, Andr=C3=A9 Draszik wrote:
-> The power domains are a property of / implemented in the PMU. As such,
-> they should be modelled as child nodes of the PMU.
->=20
-> Signed-off-by: Andr=C3=A9 Draszik <andre.draszik@linaro.org>
->=20
-> ---
-> Note: Ideally, the newly added properties (ranges, etc.) should only be
-> 'required' if "^power-domain@[0-9a-f]+$" exists as a patternProperty,
-> as they're needed only in that case. As-is, this patch now causes
-> warnings for existing DTs as they don't specify the new properties (and
-> they shouldn't need to). Only if DTs are updated to include
-> power-domains, such an update should also add the new properties.
->=20
-> I've not been able to come up with the correct schema syntax to achieve
-> that. dependencies, dependentRequired, and dependentSchemas don't seem
-> to support patterns. Similarly,
->   - if:
->       required:
->         - ...
->     then:
->       required:
->         - ...
->=20
-> doesn't allow patterns in the 'if' block (or I didn't get the syntax
-> right).
->=20
-> Rob said in
-> https://lore.kernel.org/all/20251010141357.GA219719-robh@kernel.org/
-> that this is a known limitation in json-schema.
-> ---
->  .../bindings/soc/google/google,gs101-pmu.yaml      | 40 ++++++++++++++++=
-++++++
->  1 file changed, 40 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/soc/google/google,gs101-pm=
-u.yaml b/Documentation/devicetree/bindings/soc/google/google,gs101-pmu.yaml
-> index f7119e7a39a3fe0a0a23d1faa251d356f83ba501..a24390f6d2a54afe1aa84935e=
-03f719a62f4fc8e 100644
-> --- a/Documentation/devicetree/bindings/soc/google/google,gs101-pmu.yaml
-> +++ b/Documentation/devicetree/bindings/soc/google/google,gs101-pmu.yaml
-> @@ -26,6 +26,14 @@ properties:
->    reg:
->      maxItems: 1
-> =20
-> +  '#address-cells':
-> +    const: 1
-> +
-> +  '#size-cells':
-> +    const: 1
-> +
-> +  ranges: true
-> +
->    reboot-mode:
->      $ref: /schemas/power/reset/syscon-reboot-mode.yaml
->      type: object
-> @@ -49,9 +57,23 @@ properties:
->      description:
->        Phandle to PMU interrupt generation interface.
-> =20
-> +patternProperties:
-> +  "^power-domain@[0-9a-f]+$":
+On Tue, Oct 21, 2025 at 10:08:06PM +0200, André Apitzsch wrote:
+> Hi Sakari,
+> 
+> Am Dienstag, dem 21.10.2025 um 10:29 +0300 schrieb Sakari Ailus:
+> > Hi Krzysztof, André,
+> > 
+> > On Mon, Oct 20, 2025 at 10:45:51PM +0200, Krzysztof Kozlowski wrote:
+> > > On 20/10/2025 22:40, André Apitzsch wrote:
+> > > > >  .../bindings/media/i2c/dongwoon,dw9719.yaml        |  88
+> > > > > +++++++++++++++++
+> > > > >  drivers/media/i2c/dw9719.c                         | 110
+> > > > > +++++++++++++++++----
+> > > > >  2 files changed, 178 insertions(+), 20 deletions(-)
+> > > > > ---
+> > > > > base-commit: 846bd2225ec3cfa8be046655e02b9457ed41973e
+> > > > > change-id: 20250709-dw9719-8a8822efc1b1
+> > > > > 
+> > > > 
+> > > > Gentle ping.
+> > > 
+> > > Please apply the patch and run checkpatch. Probably you received
+> > > checkpatch warnings from media patchwork, no?
+> > 
+> > I've fixed it this time while applying it.
+> 
+> Thanks.
+> 
+> It seems you forgot to add the R-b tag from Rob [1] while applying the
+> patch [2].
 
-Keep consistent quotes, ' or "
+Thanks, I've fixed that now. I guess I accidentally while removing the
+extra lines.
 
-The problem is that you mix children without and with unit address. I
-guess that's the limitation of syscon-xxx drivers because they could
-take the reg/unit-address, so it's fine.
-
-Best regards,
-Krzysztof
-
+-- 
+Sakari Ailus
 
