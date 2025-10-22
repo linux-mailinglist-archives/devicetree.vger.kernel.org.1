@@ -1,137 +1,301 @@
-Return-Path: <devicetree+bounces-229905-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229906-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5953BFD800
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 19:13:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 88567BFD806
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 19:14:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 8990F506F7A
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 17:03:35 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 91C2A564561
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 17:05:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25173272E63;
-	Wed, 22 Oct 2025 17:03:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40C85278E41;
+	Wed, 22 Oct 2025 17:05:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="r04J1A8a"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="KodlE0R1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f179.google.com (mail-oi1-f179.google.com [209.85.167.179])
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 641442638B2
-	for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 17:03:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0EE425E824
+	for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 17:05:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761152612; cv=none; b=i0zhavPSN7vEEoPnklEYZIeJC1wEXJHet66AXNhVedotLqlD0m0bOY6vUoEmhzn14LMt2ApTX0xI9rDZhjYu1Mmhk4d3dfcoxUBAvkOMO/hCcO3Agowb3kb5kfUx0LflcOVuVaTKPzeGWMZB1ojyWtQi53dkwuDBZXxX0nHizg4=
+	t=1761152704; cv=none; b=H6eN46nwkuqnC2Hyi6I8iT1tPFy7k4lI5qLgBnvk9tYQVM5ViwwyTX6CKwvKlQwkS9zsxwR8SqNOaRGpT7hmiZb3o1j8/AZAb/830w9116x0K9EHLpXSGtKIH8iafFif5Gw5d739cRlBBwTdyObEYutKSUlcwrHHpQ8YJYGwmG8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761152612; c=relaxed/simple;
-	bh=R3kdlrw77LED+wsVg0L5dNH5LTE4fMRX/9gH9I9W4H4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=EQCfUilsF5xuuNnStiQ1p/UXyiHjhH417yiXmj8801Ra557KiejTI0Od/EdE6J54RDZKrO8L2BQLuAi9ruGhNN4cm8BbwCmkK1pFfNCQoeo2O34/KvxV4MDiVA51fpyrLvwIvE889DOo/ivJnWsu/GFBIgm4X7CvyyD+FD4hxZA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=r04J1A8a; arc=none smtp.client-ip=209.85.167.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oi1-f179.google.com with SMTP id 5614622812f47-443ac88ff96so1427263b6e.2
-        for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 10:03:30 -0700 (PDT)
+	s=arc-20240116; t=1761152704; c=relaxed/simple;
+	bh=EgunH31eTnsVb/QLiEMMM1PyLJAVFDnbYWNUJS4Vl30=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=sJqJg/Sm1sUJaWmXFBL7FqF6VKP3I2tpt8JwyAvq8dLARDYzgAT1bd1rmyqBEXJESEjwsyKjYw8wEcPx4YMx/TjOx5XfS5nxS4kMrCLEWN2YoDqt1qgAHR0rQPSaLJ2LvTRNg7dHah0+QtggvtJrW/Ikemkm+Zxnh+T/6EFwyB0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=KodlE0R1; arc=none smtp.client-ip=209.85.128.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-47112edf9f7so34967425e9.0
+        for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 10:05:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1761152609; x=1761757409; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=XwfGThHvmVcSe5ARp0+SHwJ01qbi5m3iOi3dL9nhqHg=;
-        b=r04J1A8a59Xj7rlpvS+L3pPlkxMNFUB/C4Y0Xc1vO/7KO1Nc2T8PvX06A8nw/iCSCN
-         7Be32PV3OQF7BuiY+/fyQ1OgJbnULv2jxiwwGXMrs42V7w81PoQRv09Kwf52OfMpY4WR
-         OD2Sl3ymaVWRVdaweDUZlS5Jf0iGlzY/c8Y8+zqkErGM1B7BmExHxU05ksBxSpoxAtYO
-         0p5/nMtWw+KZlESuj7iEuB237O85aYPRTL7LvPIMgasXsGhQKTCtvzpFtrzb1oS3SARQ
-         +tsuTFlZvRAPgCblis60Obgn93Bt2quDdUqqF56r+okZhfLVfktmb77yYhrMPKKp3Tu1
-         uswg==
+        d=linaro.org; s=google; t=1761152699; x=1761757499; darn=vger.kernel.org;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=32wWVCnxfPxXwYEHrPhplOIt/hFbj1bnM86HXOsRbI0=;
+        b=KodlE0R1GQA9GEWGXTHyqDj9gLNV4yOVhDFiSFIqRGP61Ly1OBmp6THR4N9DTXfNZb
+         0XIrPAaBaYGs1hIS/KF2RiAQ/Pzx/YW4n+bECj2aERB/icOn1HMHpY7mi6XybgwTS2Br
+         qUQAgpK7KgkqKi1aojPfd9CuaS376aCNURdbmSU4ysueh37Axjn7wpdUHu4d9r6lbWhn
+         qlL8JmRHbDxeAGMBLSJUw/TQtXEpkGMsqVqO2R9jgFAt3Nwa0Y7DORmPao4c5zV7LdL5
+         1rKCEV514oz2lVEXb58JWqOQaJaPtY0UuVHSrV+zJz92D2cTHUlrKhVmkqu8XURdxsi9
+         BRpA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761152609; x=1761757409;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=XwfGThHvmVcSe5ARp0+SHwJ01qbi5m3iOi3dL9nhqHg=;
-        b=mNpnpZT1qYog9P9WUuxDjlfFylBUs8IxueM+YRyxUuHRhVjeWd61NTvZASgX6zaEES
-         wmXXuTTEp8BDWUNmZUf2w/bNLImv1iG/5oqpoGXiefH2MT2B6BHUajTzPQZ1/diWtHHu
-         /C7IhcJg+bFayBKiNwWAMt26rtSeD5b07kFZdxzYukEa3wgD3LBqpMbRZTKmc+qgXhl8
-         5Eyy/4bLwJshrUHHGf5FAhCCf6ymPV7IceI8KLiFAvxOU7HK080gqNaNthCS9pcpOmXs
-         auuxOCLrH5Th4Vfuwj2Ua6bElm/IYwcc7ANhJcw0ukRjSnPR4RT/gUtB4SWZkUwoVGWa
-         Z9fw==
-X-Forwarded-Encrypted: i=1; AJvYcCWHtdfgG/8T9RlEOr2s6PrV85deeU3+k1DupHXi8AZnu/yBTWW5PqVocx01aThOV42JM9EB71mLAsMk@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywaeq7Eizv3Vk9xuDtOiHDhcktigX5qbiZP+Fho/r2ASBkFz11f
-	J22vCZ2WInTFFoDXVmv4LHGlfI8F3KxEZrbsJMwqLIyZboPVd0XjY4O1mbZOWN2h1zk=
-X-Gm-Gg: ASbGncstN6k+WEX/NQZoQgFR2diEGUsBEnBv5zqZwIlEK/VYI3+VrpPOd+6RDUs+IYl
-	3UyrwZ6q3Je7bhHLOlupoZFRGzSRd2sFWI/vrt/2NC2sl+mgb68WVprtQTMEYaO6mJT5Lz3CWce
-	tqYRx926VizaRdPkKSpe0AoFflaezlkrMQNyyijKMrUeHbclXKD2jcGMDQZiKPZCvMCzkBMRCbi
-	0LxgQS+Ct0qI+VSgqrJG0GMayb5zC75CHczMdpDbvnUKULxO5LPqjZlyPMvYxPnD4rXadf3/hGT
-	xK7sZkwToyq9mg5582FHazKf8PKUCMeZzC+d+k9OtJMQ45bsBeCBqMOHSpSrrIOHAhW+Yg2jlHG
-	5l4G9RAcTVuQRPa5BP5GinIkN8iYFtZVVMuLfY3+4LrcOU4EoGF29h3I4MvfeXQOEd/w1AaPfjF
-	YB1GN5sYvikpbNCJ3iH06be+8ck0XJTJBL2hc5yXXcf7Ui/Whs4WBIwpe4p0WS
-X-Google-Smtp-Source: AGHT+IGYMQZ96Ni70MOY6AUaspj+zxS7uLkggZkCTrutX3cSI3hydzShXPRmiBmHi5D+RoDJHRlsOg==
-X-Received: by 2002:a05:6808:189c:b0:43f:5634:29ba with SMTP id 5614622812f47-443a2fb2c78mr9828633b6e.35.1761152609165;
-        Wed, 22 Oct 2025 10:03:29 -0700 (PDT)
-Received: from ?IPV6:2600:8803:e7e4:500:4176:6994:bd72:1296? ([2600:8803:e7e4:500:4176:6994:bd72:1296])
-        by smtp.gmail.com with ESMTPSA id 006d021491bc7-65368f34be1sm318640eaf.17.2025.10.22.10.03.28
+        d=1e100.net; s=20230601; t=1761152699; x=1761757499;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=32wWVCnxfPxXwYEHrPhplOIt/hFbj1bnM86HXOsRbI0=;
+        b=AQ5u6JPiOORaCFlWt6Uhe3TgwEa9tC7Fh360ycoXNfsZtyj0W+odImKMn6Ov52sQJ+
+         60jxNIg+uVKJlBbj3rM99b5SAG9ElbHk4DO60mYSlDjdt/nQOuWg9HrvZ8jzxazLtLkB
+         udeq2lAUuzxBSPGKL93xs1Vh2VyS0xT3bgba2QOTnXYfwg+VUa+IHIVtLk6P8z1XZNl4
+         xdAg0PSfHAYXaqyqSITYqnyDPVVFzZAXUUx3Ni+96v/OKgJ0t4+1v1BIUUicO1xp/JMz
+         mhCTFuZkGcTpd+ybM2eywi6JjCBf03UHJuzgZlFPfvELcoOQ0eFRWducj6tvk1gF27m5
+         dGgw==
+X-Forwarded-Encrypted: i=1; AJvYcCW1OFyVf6oUhdyw7+kfNqvlEFh7gbuYp7AL+75x45Ih4pi4PP92dxmslexeN9l/451tUWZJI9R7DQFs@vger.kernel.org
+X-Gm-Message-State: AOJu0YyK5jz0KF8mjWsdLNsRRFd8zHLSwKaTHAHzxeplwCF8p6vqWcLW
+	BVNU50OVEyu3RLOGw6YAnfhJM6zbmJLDOeri1Mb86iL56GsDQk7DzBPGjkDHPO8EytM=
+X-Gm-Gg: ASbGncuaPbYUZ237nyqfQBkMLwsms1CE3Nly3KXiU9uRo86pAy2q5zQWvbQZntJ41q8
+	+8EQJGgttsmKhGdvZIUQP8WidjgKStnCkde9k8iR8C+VuBIucmfD3eH2jgjbHYzswvL78J4vo/K
+	NfGetIVg8bsn4d4NG9fMPcBUrbRhWzWbCvc0c9wWYo0fJIsmGEbg5deB0Fmq9VPRtpiImZi+Xnq
+	RgxAEzZvB6VMlai6x7uMa2iant9KgJtXwy+K78PNIk+6Iyws9JxknNSlX5iwmd+bAgreUb2xxj1
+	kuKu016YNTx4IhhhcjMf1Czn27mPexGtfKhsH3dxn2qsLGjLzvXJyPLwgC7cavpi3stVsBbeoa/
+	oRmOXWMOvafMys96bISymgrJsR66b7P6VsTZa8pgtdSmoesITOsrzIHZf+UXACx7Qoz+smITm3F
+	1XAYO0
+X-Google-Smtp-Source: AGHT+IFmj2XqRZSV8uq6JK5/wuWcy7s7skNAC2uPqQiciaWffxUPCp6My9UDZBTNxMujaGi4I4wsdg==
+X-Received: by 2002:a05:600c:3554:b0:456:1a69:94fa with SMTP id 5b1f17b1804b1-4711789e374mr126327145e9.13.1761152698935;
+        Wed, 22 Oct 2025 10:04:58 -0700 (PDT)
+Received: from localhost ([2a02:c7c:7259:a00:11f4:2b3f:7c5a:5c10])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-428567cd83csm3271205f8f.14.2025.10.22.10.04.58
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Oct 2025 10:03:28 -0700 (PDT)
-Message-ID: <0e00bb14-19c7-493a-9629-354bac3a273e@baylibre.com>
-Date: Wed, 22 Oct 2025 12:03:27 -0500
+        Wed, 22 Oct 2025 10:04:58 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/1] dt-bindings: iio: pressure: Remove vdd-supply and
- vddio-supply from required list
-To: Frank Li <Frank.Li@nxp.com>, Jonathan Cameron <jic23@kernel.org>,
- =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
- Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Antoni Pokusinski <apokusinski01@gmail.com>,
- Vasileios Amoiridis <vassilisamir@gmail.com>,
- Justin Weiss <justin@justinweiss.com>,
- "open list:IIO SUBSYSTEM AND DRIVERS" <linux-iio@vger.kernel.org>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
-Cc: imx@lists.linux.dev
-References: <20251022164154.2994517-1-Frank.Li@nxp.com>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <20251022164154.2994517-1-Frank.Li@nxp.com>
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Date: Wed, 22 Oct 2025 18:04:57 +0100
+Message-Id: <DDP0J063IX84.2MC5D16VHRFVR@linaro.org>
+Cc: <linux-sound@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>, "Sibi Sankar"
+ <sibi.sankar@oss.qualcomm.com>
+Subject: Re: [PATCH RFC 3/3] arm64: dts: qcom: x1e80100-dell-xps13-9345: Add
+ Left/Right Speakers and Tweeter
+From: "Alexey Klimov" <alexey.klimov@linaro.org>
+To: "Abel Vesa" <abel.vesa@linaro.org>, "Srinivas Kandagatla"
+ <srini@kernel.org>, "Liam Girdwood" <lgirdwood@gmail.com>, "Mark Brown"
+ <broonie@kernel.org>, "Rob Herring" <robh@kernel.org>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
+ "Jaroslav Kysela" <perex@perex.cz>, "Takashi Iwai" <tiwai@suse.com>, "Bjorn
+ Andersson" <andersson@kernel.org>, "Konrad Dybcio" <konradybcio@kernel.org>
+X-Mailer: aerc 0.20.0
+References: <20251021-dell-xps13-9345-enable-audio-v1-0-6f3f6bbd977b@linaro.org> <20251021-dell-xps13-9345-enable-audio-v1-3-6f3f6bbd977b@linaro.org>
+In-Reply-To: <20251021-dell-xps13-9345-enable-audio-v1-3-6f3f6bbd977b@linaro.org>
 
-On 10/22/25 11:41 AM, Frank Li wrote:
-> Some board designs connect vdd and vddio to the system power supply. Remove
-> these properties from the required list and make them optional, since
-> drivers/iio/pressure/mpl3115.c does not use them.
-> 
-> Fix below CHECK_DTBS warnings:
-> arch/arm64/boot/dts/freescale/imx8qm-mek.dtb: pressure-sensor@60 (fsl,mpl3115): 'vdd-supply' is a required property
->         from schema $id: http://devicetree.org/schemas/iio/pressure/fsl,mpl3115.yaml#
-> 
-
-Why not just add the required properties to the .dts file?
-
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+On Tue Oct 21, 2025 at 2:50 PM BST, Abel Vesa wrote:
+> From: Sibi Sankar <sibi.sankar@oss.qualcomm.com>
+>
+> Enable left and right speakers/tweeters on the X1E80100 Dell XPS13 9345.
+>
+> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
 > ---
->  Documentation/devicetree/bindings/iio/pressure/fsl,mpl3115.yaml | 2 --
->  1 file changed, 2 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/pressure/fsl,mpl3115.yaml b/Documentation/devicetree/bindings/iio/pressure/fsl,mpl3115.yaml
-> index 2933c2e10695e..04703a01cf7af 100644
-> --- a/Documentation/devicetree/bindings/iio/pressure/fsl,mpl3115.yaml
-> +++ b/Documentation/devicetree/bindings/iio/pressure/fsl,mpl3115.yaml
-> @@ -47,8 +47,6 @@ properties:
->  required:
->    - compatible
->    - reg
-> -  - vdd-supply
-> -  - vddio-supply
->  
->  additionalProperties: false
->  
+>  .../boot/dts/qcom/x1e80100-dell-xps13-9345.dts     | 139 +++++++++++++++=
+++++++
+>  1 file changed, 139 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/x1e80100-dell-xps13-9345.dts b/arch=
+/arm64/boot/dts/qcom/x1e80100-dell-xps13-9345.dts
+> index 58f8caaa7258077d2c267048ca048279109ddb71..a05dfe2c51364b3ec04963590=
+d9b02b9fda9f336 100644
+> --- a/arch/arm64/boot/dts/qcom/x1e80100-dell-xps13-9345.dts
+> +++ b/arch/arm64/boot/dts/qcom/x1e80100-dell-xps13-9345.dts
+> @@ -151,6 +151,50 @@ linux,cma {
+>  		};
+>  	};
+> =20
+> +	sound {
+> +		compatible =3D "dell,xps13-9345-sndcard";
+> +		model =3D "X1E80100-Dell-XPS-13-9345";
+> +		audio-routing =3D "WooferLeft IN", "WSA WSA_SPK1 OUT",
+> +				"TweeterLeft IN", "WSA WSA_SPK2 OUT",
+> +				"WooferRight IN", "WSA2 WSA_SPK1 OUT",
+> +				"TweeterRight IN", "WSA2 WSA_SPK2 OUT";
+> +
+> +		wsa-dai-link {
+> +			link-name =3D "WSA Playback";
+> +
+> +			cpu {
+> +				sound-dai =3D <&q6apmbedai WSA_CODEC_DMA_RX_0>;
+> +			};
+> +
+> +			codec {
+> +				sound-dai =3D <&left_woofer>, <&left_tweeter>,
+> +					    <&swr0 0>, <&lpass_wsamacro 0>,
+> +					    <&right_woofer>, <&right_tweeter>,
+> +					    <&swr3 0>, <&lpass_wsa2macro 0>;
+> +			};
+> +
+> +			platform {
+> +				sound-dai =3D <&q6apm>;
+> +			};
+> +		};
+> +
+> +		va-dai-link {
+> +			link-name =3D "VA Capture";
+> +
+> +			cpu {
+> +				sound-dai =3D <&q6apmbedai VA_CODEC_DMA_TX_0>;
+> +			};
+> +
+> +			codec {
+> +				sound-dai =3D <&lpass_vamacro 0>;
+> +			};
+> +
+> +			platform {
+> +				sound-dai =3D <&q6apm>;
+> +			};
+> +		};
+> +	};
+> +
+>  	vreg_edp_3p3: regulator-edp-3p3 {
+>  		compatible =3D "regulator-fixed";
+> =20
+> @@ -415,6 +459,13 @@ vreg_bob2: bob2 {
+>  			regulator-initial-mode =3D <RPMH_REGULATOR_MODE_HPM>;
+>  		};
+> =20
+> +		vreg_l1b_1p8: ldo1 {
+> +			regulator-name =3D "vreg_l1b_1p8";
+> +			regulator-min-microvolt =3D <1800000>;
+> +			regulator-max-microvolt =3D <1800000>;
+> +			regulator-initial-mode =3D <RPMH_REGULATOR_MODE_HPM>;
+> +		};
+> +
+>  		vreg_l2b_3p0: ldo2 {
+>  			regulator-name =3D "vreg_l2b_3p0";
+>  			regulator-min-microvolt =3D <3072000>;
+> @@ -880,6 +931,32 @@ &iris {
+>  	status =3D "okay";
+>  };
+> =20
+> +&lpass_tlmm {
+> +	spkr_01_sd_n_active: spkr-01-sd-n-active-state {
+> +		pins =3D "gpio12";
+> +		function =3D "gpio";
+> +		drive-strength =3D <16>;
+> +		bias-disable;
+> +		output-low;
+> +	};
+> +
+> +	spkr_23_sd_n_active: spkr-23-sd-n-active-state {
+> +		pins =3D "gpio13";
+> +		function =3D "gpio";
+> +		drive-strength =3D <16>;
+> +		bias-disable;
+> +		output-low;
+> +	};
+> +};
+
+Recently it was adviced to remove output properties for gpio and
+non-gpio functions.
+For instance here: https://lore.kernel.org/linux-arm-msm/39ebaf4e-e91f-4568=
+-8de6-9fc1f805a1e4@oss.qualcomm.com/
+
+These output-low should be removed.
+
+After that:
+
+Reviewed-by: Alexey Klimov <alexey.klimov@linaro.org>
+
+
+> +&lpass_vamacro {
+> +	pinctrl-0 =3D <&dmic01_default>, <&dmic23_default>;
+> +	pinctrl-names =3D "default";
+> +
+> +	vdd-micb-supply =3D <&vreg_l1b_1p8>;
+> +	qcom,dmic-sample-rate =3D <4800000>;
+> +};
+> +
+>  &mdss {
+>  	status =3D "okay";
+>  };
+> @@ -1067,6 +1144,68 @@ &smb2360_1_eusb2_repeater {
+>  	vdd3-supply =3D <&vreg_l14b_3p0>;
+>  };
+> =20
+> +&swr0 {
+> +	status =3D "okay";
+> +
+> +	pinctrl-0 =3D <&wsa_swr_active>, <&spkr_01_sd_n_active>;
+> +	pinctrl-names =3D "default";
+> +
+> +	/* WSA8845, Left Woofer */
+> +	left_woofer: speaker@0,0 {
+> +		compatible =3D "sdw20217020400";
+> +		reg =3D <0 0>;
+> +		reset-gpios =3D <&lpass_tlmm 12 GPIO_ACTIVE_LOW>;
+> +		#sound-dai-cells =3D <0>;
+> +		sound-name-prefix =3D "WooferLeft";
+> +		vdd-1p8-supply =3D <&vreg_l15b_1p8>;
+> +		vdd-io-supply =3D <&vreg_l12b_1p2>;
+> +		qcom,port-mapping =3D <1 2 3 7 10 13>;
+> +	};
+> +
+> +	/* WSA8845, Left Tweeter */
+> +	left_tweeter: speaker@0,1 {
+> +		compatible =3D "sdw20217020400";
+> +		reg =3D <0 1>;
+> +		reset-gpios =3D <&lpass_tlmm 12 GPIO_ACTIVE_LOW>;
+> +		#sound-dai-cells =3D <0>;
+> +		sound-name-prefix =3D "TweeterLeft";
+> +		vdd-1p8-supply =3D <&vreg_l15b_1p8>;
+> +		vdd-io-supply =3D <&vreg_l12b_1p2>;
+> +		qcom,port-mapping =3D <4 5 6 7 11 13>;
+> +	};
+> +};
+> +
+> +&swr3 {
+> +	status =3D "okay";
+> +
+> +	pinctrl-0 =3D <&wsa2_swr_active>, <&spkr_23_sd_n_active>;
+> +	pinctrl-names =3D "default";
+> +
+> +	/* WSA8845, Right Woofer */
+> +	right_woofer: speaker@0,0 {
+> +		compatible =3D "sdw20217020400";
+> +		reg =3D <0 0>;
+> +		reset-gpios =3D <&lpass_tlmm 13 GPIO_ACTIVE_LOW>;
+> +		#sound-dai-cells =3D <0>;
+> +		sound-name-prefix =3D "WooferRight";
+> +		vdd-1p8-supply =3D <&vreg_l15b_1p8>;
+> +		vdd-io-supply =3D <&vreg_l12b_1p2>;
+> +		qcom,port-mapping =3D <1 2 3 7 10 13>;
+> +	};
+> +
+> +	/* WSA8845, Right Tweeter */
+> +	right_tweeter: speaker@0,1 {
+> +		compatible =3D "sdw20217020400";
+> +		reg =3D <0 1>;
+> +		reset-gpios =3D <&lpass_tlmm 13 GPIO_ACTIVE_LOW>;
+> +		#sound-dai-cells =3D <0>;
+> +		sound-name-prefix =3D "TweeterRight";
+> +		vdd-1p8-supply =3D <&vreg_l15b_1p8>;
+> +		vdd-io-supply =3D <&vreg_l12b_1p2>;
+> +		qcom,port-mapping =3D <4 5 6 7 11 13>;
+> +	};
+> +};
+> +
+>  &tlmm {
+>  	gpio-reserved-ranges =3D <44 4>,  /* SPI11 (TPM) */
+>  			       <76 4>,  /* SPI19 (TZ Protected) */
 
 
