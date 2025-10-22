@@ -1,257 +1,141 @@
-Return-Path: <devicetree+bounces-229856-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229858-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C394DBFCCF5
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 17:17:45 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E8B63BFCD66
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 17:21:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CF31A3A1E55
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 15:13:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2116418C3688
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 15:21:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E98F334A792;
-	Wed, 22 Oct 2025 15:13:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BE9E34D4E9;
+	Wed, 22 Oct 2025 15:21:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="VesLKiOR"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="kUYGrGyn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C97532C954
-	for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 15:13:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C75334B43C;
+	Wed, 22 Oct 2025 15:21:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761146012; cv=none; b=n+sZ8WedYDlH5gdf3VR+mU3tXfQiKy3YQxvaXsKeSi4CcvoNPiFQAKlZTaGx7sVd9tkz8RB7zjDQq+seo37GebjgKME8ALFkN1pyYjZiCbQqWCrMgmH4ljZc5gnl2kKjk+ELO0uxElx8GJ+lH9pvWaTOjPZmOFLdnHGcO7/8k5k=
+	t=1761146473; cv=none; b=oxvb5I0+YNk0vhjaEYG42QB1TzOPIO+CcITjjJHIchZa7n9p2x4fpDe2v3OOKxMRPzElLelVsCXqRnK9NVGnnXUCiif4B7qeD17Sd3+GutLaWPPuBuS5QELatUWIP1EGmJw4K2OsjNlZFUQQ+vFft7NZ5nwvx1+egKN1/VDZH60=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761146012; c=relaxed/simple;
-	bh=2ovnrrkNxN1AfFLOidZK7o+t/WuyEwDsv4AO1qXtgkA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=GsgNf5lCGoiwLsCrW4/ZSVan3uXllrNEY1bZX9H7fljOqSf6TVfi81no2ponKDUx2brYmYjilckYvs0lYdqPsLCngHm1dRFSKgJxtO2h1nX4c7y2iW/IXd+HOMDst+EKyVKKKkI8yoPPkV89/QQwwq45rb+zHxoCYKzCNySJO/M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=VesLKiOR; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59MBMxh1031508
-	for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 15:13:30 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	s=arc-20240116; t=1761146473; c=relaxed/simple;
+	bh=lvDvz0bgj3CT/1F2bST8lcX8d0GKbIb+N8vIljgy0Kk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=fvx6wOC8k8ybSuvyVoCunB/zIpyU61aGoeQvlOzd1JQH/Cra4FyqV/tsTrSgdNFsUHldzW1+GAwg3SO/iOg48J5pzz00RPJFxuds2qZE1iPH0bRKkm5Mbkhg0/ABLlkaL/SvQ8JMRFqrtR6U4IGqH7F7h6kXogKKJUuyIVmsEIE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=kUYGrGyn; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59MALVZK026903;
+	Wed, 22 Oct 2025 15:21:08 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	AtOPiC6l9BljB6aQ9rnOst9XuL/E0zhfUfs2IkZsLyo=; b=VesLKiORCVMrQ7GS
-	14L63ABO0Np/2mo+V3ZHRiAAcI5h6Qo2xbbMhqTOTHZzUol66uQ+RzffZYpA7/ra
-	zAUo4MmZUiRwNnuF+JdbcWeXK/i+KJhUYfg6+mJjSF1o4vebYWuFAgFCg+zYlwpL
-	wk1L6Dd4gyCkGlPizScFg0RYu/erxPBtU/LtV/3IrsC42Djkr0BR2FWOPIEsTGtP
-	hC55ihaIUhzZmCmm0MczwdGSLUkv4BWeo+WdoXLwIp9t4siyvXmD0OfHYiSfYtsj
-	0UxAzp1nJPotu4qrBl/CCwrF1PVaDwAIVE0b1ka+e3353q131VRCRS9TeT7ZFdmF
-	HvQ3/g==
-Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49v42kcwnr-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 15:13:30 +0000 (GMT)
-Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-4d6c3d10716so2038851cf.2
-        for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 08:13:30 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761146009; x=1761750809;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=AtOPiC6l9BljB6aQ9rnOst9XuL/E0zhfUfs2IkZsLyo=;
-        b=SFABd8dRRFCRIBVdKtqQuSYCeVsqxyqKVDhztRUFQIMBqXB1ANBEbXof3fiSXpZVyO
-         SZLiXhr89cEr2S1SO/qtUmAjHwvVqJjx535zKkg4Pniadd1GiecQOmjaGfqlBxd7ffUf
-         PW5gU5bI8NnfjwDMDA8VLmqeJJ3/YWCgsDFxBMJ8Ri6K/XeKVUtl8GBzhX2nPxCOCxA2
-         qP2ZgCC/iuGcUnHK2NanU3pQbs4Ir3xq5NJHKXt3JXk3DwSdkdGPBkCN9rKhQC5O8YTR
-         6HH0q3citRumxtbOih+Hbq68f+7f2cQI8Gt3rNJmcGgb+q0daGY7WNB/zu5g2H1McQGk
-         JkHg==
-X-Forwarded-Encrypted: i=1; AJvYcCXtI7ri7ZheICLrX1+lR+qEX9xG9SFAdNpgOuijHZiz0YVwIO29jQ2C/N8gygFcZWPrq8vYbJfXnYVQ@vger.kernel.org
-X-Gm-Message-State: AOJu0YyF2aits+HkRe2sP7f66V/lT/UoI+LXNkuEwyyvKyQzSJhPxc7H
-	s1rFZBTJf+Fayqwb8VS5LexxHpE3B3vJ84n5ksKMiHhjaAbyLlXnPTBSiIoZAzOzZ+hsZBXoqxd
-	fLOiUiP8H0WucJKgbvLQwkS9/RSSGNiCbaGjfwazKAe3PJgcoJlZXBiWA8/jEdMDR
-X-Gm-Gg: ASbGncv3b94JtU7nq0ajYvx6q81VF0AcFIFdEHNCYkN0PgzRSIXZrXU/VEgtVoMAhAB
-	jSorOIlYQ3i4V2ok9mwqp0AQ8hFhkdaCazugG363F9z6pr6KY1W3bhLJQLULaLaxfTiBhbCGfdf
-	fZmPMDvFTYk4Dmq2O63B6VE9/NLyi1R1nRNLJMpwLsOw/nmDWmmDTK6UQI0whuNA9q60+FMFYKj
-	K8sx8WzOS7znpO4sTk4eJy8natbXfA87ASOKIMnl/eWrBQWIiBLpFXjlmT/X2CN5gM+Puzfexvl
-	ymcL5CnAOuRyiZpnhYx5BXPMKEWGuFpSK2Cl3I6PzjVbHPGJ0UMCUFz8xY5dkmtErRBXenERzQE
-	Cq8fst67KjOT6SjJw6KQTBQN7pEeGzNKoYw2VbDucAnPpqSy0spq3bQiW
-X-Received: by 2002:a05:622a:199a:b0:4e8:a9f6:359 with SMTP id d75a77b69052e-4ea1178251cmr61449861cf.10.1761146008737;
-        Wed, 22 Oct 2025 08:13:28 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEierfzFT+Ehux93IgCTLHvl2L0VFHL4qLUlUPHsnWhN8MQCEyk8V77qdJ6+vl24wozTMkFJw==
-X-Received: by 2002:a05:622a:199a:b0:4e8:a9f6:359 with SMTP id d75a77b69052e-4ea1178251cmr61449171cf.10.1761146008174;
-        Wed, 22 Oct 2025 08:13:28 -0700 (PDT)
-Received: from [192.168.119.202] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b65eb036846sm1378295966b.54.2025.10.22.08.13.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Oct 2025 08:13:27 -0700 (PDT)
-Message-ID: <44ff81bf-8970-475c-a4f5-c03220bc8c3f@oss.qualcomm.com>
-Date: Wed, 22 Oct 2025 17:13:24 +0200
+	V0duspwE+cwcMAc6jB2d8+uPRGFige4d0MtKepNDCE0=; b=kUYGrGyn/9Cym+Pa
+	8sL7cQm0wyZZhdftvydfQnF7G1bBA1oZqoKfHJmETGFupHxEh7WyODn/0jl5Bv2M
+	DE+F47YgfDiJnLHSY69Ucl6ILzxk6IpRP7k7yj66/3ZtcDXpbkp25JAvuIGmxx/E
+	bHDz22f7oarxUeliA7F4+5H2bowrq2D/mX+L+INzyQ9j7/0IZCes6qPtkB+KDOkH
+	nadUsy+rZVi7dNkwiReRBMUxjIDbIWnr887L/VN1dZeWPLysmgoZIhkL49JEmS9p
+	o2iW5yGiM0fJCZsd/xPN76INCbNPxaYy+uihKvPAA8xG5CyArpBQpLQPziWv2bic
+	XCfIvw==
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49v08pnca0-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 22 Oct 2025 15:21:07 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 59MFL6O0018299
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 22 Oct 2025 15:21:06 GMT
+Received: from [10.50.62.229] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.24; Wed, 22 Oct
+ 2025 08:20:55 -0700
+Message-ID: <49eb9f15-fad9-4f8d-1463-04cd692bbe51@quicinc.com>
+Date: Wed, 22 Oct 2025 20:50:52 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/6] drm/msm/a6xx: Add support for Adreno 612
-To: Akhil P Oommen <akhilpo@oss.qualcomm.com>,
-        Rob Clark <robin.clark@oss.qualcomm.com>, Sean Paul <sean@poorly.run>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Dmitry Baryshkov <lumag@kernel.org>,
-        Abhinav Kumar <abhinav.kumar@linux.dev>,
-        Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Jie Zhang <quic_jiezh@quicinc.com>
-References: <20251017-qcs615-spin-2-v1-0-0baa44f80905@oss.qualcomm.com>
- <20251017-qcs615-spin-2-v1-1-0baa44f80905@oss.qualcomm.com>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH v3 1/9] spi: dt-bindings: spi-qpic-snand: Add IPQ5424
+ compatible
 Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20251017-qcs615-spin-2-v1-1-0baa44f80905@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: oU9zuBxBmW_TcgortLuyblKQ7pBYrafS
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDE4MDAzMSBTYWx0ZWRfX9HSGSfuYYsnX
- EA7QleS02ISQbXXGWeKqMzpCLlIkBWWejPBegBle3vsdvOhhpqTg50AvxJ2FBSXfgTmtxskuXT8
- rAddLbWyuwzxegBP28QaBdQeNG7N+3B6iBLCNtvHYNOcvpnvTbv6xzlwmUgZNGETx0K/I4+GWjB
- Wxcxzi8QFwsKIaIFJlwyHAZL91qpfBW8oGNExeYI4Becnh0LmFq9h55Sav641taXghhDtx+USCe
- AGMhjhZAzPNCAB8vHCxsto/1NeMZAgMME2Pz4i3E6gquL09D3LxQoqdXnD4++OFS6t5rcAigBbE
- SkIwHujCIKz2pFBEHDNbGItJcJAERd2w9ipQqX3pKWdCN2CXvqm58oJexFQOPxpJ95HSKfT+Bqg
- icUwOiX964/a1q+fYJXSB6ZMsYnnTQ==
-X-Authority-Analysis: v=2.4 cv=QYNrf8bv c=1 sm=1 tr=0 ts=68f8f49a cx=c_pps
- a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8 a=NFg73xRieO-LzbxsZPIA:9 a=QEXdDO2ut3YA:10
- a=a_PwQJl-kcHnX1M80qC6:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-ORIG-GUID: oU9zuBxBmW_TcgortLuyblKQ7pBYrafS
+To: Mark Brown <broonie@kernel.org>
+CC: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <andersson@kernel.org>, <konradybcio@kernel.org>, <vkoul@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-spi@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <dmaengine@vger.kernel.org>, <quic_varada@quicinc.com>
+References: <20251014110534.480518-1-quic_mdalam@quicinc.com>
+ <20251014110534.480518-2-quic_mdalam@quicinc.com>
+ <dd1e4289-5e36-4b24-9afd-f09569459a96@sirena.org.uk>
+ <96ae7d38-4ce0-fa34-e6f0-6bb6e4ceaa28@quicinc.com>
+ <0a743099-face-4cc1-91ef-098a748604b7@sirena.org.uk>
+From: Md Sadre Alam <quic_mdalam@quicinc.com>
+In-Reply-To: <0a743099-face-4cc1-91ef-098a748604b7@sirena.org.uk>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDE4MDAwMCBTYWx0ZWRfX3fndvC2z4Jf2
+ EMIKM/io4lOkH1z7jtlUJLdhHV6A9s4s+23qa38dBWYwoIFgdLUS47JoSwyw47Q6hAjlEvVvr8R
+ LGXG5QFEZseZ5rFB73I7Yky0srf5RDnckuCuGAdjEg7f+hkx619vsRk8ld5s4nxvx0CgRh58uhF
+ MFP6VL1LB3x4Ote9I0owdwakqZNcDycY2fijJaX+DJlQTgOYiPXCDYnex1o72C2+MD6xhTWEdjh
+ 2r8uaqfskyjkW4iFcfd6ZV1uu/qHbym5szMpyG0rMDL2ergD4tbJxetlduOSvKd58D+cReboraU
+ pnEppnLb68o3HNnYdidilkjFO/67usf38H/cS+F9fCzNk01gjyHqmOGdyYM/C1n6TyfvxOWN26r
+ iumUH/7gD5F5LVUa8seg1ZYo0z/iDg==
+X-Proofpoint-GUID: 65YCwVdkDve8ZPZzVJjBx15qYWOPZiEX
+X-Authority-Analysis: v=2.4 cv=Up1u9uwB c=1 sm=1 tr=0 ts=68f8f663 cx=c_pps
+ a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=BAz0yG0TH0QP3-mkIuYA:9
+ a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=HhbK4dLum7pmb74im6QT:22
+ a=cPQSjfK2_nFv0Q5t_7PE:22 a=pHzHmUro8NiASowvMSCR:22 a=Ew2E2A-JSTLzCXPT_086:22
+X-Proofpoint-ORIG-GUID: 65YCwVdkDve8ZPZzVJjBx15qYWOPZiEX
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
  definitions=2025-10-22_06,2025-10-13_01,2025-03-28_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 phishscore=0 malwarescore=0 clxscore=1015 impostorscore=0
- spamscore=0 bulkscore=0 suspectscore=0 adultscore=0 lowpriorityscore=0
+ lowpriorityscore=0 adultscore=0 suspectscore=0 malwarescore=0 clxscore=1015
+ impostorscore=0 bulkscore=0 priorityscore=1501 spamscore=0 phishscore=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2510020000 definitions=main-2510180031
+ reason=mlx scancount=1 engine=8.19.0-2510020000 definitions=main-2510180000
 
-On 10/17/25 7:08 PM, Akhil P Oommen wrote:
-> From: Jie Zhang <quic_jiezh@quicinc.com>
+Hi,
+
+On 10/22/2025 4:12 PM, Mark Brown wrote:
+> On Wed, Oct 22, 2025 at 12:29:01PM +0530, Md Sadre Alam wrote:
+>> On 10/22/2025 12:39 AM, Mark Brown wrote:
+>>> On Tue, Oct 14, 2025 at 04:35:26PM +0530, Md Sadre Alam wrote:
+>>>> IPQ5424 contains the QPIC-SPI-NAND flash controller which is the same as
+>>>> the one found in IPQ9574. So let's document the IPQ5424 compatible and
+>>>> use IPQ9574 as the fallback.
 > 
-> Add support for Adreno 612 GPU found in SM6150/QCS615 chipsets.
-> A612 falls under ADRENO_6XX_GEN1 family and is a cut down version
-> of A615 GPU.
+>>> This doesn't apply against current code, please check and resend.
 > 
-> A612 has a new IP called Reduced Graphics Management Unit or RGMU
-> which is a small state machine which helps to toggle GX GDSC
-> (connected to CX rail) to implement IFPC feature. It doesn't support
-> any other features of a full fledged GMU like clock control, resource
-> voting to rpmh etc. So we need linux clock driver support like other
-> gmu-wrapper implementations to control gpu core clock and gpu GX gdsc.
-> This patch skips RGMU core initialization and act more like a
-> gmu-wrapper case.
+>> Thank you for the feedback. I’d appreciate a bit more clarity on what
+>> “doesn't apply against current code” refers to in this context. I’ve
+>> manually applied the patch against the latest mainline (torvalds/linux) and
+>> it applied cleanly without any conflicts. Please let me know if there’s a
+>> specific tree or integration point I should be checking against.
 > 
-> Co-developed-by: Akhil P Oommen <akhilpo@oss.qualcomm.com>
-> Signed-off-by: Jie Zhang <quic_jiezh@quicinc.com>
-> Signed-off-by: Akhil P Oommen <akhilpo@oss.qualcomm.com>
-> ---
+> I tried to apply it to the spi tree
+> 
+>    https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-6.19
+Thanks for letting me know — I’ll rebase the patch on the SPI tree 
+(for-6.19) and resend it.
 
-[...]
-
-> @@ -350,12 +350,18 @@ static const struct a6xx_gmu_oob_bits a6xx_gmu_oob_bits[] = {
->  /* Trigger a OOB (out of band) request to the GMU */
->  int a6xx_gmu_set_oob(struct a6xx_gmu *gmu, enum a6xx_gmu_oob_state state)
->  {
-> +	struct a6xx_gpu *a6xx_gpu = container_of(gmu, struct a6xx_gpu, gmu);
-> +	struct adreno_gpu *adreno_gpu = &a6xx_gpu->base;
->  	int ret;
->  	u32 val;
->  	int request, ack;
->  
->  	WARN_ON_ONCE(!mutex_is_locked(&gmu->lock));
->  
-> +	/* Skip OOB calls since RGMU is not enabled */
-
-"RGMU doesn't handle OOB calls"
-
-[...]
-
-> +int a6xx_rgmu_init(struct a6xx_gpu *a6xx_gpu, struct device_node *node)
-> +{
-> +	struct platform_device *pdev = of_find_device_by_node(node);
-> +	struct a6xx_gmu *gmu = &a6xx_gpu->gmu;
-> +	int ret;
-> +
-> +	if (!pdev)
-> +		return -ENODEV;
-> +
-> +	gmu->dev = &pdev->dev;
-> +
-> +	ret = of_dma_configure(gmu->dev, node, true);
-> +	if (ret)
-> +		return ret;
-> +
-> +	pm_runtime_enable(gmu->dev);
-> +
-> +	/* Mark legacy for manual SPTPRAC control */
-> +	gmu->legacy = true;
-> +
-> +	/* RGMU requires clocks */
-> +	ret = devm_clk_bulk_get_all(gmu->dev, &gmu->clocks);
-> +	if (ret < 1)
-> +		return ret;
-
-Simply add this clock detail to a6xx_gmu_wrapper_init and use _optional
-
-[...]
-
->  	/* Enable fault detection */
->  	if (adreno_is_a730(adreno_gpu) ||
-> -	    adreno_is_a740_family(adreno_gpu))
-> +	    adreno_is_a740_family(adreno_gpu) || adreno_is_a612(adreno_gpu))
-
-Sorting this would be neat
-
-[...]
-
-> +static int a6xx_rgmu_pm_resume(struct msm_gpu *gpu)
-> +{
-> +	struct adreno_gpu *adreno_gpu = to_adreno_gpu(gpu);
-> +	struct a6xx_gpu *a6xx_gpu = to_a6xx_gpu(adreno_gpu);
-> +	struct a6xx_gmu *gmu = &a6xx_gpu->gmu;
-> +	unsigned long freq = gpu->fast_rate;
-> +	struct dev_pm_opp *opp;
-> +	int ret;
-> +
-> +	gpu->needs_hw_init = true;
-> +
-> +	trace_msm_gpu_resume(0);
-> +
-> +	opp = dev_pm_opp_find_freq_ceil(&gpu->pdev->dev, &freq);
-> +	if (IS_ERR(opp))
-> +		return PTR_ERR(opp);
-> +
-> +	dev_pm_opp_put(opp);
-> +
-> +	/* Set the core clock and bus bw, having VDD scaling in mind */
-> +	dev_pm_opp_set_opp(&gpu->pdev->dev, opp);
-> +
-> +	pm_runtime_resume_and_get(gmu->dev);
-> +	pm_runtime_resume_and_get(gmu->gxpd);
-> +
-> +	ret = clk_bulk_prepare_enable(gmu->nr_clocks, gmu->clocks);
-> +	if (ret)
-> +		goto err_rpm_put;
-> +
-> +	ret = clk_bulk_prepare_enable(gpu->nr_clocks, gpu->grp_clks);
-> +	if (ret)
-> +		goto err_bulk_clk;
-
-Add this as-is to a6xx_pm_resume(), nr_clocks==0 is valid, similarly
-for _suspend
-
-Konrad
+Thanks,
+Alam.
 
