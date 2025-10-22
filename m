@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-229753-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229754-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0ED3BFB7C7
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 12:56:47 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9CC30BFB82A
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 13:02:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C76EA3B4011
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 10:56:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 70A6C18C8110
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 11:02:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D4793277B1;
-	Wed, 22 Oct 2025 10:56:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 893ED2BE03D;
+	Wed, 22 Oct 2025 11:01:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YrPI57qc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Xcs6vJ8N"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AC1A322DD4;
-	Wed, 22 Oct 2025 10:56:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 549DA72629;
+	Wed, 22 Oct 2025 11:01:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761130597; cv=none; b=E9o9caCGeVD/WxWCUzcVHr8gx15Z9qpmEgFWwSlJnXHMXfcM++fxqw31FkTT6y0LfCnles45WfYkVRIxrKY/tZnjfSnCE16otvL6HIksE8N+1BQM/TUkB7njQJHiMlHCLXWIfMph7YvRsyCrgVj74ISVilt03+Xf/yDscEtMaK4=
+	t=1761130917; cv=none; b=UPmIKllHr44vRlVvm8OOBGlrdK6sida8gskpnQZLqnSn+KeVIPu/SzCL1MT4py4DmOZnEyMcFroVLFTT1FHtTLTrZeBt6d1hGlS+Ct5KGobutVewBIb5m/g+mupgK7I1tIeOCHxfbkejVDZdsjAmyXSQGMlQDtDYqCGrr+9UIDQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761130597; c=relaxed/simple;
-	bh=oqr78uUyBEWcCUquYVEATITHQrDG4IMUf0U0DRBBgnk=;
+	s=arc-20240116; t=1761130917; c=relaxed/simple;
+	bh=ibf4nluFm94eoPMrgoVZReWHCa96DbHveLCG9VgsYUY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=F/5ceKA8xGa2uh7yqleWZU6+8Gaqg06Jpgf1jxGwKRgMTCiis6uwo6der9/25RMqv/KS+Xnba2zkQi+8Hf3VgMGvqJ+sWwkAht5zEl2Qpc90Gg/yIKd5LjmhKLvSefgCsgz1yRku3jsxMw0HXUHdjZ1CyEhnpVEKirVyNfl5b6s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YrPI57qc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 54575C4CEE7;
-	Wed, 22 Oct 2025 10:56:33 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=IvSUAIgR03qGZAVjUDkNnMfvfCwJ2C2e7lBu3Ga5jgEBv4z9PX/BaObPe+ZwSKUfCIVVIWKQqH1j3EWSeOIA0Rjl1byCTY/b0+UDvvQFOyRy9ZIbwzUVho4wMF7SDJocUdypG+twyAyB7olKx8Vp98tukZODHpvWM7lxPmjXFDc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Xcs6vJ8N; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B5DB9C4CEE7;
+	Wed, 22 Oct 2025 11:01:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761130596;
-	bh=oqr78uUyBEWcCUquYVEATITHQrDG4IMUf0U0DRBBgnk=;
+	s=k20201202; t=1761130916;
+	bh=ibf4nluFm94eoPMrgoVZReWHCa96DbHveLCG9VgsYUY=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=YrPI57qcmHIU9m6kxmjdwTJE/B93EtZE7Vvz8QNrikgtztNC7bT1aaIZ3NvORZ6Kf
-	 naqjWeIxZyuOqglNKgfAIw3F25yu4SJhB50AER83FuwHhkOruatE5iuvKaQN0V5NfT
-	 EozVF4PCExPl9hHmHZzHm44Fh99Jd68+zF9HhYGCdRwApXoGhOv8QsE4oBvfeued43
-	 JqG/6rO33IzIM/ONO0v61TLj4OUKI3P5xtjng3Qoua1B0U4hbCWcUcsEOSisPbftIT
-	 GnJbJ+OXGR+SKuqD83x5DlZ8+zl8A5RUrfnm4wkgqEjpBU+ibGEYkKMxeL0CmRRDD5
-	 t6iRaFhPYSGaA==
-Message-ID: <224288d8-9a04-4a76-95c7-c0af4ed967e3@kernel.org>
-Date: Wed, 22 Oct 2025 12:56:31 +0200
+	b=Xcs6vJ8NzWDYNUo9QAEYifXhfo5GEp71/sFuD6qqymxULgiYYsHWQASzxV4sSOD0w
+	 3N4/SrmyQn+Ov1dfJ3bMYqs7jyabw6q2w2jfSY0iGIXyblU1QXRWfODPq/JZWGTf+A
+	 Bn6wdJ8lVb4XDHQDjn9UDkvNdO9X3bPuipgu4oB6VojDvdpawEfMA95pm2q+WH/ZPV
+	 EAzzv9TJcFK27b2Q6oEKrNYCVXYSBdHwBcvAyvMczjZRFaC8iPshQOYHxy0EgMbOIa
+	 GvI8ZZ/yQktK1pBzBIFWFLazASraVBzdrDmWpz0JMHMIG/Oq3vSe7xYcKS8bO1MezK
+	 uxicYscYKgNtg==
+Message-ID: <51c6871d-a125-4d76-adaf-d69d6628aa87@kernel.org>
+Date: Wed, 22 Oct 2025 13:01:52 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,18 +50,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC 1/3] ASoC: dt-bindings: qcom,sm8250: Add Dell XPS13
- 9345 sound card
-To: Abel Vesa <abel.vesa@linaro.org>, Srinivas Kandagatla <srini@kernel.org>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
- Takashi Iwai <tiwai@suse.com>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-sound@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20251021-dell-xps13-9345-enable-audio-v1-0-6f3f6bbd977b@linaro.org>
- <20251021-dell-xps13-9345-enable-audio-v1-1-6f3f6bbd977b@linaro.org>
+Subject: Re: [PATCH v3 1/9] spi: dt-bindings: spi-qpic-snand: Add IPQ5424
+ compatible
+To: Md Sadre Alam <quic_mdalam@quicinc.com>, Mark Brown <broonie@kernel.org>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ andersson@kernel.org, konradybcio@kernel.org, vkoul@kernel.org,
+ linux-arm-msm@vger.kernel.org, linux-spi@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ dmaengine@vger.kernel.org, quic_varada@quicinc.com
+References: <20251014110534.480518-1-quic_mdalam@quicinc.com>
+ <20251014110534.480518-2-quic_mdalam@quicinc.com>
+ <dd1e4289-5e36-4b24-9afd-f09569459a96@sirena.org.uk>
+ <96ae7d38-4ce0-fa34-e6f0-6bb6e4ceaa28@quicinc.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -107,37 +107,35 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20251021-dell-xps13-9345-enable-audio-v1-1-6f3f6bbd977b@linaro.org>
+In-Reply-To: <96ae7d38-4ce0-fa34-e6f0-6bb6e4ceaa28@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 21/10/2025 15:50, Abel Vesa wrote:
-> The Dell XPS13 9345 maps the speakers and tweeters starting from
-> the right side instead of left, which means we need to handle it
-> differently then the rest of the X Elite platforms.
+On 22/10/2025 08:59, Md Sadre Alam wrote:
+> Hi,
 > 
-> So document its new compatible.
-> 
-> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> ---
->  Documentation/devicetree/bindings/sound/qcom,sm8250.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml b/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
-> index 868acc077046596120ea7f427e802282ed03c853..20566224d2e42574ab96f93c11924bbeae22f0bc 100644
-> --- a/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
-> +++ b/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
-> @@ -29,6 +29,7 @@ properties:
->                - qcom,sm8750-sndcard
->            - const: qcom,sm8450-sndcard
->        - enum:
-> +          - dell,xps13-9345-sndcard
+> On 10/22/2025 12:39 AM, Mark Brown wrote:
+>> On Tue, Oct 14, 2025 at 04:35:26PM +0530, Md Sadre Alam wrote:
+>>> IPQ5424 contains the QPIC-SPI-NAND flash controller which is the same as
+>>> the one found in IPQ9574. So let's document the IPQ5424 compatible and
+>>> use IPQ9574 as the fallback.
+>>
+>> This doesn't apply against current code, please check and resend.
+> Thank you for the feedback. I’d appreciate a bit more clarity on what 
+> “doesn't apply against current code” refers to in this context. I’ve 
+> manually applied the patch against the latest mainline (torvalds/linux) 
 
-When I explained you how to proceed, I said - you need front compatible,
-because this sound card is compatible with existing one, with a quirk
-needed.
 
-Might not matter if we go with mixers solution as suggested by Srini.
+You can easily answer this by yourself. Did you send it to Torvalds? No.
+You sent it to someone else, so why do you assume someone else manages
+Torvalds' tree?
+
+> and it applied cleanly without any conflicts. Please let me know if 
+> there’s a specific tree or integration point I should be checking against.
+
+
+Please read submitting patches - it explains that. It also explains
+where to find the tree.
 
 Best regards,
 Krzysztof
