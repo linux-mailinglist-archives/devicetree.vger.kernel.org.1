@@ -1,115 +1,314 @@
-Return-Path: <devicetree+bounces-229785-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229786-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16320BFC110
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 15:15:56 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F238BFC1DD
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 15:24:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 93FEF56088D
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 13:08:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EB06B621AD2
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 13:10:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BBB934A3C1;
-	Wed, 22 Oct 2025 12:58:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB83D346E4C;
+	Wed, 22 Oct 2025 13:03:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nmqDb2Hk"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="CRb9AjB4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yx1-f51.google.com (mail-yx1-f51.google.com [74.125.224.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB28B345CBA
-	for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 12:58:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.224.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 913A8344044;
+	Wed, 22 Oct 2025 13:03:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761137922; cv=none; b=VStjcB8jOTFGuTgxt7onW03KqKI9f6Upb6FwltHSBkWcSAEJqPtvTF0X9ehoS6NrCNbcsNsUFbBVOPvLwR7M6OUioS1YwX2kzEmfFPoEuKWBfqDHUc+Jz/n68Pn7RcvRRW5oMGwN/2PSVRAWGxh5ij13ie9a65Vu2Vfz922IV6U=
+	t=1761138239; cv=none; b=jKkqu2pXNkFV2n6xCEgBkc0v/9cS7aSFASdcCTJN/gTXjATJZBIqTVJWca6YgeVgd7ATUN/OwhUJ0ukWU/GhPAg0gWmiaE8iKhjVVSbktIPneSFoRVwwUNHUqAhb1Vz1xNX3CS142UJNeX6AYcQkqgFdyObt7D3yE0EQYjI/2Wg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761137922; c=relaxed/simple;
-	bh=jSSjnCM4ER8aKOW0t6/ZA+XtyoMrKYkP+HhxvOTGTRQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=J0bg3q9Vlwgc1+AUDnvn1PfhIP2LPffiHpJb2TOrpxzKYGkaQJ5I4/qHziZd5sI+Hhd3IEdpGDchHAelE/STqfZXUN37+0BFCoxZ1x5ltsMz7O3+Z+Ee2xl54pVCxQCpIHAztuJlnzt7mO6nUdXPSOX65K/p664eZYmpYXL3WWI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=nmqDb2Hk; arc=none smtp.client-ip=74.125.224.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yx1-f51.google.com with SMTP id 956f58d0204a3-63e336b1ac4so1644896d50.1
-        for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 05:58:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1761137919; x=1761742719; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=LqfpXhH8oikGFpnElT3hOnVI48sa1H9J9/n1+8f904w=;
-        b=nmqDb2HkjgVL53xtQOZCewrjRcYrK4sr5mhoqEx4Z1ziGkwRAmC2mHotDzhgOQf1Pu
-         aj1IcllYgahfMp/jUyHoAI7OwiDKjLxlaS6dMgmDRlNdNTLBmBxDzF2GjiFShrJaYM3N
-         BZCONm1ijU2AYhhOez0Q89RT6RRyMUPO/c5r5R4XhB4ApufYIOtOBqCQFDhVwMf3ioD9
-         fSDpJiKroLniC5hkho0XLRJc212KheA8vmiCIF9R4yZTcrfHY44GXGBzbuMQf5ZGGHgi
-         2afCKanK2fDPvEet1IX+CCSgVj13CXSVnqUeFezeptPiWTtvnAHnhOoP7tRmwFI8chCv
-         nysQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761137919; x=1761742719;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=LqfpXhH8oikGFpnElT3hOnVI48sa1H9J9/n1+8f904w=;
-        b=KGKQM5l9ErsjVr7ZNvEYJKftPSirmFaGkbDfsB4SpTHQTCj5fJBDMm0UhRNlGI4eAt
-         DRjiaSWQLPIeaWCou0zjweSsXMX7i5g0Li+MaH2rU4JpYZV3zQPgyMeinGW2hEqDmOhj
-         ojQ4P0LuaONasuZqPJvpeOL+DdbTOsPJ3gTdLCHXDQSGsce5qKCqbU5zaCPEf7yV0a5T
-         Jm2JAHrH6iNqPwNx4lY0Gv3MfbhE1pvw0yHgd4cFfambA5peokksRuqkaemRhloSooHD
-         OKrcxW7xcCk4EI4IGkc/zm15gL+lat93nVOHgymcUcJK5BzN62mE7prH0sCC+5XRXywP
-         PfAw==
-X-Forwarded-Encrypted: i=1; AJvYcCW/h12PIYO6u3Pm9lkTVi6NLNFpEVyZWjqX3XaBRoKn3IVhSoGczoczh0KBLRuxPZyHrMWHrRgAWdHP@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz87R8+siC/dfcEHj3Ot9eViIIKfLGq4c09nnCd5sYNAzneNTbT
-	Ot37q5uHV4gU88plq/FNL284Y/hc+NYxo5nBQDe+BIkTuB+xqUNhuoUabP/Hep0E/oROppPTQU3
-	2N2Jl6NPJZHHQF77H0MdPJwo0sC83kVFWbsfScuzRAQ==
-X-Gm-Gg: ASbGncvX2emwalue8qW+iUUIV6u8RDgVedO/3ctlAYyC1KsgQUF6brPv0tpeJx+4Hf3
-	9LPQAxEspr2HOdTmIbe6yCJfYFu5FM0pnwEsMD3hmh1Nblq1xInKeAHh2hxB0i1KGLPVlBHrre4
-	VMjJYX9/+q2iPLgRH4J+EDp9aFqAJ/4KGUVUImIAN2tLzexUm5JDmnyJv+P4mVs/M7rTXduOTgN
-	UqbGG0nIIhe/SYq7G8+xvRCrp/IOmSN4m1hMseYzEbEz2yj/fPWB51jO9+8by0k6qAIL4sIcJg3
-	XJfOrtU=
-X-Google-Smtp-Source: AGHT+IEjyOT6ZnWjtbuwKFmQbeLCXJvC9+ovHItNxLtceyMzt5RJXygROmaPW1mTzx718f9fX9ymVtGCF2aAo4JR26M=
-X-Received: by 2002:a53:da0d:0:b0:63c:f5a6:f2d0 with SMTP id
- 956f58d0204a3-63f2833575dmr2112548d50.31.1761137919613; Wed, 22 Oct 2025
- 05:58:39 -0700 (PDT)
+	s=arc-20240116; t=1761138239; c=relaxed/simple;
+	bh=qQz3ga9qmBR9R9/nc53usRDAIqxyK3MS0UKBQkFP8Is=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Gm/1W/q/xDrc7Fe2/TXICjLfV8qwzoJ2PHEAF4H1/BQoKGY97vAGH0w2gAVo+27n1bZira5J6ize2uVo4Tts8sG+7VN0r92QA11xbIF5XkjzYBRs6vbgLmjmxOOHG9Ljos1j6fbo2ewer/FPwPX6WUGpL5Tdm83TUMMS2H9jftY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=CRb9AjB4; arc=none smtp.client-ip=185.246.85.4
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-03.galae.net (Postfix) with ESMTPS id C22284E41274;
+	Wed, 22 Oct 2025 13:03:53 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 80384606DC;
+	Wed, 22 Oct 2025 13:03:53 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 74172102F23A9;
+	Wed, 22 Oct 2025 15:03:41 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1761138232; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=4bhiUbDPLaZq5ohRkNEUuLoQCCw3DEdqJYfVZiHrwgE=;
+	b=CRb9AjB4eNLdX6Ehta3j5uPzuWX9Fuh38h2Y2zeA5ekGe6TdyVf1jn+IxMhk+3y5azpn1z
+	mZLKLx68sft8yfWwDS26Ozawkxm6kPkv/Z7MEw1n2uvq7UJLRWESdGue3fWycHNX3KXw+B
+	2ahFDQfQFzCqiNA9oa0hbY8wFKbf1NONU+IXeC/n5bYsC/jQHkYxKclTNfsEgNM/T100Ri
+	gkIIhY4x00Sqt/nQu8m5lTXyS17zMbFIoNf0liqIwwnECsm7vQXd9kqriH86nDBAcC0olk
+	xJR/fzUq0aJwjR3diCL4Ed+l15MWIw8H9lTWe5BTfiJR1+Gu6PoId3h9P7Nq2w==
+Date: Wed, 22 Oct 2025 15:03:39 +0200
+From: Herve Codina <herve.codina@bootlin.com>
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Thomas Gleixner <tglx@linutronix.de>, Wolfram Sang
+ <wsa+renesas@sang-engineering.com>, Hoan Tran
+ <hoan@os.amperecomputing.com>, Linus Walleij <linus.walleij@linaro.org>,
+ Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, Saravana Kannan
+ <saravanak@google.com>, Serge Semin <fancer.lancer@gmail.com>, Phil
+ Edworthy <phil.edworthy@renesas.com>, linux-gpio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-renesas-soc@vger.kernel.org, Pascal Eberhard
+ <pascal.eberhard@se.com>, Miquel Raynal <miquel.raynal@bootlin.com>, Thomas
+ Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v5 7/8] soc: renesas: Add support for Renesas RZ/N1 GPIO
+ Interrupt Multiplexer
+Message-ID: <20251022150339.4c48649e@bootlin.com>
+In-Reply-To: <CAMuHMdV03D_3b_JA2vzW4tE_QbkkT1bN1dm+zLLLX24oDHMj0Q@mail.gmail.com>
+References: <20251020080648.13452-1-herve.codina@bootlin.com>
+	<20251020080648.13452-8-herve.codina@bootlin.com>
+	<CAMuHMdV03D_3b_JA2vzW4tE_QbkkT1bN1dm+zLLLX24oDHMj0Q@mail.gmail.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.43; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251017093834.331998-1-finley.xiao@rock-chips.com>
-In-Reply-To: <20251017093834.331998-1-finley.xiao@rock-chips.com>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Wed, 22 Oct 2025 14:58:03 +0200
-X-Gm-Features: AS18NWCPlgQ2C3y-wODiJDQlKOeRdWjBY3paMVLSMS-IfDxCiXVh7nLiSG0YRnM
-Message-ID: <CAPDyKFrDAmfN16fQdf5en-Du=sG5U61NK7vRhd_CtiSz19rU_A@mail.gmail.com>
-Subject: Re: [PATCH v4 0/2] Add power-controller support for RV1126B
-To: Finley Xiao <finley.xiao@rock-chips.com>
-Cc: heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	linux-pm@vger.kernel.org, zhangqing@rock-chips.com, 
-	sugar.zhang@rock-chips.com, huangtao@rock-chips.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-On Fri, 17 Oct 2025 at 11:38, Finley Xiao <finley.xiao@rock-chips.com> wrote:
->
-> Add support for the power domain controller on the RV1126B SoC.
->
-> Finley Xiao (2):
->   dt-bindings: power: rockchip: Add support for RV1126B
->   pmdomain: rockchip: Add support for RV1126B
->
->  .../power/rockchip,power-controller.yaml      |  2 +
->  drivers/pmdomain/rockchip/pm-domains.c        | 41 +++++++++++++++++++
->  .../power/rockchip,rv1126b-power-controller.h | 17 ++++++++
->  3 files changed, 60 insertions(+)
->  create mode 100644 include/dt-bindings/power/rockchip,rv1126b-power-controller.h
->
-> --
-> 2.43.0
->
+Hi Geert,
 
-The series applied for next, thanks!
+On Tue, 21 Oct 2025 15:05:35 +0200
+Geert Uytterhoeven <geert@linux-m68k.org> wrote:
 
-Kind regards
-Uffe
+> Hi Hervé,
+> 
+> On Mon, 20 Oct 2025 at 10:08, Herve Codina (Schneider Electric)
+> <herve.codina@bootlin.com> wrote:
+> > On the Renesas RZ/N1 SoC, GPIOs can generate interruptions. Those
+> > interruption lines are multiplexed by the GPIO Interrupt Multiplexer in
+> > order to map 32 * 3 GPIO interrupt lines to 8 GIC interrupt lines.
+> >
+> > The GPIO interrupt multiplexer IP does nothing but select 8 GPIO
+> > IRQ lines out of the 96 available to wire them to the GIC input lines.
+> >
+> > Signed-off-by: Herve Codina (Schneider Electric) <herve.codina@bootlin.com>  
+> 
+> Thanks for your patch!
+> 
+> > --- a/drivers/soc/renesas/Makefile
+> > +++ b/drivers/soc/renesas/Makefile
+> > @@ -14,4 +14,5 @@ obj-$(CONFIG_SYS_R9A09G057)   += r9a09g057-sys.o
+> >  # Family
+> >  obj-$(CONFIG_PWC_RZV2M)                += pwc-rzv2m.o
+> >  obj-$(CONFIG_RST_RCAR)         += rcar-rst.o
+> > +obj-$(CONFIG_RZN1_IRQMUX)              += rzn1_irqmux.o  
+> 
+> One TAB too much.
+
+Yes indeed, will be removed.
+
+> 
+> > --- /dev/null
+> > +++ b/drivers/soc/renesas/rzn1_irqmux.c
+> > @@ -0,0 +1,150 @@
+> > +// SPDX-License-Identifier: GPL-2.0-only
+> > +/*
+> > + * RZ/N1 GPIO Interrupt Multiplexer
+> > + *
+> > + * Copyright 2025 Schneider Electric
+> > + * Author: Herve Codina <herve.codina@bootlin.com>
+> > + */
+> > +
+> > +#include <linux/bitops.h>
+> > +#include <linux/build_bug.h>
+> > +#include <linux/mod_devicetable.h>
+> > +#include <linux/module.h>
+> > +#include <linux/of.h>
+> > +#include <linux/of_irq.h>
+> > +#include <linux/platform_device.h>
+> > +#include <dt-bindings/interrupt-controller/arm-gic.h>
+> > +
+> > +/*
+> > + * The array index is the output line index, the value at the index is the
+> > + * GIC SPI interrupt number the output line is connected to.
+> > + */
+> > +static const u32 rzn1_irqmux_output_lines[] = {
+> > +       103, 104, 105, 106, 107, 108, 109, 110
+> > +};  
+> 
+> I did read the discussion with Wolfram, but the flexibility (and
+> overhead) provided by this array sounds a bit overkill to me.
+> 
+> What about just defining:
+> 
+>     #define RZN1_IRQMUX_SPI_BASE    103
+>     #define RZN1_IRQMUX_NUM_IRQS    8
+> 
+> ?
+> 
+> If/when a new SoC with a similar setup ever arrives, you can probably
+> just replace the constants above by variables inside SoC-specific
+> match data.  And if the new mapping would be non-contiguous, you can
+> still revive this array ;-)
+
+I have in mind a use case that can lead to a non-contiguous mapping.
+
+The RZ/N1 SoC embeds a Cortex-M3 CPU. This CPU can use GPIOs and
+some of them for interrupt purpose. In that case, those GPIOs have
+to be routed to the interrupt line expected by the Cortex-M3.
+
+And so, we have some interrupts reserved for CPUs running Linux and
+some others for the Cortex-M3.
+
+Among those reserved interrupts may some are not used.
+
+for instance:
+  Interrupt 103, 102: Reserved and used by Linux
+  Interrupt 103: Reserved for Linux but not used -> Hole in the mapping
+  Interrupt 104: Reserved and used my Cortex-M3 (need to be routed by Linux)
+
+I don't know if this use case is relevant but I think we should be too restrictive
+on the mapping and so accept holes.
+
+With that in mind, I let you confirm that you still prefer to have a mapping
+without any holes. A future patch to support that is always possible.
+
+> 
+> More about this below...
+> 
+> > +
+> > +static int rzn1_irqmux_parent_args_to_line_index(struct device *dev,
+> > +                                                const struct of_phandle_args *parent_args,
+> > +                                                const u32 output_lines[],
+> > +                                                unsigned int output_lines_count)
+> > +{
+> > +       unsigned int i;
+> > +
+> > +       /*
+> > +        * The parent interrupt should be one of the GIC controller.
+> > +        * Three arguments must be provided.
+> > +        *  - args[0]: GIC_SPI
+> > +        *  - args[1]: The GIC interrupt number
+> > +        *  - args[2]: The interrupt flags
+> > +        *
+> > +        * We retrieve the line index based on the GIC interrupt number
+> > +        * provided and rzn1_irqmux_output_line[] mapping array.
+> > +        */
+> > +
+> > +       if (parent_args->args_count != 3 ||
+> > +           parent_args->args[0] != GIC_SPI) {
+> > +               dev_err(dev, "Invalid interrupt-map item\n");
+> > +               return -EINVAL;
+> > +       }
+> > +
+> > +       for (i = 0; i < output_lines_count; i++) {
+> > +               if (parent_args->args[1] == output_lines[i])
+> > +                       return i;
+> > +       }  
+> 
+> ... then this loop can be replaced by two simple comparisons.
+> 
+> > +
+> > +       dev_err(dev, "Invalid GIC interrupt %u\n", parent_args->args[1]);
+> > +       return -EINVAL;
+> > +}
+> > +
+> > +static int rzn1_irqmux_setup(struct device *dev, struct device_node *np, u32 __iomem *regs)
+> > +{
+> > +       struct of_imap_parser imap_parser;
+> > +       struct of_imap_item imap_item;
+> > +       unsigned long index_done = 0;  
+> 
+> Perhaps "DECLARE_BITMAP(index_done, RZN1_IRQMUX_NUM_IRQS)",
+> so the BITS_PER_LONG limit can be lifted, without any cost?
+
+Yes.
+
+> 
+> > +       int index;
+> > +       int ret;
+> > +       u32 tmp;
+> > +
+> > +       /* We support only #interrupt-cells = <1> and #address-cells = <0> */
+> > +       ret = of_property_read_u32(np, "#interrupt-cells", &tmp);
+> > +       if (ret)
+> > +               return ret;
+> > +       if (tmp != 1)
+> > +               return -EINVAL;
+> > +
+> > +       ret = of_property_read_u32(np, "#address-cells", &tmp);
+> > +       if (ret)
+> > +               return ret;
+> > +       if (tmp != 0)
+> > +               return -EINVAL;
+> > +
+> > +       ret = of_imap_parser_init(&imap_parser, np, &imap_item);
+> > +       if (ret)
+> > +               return ret;
+> > +
+> > +       /* 8 output lines are available */
+> > +       BUILD_BUG_ON(ARRAY_SIZE(rzn1_irqmux_output_lines) != 8);  
+> 
+> ... then this check can be removed, too.
+> 
+> > +
+> > +       /*
+> > +        * index_done is an unsigned long integer. Be sure that no buffer
+> > +        * overflow can occur.
+> > +        */
+> > +       BUILD_BUG_ON(ARRAY_SIZE(rzn1_irqmux_output_lines) > BITS_PER_LONG);  
+> 
+> Currently this is less strict than the check above, so a bit useless?
+
+Yes. My first intention was to explicitly check both constraints:
+  - The number of output lines which lead to the maximum index value used to
+    index register addresses (i.e. writel(imap_item.child_imap[0], regs + index)
+    below).
+
+  - The number of output lines to the maximum index value used to
+    index register addresses which which lead to the maximum index value used
+    for testing and setting the "index_done" flags.
+
+But yes, I can keep the stricter one.
+
+Also, if RZN1_IRQMUX_NUM_IRQS is introduced and related DECLARE_BITMAP(index_done,
+RZN1_IRQMUX_NUM_IRQS), a single check against RZN1_IRQMUX_NUM_IRQS will be enough
+for both cases
+
+> 
+> > +
+> > +       for_each_of_imap_item(&imap_parser, &imap_item) {
+> > +               index = rzn1_irqmux_parent_args_to_line_index(dev,
+> > +                                                             &imap_item.parent_args,
+> > +                                                             rzn1_irqmux_output_lines,
+> > +                                                             ARRAY_SIZE(rzn1_irqmux_output_lines));
+> > +               if (index < 0) {
+> > +                       of_node_put(imap_item.parent_args.np);
+> > +                       return index;
+> > +               }
+> > +
+> > +               if (test_and_set_bit(index, &index_done)) {
+> > +                       of_node_put(imap_item.parent_args.np);
+> > +                       dev_err(dev, "Mux output line already defined\n");
+> > +                       return -EINVAL;
+> > +               }
+> > +
+> > +               /*
+> > +                * The child #address-cells is 0 (already checked). The first
+> > +                * value in imap item is the src hwirq.
+> > +                */
+> > +               writel(imap_item.child_imap[0], regs + index);
+> > +       }
+> > +
+> > +       return 0;
+> > +}  
+> 
+
 
