@@ -1,177 +1,103 @@
-Return-Path: <devicetree+bounces-229756-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229757-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id F157ABFB8B7
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 13:08:02 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08FCEBFB8EA
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 13:10:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 99CCE1A05080
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 11:08:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B65CA566948
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 11:09:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44BF1329C54;
-	Wed, 22 Oct 2025 11:07:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A16D0321441;
+	Wed, 22 Oct 2025 11:09:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ZvLXCjZt"
+	dkim=pass (1024-bit key) header.d=ucw.cz header.i=@ucw.cz header.b="bXI0pm5f"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com [209.85.128.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from jabberwock.ucw.cz (jabberwock.ucw.cz [46.255.230.98])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A76A329C41
-	for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 11:07:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50AFB325480;
+	Wed, 22 Oct 2025 11:09:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.255.230.98
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761131258; cv=none; b=rso5/NZiOUQV1BDSSD54mrbZa0X02r4fLM5ALedrajwxAgHaQWx5eADbRjk035Efs4/i9CqRduAhRC1OzBc2j7yZ29aZsBMtgHxyU7OHZiFzK093rFxLsTXfNlJu/ZAPNPFh28HkFcymPjw8ub5uCggk8ajWdJ5F5TUGr0UkCi4=
+	t=1761131360; cv=none; b=KRRBXqNp+hJyu8quXs+5IPPjHN8ToYPtBLuiuvi39xAL2cDQGJKZnVbylKmXrEtmQHHfy9bIOCrsgMPsd+jl49JuEb3vrYmIBOAC5CjtjTIL5g2O/SzL11hq1fbmUmM6P6eJIpwXHx5cUmb3FghxniAzmHeipBMT9Muw84/jZmI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761131258; c=relaxed/simple;
-	bh=NF6e/3SUl/mK178rTaB2eKW0q0VirZfspZzm5JQSfYo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=PVPNMGSm+ghJHaMJXSiDnJOCXfkqylmPLg6Z07JAQPQqITi7dvR3LMy9XANwILMjp2VfxRc6k6c4wvZvakDnkb5i+McRusSSPVvJ4aqqZUOr5/IBrIkKrPIsB/nOq66f8bHMD6o0D1niWJ37mwq8NFK03P/1pveUt34NZhmoNJI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ZvLXCjZt; arc=none smtp.client-ip=209.85.128.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-7815092cd22so90112237b3.2
-        for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 04:07:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1761131255; x=1761736055; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=U5H2hOYHrC6k0KzLWWZQ6pqjMN1sq2+E7LMIYVsMxic=;
-        b=ZvLXCjZtpmQOoxUHrdpzbyT9qlu9PqNgcaMl/88hmEhg6lonFsAe5xUl74Cbt67x8L
-         LCgEBLZAhtIQ0MPkhPv41aZaW6ooUyAK48gSv16jJpl6Qw5bfzWkqCSqmGjL7iKQBg/6
-         DduUslsFpyQGkzseVEOKZ0ayM3pRfpABf4ZyYVwLAMOxiFatX/RLj75jjdIFgDZfZTyH
-         1w+rXTMpFjfu48zxGmpiLlprLGWY7/O3dc+J8ff9VJPLQoHFt4ijOEy5rgez+8WqxacP
-         phZqMlB8xuiZ+uysYR8UprE/SXqg3qIImO4ZKZUgvJRIAt3GwTAZDPRTg6yd1LPRlrUc
-         87sA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761131255; x=1761736055;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=U5H2hOYHrC6k0KzLWWZQ6pqjMN1sq2+E7LMIYVsMxic=;
-        b=eOuXhGG6ypRZ2Y5/FxLDZRrd+6SGauzQxDlwyv+EBxKe4OwZs7rGBhNuF3KvXJil9T
-         lGvwCFMDkvvkBX1N/Fy8cQ0L/B9WG8nn4Wy+Ca0ti30BW2i8LLqWHIEvQ91Jat96gP0E
-         RnSwkZw467DuKHVj52YY/gPoTNRREtNEjEcfJm9ae2ziknvLU8yTXdyhalfl0aWcQM4L
-         7qtVZGLJEvlhUu18uFnTi9jLdK2REKnXgwK/tt3zGmHpbHxYAo6g6wAE8yiyB//JrVcX
-         19rFJOmMzNKD7T96dhpxOSVtMvm9I3arWrjj0MosDD4s5vi7W494AZDK/8Waq9u7byPk
-         zXFg==
-X-Forwarded-Encrypted: i=1; AJvYcCUDPLQkOhNUflFCpQrImswXm5J7ntPKNvT7qV/Ul5pcViDQeK+BKAZZL9E5WvH8x058TicE9FpGgjBf@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx61s+VIXx7+G8Wr8171gUceplJAl7hu+l/Ukr9fJMTePBQofP5
-	icm+rk4m3s9V5lIn6rZAnz7pTj+vubFnQUEQJVrwF5PFUHY67bkaMeteuV14+S3BEwsj7+WgVkn
-	XjW3GzReR9TXAeJyKBLRquX2thUp5ws2dfoW0K8COlg==
-X-Gm-Gg: ASbGncury1084QzrvwGLlr8t3B3VrDbOmhMAviX1YSpiiVNGTKw3wrJzyNIwBeCm2dW
-	kv0iZT8HvJXd/aekM/0NkRvVc4EqJ+w5UrbXFBypvDoAigaM+e17QA5aGPqltdGJRBWZh7U+zh3
-	6FThUGbVyOBSr/2V4pEtUZAfq1zXQXVPN34ZSiosB9r9+lHcYZPYnxWRNFeJoICg3V7CCZK9H0I
-	KZei1dvTtLmvLYlOyOmvEikQpWSpM/CaABS7Ljs4y1+kCbaCrENuyVCT/BxbyTfRoxRaYHv
-X-Google-Smtp-Source: AGHT+IFJ1vqYp3EqzVjhqjgkltJtdC0F8S0mc4Lwhfr9E90fNJYBhrJvwPxKs+vLQCTJSeMcdqP1qkhWadhCQNPbGBw=
-X-Received: by 2002:a53:a0cb:0:b0:63e:e9b:6220 with SMTP id
- 956f58d0204a3-63e161d9a5emr12477946d50.47.1761131255117; Wed, 22 Oct 2025
- 04:07:35 -0700 (PDT)
+	s=arc-20240116; t=1761131360; c=relaxed/simple;
+	bh=T6ODlUJlWqezbW19E58MqGoWcwokpjzZaYfBY09YRm4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=b11YC4k+gwynI49qz/cKgBZ+69sZv/fn7yL/9saGUo+uAJdnbmEc+Km3SElktAljO762jibilL16vvqdLDETXnMcZ8vkSiH8r9Ehx0/JefEqhXLtp3+NnXonwvmHaWLJeLpUxSUcbOuoyaQ9sRwUQG0PhzcBXNjNL+mF4WTJLuw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ucw.cz; spf=pass smtp.mailfrom=ucw.cz; dkim=pass (1024-bit key) header.d=ucw.cz header.i=@ucw.cz header.b=bXI0pm5f; arc=none smtp.client-ip=46.255.230.98
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ucw.cz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ucw.cz
+Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
+	id BCE621C007C; Wed, 22 Oct 2025 13:09:08 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ucw.cz; s=gen1;
+	t=1761131348;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=VXWeJp8S/bE9DbKcDmsGycphOVF0L6UeyUVsirjFKfU=;
+	b=bXI0pm5ffnL3+AJ1YDq6ByzhIzqDhW05PuGzaAdxOQGYl+Lm+AlDz3MdQi/I/eW7Tv6XzO
+	RmC0EpXSaaCAwgwuNslZNdcqcGmnFxrXxXBX2D1AuAZ3qr75U/Xh8jhnIalx/tD8KlfQqj
+	qS6ZLSXwMO9JYhBYy6XoND/5z/tWybw=
+Date: Wed, 22 Oct 2025 13:09:08 +0200
+From: Pavel Machek <pavel@ucw.cz>
+To: guptarud@gmail.com
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Ondrej Jirman <megi@xff.cz>, Martijn Braam <martijn@brixit.nl>,
+	Kamil =?utf-8?Q?Trzci=C5=84ski?= <ayufan@ayufan.eu>,
+	"Leonardo G. Trombetta" <lgtrombetta@gmx.com>
+Subject: Re: [PATCH v4 0/4] Upstreaming Pinephone Pro Patches
+Message-ID: <aPi7VAZEDnbqdvG4@duo.ucw.cz>
+References: <20250929-ppp_light_accel_mag_vol-down-v4-0-6598f22d3451@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251016-gs101-pd-v3-0-7b30797396e7@linaro.org> <20251016-gs101-pd-v3-8-7b30797396e7@linaro.org>
-In-Reply-To: <20251016-gs101-pd-v3-8-7b30797396e7@linaro.org>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Wed, 22 Oct 2025 13:06:59 +0200
-X-Gm-Features: AS18NWDVrbFCkhc03fhqCT8wIs3nWgG9ruif750F0ANB4USSH-3L9fEAVcRT1Po
-Message-ID: <CAPDyKFq2esPos=D-eVz6w1VXq=4LYi6fx54K4TvsUi4JqUJOaQ@mail.gmail.com>
-Subject: Re: [PATCH v3 08/10] pmdomain: samsung: selectively handle enforced sync_state
-To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
-	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Marek Szyprowski <m.szyprowski@samsung.com>, 
-	Peter Griffin <peter.griffin@linaro.org>, Tudor Ambarus <tudor.ambarus@linaro.org>, 
-	Will McVicker <willmcvicker@google.com>, kernel-team@android.com, 
-	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-pm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="akbWoOZumakbWuit"
+Content-Disposition: inline
+In-Reply-To: <20250929-ppp_light_accel_mag_vol-down-v4-0-6598f22d3451@gmail.com>
+
+
+--akbWoOZumakbWuit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, 16 Oct 2025 at 17:58, Andr=C3=A9 Draszik <andre.draszik@linaro.org>=
- wrote:
->
-> Unconditionally calling of_genpd_sync_state() causes issues on
-> platforms with child domains as the parent domain will be turned off
-> before the child domain was even registered during boot.
->
-> This in particular is an issue for the upcoming Google gs101 support -
-> all operations on child domains registered after the parent domain
-> misbehave.
->
-> Add a flag to the probe data to be able to sync_state conditionally
-> only, and enable that flag on the two platforms currently supported by
-> this driver.
->
-> Signed-off-by: Andr=C3=A9 Draszik <andre.draszik@linaro.org>
->
-> ---
-> v2:
-> * use bool for need_early_sync_state (Krzysztof)
-> ---
->  drivers/pmdomain/samsung/exynos-pm-domains.c | 5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/pmdomain/samsung/exynos-pm-domains.c b/drivers/pmdom=
-ain/samsung/exynos-pm-domains.c
-> index 638d286b57f716140b2401092415644a6805870e..15a1582aa92103a07335eb681=
-600d9415369fefd 100644
-> --- a/drivers/pmdomain/samsung/exynos-pm-domains.c
-> +++ b/drivers/pmdomain/samsung/exynos-pm-domains.c
-> @@ -20,6 +20,7 @@
->  struct exynos_pm_domain_config {
->         /* Value for LOCAL_PWR_CFG and STATUS fields for each domain */
->         u32 local_pwr_cfg;
-> +       bool need_early_sync_state;
->  };
->
->  /*
-> @@ -69,10 +70,12 @@ static int exynos_pd_power_off(struct generic_pm_doma=
-in *domain)
->
->  static const struct exynos_pm_domain_config exynos4210_cfg =3D {
->         .local_pwr_cfg          =3D 0x7,
-> +       .need_early_sync_state  =3D true,
->  };
->
->  static const struct exynos_pm_domain_config exynos5433_cfg =3D {
->         .local_pwr_cfg          =3D 0xf,
-> +       .need_early_sync_state  =3D true,
->  };
->
->  static const struct of_device_id exynos_pm_domain_of_match[] =3D {
-> @@ -179,7 +182,7 @@ static int exynos_pd_probe(struct platform_device *pd=
-ev)
->          * reset during boot. As a temporary hack to manage this, let's e=
-nforce
->          * a sync_state.
->          */
-> -       if (!ret)
-> +       if (pm_domain_cfg->need_early_sync_state && !ret)
->                 of_genpd_sync_state(np);
+Hi!
 
-The call to of_genpd_sync_state() was intended as a temporary solution here=
-.
+> Throughout the years, many have contributed to the Pinephone Pro (ppp)
+> development. Unfortunately, these patches are scattered around various
+> repositories in different states.
 
-Potentially, if we would be able to distinguish what PM domain that is
-causing the problem on the Exynos platforms, we could set
-GENPD_FLAG_NO_STAY_ON for that genpd instead.
+Thanks for doing this.
 
->
->         pm_runtime_enable(dev);
->
-> --
-> 2.51.0.788.g6d19910ace-goog
->
+You may want to cc phone-devel mailing list.
 
-The above said, $subject patch is still fine as is for me.
+BR,
+								Pavel
+--=20
+I don't work for Nazis and criminals, and neither should you.
+Boycott Putin, Trump, Netanyahu and Musk!
 
-Kind regards
-Uffe
+--akbWoOZumakbWuit
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCaPi7VAAKCRAw5/Bqldv6
+8tMBAKCVnJToNB6sKoye/rzIFyxpfw4XXwCgkvYgDCeaz2VqXgPd7DgxxwCy93A=
+=MQHp
+-----END PGP SIGNATURE-----
+
+--akbWoOZumakbWuit--
 
