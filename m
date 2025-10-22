@@ -1,59 +1,62 @@
-Return-Path: <devicetree+bounces-229681-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229682-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43A23BFAB5C
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 09:56:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 20BDDBFAB6F
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 09:57:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 034C04017E8
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 07:56:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BA732460F37
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 07:57:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E12C32FE075;
-	Wed, 22 Oct 2025 07:56:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83F3C2FD1D0;
+	Wed, 22 Oct 2025 07:57:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ycu3NBZl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YEgsIC0s"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A31F62FE06E;
-	Wed, 22 Oct 2025 07:56:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5917D2F28F2;
+	Wed, 22 Oct 2025 07:57:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761119789; cv=none; b=ogZrjkOWCZpfl5GASz68k4c2eEaNhIOTkrs+2y0UWWW05KIvzLAsB+SQPzMlybqCbr6n7c3iKpXpWIUBF57x7guGxTAlRd0jLmRtuWuyt+9n6h3XSgSztkdv4dju1SSKJnBcMW+NMLSzsz5W5s7vhZSTNsnZV/k0gGi4P6g5j4s=
+	t=1761119861; cv=none; b=F7cB0StrLCRppiJbbV1xvKAwvw0mH853K5ggZSZD9TREXHwpCvKoui2IcuQa1f3w7amYl9ZJ828zglxU64OdeNgMTKYcZ7N3Ndj6pmG+Em54tIdq725OPSEUgHFCNbOP47EVEWp8yySw9wjsN4wT2bcjio1O+LvX9VOgoYsThEs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761119789; c=relaxed/simple;
-	bh=xwEauBPEHJrofe1MoLxXmJ4AZ4uBT0GSA7wT/TN6xso=;
+	s=arc-20240116; t=1761119861; c=relaxed/simple;
+	bh=3ZD+uLg3U4eTWS54cwa/z6qXW4MaPy/85wVoaONKWEM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FsbXoZrVwvGbcKmwHuX1yV5lN+gxDfTPNq1iU1DmE1IUFFT/gbmVKjZRzhWmnnuJPgL1fG6yzc1qpjXuz9yfDpOhT5A9wT3WRG6UW9p9I4f9nd5aMYmu3RNcQNIG8X8P1C1BFZSo0oFxljY8GjrS6W/370CGs4E0eHxbMFSoQNY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ycu3NBZl; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A7802C4CEF5;
-	Wed, 22 Oct 2025 07:56:28 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=VXIF6+lh9N0+TQWgj2gOcDxFJorytwjXjvbfr2dNTVMzv5UGqoBLe+uKwAXDmP+dbVSY5S/gjpW2h5X4lyTfjrQ8ONCvP4mkcQdp/2KNPnDRDexChCrPZYyEUzSQYE/qBLJle/zOivv7pdsSiVYx8Zh1l76BlxxylltmmA7fwhU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YEgsIC0s; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 56978C4CEE7;
+	Wed, 22 Oct 2025 07:57:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761119789;
-	bh=xwEauBPEHJrofe1MoLxXmJ4AZ4uBT0GSA7wT/TN6xso=;
+	s=k20201202; t=1761119860;
+	bh=3ZD+uLg3U4eTWS54cwa/z6qXW4MaPy/85wVoaONKWEM=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Ycu3NBZljVs6uSEdPzZQx01UnpxSg8des4ZxUjbESf/JCfjShD5hjY1BnO7bQPcxr
-	 FXcrDkKWfEBH3ldYc0V792BrueZ+zXQUKvhdKQoI3iHnLBLcoV9V7qm8dnz6XENWjq
-	 7LJzMb3SvLSo7W5vjh4p5U2pj87CvbDNUTaWg7L+fER8Nek94/XvBNxaGUrlDVWadA
-	 VP2FRMB9piQYUgP95kJQuh3/hMjI5kpgbhE1lLqkAmbP1YtzCdcWuRCn4ykTqf3cNl
-	 QSZeFsp+moMgkWCQCeuvg82BPwCg4wlHm6Agf0SR9qcffnQABmEABOeNr8AeOq+BuA
-	 K/pyDbcemR8Ww==
-Date: Wed, 22 Oct 2025 09:56:26 +0200
+	b=YEgsIC0s1wDquXSSpNOwkpClJsI3ofRyAXf9+owslEz1qwKDYU5oSeUtncaC+8GHa
+	 V9fSI3d+3plqzhyTPFow0TSs47UloPIQEyY4tFw9Cz1J25ehWkhtYuE19HR1Pf/5KI
+	 AMWBevMA4G+lua7x67kr3dgyVvaikRjGP05xG/cVp9Fp4d7Vufw5uSmCxG834k+Di0
+	 HnoX6hE4W+AU6cO7SuWndJ5odRifqth41IyG9KhU5RDO793fjfVKbnkkwD/BraGYwp
+	 htWDQP38NGgyhsh+Si7VTdb+6KQCJm3GdxULTSyoys7eZuAKmOjqhRBSmdgbYomsmc
+	 8F8D79QHGoNDQ==
+Date: Wed, 22 Oct 2025 09:57:38 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-Cc: Sylwester Nawrocki <s.nawrocki@samsung.com>, 
-	Chanwoo Choi <cw00.choi@samsung.com>, Alim Akhtar <alim.akhtar@samsung.com>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	Peter Griffin <peter.griffin@linaro.org>, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 5/5] clk: samsung: introduce exynos8890 clock driver
-Message-ID: <20251022-savvy-sly-auk-a60073@kuoka>
-References: <20251017161334.1295955-1-ivo.ivanov.ivanov1@gmail.com>
- <20251017161334.1295955-6-ivo.ivanov.ivanov1@gmail.com>
+To: Herve Codina <herve.codina@bootlin.com>
+Cc: David Rhodes <david.rhodes@cirrus.com>, 
+	Richard Fitzgerald <rf@opensource.cirrus.com>, Liam Girdwood <lgirdwood@gmail.com>, 
+	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
+	Alexander Sverdlin <alexander.sverdlin@gmail.com>, Nikita Shubin <nikita.shubin@maquefel.me>, 
+	Axel Lin <axel.lin@ingics.com>, Brian Austin <brian.austin@cirrus.com>, 
+	linux-sound@vger.kernel.org, patches@opensource.cirrus.com, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH 2/3] ASoC: dt-bindings: cirrus,cs4271: Document mclk clock
+Message-ID: <20251022-aquatic-pigeon-of-masquerade-4c4369@kuoka>
+References: <20251016130340.1442090-1-herve.codina@bootlin.com>
+ <20251016130340.1442090-3-herve.codina@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,24 +65,24 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20251017161334.1295955-6-ivo.ivanov.ivanov1@gmail.com>
+In-Reply-To: <20251016130340.1442090-3-herve.codina@bootlin.com>
 
-On Fri, Oct 17, 2025 at 07:13:33PM +0300, Ivaylo Ivanov wrote:
-> Introduce a clocks management driver for exynos8890, providing clocks
-> for the peripherals of that SoC.
+On Thu, Oct 16, 2025 at 03:03:38PM +0200, Herve Codina wrote:
+> The Cirrus CS4271 codec can use an external clock as an input Master
+> Clock. When no crystal is used, the CS4271 component considers its MCLK
+> pin as an input pin and expects the external clock connected to provide
+> the Master Clock.
 > 
-> As exynos8890 is the first exynos SoC to feature Hardware Auto Clock
-> Gating (HWACG), it differs from newer SoCs. Q-channel and Q-state bits
-> are separate registers, unlike the CLK_CON_GAT_* ones that feature HWACG
-> bits in the same register that controls manual gating. Hence, don't use
-> the clk-exynos-arm64 helper, but implement logic that enforces manual
-> gating.
+> This clock is not documented in the binding.
+> 
+> Add the missing clock.
+> 
+> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+> ---
+>  .../devicetree/bindings/sound/cirrus,cs4271.yaml       | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
 
-Please CC @Peter Griffin in future versions.
-
-How much of this can be shared between this and GS101?
-https://lore.kernel.org/all/20251013-automatic-clocks-v1-0-72851ee00300@linaro.org/
-
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
