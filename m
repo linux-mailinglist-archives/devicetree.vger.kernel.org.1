@@ -1,131 +1,93 @@
-Return-Path: <devicetree+bounces-229775-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229776-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7093BFBE0A
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 14:36:03 +0200 (CEST)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F321BFBE56
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 14:44:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6DD6C4206ED
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 12:36:02 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 8DF7A357000
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 12:44:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA5F434167A;
-	Wed, 22 Oct 2025 12:35:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4687E344039;
+	Wed, 22 Oct 2025 12:44:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="QSk6D6ZI"
+	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="YCw1eC0h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9C8A19CC28;
-	Wed, 22 Oct 2025 12:35:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DAFB33C52C;
+	Wed, 22 Oct 2025 12:44:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761136558; cv=none; b=BF0NVjX1LcWR4aueGWQhWFloToLW/H54QQsBnoHpldmMznk78U8KMT79S86APQ2M7AdJv+hWbsdLDtIGFuJfwrR6xyCfduIAWWNCtcbA85aChvQN6jbfDdouHIZy1qa/uNjZS4aK70Eir49jYNhw53/ZNSW+0EMq938t6IohEuU=
+	t=1761137072; cv=none; b=JwjPpfKYwLxsxFXIIn8p6ON3dYHnOaccyYWjSBAqXYYV09cZoWDmWHt8/lNsJAgQ942iDhj+h3v5gdN8YY6OLhbR7aRK1u3G5ykpAqeA/mkU9oTH1M+/7p7PngOH0wAx+9mcTCDJ+8sX3cM4MBmBFNgvQhmDXV1z/mohgsOaxiY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761136558; c=relaxed/simple;
-	bh=6GygRBHvxfcqGXnEi/9P3tlsxMuta/koSy98GYmAOXs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ta7dioEumgRbe1s+cbkhqVR37yu7sUa0P23kykPgHhVICe2hs1sBXJRuSIC7rlm69VrBwKdRM7CYAYBfqjY61UL871TBgUGrwEC9FSuRGa89YiETxRB7H7BLAZ77OwsGbGXUkrT6zmIYCVpgIsMXLGzHF2K6omQkAWTi0NMtSWw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=QSk6D6ZI; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=R95DGcQ4LYALHG8T4SNxi7BAAXg7er7ggzkRbLh42No=; b=QSk6D6ZIL39KWQjpQVXzyu/daU
-	CkHCg8qd7kd0YqSVIzxh2OYFZ1Gtf6Zy1PMvilS2ibzw5vrduZP1N74w4P6Tj1JfPOXck0ka2IkIN
-	G3R9KHuq/zrSWxPK36Hjw1+QvspeXZMa8vN0KtQZWpHSk2jPm3N1Cw59r3FE3Ov57v3Y=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1vBY3w-00Bkxo-MY; Wed, 22 Oct 2025 14:35:32 +0200
-Date: Wed, 22 Oct 2025 14:35:32 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Sjoerd Simons <sjoerd@collabora.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Ryder Lee <ryder.lee@mediatek.com>,
-	Jianjun Wang <jianjun.wang@mediatek.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Chunfeng Yun <chunfeng.yun@mediatek.com>,
-	Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Lee Jones <lee@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Lorenzo Bianconi <lorenzo@kernel.org>, Felix Fietkau <nbd@nbd.name>,
-	kernel@collabora.com, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, linux-pci@vger.kernel.org,
-	linux-phy@lists.infradead.org, netdev@vger.kernel.org,
-	Daniel Golle <daniel@makrotopia.org>,
-	Bryan Hinton <bryan@bryanhinton.com>
-Subject: Re: [PATCH 15/15] arm64: dts: mediatek: mt7981b-openwrt-one: Enable
- leds
-Message-ID: <9ecffb7f-839c-4e4d-bef1-f59747d020b2@lunn.ch>
-References: <20251016-openwrt-one-network-v1-0-de259719b6f2@collabora.com>
- <20251016-openwrt-one-network-v1-15-de259719b6f2@collabora.com>
- <d8077ee4-21c2-43c5-b130-7ff270b09791@lunn.ch>
- <79d4a7379bce245d22b56c677fd7b3a263836239.camel@collabora.com>
+	s=arc-20240116; t=1761137072; c=relaxed/simple;
+	bh=VKKg6R2GGpyhzV6SYM4/YURkRudQx/VKFAbp39pJy2g=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=SVc4b7NL1K57SbyaBvefEEP2rDMybxZlM/3Eq1tS3Y2OhS2mb2z+/vHhtS2WRCdz2vc8j4ca4tZyGw+zLjcLZckk/FF8rpCksVDOXDJJBxnaC6D7jmhvgRES9xcx0gdo0UDUZrtlW5a0XI+YGkn74RlNcDC2I3QaWsDjyIpNyD4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=YCw1eC0h; arc=none smtp.client-ip=178.238.236.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=kemnade.info; s=20220719; h=References:In-Reply-To:Cc:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=RHH0V3A771nXPxinUtl+9kdKJ/Xiz0uAziok/Uy7w6U=; b=YCw1eC0h2+mdHNGza9ioOsBTX4
+	ByiTfzRHpGOORNNaarkXx4olcM4ccE7E5FSax6hbK3nnTVBOVhZI7YxrhFAwGKFrgtSc1XowSvUam
+	yQbrIDR1r/cosUgrUTT8nqm0rqkFRRIJCJe7A148h3nZ1OvHXiHN7ms4OXY5OwOgO/b/MCu4ES9oW
+	ZD314PNlzPMmlVgnyVizrG24RdoDz1Ifbc3CnIY6wIo/OOAWjugx4JbVpt8sIcEfiPklKY9K9ff6z
+	mwzwVSK3kcRpb3ugxhBIdX5piSV7ACpOPU1UhN09h8n92dEDob/vh6OhpqCawOwoTThc0GM9Pyhr+
+	MJFYdD0g==;
+Date: Wed, 22 Oct 2025 14:44:22 +0200
+From: Andreas Kemnade <andreas@kemnade.info>
+To: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc: akemnade@kernel.org, Lee Jones <lee@kernel.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Tony Lindgren <tony@atomide.com>, Kevin Hilman
+ <khilman@kernel.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
+ linux-omap@vger.kernel.org
+Subject: Re: [PATCH 2/3] Input: add TWL603x power button
+Message-ID: <20251022144422.7c17322a@kemnade.info>
+In-Reply-To: <aalnnbzeajxgnq33go5b2gi72yjzeeun5f2pkbdulu2hwuz663@b65xssnkse7l>
+References: <20251020-twl6030-button-v1-0-93e4644ac974@kernel.org>
+	<20251020-twl6030-button-v1-2-93e4644ac974@kernel.org>
+	<aalnnbzeajxgnq33go5b2gi72yjzeeun5f2pkbdulu2hwuz663@b65xssnkse7l>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; aarch64-unknown-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <79d4a7379bce245d22b56c677fd7b3a263836239.camel@collabora.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Wed, Oct 22, 2025 at 09:26:11AM +0200, Sjoerd Simons wrote:
-> Hey,
-> 
-> On Fri, 2025-10-17 at 19:35 +0200, Andrew Lunn wrote:
-> > On Thu, Oct 16, 2025 at 12:08:51PM +0200, Sjoerd Simons wrote:
-> > > The Openwrt One has 3 status leds at the front (red, white, green) as
-> > > well as 2 software controlled leds for the LAN jack (amber, green).
+On Tue, 21 Oct 2025 10:58:35 -0700
+Dmitry Torokhov <dmitry.torokhov@gmail.com> wrote:
+
+> On Mon, Oct 20, 2025 at 02:31:59PM +0200, akemnade@kernel.org wrote:
+> > From: Andreas Kemnade <andreas@kemnade.info>
 > > 
-> > A previous patch in this series added 2 PHY LEDs. Are they connected
-> > to a LAN jack? Are there multiple RJ45 connectors? Is it clear from
-> > /sys/class/leds what LED is what?
+> > Like the TWL4030, these PMICs also have a power button feature, so add
+> > a driver for it.  
 > 
-> Yeah there are two RJ45 jacks. One referred to as WAN in the openwrt one
-> documentation (2.5G), which uses phy integrated leds. One referred to as LAN,
-> which for some reason is using software controlled leds rather then the phy's
-> led controller, which this patch adds support for.
+> Could it be integrated into twl4030-pwrbutton.c? I think the differences
+> can be accounted for via a "chip" structure attached to a compatible...
 > 
-> When applying this set you'll get:
-> ```
-> root@openwrt-debian:/sys/class/leds# ls -1                                     
-> amber:lan                                                                      
-> green:lan                                                                      
-> green:status                                                                   
-> mdio-bus:0f:amber:wan                                                          
-> mdio-bus:0f:green:wan                                                          
-> mt76-phy0                                                                      
-> mt76-phy1                                                                      
-> red:status                                                                     
-> white:status                       
-> ```
-> 
-> Which is hopefully clear enough
+So what is different:
+- different register (but same bit)
+- some custom irq stuff for 603x (so if (is_603x) needed)
+- different name for the button (can be neglected I think) 
 
-You can also get to the LEDs associated to a MAC via
-/sys/class/net/eth42/leds, or a subdirectory.
+Besides of adding a chip structure  we can do it the same way
+as rtc-twl.c is doing: using twl_class_is_xxxx() which derives
+its return from the parents compatible. It is simplier, but
+I think the chip structure does not hurt much either.
 
-Please could you expand the commit message with more details of the
-different RJ45 connectors, and how the different LEDs map to them.
-
-Thanks
-
-	Andrew
+Regards,
+Andreas
 
