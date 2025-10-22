@@ -1,79 +1,79 @@
-Return-Path: <devicetree+bounces-229583-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229584-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62347BF9FCA
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 06:48:00 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7AF9CBF9FD0
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 06:48:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DC92319C86C7
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 04:48:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3B61F564491
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 04:48:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93E0C2DA757;
-	Wed, 22 Oct 2025 04:47:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 224252DC339;
+	Wed, 22 Oct 2025 04:47:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=reznichenko.net header.i=@reznichenko.net header.b="EccNWSt6"
+	dkim=pass (2048-bit key) header.d=reznichenko.net header.i=@reznichenko.net header.b="j4d9Ouqh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
+Received: from mail-pj1-f51.google.com (mail-pj1-f51.google.com [209.85.216.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 570F72D8395
-	for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 04:47:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C13FC2D978C
+	for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 04:47:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761108437; cv=none; b=lk5QRinNXdMt3vNXLutPfCW8HYhIOSTwNmSuQ2l9skoobBoKDzPmt9mksJk4nK8QSHenh0WVDkx/ZcgJdpsR+e5cUvUS/JI9sVhqwvd9GE1S5wgwpsjz/gSchN8Tj8bvvMYrq9cBCRkrPqSFrdoFC3f4mmooyi51MHrerDikcB4=
+	t=1761108439; cv=none; b=D2eFIYDDJ/nUQY2mkdXgHUWvCbKs2Dp72KsCIxouUjB3YLmG4jC83XY81sA1Yhhu2cjrIJCWXEhvtfp3RFXx8qVRBw6T5C0umzvyZMdQPYxlfO8x0u9UfWHc4ymwAtLZKRtuOOP1Ya4H4dPpD2x5JrPtQw8UaZLZoUyadp6q+n8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761108437; c=relaxed/simple;
-	bh=UeMi8wOq8P2oR2c8IuVTIvVV1TkHI2TplJ7c1V27Jf8=;
+	s=arc-20240116; t=1761108439; c=relaxed/simple;
+	bh=tRmg0nM0yOi19ddPpyllwAng8EhI2p+zBWRtANG9g3k=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=riV8ovD4Weps+obnL4IDBsxNCSvytmny6Hir1V0eB8xDIxaodFSkhhr8sfAix/hz+AXuEyuquaO6H45Xq/Ruhttl+y7DI/laDjT4vbG6Y/6JCo1YnE2GF1l6b/caF4YrIQlgt977Kdp2XaE5sWN6Nxng/08cVDYXDMn0sVOqlWc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=reznichenko.net; spf=none smtp.mailfrom=dpplabs.com; dkim=pass (2048-bit key) header.d=reznichenko.net header.i=@reznichenko.net header.b=EccNWSt6; arc=none smtp.client-ip=209.85.214.170
+	 MIME-Version; b=JhbeSLqXwu0HUVmNb8M4+KZu46XOL9K5vm5Kwq5OWgZp6unhHLTz/rYrsbFiOcOrgJGYW/eQEgV8PFX8gbiggkwbW1zVEnwph+Ke0HCCDXS3W5eRHnvcFkk+ei1Y2sS1+TnO/7EY8po6mW3gYlul/5RAAuh9dm3mENp36RHUh/I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=reznichenko.net; spf=none smtp.mailfrom=dpplabs.com; dkim=pass (2048-bit key) header.d=reznichenko.net header.i=@reznichenko.net header.b=j4d9Ouqh; arc=none smtp.client-ip=209.85.216.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=reznichenko.net
 Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=dpplabs.com
-Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-290c5dec559so51430045ad.3
-        for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 21:47:15 -0700 (PDT)
+Received: by mail-pj1-f51.google.com with SMTP id 98e67ed59e1d1-33292adb180so6371342a91.3
+        for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 21:47:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=reznichenko.net; s=google; t=1761108434; x=1761713234; darn=vger.kernel.org;
+        d=reznichenko.net; s=google; t=1761108436; x=1761713236; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=PmWpCjFNbINea3PWCqs9KAgYy8c0pAQxFWiD4F9OBQY=;
-        b=EccNWSt6rR/AkhLRrRuYlWV4EgNbfzXGQiIvknZzTIxcZmDSuZcZRmsMPlpysFoZBk
-         41ST4640h514xJP+IPqcrCwZyhhrkqd8W7pTlMjjj4sMU2Yr0Yrjf4g8+Xs4rPD660cy
-         P2cuNmQl5fYNrHuHtXiGjbx1iduZPJgh4Z8ZTJgk+jyyuFaQUf5l+Az6xhhGBqNdIqzk
-         ttGO51NfXXAozuqnpDkm7OUUknh2u8EZ8TcaRjUg/XixQ/BPX5gX9tpNYAOU6Si97T2u
-         IiAvsyQYSrZ3rT4maOoHVJMzrXwqsgI3lEq4su6kIYyb2BnvyHyjWGKicSd7d85I/6/7
-         rxsQ==
+        bh=+g3w2/WDXSoRhXJMMBp8Ljyd85I3LbiCuNCDyo4g5rM=;
+        b=j4d9OuqhMHAUkHo181/Gg+2LpYBMjVOn+EjuqLI6WnAJ4m/nNctyqVRH8sYABxkuP5
+         puLk0Ajaz9HJSG0Ra2VoOO4AC+MaW2CYBm2PDWBkrLt6YhXvBPnthMW+Gop0hhqtrlj3
+         gQ6vJ4CNYmvAg9Ys7n1zL0KirVbzmtVnD+R+2sLCeHM3aJxgnjjEttHrQXdhS1u/TzVy
+         T5xmxh4E5/N3zIh6JuFl+YVKkxz+5c3FIAqfBgOdNVZcuPhRD3iu6PCYCDEOE81YmZoy
+         yd3vbhQAMQKGJYhjf72jyVBWhyRtg2gAnmdxkO+Vx65QInG1jfeidKqU3Vr/xqaGWzNo
+         x0WA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761108434; x=1761713234;
+        d=1e100.net; s=20230601; t=1761108436; x=1761713236;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=PmWpCjFNbINea3PWCqs9KAgYy8c0pAQxFWiD4F9OBQY=;
-        b=Ig1z2LFSJnMxlGSVxgHftBcoF6T01QbU8xKMWJfNr97wlCwsfSsbP7W9GtugbDugj0
-         rhZsXVlqpmPUGHJrT4XNf3hA4gQ7ZMySL9aaSWi51nh1EEMrHgu19NRN8swDy1pWPnRp
-         sbEuIQRY6VOP767xJG2iAfNX78vo38Pi4DAohJ23bM44p4W+UdTF75dmjCPOBO8r4Kt/
-         RpHAv5f4JB+eDfCrSWIFtXk4Ro4Pc3qCFD0v0usRb6F3bQBLp88ghp1JE4U3SQEpxSuh
-         nJ/5UJH03vwT442K/rkpiM4ILSYJzztg3FNIzxSes4X//oeq4zMUh/vHQc0JktPVTw6/
-         XA3g==
-X-Forwarded-Encrypted: i=1; AJvYcCWtRfyoxVIMZ+y6Cliz4YhaH7y5Cw3quN8d9DCNMIJbbpUr9MWxoupiyGABXLmqV+lIk01JMc89yxDP@vger.kernel.org
-X-Gm-Message-State: AOJu0YxXQxKSERp7hzmF+ZxkCduq1biEMPpz7XE+p7UjtxqqSIWGxv2R
-	79FmqDIfVG3ek/9BQLG2mCL8nl+FYqAZAQ+p3wo1nlxB1XKSBgOEEW6i0oC9S1GH3As=
-X-Gm-Gg: ASbGncuZq8VfLg1Ocu8VBUPo3hxMWEzvUZl9jvSTvdnpJtYlacYg4jwiZ7WaMjhUD4r
-	KXudnioPhr62dmiOoVitvUd2h08K1aBv8lO6aR/Q0KrxrUCTiE8Llbn5m6/SgRx1gW2vVfwYrgJ
-	cE59et2X82KUZ6Iwzd/NC/L7558Uo0pFy+O7mvg28XK0ND/4wPvB/K+9TXmU7auZ+omljEdxXNF
-	GTqZGah0ooFsArNwTwDYEme9L0PSTT0hYcNLtinnuyoZs4DhIQcVJQcLYWoy7uqATrRa6oEpAlQ
-	Er5LKHyR52chQ6LQgoru92a5lSrN3blfvQB8QagpsrisE0PS7Q8eSeg947y9fQj81pjDAirULCf
-	ofEM06/On/gBMzMiqDE7KPfEyvPfDCmag1rEFKVgGrt9tfjGc3z+mIBuCsHtbo5kQW/gfHNKBlj
-	gXT+NzlOORRBwfJe0=
-X-Google-Smtp-Source: AGHT+IGQMINIDphenVyGBthc7D66TfZYg33GMQZDeFMiv4qZwcZZxv+fFMJb6PBNUzYeckgkRMS22A==
-X-Received: by 2002:a17:902:dad0:b0:24c:d0b3:3b20 with SMTP id d9443c01a7336-290ca12180emr248707485ad.37.1761108434628;
-        Tue, 21 Oct 2025 21:47:14 -0700 (PDT)
+        bh=+g3w2/WDXSoRhXJMMBp8Ljyd85I3LbiCuNCDyo4g5rM=;
+        b=XKI0rla0j3MnHULghEaiWIAxh1JqrJbTYL+oF3YKw/ZTAZ03U0AzKJL8b+GdnRF2mf
+         XVdDjMtlbjHeNcvl83g6OxjTltGalnVhTBFT6Aws4UamBaRXTtrz8d2LE4qmmlZRnOnj
+         cKOUQuXt/iJAxnkWCn2l9zp6JZvyijpzbexvcfxo0taNrWdIrDXfAgi1eC9tFe/tlpSM
+         jadQNUyzsPl3QBtHH1wM0mych5n3L6Bj1pl7NmNDaC4RvWhRHe4ngdYfuGI+M+dOoiIa
+         0BJXBKIz8G11tDefM+VrV2qeigmII/bUXOzvH8yd3Qa6+aOXzF4CmdqwQMegMPbG3CHi
+         1LxQ==
+X-Forwarded-Encrypted: i=1; AJvYcCW2a8axjfUvjVNOkV6AFwDRbPthu9XONAFbyUtPxnAYb8IlqRA6O0chuSSs4xWVplQwXTWVvxGc+PBe@vger.kernel.org
+X-Gm-Message-State: AOJu0YyyMDzrvXgKFiJqLErCVO1BOQ7tDdGcamgctgu1hHegeixJTYLS
+	kEbrq3A1wzpNifx10BaLSTROShIRPr+7caEGn/s45if+yhQ2lNBQU1l+BUB6adeCFL4=
+X-Gm-Gg: ASbGncvZAey10iMFpaSTGY4pGZYhFGvw+3h6lxi2SfK7Q/S87lKsVyQnxe8+2DhNBWC
+	8P6xc168ecerSMYxRrJj1m9iuTO1wO8x8Sg/iEmMx0pQYa0FOACLbjoNnjizIahChqTycVfX/3E
+	PWp4KPQNObCP2wMKRkJomONsci5Qn2/vTYyTJSWA4MdD4SfD1F0DDArp6rIqbqqE8ucdZt4vy66
+	3+nnXSN606jyJ6IuUyWBUfx0T7EUqeyzO5COwFkPx4EN+C8PbjZ+TDtgIIGgwy5B3nTn/KtIgSZ
+	vemG7sTlIpvFf+XxpmEeAz/azgN/xhUPusmDiVbntMvmw6JFldscqmMR1f9I52/L+oX9ZNpmWBq
+	Pi5+exZDfSqB8DKEW8+h6bz9136s37aqSjY/cvpQIVLy+3GHOEhICFYWiwRhov7KUyKBg2eIES9
+	7/Nx4y
+X-Google-Smtp-Source: AGHT+IFW1zF3iL/OYtMt8e8D26V/k4CY22GYL4vfqmAbUGpIaxRLd5gEXU0u21nkZey/eOJ5HimP6w==
+X-Received: by 2002:a17:90b:2d8b:b0:336:bfce:13c9 with SMTP id 98e67ed59e1d1-33bcf8e3d37mr25973339a91.20.1761108436088;
+        Tue, 21 Oct 2025 21:47:16 -0700 (PDT)
 Received: from z440.. ([2601:1c0:4502:2d00:8004:e310:f3d:dd0])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-33e223dd9d6sm1257413a91.7.2025.10.21.21.47.13
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-33e223dd9d6sm1257413a91.7.2025.10.21.21.47.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Oct 2025 21:47:14 -0700 (PDT)
+        Tue, 21 Oct 2025 21:47:15 -0700 (PDT)
 From: Igor Reznichenko <igor@reznichenko.net>
 To: linux@roeck-us.net,
 	robh@kernel.org,
@@ -86,9 +86,9 @@ Cc: linux-hwmon@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	linux-doc@vger.kernel.org
-Subject: [PATCH 4/5] Documentation/hwmon: Add TSC1641 driver documentation
-Date: Tue, 21 Oct 2025 21:47:07 -0700
-Message-ID: <20251022044708.314287-5-igor@reznichenko.net>
+Subject: [PATCH 5/5] Documentation/devicetree/bindings/hwmon: Add TSC1641 binding
+Date: Tue, 21 Oct 2025 21:47:08 -0700
+Message-ID: <20251022044708.314287-6-igor@reznichenko.net>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251022044708.314287-1-igor@reznichenko.net>
 References: <20251022044708.314287-1-igor@reznichenko.net>
@@ -100,107 +100,74 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Add hwmon documentation for the TSC1641 driver. This includes
-description and the sysfs attributes.
+Add a devicetree binding for the TSC1641 I2C power monitor.
 
 Signed-off-by: Igor Reznichenko <igor@reznichenko.net>
 ---
- Documentation/hwmon/index.rst   |  1 +
- Documentation/hwmon/tsc1641.rst | 73 +++++++++++++++++++++++++++++++++
- 2 files changed, 74 insertions(+)
- create mode 100644 Documentation/hwmon/tsc1641.rst
+ .../devicetree/bindings/hwmon/st,tsc1641.yaml | 54 +++++++++++++++++++
+ 1 file changed, 54 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/hwmon/st,tsc1641.yaml
 
-diff --git a/Documentation/hwmon/index.rst b/Documentation/hwmon/index.rst
-index 51a5bdf75b08..4fb9f91f83b3 100644
---- a/Documentation/hwmon/index.rst
-+++ b/Documentation/hwmon/index.rst
-@@ -253,6 +253,7 @@ Hardware Monitoring Kernel Drivers
-    tps40422
-    tps53679
-    tps546d24
-+   tsc1641
-    twl4030-madc-hwmon
-    ucd9000
-    ucd9200
-diff --git a/Documentation/hwmon/tsc1641.rst b/Documentation/hwmon/tsc1641.rst
+diff --git a/Documentation/devicetree/bindings/hwmon/st,tsc1641.yaml b/Documentation/devicetree/bindings/hwmon/st,tsc1641.yaml
 new file mode 100644
-index 000000000000..a93d1e72c70e
+index 000000000000..e79f6dab4a87
 --- /dev/null
-+++ b/Documentation/hwmon/tsc1641.rst
-@@ -0,0 +1,73 @@
-+Kernel driver tsc1641
-+=====================
++++ b/Documentation/devicetree/bindings/hwmon/st,tsc1641.yaml
+@@ -0,0 +1,54 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/hwmon/st,tsc1641.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+Supported chips:
++title: ST Microelectronics TSC1641 I2C power monitor
 +
-+  * ST TSC1641
++maintainers:
++  - Igor Reznichenko <igor@reznichenko.net>
 +
-+    Prefix: 'tsc1641'
++description: |
++  TSC1641 is a 60 V, 16-bit high-precision power monitor with I2C and MIPI I3C interface
 +
-+    Addresses scanned: -
++  Datasheets:
++    https://www.st.com/resource/en/datasheet/tsc1641.pdf
 +
-+    Datasheet:
-+	https://www.st.com/resource/en/datasheet/tsc1641.pdf
++properties:
++  compatible:
++    const: st,tsc1641
 +
-+Author:
-+	- Igor Reznichenko <igor@reznichenko.net>
++  reg:
++    maxItems: 1
 +
++  shunt-resistor:
++    description:
++      Shunt resistor value in micro-ohms.
++    $ref: /schemas/types.yaml#/definitions/uint32
 +
-+Description
-+-----------
++  st,alert-polarity-active-high:
++    description: Default value is 0 which configures the normal polarity of the ALERT pin, being active low open-drain.
++      Setting this to 1 configures the polarity of the ALERT pin to be inverted and active high open-drain.
++      Specify this property to set the alert polarity to active-high.
++    $ref: /schemas/types.yaml#/definitions/flag
 +
-+The TSC1641 is a high-precision current, voltage, power, and temperature
-+monitoring analog front-end (AFE). It monitors current into a shunt resistor and load
-+voltage up to 60 V in a synchronized way. Digital bus interface is I2C/SMbus.
-+The TSC1641 allows the assertion of several alerts regarding the voltage, current,
-+power and temperature.
++required:
++  - compatible
++  - reg
 +
-+Sysfs entries
-+-------------
++additionalProperties: false
 +
-+==================== =======================================================
-+in0_input            bus voltage (mV)
-+in0_crit             bus voltage crit alarm limit (mV)
-+in0_crit_alarm       bus voltage crit alarm limit exceeded
-+in0_lcrit            bus voltage low-crit alarm limit (mV)
-+in0_lcrit_alarm      bus voltage low-crit alarm limit exceeded
++examples:
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
 +
-+curr1_input          current measurement (mA)
-+curr1_crit           current crit alarm limit (mA)
-+curr1_crit_alarm     current crit alarm limit exceeded
-+curr1_lcrit          current low-crit alarm limit (mA)
-+curr1_lcrit_alarm    current low-crit alarm limit exceeded
-+
-+power1_input         power measurement (uW)
-+power1_crit          power crit alarm limit (uW)
-+power1_crit_alarm    power crit alarm limit exceeded
-+
-+shunt_resistor       shunt resistor value (uOhms)
-+shunt_voltage_uvolts shunt voltage raw measurement (uV)
-+
-+temp1_input          temperature measurement (mdegC)
-+temp1_crit           temperature crit alarm limit (mdegC)
-+temp1_crit_alarm     temperature crit alarm limit exceeded
-+
-+update_interval      data conversion time (1 - 33ms), longer conversion time corresponds
-+                     to higher effective resolution in bits
-+==================== =======================================================
-+
-+General Remarks
-+---------------
-+
-+The TSC1641 driver requires the value of the external shunt resistor to
-+correctly compute current and power measurements. The resistor value, in
-+micro-ohms, should be provided either through the device tree property
-+"shunt-resistor" or via the writable sysfs attribute "shunt_resistor".
-+Please refer to the Documentation/devicetree/bindings/hwmon/st,tsc1641.yaml
-+for bindings if the device tree is used.
-+
-+If the shunt resistor value is not specified in the device tree, the driver
-+initializes it to 0 uOhm by default. In this state, current and power
-+measurements will read as zero and are considered invalid. To enable these
-+measurements, users must configure the correct shunt resistor value at
-+runtime by writing to the "shunt_resistor" sysfs attribute.
++        power-sensor@40 {
++            compatible = "st,tsc1641";
++            reg = <0x40>;
++            shunt-resistor = <5000>;
++            st,alert-polarity-active-high;
++        };
++    };
 -- 
 2.43.0
 
