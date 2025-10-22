@@ -1,171 +1,185 @@
-Return-Path: <devicetree+bounces-229573-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229574-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14FFCBF9DAF
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 05:39:31 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FC70BF9DEA
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 05:45:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AB3E919C66B9
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 03:39:54 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 94E984F3FB6
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 03:44:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF69C2D061F;
-	Wed, 22 Oct 2025 03:39:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69F2E2D23BF;
+	Wed, 22 Oct 2025 03:44:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="A/mnp4P9";
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="HRgT+llP"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="ArXfRtXO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
+Received: from mail-m3284.qiye.163.com (mail-m3284.qiye.163.com [220.197.32.84])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C23BE2D0607;
-	Wed, 22 Oct 2025 03:39:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.161
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78B592D29CA;
+	Wed, 22 Oct 2025 03:44:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.84
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761104368; cv=none; b=kgQzca6qIzbYSJ4XMrj/t77lQ8r4QQbBOpoUwEgp18nmLUG3Vty4mZjGX42YCfioUlFNOTs5FDIdS6uul2eBgMnCi+spLLTtavhq+e5+9Z3Ln+5JoPuxZUYzAfsPoGAVlefrECuv3KFAtZhwkd1ZlHWaP/LnZ9VRb4DjQsRndIE=
+	t=1761104688; cv=none; b=mXt5WHqwu+PkGxBHQdqwS0XzvScTzKQPXUhhDgMOlHuob0oUmnVytwkhtYizwyuBD12hISKn5gFbM9J9tyYz1ylyIBKyNQ+zglSSJfPfkTE37sguP3vHL9WczgqJp9H1psMbEwqQCy6/LOYqq/X/zMPbTLbuOP1lU7rp8mUlZTs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761104368; c=relaxed/simple;
-	bh=ewvXLsWTP/BkISda5COfmUtN9NudvkOtQSZXsF4b6TM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=YOl+lVrZz03uRjet8xYgc0UxrfLDXz6L2JiLUPtqI4jP8EhLWOG6Les8rMieY9ZdTqfQfgnnVBolWcW6QdrDB3rNexoAQRx3c3FSwzoxki6rcgxQ9uWvY0UekX79fl2Q7kdq/+Ou++ts8wl6pxmjpJz6YtEVvqmzTEWxrVJL1Rs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=A/mnp4P9; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=HRgT+llP; arc=none smtp.client-ip=80.241.56.161
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp102.mailbox.org (smtp102.mailbox.org [IPv6:2001:67c:2050:b231:465::102])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4crvzW066Mz9t0n;
-	Wed, 22 Oct 2025 05:39:19 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1761104359;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=WBsqi8aVtRrr0aLVx99HkB7KLWoQPtqbsgQso7hQozw=;
-	b=A/mnp4P9vvcLPDSdClIAwzrxbFtzmXpuZyChltBLo9WDG0q45QqaGwsPHWmuLPk9Mz9bxn
-	MVd0fWmTP3Mj/jpJYKQlHi8idm88+V/LMoCWs3d5UDutajtaOr9PLD12/i3IpNuFjLI8Z5
-	aNrayD1Aoo0JRL/+kPq+9lULXF1CC+yy9RarxMvrGcaXyCL6JT6WsHFQM5qF4kP07vnX/q
-	efimqvlM3W4H9NftRrLrLIp45EXhoziXvWqV57xIQvTJI4CbfYJy+AUjEoBgYs1+mUUnuc
-	0O4X1fS0FAgiFO/iybeU4ifDKrrb2uFF/SQYaeuPtWaK2KwoZZ/XFr/YqjphlQ==
-Authentication-Results: outgoing_mbo_mout;
-	dkim=pass header.d=mailbox.org header.s=mail20150812 header.b=HRgT+llP;
-	spf=pass (outgoing_mbo_mout: domain of marek.vasut+renesas@mailbox.org designates 2001:67c:2050:b231:465::102 as permitted sender) smtp.mailfrom=marek.vasut+renesas@mailbox.org
-From: Marek Vasut <marek.vasut+renesas@mailbox.org>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1761104357;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=WBsqi8aVtRrr0aLVx99HkB7KLWoQPtqbsgQso7hQozw=;
-	b=HRgT+llPNrsJ4P1s6n8YGQ1YxdtQcWKvsiO21U6rRt5G2N7CjHbsqKjC5tDf5So5aKcs+U
-	oVhlAfjR3ZKqERaEuNjUxqV9uL+ZHfrDFN90+9YakJTYUJbyVTI9gAovbqxOF1s9ESewxU
-	LBHQdQ08n/6Vl2Goo+jmQLa8q5VInooJ0oeGfHgkAPrAjv3Wes12VLuaDrAmuXydZth57t
-	xESpC9WtoqivaN+EcPhAzrlWZp4OF5kFkv15XSpkWwW39XWGflDyORADD1x5i49e9n/PxL
-	SwPzgprFgrKC7b2gaDj6hD8uHPnpdqrSSrTtcGvSRO1gxFWaKKNZO4AafbDZMA==
-To: linux-arm-kernel@lists.infradead.org
-Cc: Marek Vasut <marek.vasut+renesas@mailbox.org>,
-	Matt Coster <matt.coster@imgtec.com>,
-	=?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>,
-	Adam Ford <aford173@gmail.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	David Airlie <airlied@gmail.com>,
-	Frank Binns <frank.binns@imgtec.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Simona Vetter <simona@ffwll.ch>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	devicetree@vger.kernel.org,
-	dri-devel@lists.freedesktop.org,
-	linux-renesas-soc@vger.kernel.org
-Subject: [PATCH v3 3/3] arm64: dts: renesas: r8a77961: Add GX6250 GPU node
-Date: Wed, 22 Oct 2025 05:37:57 +0200
-Message-ID: <20251022033847.471106-3-marek.vasut+renesas@mailbox.org>
-In-Reply-To: <20251022033847.471106-1-marek.vasut+renesas@mailbox.org>
-References: <20251022033847.471106-1-marek.vasut+renesas@mailbox.org>
+	s=arc-20240116; t=1761104688; c=relaxed/simple;
+	bh=4CUUYu8tJIpieoEr4zh1QV6WKXOdMk/TpkB9Q8Hm9BI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=QBK9am9OqNmOX3mupEqgBnI/tOV48PL8jGoCP14iU0Iru8vaZf9jVNKSdxfCqo2Djl5nqxFw8PqxUVypSrlaebY0IM2w5ugelUGsflQChxsRQslqhk2D+awfxPHVV5kgQnCHR2nGvKE9+0NVud9uACQUKcm/fFp1p11gpvVHuOU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=ArXfRtXO; arc=none smtp.client-ip=220.197.32.84
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from [172.16.12.30] (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 26bdc4b26;
+	Wed, 22 Oct 2025 11:44:34 +0800 (GMT+08:00)
+Message-ID: <f9aaa47e-4fa5-4b13-8abc-392d2c96512e@rock-chips.com>
+Date: Wed, 22 Oct 2025 11:44:34 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 5/7] clk: rockchip: add support for pvtpll clk
+To: Heiko Stuebner <heiko@sntech.de>, mturquette@baylibre.com,
+ sboyd@kernel.org, sugar.zhang@rock-chips.com, robh@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-clk@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org, huangtao@rock-chips.com,
+ finley.xiao@rock-chips.com
+References: <20251021065232.2201500-1-zhangqing@rock-chips.com>
+ <20251021065232.2201500-6-zhangqing@rock-chips.com>
+ <13871591.dW097sEU6C@phil>
+From: zhangqing <zhangqing@rock-chips.com>
+In-Reply-To: <13871591.dW097sEU6C@phil>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-MBO-RS-ID: f69b06254ed5cf3ae28
-X-MBO-RS-META: eeua13kwu5kksjep79ytb3idpqginpem
-X-Rspamd-Queue-Id: 4crvzW066Mz9t0n
+X-HM-Tid: 0a9a0a04be1703a3kunm0809e1ec6ecec4
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGRhPSVZKTUJKGU8dQ01LSENWFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
+	hVSktLVUpCS0tZBg++
+DKIM-Signature: a=rsa-sha256;
+	b=ArXfRtXOs2Jy9UF1xMhJNAXTDSfBWHv5TLXYDrpUBZhvjN0KZHcPa6Htb7xhp6ndoH9+j0hekWLIk24NbBulhzu9JGj+WCGA2RSZSb1hEG1s8x3RgYZoDVVUUYXCfV6+nTV20cmyoWv2ZRkX2h82AHT2ZEzZWEElehV4GWOOsD8=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
+	bh=GOlmDU3XHNnYO/SjaQRIDwYCDCAm+u1iC+Arz69K7Y4=;
+	h=date:mime-version:subject:message-id:from;
 
-Describe Imagination Technologies PowerVR Rogue GX6250 BNVC 4.45.2.58
-present in Renesas R-Car R8A77961 M3-W+ SoC.
 
-Acked-by: Matt Coster <matt.coster@imgtec.com>
-Reviewed-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
-Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
----
-Cc: Adam Ford <aford173@gmail.com>
-Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: David Airlie <airlied@gmail.com>
-Cc: Frank Binns <frank.binns@imgtec.com>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Cc: Magnus Damm <magnus.damm@gmail.com>
-Cc: Matt Coster <matt.coster@imgtec.com>
-Cc: Maxime Ripard <mripard@kernel.org>
-Cc: Rob Herring <robh@kernel.org>
-Cc: Simona Vetter <simona@ffwll.ch>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: devicetree@vger.kernel.org
-Cc: dri-devel@lists.freedesktop.org
-Cc: linux-renesas-soc@vger.kernel.org
----
-V2: - Add RB from Niklas
-    - Fix up power-domains = <&sysc R8A77961_PD_3DG_B>; for 77961
-    - Fill in all three clock and two power domains
-V3: - Add AB from Matt
-    - Disable the GPU by default
----
- arch/arm64/boot/dts/renesas/r8a77961.dtsi | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
+在 2025/10/21 21:47, Heiko Stuebner 写道:
+> Am Dienstag, 21. Oktober 2025, 08:52:30 Mitteleuropäische Sommerzeit schrieb Elaine Zhang:
+>> Support to adjust pvtpll by volt-sel and otp.
+>> Support calibrate pvtpll init frequency.
+>>
+>> PVTPLL is used to monitor the chip performance variance caused by chip
+>> process, voltage and temperature, and generate a set of reference signals
+>> for adjusting the voltage of the chip.
+>>
+>> PVTPLL supports the following features:
+>>
+>> 1. A clock oscillation ring is integrated and used to generate a clock
+>> like signal (osc_clk),the frequency of this clock is determined
+>> by the cell delay value of clock oscillation ring circuit
+>>
+>> 2. A frequency counter(osc_cnt) is used to measure the frequency of osc_clk.
+>>
+>> 3. A externally input clock (ref_clk) is used as a reference clock for
+>> detecting the frequency of osc_clk.
+>>
+>> 4. A calculation counter uses ref_clk to generate a configurable
+>> periodic timing window.
+>>
+>> 5. Two clock counters are used to measure the frequency of the clock
+>> generated by OSC_WRAPPER?
+>>
+>> 6. Support for dividing the ref_clk and osc_clk
+>>
+>> 7. Support for configuring the effective polarity of the voltage
+>> regulator signal 'OUT'
+>>
+>> The clock path of cpu used pvtpll:
+>>
+>>      --gpll--|--\
+>>              |   \                                 | \
+>>              |    \                                |  \
+>>              |     \                               |   \
+>>     --v0pll--| mux |--[gate]--[div]--clk_core_src--|mux |--clk_core
+>>              |     /                               |   /
+>>              |    /   --ref_clk--[div]-cpu_pvtpll--|  /
+>>     --v1pll--|   /                                 | /
+>>              |--/
+>>
+>> Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
+> [...]
+>
+>> +	pvtpll->regmap_cru = syscon_regmap_lookup_by_phandle_optional(np, "rockchip,cru");
+> Not convinced about that :-) .
+>
+> (1) the cru itself already ioremaps the CRU memory, so having a syscon
+>      there would ioremap that memory a second time.
+> (2) we should definitly not expose the whole CRU io-memory to other
+>      drivers to write "random" stuff to. This will just invited further
+>      hacks, where people want to take shortcuts with clock settings.
+>
+> Also this seems highly specific to the rv1126b.
+>
+> Looking at the registers, this is a clk-mux between that deepslow clock
+> and the actual pvtpll output and the config function really only
+> reparents to the pvtpll in all cases.
+>
+> So I believe this should in the worst case just be mux clock, but also
+> I see that the "correct" setting will already be set by the
+>
+>          /* pvtpll src init */
+>          writel_relaxed(PVTPLL_SRC_SEL_PVTPLL, reg_base + RV1126B_CORECLKSEL_CON(0));
+>          writel_relaxed(PVTPLL_SRC_SEL_PVTPLL, reg_base + RV1126B_NPUCLKSEL_CON(0));
+>          writel_relaxed(PVTPLL_SRC_SEL_PVTPLL, reg_base + RV1126B_VICLKSEL_CON(0));
+>          writel_relaxed(PVTPLL_SRC_SEL_PVTPLL, reg_base + RV1126B_VEPUCLKSEL_CON(0));
+>          writel_relaxed(PVTPLL_SRC_SEL_PVTPLL, reg_base + RV1126B_VCPCLKSEL_CON(0));
+>
+> in the rv1126b clock driver?
+This configuration is only used to select the source clock of pvtpll, 
+whether it is 24M or 32K.
+For pvtpll to function properly, it needs to be switched from the 
+default 32K to 24M.
+>
+> So that whole mode setting should not be necessary at all maybe?
+Pvtpll adjusts the ring and len parameters according to the voltage and 
+frequency, and calibrates and adjusts the parameter table of pvtpll 
+based on the batch of chips.
 
-diff --git a/arch/arm64/boot/dts/renesas/r8a77961.dtsi b/arch/arm64/boot/dts/renesas/r8a77961.dtsi
-index 12435ad9adc04..31b11bdab69b9 100644
---- a/arch/arm64/boot/dts/renesas/r8a77961.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r8a77961.dtsi
-@@ -2455,6 +2455,23 @@ gic: interrupt-controller@f1010000 {
- 			resets = <&cpg 408>;
- 		};
- 
-+		gpu: gpu@fd000000 {
-+			compatible = "renesas,r8a77961-gpu",
-+				     "img,img-gx6250",
-+				     "img,img-rogue";
-+			reg = <0 0xfd000000 0 0x40000>;
-+			interrupts = <GIC_SPI 119 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cpg CPG_CORE R8A77961_CLK_ZG>,
-+				 <&cpg CPG_CORE R8A77961_CLK_S2D1>,
-+				 <&cpg CPG_MOD 112>;
-+			clock-names = "core", "mem", "sys";
-+			power-domains = <&sysc R8A77961_PD_3DG_A>,
-+					<&sysc R8A77961_PD_3DG_B>;
-+			power-domain-names = "a", "b";
-+			resets = <&cpg 112>;
-+			status = "disabled";
-+		};
-+
- 		pciec0: pcie@fe000000 {
- 			compatible = "renesas,pcie-r8a77961",
- 				     "renesas,pcie-rcar-gen3";
+Pvtpll is located in pd. After the pd on/off, configuration information 
+will be lost and some recovery operations need to be performed, so the 
+address of cru is required.
+
+About the syscon attribute is used by the cpu dev freq driver to obtain 
+pvtpll information.This depends on cpu dev freq driver. Upstream can 
+remove the syscon next version.
+
+>
+> Thanks
+> Heiko
+>
+>
+>
 -- 
-2.51.0
+张晴
+瑞芯微电子股份有限公司
+Rockchip Electronics Co.,Ltd
+地址：福建省福州市铜盘路软件大道89号软件园A区21号楼
+Add:No.21 Building, A District, No.89 Software Boulevard Fuzhou, Fujian 350003, P.R.China
+Tel:+86-0591-83991906-8601
+邮编：350003
+E-mail:elaine.zhang@rock-chips.com
+****************************************************************************
+保密提示：本邮件及其附件含有机密信息，仅发送给本邮件所指特定收件人。若非该特定收件人，请勿复制、使用或披露本邮件的任何内容。若误收本邮件，请从系统中永久性删除本邮件及所有附件，并以回复邮件或其他方式即刻告知发件人。福州瑞芯微电子有限公司拥有本邮件信息的著作权及解释权，禁止任何未经授权许可的侵权行为。
+
+IMPORTANT NOTICE: This email is from Fuzhou Rockchip Electronics Co., Ltd .The contents of this email and any attachments may contain information that is privileged, confidential and/or exempt from disclosure under applicable law and relevant NDA. If you are not the intended recipient, you are hereby notified that any disclosure, copying, distribution, or use of the information is STRICTLY PROHIBITED. Please immediately contact the sender as soon as possible and destroy the material in its entirety in any format. Thank you.
+
+****************************************************************************
 
 
