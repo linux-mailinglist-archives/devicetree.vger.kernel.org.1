@@ -1,55 +1,58 @@
-Return-Path: <devicetree+bounces-229561-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229562-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C8C8BF9AE1
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 04:10:52 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5FCBFBF9AE4
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 04:10:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 9EF274E7525
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 02:10:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 002273B4925
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 02:10:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 273321E9B37;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCA5B20458A;
 	Wed, 22 Oct 2025 02:10:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ferwlI7t"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cIU1x0YQ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0198817A309
-	for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 02:10:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6EE617A309
+	for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 02:10:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761099049; cv=none; b=CrAyhJvwWv/XxaEmlaITn/N7giPxi/mH+DZmHBKz4EnDj2+jIpYMo7icneOdainij/eeLOHwg5hEMvfcglXvYRrSZq9xZdkM5cbNA05D+sxhEuEwXcOPg7Z6Nz+0fAA0VdOHyaYSBwH42besuFpa7ePwd1TJ6aHkZ+0Ers72BEo=
+	t=1761099049; cv=none; b=aUeceVMbdv51v051wiJwgKnQALZnikreVoMUok1nXzghszkb1RRVNRz9BjhlW5MFuWRHSUDQBTORc8G5IKrPFrjJ12WxTmjDt7vRZMJe2XMYUajh4pRm3QDEWkrQcw4W1vyscXUgq6mzz21a/bF0u++gVX8ZJBlzMRWzMqMILKM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1761099049; c=relaxed/simple;
-	bh=NSefDRP4dFYi82tEyx47zOJ0kYBoX2wn01Y9KEBfbgE=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ATYQqY6TEeuV0ktk1m+shtQTTaNPHqpC2GaASp0MlZ+xR7egTcNNjqpLeyFwC1ZQrltGlD35LqJUXkeb7ZuVPpY62PCdfXvPPiIw7ixNK26mdwdk1jcPt273LLHUpfug7CP4upwTNUGudIDa+0+9Lx8FWAPseycolzqP1AQS7S0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ferwlI7t; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 327B6C4CEF1;
+	bh=srCenhb+b8Osr4XRpewYsgCreOkGk3L5/aGzP5Vi2Zk=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=t+C+Gosoa1/3tAUDwnMdImJhQBAu4s63/1OuN8hhKCSTs1PVsx+JOaGzq9ST/RqxkC9lZSaILT+uHhaWYcdxDwG0otOgFnns0vGuAF57THGR0H8pFTzx6TSGaUaNzNMWaONFRv1UWyGXIMuKR9qGKKR73ODu73d05FhJZutgVes=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cIU1x0YQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C5940C4CEFD;
 	Wed, 22 Oct 2025 02:10:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761099048;
-	bh=NSefDRP4dFYi82tEyx47zOJ0kYBoX2wn01Y9KEBfbgE=;
-	h=From:To:Cc:Subject:Date:From;
-	b=ferwlI7tSiPcj/VsGMx7cypNIbt+uBjb3WynoUDjF3KRUPhjnObk2aKT5mBwM4wAV
-	 2mdAKSzEWmjKjsoH88gRLueKodNYtG4i/iqCL/+TV0DnCdDF8evaE3A/VKQZRoUzwD
-	 AN75o88AgD+94dBoLn+L/Q4r+mvPwEsMnNuUdYQQ+OrG46FEWMtBW4Q8pTO66EfY+q
-	 mXwK/o32dWK0rIOJ2qNcrhqAJrrmdQkqlmPxCCrR1a/p2qNbvI4mu2pkryM6CC36Hb
-	 n/NzKfu4upDDSj6m8o8NyGLFLqh5IvQXp5yLM2byYznHd5QV+ARe+g6ecvwtyTqgMB
-	 7uwUVJb1SGtvg==
+	s=k20201202; t=1761099049;
+	bh=srCenhb+b8Osr4XRpewYsgCreOkGk3L5/aGzP5Vi2Zk=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=cIU1x0YQIKcc7zRT5Elvh48G6syRBdBN0IgeRIZMctsxVd2hq8X3ornxdtzFw+Sur
+	 tfoNhkOWNAI3RDfmyfpmFj3RKmEK4y19PyeaEu6nTiIcaijlmmc2HNunfCeNjGSk3W
+	 DTl9K/9i5alG7ejV7XNJg54sWm/v0/yfHxZe0xM3sHBfJA/0TwKlGS9BkRQIIWcbSM
+	 00huy/QhUXI6+MSnuYiuUTfJTMt4cr+/+nXxbR8w4JiBSQQpQveU75gLcmqGu+Pfmq
+	 F1joEVQFe4s+RQKJTRH8xWWwlt603A7NUUEmC0tMvDU+llVKAYm71oeKIHsuXvw3BI
+	 GPRUTB+bmnH9g==
 From: Dinh Nguyen <dinguyen@kernel.org>
 To: devicetree@vger.kernel.org
 Cc: dinguyen@kernel.org,
 	robh+dt@kernel.org,
 	krzysztof.kozlowskii+dt@linaro.org,
 	conor+dt@kernel.org
-Subject: [PATCH 1/3] arm64: dts: socfpga: stratix10-swvp: fix dtbs_check warnings swvp
-Date: Tue, 21 Oct 2025 21:10:28 -0500
-Message-ID: <20251022021030.171216-1-dinguyen@kernel.org>
+Subject: [PATCH 2/3] arm64: dts: socfpga: agilex: fix dtbs_check warning for clock manager
+Date: Tue, 21 Oct 2025 21:10:29 -0500
+Message-ID: <20251022021030.171216-2-dinguyen@kernel.org>
 X-Mailer: git-send-email 2.42.0.411.g813d9a9188
+In-Reply-To: <20251022021030.171216-1-dinguyen@kernel.org>
+References: <20251022021030.171216-1-dinguyen@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,42 +61,26 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Unevaluated properties are not allowed ('phy-addr' was unexpected)
-
-socfpga_stratix10_swvp.dtb: sysmgr@ffd12000 (altr,sys-mgr-s10):
-'interrupts' does not match any of the regexes:
+clock-controller@ffd10000 (intel,agilex-clkmgr): 'clocks' is a required
+property
 
 Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
 ---
- arch/arm64/boot/dts/altera/socfpga_stratix10_swvp.dts | 3 ---
- 1 file changed, 3 deletions(-)
+ arch/arm64/boot/dts/intel/socfpga_agilex.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm64/boot/dts/altera/socfpga_stratix10_swvp.dts b/arch/arm64/boot/dts/altera/socfpga_stratix10_swvp.dts
-index ad52e8a0b9ba..5ba6ca4ef19a 100644
---- a/arch/arm64/boot/dts/altera/socfpga_stratix10_swvp.dts
-+++ b/arch/arm64/boot/dts/altera/socfpga_stratix10_swvp.dts
-@@ -62,7 +62,6 @@ &osc1 {
- &gmac0 {
- 	status = "okay";
- 	phy-mode = "rgmii";
--	phy-addr = <0xffffffff>;
- };
+diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi b/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi
+index b8e2f2c3c558..5c288cff48b8 100644
+--- a/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi
++++ b/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi
+@@ -167,6 +167,7 @@ clkmgr: clock-controller@ffd10000 {
+ 			compatible = "intel,agilex-clkmgr";
+ 			reg = <0xffd10000 0x1000>;
+ 			#clock-cells = <1>;
++			clocks = <&osc1>;
+ 		};
  
- &gmac1 {
-@@ -73,7 +72,6 @@ &gmac1 {
- &gmac2 {
- 	status = "okay";
- 	phy-mode = "rgmii";
--	phy-addr = <0xffffffff>;
- };
- 
- &mmc {
-@@ -104,5 +102,4 @@ &usb1 {
- 
- &sysmgr {
- 	reg = <0xffd12000 0x1000>;
--	interrupts = <0x0 0x10 0x4>;
- };
+ 		gmac0: ethernet@ff800000 {
 -- 
 2.42.0.411.g813d9a9188
 
