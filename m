@@ -1,289 +1,157 @@
-Return-Path: <devicetree+bounces-229688-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229689-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3888BBFAC66
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 10:06:23 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C595BFACD8
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 10:09:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id A3AA84E5C13
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 08:06:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4EA46582A2A
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 08:08:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2ABF12367D7;
-	Wed, 22 Oct 2025 08:06:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E2BF30216C;
+	Wed, 22 Oct 2025 08:07:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="E8h+jbOf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GiUc6+VY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2177285CB3
-	for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 08:05:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E926A302166;
+	Wed, 22 Oct 2025 08:07:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761120362; cv=none; b=BpXlEJnvxqgSl9xtIE/zDDFoZap61HnNCVoyKlrJ7mVX0mpIXsJM4ee8zAo+mUR2iw2TtI0dRk43BdQJ2z26XRx3dfe5YSjocsSp2ekFrlGd/Cla2SPKI5V/wUAmeok+BToxy9oE7h+GopcnK1yuG938N0TZrPAYUpaTgFv2kJQ=
+	t=1761120454; cv=none; b=SsWPw9cOAl44f35OKRLTEkaoiiLzArsZQIhSbcFRIWafgxE1AN+HhbopYGvEeRJdc/WHqTd1Hmgw77WZzLQZW6O2MgF025FoLFafPyodieGJLvChPIPe90Yv+jGK6pcsDrv+QSC+1vpqfp0ss1HdVDVnSzqCJMMi6aKYuQbeKA0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761120362; c=relaxed/simple;
-	bh=/u7cWJFmGb/0w3Q0RV4B5oTchZg1wFWsEu3Y+CNnIGk=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=sHkYQCUt0NZrc4jBeiRxLhivj1R66zDD2gJwKAELlATqnCSYH3GwesDxrxZj6FsnzW5LG83DnFMiYqtndqVFqbM51jZw5FMJhcN5KZX+N27VAcVOTye3FD32CThnSTHjqLJpiH3Bay1ya7H4NmTJSDqB2q5fDe2KnaDoeVSIjPQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=E8h+jbOf; arc=none smtp.client-ip=185.171.202.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 8E485C0B8B8;
-	Wed, 22 Oct 2025 08:05:36 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 4BB03606DC;
-	Wed, 22 Oct 2025 08:05:56 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id C3AB4102F242C;
-	Wed, 22 Oct 2025 10:05:46 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1761120355; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 in-reply-to:references; bh=bT/1MPxwrmKaeOltuH31t1GkUZWM2AMvg1m2hzc9/1o=;
-	b=E8h+jbOf8YX1pJ0j+IrYZWNJogH+0/urPN8krmqLEcautSwXzEF6rctq7whJ/1XmYujiDa
-	T3uXjMZjsA1bbf7lSQylFTKGeKBmVLjxI1/UJyb2aA1znzYHewpYAYSSr84ukB4QPxLbXN
-	ZWOqtlt+4TKdeLg6B1UgxIilXCpyJxdXIV9Z/Rm1j8qBOoN7L7vsOb/n1OOKkxzrjK14QF
-	r9f7GkqOPFVlxr99h32ACznyorrpNf84W1Si2ewWh7iI34xiGyvZ1BhErMipVgk8VMmBnL
-	F3xvdMj9x1kv0mYcjtSjCJNzGboiR5rKA0/qkD7ao2ZoWRhRhDOlJQigm4aMHg==
-From: Romain Gantois <romain.gantois@bootlin.com>
-To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
- David Lechner <dlechner@baylibre.com>,
- Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>
-Cc: Hans de Goede <hansg@kernel.org>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-iio@vger.kernel.org, Herve Codina <herve.codina@bootlin.com>
-Subject:
- Re: [PATCH v2 5/5] regulator: ltm8054: Support output current limit control
-Date: Wed, 22 Oct 2025 10:05:40 +0200
-Message-ID: <3500149.e9J7NaK4W3@fw-rgant>
-In-Reply-To: <20250925-ltm8054-driver-v2-5-bb61a401a0dc@bootlin.com>
-References:
- <20250925-ltm8054-driver-v2-0-bb61a401a0dc@bootlin.com>
- <20250925-ltm8054-driver-v2-5-bb61a401a0dc@bootlin.com>
+	s=arc-20240116; t=1761120454; c=relaxed/simple;
+	bh=7piWhSL+6yI7WXuDzvfXN1N2u6hvyDZKCo4JVdnp0BE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=ZSymhRvMUKk0JqLTkvbLg+so7HtLIigMvSEAG0oagJBmiFGtBVNVs6qQgSN8i2+BiryF4hUBbpHiEV8Qfs+FA0zsx/3uh764R7wgM/Tu+S1EPPJ9tbcs2xq/Hr9Ry6mi4E6eE2JDuynjE5j530PpluF6Go9tLz14Obtsoz5Tbqg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GiUc6+VY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 84A96C4CEF5;
+	Wed, 22 Oct 2025 08:07:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761120451;
+	bh=7piWhSL+6yI7WXuDzvfXN1N2u6hvyDZKCo4JVdnp0BE=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=GiUc6+VYjb3ggVr/qz09wz4qn+UKrb+6+RjFMOGlth6V7zsxY9aGZoN4OhBVz4H02
+	 MNnNs8cvNDvjhZ5R0XZSQDUZxuEWXhV+8QRybVjHlys2Vl8+w6zaASOCIH17jfSwic
+	 vNNCzR2Sp3s0cSbW1wo50fEn202YC3+hKhY/rDviDbVZGXHYuzMjCIlaI6/D4NIKIs
+	 9trxDl0K0skq4wYGjTDUh7qRpF5lxt3/hMUA4IhTFlV7jfHRJVduw3HZH1/0OlALlX
+	 uUi+Z0mGoCVMMvpProy2ma0VHyneQE0vtK6Am6KxNXoAr6j3Sp9957MI5SA0FM8ngR
+	 62FouD+JjIKKA==
+Message-ID: <590aada3-4f3a-418c-804b-8ac7feb83305@kernel.org>
+Date: Wed, 22 Oct 2025 10:07:23 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart3863480.aeNJFYEL58";
- micalg="pgp-sha512"; protocol="application/pgp-signature"
-X-Last-TLS-Session-Version: TLSv1.3
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 3/6] dt-bindings: mfd: aspeed,ast2x00-scu: allow
+ #size-cells range
+To: Ryan Chen <ryan_chen@aspeedtech.com>, bmc-sw@aspeedtech.com,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+ Andrew Jeffery <andrew@codeconstruct.com.au>, jk@codeconstruct.com.au,
+ Lee Jones <lee@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>,
+ Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+ Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>,
+ Geert Uytterhoeven <geert@linux-m68k.org>, Nishanth Menon <nm@ti.com>,
+ nfraprado@collabora.com, Taniya Das <quic_tdas@quicinc.com>,
+ Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+ Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+ Eric Biggers <ebiggers@kernel.org>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
+ linux-kernel@vger.kernel.org
+References: <20251022070543.1169173-1-ryan_chen@aspeedtech.com>
+ <20251022070543.1169173-4-ryan_chen@aspeedtech.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20251022070543.1169173-4-ryan_chen@aspeedtech.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
---nextPart3863480.aeNJFYEL58
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"; protected-headers="v1"
-From: Romain Gantois <romain.gantois@bootlin.com>
-Date: Wed, 22 Oct 2025 10:05:40 +0200
-Message-ID: <3500149.e9J7NaK4W3@fw-rgant>
-In-Reply-To: <20250925-ltm8054-driver-v2-5-bb61a401a0dc@bootlin.com>
-MIME-Version: 1.0
+On 22/10/2025 09:05, Ryan Chen wrote:
+> The #size-cells property in the Aspeed SCU binding is currently
+> fixed to a constant value of 1. However, newer SoCs (ex. AST2700)
+> may require two size cells to describe certain subregions or
+> subdevices.
+> 
+> This patch updates the schema to allow #size-cells values in
+> the range of 1 to 2. This makes the binding more flexible
+> while maintaining compatibility with existing platforms.
+> It also resolves dt-binding validation warnings reported
+> by `make dt_binding_check`.
+> 
+> Signed-off-by: Ryan Chen <ryan_chen@aspeedtech.com>
+> ---
+>  Documentation/devicetree/bindings/mfd/aspeed,ast2x00-scu.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/mfd/aspeed,ast2x00-scu.yaml b/Documentation/devicetree/bindings/mfd/aspeed,ast2x00-scu.yaml
+> index da1887d7a8fe..ee7855845e97 100644
+> --- a/Documentation/devicetree/bindings/mfd/aspeed,ast2x00-scu.yaml
+> +++ b/Documentation/devicetree/bindings/mfd/aspeed,ast2x00-scu.yaml
+> @@ -38,7 +38,7 @@ properties:
+>      maximum: 2
+>  
+>    '#size-cells':
+> -    const: 1
+> +    enum: [1, 2]
+>  
 
-Hello everyone,
+I said no last time and now when we see the DTS it is visible it makes
+no sense. Please reply in the DTS patch in the EXACT place where this is
+being used.
 
-I've encountered a rather troublesome issue with this particular patch,
-which has delayed version 3 of this series. I'd like to describe it here,
-so that you can tell me if you have any suggestions for an upstreamable
-solution.
- 
-The problem concerns the set_current_limit() and get_current_limit()
-callbacks:
+NAK
 
-On Thursday, 25 September 2025 14:37:37 CEST Romain Gantois wrote:
-...
-> -static const struct regulator_ops ltm8054_regulator_ops = { };
-> +static int ltm8054_set_current_limit(struct regulator_dev *rdev, int
-> min_uA, int max_uA) +{
-> +	struct ltm8054_priv *priv = rdev_get_drvdata(rdev);
-> +	u64 vdac_uV;
-> +
-> +	min_uA = clamp_t(int, min_uA, priv->min_uA, priv->max_uA);
-> +
-> +	/* adjusted current limit = Rsense current limit * CTL pin voltage / 
-max
-> CTL pin voltage */ +	vdac_uV = (u64)min_uA * LTM8054_MAX_CTL_uV;
-> +	do_div(vdac_uV, priv->max_uA);
-> +
-> +	dev_dbg(&rdev->dev,
-> +		"Setting current limit to %duA, CTL pin to %duV\n", min_uA,
-> (int)vdac_uV); +
-> +	/* Standard IIO voltage unit is mV, scale accordingly. */
-> +	return iio_write_channel_processed_scale(priv->ctl_dac, vdac_uV, 
-1000);
-> +}
-> +
-> +static int ltm8054_get_current_limit(struct regulator_dev *rdev)
-> +{
-> +	struct ltm8054_priv *priv = rdev_get_drvdata(rdev);
-> +	int ret, vdac_uv;
-> +	u64 uA;
-> +
-> +	ret = iio_read_channel_processed_scale(priv->ctl_dac, &vdac_uv, 1000);
-> +	if (ret < 0) {
-> +		dev_err(&rdev->dev, "failed to read CTL DAC voltage, err %d\n", 
-ret);
-> +		return ret;
-> +	}
-> +
-> +	uA = (u64)vdac_uv * priv->max_uA;
-> +	do_div(uA, LTM8054_MAX_CTL_uV);
-> +
-> +	return uA;
-> +}
-> +
-> +static const struct regulator_ops ltm8054_regulator_ops = {
-> +	.set_current_limit = ltm8054_set_current_limit,
-> +	.get_current_limit = ltm8054_get_current_limit,
-> +};
-> +
-...
-
-I've encountered a lockdep splat while testing these callbacks. I've
-included a summary of the splat at the end of this email [1].
- 
-After investigating, it seems like the issue lies with IIO callbacks in the
-ad5592r driver being called with the LTM8054 regulator device lock held.
- 
-The ad5592r callbacks themselves call into the regulator core to enable the
-DAC's regulators, which might try the LTM8054 lock again in the same
-thread, causing a deadlock. This would only happen if the LTM8054 was
-supplying voltage to the ad5592r.
- 
-There are two parts to this issue:
-
-1. Making sure that the CTL IIO channel used by an LTM8054 device isn't
-supplied by the LTM8054 itself (or a consumer of the LTM8054). Solving this 
-removes the risk of an actual deadlock.
- 
-2. Silencing the lockdep splat. The splat seems to be triggered by the IIO
-driver taking the general regulator ww_mutex context, which means it will
-still occur even if we've made sure that the IIO channel isn't a consumer
-of the LTM8054 regulator.
-
-For part 1., a potential solution would be to create a device link with the
-LTM8054 device as a consumer and the CTL IIO channel as a supplier. IIUC
-device links do not tolerate cycles, so this should ensure that the IIO
-channel isn't a direct or indirect consumer of the LTM8054.
-
-However, the LTM8054 driver cannot access the IIO device struct to create the 
-link, so adding a new IIO consumer API function could be necessary.
- 
-For part 2., I'm having more trouble finding a proper solution. One
-potential fix would be to put the IIO channel reads/writes in a LTM8054
-driver work item and have them run without the regulator lock held. This
-would incidentally also solve part 1., however it would make the current
-limit operations asynchronous, and it seems like a lot of unnecessary
-complexity.
- 
-Please tell me if you have any suggestions for solving this, I'll keep
-searching on my side in the meantime.
-
-Thanks,
-
--- 
-Romain Gantois, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
-[1] lockdep splat summary
-```
-WARNING: possible circular locking dependency detected
-6.17.0-rc6+ #9 Not tainted
-------------------------------------------------------
-kworker/u17:0/34 is trying to acquire lock:
-(&iio_dev_opaque->info_exist_lock){+.+.}-{4:4}, at: 
-iio_read_channel_processed_scale+0x40/0x120
-   
-but task is already holding lock:
-(regulator_ww_class_mutex){+.+.}-{4:4}, at: ww_mutex_trylock+0x184/0x3a0
-   
-which lock already depends on the new lock.
-   
-   
-the existing dependency chain (in reverse order) is:
-   
--> #2 (regulator_ww_class_mutex){+.+.}-{4:4}:
-       lock_acquire+0xf0/0x2c0
-       regulator_lock_dependent+0x120/0x270
-       regulator_enable+0x38/0xd0
-       ad5592r_probe+0xcc/0x630
-       ad5593r_i2c_probe+0x58/0x80
-   ...
-       ret_from_fork+0x10/0x20
-   
--> #1 (regulator_ww_class_acquire){+.+.}-{0:0}:
-       reacquire_held_locks+0xd4/0x1c0
-       lock_release+0x148/0x2c0
-       __mutex_unlock_slowpath+0x3c/0x2f0
-       mutex_unlock+0x1c/0x30
-       regulator_lock_dependent+0x1d4/0x270
-       regulator_get_voltage+0x34/0xd0
-       ad5592r_read_raw+0x154/0x2f0
-       iio_channel_read.isra.0+0xac/0xd0
-       iio_write_channel_processed_scale+0x64/0x1e0
-       ltm8054_set_current_limit+0x70/0xd0
-   ...
-       ret_from_fork+0x10/0x20
-   
--> #0 (&iio_dev_opaque->info_exist_lock){+.+.}-{4:4}:
-       check_prev_add+0x104/0xc60
-       __lock_acquire+0x12a4/0x15c0
-       lock_acquire+0xf0/0x2c0
-       __mutex_lock+0x90/0xc80
-       mutex_lock_nested+0x28/0x40
-       iio_read_channel_processed_scale+0x40/0x120
-       ltm8054_get_current_limit+0x34/0xa0
-       kthread+0x11c/0x1f0
-   ...
-       ret_from_fork+0x10/0x20
-   
-other info that might help us debug this:
-   
-Chain exists of:
-  &iio_dev_opaque->info_exist_lock --> regulator_ww_class_acquire --> 
-regulator_ww_class_mutex
-   
- Possible unsafe locking scenario:
-   
-       CPU0                    CPU1
-       ----                    ----
-  lock(regulator_ww_class_mutex);
-                               lock(regulator_ww_class_acquire);
-                               lock(regulator_ww_class_mutex);
-  lock(&iio_dev_opaque->info_exist_lock);
-   
- *** DEADLOCK ***
-```
-
---nextPart3863480.aeNJFYEL58
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEIcCsAScRrtr7W0x0KCYAIARzeA4FAmj4kFQACgkQKCYAIARz
-eA6puRAAnJGqhKF/LyR1iSyJYMIpEbmkGrn44GV4qMZpIK/EAwx5vhTXSevTcG+v
-wt/5ovGF/Fs0IuZ9LLheFczozHvDk33TfK/Pa62zePu1PnMYwJ9Q1dwoqHDQCrHI
-RzB1EMsKj1S22YwPuHrNc8NH+VkSaVvE+kChOze42mvwS86qY+O9QA4q+tUkMEAu
-W6kgmy9SQZDqqosIdNiotok5UyQoQKuA+4cWzFPwpCUMqo13GIhQ2wXYqWHxSBTR
-ZuWMWqq2c2lzLrxiqLUEUVsdyL1AG7FyUOBqQ0SWoyId0Zq18a8vr7vPyftsb+rt
-f0pqu14srqOA/xyUYfRv11FYRzr3oi11GZw5tRI7Nn74MhxZUWh4KmoYCKAjnNRN
-UQyjrKsl74BTC8F38/JBp+rqL4SYzhJh8/53Up7Dh5aCJXJvEEpI1k8pBTSOqdpU
-aC8fVDbVjiBn2EVobiBP75wnvEvLz/jRZAphZWpFJDa1+LZ178GqWZCKF/Y0O+jI
-JW2g25G/FHZiYhcKHwyH19xY8+vCnaF/dQyL49TprCSSUJdQBaijZal5jwLtidjm
-MYE+Hopih7ccfVwKhmyghQhfblZLvc+/6zpr6mSE4BmKT0crqgSQXAxuE/vIZOYI
-Zg+H7rvLGF06Coe8e0flLq7e3zh1hAsE9yWM1UNOsywvU8YEAbo=
-=wEUM
------END PGP SIGNATURE-----
-
---nextPart3863480.aeNJFYEL58--
-
-
-
+Best regards,
+Krzysztof
 
