@@ -1,88 +1,88 @@
-Return-Path: <devicetree+bounces-229862-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229863-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FBF4BFCE14
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 17:29:01 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C169EBFCE71
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 17:33:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CCC76189957B
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 15:29:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A504E3A30CA
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 15:29:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6609E34F24A;
-	Wed, 22 Oct 2025 15:27:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CDA234D4F0;
+	Wed, 22 Oct 2025 15:28:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="bkEZnLBu"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ILZvfWV6"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 954AA34C99A
-	for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 15:27:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85A5826ED35
+	for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 15:28:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761146848; cv=none; b=HYBm+OAbas3mW3XrCaZ32gzUte83HqMXaS2BvBayoc+b1+7pu8Ea1efQox3dvLXpEfRea6hMMc4osuVLjTDpTXasbmqoxFcroerVDF3HVkc3NvbQQieIAjGhWlATZP0SSDMIBgkksWkOOgEQN4INOxxu9eU0iRG4Xouut6US4Uk=
+	t=1761146912; cv=none; b=VedobVuBCacWOE2T5aXaZIIOzfrEu0GpCrnm4EdC3lnwy6UMixWrp+j+XV4qf1pvGRHDWEJDTsyF0zZ/CSzv9zO9VomAYeLPQIj0h5Dp9THIV+DXOVzOE4+dGvpizCtx4yGQ5GTXZBFFAMIr672wFT0gnXqQQGOgAmIGBCv0CWI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761146848; c=relaxed/simple;
-	bh=1QBplYuRdegJvfJ0QvMbSZOyGdzUajRV4zloL4AZLb0=;
+	s=arc-20240116; t=1761146912; c=relaxed/simple;
+	bh=LKg80GSsXajEimsbU2IImSWBv/62yWeZsCxzc4ocqVA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=XQ1zE5Mm7rdRIjiG36rnkRSS03Qg2gPmoMnKY9N1RriVq8cZkWDXCZy3JT6gYe7E3tcS6dLI9HQ42XPd97ddSMkTBOaNRZ/j9INGHL8PFwl5Zt2qEdW/8lTTaSiad6Lt8HoRtiX2N1AY3MMc3ISTx8vpg8BVMgpbNy0+5My2db8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=bkEZnLBu; arc=none smtp.client-ip=205.220.180.131
+	 In-Reply-To:Content-Type; b=nGFwyzFpDb1GQAkF9sGRtQtq2IT4QsnjksCs/K/nRgJvC/KSXJCzPpn3pAChg2zSI1nl+W1lo1rMuX+XYxTs3eA3IosYtBy+asQRkVNQu5dsv5dw8AsSeGcBd+uWjeemCMK+EFN7kiTJljr8QJVlYhwdqwZBW2fqOeMyO7AFg0k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ILZvfWV6; arc=none smtp.client-ip=205.220.180.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
 Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59MAgPRw027006
-	for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 15:27:25 GMT
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59MAcXCT026895
+	for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 15:28:29 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	8k/FmEKkL858bw0NvFllXkz9skuIxCCBY/vWAZsgTMY=; b=bkEZnLBucAJH7pXS
-	V2M0/a2S9dpvkoIdlZ/FDdD7fjQzTwoGURX1SaU9aggJIieHyBgV9+dZeeMsbxd2
-	PTTlxlkAKVkyRlb0uP9czwXuhBqDdwK8gEs/5OCNtKGrMIakilydsLHxHGNaH20Z
-	mCQcqAa7QgkEk5ydwnyLrYz93Hnd56JXjCUh8WMrHWtqmqk5TwESltvcUafv1vhp
-	AK9X3pnGwNksDAbLQ8AtOEYrqbhgULbB+kmtSxUmLykYaEYE1NzID3E4ee/MleFF
-	2lxZwWPqBxWRGDEall2/N2agY4Eti/189H5rifc9C39DU88mQ5cX1XermOgq5nUT
-	7zOo8Q==
-Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com [209.85.219.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49v08pnd2f-1
+	kEkN3I7ez210KvWSzWyrOcOsuH0KwadB9yDxw0Xm8nE=; b=ILZvfWV6hSPfBB5J
+	g2+JWRa5A3ucDW0n2H2/I/8ejYIUzQKN9LYqo6m/rEmw+chUvqXhMcY4/CdbfTGr
+	sRT++teJ3xdavvz6u7hIdzFqOmiXRAFzbhewbT5CLz7yNZUGuZToZVTx2aD700bn
+	pKHNPVLVCcCnwBw2lHbBDy679TTkT6bWKyZxZTTNZu9nGEhiZ//2Fc8WiOZWkL0I
+	05/3zBBEnxjxatTOyk+UMsjM4sLQnZhKc0c/9E8mjvcYEef20Swqa6V0y4piTCLS
+	EA71sOigZgcIpSvN6cppV7fEb95urk8T0saPXw2q4kJ7SvWztAQddwx6DEKK5WmK
+	+kRTmg==
+Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49v08pnd5y-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 15:27:25 +0000 (GMT)
-Received: by mail-qv1-f71.google.com with SMTP id 6a1803df08f44-87c28cecb4cso18660226d6.0
-        for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 08:27:25 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 15:28:29 +0000 (GMT)
+Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-4e8a35e1923so3276121cf.3
+        for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 08:28:29 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761146844; x=1761751644;
+        d=1e100.net; s=20230601; t=1761146908; x=1761751708;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8k/FmEKkL858bw0NvFllXkz9skuIxCCBY/vWAZsgTMY=;
-        b=epPVn/Puh7Oubvca6BEq4MDxmS8myecepirqWWhf+eG8nC7uHEnLXElCQPOnRN13uh
-         2I63Z9eKYoTXEuKVuAQ9wTnvuCFwZ186vXq6OwhNZ7+gm+rQQ9aETErZIE5oqFY7NVZ1
-         j4TPLzGXxjWeI9x5XtLMQXtW7ZLguX1blhqtyhli/RB9paUDntzs+0ai5S8BQUGiHn4Q
-         tz+mqORx/fH5tcb8KNr3QmPZ90CtU1yxGXoDw5/nRq/+EZyBRHpjLZEipmEJOtkh8ERk
-         9dNFkD23/PyASJKl9gSMriysizvjvuKPyfXpD6jNJ2EAoosTvPUs0uVq/FnujemCijl5
-         dZ5A==
-X-Forwarded-Encrypted: i=1; AJvYcCV1TnXuwCpX748E+ZIhVzS4AEU/52ksFzFXY03b5Jo0NF+p0m290Mb5hK6gUo1nyTHR3GhFOhn+AqRK@vger.kernel.org
-X-Gm-Message-State: AOJu0YwbIC8q/dX6axwxNbzWwYxsn46o2y11diKsvIN4GZ99+IT2VKku
-	Upubvpm5+pefnkByUyfCnboQvvQa9iTtMeMXHiXdAEdouCXRJ1IngM8Opb+McAk0R7jRo72aAn/
-	2UaL8xgMAlnRtC0FGumC6CEd3CGW+rhXCcDCDUQA0AXlH6hDCFsn7y1H9Pg0ZwCOt
-X-Gm-Gg: ASbGncsUi59lR/mCbIQi+bH7aJsmNOEmXjr50aOVOFDqbyhobjEnMysWA4B9kER07Sc
-	LZMtgCwOoOetT7HRinNagZG5IpR0DBNGhAJdoLtHskQfC4Io9dMX+4KFGqzDZyamDDsndiexXN8
-	qH0Q+rx0FM7LHiCipfNG9YJ96rmbrE6w7EvuoALJRvznI9sjNO2mYzlms86O1vz4mEnfgq6w846
-	GJ92riQ/hA1fEH1SEBA+6QZJYd+DM/paUGTYti8zQMm1Kt7tGXMZvxLmSL9DfB0rhHIua9qjchF
-	McMfL7NjclWjj2wclQRKwmyu+tXPS9el8NQTWNlCVvcDFRpn9b9wB4+DQLqOG6HgyVzWpdDRy0o
-	YedcMYoRcojXe+9+94d9o2/yLNtomxtdZ4/ztO7v3PRJG3LiusmFLhFqx
-X-Received: by 2002:a05:6214:248d:b0:70d:e7e1:840f with SMTP id 6a1803df08f44-87de714c1c7mr65707216d6.3.1761146844594;
-        Wed, 22 Oct 2025 08:27:24 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IF8/xeYz1XYBcdg4T4l6woigaSUVTSHt5t3v8BurU4yppUfVX2LR3sMLl0zpGaHU1+8ugjz3g==
-X-Received: by 2002:a05:6214:248d:b0:70d:e7e1:840f with SMTP id 6a1803df08f44-87de714c1c7mr65706846d6.3.1761146843645;
-        Wed, 22 Oct 2025 08:27:23 -0700 (PDT)
+        bh=kEkN3I7ez210KvWSzWyrOcOsuH0KwadB9yDxw0Xm8nE=;
+        b=os0A9611zzZie1nMrVOpCmzqXfp4hoDKknOPO+4akymEu3BvTnpG3MCfi4NevQikyU
+         rVWr0CtLCoPAYRWUNZyAFB/r3EIPv3mSCICCubfo+mgUMkDH3D9d5Jfy8J/96P68k2Uf
+         HnCGtjyNsQvwxFQlK2Zo/5Mp6vNCqec1gvGioI+eTKozPlOUN/illGnjO/8ltiytdA05
+         sOmgTRPAROcSPSGCqDONb/f/aAy4kUcqiMUT0S9R7cFSHV829hB7BrOPLJSOZJ4ODuPo
+         QmXObvnxzJy/V6lQrkSD66GPeMZ3gYaOT6XBpMKeyP3bCx3nnlHxTNon8KyGQ8Wel3RT
+         cVpw==
+X-Forwarded-Encrypted: i=1; AJvYcCWgd7b9YeNiLpCGMoxAockPZ0r+io8E/PmQLp+fiW8piM2LMw/T0qO3JDs0vp/iW/irTDOkfw8xt557@vger.kernel.org
+X-Gm-Message-State: AOJu0YxlBX1LMsJx55ZDCbeYYHklQ/dahr1DeChjoxecpIu5GWMGnYAO
+	QY01EAUA14UkAWdIJf3Mb6n+aZEcw1k2JQZlKDPyaqZulNqfo/WxE9kp1Iod5YzntEn+MwjJDHD
+	A1ehkxHUDGSxXfqp5mfz60awhLNY1yThcRYZHwrlzgSaCwzMO7LjpPR9AO9Pg1v7r
+X-Gm-Gg: ASbGncs+CUxl7m3ajpGRPpG8Y3kT6pk6NSGe0AD+vYM3aZn/7OpqkSN/qIqQ3SCHp/s
+	fYsYTXKVw7s06kv9T/bFF3QKDNYFtbT7zrzyCtpxb37jrpWi+6vufSAyk5IWyB36DSaPYK14Y92
+	QM8+mBCLEL/snnGLPoks9ZsuyCPc/989N21zEKN2SxSsq1hkOJPkXWtKzWkiR3atAVpUkS63X4h
+	wU0FiRkEAn0NhHI6+/COsZTqJ9BCYTBAfr/qQ62v47yJJjk1Dh4tAfmNL1bS3dmPZ7b49ASs/hj
+	YDRfLHo/4drfEoIdcxaGh9i83IhXPSPHGGiNC9yQCDcb3s8Wsu84/pAmrEPv5/BFRKLFabKNiIB
+	LVniHJUqvldg/XjzLRXhLmOMBM45hL705L7ersUdyBh0WugwZJYQ80jpQ
+X-Received: by 2002:ac8:5916:0:b0:4d7:e0ed:421f with SMTP id d75a77b69052e-4ea1167dbc0mr64496561cf.3.1761146907964;
+        Wed, 22 Oct 2025 08:28:27 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEIbfA/J7/7e/fTVE+4K3MaejRMmguF//6ihYzs52oLlv/Bgz24gIfsByl/uIBh4sKc+gqcHQ==
+X-Received: by 2002:ac8:5916:0:b0:4d7:e0ed:421f with SMTP id d75a77b69052e-4ea1167dbc0mr64496241cf.3.1761146907534;
+        Wed, 22 Oct 2025 08:28:27 -0700 (PDT)
 Received: from [192.168.119.202] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-63c4949beedsm11980254a12.40.2025.10.22.08.27.20
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b65eb0365e1sm1371481666b.48.2025.10.22.08.28.24
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Oct 2025 08:27:23 -0700 (PDT)
-Message-ID: <fdec4bf0-6d88-4a9b-a81a-061476dd9e1b@oss.qualcomm.com>
-Date: Wed, 22 Oct 2025 17:27:20 +0200
+        Wed, 22 Oct 2025 08:28:27 -0700 (PDT)
+Message-ID: <41481de2-12fd-49b5-b3bd-f3e44e78dcb3@oss.qualcomm.com>
+Date: Wed, 22 Oct 2025 17:28:24 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,45 +90,39 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 5/6] arm64: dts: qcom: qcs615: Add gpu and rgmu nodes
-To: Akhil P Oommen <akhilpo@oss.qualcomm.com>,
-        Rob Clark <robin.clark@oss.qualcomm.com>, Sean Paul <sean@poorly.run>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Dmitry Baryshkov <lumag@kernel.org>,
-        Abhinav Kumar <abhinav.kumar@linux.dev>,
-        Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Jie Zhang <quic_jiezh@quicinc.com>
-References: <20251017-qcs615-spin-2-v1-0-0baa44f80905@oss.qualcomm.com>
- <20251017-qcs615-spin-2-v1-5-0baa44f80905@oss.qualcomm.com>
+Subject: Re: [PATCH v3 1/9] spi: dt-bindings: spi-qpic-snand: Add IPQ5424
+ compatible
+To: Md Sadre Alam <quic_mdalam@quicinc.com>, Mark Brown <broonie@kernel.org>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+        andersson@kernel.org, konradybcio@kernel.org, vkoul@kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dmaengine@vger.kernel.org, quic_varada@quicinc.com
+References: <20251014110534.480518-1-quic_mdalam@quicinc.com>
+ <20251014110534.480518-2-quic_mdalam@quicinc.com>
+ <dd1e4289-5e36-4b24-9afd-f09569459a96@sirena.org.uk>
+ <96ae7d38-4ce0-fa34-e6f0-6bb6e4ceaa28@quicinc.com>
+ <0a743099-face-4cc1-91ef-098a748604b7@sirena.org.uk>
+ <49eb9f15-fad9-4f8d-1463-04cd692bbe51@quicinc.com>
 Content-Language: en-US
 From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20251017-qcs615-spin-2-v1-5-0baa44f80905@oss.qualcomm.com>
+In-Reply-To: <49eb9f15-fad9-4f8d-1463-04cd692bbe51@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDE4MDAwMCBTYWx0ZWRfXzrMKw096Fkuu
- nTGRzXcFZ7ZHul6nNjorrm15YeyiG6AlP4sJFfhvk2TWKqPG4QcNHSSzrJV5UG9PTYFGfPm/Rhr
- vCrsK39xyHa4ZbU2+sVXW26mk0SXtDfP4yzesNAbIdMQtU6RLSQUfISkoUluRiUkqjSZlUWi8P2
- y/PadaXMwhkgVVXDRlEGSL2dtFuK9dS/e30Tthy0U5PZNsZe/u134We0JSeQqTBm/Sgxy3cpSPy
- ILc+liR+7DecQZPL5p36DdslbLx19NdJnMruKXud8Jmu3PZ5QKtNbE82JnJXzCreoES0MteGpmY
- 2C3rWMlqhyK7vjYUjlbDQRxMxC8pGXI7xPZSURM440tHX5BkJoR6LxRoy88dFdEWW7T6akzOdsH
- EZ8+KSMBi5RXnyXaVAWH4wVLYZz5qA==
-X-Proofpoint-GUID: frS853rvQCJuwNRzicAJXGzbtcQOQMaC
-X-Authority-Analysis: v=2.4 cv=Up1u9uwB c=1 sm=1 tr=0 ts=68f8f7dd cx=c_pps
- a=UgVkIMxJMSkC9lv97toC5g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDE4MDAwMCBTYWx0ZWRfXwWYe2O69B1OL
+ /NAfz6iDNegy0yHqpMI+d+I77dBJI4VMHzQduGK3oABgkxzkLpwiTp2/FSpNtL0adgbWKr3U0Jw
+ pVE0WoXErtkXdC/7A0B/MXOZPSzOOizpqFFkUt09sMiyQmRwz65vw2sV5dGPwDMdeoW2HYVr99b
+ CZPMnbgzErcqh5omyNcN2mPL78WjcB1ilScoIhTctcxtyORX0ylJ7SAWAu1NcL8NUqTtRU55fBX
+ XRVHsLWs/7DCu/ZeDthW9GKl0+1cnwrNbKYJPPkT7oBcArBIKwXatVW4Ijn+Eq1w3sww0dlqqIT
+ ERRmTjBS05hmV0MPE+6H8rsbvLWsSG/w0nYymPVQCPux3/tpS5EkN6zCOXxhaP057jkdV8C6p1Z
+ qSM+V/nd1G38iI9u0MRT0Wd9foWENQ==
+X-Proofpoint-GUID: bJP2UFt_sY4kHLXxDoS-bsutKYU-EDKI
+X-Authority-Analysis: v=2.4 cv=Up1u9uwB c=1 sm=1 tr=0 ts=68f8f81d cx=c_pps
+ a=JbAStetqSzwMeJznSMzCyw==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
  a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8 a=e4uKRaRUJts94r9YfvAA:9 a=QEXdDO2ut3YA:10
- a=1HOtulTD9v-eNWfpl4qZ:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-ORIG-GUID: frS853rvQCJuwNRzicAJXGzbtcQOQMaC
+ a=VwQbUJbxAAAA:8 a=WIUPFbzvC2a9H5sHzXkA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=uxP6HrT_eTzRwkO_Te1X:22 a=HhbK4dLum7pmb74im6QT:22
+X-Proofpoint-ORIG-GUID: bJP2UFt_sY4kHLXxDoS-bsutKYU-EDKI
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
  definitions=2025-10-22_06,2025-10-13_01,2025-03-28_01
@@ -138,65 +132,31 @@ X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
  reason=mlx scancount=1 engine=8.19.0-2510020000 definitions=main-2510180000
 
-On 10/17/25 7:08 PM, Akhil P Oommen wrote:
-> From: Jie Zhang <quic_jiezh@quicinc.com>
+On 10/22/25 5:20 PM, Md Sadre Alam wrote:
+> Hi,
 > 
-> Add gpu and rgmu nodes for qcs615 chipset.
-> 
-> Signed-off-by: Jie Zhang <quic_jiezh@quicinc.com>
-> Signed-off-by: Akhil P Oommen <akhilpo@oss.qualcomm.com>
-> ---
+> On 10/22/2025 4:12 PM, Mark Brown wrote:
+>> On Wed, Oct 22, 2025 at 12:29:01PM +0530, Md Sadre Alam wrote:
+>>> On 10/22/2025 12:39 AM, Mark Brown wrote:
+>>>> On Tue, Oct 14, 2025 at 04:35:26PM +0530, Md Sadre Alam wrote:
+>>>>> IPQ5424 contains the QPIC-SPI-NAND flash controller which is the same as
+>>>>> the one found in IPQ9574. So let's document the IPQ5424 compatible and
+>>>>> use IPQ9574 as the fallback.
+>>
+>>>> This doesn't apply against current code, please check and resend.
+>>
+>>> Thank you for the feedback. I’d appreciate a bit more clarity on what
+>>> “doesn't apply against current code” refers to in this context. I’ve
+>>> manually applied the patch against the latest mainline (torvalds/linux) and
+>>> it applied cleanly without any conflicts. Please let me know if there’s a
+>>> specific tree or integration point I should be checking against.
+>>
+>> I tried to apply it to the spi tree
+>>
+>>    https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-6.19
+> Thanks for letting me know — I’ll rebase the patch on the SPI tree (for-6.19) and resend it.
 
-[...]
-
-> +			gpu_zap_shader: zap-shader {
-> +				memory-region = <&pil_gpu_mem>;
-> +			};
-> +
-> +			gpu_opp_table: opp-table {
-> +				compatible = "operating-points-v2";
-> +
-> +				opp-845000000 {
-> +					opp-hz = /bits/ 64 <845000000>;
-> +					required-opps = <&rpmhpd_opp_turbo>;
-> +					opp-peak-kBps = <7050000>;
-
-Are there speed bins?
-
-[...]
-
-> +		rgmu: rgmu@506a000 {
-> +			compatible = "qcom,adreno-rgmu-612.0", "qcom,adreno-rgmu";
-> +			reg = <0x0 0x0506a000 0x0 0x34000>;
-> +			reg-names = "gmu";
-> +
-> +			clocks = <&gpucc GPU_CC_CX_GMU_CLK>,
-> +				 <&gpucc GPU_CC_CXO_CLK>,
-> +				 <&gcc GCC_DDRSS_GPU_AXI_CLK>,
-> +				 <&gcc GCC_GPU_MEMNOC_GFX_CLK>,
-> +				 <&gpucc GPU_CC_HLOS1_VOTE_GPU_SMMU_CLK>;
-> +			clock-names = "gmu",
-> +				      "cxo",
-> +				      "axi",
-> +				      "memnoc",
-> +				      "smmu_vote";
-> +
-> +			power-domains = <&gpucc CX_GDSC>,
-> +					<&gpucc GX_GDSC>,
-> +					<&rpmhpd RPMHPD_CX>;
-> +			power-domain-names = "cx", "gx", "vdd_cx";
-
-I think the gpucc node should reference _CX directly instead,
-then genpd/opp should trickle the requirements up the chain
-
-> +
-> +			interrupts = <GIC_SPI 304 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 305 IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupt-names = "oob", "gmu";
-
-1 a line, please
-
-lgtm otherwise
+JFYI you can generally count on linux-next/master as a good base
 
 Konrad
 
