@@ -1,113 +1,122 @@
-Return-Path: <devicetree+bounces-229667-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229668-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1E0BBFAA42
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 09:43:21 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E1BD7BFAA5A
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 09:44:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id C369A5050C8
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 07:42:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C73D53AED3D
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 07:43:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FE802FC02D;
-	Wed, 22 Oct 2025 07:41:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D3B02FBE09;
+	Wed, 22 Oct 2025 07:43:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="PkTnWtr1"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jyNITR6I"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com [209.85.208.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C04D2F7AA8;
-	Wed, 22 Oct 2025 07:41:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03E632FB970
+	for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 07:42:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761118897; cv=none; b=qMwBKBc1mY/H1Vij9VEv5p/3V89uaoAw3JAtWn4ce6Krh9vMVRA/Zqi8EnGyGT5KTSMkTKZoPsM+TNq9iaYB6OIPbkCgpeuIUe5LFnhhn2sJy3yMADPW8k970u+auqO1gHPvzcMi/2ikfXfFZJODKwdz6aEB6/bUlCKqOv630Zo=
+	t=1761118982; cv=none; b=Orym9iDJ3z4g2wmqW5/TwfFSIMwCs4vXSzeIDZFsX7744ZrllgcRDbObYaBPKlrP0NVQdL+kYGIJoiIt6+2/eJjViv8dpZM9guJY1Pt7wecqqPWjSq7+hofsEbPpr3G/NgrMzIf9+kC32Cxv+GwTyeTsOkW/Qmip/rPoIyNGd1E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761118897; c=relaxed/simple;
-	bh=w6Pk318+uWlJig7kSmhciOgwzKqt9hCCrIYqqL4yqNY=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:To:From:
-	 References:In-Reply-To; b=ogsdqPFBv8wiVq5N9cCniPcwftrOyfiBsR8M9mzeHT4x+OkplVhbX6jxsyrCyRvDFoDtrtS1PStyc2j+A2VLoGT0acKbGatD8X4hfFdIjopgQED9fCBYSA6/Bmo39KbnTb4OEK2B3oG2CJ0p8TWPQb/F1YtGF7u6VAlR4mbdvlk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=PkTnWtr1; arc=none smtp.client-ip=185.171.202.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 4F841C0B8BF;
-	Wed, 22 Oct 2025 07:41:14 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 0A58E606DC;
-	Wed, 22 Oct 2025 07:41:34 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 68B39102F241B;
-	Wed, 22 Oct 2025 09:41:25 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1761118892; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=w6Pk318+uWlJig7kSmhciOgwzKqt9hCCrIYqqL4yqNY=;
-	b=PkTnWtr1jkPN412arglI0mz2NhL3TRAuP2uayrqji+VoDe4d/FIjOWZ1cc63SLUc2Lo+Jd
-	FIt6sYzMUROvjKK/8SgV+CUFUlBPL8rb9ABg11NRZs/srHm3UId29ZEnEIgtzwZi7hu8Bk
-	kMs8qKh0az23BYaou/Ar5XWg2AlYUT9Siy4Oo04ojU8ZXk4QSchJV9XKZvEZQhXNDpszvs
-	oAABVn1+T2IIXdMSECtUVh5yyhkYANZOUz39ovz7lY/SSCagG40w0uUti1Mtx1aEyaKc5L
-	g+6yf9EKsEizPO15T9Qt6fJBKtKZp2axtAOPGBbrxKquY0a8h1C/XZ9rgavKgA==
+	s=arc-20240116; t=1761118982; c=relaxed/simple;
+	bh=8srG042WcIwfpUeZ+HvXXN7keM9XIjBlEUNmAlUKTog=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=W1eyvxrVX5w9gECfQHmEJnTC6vrarxPu7e4ZESyF7/nPHxLVjrc667HNKNuhFDcM/ZG9URjmnmxVSVXPqPT8vMdUXqL2+dj/2hDmAO+K9zvq8X1CKqJZdupJw0/hGPEOaS+K6soO2ZcAroKHyghBzi7W0Tx1Ju4a79TP27ZViLI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jyNITR6I; arc=none smtp.client-ip=209.85.208.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-375ff2b3ba4so71296241fa.0
+        for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 00:42:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1761118978; x=1761723778; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=3TNLAjhkgqHZPN7SHKf/AirJr2ThqMNuItE7JWwCB04=;
+        b=jyNITR6IoN/oGFbwQIDE4I9PAX6Q2bIUpqgrGEqgxZ5n0b4x+ViuKJErmcZnXiUmVn
+         qURxHNiMHydDJtPeduU6PBdNCpJRzLVTE+FUO5iG1IHA/waCoZQvHmztpqLWDKGRjCxv
+         hpFzOezYlQCWrkLnHURNtGAFFYlpSQE/q1ZsdGCSTm5jMzTq92Qh3RM6tcBwepdff65N
+         TFE6DjzpaVpr6PN1jAIdCppadu1rz6//gm0FOQT450i2sgrKT2ot95UcEzEcCfTvZ7Dt
+         HRPN3yBWZavKJglIfwn5NT57Km8freFxbVc9bFp5xlncwDC763W5soCtAN/c0FSCCFFX
+         gT1A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761118978; x=1761723778;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=3TNLAjhkgqHZPN7SHKf/AirJr2ThqMNuItE7JWwCB04=;
+        b=ibsYO/m3/AUcJky6sqgac2XL6DCS//jWT9EUG/i+jLHkLxAVpJhyINe1E4iWFnCapO
+         mcvcz4MpmF4xaV+bs4Ag9hWWIyzm76JI/dmD+5Rtw+5y0YpdaYXGrKYWrzR0xIrHmK0H
+         foto6LqkP4Eki61dQ3SD9m9/ZTGuSRyXsa7JGIsfKi1XOyrgFqzhCnko+dA7M2FxDxxU
+         J09LhsRtdBKri3De9fz0n7OBr56oJ8oKvPvV13tYCCicPEZyNlhiQYUYiI7RN5xVdMQJ
+         0KekfUxSSR4785af8Pq3b5LJiboRYMnpsSbt8dtYzhrNjyZOemmNtYft2bUzpeOlsy4n
+         DBFg==
+X-Forwarded-Encrypted: i=1; AJvYcCUZw/Bt6NRlQGet91E3GMXANynAJ+xbJhl0tfkAIhE1XNCQc1l4YY0jgstF2sIqXL2Ab/dQswjCuyIr@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw5NyD3j2qHJRflifDMVogSkMyzYzAMZNYyGxA46dPrZZJVGYeN
+	Sbb92WQ5sAPlLW85Z1pM7CLhKWlmM3VU8vzclTTonEF0plO2H92lNGFbfv9jQRB8Do/kzxsxX78
+	LEteV/Ystw3gaBKVt9hurx1wjjG8sH+M8Hum5UYNHVA==
+X-Gm-Gg: ASbGncuqV9AJ/sa+UXnFUhwhskqWC56z2t9lEVao8xOhpm4R+06jdzaJ0khpvjAPn0z
+	KpzK+JdOd/lO7zV2ABCKCr+Q7G15HAsceVqLE82GRebUTabRATA1bg53S8jEUEzj/cCfsevm+p7
+	uZoVN8MuAQlh82c+BVrrO3e9U27V2oMnVwkQaYFNeKrFJ80iNKMOSM3fsIB7C4zgyQzqt1d+2S2
+	l1GaSIbhU64JmU02v8ggniGFSuWTm3xQZ6stNCQLmgBh/lxHd4N5Dw8vEPmfDj7FLMgqIw=
+X-Google-Smtp-Source: AGHT+IF3wmaO/RAI6AHRa1eUfLujsXfSoyOJjO3vVqO2wvb1ZTN3XsaW5H5jnTeROH/SrLDcnMyHtIhVSJKUnCmfyCM=
+X-Received: by 2002:a2e:be25:0:b0:375:d1e4:21d4 with SMTP id
+ 38308e7fff4ca-37797a9f7cemr64226911fa.44.1761118978065; Wed, 22 Oct 2025
+ 00:42:58 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
+MIME-Version: 1.0
+References: <20251021142407.307753-1-sander@svanheule.net> <20251021142407.307753-7-sander@svanheule.net>
+In-Reply-To: <20251021142407.307753-7-sander@svanheule.net>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Wed, 22 Oct 2025 09:42:46 +0200
+X-Gm-Features: AS18NWC4q1xLV5cdKOkaQ3Uw-5JkGYLVSUeBiCU5sYUK8C3AufUKZRqVPVNjL6s
+Message-ID: <CACRpkdYde+=85f6Zfz40bMwOxSE-bszHzvBhQwC+G-E2CZr3Lg@mail.gmail.com>
+Subject: Re: [PATCH v6 6/8] pinctrl: Add RTL8231 pin control and GPIO support
+To: Sander Vanheule <sander@svanheule.net>
+Cc: Michael Walle <mwalle@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>, linux-gpio@vger.kernel.org, 
+	Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-leds@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Wed, 22 Oct 2025 09:41:24 +0200
-Message-Id: <DDOOJIQS8DK2.1QUEWN5FYYQ32@bootlin.com>
-Subject: Re: [PATCH net-next 00/12] net: macb: EyeQ5 support (alongside
- generic PHY driver in syscon)
-Cc: "Andrew Lunn" <andrew+netdev@lunn.ch>, "David S. Miller"
- <davem@davemloft.net>, "Eric Dumazet" <edumazet@google.com>, "Paolo Abeni"
- <pabeni@redhat.com>, "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski"
- <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Nicolas Ferre"
- <nicolas.ferre@microchip.com>, "Claudiu Beznea" <claudiu.beznea@tuxon.dev>,
- "Vladimir Kondratiev" <vladimir.kondratiev@mobileye.com>,
- =?utf-8?q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>, "Russell
- King" <linux@armlinux.org.uk>, "Vinod Koul" <vkoul@kernel.org>, "Kishon
- Vijay Abraham I" <kishon@kernel.org>, "Michael Turquette"
- <mturquette@baylibre.com>, "Stephen Boyd" <sboyd@kernel.org>, "Thomas
- Bogendoerfer" <tsbogend@alpha.franken.de>, "Philipp Zabel"
- <p.zabel@pengutronix.de>, <netdev@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linux-mips@vger.kernel.org>, <linux-phy@lists.infradead.org>,
- <linux-clk@vger.kernel.org>, "Tawfik Bayouk" <tawfik.bayouk@mobileye.com>,
- "Thomas Petazzoni" <thomas.petazzoni@bootlin.com>,
- =?utf-8?q?Beno=C3=AEt_Monin?= <benoit.monin@bootlin.com>, "Maxime
- Chevallier" <maxime.chevallier@bootlin.com>, "Andrew Lunn"
- <andrew@lunn.ch>, "Jerome Brunet" <jbrunet@baylibre.com>
-To: "Jakub Kicinski" <kuba@kernel.org>, =?utf-8?q?Th=C3=A9o_Lebrun?=
- <theo.lebrun@bootlin.com>
-From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-X-Mailer: aerc 0.21.0-0-g5549850facc2
-References: <20251021-macb-eyeq5-v1-0-3b0b5a9d2f85@bootlin.com>
- <20251021171430.579211b2@kernel.org>
-In-Reply-To: <20251021171430.579211b2@kernel.org>
-X-Last-TLS-Session-Version: TLSv1.3
 
-On Wed Oct 22, 2025 at 2:14 AM CEST, Jakub Kicinski wrote:
-> On Tue, 21 Oct 2025 18:32:41 +0200 Th=C3=A9o Lebrun wrote:
->> Merging all this won't be easy, sorry. Is this split across trees OK?
->> The net-next part is pretty evident, it is the rest that appears
->> complex to merge to me. I can resend the series exploded if useful
->> (or at least split net-next versus the rest).
->
-> Yes, please respin just the patches that need to go via net-next
-> for us (1,3-6?). The rest I don't car^W know :)
+Hi Sander,
 
-Sure thing! Only net beauty is present in V2.
+thanks for your patch!
 
-https://lore.kernel.org/lkml/20251022-macb-eyeq5-v2-0-7c140abb0581@bootlin.=
-com/
+Overall this driver looks very good and well designed, using the
+right abstractions and everything.
 
-Thanks,
+The build bots are complaining but I think you will have fixed that
+in no time.
 
---
-Th=C3=A9o Lebrun, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Just one minor comment:
 
+On Tue, Oct 21, 2025 at 4:24=E2=80=AFPM Sander Vanheule <sander@svanheule.n=
+et> wrote:
+
+> This driver implements the GPIO and pin muxing features provided by the
+> RTL8231. The device should be instantiated as an MFD child, where the
+> parent device has already configured the regmap used for register
+> access.
+
+This is Realtek, right?
+
+>  drivers/pinctrl/pinctrl-rtl8231.c | 538 ++++++++++++++++++++++++++++++
+
+Should we put the driver in
+drivers/pinctrl/realtek/*?
+
+Yours,
+Linus Walleij
 
