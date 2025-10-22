@@ -1,220 +1,170 @@
-Return-Path: <devicetree+bounces-229556-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229557-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id C70AFBF9A1A
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 03:44:48 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 269F1BF9A32
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 03:47:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id BA0374E1DA6
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 01:44:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 714FA485820
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 01:47:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFD8A1F4C9F;
-	Wed, 22 Oct 2025 01:44:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB4FB20CCFE;
+	Wed, 22 Oct 2025 01:47:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="FAo5P8m6"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="SDJTNDzi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DB3PR0202CU003.outbound.protection.outlook.com (mail-northeuropeazon11010015.outbound.protection.outlook.com [52.101.84.15])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2C3A1E5213;
-	Wed, 22 Oct 2025 01:44:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.84.15
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761097485; cv=fail; b=LrWOY0s0XIg7LVP58wnlcavm4SQaj3EXDxOZc5ufnpeSVrjub4g8UngM+1DlLXwd+Q17EO6OMvM0KWdjQ5Dxzushyiw/qTuzPwiR6nw66Tovt6JD+gHjWnJbspDzthNk1TpN9SAbmOOP/yv9BrMLlfLfHNgHUgXk+AYoXZvB2oY=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761097485; c=relaxed/simple;
-	bh=TkM5IWS7JzFPIy7iIY4gNtPhapc+hQ6Y1k3wS1WsIk4=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=B6omYgclYINHk8KE1QSMjZ/532BreBKX2kOmfuh5eyc+XO8hDs3G24+bfrrxgC2eoq/R+mojcg/vzQ6YbYUjWejjqGuGDH0gne3yWOsLdXRhs4BsMI4mgGaKcVhOAQK2SkXpkrvYnM1vWzj5q+axMskQXoqkpX7zSKSoPE9XZec=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=FAo5P8m6; arc=fail smtp.client-ip=52.101.84.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=CQ0NrhDIl7tgE1BsIvQE9hPMJllcVwY1dH5lbL+mYmjzT2IFCHQfy2zfJ7I196pKgzd2ntEiJZANGvpSPUeORIXv3fnK4Il0vX1ZvvZzmJSCx5CpNxUG2ygPqHqjFC6m5rW31S/sqNvvo4UiG+7e4IW028PFT5WfxaG3oXtwpF2SBLim0w1lAsGBo6hf9k0uPwa9Jrqr+qd9Vl7ldoGAJaiok2MCqv0HA6H6+MYOlVDSIM5+or8Y8ARc4lxEeM8i3rcCmPABOp20LGCrIWUN3SIs+RFac8O10vxzBIsVwFgdi6vL4hav8p/3pLq9iuthTLxZSITy8lQ8C+FedSCs3Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=TkM5IWS7JzFPIy7iIY4gNtPhapc+hQ6Y1k3wS1WsIk4=;
- b=xBUhkBGLNuo0RKZBG0ER4a0Trj1S7Hlhe5c5actn9JktOo98aLcMgkjiAJK6+GXJ96svjjQADTzvcSNmr0PArYYnmshh4grcXwcqy6T0W+IYq6Ko5Or5FkFZC4GsytxDxWTbBjPkLDR29Y8dZ1Z3QeZYgmF+OEWEOvwMbUAqUrazxvtFq3zTApiGCtIgvldJsNEWm+pmxy80AZ7NTfSDCWewQM/IgvYhvSdebFX1GWxgQ5dMEkX90S5h8NpGz9ezC1NSntPxV6VkYFrNMVd4I1ZMVMzbHBd8jueDK6Yjk8PAa96XfaKo9diLZ6vIiD7jlk2W7sQMJHsNAncbElybYA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=TkM5IWS7JzFPIy7iIY4gNtPhapc+hQ6Y1k3wS1WsIk4=;
- b=FAo5P8m65L7Abc5IMW9abDHen1JcYzEvGovicFTczytXLc4AqCDOHQi8EOGQHyY1OJWvWvnUdK1O3D5JrIFosWVC2B4mBRSj8XQ2LqVAOwtfN1BY5fsQ12XLlJQgojCH+uZ2hS7Tx+TkjRwqINc7i01uZgya2iYZYWhGVIeDzOqAgQCzXqWd8U1CWJ33o/Oa6bzPQeSn1BGXSPEwrQ8eUwnXjzsoroJKBNRf60XMNwGIZ5HkZb0TeH8X/Uk8JFMwgRCZfzwOszcUqFkY6PVWDbxxBp2uc4CqpWCeA05hFzftXpyP4+tkrgaHiG9EhBlrQ0pjbEw2d3O8hskJE7333Q==
-Received: from PAXPR04MB8510.eurprd04.prod.outlook.com (2603:10a6:102:211::7)
- by DU2PR04MB8646.eurprd04.prod.outlook.com (2603:10a6:10:2dd::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9253.12; Wed, 22 Oct
- 2025 01:44:39 +0000
-Received: from PAXPR04MB8510.eurprd04.prod.outlook.com
- ([fe80::a7c2:e2fa:8e04:40db]) by PAXPR04MB8510.eurprd04.prod.outlook.com
- ([fe80::a7c2:e2fa:8e04:40db%4]) with mapi id 15.20.9253.011; Wed, 22 Oct 2025
- 01:44:39 +0000
-From: Wei Fang <wei.fang@nxp.com>
-To: Paolo Abeni <pabeni@redhat.com>
-CC: "imx@lists.linux.dev" <imx@lists.linux.dev>, "netdev@vger.kernel.org"
-	<netdev@vger.kernel.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "robh@kernel.org" <robh@kernel.org>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org"
-	<conor+dt@kernel.org>, Claudiu Manoil <claudiu.manoil@nxp.com>, Vladimir
- Oltean <vladimir.oltean@nxp.com>, Clark Wang <xiaoning.wang@nxp.com>, Frank
- Li <frank.li@nxp.com>, "andrew+netdev@lunn.ch" <andrew+netdev@lunn.ch>,
-	"davem@davemloft.net" <davem@davemloft.net>, "edumazet@google.com"
-	<edumazet@google.com>, "kuba@kernel.org" <kuba@kernel.org>,
-	"richardcochran@gmail.com" <richardcochran@gmail.com>
-Subject: RE: [PATCH net-next 6/8] net: enetc: add basic support for the ENETC
- with pseudo MAC for i.MX94
-Thread-Topic: [PATCH net-next 6/8] net: enetc: add basic support for the ENETC
- with pseudo MAC for i.MX94
-Thread-Index: AQHcPomx5rXumqsTlUupdMb7PmTNILTMOwsAgAEv5XA=
-Date: Wed, 22 Oct 2025 01:44:38 +0000
-Message-ID:
- <PAXPR04MB851033505FB2A4673A15EBD488F3A@PAXPR04MB8510.eurprd04.prod.outlook.com>
-References: <20251016102020.3218579-1-wei.fang@nxp.com>
- <20251016102020.3218579-7-wei.fang@nxp.com>
- <11ffb7d0-4e52-496e-84c7-0d93bf03e4cf@redhat.com>
-In-Reply-To: <11ffb7d0-4e52-496e-84c7-0d93bf03e4cf@redhat.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: PAXPR04MB8510:EE_|DU2PR04MB8646:EE_
-x-ms-office365-filtering-correlation-id: 5a167fbf-06fa-414d-0f64-08de110c9044
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|366016|1800799024|7416014|376014|19092799006|38070700021;
-x-microsoft-antispam-message-info:
- =?utf-8?B?VHhGVzZlYzJ3YXA3dXB0WnNSVHVuU2R0N0c0OU1jWER2RHYvSHE5ZVhQd2ty?=
- =?utf-8?B?NGhWbWRPQlUyQmFUeitOWXB1TkRNNC94bHJsNWZXaEZtUERqcldrWHlXU3Mx?=
- =?utf-8?B?ZlBESkR2OGdLY0ZWcjZwNG5NdkdhNzdTVUYxVkx3UElvZ2huNzc2NVFmakU3?=
- =?utf-8?B?TSsySVhJZ28rdFRmdGJwWHRTbkhnWTRWNnhyK3UyYm9tUVlBZjBqVjFxRTFs?=
- =?utf-8?B?YlgvL2JXNDIwQnYrTDJ1RWNsM1R0ODBWTEhnT0FwbCttdnlNdXo3QXBmMDMw?=
- =?utf-8?B?NEpPZFk0NlE4Mzc4eVp1WG5GVzlqVGFkUWIzUmNRYlFQTVNxUnRoQVBnVVdL?=
- =?utf-8?B?UnlIOE9TWHpzdUxldWJtdnVyYkFBNkIvZkhSWXR2eXFXZ3lpL1ZRVDdMZjA2?=
- =?utf-8?B?SldHZVEvZXVLcDNGYmFhVm5XMVY0N0d2dHBFRHlZNDlGaXltamp3cmNYVU5q?=
- =?utf-8?B?TlcyblN5cFY2b2Z3akpIbkdWT0xucVZib09UVHB5SVBvajZuMkh5ZEVnNVUw?=
- =?utf-8?B?WFY1UkIzUmgrYW5zYjVMcXFTS2pCTzhkWnRkWURtNGNOWHl0RnJ0ME05QkVk?=
- =?utf-8?B?Y2I4Q3BvdjY3WVNtUWhCeCtmbk1VaWRJNVhIK0xtZFBpVVphem5nTkpFMVR2?=
- =?utf-8?B?WDRobElZdklxQTgySjRPUlU4QS9UTU5xanA3dkR6WmZvbUt6RWZoaHZmaHpN?=
- =?utf-8?B?TE5BTng2UXB3ZDJDeTY5ZXYya3FjQTNyTG94dUtJNElPdEVqUTJQUG1HSHVB?=
- =?utf-8?B?MmNtTThoaXdDL1RXYm40b28zQ2pjL2ZTOFJ0djNRUUFaWnVrMnVONXRSVTNQ?=
- =?utf-8?B?dXkrMkcwcXBaZmo4bFBpVVJ5d0lqRWlFQVlod0Q4SEhUeU1mNStBVlE3c1Zv?=
- =?utf-8?B?ZGVpalc1WWczUFJkcHVQY1lMVlQwS0pncUNmdStDU0hMb3BkMkR5dmRZMkI3?=
- =?utf-8?B?Y1poM3R0L2s3WUl3V1Zma0FGcEIwVi82SGFvbU5JZ0RjS2FrNnBIZUk4dXp5?=
- =?utf-8?B?cmhUNkw4Wk9jMGNjb0VVREttUEkxaXEwU1hJbDdzejBFZjZpVWdWVGRFZnd2?=
- =?utf-8?B?YnFUMkV5c1phYnE3TlgvamRSM2YwdDlmNnBHaVZXbU53OTliNXVMNVRrYmtp?=
- =?utf-8?B?N2w1MFNXclhiSlphVE9VWHhycFpUVWc2S0orUnBUSEVnUFQ5S2srRmxKWTQ5?=
- =?utf-8?B?RkdNdUdPenhQTWMxMkRzU3ZRRDRQZjJmY2RSYi9yUmxJenNhYTJpczZ5Uyta?=
- =?utf-8?B?NEwwMElPaGYvUjdya2JzVkNqN2hzMFZmbEJsLzA0Y0RLamxhQUNmVTg1YnBu?=
- =?utf-8?B?Z3Jpak5pUi85ckNCVUt2RjdLeEZsb21sT09mYXpLTTFnK3ZUVHRlL1hoRmlk?=
- =?utf-8?B?WUZZK0lmQi9aK3d1Z3VwRzZSWm5oMXY0K3N1b0hnY1RyME9EKzBieTFXVXVN?=
- =?utf-8?B?d1p4dC9TYXRpUytBRWMvUmgrRUlZYnlpQ2dON2tsU09nLzh3OEdUSjlxQmdt?=
- =?utf-8?B?TnNnaWg3RHQwRnJQaUgvUmxrbDhWS3FTbFoyMFYzQU1HczZKVWlrL0FxMHk3?=
- =?utf-8?B?OXJhdkcwdVRhVmphNEZ5WXp2TTFjME50SFZ5SUY0NDZTMExwbFdaajMwZ1BI?=
- =?utf-8?B?YUhGWmZOTUxIQms1RW5iM0o1eG1WNVI3NFM3MHlvVkhxWW4yemk3T0dxZnRN?=
- =?utf-8?B?V1A2YWpsUThLc2ZlUmhXMGR0NStqdW94K0M4UzhRK09DKzVCbXVobTQxa1pk?=
- =?utf-8?B?V2pwazFDNVNoRk9WeEUxbFFQc2VJV2pUR3NNbzdGOVY0SUdSdDhBeGdPNmJ6?=
- =?utf-8?B?Z3pZZmtuSGY2RG9sTFh5Q0ZSTU9CblZvTjU1dmE2Si8xdGYyUHZySDJZRk1s?=
- =?utf-8?B?TnNpdGhqNkU4MG1nZTZaVktSN3dzZGR4VEVmUGN3K1dadW13YzcvWXZpNzRR?=
- =?utf-8?B?OCtNOUNySzEwQzY3SXRSZk1xWlJTb1JuNCtiL3Rnd0dSS2VyN25DeVlEbjJO?=
- =?utf-8?B?UVhnZEY3UlkvODk5R3JLTlN0UlplUm8vcmF3Z0x1UmlUWEVXejh0Wlc3UVJR?=
- =?utf-8?Q?atulb3?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB8510.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(7416014)(376014)(19092799006)(38070700021);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?utf-8?B?cU9OSTFOQ0xoK3lRK3pXQkJCWFRqaWlGa04zQ1VBZnVDU0NaTnVCUW5qclFM?=
- =?utf-8?B?VUVHUUhQRlpzY3kxMkRSdnBJN0ZsQmhIUXB5Zm1iMncrR2RGR1J0MHJFaWI4?=
- =?utf-8?B?L0JBU25KZi91dFVhdXVMa1ZBSnJ0TWRYcm5wNm9LN2NlS1EzQ2h3eXVLV1ZU?=
- =?utf-8?B?eFhMU0NSbElTRnAwL1d5clBlQ1g0Vk9LazNZQU5oekgzZlhNaDk4MUdCdzVN?=
- =?utf-8?B?azZHNTdPZnJtLysxK0kzcXRWdXh5Wkd1ZEZZTldBVjNLQXVhZkhOY25mZXFn?=
- =?utf-8?B?eWVHc2xSa1VoT25IVXJkYXdXZk94a0wzYSs1RFhHQ0xoWEhLb1lJaWdaTVJI?=
- =?utf-8?B?YlpEK0JzVkNJbk1LTVdxeXB3bWV3enRvVEN1ei9RWUg1S3g4RDEvQTZaMW9X?=
- =?utf-8?B?MDZaaDQzN2g5MlRhSmtvVUVFTVVpMVB0ekFMeTFNYVpheTBXRFhVL0dPM1J5?=
- =?utf-8?B?NUxDRW4yRGM0S3grUE56K3NSbjMyVWxBeFQxT0FSRHNmeWxjTTZUOUN5cVRx?=
- =?utf-8?B?VFJCYmVZWFdrcE1ZL25PemcwSmNyU1EwUytQZ3RQdnlDVmpybVRjMjV0Z2J6?=
- =?utf-8?B?R0hwdU9kQUZoTEZMY0lwRTVWWi9ESWo0ZDVSeE1OL2RPUktVVkpQanBKeThY?=
- =?utf-8?B?T2JmcTJ1ZGtvMHdNYkZQM0ZIcXlaSjl4TVAxaVZFSVQxNXIzZlhEeGM2SXht?=
- =?utf-8?B?VWxZYklWdUFBRjVHemJqSWtHcXdOOUxhVFJFeGZpSFB1YWZIZDAra3BtK2VT?=
- =?utf-8?B?NXBaR0dXcGFqeFpib2M4RHY4ZCtmeStoRkR5b3NSNkhyMkNjVjdVcVEvdmM2?=
- =?utf-8?B?UWRoUHJSbWZiQVBQNkRYcmtOc01UVHFQQ25OQk1ZdnRDdWhybWJaZEljZkln?=
- =?utf-8?B?bFRYV0dWQlpmdG5sT2NhU2cxWjQrU0cybTdrMVNTeHlFMjJBRzZHKzdoNW13?=
- =?utf-8?B?UUJmWlM3L1lZc1laYk4yNFU0Vk9JQjVNazFZQVozY1RSR1lLekxYQ3BPMzBv?=
- =?utf-8?B?V3dGcjQ1cm5IenBzSHpXRWs5bi9CcmxsWTFmR0dBVTYwVFpETlEzSjJOdmZw?=
- =?utf-8?B?dzRkdFZacWdpeG1zcTBzQ0hhNkVWQkhBeVdzQ0svV0NNZXZPL1FIcU9GWUJ0?=
- =?utf-8?B?bjROUVIydGx1cG5hOGxoditYdk81VTN0RzJndnRvUUpUMGtFUlIxWDBDYzUw?=
- =?utf-8?B?ZE1WQkYrNWFCanZnQXRSODFYMXNZUTJsVE9kTDk5UjBUaThqSUVTZUdaaG5Z?=
- =?utf-8?B?UDVzWExVVXdUU3BqRTVnV1RCK2dyZVhoZGNLK0YyUFg5SkhjazFid3ZhbVdl?=
- =?utf-8?B?cXBxMFVxQmxtTW1tcVJPM2hYTzNNRzh6MDllNy8wQS9oSXN4ckR5WUpubGVx?=
- =?utf-8?B?Y2VkMU5YYmJ1VGZyVVAxOWdiSVloSDM4K3BKd251L2Z6eEZud3k5cTRNRGJk?=
- =?utf-8?B?ZzFOdG5SVXE5Mmd5UVdHTWdZamFWeXFraThkUmlDd1Bta3ZjbnNZYndtNkpN?=
- =?utf-8?B?aVhqN0pFUVFVbWlGMXd4L1FocGFyREkrektBSFZxOGZDeTZZQ1ppdHkyNldv?=
- =?utf-8?B?MFNYaXpSQ3lWL1YzQUtVUmhFOVUvTk1NS3FtcWdoTDFCQmpxc3FsazZrNjRj?=
- =?utf-8?B?NmZhcGpoOXZ0UXFWZENtd1pRV3NEK09SS0VYMUFNT1B1TEpXRnJOVXdDdW1J?=
- =?utf-8?B?MDd4UGVYTDZ2SlNtajNKR3A0TWQ4YkdKU3AyOEVzRW1sMXlLT3FYMEZZS0Vy?=
- =?utf-8?B?Z0V4MFRMM3did09ZS3FzQVluQk00bW1mS25CaXJ4aHpkTitwSk81WWlDbzZK?=
- =?utf-8?B?cnZoeVFEVkFjS2pDOXVBVXp2ek5nUDBHZm1mSFdNUUN1V2kyU1RtNVQ0OGE5?=
- =?utf-8?B?SVYvOVFwSzArdExUeENjRlNLVUprMlJWUUhWVjh4VzBGeXFZNFU1WDg4NU9E?=
- =?utf-8?B?VVBSQWhLbFNlRVlFRUxkLzhPNHhaUS9aYnZhWEhQQUFlZ2FCSnlEM2E3d29u?=
- =?utf-8?B?UnNiUm9YczFKSHlXU0FZWVV0eDAydFgvRWRNazhhNkdMbEE5ZWtGUG44dlFL?=
- =?utf-8?B?UUpGcXdUTUY3U0dYUzNTV0MvNmRwMFIvK0w1K3B6V0dxWU5LYUdzL2RSWkt6?=
- =?utf-8?Q?//D8=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E46221F3B9E;
+	Wed, 22 Oct 2025 01:47:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.15
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1761097662; cv=none; b=tQ2iPrYRH+Gyi6IUNYqsmkTC3JyEoyu+LAnJPrcLaPh+oB2Fp8xaxD3S9/KEzL/FTT0SZgjtDigC1RA96D9dwJW7m51rBmFAtFy9jUaG0tyT9JvfXsYVnZ9zsGxhFJ75AY2YFOA6P/5V655vJdQrl3JfjGGNXoehQgv6Yaq2bP8=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1761097662; c=relaxed/simple;
+	bh=icObdIfSuL7dHxX4YyPeT+ngbOJTLgO4yM+wSfIaRPA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pNd9aY65AOwUF+XEYHzl8A2SiGbNunciDJ1x346WIkLNCQuD+RNi3qOOe3BWO6e3wzaAsbAt4o3nFh/BT7JO5/EnBduVQGlSP4KM8WvrE4QJ02Jwm2NvR8ZYrRuJvBK8RMkb96muDIIuENoTvdI/52tshTmPtgFQNPxc2tux8qw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=SDJTNDzi; arc=none smtp.client-ip=192.198.163.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1761097661; x=1792633661;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=icObdIfSuL7dHxX4YyPeT+ngbOJTLgO4yM+wSfIaRPA=;
+  b=SDJTNDziSVsA3M8+4j2HdQTXjScb05NEPu7oJLT7NLolP9sP3cRTdCeq
+   0EWgx7kQn7sW/b2/bnZBwYS1BAOpUhpYocVPGegicII34h0QcgTw/zlld
+   fUfp3EeScGPg8WcO6AM5k/4K3kYV4l9WhoMoN6kswY7G581bmVaRB6vDp
+   ynz5+vfMFhfj8t9s2OrAA4lvwr/OCO7DpgVUW87odx63qh2kNcZcMFN/K
+   Ck4E8F4nsPthjFxGj1c4odyGEKCjaRaDPgYJjdEr3q5RrlSXJvWLUwq2O
+   i9gLIUv6kq3PS3LOQOs7yr8uIH/zSyEuJfVjcrt327kXEJ/Dr8EFO/yko
+   A==;
+X-CSE-ConnectionGUID: 6Bkgqts+T3az0qw4MpBO3Q==
+X-CSE-MsgGUID: MRM06qL3Rpubj8XThYA1ew==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="63332404"
+X-IronPort-AV: E=Sophos;i="6.19,246,1754982000"; 
+   d="scan'208";a="63332404"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Oct 2025 18:47:40 -0700
+X-CSE-ConnectionGUID: E5YXi9HKRUyhbUXzBSLhpg==
+X-CSE-MsgGUID: o30Buig6Rmam2zVLHuRqEg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,246,1754982000"; 
+   d="scan'208";a="188150280"
+Received: from lkp-server02.sh.intel.com (HELO 66d7546c76b2) ([10.239.97.151])
+  by fmviesa005.fm.intel.com with ESMTP; 21 Oct 2025 18:47:36 -0700
+Received: from kbuild by 66d7546c76b2 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1vBNws-000BuT-2C;
+	Wed, 22 Oct 2025 01:47:34 +0000
+Date: Wed, 22 Oct 2025 09:47:30 +0800
+From: kernel test robot <lkp@intel.com>
+To: Sander Vanheule <sander@svanheule.net>,
+	Michael Walle <mwalle@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>, linux-gpio@vger.kernel.org,
+	Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-leds@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	Sander Vanheule <sander@svanheule.net>
+Subject: Re: [PATCH v6 6/8] pinctrl: Add RTL8231 pin control and GPIO support
+Message-ID: <202510220909.HJVE90Ky-lkp@intel.com>
+References: <20251021142407.307753-7-sander@svanheule.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB8510.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5a167fbf-06fa-414d-0f64-08de110c9044
-X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Oct 2025 01:44:39.0807
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: gpG/OaOrPRNAS6w1e8LnfHrbGxsr8sVVG+LXg20bQfMYwq5rAx56kHG+vsGPQZgbNx1Rx/+qb/UNiLfiQu2Wnw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU2PR04MB8646
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251021142407.307753-7-sander@svanheule.net>
 
-PiBPbiAxMC8xNi8yNSAxMjoyMCBQTSwgV2VpIEZhbmcgd3JvdGU6DQo+ID4gQEAgLTYzNSwyOCAr
-NjQ5LDEwIEBAIHN0YXRpYyB2b2lkIGVuZXRjNF9wbF9tYWNfY29uZmlnKHN0cnVjdA0KPiBwaHls
-aW5rX2NvbmZpZyAqY29uZmlnLCB1bnNpZ25lZCBpbnQgbW9kDQo+ID4NCj4gPiAgc3RhdGljIHZv
-aWQgZW5ldGM0X3NldF9wb3J0X3NwZWVkKHN0cnVjdCBlbmV0Y19uZGV2X3ByaXYgKnByaXYsIGlu
-dCBzcGVlZCkNCj4gPiAgew0KPiA+IC0JdTMyIG9sZF9zcGVlZCA9IHByaXYtPnNwZWVkOw0KPiA+
-IC0JdTMyIHZhbDsNCj4gPiAtDQo+ID4gLQlpZiAoc3BlZWQgPT0gb2xkX3NwZWVkKQ0KPiA+IC0J
-CXJldHVybjsNCj4gPiAtDQo+ID4gLQl2YWwgPSBlbmV0Y19wb3J0X3JkKCZwcml2LT5zaS0+aHcs
-IEVORVRDNF9QQ1IpOw0KPiA+IC0JdmFsICY9IH5QQ1JfUFNQRUVEOw0KPiA+IC0NCj4gPiAtCXN3
-aXRjaCAoc3BlZWQpIHsNCj4gPiAtCWNhc2UgU1BFRURfMTAwOg0KPiA+IC0JY2FzZSBTUEVFRF8x
-MDAwOg0KPiA+IC0JY2FzZSBTUEVFRF8yNTAwOg0KPiA+IC0JY2FzZSBTUEVFRF8xMDAwMDoNCj4g
-PiAtCQl2YWwgfD0gKFBDUl9QU1BFRUQgJiBQQ1JfUFNQRUVEX1ZBTChzcGVlZCkpOw0KPiA+IC0J
-CWJyZWFrOw0KPiA+IC0JY2FzZSBTUEVFRF8xMDoNCj4gPiAtCWRlZmF1bHQ6DQo+ID4gLQkJdmFs
-IHw9IChQQ1JfUFNQRUVEICYgUENSX1BTUEVFRF9WQUwoU1BFRURfMTApKTsNCj4gPiAtCX0NCj4g
-PiArCXUzMiB2YWwgPSBlbmV0Y19wb3J0X3JkKCZwcml2LT5zaS0+aHcsIEVORVRDNF9QQ1IpOw0K
-PiA+DQo+ID4gIAlwcml2LT5zcGVlZCA9IHNwZWVkOw0KPiA+ICsJdmFsID0gdTMyX3JlcGxhY2Vf
-Yml0cyh2YWwsIFBDUl9QU1BFRURfVkFMKHNwZWVkKSwgUENSX1BTUEVFRCk7DQo+ID4gIAllbmV0
-Y19wb3J0X3dyKCZwcml2LT5zaS0+aHcsIEVORVRDNF9QQ1IsIHZhbCk7DQo+ID4gIH0NCj4gDQo+
-IFRoZSBhYm92ZSBjaHVuayBsb29rcyB1bnJlbGF0ZWQgZnJvbSB0aGUgcmVzdCBvZiB0aGlzIHBh
-dGNoLiBQZXJoYXBzDQo+IHdvcnRoIG1vdmluZyB0byBhIHNlcGFyYXRlIHBhdGNoIGluIHRoaXMg
-c2VyaWVzPyBPciBhZGQgc29tZSBjb21tZW50cw0KPiBleHBsYWluaW5nIHdoeSBpdCdzIG5lZWRl
-ZC4NCj4gDQoNCkJlY2F1c2UgdGhlIGludGVybmFsIGxpbmsgKFRoZSBsaW5rIGJldHdlZW4gRU5F
-VEMgYW5kIHRoZSBDUFUgcG9ydCBvZg0KTkVUQyBzd2l0Y2gpIGhhcyBhIHVuY29tbW9uIGxpbmsg
-c3BlZWQgYW5kIGl0IGlzIGNvbmZpZ3VyYWJsZS4gU28gSQ0KcmVtb3ZlZCB0aGUgc3dpdGNoIHN0
-YXRlbWVudC4gQnV0IEkgcmVhbGl6ZWQgdGhhdCBzaW1wbHkgbW9kaWZ5aW5nIHRoZQ0KZml4ZWQt
-bGluayBzcGVlZCBpbiBEVFMgdG8gc3VwcG9ydCB0aGlzIHVuY29tbW9uIGxpbmsgc3BlZWQgaXMg
-bm90IGVub3VnaC4NCkFsdGhvdWdoIGl0IHdpbGwgbm90IGFmZmVjdCB0aGUgZnVuY3Rpb25hbGl0
-eSwgcGh5bGluayB3aWxsIHJlcG9ydCBhIHdhcm5pbmcuDQpGb3IgaS5NWDk0LCBJIHdpbGwgc2V0
-IHRoZSBzcGVlZCB0byAyNTAwTWJwcyBpbiB0aGUgZml4ZWQtbGluayBub2RlLiBTbyBJDQp3aWxs
-IHJldmVydCB0aGlzIGNoYW5nZS4NCg0K
+Hi Sander,
+
+kernel test robot noticed the following build warnings:
+
+[auto build test WARNING on lee-mfd/for-mfd-next]
+[also build test WARNING on lee-mfd/for-mfd-fixes linusw-pinctrl/devel linusw-pinctrl/for-next lee-leds/for-leds-next linus/master v6.18-rc2 next-20251021]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Sander-Vanheule/gpio-regmap-Force-writes-for-aliased-data-regs/20251021-222846
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git for-mfd-next
+patch link:    https://lore.kernel.org/r/20251021142407.307753-7-sander%40svanheule.net
+patch subject: [PATCH v6 6/8] pinctrl: Add RTL8231 pin control and GPIO support
+config: x86_64-randconfig-004-20251022 (https://download.01.org/0day-ci/archive/20251022/202510220909.HJVE90Ky-lkp@intel.com/config)
+compiler: clang version 20.1.8 (https://github.com/llvm/llvm-project 87f0227cb60147a26a1eeb4fb06e3b505e9c7261)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251022/202510220909.HJVE90Ky-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202510220909.HJVE90Ky-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/pinctrl/pinctrl-rtl8231.c:354:53: warning: cast to 'void *' from smaller integer type 'unsigned int' [-Wint-to-void-pointer-cast]
+     354 |                 err = pinmux_generic_add_pinfunction(pctl, &func, (void *) flag);
+         |                                                                   ^~~~~~~~~~~~~
+   1 warning generated.
+
+
+vim +354 drivers/pinctrl/pinctrl-rtl8231.c
+
+   321	
+   322	static int rtl8231_pinctrl_init_functions(struct pinctrl_dev *pctl,
+   323		const struct pinctrl_desc *pctl_desc)
+   324	{
+   325		struct pinfunction func;
+   326		const char **groups;
+   327		unsigned int f_idx;
+   328		unsigned int flag;
+   329		const char *name;
+   330		unsigned int pin;
+   331		int num_groups;
+   332		int err;
+   333	
+   334		for (f_idx = 0; f_idx < ARRAY_SIZE(rtl8231_pin_functions); f_idx++) {
+   335			name = rtl8231_pin_functions[f_idx].name;
+   336			flag = rtl8231_pin_functions[f_idx].flag;
+   337	
+   338			for (pin = 0, num_groups = 0; pin < pctl_desc->npins; pin++)
+   339				if (rtl8231_pin_data[pin].functions & flag)
+   340					num_groups++;
+   341	
+   342			groups = devm_kcalloc(pctl->dev, num_groups, sizeof(*groups), GFP_KERNEL);
+   343			if (!groups)
+   344				return -ENOMEM;
+   345	
+   346			for (pin = 0, num_groups = 0; pin < pctl_desc->npins; pin++)
+   347				if (rtl8231_pin_data[pin].functions & flag)
+   348					groups[num_groups++] = rtl8231_pins[pin].name;
+   349	
+   350			func = PINCTRL_PINFUNCTION(name, groups, num_groups);
+   351			if (flag == RTL8231_PIN_FUNCTION_GPIO)
+   352				func.flags |= PINFUNCTION_FLAG_GPIO;
+   353	
+ > 354			err = pinmux_generic_add_pinfunction(pctl, &func, (void *) flag);
+   355			if (err < 0)
+   356				return err;
+   357		}
+   358	
+   359		return 0;
+   360	}
+   361	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
