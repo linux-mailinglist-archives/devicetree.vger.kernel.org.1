@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-229772-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229773-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B9C3BFBCBB
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 14:13:10 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2111BFBD6B
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 14:27:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 607203543F7
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 12:13:08 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id B813F4E527A
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 12:27:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBB8A3431E6;
-	Wed, 22 Oct 2025 12:12:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 456EC3431F4;
+	Wed, 22 Oct 2025 12:27:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="a348WHO2"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="vg6h7ONg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
+Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E7373126BA;
-	Wed, 22 Oct 2025 12:12:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFE9A33F8BD;
+	Wed, 22 Oct 2025 12:27:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761135176; cv=none; b=d19LbDHn9VrxxmfiNj/SP6kV4KFgZ+YPie91aTObcLumctdyZg7Sl0dGoRzx5cSiBlN0bK0JE766u0LhG/7rMgcwKTpWdQjNgwAtFhqnN4bmSXIkTLaGbSMC4EIv9RtxS5UPPAhHUkkGrL0EbVZ2I+dsHT847igGM/Kqh0y2JDM=
+	t=1761136031; cv=none; b=VF4Lqrue0K2vq6X3r0tjwktZrEOuZm+GU0IIouuAA4AcpUWpUvMHlgzFU9XE0tcuFtBgOv71IaDTOZq9y8k6Ms0Fh4N3oW6BW/2gMRT4Evhd7RbZlRhdlMea4iU7H60EE0fUVE9YlEk9G4eReASRk24UYEBiAyzFnHMtd6xgrrc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761135176; c=relaxed/simple;
-	bh=bnYmrdnJ5nXbtqY8lk+ZVyuMM3focOV0ncxkglR72A8=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Y8ie6QIqQYmnYh7ir0jmlPiz38wywmHqu+FdjJE5xebJqIg1RGurBWEHJtkIzqi4j7oej3HnllNim5urkLZDPupsNEpSJ/wCOkNu1D6orDVc/BzMZlHw5eEcIppYOa1FhKcBsrtBvxxh6vZjszGKG+f9sOx29ukGABsqiKzG5u8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=a348WHO2; arc=none smtp.client-ip=198.47.19.245
+	s=arc-20240116; t=1761136031; c=relaxed/simple;
+	bh=qin/HbyrwTE9Bw5JRC+ZWJqociSiNwmCmg29dJyd1QY=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=h6QJyXmFXa0QSoz6UJGnjQI5wfj/5Au1O52csy8XrncTyJKdD2o8lF4e5z/ypULkbXEGxgtLLxU9tfAoy+q4WKBrfFgLldQ9Rj3A6wCSDvGBXymaBriG2LRwJBZNPalW1u+Vc14MtnfqMmOyJBJ67Od5POBB/IegB4qcQMCmWn0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=vg6h7ONg; arc=none smtp.client-ip=198.47.23.235
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllvem-sh03.itg.ti.com ([10.64.41.86])
-	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTP id 59MCCkDs1399372;
-	Wed, 22 Oct 2025 07:12:46 -0500
+Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 59MCQmvV267091;
+	Wed, 22 Oct 2025 07:26:48 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1761135167;
-	bh=Im6PoCOaKHLn9fCxkHUqD0r00FkT7Hr9IrkbupO3vpM=;
+	s=ti-com-17Q1; t=1761136008;
+	bh=IwtS0K/ae7XV32o7GzPzyM2kZXHRz+ts8VgkiTxQsVw=;
 	h=From:To:CC:Subject:Date;
-	b=a348WHO29uGaUg9l2pXWuEP4jUns7kqu6kK+lFUN4VA+aXGzGQv33Kd/fhNPXOqDu
-	 XN4M+8+vqtNQBT303A46rPkxBGi3Ge5P/E26uXFvGUC3nbD15281JTuQdmD1WK3zKo
-	 ydIOcfeW6WfOEaBjukkA1Af+lRoMtYZ0mt4LiEW8=
-Received: from DLEE203.ent.ti.com (dlee203.ent.ti.com [157.170.170.78])
-	by fllvem-sh03.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 59MCCk5P1999166
+	b=vg6h7ONg06WXxYz3RUVVaP2cUM28AiT82vUdE9Z1bQdRkJuMLoZf/BtTXXCGqw3J/
+	 1Fenps8zC52eIhwFUDp+wDqiwX/Q9hVeOWZf3+yJrQuPpnF06vYRG35TVR+GmEqvRy
+	 Flk2AGMEAbyngROYRZJS/1qQdWKiRt5IXO05v91k=
+Received: from DFLE205.ent.ti.com (dfle205.ent.ti.com [10.64.6.63])
+	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 59MCQmkf1917952
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 22 Oct 2025 07:12:46 -0500
-Received: from DLEE200.ent.ti.com (157.170.170.75) by DLEE203.ent.ti.com
- (157.170.170.78) with Microsoft SMTP Server (version=TLS1_2,
+	Wed, 22 Oct 2025 07:26:48 -0500
+Received: from DFLE201.ent.ti.com (10.64.6.59) by DFLE205.ent.ti.com
+ (10.64.6.63) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 22 Oct
- 2025 07:12:46 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE200.ent.ti.com
- (157.170.170.75) with Microsoft SMTP Server (version=TLS1_2,
+ 2025 07:26:48 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE201.ent.ti.com
+ (10.64.6.59) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Wed, 22 Oct 2025 07:12:46 -0500
+ Transport; Wed, 22 Oct 2025 07:26:48 -0500
 Received: from psdkl-workstation0.dhcp.ti.com (psdkl-workstation0.dhcp.ti.com [172.24.234.127])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 59MCCgMU1176371;
-	Wed, 22 Oct 2025 07:12:43 -0500
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 59MCQijN1175610;
+	Wed, 22 Oct 2025 07:26:44 -0500
 From: Aniket Limaye <a-limaye@ti.com>
 To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
         Tero
@@ -64,9 +64,9 @@ CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
         <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
         <linux-kernel@vger.kernel.org>, <u-kumar1@ti.com>,
         <gehariprasath@ti.com>, Aniket Limaye <a-limaye@ti.com>
-Subject: [PATCH v2] arm64: dts: ti: k3-j784s4: Fix I2C pinmux pull configuration
-Date: Wed, 22 Oct 2025 17:41:55 +0530
-Message-ID: <20251022121222.220113-1-a-limaye@ti.com>
+Subject: [PATCH v3] arm64: dts: ti: k3-j784s4: Fix I2C pinmux pull configuration
+Date: Wed, 22 Oct 2025 17:56:33 +0530
+Message-ID: <20251022122638.234367-1-a-limaye@ti.com>
 X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -95,9 +95,15 @@ Fixes: e20a06aca5c9 ("arm64: dts: ti: Add support for J784S4 EVM board")
 Fixes: 635fb18ba008 ("arch: arm64: dts: Add support for AM69 Starter Kit")
 Fixes: 0ec1a48d99dd ("arm64: dts: ti: k3-am69-sk: Add pinmux for RPi Header")
 Signed-off-by: Aniket Limaye <a-limaye@ti.com>
+Reviewed-by: Udit Kumar <u-kumar1@ti.com>
 ---
+v3:
+- Collected Udit's "Reviewed by:" from v1
+- Link to v2: https://lore.kernel.org/lkml/20251022121222.220113-1-a-limaye@ti.com/
+
 v2:
 - Added Fixes tags
+- Link to v1: https://lore.kernel.org/lkml/20251019103938.276062-1-a-limaye@ti.com/
 ---
  arch/arm64/boot/dts/ti/k3-am69-sk.dts                   | 8 ++++----
  arch/arm64/boot/dts/ti/k3-j784s4-j742s2-evm-common.dtsi | 4 ++--
