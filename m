@@ -1,132 +1,99 @@
-Return-Path: <devicetree+bounces-229871-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229873-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94987BFCF40
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 17:41:21 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38171BFCFFB
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 18:01:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2166A3A80BF
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 15:40:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 204543AD2D7
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 16:00:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A8BE34EEFB;
-	Wed, 22 Oct 2025 15:39:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA21E26F2AC;
+	Wed, 22 Oct 2025 16:00:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="T1poV5fx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UQ4wMGVr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5690934C994;
-	Wed, 22 Oct 2025 15:39:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52F0026E6F8;
+	Wed, 22 Oct 2025 16:00:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761147585; cv=none; b=ERk/Xs77QnzUa1l1RpDvQSVjyiKMOasudgcKHJAsgIGmgSthLw7H0XpHNCvnhsQuio18kj8vlnFowUyKNlZiPMkBQHfn0DDCogccl+OAqAJhuUca6DOZV4MUTysBWAbFvOIx4C//bZC3DTJKy27XeqI8j2Ddob/GMmR/IebkwWg=
+	t=1761148839; cv=none; b=YwVNtD89LKU0HzfC+QSx/UDqJg0hsudPZLkusk3URBResKnwog6J23UpE2jVSGm4m/u8uJeRw82KLOujQdhZs4AhV6fE5TH3H9FcchkUmpyqZdDz6NYPBKulwBKYBvkj+3s8uZ2wOsvNEUraMxxOvKZRx8QWAoAm2MGiNj+JYzQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761147585; c=relaxed/simple;
-	bh=nBWa0ag7woJY2vPCiQSnDe7vW7z+266sYVbZE0b/SD4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=B2ibQJ3rUq04ubpRZkH0srFPy4yV2zj/5sEUrYyNkT0EwHrZyUOEcoc0nAEQ2fGqcWw+h+Z0Q4FyP3LvJDivUpIeO2WwjsVjzuy+0dmOlTh0Xt7QqoibIGnwsXdvgvQanG/RCELdsX6ty84LYTE6Aq818JTFXqU4mVqUHvCxPUc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=T1poV5fx; arc=none smtp.client-ip=185.246.85.4
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id 7E4A14E4127E;
-	Wed, 22 Oct 2025 15:39:36 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 5644B606DC;
-	Wed, 22 Oct 2025 15:39:36 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 5C727102F2449;
-	Wed, 22 Oct 2025 17:39:33 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1761147575; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=iTiW6J9ezHzkr5T/PBNfpX9M9qHogdCahO4t6SNr+IY=;
-	b=T1poV5fxjVnA2EiU28J6U4jw1Xehi1H/nDJsf8K6fla3Tiv0niG1LP1ZFU887hBJstHVXF
-	hwDWF1pykcpZx5OtKpfHsVeRdoYVpbCXEOtgIFk3Z8OBry3JNY8XQz1HUMR6l9th/3vGCa
-	nfmkxmJemVhKirWcrbZ9rVAgzqBdxocDd2SL/OfEdYaUhsg1QT7StZ0TNZ8l9FHc2Oxt++
-	9jcvi24Yq+ygi0iZ34xni1H/0KOJRqPATvxl34e247UEijj1AB7HyhRn8jhG8Fl4I4tk/u
-	Pudb0rHOlwYwwHkhaDqsiHuIGEpAc9WGYH/rEr1Iwm3oFHYRC6fhDWpJ/B5d3Q==
-From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-Date: Wed, 22 Oct 2025 17:39:09 +0200
-Subject: [PATCH 7/7] MIPS: mobileye: eyeq5-epm: add two Cadence GEM
- Ethernet PHYs
+	s=arc-20240116; t=1761148839; c=relaxed/simple;
+	bh=iJWl0LdiMWT7o2aIAcmE3+F+1RtVXkKI8e4PpYCoz5Y=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ILraOleQq5GHEJ1iw2l5peEJK5J8KVjXMu/FSUVaAc/qrBMK15wDr4sZUI3mTel62hJUr7h2Xp9aUUEM6cXT1lvJRmX44RolE1PngOx7vlWsUc17IGoTZS7NZNEKYybwVxbFHWpwpErHSzUOvvyHWyrZvGrnKoWUjjtxq69Y0xI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UQ4wMGVr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 08414C116D0;
+	Wed, 22 Oct 2025 16:00:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761148837;
+	bh=iJWl0LdiMWT7o2aIAcmE3+F+1RtVXkKI8e4PpYCoz5Y=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=UQ4wMGVr6ibfS1rY71i2UBnGI57CnAMAmD2/nScPuC7BEt12krL2HU/hJFLU9yI8+
+	 2UV8EXQ9GKC2Vf7/9JjaEj8BPUgtkDGWWO+yKGMpSf2BaQvfDDjeP4PNamtFeU+laD
+	 4VuYPJWCkPm886/V6B9RI1/exZqinCKsFVk7QxBCqBxOYI0J8GSWmIDzLcwT4geT1/
+	 as0QgrRv8Tve4lvSLrzYHMV1sayvkf0OihXlf1vMUDOqXRr5pZ1ka09Q7Q1vqpRsfN
+	 nWzDZlAoh3jLREHIwtK5xS2EOx8UOyFXh7A7ZoVeQ5+TI70cwIicb3m99XQmmwfIH+
+	 zje7ByD2VLWLg==
+Message-ID: <3d2b0de7-4c39-42d3-a6fd-d41386559e1a@kernel.org>
+Date: Wed, 22 Oct 2025 17:00:31 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20251022-macb-phy-v1-7-f29f28fae721@bootlin.com>
-References: <20251022-macb-phy-v1-0-f29f28fae721@bootlin.com>
-In-Reply-To: <20251022-macb-phy-v1-0-f29f28fae721@bootlin.com>
-To: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, 
- =?utf-8?q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>, 
- Kishon Vijay Abraham I <kishon@kernel.org>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-Cc: linux-mips@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org, 
- linux-clk@vger.kernel.org, 
- =?utf-8?q?Beno=C3=AEt_Monin?= <benoit.monin@bootlin.com>, 
- Maxime Chevallier <maxime.chevallier@bootlin.com>, 
- Tawfik Bayouk <tawfik.bayouk@mobileye.com>, 
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>, 
- Andrew Lunn <andrew@lunn.ch>
-X-Mailer: b4 0.14.3
-X-Last-TLS-Session-Version: TLSv1.3
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] media: qcom: camss: Enable setting the rate to
+ camnoc_rt_axi clock
+To: Vijay Kumar Tumati <vijay.tumati@oss.qualcomm.com>,
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>,
+ Loic Poulain <loic.poulain@oss.qualcomm.com>
+Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Krzysztof Kozlowski <krzk@kernel.org>, Robert Foss <rfoss@kernel.org>,
+ Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Todor Tomov <todor.too@gmail.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, linux-i2c@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-media@vger.kernel.org
+References: <20251014-add-new-clock-in-vfe-matching-list-v1-1-0d965ccc8a3a@oss.qualcomm.com>
+ <9984bc23-05ef-4d46-aeb8-feb0a18e5762@kernel.org>
+ <bc0caeb8-c99b-4bef-a69e-5ce433e6b890@oss.qualcomm.com>
+ <c4fd6bfc-cc9a-4f37-99b3-f36466691a1e@linaro.org>
+ <CAFEp6-2=GJL-gc+PSyAL4=prp_sXdZJS=Ewg5nP2kcp_Gu85Fw@mail.gmail.com>
+ <33513b43-f6d1-4c76-887b-39611a75e1f4@kernel.org>
+ <WnfCknsSyJK68PQZkE2q7COZHRpsLOFlr3dcbwiVR6SBWtF9iRQ4MGzp_9q31O0kyhZwoncQWfHjJQvpz7nyfw==@protonmail.internalid>
+ <ab43c5c9-edc5-459e-8ef7-2aa8bec559c0@oss.qualcomm.com>
+ <0e6e1b8a-d9ae-42d1-b1ad-4314e0d76ab7@kernel.org>
+ <2c0011d3-a692-457c-9ac0-a445fc82df37@oss.qualcomm.com>
+ <48bede40-584a-409a-9bca-7ae3cc420667@linaro.org>
+ <124be1cd-1cc8-4c04-8aca-eede808e736c@oss.qualcomm.com>
+ <wQXRQmbUmfMvej8K6_8vXS41CKntPY998YjO9D3oixzxaMuV4isW-ebPocmhNjppbBpEvXx1524Q-BT-UHfh7Q==@protonmail.internalid>
+ <6efe686a-fdd5-4f17-a0dd-d44a16a67a36@oss.qualcomm.com>
+From: Bryan O'Donoghue <bod@kernel.org>
+Content-Language: en-US
+In-Reply-To: <6efe686a-fdd5-4f17-a0dd-d44a16a67a36@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-The Mobileye EyeQ5 eval board (EPM) embeds two MDIO PHYs.
+On 21/10/2025 20:19, Vijay Kumar Tumati wrote:
+> Hope this clarifies. Please let us know if you have any further
+> questions. Thank you very much.
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
-Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
+Eh.
+
+So can I take this statement as Review-by: from you ?
+
+That's basically all I really need here, RB or NAK.
+
 ---
- arch/mips/boot/dts/mobileye/eyeq5-epm5.dts | 26 ++++++++++++++++++++++++++
- 1 file changed, 26 insertions(+)
-
-diff --git a/arch/mips/boot/dts/mobileye/eyeq5-epm5.dts b/arch/mips/boot/dts/mobileye/eyeq5-epm5.dts
-index 9fc1a1b0a81b..babf52731ea6 100644
---- a/arch/mips/boot/dts/mobileye/eyeq5-epm5.dts
-+++ b/arch/mips/boot/dts/mobileye/eyeq5-epm5.dts
-@@ -29,3 +29,29 @@ temperature-sensor@48 {
- 		label = "U60";
- 	};
- };
-+
-+&macb0 {
-+	phy-mode = "sgmii";
-+	phy-handle = <&macb0_phy>;
-+
-+	mdio {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		macb0_phy: ethernet-phy@e {
-+			reg = <0xe>;
-+		};
-+	};
-+};
-+
-+&macb1 {
-+	phy-mode = "rgmii-id";
-+	phy-handle = <&macb1_phy>;
-+
-+	mdio {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		macb1_phy: ethernet-phy@e {
-+			reg = <0xe>;
-+		};
-+	};
-+};
-
--- 
-2.51.1
-
+bod
 
