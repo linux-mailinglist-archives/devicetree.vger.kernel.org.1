@@ -1,63 +1,71 @@
-Return-Path: <devicetree+bounces-229932-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229933-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79066BFDB4F
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 19:51:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D6B4DBFDB91
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 19:55:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 92C621A613C8
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 17:51:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B074C1888059
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 17:55:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5859F2D5938;
-	Wed, 22 Oct 2025 17:50:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 689E92E1C63;
+	Wed, 22 Oct 2025 17:55:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JmGlDwG3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AKpquUQO"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2353E26ED4B;
-	Wed, 22 Oct 2025 17:50:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39F1D2DAFDE;
+	Wed, 22 Oct 2025 17:55:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761155455; cv=none; b=AFZKn7dWlwXQbnK+Ix5JNXIaH4NshiSVjwpKcPsn6iLWyjFng0rl7VCa3D0De7HIMynIQAR2bZBdnsh6kCGDjIP9DqLZ/OrZRkBkCdqAB8tA85gOcHrt8dNsL9GR63QnmCyde+2H3IFsqilqEJQzdOaoWQQHkOZ582NBcJFQnt0=
+	t=1761155724; cv=none; b=hNDGEfJbCLWJVt5xsrLjTBUplSZGrAJN1WmqMeB8PeN9WmExvrlfREFO0ZYBsUanAa6ci3e6hePgYM5Tpc/0EuIeegfX2HOgaWZOnDUqU0xqMgJ6iK54FmIlJGnMyRrYgJ5zreXD4z0bGpeCgVAl1Q/VIPM7t98OtY0+rx1WP20=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761155455; c=relaxed/simple;
-	bh=aMBfoiS7TXWQxlK+kUBxkNRtHrKbU0MW+tHVyHacEWk=;
+	s=arc-20240116; t=1761155724; c=relaxed/simple;
+	bh=cUY8ixQPrzQuIjFkkA9Tc0PQzAYbO569D26Xok769Es=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=e4c2s4XMoI+AWrltCtizMr+5VEJa5KdOv3ZxBBbWipelYW2c2p4CSjItyA9TMR/T4Jzb2Btx2IGXUo7wb/pgpsf7aiL/lnVGeuGzAlTcR5ocs8OPn/YdwZqQ9joli+pllDqDuRNXxYv68btQ6X//a6fVUtLjoUtiPQIZ78xUYJU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JmGlDwG3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E5E3C4CEE7;
-	Wed, 22 Oct 2025 17:50:51 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=lMZ/O0/YOHalmj5RqCnzL89T5iF1nWFpIWQkKbGHHf8a43dCxysjm+o2J7W6ZrjRl2Z9xrVwyqhb82DU4Yv5FxA0NZGsBb62LdSK/phxgR9b6zi4b6ofFCna9wmJZvxmHRkkLlTp3lXOx/DHmlwkvmpID6X4GTlm2cjAtummF14=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AKpquUQO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EC358C4CEE7;
+	Wed, 22 Oct 2025 17:55:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761155454;
-	bh=aMBfoiS7TXWQxlK+kUBxkNRtHrKbU0MW+tHVyHacEWk=;
+	s=k20201202; t=1761155723;
+	bh=cUY8ixQPrzQuIjFkkA9Tc0PQzAYbO569D26Xok769Es=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=JmGlDwG3lM+s4sUd1DbnBulxrCsg6Js8EY0vZsV/rPi5RUDPMQMXVwbZnToV7ezDL
-	 neje42tlXom4X5yh+ndfR9ZX4AHeD69oLO15OQj/JxF6SzuYcfXGa1F5IVZ/AHx5yc
-	 qnPcwLpuAB8DbBXm5TRqtrQb06e42p1WF+dXORf0gXVlRTuOhsiwYZIOEdTBeDXVmx
-	 mLFFeX5SX3eiUxX5S5nuff5sSg54IBXXfE0LAGj4pTFCvIOfXxp72ELYiSmmLdo3QK
-	 DJ0a2TgI4yndDYtOhxfPsnMYUQxTYeaSd2l7TBswoBzeycCsp5AVqYvEdHsKh1bmD1
-	 O5HeuVIwM3MiQ==
-Date: Wed, 22 Oct 2025 18:50:49 +0100
+	b=AKpquUQO8FVraQ/ev144KQ2j9NcIMzPxRY4ZPDrJQnIwdq/JoHa68apGYatwdYOeg
+	 16nQDf9aPiQeEYhYuXnLqNLRw2vsjl4bUPWbx7vjUo3Xwqqxrt8LDmhiU2zvNanqZh
+	 ulfrek87XtRNnxcIevyLVl0PCKS3WcDpCmYMu2uxgKfIvg8vpHya0zPyPgsInUFEfI
+	 7AZWHIxgDzl3wqHTMHIntUFrOFnJqTVytJDnkhrXIeLmT5JKo6Ws7a/ULAnx5UZLGp
+	 IHwuI/Vr74+5WqmXmrfeVbooAvLzohwSUB6q0vvuCNWr0y9OR5J/CnBBLab7g9FnSD
+	 0tHNcVBqtFncw==
+Date: Wed, 22 Oct 2025 18:55:17 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Aditya Dutt <duttaditya18@gmail.com>
-Cc: Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+To: =?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>
+Cc: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
+	=?iso-8859-1?Q?Gr=E9gory?= Clement <gregory.clement@bootlin.com>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>, Frank Zago <frank@zago.net>,
-	linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-doc@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: iio: position: Add ams AS5600 Position
- Sensor
-Message-ID: <20251022-savanna-gluten-0c5397bd4de4@spud>
-References: <20251020201653.86181-1-duttaditya18@gmail.com>
- <20251020201653.86181-2-duttaditya18@gmail.com>
+	Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+	linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+	linux-clk@vger.kernel.org,
+	=?iso-8859-1?Q?Beno=EEt?= Monin <benoit.monin@bootlin.com>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH 1/7] dt-bindings: soc: mobileye: OLB is an Ethernet PHY
+ provider on EyeQ5
+Message-ID: <20251022-patchwork-plunging-67232b409322@spud>
+References: <20251022-macb-phy-v1-0-f29f28fae721@bootlin.com>
+ <20251022-macb-phy-v1-1-f29f28fae721@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,118 +73,37 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="OzPS2Shsrc7Vzr5x"
+	protocol="application/pgp-signature"; boundary="Jjc5Mh3+CKARWUf/"
 Content-Disposition: inline
-In-Reply-To: <20251020201653.86181-2-duttaditya18@gmail.com>
+In-Reply-To: <20251022-macb-phy-v1-1-f29f28fae721@bootlin.com>
 
 
---OzPS2Shsrc7Vzr5x
-Content-Type: text/plain; charset=us-ascii
+--Jjc5Mh3+CKARWUf/
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Oct 21, 2025 at 01:46:52AM +0530, Aditya Dutt wrote:
-> The AS5600 is a Hall-based rotary magnetic position sensor using
-> planar sensors that convert the magnetic field component perpendicular
-> to the surface of the chip into a voltage, or a numerical value
-> available through i2c.
+On Wed, Oct 22, 2025 at 05:39:03PM +0200, Th=E9o Lebrun wrote:
+> OLB on EyeQ5 ("mobileye,eyeq5-olb" compatible) is now declared as a
+> generic PHY provider. Under the hood, it provides Ethernet RGMII/SGMII
+> PHY support for both MAC instances.
 >=20
-> Add dt-bindings for the sensor.
->=20
-> Datasheet: https://ams-osram.com/products/sensor-solutions/position-senso=
-rs/ams-as5600-position-sensor
+> Signed-off-by: Th=E9o Lebrun <theo.lebrun@bootlin.com>
 
-Looks like this device has two supplies, could you document those
-please?
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-Additionally, this "PGO" pin - is it necessary for a driver to know what
-state it is in to function correctly? If so, can the information about
-which state it is in be gathered from i2c?
-Should there also be an optional pgo-gpios property for the scenario
-where it is not tied, but set by a GPIO, if that is even possible.
+pw-bot: not-applicable
 
-> Signed-off-by: Aditya Dutt <duttaditya18@gmail.com>
-> ---
->  .../bindings/iio/position/ams,as5600.yaml     | 42 +++++++++++++++++++
->  1 file changed, 42 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/position/ams,as=
-5600.yaml
->=20
-> diff --git a/Documentation/devicetree/bindings/iio/position/ams,as5600.ya=
-ml b/Documentation/devicetree/bindings/iio/position/ams,as5600.yaml
-> new file mode 100644
-> index 000000000000..d4c92dd41dd6
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/position/ams,as5600.yaml
-> @@ -0,0 +1,42 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/position/ams,as5600.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: ams AS5600 Position Sensor
-> +
-> +maintainers:
-> +  - Aditya Dutt <duttaditya18@gmail.com>
-> +
-> +description: |
-> +  12-Bit Programmable Contactless Potentiometer
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - ams,as5600
-
-blank line here please.
-
-> +  reg:
-> +    maxItems: 1
-> +    description: |
-> +      The I2C register address of the device. Typical address for AS5600=
-: 0x36.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    i2c {
-> +      #address-cells =3D <1>;
-> +      #size-cells =3D <0>;
-> +
-> +      ams5600@36 {
-
-potentiometer@36
-
-pw-bot: changes-requested
-
-Cheers,
-Conor.
-
-> +        compatible =3D "ams,as5600";
-> +        reg =3D <0x36>;
-> +      };
-> +    };
-> +
-> +...
-> --=20
-> 2.34.1
->=20
-
---OzPS2Shsrc7Vzr5x
+--Jjc5Mh3+CKARWUf/
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaPkZeQAKCRB4tDGHoIJi
-0vBLAP9RMGFPj6gbrBZaaEIaeSxbhiHozKyiE248FCgnAYHnOAEAkrlBQoi+mcMx
-fJLqI8ROL/gWvZhqBI3AEPibBFlUaQ4=
-=GpNy
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaPkahQAKCRB4tDGHoIJi
+0jnPAP92K/a04IoaqEzduGVMzofF3MGpr5b00WTiq05i+6Hp4QEAooMhYLXairhe
+IkapkJAWV3a5p89HjXfu2eN6G5+0mQc=
+=9d0M
 -----END PGP SIGNATURE-----
 
---OzPS2Shsrc7Vzr5x--
+--Jjc5Mh3+CKARWUf/--
 
