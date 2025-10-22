@@ -1,79 +1,79 @@
-Return-Path: <devicetree+bounces-229831-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229832-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5CB5BFC795
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 16:23:27 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CFDCBFC7D7
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 16:25:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 871644F74FB
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 14:23:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CB4061A079F3
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 14:24:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E382834DB76;
-	Wed, 22 Oct 2025 14:21:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCE2434F24B;
+	Wed, 22 Oct 2025 14:21:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lT3YQ9Gc"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JF88d6aA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9592834D4EF
-	for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 14:21:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C087B34D906
+	for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 14:21:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761142903; cv=none; b=cx47mT5/MVCtFqTrFup3YzuHWWd3Yv9ioW+HvS4uRxG1MPK7kgQJQ066EZPwmipdC0VrWnmsFhzGXQve238/PQaGNFm4IdZ5vMiXrpAyZ276OMnMkUjR7uZWsroSKV5zsW0thFDguaqAwJiPLruYGC39kwdQrCh1YreOFVsrN4U=
+	t=1761142908; cv=none; b=cnJ6XiHGKfgw2tXvfgorDFb9aU+9M6RYQ655yZngV8v6ej9efFVyJFztTWxe80cgQGq/l+kNVwc2KAgmcyHvjiXHrui4TBrqPC/G6AxDWEpGvO0tp1F6j0Gk1x4P02GpTIg6nKnYYG+xj0LeiVmHFZpSQMiuypNcr81zrLsrAuM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761142903; c=relaxed/simple;
-	bh=EkGBXhItwLWxgQ/aIBX1I+SuRG7//x8trI9XTwjIFpA=;
+	s=arc-20240116; t=1761142908; c=relaxed/simple;
+	bh=7DUsOFoVCFhnISr6T30XN5C30PUazq1SDzgaHc4SD18=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=aHOj34PKAkA9V7SmcISrH/4lQGK2d76mbd2CiMT+hVpwN1J41CyqQdjpncivlrBsi0ZX8Bpbzh558anlZnAon+c5VWs/p7ekpnNKLuImDDl6hA5DVr/Y33CprI//3yxyRVpHPMC/ySPD+aJCmPwRNSfwXutOpe/prV5+qKstwog=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lT3YQ9Gc; arc=none smtp.client-ip=209.85.221.52
+	 MIME-Version; b=F9WMd2CyspzB+ZkdZpOMJ9+ntV6aNtDeDCjM1Yp8B1CbFe1Qj0iRtacXnhefMGyc0szAjsnvMhHz5kSLdMqEkw6f3KKKUFRY9Ivc9diT8wO6y0469goMdEix6eyDo1YfxGmvtUUkioKpCp4h/A07jE49+myui8Pqg3+H9o3yf7Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JF88d6aA; arc=none smtp.client-ip=209.85.128.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-427091cd4fdso3418425f8f.1
-        for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 07:21:40 -0700 (PDT)
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-4710022571cso58946035e9.3
+        for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 07:21:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1761142897; x=1761747697; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1761142899; x=1761747699; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=PboKxjSSvW6h8IWsKUFqt3oWZleCNVGyc+XkVJL1pxE=;
-        b=lT3YQ9GcruPN+lVPATeN+AeMLQ9HuT9T3lRtwrQTTtpiAeeEyeDgV11dPEy+lRdIcs
-         dB5tdNavAiXbZusN/vPISKlN5VA9I518xHEukkRh0vgyCi8IFuQXi8K+SOlMcFTjBWrh
-         TuOUkuige4UxvD7CENUTFhOSd5Pdm/zkgm/PdoVZBp2m9B/6C3I/j/VaUEFuJaP00gpF
-         +NN4xmNSBd/c+vnntwWQd7d5ad6s9gz48KKsI0t9b6Ij790/47VBssEdqoXIblxrG36H
-         BI/+SsVzrIEsSVg8j61Aqgjd+6oXP6WLSWwW/aRZayFaQ9CTWhjXQtSaa7S5J2EXAXvd
-         L7LQ==
+        bh=HrGwv1CVN38vvDG/Y9Rp7ol0PB58C3nZK56qBv8o/FI=;
+        b=JF88d6aAOTdzsiJnET3PmBt2vsMuyZ/NooHo1IEKzi7Qkr66C3D1nYhiu147bCtYAJ
+         PKYWTZ1Ok58RaF9T7kN+fF0srZIG5sBwmPtBF/byr7WArGeLFXFs7pom/Fz6uqxajjem
+         0rJVieT5+PkGpoQHUSg5qvO1Nxn4OQa9WiyKODF1G8VodknB5n2NrARdf2BhPJvJM+Ix
+         QR6SupmpgB0GQFbYnxhQxOgD6GbHSk5cwZc02DX8FT7BDOd6H0QOWKPG/JQ7E3K7WkDT
+         qZqaJAjGhgkEvh5mjAvDRCDnZE/J7vSXpTKlMe7ZQFpA1Wd+NanQVHrVlMdO3ICMxpL5
+         oV6w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761142897; x=1761747697;
+        d=1e100.net; s=20230601; t=1761142899; x=1761747699;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=PboKxjSSvW6h8IWsKUFqt3oWZleCNVGyc+XkVJL1pxE=;
-        b=JkNVfq8a0mCm5SlQVT6oEVgXCdyziFZbkGUEFJ8YcEKZTuhaA9P4e2lSxyy0sn7EQn
-         17YlCKJFu9iay1ARDygDhYxo2RIGtt7RMrF0EETJJ55EhtADpUNDse+PsnYNBljA+zKX
-         BujGB/qXjaw6T9KiSnfGnc5Ir7f2bTBbeONhoU9f6xrfFLPlBEzc5sOAetHhC0xhm8OY
-         +A2xUiZm6b/pSDaW0bT4bAae3aDxMTOtBvX3QfOCtsvLSfBd7UYUB6eRgns9qoxjRXXZ
-         5cLgh447ihjMAbzsvUQGdr5Juym5qbbgR7myOSbn1mNYo8aMnowZ03IhroaV6uxSPfrM
-         qneA==
-X-Forwarded-Encrypted: i=1; AJvYcCWr8NqJqw25UWvF0OARBtnSanq7l+9gF+kjRM0fwV785qwrtQQXx5LG1SBFZuzvQtikpw6cxQaHOsrm@vger.kernel.org
-X-Gm-Message-State: AOJu0YzoPXZnqnlGzkQRpxh5ymwDeVKHI34bz7PI9d1Bi2NYr6pXdPrd
-	vQhRJJl2TEUlXzVjkRVqNovCnZy1B5IrhWtHkrbmCtVdkaNiU1NHGFGF
-X-Gm-Gg: ASbGncsldmpKVvZNo7ZmA2DGLkmmgHA9MYVEnWwZpbKe8MSURhbqAt+2yMiMhDcZp17
-	yBcg2POCR4lwO0xZ4+htyBJ096a5sz1UuZW6numxRgYOY3VxH/9WWaX7FfzTpiHpcUQBNiJBsoR
-	Y7b4lPEPsSUUN3OGagTuNt0JaPovUemOlZIOkkvwM40Tnh6qJjSZb6iSDQAadlVJvo4UQhxX7Uy
-	RfEPizAWV2xWQ2LWqDfpbgBY3seA+kz6jEkcYQ67yunmkBr9rpPJ39cn5xQ61xUXhKkoC8K7dKn
-	TWRYMEXKeNRi7ywHTbO7Ah29STBl42J0l0D2dtmHL2qDsKnz2kL2ABfGO7Qt1Y7gRU8KxshEtLs
-	jVmgS7v0Dqsde4ovgwyvTdIi380qLt+EDyZ/qOsKzc4dMD5Lr9kPbNcRGu08ukGbCDNei8vbRN1
-	VHqA==
-X-Google-Smtp-Source: AGHT+IEQ89eeh/r2+ipRz7waSS8oqSfLxP7wC0ZsoklWA5VZX65aruo6BpxwArM9GCWrpFvdCs8Ryw==
-X-Received: by 2002:a05:6000:2308:b0:428:55c3:cea8 with SMTP id ffacd0b85a97d-42855c3d365mr1542726f8f.50.1761142897063;
-        Wed, 22 Oct 2025 07:21:37 -0700 (PDT)
+        bh=HrGwv1CVN38vvDG/Y9Rp7ol0PB58C3nZK56qBv8o/FI=;
+        b=MaeGEPAHb8scaVEL+usklsvfbM7hHrPObLFkoTFJuECubmdo3sV7M+tiuqg0zAGk61
+         go8ozlohXYJK2ztYO5P8Ua+rIQEKBtCt8LDKK/2WLeRjLi920Y72iBIVVZ6QpDBAEScf
+         lHCLOxIglc+8Gz8OMYwyNvqFIB652PUIX6xsSVtqXpB4E6wV0jkEJR+FsjyXn88U5vhC
+         ygw8CnVnLpUSsNTzTZrlK+VYmcgBJADBEZfhRGk2Uvqhy9G79tOdkqtSt3OGRIT06ito
+         jW9Az4qHrpDbm36RcTZsyOtWCYWCCR16kd5lQ8OIcJ+thjmP0b99U93+BXC7J+LK+gZ9
+         KYNg==
+X-Forwarded-Encrypted: i=1; AJvYcCWJnLuUeusNA+1kXgZWhelNwTh7kB26E+5wvpo5nZsNE8/Yorykh9qpu/cgu6VnWmfwSGYABvKxT4hG@vger.kernel.org
+X-Gm-Message-State: AOJu0YwB7bx7t35zWSsIikMKH1cHzD3Zh44wKAdbeyhfC/f/JrA5vQHv
+	B6tnmBERI8CfkcwO9RIibdCrQGYmod1CFHEwkcV5MsDYGwcyGDUcKXQm
+X-Gm-Gg: ASbGncuZitwqfCtrBntz9xcAwrhEzbSQX3Df3aFIzm81wT7yI6gKm1U4S1OvSJAt3Jv
+	tEzUW0albIDia1y2IzuLwLY+aPXozoWUn7konuoHyToIKpLi2BMivTtUykF2Fj61iUqVU7tiueV
+	f9mKgMdJveiXf/hXIznViBkoKbRhrBpVEOweJ2lHhkwJ7TYeRic23nCPZQoACmoTGE2xtEnuHxP
+	KEkR6IjYLOnQ8Y0ksRhNMHB0++MTtHuFRGQHRHSuW1IH/c5wN1rDkXyDjPiur8//+pf1tqYpCvF
+	hW5ngjlNyBEObRhLfhEkTryC6WZ/m+b8FL63qs+UYthfO9pTUsNO3GTkFF/dkjOiEgk05wU/1NS
+	ue8Qg5oeohc2oe92WOetgIWGZOxxa61k1MaCAuUIbyAegfcOL8Vnt7cHo0/dShdS+bxZL/4KvM+
+	KP/g==
+X-Google-Smtp-Source: AGHT+IHpqvHOi5DS7ZRtt0ui2sF/8epf8OOXmHyl8ipQfjW1K3ZzLwnjTLVcaO31cwis54j1XfqyvA==
+X-Received: by 2002:a05:600c:4fc1:b0:471:b5d:2db7 with SMTP id 5b1f17b1804b1-4711790697amr135554505e9.24.1761142899118;
+        Wed, 22 Oct 2025 07:21:39 -0700 (PDT)
 Received: from xeon.. ([188.163.112.61])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-427ea5b3d4csm24803518f8f.19.2025.10.22.07.21.35
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-427ea5b3d4csm24803518f8f.19.2025.10.22.07.21.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 Oct 2025 07:21:36 -0700 (PDT)
+        Wed, 22 Oct 2025 07:21:38 -0700 (PDT)
 From: Svyatoslav Ryhel <clamor95@gmail.com>
 To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
 	Maxime Ripard <mripard@kernel.org>,
@@ -107,9 +107,9 @@ Cc: dri-devel@lists.freedesktop.org,
 	linux-media@vger.kernel.org,
 	linux-clk@vger.kernel.org,
 	linux-staging@lists.linux.dev
-Subject: [PATCH v5 08/23] staging: media: tegra-video: csi: move CSI helpers to header
-Date: Wed, 22 Oct 2025 17:20:36 +0300
-Message-ID: <20251022142051.70400-9-clamor95@gmail.com>
+Subject: [PATCH v5 09/23] gpu: host1x: convert MIPI to use operation function pointers
+Date: Wed, 22 Oct 2025 17:20:37 +0300
+Message-ID: <20251022142051.70400-10-clamor95@gmail.com>
 X-Mailer: git-send-email 2.48.1
 In-Reply-To: <20251022142051.70400-1-clamor95@gmail.com>
 References: <20251022142051.70400-1-clamor95@gmail.com>
@@ -121,58 +121,1234 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Move CSI helpers into the header for easier access from SoC-specific video
-driver parts.
+Convert existing MIPI code to use operation function pointers, a necessary
+step for supporting Tegra20/Tegra30 SoCs. All common MIPI configuration
+that is SoC-independent remains in mipi.c, while all SoC-specific code is
+moved to tegra114-mipi.c (The naming matches the first SoC generation with
+a dedicated calibration block). Shared structures and function calls are
+placed into tegra-mipi-cal.h.
 
 Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+Acked-by: Mikko Perttunen <mperttunen@nvidia.com>
 ---
- drivers/staging/media/tegra-video/csi.c | 11 -----------
- drivers/staging/media/tegra-video/csi.h | 10 ++++++++++
- 2 files changed, 10 insertions(+), 11 deletions(-)
+ drivers/gpu/drm/tegra/dsi.c             |   1 +
+ drivers/gpu/host1x/Makefile             |   1 +
+ drivers/gpu/host1x/mipi.c               | 525 +++---------------------
+ drivers/gpu/host1x/tegra114-mipi.c      | 483 ++++++++++++++++++++++
+ drivers/staging/media/tegra-video/csi.c |   1 +
+ include/linux/host1x.h                  |  10 -
+ include/linux/tegra-mipi-cal.h          |  57 +++
+ 7 files changed, 599 insertions(+), 479 deletions(-)
+ create mode 100644 drivers/gpu/host1x/tegra114-mipi.c
+ create mode 100644 include/linux/tegra-mipi-cal.h
 
+diff --git a/drivers/gpu/drm/tegra/dsi.c b/drivers/gpu/drm/tegra/dsi.c
+index b2046f6ea515..502f0cd0ce53 100644
+--- a/drivers/gpu/drm/tegra/dsi.c
++++ b/drivers/gpu/drm/tegra/dsi.c
+@@ -14,6 +14,7 @@
+ #include <linux/pm_runtime.h>
+ #include <linux/regulator/consumer.h>
+ #include <linux/reset.h>
++#include <linux/tegra-mipi-cal.h>
+ 
+ #include <video/mipi_display.h>
+ 
+diff --git a/drivers/gpu/host1x/Makefile b/drivers/gpu/host1x/Makefile
+index ee5286ffe08d..fead483af0b4 100644
+--- a/drivers/gpu/host1x/Makefile
++++ b/drivers/gpu/host1x/Makefile
+@@ -9,6 +9,7 @@ host1x-y = \
+ 	job.o \
+ 	debug.o \
+ 	mipi.o \
++	tegra114-mipi.o \
+ 	fence.o \
+ 	hw/host1x01.o \
+ 	hw/host1x02.o \
+diff --git a/drivers/gpu/host1x/mipi.c b/drivers/gpu/host1x/mipi.c
+index e51b43dd15a3..8d32072e2244 100644
+--- a/drivers/gpu/host1x/mipi.c
++++ b/drivers/gpu/host1x/mipi.c
+@@ -1,215 +1,65 @@
++// SPDX-License-Identifier: GPL-2.0-only
+ /*
+  * Copyright (C) 2013 NVIDIA Corporation
+- *
+- * Permission to use, copy, modify, distribute, and sell this software and its
+- * documentation for any purpose is hereby granted without fee, provided that
+- * the above copyright notice appear in all copies and that both that copyright
+- * notice and this permission notice appear in supporting documentation, and
+- * that the name of the copyright holders not be used in advertising or
+- * publicity pertaining to distribution of the software without specific,
+- * written prior permission.  The copyright holders make no representations
+- * about the suitability of this software for any purpose.  It is provided "as
+- * is" without express or implied warranty.
+- *
+- * THE COPYRIGHT HOLDERS DISCLAIM ALL WARRANTIES WITH REGARD TO THIS SOFTWARE,
+- * INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS, IN NO
+- * EVENT SHALL THE COPYRIGHT HOLDERS BE LIABLE FOR ANY SPECIAL, INDIRECT OR
+- * CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE,
+- * DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER
+- * TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE
+- * OF THIS SOFTWARE.
++ * Copyright (C) 2025 Svyatoslav Ryhel <clamor95@gmail.com>
+  */
+ 
+ #include <linux/clk.h>
+-#include <linux/host1x.h>
+ #include <linux/io.h>
+ #include <linux/iopoll.h>
++#include <linux/module.h>
++#include <linux/of.h>
+ #include <linux/of_platform.h>
+ #include <linux/platform_device.h>
+ #include <linux/slab.h>
++#include <linux/tegra-mipi-cal.h>
+ 
+-#include "dev.h"
++/* only need to support one provider */
++static struct {
++	struct device_node *np;
++	const struct tegra_mipi_ops *ops;
++} provider;
+ 
+-#define MIPI_CAL_CTRL			0x00
+-#define MIPI_CAL_CTRL_NOISE_FILTER(x)	(((x) & 0xf) << 26)
+-#define MIPI_CAL_CTRL_PRESCALE(x)	(((x) & 0x3) << 24)
+-#define MIPI_CAL_CTRL_CLKEN_OVR		(1 << 4)
+-#define MIPI_CAL_CTRL_START		(1 << 0)
+-
+-#define MIPI_CAL_AUTOCAL_CTRL		0x01
+-
+-#define MIPI_CAL_STATUS			0x02
+-#define MIPI_CAL_STATUS_DONE		(1 << 16)
+-#define MIPI_CAL_STATUS_ACTIVE		(1 <<  0)
+-
+-#define MIPI_CAL_CONFIG_CSIA		0x05
+-#define MIPI_CAL_CONFIG_CSIB		0x06
+-#define MIPI_CAL_CONFIG_CSIC		0x07
+-#define MIPI_CAL_CONFIG_CSID		0x08
+-#define MIPI_CAL_CONFIG_CSIE		0x09
+-#define MIPI_CAL_CONFIG_CSIF		0x0a
+-#define MIPI_CAL_CONFIG_DSIA		0x0e
+-#define MIPI_CAL_CONFIG_DSIB		0x0f
+-#define MIPI_CAL_CONFIG_DSIC		0x10
+-#define MIPI_CAL_CONFIG_DSID		0x11
+-
+-#define MIPI_CAL_CONFIG_DSIA_CLK	0x19
+-#define MIPI_CAL_CONFIG_DSIB_CLK	0x1a
+-#define MIPI_CAL_CONFIG_CSIAB_CLK	0x1b
+-#define MIPI_CAL_CONFIG_DSIC_CLK	0x1c
+-#define MIPI_CAL_CONFIG_CSICD_CLK	0x1c
+-#define MIPI_CAL_CONFIG_DSID_CLK	0x1d
+-#define MIPI_CAL_CONFIG_CSIE_CLK	0x1d
+-
+-/* for data and clock lanes */
+-#define MIPI_CAL_CONFIG_SELECT		(1 << 21)
+-
+-/* for data lanes */
+-#define MIPI_CAL_CONFIG_HSPDOS(x)	(((x) & 0x1f) << 16)
+-#define MIPI_CAL_CONFIG_HSPUOS(x)	(((x) & 0x1f) <<  8)
+-#define MIPI_CAL_CONFIG_TERMOS(x)	(((x) & 0x1f) <<  0)
+-
+-/* for clock lanes */
+-#define MIPI_CAL_CONFIG_HSCLKPDOSD(x)	(((x) & 0x1f) <<  8)
+-#define MIPI_CAL_CONFIG_HSCLKPUOSD(x)	(((x) & 0x1f) <<  0)
+-
+-#define MIPI_CAL_BIAS_PAD_CFG0		0x16
+-#define MIPI_CAL_BIAS_PAD_PDVCLAMP	(1 << 1)
+-#define MIPI_CAL_BIAS_PAD_E_VCLAMP_REF	(1 << 0)
+-
+-#define MIPI_CAL_BIAS_PAD_CFG1		0x17
+-#define MIPI_CAL_BIAS_PAD_DRV_DN_REF(x) (((x) & 0x7) << 16)
+-#define MIPI_CAL_BIAS_PAD_DRV_UP_REF(x) (((x) & 0x7) << 8)
+-
+-#define MIPI_CAL_BIAS_PAD_CFG2		0x18
+-#define MIPI_CAL_BIAS_PAD_VCLAMP(x)	(((x) & 0x7) << 16)
+-#define MIPI_CAL_BIAS_PAD_VAUXP(x)	(((x) & 0x7) << 4)
+-#define MIPI_CAL_BIAS_PAD_PDVREG	(1 << 1)
+-
+-struct tegra_mipi_pad {
+-	unsigned long data;
+-	unsigned long clk;
+-};
+-
+-struct tegra_mipi_soc {
+-	bool has_clk_lane;
+-	const struct tegra_mipi_pad *pads;
+-	unsigned int num_pads;
+-
+-	bool clock_enable_override;
+-	bool needs_vclamp_ref;
+-
+-	/* bias pad configuration settings */
+-	u8 pad_drive_down_ref;
+-	u8 pad_drive_up_ref;
+-
+-	u8 pad_vclamp_level;
+-	u8 pad_vauxp_level;
+-
+-	/* calibration settings for data lanes */
+-	u8 hspdos;
+-	u8 hspuos;
+-	u8 termos;
+-
+-	/* calibration settings for clock lanes */
+-	u8 hsclkpdos;
+-	u8 hsclkpuos;
+-};
+-
+-struct tegra_mipi {
+-	const struct tegra_mipi_soc *soc;
+-	struct device *dev;
+-	void __iomem *regs;
+-	struct mutex lock;
+-	struct clk *clk;
+-
+-	unsigned long usage_count;
+-};
+-
+-struct tegra_mipi_device {
+-	struct platform_device *pdev;
+-	struct tegra_mipi *mipi;
+-	struct device *device;
+-	unsigned long pads;
+-};
+-
+-static inline u32 tegra_mipi_readl(struct tegra_mipi *mipi,
+-				   unsigned long offset)
++int tegra_mipi_enable(struct tegra_mipi_device *device)
+ {
+-	return readl(mipi->regs + (offset << 2));
+-}
++	if (device->ops->enable)
++		return device->ops->enable(device);
+ 
+-static inline void tegra_mipi_writel(struct tegra_mipi *mipi, u32 value,
+-				     unsigned long offset)
+-{
+-	writel(value, mipi->regs + (offset << 2));
++	return 0;
+ }
++EXPORT_SYMBOL(tegra_mipi_enable);
+ 
+-static int tegra_mipi_power_up(struct tegra_mipi *mipi)
++int tegra_mipi_disable(struct tegra_mipi_device *device)
+ {
+-	u32 value;
+-	int err;
+-
+-	err = clk_enable(mipi->clk);
+-	if (err < 0)
+-		return err;
+-
+-	value = tegra_mipi_readl(mipi, MIPI_CAL_BIAS_PAD_CFG0);
+-	value &= ~MIPI_CAL_BIAS_PAD_PDVCLAMP;
+-
+-	if (mipi->soc->needs_vclamp_ref)
+-		value |= MIPI_CAL_BIAS_PAD_E_VCLAMP_REF;
+-
+-	tegra_mipi_writel(mipi, value, MIPI_CAL_BIAS_PAD_CFG0);
+-
+-	value = tegra_mipi_readl(mipi, MIPI_CAL_BIAS_PAD_CFG2);
+-	value &= ~MIPI_CAL_BIAS_PAD_PDVREG;
+-	tegra_mipi_writel(mipi, value, MIPI_CAL_BIAS_PAD_CFG2);
+-
+-	clk_disable(mipi->clk);
++	if (device->ops->disable)
++		return device->ops->disable(device);
+ 
+ 	return 0;
+ }
++EXPORT_SYMBOL(tegra_mipi_disable);
+ 
+-static int tegra_mipi_power_down(struct tegra_mipi *mipi)
++int tegra_mipi_start_calibration(struct tegra_mipi_device *device)
+ {
+-	u32 value;
+-	int err;
++	if (device->ops->start_calibration)
++		return device->ops->start_calibration(device);
+ 
+-	err = clk_enable(mipi->clk);
+-	if (err < 0)
+-		return err;
+-
+-	/*
+-	 * The MIPI_CAL_BIAS_PAD_PDVREG controls a voltage regulator that
+-	 * supplies the DSI pads. This must be kept enabled until none of the
+-	 * DSI lanes are used anymore.
+-	 */
+-	value = tegra_mipi_readl(mipi, MIPI_CAL_BIAS_PAD_CFG2);
+-	value |= MIPI_CAL_BIAS_PAD_PDVREG;
+-	tegra_mipi_writel(mipi, value, MIPI_CAL_BIAS_PAD_CFG2);
+-
+-	/*
+-	 * MIPI_CAL_BIAS_PAD_PDVCLAMP and MIPI_CAL_BIAS_PAD_E_VCLAMP_REF
+-	 * control a regulator that supplies current to the pre-driver logic.
+-	 * Powering down this regulator causes DSI to fail, so it must remain
+-	 * powered on until none of the DSI lanes are used anymore.
+-	 */
+-	value = tegra_mipi_readl(mipi, MIPI_CAL_BIAS_PAD_CFG0);
+-
+-	if (mipi->soc->needs_vclamp_ref)
+-		value &= ~MIPI_CAL_BIAS_PAD_E_VCLAMP_REF;
++	return 0;
++}
++EXPORT_SYMBOL(tegra_mipi_start_calibration);
+ 
+-	value |= MIPI_CAL_BIAS_PAD_PDVCLAMP;
+-	tegra_mipi_writel(mipi, value, MIPI_CAL_BIAS_PAD_CFG0);
++int tegra_mipi_finish_calibration(struct tegra_mipi_device *device)
++{
++	if (device->ops->finish_calibration)
++		return device->ops->finish_calibration(device);
+ 
+ 	return 0;
+ }
++EXPORT_SYMBOL(tegra_mipi_finish_calibration);
+ 
+ struct tegra_mipi_device *tegra_mipi_request(struct device *device,
+ 					     struct device_node *np)
+ {
+-	struct tegra_mipi_device *dev;
++	struct tegra_mipi_device *mipidev;
+ 	struct of_phandle_args args;
+ 	int err;
+ 
+@@ -219,321 +69,58 @@ struct tegra_mipi_device *tegra_mipi_request(struct device *device,
+ 	if (err < 0)
+ 		return ERR_PTR(err);
+ 
+-	dev = kzalloc(sizeof(*dev), GFP_KERNEL);
+-	if (!dev) {
++	if (provider.np != args.np)
++		return ERR_PTR(-ENODEV);
++
++	mipidev = kzalloc(sizeof(*mipidev), GFP_KERNEL);
++	if (!mipidev) {
+ 		err = -ENOMEM;
+ 		goto out;
+ 	}
+ 
+-	dev->pdev = of_find_device_by_node(args.np);
+-	if (!dev->pdev) {
++	mipidev->pdev = of_find_device_by_node(args.np);
++	if (!mipidev->pdev) {
+ 		err = -ENODEV;
+ 		goto free;
+ 	}
+ 
+-	dev->mipi = platform_get_drvdata(dev->pdev);
+-	if (!dev->mipi) {
+-		err = -EPROBE_DEFER;
+-		goto put;
+-	}
+-
+ 	of_node_put(args.np);
+ 
+-	dev->pads = args.args[0];
+-	dev->device = device;
++	mipidev->ops = provider.ops;
++	mipidev->pads = args.args[0];
+ 
+-	return dev;
++	return mipidev;
+ 
+-put:
+-	platform_device_put(dev->pdev);
+ free:
+-	kfree(dev);
++	kfree(mipidev);
+ out:
+ 	of_node_put(args.np);
+ 	return ERR_PTR(err);
+ }
+ EXPORT_SYMBOL(tegra_mipi_request);
+ 
+-void tegra_mipi_free(struct tegra_mipi_device *device)
++void tegra_mipi_free(struct tegra_mipi_device *mipidev)
+ {
+-	platform_device_put(device->pdev);
+-	kfree(device);
++	platform_device_put(mipidev->pdev);
++	kfree(mipidev);
+ }
+ EXPORT_SYMBOL(tegra_mipi_free);
+ 
+-int tegra_mipi_enable(struct tegra_mipi_device *dev)
++static void tegra_mipi_remove_provider(void *data)
+ {
+-	int err = 0;
+-
+-	mutex_lock(&dev->mipi->lock);
+-
+-	if (dev->mipi->usage_count++ == 0)
+-		err = tegra_mipi_power_up(dev->mipi);
+-
+-	mutex_unlock(&dev->mipi->lock);
+-
+-	return err;
+-
++	provider.np = NULL;
++	provider.ops = NULL;
+ }
+-EXPORT_SYMBOL(tegra_mipi_enable);
+ 
+-int tegra_mipi_disable(struct tegra_mipi_device *dev)
++int devm_tegra_mipi_add_provider(struct device *device, struct device_node *np,
++				 const struct tegra_mipi_ops *ops)
+ {
+-	int err = 0;
+-
+-	mutex_lock(&dev->mipi->lock);
+-
+-	if (--dev->mipi->usage_count == 0)
+-		err = tegra_mipi_power_down(dev->mipi);
++	if (provider.np)
++		return -EBUSY;
+ 
+-	mutex_unlock(&dev->mipi->lock);
++	provider.np = np;
++	provider.ops = ops;
+ 
+-	return err;
+-
+-}
+-EXPORT_SYMBOL(tegra_mipi_disable);
+-
+-int tegra_mipi_finish_calibration(struct tegra_mipi_device *device)
+-{
+-	struct tegra_mipi *mipi = device->mipi;
+-	void __iomem *status_reg = mipi->regs + (MIPI_CAL_STATUS << 2);
+-	u32 value;
+-	int err;
+-
+-	err = readl_relaxed_poll_timeout(status_reg, value,
+-					 !(value & MIPI_CAL_STATUS_ACTIVE) &&
+-					 (value & MIPI_CAL_STATUS_DONE), 50,
+-					 250000);
+-	mutex_unlock(&device->mipi->lock);
+-	clk_disable(device->mipi->clk);
+-
+-	return err;
+-}
+-EXPORT_SYMBOL(tegra_mipi_finish_calibration);
+-
+-int tegra_mipi_start_calibration(struct tegra_mipi_device *device)
+-{
+-	const struct tegra_mipi_soc *soc = device->mipi->soc;
+-	unsigned int i;
+-	u32 value;
+-	int err;
+-
+-	err = clk_enable(device->mipi->clk);
+-	if (err < 0)
+-		return err;
+-
+-	mutex_lock(&device->mipi->lock);
+-
+-	value = MIPI_CAL_BIAS_PAD_DRV_DN_REF(soc->pad_drive_down_ref) |
+-		MIPI_CAL_BIAS_PAD_DRV_UP_REF(soc->pad_drive_up_ref);
+-	tegra_mipi_writel(device->mipi, value, MIPI_CAL_BIAS_PAD_CFG1);
+-
+-	value = tegra_mipi_readl(device->mipi, MIPI_CAL_BIAS_PAD_CFG2);
+-	value &= ~MIPI_CAL_BIAS_PAD_VCLAMP(0x7);
+-	value &= ~MIPI_CAL_BIAS_PAD_VAUXP(0x7);
+-	value |= MIPI_CAL_BIAS_PAD_VCLAMP(soc->pad_vclamp_level);
+-	value |= MIPI_CAL_BIAS_PAD_VAUXP(soc->pad_vauxp_level);
+-	tegra_mipi_writel(device->mipi, value, MIPI_CAL_BIAS_PAD_CFG2);
+-
+-	for (i = 0; i < soc->num_pads; i++) {
+-		u32 clk = 0, data = 0;
+-
+-		if (device->pads & BIT(i)) {
+-			data = MIPI_CAL_CONFIG_SELECT |
+-			       MIPI_CAL_CONFIG_HSPDOS(soc->hspdos) |
+-			       MIPI_CAL_CONFIG_HSPUOS(soc->hspuos) |
+-			       MIPI_CAL_CONFIG_TERMOS(soc->termos);
+-			clk = MIPI_CAL_CONFIG_SELECT |
+-			      MIPI_CAL_CONFIG_HSCLKPDOSD(soc->hsclkpdos) |
+-			      MIPI_CAL_CONFIG_HSCLKPUOSD(soc->hsclkpuos);
+-		}
+-
+-		tegra_mipi_writel(device->mipi, data, soc->pads[i].data);
+-
+-		if (soc->has_clk_lane && soc->pads[i].clk != 0)
+-			tegra_mipi_writel(device->mipi, clk, soc->pads[i].clk);
+-	}
+-
+-	value = tegra_mipi_readl(device->mipi, MIPI_CAL_CTRL);
+-	value &= ~MIPI_CAL_CTRL_NOISE_FILTER(0xf);
+-	value &= ~MIPI_CAL_CTRL_PRESCALE(0x3);
+-	value |= MIPI_CAL_CTRL_NOISE_FILTER(0xa);
+-	value |= MIPI_CAL_CTRL_PRESCALE(0x2);
+-
+-	if (!soc->clock_enable_override)
+-		value &= ~MIPI_CAL_CTRL_CLKEN_OVR;
+-	else
+-		value |= MIPI_CAL_CTRL_CLKEN_OVR;
+-
+-	tegra_mipi_writel(device->mipi, value, MIPI_CAL_CTRL);
+-
+-	/* clear any pending status bits */
+-	value = tegra_mipi_readl(device->mipi, MIPI_CAL_STATUS);
+-	tegra_mipi_writel(device->mipi, value, MIPI_CAL_STATUS);
+-
+-	value = tegra_mipi_readl(device->mipi, MIPI_CAL_CTRL);
+-	value |= MIPI_CAL_CTRL_START;
+-	tegra_mipi_writel(device->mipi, value, MIPI_CAL_CTRL);
+-
+-	/*
+-	 * Wait for min 72uS to let calibration logic finish calibration
+-	 * sequence codes before waiting for pads idle state to apply the
+-	 * results.
+-	 */
+-	usleep_range(75, 80);
+-
+-	return 0;
+-}
+-EXPORT_SYMBOL(tegra_mipi_start_calibration);
+-
+-static const struct tegra_mipi_pad tegra114_mipi_pads[] = {
+-	{ .data = MIPI_CAL_CONFIG_CSIA },
+-	{ .data = MIPI_CAL_CONFIG_CSIB },
+-	{ .data = MIPI_CAL_CONFIG_CSIC },
+-	{ .data = MIPI_CAL_CONFIG_CSID },
+-	{ .data = MIPI_CAL_CONFIG_CSIE },
+-	{ .data = MIPI_CAL_CONFIG_DSIA },
+-	{ .data = MIPI_CAL_CONFIG_DSIB },
+-	{ .data = MIPI_CAL_CONFIG_DSIC },
+-	{ .data = MIPI_CAL_CONFIG_DSID },
+-};
+-
+-static const struct tegra_mipi_soc tegra114_mipi_soc = {
+-	.has_clk_lane = false,
+-	.pads = tegra114_mipi_pads,
+-	.num_pads = ARRAY_SIZE(tegra114_mipi_pads),
+-	.clock_enable_override = true,
+-	.needs_vclamp_ref = true,
+-	.pad_drive_down_ref = 0x2,
+-	.pad_drive_up_ref = 0x0,
+-	.pad_vclamp_level = 0x0,
+-	.pad_vauxp_level = 0x0,
+-	.hspdos = 0x0,
+-	.hspuos = 0x4,
+-	.termos = 0x5,
+-	.hsclkpdos = 0x0,
+-	.hsclkpuos = 0x4,
+-};
+-
+-static const struct tegra_mipi_pad tegra124_mipi_pads[] = {
+-	{ .data = MIPI_CAL_CONFIG_CSIA, .clk = MIPI_CAL_CONFIG_CSIAB_CLK },
+-	{ .data = MIPI_CAL_CONFIG_CSIB, .clk = MIPI_CAL_CONFIG_CSIAB_CLK },
+-	{ .data = MIPI_CAL_CONFIG_CSIC, .clk = MIPI_CAL_CONFIG_CSICD_CLK },
+-	{ .data = MIPI_CAL_CONFIG_CSID, .clk = MIPI_CAL_CONFIG_CSICD_CLK },
+-	{ .data = MIPI_CAL_CONFIG_CSIE, .clk = MIPI_CAL_CONFIG_CSIE_CLK  },
+-	{ .data = MIPI_CAL_CONFIG_DSIA, .clk = MIPI_CAL_CONFIG_DSIA_CLK  },
+-	{ .data = MIPI_CAL_CONFIG_DSIB, .clk = MIPI_CAL_CONFIG_DSIB_CLK  },
+-};
+-
+-static const struct tegra_mipi_soc tegra124_mipi_soc = {
+-	.has_clk_lane = true,
+-	.pads = tegra124_mipi_pads,
+-	.num_pads = ARRAY_SIZE(tegra124_mipi_pads),
+-	.clock_enable_override = true,
+-	.needs_vclamp_ref = true,
+-	.pad_drive_down_ref = 0x2,
+-	.pad_drive_up_ref = 0x0,
+-	.pad_vclamp_level = 0x0,
+-	.pad_vauxp_level = 0x0,
+-	.hspdos = 0x0,
+-	.hspuos = 0x0,
+-	.termos = 0x0,
+-	.hsclkpdos = 0x1,
+-	.hsclkpuos = 0x2,
+-};
+-
+-static const struct tegra_mipi_soc tegra132_mipi_soc = {
+-	.has_clk_lane = true,
+-	.pads = tegra124_mipi_pads,
+-	.num_pads = ARRAY_SIZE(tegra124_mipi_pads),
+-	.clock_enable_override = false,
+-	.needs_vclamp_ref = false,
+-	.pad_drive_down_ref = 0x0,
+-	.pad_drive_up_ref = 0x3,
+-	.pad_vclamp_level = 0x0,
+-	.pad_vauxp_level = 0x0,
+-	.hspdos = 0x0,
+-	.hspuos = 0x0,
+-	.termos = 0x0,
+-	.hsclkpdos = 0x3,
+-	.hsclkpuos = 0x2,
+-};
+-
+-static const struct tegra_mipi_pad tegra210_mipi_pads[] = {
+-	{ .data = MIPI_CAL_CONFIG_CSIA, .clk = 0 },
+-	{ .data = MIPI_CAL_CONFIG_CSIB, .clk = 0 },
+-	{ .data = MIPI_CAL_CONFIG_CSIC, .clk = 0 },
+-	{ .data = MIPI_CAL_CONFIG_CSID, .clk = 0 },
+-	{ .data = MIPI_CAL_CONFIG_CSIE, .clk = 0 },
+-	{ .data = MIPI_CAL_CONFIG_CSIF, .clk = 0 },
+-	{ .data = MIPI_CAL_CONFIG_DSIA, .clk = MIPI_CAL_CONFIG_DSIA_CLK },
+-	{ .data = MIPI_CAL_CONFIG_DSIB, .clk = MIPI_CAL_CONFIG_DSIB_CLK },
+-	{ .data = MIPI_CAL_CONFIG_DSIC, .clk = MIPI_CAL_CONFIG_DSIC_CLK },
+-	{ .data = MIPI_CAL_CONFIG_DSID, .clk = MIPI_CAL_CONFIG_DSID_CLK },
+-};
+-
+-static const struct tegra_mipi_soc tegra210_mipi_soc = {
+-	.has_clk_lane = true,
+-	.pads = tegra210_mipi_pads,
+-	.num_pads = ARRAY_SIZE(tegra210_mipi_pads),
+-	.clock_enable_override = true,
+-	.needs_vclamp_ref = false,
+-	.pad_drive_down_ref = 0x0,
+-	.pad_drive_up_ref = 0x3,
+-	.pad_vclamp_level = 0x1,
+-	.pad_vauxp_level = 0x1,
+-	.hspdos = 0x0,
+-	.hspuos = 0x2,
+-	.termos = 0x0,
+-	.hsclkpdos = 0x0,
+-	.hsclkpuos = 0x2,
+-};
+-
+-static const struct of_device_id tegra_mipi_of_match[] = {
+-	{ .compatible = "nvidia,tegra114-mipi", .data = &tegra114_mipi_soc },
+-	{ .compatible = "nvidia,tegra124-mipi", .data = &tegra124_mipi_soc },
+-	{ .compatible = "nvidia,tegra132-mipi", .data = &tegra132_mipi_soc },
+-	{ .compatible = "nvidia,tegra210-mipi", .data = &tegra210_mipi_soc },
+-	{ },
+-};
+-
+-static int tegra_mipi_probe(struct platform_device *pdev)
+-{
+-	const struct of_device_id *match;
+-	struct tegra_mipi *mipi;
+-
+-	match = of_match_node(tegra_mipi_of_match, pdev->dev.of_node);
+-	if (!match)
+-		return -ENODEV;
+-
+-	mipi = devm_kzalloc(&pdev->dev, sizeof(*mipi), GFP_KERNEL);
+-	if (!mipi)
+-		return -ENOMEM;
+-
+-	mipi->soc = match->data;
+-	mipi->dev = &pdev->dev;
+-
+-	mipi->regs = devm_platform_get_and_ioremap_resource(pdev, 0, NULL);
+-	if (IS_ERR(mipi->regs))
+-		return PTR_ERR(mipi->regs);
+-
+-	mutex_init(&mipi->lock);
+-
+-	mipi->clk = devm_clk_get_prepared(&pdev->dev, NULL);
+-	if (IS_ERR(mipi->clk)) {
+-		dev_err(&pdev->dev, "failed to get clock\n");
+-		return PTR_ERR(mipi->clk);
+-	}
+-
+-	platform_set_drvdata(pdev, mipi);
+-
+-	return 0;
++	return devm_add_action_or_reset(device, tegra_mipi_remove_provider, NULL);
+ }
+-
+-struct platform_driver tegra_mipi_driver = {
+-	.driver = {
+-		.name = "tegra-mipi",
+-		.of_match_table = tegra_mipi_of_match,
+-	},
+-	.probe = tegra_mipi_probe,
+-};
++EXPORT_SYMBOL(devm_tegra_mipi_add_provider);
+diff --git a/drivers/gpu/host1x/tegra114-mipi.c b/drivers/gpu/host1x/tegra114-mipi.c
+new file mode 100644
+index 000000000000..c084a09784d1
+--- /dev/null
++++ b/drivers/gpu/host1x/tegra114-mipi.c
+@@ -0,0 +1,483 @@
++/*
++ * Copyright (C) 2013 NVIDIA Corporation
++ *
++ * Permission to use, copy, modify, distribute, and sell this software and its
++ * documentation for any purpose is hereby granted without fee, provided that
++ * the above copyright notice appear in all copies and that both that copyright
++ * notice and this permission notice appear in supporting documentation, and
++ * that the name of the copyright holders not be used in advertising or
++ * publicity pertaining to distribution of the software without specific,
++ * written prior permission.  The copyright holders make no representations
++ * about the suitability of this software for any purpose.  It is provided "as
++ * is" without express or implied warranty.
++ *
++ * THE COPYRIGHT HOLDERS DISCLAIM ALL WARRANTIES WITH REGARD TO THIS SOFTWARE,
++ * INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS, IN NO
++ * EVENT SHALL THE COPYRIGHT HOLDERS BE LIABLE FOR ANY SPECIAL, INDIRECT OR
++ * CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE,
++ * DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER
++ * TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE
++ * OF THIS SOFTWARE.
++ */
++
++#include <linux/clk.h>
++#include <linux/host1x.h>
++#include <linux/io.h>
++#include <linux/iopoll.h>
++#include <linux/of_platform.h>
++#include <linux/platform_device.h>
++#include <linux/slab.h>
++#include <linux/tegra-mipi-cal.h>
++
++#include "dev.h"
++
++#define MIPI_CAL_CTRL			0x00
++#define MIPI_CAL_CTRL_NOISE_FILTER(x)	(((x) & 0xf) << 26)
++#define MIPI_CAL_CTRL_PRESCALE(x)	(((x) & 0x3) << 24)
++#define MIPI_CAL_CTRL_CLKEN_OVR		BIT(4)
++#define MIPI_CAL_CTRL_START		BIT(0)
++
++#define MIPI_CAL_AUTOCAL_CTRL		0x01
++
++#define MIPI_CAL_STATUS			0x02
++#define MIPI_CAL_STATUS_DONE		BIT(16)
++#define MIPI_CAL_STATUS_ACTIVE		BIT(0)
++
++#define MIPI_CAL_CONFIG_CSIA		0x05
++#define MIPI_CAL_CONFIG_CSIB		0x06
++#define MIPI_CAL_CONFIG_CSIC		0x07
++#define MIPI_CAL_CONFIG_CSID		0x08
++#define MIPI_CAL_CONFIG_CSIE		0x09
++#define MIPI_CAL_CONFIG_CSIF		0x0a
++#define MIPI_CAL_CONFIG_DSIA		0x0e
++#define MIPI_CAL_CONFIG_DSIB		0x0f
++#define MIPI_CAL_CONFIG_DSIC		0x10
++#define MIPI_CAL_CONFIG_DSID		0x11
++
++#define MIPI_CAL_CONFIG_DSIA_CLK	0x19
++#define MIPI_CAL_CONFIG_DSIB_CLK	0x1a
++#define MIPI_CAL_CONFIG_CSIAB_CLK	0x1b
++#define MIPI_CAL_CONFIG_DSIC_CLK	0x1c
++#define MIPI_CAL_CONFIG_CSICD_CLK	0x1c
++#define MIPI_CAL_CONFIG_DSID_CLK	0x1d
++#define MIPI_CAL_CONFIG_CSIE_CLK	0x1d
++
++/* for data and clock lanes */
++#define MIPI_CAL_CONFIG_SELECT		BIT(21)
++
++/* for data lanes */
++#define MIPI_CAL_CONFIG_HSPDOS(x)	(((x) & 0x1f) << 16)
++#define MIPI_CAL_CONFIG_HSPUOS(x)	(((x) & 0x1f) <<  8)
++#define MIPI_CAL_CONFIG_TERMOS(x)	(((x) & 0x1f) <<  0)
++
++/* for clock lanes */
++#define MIPI_CAL_CONFIG_HSCLKPDOSD(x)	(((x) & 0x1f) <<  8)
++#define MIPI_CAL_CONFIG_HSCLKPUOSD(x)	(((x) & 0x1f) <<  0)
++
++#define MIPI_CAL_BIAS_PAD_CFG0		0x16
++#define MIPI_CAL_BIAS_PAD_PDVCLAMP	BIT(1)
++#define MIPI_CAL_BIAS_PAD_E_VCLAMP_REF	BIT(0)
++
++#define MIPI_CAL_BIAS_PAD_CFG1		0x17
++#define MIPI_CAL_BIAS_PAD_DRV_DN_REF(x) (((x) & 0x7) << 16)
++#define MIPI_CAL_BIAS_PAD_DRV_UP_REF(x) (((x) & 0x7) << 8)
++
++#define MIPI_CAL_BIAS_PAD_CFG2		0x18
++#define MIPI_CAL_BIAS_PAD_VCLAMP(x)	(((x) & 0x7) << 16)
++#define MIPI_CAL_BIAS_PAD_VAUXP(x)	(((x) & 0x7) << 4)
++#define MIPI_CAL_BIAS_PAD_PDVREG	BIT(1)
++
++struct tegra_mipi_pad {
++	unsigned long data;
++	unsigned long clk;
++};
++
++struct tegra_mipi_soc {
++	bool has_clk_lane;
++	const struct tegra_mipi_pad *pads;
++	unsigned int num_pads;
++
++	bool clock_enable_override;
++	bool needs_vclamp_ref;
++
++	/* bias pad configuration settings */
++	u8 pad_drive_down_ref;
++	u8 pad_drive_up_ref;
++
++	u8 pad_vclamp_level;
++	u8 pad_vauxp_level;
++
++	/* calibration settings for data lanes */
++	u8 hspdos;
++	u8 hspuos;
++	u8 termos;
++
++	/* calibration settings for clock lanes */
++	u8 hsclkpdos;
++	u8 hsclkpuos;
++};
++
++struct tegra_mipi {
++	const struct tegra_mipi_soc *soc;
++	struct device *dev;
++	void __iomem *regs;
++	struct mutex lock; /* for register access */
++	struct clk *clk;
++
++	unsigned long usage_count;
++};
++
++static inline u32 tegra_mipi_readl(struct tegra_mipi *mipi,
++				   unsigned long offset)
++{
++	return readl(mipi->regs + (offset << 2));
++}
++
++static inline void tegra_mipi_writel(struct tegra_mipi *mipi, u32 value,
++				     unsigned long offset)
++{
++	writel(value, mipi->regs + (offset << 2));
++}
++
++static int tegra114_mipi_power_up(struct tegra_mipi *mipi)
++{
++	u32 value;
++	int err;
++
++	err = clk_enable(mipi->clk);
++	if (err < 0)
++		return err;
++
++	value = tegra_mipi_readl(mipi, MIPI_CAL_BIAS_PAD_CFG0);
++	value &= ~MIPI_CAL_BIAS_PAD_PDVCLAMP;
++
++	if (mipi->soc->needs_vclamp_ref)
++		value |= MIPI_CAL_BIAS_PAD_E_VCLAMP_REF;
++
++	tegra_mipi_writel(mipi, value, MIPI_CAL_BIAS_PAD_CFG0);
++
++	value = tegra_mipi_readl(mipi, MIPI_CAL_BIAS_PAD_CFG2);
++	value &= ~MIPI_CAL_BIAS_PAD_PDVREG;
++	tegra_mipi_writel(mipi, value, MIPI_CAL_BIAS_PAD_CFG2);
++
++	clk_disable(mipi->clk);
++
++	return 0;
++}
++
++static int tegra114_mipi_power_down(struct tegra_mipi *mipi)
++{
++	u32 value;
++	int err;
++
++	err = clk_enable(mipi->clk);
++	if (err < 0)
++		return err;
++
++	/*
++	 * The MIPI_CAL_BIAS_PAD_PDVREG controls a voltage regulator that
++	 * supplies the DSI pads. This must be kept enabled until none of the
++	 * DSI lanes are used anymore.
++	 */
++	value = tegra_mipi_readl(mipi, MIPI_CAL_BIAS_PAD_CFG2);
++	value |= MIPI_CAL_BIAS_PAD_PDVREG;
++	tegra_mipi_writel(mipi, value, MIPI_CAL_BIAS_PAD_CFG2);
++
++	/*
++	 * MIPI_CAL_BIAS_PAD_PDVCLAMP and MIPI_CAL_BIAS_PAD_E_VCLAMP_REF
++	 * control a regulator that supplies current to the pre-driver logic.
++	 * Powering down this regulator causes DSI to fail, so it must remain
++	 * powered on until none of the DSI lanes are used anymore.
++	 */
++	value = tegra_mipi_readl(mipi, MIPI_CAL_BIAS_PAD_CFG0);
++
++	if (mipi->soc->needs_vclamp_ref)
++		value &= ~MIPI_CAL_BIAS_PAD_E_VCLAMP_REF;
++
++	value |= MIPI_CAL_BIAS_PAD_PDVCLAMP;
++	tegra_mipi_writel(mipi, value, MIPI_CAL_BIAS_PAD_CFG0);
++
++	return 0;
++}
++
++static int tegra114_mipi_enable(struct tegra_mipi_device *mipidev)
++{
++	struct tegra_mipi *mipi = platform_get_drvdata(mipidev->pdev);
++	int err = 0;
++
++	mutex_lock(&mipi->lock);
++
++	if (mipi->usage_count++ == 0)
++		err = tegra114_mipi_power_up(mipi);
++
++	mutex_unlock(&mipi->lock);
++
++	return err;
++}
++
++static int tegra114_mipi_disable(struct tegra_mipi_device *mipidev)
++{
++	struct tegra_mipi *mipi = platform_get_drvdata(mipidev->pdev);
++	int err = 0;
++
++	mutex_lock(&mipi->lock);
++
++	if (--mipi->usage_count == 0)
++		err = tegra114_mipi_power_down(mipi);
++
++	mutex_unlock(&mipi->lock);
++
++	return err;
++}
++
++static int tegra114_mipi_finish_calibration(struct tegra_mipi_device *mipidev)
++{
++	struct tegra_mipi *mipi = platform_get_drvdata(mipidev->pdev);
++	void __iomem *status_reg = mipi->regs + (MIPI_CAL_STATUS << 2);
++	u32 value;
++	int err;
++
++	err = readl_relaxed_poll_timeout(status_reg, value,
++					 !(value & MIPI_CAL_STATUS_ACTIVE) &&
++					 (value & MIPI_CAL_STATUS_DONE), 50,
++					 250000);
++	mutex_unlock(&mipi->lock);
++	clk_disable(mipi->clk);
++
++	return err;
++}
++
++static int tegra114_mipi_start_calibration(struct tegra_mipi_device *mipidev)
++{
++	struct tegra_mipi *mipi = platform_get_drvdata(mipidev->pdev);
++	const struct tegra_mipi_soc *soc = mipi->soc;
++	unsigned int i;
++	u32 value;
++	int err;
++
++	err = clk_enable(mipi->clk);
++	if (err < 0)
++		return err;
++
++	mutex_lock(&mipi->lock);
++
++	value = MIPI_CAL_BIAS_PAD_DRV_DN_REF(soc->pad_drive_down_ref) |
++		MIPI_CAL_BIAS_PAD_DRV_UP_REF(soc->pad_drive_up_ref);
++	tegra_mipi_writel(mipi, value, MIPI_CAL_BIAS_PAD_CFG1);
++
++	value = tegra_mipi_readl(mipi, MIPI_CAL_BIAS_PAD_CFG2);
++	value &= ~MIPI_CAL_BIAS_PAD_VCLAMP(0x7);
++	value &= ~MIPI_CAL_BIAS_PAD_VAUXP(0x7);
++	value |= MIPI_CAL_BIAS_PAD_VCLAMP(soc->pad_vclamp_level);
++	value |= MIPI_CAL_BIAS_PAD_VAUXP(soc->pad_vauxp_level);
++	tegra_mipi_writel(mipi, value, MIPI_CAL_BIAS_PAD_CFG2);
++
++	for (i = 0; i < soc->num_pads; i++) {
++		u32 clk = 0, data = 0;
++
++		if (mipidev->pads & BIT(i)) {
++			data = MIPI_CAL_CONFIG_SELECT |
++			       MIPI_CAL_CONFIG_HSPDOS(soc->hspdos) |
++			       MIPI_CAL_CONFIG_HSPUOS(soc->hspuos) |
++			       MIPI_CAL_CONFIG_TERMOS(soc->termos);
++			clk = MIPI_CAL_CONFIG_SELECT |
++			      MIPI_CAL_CONFIG_HSCLKPDOSD(soc->hsclkpdos) |
++			      MIPI_CAL_CONFIG_HSCLKPUOSD(soc->hsclkpuos);
++		}
++
++		tegra_mipi_writel(mipi, data, soc->pads[i].data);
++
++		if (soc->has_clk_lane && soc->pads[i].clk != 0)
++			tegra_mipi_writel(mipi, clk, soc->pads[i].clk);
++	}
++
++	value = tegra_mipi_readl(mipi, MIPI_CAL_CTRL);
++	value &= ~MIPI_CAL_CTRL_NOISE_FILTER(0xf);
++	value &= ~MIPI_CAL_CTRL_PRESCALE(0x3);
++	value |= MIPI_CAL_CTRL_NOISE_FILTER(0xa);
++	value |= MIPI_CAL_CTRL_PRESCALE(0x2);
++
++	if (!soc->clock_enable_override)
++		value &= ~MIPI_CAL_CTRL_CLKEN_OVR;
++	else
++		value |= MIPI_CAL_CTRL_CLKEN_OVR;
++
++	tegra_mipi_writel(mipi, value, MIPI_CAL_CTRL);
++
++	/* clear any pending status bits */
++	value = tegra_mipi_readl(mipi, MIPI_CAL_STATUS);
++	tegra_mipi_writel(mipi, value, MIPI_CAL_STATUS);
++
++	value = tegra_mipi_readl(mipi, MIPI_CAL_CTRL);
++	value |= MIPI_CAL_CTRL_START;
++	tegra_mipi_writel(mipi, value, MIPI_CAL_CTRL);
++
++	/*
++	 * Wait for min 72uS to let calibration logic finish calibration
++	 * sequence codes before waiting for pads idle state to apply the
++	 * results.
++	 */
++	usleep_range(75, 80);
++
++	return 0;
++}
++
++static const struct tegra_mipi_ops tegra114_mipi_ops = {
++	.enable = tegra114_mipi_enable,
++	.disable = tegra114_mipi_disable,
++	.start_calibration = tegra114_mipi_start_calibration,
++	.finish_calibration = tegra114_mipi_finish_calibration,
++};
++
++static const struct tegra_mipi_pad tegra114_mipi_pads[] = {
++	{ .data = MIPI_CAL_CONFIG_CSIA },
++	{ .data = MIPI_CAL_CONFIG_CSIB },
++	{ .data = MIPI_CAL_CONFIG_CSIC },
++	{ .data = MIPI_CAL_CONFIG_CSID },
++	{ .data = MIPI_CAL_CONFIG_CSIE },
++	{ .data = MIPI_CAL_CONFIG_DSIA },
++	{ .data = MIPI_CAL_CONFIG_DSIB },
++	{ .data = MIPI_CAL_CONFIG_DSIC },
++	{ .data = MIPI_CAL_CONFIG_DSID },
++};
++
++static const struct tegra_mipi_soc tegra114_mipi_soc = {
++	.has_clk_lane = false,
++	.pads = tegra114_mipi_pads,
++	.num_pads = ARRAY_SIZE(tegra114_mipi_pads),
++	.clock_enable_override = true,
++	.needs_vclamp_ref = true,
++	.pad_drive_down_ref = 0x2,
++	.pad_drive_up_ref = 0x0,
++	.pad_vclamp_level = 0x0,
++	.pad_vauxp_level = 0x0,
++	.hspdos = 0x0,
++	.hspuos = 0x4,
++	.termos = 0x5,
++	.hsclkpdos = 0x0,
++	.hsclkpuos = 0x4,
++};
++
++static const struct tegra_mipi_pad tegra124_mipi_pads[] = {
++	{ .data = MIPI_CAL_CONFIG_CSIA, .clk = MIPI_CAL_CONFIG_CSIAB_CLK },
++	{ .data = MIPI_CAL_CONFIG_CSIB, .clk = MIPI_CAL_CONFIG_CSIAB_CLK },
++	{ .data = MIPI_CAL_CONFIG_CSIC, .clk = MIPI_CAL_CONFIG_CSICD_CLK },
++	{ .data = MIPI_CAL_CONFIG_CSID, .clk = MIPI_CAL_CONFIG_CSICD_CLK },
++	{ .data = MIPI_CAL_CONFIG_CSIE, .clk = MIPI_CAL_CONFIG_CSIE_CLK  },
++	{ .data = MIPI_CAL_CONFIG_DSIA, .clk = MIPI_CAL_CONFIG_DSIA_CLK  },
++	{ .data = MIPI_CAL_CONFIG_DSIB, .clk = MIPI_CAL_CONFIG_DSIB_CLK  },
++};
++
++static const struct tegra_mipi_soc tegra124_mipi_soc = {
++	.has_clk_lane = true,
++	.pads = tegra124_mipi_pads,
++	.num_pads = ARRAY_SIZE(tegra124_mipi_pads),
++	.clock_enable_override = true,
++	.needs_vclamp_ref = true,
++	.pad_drive_down_ref = 0x2,
++	.pad_drive_up_ref = 0x0,
++	.pad_vclamp_level = 0x0,
++	.pad_vauxp_level = 0x0,
++	.hspdos = 0x0,
++	.hspuos = 0x0,
++	.termos = 0x0,
++	.hsclkpdos = 0x1,
++	.hsclkpuos = 0x2,
++};
++
++static const struct tegra_mipi_soc tegra132_mipi_soc = {
++	.has_clk_lane = true,
++	.pads = tegra124_mipi_pads,
++	.num_pads = ARRAY_SIZE(tegra124_mipi_pads),
++	.clock_enable_override = false,
++	.needs_vclamp_ref = false,
++	.pad_drive_down_ref = 0x0,
++	.pad_drive_up_ref = 0x3,
++	.pad_vclamp_level = 0x0,
++	.pad_vauxp_level = 0x0,
++	.hspdos = 0x0,
++	.hspuos = 0x0,
++	.termos = 0x0,
++	.hsclkpdos = 0x3,
++	.hsclkpuos = 0x2,
++};
++
++static const struct tegra_mipi_pad tegra210_mipi_pads[] = {
++	{ .data = MIPI_CAL_CONFIG_CSIA, .clk = 0 },
++	{ .data = MIPI_CAL_CONFIG_CSIB, .clk = 0 },
++	{ .data = MIPI_CAL_CONFIG_CSIC, .clk = 0 },
++	{ .data = MIPI_CAL_CONFIG_CSID, .clk = 0 },
++	{ .data = MIPI_CAL_CONFIG_CSIE, .clk = 0 },
++	{ .data = MIPI_CAL_CONFIG_CSIF, .clk = 0 },
++	{ .data = MIPI_CAL_CONFIG_DSIA, .clk = MIPI_CAL_CONFIG_DSIA_CLK },
++	{ .data = MIPI_CAL_CONFIG_DSIB, .clk = MIPI_CAL_CONFIG_DSIB_CLK },
++	{ .data = MIPI_CAL_CONFIG_DSIC, .clk = MIPI_CAL_CONFIG_DSIC_CLK },
++	{ .data = MIPI_CAL_CONFIG_DSID, .clk = MIPI_CAL_CONFIG_DSID_CLK },
++};
++
++static const struct tegra_mipi_soc tegra210_mipi_soc = {
++	.has_clk_lane = true,
++	.pads = tegra210_mipi_pads,
++	.num_pads = ARRAY_SIZE(tegra210_mipi_pads),
++	.clock_enable_override = true,
++	.needs_vclamp_ref = false,
++	.pad_drive_down_ref = 0x0,
++	.pad_drive_up_ref = 0x3,
++	.pad_vclamp_level = 0x1,
++	.pad_vauxp_level = 0x1,
++	.hspdos = 0x0,
++	.hspuos = 0x2,
++	.termos = 0x0,
++	.hsclkpdos = 0x0,
++	.hsclkpuos = 0x2,
++};
++
++static const struct of_device_id tegra_mipi_of_match[] = {
++	{ .compatible = "nvidia,tegra114-mipi", .data = &tegra114_mipi_soc },
++	{ .compatible = "nvidia,tegra124-mipi", .data = &tegra124_mipi_soc },
++	{ .compatible = "nvidia,tegra132-mipi", .data = &tegra132_mipi_soc },
++	{ .compatible = "nvidia,tegra210-mipi", .data = &tegra210_mipi_soc },
++	{ },
++};
++
++static int tegra_mipi_probe(struct platform_device *pdev)
++{
++	const struct of_device_id *match;
++	struct tegra_mipi *mipi;
++
++	match = of_match_node(tegra_mipi_of_match, pdev->dev.of_node);
++	if (!match)
++		return -ENODEV;
++
++	mipi = devm_kzalloc(&pdev->dev, sizeof(*mipi), GFP_KERNEL);
++	if (!mipi)
++		return -ENOMEM;
++
++	mipi->soc = match->data;
++	mipi->dev = &pdev->dev;
++
++	mipi->regs = devm_platform_get_and_ioremap_resource(pdev, 0, NULL);
++	if (IS_ERR(mipi->regs))
++		return PTR_ERR(mipi->regs);
++
++	mutex_init(&mipi->lock);
++
++	mipi->clk = devm_clk_get_prepared(&pdev->dev, NULL);
++	if (IS_ERR(mipi->clk)) {
++		dev_err(&pdev->dev, "failed to get clock\n");
++		return PTR_ERR(mipi->clk);
++	}
++
++	platform_set_drvdata(pdev, mipi);
++
++	return devm_tegra_mipi_add_provider(&pdev->dev, pdev->dev.of_node,
++					    &tegra114_mipi_ops);
++}
++
++struct platform_driver tegra_mipi_driver = {
++	.driver = {
++		.name = "tegra-mipi",
++		.of_match_table = tegra_mipi_of_match,
++	},
++	.probe = tegra_mipi_probe,
++};
 diff --git a/drivers/staging/media/tegra-video/csi.c b/drivers/staging/media/tegra-video/csi.c
-index 604185c00a1a..74c92db1032f 100644
+index 74c92db1032f..9e3bd6109781 100644
 --- a/drivers/staging/media/tegra-video/csi.c
 +++ b/drivers/staging/media/tegra-video/csi.c
-@@ -20,17 +20,6 @@
+@@ -12,6 +12,7 @@
+ #include <linux/of_graph.h>
+ #include <linux/platform_device.h>
+ #include <linux/pm_runtime.h>
++#include <linux/tegra-mipi-cal.h>
  
- #define MHZ			1000000
+ #include <media/v4l2-fwnode.h>
  
--static inline struct tegra_csi *
--host1x_client_to_csi(struct host1x_client *client)
--{
--	return container_of(client, struct tegra_csi, client);
--}
+diff --git a/include/linux/host1x.h b/include/linux/host1x.h
+index 9fa9c30a34e6..b1c6514859d3 100644
+--- a/include/linux/host1x.h
++++ b/include/linux/host1x.h
+@@ -453,16 +453,6 @@ void host1x_client_unregister(struct host1x_client *client);
+ int host1x_client_suspend(struct host1x_client *client);
+ int host1x_client_resume(struct host1x_client *client);
+ 
+-struct tegra_mipi_device;
 -
--static inline struct tegra_csi_channel *to_csi_chan(struct v4l2_subdev *subdev)
--{
--	return container_of(subdev, struct tegra_csi_channel, subdev);
--}
+-struct tegra_mipi_device *tegra_mipi_request(struct device *device,
+-					     struct device_node *np);
+-void tegra_mipi_free(struct tegra_mipi_device *device);
+-int tegra_mipi_enable(struct tegra_mipi_device *device);
+-int tegra_mipi_disable(struct tegra_mipi_device *device);
+-int tegra_mipi_start_calibration(struct tegra_mipi_device *device);
+-int tegra_mipi_finish_calibration(struct tegra_mipi_device *device);
 -
- /*
-  * CSI is a separate subdevice which has 6 source pads to generate
-  * test pattern. CSI subdevice pad ops are used only for TPG and
-diff --git a/drivers/staging/media/tegra-video/csi.h b/drivers/staging/media/tegra-video/csi.h
-index 3e6e5ee1bb1e..3ed2dbc73ce9 100644
---- a/drivers/staging/media/tegra-video/csi.h
-+++ b/drivers/staging/media/tegra-video/csi.h
-@@ -151,6 +151,16 @@ struct tegra_csi {
- 	struct list_head csi_chans;
- };
+ /* host1x memory contexts */
  
-+static inline struct tegra_csi *host1x_client_to_csi(struct host1x_client *client)
-+{
-+	return container_of(client, struct tegra_csi, client);
-+}
+ struct host1x_memory_context {
+diff --git a/include/linux/tegra-mipi-cal.h b/include/linux/tegra-mipi-cal.h
+new file mode 100644
+index 000000000000..2a540b50f65d
+--- /dev/null
++++ b/include/linux/tegra-mipi-cal.h
+@@ -0,0 +1,57 @@
++/* SPDX-License-Identifier: GPL-2.0 */
 +
-+static inline struct tegra_csi_channel *to_csi_chan(struct v4l2_subdev *subdev)
-+{
-+	return container_of(subdev, struct tegra_csi_channel, subdev);
-+}
++#ifndef __TEGRA_MIPI_CAL_H_
++#define __TEGRA_MIPI_CAL_H_
 +
- void tegra_csi_error_recover(struct v4l2_subdev *subdev);
- void tegra_csi_calc_settle_time(struct tegra_csi_channel *csi_chan,
- 				u8 csi_port_num,
++struct tegra_mipi_device {
++	const struct tegra_mipi_ops *ops;
++	struct platform_device *pdev;
++	unsigned long pads;
++};
++
++/**
++ * Operations for Tegra MIPI calibration device
++ */
++struct tegra_mipi_ops {
++	/**
++	 * @enable:
++	 *
++	 * Enable MIPI calibration device
++	 */
++	int (*enable)(struct tegra_mipi_device *device);
++
++	/**
++	 * @disable:
++	 *
++	 * Disable MIPI calibration device
++	 */
++	int (*disable)(struct tegra_mipi_device *device);
++
++	/**
++	 * @start_calibration:
++	 *
++	 * Start MIPI calibration
++	 */
++	int (*start_calibration)(struct tegra_mipi_device *device);
++
++	/**
++	 * @finish_calibration:
++	 *
++	 * Finish MIPI calibration
++	 */
++	int (*finish_calibration)(struct tegra_mipi_device *device);
++};
++
++int devm_tegra_mipi_add_provider(struct device *device, struct device_node *np,
++				 const struct tegra_mipi_ops *ops);
++
++struct tegra_mipi_device *tegra_mipi_request(struct device *device,
++					     struct device_node *np);
++void tegra_mipi_free(struct tegra_mipi_device *device);
++
++int tegra_mipi_enable(struct tegra_mipi_device *device);
++int tegra_mipi_disable(struct tegra_mipi_device *device);
++int tegra_mipi_start_calibration(struct tegra_mipi_device *device);
++int tegra_mipi_finish_calibration(struct tegra_mipi_device *device);
++
++#endif /* __TEGRA_MIPI_CAL_H_ */
 -- 
 2.48.1
 
