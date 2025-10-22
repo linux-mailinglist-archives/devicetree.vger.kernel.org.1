@@ -1,185 +1,137 @@
-Return-Path: <devicetree+bounces-229574-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229575-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FC70BF9DEA
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 05:45:11 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 762CEBF9E44
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 05:59:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 94E984F3FB6
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 03:44:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1C68A3BBE3D
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 03:59:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69F2E2D23BF;
-	Wed, 22 Oct 2025 03:44:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 308512D6E64;
+	Wed, 22 Oct 2025 03:58:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="ArXfRtXO"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ci/T0A5V"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m3284.qiye.163.com (mail-m3284.qiye.163.com [220.197.32.84])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78B592D29CA;
-	Wed, 22 Oct 2025 03:44:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.84
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C28052D5C67
+	for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 03:58:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761104688; cv=none; b=mXt5WHqwu+PkGxBHQdqwS0XzvScTzKQPXUhhDgMOlHuob0oUmnVytwkhtYizwyuBD12hISKn5gFbM9J9tyYz1ylyIBKyNQ+zglSSJfPfkTE37sguP3vHL9WczgqJp9H1psMbEwqQCy6/LOYqq/X/zMPbTLbuOP1lU7rp8mUlZTs=
+	t=1761105536; cv=none; b=jY7c+Fwb+sMUML9daky/KMly2iuV+arvjkHRO3VnU8LydU+aG1IFJgBfmcLG7yNxQQY0qKgSXXR6nuc5rakVEdL8zKxqpm7U0uutfytbnkm5P/k8lp0GqiaR1xOy7KF8CCuLsAUAeIagOymfYJ2AP6+OW4kE83+5UmMMPfHK2r8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761104688; c=relaxed/simple;
-	bh=4CUUYu8tJIpieoEr4zh1QV6WKXOdMk/TpkB9Q8Hm9BI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QBK9am9OqNmOX3mupEqgBnI/tOV48PL8jGoCP14iU0Iru8vaZf9jVNKSdxfCqo2Djl5nqxFw8PqxUVypSrlaebY0IM2w5ugelUGsflQChxsRQslqhk2D+awfxPHVV5kgQnCHR2nGvKE9+0NVud9uACQUKcm/fFp1p11gpvVHuOU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=ArXfRtXO; arc=none smtp.client-ip=220.197.32.84
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from [172.16.12.30] (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 26bdc4b26;
-	Wed, 22 Oct 2025 11:44:34 +0800 (GMT+08:00)
-Message-ID: <f9aaa47e-4fa5-4b13-8abc-392d2c96512e@rock-chips.com>
-Date: Wed, 22 Oct 2025 11:44:34 +0800
+	s=arc-20240116; t=1761105536; c=relaxed/simple;
+	bh=VkwRwoyvKaQ5QVA7JKJ0O3zkd+6+dznsjpyKtm6MHtE=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=HtqBXM+ZBcJWlVTdnTa+n+Uej4wpivqL6mx4hLfQ6GQkCNYZQ2oLlqOq31GeCrutD8B+ysuFoO/djkIqxAotclVv+FvUZPHYHsVtLKQsFRH+Mvcnwv1fTPFMWUHuk4BsVRSGYZeG3PgdcgAmOvkt9cl0Aa/jBe7wzEio5LR+ZFg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ci/T0A5V; arc=none smtp.client-ip=209.85.221.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-3ee130237a8so4076128f8f.0
+        for <devicetree@vger.kernel.org>; Tue, 21 Oct 2025 20:58:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1761105532; x=1761710332; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=O2ZSDEAy1hrlTsCtb6+Des1vPZi3/b+xnBthz/KUkPk=;
+        b=ci/T0A5Vje/VYkRvOVaHE/DxhSklRucuUpkXLEgbY+grV8AYie+j/4bh+yiZ/yZ7t8
+         G/eHYFEml6NAEW+jnMXb9R13mXKKTnI4a5WfW+ZORpvuWgL/gJJctqAcG3hHOjVEOxdr
+         PEWPt66pHhMlLhWVgHEuoBdc1XG1YVYBIj4vxSdlsaYPhpKzWK0WRbUE7O84Lcix/EK7
+         fa6+vT1TJNNIM/fbDH6h5sU+Y0ANBQ2E2WfnQXs//HYMe+n3K7SvampE+ht32fgal8Xy
+         o5tj3sQ+CxeF847pqzDm83686GLwoLeVCLbQGzAkXXFhPQBWsHk9gnwAdamDQJ6Af/q1
+         kpmw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761105532; x=1761710332;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=O2ZSDEAy1hrlTsCtb6+Des1vPZi3/b+xnBthz/KUkPk=;
+        b=eJcIRww2L28yzzAoC0zGtJPBNlng1s8aiOCC+n1yGU+jWYw3VtuzGs21VCXSj5j3C1
+         dkDY/fbJfs0DroaZsOncaSWBQalPLstTp7vFRA1IbNh/7yu49LAk4dl9cv/d56EvRgQ6
+         MxygaOSFaiue/X4EUa7WxAEGQd4bgiKe5Th0q50TvDhEcCcYXstgqQetiq/E+lB6CUhM
+         xCs8Dxa/+EFC1S8ToHZ/GNlea5DnjfzwBJZL7becYhD71N/agu01O1te2mDWihjAt0GD
+         K330YSGCAiW2rHvrMTsuv/ZrNEOIcaqDKONiUXdXH26dvxVnN98VaTDB36GbixfZJsL1
+         PTjQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWFh7mY1+sEpcYFK6bl+roDfq3xy8VLh4/jgQ93fo09arM++gl8c5ko0ETgM/WTF4c63MGzO9lxkRSR@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy9Xa8uFu9rts1Rg/mnwOATVtiNDNY6p6o28TLJGA3kqXs7xFbq
+	JpGfmUPlKMY7xQhACn/OoKFVpzgHQgqNPUt9UPyUlME0ILQ7bnThSlCT5KEqMC/zEcI=
+X-Gm-Gg: ASbGncvMFPpqLIDqbhFEIe2aJ73cD9XfIsWae8QOs2/ZGE1EDJshkR7t81t67UCTEj9
+	r7M2GtL9rJd3OuBuW8ge1TydGUf9WySN8IBDmOEf8S+gB8ufojrKmQy45gGeT/GImIYU30RQ/rb
+	NHeJ77UQwpdlkkIGr23RX6RuR9HR8eYXFuYbXl4BZCLJkQPJTN38lucysdJAxVCiD/s0v+VKl8w
+	6yQm4AdFPmAdYpM9rqvhszIBl+xrXR/mm4iKEIFi1keVtjnBalaVy+g/nmmmk44RP69MgIcaAog
+	wzLzR5nR7AkqbJXwqZ6emE6bJXxfgE8WJdOE828TSL3hAYY/f7TtzEY1VbEbyROXHaJI8et5YAv
+	knB6xlPPKXXrNO1gg5qdvw1nDaw6/3c/bTa/BjopZqzqBolCnoQPmW2glM/YJswdf4jdNZ0NLIG
+	mzKoAJxw==
+X-Google-Smtp-Source: AGHT+IGUG+W0wf+mP42MvzRZOU9r8TQGApLm+D0SYiWzeMUaEK7m1AadbWpswXMeOq5qzD8NLou4HA==
+X-Received: by 2002:a05:6000:612:b0:411:f07a:67fb with SMTP id ffacd0b85a97d-42704e0ed95mr12103418f8f.55.1761105532102;
+        Tue, 21 Oct 2025 20:58:52 -0700 (PDT)
+Received: from orion.home ([2a02:c7c:7259:a00:11f4:2b3f:7c5a:5c10])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-427f009a6c5sm23637639f8f.28.2025.10.21.20.58.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 21 Oct 2025 20:58:51 -0700 (PDT)
+From: Alexey Klimov <alexey.klimov@linaro.org>
+Subject: [PATCH v2 0/2] Sndcard compatible for qrb2210/qcm2290
+Date: Wed, 22 Oct 2025 04:58:48 +0100
+Message-Id: <20251022-qrb2210-qcm2290-sndcard-v2-0-32e9e269a825@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 5/7] clk: rockchip: add support for pvtpll clk
-To: Heiko Stuebner <heiko@sntech.de>, mturquette@baylibre.com,
- sboyd@kernel.org, sugar.zhang@rock-chips.com, robh@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-clk@vger.kernel.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, huangtao@rock-chips.com,
- finley.xiao@rock-chips.com
-References: <20251021065232.2201500-1-zhangqing@rock-chips.com>
- <20251021065232.2201500-6-zhangqing@rock-chips.com>
- <13871591.dW097sEU6C@phil>
-From: zhangqing <zhangqing@rock-chips.com>
-In-Reply-To: <13871591.dW097sEU6C@phil>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0a9a0a04be1703a3kunm0809e1ec6ecec4
-X-HM-MType: 1
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGRhPSVZKTUJKGU8dQ01LSENWFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
-	hVSktLVUpCS0tZBg++
-DKIM-Signature: a=rsa-sha256;
-	b=ArXfRtXOs2Jy9UF1xMhJNAXTDSfBWHv5TLXYDrpUBZhvjN0KZHcPa6Htb7xhp6ndoH9+j0hekWLIk24NbBulhzu9JGj+WCGA2RSZSb1hEG1s8x3RgYZoDVVUUYXCfV6+nTV20cmyoWv2ZRkX2h82AHT2ZEzZWEElehV4GWOOsD8=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=GOlmDU3XHNnYO/SjaQRIDwYCDCAm+u1iC+Arz69K7Y4=;
-	h=date:mime-version:subject:message-id:from;
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAHhW+GgC/4WNQQ6CMBBFr0Jm7Zh2LEFceQ/DYmgLNNFWpoZoC
+ He3cgGX7//891fIXoLPcKlWEL+EHFIsQIcK7MRx9BhcYSBFtVaqwVl6Iq1wtg+iVmGOzrI4dFw
+ bMjWzPw1Q1k/xQ3jv5ltXeAr5leSzHy36l/53LhoVnql0RveWm/Z6D5ElHZOM0G3b9gUW/Strv
+ wAAAA==
+X-Change-ID: 20251007-qrb2210-qcm2290-sndcard-da54245aae3f
+To: Srinivas Kandagatla <srini@kernel.org>, 
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
+ linux-sound@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Alexey Klimov <alexey.klimov@linaro.org>, 
+ Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
+X-Mailer: b4 0.14.2
 
+This is a small patch series that serves as a preparation for
+adding HDMI audio playback support on QRB2210 RB1 board.
+The patches here are for sound subsystem. The other series
+will focus on qcom DT files.
 
-在 2025/10/21 21:47, Heiko Stuebner 写道:
-> Am Dienstag, 21. Oktober 2025, 08:52:30 Mitteleuropäische Sommerzeit schrieb Elaine Zhang:
->> Support to adjust pvtpll by volt-sel and otp.
->> Support calibrate pvtpll init frequency.
->>
->> PVTPLL is used to monitor the chip performance variance caused by chip
->> process, voltage and temperature, and generate a set of reference signals
->> for adjusting the voltage of the chip.
->>
->> PVTPLL supports the following features:
->>
->> 1. A clock oscillation ring is integrated and used to generate a clock
->> like signal (osc_clk),the frequency of this clock is determined
->> by the cell delay value of clock oscillation ring circuit
->>
->> 2. A frequency counter(osc_cnt) is used to measure the frequency of osc_clk.
->>
->> 3. A externally input clock (ref_clk) is used as a reference clock for
->> detecting the frequency of osc_clk.
->>
->> 4. A calculation counter uses ref_clk to generate a configurable
->> periodic timing window.
->>
->> 5. Two clock counters are used to measure the frequency of the clock
->> generated by OSC_WRAPPER?
->>
->> 6. Support for dividing the ref_clk and osc_clk
->>
->> 7. Support for configuring the effective polarity of the voltage
->> regulator signal 'OUT'
->>
->> The clock path of cpu used pvtpll:
->>
->>      --gpll--|--\
->>              |   \                                 | \
->>              |    \                                |  \
->>              |     \                               |   \
->>     --v0pll--| mux |--[gate]--[div]--clk_core_src--|mux |--clk_core
->>              |     /                               |   /
->>              |    /   --ref_clk--[div]-cpu_pvtpll--|  /
->>     --v1pll--|   /                                 | /
->>              |--/
->>
->> Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
-> [...]
->
->> +	pvtpll->regmap_cru = syscon_regmap_lookup_by_phandle_optional(np, "rockchip,cru");
-> Not convinced about that :-) .
->
-> (1) the cru itself already ioremaps the CRU memory, so having a syscon
->      there would ioremap that memory a second time.
-> (2) we should definitly not expose the whole CRU io-memory to other
->      drivers to write "random" stuff to. This will just invited further
->      hacks, where people want to take shortcuts with clock settings.
->
-> Also this seems highly specific to the rv1126b.
->
-> Looking at the registers, this is a clk-mux between that deepslow clock
-> and the actual pvtpll output and the config function really only
-> reparents to the pvtpll in all cases.
->
-> So I believe this should in the worst case just be mux clock, but also
-> I see that the "correct" setting will already be set by the
->
->          /* pvtpll src init */
->          writel_relaxed(PVTPLL_SRC_SEL_PVTPLL, reg_base + RV1126B_CORECLKSEL_CON(0));
->          writel_relaxed(PVTPLL_SRC_SEL_PVTPLL, reg_base + RV1126B_NPUCLKSEL_CON(0));
->          writel_relaxed(PVTPLL_SRC_SEL_PVTPLL, reg_base + RV1126B_VICLKSEL_CON(0));
->          writel_relaxed(PVTPLL_SRC_SEL_PVTPLL, reg_base + RV1126B_VEPUCLKSEL_CON(0));
->          writel_relaxed(PVTPLL_SRC_SEL_PVTPLL, reg_base + RV1126B_VCPCLKSEL_CON(0));
->
-> in the rv1126b clock driver?
-This configuration is only used to select the source clock of pvtpll, 
-whether it is 24M or 32K.
-For pvtpll to function properly, it needs to be switched from the 
-default 32K to 24M.
->
-> So that whole mode setting should not be necessary at all maybe?
-Pvtpll adjusts the ring and len parameters according to the voltage and 
-frequency, and calibrates and adjusts the parameter table of pvtpll 
-based on the batch of chips.
+The original series where one of the patches here were taken from is
+https://lore.kernel.org/linux-sound/20250302-rb1_hdmi_sound_first-v1-0-81a87ae1503c@linaro.org/
+and sndcard compable patch was added as new one.
 
-Pvtpll is located in pd. After the pd on/off, configuration information 
-will be lost and some recovery operations need to be performed, so the 
-address of cru is required.
+Signed-off-by: Alexey Klimov <alexey.klimov@linaro.org>
+---
+Changes in v2:
+- rewrote commit description and subjects/titles where applicable;
+- switched to SoC-level compatible for qrb2210 sndcard, therefore adjusted
+  DT schema changes;
+- Link to v1: https://lore.kernel.org/r/20251007-qrb2210-qcm2290-sndcard-v1-0-8222141bca79@linaro.org
 
-About the syscon attribute is used by the cpu dev freq driver to obtain 
-pvtpll information.This depends on cpu dev freq driver. Upstream can 
-remove the syscon next version.
+---
+Alexey Klimov (2):
+      ASoC: dt-bindings: qcom,sm8250: add QRB2210 soundcard
+      ASoC: qcom: sm8250: add qrb2210-sndcard compatible string
 
->
-> Thanks
-> Heiko
->
->
->
+ Documentation/devicetree/bindings/sound/qcom,sm8250.yaml | 1 +
+ sound/soc/qcom/sm8250.c                                  | 1 +
+ 2 files changed, 2 insertions(+)
+---
+base-commit: fe45352cd106ae41b5ad3f0066c2e54dbb2dfd70
+change-id: 20251007-qrb2210-qcm2290-sndcard-da54245aae3f
+
+Best regards,
 -- 
-张晴
-瑞芯微电子股份有限公司
-Rockchip Electronics Co.,Ltd
-地址：福建省福州市铜盘路软件大道89号软件园A区21号楼
-Add:No.21 Building, A District, No.89 Software Boulevard Fuzhou, Fujian 350003, P.R.China
-Tel:+86-0591-83991906-8601
-邮编：350003
-E-mail:elaine.zhang@rock-chips.com
-****************************************************************************
-保密提示：本邮件及其附件含有机密信息，仅发送给本邮件所指特定收件人。若非该特定收件人，请勿复制、使用或披露本邮件的任何内容。若误收本邮件，请从系统中永久性删除本邮件及所有附件，并以回复邮件或其他方式即刻告知发件人。福州瑞芯微电子有限公司拥有本邮件信息的著作权及解释权，禁止任何未经授权许可的侵权行为。
-
-IMPORTANT NOTICE: This email is from Fuzhou Rockchip Electronics Co., Ltd .The contents of this email and any attachments may contain information that is privileged, confidential and/or exempt from disclosure under applicable law and relevant NDA. If you are not the intended recipient, you are hereby notified that any disclosure, copying, distribution, or use of the information is STRICTLY PROHIBITED. Please immediately contact the sender as soon as possible and destroy the material in its entirety in any format. Thank you.
-
-****************************************************************************
+Alexey Klimov <alexey.klimov@linaro.org>
 
 
