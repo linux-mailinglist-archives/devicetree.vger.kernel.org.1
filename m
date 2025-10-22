@@ -1,60 +1,61 @@
-Return-Path: <devicetree+bounces-229808-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229810-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 236B6BFC429
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 15:48:36 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E09CBFC558
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 15:58:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6E19B1A60E00
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 13:47:45 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 5E56D5800E4
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 13:51:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDFB034A3CE;
-	Wed, 22 Oct 2025 13:44:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D346434027C;
+	Wed, 22 Oct 2025 13:51:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="kBcU2Mvi"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="H/rrnTIK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B01553469EE;
-	Wed, 22 Oct 2025 13:44:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABA9F9460;
+	Wed, 22 Oct 2025 13:51:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761140693; cv=none; b=mGGvARDHdd27YyAMZ3FmTTGvPMKba8Fwl6iMmHdKpcStPYSKDFcZYBS4FQGLwrLv9Z9sBDyoYgqmqx8Jg5i29p9gEEytOQmQtsKQhOp/lIwVA1/DIHB3fh9n5Xx1PIfvIg4w/GSdCDmPU6H2HZdcL6U4L6U23YxHKCP8+SHVVe0=
+	t=1761141064; cv=none; b=gBZkSGeZrRyZD2846134+IhjPqgEZ9TxxKiro6ed/6ExfzNQokh3aqSgnZ8qpIrlAqvKmbM7hy+/ubnJQyZzhJJ22FwG4kwq/ytCcOhlqyEVt1cuHmrbvmvHBe0yddN4fmaZbyVss5ATB0Zjk6GTYDu/72/FCDmf/+6IUuyBmlg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761140693; c=relaxed/simple;
-	bh=1Mc5RD1mlXF+Xg8uXinp0KILGU2YO3O/T/z9svhRkp0=;
+	s=arc-20240116; t=1761141064; c=relaxed/simple;
+	bh=Rpb1fxIgPELCh+dgDZI2maIQUBucGAUYh2YiqPjgSHg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kMbOhX84QpPFhsu4TkzySq2yNMPE3IWZMg3siEDnssGYe92ebTx2n5/hPvue56rIyrKm/tGmNX7vJ8NZ6OOerMQoM90p0nucfWG+EvtexPUm6K6YdE1Asw9Bq2i4/nrfFidAIqovv4iwUC5Ow2/BIr0Kn5f+bA71BX7X11Fdp5k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=kBcU2Mvi; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=tSRufK6a9oDVc+0ldM5aHf45/pLD+eZuh0vwzFzwbfg=; b=kBcU2MviAWFb1wLxknZjZKDlIK
-	RclL5i1SHlCX0bO+xwWIiwe5Q09bReDzWJ3GJDlmP/FTVsOcr9Qm6/WNvFItiH1HM84SxUa+GGVEj
-	9Fv8bethfL2nxafVxcrWj51kkk4sD3qBayABnQMiY4XPmHNqXg4DWcnQPVHUG7aDJWQk=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1vBZ8r-00BlXZ-Qa; Wed, 22 Oct 2025 15:44:41 +0200
-Date: Wed, 22 Oct 2025 15:44:41 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Heiko Stuebner <heiko@sntech.de>
-Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
-	kuba@kernel.org, pabeni@redhat.com, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-	David Wu <david.wu@rock-chips.com>
-Subject: Re: [PATCH 4/4] ethernet: stmmac: dwmac-rk: Add RK3506 GMAC support
-Message-ID: <c03fc648-a096-43b5-8f4f-0fd34dfcc8fa@lunn.ch>
-References: <20251021224357.195015-1-heiko@sntech.de>
- <20251021224357.195015-5-heiko@sntech.de>
+	 Content-Type:Content-Disposition:In-Reply-To; b=OvTri2PDgaVTNjGc1VlZ0HnyfapeLNO1yF60znxk61bbSC9SWeuCQgHYNBdXD7QoINRXUcrFNrY6R56wAO400b7gDDbdbCheWxwwYaEJiaSCoxtwcOZ5so3ByteGn/CX8D4g8RhrAkJML6mzQW48jdMS9z5u/aQR9FcSw8BFyRQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=H/rrnTIK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 089FFC4CEE7;
+	Wed, 22 Oct 2025 13:51:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761141063;
+	bh=Rpb1fxIgPELCh+dgDZI2maIQUBucGAUYh2YiqPjgSHg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=H/rrnTIKtylDAqUvpgE+ID+wpERQf3+u9yMq2XxfY09sTDL1jN+xGw2vdltmMojXE
+	 fZkbncDdJK9HWWrc5WUBmbEEntW/O8C+v2ImWSCUCOfcC09zvrtlpl3DVRT6MwHURB
+	 H0lS0TTqul2FxNR5LafiRzAh5tm4R0/btDUU7dx8BVySISmZbQbhGdbXvNvbMEXFnQ
+	 iSjPpDbge01TqilEMFv8mxav1QNrNveMRgn8aUiwbORwpcZJ7vzW4rDMNLlqobEkiY
+	 wrPzqp0vpLOp7sgTsjm0V+91rv3ZrpcnWbG7upqSqo1VhQkvtitL4lwGTutT2zybtR
+	 Hj5HIbFnXa6xQ==
+Date: Wed, 22 Oct 2025 08:51:01 -0500
+From: Rob Herring <robh@kernel.org>
+To: Ryan Chen <ryan_chen@aspeedtech.com>
+Cc: Thomas Gleixner <tglx@linutronix.de>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>,
+	jk@codeconstruct.com.au, Kevin Chen <kevin_chen@aspeedtech.com>,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org
+Subject: Re: [PATCH v5 1/3] dt-bindings: interrupt-controller:
+ aspeed,ast2700: Add support for INTC hierarchy
+Message-ID: <20251022135101.GA3349934-robh@kernel.org>
+References: <20251022065507.1152071-1-ryan_chen@aspeedtech.com>
+ <20251022065507.1152071-2-ryan_chen@aspeedtech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,20 +64,248 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251021224357.195015-5-heiko@sntech.de>
+In-Reply-To: <20251022065507.1152071-2-ryan_chen@aspeedtech.com>
 
-On Wed, Oct 22, 2025 at 12:43:57AM +0200, Heiko Stuebner wrote:
-> From: David Wu <david.wu@rock-chips.com>
-> 
-> Add the needed glue blocks for the RK3506-specific setup.
-> 
-> The RK3506 dwmac only supports up to 100MBit with a RMII PHY,
-> but no RGMII.
-> 
-> Signed-off-by: David Wu <david.wu@rock-chips.com>
-> Signed-off-by: Heiko Stuebner <heiko@sntech.de>
+On Wed, Oct 22, 2025 at 02:55:05PM +0800, Ryan Chen wrote:
+> AST2700 contains two-level interrupt controllers (INTC0 and INTC1),
+> each with its own register space and handling different sets of
+> peripherals.
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+This is a mess!
 
-    Andrew
+How does this relate to the existing "aspeed,ast2700-intc-ic"? Its 
+schema has a block diagram of connections which I can understand. This 
+does not.
+
+The use of child nodes here is questionable. A variable number of 
+interrupt banks is not a reason to have child nodes. I'm only guessing 
+that's what's happening here because you haven't explained it.
+
+> 
+> Signed-off-by: Ryan Chen <ryan_chen@aspeedtech.com>
+> ---
+>  .../aspeed,ast2700-intc0.yaml                 | 97 +++++++++++++++++++
+>  .../aspeed,ast2700-intc1.yaml                 | 94 ++++++++++++++++++
+>  2 files changed, 191 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/aspeed,ast2700-intc0.yaml
+>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/aspeed,ast2700-intc1.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/interrupt-controller/aspeed,ast2700-intc0.yaml b/Documentation/devicetree/bindings/interrupt-controller/aspeed,ast2700-intc0.yaml
+> new file mode 100644
+> index 000000000000..93a5b142b0a2
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/interrupt-controller/aspeed,ast2700-intc0.yaml
+> @@ -0,0 +1,97 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/interrupt-controller/aspeed,ast2700-intc0.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +maintainers:
+> +  - Ryan Chen <ryan_chen@aspeedtech.com>
+> +
+> +title: ASPEED AST2700 Interrupt Controller 0
+> +
+> +description:
+> +  This interrupt controller hardware is first level interrupt controller that
+> +  is hooked to the GIC interrupt controller. It's useful to combine multiple
+> +  interrupt sources into 1 interrupt to GIC interrupt controller.
+> +
+> +properties:
+> +  compatible:
+> +    const: aspeed,ast2700-intc0
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  '#address-cells':
+> +    const: 1
+> +
+> +  '#size-cells':
+> +    const: 1
+> +
+> +  ranges: true
+> +
+> +patternProperties:
+> +  "^interrupt-controller@":
+> +    type: object
+> +    description: A child interrupt controller node
+> +    additionalProperties: false
+> +
+> +    properties:
+> +      compatible:
+> +        enum:
+> +          - aspeed,ast2700-intc0-ic
+> +
+> +      reg:
+> +        maxItems: 1
+> +
+> +      '#interrupt-cells':
+> +        const: 1
+> +
+> +      interrupt-controller: true
+> +
+> +      interrupts:
+> +        minItems: 1
+> +        maxItems: 10
+
+What are the 10 different interrupts? You have to define what each one 
+is.
+
+> +
+> +    required:
+> +      - compatible
+> +      - reg
+> +      - interrupt-controller
+> +      - '#interrupt-cells'
+> +      - interrupts
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - '#address-cells'
+> +  - '#size-cells'
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +    intc0: interrupt-controller@12100000 {
+
+This node is not an interrupt-controller.
+
+> +        compatible = "aspeed,ast2700-intc0";
+> +        reg = <0x12100000 0x4000>;
+> +        #address-cells = <1>;
+> +        #size-cells = <1>;
+> +        ranges = <0x0 0x12100000 0x4000>;
+> +
+> +        intc0_11: interrupt-controller@1b00 {
+> +            #interrupt-cells = <1>;
+> +            interrupt-controller;
+> +            compatible = "aspeed,ast2700-intc0-ic";
+> +            reg = <0x1b00 0x10>;
+> +            interrupts = <GIC_SPI 192 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 193 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 194 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 195 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 196 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 197 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 198 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 199 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 200 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 201 IRQ_TYPE_LEVEL_HIGH>;
+> +        };
+> +    };
+> \ No newline at end of file
+
+Fix.
+
+> diff --git a/Documentation/devicetree/bindings/interrupt-controller/aspeed,ast2700-intc1.yaml b/Documentation/devicetree/bindings/interrupt-controller/aspeed,ast2700-intc1.yaml
+> new file mode 100644
+> index 000000000000..2f807d074211
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/interrupt-controller/aspeed,ast2700-intc1.yaml
+> @@ -0,0 +1,94 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/interrupt-controller/aspeed,ast2700-intc1.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +maintainers:
+> +  - Ryan Chen <ryan_chen@aspeedtech.com>
+> +
+> +title: ASPEED AST2700 Interrupt Controller 1
+> +
+> +description:
+> +  This interrupt controller hardware is second level interrupt controller that
+> +  is hooked to a parent interrupt controller. It's useful to combine multiple
+> +  interrupt sources into 1 interrupt to parent interrupt controller.
+> +
+> +properties:
+> +  compatible:
+> +    const: aspeed,ast2700-intc1
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  '#address-cells':
+> +    const: 1
+> +
+> +  '#size-cells':
+> +    const: 1
+> +
+> +  ranges: true
+> +
+> +patternProperties:
+> +  "^interrupt-controller@":
+> +    type: object
+> +    description: A child interrupt controller node
+> +    additionalProperties: false
+> +
+> +    properties:
+> +      compatible:
+> +        enum:
+> +          - aspeed,ast2700-intc1-ic
+> +
+> +      reg:
+> +        maxItems: 1
+> +
+> +      '#interrupt-cells':
+> +        const: 1
+> +
+> +      interrupt-controller: true
+> +
+> +      interrupts-extended:
+> +        minItems: 1
+> +        maxItems: 1
+> +
+> +    required:
+> +      - compatible
+> +      - reg
+> +      - interrupt-controller
+> +      - '#interrupt-cells'
+> +      - interrupts-extended
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - '#address-cells'
+> +  - '#size-cells'
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    intc1: interrupt-controller@14c18000 {
+> +        compatible = "aspeed,ast2700-intc1";
+> +        reg = <0x14c18000 0x400>;
+> +        #address-cells = <1>;
+> +        #size-cells = <1>;
+> +        ranges = <0x0 0x14c18000 0x400>;
+> +
+> +        intc1_0: interrupt-controller@100 {
+> +            compatible = "aspeed,ast2700-intc1-ic";
+> +            reg = <0x100 0x10>;
+> +            #interrupt-cells = <1>;
+> +            interrupt-controller;
+> +            interrupts-extended = <&intc0_11 0>;
+> +        };
+> +
+> +        intc1_1: interrupt-controller@110 {
+> +            compatible = "aspeed,ast2700-intc1-ic";
+> +            reg = <0x110 0x10>;
+> +            #interrupt-cells = <1>;
+> +            interrupt-controller;
+> +            interrupts-extended = <&intc0_11 1>;
+> +        };
+> +    };
+> \ No newline at end of file
+> -- 
+> 2.34.1
+> 
 
