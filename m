@@ -1,130 +1,242 @@
-Return-Path: <devicetree+bounces-229722-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229723-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CCA72BFB1D8
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 11:17:08 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 280FFBFB1F0
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 11:18:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 23A8A3AAF00
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 09:15:20 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 9C1474E8789
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 09:18:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2A6B3128C7;
-	Wed, 22 Oct 2025 09:15:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73AA830EF7D;
+	Wed, 22 Oct 2025 09:18:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (4096-bit key) header.d=prolan.hu header.i=@prolan.hu header.b="gC+8vG2q"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="OF2J3E5A"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fw2.prolan.hu (fw2.prolan.hu [193.68.50.107])
+Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17E4B28A72B;
-	Wed, 22 Oct 2025 09:15:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.68.50.107
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24C2730EF84;
+	Wed, 22 Oct 2025 09:18:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761124518; cv=none; b=gHC+KHhFDK+pTmTwzTzc0M10pGu/FANvdjVcrLFd8Xa2wrvvezq/FjWO+UE0wEIrjFW2StjtpHJYqDP24MSpBmee//8/qSvihe3WPkVGcZ/VK9mZjugB2aX8QZe2VLOc7BhHzdLbxszQoxAkfejMANlfBP+Hd1AMAZb4HS3q/6c=
+	t=1761124704; cv=none; b=ffPJhrPNl2SAJTgPi1GhdexJImZ05xAHHzhn+ZPrUT4sUQCYgMNiiMsNarfkna4nDq1QASHYS0+qlpFEA9qRQ8TS1C4trxDB/rR6TDkAL+S7cv543lg5h3acZSGbtM5AMY5z4wRU3MB9deXloKJx2xeatyJNTUx+Lg+RZ0jUv44=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761124518; c=relaxed/simple;
-	bh=2xq3R/jwURMT3riPJBPbFF6dNSZ4etKP0GyAxX70bV8=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=X02ovAqVblNtFcDXHSXwOhYSRt7L2oO9f0Doxx47FsZ1J6SAYUIsAIyUdR/T9hjmS2glQ3JRR1Y/lSVhM2/5ER1OcFin7xBJoPrTHkg4PG+1i0uGXIxHNjAUMgTE2WXg9yQSCMajRXCLCMQFlQFyt1RFJqO1FcsJgvxVa5hWwp0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=prolan.hu; spf=pass smtp.mailfrom=prolan.hu; dkim=pass (4096-bit key) header.d=prolan.hu header.i=@prolan.hu header.b=gC+8vG2q; arc=none smtp.client-ip=193.68.50.107
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=prolan.hu
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=prolan.hu
-Received: from proxmox-mailgw.intranet.prolan.hu (localhost.localdomain [127.0.0.1])
-	by proxmox-mailgw.intranet.prolan.hu (Proxmox) with ESMTP id 24377A0771;
-	Wed, 22 Oct 2025 11:15:15 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=prolan.hu; h=cc
-	:cc:content-type:content-type:date:from:from:in-reply-to
-	:message-id:mime-version:references:reply-to:subject:subject:to
-	:to; s=mail; bh=IjnnSkeO7vyXJXiM/UlwPYh5yPokHe5N0lGveEU0HQk=; b=
-	gC+8vG2qE9BkuL4gh/EFMYPhtvEf9aNatdC8D9hDQAgEFmv9vxXT1Bc4mLFigO1l
-	dv0mB1nRrkbVB6rXpep/8QefXofBk63mZ2U7v9gyMig6TXA5hl2l89o7WUVQaJD+
-	gQXrq/lXHVsGMhQHKLcvPhlhllZiPw5zOFIrvtiRxPiUs52fGLKihkQp6CUScQkH
-	gRh0LwH2Mhg30ZHELML0IlH/S0Vi9gJXZdUUsMB2DqtSZGDhJF21rkdFKDDZNd2/
-	j1pTa2QGKd6W94huNXE/ZHDnbXCIey8MAj1w7mE9d/b/KfNa0Do1Va03KDFeJ4Zy
-	rGQFPRdYzWuUcG+0W71mNcU3vhf9p28aI6xL7Znsb9IJt+V7E8yb/mtBeIREHqw+
-	mnqIdcyLSJaT/vNi8CkdLhxHBLTGgSsgR7oZ07xGctcO2qPpQf/PowrB+9ke+ssA
-	zRsLyb/PrJ5SkQOwt8cQWysXlXXaPfxl5dMMkqiM76k/uQIsBoMVd+bZm2wLoDFU
-	AvzAVN+cOfjnmqd9sJid8ACtOWR/5pBqi+xs8Kju7oMDkaIbQjmzxkYTBHVUNiY2
-	/Y4vCOu/DkGA4wuJB07IzBlCXNI8lospJ+MrfLJMMaM9sCzR1Ugznc8boOWLOItU
-	WCFMqTjGCGzPq80O5/3nNetQQU9wUwhusDIirczGs+4=
-Date: Wed, 22 Oct 2025 11:15:14 +0200
-From: Buday Csaba <buday.csaba@prolan.hu>
-To: Rob Herring <robh@kernel.org>
-CC: Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>, "David S. Miller"
-	<davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub Kicinski
-	<kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Krzysztof Kozlowski
-	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Florian Fainelli
-	<f.fainelli@gmail.com>, <netdev@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 3/4] dt-bindings: net: mdio: add
- phy-id-read-needs-reset property
-Message-ID: <aPigoh4E3_g2LzoE@debianbuilder>
-References: <20251015134503.107925-1-buday.csaba@prolan.hu>
- <20251015134503.107925-3-buday.csaba@prolan.hu>
- <20251021201023.GA741540-robh@kernel.org>
+	s=arc-20240116; t=1761124704; c=relaxed/simple;
+	bh=FGCr1siS9EZNF4C9OKmn3apBGtbCDYLUAtCd/WlrkcM=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=poR9XY993drtIKc9pRzS0e8mR2UrIybThRso3B2qWLxuhmEFhe3tjqVwLuIyrrGn9niTh372ZLdFJ+8HWJ1dsgTteLmobm3emEYWjSFMMtGkTCZoGYB8IfXEUXH/0/SJWOmIalKHjn6B+ktzmdHQ4bpZ8T1ypba5AhKwyaM+ekE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=OF2J3E5A; arc=none smtp.client-ip=185.246.85.4
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-03.galae.net (Postfix) with ESMTPS id 4BF414E41261;
+	Wed, 22 Oct 2025 09:18:20 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 1FD07606DC;
+	Wed, 22 Oct 2025 09:18:20 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id BB8D8102F2424;
+	Wed, 22 Oct 2025 11:18:09 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1761124698; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=LNEtH9lG/yvOebKMsji3DJq4oD0CU5SvCjoqyEyuZJY=;
+	b=OF2J3E5AqsRwJZUe/GRi6I4GRKXFbvqbO/tcH7qL3QxWQQyacXCI2N81rs8SHmBRk42pei
+	mDcgLvkOpYtZ128tfw0QgBcbY/E2k4MUV7t/gHmWJHKhdVhNl+2JV4byn2kuJ3Fb38Zsif
+	wpRUDMbFz+ApprQLi2TiA/7Lx9AvfUPkrFwOFsBlUEtUARyAwZIjKZ2yNUEO0IVZruZaFf
+	6hL7qd09YkaJz04E2Nuj0oSbPtlR8xHZsN9HavVDoyhWhsS2LPUifxn/pvZzIR5unzRj2j
+	YtuqYc8IuOEKk7cQUYupHAyPUGw8jaHFhFGi667+wSvG5a5gvBhR5n9ZA2yHfw==
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+To: Richard Genoud <richard.genoud@bootlin.com>
+Cc: Richard Weinberger <richard@nod.at>,  Vignesh Raghavendra
+ <vigneshr@ti.com>,  Rob Herring <robh@kernel.org>,  Krzysztof Kozlowski
+ <krzk+dt@kernel.org>,  Conor Dooley <conor+dt@kernel.org>,  Chen-Yu Tsai
+ <wens@csie.org>,  Jernej Skrabec <jernej.skrabec@gmail.com>,  Samuel
+ Holland <samuel@sholland.org>,  Uwe =?utf-8?Q?Kleine-K=C3=B6nig?=
+ <u.kleine-koenig@baylibre.com>,  Wentao Liang <vulab@iscas.ac.cn>,  Johan
+ Hovold <johan@kernel.org>,  Maxime Ripard <mripard@kernel.org>,  Thomas
+ Petazzoni <thomas.petazzoni@bootlin.com>,  linux-mtd@lists.infradead.org,
+  devicetree@vger.kernel.org,  linux-arm-kernel@lists.infradead.org,
+  linux-sunxi@lists.linux.dev,  linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 13/15] mtd: rawnand: sunxi: Add support for H616 nand
+ controller
+In-Reply-To: <20251020101311.256819-14-richard.genoud@bootlin.com> (Richard
+	Genoud's message of "Mon, 20 Oct 2025 12:13:09 +0200")
+References: <20251020101311.256819-1-richard.genoud@bootlin.com>
+	<20251020101311.256819-14-richard.genoud@bootlin.com>
+User-Agent: mu4e 1.12.7; emacs 30.2
+Date: Wed, 22 Oct 2025 11:18:07 +0200
+Message-ID: <87ecqvthv4.fsf@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20251021201023.GA741540-robh@kernel.org>
-X-ESET-AS: R=OK;S=0;OP=CALC;TIME=1761124514;VERSION=8000;MC=63647446;ID=130266;TRN=0;CRV=0;IPC=;SP=0;SIPS=0;PI=3;F=0
-X-ESET-Antispam: OK
-X-EsetResult: clean, is OK
-X-EsetId: 37303A2998FD515F647D62
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Last-TLS-Session-Version: TLSv1.3
 
-On Tue, Oct 21, 2025 at 03:10:23PM -0500, Rob Herring wrote:
-> On Wed, Oct 15, 2025 at 03:45:02PM +0200, Buday Csaba wrote:
-> > Some Ethernet PHYs require a hard reset before accessing their MDIO
-> > registers. When the ID is not provided by a compatible string,
-> > reading the PHY ID may fail on such devices.
-> > 
-> > This patch introduces a new device tree property called
-> > `phy-id-read-needs-reset`, which can be used to hard reset the
-> > PHY before attempting to read its ID via MDIO.
-> > 
-> > Signed-off-by: Buday Csaba <buday.csaba@prolan.hu>
-> > ---
-> >  Documentation/devicetree/bindings/net/ethernet-phy.yaml | 8 ++++++++
-> >  1 file changed, 8 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/net/ethernet-phy.yaml b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
-> > index 2ec2d9fda..b570f8038 100644
-> > --- a/Documentation/devicetree/bindings/net/ethernet-phy.yaml
-> > +++ b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
-> > @@ -215,6 +215,14 @@ properties:
-> >        Delay after the reset was deasserted in microseconds. If
-> >        this property is missing the delay will be skipped.
-> >  
-> > +  phy-id-read-needs-reset:
-> > +    $ref: /schemas/types.yaml#/definitions/flag
-> > +    description:
-> > +      Some PHYs require a hard reset before accessing MDIO registers.
-> > +      This workaround allows auto-detection of the PHY ID in such cases.
-> > +      When the PHY ID is provided with the 'compatible' string, setting
-> > +      this property has no effect.
-> 
-> If the phy is listed in DT, then it should have a compatible. Therefore, 
-> you don't need this property.
-> 
-> Rob
-> 
+Hello Richard,
 
-Actually, please partly ignore my previous letter. I managed to do it
-without a new DT property, and this seems to be a more elegant solution
-after all.
+On 20/10/2025 at 12:13:09 +02, Richard Genoud <richard.genoud@bootlin.com> =
+wrote:
 
-If you wish to take a look at the next patch, you can find it here:
-https://lore.kernel.org/netdev/cover.1761124022.git.buday.csaba@prolan.hu/
+> The H616 nand controller has the same base as A10/A23, with some
+> differences:
+> - mdma is based on chained buffers
+> - its ECC supports up to 80bit per 1024bytes
+> - some registers layouts are a bit different, mainly due do the stronger
+>   ECC.
+> - it uses USER_DATA_LEN registers along USER_DATA registers.
+> - it needs a specific clock for ECC and MBUS.
+>
+> Introduce the basic support, with ECC and scrambling, but without
+> DMA/MDMA.
+>
+> Tested on Whatsminer H616 board (with and without scrambling, ECC)
+>
+> Signed-off-by: Richard Genoud <richard.genoud@bootlin.com>
 
-Thanks for the feedback!
+...
 
-Csaba
+>=20=20
+> +#define NFC_TIMING_CFG2(tCDQSS, tSC, tCLHZ, tCSS, tWC)		\
+> +	((((tCDQSS) & 0x1) << 11) | (((tSC) & 0x3) << 12) |	\
+> +	 (((tCLHZ) & 0x3) << 14) | (((tCSS) & 0x3) << 16) |	\
+> +	 (((tWC) & 0x3) << 18))
+> +
+>  /* define bit use in NFC_CMD */
+>  #define NFC_CMD_LOW_BYTE_MSK	GENMASK(7, 0)
+> -#define NFC_CMD_HIGH_BYTE_MSK	GENMASK(15, 8)
+> +#define NFC_CMD_HIGH_BYTE_MSK	GENMASK(15, 8)  // 15-10 reserved on H6
 
+Wrong comment type :-)
+
+> +#define NFC_CMD_ADR_NUM_MSK	GENMASK(9, 8)
+>  #define NFC_CMD(x)		(x)
+>  #define NFC_ADR_NUM_MSK		GENMASK(18, 16)
+>  #define NFC_ADR_NUM(x)		(((x) - 1) << 16)
+> @@ -122,6 +156,7 @@
+>  #define NFC_SEQ			BIT(25)
+>  #define NFC_DATA_SWAP_METHOD	BIT(26)
+>  #define NFC_ROW_AUTO_INC	BIT(27)
+> +#define NFC_H6_SEND_RND_CMD2	BIT(27)
+>  #define NFC_SEND_CMD3		BIT(28)
+>  #define NFC_SEND_CMD4		BIT(29)
+>  #define NFC_CMD_TYPE_MSK	GENMASK(31, 30)
+> @@ -133,6 +168,7 @@
+>  #define NFC_READ_CMD_MSK	GENMASK(7, 0)
+>  #define NFC_RND_READ_CMD0_MSK	GENMASK(15, 8)
+>  #define NFC_RND_READ_CMD1_MSK	GENMASK(23, 16)
+> +#define NFC_RND_READ_CMD2_MSK	GENMASK(31, 24)
+
+...
+
+> @@ -858,6 +967,8 @@ static int sunxi_nfc_hw_ecc_read_chunk(struct nand_ch=
+ip *nand,
+>  	if (ret)
+>  		return ret;
+>=20=20
+> +	sunxi_nfc_reset_user_data_len(nfc);
+> +	sunxi_nfc_set_user_data_len(nfc, 4, 0);
+
+I'm not sure I understand this properly. Why isn't this a fixed setting?
+Also, what is 4? It is not obvious to me and my require either a comment
+or a define (or maybe a sizeof()).
+
+>  	sunxi_nfc_randomizer_config(nand, page, false);
+>  	sunxi_nfc_randomizer_enable(nand);
+>  	writel(NFC_DATA_TRANS | NFC_DATA_SWAP_METHOD | NFC_ECC_OP,
+> @@ -968,6 +1079,8 @@ static int sunxi_nfc_hw_ecc_read_chunks_dma(struct n=
+and_chip *nand, uint8_t *buf
+>  		return ret;
+>=20=20
+>  	sunxi_nfc_hw_ecc_enable(nand);
+> +	sunxi_nfc_reset_user_data_len(nfc);
+> +	sunxi_nfc_set_user_data_len(nfc, 4, 0);
+>  	sunxi_nfc_randomizer_config(nand, page, false);
+>  	sunxi_nfc_randomizer_enable(nand);
+>=20=20
+> @@ -1100,6 +1213,8 @@ static int sunxi_nfc_hw_ecc_write_chunk(struct nand=
+_chip *nand,
+>=20=20
+>  	sunxi_nfc_randomizer_config(nand, page, false);
+>  	sunxi_nfc_randomizer_enable(nand);
+> +	sunxi_nfc_reset_user_data_len(nfc);
+> +	sunxi_nfc_set_user_data_len(nfc, 4, 0);
+>  	sunxi_nfc_hw_ecc_set_prot_oob_bytes(nand, oob, 0, bbm, page);
+>=20=20
+>  	writel(NFC_DATA_TRANS | NFC_DATA_SWAP_METHOD |
+> @@ -1344,10 +1459,12 @@ static int sunxi_nfc_hw_ecc_write_page_dma(struct=
+ nand_chip *nand,
+>  	if (ret)
+>  		goto pio_fallback;
+>=20=20
+> +	sunxi_nfc_reset_user_data_len(nfc);
+>  	for (i =3D 0; i < ecc->steps; i++) {
+>  		const u8 *oob =3D nand->oob_poi + (i * (ecc->bytes + 4));
+>=20=20
+>  		sunxi_nfc_hw_ecc_set_prot_oob_bytes(nand, oob, i, !i, page);
+> +		sunxi_nfc_set_user_data_len(nfc, 4, i);
+
+Here you use it differently, maybe a bit of explanation in a comment
+could help.
+
+>  	}
+>=20=20
+>  	nand_prog_page_begin_op(nand, page, 0, NULL, 0);
+> @@ -2148,6 +2265,10 @@ static int sunxi_nfc_probe(struct platform_device =
+*pdev)
+>  	if (irq < 0)
+>  		return irq;
+>=20=20
+> +	nfc->caps =3D of_device_get_match_data(dev);
+> +	if (!nfc->caps)
+> +		return -EINVAL;
+> +
+>  	nfc->ahb_clk =3D devm_clk_get_enabled(dev, "ahb");
+>  	if (IS_ERR(nfc->ahb_clk)) {
+>  		dev_err(dev, "failed to retrieve ahb clk\n");
+> @@ -2160,6 +2281,22 @@ static int sunxi_nfc_probe(struct platform_device =
+*pdev)
+>  		return PTR_ERR(nfc->mod_clk);
+>  	}
+>=20=20
+
+...
+
+>  static const struct sunxi_nfc_caps sunxi_nfc_a10_caps =3D {
+>  	.has_ecc_block_512 =3D true,
+> +	.has_ecc_clk =3D false,
+> +	.has_mbus_clk =3D false,
+
+As you want, but setting these fields (and below) to false is not
+strictly required as they will be set to 0 (which means false,
+automatically).
+
+>  	.reg_io_data =3D NFC_REG_A10_IO_DATA,
+>  	.reg_ecc_err_cnt =3D NFC_REG_A10_ECC_ERR_CNT,
+>  	.reg_user_data =3D NFC_REG_A10_USER_DATA,
+> @@ -2242,11 +2383,14 @@ static const struct sunxi_nfc_caps sunxi_nfc_a10_=
+caps =3D {
+>  	.dma_maxburst =3D 4,
+>  	.ecc_strengths =3D sunxi_ecc_strengths_a10,
+>  	.nstrengths =3D ARRAY_SIZE(sunxi_ecc_strengths_a10),
+> +	.max_ecc_steps =3D 16,
+>  	.sram_size =3D 1024,
+>  };
+>=20=20
+
+> +static const struct sunxi_nfc_caps sunxi_nfc_h616_caps =3D {
+> +	.has_mdma =3D false, // H616 supports only chained descriptors
+
+Wrong comment type :-)
+
+LGTM otherwise.
+
+Thanks,
+Miqu=C3=A8l
 
