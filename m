@@ -1,161 +1,131 @@
-Return-Path: <devicetree+bounces-229774-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229775-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02862BFBD89
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 14:29:29 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B7093BFBE0A
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 14:36:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D8BE918C3478
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 12:29:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6DD6C4206ED
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 12:36:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2771E343214;
-	Wed, 22 Oct 2025 12:29:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA5F434167A;
+	Wed, 22 Oct 2025 12:35:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="GNhgCWOc"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="QSk6D6ZI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2623734164C;
-	Wed, 22 Oct 2025 12:29:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9C8A19CC28;
+	Wed, 22 Oct 2025 12:35:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761136167; cv=none; b=nXdrg/KXaRulqDRj8OAu5wNf038RXvf+PoVUcmtMJQtaPm8oCLJ384XPPf/eTFE+DSJ8fZORyxGJdp1BQg1nfjwapMFaT3hRyyv6bKW0qTNFzJ0OOwV0+pgTHtKQDrr7oqAmDRWPo0G1XT0O/qZ9mRpZSJa61GlVLtmjNISHiSE=
+	t=1761136558; cv=none; b=BF0NVjX1LcWR4aueGWQhWFloToLW/H54QQsBnoHpldmMznk78U8KMT79S86APQ2M7AdJv+hWbsdLDtIGFuJfwrR6xyCfduIAWWNCtcbA85aChvQN6jbfDdouHIZy1qa/uNjZS4aK70Eir49jYNhw53/ZNSW+0EMq938t6IohEuU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761136167; c=relaxed/simple;
-	bh=UVBJpMa/QbguqBmGeofNe7qPcpk9/LnPPPKdBOMtg/Y=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=aHGRRsRi8O5W/pVDtSAoVU7cJBCzcu/K64dn9fbXHd24elOmqCU74tqc/XRP5KrU/aHKtREnNNjYtSf7zmqUsdh/URbsp8f9ODZjrfXvt678RWR86ZH4d/jGBnRvGP0PhZ+L3Krg2P/nfzgIkA88yQt/M1O0VweojFmbJetpl/g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=GNhgCWOc; arc=none smtp.client-ip=198.47.19.246
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
-	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTP id 59MCTJ2D266088;
-	Wed, 22 Oct 2025 07:29:19 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1761136159;
-	bh=ItdHM5JRzxCl5+hQXpEUXe7rdUyHEdLjMyQbQhS+/iA=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=GNhgCWOcU6ITTv0j1TQjhhAM3eeKnLS5g5j/zPpgC8zCg9ecH6KUEmJcl5sBOM/9E
-	 V8O/NbbfljkLwejO1PtdQJU7d3ONxM+a8IL7wClh/F9sWsyfzMdVdYBHdoiGDuEbQ3
-	 pYOMPzvjaU1imta8FvjhLdARvNLY08e51oSCOBVM=
-Received: from DLEE214.ent.ti.com (dlee214.ent.ti.com [157.170.170.117])
-	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 59MCTJbO1918962
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 22 Oct 2025 07:29:19 -0500
-Received: from DLEE201.ent.ti.com (157.170.170.76) by DLEE214.ent.ti.com
- (157.170.170.117) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 22 Oct
- 2025 07:29:19 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE201.ent.ti.com
- (157.170.170.76) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Wed, 22 Oct 2025 07:29:19 -0500
-Received: from [172.24.234.127] (psdkl-workstation0.dhcp.ti.com [172.24.234.127])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 59MCTFq51177876;
-	Wed, 22 Oct 2025 07:29:16 -0500
-Message-ID: <2aeb5e65-b15e-4d34-a2f5-15393dd6972c@ti.com>
-Date: Wed, 22 Oct 2025 17:59:15 +0530
+	s=arc-20240116; t=1761136558; c=relaxed/simple;
+	bh=6GygRBHvxfcqGXnEi/9P3tlsxMuta/koSy98GYmAOXs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ta7dioEumgRbe1s+cbkhqVR37yu7sUa0P23kykPgHhVICe2hs1sBXJRuSIC7rlm69VrBwKdRM7CYAYBfqjY61UL871TBgUGrwEC9FSuRGa89YiETxRB7H7BLAZ77OwsGbGXUkrT6zmIYCVpgIsMXLGzHF2K6omQkAWTi0NMtSWw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=QSk6D6ZI; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=R95DGcQ4LYALHG8T4SNxi7BAAXg7er7ggzkRbLh42No=; b=QSk6D6ZIL39KWQjpQVXzyu/daU
+	CkHCg8qd7kd0YqSVIzxh2OYFZ1Gtf6Zy1PMvilS2ibzw5vrduZP1N74w4P6Tj1JfPOXck0ka2IkIN
+	G3R9KHuq/zrSWxPK36Hjw1+QvspeXZMa8vN0KtQZWpHSk2jPm3N1Cw59r3FE3Ov57v3Y=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1vBY3w-00Bkxo-MY; Wed, 22 Oct 2025 14:35:32 +0200
+Date: Wed, 22 Oct 2025 14:35:32 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Sjoerd Simons <sjoerd@collabora.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Ryder Lee <ryder.lee@mediatek.com>,
+	Jianjun Wang <jianjun.wang@mediatek.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Chunfeng Yun <chunfeng.yun@mediatek.com>,
+	Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Lee Jones <lee@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Lorenzo Bianconi <lorenzo@kernel.org>, Felix Fietkau <nbd@nbd.name>,
+	kernel@collabora.com, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, linux-pci@vger.kernel.org,
+	linux-phy@lists.infradead.org, netdev@vger.kernel.org,
+	Daniel Golle <daniel@makrotopia.org>,
+	Bryan Hinton <bryan@bryanhinton.com>
+Subject: Re: [PATCH 15/15] arm64: dts: mediatek: mt7981b-openwrt-one: Enable
+ leds
+Message-ID: <9ecffb7f-839c-4e4d-bef1-f59747d020b2@lunn.ch>
+References: <20251016-openwrt-one-network-v1-0-de259719b6f2@collabora.com>
+ <20251016-openwrt-one-network-v1-15-de259719b6f2@collabora.com>
+ <d8077ee4-21c2-43c5-b130-7ff270b09791@lunn.ch>
+ <79d4a7379bce245d22b56c677fd7b3a263836239.camel@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] arm64: dts: ti: k3-j784s4: Fix I2C pinmux pull
- configuration
-To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero
- Kristo <kristo@kernel.org>
-CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <u-kumar1@ti.com>,
-        <gehariprasath@ti.com>
-References: <20251022121222.220113-1-a-limaye@ti.com>
-Content-Language: en-US
-From: Aniket Limaye <a-limaye@ti.com>
-In-Reply-To: <20251022121222.220113-1-a-limaye@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <79d4a7379bce245d22b56c677fd7b3a263836239.camel@collabora.com>
 
-
-
-On 22/10/25 17:41, Aniket Limaye wrote:
-> The I2C pins for some of the instances on J784S4/J742S2/AM69 are
-> configured as PIN_INPUT_PULLUP while these pins are open-drain type and
-> do not support internal pull-ups [0][1][2]. The pullup configuration
-> bits in the corresponding padconfig registers are reserved and any
-> writes to them have no effect and readback checks on those bits fail.
+On Wed, Oct 22, 2025 at 09:26:11AM +0200, Sjoerd Simons wrote:
+> Hey,
 > 
-> Update the pinmux settings to use PIN_INPUT instead of PIN_INPUT_PULLUP
-> to reflect the correct hardware behaviour.
+> On Fri, 2025-10-17 at 19:35 +0200, Andrew Lunn wrote:
+> > On Thu, Oct 16, 2025 at 12:08:51PM +0200, Sjoerd Simons wrote:
+> > > The Openwrt One has 3 status leds at the front (red, white, green) as
+> > > well as 2 software controlled leds for the LAN jack (amber, green).
+> > 
+> > A previous patch in this series added 2 PHY LEDs. Are they connected
+> > to a LAN jack? Are there multiple RJ45 connectors? Is it clear from
+> > /sys/class/leds what LED is what?
 > 
-> [0]: https://www.ti.com/lit/gpn/tda4ah-q1 (J784S4 Datasheet: Table 5-1. Pin Attributes)
-> [1]: https://www.ti.com/lit/gpn/tda4ape-q1 (J742S2 Datasheet: Table 5-1. Pin Attributes)
-> [2]: https://www.ti.com/lit/gpn/am69a (AM69 Datasheet: Table 5-1. Pin Attributes)
+> Yeah there are two RJ45 jacks. One referred to as WAN in the openwrt one
+> documentation (2.5G), which uses phy integrated leds. One referred to as LAN,
+> which for some reason is using software controlled leds rather then the phy's
+> led controller, which this patch adds support for.
 > 
-> Fixes: e20a06aca5c9 ("arm64: dts: ti: Add support for J784S4 EVM board")
-> Fixes: 635fb18ba008 ("arch: arm64: dts: Add support for AM69 Starter Kit")
-> Fixes: 0ec1a48d99dd ("arm64: dts: ti: k3-am69-sk: Add pinmux for RPi Header")
-> Signed-off-by: Aniket Limaye <a-limaye@ti.com>
-
-Forgot to collect Udit's Reviewed-by
-Resent a v3 at: 
-https://lore.kernel.org/lkml/20251022122638.234367-1-a-limaye@ti.com/
-
-> ---
-> v2:
-> - Added Fixes tags
-> ---
->   arch/arm64/boot/dts/ti/k3-am69-sk.dts                   | 8 ++++----
->   arch/arm64/boot/dts/ti/k3-j784s4-j742s2-evm-common.dtsi | 4 ++--
->   2 files changed, 6 insertions(+), 6 deletions(-)
+> When applying this set you'll get:
+> ```
+> root@openwrt-debian:/sys/class/leds# ls -1                                     
+> amber:lan                                                                      
+> green:lan                                                                      
+> green:status                                                                   
+> mdio-bus:0f:amber:wan                                                          
+> mdio-bus:0f:green:wan                                                          
+> mt76-phy0                                                                      
+> mt76-phy1                                                                      
+> red:status                                                                     
+> white:status                       
+> ```
 > 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am69-sk.dts b/arch/arm64/boot/dts/ti/k3-am69-sk.dts
-> index 5896e57b5b9e..0e2d12cb051d 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am69-sk.dts
-> +++ b/arch/arm64/boot/dts/ti/k3-am69-sk.dts
-> @@ -236,8 +236,8 @@ J784S4_IOPAD(0x0d4, PIN_OUTPUT, 11) /* (AN38) SPI0_CLK.UART8_TXD */
->   
->   	main_i2c0_pins_default: main-i2c0-default-pins {
->   		pinctrl-single,pins = <
-> -			J784S4_IOPAD(0x0e0, PIN_INPUT_PULLUP, 0) /* (AN36) I2C0_SCL */
-> -			J784S4_IOPAD(0x0e4, PIN_INPUT_PULLUP, 0) /* (AP37) I2C0_SDA */
-> +			J784S4_IOPAD(0x0e0, PIN_INPUT, 0) /* (AN36) I2C0_SCL */
-> +			J784S4_IOPAD(0x0e4, PIN_INPUT, 0) /* (AP37) I2C0_SDA */
->   		>;
->   	};
->   
-> @@ -416,8 +416,8 @@ J784S4_WKUP_IOPAD(0x088, PIN_OUTPUT, 0) /* (J37) WKUP_GPIO0_12.MCU_UART0_TXD */
->   
->   	mcu_i2c0_pins_default: mcu-i2c0-default-pins {
->   		pinctrl-single,pins = <
-> -			J784S4_WKUP_IOPAD(0x0a0, PIN_INPUT_PULLUP, 0) /* (M35) MCU_I2C0_SCL */
-> -			J784S4_WKUP_IOPAD(0x0a4, PIN_INPUT_PULLUP, 0) /* (G34) MCU_I2C0_SDA */
-> +			J784S4_WKUP_IOPAD(0x0a0, PIN_INPUT, 0) /* (M35) MCU_I2C0_SCL */
-> +			J784S4_WKUP_IOPAD(0x0a4, PIN_INPUT, 0) /* (G34) MCU_I2C0_SDA */
->   		>;
->   	};
->   
-> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-evm-common.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-evm-common.dtsi
-> index 419c1a70e028..2834f0a8bbee 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-evm-common.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-evm-common.dtsi
-> @@ -270,8 +270,8 @@ J784S4_IOPAD(0x0d4, PIN_OUTPUT, 11) /* (AN38) SPI0_CLK.UART8_TXD */
->   
->   	main_i2c0_pins_default: main-i2c0-default-pins {
->   		pinctrl-single,pins = <
-> -			J784S4_IOPAD(0x0e0, PIN_INPUT_PULLUP, 0) /* (AN36) I2C0_SCL */
-> -			J784S4_IOPAD(0x0e4, PIN_INPUT_PULLUP, 0) /* (AP37) I2C0_SDA */
-> +			J784S4_IOPAD(0x0e0, PIN_INPUT, 0) /* (AN36) I2C0_SCL */
-> +			J784S4_IOPAD(0x0e4, PIN_INPUT, 0) /* (AP37) I2C0_SDA */
->   		>;
->   	};
->   
+> Which is hopefully clear enough
 
+You can also get to the LEDs associated to a MAC via
+/sys/class/net/eth42/leds, or a subdirectory.
+
+Please could you expand the commit message with more details of the
+different RJ45 connectors, and how the different LEDs map to them.
+
+Thanks
+
+	Andrew
 
