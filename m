@@ -1,126 +1,181 @@
-Return-Path: <devicetree+bounces-229814-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229818-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id F315BBFC5FB
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 16:05:53 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0DC66BFC73E
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 16:22:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BF6781A03C8F
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 14:06:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 20F4C625904
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 14:07:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1004B347BA6;
-	Wed, 22 Oct 2025 14:05:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D116734B1AD;
+	Wed, 22 Oct 2025 14:07:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fvMK3vyB"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Gt/6aead"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f49.google.com (mail-pj1-f49.google.com [209.85.216.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6DF2337B99;
-	Wed, 22 Oct 2025 14:05:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E520313271
+	for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 14:07:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761141949; cv=none; b=OWYgimrqxQ9ThLrqWgrLKpWihZIpHJVHxJLv1incaqwJNIj+M2+G3R9xVSVVGzcOVuPWYOuJX6mv8AMopR3gpP0KniLdqhVxdmpYS1XifbkKiUgsgGfl7U6cslUCkaqO/tJP/htYqvp908cE7161b90eAxHOwydDReQmrJJpcjo=
+	t=1761142049; cv=none; b=Zyz92cef0OksugCFMsMzHobHNqcq8htXdR8LQ3k3t/nojpzE7Rfau4IulV4Or23LM2EMeWMOLdrD/Z2GLHIrn6Ud6ilbWhmXQSeEPYQg+QCUVvJswOugFONaFQbgzvbSSsstiN6K5/HrZMaKPr9vKQhf/QSTEuf4Q/VHfPKmwtc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761141949; c=relaxed/simple;
-	bh=vX0gXdN6jv2zlOWrLKcyRh+bVnN+mK0EFHUlCY63Z1k=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oaLgRt+n/H1oTfQVaoTC6qPheHjgoH8NuW5/beZ+QJgtzAaxOW4LcFyZQnZFVPyR9XHRGgV16Jfw9SwUjQuJmRXAmio6LjFhrzjK6SHIebu6rywEDQhmxRoLmyNnfsxkC9lV0XNQ3pUHwEmXtBo8VhS0SHV2qrY0ZlPZLc7ugvM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fvMK3vyB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3B9E8C4CEF5;
-	Wed, 22 Oct 2025 14:05:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761141947;
-	bh=vX0gXdN6jv2zlOWrLKcyRh+bVnN+mK0EFHUlCY63Z1k=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=fvMK3vyBbV4PLL1HkhvCld7i9mlFxwPA6kg4WyEt4jlaMNpXy9E1aCRDM9EceZETB
-	 cUAmICAHoVOk6nX93XGnqte7ip9eJVo5gzjb6DgZ6ek4R0SSiJ4LSp/seWWamZ/ZuG
-	 wBBac6K5/RgjgWGadgXGWowzuBDJg6P5nx50MOQE+i/hGou4w9mPh2IBSBgVQzu44a
-	 qbKOM57k3x8kzkYqx5J3YivQ0blkt28Dr1G6Q/VA596R3zPQM/tE5k7w+t8HevXRjy
-	 dYu2l2BvCNhj/CyOzudz5FaMN6kpBywmrSZBXsLYB3FZ5b5vOz3QcONT1G6TAHjlDj
-	 Ve8+GP3ZETBgw==
-Date: Wed, 22 Oct 2025 09:05:45 -0500
-From: Rob Herring <robh@kernel.org>
-To: Lorenzo Pieralisi <lpieralisi@kernel.org>
-Cc: linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
-	Sascha Bischoff <sascha.bischoff@arm.com>,
-	Scott Branden <sbranden@broadcom.com>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Bjorn Helgaas <bhelgaas@google.com>, Ray Jui <rjui@broadcom.com>,
-	Frank Li <Frank.Li@nxp.com>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
-	Marc Zyngier <maz@kernel.org>
-Subject: Re: [PATCH v4 0/5] of/irq: Misc msi-parent handling fixes/clean-ups
-Message-ID: <20251022140545.GB3390144-robh@kernel.org>
-References: <20251021124103.198419-1-lpieralisi@kernel.org>
+	s=arc-20240116; t=1761142049; c=relaxed/simple;
+	bh=1C17DoVvYolAyaHXd5cbIQWFprwLNpCGAH9O/IeMJS8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=kAhd9OkeTRVyxNq2O2NgglHLhExezt7tpCoDkboE06xktJUOXJJCppGSxspJp77xqeVtcQ9YKO3XYKjzx8KbCH0AuwtvKU1+Gxcdp3+jYgSWY8t8jTmXz07FfLsycIXCEVIzwXObhfi3uiiktcz/4Zo739Jb5Bal8HlStI53Qp4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Gt/6aead; arc=none smtp.client-ip=209.85.216.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f49.google.com with SMTP id 98e67ed59e1d1-33bbc4e81dfso7056710a91.1
+        for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 07:07:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1761142047; x=1761746847; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=WHJCfnJWMLGX7Es1g+WBJ01c0gatEOnm7L9ZExylw/U=;
+        b=Gt/6aead8T6TBSSoY4JGYWRj8InXcxtLX59iYl8emLbVHqsmbeUgDVRvrFVyRdHo7U
+         5U5oFLosAwDuWAsc9W0I1rxlsoGjcR8FMK5Ipe5ZNUVfNHJkjaPLznz6Mj/zryzMlpch
+         hlr9A+JG0szVPcuPK3tWJy8qT+icGnZ9c2YEvWZAzkpiiC/tnnYD/6laAvGQGM4QM4um
+         L+q7e3TSjASyfLXE+VziWFTEzFMc8Hy277fDo0/HuoPgFgnlhKDi8CRhvFp0qibY5wsO
+         EgddAXXnhAQY0hjvkWrSCODvgYiRfiDowyFvOun/zoJKlPxQywZenHg5/tO5W8EUPYN/
+         rkYQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761142047; x=1761746847;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=WHJCfnJWMLGX7Es1g+WBJ01c0gatEOnm7L9ZExylw/U=;
+        b=lmFnyQjTQ3rfBMs0EAQ+p80Tvrrcdhfq3vTLX0/QEzXPbzFOdgsQzC1dpU32TJQtD5
+         OBxQ+A6o5GuM2kwMP6tdY0ZnTgasvhumxFXyhYE2qQwk0hcXJeTkaPWUlrMbdzuR1uy+
+         E3E6mfDQR+RFi9kve1wdCO6HkXxuMKYZ4qlJvdkJI0PggCQQKE8nodoRBCWTVZLof+HV
+         MICFf70L+bP1rE+WFbHXLnVjr2HwJbSCPteyT++Ep3acf11W+ZvkjlrRyb/z+Kw+JRRf
+         Avq1w4+MUJbhrZeY4j2+roR4C3+3piWbftWxkRXOOyS4BrLKeaMchIHoQkwesOuCtIpc
+         HSaA==
+X-Forwarded-Encrypted: i=1; AJvYcCWT6wQM2socCmFFbZ6/BiPQO71ssDwtYEfCpCtvUJgJe7PWhZsnlYRy7+jT6x+riPpaWddIFnjVpR6W@vger.kernel.org
+X-Gm-Message-State: AOJu0YzT+WtsdAfQJN9EVGuBLmkwA8HBjJNyXo2vW237aUR/it3mwnLG
+	RK7HCa9K52zrdGakDdpWCGFweOm+3S5JafppYN77Ee7yLr0UWYDNS9CA
+X-Gm-Gg: ASbGncsvp2rkhudbS6mo2TXVFbXZ6sTPsHigLXbVrmGp5xC/z7tDUoXyA23IdhA8O/4
+	Oq1ujpDMhOB9ob3zURQMTsqFLIJKZ7cACYKhYMElYxf8iIrR/X9H8KAZIMPWcIe9M5A4Cnl2crN
+	KUow2BepRVAxrFthB6WERj+guRi1PcMT/a6GSHG+th/Lf7upTH2MjAasR4vc0SDH742n5nfuDJe
+	KbPa+LZpsU1trbhGu4XSNWs/L+1ZbnKgfj4ZRAnmKvlm74xmZ6e+RLBmkppZ8w0DN+ncrzFn9gK
+	Y+l4G5XCoGgmvhyNTZMyDWPatuZ3nbtQ68IvIJ67os3sIB3j9p5T5zAEx4qujc01OygqMDk5ebP
+	m62ROLCEvpOdryeCwI2+ZrZEs1vdJRoItGWyIAUMvSBE6jZbv1pDwj5nbC2AFjL7gDwF5d7GT0o
+	VobOaMUMEALZ5zq2R65e/rZe3sEUxVXaQnn9yteTcmfbdJTxTTHdCgMP0fYtg=
+X-Google-Smtp-Source: AGHT+IFeOO2m/QK88KsQxbIIIGJpiMOj19Lffr0deFbuerlgZNfeec+YsiTpPWgAdx2hr78z9hvKTA==
+X-Received: by 2002:a17:90b:2fd0:b0:335:28e3:81cd with SMTP id 98e67ed59e1d1-33bcf8fa1b5mr24895951a91.18.1761142047333;
+        Wed, 22 Oct 2025 07:07:27 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-33e2247a7f1sm2722930a91.14.2025.10.22.07.07.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 22 Oct 2025 07:07:26 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <3a4e8cb8-2543-484b-80ab-15eb3490f29b@roeck-us.net>
+Date: Wed, 22 Oct 2025 07:07:25 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20251021124103.198419-1-lpieralisi@kernel.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/5] hwmon: Add TSC1641 I2C power monitor driver
+To: Igor Reznichenko <igor@reznichenko.net>, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, corbet@lwn.net,
+ skhan@linuxfoundation.org, david.hunter.linux@gmail.com
+Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
+References: <20251022044708.314287-1-igor@reznichenko.net>
+Content-Language: en-US
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
+In-Reply-To: <20251022044708.314287-1-igor@reznichenko.net>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Tue, Oct 21, 2025 at 02:40:58PM +0200, Lorenzo Pieralisi wrote:
-> This is series is a follow up to [1] - with additional patches that are
-> addressing Rob's feedback (pcie-layerscape-gen4 was removed from the
-> kernel, Yay !) and other bits and bobs I noticed while staring at the code.
+On 10/21/25 21:47, Igor Reznichenko wrote:
+> This patch series adds support for the ST Microelectronics TSC1641
+> I2C power monitor. The TSC1641 provides bus voltage, current, power,
+> and temperature measurements via the hwmon subsystem. The driver
+> supports optional ALERT pin polarity configuration and exposes the
+> shunt resistor value and raw shunt voltage via sysfs.
 > 
-> Patch (1) is a fix and technically we would like to get it in v6.18 please.
+> Tested on Raspberry Pi 3B+ with a TSC1641 evaluation board.
 > 
-> Patch (4) is compile-tested only, I can not run it on HW, I do not have it,
-> Scott, Ray please test it if you can.
-> 
-> v3 -> v4:
-> 	- Addressed Rob's review
-> 	- Added trailers
-> 	- Rebased against v6.18-rc2
-> 
-> v2 -> v3:
-> 	- Added additional patch to export of_msi_xlate()
-> 	- Addressed review feedback
-> 
-> v3: https://lore.kernel.org/lkml/20251017084752.1590264-1-lpieralisi@kernel.org/
-> v2: https://lore.kernel.org/lkml/20251014095845.1310624-1-lpieralisi@kernel.org/
-> v1: https://lore.kernel.org/lkml/20250916091858.257868-1-lpieralisi@kernel.org/
-> 
-> [1] https://lore.kernel.org/lkml/20250916091858.257868-1-lpieralisi@kernel.org/
-> 
-> Cc: Sascha Bischoff <sascha.bischoff@arm.com>
-> Cc: Scott Branden <sbranden@broadcom.com>
-> Cc: Thomas Gleixner <tglx@linutronix.de>
-> Cc: Bjorn Helgaas <bhelgaas@google.com>
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: Ray Jui <rjui@broadcom.com>
-> Cc: Frank Li <Frank.Li@nxp.com>
-> Cc: Manivannan Sadhasivam <mani@kernel.org>
-> Cc: "Krzysztof Wilczyński" <kwilczynski@kernel.org>
-> Cc: Marc Zyngier <maz@kernel.org>
-> 
-> Lorenzo Pieralisi (5):
->   of/irq: Add msi-parent check to of_msi_xlate()
->   of/irq: Fix OF node refcount in of_msi_get_domain()
+> Igor Reznichenko (5):
+>    drivers/hwmon: Add TSC1641 I2C power monitor driver
+>    drivers/hwmon: Add Kconfig entry for TSC1641
+>    drivers/hwmon: Add TSC1641 module to Makefile
+>    Documentation/hwmon: Add TSC1641 driver documentation
 
-I've applied these 2 for 6.18.
+Please squash all of the above into a single patch.
 
->   of/irq: Export of_msi_xlate() for module usage
->   PCI: iproc: Implement MSI controller node detection with
->     of_msi_xlate()
->   irqchip/gic-its: Rework platform MSI deviceID detection
+>    Documentation/devicetree/bindings/hwmon: Add TSC1641 binding
+
+This patch should come first.
+
+Thanks,
+Guenter
+
 > 
->  drivers/irqchip/irq-gic-its-msi-parent.c | 91 ++++++------------------
->  drivers/of/irq.c                         | 44 ++++++++++--
->  drivers/pci/controller/pcie-iproc.c      | 22 ++----
->  3 files changed, 68 insertions(+), 89 deletions(-)
+>   .../devicetree/bindings/hwmon/st,tsc1641.yaml |  54 ++
+>   Documentation/hwmon/index.rst                 |   1 +
+>   Documentation/hwmon/tsc1641.rst               |  73 ++
+>   drivers/hwmon/Kconfig                         |  12 +
+>   drivers/hwmon/Makefile                        |   1 +
+>   drivers/hwmon/tsc1641.c                       | 801 ++++++++++++++++++
+>   6 files changed, 942 insertions(+)
+>   create mode 100644 Documentation/devicetree/bindings/hwmon/st,tsc1641.yaml
+>   create mode 100644 Documentation/hwmon/tsc1641.rst
+>   create mode 100644 drivers/hwmon/tsc1641.c
 > 
-> -- 
-> 2.50.1
-> 
+
 
