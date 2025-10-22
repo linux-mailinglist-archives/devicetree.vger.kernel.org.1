@@ -1,109 +1,88 @@
-Return-Path: <devicetree+bounces-229958-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229959-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BB75BFE0D1
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 21:34:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 575CEBFE11C
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 21:39:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1755218C6565
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 19:34:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 277FE19C7150
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 19:40:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23BB52F49EB;
-	Wed, 22 Oct 2025 19:33:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9B2B31D377;
+	Wed, 22 Oct 2025 19:39:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="1V+LIdKI"
+	dkim=pass (2048-bit key) header.d=acm.org header.i=@acm.org header.b="bDEdI38B"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from 003.mia.mailroute.net (003.mia.mailroute.net [199.89.3.6])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 386DA2F0671;
-	Wed, 22 Oct 2025 19:33:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1D7E2F60B4;
+	Wed, 22 Oct 2025 19:39:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=199.89.3.6
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761161636; cv=none; b=Rv90Kf/sAiHZIbSB2+zrP7Gi+jg7/16SqYsHkie8WA1nEJRz7l+mzjvIp+mv0YcW7Rkv+nD4UugpiE37hkIg90lWDTN4Ua2WU7DvIBDntKXKXctsxAshgYBM0/rOdC8LWghQih1xnpXrcrcIMgHj9zOtgKs8wHuZ/2DKpdYbeRs=
+	t=1761161977; cv=none; b=EVzhJNWczZP0cVv8PAekbBk62EJLS1xn1AiaWND1+3Vk7GheguQJloBczv6dp+DtV00Y2XyE6YQOhB+DYImi3rKxLhCFnAtJWmntR1YQYTjSY6pyucVAZRu6VfcQZjF4YuCc0d8BQGjUAhiIBknVqv2JzQMOLDGROqLdaJIhdfU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761161636; c=relaxed/simple;
-	bh=EhmrM/rrZkqdkcIvkN3sA3FlTAW1QyALgArWs2KuzpI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fUGj5vaqdbfpgUXA7IiW5tIMjySxPMgOFfc5GW/Q5+nIDVJEk6l4JtsQj5fG2/7yhBJ4eCqKU9QLX7AiGQH+9MjPp2rybnwosyv7hN0azZZkj1EjPBTaGsEDIHpIlcJiW08EZarZ0pNQQcr0X74bRn4eZvSrZL+MrOdEwdgfhOk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=1V+LIdKI; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
-	Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
-	Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
-	In-Reply-To:References; bh=B0MoY2AgpEB5vSiVMVo5RoknNJN0kCXnUeivnHXYIXs=; b=1V
-	+LIdKI4P+Icu/8ukHThqV1tbQgarFsVugvL5WRk0IRB8NJDX0TH+kApHCwP1cdGzgbIvRCnOheSIR
-	cuTGsJXE2FC5JdvywAS7Zim7m0qZqc2BtETLen57s1NSGOCUiNCU2E5sedkDQ5rFPexMsebbwJZ0S
-	U06ymByNQI5yog0=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1vBeae-00Bo3f-Q2; Wed, 22 Oct 2025 21:33:44 +0200
-Date: Wed, 22 Oct 2025 21:33:44 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Maxime Chevallier <maxime.chevallier@bootlin.com>
-Cc: =?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	=?iso-8859-1?Q?Beno=EEt?= Monin <benoit.monin@bootlin.com>,
-	=?iso-8859-1?Q?Gr=E9gory?= Clement <gregory.clement@bootlin.com>,
-	Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>
-Subject: Re: [PATCH net-next v2 5/5] net: macb: Add "mobileye,eyeq5-gem"
- compatible
-Message-ID: <51833ec4-e417-4ba3-a6d1-c383ee9ea839@lunn.ch>
-References: <20251022-macb-eyeq5-v2-0-7c140abb0581@bootlin.com>
- <20251022-macb-eyeq5-v2-5-7c140abb0581@bootlin.com>
- <ef92f3be-176d-4e83-8c96-7bd7f5af365f@bootlin.com>
+	s=arc-20240116; t=1761161977; c=relaxed/simple;
+	bh=OGwpRsjvTDh92mjiJpGpeoAWI6QfFFqssvTioP35C0o=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=tAK2wKVkzP+yL+jO+YS5OqIrKLs7B+u3UexC3AoEWMzPHL5f+0o8Rp8IL0kDAX34qOr1WmGknKhEUlhQ0iRoet5XGjeiQNdJCbbAJHiwr7vbmDnIPfXAVlWFwTzXDUAQ9n973NkoZiH8xoQtahecvD2a/YVUwuYE2Trp0C0QSSo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=acm.org; spf=pass smtp.mailfrom=acm.org; dkim=pass (2048-bit key) header.d=acm.org header.i=@acm.org header.b=bDEdI38B; arc=none smtp.client-ip=199.89.3.6
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=acm.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=acm.org
+Received: from localhost (localhost [127.0.0.1])
+	by 003.mia.mailroute.net (Postfix) with ESMTP id 4csKHV6YwKzlgqW0;
+	Wed, 22 Oct 2025 19:39:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=acm.org; h=
+	content-transfer-encoding:content-type:content-type:in-reply-to
+	:from:from:content-language:references:subject:subject
+	:user-agent:mime-version:date:date:message-id:received:received;
+	 s=mr01; t=1761161972; x=1763753973; bh=CI9hnY04nrya/ShYHIvwuner
+	OYGmjYVhaHBWLNcFY3A=; b=bDEdI38BTXK75OcE1DTccaWlgOXddxn/SYLvx61j
+	hG92gcsemop8pgQqFIpRor9sUaBL4T1tuZLjh8bqdY6BNPeeMJxWU0cvIJYEIUUQ
+	LVRg/CN7mMFdGOzwzgwEarCkC0ukq7m867XVpwGzhz3bmCsvNMp03us3IG0BXHdg
+	AgCDhdgBQzHVAnY00iMnkKJtYYMnpKnnRqlCcOoXARvQVvcjPJTgWtEFMaZq2tEq
+	OcARm9RaVP7VzwG5vWoMAzRqixWNOaaEgComWcYCuam1P7ff+8jOBgeFqQhtbX05
+	O9TgBxah9WjgIldVHy5q7uKKFYD8QPyvm+53kT27ocH5IQ==
+X-Virus-Scanned: by MailRoute
+Received: from 003.mia.mailroute.net ([127.0.0.1])
+ by localhost (003.mia [127.0.0.1]) (mroute_mailscanner, port 10029) with LMTP
+ id 8FkmcuAYkN1W; Wed, 22 Oct 2025 19:39:32 +0000 (UTC)
+Received: from [100.119.48.131] (unknown [104.135.180.219])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: bvanassche@acm.org)
+	by 003.mia.mailroute.net (Postfix) with ESMTPSA id 4csKHF15XrzlgqVG;
+	Wed, 22 Oct 2025 19:39:20 +0000 (UTC)
+Message-ID: <1d02a30b-1450-459c-a4f4-ae795d7dcb27@acm.org>
+Date: Wed, 22 Oct 2025 12:39:19 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ef92f3be-176d-4e83-8c96-7bd7f5af365f@bootlin.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 0/4] ufs: Add support for AMD Versal Gen2 UFS
+To: Ajay Neeli <ajay.neeli@amd.com>, martin.petersen@oracle.com,
+ James.Bottomley@HansenPartnership.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, pedrom.sousa@synopsys.com
+Cc: alim.akhtar@samsung.com, avri.altman@wdc.com, linux-scsi@vger.kernel.org,
+ devicetree@vger.kernel.org, git@amd.com, michal.simek@amd.com,
+ srinivas.goud@amd.com, radhey.shyam.pandey@amd.com
+References: <20251021113003.13650-1-ajay.neeli@amd.com>
+Content-Language: en-US
+From: Bart Van Assche <bvanassche@acm.org>
+In-Reply-To: <20251021113003.13650-1-ajay.neeli@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Wed, Oct 22, 2025 at 10:09:49AM +0200, Maxime Chevallier wrote:
-> Hi,
-> 
-> On 22/10/2025 09:38, Théo Lebrun wrote:
-> > Add support for the two GEM instances inside Mobileye EyeQ5 SoCs, using
-> > compatible "mobileye,eyeq5-gem". With it, add a custom init sequence
-> > that must grab a generic PHY and initialise it.
-> > 
-> > We use bp->phy in both RGMII and SGMII cases. Tell our mode by adding a
-> > phy_set_mode_ext() during macb_open(), before phy_power_on(). We are
-> > the first users of bp->phy that use it in non-SGMII cases.
-> > 
-> > Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
-> 
-> This seems good to me. I was worried that introducing the unconditionnal
-> call to phy_set_mode_ext() could trigger spurious errors should the
-> generic PHY driver not support the requested interface, but AFAICT
-> there's only the zynqmp in-tree that use the 'phys' property with macb,
-> and the associated generic PHY driver (drivers/phy/phy-zynqmp.c) doesn't
-> implement a .set_mode, so that looks safe.
+On 10/21/25 4:29 AM, Ajay Neeli wrote:
+>    Removed patch that utilized reserved bits for vendor-specific interrupts.
 
-I was thinking along the same lines, is this actually safe? It would
-be good to add something like this to the commit message to indicate
-this change is safe, the needed code analysis has been performed.
+Thanks! This second version of this patch series looks good to me.
 
-	Andrew
+Bart.
 
