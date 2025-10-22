@@ -1,117 +1,159 @@
-Return-Path: <devicetree+bounces-229976-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229977-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44E7DBFE53F
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 23:38:34 +0200 (CEST)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id D5723BFE560
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 23:42:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id B9497353B38
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 21:38:33 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 78FE3357DDD
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 21:42:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07DEE301027;
-	Wed, 22 Oct 2025 21:38:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AC43303A1C;
+	Wed, 22 Oct 2025 21:42:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="VJLcnh4a"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="2o0zIKaG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C210D2877FA;
-	Wed, 22 Oct 2025 21:38:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A6B930275C;
+	Wed, 22 Oct 2025 21:42:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761169108; cv=none; b=C2HIg7wosy/j7nrEZzOm5l1SaxbBg0y53oc8s6rPB+PW1VI78BCAPl3IlUdMgTVU14z9uErghILzvlwwWV1AkMtIqfvrJ9AZxbEE+yhiai6sNsDFuJWgc1swFIwhq5jYurbWnE7oyvmK80Z2dZBAbaEZux7UhBy4yioZf5c4uTo=
+	t=1761169371; cv=none; b=GXfAm5tULy7ilnvEYEnVGDIIw72pvpzV5pUvRHeJSOxayoXXu2It7D5zL16gZwtjbS1Rsjp/Xg0+8fHNStuBFzxvS1sI3SMEKKAyvGk4a3lwmz92pnCx1E4gZw9gz8SJ31zWtwGKIwjJbQGYXWLzuh8fZIjM2kyYIbsOiEuX/iw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761169108; c=relaxed/simple;
-	bh=n8Zw4/wL2Bpk+jmRSKZmBt8iLjAPrPIC2YC696U3FzI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WnCgQJwb/0GBs5HhwmlKV0hbKHD5GpzcItdTGGsm7OYCXRDIatS5GuhsfxyF7w13vm49s82e+mvFgb7CvzErTqxjIONFwYaWppkHA6RSqDc8+ImjUxclPWZ8BgE+p97uUeSPL31xiuZl7kZdGI+bI8H0hDtaZt6bVJTFvujCeTk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=VJLcnh4a; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1761169104;
-	bh=n8Zw4/wL2Bpk+jmRSKZmBt8iLjAPrPIC2YC696U3FzI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=VJLcnh4ayIO1ND/GoKsNFJdVA/pHuQxF9EjhZPaze5oYyuV2XxVy1RgsGoBbS9e3R
-	 LxfwaTNytcnZ3SHg4N+wIxhbuFKFSyhLtuGg7QSZEmIvFbxKwvXrW89NVknVpWuM9A
-	 j/KZ2Limkj9/FbGzuIHFuNacceSReGYosvvPu4w3+x1e6O+J8oRdgpE7w2tEsjfix0
-	 4E1fLU9qWr9QWCWM+ZD5vwEAYDv5t2O42PpmF7otv1MGxjZLPlSIHNcghyvSFS3SbM
-	 TSZcZ0I87q2UY8tqjLbUpSWfoDhuhschIAn7cID9uD0KoRGmDsXiUfrn9i6OIE8fWb
-	 ZoF+qOUJ4obvw==
-Received: from [10.40.0.100] (185-67-175-126.lampert.tv [185.67.175.126])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: mriesch)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id EF2FD17E00AC;
-	Wed, 22 Oct 2025 23:38:22 +0200 (CEST)
-Message-ID: <9063b2d2-d496-4577-8e71-885760e41410@collabora.com>
-Date: Wed, 22 Oct 2025 23:38:22 +0200
+	s=arc-20240116; t=1761169371; c=relaxed/simple;
+	bh=cGR7lMWBKqDn3+3GH8ZZjkJeJeokkQWRL6FFJ9SDucM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=cKLGp7YOeWNbetPRJfSUFVz+M7qu36oLJKsXX1ckWtrBfIsuU2SUX2Np2bLAYqG0br2otnoxQOTMpPd6M4c/06UjS6M7hFz1ZaxZGhyvt47XfQkRilptmyEn1Fu77rfAWJ4RzJPqEVuFwO+tj90eUfTcZV5gL0Z41yXN+kxhFXE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=2o0zIKaG; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=RoLMA7YAWuosvmrIBLI8Zurj/FpRrXqerMkVboDNB+Y=; b=2o0zIKaGyuU7jtl6xkuRA757+/
+	As1Ixp9TgpYCJDhpfUu1tGXwnnJp89Oxc92MQcKIqa1/B82750L/nqFG+MHAVGVbDX/ljYXwf4ptn
+	Mszwaf22Z0j5sZeu62hOivGPjEZMSXwueveV3YZbNwS/5syABoUZ7lmMIjcqFgBc2bLw=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1vBgbA-00Boc8-AG; Wed, 22 Oct 2025 23:42:24 +0200
+Date: Wed, 22 Oct 2025 23:42:24 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Maxime Chevallier <maxime.chevallier@bootlin.com>
+Cc: davem@davemloft.net, netdev@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	thomas.petazzoni@bootlin.com, Jakub Kicinski <kuba@kernel.org>,
+	Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
+	Russell King <linux@armlinux.org.uk>,
+	linux-arm-kernel@lists.infradead.org,
+	Christophe Leroy <christophe.leroy@csgroup.eu>,
+	Herve Codina <herve.codina@bootlin.com>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Vladimir Oltean <vladimir.oltean@nxp.com>,
+	=?iso-8859-1?Q?K=F6ry?= Maincent <kory.maincent@bootlin.com>,
+	Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>,
+	Oleksij Rempel <o.rempel@pengutronix.de>,
+	=?iso-8859-1?Q?Nicol=F2?= Veronese <nicveronese@gmail.com>,
+	Simon Horman <horms@kernel.org>, mwojtas@chromium.org,
+	Antoine Tenart <atenart@kernel.org>, devicetree@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Romain Gantois <romain.gantois@bootlin.com>,
+	Daniel Golle <daniel@makrotopia.org>,
+	Dimitri Fedrau <dimitri.fedrau@liebherr.com>,
+	Florian Fainelli <florian.fainelli@broadcom.com>
+Subject: Re: [PATCH net-next v14 03/16] net: ethtool: Introduce
+ ETHTOOL_LINK_MEDIUM_* values
+Message-ID: <cb217bf8-763e-4c48-9233-e577b32b14a8@lunn.ch>
+References: <20251013143146.364919-1-maxime.chevallier@bootlin.com>
+ <20251013143146.364919-4-maxime.chevallier@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v13 00/18] media: rockchip: add a driver for the rockchip
- camera interface
-To: Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc: Mehdi Djait <mehdi.djait@linux.intel.com>,
- Maxime Chevallier <maxime.chevallier@bootlin.com>,
- =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- Gerald Loacker <gerald.loacker@wolfvision.net>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Markus Elfring <Markus.Elfring@web.de>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Kever Yang <kever.yang@rock-chips.com>,
- Nicolas Dufresne <nicolas.dufresne@collabora.com>,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- Collabora Kernel Team <kernel@collabora.com>,
- Paul Kocialkowski <paulk@sys-base.io>,
- Alexander Shiyan <eagle.alexander923@gmail.com>,
- Val Packett <val@packett.cool>, Rob Herring <robh@kernel.org>,
- Philipp Zabel <p.zabel@pengutronix.de>, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- Mehdi Djait <mehdi.djait@bootlin.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Bryan O'Donoghue <bod@kernel.org>
-References: <20240220-rk3568-vicap-v13-0-da164b4918fe@collabora.com>
- <aPkM8wD7rbFaeO2N@kekkonen.localdomain>
-Content-Language: en-US
-From: Michael Riesch <michael.riesch@collabora.com>
-In-Reply-To: <aPkM8wD7rbFaeO2N@kekkonen.localdomain>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251013143146.364919-4-maxime.chevallier@bootlin.com>
 
-Hi Sakari,
-
-On 10/22/25 18:57, Sakari Ailus wrote:
-> Hi Michael,
+On Mon, Oct 13, 2025 at 04:31:29PM +0200, Maxime Chevallier wrote:
+> In an effort to have a better representation of Ethernet ports,
+> introduce enumeration values representing the various ethernet Mediums.
 > 
->> The driver can be readily extended to provide support for the RK3588
->> VICAP variant. In order to keep things simple, however, this extension
->> shall be submitted separately.
+> This is part of the 802.3 naming convention, for example :
 > 
-> I can't recall whether you already did but -- can you provide a
-> v4l2-compliance -m report on this version, please?
-> 
+> 1000 Base T 4
+>  |    |   | |
+>  |    |   | \_ lanes (4)
+>  |    |   \___ Medium (T == Twisted Copper Pairs)
+>  |    \_______ Baseband transmission
+>  \____________ Speed
 
-At some point (maybe v7 or so?) I did provide v4l2-compliance reports,
-but only for the video devices.
+Dumb question. Does 802.3 actually use the word lanes here?
 
-Now I gave "-m /dev/media0" a go and the tool found two issues with some
-of the subdevices :-/ Sorry for that, v14 coming soon.
+I'm looking at the commit which added lanes:
 
-Best regards,
-Michael
+commit 012ce4dd3102a0f4d80167de343e9d44b257c1b8
 
+    Add 'ETHTOOL_A_LINKMODES_LANES' attribute and expand 'struct
+    ethtool_link_settings' with lanes field in order to implement a new
+    lanes-selector that will enable the user to advertise a specific number
+    of lanes as well.
+
+    $ ethtool -s swp1 lanes 4
+    $ ethtool swp1
+      Settings for swp1:
+            Supported ports: [ FIBRE ]
+            Supported link modes:   1000baseKX/Full
+                                    10000baseKR/Full
+                                    40000baseCR4/Full
+                                    40000baseSR4/Full
+                                    40000baseLR4/Full
+                                    25000baseCR/Full
+                                    25000baseSR/Full
+                                    50000baseCR2/Full
+                                    100000baseSR4/Full
+                                    100000baseCR4/Full
+            Supported pause frame use: Symmetric Receive-only
+            Supports auto-negotiation: Yes
+            Supported FEC modes: Not reported
+            Advertised link modes:  40000baseCR4/Full
+                                    40000baseSR4/Full
+                                    40000baseLR4/Full
+                                    100000baseSR4/Full
+                                    100000baseCR4/Full
+
+
+For these link modes we are talking about 4 PCS outputs feeding an
+SFP module. The module when has one fibre pair, the media.
+
+For baseT4 what you call a lane is a twisted pair, the media.
+
+These two definitions seem to contradict each other.
+
+For SGMII, 1000BaseX, we have 1 PCS lane, feeding a PHY with 4 pairs.
+
+It gets more confusing at 10G, where the MAC might have 4 lanes
+feeding 4 pairs, or 1 lane feeding 4 pairs.
+
+Also, looking at the example above, if i have a MAC/PHY combination
+which can do 10/100/1G and i did:
+
+    $ ethtool -s swp1 lanes 2
+
+would it then only advertise 10 and 100, since 1G need four 'lanes'?
+
+Is reusing lanes going to cause us problems in the future, and maybe
+we should add a pairs member, to represent the media? And we can
+ignore bidi fibre modules for the moment :-)
+
+       Andrew
 
