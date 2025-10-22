@@ -1,184 +1,123 @@
-Return-Path: <devicetree+bounces-229701-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229702-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B521ABFAEB0
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 10:35:10 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 303FCBFAED4
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 10:36:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9BE001A01A47
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 08:35:29 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D687A4F7109
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 08:36:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABC2130AAD3;
-	Wed, 22 Oct 2025 08:34:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A190130B505;
+	Wed, 22 Oct 2025 08:36:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="ESLrFtqj"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="mOj9Qf5W"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com [210.118.77.12])
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4EC35309DDC
-	for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 08:34:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 738DF30649A
+	for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 08:36:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761122089; cv=none; b=NgqGUWvoqPMyHJ6QKZS2Mna+d3fkuDmSKfo/C+VHU4OGRoHkXjBZmU382x8KMGZoCxr9ztH0zX4bRE4tBH3FG6JDRGSpd/iB9H4V3oOZifatgodrJI+hVbV2Nhv8LkLu5WdfLUu+JSoDVk0FbhGVrkF8w6QOXKp5sO/v2+Cz0mw=
+	t=1761122206; cv=none; b=k3M0AX+U/c3ZEZKx9+v5bNo5A83Z7Rhe+QV+ZTAnndUEATK5UZVjh0d9or5vjEUNi+Xb1sTi7fhXKw06M76yyjIyrXeKRki59tUatrLu6pi0NZF9aqxoVMiU1NXqgZ7Y5qec+3xJTbpoUkqKxHAB7LWTTrcAu7GUI/GzcWBRx9U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761122089; c=relaxed/simple;
-	bh=k7go6gqDrFG2+trft2OBLjhjkE6TWd7DLT++h8m7bw0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
-	 Content-Type:References; b=AsE4KNwDtqpVCHhAj++4pE+E1A2D6Hzc6gGs5LDs8zB9i/a5hTXzx7sl1sT0/FywAPn7W8cmMFhgQ9XRm4owKhdmmu9sFiP3btI/8ja1bzc9oVe9YPbk+VtDs6gllJQkrrY/Rp6IfiRepRM0ohRbxxktPNhkRtpgf7ptEfpayug=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=ESLrFtqj; arc=none smtp.client-ip=210.118.77.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20251022083445euoutp02dcf25e6be723411f9afa0eaac03fcc07~wwzS-UXsg0667706677euoutp02S
-	for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 08:34:45 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20251022083445euoutp02dcf25e6be723411f9afa0eaac03fcc07~wwzS-UXsg0667706677euoutp02S
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1761122085;
-	bh=vkkhcjgRhvoU1VOZCS+P7a53/+EplB5Vv+2PW5suPts=;
-	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
-	b=ESLrFtqj26EoOq8ktBxeTtMjZdEY0n/1JoEQJxXxmR4gIREkf6jeguUAYDlLoEhY4
-	 V2ixKYNOa5GU2brC8FwusVALde+DubX41MAqVw4UhG66QTciIItZEHACnnkKNQUvf4
-	 TRZMf0F8p2U8SoBI4J/sswazj31XTnCWHxFXPH2w=
-Received: from eusmtip2.samsung.com (unknown [203.254.199.222]) by
-	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-	20251022083445eucas1p1486781d516d7a401211b0b3b7b465fff~wwzScrPTL1654616546eucas1p1t;
-	Wed, 22 Oct 2025 08:34:45 +0000 (GMT)
-Received: from [192.168.1.44] (unknown [106.210.136.40]) by
-	eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
-	20251022083443eusmtip2960cf8c9ee5bbaa26be2b023d1a84065~wwzQj4uw_1161111611eusmtip2i;
-	Wed, 22 Oct 2025 08:34:42 +0000 (GMT)
-Message-ID: <3f9ab01c-470e-48b5-a309-71325ecc4906@samsung.com>
-Date: Wed, 22 Oct 2025 10:34:42 +0200
+	s=arc-20240116; t=1761122206; c=relaxed/simple;
+	bh=0D0gLXUvdDmxAdocUXs6W1tqJuSvdfyUT5UsEyO8jcI=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=MW4PqNGWKy1IJcn4dn9TNAyfgU0qjL+w10uJqqv/cf8Y7SBtebiWBxfzwqtnfu1JY0vunUFlE8DT2KRyDJxUz7eFesj8I/RIoNVGuBMW/Pg/ooFLjx2acl4wTBj6M8qH6/GzlsxMzLhDOklC0z9aI5MOt4ynGzqZk2Hh6OI01bo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=mOj9Qf5W; arc=none smtp.client-ip=185.246.84.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-02.galae.net (Postfix) with ESMTPS id CB9F41A15CC;
+	Wed, 22 Oct 2025 08:36:42 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 9CAEA606DC;
+	Wed, 22 Oct 2025 08:36:42 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id BCD85102F242A;
+	Wed, 22 Oct 2025 10:36:28 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1761122201; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=0D0gLXUvdDmxAdocUXs6W1tqJuSvdfyUT5UsEyO8jcI=;
+	b=mOj9Qf5WcnayPBzSXX649DoYuwGSolubhlFW+OdQTpyyKk/zWN5znus/K71A9CwH0SUdT7
+	3GDQn+Zb7vvsn7p9vHfSJsUDUk137AAIxs03skNEzO0yvbO+nirad4bdxEV+XpXCJhxA0m
+	V+LChprJ3w5+QEZhJalo0NFca13HEOWEI2DcHJQwwuLriPS9qGqOif92JyA6LpNPPFk5VV
+	pdYem0BPbi8c1rajPSVDpIo1+Q4t/XzJTrO2q0qHM+fLnCT3oGYHV5KnB6zwBsz3/lcr0G
+	G1E0v9+DuGcwpy4PiTaXdilEK8pol5acwKxPk6bpr4PNc1SEO+kXL4qDQywaaQ==
+From: =?UTF-8?B?QmVub8OudA==?= Monin <benoit.monin@bootlin.com>
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Jarkko Nikula <jarkko.nikula@linux.intel.com>,
+ Mika Westerberg <mika.westerberg@linux.intel.com>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Jan Dabros <jsd@semihalf.com>,
+ Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+ Clark Williams <clrkwllms@kernel.org>, Steven Rostedt <rostedt@goodmis.org>,
+ Hans Verkuil <hverkuil+cisco@kernel.org>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ Gregory CLEMENT <gregory.clement@bootlin.com>,
+ =?UTF-8?B?VGjDqW8=?= Lebrun <theo.lebrun@bootlin.com>,
+ Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
+ Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
+ Dmitry Guzman <dmitry.guzman@mobileye.com>, linux-i2c@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-rt-devel@lists.linux.dev
+Subject:
+ Re: [PATCH 2/3] i2c: designware: Enable transfer with different target
+ addresses
+Date: Wed, 22 Oct 2025 10:36:28 +0200
+Message-ID: <5779084.ZASKD2KPVS@benoit.monin>
+In-Reply-To: <aPaS4c-AX0P66T30@shikoro>
+References:
+ <20251017-i2c-dw-v1-0-7b85b71c7a87@bootlin.com>
+ <22296119.4csPzL39Zc@benoit.monin> <aPaS4c-AX0P66T30@shikoro>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v16 0/7] Rust Abstractions for PWM subsystem with TH1520
- PWM driver
-To: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, Miguel Ojeda
-	<ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng
-	<boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
-	=?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, Andreas
-	Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, Trevor
-	Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>, Guo Ren
-	<guoren@kernel.org>, Fu Wei <wefu@redhat.com>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, Palmer
-	Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, Alexandre
-	Ghiti <alex@ghiti.fr>, Marek Szyprowski <m.szyprowski@samsung.com>, Benno
-	Lossin <lossin@kernel.org>, Michael Turquette <mturquette@baylibre.com>,
-	Drew Fustini <fustini@kernel.org>, Daniel Almeida
-	<daniel.almeida@collabora.com>
-Cc: linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
-	rust-for-linux@vger.kernel.org, linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org, Elle Rhumsaa <elle@weathered-steel.dev>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Language: en-US
-From: Michal Wilczynski <m.wilczynski@samsung.com>
-In-Reply-To: <20251016-rust-next-pwm-working-fan-for-sending-v16-0-a5df2405d2bd@samsung.com>
-Content-Transfer-Encoding: 7bit
-X-CMS-MailID: 20251022083445eucas1p1486781d516d7a401211b0b3b7b465fff
-X-Msg-Generator: CA
+Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20251016133814eucas1p199cb62658c016e84e34d525e7c87f16e
-X-EPHeader: CA
-X-CMS-RootMailID: 20251016133814eucas1p199cb62658c016e84e34d525e7c87f16e
-References: <CGME20251016133814eucas1p199cb62658c016e84e34d525e7c87f16e@eucas1p1.samsung.com>
-	<20251016-rust-next-pwm-working-fan-for-sending-v16-0-a5df2405d2bd@samsung.com>
+X-Last-TLS-Session-Version: TLSv1.3
 
-
-
-On 10/16/25 15:38, Michal Wilczynski wrote:
-> This patch series introduces Rust support for the T-HEAD TH1520 PWM
-> controller and demonstrates its use for fan control on the Sipeed Lichee
-> Pi 4A board.
-> 
-> The primary goal of this patch series is to introduce a basic set of
-> Rust abstractions for the Linux PWM subsystem. As a first user and
-> practical demonstration of these abstractions, the series also provides
-> a functional PWM driver for the T-HEAD TH1520 SoC. This allows control
-> of its PWM channels and ultimately enables temperature controlled fan
-> support for the Lichee Pi 4A board. This work aims to explore the use of
-> Rust for PWM drivers and lay a foundation for potential future Rust
-> based PWM drivers.
-> 
-> The core of this series is a new rust/kernel/pwm.rs module that provides
-> abstractions for writing PWM chip provider drivers in Rust. This has
-> been significantly reworked from v1 based on extensive feedback. The key
-> features of the new abstraction layer include:
-> 
->  - Ownership and Lifetime Management: The pwm::Chip wrapper is managed
->    by ARef, correctly tying its lifetime to its embedded struct device
->    reference counter. Chip registration is handled by a pwm::Registration
->    RAII guard, which guarantees that pwmchip_add is always paired with
->    pwmchip_remove, preventing resource leaks.
-> 
->  - Modern and Safe API: The PwmOps trait is now based on the modern
->    waveform API (round_waveform_tohw, write_waveform, etc.) as recommended
->    by the subsystem maintainer. It is generic over a driver's
->    hardware specific data structure, moving all unsafe serialization logic
->    into the abstraction layer and allowing drivers to be written in 100%
->    safe Rust.
-> 
->  - Ergonomics: The API provides safe, idiomatic wrappers for other PWM
->    types (State, Device, etc.) and uses standard kernel error
->    handling patterns.
-> 
-> The series is structured as follows:
->  - Expose static function pwmchip_release.
->  - Rust PWM Abstractions: The new safe abstraction layer.
->  - TH1520 PWM Driver: A new Rust driver for the TH1520 SoC, built on
->    top of the new abstractions.
->  - Device Tree Bindings & Nodes: The remaining patches add the necessary
->    DT bindings and nodes for the TH1520 PWM controller, and the PWM fan
->    configuration for the Lichee Pi 4A board.
-> 
-> Testing:
-> Tested on the TH1520 SoC. The fan works correctly. The duty/period
-> calculations are correct. Fan starts slow when the chip is not hot and
-> gradually increases the speed when PVT reports higher temperatures.
-> 
-> The patches doesn't contain any dependencies that are not currently in
-> the mainline kernel anymore.
-> 
-> ---
-> Changes in v16:
-> - Re-base on top of 6.18-rc1.
-> - Make RUST_PWM_ABSTRACTIONS an invisible Kconfig option and remove the
->   redundant depends on PWM=y.
-> - Handle period requests that are too small by rounding up to 1 cycle,
->   rather than disabling the PWM.
-> - Correctly report a status of 1 to indicate when the period has been
->   rounded up.
-> - Change the error code for an unsupported high clock rate from ERANGE
->   to EINVAL for consistency.
-> - Link to v15: https://lore.kernel.org/r/20250930-rust-next-pwm-working-fan-for-sending-v15-0-5661c3090877@samsung.com
-> 
-
-Hi Uwe,
-
-Since you mentioned last time that you were happy with the code, would
-you please consider picking up this series for linux-next? It would be
-great to get it in for wider testing to ensure everything is solid.
-
-On a related note, it looks like Clk is getting Send and Sync traits
-[1], which is excellent news! This will allow the TH1520 PWM driver to
-be 100% safe Rust :-).
-
-I recall you prefer to base your pull requests on -rc1. With that in
-mind, I plan to send a follow up patch to remove the unsafe block for
-the Clk handling after the next merge window closes.
-
-[1] - https://lore.kernel.org/all/20251020-clk-send-sync-v2-0-44ab533ae084@google.com/T/#mdfdfa9947b4d51b9ebc6d667911bf19907761655
-
+On Monday, 20 October 2025 at 21:52:01 CEST, Wolfram Sang wrote:
+>=20
+> > For your particular case, that will not help reaching the other segment=
+s as
+> > we wait for a STOP before changing the target address. So, it should not
+> > fail but do a write to segment 0 in your eeprom.
+>=20
+> So, this patch replaces a repeated start with a stop + start
+> combination? Please don't do this. It will give users a false impression
+> that proper repeated start is supported. Honestly reporting that the HW
+> does not support is the better option, so the user can decide what to do
+> then.
+>=20
+This patch replaces a -EINVAL in the middle of the transfer by a
+STOP-then-START, but you are right, the expectation is to have a single
+STOP at the end of a combined transfer. I somehow overlooked that part.
+=20
+Maybe I could add support for the I2C_M_STOP flag instead? Or does an
+adapter has to support all the protocol mangling if flagged with
+I2C_FUNC_PROTOCOL_MANGLING?
+=20
+That would still allow to group multiple accesses to device that support a
+STOP in a transaction when done via i2c_dev I2C_RDWR ioctl, in a single-mas=
+ter
+configuration.
 
 Best regards,
--- 
-Michal Wilczynski <m.wilczynski@samsung.com>
+=2D-=20
+Beno=C3=AEt Monin, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
+
+
 
