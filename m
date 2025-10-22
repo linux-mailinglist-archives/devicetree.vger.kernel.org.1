@@ -1,228 +1,246 @@
-Return-Path: <devicetree+bounces-229974-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229975-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1BF2BFE3A0
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 22:54:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 57467BFE503
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 23:29:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4C9C719C762F
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 20:54:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9650119A5E92
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 21:30:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B97D3016F9;
-	Wed, 22 Oct 2025 20:54:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8CE43019CB;
+	Wed, 22 Oct 2025 21:29:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="pIpihXve"
+	dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b="T4SxPkLU";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="ou7TvU9M"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fhigh-a5-smtp.messagingengine.com (fhigh-a5-smtp.messagingengine.com [103.168.172.156])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 885F915E8B
-	for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 20:54:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A63030148A;
+	Wed, 22 Oct 2025 21:29:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.156
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761166457; cv=none; b=EZXPm0PQ4/qmRlI+IlkzDbIvblq9GRmKrLZIyIfwP4Zo1z59HLeD6M737q9ab0IT+4T8cyLBMqlam2v8pkZ8ItkjUzukV8BNxuKaVhnN6ES94vsv82/jSjYAzfPZqdGbnC7psLL220r1CEmPoj1YYF4F4BylVpHf6LiJkxZhkQw=
+	t=1761168590; cv=none; b=nSJuy3VrpUQlwXtlUJmz258uUzzW7xzPIR1ksNX7vQHJFtHJvdZKJtwFD1emwj8Qfb2PBSin/vQsvYHYwkcn5wo0cTgin5EfEhddtXJoeayeb+51kjyfLBryqyOGbuSneaHFh9UkWnkqPsJi84zPmmOk1NhxvAUOGcsSZa9Rvjk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761166457; c=relaxed/simple;
-	bh=XuoRQpGu85uToua5aCbvckIW16Pk6aE3sHCJvIzxZIQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=iDNbAaG4KUYn4eoTlCcAPc7q+GgYhh5eDoqzBZdKaRZlbdASX61ql7AMkj7Hn11LC7n9tXl/7zs/Tni7CYmK2zv05Bk8dXEmeGNKlPLOZgtuCiACoKRfPX3own0dYVp77V3x1fTtOp9eZCy9tPrEhSO5Y5LdiWU/yCajk69RDVQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=pIpihXve; arc=none smtp.client-ip=149.28.215.223
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
- h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
- Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
- s=fe-e1b5cab7be; t=1761166452;
- bh=6By88Zpn3m6uq4P5zQ8yb72SxI9R7gfGj/HM/rNU4uY=;
- b=pIpihXve0+JkbCf5VskfUOqUeLYZZZlh4wFx299wGgclyGKPPPfDi62cWgWE/7kpImq2IJhgb
- 4jzOlCPJM/XEX/vgSPaucLz5y8/J0DuDZ367ylaYoDidyPJ78hQhRspXRaud4XWxL5TFK9X/h/7
- +9+cBAFHaCuQxQ+OVwxajroEVnGldH9aQbcB0DTPnc6HQ5qOa7bZZujKlDEwkAowWEpicV8Tb5A
- Z27LcOODNBRAbIVLs0a82b1YqxVK/QhnPznhP1AlqZ6XfmXy7zQW3VxKqvXeWRU2s+5T0QuXwjU
- DSzG/biOzL4QGtIUOtnLcA8JcpoHb4sXfos/xJvaZJ9Q==
-X-Forward-Email-ID: 68f94203b0b13797a645472d
-X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 149.28.215.223
-X-Forward-Email-Version: 1.3.0
-X-Forward-Email-Website: https://forwardemail.net
-X-Complaints-To: abuse@forwardemail.net
-X-Report-Abuse: abuse@forwardemail.net
-X-Report-Abuse-To: abuse@forwardemail.net
-Message-ID: <fe54009a-ee39-43a0-a337-93c46cd7dabe@kwiboo.se>
-Date: Wed, 22 Oct 2025 22:43:41 +0200
+	s=arc-20240116; t=1761168590; c=relaxed/simple;
+	bh=vM/gKbqwkStoeQf8YsKREqFtoW4yL8OSPOmLGD76qOE=;
+	h=MIME-Version:Date:From:To:Message-Id:In-Reply-To:References:
+	 Subject:Content-Type; b=ik+Fhxm8ob7SIgnK7gw41A55VVMKJXFVIZma4q6F/R93aqUOpbndMsVC9SN5V8Vh7du9G+OF7rUd7Oosb5as7LNDqZFONUqlVeWK8r6i2rCSjIpB6EkDgHMnq42U1nFRP1jjli2L5vIAx5AQyxhQoohguTgG5cWHobC7de1UZsc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de; spf=pass smtp.mailfrom=arndb.de; dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b=T4SxPkLU; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=ou7TvU9M; arc=none smtp.client-ip=103.168.172.156
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arndb.de
+Received: from phl-compute-05.internal (phl-compute-05.internal [10.202.2.45])
+	by mailfhigh.phl.internal (Postfix) with ESMTP id 69F2A1400179;
+	Wed, 22 Oct 2025 17:29:47 -0400 (EDT)
+Received: from phl-imap-02 ([10.202.2.81])
+  by phl-compute-05.internal (MEProxy); Wed, 22 Oct 2025 17:29:47 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+	:content-transfer-encoding:content-type:content-type:date:date
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm2; t=1761168587;
+	 x=1761254987; bh=GQtbnX2T9Se/lRsU3DTM/JRK0hTqgNTrDEYIiVzPzXg=; b=
+	T4SxPkLUshLDsetVBJ/s2ahutHPxk6IqoV+3ZBCY+l4iauAYnJ/8o9qmbjmF0eRw
+	mexndk3pN1GKfjpyD5+f4r0Ano0Y67E4i6i5PaitMVzE+bH57pkqHBwEoeE7DC9s
+	uYNjCwbi3q7k80u1lVwmxSLZG/lB3In5RV2j00XHFXxLABpjZvox4gQ9Th7Rz/EP
+	RdVFhTb3ajfBDy5oX5gp2sT1vSrxtkRiRuBAcfxp1VO99VmVHm0BSwOWHYt347i1
+	0KkNuBys49d0awdBntg5T2xggf8bLBK4EbANO5v1gjG8VZKMbfty2tgu8pzfKEH0
+	ZS+P3omLJyTji1BpFyRHlQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:content-transfer-encoding:content-type
+	:content-type:date:date:feedback-id:feedback-id:from:from
+	:in-reply-to:in-reply-to:message-id:mime-version:references
+	:reply-to:subject:subject:to:to:x-me-proxy:x-me-sender
+	:x-me-sender:x-sasl-enc; s=fm2; t=1761168587; x=1761254987; bh=G
+	QtbnX2T9Se/lRsU3DTM/JRK0hTqgNTrDEYIiVzPzXg=; b=ou7TvU9MaD2Cj4WhJ
+	wOTWISBACxdnX15j5M4WKzscNO++lNUOAKPCH7xBngsbMGESZ4+b9uEpkfPc9MF9
+	DGws/OiXR4bAJUdISheICQxaeZI4IbrOvK4I8XGDh6de+MUpxrABwrWVPirq4OcC
+	+6q5LfPjKEewEWAknp2sWb9AXmCCBAKMWpLAsD45Xp0MyP3doa2fSySNycZKPB70
+	kO1vcgneA/r3gBuGm76FOlHkFtmC6Gp5UK9s8w8M4hoIM8DjO/N0s7tJhiI+gaBY
+	p9Z8O30XCHqzDtp8Qft99oN2Dat7bEw2ymqTjPph3c0XVhvMVDhRLmO2G5R5upvA
+	B6qtg==
+X-ME-Sender: <xms:yEz5aKImCldmUCX7U54vfZ05-AAJkUTKq0uoJf6mdWtflsoSPepewA>
+    <xme:yEz5aM_S7iI1RIDFDQTfI7YimnTORMkee7PKxsqkX2yhx-e7J207kucp3qpjMok4T
+    NKBbukKr_eeTH-sIa7cTzYDk8K8Wg4TfWDVLX2r73Qi5bRGnb5R3UM>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdeggddugeegieeiucetufdoteggodetrf
+    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceu
+    rghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujf
+    gurhepofggfffhvffkjghfufgtgfesthejredtredttdenucfhrhhomhepfdetrhhnugcu
+    uegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrghtthgvrh
+    hnpefhkeeltdfffefhgffhteetheeuhffgteeghfdtueefudeuleetgfehtdejieffhfen
+    ucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrrhhnug
+    esrghrnhgusgdruggvpdhnsggprhgtphhtthhopedvfedpmhhouggvpehsmhhtphhouhht
+    pdhrtghpthhtoheptggrthgrlhhinhdrmhgrrhhinhgrshesrghrmhdrtghomhdprhgtph
+    htthhopegsmhgtqdhsfiesrghsphgvvgguthgvtghhrdgtohhmpdhrtghpthhtoheprhih
+    rghnpggthhgvnhesrghsphgvvgguthgvtghhrdgtohhmpdhrtghpthhtohepphhrrggshh
+    grkhgrrhdrmhgrhhgruggvvhdqlhgrugdrrhhjsegsphdrrhgvnhgvshgrshdrtghomhdp
+    rhgtphhtthhopegrnhgurhgvfiestghouggvtghonhhsthhruhgtthdrtghomhdrrghupd
+    hrtghpthhtohepjhhksegtohguvggtohhnshhtrhhutghtrdgtohhmrdgruhdprhgtphht
+    thhopehnfhhrrghprhgrughosegtohhllhgrsghorhgrrdgtohhmpdhrtghpthhtohepjh
+    hovghlsehjmhhsrdhiugdrrghupdhrtghpthhtoheptghonhhorhdoughtsehkvghrnhgv
+    lhdrohhrgh
+X-ME-Proxy: <xmx:yEz5aBgcDioDWIc_8DeRivTfNZakPd6HTRia4nf1zN4O_SfLO07Cdg>
+    <xmx:yEz5aCK1AaQJfDOoAgORQdIeliTmQ3NPfdtRVgKBdVRFS0YJ6Oalrg>
+    <xmx:yEz5aM73GP141dHMlJLTmDcXUZ-EAH4r4Q0r60x7HxdKnFsywnXkAw>
+    <xmx:yEz5aPkxidvDJAgTXW0uPyJUFc2llHsYHCy-TekCsqgTUSGKii4d1A>
+    <xmx:y0z5aOXvPySuzPpWft2Y2TVfuArpGU7LHWS857_t35R_1ukaAPoVibc6>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.phl.internal (Postfix, from userid 501)
+	id EB151700054; Wed, 22 Oct 2025 17:29:43 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/4] ethernet: stmmac: dwmac-rk: Add RK3506 GMAC support
-To: Heiko Stuebner <heiko@sntech.de>
-Cc: "andrew+netdev@lunn.ch" <andrew+netdev@lunn.ch>,
- "davem@davemloft.net" <davem@davemloft.net>,
- "edumazet@google.com" <edumazet@google.com>,
- "kuba@kernel.org" <kuba@kernel.org>, "pabeni@redhat.com"
- <pabeni@redhat.com>, "robh@kernel.org" <robh@kernel.org>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-rockchip@lists.infradead.org" <linux-rockchip@lists.infradead.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- David Wu <david.wu@rock-chips.com>
-References: <20251021224357.195015-1-heiko@sntech.de>
- <20251021224357.195015-5-heiko@sntech.de>
-Content-Language: en-US
-From: Jonas Karlman <jonas@kwiboo.se>
-In-Reply-To: <20251021224357.195015-5-heiko@sntech.de>
-Content-Type: text/plain; charset=UTF-8
+X-ThreadId: AMptcG-LwCSF
+Date: Wed, 22 Oct 2025 23:29:23 +0200
+From: "Arnd Bergmann" <arnd@arndb.de>
+To: "Ryan Chen" <ryan_chen@aspeedtech.com>, bmc-sw@aspeedtech.com,
+ "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+ "Conor Dooley" <conor+dt@kernel.org>, "Joel Stanley" <joel@jms.id.au>,
+ "Andrew Jeffery" <andrew@codeconstruct.com.au>,
+ "Jeremy Kerr" <jk@codeconstruct.com.au>, "Lee Jones" <lee@kernel.org>,
+ "Catalin Marinas" <catalin.marinas@arm.com>, "Will Deacon" <will@kernel.org>,
+ "Bjorn Andersson" <bjorn.andersson@oss.qualcomm.com>,
+ "Geert Uytterhoeven" <geert@linux-m68k.org>, "Nishanth Menon" <nm@ti.com>,
+ =?UTF-8?Q?N=C3=ADcolas_F=2E_R=2E_A=2E_Prado?= <nfraprado@collabora.com>,
+ "Taniya Das" <quic_tdas@quicinc.com>,
+ "Lad, Prabhakar" <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+ "Kuninori Morimoto" <kuninori.morimoto.gx@renesas.com>,
+ "Eric Biggers" <ebiggers@kernel.org>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
+ linux-kernel@vger.kernel.org
+Message-Id: <b5441728-06a7-44ea-8876-3a9fc3cf55be@app.fastmail.com>
+In-Reply-To: <20251022070543.1169173-5-ryan_chen@aspeedtech.com>
+References: <20251022070543.1169173-1-ryan_chen@aspeedtech.com>
+ <20251022070543.1169173-5-ryan_chen@aspeedtech.com>
+Subject: Re: [PATCH v6 4/6] arm64: dts: aspeed: Add initial AST2700 SoC device tree
+Content-Type: text/plain
 Content-Transfer-Encoding: 7bit
 
-Hi Heiko,
+On Wed, Oct 22, 2025, at 09:05, Ryan Chen wrote:
+> Add initial device tree for the ASPEED 8th BMC SoC family.
+>
+> Signed-off-by: Ryan Chen <ryan_chen@aspeedtech.com>
 
-On 10/22/2025 12:43 AM, Heiko Stuebner wrote:
-> From: David Wu <david.wu@rock-chips.com>
-> 
-> Add the needed glue blocks for the RK3506-specific setup.
-> 
-> The RK3506 dwmac only supports up to 100MBit with a RMII PHY,
-> but no RGMII.
-> 
-> Signed-off-by: David Wu <david.wu@rock-chips.com>
-> Signed-off-by: Heiko Stuebner <heiko@sntech.de>
-> ---
->  .../net/ethernet/stmicro/stmmac/dwmac-rk.c    | 79 +++++++++++++++++++
->  1 file changed, 79 insertions(+)
-> 
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-rk.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-rk.c
-> index 51ea0caf16c1..e1e036e7163c 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-rk.c
-> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-rk.c
-> @@ -827,6 +827,84 @@ static const struct rk_gmac_ops rk3399_ops = {
->  	.set_speed = rk3399_set_speed,
->  };
->  
-> +#define RK3506_GRF_SOC_CON8		0X0020
-> +#define RK3506_GRF_SOC_CON11		0X002c
+I think this is the place where you'd want to put some information
+about the chip itself. I know what it is, but others may not
+know anything about it.
+ 
+> +	aliases {
+> +		serial0 = &uart0;
+> +		serial1 = &uart1;
+> +		serial2 = &uart2;
+> +		serial3 = &uart3;
+> +		serial4 = &uart4;
+> +		serial5 = &uart5;
+> +		serial6 = &uart6;
+> +		serial7 = &uart7;
+> +		serial8 = &uart8;
+> +		serial9 = &uart9;
+> +		serial10 = &uart10;
+> +		serial11 = &uart11;
+> +		serial12 = &uart12;
+> +		serial13 = &uart13;
+> +		serial14 = &uart14;
+> +	};
 
-Maybe 0x0020 and 0x002c (lower case x) ?
+This looks like you just list all the uarts that are present
+on the chip, which is not how the aliases are meant to be
+used. Move this block into the board specific file and
+only list the ones that are actually enabled on that particular
+board.
+
+In particular, the alias names are meant to be local to the
+board and don't usually correspond to the numbering inside
+of the chip. In the defconfig, we currently set
+CONFIG_SERIAL_8250_NR_UARTS=8, which is enough for any
+board we support so far, but that means only the first
+8 aliases in the list will actually work.
+
+> +	soc0: soc@10000000 {
+> +		compatible = "simple-bus";
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		ranges = <0x0 0x0 0x0 0x10000000 0x0 0x4000000>;
+> +
+> +		intc0: interrupt-controller@12100000 {
+> +			compatible = "aspeed,ast2700-intc0";
+> +			reg = <0 0x12100000 0 0x4000>;
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +			ranges = <0x0 0x0 0x12100000 0x4000>;
+
+This doesn't seem to add up: you define a local register
+space for the soc from 0x0 to 0x4000000, but the registers of
+the child devices are above 0x4000000.
+
+I suspect that you forgot to adjust all the addresses in
+the child devices to be inside of that range.
+
+> +	soc1: soc@14000000 {
+> +		compatible = "simple-bus";
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		ranges = <0x0 0x0 0x0 0x14000000 0x0 0x10000000>;
+
+This probably needs some explanation: why are there two 'soc@...'
+devices? Is this literally two chips in the system, or are you
+describing two buses inside of the same SoC?
 
 > +
-> +#define RK3506_GMAC_RMII_MODE		GRF_BIT(1)
-> +
-> +#define RK3506_GMAC_CLK_RMII_DIV2	GRF_BIT(3)
-> +#define RK3506_GMAC_CLK_RMII_DIV20	GRF_CLR_BIT(3)
-> +
-> +#define RK3506_GMAC_CLK_SELET_CRU	GRF_CLR_BIT(5)
-> +#define RK3506_GMAC_CLK_SELET_IO	GRF_BIT(5)
+> +		mdio0: mdio@14040000 {
+> +			compatible = "aspeed,ast2600-mdio";
+> +			reg = <0 0x14040000 0 0x8>;
+> +			resets = <&syscon1 SCU1_RESET_MII>;
+> +			status = "disabled";
+> +		};
 
-s/SELET/SELECT/
+I see that you use the old compatible="aspeed,ast2600-mdio" string
+exclusively here. While this works, I would suggest you list both
+a more specific "aspeed,ast2700-mdio" string to refer to the version
+in this chip as well as the fallback "aspeed,ast2600-mdio" string
+as the generic identifier.
 
-> +
-> +#define RK3506_GMAC_CLK_RMII_GATE	GRF_BIT(2)
-> +#define RK3506_GMAC_CLK_RMII_NOGATE	GRF_CLR_BIT(2)
-> +
-> +static void rk3506_set_to_rmii(struct rk_priv_data *bsp_priv)
-> +{
-> +	struct device *dev = bsp_priv->dev;
-> +	unsigned int id = bsp_priv->id, offset;
-> +
-> +	if (IS_ERR(bsp_priv->grf)) {
-> +		dev_err(dev, "%s: Missing rockchip,grf property\n", __func__);
-> +		return;
-> +	}
-
-Please drop this, it is already checked in rk_gmac_setup().
+The binding obviously has to describe both in that case, but the
+driver does not need to be modified as long as both behave the
+same way.
 
 > +
-> +	offset = (id == 1) ? RK3506_GRF_SOC_CON11 : RK3506_GRF_SOC_CON8;
-> +	regmap_write(bsp_priv->grf, offset, RK3506_GMAC_RMII_MODE);
-> +}
+> +		syscon1: syscon@14c02000 {
+> +			compatible = "aspeed,ast2700-scu1", "syscon", "simple-mfd";
+> +			reg = <0x0 0x14c02000 0x0 0x1000>;
+> +			ranges = <0x0 0x0 0x14c02000 0x1000>;
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +			#clock-cells = <1>;
+> +			#reset-cells = <1>;
 > +
-> +static int rk3506_set_speed(struct rk_priv_data *bsp_priv,
-> +			    phy_interface_t interface, int speed)
-> +{
-> +	struct device *dev = bsp_priv->dev;
-> +	unsigned int val, offset, id = bsp_priv->id;
+> +			scu_ic2: interrupt-controller@100 {
+> +				compatible = "aspeed,ast2700-scu-ic2";
+> +				reg = <0x100 0x8>;
+> +				#interrupt-cells = <1>;
+> +				interrupts-extended = <&intc1_5 0>;
+> +				interrupt-controller;
+> +			};
 > +
-> +	switch (speed) {
-> +	case 10:
-> +		val = RK3506_GMAC_CLK_RMII_DIV20;
-> +		break;
-> +	case 100:
-> +		val = RK3506_GMAC_CLK_RMII_DIV2;
-> +		break;
-> +	default:
-> +		dev_err(dev, "unknown speed value for RMII! speed=%d", speed);
-> +		return -EINVAL;
-> +	}
-> +
-> +	offset = (id == 1) ? RK3506_GRF_SOC_CON11 : RK3506_GRF_SOC_CON8;
-> +	regmap_write(bsp_priv->grf, offset, val);
-> +
-> +	return 0;
+> +			scu_ic3: interrupt-controller@108 {
+> +				compatible = "aspeed,ast2700-scu-ic3";
+> +				reg = <0x108 0x8>;
+> +				#interrupt-cells = <1>;
+> +				interrupts-extended = <&intc1_5 26>;
+> +				interrupt-controller;
+> +			};
 
-This should probably be converted to use rk_reg_speed_data with
-something like:
+This looks a bit silly to be honest: you have two separate devices
+that each have a single register and a different compatible string?
 
-static const struct rk_reg_speed_data rk3506_reg_speed_data = {
-	.rmii_10 = RK3506_GMAC_CLK_RMII_DIV20,
-	.rmii_100 = RK3506_GMAC_CLK_RMII_DIV2,
-};
+Also you claim to be compatible with "syscon" but nothing actually
+refers to the syscon node in that form?
 
-and:
-
-	return rk_set_reg_speed(bsp_priv, &rk3506_reg_speed_data,
-				offset, interface, speed);
-
-> +}
-> +
-> +static void rk3506_set_clock_selection(struct rk_priv_data *bsp_priv,
-> +				       bool input, bool enable)
-> +{
-> +	unsigned int value, offset, id = bsp_priv->id;
-> +
-> +	offset = (id == 1) ? RK3506_GRF_SOC_CON11 : RK3506_GRF_SOC_CON8;
-> +
-> +	value = input ? RK3506_GMAC_CLK_SELET_IO :
-> +			RK3506_GMAC_CLK_SELET_CRU;
-
-s/SELET/SELECT/
-
-Regards,
-Jonas
-
-> +	value |= enable ? RK3506_GMAC_CLK_RMII_NOGATE :
-> +			  RK3506_GMAC_CLK_RMII_GATE;
-> +	regmap_write(bsp_priv->grf, offset, value);
-> +}
-> +
-> +static const struct rk_gmac_ops rk3506_ops = {
-> +	.set_to_rmii = rk3506_set_to_rmii,
-> +	.set_speed = rk3506_set_speed,
-> +	.set_clock_selection = rk3506_set_clock_selection,
-> +	.regs_valid = true,
-> +	.regs = {
-> +		0xff4c8000, /* gmac0 */
-> +		0xff4d0000, /* gmac1 */
-> +		0x0, /* sentinel */
-> +	},
-> +};
-> +
->  #define RK3528_VO_GRF_GMAC_CON		0x0018
->  #define RK3528_VO_GRF_MACPHY_CON0	0x001c
->  #define RK3528_VO_GRF_MACPHY_CON1	0x0020
-> @@ -1808,6 +1886,7 @@ static const struct of_device_id rk_gmac_dwmac_match[] = {
->  	{ .compatible = "rockchip,rk3366-gmac", .data = &rk3366_ops },
->  	{ .compatible = "rockchip,rk3368-gmac", .data = &rk3368_ops },
->  	{ .compatible = "rockchip,rk3399-gmac", .data = &rk3399_ops },
-> +	{ .compatible = "rockchip,rk3506-gmac", .data = &rk3506_ops },
->  	{ .compatible = "rockchip,rk3528-gmac", .data = &rk3528_ops },
->  	{ .compatible = "rockchip,rk3568-gmac", .data = &rk3568_ops },
->  	{ .compatible = "rockchip,rk3576-gmac", .data = &rk3576_ops },
-
+       Arnd
 
