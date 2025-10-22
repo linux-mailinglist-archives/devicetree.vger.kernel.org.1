@@ -1,805 +1,220 @@
-Return-Path: <devicetree+bounces-229555-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229556-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5822CBF9959
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 03:13:55 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id C70AFBF9A1A
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 03:44:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 07B273AE8CB
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 01:13:53 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id BA0374E1DA6
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 01:44:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D67D1F5858;
-	Wed, 22 Oct 2025 01:13:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFD8A1F4C9F;
+	Wed, 22 Oct 2025 01:44:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="npuAx/7h"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="FAo5P8m6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from DB3PR0202CU003.outbound.protection.outlook.com (mail-northeuropeazon11010015.outbound.protection.outlook.com [52.101.84.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DAC21F181F;
-	Wed, 22 Oct 2025 01:13:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761095626; cv=none; b=itcM81Ah8W4DzoepD68HGGNi15vT9+RDWV9i4KKxscL/xo3Tl0DO9Own1MkDk6fZ0P0z+GQFwtLPaNTCF29XZ/GdGUpivfca0+1+6nx67r1tVXO0P8N1qmS+EReIljDWYhcixVEYi7vNW/dRhKfvNNdrumgonQqPVuqifBHhEKo=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761095626; c=relaxed/simple;
-	bh=+dJwhlaz1orm5tpKaUfnd6vJp/1SI3Z/tu4XMtQU94w=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=tDNiUcyjjRrpHOgZAIembjHDedG+v/mYsb+9Iii0+do//WftZ2yYowqOnkdhq+AWl5WfbWtyqj3fUnXks2St4hzk3ezHMJAtOi2+l+ho526nE6f2MFiA3BjAZCBAoQxRlpSDF+S9F2+IuG2R2z9c1TKA4DMEC1agmCKnHjA12Gk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=npuAx/7h; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id A33AEC116C6;
-	Wed, 22 Oct 2025 01:13:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761095625;
-	bh=+dJwhlaz1orm5tpKaUfnd6vJp/1SI3Z/tu4XMtQU94w=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=npuAx/7hGN/t1Bfom1T9XWHQ4LGFxZrX8HpeB5JHNDxdJ+5f0OC7J+t1aNlhmOV6M
-	 qOsiUP2E4qjes6GSjAIE/95CehVZ1KTzNge0lLzguYnKgD4w/qIR1s2ygI8mjC6yDc
-	 0NrZMCIUlXHi0eIEjkh0XLxXy/W7NeFhAy43HrccWV8GscUgIViICNlsvUPuXJ6bkf
-	 EKt4Nh9AQaNYcXqnLe4/d+ZB2/X94e4fWBdICmMJGvLjagQPDIO+vLgXps3pOAJWCu
-	 7PrP2haYOavSTtwf1ExREurxp2XCdRanlypaIXyzDHk7Q3eOfnimwKFnxwNXnOV4Vy
-	 em55aSfwt5hww==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8D204CCD1BC;
-	Wed, 22 Oct 2025 01:13:45 +0000 (UTC)
-From: Aaron Kling via B4 Relay <devnull+webgeek1234.gmail.com@kernel.org>
-Date: Tue, 21 Oct 2025 20:13:42 -0500
-Subject: [PATCH v3 2/2] arm64: tegra: Add CPU OPP tables for Tegra194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2C3A1E5213;
+	Wed, 22 Oct 2025 01:44:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.84.15
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1761097485; cv=fail; b=LrWOY0s0XIg7LVP58wnlcavm4SQaj3EXDxOZc5ufnpeSVrjub4g8UngM+1DlLXwd+Q17EO6OMvM0KWdjQ5Dxzushyiw/qTuzPwiR6nw66Tovt6JD+gHjWnJbspDzthNk1TpN9SAbmOOP/yv9BrMLlfLfHNgHUgXk+AYoXZvB2oY=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1761097485; c=relaxed/simple;
+	bh=TkM5IWS7JzFPIy7iIY4gNtPhapc+hQ6Y1k3wS1WsIk4=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=B6omYgclYINHk8KE1QSMjZ/532BreBKX2kOmfuh5eyc+XO8hDs3G24+bfrrxgC2eoq/R+mojcg/vzQ6YbYUjWejjqGuGDH0gne3yWOsLdXRhs4BsMI4mgGaKcVhOAQK2SkXpkrvYnM1vWzj5q+axMskQXoqkpX7zSKSoPE9XZec=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=FAo5P8m6; arc=fail smtp.client-ip=52.101.84.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=CQ0NrhDIl7tgE1BsIvQE9hPMJllcVwY1dH5lbL+mYmjzT2IFCHQfy2zfJ7I196pKgzd2ntEiJZANGvpSPUeORIXv3fnK4Il0vX1ZvvZzmJSCx5CpNxUG2ygPqHqjFC6m5rW31S/sqNvvo4UiG+7e4IW028PFT5WfxaG3oXtwpF2SBLim0w1lAsGBo6hf9k0uPwa9Jrqr+qd9Vl7ldoGAJaiok2MCqv0HA6H6+MYOlVDSIM5+or8Y8ARc4lxEeM8i3rcCmPABOp20LGCrIWUN3SIs+RFac8O10vxzBIsVwFgdi6vL4hav8p/3pLq9iuthTLxZSITy8lQ8C+FedSCs3Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=TkM5IWS7JzFPIy7iIY4gNtPhapc+hQ6Y1k3wS1WsIk4=;
+ b=xBUhkBGLNuo0RKZBG0ER4a0Trj1S7Hlhe5c5actn9JktOo98aLcMgkjiAJK6+GXJ96svjjQADTzvcSNmr0PArYYnmshh4grcXwcqy6T0W+IYq6Ko5Or5FkFZC4GsytxDxWTbBjPkLDR29Y8dZ1Z3QeZYgmF+OEWEOvwMbUAqUrazxvtFq3zTApiGCtIgvldJsNEWm+pmxy80AZ7NTfSDCWewQM/IgvYhvSdebFX1GWxgQ5dMEkX90S5h8NpGz9ezC1NSntPxV6VkYFrNMVd4I1ZMVMzbHBd8jueDK6Yjk8PAa96XfaKo9diLZ6vIiD7jlk2W7sQMJHsNAncbElybYA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=TkM5IWS7JzFPIy7iIY4gNtPhapc+hQ6Y1k3wS1WsIk4=;
+ b=FAo5P8m65L7Abc5IMW9abDHen1JcYzEvGovicFTczytXLc4AqCDOHQi8EOGQHyY1OJWvWvnUdK1O3D5JrIFosWVC2B4mBRSj8XQ2LqVAOwtfN1BY5fsQ12XLlJQgojCH+uZ2hS7Tx+TkjRwqINc7i01uZgya2iYZYWhGVIeDzOqAgQCzXqWd8U1CWJ33o/Oa6bzPQeSn1BGXSPEwrQ8eUwnXjzsoroJKBNRf60XMNwGIZ5HkZb0TeH8X/Uk8JFMwgRCZfzwOszcUqFkY6PVWDbxxBp2uc4CqpWCeA05hFzftXpyP4+tkrgaHiG9EhBlrQ0pjbEw2d3O8hskJE7333Q==
+Received: from PAXPR04MB8510.eurprd04.prod.outlook.com (2603:10a6:102:211::7)
+ by DU2PR04MB8646.eurprd04.prod.outlook.com (2603:10a6:10:2dd::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9253.12; Wed, 22 Oct
+ 2025 01:44:39 +0000
+Received: from PAXPR04MB8510.eurprd04.prod.outlook.com
+ ([fe80::a7c2:e2fa:8e04:40db]) by PAXPR04MB8510.eurprd04.prod.outlook.com
+ ([fe80::a7c2:e2fa:8e04:40db%4]) with mapi id 15.20.9253.011; Wed, 22 Oct 2025
+ 01:44:39 +0000
+From: Wei Fang <wei.fang@nxp.com>
+To: Paolo Abeni <pabeni@redhat.com>
+CC: "imx@lists.linux.dev" <imx@lists.linux.dev>, "netdev@vger.kernel.org"
+	<netdev@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "robh@kernel.org" <robh@kernel.org>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org"
+	<conor+dt@kernel.org>, Claudiu Manoil <claudiu.manoil@nxp.com>, Vladimir
+ Oltean <vladimir.oltean@nxp.com>, Clark Wang <xiaoning.wang@nxp.com>, Frank
+ Li <frank.li@nxp.com>, "andrew+netdev@lunn.ch" <andrew+netdev@lunn.ch>,
+	"davem@davemloft.net" <davem@davemloft.net>, "edumazet@google.com"
+	<edumazet@google.com>, "kuba@kernel.org" <kuba@kernel.org>,
+	"richardcochran@gmail.com" <richardcochran@gmail.com>
+Subject: RE: [PATCH net-next 6/8] net: enetc: add basic support for the ENETC
+ with pseudo MAC for i.MX94
+Thread-Topic: [PATCH net-next 6/8] net: enetc: add basic support for the ENETC
+ with pseudo MAC for i.MX94
+Thread-Index: AQHcPomx5rXumqsTlUupdMb7PmTNILTMOwsAgAEv5XA=
+Date: Wed, 22 Oct 2025 01:44:38 +0000
+Message-ID:
+ <PAXPR04MB851033505FB2A4673A15EBD488F3A@PAXPR04MB8510.eurprd04.prod.outlook.com>
+References: <20251016102020.3218579-1-wei.fang@nxp.com>
+ <20251016102020.3218579-7-wei.fang@nxp.com>
+ <11ffb7d0-4e52-496e-84c7-0d93bf03e4cf@redhat.com>
+In-Reply-To: <11ffb7d0-4e52-496e-84c7-0d93bf03e4cf@redhat.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: PAXPR04MB8510:EE_|DU2PR04MB8646:EE_
+x-ms-office365-filtering-correlation-id: 5a167fbf-06fa-414d-0f64-08de110c9044
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|366016|1800799024|7416014|376014|19092799006|38070700021;
+x-microsoft-antispam-message-info:
+ =?utf-8?B?VHhGVzZlYzJ3YXA3dXB0WnNSVHVuU2R0N0c0OU1jWER2RHYvSHE5ZVhQd2ty?=
+ =?utf-8?B?NGhWbWRPQlUyQmFUeitOWXB1TkRNNC94bHJsNWZXaEZtUERqcldrWHlXU3Mx?=
+ =?utf-8?B?ZlBESkR2OGdLY0ZWcjZwNG5NdkdhNzdTVUYxVkx3UElvZ2huNzc2NVFmakU3?=
+ =?utf-8?B?TSsySVhJZ28rdFRmdGJwWHRTbkhnWTRWNnhyK3UyYm9tUVlBZjBqVjFxRTFs?=
+ =?utf-8?B?YlgvL2JXNDIwQnYrTDJ1RWNsM1R0ODBWTEhnT0FwbCttdnlNdXo3QXBmMDMw?=
+ =?utf-8?B?NEpPZFk0NlE4Mzc4eVp1WG5GVzlqVGFkUWIzUmNRYlFQTVNxUnRoQVBnVVdL?=
+ =?utf-8?B?UnlIOE9TWHpzdUxldWJtdnVyYkFBNkIvZkhSWXR2eXFXZ3lpL1ZRVDdMZjA2?=
+ =?utf-8?B?SldHZVEvZXVLcDNGYmFhVm5XMVY0N0d2dHBFRHlZNDlGaXltamp3cmNYVU5q?=
+ =?utf-8?B?TlcyblN5cFY2b2Z3akpIbkdWT0xucVZib09UVHB5SVBvajZuMkh5ZEVnNVUw?=
+ =?utf-8?B?WFY1UkIzUmgrYW5zYjVMcXFTS2pCTzhkWnRkWURtNGNOWHl0RnJ0ME05QkVk?=
+ =?utf-8?B?Y2I4Q3BvdjY3WVNtUWhCeCtmbk1VaWRJNVhIK0xtZFBpVVphem5nTkpFMVR2?=
+ =?utf-8?B?WDRobElZdklxQTgySjRPUlU4QS9UTU5xanA3dkR6WmZvbUt6RWZoaHZmaHpN?=
+ =?utf-8?B?TE5BTng2UXB3ZDJDeTY5ZXYya3FjQTNyTG94dUtJNElPdEVqUTJQUG1HSHVB?=
+ =?utf-8?B?MmNtTThoaXdDL1RXYm40b28zQ2pjL2ZTOFJ0djNRUUFaWnVrMnVONXRSVTNQ?=
+ =?utf-8?B?dXkrMkcwcXBaZmo4bFBpVVJ5d0lqRWlFQVlod0Q4SEhUeU1mNStBVlE3c1Zv?=
+ =?utf-8?B?ZGVpalc1WWczUFJkcHVQY1lMVlQwS0pncUNmdStDU0hMb3BkMkR5dmRZMkI3?=
+ =?utf-8?B?Y1poM3R0L2s3WUl3V1Zma0FGcEIwVi82SGFvbU5JZ0RjS2FrNnBIZUk4dXp5?=
+ =?utf-8?B?cmhUNkw4Wk9jMGNjb0VVREttUEkxaXEwU1hJbDdzejBFZjZpVWdWVGRFZnd2?=
+ =?utf-8?B?YnFUMkV5c1phYnE3TlgvamRSM2YwdDlmNnBHaVZXbU53OTliNXVMNVRrYmtp?=
+ =?utf-8?B?N2w1MFNXclhiSlphVE9VWHhycFpUVWc2S0orUnBUSEVnUFQ5S2srRmxKWTQ5?=
+ =?utf-8?B?RkdNdUdPenhQTWMxMkRzU3ZRRDRQZjJmY2RSYi9yUmxJenNhYTJpczZ5Uyta?=
+ =?utf-8?B?NEwwMElPaGYvUjdya2JzVkNqN2hzMFZmbEJsLzA0Y0RLamxhQUNmVTg1YnBu?=
+ =?utf-8?B?Z3Jpak5pUi85ckNCVUt2RjdLeEZsb21sT09mYXpLTTFnK3ZUVHRlL1hoRmlk?=
+ =?utf-8?B?WUZZK0lmQi9aK3d1Z3VwRzZSWm5oMXY0K3N1b0hnY1RyME9EKzBieTFXVXVN?=
+ =?utf-8?B?d1p4dC9TYXRpUytBRWMvUmgrRUlZYnlpQ2dON2tsU09nLzh3OEdUSjlxQmdt?=
+ =?utf-8?B?TnNnaWg3RHQwRnJQaUgvUmxrbDhWS3FTbFoyMFYzQU1HczZKVWlrL0FxMHk3?=
+ =?utf-8?B?OXJhdkcwdVRhVmphNEZ5WXp2TTFjME50SFZ5SUY0NDZTMExwbFdaajMwZ1BI?=
+ =?utf-8?B?YUhGWmZOTUxIQms1RW5iM0o1eG1WNVI3NFM3MHlvVkhxWW4yemk3T0dxZnRN?=
+ =?utf-8?B?V1A2YWpsUThLc2ZlUmhXMGR0NStqdW94K0M4UzhRK09DKzVCbXVobTQxa1pk?=
+ =?utf-8?B?V2pwazFDNVNoRk9WeEUxbFFQc2VJV2pUR3NNbzdGOVY0SUdSdDhBeGdPNmJ6?=
+ =?utf-8?B?Z3pZZmtuSGY2RG9sTFh5Q0ZSTU9CblZvTjU1dmE2Si8xdGYyUHZySDJZRk1s?=
+ =?utf-8?B?TnNpdGhqNkU4MG1nZTZaVktSN3dzZGR4VEVmUGN3K1dadW13YzcvWXZpNzRR?=
+ =?utf-8?B?OCtNOUNySzEwQzY3SXRSZk1xWlJTb1JuNCtiL3Rnd0dSS2VyN25DeVlEbjJO?=
+ =?utf-8?B?UVhnZEY3UlkvODk5R3JLTlN0UlplUm8vcmF3Z0x1UmlUWEVXejh0Wlc3UVJR?=
+ =?utf-8?Q?atulb3?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB8510.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(7416014)(376014)(19092799006)(38070700021);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?utf-8?B?cU9OSTFOQ0xoK3lRK3pXQkJCWFRqaWlGa04zQ1VBZnVDU0NaTnVCUW5qclFM?=
+ =?utf-8?B?VUVHUUhQRlpzY3kxMkRSdnBJN0ZsQmhIUXB5Zm1iMncrR2RGR1J0MHJFaWI4?=
+ =?utf-8?B?L0JBU25KZi91dFVhdXVMa1ZBSnJ0TWRYcm5wNm9LN2NlS1EzQ2h3eXVLV1ZU?=
+ =?utf-8?B?eFhMU0NSbElTRnAwL1d5clBlQ1g0Vk9LazNZQU5oekgzZlhNaDk4MUdCdzVN?=
+ =?utf-8?B?azZHNTdPZnJtLysxK0kzcXRWdXh5Wkd1ZEZZTldBVjNLQXVhZkhOY25mZXFn?=
+ =?utf-8?B?eWVHc2xSa1VoT25IVXJkYXdXZk94a0wzYSs1RFhHQ0xoWEhLb1lJaWdaTVJI?=
+ =?utf-8?B?YlpEK0JzVkNJbk1LTVdxeXB3bWV3enRvVEN1ei9RWUg1S3g4RDEvQTZaMW9X?=
+ =?utf-8?B?MDZaaDQzN2g5MlRhSmtvVUVFTVVpMVB0ekFMeTFNYVpheTBXRFhVL0dPM1J5?=
+ =?utf-8?B?NUxDRW4yRGM0S3grUE56K3NSbjMyVWxBeFQxT0FSRHNmeWxjTTZUOUN5cVRx?=
+ =?utf-8?B?VFJCYmVZWFdrcE1ZL25PemcwSmNyU1EwUytQZ3RQdnlDVmpybVRjMjV0Z2J6?=
+ =?utf-8?B?R0hwdU9kQUZoTEZMY0lwRTVWWi9ESWo0ZDVSeE1OL2RPUktVVkpQanBKeThY?=
+ =?utf-8?B?T2JmcTJ1ZGtvMHdNYkZQM0ZIcXlaSjl4TVAxaVZFSVQxNXIzZlhEeGM2SXht?=
+ =?utf-8?B?VWxZYklWdUFBRjVHemJqSWtHcXdOOUxhVFJFeGZpSFB1YWZIZDAra3BtK2VT?=
+ =?utf-8?B?NXBaR0dXcGFqeFpib2M4RHY4ZCtmeStoRkR5b3NSNkhyMkNjVjdVcVEvdmM2?=
+ =?utf-8?B?UWRoUHJSbWZiQVBQNkRYcmtOc01UVHFQQ25OQk1ZdnRDdWhybWJaZEljZkln?=
+ =?utf-8?B?bFRYV0dWQlpmdG5sT2NhU2cxWjQrU0cybTdrMVNTeHlFMjJBRzZHKzdoNW13?=
+ =?utf-8?B?UUJmWlM3L1lZc1laYk4yNFU0Vk9JQjVNazFZQVozY1RSR1lLekxYQ3BPMzBv?=
+ =?utf-8?B?V3dGcjQ1cm5IenBzSHpXRWs5bi9CcmxsWTFmR0dBVTYwVFpETlEzSjJOdmZw?=
+ =?utf-8?B?dzRkdFZacWdpeG1zcTBzQ0hhNkVWQkhBeVdzQ0svV0NNZXZPL1FIcU9GWUJ0?=
+ =?utf-8?B?bjROUVIydGx1cG5hOGxoditYdk81VTN0RzJndnRvUUpUMGtFUlIxWDBDYzUw?=
+ =?utf-8?B?ZE1WQkYrNWFCanZnQXRSODFYMXNZUTJsVE9kTDk5UjBUaThqSUVTZUdaaG5Z?=
+ =?utf-8?B?UDVzWExVVXdUU3BqRTVnV1RCK2dyZVhoZGNLK0YyUFg5SkhjazFid3ZhbVdl?=
+ =?utf-8?B?cXBxMFVxQmxtTW1tcVJPM2hYTzNNRzh6MDllNy8wQS9oSXN4ckR5WUpubGVx?=
+ =?utf-8?B?Y2VkMU5YYmJ1VGZyVVAxOWdiSVloSDM4K3BKd251L2Z6eEZud3k5cTRNRGJk?=
+ =?utf-8?B?ZzFOdG5SVXE5Mmd5UVdHTWdZamFWeXFraThkUmlDd1Bta3ZjbnNZYndtNkpN?=
+ =?utf-8?B?aVhqN0pFUVFVbWlGMXd4L1FocGFyREkrektBSFZxOGZDeTZZQ1ppdHkyNldv?=
+ =?utf-8?B?MFNYaXpSQ3lWL1YzQUtVUmhFOVUvTk1NS3FtcWdoTDFCQmpxc3FsazZrNjRj?=
+ =?utf-8?B?NmZhcGpoOXZ0UXFWZENtd1pRV3NEK09SS0VYMUFNT1B1TEpXRnJOVXdDdW1J?=
+ =?utf-8?B?MDd4UGVYTDZ2SlNtajNKR3A0TWQ4YkdKU3AyOEVzRW1sMXlLT3FYMEZZS0Vy?=
+ =?utf-8?B?Z0V4MFRMM3did09ZS3FzQVluQk00bW1mS25CaXJ4aHpkTitwSk81WWlDbzZK?=
+ =?utf-8?B?cnZoeVFEVkFjS2pDOXVBVXp2ek5nUDBHZm1mSFdNUUN1V2kyU1RtNVQ0OGE5?=
+ =?utf-8?B?SVYvOVFwSzArdExUeENjRlNLVUprMlJWUUhWVjh4VzBGeXFZNFU1WDg4NU9E?=
+ =?utf-8?B?VVBSQWhLbFNlRVlFRUxkLzhPNHhaUS9aYnZhWEhQQUFlZ2FCSnlEM2E3d29u?=
+ =?utf-8?B?UnNiUm9YczFKSHlXU0FZWVV0eDAydFgvRWRNazhhNkdMbEE5ZWtGUG44dlFL?=
+ =?utf-8?B?UUpGcXdUTUY3U0dYUzNTV0MvNmRwMFIvK0w1K3B6V0dxWU5LYUdzL2RSWkt6?=
+ =?utf-8?Q?//D8=3D?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251021-tegra186-icc-p3-v3-2-68184ee8a89c@gmail.com>
-References: <20251021-tegra186-icc-p3-v3-0-68184ee8a89c@gmail.com>
-In-Reply-To: <20251021-tegra186-icc-p3-v3-0-68184ee8a89c@gmail.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Thierry Reding <thierry.reding@gmail.com>, 
- Jonathan Hunter <jonathanh@nvidia.com>
-Cc: devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Aaron Kling <webgeek1234@gmail.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1761095624; l=16615;
- i=webgeek1234@gmail.com; s=20250217; h=from:subject:message-id;
- bh=rO4CQGLvV2bo0tcNNwbixLW81fdzEyzii59svxI1Uyw=;
- b=5JrZhl+Cq/uvWCct7p+kv/5nCiXkRg0zhidXtKT9G3tu4wVYQkmXomzePkl3Z9y5bGEU33byT
- APmFwrxaopCAyAY4fO8V2tqmDvC3ta8jLkV3gYn+tHCS4UQdfExvHHE
-X-Developer-Key: i=webgeek1234@gmail.com; a=ed25519;
- pk=TQwd6q26txw7bkK7B8qtI/kcAohZc7bHHGSD7domdrU=
-X-Endpoint-Received: by B4 Relay for webgeek1234@gmail.com/20250217 with
- auth_id=342
-X-Original-From: Aaron Kling <webgeek1234@gmail.com>
-Reply-To: webgeek1234@gmail.com
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB8510.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5a167fbf-06fa-414d-0f64-08de110c9044
+X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Oct 2025 01:44:39.0807
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: gpG/OaOrPRNAS6w1e8LnfHrbGxsr8sVVG+LXg20bQfMYwq5rAx56kHG+vsGPQZgbNx1Rx/+qb/UNiLfiQu2Wnw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU2PR04MB8646
 
-From: Aaron Kling <webgeek1234@gmail.com>
-
-Add OPP table and interconnects property to scale DDR frequency with
-CPU frequency for better performance. Each operating point entry of
-the OPP table has CPU freq to per MC channel bandwidth mapping.
-One table is added for each cluster even though the table data is
-same because the bandwidth request is per cluster. This is done
-because the OPP framework creates a single icc path and hence single
-bandwidth request if the table is marked as 'opp-shared' and shared
-among all clusters. For us, the OPP table data is same but the MC
-Client ID argument to interconnects property is different for each
-cluster. So, having per cluster tables makes different icc paths for
-each cluster and helps to make per cluster BW requests.
-
-Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
----
- arch/arm64/boot/dts/nvidia/tegra194.dtsi | 636 +++++++++++++++++++++++++++++++
- 1 file changed, 636 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/nvidia/tegra194.dtsi b/arch/arm64/boot/dts/nvidia/tegra194.dtsi
-index 1399342f23e1c4f73b278adc66dfb948fc30d326..a6c4c6c73707354f62f778bbea5afaec3fdbe22d 100644
---- a/arch/arm64/boot/dts/nvidia/tegra194.dtsi
-+++ b/arch/arm64/boot/dts/nvidia/tegra194.dtsi
-@@ -2890,6 +2890,8 @@ cpu0_0: cpu@0 {
- 			device_type = "cpu";
- 			reg = <0x000>;
- 			enable-method = "psci";
-+			operating-points-v2 = <&cl0_opp_tbl>;
-+			interconnects = <&mc TEGRA_ICC_MC_CPU_CLUSTER0 &emc>;
- 			i-cache-size = <131072>;
- 			i-cache-line-size = <64>;
- 			i-cache-sets = <512>;
-@@ -2904,6 +2906,8 @@ cpu0_1: cpu@1 {
- 			device_type = "cpu";
- 			reg = <0x001>;
- 			enable-method = "psci";
-+			operating-points-v2 = <&cl0_opp_tbl>;
-+			interconnects = <&mc TEGRA_ICC_MC_CPU_CLUSTER0 &emc>;
- 			i-cache-size = <131072>;
- 			i-cache-line-size = <64>;
- 			i-cache-sets = <512>;
-@@ -2918,6 +2922,8 @@ cpu1_0: cpu@100 {
- 			device_type = "cpu";
- 			reg = <0x100>;
- 			enable-method = "psci";
-+			operating-points-v2 = <&cl1_opp_tbl>;
-+			interconnects = <&mc TEGRA_ICC_MC_CPU_CLUSTER1 &emc>;
- 			i-cache-size = <131072>;
- 			i-cache-line-size = <64>;
- 			i-cache-sets = <512>;
-@@ -2932,6 +2938,8 @@ cpu1_1: cpu@101 {
- 			device_type = "cpu";
- 			reg = <0x101>;
- 			enable-method = "psci";
-+			operating-points-v2 = <&cl1_opp_tbl>;
-+			interconnects = <&mc TEGRA_ICC_MC_CPU_CLUSTER1 &emc>;
- 			i-cache-size = <131072>;
- 			i-cache-line-size = <64>;
- 			i-cache-sets = <512>;
-@@ -2946,6 +2954,8 @@ cpu2_0: cpu@200 {
- 			device_type = "cpu";
- 			reg = <0x200>;
- 			enable-method = "psci";
-+			operating-points-v2 = <&cl2_opp_tbl>;
-+			interconnects = <&mc TEGRA_ICC_MC_CPU_CLUSTER2 &emc>;
- 			i-cache-size = <131072>;
- 			i-cache-line-size = <64>;
- 			i-cache-sets = <512>;
-@@ -2960,6 +2970,8 @@ cpu2_1: cpu@201 {
- 			device_type = "cpu";
- 			reg = <0x201>;
- 			enable-method = "psci";
-+			operating-points-v2 = <&cl2_opp_tbl>;
-+			interconnects = <&mc TEGRA_ICC_MC_CPU_CLUSTER2 &emc>;
- 			i-cache-size = <131072>;
- 			i-cache-line-size = <64>;
- 			i-cache-sets = <512>;
-@@ -2974,6 +2986,8 @@ cpu3_0: cpu@300 {
- 			device_type = "cpu";
- 			reg = <0x300>;
- 			enable-method = "psci";
-+			operating-points-v2 = <&cl3_opp_tbl>;
-+			interconnects = <&mc TEGRA_ICC_MC_CPU_CLUSTER3 &emc>;
- 			i-cache-size = <131072>;
- 			i-cache-line-size = <64>;
- 			i-cache-sets = <512>;
-@@ -2988,6 +3002,8 @@ cpu3_1: cpu@301 {
- 			device_type = "cpu";
- 			reg = <0x301>;
- 			enable-method = "psci";
-+			operating-points-v2 = <&cl3_opp_tbl>;
-+			interconnects = <&mc TEGRA_ICC_MC_CPU_CLUSTER3 &emc>;
- 			i-cache-size = <131072>;
- 			i-cache-line-size = <64>;
- 			i-cache-sets = <512>;
-@@ -3181,4 +3197,624 @@ timer {
- 		interrupt-parent = <&gic>;
- 		always-on;
- 	};
-+
-+	cl0_opp_tbl: opp-table-cluster0 {
-+		compatible = "operating-points-v2";
-+		opp-shared;
-+
-+		opp-115200000 {
-+			  opp-hz = /bits/ 64 <115200000>;
-+			  opp-peak-kBps = <816000>;
-+		};
-+
-+		opp-192000000 {
-+			  opp-hz = /bits/ 64 <192000000>;
-+			  opp-peak-kBps = <816000>;
-+		};
-+
-+		opp-268800000 {
-+			  opp-hz = /bits/ 64 <268800000>;
-+			  opp-peak-kBps = <816000>;
-+		};
-+
-+		opp-345600000 {
-+			  opp-hz = /bits/ 64 <345600000>;
-+			  opp-peak-kBps = <816000>;
-+		};
-+
-+		opp-422400000 {
-+			  opp-hz = /bits/ 64 <422400000>;
-+			  opp-peak-kBps = <816000>;
-+		};
-+
-+		opp-499200000 {
-+			  opp-hz = /bits/ 64 <499200000>;
-+			  opp-peak-kBps = <816000>;
-+		};
-+
-+		opp-576000000 {
-+			  opp-hz = /bits/ 64 <576000000>;
-+			  opp-peak-kBps = <816000>;
-+		};
-+
-+		opp-652800000 {
-+			  opp-hz = /bits/ 64 <652800000>;
-+			  opp-peak-kBps = <816000>;
-+		};
-+
-+		opp-729600000 {
-+			  opp-hz = /bits/ 64 <729600000>;
-+			  opp-peak-kBps = <816000>;
-+		};
-+
-+		opp-806400000 {
-+			  opp-hz = /bits/ 64 <806400000>;
-+			  opp-peak-kBps = <816000>;
-+		};
-+
-+		opp-883200000 {
-+			  opp-hz = /bits/ 64 <883200000>;
-+			  opp-peak-kBps = <816000>;
-+		};
-+
-+		opp-960000000 {
-+			  opp-hz = /bits/ 64 <960000000>;
-+			  opp-peak-kBps = <816000>;
-+		};
-+
-+		opp-1036800000 {
-+			  opp-hz = /bits/ 64 <1036800000>;
-+			  opp-peak-kBps = <816000>;
-+		};
-+
-+		opp-1113600000 {
-+			  opp-hz = /bits/ 64 <1113600000>;
-+			  opp-peak-kBps = <1600000>;
-+		};
-+
-+		opp-1190400000 {
-+			  opp-hz = /bits/ 64 <1190400000>;
-+			  opp-peak-kBps = <1600000>;
-+		};
-+
-+		opp-1267200000 {
-+			  opp-hz = /bits/ 64 <1267200000>;
-+			  opp-peak-kBps = <1600000>;
-+		};
-+
-+		opp-1344000000 {
-+			  opp-hz = /bits/ 64 <1344000000>;
-+			  opp-peak-kBps = <1600000>;
-+		};
-+
-+		opp-1420800000 {
-+			  opp-hz = /bits/ 64 <1420800000>;
-+			  opp-peak-kBps = <1600000>;
-+		};
-+
-+		opp-1497600000 {
-+			  opp-hz = /bits/ 64 <1497600000>;
-+			  opp-peak-kBps = <3200000>;
-+		};
-+
-+		opp-1574400000 {
-+			  opp-hz = /bits/ 64 <1574400000>;
-+			  opp-peak-kBps = <3200000>;
-+		};
-+
-+		opp-1651200000 {
-+			  opp-hz = /bits/ 64 <1651200000>;
-+			  opp-peak-kBps = <3200000>;
-+		};
-+
-+		opp-1728000000 {
-+			  opp-hz = /bits/ 64 <1728000000>;
-+			  opp-peak-kBps = <3200000>;
-+		};
-+
-+		opp-1804800000 {
-+			  opp-hz = /bits/ 64 <1804800000>;
-+			  opp-peak-kBps = <3200000>;
-+		};
-+
-+		opp-1881600000 {
-+			  opp-hz = /bits/ 64 <1881600000>;
-+			  opp-peak-kBps = <3200000>;
-+		};
-+
-+		opp-1907200000 {
-+			  opp-hz = /bits/ 64 <1907200000>;
-+			  opp-peak-kBps = <3200000>;
-+		};
-+
-+		opp-1958400000 {
-+			  opp-hz = /bits/ 64 <1958400000>;
-+			  opp-peak-kBps = <3200000>;
-+		};
-+
-+		opp-2035200000 {
-+			  opp-hz = /bits/ 64 <2035200000>;
-+			  opp-peak-kBps = <3200000>;
-+		};
-+
-+		opp-2112000000 {
-+			  opp-hz = /bits/ 64 <2112000000>;
-+			  opp-peak-kBps = <4266000>;
-+		};
-+
-+		opp-2188800000 {
-+			  opp-hz = /bits/ 64 <2188800000>;
-+			  opp-peak-kBps = <4266000>;
-+		};
-+
-+		opp-2265600000 {
-+			  opp-hz = /bits/ 64 <2265600000>;
-+			  opp-peak-kBps = <4266000>;
-+		};
-+	};
-+
-+	cl1_opp_tbl: opp-table-cluster1 {
-+		compatible = "operating-points-v2";
-+		opp-shared;
-+
-+		opp-115200000 {
-+			  opp-hz = /bits/ 64 <115200000>;
-+			  opp-peak-kBps = <816000>;
-+		};
-+
-+		opp-192000000 {
-+			  opp-hz = /bits/ 64 <192000000>;
-+			  opp-peak-kBps = <816000>;
-+		};
-+
-+		opp-268800000 {
-+			  opp-hz = /bits/ 64 <268800000>;
-+			  opp-peak-kBps = <816000>;
-+		};
-+
-+		opp-345600000 {
-+			  opp-hz = /bits/ 64 <345600000>;
-+			  opp-peak-kBps = <816000>;
-+		};
-+
-+		opp-422400000 {
-+			  opp-hz = /bits/ 64 <422400000>;
-+			  opp-peak-kBps = <816000>;
-+		};
-+
-+		opp-499200000 {
-+			  opp-hz = /bits/ 64 <499200000>;
-+			  opp-peak-kBps = <816000>;
-+		};
-+
-+		opp-576000000 {
-+			  opp-hz = /bits/ 64 <576000000>;
-+			  opp-peak-kBps = <816000>;
-+		};
-+
-+		opp-652800000 {
-+			  opp-hz = /bits/ 64 <652800000>;
-+			  opp-peak-kBps = <816000>;
-+		};
-+
-+		opp-729600000 {
-+			  opp-hz = /bits/ 64 <729600000>;
-+			  opp-peak-kBps = <816000>;
-+		};
-+
-+		opp-806400000 {
-+			  opp-hz = /bits/ 64 <806400000>;
-+			  opp-peak-kBps = <816000>;
-+		};
-+
-+		opp-883200000 {
-+			  opp-hz = /bits/ 64 <883200000>;
-+			  opp-peak-kBps = <816000>;
-+		};
-+
-+		opp-960000000 {
-+			  opp-hz = /bits/ 64 <960000000>;
-+			  opp-peak-kBps = <816000>;
-+		};
-+
-+		opp-1036800000 {
-+			  opp-hz = /bits/ 64 <1036800000>;
-+			  opp-peak-kBps = <816000>;
-+		};
-+
-+		opp-1113600000 {
-+			  opp-hz = /bits/ 64 <1113600000>;
-+			  opp-peak-kBps = <1600000>;
-+		};
-+
-+		opp-1190400000 {
-+			  opp-hz = /bits/ 64 <1190400000>;
-+			  opp-peak-kBps = <1600000>;
-+		};
-+
-+		opp-1267200000 {
-+			  opp-hz = /bits/ 64 <1267200000>;
-+			  opp-peak-kBps = <1600000>;
-+		};
-+
-+		opp-1344000000 {
-+			  opp-hz = /bits/ 64 <1344000000>;
-+			  opp-peak-kBps = <1600000>;
-+		};
-+
-+		opp-1420800000 {
-+			  opp-hz = /bits/ 64 <1420800000>;
-+			  opp-peak-kBps = <1600000>;
-+		};
-+
-+		opp-1497600000 {
-+			  opp-hz = /bits/ 64 <1497600000>;
-+			  opp-peak-kBps = <3200000>;
-+		};
-+
-+		opp-1574400000 {
-+			  opp-hz = /bits/ 64 <1574400000>;
-+			  opp-peak-kBps = <3200000>;
-+		};
-+
-+		opp-1651200000 {
-+			  opp-hz = /bits/ 64 <1651200000>;
-+			  opp-peak-kBps = <3200000>;
-+		};
-+
-+		opp-1728000000 {
-+			  opp-hz = /bits/ 64 <1728000000>;
-+			  opp-peak-kBps = <3200000>;
-+		};
-+
-+		opp-1804800000 {
-+			  opp-hz = /bits/ 64 <1804800000>;
-+			  opp-peak-kBps = <3200000>;
-+		};
-+
-+		opp-1881600000 {
-+			  opp-hz = /bits/ 64 <1881600000>;
-+			  opp-peak-kBps = <3200000>;
-+		};
-+
-+		opp-1907200000 {
-+			  opp-hz = /bits/ 64 <1907200000>;
-+			  opp-peak-kBps = <3200000>;
-+		};
-+
-+		opp-1958400000 {
-+			  opp-hz = /bits/ 64 <1958400000>;
-+			  opp-peak-kBps = <3200000>;
-+		};
-+
-+		opp-2035200000 {
-+			  opp-hz = /bits/ 64 <2035200000>;
-+			  opp-peak-kBps = <3200000>;
-+		};
-+
-+		opp-2112000000 {
-+			  opp-hz = /bits/ 64 <2112000000>;
-+			  opp-peak-kBps = <4266000>;
-+		};
-+
-+		opp-2188800000 {
-+			  opp-hz = /bits/ 64 <2188800000>;
-+			  opp-peak-kBps = <4266000>;
-+		};
-+
-+		opp-2265600000 {
-+			  opp-hz = /bits/ 64 <2265600000>;
-+			  opp-peak-kBps = <4266000>;
-+		};
-+	};
-+
-+	cl2_opp_tbl: opp-table-cluster2 {
-+		compatible = "operating-points-v2";
-+		opp-shared;
-+
-+		opp-115200000 {
-+			  opp-hz = /bits/ 64 <115200000>;
-+			  opp-peak-kBps = <816000>;
-+		};
-+
-+		opp-192000000 {
-+			  opp-hz = /bits/ 64 <192000000>;
-+			  opp-peak-kBps = <816000>;
-+		};
-+
-+		opp-268800000 {
-+			  opp-hz = /bits/ 64 <268800000>;
-+			  opp-peak-kBps = <816000>;
-+		};
-+
-+		opp-345600000 {
-+			  opp-hz = /bits/ 64 <345600000>;
-+			  opp-peak-kBps = <816000>;
-+		};
-+
-+		opp-422400000 {
-+			  opp-hz = /bits/ 64 <422400000>;
-+			  opp-peak-kBps = <816000>;
-+		};
-+
-+		opp-499200000 {
-+			  opp-hz = /bits/ 64 <499200000>;
-+			  opp-peak-kBps = <816000>;
-+		};
-+
-+		opp-576000000 {
-+			  opp-hz = /bits/ 64 <576000000>;
-+			  opp-peak-kBps = <816000>;
-+		};
-+
-+		opp-652800000 {
-+			  opp-hz = /bits/ 64 <652800000>;
-+			  opp-peak-kBps = <816000>;
-+		};
-+
-+		opp-729600000 {
-+			  opp-hz = /bits/ 64 <729600000>;
-+			  opp-peak-kBps = <816000>;
-+		};
-+
-+		opp-806400000 {
-+			  opp-hz = /bits/ 64 <806400000>;
-+			  opp-peak-kBps = <816000>;
-+		};
-+
-+		opp-883200000 {
-+			  opp-hz = /bits/ 64 <883200000>;
-+			  opp-peak-kBps = <816000>;
-+		};
-+
-+		opp-960000000 {
-+			  opp-hz = /bits/ 64 <960000000>;
-+			  opp-peak-kBps = <816000>;
-+		};
-+
-+		opp-1036800000 {
-+			  opp-hz = /bits/ 64 <1036800000>;
-+			  opp-peak-kBps = <816000>;
-+		};
-+
-+		opp-1113600000 {
-+			  opp-hz = /bits/ 64 <1113600000>;
-+			  opp-peak-kBps = <1600000>;
-+		};
-+
-+		opp-1190400000 {
-+			  opp-hz = /bits/ 64 <1190400000>;
-+			  opp-peak-kBps = <1600000>;
-+		};
-+
-+		opp-1267200000 {
-+			  opp-hz = /bits/ 64 <1267200000>;
-+			  opp-peak-kBps = <1600000>;
-+		};
-+
-+		opp-1344000000 {
-+			  opp-hz = /bits/ 64 <1344000000>;
-+			  opp-peak-kBps = <1600000>;
-+		};
-+
-+		opp-1420800000 {
-+			  opp-hz = /bits/ 64 <1420800000>;
-+			  opp-peak-kBps = <1600000>;
-+		};
-+
-+		opp-1497600000 {
-+			  opp-hz = /bits/ 64 <1497600000>;
-+			  opp-peak-kBps = <3200000>;
-+		};
-+
-+		opp-1574400000 {
-+			  opp-hz = /bits/ 64 <1574400000>;
-+			  opp-peak-kBps = <3200000>;
-+		};
-+
-+		opp-1651200000 {
-+			  opp-hz = /bits/ 64 <1651200000>;
-+			  opp-peak-kBps = <3200000>;
-+		};
-+
-+		opp-1728000000 {
-+			  opp-hz = /bits/ 64 <1728000000>;
-+			  opp-peak-kBps = <3200000>;
-+		};
-+
-+		opp-1804800000 {
-+			  opp-hz = /bits/ 64 <1804800000>;
-+			  opp-peak-kBps = <3200000>;
-+		};
-+
-+		opp-1881600000 {
-+			  opp-hz = /bits/ 64 <1881600000>;
-+			  opp-peak-kBps = <3200000>;
-+		};
-+
-+		opp-1907200000 {
-+			  opp-hz = /bits/ 64 <1907200000>;
-+			  opp-peak-kBps = <3200000>;
-+		};
-+
-+		opp-1958400000 {
-+			  opp-hz = /bits/ 64 <1958400000>;
-+			  opp-peak-kBps = <3200000>;
-+		};
-+
-+		opp-2035200000 {
-+			  opp-hz = /bits/ 64 <2035200000>;
-+			  opp-peak-kBps = <3200000>;
-+		};
-+
-+		opp-2112000000 {
-+			  opp-hz = /bits/ 64 <2112000000>;
-+			  opp-peak-kBps = <4266000>;
-+		};
-+
-+		opp-2188800000 {
-+			  opp-hz = /bits/ 64 <2188800000>;
-+			  opp-peak-kBps = <4266000>;
-+		};
-+
-+		opp-2265600000 {
-+			  opp-hz = /bits/ 64 <2265600000>;
-+			  opp-peak-kBps = <4266000>;
-+		};
-+	};
-+
-+	cl3_opp_tbl: opp-table-cluster3 {
-+		compatible = "operating-points-v2";
-+		opp-shared;
-+
-+		opp-115200000 {
-+			  opp-hz = /bits/ 64 <115200000>;
-+			  opp-peak-kBps = <816000>;
-+		};
-+
-+		opp-192000000 {
-+			  opp-hz = /bits/ 64 <192000000>;
-+			  opp-peak-kBps = <816000>;
-+		};
-+
-+		opp-268800000 {
-+			  opp-hz = /bits/ 64 <268800000>;
-+			  opp-peak-kBps = <816000>;
-+		};
-+
-+		opp-345600000 {
-+			  opp-hz = /bits/ 64 <345600000>;
-+			  opp-peak-kBps = <816000>;
-+		};
-+
-+		opp-422400000 {
-+			  opp-hz = /bits/ 64 <422400000>;
-+			  opp-peak-kBps = <816000>;
-+		};
-+
-+		opp-499200000 {
-+			  opp-hz = /bits/ 64 <499200000>;
-+			  opp-peak-kBps = <816000>;
-+		};
-+
-+		opp-576000000 {
-+			  opp-hz = /bits/ 64 <576000000>;
-+			  opp-peak-kBps = <816000>;
-+		};
-+
-+		opp-652800000 {
-+			  opp-hz = /bits/ 64 <652800000>;
-+			  opp-peak-kBps = <816000>;
-+		};
-+
-+		opp-729600000 {
-+			  opp-hz = /bits/ 64 <729600000>;
-+			  opp-peak-kBps = <816000>;
-+		};
-+
-+		opp-806400000 {
-+			  opp-hz = /bits/ 64 <806400000>;
-+			  opp-peak-kBps = <816000>;
-+		};
-+
-+		opp-883200000 {
-+			  opp-hz = /bits/ 64 <883200000>;
-+			  opp-peak-kBps = <816000>;
-+		};
-+
-+		opp-960000000 {
-+			  opp-hz = /bits/ 64 <960000000>;
-+			  opp-peak-kBps = <816000>;
-+		};
-+
-+		opp-1036800000 {
-+			  opp-hz = /bits/ 64 <1036800000>;
-+			  opp-peak-kBps = <816000>;
-+		};
-+
-+		opp-1113600000 {
-+			  opp-hz = /bits/ 64 <1113600000>;
-+			  opp-peak-kBps = <1600000>;
-+		};
-+
-+		opp-1190400000 {
-+			  opp-hz = /bits/ 64 <1190400000>;
-+			  opp-peak-kBps = <1600000>;
-+		};
-+
-+		opp-1267200000 {
-+			  opp-hz = /bits/ 64 <1267200000>;
-+			  opp-peak-kBps = <1600000>;
-+		};
-+
-+		opp-1344000000 {
-+			  opp-hz = /bits/ 64 <1344000000>;
-+			  opp-peak-kBps = <1600000>;
-+		};
-+
-+		opp-1420800000 {
-+			  opp-hz = /bits/ 64 <1420800000>;
-+			  opp-peak-kBps = <1600000>;
-+		};
-+
-+		opp-1497600000 {
-+			  opp-hz = /bits/ 64 <1497600000>;
-+			  opp-peak-kBps = <3200000>;
-+		};
-+
-+		opp-1574400000 {
-+			  opp-hz = /bits/ 64 <1574400000>;
-+			  opp-peak-kBps = <3200000>;
-+		};
-+
-+		opp-1651200000 {
-+			  opp-hz = /bits/ 64 <1651200000>;
-+			  opp-peak-kBps = <3200000>;
-+		};
-+
-+		opp-1728000000 {
-+			  opp-hz = /bits/ 64 <1728000000>;
-+			  opp-peak-kBps = <3200000>;
-+		};
-+
-+		opp-1804800000 {
-+			  opp-hz = /bits/ 64 <1804800000>;
-+			  opp-peak-kBps = <3200000>;
-+		};
-+
-+		opp-1881600000 {
-+			  opp-hz = /bits/ 64 <1881600000>;
-+			  opp-peak-kBps = <3200000>;
-+		};
-+
-+		opp-1907200000 {
-+			  opp-hz = /bits/ 64 <1907200000>;
-+			  opp-peak-kBps = <3200000>;
-+		};
-+
-+		opp-1958400000 {
-+			  opp-hz = /bits/ 64 <1958400000>;
-+			  opp-peak-kBps = <3200000>;
-+		};
-+
-+		opp-2035200000 {
-+			  opp-hz = /bits/ 64 <2035200000>;
-+			  opp-peak-kBps = <3200000>;
-+		};
-+
-+		opp-2112000000 {
-+			  opp-hz = /bits/ 64 <2112000000>;
-+			  opp-peak-kBps = <4266000>;
-+		};
-+
-+		opp-2188800000 {
-+			  opp-hz = /bits/ 64 <2188800000>;
-+			  opp-peak-kBps = <4266000>;
-+		};
-+
-+		opp-2265600000 {
-+			  opp-hz = /bits/ 64 <2265600000>;
-+			  opp-peak-kBps = <4266000>;
-+		};
-+	};
- };
-
--- 
-2.51.0
-
-
+PiBPbiAxMC8xNi8yNSAxMjoyMCBQTSwgV2VpIEZhbmcgd3JvdGU6DQo+ID4gQEAgLTYzNSwyOCAr
+NjQ5LDEwIEBAIHN0YXRpYyB2b2lkIGVuZXRjNF9wbF9tYWNfY29uZmlnKHN0cnVjdA0KPiBwaHls
+aW5rX2NvbmZpZyAqY29uZmlnLCB1bnNpZ25lZCBpbnQgbW9kDQo+ID4NCj4gPiAgc3RhdGljIHZv
+aWQgZW5ldGM0X3NldF9wb3J0X3NwZWVkKHN0cnVjdCBlbmV0Y19uZGV2X3ByaXYgKnByaXYsIGlu
+dCBzcGVlZCkNCj4gPiAgew0KPiA+IC0JdTMyIG9sZF9zcGVlZCA9IHByaXYtPnNwZWVkOw0KPiA+
+IC0JdTMyIHZhbDsNCj4gPiAtDQo+ID4gLQlpZiAoc3BlZWQgPT0gb2xkX3NwZWVkKQ0KPiA+IC0J
+CXJldHVybjsNCj4gPiAtDQo+ID4gLQl2YWwgPSBlbmV0Y19wb3J0X3JkKCZwcml2LT5zaS0+aHcs
+IEVORVRDNF9QQ1IpOw0KPiA+IC0JdmFsICY9IH5QQ1JfUFNQRUVEOw0KPiA+IC0NCj4gPiAtCXN3
+aXRjaCAoc3BlZWQpIHsNCj4gPiAtCWNhc2UgU1BFRURfMTAwOg0KPiA+IC0JY2FzZSBTUEVFRF8x
+MDAwOg0KPiA+IC0JY2FzZSBTUEVFRF8yNTAwOg0KPiA+IC0JY2FzZSBTUEVFRF8xMDAwMDoNCj4g
+PiAtCQl2YWwgfD0gKFBDUl9QU1BFRUQgJiBQQ1JfUFNQRUVEX1ZBTChzcGVlZCkpOw0KPiA+IC0J
+CWJyZWFrOw0KPiA+IC0JY2FzZSBTUEVFRF8xMDoNCj4gPiAtCWRlZmF1bHQ6DQo+ID4gLQkJdmFs
+IHw9IChQQ1JfUFNQRUVEICYgUENSX1BTUEVFRF9WQUwoU1BFRURfMTApKTsNCj4gPiAtCX0NCj4g
+PiArCXUzMiB2YWwgPSBlbmV0Y19wb3J0X3JkKCZwcml2LT5zaS0+aHcsIEVORVRDNF9QQ1IpOw0K
+PiA+DQo+ID4gIAlwcml2LT5zcGVlZCA9IHNwZWVkOw0KPiA+ICsJdmFsID0gdTMyX3JlcGxhY2Vf
+Yml0cyh2YWwsIFBDUl9QU1BFRURfVkFMKHNwZWVkKSwgUENSX1BTUEVFRCk7DQo+ID4gIAllbmV0
+Y19wb3J0X3dyKCZwcml2LT5zaS0+aHcsIEVORVRDNF9QQ1IsIHZhbCk7DQo+ID4gIH0NCj4gDQo+
+IFRoZSBhYm92ZSBjaHVuayBsb29rcyB1bnJlbGF0ZWQgZnJvbSB0aGUgcmVzdCBvZiB0aGlzIHBh
+dGNoLiBQZXJoYXBzDQo+IHdvcnRoIG1vdmluZyB0byBhIHNlcGFyYXRlIHBhdGNoIGluIHRoaXMg
+c2VyaWVzPyBPciBhZGQgc29tZSBjb21tZW50cw0KPiBleHBsYWluaW5nIHdoeSBpdCdzIG5lZWRl
+ZC4NCj4gDQoNCkJlY2F1c2UgdGhlIGludGVybmFsIGxpbmsgKFRoZSBsaW5rIGJldHdlZW4gRU5F
+VEMgYW5kIHRoZSBDUFUgcG9ydCBvZg0KTkVUQyBzd2l0Y2gpIGhhcyBhIHVuY29tbW9uIGxpbmsg
+c3BlZWQgYW5kIGl0IGlzIGNvbmZpZ3VyYWJsZS4gU28gSQ0KcmVtb3ZlZCB0aGUgc3dpdGNoIHN0
+YXRlbWVudC4gQnV0IEkgcmVhbGl6ZWQgdGhhdCBzaW1wbHkgbW9kaWZ5aW5nIHRoZQ0KZml4ZWQt
+bGluayBzcGVlZCBpbiBEVFMgdG8gc3VwcG9ydCB0aGlzIHVuY29tbW9uIGxpbmsgc3BlZWQgaXMg
+bm90IGVub3VnaC4NCkFsdGhvdWdoIGl0IHdpbGwgbm90IGFmZmVjdCB0aGUgZnVuY3Rpb25hbGl0
+eSwgcGh5bGluayB3aWxsIHJlcG9ydCBhIHdhcm5pbmcuDQpGb3IgaS5NWDk0LCBJIHdpbGwgc2V0
+IHRoZSBzcGVlZCB0byAyNTAwTWJwcyBpbiB0aGUgZml4ZWQtbGluayBub2RlLiBTbyBJDQp3aWxs
+IHJldmVydCB0aGlzIGNoYW5nZS4NCg0K
 
