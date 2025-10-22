@@ -1,155 +1,157 @@
-Return-Path: <devicetree+bounces-229983-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229984-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2C54BFE70F
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 00:40:40 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B0FA4BFE754
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 00:55:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 799571A00B27
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 22:41:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6400B3A7293
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 22:55:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A8682FB61C;
-	Wed, 22 Oct 2025 22:40:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C586305E20;
+	Wed, 22 Oct 2025 22:55:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Azuk2DQ5"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BBS2Gpsq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDF2A26F443;
-	Wed, 22 Oct 2025 22:40:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5148A305E09
+	for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 22:55:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761172836; cv=none; b=M3AlwqqxbXzKdJfyJ8NduUybue/MtZGifmScHs2iyzB9aeqg5Tbied0t9u3WN6pJ1L5rg3i0qptPaJlCssLymcvNFY0VGf+e0RTxMYF3wLKe3PbEwic4qYIN8ScllrZbCUFfcQ/Z8wu2WimwTpmBqP7WuVdmdLMtIY+V2TX0rAE=
+	t=1761173737; cv=none; b=u3LojRYbrIfHHah5eh4bn9mtQmWwXC2bGOkKY/9z6JiDN07wT/2eljiy6tO6iM/0ACKYJ6S46dxa5vxL8Ku7PP7IvwybIWEB7ylEGjP0tLylS90HE6arUWvAei9BW3jIHUgH90HEzU0OIsoKaLM3jMNJ/ayrqzD3onGf/KkHXzk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761172836; c=relaxed/simple;
-	bh=ogv9R7dm0HyxwlHvdDMXjpFtyl4pUEB/JTx9TXj9lz4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mLovj4P3DFxCCho1lBebjqXY5xVdNFUKluLVPvBTcfFut32TekNe658kFfuo1oOV+24yrxFt7Db45rVRH9mzypcp5uf2aLZKZQtpw2rH1h215t0tAD1CAIL/az52KscRaH6zNqoFZb9DUNxyE9ASLLxqz/TFki/ZiP1aGSFzaLI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Azuk2DQ5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 476B0C4CEE7;
-	Wed, 22 Oct 2025 22:40:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761172836;
-	bh=ogv9R7dm0HyxwlHvdDMXjpFtyl4pUEB/JTx9TXj9lz4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Azuk2DQ5oaF97WGm4cOGJWZfquMDVeBZFW2ZgV7bvyizpGaJ+uiKKWgOmKGfKUAcE
-	 /OZ7PeJis0RGww2EME8ELhYYCATOrZRGKXQTloQystDFWEOwCIFwaoTQSP4yiPR9MY
-	 XDAww82qmCJgQcKMKd7Aa4orCwrMw6mP+65Rxo3sFMZZ7lXg5zYUv7qtWH4BUQbH4n
-	 OUvieY3BWddGARHwtJYJm58d4Oi/b/8SPnZREzJGNDntFPM0Kj4CALCmfo5BX91BoB
-	 hzfTo20f9bdRglkGi89JiBtr9p9W+Wp7OhjxBLfsG9SHXjNct1MSPo8R+tIdeph1gC
-	 qjngBeyIZRDuw==
-Date: Wed, 22 Oct 2025 17:42:58 -0500
-From: Bjorn Andersson <andersson@kernel.org>
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Jingyi Wang <jingyi.wang@oss.qualcomm.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Robert Marko <robimarko@gmail.com>, Das Srinagesh <quic_gurus@quicinc.com>, 
-	aiqun.yu@oss.qualcomm.com, tingwei.zhang@oss.qualcomm.com, trilok.soni@oss.qualcomm.com, 
-	yijie.yang@oss.qualcomm.com, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Eugen Hristev <eugen.hristev@linaro.org>
-Subject: Re: [PATCH v2 1/4] dt-bindings: soc: qcom: Add qcom,kaanapali-imem
- compatible
-Message-ID: <lz4sbvzfiij3qsa4d7jeblmi2vfubc4ltf435sh6tcs53l6fbq@7f3tfm7yiyjc>
-References: <20251022-knp-soc-binding-v2-0-3cd3f390f3e2@oss.qualcomm.com>
- <20251022-knp-soc-binding-v2-1-3cd3f390f3e2@oss.qualcomm.com>
- <g2iviaqetgxf5ycz2otzkpmmc4goo7xuyjmttuu254bfzqqvkf@4vybjh4eghpm>
- <4eebcb7d-1eca-4914-915a-d42232233f9f@oss.qualcomm.com>
- <dwfvko3hszsoh4ihnz3qdpsugmocbkrbhosijdw5q3bxh64kuo@o74as2li74px>
+	s=arc-20240116; t=1761173737; c=relaxed/simple;
+	bh=jXpe3FWCpQUX/yPmnJVd1DXf8MBuRUFgjgrR0h+DnJQ=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=h/xr1KtZPxyeAS4xZlR6GW5xlA8QXwQmUMP1qtG5SFbIKtS3wQg+uTY4Etwud4P4Fqm6VoeSY/ckN3JC8+j/jMMmGeXNlkrbqUkHHLS0vTStUVnqSWvDLl2ESRcgms0BnIPT9Erv9jlC4ylB8wQ62X7dpZeXPgZYoaI7H8N91lA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BBS2Gpsq; arc=none smtp.client-ip=209.85.208.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-63c3d7e2217so195113a12.3
+        for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 15:55:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1761173734; x=1761778534; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=h6jfzJ65e63ENjO8fdUhho5J1IrbkDS/V7pwquMxujQ=;
+        b=BBS2GpsqJ4ZBt3X5NibW8tzKdg+9ZOvdyDbaaFaxmK1lGNwgis3p/hfcv5Q2Ry75A6
+         XX7u+VDXncunzFeudN2rU6WYn6fcm03Mvsk+a/da2W3vKEkjSwQharlaqknc7dd9b9B1
+         giE1Hy8uQNvxAxQpxH5BuWMWDyCoTBtyCIiD4/7q1Ptrrr6Jc70NzAfxG5EYprxwEsOn
+         Y7E3yK4YXuiPG6yf7Dg1kgScCQ8i2ab+2x/kjKzo1r1hJapHzaz1K2HF3VfhiS8M2t0T
+         MRNgHtwjdqnHMpn4LaBIZoE34UnyTXSba5+T+djizQY1Gog/tjxb/WW8BjlOGc2Mgw97
+         kbpA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761173734; x=1761778534;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=h6jfzJ65e63ENjO8fdUhho5J1IrbkDS/V7pwquMxujQ=;
+        b=jlw3RZO32LqLafnXrrbSgeAF+eKhseaBxlHYOey36Ma83VnupyOiswFLboEAaXa/d7
+         tBcZa+FQuxkQRbCcnvYdyrj0qDhuJAPBhmst9izgzmyc9dP9b0BylE55liniYcTiDYc7
+         Nx8ksTF9oq+7/otE1JxM3v31u8Nqn0kk/B84jixhbQJ+3CCjUENnU8GGPPoPypxouVSA
+         t291UCa5DSKr0yDN/1svZo0u8MGxgndqD/S7VuIV6xoAxfe/Kfjsd0KUgcyR6Ws1GGdS
+         yaYekA6oIfBar1kEmFVNFRAWbGR9ZnkGFE6so810TEJvV+o2tOA7oJqLuWcpF2yeFjMf
+         OWAQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXeqWBuQsNRKUraNMgS5OjR/uAhWPlzT5/i9dVnLePrxWzbII8WkN8rGhgVo/DWums9VYorDHk50Mga@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxo9QZVT4KAT32LaPhlL7M51ESUgdJfZH+F+1sWTBilU8RtIkzY
+	AcCWqNEhad6sxxgzCwHEel7BEgF+G2gfQynHCTzNK4aj/Ewccxe30x4zJi8uBsfN
+X-Gm-Gg: ASbGncvYH8SXScqYICaiUt8/5labQ75h+7SPk/t6n1ba+Y2gl7B8itCYNlfP1+xMC9n
+	QKO57TuoIQH7Tt51Y8I6dmnwCJGfwIXvcJEGyzk1qEWz3kI7HdCZCRmlhPvrLwZJnwOXXEvci/o
+	nMgG3D7m62aUtkYruFzK0EQAoBNRmxxogxKt08AWVlGPyguf0ZEIK335Lc9HbJJxNF/bwLdeYih
+	5JXIbmVe/uFLE0TEcVNnVqhwVg12FtToJYEs0mnxQqeUWjQNs+Ts5DWrpYp9pwO6oIAYGE/rRml
+	XSs+f9AjqTcj+n3RCaNmIfvyK+K+7geHG1yYFwIooIm591Xw8ib1qsScj4N5MlrAonoHA9PvOAm
+	xI7jcp7UkrAN963w0tJzJnzYVQk9Ub0nSdTLPRticnfnNP3r9b8GCquHoZzj3W8o0OBrBB/LYDF
+	RRWYvRVEzDlcYqExbS94PA58T7/fSKv1IfMtrM6rM/kudxnw==
+X-Google-Smtp-Source: AGHT+IFkISWylZTmXXKWNfi6f/Bk/rTCvGgQ01lwVN+2xfhUjSVC9e3mnZIfqUNAmHDc9CA4YwGE7w==
+X-Received: by 2002:a05:6402:3514:b0:63e:19ec:c8e4 with SMTP id 4fb4d7f45d1cf-63e19ece4d3mr4907540a12.28.1761173733370;
+        Wed, 22 Oct 2025 15:55:33 -0700 (PDT)
+Received: from localhost.localdomain ([176.221.203.198])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-63e3ebb3848sm156665a12.1.2025.10.22.15.55.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 22 Oct 2025 15:55:32 -0700 (PDT)
+From: Jascha Sundaresan <flizarthanon@gmail.com>
+To: =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Cc: Srinivas Kandagatla <srini@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Jascha Sundaresan <flizarthanon@gmail.com>
+Subject: [PATCH] nvmem: layouts: u-boot-env: add optional "env-size" property
+Date: Thu, 23 Oct 2025 02:53:24 +0400
+Message-Id: <20251022225323.189114-1-flizarthanon@gmail.com>
+X-Mailer: git-send-email 2.39.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <dwfvko3hszsoh4ihnz3qdpsugmocbkrbhosijdw5q3bxh64kuo@o74as2li74px>
+Content-Transfer-Encoding: 8bit
 
-On Wed, Oct 22, 2025 at 12:34:58PM +0300, Dmitry Baryshkov wrote:
-> On Wed, Oct 22, 2025 at 05:05:30PM +0800, Jingyi Wang wrote:
-> > 
-> > 
-> > On 10/22/2025 4:49 PM, Dmitry Baryshkov wrote:
-> > > On Wed, Oct 22, 2025 at 12:28:41AM -0700, Jingyi Wang wrote:
-> > >> Document qcom,kaanapali-imem compatible.
-> > >>
-> > >> Reviewed-by: Eugen Hristev <eugen.hristev@linaro.org>
-> > >> Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
-> > >> ---
-> > >>  Documentation/devicetree/bindings/sram/qcom,imem.yaml | 1 +
-> > >>  1 file changed, 1 insertion(+)
-> > >>
-> > >> diff --git a/Documentation/devicetree/bindings/sram/qcom,imem.yaml b/Documentation/devicetree/bindings/sram/qcom,imem.yaml
-> > >> index 6a627c57ae2f..1e29a8ff287f 100644
-> > >> --- a/Documentation/devicetree/bindings/sram/qcom,imem.yaml
-> > >> +++ b/Documentation/devicetree/bindings/sram/qcom,imem.yaml
-> > >> @@ -19,6 +19,7 @@ properties:
-> > >>        - enum:
-> > >>            - qcom,apq8064-imem
-> > >>            - qcom,ipq5424-imem
-> > >> +          - qcom,kaanapali-imem
-> > > 
-> > > Can you use mmio-sram instead?
-> > > 
-> > 
-> > Here is the node: 
-> > 
-> > 		sram@14680000 {
-> > 			compatible = "qcom,kaanapali-imem", "syscon", "simple-mfd";
-> > 			reg = <0x0 0x14680000 0x0 0x1000>;
-> > 			ranges = <0 0 0x14680000 0x1000>;
-> > 
-> > 			#address-cells = <1>;
-> > 			#size-cells = <1>;
-> > 
-> > 			pil-reloc@94c {
-> > 				compatible = "qcom,pil-reloc-info";
-> > 				reg = <0x94c 0xc8>;
-> > 			};
-> > 		};
-> > 
-> > other qualcomm are also using imem, could you please give more details on why
-> > we should use mmio-sram here?
-> 
-> https://lore.kernel.org/linux-arm-msm/e4c5ecc3-fd97-4b13-a057-bb1a3b7f9207@kernel.org/
-> 
+Some devices reserve a larger NVMEM region for the U-Boot environment
+than the actual environment data length used by U-Boot itself. The CRC32
+in the U-Boot header is calculated over the smaller data length, causing
+CRC validation to fail when Linux reads the full partition.
 
-I considered exactly this when I wrote the binding back then...
+Allow an optional device tree property "env-size" to specify the
+environment data size to use for CRC computation.
 
-But the binding defines mmio-sram as "Simple IO memory regions to be
-managed by the genalloc API." and the Linux sram driver follows that and
-registers a gen_pool across the sram memory region.
+Signed-off-by: Jascha Sundaresan <flizarthanon@gmail.com>
+---
+ .../devicetree/bindings/nvmem/layouts/u-boot,env.yaml     | 8 ++++++++
+ drivers/nvmem/layouts/u-boot-env.c                        | 4 +++-
+ 2 files changed, 11 insertions(+), 1 deletion(-)
 
-I believe IMEM is SRAM (it's at least not registers), but its memory
-layout is fixed, so it's not a pool in any form.
+diff --git a/Documentation/devicetree/bindings/nvmem/layouts/u-boot,env.yaml b/Documentation/devicetree/bindings/nvmem/layouts/u-boot,env.yaml
+index 56a8f55d4a09..5d526d960103 100644
+--- a/Documentation/devicetree/bindings/nvmem/layouts/u-boot,env.yaml
++++ b/Documentation/devicetree/bindings/nvmem/layouts/u-boot,env.yaml
+@@ -46,6 +46,13 @@ properties:
+     type: object
+     description: Command to use for automatic booting
+ 
++  env-size:
++    description:
++      Size in bytes of the environment data used by U-Boot for CRC
++      calculation. If omitted, the full NVMEM region size is used.
++    type: integer
++    maxItems: 1
++
+   ethaddr:
+     type: object
+     description: Ethernet interfaces base MAC address.
+@@ -104,6 +111,7 @@ examples:
+ 
+             partition-u-boot-env {
+                 compatible = "brcm,env";
++                env-size = <0x20000>;
+ 
+                 ethaddr {
+                 };
+diff --git a/drivers/nvmem/layouts/u-boot-env.c b/drivers/nvmem/layouts/u-boot-env.c
+index a27eeb08146f..ab32bf1291af 100644
+--- a/drivers/nvmem/layouts/u-boot-env.c
++++ b/drivers/nvmem/layouts/u-boot-env.c
+@@ -99,10 +99,12 @@ int u_boot_env_parse(struct device *dev, struct nvmem_device *nvmem,
+ 	uint32_t crc32;
+ 	uint32_t calc;
+ 	uint8_t *buf;
++	u32 env_size;
+ 	int bytes;
+ 	int err;
+ 
+-	dev_size = nvmem_dev_size(nvmem);
++	dev_size = device_property_read_u32(dev, "env-size", &env_size) ?
++		nvmem_dev_size(nvmem) : (size_t)env_size;
+ 
+ 	buf = kzalloc(dev_size, GFP_KERNEL);
+ 	if (!buf) {
+-- 
+2.39.5
 
-
-What Krzysztof says makes sense, but rather than just throwing a yak at
-Jingyi, it would be nice if you provided some guidance on how you would
-like to see this turn out.
-
-Regards,
-Bjorn
-
-> > 
-> > Thanks,
-> > Jingyi
-> > 
-> > >>            - qcom,msm8226-imem
-> > >>            - qcom,msm8974-imem
-> > >>            - qcom,msm8976-imem
-> > >>
-> > >> -- 
-> > >> 2.25.1
-> > >>
-> > > 
-> > 
-> 
-> -- 
-> With best wishes
-> Dmitry
 
