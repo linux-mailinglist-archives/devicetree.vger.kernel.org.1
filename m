@@ -1,137 +1,130 @@
-Return-Path: <devicetree+bounces-229632-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229633-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72635BFA605
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 08:57:56 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3314EBFA665
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 08:59:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 60B364F5901
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 06:57:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 288BA485CE9
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 06:59:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 371BF2F2918;
-	Wed, 22 Oct 2025 06:57:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6FD32F28F4;
+	Wed, 22 Oct 2025 06:59:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=sjoerd@collabora.com header.b="ab3jiVYY"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="MlHKaN0z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-op-o15.zoho.com (sender4-op-o15.zoho.com [136.143.188.15])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67C1A2F12A0;
-	Wed, 22 Oct 2025 06:57:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.15
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761116222; cv=pass; b=AUc+9ri95eONHz05h5D+q96PXy8JusNNn+Yvfv68MvKdpAYVrb38ILY0Jp9OP3vcqP0zk9pDX+RiXJuQR1WAP6zaHyzRl1btZ7m4fdAihwbW6U8naz8/pvUfAdwMTSX0gqtLMmISFNn7d5AvGO5+jEpFDhtKlHWlazev+mMekwQ=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761116222; c=relaxed/simple;
-	bh=k0AFrLQpMvYTZ6e0/r3ZxrQZZgzaAE/lf0wJqFdFDCE=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=DZohoqMiI9mbKneh1cyg9qcFJ4g8sgiiCi2FRuzkKZwoCijz5wMMzx0dRObvrsdCGtKVTfBpPno10ew0ToblfFTxDl7h/xFGJW6OU1F5/0GKkUvjV/lBt3k2xqoZEeHDOVZXMDhY/DOeH1c1OfLHQ00oAe569M845XwolOYEXiY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sjoerd@collabora.com header.b=ab3jiVYY; arc=pass smtp.client-ip=136.143.188.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1761116176; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=YSmM6fHht8tI+Hs+g3L2P7wAvCYMuoBQzlDwjFWZUc/615269p6rktPjsz9WB8gsEUaznRxJERQb24bpRaDKzrdYcYK/BCP1fRoIYIkHbZNCFroSJYoM4xkKGX8PfngiOOsW0lddLPUDC1+owWVcPmBpreXcSajaAPpWDQig0LU=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1761116176; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=VrTdEMBjb9J8SLRrC3vLxTtsIJrVCIippWcA6vJQ+Sc=; 
-	b=YfK9QluAXmmxX9kSbNdrBDhfxEV3S7KtbwKeNmyucgOl6EReqAb680Mf1fsYYidgwmbXUaJa/snr9j3FJNMtpJ6W7cHRjv0HL6imBTobge1AE1HrufuX0SxByyu2DIYaZ8AbqYWpBNeNuuGnJ/OhK2oHeTPzGZcLBH8xvMlJ22A=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=sjoerd@collabora.com;
-	dmarc=pass header.from=<sjoerd@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1761116176;
-	s=zohomail; d=collabora.com; i=sjoerd@collabora.com;
-	h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
-	bh=VrTdEMBjb9J8SLRrC3vLxTtsIJrVCIippWcA6vJQ+Sc=;
-	b=ab3jiVYYnku8HtA+3wdNILGqr/Nsdqmzhy2eGZ8glKkkzc7JF7u3I+5iDVjER+Bb
-	1DdPzxEQm91Xm/GFKyO5TQc1PulKRvfSCTQEK6kd9ql9kv13uKykLZYEgcU187WjO36
-	MjOUNnri8IEPm+Eg119HPZMSnnqIwv1mH6NjzZ8A=
-Received: by mx.zohomail.com with SMTPS id 17611161732831018.5532421915162;
-	Tue, 21 Oct 2025 23:56:13 -0700 (PDT)
-Message-ID: <9280864d0eba182d06d1e191fdc0aad1fb4ce5b3.camel@collabora.com>
-Subject: Re: [PATCH 12/15] arm64: dts: mediatek: mt7981b-openwrt-one: Enable
- Ethernet
-From: Sjoerd Simons <sjoerd@collabora.com>
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Eric Woudstra <ericwouds@gmail.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski	 <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Matthias Brugger	 <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno	 <angelogioacchino.delregno@collabora.com>,
- Ryder Lee <ryder.lee@mediatek.com>,  Jianjun Wang
- <jianjun.wang@mediatek.com>, Bjorn Helgaas <bhelgaas@google.com>, Lorenzo
- Pieralisi	 <lpieralisi@kernel.org>, Krzysztof =?UTF-8?Q?Wilczy=C5=84ski?=	
- <kwilczynski@kernel.org>, Manivannan Sadhasivam <mani@kernel.org>, Chunfeng
- Yun	 <chunfeng.yun@mediatek.com>, Vinod Koul <vkoul@kernel.org>, Kishon
- Vijay Abraham I <kishon@kernel.org>, Lee Jones <lee@kernel.org>, Andrew
- Lunn <andrew+netdev@lunn.ch>,  "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo
- Abeni <pabeni@redhat.com>, Lorenzo Bianconi <lorenzo@kernel.org>, Felix
- Fietkau <nbd@nbd.name>, 	kernel@collabora.com, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, 	linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, 	linux-pci@vger.kernel.org,
- linux-phy@lists.infradead.org, netdev@vger.kernel.org,  Daniel Golle
- <daniel@makrotopia.org>, Bryan Hinton <bryan@bryanhinton.com>
-Date: Wed, 22 Oct 2025 08:56:06 +0200
-In-Reply-To: <fd52be11-ccff-4f34-b86b-9c2f9f485756@lunn.ch>
-References: <20251016-openwrt-one-network-v1-0-de259719b6f2@collabora.com>
-	 <20251016-openwrt-one-network-v1-12-de259719b6f2@collabora.com>
-	 <4f82aa17-1bf8-4d72-bc1f-b32f364e1cf6@lunn.ch>
-	 <8f5335a703905dea9d8d0c1840862a3478da1ca7.camel@collabora.com>
-	 <fd52be11-ccff-4f34-b86b-9c2f9f485756@lunn.ch>
-Organization: Collabora
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-5 
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26AA52F3609;
+	Wed, 22 Oct 2025 06:59:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1761116354; cv=none; b=W1k6p+eiCtzyO6xrKa4BiNpzMOepoEYFSMAUgpao5w9QWxh5Zet8Dso1eg/puIE0BsaYYzScAIN60cKby0iwkS7lM0+AQUzwVv8KgG68blTcSSbwu46HKEhzCJG2cDyjwgIWm2XTRqPMD89q1ORCwKss+ELJ1aWGtFvhoy9XHqw=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1761116354; c=relaxed/simple;
+	bh=fLm80y5DeCd7BjYiy8AWXL4fxOKpiG5SPopQ/f7y0Is=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=HiuT1W9mF1fILpp0rd9gE+i0MEQLsYQVMqXVZSS02LCeGn2/68mliwvVPGDvY8+Wf2uRvpLuAhRbzPgqYo47IoFOnajtyv1PHrUY5sT4SqMVcEJlk5NtLvoTkk1+Gu63FNItx+ZL/sPomVISem54zrXLd44RaH2kg4d1fzCWEt4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=MlHKaN0z; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59M3wIwc024209;
+	Wed, 22 Oct 2025 06:59:09 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	3i07+l+uWJPPHEU6fHn5Iyu6aez5sgkNVeYntCduk94=; b=MlHKaN0zeNzzmCbR
+	7x+V5qbFHvxVJAAIFu998asumKyIwVSB7oKZlsVU/OiGOZsO39anUkewRXsRLLIE
+	Dnx6wiRu8sS3ylIwO42G7VxtEGE9ZfnR46I/jqXsIA3lhANAwF4PyuepNm43cOrr
+	WVQhiUv7tb5LEjxzM4XQ4KMZ89axC8YbbXMIMjhzqL+B2cy89vAY/963SuzwtrLL
+	t26IdZx+a68U/v3tJjbBiEEwg30VEWsHVZVLwxrzdp7+jXs+cJNkIZHOe5Xsw0M6
+	Za9ZvJoFEhXIIy4EgqbMJRi0Az/SbEm19ICAFMV0Shsnuo706sOhGHMSeTKRcvEd
+	GB+lcw==
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49v1w83n68-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 22 Oct 2025 06:59:09 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 59M6x8um032737
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 22 Oct 2025 06:59:08 GMT
+Received: from [10.151.36.184] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.24; Tue, 21 Oct
+ 2025 23:59:04 -0700
+Message-ID: <96ae7d38-4ce0-fa34-e6f0-6bb6e4ceaa28@quicinc.com>
+Date: Wed, 22 Oct 2025 12:29:01 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-ZohoMailClient: External
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH v3 1/9] spi: dt-bindings: spi-qpic-snand: Add IPQ5424
+ compatible
+Content-Language: en-US
+To: Mark Brown <broonie@kernel.org>
+CC: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <andersson@kernel.org>, <konradybcio@kernel.org>, <vkoul@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-spi@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <dmaengine@vger.kernel.org>, <quic_varada@quicinc.com>
+References: <20251014110534.480518-1-quic_mdalam@quicinc.com>
+ <20251014110534.480518-2-quic_mdalam@quicinc.com>
+ <dd1e4289-5e36-4b24-9afd-f09569459a96@sirena.org.uk>
+From: Md Sadre Alam <quic_mdalam@quicinc.com>
+In-Reply-To: <dd1e4289-5e36-4b24-9afd-f09569459a96@sirena.org.uk>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDE4MDAxNSBTYWx0ZWRfX0IPdfp5J8ZQN
+ 4vea2Rd6y7a9Li+/jf5ZnuTKe2LCBc/BFHLL2hwQ+w45Ux4hfDMQusX48Q+/OIJFgIqLALzo++x
+ +EbWMNQRvDTNwgMs7MMkuGjREUodxA6Fc/VkyUaeqndML5Nr5MYClf7tO7+WjE/Uilh1JTvBGDE
+ lnDyxffENpj8kR7nFZUCXROymEFNn9FtNhvFyv3fDGvnvLVX7iWdHM/7bdPyzlb38k7TSfAxPWQ
+ 3PKK7NeTdhnNyaZCqa4stfMp0NOnZO2tQ8p5Sykf7kYKEWM+DFkOmlgjLsGNzT1XIlU/nhMf+oq
+ zbb6R7AuNsWnPxO262owqtaDhoZfVKAQKGfCVffFitYl/X9Akm8Z7O5bbpA953fVr+NoD0XBgEm
+ EEtcTBEP6Hja5iFCIsdz8Flpipunkg==
+X-Authority-Analysis: v=2.4 cv=bNUb4f+Z c=1 sm=1 tr=0 ts=68f880bd cx=c_pps
+ a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=_0GQtCzl9aOVDYM4pBEA:9 a=3ZKOabzyN94A:10
+ a=QEXdDO2ut3YA:10 a=zgiPjhLxNE0A:10 a=HhbK4dLum7pmb74im6QT:22
+ a=cPQSjfK2_nFv0Q5t_7PE:22 a=pHzHmUro8NiASowvMSCR:22 a=Ew2E2A-JSTLzCXPT_086:22
+X-Proofpoint-GUID: t-5wmJQ0Ch1TLo2XtHsg-DecuLU4MTvU
+X-Proofpoint-ORIG-GUID: t-5wmJQ0Ch1TLo2XtHsg-DecuLU4MTvU
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-10-22_02,2025-10-13_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 phishscore=0 malwarescore=0 lowpriorityscore=0 clxscore=1015
+ priorityscore=1501 suspectscore=0 adultscore=0 spamscore=0 impostorscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2510020000 definitions=main-2510180015
 
-On Tue, 2025-10-21 at 22:40 +0200, Andrew Lunn wrote:
-> On Tue, Oct 21, 2025 at 10:21:31PM +0200, Sjoerd Simons wrote:
-> > On Fri, 2025-10-17 at 19:31 +0200, Andrew Lunn wrote:
-> > > > +&mdio_bus {
-> > > > +	phy15: ethernet-phy@f {
-> > > > +		compatible =3D "ethernet-phy-id03a2.a411";
-> > > > +		reg =3D <0xf>;
-> > > > +		interrupt-parent =3D <&pio>;
-> > > > +		interrupts =3D <38 IRQ_TYPE_EDGE_FALLING>;
-> > >=20
-> > > This is probably wrong. PHY interrupts are generally level, not edge.
-> >=20
-> > Sadly i can't find a datasheet for the PHY, so can't really validate th=
-at
-> > easily.
->=20
-> What PHY is it? Look at the .handle_interrupt function in the
-> driver. If the hardware supports a single interrupt bit, it could in
-> theory support edge. However, as soon as you have multiple bits, you
-> need level, to avoid races where an interrupt happens while you are
-> clearing other interrupts.
+Hi,
 
-ethernet-phy-id03a2.a411 is Airoha EN8811H (air_en8811h driver). Handle
-interrupt there seems to just be a general interrupt clear followed by a
-`phy_trigger_machine`. It doesn't seem to read specific interrupt status.=
-=20
+On 10/22/2025 12:39 AM, Mark Brown wrote:
+> On Tue, Oct 14, 2025 at 04:35:26PM +0530, Md Sadre Alam wrote:
+>> IPQ5424 contains the QPIC-SPI-NAND flash controller which is the same as
+>> the one found in IPQ9574. So let's document the IPQ5424 compatible and
+>> use IPQ9574 as the fallback.
+> 
+> This doesn't apply against current code, please check and resend.
+Thank you for the feedback. I’d appreciate a bit more clarity on what 
+“doesn't apply against current code” refers to in this context. I’ve 
+manually applied the patch against the latest mainline (torvalds/linux) 
+and it applied cleanly without any conflicts. Please let me know if 
+there’s a specific tree or integration point I should be checking against.
 
-Testing with IRQ_TYPE_LEVEL_LOW does seem to work as expected and results i=
-n
-detecting 4 interrupts rather then just 1 with edges when enabling the
-interface. However I'm not sure what can be concluded from that if anything=
- :)..
-=C2=A0
-I can stick a scope on the line in the coming days to see how the interrupt=
- line
-behaves if interrupts aren't cleared, which may clarify things.
-=20
-
---=20
-Sjoerd Simons
-Collabora
+Thanks,
+Alam.
 
