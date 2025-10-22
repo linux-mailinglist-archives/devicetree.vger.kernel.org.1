@@ -1,174 +1,161 @@
-Return-Path: <devicetree+bounces-229635-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229636-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7CD2BFA68C
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 09:00:53 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B22CDBFA6AA
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 09:02:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F137A3ACC0B
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 07:00:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CB7A73A3B41
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 07:01:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DF422F3C09;
-	Wed, 22 Oct 2025 07:00:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7023B2F39D7;
+	Wed, 22 Oct 2025 07:01:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=me-ssier-org.20230601.gappssmtp.com header.i=@me-ssier-org.20230601.gappssmtp.com header.b="lOKW89gt"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="Q6JsdRRV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f173.google.com (mail-qk1-f173.google.com [209.85.222.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D8922F39A1
-	for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 07:00:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCA90350A0E
+	for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 07:01:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761116416; cv=none; b=MxuSZvj7nH9iYsa+DWs+KDEhzNF3LQMX5lmG54ChhsTMI/x0QfZfiZ4cBSusBljYLP9p4MmkNFvuhAitjS8e9oC9ARqplD94IvqOagAvcRfIzXNeoM+I01e4sW6ssUo71SkS6KOQIN40wehWaQlhy97Djq0scIK8evIxAMdUgOY=
+	t=1761116510; cv=none; b=RaC3lpIMFEhDXwg2hthyEoOR0YhpbVoZ6IGT/yoloIm/2QOVmLH1h6dWN0miSK3gijnOOve0/yLfA7ZALu6vt9iYsnFNgQ0ymQ0ks943TxDZfiTK2H7HSvFSWKD0Z8CuRm2LthbyB8TyojY9AyGO9KSvykGB36ZvNUcWSYuxnyk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761116416; c=relaxed/simple;
-	bh=2ovcfzW0TZxfflXJ1CWAc3hKGj0ELxUHga64V8M6ot4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=VIuWvvuC+a28EMPj4QJ7Mp28Q8M2UVSG3nrKHwSjypb5JPFvwMnwx9/Y6wbzntfJpx8fnDcNUoUKlHR1Gz12RURp/EoY/DN1FRgVuBB/+N8xNwFq8w94DLs78P4mjFWuMB3E++6CZWqdEj7EgzxkFcc+k0sJvK5Potv+2YvcZF0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=me.ssier.org; spf=pass smtp.mailfrom=me.ssier.org; dkim=pass (2048-bit key) header.d=me-ssier-org.20230601.gappssmtp.com header.i=@me-ssier-org.20230601.gappssmtp.com header.b=lOKW89gt; arc=none smtp.client-ip=209.85.222.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=me.ssier.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=me.ssier.org
-Received: by mail-qk1-f173.google.com with SMTP id af79cd13be357-8909f01bd00so736400485a.0
-        for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 00:00:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=me-ssier-org.20230601.gappssmtp.com; s=20230601; t=1761116413; x=1761721213; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=UZ0zLiQMjHfWfIrETWEpgf86vfPQWqa3rEBNo24tR5I=;
-        b=lOKW89gtGbwipcluEaEJlQSRPk4HOVPDoeTtBsPgzX4VBK4WR0IppUMuRypIaDitkE
-         zYz+C3PQ0ZOjl4CeieIT7XgNO90JKwkkn44aUQAlXM/ugqZ0qflvyOYA+LEJPaIYfsSC
-         orcFnv0bhf7u6vAlHN6ySJjTQvffohW85jgxpvVcq6zvEiGZRyEguUA3hZfa2GISSJVK
-         pmn51Aiu0yGX6Ysj64T7ntOim463s8mqk48IwzDjoEqb5KiRgNRKph7RT6Bm/+LBD2/M
-         RFjFlfVMkTNon2LMLAoCc5pSrzXLUZMNff/J9Q+YCciS8hDfv6WCvV1zhvL7EuKNUIoj
-         /eaA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761116413; x=1761721213;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=UZ0zLiQMjHfWfIrETWEpgf86vfPQWqa3rEBNo24tR5I=;
-        b=llxUcQztpTjR0eSYSvZpWfy3Igc8qsQNk0ZG4frKQK49coaN1DuNAsvAQUYQpsJSEP
-         mhFxX91GSy/dfluSN+zm2rHSv9FE75R0jxDlQVqPBRxEsK0HnoC2rjT8dxq5qJVBVkSX
-         pHBY6Ah4at2III2u5cstrUZTloWJff56y2oY4SdAkIXMa6yIx/EfyNiJcpZPURsfvp1s
-         gZybMMhubMaynauafVydx7Nb5dygVV/sjSRIkHc3Wy0kyHlFICGJT60qRRahmRd72QLe
-         IkEVmX+Tv2y+e7zdBJnS8ng4s63ckAr7uidvlXTr1SLG+7YZLj6dPsre+VZoeGz3P+ZK
-         4K1g==
-X-Forwarded-Encrypted: i=1; AJvYcCVwgMISJz2qXfr3eDPEzG05rZW05q4e2/o+LQSaOipzB8pZ0Kw8fDNIA3RdJD9L2g2C3hc2cIbQansV@vger.kernel.org
-X-Gm-Message-State: AOJu0YwM2KUKl6hADhqinC3CZ7sVQ/T1XbYf83i9mmRoFWbShwd73V5T
-	EjjkSZBTqg+w89BpsJ/nHudbgLzYiG2oPAJMLSbYPuuVZa8txVjeQ+5SlqLlrXCWjr0=
-X-Gm-Gg: ASbGncsNWokT7wZkXjagvg1NUlXWyfvfCoVzOwYlQutj56KSOIXuyzZtwWkZm//RkI7
-	dneSNamGlfEKdMWHvolOo2Vwi/AUgYhHQpG9zN7gNek9TNLAeFBiNB0M4Xw4LmiOcf2RW74NDdW
-	fSGR1P5RmuZz2C1+E66v9kJPvA4sW3YNNJNN8oQECegQxB3ClCjujBbWLjuvVbvcRcpTjwc598k
-	SFQx58lJoOF0mQ7QhPzBVyR9FaNdoy++DH9FZwpN4BL/AJE/QMOVI+tfGh6OmUQWnxD8e9Ppcl3
-	iaues0sKWXR55t3Yq3O/wQ5Sgq/DAOFc1Aw8kBdNeMRAbsmPe2cg4nkbM2xUCNYaQCByKUx7sps
-	jaZt0iedEF8YXIrBTZAlR+XdJL6Tv0IAA0fcDyV+4fDSPMj/QhvFJ64WXGj0tIiYX3ebaeUqK6G
-	0wkG07F/pq/w==
-X-Google-Smtp-Source: AGHT+IFP1Egld4e4M3O9ldes+hPt4it1nCGP1bODqWck6WjBakPWZGeujTTjHQoGUKEqPL4vEcQSIw==
-X-Received: by 2002:a05:620a:4621:b0:88f:228c:c6a0 with SMTP id af79cd13be357-8906e8af048mr2096261085a.24.1761116412834;
-        Wed, 22 Oct 2025 00:00:12 -0700 (PDT)
-Received: from [192.168.2.8] ([74.14.126.215])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-891cd6717desm915892985a.26.2025.10.22.00.00.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Oct 2025 00:00:12 -0700 (PDT)
-Message-ID: <77efe2a2-ee81-4096-9145-a76e35954e84@me.ssier.org>
-Date: Wed, 22 Oct 2025 03:00:01 -0400
+	s=arc-20240116; t=1761116510; c=relaxed/simple;
+	bh=xYBzTkkDJCWTjFk+vwV4Ph9IB+akx3BABNKVQ1En2YI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=uq5e1KDPLimJKEjOpD3I+WOgOLjSA4HgVrLGlkLNIxIzJJyMX6n8Y41l2P6GJgwNdLZlQysoxYyi6d+3Ql9ph4Y54SbqDUQ+8/InuDRVsl46keAcFcwoZqkbN9OMFRVjPOpVlKyxh+mHqmd54t0A40dxAybELGVtUfVjoKB7o/E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=Q6JsdRRV; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=date:from:to:cc:subject:message-id
+	:references:mime-version:content-type:in-reply-to; s=k1; bh=rll3
+	M1pGAWsrf5pLEqz7xhA2M7kxNOl+FsQ+039H8pQ=; b=Q6JsdRRVhMs7Ev+Igivp
+	WiT75oMtxUmwMyHutTvMnvkSgEPBxDsb7sncUZSLSkgS9kfq0weUdMkEgjRhnWNO
+	UJ/eAe19UP/ZSEFl0PkHOKsIA/sciMPuXo22UkjWuIdCk4KTlDTcqBlgNnat9nLE
+	Bij3ovwWaPpreONLe+RFy9/DQ+rw9wj8R5+jJWkzukBY1+Be+fHOEmwUOIXSQh7v
+	5FAntYnW8dSu5q4g+6EbWHfdM/azRwhAcJGlL708TJxcdSV75+F4AD3Xcsu0ut9X
+	7Y6f+kEFB2HQbDbo3TN5ELvSTvSiW9+n2heK3UkbBib/pD7Nyj3PoUvL4eagA5WY
+	9w==
+Received: (qmail 1724248 invoked from network); 22 Oct 2025 09:01:38 +0200
+Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 22 Oct 2025 09:01:38 +0200
+X-UD-Smtp-Session: l3s3148p1@YABF47lBq3ttKPJN
+Date: Wed, 22 Oct 2025 09:01:37 +0200
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: Marek Vasut <marek.vasut@mailbox.org>
+Cc: Geert Uytterhoeven <geert@linux-m68k.org>,
+	linux-renesas-soc@vger.kernel.org,
+	Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: renesas: sparrow-hawk: don't reserve SWDT
+Message-ID: <aPiBUaTQZcFK8UF_@shikoro>
+References: <20251017115123.3438-2-wsa+renesas@sang-engineering.com>
+ <CAMuHMdUCSRKAbD=DfJxfFGpfKTRkt=a2BO+HnwTqALBeeECOkA@mail.gmail.com>
+ <aPaSF2lokJ748cTx@shikoro>
+ <CAMuHMdXv_R6POTQe=MEcEOraKhjhzwrW5skkWnzgvijF2qAykw@mail.gmail.com>
+ <fba13116-2495-49a3-a1b5-2eecb33bb448@mailbox.org>
+ <CAMuHMdUP_bH5WW3=3J1H=6SocKzQXPdP7PFfYDrgaj4EhYTaYQ@mail.gmail.com>
+ <0e81437f-a13f-4605-b7f7-6e6640411f30@mailbox.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/4] ARM: dts: qcom: msm8974pro-htc-m8: add status LEDs
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Pavel Machek <pavel@kernel.org>
-Cc: Luca Weiss <luca@lucaweiss.eu>, linux-arm-kernel@lists.infradead.org,
- linux-arm-msm@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
- phone-devel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20251007-m8-dts-additions-v1-0-53d7ab3594e7@me.ssier.org>
- <20251007-m8-dts-additions-v1-1-53d7ab3594e7@me.ssier.org>
- <6c791f05-70e7-49c9-a3ce-50fb82b0c894@oss.qualcomm.com>
- <fef52764-3092-4375-b9c7-793d85adc102@me.ssier.org>
- <41c63020-9226-45d9-979d-429b7299da41@oss.qualcomm.com>
-Content-Language: en-US
-From: Alexandre Messier <alex@me.ssier.org>
-In-Reply-To: <41c63020-9226-45d9-979d-429b7299da41@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="91kMum7yq5u02O6O"
+Content-Disposition: inline
+In-Reply-To: <0e81437f-a13f-4605-b7f7-6e6640411f30@mailbox.org>
 
-On 2025-10-20 08:02, Konrad Dybcio wrote:
-> On 10/12/25 8:03 AM, Alexandre Messier wrote:
->> On 2025-10-07 06:03, Konrad Dybcio wrote:
->>> On 10/7/25 7:55 AM, Alexandre Messier via B4 Relay wrote:
->>>> From: Alexandre Messier <alex@me.ssier.org>
->>>>
->>>> Add support for the notification LEDs on the HTC One M8.
->>>>
->>>> Two LEDs are available, one amber and one green.
->>>
->>> Do they form a single notification led, or are they supposed
->>> to act separately?
->>
->> Good point, I had to check the phone user manual to confirm. Indeed, it is
->> referred to as a one logical notification LED. It also mentions the color can
->> be either green or orange, it does not mention using the combined color of
->> the two LEDs.
->>
->> So I would say they are supposed to act separately.
->>
->> Hope this answers your question, and let me know if more details are needed.
->>
->> BTW: I will be sending a V2 to update the color name, since the user
->> manual says the color is orange, not amber.
-> 
-> Let's describe it as a single LED then:
-> 
-> multi-led {
->         color = <LED_COLOR_ID_MULTI>; // notice it's not RGB
->         function = LED_FUNCTION_STATUS;
-> 
->         #address-cells = <1>;
->         #size-cells = <0>;
-> 
->         led@6 {
->                 reg = <6>;
->                 color = <LED_COLOR_ID_GREEN>;
->         };
-> 
->         led@7 {
->                 reg = <7>;
->                 color = <LED_COLOR_ID_ORANGE>;
->         };
-> };
 
-Using multi-led is fine for me.
+--91kMum7yq5u02O6O
+Content-Type: multipart/mixed; boundary="GYrNZo38pT6+z9Vn"
+Content-Disposition: inline
 
-But currently, the "qcom-lpg" driver doesn't support LED_COLOR_ID_MULTI, only
-LED_COLOR_ID_RGB. Adding support for LED_COLOR_ID_MULTI is trivial, I tested it
-and it works.
 
-Or I can also use the "leds-group-multicolor" driver, using the two individual
-LEDs. I also tested this method and it works.
+--GYrNZo38pT6+z9Vn
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-> 
-> + Pavel the LED maintainer, please take a look if you think it makes sense
+Hi Marek,
 
-If Pavel agrees using multi-led makes sense, I think the first option is the
-best. I will separate the LED patch into a new series, along with the change to
-the qcom-lpg driver to support LED_COLOR_ID_MULTI.
+sorry for the late reply. I am on holiday this week with only limited
+time for work and net access.
 
-Thanks
-Alex
+> I think this can be tested on Sparrow Hawk easily , with and without TFA.
+> Wolfram, how do I test the SWDT ?
 
-> 
-> Konrad
+1) enable the node in DT
+2) apply the patch "[PATCH] soc: renesas: rcar-rst: keep RESBAR2S in default state"
+3) apply the diff attached to this mail (untested but quite sure that's
+   what i did a few days ago) which allows SWDT to reset
+4) access it like any other watchdog. IIRC I did this to enforce a reset
+   # watchdog -T1 -t3 /dev/watchdog1
+   (with busybox watchdog)
 
+I think that's it. It uses the same driver as the RWDT, so you probably
+have this activated already.
+
+Happy hacking,
+
+   Wolfram
+
+
+--GYrNZo38pT6+z9Vn
+Content-Type: text/x-diff; charset=us-ascii
+Content-Disposition: attachment; filename="v4h_allow_swdt_to_reset.diff"
+Content-Transfer-Encoding: quoted-printable
+
+diff --git a/drivers/soc/renesas/rcar-rst.c b/drivers/soc/renesas/rcar-rst.c
+index 0541990901fc..a78ea77dba16 100644
+--- a/drivers/soc/renesas/rcar-rst.c
++++ b/drivers/soc/renesas/rcar-rst.c
+@@ -12,7 +12,7 @@
+=20
+ #define WDTRSTCR_RESET		0xA55A0002
+ #define WDTRSTCR		0x0054
+-#define GEN4_WDTRSTCR_RESET	0xA55A8002
++#define GEN4_WDTRSTCR_RESET	0xA55A8000
+ #define GEN4_WDTRSTCR		0x0010
+=20
+ #define CR7BAR			0x0070
+@@ -117,7 +117,7 @@ static const struct of_device_id rcar_rst_matches[] __i=
+nitconst =3D {
+ 	/* R-Car Gen4 */
+ 	{ .compatible =3D "renesas,r8a779a0-rst", .data =3D &rcar_rst_v3u },
+ 	{ .compatible =3D "renesas,r8a779f0-rst", .data =3D &rcar_rst_gen4 },
+-	{ .compatible =3D "renesas,r8a779g0-rst", .data =3D &rcar_rst_gen4 },
++	{ .compatible =3D "renesas,r8a779g0-rst", .data =3D &rcar_rst_v3u },
+ 	{ .compatible =3D "renesas,r8a779h0-rst", .data =3D &rcar_rst_gen4 },
+ 	{ /* sentinel */ }
+ };
+
+--GYrNZo38pT6+z9Vn--
+
+--91kMum7yq5u02O6O
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmj4gU0ACgkQFA3kzBSg
+KbaH4BAAjuRJJnIdLCeewNfEatsM73wse8E8huOHm70DJSIfeKTJzxbV4jQqNxtc
+THY9gOJSQ0Wn7qFBn/PqvmcTJbpcempdV8Z5kRYXB5ITMTO9H7GsTqEUoP2ZwoUW
+kmjlu35Sx4fZpNuPeAS9yRds0F4OsVvfgzMKHAZyO7AlbC5WARd0ZF+vuKvgrNoU
+gQQZ6yT6d5tfBqdFfm3kOdO7FsTWQB3rV+ofCBYcofNHw4nGLT4ReIOe34GsCk1J
++XO9v4kjXAG2tdjI5hfoKvmWnhIwMZxOhUNWKcKFEsD+owxUs8kqecCpcHFLEu+9
+uNT7Wp0/iFLfp1LaqFSnr/fsZ8HtbguFRDLIapwRYFYst5s18RH7ywdpXe6lpRJu
+gidvOcGaTwM6KYefn+l+9KXyxhzOfjJ+VD+TrgKlPkWvAp6BQ8XxERnM7EA/5r28
+RB0i+tNUJeZpg5lghOAA/Zdf91dCkS/+cX7yS14MagbEnWuNZSarUiWteFFNCtw5
+TSquoIWEgoXbr3YvRimXO1sxJb7LpqPy4e+d3aJUICxskxuM1G28hrjN93nZ/vi0
+nt07kkjaAefepGJvFSrg9i3Rt5fUu+OhdqMZxM/us77VzB8fXtHhIbdgo6/+wrm7
+Z0C5OSqVEL2OZ5FAgWLbAfLVRciCgORDi1wjtGAm4w/hW9Ob9jI=
+=zw1z
+-----END PGP SIGNATURE-----
+
+--91kMum7yq5u02O6O--
 
