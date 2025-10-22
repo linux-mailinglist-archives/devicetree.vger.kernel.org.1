@@ -1,130 +1,153 @@
-Return-Path: <devicetree+bounces-229633-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229634-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3314EBFA665
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 08:59:52 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 70029BFA67D
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 09:00:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 288BA485CE9
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 06:59:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9BD1B487A7B
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 06:59:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6FD32F28F4;
-	Wed, 22 Oct 2025 06:59:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F4322F2916;
+	Wed, 22 Oct 2025 06:59:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="MlHKaN0z"
+	dkim=pass (2048-bit key) header.d=iki.fi header.i=@iki.fi header.b="OuGmIJ8O"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from lahtoruutu.iki.fi (lahtoruutu.iki.fi [185.185.170.37])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26AA52F3609;
-	Wed, 22 Oct 2025 06:59:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761116354; cv=none; b=W1k6p+eiCtzyO6xrKa4BiNpzMOepoEYFSMAUgpao5w9QWxh5Zet8Dso1eg/puIE0BsaYYzScAIN60cKby0iwkS7lM0+AQUzwVv8KgG68blTcSSbwu46HKEhzCJG2cDyjwgIWm2XTRqPMD89q1ORCwKss+ELJ1aWGtFvhoy9XHqw=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761116354; c=relaxed/simple;
-	bh=fLm80y5DeCd7BjYiy8AWXL4fxOKpiG5SPopQ/f7y0Is=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=HiuT1W9mF1fILpp0rd9gE+i0MEQLsYQVMqXVZSS02LCeGn2/68mliwvVPGDvY8+Wf2uRvpLuAhRbzPgqYo47IoFOnajtyv1PHrUY5sT4SqMVcEJlk5NtLvoTkk1+Gu63FNItx+ZL/sPomVISem54zrXLd44RaH2kg4d1fzCWEt4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=MlHKaN0z; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59M3wIwc024209;
-	Wed, 22 Oct 2025 06:59:09 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	3i07+l+uWJPPHEU6fHn5Iyu6aez5sgkNVeYntCduk94=; b=MlHKaN0zeNzzmCbR
-	7x+V5qbFHvxVJAAIFu998asumKyIwVSB7oKZlsVU/OiGOZsO39anUkewRXsRLLIE
-	Dnx6wiRu8sS3ylIwO42G7VxtEGE9ZfnR46I/jqXsIA3lhANAwF4PyuepNm43cOrr
-	WVQhiUv7tb5LEjxzM4XQ4KMZ89axC8YbbXMIMjhzqL+B2cy89vAY/963SuzwtrLL
-	t26IdZx+a68U/v3tJjbBiEEwg30VEWsHVZVLwxrzdp7+jXs+cJNkIZHOe5Xsw0M6
-	Za9ZvJoFEhXIIy4EgqbMJRi0Az/SbEm19ICAFMV0Shsnuo706sOhGHMSeTKRcvEd
-	GB+lcw==
-Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49v1w83n68-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 22 Oct 2025 06:59:09 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 59M6x8um032737
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 22 Oct 2025 06:59:08 GMT
-Received: from [10.151.36.184] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.24; Tue, 21 Oct
- 2025 23:59:04 -0700
-Message-ID: <96ae7d38-4ce0-fa34-e6f0-6bb6e4ceaa28@quicinc.com>
-Date: Wed, 22 Oct 2025 12:29:01 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B09172F2909;
+	Wed, 22 Oct 2025 06:59:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=185.185.170.37
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1761116395; cv=pass; b=j7nwr1KzbRUxHlj14Lf8+9DRA/KsgdAA8waruROYbYD6wbnX/CfEaw7s4JMbYQtBZ0/asmIGnev5QlN+rKTnEDZYJiibTWn+Ixj9Meir4rH0tK9LcsV+D6bWerFxCh9ErOt4t+tHUYST7zkecfKMc9B8ooVPjx4R4/qNd7XoBpE=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1761116395; c=relaxed/simple;
+	bh=RsWchHbELTivadR+0rIWFwyZFY5yk9Z2SlOJZ7YoLlo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=rFqrjWEPWW3WDOdjh7aF6w576biUg/8m4vyn+/2l+hMaO7/El/M0YmpMczob3BkyESwmiCWf2EHMGtIGFu+y1oXoFq8wyd+Dhj6n0X49ClBUlb9PF9mVv9K7cOoBE/UwLyszSOlMENWybiFN0WqLAAEC26+TYcOacXLtpHCHB/k=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iki.fi; spf=pass smtp.mailfrom=iki.fi; dkim=pass (2048-bit key) header.d=iki.fi header.i=@iki.fi header.b=OuGmIJ8O; arc=pass smtp.client-ip=185.185.170.37
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iki.fi
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iki.fi
+Received: from hillosipuli.retiisi.eu (91-158-51-183.elisa-laajakaista.fi [91.158.51.183])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: sailus)
+	by lahtoruutu.iki.fi (Postfix) with ESMTPSA id 4cs0Qj2FTnz49Q6J;
+	Wed, 22 Oct 2025 09:59:41 +0300 (EEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=lahtoruutu;
+	t=1761116381;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=5s9tZ0plDw04XwnJ5ZHGqexlhG4hJB0+iwmd9AJaK6w=;
+	b=OuGmIJ8O0bNLXyfl/DOR87mbWDaGq8s7nrUYgaZdUNx+S2t0ROBOcgxdwOn8gD9jNLtGYm
+	FhWtHLm7XvXW+zrnoGmC9O9QQxaGCnesp5vBwOUZeJmHPiZgIILHYkKjlpRmyRIotkVv0N
+	ZU47G0eHkhD7Y/6iQNXWfi2Lugw2UR+bOmxqqtN1VG1bnr2/m7iLHiY5QjD2lda9a7mtXW
+	xkalyMPp4MRRbpho5Ka0MGoTEt4jNzRpvZDzOXJLP4K8VgR3lGk/gpeNazM/Fy1EeyMh5e
+	ImT5plat6EHVohgjDaY/juuTwc86ECUmwqr88iuizFi6foWRl5mvcYC0MsEtew==
+ARC-Seal: i=1; s=lahtoruutu; d=iki.fi; t=1761116381; a=rsa-sha256;
+	cv=none;
+	b=AsLWqzwwpeSWK7s89tLugPc5/LYNXM8zDE5kJ7H9uLCl36VRGwO25QswhfQSsg5PejbWk4
+	T5xqk7oVZj3l5vheEyvY3+S6t2VXLGTkBKXL/6iJgHyyTj01nbI5gJc+4actapHD1F/ymI
+	yQvW/Wf0YJEdiNXwtOFmwg0qgBsN3wRN58NpYAkI+XfbxEx0OmHNdH+vDRUmUHCsoWQu5l
+	ae9Le61iS3vSQ0tpEyyICym2lNxgD1KJGrUIQRMd6z8Rx2ZuSzwV8b/u0VosObXmF6THOS
+	452ahEM1gqB9Ve6lE2tpb7hZvCUa9LJrN7v4OwXt22SePD4xZpchI+MyBv5acg==
+ARC-Authentication-Results: i=1;
+	ORIGINATING;
+	auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
+	s=lahtoruutu; t=1761116381;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=5s9tZ0plDw04XwnJ5ZHGqexlhG4hJB0+iwmd9AJaK6w=;
+	b=UrwaRpOdekIoCIzNLX/haEcKkfIGnlHb3Arz6cIjfgonkRGB13JVMsfFDiygkN1L3hTuuc
+	OcOJ7TZ+MdLj/H7b45z5TopCkIiWEc2gYH+09VEigvGBOIFneWVkzJO3kltYdZfPDW2uRJ
+	3JBCHc9bgaI/baCgMMGYAxYPqITTJ8S/QdBI4+lOxyuoxfKEhxcun+dEH/8EOSYODWJE4E
+	tHcd487GFCiNJV73gwhU98LS7/oMCYPu98yLfTv8QStULq3tYWToZAt+gCvIBbFUmt/965
+	SAGIzPBceOMRyJLKd8TYKXfhzRdjRWcgVKaSimjGvJ8ZMjTzJUbOajSm1+xgPA==
+Received: from valkosipuli.retiisi.eu (valkosipuli.local [192.168.4.2])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by hillosipuli.retiisi.eu (Postfix) with ESMTPS id E5D6F634C50;
+	Wed, 22 Oct 2025 09:59:40 +0300 (EEST)
+Date: Wed, 22 Oct 2025 09:59:40 +0300
+From: Sakari Ailus <sakari.ailus@iki.fi>
+To: Frank Li <Frank.li@nxp.com>
+Cc: Rui Miguel Silva <rmfrfs@gmail.com>, Hans de Goede <hansg@kernel.org>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	"open list:OMNIVISION OV2680 SENSOR DRIVER" <linux-media@vger.kernel.org>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
+Subject: Re: [PATCH 1/1] media: dt-bindings: ovti,ov2680: Use
+ unevaluatedProperties for endpoint
+Message-ID: <aPiA3G9x_RsTL9Mv@valkosipuli.retiisi.eu>
+References: <20250827194919.82725-1-Frank.Li@nxp.com>
+ <aPdLmWM8a_ikhJfK@valkosipuli.retiisi.eu>
+ <aPepRZOL1Ys4PH/u@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH v3 1/9] spi: dt-bindings: spi-qpic-snand: Add IPQ5424
- compatible
-Content-Language: en-US
-To: Mark Brown <broonie@kernel.org>
-CC: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <andersson@kernel.org>, <konradybcio@kernel.org>, <vkoul@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-spi@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <dmaengine@vger.kernel.org>, <quic_varada@quicinc.com>
-References: <20251014110534.480518-1-quic_mdalam@quicinc.com>
- <20251014110534.480518-2-quic_mdalam@quicinc.com>
- <dd1e4289-5e36-4b24-9afd-f09569459a96@sirena.org.uk>
-From: Md Sadre Alam <quic_mdalam@quicinc.com>
-In-Reply-To: <dd1e4289-5e36-4b24-9afd-f09569459a96@sirena.org.uk>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDE4MDAxNSBTYWx0ZWRfX0IPdfp5J8ZQN
- 4vea2Rd6y7a9Li+/jf5ZnuTKe2LCBc/BFHLL2hwQ+w45Ux4hfDMQusX48Q+/OIJFgIqLALzo++x
- +EbWMNQRvDTNwgMs7MMkuGjREUodxA6Fc/VkyUaeqndML5Nr5MYClf7tO7+WjE/Uilh1JTvBGDE
- lnDyxffENpj8kR7nFZUCXROymEFNn9FtNhvFyv3fDGvnvLVX7iWdHM/7bdPyzlb38k7TSfAxPWQ
- 3PKK7NeTdhnNyaZCqa4stfMp0NOnZO2tQ8p5Sykf7kYKEWM+DFkOmlgjLsGNzT1XIlU/nhMf+oq
- zbb6R7AuNsWnPxO262owqtaDhoZfVKAQKGfCVffFitYl/X9Akm8Z7O5bbpA953fVr+NoD0XBgEm
- EEtcTBEP6Hja5iFCIsdz8Flpipunkg==
-X-Authority-Analysis: v=2.4 cv=bNUb4f+Z c=1 sm=1 tr=0 ts=68f880bd cx=c_pps
- a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=_0GQtCzl9aOVDYM4pBEA:9 a=3ZKOabzyN94A:10
- a=QEXdDO2ut3YA:10 a=zgiPjhLxNE0A:10 a=HhbK4dLum7pmb74im6QT:22
- a=cPQSjfK2_nFv0Q5t_7PE:22 a=pHzHmUro8NiASowvMSCR:22 a=Ew2E2A-JSTLzCXPT_086:22
-X-Proofpoint-GUID: t-5wmJQ0Ch1TLo2XtHsg-DecuLU4MTvU
-X-Proofpoint-ORIG-GUID: t-5wmJQ0Ch1TLo2XtHsg-DecuLU4MTvU
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-10-22_02,2025-10-13_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 phishscore=0 malwarescore=0 lowpriorityscore=0 clxscore=1015
- priorityscore=1501 suspectscore=0 adultscore=0 spamscore=0 impostorscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2510020000 definitions=main-2510180015
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aPepRZOL1Ys4PH/u@lizhi-Precision-Tower-5810>
 
-Hi,
+Hi Frank,
 
-On 10/22/2025 12:39 AM, Mark Brown wrote:
-> On Tue, Oct 14, 2025 at 04:35:26PM +0530, Md Sadre Alam wrote:
->> IPQ5424 contains the QPIC-SPI-NAND flash controller which is the same as
->> the one found in IPQ9574. So let's document the IPQ5424 compatible and
->> use IPQ9574 as the fallback.
+On Tue, Oct 21, 2025 at 11:39:49AM -0400, Frank Li wrote:
+> On Tue, Oct 21, 2025 at 12:00:09PM +0300, Sakari Ailus wrote:
+> > Hi Frank,
+> >
+> > On Wed, Aug 27, 2025 at 03:49:18PM -0400, Frank Li wrote:
+> > > The endpoint ref to /schemas/media/video-interfaces.yaml#, so replace
+> > > additionalProperties with unevaluatedProperties to allow use common
+> > > properties.
+> > >
+> > > Fix below CHECK_DTBS warnings:
+> > >   arch/arm/boot/dts/nxp/imx/imx7s-warp.dtb: camera@36 (ovti,ov2680): port:endpoint: 'clock-lanes', 'data-lanes' do not match any of the regexes: '^pinctrl-[0-9]+$'
+> > > 	from schema $id: http://devicetree.org/schemas/media/i2c/ovti,ov2680.yaml
+> > >
+> > > Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> > > ---
+> > >  Documentation/devicetree/bindings/media/i2c/ovti,ov2680.yaml | 2 +-
+> > >  1 file changed, 1 insertion(+), 1 deletion(-)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov2680.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov2680.yaml
+> > > index 634d3b821b8c7..ec5c40684b6bd 100644
+> > > --- a/Documentation/devicetree/bindings/media/i2c/ovti,ov2680.yaml
+> > > +++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov2680.yaml
+> > > @@ -58,7 +58,7 @@ properties:
+> > >      properties:
+> > >        endpoint:
+> > >          $ref: /schemas/media/video-interfaces.yaml#
+> > > -        additionalProperties: false
+> > > +        unevaluatedProperties: false
+> >
+> > There are a lot more than just data-lanes in video-interfaces.yaml.
+> >
+> > Could you instead drop data-lanes and clock-lanes from the bindings? They
+> > are redundant.
 > 
-> This doesn't apply against current code, please check and resend.
-Thank you for the feedback. I’d appreciate a bit more clarity on what 
-“doesn't apply against current code” refers to in this context. I’ve 
-manually applied the patch against the latest mainline (torvalds/linux) 
-and it applied cleanly without any conflicts. Please let me know if 
-there’s a specific tree or integration point I should be checking against.
+> What's your means?  drop data-lanes and clock-lanes from the dts file?
+> 
+> The board design may use less data-lanes, why it is reduntant?
 
-Thanks,
-Alam.
+That would be no data lanes at all then. The sensor supports a single lane
+only, which is why data-lanes isn't listed as a property in bindings.
+
+-- 
+Regards,
+
+Sakari Ailus
 
