@@ -1,222 +1,343 @@
-Return-Path: <devicetree+bounces-229559-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229560-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C11BBF9A6B
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 03:52:30 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 81B00BF9AD8
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 04:10:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D574C4EA5C8
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 01:51:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3668B428071
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 02:10:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD1E420A5DD;
-	Wed, 22 Oct 2025 01:51:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 847DB1E9B37;
+	Wed, 22 Oct 2025 02:10:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="ABqynvoL"
+	dkim=pass (2048-bit key) header.d=amlogic.com header.i=@amlogic.com header.b="bOuz7nru"
 X-Original-To: devicetree@vger.kernel.org
-Received: from GVXPR05CU001.outbound.protection.outlook.com (mail-swedencentralazon11013048.outbound.protection.outlook.com [52.101.83.48])
+Received: from TYDPR03CU002.outbound.protection.outlook.com (mail-japaneastazon11023120.outbound.protection.outlook.com [52.101.127.120])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 768D31F37D4;
-	Wed, 22 Oct 2025 01:51:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.83.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F2C71885A5;
+	Wed, 22 Oct 2025 02:10:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.127.120
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761097914; cv=fail; b=Wh+NmlmSgQ9ki80bH0cEUj3mMJBvqiEOTW8PRnNWhkjFBe3+oChBUcu/mAMroA8jGm0wYgGcjMZZ8EdQ/p2FnkeylFFrtOgDx43wgwiiiMCI6HWh/KmOJIedtK+xrt+xBRQOGy8srFJNb0k9JhdBCPAcaJMjkOCa1k2CFWyOgVo=
+	t=1761099005; cv=fail; b=EVYYYlhUugB74N2IH/PC2onFn3FdTIY2MY21xKAOFsecQ145mJJqF0OQ8uv2PqztLOKNJu54sTo2qBJ6C5vbWpMpqsvy3R0cQIzEnmC7T9XIO/fFR0iMjKat4FiK9dhFjUTnV0F09ydw6J4mrID1FG9lzVMmfeMMQ0+SWF3mN74=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761097914; c=relaxed/simple;
-	bh=0YCFGhriCy1gwFpj+ZCb6FF4P1rx6zdi/Ky21HLQMis=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=ofqBwMk9Ls5eAGV2tZewDJMc4eqhO5qqnACF2kxGaazUmVzV+qT92TrgQOVyzpB/i9CLpg27MZTGG0jBU1710hCg+VuD3pwhROX1w6vEnwDaw0lKBdrS5ajo2YY8tZENQIw4tcAi5CqC9ho0L75014JDBBvnh+f9zlkPyj3l5mg=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=ABqynvoL; arc=fail smtp.client-ip=52.101.83.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+	s=arc-20240116; t=1761099005; c=relaxed/simple;
+	bh=8jIydE9x9NXBEr1fYex7jmafychtH9FNlEu6YzXYoKY=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=gKMMHgukK5F3L97/UF3FL/U1yy1rwqZcmcclnWCPssPJQsEB9Sn4TLOxXgn0prpL5D7Njblh4eMWjeyqg2iDkLYXEDEgcw3w9NUml7v20BIH/FFF/rn9MVToYlNG5B284HA673o3IuxvTvB4R17ifY3ekPq2V2QY7bYssfA23aQ=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amlogic.com; spf=pass smtp.mailfrom=amlogic.com; dkim=pass (2048-bit key) header.d=amlogic.com header.i=@amlogic.com header.b=bOuz7nru; arc=fail smtp.client-ip=52.101.127.120
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amlogic.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amlogic.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=L0rLC1jcnKySbTrhGb37zqxlkhq5bcpOluJ1Ez8oez7iVCa1KkSCK4h5FkHvG4jpLyVN9s1E2UHEbkoBXY5xH6lKnVS/9ZM9khREi8r/d7zMdgtYXxElubDJp4CYjDX42FHs7GUMUGJJx/RRCTbCr766BmUPcyQNVVWCJo1b8PdxXzIA4Y87IfOOOcDjSoMFh5MZfQNGzcomi0zEA8qJe2tf6aXsN89pMRxu79NxDAMVJs+ZoLR0Zku/csQ7l5hNmGskXtPkJ38tip0r3uA7bMqAs3COqXoJb/Q5ZblwMUGTn941I20ZZMxcC40MvDkzNwgMURwPno5cJ58BftCk1A==
+ b=ODJz16GswZYSMOA412m8YQxIrgJVyylAc7cYWdUWDZXPm9goligsVjt/SO4POgEVCJwetjY6xEDQkiKf17X3+n9BX43deoRXomBtTZ0R6gAp/FvwTgnRRqTY0tGRFvB3jh9hhU4fghw89u0aD5WxjbPmaMUZZpgtVrTzXShARzXGQiMMFoERfUGwLhasbHuHniWj+9UpqnXF6Euktb3v/5HpfcEhBXYu/APZXcunDHSAN3YmTMo6qBJookcrh3dxP16WftEoyQVYNLDu0U8W3V7glytxRIPemiseeliIJHOLSjFrYBX2SbJUuh1oVRSSbKhr/D6itpP5tTm0e9mnJQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=aRJC20drh7CemIpN/elRPEcUgrtOBg6kFIUuZF1iCho=;
- b=kfP5m0m3vMxmJ/DFQKcOGhwlQEQ5fn1jxc5R2ln/iTNrMACT1dHgJu5LcqijhJ7V+2vNzrO6cj/JupTrGAGE/+9mlcCjwlXS+is6C9mlVtRhsbAeRsAz6GdfistG285VTyVyKvIHKBPa4/Hinw6Pv1RLzdC3beQM3G0f8zgZwUDbK5jvGEfuqQXcrm1K8CTBk+vBNu6cfhEX6YowXf8jcGxzV2VOwu68fuEL/XakeOadX1RDEcW1NfrdSBvESIltyazpOVbFc0Nkpm4vzwg9qe5J2JXq8P8BgIiNFC7vqhqQVKtMBWb3scpFV/STgn3SZK3KbpIFhQ7kE8egWRmJBA==
+ bh=KgFanAJFt1rRuXXBQk1spHvxbX+f09Y+vjcZ3duqY34=;
+ b=OmspVzF7cx4P92v8wJi45sNbgTSGsA2iz31vhMR937rdemB3bE6HKJEvbxBsfAHrGYCjx4qKN1vj4cgr9IvC1FGMKqYJ5kR7G8ogjy0neGiPGOubo4XUbnq7qpKjGCt8Se4931NZjKJkP6mBb6hHHCB0NKGMJtVHlbfgnyzHocSthqRCWV9KAkx/j9HzGa6+fS11fL+pSy/I9jmUkmmVTCez2FZ4CI0Du0FjxjqO5y91RkfMDKXiF0oExgMPEBgY6YowZIOq7s9PBGzPtBjnV55qvkq9yzdW1dSyB9cWoasTysr3BPx1DDjOp3UOOzlLybprW3KjWULbn+mx6C90mQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
+ dkim=pass header.d=amlogic.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
+ s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=aRJC20drh7CemIpN/elRPEcUgrtOBg6kFIUuZF1iCho=;
- b=ABqynvoL2Zn4T3ujcsmSqq+a9syZ5bw4UQgxSYNeEZ6bW6HGq9Z/7lYWWu/ZHTIydoz+WwHA019nZ2TFwHYHd35GcMY8QjMYqz2OR16lwqCdaYrEYNVAPDpiB4dvpFbbTBw/q+9kKUsexTeCKd8JFIvVOCHaxin7JwIUt20iaLeNZDTFJ64Lbd5t7dYUgjl3nWQ1/MLwPRgnOWCi6/hIcPCuqbGwHnGzC0Gv1IEbvZLtttc57RMaSOSubZxfGWzC+7UAnh7SFF1MyIdupvPDppbEMLc51EU526f4f3xLgbfr/Wirw6vsnlAhwg8g8nWHOmyIhWe7oGbI5rkrANkGdg==
-Received: from PAXPR04MB8510.eurprd04.prod.outlook.com (2603:10a6:102:211::7)
- by DU2PR04MB8646.eurprd04.prod.outlook.com (2603:10a6:10:2dd::6) with
+ bh=KgFanAJFt1rRuXXBQk1spHvxbX+f09Y+vjcZ3duqY34=;
+ b=bOuz7nruqkULfrZY7p9dfnQXDdRBXlvaXAUu628D2FXoVgGyeQ1SHzIiMSqAP6i5VZVAPYY+krGnCyUw3pEx+Zq0kDCtdQp7IAPo61x3R8z/wLtbfyq2qiemxN3yYB9a0xyCozJqkSUYLXxEY2WL+ido66zMDbYHNPuHWEepdQ/ZKnX2bLF8zB6Nf61JASFc47ry9gMw2B8pFsxmLHogFHD0pQGtBQJRIU7gxfC1tX1BaajNcTnlhAceMux9/5WYry3Xy2OC8b6hQVGztcIyYLXRHxpG4H3BcV+p572qCt158/dBOGWxgG+PCAKbveIcNGmqqJzKMlZotVfMQ7ieKg==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amlogic.com;
+Received: from TYZPR03MB6896.apcprd03.prod.outlook.com (2603:1096:400:289::14)
+ by TY0PR03MB7282.apcprd03.prod.outlook.com (2603:1096:400:21d::12) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9253.12; Wed, 22 Oct
- 2025 01:51:49 +0000
-Received: from PAXPR04MB8510.eurprd04.prod.outlook.com
- ([fe80::a7c2:e2fa:8e04:40db]) by PAXPR04MB8510.eurprd04.prod.outlook.com
- ([fe80::a7c2:e2fa:8e04:40db%4]) with mapi id 15.20.9253.011; Wed, 22 Oct 2025
- 01:51:49 +0000
-From: Wei Fang <wei.fang@nxp.com>
-To: Rob Herring <robh@kernel.org>
-CC: "krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org"
-	<conor+dt@kernel.org>, Claudiu Manoil <claudiu.manoil@nxp.com>, Vladimir
- Oltean <vladimir.oltean@nxp.com>, Clark Wang <xiaoning.wang@nxp.com>, Frank
- Li <frank.li@nxp.com>, "andrew+netdev@lunn.ch" <andrew+netdev@lunn.ch>,
-	"davem@davemloft.net" <davem@davemloft.net>, "edumazet@google.com"
-	<edumazet@google.com>, "kuba@kernel.org" <kuba@kernel.org>,
-	"pabeni@redhat.com" <pabeni@redhat.com>, "richardcochran@gmail.com"
-	<richardcochran@gmail.com>, "imx@lists.linux.dev" <imx@lists.linux.dev>,
-	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: RE: [PATCH net-next 3/8] dt-bindings: net: ethernet-controller:
- remove the enum values of speed
-Thread-Topic: [PATCH net-next 3/8] dt-bindings: net: ethernet-controller:
- remove the enum values of speed
-Thread-Index: AQHcPomoAZKpQ3utakGUeUpPWOuw17TNG6kAgABSKcA=
-Date: Wed, 22 Oct 2025 01:51:49 +0000
-Message-ID:
- <PAXPR04MB8510DD93523FF4551BBE682988F3A@PAXPR04MB8510.eurprd04.prod.outlook.com>
-References: <20251016102020.3218579-1-wei.fang@nxp.com>
- <20251016102020.3218579-4-wei.fang@nxp.com>
- <20251021205044.GA776699-robh@kernel.org>
-In-Reply-To: <20251021205044.GA776699-robh@kernel.org>
-Accept-Language: en-US
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9228.17; Wed, 22 Oct
+ 2025 02:09:58 +0000
+Received: from TYZPR03MB6896.apcprd03.prod.outlook.com
+ ([fe80::ac4e:718:3b03:3123]) by TYZPR03MB6896.apcprd03.prod.outlook.com
+ ([fe80::ac4e:718:3b03:3123%4]) with mapi id 15.20.9228.016; Wed, 22 Oct 2025
+ 02:09:58 +0000
+Message-ID: <5d8e439a-9ad0-4d2e-b106-d6e65a3e4638@amlogic.com>
+Date: Wed, 22 Oct 2025 10:09:53 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/2] dts: arm64: amlogic: add a5 pinctrl node
 Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: PAXPR04MB8510:EE_|DU2PR04MB8646:EE_
-x-ms-office365-filtering-correlation-id: c240c67f-23ef-40e6-9951-08de110d909d
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|366016|1800799024|7416014|376014|19092799006|38070700021;
-x-microsoft-antispam-message-info:
- =?us-ascii?Q?WIyAilRO7TqrBsaOmwIoEjbQb0D33rQb9NE8OSjslPBOSjs3nMBbBEALLQfX?=
- =?us-ascii?Q?n5+RRlO+4Ffh+4GV4r7taSmyU5woa6VIuwL8o/zpJLQ8LMSoreTAfiJQgWHg?=
- =?us-ascii?Q?D5/Ue7O7I7kxUtftJJDXE8d2TSu07S1nCFreaE/mnDlbEWayTN64Wc6yL7fP?=
- =?us-ascii?Q?tOdHIZtyAng6yzW5Z28jqq01DjCgNcs6vrdKdsmGRNLE1uzMHkF8mc2nPlwl?=
- =?us-ascii?Q?iLdx/fXUX8adCuh3uu5xrCxNNH/BqI8eiOcZvDWNumSuIReCG1aLoo7n58SP?=
- =?us-ascii?Q?DVICOXrMGmJQ32KP1n4nuLrCigzDoYgKX0y2gaK+1lF4TvCbGG37ZDn/eR1P?=
- =?us-ascii?Q?zFRKmZCMsp4SiLBgldgAQeHV9LaHVx0guoBHpUDQoW7gAcYFzT+tfJfAcW5a?=
- =?us-ascii?Q?1u5UFhnw1ucO43o3L7suSpJ8ajzOV2qtA8B59IZGlghbAUFtGp1SujxjORWC?=
- =?us-ascii?Q?l4rzGITkFdJSZennFQki2v1IkZ+61Z6gQ/qyiCLc4LPmCG5SItmXwSccn+tc?=
- =?us-ascii?Q?/HDGQ0eHp0s0Wkiqxzi2vywrYZDQTss+LAMxuMq2LcpehGzN/QFYzgX/T7yP?=
- =?us-ascii?Q?g/z3/pEkbnoBl0umP5WxwPKL/UfnLsiH/GYFWVZAAjjiIqd6GAMWY2IxPl9C?=
- =?us-ascii?Q?1mvA7E2LeenyOu6uow4xQ48qdTnffX0BK0maV24LOo7Qd9Kj/Vt8t5jntef4?=
- =?us-ascii?Q?4LdOoVTR+kMlUy860YdFa0UGMPq2TXQX/J/r6Kn3QEGkf3yljgfQARpt6zdF?=
- =?us-ascii?Q?Z1sZHM2MtmNLtwbLHRSXW+E/oHRjjGjFE7156SG+jn+WWJxJ8Fah4mtFwBrw?=
- =?us-ascii?Q?FvK5sbMM4wJeoWNHNW1O1CxH/mY2U7c0IT2GOqhgHhCAmLXpeNDKyKDy8wvC?=
- =?us-ascii?Q?UpJebywU/EArULONoUMha3NlHXeVPvK28rB4p9ed52v/YwJ7hdLU4HpSg5YK?=
- =?us-ascii?Q?c29Ko/AVD3boqCXY7WmpLLdX0qOAwYBT+j50fkDFkRMlbR8q6FGAb9d/o/S8?=
- =?us-ascii?Q?MLHAMp20JO/2exkBawAzltXdgYFVCCHCCbvha10FNq7BSrJVV1QYEJSCgQEb?=
- =?us-ascii?Q?qRGPAggr+xJ+0JyTllVp4bvXcn1dnT7dFHgnjF95PqCzM4qcpx9VcwrbOGcF?=
- =?us-ascii?Q?722Mhw1doDxz+rO3b+6nyrXbUSGVaRIfCgG1bIpttvVcX3efsH76NuVS7Ae5?=
- =?us-ascii?Q?nCU1w5IduW/LHr67Vf+kGUQr/MUaPelVEnNKgLHwPoioYqIjwggGS9yaOiXp?=
- =?us-ascii?Q?Gfb3Qy9eZvD9oa4lKnsy11Gq4XkQBoREcGFIkBv7QhXE40NHhhbl2nwjBcUs?=
- =?us-ascii?Q?cNbMi+qdxEIJKFBnZgPrkAjcr/hZKhxbGGHy+fg1fcr8a2AIW9IT/t3Crk4N?=
- =?us-ascii?Q?AxvGq2W03l8FBIFXz3PN7PZGohoQgdP3WYqZD+H64tYhLbc/nNkwfb/Fr9v0?=
- =?us-ascii?Q?BttTJ24rwcI7dbiYhI0ha3u9znLb/hjTT3v9Y0KcezrmQmJPEfg3xTbJfVdv?=
- =?us-ascii?Q?HmAOpyoXn4HR60YbmoP8eqtGPTduv6UWAczV?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB8510.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(7416014)(376014)(19092799006)(38070700021);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?Z+jzEon1V7PnCAjbXD+Z9ZFbLZKGjqBWYRBm3Ifc9jQ4f6A2gPpqh+yc2KHP?=
- =?us-ascii?Q?E5c0JXOS7Q1f+ZWfBcQTb99trsdJtItYWFbpT3OSnjKMhGsCydPibxGdzx6y?=
- =?us-ascii?Q?SfTPFvcFhJ1OeFsCMfXxao8+jtrHvml+TWUGyUavLUvAXd3etLaOBTH8qTHS?=
- =?us-ascii?Q?wRvX4sxGR3/tXB/O1w79QItlbBkiOL97BlXShtHDWGzCA83R88qWVWmeAbAU?=
- =?us-ascii?Q?wCMIrZqZlIZefKchgF4/N8vCZZp7vg7ZHyskg1sOvbthbdAV4Jnrj0Ykb7oL?=
- =?us-ascii?Q?MFcRu10UhjCLh3Ci5iBxp/SPObbN7KNtVldNphM2X+9o1jnCfQMa+11I5ohX?=
- =?us-ascii?Q?Ppshr4DpFifEZN8ElfZEbNx2N00Av6idN/SZsWoYEYL2yhUBhPSwdd7Dnjg/?=
- =?us-ascii?Q?cr98AKKSQA8my6+0Cj7ITEGc6lEaz13qgHaZpsHlfUo9IORvPXhBVjEHRrZ+?=
- =?us-ascii?Q?uhZbmuM5FkKUppAKkPWaZhmKe14DtnD2RY9O+Qob/6PyFUsi2DaIm0Ojw+Hv?=
- =?us-ascii?Q?DFISXfs1nMLgtvt1WPaBOb9T7OHz4ClPKR3LvURhiShlAb6RNuwbAYOoj7GS?=
- =?us-ascii?Q?GGztbYiZgkA+IHPuURXT8b2HQCL/REDz0AMQFlO7FBBlCphwjU7D2OwNPY7c?=
- =?us-ascii?Q?dTb98DWd2JbJZ2asAGCtIYFWpDPWLD/4qBuGFh0gaHGgnDpkKjNkTN8DJHlY?=
- =?us-ascii?Q?GWcWojxKkGVBtbS6uqH06T8yHw85SnkWkZLeIu3ft+YwITPXaJcDZmluSjcf?=
- =?us-ascii?Q?TEImukxlk7Mur+Ffhg4Mgo0VxcPFHpKdDva4XU37c70Tlgi1oh26ao5V/gn6?=
- =?us-ascii?Q?op584kDQBjtE+3jmgB7beoSp36Q/VmqdqM+qa7mGyuaCYOhD7KtYiMPIafah?=
- =?us-ascii?Q?t+fA2R4hfyuQW2tPW6Wcq/bJNLdGHPh4H/slWXSk1K5mZBKrG0R6Y4u9s3c2?=
- =?us-ascii?Q?oDsmz8ExbuD79q1ru4cCSKiQBQx4bZu+P+J8XQwVKanfNI5/7lWtrmV24pxO?=
- =?us-ascii?Q?T58M3vSrWjS2SBXv+xVH+bXnbAZCHJvAvlVjD5gtGKfgeZaxbpu+KA7aCMrp?=
- =?us-ascii?Q?24vjq+prlBBtO+L9I0bUmaKDpHNGeFX9Ky41gyOkkXKfhhjWDC/PFEcxX3b/?=
- =?us-ascii?Q?yWtcP29r7ert/KHRFobxe3j3MzLkkcqx5pvfZuoU29T1LKgGAWvpfiMsPyB9?=
- =?us-ascii?Q?B58U7QQDgtfH4YSOhp1n5CaohOLGSs2CPYmlQBzH+2/ZBWUfHePzWJR/niXc?=
- =?us-ascii?Q?jWrJp5DF2n5LfBM/PBF0ztwgiWzqvAKFm1c/zCYNYm600SOgcU2bjOOD3u/a?=
- =?us-ascii?Q?zPIZ7Ts2J/MfFXYqs2wgdplt0N0gYfnUT7ABY8njfqUfs6O6QIOYlTe+Crey?=
- =?us-ascii?Q?XP1cQJanHnLuDS0a9Phy/5jKiEDl/a3NEHWKJR7TjUQXtTyX7Q+gYBnfkNic?=
- =?us-ascii?Q?IillBTVJZ+U6P0RUhL8Pdtw3f9ADa3raqNrl4j9hMM96rBp3DB12Kef75jRg?=
- =?us-ascii?Q?YyMEVSFpEolNaOAUKxgdJ0NraZPLfrrjcMwLkxSDfBXykVNYlEKgZEXGUV42?=
- =?us-ascii?Q?frf0IxClW4G3xLShKj0=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+ Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-amlogic@lists.infradead.org, linux-gpio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20250403-a5-pinctrl-v3-0-a8c067e22295@amlogic.com>
+ <20250403-a5-pinctrl-v3-2-a8c067e22295@amlogic.com>
+ <6ebddeb4-b33f-4392-b5da-56501b38fd6d@amlogic.com>
+ <263b86c9-61da-4d5e-af3d-4b9105112d82@linaro.org>
+From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+In-Reply-To: <263b86c9-61da-4d5e-af3d-4b9105112d82@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: SI2PR02CA0044.apcprd02.prod.outlook.com
+ (2603:1096:4:196::17) To TYZPR03MB6896.apcprd03.prod.outlook.com
+ (2603:1096:400:289::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TYZPR03MB6896:EE_|TY0PR03MB7282:EE_
+X-MS-Office365-Filtering-Correlation-Id: e9d9afaf-d495-420e-8886-08de1110199d
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|7416014|1800799024|376014;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?aDlyYkhpdHN1Q1ZMWnltYyt5bTdOSk4wZGRhNHcvQWZ6Vlc5c3hUMVozLzVO?=
+ =?utf-8?B?SG93TzQxMWVOZkFjaEpqaE1hOGhvdHN6VE8ramdRZG03OXBXVHdZajdsUGpw?=
+ =?utf-8?B?cVQ0OWFpOTkwaVNXTmNPSkQwVFRZZWxxS0RQZE9GV1liZlh5QXhOUnF1MlNq?=
+ =?utf-8?B?cE5SL0hEeGcxTXl1M1NxYTBBdGF1eDR0Mnd5WXJXbVBkTTUwcTZRSHp2QTBW?=
+ =?utf-8?B?Q2FodVR3N2ticTlhVjlRMjV4ZEZ4R2h3ZHdJTWJhNDhtTW5YNURTWkNqZVRB?=
+ =?utf-8?B?V2xzTzBBeE04SW1yOHh3c2JmTUVHT1dtMlBsMnpPL2FTRks3YUlTM2NXNnRQ?=
+ =?utf-8?B?aGdTa2pVYk9IOTJWT1p2eCtQUFliaFZmZHNYUXF4MklhRkVSaDAvUkk5cFJn?=
+ =?utf-8?B?VG14ekovTU9hL09xMGRWZStyVGpFQ0RBbExTM3RNV0Jmbm1mZjBsYTc2eFVG?=
+ =?utf-8?B?Y0kydlZ4aHlYeTFZM2lJMmtYT3RjNDlDdjRUYjZuSTNCcGJhaXI1RlpRUVYy?=
+ =?utf-8?B?dXhHd3dpVFByQUxPS1NueGRKTzJmZWd3TDFqRURWUkxQbkNOTnZJSmYyWjc3?=
+ =?utf-8?B?VzlHMDRHMTF6cVBtbmd2VWZ2amZ4U284VVhMM0U3NU9sWHpJV3J5SldxL21X?=
+ =?utf-8?B?NFBCVDh3azRsL0tGWC9jU0Z2cVdoN2Y3SXB1Z2RLcHJJS1NQdkxFMjBydHJT?=
+ =?utf-8?B?dUFzNE8vaU9kREdzQXVGWDNLbWRUV2d5WmdkYUJqVm90TWFidlBnbmpJMUhO?=
+ =?utf-8?B?dW5abjlrT0YvVVptWTBlRFBVWGpLNENaODJoYXFYYk03eWlZVDVqd2tRMFdD?=
+ =?utf-8?B?aGt4RUQ4WUZVSzFEbU55NmtIdSt4dGJmdERoLzl5ZHo0VE50cXorcmRpZUtu?=
+ =?utf-8?B?MlJzREZhTXhsNG41OHZNUHA1Ym01L0VTYXVqdUhmS3hRMFNSZWdQTXgyL2VT?=
+ =?utf-8?B?SEp5U0RndHUrcDZmeHdSczdkQUpZUjRoZndKMndwNXJCcmY5bzROSTQ0cGUx?=
+ =?utf-8?B?aFh5M3B4VHVBTE1BMThpMlROQjRhRFZlTWpUTWJRNlNldHQwRU4wQTRzWmVs?=
+ =?utf-8?B?ZkYvWHJrbFFRRm1NSmdQNFUzMW9ML21ZWXVYZzBwd3oxaTZJeTd5VnFheXJE?=
+ =?utf-8?B?OTdOYkZUSmg5RGdJWWNjTVBKQys5dWZjb04yU21uQkpER09GK0Z2Q2tVdnpH?=
+ =?utf-8?B?Rm5SbVVORElkMk1Hai9GSkpHQ3doYnA3T1AvWFUvby9RaWd5aklpTEphTEJj?=
+ =?utf-8?B?cEV5bWtHUXpRNmJxZENUOXQxVkJMYjVjUE5Rc3dzbGxGaXdOWkphRHdPZ0lG?=
+ =?utf-8?B?RzA2WmViazZiZzBMbEs0dHVKVzFXTldUbi9KdHEwdWpDMHk3SVhJNzRZcFY3?=
+ =?utf-8?B?d1MrWUREUU9EVVh3d1pMUGVGSUltQk5VeGJwRzZadllGNnNZbE8zampHdWZp?=
+ =?utf-8?B?OGFZQ29SSFl4RmhkY1VuM1N3dTNDK0ZGaklmalpEWjlFWjNoTGZ3dVhSSkIv?=
+ =?utf-8?B?Rk9ibDVESDhwVmVYYzEwQUJtUTNSK0E0YlZURVpJcUR3OStZelk2QU9jYkNC?=
+ =?utf-8?B?OXh2KzZLWExvendtN2JQeHQrclk5d3crREpUVTluS09BcDI5Z2VWMFQ5ZVY4?=
+ =?utf-8?B?ZEtkZjBJQXdJNDRBRzFNbVJSdDYrSHRINkJ2UEtCOGErTC81NkpQQS9SR2xK?=
+ =?utf-8?B?bW5SNG1Fa0F4THRIME5TdGswdWl1ZEJadDNseitwWGp4VjRIeCs3UlArNnJm?=
+ =?utf-8?B?M0tZckUvV1RENnZNWXlQNm03TFM3UTdoVGFmZGZGWXhvL00yYUlyR0VkOFo2?=
+ =?utf-8?B?Nnd3b0VmUGppeUNHd0xlTnJMUEQzMy9HR0h0N290S1FjWUhGRi9IeTRMUEpU?=
+ =?utf-8?B?UHlTREdkUjdpTkdyNWpiMnZjVEorYys2dlVSS3hBM1JEV0RFRm5aR0hZL3BB?=
+ =?utf-8?Q?e8NG5lTDCeMTIc1rVH4eR9p1Bny2ad5q?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR03MB6896.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(7416014)(1800799024)(376014);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?UFJyM2hUYUtZZjMwdERRVU94N1g0T2lQKzVieHBmVFZvelA5QmJxcm5rRlk0?=
+ =?utf-8?B?cW92NlBtTWRHQ2k4Mkd2b3RlQkNpUzliNzBOUFFZenNzbFpRamxSa2hLTkQ4?=
+ =?utf-8?B?VTlzcnUzdWpmNm50ckxIeFdOTk5jcGZZZC9RRll5Zmsra3A3NkYxdDVLT3Er?=
+ =?utf-8?B?aDRVdjVpNVVrTHBKSko0dk90aEQ0NGFscXRhcG5PWjlkYzVZd0F3VWx0MXlZ?=
+ =?utf-8?B?NVpkVXFFNldDM0g4TW9zWCtNQ3g5Wk0yVnlocWdwWGovOGVLeGdKS0NwNmZN?=
+ =?utf-8?B?OXN0dkppMGtRamUvZE0wQkdvN1c3RVhNTGJyV0NEdkx5R21Fb21LNXI2UUVG?=
+ =?utf-8?B?bC9KZGNOOTZsUXdyWE9BNHBQeER4WGhXWFR2Y0pibEd2dllRVWRkaWM4SWE0?=
+ =?utf-8?B?Nm9nSFZnTDlOTFQ1TVlQRVJWdE5iMmtGY1hDOW5hakFhN0ZiMnRmWHBvczlC?=
+ =?utf-8?B?UWFrOWNWN0x5U1gyVVFReTFTZTVOMzBlZDFVdlU4V3AxbVgxTHBQczZtbGpR?=
+ =?utf-8?B?STFUUVYwUFdwSEd2Myt6SVpTWUVEaHd1UWJPK1VienlqWFZOSHFEWEJ0d1FO?=
+ =?utf-8?B?TU9uRXdta3prWG5rMDNCeUpaWE9oUTdLRlNTQUwvSXRYVG1BR1o5dTgxSUFQ?=
+ =?utf-8?B?YTBxR0FKSzR4YlB1MzUyeldZZDhMN2tlWlBsOVRTWnUvSkg2SG5EMW1hd0Vz?=
+ =?utf-8?B?cTlVQmVtK3IzL2RzUStLb0VGTEJkUWdXZHhVVkpPNVNMdVNzY2VJMDJ4WTg5?=
+ =?utf-8?B?NnFkb0crSDFlQ0VZYlhNMVM3K3hadmkvM3g1dHpsQ2trMWk2TTQ5U1NFY09N?=
+ =?utf-8?B?cmFGQUNXd3JRdGp4cDNGL0pqUGNyYk1GcCt4ZHZYZHVIemZZcE1SdG01TDlJ?=
+ =?utf-8?B?VUJPcGg1ZHVlWkxRN3ZJU1UzSHBwYkxQZC91NjJRME5OQjlwaUhDa0ZER0pT?=
+ =?utf-8?B?WU5OM25IMjVCNXV1L2MyQ1hjR09Vc0tpbXVKcm5sdTZVMXg4M2ViaDMxUG5B?=
+ =?utf-8?B?YkE4TFlUOUZlSmRsbi9uV1VUKzd1dlFESkhDZ2lOTkg5WmhJSUkySnRrVGV0?=
+ =?utf-8?B?bytIemZVT1ErVVM4dkxqRVUvMEQ5SVhBaUtVMlBjR0ZjOUowUTZaVis3RkhP?=
+ =?utf-8?B?cHA2b2ZuVm93TWhOUkMwNjNmWDVWTG9sejJEMGI4ZGE4dm5qWDErcEdlcnli?=
+ =?utf-8?B?OG9tNnBORmVYWTErT3p6Zi91cTV4S3h4TzNLQ1d6YWhzL2pzSkZiU1NoTG4z?=
+ =?utf-8?B?QWsrNTVZM2lKREVMTy9yd3prTzgzL0hiUVJjNVNLOUtsMTh6eTQ0Qmt2NkNL?=
+ =?utf-8?B?Vms3NnlzTG1UMVkvN2I0RmhhN3JjNC91UkpHdCtvcnBvTkRFNHl3SjVnZkw1?=
+ =?utf-8?B?cWlVcUFISGR3cWx1MWU5cU5JZ3E2QnZDVDg1NHFFZUJkdmE0aWV3VVFFZVhW?=
+ =?utf-8?B?L015NUx0THNiVGhmRWJmRnpPTmFlSXI4d1hjYjJpZ3NwQ3U1akNiTlQ4TExO?=
+ =?utf-8?B?OTMyWVVnbVhSMXpYOGVoZnM5SlN4Y0N0bUJtcGY3ZFlIR1RmSjVxMzZJaC9l?=
+ =?utf-8?B?US9pOFRlT29md1p1VE9vU2ZYa0xpVVZBYitSUW5NWncrZEI1S1pqRkUvclU0?=
+ =?utf-8?B?MGVYU0NxdXJyTGYzOGdWZEhYaHMrbzdpQzlHUWRmTjdEMkF5Y2tEU2JJaEd1?=
+ =?utf-8?B?TTNCWEt3am16NnkvbExENEIwbEdKRnNwRWNqZkxtenVIN2M2RWlBeUpscEkz?=
+ =?utf-8?B?dnJIdEl4OEt3N3pjdnlnTWdidy9hVjFDWW5pd1RlaGF4Tit2SnlPOEJWSEJV?=
+ =?utf-8?B?QVpIeGlOdWV6ZUdOMjJJOHNzVkdVK1JybzRzZG44WEdPWjdrSHplNllNdU1J?=
+ =?utf-8?B?WlZ2Q2NLaGFiWGxlZnlZT01Qb3dvWnc5UVNIajZOTDc0N1Q5SUVjWVg1K0hn?=
+ =?utf-8?B?WWhmcGEvWHF2OTJwOXFISGovZ01CbUtvQzZ0NzhsTGx5RG9GdEdUZkx1RjBq?=
+ =?utf-8?B?cnJmY21raHhtMzQ2QTBCMFdHTFExbXRNc3gwSnJxdnYvWSt2eVNXYzM5Zm1o?=
+ =?utf-8?B?cGdhczRjNU9tdHROajBRTkRmQ0JtZjZuU0pOMTJnQ2h0d1dIMVlvME1YT0F2?=
+ =?utf-8?B?bkhVaS9BZlFuNkxuNFJUcyt1aGRwdC9Ub2tZNERUdkJ6SExDS0c1bmpsb0M1?=
+ =?utf-8?B?Mnc9PQ==?=
+X-OriginatorOrg: amlogic.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e9d9afaf-d495-420e-8886-08de1110199d
+X-MS-Exchange-CrossTenant-AuthSource: TYZPR03MB6896.apcprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB8510.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c240c67f-23ef-40e6-9951-08de110d909d
-X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Oct 2025 01:51:49.1078
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Oct 2025 02:09:58.1623
  (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: jAk1AY27+vG3a55LRk4fi2MlqbnvQWfmuUKS3/+lkN0m0t4BRVh0BG3CG6omd8iLu0qmMiGZE74cCO81Xxmp4A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU2PR04MB8646
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: GGB62r1UZMQ0fnPt4QOQQvnyoBL1wE+mq0E4xad7PJixVsnHrFtk5O4TpgINuiqEVOffhNvRTLPP+SsI23wymNLFGD1eAZJqJul5BEZCJBo=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY0PR03MB7282
 
-> On Thu, Oct 16, 2025 at 06:20:14PM +0800, Wei Fang wrote:
-> > Some fixed-link devices have uncommon link speeds. For example, the CPU
-> > port of NXP NETC switch is connected to an ENETC (Ethernet Controller),
-> > they are fully integrated into the NETC IP and connected through the
-> > 'pseudo link'. The link speed varies depending on the NETC version. For
-> > example, the speed of NETC v4.3 is 2680 Mbps, other versions may be 8
-> > Gbps or 12.5 Gbps or other speeds. There is no need and pointless to ad=
-d
-> > these values to ethernet-controller.yaml. Therefore, remove these enum
-> > values so that when performing dtbs_check, no warnings are reported for
-> > the uncommon values.
->=20
-> Every binding that used this was relying on these constraints. So you've
-> got to move them into the individual bindings. I'd leave a minimum and
-> maximum here.
+Hi Neil,
+    Thanks for your reply.
 
-I realized that if we change to an uncommon speed, the phylink driver also
-needs to be modified appropriately, otherwise the driver will report a warn=
-ing,
-although the warning does not affect usage. Modifying phylink driver is not=
- the
-purpose of this patch set, and I don't have a good idea at the moment, so I=
- will
-remove this patch. Thanks.
+On 2025/10/21 20:23, Neil Armstrong wrote:
+> [ EXTERNAL EMAIL ]
+> 
+> Hi,
+> 
+> 
+> On 9/5/25 05:19, Xianwei Zhao wrote:
+>> Hi Neil,
+>>     Could you please take some time to review this submission?
+> 
+> Could you rebase on v6.18-rc1 ?
+> 
 
->=20
-> >
-> > Signed-off-by: Wei Fang <wei.fang@nxp.com>
-> > ---
-> >  Documentation/devicetree/bindings/net/ethernet-controller.yaml | 1 -
-> >  1 file changed, 1 deletion(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/net/ethernet-controller.=
-yaml
-> b/Documentation/devicetree/bindings/net/ethernet-controller.yaml
-> > index 1bafd687dcb1..7fa02d58c208 100644
-> > --- a/Documentation/devicetree/bindings/net/ethernet-controller.yaml
-> > +++ b/Documentation/devicetree/bindings/net/ethernet-controller.yaml
-> > @@ -177,7 +177,6 @@ properties:
-> >              description:
-> >                Link speed.
-> >              $ref: /schemas/types.yaml#/definitions/uint32
-> > -            enum: [10, 100, 1000, 2500, 5000, 10000]
-> >
-> >            full-duplex:
-> >              $ref: /schemas/types.yaml#/definitions/flag
-> > --
-> > 2.34.1
-> >
+Will do.
+
+> Thanks,
+> Neil
+> 
+>>
+>> On 2025/4/3 16:33, Xianwei Zhao via B4 Relay wrote:
+>>> [ EXTERNAL EMAIL ]
+>>>
+>>> From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+>>>
+>>> Add pinctrl device to support Amlogic A5.
+>>>
+>>> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+>>> ---
+>>>   arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi | 90 
+>>> +++++++++++++++++++++++++++++
+>>>   1 file changed, 90 insertions(+)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi 
+>>> b/arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi
+>>> index 32ed1776891b..844302db2133 100644
+>>> --- a/arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi
+>>> +++ b/arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi
+>>> @@ -4,6 +4,7 @@
+>>>    */
+>>>
+>>>   #include "amlogic-a4-common.dtsi"
+>>> +#include <dt-bindings/pinctrl/amlogic,pinctrl.h>
+>>>   #include <dt-bindings/power/amlogic,a5-pwrc.h>
+>>>   / {
+>>>          cpus {
+>>> @@ -50,6 +51,95 @@ pwrc: power-controller {
+>>>   };
+>>>
+>>>   &apb {
+>>> +       periphs_pinctrl: pinctrl@4000 {
+>>> +               compatible = "amlogic,pinctrl-a5",
+>>> +                            "amlogic,pinctrl-a4";
+>>> +               #address-cells = <2>;
+>>> +               #size-cells = <2>;
+>>> +               ranges = <0x0 0x0 0x0 0x4000 0x0 0x300>;
+>>> +
+>>> +               gpioz: gpio@c0 {
+>>> +                       reg = <0x0 0xc0 0x0 0x40>,
+>>> +                             <0x0 0x18 0x0 0x8>;
+>>> +                       reg-names = "gpio", "mux";
+>>> +                       gpio-controller;
+>>> +                       #gpio-cells = <2>;
+>>> +                       gpio-ranges = <&periphs_pinctrl 0 
+>>> (AMLOGIC_GPIO_Z<<8) 16>;
+>>> +               };
+>>> +
+>>> +               gpiox: gpio@100 {
+>>> +                       reg = <0x0 0x100 0x0 0x40>,
+>>> +                             <0x0 0xc   0x0 0xc>;
+>>> +                       reg-names = "gpio", "mux";
+>>> +                       gpio-controller;
+>>> +                       #gpio-cells = <2>;
+>>> +                       gpio-ranges = <&periphs_pinctrl 0 
+>>> (AMLOGIC_GPIO_X<<8) 20>;
+>>> +               };
+>>> +
+>>> +               gpiot: gpio@140 {
+>>> +                       reg = <0x0 0x140 0x0 0x40>,
+>>> +                             <0x0 0x2c  0x0 0x8>;
+>>> +                       reg-names = "gpio", "mux";
+>>> +                       gpio-controller;
+>>> +                       #gpio-cells = <2>;
+>>> +                       gpio-ranges = <&periphs_pinctrl 0 
+>>> (AMLOGIC_GPIO_T<<8) 14>;
+>>> +               };
+>>> +
+>>> +               gpiod: gpio@180 {
+>>> +                       reg = <0x0 0x180 0x0 0x40>,
+>>> +                             <0x0 0x40  0x0 0x8>;
+>>> +                       reg-names = "gpio", "mux";
+>>> +                       gpio-controller;
+>>> +                       #gpio-cells = <2>;
+>>> +                       gpio-ranges = <&periphs_pinctrl 0 
+>>> (AMLOGIC_GPIO_D<<8) 16>;
+>>> +               };
+>>> +
+>>> +               gpioe: gpio@1c0 {
+>>> +                       reg = <0x0 0x1c0 0x0 0x40>,
+>>> +                             <0x0 0x48  0x0 0x4>;
+>>> +                       reg-names = "gpio", "mux";
+>>> +                       gpio-controller;
+>>> +                       #gpio-cells = <2>;
+>>> +                       gpio-ranges = <&periphs_pinctrl 0 
+>>> (AMLOGIC_GPIO_E<<8) 2>;
+>>> +               };
+>>> +
+>>> +               gpioc: gpio@200 {
+>>> +                       reg = <0x0 0x200 0x0 0x40>,
+>>> +                             <0x0 0x24  0x0 0x8>;
+>>> +                       reg-names = "gpio", "mux";
+>>> +                       gpio-controller;
+>>> +                       #gpio-cells = <2>;
+>>> +                       gpio-ranges = <&periphs_pinctrl 0 
+>>> (AMLOGIC_GPIO_C<<8) 11>;
+>>> +               };
+>>> +
+>>> +               gpiob: gpio@240 {
+>>> +                       reg = <0x0 0x240 0x0 0x40>,
+>>> +                             <0x0 0x0   0x0 0x8>;
+>>> +                       reg-names = "gpio", "mux";
+>>> +                       gpio-controller;
+>>> +                       #gpio-cells = <2>;
+>>> +                       gpio-ranges = <&periphs_pinctrl 0 
+>>> (AMLOGIC_GPIO_B<<8) 14>;
+>>> +               };
+>>> +
+>>> +               gpioh: gpio@280 {
+>>> +                       reg = <0x0 0x280 0x0 0x40>,
+>>> +                             <0x0 0x4c  0x0 0x4>;
+>>> +                       reg-names = "gpio", "mux";
+>>> +                       gpio-controller;
+>>> +                       #gpio-cells = <2>;
+>>> +                       gpio-ranges = <&periphs_pinctrl 0 
+>>> (AMLOGIC_GPIO_H<<8) 5>;
+>>> +               };
+>>> +
+>>> +               gpio_test_n: gpio@2c0 {
+>>> +                       reg = <0x0 0x2c0 0x0 0x40>,
+>>> +                             <0x0 0x3c  0x0 0x4>;
+>>> +                       reg-names = "gpio", "mux";
+>>> +                       gpio-controller;
+>>> +                       #gpio-cells = <2>;
+>>> +                       gpio-ranges = <&periphs_pinctrl 0 
+>>> (AMLOGIC_GPIO_TEST_N<<8) 1>;
+>>> +               };
+>>> +       };
+>>> +
+>>>          gpio_intc: interrupt-controller@4080 {
+>>>                  compatible = "amlogic,a5-gpio-intc",
+>>>                               "amlogic,meson-gpio-intc";
+>>>
+>>> -- 
+>>> 2.37.1
+>>>
+>>>
+> 
 
