@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-229759-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229760-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5E14BFB902
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 13:13:04 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id D1A82BFB90E
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 13:13:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A35F419A2FCE
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 11:13:28 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id B80B74FED3D
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 11:13:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42F4932C955;
-	Wed, 22 Oct 2025 11:13:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B18532B998;
+	Wed, 22 Oct 2025 11:13:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ucw.cz header.i=@ucw.cz header.b="HQgMT9LE"
+	dkim=pass (1024-bit key) header.d=ucw.cz header.i=@ucw.cz header.b="a588Lvii"
 X-Original-To: devicetree@vger.kernel.org
 Received: from jabberwock.ucw.cz (jabberwock.ucw.cz [46.255.230.98])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1C762F28F1;
-	Wed, 22 Oct 2025 11:12:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2B8211CA9;
+	Wed, 22 Oct 2025 11:13:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.255.230.98
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761131581; cv=none; b=qd22Jj4z15DCGqDZUSMSLg8KJalMdxuWEy7RE1r1LjfHoAz86/VGy0QCiq0Zw3qWoRW+yjTGgRaP4xmETG8ejxgQaQ4q7aJDei7asM/18yldaW/uzSnaR/xAW7cAPR6C1vM5lC8yxb+ZKplIL9gKXRKt7XPRxqNaC48XKA0Rw24=
+	t=1761131603; cv=none; b=mcKdrqLksGmfYumNebtksYoieHdxxPpnmmwdfJwoKIu64K1HI3zd7+N493PLhcNfMoCJQRuz+5D4aNBePzMYH5nFfwtKiOPgthGuBoqzb7d9Esw61hSCvLmym2b4qDcn1Tg4PXR0qH5g5xbkthu96NZTNPTaHiSmquvUePRNHxs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761131581; c=relaxed/simple;
-	bh=yBEPK/ItgXtL8RrOwEQxUimjZhkACX5vrovEaxJ0TvU=;
+	s=arc-20240116; t=1761131603; c=relaxed/simple;
+	bh=c+Xvrmg8Y2KUdExCPhWr42Wj06L4lT0cSVL0dFpL7G8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EobWUXHIkyKlMb1qWpR6jpfr3H0QLOHV3swhC0oRJAVDvG1TkOTsXtV7qe57KnSo86rBSTSbKCbD01CIPoVx6iUVhcPCzROEMd/BaADSTl7j1s+1EC8vy3QD9JnbHbpDDsowN7JqSRKF50JuueqHoThoL3Fc18bngi7oFD4y1A4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ucw.cz; spf=pass smtp.mailfrom=ucw.cz; dkim=pass (1024-bit key) header.d=ucw.cz header.i=@ucw.cz header.b=HQgMT9LE; arc=none smtp.client-ip=46.255.230.98
+	 Content-Type:Content-Disposition:In-Reply-To; b=lLzKBrlcwvgVceWZeZYnCPfd1j+qpULABCe1rOzptQaEcoIJ/rN1j0U/Kj49PQ7n/XNeQBm276Nwz+V7dVQLmNE5hcEtHGFd0PlfLZxM3kX/8m0JFoDwKJWuTosE3VclfWRsZztM3OBs8mOQ3blGMDJ78DNblxkowGG82xeuYWw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ucw.cz; spf=pass smtp.mailfrom=ucw.cz; dkim=pass (1024-bit key) header.d=ucw.cz header.i=@ucw.cz header.b=a588Lvii; arc=none smtp.client-ip=46.255.230.98
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ucw.cz
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ucw.cz
 Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
-	id 3556F1C01AC; Wed, 22 Oct 2025 13:12:57 +0200 (CEST)
+	id 28A091C008F; Wed, 22 Oct 2025 13:13:19 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ucw.cz; s=gen1;
-	t=1761131577;
+	t=1761131599;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 in-reply-to:in-reply-to:references:references;
-	bh=yBEPK/ItgXtL8RrOwEQxUimjZhkACX5vrovEaxJ0TvU=;
-	b=HQgMT9LE6g77sHbrC/HhWVmziHofgn2BPC541hn8rKfSWz3cR2/O6Cnt4zeoIKCLNFjW4v
-	96AyoSweu1fqhZPTiEA1k9tuDH5x/9xcDCJCPa50wsGJQdTrGbU+8aVI1hXSL+ufb9jrIF
-	vbn3mL4s0q0r+g+3Qfvp3hX9RdOsUMc=
-Date: Wed, 22 Oct 2025 13:12:56 +0200
+	bh=RiHRtBrAUxWkpptBogGfntRkFVC2Xst6OAKpWS80aZI=;
+	b=a588LviioKG46EL+W3kvhY+IVvHPjaXGB76s3z6DaTDNxOphPnyzslyjeIE7w98AsOMlm+
+	ruJR2QRUtzIICO16MGJ/MtxuvfZ9/Ysc12i5CoL4tjLpLRoxaxq08nm00+b7wafFOcFC7q
+	YCjZL4qDlHCVkE76ZFrNlOWoHABsR7E=
+Date: Wed, 22 Oct 2025 13:13:18 +0200
 From: Pavel Machek <pavel@ucw.cz>
 To: guptarud@gmail.com
 Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -50,13 +50,12 @@ Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Ondrej Jirman <megi@xff.cz>,
-	"Leonardo G. Trombetta" <lgtrombetta@gmx.com>
-Subject: Re: [PATCH v4 3/4] arm64: dts: rk3399-pinephone-pro: Add
- magnetometer sensor support
-Message-ID: <aPi8OCA2OkvrGA+S@duo.ucw.cz>
+	Ondrej Jirman <megi@xff.cz>
+Subject: Re: [PATCH v4 4/4] arm64: dts: rk3399-pinephone-pro: Fix voltage
+ threshold for volume keys
+Message-ID: <aPi8TsoarXJXvKuz@duo.ucw.cz>
 References: <20250929-ppp_light_accel_mag_vol-down-v4-0-6598f22d3451@gmail.com>
- <20250929-ppp_light_accel_mag_vol-down-v4-3-6598f22d3451@gmail.com>
+ <20250929-ppp_light_accel_mag_vol-down-v4-4-6598f22d3451@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,56 +63,54 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="/IL2wEoASFvIAdD5"
+	protocol="application/pgp-signature"; boundary="8eFsTqdRSFJMsawS"
 Content-Disposition: inline
-In-Reply-To: <20250929-ppp_light_accel_mag_vol-down-v4-3-6598f22d3451@gmail.com>
+In-Reply-To: <20250929-ppp_light_accel_mag_vol-down-v4-4-6598f22d3451@gmail.com>
 
 
---/IL2wEoASFvIAdD5
+--8eFsTqdRSFJMsawS
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
 Hi!
 
-> DEVICE=3D"/sys/bus/iio/devices/iio:device2"
+> From: Ondrej Jirman <megi@xff.cz>
 >=20
-> X=3D$(cat $DEVICE/in_magn_x_raw)
-> Y=3D$(cat $DEVICE/in_magn_y_raw)
-> Z=3D$(cat $DEVICE/in_magn_z_raw)
+> Previously sometimes pressing the volume-down button would register as
+> a volume-up button. Match the thresholds as shown in the Pinephone Pro
+> schematic.
 >=20
-> X_MIN=3D$X; X_MAX=3D$X
-> Y_MIN=3D$Y; Y_MAX=3D$Y
-> Z_MIN=3D$Z; Z_MAX=3D$Z
+> Tests:
 >=20
-> START_TIME=3D$(date +%s)
-
-I wonder if we should create some simple gui tool for testing this and
-accelerometer?
-
-Anyway,
-
-> Co-developed-by: Leonardo G. Trombetta <lgtrombetta@gmx.com>
-> Signed-off-by: Leonardo G. Trombetta <lgtrombetta@gmx.com>
+> ~ $ evtest
+>     // Mashed the volume down ~100 times with varying intensity
+>     Event: time xxx, type 1 (EV_KEY), code 114 (KEY_VOLUMEDOWN), value 1
+>     Event: time xxx, type 1 (EV_KEY), code 114 (KEY_VOLUMEDOWN), value 0
+>     // Mashed the volume up ~100 times with varying intensity
+>     Event: time xxx, type 1 (EV_KEY), code 115 (KEY_VOLUMEUP), value 1
+>     Event: time xxx, type 1 (EV_KEY), code 115 (KEY_VOLUMEUP), value 0
+>=20
 > Signed-off-by: Ondrej Jirman <megi@xff.cz>
 > Signed-off-by: Rudraksha Gupta <guptarud@gmail.com>
 
 Reviewed-by: Pavel Machek <pavel@ucw.cz>
 
-
+BR,
+								Pavel
 --=20
 I don't work for Nazis and criminals, and neither should you.
 Boycott Putin, Trump, Netanyahu and Musk!
 
---/IL2wEoASFvIAdD5
+--8eFsTqdRSFJMsawS
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCaPi8OAAKCRAw5/Bqldv6
-8kxOAJwJ2rD4puXSmIpTlLg26wYcEZf5fQCgkJcbklr4Db1oSCPze/V0XUGuu/8=
-=Z0vO
+iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCaPi8TgAKCRAw5/Bqldv6
+8oYXAJ9s4v0KB9wq1j3POu2TGNFDuabVrwCffytHlKiV39Y0bTN6VVIeuDzRjTg=
+=r+hr
 -----END PGP SIGNATURE-----
 
---/IL2wEoASFvIAdD5--
+--8eFsTqdRSFJMsawS--
 
