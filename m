@@ -1,109 +1,158 @@
-Return-Path: <devicetree+bounces-229645-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229647-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E2AABFA80A
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 09:19:28 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7DD8DBFA81F
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 09:20:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 467375658E2
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 07:19:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0B17A3A38E4
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 07:20:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9639E2F5A00;
-	Wed, 22 Oct 2025 07:19:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01E642F60CC;
+	Wed, 22 Oct 2025 07:20:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="VGidfkyF"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="WXPjYZA4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF1A12F3C26;
-	Wed, 22 Oct 2025 07:19:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7649D2F4A04
+	for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 07:20:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761117564; cv=none; b=sE/dYYVmLdY9WNSfeSSN7lAKXfZ/daYw73A7W0SiikJY6jLZI5/mpwb7HGfQIm3AZ550FTokf0pC99YWTeRNxtipxVgjZEL1gRTYnY/eJM/SHpeZnwU6I/FB9qtb9oJR1uW5SDBErVzs6qYBpakuKa3tUnjfvNVt9hQi0489ji8=
+	t=1761117639; cv=none; b=n7gZjE7rub968B3OhzamJfN2hg5QvYAE/XNZuR6e145EMjXYJ6XLnUrUmO/AFPGTAVFXySQB20quB/NpsszhgKm+Hkyskf/3JHqezvR8ZO8HoMHxuD74gulkTDyBgUDngxWYLro/oFBHZRn7TqpUyM7XKKwpezzxpupiXX4DcS4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761117564; c=relaxed/simple;
-	bh=Z8ZwCkSX/8/aiTv9fav6N9vdybzcbu6o+Lr/dVyzBMA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=DhfeWhbRmLcrH/HPObjZMlPJjo3mMGbooBM8sKSkdY36rAfEaSAhS802RTjdU6MLozKljzO/0kPlDeTY7j179XVO22fuyELPlrHyyXg9iB11jcn5RoCnBAU98aVnOle7+DY6DsK7cfXvqpJ2/4qg89otXZFYSU//ti+PcpAl9gU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=VGidfkyF; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from [192.168.88.20] (91-158-153-178.elisa-laajakaista.fi [91.158.153.178])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 51037557;
-	Wed, 22 Oct 2025 09:17:36 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1761117457;
-	bh=Z8ZwCkSX/8/aiTv9fav6N9vdybzcbu6o+Lr/dVyzBMA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=VGidfkyFdjQs4Xkqali8Z5l5zRQs85bEr4mlwVU2ttknMtDtwguMjyeHSHG0X1eeD
-	 wvT4Av+FK9CL54YTcg8DLc+L0sXV9bvh2LV8Lmqk0KgDMEkEnYtrwfc364QUzjgNzX
-	 0HBBULOj+w71ZBqFRWGz47VyKZDCtESJPW7L0HQo=
-Message-ID: <626acab8-46ae-44cf-b9ef-0ac78d0954c9@ideasonboard.com>
-Date: Wed, 22 Oct 2025 10:19:17 +0300
+	s=arc-20240116; t=1761117639; c=relaxed/simple;
+	bh=Qx5ZLt0bA1gGhskqBF/wlqngo5r7KHvDRvvusdOm6+8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=aU/eaYaL9lDqXKzbjLa09GsMUX+O0zNo1sSym9V+CtjN2EUflnZp5L9lY7pqIRaR0SO+Jh/Ue7Gc7cXXEncbCkJj6sY7MQUYwlGPGOt8LY/GYLnvIZixq2PlddK0GOO8CNfv0ldEG9oWjLSgYivI1WHVxvm6fHTboHd4Bb+0FZ0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=WXPjYZA4; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59M7EOEI012340
+	for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 07:20:37 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	k/P5qUVg0GWzdhRDecSxvZEOZjOjt3BobF0UUDc36ok=; b=WXPjYZA4Z28Ktasa
+	LK09WZTV3aFaBq5LIRLzfNfKw82/YAbXnWBkJkw/zXclpxeLlmSYUxCEHOSFwSn3
+	qi8na0idnipYIciPYz6JqfyXavpFQXrsngsZ8JFZx2zxM7OVHAKuyuYTuicl47+R
+	n0tB+db7A3EgtqPbWS3HH8SJNz1bJTLeore2HBOp3jsnKJWTdsAQBEAHtWr8JKgx
+	VyYEytcC+BXZKNdZxOBTsVqzAGXbkxOw6nDWFy/n9/DiqOLQKohLDhyMslz+hRmf
+	eMiSZ5HV7dVDJojn3aCfyZvs+Bp+ieQ6q0lKtyQlH4MOZ1l5NLef6q5vrpuRp5WK
+	+NBktQ==
+Received: from mail-pf1-f199.google.com (mail-pf1-f199.google.com [209.85.210.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49xhe0hgnt-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 07:20:37 +0000 (GMT)
+Received: by mail-pf1-f199.google.com with SMTP id d2e1a72fcca58-77e7808cf4bso4258331b3a.0
+        for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 00:20:37 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761117636; x=1761722436;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=k/P5qUVg0GWzdhRDecSxvZEOZjOjt3BobF0UUDc36ok=;
+        b=VoHWoESA0ctifUURUnvkLwaEBydHuZ2PqvC+cM7y1s+zZU4FXMsSXu2Xhy8TwXeINw
+         bEYEXriNylJcFuNWSlRXG2rWHNPrDdqfW98SnNSumqgPxEDqWDrz0LXd+TakuYR9YgMA
+         F8uV+50sBG2oKDHtXxLvcwmRpHmnyi7b/M43dvgW3UgoXzE3amRVYgStU1b8wB2XpbPY
+         ESwZ8QyU2bkTJD8By67QmQB/4IR7SmS1NjQeuJnqnyyl/qctZsNPBGwX4ufTETArMrKA
+         NXc6D7eFPhzvxTabgMtnHhHZfjzp/F/ZF4vbjNbaJ9EVIFBK4eE2wNIywqZ0xc9vlfsS
+         YjFg==
+X-Forwarded-Encrypted: i=1; AJvYcCULjmpwtGhk+awOiRzp1Js8hd/dtE4OdIU7P4MP8NqDNEbtfPRNg+GDAPdg2XcNZex8mpXSfDCJhMa7@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywx+HDLYikY+FIWvworhT5BdKwpgmxJnVwkFymX0RCQ6BeWaD8K
+	YDySc88uhi0YomtECOUFlcLyJCzJwc6l9nfpObkO+znNLanlPi5sakhw420U/wC++ONT8OL9HXD
+	m9ryGwyXFBHq6MP+FbPR2A//VzATop10A2ZlYP27BPprAxbjZnKntnKGei8jnTxocRUt1WfcP
+X-Gm-Gg: ASbGncvc8cekIIRepyWUBKIsXRiQwSaC+Wq/eIBv5d8GOtxMCmQ7zEMkgdeCQUzhEwj
+	km3FHV1Hqblg1uRIuS2nfFe8b2U4ZHjmTgz8dDJxeyu8YTXxgUELW7KkMln7bxESONVGwuFvFmv
+	QxY5/kNHHZTg8qiOUgSG0ENSCuRoemOAqfkgTWeKpO+PaZVQOoHw28tjyUMsHMPHiCXdX8DGza3
+	lDupS0HekCkRZwqFMFVMsC9py4AkcE4vPnapRLsEzeix8soN2+tI3xLgou8T1Ukd6BXqo6putDU
+	+w7cMudwT/Sx2fCSN/0BTzikkrdzNT6GZ+QIjgfY67DZx/6eoKOpK7a4bJXTyaoaAyyf18a7s8P
+	WGLft328rX9OSEGlKNA+1EKQUOKs6rLHO3g==
+X-Received: by 2002:a05:6a20:1611:b0:334:a3fc:797e with SMTP id adf61e73a8af0-334a85341b0mr27012252637.24.1761117635708;
+        Wed, 22 Oct 2025 00:20:35 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGQecOhK3VUMqmQQsVoBliqObRe9daZgl/gk+BlnDljUjD9z1dJCRLyXJIODKqTr58ixAIBLg==
+X-Received: by 2002:a05:6a20:1611:b0:334:a3fc:797e with SMTP id adf61e73a8af0-334a85341b0mr27012222637.24.1761117635277;
+        Wed, 22 Oct 2025 00:20:35 -0700 (PDT)
+Received: from [192.168.0.166] ([49.205.252.226])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7a22ff157f4sm13707077b3a.6.2025.10.22.00.20.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 22 Oct 2025 00:20:34 -0700 (PDT)
+Message-ID: <95c93e25-a60d-99b5-c31b-9be321eb5073@oss.qualcomm.com>
+Date: Wed, 22 Oct 2025 12:50:28 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/4] dt-bindings: display: bridge: renesas,dsi-csi2-tx:
- Allow panel@ subnode
-To: Marek Vasut <marek.vasut@mailbox.org>, dri-devel@lists.freedesktop.org
-Cc: Conor Dooley <conor+dt@kernel.org>, David Airlie <airlied@gmail.com>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>,
- Robert Foss <rfoss@kernel.org>, Simona Vetter <simona@ffwll.ch>,
- Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org,
- linux-renesas-soc@vger.kernel.org
-References: <20250904210147.186728-1-marek.vasut+renesas@mailbox.org>
- <20250904210147.186728-4-marek.vasut+renesas@mailbox.org>
- <4ffcf4fc-17a9-4669-af07-f81ddb46aee9@ideasonboard.com>
- <d76ff19c-7b0f-4aa9-8ae2-d08c82d70410@mailbox.org>
- <aebc10ec-73ed-4843-95c5-9ba5a2759ccb@ideasonboard.com>
- <b4c0e78a-eecb-4a18-9199-18ea91c8df31@mailbox.org>
- <2da374d1-7557-4f7e-9160-86945b73731a@ideasonboard.com>
- <14e5da7c-c6ce-4bb6-884b-08629f5a5788@mailbox.org>
- <7a159b09-d957-4d9b-9460-adf62df9a440@mailbox.org>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH 1/2] media: iris: sort out common register definitions
 Content-Language: en-US
-From: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
-In-Reply-To: <7a159b09-d957-4d9b-9460-adf62df9a440@mailbox.org>
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+        Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>,
+        Abhinav Kumar <abhinav.kumar@linux.dev>,
+        Bryan O'Donoghue <bod@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Vishnu Reddy <quic_bvisredd@quicinc.com>
+References: <0251017-knp_video-v2-5-f568ce1a4be3@oss.qualcomm.com>
+ <20251019080212.142623-3-dmitry.baryshkov@oss.qualcomm.com>
+From: Vikash Garodia <vikash.garodia@oss.qualcomm.com>
+In-Reply-To: <20251019080212.142623-3-dmitry.baryshkov@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDIxMDE2NyBTYWx0ZWRfX2M/xDHElEuBb
+ Epfi7vV/szmkpgGCTUntIfrEImyiooaKQ1AGJ6onpGHhkgeQWbzr6SlfRhBp06Va3wFYZxSFsiK
+ UIuYAvJDt6pySY/KPy9+fN4VWfIAdlemzUyUiog429bc6CK/LPxUyKCBhRWXdpZ4mlTubk+fyel
+ 0ctSoK/i9oO3aqZO0s8BNFkGCj8gcsV1ri+H5Y9Qa5CDgRGVVXvDF3qUehfQ4KoIChgJmuXlZ6r
+ uLuO6co1sG4n2GnmkQ/7jjf4XunzK+c5oHBVEThO6SGv1/UJgeGFwad8pWy+c93TxDQPsG9eB1k
+ hIeBdRC3ig9hsYeyHxQ+YIv+qHO6IjDYKGo2t7FFiMG3jSiKIzAVNx4RI/IWUAQOpyi+zEgtZO5
+ j6Jpv8SzZhj3/NCMi9qyD0Knj19Qcg==
+X-Proofpoint-ORIG-GUID: UaMj6nWYUB-Y4z9AUTrTS-CPuSDiDdkx
+X-Authority-Analysis: v=2.4 cv=WYUBqkhX c=1 sm=1 tr=0 ts=68f885c5 cx=c_pps
+ a=WW5sKcV1LcKqjgzy2JUPuA==:117 a=FoPg1IWog9mqHsjG+aRTFA==:17
+ a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=EUspDBNiAAAA:8 a=M1YMS4I-2UCZmqrdDCEA:9 a=QEXdDO2ut3YA:10
+ a=OpyuDcXvxspvyRM73sMx:22
+X-Proofpoint-GUID: UaMj6nWYUB-Y4z9AUTrTS-CPuSDiDdkx
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-10-22_02,2025-10-13_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 adultscore=0 bulkscore=0 impostorscore=0 spamscore=0
+ priorityscore=1501 clxscore=1015 malwarescore=0 lowpriorityscore=0
+ phishscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2510020000
+ definitions=main-2510210167
 
-Hi,
 
-On 15/10/2025 17:09, Marek Vasut wrote:
-> On 9/19/25 7:08 PM, Marek Vasut wrote:
+On 10/19/2025 1:29 PM, Dmitry Baryshkov wrote:
+> In order to make it easier to modify the file, sort the definitions
+> by the register base and then by the offset. Also move bits definitions
+> next to the registers which they describe (as it was done before).
 > 
-> Hello Tomi,
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+> ---
 > 
->>>>> Ok. My point was just that the dsi-controller.yaml doesn't allow
->>>>> "bridge" node (you can just rename the panel to bridge to test). I
->>>>> thought someone (I just can't remember who was it =) will send a patch
->>>>> for it, but I think that hasn't happened.
->>>> Do you want me to drop the bridge part from the commit message (I
->>>> assume
->>>> yes) ?
->>>>
->>>> Any other change I should do before sending a V3 ?
->>>
->>> As we found out, this has been fixed in linux-next. For this, and the
->>> rest in this series:
->>>
->>> Reviewed-by: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
->>
->> Understood, thank you.
-> Do you think this 4/4 can now be applied ? The rest already is.
+> Vikash, I have dropped these patches from SC7280 patchseries as they are
+> no longer required. If the series gets resent, please feel free to pick
+> these two patches in or to squash them into the corresponding patch.
 
-Pushed to drm-misc-next.
+Ok, will squash it in next revision of my series and add your co-developer
+contribution tag to those patches.
 
- Tomi
-
+Regards,
+Vikash
 
