@@ -1,101 +1,94 @@
-Return-Path: <devicetree+bounces-229608-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229609-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E3FEBFA394
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 08:29:24 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 82555BFA3A3
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 08:30:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5E2BE1894DA0
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 06:29:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0AD723A7376
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 06:30:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40CA22ED16B;
-	Wed, 22 Oct 2025 06:29:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16762224AEF;
+	Wed, 22 Oct 2025 06:30:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="baHWjW0C"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IMAHiKg7"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DF31284881;
-	Wed, 22 Oct 2025 06:29:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDECC33F3;
+	Wed, 22 Oct 2025 06:30:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761114560; cv=none; b=YHfMpHsjr0igzcUCBV5V1eKtEwVQY3YAjfJ+Vg8KumzE0Jo+f4G9Hkz8H4uQqQTvYz2cQ0ifnbb9BPbrkbccJXB8dqyxj9WiWJ5U+aIXV0ZhNfwYvEUh8E3/oG1FYjx+ItcqtKx0jbH6bHXuWsto02BW9WdHxAPkMHW2tQ8eq+Q=
+	t=1761114652; cv=none; b=NB6OhOcH/hg1rCB0NjfmlN/EQ/DvCVJCbr7sG7c+pwkxjI6PHrG0D/VhSto12J73q+RMVb5PZry16RvEVE/uPidcT92ZPtEbK6IENxxSv0xR/ybGTDiHJ/V5vJGf72DXfXlId2oh/6QnLrFlkU9Uf+n0Cghnd5Db+FYwaLKDOUI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761114560; c=relaxed/simple;
-	bh=QXPLGL8pseRCUe8lWHgA9QU+9DwUxuyGw1dXibFDFP4=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=oLHyqqR1kpcpr2O6aVlZFSVaHJIfkKNE+Ht4sjWKGqgcy9/7MD2yAXrXkfE0j0jONI7/Jx7ohMLUSSdeKALRHIydwNLKWOXCAd3mqLmDBaogC9Nzcj0cUU1GJO7aTgpeL4zxSiYVkm0kWCkYY12ye5kF9jYR2tGqZhTkCUU5lyo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=baHWjW0C; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 37F50C4CEE7;
-	Wed, 22 Oct 2025 06:29:19 +0000 (UTC)
+	s=arc-20240116; t=1761114652; c=relaxed/simple;
+	bh=KEgp4fU5XhMtbOPuc2WyIySNoZ5jLcw+J/DU2i8WbJU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=HfRoP0Tmc5JoKvNpipUWuRxxV9dm7tOVQgwYyiX9aYtqbE8FDNufunbdgHutbzRk1706qjeb5q9NWINTgir+zpwIafqy8zffVO1CHBp9BvHjMOhCYRGtq0jhj/+wSkncEE3+jEjWaJDiiOlnI3DciUEpS+Nb60CBboOpUTBW9+s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IMAHiKg7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DDC2DC4CEE7;
+	Wed, 22 Oct 2025 06:30:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761114559;
-	bh=QXPLGL8pseRCUe8lWHgA9QU+9DwUxuyGw1dXibFDFP4=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=baHWjW0CcOnSygw1t8NqGdIOdWWlGNXbYca2Pnxi59xvRuFi2cUZdmBnA6zswRNVc
-	 hr8yMEomwnRtI+ybwGepOPUmuKRYmW8NE8EITHCQ4ybEPzcL4X1CsG91/VBYaYUW50
-	 TTzTBSQgaqfMA0hHS7ByX360hcPBa8xDdvT7RalT6NI2y+xDz/M57Lq2rjaH1WinHp
-	 DHyjr2CcM+Y5qcrdhz12JYWylQfsqzUJa2YF5W6enP23/p0u6Vrr6SSO93DLXKdCpP
-	 NnE38RsMfTgsemgv26yKKm2wmfqt9vjYqmv/WbiGQ0fyxUE/tbLVLc9pRusS9ZBMSt
-	 1CTfZ2G4S/n9A==
-Date: Wed, 22 Oct 2025 01:29:17 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1761114650;
+	bh=KEgp4fU5XhMtbOPuc2WyIySNoZ5jLcw+J/DU2i8WbJU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=IMAHiKg78Y1C7Fkm7JWfmXWxkP7AX1nnigwoF0sQjnZWuHnFs853YwIBqLKNCAtbM
+	 RbHksicBdoVVUgkjng/Nti9dFYEvhuvCVtRXpff61yi92WWQJc11wNflrRLhvuJ7Lx
+	 5CsAcsW9Bi0E+2UvfmJoXo+gKmZKRY13+YZTS6Seacn0kSb+XcGKEusPdg0SmSvXWN
+	 v9HSP52xcR8KN00zUaxAm6rNNYmvrSISAY+Fcxd+7CS0UuNAoPv4jWoxV6f6lvfJsS
+	 189C79XSH6oHA8Tv7Hc+BaBObhNbMtm11VkmCVsQP3Q0zhU59WDmohC3mnUogthTO9
+	 GnZSDbJA9Sv2g==
+Date: Wed, 22 Oct 2025 08:30:47 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Roy Luo <royluo@google.com>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Thinh Nguyen <Thinh.Nguyen@synopsys.com>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Peter Griffin <peter.griffin@linaro.org>, 
+	=?utf-8?B?QW5kcsOp?= Draszik <andre.draszik@linaro.org>, Tudor Ambarus <tudor.ambarus@linaro.org>, 
+	Joy Chakraborty <joychakr@google.com>, Naveen Kumar <mnkumar@google.com>, 
+	Badhri Jagan Sridharan <badhri@google.com>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-samsung-soc@vger.kernel.org
+Subject: Re: [PATCH v4 1/2] dt-bindings: usb: dwc3: Add Google Tensor G5 DWC3
+Message-ID: <20251022-delectable-gabby-hedgehog-35f7d6@kuoka>
+References: <20251017233459.2409975-1-royluo@google.com>
+ <20251017233459.2409975-2-royluo@google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: krzk+dt@kernel.org, david.hunter.linux@gmail.com, 
- skhan@linuxfoundation.org, linux-kernel@vger.kernel.org, 
- conor+dt@kernel.org, corbet@lwn.net, devicetree@vger.kernel.org, 
- linux-hwmon@vger.kernel.org, linux-doc@vger.kernel.org, linux@roeck-us.net
-To: Igor Reznichenko <igor@reznichenko.net>
-In-Reply-To: <20251022044708.314287-6-igor@reznichenko.net>
-References: <20251022044708.314287-1-igor@reznichenko.net>
- <20251022044708.314287-6-igor@reznichenko.net>
-Message-Id: <176111455721.2322150.17932964087857323488.robh@kernel.org>
-Subject: Re: [PATCH 5/5] Documentation/devicetree/bindings/hwmon: Add
- TSC1641 binding
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20251017233459.2409975-2-royluo@google.com>
 
-
-On Tue, 21 Oct 2025 21:47:08 -0700, Igor Reznichenko wrote:
-> Add a devicetree binding for the TSC1641 I2C power monitor.
+On Fri, Oct 17, 2025 at 11:34:58PM +0000, Roy Luo wrote:
+> Document the device tree bindings for the DWC3 USB controller found in
+> Google Tensor SoCs, starting with the G5 generation.
 > 
-> Signed-off-by: Igor Reznichenko <igor@reznichenko.net>
+> The Tensor G5 silicon represents a complete architectural departure from
+> previous generations (like gs101), including entirely new clock/reset
+> schemes, top-level wrapper and register interface. Consequently,
+> existing Samsung/Exynos DWC3 USB bindings are incompatible, necessitating
+> this new device tree binding.
+> 
+> The USB controller on Tensor G5 is based on Synopsys DWC3 IP and features
+> Dual-Role Device single port with hibernation support.
+> 
+> Signed-off-by: Roy Luo <royluo@google.com>
 > ---
->  .../devicetree/bindings/hwmon/st,tsc1641.yaml | 54 +++++++++++++++++++
->  1 file changed, 54 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/hwmon/st,tsc1641.yaml
-> 
+>  .../bindings/usb/google,gs5-dwc3.yaml         | 135 ++++++++++++++++++
+>  1 file changed, 135 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/usb/google,gs5-dwc3.yaml
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/hwmon/st,tsc1641.yaml:31:111: [warning] line too long (119 > 110 characters) (line-length)
-
-dtschema/dtc warnings/errors:
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20251022044708.314287-6-igor@reznichenko.net
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+Best regards,
+Krzysztof
 
 
