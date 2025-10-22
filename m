@@ -1,90 +1,94 @@
-Return-Path: <devicetree+bounces-229543-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-229545-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0CD7BF96EF
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 02:14:38 +0200 (CEST)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78474BF97E1
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 02:42:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 8B3D1351812
-	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 00:14:38 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 005F2353850
+	for <lists+devicetree@lfdr.de>; Wed, 22 Oct 2025 00:42:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E44F62AE89;
-	Wed, 22 Oct 2025 00:14:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94D6A1DED63;
+	Wed, 22 Oct 2025 00:42:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZjDDTk4e"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="ZOq55LUq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFA932A1BA;
-	Wed, 22 Oct 2025 00:14:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5334A1D61B7;
+	Wed, 22 Oct 2025 00:42:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761092073; cv=none; b=QxlIvQf4Uhqe0gW0WUkeI80ANKrVXPdjl7uAWFpleVsVmJk/fb9kJ/rrQEG9XfV2IOAOA4u60KU18k/00tuYxPOyoWhKQxpPh+EQm2xgfc0jLOLVUw/DHdLcdCy97+iGLqVqw4lqny1XFsLN3NHCYindG6Q9QOQsWWcP3BUTl1g=
+	t=1761093730; cv=none; b=XSdNS1/rHkrhBDXkHCHOJ1HEn0Us0qDTCovZaFFppuMlYJCC0ZKYBrPmBGYBiphkpUUi4CTZ2uBCBKF1iUeEYhWNcShW7qAxyh96sXYoBpITdROPRI4bPq83/biajfcMJQ1P0FP+U6NBozuAAxyXHbshBUWXfLRZw3zWBXAtJZM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761092073; c=relaxed/simple;
-	bh=qdTemEah2ZwUDwzRjVNCeMAn63LZUADIEQLUkKwzNvI=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=EZOj6q5pSOQrlcFNdFeAiGvrEVtayUwkCBk+joZ3aR0PfeKUjAVLw9AeASJCmKqb6QGrDECIoxU36loUbTiu9+xfSdE5lqF5s00+MaUTl/UeA1JukZadPtBnN3cQilFg6NpKsWeNgOsfuLXExcd3nd5INl47kGsezEPyHbnRxMU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZjDDTk4e; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C51B0C4CEF1;
-	Wed, 22 Oct 2025 00:14:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761092073;
-	bh=qdTemEah2ZwUDwzRjVNCeMAn63LZUADIEQLUkKwzNvI=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=ZjDDTk4eNS2NWwQItnYm4fEAytnHF94dLxeWHleQAHpVRxYO4gR618BunjzSts/2O
-	 dQKqqrIV5MJGXQ/6mnrDgLrC2lO/VX54XFyZFwL22MXxAE4jk9KBetXZzfrETjpiJk
-	 Pak39RSQ+mhEPeaRRFm4AAthCEgbZQBchmbu8Tfn13r7F/PH7AtCMCuAPnZ7VlWj4E
-	 uTLCKhBi+lf2M5oetDe5qycSvbmjc9HqXTAaF9P8DHxpr6iSUwSEbvGbbr3XAy0ghc
-	 komcG6/Aozv8TU8zbF40bGCR81K3WWokPJN7sqoZSVk/F05NaiL1aYQ4fBxgFQrxIa
-	 +H7lZe6V8z7Fg==
-Date: Tue, 21 Oct 2025 17:14:30 -0700
-From: Jakub Kicinski <kuba@kernel.org>
-To: =?UTF-8?B?VGjDqW8=?= Lebrun <theo.lebrun@bootlin.com>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Paolo Abeni
- <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Nicolas Ferre
- <nicolas.ferre@microchip.com>, Claudiu Beznea <claudiu.beznea@tuxon.dev>,
- Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, =?UTF-8?B?R3I=?=
- =?UTF-8?B?w6lnb3J5?= Clement <gregory.clement@bootlin.com>, Russell King
- <linux@armlinux.org.uk>, Vinod Koul <vkoul@kernel.org>, Kishon Vijay
- Abraham I <kishon@kernel.org>, Michael Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>, Thomas Bogendoerfer
- <tsbogend@alpha.franken.de>, Philipp Zabel <p.zabel@pengutronix.de>,
- netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org,
- linux-phy@lists.infradead.org, linux-clk@vger.kernel.org, Tawfik Bayouk
- <tawfik.bayouk@mobileye.com>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>, =?UTF-8?B?QmVub8OudA==?= Monin
- <benoit.monin@bootlin.com>, Maxime Chevallier
- <maxime.chevallier@bootlin.com>, Andrew Lunn <andrew@lunn.ch>, Jerome
- Brunet <jbrunet@baylibre.com>
-Subject: Re: [PATCH net-next 00/12] net: macb: EyeQ5 support (alongside
- generic PHY driver in syscon)
-Message-ID: <20251021171430.579211b2@kernel.org>
-In-Reply-To: <20251021-macb-eyeq5-v1-0-3b0b5a9d2f85@bootlin.com>
-References: <20251021-macb-eyeq5-v1-0-3b0b5a9d2f85@bootlin.com>
+	s=arc-20240116; t=1761093730; c=relaxed/simple;
+	bh=lrlI8kaKnlQcc6WSTKi2AMrvVDVav+P/m/GQflMXKao=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=lb0l+p7FhK3Ei3FFAHb+u2ToVgpN4wIoVEwN/9hAwnnStOGaRu4JLHz7YXSAMAlWf24KbyEnOC3qXfPtU7yiVYzaefDVwQVx4+nsGfmSaxrA2j/bSlFFL63LTyXtZik3PgsJ4DC8b4h1GETi76cO6fodGyrzJbYFPeZ7ASa5AAo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=ZOq55LUq; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Transfer-Encoding:MIME-Version:Message-ID:Date:
+	Subject:Cc:To:From:Reply-To:Content-Type:In-Reply-To:References;
+	bh=RsCiTjfAJVGKd8jls9/TBL277kk9xNpzA5VJ2++/V68=; b=ZOq55LUqsOYpHtsTa8MaDcX+xO
+	MWsY9mqJYPBQLKWK0jBiOqVABz8CCKXIdOlnZbJ/jChV/HH3dxjEExavHZsP4ixZL7yL/78kJXuWW
+	iqw/d5lbXy7Q/bs3kZzWa5xdZMUZzoQYT9DdKDnzxBU2b7mJaQTlVNMpXlpinoTJ5h3G+CVeToGAS
+	/IkJGwW++ZpcQTNLFTaLmjPHjdbC8xnWrRuMWRkQazqLafdKH9xutHlcXEJnU1LfdByJPCPX87Uye
+	IDJ/x85EeC1MjNm5QwLJv36Vrjjpbkk8leqpIsj3lmO9TvBoS+UAO+29vVUCBYV5+jGyxECr6XnRY
+	uc96Ttkw==;
+Received: from i53875b19.versanet.de ([83.135.91.25] helo=phil.fritz.box)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1vBMvT-0007Tx-2P; Wed, 22 Oct 2025 02:42:03 +0200
+From: Heiko Stuebner <heiko@sntech.de>
+To: broonie@kernel.org
+Cc: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	heiko@sntech.de,
+	linux-spi@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: spi: spi-rockchip: Add RK3506 compatible
+Date: Wed, 22 Oct 2025 02:41:59 +0200
+Message-ID: <20251022004200.204276-1-heiko@sntech.de>
+X-Mailer: git-send-email 2.47.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Tue, 21 Oct 2025 18:32:41 +0200 Th=C3=A9o Lebrun wrote:
-> Merging all this won't be easy, sorry. Is this split across trees OK?
-> The net-next part is pretty evident, it is the rest that appears
-> complex to merge to me. I can resend the series exploded if useful
-> (or at least split net-next versus the rest).
+The SPI controller found in the RK3506 SoC is still compatible to the
+original one introduced with the RK3066, so add the RK3506 compatible
+to the list of its variants.
 
-Yes, please respin just the patches that need to go via net-next
-for us (1,3-6?). The rest I don't car^W know :)
---=20
-pw-bot: cr
+Signed-off-by: Heiko Stuebner <heiko@sntech.de>
+---
+ Documentation/devicetree/bindings/spi/spi-rockchip.yaml | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/Documentation/devicetree/bindings/spi/spi-rockchip.yaml b/Documentation/devicetree/bindings/spi/spi-rockchip.yaml
+index 748faf7f7081..ce6762c92fda 100644
+--- a/Documentation/devicetree/bindings/spi/spi-rockchip.yaml
++++ b/Documentation/devicetree/bindings/spi/spi-rockchip.yaml
+@@ -34,6 +34,7 @@ properties:
+               - rockchip,rk3328-spi
+               - rockchip,rk3368-spi
+               - rockchip,rk3399-spi
++              - rockchip,rk3506-spi
+               - rockchip,rk3528-spi
+               - rockchip,rk3562-spi
+               - rockchip,rk3568-spi
+-- 
+2.47.2
+
 
