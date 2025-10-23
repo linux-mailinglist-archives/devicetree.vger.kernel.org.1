@@ -1,122 +1,95 @@
-Return-Path: <devicetree+bounces-230479-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230480-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D48FC03067
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 20:37:42 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BE725C03085
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 20:39:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D4612568C99
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 18:34:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 624E11AA226B
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 18:39:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5ED6E34C13A;
-	Thu, 23 Oct 2025 18:33:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C0C728850E;
+	Thu, 23 Oct 2025 18:39:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="ZqhMYiWG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bCMGI8uv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDE4028CF7C;
-	Thu, 23 Oct 2025 18:33:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F37F230BCC;
+	Thu, 23 Oct 2025 18:39:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761244385; cv=none; b=qKe5mxdTlaDps0or2cygyK/saYtezSaNrXayXLRaqzWcuVuJV+7NPWjuSKQZUENGFxALPNp8KKJKBcmU4c/G2ilKeDzEwa9uSokM2QJZ/bTwZtAPQKDPYx170T5WMJslvRr76W0w5jT0ZcEoviiMFHNDpwS9v9uJ6J7Sbn/ynxA=
+	t=1761244742; cv=none; b=jSHSfkzOvKytxzVxdpCPZxmloHc3WoJaJhD70JKDicgnTUN88wCnJUSW+bar/E6rES0FZCNIacC6dn4MBmA+hJauEsnxSDchXXFM6wJoqmgrat8UFwcI76Oq9txknrvvRWOzFvsvFLvIIt2MhK80qWeQ/7VnnJrCBIyDv0bNQJg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761244385; c=relaxed/simple;
-	bh=Gy86uPw0GMS0aTDE3I7lBaDqSTWlw2dIyTY5N2sn1w8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kTPHzfnQAvIme/VGb3wUcdBzQCNIjyAMcZlekSlBuUxXRshV19egeV4kJ6MyTVRfl82E37BL4ThEAE/zRY8E8qmh8en8G6myU+wbQXGkkChYKeOs/5vXyrYHXNVZqv5v789DNgCzBopKfM6pGJEFq78QM9EcqZGQphnXUufr0Z0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=ZqhMYiWG; arc=none smtp.client-ip=198.175.65.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1761244384; x=1792780384;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=Gy86uPw0GMS0aTDE3I7lBaDqSTWlw2dIyTY5N2sn1w8=;
-  b=ZqhMYiWGKGIgWNRTADXcpziiK0hKe7GqHpVkd10L+pGx3PlCgz3d70qR
-   taIiCossjLFA1mpP6AxGO9JpjWTXXbz3GJworWIOH2Uxy4JgpPkt1bNfg
-   kJbLeA83Rff9h28EMvuYWv1o5t4AMfmSRQZ6lD4nGapYij8xblsy1sqyk
-   U4N1TB8uhcIJLObHq8KJH+L8mhkFYT1+kWqcZdX8Xh8RvwTBALRe7IA8l
-   MgMWupINLOYjj4R4Yy0GPDGnDslNJQP1QcBdu74jseucuKFK4zrY7oMqX
-   byN6m5s+cDlEk1GAC7M1e1stvKnYhbk/n12PMg93Af7jk2oCD4jQJQuTL
-   A==;
-X-CSE-ConnectionGUID: HTwwhQ9HT0mbbynDai/qCg==
-X-CSE-MsgGUID: ByJyAHe+QTueI4yAb0r8ig==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="80859665"
-X-IronPort-AV: E=Sophos;i="6.19,250,1754982000"; 
-   d="scan'208";a="80859665"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
-  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Oct 2025 11:33:02 -0700
-X-CSE-ConnectionGUID: oKGdB9QJT6mH32is+QHqdA==
-X-CSE-MsgGUID: 38ZfxTWkTVi5lD3sSrT/Eg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,250,1754982000"; 
-   d="scan'208";a="189484420"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO ashevche-desk.local) ([10.245.244.163])
-  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Oct 2025 11:32:59 -0700
-Received: from andy by ashevche-desk.local with local (Exim 4.98.2)
-	(envelope-from <andriy.shevchenko@intel.com>)
-	id 1vC07M-000000020uM-0Sfa;
-	Thu, 23 Oct 2025 21:32:56 +0300
-Date: Thu, 23 Oct 2025 21:32:55 +0300
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Jonathan Cameron <jonathan.cameron@huawei.com>
-Cc: Aditya Dutt <duttaditya18@gmail.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1761244742; c=relaxed/simple;
+	bh=CMLdyhpydVR0/Nx6iPY2zTrIJoMIDwh4t2xWU0ZSEq0=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=rBdz2YQ8tPPpJgL88dO7+4JJKg44lXod4yIQfHaE1vwrGJwXFjc8ijkpznBGlX6L2mgbmJ5/PcdAoWAVtZwyohq0v+T/MZP4Wt97nYEgHcvKm+mYqGAu52sXSv2KUfh0ST3roYZheyHjpW8DzoWceY3RcQPsrQgBzGqzSoKOhKM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bCMGI8uv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 86289C4CEE7;
+	Thu, 23 Oct 2025 18:38:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761244742;
+	bh=CMLdyhpydVR0/Nx6iPY2zTrIJoMIDwh4t2xWU0ZSEq0=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=bCMGI8uviTWrDUJwu13OthmrVIiNYPGmqEKz6srTaDiSoG+lzBU2ZoefXj3t77Wwv
+	 C0Q1189DmcWWNvgMJXjb+3bciCyII2LVyE/3iYHg6yw7IyCCJz5Gv33OmwfDwa+kTG
+	 CD+bElQ0GD+hSrr36Xc0J5UlBLXlwaVjOE8k1xUoY3W6+ZoKUEeUhasDge2lnj+FZP
+	 Y3YfjTmYxQZl1VbK92QiRrJN33npn41Zg/YdVuXpYkMWGGcvLHqasZXywz+shuzYxg
+	 P0aUlrTtmGFDgowhBIPrArbaEcRuulLW5g2/D65V7SZ/jJRyyjsu+8VSwZdmr4b6N3
+	 UExTM1ZqDWdYw==
+From: Conor Dooley <conor@kernel.org>
+To: linux-riscv@lists.infradead.org,
+	Conor Dooley <conor@kernel.org>
+Cc: Conor Dooley <conor.dooley@microchip.com>,
+	stable@vger.kernel.org,
+	Valentina.FernandezAlanis@microchip.com,
+	Cyril.Jean@microchip.com,
+	Daire McNamara <daire.mcnamara@microchip.com>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>, Frank Zago <frank@zago.net>,
-	linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-doc@vger.kernel.org
-Subject: Re: [PATCH 2/2] iio: position: Add support for ams AS5600 angle
- sensor
-Message-ID: <aPp010RxM3Dp_fAd@smile.fi.intel.com>
-References: <20251020201653.86181-1-duttaditya18@gmail.com>
- <20251020201653.86181-3-duttaditya18@gmail.com>
- <20251023191627.00003b52@huawei.com>
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Jamie Gibbons <jamie.gibbons@microchip.com>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1] riscv: dts: microchip: remove BeagleV Fire fabric.dtsi
+Date: Thu, 23 Oct 2025 19:38:55 +0100
+Message-ID: <20251023-feminism-rewrap-39719eb7832a@spud>
+X-Mailer: git-send-email 2.51.0
+In-Reply-To: <20251021-dastardly-washbowl-b8c4ec1745db@spud>
+References: <20251021-dastardly-washbowl-b8c4ec1745db@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251023191627.00003b52@huawei.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+Content-Type: text/plain; charset="utf-8"
+X-Developer-Signature: v=1; a=openpgp-sha256; l=575; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=JhXib/kn2jozWLbz0WSVdzkOIm/eAov7GTmNvhuhfhA=; b=owGbwMvMwCVWscWwfUFT0iXG02pJDBm/yuyZ1TesPGn/5NQ/h538J4qzTlzbuLU0S2+unHkip yaH4uoHHaUsDGJcDLJiiiyJt/tapNb/cdnh3PMWZg4rE8gQBi5OAZiI+l6GP3wNtyrXVtpFNBdO OF8z6UnKaXH+On4n0ze6pS9dmJ9piDH8L8s9/+3g7CvvtFbOZ3ogeMSj0/JJ9ryJHNYv7yWs1jV KYwQA
+X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
+Content-Transfer-Encoding: 8bit
 
-On Thu, Oct 23, 2025 at 07:16:27PM +0100, Jonathan Cameron wrote:
-> On Tue, 21 Oct 2025 01:46:53 +0530
-> Aditya Dutt <duttaditya18@gmail.com> wrote:
+From: Conor Dooley <conor.dooley@microchip.com>
 
-...
+On Tue, 21 Oct 2025 16:38:37 +0100, Conor Dooley wrote:
+> At the time of adding the fabric.dtsi for the BeagleV Fire, we thought
+> that the fabric nodes in the Beagle supplied images were stable. They
+> are not, which has lead to nodes present in the devicetree that are not
+> in the programmed FPGA images. This is obviously problematic, and these
+> nodes must be removed.
+> 
+> --
+> 
+> [...]
 
-> > +		if (chan->channel == 0) {
-> > +			/* Whole angle range = 2*pi / 4096 */
-> > +			*val = 2 * 3141592;
+Applied to riscv-dt-fixes, thanks!
 
-Can you, please, add a definition of PI * 10^6 to units.h? We have already
-users of this value and of the PI * 10^5.
+[1/1] riscv: dts: microchip: remove BeagleV Fire fabric.dtsi
+      https://git.kernel.org/conor/c/5ef13c363640
 
-...
-
-> > +			/* Partial angle = (range / 4096) * (2*pi / 4096) */
-> Use multi line comment syntax for htis.
-
-Also you may use Greek PI (as unicode character) in the comments and messages.
-We've been living decades in the unicode time!
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+Thanks,
+Conor.
 
