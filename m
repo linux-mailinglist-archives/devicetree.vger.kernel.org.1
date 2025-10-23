@@ -1,152 +1,144 @@
-Return-Path: <devicetree+bounces-230289-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230290-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CCAAAC013C4
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 14:56:31 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id E52CEC01424
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 15:07:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F1C301A01EC9
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 12:56:31 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 4786B4E2EFA
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 13:07:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14EB83148CD;
-	Thu, 23 Oct 2025 12:55:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FTauvhe9"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 037B630CD86;
+	Thu, 23 Oct 2025 13:07:25 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
+Received: from mail-vs1-f48.google.com (mail-vs1-f48.google.com [209.85.217.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67FBE3148B7
-	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 12:55:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6AB7A31283E
+	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 13:07:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761224124; cv=none; b=WBlN4loboo4bH0M+3Evvr1Mr8bDOZZs0nUmJv7w2oe3IjCr6eNpgkJtliYOWf+GbqrhfIGVWOgTBIroQd23R6SO+RVtLhLbibqPFctqSPHZBxarFzSoZgApoUAnJTkE2nTdBdwSTf7u5K9gcdOZuUGOOCprjznBVDyTbAE02eQw=
+	t=1761224844; cv=none; b=k0BZBTArweZjBMLEusDvrlgdykDf39w070xd0UlLrBSfb7i9EguDrYUSx2nMOg6tsToo/t77M7rnCZ4oY5xEmon4enfzmykZAMhWqon5GdIReVX6iNobv0uHT4Z4af89uSOn71pAYLh7qeq/zGOd1iBt2Nwomhj2EGduDrR7TpY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761224124; c=relaxed/simple;
-	bh=EVTagyqNhFiyLAemMH3mmpGfmO5zCC1M2qik2CwJLjI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=S1zc/NN3yh6y27nzjMVuhcIefBi4waFwo0IHusIvU0ZSXoGFG27Ic6utx50HuEXHPPpKtE6Sljb8DuPkUEGP+6YoFvXgWIfeI0Sf+l4RMaTkS0dKJxmX3bOFNCte1YOtZtZjSoFnm0SwcX3ZZ1tol5yAXEDZ4KBXH3sZMmXxFIY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FTauvhe9; arc=none smtp.client-ip=209.85.214.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+	s=arc-20240116; t=1761224844; c=relaxed/simple;
+	bh=1g9sL1pNrDVYwOAiQV7CDpxqC258lm15lCus2uSGOV0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=rIUdcJGyF60k/rddfyXe0NQ8IaladqyaPQHuIoiHzoWpXJ5X3EEUOW14P4XlheBv7aFzVxEJK5DvDnRUEKBRKmLfVlWOS1aSb24s5f4KtvXcbqg9CoUDBhYoZY3+LrQgklGbaoqzLoH4TgHQ+e48wTObAiPxbHJyzxuysYy6mYU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f173.google.com with SMTP id d9443c01a7336-290dc630a07so5592735ad.1
-        for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 05:55:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1761224121; x=1761828921; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ASWAVqY9k9riShYHA9c4yv4PgU9rmPYL0SfM1V+LeDk=;
-        b=FTauvhe9smUzHYpq4Nwe61mw8U6tzuKkXTfvrlU3WZETxGZju3Z5MFtStM033edCdR
-         69vOSdI7BQl4mUYSrJ0r/O7SxM5NPgmpv+N1h/7N1D3FyhOmBnMqiAS1mDNG38mxUcl8
-         5hg6GTrLJir19Hez7XQsQqr0n0Ir2J5R7XPK9IpPf7I70F9cdKIDAXdAXGRpWWoT9MSm
-         4zihRsq61gJlMhebJccTGdZxRp2LIctSyuv4d7HtFyOJs6gOyMOJfzCJY+lsKET5qV+I
-         s/FfuQdK4drkjIvzKuE8tA3XAJ/8RSm68zSrkf5KSk3tPVuWHGKjxUh2TJmzYMAdLqR5
-         3n+g==
+Received: by mail-vs1-f48.google.com with SMTP id ada2fe7eead31-5db37a935f1so121006137.1
+        for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 06:07:22 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761224121; x=1761828921;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ASWAVqY9k9riShYHA9c4yv4PgU9rmPYL0SfM1V+LeDk=;
-        b=G2bRsVM//DsFiEF7SRR418O8jHXHrkTzA80Lr9SjPrnOiA4vJSdw6PHFlZPaQSDC9U
-         dVNCcURRT7+QtuxkoqWa3h3tfoxj1aNN92PtE7jj6pi7IJ6hJ7iRepw2APhb8rJxKqLv
-         SyFeQIpIjjfMhOBsxfRCxq9uhMzeH59tHB9TKmC9Nb6DBqOv+SHoD8Tie/r3dtHsM2Iu
-         Xeob61tBZOBJK7b3lje1lsN7ISWIwSXlIQGVURFHuA/ywwh94/nukDRy3F9TefA7ZnnI
-         FJn1bzBWly0SuOlBi0ZyHnwu7n0md4jm9Wet/2SB2iaNbWB3atj74NYZcQf3eEXW0sMb
-         ciJg==
-X-Forwarded-Encrypted: i=1; AJvYcCUoxPDkUukUlLF0wV1UG3DGrjP+z7H9zkt6kEPjOqqiDcNTZY7oSUYsPL4Jmzpynm3QBQfr++XgqwgR@vger.kernel.org
-X-Gm-Message-State: AOJu0YxiacftCgDqvDYEtSkU5IRvn2/BUG92lfC+agHq3naRkXjHpbU7
-	VtOqGLgXUt79nEn+dPdnOwnJ+/TmhHJ5djiNwCJo3Pb6iAVKMT5slr/d
-X-Gm-Gg: ASbGncskKfD3KBCsDSOmSFXYgRvssyCKJf1cs3XWazv98qpdLpPncftFgpTgXeXEsFJ
-	IYRuj69uqIuGqAmtBLrNsMn7wt3Gx21LGl4XDVTCbzsrEWfacFxfvRfZx+gqFamVkTdJdJZIb6T
-	Sc6K3YoOrcC9E3WGtTqqMCJosnAmLGb/VLETBxKq4/z7nNDO8738hIT0HzzunGMOotJP4KzY6LR
-	Zgylv+j5y56Cb8ss1kn+6GLloOcb1s9I5F32walXHEYYSI+LbE87L5nGzQmn7Ubz0uF2lgRllQM
-	eOt/Jism6LZrBSBZhOnFsGu9ZhWpm9AWB/xaquTWP/zTyFviAZIpUfoIWj2Qc2nP4CQ9bn/OqH7
-	6xzUmabk/+YLU9Vh49LAYSnap9RyocqNAAAw5heS/zf+qohUKqlEZ5CWJTL8pDZm3PQoQEo1S/i
-	ydeUdf6X81nJt8qQNmZNVm02ao3nsEuj4ewA==
-X-Google-Smtp-Source: AGHT+IFlM93HSaK/NP7A35B/3WN3MTp6LhxIIWar04bWFUVpNF5QQd4VVvlw7hDSQJ2i5iOtzexD4A==
-X-Received: by 2002:a17:902:db11:b0:240:48f4:40f7 with SMTP id d9443c01a7336-290cba4efc9mr373999375ad.39.1761224120623;
-        Thu, 23 Oct 2025 05:55:20 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b6cf4c053absm2044988a12.14.2025.10.23.05.55.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 23 Oct 2025 05:55:19 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date: Thu, 23 Oct 2025 05:55:17 -0700
-From: Guenter Roeck <linux@roeck-us.net>
-To: Igor Reznichenko <igor@reznichenko.net>
-Cc: conor+dt@kernel.org, corbet@lwn.net, david.hunter.linux@gmail.com,
-	devicetree@vger.kernel.org, krzk+dt@kernel.org,
-	linux-doc@vger.kernel.org, linux-hwmon@vger.kernel.org,
-	linux-kernel@vger.kernel.org, robh@kernel.org,
-	skhan@linuxfoundation.org
-Subject: Re: [PATCH 1/5] drivers/hwmon: Add TSC1641 I2C power monitor driver
-Message-ID: <cea96330-5d7a-4fdc-8fc6-0067769a0b2c@roeck-us.net>
-References: <be691214-bac6-43d4-be62-daa57c833fe7@roeck-us.net>
- <20251023075050.254998-1-igor@reznichenko.net>
+        d=1e100.net; s=20230601; t=1761224841; x=1761829641;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=lIIdZrvjerU9TUToExl2D/WzzHrGb42zkKRg3dbolEQ=;
+        b=amWAePHVpj71P1hMPJTW0pr2Lmqeke9rmL1/nEHq4gn+dsz7KGCIHc07AueSCt752C
+         XtnHC8zgliF6oa9Dzb1PZQPBYRWxjESim4gR1y+ZYoPovnPWvy4pZ5r8jHooNb8i0gWf
+         K48rhQfgKlzbWylQMwJXIHBVzatAEbjTcG2lE1UanKQQbftWdjfLc7aLB+skyeeQFiJb
+         vmS1NQ6fBRiLXzox8Dek+d+X7hfP3ZAxiDBYkr9v/BipyKxv+v6OaeHb6eIW9JDn51xd
+         K/9rUUe08V1b3fKjj9H8AWuXuTem7uD/XXIkcGLMXaIAGOzauLQ13UbXwCVFlY6O1aEw
+         hjZQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWGl52NdSXhzebYcX1XDKfXhd6ZKi1vJQVVMF8xqvhhcX4PSsd4E5QRC27azihhTdAzjKPQeDMSEUuj@vger.kernel.org
+X-Gm-Message-State: AOJu0YyqfVHgPzRp8pnZDVTGA7PU7mkVqjea2a5d9c9EesBD+XD7V+EV
+	s4TVS43mt+3FhN23anhOmhtqf7tEOvJQEu8kuNKmPUhiJ5GJDAf9b73ZtvPaHUro
+X-Gm-Gg: ASbGncsod+9tiYq0xFnaH4/+iF3otaF5e5t/QGPPKM5TIvJz/t77wC/xefTZKDkntmg
+	RHPVwcUuGFpgcQ0U4W+/sYcT2yLGZ+XuPnt7Ph5Ld907cCY7Q6d7Bm0cJXAjOjJ/cNa4fMEG6Eb
+	0r96z0heHo/FapPJQeR+pZ0VA5pgDRx2b9H6oAo2N1jhuvEN2WZWjWqwbeHOE4ZEN6HVVQAGNzv
+	vpIO1UJXK+J0cUWsUfEOO9lfRyhykcdsO9kGk7vIeon3NLueIaKtpWg5E6cdl98idCzM4bNbV44
+	O1XbX90tQbg370ia+gO0uv7WLhlpb2m6kz0D87nbqYlzD3eoCNDrA8JhFKzdvaQkpgjVijOSljw
+	9g8ygdHbg5UPZl0HPy86kMIF+UkvkI9qdFJY+QZD1POnLgVJoLX3wqMAhGjwHDGKC/XOzuZxNP8
+	snod+yr3noNWoZHj9S3ikeaGcl3QAUyNj4hAP6untM0pc0O3Bj
+X-Google-Smtp-Source: AGHT+IF34SOjnhiFXh4b/cXKfvchKkkuISxHgbXgAP6ZqtpfjAfbYq5Gp+UtO61LfzJe/geYaGwrnA==
+X-Received: by 2002:a05:6102:611b:20b0:5d7:de89:b7e3 with SMTP id ada2fe7eead31-5d7de89bc79mr5818167137.9.1761224840448;
+        Thu, 23 Oct 2025 06:07:20 -0700 (PDT)
+Received: from mail-vs1-f43.google.com (mail-vs1-f43.google.com. [209.85.217.43])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-934abb894e3sm881144241.10.2025.10.23.06.07.20
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 23 Oct 2025 06:07:20 -0700 (PDT)
+Received: by mail-vs1-f43.google.com with SMTP id ada2fe7eead31-5db1aa8c93eso397018137.2
+        for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 06:07:20 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCXzasynS6xT9z/1wPaukil0XE+1gIC8sJXw6/RiemJ9gXGXFv5LgIaLygafNdXKTkF1rcA+hGTeTjet@vger.kernel.org
+X-Received: by 2002:a05:6102:304a:b0:5d6:18cc:6087 with SMTP id
+ ada2fe7eead31-5d7dd6d67e3mr6298079137.30.1761224839798; Thu, 23 Oct 2025
+ 06:07:19 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251023075050.254998-1-igor@reznichenko.net>
+References: <20251023123644.8730-1-marek.vasut+renesas@mailbox.org>
+In-Reply-To: <20251023123644.8730-1-marek.vasut+renesas@mailbox.org>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 23 Oct 2025 15:07:08 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXq=4zb421MnwFvhFT_0K0HM=-LhWKueCHnfaEcGEgSLw@mail.gmail.com>
+X-Gm-Features: AWmQ_bk40KChNfSwzFv_aBWco4C4_I0K0e8reqSSxWUwprZ1XtIdssKPgaWL4cw
+Message-ID: <CAMuHMdXq=4zb421MnwFvhFT_0K0HM=-LhWKueCHnfaEcGEgSLw@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: firmware: arm,scmi: Document
+ arm,poll-transport property
+To: Marek Vasut <marek.vasut+renesas@mailbox.org>
+Cc: arm-scmi@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
+	Cristian Marussi <cristian.marussi@arm.com>, Florian Fainelli <florian.fainelli@broadcom.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Sudeep Holla <sudeep.holla@arm.com>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-renesas-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On Thu, Oct 23, 2025 at 12:50:50AM -0700, Igor Reznichenko wrote:
-> Guenter,
-> Thanks for the detailed feedback. I will address it.
-> 
-> > Please send a register dump.
-> 
-> Here's register dump after init during run: 
-> 
-> tsc1641 1-0040: 0x00: 0x003f
-> tsc1641 1-0040: 0x01: 0x0253
-> tsc1641 1-0040: 0x02: 0x0dc0
-> tsc1641 1-0040: 0x03: 0x0053
-> tsc1641 1-0040: 0x04: 0x0250
-> tsc1641 1-0040: 0x05: 0x0033
-> tsc1641 1-0040: 0x06: 0x0000
-> tsc1641 1-0040: 0x07: 0x0000
-> tsc1641 1-0040: 0x08: 0x01f4
-> tsc1641 1-0040: 0x09: 0x0000
-> tsc1641 1-0040: 0x0a: 0x0000
-> tsc1641 1-0040: 0x0b: 0x0000
-> tsc1641 1-0040: 0x0c: 0x0000
-> tsc1641 1-0040: 0x0d: 0x0000
-> tsc1641 1-0040: 0x0e: 0x0000
-> tsc1641 1-0040: 0xfe: 0x0006
-> tsc1641 1-0040: 0xff: 0x1000
-> 
-Great, thanks a lot!
+Hi Marek,
 
-> > > +
-> > > +	/*
-> > > +	 * Disable alert mask first, then write the value and enable alert mask
-> > Why ? 
-> 
-> The idea was to prevent potential previous alert from propagating when changing 
-> the value, plus to only enable alert when crit/lcrit value is non-zero. 
-> But given your response below this is not the right thing to do.
-> 
-> > Disabling alerts if the limit is 0 is wrong: The limit can be set
-> > to 0 on purpose. Only unmasking the limit if a limit is set is just as wrong.
-> > Either limits are enabled and reported, or they are disabled and the attributes
-> > must not be generated. Mis-using the ABI to declare "If the limit value is
-> > 0, mask the limit. Otherwise set the limit and unmask it" is unacceptable.
-> 
-> Thanks for clarification. So would you recommend then that all alerts should 
-> be always on/unmasked for this chip or to add custom sysfs attributes to control 
-> them, since it has this capability?
-> 
+On Thu, 23 Oct 2025 at 14:37, Marek Vasut
+<marek.vasut+renesas@mailbox.org> wrote:
+> Document new property arm,poll-transport, which sets all SCMI operation into
+> poll mode. This is meant to work around uncooperative SCP implementations,
+> which do not generate completion interrupts. This applies primarily on mbox
+> based implementations, but does also cover SMC and VirtIO ones.
+>
+> With this property set, such implementations which do not generate interrupts
+> can be interacted with, until they are fixed to generate interrupts properly.
+>
+> Note that, because the original base protocol exchange also requires some
+> sort of completion mechanism, it is not possible to query SCMI itself for
+> this property and it must be described in DT. While this does look a bit
+> like policy, the SCMI provider is part of the hardware, hence DT.
+>
+> Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
 
-Almost every chip has that capability. That does not warrant a custom sysfs
-attribute. I'd suggest to just enable them all.
+Thanks for your patch!
 
-Guenter
+> --- a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+> +++ b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+> @@ -146,6 +146,13 @@ properties:
+>        this platform. If set, the value should be non-zero.
+>      minimum: 1
+>
+> +  arm,poll-transport:
+> +    type: boolean
+> +    description:
+> +      An optional property which unconditionally forces polling in all transports.
+> +      This is mainly mean to work around uncooperative SCP, which does not generate
+
+meant
+
+> +      completion interrupts.
+> +
+>    arm,smc-id:
+>      $ref: /schemas/types.yaml#/definitions/uint32
+>      description:
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
