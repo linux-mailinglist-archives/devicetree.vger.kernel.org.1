@@ -1,222 +1,235 @@
-Return-Path: <devicetree+bounces-230402-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230403-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0101C02420
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 17:54:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 330E9C02428
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 17:54:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CBACB3A5B4B
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 15:54:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8A2A93A62EE
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 15:54:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4094F24BBFD;
-	Thu, 23 Oct 2025 15:54:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8ED1258EEF;
+	Thu, 23 Oct 2025 15:54:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="W7/7ZX0k"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="asjzfbge"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92948242D97
-	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 15:54:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C80B9246762
+	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 15:54:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761234859; cv=none; b=fZgElcF8lnne47TzwdDX2IK+wjpLXrmAPKYeggsKvdLjQO1cWw5sIRJ1wZwWAAmW1o0xMXv6X011Dap5zahQiX7f/HhGo8V2iGewxtchbLXHhDIPS66UzlTmffRzKSDozcDxGJcurI90wdFj+X4zWVgmBQBacM9+wIX6UpaOsbo=
+	t=1761234860; cv=none; b=mxOEHTp1pJtVW4n8bQ2MPGop1++pOL2PMqz0to5/zh3voPT1t4kLdpaYq68nF2+F0G6xGXfahUHuagTxwZaAWomUXHnmrnJ0mLbi3x9PiikazczEiwzDSEd7JfegNMQxzVE/rkORd2mHbz8GMfSdIzAbbxhftK66N5xA7dTFiKc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761234859; c=relaxed/simple;
-	bh=L6ZUAf2g56f0pbLijFNIC533CJWAt9IDFeMaFeWyyhU=;
+	s=arc-20240116; t=1761234860; c=relaxed/simple;
+	bh=+bQNRO4fRq6WmpXwr2/uDqnf3PV1L2pmYabV6s/CgGw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=iISyudVbAtnrjqrQs9DkunwWTIGN8h4skzfdue2FYnXGvEhuaZmSE57yzC4hV/LqsE/SaNRkXD0J2TrDfGITJp12jtXMs6SlNvZeSlbCMnDpGKTxr+CZQpSHnGecAy3iziGWB10oKPuWuRAadjc83OQcepFSrYSoX8VkkwE8czs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=W7/7ZX0k; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59NESRxq014657
-	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 15:54:16 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	OIzxKAenz0uP2vnqlUCHL0UbaGItN6WBFXym1N/6m4k=; b=W7/7ZX0k6LVGb9pB
-	LqR4H1OtSyiHJV3mKcQQBzX26/ZWmosBILOrtFI4XViImHT0v4bPwI7DePKHlM7a
-	Iywgt3+/tnQzmvheeGLE0ygsjSemUxtPM8o1wh/Avk8TzLzM9YJ/l0oWJy2fL8nc
-	C8hamxjPe4QUlaq/SVbFPmX7oLuVsDz6gTcLSKqle1pRA6PCnG/C9kRcDqabUaZ/
-	Aibr/eWJaEw0Fpe0A1gGfka4zxmo76a++DgnUs/MT2DlvBVyrimbl5k01VQ8WZJY
-	y+3k3ZCkBukTY7TI5vLT27pp3pT2hM0ljjw34JF2025ydv4hBl2DJMBQee7Oo+QW
-	JgBpLQ==
-Received: from mail-pf1-f197.google.com (mail-pf1-f197.google.com [209.85.210.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49xhe0pxma-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 15:54:16 +0000 (GMT)
-Received: by mail-pf1-f197.google.com with SMTP id d2e1a72fcca58-783c3400b5dso649620b3a.1
-        for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 08:54:16 -0700 (PDT)
+	 In-Reply-To:Content-Type; b=Wt88ueVmlizKdtfv9JLXOgjYeSFUE3KliBi7jrtpRDxcqAVi4F2oQFVOyWgBmmtx7ud7ZE48YGnICiQX1hAHrmOVFY7pOj31PazCtxd8VhV86IKbtFUI0jI10GsMFGUBUrTT8a5tp+Dncx1JmLWogwadm2fX2Gg2UEQqgbR5Tto=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=asjzfbge; arc=none smtp.client-ip=209.85.128.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-46fcf9f63b6so5956275e9.2
+        for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 08:54:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1761234857; x=1761839657; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :reply-to:content-language:from:references:cc:to:subject:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=VSVu2yxOxCTzVj/uGbezICgXM1lzxh7i9kyGW3UK/ds=;
+        b=asjzfbgeejWyqW8sYmYcurbNvkOSNGIbhlNObrR5AI3qjZeexXnZ6oVF16tsF525cS
+         nuDFrYb3LEqxHqluiHjJcrYZ537se8Sv3QwyBt93PO+0HU7lMJtBQI6CdRTN2ROvc5+U
+         lqHBJ3aaVYqtdNKIKk7YLQyEFEt3PS7naRh1qdK3hBZPXp9XcqpefIeIM0mmdWtVfqAn
+         ZAg9w0sz+oT/6aH8f6L4eIdJA0k440wV6QQSSU1iTKkRz1jP8MJM4KNx5j7+SlqXJLwO
+         2xzof8h5Lfjt+5dIG24fyeeD5geXJu503CwfRmIUn23UeoDgU+3FUxpBawERMJFdgsQQ
+         9quA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761234855; x=1761839655;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=OIzxKAenz0uP2vnqlUCHL0UbaGItN6WBFXym1N/6m4k=;
-        b=bHnKCVaf59ATw7zb2PHruwkhmn8D8yT7aA9c8uE6/+2vzYuVMbgwwwvJIT0QJi98QD
-         l5XZM1Fzi62JorZNJ2ISpDQQnvQ4eCtSyIpkPWz6DOYJRf/dTsKboVY4wwCmsrcOMsnQ
-         hp5+nq0YwGkbGs4sFrAkotQ7T6sEzR4W/an0MAV9Az1FvlMu7LKtQGO4EWRwJyXr5N4Q
-         1hRq0aQ5ozLc50X83ZYblWbcPKb89bLVSMcbaX/pSv4ifJyqYQcfjeG8wM1RcJoAxjoj
-         PcdFzAjFtLaUWDyGtPQjVfDYuQy63hNdLEcpbq5FkndVZx67sO/7wooTcZqqnBGcnNDI
-         WxtA==
-X-Forwarded-Encrypted: i=1; AJvYcCUyp5xPhQvZZ2DxMviCWCZalhQdxkr3shn/GEfacqsR1ntUTM8FrMu7mKK/CG1nOQ4qO89N3MUIQmHJ@vger.kernel.org
-X-Gm-Message-State: AOJu0YwrFMEokD6rZfgrw9C10r9C3qad2FDGAqMbBoieI/kGvmATrbfT
-	04XM8uoWQCz7gsPlah9ibQ7UNvaVNeM+GNuVHaxcUlftxjTLoj6GlQWShcj7gd/Jc6mQj+4D0rq
-	7Lc/LP4l40YV4k9VP3Nx3YFL+ijvDHbRTJ23fVq7X/TllyE1u9lHIMevGyJvQSSEZ
-X-Gm-Gg: ASbGncsRJ/cpVRQofxrFkeCmnHk4Dwiv8ANj8slwGeMTcNniBq5QVATkaWVNdWp6iki
-	m2w6KSDQny4iGsnfK82UnIhiBI3rlioFFO/SRo7q5lwKRCtZ7+1M8i8trv/Hou69p7hDPvkttp1
-	E9d9CU+y97Ch9Joord08OUA/1rirnqDP2pyrdBLYmy2dGayF4kq9AtOridD5KdkyrMsK8zi9N4p
-	I8TCsoglpIwCjdcJrgGLgEPAbXGiiZJkeLYa8V3Qx3yum3NxGaV9eYaMGxfcA6H8gNbhXLtHh9l
-	liRQ5J0taqL/r2K7AP3ANnO42hOAaiPGB31E3fbeL+LuaZ4VDDw/4Ulp5gEVz6dm1Kxi1EzrfPF
-	wQOpuMopYsDrJsvE4z+CEY4UGOm9NGx+r
-X-Received: by 2002:a05:6a00:22d4:b0:774:1f59:89de with SMTP id d2e1a72fcca58-7a274ba902amr3397234b3a.11.1761234855028;
-        Thu, 23 Oct 2025 08:54:15 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IH+RNZjlAZ/HGhfeZvjXwH2L38Bx85+VCX5eW1fEPyVsXUTievo9QBpW0YYKx7Ywmq/s0eAjw==
-X-Received: by 2002:a05:6a00:22d4:b0:774:1f59:89de with SMTP id d2e1a72fcca58-7a274ba902amr3397174b3a.11.1761234854497;
-        Thu, 23 Oct 2025 08:54:14 -0700 (PDT)
-Received: from [10.216.6.161] ([202.46.23.19])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7a274dc33desm2913319b3a.71.2025.10.23.08.54.03
+        d=1e100.net; s=20230601; t=1761234857; x=1761839657;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :reply-to:content-language:from:references:cc:to:subject:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=VSVu2yxOxCTzVj/uGbezICgXM1lzxh7i9kyGW3UK/ds=;
+        b=IJnfOSS7R2GN5+DzX4XKGRSVvx31X9WfKKegrD+LfHJui9RqkB/TO8dWVaIIbeFAa9
+         dMEsQWFP+GZYjR92Tl3Xhs3XdB067mMJND3scS0aW86XhKmgGmF/jHloIQyHZeKKjqf2
+         bUFdgcz3jelA+AxBatinC6nlqJjmEs7eSyx57XtwTcie/4tToYK1aOhRRS79aJ4wNnOL
+         us3vQgTKvaRhOH9nC84gkPpfabJj8rWVfIauZXbaHXi5GZD/MpBUHD5Oe2QNalzxv2iM
+         LWpVeZFALiiLEJYvRa6cOWcvpusFGT4DJECCN7Av+DgIGQELSnkw8uTaIGhYHshkmXPU
+         gxlA==
+X-Forwarded-Encrypted: i=1; AJvYcCW/w4TeYZlebDuPug5WaTy1B/RNZ4tjsEnvRWLH4TdvuByAuefp+IF0u4+OubXzn8yc2j/6reiQaOZ/@vger.kernel.org
+X-Gm-Message-State: AOJu0YygrwkqQaF1FLpv8bOhLMsjs+QRvitsD+XEMl7fYKj1Oq6Te2OG
+	yyFVi8o4zE/OFqk4+53uyJgIWnQeg2AqvzmMNFcQeHk9Eay5n+sK7orWklk4cvtMb3w=
+X-Gm-Gg: ASbGncusOwbY9aGwO0jhww6jl6W6PbzKj38XyZqotfw+rJp0codrrMwWUmZP9EmOTox
+	LT4boNp+fsmxXHfxQ+gsaAZ+3NsfNyDULSNhmsqeaWIAyZX0jR8UtKMJSVybF0BOlhnOAjSkDBY
+	mud54verWn7uo2gF5tENVMsG1Uh473Gs9Q7uP/w9mD0qijOR5Cpt/VDOBhMHITJUYLAMNQ1vsA5
+	yJPebl5QhV6z2dLbgI4LMjKuU5YrgSsNFI3QMVod2y6UFaOXUuocFUE9TsHEHztYw82TNkTdMcx
+	YOJmlkG4VoZxArFNiY7uZVcfXYl1I7QyPdqoH7ng4+ta19DNIOs4jeBEu1+MFv8ny+XOwlvmg77
+	nEISPxVQYAJ8VLdoEZ9jJqD47QIyXuQqIbqOo8gCEJY0IWRq3HS4SLYInHG9oWdvjzXgHz1stRX
+	4cr+znC9DixoawO1L64p7wLPTImFKo05LMBPq4yy/u8QOjGe4D+biHXDqkFbkb
+X-Google-Smtp-Source: AGHT+IEU+pEEpJDkNwcVSD6BECnItRO+JIkIpEXv24bYvb5oKCys5mFoigX1yTVder56JjMcwSS4HA==
+X-Received: by 2002:a05:600c:3512:b0:471:12c2:201f with SMTP id 5b1f17b1804b1-471179134f0mr213733285e9.32.1761234856587;
+        Thu, 23 Oct 2025 08:54:16 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:3d9:2080:a1bd:ad6d:e81:795e? ([2a01:e0a:3d9:2080:a1bd:ad6d:e81:795e])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-475cae9253bsm42203255e9.1.2025.10.23.08.54.16
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 23 Oct 2025 08:54:14 -0700 (PDT)
-Message-ID: <0e49a6b0-276c-85b4-3ffa-39e5412db522@oss.qualcomm.com>
-Date: Thu, 23 Oct 2025 21:24:01 +0530
+        Thu, 23 Oct 2025 08:54:16 -0700 (PDT)
+Message-ID: <6f608c8f-b75a-4865-8a2e-f990ede2c662@linaro.org>
+Date: Thu, 23 Oct 2025 17:54:15 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH v16 05/14] power: reset: reboot-mode: Expose sysfs for
- registered reboot_modes
-Content-Language: en-US
-To: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Sebastian Reichel
- <sre@kernel.org>, Rob Herring <robh@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Souvik Chakravarty <Souvik.Chakravarty@arm.com>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Andy Yan <andy.yan@rock-chips.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>, Konrad Dybcio <konradybcio@kernel.org>,
-        cros-qcom-dts-watchers@chromium.org, Vinod Koul <vkoul@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Florian Fainelli <florian.fainelli@broadcom.com>,
-        John Stultz <john.stultz@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-        Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Andre Draszik
- <andre.draszik@linaro.org>,
-        Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>,
-        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org,
-        Elliot Berman <quic_eberman@quicinc.com>,
-        Srinivas Kandagatla <srini@kernel.org>
-References: <20251015-arm-psci-system_reset2-vendor-reboots-v16-0-b98aedaa23ee@oss.qualcomm.com>
- <20251015-arm-psci-system_reset2-vendor-reboots-v16-5-b98aedaa23ee@oss.qualcomm.com>
- <CACMJSetWthCcJo8v7EuUK-aDKhf5KTNG5WQQ9aTQu62B+E=DMA@mail.gmail.com>
- <8fb6e8e0-cdca-0bd5-d0fe-56b5f6d27a5c@oss.qualcomm.com>
- <CACMJSetTrze028iXmH3i=JguJy=aNOMcnkLhO1ewYNiusvVmgA@mail.gmail.com>
- <efc84b92-43f9-ba25-1259-ae3907273af4@oss.qualcomm.com>
- <CACMJSetctEH4K58R9JvSYNzzYgE0NGMsAr5JxiZ4RH_3T08x-A@mail.gmail.com>
-From: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>
-In-Reply-To: <CACMJSetctEH4K58R9JvSYNzzYgE0NGMsAr5JxiZ4RH_3T08x-A@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 0/2] media: i2c: add Samsung S5KJN1 image sensor device
+ driver
+To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>,
+ Hans Verkuil <hverkuil@kernel.org>, Hans de Goede <hansg@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20251016020419.2137290-1-vladimir.zapolskiy@linaro.org>
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Content-Language: en-US, fr
+Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <20251016020419.2137290-1-vladimir.zapolskiy@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDIxMDE2NyBTYWx0ZWRfXxyQovU7s7IIu
- N2pt6WrkyHPA+J30s1lypQS4IIaNUM97+hsilRMqSJq3QXQOMoeMH2DtXblinQd84iEaEyiNEwh
- 9ikW6BLfWf9b7nDSod0b1kYaZHrxMC9oJbYkCFu1+HQ25J8uIIEbmkq14zJTrzQT03T/oQGXvK3
- Kbvt59QkJBb90fKFoC2Do497sjdQ1PhX53mANBr8bUh/Huxqavb0kfGW+ARvfJasEF5ieIgtMV5
- ThgLuZrWKodjBnhLr/0mRmeZ5zF6eQ2X7NH/gvsIj0Tg/x1HBahgiIXNUbyMxMvpaedZ9bdhjTZ
- GG3ZwgkoGiMVgfWwXfyxqQFH8FCG3nnTtK6iV1GbChufpw5SembRKZjv4lXi9oef4RAvyUrdpWF
- 0rk3DRaoG9JgNmSiHQCEvT7lvUdZLg==
-X-Proofpoint-ORIG-GUID: D84K1iHHPXN2Bi-lT2nVVW-obpX5q2Ib
-X-Authority-Analysis: v=2.4 cv=WYUBqkhX c=1 sm=1 tr=0 ts=68fa4fa8 cx=c_pps
- a=rEQLjTOiSrHUhVqRoksmgQ==:117 a=j4ogTh8yFefVWWEFDRgCtg==:17
- a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=EUspDBNiAAAA:8 a=rypWqsooHcgQ8WysroIA:9 a=QEXdDO2ut3YA:10
- a=2VI0MkxyNR6bbpdq8BZq:22
-X-Proofpoint-GUID: D84K1iHHPXN2Bi-lT2nVVW-obpX5q2Ib
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-10-23_01,2025-10-22_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 adultscore=0 bulkscore=0 impostorscore=0 spamscore=0
- priorityscore=1501 clxscore=1015 malwarescore=0 lowpriorityscore=0
- phishscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2510020000
- definitions=main-2510210167
 
-
-
-On 10/23/2025 8:32 PM, Bartosz Golaszewski wrote:
-> On Wed, 22 Oct 2025 at 16:21, Shivendra Pratap
-> <shivendra.pratap@oss.qualcomm.com> wrote:
->>
->>
->>
->> On 10/20/2025 1:10 PM, Bartosz Golaszewski wrote:
->>> On Fri, 17 Oct 2025 at 21:40, Shivendra Pratap
->>> <shivendra.pratap@oss.qualcomm.com> wrote:
->>>>
->>>>>
->>>>> If you're using devres here - at least make it obvious by adding the
->>>>> devm_ prefix to the function name and make it take an explicit struct
->>>>> device * parameter so that it's clear who owns the managed resource.
->>>>>
->>>>
->>>> sure. we can add devm_ prefix to the function name.
->>>> reboot->reboot_dev is an internal member of struct reboot_mode_driver *reboot.
->>>> The struct reboot_mode_driver *reboot is owned by the calling driver.
->>>> If we want to PASS reboot->reboot_dev to the devm_ prefixed function call, we
->>>> will need to kind of split create_reboot_mode_device into two calls - device_create
->>>> in a separate function and then call the devm_ prefix function where we add the devres_alloc.
->>>> Can you suggest a bit more on this?
->>>>
->>>
->>> Ah, ok I missed the broken logic here. Devres should only be used in
->>> devices already *attached* to a driver as all managed resources will
->>> get released on driver *detach*. What you have here may "work" by
->>> accident but that's not correct and is very fragile as soon as you
->>> have some non-standard behavior or error paths. Devres won't fly here,
->>> please just use regular allocation and free whatever you need in the
->>> corresponding release/free/whatever routine.
->>
->> Thanks, got the problem here. Was using devres to associate the reboot_mode struct
->> with the driver, so that it could be retrieved later when reboot_modes_show is called.
->>
->> When reboot_modes_show is invoked, there's no direct way to identify which reboot_mode
->> instance is tied to the current driver, as multiple drivers can register with the reboot-mode
->> framework at the same time. Without devres, will need to maintain a global list of mapping for
->> all device driver structs and their corresponding reboot_mode struct. Then reboot_modes_show
->> would have to look up the correct reboot_mode struct using the device driver's pointer.
->>
->> Hope its ok to maintain that separate logic here?
->>
+On 10/16/25 04:04, Vladimir Zapolskiy wrote:
+> Samsung S5KJN1 is a 50MP image sensor, it produces Bayer GRBG (2x2)
+> frames in RAW10 output format, the maximum supported output resolution
+> is 8160x6144 at 10 frames per second rate.
 > 
-> Why can't you just do:
+> Changes from v1 to v2:
+> * added a collected Reviewed-by tag to the dt bindings documentation (Rob),
+> * managed to get one PLL setup to cover both supported output modes,
+> * vflip/hflip sensor controls swap media bus code of Bayer patterns,
+> * extracted a common initialization subsequence of modes into its own array,
+> * set a step to the analog gain control like it's done in downstream,
+> * reworded a sequence of CCI commands in s5kjn1_enable_streams().
 > 
-> device_create(rb_class, NULL, 0, data reboot->driver_name);
+> Link to v1:
+> - https://lore.kernel.org/linux-media/20250928200956.1215285-1-vladimir.zapolskiy@linaro.org
 > 
-> Where data is whatever driver data you want to associate with the new
-> class device? You can then retrieve it with dev_get_drvdata() in
-> callbacks.
+> ----8<---- V4L2 compliance results (v4l-utils-1.20.0) ----8<----
+> % v4l2-compliance -d /dev/v4l-subdev28
+> v4l2-compliance SHA: not available, 64 bits, 64-bit time_t
+> 
+> Compliance test for device /dev/v4l-subdev28:
+> 
+> Required ioctls:
+> 
+> Allow for multiple opens:
+> 	test second /dev/v4l-subdev28 open: OK
+> 	test for unlimited opens: OK
+> 	test invalid ioctls: OK
+> 
+> Debug ioctls:
+> 	test VIDIOC_LOG_STATUS: OK (Not Supported)
+> 
+> Input ioctls:
+> 	test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+> 	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+> 	test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+> 	test VIDIOC_ENUMAUDIO: OK (Not Supported)
+> 	test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
+> 	test VIDIOC_G/S_AUDIO: OK (Not Supported)
+> 	Inputs: 0 Audio Inputs: 0 Tuners: 0
+> 
+> Output ioctls:
+> 	test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+> 	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+> 	test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+> 	test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+> 	test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+> 	Outputs: 0 Audio Outputs: 0 Modulators: 0
+> 
+> Input/Output configuration ioctls:
+> 	test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+> 	test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+> 	test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+> 	test VIDIOC_G/S_EDID: OK (Not Supported)
+> 
+> Control ioctls:
+> 	test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK
+> 	test VIDIOC_QUERYCTRL: OK
+> 	test VIDIOC_G/S_CTRL: OK
+> 	test VIDIOC_G/S/TRY_EXT_CTRLS: OK
+> 	test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK
+> 	test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+> 	Standard Controls: 12 Private Controls: 0
+> 
+> Format ioctls:
+> 	test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK (Not Supported)
+> 	test VIDIOC_G/S_PARM: OK (Not Supported)
+> 	test VIDIOC_G_FBUF: OK (Not Supported)
+> 	test VIDIOC_G_FMT: OK (Not Supported)
+> 	test VIDIOC_TRY_FMT: OK (Not Supported)
+> 	test VIDIOC_S_FMT: OK (Not Supported)
+> 	test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+> 	test Cropping: OK (Not Supported)
+> 	test Composing: OK (Not Supported)
+> 	test Scaling: OK (Not Supported)
+> 
+> Codec ioctls:
+> 	test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+> 	test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+> 	test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
+> 
+> Buffer ioctls:
+> 	test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK (Not Supported)
+> 	test VIDIOC_EXPBUF: OK (Not Supported)
+> 	test Requests: OK (Not Supported)
+> 
+> Total for device /dev/v4l-subdev28: 41, Succeeded: 41, Failed: 0, Warnings: 0
+> 
+> ----8<----
+> 
+> Vladimir Zapolskiy (2):
+>    dt-bindings: media: i2c: Add Samsung S5KJN1 image sensor
+>    media: i2c: add Samsung S5KJN1 image sensor device driver
+> 
+>   .../bindings/media/i2c/samsung,s5kjn1.yaml    |   95 ++
+>   MAINTAINERS                                   |    8 +
+>   drivers/media/i2c/Kconfig                     |   10 +
+>   drivers/media/i2c/Makefile                    |    1 +
+>   drivers/media/i2c/s5kjn1.c                    | 1387 +++++++++++++++++
+>   5 files changed, 1501 insertions(+)
+>   create mode 100644 Documentation/devicetree/bindings/media/i2c/samsung,s5kjn1.yaml
+>   create mode 100644 drivers/media/i2c/s5kjn1.c
+> 
 
-sure. thanks for the suggestion. That will make it much simpler.
-
-thanks,
-Shivendra
+Tested-by: Neil Armstrong <neil.armstrong@linaro.org> # on SM8650-QRD
 
