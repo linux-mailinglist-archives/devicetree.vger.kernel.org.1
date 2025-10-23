@@ -1,323 +1,137 @@
-Return-Path: <devicetree+bounces-230284-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230287-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10F8EC01254
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 14:32:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D594BC012B4
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 14:37:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 89FC1188D964
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 12:33:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4740718C2379
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 12:37:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78331313E1B;
-	Thu, 23 Oct 2025 12:32:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6166D3043CD;
+	Thu, 23 Oct 2025 12:37:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MomXxH2R"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="f7S/AOfU";
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="Wn5Nl7G6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5599C22068B
-	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 12:32:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A737B2F1FE6;
+	Thu, 23 Oct 2025 12:37:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.151
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761222759; cv=none; b=DQFk6HyADxXI2Ku8qgq0RW1LEfjQGSsfEjtJvtvZfnDEFYbqGq+xUF5zh6BFhDN8f0auDhgjMt/Fjt22Ep6ofRy1L9Ruyxrq/vFrFtLmgNTfMWli3pPFPU9+vkS9PWPziNtL8PPQ3NVDwThbofdEcrbSWzBj8Fru6GttbvEiLzw=
+	t=1761223035; cv=none; b=ib6U5TaFNCScCNKYKh/z5KWIydnvJwh7cKOklF6VkvYIkYrDS+oNAUwBD8nBhxB0rouV8vL3qppmMHcmLTJeGysDg//3gmVlanrRSgIZgkxoRdFW9312oHnz0c+ss2zxGmOQxFmUBgSCvmHe8jqcDflrROYAe5yxR/6zHv5NhtU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761222759; c=relaxed/simple;
-	bh=ImYeRrFeQNFB7VLJqanuaORolDo+/dMl7766Ze4HmHk=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=D8vREZ9XuDvB2NgIattDahZMc/H50T2izjoFp0EV+8utkwxG3jdGINU5MceGxoCjTixqRIMx+9xvq1rUlFGyxSj3LOyFOyH4HqFhscAV7D2YexCVzXNbcZh+d//UvFqj/QLESaH9WifPZrPeyU+u2djD625uALJ7GBDI3wmg/1Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MomXxH2R; arc=none smtp.client-ip=209.85.128.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-46e6ba26c50so6248045e9.2
-        for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 05:32:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1761222756; x=1761827556; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=z7e61v6J4O9ATtCAEUwBdJpaGZuj6WojFVbriu7X/q4=;
-        b=MomXxH2RxDrjrn17bc0ZOK9M0ZpITKEBVcVLGleVfEvEHYYTiprHFljzPb4/903MIE
-         t9m5pU3m/l8wPvEUFZXsp3fSl4EHveX3R7dhiCpG7LIub/UZla4Eg/ccZRkaE/rJwDcX
-         WDPykC5BCMmkNZ9ncsZa+3Vw+DxZnR5TZVhzlM0+Voai6olT8rgsrTIKlDYUMFGnQYCz
-         frnY0BcDeYPyqlDUlAYXzi1D6u6OVntdoHQs1itGFaWD05FX8vwrtxIdMKp313Dmj6VG
-         HHfb6O7IG0lPEcM98ReRV6Rh3Iqwwojaty2FMzceb04tjRwpFXBEDQW+JHC+uH5PYntC
-         yqkA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761222756; x=1761827556;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=z7e61v6J4O9ATtCAEUwBdJpaGZuj6WojFVbriu7X/q4=;
-        b=EOpTYrBNVY38bka/puH0Y9Sru96+hS6VfSvf1+VgCqPvTuXRwy59zGzX8z8U8obEmj
-         4NhgeosUHLWzb/zXEiU+CMFPLPk3vvvRol8MILY95DM4sVUneJnxIWpe2ANepdPCndtG
-         otK8g2TmY1SKUk//p32fMr4nRZqbS5eGsWA3tKxqRxj0RKqAIlen5xcH3+N/FCNgWD7T
-         X5yJDgxhEMzuWeF7FzTvp3UxrEN3I0WVuqVHh+wYb8Dg7T/27C9HkHHvmScYbDIf89bK
-         VSIArRxycrZNPBHw1/FvjD60AMWbW9L1lfT1ZQuncojsbPB/bGvNqukkdC+qblui3kE8
-         WWag==
-X-Forwarded-Encrypted: i=1; AJvYcCU5pdshYD37er0G7cxtryKajl5t1JNYL17DJ6GNTedK5u8O054LRS395yVaH/PvkhUF13pC1VRruUXZ@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw3DPwj5vXARW07z6Ef/5CHovmqk5G0xuRZ6aL/og/hgVfV3DdW
-	pVHo7EO1CUew+2KivHtKzptCvv62GEQD5DCE5DC8WZMyLJ0PvjKC4Mp8
-X-Gm-Gg: ASbGnct7ibQwmNp5e1U7GITgLS4HCO67mhwkHcquvehmO9gdRZ2OqR3cc7ONhNvhMNB
-	xkTM9yRLlsEWe96WkHadhI+X7GiQXPJQ6iyWQ090r+h1CgiwAbsNBnYMhaRdYl7zUe5BuxZygsY
-	z26bDNUi99eTMu0lKXsmhy0IV/5o4STJcuLEM9Ecot26o+l8HYn30oT9JmQP+Lra1nOkFSf72H/
-	ueOwZGhn7b2HpWWEgdBsKHhIfMP7lS2mkRUKbA40DrWugBOqX1M3pGwdEaNU3zPYHI/xUcGQuYe
-	USGfC9GleNHA/XEK3cpNzx0RvLFDMJHt+9OlTYmRugs3Sk0SDiMXQds5BrLVmfSxcmCXMj6Us/g
-	giLbSiYgoOyZ3q1/1cbd7U0HNub57DNzcfXwGMGYP2wDZuckP615S2lLXLeLlMwncVxBys4iM4i
-	KwdtkWxUCt7Ae+4gyHpnK7roMNf/1C5UbJODcDcSHZox7pL8yFCRKvwnBk
-X-Google-Smtp-Source: AGHT+IGKyCAODeMTUl+gxq2i3XDR/HDdHpNBSXxr2ExR+43T7cM9sPtspUT2+NpeVn8DoO81OMCGtg==
-X-Received: by 2002:a05:600c:444d:b0:45b:79fd:cb3d with SMTP id 5b1f17b1804b1-471179202famr171048855e9.36.1761222755361;
-        Thu, 23 Oct 2025 05:32:35 -0700 (PDT)
-Received: from 0.1.2.1.2.0.a.2.dynamic.cust.swisscom.net ([2a02:1210:8642:2b00:82ee:73ff:feb8:99e3])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-475cae9f8eesm35387245e9.6.2025.10.23.05.32.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 23 Oct 2025 05:32:34 -0700 (PDT)
-Message-ID: <b1fbce9d07df3daa8657f56d254d279aa784cffa.camel@gmail.com>
-Subject: Re: [PATCH 1/3] ASoC: cs4271: Fix cs4271 I2C and SPI drivers
- automatic module loading
-From: Alexander Sverdlin <alexander.sverdlin@gmail.com>
-To: Javier Martinez Canillas <javierm@redhat.com>, Mark Brown
-	 <broonie@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
-	 <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: Wolfram Sang <wsa@the-dreams.de>, Herve Codina
- <herve.codina@bootlin.com>,  David Rhodes <david.rhodes@cirrus.com>,
- Richard Fitzgerald <rf@opensource.cirrus.com>, Liam Girdwood	
- <lgirdwood@gmail.com>, Jaroslav Kysela <perex@perex.cz>, Takashi Iwai	
- <tiwai@suse.com>, Nikita Shubin <nikita.shubin@maquefel.me>, Axel Lin	
- <axel.lin@ingics.com>, Brian Austin <brian.austin@cirrus.com>, 
-	linux-sound@vger.kernel.org, patches@opensource.cirrus.com, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Thomas Petazzoni	
- <thomas.petazzoni@bootlin.com>
-Date: Thu, 23 Oct 2025 14:32:34 +0200
-In-Reply-To: <873479ong5.fsf@ocarina.mail-host-address-is-not-set>
-References: <e7873e6ce07cd92f4b5ce8880aa81b12c2a08ed3.camel@gmail.com>
-	 <d38779a7-a1af-49e4-b429-5ebd791e2168@sirena.org.uk>
-	 <d42ab1a0665f55731aabd1e9fcb31b8401b7913f.camel@gmail.com>
-	 <873479ong5.fsf@ocarina.mail-host-address-is-not-set>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.0 
+	s=arc-20240116; t=1761223035; c=relaxed/simple;
+	bh=0sUfSSI7p/RnLWbtiSW3BgdQi/kAat/k6I+2C86hC6Y=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=TNYvYuPNI0B9yp6zMmNYoZhW5XclMlkNi1YCE87wcE75BXI4mDVXBwp2UC7VvHZ0AwCOBCiYlnuBHYWnkUl+oGk34YeLeqYE8ijrkMduiPmaU929IvsGMTooLr2g7LAGbweORJTcBH2Zi720qmYHrLlNQtGjmsktxrhODWlgm7c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=f7S/AOfU; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=Wn5Nl7G6; arc=none smtp.client-ip=80.241.56.151
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp2.mailbox.org (smtp2.mailbox.org [10.196.197.2])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4cslsY3Nthz9sqg;
+	Thu, 23 Oct 2025 14:37:05 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1761223025;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=6WkBUEsZXrdSrWtDBY0p0szZixzCZ3r/xfDV1TsjmXc=;
+	b=f7S/AOfUym2WSQJD+wd5aCNm4AcP9LB01v9Bhh58ON7xu620sLvUk5ROwnxbwmbLhN1Z2+
+	uBKqjPaqP6E/0fLu5zEEqrzO1NTJL9dQCffwu6oeCeKaT7B5aflKzAVxujWNjk/vLa3d6N
+	JvSp20fGFIlPFVwuj4qeenp8qfF7l8Xp4YfTI0DIQ1swq/yyQPf+wR54F/h7zrE7CLLvMH
+	GseK5unRSS1qw1gy1npHN7x9ojq1YT1pjYTJduGGBJ4VBhIdpdOVXqIhFyoUZ4t3inBk8M
+	WVTxFLE4zcZTaIaEcO4TcEZXZBPwHw2v1W0DgJDZpMB3IxqYPjTi1uLyACnrhA==
+From: Marek Vasut <marek.vasut+renesas@mailbox.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1761223023;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=6WkBUEsZXrdSrWtDBY0p0szZixzCZ3r/xfDV1TsjmXc=;
+	b=Wn5Nl7G6hP6vmCoD+qRaXIEZCLFqbYiHMmh50h/DCfCsq0FFf77PcNErjp1nsPCPWtK0bD
+	60bl5kL+31jADa0JwZOhQJNr3xg/aw0oBdNPn8eUocT2IPmjsw+3XuzxJ2In4m9AqpIqsc
+	DxAITUnhaly7YVw9rEQELxPUWmtYChtKxEW7sHbtjWO7cO9mnYARLYsQEKFWtII/hHLab9
+	0L5bF7OrZ3XjrGmTbLVTyrlHVXvYx1C1FlzAQeMOZ020fOuhz2iZwyroE8FiA7cm6HhdAB
+	hnApM0vnLoHJulQXoP/lP3Z9mQgTPLqBQ/XFfBQIxx33WLjNAD1/Mn+qzbAz4g==
+To: arm-scmi@vger.kernel.org
+Cc: Marek Vasut <marek.vasut+renesas@mailbox.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Cristian Marussi <cristian.marussi@arm.com>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Sudeep Holla <sudeep.holla@arm.com>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-renesas-soc@vger.kernel.org
+Subject: [PATCH 1/2] dt-bindings: firmware: arm,scmi: Document arm,poll-transport property
+Date: Thu, 23 Oct 2025 14:35:57 +0200
+Message-ID: <20251023123644.8730-1-marek.vasut+renesas@mailbox.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-MBO-RS-META: ur38htuptdf9d77rhncyiu8mnbh67gm1
+X-MBO-RS-ID: 946e3c1781cf93a3546
 
-Hi Javier, DT guys,
+Document new property arm,poll-transport, which sets all SCMI operation into
+poll mode. This is meant to work around uncooperative SCP implementations,
+which do not generate completion interrupts. This applies primarily on mbox
+based implementations, but does also cover SMC and VirtIO ones.
 
-On Thu, 2025-10-23 at 13:40 +0200, Javier Martinez Canillas wrote:
-> > On Wed, 2025-10-22 at 15:56 +0100, Mark Brown wrote:
-> > > > > I'm very reluctant to touch this stuff for SPI without some very =
-careful
-> > > > > analysis that it's not going to cause things to explode on people=
-, right
-> > > > > now things seem to be working well enough so I'm not clear we'd b=
-e
-> > > > > solving an actual problem.
-> > >=20
-> > > > The actual problem is that i2c-core is producing "of:" prefixed uev=
-ents
-> > > > instead of "i2c:" prefixed uevents starting from v4.18.
-> > >=20
-> > > > Most of the dual-bus ASoC CODECs are affected.
-> > >=20
-> > > That's a description of what change but not of a concrete problem tha=
-t
-> > > users are experiencing.
-> >=20
-> > the concrete problem Herve has experienced is that cs4271-i2c will not =
-be
-> > loaded automatically starting with Linux v4.18 (commit af503716ac14
-> > "i2c: core: report OF style module alias for devices registered via OF"=
-).
-> >=20
-> > > > Now declaring "of:" to be the new I2C bus prefix for uevents starti=
-ng from
-> > > > Linux v4.18 sounds strange.
-> > >=20
->=20
-> I don't find that strange at all. My opinion is that is the correct
-> thing to do for the following reasons:
->=20
-> * The struct of_device_id table (and not the struct i2c_device_id table)
-> =C2=A0 is used to match registered devices through DT / OF with I2C drive=
-rs.
->=20
-> * All other bus types but SPI report an MODALIAS=3Dof: for devices that
-> =C2=A0 are registered through OF.
->=20
-> * I2C (and even SPI) devices registered by ACPI report a MODALIAS=3Dacpi:
-> =C2=A0 and not a MODALIAS=3Di2c: or MODALIAS=3Dspi:.
->=20
-> So I would claim that I2C reporting MODALIAS=3Dof: when devices are=20
-> registered through OF are consistent with other buses, using the same
-> data to both load modules and match drivers and also more consistent
-> on how the I2C subsystem handles registration through ACPI, OF and pdata.
->=20
-> Unfortunately the DT support in SPI was not complete at the time, and I
-> don't think it can't be changed at this time without breaking something
-> as Mark correctly said.
->=20
-> I fixed a lot of I2C drivers and DTS when doing the I2C converstion and
-> even with that some regressions were introduced like the one you report.
->=20
-> > > I think a robust solution would involve having the OF aliases namespa=
-ced
-> > > by bus, or just not using the OF aliases but potentially having
-> > > collisions if two vendors pick the same device name.
-> >=20
-> > But this sounds like the situation before the above mentioned commit
-> > af503716ac14, when both i2c and spi were symmetrically namespaced with
-> > i2c: and spi: respectively and contained the "compatible" stripped of t=
-he
-> > vendor prefix.
-> >=20
->=20
-> Is not the same for the reasons I mentioned above. What Mark suggests is
-> to encode the bus type information in the OF compatible string, while sti=
-ll
-> being consistent about the table used to report modaliases and match devi=
-ces.
->=20
-> Maybe we could have something like the following (not much tested) patch =
-?
->=20
-> From b00f5914606fb72a5f7bdb38e63d109264261dee Mon Sep 17 00:00:00 2001
-> From: Javier Martinez Canillas <javierm@redhat.com>
-> Date: Thu, 23 Oct 2025 13:32:04 +0200
-> Subject: [PATCH RFC] of: Report the bus type in module alias type sub-fie=
-ld
->=20
-> The modaliases for devices registered through Device Trees don't have any
-> information about the bus of the device. For example, an I2C device has:
->=20
-> $ cat /sys/devices/platform/soc/fe804000.i2c/i2c-1/1-003c/uevent
-> DRIVER=3Dssd130x-i2c
-> OF_NAME=3Doled
-> OF_FULLNAME=3D/soc/i2c at 7e804000/oled at 3c
-> OF_COMPATIBLE_0=3Dsolomon,ssd1306fb-i2c
-> OF_COMPATIBLE_N=3D1
-> MODALIAS=3Dof:NoledT(null)Csolomon,ssd1306fb-i2c
->=20
-> $ modinfo ssd130x-i2c | grep alias
-> alias:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 of:N*T*Csolo=
-mon,ssd1309fb-i2cC*
-> alias:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 of:N*T*Csolo=
-mon,ssd1309fb-i2c
-> alias:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 of:N*T*Csolo=
-mon,ssd1307fb-i2cC*
-> alias:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 of:N*T*Csolo=
-mon,ssd1307fb-i2c
-> alias:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 of:N*T*Csolo=
-mon,ssd1306fb-i2cC*
-> alias:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 of:N*T*Csolo=
-mon,ssd1306fb-i2c
-> alias:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 of:N*T*Csolo=
-mon,ssd1305fb-i2cC*
-> alias:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 of:N*T*Csolo=
-mon,ssd1305fb-i2c
-> alias:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 of:N*T*Csino=
-wealth,sh1106-i2cC*
-> alias:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 of:N*T*Csino=
-wealth,sh1106-i2c
->=20
-> The module aliases and compatible string have the bus (-i2c) as suffix to
-> denote that is a driver for a device that can be accessed through I2C.
->=20
-> This is done to prevent disambiguate in the case that the same device can
-> be accessed through another bus (i.e: SPI) and have a different driver.
->=20
-> To prevent this and allow to use the same compatible string for the same
-> device regardless of the bus type used, let's add information about the
-> bus type in the devide type module aliases sub-field that are reported to
-> user-space. The same device then will report something like following:
->=20
-> $ cat /sys/devices/platform/soc/fe804000.i2c/i2c-1/1-003c/uevent
-> DRIVER=3Dssd130x-i2c
-> OF_NAME=3Doled
-> OF_FULLNAME=3D/soc/i2c at 7e804000/oled at 3c
-> OF_COMPATIBLE_0=3Dsolomon,ssd1306fb-i2c
-> OF_COMPATIBLE_N=3D1
-> OF_TYPE=3Di2c
-> MODALIAS=3Dof:NoledTi2cCsolomon,ssd1306fb-i2c
->=20
-> Signed-off-by: Javier Martinez Canillas <javierm@redhat.com>
-> ---
-> =C2=A0drivers/of/device.c | 6 ++++--
-> =C2=A0drivers/of/module.c | 8 ++++++--
-> =C2=A02 files changed, 10 insertions(+), 4 deletions(-)
->=20
-> diff --git a/drivers/of/device.c b/drivers/of/device.c
-> index f7e75e527667..4187decc2873 100644
-> --- a/drivers/of/device.c
-> +++ b/drivers/of/device.c
-> @@ -225,8 +225,10 @@ void of_device_uevent(const struct device *dev, stru=
-ct kobj_uevent_env *env)
-> =C2=A0	add_uevent_var(env, "OF_NAME=3D%pOFn", dev->of_node);
-> =C2=A0	add_uevent_var(env, "OF_FULLNAME=3D%pOF", dev->of_node);
-> =C2=A0	type =3D of_node_get_device_type(dev->of_node);
-> -	if (type)
-> -		add_uevent_var(env, "OF_TYPE=3D%s", type);
-> +	if (!type)
-> +		type =3D dev_bus_name(dev);
-> +
-> +	add_uevent_var(env, "OF_TYPE=3D%s", type);
-> =C2=A0
-> =C2=A0	/* Since the compatible field can contain pretty much anything
-> =C2=A0	 * it's not really legal to split it out with commas. We split it
-> diff --git a/drivers/of/module.c b/drivers/of/module.c
-> index 1e735fc130ad..f22ddc83ef40 100644
-> --- a/drivers/of/module.c
-> +++ b/drivers/of/module.c
-> @@ -11,6 +11,7 @@
-> =C2=A0ssize_t of_modalias(const struct device_node *np, char *str, ssize_=
-t len)
-> =C2=A0{
-> =C2=A0	const char *compat;
-> +	const char *type;
-> =C2=A0	char *c;
-> =C2=A0	struct property *p;
-> =C2=A0	ssize_t csize;
-> @@ -24,10 +25,13 @@ ssize_t of_modalias(const struct device_node *np, cha=
-r *str, ssize_t len)
-> =C2=A0	if ((len > 0 && !str) || len < 0)
-> =C2=A0		return -EINVAL;
-> =C2=A0
-> +	type =3D of_node_get_device_type(dev->of_node);
-> +	if (!type)
-> +		type =3D dev_bus_name(dev);
-> +
-> =C2=A0	/* Name & Type */
-> =C2=A0	/* %p eats all alphanum characters, so %c must be used here */
-> -	csize =3D snprintf(str, len, "of:N%pOFn%c%s", np, 'T',
-> -			 of_node_get_device_type(np));
-> +	csize =3D snprintf(str, len, "of:N%pOFn%c%s", np, 'T', type);
-> =C2=A0	tsize =3D csize;
-> =C2=A0	if (csize >=3D len)
-> =C2=A0		csize =3D len > 0 ? len - 1 : 0;
->=20
-> base-commit: 3a8660878839faadb4f1a6dd72c3179c1df56787
+With this property set, such implementations which do not generate interrupts
+can be interacted with, until they are fixed to generate interrupts properly.
 
-to me the patch looks promising, it would both solve the ambiguity with
-modules and avoid having several compatible strings per device, with indivi=
-dual suffixes
-per interface (bus), similar to the above solomon,ssd1306fb-i2c example.
+Note that, because the original base protocol exchange also requires some
+sort of completion mechanism, it is not possible to query SCMI itself for
+this property and it must be described in DT. While this does look a bit
+like policy, the SCMI provider is part of the hardware, hence DT.
 
-Let's see how DT maintainers react on this, because I have an impression th=
-at
-everything except "cpu" and "memory" is discouraged in device-type (even th=
-ough
-these shall never appear in live device trees, but people would probably tr=
-y
-to copy paste the values from modalias back into dts ;-)
+Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
+---
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: Cristian Marussi <cristian.marussi@arm.com>
+Cc: Florian Fainelli <florian.fainelli@broadcom.com>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Rob Herring <robh@kernel.org>
+Cc: Sudeep Holla <sudeep.holla@arm.com>
+Cc: arm-scmi@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-renesas-soc@vger.kernel.org
+---
+ Documentation/devicetree/bindings/firmware/arm,scmi.yaml | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-There are 134 counterexamples of device-type =3D "pci" under Documentation/=
-devicetree/bindings
-in the current kernel though. Which is just another bus, like i2c and spi.
+diff --git a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+index be817fd9cc34b..b53754a318ea1 100644
+--- a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
++++ b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+@@ -146,6 +146,13 @@ properties:
+       this platform. If set, the value should be non-zero.
+     minimum: 1
+ 
++  arm,poll-transport:
++    type: boolean
++    description:
++      An optional property which unconditionally forces polling in all transports.
++      This is mainly mean to work around uncooperative SCP, which does not generate
++      completion interrupts.
++
+   arm,smc-id:
+     $ref: /schemas/types.yaml#/definitions/uint32
+     description:
+-- 
+2.51.0
 
---=20
-Alexander Sverdlin.
 
