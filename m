@@ -1,221 +1,178 @@
-Return-Path: <devicetree+bounces-230532-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230533-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FB43C0357E
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 22:17:46 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 41B83C035E1
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 22:24:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2873B1A00990
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 20:18:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6E9263A9DA7
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 20:24:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 535FA2459F7;
-	Thu, 23 Oct 2025 20:17:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51C5A27A10F;
+	Thu, 23 Oct 2025 20:24:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="OoTTAUwx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ucVLIOJE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D507F235046
-	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 20:17:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2151026D4E5;
+	Thu, 23 Oct 2025 20:24:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761250661; cv=none; b=mgHk0EYjK21pXjNIy2tmFnzsdgTknMqoGmxHYwQJCFJuGXQqkG4sb3NtXgaCb5BKtR+EWY7sNxTSE0rRX237Hz+9ad6p9GHlCnknMm75peZMBlfv3huXOw0dIkxZQ/zu0TNLvdvcj8YG1ROU2ebSZaBW8tnONp2zLdNd5K0AXzY=
+	t=1761251070; cv=none; b=IXuOrOVLnGuTw/1r1dPofSnq9KqrATaglBOr/6qC1ihHapsmu1Ce5CtQzGQCjZZ56C7lQcMTjcu6dliDICWDR6m36cv0zhYrJEnNSMG0CpufPBPHpi/dfSjVkGukB4jzPJ+uG4LopzQ7ZBkH6X4LKA50QJPrGGG3rs354UObHgI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761250661; c=relaxed/simple;
-	bh=1fyib0gfkn91bUXd587VUurecASVm6R2t3RGKOVNru0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=GcCmP559Tdzfe/LONZ70DZqX30VbllGs1eorr+9QPC0Y46e0IDsC+xDd+GO6b4o3rn0JhIsG45jv880b6oaRkASvxk1g4G2RGsi3S+89vmO+FMqPj5xQiXywC1tKR9axE5/OFpK+FWg5PgHqZBtNoBhtqMQn1SC7x5VXbFHtxkY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=OoTTAUwx; arc=none smtp.client-ip=170.10.133.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1761250656;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=xkzVhL/+U7KTZ+Wu2Xt5iRP9SLK+it5gBEjbIIA64Vk=;
-	b=OoTTAUwxQX0rwGFTuEuVx48PF0g6ZEksqOJO7EpH7YbdYVruNlG6oVRpRtS5kcClxbcmNQ
-	LKAqJPp3cowBtlOPuFbA+Ug+UEbY9ZcK5lwdRZPSxdOygpya2rZi01A+B6uqz4S+Lc+UPU
-	732iZq6qPGX63jEG+BokvYmBG2FbkXU=
-Received: from mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-642-OivIpowCNXGLOp68BpIWyw-1; Thu,
- 23 Oct 2025 16:17:33 -0400
-X-MC-Unique: OivIpowCNXGLOp68BpIWyw-1
-X-Mimecast-MFC-AGG-ID: OivIpowCNXGLOp68BpIWyw_1761250651
-Received: from mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.4])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id D8652195608E;
-	Thu, 23 Oct 2025 20:17:29 +0000 (UTC)
-Received: from cmirabil.redhat.com (unknown [10.22.64.45])
-	by mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id DA49F30002D7;
-	Thu, 23 Oct 2025 20:17:25 +0000 (UTC)
-From: Charles Mirabile <cmirabil@redhat.com>
-To: tglx@linutronix.de
-Cc: alex@ghiti.fr,
-	aou@eecs.berkeley.edu,
-	cmirabil@redhat.com,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	dramforever@live.com,
-	krzk+dt@kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	lzampier@redhat.com,
-	palmer@dabbelt.com,
-	paul.walmsley@sifive.com,
-	robh@kernel.org,
-	samuel.holland@sifive.com
-Subject: Re: [PATCH v6 0/4] Add UltraRISC DP1000 PLIC support
-Date: Thu, 23 Oct 2025 16:17:19 -0400
-Message-ID: <20251023201721.549563-1-cmirabil@redhat.com>
-In-Reply-To: <87zf9hwh5j.ffs@tglx>
-References: <87zf9hwh5j.ffs@tglx>
+	s=arc-20240116; t=1761251070; c=relaxed/simple;
+	bh=G79ir8utLb9umTKYTzv7I1+PuyJXEzDtEHANXl0nmDc=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=a6Anu6O9IwBDvj1CelvPHdrTDhdymha7UnY/U/+52ycoNfEKR8+6Ex2caaiTPZb6RWQGvbWSM9+CbIkcBehQnE22SdBOAHS0N7LyvzxP1aaX78s7wdEwDJMpYpjOtJ+WUwIdFc6FWgewPraWnF/ICpolbHg3/IGhg/RntLabWlg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ucVLIOJE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 8A695C4CEE7;
+	Thu, 23 Oct 2025 20:24:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761251069;
+	bh=G79ir8utLb9umTKYTzv7I1+PuyJXEzDtEHANXl0nmDc=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=ucVLIOJEus0Vpw0lfgQkbf4eBhq2tz8jBe5ROHCwOtL/JcXOHHRAGpFge1DQVbxOz
+	 Ec1rzKIiTM4wIeonmTql82Ur4Okg3ryJfdeaGFFYcfJ8KYL/ZdYYbDskMXLCmEBwTp
+	 JtAwEHQAAiqFG0CDPwUYg5PpWCGpN5sH4W/ZW6kLm++tgugitDSxRLWZEG+uj84GzJ
+	 sktXiMsIzIxzNaC3UsGpX3C3unr2LC4fIFwKTQ85Sd4p1WEC5qfN6NWAP4KE3eoZky
+	 P0euXTOn3r5DoGRmXoMENWneenRNexPd5P36zbqkND8G/PO4AfWRWM8pS/KgtYqRl3
+	 oT+Giqjg9FheA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 747EBCCF9E3;
+	Thu, 23 Oct 2025 20:24:29 +0000 (UTC)
+From: David Heidelberg via B4 Relay <devnull+david.ixit.cz@kernel.org>
+Subject: [PATCH v5 0/6] Add OnePlus 6T display (Samsung S6E3FC2X01 DDIC
+ with AMS641RW panel)
+Date: Thu, 23 Oct 2025 22:24:24 +0200
+Message-Id: <20251023-s6e3fc2x01-v5-0-8f8852e67417@ixit.cz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.4
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAPmO+mgC/1XMQQ7CIBCF4asY1mJmBoeCK+9hXFQ6KBs1xTRV0
+ 7uLJmpZvpd8/1Nl6ZNktVk8VS9DyulyLoOXCxVO7fkoOnVlKwJi8GR0tmJioBFQR88MB0cUhVU
+ B115iGj+x3b7sU8q3S3//tAd8v98MzzMDatCevAG0jXWx2aYx3Vbhod6RgX4QAVwFqUBCCS12H
+ Mj5GpoZRFtBU2AQiIatPXgwNVzPIGEF1wWyGBHCYJ1r/3CaphdfAOU0TQEAAA==
+X-Change-ID: 20250923-s6e3fc2x01-f9550b822fe5
+To: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Thierry Reding <thierry.reding@gmail.com>, Sam Ravnborg <sam@ravnborg.org>, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, 
+ Casey Connolly <casey.connolly@linaro.org>, 
+ Jessica Zhang <jesszhan0024@gmail.com>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+ phone-devel@vger.kernel.org, David Heidelberg <david@ixit.cz>, 
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3452; i=david@ixit.cz;
+ h=from:subject:message-id;
+ bh=G79ir8utLb9umTKYTzv7I1+PuyJXEzDtEHANXl0nmDc=;
+ b=owEBbQKS/ZANAwAIAWACP8TTSSByAcsmYgBo+o77fC7m5Z0llmrkxux/zMuGv3Ru9hivzCwnc
+ S+ywSf8j0GJAjMEAAEIAB0WIQTXegnP7twrvVOnBHRgAj/E00kgcgUCaPqO+wAKCRBgAj/E00kg
+ cq5lD/4nIxT+jFu+qVETxI06L4ZmjZC3faaia8pMYt1ZpyV+gz3fTF0PPiat8BVCX5jZpbYAgXy
+ jDOgNUyC/10F8Gjt3Uh3hLuyNUwTUFSMTkS/JcCYZoEnb/0UtBrcOzBiFHoGvz6m0xfJtKZlIGD
+ 8DBNjSzKdvI2LQ9HHjwz30Bp2ga/IGkP3igGFol0fC7XzJFv6EwAqv7pX2u65XLS4Y+UHBNXM3D
+ ya0yuYnzycoTxZdHvCBn1/WI8q58xe6CuREExWj83NV2h48BpkKmDS1QJXREhXA0eKwl3qhJzf4
+ WIK1msdOiN6vCFUgcMjdPhu/ofRdS2MlUuL6EA99gSfyKpRI/nSvxAObkyTDoFkT60yMm0mpgcl
+ /c5pC0iwgGNY79uQ6nK2oPGzKeAaI+9BMr5PG6qY83isdw78GSNIbFEhXUAj7AEfvdQ5oBScNR7
+ nkVg7OLqaseZI0U7y9UXlyWF25FbkYpATKnyJqlkwWkOqMwjvaMRv9PZI/eQhEaT6nxrQSazaHr
+ VnMz85lgEW3Y6bd5NH956I2nK7X1hxdLGBK3BJ0NBrcXUcUzQsDZRdc3GTPeWqLV3MR4t0yBS24
+ OF8jtmjq3VaAwERi7kpwCoxCacEgrGvZjGW2kt18fPypp7omq2kUjmmUr8QFfc3UXJ7RAfORhya
+ Hi7m0PlPMqBbiCA==
+X-Developer-Key: i=david@ixit.cz; a=openpgp;
+ fpr=D77A09CFEEDC2BBD53A7047460023FC4D3492072
+X-Endpoint-Received: by B4 Relay for david@ixit.cz/default with auth_id=355
+X-Original-From: David Heidelberg <david@ixit.cz>
+Reply-To: david@ixit.cz
 
-Hi Thomas—
+This patchset enables the display on the OnePlus 6T smartphone.
 
-On Thu, Oct 23, 2025 at 09:29:44PM +0200, Thomas Gleixner wrote:
-> On Thu, Oct 23 2025 at 15:00, Lucas Zampieri wrote:
-> > This series adds support for the PLIC implementation in the UltraRISC
-> > DP1000 SoC. The UR-CP100 cores used in the DP1000 have a hardware bug in
-> > their PLIC claim register where reading it while multiple interrupts are
-> > pending can return the wrong interrupt ID. The workaround temporarily
-> > disables all interrupts except the first pending one before reading the
-> > claim register, then restores the previous state.
-> >
-> > The driver matches on "ultrarisc,cp100-plic" (CPU core compatible), allowing
-> > the quirk to apply to all SoCs using UR-CP100 cores (currently DP1000,
-> > potentially future SoCs).
-> >
-> > Charles Mirabile (3):
-> >   dt-bindings: interrupt-controller: add UltraRISC DP1000 PLIC
-> >   irqchip/plic: enable optimization of interrupt enable state
-> 
->     That one never showed up. Neither in my inbox nor on lore
+Patches 1-2 add the bindings and the panel driver.
+Patches 3-6 document the panel, pinctrls, and GPIOs.
 
-Looks like the CC list was missing somehow from that patch—I didn't notice because I got it in my inbox because of my Signed-off-by.
+Since the display node is shared between the OnePlus 6 and 6T,
+the following warning appears:
 
-The indexing on the patches was slightly wrong anyways, so we will resend tomorrow. Sorry for the noise.
+..sdm845-oneplus-enchilada.dtb: panel@0 (samsung,sofef00): 'poc-supply', 'te-gpios', 'vci-supply' do not match any of the regexes: '^pinctrl-[0-9]+$'
 
-I have attached it here in case you want to take a look.
+This will be addressed in a follow-up patch, as the SOFEF00 DDIC also
+requires additional overhaul to properly initialize and function in mainline.
 
-> 
--- >8 --
-From: Charles Mirabile <cmirabil@redhat.com>
-Subject: [PATCH v6 3/4] irqchip/plic: enable optimization of interrupt enable state
+Signed-off-by: David Heidelberg <david@ixit.cz>
+---
+Changes in v5:
+- Squashed removal of compatible from simple DSI panel with introduction
+  of the panel definition. (Konrad)
+- Link to v4: https://lore.kernel.org/r/20251021-s6e3fc2x01-v4-0-5e3ee21c688a@ixit.cz
 
-Optimize the PLIC driver by maintaining the interrupt enable state in
-the handler's enable_save array during normal operation rather than only
-during suspend/resume. This eliminates the need to read enable registers
-during suspend and makes the enable state immediately available for
-other optimizations.
+Changes in v4:
+- Use refcounted allocation in place of devm_kzalloc()
+- Added include drm_probe_helper (Raihan)
+- Corrected te-gpio value from 30 to 10.
+- Removed legacy compatible samsung,s6e3fc2x01 from the driver (Dmitry)
+- Removed old compatible also from panel-simple-dsi enum.
+- Link to v3: https://lore.kernel.org/r/20251016-s6e3fc2x01-v3-0-ce0f3566b903@ixit.cz
 
-Modify __plic_toggle() to take a handler pointer instead of enable_base,
-allowing it to update both the hardware registers and the cached
-enable_save state atomically within the existing enable_lock protection.
+Changes in v3:
+- Use mipi_dsi_dcs_set_display_brightness_large (Konrad)
+- added legacy compatible samsung,s6e3fc2x01 into the driver (Dmitry)
+- extended compatible string to
+  "samsung,s6e3fc2x01-ams641rw", "samsung,s6e3fc2x01" (Dmitry)
+- Brought back
+  "dt-bindings: display: panel-simple-dsi: Remove Samsung S6E3FC2 compatible"
+- Link to v2: https://lore.kernel.org/r/20251008-s6e3fc2x01-v2-0-21eca1d5c289@ixit.cz
 
-Remove the suspend-time enable register reading since enable_save now
-always reflects the current state.
-
-Signed-off-by: Charles Mirabile <cmirabil@redhat.com>
+Changes in v2:
+- Dropped the gpio reset polarity change as suggested (Jens and Dmitry).
+- Fixed unused warnings (kernel test robot).
+- Added a pinctrl config for the VCI and POC supply.
+- Removed patch "dt-bindings: display: panel-simple-dsi: Remove Samsung S6E3FC2 compatible"
+  while the compatible is used in device-tree, but without any driver
+  serving it, do not touch it (Rob)
+- Added more details into the device-tree about the OnePlus 6T panel properties
+- Put display gpio -pins into one -state block.
+- Link to v1: https://lore.kernel.org/r/20250925-s6e3fc2x01-v1-0-9293016768f7@ixit.cz
 
 ---
- drivers/irqchip/irq-sifive-plic.c | 36 +++++++++++--------------------
- 1 file changed, 13 insertions(+), 23 deletions(-)
+Casey Connolly (1):
+      arm64: dts: qcom: sdm845-oneplus: Update compatbible and add DDIC supplies
 
-diff --git a/drivers/irqchip/irq-sifive-plic.c b/drivers/irqchip/irq-sifive-plic.c
-index cbd7697bc1481..d518a8b468742 100644
---- a/drivers/irqchip/irq-sifive-plic.c
-+++ b/drivers/irqchip/irq-sifive-plic.c
-@@ -94,15 +94,22 @@ static DEFINE_PER_CPU(struct plic_handler, plic_handlers);
- 
- static int plic_irq_set_type(struct irq_data *d, unsigned int type);
- 
--static void __plic_toggle(void __iomem *enable_base, int hwirq, int enable)
-+static void __plic_toggle(struct plic_handler *handler, int hwirq, int enable)
- {
--	u32 __iomem *reg = enable_base + (hwirq / 32) * sizeof(u32);
-+	u32 __iomem *base = handler->enable_base;
- 	u32 hwirq_mask = 1 << (hwirq % 32);
-+	int group = hwirq / 32;
-+	u32 value;
-+
-+	value = readl(base + group);
- 
- 	if (enable)
--		writel(readl(reg) | hwirq_mask, reg);
-+		value |= hwirq_mask;
- 	else
--		writel(readl(reg) & ~hwirq_mask, reg);
-+		value &= ~hwirq_mask;
-+
-+	handler->enable_save[group] = value;
-+	writel(value, base + group);
- }
- 
- static void plic_toggle(struct plic_handler *handler, int hwirq, int enable)
-@@ -110,7 +117,7 @@ static void plic_toggle(struct plic_handler *handler, int hwirq, int enable)
- 	unsigned long flags;
- 
- 	raw_spin_lock_irqsave(&handler->enable_lock, flags);
--	__plic_toggle(handler->enable_base, hwirq, enable);
-+	__plic_toggle(handler, hwirq, enable);
- 	raw_spin_unlock_irqrestore(&handler->enable_lock, flags);
- }
- 
-@@ -247,33 +254,16 @@ static int plic_irq_set_type(struct irq_data *d, unsigned int type)
- 
- static int plic_irq_suspend(void)
- {
--	unsigned int i, cpu;
--	unsigned long flags;
--	u32 __iomem *reg;
- 	struct plic_priv *priv;
- 
- 	priv = per_cpu_ptr(&plic_handlers, smp_processor_id())->priv;
- 
- 	/* irq ID 0 is reserved */
--	for (i = 1; i < priv->nr_irqs; i++) {
-+	for (unsigned int i = 1; i < priv->nr_irqs; i++) {
- 		__assign_bit(i, priv->prio_save,
- 			     readl(priv->regs + PRIORITY_BASE + i * PRIORITY_PER_ID));
- 	}
- 
--	for_each_present_cpu(cpu) {
--		struct plic_handler *handler = per_cpu_ptr(&plic_handlers, cpu);
--
--		if (!handler->present)
--			continue;
--
--		raw_spin_lock_irqsave(&handler->enable_lock, flags);
--		for (i = 0; i < DIV_ROUND_UP(priv->nr_irqs, 32); i++) {
--			reg = handler->enable_base + i * sizeof(u32);
--			handler->enable_save[i] = readl(reg);
--		}
--		raw_spin_unlock_irqrestore(&handler->enable_lock, flags);
--	}
--
- 	return 0;
- }
+David Heidelberg (5):
+      dt-bindings: panel: Add Samsung S6E3FC2X01 DDIC with panel
+      drm/panel: Add Samsung S6E3FC2X01 DDIC with AMS641RW panel
+      arm64: dts: qcom: sdm845-oneplus: Group panel pinctrl
+      arm64: dts: qcom: sdm845-oneplus: Implement panel sleep pinctrl
+      arm64: dts: qcom: sdm845-oneplus: Describe TE gpio
 
---
-2.51.0
+ .../bindings/display/panel/panel-simple-dsi.yaml   |   3 -
+ .../bindings/display/panel/samsung,s6e3fc2x01.yaml |  81 +++++
+ MAINTAINERS                                        |   6 +
+ .../arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi | 113 ++++--
+ arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dts |   2 +-
+ drivers/gpu/drm/panel/Kconfig                      |  13 +
+ drivers/gpu/drm/panel/Makefile                     |   1 +
+ drivers/gpu/drm/panel/panel-samsung-s6e3fc2x01.c   | 385 +++++++++++++++++++++
+ 8 files changed, 579 insertions(+), 25 deletions(-)
+---
+base-commit: 606da5bb165594c052ee11de79bf05bc38bc1aa6
+change-id: 20250923-s6e3fc2x01-f9550b822fe5
+
+Best regards,
+-- 
+David Heidelberg <david@ixit.cz>
 
 
 
