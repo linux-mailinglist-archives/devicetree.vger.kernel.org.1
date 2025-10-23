@@ -1,139 +1,119 @@
-Return-Path: <devicetree+bounces-230262-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230263-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38515C00F8D
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 14:05:59 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9FB96C00FE3
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 14:09:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BF7B73A391F
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 12:05:57 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 99E0250833C
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 12:07:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DFC330F535;
-	Thu, 23 Oct 2025 12:05:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="uyG+8FMJ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A85F2FD66F;
+	Thu, 23 Oct 2025 12:06:56 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
+Received: from mail-ua1-f44.google.com (mail-ua1-f44.google.com [209.85.222.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D62A830DD19
-	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 12:05:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83A5A30DD19
+	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 12:06:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761221153; cv=none; b=s/nE3GJpZU4rVy86VQKdlg1RUYeLqC7LBEY29djqeyuS89bjZllpN5KwC9EbSYWJ905KCaEahRWJTGio7pzqU//EYINmwQrgnrF8HfOUriG0k0NPd7KWFCbzBYd8ImK+RF4CJtqZjN+vDOubbQwcVlJ49isvYWqVZx/Z0ENq6rc=
+	t=1761221216; cv=none; b=FlqQI5k0bo2SiVE7LqnwN1HqjAwHL1xmwgabR594fBHNdRYr+r5PAao1OdScBYg9VWXNAh06OXVnNqi2Ec1Hxsn6p9BfxawuUM/0oQuF8+m8cZKeYr2oh9QakqvVJiAUDA6lPcS0QouiOCBmuZmYeaVE4jobqm0zqiPZfley37c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761221153; c=relaxed/simple;
-	bh=Iw/i/voACEOEUB0dl8Hwa2eGsgmSTL3oU67E/m1QVYU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=H/gB7896mWRmi+rPGaP0fsrC6qghMeQwnxmPYYBnivgEkj0nPq65/9VxwM0wma/NPLkGlaXnuB8Zf7dY4sLA6nG07OZ7ISPlEQKXg42itq/EQ9c+25rX1O60kWbcGeUw1Ui1vJEJv/4koK0LOq/v8OjkhyP3F+9DsFVZoXDva9E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=uyG+8FMJ; arc=none smtp.client-ip=209.85.221.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-426fc536b5dso554977f8f.3
-        for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 05:05:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1761221150; x=1761825950; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=K+knHP+hH8wtFXL9FrX8Adjy6J9Lu8uJnSEg3TGlm3I=;
-        b=uyG+8FMJ0sbkNL3nSa3XQOzVI9s2QM7VyNyk9i5TN/UqebVdXbkmHmklYMIX3eodcS
-         XBSO1VX/OK+f4qVrfG8kWhp1OaiLxPQ3tNtH0Of5rSk97HhQHfI7LUGoXsXr0OOYABxD
-         Y1IePlPMCdWYddBRTEIzxzfyttWk5KNnBeUDrelBeopSGRQ0O29PV+qxrGSgqvRH1rdA
-         Qe4GD8ofcIfS3+7PTbQfNzTnsAuqpKJR60NsgDuBuloKnl+3McuZP52DONiXIBux8Vfj
-         /27dJ9qYsIkS2fxxLtrORNpy7X5iL4CQbYOOxvKZLV0kUTSs2ZSyK9D42ytpjKLHVqU0
-         qrqA==
+	s=arc-20240116; t=1761221216; c=relaxed/simple;
+	bh=h+vkc32ZzB6Y3nbGVdKMOxil1Yt8+ajmhfuNJw4BOD4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=U2bne6mDAvS42Q+/8nI4xgzcE9RZhUZWMQw1ttPIXhJExb3QovEq3220AxBmMn+LdtfD680drjPlgJ9CNadyhAw1BRVCzv88qk34iku/qID+gHR0KvyI+BFVWJbnsFljd3HdcZZAfD7qFsWnBifgcgCiLniTK0uwfQ2W6mmh+C4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ua1-f44.google.com with SMTP id a1e0cc1a2514c-932c42aaf14so535932241.3
+        for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 05:06:54 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761221150; x=1761825950;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=K+knHP+hH8wtFXL9FrX8Adjy6J9Lu8uJnSEg3TGlm3I=;
-        b=MImKtA9FiDjO7E5FIz9kcNC1sNWGfZs58pYMGRwQwVu6c41o54NTIIjfYfT5LPZC43
-         llcPJeiqqZ8p/LIBd8Or6uWBEqf2xUOyNGrkPUxyJnVYqrtXnFreWfq2WzB6x5vxLrDT
-         xA8NbpaQNAGgBESyfgFgkrEZGSf2rX0SAzSR+9qr9l3NQddD+r3lmFYCt1KuZz1YbKLI
-         uL2ofxhQ//540fgMV26tpYKIPNp6XfhnilHXZDbcYXVGpYfS59a9CkHVERUMXig5CAq1
-         eMxl4ATnuxhefFFWI8jl8vXGuVPDXBDbJQiYHY6ytYsgCzG9tVgqwZrBJnyPPeAg1QTZ
-         wN3g==
-X-Forwarded-Encrypted: i=1; AJvYcCXamFi7tf64qmRgvkMAa2Zemo81cQMPNrLqb6iwtwLYh10wsVZk6ptpzkuF1tBH75vQ6JVgsxaTr6R2@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzj4mKha9UlxGBydSkseUFYdPEYrP8WsGPr8/5NFGymNQimTNGr
-	RcHyq5Yl98UpKDSauYBQZ/jIw8opTV2zUTBlxDdngeZwUdUHtPJO9XrGJ6m4J9kcB4s=
-X-Gm-Gg: ASbGnctr/RtghjQk5BQLpH6YUBkPzEYVNlzzjI3j5KKo9Ic4RgjXcaoRSpzXd/uMlX3
-	IJNa8MH/m2y3ra5ZZfubIwDozZ1DwkbrnXTA6mlp27IuU6NORc8Dx09GWnMl9dYn3bGAB0ep37F
-	vKTjN61uyL4T3+hDgRs6HVYcZ7OXaKsRV9xvGQwjwAR3nrgevt4H/ux/nmMEB+svXqBAcibjniR
-	gjZIS4g9xcol5Q8tJ2V4crW7kSwRpVm5S0X9klOUryVR2oC1rDfWhkLY6MDQPm1CEblCu4U9mTP
-	bhU+P6zB2KKTWfd6kLwW05qeCDr+4/tG4jXKC6pLRs/8FMkxYxHtIpPgHCRIxtakPqJC3bOhN1w
-	m8OtJoQswu/tD4rqbOCIpj6iawGMURJaHSEDaY8AnIHzu7ykpGOecPQgnE5EMppI95CWltLIXxu
-	rz4nMcPJqwsACsa/X763NurQ==
-X-Google-Smtp-Source: AGHT+IHwJs8vP+ZphKLVg8Qnj866Tn55HPAEvE8rihx7f3rOB0WHPIdkAlWdTCpxtTyY9j9MwN+iRA==
-X-Received: by 2002:a5d:5d10:0:b0:427:7ac:5287 with SMTP id ffacd0b85a97d-42707ac52e1mr14432699f8f.34.1761221149595;
-        Thu, 23 Oct 2025 05:05:49 -0700 (PDT)
-Received: from brgl-uxlite.home ([2a01:cb1d:dc:7e00:1b4:e02e:c538:6feb])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-429897e763csm3719949f8f.6.2025.10.23.05.05.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 23 Oct 2025 05:05:48 -0700 (PDT)
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-To: Michael Walle <mwalle@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	linux-gpio@vger.kernel.org,
-	Lee Jones <lee@kernel.org>,
-	Pavel Machek <pavel@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-leds@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Sander Vanheule <sander@svanheule.net>
-Cc: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-	linux-kernel@vger.kernel.org
-Subject: Re: (subset) [PATCH v6 0/8] RTL8231 GPIO expander support
-Date: Thu, 23 Oct 2025 14:05:47 +0200
-Message-ID: <176122114012.40841.4682534085501812836.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20251021142407.307753-1-sander@svanheule.net>
-References: <20251021142407.307753-1-sander@svanheule.net>
+        d=1e100.net; s=20230601; t=1761221213; x=1761826013;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=p3PrloVXYulHwAuaRFIv3VsJXdyEGVj/DTV7jXOJzSM=;
+        b=GhNBHfCL6W75Bop/D5ixabQ+fWgtpsNUSaUGB1Q9GgUzALa0idnH8vPZnc0r6rspmz
+         g7jGplApba1r2oVLujdAhAZUDDSKaiuUIjNXAUMyq1iTn5SVygztfueIJt1A8hDD4Sxf
+         hXAQuy72ee83aNKuvVC0E1pv0DyXCTyiDp4CJ1r2zpRKBl0RWRtuo6CpgiifWc7DUoOK
+         r0vEhg53kZoCt/1obZpIXAbKvXbAooW1QskSQJRMenzG2mUrUj3+BOhcUbB43zLkFRS1
+         s4KA7WLZHdtY7St/b+O606OTIo/l6FqEB50RivAbQA9aakxjuFYp1qAFNa/Y+UPtAIs5
+         rNOg==
+X-Forwarded-Encrypted: i=1; AJvYcCX1h2lrfT/f9B0+QceJCjubWhpE49lngCPLqZC/kiArHrS3AFmFe/tXxUvX0iTG/GIKRmPLvwx+VIsp@vger.kernel.org
+X-Gm-Message-State: AOJu0YwMyuxZJTKYspmhG/iW+ti/C4/W3RYsPfF4o6Krc1JglcSYHOJ2
+	y0lNW5DuHZ126h2E7l9iWGzPuYf0VxOvV6nPwgi8Z8apG5ZVRC26uBO/XzDZMFbs
+X-Gm-Gg: ASbGncs+A1K0h6TXsrF1Dwuy+Uw1LLM/lzog9pGpva7f2F3zhhDGGoT4nzfIBWv8tpc
+	DjwAjN6Wbf0hsSvkEZ2i+MEtJae2l8/zLMqigoiac4IfI8xFthHxJCYTeDw6inrgxqlW6dGViLj
+	lt5ogXtFG371gGIJfLP68VjCx5rREVay4WXhaHmaDqAKrGGVJR7hYv8gQX+NgcGENAIoIxIsQX7
+	He1N7kwW2edMXzDpvga4bMQusitRmC4/QrdYQJasvvxQBP/uO2boRMPc/a5Pibbd0RQNoFu89td
+	4Iu2Lpy7oMeet8m44qsNhlW5fIsmNUvmc5Hash3cGMhV4a3FHwBP2H+2mrTfUViTbWomRzuF7/U
+	F/KTBSWDn89ycSAT5DHP/OBZ4CdO9hTRHzlmAdVAZJzh7Xqi6iN2GjPOVkdFnpOPqpZzfKnSBoz
+	cN2I+O8xGXs8NGoPSEuUauZn5cy4x7QRyWl9u/niXgtp02Vf7W
+X-Google-Smtp-Source: AGHT+IFlJriALFrHCFtH8Qoex1KHnyqfFOdgwGY/kzYv9IhgIyiXACEdhCgNO3C4sFY6x2Lj2nhjYQ==
+X-Received: by 2002:a05:6102:2928:b0:534:1aae:2d7b with SMTP id ada2fe7eead31-5d7dd66394fmr7811530137.24.1761221213196;
+        Thu, 23 Oct 2025 05:06:53 -0700 (PDT)
+Received: from mail-vs1-f53.google.com (mail-vs1-f53.google.com. [209.85.217.53])
+        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-5db2cca3dc6sm757317137.12.2025.10.23.05.06.53
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 23 Oct 2025 05:06:53 -0700 (PDT)
+Received: by mail-vs1-f53.google.com with SMTP id ada2fe7eead31-5ce093debf6so714960137.1
+        for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 05:06:53 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCXNEun+fmkeHNat+b9Qb+nIKrqnmpYaCszTE0D7tWHj1Rdudo1MgOKxULidkcFgthYBWuLyp5C3nyHz@vger.kernel.org
+X-Received: by 2002:a05:6102:3f04:b0:5d6:27c7:e6b2 with SMTP id
+ ada2fe7eead31-5d7dd502043mr1773971137.3.1761221212859; Thu, 23 Oct 2025
+ 05:06:52 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+References: <87h5wsa3h5.wl-kuninori.morimoto.gx@renesas.com> <87frcca3fn.wl-kuninori.morimoto.gx@renesas.com>
+In-Reply-To: <87frcca3fn.wl-kuninori.morimoto.gx@renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 23 Oct 2025 14:06:41 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVxS-cjcYSfGBcrcmEcWUiZQ2bcB=5KUVhOkddvvyVYoA@mail.gmail.com>
+X-Gm-Features: AS18NWCCDA4ZcBUR8Pt9ZNf-GPGyVbzC7QOLSvHrOidBYngzkjHnnbOKzVEfnBY
+Message-ID: <CAMuHMdVxS-cjcYSfGBcrcmEcWUiZQ2bcB=5KUVhOkddvvyVYoA@mail.gmail.com>
+Subject: Re: [PATCH v6 1/2] arm64: dts: renesas: Add R8A78000 X5H DTs
+To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Cc: Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+On Wed, 24 Sept 2025 at 06:18, Kuninori Morimoto
+<kuninori.morimoto.gx@renesas.com> wrote:
+> From: Hai Pham <hai.pham.ud@renesas.com>
+>
+> Add initial DT support for R8A78000 (R-Car X5H) SoC.
+>
+> [Kuninori: tidyup for upstreaming]
+>
+> Signed-off-by: Hai Pham <hai.pham.ud@renesas.com>
+> Signed-off-by: Vinh Nguyen <vinh.nguyen.xz@renesas.com>
+> Signed-off-by: Minh Le <minh.le.aj@renesas.com>
+> Signed-off-by: Huy Bui <huy.bui.wm@renesas.com>
+> Signed-off-by: Khanh Le <khanh.le.xr@renesas.com>
+> Signed-off-by: Phong Hoang <phong.hoang.wz@renesas.com>
+> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
 
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v6.19.
 
-On Tue, 21 Oct 2025 16:23:55 +0200, Sander Vanheule wrote:
-> The RTL8231 GPIO and LED expander can be configured for use as an MDIO
-> or SMI bus device. Currently only the MDIO mode is supported, although
-> SMI mode support should be fairly straightforward, once an SMI bus
-> driver is available.
-> 
-> Provided features by the RTL8231:
->   - Up to 37 GPIOs
->     - Configurable drive strength: 8mA or 4mA (currently unsupported)
->     - Input debouncing on GPIOs 31-36
->   - Up to 88 LEDs in multiple scan matrix groups
->     - On, off, or one of six toggling intervals
->     - "single-color mode": 2×36 single color LEDs + 8 bi-color LEDs
->     - "bi-color mode": (12 + 2×6) bi-color LEDs + 24 single color LEDs
->   - Up to one PWM output (currently unsupported)
->     - Fixed duty cycle, 8 selectable frequencies (1.2kHz - 4.8kHz)
-> 
-> [...]
+Gr{oetje,eeting}s,
 
-Applied, thanks!
+                        Geert
 
-[1/8] gpio: regmap: Force writes for aliased data regs
-      https://git.kernel.org/brgl/linux/c/ed2bd02d24947e36c9438bee1449d9bf87671b16
-[2/8] gpio: regmap: Bypass cache for aliased inputs
-      https://git.kernel.org/brgl/linux/c/3233741c0be59dd224e797deb2dd1621695ac95c
-
-Best regards,
 -- 
-Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
