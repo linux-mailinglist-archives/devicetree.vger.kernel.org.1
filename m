@@ -1,120 +1,149 @@
-Return-Path: <devicetree+bounces-230265-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230267-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41FE8C00FBA
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 14:07:51 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id DAE85C0109D
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 14:15:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 009FD3A2533
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 12:07:50 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 375BC507EEF
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 12:12:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A6DB30BF6F;
-	Thu, 23 Oct 2025 12:07:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB7A2310777;
+	Thu, 23 Oct 2025 12:12:31 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f180.google.com (mail-vk1-f180.google.com [209.85.221.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from Atcsqr.andestech.com (60-248-80-70.hinet-ip.hinet.net [60.248.80.70])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC86D298CA6
-	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 12:07:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4657F3101AB;
+	Thu, 23 Oct 2025 12:12:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.248.80.70
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761221268; cv=none; b=swKD5BSiGYVbwDQr/fv43KPdjVk0DDDFRvGwH6JkqDZSGD2sCY8tY0KnX+uoUHzX2bP+rjh2fpMvzyQvJSglV7i6zvHvTIDGeAqwi9bHrp/yCS2birAvHmBBridEQJ0V18OdmsHfhtw+Wt/ZJq3hqKN6DnbzVDqVzxGeZCJu3WA=
+	t=1761221551; cv=none; b=W0YnYgRoTcgv9KlZmoCNmfPCwoYdm1yxE3TiNEn46NjdOvw0li9RI0orOnMKvNyRiBGAuIEXEd9ux8oBKHCoExvXVoRKxVkE4OPd2FyeXilERjKCSpSgt/lz7nLLB4kzoabQmuYzdPFZs7rbmsfORbnPaOFyBka2sbq2s+nNjy8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761221268; c=relaxed/simple;
-	bh=QhbN8r+FeVInBIo/fiJrSFPH7EhpLOxaAVWY0WLSBSM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=qRJDXj3KX2OO8ouTC3rQ0aaZaJCXz0Gkk/gScKnUwejwKWXpLFZ10AjmNC+3ptdAsolRcb41p9I5btvCpsd++OL5CO+i+al97z+HhK/Tdf27FxF1ZjOoKkBu3197KnKzkU5U8kZqzIExRQeyeSugCSm1drXs0lWQSipWIyuIu+o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f180.google.com with SMTP id 71dfb90a1353d-557c75fe551so158017e0c.3
-        for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 05:07:46 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761221265; x=1761826065;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=oBc63QGd7BXhtM+lMELJZmBYVxWnaM+uPvhZT/wm8AQ=;
-        b=CTc2QggFmUPP8jug5a/yTpgOMZWUPeteoJ9UOnt4EsBxRRc11KJIYgBUzRzsgO+D62
-         62eYCpE/e3b+y2zLvEZHJ3Dsscx6RUm4S3bqX4cfOJji+V4TJTuoYBl/SozV9rWRDrme
-         ISgKjK9Pd573l0/VwgS5h6wg66y5OdjWK/P68r/xS3K5VAC6cFPVZCOKJSbBwtxkfSPd
-         144NtOmP87uvCjvwxnQtqKXedfOnssX7KQhbfoC9Ofoce6uzPSAfzA54rJsnXJIl636T
-         GRfJGJZKSb9AzG8a/n7sAjjxAYcFgwuvbaTC3QbA/wwKZZAeWxocf1xi1b3CdRIewzT4
-         zs7A==
-X-Forwarded-Encrypted: i=1; AJvYcCXQ5BvQY6qJ39I/ufpH6l4FRFXb8SxFqQaKky+xFeRVTIjf/p7/0IQ/h52NoDnp20xQgNfSpXJoq1Hw@vger.kernel.org
-X-Gm-Message-State: AOJu0YxEcCKjvQOCDHnVFd1AITBJdgplXGv02Zb+OD4mi8c4VMR9/9jz
-	P++di5iG8+XfwJ0ALL2SLUrCx/tDyBDR2WxDZ1+6jLfHON+3x790YtnAUx8R4g6o
-X-Gm-Gg: ASbGncvDJNb+8NiYx5jSWy/Z/PMaKWyV+KyrTTYQNStxhPFAN3yUArMPWXg2wjwv8M4
-	4c/Le4J4/BPJ3vWPgr2qmyZ76z5PyN+oxZYfJMYst4ydqvO35xYgsOLfMRyG/5TsOZsMaRgf03a
-	txmCVI+CuhrFxOjtsgdyV+BwuNGJviy6ODHvrlNxVfP478WfZGobDE7JZXSovU9Uq8q0SY8OZji
-	wDinSqsXYSGk4ttdRbtthgk52xSoA5fY0itZ1jkyA7rNQBiYAgugny2jq3U5Oip0Z0v215QaOPR
-	0Cek8j7TVp7HKfwQrC6JWTOm8IKgBLf9ljtZiJpU4Y4/X+PvGbgIbhoVcIM40BrAxEDj1vGXdXs
-	2M9+yU46lnL8kxyiNRKuXwirmh/qft4kEiuKpmJ+1roZokz0zPE1ivWZ8wlq7NbOQt3tFVUtaVw
-	cCqGNsPRGrju6qz394O6FNSKinHpAnmnHJD/WocuA67sdDYtkt6Q1S9EmmzNs=
-X-Google-Smtp-Source: AGHT+IHAozV4wXfwyN2htW6mOHoNOE0K1XZIX6A6rWOTB7EQdtTpDgV3jidHcI4+rKGFHGptEy5Nxg==
-X-Received: by 2002:a05:6122:510b:10b0:556:4f54:5303 with SMTP id 71dfb90a1353d-5564f5458a9mr5708746e0c.5.1761221265458;
-        Thu, 23 Oct 2025 05:07:45 -0700 (PDT)
-Received: from mail-vs1-f43.google.com (mail-vs1-f43.google.com. [209.85.217.43])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-557bdbe3bc6sm684003e0c.18.2025.10.23.05.07.45
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 23 Oct 2025 05:07:45 -0700 (PDT)
-Received: by mail-vs1-f43.google.com with SMTP id ada2fe7eead31-5db2593c063so526664137.2
-        for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 05:07:45 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCWJTI/qywfz7Msqso1Fsk/pRx/PFRgvpNLeNpHkSOnvTzmYQlvse1eXrWHfkPIHM0s71mNGdk/TnJRZ@vger.kernel.org
-X-Received: by 2002:a05:6102:292a:b0:5db:27e9:934a with SMTP id
- ada2fe7eead31-5db27e997aemr1516331137.42.1761221265052; Thu, 23 Oct 2025
- 05:07:45 -0700 (PDT)
+	s=arc-20240116; t=1761221551; c=relaxed/simple;
+	bh=56HF8yPKnyC6WmuLneXo5ZjXWAV4y8yWZT0QFT1/SuE=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=h3sna56lRPuntFuCvA2bHxohteIEnypta9rjyHxVftd2fktNUrSr+yabVASB5839oydlV/f20ieh+qlcTZ51ZAzhojujcydLnCiN1XGqoM6K7AJzRB28QYchmspMPg8MPMUhq3EGsLyPHR6es0bbdOncoJqOBLwvohZeW2Kp8xM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=permerror header.from=andestech.com; spf=pass smtp.mailfrom=andestech.com; arc=none smtp.client-ip=60.248.80.70
+Authentication-Results: smtp.subspace.kernel.org; dmarc=permerror header.from=andestech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=andestech.com
+Received: from mail.andestech.com (ATCPCS31.andestech.com [10.0.1.89])
+	by Atcsqr.andestech.com with ESMTPS id 59NC80MN038496
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Thu, 23 Oct 2025 20:08:00 +0800 (+08)
+	(envelope-from randolph@andestech.com)
+Received: from swlinux02 (10.0.15.183) by ATCPCS31.andestech.com (10.0.1.89)
+ with Microsoft SMTP Server id 14.3.498.0; Thu, 23 Oct 2025 20:08:00 +0800
+Date: Thu, 23 Oct 2025 20:07:53 +0800
+From: Randolph Lin <randolph@andestech.com>
+To: Bjorn Helgaas <helgaas@kernel.org>
+CC: <linux-kernel@vger.kernel.org>, <linux-pci@vger.kernel.org>,
+        <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <jingoohan1@gmail.com>, <mani@kernel.org>, <lpieralisi@kernel.org>,
+        <kwilczynski@kernel.org>, <robh@kernel.org>, <bhelgaas@google.com>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <alex@ghiti.fr>,
+        <aou@eecs.berkeley.edu>, <palmer@dabbelt.com>,
+        <paul.walmsley@sifive.com>, <ben717@andestech.com>,
+        <inochiama@gmail.com>, <thippeswamy.havalige@amd.com>,
+        <namcao@linutronix.de>, <shradha.t@samsung.com>, <pjw@kernel.org>,
+        <randolph.sklin@gmail.com>, <tim609@andestech.com>
+Subject: Re: [PATCH v8 4/5] PCI: andes: Add Andes QiLai SoC PCIe host driver
+ support
+Message-ID: <aPoamRtpsT-MK9v0@swlinux02>
+References: <20251014120349.656553-5-randolph@andestech.com>
+ <20251021170516.GA1193376@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <87h5wsa3h5.wl-kuninori.morimoto.gx@renesas.com> <87ecrwa3fj.wl-kuninori.morimoto.gx@renesas.com>
-In-Reply-To: <87ecrwa3fj.wl-kuninori.morimoto.gx@renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 23 Oct 2025 14:07:33 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdVuyDSS+zhQV69MK_SXfDpJRrKYvxsdgB8Qvuz+Q8770Q@mail.gmail.com>
-X-Gm-Features: AS18NWCv1q8YpauasJP8nKtI5LMvjuBV_rVOoXFhH4VLXbtRUw8eyo-JmHWN1v8
-Message-ID: <CAMuHMdVuyDSS+zhQV69MK_SXfDpJRrKYvxsdgB8Qvuz+Q8770Q@mail.gmail.com>
-Subject: Re: [PATCH v6 2/2] arm64: dts: renesas: R8A78000: Add initial
- Ironhide support
-To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Cc: Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20251021170516.GA1193376@bhelgaas>
+User-Agent: Mutt/2.2.12 (2023-09-09)
+X-DKIM-Results: atcpcs31.andestech.com; dkim=none;
+X-DNSRBL: 
+X-SPAM-SOURCE-CHECK: pass
+X-MAIL:Atcsqr.andestech.com 59NC80MN038496
 
-On Wed, 24 Sept 2025 at 06:18, Kuninori Morimoto
-<kuninori.morimoto.gx@renesas.com> wrote:
-> From: Hai Pham <hai.pham.ud@renesas.com>
+Hello Bjorn,
+On Tue, Oct 21, 2025 at 12:05:16PM -0500, Bjorn Helgaas wrote:
+> [EXTERNAL MAIL]
+> 
+> On Tue, Oct 14, 2025 at 08:03:48PM +0800, Randolph Lin wrote:
+> > Add driver support for DesignWare based PCIe controller in Andes
+> > QiLai SoC. The driver only supports the Root Complex mode.
+> 
+> > + * Setup the Qilai PCIe IOCP (IO Coherence Port) Read/Write Behaviors to the
+> > + * Write-Back, Read and Write Allocate mode.
+> 
+> s/Setup/Set up/
+> s/Qilai/QiLai/
+> 
+
+ok
+
+> > + * The QiLai SoC PCIe controller's outbound iATU region supports
+> > + * a maximum size of SZ_4G - 1. To prevent programming failures,
+> > + * only consider bridge->windows with sizes within this limit.
+> > + *
+> > + * To ensure compatibility with most endpoint devices, at least
+> > + * one memory region must be mapped within the 32-bits address space.
+> > + */
+> > +static int qilai_pcie_host_fix_ob_iatu_count(struct dw_pcie_rp *pp)
+> > +{
+> > +     struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
+> > +     struct device *dev = pci->dev;
+> > +     struct resource_entry *entry;
+> > +     /* Reserved 1 ob iATU for config space */
+> > +     int count = 1;
+> > +     bool ranges_32bits = false;
+> > +     u64 pci_addr;
+> > +     u64 size;
+> > +
+> > +     resource_list_for_each_entry(entry, &pp->bridge->windows) {
+> > +             if (resource_type(entry->res) != IORESOURCE_MEM)
+> > +                     continue;
+> > +
+> > +             size = resource_size(entry->res);
+> > +             if (size < SZ_4G)
+> > +                     count++;
+> > +
+> > +             pci_addr = entry->res->start - entry->offset;
+> > +             if (pci_addr < SZ_4G)
+> > +                     ranges_32bits = true;
+> > +     }
+> > +
+> > +     if (!ranges_32bits) {
+> > +             dev_err(dev, "Bridge window must contain 32-bits address\n");
+> > +             return -EINVAL;
+> 
+> Is this really a PCI host controller driver probe failure?  I assume
+> there are devices that only have 64-bit BARs and could work fine
+> without a 32-bit window?
+> 
+> If a device requires a 32-bit BAR, and the PCI core can't assign such
+> an address, and gracefully decline to enable a device where we
+> couldn't assign the BAR, I think that would be preferable and would
+> identify the specific device that doesn't work.
 >
-> Add the initial support for Renesas X5H Ironhide board.
->
-> [Kuninori: tidyup for upstreaming]
->
-> Signed-off-by: Hai Pham <hai.pham.ud@renesas.com>
-> Signed-off-by: Vinh Nguyen <vinh.nguyen.xz@renesas.com>
-> Signed-off-by: Takeshi Kihara <takeshi.kihara.df@renesas.com>
-> Signed-off-by: Khanh Le <khanh.le.xr@renesas.com>
-> Signed-off-by: Huy Bui <huy.bui.wm@renesas.com>
-> Signed-off-by: Phong Hoang <phong.hoang.wz@renesas.com>
-> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-Thanks, will queue in renesas-devel for v6.19.
+I have a clear understanding of the meaning behind this.
+However, based on reviewer Niklas's suggestion, I have decided to use patch [1].
+As a result, the function that adjusts the number of ib/ob window is no longer needed.
 
-Gr{oetje,eeting}s,
+[1]: https://lore.kernel.org/linux-pci/aPDObXsvMoz1OYso@ryzen/T/#m11c3d95215982411d0bbd36940e70122b70ae820
 
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+> > +     }
+> > +
+> > +     pci->num_ob_windows = count;
+> > +
+> > +     return 0;
+> > +}
+> 
+Sincerely,
+Randolph Lin
 
