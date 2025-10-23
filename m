@@ -1,124 +1,166 @@
-Return-Path: <devicetree+bounces-230474-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230475-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6F7BC02E84
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 20:25:14 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 04A88C02F14
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 20:28:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A9B161AA6CD2
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 18:25:38 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 4C88E504939
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 18:28:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7AC22773FC;
-	Thu, 23 Oct 2025 18:25:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50C2E34C818;
+	Thu, 23 Oct 2025 18:28:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Z8kabk/Z"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="d44D9cIt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30BC715E8B;
-	Thu, 23 Oct 2025 18:25:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FBFD23F40D;
+	Thu, 23 Oct 2025 18:28:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761243909; cv=none; b=Nkjuk2kIt9Jgb1MZU4JmPR3zrhVgEVaR3TK+uxgWYZNvbpzKvFoCldLWU1IC/NOHsI5q9Ocy9ONaCfcGjQZCo7QRQiOOuSD3tJAoKpYKlokEsgpizoqxavySC0zstse2SVq03XFJKlDhD9ANWgs5RtUwzQVNKnMj70X6C0qAN3M=
+	t=1761244089; cv=none; b=apmGDwmZazhVXaPe+G55IMAcTbAYui5vCdznRhKMD1bCk8hAwOZzjKcA7sCVK+tOSNYMvYwf5GuFOQW3t38LuMxQVbN1vxkKcE6mQjqwwS8wEEuzT7zINfN5Am2qYGv7lpdkVSKszkxWo4MuUUgo4SkDSKZDjrJx6G433l3bPC4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761243909; c=relaxed/simple;
-	bh=zwCmN86sqMbHXrITH7YOhA0fPI1EnrI6nXVZagQBh7I=;
+	s=arc-20240116; t=1761244089; c=relaxed/simple;
+	bh=cGxtT7v2QVMLn1P8NSEXbxLIEFsg1vLsHaVWtilPBJY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Jt+MWIeBsqlG1bUz5nRNyCpTTKwmLTZfzYTcA2FlYyphUBUGaK9YhnuarkW8ODFylOpr3eg9bSsGYSkwbapvlNgPZGSpzaDLnsbKXHKmBMMVAeXx9nxjN1Mltjvc4u1ERFRVmRRLeGmS+jANyeZSZII/zQJ5EgxQ5p4MWpV2ZqU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Z8kabk/Z; arc=none smtp.client-ip=198.175.65.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1761243908; x=1792779908;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=zwCmN86sqMbHXrITH7YOhA0fPI1EnrI6nXVZagQBh7I=;
-  b=Z8kabk/ZGD6/R7JpRbFPhyCXA0PdcAWNNDdXgwgcxV3zmXXqa0SAi54c
-   jAxiVJaYmHSbx1kj7byGHbObV3Iu1BhMDBZzgmZOv4Llhue9olG+6F+ku
-   /Q5X8rhG30JMzBsthRAKGZ7CTLB41tgfocmXy8zJRD5g0mj+DfDPh8TCi
-   X2AstZmMkoC18PW+8sFuGhEUkmJNGTwNi7JLJthl5a1kVkd+nMmynTR8o
-   wGPCr/fxDcGhBNnJAI43OP1NNaJ7C9FbCGJjz2icfnwVuJwfKOB0edX4o
-   E08fgmId00TNC9ChtKAZjNATvt29zysZqMMzsrl5aZ0aqSmQT48A3vFl5
-   g==;
-X-CSE-ConnectionGUID: qNKq2PLNRVilgGcdqZar+w==
-X-CSE-MsgGUID: nt0mLNHCRR+E7DQWHvbxXw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="74544223"
-X-IronPort-AV: E=Sophos;i="6.19,250,1754982000"; 
-   d="scan'208";a="74544223"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
-  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Oct 2025 11:25:07 -0700
-X-CSE-ConnectionGUID: rZGXvA+rTRisloNEidpLPA==
-X-CSE-MsgGUID: 4eRJcodlREGrhOmUXQuDVw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,250,1754982000"; 
-   d="scan'208";a="214884102"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO ashevche-desk.local) ([10.245.244.163])
-  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Oct 2025 11:25:04 -0700
-Received: from andy by ashevche-desk.local with local (Exim 4.98.2)
-	(envelope-from <andriy.shevchenko@intel.com>)
-	id 1vBzzg-000000020qc-1HGR;
-	Thu, 23 Oct 2025 21:25:00 +0300
-Date: Thu, 23 Oct 2025 21:25:00 +0300
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Frank Li <Frank.li@nxp.com>
-Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=bTbBoEDBTJjNEMOKvhqqDCF6A6A94lZCc6yxThiIp1/xxXesyGhDHNpNvGX+SJfcP3v6IlNzoHT/U4JxWb8AuasvbEV2jBpcWiGomZ5qNGVmG5AoTkSubMpgSdGAtNy76zdUQSqmngoHRyU20Kk0oGOq648e40hTrOsEzoeocP0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=d44D9cIt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 34E70C4CEFF;
+	Thu, 23 Oct 2025 18:28:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761244087;
+	bh=cGxtT7v2QVMLn1P8NSEXbxLIEFsg1vLsHaVWtilPBJY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=d44D9cItbQrcUg9iAmRA0Vs/DVqR+y0ypS8CepbttdCZ0quavmx1O5RuHNLBQ+VVS
+	 Hk9CB2f0ii7zfWJET2k2ktByN18QFNj7RuwS+E60fNAqsfB+U+jd75LxA0v+MsfKCG
+	 pROr3dfPhBazSFR4t1gzPXCBkKTBQ5yhB34OJqc1E09BdynZid7mDKMO2A9Ja1qsOo
+	 bQvjMiOr/sxY8PzMSvTtbmu1SfAaVa/3KsuA7jMuAnty9u9OpZm6TBYZq5yZTrI8JM
+	 1IieU8qkXXu/XkyFWrxtvd+N2LpnC5OA5SGucqrFNsfiRa6K8cdQsny/O6a5Xf4qR9
+	 3MOIOFlebcXhg==
+Date: Thu, 23 Oct 2025 19:28:01 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
+Cc: John Madieu <john.madieu.xa@bp.renesas.com>,
+	"Rafael J . Wysocki" <rafael@kernel.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-i3c@lists.infradead.org,
-	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
-	linux-iio@vger.kernel.org, joshua.yeong@starfivetech.com,
-	devicetree@vger.kernel.org, Carlos Song <carlos.song@nxp.com>
-Subject: Re: [PATCH v6 3/5] i3c: master: svc: Add basic HDR mode support
-Message-ID: <aPpy_FNh0DB_1x-w@smile.fi.intel.com>
-References: <20251014-i3c_ddr-v6-0-3afe49773107@nxp.com>
- <20251014-i3c_ddr-v6-3-3afe49773107@nxp.com>
- <aPnngQdwEqHgPc7R@smile.fi.intel.com>
- <aPpIkqjeWsi7xAAn@lizhi-Precision-Tower-5810>
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>, linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org
+Subject: Re: [PATCH 05/10] dt-bindings: thermal: r9a09g047-tsu: document
+ RZ/T2H and RZ/N2H
+Message-ID: <20251023-provider-obsession-a03de6982b72@spud>
+References: <20251023081925.2412325-1-cosmin-gabriel.tanislav.xa@renesas.com>
+ <20251023081925.2412325-6-cosmin-gabriel.tanislav.xa@renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="ztccTYdyCrUtiwjn"
+Content-Disposition: inline
+In-Reply-To: <20251023081925.2412325-6-cosmin-gabriel.tanislav.xa@renesas.com>
+
+
+--ztccTYdyCrUtiwjn
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <aPpIkqjeWsi7xAAn@lizhi-Precision-Tower-5810>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Oct 23, 2025 at 11:24:02AM -0400, Frank Li wrote:
-> On Thu, Oct 23, 2025 at 11:29:53AM +0300, Andy Shevchenko wrote:
-> > On Tue, Oct 14, 2025 at 12:40:02PM -0400, Frank Li wrote:
+On Thu, Oct 23, 2025 at 11:19:19AM +0300, Cosmin Tanislav wrote:
+> The Renesas RZ/T2H (R9A09G077) and RZ/N2H (R9A09G087) SoCs include a
+> Temperature Sensor Unit (TSU). The device provides real-time temperature
+> measurements for thermal management, utilizing a single dedicated
+> channel for temperature sensing.
+>=20
+> Signed-off-by: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
+> ---
+>  .../thermal/renesas,r9a09g047-tsu.yaml        | 22 ++++++++++++++++---
+>  1 file changed, 19 insertions(+), 3 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/thermal/renesas,r9a09g047-=
+tsu.yaml b/Documentation/devicetree/bindings/thermal/renesas,r9a09g047-tsu.=
+yaml
+> index 8d3f3c24f0f2..3cb66b51831d 100644
+> --- a/Documentation/devicetree/bindings/thermal/renesas,r9a09g047-tsu.yaml
+> +++ b/Documentation/devicetree/bindings/thermal/renesas,r9a09g047-tsu.yaml
+> @@ -16,7 +16,14 @@ description:
+> =20
+>  properties:
+>    compatible:
+> -    const: renesas,r9a09g047-tsu
+> +    oneOf:
 
-...
+> +      - items:
+> +          - const: renesas,r9a09g047-tsu # RZ/G3E
+> +      - items:
+> +          - const: renesas,r9a09g077-tsu # RZ/T2H
 
-> > > +	readl_poll_timeout(master->regs + SVC_I3C_MSTATUS, reg,
-> > > +			   SVC_I3C_MSTATUS_MCTRLDONE(reg), 0, 1000);
-> >
-> > No error checks? Why is it okay?
-> > Why is the first parameter 0 while it's not an _atomic() call?
-> >
-> > > +	udelay(1);
-> >
-> > No explanations given. Also is it really need to be atomic? If not, use
-> > fsleep() and it will choose the best suitable API under the hood.
-> 
-> It is in atomic context. I will add comments.
+These two should just go together in an enum, no need to overcomplicate
+things with items like this. Items is only needed when you have more
+than one.
+pw-bot: changes-requested
 
-Not only, the call that's used in the code from iopoll.h is wrong in such a
-case. Haven't you tested this with debug atomic context?
+Cheers,
+Conor.
 
--- 
-With Best Regards,
-Andy Shevchenko
+> +      - items:
+> +          - const: renesas,r9a09g087-tsu # RZ/N2H
+> +          - const: renesas,r9a09g077-tsu # RZ/T2H
+> =20
+>    reg:
+>      maxItems: 1
+> @@ -59,12 +66,21 @@ required:
+>    - compatible
+>    - reg
+>    - clocks
+> -  - resets
+>    - power-domains
+>    - interrupts
+>    - interrupt-names
+>    - "#thermal-sensor-cells"
+> -  - renesas,tsu-trim
+> +
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: renesas,r9a09g047-tsu
+> +    then:
+> +      required:
+> +        - resets
+> +        - renesas,tsu-trim
+> =20
+>  additionalProperties: false
+> =20
+> --=20
+> 2.51.1.dirty
+>=20
 
+--ztccTYdyCrUtiwjn
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaPpzsQAKCRB4tDGHoIJi
+0jLUAP9gk1QFec0eyq7sJ7ydWHY9nm23V1ez/A8cZ5mitKk57wEA1gTFHul1tHzp
+Ho7K/mCR0kYFT4WNKfTrmnJZ5qruYAk=
+=ufQ1
+-----END PGP SIGNATURE-----
+
+--ztccTYdyCrUtiwjn--
 
