@@ -1,76 +1,131 @@
-Return-Path: <devicetree+bounces-230296-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230297-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9FE50C0152D
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 15:19:38 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A06AC01545
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 15:21:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 20C613AD952
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 13:19:04 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 78FDD500338
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 13:19:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19F292C325B;
-	Thu, 23 Oct 2025 13:19:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9F8828E00;
+	Thu, 23 Oct 2025 13:19:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RZMmalc2"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="MpeiHDum";
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="AVqusD5S"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E17D328E00;
-	Thu, 23 Oct 2025 13:19:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 175B42E5404;
+	Thu, 23 Oct 2025 13:19:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.152
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761225542; cv=none; b=F3ndcun1caz5iCcUhy5/1XTUsGhvl0Yiab4pDlkWkXJ4pJq2c2KBrFHK7kxEdb4a5fKPhHWoXgyKNlhXVI8pKLArZnNJ6xqHRs2dWJQrUfr6ugsYTI9ox925ZS2wUaleJnsXj4IRb7GIR5ngmLb7pVrYjuTs0bYa9z+ebKJVsSg=
+	t=1761225550; cv=none; b=p18r5ENt1wB92qtTLtQZdkeUmyBRCRGemt2EQWQRWzuWfvX/9bVa9NbSgkyHRN6BIpn2TVQoE4yROMl/NhKhbRPUesijWDFC5b3w/b7Vbv5nzum+rJk46NqhFwFLqgsdKfcO+lj6gDH2eHMhtXJBkmrMMhVlO6MKd4G6J0CRUEk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761225542; c=relaxed/simple;
-	bh=ZJniWJnry8+fO1GaHhaSnqADgGtJIJ8AN2vSP4jyT1Y=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jbwrhNaM9Je7U98HNPlby/IXGTS4thXgnARqQbCBNREeefsz5G7erTmP2HDCotkQHcjYo3Srsx34J2w7SfiCOQXzVLsyOpi/733ghglyVIKTPWAH2lz5m2mt8ffYnnKsJiplbO/13FQlFKPEtx6M6lbHnMH6wDGy0qvkSXMNT2Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RZMmalc2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0A02EC4CEE7;
-	Thu, 23 Oct 2025 13:19:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761225541;
-	bh=ZJniWJnry8+fO1GaHhaSnqADgGtJIJ8AN2vSP4jyT1Y=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=RZMmalc2PI3KQ7dFvTUbDh5yiuRR4B1rQ3kmUv8x1XuziDKiGm2c5xo+zIOJS33ZL
-	 TzYj8VUU+eeNcNv+iT0z9B5GZBqNhmcHPo9Y/EpmnSgYaZBJggGycuQHG41gtLcSNv
-	 pz6n75HxPtBXKGN1fIPsWj/N8maA1w0L31Fu5JlvFxhrxaBKxMk5oLTsP4gtaweIhZ
-	 3121XndTj/q3er6QBG1jJLho5B/qmhX8b9a4ojOugm0SEK7up/WiD5sb42G5rViHUi
-	 mcxXYN8ldCZJF6JVHZnP9Z/HqzzQW4rkNT8Br/iVxAckKmwkSu/04z3YxaXdKdsVUd
-	 hKAg6n+XxALIQ==
-Date: Thu, 23 Oct 2025 15:18:57 +0200
-From: Andi Shyti <andi.shyti@kernel.org>
-To: Heiko Stuebner <heiko@sntech.de>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, linux-i2c@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: i2c: i2c-rk3x: Add compatible string for
- RK3506
-Message-ID: <ka4wwbldtcmsivvoie2qjzdzadjpougx5odwztdy53252h3l4u@y4sfbrdbagp5>
-References: <20251021222853.193224-1-heiko@sntech.de>
+	s=arc-20240116; t=1761225550; c=relaxed/simple;
+	bh=/8rkPcTF7Ob5j0pA+Gxck6FNASvRBn5hwkgCdfF/uG4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Os5ZyXzYVLaYXvwUkDpNer7Lt/wteGFTHCEiqPwU8T4bq1r78pWxVjFvOfbTeiwCcZqd8xCSratg185eWiVdI+bjY30JUrDo0tPSwYdWr68CXz5gIVxSlzTIzu4YAbEE4UiKWv9hEsAwJMtswDe1XWk8awHl3Foix4xIR3mg4X4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=MpeiHDum; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=AVqusD5S; arc=none smtp.client-ip=80.241.56.152
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp2.mailbox.org (smtp2.mailbox.org [10.196.197.2])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4csmp30f6pz9sbX;
+	Thu, 23 Oct 2025 15:19:07 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1761225547;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=gDSJ8J5S8jjS2Yt2GqRZf28Sth5mAo70w2sg+sYmBWQ=;
+	b=MpeiHDumhvceLG4lgQMkfm1gG+A0xQd/ShbrURUKhbwttMzzyg4tDxJz3p439OPnaTV4yD
+	FQRiIHDH6Bq9O4/hACz6Vo+hojHYS7vfWcur4tflY2qoeCBFqnGkiWVcBHMgsYLyiLI8em
+	XzWDk/6+C7uHvJqetRMl6Zm/Pdl+OrZCr9FqUdczUVp4CZrAneKffhBEL8aR9YNS177sAj
+	9GS/9l+C2kWlNBYi+Ogc6IRbirq2eYf/0OHCMbw4l0tBCZRfJRYp0Vwp4iF81BomvtgMTZ
+	2hC7osLt+RaBdF/qLdY8ChDZ/qy7nLehm7TDuV+EGBBZMitezoI6Xr9k+kdipg==
+Message-ID: <4079105a-82c7-4650-8b6d-01989b617a4f@mailbox.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1761225545;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=gDSJ8J5S8jjS2Yt2GqRZf28Sth5mAo70w2sg+sYmBWQ=;
+	b=AVqusD5SsuPwMihcmq489DKJm/Sw2vifrBbdLUImBRMo+6Ovq7mjvhigMaEImB8U9OnKnH
+	Zl7uiZE+LUHyCe2fBwFPC5GgMfg7rFeJcsdwhiOtaipkUMEP0Xpb2MdDtXVyq9gLDAB12U
+	Akwlxs5eqk70QiA+c4mEla0aaH9K5kBvwasDDv46X2vM5WcGnOJr1pvgIyTlnU0Ntd9Mq+
+	i468SWbnHw8EbFeS71ZvL0HmCLSg8EF8KdHLW2JZqmyJfuTO+h9g91T3fVOZcQVr+i1NSp
+	hEB0pIpHfB9XQLTQRniIGSoWba5S2bMocZUABd8VtY6x8F4dl6wbgRULzJYHTg==
+Date: Thu, 23 Oct 2025 15:19:00 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251021222853.193224-1-heiko@sntech.de>
+Subject: Re: [PATCH 1/2] dt-bindings: firmware: arm,scmi: Document
+ arm,poll-transport property
+To: Geert Uytterhoeven <geert@linux-m68k.org>,
+ Marek Vasut <marek.vasut+renesas@mailbox.org>
+Cc: arm-scmi@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+ Cristian Marussi <cristian.marussi@arm.com>,
+ Florian Fainelli <florian.fainelli@broadcom.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ Sudeep Holla <sudeep.holla@arm.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-renesas-soc@vger.kernel.org
+References: <20251023123644.8730-1-marek.vasut+renesas@mailbox.org>
+ <CAMuHMdXq=4zb421MnwFvhFT_0K0HM=-LhWKueCHnfaEcGEgSLw@mail.gmail.com>
+Content-Language: en-US
+From: Marek Vasut <marek.vasut@mailbox.org>
+In-Reply-To: <CAMuHMdXq=4zb421MnwFvhFT_0K0HM=-LhWKueCHnfaEcGEgSLw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-MBO-RS-META: y34odf6yf1ii6mtywukpy3eqxon5pt41
+X-MBO-RS-ID: 24cb97ab0f852a5b356
 
-Hi Heiko,
+On 10/23/25 3:07 PM, Geert Uytterhoeven wrote:
+> Hi Marek,
 
-On Wed, Oct 22, 2025 at 12:28:53AM +0200, Heiko Stuebner wrote:
-> The i2c controller in the RK3506 is compatible to the variant first found
-> in the RK3399 SoC, so add the RK3506 to that variant list.
+Hello Geert,
+
+> On Thu, 23 Oct 2025 at 14:37, Marek Vasut
+> <marek.vasut+renesas@mailbox.org> wrote:
+>> Document new property arm,poll-transport, which sets all SCMI operation into
+>> poll mode. This is meant to work around uncooperative SCP implementations,
+>> which do not generate completion interrupts. This applies primarily on mbox
+>> based implementations, but does also cover SMC and VirtIO ones.
+>>
+>> With this property set, such implementations which do not generate interrupts
+>> can be interacted with, until they are fixed to generate interrupts properly.
+>>
+>> Note that, because the original base protocol exchange also requires some
+>> sort of completion mechanism, it is not possible to query SCMI itself for
+>> this property and it must be described in DT. While this does look a bit
+>> like policy, the SCMI provider is part of the hardware, hence DT.
+>>
+>> Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
 > 
-> Signed-off-by: Heiko Stuebner <heiko@sntech.de>
-
-merged to i2c/i2c-host.
-
-Thanks,
-Andi
+> Thanks for your patch!
+> 
+>> --- a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+>> +++ b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+>> @@ -146,6 +146,13 @@ properties:
+>>         this platform. If set, the value should be non-zero.
+>>       minimum: 1
+>>
+>> +  arm,poll-transport:
+>> +    type: boolean
+>> +    description:
+>> +      An optional property which unconditionally forces polling in all transports.
+>> +      This is mainly mean to work around uncooperative SCP, which does not generate
+> 
+> meant
+Fixed locally for potential V2, thanks.
 
