@@ -1,39 +1,48 @@
-Return-Path: <devicetree+bounces-230054-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230055-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D9DBBFF4A2
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 07:59:13 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D02BBFF510
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 08:18:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 54A4A19C7272
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 05:59:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DD20E3A4224
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 06:18:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11B26257846;
-	Thu, 23 Oct 2025 05:59:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3258284671;
+	Thu, 23 Oct 2025 06:18:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tgpCZF+o"
 X-Original-To: devicetree@vger.kernel.org
-Received: from cstnet.cn (smtp81.cstnet.cn [159.226.251.81])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB66C2417C6;
-	Thu, 23 Oct 2025 05:59:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82E042836B1;
+	Thu, 23 Oct 2025 06:18:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761199148; cv=none; b=KjYw/0lYspwGCl0h8o69e8YIWsqFXOjKJ/w1+IDvIdSQnIO6jhLDtA6RwKdEWI75k3DsszDdGNa9FvLiBtncr26vkcOCfc+RZxVIYRNwvMRwWCVO7Xbcsh9e6VuJDbdHtrOhSWUfnQ+gd9FrD5eyi9asSsyQxNKjjklMUTEIgcM=
+	t=1761200312; cv=none; b=d/SgfPwcKmgIxa2xMKF/R5nsUllQUH+mQgwcH3P8Xtw4QaDqJAv5gLC3aYXyIX5SagaNj17KO84VbaeZ0nk9noOZUJtLTvccVW4sOEqYBQm9PNokDNOVmR2qk7OFHiyC70ZedqPFGQSD7qOQw4LYjubTmqN3fU7x+KxVSJ1hzmM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761199148; c=relaxed/simple;
-	bh=9/L8LEUc6VUV0Tkz9CaaJqqFbpSu6Z2TmhoSS7imJLw=;
+	s=arc-20240116; t=1761200312; c=relaxed/simple;
+	bh=135r+iOzMXYzRrHnuZxO4TrjkLwdwBeSziTQ9L0ObvI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NcIaXLY3M6OoGZbb0R+i09Fg2lu74z8fi6lnv2kesEMIOZXK5ImOgJUwdV6LsGLE1KsmsEsdByJexGqQWG94IOJMnYZDGk2v/A7YyrKQti0bW+ENIzZCa4QnvfeEH7BgRUwQx1sMt6Nc8J2CLdq906cnYi8ngBrmVJsVYK3HbGM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
-Received: from [192.168.0.105] (unknown [114.241.85.109])
-	by APP-03 (Coremail) with SMTP id rQCowABXqIL9w_lo3ZHFFA--.967S2;
-	Thu, 23 Oct 2025 13:58:22 +0800 (CST)
-Message-ID: <f8a55f89-2612-49e3-88c6-acb523ac74d3@iscas.ac.cn>
-Date: Thu, 23 Oct 2025 13:58:22 +0800
+	 In-Reply-To:Content-Type; b=BmMBAHo2MLtddOOb7rIFpZZS6hMI2D6BnABBuLx2t0Dru32iDNNKjmnyqHaR+D5P+oPVI4YugIrmySYKU7rh9yVQzZaKqktaMT0mFQfkgz82ecKJV5D4Wv7WXjGU2ClES6PkWNcx0HCd2j+DD+Pf+ZD7+X3HyMnNC1F0AUtP2OE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tgpCZF+o; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2FC11C4CEE7;
+	Thu, 23 Oct 2025 06:18:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761200312;
+	bh=135r+iOzMXYzRrHnuZxO4TrjkLwdwBeSziTQ9L0ObvI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=tgpCZF+odlSN98VUfYJilY7igicPl14AP+1ArBB+TxE71IPFhDzTCc7xVXHMvxaiV
+	 vP2z5d6GPHKqXkURvW+mhQBHa38gNizQ734svkGZjzBB2iR10Rz6EAXGaoGfJnYVn4
+	 fLiYg1m4sxqt+iONsQ0FBsSgqdqFy8krdEEii81vmzjPEXVvmVcn31nJv/c+UV8HIY
+	 1rJe2DZy++u16oa+ytehc/VfEE9h0aBFUOFYWajMSHa1cpiumjh4ef1umAJJWLX6gn
+	 hpgmwk6n+7FkR25p0jdHuCeGssJWKw2ApJSXVgxPDa5ub2qWm9WiulrF8Q0TO+dRHN
+	 0nvghvHb6S6og==
+Message-ID: <118dfd79-f65f-4845-9436-b6be99a5223c@kernel.org>
+Date: Thu, 23 Oct 2025 08:18:27 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -41,75 +50,89 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/1] riscv: dts: spacemit: add Ethernet and PDMA to
- OrangePi RV2
-To: michael.opdenacker@rootcommit.com, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
- Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
- Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>
-Cc: Emil Renner Berthing <emil.renner.berthing@gmail.com>,
- devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
- spacemit@lists.linux.dev, linux-kernel@vger.kernel.org
-References: <20251022201807.1474789-1-michael.opdenacker@rootcommit.com>
- <20251022201807.1474789-2-michael.opdenacker@rootcommit.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: arm: qcom,ids: Add SoC ID for SM8850
+To: Jingyi Wang <jingyi.wang@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: aiqun.yu@oss.qualcomm.com, tingwei.zhang@oss.qualcomm.com,
+ trilok.soni@oss.qualcomm.com, yijie.yang@oss.qualcomm.com,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20251022-knp-socid-v2-0-d147eadd09ee@oss.qualcomm.com>
+ <20251022-knp-socid-v2-1-d147eadd09ee@oss.qualcomm.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Vivian Wang <wangruikang@iscas.ac.cn>
-In-Reply-To: <20251022201807.1474789-2-michael.opdenacker@rootcommit.com>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20251022-knp-socid-v2-1-d147eadd09ee@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:rQCowABXqIL9w_lo3ZHFFA--.967S2
-X-Coremail-Antispam: 1UD129KBjvJXoW7tFyDAryrWFWrGr13Aw4rAFb_yoW8Jw4DpF
-	4xWr1Yyrs8Cr48tw4xXw429a4rWw4kJ3yDA3Z0grZ8C3Z8XFyFqrs2qwnxuFW5K34fGayj
-	vFW7ua4FqF1UAaDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUUvlb7Iv0xC_Zr1lb4IE77IF4wAFF20E14v26r4j6ryUM7CY07I2
-	0VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rw
-	A2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Gr0_Xr1l84ACjcxK6xII
-	jxv20xvEc7CjxVAFwI0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVW8Jr0_Cr1UM28EF7xvwV
-	C2z280aVCY1x0267AKxVWxJr0_GcWle2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xv
-	F2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_Jr0_Jr4lYx0Ex4A2jsIE14v26r1j6r
-	4UMcvjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvEwIxGrwACI402YVCY1x02628vn2kIc2xK
-	xwCY1x0262kKe7AKxVWUtVW8ZwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJV
-	W8JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF
-	1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6x
-	IIjxv20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvE
-	x4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvj
-	DU0xZFpf9x07jeoGQUUUUU=
-X-CM-SenderInfo: pzdqw2pxlnt03j6l2u1dvotugofq/
+Content-Transfer-Encoding: 7bit
 
-Thank you so much for the patch and testing results. Only some nitpicks
-follow.
+On 23/10/2025 06:57, Jingyi Wang wrote:
+> Add the ID for the Qualcomm SM8850 SoC which represents the Kaanapali
+> platform.
+> 
+> Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+> ---
+>  include/dt-bindings/arm/qcom,ids.h | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/include/dt-bindings/arm/qcom,ids.h b/include/dt-bindings/arm/qcom,ids.h
+> index cb8ce53146f0..19598ed4679e 100644
+> --- a/include/dt-bindings/arm/qcom,ids.h
+> +++ b/include/dt-bindings/arm/qcom,ids.h
+> @@ -286,6 +286,7 @@
+>  #define QCOM_ID_IPQ5424			651
+>  #define QCOM_ID_QCM6690			657
+>  #define QCOM_ID_QCS6690			658
+> +#define QCOM_ID_SM8850			660
 
-On 10/23/25 04:18, michael.opdenacker@rootcommit.com wrote:
-> From: Michael Opdenacker <michael.opdenacker@rootcommit.com>
->
-> The OrangePi RV2 board ships two RGMII ethernet ports.
-> Each has an external Motorcomm YT8531C PHY attached, the PHY uses GPIO
-> for reset pin control.
->
-> Enable PDMA for the SpacemiT K1-based SoC in the OrangePi RV2 board.
->
-> Signed-off-by: Michael Opdenacker <michael.opdenacker@rootcommit.com>
-> CC: Emil Renner Berthing <emil.renner.berthing@gmail.com>
-> CC: Yixun Lan <dlan@gentoo.org>
-> CC: Vivian Wang <wangruikang@iscas.ac.cn>
 
-Firstly, it is usually spelt "Cc:", with one upper-case C and one
-lower-case c.
+Why no QCOM_ID_KAANAPALI?
 
-Secondly, "Cc:" should not be necessary in the patch/commit message.
-From Documentation/process/submitting-patches.rst:
 
-    If a person has had the opportunity to comment on a patch, but has not
-    provided such comments, you may optionally add a ``Cc:`` tag to the patch.
-    This tag documents that potentially interested parties have been included in
-    the discussion.
-
-If you look through the git logs of Linux, Cc tags are really not a
-regular occurrence except those marking patches as suitable for
-backporting to stable.
-
-Thanks,
-Vivian "dramforever"
-
+Best regards,
+Krzysztof
 
