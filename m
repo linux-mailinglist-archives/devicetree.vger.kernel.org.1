@@ -1,124 +1,232 @@
-Return-Path: <devicetree+bounces-230251-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230249-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82E9EC00E54
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 13:50:36 +0200 (CEST)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF2ADC00D3B
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 13:43:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 566523A2A10
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 11:46:52 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 43DC5347746
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 11:43:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0851230DEDE;
-	Thu, 23 Oct 2025 11:46:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3152730BB8F;
+	Thu, 23 Oct 2025 11:43:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="SoUA3p16"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="ZlJc4gg8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m15599.qiye.163.com (mail-m15599.qiye.163.com [101.71.155.99])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BCBE30E0EA;
-	Thu, 23 Oct 2025 11:46:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=101.71.155.99
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4513C30C62E;
+	Thu, 23 Oct 2025 11:43:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761220009; cv=none; b=RZXhNL6vKOdLJWwNE/K7mCj4nS/zqGU75n9nVlKMHYvTw3arWSQQUWcGDe0BIf+K0IUSBCkqtIQVF4XKvKABl1QVrOLTe1p5MFRk3wfBNNhJrqNUguCTNtjkyavLVs1x1iRhFbILiIrLB3hRr1lAdRdNZoopHK29VTogDk/aESY=
+	t=1761219799; cv=none; b=s8LnuFMwUPhq7V6zlU0Xve5Go1dKAPoqlrz/mHQPL4UWtZOBYi6VRyfPS8VuU0UWdmH3XFPhmJx/GTsiQdg6vvyP6pCKLioXTJ9AP0xRqNk8dDTeQp97J+Fm3Y70wzWB5KWWMYHEbbP/5/biqj6ltcvz+xkRxmi0VE5iQmuahNI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761220009; c=relaxed/simple;
-	bh=zt37YPGl7TQiSeIXISUoQEMHpase/yuviKdkFMuDh9M=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=l/rHHhBEaGqO0edfWe68Azs55+5ZOseTpGHwSkshpc4HEfiughcU+Isc74J5ELhH0ewC/13t3+FMBMIPOxsfxZOT2Tg3B1T1883oGYJv8zpyhuIKiyG6AGQ5KATeF7psYx+9DeeLOgf0cSzZAdiO6n1MdzS+FC7JwB09UfFW7oI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=SoUA3p16; arc=none smtp.client-ip=101.71.155.99
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from [172.16.12.149] (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 26f21c1b7;
-	Thu, 23 Oct 2025 19:41:26 +0800 (GMT+08:00)
-Message-ID: <7cd2ab42-a6b4-41d2-bd3b-be043d69ffff@rock-chips.com>
-Date: Thu, 23 Oct 2025 19:41:25 +0800
+	s=arc-20240116; t=1761219799; c=relaxed/simple;
+	bh=3FvckJYclLaFpoM7rkCjwxmr22V2jI4eOwreLOBgF1U=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Dwk2KHoA+a2RRLSyh5/qHrnlM0Ufnq18w4makbfWeH4KuOAu0U/aSqTMXubAxeAl/p+H7nSlhBl75et+a9uDWkGP9qbvq2FiI1txymLFXVuM+oKT3NZdTR9zCGfvR9EFRhVIW5xWGAbLYxiwgg1lLj/XeTcMCLuTBJDYqky+954=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=ZlJc4gg8; arc=none smtp.client-ip=192.198.163.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1761219797; x=1792755797;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=3FvckJYclLaFpoM7rkCjwxmr22V2jI4eOwreLOBgF1U=;
+  b=ZlJc4gg8xlH/AUy+QcmFceoM6dQ/CXSLgCW/+pquQeQUVqbEIx/epFCw
+   bd2tb/1yzsGoELCw8MxbuaMvZSEjjwwGv8lVkbT6EBNYVYqIX2X3efoXj
+   VUhURIUaocpByCnm7ZLNH40O/EyFD7bqgBalYvrK9BJbkLCZnhw+KBK2h
+   raTB/OMCZwJTCvbQ8IE6ZM8q9zBKnwNoIZtRe5v9glzvG3R3dFahjFGOZ
+   hJ3CKOMwvEsE4L7nM8ErlohKiO1egXwK3yj3bQxcfPjAueQUyd7XnuCuc
+   gvG6Y55eSsJWT5yKzVtUGyvlakwIuCgHXLMkqDHkS5Qdvsk7zi1cvFQuk
+   g==;
+X-CSE-ConnectionGUID: GubOxQtcSfSYaIN2kYeCqw==
+X-CSE-MsgGUID: cWloxm5BQgi9iz04eLyJ4g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="62415559"
+X-IronPort-AV: E=Sophos;i="6.19,249,1754982000"; 
+   d="scan'208";a="62415559"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Oct 2025 04:43:17 -0700
+X-CSE-ConnectionGUID: +P1tvMTYR3C8eUA2trkadA==
+X-CSE-MsgGUID: Lz7Gau+SSb+jgZGrGaJvjg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,249,1754982000"; 
+   d="scan'208";a="189269028"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO kekkonen.fi.intel.com) ([10.245.244.193])
+  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Oct 2025 04:43:14 -0700
+Received: from kekkonen.localdomain (localhost [IPv6:::1])
+	by kekkonen.fi.intel.com (Postfix) with ESMTP id EADAA1209C8;
+	Thu, 23 Oct 2025 14:43:11 +0300 (EEST)
+Date: Thu, 23 Oct 2025 14:43:11 +0300
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6 krs, Bertel Jungin Aukio 5, 02600 Espoo
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Hans Verkuil <hverkuil@kernel.org>,
+	Hans de Goede <hansg@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] media: i2c: add Samsung S5KJN1 image sensor
+ device driver
+Message-ID: <aPoUzwYYiECdHXSv@kekkonen.localdomain>
+References: <20251016020419.2137290-1-vladimir.zapolskiy@linaro.org>
+ <20251016020419.2137290-3-vladimir.zapolskiy@linaro.org>
+ <aPiZjiXp8-uuPjjX@kekkonen.localdomain>
+ <9f4c0032-39c7-4d78-b24f-2d85cb93734b@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 1/9] usb: typec: Add notifier functions
-To: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>, Heiko Stuebner
- <heiko@sntech.de>, Sandy Huang <hjc@rock-chips.com>,
- Andy Yan <andy.yan@rock-chips.com>,
- Yubing Zhang <yubing.zhang@rock-chips.com>,
- Frank Wang <frank.wang@rock-chips.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Amit Sunil Dhamne <amitsd@google.com>, Dragan Simic <dsimic@manjaro.org>,
- Johan Jonker <jbx6244@gmail.com>, Diederik de Haas <didi.debian@cknow.org>,
- Peter Robinson <pbrobinson@gmail.com>, linux-usb@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-phy@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, dri-devel@lists.freedesktop.org
-References: <20251023033009.90-1-kernel@airkyi.com>
- <20251023033009.90-2-kernel@airkyi.com> <aPni4AeDaem_rfZH@kuha.fi.intel.com>
- <aPnvoSRJefwDlpNO@kuha.fi.intel.com> <aPn4-S7upPOOtenr@kuha.fi.intel.com>
- <9c52db41-14f3-41a8-9423-3efe604361aa@rock-chips.com>
- <aPoTPr28cBzwbH0T@kuha.fi.intel.com>
-Content-Language: en-US
-From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
-In-Reply-To: <aPoTPr28cBzwbH0T@kuha.fi.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-HM-Tid: 0a9a10dfb1f003abkunm0c62c8eb19a689
-X-HM-MType: 1
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQk4aTFZOQkNJHx9NSE4YThpWFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSEpPSE
-	xVSktLVUpCS0tZBg++
-DKIM-Signature: a=rsa-sha256;
-	b=SoUA3p169i9C2R9xYPpzMMb2wlTBicrWBqmmeb8PWtTWXOJ1Np5Y6qFfKqeOHa46VgTrfuBvLckGkoioNw3yDj+IfLac18AkGybJz/XY5R4Z48242QSNSxNaxINNHlY8e9H864GFVJcme5maz7B7CxO9lrKNW3BBjdMZ7HrvA20=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
-	bh=rFc/n1ZidqlGM2CN2Wf5PWZP2e2sySqLHIg26HxghvA=;
-	h=date:mime-version:subject:message-id:from;
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <9f4c0032-39c7-4d78-b24f-2d85cb93734b@linaro.org>
 
-Hi Heikki,
+Hi Vladimir,
 
-On 10/23/2025 7:36 PM, Heikki Krogerus wrote:
->> Thank you for your detailed explanation. I noticed that there is a
->> device_register() action in typec_register_altmode(), so we can just take
->> advantage of this.
->>
->> Another thing is that we need to distinguish between different devices in the
->> notifier callback, as
->> typec_register_altmode()/typec_register_partner()/typec_register_plug()/typec_register_cable()
->> may all register devices. Since the data passed in bus_notify() is struct
->> device *dev, I think we can distinguish them through `dev->type.name`? We may
->> already have such names, "typec_alternate_mode", "typec_partner", "typec_plug"
->> in class.c . And then extract these names as macros and put them in the typec
->> header file.
-> You don't need to worry about that. Only partner altmodes are bind to
-> the bus. The device you see in the notifier will always be an altmode.
->
-> But in general, if you need to identify the device type, then
-> you use the device type itself, not the name of the type. It would
-> require that the device types are exported, but as said, you don't
-> need to worry about that in this case.
+On Thu, Oct 23, 2025 at 03:13:15AM +0300, Vladimir Zapolskiy wrote:
+> Hi Sakari,
+> 
+> thank you so much for review!
+> 
+> On 10/22/25 11:45, Sakari Ailus wrote:
+> > Hi Vladimir,
+> > 
+> > On Thu, Oct 16, 2025 at 05:04:19AM +0300, Vladimir Zapolskiy wrote:
+> > > Samsung S5KJN1 is a 50MP image sensor, it produces Bayer GRBG (2x2)
+> > > frames in RAW10 output format, the maximum supported output resolution
+> > > is 8160x6144 at 10 frames per second rate.
+> > > 
+> > > Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+> 
+> <snip>
+> 
+> > > +
+> > > +#define S5KJN1_NUM_SUPPLIES	ARRAY_SIZE(s5kjn1_supply_names)
+> > 
+> > Please use ARRAY_SIZE() directly where you need this.
+> > 
+> 
+> There are 6 places of the macro usage in the driver, but will do it.
+> 
+> <snip>
+> 
+> > > +
+> > > +static u64 s5kjn1_mode_to_pixel_rate(const struct s5kjn1_mode *mode)
+> > > +{
+> > > +	u64 pixel_rate;
+> > > +
+> > > +	pixel_rate = s5kjn1_link_freq_menu[0] * 2 * S5KJN1_DATA_LANES;
+> > > +	do_div(pixel_rate, 10);			/* bits per pixel */
+> > 
+> > You could also use div_u64().
+> > 
+> 
+> Right, also it would make sense to change the argument from mode to freq,
+> that's what I notice.
 
-Very insightful! I will try to do this in v8 :)
+Ack.
 
+...
 
->
-> thanks,
->
+> > > +static int s5kjn1_set_pad_format(struct v4l2_subdev *sd,
+> > > +				 struct v4l2_subdev_state *state,
+> > > +				 struct v4l2_subdev_format *fmt)
+> > > +{
+> > > +	struct s5kjn1 *s5kjn1 = to_s5kjn1(sd);
+> > > +	s64 hblank, vblank, exposure_max;
+> > > +	const struct s5kjn1_mode *mode;
+> > > +
+> > > +	mode = v4l2_find_nearest_size(s5kjn1_supported_modes,
+> > > +				      ARRAY_SIZE(s5kjn1_supported_modes),
+> > > +				      width, height,
+> > > +				      fmt->format.width, fmt->format.height);
+> > > +
+> > > +	s5kjn1_update_pad_format(s5kjn1, mode, &fmt->format);
+> > > +
+> > > +	/* Format code can be updated with respect to flip controls */
+> > > +	*v4l2_subdev_state_get_format(state, 0) = fmt->format;
+> > > +
+> > > +	if (fmt->which == V4L2_SUBDEV_FORMAT_TRY)
+> > > +		return 0;
+> > > +
+> > > +	if (s5kjn1->mode == mode)
+> > > +		return 0;
+> > > +
+> > > +	s5kjn1->mode = mode;
+> > > +
+> > > +	/* Update limits and set FPS and exposure to default values */
+> > > +	hblank = mode->hts - mode->width;
+> > > +	__v4l2_ctrl_modify_range(s5kjn1->hblank, hblank, hblank, 1, hblank);
+> > > +
+> > > +	vblank = mode->vts - mode->height;
+> > > +	__v4l2_ctrl_modify_range(s5kjn1->vblank, vblank,
+> > > +				 S5KJN1_VTS_MAX - mode->height, 1, vblank);
+> > > +	__v4l2_ctrl_s_ctrl(s5kjn1->vblank, vblank);
+> > > +
+> > > +	exposure_max = mode->vts - mode->exposure_margin;
+> > > +	__v4l2_ctrl_modify_range(s5kjn1->exposure, S5KJN1_EXPOSURE_MIN,
+> > > +				 exposure_max, S5KJN1_EXPOSURE_STEP,
+> > > +				 mode->exposure);
+> > > +	__v4l2_ctrl_s_ctrl(s5kjn1->exposure, mode->exposure);
+> > 
+> > Note that these can also fail. Assigning the format to the state should
+> > thus be done as last.
+> 
+> Likely it could happen due to some obscure reasons, but it is not expected
+> to happen due to the new applied mode settings, because the settings are
+> the default ones for the selected mode. Anyway, I agree that in general
+> an error could appear, I'll add the next check before changing the state:
+> 
+>         if (s5kjn1->sd.ctrl_handler->error)
+>                 return s5kjn1->sd.ctrl_handler->error;
+
+The control handler's error state is set when setting up the control
+handler itself somehow fails, not when applying a value to a control fails.
+I.e. you should check the return values from the above functions only.
+
+E.g. setting the vertical blanking value typically results in an I²C write.
+
+> 
+> > > +
+> > > +	return 0;
+> > > +}
+> > > +
+> 
+> <snip>
+> 
+> > > +
+> > > +static const struct v4l2_subdev_pad_ops s5kjn1_pad_ops = {
+> > > +	.set_fmt = s5kjn1_set_pad_format,
+> > > +	.get_fmt = v4l2_subdev_get_fmt,
+> > > +	.enum_mbus_code = s5kjn1_enum_mbus_code,
+> > > +	.enum_frame_size = s5kjn1_enum_frame_size,
+> > > +	.enable_streams = s5kjn1_enable_streams,
+> > > +	.disable_streams = s5kjn1_disable_streams,
+> > 
+> > Could you also add selections support, even if they're all read-only?
+> > 
+> 
+> Will it be sufficient to set
+> 
+>         sel->r.top = 0;
+>         sel->r.left = 0;
+>         sel->r.width = fmt->width;
+>         sel->r.height = fmt->height;
+> 
+> for the crop selection targets like it's done in ov2640 case for instance?
+
+Preferrably like e.g. imx219.
+
 -- 
-Best,
-Chaoyi
+Kind regards,
 
+Sakari Ailus
 
