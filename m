@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-230066-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230067-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28AD5BFF709
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 08:59:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A38E8BFF73C
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 09:04:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8A1E03A25BE
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 06:58:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 40E703A4F6B
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 07:04:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C04D929DB61;
-	Thu, 23 Oct 2025 06:58:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8244F296BA8;
+	Thu, 23 Oct 2025 07:04:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YwOH8CUA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HUCtRuLS"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 843B7239E80;
-	Thu, 23 Oct 2025 06:58:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5702223D288;
+	Thu, 23 Oct 2025 07:04:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761202681; cv=none; b=KxrgYSCtKPL+8qsu0HgwrJtenkfqGdi+nKxVJ0I7mYq4pM+S6QFOQGWVzACway4EboYmO8HZphM2m/IzjyG9t1smLPyKgixZIsiG6DXbx/yx4wk/9blq3D+aM4Yx4ZnYLO3QIwdrs2+OS9zkSxyROY7ZwimmrgBlXINKyl+ndqE=
+	t=1761203089; cv=none; b=RSHfA+bKlpHlCVqAPvze8aIhfXvM356f5sbw88/Sdfs8Q09kkNJvlkhzh6OI5uYLOI9iqDgpwdQ/uGu6CRz0vZgi3nqueigN2P32ifDyizX+I+f/7cf2KbJ6W3KqeAgxXW/kTGu9eBJPoCTCi48Up7RveXz6LjC9r/R8B/ku5jw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761202681; c=relaxed/simple;
-	bh=Bk8mkjow2SUlSxjCiPaDSHS2if6WZcJF6LTupPJO9Lg=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=BgnJiFb6dfO2R08iXL1oZ7NKMfhQKUypnMZZo8NQct/zmWBntwTWhRl3Nfai1mIl2OkX5XdgAGcdMZmiGJZdaTgr2DSncqyE22an549wXWKQcXTFx/l7/3qdrVOaciQ6//9QW88hsFHNd+VgPWswto8tk5es+aa6A5CfN0fotZ0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YwOH8CUA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1AC92C4CEE7;
-	Thu, 23 Oct 2025 06:57:56 +0000 (UTC)
+	s=arc-20240116; t=1761203089; c=relaxed/simple;
+	bh=k8U6qSlJM/fWtU7OiPvtfXvMhWe75vynGRggydWDHPI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=bvHNuzEdrnH3D0EaMLMMIr0MOTv/n9Y98pNCNp4CEyWTnbbQMfWh0r/cUnjjYd3kxjTM4l+wBver3enevbWf3ERxelDjjoDHjgFbeekgbrHXA7oUcXvshv9gQmFcNH0U8As2/mY+9KVDPZ4/0hbEXq1lktpEdYNKbCRy1CycVQk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HUCtRuLS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 86654C4CEE7;
+	Thu, 23 Oct 2025 07:04:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761202681;
-	bh=Bk8mkjow2SUlSxjCiPaDSHS2if6WZcJF6LTupPJO9Lg=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=YwOH8CUA1g9ZjTrRt8S/qb1Q3DHdjKzluiDFYeHpLVuGaohh7VOG2OGrBAcLeOlWs
-	 C40TQFde0pwYlDpr2/HKy0dG0ouwreMDd+jnkJjYr22RM05cEfFvM10L2CWG6tySP8
-	 gKZA4cMykWRNYPifPlo1rsti7VELpDv6T38DWPy7Nd59Ry68maQUUvsfmfhBAC14BG
-	 jw/Ajk9wAAnjRVhq1iNqRgHRVJpJBy+mq10zbkRDWYLnM1ICI42l4IorHuyK5D4ri8
-	 PIvT7YwVn3s7Zo5nOQUgaGACuU+x6YJ2UmZRvWs8zKj6ZpZThib+KD1xnSnWrVc6so
-	 D66n7jYnPapbg==
-Message-ID: <698ba0ea-3367-4fc0-bd4f-0177283c2e77@kernel.org>
-Date: Thu, 23 Oct 2025 08:57:55 +0200
+	s=k20201202; t=1761203088;
+	bh=k8U6qSlJM/fWtU7OiPvtfXvMhWe75vynGRggydWDHPI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=HUCtRuLSGalwcocYtmOPNj5aRmJal9BaCq5d6wBC2iW/YNm8cz5hrQSUR5JXE7JBi
+	 ZgVmwfb9C7rDU0lfyqOOYYaso7n6O2+NEZ1R4cBZXvhZGNij9QJ9lx+laViLBIklA3
+	 /4hrQuL0SomnetZfrP03QiVYkit1JD76FxyR/sDvOpkcPppuzc6CVF+PZbmD8HLxx3
+	 GPX6PQRRR1wA6CBYt9EMDfFmFDxOJNHLuL5FpcjZF2LOASnatspcSz79k9Prfo85Kk
+	 RTsL+UzSV+xtqVW6zXny/bxpIcirDgra1mP+g6JeWj/kl39KP9svv/5vScajrTe/ft
+	 1vN3dYuVOtgRg==
+Message-ID: <a1c28952-d08f-4629-84f4-e17646f6e554@kernel.org>
+Date: Thu, 23 Oct 2025 09:04:44 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,24 +50,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/2] dt-bindings: phy: google: Add Google Tensor G5 USB
- PHY
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Roy Luo <royluo@google.com>
-Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I
- <kishon@kernel.org>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH 1/2] dt-bindings: arm: aspeed: Add compatible for Facebook
+ Anacapa BMC
+To: "Shen, Peter" <Peter.Shen@amd.com>,
+ Andrew Jeffery <andrew@codeconstruct.com.au>
+Cc: Joel Stanley <joel@jms.id.au>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
- Peter Griffin <peter.griffin@linaro.org>,
- =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
- Tudor Ambarus <tudor.ambarus@linaro.org>,
- Joy Chakraborty <joychakr@google.com>, Naveen Kumar <mnkumar@google.com>,
- Badhri Jagan Sridharan <badhri@google.com>, linux-phy@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org
-References: <20251017235159.2417576-1-royluo@google.com>
- <20251017235159.2417576-2-royluo@google.com>
- <20251023-collie-of-impossible-plenty-fc9382@kuoka>
+ <conor+dt@kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <DS7PR12MB61187E5845B076BF7C7EFE0995F0A@DS7PR12MB6118.namprd12.prod.outlook.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -112,66 +108,30 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20251023-collie-of-impossible-plenty-fc9382@kuoka>
+In-Reply-To: <DS7PR12MB61187E5845B076BF7C7EFE0995F0A@DS7PR12MB6118.namprd12.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 23/10/2025 08:43, Krzysztof Kozlowski wrote:
-> On Fri, Oct 17, 2025 at 11:51:58PM +0000, Roy Luo wrote:
->> Document the device tree bindings for the USB PHY interfaces integrated
->> with the DWC3 controller on Google Tensor SoCs, starting with G5
->> generation. The USB PHY on Tensor G5 includes two integrated Synopsys
->> PHY IPs: the eUSB 2.0 PHY IP and the USB 3.2/DisplayPort combo PHY IP.
->>
->> Due to a complete architectural overhaul in the Google Tensor G5, the
->> existing Samsung/Exynos USB PHY binding for older generations of Google
->> silicons such as gs101 are no longer compatible, necessitating this new
->> device tree binding.
->>
->> Signed-off-by: Roy Luo <royluo@google.com>
->> ---
->>  .../bindings/phy/google,gs5-usb-phy.yaml      | 104 ++++++++++++++++++
->>  1 file changed, 104 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/phy/google,gs5-usb-phy.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/phy/google,gs5-usb-phy.yaml b/Documentation/devicetree/bindings/phy/google,gs5-usb-phy.yaml
->> new file mode 100644
->> index 000000000000..c92c20eba1ea
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/phy/google,gs5-usb-phy.yaml
->> @@ -0,0 +1,104 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +# Copyright (C) 2025, Google LLC
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/phy/google,gs5-usb-phy.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Google Tensor Series (G5+) USB PHY
->> +
->> +maintainers:
->> +  - Roy Luo <royluo@google.com>
->> +
->> +description: |
->> +  Describes the USB PHY interfaces integrated with the DWC3 USB controller on
->> +  Google Tensor SoCs, starting with the G5 generation.
->> +  Two specific PHY IPs from Synopsys are integrated, including eUSB 2.0 PHY IP
->> +  and USB 3.2/DisplayPort combo PHY IP.
->> +  The hardware can support three PHY interfaces, which are selected using the
->> +  first phandle argument in the PHY specifier::
+On 23/10/2025 08:52, Shen, Peter wrote:
+> [AMD Official Use Only - AMD Internal Distribution Only]
+
+
+No, you cannot send such headers. We don't care about your corporate rules.
+
+Also your patchset has completely broken threading.
+
 > 
-> Just one ':', anyway this sentence and below does not belong to
-> description but to phy-cells. You describe the cells.
+> From 3129809145bd283bc52b4e105ea66d217166bb5c Mon Sep 17 00:00:00 2001
+> From: Peter Shen <peter.shen@amd.com>
+> Date: Thu, 23 Oct 2025 13:49:52 +0800
+> Subject: [PATCH 1/2] dt-bindings: arm: aspeed: Add compatible for Facebook
+>  Anacapa BMC
 > 
-> Or just mention the header with IDs - here or in phy-cells.
+> This patch adds the compatible string for the Facebook Anacapa BMC
 
-
-If you go with free-form text description in phy cells, then some
-example could be:
-renesas,rcar-gen2-usb-phy.yaml
-
-For the header (in this case clocks):
-display/msm/dsi-phy-common.yaml
+Please do not use "This commit/patch/change", but imperative mood. See
+longer explanation here:
+https://elixir.bootlin.com/linux/v6.16/source/Documentation/process/submitting-patches.rst#L94
 
 
 Best regards,
