@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-230468-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230469-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 385D6C02DBD
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 20:10:38 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 88CEDC02DCF
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 20:15:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F38E21882E0B
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 18:11:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 536901A64852
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 18:15:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E7D634B1AC;
-	Thu, 23 Oct 2025 18:10:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 462AC2AEF5;
+	Thu, 23 Oct 2025 18:15:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XTW3BwFr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Rc1/R/ZQ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E68B52580D7;
-	Thu, 23 Oct 2025 18:10:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18FDBEEAB;
+	Thu, 23 Oct 2025 18:15:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761243034; cv=none; b=rMlPuSd/bbkXB4zFCnCbaam+5ubNnh9ZiGqnyCZmy1Z3LZJzl8qEMoGlRCMF1zoDv8wyEUtdA5WqFLctXlzwIhgYkHi0et758lTzQyFaCURvcnUu3DIiHklDRddFZXzKFK4SZuCMnB1A89suoPyL17LUDUtu8+x+siv2Jybrat0=
+	t=1761243330; cv=none; b=I4uQgZHinJdv7B7eOzNgUrB0gXYc4ptPSwIytd8MUXuS9hT3kQxiWi1dBg1cB2oOC8Na18XR9/hy1GtRCArFiJtw1MAyV/TSZsLuZYD8G7Kw1WTGUCV9zOfY+YakBe6wezlOgJj5ve6lPfXZWvDC9NvTJgz4mnYs0g6OnAy0g7g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761243034; c=relaxed/simple;
-	bh=GLeJivACp19gK9PPp3ghta++u3HVlvxM/ER07GtQvkI=;
+	s=arc-20240116; t=1761243330; c=relaxed/simple;
+	bh=nxY+HuqTIpPkP+CSbToqpWvLHkXZOSn2v3/twOPxEK0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=CTFB9GPtxcbgAEGlWynyOK0NYTGVwDPxgsI+LznmlxzpoeNquGjayEGFfY7xWKwU6Pl+O6E8sl3uin6MsC9PJfEKo1w7mqyivs9b1/s9TR9hVVNWci23d51GNGVy0qRbkj6SCa5r4WNK62GpO7vdNKhSm5LDSsBX4r2Ej+Ujdhs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XTW3BwFr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EA35BC4CEE7;
-	Thu, 23 Oct 2025 18:10:31 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=gL8vxyQIDU8PBgbtPtzQbQFdo2im9iv5/BmsZ4qz/nLO3wj1mVLUPJMUbiYkI2VWr6nD+Y2Dc9WnEJVZUnE5w3CE8EXYCE3su83MECr8GjXW81SzW+z5OcHBjUa9IbT+a9uqDR3dov7ckqOOnFpsYU1hNa64w7aTYSWMjj0vDzs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Rc1/R/ZQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7C8A0C4CEE7;
+	Thu, 23 Oct 2025 18:15:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761243033;
-	bh=GLeJivACp19gK9PPp3ghta++u3HVlvxM/ER07GtQvkI=;
+	s=k20201202; t=1761243329;
+	bh=nxY+HuqTIpPkP+CSbToqpWvLHkXZOSn2v3/twOPxEK0=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=XTW3BwFrT/YZVzlV8PpB2IKMBVio/ubh49kRINvCy1fkqZ9W0nBcMu5I2Cx+3+xEW
-	 j908azRs4CMyTLN3fScwAG95EUNVG1YczEoh/GF8LvoGWvOKXedRQFjJE5yS+kDQpe
-	 sDOU311Jf1y/WaKYmviqwEE/DKBe8vnViOq7AlqUgsk1e68Dq4uciFEQjwshvprgIi
-	 +NprJrMdP6NAT3uPZnln4D0OuujiBUPkt2QSkbjVCLRdaOMP119rgjuawO2oHfgabJ
-	 EX71WRmZFn17tecazGO5CKq+/ER4zwidcW7mbLXK8dpJb2PTfhpr04gnBqBVCA3wbu
-	 8gpE5FohJnu2g==
-Message-ID: <79448834-43d4-4f2d-8ab0-dc8b2eac37ac@kernel.org>
-Date: Thu, 23 Oct 2025 20:10:30 +0200
+	b=Rc1/R/ZQa1d/72zD1UgfhxRZSvRM5QVh4DIPIIflsCQp3uzoklRZVUbgxT7zDg5i0
+	 91neO92uQaWUwYSR0cTyMQ4ryqgRhRMXThQ/YkbqXywo8LFPewVgG7hrwIgCQqW4XS
+	 usfDAW1s2L1XrhlwrJQUZtgdWt06SHDC2knOfCze2XcKr4pxLXd8ba3RZAq/4iifVI
+	 iNejbVlCjcUsozOxGLGRy/5CoTE0Xkg/GBkJ5CyIS4jokDazQSd2IlJOoTQmqD/0U6
+	 VTxYVnwkR1p/H2jlPjAdb+zIv8eQkYjmMC+xi/Ji2zxf3vP61m5m8J7GD2Lt1poAKF
+	 SI67Cb6dHkW/A==
+Message-ID: <fa397247-6271-47eb-bea6-ccd83808df74@kernel.org>
+Date: Thu, 23 Oct 2025 20:15:24 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,12 +50,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] docs: dt-bindings: Extend the ordering list with a blank
- newline before status
-To: david@ixit.cz, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20251023-docs-dt-newline-v1-1-1bf5e0040c0b@ixit.cz>
+Subject: Re: [PATCH v6 05/12] ASoC: dt-bindings: sound: cirrus: cs530x: Add
+ cs530x
+To: Vitaly Rodionov <vitalyr@opensource.cirrus.com>,
+ Mark Brown <broonie@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Takashi Iwai <tiwai@suse.com>, Jaroslav Kysela <perex@perex.cz>,
+ David Rhodes <david.rhodes@cirrus.com>,
+ Richard Fitzgerald <rf@opensource.cirrus.com>,
+ Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-sound@vger.kernel.org,
+ linux-kernel@vger.kernel.org, patches@opensource.cirrus.com,
+ devicetree@vger.kernel.org
+References: <20251023090327.58275-1-vitalyr@opensource.cirrus.com>
+ <20251023090327.58275-6-vitalyr@opensource.cirrus.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -101,20 +108,38 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20251023-docs-dt-newline-v1-1-1bf5e0040c0b@ixit.cz>
+In-Reply-To: <20251023090327.58275-6-vitalyr@opensource.cirrus.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 23/10/2025 20:00, David Heidelberg via B4 Relay wrote:
-> From: David Heidelberg <david@ixit.cz>
+On 23/10/2025 11:03, Vitaly Rodionov wrote:
+> This patch adds additional cs530x family variants.
 > 
-> For better readability, it is recommended to insert a newline before the
-> 'status' property. Adjust the examples accordingly.
+> cirrus,cs4282 - high-performance, 32-bit resolution, stereo CODEC
+> cirrus,cs4302 - high performance stereo DAC, 2 channels
+> cirrus,cs4304 - high performance stereo DAC, 4 channels
+> cirrus,cs4308 - high performance stereo DAC, 8 channels
 > 
-> Signed-off-by: David Heidelberg <david@ixit.cz>
-> ---
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+<form letter>
+This is a friendly reminder during the review process.
+
+It looks like you received a tag and forgot to add it.
+
+If you do not know the process, here is a short explanation:
+Please add Acked-by/Reviewed-by/Tested-by tags when posting new versions
+of patchset, under or above your Signed-off-by tag, unless patch changed
+significantly (e.g. new properties added to the DT bindings). Tag is
+"received", when provided in a message replied to you on the mailing
+list. Tools like b4 can help here. However, there's no need to repost
+patches *only* to add the tags. The upstream maintainer will do that for
+tags received on the version they apply.
+
+Please read:
+https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
+
+If a tag was not added on purpose, please state why and what changed.
+</form letter>
 
 Best regards,
 Krzysztof
