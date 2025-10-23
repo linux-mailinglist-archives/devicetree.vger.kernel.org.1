@@ -1,259 +1,180 @@
-Return-Path: <devicetree+bounces-230551-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230552-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA9AEC039D2
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 23:50:24 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E892C039F9
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 23:55:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 7DE09357DAB
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 21:50:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0B3E31AA2F5B
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 21:56:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3BDA21D011;
-	Thu, 23 Oct 2025 21:50:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 958A623C4F2;
+	Thu, 23 Oct 2025 21:55:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="F1SEwrjh"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="tA6lyhxf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
+Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com [209.85.210.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0785A13790B
-	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 21:50:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F06BC17C21C
+	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 21:55:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761256219; cv=none; b=DvCJ9f1NLKhxRAP3W5TLZiKSFl4JoR/Bsqh+PicRkcfmRgEvRKkM/LTKy9s4oC+NRfMBdQPjnKvC5uW+KohoPZcMn/MZ6JxcOAOmtvQCZYDlTzklVLikroT7cNYbCN0ufhudNfAHJB/uuytB6xTxFQ/+eR5Bz/CfPb5ZK8YtjFo=
+	t=1761256538; cv=none; b=QMTs0qyh8MS0dn9X87v0w24SuLoeqV+JpdL4ObqSBnrFm9E4CXTAHXX6GWTn+Z1aKYkzcXx/YbQt2JEJEL4Qkx4EYxPSBmvr085Q7+M0QHKGYmIHRCknMguWqJbCg0Ary/oWuECeZZrCR8B8MWPPBP1sG9MHILMql2w99cNdrPk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761256219; c=relaxed/simple;
-	bh=0crdkRWL2i52N8DjaLjPGWqZ+qR9vnRSb8AxmG3G5jk=;
+	s=arc-20240116; t=1761256538; c=relaxed/simple;
+	bh=cog6S/R0M1m6Oqk0Kk2myV4ppTBdZBk+i/lE1k+LB6Y=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=tTl26+fF0LePIul1uVI9WAncBOQPJsOM8B8BfKMyLbcTOKcPRwv2JulI6f2vhvK+c+Pr2scsov2K/oB6rByhGQ7UNaOskSVUoPnu+Psv6c9eNL6BXyqt3dAKdXUMPhHJaK1WPzErPW+V9M81Ukhq1EE0xzsAlntuqEaXHBbQ42U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=F1SEwrjh; arc=none smtp.client-ip=209.85.208.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-63c4f1e7243so2111409a12.3
-        for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 14:50:17 -0700 (PDT)
+	 To:Cc:Content-Type; b=M9BOpMZVy0P7paKzC3R1oLCEO2op7AaCQtcRrK50O9TLwwg8lLzQOUx1S6O7pbgfkQ/qjsOFaHUzY7RyNl84K+hkALv6lB3g0etjzk0zGJp6GmplaxwCRk9O0dPPz0Tl6Zt5kq9skaLTdpsZfeIapfDTR8f7tvErh7qbBv7PYC4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=tA6lyhxf; arc=none smtp.client-ip=209.85.210.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-pf1-f174.google.com with SMTP id d2e1a72fcca58-78118e163e5so2374795b3a.0
+        for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 14:55:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1761256216; x=1761861016; darn=vger.kernel.org;
+        d=google.com; s=20230601; t=1761256536; x=1761861336; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=mTxd0N4ykd7gve6I0VI6xvQpfS9jPjV5mFGiKktW21o=;
-        b=F1SEwrjh3GuuKfLFMQdbvKrV+ETF04xlvaypgRB84tFPaVh24wshsL4yLG9sLLj1uq
-         K4Ca+UWdrgvxQuLcu8SApM1nfHdHWQdUuqMiEnDKKVUf5CezdyIn75Rqb4qd3MRUBRox
-         wUKLDbT8b+hxUSourq2iAL/4ergYPhH2+s9WrxRhhM3+B4UtXjdrMcoBv2EsVxgncfvV
-         YXuBylJFcF7b7oti0WAGzv9UIXgp3p5jhR3hNDk4wOUJgB2eINVFvRd0jTvFbp+C/OgA
-         jDIMCWVaWfVhFGtIdPK66ZzzSl6tEM0pXOLE795FW+Aava05xgsLBkEQvQHz5zwCI2Js
-         ZGEA==
+        bh=wyDCy69Q/3azt6BaC0jOoV9WgJt8g3WAXELT1WMNnq8=;
+        b=tA6lyhxf1EzZb4irJcJFuvS8i0lkN5hHIoG0dS3Fs2QwrNpgtnslTVraXiDGA6Uubj
+         7h+aGj1Ad7bouuXRc4RfZC12kjPxr0TkCqJFpsWxDzH+s0/4s9Xn8Yv4dXPtVjDAMS0R
+         DaKSARzs4sesU3f9AFh6E2hIb+Nm7sbcB2NC0h9DnkRNnfVKg1PQBIIOPZ/ADkfKCwMn
+         NxvgJ5LGnDp0Fok1IPwrKMvrPUk440jZVEGHZxXYtKhzf+On7IOhoeroZIGCFFWZpLAc
+         P6Ed20pElUkZINhUMWm+a2FP4atAshBG9ItEDuLG71PShVS+/tNYcYjiDEnEAPupBblo
+         hy0g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761256216; x=1761861016;
+        d=1e100.net; s=20230601; t=1761256536; x=1761861336;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=mTxd0N4ykd7gve6I0VI6xvQpfS9jPjV5mFGiKktW21o=;
-        b=l7ir4FRjqqZnUJos6n4Sw/xXjij+/qPBY6dn2cb/nTa2pWVzX/w4fFU7TMd/zm6Pho
-         /hvdl0hmoFx8d+jODuNbj+H4OwpO/4EZr0TyWnmOy/978kKCNQ8yU6n85qpb8fZPg+B/
-         1Y9Tiybu54awunAxrueXqbvCJnJbIsHlIzRdmDYZ+008lNyg4QXejkxkxX75tF4LESKQ
-         dH3pU3M/BBJhMsnndLKmaL3jC4BsYTKhf6h4i9EsYO9DockNDyiqSmkjZmB6YvViNNsU
-         AeSR2Khksq79mHo1GINeMiFy05dxeBBkNSahXkRWjWXu1PMRCpkyoUlNKCIVT0gP5nGm
-         0aGQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUwR35nRShNBirMYTdlIqArd9qplp5W2CLk0UJY+VlNS7EkByijQDdWNQ0Nh5LlEqHYUTyOyEIBwpan@vger.kernel.org
-X-Gm-Message-State: AOJu0YxkB3dzWcY8cxwuEq4nPe2/fCVwOTC7XK3ci89Upx7bLOloKxdP
-	YL1s8jHzV+YktsyeHHd03aRNnSkswlIOgZq7ueZsb+/J108LU22T1NL7jVSz7HAcFGMhp/sld8L
-	zq+Da8UC0wHBtB0EpFOsTuO+MmCwxrQU=
-X-Gm-Gg: ASbGnctYo9pOk1/FgtYC4pAdMgXM2AFhnWPfMBervvVbevZT2uQvytEBaQE2R3xcvzs
-	zrw64dADDxh7hvSyXJavByPZvET3LqF6/KB6XHrUuVVFdZZfVUG8fbuUa5GkK+KfLIYBhhYaeTz
-	LHlZgRKp4Sy2VS1tlOXX9gA5/iHxAg9mzrCRSKzn5rNzPQjDLmslThtpGWeF8VANZ4ws0FYTxr+
-	TA2/VEIdu7pOUh/WN6P+gNVQ8OWOVV3Vptng/PcY0NqfOpXAlBTg6bsFgSgWw==
-X-Google-Smtp-Source: AGHT+IE6DRq0G5t3WynJX8AdK871ej0FvwPBp17WZkIlAW429pCOMu5FAtpCqnXjVceYtZYEL30EdgTdYQqDcgDyYOw=
-X-Received: by 2002:a05:6402:2787:b0:637:ab6d:71c0 with SMTP id
- 4fb4d7f45d1cf-63c1f62af92mr23616460a12.7.1761256216068; Thu, 23 Oct 2025
- 14:50:16 -0700 (PDT)
+        bh=wyDCy69Q/3azt6BaC0jOoV9WgJt8g3WAXELT1WMNnq8=;
+        b=uqhQVnFTn9Ndar1mv9HEzHfylB/SO+uzq0ycbRefRVcBXzmzO2bvaSHAtq2vV+lP8p
+         hyiJCCMnKTw1NgD6tdchOxfMcbeQRPcdbRCuNEBreljv1eOksto2D3B12O1V6lOAEv6O
+         Xsgwmhqfw9MmYlUFVFH5ZgF5GrWlLI5eI/R6Fcmgk6GTL70oWFztn8aQdPjP7szt2WJP
+         jivCAoFqD0R5JKkqPcCq5Piji1fKuh7exM2EZxKXLzSQy8VnGPaDpy0A/cVE06IDFXfm
+         b628MxcqisS8D7EjsHzLqkn/Buv6gWPCWhwL2MNkyTphYYUhuwvIbgcylxEAp86QnI2s
+         JhbA==
+X-Forwarded-Encrypted: i=1; AJvYcCWA3h55YsDKwuDn+6sSIy3QBjx4mWHeahAy2/QAVLFZbX+bZwnPXylurn1V+1P+ecEDbMSDr5N/iT8E@vger.kernel.org
+X-Gm-Message-State: AOJu0YywB0yL4AtjYon88og40tLfhKtmGLkNuXSqAF3QA+wb3GrXDsJK
+	cdDyAQOD1WPI5S6N6+HOaExYimy0T1XjbV74UsDmq+XLkqDhcGyJht97I3QLy4YdaAvQTKK7hlt
+	Au3WcBi3XZihcEmTz4MzqgMv1Agnz3yt41TCebTxP
+X-Gm-Gg: ASbGncs72uU0FMiVXnWgQBxyrVLzlMCdViDR48drwXBeW6PR6EKX8NCzKXsKMBb7365
+	vnBIyi2uct2FJBuPlndB0ZuV7xV/O/r13vNMjsXKJBz8osvy/cQJ9WpvjXIInpV0xcvdKqly/YB
+	EexUbWMAfGKfr8H1rRvZU8C6LUMutaOTDDM+jBO3ZoTNj2+aSw8qDH+LRtqB8qjwSahC8Bny7HK
+	2JcdLZ1yuEVTqiW9SL0wr2O/iAJYLT7gG5t07mtUSdn3BjlM5Vodr8j8MnKGi+S1g5Y/zLOrg08
+	YCAhVMsheZuq4gSUsatVZFCR+g==
+X-Google-Smtp-Source: AGHT+IEqbJRbROlu/bm5j7ru2eVdv2x6DLq7HzQUwIw+dlex2w8ixWSRMneuISkc9NPo7yYqi/7YRgyhlNDhmAvraa4=
+X-Received: by 2002:a17:903:1ae4:b0:290:ad7a:bb50 with SMTP id
+ d9443c01a7336-29489e60c01mr3502165ad.27.1761256535858; Thu, 23 Oct 2025
+ 14:55:35 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251002-ivc-v5-0-192c663fa70b@ideasonboard.com> <20251002-ivc-v5-1-192c663fa70b@ideasonboard.com>
-In-Reply-To: <20251002-ivc-v5-1-192c663fa70b@ideasonboard.com>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Thu, 23 Oct 2025 22:49:49 +0100
-X-Gm-Features: AWmQ_blarlbB60Z8ciGxdUOyDe13AFqtYqI4foOh96GGz7YXVmq0KoeyJzdQ_-4
-Message-ID: <CA+V-a8sCvhepEL1RnsemN_84U9gcLLoGBnOUtY0zLsZO+kcu7Q@mail.gmail.com>
-Subject: Re: [PATCH v5 1/3] dt-bindings: media: Add bindings for the RZ/V2H(P)
- IVC block
-To: Daniel Scally <dan.scally@ideasonboard.com>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, Rob Herring <robh@kernel.org>, 
+References: <20251017235159.2417576-1-royluo@google.com> <20251017235159.2417576-2-royluo@google.com>
+ <20251023-collie-of-impossible-plenty-fc9382@kuoka> <698ba0ea-3367-4fc0-bd4f-0177283c2e77@kernel.org>
+In-Reply-To: <698ba0ea-3367-4fc0-bd4f-0177283c2e77@kernel.org>
+From: Roy Luo <royluo@google.com>
+Date: Thu, 23 Oct 2025 14:54:59 -0700
+X-Gm-Features: AS18NWDaD_LUo2BMw-kgQvNid_X2lR-GtxBED31qsEqmuEgC28zy2xECKsvSUZI
+Message-ID: <CA+zupgxv9h1jOW=Jnx29yJJQBHOqBrY6tSBhoUaLb4eYuXhW7g@mail.gmail.com>
+Subject: Re: [PATCH v4 1/2] dt-bindings: phy: google: Add Google Tensor G5 USB PHY
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, jacopo.mondi@ideasonboard.com, 
-	biju.das.jz@bp.renesas.com, laurent.pinchart@ideasonboard.com, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+	Philipp Zabel <p.zabel@pengutronix.de>, Peter Griffin <peter.griffin@linaro.org>, 
+	=?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
+	Tudor Ambarus <tudor.ambarus@linaro.org>, Joy Chakraborty <joychakr@google.com>, 
+	Naveen Kumar <mnkumar@google.com>, Badhri Jagan Sridharan <badhri@google.com>, linux-phy@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Daniel,
+On Wed, Oct 22, 2025 at 11:58=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.o=
+rg> wrote:
+>
+> On 23/10/2025 08:43, Krzysztof Kozlowski wrote:
+> > On Fri, Oct 17, 2025 at 11:51:58PM +0000, Roy Luo wrote:
+> >> Document the device tree bindings for the USB PHY interfaces integrate=
+d
+> >> with the DWC3 controller on Google Tensor SoCs, starting with G5
+> >> generation. The USB PHY on Tensor G5 includes two integrated Synopsys
+> >> PHY IPs: the eUSB 2.0 PHY IP and the USB 3.2/DisplayPort combo PHY IP.
+> >>
+> >> Due to a complete architectural overhaul in the Google Tensor G5, the
+> >> existing Samsung/Exynos USB PHY binding for older generations of Googl=
+e
+> >> silicons such as gs101 are no longer compatible, necessitating this ne=
+w
+> >> device tree binding.
+> >>
+> >> Signed-off-by: Roy Luo <royluo@google.com>
+> >> ---
+> >>  .../bindings/phy/google,gs5-usb-phy.yaml      | 104 +++++++++++++++++=
++
+> >>  1 file changed, 104 insertions(+)
+> >>  create mode 100644 Documentation/devicetree/bindings/phy/google,gs5-u=
+sb-phy.yaml
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/phy/google,gs5-usb-phy.=
+yaml b/Documentation/devicetree/bindings/phy/google,gs5-usb-phy.yaml
+> >> new file mode 100644
+> >> index 000000000000..c92c20eba1ea
+> >> --- /dev/null
+> >> +++ b/Documentation/devicetree/bindings/phy/google,gs5-usb-phy.yaml
+> >> @@ -0,0 +1,104 @@
+> >> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> >> +# Copyright (C) 2025, Google LLC
+> >> +%YAML 1.2
+> >> +---
+> >> +$id: http://devicetree.org/schemas/phy/google,gs5-usb-phy.yaml#
+> >> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >> +
+> >> +title: Google Tensor Series (G5+) USB PHY
+> >> +
+> >> +maintainers:
+> >> +  - Roy Luo <royluo@google.com>
+> >> +
+> >> +description: |
+> >> +  Describes the USB PHY interfaces integrated with the DWC3 USB contr=
+oller on
+> >> +  Google Tensor SoCs, starting with the G5 generation.
+> >> +  Two specific PHY IPs from Synopsys are integrated, including eUSB 2=
+.0 PHY IP
+> >> +  and USB 3.2/DisplayPort combo PHY IP.
+> >> +  The hardware can support three PHY interfaces, which are selected u=
+sing the
+> >> +  first phandle argument in the PHY specifier::
+> >
+> > Just one ':', anyway this sentence and below does not belong to
+> > description but to phy-cells. You describe the cells.
+> >
+> > Or just mention the header with IDs - here or in phy-cells.
+>
+>
+> If you go with free-form text description in phy cells, then some
+> example could be:
+> renesas,rcar-gen2-usb-phy.yaml
+>
+> For the header (in this case clocks):
+> display/msm/dsi-phy-common.yaml
+>
+>
+> Best regards,
+> Krzysztof
 
-Thank you for the patch.
+Krzysztof,
 
-On Thu, Oct 2, 2025 at 11:38=E2=80=AFAM Daniel Scally
-<dan.scally@ideasonboard.com> wrote:
->
-> The RZ/V2H(P) SoC has a block called the Input Video Control block which
-> feeds image data into the Image Signal Processor. Add dt bindings to
-> describe the IVC.
->
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Daniel Scally <dan.scally@ideasonboard.com>
-> ---
-> Changes in v5:
->
->         - Rename RZ/V2H to RZ/V2H(P)
->
-> Changes in v3:
->
->         - Rename from rzv2h-ivc.yaml to r9a09g057-ivc.yaml
->         - Update clock and reset names
->
-> Changes in v2:
->
->         - compatible matches filename
->         - Added power-domains
->         - Aligned clock and reset entries on opening "<"
->         - Removed status =3D "okay"; from example
-> ---
->  .../bindings/media/renesas,r9a09g057-ivc.yaml      | 103 +++++++++++++++=
-++++++
->  1 file changed, 103 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/media/renesas,r9a09g057-iv=
-c.yaml b/Documentation/devicetree/bindings/media/renesas,r9a09g057-ivc.yaml
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..8e236e46882668b2660d175e8=
-b2cffe204aa781c
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/renesas,r9a09g057-ivc.yaml
-> @@ -0,0 +1,103 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/renesas,r9a09g057-ivc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Renesas RZ/V2H(P) Input Video Control Block
-> +
-> +maintainers:
-> +  - Daniel Scally <dan.scally@ideasonboard.com>
-> +
-> +description:
-> +  The IVC block is a module that takes video frames from memory and feed=
-s them
-> +  to the Image Signal Processor for processing.
-> +
-> +properties:
-> +  compatible:
-> +    const: renesas,r9a09g057-ivc
-Nit, `const: renesas,r9a09g057-ivc # RZ/V2H(P)` as done for the rest
-of the Renesas bindings.
+Thanks a lot for providing the reference!
+I will go with the free-form text description in phy cells following
+renesas,rcar-gen2-usb-phy.yaml in the next version.
 
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: Input Video Control block register access clock
-> +      - description: Video input data AXI bus clock
-> +      - description: ISP system clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: reg
-> +      - const: axi
-> +      - const: isp
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  resets:
-> +    items:
-> +      - description: Input Video Control block register access reset
-> +      - description: Video input data AXI bus reset
-> +      - description: ISP core reset
-> +
-> +  reset-names:
-> +    items:
-> +      - const: reg
-> +      - const: axi
-> +      - const: isp
-> +
-> +  port:
-> +    $ref: /schemas/graph.yaml#/properties/port
-> +    description: Output parallel video bus
-> +
-> +    properties:
-> +      endpoint:
-> +        $ref: /schemas/graph.yaml#/properties/endpoint
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - clock-names
-> +  - power-domains
-> +  - resets
-> +  - reset-names
-> +  - port
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/renesas,r9a09g057-cpg.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +    isp-input@16040000 {
-> +      compatible =3D "renesas,r9a09g057-ivc";
-> +      reg =3D <0x16040000 0x230>;
-> +
-> +      clocks =3D <&cpg CPG_MOD 0xe3>,
-> +               <&cpg CPG_MOD 0xe4>,
-> +               <&cpg CPG_MOD 0xe5>;
-> +      clock-names =3D "reg", "axi", "isp";
-> +
-> +      power-domains =3D <&cpg>;
-> +
-> +      resets =3D <&cpg 0xd4>,
-> +               <&cpg 0xd1>,
-> +               <&cpg 0xd3>;
-> +      reset-names =3D "reg", "axi", "isp";
-> +
-> +      interrupts =3D <GIC_SPI 861 IRQ_TYPE_EDGE_RISING>;
-I understand we split this up from ISP, there are other interrupts for
-ISP for example 860 which is similar to 861 where it outputs signal on
-rising instead of falling. Do you foresee this interrupt being used
-for IVC?  Rest LGTM.
-
-Cheers,
-Prabhakar
-
-> +
-> +      port {
-> +        ivc_out: endpoint {
-> +          remote-endpoint =3D <&isp_in>;
-> +        };
-> +      };
-> +    };
-> +...
->
-> --
-> 2.43.0
->
->
+Thanks,
+Roy Luo
 
