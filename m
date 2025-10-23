@@ -1,354 +1,199 @@
-Return-Path: <devicetree+bounces-230028-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230029-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1C18BFF020
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 05:31:35 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 33B99BFF0D3
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 06:02:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 91F484E0551
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 03:31:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E51213A7A16
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 04:02:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7219D296BC9;
-	Thu, 23 Oct 2025 03:31:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F22722FE15;
+	Thu, 23 Oct 2025 04:02:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=airkyi.com header.i=@airkyi.com header.b="QGcMjIbA"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="JxCBx21R"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbgsg1.qq.com (smtpbgsg1.qq.com [54.254.200.92])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80411283FDB;
-	Thu, 23 Oct 2025 03:31:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.254.200.92
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3164C2581;
+	Thu, 23 Oct 2025 04:02:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761190274; cv=none; b=l7Xzq4GosoZHQMgETdRQXDKZjN0MDOnpb/n6kEisQVVLslaDWV7eIi3KRx/EM504MSjX/2BP9tRu2rd1Dja6AMKJiPfm41lkl8OpbLrqzB0aEKoox1TCboGnmI7f0rmZh2hd7cqIqNMWJIiOysVcCztcXEtYdhUaihMKPBWDRnE=
+	t=1761192168; cv=none; b=jb3TcaDJRa+tlHbnHiOZj60eYBJGBt6LH7JaTe40kqDeiomKAJMV5nQORxc0PJqtAoe5+acGNuNL+xoi1VlvC2qDtJ8hov4w/9aYzKwAHikN+z4lyk2HV+YccZaVCyWKwrVUFlcgqv8HK96PI3tjxhhEUpWfsich6kNbp7amf8g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761190274; c=relaxed/simple;
-	bh=Ksu1m13XDgyOSNrC/yix/S/ref0aCyYvyb9gG5K8i98=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=o9KRxsBkF0ZSd2FCoz2dfMV7suCJ72e31dwjB8R85nhaPU6NmJowvzgGh8cffKntLw76UflbtYYVz8i9T1i4jzdox10CpW9dCXkC9tRRqHYnr44goXya49g5J5VTSjzhD7JSwPSzElVIv6bvUJ/FPMcjdg1BjhUPVRyZfVfs7jM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=airkyi.com; spf=pass smtp.mailfrom=airkyi.com; dkim=pass (1024-bit key) header.d=airkyi.com header.i=@airkyi.com header.b=QGcMjIbA; arc=none smtp.client-ip=54.254.200.92
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=airkyi.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=airkyi.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=airkyi.com;
-	s=altu2504; t=1761190268;
-	bh=1RfAR5qe3fDpGYWfe4IMPee9wlWopj1wjBrVtJQSHJQ=;
-	h=From:To:Subject:Date:Message-Id;
-	b=QGcMjIbAOrhi7siyAK0cs+JmzOc7o/pDAVv5Ys8MMHuuHSD9jG5bOdMioiH6YhLUN
-	 lEw3UDV/Q825nB5fHeoGiLJ5qUEw9nIyB4Bu8Zmbt/my4TpNg20+Ror4K0zKeGaeRV
-	 svRKLXjGbCIJ8HFnzPgT4CGvaYuFKQmSrMm9yYS8=
-X-QQ-mid: esmtpsz16t1761190266t43abe1df
-X-QQ-Originating-IP: 0d5iSVWuoMY/pzXTcvdmH8vOvSaqskohuXcY4gRyoIQ=
-Received: from DESKTOP-8BT1A2O.localdomain ( [58.22.7.114])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Thu, 23 Oct 2025 11:31:03 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 14524474531760413252
-From: Chaoyi Chen <kernel@airkyi.com>
-To: Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Sandy Huang <hjc@rock-chips.com>,
-	Andy Yan <andy.yan@rock-chips.com>,
-	Yubing Zhang <yubing.zhang@rock-chips.com>,
-	Frank Wang <frank.wang@rock-chips.com>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <rfoss@kernel.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>,
-	Amit Sunil Dhamne <amitsd@google.com>,
-	Chaoyi Chen <chaoyi.chen@rock-chips.com>,
-	Dragan Simic <dsimic@manjaro.org>,
-	Johan Jonker <jbx6244@gmail.com>,
-	Diederik de Haas <didi.debian@cknow.org>,
-	Peter Robinson <pbrobinson@gmail.com>
-Cc: linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-phy@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	dri-devel@lists.freedesktop.org
-Subject: [PATCH v7 9/9] arm64: dts: rockchip: rk3399-evb-ind: Add support for DisplayPort
-Date: Thu, 23 Oct 2025 11:30:09 +0800
-Message-Id: <20251023033009.90-10-kernel@airkyi.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20251023033009.90-1-kernel@airkyi.com>
-References: <20251023033009.90-1-kernel@airkyi.com>
-X-QQ-SENDSIZE: 520
-Feedback-ID: esmtpsz:airkyi.com:qybglogicsvrsz:qybglogicsvrsz4a-0
-X-QQ-XMAILINFO: McJfg7Aee/FZH3uls7WT2O73JiQ0T61VqCwJRh7aQXHBBOjXNt4tnIl6
-	LEfevFTxLmEpLOZKGTcOv+zx15xVxHtfu2W+RQjq4f3Pn1IgjeOa969ECxc5+hmvOa6osnk
-	PG7QThcYxfEMwyJLaGGrY12R54ax1m0A4KWE3QNEF5nIeQBSZRzIHH6hRWj31B07J3f3HVA
-	try0aoaivPDMVN1yDDO1sU5F+KUb1OE1QLVQT2OKka/jRLP9EzrdURunX47foInvpYFQQzS
-	CN8Zhc+d8blKJREtyB/Bnl/EouvAbPqYfIx/P8sKmIsOIKWFqJuWcuuEJ/0aJhI/KcojMHz
-	F5T2tF25CuUEvBFgWFapCQqH2HnG3WUB4jDlGHlcXXYItkH1/SHf3aBykmrued7b5GBCw2U
-	D62wqMT2qEln7Po5kkjP3fJW2ynrjZAAeDFjw9uUwvSx/m+N7sbvS86FsBeQjuPk1HcEPr/
-	mXrakanDYjk1R67fXOYNCIP2dcd3BODoySwWmfZ9fdVD1WqnbfupyhOr4N/xTzIY3xfO5JI
-	o+pzlwCo3/qA4hr1iec72ow1ew8Di3GfNXIx28R8Ix9sSDWwuJR0WrubHSq6EXzTE2Zeygl
-	ur8llw772+cc/RDTNSYMP/UpZTGHHy9PG+qj9+HdZihR6HPer3HYKl5Qhmkxp/fTFhks+52
-	Hz3f1FPROUiQtpbGrz38lvsAMohPGPR7Uvc4nZKgwTll6RPz617/7SEJyvKriXkN7jO3lE8
-	Hjtn7aoaqP/7Ly4rv/2TCirWRYwF/MtbddA1RQPwI93kqo+au2FI7lo1Cv+AyS9PV3jVIJf
-	bR1h0BoJDbihZkt4CoUC1R+/4PD3eWamxAR//RRVguIyrW62aI+SFjL3/UqXpL+jyiPHq/K
-	ljQkyhbkdfoYSGPO5YbMHxUiATU7xxrnDzJaCc48kmXrFN2myEahRUTQuY6xxSu4UOBnX/c
-	1ADFWVLEFspi94FsUsznB70yvaUdmhTciaoxMQaU2WT3QnA+DrKMjgLKG55KcGZOhG+pohn
-	AWqBEKHQ==
-X-QQ-XMRINFO: NyFYKkN4Ny6FSmKK/uo/jdU=
-X-QQ-RECHKSPAM: 0
+	s=arc-20240116; t=1761192168; c=relaxed/simple;
+	bh=X8URY0dU2zsFDn+O9LyOSjT8nBl+c7H0QXUDZqaR2Eg=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=W+QCcsTFKG23Twn1BhHd1MWn56AXXyG2nSRWCWGdkwRS5zvgVZVAkTMwAHnkrS3f5d11hENVf0xdRrTxqA4B7/g6ff2T4C0UwrlDq7HDMlNYjeMdYS7vqXGX7KGzQbAB/zz+K5HGnI6OrvXhirMzDhUKEWWoMi+jhDeu2/KXYVc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=JxCBx21R; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59MIeoVY022452;
+	Thu, 23 Oct 2025 04:02:42 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=iVzyiWmcMZOsprHe7CK9HH
+	QvtGssNtHYcy2C+tws0zs=; b=JxCBx21RqeXhd8pRJSe0QT7lUhZw5WlRI4voV0
+	c+DNREhj0xntqiHn7MEjB+VgGXIB3vtUQc1cyMhiMJn3HvPnk6weBNbq1IvvQeYn
+	LfWG767FMN6DkWzDqTdTo6eOpJYWys/gtX0QWDSvpjUHDOFqkVH04l1v4jH/oW5j
+	HMwR4n+8y60xo9z3eOHRNDDd1oIxv0iFJe6isCzptxHRzZrIHsCM2FP0t/4hBPW3
+	rmuk2FzQ7FSZ+kBdVJCC4YBLshZ5ISYamMvR+pF1XL/shjqx94mk7L3faFdXugNR
+	C3sf/m5zCRuG2dPerpGjBzkAKI5Fgdjps9veAPoJn2Vhn3zA==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49v1w86xdv-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 23 Oct 2025 04:02:42 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 59N42fIH012700
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 23 Oct 2025 04:02:41 GMT
+Received: from hu-mmanikan-blr.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.24; Wed, 22 Oct 2025 21:02:37 -0700
+From: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
+To: <andersson@kernel.org>, <konradybcio@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC: <quic_srichara@quicinc.com>, <quic_varada@quicinc.com>,
+        <kathiravan.thirumoorthy@oss.qualcomm.com>
+Subject: [PATCH v1] arm64: dts: qcom: ipq5424: add gpio regulator for cpu power supply
+Date: Thu, 23 Oct 2025 09:32:24 +0530
+Message-ID: <20251023040224.1485946-1-quic_mmanikan@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDE4MDAxNSBTYWx0ZWRfX2NJ8NOWXdjJm
+ q6vZy+nT7HWjQeiJlTaDtHpwAE0rxzfkcaAFUiAHfM9+olx5O8tg4SYHM9YWxfpD9UEjBiEAJDF
+ ni6rSlyARY/7iJOrIi3B8EyeyfPODqLqM1h65V9BVLH8/knGKVVmzcHN9LLV6Am0cfBOmkQvQk6
+ tZ/jvmGcpEwCPN7Chc+eIyT45MPgmb38T8c1mJO9cv09LqzA3TuxqCKd0a6RRwM67QTr9s1nyjt
+ PrMvggHAv8hhLNHeQq/IFbmx1Wq3vU+z9M+IKcXzE+VHKtrUJVQfiE25gEuuzAzItw7klW0Vn1g
+ pHZfs1Hb78GaG7LhjuOSPWKDy/NjCwemay7nFvqu3sY9v/18UtjphnyAekrWizoUicaOKz3Jldl
+ Uo3OannXA4wTYiv7TuRkEIPq64ypzw==
+X-Authority-Analysis: v=2.4 cv=bNUb4f+Z c=1 sm=1 tr=0 ts=68f9a8e2 cx=c_pps
+ a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=GEpy-HfZoHoA:10 a=x6icFKpwvdMA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=COk6AnOGAAAA:8 a=GtKErXWXURwwhVTve_EA:9 a=TjNXssC_j7lpFel5tvFf:22
+ a=cPQSjfK2_nFv0Q5t_7PE:22
+X-Proofpoint-GUID: BQdq34mBzQExbIIdGWwxSbs9wO1E2pC4
+X-Proofpoint-ORIG-GUID: BQdq34mBzQExbIIdGWwxSbs9wO1E2pC4
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-10-22_08,2025-10-22_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 phishscore=0 malwarescore=0 lowpriorityscore=0 clxscore=1015
+ priorityscore=1501 suspectscore=0 adultscore=0 spamscore=0 impostorscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2510020000 definitions=main-2510180015
 
-From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+Add a GPIO-controlled regulator node for the CPU rail on the
+IPQ5424 RDP466 platform. This regulator supports two voltage
+levels 850mV and 1000mV.
 
-The RK3399 EVB IND board has a Type-C interface DisplayPort.
-It use fusb302 chip as Type-C controller.
+Update CPU nodes to reference the regulator via the `cpu-supply`
+property, and add the required pinctrl configuration for GPIO17.
 
-fusb302 chip ---> USB/DP PHY0 <----> CDN-DP controller
-
-Signed-off-by: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+Signed-off-by: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
 ---
+ arch/arm64/boot/dts/qcom/ipq5424-rdp466.dts | 24 +++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/ipq5424.dtsi       |  4 ++++
+ 2 files changed, 28 insertions(+)
 
-(no changes since v4)
-
-Changes in v3:
-- Fix wrong vdo value.
-- Fix port node in usb-c-connector.
-
-Changes in v2:
-- Add endpoint to link DP PHY and DP controller.
-- Fix devicetree coding style.
-
- .../boot/dts/rockchip/rk3399-evb-ind.dts      | 146 ++++++++++++++++++
- 1 file changed, 146 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-evb-ind.dts b/arch/arm64/boot/dts/rockchip/rk3399-evb-ind.dts
-index 70aee1ab904c..aeeee6bd2973 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-evb-ind.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-evb-ind.dts
-@@ -4,6 +4,7 @@
-  */
- 
- /dts-v1/;
-+#include <dt-bindings/usb/pd.h>
- #include "rk3399.dtsi"
- 
- / {
-@@ -19,6 +20,21 @@ chosen {
- 		stdout-path = "serial2:1500000n8";
+diff --git a/arch/arm64/boot/dts/qcom/ipq5424-rdp466.dts b/arch/arm64/boot/dts/qcom/ipq5424-rdp466.dts
+index 738618551203..6d14eb2fe821 100644
+--- a/arch/arm64/boot/dts/qcom/ipq5424-rdp466.dts
++++ b/arch/arm64/boot/dts/qcom/ipq5424-rdp466.dts
+@@ -46,6 +46,23 @@ led-0 {
+ 		};
  	};
  
-+	sound: sound {
-+		compatible = "rockchip,rk3399-gru-sound";
-+		rockchip,cpu = <&i2s0 &spdif>;
-+	};
++	vreg_apc: regulator-vreg-apc {
++		compatible = "regulator-gpio";
++		regulator-name = "vreg_apc";
++		regulator-min-microvolt = <850000>;
++		regulator-max-microvolt = <1000000>;
++		regulator-boot-on;
++		regulator-always-on;
++		regulator-ramp-delay = <250>;
 +
-+	vbus_typec: regulator-vbus-typec {
-+		compatible = "regulator-fixed";
-+		enable-active-high;
-+		gpio = <&gpio1 RK_PC2 GPIO_ACTIVE_HIGH>;
++		gpios = <&tlmm 17 GPIO_ACTIVE_HIGH>;
++		gpios-states = <1>;
++		states = <850000 0>, <1000000 1>;
++
++		pinctrl-0 = <&regulator_gpio_default>;
 +		pinctrl-names = "default";
-+		pinctrl-0 = <&vcc5v0_typec0_en>;
-+		regulator-name = "vbus_typec";
-+		vin-supply = <&vcc5v0_sys>;
 +	};
 +
- 	vcc5v0_sys: regulator-vcc5v0-sys {
+ 	vreg_misc_3p3: regulator-usb-3p3 {
  		compatible = "regulator-fixed";
- 		enable-active-high;
-@@ -31,6 +47,11 @@ vcc5v0_sys: regulator-vcc5v0-sys {
+ 		regulator-min-microvolt = <3300000>;
+@@ -171,6 +188,13 @@ gpio_leds_default: gpio-leds-default-state {
+ 		bias-pull-down;
  	};
- };
  
-+&cdn_dp {
-+	phys = <&tcphy0_dp>;
-+	status = "okay";
-+};
-+
- &cpu_b0 {
- 	cpu-supply = <&vdd_cpu_b>;
- };
-@@ -55,6 +76,12 @@ &cpu_l3 {
- 	cpu-supply = <&vdd_cpu_l>;
- };
- 
-+&dp_out {
-+	dp_controller_output: endpoint {
-+		remote-endpoint = <&dp_phy_in>;
-+	};
-+};
-+
- &emmc_phy {
- 	status = "okay";
- };
-@@ -341,6 +368,71 @@ regulator-state-mem {
- 	};
- };
- 
-+&i2c4 {
-+	i2c-scl-rising-time-ns = <475>;
-+	i2c-scl-falling-time-ns = <26>;
-+	status = "okay";
-+
-+	usbc0: typec-portc@22 {
-+		compatible = "fcs,fusb302";
-+		reg = <0x22>;
-+		interrupt-parent = <&gpio1>;
-+		interrupts = <RK_PA2 IRQ_TYPE_LEVEL_LOW>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&usbc0_int>;
-+		vbus-supply = <&vbus_typec>;
-+
-+		usb_con: connector {
-+			compatible = "usb-c-connector";
-+			label = "USB-C";
-+			data-role = "dual";
-+			power-role = "dual";
-+			try-power-role = "sink";
-+			op-sink-microwatt = <1000000>;
-+			sink-pdos =
-+				<PDO_FIXED(5000, 2500, PDO_FIXED_USB_COMM)>;
-+			source-pdos =
-+				<PDO_FIXED(5000, 1500, PDO_FIXED_USB_COMM)>;
-+
-+			altmodes {
-+				displayport {
-+					svid = /bits/ 16 <0xff01>;
-+					vdo = <0x00001c46>;
-+				};
-+			};
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+
-+					usbc_hs: endpoint {
-+						remote-endpoint = <&u2phy0_typec_hs>;
-+					};
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+
-+					usbc_ss: endpoint {
-+						remote-endpoint = <&tcphy0_typec_ss>;
-+					};
-+				};
-+
-+				port@2 {
-+					reg = <2>;
-+
-+					usbc_dp: endpoint {
-+						remote-endpoint = <&tcphy0_typec_dp>;
-+					};
-+				};
-+			};
-+		};
-+	};
-+};
-+
- &i2s2 {
- 	status = "okay";
- };
-@@ -354,6 +446,16 @@ &io_domains {
- };
- 
- &pinctrl {
-+	usb-typec {
-+		usbc0_int: usbc0-int {
-+			rockchip,pins = <1 RK_PA2 RK_FUNC_GPIO &pcfg_pull_up>;
-+		};
-+
-+		vcc5v0_typec0_en: vcc5v0-typec0-en {
-+			rockchip,pins = <1 RK_PC2 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
++	regulator_gpio_default: regulator-gpio-default-state {
++		pins = "gpio17";
++		function = "gpio";
++		drive-strength = <8>;
++		bias-disable;
 +	};
 +
- 	pmic {
- 		pmic_int_l: pmic-int-l {
- 			rockchip,pins = <1 RK_PC5 RK_FUNC_GPIO &pcfg_pull_up>;
-@@ -400,10 +502,48 @@ &sdmmc {
- 	status = "okay";
- };
+ 	spi0_default_state: spi0-default-state {
+ 		clk-pins {
+ 			pins = "gpio6";
+diff --git a/arch/arm64/boot/dts/qcom/ipq5424.dtsi b/arch/arm64/boot/dts/qcom/ipq5424.dtsi
+index ef2b52f3597d..70702c80c626 100644
+--- a/arch/arm64/boot/dts/qcom/ipq5424.dtsi
++++ b/arch/arm64/boot/dts/qcom/ipq5424.dtsi
+@@ -56,6 +56,7 @@ cpu0: cpu@0 {
+ 			clocks = <&apss_clk APSS_SILVER_CORE_CLK>;
+ 			clock-names = "cpu";
+ 			operating-points-v2 = <&cpu_opp_table>;
++			cpu-supply = <&vreg_apc>;
+ 			interconnects = <&apss_clk MASTER_CPU &apss_clk SLAVE_L3>;
  
-+&sound {
-+	rockchip,codec = <&cdn_dp>;
-+	status = "okay";
-+};
-+
-+&spdif {
-+	status = "okay";
-+};
-+
- &tcphy0 {
- 	status = "okay";
- };
+ 			l2_0: l2-cache {
+@@ -81,6 +82,7 @@ cpu1: cpu@100 {
+ 			clocks = <&apss_clk APSS_SILVER_CORE_CLK>;
+ 			clock-names = "cpu";
+ 			operating-points-v2 = <&cpu_opp_table>;
++			cpu-supply = <&vreg_apc>;
+ 			interconnects = <&apss_clk MASTER_CPU &apss_clk SLAVE_L3>;
  
-+&tcphy0_dp {
-+	mode-switch;
-+
-+	port {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		tcphy0_typec_dp: endpoint@0 {
-+			reg = <0>;
-+			remote-endpoint = <&usbc_dp>;
-+		};
-+
-+		dp_phy_in: endpoint@1 {
-+			reg = <1>;
-+			remote-endpoint = <&dp_controller_output>;
-+		};
-+	};
-+};
-+
-+&tcphy0_usb3 {
-+	orientation-switch;
-+
-+	port {
-+		tcphy0_typec_ss: endpoint {
-+			remote-endpoint = <&usbc_ss>;
-+		};
-+	};
-+};
-+
- &tcphy1 {
- 	status = "okay";
- };
-@@ -418,6 +558,12 @@ &tsadc {
+ 			l2_100: l2-cache {
+@@ -100,6 +102,7 @@ cpu2: cpu@200 {
+ 			clocks = <&apss_clk APSS_SILVER_CORE_CLK>;
+ 			clock-names = "cpu";
+ 			operating-points-v2 = <&cpu_opp_table>;
++			cpu-supply = <&vreg_apc>;
+ 			interconnects = <&apss_clk MASTER_CPU &apss_clk SLAVE_L3>;
  
- &u2phy0 {
- 	status = "okay";
-+
-+	port {
-+		u2phy0_typec_hs: endpoint {
-+			remote-endpoint = <&usbc_hs>;
-+		};
-+	};
- };
+ 			l2_200: l2-cache {
+@@ -119,6 +122,7 @@ cpu3: cpu@300 {
+ 			clocks = <&apss_clk APSS_SILVER_CORE_CLK>;
+ 			clock-names = "cpu";
+ 			operating-points-v2 = <&cpu_opp_table>;
++			cpu-supply = <&vreg_apc>;
+ 			interconnects = <&apss_clk MASTER_CPU &apss_clk SLAVE_L3>;
  
- &u2phy0_host {
+ 			l2_300: l2-cache {
+
+base-commit: fe45352cd106ae41b5ad3f0066c2e54dbb2dfd70
 -- 
-2.49.0
+2.34.1
 
 
