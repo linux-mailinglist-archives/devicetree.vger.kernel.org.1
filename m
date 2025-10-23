@@ -1,176 +1,167 @@
-Return-Path: <devicetree+bounces-230299-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230300-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B1EDC01569
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 15:22:36 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 080CEC01557
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 15:21:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 052485065C9
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 13:21:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2C6C1189A38B
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 13:22:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8BCF314D3C;
-	Thu, 23 Oct 2025 13:21:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6ED50314B8A;
+	Thu, 23 Oct 2025 13:21:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="2F8bN3nk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="g/VTBQNS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 797DC314D18;
-	Thu, 23 Oct 2025 13:21:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40B54314A8B;
+	Thu, 23 Oct 2025 13:21:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761225676; cv=none; b=V/Okax9qsw+4TXIFJxk+L2j5p7xZb/hQzq7qTugqtxvlzLVx1d3gdGE73VSh5fL54uyA1ZWxzPf75btfH5RJFqlgIs2ExkLbVLZpv5tP2oM2GFdCTPWsqjg00B1TT7SjZ+fIqtCd96Ur4jjfVhI+OJ/kyQV03KgEcGedbZEenk0=
+	t=1761225705; cv=none; b=tna6XG7cyCKR+3ga9hTsz+8LrRIP14Dtm0MvDoeqV/3ZnsppJ32ltBkTL/TMI7rDf7hYsmXptmMDhjLUoZfXIzsXGvf+tD+iumflIAeV3PkyPoj620WucwkDuAeMmB6EaTyKneVcQ2NvpTlHkK7bouZpd3vH4M3MotHNjDTJwP4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761225676; c=relaxed/simple;
-	bh=qb9wmhqplV3wjQdDGHKfi28mg6LC6D8Mi1D0V2AIouU=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=EKlIsELJbOEz7YypjNl88hTMQh3mIcVzzARheHMskt21XGrPtrlZNzICN/fBy7UYCr6BBLzghzbp8ytKCHZ8jSt3xr6VvrpeTwUMkowDtWWgv8ZuqsJyoml9Bni3nWPsHeahWkCHroULvh4tNFsTWBdoQdoLUgSqEmkIMuCQBbk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=2F8bN3nk; arc=none smtp.client-ip=185.171.202.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 8B8BCC0C41B;
-	Thu, 23 Oct 2025 13:20:46 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 461466068C;
-	Thu, 23 Oct 2025 13:21:06 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 6A9F7102F2469;
-	Thu, 23 Oct 2025 15:20:49 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1761225665; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=IvA5a3iMkBEy7rcJCILOgoju8BwbH24xyx5w5WRuw0E=;
-	b=2F8bN3nkWjZxmp1IJX8wJxx8IAuxhGX+qWcH7u9JEzWGPjBMSq55sPp1up2WNHHA0gwAL8
-	wz9vb0pYmCvhB6jXU9wQv0dd1DHfQqb9RbWjybldJuBrzHEaDfQSfD3+3IhIFUPeW+0EVg
-	IykD2sBLXEWWunG/ZC4W6VZvwcIBjNdeBsK6qHpKyJ/SbGtLJl98smbTEE17dw3BFQT+Nc
-	SmrGTzXtRZmRSnxY4PY6SpPhtQgEqG3ait/xq5VaA8+brI5kue+Gq9sKKJGFa+B2mIo72n
-	OnGWyMa6JnImuEC/aqlivwFX9uBb0cQB3q2xv1Z/Jm75asN5hN1sx17c6Zv98g==
-Date: Thu, 23 Oct 2025 15:20:48 +0200
-From: Herve Codina <herve.codina@bootlin.com>
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Thomas Gleixner <tglx@linutronix.de>, Wolfram Sang
- <wsa+renesas@sang-engineering.com>, Hoan Tran
- <hoan@os.amperecomputing.com>, Linus Walleij <linus.walleij@linaro.org>,
- Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, Saravana Kannan
- <saravanak@google.com>, Serge Semin <fancer.lancer@gmail.com>, Phil
- Edworthy <phil.edworthy@renesas.com>, linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-renesas-soc@vger.kernel.org, Pascal Eberhard
- <pascal.eberhard@se.com>, Miquel Raynal <miquel.raynal@bootlin.com>, Thomas
- Petazzoni <thomas.petazzoni@bootlin.com>, Lad Prabhakar
- <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH v5 7/8] soc: renesas: Add support for Renesas RZ/N1 GPIO
- Interrupt Multiplexer
-Message-ID: <20251023152048.0e70a362@bootlin.com>
-In-Reply-To: <CAMuHMdWY=FbO6YG1jrd0OWfrpPpBzrqmBVcWnw7TnnsKPGgr8A@mail.gmail.com>
-References: <20251020080648.13452-1-herve.codina@bootlin.com>
-	<20251020080648.13452-8-herve.codina@bootlin.com>
-	<CAMuHMdV03D_3b_JA2vzW4tE_QbkkT1bN1dm+zLLLX24oDHMj0Q@mail.gmail.com>
-	<20251022150339.4c48649e@bootlin.com>
-	<CAMuHMdWY=FbO6YG1jrd0OWfrpPpBzrqmBVcWnw7TnnsKPGgr8A@mail.gmail.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.43; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1761225705; c=relaxed/simple;
+	bh=FaEhqmiDrc4mURvUAlo6RVL1sWzWFreUhEGoKE3IWaU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=unFrfSz0RoJbiQbTdUNhOexvOs1EbPShGa9tIdm+TZGIiZ2JSkDE4zw9VB6u55zx1btSDlKlrB/fFXF6f7RWz83cc4H0az/BGN74llpeKtQf3KTs9IiIlBW5z1KaUKdGXvcprbgeJ2xtVCLoulMWWLP9a3J6N9wwveDfUmtMkF8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=g/VTBQNS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 643A3C4CEE7;
+	Thu, 23 Oct 2025 13:21:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761225705;
+	bh=FaEhqmiDrc4mURvUAlo6RVL1sWzWFreUhEGoKE3IWaU=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=g/VTBQNSI+wN9wH0vYdqElRgOjF0U5PnrM5/qCUKr4ouEOPXBEcD5lrIAofWII4gX
+	 czBJoVwqWxLfuRugp2MMfPWHzou1Xnrp5X1syS3HDtWCZWMYaxz1WS+/zp/4DA08FC
+	 M48q8Wpy+ZXUp/V9ONnc3HndIqvV2uLTGeUCcSNmSOys6+/8b1+xTZMS5+g7bIm+Lh
+	 3WPeBC4C41ojiDjDaOuwm2h7eagHrUG9xex0kBgrJ+1TyxAH2FKF6Rem5OpISmtfA9
+	 lBJZbHNl6mzw0PS9D+uM6zmmk9XJuFCmaXV52X2JrT22HQxe0Jrk98WU/t3K/2hKMB
+	 Ym8NBgCMzvdkg==
+Message-ID: <1877f731-1599-414d-a40e-38aec05a33c0@kernel.org>
+Date: Thu, 23 Oct 2025 15:21:40 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 2/7] dt-bindings: memory: introduce DDR4
+To: =?UTF-8?Q?Cl=C3=A9ment_Le_Goffic?= <legoffic.clement@gmail.com>,
+ Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Julius Werner <jwerner@chromium.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org,
+ =?UTF-8?Q?Cl=C3=A9ment_Le_Goffic?= <clement.legoffic@foss.st.com>
+References: <20250930-b4-ddr-bindings-v8-0-fe4d8c015a50@gmail.com>
+ <20250930-b4-ddr-bindings-v8-2-fe4d8c015a50@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250930-b4-ddr-bindings-v8-2-fe4d8c015a50@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
 
-Hi Geert,
-
-On Thu, 23 Oct 2025 13:30:53 +0200
-Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-
-> >
-> > I have in mind a use case that can lead to a non-contiguous mapping.
-> >
-> > The RZ/N1 SoC embeds a Cortex-M3 CPU. This CPU can use GPIOs and
-> > some of them for interrupt purpose. In that case, those GPIOs have
-> > to be routed to the interrupt line expected by the Cortex-M3.
-> >
-> > And so, we have some interrupts reserved for CPUs running Linux and
-> > some others for the Cortex-M3.
-> >
-> > Among those reserved interrupts may some are not used.
-> >
-> > for instance:
-> >   Interrupt 103, 102: Reserved and used by Linux
-> >   Interrupt 103: Reserved for Linux but not used -> Hole in the mapping
-> >   Interrupt 104: Reserved and used my Cortex-M3 (need to be routed by Linux)  
+On 30/09/2025 10:46, Clément Le Goffic wrote:
+> From: Clément Le Goffic <clement.legoffic@foss.st.com>
 > 
-> 102 does not seem to  be correct?
+> Introduce JEDEC compliant DDR bindings, that use new memory-props binding.
 
-My bad, my example was wrong.
-   Interrupt 103, 104: Reserved and used by Linux
-   Interrupt 105: Reserved for Linux but not used -> Hole in the mapping
-   Interrupt 106: Reserved and used my Cortex-M3 (need to be routed by Linux) 
 
+If there is going to be resend, then please repeat here applicable part
+of compatible format, e.g. why it's like that.
 
 > 
-> > I don't know if this use case is relevant but I think we should be too restrictive
-> > on the mapping and so accept holes.
-> >
-> > With that in mind, I let you confirm that you still prefer to have a mapping
-> > without any holes. A future patch to support that is always possible.  
+> Signed-off-by: Clément Le Goffic <clement.legoffic@foss.st.com>
+> Signed-off-by: Clément Le Goffic <legoffic.clement@gmail.com>
+> ---
+>  .../memory-controllers/ddr/jedec,ddr4.yaml         | 34 ++++++++++++++++++++++
+>  1 file changed, 34 insertions(+)
 > 
-> While that would indeed be a non-discontiguous mapping, I do not see how
-> it is related to rzn1_irqmux_output_lines[] in the driver.  That array
-> would still contain the same contiguous values 103..110, right?
+> diff --git a/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,ddr4.yaml b/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,ddr4.yaml
+> new file mode 100644
+> index 000000000000..a2eb6f63c0ce
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,ddr4.yaml
+> @@ -0,0 +1,34 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/memory-controllers/ddr/jedec,ddr4.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: DDR4 SDRAM compliant to JEDEC JESD79-4D
+> +
+> +maintainers:
+> +  - Krzysztof Kozlowski <krzk@kernel.org>
+> +
+> +allOf:
+> +  - $ref: jedec,sdram-props.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - pattern: "^ddr4-[0-9a-f]{4},[a-z]{1,20},[0-9a-f]{2}$"
 
-The array rzn1_irqmux_output_lines is still contiguous yes but the mapping
-defined in irq-map property no.
+Why double ','? I would imagine last ',' to be '-':
+ddrX-YYYY,AAAA...-ZZ
 
-Looking back again at your proposal, indeed I can remove the following loop:
-	for (i = 0; i < output_lines_count; i++) {
-               if (parent_args->args[1] == output_lines[i])
-                       return i;
-	} 
+Sorry if we discuss that already, but then please remind me and this
+would need addressing in commit msg.
 
-With just
-	if (parent_args->args[1] >= RZN1_IRQMUX_SPI_BASE &&
-            parent_args->args[1] < RZN1_IRQMUX_SPI_BASE + RZN1_IRQMUX_NUM_IRQS) {
-		return parent_args->args[1] - RZN1_IRQMUX_SPI_BASE;
+> +      - const: jedec,ddr4
 
-	dev_err(dev, "Invalid GIC interrupt %u\n", parent_args->args[1]);
-	return -EINVAL;
-
-> 
-> Sorry, I haven't been following the development of this driver that
-> closely (RZ/N1 is completely different from e.g. R-Car, and I never
-> had access to an RZ/N1 platform), so perhaps I am missing something.
-> Why does the user have to specify an interrupt-map in DT? Can't the
-> driver create the mapping dynamically, based actual usage of the
-> GPIOs? I.e. the first 8 GPIOs that ask for interrupt functionality
-> receive it, and are mapped to an available GIC interrupt?
-> I believe this is how rzg2l-irqc works, mapping up to 32 GPIO interrupts
-> to 32 GIC (TINT) interrupts.
-
-I think the main difference with rzg2l-irqc is that the RZ/N1 irq mux is
-clearly not an interrupt controller.
-
-It is just a mux with 96 inputs (GPIO lines coming from several GPIO
-controller) and 8 outputs (connected to the GIC).
-
-It is represented as an interrupt nexus node and has an interrupt-map property.
-to describe the routing.
-
-The interrupt-map property cannot be dynamically created.
-
-Also, the routing is necessary even if the related GPIO is not used by Linux.
-This GPIO can be used as a GPIO input interrupt line by the Cortex M3.
-
-If the irq mux driver performs the routing only on Linux GPIO usage, it will
-not route GPIOs depending on Cortex M3 internal usage.
 
 Best regards,
-Hervé
+Krzysztof
 
