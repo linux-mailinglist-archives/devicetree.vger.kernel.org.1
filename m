@@ -1,240 +1,167 @@
-Return-Path: <devicetree+bounces-230461-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230462-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F9BFC02C48
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 19:41:32 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1AFDAC02CFA
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 19:59:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1CC0F3B0E4C
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 17:41:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2FECC1A679DB
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 17:59:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 142F234A3DA;
-	Thu, 23 Oct 2025 17:41:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00FB834B1B4;
+	Thu, 23 Oct 2025 17:59:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SC+bKV1+"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="CX5aE2BB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
+Received: from mail-pf1-f195.google.com (mail-pf1-f195.google.com [209.85.210.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 847B633DEF3
-	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 17:41:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B3773126DF
+	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 17:59:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761241287; cv=none; b=YgsNjfjJAg+fnbvDkKNYyNjyklOXfel2+UTQVxqK+YAkS+eT1WRgavwyw1aQhO/uS7T3R8iNjFFMKmjnVxPQBoXXondnAVieiIWfCAGIyp/3wFD1r+JvoS192Xa7vdTpuLrkOWesn3CMxIcVt7PFu+MeBXyWcUE2vLSs5qVwcCk=
+	t=1761242367; cv=none; b=D9lBkdCtuxOi96Xz9RHlEgqqSq12EGWQNLznQRoIP9LGWH0v7kZfMZ5IxDSvsguLRX9W0bB2wUSVQmvkJV10F3eWAzoIPiLpkpmNOuAm1i3cX3EGe7EPdaeb2n67K2KEMyBcR7wLB9UWxa/wx2S33HB+1fA5dGMa4LjAdyKijDM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761241287; c=relaxed/simple;
-	bh=brq1Q6J/cHb72gyYM3jxDa4jInBHAcJnQ/osdj5Bc0g=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=VTDZ3zJNT1gfknnSIZU/j3lpeJ/hic27MFCDaRysngXktZ/P8CqDJeIlPgki01Zp1mQnQkvlAVtqAFCX26JjYGuhoX5mxlDcOHGMcsbviKuMkgpvHaPHKa8KEdqoEyQXuVwv6ASkd9MQb2SxBel4PXjhjElvp/J3G45yHu8Ogqg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SC+bKV1+; arc=none smtp.client-ip=209.85.214.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-26e68904f0eso11597415ad.0
-        for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 10:41:25 -0700 (PDT)
+	s=arc-20240116; t=1761242367; c=relaxed/simple;
+	bh=cmoQL7/EOLRFUL/HDkJZjuFWcItHG3aLGx55fZGpJDc=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=c+TPLU+Y0pG8Hou8Tb5LWaho6vB/9hkkfThxtnchmvDZAX1eqLMJcSXbWjpMTFgvaDncKZPv43fq9/WHaXYa9lBnGJOnYeZHHyI30zVZS/UK97NRCvzvMrveU1rSSv9Xk3OIITYfmnzOQUUEDNj+H+6eL7NTzry07oSBPN/ZJqo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=CX5aE2BB; arc=none smtp.client-ip=209.85.210.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
+Received: by mail-pf1-f195.google.com with SMTP id d2e1a72fcca58-781251eec51so934234b3a.3
+        for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 10:59:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1761241285; x=1761846085; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=+RlscW0fJPcI4w1cVrsdBX2mHMbYD0iZ1loDXnboKus=;
-        b=SC+bKV1+3Nb2uPW+ss7ZfMAd23SDd9Swd2WfIHGku13Yn04sANHwSzXRLH6Gy8ACTI
-         fr+aaL8qKQ45qbn42nAr6VUQyvE3eb/KvUBJaeYx84utCnxEthTU6hTSFgZGjByZzP+B
-         mhnK0BqL2T+q8tuUQnFXw6/ifFqkulZzQvCeDdkwHyA5b+4aTYEBEGWYHFBcaotp4b35
-         3YdVnorLuZKWcpLAyYc/ijcTzjp6UJu3QfAxnZ9ITXQFxF/tb1X1WE1mpCb7xNAoRcMu
-         WUWJ83jWkFVOJE2A8XyHVlLRJxdjrWQ4oMXWNZ5YYw0tVPSkw2FSmCV9vjVxQq/QWoby
-         oOEQ==
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1761242365; x=1761847165; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=zZKnZFdnM3oZwGqheXR0h641QYDnGOp0D351J3S+oms=;
+        b=CX5aE2BBNKN74+HDW2YndtKOFsSy4X+rslQnz5Kpdk/25xIV6Gu7jS5k1YjS9UPSje
+         nm6JRSrqNT9ATEDog+u5mUYQ92TxlFX+pQb4yuwGqOYQmcW2aF+ZN1suntTHPncdtBwM
+         SMfC9LyhHoAVUD6Nr/EbjQBys+4y7FxOb7Cahl09wO/ANp3AZsxLGkhr+FJApMO+Q2TD
+         2HOS9R9UyT5DH4yi4g4DCdFQLTLa/leGBrf4JY+5pb0pAiTYmpsrdt0DRTtnAVUWe0hC
+         EYi6N87JwvF+VdA8ZliBIqLTJqMG5F8+OowviyCsAqu9DfmPcy8H4bN43zIj+h6idTAO
+         dOsA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761241285; x=1761846085;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1761242365; x=1761847165;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=+RlscW0fJPcI4w1cVrsdBX2mHMbYD0iZ1loDXnboKus=;
-        b=L7ufuqtlhFY6TNVTju5igX25HD5GEfObWjcpvHv5V1bWfIuBzaFVvzIIYOPjbHfAt8
-         cSCmtutQ8aBpBaCdUVJK+jj9BKJRHTdYX+OX5wNkRi/U3b6US+744b+glbip7h1THXBk
-         zG8GRzWAOLl13cZ2nLmOgtt0AY3vpaOsRp4aSUGuVmA5ndBYp8Th8BitbZxgfGkJMsAM
-         pn1ZaHK+CV0UD8LhhJZUTTBqPbNZzxQWTCfQiKok4an9DzXPqoqwNChp5Lecs8kLm9zk
-         P5V6Uop0lXs5jvcl2f5+ITxdkoQbYyXia/QbiJB5xHqHAOFbQApM4Wc2DzBuEJy7sEkp
-         aNTw==
-X-Forwarded-Encrypted: i=1; AJvYcCU0u5hdUyw5mCk3jhZIF9jk5wMRtZWmf2XACmCOccaZTKpI6UJ1maBxFiiAz/+mUhSZ3sUA1a27W7wg@vger.kernel.org
-X-Gm-Message-State: AOJu0YwnPPTmzsAExhYCcPTWOlm9OgBLCG2jmS3JMyXDUJ/MgzUHtJnP
-	FBr5ZqxYT5g4WrATfDBIstgVthnKu53QVTKI6vK0+pOIe8cyxhM+Wsf3
-X-Gm-Gg: ASbGncvyK20U5WkPkKybBOE/aqReEkd/sWvMweW1xa/Pd9eWWcCarGf0U+ez3464+no
-	9MRt2BP9rslpcUJ2YTr0BHLJZhdoEC4hKAXpUjacUTnp+LyML9sm42yeQZaZwcCkscoLIg0iFFM
-	m0BkPWsVHe1kvNUr8OZNxph8mBRQ/bNpd9xID3Ta/3BX7ZduZIp0y7phue3fsDlaL8zwxPDOs10
-	G4acIP9ycMwG1HkjO73PFvNlq6HIQwDokRWr7CegvS6jmhZzEoYeyobLH50kcuMR1bn6AsCY++5
-	vuCETV/6mQs06nHzn6Y4JJ+6xp18QMFOHfdxcIJvZKvfHRsEFxs5ZMB/jV8SD0wJK0zGaRL4rQr
-	SULJFhtZv1EQTwqO+mnfMfY52K/TXFImf0qgfGBqxSm+nLp2k8TE7qcpxzd+AOTnJG5DPfgfkRK
-	jbMCXFTI9WdwHRa+rP4QO3RZhLIYZoHIM=
-X-Google-Smtp-Source: AGHT+IFfxGetZxOYzBkLMbSAX9vob0YlVWtcztLEw1yU6xI6aPUDPEqjnKvkoiTPdJH966r2PqACrQ==
-X-Received: by 2002:a17:903:2443:b0:24c:cca1:7cfc with SMTP id d9443c01a7336-290cb947830mr310655975ad.59.1761241284484;
-        Thu, 23 Oct 2025 10:41:24 -0700 (PDT)
-Received: from Black-Pearl.localdomain ([27.7.191.116])
-        by smtp.googlemail.com with ESMTPSA id d9443c01a7336-2946e21fbbdsm29202205ad.99.2025.10.23.10.41.21
+        bh=zZKnZFdnM3oZwGqheXR0h641QYDnGOp0D351J3S+oms=;
+        b=ofQYwXlQS6guls9Xlc7QZY+ih2NkeIq7u7OJs2rJsuqU04NTI2WXC2CboUefD0TIx/
+         O+o8yNaV161R3t9+4pjKYMheTvCirUc/wpKPG3in2d61JtGqJ4nNl58Y5itAPi7x0Hv6
+         T0sQY5SxRRl3XVdrNRA3F4uAX7ik10LSYgFbndUGjRuS+LobykkPS1dz/X/bldS30Ao1
+         x3haxkPVPKi19wePt9JKHEu6xk2nzvMkaogUDTNIUhGRIN36OyzdMlwSdPLDM4d9ewgL
+         vlMMjROAUMUM2RUpFEpPq6y0dY+AeYwnu9HxKLv+P3nrb9RPoX8TLaZO8MpGxhleMtN3
+         HjKw==
+X-Forwarded-Encrypted: i=1; AJvYcCUt3A7JiZ7X9GwGqc88uBiCUvVHWAJU101ul+aTFGbBjD2Y7WQ0qvdonOtr6GJt6oxH9K/glqodN5cJ@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy9onKk1zRvK0oCK731crjV59JKBJUDW9tG2vH2h7a1HezRwWBm
+	rTybVVlhmU2ECOV2P5h1404qvJUvLWpmS3M06kpbEo7Wrsg1Ewk+3ipI6wQS5bIHizo=
+X-Gm-Gg: ASbGncvJ3zJQ3dMT8S+q0MezA9jA5Fam1N8Xcl4qzv75M3bZLAA10sQizso1nEvm7DF
+	g51EQvo5a1laefblFf0HkpqZWZ/pV8HZODP4m6Ek/bjdCB7fFfHzWDanPK/N3uYSKYO4670C3PG
+	yfB4Q+u+87+6oiHZ9357UdRSFIq1gTfMJaEH7Xqxxx4PdMMdpL+dmPYyWB7IQoghefaT+jyjLh2
+	gp7MQcC7BnOB/gX1aa+y3C193JlqdjXfQloVg25zDqi3yUVPbR1xBcBx95U2GMdBR5aIYAnM43P
+	eH0X3qGC2eFofYJN/gIs/yGsNMv8NrVsMpQfLqhvUv3u3mbuvMIfa82crhYki5WAliAg1xXPIDQ
+	ewfWL7B4xY+5s0fyip3KjH92g+H+R3kFIV34WK52bmJFEBY5Af5+HHbz0IjJBCYHeCa8YXCoRPQ
+	JPBhHPuYWkvqIhOisc2RA1mHCnF9Zs6lj1TA==
+X-Google-Smtp-Source: AGHT+IG8JoJ2ND1pyiQh1ApMIuQ8AB6jOUuqQ1+8XSa1Ou2nNF3k3D9kPXQ1PKRoMYU7/mYJQIadTQ==
+X-Received: by 2002:a17:902:cecb:b0:27e:ec72:f6d with SMTP id d9443c01a7336-2946de3d929mr41775405ad.11.1761242365381;
+        Thu, 23 Oct 2025 10:59:25 -0700 (PDT)
+Received: from zoltan.localdomain ([208.115.86.150])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-33e223d1265sm6447431a91.3.2025.10.23.10.59.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 23 Oct 2025 10:41:24 -0700 (PDT)
-From: Charan Pedumuru <charan.pedumuru@gmail.com>
-Date: Thu, 23 Oct 2025 17:37:36 +0000
-Subject: [PATCH] dt-bindings: mmc: socionext,milbeaut-m10v-sdhci-3.0:
- convert to DT schema
+        Thu, 23 Oct 2025 10:59:24 -0700 (PDT)
+From: Alex Elder <elder@riscstar.com>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	han.xu@nxp.com,
+	broonie@kernel.org,
+	dlan@gentoo.org,
+	pjw@kernel.org
+Cc: Frank.li@nxp.com,
+	p.zabel@pengutronix.de,
+	guodong@riscstar.com,
+	palmer@dabbelt.com,
+	aou@eecs.berkeley.edu,
+	alex@ghiti.fr,
+	apatel@ventanamicro.com,
+	joel@jms.id.au,
+	geert+renesas@glider.be,
+	cyy@cyyself.name,
+	heylenay@4d2.org,
+	conor.dooley@microchip.com,
+	fustini@kernel.org,
+	linux-spi@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	spacemit@lists.linux.dev,
+	linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/9] spi: enable the SpacemiT K1 SoC QSPI
+Date: Thu, 23 Oct 2025 12:59:12 -0500
+Message-ID: <20251023175922.528868-1-elder@riscstar.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251023-milbeaut-v1-1-3e4ff67110ad@gmail.com>
-X-B4-Tracking: v=1; b=H4sIAN9n+mgC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDI1MDUyMT3dzMnKTUxNISXdNkAyMzc6B4qlGyElB5QVFqWmYF2Kjo2NpaADb
- XLoxaAAAA
-X-Change-ID: 20250524-milbeaut-5c0267202e2c
-To: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Taichi Sugaya <sugaya.taichi@socionext.com>, 
- Takao Orito <orito.takao@socionext.com>
-Cc: linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Charan Pedumuru <charan.pedumuru@gmail.com>
-X-Mailer: b4 0.14.3
+Content-Transfer-Encoding: 8bit
 
-Convert SOCIONEXT Milbeaut SDHCI controller binding to YAML format.
-Add a new property "voltage-ranges" to resolve dt_check errors.
+This series adds support for the SpacemiT K1 SoC QSPI.  This IP
+is generally compatible with the Freescale QSPI driver, requiring
+three minor changes to enable it to be supported.  The changes
+are:
+  - Adding support for optional resets
+  - Having the clock *not* be disabled when changing its rate
+  - Allowing the size of storage blocks written to flash chips
+    to be set to something different from the AHB buffer size
 
-Signed-off-by: Charan Pedumuru <charan.pedumuru@gmail.com>
----
- .../devicetree/bindings/mmc/sdhci-milbeaut.txt     | 30 ---------
- .../mmc/socionext,milbeaut-m10v-sdhci-3.0.yaml     | 78 ++++++++++++++++++++++
- 2 files changed, 78 insertions(+), 30 deletions(-)
+    					-Alex
 
-diff --git a/Documentation/devicetree/bindings/mmc/sdhci-milbeaut.txt b/Documentation/devicetree/bindings/mmc/sdhci-milbeaut.txt
-deleted file mode 100644
-index 627ee89c125b..000000000000
---- a/Documentation/devicetree/bindings/mmc/sdhci-milbeaut.txt
-+++ /dev/null
-@@ -1,30 +0,0 @@
--* SOCIONEXT Milbeaut SDHCI controller
--
--This file documents differences between the core properties in mmc.txt
--and the properties used by the sdhci_milbeaut driver.
--
--Required properties:
--- compatible: "socionext,milbeaut-m10v-sdhci-3.0"
--- clocks: Must contain an entry for each entry in clock-names. It is a
--  list of phandles and clock-specifier pairs.
--  See ../clocks/clock-bindings.txt for details.
--- clock-names: Should contain the following two entries:
--	"iface" - clock used for sdhci interface
--	"core"  - core clock for sdhci controller
--
--Optional properties:
--- fujitsu,cmd-dat-delay-select: boolean property indicating that this host
--  requires the CMD_DAT_DELAY control to be enabled.
--
--Example:
--	sdhci3: mmc@1b010000 {
--		compatible = "socionext,milbeaut-m10v-sdhci-3.0";
--		reg = <0x1b010000 0x10000>;
--		interrupts = <0 265 0x4>;
--		voltage-ranges = <3300 3300>;
--		bus-width = <4>;
--		clocks = <&clk 7>, <&ahb_clk>;
--		clock-names = "core", "iface";
--		cap-sdio-irq;
--		fujitsu,cmd-dat-delay-select;
--	};
-diff --git a/Documentation/devicetree/bindings/mmc/socionext,milbeaut-m10v-sdhci-3.0.yaml b/Documentation/devicetree/bindings/mmc/socionext,milbeaut-m10v-sdhci-3.0.yaml
-new file mode 100644
-index 000000000000..6b67bef30347
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mmc/socionext,milbeaut-m10v-sdhci-3.0.yaml
-@@ -0,0 +1,78 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mmc/socionext,milbeaut-m10v-sdhci-3.0.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: SOCIONEXT Milbeaut SDHCI controller
-+
-+maintainers:
-+  - Taichi Sugaya <sugaya.taichi@socionext.com>
-+  - Takao Orito <orito.takao@socionext.com>
-+
-+description:
-+  The SOCIONEXT Milbeaut SDHCI controller is a specialized SD Host
-+  Controller found in some of Socionext's Milbeaut image processing SoCs.
-+  It features a dedicated "bridge controller." This bridge controller
-+  implements special functions like reset control, clock management for
-+  various SDR modes (SDR12, SDR25, SDR50) and physical pin property settings.
-+
-+allOf:
-+  - $ref: sdhci-common.yaml#
-+
-+properties:
-+  compatible:
-+    const: socionext,milbeaut-m10v-sdhci-3.0
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 2
-+
-+  clock-names:
-+    items:
-+      - const: core
-+      - const: iface
-+
-+  fujitsu,cmd-dat-delay-select:
-+    description:
-+      Its presence indicates that the controller requires a specific command
-+      and data line delay selection mechanism for proper operation, particularly
-+      when dealing with high-speed SD/eMMC modes.
-+    type: boolean
-+
-+  voltage-ranges:
-+    $ref: /schemas/types.yaml#/definitions/uint32-matrix
-+    description:
-+      Two cells are required, first cell specifies minimum slot voltage (mV),
-+      second cell specifies maximum slot voltage (mV).
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - clock-names
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    mmc@1b010000 {
-+        compatible = "socionext,milbeaut-m10v-sdhci-3.0";
-+        reg = <0x1b010000 0x10000>;
-+        interrupts = <GIC_SPI 265 IRQ_TYPE_LEVEL_HIGH>;
-+        voltage-ranges = <3300 3300>;
-+        bus-width = <4>;
-+        clocks = <&clk 7>, <&ahb_clk>;
-+        clock-names = "core", "iface";
-+        cap-sdio-irq;
-+        fujitsu,cmd-dat-delay-select;
-+    };
-+...
+This series is available here:
+  https://github.com/riscstar/linux/tree/outgoing/qspi-v2
+  
+Version 2 addresses comments recieved during review of v1:
+- The "reset" property now only applies to spacemit,k1-qspi compatible.
+- Patch 1 (previously patch 2) now points out that this is the first
+  non-Freescale device using the binding.
+- Added Frank Li's Reviewed-by on patch 3.
+- A quirk flag has been renamed to be QUADSPI_QUIRK_SKIP_CLK_DISABLE.
+- The predicate for that quirk now returns bool type.
+- All other similar predicates now return bool type; this is done in a new
+  patch (patch 4).
+- If non-zero, new field fsl_qspi_devtype_data->sfa_size defines the
+  size of the serial flash regions, rather than ahb_buf_size.
+- A continued line in the Kconfig is now aligned.
+- Patch descriptions are wrapped at 75 columns.
 
----
-base-commit: 7bac2c97af4078d7a627500c9bcdd5b033f97718
-change-id: 20250524-milbeaut-5c0267202e2c
+Alex Elder (9):
+  dt-bindings: spi: fsl-qspi: support SpacemiT K1
+  dt-bindings: spi: fsl-qspi: add optional resets
+  spi: fsl-qspi: add optional reset support
+  spi: fsl-qspi: switch predicates to bool
+  spi: fsl-qspi: add a clock disable quirk
+  spi: fsl-qspi: allot 1KB per chip
+  spi: fsl-qspi: support the SpacemiT K1 SoC
+  riscv: dts: spacemit: enable K1 SoC QSPI on BPI-F3
+  riscv: defconfig: enable SPI_FSL_QUADSPI as a module
 
-Best regards,
+ .../bindings/spi/fsl,spi-fsl-qspi.yaml        | 16 ++++
+ .../boot/dts/spacemit/k1-bananapi-f3.dts      |  6 ++
+ arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi  | 21 +++++
+ arch/riscv/boot/dts/spacemit/k1.dtsi          | 16 ++++
+ arch/riscv/configs/defconfig                  |  1 +
+ drivers/spi/Kconfig                           |  3 +-
+ drivers/spi/spi-fsl-qspi.c                    | 87 +++++++++++++------
+ 7 files changed, 124 insertions(+), 26 deletions(-)
+
+
+base-commit: efb26a23ed5f5dc3554886ab398f559dcb1de96b
 -- 
-Charan Pedumuru <charan.pedumuru@gmail.com>
+2.43.0
 
 
