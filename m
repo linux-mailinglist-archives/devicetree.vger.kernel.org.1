@@ -1,222 +1,146 @@
-Return-Path: <devicetree+bounces-230243-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230233-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 466A8C00D7A
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 13:45:18 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 90074C00C30
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 13:34:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 895BF3B1C54
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 11:39:09 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 0D74250415D
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 11:32:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68ACE30DD3C;
-	Thu, 23 Oct 2025 11:38:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9053330DEB6;
+	Thu, 23 Oct 2025 11:32:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="ktL680r+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f177.google.com (mail-vk1-f177.google.com [209.85.221.177])
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7798630DED5
-	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 11:38:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 323FA30CD8D
+	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 11:32:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761219509; cv=none; b=sNBaU+CeVrV4q1Us0ZF/clIfhfjbMTZa0xpCCzgH8OF/N6PvJZLNqmvRihjauGvF0MZ5fr+vyw7xdgmX52SKQg8bLAYOpOX9HNzk+ZcBI00AFtd2oItyoRw87EAGQALNhyiK1SZwn1FYs9YS0mtDArkamDIjQnyeIldp0VUyyX0=
+	t=1761219157; cv=none; b=A6J04MtWL35VwiNDgD9hr/XF2sQ/OEjzQLUxYRilHkj3ss6jjrz6FBouZOmXJteM/+aMwE7Ql4skGOIeOlxD/6F/XsmNWQviUnJGJd6LKl/3/d6q+Na860I8EsfiXXWvsOYL8SE06Uw5x3ITOk9v5qnMyomeWCKXYWOyxBfiwHI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761219509; c=relaxed/simple;
-	bh=6/N3YiTLQifAY9zz3xwpfpgdh+PsNHV80wg+8+9zp1Y=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=OGdob1dE2bj2pfj2zpSDzIY+E66dsG4RqbPRPThnmOY5mFn4MOjKq7MJR7VQVi5njjC22ih5NuYmWSkK59HKk1Em4WTvd4icWW/yqqQleNshE4wNHNaGQ+cY5UK3A9xCuchlH2AfxI7QM5QSp3iF0DomJcHW7HyaiWYW/NIqbU8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f177.google.com with SMTP id 71dfb90a1353d-556706ea172so657869e0c.0
-        for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 04:38:27 -0700 (PDT)
+	s=arc-20240116; t=1761219157; c=relaxed/simple;
+	bh=219+BGs1UMALEmF9FQsgxxO0c15R/d1CEwwPyrjWbBc=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=EURRuWUMZx46YU2PioxitYB4uzqIEvHMF0vYueQGrbhnWy43iXlgF1HGAUmVoqeklstfsWbrIiF2W07eyI9tiSa3gFAP/+50M4PCSk9HfrR90bG5lK3ZM5NhOKcxKU3XE4ZSEQsqwWB/iaXg7HGz9JOOCHfAWgwH19zCp863a0Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=ktL680r+; arc=none smtp.client-ip=209.85.218.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
+Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-b3ee18913c0so153266466b.3
+        for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 04:32:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=fairphone.com; s=fair; t=1761219153; x=1761823953; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=TpNnWkJiOscmYGyhJWmloy2afAm2NS3i4xqcjYsWoMA=;
+        b=ktL680r+/bGgwGfs4iM0LEBCWDdZ32JB+LxxFGpNUDTzCbU7BA4QG/Csj7MfCja42d
+         wAjctRN9HgOhtWy7bQXL+UnkZG0Y3toczckaJvFJsKBGUOidcftbNpveewu2/5A+oG+3
+         cUk/81ju7PXHhANcU3+vxUvg+i/EerIsqF/uOC9M4Vltl5+lNZsd0m45UoFlP8V7FSYg
+         DjUlyKnXfDTzxjnimqkMwAjuzTFo+MoGAnIInFHr7AGVWl5o29W1JWTaikRaKMQ6fCBa
+         E8mM085LibO3TaxOrPQnyhhR4mQx/W12oDbsUgNr0dLAi/wJAqmpJePoryh7ChC60Buu
+         /OXQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761219506; x=1761824306;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=6zsBv2UTTNDe+bvN26dCEz5bfw+/JNH9ObmAd3JmbGM=;
-        b=lxzNVofb/zuY53Mm9rc25Tp3JC42L55Gdcfo2ojQ75tht5Wr3s3bht3HVMNulIcNcL
-         1mRCkSCYc4ToCMnJ1lEUJq6fFqjVfKk3c92Jq4sbc1Fw6aqB1NSCnNaaJMmLLN9HHif4
-         1JJ1pJKSaMjaenPCAueYjmthdV3MjpacnbOR4/86aqZ9cj/7IwdOhnsQEVSa7pUtmvs1
-         jDCpn6b910y29cVt059iGzDtIGKre1TFg1mxaOExsWAqqfktBDr5s9Vvc6BZCug5VeC1
-         6sGyzfHBDSU9nIrQl7p2p5KGAuiRfmR/63db79lVaAw1zoF6XQ2aOpmzbPX9wgUFs1Nr
-         Ivlw==
-X-Forwarded-Encrypted: i=1; AJvYcCWQBAg8PxtKtEagXYfUmK21jEq1YvTOn/UyyB8ipsUBuyF7NqYWHK/3WSp3J9tCgmvJSWWZLdcqS4Ty@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy4FDlZMpwF0+MbhPkKDhHdGFxNa8Rc63bTCj36vk1vYI0NP53g
-	kjEmMtLx5ejQneiSzhrzL3T0pGPaXmAZ+CVc6BWU9ypJ6I1oYBgpofQDfdYSDnUb
-X-Gm-Gg: ASbGncuELQp4kt6s6Eol6OZ0sQ5n6K1/BKIqPwV3a2GqgoNNjPDf+ZnyY2BySdau08R
-	9jR89ObebqZMTNPKMrMntzUpvJxZoQwcN3ab/pzyuMAAX3hPvbn70SofOYte3jld3Wabf9RPHmK
-	gJtnNN+cg2hbKBQpV+0K70AN6Hz1PJ0L7mmcxsviaxm/UGvl9EAGJBvkNNQ/JLDEQiyuTGoXezT
-	t6DsCyg1MNsbyMLhyU/YhfkH1Z864A0TdzL3Fdh2NhyDWNKGEQzRukKsVfG7wAkY4JmqFAycVrm
-	CIh3ZkcvynOhyT5sf3+sPgzeEsSaeheQQAd5vmZOhRHSYYaUVG2aglNj+S+pP3EbUcClZm/iBps
-	X4ixCxlI1UD032RSb5GIPtRWbARzotigxq3WoVnSk6Um+ECOgPfBJmYZdkt8L+xSP/h2Pabfwb/
-	4YukUnFuC6yuOsRJ5QDgB8Bhkc+S4QFHA/JUVBn2Q6Y/pLYqsIRLpl
-X-Google-Smtp-Source: AGHT+IFVheNlwJXqy8hh+lwHXfQaL/69nxZ9DDkGcg2TrXPMjU2X+AMf0qbL5HRCFfSaHFKboWeKvQ==
-X-Received: by 2002:a05:6122:789:b0:556:94ae:ae32 with SMTP id 71dfb90a1353d-556964c6ed2mr2251790e0c.4.1761219505969;
-        Thu, 23 Oct 2025 04:38:25 -0700 (PDT)
-Received: from mail-vk1-f171.google.com (mail-vk1-f171.google.com. [209.85.221.171])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-557bdbbba23sm628480e0c.13.2025.10.23.04.38.25
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 23 Oct 2025 04:38:25 -0700 (PDT)
-Received: by mail-vk1-f171.google.com with SMTP id 71dfb90a1353d-556706ea172so657846e0c.0
-        for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 04:38:25 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVXTAjqDAwWBzlcjnZlX1dlJ/Vm+ulh1xwnF4rGWB348zVQvaCsKdKvxm65i5i1jxftfQ5+ZVpUtExa@vger.kernel.org
-X-Received: by 2002:a67:fd0f:0:b0:5d4:1499:99a4 with SMTP id
- ada2fe7eead31-5db238491ffmr1515554137.13.1761219064357; Thu, 23 Oct 2025
- 04:31:04 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1761219153; x=1761823953;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=TpNnWkJiOscmYGyhJWmloy2afAm2NS3i4xqcjYsWoMA=;
+        b=rgW9pZu7mkEa1x/ZfwAtKk5vr5fMRf0LWlD6fhHRyOOjAPLmJA1O+rSAlFIhK7pWeH
+         S7kPHUENbNWBw93I+XEVMj3jR5hQ0NWsyC2FvIv8JMSLts97nb9yszE8usE0p7DK0B/C
+         nARy8pmECuE2YuTfSYxWRgLrxGOYmnwAS24PiXgs3xw32+XaS2smZmeXOKQJEIUIYzyw
+         Wttk+CqMRyNnKeoujGsi/PseyL1ZZ3S2SPXu/NE9o8JltrqKkk69hfm/q9v5yllBbPF0
+         ZKY7YL6KZHm9dlqrQGFBu1k2H5JZC1xO5uNK45MhoDdbMw8XZoLzjCFPfA/CdhhR5uXk
+         RKNw==
+X-Forwarded-Encrypted: i=1; AJvYcCXmNz8froAHqG3LLBqcpRqJzZXR0Z3/Uc7UX089NZztdcUtlr+QA40+lwfxubt2tK8kaIVmnJHLdEO2@vger.kernel.org
+X-Gm-Message-State: AOJu0YxA1xkqErqvj94Yi3yWJuDS/1lC0BHl2tDnOX8bMqCqK/SGie/4
+	U3P7RMJxoXpEWosWPoePdUrtLRwQADcCtsQpDDj1Yk7ZClrSy3mgKb0Dh0W+VORCTHM=
+X-Gm-Gg: ASbGncsVX3+iBoX500kKTvAf2JWMsn9EqA87pJ3UYb/Jrf0SkGGf/8RLKgD74fqpzM2
+	XNhVXWZKOWYxHrmWLbl5MF5+5tJgsG3IPaiJOyYUH5TAF8ON0IwJ/x9lkE9mB/RjN26r2HrYwvd
+	5MX8GzlwnOOkL/hL1pSurkLBgKPufQnofgglfFIKD7YVAHUNC24Mqhj9+uJ/twvw0rX5ST0tz1M
+	SQeVzc8gMUyfPa4BCqsmzZ0EN+vacDXGxM1PvXrHPEzhg2+OtLzkeYQPRnBUkWV4Uu9Cq7yivbO
+	2Nm/HkBDi4y+C3G5d/n+gMRbOy/pcN+unIAkgvvxK3ZY2pIghoZXxIPCgEfGDR1O0erLldLc55p
+	hHIwoCY8vJp6JGDhZR/9WI2a3LBICWv0ghjGkRTHuR25bTrOtX4uk3U4vFl4tuHlcp2Op20Qr8V
+	+CoECoP4PNDKGnjQsu0A9qWrh77pIuabijrXPZ4mrknDHKDg==
+X-Google-Smtp-Source: AGHT+IEl7Syzf5Uc2BCfVDgfWGyxkVxFH1O6RZyXcvt5BTepLqPH++866mvbvp1k50rggkWKyblRuA==
+X-Received: by 2002:a17:907:94c9:b0:b6d:5524:5a01 with SMTP id a640c23a62f3a-b6d55246423mr234261766b.31.1761219153462;
+        Thu, 23 Oct 2025 04:32:33 -0700 (PDT)
+Received: from [192.168.178.36] (046124199085.public.t-mobile.at. [46.124.199.85])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b6d51471ef6sm183087866b.72.2025.10.23.04.32.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 23 Oct 2025 04:32:32 -0700 (PDT)
+From: Luca Weiss <luca.weiss@fairphone.com>
+Subject: [PATCH v3 0/3] Add support for PM7550 PMIC
+Date: Thu, 23 Oct 2025 13:32:24 +0200
+Message-Id: <20251023-sm7635-pmxr2230-v3-0-f70466c030fe@fairphone.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251020080648.13452-1-herve.codina@bootlin.com>
- <20251020080648.13452-8-herve.codina@bootlin.com> <CAMuHMdV03D_3b_JA2vzW4tE_QbkkT1bN1dm+zLLLX24oDHMj0Q@mail.gmail.com>
- <20251022150339.4c48649e@bootlin.com>
-In-Reply-To: <20251022150339.4c48649e@bootlin.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 23 Oct 2025 13:30:53 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdWY=FbO6YG1jrd0OWfrpPpBzrqmBVcWnw7TnnsKPGgr8A@mail.gmail.com>
-X-Gm-Features: AWmQ_bml4kcY7IJK2WvckNb7k-cRq3k2ESGBRnimvIxLnwqyhf2dlX518mVHMZI
-Message-ID: <CAMuHMdWY=FbO6YG1jrd0OWfrpPpBzrqmBVcWnw7TnnsKPGgr8A@mail.gmail.com>
-Subject: Re: [PATCH v5 7/8] soc: renesas: Add support for Renesas RZ/N1 GPIO
- Interrupt Multiplexer
-To: Herve Codina <herve.codina@bootlin.com>
-Cc: Thomas Gleixner <tglx@linutronix.de>, Wolfram Sang <wsa+renesas@sang-engineering.com>, 
-	Hoan Tran <hoan@os.amperecomputing.com>, Linus Walleij <linus.walleij@linaro.org>, 
-	Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, Saravana Kannan <saravanak@google.com>, 
-	Serge Semin <fancer.lancer@gmail.com>, Phil Edworthy <phil.edworthy@renesas.com>, 
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	Pascal Eberhard <pascal.eberhard@se.com>, Miquel Raynal <miquel.raynal@bootlin.com>, 
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAEgS+mgC/2XPzQ6CMAwH8FchOztTOsfAk+9hPBQosgMfbkgwh
+ nd3QIyJHP9t+mv7Fp6dZS/O0Vs4Hq23XRuCOkSiqKm9s7RlyAIBNSQI0jcmUVr2zeQQFUhmrSl
+ NKC0wF2Gqd1zZaRWvt5Br64fOvdYFY7xUv5beWWMsQaImyk4KdKXiS0XW9XXX8rHoGrF4I/4MA
+ 9newGBAZowpKQfK9L8xb0c6fjzDt8N2qcjJswz9xg7nqOVpkMuGGFCFifkDtCF9CScBAAA=
+X-Change-ID: 20250620-sm7635-pmxr2230-ee55a86a8c2b
+To: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Fenglin Wu <quic_fenglinw@quicinc.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, 
+ Linus Walleij <linus.walleij@linaro.org>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
+ linux-arm-msm@vger.kernel.org, linux-leds@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-gpio@vger.kernel.org, Luca Weiss <luca.weiss@fairphone.com>, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1761219151; l=1162;
+ i=luca.weiss@fairphone.com; s=20250611; h=from:subject:message-id;
+ bh=219+BGs1UMALEmF9FQsgxxO0c15R/d1CEwwPyrjWbBc=;
+ b=zH1fNZh/BMIxM2WZik6d13jMLDkIgAarWlV81IJDL95GT5KmmymH99mNmTFVHd/xG9gNYYOxA
+ S/NOJRtqIW3C3kWZE3tKqErequGzTZoV6oz/GHqEHB+/qR+6UwUclrz
+X-Developer-Key: i=luca.weiss@fairphone.com; a=ed25519;
+ pk=O1aw+AAust5lEmgrNJ1Bs7PTY0fEsJm+mdkjExA69q8=
 
-Hi Herv=C3=A9,
+The PM7550 PMIC is used in conjuction with the Milos SoC. Add binding
+docs and the devicetree description for it.
 
-On Wed, 22 Oct 2025 at 15:03, Herve Codina <herve.codina@bootlin.com> wrote=
-:
-> On Tue, 21 Oct 2025 15:05:35 +0200
-> Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> > On Mon, 20 Oct 2025 at 10:08, Herve Codina (Schneider Electric)
-> > <herve.codina@bootlin.com> wrote:
-> > > On the Renesas RZ/N1 SoC, GPIOs can generate interruptions. Those
-> > > interruption lines are multiplexed by the GPIO Interrupt Multiplexer =
-in
-> > > order to map 32 * 3 GPIO interrupt lines to 8 GIC interrupt lines.
-> > >
-> > > The GPIO interrupt multiplexer IP does nothing but select 8 GPIO
-> > > IRQ lines out of the 96 available to wire them to the GIC input lines=
-.
-> > >
-> > > Signed-off-by: Herve Codina (Schneider Electric) <herve.codina@bootli=
-n.com>
+Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+---
+Changes in v3:
+- Resend, drop applied patches
+- Pick up tags
+- Link to v2: https://lore.kernel.org/r/20250709-sm7635-pmxr2230-v2-0-09777dab0a95@fairphone.com
 
-> > > --- /dev/null
-> > > +++ b/drivers/soc/renesas/rzn1_irqmux.c
-> > > @@ -0,0 +1,150 @@
-> > > +// SPDX-License-Identifier: GPL-2.0-only
-> > > +/*
-> > > + * RZ/N1 GPIO Interrupt Multiplexer
-> > > + *
-> > > + * Copyright 2025 Schneider Electric
-> > > + * Author: Herve Codina <herve.codina@bootlin.com>
-> > > + */
-> > > +
-> > > +#include <linux/bitops.h>
-> > > +#include <linux/build_bug.h>
-> > > +#include <linux/mod_devicetable.h>
-> > > +#include <linux/module.h>
-> > > +#include <linux/of.h>
-> > > +#include <linux/of_irq.h>
-> > > +#include <linux/platform_device.h>
-> > > +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> > > +
-> > > +/*
-> > > + * The array index is the output line index, the value at the index =
-is the
-> > > + * GIC SPI interrupt number the output line is connected to.
-> > > + */
-> > > +static const u32 rzn1_irqmux_output_lines[] =3D {
-> > > +       103, 104, 105, 106, 107, 108, 109, 110
-> > > +};
-> >
-> > I did read the discussion with Wolfram, but the flexibility (and
-> > overhead) provided by this array sounds a bit overkill to me.
-> >
-> > What about just defining:
-> >
-> >     #define RZN1_IRQMUX_SPI_BASE    103
-> >     #define RZN1_IRQMUX_NUM_IRQS    8
-> >
-> > ?
-> >
-> > If/when a new SoC with a similar setup ever arrives, you can probably
-> > just replace the constants above by variables inside SoC-specific
-> > match data.  And if the new mapping would be non-contiguous, you can
-> > still revive this array ;-)
->
-> I have in mind a use case that can lead to a non-contiguous mapping.
->
-> The RZ/N1 SoC embeds a Cortex-M3 CPU. This CPU can use GPIOs and
-> some of them for interrupt purpose. In that case, those GPIOs have
-> to be routed to the interrupt line expected by the Cortex-M3.
->
-> And so, we have some interrupts reserved for CPUs running Linux and
-> some others for the Cortex-M3.
->
-> Among those reserved interrupts may some are not used.
->
-> for instance:
->   Interrupt 103, 102: Reserved and used by Linux
->   Interrupt 103: Reserved for Linux but not used -> Hole in the mapping
->   Interrupt 104: Reserved and used my Cortex-M3 (need to be routed by Lin=
-ux)
+Changes in v2:
+- PMXR2230 -> PM7550 (Dmitry)
+- Replace some SM7635 references with Milos
+- Update critical temperature trip
+- Link to v1: https://lore.kernel.org/r/20250625-sm7635-pmxr2230-v1-0-25aa94305f31@fairphone.com
 
-102 does not seem to  be correct?
+---
+Luca Weiss (3):
+      dt-bindings: leds: qcom,spmi-flash-led: Add PM7550
+      dt-bindings: mfd: qcom-spmi-pmic: Document PM7550 PMIC
+      arm64: dts: qcom: Add PM7550 PMIC
 
-> I don't know if this use case is relevant but I think we should be too re=
-strictive
-> on the mapping and so accept holes.
->
-> With that in mind, I let you confirm that you still prefer to have a mapp=
-ing
-> without any holes. A future patch to support that is always possible.
+ .../bindings/leds/qcom,spmi-flash-led.yaml         |  1 +
+ .../devicetree/bindings/mfd/qcom,spmi-pmic.yaml    |  1 +
+ arch/arm64/boot/dts/qcom/pm7550.dtsi               | 67 ++++++++++++++++++++++
+ 3 files changed, 69 insertions(+)
+---
+base-commit: a92c761bcac3d5042559107fa7679470727a4bcb
+change-id: 20250620-sm7635-pmxr2230-ee55a86a8c2b
 
-While that would indeed be a non-discontiguous mapping, I do not see how
-it is related to rzn1_irqmux_output_lines[] in the driver.  That array
-would still contain the same contiguous values 103..110, right?
+Best regards,
+-- 
+Luca Weiss <luca.weiss@fairphone.com>
 
-Sorry, I haven't been following the development of this driver that
-closely (RZ/N1 is completely different from e.g. R-Car, and I never
-had access to an RZ/N1 platform), so perhaps I am missing something.
-Why does the user have to specify an interrupt-map in DT? Can't the
-driver create the mapping dynamically, based actual usage of the
-GPIOs? I.e. the first 8 GPIOs that ask for interrupt functionality
-receive it, and are mapped to an available GIC interrupt?
-I believe this is how rzg2l-irqc works, mapping up to 32 GPIO interrupts
-to 32 GIC (TINT) interrupts.
-
-Thanks!
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
 
