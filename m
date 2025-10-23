@@ -1,62 +1,62 @@
-Return-Path: <devicetree+bounces-230456-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230457-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45B37C02B43
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 19:18:07 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2BA1C02B7C
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 19:25:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id A508D34F9B5
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 17:18:06 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 15E224E1C91
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 17:25:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4706434677C;
-	Thu, 23 Oct 2025 17:17:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B3DC346E41;
+	Thu, 23 Oct 2025 17:25:43 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 649D12D0C73;
-	Thu, 23 Oct 2025 17:17:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9697F29B793;
+	Thu, 23 Oct 2025 17:25:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761239866; cv=none; b=MPV7oHsewjjLl8JHqtwaEvrMWxMpGInZZILfpk3ORjJNoxTGcRhF/hdnEpUIHuMKHXhAGuT6qd9mIe5ReKL0hbFvspcoEYGAQD8V5l3qdJw0b8TUiPDUQJ0oeDQrY1mSiIPR6TQDVLYF9grwhy5NRQp1d/VLz77SeBVer0MXRYc=
+	t=1761240343; cv=none; b=HVFi30s/kaxzCKTJmDWENXJnsMNbTkIHnvygTSkAK425aoxAj7qkZz0oyppXrfjnc4gO7veMi56C/8O/Yr+dKLj47pqXU/5K3Diy5FMqI10TueFn6gL86ihtXwQc3Z/qzZbJ7a/hbGonJGNhrX52Gt+F01fyhiV1lczSZNWBBqE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761239866; c=relaxed/simple;
-	bh=sAGYcixA8hc2rJdPBYVrw8hY9B06k+KGm7ku/lneWDM=;
+	s=arc-20240116; t=1761240343; c=relaxed/simple;
+	bh=9c3jFP7HcUJ7ZrWMij/S2fNE8Kn0ggPJcf6DUIM6C9Y=;
 	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=IxNJt7C3+VAuiYk/a6yWm0cAkgZHwi7Bm9CMCywmstBkKNi/8O3CTyEqHH8iyIVQm9+aTeC9ik5tgPmaVJ5asV68f40+aCbNjO76Ergsr5r/qN6p0Sv0SUy9dV+1HUFCfxN1AGpwdeMi2aXzwHb695bufQG0cJupdoDD6fTFyAc=
+	 MIME-Version:Content-Type; b=OG2JfX2QTTdb2SjfGghKA1h+sOzE+idwf+CMlG1IxYcPSRQlng99EwwYuep0Xk4S1LS3oqYbVTgOGSy5YoWQhZADtelT0y2Ve6YEkNj3rwIJ45UdjNIwfUWxqamB2fphz90D/+ypOfQ1gr0Efh65eVPBEeCjW9EWHm7JNAoWMHI=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
 Received: from mail.maildlp.com (unknown [172.18.186.216])
-	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4cst132Dpbz6M4mN;
-	Fri, 24 Oct 2025 01:13:59 +0800 (CST)
+	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4cstBF4GMnz6M4kP;
+	Fri, 24 Oct 2025 01:21:57 +0800 (CST)
 Received: from dubpeml100005.china.huawei.com (unknown [7.214.146.113])
-	by mail.maildlp.com (Postfix) with ESMTPS id 252171402F9;
-	Fri, 24 Oct 2025 01:17:41 +0800 (CST)
+	by mail.maildlp.com (Postfix) with ESMTPS id 6CBDE1402FD;
+	Fri, 24 Oct 2025 01:25:39 +0800 (CST)
 Received: from localhost (10.203.177.15) by dubpeml100005.china.huawei.com
  (7.214.146.113) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.11; Thu, 23 Oct
- 2025 18:17:40 +0100
-Date: Thu, 23 Oct 2025 18:17:38 +0100
+ 2025 18:25:38 +0100
+Date: Thu, 23 Oct 2025 18:25:37 +0100
 From: Jonathan Cameron <jonathan.cameron@huawei.com>
-To: David Lechner <dlechner@baylibre.com>
-CC: Frank Li <Frank.Li@nxp.com>, Jonathan Cameron <jic23@kernel.org>, Nuno
- =?ISO-8859-1?Q?S=E1?= <nuno.sa@analog.com>, Andy Shevchenko
-	<andy@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
-	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Antoni Pokusinski
-	<apokusinski01@gmail.com>, Vasileios Amoiridis <vassilisamir@gmail.com>,
-	Justin Weiss <justin@justinweiss.com>, "open list:IIO SUBSYSTEM AND DRIVERS"
-	<linux-iio@vger.kernel.org>, "open list:OPEN FIRMWARE AND FLATTENED DEVICE
- TREE BINDINGS" <devicetree@vger.kernel.org>, open list
-	<linux-kernel@vger.kernel.org>, <imx@lists.linux.dev>
-Subject: Re: [PATCH 1/1] dt-bindings: iio: pressure: Remove vdd-supply and
- vddio-supply from required list
-Message-ID: <20251023181738.00004253@huawei.com>
-In-Reply-To: <0e00bb14-19c7-493a-9629-354bac3a273e@baylibre.com>
-References: <20251022164154.2994517-1-Frank.Li@nxp.com>
-	<0e00bb14-19c7-493a-9629-354bac3a273e@baylibre.com>
+To: Akhilesh Patil <akhilesh@ee.iitb.ac.in>
+CC: Jonathan Cameron <jic23@kernel.org>, <dlechner@baylibre.com>,
+	<robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+	<nuno.sa@analog.com>, <andy@kernel.org>, <marcelo.schmitt1@gmail.com>,
+	<vassilisamir@gmail.com>, <salah.triki@gmail.com>,
+	<skhan@linuxfoundation.org>, <linux-iio@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<akhileshpatilvnit@gmail.com>
+Subject: Re: [PATCH v2 2/2] iio: pressure: adp810: Add driver for adp810
+ sensor
+Message-ID: <20251023182537.000069be@huawei.com>
+In-Reply-To: <20251021-54542-354166@bhairav-test.ee.iitb.ac.in>
+References: <cover.1760374257.git.akhilesh@ee.iitb.ac.in>
+	<0b72866f4e5ac28c78f6d683a1ca659a4239b68e.1760374257.git.akhilesh@ee.iitb.ac.in>
+	<20251018174746.4a76af1d@jic23-huawei>
+	<20251021-54542-354166@bhairav-test.ee.iitb.ac.in>
 X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-w64-mingw32)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -69,59 +69,79 @@ Content-Transfer-Encoding: 7bit
 X-ClientProxiedBy: lhrpeml500011.china.huawei.com (7.191.174.215) To
  dubpeml100005.china.huawei.com (7.214.146.113)
 
-On Wed, 22 Oct 2025 12:03:27 -0500
-David Lechner <dlechner@baylibre.com> wrote:
+On Tue, 21 Oct 2025 11:15:42 +0530
+Akhilesh Patil <akhilesh@ee.iitb.ac.in> wrote:
 
-> On 10/22/25 11:41 AM, Frank Li wrote:
-> > Some board designs connect vdd and vddio to the system power supply. Remove
-> > these properties from the required list and make them optional, since
-> > drivers/iio/pressure/mpl3115.c does not use them.
-> > 
-> > Fix below CHECK_DTBS warnings:
-> > arch/arm64/boot/dts/freescale/imx8qm-mek.dtb: pressure-sensor@60 (fsl,mpl3115): 'vdd-supply' is a required property
-> >         from schema $id: http://devicetree.org/schemas/iio/pressure/fsl,mpl3115.yaml#
+> On Sat, Oct 18, 2025 at 05:47:46PM +0100, Jonathan Cameron wrote:
+> > On Mon, 13 Oct 2025 22:32:35 +0530
+> > Akhilesh Patil <akhilesh@ee.iitb.ac.in> wrote:
 > >   
+> > > Add driver for Aosong adp810 differential pressure and temperature sensor.
+> > > This sensor provides an I2C interface for reading data.
+> > > Calculate CRC of the data received using standard crc8 library to verify
+> > > data integrity.
+> > > 
+> > > Tested on TI am62x sk board with sensor connected at i2c-2.
+> > > 
+> > > Signed-off-by: Akhilesh Patil <akhilesh@ee.iitb.ac.in>  
+> > 
+> > A few comments inline and it seems your rebase when wrong and you've
+> > picked up unrelated build file changes.
+> > 
+> > Thanks
+> > 
+> > Jonathan  
 > 
-> Why not just add the required properties to the .dts file?
+> Hi Jonathan, Thanks for the review, I will share v3 addressing these comments.
+> 
+> Regards,
+> Akhilesh
+> 
+> >   
+> > > diff --git a/drivers/iio/pressure/Makefile b/drivers/iio/pressure/Makefile
+> > > index 6482288e07ee..a21443e992b9 100644
+> > > --- a/drivers/iio/pressure/Makefile
+> > > +++ b/drivers/iio/pressure/Makefile
+> > > @@ -5,6 +5,7 @@
+> > >  
+> > >  # When adding new entries keep the list in alphabetical order
+> > >  obj-$(CONFIG_ABP060MG) += abp060mg.o
+> > > +obj-$(CONFIG_ADP810) += adp810.o
+> > >  obj-$(CONFIG_ROHM_BM1390) += rohm-bm1390.o
+> > >  obj-$(CONFIG_BMP280) += bmp280.o
+> > >  bmp280-objs := bmp280-core.o bmp280-regmap.o
+> > > @@ -15,6 +16,7 @@ obj-$(CONFIG_DPS310) += dps310.o
+> > >  obj-$(CONFIG_IIO_CROS_EC_BARO) += cros_ec_baro.o
+> > >  obj-$(CONFIG_HID_SENSOR_PRESS)   += hid-sensor-press.o
+> > >  obj-$(CONFIG_HP03) += hp03.o
+> > > +obj-$(CONFIG_HP206C) += hp206c.o
+> > >  obj-$(CONFIG_HSC030PA) += hsc030pa.o
+> > >  obj-$(CONFIG_HSC030PA_I2C) += hsc030pa_i2c.o
+> > >  obj-$(CONFIG_HSC030PA_SPI) += hsc030pa_spi.o
+> > > @@ -34,11 +36,9 @@ obj-$(CONFIG_SDP500) += sdp500.o
+> > >  obj-$(CONFIG_IIO_ST_PRESS) += st_pressure.o
+> > >  st_pressure-y := st_pressure_core.o
+> > >  st_pressure-$(CONFIG_IIO_BUFFER) += st_pressure_buffer.o
+> > > +obj-$(CONFIG_IIO_ST_PRESS_I2C) += st_pressure_i2c.o
+> > > +obj-$(CONFIG_IIO_ST_PRESS_SPI) += st_pressure_spi.o
+> > >  obj-$(CONFIG_T5403) += t5403.o
+> > > -obj-$(CONFIG_HP206C) += hp206c.o  
+> > 
+> > Rebase gone wrong I assume.    
+> 
+> These are intentional changes.
+> 
+> This addresses Andy's suggestion in v1, to keep entries alphabetically
+> arranged in Makefile. Along with adp810 location, fixed other files as well
+> hp206 and st_pressure_* to make entries alphabetically arranged in
+> the entire Makefile.
 
-That would be the ideal. 
-
-We had a long discussion a few years back around whether supplies like this
-should be optional or not in dt-bindings. Conclusion (I think at Mark Brown's
-suggestion) was that the rule should be if power is needed for the chip to
-function they aren't optional in DT.
-
-The driver doesn't necessarily do anything with them, though it probably
-should and adding simple support is trivial. 
-
-In a given downstream dts if people are happy to have the checks fail
-then fallback regulators can be used but the binding shouldn't reflect
-that bit of papering over missing supplies.
-
-So no to this change. 
+That reorder of others needs to be a separate patch so that it can
+explicitly call out that it is tidying up ordering.
 
 Jonathan
 
-> 
-> > Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> > ---
-> >  Documentation/devicetree/bindings/iio/pressure/fsl,mpl3115.yaml | 2 --
-> >  1 file changed, 2 deletions(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/iio/pressure/fsl,mpl3115.yaml b/Documentation/devicetree/bindings/iio/pressure/fsl,mpl3115.yaml
-> > index 2933c2e10695e..04703a01cf7af 100644
-> > --- a/Documentation/devicetree/bindings/iio/pressure/fsl,mpl3115.yaml
-> > +++ b/Documentation/devicetree/bindings/iio/pressure/fsl,mpl3115.yaml
-> > @@ -47,8 +47,6 @@ properties:
-> >  required:
-> >    - compatible
-> >    - reg
-> > -  - vdd-supply
-> > -  - vddio-supply
-> >  
-> >  additionalProperties: false
-> >    
-> 
-> 
+
+
 
 
