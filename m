@@ -1,294 +1,221 @@
-Return-Path: <devicetree+bounces-230531-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230532-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 069F9C0354D
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 22:11:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FB43C0357E
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 22:17:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AC5FD189BD69
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 20:12:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2873B1A00990
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 20:18:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1F0634B664;
-	Thu, 23 Oct 2025 20:11:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 535FA2459F7;
+	Thu, 23 Oct 2025 20:17:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b="VlWF0jqC";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="kOqzGkGY"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="OoTTAUwx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fhigh-b8-smtp.messagingengine.com (fhigh-b8-smtp.messagingengine.com [202.12.124.159])
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF8C428E00;
-	Thu, 23 Oct 2025 20:11:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.159
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D507F235046
+	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 20:17:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761250294; cv=none; b=W2KeEvsaKbphfNgPZtnLbNeYM0WjOG3w/H1ujXYVijdhCT+7+RtvwTlwf0Z3ehYQ7zqK2Mj2dGvFLnYrgONqwUbxeqa72Ym06n5/ZFXA+6OHdfE1y+oIeAZBraKNXW6kOylKza2zgdob+rrk/99B3tylDMncRcFnkwmO6yjMo9U=
+	t=1761250661; cv=none; b=mgHk0EYjK21pXjNIy2tmFnzsdgTknMqoGmxHYwQJCFJuGXQqkG4sb3NtXgaCb5BKtR+EWY7sNxTSE0rRX237Hz+9ad6p9GHlCnknMm75peZMBlfv3huXOw0dIkxZQ/zu0TNLvdvcj8YG1ROU2ebSZaBW8tnONp2zLdNd5K0AXzY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761250294; c=relaxed/simple;
-	bh=CxKb4+oGVyQgdYdyPKR7U9RpetdTfMVZ6enFWPs6ndg=;
-	h=MIME-Version:Date:From:To:Message-Id:In-Reply-To:References:
-	 Subject:Content-Type; b=cxtjtScY1z4B1g+Sh3FBPF0cpE490KXfvxEsY1M0inDmBRLaA0BZaN5hijAdVd59jUez1jxx07TIs45v5Z1VVCz78NxGgzXaBK2tsdcYCZyAtxlXbrNPVbBt6WC6VjIbdGZCR4KocuVEw5CLr347PogG0W8EEaP1DcXCL5v36YI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de; spf=pass smtp.mailfrom=arndb.de; dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b=VlWF0jqC; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=kOqzGkGY; arc=none smtp.client-ip=202.12.124.159
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arndb.de
-Received: from phl-compute-05.internal (phl-compute-05.internal [10.202.2.45])
-	by mailfhigh.stl.internal (Postfix) with ESMTP id 45C167A003A;
-	Thu, 23 Oct 2025 16:11:31 -0400 (EDT)
-Received: from phl-imap-02 ([10.202.2.81])
-  by phl-compute-05.internal (MEProxy); Thu, 23 Oct 2025 16:11:31 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-	:content-transfer-encoding:content-type:content-type:date:date
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm2; t=1761250291;
-	 x=1761336691; bh=uOtdIBBvO4Ujse60vki69gfDQAEcTBuUnWSLTKLCpJ8=; b=
-	VlWF0jqCIMQ6JHgD75hGpuWKuO2BWc/R8TVTYFsR894nKb+F4+YUs3FqsFGc7uQf
-	Wzpd/oRWRo2QpHIYp0fAKO+nhXJrocVlEoAvaTYfCPLESY+aizrxZLD73ceERqm9
-	T3ck8LXtCRF7+oy6+FdwY7alaJFGBYbCtQ5XxYMfMT9rD/vwn11t13e/YgZ+NEVK
-	rF38LBNXT7g5Iz4y2r4Svd8+uQYgUk+CPbLv//SbDbn5x646KSkLDgYTomolc15k
-	rUIzH4jxyphye65iNNA7mWzePskzrmw46C7rvW4oZeT2PdExvPxq576Oq+vh+GnX
-	aXYPI5OqXwb25wPxrhsoFQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:content-transfer-encoding:content-type
-	:content-type:date:date:feedback-id:feedback-id:from:from
-	:in-reply-to:in-reply-to:message-id:mime-version:references
-	:reply-to:subject:subject:to:to:x-me-proxy:x-me-sender
-	:x-me-sender:x-sasl-enc; s=fm2; t=1761250291; x=1761336691; bh=u
-	OtdIBBvO4Ujse60vki69gfDQAEcTBuUnWSLTKLCpJ8=; b=kOqzGkGYPMqjB4uHP
-	zXcffmF54QCYlB53Bptup3D+wO9KLsgtmHyZa7/KJvAMMLuNxzWWtlZ83+7NJnuq
-	8EFXp/hG/b4jHOwfmVP3C6OmbD1k+KNIRQ4mYxWBmC9X1lt6Aa8O/dWpc2rQd//d
-	VKuWNs2hi2cckvBurbtlzQK7JdUyaBHzaz5cFxuY+JLtRPSe+GDDWaTk3ntTg6QP
-	nE3C2nM9R3CS9RKdNkgp6I24hsAzrHFhWtUUpqUIHuVBE/8Rf9aoFcRBELezXK9t
-	Fn/CvumnkUw92aNHiQsxUKCR0PG/4yRhOIyTfU5QW7INWNu3bOUlD1MMhKa1y1Vo
-	rLh2Q==
-X-ME-Sender: <xms:74v6aAbe_DwmhGMJG53C6jW140c11inxjy5RxYnYFvb5_QRaO2P_Ag>
-    <xme:74v6aGPAOuTnDmbdIkMBttLRDcHfH24WNzAOJewXmAncY4L8c6d9pTMQDNHbB1f16
-    gskQ5mxDHpunROpwNiiNMth3xhMqPsmfAKSpWxLfPdPyn5D-9AR-GA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdeggddugeejfeelucetufdoteggodetrf
-    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceu
-    rghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujf
-    gurhepofggfffhvffkjghfufgtgfesthejredtredttdenucfhrhhomhepfdetrhhnugcu
-    uegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrghtthgvrh
-    hnpedutddtfffhfeehfeegvdfflefhgeegfefhvdeuhfeuffehjefhueeitddttdekleen
-    ucffohhmrghinhepghhithhhuhgsrdgtohhmpdhlfihnrdhnvghtnecuvehluhhsthgvrh
-    fuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprghrnhgusegrrhhnuggsrdgu
-    vgdpnhgspghrtghpthhtohepvdefpdhmohguvgepshhmthhpohhuthdprhgtphhtthhope
-    gtrghtrghlihhnrdhmrghrihhnrghssegrrhhmrdgtohhmpdhrtghpthhtohepsghmtgdq
-    shifsegrshhpvggvughtvggthhdrtghomhdprhgtphhtthhopehrhigrnhgptghhvghnse
-    grshhpvggvughtvggthhdrtghomhdprhgtphhtthhopehprhgrsghhrghkrghrrdhmrghh
-    rgguvghvqdhlrggurdhrjhessghprdhrvghnvghsrghsrdgtohhmpdhrtghpthhtoheprg
-    hnughrvgifsegtohguvggtohhnshhtrhhutghtrdgtohhmrdgruhdprhgtphhtthhopehj
-    khestghouggvtghonhhsthhruhgtthdrtghomhdrrghupdhrtghpthhtohepnhhfrhgrph
-    hrrgguohestgholhhlrggsohhrrgdrtghomhdprhgtphhtthhopehjohgvlhesjhhmshdr
-    ihgurdgruhdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhg
-X-ME-Proxy: <xmx:74v6aNz9Pv7pk8lbFJEkMAOTx4K8eA6k_u48jDljbJJNKwZ6n8T3tw>
-    <xmx:74v6aJbtVwBmGAByqauon98-IvQkP7upRMQz3zhqgGiHcw_-jd4Urw>
-    <xmx:74v6aDI5d2dDUWbqUYfz156HA-I5s1wavJEvP9WokWH2XbiPq0aPiQ>
-    <xmx:74v6aI3hmtTp9iZM2_WYyKde4a63tzgl5bkTBhouA5a9JfdYRYdadg>
-    <xmx:84v6aDknT2cJSxKMQoFrJUJ4d5-n5TaMrBQriloDjrQFpv3sTaieodpF>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.phl.internal (Postfix, from userid 501)
-	id AFAB7700054; Thu, 23 Oct 2025 16:11:27 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
+	s=arc-20240116; t=1761250661; c=relaxed/simple;
+	bh=1fyib0gfkn91bUXd587VUurecASVm6R2t3RGKOVNru0=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=GcCmP559Tdzfe/LONZ70DZqX30VbllGs1eorr+9QPC0Y46e0IDsC+xDd+GO6b4o3rn0JhIsG45jv880b6oaRkASvxk1g4G2RGsi3S+89vmO+FMqPj5xQiXywC1tKR9axE5/OFpK+FWg5PgHqZBtNoBhtqMQn1SC7x5VXbFHtxkY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=OoTTAUwx; arc=none smtp.client-ip=170.10.133.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1761250656;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=xkzVhL/+U7KTZ+Wu2Xt5iRP9SLK+it5gBEjbIIA64Vk=;
+	b=OoTTAUwxQX0rwGFTuEuVx48PF0g6ZEksqOJO7EpH7YbdYVruNlG6oVRpRtS5kcClxbcmNQ
+	LKAqJPp3cowBtlOPuFbA+Ug+UEbY9ZcK5lwdRZPSxdOygpya2rZi01A+B6uqz4S+Lc+UPU
+	732iZq6qPGX63jEG+BokvYmBG2FbkXU=
+Received: from mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-642-OivIpowCNXGLOp68BpIWyw-1; Thu,
+ 23 Oct 2025 16:17:33 -0400
+X-MC-Unique: OivIpowCNXGLOp68BpIWyw-1
+X-Mimecast-MFC-AGG-ID: OivIpowCNXGLOp68BpIWyw_1761250651
+Received: from mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.4])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id D8652195608E;
+	Thu, 23 Oct 2025 20:17:29 +0000 (UTC)
+Received: from cmirabil.redhat.com (unknown [10.22.64.45])
+	by mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id DA49F30002D7;
+	Thu, 23 Oct 2025 20:17:25 +0000 (UTC)
+From: Charles Mirabile <cmirabil@redhat.com>
+To: tglx@linutronix.de
+Cc: alex@ghiti.fr,
+	aou@eecs.berkeley.edu,
+	cmirabil@redhat.com,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	dramforever@live.com,
+	krzk+dt@kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	lzampier@redhat.com,
+	palmer@dabbelt.com,
+	paul.walmsley@sifive.com,
+	robh@kernel.org,
+	samuel.holland@sifive.com
+Subject: Re: [PATCH v6 0/4] Add UltraRISC DP1000 PLIC support
+Date: Thu, 23 Oct 2025 16:17:19 -0400
+Message-ID: <20251023201721.549563-1-cmirabil@redhat.com>
+In-Reply-To: <87zf9hwh5j.ffs@tglx>
+References: <87zf9hwh5j.ffs@tglx>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-ThreadId: AMptcG-LwCSF
-Date: Thu, 23 Oct 2025 22:11:06 +0200
-From: "Arnd Bergmann" <arnd@arndb.de>
-To: "Ryan Chen" <ryan_chen@aspeedtech.com>, BMC-SW <BMC-SW@aspeedtech.com>,
- "Rob Herring" <robh@kernel.org>,
- "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Conor Dooley" <conor+dt@kernel.org>, "Joel Stanley" <joel@jms.id.au>,
- "Andrew Jeffery" <andrew@codeconstruct.com.au>,
- "Jeremy Kerr" <jk@codeconstruct.com.au>, "Lee Jones" <lee@kernel.org>,
- "Catalin Marinas" <catalin.marinas@arm.com>,
- "Will Deacon" <will@kernel.org>,
- "Bjorn Andersson" <bjorn.andersson@oss.qualcomm.com>,
- "Geert Uytterhoeven" <geert@linux-m68k.org>,
- "Nishanth Menon" <nm@ti.com>,
- =?UTF-8?Q?N=C3=ADcolas_F=2E_R=2E_A=2E_Prado?= <nfraprado@collabora.com>,
- "Taniya Das" <quic_tdas@quicinc.com>, "Lad,
- Prabhakar" <prabhakar.mahadev-lad.rj@bp.renesas.com>,
- "Kuninori Morimoto" <kuninori.morimoto.gx@renesas.com>,
- "Eric Biggers" <ebiggers@kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Message-Id: <6a97fbb4-19c2-4ffa-9c73-26aea02c27e4@app.fastmail.com>
-In-Reply-To: 
- <TY2PPF5CB9A1BE626A2F0F6307461D8F64BF2F0A@TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com>
-References: <20251022070543.1169173-1-ryan_chen@aspeedtech.com>
- <20251022070543.1169173-5-ryan_chen@aspeedtech.com>
- <b5441728-06a7-44ea-8876-3a9fc3cf55be@app.fastmail.com>
- <TY2PPF5CB9A1BE626A2F0F6307461D8F64BF2F0A@TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com>
-Subject: Re: [PATCH v6 4/6] arm64: dts: aspeed: Add initial AST2700 SoC device tree
-Content-Type: text/plain
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.4
 
-On Thu, Oct 23, 2025, at 09:37, Ryan Chen wrote:
->
->> > +	aliases {
->> > +		serial0 = &uart0;
->> > +		serial1 = &uart1;
->> > +		serial2 = &uart2;
->> > +		serial3 = &uart3;
->> > +		serial4 = &uart4;
->> > +		serial5 = &uart5;
->> > +		serial6 = &uart6;
->> > +		serial7 = &uart7;
->> > +		serial8 = &uart8;
->> > +		serial9 = &uart9;
->> > +		serial10 = &uart10;
->> > +		serial11 = &uart11;
->> > +		serial12 = &uart12;
->> > +		serial13 = &uart13;
->> > +		serial14 = &uart14;
->> > +	};
->> 
->> This looks like you just list all the uarts that are present on the chip, which is
->> not how the aliases are meant to be used. Move this block into the board
->> specific file and only list the ones that are actually enabled on that particular
->> board.
->> 
->> In particular, the alias names are meant to be local to the board and don't
->> usually correspond to the numbering inside of the chip. In the defconfig, we
->> currently set CONFIG_SERIAL_8250_NR_UARTS=8, which is enough for any
->> board we support so far, but that means only the first
->> 8 aliases in the list will actually work.
->
-> Understood. I'll move the aliases block from the SoC dtsi into the
-> EVB board dts. For the EVB, UART12 is used as the default console,
-> and the board labels match the SoC numbering, so I plan to keep:
->
-> Does that look acceptable?
-> ast2700-evb.dts
-> 	aliases {
-> 		serial0 = &uart0;
-> 		serial1 = &uart1;
-> 		serial2 = &uart2;
-> 		serial3 = &uart3;
-> 		serial4 = &uart4;
-> 		serial5 = &uart5;
-> 		serial6 = &uart6;
-> 		serial7 = &uart7;
-> 		serial8 = &uart8;
-> 		serial9 = &uart9;
-> 		serial10 = &uart10;
-> 		serial11 = &uart11;
-> 		serial12 = &uart12;
-> 		serial13 = &uart13;
-> 		serial14 = &uart14;
-> }
+Hi Thomas—
 
-I think this would be broken for the defconfig if the consol is
-on serial12. I would recommend using serial0 as the console, like
+On Thu, Oct 23, 2025 at 09:29:44PM +0200, Thomas Gleixner wrote:
+> On Thu, Oct 23 2025 at 15:00, Lucas Zampieri wrote:
+> > This series adds support for the PLIC implementation in the UltraRISC
+> > DP1000 SoC. The UR-CP100 cores used in the DP1000 have a hardware bug in
+> > their PLIC claim register where reading it while multiple interrupts are
+> > pending can return the wrong interrupt ID. The workaround temporarily
+> > disables all interrupts except the first pending one before reading the
+> > claim register, then restores the previous state.
+> >
+> > The driver matches on "ultrarisc,cp100-plic" (CPU core compatible), allowing
+> > the quirk to apply to all SoCs using UR-CP100 cores (currently DP1000,
+> > potentially future SoCs).
+> >
+> > Charles Mirabile (3):
+> >   dt-bindings: interrupt-controller: add UltraRISC DP1000 PLIC
+> >   irqchip/plic: enable optimization of interrupt enable state
+> 
+>     That one never showed up. Neither in my inbox nor on lore
 
-aliases {
-       serial0 = &uart12;
-}
+Looks like the CC list was missing somehow from that patch—I didn't notice because I got it in my inbox because of my Signed-off-by.
 
-in this case. If additional uarts are enabled, add those as
-further aliases.
+The indexing on the patches was slightly wrong anyways, so we will resend tomorrow. Sorry for the noise.
 
->> 
->> > +	soc1: soc@14000000 {
->> > +		compatible = "simple-bus";
->> > +		#address-cells = <2>;
->> > +		#size-cells = <2>;
->> > +		ranges = <0x0 0x0 0x0 0x14000000 0x0 0x10000000>;
->> 
->> This probably needs some explanation: why are there two 'soc@...'
->> devices? Is this literally two chips in the system, or are you describing two
->> buses inside of the same SoC?
->
-> The AST2700 is two soc connection with a property bus.
-> Sharing some decode registers. Each have it own ahb bus.
+I have attached it here in case you want to take a look.
 
-I don't understand your explanation, 
+> 
+-- >8 --
+From: Charles Mirabile <cmirabil@redhat.com>
+Subject: [PATCH v6 3/4] irqchip/plic: enable optimization of interrupt enable state
 
->> 
->> > +
->> > +		mdio0: mdio@14040000 {
->> > +			compatible = "aspeed,ast2600-mdio";
->> > +			reg = <0 0x14040000 0 0x8>;
->> > +			resets = <&syscon1 SCU1_RESET_MII>;
->> > +			status = "disabled";
->> > +		};
->> 
->> I see that you use the old compatible="aspeed,ast2600-mdio" string exclusively
->> here. While this works, I would suggest you list both a more specific
->> "aspeed,ast2700-mdio" string to refer to the version in this chip as well as the
->> fallback "aspeed,ast2600-mdio" string as the generic identifier.
->> 
->> The binding obviously has to describe both in that case, but the driver does not
->> need to be modified as long as both behave the same way.
->
-> Thanks, will submit ast2700-mdio. 
-> Question, should I add in here patch series?
-> Or go for another patch thread?
+Optimize the PLIC driver by maintaining the interrupt enable state in
+the handler's enable_save array during normal operation rather than only
+during suspend/resume. This eliminates the need to read enable registers
+during suspend and makes the enable state immediately available for
+other optimizations.
 
-Since there is no corresponding driver change, I would keep the binding
-change as a patch in this series.
+Modify __plic_toggle() to take a handler pointer instead of enable_base,
+allowing it to update both the hardware registers and the cached
+enable_save state atomically within the existing enable_lock protection.
 
->> > +
->> > +		syscon1: syscon@14c02000 {
->> > +			compatible = "aspeed,ast2700-scu1", "syscon", "simple-mfd";
->> > +			reg = <0x0 0x14c02000 0x0 0x1000>;
->> > +			ranges = <0x0 0x0 0x14c02000 0x1000>;
->> > +			#address-cells = <1>;
->> > +			#size-cells = <1>;
->> > +			#clock-cells = <1>;
->> > +			#reset-cells = <1>;
->> > +
->> > +			scu_ic2: interrupt-controller@100 {
->> > +				compatible = "aspeed,ast2700-scu-ic2";
->> > +				reg = <0x100 0x8>;
->> > +				#interrupt-cells = <1>;
->> > +				interrupts-extended = <&intc1_5 0>;
->> > +				interrupt-controller;
->> > +			};
->> > +
->> > +			scu_ic3: interrupt-controller@108 {
->> > +				compatible = "aspeed,ast2700-scu-ic3";
->> > +				reg = <0x108 0x8>;
->> > +				#interrupt-cells = <1>;
->> > +				interrupts-extended = <&intc1_5 26>;
->> > +				interrupt-controller;
->> > +			};
->> 
->> This looks a bit silly to be honest: you have two separate devices that each have
->> a single register and a different compatible string?
->
-> Yes, it have difference register define in each scu-ic#. That is 
-> compatible with design.
-> https://github.com/torvalds/linux/blob/master/drivers/irqchip/irq-aspeed-scu-ic.c#L45-L48
+Remove the suspend-time enable register reading since enable_save now
+always reflects the current state.
 
-Right, if the driver already has this design, it does make sense to
-not change it for the new generation. For a newly added driver I would
-probably do it differently.
+Signed-off-by: Charles Mirabile <cmirabil@redhat.com>
 
->> Also you claim to be compatible with "syscon" but nothing actually refers to the
->> syscon node in that form?
->
-> There is another submit ongoing in pinctrl which will use syscon. 
-> https://lwn.net/ml/all/20250829073030.2749482-2-billy_tsai@aspeedtech.com/
->
-> Could I keep it? or I should remove it?
+---
+ drivers/irqchip/irq-sifive-plic.c | 36 +++++++++++--------------------
+ 1 file changed, 13 insertions(+), 23 deletions(-)
 
-The version of the driver you are linking does not appear to use
-syscon, maybe this is an artifact from a previous version?
+diff --git a/drivers/irqchip/irq-sifive-plic.c b/drivers/irqchip/irq-sifive-plic.c
+index cbd7697bc1481..d518a8b468742 100644
+--- a/drivers/irqchip/irq-sifive-plic.c
++++ b/drivers/irqchip/irq-sifive-plic.c
+@@ -94,15 +94,22 @@ static DEFINE_PER_CPU(struct plic_handler, plic_handlers);
+ 
+ static int plic_irq_set_type(struct irq_data *d, unsigned int type);
+ 
+-static void __plic_toggle(void __iomem *enable_base, int hwirq, int enable)
++static void __plic_toggle(struct plic_handler *handler, int hwirq, int enable)
+ {
+-	u32 __iomem *reg = enable_base + (hwirq / 32) * sizeof(u32);
++	u32 __iomem *base = handler->enable_base;
+ 	u32 hwirq_mask = 1 << (hwirq % 32);
++	int group = hwirq / 32;
++	u32 value;
++
++	value = readl(base + group);
+ 
+ 	if (enable)
+-		writel(readl(reg) | hwirq_mask, reg);
++		value |= hwirq_mask;
+ 	else
+-		writel(readl(reg) & ~hwirq_mask, reg);
++		value &= ~hwirq_mask;
++
++	handler->enable_save[group] = value;
++	writel(value, base + group);
+ }
+ 
+ static void plic_toggle(struct plic_handler *handler, int hwirq, int enable)
+@@ -110,7 +117,7 @@ static void plic_toggle(struct plic_handler *handler, int hwirq, int enable)
+ 	unsigned long flags;
+ 
+ 	raw_spin_lock_irqsave(&handler->enable_lock, flags);
+-	__plic_toggle(handler->enable_base, hwirq, enable);
++	__plic_toggle(handler, hwirq, enable);
+ 	raw_spin_unlock_irqrestore(&handler->enable_lock, flags);
+ }
+ 
+@@ -247,33 +254,16 @@ static int plic_irq_set_type(struct irq_data *d, unsigned int type)
+ 
+ static int plic_irq_suspend(void)
+ {
+-	unsigned int i, cpu;
+-	unsigned long flags;
+-	u32 __iomem *reg;
+ 	struct plic_priv *priv;
+ 
+ 	priv = per_cpu_ptr(&plic_handlers, smp_processor_id())->priv;
+ 
+ 	/* irq ID 0 is reserved */
+-	for (i = 1; i < priv->nr_irqs; i++) {
++	for (unsigned int i = 1; i < priv->nr_irqs; i++) {
+ 		__assign_bit(i, priv->prio_save,
+ 			     readl(priv->regs + PRIORITY_BASE + i * PRIORITY_PER_ID));
+ 	}
+ 
+-	for_each_present_cpu(cpu) {
+-		struct plic_handler *handler = per_cpu_ptr(&plic_handlers, cpu);
+-
+-		if (!handler->present)
+-			continue;
+-
+-		raw_spin_lock_irqsave(&handler->enable_lock, flags);
+-		for (i = 0; i < DIV_ROUND_UP(priv->nr_irqs, 32); i++) {
+-			reg = handler->enable_base + i * sizeof(u32);
+-			handler->enable_save[i] = readl(reg);
+-		}
+-		raw_spin_unlock_irqrestore(&handler->enable_lock, flags);
+-	}
+-
+ 	return 0;
+ }
 
-If so, you can drop it. On the other hand, this does seem to
-be a classic syscon device and keeping it marked that way is not
-harmful, just redundant if you actually use the more specific
-compatible string.
+--
+2.51.0
 
 
-     Arnd
 
