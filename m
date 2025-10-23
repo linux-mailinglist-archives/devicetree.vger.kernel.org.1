@@ -1,237 +1,164 @@
-Return-Path: <devicetree+bounces-230080-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230082-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 224EEBFFA50
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 09:37:23 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DC1FBFFA3B
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 09:36:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 20C405679A3
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 07:30:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 093C93AD97F
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 07:32:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5491E2D2398;
-	Thu, 23 Oct 2025 07:29:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA34D2C0282;
+	Thu, 23 Oct 2025 07:31:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b="BqvYa0XR"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HEFdjfkO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbgjp3.qq.com (smtpbgjp3.qq.com [54.92.39.34])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6413324A063;
-	Thu, 23 Oct 2025 07:28:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.92.39.34
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 613F227A465
+	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 07:31:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761204541; cv=none; b=nWts44siZewy8G3Q5tCQoZ9eLzLFpMzHQRENoF8NfPqB1CFKT3njYUngP5AwbFaA6lqBAYLNMhuAA93jSBpYqiaUQvWMKHxIrkfxNRYzgGhPktzTeJesyQM6Y4N+Wb0f2bg0UVulapu08qbHWR+kcwhRjcOK/KElm7hHQ0HhCRY=
+	t=1761204676; cv=none; b=SvGWhVUNAW/O9LDYKdgI+auFnR1nYGQutvEIokSdhCprnBqxGzLHnat90ushMWzH6UA1FAHupEB33FtOmI9yfOkw08233WIEs1EAHoS74aOKHlH73SlHr3DfRam919NC6iu25L0M+1LyQtFo7L1qH114XXlfmmZn/HKqfdEr1C8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761204541; c=relaxed/simple;
-	bh=Ng7sJU6uriYTf5rZYSyCQyjKItQMSXxOIfj5WN50fKw=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=FkSaN2QGiXlFgUVRPSIILY42gyIMxks3ssW/k7Qc1ta9PYj76USEtBXfl+F3/KSRI+enYgblzgUI53ciDJBdNdDd6489v+kcn6u6YXDuTX/DJ6/P/hO4RWOamOVAZc3p/i//PXIJFx/dn7s3nB/mGScYhs9zbd/skZ4k5g8/8ek=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com; spf=none smtp.mailfrom=linux.spacemit.com; dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b=BqvYa0XR; arc=none smtp.client-ip=54.92.39.34
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.spacemit.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.spacemit.com;
-	s=mxsw2412; t=1761204527;
-	bh=joD46nXQLvIHo+j0HgWSZvew9QJQpcw/TMa5i9hHU8o=;
-	h=From:Date:Subject:MIME-Version:Message-Id:To;
-	b=BqvYa0XRESYkp+lyWUfXCf7Fj6HMkQ7MdIiOZjc+7mg5sY61Q6U5FAwrop2Qxy86Y
-	 JDGRVRmoc3uUFAIrLXC1z0wPKG1m9kFvXVt8esMGrkdRTood6DRBbra1K11DtJY+hZ
-	 cYFCCbcblS5iTORd8XRFCq2hoKkbW45MhsIaz99o=
-X-QQ-mid: esmtpgz11t1761204522tff170d3e
-X-QQ-Originating-IP: B/S5rV3PQQenjL7i6qoZ3M1T7tn3dtYmHjmxvlqnzvk=
-Received: from = ( [221.4.210.170])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Thu, 23 Oct 2025 15:28:39 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 5281825611618668887
-EX-QQ-RecipientCnt: 15
-From: Troy Mitchell <troy.mitchell@linux.spacemit.com>
-Date: Thu, 23 Oct 2025 15:28:30 +0800
-Subject: [PATCH v4 2/2] riscv: dts: spacemit: add MusePi Pro board device
- tree
+	s=arc-20240116; t=1761204676; c=relaxed/simple;
+	bh=aFRDzPkcK9NfGl8UTUu2FSysM7F5S+eQ7XxMTHyQQzY=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=EeaWk1cq8k0y7NbSEBN4uShx1YHj+Rb+DylFWG9Fxgl8BX9LOS9NCpr3EDzdlEhxotKedqyIhu6hyUwKKyR273mPZKRHLX3dmAoMHG5idTpRdmRqnITmLivcO6W6JXlQWhzr457SJnocsN9snzr7iyiviNNgUEnZkQDfUAF/h6k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=HEFdjfkO; arc=none smtp.client-ip=209.85.128.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-4711f3c386eso3244475e9.0
+        for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 00:31:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1761204672; x=1761809472; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
+         :to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=A3Zl0NzO6dgztEpIBfhUUKoZHrDlf3kwSQWoMIJPwEA=;
+        b=HEFdjfkO7k87QHghfzIzojCtt0S0nv35/wt7CM/JFkqmB4Es5+y1zr+/2JWrELweTo
+         fLcjJ56OyDyw73tpkCXf0pEM/Ra/A1+QFheeRlogGers4ba1k8C/Dyuqe+07R13jiIgf
+         S56OzC6VhaegbcT0AH1f5Dii++gz/VSee72T4dnINMHd0r8QV24uQjkyIeAEvXrHvy7P
+         IU2yDTlhKd48cG0uyQUdxJZKMSYNwjQQTjVa/AI7oD2RxseZbfrzXAQsDmxKtm2kwZ1d
+         N9tYGgICibo5NcmuDC/WEZfBxUKznly8HL2DFYAD/LVI3H8FYa6Ns5CNiagf2qumJYnR
+         lbqw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761204672; x=1761809472;
+        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
+         :to:from:date:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=A3Zl0NzO6dgztEpIBfhUUKoZHrDlf3kwSQWoMIJPwEA=;
+        b=cdl44XYOmGFEjX/VzI+RH2kjHWx9T4GFW30UnpJ0nmvw1QniFcmB5Xjd1mWG5Iufou
+         7tH8IXez98AXImK8tFyeCu0Qqq6BrTeE3VB9N7ZGTVNv5+KSDcxARUbofZPCjxqajzvF
+         bZIk/8um5G1/xuzAC9hsZHo8uH0Oqezt73cLzqESXqrDXp04mkHDjRE5f8Rc2s4qCLRB
+         cM0yrTAdt8Srjf6ZdQ7LX0aCLSR2K4WPc/1EwWjxHPWyJKb6eTTzgSyiRd+ogwg2up/T
+         9venwGpYy/jVnRbWPVoVv08m3xTWxEsVwvPsAKJCD9dYlhn2SaZKfbq81TXfGQBLRqL4
+         iBew==
+X-Forwarded-Encrypted: i=1; AJvYcCWuKeblBuq/k4nhoL4gkDo2S9ciRQqXP2lU9y+j9/cnCyGrmQi8HJoDG4A5JxdNr6aYvcd0ujPaGWje@vger.kernel.org
+X-Gm-Message-State: AOJu0YxO0ufNwGXNuo4TdyoGB9WHOVJKYLCE3vfpYlLjo15+N1dCN2Cl
+	U9WludrLw9zRMN2ApHS8+DYrgld2SyhAuThGetNziBMM1yyDUKzZt85Q62358CSO7eQ=
+X-Gm-Gg: ASbGnctO8w/jKJjJ6WliD6QdTm9Ez/NILoHiS3EogzgLpBKEt9CrKYcqpv+lHKDy27z
+	Uva8baj8x4rMZhv7L+W5C04eYhuST9whILgx0b38E/8gc3DDmFDb122/xJIjYzcZj5BEwxlGPb9
+	Q95Y7xj0DqvL/uhRyMoL8S1kMwIYlrA2rm0m8270it3YO35OHAifptwwlKziuy4SgqqexXUhuKQ
+	1N+2dBHwaXejBvhHdYGvwFmVmyo1fQsYPAbxFK3blp2Jpn2BCr+9lAMkeVFOupkQUFK+s4jkVGf
+	UMrYMMojz/NCsILUnlEKHdQAV9NwtobCtqAh7AO6eHmFNGjlE50rCMUUpDgrJmp7qqV/n8YmXSL
+	oBqNwLZXv2xpxgmq9ODf9UgGrno2OsmdQBEhRFgI+/aSD2xwoCxvrb1YzLgEl62sT3j515cgBhp
+	iC9ICruytPuq0ASDv/
+X-Google-Smtp-Source: AGHT+IGlhOgrTrFS3lTljK8PD6tgtfOcB8wV5TTCZ+KMjcR3xg+VWPl4LfT+6SvDqRlsNkBtYEe0Eg==
+X-Received: by 2002:a05:600c:45c9:b0:471:115e:87bd with SMTP id 5b1f17b1804b1-4711791c601mr162939935e9.26.1761204671516;
+        Thu, 23 Oct 2025 00:31:11 -0700 (PDT)
+Received: from localhost ([196.207.164.177])
+        by smtp.gmail.com with UTF8SMTPSA id 5b1f17b1804b1-475c428dafesm80214005e9.6.2025.10.23.00.31.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 23 Oct 2025 00:31:11 -0700 (PDT)
+Date: Thu, 23 Oct 2025 10:31:07 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: oe-kbuild@lists.linux.dev, Ariana Lazar <ariana.lazar@microchip.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: lkp@intel.com, oe-kbuild-all@lists.linux.dev, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Ariana Lazar <ariana.lazar@microchip.com>
+Subject: Re: [PATCH 2/2] iio: adc: adding support for PAC1711
+Message-ID: <202510230847.CEW0lvJl-lkp@intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20251023-k1-musepi-pro-dts-v4-2-01836303e10f@linux.spacemit.com>
-References: <20251023-k1-musepi-pro-dts-v4-0-01836303e10f@linux.spacemit.com>
-In-Reply-To: <20251023-k1-musepi-pro-dts-v4-0-01836303e10f@linux.spacemit.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>, 
- Paul Walmsley <paul.walmsley@sifive.com>, 
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
- Alexandre Ghiti <alex@ghiti.fr>, Yangyu Chen <cyy@cyyself.name>, 
- Paul Walmsley <pjw@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
- spacemit@lists.linux.dev, linux-kernel@vger.kernel.org, 
- Troy Mitchell <troy.mitchell@linux.spacemit.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1761204512; l=3829;
- i=troy.mitchell@linux.spacemit.com; s=20250710; h=from:subject:message-id;
- bh=Ng7sJU6uriYTf5rZYSyCQyjKItQMSXxOIfj5WN50fKw=;
- b=Aiw1SmBTfBNhi223fRNMnFvCpW5ccu42hxskoJ/AmhWNppC6CFtRZ8W+4PTH+uXzpai3WFagS
- F5w55z1lylfA5u6xmrZuAvQRQP5QrZugPyMHHVontQjsiZZHLPfx+KY
-X-Developer-Key: i=troy.mitchell@linux.spacemit.com; a=ed25519;
- pk=lQa7BzLrq8DfZnChqmwJ5qQk8fP2USmY/4xZ2/MSsXc=
-X-QQ-SENDSIZE: 520
-Feedback-ID: esmtpgz:linux.spacemit.com:qybglogicsvrgz:qybglogicsvrgz3a-0
-X-QQ-XMAILINFO: No2U+TjUQ3cypojtCejXczU2pBcHEXNeGY3dDtHEYlyus4/Bg7kVuEJe
-	QvsrBPudOD86kCjhg+j3JU7ITCvvMi29b+M+4rX5vN8DFAWIongYfQ/RWjp+P1IFmbpuRVv
-	VbpREdPjDlQAV/2D34SQTCk2s91oVgDy20BP6BP7bsE3aV4QFb7oRPqvl6KHjaoZVYBAIiZ
-	c/AqtZn1MqT9+Q4SapYiEapXbEBedCFWSTBHEfmY4yITtWzehu/tfnvch6VS2O7xpU3MlwJ
-	rCl4zIv0T0tVqysa02j7qpHs5EAcZSgvSDAVY+9WuudRDFz62nQ1wo5rXnZ9l8+uzisXs1W
-	DVhdgimvwMTQbkf+uUTDiNaMVuWyMxmNMXzq0TGIY3zOGqTev7p41HPtm1/b6lKt5gRkgcU
-	prvVEuCqJR3VKiixNX13dic3EEKDvxk+jk20liNYapAQIScB7KlJs/JEUk1X0DyUbc/pEvE
-	BHqqxDW5XBL0kSV94ELyteSUASqMS40zgbWTcPnROyH2fwJ+6oOT8ow7Dobm5efz7n0nqdM
-	4oSK2v9t0uvIaH/lSe6FsAS41OudgAZefqv61Ks32JT8/uzji453wwWKheJ/TLZoeuYgCSk
-	nGzEMPnVhxvqs4Kq5STzkV/hTz/o+nTV2BHGCtjGHTrjTM/qMZF7IWUzB/Rj4ZUVPRe7iHh
-	EBGW0ewYX3SbPDKVjn5es8nLzM2D8ChRMLhpZgLXzucku7W742W7D7PC3mWDmDz0e8JjnRI
-	dDF/uM2xLGGd0KE7gISE9geE0aGuHo7ur+JamWgiC8RvxwDZoYEOxLqUMCoYTfYlu8MTmJz
-	uKLyo7y6pHdbuVNSkblVAM+mQABfsAnlsQzQJmWUXqL6+RzeLeDX931fDYASvo2QZ2A8+aH
-	mGvlAN6KVDKbUejapELwX6q3bvCM2j0knrWeDnApssXLCJYGzJODfmlSBLu33hCUEwQsPKC
-	W+4QRMljo1MKvZsbqcZsXyF/bVFCfDwXpYLeRP2/y+HxIqDi6Y2RNnnIGlv9PPxz5Peqs9W
-	5ar6jebuw+9+xmURP6T1GFUPxJnjnyS+pr/mAiDKOhfIU1TGzmbowgykpkeIOHwoE/hk/1a
-	jd+bfSfaDDbaO5+jIbHKyRg2Fx9Dr2CMYsfQ4W2CGo9vVSkxvg0MaL2rjo1omK6q71O/qNI
-	shAaD2G9kQPzo6k=
-X-QQ-XMRINFO: NI4Ajvh11aEj8Xl/2s1/T8w=
-X-QQ-RECHKSPAM: 0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251015-pac1711-v1-2-976949e36367@microchip.com>
 
-Add initial device tree support for the MusePi Pro board [1].
-The board is using the SpacemiT K1/M1 SoC.
+Hi Ariana,
 
-This device tree is adapted from the SpacemiT vendor tree [2] and
-enables basic board functionality, including UART console, LED, eMMC,
-Ethernet, and PDMA.
+kernel test robot noticed the following build warnings:
 
-Link: https://developer.spacemit.com/documentation?token=YJtdwnvvViPVcmkoPDpcvwfVnrh&type=pdf [1]
-Link: https://gitee.com/bianbu-linux/linux-6.6/blob/k1-bl-v2.2.y/arch/riscv/boot/dts/spacemit/k1-x_MUSE-Pi-Pro.dts [2]
-Signed-off-by: Troy Mitchell <troy.mitchell@linux.spacemit.com>
----
-Changelog in v4:
-- modify commit message
-- add SpacemiT copyright
-- Link to v3: https://lore.kernel.org/all/20251017-k1-musepi-pro-dts-v3-2-40b05491699f@linux.spacemit.com/
+url:    https://github.com/intel-lab-lkp/linux/commits/Ariana-Lazar/dt-bindings-iio-adc-adding-support-for-PAC1711/20251016-002337
+base:   19272b37aa4f83ca52bdf9c16d5d81bdd1354494
+patch link:    https://lore.kernel.org/r/20251015-pac1711-v1-2-976949e36367%40microchip.com
+patch subject: [PATCH 2/2] iio: adc: adding support for PAC1711
+config: loongarch-randconfig-r072-20251019 (https://download.01.org/0day-ci/archive/20251023/202510230847.CEW0lvJl-lkp@intel.com/config)
+compiler: loongarch64-linux-gcc (GCC) 15.1.0
 
-Changelog in v3:
-- sort dts node
-- add ethernet alias
-- add emmc, pdma, and eth0 node (a squash of patches 3–5 from v2)
-- Link to v2: https://lore.kernel.org/all/20251010-k1-musepi-pro-dts-v2-2-6e1b491f6f3e@linux.spacemit.com/
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
+| Closes: https://lore.kernel.org/r/202510230847.CEW0lvJl-lkp@intel.com/
 
-Changelog in v2:
-- modify commit message
-- swap pinctrl-names and pinctrl-0 properties in uart0 node
-- rename model: "MusePi Pro" -> "SpacemiT MusePi Pro"
-- keep the dtb-$(CONFIG_ARCH_SPACEMIT) entries in alphabetical order
-- Link to v1: https://lore.kernel.org/all/20250928-k1-musepi-pro-dts-v1-2-5efcca0ce3ae@linux.spacemit.com/
----
- arch/riscv/boot/dts/spacemit/Makefile          |  1 +
- arch/riscv/boot/dts/spacemit/k1-musepi-pro.dts | 79 ++++++++++++++++++++++++++
- 2 files changed, 80 insertions(+)
+New smatch warnings:
+drivers/iio/adc/pac1711.c:473 pac1711_retrieve_data() error: uninitialized symbol 'ret'.
+drivers/iio/adc/pac1711.c:924 pac1711_read_raw() error: uninitialized symbol 'tmp'.
+drivers/iio/adc/pac1711.c:1124 pac1711_of_parse_channel_config() error: uninitialized symbol 'ret'.
 
-diff --git a/arch/riscv/boot/dts/spacemit/Makefile b/arch/riscv/boot/dts/spacemit/Makefile
-index 152832644870624d8fd77684ef33addb42b0baf3..942ecb38bea034ef5fbf2cef74e682ee0b6ad8f4 100644
---- a/arch/riscv/boot/dts/spacemit/Makefile
-+++ b/arch/riscv/boot/dts/spacemit/Makefile
-@@ -1,4 +1,5 @@
- # SPDX-License-Identifier: GPL-2.0
- dtb-$(CONFIG_ARCH_SPACEMIT) += k1-bananapi-f3.dtb
- dtb-$(CONFIG_ARCH_SPACEMIT) += k1-milkv-jupiter.dtb
-+dtb-$(CONFIG_ARCH_SPACEMIT) += k1-musepi-pro.dtb
- dtb-$(CONFIG_ARCH_SPACEMIT) += k1-orangepi-rv2.dtb
-diff --git a/arch/riscv/boot/dts/spacemit/k1-musepi-pro.dts b/arch/riscv/boot/dts/spacemit/k1-musepi-pro.dts
-new file mode 100644
-index 0000000000000000000000000000000000000000..29e333b670cf0a5c4ed852668460db475b9c44cb
---- /dev/null
-+++ b/arch/riscv/boot/dts/spacemit/k1-musepi-pro.dts
-@@ -0,0 +1,79 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+/*
-+ * Copyright (C) 2024 Yangyu Chen <cyy@cyyself.name>
-+ * Copyright (C) 2025 SpacemiT, Inc
-+ * Copyright (C) 2025 Troy Mitchell <troy.mitchell@linux.spacemit.com>
-+ */
-+
-+/dts-v1/;
-+
-+#include "k1.dtsi"
-+#include "k1-pinctrl.dtsi"
-+
-+/ {
-+	model = "SpacemiT MusePi Pro";
-+	compatible = "spacemit,musepi-pro", "spacemit,k1";
-+
-+	aliases {
-+		ethernet0 = &eth0;
-+		serial0 = &uart0;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0";
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		led1 {
-+			label = "sys-led";
-+			gpios = <&gpio K1_GPIO(96) GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "heartbeat";
-+			default-state = "on";
-+		};
-+	};
-+};
-+
-+&emmc {
-+	bus-width = <8>;
-+	mmc-hs400-1_8v;
-+	mmc-hs400-enhanced-strobe;
-+	non-removable;
-+	no-sd;
-+	no-sdio;
-+	status = "okay";
-+};
-+
-+&eth0 {
-+	phy-handle = <&rgmii0>;
-+	phy-mode = "rgmii-id";
-+	pinctrl-0 = <&gmac0_cfg>;
-+	pinctrl-names = "default";
-+	rx-internal-delay-ps = <0>;
-+	tx-internal-delay-ps = <0>;
-+	status = "okay";
-+
-+	mdio-bus {
-+		#address-cells = <0x1>;
-+		#size-cells = <0x0>;
-+
-+		reset-gpios = <&gpio K1_GPIO(110) GPIO_ACTIVE_LOW>;
-+		reset-delay-us = <10000>;
-+		reset-post-delay-us = <100000>;
-+
-+		rgmii0: phy@1 {
-+			reg = <0x1>;
-+		};
-+	};
-+};
-+
-+&pdma {
-+	status = "okay";
-+};
-+
-+&uart0 {
-+	pinctrl-0 = <&uart0_2_cfg>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+};
+Old smatch warnings:
+drivers/iio/adc/pac1711.c:1079 pac1711_setup_vbus_range() warn: unsigned 'ret' is never less than zero.
+drivers/iio/adc/pac1711.c:1079 pac1711_setup_vbus_range() warn: error code type promoted to positive: 'ret'
+drivers/iio/adc/pac1711.c:1102 pac1711_setup_vsense_range() warn: unsigned 'ret' is never less than zero.
+drivers/iio/adc/pac1711.c:1102 pac1711_setup_vsense_range() warn: error code type promoted to positive: 'ret'
+drivers/iio/adc/pac1711.c:1377 pac1711_probe() warn: passing positive error code '1' to 'dev_err_probe'
+
+vim +/ret +473 drivers/iio/adc/pac1711.c
+
+de2a3cdfd6e76b2 Ariana Lazar 2025-10-15  450  static int pac1711_retrieve_data(struct pac1711_chip_info *info,
+de2a3cdfd6e76b2 Ariana Lazar 2025-10-15  451  				 u32 wait_time)
+de2a3cdfd6e76b2 Ariana Lazar 2025-10-15  452  {
+de2a3cdfd6e76b2 Ariana Lazar 2025-10-15  453  	int ret;
+de2a3cdfd6e76b2 Ariana Lazar 2025-10-15  454  
+de2a3cdfd6e76b2 Ariana Lazar 2025-10-15  455  	/*
+de2a3cdfd6e76b2 Ariana Lazar 2025-10-15  456  	 * check if the minimal elapsed time has passed and if so,
+de2a3cdfd6e76b2 Ariana Lazar 2025-10-15  457  	 * re-read the chip, otherwise the cached info is just fine
+de2a3cdfd6e76b2 Ariana Lazar 2025-10-15  458  	 */
+de2a3cdfd6e76b2 Ariana Lazar 2025-10-15  459  	if (time_after(jiffies, info->chip_reg_data.jiffies_tstamp +
+de2a3cdfd6e76b2 Ariana Lazar 2025-10-15  460  			msecs_to_jiffies(PAC1711_MIN_POLLING_TIME_MS))) {
+de2a3cdfd6e76b2 Ariana Lazar 2025-10-15  461  		ret = pac1711_reg_snapshot(info, true, PAC1711_REFRESH_REG_ADDR,
+de2a3cdfd6e76b2 Ariana Lazar 2025-10-15  462  					   wait_time);
+de2a3cdfd6e76b2 Ariana Lazar 2025-10-15  463  
+de2a3cdfd6e76b2 Ariana Lazar 2025-10-15  464  		/*
+de2a3cdfd6e76b2 Ariana Lazar 2025-10-15  465  		 * Re-schedule the work for the read registers timeout
+de2a3cdfd6e76b2 Ariana Lazar 2025-10-15  466  		 * (to prevent chip regs saturation)
+de2a3cdfd6e76b2 Ariana Lazar 2025-10-15  467  		 */
+de2a3cdfd6e76b2 Ariana Lazar 2025-10-15  468  		cancel_delayed_work_sync(&info->work_chip_rfsh);
+de2a3cdfd6e76b2 Ariana Lazar 2025-10-15  469  		schedule_delayed_work(&info->work_chip_rfsh,
+de2a3cdfd6e76b2 Ariana Lazar 2025-10-15  470  				      msecs_to_jiffies(PAC1711_MAX_RFSH_LIMIT_MS));
+de2a3cdfd6e76b2 Ariana Lazar 2025-10-15  471  	}
+
+ret isn't initialized on the else path.
+
+de2a3cdfd6e76b2 Ariana Lazar 2025-10-15  472  
+de2a3cdfd6e76b2 Ariana Lazar 2025-10-15 @473  	return ret;
+de2a3cdfd6e76b2 Ariana Lazar 2025-10-15  474  }
 
 -- 
-2.51.1
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
 
