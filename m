@@ -1,213 +1,127 @@
-Return-Path: <devicetree+bounces-230202-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230203-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72C5DC00720
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 12:24:35 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B4D08C007C5
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 12:30:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 119C93A43BA
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 10:24:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 740E53A43D8
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 10:30:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2088530AD00;
-	Thu, 23 Oct 2025 10:24:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8743C2C15A3;
+	Thu, 23 Oct 2025 10:27:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="ZcV90xHW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KtZzY7+K"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9B2B2C21C3
-	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 10:24:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E09723536C;
+	Thu, 23 Oct 2025 10:27:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761215065; cv=none; b=m7zVKB5z0TNeoYp6lg5lhjjX4xd8CzpgDjETn5GDDDn/fS3aEu46RTV9VUkWYsoEl+QkIkf1EhiKi1DsAATYoHqO4wBGdNjq+F6B7IRKymenbWNmrpA/RSQsSy3MuXHB0a2jWEoSvh0QOFk6dGx85koBrK3YpUQpsaneDCsZ6/Q=
+	t=1761215249; cv=none; b=f1q0VNesSff2aNkN7JJHPKL1vs2QMrYVkyjnFFr5RjiLfSlYU6n9jqPOFwowj3GC+9gi0OfL8jdoBU+EfXCcOL0yWaj3qhuXWR1yUcDxvQV+LutOZE/UnJP2IcbTTlwYd5Mb2WfluKjrUZ2Zj7Oyx0TuJL9umDW5oj3c7mXPoeo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761215065; c=relaxed/simple;
-	bh=JIzZvR0IM5/lqs80BT7Oz1VCJ8+Q0TiAdIgYrZiCFOU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=KPqoHDYYGid5otfezHZBJ2btMuumoI6Xkfq8Gh9Ha0uXhT3YKXg3MEUHvG4a5HBDQtf+gyaldhq9vnIB4VTtSFpIu5LHKT3WmR+RPJyvCfk6XBWOZgsZpHd5KvPDGIt/I4nqixDQVaR2igGebDLdrhQZVLcoh5rdEoFyrCxrAeI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=ZcV90xHW; arc=none smtp.client-ip=170.10.129.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1761215061;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=1/xMKYfvMu1YGz7qL96V/7BwEt8aejHjZ0on8OqbaxM=;
-	b=ZcV90xHWwsyMdYWti3dJ3CrtqX1O/t4IEcHn8kXdtfKzEz3yiYx0OukgzKYhSqxpoWooq4
-	WhnZvZ7D3v3RCBDbB/awN48sMAs3YJqzchRNfe3jvA5PgyZbrDygxhIEz5wCPRBAcLqUE4
-	XmudgEnI/MAp8KGHCpdlzMz4qPSjKBk=
-Received: from mail-wm1-f70.google.com (mail-wm1-f70.google.com
- [209.85.128.70]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-271-gloCleLPODyVvwAC4KtvWQ-1; Thu, 23 Oct 2025 06:24:20 -0400
-X-MC-Unique: gloCleLPODyVvwAC4KtvWQ-1
-X-Mimecast-MFC-AGG-ID: gloCleLPODyVvwAC4KtvWQ_1761215060
-Received: by mail-wm1-f70.google.com with SMTP id 5b1f17b1804b1-47113dcc1e0so3764055e9.3
-        for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 03:24:20 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761215059; x=1761819859;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=1/xMKYfvMu1YGz7qL96V/7BwEt8aejHjZ0on8OqbaxM=;
-        b=WEdLGW9TVm9ulX5kOuvoJnplxiew+kG5IQ3L/cvASwQF0Y8z4u/KZzwS3QACJ5/QAv
-         eFXy1HrRiKAUSiPUbql81ifRsKh6PGDh/Xv0/2c+j4Rk7PjvLQpYWcgWImz09M6fV9u0
-         3I5/2vskk7RiiyWKkQCL0HzQDu7e47R8qXYdZcgcuhloa9kjZqmU869mAkEPP/bcMbeJ
-         YxtbnVCyQgn4AifYyAvJ5AVhSRwW0mwf+O3h9Ng98aGvmCB8VW7XuOR6FzSui90zgr6w
-         jEUqfAwiBDJhQmHvJOYwhBy2GuPMcp7pzUxvFEYxAg0Kq+dxVtZ7XcNOvPMichQTstAW
-         VHiA==
-X-Forwarded-Encrypted: i=1; AJvYcCV2a1xud6akdZQ5wjhwZwZCz+AT155PKEtdzizBb2jUpKwNleVlc8eO0ChOL7KPIRGt/p9g3+4MYr5q@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywf4ZPtD0hsZnKsQBHAwxV//Sgoq43qOBdfOq6uDEEYXCLTZMKz
-	1uqVOv0yg/Wq+4F3ptiGk8F7fHESUKInM4T6+VglZ9QHnO950m9aPY0jv7CGH0EhAi6YqiL7Q+h
-	9GAHo88oK+FRe+mXZSFUbb+1Sq+JIZ9PvcTNneg4oxijD5poICPS7UtrcwfH8/Ik=
-X-Gm-Gg: ASbGncvcZ47PqznqBNQA1snmKnGvMu1GCXF+gEokuqUYx1fnLQsU/XJQ5B/7ODF4dJj
-	zXiK0IZdaugFNNTpbAVUFndXFbycoOcasWaa4xBUTk6/1ORWHTXsfJiN+8pOshulEMBvhRlnBfI
-	J1eiScDt7Lx2eBALjOrX4bE1fHppnqai5MMgiIFuK4+bO/5DlhaT6qISiL0JwoFbc+QLLoFBHFJ
-	imAcmpI1t6tlZEK2+yzK+QIid846O8/YztYLKiNNPUh5jY8ku2m8tR/VMr4feJgiRNB3oz9fYrT
-	MPgEwKYNOz24ps8zEfTSalHo02A6wNFrsINTI2S+QpX+io60VXahBYKUwuJSaf28kfOYpmWooU1
-	7KzfTvCK9enCZ8zt1ia8tK8OfyqpDI3CFojCUue0z0HSY4wikGoO8Wj4Kbe5a9NAQzc9KlGeJcT
-	y7ELbmdfe6X3ASJvYDteo2REz86Io=
-X-Received: by 2002:a05:600c:870b:b0:471:9da:5252 with SMTP id 5b1f17b1804b1-47117919c1cmr189577895e9.29.1761215059433;
-        Thu, 23 Oct 2025 03:24:19 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHjH/mlHW++27nIjpsj7VgD+B0CKlZFUwUCNHGxzHcP9BXP5cXJRmKaKsGoIUZvaeLFPPT93g==
-X-Received: by 2002:a05:600c:870b:b0:471:9da:5252 with SMTP id 5b1f17b1804b1-47117919c1cmr189577335e9.29.1761215058948;
-        Thu, 23 Oct 2025 03:24:18 -0700 (PDT)
-Received: from ?IPV6:2003:d8:2f4e:3200:c99d:a38b:3f3a:d4b3? (p200300d82f4e3200c99da38b3f3ad4b3.dip0.t-ipconnect.de. [2003:d8:2f4e:3200:c99d:a38b:3f3a:d4b3])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-475c428dafesm87035605e9.6.2025.10.23.03.24.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 23 Oct 2025 03:24:18 -0700 (PDT)
-Message-ID: <14f96ff9-9c96-43d3-8588-0730d26a0f87@redhat.com>
-Date: Thu, 23 Oct 2025 12:24:15 +0200
+	s=arc-20240116; t=1761215249; c=relaxed/simple;
+	bh=9moM1zvWggM59ECkKTAgJYY6tGFpdNeypAAeKDaTrsc=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=ZUdQgjpt4x6KvBHmoExqK2rMhTF50QyLxjiszzWFGcEUB611EMkfzr4W8CutpdmshgfD78LFvUSIecTTUO/w2ek+DIlFzEdZBlgfxdpjA386gsbYUYNSsZhNVeTaJYmlEo2LuB9osZC2l6IQCRxHx1GSp4SPPeyy+cXh+EKQEZw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KtZzY7+K; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id B5F0BC4CEFB;
+	Thu, 23 Oct 2025 10:27:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761215248;
+	bh=9moM1zvWggM59ECkKTAgJYY6tGFpdNeypAAeKDaTrsc=;
+	h=From:Date:Subject:To:Cc:Reply-To:From;
+	b=KtZzY7+KK5fh0BsjWRQXOLlZcL8+4/Wrjg8izY1b9HxLlZtAtlFMrx2GPoFESdEgh
+	 ETw77KIaAUcLP1EqRIK5RGJuBUxJOwoHFTEhlzFj+E4UJYILRJiGsQsqh5Grt24xH+
+	 L8Qzrjx1SDCoHVqUWTc8WMU+dCPdS7nULcZoIHPbpYI6U1vJaw2Tw4V1mEqoUaKt42
+	 tXGDcoDYlBF3HriqpoZEpQbqP97SNUYpHUv1YUn6tzH3Jexv4G9rTOCz8MUbplUqY9
+	 kXSujti/0bFNyxLk3m5QlGnLr4W7mVB+a2Zze+Qx1guUCQE1srfgcIUdAK/Ebg1M4F
+	 GGhnds9rbNdrw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A1BF8CCD1BE;
+	Thu, 23 Oct 2025 10:27:28 +0000 (UTC)
+From: Alex Wang via B4 Relay <devnull+alex.ts.wang.fii-foxconn.com@kernel.org>
+Date: Thu, 23 Oct 2025 18:26:56 +0800
+Subject: [PATCH] dt: aspeed: clemente: move hdd_led to its own gpio-leds
+ group
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v22 00/28] riscv control-flow integrity for usermode
-To: Deepak Gupta <debug@rivosinc.com>, Thomas Gleixner <tglx@linutronix.de>,
- Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
- Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org,
- "H. Peter Anvin" <hpa@zytor.com>, Andrew Morton <akpm@linux-foundation.org>,
- "Liam R. Howlett" <Liam.Howlett@oracle.com>, Vlastimil Babka
- <vbabka@suse.cz>, Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
- Christian Brauner <brauner@kernel.org>, Peter Zijlstra
- <peterz@infradead.org>, Oleg Nesterov <oleg@redhat.com>,
- Eric Biederman <ebiederm@xmission.com>, Kees Cook <kees@kernel.org>,
- Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>,
- Jann Horn <jannh@google.com>, Conor Dooley <conor+dt@kernel.org>,
- Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>,
- Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
- =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,
- Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>,
- Trevor Gross <tmgross@umich.edu>, Benno Lossin <lossin@kernel.org>
-Cc: linux-kernel@vger.kernel.org, linux-fsdevel@vger.kernel.org,
- linux-mm@kvack.org, linux-riscv@lists.infradead.org,
- devicetree@vger.kernel.org, linux-arch@vger.kernel.org,
- linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org,
- alistair.francis@wdc.com, richard.henderson@linaro.org, jim.shu@sifive.com,
- andybnac@gmail.com, kito.cheng@sifive.com, charlie@rivosinc.com,
- atishp@rivosinc.com, evan@rivosinc.com, cleger@rivosinc.com,
- alexghiti@rivosinc.com, samitolvanen@google.com, broonie@kernel.org,
- rick.p.edgecombe@intel.com, rust-for-linux@vger.kernel.org,
- Zong Li <zong.li@sifive.com>, Charles Mirabile <cmirabil@redhat.com>
-References: <20251022-v5_user_cfi_series-v22-0-fdaa7e4022aa@rivosinc.com>
- <aPl3vr-mYljA7Dse@debug.ba.rivosinc.com>
-From: David Hildenbrand <david@redhat.com>
-Content-Language: en-US
-Autocrypt: addr=david@redhat.com; keydata=
- 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
- qIws/H2t
-In-Reply-To: <aPl3vr-mYljA7Dse@debug.ba.rivosinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+Message-Id: <20251023-leo-dts-add-shunt-resistor-v1-1-5d9980aba308@fii-foxconn.com>
+X-B4-Tracking: v=1; b=H4sIAO8C+mgC/x3MQQqEMAxA0atI1gZqpYN4FXFRTEYDQytJFUG8u
+ 2WWDz7/BmMVNhibG5RPMcmpomsbWLaYVkahavDOh875Hn+ckYphJELbjlRQ2cRKVvRDLdwnBoo
+ MdbArf+X6z6f5eV6VPZlpbAAAAA==
+X-Change-ID: 20251023-leo-dts-add-shunt-resistor-2810206a5dae
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
+ Andrew Jeffery <andrew@codeconstruct.com.au>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
+ george.kw.lee@fii-foxconn.com, Alex Wang <alex.ts.wang@fii-foxconn.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1761215247; l=1426;
+ i=alex.ts.wang@fii-foxconn.com; s=20251023; h=from:subject:message-id;
+ bh=nhjdaQhGONa6qRe6C17O9kT3BPIniN47qBnafl7NHt8=;
+ b=un87bQXpomsn/0FLsOCFLiEpZ+BJAggKp/q9MiS5J3KjRJmifLf7SQcSV3kCAhfv3Qyd3/5/9
+ gX5dDcKJ9s/AEHQk5fY+7RY7xwxkO6/DDYnjudaSMejQr96SpfDXuRx
+X-Developer-Key: i=alex.ts.wang@fii-foxconn.com; a=ed25519;
+ pk=m/IrKXb14uSdDm4KGXemjNIxgL6TrqXCc9NX09SUJp0=
+X-Endpoint-Received: by B4 Relay for alex.ts.wang@fii-foxconn.com/20251023
+ with auth_id=551
+X-Original-From: Alex Wang <alex.ts.wang@fii-foxconn.com>
+Reply-To: alex.ts.wang@fii-foxconn.com
 
-On 23.10.25 02:33, Deepak Gupta wrote:
-> I don't think I am sending that many patches. It's 28 patches.
-> I did send v21 using same smtp settings on my end.
-> 
-> Although since this week whenever I am sending patch series, after 14th/15th
-> patch, I start getting below error for all recipients.
-> 
-> """
-> The user you are trying to contact is receiving mail at a rate that\n
-> 4.2.1 prevents additional messages from being delivered. Please resend your\n
-> 4.2.1 message at a later time. If the user is able to receive mail at that\n
-> 4.2.1 time, your message will be delivered. For more information, go to\n
-> 4.2.1  https://support.google.com/mail/?p=ReceivingRate 98e67ed59e1d1-33dfb7f8310sm153460a91.5 - gsmtp')
-> """
-> 
-> I did try "git config --local sendmail.smtpReloginDelay 60", it doesn't seem to
-> help. If anyone has faced this and knows how to get around that'll be helpful.
-> In the meanwhile, I'll keep figuring it out on what really changed this week.
+From: Alex Wang <alex.ts.wang@fii-foxconn.com>
 
-I got that as well a couple of days ago after patch #16, it's annoying 
-and I did not figure out easily which gmail user to blame.
+The gpio-leds driver requires all GPIOs in a group to be available;
+if any GPIO in the group is missing the whole group will not be
+created. The hdd_led GPIO is only present after standby power is
+enabled, which can prevent other LEDs in the same group from being
+created and blocks properly setting 'bmc_ready_noled'.
 
-After git-send-email failed halfway through, I decided to just send the 
-remaining emails with --in-reply-to="" giving it the message ID of the 
-cover letter.
+Move the 'hdd_led' node into a separate gpio-leds group so that other
+LEDs are not blocked and the 'bmc_ready_noled' flag can be set
+correctly.
 
-References: is in that case still messed up for the resends, but at 
-least all emails show up properly in the same thread.
+Signed-off-by: Alex Wang <alex.ts.wang@fii-foxconn.com>
+---
+ arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-clemente.dts | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
 
-I had to take care of the CC list, which was annoying as well.
+diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-clemente.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-clemente.dts
+index 450446913e36..c58922695f46 100644
+--- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-clemente.dts
++++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-clemente.dts
+@@ -96,7 +96,12 @@ led-3 {
+ 			gpios = <&gpio0 ASPEED_GPIO(P, 5) (GPIO_ACTIVE_HIGH|GPIO_TRANSITORY)>;
+ 		};
+ 
+-		led-hdd {
++	};
++
++	hdd-leds {
++		compatible = "gpio-leds";
++
++		led-0 {
+ 			label = "hdd_led";
+ 			gpios = <&io_expander13 1 GPIO_ACTIVE_LOW>;
+ 		};
 
+---
+base-commit: b5dd162282164dc202541ce6551cf705d345820e
+change-id: 20251023-leo-dts-add-shunt-resistor-2810206a5dae
+
+Best regards,
 -- 
-Cheers
+Alex Wang <alex.ts.wang@fii-foxconn.com>
 
-David / dhildenb
 
 
