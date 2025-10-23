@@ -1,440 +1,379 @@
-Return-Path: <devicetree+bounces-230084-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230085-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 841C2BFF9E7
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 09:32:39 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id DFF86BFFA65
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 09:38:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E80D019A5B47
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 07:32:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 570EC18C63A9
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 07:38:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49CF0270EA3;
-	Thu, 23 Oct 2025 07:32:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C354D26F29B;
+	Thu, 23 Oct 2025 07:37:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="NRQhGI7A"
+	dkim=pass (2048-bit key) header.d=aspeedtech.com header.i=@aspeedtech.com header.b="cDajCn0s"
 X-Original-To: devicetree@vger.kernel.org
-Received: from CH4PR04CU002.outbound.protection.outlook.com (mail-northcentralusazon11013056.outbound.protection.outlook.com [40.107.201.56])
+Received: from OS8PR02CU002.outbound.protection.outlook.com (mail-japanwestazon11022076.outbound.protection.outlook.com [40.107.75.76])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B9A6219A8E;
-	Thu, 23 Oct 2025 07:32:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.201.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74B1A200BA1;
+	Thu, 23 Oct 2025 07:37:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.75.76
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761204731; cv=fail; b=YLz816agz903f5vpHwFYzbJ2Zx68Wi61ujSUSk3OOlmFx7B2gScEg6jnwUXsMoPdlPoPUOECgMUCDUR8zrwRN7g/euKLok6m1Z2zHIRtRV0PfoNrdvSLiO3B+gDj4X7MA46PRR7K43GlCwXRkqbOaoYJIjbg4aBdD7VhQ5JcDWw=
+	t=1761205076; cv=fail; b=kM6uCUtWRhEWSWN9x3mPxy7qbyyXPvKmx+YAZrvOGbs+uTyr2lR+BU9ttqX4o4ycYfuaS0uBkSf8GtRZn36HLbdC7wraG93KZ6poWAFFUVVn+7GC7brqUvu+MzmulRA6gH12g6Lc547767DO75aSB/GH7L5mQq21L66/RypxAO4=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761204731; c=relaxed/simple;
-	bh=1WSW6cUV4zbSSMM9gGHWcfRuDUN49aQyru7YQU/mI48=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=oD75TCWcUVQ/d3c+KBSB4TjEt99aL77gjgWIkYM9XI74KdqBUYRnqy+cVBiOMwu2jNJZnolBrKutau6g7CxVvwJGQ4czkmy4edUYj6wuIRfB+LCsYE78fCJ8FO7ZUwsOQQQhDH4NdMp2X0/H1IqujjIGQSQvwe3a1Ex3OsjZv2g=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=NRQhGI7A; arc=fail smtp.client-ip=40.107.201.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
+	s=arc-20240116; t=1761205076; c=relaxed/simple;
+	bh=8IewlgL8e9msj9SnA9v8SZp16hdDGqkQNCHcFvIATCo=;
+	h=From:To:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=TH7TsDMx8skmubLDWmGWWHuEMbm3TlXzLaGg3ctJTn95LUlBfbe6xQ0iodK89YDDR7DwerRB0ulZxypCtSUHX1DR98exa59FxaznlGbgxZnt/IRJhYZ76WB71auirLcMccJaLvk11qaef76WpGgSKsdkoU+s2EmEeLnluatbsQo=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; dkim=pass (2048-bit key) header.d=aspeedtech.com header.i=@aspeedtech.com header.b=cDajCn0s; arc=fail smtp.client-ip=40.107.75.76
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=LyqoQNUoQkKQqIe3yEf2tjPFD/1UQ/y0IQUd0oaFggL6bajjmdwsgVhB5TlBn5IfiMYj0Ic8kw+1ShZ+4Ll+6mOMLKggYb8bniXJU2DCZbFW1URNrOC7m/26+4JnldWMloT8Zeowla0LYiddqLcYJGwT2kxzqflemxO3C4XMSqHV1VAPcUpIN5qv0xmMGSkUSPhh2Aa/nATDSVyO0lflro5bzi9WyqqDLSOmC2iF43BdRN8zdNZSOwJkurf941xxRiolaje++hhPknGFBW1qnjlz2Kw/9l9ZabO5fz9L+BNIOYssGALmQ8zFlbcAP7WhuCzqIgcCVrtNflBSOCQlWA==
+ b=jOMnoJLCmPAAaGGJ2iXAKzrU5NfLPeQ5SyvF8m/fiDnLSPX0AjxuTB4gValHWRFot10jlnNckb1CUXRzifKB0P5dKFii2w5ODVviBpberoYTxm5jG43rHFbb0AcQLYYB8EGC33+V51UiZZp5Ke6CsrVMMReU6IHW61R9khnhLIEeJQqun0lRxkAgsnYG3LzaH2m9x0i27ePX4O2XbhIZW4SEx59jmyNcejuGIiFLvjaO9pQY6B0kqSyou44rxrnAP8N7bdK/AhpSjLghfUIe60edrRJynNg1N4v4YboyzcVdl2MvXWeqt72GnhAd55IHqNOaOeoDtF+Bf2QTFPNxhA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Fmxj4PQRobuBdngIKVqDKQ7LjVbdQsTh24ZJ7HsKAfE=;
- b=RI+E6DguvnpO6SQRRVzyWOaFfUKO5PtBQLQNhaM3elQYoUJ+hsmwiX2JA54m+w7PrzwfeCWpjm1iHVT7pMEjOhHw3RgTGr4SUTYCU6xUgpM6BV7lL6uRcqkndKIRtTBnLouVwowManBHb2omElsOlQcGzXgexs4D0QeDp+cFJyvkShrXqWaSaPe329DDSmsFfvPRN+RYNoPZeetGoy2lG1hMq6FDq16LMF6HTW59u35n9aJc7Xqe4mvnlk9qIh1akVkvdclj4CCBbRHtaEGcaZBDHAm17StM+GPRA1LtDNuUytZ8gnh/zRZ+ijpyaxi/IXaLVHJs+MxzWDPypZwjYg==
+ bh=shHMu/MgM0utG2qZhEw7phzdnWjhrpb+TstWL68F1Ig=;
+ b=WwJUfEepn8GY2HkNzmxEkiLaneuGkFkp2Gh1K/TP4h4T6lBMHCI9OXf1WQwk48qpFH1IEjZhYFVEnMMWNDDcrx0AfhPzsg0GV+o4iYkAymhMbr7iiBFa7xh4XAEzzdIPToexhzbmdbCNsAxUwHmgI0UeHOfzJaA2nsq/Am45fAClYiWE63r0XLwwPiK2/m5RXgNexa1fLIgrulqkcVbPXa5a2hCVJZ7B5o2Iiq65FoEjA0R4TZbzIoD5WKnmEMusDUbrBWXRUt6NfVTTiNef+uKYAa/ia6GbLg/dB4WFSB6TcLAlfbwv1aRJ8WsVtvtXrON+IeZqgON28+xK8XpqEQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ smtp.mailfrom=aspeedtech.com; dmarc=pass action=none
+ header.from=aspeedtech.com; dkim=pass header.d=aspeedtech.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aspeedtech.com;
+ s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Fmxj4PQRobuBdngIKVqDKQ7LjVbdQsTh24ZJ7HsKAfE=;
- b=NRQhGI7A7TnBLZ9SJPQzvK2A+q4ZY/mGABlaWA2TCqibmaWGbQpn9IomPqHKKWPcGaXrZk7/BsGGxxUMwLxvcaKBFhXTwpTmy5lAAwKTqOZmQKCYOqsT0N5MuQ0zhud0ZKsEAGzMECLpzWTaTYoS5bYsuEmm+idFrlbyXV5kSVk=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from SJ2PR12MB8109.namprd12.prod.outlook.com (2603:10b6:a03:4f5::8)
- by LV8PR12MB9336.namprd12.prod.outlook.com (2603:10b6:408:208::12) with
+ bh=shHMu/MgM0utG2qZhEw7phzdnWjhrpb+TstWL68F1Ig=;
+ b=cDajCn0sYmJsJ/XiPb5WVcFyt3iP6anCJ63f05lXP5LZlFdhdp6xlFfMNgb2ek6H2IafiXvi60ir0B3XYRkZZHAu0UWIok3lXIAYLKVJLY0h9jlD3iQ+r4mnJ7wlcugL7jyejyDg/1VnWMgEh1XOS0kPegZJJsoc/EtzHRfuagMBQ/Pt3Buch9A0alyNDY+ofq/pdV6/Qf+OMht73zva5TYu78SzxdrtIo4hoUqbH8lf/YUpMY6A4Qvz6HDGzsNfQ913WSnGuIqGAOg6Baqs0EHvy9V7eWua/ILJCGSGQAsSm/MV5dl2lTl7dC3lDDefD14tTOA3X1yVsm9LnTUr0g==
+Received: from TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com (2603:1096:408::791)
+ by JH0PR06MB7268.apcprd06.prod.outlook.com (2603:1096:990:96::7) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9253.13; Thu, 23 Oct
- 2025 07:32:01 +0000
-Received: from SJ2PR12MB8109.namprd12.prod.outlook.com
- ([fe80::7f35:efe7:5e82:5e30]) by SJ2PR12MB8109.namprd12.prod.outlook.com
- ([fe80::7f35:efe7:5e82:5e30%4]) with mapi id 15.20.9253.011; Thu, 23 Oct 2025
- 07:32:01 +0000
-Message-ID: <bdb1f667-8a93-45ca-aaf2-535c914b283f@amd.com>
-Date: Thu, 23 Oct 2025 09:31:55 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/4] firmware: xilinx: Add APIs for UFS PHY
- initialization
-To: Ajay Neeli <ajay.neeli@amd.com>, martin.petersen@oracle.com,
- James.Bottomley@HansenPartnership.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, pedrom.sousa@synopsys.com
-Cc: alim.akhtar@samsung.com, avri.altman@wdc.com, bvanassche@acm.org,
- linux-scsi@vger.kernel.org, devicetree@vger.kernel.org, git@amd.com,
- srinivas.goud@amd.com, radhey.shyam.pandey@amd.com
-References: <20251021113003.13650-1-ajay.neeli@amd.com>
- <20251021113003.13650-4-ajay.neeli@amd.com>
-Content-Language: en-US
-From: Michal Simek <michal.simek@amd.com>
-Autocrypt: addr=michal.simek@amd.com; keydata=
- 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
- mpwx1d8=
-In-Reply-To: <20251021113003.13650-4-ajay.neeli@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: PH8PR05CA0016.namprd05.prod.outlook.com
- (2603:10b6:510:2cc::17) To SJ2PR12MB8109.namprd12.prod.outlook.com
- (2603:10b6:a03:4f5::8)
+ 2025 07:37:50 +0000
+Received: from TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com
+ ([fe80::df4f:b1a1:1825:4a80]) by TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com
+ ([fe80::df4f:b1a1:1825:4a80%7]) with mapi id 15.20.9253.011; Thu, 23 Oct 2025
+ 07:37:50 +0000
+From: Ryan Chen <ryan_chen@aspeedtech.com>
+To: Arnd Bergmann <arnd@arndb.de>, BMC-SW <BMC-SW@aspeedtech.com>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, Andrew Jeffery
+	<andrew@codeconstruct.com.au>, Jeremy Kerr <jk@codeconstruct.com.au>, Lee
+ Jones <lee@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>, Will
+ Deacon <will@kernel.org>, Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>,
+	Geert Uytterhoeven <geert@linux-m68k.org>, Nishanth Menon <nm@ti.com>,
+	=?iso-8859-1?Q?N=EDcolas_F=2E_R=2E_A=2E_Prado?= <nfraprado@collabora.com>,
+	Taniya Das <quic_tdas@quicinc.com>, "Lad, Prabhakar"
+	<prabhakar.mahadev-lad.rj@bp.renesas.com>, Kuninori Morimoto
+	<kuninori.morimoto.gx@renesas.com>, Eric Biggers <ebiggers@kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "linux-aspeed@lists.ozlabs.org"
+	<linux-aspeed@lists.ozlabs.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>
+Subject: RE: [PATCH v6 4/6] arm64: dts: aspeed: Add initial AST2700 SoC device
+ tree
+Thread-Topic: [PATCH v6 4/6] arm64: dts: aspeed: Add initial AST2700 SoC
+ device tree
+Thread-Index: AQHcQyJQr8Cg3wF4TE29hMu8e6S4P7TOr5mAgACf3YA=
+Date: Thu, 23 Oct 2025 07:37:49 +0000
+Message-ID:
+ <TY2PPF5CB9A1BE626A2F0F6307461D8F64BF2F0A@TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com>
+References: <20251022070543.1169173-1-ryan_chen@aspeedtech.com>
+ <20251022070543.1169173-5-ryan_chen@aspeedtech.com>
+ <b5441728-06a7-44ea-8876-3a9fc3cf55be@app.fastmail.com>
+In-Reply-To: <b5441728-06a7-44ea-8876-3a9fc3cf55be@app.fastmail.com>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=aspeedtech.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: TY2PPF5CB9A1BE6:EE_|JH0PR06MB7268:EE_
+x-ms-office365-filtering-correlation-id: d3e4b107-0953-41ec-d764-08de1207117e
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|366016|7416014|376014|1800799024|921020|38070700021;
+x-microsoft-antispam-message-info:
+ =?iso-8859-1?Q?caFkaTye/de1MpTx/ROe/m8dF4EVWaU9CgRHKrPrKDhVyEq59YdL5Um0XK?=
+ =?iso-8859-1?Q?8sAxjSkcPme0uSDQN0RSfHuAX38p3btJSivXrifQLCDNdZsfELaP3vL4Wy?=
+ =?iso-8859-1?Q?8Gb2y7PFcRbqvgmvAzSHm/pg5BKMBLTc62zfdfPSgG6T/AnpiWFxBWWtGa?=
+ =?iso-8859-1?Q?APLzVeXIV5CoPgLw7S4/Jqsbw8+pqFsesB/pYnIsiPebt8Z0XtLQL8iI+W?=
+ =?iso-8859-1?Q?g5nxUprSjIUkg9FswKVBrzho+rROArrxMHtcKwEbGLFcwYQzqixQB1WvNF?=
+ =?iso-8859-1?Q?nfCizmX5cwoz+oD/r/V/1M+VdRoQj3upMBZ4iUqXAPG6s8B21CNI/gRfCr?=
+ =?iso-8859-1?Q?BkCVJmd0yHfOjnKX6ETGU5BgSEb+onMdCrQhTA0RskaDPrD/+K8Bhq8KnN?=
+ =?iso-8859-1?Q?SI3l8dFP9oUelSougVPd/DxoelYqA6pcvZgGOI0xLUzq2MtbletsM4TJut?=
+ =?iso-8859-1?Q?uo+iNWEQBhHUgetpBX8OOM8IIKz7i1bT5onbW4qfmu6tgzivJvHRhFmKiv?=
+ =?iso-8859-1?Q?MsOLrWM5R8fIex3AEz7EDxUVKu5t/jxHXgNSqGi/yu9kYxkSar66wPVZ6P?=
+ =?iso-8859-1?Q?LjlzyQv76+yeXp5kysfnE9OpRskffGMUwYh9pUjXTPIIOYlhQb54rJPn0d?=
+ =?iso-8859-1?Q?QFM/hiznrs5oG7DKfnI9caBLY9rI+j7uQNjXQSGzWB4XUHFDwuTsFYrfeZ?=
+ =?iso-8859-1?Q?pTpM6Boj+zA3cDRH6F+lsciTsXyn+QmyJoMcn+zjk3LP61dsDdE7+PMzHe?=
+ =?iso-8859-1?Q?uaxTHreNRq8+Mvz/yXZX+Zyhvh8uaqJXvC2+N6AHTIrFAvpNSAUx49odfe?=
+ =?iso-8859-1?Q?Eb+qyz+Yr6KjS+PvvI5WhS4UDv/KW4U0J6aCREhExD8RqNIcDFSO/AGrPi?=
+ =?iso-8859-1?Q?bBhsga24Ql0bWaDHtjigBp8revwMr42kGZ7KYe5AzQ3qeJ/Wy0IvmiIlyr?=
+ =?iso-8859-1?Q?nJkzqIhJO2YhKEipvDc+KMFeLz3HRo4OKZXcStrPczPXjP9PSq1bXw/Pem?=
+ =?iso-8859-1?Q?HpF72TXxIOueWSDurhXUxfEgxh0SbmVOIREuvzzyJRddixiY7uzgQ50R8z?=
+ =?iso-8859-1?Q?9IJT81ZZpvW93DYWxDz8T+rybYVh1cJhRgv/dkxxQp1ZFuBgL9SJ5Tfu6G?=
+ =?iso-8859-1?Q?axStbn8KQJZMpnsVQHVi/rSsOE3UqKgszmWLsUzPdNdHTmuBBtJ0aXeEK1?=
+ =?iso-8859-1?Q?JPHrqoqTCH6QvDq47p2gmrW5t+NUIwlqJUseAMxGwXucGepeB34LSkrFXY?=
+ =?iso-8859-1?Q?5rd/VbT4ED969JIhmo4KDFmRXPm4ztWKkT76NtUes3ztDZ1df0s0Gbkw9b?=
+ =?iso-8859-1?Q?cfHbVSNylGnfei1AqmnvaPLFzd7xT7k4mymD7KtV3gTAUbIInIX/noM/bb?=
+ =?iso-8859-1?Q?K8RlXQ0PHDm3zH50mClpFJvFRW/Plzrh7D0aLBDfzHocoMxDOsoPYeGRtz?=
+ =?iso-8859-1?Q?mpWAB5PPG6I2KlnmCcfkT1jDNe6L9HmJq4hN9AFnh7Ho3OM/8f8PMSN5zr?=
+ =?iso-8859-1?Q?cbmVqr7vI9gCVE4nNdaUrqeF4Vmj5RXj0FBqxIu8eJLg=3D=3D?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:zh-tw;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(7416014)(376014)(1800799024)(921020)(38070700021);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?iso-8859-1?Q?5xa5I/Tnhw7aamn5JCofXASjW9J3iqvErwuPZM57agwzQK+ZH5uZ5ZgT5Q?=
+ =?iso-8859-1?Q?xAW9nNJpqvu8UddiAFhSFo1X5beM/VMn6OQqyLKqoLYiHjAy9CycIl33le?=
+ =?iso-8859-1?Q?X16xWfdk9uf2/yThXZ/ahTexvuqgOcYAkgFalZhm5ygjXNNxhQCHZ2dSo+?=
+ =?iso-8859-1?Q?OrTcI++zjOR2/EB05JeQtm+hO9zVuxrurJppvZi7l9l0eUJ3XjbRFztgcO?=
+ =?iso-8859-1?Q?+FiCuB8ODMQLAsMQlJ7PPq9uTvDtoIPHzdeVYMYszIFfZrMe6HbLF5o0gi?=
+ =?iso-8859-1?Q?+4G3PEmbD0hjcU1Hr0S9XcCTlN3DUJVs9AF3mc0EL3y4iv0M6E2OacSa8P?=
+ =?iso-8859-1?Q?+korxWy9yCVKR+ozxf6VxV/BLI047UF/mReZ2NDVO3jgU/Gu/LunQW2Vsx?=
+ =?iso-8859-1?Q?p20N0WRFkIyP57ZHTlRi//trlr6qwOQo40XAXbP48/KKBaTYEVpEGSeNHq?=
+ =?iso-8859-1?Q?jEfEcWfANZAmgIVHFgZa9jf4Z9ect7sE0fmunc2JG2szxLFSyf1ldPSXz+?=
+ =?iso-8859-1?Q?/CbhTyuK+quZyTie9DMAXMgOf+Kql3dq2eo6U744ssfnIxSK9FSFz53y49?=
+ =?iso-8859-1?Q?kbasFQ3v+7AyEEmQMwJTm48S1WJYjTjgsyLNUd838H2YQ0TtiYZqhm9TsP?=
+ =?iso-8859-1?Q?QVGqdellb7ZviQ9vW1J6tpOAcV4ZeSMbQjm81Uzhkd2zkNmRXhZtGpa1K7?=
+ =?iso-8859-1?Q?bKepw2Hf/mAAwa5hPyOtyRlt3rieHsHFIIcUvmMOTc7XIwmVfNwIQqczdi?=
+ =?iso-8859-1?Q?5j4GG25SDRqsJ4k3A56nKchmsZDsDQOps0HtcAbcxcI1ky+FVOkIFWYbI7?=
+ =?iso-8859-1?Q?G3bJCz5ovCYJWChESOz4GZhWYptVJiv/rXvMzd9qFfcTFk8kllaWh5IeKX?=
+ =?iso-8859-1?Q?DSgq/gKGyGgZIjCrHPesdn8RJWOgucxO79TqxXaHlq0TS1Q8miz///046m?=
+ =?iso-8859-1?Q?V2nNhcWNxQ17ELDJkUcgdr+QrkFw3OSPVGZ5qqsDROZHbZOzU4GP83A/Wm?=
+ =?iso-8859-1?Q?n6+m6QD9KyXHwcwLdnwG9awXKLgm4kyQYFyg37tNMIMbHwcn/mAxSvvyzZ?=
+ =?iso-8859-1?Q?zDjib/Xs9mIWkyQVZulj8jtsnspo96FjMdvELldAUsy5rBCJ8j8bt8wtV0?=
+ =?iso-8859-1?Q?dtNm0AG0S7tOvpAtLcxcXgW1kOAxkpoXAbZjdxWFWPYHDG9JyrYU/T0mlW?=
+ =?iso-8859-1?Q?8XI3h5PPDfS23tL5jH89mEJ79cM0GkWC0vHGA6ZUVA6tmPn/PlGLYARoYO?=
+ =?iso-8859-1?Q?y0KfmX2oUS8vqrorOpSezh4EO8fNk8CK9EUc5ok4hkv8d9xiNaWJwm4Fwr?=
+ =?iso-8859-1?Q?1KEdt8bdyESt/BKBXYak0B5tERrBR6QtcRZ8uiZ1R5/tXSyR2EN4KZUgiM?=
+ =?iso-8859-1?Q?YhroNeGdkdzpllqvHJtCfQczc5Qsgh4ksmbtr/8KjT0svMi7YY374J4YUC?=
+ =?iso-8859-1?Q?MYbqbxLq9a9FoSMtA1FdeTbFgUH0QcJddVC1fzwBXLqsLSKykUDBtSzO4U?=
+ =?iso-8859-1?Q?6W4SxtSuO2U97RqrwL9v7ElTefflPmVt9vtW9Lv9kqzTTKQWTSOWjkt0J5?=
+ =?iso-8859-1?Q?rBXczRAwdfmPX8ZlMZ8jzBIGWoSZS65bRjwsja58PsfkX2H+oLRMtpEm/g?=
+ =?iso-8859-1?Q?esmxpwWJ8GERkAt+JDq621zr7JiukvT/tP?=
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ2PR12MB8109:EE_|LV8PR12MB9336:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4113311c-a699-4f4f-1361-08de120641a6
-X-LD-Processed: 3dd8961f-e488-4e60-8e11-a82d994e183d,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|376014|366016|1800799024;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?c3ZncmE3ZVNCMlg4cUw0KzlzOE5XZkpLYkx0QzgvaHZnQ3R0Z2VrMG9wdzVn?=
- =?utf-8?B?UWdNMHh3ZG5pVUowZFhWUGlSdFRVM0x5b0YzdW1uTFU0TlU1Tk41SzEyc1R6?=
- =?utf-8?B?eFMzSys1OTZoaC90akRpWkdndVE0RGtleGVqQ3JPNWNSYm9tV3hpcnpKcVR2?=
- =?utf-8?B?Zm96blZuQ3cxejNjSzJLSGg0L2Z0K1JKN3ZHTVhTaDc3TitYbnJTSWswc3RW?=
- =?utf-8?B?UTVvOVlBa0hVOU5TSFE1WHhCWTZEcStOVzVsaXJDNm8zZDJDcEs5K2o3L0I2?=
- =?utf-8?B?TjlSeEtkelZUaGdMbmlaYndtWUk3MFVyMGZ0c2ErZXhxUGQ2SzhNRks5dXBu?=
- =?utf-8?B?THhSa21oQjNmU2s1ZUdnZkVvY3BZY081T3JuYzRWYXpCYm5zYk5vYStBb0tT?=
- =?utf-8?B?dEpySUhOOHZyUkJZNUs4R0JmMVF5WFB4QnNMVWUvbkdVY2tjSkJ0Y0ZhQ29D?=
- =?utf-8?B?dUdldUJXVkJ0WTZ3TkJ1Qy9BT0lJbjdpeGlrZHVOY3FGcEg3QU9FTGJwR0Vw?=
- =?utf-8?B?c2gwMVRzais3TGhPS0ppOVVES0c4Vkk2ODBSWW5uUHhFZmVheTZNVnIrc0pI?=
- =?utf-8?B?KzNJL0hKOU95UGNoWC9CR0FweHVJNFZwaDlIa0VWV0tKRlhjYUZqak5oZkdD?=
- =?utf-8?B?aTVtWmpCLzVwL2tjdU5PZFg0RGd4SmVpd1ZMeXFVY05CMGRBUGIrRkdMdjVJ?=
- =?utf-8?B?dlA4ZXVJSGtnZElPTFlHUzVxSGJKYVBQVEtFU3E2T3o5Zk5UWVNDQXZlMjI3?=
- =?utf-8?B?UlhGcXRMd0xSdDh6OFFaMzZXSzhVRHVJL05IaldTcmZSSStyWk9qVzM2ZVJt?=
- =?utf-8?B?NjBLOUZBNlQ0VHdLQ2NmUXJiNWF1Wm9OMy9UWDZvaC83MGNZWXFDSVdCRHdD?=
- =?utf-8?B?US9zdHZzRDJnMEM2SzdvY2VRY3hwNTZIYTRvc09FNG1sQmNaTStBV3JWOFdO?=
- =?utf-8?B?d0hlWk1YUU5kejcrYnNuSVNGUzl0M0xLMk1JdFlMeStNWU1HOEdvL0hCVGZN?=
- =?utf-8?B?dkFTTVliUmlKcURtU1A1TWxVNG44S1gzQ2lnMndld1hTREtkMC9NL2hmTVBB?=
- =?utf-8?B?ajRHSktNN0o1b0dDU3JpZGxJT2szeERMQ01nUXRaWUFINEMyWkRQZWFDcFh4?=
- =?utf-8?B?UGpjeXNrcmNzbnMvRjlReVBKbGFtSFBJQWllK1UzYVJ3Y29kZW9GT2x5dk00?=
- =?utf-8?B?R2xWell5Kzk4VXlXOHgyRkRZb0RzMWw4MDhqVDlVWUNqTURrdFhTYldYY1pI?=
- =?utf-8?B?VmR2UmVWdTJleFZIQnIySkRXbkg1YWlqaHF2UmozUU1yTmR6WHJEdkEzNzdN?=
- =?utf-8?B?dXlwNmQ3Rjl3Z05HZ3RPNVNjaHlVMW1WTEJUTHlkZjlVK0JidUdURlV4ZmZY?=
- =?utf-8?B?ZnJHUE43NDQzNk9jeGtuMlMvb2RuUmV2aWpEdjRxUWZvc1hnbU5QQlIwREpY?=
- =?utf-8?B?UkdMeVBlY0gxVTUzcUlwVlJWNExlNkpsd3RwSlZSL25KWWFIZVZYZ3lXSWdi?=
- =?utf-8?B?KzZXdFUrbExleStBUWJtMENIYW5iR0lxWnRYMWVKN0NWem1oSFVJaklXTExX?=
- =?utf-8?B?REVubzR2NkZsaHhrVkZUREdCNXUyQzNPZVpLdnE5U0NlTEJuUXFEeTZNVjZS?=
- =?utf-8?B?MzNwdFAvUVF2YU4wcFZOaGlsNXd1eUFVWDRvcWZvZi9nTlRyRTZQSnExazVa?=
- =?utf-8?B?akYvSmhhMHFKTWwwUHh6VFF6Qy93WHlwS2hJa3VMc0JvK2poTGwya2RCTm5W?=
- =?utf-8?B?NE5Id2RsUUtINnpWUVJqZVM2RzYrQWdvaXI1L1crSTI5UmxhaDlMTzdHdkJ6?=
- =?utf-8?B?dVU4NVZXcjRteW5IdzdXK044QWNYSUFPWis1dExOM0FMNFA5Q0xqWFJPb3A3?=
- =?utf-8?B?WGNLeDZKVHVoNW5RSW5VK0EwVDEwc3hyTVBlVUpkL2RTTU5wQzNyRUE2NXMz?=
- =?utf-8?Q?L1KJDa28+SjF+ErXl2GHKvI8gGbln2xT?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ2PR12MB8109.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(366016)(1800799024);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?VE5vczlWcUlhL0tBQStzcEhWRHk0emdlallYYzdYOWZSay9FRzUzYWRXT2M0?=
- =?utf-8?B?UXhUWHFJSGhuTHkrYjU0clczZVBEc2hnWEFaS2Q4d0VrUkJuLzNGM3NwZmdz?=
- =?utf-8?B?bUdvMkYxcEZqOWxqVFhWS2RFWG1TS1pKeERWY1EzbnBpd3hTSDVJTkZ5R0dI?=
- =?utf-8?B?TVB1NlhPeUlVSjNFSkhXTXd4M2J4d2gyeStnTXB4dEZLUzJoeVBreERVdGc1?=
- =?utf-8?B?QUtoaHVGQWZPbDJmenRFYkZuVjdvU21iS0NBUmY4OEx6aTVSUE1PajFrMXda?=
- =?utf-8?B?cXlnd3JkQ3d6UG5VN3FJNHNlVzVmS2cybFRtZ1VBODRZUE4xUFdTQWVhS1ZO?=
- =?utf-8?B?MDhiMXZhOTJWU29QYjVYQkNqbGNMMzZHR1Y5WEFoL1hhUG5zdXJxNzQxOUZU?=
- =?utf-8?B?UDNtR3lZTThtR3dlT2RXdDkxTEFSbVBvU1FYbWorSFVKNVBlM0NBdWRYaW9r?=
- =?utf-8?B?alhNVjRGbERiV01JQTBUM3A5U0VYMzdzSDlIZ2x5TUpUMC92Zys0cHJSQWND?=
- =?utf-8?B?clNDYmlFT1Z1RS8yZVdNdDhxZGQzZmh0ZGhmOEU0ZXIzUnZVYzdvK0p1bmxs?=
- =?utf-8?B?c0NtMU5FNGI1TGZXRC9VeVhpb1lwSlZpa2VrcGhTdFZCYWhVc2U5WWJEOGxV?=
- =?utf-8?B?YTFNME5Jc2txdjNiZ0l5am1TcWNLbk1ueTV6RjEzdWxWcm1xWFc0ZS93T3FZ?=
- =?utf-8?B?UlhhdkVEbElaQW0rbFVMcEFuaTZvWTZ3NDZBek9pM2t1NzdNYWhlZmVGYllu?=
- =?utf-8?B?bWhNU2FQbW9sRHg4MXp2NFZ4d1lwaDExdkErekorN202SmVwWWNMZXJOaXBW?=
- =?utf-8?B?bnRYR2xOaHRHRUpIdjMzdFhuMzk0SmppbStJNTNqRDVPQkFrNnVtOTJhTlpo?=
- =?utf-8?B?N1RiaDhxeU8wc3ViTlovV3NZN2dsNVA4K3NUSG8wd3l1QTVnZ2xvOUhSUDhh?=
- =?utf-8?B?MUw5WjRZZVIzL0hyRDRkaFl1bnZQOWZENDhNR3NXMzVVY0cxdTFnS3BwMkdi?=
- =?utf-8?B?QXpTcXpIZjI5Q2F0RDNJbHVkaXNIcnRKSUlHSUp1eXZEa2Vnak10Qmc1bFBW?=
- =?utf-8?B?SzdEZnE2NmNtdU5FUUZyRFhRYTVWbzFwdjByVXFGZ2U2bUF1aXJ2Um9xZGNj?=
- =?utf-8?B?YThFY3Y0ZXo5Yll6b1gzWGROcUVCRVJhQ0JHK3p1d0xSMkhqU3crMnZRT2Rw?=
- =?utf-8?B?MXdiV1NkQmlOSzNsa0F0NGNwcmZmMktKSDVjaHJQaHNyU0hrOFFuSXBWbVB6?=
- =?utf-8?B?UjdtdDNjUkxtWG5YUjRkZWIwQkxpMEZIN1k0MDhvNWxxZjVlSHFINjZKd08w?=
- =?utf-8?B?b0l3NlZGeThpOHdVWjFtVDRhWFU5d2xZRVdBdzRHdi9VT1g0VVBqOEJzK25o?=
- =?utf-8?B?MWdiQkxmdXNZNDB3RXJkOVlISzlRRDFtU3dBYVlHMU8vMDdLbHFEUy9MU29Z?=
- =?utf-8?B?L3JWemlHejNOZzNPcTF0aDBHVWV4MjZwTVZGQjFWbXFuVThQYVhvUWJZWU1a?=
- =?utf-8?B?NXB3bCtSWkEyazJKWWxNbEZsb1dYd05PbC95YmlsNkFTM2hDUDdVbjNLV2Nx?=
- =?utf-8?B?RmhlUG9jTGNIWW52d3dYTjN4R0ZpNGlrVVVGUmJPMDgxOEc3OExPL2o0OEor?=
- =?utf-8?B?MUlTREpJN09lYWF3R29YY01FN2lYK2tzMW8xM0dhcExOUU5STFowWjlEbm5H?=
- =?utf-8?B?TDRXNG4zQ1dUbCtvNWY1cHR6ak1ZU2d6UFQybjhUd3RrQ3crWjk3a05RdDRG?=
- =?utf-8?B?SnlxVG1XWm1SUVpFc2UwTFFKN3NpaDFjTURzYkVXR082K1JuUHlsSU52cXlL?=
- =?utf-8?B?a2R0eGZCbU9oOXQrSEpaeGV4bExSMmNCSCtySHRMS0VMWTFXSDdQYi9UU1Ja?=
- =?utf-8?B?RmNRdTdDQVhnOW5EU09LTUZqTE5yU0w0VndjL01PbTJLazJ1OU9VTmhCVXVs?=
- =?utf-8?B?QURSMGx5dG1zOEpHWkRXa0wrT2x1LzEwQnh5ZGphWTRyK3VZQUE2bC8yamdo?=
- =?utf-8?B?clo5UWduZzNNVkY5OXpyRGVGUXF1alFNbDkrVnBHclZ6L2dvOStHYlVPV3dt?=
- =?utf-8?B?WUFpTkU4L0xGbldVZldIdzJtS2w5aXBHWk93VDNUQkV2R083NFRGbk1DR0tG?=
- =?utf-8?Q?BaeRCTiX1BV6u7CWok/ZqF++1?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4113311c-a699-4f4f-1361-08de120641a6
-X-MS-Exchange-CrossTenant-AuthSource: SJ2PR12MB8109.namprd12.prod.outlook.com
+X-OriginatorOrg: aspeedtech.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Oct 2025 07:32:01.7325
+X-MS-Exchange-CrossTenant-AuthSource: TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d3e4b107-0953-41ec-d764-08de1207117e
+X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Oct 2025 07:37:50.0299
  (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: AwH3qxxrPRcbwL6thYYT59/HFYabYRx6EPSS31FH6aJUkhYwgSXRkmJgDDI1LjKg
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV8PR12MB9336
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 43d4aa98-e35b-4575-8939-080e90d5a249
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: jD2TEKuUTpLTozvId/DapAJ+pWREFmv+yyKNP3B0qqDiQ9hT8jqicrgu3nA6GA91UKktxsrprUPMGzRXp5UQYUNS4477/MXYyXl1xnEN98Y=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: JH0PR06MB7268
+
+Hi Arnd,
+
+Thanks for the detailed review and explanations.
+
+> Subject: Re: [PATCH v6 4/6] arm64: dts: aspeed: Add initial AST2700 SoC d=
+evice
+> tree
+>=20
+> On Wed, Oct 22, 2025, at 09:05, Ryan Chen wrote:
+> > Add initial device tree for the ASPEED 8th BMC SoC family.
+> >
+> > Signed-off-by: Ryan Chen <ryan_chen@aspeedtech.com>
+>=20
+> I think this is the place where you'd want to put some information about =
+the
+> chip itself. I know what it is, but others may not know anything about it=
+.
+>=20
 
 
+I've included basic information about the AST27xx family in the cover lette=
+r:
+AST27XX SOC Family
+ - https://www.aspeedtech.com/server_ast2700/
+ - https://www.aspeedtech.com/server_ast2720/
+ - https://www.aspeedtech.com/server_ast2750/
 
-On 10/21/25 13:30, Ajay Neeli wrote:
-> - Add APIs for UFS PHY initialization.
-> - Verify M-PHY TX-RX configuration readiness.
-> - Confirm SRAM initialization and Set SRAM bypass.
-> - Retrieve UFS calibration values.
-> 
-> Signed-off-by: Ajay Neeli <ajay.neeli@amd.com>
-> Acked-by: Senthil Nathan Thangaraj <senthilnathan.thangaraj@amd.com>
-> ---
-> Changes in v1->v2: None
-> ---
->   drivers/firmware/xilinx/Makefile         |   2 +-
->   drivers/firmware/xilinx/zynqmp-ufs.c     | 118 +++++++++++++++++++++++++++++++
->   include/linux/firmware/xlnx-zynqmp-ufs.h |  38 ++++++++++
->   include/linux/firmware/xlnx-zynqmp.h     |   1 +
->   4 files changed, 158 insertions(+), 1 deletion(-)
->   create mode 100644 drivers/firmware/xilinx/zynqmp-ufs.c
->   create mode 100644 include/linux/firmware/xlnx-zynqmp-ufs.h
-> 
-> diff --git a/drivers/firmware/xilinx/Makefile b/drivers/firmware/xilinx/Makefile
-> index 875a537..70f8f02 100644
-> --- a/drivers/firmware/xilinx/Makefile
-> +++ b/drivers/firmware/xilinx/Makefile
-> @@ -1,5 +1,5 @@
->   # SPDX-License-Identifier: GPL-2.0
->   # Makefile for Xilinx firmwares
->   
-> -obj-$(CONFIG_ZYNQMP_FIRMWARE) += zynqmp.o
-> +obj-$(CONFIG_ZYNQMP_FIRMWARE) += zynqmp.o zynqmp-ufs.o
->   obj-$(CONFIG_ZYNQMP_FIRMWARE_DEBUG) += zynqmp-debug.o
-> diff --git a/drivers/firmware/xilinx/zynqmp-ufs.c b/drivers/firmware/xilinx/zynqmp-ufs.c
-> new file mode 100644
-> index 0000000..85da8a8
-> --- /dev/null
-> +++ b/drivers/firmware/xilinx/zynqmp-ufs.c
-> @@ -0,0 +1,118 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Firmware Layer for UFS APIs
-> + *
-> + * Copyright (C) 2025 Advanced Micro Devices, Inc.
-> + */
-> +
-> +#include <linux/firmware/xlnx-zynqmp.h>
-> +#include <linux/module.h>
-> +
-> +/* Register Node IDs */
-> +#define PM_REGNODE_PMC_IOU_SLCR		0x30000002 /* PMC IOU SLCR */
-> +#define PM_REGNODE_EFUSE_CACHE		0x30000003 /* EFUSE Cache */
-> +
-> +/* Register Offsets for PMC IOU SLCR */
-> +#define SRAM_CSR_OFFSET			0x104C /* SRAM Control and Status */
-> +#define TXRX_CFGRDY_OFFSET		0x1054 /* M-PHY TX-RX Config ready */
-> +
-> +/* Masks for SRAM Control and Status Register */
-> +#define SRAM_CSR_INIT_DONE_MASK		BIT(0) /* SRAM initialization done */
-> +#define SRAM_CSR_EXT_LD_DONE_MASK	BIT(1) /* SRAM External load done */
-> +#define SRAM_CSR_BYPASS_MASK		BIT(2) /* Bypass SRAM interface */
-> +
-> +/* Mask to check M-PHY TX-RX configuration readiness */
-> +#define TX_RX_CFG_RDY_MASK		GENMASK(3, 0)
-> +
-> +/* Register Offsets for EFUSE Cache */
-> +#define UFS_CAL_1_OFFSET		0xBE8 /* UFS Calibration Value */
-> +
-> +/**
-> + * zynqmp_pm_is_mphy_tx_rx_config_ready - check M-PHY TX-RX config readiness
-> + * @is_ready:	Store output status (true/false)
-> + *
-> + * Return:	Returns 0 on success or error value on failure.
-> + */
-> +int zynqmp_pm_is_mphy_tx_rx_config_ready(bool *is_ready)
-> +{
-> +	u32 regval;
-> +	int ret;
-> +
-> +	if (!is_ready)
-> +		return -EINVAL;
-> +
-> +	ret = zynqmp_pm_sec_read_reg(PM_REGNODE_PMC_IOU_SLCR, TXRX_CFGRDY_OFFSET, &regval);
-> +	if (ret)
-> +		return ret;
-> +
-> +	regval &= TX_RX_CFG_RDY_MASK;
-> +	if (regval)
-> +		*is_ready = true;
-> +	else
-> +		*is_ready = false;
-> +
-> +	return ret;
-> +}
-> +EXPORT_SYMBOL_GPL(zynqmp_pm_is_mphy_tx_rx_config_ready);
-> +
-> +/**
-> + * zynqmp_pm_is_sram_init_done - check SRAM initialization
-> + * @is_done:	Store output status (true/false)
-> + *
-> + * Return:	Returns 0 on success or error value on failure.
-> + */
-> +int zynqmp_pm_is_sram_init_done(bool *is_done)
-> +{
-> +	u32 regval;
-> +	int ret;
-> +
-> +	if (!is_done)
-> +		return -EINVAL;
-> +
-> +	ret = zynqmp_pm_sec_read_reg(PM_REGNODE_PMC_IOU_SLCR, SRAM_CSR_OFFSET, &regval);
-> +	if (ret)
-> +		return ret;
-> +
-> +	regval &= SRAM_CSR_INIT_DONE_MASK;
-> +	if (regval)
-> +		*is_done = true;
-> +	else
-> +		*is_done = false;
-> +
-> +	return ret;
-> +}
-> +EXPORT_SYMBOL_GPL(zynqmp_pm_is_sram_init_done);
-> +
-> +/**
-> + * zynqmp_pm_set_sram_bypass - Set SRAM bypass Control
-> + *
-> + * Return:	Returns 0 on success or error value on failure.
-> + */
-> +int zynqmp_pm_set_sram_bypass(void)
-> +{
-> +	u32 sram_csr;
-> +	int ret;
-> +
-> +	ret = zynqmp_pm_sec_read_reg(PM_REGNODE_PMC_IOU_SLCR, SRAM_CSR_OFFSET, &sram_csr);
-> +	if (ret)
-> +		return ret;
-> +
-> +	sram_csr &= ~SRAM_CSR_EXT_LD_DONE_MASK;
-> +	sram_csr |= SRAM_CSR_BYPASS_MASK;
-> +
-> +	return zynqmp_pm_sec_mask_write_reg(PM_REGNODE_PMC_IOU_SLCR, SRAM_CSR_OFFSET,
-> +					    GENMASK(2, 1), sram_csr);
-> +}
-> +EXPORT_SYMBOL_GPL(zynqmp_pm_set_sram_bypass);
-> +
-> +/**
-> + * zynqmp_pm_get_ufs_calibration_values - Read UFS calibration values
-> + * @val:	Store the calibration value
-> + *
-> + * Return:	Returns 0 on success or error value on failure.
-> + */
-> +int zynqmp_pm_get_ufs_calibration_values(u32 *val)
-> +{
-> +	return zynqmp_pm_sec_read_reg(PM_REGNODE_EFUSE_CACHE, UFS_CAL_1_OFFSET, val);
-> +}
-> +EXPORT_SYMBOL_GPL(zynqmp_pm_get_ufs_calibration_values);
-> diff --git a/include/linux/firmware/xlnx-zynqmp-ufs.h b/include/linux/firmware/xlnx-zynqmp-ufs.h
-> new file mode 100644
-> index 0000000..d3538dd
-> --- /dev/null
-> +++ b/include/linux/firmware/xlnx-zynqmp-ufs.h
-> @@ -0,0 +1,38 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-> +/*
-> + * Firmware layer for UFS APIs.
-> + *
-> + * Copyright (c) 2025 Advanced Micro Devices, Inc.
-> + */
-> +
-> +#ifndef __FIRMWARE_XLNX_ZYNQMP_UFS_H__
-> +#define __FIRMWARE_XLNX_ZYNQMP_UFS_H__
-> +
-> +#if IS_REACHABLE(CONFIG_ZYNQMP_FIRMWARE)
-> +int zynqmp_pm_is_mphy_tx_rx_config_ready(bool *is_ready);
-> +int zynqmp_pm_is_sram_init_done(bool *is_done);
-> +int zynqmp_pm_set_sram_bypass(void);
-> +int zynqmp_pm_get_ufs_calibration_values(u32 *val);
-> +#else
-> +static inline int zynqmp_pm_is_mphy_tx_rx_config_ready(bool *is_ready)
-> +{
-> +	return -ENODEV;
-> +}
-> +
-> +static inline int zynqmp_pm_is_sram_init_done(bool *is_done)
-> +{
-> +	return -ENODEV;
-> +}
-> +
-> +static inline int zynqmp_pm_set_sram_bypass(void)
-> +{
-> +	return -ENODEV;
-> +}
-> +
-> +static inline int zynqmp_pm_get_ufs_calibration_values(u32 *val)
-> +{
-> +	return -ENODEV;
-> +}
-> +#endif
-> +
-> +#endif /* __FIRMWARE_XLNX_ZYNQMP_UFS_H__ */
-> diff --git a/include/linux/firmware/xlnx-zynqmp.h b/include/linux/firmware/xlnx-zynqmp.h
-> index f441eea..604a03f 100644
-> --- a/include/linux/firmware/xlnx-zynqmp.h
-> +++ b/include/linux/firmware/xlnx-zynqmp.h
-> @@ -16,6 +16,7 @@
->   #include <linux/types.h>
->   
->   #include <linux/err.h>
-> +#include <linux/firmware/xlnx-zynqmp-ufs.h>
->   
->   #define ZYNQMP_PM_VERSION_MAJOR	1
->   #define ZYNQMP_PM_VERSION_MINOR	0
+I will add here in next submit.
 
-Acked-by: Michal Simek <michal.simek@amd.com>
 
-Thanks,
-Michal
+> > +	aliases {
+> > +		serial0 =3D &uart0;
+> > +		serial1 =3D &uart1;
+> > +		serial2 =3D &uart2;
+> > +		serial3 =3D &uart3;
+> > +		serial4 =3D &uart4;
+> > +		serial5 =3D &uart5;
+> > +		serial6 =3D &uart6;
+> > +		serial7 =3D &uart7;
+> > +		serial8 =3D &uart8;
+> > +		serial9 =3D &uart9;
+> > +		serial10 =3D &uart10;
+> > +		serial11 =3D &uart11;
+> > +		serial12 =3D &uart12;
+> > +		serial13 =3D &uart13;
+> > +		serial14 =3D &uart14;
+> > +	};
+>=20
+> This looks like you just list all the uarts that are present on the chip,=
+ which is
+> not how the aliases are meant to be used. Move this block into the board
+> specific file and only list the ones that are actually enabled on that pa=
+rticular
+> board.
+>=20
+> In particular, the alias names are meant to be local to the board and don=
+'t
+> usually correspond to the numbering inside of the chip. In the defconfig,=
+ we
+> currently set CONFIG_SERIAL_8250_NR_UARTS=3D8, which is enough for any
+> board we support so far, but that means only the first
+> 8 aliases in the list will actually work.
+
+Understood. I'll move the aliases block from the SoC dtsi into the
+EVB board dts. For the EVB, UART12 is used as the default console,
+and the board labels match the SoC numbering, so I plan to keep:
+
+Does that look acceptable?
+ast2700-evb.dts
+	aliases {
+		serial0 =3D &uart0;
+		serial1 =3D &uart1;
+		serial2 =3D &uart2;
+		serial3 =3D &uart3;
+		serial4 =3D &uart4;
+		serial5 =3D &uart5;
+		serial6 =3D &uart6;
+		serial7 =3D &uart7;
+		serial8 =3D &uart8;
+		serial9 =3D &uart9;
+		serial10 =3D &uart10;
+		serial11 =3D &uart11;
+		serial12 =3D &uart12;
+		serial13 =3D &uart13;
+		serial14 =3D &uart14;
+}
+
+>=20
+> > +	soc0: soc@10000000 {
+> > +		compatible =3D "simple-bus";
+> > +		#address-cells =3D <2>;
+> > +		#size-cells =3D <2>;
+> > +		ranges =3D <0x0 0x0 0x0 0x10000000 0x0 0x4000000>;
+> > +
+> > +		intc0: interrupt-controller@12100000 {
+> > +			compatible =3D "aspeed,ast2700-intc0";
+> > +			reg =3D <0 0x12100000 0 0x4000>;
+> > +			#address-cells =3D <1>;
+> > +			#size-cells =3D <1>;
+> > +			ranges =3D <0x0 0x0 0x12100000 0x4000>;
+>=20
+> This doesn't seem to add up: you define a local register space for the so=
+c from
+> 0x0 to 0x4000000, but the registers of the child devices are above 0x4000=
+000.
+>=20
+> I suspect that you forgot to adjust all the addresses in the child device=
+s to be
+> inside of that range.
+
+Yes, that's a mistake. I'll fix the ranges property in=20
+soc0 to properly cover all child registers.
+
+>=20
+> > +	soc1: soc@14000000 {
+> > +		compatible =3D "simple-bus";
+> > +		#address-cells =3D <2>;
+> > +		#size-cells =3D <2>;
+> > +		ranges =3D <0x0 0x0 0x0 0x14000000 0x0 0x10000000>;
+>=20
+> This probably needs some explanation: why are there two 'soc@...'
+> devices? Is this literally two chips in the system, or are you describing=
+ two
+> buses inside of the same SoC?
+
+The AST2700 is two soc connection with a property bus.
+Sharing some decode registers. Each have it own ahb bus.
+
+>=20
+> > +
+> > +		mdio0: mdio@14040000 {
+> > +			compatible =3D "aspeed,ast2600-mdio";
+> > +			reg =3D <0 0x14040000 0 0x8>;
+> > +			resets =3D <&syscon1 SCU1_RESET_MII>;
+> > +			status =3D "disabled";
+> > +		};
+>=20
+> I see that you use the old compatible=3D"aspeed,ast2600-mdio" string excl=
+usively
+> here. While this works, I would suggest you list both a more specific
+> "aspeed,ast2700-mdio" string to refer to the version in this chip as well=
+ as the
+> fallback "aspeed,ast2600-mdio" string as the generic identifier.
+>=20
+> The binding obviously has to describe both in that case, but the driver d=
+oes not
+> need to be modified as long as both behave the same way.
+
+Thanks, will submit ast2700-mdio.=20
+Question, should I add in here patch series?
+Or go for another patch thread?
+
+>=20
+> > +
+> > +		syscon1: syscon@14c02000 {
+> > +			compatible =3D "aspeed,ast2700-scu1", "syscon", "simple-mfd";
+> > +			reg =3D <0x0 0x14c02000 0x0 0x1000>;
+> > +			ranges =3D <0x0 0x0 0x14c02000 0x1000>;
+> > +			#address-cells =3D <1>;
+> > +			#size-cells =3D <1>;
+> > +			#clock-cells =3D <1>;
+> > +			#reset-cells =3D <1>;
+> > +
+> > +			scu_ic2: interrupt-controller@100 {
+> > +				compatible =3D "aspeed,ast2700-scu-ic2";
+> > +				reg =3D <0x100 0x8>;
+> > +				#interrupt-cells =3D <1>;
+> > +				interrupts-extended =3D <&intc1_5 0>;
+> > +				interrupt-controller;
+> > +			};
+> > +
+> > +			scu_ic3: interrupt-controller@108 {
+> > +				compatible =3D "aspeed,ast2700-scu-ic3";
+> > +				reg =3D <0x108 0x8>;
+> > +				#interrupt-cells =3D <1>;
+> > +				interrupts-extended =3D <&intc1_5 26>;
+> > +				interrupt-controller;
+> > +			};
+>=20
+> This looks a bit silly to be honest: you have two separate devices that e=
+ach have
+> a single register and a different compatible string?
+
+Yes, it have difference register define in each scu-ic#. That is compatible=
+ with design.
+https://github.com/torvalds/linux/blob/master/drivers/irqchip/irq-aspeed-sc=
+u-ic.c#L45-L48
+
+>=20
+> Also you claim to be compatible with "syscon" but nothing actually refers=
+ to the
+> syscon node in that form?
+
+There is another submit ongoing in pinctrl which will use syscon.=20
+https://lwn.net/ml/all/20250829073030.2749482-2-billy_tsai@aspeedtech.com/
+
+Could I keep it? or I should remove it?
+
+>=20
+>        Arnd
 
