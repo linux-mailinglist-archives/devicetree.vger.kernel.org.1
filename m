@@ -1,154 +1,107 @@
-Return-Path: <devicetree+bounces-230131-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230132-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3ADBBFFEF8
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 10:30:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 97ACEBFFF4C
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 10:36:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DA38D1A02264
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 08:30:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 552FA189DD9C
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 08:37:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E4B32FB0B3;
-	Thu, 23 Oct 2025 08:30:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1D7C3016E8;
+	Thu, 23 Oct 2025 08:36:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="dNaj6o+I"
+	dkim=pass (1024-bit key) header.d=ucw.cz header.i=@ucw.cz header.b="e963kVyX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+Received: from jabberwock.ucw.cz (jabberwock.ucw.cz [46.255.230.98])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65ACC2FE04E;
-	Thu, 23 Oct 2025 08:30:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BE762D29AC;
+	Thu, 23 Oct 2025 08:36:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.255.230.98
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761208205; cv=none; b=mfpVtDcNSLKuBnkgvFTUu+Ayw+TZD7gA64VjvI0wV6gEI1jeBn1ixSgzJi3n3M1JciiJHVVsVH2gJwnPyqJEymBWsiKrWLql4uIVmNdsDd3CEb7NhtbiM2luXmCIJvyZGviWMJ/btWBkEQ30knWIASEcchTqKMr2pTT5o9+iClg=
+	t=1761208611; cv=none; b=ltPDLBmhRXyYzSHzhBnnsSv56jef9OVKjo0kH/EHIoJCGfUVgqbJsxjn4P9IapNzTK51imwR/DgKXSW6Kq81laBZPZH4+i6o6mTfqxnAsTOKFa1qxsjoKN6mFwyIV8nHHXuErZvF7qHqAQwklL12IfSTfrC6lsGzrPGL+s3sHj4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761208205; c=relaxed/simple;
-	bh=Ch5XHan7n+TFh9cqXyKAmWNWnMzChVHFasLvrJE4wkg=;
+	s=arc-20240116; t=1761208611; c=relaxed/simple;
+	bh=53IhXrKwh6V2faXP+mdySTS0lXyEHg+fHqtxQ+YtdsM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rLG0Lfs6VWBAUks3sKieEDAFW96zyeX5Z6tTQZ9Ea88X1abJ2KZtzS9Ahi71FFeIOlTmCvqkF5UYo0nPh9xMEBpq2paKet3I9eKTFCWXRBsGtJC3u/UmjFs1I9CfuCFG8ymR2FHAwbrHIclvp03hCuV3YR7mNDIrYZCqb3P2sHU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=dNaj6o+I; arc=none smtp.client-ip=192.198.163.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1761208204; x=1792744204;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=Ch5XHan7n+TFh9cqXyKAmWNWnMzChVHFasLvrJE4wkg=;
-  b=dNaj6o+IlM/YDqFXRGIUlxJBbQIwgEPo1XWwb+ApcZL2gtjgbqJmKbs4
-   4/oIopg0TjunBPHPC8z8Mtho7f5UryT0/PJoox+D/6Jf2QDsOyUbfcPyd
-   D2gV/FT49tZJXZjPBF/E5v8OQoULZuWAQYqNPkipPrI4GMckxM6vyxQ04
-   Vc2xMoapuj+zLDIejcP91tCnccbfjiVHkliGGIHsB7ByO17GixWlemZ9f
-   ycLgQyUGu/jDrr77DMpJZGUDERm0jVG5YTIBbMXx5AGhEwr7S6O+QT3uf
-   iWuuM71QxYRQd3itlvj+WEVGrDlULyZjjbUEi6U5PrvN/aMpy6yAc2vBm
-   g==;
-X-CSE-ConnectionGUID: Sbr5hshARCeqjnv0rgXCmA==
-X-CSE-MsgGUID: oJ/L3cWQRnOOGa1mRI6Ycw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="73975917"
-X-IronPort-AV: E=Sophos;i="6.19,249,1754982000"; 
-   d="scan'208";a="73975917"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
-  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Oct 2025 01:30:01 -0700
-X-CSE-ConnectionGUID: rzmiWePRQC+B9dJ+/YBtZA==
-X-CSE-MsgGUID: Nd/VzcadQXedqM1wJPyvdA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,249,1754982000"; 
-   d="scan'208";a="221289795"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO ashevche-desk.local) ([10.245.244.163])
-  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Oct 2025 01:29:57 -0700
-Received: from andy by ashevche-desk.local with local (Exim 4.98.2)
-	(envelope-from <andriy.shevchenko@intel.com>)
-	id 1vBqhl-00000001tb8-3zNP;
-	Thu, 23 Oct 2025 11:29:53 +0300
-Date: Thu, 23 Oct 2025 11:29:53 +0300
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=UpLsyysRg5HbofQ7T73DfbzJ8qvAED6guBOJVAeea5vGyPPRFZan2HOsOaQmxO21y1CqgVH5VdO5hvHqN6G78ivQ9PxMq0qNubmGsmXkwB6Ho5REV89GRXt+3Y7R5nGTX7xp4gFX98ow7T34kOoVjObeEHUiYwYWnNb29vIW/W0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ucw.cz; spf=pass smtp.mailfrom=ucw.cz; dkim=pass (1024-bit key) header.d=ucw.cz header.i=@ucw.cz header.b=e963kVyX; arc=none smtp.client-ip=46.255.230.98
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ucw.cz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ucw.cz
+Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
+	id 6C8CC1C008F; Thu, 23 Oct 2025 10:36:44 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ucw.cz; s=gen1;
+	t=1761208604;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=53IhXrKwh6V2faXP+mdySTS0lXyEHg+fHqtxQ+YtdsM=;
+	b=e963kVyXtB4Ti7FWGfUJOTbFu0XmIkQYHm5rqM3/EgiM+CLRPEzbWmG94f+5ZqPK6lL2pL
+	2OGXCLe0IRoB6ngjlS22szympnmLe/ylkIOqhAea5F1JnG7VLVVZbGF3NLV+GG5mY4GJ+z
+	lkRyPEmD+hHZFxR9o8maqlVp+cgdjtc=
+Date: Thu, 23 Oct 2025 10:36:43 +0200
+From: Pavel Machek <pavel@ucw.cz>
+To: Luca Weiss <luca.weiss@fairphone.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-i3c@lists.infradead.org,
-	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
-	linux-iio@vger.kernel.org, joshua.yeong@starfivetech.com,
-	devicetree@vger.kernel.org, Carlos Song <carlos.song@nxp.com>
-Subject: Re: [PATCH v6 3/5] i3c: master: svc: Add basic HDR mode support
-Message-ID: <aPnngQdwEqHgPc7R@smile.fi.intel.com>
-References: <20251014-i3c_ddr-v6-0-3afe49773107@nxp.com>
- <20251014-i3c_ddr-v6-3-3afe49773107@nxp.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Casey Connolly <casey.connolly@linaro.org>,
+	Alexander Martinz <amartinz@shiftphones.com>,
+	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Luca Weiss <luca@lucaweiss.eu>,
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Subject: Re: [PATCH v2 5/6] arm64: dts: qcom: qcm6490-shift-otter: Enable RGB
+ LED
+Message-ID: <aPnpGx33hVLrPKOb@duo.ucw.cz>
+References: <20251009-otter-further-bringup-v2-0-5bb2f4a02cea@fairphone.com>
+ <20251009-otter-further-bringup-v2-5-5bb2f4a02cea@fairphone.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="8nVggqXiqE37t2wu"
+Content-Disposition: inline
+In-Reply-To: <20251009-otter-further-bringup-v2-5-5bb2f4a02cea@fairphone.com>
+
+
+--8nVggqXiqE37t2wu
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251014-i3c_ddr-v6-3-3afe49773107@nxp.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Oct 14, 2025 at 12:40:02PM -0400, Frank Li wrote:
-> Add basic HDR mode support for the svs I3C master driver.
-> 
-> Only support for private transfers and does not support sending CCC
-> commands in HDR mode.
-> 
-> Key differences:
-> - HDR uses commands (0x00-0x7F for write, 0x80-0xFF for read) to
-> distinguish transfer direction.
-> - HDR read/write commands must be written to FIFO before issuing the I3C
-> address command. The hardware automatically sends the standard CCC command
-> to enter HDR mode.
-> - HDR exit pattern must be sent instead of send a stop after transfer
-> completion.
-> - Read/write data size must be an even number.
+On Thu 2025-10-09 11:06:35, Luca Weiss wrote:
+> From: Luca Weiss <luca@lucaweiss.eu>
+>=20
+> Enable the RGB LED connected to the PM7350C (PM8350C).
+>=20
+> Signed-off-by: Luca Weiss <luca@lucaweiss.eu>
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
 
-...
+Reviewed-by: Pavel Machek <pavel@ucw.cz>
 
-> +static void svc_i3c_master_emit_force_exit(struct svc_i3c_master *master)
-> +{
-> +	u32 reg = 0;
+--=20
+I don't work for Nazis and criminals, and neither should you.
+Boycott Putin, Trump, Netanyahu and Musk!
 
-Useless.
+--8nVggqXiqE37t2wu
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> +	writel(SVC_I3C_MCTRL_REQUEST_FORCE_EXIT, master->regs + SVC_I3C_MCTRL);
-> +	readl_poll_timeout(master->regs + SVC_I3C_MSTATUS, reg,
-> +			   SVC_I3C_MSTATUS_MCTRLDONE(reg), 0, 1000);
+-----BEGIN PGP SIGNATURE-----
 
-No error checks? Why is it okay?
-Why is the first parameter 0 while it's not an _atomic() call?
+iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCaPnpGwAKCRAw5/Bqldv6
+8muiAJwN7vi1mW/TPRqWswjYtlmCvGCvXwCgsQ3xWR9U3w6+LJiUYbqiF2xQjGA=
+=P7pp
+-----END PGP SIGNATURE-----
 
-> +	udelay(1);
-
-No explanations given. Also is it really need to be atomic? If not, use
-fsleep() and it will choose the best suitable API under the hood.
-
->  }
-
-...
-
-> +	if (xfer_type == SVC_I3C_MCTRL_TYPE_DDR) {
-> +		/* DDR command need prefill into FIFO */
-> +		writel(rnw_cmd, master->regs + SVC_I3C_MWDATAB);
-> +		if (!rnw) {
-> +			/* write data also need prefill into FIFO */
-> +			ret = svc_i3c_master_write(master, out, xfer_len);
-> +		if (ret)
-> +			goto emit_stop;
-> +		}
-
-The indentation here is a mess.
-
-> +	}
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+--8nVggqXiqE37t2wu--
 
