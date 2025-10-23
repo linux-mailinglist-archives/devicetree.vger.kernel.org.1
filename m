@@ -1,63 +1,59 @@
-Return-Path: <devicetree+bounces-230477-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230478-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 812B8C03055
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 20:37:00 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E3EEC0302B
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 20:35:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 50F834F40C1
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 18:34:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 772F63A4603
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 18:34:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 366202690E7;
-	Thu, 23 Oct 2025 18:30:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FC8929BD85;
+	Thu, 23 Oct 2025 18:32:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n8kh5zRd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="umJTBkhf"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AC1129408;
-	Thu, 23 Oct 2025 18:30:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44B0B2989A2;
+	Thu, 23 Oct 2025 18:32:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761244253; cv=none; b=TRaWHBoxVLoWIY3vXlnQdK2kR/cmzjylYFgoCyWUayWlsUC+mT3UOuPlpWsp6v1jyDE2Z/YGCxkqQLnl8SQ6DliI6YN33H+9s4Ug7A7THn5MaA9ZRpmSww8vFgsFiTRcv9WqBLRAWTwGkPYjDV8VdUTN5QaxlH7p8fRieH4qu2w=
+	t=1761244334; cv=none; b=VpSuUbSYiGQtc+7uGUrnNS0w0jP45HcMYxAkk+QFV5A2MbuT78rOaC8UVEX/niN5MnCA63D2hd5K//DCsxW6F2brmuIT7wJvjE980l9G1My4Qo3OMkdVzmjEpQHiDSdB2txyNUZTkcY6PMhIEvV7MSJnmMCs8BgEmTJcAKB3lI0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761244253; c=relaxed/simple;
-	bh=4FMfhKfwT45zNZYWzsFfHSI11HycY9Zq+anG78kko6M=;
+	s=arc-20240116; t=1761244334; c=relaxed/simple;
+	bh=s4NJy+OqNopQqO6UBGDQC+oxU9CM2iay6ZEpBQJXZ5s=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=A6yvoAcp7EJmxWeVMutIEqsGmTVkRmEXWv7G0dTaz0Wd9ReJdBJLLH7VCBvp+TxnLiDhWOSaeRBMTSYBB0UJVbyqqUxKpQcgwkwua201w39EWbkehcIcp2lK0lKq/j2+ZfgBJLhW+xEOMccaQU5NsrkdQ2xTQjX0007xVs/alQk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n8kh5zRd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C9430C4CEE7;
-	Thu, 23 Oct 2025 18:30:49 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=lOzkF/JGWrEbIf0lEQA2oCRS0P5uypZPYqSoJ/TyraJNMztXVPlNjlIl9sZM0WDKWQInvwA8xzVpDC6a9WhAS8Ernpkf0Fxub+rjLRIPXkC8J9rTxKZV8EG/tdEA4p5UCHruydgIYe9541TufAo4vjGrQeIi8UVZ40r/MgXf3NQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=umJTBkhf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 55D1DC4CEE7;
+	Thu, 23 Oct 2025 18:32:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761244252;
-	bh=4FMfhKfwT45zNZYWzsFfHSI11HycY9Zq+anG78kko6M=;
+	s=k20201202; t=1761244334;
+	bh=s4NJy+OqNopQqO6UBGDQC+oxU9CM2iay6ZEpBQJXZ5s=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=n8kh5zRdhJ8DfNXO+pXijXPP16eIKBATNaSTTwiBFAxn9OS6noJRgaeBoCnOom4QP
-	 2+Dq4jNtITFcanQIZ//0gbrUnkGrdf2K7y6+PGo+CNShe3uiN29vmhWJtM6+eOmpuY
-	 WT6JIfO45BRUmhm5mNCZr/iO80fNGjbTIAFGa2awQ94FLsr7VVYcVJE2hHaD+3oBjn
-	 ieSPZD2n64i50ERiYGpEjQlRvsToTaJgenqLfouNVgmvT+ZpyapzK4V6nUwsb0wgin
-	 rVm5pLztevxcCZtvnZIgAO401tIas/DjvqsBaxfLmWlnsNukE80qnpS21O181ltuIs
-	 2eI85t5rQWAZw==
-Date: Thu, 23 Oct 2025 19:30:47 +0100
+	b=umJTBkhfPkbYkFecVLNAIaXszgopk+yQHW5y3DGFngwXYeypYdR1eEiL3PeVmjlH3
+	 udY5wAZzm3Ksaj+TR3F24EaShe6GjOUTSZQxdNwudzXsdh0g66CJvDEoZShTOi8Kw9
+	 FoTsnF0+ePdDNVwxBTp7APL/hkgvFnNghw+tTqN4g933lmXBgRz30cgrHbBuT8DWRp
+	 j1GnPenFHralMGEsQaMSc4mTANP+YEnAloeyI3MrScxoP57Ds9gTlUIVBv9ptP7yEX
+	 e+C41sj4wAoQs98gMctdgOdHXRg7MthU+HvIPa5d3cmi7gkuBnTzFtBnCaVlJn9wsc
+	 /B9cEFIdjeVMQ==
+Date: Thu, 23 Oct 2025 19:32:10 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Vivian Wang <wangruikang@iscas.ac.cn>
-Cc: michael.opdenacker@rootcommit.com, Rob Herring <robh@kernel.org>,
+To: dimitri.fedrau@liebherr.com
+Cc: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
-	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Emil Renner Berthing <emil.renner.berthing@gmail.com>,
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-	spacemit@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/1] riscv: dts: spacemit: add Ethernet and PDMA to
- OrangePi RV2
-Message-ID: <20251023-lizard-sharpie-70f2a000327f@spud>
-References: <20251022201807.1474789-1-michael.opdenacker@rootcommit.com>
- <20251022201807.1474789-2-michael.opdenacker@rootcommit.com>
- <f8a55f89-2612-49e3-88c6-acb523ac74d3@iscas.ac.cn>
+	Conor Dooley <conor+dt@kernel.org>, linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Dimitri Fedrau <dima.fedrau@gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: power: supply: gpio-charger: add
+ support for fast-charge timer
+Message-ID: <20251023-nurture-extrovert-8a82296131d6@spud>
+References: <20251022-gpio-charger-timer-v1-0-b557409400f2@liebherr.com>
+ <20251022-gpio-charger-timer-v1-1-b557409400f2@liebherr.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,71 +61,39 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="ZhGqk7lYBtXKeshE"
+	protocol="application/pgp-signature"; boundary="6vsFR8pEpU/FcfKy"
 Content-Disposition: inline
-In-Reply-To: <f8a55f89-2612-49e3-88c6-acb523ac74d3@iscas.ac.cn>
+In-Reply-To: <20251022-gpio-charger-timer-v1-1-b557409400f2@liebherr.com>
 
 
---ZhGqk7lYBtXKeshE
-Content-Type: text/plain; charset=iso-8859-1
+--6vsFR8pEpU/FcfKy
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Oct 23, 2025 at 01:58:22PM +0800, Vivian Wang wrote:
-> Thank you so much for the patch and testing results. Only some nitpicks
-> follow.
+On Wed, Oct 22, 2025 at 09:47:47PM +0200, Dimitri Fedrau via B4 Relay wrote:
+> From: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
 >=20
-> On 10/23/25 04:18, michael.opdenacker@rootcommit.com wrote:
-> > From: Michael Opdenacker <michael.opdenacker@rootcommit.com>
-> >
-> > The OrangePi RV2 board ships two RGMII ethernet ports.
-> > Each has an external Motorcomm YT8531C PHY attached, the PHY uses GPIO
-> > for reset pin control.
-> >
-> > Enable PDMA for the SpacemiT K1-based SoC in the OrangePi RV2 board.
-> >
-> > Signed-off-by: Michael Opdenacker <michael.opdenacker@rootcommit.com>
-> > CC: Emil Renner Berthing <emil.renner.berthing@gmail.com>
-> > CC: Yixun Lan <dlan@gentoo.org>
-> > CC: Vivian Wang <wangruikang@iscas.ac.cn>
+> On some devices like TIs BQ24081 battery charger it is possible to activa=
+te
+> or deactivate a fast-charge timer that provides a backup safety for charge
+> termination via GPIO. In case of the BQ24081 it is a fixed 7-hour timer.
 >=20
-> Firstly, it is usually spelt "Cc:", with one upper-case C and one
-> lower-case c.
+> Signed-off-by: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
 
-I don't think this matters at all, the git tooling at least doesn't
-care.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+pw-bot: not-applicable
 
-> Secondly, "Cc:" should not be necessary in the patch/commit message.
-> From Documentation/process/submitting-patches.rst:
->=20
-> =A0 =A0 If a person has had the opportunity to comment on a patch, but ha=
-s not
-> =A0 =A0 provided such comments, you may optionally add a ``Cc:`` tag to t=
-he patch.
-> =A0 =A0 This tag documents that potentially interested parties have been =
-included in
-> =A0 =A0 the discussion.
->=20
-> If you look through the git logs of Linux, Cc tags are really not a
-> regular occurrence except those marking patches as suitable for
-> backporting to stable.
-
-If people want to handle CC lists by putting it in the patches (it's
-what I do when I have no cover letter) just put them after the --- line
-and git send-email will still pick the CCs up but they won't end up in
-the history.
-
-
---ZhGqk7lYBtXKeshE
+--6vsFR8pEpU/FcfKy
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaPp0VwAKCRB4tDGHoIJi
-0hv0AP9BsJs+SKApne1B/5qPw5tzPqgF8dkrHmZDpyswXTvZ1AD8CSR4yC0q1TNO
-+DjxnBOkx44cBcpZmewCQVdDbx2apAo=
-=RpiQ
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaPp0qgAKCRB4tDGHoIJi
+0pSnAQD8jTNqwT16SuF7P/cvfoKoXqTlTZWaL9gSixXaBGTcoQEAwN8PQ6DA040T
+TPnEzJZbJqpIxC41t2GWf7le1DMjzwk=
+=vWa1
 -----END PGP SIGNATURE-----
 
---ZhGqk7lYBtXKeshE--
+--6vsFR8pEpU/FcfKy--
 
