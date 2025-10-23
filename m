@@ -1,109 +1,194 @@
-Return-Path: <devicetree+bounces-230279-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230280-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A171C0115B
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 14:21:28 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D0B9C0115E
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 14:21:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 1B2A9508D2D
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 12:17:36 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id C3AD05623EF
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 12:17:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA8F8313523;
-	Thu, 23 Oct 2025 12:17:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67559313523;
+	Thu, 23 Oct 2025 12:17:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="TxiNeiuB"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="V/n3wje2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailout1.w1.samsung.com (mailout1.w1.samsung.com [210.118.77.11])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 347683128AE
-	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 12:17:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 637A5313530
+	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 12:17:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761221852; cv=none; b=svOCZjZMOUwjazJ6sH/QEHWmsWx4RYTzkaDc9zumsOjEqlEPMI3Evy6vlSmOkG9wTqqHu+xYQlCNauYCLvmBJPLxhRPe+70+xVpAWYeXK/jaQDUSuqNAAofwxESVORqg2JjN0V/M54ndpM+aqNVtgsFcXgriOFLGXLdUmMLDUBo=
+	t=1761221857; cv=none; b=GGrEPLPhJGauNQzL6EN6MgdOMfSO5tIuVDYj3tqNDkhOAvxmGpESN0p0arXCXev1oV6P12tXMRmxPhLKE/7O5tImRHTyFnntSvs4P1lbYsikVednDLzuNlthfE82dxK00drErStAdSLOvhFenWDVG+pkTqen5o7oaBIPHT8PBbw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761221852; c=relaxed/simple;
-	bh=L9mKMLdO9ecZLnnTb3rf9vDnZa5Hpnlr0lpYglBohUw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZkN4slYAY8/n7oE40x4QmjOoTIZOTdncwniQigF4KhzFg95UnST2xx6mfGmU9vX8qXqELhzLzsM4jqqZY2VepO9npRrEr4EaJ+iCu5ub+7OlG4jOs4ms0KI8hphvmTKyfX+oDhAtxmLS4xwO2abAq6yFZUMmTTempYafcE3jy+M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=TxiNeiuB; arc=none smtp.client-ip=209.85.128.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-47114a40161so7378685e9.3
-        for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 05:17:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1761221845; x=1761826645; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=xFaK6NZGo+5ymm+luUg7lb2XRBY37/W/zcfA+CV0TIg=;
-        b=TxiNeiuBsMjIBd7XafBrQREloLoW1u8pXhvS6dJaJ29cZgxVi1nYTG0IneDhmkKf2X
-         yxzTWw0mxyrdF8q9p8hWVZvsN6sdQFFst8033eGrrBnioq9bbunvizht+xfYmMv8yjI4
-         LWQ/SYBnvNNVq8+mCiC4HdL/ogoyLTf3SHUtxbea5H6apLARN8FFNOGXWgwz5whst7DG
-         D+q1IPoYpg9s7yGpPE8bGdavGqa9ut4l7CUjNNkx8Puptvu/+jRyJVOg3bePgVtjcwYG
-         lJaZ2ZHuay66fL+7Tc8BssAZH3uEBmY2uguhjSEdQQJYXp7plMZXUXBwg7uYAYy8fBVE
-         PZDw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761221845; x=1761826645;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=xFaK6NZGo+5ymm+luUg7lb2XRBY37/W/zcfA+CV0TIg=;
-        b=sNt5RgxosatOH7DApk9ZMABwkNn6qPcpA0rXtiBN2R6gt+jTeFlU60iIa8gCD/fq42
-         nkCSQX0V+tYPgBf7CpAacpurbRYMp94LtX3RjJp7jAbmdtTvHmXDWIAPcfj/qpbMf6i1
-         Crz8hzpgObkBZLmZ7/VY7Jb8CY2FZGqfm+kM52/Lqb3qvYcwPo9AdQQpkppk3koFdoK9
-         mnrFnVCvASjbA/XhbG5T6v81WbiV8oC2G1Y2Xoj3BA6UGmLPAKu4QSqJJwXAFw43O37W
-         1pnueDTLW0SiBaHBeZ2AgIpX/vqaH6xKYvzT7buFQvc/PQmLaOAU3belKfJQzFlQWYQt
-         MC1w==
-X-Forwarded-Encrypted: i=1; AJvYcCVFzVJJNS72DhVxmMd5lOLkoOQgiRPAfq2yC0Gc0DE+e7Q9qB0YurDFBidVvL1SqUrLIW8oNC4/mtma@vger.kernel.org
-X-Gm-Message-State: AOJu0YxKLoqKTs9poEnk4XIo0iRZvctCGEuN9YiHzkXyme78Y17Fg9Wv
-	MW/6GG6Za82s8gMhB6kwfhOHHc+FkgSIP1Uq0t9xTOmSHgZR5KnK2lexp05GRInqmxM=
-X-Gm-Gg: ASbGnctXoh2M1/dpLBK9KXCZMsJfc9fPGyoAl3M3+uDRLyZYhpnDpDuUGKxkO7/fqMq
-	Z1KiGHZLmzKb9lhH6qemNuwWockdzELqPHoQRkMXQwD9y81yK5x1CuC+79Gbrxdiib5W9sy9Lhe
-	iElX818XegoGqKK6bUo1G4n5Q8d3p7c9BcYdPakRcfAk+V4SbPcjbUql4dc/B2wrqxIZNLQOeGQ
-	sRFcnQEf6ha1ONSInvOLcrM8W2Hq0rqbB6fXO4X4bcdTeABHfW5m1KDB/X1l43xYxfS8iGul1o0
-	p90DKcryrAv4Mjpm98Nk+dnikiTsdleVFI1ytkyYlwlo4Ly6a0iTz3qCcZdYivlmvKmBXdkvFMU
-	mka/89xTcutLKzQyLc2G29SEDKAwvOBgOW7/DcR6/dTpQ0O3ufuz3tFbB0697OfXv8zZ8NyCV
-X-Google-Smtp-Source: AGHT+IE4yJGL4XD1Y008GBekdf0k/4ZgBeS/2HKOoU8UbmPIZ1qtosiAH1bXdFg2PJCJM3E73unoRQ==
-X-Received: by 2002:a05:600c:5009:b0:46e:50ce:a353 with SMTP id 5b1f17b1804b1-471178788f0mr170316305e9.14.1761221845468;
-        Thu, 23 Oct 2025 05:17:25 -0700 (PDT)
-Received: from linaro.org ([86.121.7.169])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-475c427f685sm96429725e9.2.2025.10.23.05.17.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 23 Oct 2025 05:17:24 -0700 (PDT)
-Date: Thu, 23 Oct 2025 15:17:22 +0300
-From: Abel Vesa <abel.vesa@linaro.org>
-To: Sarthak Garg <sarthak.garg@oss.qualcomm.com>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, quic_nguyenb@quicinc.com, quic_rampraka@quicinc.com, 
-	quic_pragalla@quicinc.com, quic_sayalil@quicinc.com, quic_nitirawa@quicinc.com, 
-	quic_bhaskarv@quicinc.com, kernel@oss.qualcomm.com
-Subject: Re: [PATCH V2 4/4] arm64: dts: qcom: sm8750-qrd: Add SDC2 node for
- sm8750 qrd board
-Message-ID: <ekyi4yreec55m5huqnfm7vqo3kgqgquvcmw4budgzolx32mfiq@lodlzpic4bdr>
-References: <20251023112924.1073811-1-sarthak.garg@oss.qualcomm.com>
- <20251023112924.1073811-5-sarthak.garg@oss.qualcomm.com>
+	s=arc-20240116; t=1761221857; c=relaxed/simple;
+	bh=F+IPlDFq86m88/BQzW1tUzZRcDaGgKPf/SBSPSggqsQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
+	 Content-Type:References; b=qnKPvqF5YotIZiy0cnbrLah2eo97lMZOeK6wErXmTUi9MFnrmnEYSSsiBKLK/2xL9gy5YkxK6DHG9gWfOd4wttZYlOlHKKBMXGfnp5fRIfnoQGd8ANr8amUrRCCK3k+qREBGTEVIC+Wb8vJ/wcgWoMPPU+Nljn7dBcR4r8rL2XA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=V/n3wje2; arc=none smtp.client-ip=210.118.77.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+	by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20251023121731euoutp01cbaadab47bf1039f0d08c7b60a9cd2bb~xHfFd27z11476514765euoutp01g
+	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 12:17:31 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20251023121731euoutp01cbaadab47bf1039f0d08c7b60a9cd2bb~xHfFd27z11476514765euoutp01g
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1761221851;
+	bh=lDw1nU8NLSxSa1gqia5h1scw7MTd+jhxy/PnLfCJ7Ks=;
+	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
+	b=V/n3wje2NJ8BLnwg4s18POq8rtSsar9kusWHxsaqF6P6x7rE7TlW2AXwY0m8nlusL
+	 gt9HOPbivaiRXi7/VjOQCzlfIXrNQuh03yLkOxYJdL7QuENCB/JBu0r5qvOiHzvE3k
+	 fVRpmi0ayFia6n07qcc/goyMfIszhKGBRvYk/3oM=
+Received: from eusmtip2.samsung.com (unknown [203.254.199.222]) by
+	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+	20251023121731eucas1p101ee5675a1effd61f7bbd504b018f529~xHfE-GNtq0073800738eucas1p15;
+	Thu, 23 Oct 2025 12:17:31 +0000 (GMT)
+Received: from [106.210.134.192] (unknown [106.210.134.192]) by
+	eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
+	20251023121730eusmtip29e2f973850b2c55d974387409fea4f03~xHfEBdNx52867328673eusmtip2p;
+	Thu, 23 Oct 2025 12:17:30 +0000 (GMT)
+Message-ID: <cca286f5-bb43-4914-864c-b5e5c73270c8@samsung.com>
+Date: Thu, 23 Oct 2025 14:17:29 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251023112924.1073811-5-sarthak.garg@oss.qualcomm.com>
+User-Agent: Betterbird (Windows)
+Subject: Re: [PATCH v3 08/10] pmdomain: samsung: selectively handle enforced
+ sync_state
+To: Ulf Hansson <ulf.hansson@linaro.org>, Krzysztof Kozlowski
+	<krzk@kernel.org>, Rob Herring <robh@kernel.org>
+Cc: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, Alim Akhtar
+	<alim.akhtar@samsung.com>, Conor Dooley <conor+dt@kernel.org>, Krzysztof
+	Kozlowski <krzk+dt@kernel.org>, Peter Griffin <peter.griffin@linaro.org>,
+	Tudor Ambarus <tudor.ambarus@linaro.org>, Will McVicker
+	<willmcvicker@google.com>, kernel-team@android.com,
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-pm@vger.kernel.org
+Content-Language: en-US
+From: Marek Szyprowski <m.szyprowski@samsung.com>
+In-Reply-To: <CAPDyKFrCS1PGwPeZd2ahZ=wKXCqPj93qAJ7V-ELELLA_OwgdSw@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
+X-CMS-MailID: 20251023121731eucas1p101ee5675a1effd61f7bbd504b018f529
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20251022110738eucas1p2cee28096ca5c9c6a802e2190d88ccf21
+X-EPHeader: CA
+X-CMS-RootMailID: 20251022110738eucas1p2cee28096ca5c9c6a802e2190d88ccf21
+References: <20251016-gs101-pd-v3-0-7b30797396e7@linaro.org>
+	<20251016-gs101-pd-v3-8-7b30797396e7@linaro.org>
+	<CGME20251022110738eucas1p2cee28096ca5c9c6a802e2190d88ccf21@eucas1p2.samsung.com>
+	<CAPDyKFq2esPos=D-eVz6w1VXq=4LYi6fx54K4TvsUi4JqUJOaQ@mail.gmail.com>
+	<57bacc06-8a5e-4284-a520-c5d2a56545e9@samsung.com>
+	<CAPDyKFrCS1PGwPeZd2ahZ=wKXCqPj93qAJ7V-ELELLA_OwgdSw@mail.gmail.com>
 
-On 25-10-23 16:59:24, Sarthak Garg wrote:
-> Enable SD Card host controller for sm8750 qrd board.
-> 
-> Signed-off-by: Sarthak Garg <sarthak.garg@oss.qualcomm.com>
-> ---
+On 23.10.2025 12:02, Ulf Hansson wrote:
+> On Wed, 22 Oct 2025 at 20:39, Marek Szyprowski <m.szyprowski@samsung.com> wrote:
+>> On 22.10.2025 13:06, Ulf Hansson wrote:
+>>> On Thu, 16 Oct 2025 at 17:58, André Draszik <andre.draszik@linaro.org> wrote:
+>>>> Unconditionally calling of_genpd_sync_state() causes issues on
+>>>> platforms with child domains as the parent domain will be turned off
+>>>> before the child domain was even registered during boot.
+>>>>
+>>>> This in particular is an issue for the upcoming Google gs101 support -
+>>>> all operations on child domains registered after the parent domain
+>>>> misbehave.
+>>>>
+>>>> Add a flag to the probe data to be able to sync_state conditionally
+>>>> only, and enable that flag on the two platforms currently supported by
+>>>> this driver.
+>>>>
+>>>> Signed-off-by: André Draszik <andre.draszik@linaro.org>
+>>>>
+>>>> ---
+>>>> v2:
+>>>> * use bool for need_early_sync_state (Krzysztof)
+>>>> ---
+>>>>    drivers/pmdomain/samsung/exynos-pm-domains.c | 5 ++++-
+>>>>    1 file changed, 4 insertions(+), 1 deletion(-)
+>>>>
+>>>> diff --git a/drivers/pmdomain/samsung/exynos-pm-domains.c b/drivers/pmdomain/samsung/exynos-pm-domains.c
+>>>> index 638d286b57f716140b2401092415644a6805870e..15a1582aa92103a07335eb681600d9415369fefd 100644
+>>>> --- a/drivers/pmdomain/samsung/exynos-pm-domains.c
+>>>> +++ b/drivers/pmdomain/samsung/exynos-pm-domains.c
+>>>> @@ -20,6 +20,7 @@
+>>>>    struct exynos_pm_domain_config {
+>>>>           /* Value for LOCAL_PWR_CFG and STATUS fields for each domain */
+>>>>           u32 local_pwr_cfg;
+>>>> +       bool need_early_sync_state;
+>>>>    };
+>>>>
+>>>>    /*
+>>>> @@ -69,10 +70,12 @@ static int exynos_pd_power_off(struct generic_pm_domain *domain)
+>>>>
+>>>>    static const struct exynos_pm_domain_config exynos4210_cfg = {
+>>>>           .local_pwr_cfg          = 0x7,
+>>>> +       .need_early_sync_state  = true,
+>>>>    };
+>>>>
+>>>>    static const struct exynos_pm_domain_config exynos5433_cfg = {
+>>>>           .local_pwr_cfg          = 0xf,
+>>>> +       .need_early_sync_state  = true,
+>>>>    };
+>>>>
+>>>>    static const struct of_device_id exynos_pm_domain_of_match[] = {
+>>>> @@ -179,7 +182,7 @@ static int exynos_pd_probe(struct platform_device *pdev)
+>>>>            * reset during boot. As a temporary hack to manage this, let's enforce
+>>>>            * a sync_state.
+>>>>            */
+>>>> -       if (!ret)
+>>>> +       if (pm_domain_cfg->need_early_sync_state && !ret)
+>>>>                   of_genpd_sync_state(np);
+>>> The call to of_genpd_sync_state() was intended as a temporary solution here.
+>>>
+>>> Potentially, if we would be able to distinguish what PM domain that is
+>>> causing the problem on the Exynos platforms, we could set
+>>> GENPD_FLAG_NO_STAY_ON for that genpd instead.
+>> Well, this of_genpd_sync_state() "workaround" has to be applied only to
+>> the power domain of the display controller device. It can be replaced by
+>> the following check on the legacy Exynos systems:
+>>
+>> if (IS_ENABLED(CONFIG_ARM) &&
+>> of_device_is_compatible(np, "samsung,exynos4210-pd") &&
+>> (strstr(pd->pd.name, "LCD") || strstr(pd->pd.name, "DISP")))
+>> pd->pd.flags = GENPD_FLAG_NO_STAY_ON;
+> Oh wait, perhaps better to just power-off these PM domains before
+> calling pm_genpd_init(), if that can be done safely?
+>
+> At least that would guarantee the reset to happen before the display
+> driver gets probed. Instead of relying on genpd_power_off_unused()
+> (late_initcall_sync) to do it.
 
-again, with the card detect gpio in here, looks good to me:
+Well, yes, this works too:
 
-Reviewed-by: Abel Vesa <abel.vesa@linaro.org>
+if ((of_device_is_compatible(np, "samsung,exynos4210-pd") &&
+     (strstr(pd->pd.name, "LCD") || strstr(pd->pd.name, "DISP"))))
+          exynos_pd_power_off(&pd->pd);
+
+>> I assume that this information cannot be coded in device tree to make it
+>> somehow generic...
+> Right, in principle we would need a new DT property for a power-domain
+> provider, like "broken-hw-reset", because we don't have a reset-line
+> to pull.
+
+It is not a matter of broken reset at all. It is a matter of software 
+configuration and the lack of 'protocol' to pass the information that 
+the display controller is configured to display splash screen from the 
+system memory at given address and newly instantiated drivers must to be 
+aware of that.
+
+Turning display-related power domain off simply resets all that 
+configuration, so drivers can start from good known 'unconfigured' state.
+
+Best regards
+-- 
+Marek Szyprowski, PhD
+Samsung R&D Institute Poland
+
 
