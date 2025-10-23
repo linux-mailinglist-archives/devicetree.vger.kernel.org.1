@@ -1,172 +1,204 @@
-Return-Path: <devicetree+bounces-230197-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230198-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 340D4C0059B
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 11:52:56 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD1D2C00620
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 12:03:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 39519188775A
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 09:53:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 477D83AA260
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 10:03:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0410730ACED;
-	Thu, 23 Oct 2025 09:52:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D317303C85;
+	Thu, 23 Oct 2025 10:03:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="e5FNKPF0"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ZQZI/bfu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yx1-f54.google.com (mail-yx1-f54.google.com [74.125.224.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7519230AACD
-	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 09:52:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F88C2FD69B
+	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 10:03:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.224.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761213165; cv=none; b=IjEWafsEPMcMNrteWaf1LH6dBt3DdhfIudUL/R6nVcWd1vTHQTYHDQmA+A4syaTAoJVr+k/tXeF3yYsJOdC4h6ITMbRaQdASRueanKUKTRy7xYnFF6YNGBJQ3jNx+LYmbem/pJePFzZPDvQAwOBsy2LPgtRg6Y5MbYbaBZicdAg=
+	t=1761213807; cv=none; b=RNLKXcWMKSGx6lCqadyfllFGmR9Sisz4SGd7pupF1odJGlDsMK1kDTzt1vQiKnQTiEzKAe26oM3o2Jfgctm6m6vTN6z0symtqfThlnhv1kPc2WEaK8CNoZOaCQ2iBJ4nvoudRDDDImO03D5zU3Qgh2SnS9QSJPXp6s7HCVXlHNA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761213165; c=relaxed/simple;
-	bh=VzrZOgYn8CZVzBcsfs2UqdIG8pkiX7gsZ+Rc7+O5leQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XZvAaCY3CnfXklLvtPc5mdozADqwUx6LSj3ZavNvkmwypMj8Fm61bHU3n7yk5eUc+V8o3/P3W62lChpo2ep3subCPoVsOImSjflN7cMmp81npOfCQahfrIloK9eFGQOS5tfzlFtBXNouS+MnZSVtbTj10z4KVT9pjpFkH+N2gYM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=e5FNKPF0; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59N6kth3015109
-	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 09:52:43 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=lj4HGsR9qRam1xu/E/CQi8Qt
-	OyeipH/qWlPK+yXMX3s=; b=e5FNKPF0Zf0SW+bOQun0ZKKrCe4aazHrrBYYJtZr
-	CcQvJguaZm0s6DGPnNakYReyeqfAuv4cBK2SfjdMxZBF0TE8KdhPWtlX1tnGo+j/
-	BWFz035c9Y/jdFQNMeyhu0LVKI/NSAQ1R0P3FbrjuX/HJoipzNRDzsOQ4zB6qp/C
-	5jd7BVk53ENCamvpoqM3kjiXDnfna0NC53B66StBK+1GwJPbqHfpY4yiIi/EgEtP
-	s3MU2YhUzV1yWcuiO4c6CWgqrRfKTBTTu+uMo5MmuNZS4hkqlVnI5DJf1UFcW5wm
-	vPpCj04lc/8VxEWLEeWRec+E+xF2eyD/1UntRiHwStNZYA==
-Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com [209.85.219.72])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49xhe0nu52-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 09:52:43 +0000 (GMT)
-Received: by mail-qv1-f72.google.com with SMTP id 6a1803df08f44-7916b05b94bso22614796d6.0
-        for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 02:52:42 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761213162; x=1761817962;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+	s=arc-20240116; t=1761213807; c=relaxed/simple;
+	bh=+p1CXHiLaIPMryIwnOqeXs1RBYrS5XH1NSl8EPkHO8A=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=NnP4G6vOxSKbbKd1GwPi8ePtzUExuNVtL/bUE4W+aS334mLYfz4bBXC+S8JifH87sqOmRqvzpHQSa2RKHuNvsRjRF/anwPirjvnV+H+2r7lOPrYJ4RnuuA7n3K+rBOsPXJIjOLYk3GYKq9tM/k/W+I46AStxzNZyhV1sW/qRr+4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ZQZI/bfu; arc=none smtp.client-ip=74.125.224.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yx1-f54.google.com with SMTP id 956f58d0204a3-63e330a1360so619983d50.3
+        for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 03:03:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1761213804; x=1761818604; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=lj4HGsR9qRam1xu/E/CQi8QtOyeipH/qWlPK+yXMX3s=;
-        b=YFHn/eY0TW8g/FCr6MWXzFR1JdTMzLjC0Xt4f3Bt2hdyypzidjWLKII5NH71vJZnpD
-         sFSntAQ5xyza8k1glNFkwmmv7+wK7/jKIosIwQCIF2tL03oCx1q6XRiQ7qMKIHCLoEzB
-         hfgtjRFrERU8pgf1tOq2QED+DGRbV0TyygWX0OxZe0M3qcu/iST9E7k04X+l3SdBuH+1
-         yOObC5Qb97B5sjknF/IbY7Q6J/0wZPrs4koCELsU1fZsddshsG53dkDWBtd9z5gsq2E1
-         35cs89TmrKLX9tMo8QxlHlbxqJo/tYxaP01lWTtTYVryPrA9D5lD7zZa2ZjUgJZFxYrY
-         joOw==
-X-Forwarded-Encrypted: i=1; AJvYcCWaxxCbGVflTh15pXWOqKehTykAfpPiZex3k77ldFVCbHSzkYaeNED1g169uPk0Eo+XYTtMZJaXjZJ4@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw6UBhghZIFmN/YpbS2PdcJPjKJCfmK5zE7mfQuBP+eUiECYvjx
-	hCdaehUVtm/eikEvAva+7qmrHJQYzBFG4nG7QD7wDffKyxfH0kBe9wJ1Q3AieViMQ19ABfErMyV
-	GkaYoFDI2TTXZxAJnCQSrWFgMOkFELGCFDAsldSGfyWX2zsMyGcqGeN/qMTKjLm8y
-X-Gm-Gg: ASbGncvJ1yccyjCFC/gyoM+ucZgnb4N3xg5cy7jUj36GRoGpZkJlGfCtLkN9shes+LP
-	HnFYg+uGKstbBfjej/Pi09QlIHl4nKpinKLyWVr9WyZAM7kU7TtWgGmuMfJPlIa4AFNHIYxlHzy
-	DKjG5buS3fwywZmU2830MYuBmBmcMuwicv5CXlQTN4kSpK23b5qYkad2tN1XzqMsjtOCdsHQgd2
-	3BynQWZA+FFz9ygOjL5XA8DzjlXyG0WMw29rmmVRUqHk2Zzh0TdZRU6B8gKMuriuzIHkzqyCz84
-	+/eMs2eFSHUAT/234oh0HR4GAhJBXB/DDb1O+FWDBjKOHJVuwzft+nGp8gsi+GNzvpUNOGStZtS
-	esRmVuHQG2BlhzOFWaFMZbtKbxAkaTjMAjBcwi7Jscta6N/+CGuJVRPqCZCNQ
-X-Received: by 2002:a05:6214:2406:b0:87d:e77e:4df1 with SMTP id 6a1803df08f44-87de77e4e55mr114575326d6.60.1761213162136;
-        Thu, 23 Oct 2025 02:52:42 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IH7AbIcMz4qaa9yIcpZvpwREt3p4UM9idjvFlz0HEChINWcK7/GEpAuVvvqWLIzfePwg8PadQ==
-X-Received: by 2002:a05:6214:2406:b0:87d:e77e:4df1 with SMTP id 6a1803df08f44-87de77e4e55mr114574926d6.60.1761213161613;
-        Thu, 23 Oct 2025 02:52:41 -0700 (PDT)
-Received: from yuanjiey.ap.qualcomm.com (Global_NAT1_IAD_FW.qualcomm.com. [129.46.232.65])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-87f9de7beafsm12276226d6.14.2025.10.23.02.52.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 23 Oct 2025 02:52:41 -0700 (PDT)
-Date: Thu, 23 Oct 2025 17:52:29 +0800
-From: yuanjiey <yuanjie.yang@oss.qualcomm.com>
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: "Rob Herring (Arm)" <robh@kernel.org>, dri-devel@lists.freedesktop.org,
-        mripard@kernel.org, linux-kernel@vger.kernel.org,
-        aiqun.yu@oss.qualcomm.com, marijn.suijten@somainline.org,
-        abhinav.kumar@linux.dev, simona@ffwll.ch, devicetree@vger.kernel.org,
-        tingwei.zhang@oss.qualcomm.com, krzk+dt@kernel.org,
-        freedreno@lists.freedesktop.org, neil.armstrong@linaro.org,
-        quic_mkrishn@quicinc.com, linux-arm-msm@vger.kernel.org,
-        lumag@kernel.org, airlied@gmail.com, sean@poorly.run,
-        maarten.lankhorst@linux.intel.com, tzimmermann@suse.de,
-        jonathan@marek.ca, robin.clark@oss.qualcomm.com,
-        quic_khsieh@quicinc.com, conor+dt@kernel.org,
-        yongxing.mou@oss.qualcomm.com
-Subject: Re: [PATCH 12/12] dt-bindings: display/msm: qcom,kaanapali-mdss: Add
- Kaanapali
-Message-ID: <aPn63QSJL52HmhGZ@yuanjiey.ap.qualcomm.com>
-References: <20251023075401.1148-1-yuanjie.yang@oss.qualcomm.com>
- <20251023081736.1251-1-yuanjie.yang@oss.qualcomm.com>
- <176121209123.1694835.2815069098750745260.robh@kernel.org>
- <10999a80-df1a-45c5-ba1e-e64b2afeeb4f@oss.qualcomm.com>
+        bh=oWquFxQQ4MHJSF9//VvQ/C1WhYfIG1u7wl2C5TWDxwA=;
+        b=ZQZI/bfu4tN3zB/Za0uaqFtM7QQVYhpAmBbheuFuY/dFrppF09xN91WQDq9Q0xsdL0
+         iRxvtXLLWi3Pb3dyMFz5bK9ofdCHYNkAOBwQ8FvEiWGs22BYJGXPFiXU7kqTfr18OXoA
+         xpEOx3Gtan+qmmgc2CFATsIfIjfFuFzxobcO+lAAAj7wzIfDHNdqqV3fnv62xCiQipIr
+         v8kttkQuNCKPGkLm0TEvTc4NyequWjt9YuebMxjuIy7fSO1uu2hUp9gjPwhkIeXmUKhS
+         v0BJyV9yxxV19fN11HWseqfzei0R99RbUbzO1nrGjKNZZi2fOa9WlGGE/CINnuKYiVBI
+         H0xg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761213804; x=1761818604;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=oWquFxQQ4MHJSF9//VvQ/C1WhYfIG1u7wl2C5TWDxwA=;
+        b=dAUb9tyUhCI6ERyONbsBOollMaYUyLjK9xf5BsyDSWRBTLUhxPtSShtkt2JgfNZa5O
+         AF+swCseSsGHFv6YGWVRM1AwxzPVR24jBVFzSk2xYfCRb8p47GlCeMaGsA5GAMWdztxB
+         gXyDsyOF0XlCHeaP1qQmwlD0ezmp/RNZWBCtLNOoZXJFQMeTApYHL8ShFviydYWtPmpj
+         aiTu+vi0fxrR2XwSaH1YY6lOQWAS9Rgm6UiGDlq9kBxtiXgNnqpgVeT3JvucTpja4gjm
+         FH1qNooNbeSaOZvq+BFvGTo0AFi9c6MWoeABcy9s0I/HeErQssNv72Tpu/JqWD9hJUGI
+         OU0w==
+X-Forwarded-Encrypted: i=1; AJvYcCW5MiHzPMFSpYE8ekavVoHqhgPkEDeBQHVnnJH4dSkqJ1B3Df2lqmnk27DlfI5n/QU6oYyRdyLTq24U@vger.kernel.org
+X-Gm-Message-State: AOJu0YyoyqGP1k65U/v0Mk+QiAG1tZqfkUt6EYQ8BzG8BXilgRBekz63
+	uk1nX1JoEUlmlmaKK4ARd9E/DRNJwR4zAKX9mPFTYdzIGD0Pgjq5Ub2xg3AQ4tqI2kAv2JCMTRY
+	GnP7QCHlqmVxoicbuC6BBgdDGkVIRHa47egnb/Qr0ug==
+X-Gm-Gg: ASbGncuiJOLyLAAknaNqHvJe4gGn3GmddnKbc3rltRfakIwwJRuUxUFspDK8hDVhiev
+	ny6MIqiD9NZyjcPCKJp/L8ZZPZ+ljqG+o5gW6xTXxa0QL/eMC0pNwTB+sjXcXdsBvofDov7RQvk
+	NhSthivsqf8WEu+DJnoKyaAUAPEv1dsNIiYms2fD5g9WV5Z2e6L0FaCz1p4b3ht931V3/CO5uMz
+	M0pwsc0Igiz96ubep2pKfspC4hxsq/kEmAdROd/ya6OVrZyGoIkDfGNS1CYCQ==
+X-Google-Smtp-Source: AGHT+IHYTuBS5tdkgCmTIC44x/jualH/JELvua1Z+qzp00tin6cE2MKOBedS1C2f62vL4/dVJ0lyn45HjIoQ+rR7MQ4=
+X-Received: by 2002:a05:690e:c42:b0:63e:33a7:cdf0 with SMTP id
+ 956f58d0204a3-63f377d2574mr1315040d50.14.1761213804328; Thu, 23 Oct 2025
+ 03:03:24 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <10999a80-df1a-45c5-ba1e-e64b2afeeb4f@oss.qualcomm.com>
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDIxMDE2NyBTYWx0ZWRfX8H0QPRm1xB7T
- B8iMb8hM08k5yESjp5pZwlszh802DHmgck9OZb4P4G+QZ3pKKkAwoWxv4zjjPPyFY7Bn4UE840W
- NOKy+pf0sitL81ej7p9IvQmA6+/sK9ctaVf+HcoMb1k9/WdgAbCnvmMjNlVD8xJ8jLhpoeLW3qW
- 8vUzV2jjc9Bv3PgsFkNnuLCbi5ZEUGeHYwpXiTZY9kB4+DhP7NUzEwxSxV4iRclgt3+fpoXZNRi
- Vml4q9KLeQu9mcLLcB9Ef7kEBhtDpfeYp4bP8cRcJge+7glHFgZmDgk/s/oK5J0UBsSX2FT3Qeh
- 1CObxHIpK1XkLgvZVGl/FhXjeZOsh+Q7ZJRgLcc13ZkcFFZtITLSwaX/XnwJNfSIfdOOF6CSzHI
- caF5dGq8gU0j6HvrHZgE0a746MXHcw==
-X-Proofpoint-ORIG-GUID: bL2-E8cqrEINeIOOz3EqXaJyE_15hbWv
-X-Authority-Analysis: v=2.4 cv=WYUBqkhX c=1 sm=1 tr=0 ts=68f9faeb cx=c_pps
- a=7E5Bxpl4vBhpaufnMqZlrw==:117 a=C3Dk8TwHQYyIj7nOf9RCJw==:17
- a=kj9zAlcOel0A:10 a=x6icFKpwvdMA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=EUspDBNiAAAA:8 a=i8jsQQnW1KsEJaHduVgA:9 a=CjuIK1q_8ugA:10
- a=pJ04lnu7RYOZP9TFuWaZ:22
-X-Proofpoint-GUID: bL2-E8cqrEINeIOOz3EqXaJyE_15hbWv
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-10-22_08,2025-10-22_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 adultscore=0 bulkscore=0 impostorscore=0 spamscore=0
- priorityscore=1501 clxscore=1015 malwarescore=0 lowpriorityscore=0
- phishscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2510020000
- definitions=main-2510210167
+References: <20251016-gs101-pd-v3-0-7b30797396e7@linaro.org>
+ <20251016-gs101-pd-v3-8-7b30797396e7@linaro.org> <CGME20251022110738eucas1p2cee28096ca5c9c6a802e2190d88ccf21@eucas1p2.samsung.com>
+ <CAPDyKFq2esPos=D-eVz6w1VXq=4LYi6fx54K4TvsUi4JqUJOaQ@mail.gmail.com> <57bacc06-8a5e-4284-a520-c5d2a56545e9@samsung.com>
+In-Reply-To: <57bacc06-8a5e-4284-a520-c5d2a56545e9@samsung.com>
+From: Ulf Hansson <ulf.hansson@linaro.org>
+Date: Thu, 23 Oct 2025 12:02:48 +0200
+X-Gm-Features: AS18NWDk2cnwAbu5KPIINOVhITzbpKKTXME95wNCKMMbO1h01gk_WEP7weXC8KQ
+Message-ID: <CAPDyKFrCS1PGwPeZd2ahZ=wKXCqPj93qAJ7V-ELELLA_OwgdSw@mail.gmail.com>
+Subject: Re: [PATCH v3 08/10] pmdomain: samsung: selectively handle enforced sync_state
+To: Marek Szyprowski <m.szyprowski@samsung.com>, Krzysztof Kozlowski <krzk@kernel.org>, 
+	Rob Herring <robh@kernel.org>
+Cc: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
+	Alim Akhtar <alim.akhtar@samsung.com>, Conor Dooley <conor+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Peter Griffin <peter.griffin@linaro.org>, 
+	Tudor Ambarus <tudor.ambarus@linaro.org>, Will McVicker <willmcvicker@google.com>, 
+	kernel-team@android.com, linux-arm-kernel@lists.infradead.org, 
+	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Oct 23, 2025 at 11:36:42AM +0200, Konrad Dybcio wrote:
-> On 10/23/25 11:34 AM, Rob Herring (Arm) wrote:
-> > 
-> > On Thu, 23 Oct 2025 16:17:36 +0800, yuanjie yang wrote:
-> >> From: Yuanjie Yang <yuanjie.yang@oss.qualcomm.com>
+On Wed, 22 Oct 2025 at 20:39, Marek Szyprowski <m.szyprowski@samsung.com> w=
+rote:
+>
+> On 22.10.2025 13:06, Ulf Hansson wrote:
+> > On Thu, 16 Oct 2025 at 17:58, Andr=C3=A9 Draszik <andre.draszik@linaro.=
+org> wrote:
+> >> Unconditionally calling of_genpd_sync_state() causes issues on
+> >> platforms with child domains as the parent domain will be turned off
+> >> before the child domain was even registered during boot.
 > >>
-> >> Add MDSS/MDP display subsystem for Qualcomm Kaanapali.
+> >> This in particular is an issue for the upcoming Google gs101 support -
+> >> all operations on child domains registered after the parent domain
+> >> misbehave.
 > >>
-> >> Signed-off-by: Yongxing Mou <yongxing.mou@oss.qualcomm.com>
-> >> Signed-off-by: Yuanjie Yang <yuanjie.yang@oss.qualcomm.com>
+> >> Add a flag to the probe data to be able to sync_state conditionally
+> >> only, and enable that flag on the two platforms currently supported by
+> >> this driver.
+> >>
+> >> Signed-off-by: Andr=C3=A9 Draszik <andre.draszik@linaro.org>
+> >>
 > >> ---
-> >>  .../display/msm/qcom,kaanapali-mdss.yaml      | 298 ++++++++++++++++++
-> >>  1 file changed, 298 insertions(+)
-> >>  create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,kaanapali-mdss.yaml
+> >> v2:
+> >> * use bool for need_early_sync_state (Krzysztof)
+> >> ---
+> >>   drivers/pmdomain/samsung/exynos-pm-domains.c | 5 ++++-
+> >>   1 file changed, 4 insertions(+), 1 deletion(-)
 > >>
-> > 
-> > My bot found errors running 'make dt_binding_check' on your patch:
-> > 
-> > yamllint warnings/errors:
-> > 
-> > dtschema/dtc warnings/errors:
-> > Documentation/devicetree/bindings/display/msm/qcom,kaanapali-mdss.example.dts:26:18: fatal error: dt-bindings/interconnect/qcom,kaanapali-rpmh.h: No such file or directory
-> >    26 |         #include <dt-bindings/interconnect/qcom,kaanapali-rpmh.h>
-> 
-> Please do what you did with the other clocks and simply refer to it
-> as some vague &rpmhcc_xo_clk which doesn't actually need to be defined
+> >> diff --git a/drivers/pmdomain/samsung/exynos-pm-domains.c b/drivers/pm=
+domain/samsung/exynos-pm-domains.c
+> >> index 638d286b57f716140b2401092415644a6805870e..15a1582aa92103a07335eb=
+681600d9415369fefd 100644
+> >> --- a/drivers/pmdomain/samsung/exynos-pm-domains.c
+> >> +++ b/drivers/pmdomain/samsung/exynos-pm-domains.c
+> >> @@ -20,6 +20,7 @@
+> >>   struct exynos_pm_domain_config {
+> >>          /* Value for LOCAL_PWR_CFG and STATUS fields for each domain =
+*/
+> >>          u32 local_pwr_cfg;
+> >> +       bool need_early_sync_state;
+> >>   };
+> >>
+> >>   /*
+> >> @@ -69,10 +70,12 @@ static int exynos_pd_power_off(struct generic_pm_d=
+omain *domain)
+> >>
+> >>   static const struct exynos_pm_domain_config exynos4210_cfg =3D {
+> >>          .local_pwr_cfg          =3D 0x7,
+> >> +       .need_early_sync_state  =3D true,
+> >>   };
+> >>
+> >>   static const struct exynos_pm_domain_config exynos5433_cfg =3D {
+> >>          .local_pwr_cfg          =3D 0xf,
+> >> +       .need_early_sync_state  =3D true,
+> >>   };
+> >>
+> >>   static const struct of_device_id exynos_pm_domain_of_match[] =3D {
+> >> @@ -179,7 +182,7 @@ static int exynos_pd_probe(struct platform_device =
+*pdev)
+> >>           * reset during boot. As a temporary hack to manage this, let=
+'s enforce
+> >>           * a sync_state.
+> >>           */
+> >> -       if (!ret)
+> >> +       if (pm_domain_cfg->need_early_sync_state && !ret)
+> >>                  of_genpd_sync_state(np);
+> > The call to of_genpd_sync_state() was intended as a temporary solution =
+here.
+> >
+> > Potentially, if we would be able to distinguish what PM domain that is
+> > causing the problem on the Exynos platforms, we could set
+> > GENPD_FLAG_NO_STAY_ON for that genpd instead.
+>
+> Well, this of_genpd_sync_state() "workaround" has to be applied only to
+> the power domain of the display controller device. It can be replaced by
+> the following check on the legacy Exynos systems:
+>
+> if (IS_ENABLED(CONFIG_ARM) &&
+> of_device_is_compatible(np, "samsung,exynos4210-pd") &&
+> (strstr(pd->pd.name, "LCD") || strstr(pd->pd.name, "DISP")))
+> pd->pd.flags =3D GENPD_FLAG_NO_STAY_ON;
 
-Thanks for your tips, let me check and fix it.
+Oh wait, perhaps better to just power-off these PM domains before
+calling pm_genpd_init(), if that can be done safely?
 
-Thanks,
-Yuanjie
- 
+At least that would guarantee the reset to happen before the display
+driver gets probed. Instead of relying on genpd_power_off_unused()
+(late_initcall_sync) to do it.
 
-> Konrad
+>
+> I assume that this information cannot be coded in device tree to make it
+> somehow generic...
+
+Right, in principle we would need a new DT property for a power-domain
+provider, like "broken-hw-reset", because we don't have a reset-line
+to pull.
+
+>
+> Best regards
+> --
+> Marek Szyprowski, PhD
+> Samsung R&D Institute Poland
+>
+
+Kind regards
+Uffe
 
