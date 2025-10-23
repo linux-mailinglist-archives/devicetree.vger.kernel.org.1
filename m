@@ -1,233 +1,187 @@
-Return-Path: <devicetree+bounces-230351-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230352-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB244C01A73
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 16:10:03 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 75E21C01A69
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 16:09:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E17963B0B5B
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 13:59:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 974E03B9BFD
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 14:00:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D70C32C933;
-	Thu, 23 Oct 2025 13:58:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="jPwUFSeg"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C2E132D7F7;
+	Thu, 23 Oct 2025 13:58:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
+Received: from mail-vs1-f49.google.com (mail-vs1-f49.google.com [209.85.217.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A552B32B997
-	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 13:58:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D5A3320CA2
+	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 13:58:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761227922; cv=none; b=LiwkhH1zS4cVeZELJp3oKj1GsnjF79hNee7diOH5RCo/NCVD7jBP1pc9mY7bUo51i19nrSY+ujJkEHUYyzYC0U+uUCXfCTQhH1vEI9lVshSrPxbma6tnH6ShFKs4jDAaNOngLwR3jz+zRyd3zsK+4CdKAQ2DWG2igSR6yJa1pEs=
+	t=1761227931; cv=none; b=FnmELAm58DwXQ5wUnVGhqflQDUrzauHpR0lMEstkcBSJN1tiU/KLGNQ4i+mmQWi44UcrjKEzlfl71I7Jnj4+iG+6zKujFbhX/v3MnixXt6p/VcIym1Q+2cLbMDNMq7ct/41rrpo/3et1+EV6l6FDPC8dE8FenZZ73HH8S+hpswg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761227922; c=relaxed/simple;
-	bh=50hw/72TpRU+0O/DF7+aRtgAC5bIC3qKK0GLCIJ0bWY=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Vl+KrfJeQ+pjts6eZ+104qBlTAN2Uhz8Vugf8I6zVE0g40RkBmik+rcgOkNEF41GnK9w34jeaH+3TwEvv2tRar7ZqJOTw3AO+36Jq0/78MLrPI43jrS/A3fHW1n3oNkqmQEj/FaKplMGkmp0ybbli6giNELHhf+kemZQKBSkx7k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=jPwUFSeg; arc=none smtp.client-ip=209.85.218.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-afcb7ae6ed0so197311066b.3
-        for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 06:58:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1761227919; x=1761832719; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=EDOk3wzJ/Csdlnb+sDEwzVll8zo5EaNbS49j4wNtazc=;
-        b=jPwUFSegNA5zL2D0GbNPVyGJVe5ioYTQn6Gb66hqPUcR24NIenJE3WyW+y0WmCbicr
-         GNMwqksrzBLZDyhC5Zp/XFiC3X5I1M+DOHjAehpuHTNqH3awHZEFTMKYKz9UCXNAiayI
-         nWJRMT5Ou4R9ICg20A/Gcrz4JVr5s4YKgXyT8Lk8kncrXkfmciT6InsvRvrWm3YckICB
-         5Ep8Im8wdDFr5oB1tyIWTBVkFexPo8rRSzZ/wqaXXsGjSY11Ggenu8OroN3waldp58wv
-         Rx0GmGLmSBVBM8JsUUijJOpEHPJb9eSDA8Ka5h7uzsXVo0sxUfoJQQiZ9xPHfaOUREZq
-         UeXQ==
+	s=arc-20240116; t=1761227931; c=relaxed/simple;
+	bh=70l9t4VdfE1npK3VaiMwUNG+xoIszb0NPTKI/djYJrM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=qbEsVOWzJS3mS7SHMfKP//2uMJrnf/Krw5wyLeV2YInWAhS6LHR3dpVpFwwahqglN4+RahS64ZItBU4TxoS2DxwICqhPtXxeeO8lriR9AKXrAcxwFBdxerC7TNELFtLF/QKZj5tBLrnO+cpC+HGqOG0Dulrx015aPKUSmhFTH7Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vs1-f49.google.com with SMTP id ada2fe7eead31-5db385e07a6so132319137.3
+        for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 06:58:49 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761227919; x=1761832719;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=EDOk3wzJ/Csdlnb+sDEwzVll8zo5EaNbS49j4wNtazc=;
-        b=m4GFB0hfLp08yJc0V+vJ52tHhH7lOq/5rXBx9dQ0MdarRzvBrfNwVp1mZ7XFsqemf0
-         TDLADGyChdW+rNnBzehmvTntU+0WMrNoSjRDGj2j7XOwbI26nwYkp3NrkN01S1vqn+Vc
-         m4S5Qf7iGV9WAD2qx+WIOqjmTJkcrfertgYGJW2MpbaPI7E/XO6hacGobVBcqmSWzv0f
-         swZy9Jrw/cmvCvFIxJ3KpgL4qWeyHUXNaX1jZf1bl1cveoXM/sRGuoKMZOi8bV+wCXvm
-         FadRC0xPA/n4GCOOzEDAnv+F1NhEaeg9UfCIKzMx3QfMhZcWlcGo8tIZjMgUkWOcK554
-         RWCg==
-X-Forwarded-Encrypted: i=1; AJvYcCWTIiwvflMCBcvqvKf0z99eUpY4TPQItuIqLhAR2Djj85TqlxmBbAy1KQ93CUh5KMiaRHDnBYPlEZff@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz0ssdOK0kCTYdmDQzJtvQZaeD63UiGtKRnCcVHA/EftNHdmnU/
-	X3mx1N5loEerFCLytPeRg67goZ0m1o2JE+OW7a9FOjj7jVaWK1BkRzKnalwjQhQU4co=
-X-Gm-Gg: ASbGncsjzzvdpkuUDXzXByP6L5hwzsLaoF12w1x9pAwCxhLxTsj4LSZhBpfLLxQq0YZ
-	N0A3K30x1J0BiNGAOwfkNbuOWQvZF3AZnG+GWSajZ7D0E73y133YmEMaC2CpIbPJtAdlCc+Sqrp
-	H52KnY/I97zOFLVs0MQz3B92nAbYsi/WQl6OeePlyEytURpIJMZZO9AMMm3YEoG1nyyp3qb3FO1
-	yyt+AyRPzru/jgQzFeTrsWVLMtMqxzcWS0PJrzNDwJjvVBbcFCWVrsQrXOJPwqcr0fDqS7ifZsM
-	zGZ0grgKtOAYE4Yew/uWIZAAAYWikHbqhmFCyqb1WgAwdeCDdzfCWpLR+Z3v9Yz4J8EP4+WZRMn
-	YqKCzoE7IYiGxh+hABpPvQXIjwdSmFBO10qdIQLcPOg3oOK3Co/LjtAJ+rgdv8eXTFAUgNPh/H9
-	5WCFy8XCX9mzcWlbhkDAY7ueVdzHBxpe2iglnwKC+t
-X-Google-Smtp-Source: AGHT+IFBx3dgJXH4lEpxnlJJFwOwoH+u/MOZe+M6OK+FLRB/x3UWGEvHv5qUZS/pYvr0WhrpOqUmSg==
-X-Received: by 2002:a17:907:3d9e:b0:b3e:3c1c:d301 with SMTP id a640c23a62f3a-b64769cb8cfmr2888032566b.61.1761227918932;
-        Thu, 23 Oct 2025 06:58:38 -0700 (PDT)
-Received: from claudiu-X670E-Pro-RS.. ([82.78.167.151])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b6d511f8634sm226114066b.29.2025.10.23.06.58.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 23 Oct 2025 06:58:38 -0700 (PDT)
-From: Claudiu <claudiu.beznea@tuxon.dev>
-X-Google-Original-From: Claudiu <claudiu.beznea.uj@bp.renesas.com>
-To: vkoul@kernel.org,
-	kishon@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	p.zabel@pengutronix.de,
-	geert+renesas@glider.be,
-	magnus.damm@gmail.com,
-	yoshihiro.shimoda.uh@renesas.com,
-	biju.das.jz@bp.renesas.com
-Cc: claudiu.beznea@tuxon.dev,
-	linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>,
-	Wolfram Sang <wsa+renesas@sang-engineering.com>
-Subject: [PATCH v8 7/7] arm64: dts: renesas: rzg3s-smarc: Enable USB support
-Date: Thu, 23 Oct 2025 16:58:10 +0300
-Message-ID: <20251023135810.1688415-8-claudiu.beznea.uj@bp.renesas.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20251023135810.1688415-1-claudiu.beznea.uj@bp.renesas.com>
-References: <20251023135810.1688415-1-claudiu.beznea.uj@bp.renesas.com>
+        d=1e100.net; s=20230601; t=1761227928; x=1761832728;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=LHznA4IxR0ryi2cJoCEHN+kBwQ2XKkkZXeR8LA/d1QU=;
+        b=sBrUlVt5beTCsK/AITHSHjhMm64VLeCaiRIimlWHg0Y/IAxlQ5dWM/Ec68Ibdrxo2W
+         LepFXoXKoQfu730da8OaX164ITKM3vkCTQ8oHUztJxbGiXx6ZwfQyxDeuMm5aO/pXL5D
+         5lyIW6I72dPdvK8/KKh9YLTfn/Fg/25D73tIvFuWnH8UYMBa7ADdLPO2DzAmmyAI8Xhm
+         6znTK24N9NxOGeyHC3jAz0lW2HmNf5IGg6XPT+HzTOJRzCcFiMldK8mlWNua+FhgegWr
+         VaLIeYo6hP2XD3i5JIF47tDAIfELtGTG0QKuIwOsiOpn15NUDvSruqCf7CzvEaj2gL8C
+         K7ag==
+X-Forwarded-Encrypted: i=1; AJvYcCWfxIwzfk4WeifKlsyjJyWfWxhNu/KHBkQzAca7wY2llVTJio61X1Z3x+aAW2T2mSxFi+x6bsuiXixT@vger.kernel.org
+X-Gm-Message-State: AOJu0YwCrmDO2IJ8wnTEK7/i3XvlQE+Tsd4qkOwkY4IIxwCzozuhucBJ
+	9RxMarcTbfmLQ6a/ktUIqobGDjW9LeprIhOcKhpwHIl8xDBSuroqXTjiqyQNzkri
+X-Gm-Gg: ASbGncun+ev+F+79buLcmjeHO6Kv7dvBSsUuC0JHnf49bOGUa7rt6m3DgPAZlmePWrR
+	gUnYCJAVQYhuHrxB0UpxWcvJnsj561XgRNpFLbEXpmeWTBR+fTomHDZ/PHawNtiRxJ0t8Zy5Gts
+	VeAa5rMmD8AeyDPwnzi9P4yR6ejU5swhMYCzLqqMs52mRjxGq4bJApycRrjtnTNHx4DfVVYBe3z
+	YR6syAsoq/OyIp/olEZ7LlLqkzB+D5V7Qn5UFUgGQsHWKlnfpjeWuxqr71SLSmygZGFSu02aOLQ
+	eppMO+B1Ik9sPvsxbangFO0Ye0yW22LWRfqoH0TjShfuD7PQyl5TOfm+AEmWPGYvIjyNMf4Dvoa
+	mr9vBQ/LfLqckJIU4eMqQYPrwSqL2r/uUX4fKqb2J31AIOocbR69BHGpk8bamuGL2IwRs53pnPy
+	Rf+NwMrl3kwEwl5Nb1jgBGQ6hoIj4VyZYrEpOE5TL+/nqQuf6Q
+X-Google-Smtp-Source: AGHT+IHqtoIvZUSvKT6ZS3EyKeL/v0WWYjBxe82KebI/VgU4V4uD+1h2Vb8sJGiGanBKhBUFm6KiqQ==
+X-Received: by 2002:a05:6102:54aa:b0:5d5:f6ae:38d0 with SMTP id ada2fe7eead31-5d7dd6da309mr7045594137.37.1761227928204;
+        Thu, 23 Oct 2025 06:58:48 -0700 (PDT)
+Received: from mail-vs1-f43.google.com (mail-vs1-f43.google.com. [209.85.217.43])
+        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-5db2c77bc89sm875131137.3.2025.10.23.06.58.46
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 23 Oct 2025 06:58:47 -0700 (PDT)
+Received: by mail-vs1-f43.google.com with SMTP id ada2fe7eead31-5db37a935f1so151788137.1
+        for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 06:58:46 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVltxunTokJc4zvser+x/JZpHIPJ4nwze1ydqHKvvYcUuHImCBUjypPk7vQZLSP7G1turarvHTSPK1o@vger.kernel.org
+X-Received: by 2002:a05:6102:c09:b0:5db:3935:1636 with SMTP id
+ ada2fe7eead31-5db393518f0mr253967137.26.1761227926239; Thu, 23 Oct 2025
+ 06:58:46 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20251009-clk-ssc-v5-1-v5-0-d6447d76171e@nxp.com> <20251009-clk-ssc-v5-1-v5-6-d6447d76171e@nxp.com>
+In-Reply-To: <20251009-clk-ssc-v5-1-v5-6-d6447d76171e@nxp.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 23 Oct 2025 15:58:35 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdU-UkzLnrPpBVyMH0DtgubxE_spUYbxtpO+5dmkFFqdcQ@mail.gmail.com>
+X-Gm-Features: AWmQ_bl-Wzz5qd5CCY2fSVugSIzDYGwiZQethxZEtHbYBjXjOaCfH3VbWwjwxpU
+Message-ID: <CAMuHMdU-UkzLnrPpBVyMH0DtgubxE_spUYbxtpO+5dmkFFqdcQ@mail.gmail.com>
+Subject: Re: [PATCH v5 6/6] clk: scmi: Add i.MX95 OEM extension support for
+ SCMI clock driver
+To: Peng Fan <peng.fan@nxp.com>
+Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Sudeep Holla <sudeep.holla@arm.com>, Cristian Marussi <cristian.marussi@arm.com>, 
+	Sebin Francis <sebin.francis@ti.com>, Brian Masney <bmasney@redhat.com>, 
+	Dan Carpenter <dan.carpenter@linaro.org>, linux-kernel@vger.kernel.org, 
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	arm-scmi@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
 
-From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Hi Peng,
 
-Enable USB support (host, device, USB PHYs).
+On Thu, 9 Oct 2025 at 05:49, Peng Fan <peng.fan@nxp.com> wrote:
+>  - Introduce 'clk-scmi-oem.c' to support vendor-specific OEM extensions
+>    for the SCMI clock driver, allows clean integration of vendor-specific
+>    features without impacting the core SCMI clock driver logic.
+>  - Extend 'clk-scmi.h' with 'scmi_clk_oem' structure and related declarations.
+>  - Initialize OEM extensions via 'scmi_clk_oem_init()'.
+>  - Support querying OEM-specific features and setting spread spectrum.
+>  - Pass 'scmi_device' to 'scmi_clk_ops_select()' for OEM data access.
+>
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Tested-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
-Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
----
+Thanks for your patch!
 
-Changes in v8:
-- none
+> --- /dev/null
+> +++ b/drivers/clk/clk-scmi-oem.c
+> @@ -0,0 +1,103 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * The Vendor OEM extension for System Control and Power Interface (SCMI)
+> + * Protocol based clock driver
+> + *
+> + * Copyright 2025 NXP
+> + */
+> +
+> +#include <linux/clk-provider.h>
+> +#include <linux/of.h>
+> +#include <linux/scmi_imx_protocol.h>
+> +#include <linux/scmi_protocol.h>
+> +
+> +#include "clk-scmi.h"
+> +
+> +#define SCMI_CLOCK_CFG_IMX_SSC                 0x80
+> +#define SCMI_CLOCK_IMX_SS_PERCENTAGE_MASK      GENMASK(7, 0)
+> +#define SCMI_CLOCK_IMX_SS_MOD_FREQ_MASK                GENMASK(23, 8)
+> +#define SCMI_CLOCK_IMX_SS_ENABLE_MASK          BIT(24)
+> +
+> +struct scmi_clk_oem_info {
+> +       char *vendor_id;
+> +       char *sub_vendor_id;
+> +       char *compatible;
+> +       const void *data;
+> +};
+> +
+> +static int
+> +scmi_clk_imx_set_spread_spectrum(struct clk_hw *hw,
+> +                                const struct clk_spread_spectrum *ss_conf)
+> +{
+> +       struct scmi_clk *clk = to_scmi_clk(hw);
+> +       int ret;
+> +       u32 val;
+> +
+> +       /*
+> +        * extConfigValue[7:0]   - spread percentage (%)
+> +        * extConfigValue[23:8]  - Modulation Frequency
 
-Changes in v7:
-- none
+What is the unit of this?
+According to the code below, it is in Hz, so it is limited to 65535 Hz.
 
-Changes in v6:
-- collected tags
+> +        * extConfigValue[24]    - Enable/Disable
+> +        * extConfigValue[31:25] - Reserved
 
-Changes in v5:
-- none
+Center, up, down, could be stored here, I assume?
 
-Changes in v4:
-- none
+> +        */
+> +       val = FIELD_PREP(SCMI_CLOCK_IMX_SS_PERCENTAGE_MASK, ss_conf->spread_bp / 10000);
+> +       val |= FIELD_PREP(SCMI_CLOCK_IMX_SS_MOD_FREQ_MASK, ss_conf->modfreq_hz);
+> +       if (ss_conf->method != CLK_SPREAD_NO)
+> +               val |= SCMI_CLOCK_IMX_SS_ENABLE_MASK;
+> +       ret = scmi_proto_clk_ops->config_oem_set(clk->ph, clk->id,
+> +                                                SCMI_CLOCK_CFG_IMX_SSC,
+> +                                                val, false);
+> +       if (ret)
+> +               dev_warn(clk->dev,
+> +                        "Failed to set spread spectrum(%u,%u,%u) for clock ID %d\n",
+> +                        ss_conf->modfreq_hz, ss_conf->spread_bp, ss_conf->method,
+> +                        clk->id);
+> +
+> +       return ret;
+> +}
 
-Changes in v3:
-- collected tags
+Gr{oetje,eeting}s,
 
-Changes in v2:
-- this was patch 15/16 in v1:
-- dropped sysc enablement as it is now done in SoC dtsi file
+                        Geert
 
- arch/arm64/boot/dts/renesas/rzg3s-smarc.dtsi | 57 ++++++++++++++++++++
- 1 file changed, 57 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/renesas/rzg3s-smarc.dtsi b/arch/arm64/boot/dts/renesas/rzg3s-smarc.dtsi
-index 5e044a4d0234..5586dd43c4d5 100644
---- a/arch/arm64/boot/dts/renesas/rzg3s-smarc.dtsi
-+++ b/arch/arm64/boot/dts/renesas/rzg3s-smarc.dtsi
-@@ -92,6 +92,20 @@ &audio_clk2 {
- 	clock-frequency = <12288000>;
- };
- 
-+&ehci0 {
-+	dr_mode = "otg";
-+	status = "okay";
-+};
-+
-+&ehci1 {
-+	status = "okay";
-+};
-+
-+&hsusb {
-+	dr_mode = "otg";
-+	status = "okay";
-+};
-+
- &i2c0 {
- 	status = "okay";
- 
-@@ -132,6 +146,15 @@ power-monitor@44 {
- 	};
- };
- 
-+&ohci0 {
-+	dr_mode = "otg";
-+	status = "okay";
-+};
-+
-+&ohci1 {
-+	status = "okay";
-+};
-+
- &pinctrl {
- 	audio_clock_pins: audio-clock {
- 		pins = "AUDIO_CLK1", "AUDIO_CLK2";
-@@ -207,6 +230,27 @@ ssi3_pins: ssi3 {
- 			 <RZG2L_PORT_PINMUX(18, 4, 8)>, /* TXD */
- 			 <RZG2L_PORT_PINMUX(18, 5, 8)>; /* RXD */
- 	};
-+
-+	usb0_pins: usb0 {
-+		peri {
-+			pinmux = <RZG2L_PORT_PINMUX(5, 0, 1)>, /* VBUS */
-+				 <RZG2L_PORT_PINMUX(5, 2, 1)>; /* OVC */
-+		};
-+
-+		otg {
-+			pinmux = <RZG2L_PORT_PINMUX(5, 3, 1)>; /* OTG_ID */
-+			bias-pull-up;
-+		};
-+	};
-+
-+	usb1_pins: usb1 {
-+		pinmux = <RZG2L_PORT_PINMUX(5, 4, 5)>, /* OVC */
-+			 <RZG2L_PORT_PINMUX(6, 0, 1)>; /* VBUS */
-+	};
-+};
-+
-+&phyrst {
-+	status = "okay";
- };
- 
- &scif0 {
-@@ -242,3 +286,16 @@ &ssi3 {
- 	pinctrl-0 = <&ssi3_pins>, <&audio_clock_pins>;
- 	status = "okay";
- };
-+
-+&usb2_phy0 {
-+	pinctrl-0 = <&usb0_pins>;
-+	pinctrl-names = "default";
-+	vbus-supply = <&usb0_vbus_otg>;
-+	status = "okay";
-+};
-+
-+&usb2_phy1 {
-+	pinctrl-0 = <&usb1_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+};
 -- 
-2.43.0
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
