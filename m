@@ -1,79 +1,79 @@
-Return-Path: <devicetree+bounces-230347-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230348-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53AADC01A45
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 16:08:28 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id F398DC01A81
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 16:10:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E2439568419
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 13:59:00 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 116105686A4
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 13:59:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A2D83254A4;
-	Thu, 23 Oct 2025 13:58:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A652328B58;
+	Thu, 23 Oct 2025 13:58:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="Klomd+Rx"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="HS4ZHeA4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 202F232142F
-	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 13:58:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 046BA325489
+	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 13:58:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761227914; cv=none; b=EnS7UIdh+nE/onNjdJgOoDcZRNi+JEYZ97VJgzN+mpCQqz/xm6dP1kzygCV0X54i+b4MGM9RPpjuuCu5TAdbTn66GULr3xgF2ugoIXFUgAk05Szj60HqNGjhObebBMqcv1XYC20AO8ACmqmNtpgSSrdXIUQajTF38bTJQDmnKo4=
+	t=1761227916; cv=none; b=EGVu2IsHIZ6pjICiYeTn7pVOPfMohY7/vadd6FblyU6eC95uOrulQtO0LCh9W3HRDw01XVLp/P28NYZogwVQeNKRNSm/E0Q1jhvKHa4oUJ/e5C3LFIXV7qnoA+qZT2v7NifcqD41FQxASDkiFd0qU3QSA6+ZQJY0MhaaOvrHGeo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761227914; c=relaxed/simple;
-	bh=RP8a8zuf1k1PEjcvlI/NCNsC1HRv3VhEnHagA2m9GFk=;
+	s=arc-20240116; t=1761227916; c=relaxed/simple;
+	bh=292vCK5mpBOx2Tupx64vngytF4gnLualvVUEwBWU/to=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=jXnpuUTHuCWUTjRp9AttV44Q6t3ZI+VfrP4kiLrM34zHu3awRjqD9wzAl+V/lqYtjuDF4FbVdELfxQreRbIJ35bp+QxILb91erTFXbGuc786vquM9VqffVobIrLsghtLE2Ee4++MmCDWA0oIgqcH2yUu11JM+VLTN012aM8ND2w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=Klomd+Rx; arc=none smtp.client-ip=209.85.218.46
+	 MIME-Version:Content-Type; b=NuWV1ntC8dxzBaH3lX7/D5brARNtLIr3M+nFYz5JhXdxSWOg0XYXw9xLBb6LnrRh/JcX1ysteR+xhMt8tF9/vT9+msH6ZpjhpHa7G6uDHkTwz8U5+/ROf2Vr2Cc77T+RXbOyIoy330wujaegS39jDSU1LbMruxbrhjouKt4RKA0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=HS4ZHeA4; arc=none smtp.client-ip=209.85.218.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-b3e234fcd4bso159432466b.3
-        for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 06:58:32 -0700 (PDT)
+Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-b3e7cc84b82so193743666b.0
+        for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 06:58:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1761227911; x=1761832711; darn=vger.kernel.org;
+        d=tuxon.dev; s=google; t=1761227913; x=1761832713; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=w0ptn8E/LhDaocVN69/KiZrW/OIwIcPB5zTMwm1G3mY=;
-        b=Klomd+RxX2f0fd1QiAgAJ9RBrqtrzV5Pdskyi4fO7Hw4nDt0xTw3bXBnp4rvaFHkaq
-         WVYea7NJ0Zda3Zzs8nnAAH7N7V+ek2WNnWNGkurd0SJVS5L6RtwIrEkq7syoAfw6X3Db
-         1xpfmftl9LMAnJ6riGN5iVhMBIlic/iD3p8fmi5fKDvAOsV7vImI4MD+jkcJpm/DwRt3
-         M3F3k/JjcWxF+Keny5V9AC/wf8WFoMJDrb8tUtOiLLACuRGL6IoEEajEhULP26PgVcdy
-         vd+v/MTTWTHnkVLh0dHhookFx1F1PhO3kYnVWEHAdjsx2NHUU0uJOMIVolAaLLpY1mVl
-         0jsA==
+        bh=ECxRdi5HH+Y1BbJYjbyAcCHCuJXoR1zvOVp1BwxUGOM=;
+        b=HS4ZHeA42MD6JHFB6QAwiA20GxlI8O2DXQqo+tRV6VMpgtyYn5BK2lZszq9fQUlt2w
+         A50r9G0OLGqr7xyKtq+ln+zwItHV0k1VczfMzkEGYH0gDYNiDukBmbSADJzoM1YwIhHd
+         plHJ3Rlwx6Y3jVo1r4FNPOuPZT857bx7PAN5XTBqpEYs6yNDpz7rQD8WDHYJbnjswtP2
+         QOhzuFyg9xmSfsAPe0jRKNMa5T/stRh3Obko11+dTB9CGg7dHf6xr/nPy8H8DWeFxCbO
+         u9sRhGD7ntj6cQ6LNZ28K6k0UR0CzZGLaAQJ+lKUU4H/7qhoJaUnH/QTnsWbkAazyPn1
+         Z+TA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761227911; x=1761832711;
+        d=1e100.net; s=20230601; t=1761227913; x=1761832713;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=w0ptn8E/LhDaocVN69/KiZrW/OIwIcPB5zTMwm1G3mY=;
-        b=CIwo3RpAjA7bs+voCHqUFzuu8nAGWxCSzj13lZOc6r0LeoCmUyVK6cR/OTuROLYlrO
-         uB8+ulexEeg0FtoP7ucInv75aJY77b2nLCfi6c7auLaFn/1RO+LUhWGrGuYlen1RknPi
-         n/RFk7Kwmv0DcmpwWgwJ7ITFGyVsdjK5BpMpT+tcyVuTbiZI3jyC0e+uJ+53z1LVUkSK
-         ohaCsQpvdnrx/yZKQBJFgB8ZI4ZAQdTksmpqeRCusMlQ8pbTrDr26mbS81dc6/wOVwi0
-         RHK6CSqYgf6m0woj2qLXjzrZIAbHpeHrKRZgKwVeCAgqrfZzl6JFYI1DV8VX+HJzJD9b
-         JH7Q==
-X-Forwarded-Encrypted: i=1; AJvYcCXbS3ld/DQGeQcchTrOnCLtHxOSwqGGE3R1i6VQorbnjTjQuaj/b/8z2RC+TjadqAcxOVdhNq8e7Vin@vger.kernel.org
-X-Gm-Message-State: AOJu0YwjMY9PJTfArUkYBlUdj1i/kNhYOsEo3QVHnye/oosoHjvhgMQ6
-	ydOuwwaYbtWzz/Q2Wa3Vi0uC0qQISxj3Pg52je42xXnzeZAnkBh6Wtw17OyLJduKYCY=
-X-Gm-Gg: ASbGncsT3IvjxRLcyI0uWr5/xGqzoND5bSMc3+wl/Zg5LdBd6L9jQ/FP6sqe82iEBLn
-	158w9SK2GgpQYTypAEoUKubUAh5pAd1xEzla+GtxR+2JOeTGZFUuIVPhdG2Zbf6+1kN/13CFqTv
-	6GnKJy58MynrDBA9RKjQdZ0ISB6lS8ygaSjN8NutHO1d6bA1P4dD1swfoPW8SynBs4H/HlW3MgT
-	TZkkqGRNPRWvnDR2JD4SfVNSRJ92B9AKkZOqJmXKGHBUFW/IUwOntyU5zipzjGSgIZgaxxodZbi
-	0sc1J6JVFYfUu1PotLpCiXreSMbJt5EWZReap+89qhrkmRPXXm28qkbDPKXVcjaTsdIFIXpE6vN
-	hwVNf3Tsv1X1JNszT3zaTpHihTiSY2/AipUnJqjQ27ZFpP78mVsPYHbSLwOesShW4/9UjUGn+86
-	asnvr/9eGKnR9sCEuZ07kjJV/ADbvb9mgmwxfZKOa9
-X-Google-Smtp-Source: AGHT+IH5zxAjIq0T7KqfSxfMMJDn8BjHIDOb4sW4dH03nN6pd1cSkApPwJS1N7LfAd+GxeG4RMRMMw==
-X-Received: by 2002:a17:907:9816:b0:b6d:5bc3:e158 with SMTP id a640c23a62f3a-b6d5bc3e4eemr167216766b.17.1761227911453;
-        Thu, 23 Oct 2025 06:58:31 -0700 (PDT)
+        bh=ECxRdi5HH+Y1BbJYjbyAcCHCuJXoR1zvOVp1BwxUGOM=;
+        b=iX2oh96zl0b/pkPTovePnSgHjqcjuyWOnYbPLHi4rc2Rn+R0DnMaUbhF9VnaUjqp34
+         nkaugogWv4gBaUj+ha8RWcIYPnLoq1qdIHMp7VHYDsIp7GPdNGHNgYFGkSQ3RhqJ8MoV
+         HItqnblpd+Ew1zNIrvYYemxZW9+RSGuJ7ceLPspfXj3VdltSG5bNBwboLpodR8x5jTd2
+         4IDfZ/Pj/KOnEAxmnowNyCE5vm5wNbjOmrfSNpSoCtqOqU/qR9TX7g822ivnLgCmAjfV
+         xadE0S7vPLYovGKnkpBqOJK14zd8Obs5+yGzfklc/f/0feseYoKr3wpMZ2cri2ixEJXl
+         FZ3Q==
+X-Forwarded-Encrypted: i=1; AJvYcCVdu8ZlWnEL87gEhZ9a9dJE4w3jUZ5YuiEU7pCUrK8hcH3mr/l0Biqzv4MUrpRo9KQIzVE9q0QYbcjP@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy+OM4FdyY+ulyAQXegDv3q4rf/ceuYCC+vQOorm71FKzo6uyOr
+	CowZ6XZ0n/oLSFsJ8ytOAc4pCE+CPaDHH+taiRa2puR6e8Khp4GSjFkLvQMU9HqS9tQ=
+X-Gm-Gg: ASbGncti/6PpDf9yGkFdWSFOsuanCz0N5jO/MHggmtTCJkvyyud0m+beQL4Kc7gkVUt
+	UxtsSWacDt7mYiLWYMu8f/FDaXIc/7zLqg6O23nd0Yz4eXJSrlKCvi3bG2p9MQzGQoPxWN5Aase
+	bAqT9A7W+Iwp68g6cuvDegIt5AXhElYvLteqwDJuxcr3R5jK7l1SsLHzBndSYZWbyflcyI/Qde/
+	VIyqc0q/cs1LQxkUQ8U8F8bZDm4DCrX09yoEtkHHb9SRt+c1BbrC2dGnyG4vtbGwDjMHiDvjnWO
+	HMtrPEwo2cW570Go6ZfjUwSZt0Q+ejYoLJAal6B8FrqgmmfZ/hSpHHW4D182ByrqDBa1+s87dCp
+	BVz0HYddhHYkyJZ7ZrO08ECkOMcqokUJudBgTnHjRVkwLsfi0MS2bAzCKxLFK9qD+NpBCS+r6EZ
+	AmH4dG8zPB7vWSAz43uuEhXW2+olfmiSxCMVD3zwgD
+X-Google-Smtp-Source: AGHT+IG0iSZWhMAUuwbkA8pJHid1t/y13SCmKcaPc9WJrK8PETA/yNl+KAMDTotEEe14viSY2gGdKA==
+X-Received: by 2002:a17:907:86a2:b0:b3d:9c3c:9ab6 with SMTP id a640c23a62f3a-b6473842ea5mr2737367466b.29.1761227913211;
+        Thu, 23 Oct 2025 06:58:33 -0700 (PDT)
 Received: from claudiu-X670E-Pro-RS.. ([82.78.167.151])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b6d511f8634sm226114066b.29.2025.10.23.06.58.29
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b6d511f8634sm226114066b.29.2025.10.23.06.58.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 23 Oct 2025 06:58:30 -0700 (PDT)
+        Thu, 23 Oct 2025 06:58:32 -0700 (PDT)
 From: Claudiu <claudiu.beznea@tuxon.dev>
 X-Google-Original-From: Claudiu <claudiu.beznea.uj@bp.renesas.com>
 To: vkoul@kernel.org,
@@ -91,10 +91,11 @@ Cc: claudiu.beznea@tuxon.dev,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	linux-renesas-soc@vger.kernel.org,
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Subject: [PATCH v8 3/7] dt-bindings: reset: renesas,rzg2l-usbphy-ctrl: Document RZ/G3S support
-Date: Thu, 23 Oct 2025 16:58:06 +0300
-Message-ID: <20251023135810.1688415-4-claudiu.beznea.uj@bp.renesas.com>
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>
+Subject: [PATCH v8 4/7] reset: rzg2l-usbphy-ctrl: Add support for USB PWRRDY
+Date: Thu, 23 Oct 2025 16:58:07 +0300
+Message-ID: <20251023135810.1688415-5-claudiu.beznea.uj@bp.renesas.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251023135810.1688415-1-claudiu.beznea.uj@bp.renesas.com>
 References: <20251023135810.1688415-1-claudiu.beznea.uj@bp.renesas.com>
@@ -104,120 +105,240 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
 From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 
-The Renesas USB PHY hardware block needs to have the PWRRDY bit in the
-system controller set before applying any other settings. The PWRRDY bit
-must be controlled during power-on, power-off, and system suspend/resume
-sequences as follows:
-- during power-on/resume, it must be set to zero before enabling clocks and
-  modules
-- during power-off/suspend, it must be set to one after disabling clocks
-  and modules
+On the Renesas RZ/G3S SoC, the USB PHY block has an input signal called
+PWRRDY. This signal is managed by the system controller and must be
+de-asserted after powering on the area where USB PHY resides and asserted
+before powering it off.
 
-Add the renesas,sysc-pwrrdy device tree property, which allows the
-reset-rzg2l-usbphy-ctrl driver to parse, map, and control the system
-controller PWRRDY bit at the appropriate time. Along with it add a new
-compatible for the RZ/G3S SoC.
+On power-on/resume the USB PWRRDY signal need to be de-asserted before
+enabling clock and switching the module to normal state (through MSTOP
+support). The power-on/resume configuration sequence must be:
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+1/ PWRRDY=0
+2/ CLK_ON=1
+3/ MSTOP=0
+
+On power-off/suspend the configuration sequence should be:
+
+1/ MSTOP=1
+2/ CLK_ON=0
+3/ PWRRDY=1
+
+The CLK_ON and MSTOP functionalities are controlled by clock drivers.
+The suspend/resume support will be handled by different patches.
+
+After long discussions with the internal HW team, it has been confirmed
+that the HW connection b/w USB PHY block, the USB channels, the system
+controller, clock, MSTOP, PWRRDY signal is as follows:
+
+                               ┌──────────────────────────────┐
+                               │                              │◄── CPG_CLKON_USB.CLK0_ON
+                               │     USB CH0                  │
+┌──────────────────────────┐   │┌───────────────────────────┐ │◄── CPG_CLKON_USB.CLK2_ON
+│                 ┌────────┐   ││host controller registers  │ │
+│                 │        │   ││function controller registers│
+│                 │ PHY0   │◄──┤└───────────────────────────┘ │
+│     USB PHY     │        │   └────────────▲─────────────────┘
+│                 └────────┘                │
+│                          │    CPG_BUS_PERI_COM_MSTOP.MSTOP{6, 5}_ON
+│┌──────────────┐ ┌────────┐
+││USHPHY control│ │        │
+││  registers   │ │ PHY1   │   ┌──────────────────────────────┐
+│└──────────────┘ │        │◄──┤     USB CH1                  │
+│                 └────────┘   │┌───────────────────────────┐ │◄── CPG_CLKON_USB.CLK1_ON
+└─▲───────▲─────────▲──────┘   ││ host controller registers │ │
+  │       │         │          │└───────────────────────────┘ │
+  │       │         │          └────────────▲─────────────────┘
+  │       │         │                       │
+  │       │         │           CPG_BUS_PERI_COM_MSTOP.MSTOP7_ON
+  │PWRRDY │         │
+  │       │   CPG_CLK_ON_USB.CLK3_ON
+  │       │
+  │  CPG_BUS_PERI_COM_MSTOP.MSTOP4_ON
+  │
+┌────┐
+│SYSC│
+└────┘
+
+where:
+- CPG_CLKON_USB.CLK.CLKX_ON is the register bit controlling the clock X
+  of different USB blocks, X in {0, 1, 2, 3}
+- CPG_BUS_PERI_COM_MSTOP.MSTOPX_ON is the register bit controlling the
+  MSTOP of different USB blocks, X in {4, 5, 6, 7}
+- USB PHY is the USB PHY block exposing 2 ports, port0 and port1, used
+  by the USB CH0, USB CH1
+- SYSC is the system controller block controlling the PWRRDY signal
+- USB CHx are individual USB block with host and function capabilities
+  (USB CH0 have both host and function capabilities, USB CH1 has only
+  host capabilities)
+
+The USBPHY control registers are controlled though the
+reset-rzg2l-usbphy-ctrl driver. The USB PHY ports are controlled by
+phy_rcar_gen3_usb2 (drivers/phy/renesas/phy-rcar-gen3-usb2.c file). The
+USB PHY ports request resets from the reset-rzg2l-usbphy-ctrl driver.
+
+The connection b/w the system controller and the USB PHY CTRL driver is
+implemented through the renesas,sysc-pwrrdy device tree property
+proposed in this patch. This property specifies the register offset and the
+bitmask required to control the PWRRDY signal.
+
+Since the USB PHY CTRL driver needs to be probed before any other
+USB-specific driver on RZ/G3S, control of PWRRDY is passed exclusively
+to it. This guarantees the correct configuration sequence between clocks,
+MSTOP bits, and the PWRRDY bit on probe/resume and remove/suspend. At the
+same time, changes are kept minimal by avoiding modifications to the USB
+PHY driver to also handle the PWRRDY itself.
+
+Tested-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 ---
 
 Changes in v8:
-- none
+- updated the patch description to emphasize that PWRRDY need to be
+  controlled on suspend/resume path, as well (when support will be
+  proposed)
+- dropped struct rzg2l_usbphy_ctrl_pwrrdy and used regmap_field
+  instead
+- simplified the logic in rzg2l_usbphy_ctrl_set_pwrrdy() by relying
+  on the fact that PWRRDY mask provided though device tree will
+  always be 1 bit long
+- in rzg2l_usbphy_ctrl_pwrrdy_init() cast data to uintptr_t before
+  comparing it with a constant
 
 Changes in v7:
-- dropped Tb tag as it was reported that it is not valid on bindings
+- used proper regmap update value on rzg2l_usbphy_ctrl_set_pwrrdy()
 
 Changes in v6:
+- used syscon_regmap_lookup_by_phandle_args() to simplify the code
 - collected tags
 
 Changes in v5:
-- fixed description formatting
-- collected tags
+- none
 
 Changes in v4:
-- dropped blank line from compatible section
-- s/renesas,sysc-signals/renesas,sysc-pwrrdy/g
-- dropped description from renesas,sysc-pwrrdy
-- updated description of renesas,sysc-pwrrdy items
 - updated patch description
+- updated rzg2l_usbphy_ctrl_pwrrdy_init() to map directly the
+  "renesas,sysc-pwrrdy" as the SYSC signal abstraction was dropped
+  in this version, along with rz_sysc_get_signal_map()
+- dropped priv member of rzg2l_usbphy_ctrl_pwrrdy_init() as it is
+  not needed in this version
+- shift left !power_on with pwrrdy->mask as this is how the
+  regmap_update_bits() needs the last member to be
+- selected MFD_SYSCON
 
 Changes in v3:
 - none; this patch is new
 
- .../reset/renesas,rzg2l-usbphy-ctrl.yaml      | 41 ++++++++++++++++---
- 1 file changed, 35 insertions(+), 6 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/reset/renesas,rzg2l-usbphy-ctrl.yaml b/Documentation/devicetree/bindings/reset/renesas,rzg2l-usbphy-ctrl.yaml
-index b0b20af15313..c83469a1b379 100644
---- a/Documentation/devicetree/bindings/reset/renesas,rzg2l-usbphy-ctrl.yaml
-+++ b/Documentation/devicetree/bindings/reset/renesas,rzg2l-usbphy-ctrl.yaml
-@@ -15,12 +15,14 @@ description:
+ drivers/reset/Kconfig                   |  1 +
+ drivers/reset/reset-rzg2l-usbphy-ctrl.c | 56 +++++++++++++++++++++++++
+ 2 files changed, 57 insertions(+)
+
+diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
+index 78b7078478d4..329730cbcfb9 100644
+--- a/drivers/reset/Kconfig
++++ b/drivers/reset/Kconfig
+@@ -237,6 +237,7 @@ config RESET_RASPBERRYPI
+ config RESET_RZG2L_USBPHY_CTRL
+ 	tristate "Renesas RZ/G2L USBPHY control driver"
+ 	depends on ARCH_RZG2L || COMPILE_TEST
++	select MFD_SYSCON
+ 	help
+ 	  Support for USBPHY Control found on RZ/G2L family. It mainly
+ 	  controls reset and power down of the USB/PHY.
+diff --git a/drivers/reset/reset-rzg2l-usbphy-ctrl.c b/drivers/reset/reset-rzg2l-usbphy-ctrl.c
+index 8a7f167e405e..57350764be25 100644
+--- a/drivers/reset/reset-rzg2l-usbphy-ctrl.c
++++ b/drivers/reset/reset-rzg2l-usbphy-ctrl.c
+@@ -13,6 +13,7 @@
+ #include <linux/regmap.h>
+ #include <linux/reset.h>
+ #include <linux/reset-controller.h>
++#include <linux/mfd/syscon.h>
  
- properties:
-   compatible:
--    items:
--      - enum:
--          - renesas,r9a07g043-usbphy-ctrl # RZ/G2UL and RZ/Five
--          - renesas,r9a07g044-usbphy-ctrl # RZ/G2{L,LC}
--          - renesas,r9a07g054-usbphy-ctrl # RZ/V2L
--      - const: renesas,rzg2l-usbphy-ctrl
-+    oneOf:
-+      - items:
-+          - enum:
-+              - renesas,r9a07g043-usbphy-ctrl # RZ/G2UL and RZ/Five
-+              - renesas,r9a07g044-usbphy-ctrl # RZ/G2{L,LC}
-+              - renesas,r9a07g054-usbphy-ctrl # RZ/V2L
-+          - const: renesas,rzg2l-usbphy-ctrl
-+      - const: renesas,r9a08g045-usbphy-ctrl # RZ/G3S
+ #define RESET			0x000
+ #define VBENCTL			0x03c
+@@ -91,6 +92,8 @@ static int rzg2l_usbphy_ctrl_status(struct reset_controller_dev *rcdev,
+ 	return !!(readl(priv->base + RESET) & port_mask);
+ }
  
-   reg:
-     maxItems: 1
-@@ -48,6 +50,20 @@ properties:
-     $ref: /schemas/regulator/regulator.yaml#
-     unevaluatedProperties: false
- 
-+  renesas,sysc-pwrrdy:
-+    description:
-+      The system controller PWRRDY indicates to the USB PHY if the power supply
-+      is ready. PWRRDY needs to be set during power-on before applying any
-+      other settings. It also needs to be set before powering off the USB.
-+    $ref: /schemas/types.yaml#/definitions/phandle-array
-+    items:
-+      - items:
-+          - description:
-+              System controller phandle required by USB PHY CTRL driver to set
-+              PWRRDY
-+          - description: Register offset associated with PWRRDY
-+          - description: Register bitmask associated with PWRRDY
++#define RZG2L_USBPHY_CTRL_PWRRDY	1
 +
- required:
-   - compatible
-   - reg
-@@ -57,6 +73,19 @@ required:
-   - '#reset-cells'
-   - regulator-vbus
+ static const struct of_device_id rzg2l_usbphy_ctrl_match_table[] = {
+ 	{ .compatible = "renesas,rzg2l-usbphy-ctrl" },
+ 	{ /* Sentinel */ }
+@@ -110,6 +113,55 @@ static const struct regmap_config rzg2l_usb_regconf = {
+ 	.max_register = 1,
+ };
  
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: renesas,r9a08g045-usbphy-ctrl
-+    then:
-+      required:
-+        - renesas,sysc-pwrrdy
-+    else:
-+      properties:
-+        renesas,sysc-pwrrdy: false
++static void rzg2l_usbphy_ctrl_set_pwrrdy(struct regmap_field *pwrrdy,
++					 bool power_on)
++{
++	u32 val = power_on ? 0 : 1;
 +
- additionalProperties: false
++	/* The initialization path guarantees that the mask is 1 bit long. */
++	regmap_field_update_bits(pwrrdy, 1, val);
++}
++
++static void rzg2l_usbphy_ctrl_pwrrdy_off(void *data)
++{
++	rzg2l_usbphy_ctrl_set_pwrrdy(data, false);
++}
++
++static int rzg2l_usbphy_ctrl_pwrrdy_init(struct device *dev)
++{
++	struct regmap_field *pwrrdy;
++	struct reg_field field;
++	struct regmap *regmap;
++	const int *data;
++	u32 args[2];
++
++	data = device_get_match_data(dev);
++	if ((uintptr_t)data != RZG2L_USBPHY_CTRL_PWRRDY)
++		return 0;
++
++	regmap = syscon_regmap_lookup_by_phandle_args(dev->of_node,
++						      "renesas,sysc-pwrrdy",
++						      ARRAY_SIZE(args), args);
++	if (IS_ERR(regmap))
++		return PTR_ERR(regmap);
++
++	/* Don't allow more than one bit in mask. */
++	if (hweight32(args[1]) != 1)
++		return -EINVAL;
++
++	field.reg = args[0];
++	field.lsb = __ffs(args[1]);
++	field.msb = __fls(args[1]);
++
++	pwrrdy = devm_regmap_field_alloc(dev, regmap, field);
++	if (!pwrrdy)
++		return -ENOMEM;
++
++	rzg2l_usbphy_ctrl_set_pwrrdy(pwrrdy, true);
++
++	return devm_add_action_or_reset(dev, rzg2l_usbphy_ctrl_pwrrdy_off, pwrrdy);
++}
++
+ static int rzg2l_usbphy_ctrl_probe(struct platform_device *pdev)
+ {
+ 	struct device *dev = &pdev->dev;
+@@ -132,6 +184,10 @@ static int rzg2l_usbphy_ctrl_probe(struct platform_device *pdev)
+ 	if (IS_ERR(regmap))
+ 		return PTR_ERR(regmap);
  
- examples:
++	error = rzg2l_usbphy_ctrl_pwrrdy_init(dev);
++	if (error)
++		return error;
++
+ 	priv->rstc = devm_reset_control_get_exclusive(&pdev->dev, NULL);
+ 	if (IS_ERR(priv->rstc))
+ 		return dev_err_probe(dev, PTR_ERR(priv->rstc),
 -- 
 2.43.0
 
