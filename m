@@ -1,165 +1,139 @@
-Return-Path: <devicetree+bounces-230449-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230450-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3936C02B2E
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 19:17:26 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id BED63C02B06
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 19:16:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 47151507E67
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 17:13:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 879111A607B4
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 17:16:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABF9C344051;
-	Thu, 23 Oct 2025 17:13:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63835224AEB;
+	Thu, 23 Oct 2025 17:15:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="h8Qnc4vj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB1D02BE04B;
-	Thu, 23 Oct 2025 17:13:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36ABF35B132;
+	Thu, 23 Oct 2025 17:15:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761239607; cv=none; b=OWW5RU8e8HDovj+WuFERHEEDc01aELxGTYuHWgmpcC7+CO3ko1qFScNr+xnrIYeva6vEuSFmm9Ca047G/P2tsfZLrC5gtROvFKbJ5uK8HZ5nXILtNetBFEyFdHy1Mk/CpJ7C0t9nzY9a3iZ04XYbs3qSSo1lo3yxzKaM914PbTw=
+	t=1761239753; cv=none; b=qa62/c7Vu14x6FjoY8c+KxuYmjOHBSt+TihKd7etYfeDdk/ImlmaECRPqXr5r/+EXAg759XmXHTMp1fPpmnU3SefnNlI6wxBkX7O3clecEnjrE1mhVMWqDOe08Og0CzwvDnj91gnb/AtwYgOSiBN/utShjVmXJO0ep2gkD47t3Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761239607; c=relaxed/simple;
-	bh=43zKZOu5/nxCqS/C0A0/xA0D23J6SoQ/a+NoCWPo3I0=;
-	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ltK7aCSo+Zc3EUUyAf1Q4SxJIjZ6QBZeBYuJ+4MnTY6o2V2JTa8ilzrbwvKt2rZd3ja2Ml033kxIs3o7f6U5hwsp2FD1SdlSQSmbcJIAbtIFPt8MlKSXfWxSCGYEPEuI23/8SEpd7px6bcY+Y7N/r1+bAEZPzoyqmV/vXPsqVfI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Received: from mail.maildlp.com (unknown [172.18.186.231])
-	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4cssyg1241z6L4vD;
-	Fri, 24 Oct 2025 01:11:55 +0800 (CST)
-Received: from dubpeml100005.china.huawei.com (unknown [7.214.146.113])
-	by mail.maildlp.com (Postfix) with ESMTPS id 513E5140279;
-	Fri, 24 Oct 2025 01:13:23 +0800 (CST)
-Received: from localhost (10.203.177.15) by dubpeml100005.china.huawei.com
- (7.214.146.113) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.11; Thu, 23 Oct
- 2025 18:13:22 +0100
-Date: Thu, 23 Oct 2025 18:13:21 +0100
-From: Jonathan Cameron <jonathan.cameron@huawei.com>
-To: Nuno =?ISO-8859-1?Q?S=E1?= <nuno.sa@analog.com>
-CC: Michael Hennerich <Michael.Hennerich@analog.com>, Jonathan Cameron
-	<jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, Andy Shevchenko
-	<andy@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
-	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	<linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v2 2/3] iio: dac: ad5456: Add missing DT compatibles
-Message-ID: <20251023181321.00001511@huawei.com>
-In-Reply-To: <20251023-ad5446-bindings-v2-2-27fab9891e86@analog.com>
-References: <20251023-ad5446-bindings-v2-0-27fab9891e86@analog.com>
-	<20251023-ad5446-bindings-v2-2-27fab9891e86@analog.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-w64-mingw32)
+	s=arc-20240116; t=1761239753; c=relaxed/simple;
+	bh=8krJmJkP2fkzNKdiS8D2ufbTvL3HdBKOFyXR9Kv21eU=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=fjOXeYDNyXJcpw6A+bhzmHnVmEQmhszvEw6XoO8NwpuuOMrfuCVJasvejheF3y5Q8MRdL3NCBQpACotkaQWaJBK7R4xRfXpz4gW5VR/ZEM0elAdwHlBnkKVLBnTlAeD97/ScJDOr9hPLwJ7afLqvVFX1DZk3+F0l6gTAPBqozE0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=h8Qnc4vj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EAEA8C4CEE7;
+	Thu, 23 Oct 2025 17:15:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761239752;
+	bh=8krJmJkP2fkzNKdiS8D2ufbTvL3HdBKOFyXR9Kv21eU=;
+	h=From:To:Cc:Subject:Date:From;
+	b=h8Qnc4vjnC19H/vx7q6ElpekMW/6X6wM7aT1L7EZDaZNmej4qDL+RNS3jeuja7qFn
+	 Z1VEd99fTX2cfJcQIjXJ5yNGcHl8QN5fFgcV8UCa77ldN/0ePh++2iYWm32sxuhQmK
+	 WS2fnEBpTAMWm2vEuh8CtBn929pnNrB5Lgd1utLnV7lEe/QoUiPxlgAOoCKjaZPsE8
+	 T3+XerBiEZOpyFvisox+2Qqbdwk/hP3x/t16Ilyy2MS9OCMXfkLCGmQR8SuALhDz0f
+	 29Gz6wnCJICYUsBhDbEXMU5AUZ+q72wGSrYCc4c4Cxlu5kFIAi60mBc/gjbCi6d5Je
+	 kQPww+xMUK34A==
+From: Conor Dooley <conor@kernel.org>
+To: linus.walleij@linaro.org
+Cc: conor@kernel.org,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-kernel@vger.kernel.org,
+	linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Valentina.FernandezAlanis@microchip.com
+Subject: [PATCH v4 0/5] Microchip mpfs/pic64gx pinctrl
+Date: Thu, 23 Oct 2025 18:14:56 +0100
+Message-ID: <20251023-stopwatch-cough-47d5497be5aa@spud>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="ISO-8859-1"
-Content-Transfer-Encoding: quoted-printable
-X-ClientProxiedBy: lhrpeml500011.china.huawei.com (7.191.174.215) To
- dubpeml100005.china.huawei.com (7.214.146.113)
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2669; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=++Zdsq5Iw3NSsNSDAy7DrorLsGapa6A97tKCJEI+AYw=; b=owGbwMvMwCVWscWwfUFT0iXG02pJDBm/kiZsED6smshaJ/HdTC7l29FTIrvFU2453W8+Nvfzz CX7dlwO6ihlYRDjYpAVU2RJvN3XIrX+j8sO5563MHNYmUCGMHBxCsBEel8y/LM+brXUxeqS1cQV zlvfcvWZWdR3bRBTvH44o7d9ZQFXphjDf99NLcu2X4hPdv43h8vtvi2jWtf2xRImq8+myNaniu/ rYAEA
+X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
+Content-Transfer-Encoding: 8bit
 
-On Thu, 23 Oct 2025 14:01:38 +0300
-Nuno S=E1 <nuno.sa@analog.com> wrote:
+From: Conor Dooley <conor.dooley@microchip.com>
 
-I'd retitle this to say it's adding explicit DT compatibles
+Hey Linus,
 
-Missing made me thing one or two were missing rather than it relying
-on the fallback path to use the i2c_device_id / spi_device_id paths.
+Here's a ~v3~v4, with the COMPILE_TEST added, and a select that the lkp bot
+told me that I was missing when I pushed it out for testing.
 
-I'm not particularly keen on only get the drvdata from those other
-tables as that's fragile to the two remaining precisely in sync. Until
-we fix that better to not add these tables at all.
+There's a tag below for you to pull that has the syscon binding that
+gets edited in this series, since that's not in mainline yet.
 
-The cleanup will need to switch to pointers rather than enum entries
-and then use generic fetchers to get those pointers which ever type
-of firmware we have.
+Cheers,
+Conor.
 
-Not trivial but also fairly mechanical change to make so I don't
-feel too mean asking that you do that as part of this patch series.
-If nothing else looking at just this series, someone might think a fallback
-compatible would be fine given the differences between parts aren't
-visible.
+Changes in v4:
+- add a ref to the typedef source for function and groups in each binding
 
-Jonathan
+Changes in v3:
+- Add COMPILE_TEST to drivers
+- Drop a TODO
+- Add select for GENERIC_PINCONF
 
+The binding dep mentioned above is available here:
 
-> Add missing of_device_id compatibles for the i2c and spi drivers.
->=20
-> Signed-off-by: Nuno S=E1 <nuno.sa@analog.com>
-> ---
->  drivers/iio/dac/ad5446.c | 41 +++++++++++++++++++++++++++++++++++++++++
->  1 file changed, 41 insertions(+)
->=20
-> diff --git a/drivers/iio/dac/ad5446.c b/drivers/iio/dac/ad5446.c
-> index ad304b0fec08..b6967f3b9386 100644
-> --- a/drivers/iio/dac/ad5446.c
-> +++ b/drivers/iio/dac/ad5446.c
-> @@ -445,6 +445,35 @@ static const struct spi_device_id ad5446_spi_ids[] =
-=3D {
->  MODULE_DEVICE_TABLE(spi, ad5446_spi_ids);
-> =20
->  static const struct of_device_id ad5446_of_ids[] =3D {
-> +	{ .compatible =3D "adi,ad5300" },
-> +	{ .compatible =3D "adi,ad5310" },
-> +	{ .compatible =3D "adi,ad5320" },
-> +	{ .compatible =3D "adi,ad5444" },
-> +	{ .compatible =3D "adi,ad5446" },
-> +	{ .compatible =3D "adi,ad5450" },
-> +	{ .compatible =3D "adi,ad5451" },
-> +	{ .compatible =3D "adi,ad5452" },
-> +	{ .compatible =3D "adi,ad5453" },
-> +	{ .compatible =3D "adi,ad5512a" },
-> +	{ .compatible =3D "adi,ad5541a" },
-> +	{ .compatible =3D "adi,ad5542a" },
-> +	{ .compatible =3D "adi,ad5543" },
-> +	{ .compatible =3D "adi,ad5553" },
-> +	{ .compatible =3D "adi,ad5600" },
-> +	{ .compatible =3D "adi,ad5601" },
-> +	{ .compatible =3D "adi,ad5611" },
-> +	{ .compatible =3D "adi,ad5621" },
-> +	{ .compatible =3D "adi,ad5641" },
-> +	{ .compatible =3D "adi,ad5620-2500" },
-> +	{ .compatible =3D "adi,ad5620-1250" },
-> +	{ .compatible =3D "adi,ad5640-2500" },
-> +	{ .compatible =3D "adi,ad5640-1250" },
-> +	{ .compatible =3D "adi,ad5660-2500" },
-> +	{ .compatible =3D "adi,ad5660-1250" },
-> +	{ .compatible =3D "adi,ad5662" },
-> +	{ .compatible =3D "ti,dac081s101" },
-> +	{ .compatible =3D "ti,dac101s101" },
-> +	{ .compatible =3D "ti,dac121s101" },
->  	{ .compatible =3D "ti,dac7512" },
->  	{ }
->  };
-> @@ -547,9 +576,21 @@ static const struct i2c_device_id ad5446_i2c_ids[] =
-=3D {
->  };
->  MODULE_DEVICE_TABLE(i2c, ad5446_i2c_ids);
-> =20
-> +static const struct of_device_id ad5446_i2c_of_ids[] =3D {
-> +	{ .compatible =3D "adi,ad5301" },
-> +	{ .compatible =3D "adi,ad5311" },
-> +	{ .compatible =3D "adi,ad5321" },
-> +	{ .compatible =3D "adi,ad5602" },
-> +	{ .compatible =3D "adi,ad5612" },
-> +	{ .compatible =3D "adi,ad5622" },
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(OF, ad5446_i2c_of_ids);
-> +
->  static struct i2c_driver ad5446_i2c_driver =3D {
->  	.driver =3D {
->  		   .name =3D "ad5446",
-> +		   .of_match_table =3D ad5446_i2c_of_ids,
->  	},
->  	.probe =3D ad5446_i2c_probe,
->  	.id_table =3D ad5446_i2c_ids,
->=20
+  https://git.kernel.org/pub/scm/linux/kernel/git/conor/linux.git/ tags/mpfs-pinctrl-binding-base
+
+for you to fetch changes up to feaa716adc514fb5fbcb60b3e1620ac5dcf8505a:
+
+  dt-bindings: soc: microchip: document the simple-mfd syscon on PolarFire SoC (2025-10-21 14:29:34 +0100)
+
+----------------------------------------------------------------
+mpfs pinctrl binding base
+
+The pinctrl binding patch for iomux0 mpfs adds a ref to itself to the
+syscon/mfd mss-top-sysreg binding, and therefore needs that file to
+exist.
+
+Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+
+----------------------------------------------------------------
+
+CC: Linus Walleij <linus.walleij@linaro.org>
+CC: Rob Herring <robh@kernel.org>
+CC: Krzysztof Kozlowski <krzk+dt@kernel.org>
+CC: linux-kernel@vger.kernel.org
+CC: linux-gpio@vger.kernel.org
+CC: devicetree@vger.kernel.org
+CC: Valentina.FernandezAlanis@microchip.com
+
+Conor Dooley (5):
+  dt-bindings: pinctrl: document pic64gx "gpio2" pinmux
+  pinctrl: add pic64gx "gpio2" pinmux driver
+  dt-bindings: pinctrl: document polarfire soc iomux0 pinmux
+  pinctrl: add polarfire soc iomux0 pinmux driver
+  MAINTAINERS: add Microchip RISC-V pinctrl drivers/bindings to entry
+
+ .../microchip,mpfs-pinctrl-iomux0.yaml        |  89 +++++
+ .../microchip,pic64gx-pinctrl-gpio2.yaml      |  74 ++++
+ .../microchip,mpfs-mss-top-sysreg.yaml        |  13 +-
+ MAINTAINERS                                   |   4 +
+ drivers/pinctrl/Kconfig                       |  16 +
+ drivers/pinctrl/Makefile                      |   2 +
+ drivers/pinctrl/pinctrl-mpfs-iomux0.c         | 278 ++++++++++++++
+ drivers/pinctrl/pinctrl-pic64gx-gpio2.c       | 356 ++++++++++++++++++
+ 8 files changed, 831 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/microchip,mpfs-pinctrl-iomux0.yaml
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/microchip,pic64gx-pinctrl-gpio2.yaml
+ create mode 100644 drivers/pinctrl/pinctrl-mpfs-iomux0.c
+ create mode 100644 drivers/pinctrl/pinctrl-pic64gx-gpio2.c
+
+-- 
+2.51.0
 
 
