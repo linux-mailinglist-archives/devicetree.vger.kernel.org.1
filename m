@@ -1,104 +1,100 @@
-Return-Path: <devicetree+bounces-230345-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230355-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id F262FC01978
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 15:58:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 85AB4C019BE
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 16:01:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 7710935AA2C
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 13:58:36 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id DE08035B230
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 14:01:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B03A31A56B;
-	Thu, 23 Oct 2025 13:58:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4893F31D733;
+	Thu, 23 Oct 2025 14:01:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="pg1y0IDU"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="GTyKb0ij"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72E563168E8
-	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 13:58:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C78B3148B2
+	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 14:01:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761227909; cv=none; b=F+GtgwdCjSkHcwiaWEfaxLqE5wCEa4KXOQxXjfl6NBjyhaEHKteaxAztGMJEz3pcyltFmesOn9wKAbtCxfG6ixbL44gZwuOXWtG8BACyLoZMLx4L9lhvfVgWEDSGjr7Tq+6b6Ll8pXygmb5U+x1E42H7s+Ioy7V6MHSwN/EN8gk=
+	t=1761228072; cv=none; b=EakDULlwEOzEoRGRAeDfJuSBfl0IJIodhcglLy58k09PcLtTqk8Za6Jzyg8hn+QIc9EcllVGzIJYIM1Uyks4biruESuBP+o1Ao6mHD9LW5xITUHSfnhWDRpL0I+HkODRc/nPOPaiI0VcXR8chhMDp9yzmkRMCf/aoDA3NvmhipY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761227909; c=relaxed/simple;
-	bh=/jPm6jH+d13noCe9SKn4mrnwnuDsNjdGPU/d9Ul9H6k=;
+	s=arc-20240116; t=1761228072; c=relaxed/simple;
+	bh=GwdorghP7pkx6jrL0xNhcOjrQ7rW+RmSi107hDe95KA=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=kjDvk5HOzaxXxP5F3Hc0FS8UHKzysT2c0mWreb3gwjmRz3tNkBtH6mZYJxwW/i23COzAHLQfwBoFbsTpYEA1EW9RF8PyDmw6LWjN8en2bCIuGr6GZIbjKDl0+zSO4/mRWiHOKNarn48KLWX/KPKkFel4rdMaFkl/IyU15bf5UDk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=pg1y0IDU; arc=none smtp.client-ip=209.85.218.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-b50206773adso81117966b.0
-        for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 06:58:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1761227906; x=1761832706; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=mcs7Y+EttDztrEgb0m4AiPh1csnrxylUuqHzrjAxJgY=;
-        b=pg1y0IDU42Q63ySQjK8xYqBMTr+J+75fH3VLzWrgauSbvcV1Nm62SDXq8SKumILzks
-         WE3K3r/8FdZpx0Tc9Ojiob8wqG1jKbKpPdeleKKo72e+zWH4KQg+nbGkeIxXyg4Xmejm
-         tTfGubpGPwBOdLRttoVKOfy4M4iDUcRpeoCYc84Gu3KTyLw/i0pJTzGR3Au60Kn4mDv+
-         VfsZUy3nxn4wdcUj2UmU0e4NSKhPvb/vsZdVS+D4ANWNzCdUaF/rsOww/dTyp3Dyx6Yi
-         vbnvAD4dLAfavtq6mJJA5chHn7QWiJQB7rvsOmfpixshc01bU5hOZmSVfhene/SNLpCF
-         1fPA==
+	 MIME-Version; b=jJy9tHtnKvb0FBQAF43uwV2Zetm+Q9BxrIdnvdLDJQ9bRnWrqtH63E0A0kMVQ6wZ/AB2vszHqtZFXbI6LskD5C/AxY+fMv5ZSqwcznmAfPr7Nqwcel8sPYLWNBOK4sUtMvkC5wT2U6omyqEEpis/rFhnwekowbJ5Uz8GRNNY9Ds=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=GTyKb0ij; arc=none smtp.client-ip=170.10.133.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1761228069;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=NyZc7IIr5uPHqqlmg8fs1xLiepRwuPem5qvpkm3Ay88=;
+	b=GTyKb0ijOITObzWmfjaVrCeWbMbGjRJa7W+9xErFj3+OSm9Dg++wT5tusBEMCEmVXgVbQx
+	NnNeEMVWM2XJtG6eztSo79YxHQ8FH6lwvzb6kGYxVYV95SB6NsSpvM1oTz25a+AjrNyvqr
+	FaGsuq+atMxrtmNf6iUoxcn6+4ztKdw=
+Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com
+ [209.85.128.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-664-6zaFIKqJP3qVOPbVqyeerQ-1; Thu, 23 Oct 2025 10:01:07 -0400
+X-MC-Unique: 6zaFIKqJP3qVOPbVqyeerQ-1
+X-Mimecast-MFC-AGG-ID: 6zaFIKqJP3qVOPbVqyeerQ_1761228066
+Received: by mail-wm1-f71.google.com with SMTP id 5b1f17b1804b1-46fa88b5760so3325785e9.3
+        for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 07:01:06 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761227906; x=1761832706;
+        d=1e100.net; s=20230601; t=1761228065; x=1761832865;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=mcs7Y+EttDztrEgb0m4AiPh1csnrxylUuqHzrjAxJgY=;
-        b=En9WKSnai+x300rO579qNOuZW6GEl5DgncZSE79CLmXJnhbMhWBGvW79ZFKu0ct8WV
-         btqae+q0K8bF/Kzh016QZvbRE4LItwYOgDSP2HUbtfeUDt22Uq2gEPQ545j647/cnUS3
-         IJEDjEU7gWixSnvfvytfFy+2eF2cEa58Bw33OQX6XDqFpT9NBi5UjnBhmdQLQaa2I4b0
-         rIlASADvobu5izdzTh9wdyUc1hb53bE+K8i4e5xzfb1jMw3aC468bu7MTyAQt8FEWQCO
-         hGLIs61B2evh7Sidtp5Invuwp5sifAORV2Hs4+leKiYNM3OTcvhSwy4gE88x1/Yg2Q78
-         jZ2g==
-X-Forwarded-Encrypted: i=1; AJvYcCW/Wln/NRf/ZuHgala7nLX+TfAEK/nmNw1ZFIL+A8cowRxbvOFFLZiZJMet02tuYnFXujeOhnMPZzP2@vger.kernel.org
-X-Gm-Message-State: AOJu0YwKVkXQ6tj9n9EbGbp+PlqUFyIlfEwlHL+EH3EQb3h80wmPFBZM
-	95Nd4QK1d3WXHIo8n7dJ+1Wd//PYCtN6exRF407AaWUmTf9cUVD5mzpZdss+cXvEiC8=
-X-Gm-Gg: ASbGncv/mbogmQIhVB72H1Gst2bpAVaataqkwrWs64XAVwbvhfUTrX+z+pQDKspwdl3
-	9kdr2hjs0nVY7gxA8VnK9QnZC4EtysQIVk6IeF2JXV2NdgHCgmRft5cuUNVynDrTGsAOo3UVQo5
-	GQQhabg8d5ZihqQaYYqzbml/nI/wlTFeQplmSwtsxt+ZpJB46BldAJ+2+Uex0bI2iyKU3U0Y2Y8
-	492QKCLbHjacdfzgWoUassdekcgaDc2604slzatT9HHlNB/eX24jLFNoQMZU3wZucEg/D95z89Y
-	HG55IsBj9M7Nn4neLc09myUS3z14vf8KqHHC3i8dvl0HvpWPyUWaZXMmvq8die5REWauJk1Bwxg
-	2KH2YtNL3gXcg3xcydub5zZTC62gBaWqqQsDgl8f7hv4+MnrGTq/20lvU/yZyEavMBzUJ/MBL78
-	O02jWXdI0BUJatpw2sJCovqcY/RpNW33GyzhG3Eeml
-X-Google-Smtp-Source: AGHT+IErl4KxFsPoyMcgmYdHQ18H8eQgx+LzGITPImiQSgQDh6xe3/IOiWXni9Y5LKEyJSLxqP3qGQ==
-X-Received: by 2002:a17:907:72c4:b0:b29:57b0:617f with SMTP id a640c23a62f3a-b6d2c6df653mr921330166b.1.1761227905751;
-        Thu, 23 Oct 2025 06:58:25 -0700 (PDT)
-Received: from claudiu-X670E-Pro-RS.. ([82.78.167.151])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b6d511f8634sm226114066b.29.2025.10.23.06.58.22
+        bh=NyZc7IIr5uPHqqlmg8fs1xLiepRwuPem5qvpkm3Ay88=;
+        b=FrTXfjVaeqMnAt0nSh8E8rgIxlN88pvK4AzJXCzSHLgCLDa5DLv8Bo53qTZgaMlICu
+         Tr0IszjIPb3fIbUmVKCDaidAQ3OUyQmDp0XfdsQtT5ZNCS81o5L6ArbCXfuGgyeaSnrn
+         lJBvnCyLEz3vFAwO7cKEvaDwu7s0oUIKqDMsM/Nt8RhxnrsWKN0K3vCgQQ19a+jWmMh5
+         4eOCKv2MwZbCKkBdfmj4ClqRpBwhDbb++S5P7U6kNof3zxIqdJIrP1h5a7m0/Hq3lhkj
+         klrSETFSY5u1I2YNMVsIsDXSEOL5y0Ns/F7fH7g5S+PWB4cWNWItNJ+Qx45Uij48/fHY
+         IlUA==
+X-Gm-Message-State: AOJu0Yx+w3cHyeyXxFyPlVSlKlaDXU12/j7VxiLzp21WqQfVeEKNdddn
+	PLdB1nbk5h8yCxjBLMPddmK4uXvG3ImVHFL0DT6o7bghqmXttV5V8u6iVqeQqSRqKczkNjqHez4
+	lJeYvcFVj6V5YXtdfSjUSIP7Uz4V2gLWFn/gdI0eDQ1Czw/wfMey0CWaPGx8QiiFieiPWZ3jTea
+	masaUEPv3AA0cGx6VzmpsmIM5thgOIYsIXd3BmRkurLyv/4gFpmw==
+X-Gm-Gg: ASbGncvXhgZdAE9fTWJVB8nxJxV+6g1uhkkveBgS6m07LCXzPxA1ovbX5lRbXISRq+C
+	OyR0J7u9HL8eH4S4kD+9zRoYWlVMJfbLMq/8Pae6/YYcN30yypTkA0ZfHMyxOmorVBp67OESUub
+	GSBZQbJAbEHIcVVZ1bhAi6VE7l0Qg1Fx3bQpNfZNv2Ta7OvtEumIzV/FxJScJKo+d1Gz1WdJx0c
+	s9bHf+Aot/wIgzJts0vlGeZiF1Nl4AJBJZORJ+xMVAP/3dkPR+8LvWDAAMq3T3oTBCe09KYmhPW
+	uEdESZmnelk2AYN4AlvWeI1c6zfb9Ju+yvCqeGLAevLH/+5zdZNSmz+QyeIDFqu7RQbV8nlXkod
+	IXiM=
+X-Received: by 2002:a05:6000:310e:b0:3e7:5f26:f1e5 with SMTP id ffacd0b85a97d-42704d623acmr16053914f8f.23.1761228065153;
+        Thu, 23 Oct 2025 07:01:05 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFUJZMivJm75Uw39dCdUfRrfDXZwOWqWp5mZ7JKvKlDw5WhQsR7ZPZTgl0xq6VXuPm4KMweVg==
+X-Received: by 2002:a05:6000:310e:b0:3e7:5f26:f1e5 with SMTP id ffacd0b85a97d-42704d623acmr16053863f8f.23.1761228064464;
+        Thu, 23 Oct 2025 07:01:04 -0700 (PDT)
+Received: from holism.Home ([2a06:5900:814a:ab00:c1c7:2e09:633d:e94e])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-429898add96sm4116154f8f.30.2025.10.23.07.01.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 23 Oct 2025 06:58:24 -0700 (PDT)
-From: Claudiu <claudiu.beznea@tuxon.dev>
-X-Google-Original-From: Claudiu <claudiu.beznea.uj@bp.renesas.com>
-To: vkoul@kernel.org,
-	kishon@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	p.zabel@pengutronix.de,
-	geert+renesas@glider.be,
-	magnus.damm@gmail.com,
-	yoshihiro.shimoda.uh@renesas.com,
-	biju.das.jz@bp.renesas.com
-Cc: claudiu.beznea@tuxon.dev,
-	linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: [PATCH v8 1/7] dt-bindings: phy: renesas,usb2-phy: Mark resets as required for RZ/G3S
-Date: Thu, 23 Oct 2025 16:58:04 +0300
-Message-ID: <20251023135810.1688415-2-claudiu.beznea.uj@bp.renesas.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20251023135810.1688415-1-claudiu.beznea.uj@bp.renesas.com>
-References: <20251023135810.1688415-1-claudiu.beznea.uj@bp.renesas.com>
+        Thu, 23 Oct 2025 07:01:04 -0700 (PDT)
+From: Lucas Zampieri <lzampier@redhat.com>
+To: devicetree@vger.kernel.org
+Cc: Lucas Zampieri <lzampier@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Vivian Wang <dramforever@live.com>,
+	Charles Mirabile <cmirabil@redhat.com>,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v6 1/3] dt-bindings: vendor-prefixes: add UltraRISC
+Date: Thu, 23 Oct 2025 15:00:50 +0100
+Message-ID: <20251023140057.204439-2-lzampier@redhat.com>
+X-Mailer: git-send-email 2.51.0
+In-Reply-To: <20251023140057.204439-1-lzampier@redhat.com>
+References: <20251023140057.204439-1-lzampier@redhat.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -107,57 +103,28 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Add vendor prefix for UltraRISC Technology Co., Ltd.
 
-The reset lines are mandatory for the Renesas RZ/G3S platform and must be
-explicitly defined in device tree.
-
-Fixes: f3c849855114 ("dt-bindings: phy: renesas,usb2-phy: Document RZ/G3S phy bindings")
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
+Signed-off-by: Lucas Zampieri <lzampier@redhat.com>
 ---
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Changes in v8:
-- none
-
-Changes in v7:
-- dropped Tb tag as it was reported that it is not valid on bindings
-
-Changes in v6:
-- collected tags
-
-Changes in v5:
-- none
-
-Changes in v4:
-- none
-
-Changes in v3:
-- collected tags
-- rebased on top of latest version of renesas,usb2-phy.yaml;
-  Conor, Geert: I kept your tags; please let me know if you consider it
-  otherwise
-
-Changes in v2:
-- none; this patch is new
-
- Documentation/devicetree/bindings/phy/renesas,usb2-phy.yaml | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/Documentation/devicetree/bindings/phy/renesas,usb2-phy.yaml b/Documentation/devicetree/bindings/phy/renesas,usb2-phy.yaml
-index 179cb4bfc424..2bbec8702a1e 100644
---- a/Documentation/devicetree/bindings/phy/renesas,usb2-phy.yaml
-+++ b/Documentation/devicetree/bindings/phy/renesas,usb2-phy.yaml
-@@ -118,6 +118,7 @@ allOf:
-           contains:
-             enum:
-               - renesas,usb2-phy-r9a09g057
-+              - renesas,usb2-phy-r9a08g045
-               - renesas,rzg2l-usb2-phy
-     then:
-       properties:
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index 9ec8947dfcad..887bcb792284 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -1642,6 +1642,8 @@ patternProperties:
+     description: Universal Scientific Industrial Co., Ltd.
+   "^usr,.*":
+     description: U.S. Robotics Corporation
++  "^ultrarisc,.*":
++    description: UltraRISC Technology Co., Ltd.
+   "^ultratronik,.*":
+     description: Ultratronik GmbH
+   "^utoo,.*":
 -- 
-2.43.0
+2.51.0
 
 
