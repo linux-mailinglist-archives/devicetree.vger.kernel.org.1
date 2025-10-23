@@ -1,81 +1,88 @@
-Return-Path: <devicetree+bounces-230033-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230034-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D397ABFF103
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 06:06:57 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id C62B9BFF112
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 06:07:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 78A543A4307
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 04:06:56 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 68C0A4E8551
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 04:07:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C2882288C6;
-	Thu, 23 Oct 2025 04:06:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE17E295516;
+	Thu, 23 Oct 2025 04:07:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="Ok4/9Xmw"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="MKRjy+F+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34B22C8FE
-	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 04:06:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 003FE2749D6
+	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 04:07:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761192414; cv=none; b=XgRU2u32bR/VqVgHph8/jW8FgKp+J3YM880ne72PF4iP62QsXqiRWpwJDycXPuQoFP5c3+mvgqi+QBVHMcFraKt3bc/MMfmsKxyifwv3U4cnnpdVExdk9RAsDaHMfQe1+rD9ctj7h5PDni7fryDeaJNaabK6+pcjYEszs+EbVOI=
+	t=1761192436; cv=none; b=gx7Q5KSdOMA61CVmPpRNIuymlV+cKrxuU2SP2uYAgi6Li+BUE30oi4fGXxT7AQ6xdoMxZXX3A9q93xHcPfpAEKaWRsii38nAlAeiEMEJiHiBcLebXAkz7c9stpYWmULvQQSKdjsbVSeLR2N7aCdLQb5t0MSVySYh0ZOKSfylhbI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761192414; c=relaxed/simple;
-	bh=neu0sMf02RKmw4o/eH09G0DNJ0J9AWDS6oOm4k1NROs=;
+	s=arc-20240116; t=1761192436; c=relaxed/simple;
+	bh=1Nck7j3+aab8fsmv17FGOG9aPhFb9ZRUy/2LYccp1mw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=h0yiAps+t2APdk2LAiQrYfbMc+m2rYrEaE22GJbyGO+lOEnWt+ywlJ2VhEeZ956+seLhQuqW/+MF1aeL7WshvpYOP1qQXXFx4VJi8Wt+8KadMs4s8Ha6DoCakefglG5tv7Em24fv8H15sMfjYoGa8VbQNtJPCrF3MIkO4QrVbZw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=Ok4/9Xmw; arc=none smtp.client-ip=209.85.221.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-3f2cf786abeso200577f8f.3
-        for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 21:06:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1761192410; x=1761797210; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=l9LmGzf8lZ8AA4pnml32k/4kEpS62XT9jc9VmDFNvb0=;
-        b=Ok4/9XmwJG7tQ0gbEI2lXpwqaT0tlkUcyR/CEu7SYNDUcF99ZVXaybh7ZDA/V15Bt0
-         iRUL7mAtB1/ctQuh6exyMzorlQ5CON8d9VB6WePQO0+u0VebNzGuz8rpgkKEUyAg4Y2m
-         PaH6iJ3ke9vUQODyaCCqAQ6KlxD2K2kJkoRrzdDz6YS5023DGI4dFhXUgBzqvH+SKziP
-         FPNJ9DL+upRzIG3bT+kiKTBMYLYFIdoJy2fP4iEbswoN9XeBRDgWtfxmLyBFYTwvaUjY
-         vEjSqqNyAWoZxCAms3HGESC5wvWnLAnC2ChwAkH1c47qdUQhmwrkF6pLPcoJ7QtNi/+z
-         +wKg==
+	 In-Reply-To:Content-Type; b=EBergMTZSjGjTqTLM05R4asbnFM7hbrrdj3g6ChvrXpv8GA3PWkAVNveRNbHMmYNRDDfOO+otW0pHpOr+gwFsdPL3zHK1zhebJoWgbaKxab7XrPbbXXt+s7ApS6C9nC3ah375LVq/EYHbv1zV6zDvypf0UTHD+nc5BX81mrcJok=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=MKRjy+F+; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59MIeneb018614
+	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 04:07:13 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	PcgkgDXlyRkmY4EE/OGwg8TcZ9P8qqS+vWBVxf6Za2Q=; b=MKRjy+F+KxXu/pLQ
+	OXPZFVo1dHVV3/0IZsrBcSAKl0wbE82JfWMlc6GyVg/hdYXEsCN+lEVmJ40jmB6y
+	9Mt7ou2FDJ/7kyP04lK8zXLc4INbWSGCC1NikCsJ4WXxtCA7elDqyvWSqf1aXa46
+	VSGiFKRu5YiS8tztpjB2PaGnI+MJqVz3oVoBVStTrXAmeJvxOwnrboPeIsYEi7IR
+	ujT9yz6QXc8Bd+uadlU+0Nis+GGKFJQvbYSPsUcX0tpqRjyj+n+4oVhJA+Ihiwpg
+	sP41FKePnzo6ui5Sp4UPlkx/KZft7IRELfTD5yBdQYVGXXJNdz4OwBbR+bj26lf8
+	C3u90A==
+Received: from mail-pj1-f69.google.com (mail-pj1-f69.google.com [209.85.216.69])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49v08pq5ra-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 04:07:13 +0000 (GMT)
+Received: by mail-pj1-f69.google.com with SMTP id 98e67ed59e1d1-33428befc08so989677a91.2
+        for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 21:07:13 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761192410; x=1761797210;
-        h=content-transfer-encoding:in-reply-to:content-language:from
+        d=1e100.net; s=20230601; t=1761192432; x=1761797232;
+        h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=l9LmGzf8lZ8AA4pnml32k/4kEpS62XT9jc9VmDFNvb0=;
-        b=u5vDIigaISRC4CXxX6Fp5/8UPPQGWCgWnSMBsMHoJyA5XmueeJehbfk0b9K2JPdkOB
-         TestPlQ1e/YVDNz7s1lqgtKbbzmiju6UULm3thvRSW39GOEeYrGQD3Lbx1bPybaelf6N
-         HMqrOvOo4HNvooIJ9RVYuhS7PHIV1OpXFgvS5K6vTHJjNpiuPGkuDxls/FfWM7ymZFAQ
-         MHo/7HUN/iu9e4K0nuPtTNa8/iTfyuUJm4GyxMNsqgLsDhkvnpa5/7GCEvdmemEoemDU
-         uUCO+7Z+86RrvsW/5D292bUf3RMYHYM9dis9CN5EJslGTD4mxRvCnd40l6cdwpzXrPF0
-         /X8A==
-X-Forwarded-Encrypted: i=1; AJvYcCUHjLjpvagQd8aMbP5Q44XtbbIBptjU8zo0/uS5QZCsRCxjU5NkSEH0/jQhBdaylIg09VHK2ZmPvID7@vger.kernel.org
-X-Gm-Message-State: AOJu0YxXDZOMGsezCf/2jXqunPn+zPfAjCPj/vfBZUvfF/wsP35O096L
-	YFDV6DnetnbY+iAuS68qhkyKozFRDr7vXpK9pJS1hCzvw+R/OkcA8dmAoIfOE1F0F8A=
-X-Gm-Gg: ASbGncvzQWQk4dElJShTIZybG1K45CKnjvwHlAeaypSKWpVJpZfFkjW7Sm7hgzcPvb7
-	NiGZ9YXMf9mBX0VeO9Br1Bm2FD0QGTPflTGoJhx/a4/monvo3PGuPrw6hQCTb0+97NYyfWein4f
-	sLx54m4anc1yBZ8jhj//UqJh8g+aWxUATscQSDrcldjUxkDAAftRdzPOwdjctVJj2qu4BbKkkWt
-	Of941/frHo7lx58Qk/jd4Ki+q/INwdYJgiSut71aQfGTND2ym8/Pa2dp7PlSsOqEwaZ1uMRdeOK
-	9r0HONFU9q0aJjHwrRcQnEWdHMfeDc+JEltnHY77m2GHQ704PGsv0w+PK2JK7x+Mj+MkXQ5jpqK
-	6TJ0RrwubHoorOuVFjwhXWEqMIW4UFCRoSZghlScD2iGmy5YeLhye7lAYawp4CgZpDyzCMsSsOm
-	7Q3Tj7VUjM
-X-Google-Smtp-Source: AGHT+IHLzTiBpHfQjhvlWTJj5VKysMH/PyHRD3J5uwhQAkstbuvehGbVgVMmpZfM+iZPn2D+iNdjkA==
-X-Received: by 2002:a05:6000:3113:b0:427:7ad:466f with SMTP id ffacd0b85a97d-42707ad4680mr15906098f8f.39.1761192410406;
-        Wed, 22 Oct 2025 21:06:50 -0700 (PDT)
-Received: from [192.168.50.4] ([82.78.167.151])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-429898ccc60sm1657768f8f.34.2025.10.22.21.06.48
+        bh=PcgkgDXlyRkmY4EE/OGwg8TcZ9P8qqS+vWBVxf6Za2Q=;
+        b=SYn6mzAlYzYMxWstTDUYdnKE21Vd5Qt9rROp8CmY/Z5+kBYLQxbJ6CooIgsfYqcUTc
+         5f8jy/y52KYLqa0FJ6ZQiYwyCvlsWT4EDTT8BB+BUd5p+c45kY38sMzcH2WlPQokmPgZ
+         /7Swv5rLsdV4EBHjmbvCgQX2eCNdzm1x3k8w+Gv+t3l91LxlddsK3d/xdyU4BrdzxthV
+         O9h5hPzOJAHXLYrgIYGYeit4NwnskHxv71sMLOfoFZO24TIQDvEILpspx6IuTjuP6nVU
+         YRIOgGgoJxik1MTkQpGADVJ/I/YdssZiiPq6vwQeDS7FOFKAviE5sjlaGBsxKDqGhsgu
+         UKvA==
+X-Forwarded-Encrypted: i=1; AJvYcCV/3j2Pk/yKnjBLPIqA1fqTOcgw98wag5nTGhA9C8I4kprbUZh10LohhBR45NMX80ErPnvHhZvov2Nx@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywn6IJ5bMXUDX9Sm/yPAJRzaZEh/XLZo91j0kFvPm8LTuNcFB8M
+	u9wUuixyKeAJsNvzev1UcddrUmEdtD+tGjBZrrvTP7QgLRKBuNg766Idh6NvbnY1t101PdWJyGU
+	NQ1zFcddMr5zk6vD13NKOmryfotVex4JhtAnK9eOi2HAffv8FV3FUt+MYJCtYuQrA
+X-Gm-Gg: ASbGncuasHe6XCk/wQnwEpJ+5wgt/GiBHLnl+dcOSDQcpboDelDxuCuMASJgADA9t54
+	P+CtIfVwVbXQpgOH/DOLGzLZEXKbCUrOSEJCxt97cfxoDsE0Df4srv8rcE/qDFO3ffnaLaX9+tN
+	i7cSVeWEFLG3mayMDzDAI/ZI+3yiSsMCQlANL64e3XpfybqXdZn8MQ/HBm4r73YOOjabnAbNfiR
+	o7/ANQIL0mIEaxCR0QzH6YcRrW4HpH6ObAr5kYPxqKF0WG2qZz2Z0fZADdozn1JYY2DSqvBZ1Q9
+	1lCmm8y7u6sTpNawrDnyrdRiSGqNwVoEvRfLEGEqpQCUt02ofzN49fUxOHrWATaDRq72fz/G4p6
+	ixqP4Lk51vM8jHn8lLqpP6j+0pgMHV00Q55ojjZ+Cj5F8sDHaTwSJTINZOQLzP4ruPQEbvA==
+X-Received: by 2002:a17:90b:2ec7:b0:33b:6650:57c3 with SMTP id 98e67ed59e1d1-33bcf8ec60dmr30315333a91.21.1761192432158;
+        Wed, 22 Oct 2025 21:07:12 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGFPMyfbfKQ6gBFWgcEHzbQ+WlKqxr4cKLnz5nrXjMEa0Y17iULEXCPmyWg4Rg7nanHfqwGkg==
+X-Received: by 2002:a17:90b:2ec7:b0:33b:6650:57c3 with SMTP id 98e67ed59e1d1-33bcf8ec60dmr30315307a91.21.1761192431653;
+        Wed, 22 Oct 2025 21:07:11 -0700 (PDT)
+Received: from [10.133.33.160] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-33e224a2662sm4200672a91.17.2025.10.22.21.07.07
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Oct 2025 21:06:49 -0700 (PDT)
-Message-ID: <60544429-3eeb-41df-b42c-613da651b4a1@tuxon.dev>
-Date: Thu, 23 Oct 2025 07:06:48 +0300
+        Wed, 22 Oct 2025 21:07:11 -0700 (PDT)
+Message-ID: <7952ed3d-f019-4593-af43-b2df7f738d04@oss.qualcomm.com>
+Date: Thu, 23 Oct 2025 12:07:03 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,233 +90,162 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 3/9] reset: mpfs: add non-auxiliary bus probing
-To: Conor Dooley <conor@kernel.org>
-Cc: Conor Dooley <conor.dooley@microchip.com>,
- Daire McNamara <daire.mcnamara@microchip.com>,
- pierre-henry.moussay@microchip.com, valentina.fernandezalanis@microchip.com,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Philipp Zabel <p.zabel@pengutronix.de>, linux-riscv@lists.infradead.org,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20251013-album-bovine-faf9f5ebc5d4@spud>
- <20251013-crane-utilize-cff9298291a4@spud>
-From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
+Subject: Re: [PATCH 2/6] dt-bindings: remoteproc: qcom,sm8550-pas: Add
+ Kaanapali CDSP
+To: Krzysztof Kozlowski <k.kozlowski.k@gmail.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, aiqun.yu@oss.qualcomm.com,
+        tingwei.zhang@oss.qualcomm.com, trilok.soni@oss.qualcomm.com,
+        yijie.yang@oss.qualcomm.com
+References: <20250924-knp-remoteproc-v1-0-611bf7be8329@oss.qualcomm.com>
+ <20250924-knp-remoteproc-v1-2-611bf7be8329@oss.qualcomm.com>
+ <CAJKOXPc57_0pJ2ZWf2cKSKAcQMc3S_mHKQxJDzWH7t=mgim3CA@mail.gmail.com>
+ <5820a9a9-4474-4c4d-905c-0efd9442e5e1@oss.qualcomm.com>
+ <o6dzhmlicwiezmxlb5uqitx7e3pjpyuhbjqfumivbdkru42hvn@r4ksfa6m5nd2>
+ <540b1de6-c959-4911-925f-8163f5fa5147@oss.qualcomm.com>
+ <fdfzoemfxdz2p622hvixpaznh2n22hweit2e43plfu2kdd6kad@reulvi4vs5v4>
+ <cdc01b6d-370d-45dd-a3fd-9866d2a5f36d@gmail.com>
 Content-Language: en-US
-In-Reply-To: <20251013-crane-utilize-cff9298291a4@spud>
+From: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+In-Reply-To: <cdc01b6d-370d-45dd-a3fd-9866d2a5f36d@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDE4MDAwMCBTYWx0ZWRfX7kJ8CiUnlrg2
+ JLvMgNEBQK9wh6J/bnFzylAX0voegL33YFtGsm/jRkGRNqJQqzk30qBx+E8CfVQBxMB7nzTAKBN
+ 7LcrGa+KCw+1GLibr2Zy2TPcBOWVr6R0InqXiC9m6SuBTUZzVH4b7ZK5GHOFVG0R0XmlBgOxiXX
+ emKr2igcR0woeK20O/nHm8X39h7Cwj5LGg9z0zoSIom9ig2qUe7petsMFa3VaU/KebrvUDisbNt
+ 2WcNfNuRQdyQECT/xKtUO+e/Xy2GzGWhRyBjJKhLpde1X1A3Ir5L/0RjlXjtLuSMO1FVirvI6px
+ 8vMpLskVk0llCPKW3B7jkYvxPef8pLYQaJJ0t1QtaC2U59wsWb3dQIQCdCHCI43/5I+2zQ6Dwot
+ qxM/429gugURclcCmeJeReNNLcPZ/w==
+X-Proofpoint-GUID: pqdoPyXCtTgaWGIqb97_eFt9zDKtIKlU
+X-Authority-Analysis: v=2.4 cv=Up1u9uwB c=1 sm=1 tr=0 ts=68f9a9f1 cx=c_pps
+ a=vVfyC5vLCtgYJKYeQD43oA==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
+ a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=VwQbUJbxAAAA:8 a=KKAkSRfTAAAA:8 a=EUspDBNiAAAA:8 a=VbD8AgmwhZIDVUnwpcMA:9
+ a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=rl5im9kqc5Lf4LNbBjHf:22
+ a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-ORIG-GUID: pqdoPyXCtTgaWGIqb97_eFt9zDKtIKlU
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-10-22_08,2025-10-22_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ lowpriorityscore=0 adultscore=0 suspectscore=0 malwarescore=0 clxscore=1015
+ impostorscore=0 bulkscore=0 priorityscore=1501 spamscore=0 phishscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2510020000 definitions=main-2510180000
 
-Hi, Conor,
 
-On 10/13/25 20:45, Conor Dooley wrote:
-> From: Conor Dooley <conor.dooley@microchip.com>
+
+On 10/9/2025 6:29 PM, Krzysztof Kozlowski wrote:
+> On 29/09/2025 19:03, Dmitry Baryshkov wrote:
+>> On Mon, Sep 29, 2025 at 05:41:10PM +0800, Jingyi Wang wrote:
+>>>
+>>>
+>>> On 9/29/2025 5:34 PM, Dmitry Baryshkov wrote:
+>>>> On Mon, Sep 29, 2025 at 02:20:54PM +0800, Jingyi Wang wrote:
+>>>>>
+>>>>>
+>>>>> On 9/25/2025 9:48 AM, Krzysztof Kozłowski wrote:
+>>>>>> On Thu, 25 Sept 2025 at 08:37, Jingyi Wang <jingyi.wang@oss.qualcomm.com> wrote:
+>>>>>>>
+>>>>>>> Add remote processor PAS loader for Kaanapali CDSP processor, compatible
+>>>>>>> with earlier SM8550 with minor difference: one more sixth "shutdown-ack"
+>>>>>>> interrupt.
+>>>>>>>
+>>>>>>> Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+>>>>>>> ---
+>>>>>>>  .../bindings/remoteproc/qcom,sm8550-pas.yaml          | 19 +++++++++++++++++++
+>>>>>>>  1 file changed, 19 insertions(+)
+>>>>>>>
+>>>>>>> diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,sm8550-pas.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,sm8550-pas.yaml
+>>>>>>> index be9e2a0bc060..031fdf36a66c 100644
+>>>>>>> --- a/Documentation/devicetree/bindings/remoteproc/qcom,sm8550-pas.yaml
+>>>>>>> +++ b/Documentation/devicetree/bindings/remoteproc/qcom,sm8550-pas.yaml
+>>>>>>> @@ -35,6 +35,9 @@ properties:
+>>>>>>>        - items:
+>>>>>>>            - const: qcom,sm8750-cdsp-pas
+>>>>>>>            - const: qcom,sm8650-cdsp-pas
+>>>>>>> +      - items:
+>>>>>>> +          - const: qcom,kaanapali-cdsp-pas
+>>>>>>> +          - const: qcom,sm8550-cdsp-pas
+>>>>>>
+>>>>>>
+>>>>>> This time maybe without HTML:
+>>>>>>
+>>>>>> This looks wrong. This is not compatible with SM8550.
+>>>>>
+>>>>> Could you point out what is the difference from your perspecetive?
+>>>>> it is the same as SM8550 except for there is one more interrupt,
+>>>>> which is also described in this patch.
+>>>>
+>>>> I'd second Krzysztof here. Your description points out that it is _not_
+>>>> compatible to SM8550.
+>>>>
+>>>
+>>> Here is the binding for sm8750 cdsp. Fallback to sm8650 but describe the
+>>> difference in interrupt:
+>>> https://lore.kernel.org/all/20250221160036.159557-1-krzysztof.kozlowski@linaro.org/
+>>
+>> Interesting. Let's wait for Krzysztof's response then.
+>>
 > 
-> While the auxiliary bus was a nice bandaid, and meant that re-writing
-> the representation of the clock regions in devicetree was not required,
-> it has run its course. The "mss_top_sysreg" region that contains the
-> clock and reset regions, also contains pinctrl and an interrupt
-> controller, so the time has come rewrite the devicetree and probe the
-> reset controller from an mfd devicetree node, rather than implement
-> those drivers using the auxiliary bus. Wanting to avoid propagating this
-> naive/incorrect description of the hardware to the new pic64gx SoC is a
-> major motivating factor here.
 > 
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> ---
-> v4:
-> - Only use driver specific lock for non-regmap writes
+> Because it is evolution of sm8750, so it did not go back to old design.
+> from three generations ago. This is compatible with sm8750 or with sm8650.
 > 
-> v2:
-> - Implement the request to use regmap_update_bits(). I found that I then
->   hated the read/write helpers since they were just bloat, so I ripped
->   them out. I replaced the regular spin_lock_irqsave() stuff with a
->   guard(spinlock_irqsave), since that's a simpler way of handling the two
->   different paths through such a trivial pair of functions.
-> ---
->  drivers/reset/reset-mpfs.c | 83 ++++++++++++++++++++++++++++++--------
->  1 file changed, 66 insertions(+), 17 deletions(-)
 > 
-> diff --git a/drivers/reset/reset-mpfs.c b/drivers/reset/reset-mpfs.c
-> index f6fa10e03ea8..8e5ed4deecf3 100644
-> --- a/drivers/reset/reset-mpfs.c
-> +++ b/drivers/reset/reset-mpfs.c
-> @@ -7,13 +7,16 @@
->   *
->   */
->  #include <linux/auxiliary_bus.h>
-> +#include <linux/cleanup.h>
->  #include <linux/delay.h>
->  #include <linux/io.h>
-> +#include <linux/mfd/syscon.h>
+> Best regards,
+> Krzysztof
 
-Should you add a depends on MFD_SYSCON ?
+Hi Krzysztof，
 
->  #include <linux/module.h>
->  #include <linux/of.h>
->  #include <linux/platform_device.h>
-> -#include <linux/slab.h>
-> +#include <linux/regmap.h>
->  #include <linux/reset-controller.h>
-> +#include <linux/slab.h>
->  #include <dt-bindings/clock/microchip,mpfs-clock.h>
->  #include <soc/microchip/mpfs.h>
->  
-> @@ -27,11 +30,14 @@
->  #define MPFS_SLEEP_MIN_US	100
->  #define MPFS_SLEEP_MAX_US	200
->  
-> +#define REG_SUBBLK_RESET_CR	0x88u
-> +
->  /* block concurrent access to the soft reset register */
->  static DEFINE_SPINLOCK(mpfs_reset_lock);
->  
->  struct mpfs_reset {
->  	void __iomem *base;
-> +	struct regmap *regmap;
->  	struct reset_controller_dev rcdev;
->  };
->  
-> @@ -46,41 +52,50 @@ static inline struct mpfs_reset *to_mpfs_reset(struct reset_controller_dev *rcde
->  static int mpfs_assert(struct reset_controller_dev *rcdev, unsigned long id)
->  {
->  	struct mpfs_reset *rst = to_mpfs_reset(rcdev);
-> -	unsigned long flags;
->  	u32 reg;
->  
-> -	spin_lock_irqsave(&mpfs_reset_lock, flags);
-> +	if (rst->regmap) {
-> +		regmap_update_bits(rst->regmap, REG_SUBBLK_RESET_CR, BIT(id), BIT(id));
-> +		return 0;
+I tested with falling back to sm8650 cdsp but it will fail with:
+[    4.739615] qcom_q6v5_pas 26300000.remoteproc: unable to resolve shareable memory-region index 0
 
-You can:
-		return regmap_update_bits();
+sm8550 and kaanapali define 2 memory regions: 
+"memory-region = <&cdsp_mem>, <&q6_cdsp_dtb_mem>;"
 
-> +	}
-> +
-> +	guard(spinlock_irqsave)(&mpfs_reset_lock);
->  
->  	reg = readl(rst->base);
->  	reg |= BIT(id);
->  	writel(reg, rst->base);
->  
-> -	spin_unlock_irqrestore(&mpfs_reset_lock, flags);
-> -
->  	return 0;
->  }
->  
->  static int mpfs_deassert(struct reset_controller_dev *rcdev, unsigned long id)
->  {
->  	struct mpfs_reset *rst = to_mpfs_reset(rcdev);
-> -	unsigned long flags;
->  	u32 reg;
->  
-> -	spin_lock_irqsave(&mpfs_reset_lock, flags);
-> +	if (rst->regmap) {
-> +		regmap_update_bits(rst->regmap, REG_SUBBLK_RESET_CR, BIT(id), 0);
-> +		return 0;
-> +	}
-> +
-> +	guard(spinlock_irqsave)(&mpfs_reset_lock);
->  
->  	reg = readl(rst->base);
->  	reg &= ~BIT(id);
->  	writel(reg, rst->base);
->  
-> -	spin_unlock_irqrestore(&mpfs_reset_lock, flags);
-> -
->  	return 0;
->  }
->  
->  static int mpfs_status(struct reset_controller_dev *rcdev, unsigned long id)
->  {
->  	struct mpfs_reset *rst = to_mpfs_reset(rcdev);
-> -	u32 reg = readl(rst->base);
-> +	u32 reg;
-> +
-> +	if (rst->regmap)
-> +		regmap_read(rst->regmap, REG_SUBBLK_RESET_CR, &reg);
-> +	else
-> +		reg = readl(rst->base);
->  
->  	/*
->  	 * It is safe to return here as MPFS_NUM_RESETS makes sure the sign bit
-> @@ -130,11 +145,45 @@ static int mpfs_reset_xlate(struct reset_controller_dev *rcdev,
->  	return index - MPFS_PERIPH_OFFSET;
->  }
->  
-> -static int mpfs_reset_probe(struct auxiliary_device *adev,
-> -			    const struct auxiliary_device_id *id)
-> +static int mpfs_reset_mfd_probe(struct platform_device *pdev)
->  {
-> -	struct device *dev = &adev->dev;
->  	struct reset_controller_dev *rcdev;
-> +	struct device *dev = &pdev->dev;
-> +	struct mpfs_reset *rst;
-> +
-> +	rst = devm_kzalloc(dev, sizeof(*rst), GFP_KERNEL);
-> +	if (!rst)
-> +		return -ENOMEM;
-> +
-> +	rcdev = &rst->rcdev;
-> +	rcdev->dev = dev;
-> +	rcdev->ops = &mpfs_reset_ops;
-> +
-> +	rcdev->of_node = pdev->dev.parent->of_node;
-> +	rcdev->of_reset_n_cells = 1;
-> +	rcdev->of_xlate = mpfs_reset_xlate;
-> +	rcdev->nr_resets = MPFS_NUM_RESETS;
-> +
-> +	rst->regmap = device_node_to_regmap(pdev->dev.parent->of_node);
-> +	if (IS_ERR(rst->regmap))
-> +		dev_err_probe(dev, PTR_ERR(rst->regmap), "Failed to find syscon regmap\n");
-> +
-> +	return devm_reset_controller_register(dev, rcdev);
-> +}
-> +
-> +static struct platform_driver mpfs_reset_mfd_driver = {
-> +	.probe		= mpfs_reset_mfd_probe,
-> +	.driver = {
-> +		.name = "mpfs-reset",
-> +	},
-> +};
-> +module_platform_driver(mpfs_reset_mfd_driver);
-> +
-> +static int mpfs_reset_adev_probe(struct auxiliary_device *adev,
-> +				 const struct auxiliary_device_id *id)
-> +{
-> +	struct reset_controller_dev *rcdev;
-> +	struct device *dev = &adev->dev;
->  	struct mpfs_reset *rst;
->  
->  	rst = devm_kzalloc(dev, sizeof(*rst), GFP_KERNEL);
-> @@ -145,8 +194,8 @@ static int mpfs_reset_probe(struct auxiliary_device *adev,
->  
->  	rcdev = &rst->rcdev;
->  	rcdev->dev = dev;
-> -	rcdev->dev->parent = dev->parent;
->  	rcdev->ops = &mpfs_reset_ops;
-> +
->  	rcdev->of_node = dev->parent->of_node;
->  	rcdev->of_reset_n_cells = 1;
->  	rcdev->of_xlate = mpfs_reset_xlate;
-> @@ -176,12 +225,12 @@ static const struct auxiliary_device_id mpfs_reset_ids[] = {
->  };
->  MODULE_DEVICE_TABLE(auxiliary, mpfs_reset_ids);
->  
-> -static struct auxiliary_driver mpfs_reset_driver = {
-> -	.probe		= mpfs_reset_probe,
-> +static struct auxiliary_driver mpfs_reset_aux_driver = {
-> +	.probe		= mpfs_reset_adev_probe,
->  	.id_table	= mpfs_reset_ids,
->  };
->  
-> -module_auxiliary_driver(mpfs_reset_driver);
-> +module_auxiliary_driver(mpfs_reset_aux_driver);
->  
->  MODULE_DESCRIPTION("Microchip PolarFire SoC Reset Driver");
->  MODULE_AUTHOR("Conor Dooley <conor.dooley@microchip.com>");
+sm8650 and sm8750 define 3 memory regions:
+"memory-region = <&cdsp_mem>, <&q6_cdsp_dtb_mem>, <&global_sync_mem>;"
+with the driver:
+
+static const struct qcom_pas_data sm8650_cdsp_resource = {
+        .crash_reason_smem = 601,
+        .firmware_name = "cdsp.mdt",
+        .dtb_firmware_name = "cdsp_dtb.mdt",
+         <...>
+        .region_assign_idx = 2,
+        .region_assign_count = 1,
+        .region_assign_shared = true,
+        .region_assign_vmid = QCOM_SCM_VMID_CDSP,
+};
+
+When kaanapali fallback to sm8650 it cannot parse this region_assign_idx.
+
+So shall we still fallback to sm8550 or define a new node "kaanapali_cdsp_resource"
+in the driver?
+
+Thanks,
+Jingyi
+
+
+
+
+
+
+
+
+
+
+
 
 
