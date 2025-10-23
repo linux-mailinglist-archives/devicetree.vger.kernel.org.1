@@ -1,123 +1,104 @@
-Return-Path: <devicetree+bounces-230539-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230540-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33B82C03611
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 22:24:55 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D452DC036AA
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 22:45:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E86233AA8D3
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 20:24:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A4E591AA31F3
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 20:46:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC5F72D3A6D;
-	Thu, 23 Oct 2025 20:24:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA33674C14;
+	Thu, 23 Oct 2025 20:45:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="s5BDj+mR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b8HF2r44"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FBC82C15AE;
-	Thu, 23 Oct 2025 20:24:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9FC3C2E0;
+	Thu, 23 Oct 2025 20:45:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761251070; cv=none; b=Cqnm5rG67fBrLgihV1OxbLfkcF41ddJ7DkUJQzPCz2GDFxsUcKR2QeoGS44++wA8ElbDIKewr1Y9soyqN0+zMss+HF1w8ej4vMBRkexYnu/p9YQbpkECUsaf/0SLk4VOEWgrDpnE1wa10Svke+gm8Oud8nkD0WwirJcI4s9WBFI=
+	t=1761252349; cv=none; b=A18V3BlazoiSUBjIN2a6pW+bLMvdsaRJ4IqvzR2HDoVYhRNbNiMYN3dvF3mLgNjfio5TMa+ty0VZqDggUdBMafxf4K8ALEzyxvA7qgnhk30W/PsRGvVrDKoHkuUBgaqylPkgURUn54AsWj+DACQNPUO/TR7TQoHUc8pBz3PvBGM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761251070; c=relaxed/simple;
-	bh=+b+ylfRcIWpYeFfan3Mweh/xrrouoNn77Loht1AaAbE=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=CP6i5cPPlbUyF0ziDF3ho3eBvBgtMHYjRV2H+pbMZyYW2JeK4ajy7LnC1YtHyIgMELkfl+80SbP/ldI34GP3IVBY5rHYqpGds77wXxDww8rT2gpiAUG8YqqHEqDyjofQxHy2tiEKpkAj65XVtz87wATKldM5FT6SHoU7hN8UHOc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=s5BDj+mR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id D695FC2BCB2;
-	Thu, 23 Oct 2025 20:24:29 +0000 (UTC)
+	s=arc-20240116; t=1761252349; c=relaxed/simple;
+	bh=+mP1pvM4InKqRlScVcASL4W4+e15L6r0Y16hTzd6U1Q=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=PpQzQv2fioGqErUhfdXRVhnIkAlYwg3LbYaOrzAhSpz9h0pOBBsNWWs3bZ6p2r9IOTRIesbAVHUV4VmFqU1HutWmbdgJGoE1wwrVfX3q3dLgnBIfUg5XEmaf8y3/y7KmTDMBcMOM+BM5Ru7X7CrN10CFZx6+vu5mDt3iH5bsaP8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=b8HF2r44; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1926BC4CEE7;
+	Thu, 23 Oct 2025 20:45:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761251069;
-	bh=+b+ylfRcIWpYeFfan3Mweh/xrrouoNn77Loht1AaAbE=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=s5BDj+mRIbsHlPboI7azQjMNVyktuhI66SQA5+VC7RQAEomaBRGQIlS7j/gLnJI2T
-	 JGr4q63EJABpv0ItalqNAiUM/3e7Ig436eA8OqQSUZB3YjUcakdf7YJ9EflLqo9h6/
-	 Gpmz/LyszSMBfxK/mC6GPjqHPnJ5bT2rPi1/KmBOBxBVoNuCpoim+9BCaTpJGa9bQx
-	 bv9wvseCrsTSt/kNKQfCvgwwMp8p0usPBRtZpay6g6rd9HaffX6gafBu7BB/ZA9rj5
-	 PgTxviZqCSA15CFG3mcFH7A7J+Nls9EiiauabdMKCVgpfgTRd3IoNf/AUels1L1cYW
-	 xRLCb5LK+354g==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id CF770CCD1BF;
-	Thu, 23 Oct 2025 20:24:29 +0000 (UTC)
-From: David Heidelberg via B4 Relay <devnull+david.ixit.cz@kernel.org>
-Date: Thu, 23 Oct 2025 22:24:30 +0200
-Subject: [PATCH v5 6/6] arm64: dts: qcom: sdm845-oneplus: Describe TE gpio
+	s=k20201202; t=1761252349;
+	bh=+mP1pvM4InKqRlScVcASL4W4+e15L6r0Y16hTzd6U1Q=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=b8HF2r44gXjOpem75sfXsYhOVaAy6VyKAljZ399LBb2twmYVfDx7uL/hUCTfw1zjj
+	 MfjbryAd3zg3FyQcyj1O+cXHG5lIPySMBFIAySExphNI2nR0jCTzB5HUuNBtj76Ipa
+	 mB5NjR4icOf+S4KUtw7g+CczAwqSB/dQ5VuHXxjcZvTjfc4wWvJtaaVnEPBPYeIlBf
+	 7PvEVrr75ifXzP/VsVpZ0P9VPbmv0Z3RKTDm6mKKZlljgk+1T1tC1WT33j/Uq6ethn
+	 U0smBQGcpEkc3kwr2HdOIa5ESoa59PqXw4GGpejuaZmhXLbVf7TO8OLDLQnKZBzckb
+	 8JGCLVT8B0+AQ==
+Date: Thu, 23 Oct 2025 15:45:47 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Randolph Lin <randolph@andestech.com>
+Cc: linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+	jingoohan1@gmail.com, mani@kernel.org, lpieralisi@kernel.org,
+	kwilczynski@kernel.org, robh@kernel.org, bhelgaas@google.com,
+	krzk+dt@kernel.org, conor+dt@kernel.org, alex@ghiti.fr,
+	aou@eecs.berkeley.edu, palmer@dabbelt.com, paul.walmsley@sifive.com,
+	ben717@andestech.com, inochiama@gmail.com,
+	thippeswamy.havalige@amd.com, namcao@linutronix.de,
+	shradha.t@samsung.com, pjw@kernel.org, randolph.sklin@gmail.com,
+	tim609@andestech.com
+Subject: Re: [PATCH v9 0/4] Add support for Andes Qilai SoC PCIe controller
+Message-ID: <20251023204547.GA1314904@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251023-s6e3fc2x01-v5-6-8f8852e67417@ixit.cz>
-References: <20251023-s6e3fc2x01-v5-0-8f8852e67417@ixit.cz>
-In-Reply-To: <20251023-s6e3fc2x01-v5-0-8f8852e67417@ixit.cz>
-To: Neil Armstrong <neil.armstrong@linaro.org>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Thierry Reding <thierry.reding@gmail.com>, Sam Ravnborg <sam@ravnborg.org>, 
- Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, 
- Casey Connolly <casey.connolly@linaro.org>, 
- Jessica Zhang <jesszhan0024@gmail.com>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
- phone-devel@vger.kernel.org, David Heidelberg <david@ixit.cz>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=744; i=david@ixit.cz;
- h=from:subject:message-id;
- bh=4HlzjaWbltHovpW/x3csoBFsnc7NUcuYDQwYcmmZFrE=;
- b=owEBbQKS/ZANAwAIAWACP8TTSSByAcsmYgBo+o77mEd+eCRJ0hMbE6TLpH3mPs3ZCMwueE40f
- l4JJPO31juJAjMEAAEIAB0WIQTXegnP7twrvVOnBHRgAj/E00kgcgUCaPqO+wAKCRBgAj/E00kg
- cgCgD/9QMZOxyeIUcHQWTF3qvT1tVGuppo9og4JggfMhj+5QBC9QaegU057y7GnqHJJYy195ooU
- 53E6w8YEBibHE7esvbksxh5OG41c5y/99JCIA7sgQwq8IRxYsxhf8VkXdrknNM9vClauqJRPx7x
- 78RqQWGGCHoW9qSfNiLoKMpzhgT+mDgXVsYQkhaZZYOAIsLsWZPDToyya32axsy7tQ12ploiRC6
- m1cXzqhSDA3EqIyRVdzC5e9GmN4zU2cmAQfYh/jTCo6tbN7QO8fxxOZQYP8uZclZxf1GAyF+E5J
- GtgYHB2T4VnfUho+skT9EtF5dOHvOT0x5AdXoy56+CoMsDa/5cG2T43Ie9t4vCVQJTW2mZLOsGb
- JzlPu45/i2Wnr5RxoC5hbaRy2fm3fJ+fNyF0x+sMxXoYzuiWcCtES4W5ti3rVJHxHomxjc7ArHl
- PD8DcEmSvzFDOh4UdzTfIwYLlXlQwUgVRZ2gJMa62P71zM+CtXyKYkXcuXVy+tsyDH/h4OYslHl
- CEom9zQn2kb+2HDzXDn09sxcT0oBQWiCMnZwjbs2qY9hdwttVrghViDtIoDXTdgz0DEH1s4uyGd
- YMzsbvCjh0DWRQiS8OiWlwbUNkNTFg83tDCpLFjXCgcFI3NjhR2Wg2jOo8FcsAEradCbkv38AL4
- WWvX1wSH1KsbVOA==
-X-Developer-Key: i=david@ixit.cz; a=openpgp;
- fpr=D77A09CFEEDC2BBD53A7047460023FC4D3492072
-X-Endpoint-Received: by B4 Relay for david@ixit.cz/default with auth_id=355
-X-Original-From: David Heidelberg <david@ixit.cz>
-Reply-To: david@ixit.cz
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251023120933.2427946-1-randolph@andestech.com>
 
-From: David Heidelberg <david@ixit.cz>
+On Thu, Oct 23, 2025 at 08:09:29PM +0800, Randolph Lin wrote:
+> Add support for Andes Qilai SoC PCIe controller
+> 
+> These patches introduce driver support for the PCIe controller on the
+> Andes Qilai SoC.
 
-Describe panel Tearing Effect (TE) GPIO line.
+> Randolph Lin (4):
+>   dt-bindings: PCI: Add Andes QiLai PCIe support
+>   riscv: dts: andes: Add PCIe node into the QiLai SoC
+>   PCI: andes: Add Andes QiLai SoC PCIe host driver support
+>   MAINTAINERS: Add maintainers for Andes QiLai PCIe driver
 
-Signed-off-by: David Heidelberg <david@ixit.cz>
----
- arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+I wonder if you should use "qilai" instead of "andes" as the tag,
+e.g.,
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
-index a8e87507d667b..8ccf93dec557a 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
-@@ -460,6 +460,7 @@ display_panel: panel@0 {
- 		vci-supply = <&panel_vci_3v3>;
- 		poc-supply = <&panel_vddi_poc_1p8>;
- 
-+		te-gpios = <&tlmm 10 GPIO_ACTIVE_HIGH>;
- 		reset-gpios = <&tlmm 6 GPIO_ACTIVE_LOW>;
- 
- 		pinctrl-0 = <&panel_default>;
+  riscv: dts: qilai: Add ...
+  PCI: qilai: Add Andes QiLai ...
 
--- 
-2.51.0
+in case Andes ever makes another SoC with a different product name.
 
+No need to repost for this; just let us know your thoughts.
 
+>  .../bindings/pci/andestech,qilai-pcie.yaml    |  86 ++++++++
+>  MAINTAINERS                                   |   7 +
+>  arch/riscv/boot/dts/andes/qilai.dtsi          | 106 ++++++++++
+>  drivers/pci/controller/dwc/Kconfig            |  13 ++
+>  drivers/pci/controller/dwc/Makefile           |   1 +
+>  drivers/pci/controller/dwc/pcie-andes-qilai.c | 198 ++++++++++++++++++
+>  6 files changed, 411 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pci/andestech,qilai-pcie.yaml
+>  create mode 100644 drivers/pci/controller/dwc/pcie-andes-qilai.c
+> 
+> -- 
+> 2.34.1
+> 
 
