@@ -1,166 +1,203 @@
-Return-Path: <devicetree+bounces-230124-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230125-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95A4ABFFE4A
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 10:24:25 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B2FDEBFFE71
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 10:25:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 277C63AD1F4
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 08:24:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0848B3AEAFC
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 08:25:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46BF02FDC3E;
-	Thu, 23 Oct 2025 08:22:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8636F2F7AD4;
+	Thu, 23 Oct 2025 08:23:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="JwXrVfJn"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="ctLIHAw2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 712CC2F533B
-	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 08:22:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C34CF2F6196;
+	Thu, 23 Oct 2025 08:23:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761207766; cv=none; b=d4GT7DSfsOQmaYls6gpLFwsgLP30kfajnS6+CXcigsyrApIS2ywWDA+x3yjtS+KIfQnLxR2vL3OwGtMsV5dX65xX0nx7fnLdcNtONVZx2+3mX8MWmM3gqnpuqPglJbgXRmDZCGnWx7z2rFoBInpoOCO+bq4+OhL1m2dsW3PF6pA=
+	t=1761207828; cv=none; b=F9rp45Q/pX95GwxFGnfd/wg02DC2HCZfVYM882qlmnGAV1yngPkX6JBZSL8y3BL2vnv7c8G+BA0WaIH7zMyUBDY4z0+R8Ah3dNjW0ElKh6tVe82oUCT8NufSWpkWOCo0pzBfeSMFRst5ipTJJw1qgTP/fT2FezpUawrIGevcsmg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761207766; c=relaxed/simple;
-	bh=t24w4DPMahHtB47lcvbqPKJBhuDoe/WR/qA9AK/CzCE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=njWLwMr0GjUsXcgKaSKXqH/QqdNvwMxUnDQ/lk4mVt+KHdIGNoLILzuw9OivqhbKEYwkMqq7fZGs0J2eFYUyxq19+uJ4jRJBLjJnBqlPDIkbTToXnv5vLbvUbb99/nDkKnsFJtsawZiRe3aUm8ZtWpG+cgfmlI0lYKtBLZu+DHU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=JwXrVfJn; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59N6ZHgZ028831
-	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 08:22:43 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	K4NgzGTqEzB8dTS+vj4Q5OscJECbKhME9FM05+rA3pQ=; b=JwXrVfJnC5SxNroT
-	GVflMBI3RAKRv0NmMCdJaWepOjMtALVL9U44IHHQeuH5eWAIDka1Dgcynx5pHyzE
-	WllOeefifpEOemyV6kf1p9JYfyD64jX003N7sphlbqzsgU7N/RSMmCnmSYWg4MQS
-	OrgxmNPg6zrQOLn6MMSgEyrwtWEfqjaKwGLfGP+1i97SD1uYEtxeD4pypUk6xnn5
-	vnZnvC4j70Q0fuQBYXT2ac3I5QywqtnfY36RLNneIv7myopRelXimm7uoV64tvSo
-	IcoMVpQSWSqmtlJCOSMKtpmol3quSrgUTvX69Q8SODTVWTwryzRwmdVpKj+ZhePx
-	n6JP3g==
-Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49w08wd95b-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 08:22:43 +0000 (GMT)
-Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-4e892b1c102so2171071cf.3
-        for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 01:22:43 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761207761; x=1761812561;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=K4NgzGTqEzB8dTS+vj4Q5OscJECbKhME9FM05+rA3pQ=;
-        b=KcLABIcqHYVEhoA8uPo9qsjqWyDfqbVDh0iQqixowWrBrGz+6qAhsYMhH1V3j0Tqoj
-         ARjxFZZON7+KsxQ3j8rAkmI14Gtz/24LnXoSPmVb2sGhzkmQxdwe6xsFcMd+2toYTNOj
-         abmoRXSUNurb9aGGVrghn+Adq+ysruRpiYQV5S0Uk7rxGIsD9XmW3A0hcUh5XuEH0YTv
-         T2ZjmXZIzMkh9Dd42qXnyXyeoWz61plg2AAaysIdF9c44jFRdcXBy5GezS4ld93RUJ0d
-         HP5pt+yKIXCxAZXm6kXN3HPuFl5OOgsC32voLVS2YuzoPyEX6c8G7e3EKL+nbxQUbsUU
-         Jd+A==
-X-Forwarded-Encrypted: i=1; AJvYcCUNYJYgN0eW8xWJdjq3ayCLBGdAcoPCaIMqAsB10gazQGh65shW37Hpw259m4p0dWSZ+ofOytoUHpnh@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx/feyC6i4x9eJPqx/18qdIpS2J9RDPYXUHAOe3/hePfLcw+JFu
-	ynrt4B5qaEjA1q1PNmMoIHi3B+cW5ynWlVgIDJdkF+rJIknVl1LXQ9l/kSBeVoxB0/qmOKzCqHW
-	muv4rLcKzpfT8NAbXZ0y9Qj4EaychLryrAp/vs6hCNAOqMUXUgLgH0ay7zw27ASPp
-X-Gm-Gg: ASbGncshYFU1reI2lSmoaQZUCSJRQkcrziAhQ6GJuqhUY+OABwuXmbHffkr9xdiKEyo
-	2jkzyPmFEl0Dq6c8IyJz//h9v2NPW43t2BqsnHkqr1Pkq3Q3V0qIoFyaSQ2/ztNiKusJZnN/VE+
-	U8c6BJgTSn0pSst/BWjwRWi3A80yZwPwtUHYWRlEHPj8CEZaEASQoXACP0lbcC+X/X0/5dH0ET6
-	Uj1kpnOjvsBJUz8SLRrC4XKU9Pg8keqD4FXWWNL4u0FowOJYEGAA1z+I5CKyiaLLkS9p9NgDtsS
-	IxOBntFFicqOhjJuBkUUizyX/UzJ7baN7cKTphj++teez3xWw3IrY7kWyKyCRChYa29tZS4IFVz
-	W2YVCgthM/CE8u8Kk5X2MHljL/rucyJJw4pKxKQxsOdgfWZMAsBxfv4uQ
-X-Received: by 2002:ac8:5e51:0:b0:4ab:6e68:1186 with SMTP id d75a77b69052e-4e89d1f94eamr202274431cf.2.1761207761123;
-        Thu, 23 Oct 2025 01:22:41 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHEoh9odwgEcJ5K/DIdlUh+JcVJr4l9Z1HO2TW/KV5jjqHxmPJPsVObSKYBvA63wzdqXFK5BA==
-X-Received: by 2002:ac8:5e51:0:b0:4ab:6e68:1186 with SMTP id d75a77b69052e-4e89d1f94eamr202274191cf.2.1761207760689;
-        Thu, 23 Oct 2025 01:22:40 -0700 (PDT)
-Received: from [192.168.119.202] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-63e3f3348cfsm1093740a12.35.2025.10.23.01.22.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 23 Oct 2025 01:22:40 -0700 (PDT)
-Message-ID: <207f25e9-3685-4838-a384-e6bfe6f8c244@oss.qualcomm.com>
-Date: Thu, 23 Oct 2025 10:22:36 +0200
+	s=arc-20240116; t=1761207828; c=relaxed/simple;
+	bh=ptxKv8x6ylevA5yI5wa4vryf/6lVRy0gbUbnxJJtU2c=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=D6z+Tfl6KR9jrDL0eKnZVhYXlS4n0L/60WH9+3VphcpwjWt6ac4ApcD4bHsIeAlCYcy1nyPh8e+3bVgkVRnnbnTjekEkyTnD7pbf9fgRm64g0D5IbEswpwTbAji9+PwsBzoxdzipHkRIUNmfDAy+AtnnhCNKckavIuU1us82cwY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=ctLIHAw2; arc=none smtp.client-ip=192.198.163.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1761207827; x=1792743827;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=ptxKv8x6ylevA5yI5wa4vryf/6lVRy0gbUbnxJJtU2c=;
+  b=ctLIHAw2kJ0egEAGrF1G88enkF8ZcHTPGLMOi7Y7Mb/fiE9sEYyBXAdB
+   lFVoLGVSWrKPb3nsnBzKtKJa8TZ8tMudUc3fu294q4gwShu5pHIkizE9M
+   jWPsSC1Cz9aMfflkr5PYai6c5vtBhc/TCVafe6d4tX/scQMGAFcx0e1ha
+   jSlsrFYBR0++UyBMd4JuB7Bde7G3Mkfx2y54U8Ote9NlNlCPL7SqNCO22
+   9mnDTuI+yMVVVkioKv5rVIWmZuX4cGGUgJqVYVEw7iE/94izS9N+M/xkv
+   woHIFu/uCqVDjxeLvUrMRrJj4G2niAlAO4jRGtCivp2BFUwgd+jtAn29d
+   w==;
+X-CSE-ConnectionGUID: QCSiRrf0TpCu6/V3ttL8Vg==
+X-CSE-MsgGUID: 1FLG44dyRRe54pdhWC+8lw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="50950423"
+X-IronPort-AV: E=Sophos;i="6.19,249,1754982000"; 
+   d="scan'208";a="50950423"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Oct 2025 01:23:46 -0700
+X-CSE-ConnectionGUID: xewb7CYnSHm2QYHap8wVgA==
+X-CSE-MsgGUID: lpfHCmtBSPKbcNs6POSKHw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,249,1754982000"; 
+   d="scan'208";a="183270380"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO ashevche-desk.local) ([10.245.244.163])
+  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Oct 2025 01:23:42 -0700
+Received: from andy by ashevche-desk.local with local (Exim 4.98.2)
+	(envelope-from <andriy.shevchenko@intel.com>)
+	id 1vBqbj-00000001tXy-1owL;
+	Thu, 23 Oct 2025 11:23:39 +0300
+Date: Thu, 23 Oct 2025 11:23:39 +0300
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-i3c@lists.infradead.org,
+	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
+	linux-iio@vger.kernel.org, joshua.yeong@starfivetech.com,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v6 1/5] i3c: Add HDR API support
+Message-ID: <aPnmCwwZVZ5egqkP@smile.fi.intel.com>
+References: <20251014-i3c_ddr-v6-0-3afe49773107@nxp.com>
+ <20251014-i3c_ddr-v6-1-3afe49773107@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 08/12] arm64: defconfig: Enable NT37801 DSI panel driver
-To: yuanjie yang <yuanjie.yang@oss.qualcomm.com>, robin.clark@oss.qualcomm.com,
-        lumag@kernel.org, abhinav.kumar@linux.dev, sean@poorly.run,
-        marijn.suijten@somainline.org, airlied@gmail.com, simona@ffwll.ch,
-        maarten.lankhorst@linux.intel.com, mripard@kernel.org,
-        tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org,
-        conor+dt@kernel.org, quic_mkrishn@quicinc.com, jonathan@marek.ca,
-        quic_khsieh@quicinc.com, neil.armstrong@linaro.org
-Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, tingwei.zhang@oss.qualcomm.com,
-        aiqun.yu@oss.qualcomm.com, yongxing.mou@oss.qualcomm.com
-References: <20251023075401.1148-1-yuanjie.yang@oss.qualcomm.com>
- <20251023080609.1212-1-yuanjie.yang@oss.qualcomm.com>
- <20251023080609.1212-3-yuanjie.yang@oss.qualcomm.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20251023080609.1212-3-yuanjie.yang@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: bxBPZIV9M1oUzrmQTJMvmijMYtOG92Hl
-X-Proofpoint-GUID: bxBPZIV9M1oUzrmQTJMvmijMYtOG92Hl
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDE5MDA5MCBTYWx0ZWRfX/p9byRzCl2nX
- t2hMNWXNF1JgjaCLvqLNDB2X8nYzMC5UCirMZ1ixQcgCvKPWkCcTttoZqmCqPNYp932G5NtcTeS
- KlvAQSGqy0Wqd55VgRUjsNKVXH0GL4q2eFltmLOmZTyiRaIaKQroOUdwTGNGEyO3aOXglpTmjqV
- NM1OccWRJG6mIhAYqV3enmkRJAJDge3sNjjCQbGl2eKiT++vxsqhJ/6a7/+A/PFTuZq7N1LG+St
- H1kPzjFmkUYcu2isGKjqeQ1pIY8fzOJfiNLZA1R1vx9GAoJlRlHO/jB3+oL5ym9aU3lGzrjgGUT
- fPTDLlSZBbRw0+zBf9YU/e1W43fhFmB9BMxM0CwDPRN9+oTxntAW+8gIClJxGadjs2rPnQH96oo
- gON8L93QjFm2yhwM9tXPbES2fqvx8w==
-X-Authority-Analysis: v=2.4 cv=V5NwEOni c=1 sm=1 tr=0 ts=68f9e5d3 cx=c_pps
- a=mPf7EqFMSY9/WdsSgAYMbA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=EUspDBNiAAAA:8 a=91DCyrf_GaaWAzlYtecA:9 a=QEXdDO2ut3YA:10
- a=dawVfQjAaf238kedN5IG:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-10-22_08,2025-10-22_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 malwarescore=0 adultscore=0 priorityscore=1501 lowpriorityscore=0
- spamscore=0 suspectscore=0 clxscore=1015 phishscore=0 impostorscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2510020000 definitions=main-2510190090
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251014-i3c_ddr-v6-1-3afe49773107@nxp.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 
-On 10/23/25 10:06 AM, yuanjie yang wrote:
-> From: Yuanjie Yang <yuanjie.yang@oss.qualcomm.com>
+On Tue, Oct 14, 2025 at 12:40:00PM -0400, Frank Li wrote:
+> Rename struct i3c_priv_xfer to struct i3c_xfer, since private xfer in the
+> I3C spec refers only to SDR transfers. Ref: i3c spec ver1.2, section 3,
+> Technical Overview.
 > 
-> Build the NT37801 DSI panel driver as module.
-
-Yes, we can see that's what happens in the diff below.
-
-You failed to state the "why"
-
-Konrad
-
+> i3c_xfer will be used for both SDR and HDR.
 > 
-> Signed-off-by: Yongxing Mou <yongxing.mou@oss.qualcomm.com>
-> Signed-off-by: Yuanjie Yang <yuanjie.yang@oss.qualcomm.com>
-> ---
->  arch/arm64/configs/defconfig | 1 +
->  1 file changed, 1 insertion(+)
+> Rename enum i3c_hdr_mode to i3c_xfer_mode. Previous definition need match
+> CCC GET_CAP1 bit position. Use 31 as SDR transfer mode.
 > 
-> diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-> index 8cfb5000fa8e..537a065db11c 100644
-> --- a/arch/arm64/configs/defconfig
-> +++ b/arch/arm64/configs/defconfig
-> @@ -945,6 +945,7 @@ CONFIG_DRM_PANEL_SITRONIX_ST7703=m
->  CONFIG_DRM_PANEL_STARTEK_KD070FHFID015=m
->  CONFIG_DRM_PANEL_TRULY_NT35597_WQXGA=m
->  CONFIG_DRM_PANEL_VISIONOX_VTDR6130=m
-> +CONFIG_DRM_PANEL_NOVATEK_NT37801=m
->  CONFIG_DRM_DISPLAY_CONNECTOR=m
->  CONFIG_DRM_FSL_LDB=m
->  CONFIG_DRM_ITE_IT6263=m
+> Add i3c_device_do_xfers() with an xfer mode argument, while keeping
+> i3c_device_do_priv_xfers() as a wrapper that calls i3c_device_do_xfers()
+> with I3C_SDR for backward compatibility.
+> 
+> Introduce a 'cmd' field in struct i3c_xfer as an anonymous union with
+> 'rnw', since HDR mode uses read/write commands instead of the SDR address
+> bit.
+> 
+> Add .i3c_xfers() callback for master controllers. If not implemented, fall
+> back to SDR with .priv_xfers(). The .priv_xfers() API can be removed once
+> all controllers switch to .i3c_xfers().
+> 
+> Add 'mode_mask' bitmask to advertise controller capability.
+
+...
+
+>  static int i3c_master_check_ops(const struct i3c_master_controller_ops *ops)
+>  {
+> -	if (!ops || !ops->bus_init || !ops->priv_xfers ||
+> +	if (!ops || !ops->bus_init ||
+>  	    !ops->send_ccc_cmd || !ops->do_daa || !ops->i2c_xfers)
+>  		return -EINVAL;
+>  
+> +	if (!ops->priv_xfers && !ops->i3c_xfers)
+> +		return -EINVAL;
+
+I would find the logically coupled proto-based xfers:
+
+	if (!ops->i2c_xfers && !ops->i3c_xfers)
+		return -EINVAL;
+
+
+>  	if (ops->request_ibi &&
+>  	    (!ops->enable_ibi || !ops->disable_ibi || !ops->free_ibi ||
+>  	     !ops->recycle_ibi_slot))
+
+>  }
+
+...
+
+> -enum i3c_hdr_mode {
+> +enum i3c_xfer_mode {
+> +	/* The below 3 value (I3C_HDR*) must match GETCAP1 Byte bit position */
+>  	I3C_HDR_DDR,
+>  	I3C_HDR_TSP,
+>  	I3C_HDR_TSL,
+> +	/* Use for default SDR transfer mode */
+> +	I3C_SDR = 0x31,
+
+Why has this a specific value, while the rest have not? If it's HW mandated,
+the all of them has to be assigned properly to avoid potential bugs.
+
+>  };
+
+...
+
+>  /**
+> - * struct i3c_priv_xfer - I3C SDR private transfer
+> + * struct i3c_xfer - I3C data transfer
+>   * @rnw: encodes the transfer direction. true for a read, false for a write
+> + * @cmd: Read/Write command in HDR mode, read: 0x80 - 0xff, write: 0x00 - 0x7f
+>   * @len: transfer length in bytes of the transfer
+>   * @actual_len: actual length in bytes are transferred by the controller
+>   * @data: input/output buffer
+
+>   * @data.out: output buffer. Must point to a DMA-able buffer
+>   * @err: I3C error code
+>   */
+> -struct i3c_priv_xfer {
+> -	u8 rnw;
+> +struct i3c_xfer {
+> +	union {
+> +		u8 rnw;
+> +		u8 cmd;
+> +	};
+
+What field is used to distinguish the union member in current use?
+In another word, union must be accompanied with a selector.
+
+>  	u16 len;
+>  	u16 actual_len;
+>  	union {
+
+>  	enum i3c_error_code err;
+>  };
+
+...
+
+> +/* keep back compatible */
+> +#define i3c_priv_xfer i3c_xfer
+
+How many of the current users do this? Can't we just rename treewide?
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
