@@ -1,206 +1,187 @@
-Return-Path: <devicetree+bounces-230335-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230336-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0327C0189D
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 15:51:30 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE6EDC018BE
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 15:52:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9F4583B040C
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 13:51:02 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 7EFDA50230C
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 13:51:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0EBC331DD98;
-	Thu, 23 Oct 2025 13:50:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F28D314B6B;
+	Thu, 23 Oct 2025 13:51:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="gj8HcGBF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mhi7z7SM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A05F315D57;
-	Thu, 23 Oct 2025 13:50:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D000309DA0;
+	Thu, 23 Oct 2025 13:51:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761227444; cv=none; b=tpKHdcxRarggU88h0e0opKq50FAs8puMNBUfnSIngA/lbjDL4PfhTrZSOGtqxXKb22ODWx3WH8uxtxgWQINPa8gKa3wHkaTHDBpBrnJyem86f0ac5T5kgXkTbkraadIb1FDCgofNFZkkQmVUVmrFrYWpwk0SWdloPkJU+itx/8c=
+	t=1761227515; cv=none; b=aNmNyQKf+hkSXaWZi8Gk3BG28fil/Xl4tjr00+IUnzNZERUc86tPiqaw4sgcFlRUdHANGeprUWpZIx9uhLQESAeiOqR0/PlC9Slm+bg/DmQvQ1XgFKLBlLHB5ZdWFiWHuNbs4HW50OAJJIAQqevfXTuHR5XJ+2Di9Y3wuRxY9SA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761227444; c=relaxed/simple;
-	bh=l69amUJcXORsIOVX7PpL4EYcvGyT8oCAoRgKxeotHBU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=YZFwfDY9BS+umlHnD8ODw9dEzhMdhCnz9JTGv+f+iF+y/8Dkd+mOS1WJyrIcIHjegaZZOOHQ58hVxF25OiL08P+OjRqZCb/qO1cfVaHgJI1dKpOj/knxL6T+1xtIMemYxMeQthhQdACLUtnQttRKu8GKrA22uEEUzXBceBRaeJs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=gj8HcGBF; arc=none smtp.client-ip=198.47.19.246
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
-	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTP id 59NDoTUS540288;
-	Thu, 23 Oct 2025 08:50:29 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1761227429;
-	bh=zki04Sm93j86wFa73SiXbRhOneWQJcRk+qoxflH2Q9g=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=gj8HcGBFKgITuRVeZo89cCU+6zRmxLf6nbvWuc/iZo3M98TywDl/KwZkai2RcuG6o
-	 ZmNhIE66U9pVh6HS20u7ARsI+O72bbUMQ4C8YENVTL5rhZMzRWw3kO3SIC8fByALVL
-	 tqjFlhTTI0Iuwbgx24r5KmRpq7zviXEje+CdvBvQ=
-Received: from DFLE206.ent.ti.com (dfle206.ent.ti.com [10.64.6.64])
-	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 59NDoSiT2749992
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 23 Oct 2025 08:50:29 -0500
-Received: from DFLE207.ent.ti.com (10.64.6.65) by DFLE206.ent.ti.com
- (10.64.6.64) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 23 Oct
- 2025 08:50:28 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE207.ent.ti.com
- (10.64.6.65) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Thu, 23 Oct 2025 08:50:28 -0500
-Received: from [10.249.141.75] ([10.249.141.75])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 59NDoPG32933967;
-	Thu, 23 Oct 2025 08:50:25 -0500
-Message-ID: <554df7d2-1809-42a8-b512-bde3fd284163@ti.com>
-Date: Thu, 23 Oct 2025 19:20:24 +0530
+	s=arc-20240116; t=1761227515; c=relaxed/simple;
+	bh=sMS1bB1kvZStN3PnuknRJAFqV2WBA0nPK4ke8KvoOU0=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=h1dQ14QO5GVuIS26swD/JsTlJzaWBcHEmkrZuSPtVS0CQR2pepYBPFkAV+jRbv5l2qogph67q/lQOUTngQr08jlO6lSbCtawoYacpNvDUPTJShHBhYfDTBo06YyXdBiaRtZrPlfxf2j2sCmjuncsDDLbJ32RWx6Tzciwmd+m+dw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mhi7z7SM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 74577C4CEE7;
+	Thu, 23 Oct 2025 13:51:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761227514;
+	bh=sMS1bB1kvZStN3PnuknRJAFqV2WBA0nPK4ke8KvoOU0=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=mhi7z7SM+JBeSJ5R3vvG0rWB86SUfXm3UcCm+b49/ivGLORjdXpjZUvGDy8jL3OoR
+	 GH4IMiQLzw+JtIBpeToGAGRuAvtCVqJ0IgLtd8nbflBTwfKVDBbzkbU7Po+rfaE0r6
+	 2+xQ+IprJbNE7BNd8dBGTZWqwdcpAv1nkmoJ+goDTcCBJaDt929mrcFMjmik3AYzXS
+	 u1LlrSm7BHBM1pbSU5umybTaKfywMKSD/naxkKu06kiHTg90vtHgHuD1txn6Ihfewj
+	 NOtW1JxLTL+Iz1482C+oL/P+BrQssKk7VtBQHvVXliYysu8c8qL+Gvvv9ZMGKtOnwS
+	 CnP7vNDNCN4LA==
+Date: Thu, 23 Oct 2025 08:51:52 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 2/2] arm64: dts: ti: k3-j722s-main: fix the audio
- refclk source
-To: Michael Walle <mwalle@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Vignesh
- Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>
-CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <u-kumar1@ti.com>
-References: <20251017102228.530517-1-mwalle@kernel.org>
- <20251017102228.530517-2-mwalle@kernel.org>
-Content-Language: en-US
-From: "Kumar, Udit" <u-kumar1@ti.com>
-In-Reply-To: <20251017102228.530517-2-mwalle@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-
-Hi Michael,
-
-On 10/17/2025 3:52 PM, Michael Walle wrote:
-> At the moment the clock parent of the audio extclk output is PLL1_HSDIV6
-> of the main domain. This very clock output is also used among various IP
-> cores, for example for the USB1 LPM clock. The audio extclock being an
-> external clock output with a variable frequency, it is likely that a
-> user of this clock will try to set it's frequency to a different value,
-> i.e. an audio codec. Because that clock output is used also for other IP
-> cores, bad things will happen.
->
-> Instead of using PLL1_HSDIV6 use the PLL2_HSDIV8 as a sane default, as
-> this output is exclusively used among other audio peripherals.
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Konrad Dybcio <konradybcio@kernel.org>, 
+ Bjorn Andersson <andersson@kernel.org>, linux-kernel@vger.kernel.org, 
+ linux-arm-msm@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
+ devicetree@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
+In-Reply-To: <20251022084052.218043-1-krishna.kurapati@oss.qualcomm.com>
+References: <20251022084052.218043-1-krishna.kurapati@oss.qualcomm.com>
+Message-Id: <176122700560.2723198.8931067346416497101.robh@kernel.org>
+Subject: Re: [PATCH v8 0/3] Introduce USB DT support for SM8750
 
 
-Thanks for this fix,
-
-Initial support for audio_refclkx was added in j722s and am62p soc 
-specific files due
-
-to selection of different parent.
-
-Since these SOC share many common things, and this patch will make these 
-nodes same as of am62p device
-
-https://elixir.bootlin.com/linux/v6.18-rc2/source/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi#L46 
-
-
-So I suggest to move in common file 
-https://elixir.bootlin.com/linux/v6.18-rc2/source/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi#L42 
-
-
-and remove from SOC specific files.
-
-
-> Signed-off-by: Michael Walle <mwalle@kernel.org>
+On Wed, 22 Oct 2025 14:10:49 +0530, Krishna Kurapati wrote:
+> Add support for the PHYs and controllers used for USB on SM8750 SoCs.
+> 
+> Version-6 of this series has all the binding/driver/dt patches acked.
+> But only the phy changes have been merged.
+> 
+> Version 7 was a rebase to get acked patches merged. But comments came
+> in to use flattened bindings.
+> 
+> The v8 for usb patch has been split and sent out separately [1].
+> 
+> Cover letter heading has been modified to remove phy context.
+> 
+> Defconfig patch has been resent by Jingyi on [2].
+> 
+> [1]: https://lore.kernel.org/all/20251021050954.3462613-1-krishna.kurapati@oss.qualcomm.com/
+> [2]: https://lore.kernel.org/all/20251021-knp-usb-v2-4-a2809fffcfab@oss.qualcomm.com/
+> 
 > ---
-> The original abort happens when sound is played and the codec will try
-> to change the clock frequency of the audio_extclk. In that case, there
-> will be a synchronous external abort in the xhci irq handler on our
-> board. This error only happens on board variants with an attached
-> on-board USB hub (TUSB8043A) probably because of USB traffic.
->
-> This can also reduced to just run k3conf to set the clock manually:
->    k3conf set clock 157 15 12000000
->
-> That will then produce the following splat:
->
->      Internal error: synchronous external abort: 0000000096000010 [#1]  SMP
->      Modules linked in:
->      CPU: 0 UID: 0 PID: 0 Comm: swapper/0 Tainted: G   M                6.18.0-rc1-next-20251016-00042-gde32b6002bba #3076 NONE
->      Tainted: [M]=MACHINE_CHECK
->      Hardware name: Kontron SMARC-sAM67 (DT)
->      pstate: 600000c5 (nZCv daIF -PAN -UAO -TCO -DIT -SSBS BTYPE=--)
->      pc : xhci_handle_events.isra.0+0x278/0x14e8
->      lr : xhci_irq+0xa4/0x140
->      sp : ffff800080003e00
->      x29: ffff800080003e60 x28: ffff0008043cc000 x27: 0000000000000000
->      x26: ffff000804513a78 x25: ffffbdbfa3b5df40 x24: ffff0008043c9c48
->      x23: ffff000803234c60 x22: ffff800081410490 x21: 0000000000000000
->      x20: 0000000000000000 x19: ffff0008043c9240 x18: 0000000000000004
->      x17: ffff4249db4d5000 x16: ffff800080000000 x15: ffff00097ee690e0
->      x14: 0000000000000001 x13: 0000000000000001 x12: 0000000000000000
->      x11: 0000000000000040 x10: ffff0008000146f0 x9 : ffffbdbfa240937c
->      x8 : ffff000802679fb0 x7 : 0000000000000000 x6 : 0000000000000000
->      x5 : ffff000802679f88 x4 : ffff0008043c9284 x3 : 0000000000000078
->      x2 : ffff0008043cc000 x1 : ffff000804513a00 x0 : 0000000000000078
->      Call trace:
->       xhci_handle_events.isra.0+0x278/0x14e8 (P)
->       xhci_irq+0xa4/0x140
->       usb_hcd_irq+0x38/0x60
->       __handle_irq_event_percpu+0x64/0x278
->       handle_irq_event+0x4c/0x110
->       handle_fasteoi_irq+0x14c/0x270
->       handle_irq_desc+0x3c/0x68
->       generic_handle_domain_irq+0x24/0x40
->       gic_handle_irq+0x138/0x280
->       call_on_irq_stack+0x30/0x48
->       do_interrupt_handler+0x88/0xa0
->       el1_interrupt+0x4c/0xb8
->       el1h_64_irq_handler+0x18/0x30
->       el1h_64_irq+0x80/0x88
->       default_idle_call+0x38/0xf0 (P)
->       do_idle+0x22c/0x290
->       cpu_startup_entry+0x40/0x50
->       rest_init+0xc8/0xd0
->       start_kernel+0x8d0/0x8d8
->       __primary_switched+0x88/0x98
->      Code: eb02031f 54000e80 f8606836 f9400b1c (b94002d6)
->      ---[ end trace 0000000000000000 ]---
->      Kernel panic - not syncing: synchronous external abort: Fatal exception in interrupt
-> ---
->   arch/arm64/boot/dts/ti/k3-j722s-main.dtsi | 4 ++--
->   1 file changed, 2 insertions(+), 2 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/ti/k3-j722s-main.dtsi b/arch/arm64/boot/dts/ti/k3-j722s-main.dtsi
-> index 11a1a42e12b1..04de29da40f1 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j722s-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j722s-main.dtsi
-> @@ -468,7 +468,7 @@ audio_refclk0: clock@82e0 {
->   		reg = <0x82e0 0x4>;
->   		clocks = <&k3_clks 157 0>;
->   		assigned-clocks = <&k3_clks 157 0>;
-> -		assigned-clock-parents = <&k3_clks 157 15>;
-> +		assigned-clock-parents = <&k3_clks 157 16>;
->   		#clock-cells = <0>;
->   	};
->   
-> @@ -477,7 +477,7 @@ audio_refclk1: clock@82e4 {
->   		reg = <0x82e4 0x4>;
->   		clocks = <&k3_clks 157 18>;
->   		assigned-clocks = <&k3_clks 157 18>;
-> -		assigned-clock-parents = <&k3_clks 157 33>;
-> +		assigned-clock-parents = <&k3_clks 157 34>;
->   		#clock-cells = <0>;
->   	};
->   };
+> Changes in v8:
+> - Using Flattened DT representation.
+> - Removed obtained RB tags since the code has changed significantly.
+> - Modified Author mail address from quicinc to oss.qualcomm.com
+> - Link to v7: https://lore.kernel.org/all/20251015105231.2819727-1-krishna.kurapati@oss.qualcomm.com/
+> 
+> Changes in v7:
+> - Rebased on top of linux next
+> - Split usb patch and sent out separately.
+> - Link to v6: https://lore.kernel.org/all/20250527-sm8750_usb_master-v6-0-d58de3b41d34@oss.qualcomm.com/
+> 
+> Changes in v6:
+> - Change readl_relaxed/writel_relaxed calls to just readl/writel in the readback function
+> - Updated languange in the defconfig commit to specify SM8750 as a Qualcomm SoC
+> - Link to v5: https://lore.kernel.org/r/20250421-sm8750_usb_master-v5-0-25c79ed01d02@oss.qualcomm.com
+> 
+> Changes in v5:
+> - Removed refclk_src from the QMP PHY driver as that is no longer used.
+> - The decision to move the TCSR clkref property from controller --> phy
+> node was made in v4, and the refclk_src was a lingering change that was
+> meant to be removed.  CXO is the parent clock for TCSR clkref, so CXO
+> clk will be voted for as well.
+> - Relocate the SM8750 compatible within the qcom,dwc3 bindings.  This is
+> to take into account the change in clock list.
+> - Link to v4: https://lore.kernel.org/r/20250409-sm8750_usb_master-v4-0-6ec621c98be6@oss.qualcomm.com
+> 
+> Changes in v4:
+> - Made some fixups to the M31 eUSB2 driver
+> - Moved TCSR refclk_en to the QMP PHY DT node
+> - Link to v3: https://lore.kernel.org/r/20250324-sm8750_usb_master-v3-0-13e096dc88fd@quicinc.com
+> 
+> Changes in v3:
+> - Split platform DTs into separate commits.
+> - Fixed up M31 eUSB2 PHY driver with feedback received.
+> - Reordered DT properties based on feedback.
+> - Rewrote commit message for enabling EUSB driver.
+> - Link to v2: https://lore.kernel.org/r/20250304-sm8750_usb_master-v2-0-a698a2e68e06@quicinc.com
+> 
+> Changes in v2:
+> - Added new QMP PHY register definitions for v8 based QMP phys.
+> - Made changes to clean up some code in the M31 eUSB2 PHY driver based
+> on feedback received.
+> - Added bulk regulator operations in M31 eUSB2 PHY, to ensure that
+> both the vdd and vdda12 regulators are properly voted for.
+> - Removed external references to other dt bindings in M31 example for
+> the DT bindings change.
+> - Split DT patches between SoC and plaform changes, as well as the
+> PHY subsystem Kconfig changes when introducing the M31 eUSB2 PHY.
+> - Added orientation switch and port definitions in the DT changes.EDITME: describe what is new in this series revision.
+> - Link to v1: https://lore.kernel.org/r/20250113-sm8750_usb_master-v1-0-09afe1dc2524@quicinc.com
+> 
+> Wesley Cheng (3):
+>   arm64: dts: qcom: sm8750: Add USB support to SM8750 SoCs
+>   arm64: dts: qcom: sm8750: Add USB support for SM8750 MTP platform
+>   arm64: dts: qcom: sm8750: Add USB support for SM8750 QRD platform
+> 
+>  arch/arm64/boot/dts/qcom/sm8750-mtp.dts |  22 ++++
+>  arch/arm64/boot/dts/qcom/sm8750-qrd.dts |  22 ++++
+>  arch/arm64/boot/dts/qcom/sm8750.dtsi    | 158 ++++++++++++++++++++++++
+>  3 files changed, 202 insertions(+)
+> 
+> --
+> 2.34.1
+> 
+> 
+> 
+
+
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
+
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
+
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
+
+  pip3 install dtschema --upgrade
+
+
+This patch series was applied (using b4) to base:
+ Base: attempting to guess base-commit...
+ Base: tags/v6.17-10290-g67e1b0052f6b (exact match)
+ Base: tags/v6.17-10290-g67e1b0052f6b (use --merge-base to override)
+
+If this is not the correct base, please add 'base-commit' tag
+(or use b4 which does this automatically)
+
+New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/qcom/' for 20251022084052.218043-1-krishna.kurapati@oss.qualcomm.com:
+
+arch/arm64/boot/dts/qcom/sm8750-mtp.dtb: usb@a600000 (qcom,sm8750-dwc3): compatible:0: 'qcom,sm8750-dwc3' is not one of ['qcom,ipq4019-dwc3', 'qcom,ipq5018-dwc3', 'qcom,ipq5332-dwc3', 'qcom,ipq5424-dwc3', 'qcom,ipq6018-dwc3', 'qcom,ipq8064-dwc3', 'qcom,ipq8074-dwc3', 'qcom,ipq9574-dwc3', 'qcom,milos-dwc3', 'qcom,msm8953-dwc3', 'qcom,msm8994-dwc3', 'qcom,msm8996-dwc3', 'qcom,msm8998-dwc3', 'qcom,qcm2290-dwc3', 'qcom,qcs404-dwc3', 'qcom,qcs615-dwc3', 'qcom,qcs8300-dwc3', 'qcom,qdu1000-dwc3', 'qcom,sa8775p-dwc3', 'qcom,sar2130p-dwc3', 'qcom,sc7180-dwc3', 'qcom,sc7280-dwc3', 'qcom,sc8180x-dwc3', 'qcom,sc8180x-dwc3-mp', 'qcom,sc8280xp-dwc3', 'qcom,sc8280xp-dwc3-mp', 'qcom,sdm660-dwc3', 'qcom,sdm670-dwc3', 'qcom,sdm845-dwc3', 'qcom,sdx55-dwc3', 'qcom,sdx65-dwc3', 'qcom,sdx75-dwc3', 'qcom,sm4250-dwc3', 'qcom,sm6115-dwc3', 'qcom,sm6125-dwc3', 'qcom,sm6350-dwc3', 'qcom,sm6375-dwc3', 'qcom,sm8150-dwc3', 'qcom,sm8250-dwc3', 'qcom,sm8350-dwc3', 'qcom,sm8450-dwc3', 'qcom,sm8550-dwc3', 'qcom,sm865
+ 0-dwc3', 'qcom,x1e80100-dwc3']
+	from schema $id: http://devicetree.org/schemas/usb/qcom,snps-dwc3.yaml
+arch/arm64/boot/dts/qcom/sm8750-qrd.dtb: usb@a600000 (qcom,sm8750-dwc3): compatible:0: 'qcom,sm8750-dwc3' is not one of ['qcom,ipq4019-dwc3', 'qcom,ipq5018-dwc3', 'qcom,ipq5332-dwc3', 'qcom,ipq5424-dwc3', 'qcom,ipq6018-dwc3', 'qcom,ipq8064-dwc3', 'qcom,ipq8074-dwc3', 'qcom,ipq9574-dwc3', 'qcom,milos-dwc3', 'qcom,msm8953-dwc3', 'qcom,msm8994-dwc3', 'qcom,msm8996-dwc3', 'qcom,msm8998-dwc3', 'qcom,qcm2290-dwc3', 'qcom,qcs404-dwc3', 'qcom,qcs615-dwc3', 'qcom,qcs8300-dwc3', 'qcom,qdu1000-dwc3', 'qcom,sa8775p-dwc3', 'qcom,sar2130p-dwc3', 'qcom,sc7180-dwc3', 'qcom,sc7280-dwc3', 'qcom,sc8180x-dwc3', 'qcom,sc8180x-dwc3-mp', 'qcom,sc8280xp-dwc3', 'qcom,sc8280xp-dwc3-mp', 'qcom,sdm660-dwc3', 'qcom,sdm670-dwc3', 'qcom,sdm845-dwc3', 'qcom,sdx55-dwc3', 'qcom,sdx65-dwc3', 'qcom,sdx75-dwc3', 'qcom,sm4250-dwc3', 'qcom,sm6115-dwc3', 'qcom,sm6125-dwc3', 'qcom,sm6350-dwc3', 'qcom,sm6375-dwc3', 'qcom,sm8150-dwc3', 'qcom,sm8250-dwc3', 'qcom,sm8350-dwc3', 'qcom,sm8450-dwc3', 'qcom,sm8550-dwc3', 'qcom,sm865
+ 0-dwc3', 'qcom,x1e80100-dwc3']
+	from schema $id: http://devicetree.org/schemas/usb/qcom,snps-dwc3.yaml
+
+
+
+
+
 
