@@ -1,250 +1,164 @@
-Return-Path: <devicetree+bounces-230377-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230378-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30905C01E18
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 16:48:12 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C4C32C01E2D
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 16:48:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 783DC4E06DD
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 14:48:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1B9DA1A64B35
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 14:48:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 707BF32D42B;
-	Thu, 23 Oct 2025 14:48:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D1673314C0;
+	Thu, 23 Oct 2025 14:48:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=arista.com header.i=@arista.com header.b="DOa9pBJR"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="EjumFBZy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f44.google.com (mail-oa1-f44.google.com [209.85.160.44])
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 962EB2C325B
-	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 14:48:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1560D3314C4
+	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 14:48:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761230887; cv=none; b=UotPRr5XLGYT7tiIu0cGemWibdCOTERg+laFLIgwmgg/wD7E54zi+BkLbOaq8S+Vvvl5MzRrnUUaRk6/E49h/v6+mQKRD8Z6KMdjLGC/Qn47oTxioQ9eftbwZGB8CsL6bzy/E2l3VVIwfsRKVCJTdDa1LkE0yzM+dPzewuxNUOc=
+	t=1761230894; cv=none; b=X3crbSkecuWEimgGQLBXoDhI24Qk5uWwtnQqgtYYcOlqJyrzIlDEDQvYu2kkUO7j+xYpCdwOMYyQMeObUCwbjrWhoshiJm+o4dEZArwIhIvDBFSvtC31/CVOEhSPJZzVqswnqLWaWrz6C4xB6sUHVdQoXsz0umODsfNkkOtXCnY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761230887; c=relaxed/simple;
-	bh=yCbQ9XxHJbLX+gMA3bCythVrgdQkz4B5n1RY+AXyRAo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=RliBuzYh9RLlY6msgMLNR9fVRG9zzDyfCSQR11TJsfCw8xlWyuQv1IY1+QquN07JnsTNiObrZYhCy7qyVEzSfLtSZFeIEZF6tdVTvHlvQhcs+TSrNz09gV6ZMC90ATOPESu/McoTgy41GV6BxOTE6dBfz37VgfzvRjlbM5AG4K0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=arista.com; spf=pass smtp.mailfrom=arista.com; dkim=pass (2048-bit key) header.d=arista.com header.i=@arista.com header.b=DOa9pBJR; arc=none smtp.client-ip=209.85.160.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=arista.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arista.com
-Received: by mail-oa1-f44.google.com with SMTP id 586e51a60fabf-3c9a2fa38c1so321308fac.2
-        for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 07:48:05 -0700 (PDT)
+	s=arc-20240116; t=1761230894; c=relaxed/simple;
+	bh=MgOdUmhxFApDz4sRw7UlK/dEuErVOukFGzY2IjjkGxw=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=olbjqWJcdtrHUPmStSrlzgths/fLxSlths5c4YfknSNCfX2/Jti9W/LpShQDiGpEKZiLY9cXsDQkEjDSFcouDwpq3WEh8+NxiLAJgnDdKNuI+2BDElnmbO4I6zHSlaAI/GjlxCkJ7EMw8lPtDUUu1ymUKrakiHSuMQzXyO6DyJ0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=EjumFBZy; arc=none smtp.client-ip=209.85.128.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-4712c6d9495so5497355e9.2
+        for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 07:48:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=arista.com; s=google; t=1761230885; x=1761835685; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=yCbQ9XxHJbLX+gMA3bCythVrgdQkz4B5n1RY+AXyRAo=;
-        b=DOa9pBJRFx+knEeb/Ywo9K/L2kURf/jMx9uFfTCQKlI2cPVdLzwIgv7VO0eN6AlZOU
-         /XBjNsoWcJhwfhMKP8NDBHqyzHCNoovr6dDZccXJc21UXnSzp83x+okJ9IwRWmIshIGl
-         kYycEBLb+ohLHMI5HewOSLfxSWHRO8QnZ+uDFkZnmUO+zrX2DuEz7sEwveT33oCwNTek
-         93nwKwVIZ4KsTTqfLmtRP3yPuZjrYfuQ6AX+DH6rhQpYoEDfuYAXCEk5JBh90vyp/90N
-         X7dLWwDXGr709BpwUCVWScWMueCx6hlZWIfHNe4mswuodnzTGRiU+IFkCt5wOdBFjEL4
-         2MjQ==
+        d=linaro.org; s=google; t=1761230889; x=1761835689; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
+         :to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=gOu4NGMCUBSkrR2LXCmniFlUsFFrudDXlxk8VUy4Cb0=;
+        b=EjumFBZy07vLjQopGqIfS0VTXSaIHQB4XIi+q0zRDye4Br3CaeB5Y3NewkQzHfrO2Q
+         udBu6lU/t7hzbmFkIZmaIWs70QOgIMA3bsy7Mx2uAF/zgklrJqtNDZtKcDBUrtXby1YP
+         I32M6K2WqEB8SCZ3nJgOZ6Ube5/PB6/djCZb/ARjpOr2wGx8SwlWTzWw0KKLpmzgs0VN
+         I2zQ3rYFDyPsKql2wzsi+wYadfUFOdVo9wchaFJG9doB8gNly5gFEkfKdTEz6u9c0MM9
+         w2Y5N6UYin2y1f2c5xBjwoQVWVLlsyjQgjbs1AwoVhj6CArQTSPj4+Ww4l/7wYJTzOo2
+         1mGw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761230885; x=1761835685;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=yCbQ9XxHJbLX+gMA3bCythVrgdQkz4B5n1RY+AXyRAo=;
-        b=n8iDF9aA66mz2nF0f20uofgTUqekN9HgnF0AWDgX8FVtcB094QIhO3ACGukZG6mrKl
-         pCHU4IFhLp+KzBF0QRhqJngZK4c/cfcDRmqfPHB29KacyECHTIdRttZI+DFUQuJw4mHG
-         nh5rLKgvHV5/hryAyRO9OhwSZmXL8C8fkDjWFGDsA/8CLxYcba3cBZxts5Hj5ti81SD1
-         ydnqwu7lLGD0nmCDEzyLvgvhdTtKEzBt1+4TLeGT7tKUvNhinUMkWapAtpo22Uy98wcN
-         LB9m6Yq+gaqwHGWm0KbBNraqVC0H/Uw1DpKP3I6jPcF0ZgSTY8xxTPeABiCBQyKCxL9H
-         TQvw==
-X-Forwarded-Encrypted: i=1; AJvYcCVqWw0vAtB4To+44vZf+pYs9tDl7ZMgN5J729GTcWQl/dLLWWFGvv216Yn5r+QAFgi09X044FEMeJ1n@vger.kernel.org
-X-Gm-Message-State: AOJu0YycW5zJZbK8djrkxw1q6nzDcKmmZIYOpZcu1JNrY2yjh4LNl8TL
-	h8JHV7rC3tIcODO4cMKkCZNkmn+yakmlDYIST/ZXCFccZMuLg+XiNjU9bAylwHkGnNeGjPiTl9F
-	jjw/GUJvXRU358GjDqkyUtjHqevhc/d02qT0UP0dG70GddVotulp7ZA==
-X-Gm-Gg: ASbGncv0EQDPM6mW/R9lS6E5iBuXHnCck2yuck6l+pgqcej39pedae92JrMBggQBIzL
-	ge0Gr36aOvg62ccOVx+RUERDe/YOxOzBLiLN2y1E2JNMtdc1Y9fK7+WkOAmf97jN11NyYCcmIUU
-	MtK/nx1zHnbUGqyxKp6i95BUiJD5nrhzg/pqBZ4N7mZSR7YkB/AP4AWeCyt/bb/ReLsi1X5PPLY
-	yzNYCluvLlNBpyIfyzqiVcZzk1TrDjlv9NIyJbfyaoVZyLSnRq/YfwHTC69ThFYVOL/whYy1Zuk
-	yP5PQPSHnnbwaBkhgUmGHo2+N7bRXA==
-X-Google-Smtp-Source: AGHT+IFvw0XTgABjFJsYXYpUudxoEkAHEEP01CdUdwp3L8Qx0ZBVOSdQx/inF8LNyXBTTOZmTqpehickro9B2Kz6m7g=
-X-Received: by 2002:a05:6871:d10b:b0:345:ecd6:8b7 with SMTP id
- 586e51a60fabf-3cd88db4df9mr2532709fac.11.1761230884387; Thu, 23 Oct 2025
- 07:48:04 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1761230889; x=1761835689;
+        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
+         :to:from:date:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=gOu4NGMCUBSkrR2LXCmniFlUsFFrudDXlxk8VUy4Cb0=;
+        b=Rabw8b0yyl6kFFq4avBufBvNajmgn2XxhryeLOdoedJYnaaezSXiGPu62/tAwSY+iV
+         Tm5Z3VHf6GAWBhjwUmTrW/Y1O4WyAYePP1I1gBJhZA/w3sG8WB1PplvIDNTV46+bFWk/
+         Ff84JvAxaE5MErLQEl/nA6YMUYwh1cLMhUtIpHdhVeUdrelmKFJ8+mdi5ieBbPk038mb
+         yDXveV27rtL8I82//ClOAqN7UR/VfF6tfXALTvRVPqdJ68z8+ekbO+PIbTDRa7ZMLbwy
+         489IHAe/omiCJjqgw7kOZXB6FokZDYrV9OO/9v2H0noML/oEIBUSTAaaCjvXVEnWx8Ik
+         gPTg==
+X-Forwarded-Encrypted: i=1; AJvYcCUz8ZzS/x+uaoVROfu1EJBuG+6EWCAhVKxG2fa9y5Ufs83iq3qTB9R+D3cWelcxSlergztEz41XLFcX@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw7rhbUKYGvGad+9F09S/ATL8j1RAKpjtjUKmSjoAvhY6qdC0nq
+	wY0hhnGOwieE1GB/vA9raYO2oOhOkwH88HeOkwZ0YTYHdjUF5q68mzfJieKmx3y69zI=
+X-Gm-Gg: ASbGncvzWbvWwFiAqtn4r0eZC2WUwCausqPE+Z1S6TbJ9sgfiX/bRDr3JldLsieERmU
+	3EVDATbz4WxzxTrLc374omuDX2fsnBTq38MsMlcHeIpBY86001QKjMIhkG4DxtBbhaaI67C05TX
+	ZXksFjTwL21aS7uDlWxk70FZaff6w4AdLKP9Fk5DwDKWU9WRfGawogrM5A18tNbjujgXuRnG4fO
+	9R0iXZDH1F2kNjq3CSJTXtcvuVMmjnpjUNhRX1SdsEhp7W2pEJ79H+tCoarPY190dJody6/yXc0
+	FNjJd1tXsjSTojXWs2n8zGILLZtDwgF7QkBM2rFz8zPEhv2DlHCcvpSXS4ipQ5CADHf2zUSuJH1
+	I84SlU7iyOcYnEfVfLieWUr1mVkTyWCnQcKrD3ZN7AnWBBAw1aXh1KtQpRmRq0IyilplaAeenJP
+	wYCkrijwIen759ddEV
+X-Google-Smtp-Source: AGHT+IHPh2MT5lwbkEnF6WyBRT0yvdgZZWzMZDal2Q67sdKk48DCYJobcUZUTlENYCgL3UDZOXyWQA==
+X-Received: by 2002:a05:600c:37c7:b0:46e:477a:16cc with SMTP id 5b1f17b1804b1-47117902f6cmr144699475e9.24.1761230889325;
+        Thu, 23 Oct 2025 07:48:09 -0700 (PDT)
+Received: from localhost ([196.207.164.177])
+        by smtp.gmail.com with UTF8SMTPSA id 5b1f17b1804b1-474949df22csm64839095e9.0.2025.10.23.07.48.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 23 Oct 2025 07:48:09 -0700 (PDT)
+Date: Thu, 23 Oct 2025 17:48:05 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: oe-kbuild@lists.linux.dev, Jonathan Brophy <professorjonny98@gmail.com>,
+	lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>,
+	Jonathan Brophy <professor_jonny@hotmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Radoslav Tsvetkov <rtsvetkov@gradotech.eu>
+Cc: lkp@intel.com, oe-kbuild-all@lists.linux.dev,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-leds@vger.kernel.org
+Subject: Re: [PATCH v2 4/4] leds: Add Virtual Color LED Group driver
+Message-ID: <202510231653.3V9E5oxE-lkp@intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <0f006338-e69b-4b3f-b91f-0cc683544011@kernel.org>
- <20251022114527.618908-1-adriana@arista.com> <20251022201953.GA206947-robh@kernel.org>
- <CAERbo5z6BzHqQxXdxPxmxE_eDR7GGGbt3A8kB0gQiWFBE-28Ug@mail.gmail.com>
- <CAMj1kXGYinTKiyYhNYWJvoJeUJScCGnyq=ozLgjKAm7_wzG8QA@mail.gmail.com>
- <CAERbo5waY-=6BLZ2SiJSFAXzvU57mJdM9q05vAZw8zR2yExQ5w@mail.gmail.com> <CAMj1kXHin5YacS98ttzHqFqy6HMukXKoLZtr-+bLwVRsWZUugQ@mail.gmail.com>
-In-Reply-To: <CAMj1kXHin5YacS98ttzHqFqy6HMukXKoLZtr-+bLwVRsWZUugQ@mail.gmail.com>
-From: Adriana Nicolae <adriana@arista.com>
-Date: Thu, 23 Oct 2025 17:47:53 +0300
-X-Gm-Features: AWmQ_bmwEubJ_qHzUAOArVDKuoamgdMa0FuM6IkzPxP77akzotjC48951wOss6E
-Message-ID: <CAERbo5zgS8XoGcFB3wejqDpx14-SBr5oWn7pu3=PE0djRiKZqg@mail.gmail.com>
-Subject: Re: [PATCH v2 0/2] DMI: Scan for DMI table from DTS info
-To: Ard Biesheuvel <ardb@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, krzk@kernel.org, jdelvare@suse.com, 
-	frowand.list@gmail.com, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, vasilykh@arista.com, arm.ebbr-discuss@arm.com, 
-	boot-architecture@lists.linaro.org, linux-efi@vger.kernel.org, 
-	uefi-discuss@lists.uefi.org, linux-arm-kernel@lists.infradead.org, 
-	Ilias Apalodimas <ilias.apalodimas@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251013120955.227572-5-professorjonny98@gmail.com>
 
-On Thu, Oct 23, 2025 at 4:54=E2=80=AFPM Ard Biesheuvel <ardb@kernel.org> wr=
-ote:
->
-> (cc Ilias)
->
-> On Thu, 23 Oct 2025 at 15:34, Adriana Nicolae <adriana@arista.com> wrote:
-> >
-> > On Thu, Oct 23, 2025 at 11:21=E2=80=AFAM Ard Biesheuvel <ardb@kernel.or=
-g> wrote:
-> > >
-> > > On Thu, 23 Oct 2025 at 04:21, Adriana Nicolae <adriana@arista.com> wr=
-ote:
-> > > >
-> > > > On Wed, Oct 22, 2025 at 11:19=E2=80=AFPM Rob Herring <robh@kernel.o=
-rg> wrote:
-> > > > >
-> > > > > On Wed, Oct 22, 2025 at 04:45:25AM -0700, adriana wrote:
-> > > > > > Some bootloaders like U-boot, particularly for the ARM architec=
-ture,
-> > > > > > provide SMBIOS/DMI tables at a specific memory address. However=
-, these
-> > > > > > systems often do not boot using a full UEFI environment, which =
-means the
-> > > > > > kernel's standard EFI DMI scanner cannot find these tables.
-> > > > >
-> > > > > I thought u-boot is a pretty complete UEFI implementation now. If
-> > > > > there's standard way for UEFI to provide this, then that's what w=
-e
-> > > > > should be using. I know supporting this has been discussed in con=
-text of
-> > > > > EBBR spec, but no one involved in that has been CC'ed here.
-> > > >
-> > > > Regarding the use of UEFI, the non UEFI boot is used on Broadcom iP=
-roc which
-> > > > boots initially into a Hardware Security Module which validates U-b=
-oot and then
-> > > > loads it. This specific path does not utilize U-Boot's UEFI
-> > > > implementation or the
-> > > > standard UEFI boot services to pass tables like SMBIOS.
-> > > >
-> > >
-> > > What prevents this HSM validated copy of u-boot from loading the kern=
-el via EFI?
-> > The vendor's U-Boot configuration for this specific secure boot path
-> > (involving the
-> > HSM) explicitly disables the CMD_BOOTEFI option due to security
-> > mitigations, only
-> > a subset of U-boot commands are whitelisted. We could patch the U-boot
-> > to include
-> > that but it is preferable to follow the vendor's recommandations and
-> > just patch U-boot
-> > to fill that memory location with SMBIOS address or directly with the
-> > entry point.
->
-> And what security mitigations are deemed needed for the EFI code? You
-> are aware that avoiding EFI boot means that the booting kernel keeps
-> all memory protections disabled for longer than it would otherwise. Is
-> this allowlisting based on simply minimizing the code footprint?
->
-From the information I have, it might be just minimizing the footprint
-but the vendor's U-Boot configuration for this specific path
-explicitly disables the CMD_BOOTEFI option. While the vendor cites
-security mitigations for this configuration, the specific details
-could be a set of mitigation removing different boot methods and some
-memory access commands.
+Hi Jonathan,
 
-The core issue is that this non-EFI boot path is the vendor-validated
-configuration. Enabling EFI would deviate from this setup, require
-significant revalidation, and could impact vendor support. Modifying
-U-Boot to populate the DT is a contained change without modifying the
-U-boot vendor configuration.
+kernel test robot noticed the following build warnings:
 
-Beyond our specific vendor constraints, this DT method might be used
-by any other non-UEFI arm system needing to expose SMBIOS tables to
-the kernel.
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-> Introducing a non-standard mechanism means that others will now have
-> to maintain it and coexist with it, rather than simply using the
-> existing code which already fully supports what you are trying to
-> accomplish (both on the bootloader and the kernel side)
->
-> IOW, in my opinion, simply enabling CMD_BOOTEFI for your bootloader is
-> a much better choice here. I'm not a u-boot expert but as I understand
-> it, loading/authenticating the image and booting it in EFI mode are
-> two separate things, and so the secure boot path would change very
-> little.
->
-> > > > Because there's no UEFI configuration table available in this boot =
-mode, we need
-> > > > an alternative mechanism to pass the SMBIOS table address to the ke=
-rnel. The
-> > > > /chosen node seemed like the most straightforward way for the bootl=
-oader to
-> > > > communicate this non-discoverable information.
-> > > >
-> > > > I wasn't aware of the EBBR discussions covering this. I've added th=
-e
-> > > > boot-architecture and arm.ebbr-discuss lists to the Cc. If there's =
-a preferred
-> > > > EBBR-compliant way to handle this for non-UEFI boots, I'm happy to =
-adapt
-> > > > the approach.
-> > > >
-> > >
-> > > For the record, I don't see a huge problem with accepting SMBIOS
-> > > tables in this manner, but it would be better if a description of thi=
-s
-> > > method was contributed to the DMTF spec, which currently states that
-> > > the only way to discover SMBIOS tables on non-x86 systems is via the
-> > > SMBIOS/SMBIOS3 EFI configuration tables. Doing so should prevent othe=
-r
-> > > folks from inventing their own methods for their own vertically
-> > > integrated systems. (Other OSes exist, and from a boot arch PoV, we
-> > > try to avoid these Linux-only shortcuts)
-> > >
-> > > However, the DT method should *only* be used when not booting via
-> > > UEFI, to avoid future surprises, and to ensure that existing OSes
-> > > (including older Linux) can always find the SMBIOS tables when bootin=
-g
-> > > via UEFI.
-> > >
-> > > Also, I would suggest to pull the entire entrypoint into DT, rather
-> > > than the address in memory of either/both entrypoint(s). Both just
-> > > carry some version fields, and the address of the actual SMBIOS data
-> > > in memory, and the only difference between SMBIOS and SMBIOS3 is the
-> > > size of the address field (32 vs 64 bits)
-> > I understand the points raised about UEFI taking precedence and the
-> > preference for standardization (DMTF). If this DT method is accepted
-> > as a fallback only for non-UEFI boots like this one, the kernel impleme=
-ntation
-> > will respect that precedence.
-> >
-> > Regarding the alternative to place the full SMBIOS entry point structur=
-e into
-> > a DT property (as a byte array) instead of just its memory address. Bot=
-h
-> > approaches seem feasible from the U-Boot side. I opted initially for pa=
-ssing
-> > the address to reuse the existing kernel functions (dmi_smbios3_present=
- and
-> > dmi_present) which already handle mapping and validation of the entry p=
-oint
-> > read from memory (as done for the EFI case).
-> >
->
-> Actually, it appears that dmidecode expects the entrypoint data in
-> /sys/firmware/dmi/tables/smbios_entry_point, and so you will need to
-> populate that file in any case, and so pulling it into the DT node is
-> not as useful. But having both SMBIOS and SMBIOS3 is pointless, so
-> please only bother with the latter.
+url:    https://github.com/intel-lab-lkp/linux/commits/Jonathan-Brophy/dt-bindings-leds-Add-YAML-bindings-for-Virtual-Color-LED-Group-driver/20251013-201353
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/lee/leds.git for-leds-next
+patch link:    https://lore.kernel.org/r/20251013120955.227572-5-professorjonny98%40gmail.com
+patch subject: [PATCH v2 4/4] leds: Add Virtual Color LED Group driver
+config: loongarch-randconfig-r072-20251019 (https://download.01.org/0day-ci/archive/20251023/202510231653.3V9E5oxE-lkp@intel.com/config)
+compiler: loongarch64-linux-gcc (GCC) 15.1.0
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
+| Closes: https://lore.kernel.org/r/202510231653.3V9E5oxE-lkp@intel.com/
+
+smatch warnings:
+drivers/leds/rgb/leds-group-virtualcolor.c:239 leds_virtualcolor_init_vled() warn: 'phandle_count' unsigned <= 0
+
+vim +/phandle_count +239 drivers/leds/rgb/leds-group-virtualcolor.c
+
+793ec9b4ba92eea Jonathan Brophy 2025-10-14  218  static int leds_virtualcolor_init_vled(struct device *dev, struct device_node *child,
+793ec9b4ba92eea Jonathan Brophy 2025-10-14  219  				       struct virtual_led *vled, struct leds_virtualcolor *vc_data)
+793ec9b4ba92eea Jonathan Brophy 2025-10-14  220  {
+793ec9b4ba92eea Jonathan Brophy 2025-10-14  221  	struct led_init_data init_data = {};
+793ec9b4ba92eea Jonathan Brophy 2025-10-14  222  	u32 blink_interval;
+793ec9b4ba92eea Jonathan Brophy 2025-10-14  223  	u32 phandle_count;
+793ec9b4ba92eea Jonathan Brophy 2025-10-14  224  	u32 max_brightness;
+793ec9b4ba92eea Jonathan Brophy 2025-10-14  225  	int ret;
+793ec9b4ba92eea Jonathan Brophy 2025-10-14  226  	int i;
+793ec9b4ba92eea Jonathan Brophy 2025-10-14  227  
+793ec9b4ba92eea Jonathan Brophy 2025-10-14  228  	ret = of_property_read_u32(child, "priority", &vled->priority);
+793ec9b4ba92eea Jonathan Brophy 2025-10-14  229  	if (ret)
+793ec9b4ba92eea Jonathan Brophy 2025-10-14  230  		vled->priority = 0;
+793ec9b4ba92eea Jonathan Brophy 2025-10-14  231  
+793ec9b4ba92eea Jonathan Brophy 2025-10-14  232  	ret = of_property_read_u32(child, "blink", &blink_interval);
+793ec9b4ba92eea Jonathan Brophy 2025-10-14  233  	if (!ret) {
+793ec9b4ba92eea Jonathan Brophy 2025-10-14  234  		vled->blink_delay_on = blink_interval;
+793ec9b4ba92eea Jonathan Brophy 2025-10-14  235  		vled->blink_delay_off = blink_interval;
+793ec9b4ba92eea Jonathan Brophy 2025-10-14  236  	}
+793ec9b4ba92eea Jonathan Brophy 2025-10-14  237  
+793ec9b4ba92eea Jonathan Brophy 2025-10-14  238  	phandle_count = of_property_count_elems_of_size(child, "leds", sizeof(u32));
+793ec9b4ba92eea Jonathan Brophy 2025-10-14 @239  	if (phandle_count <= 0) {
+                                                            ^^^^^^^^^^^^^^^^^^
+u32 can't be < 0.
+
+793ec9b4ba92eea Jonathan Brophy 2025-10-14  240  		dev_err(dev, "No monochromatic LEDs specified for virtual LED %s\n",
+793ec9b4ba92eea Jonathan Brophy 2025-10-14  241  			vled->cdev.name);
+793ec9b4ba92eea Jonathan Brophy 2025-10-14  242  		return -EINVAL;
+793ec9b4ba92eea Jonathan Brophy 2025-10-14  243  	}
+793ec9b4ba92eea Jonathan Brophy 2025-10-14  244  
+793ec9b4ba92eea Jonathan Brophy 2025-10-14  245  	vled->num_monochromatics = phandle_count;
+793ec9b4ba92eea Jonathan Brophy 2025-10-14  246  	vled->monochromatics = devm_kcalloc(dev, vled->num_monochromatics,
+793ec9b4ba92eea Jonathan Brophy 2025-10-14  247  					    sizeof(*vled->monochromatics), GFP_KERNEL);
+793ec9b4ba92eea Jonathan Brophy 2025-10-14  248  	if (!vled->monochromatics)
+793ec9b4ba92eea Jonathan Brophy 2025-10-14  249  		return -ENOMEM;
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
+
 
