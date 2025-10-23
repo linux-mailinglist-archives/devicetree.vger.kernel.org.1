@@ -1,101 +1,107 @@
-Return-Path: <devicetree+bounces-230196-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230197-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68E51C00550
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 11:44:43 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 340D4C0059B
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 11:52:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 4F6D94E1A1A
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 09:44:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 39519188775A
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 09:53:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA9683002BD;
-	Thu, 23 Oct 2025 09:44:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0410730ACED;
+	Thu, 23 Oct 2025 09:52:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="D7gMHjC9"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="e5FNKPF0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 771142D9784;
-	Thu, 23 Oct 2025 09:44:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7519230AACD
+	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 09:52:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761212679; cv=none; b=oSAh7KXHU3+QRJjIM8wC11b4NipnuluNqEUQ7oT2VKr7SVj+ULRtxprkeVkIeL5VlF76BHlq+joPGoYEqLNkmSTB594vYLLMk27c3nulmlED6OeBBmQmDXZG6j3zU0pYnR9Sld/IRevp64eEgEgTwGp54p/QkH8w6chCXn5tSfE=
+	t=1761213165; cv=none; b=IjEWafsEPMcMNrteWaf1LH6dBt3DdhfIudUL/R6nVcWd1vTHQTYHDQmA+A4syaTAoJVr+k/tXeF3yYsJOdC4h6ITMbRaQdASRueanKUKTRy7xYnFF6YNGBJQ3jNx+LYmbem/pJePFzZPDvQAwOBsy2LPgtRg6Y5MbYbaBZicdAg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761212679; c=relaxed/simple;
-	bh=5x8jLsSxghG7IaRrLPPl0lFfXXLzEE7sGy+TAsSxs/Y=;
+	s=arc-20240116; t=1761213165; c=relaxed/simple;
+	bh=VzrZOgYn8CZVzBcsfs2UqdIG8pkiX7gsZ+Rc7+O5leQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XvLOsxvChgbUIWQUfEFQ3SyBUW2fOkyF9++MLfA005BH2Ca41R9NF4hhQDTBbmw3K3k01wP32wu07DViBFR+YJ4rw5wf5yP0NJY54bwPN8V2bh14Q39fkAZ5/0EPnCUiM5+mUdA7/Nj3YIGxFtV4pgvU4Vpnn5GGbKv+GVNVqJE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=D7gMHjC9; arc=none smtp.client-ip=198.175.65.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1761212678; x=1792748678;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=5x8jLsSxghG7IaRrLPPl0lFfXXLzEE7sGy+TAsSxs/Y=;
-  b=D7gMHjC9QJZkPcEehLGajenWIKg6nz5fvJkCe0o/A/t+xl7cTZSXv0uv
-   TNaudOoNaGKGS7nrOz9ndqWD3rwcYuXoVgpjH9Extp0V9acpUTk4hUPTd
-   54458aO7kXVQUK71hIf8j+qmjonPXacFJ7V96ttwO+W+32Q56zV+aH678
-   FhchFn2Z06RiG+8m0vsx6OreKu7VmvQB8irNKaIR8ZjfSJ8oRd5yeLLti
-   S011ul0n+gtBiKKmbVAVclfI8KiRltrZZJA3tdcm0VlN7amijzgL4fY0c
-   hHI+tObYrdVed1qJ+o1kr7vdj5GUPQLVYuOJRBTOIdU/fWKXVoDU6T9YK
-   Q==;
-X-CSE-ConnectionGUID: 2ijdlID+T5+Q0WxjEdYI3w==
-X-CSE-MsgGUID: +X843B9VQK6plg2J0Yat7w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="80814390"
-X-IronPort-AV: E=Sophos;i="6.19,249,1754982000"; 
-   d="scan'208";a="80814390"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
-  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Oct 2025 02:44:37 -0700
-X-CSE-ConnectionGUID: iLOeuevISgC6L9OMMBEeEA==
-X-CSE-MsgGUID: YhP6hwNSQqC/F6AV1drOTA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,249,1754982000"; 
-   d="scan'208";a="221305921"
-Received: from bkammerd-mobl.amr.corp.intel.com (HELO kuha.fi.intel.com) ([10.124.221.165])
-  by orviesa001.jf.intel.com with SMTP; 23 Oct 2025 02:44:26 -0700
-Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Thu, 23 Oct 2025 12:44:25 +0300
-Date: Thu, 23 Oct 2025 12:44:25 +0300
-From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-To: Chaoyi Chen <kernel@airkyi.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>, Sandy Huang <hjc@rock-chips.com>,
-	Andy Yan <andy.yan@rock-chips.com>,
-	Yubing Zhang <yubing.zhang@rock-chips.com>,
-	Frank Wang <frank.wang@rock-chips.com>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <rfoss@kernel.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Amit Sunil Dhamne <amitsd@google.com>,
-	Chaoyi Chen <chaoyi.chen@rock-chips.com>,
-	Dragan Simic <dsimic@manjaro.org>, Johan Jonker <jbx6244@gmail.com>,
-	Diederik de Haas <didi.debian@cknow.org>,
-	Peter Robinson <pbrobinson@gmail.com>, linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-phy@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH v7 1/9] usb: typec: Add notifier functions
-Message-ID: <aPn4-S7upPOOtenr@kuha.fi.intel.com>
-References: <20251023033009.90-1-kernel@airkyi.com>
- <20251023033009.90-2-kernel@airkyi.com>
- <aPni4AeDaem_rfZH@kuha.fi.intel.com>
- <aPnvoSRJefwDlpNO@kuha.fi.intel.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=XZvAaCY3CnfXklLvtPc5mdozADqwUx6LSj3ZavNvkmwypMj8Fm61bHU3n7yk5eUc+V8o3/P3W62lChpo2ep3subCPoVsOImSjflN7cMmp81npOfCQahfrIloK9eFGQOS5tfzlFtBXNouS+MnZSVtbTj10z4KVT9pjpFkH+N2gYM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=e5FNKPF0; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59N6kth3015109
+	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 09:52:43 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=lj4HGsR9qRam1xu/E/CQi8Qt
+	OyeipH/qWlPK+yXMX3s=; b=e5FNKPF0Zf0SW+bOQun0ZKKrCe4aazHrrBYYJtZr
+	CcQvJguaZm0s6DGPnNakYReyeqfAuv4cBK2SfjdMxZBF0TE8KdhPWtlX1tnGo+j/
+	BWFz035c9Y/jdFQNMeyhu0LVKI/NSAQ1R0P3FbrjuX/HJoipzNRDzsOQ4zB6qp/C
+	5jd7BVk53ENCamvpoqM3kjiXDnfna0NC53B66StBK+1GwJPbqHfpY4yiIi/EgEtP
+	s3MU2YhUzV1yWcuiO4c6CWgqrRfKTBTTu+uMo5MmuNZS4hkqlVnI5DJf1UFcW5wm
+	vPpCj04lc/8VxEWLEeWRec+E+xF2eyD/1UntRiHwStNZYA==
+Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com [209.85.219.72])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49xhe0nu52-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 09:52:43 +0000 (GMT)
+Received: by mail-qv1-f72.google.com with SMTP id 6a1803df08f44-7916b05b94bso22614796d6.0
+        for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 02:52:42 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761213162; x=1761817962;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=lj4HGsR9qRam1xu/E/CQi8QtOyeipH/qWlPK+yXMX3s=;
+        b=YFHn/eY0TW8g/FCr6MWXzFR1JdTMzLjC0Xt4f3Bt2hdyypzidjWLKII5NH71vJZnpD
+         sFSntAQ5xyza8k1glNFkwmmv7+wK7/jKIosIwQCIF2tL03oCx1q6XRiQ7qMKIHCLoEzB
+         hfgtjRFrERU8pgf1tOq2QED+DGRbV0TyygWX0OxZe0M3qcu/iST9E7k04X+l3SdBuH+1
+         yOObC5Qb97B5sjknF/IbY7Q6J/0wZPrs4koCELsU1fZsddshsG53dkDWBtd9z5gsq2E1
+         35cs89TmrKLX9tMo8QxlHlbxqJo/tYxaP01lWTtTYVryPrA9D5lD7zZa2ZjUgJZFxYrY
+         joOw==
+X-Forwarded-Encrypted: i=1; AJvYcCWaxxCbGVflTh15pXWOqKehTykAfpPiZex3k77ldFVCbHSzkYaeNED1g169uPk0Eo+XYTtMZJaXjZJ4@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw6UBhghZIFmN/YpbS2PdcJPjKJCfmK5zE7mfQuBP+eUiECYvjx
+	hCdaehUVtm/eikEvAva+7qmrHJQYzBFG4nG7QD7wDffKyxfH0kBe9wJ1Q3AieViMQ19ABfErMyV
+	GkaYoFDI2TTXZxAJnCQSrWFgMOkFELGCFDAsldSGfyWX2zsMyGcqGeN/qMTKjLm8y
+X-Gm-Gg: ASbGncvJ1yccyjCFC/gyoM+ucZgnb4N3xg5cy7jUj36GRoGpZkJlGfCtLkN9shes+LP
+	HnFYg+uGKstbBfjej/Pi09QlIHl4nKpinKLyWVr9WyZAM7kU7TtWgGmuMfJPlIa4AFNHIYxlHzy
+	DKjG5buS3fwywZmU2830MYuBmBmcMuwicv5CXlQTN4kSpK23b5qYkad2tN1XzqMsjtOCdsHQgd2
+	3BynQWZA+FFz9ygOjL5XA8DzjlXyG0WMw29rmmVRUqHk2Zzh0TdZRU6B8gKMuriuzIHkzqyCz84
+	+/eMs2eFSHUAT/234oh0HR4GAhJBXB/DDb1O+FWDBjKOHJVuwzft+nGp8gsi+GNzvpUNOGStZtS
+	esRmVuHQG2BlhzOFWaFMZbtKbxAkaTjMAjBcwi7Jscta6N/+CGuJVRPqCZCNQ
+X-Received: by 2002:a05:6214:2406:b0:87d:e77e:4df1 with SMTP id 6a1803df08f44-87de77e4e55mr114575326d6.60.1761213162136;
+        Thu, 23 Oct 2025 02:52:42 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IH7AbIcMz4qaa9yIcpZvpwREt3p4UM9idjvFlz0HEChINWcK7/GEpAuVvvqWLIzfePwg8PadQ==
+X-Received: by 2002:a05:6214:2406:b0:87d:e77e:4df1 with SMTP id 6a1803df08f44-87de77e4e55mr114574926d6.60.1761213161613;
+        Thu, 23 Oct 2025 02:52:41 -0700 (PDT)
+Received: from yuanjiey.ap.qualcomm.com (Global_NAT1_IAD_FW.qualcomm.com. [129.46.232.65])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-87f9de7beafsm12276226d6.14.2025.10.23.02.52.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 23 Oct 2025 02:52:41 -0700 (PDT)
+Date: Thu, 23 Oct 2025 17:52:29 +0800
+From: yuanjiey <yuanjie.yang@oss.qualcomm.com>
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: "Rob Herring (Arm)" <robh@kernel.org>, dri-devel@lists.freedesktop.org,
+        mripard@kernel.org, linux-kernel@vger.kernel.org,
+        aiqun.yu@oss.qualcomm.com, marijn.suijten@somainline.org,
+        abhinav.kumar@linux.dev, simona@ffwll.ch, devicetree@vger.kernel.org,
+        tingwei.zhang@oss.qualcomm.com, krzk+dt@kernel.org,
+        freedreno@lists.freedesktop.org, neil.armstrong@linaro.org,
+        quic_mkrishn@quicinc.com, linux-arm-msm@vger.kernel.org,
+        lumag@kernel.org, airlied@gmail.com, sean@poorly.run,
+        maarten.lankhorst@linux.intel.com, tzimmermann@suse.de,
+        jonathan@marek.ca, robin.clark@oss.qualcomm.com,
+        quic_khsieh@quicinc.com, conor+dt@kernel.org,
+        yongxing.mou@oss.qualcomm.com
+Subject: Re: [PATCH 12/12] dt-bindings: display/msm: qcom,kaanapali-mdss: Add
+ Kaanapali
+Message-ID: <aPn63QSJL52HmhGZ@yuanjiey.ap.qualcomm.com>
+References: <20251023075401.1148-1-yuanjie.yang@oss.qualcomm.com>
+ <20251023081736.1251-1-yuanjie.yang@oss.qualcomm.com>
+ <176121209123.1694835.2815069098750745260.robh@kernel.org>
+ <10999a80-df1a-45c5-ba1e-e64b2afeeb4f@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -104,94 +110,63 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <aPnvoSRJefwDlpNO@kuha.fi.intel.com>
+In-Reply-To: <10999a80-df1a-45c5-ba1e-e64b2afeeb4f@oss.qualcomm.com>
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDIxMDE2NyBTYWx0ZWRfX8H0QPRm1xB7T
+ B8iMb8hM08k5yESjp5pZwlszh802DHmgck9OZb4P4G+QZ3pKKkAwoWxv4zjjPPyFY7Bn4UE840W
+ NOKy+pf0sitL81ej7p9IvQmA6+/sK9ctaVf+HcoMb1k9/WdgAbCnvmMjNlVD8xJ8jLhpoeLW3qW
+ 8vUzV2jjc9Bv3PgsFkNnuLCbi5ZEUGeHYwpXiTZY9kB4+DhP7NUzEwxSxV4iRclgt3+fpoXZNRi
+ Vml4q9KLeQu9mcLLcB9Ef7kEBhtDpfeYp4bP8cRcJge+7glHFgZmDgk/s/oK5J0UBsSX2FT3Qeh
+ 1CObxHIpK1XkLgvZVGl/FhXjeZOsh+Q7ZJRgLcc13ZkcFFZtITLSwaX/XnwJNfSIfdOOF6CSzHI
+ caF5dGq8gU0j6HvrHZgE0a746MXHcw==
+X-Proofpoint-ORIG-GUID: bL2-E8cqrEINeIOOz3EqXaJyE_15hbWv
+X-Authority-Analysis: v=2.4 cv=WYUBqkhX c=1 sm=1 tr=0 ts=68f9faeb cx=c_pps
+ a=7E5Bxpl4vBhpaufnMqZlrw==:117 a=C3Dk8TwHQYyIj7nOf9RCJw==:17
+ a=kj9zAlcOel0A:10 a=x6icFKpwvdMA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=EUspDBNiAAAA:8 a=i8jsQQnW1KsEJaHduVgA:9 a=CjuIK1q_8ugA:10
+ a=pJ04lnu7RYOZP9TFuWaZ:22
+X-Proofpoint-GUID: bL2-E8cqrEINeIOOz3EqXaJyE_15hbWv
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-10-22_08,2025-10-22_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 adultscore=0 bulkscore=0 impostorscore=0 spamscore=0
+ priorityscore=1501 clxscore=1015 malwarescore=0 lowpriorityscore=0
+ phishscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2510020000
+ definitions=main-2510210167
 
-On Thu, Oct 23, 2025 at 12:04:44PM +0300, Heikki Krogerus wrote:
-> On Thu, Oct 23, 2025 at 11:10:20AM +0300, Heikki Krogerus wrote:
-> > Hi,
+On Thu, Oct 23, 2025 at 11:36:42AM +0200, Konrad Dybcio wrote:
+> On 10/23/25 11:34 AM, Rob Herring (Arm) wrote:
 > > 
-> > > diff --git a/include/linux/usb/typec_notify.h b/include/linux/usb/typec_notify.h
-> > > new file mode 100644
-> > > index 000000000000..a3f1f3b3ae47
-> > > --- /dev/null
-> > > +++ b/include/linux/usb/typec_notify.h
-> > > @@ -0,0 +1,17 @@
-> > > +/* SPDX-License-Identifier: GPL-2.0 */
-> > > +
-> > > +#ifndef __USB_TYPEC_NOTIFY
-> > > +#define __USB_TYPEC_NOTIFY
-> > > +
-> > > +#include <linux/notifier.h>
-> > > +
-> > > +enum usb_typec_event {
-> > > +	TYPEC_ALTMODE_REGISTERED
-> > > +};
+> > On Thu, 23 Oct 2025 16:17:36 +0800, yuanjie yang wrote:
+> >> From: Yuanjie Yang <yuanjie.yang@oss.qualcomm.com>
+> >>
+> >> Add MDSS/MDP display subsystem for Qualcomm Kaanapali.
+> >>
+> >> Signed-off-by: Yongxing Mou <yongxing.mou@oss.qualcomm.com>
+> >> Signed-off-by: Yuanjie Yang <yuanjie.yang@oss.qualcomm.com>
+> >> ---
+> >>  .../display/msm/qcom,kaanapali-mdss.yaml      | 298 ++++++++++++++++++
+> >>  1 file changed, 298 insertions(+)
+> >>  create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,kaanapali-mdss.yaml
+> >>
 > > 
-> > Don't you need to know when the altmode is removed?
+> > My bot found errors running 'make dt_binding_check' on your patch:
+> > 
+> > yamllint warnings/errors:
+> > 
+> > dtschema/dtc warnings/errors:
+> > Documentation/devicetree/bindings/display/msm/qcom,kaanapali-mdss.example.dts:26:18: fatal error: dt-bindings/interconnect/qcom,kaanapali-rpmh.h: No such file or directory
+> >    26 |         #include <dt-bindings/interconnect/qcom,kaanapali-rpmh.h>
 > 
-> I noticed that you don't because drm_dp_hpd_bridge_register() is
-> always resource managed. But I think you could still send an event
-> also when the altmode is removed already now. That way it does not
-> need to be separately added if and when it is needed.
+> Please do what you did with the other clocks and simply refer to it
+> as some vague &rpmhcc_xo_clk which doesn't actually need to be defined
 
-Hold on! Every bus has already a notifier chain. That's the one that
-we should also use. Sorry for not noticing that earlier.
+Thanks for your tips, let me check and fix it.
 
-So let's just export the bus type in this patch - you can then use
-bus_register_notifier() in your driver:
+Thanks,
+Yuanjie
+ 
 
-diff --git a/drivers/usb/typec/bus.c b/drivers/usb/typec/bus.c
-index a884cec9ab7e..65ded9e3cdaa 100644
---- a/drivers/usb/typec/bus.c
-+++ b/drivers/usb/typec/bus.c
-@@ -547,3 +547,4 @@ const struct bus_type typec_bus = {
-        .probe = typec_probe,
-        .remove = typec_remove,
- };
-+EXPORT_SYMBOL_GPL(typec_bus);
-diff --git a/drivers/usb/typec/bus.h b/drivers/usb/typec/bus.h
-index 643b8c81786d..af9edb3db9d0 100644
---- a/drivers/usb/typec/bus.h
-+++ b/drivers/usb/typec/bus.h
-@@ -5,7 +5,6 @@
- 
- #include <linux/usb/typec_altmode.h>
- 
--struct bus_type;
- struct typec_mux;
- struct typec_retimer;
- 
-@@ -28,7 +27,6 @@ struct altmode {
- 
- #define to_altmode(d) container_of(d, struct altmode, adev)
- 
--extern const struct bus_type typec_bus;
- extern const struct device_type typec_altmode_dev_type;
- 
- #define is_typec_altmode(_dev_) (_dev_->type == &typec_altmode_dev_type)
-diff --git a/include/linux/usb/typec.h b/include/linux/usb/typec.h
-index 309251572e2e..c6fd46902fce 100644
---- a/include/linux/usb/typec.h
-+++ b/include/linux/usb/typec.h
-@@ -20,12 +20,15 @@ struct typec_port;
- struct typec_altmode_ops;
- struct typec_cable_ops;
- 
-+struct bus_type;
- struct fwnode_handle;
- struct device;
- 
- struct usb_power_delivery;
- struct usb_power_delivery_desc;
- 
-+extern const struct bus_type typec_bus;
-+
- enum typec_port_type {
-        TYPEC_PORT_SRC,
-        TYPEC_PORT_SNK,
-
-thanks,
-
--- 
-heikki
+> Konrad
 
