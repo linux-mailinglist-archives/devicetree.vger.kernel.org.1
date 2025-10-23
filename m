@@ -1,175 +1,126 @@
-Return-Path: <devicetree+bounces-230061-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230062-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4633BBFF5F5
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 08:44:01 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 854ABBFF658
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 08:47:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BD9E03A8D22
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 06:43:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3C31C188DD6B
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 06:47:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58ACB29B20A;
-	Thu, 23 Oct 2025 06:43:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8D6726F463;
+	Thu, 23 Oct 2025 06:46:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UOGZ6THX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="G85Fzzf2"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2383928D82F;
-	Thu, 23 Oct 2025 06:43:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C53E2264CD;
+	Thu, 23 Oct 2025 06:46:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761201836; cv=none; b=uqYUXk+PqUPq758w7Yi7aOJf3xN/UnmlwtpRfjTqkdFBuFGV4zNmODsqD6VuN7ktfbE07RwQDFKHYPBdctfv+7ub/wfJTowsopJvmNnDSgLXBRQM9bDUbG2rLx0u/e0nnVOfhvtLd7dJtqLlfIonLR+2P3UroAn+94tz8jMysFA=
+	t=1761201970; cv=none; b=Jlh+IFsvJxDH4Pb79d6OugPncAmxJepUgx3qAkf2KewmubkKmDjMYjw7uEB8Ufu/ngR2lQVw5os2uHQkMDKpeiX5uTJsToEYIrkIhIkpCL9KucpEc3l3LrJLAO7B2rw6+HbqAy960Fi59IF+xb/QW/YQ/1gA668zXBhWZ3VpVKc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761201836; c=relaxed/simple;
-	bh=wq+PR3JQ5rz4ZSLM4QLGVeX/gN+W7vLpvlbttzeFtxQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Eks64kmAWtB0xMYCLjYB/0PDzqQq7LrS38UV6RroipodxeeMjk3aispgWBb6iDdw3RAF9PMAd7gXhFBbA2DnF2Yy8rYDGnxXmpV+znTxGNTtOwvtOTZpmiVoEMrWr98KS5TyRYhl3qmzkpqO5Ze/FfNnZ1oGUvShgscvusDo3Ps=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UOGZ6THX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1EC70C4CEE7;
-	Thu, 23 Oct 2025 06:43:54 +0000 (UTC)
+	s=arc-20240116; t=1761201970; c=relaxed/simple;
+	bh=fWMpwxXVOD187SKZ2oS3c0En6C97wZqONzPLK/DFKg8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Oqf5IYuhZWNIZsna1PsU0Dduf++Fq9sxMbgyabimzT+dUVppzWXonti9gRvXHuuedUi/A5yEx3ZrE2oN81MvHOdeA1Pn9mh0zNEYfYT5vwl1y8SvB4YA+q9ryXyCZ4BlBOIxlaMhbF8PnQuXX5LZK61TA5e0/sq/s7fd1kRzc6M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=G85Fzzf2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F35FDC4CEE7;
+	Thu, 23 Oct 2025 06:46:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761201835;
-	bh=wq+PR3JQ5rz4ZSLM4QLGVeX/gN+W7vLpvlbttzeFtxQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=UOGZ6THX+KPz+fnPS5IScnjRV0adu4aQoy6YNzJ+hZrkQ7aeE9Ms19UvzFAVImC1E
-	 6QlKvIyK47+4zHYNw+rZnANKkid7mEn6aX/h9hIf3MrFgTLAk/MIcfagQD5MyuFijV
-	 vSlQyyDsYGYBK0zsR6y4yjEcbe7gpgbWSd2benJxLYFlPAx19knlG7j1f3PXB5oAeu
-	 oYKjMgn018VPkjFeAV3D5wAf2RW+LQFZF1dBZ1HMR3KVANuH6n/2BE5B3zFYBilpNq
-	 wGlsZXsShmlWcPwcWUF5QHN6WgdJSwBxGCo45QA1rBJtO8h6sqdCvM7lFtzSW8hj5m
-	 R+ZAR0vgmbEjA==
-Date: Thu, 23 Oct 2025 08:43:53 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Roy Luo <royluo@google.com>
-Cc: Vinod Koul <vkoul@kernel.org>, 
-	Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Peter Griffin <peter.griffin@linaro.org>, 
-	=?utf-8?B?QW5kcsOp?= Draszik <andre.draszik@linaro.org>, Tudor Ambarus <tudor.ambarus@linaro.org>, 
-	Joy Chakraborty <joychakr@google.com>, Naveen Kumar <mnkumar@google.com>, 
-	Badhri Jagan Sridharan <badhri@google.com>, linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-samsung-soc@vger.kernel.org
-Subject: Re: [PATCH v4 1/2] dt-bindings: phy: google: Add Google Tensor G5
- USB PHY
-Message-ID: <20251023-collie-of-impossible-plenty-fc9382@kuoka>
-References: <20251017235159.2417576-1-royluo@google.com>
- <20251017235159.2417576-2-royluo@google.com>
+	s=k20201202; t=1761201969;
+	bh=fWMpwxXVOD187SKZ2oS3c0En6C97wZqONzPLK/DFKg8=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=G85Fzzf2m4EbB4SBn4m+z+glH7NakMfF+XwJ9R4aVFIhgaC8QSKn/dKiGdmNYdGmQ
+	 M1ifrGfcIZLBkbSTI5fih66lEpdXRNwGuBlxUXfo3MQ/SXukiuoSPwwE0YjIXKe4kR
+	 4Oomj84Tvad4NJxcVTSy0oSEWyfTYnq5+kDFTx+0iHfj9r6RfB6tLQquLk2E4vMWOk
+	 32Xw5IrpUENHjsRJKVm4c8wQojvi6DfsZcIQzkiEYlfykVtcltz9fbZ5gvIfEWS8cF
+	 guoBSWR5GBU+7dw3CViImZaHr6fvYFAGkINqvjpS8dddEOSTzMIgE96Smke0gzcxXx
+	 UikVErsCWsPyg==
+Message-ID: <e66701fb-1f2d-49f2-b964-22ee167c09ea@kernel.org>
+Date: Thu, 23 Oct 2025 08:46:05 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20251017235159.2417576-2-royluo@google.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] dt-bindings: arm: qcom,ids: Add SoC ID for SM8850
+To: Jingyi Wang <jingyi.wang@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: aiqun.yu@oss.qualcomm.com, tingwei.zhang@oss.qualcomm.com,
+ trilok.soni@oss.qualcomm.com, yijie.yang@oss.qualcomm.com,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20251022-knp-socid-v2-0-d147eadd09ee@oss.qualcomm.com>
+ <20251022-knp-socid-v2-1-d147eadd09ee@oss.qualcomm.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20251022-knp-socid-v2-1-d147eadd09ee@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Fri, Oct 17, 2025 at 11:51:58PM +0000, Roy Luo wrote:
-> Document the device tree bindings for the USB PHY interfaces integrated
-> with the DWC3 controller on Google Tensor SoCs, starting with G5
-> generation. The USB PHY on Tensor G5 includes two integrated Synopsys
-> PHY IPs: the eUSB 2.0 PHY IP and the USB 3.2/DisplayPort combo PHY IP.
+On 23/10/2025 06:57, Jingyi Wang wrote:
+> Add the ID for the Qualcomm SM8850 SoC which represents the Kaanapali
+> platform.
 > 
-> Due to a complete architectural overhaul in the Google Tensor G5, the
-> existing Samsung/Exynos USB PHY binding for older generations of Google
-> silicons such as gs101 are no longer compatible, necessitating this new
-> device tree binding.
-> 
-> Signed-off-by: Roy Luo <royluo@google.com>
+> Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
 > ---
->  .../bindings/phy/google,gs5-usb-phy.yaml      | 104 ++++++++++++++++++
->  1 file changed, 104 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/phy/google,gs5-usb-phy.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/phy/google,gs5-usb-phy.yaml b/Documentation/devicetree/bindings/phy/google,gs5-usb-phy.yaml
-> new file mode 100644
-> index 000000000000..c92c20eba1ea
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/phy/google,gs5-usb-phy.yaml
-> @@ -0,0 +1,104 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# Copyright (C) 2025, Google LLC
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/phy/google,gs5-usb-phy.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Google Tensor Series (G5+) USB PHY
-> +
-> +maintainers:
-> +  - Roy Luo <royluo@google.com>
-> +
-> +description: |
-> +  Describes the USB PHY interfaces integrated with the DWC3 USB controller on
-> +  Google Tensor SoCs, starting with the G5 generation.
-> +  Two specific PHY IPs from Synopsys are integrated, including eUSB 2.0 PHY IP
-> +  and USB 3.2/DisplayPort combo PHY IP.
-> +  The hardware can support three PHY interfaces, which are selected using the
-> +  first phandle argument in the PHY specifier::
+>  include/dt-bindings/arm/qcom,ids.h | 1 +
+>  1 file changed, 1 insertion(+)
 
-Just one ':', anyway this sentence and below does not belong to
-description but to phy-cells. You describe the cells.
-
-Or just mention the header with IDs - here or in phy-cells.
-
-> +    0 - USB high-speed.
-> +    1 - USB super-speed.
-> +    2 - DisplayPort
-> +
-> +properties:
-> +  compatible:
-> +    const: google,gs5-usb-phy
-> +
-> +  reg:
-> +    items:
-> +      - description: USB2 PHY configuration registers.
-> +      - description: USB 3.2/DisplayPort combo PHY top-level registers.
-> +
-> +  reg-names:
-> +    items:
-> +      - const: u2phy_cfg
-> +      - const: dp_top
-> +
-> +  "#phy-cells":
-> +    const: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: USB2 PHY clock.
-> +      - description: USB2 PHY APB clock.
-> +
-> +  clock-names:
-> +    items:
-> +      - const: usb2_phy
-
-core
-
-> +      - const: u2phy_apb
-
-apb
-
-> +
-> +  resets:
-> +    items:
-> +      - description: USB2 PHY reset.
-> +      - description: USB2 PHY APB reset.
-> +
-> +  reset-names:
-> +    items:
-> +      - const: usb2_phy
-> +      - const: u2phy_apb
-
-Same here
-
-> +
-> +  power-domains:
-> +    maxItems: 1
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
-
 
