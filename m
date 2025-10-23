@@ -1,95 +1,174 @@
-Return-Path: <devicetree+bounces-230480-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230481-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE725C03085
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 20:39:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E431FC030A0
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 20:42:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 624E11AA226B
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 18:39:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C979B188D9D1
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 18:42:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C0C728850E;
-	Thu, 23 Oct 2025 18:39:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AB41280A20;
+	Thu, 23 Oct 2025 18:42:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bCMGI8uv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZlEhJnah"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F37F230BCC;
-	Thu, 23 Oct 2025 18:39:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6077E2571D4;
+	Thu, 23 Oct 2025 18:42:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761244742; cv=none; b=jSHSfkzOvKytxzVxdpCPZxmloHc3WoJaJhD70JKDicgnTUN88wCnJUSW+bar/E6rES0FZCNIacC6dn4MBmA+hJauEsnxSDchXXFM6wJoqmgrat8UFwcI76Oq9txknrvvRWOzFvsvFLvIIt2MhK80qWeQ/7VnnJrCBIyDv0bNQJg=
+	t=1761244944; cv=none; b=cdo8+af80bYvvjVRX94SbbkUmVLXZWas3MgbNksUJ7OycbX03WrAGqjWdx48rxiKAHsgPBjmFkd0nDhaohjn36bo1JQANHghrXXuFSHAWjnGx5UqGeZcqCpD8i9WomeypeQUIzApUmekwXjYHcg/r7PeJ4o0RGBPOVLyzVfrCMc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761244742; c=relaxed/simple;
-	bh=CMLdyhpydVR0/Nx6iPY2zTrIJoMIDwh4t2xWU0ZSEq0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=rBdz2YQ8tPPpJgL88dO7+4JJKg44lXod4yIQfHaE1vwrGJwXFjc8ijkpznBGlX6L2mgbmJ5/PcdAoWAVtZwyohq0v+T/MZP4Wt97nYEgHcvKm+mYqGAu52sXSv2KUfh0ST3roYZheyHjpW8DzoWceY3RcQPsrQgBzGqzSoKOhKM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bCMGI8uv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 86289C4CEE7;
-	Thu, 23 Oct 2025 18:38:59 +0000 (UTC)
+	s=arc-20240116; t=1761244944; c=relaxed/simple;
+	bh=7cg1XT3E5PgSjEeikeZ9kqIVrBH3X8dSeokFRv7rNPU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=cgeOWHIjJ70o7smL/8NljHR7gmeePX3034cRj0GnmPl6KMokCST7ME2K96WAfj4tH45thcHPFevZlUy0n3kufe5OhxIwT7NFlBCBdbR6RftjY2PH6Bu3deLZAyfddtGVxzN5FQcU/CkddSKN8y10Zc7C5g4yVkb0aGvwPZ/+gJ0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZlEhJnah; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C92E7C4CEE7;
+	Thu, 23 Oct 2025 18:42:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761244742;
-	bh=CMLdyhpydVR0/Nx6iPY2zTrIJoMIDwh4t2xWU0ZSEq0=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=bCMGI8uviTWrDUJwu13OthmrVIiNYPGmqEKz6srTaDiSoG+lzBU2ZoefXj3t77Wwv
-	 C0Q1189DmcWWNvgMJXjb+3bciCyII2LVyE/3iYHg6yw7IyCCJz5Gv33OmwfDwa+kTG
-	 CD+bElQ0GD+hSrr36Xc0J5UlBLXlwaVjOE8k1xUoY3W6+ZoKUEeUhasDge2lnj+FZP
-	 Y3YfjTmYxQZl1VbK92QiRrJN33npn41Zg/YdVuXpYkMWGGcvLHqasZXywz+shuzYxg
-	 P0aUlrTtmGFDgowhBIPrArbaEcRuulLW5g2/D65V7SZ/jJRyyjsu+8VSwZdmr4b6N3
-	 UExTM1ZqDWdYw==
+	s=k20201202; t=1761244943;
+	bh=7cg1XT3E5PgSjEeikeZ9kqIVrBH3X8dSeokFRv7rNPU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ZlEhJnahRlAztC+puvhNXPiKdE2U1thO894TnL/x3rf2GRYv8es3HLzcXaT/T8T/Q
+	 LXKexrtFE8vvdJW+VtDlR7HcrG+5wIJPi/t1z6Xyi7Y35lzCnXM/MJMGgdOKHxSqFH
+	 A/Kv+OLOenPYYFhx9dRrrEVmBbqqmP3i0TNJZLmSj/SMj7SMeXUoHrLdyB2PM9hadp
+	 rrXKAC8Ln68DcI1Gf0gjjOF7g4Mxsmf+yOY7/BnMZx+iQ+xbrIB2zp7jYWHhChk/gt
+	 NGxYQt8IvsITdpgWeVmYdHQp0BnhpKxcvKYnVEJ6nGg5zJ/yPRJOlu99ZphVd9h12k
+	 OcQQuMSbDdYVA==
+Date: Thu, 23 Oct 2025 19:42:18 +0100
 From: Conor Dooley <conor@kernel.org>
-To: linux-riscv@lists.infradead.org,
-	Conor Dooley <conor@kernel.org>
-Cc: Conor Dooley <conor.dooley@microchip.com>,
-	stable@vger.kernel.org,
-	Valentina.FernandezAlanis@microchip.com,
-	Cyril.Jean@microchip.com,
-	Daire McNamara <daire.mcnamara@microchip.com>,
-	Rob Herring <robh@kernel.org>,
+To: Antonio Borneo <antonio.borneo@foss.st.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Jamie Gibbons <jamie.gibbons@microchip.com>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1] riscv: dts: microchip: remove BeagleV Fire fabric.dtsi
-Date: Thu, 23 Oct 2025 19:38:55 +0100
-Message-ID: <20251023-feminism-rewrap-39719eb7832a@spud>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20251021-dastardly-washbowl-b8c4ec1745db@spud>
-References: <20251021-dastardly-washbowl-b8c4ec1745db@spud>
+	Conor Dooley <conor+dt@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Bartosz Golaszewski <brgl@bgdev.pl>, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org,
+	Christophe Roullier <christophe.roullier@foss.st.com>,
+	Fabien Dessenne <fabien.dessenne@foss.st.com>,
+	Valentin Caron <valentin.caron@foss.st.com>
+Subject: Re: [PATCH v4 10/12] dt-bindings: pinctrl: stm32: Use properties
+ from pincfg-node.yaml
+Message-ID: <20251023-twice-brisket-fb7a3f439a13@spud>
+References: <20251023132700.1199871-1-antonio.borneo@foss.st.com>
+ <20251023132700.1199871-11-antonio.borneo@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-X-Developer-Signature: v=1; a=openpgp-sha256; l=575; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=JhXib/kn2jozWLbz0WSVdzkOIm/eAov7GTmNvhuhfhA=; b=owGbwMvMwCVWscWwfUFT0iXG02pJDBm/yuyZ1TesPGn/5NQ/h538J4qzTlzbuLU0S2+unHkip yaH4uoHHaUsDGJcDLJiiiyJt/tapNb/cdnh3PMWZg4rE8gQBi5OAZiI+l6GP3wNtyrXVtpFNBdO OF8z6UnKaXH+On4n0ze6pS9dmJ9piDH8L8s9/+3g7CvvtFbOZ3ogeMSj0/JJ9ryJHNYv7yWs1jV KYwQA
-X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="bU1dAtIe/+VxJvoH"
+Content-Disposition: inline
+In-Reply-To: <20251023132700.1199871-11-antonio.borneo@foss.st.com>
 
-From: Conor Dooley <conor.dooley@microchip.com>
 
-On Tue, 21 Oct 2025 16:38:37 +0100, Conor Dooley wrote:
-> At the time of adding the fabric.dtsi for the BeagleV Fire, we thought
-> that the fabric nodes in the Beagle supplied images were stable. They
-> are not, which has lead to nodes present in the devicetree that are not
-> in the programmed FPGA images. This is obviously problematic, and these
-> nodes must be removed.
-> 
-> --
-> 
-> [...]
+--bU1dAtIe/+VxJvoH
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Applied to riscv-dt-fixes, thanks!
+On Thu, Oct 23, 2025 at 03:26:58PM +0200, Antonio Borneo wrote:
+> Don't re-declare the standard pincfg properties; take them from
+> the default schema.
+>=20
+> Signed-off-by: Antonio Borneo <antonio.borneo@foss.st.com>
 
-[1/1] riscv: dts: microchip: remove BeagleV Fire fabric.dtsi
-      https://git.kernel.org/conor/c/5ef13c363640
+I acked this one in v3:
+https://lore.kernel.org/all/20251014-privatize-unnerving-bb26a0626276@spud/
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+pw-bot: not-applicable
 
-Thanks,
-Conor.
+> ---
+>  .../bindings/pinctrl/st,stm32-pinctrl.yaml    | 27 ++++++++-----------
+>  1 file changed, 11 insertions(+), 16 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/pinctrl/st,stm32-pinctrl.y=
+aml b/Documentation/devicetree/bindings/pinctrl/st,stm32-pinctrl.yaml
+> index 961161c2ab62b..27c0dd7a8df01 100644
+> --- a/Documentation/devicetree/bindings/pinctrl/st,stm32-pinctrl.yaml
+> +++ b/Documentation/devicetree/bindings/pinctrl/st,stm32-pinctrl.yaml
+> @@ -151,6 +151,8 @@ patternProperties:
+>            pinctrl group available on the machine. Each subnode will list=
+ the
+>            pins it needs, and how they should be configured, with regard =
+to muxer
+>            configuration, pullups, drive, output high/low and output spee=
+d.
+> +        $ref: /schemas/pinctrl/pincfg-node.yaml
+> +
+>          properties:
+>            pinmux:
+>              $ref: /schemas/types.yaml#/definitions/uint32-array
+> @@ -195,26 +197,19 @@ patternProperties:
+>                            pinmux =3D <STM32_PINMUX('A', 9, RSVD)>;
+>                 };
+> =20
+> -          bias-disable:
+> -            type: boolean
+> +          bias-disable: true
+> =20
+> -          bias-pull-down:
+> -            type: boolean
+> +          bias-pull-down: true
+> =20
+> -          bias-pull-up:
+> -            type: boolean
+> +          bias-pull-up: true
+> =20
+> -          drive-push-pull:
+> -            type: boolean
+> +          drive-push-pull: true
+> =20
+> -          drive-open-drain:
+> -            type: boolean
+> +          drive-open-drain: true
+> =20
+> -          output-low:
+> -            type: boolean
+> +          output-low: true
+> =20
+> -          output-high:
+> -            type: boolean
+> +          output-high: true
+> =20
+>            slew-rate:
+>              description: |
+> @@ -222,8 +217,8 @@ patternProperties:
+>                1: Medium speed
+>                2: Fast speed
+>                3: High speed
+> -            $ref: /schemas/types.yaml#/definitions/uint32
+> -            enum: [0, 1, 2, 3]
+> +            minimum: 0
+> +            maximum: 3
+> =20
+>          required:
+>            - pinmux
+> --=20
+> 2.34.1
+>=20
+
+--bU1dAtIe/+VxJvoH
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaPp3CgAKCRB4tDGHoIJi
+0tg3AQD8bWKk/YfN5ZMpkKgIGbTc19jQ0QsVxpdvLl3aEu+5XgEAs6z0D7RrT691
+W6QkYi0onTlPEu0LmNwdPXMp2aDCAQM=
+=954d
+-----END PGP SIGNATURE-----
+
+--bU1dAtIe/+VxJvoH--
 
