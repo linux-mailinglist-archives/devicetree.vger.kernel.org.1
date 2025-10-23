@@ -1,82 +1,108 @@
-Return-Path: <devicetree+bounces-230004-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230005-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id B09BFBFEAB7
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 02:05:03 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F272BFEAE4
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 02:06:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 2EA6D4F5520
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 00:04:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2BDE1189A7D0
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 00:06:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8840D7261C;
-	Thu, 23 Oct 2025 00:04:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AF4E8821;
+	Thu, 23 Oct 2025 00:06:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="n11PsEs5"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="japWMUgj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7491979F2;
-	Thu, 23 Oct 2025 00:04:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.19
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B15A1FC3
+	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 00:06:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761177874; cv=none; b=Q13uD5Qp9gUAIs+RHtHGdEjsAjSg7FfKnwivV7TEV6o9KpEf3PSkoY1k/tBA0ViIbCZtn4C+2k9gGuR8n4r0EFtaVpOtInyCjxACMqszTiw+6Wcga7bZql0/eiCv/Xv3Pe+EGVOJfU21as5pHBNoJj7D09l0zEyEHDpxGGIpJh4=
+	t=1761177969; cv=none; b=sLtHygMIapUetjhtSXOEp4h9ORfBxXt6HJP1jdUD0cj9nlarmsgBcYDvIqTjqAqZQ2iQlLl6XUR3EtrdAoZuXRdAyQLagnbQ1zqzlHiSLw9L3wIrSmqb2KgT3sISCn/d9rAFzmR7UEymGLTsxcg4uM8WcC8jQrEectp+kB+LzMM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761177874; c=relaxed/simple;
-	bh=YaRWa+4fXlNlEgTLkC8isNnjxO4623M91te5nEqafqo=;
+	s=arc-20240116; t=1761177969; c=relaxed/simple;
+	bh=VwFu2pqCUART756V66FC3WXoUKMk9AaNAqLUtmNd/0Q=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=X2/3PqM+3VNSTkyaaOZ8ojJHZh07XpinFWul6ZbVJJi6QqIfKDT/Vcp/0qDoBHZ92GGVGxF9px3IeTe0m4jhwbjojh336CCAYUn2R/VNDFyfHrV0zGGMZTSCAL+YTYo78FkXe2NJvOdR2hf9tw1l6mCt76OQkAjsreAhgHSpChw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=n11PsEs5; arc=none smtp.client-ip=192.198.163.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1761177873; x=1792713873;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=YaRWa+4fXlNlEgTLkC8isNnjxO4623M91te5nEqafqo=;
-  b=n11PsEs5oAuZkqjuK+PcBaMQcOs8kgMHgy1k1WqIfjXsW8K3RAiReL5B
-   HmrT7WZ4+UWHfpMESqbr/7ahGFxyV1vVTbVWGNNgJz5ft2wNqUGCgjtuC
-   QWLm15u53TZxELBygQAsjk6TdsAS4e7GaqnfNOd/PbodYC+8FGo7ccDC5
-   rrxM+ZlSUKoHBlHU27BCXRUqBj4N7UMmfQl3n5iQLI3eFXA9VCHLiIMeY
-   vJd0zGz820ezGCffYdFoXAJQquyVMyYJt23ICroXW7BEoSl0yNYkVhbOa
-   MsACWtv22LIxMD8UTyIY74sAQtqLfYQXDoTCN6F37/owVdrk6sMUUxhVq
-   A==;
-X-CSE-ConnectionGUID: plzlXApBRwGI5dtdnQ1bFg==
-X-CSE-MsgGUID: 92Xed883T4Ogxkkrf4PcCQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="62368584"
-X-IronPort-AV: E=Sophos;i="6.19,248,1754982000"; 
-   d="scan'208";a="62368584"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
-  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Oct 2025 17:04:32 -0700
-X-CSE-ConnectionGUID: +5yiHp4sRtiauTeU9tiIGA==
-X-CSE-MsgGUID: zY4nswJCRleBt+pnFqLVpQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,248,1754982000"; 
-   d="scan'208";a="184491032"
-Received: from lkp-server02.sh.intel.com (HELO 66d7546c76b2) ([10.239.97.151])
-  by fmviesa009.fm.intel.com with ESMTP; 22 Oct 2025 17:04:28 -0700
-Received: from kbuild by 66d7546c76b2 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1vBiob-000Cqb-2F;
-	Thu, 23 Oct 2025 00:04:25 +0000
-Date: Thu, 23 Oct 2025 08:03:54 +0800
-From: kernel test robot <lkp@intel.com>
-To: Nas Chung <nas.chung@chipsnmedia.com>, mchehab@kernel.org,
-	hverkuil@xs4all.nl, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de
-Cc: oe-kbuild-all@lists.linux.dev, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-imx@nxp.com, linux-arm-kernel@lists.infradead.org,
-	jackson.lee@chipsnmedia.com, lafley.kim@chipsnmedia.com,
-	marek.vasut@mailbox.org, Nas Chung <nas.chung@chipsnmedia.com>,
-	Ming Qian <ming.qian@oss.nxp.com>
-Subject: Re: [PATCH v4 8/9] media: chips-media: wave6: Add Wave6 control
- driver
-Message-ID: <202510230756.m2qLZNJc-lkp@intel.com>
-References: <20251022074710.575-9-nas.chung@chipsnmedia.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=kzFnIbBXNgh1rxOwII1gEgU54Ms4DIOTjKfXh8stzGWKdO6cGSng6+AhT3coJxeMojVXcBFkWd8ULfL0MQV9iR8Dke/i5+25zbHQlEJiugdzxFdu+jJvOL+cO08Z1a6tk5+zsagk+NzW6bCqTHBZsZ9t/fl1qU3AkaJkVmHah0s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=japWMUgj; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59MIeos6007476
+	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 00:06:06 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=YwXZ5EJgF3RkMDIp30Ap678K
+	ahXPe1cvGbyvyzD4Fnw=; b=japWMUgjE8nQcrGptptNoSttn8Ogbpv1yYLNr4ha
+	Q39CrCxGNupnXejONRySS/6ELfIh0m6xBTCToB40El5q1c5iRuERXMy/g2dTNY+V
+	2TaiinEnw37yx5DblQNyRgJelyaz743ojzkHd2g7L36bf0dphAouC8fucGznFH1K
+	8W0rrbMDcM2rGXIiLHLi7KUgtwIWA6+aJvKPKG0nvtHgb/3mkSbUguoBRu2SagDi
+	Uvj/zHHpjRC/fkSjxOKR1VQPVj9DnPDlAzqmSiidy8dvIYx8zAZjzzz4zpn4rA4C
+	MszCi3mtVT9tsbQAXoY4FZE6EH6hKRR6/xPSyHr5NmMmmg==
+Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49v3446g1x-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 00:06:06 +0000 (GMT)
+Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-4e8a89c9750so7143701cf.0
+        for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 17:06:06 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761177965; x=1761782765;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=YwXZ5EJgF3RkMDIp30Ap678KahXPe1cvGbyvyzD4Fnw=;
+        b=tTpnLdn4swI5oqltKt9pOU9FA4GaaAVFAE7XoBlprgoTJGov2OsEetjo/8CFuyxj+r
+         LUIbrZE3NKto+CqErX6LrS2SD/R19DPvDWCXS2pzjuwsvIJ1pcRTFtjuQqpYe2G5rC63
+         DdJsfM+8IB/8vzAq9DmuCxpnAdBhz5BINCgDQSE98KlL0PZQkXqaX7y0Apge/yCZxgnR
+         HSP4EuZZCVbZsP5lTn38F9Gn+rYVJOt7G+VJVez3Q1+Qy3XpaV6zBO1CRklydmYTMH14
+         PVz/qGRRl1VwRbRqdlDF8NW78B49K6uPfmgPWouzUnAU4XNXBh8pA+SUkfL0OjtpW+Xq
+         DZwg==
+X-Forwarded-Encrypted: i=1; AJvYcCV1syoCSioSkfQlDsWWtRv0Fp1d6OpMHPLW14/jD2kE/Ga13GdglQqNGHQoUUB0g1EijozvXte9VUhq@vger.kernel.org
+X-Gm-Message-State: AOJu0YxgfTztOKRSueXenl91aXoSv5xwoe8ze7o8OXI1JmXXpeXu9J5s
+	Hmd1jP7znZyfl0JJWEL0WbDqBaFcXYeYM0dfgO3siwitYLyfqf4vPfV1Cq8QrRrlj0kELhRHWl7
+	y1KOV3wIxSxfGIC8vsBoVAwovq3eD0UahcLnIjkbHWofjMC4EVZbtkLkQ7zAiJwBn
+X-Gm-Gg: ASbGncvzmPGiGoOxrw+/oQzh/YvG9wKcZdzUWnKT3MzR8kKqdsBTzmq1PmKyJIudMkV
+	jkoHHWo9F4ini2aWbnnwoBz7+nhyPV4dsNYn1LRBb29KXKsWiNzfAVmH3QqtSnuopYAgrwQTET3
+	ssEBX5MeYTj7Er6BQo+6FQIPjfqFvrGke8oPP901RKWyn+Aqb3rX4XeXAkE6mklWZt8VqZgI/hX
+	UyuSMrV1CSFttBo4pLahk0TEhJKRNsT3iBwkguCjd6IqCpdBj6Ed0e1zjzOoLR/h2aJ3KdYbyg6
+	z6x6DQvy73mGR7+R1b0PY60YsEY6qON0FG7qUPfvX/XLoITV3IGs9+XjVQYFxDRlYc+OdtcjXFK
+	hZS4ry4IzXzK8PTV+oClERy7NHMeHzE+EAeDmbXl8izATrta7zLkNCbxdcT3jHslFsTDceShhtQ
+	LmB0H23AzgkqGs
+X-Received: by 2002:a05:622a:138e:b0:4e8:a9f6:355 with SMTP id d75a77b69052e-4e8a9f605c3mr220954951cf.72.1761177964862;
+        Wed, 22 Oct 2025 17:06:04 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEDNjOTVSPDTOLMhvrhjQF/rHxfIIgpodkg14JMuex89C+8dkQsRhvtmM3bkDBHfMKN9H52zw==
+X-Received: by 2002:a05:622a:138e:b0:4e8:a9f6:355 with SMTP id d75a77b69052e-4e8a9f605c3mr220954581cf.72.1761177964404;
+        Wed, 22 Oct 2025 17:06:04 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-592f4adecb3sm237171e87.12.2025.10.22.17.06.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 22 Oct 2025 17:06:02 -0700 (PDT)
+Date: Thu, 23 Oct 2025 03:06:00 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Bjorn Andersson <andersson@kernel.org>
+Cc: Jingyi Wang <jingyi.wang@oss.qualcomm.com>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Robert Marko <robimarko@gmail.com>,
+        Das Srinagesh <quic_gurus@quicinc.com>, aiqun.yu@oss.qualcomm.com,
+        tingwei.zhang@oss.qualcomm.com, trilok.soni@oss.qualcomm.com,
+        yijie.yang@oss.qualcomm.com, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Eugen Hristev <eugen.hristev@linaro.org>
+Subject: Re: [PATCH v2 1/4] dt-bindings: soc: qcom: Add qcom,kaanapali-imem
+ compatible
+Message-ID: <mwin3lfvpcwxxhsub2whcpibuayk36f4ljrodvithfygqad5w4@cg4h6peh4v4a>
+References: <20251022-knp-soc-binding-v2-0-3cd3f390f3e2@oss.qualcomm.com>
+ <20251022-knp-soc-binding-v2-1-3cd3f390f3e2@oss.qualcomm.com>
+ <g2iviaqetgxf5ycz2otzkpmmc4goo7xuyjmttuu254bfzqqvkf@4vybjh4eghpm>
+ <4eebcb7d-1eca-4914-915a-d42232233f9f@oss.qualcomm.com>
+ <dwfvko3hszsoh4ihnz3qdpsugmocbkrbhosijdw5q3bxh64kuo@o74as2li74px>
+ <lz4sbvzfiij3qsa4d7jeblmi2vfubc4ltf435sh6tcs53l6fbq@7f3tfm7yiyjc>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,166 +111,112 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251022074710.575-9-nas.chung@chipsnmedia.com>
+In-Reply-To: <lz4sbvzfiij3qsa4d7jeblmi2vfubc4ltf435sh6tcs53l6fbq@7f3tfm7yiyjc>
+X-Proofpoint-GUID: IlqtDLbhQCIootW0csI0YT6za41F1DDd
+X-Proofpoint-ORIG-GUID: IlqtDLbhQCIootW0csI0YT6za41F1DDd
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDE4MDAyMyBTYWx0ZWRfX9jfx/ReVcqXh
+ GOgo1FVfp5mnY4P55DKgsqMhoAAvEugYmPTWM4poBz+Y+77j0JpeVlGYAdA3i7nz3ueF/q7Q01P
+ rHsqwAlRPqda85RUVljQM8H3rxZYqCyM4VagtPgalvLCCjATiCHICD4rx4XTpv8Qtt9klB65nYo
+ cP9/VSassN994cslB6bNZ+AJd+yxRYBetV4CYzjycF0+s8BauwMu9o4FsZ+GwBk5La40jqyLdZq
+ UdBtc37hC06OVxcjF5uOUA9JcdB72qdhXpeq1yKeYGzbH4LzR79oDyDZgdMldiYKVryUW0xG6vB
+ SrqTg308jHqpeFoZA/XqBsDkSYzADt/juyS00uwUxo1yovLaCSxBcZMIyd6HPKSdP9FTcCZEnoO
+ mzPVdo+exkzXDgfYR9QbsqDqZxOlSQ==
+X-Authority-Analysis: v=2.4 cv=E/vAZKdl c=1 sm=1 tr=0 ts=68f9716e cx=c_pps
+ a=mPf7EqFMSY9/WdsSgAYMbA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=x6icFKpwvdMA:10 a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=KKAkSRfTAAAA:8
+ a=EUspDBNiAAAA:8 a=Cw9dS9RSUmV-52qKxfUA:9 a=CjuIK1q_8ugA:10
+ a=dawVfQjAaf238kedN5IG:22 a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-10-22_08,2025-10-22_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 spamscore=0 priorityscore=1501 bulkscore=0 suspectscore=0
+ lowpriorityscore=0 clxscore=1015 adultscore=0 phishscore=0 malwarescore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2510020000 definitions=main-2510180023
 
-Hi Nas,
+On Wed, Oct 22, 2025 at 05:42:58PM -0500, Bjorn Andersson wrote:
+> On Wed, Oct 22, 2025 at 12:34:58PM +0300, Dmitry Baryshkov wrote:
+> > On Wed, Oct 22, 2025 at 05:05:30PM +0800, Jingyi Wang wrote:
+> > > 
+> > > 
+> > > On 10/22/2025 4:49 PM, Dmitry Baryshkov wrote:
+> > > > On Wed, Oct 22, 2025 at 12:28:41AM -0700, Jingyi Wang wrote:
+> > > >> Document qcom,kaanapali-imem compatible.
+> > > >>
+> > > >> Reviewed-by: Eugen Hristev <eugen.hristev@linaro.org>
+> > > >> Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+> > > >> ---
+> > > >>  Documentation/devicetree/bindings/sram/qcom,imem.yaml | 1 +
+> > > >>  1 file changed, 1 insertion(+)
+> > > >>
+> > > >> diff --git a/Documentation/devicetree/bindings/sram/qcom,imem.yaml b/Documentation/devicetree/bindings/sram/qcom,imem.yaml
+> > > >> index 6a627c57ae2f..1e29a8ff287f 100644
+> > > >> --- a/Documentation/devicetree/bindings/sram/qcom,imem.yaml
+> > > >> +++ b/Documentation/devicetree/bindings/sram/qcom,imem.yaml
+> > > >> @@ -19,6 +19,7 @@ properties:
+> > > >>        - enum:
+> > > >>            - qcom,apq8064-imem
+> > > >>            - qcom,ipq5424-imem
+> > > >> +          - qcom,kaanapali-imem
+> > > > 
+> > > > Can you use mmio-sram instead?
+> > > > 
+> > > 
+> > > Here is the node: 
+> > > 
+> > > 		sram@14680000 {
+> > > 			compatible = "qcom,kaanapali-imem", "syscon", "simple-mfd";
+> > > 			reg = <0x0 0x14680000 0x0 0x1000>;
+> > > 			ranges = <0 0 0x14680000 0x1000>;
+> > > 
+> > > 			#address-cells = <1>;
+> > > 			#size-cells = <1>;
+> > > 
+> > > 			pil-reloc@94c {
+> > > 				compatible = "qcom,pil-reloc-info";
+> > > 				reg = <0x94c 0xc8>;
+> > > 			};
+> > > 		};
+> > > 
+> > > other qualcomm are also using imem, could you please give more details on why
+> > > we should use mmio-sram here?
+> > 
+> > https://lore.kernel.org/linux-arm-msm/e4c5ecc3-fd97-4b13-a057-bb1a3b7f9207@kernel.org/
+> > 
+> 
+> I considered exactly this when I wrote the binding back then...
+> 
+> But the binding defines mmio-sram as "Simple IO memory regions to be
+> managed by the genalloc API." and the Linux sram driver follows that and
+> registers a gen_pool across the sram memory region.
+> 
+> I believe IMEM is SRAM (it's at least not registers), but its memory
+> layout is fixed, so it's not a pool in any form.
+> 
+> 
+> What Krzysztof says makes sense, but rather than just throwing a yak at
+> Jingyi, it would be nice if you provided some guidance on how you would
+> like to see this turn out.
 
-kernel test robot noticed the following build errors:
+I tested, pretty same approach seems to work:
 
-[auto build test ERROR on shawnguo/for-next]
-[also build test ERROR on linuxtv-media-pending/master robh/for-next linus/master v6.18-rc2 next-20251022]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+	sram@14680000 {
+		compatible = "mmio-sram";
+		reg = <0x0 0x14680000 0x0 0x1000>;
+		ranges = <0 0 0x14680000 0x1000>;
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Nas-Chung/media-v4l2-common-Add-YUV24-format-info/20251022-155246
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/shawnguo/linux.git for-next
-patch link:    https://lore.kernel.org/r/20251022074710.575-9-nas.chung%40chipsnmedia.com
-patch subject: [PATCH v4 8/9] media: chips-media: wave6: Add Wave6 control driver
-config: m68k-allmodconfig (https://download.01.org/0day-ci/archive/20251023/202510230756.m2qLZNJc-lkp@intel.com/config)
-compiler: m68k-linux-gcc (GCC) 15.1.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251023/202510230756.m2qLZNJc-lkp@intel.com/reproduce)
+		#address-cells = <1>;
+		#size-cells = <1>;
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202510230756.m2qLZNJc-lkp@intel.com/
+		pil-reloc-sram@94c {
+			compatible = "qcom,pil-reloc-info";
+			reg = <0x94c 0xc8>;
+		};
+	};
 
-All errors (new ones prefixed by >>):
-
-   In file included from drivers/media/platform/chips-media/wave6/wave6-vpu.c:25:
-   drivers/media/platform/chips-media/wave6/wave6-vpu.c: In function 'wave6_vpu_remap_code_buf':
->> drivers/media/platform/chips-media/wave6/wave6-regdefine.h:83:57: error: implicit declaration of function 'FIELD_PREP' [-Wimplicit-function-declaration]
-      83 | #define         REMAP_CTRL_INDEX(x)                     FIELD_PREP(GENMASK(15, 12), (x))
-         |                                                         ^~~~~~~~~~
-   drivers/media/platform/chips-media/wave6/wave6-vpu.c:131:27: note: in expansion of macro 'REMAP_CTRL_INDEX'
-     131 |                           REMAP_CTRL_INDEX(i) |
-         |                           ^~~~~~~~~~~~~~~~
---
-   In file included from drivers/media/platform/chips-media/wave6/wave6-vpu-core.h:18,
-                    from drivers/media/platform/chips-media/wave6/wave6-vpu-core.c:17:
-   drivers/media/platform/chips-media/wave6/wave6-vpu-core.c: In function 'wave6_vpu_core_check_state':
->> drivers/media/platform/chips-media/wave6/wave6-vpuapi.h:125:33: error: implicit declaration of function 'FIELD_GET' [-Wimplicit-function-declaration]
-     125 | #define FW_VERSION_MAJOR(x)     FIELD_GET(FW_VERSION_MAJOR_MASK, (x))
-         |                                 ^~~~~~~~~
-   include/linux/dynamic_debug.h:224:29: note: in expansion of macro 'FW_VERSION_MAJOR'
-     224 |                 func(&id, ##__VA_ARGS__);                       \
-         |                             ^~~~~~~~~~~
-   include/linux/dynamic_debug.h:248:9: note: in expansion of macro '__dynamic_func_call_cls'
-     248 |         __dynamic_func_call_cls(__UNIQUE_ID(ddebug), cls, fmt, func, ##__VA_ARGS__)
-         |         ^~~~~~~~~~~~~~~~~~~~~~~
-   include/linux/dynamic_debug.h:250:9: note: in expansion of macro '_dynamic_func_call_cls'
-     250 |         _dynamic_func_call_cls(_DPRINTK_CLASS_DFLT, fmt, func, ##__VA_ARGS__)
-         |         ^~~~~~~~~~~~~~~~~~~~~~
-   include/linux/dynamic_debug.h:273:9: note: in expansion of macro '_dynamic_func_call'
-     273 |         _dynamic_func_call(fmt, __dynamic_dev_dbg,              \
-         |         ^~~~~~~~~~~~~~~~~~
-   include/linux/dev_printk.h:165:9: note: in expansion of macro 'dynamic_dev_dbg'
-     165 |         dynamic_dev_dbg(dev, dev_fmt(fmt), ##__VA_ARGS__)
-         |         ^~~~~~~~~~~~~~~
-   drivers/media/platform/chips-media/wave6/wave6-vpu-core.c:133:9: note: in expansion of macro 'dev_dbg'
-     133 |         dev_dbg(core->dev, "product 0x%x, fw_ver %d.%d.%d(r%d), hw_ver 0x%x\n",
-         |         ^~~~~~~
---
-   In file included from drivers/media/platform/chips-media/wave6/wave6-vpu-core.h:18,
-                    from drivers/media/platform/chips-media/wave6/wave6-vpu-dbg.c:10:
-   drivers/media/platform/chips-media/wave6/wave6-vpu-dbg.c: In function 'wave6_vpu_dbg_instance':
->> drivers/media/platform/chips-media/wave6/wave6-vpuapi.h:125:33: error: implicit declaration of function 'FIELD_GET' [-Wimplicit-function-declaration]
-     125 | #define FW_VERSION_MAJOR(x)     FIELD_GET(FW_VERSION_MAJOR_MASK, (x))
-         |                                 ^~~~~~~~~
-   drivers/media/platform/chips-media/wave6/wave6-vpu-dbg.c:34:25: note: in expansion of macro 'FW_VERSION_MAJOR'
-      34 |                         FW_VERSION_MAJOR(inst->dev->attr.fw_version),
-         |                         ^~~~~~~~~~~~~~~~
---
-   In file included from drivers/media/platform/chips-media/wave6/wave6-hw.c:11:
-   drivers/media/platform/chips-media/wave6/wave6-hw.c: In function 'wave6_send_command':
-   drivers/media/platform/chips-media/wave6/wave6-regdefine.h:99:57: error: implicit declaration of function 'FIELD_PREP' [-Wimplicit-function-declaration]
-      99 | #define         INSTANCE_INFO_CODEC_STD(x)              FIELD_PREP(GENMASK(31, 16), (x))
-         |                                                         ^~~~~~~~~~
-   drivers/media/platform/chips-media/wave6/wave6-hw.c:237:27: note: in expansion of macro 'INSTANCE_INFO_CODEC_STD'
-     237 |                 reg_val = INSTANCE_INFO_CODEC_STD(std);
-         |                           ^~~~~~~~~~~~~~~~~~~~~~~
-   drivers/media/platform/chips-media/wave6/wave6-hw.c: In function 'wave6_vpu_get_version':
->> drivers/media/platform/chips-media/wave6/wave6-regdefine.h:125:57: error: implicit declaration of function 'FIELD_GET' [-Wimplicit-function-declaration]
-     125 | #define         STD_DEF1_HEVC_DEC(x)                    FIELD_GET(GENMASK(2, 2), (x))
-         |                                                         ^~~~~~~~~
-   drivers/media/platform/chips-media/wave6/wave6-hw.c:308:35: note: in expansion of macro 'STD_DEF1_HEVC_DEC'
-     308 |         attr->support_decoders |= STD_DEF1_HEVC_DEC(std_def1) << W_HEVC_DEC;
-         |                                   ^~~~~~~~~~~~~~~~~
-
-
-vim +/FIELD_PREP +83 drivers/media/platform/chips-media/wave6/wave6-regdefine.h
-
-2fef07d3bbe662 Nas Chung 2025-10-22   71  
-2fef07d3bbe662 Nas Chung 2025-10-22   72  #define W6_VPU_VCPU_CUR_PC				(W6_REG_BASE + 0x0004)
-2fef07d3bbe662 Nas Chung 2025-10-22   73  #define W6_VPU_VINT_REASON_CLEAR			(W6_REG_BASE + 0x0034)
-2fef07d3bbe662 Nas Chung 2025-10-22   74  #define W6_VPU_HOST_INT_REQ				(W6_REG_BASE + 0x0038)
-2fef07d3bbe662 Nas Chung 2025-10-22   75  #define		HOST_INT_REQ_ON				BIT(0)
-2fef07d3bbe662 Nas Chung 2025-10-22   76  #define W6_VPU_VINT_CLEAR				(W6_REG_BASE + 0x003C)
-2fef07d3bbe662 Nas Chung 2025-10-22   77  #define		VINT_CLEAR				BIT(0)
-2fef07d3bbe662 Nas Chung 2025-10-22   78  #define W6_VPU_VPU_INT_STS				(W6_REG_BASE + 0x0044)
-2fef07d3bbe662 Nas Chung 2025-10-22   79  #define W6_VPU_VINT_ENABLE				(W6_REG_BASE + 0x0048)
-2fef07d3bbe662 Nas Chung 2025-10-22   80  #define W6_VPU_VINT_REASON				(W6_REG_BASE + 0x004C)
-2fef07d3bbe662 Nas Chung 2025-10-22   81  #define W6_VPU_REMAP_CTRL_GB				(W6_REG_BASE + 0x0060)
-2fef07d3bbe662 Nas Chung 2025-10-22   82  #define		REMAP_CTRL_ON				BIT(31)
-2fef07d3bbe662 Nas Chung 2025-10-22  @83  #define		REMAP_CTRL_INDEX(x)			FIELD_PREP(GENMASK(15, 12), (x))
-2fef07d3bbe662 Nas Chung 2025-10-22   84  #define		REMAP_CTRL_PAGE_SIZE_ON			BIT(11)
-2fef07d3bbe662 Nas Chung 2025-10-22   85  #define		REMAP_CTRL_PAGE_SIZE(x)			FIELD_PREP(GENMASK(8, 0), ((x) >> 12))
-2fef07d3bbe662 Nas Chung 2025-10-22   86  #define W6_VPU_REMAP_VADDR_GB				(W6_REG_BASE + 0x0064)
-2fef07d3bbe662 Nas Chung 2025-10-22   87  #define W6_VPU_REMAP_PADDR_GB				(W6_REG_BASE + 0x0068)
-2fef07d3bbe662 Nas Chung 2025-10-22   88  #define W6_VPU_REMAP_CORE_START_GB			(W6_REG_BASE + 0x006C)
-2fef07d3bbe662 Nas Chung 2025-10-22   89  #define		REMAP_CORE_START_ON			BIT(0)
-2fef07d3bbe662 Nas Chung 2025-10-22   90  #define W6_VPU_BUSY_STATUS				(W6_REG_BASE + 0x0070)
-2fef07d3bbe662 Nas Chung 2025-10-22   91  #define		BUSY_STATUS_SET				BIT(0)
-2fef07d3bbe662 Nas Chung 2025-10-22   92  #define W6_VPU_RET_PRODUCT_CODE				(W6_REG_BASE + 0x0094)
-2fef07d3bbe662 Nas Chung 2025-10-22   93  
-2fef07d3bbe662 Nas Chung 2025-10-22   94  /* COMMON */
-2fef07d3bbe662 Nas Chung 2025-10-22   95  #define W6_COMMAND_GB					(W6_REG_BASE + 0x104)
-2fef07d3bbe662 Nas Chung 2025-10-22   96  #define W6_COMMAND					(W6_REG_BASE + 0x200)
-2fef07d3bbe662 Nas Chung 2025-10-22   97  #define W6_QUERY_OPTION					(W6_REG_BASE + 0x204)
-2fef07d3bbe662 Nas Chung 2025-10-22   98  #define W6_CMD_INSTANCE_INFO				(W6_REG_BASE + 0x210)
-2fef07d3bbe662 Nas Chung 2025-10-22   99  #define		INSTANCE_INFO_CODEC_STD(x)		FIELD_PREP(GENMASK(31, 16), (x))
-2fef07d3bbe662 Nas Chung 2025-10-22  100  #define		INSTANCE_INFO_ID(x)			FIELD_PREP(GENMASK(15, 0), (x))
-2fef07d3bbe662 Nas Chung 2025-10-22  101  #define W6_CMD_INIT_VPU_SEC_AXI_BASE_CORE0		(W6_REG_BASE + 0x364)
-2fef07d3bbe662 Nas Chung 2025-10-22  102  #define W6_CMD_INIT_VPU_SEC_AXI_SIZE_CORE0		(W6_REG_BASE + 0x368)
-2fef07d3bbe662 Nas Chung 2025-10-22  103  #define W6_CMD_SET_WORK_BUF_ADDR			(W6_REG_BASE + 0x5F0)
-2fef07d3bbe662 Nas Chung 2025-10-22  104  #define W6_CMD_SET_WORK_BUF_SIZE			(W6_REG_BASE + 0x5F4)
-2fef07d3bbe662 Nas Chung 2025-10-22  105  #define		SET_WORK_BUF_SIZE_ACK			0
-2fef07d3bbe662 Nas Chung 2025-10-22  106  #define W6_RET_SUCCESS					(W6_REG_BASE + 0x208)
-2fef07d3bbe662 Nas Chung 2025-10-22  107  #define W6_RET_FAIL_REASON				(W6_REG_BASE + 0x20C)
-2fef07d3bbe662 Nas Chung 2025-10-22  108  #define W6_RET_INT_INSTANCE_INFO			(W6_REG_BASE + 0x21C)
-2fef07d3bbe662 Nas Chung 2025-10-22  109  #define		INT_INSTANCE_INFO_CLEAR			0
-2fef07d3bbe662 Nas Chung 2025-10-22  110  #define W6_RET_INSTANCE_ID				(W6_REG_BASE + 0x220)
-2fef07d3bbe662 Nas Chung 2025-10-22  111  #define W6_RET_CQ_IN_TICK				(W6_REG_BASE + 0x23C)
-2fef07d3bbe662 Nas Chung 2025-10-22  112  #define W6_RET_FW_RUN_TICK				(W6_REG_BASE + 0x240)
-2fef07d3bbe662 Nas Chung 2025-10-22  113  #define W6_RET_HW_RUN_TICK				(W6_REG_BASE + 0x244)
-2fef07d3bbe662 Nas Chung 2025-10-22  114  #define W6_RET_HW_DONE_TICK				(W6_REG_BASE + 0x248)
-2fef07d3bbe662 Nas Chung 2025-10-22  115  #define W6_RET_FW_DONE_TICK				(W6_REG_BASE + 0x24C)
-2fef07d3bbe662 Nas Chung 2025-10-22  116  #define W6_RET_RQ_OUT_TICK				(W6_REG_BASE + 0x250)
-2fef07d3bbe662 Nas Chung 2025-10-22  117  
-2fef07d3bbe662 Nas Chung 2025-10-22  118  /* COMMON - QUERY : GET_VPU_INFO */
-2fef07d3bbe662 Nas Chung 2025-10-22  119  #define W6_RET_FW_VERSION				(W6_REG_BASE + 0x300)
-2fef07d3bbe662 Nas Chung 2025-10-22  120  #define W6_RET_PRODUCT_NAME				(W6_REG_BASE + 0x304)
-2fef07d3bbe662 Nas Chung 2025-10-22  121  #define W6_RET_PRODUCT_VERSION				(W6_REG_BASE + 0x308)
-2fef07d3bbe662 Nas Chung 2025-10-22  122  #define W6_RET_STD_DEF0					(W6_REG_BASE + 0x30C)
-2fef07d3bbe662 Nas Chung 2025-10-22  123  #define W6_RET_STD_DEF1					(W6_REG_BASE + 0x310)
-2fef07d3bbe662 Nas Chung 2025-10-22  124  #define		STD_DEF1_AVC_DEC(x)			FIELD_GET(GENMASK(3, 3), (x))
-2fef07d3bbe662 Nas Chung 2025-10-22 @125  #define		STD_DEF1_HEVC_DEC(x)			FIELD_GET(GENMASK(2, 2), (x))
-2fef07d3bbe662 Nas Chung 2025-10-22  126  #define		STD_DEF1_AVC_ENC(x)			FIELD_GET(GENMASK(1, 1), (x))
-2fef07d3bbe662 Nas Chung 2025-10-22  127  #define		STD_DEF1_HEVC_ENC(x)			FIELD_GET(GENMASK(0, 0), (x))
-2fef07d3bbe662 Nas Chung 2025-10-22  128  #define W6_RET_CONF_FEATURE				(W6_REG_BASE + 0x314)
-2fef07d3bbe662 Nas Chung 2025-10-22  129  #define		CONF_FEATURE_AVC10BIT_ENC(x)		FIELD_GET(GENMASK(11, 11), (x))
-2fef07d3bbe662 Nas Chung 2025-10-22  130  #define		CONF_FEATURE_AVC10BIT_DEC(x)		FIELD_GET(GENMASK(9, 9), (x))
-2fef07d3bbe662 Nas Chung 2025-10-22  131  #define		CONF_FEATURE_HEVC10BIT_ENC(x)		FIELD_GET(GENMASK(3, 3), (x))
-2fef07d3bbe662 Nas Chung 2025-10-22  132  #define		CONF_FEATURE_HEVC10BIT_DEC(x)		FIELD_GET(GENMASK(1, 1), (x))
-2fef07d3bbe662 Nas Chung 2025-10-22  133  #define W6_RET_CONF_DATE				(W6_REG_BASE + 0x318)
-2fef07d3bbe662 Nas Chung 2025-10-22  134  #define W6_RET_CONF_HW_VERSION				(W6_REG_BASE + 0x31C)
-2fef07d3bbe662 Nas Chung 2025-10-22  135  #define W6_RET_CONF_TYPE				(W6_REG_BASE + 0x320)
-2fef07d3bbe662 Nas Chung 2025-10-22  136  #define W6_RET_FW_API_VERSION				(W6_REG_BASE + 0x32C)
-2fef07d3bbe662 Nas Chung 2025-10-22  137  #define W6_RET_SHA_ID					(W6_REG_BASE + 0x330)
-2fef07d3bbe662 Nas Chung 2025-10-22  138  
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+With best wishes
+Dmitry
 
