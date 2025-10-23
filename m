@@ -1,89 +1,81 @@
-Return-Path: <devicetree+bounces-230047-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230048-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60491BFF3A9
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 07:10:21 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 37AD1BFF3B8
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 07:11:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 29340358664
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 05:10:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A53913A8E71
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 05:11:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3908C266B6C;
-	Thu, 23 Oct 2025 05:10:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08A52268C42;
+	Thu, 23 Oct 2025 05:11:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Huv+d9x9"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="BqfO9UCG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B958262FEC
-	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 05:10:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D81FD265CA8
+	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 05:11:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761196214; cv=none; b=B7g2wLlN1MaLHlNffsLcUht+hwJICbjJ4NzGZQRHVg1w3LrGa6wf94buzG9+tel9oyI88TW/I8OBDIwr+VLSyOO/Da9b+iA0QOcQ5eq3ZnGgjDdAfn0mLJf7ethq8xbIjSYsSQOAshSoWr1zJBd5xGPB6Q08oPENaDLc1Be/pAw=
+	t=1761196284; cv=none; b=tq0ALXXKU8722/fj0yHjVdouDh/iBqtdGlNehx7NdMh+0qI2vQ3omIlYa6sTHB5A786Ob5zq1EZSOgy+i1ASoMG+Qld2QT+xxZupIJ1Rs+ezj2apssF/yglh1LKZ69vSvK+mx6y9krfo0lais7T1YrKsp0C7EfB78F83clWchTc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761196214; c=relaxed/simple;
-	bh=p/ddS2sSKg4RpCYpXVyJO3QkAfXeZbIVQJ3wGS7uMHQ=;
+	s=arc-20240116; t=1761196284; c=relaxed/simple;
+	bh=w1LmB0SE2C+tSWh9OqT3WGhfCB5JmRvULI6W/A8+/1k=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PsydNUS0eN0Ksyr30yHT1jqXzPv7Zcbu1Q8ew+dBz22d13SlgJdtEBBHrbHBVWvAM3tupeJVMKmXxXCaW9VOkWUjwimqNyzvvWg5vFycJq2CN/4oB2vYMPsIgLvHYRfgTSWBGVcdbD5vknVq3PemQo+BAUoi72rJ7Wy9YsrI3Nc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Huv+d9x9; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59MIemrN005645
-	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 05:10:11 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	sVOpM0zB9ogMep4UsRUJ6puOQkqX/C+l4ebqHw8qJuw=; b=Huv+d9x9qZmGX2fY
-	T1LYTYpdJeXxWqNhtzqeaYl/yFlffczKv/uNneHwMQIMjnOlSTn0CVGxeHn6np3w
-	6HcqSdWW6tHPa9uLsB2fC4MB9FAEd8URbsJ2x7e8A0+V0SgwMkaIMTOIGQrAivZK
-	fp/9qYh4pfTIIm1I6h+qJGJtLOTw4TkpB0x50vU/7HAyWa71yF0N0wtXshu9iIEn
-	JoW6o1GOxOL5n4KiPaErGeB0piJJnSYvnlPlT/AhFcHhQNe40Qn4ZwWKrjYl627g
-	3uN8RDYjSpBwoR7v0mEaDLvEu58J1VZCR90kcvHWuf8CjPTq/J639jT0YxHvXVJo
-	9RQ0xg==
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49v27j70nj-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 05:10:11 +0000 (GMT)
-Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-4e8a4c63182so11499661cf.3
-        for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 22:10:11 -0700 (PDT)
+	 In-Reply-To:Content-Type; b=PxFxXkFT1HvUD8UqA0NcP2vLOw1HhniupDmlvuvJlJHZ1AXHdGSQljPj9o6CFw1m8FDWlWzVRmskWH+ARVjflZ8eWm2xNHUZo3noGGRYj2izpZv8+deHH0dIJ6jjWKzLWZpT/C2GHuy/kaQ5b1scs89zjyXn37NA25OhkeQABoE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=BqfO9UCG; arc=none smtp.client-ip=209.85.128.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-471193a9d9eso3612505e9.2
+        for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 22:11:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=tuxon.dev; s=google; t=1761196280; x=1761801080; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=gBvcm1/+MWpjtuc12IDJ3vwTa6noB7EaiS2kKGjrEYk=;
+        b=BqfO9UCGSJI+ZSEmVvCODgujXi/oSa2IOkRElOV7rbxOY/kWFEtmSQ8+BDx/FPzQ0x
+         k+nmo6Owt0f+rTXd1KE1vUsknNPXql/pWVqh+eGMgwRvloajCyE64u6PkEafTTO3E5Dk
+         j0CdCB7qm6WIYFk+eT6u8pyjjEg3+t0hn/+S2tRfZBZ6MouLTsBjDAdyZGwiMW+Wcv0r
+         EDxw92TStEG5qCt6kO5eUAnMjskgBb3xMTLUqJ/IiuiuGg+/Vzcm8NBGCHdA4oA98cn9
+         uF3+MLPRDWUEPo+HiRYJHSOAtfB0t7vqchkekROrdYleUUXefTE6OqDfalrhyeQkNkhJ
+         +GqQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761196206; x=1761801006;
-        h=content-transfer-encoding:in-reply-to:from:content-language
+        d=1e100.net; s=20230601; t=1761196280; x=1761801080;
+        h=content-transfer-encoding:in-reply-to:content-language:from
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=sVOpM0zB9ogMep4UsRUJ6puOQkqX/C+l4ebqHw8qJuw=;
-        b=HcYB8x50udlYBJXiYyHo8/ULsT6vOECUf4AngOiwsCtHsAvUMmsvczxuIc12dxiggB
-         u5dLCFyFe8GIMnzMWsgCY21VLJeoKO+x7dvf2W96D2d9rCdXnsGveK7JKTTGHjj2FwvM
-         Isr8eYK78sziMaNs/pPLrnPH61od/nmfyD/b6vWHxeCo9cUmqxvyP+BHkde9KRh9/Kui
-         ynGmvEAaIYsZWnCJJBIx4oy8KLfwVG/FcSh4ItzYZAMpSusH3ZjmF1xejfPAvbwSqces
-         EGRkDpLD/E/y5DVleLkwF+g6zwbPqE8dwtiNWJ9+m2byVqgbC4WHWGNVZzbQnjBnfzT9
-         ceCg==
-X-Forwarded-Encrypted: i=1; AJvYcCUi62ILfTgoJKP/xaecr+qaEDnPheC0s/BSS2qp7uG5CvAbvc03KS69DqANO1hvsgZEIYS9VlaJngEm@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx6mN3LuTznMSqQFNMZ3CmKtbpALQ9dYjUcmetVHcQIgsdkQ3+L
-	mpuDgYioxdyPa5BhNnuBVItTpIW3FV/OFU9B1pfEnilQTeBpY01zUb0qOyim4dhoNJtVSLpidul
-	ipisXYwgp3Zvaf6B4nJhnKU516EQjdwaVrXJ5TeVTjvnq7JZbgqPV4BQoZHvk4UkN6CmbBmY0
-X-Gm-Gg: ASbGncsNJ+SaHJc2iX/FWeizzAR24lqPMWzsA1uNN8hrmO0zM10Lhyu2XDKdY1JkJE9
-	1i0mRB/+1xmjZDORNHFDwWURV4DL1F0UClzPKcPqmSuckY+BerdLddJXm1AquAVlQOd8rrYHt2b
-	z4Tr6D7Q4WjV27BdCnelh/RDVkABBsXf6MP1XyBJhjAiIjZAPa7mgiaa5Rw2cd6+Mxf4Fa4W2ao
-	1AMrQwwPBO+fQ98wfJEr0EqaxZQHHBc1CeUCebaxxuMe5LqrMXHTItqvZi1SiDhBmo1LAczvuHF
-	vcxKlo5btetokF//10v81OY0mMHVoRQoPlmDPxSBUpm0C0NItJhFovSiA9CMBChk2Ox+hm1HbEc
-	rVXwEhp9ConUzYMq059dzZIyOTx2zdkxeXRyC+VPH20YtO6Ew3UyaVgeMji1RGSK/3pNcqcBW24
-	MGUA==
-X-Received: by 2002:ac8:7d14:0:b0:4e8:a6c3:4322 with SMTP id d75a77b69052e-4eb815ad563mr17146221cf.68.1761196206316;
-        Wed, 22 Oct 2025 22:10:06 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IElx1ZrpuKVGYGNP7kr8DERnwquHFSi9hHuZxhw/hdjJ0rZpVP7WqU0TbMz0+PNl974FTh0fg==
-X-Received: by 2002:ac8:7d14:0:b0:4e8:a6c3:4322 with SMTP id d75a77b69052e-4eb815ad563mr17145901cf.68.1761196205810;
-        Wed, 22 Oct 2025 22:10:05 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:a0c3:3a00::4c9? (2001-14ba-a0c3-3a00--4c9.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::4c9])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-378d67dc50csm1785491fa.41.2025.10.22.22.10.04
+        bh=gBvcm1/+MWpjtuc12IDJ3vwTa6noB7EaiS2kKGjrEYk=;
+        b=Nyqx2i9cmmLVhIEl/YTe/Q1pdtOQ2oDRB8BYwaI96SlI/chmldmaeA8Xr6f8KjS/wi
+         OckevMTj6wy9XSqSfp9DeUrrXMaYrNevM5h71QXzg7d4YCf5z7VFtl2gcCX+a2woBtE2
+         90/SeRBeLM6hHsZc2h55+VuU/5jbD0WG6pAK+NMuEOv/r3N+f6wUxXhzMORZDcZOQci4
+         6Vz48Ee7C+OEjVdgAaSYhZtlpMNi4AxYNYIeSd/jLdxqtFKUpC6qk6y8J+VTxivXibpO
+         PSPupHpWwS4FrBPw91ctHJOivXY5vXIcrLpE2hESZ862iLL7E7qSKq4VMntehcFndA9q
+         Mhww==
+X-Forwarded-Encrypted: i=1; AJvYcCUslA4llfnSCNEqas3JvdWB8rXoMlkgKQGlmAC2cQ2GU10AOMtgSEUc2k1b1Jti6X6AmsVOKI/RumTV@vger.kernel.org
+X-Gm-Message-State: AOJu0YzDHPls2UFckT5AObGU2EpyPSgClEGDS+565G/WQoxJznR948LZ
+	9eZ5y6qeqsNH7ZsQt+mYSLURJy3flhDrp/gFE7pYVH2RJJY1gqwszxh9JsKchwbfyvI=
+X-Gm-Gg: ASbGnctsGrmVlx7D78f7bSfwb2dUTGlJ9Yl2t07fzZlbJX3NqVnYLDzO/GMWJgioeSD
+	DfWG1nZ5xAdhp9hLHyDVjJjY2aawDOTgSCGgyRCeNBpWAGHVag06XyZr8I0HX/bqQZJRW4wJIgs
+	feq1HEAAJjyhwyRsrKdnoKxNftma5abHSODTtQtWum3lhz0d7rYOVIel92bA/iGJqGmaIZawMtr
+	NLSqtkDcogNjFYb+R6XMfSlPTbUWU7ehza91WaAWOtTLAlcokkBpV998obAJG2CKFlgPnEdlOgS
+	jqyZfKdZCq78N6nBdeTI+VLj0l9C++LTDmth20MXPYu8/wysH+nFBg63d84HxBRXoLHvTEez3br
+	wQIouhP3UGMBdVSHSt05FNzY4DN4Ide+TiFSw5WjZYErVgDzYqrCb3PkDjBozGwn0mhikWwNE9N
+	KWc4BTLSs348ED3hgi5hY=
+X-Google-Smtp-Source: AGHT+IERViLl8JWsqBiRvBQnkt+CyM86zrBZonOHrHEOXB8HhThhVqCeU64XpCcFS1zawD1h5Xuw5w==
+X-Received: by 2002:a05:600c:450a:b0:471:21:554a with SMTP id 5b1f17b1804b1-4711787c0c0mr138571215e9.13.1761196279421;
+        Wed, 22 Oct 2025 22:11:19 -0700 (PDT)
+Received: from [192.168.50.4] ([82.78.167.151])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47494aad668sm53195075e9.2.2025.10.22.22.11.17
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Oct 2025 22:10:05 -0700 (PDT)
-Message-ID: <1a787fe1-20ba-42b7-a94e-cd1bf465f16f@oss.qualcomm.com>
-Date: Thu, 23 Oct 2025 08:10:04 +0300
+        Wed, 22 Oct 2025 22:11:18 -0700 (PDT)
+Message-ID: <51af454f-6322-47c3-9e93-4fc07efc2b8d@tuxon.dev>
+Date: Thu, 23 Oct 2025 08:11:17 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -91,133 +83,219 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/3] dt-bindings: display/msm: Add SM6150 DisplayPort
- controller
-To: Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
-Cc: Rob Clark <robin.clark@oss.qualcomm.com>,
-        Dmitry Baryshkov <lumag@kernel.org>,
-        Abhinav Kumar
- <abhinav.kumar@linux.dev>,
-        Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        fange.zhang@oss.qualcomm.com, yongxing.mou@oss.qualcomm.com,
-        li.liu@oss.qualcomm.com
-References: <20251021-add-displayport-support-to-qcs615-devicetree-v5-0-92f0f3bf469f@oss.qualcomm.com>
- <20251021-add-displayport-support-to-qcs615-devicetree-v5-1-92f0f3bf469f@oss.qualcomm.com>
- <fh7daiy5p5taaz7ifymbivfktjqngs5oashhd3osrtzspsac2z@nswaeyh3kkhi>
- <8d4184a8-4e32-43ce-a487-a195e97fa874@oss.qualcomm.com>
+Subject: Re: [PATCH v5 2/6] PCI: rzg3s-host: Add Renesas RZ/G3S SoC host
+ driver
+To: Bjorn Helgaas <helgaas@kernel.org>
+Cc: lpieralisi@kernel.org, kwilczynski@kernel.org, mani@kernel.org,
+ robh@kernel.org, bhelgaas@google.com, krzk+dt@kernel.org,
+ conor+dt@kernel.org, geert+renesas@glider.be, magnus.damm@gmail.com,
+ p.zabel@pengutronix.de, linux-pci@vger.kernel.org,
+ linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org,
+ Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>,
+ Wolfram Sang <wsa+renesas@sang-engineering.com>
+References: <20251022194939.GA1223383@bhelgaas>
+From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
 Content-Language: en-US
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-In-Reply-To: <8d4184a8-4e32-43ce-a487-a195e97fa874@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDE4MDAxOCBTYWx0ZWRfX+D6nsBom7qgL
- yuOEOanPDcl86a7Ng8ct2XUMUdtACzpu+IwWIcAmHo3YSq0BbLwPMyWUgJcQWK1xEa6WlQ5vWhz
- kd9qmyGkGCSGAY9LvJ4hundWy3TZXbnvEyDzugA9Q044Dj8Wd6p7YOHWIU5lMPU+zctf+rGGLxN
- G90kn/0th4MGETBjAae0BQZbnQixZesVUnUxKS/ahSNm20Scs3ECPb67o0BS6YqWubwiyv5mEH/
- KQpR/CMNP0feuDlNhsf0q9byEZ0Vh/jeZWZ99Gx7eX/ZYb4am4ktIdFNGCN4BeI/HGX2gSbjiBJ
- AUzPqZ4Bq8GDn0oNeYqhif1v9+nSyC0DhaU55XC+ZyvU5k+LvNYplWlKF+bm/1B8d9oMsIOPgsp
- pRNOOGiyBjGj+Uz5xqaRsUpzT017Eg==
-X-Authority-Analysis: v=2.4 cv=G4UR0tk5 c=1 sm=1 tr=0 ts=68f9b8b3 cx=c_pps
- a=JbAStetqSzwMeJznSMzCyw==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
- a=x6icFKpwvdMA:10 a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8
- a=yyiXTTIM6uUZdMJXhTkA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=uxP6HrT_eTzRwkO_Te1X:22
-X-Proofpoint-GUID: GYXmm3cTHtn_kTtGOPSwfjsoyTABr3dF
-X-Proofpoint-ORIG-GUID: GYXmm3cTHtn_kTtGOPSwfjsoyTABr3dF
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-10-22_08,2025-10-22_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 lowpriorityscore=0 malwarescore=0 bulkscore=0
- priorityscore=1501 spamscore=0 suspectscore=0 adultscore=0 clxscore=1015
- phishscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2510020000
- definitions=main-2510180018
+In-Reply-To: <20251022194939.GA1223383@bhelgaas>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On 23/10/2025 07:50, Xiangxu Yin wrote:
-> 
-> On 10/22/2025 11:07 PM, Dmitry Baryshkov wrote:
->> On Tue, Oct 21, 2025 at 11:18:07AM +0800, Xiangxu Yin via B4 Relay wrote:
->>> From: Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
->>>
->>> SM6150 uses the same DisplayPort controller as SM8150, which is already
->>> compatible with SM8350. Add the SM6150-specific compatible string and
->>> update the binding example accordingly.
->>>
->>> Signed-off-by: Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
->>> ---
->>>   .../devicetree/bindings/display/msm/qcom,sm6150-mdss.yaml   | 13 ++++++++++++-
->>>   1 file changed, 12 insertions(+), 1 deletion(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sm6150-mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sm6150-mdss.yaml
->>> index 9ac24f99d3ada1c197c9654dc9babebccae972ed..89852af70de97a9025079107b838de578778c049 100644
->>> --- a/Documentation/devicetree/bindings/display/msm/qcom,sm6150-mdss.yaml
->>> +++ b/Documentation/devicetree/bindings/display/msm/qcom,sm6150-mdss.yaml
->>> @@ -51,6 +51,16 @@ patternProperties:
->>>         compatible:
->>>           const: qcom,sm6150-dpu
->>>   
->>> +  "^displayport-controller@[0-9a-f]+$":
->>> +    type: object
->>> +    additionalProperties: true
->>> +    properties:
->>> +      compatible:
->>> +        items:
->>> +          - const: qcom,sm6150-dp
->>> +          - const: qcom,sm8150-dp
->>> +          - const: qcom,sm8350-dp
->>> +
->>>     "^dsi@[0-9a-f]+$":
->>>       type: object
->>>       additionalProperties: true
->>> @@ -132,13 +142,14 @@ examples:
->>>                   port@0 {
->>>                     reg = <0>;
->>>                     dpu_intf0_out: endpoint {
->>> +                    remote-endpoint = <&mdss_dp0_in>;
->> Why?
-> 
-> 
-> Oh, I think I misunderstood the “messed up indentation” comment from Krzysztof.
-> It seems the two-space indentation under port@X and opp-x is the actual issue.
-> 
-> However, that part was not introduced in this patch.
-> I will split a separate patch to fix the indentation there.
+Hi, Bjorn,
 
-Note, you have two different chunks here. The first one is useless as it 
-adds a graph arc to a node that is not a part of the example.
+On 10/22/25 22:49, Bjorn Helgaas wrote:
+> On Tue, Oct 07, 2025 at 04:36:53PM +0300, Claudiu wrote:
+>> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>>
+>> The Renesas RZ/G3S features a PCIe IP that complies with the PCI Express
+>> Base Specification 4.0 and supports speeds of up to 5 GT/s. It functions
+>> only as a root complex, with a single-lane (x1) configuration. The
+>> controller includes Type 1 configuration registers, as well as IP
+>> specific registers (called AXI registers) required for various adjustments.
+> 
+>> +++ b/drivers/pci/controller/Kconfig
+>> @@ -266,6 +266,14 @@ config PCI_RCAR_GEN2
+>>  	  There are 3 internal PCI controllers available with a single
+>>  	  built-in EHCI/OHCI host controller present on each one.
+>>  
+>> +config PCIE_RENESAS_RZG3S_HOST
+>> +	bool "Renesas RZ/G3S PCIe host controller"
+>> +	depends on ARCH_RENESAS || COMPILE_TEST
+>> +	select MFD_SYSCON
+>> +	select IRQ_MSI_LIB
+>> +	help
+>> +	  Say Y here if you want PCIe host controller support on Renesas RZ/G3S SoC.
+> 
+> Wrap to fit in 80 columns like the rest of the file.
+
+OK
 
 > 
+>> +++ b/drivers/pci/controller/pcie-rzg3s-host.c
 > 
->>>                     };
->>>                   };
->>>   
->>>                   port@1 {
->>>                     reg = <1>;
->>>                     dpu_intf1_out: endpoint {
->>> -                      remote-endpoint = <&mdss_dsi0_in>;
->>> +                    remote-endpoint = <&mdss_dsi0_in>;
->> Why?
+>> +#define RZG3S_PCI_MSIRCVWMSKL			0x108
+>> +#define RZG3S_PCI_MSIRCVWMSKL_MASK		GENMASK(31, 2)
 > 
+> Unfortunate to have to add _MASK here when none of the other GENMASKs
+> need it.  Can't think of a better name though.
+
+Most of the register offsets and fields defines tried to use the naming
+from the HW manual. Register at offset 0x108 have bits 31..2 read/writable
+and is where we should be writing through driver, and bits 1..0 are read
+only and have fixed value. These fields are named in HW manual as:
+
+- MSI Receive Window Mask (Lower) [31:2]
+- MSI Receive Window Mask (Lower) [1:0]
+
+As bits 31..2 are read/writable, would you prefer something like:
+
+#define RZG3S_PCI_MSIRCVWMSKL_RW		GENMASK(31, 2)
+
+?
+
 > 
-> Ack.
+>> +#define RZG3S_PCI_MSIRCVWMSKU			0x10c
+> 
+> Unused.
+> 
+>> +#define RZG3S_PCI_AMEIE				0x210
+> 
+> Unused.
+> 
+>> +#define RZG3S_PCI_ASEIE1			0x220
+> 
+> Unused.
+> 
+>> +#define RZG3S_PCI_PCSTAT2_STATE_RX_DETECT	GENMASK(15, 8)
+> 
+> Unused.
 
-Use YAML coding style (two-space indentation). For DTS examples in the 
-schema, preferred is four-space indentation.
+I agree with all the unused defines pointed. Will be dropped in the next
+version.
 
+> 
+>> +/* Timeouts experimentally determined. */
+> 
+> No need for period at end.
 
--- 
-With best wishes
-Dmitry
+Missed this one. I'll update it.
+
+> 
+>> +static int rzg3s_pcie_child_read_conf(struct rzg3s_pcie_host *host,
+>> +				      struct pci_bus *bus,
+>> +				      unsigned int devfn, int where,
+>> +				      u32 *data)
+> 
+> Would fit in three lines if you want.
+> 
+>> +static int rzg3s_pcie_child_write_conf(struct rzg3s_pcie_host *host,
+>> +				       struct pci_bus *bus,
+>> +				       unsigned int devfn, int where,
+>> +				       u32 data)
+> 
+> Ditto.
+
+Will update both of these along with:
+
+rzg3s_pcie_child_prepare_bus()
+rzg3s_pcie_root_map_bus()
+rzg3s_pcie_set_outbound_window()
+
+that have the same symptom.
+
+> 
+>> +static int rzg3s_pcie_msi_enable(struct rzg3s_pcie_host *host)
+>> +{
+>> +	struct platform_device *pdev = to_platform_device(host->dev);
+>> +	struct rzg3s_pcie_msi *msi = &host->msi;
+>> +	struct device *dev = host->dev;
+>> +	const char *devname;
+>> +	int irq, ret;
+>> +
+>> +	ret = devm_mutex_init(dev, &msi->map_lock);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	msi->irq = platform_get_irq_byname(pdev, "msi");
+>> +	if (msi->irq < 0)
+>> +		return dev_err_probe(dev, irq ? irq : -EINVAL,
+>> +				     "Failed to get MSI IRQ!\n");
+>> +
+>> +	devname = devm_kasprintf(dev, GFP_KERNEL, "%s-msi", dev_name(dev));
+>> +	if (!devname)
+>> +		return -ENOMEM;
+>> +
+>> +	ret = rzg3s_pcie_msi_allocate_domains(msi);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	ret = request_irq(msi->irq, rzg3s_pcie_msi_irq, 0, devname, host);
+> 
+> Should this be devm_request_irq()?  Most drivers use it, although
+> pci-tegra.c and pcie-apple.c do not.  Maybe there's some special rule
+> about using request_irq() even though the driver uses devm in general?
+> I dunno.
+
+In general is not good to mix devm cleanups with driver specific one.
+
+As it was requested to drop the devm cleanups from this driver (especially
+devm_pm_runtime_enable() which enables the also the clocks) I switched the
+initial devm_request_irq() to request_irq() to avoid keeping the interrupt
+requested on error path, after driver's probed was executed, until devm
+cleanups are called, and potentially having it firing w/o hardware
+resourced being enabled (e.g. clocks), and potentially reading HW registers.
+
+E.g., accessing the HW registers while clocks are disabled on the SoC I'm
+working with leads to synchronous aborts.
+
+So, I only kept the devm helpers for memory allocations, resets
+assert/de-assert and the mutex initialization.
+
+> 
+>> +static int rzg3s_pcie_intx_setup(struct rzg3s_pcie_host *host)
+>> +{
+>> +	struct device *dev = host->dev;
+>> +
+>> +	for (int i = 0; i < PCI_NUM_INTX; i++) {
+>> +		struct platform_device *pdev = to_platform_device(dev);
+> 
+> Looks like this should be outside the loop.
+
+OK, I kept it here as it is used only inside this block.
+
+> 
+>> +		char irq_name[5] = {0};
+>> +		int irq;
+>> +
+>> +		scnprintf(irq_name, ARRAY_SIZE(irq_name), "int%c", 'a' + i);
+>> +
+>> +		irq = platform_get_irq_byname(pdev, irq_name);
+>> +		if (irq < 0)
+>> +			return dev_err_probe(dev, -EINVAL,
+>> +					     "Failed to parse and map INT%c IRQ\n",
+>> +					     'A' + i);
+>> +
+>> +		host->intx_irqs[i] = irq;
+>> +		irq_set_chained_handler_and_data(irq,
+>> +						 rzg3s_pcie_intx_irq_handler,
+>> +						 host);
+>> +	}
+> 
+>> +static int rzg3s_pcie_power_resets_deassert(struct rzg3s_pcie_host *host)
+>> +{
+>> +	const struct rzg3s_pcie_soc_data *data = host->data;
+>> +
+>> +	/*
+>> +	 * According to the RZ/G3S HW manual (Rev.1.10, section
+>> +	 * 34.5.1.2 De-asserting the Reset) the PCIe IP needs to wait 5ms from
+>> +	 * power on to the de-assertion of reset.
+>> +	 */
+>> +	usleep_range(5000, 5100);
+> 
+> Consider fsleep() so we don't have to make up the 100us interval.
+
+OK
+
+Thank you for your review,
+Claudiu
 
