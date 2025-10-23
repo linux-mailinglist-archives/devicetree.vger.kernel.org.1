@@ -1,183 +1,144 @@
-Return-Path: <devicetree+bounces-230129-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230122-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 05323BFFEBC
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 10:28:56 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9EFBCBFFE35
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 10:23:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0FFDF19A512C
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 08:28:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0C7AF3AC75D
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 08:23:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 448B12FD683;
-	Thu, 23 Oct 2025 08:28:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB4992FFDC2;
+	Thu, 23 Oct 2025 08:21:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bYb/5IzA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A60C32E36F3
-	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 08:28:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45C3C2F3C3A
+	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 08:21:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761208090; cv=none; b=Zveu9vMrEBWkSTcC57gxUofw0lgxK4ziTmUnh4036dmMmJuhoqwzDppW2UBbv/EzeuQk8w6GIX4+iyLM9juwOVpH2apmAZCPE9EDxfqjQzkKx7DDtYswGXD4MHSSr9ZqdUfz0ojayZHbEujA0wST852ikK7DCmO6MT5WQw1B7+s=
+	t=1761207714; cv=none; b=kv61RNTzH2HBfrNoOZgNXzYNoimgNqnKgKF9cCQ2lWX+jbcVkn2eAeaHdqtOvLej6yZB+yQG4Is/fTRVnof6eH+Ik2IkR6oRPQ8kLl1X5f1/JzehhNQDAp3ifUl1tmeTbhTKkwooKU1z6CvXtleLfxX+1WQauqHD9mNbDxHmazc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761208090; c=relaxed/simple;
-	bh=riOWBoniluYmZkJSNiPD51TALJtz2J5b6wiQtNSND7U=;
+	s=arc-20240116; t=1761207714; c=relaxed/simple;
+	bh=Mq7wTbaDVrxT5aUwhMPrXpPQYEJ56iNmucEbpajeaW4=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=tWyvZ+EHoi8CCsE6rRxq8QeUehZBXxU+5hGNiYiSYENchbz4G5xAY82++55Cy2uDnKe/KivE+Nb507E8DgiTGSFSRxKCEF3jm764TlmsJx1NK1Mvsl4ttrpxcNL2951eQ0WlV+UiAIpzM2HsObkqPbKn4/MeVLteo1R1M2v/2xs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.214.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f179.google.com with SMTP id d9443c01a7336-269af38418aso6681385ad.1
-        for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 01:28:08 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761208088; x=1761812888;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ECYIxuT82Q/NafhPkuUWEytQEjZXJcXQfJX7HoJHHBY=;
-        b=Btg5yHWeuGRCQuE8p41xQaOwdGNEM/DnONKREJ1VoheqpLc9O+Tbejm1gYw84RCU6f
-         gGXdNjk4wf8423zRRMcqxnxJLJLxoQQhOf1+nlX8xydM7vuHInY2PKScaXV3OkTX6AHt
-         tcTGn+MfFd+geoy+Nu+v3IQFauqaDkt54/eYxa3eugLZQyQzmsjbasca5ntBzkGaayeT
-         ajBf9d/fY/7Ff0hCQ30M5quoi4+jnZAtM2sXXewlkbQwemXqMsPD/x0Yqowx32hWBoCH
-         eRggmTKwWDrQpisOCF35jCDqbL9wsHomwx9d2RIdTEXnOP9w7uLyM9usb0go17TJULar
-         U6Kg==
-X-Forwarded-Encrypted: i=1; AJvYcCVZnZDL37tHb3P1HBH2hXFGNhyxFoC2qbiu/OUkisZPlVfx0/+0XuWRJZvvN9XlillH6ipYMxcn7rcY@vger.kernel.org
-X-Gm-Message-State: AOJu0YwaM2ND2lebzcDSNBWnPNFp/GBUwTBCAmG4DBRzkYlBHsMOFvw7
-	n99uNP0MvZmO5pTmNmSrNnb5vInfRjRfNTeeYBVLVXNJrXSeaccToX8cBQClahn/
-X-Gm-Gg: ASbGncv9cwfctqrMjeS05lUFZyj2NmylyvpjxOYJMipMhYZ7JmXYp5cMNfMnw/lPeRf
-	yG2UmaBaPVlr8C8pYT4C07Kqj7I/5XfUp/1L/KJYIPMG+HZ+UI3R/b2+WrjolPD/3AiA8jvddI4
-	i6M4CJHcQmOflpukt0dmSGnya4E2UMyNQjMXTAB2mww9Ov3OvOHdx3qFkH3gplw0JZFUnC+EtQi
-	Qso9Tn1lstsZMwZUO2ByJ7lxHKgbsipeheDpclmASWDtsutS5GhWERpaNNbTOgG+VUSRW/2NVT2
-	uN4zudQyWm5taKgpqrRaO/2X22kmCVbKGZ+bZzAsOKQPuM38pJqgKi9UKB7fhYivCN+BEFbgpHr
-	pYAoS6BfolYZNu/JvO6xpGs5Worxu9r7+FfWG83hlj1mMT2uBclwVtXYn3jSZCV2VqNOCQ0SXmq
-	uN1klWW37PzonrO9nuqqAnFyi7NSq3R82VjLVwrw==
-X-Google-Smtp-Source: AGHT+IFRwI07UPjFBdVkD7kUIndbCOpYmBEVSsWhLZHTprM4CduS1zImOsui1i2HR+GtvOSfPdgivw==
-X-Received: by 2002:a17:902:e5c8:b0:290:c5c8:941d with SMTP id d9443c01a7336-290caf851a8mr369304125ad.39.1761208087492;
-        Thu, 23 Oct 2025 01:28:07 -0700 (PDT)
-Received: from mail-pj1-f45.google.com (mail-pj1-f45.google.com. [209.85.216.45])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2946e108e0asm15237185ad.91.2025.10.23.01.28.06
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 23 Oct 2025 01:28:07 -0700 (PDT)
-Received: by mail-pj1-f45.google.com with SMTP id 98e67ed59e1d1-339e71ccf48so691037a91.3
-        for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 01:28:06 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUGh/J+ogyRlf8/c9QE+cUcGQZktceBGqpqyCKyMh/cVVgambwZYg41PkUmRXEWzJ5wzwutuu6oqmY8@vger.kernel.org
-X-Received: by 2002:a05:6102:5110:b0:5db:27e9:933e with SMTP id
- ada2fe7eead31-5db27e9988cmr1196188137.38.1761207652096; Thu, 23 Oct 2025
- 01:20:52 -0700 (PDT)
+	 To:Cc:Content-Type; b=f30nugN/MQgDeAq0XnOOT2/vFrWfk0DRymdD4pL5iU1Xx1o3L5QFlAQA9aJzak38mpRifk+cxC1RweY2zRLmm5WtxebZJR5MyMjKzCVvOnFWr3+AKG+3FB8VBwibKTAl+P3mBV0SpuqpbyNw+nysvCq1u6eYTRfXuq1TL6dPA58=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bYb/5IzA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A8DE4C4CEE7
+	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 08:21:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761207713;
+	bh=Mq7wTbaDVrxT5aUwhMPrXpPQYEJ56iNmucEbpajeaW4=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=bYb/5IzAiRYC+or/Q8dBd12Jn6lz/LZcxJEms7PXqNQjIZPbIl/TZkioFwLPQFXr5
+	 ubOPwq+pvakPSbgPE0V8MA053A8LvvijWONqHCfLrQSMLiniBfemwM8JtdgobJhLil
+	 damyu+Tox2rPfSL7dB+Lo1MBBjogPnN9Rg8qA5YxdiVH7eKXIicrnfE7f57G6Ib0+P
+	 O0UqbBhkqiOeNJ684Sf5mk10I/nQyoENN9NLAqzWsh+TX75L5skzIzXo/evGyvpNzn
+	 hLD3jsGJR6uAZsh7DpJyPZOIStyI4aQLo22WvU2JUPTC3ew2PkhU1g7buNK4A7I0LN
+	 FgBcY4aBLWRZw==
+Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-378d246f0f1so5779691fa.3
+        for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 01:21:53 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVRRhbYIydoiFYyuHrks7zx2Sn3a5ixWJ67ZbO0a43nplZ44V2okwQERBhyns9HNQnlk5X4hZHt4z+X@vger.kernel.org
+X-Gm-Message-State: AOJu0YwopxqB8+qD6e8kV1S9JXiO6bnXXlnxwzXCoR/+XUO+LlOVwv4c
+	CmaKsSrPFtdsLQ0KdoJEkpADcoMNuziHtzNBGS3Z+XdtVoMWWw94xDeixSgFCPrLiXUatSP3JE7
+	TrjFhIL+qvsElWgjAMzym1ye5HM+EjIs=
+X-Google-Smtp-Source: AGHT+IGXuEQHrmcpO18jgiQje5gxecX+jQhPRhIZD8/umfhj/iVRHLDn4WDCLHjK5/dO5vBUN3lPnOpu+1uaOPX8hXA=
+X-Received: by 2002:a05:6512:3a90:b0:579:f4b3:bd2d with SMTP id
+ 2adb3069b0e04-591d8591713mr8820336e87.57.1761207712093; Thu, 23 Oct 2025
+ 01:21:52 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251015192611.241920-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <CAMuHMdW1B7Yk1hUU9MSJsiL8wSmjAUGN7Qd_wgBHv8Ct=-wi4Q@mail.gmail.com>
- <CA+V-a8uY11uWoQ_en5QC=W4HPHRwT6rKQQJ-knT8Gi-+czm05w@mail.gmail.com> <20251021184502.GD19043@pendragon.ideasonboard.com>
-In-Reply-To: <20251021184502.GD19043@pendragon.ideasonboard.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 23 Oct 2025 10:20:41 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdUU-2ugmA-VcRuYOsriUKtAEQXmWEwJSwuCsSTa3ySTZg@mail.gmail.com>
-X-Gm-Features: AS18NWACo5Ab6gaObSrlb5u0ift86EnuHySc5nm6Ey8p5bDoFaPy9DC0cq8vSBg
-Message-ID: <CAMuHMdUU-2ugmA-VcRuYOsriUKtAEQXmWEwJSwuCsSTa3ySTZg@mail.gmail.com>
-Subject: Re: [PATCH v11 0/7] Add support for DU/DSI clocks and DSI driver
- support for the Renesas RZ/V2H(P) SoC
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>, 
-	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, Biju Das <biju.das.jz@bp.renesas.com>, 
-	Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Robert Foss <rfoss@kernel.org>, Jonas Karlman <jonas@kwiboo.se>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <0f006338-e69b-4b3f-b91f-0cc683544011@kernel.org>
+ <20251022114527.618908-1-adriana@arista.com> <20251022201953.GA206947-robh@kernel.org>
+ <CAERbo5z6BzHqQxXdxPxmxE_eDR7GGGbt3A8kB0gQiWFBE-28Ug@mail.gmail.com>
+In-Reply-To: <CAERbo5z6BzHqQxXdxPxmxE_eDR7GGGbt3A8kB0gQiWFBE-28Ug@mail.gmail.com>
+From: Ard Biesheuvel <ardb@kernel.org>
+Date: Thu, 23 Oct 2025 10:21:40 +0200
+X-Gmail-Original-Message-ID: <CAMj1kXGYinTKiyYhNYWJvoJeUJScCGnyq=ozLgjKAm7_wzG8QA@mail.gmail.com>
+X-Gm-Features: AS18NWAyqpmDp3gFCmfLNnMi4KMri802uIuHk78GHsmKD8sw7K_d0CMpt3v68sU
+Message-ID: <CAMj1kXGYinTKiyYhNYWJvoJeUJScCGnyq=ozLgjKAm7_wzG8QA@mail.gmail.com>
+Subject: Re: [PATCH v2 0/2] DMI: Scan for DMI table from DTS info
+To: Adriana Nicolae <adriana@arista.com>
+Cc: Rob Herring <robh@kernel.org>, krzk@kernel.org, jdelvare@suse.com, 
+	frowand.list@gmail.com, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, vasilykh@arista.com, arm.ebbr-discuss@arm.com, 
+	boot-architecture@lists.linaro.org, linux-efi@vger.kernel.org, 
+	uefi-discuss@lists.uefi.org, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Laurent,
-
-On Tue, 21 Oct 2025 at 20:45, Laurent Pinchart
-<laurent.pinchart@ideasonboard.com> wrote:
-> On Tue, Oct 21, 2025 at 07:26:49PM +0100, Lad, Prabhakar wrote:
-> > On Tue, Oct 21, 2025 at 11:26=E2=80=AFAM Geert Uytterhoeven wrote:
-> > > On Wed, 15 Oct 2025 at 21:26, Prabhakar <prabhakar.csengg@gmail.com> =
-wrote:
-> > > > This patch series adds DU/DSI clocks and provides support for the
-> > > > MIPI DSI interface on the RZ/V2H(P) SoC.
-> > > >
-> > > > v10->v11:
-> > > > - Split CPG_PLL_CLK1_K/M/PDIV macro change into separate patch
-> > > > - Updated rzv2h_cpg_plldsi_div_determine_rate()
-> > > >   while iterating over the divider table
-> > > > - Added Acked-by tag from Tomi for patch 2/7 and 3/7
-> > > > - Added Reviewed-by tag from Geert for patch 2/7 and 3/7
-> > >
-> > > I think this series is ready for merging.
-> >
-> > \o/
-> >
-> > > > Lad Prabhakar (7):
-> > > >   clk: renesas: rzv2h-cpg: Add instance field to struct pll
-> > > >   clk: renesas: rzv2h-cpg: Use GENMASK for PLL fields
-> > > >   clk: renesas: rzv2h-cpg: Add support for DSI clocks
-> > > >   clk: renesas: r9a09g057: Add clock and reset entries for DSI and =
-LCDC
-> > > >   dt-bindings: display: bridge: renesas,dsi: Document RZ/V2H(P) and
-> > > >     RZ/V2N
-> > > >   drm: renesas: rz-du: mipi_dsi: Add LPCLK clock support
-> > > >   drm: renesas: rz-du: mipi_dsi: Add support for RZ/V2H(P) SoC
-> > >
-> > > As this touches both clk and drm, let's discuss the merge strategy.
-> > > My proposal:
-> > >   1. I queue patches 1-3 in an immutable branch with a signed tag,
-> > >      to be used as a base for the remaining patches,
-> > >   2. I queue patch 4 on top of 1 in renesas-clk for v6.19,
-> > >   3. The DRM people queue patches 5-7 on top of 1.
-> > >
-> > > Does that sound fine for you?
-> > Sounds good to me.
-> >
-> > Biju/Tomi, are you OK with the above?
+On Thu, 23 Oct 2025 at 04:21, Adriana Nicolae <adriana@arista.com> wrote:
 >
-> The plan seems good to me. Note that you won't be able to push this
-> yourself to drm-misc as committers are limited to pushing linear
-> branches. We need an ack from the drm-misc maintainers, and one of them
+> On Wed, Oct 22, 2025 at 11:19=E2=80=AFPM Rob Herring <robh@kernel.org> wr=
+ote:
+> >
+> > On Wed, Oct 22, 2025 at 04:45:25AM -0700, adriana wrote:
+> > > Some bootloaders like U-boot, particularly for the ARM architecture,
+> > > provide SMBIOS/DMI tables at a specific memory address. However, thes=
+e
+> > > systems often do not boot using a full UEFI environment, which means =
+the
+> > > kernel's standard EFI DMI scanner cannot find these tables.
+> >
+> > I thought u-boot is a pretty complete UEFI implementation now. If
+> > there's standard way for UEFI to provide this, then that's what we
+> > should be using. I know supporting this has been discussed in context o=
+f
+> > EBBR spec, but no one involved in that has been CC'ed here.
+>
+> Regarding the use of UEFI, the non UEFI boot is used on Broadcom iProc wh=
+ich
+> boots initially into a Hardware Security Module which validates U-boot an=
+d then
+> loads it. This specific path does not utilize U-Boot's UEFI
+> implementation or the
+> standard UEFI boot services to pass tables like SMBIOS.
+>
 
-Do you mean new commits must be in a single branch, or drm-misc
-itself must be linear? In case of the former, 5-7 can be applied on top of
-my immutable branch, without involving a merge?
+What prevents this HSM validated copy of u-boot from loading the kernel via=
+ EFI?
 
-> will need to merge the branch (either branch 1. as prepared by Geert, on
-> top of which you can them push patches 5-7 yourself, or a branch you'll
-> prepare on top of 1. with patches 5-7).
+> Because there's no UEFI configuration table available in this boot mode, =
+we need
+> an alternative mechanism to pass the SMBIOS table address to the kernel. =
+The
+> /chosen node seemed like the most straightforward way for the bootloader =
+to
+> communicate this non-discoverable information.
+>
+> I wasn't aware of the EBBR discussions covering this. I've added the
+> boot-architecture and arm.ebbr-discuss lists to the Cc. If there's a pref=
+erred
+> EBBR-compliant way to handle this for non-UEFI boots, I'm happy to adapt
+> the approach.
+>
 
-Note that another change to include/linux/clk/renesas.h,
-and thus a dependency of drm on clk, is coming in
-"[PATCH v3 0/2] Remove hard coded values for MIPI-DSI"
-https://lore.kernel.org/20251022235903.1091453-1-chris.brandt@renesas.com
+For the record, I don't see a huge problem with accepting SMBIOS
+tables in this manner, but it would be better if a description of this
+method was contributed to the DMTF spec, which currently states that
+the only way to discover SMBIOS tables on non-x86 systems is via the
+SMBIOS/SMBIOS3 EFI configuration tables. Doing so should prevent other
+folks from inventing their own methods for their own vertically
+integrated systems. (Other OSes exist, and from a boot arch PoV, we
+try to avoid these Linux-only shortcuts)
 
-Would it be worthwhile to wait on/speed up review of the latter?
-Thanks!
+However, the DT method should *only* be used when not booting via
+UEFI, to avoid future surprises, and to ensure that existing OSes
+(including older Linux) can always find the SMBIOS tables when booting
+via UEFI.
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+Also, I would suggest to pull the entire entrypoint into DT, rather
+than the address in memory of either/both entrypoint(s). Both just
+carry some version fields, and the address of the actual SMBIOS data
+in memory, and the only difference between SMBIOS and SMBIOS3 is the
+size of the address field (32 vs 64 bits)
 
