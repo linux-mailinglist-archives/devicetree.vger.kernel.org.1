@@ -1,108 +1,94 @@
-Return-Path: <devicetree+bounces-230500-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230501-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38B96C0323B
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 21:08:29 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 67F1CC032E2
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 21:29:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BF69A3ACEBE
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 19:08:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 81A6F3AFE98
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 19:29:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EABB34C149;
-	Thu, 23 Oct 2025 19:08:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAA8334D4F1;
+	Thu, 23 Oct 2025 19:29:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="Tm1Zrbur"
+	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="a/aTdmcz";
+	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="N2dwpbiX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1E1C34B433;
-	Thu, 23 Oct 2025 19:08:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E6E034D4DC;
+	Thu, 23 Oct 2025 19:29:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761246504; cv=none; b=PBAKYxBXN6wBQzoviDanOrgEXbnwYQmXix7bbHrz++yXhGu8MyTXJJsNrBr/ZplU3XkAlY7Yz4yBCCppa8gq0x38Hyb8olyAJ5NmkycHoDGl7y+vOTsm2mxXHjH4+cCxtUD6wJRPqwvLO52V+LocHIRxVwFDp+l+tsyOpzoEoTQ=
+	t=1761247788; cv=none; b=O4Gvzc1S5C5O7zOg/NauusA/81YKZvK+L5Ht2B0kVf80Z35HBKGN6i260UaBkJ+TqJuNfvAmCUbNbSHN8WVbnO9ilEZbmdXLp0k2CBP9uX2WfTQu6bJb59OYMQS5oVYiIJlr482ePIR9puMQ9lPR6GqrrdTV4GGk11wVmMIo9wg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761246504; c=relaxed/simple;
-	bh=S3Dg+nUTg8JCuATR8lD9tK3QqbksSXmt4GVjY8UM3v8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iWJKD9ESBRsbfFOuHcxHxs+E1DQMgqPMA7xSNk7P7iUhXWBLhNOoBZ+zZRI+lcZS80nIIzaVU5V95qIGjrAauE4m54o4qn7Llf9YvHbR+VEMtiUQexA76BOR/ai5G8iWoS4U+mjLY8zk8fC8Mlzv0XcH/1CCbFusATReaqdZzSE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=Tm1Zrbur; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
-	Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
-	Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
-	In-Reply-To:References; bh=Lhn5bzMlAShhFSJmAR4GsBUbfsKVR0B5+J/foljot0Y=; b=Tm
-	1Zrbur6hxz6p84Dz+kBFPPxxgHVjhFp0tl0w6oMEu4qAnhK/JQDpRQzdjTd/nKWtaFIIbKn91SpUU
-	kCBjM3SQ/bRp4FiP8WhX+f9pSgI/IB+r22K6ntAIawn70Cz/S0m2eJ0rYC4ey0RVq70jHWDtjAcpP
-	/7sZRPyhveeKEdw=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1vC0fW-00Bulo-91; Thu, 23 Oct 2025 21:08:14 +0200
-Date: Thu, 23 Oct 2025 21:08:14 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: =?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	=?iso-8859-1?Q?Beno=EEt?= Monin <benoit.monin@bootlin.com>,
-	=?iso-8859-1?Q?Gr=E9gory?= Clement <gregory.clement@bootlin.com>,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>
-Subject: Re: [PATCH net-next v3 5/5] net: macb: Add "mobileye,eyeq5-gem"
- compatible
-Message-ID: <e688fa9d-7f3c-4b0f-882d-1cc681eaded7@lunn.ch>
-References: <20251023-macb-eyeq5-v3-0-af509422c204@bootlin.com>
- <20251023-macb-eyeq5-v3-5-af509422c204@bootlin.com>
+	s=arc-20240116; t=1761247788; c=relaxed/simple;
+	bh=EisnLrKN0UF2VdbegRoh5qTxgzLkujCc8ut8WOM1UmE=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=RUxikM/XItls+4t5Z1UTGAiOPE8FcFnh2ydLX/JRlF5QywLwXpAzR4FgdFyB17WEKeNWl8F8DEQ6Xvco1qxHEPDCNTcYRYl+irK8HAtAOL3FYm0QmpRjVAFNyXJ+b67mo2lTaxzt6kCcL8fRMqNJO4RAd48MNr6lVxo3k1fqWUE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=a/aTdmcz; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=N2dwpbiX; arc=none smtp.client-ip=193.142.43.55
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
+From: Thomas Gleixner <tglx@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020; t=1761247784;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=n28eUmQml243YudcW5Z7MxWo4RAARcO1V+VuS9VUaIc=;
+	b=a/aTdmcz8sNmUTNcjCDlGmxhADWNQP5hyr84v5nJBmZdv+WyRysAoOOcZ0zzbSZC1B7QVx
+	THCtlGDGBaTvYkk27QSjsUhghP0uGr9VExq6p5KD/uUAsnDwuiCrs/Yt9ofOEX39dTB5K/
+	dQW9tXYmqUW+cW/hDSp9BFYPrCWVMA/WaFcVb1I9cWmm51dvmOrkez1/jPEpig0ovXlRTr
+	8lUZW0J/LLHkUBMl563LJDD0Ier3iPSrNcasqCTRcL3r22bOzjdal2v2LSSNo6EVu5m348
+	zvJru1CBauUGM/LHL75MD6/d97wAKkroRmgljrUV+fmciflub7R99aK9B389ww==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020e; t=1761247784;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=n28eUmQml243YudcW5Z7MxWo4RAARcO1V+VuS9VUaIc=;
+	b=N2dwpbiXcXeAVHx8XqdAk9adFazCugDVfl6OJqmERfUuRN1V8FWFfaR+nte3ZFdHzbZhNh
+	RmXvtBXws3zZu1BA==
+To: Lucas Zampieri <lzampier@redhat.com>, linux-kernel@vger.kernel.org
+Cc: Lucas Zampieri <lzampier@redhat.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, Samuel
+ Holland <samuel.holland@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>,
+ Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, Vivian
+ Wang <dramforever@live.com>, Charles Mirabile <cmirabil@redhat.com>,
+ devicetree@vger.kernel.org, linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v6 0/4] Add UltraRISC DP1000 PLIC support
+In-Reply-To: <20251023140057.204439-1-lzampier@redhat.com>
+References: <20251023140057.204439-1-lzampier@redhat.com>
+Date: Thu, 23 Oct 2025 21:29:44 +0200
+Message-ID: <87zf9hwh5j.ffs@tglx>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20251023-macb-eyeq5-v3-5-af509422c204@bootlin.com>
+Content-Type: text/plain
 
-On Thu, Oct 23, 2025 at 06:22:55PM +0200, Théo Lebrun wrote:
-> Add support for the two GEM instances inside Mobileye EyeQ5 SoCs, using
-> compatible "mobileye,eyeq5-gem". With it, add a custom init sequence
-> that must grab a generic PHY and initialise it.
-> 
-> We use bp->phy in both RGMII and SGMII cases. Tell our mode by adding a
-> phy_set_mode_ext() during macb_open(), before phy_power_on(). We are
-> the first users of bp->phy that use it in non-SGMII cases.
-> 
-> The phy_set_mode_ext() call is made unconditionally. It cannot cause
-> issues on platforms where !bp->phy or !bp->phy->ops->set_mode as, in
-> those cases, the call is a no-op (returning zero). From reading
-> upstream DTS, we can figure out that no platform has a bp->phy and a
-> PHY driver that has a .set_mode() implementation:
->  - cdns,zynqmp-gem: no DTS upstream.
->  - microchip,mpfs-macb: microchip/mpfs.dtsi, &mac0..1, no PHY attached.
->  - xlnx,versal-gem: xilinx/versal-net.dtsi, &gem0..1, no PHY attached.
->  - xlnx,zynqmp-gem: xilinx/zynqmp.dtsi, &gem0..3, PHY attached to
->    drivers/phy/xilinx/phy-zynqmp.c which has no .set_mode().
-> 
-> Reviewed-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
-> Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
+On Thu, Oct 23 2025 at 15:00, Lucas Zampieri wrote:
+> This series adds support for the PLIC implementation in the UltraRISC
+> DP1000 SoC. The UR-CP100 cores used in the DP1000 have a hardware bug in
+> their PLIC claim register where reading it while multiple interrupts are
+> pending can return the wrong interrupt ID. The workaround temporarily
+> disables all interrupts except the first pending one before reading the
+> claim register, then restores the previous state.
+>
+> The driver matches on "ultrarisc,cp100-plic" (CPU core compatible), allowing
+> the quirk to apply to all SoCs using UR-CP100 cores (currently DP1000,
+> potentially future SoCs).
+>
+> Charles Mirabile (3):
+>   dt-bindings: interrupt-controller: add UltraRISC DP1000 PLIC
+>   irqchip/plic: enable optimization of interrupt enable state
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+    That one never showed up. Neither in my inbox nor on lore
 
-    Andrew
 
