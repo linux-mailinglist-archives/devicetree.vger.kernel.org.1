@@ -1,171 +1,225 @@
-Return-Path: <devicetree+bounces-230166-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230167-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72B68C001C5
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 11:08:59 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 873D0C001B0
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 11:08:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5CEBE1A634F3
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 09:08:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7B3E93A5DE0
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 09:08:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1ADE2F361E;
-	Thu, 23 Oct 2025 09:06:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 893302FD7B1;
+	Thu, 23 Oct 2025 09:06:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="xcDXKkZB"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="B1EL2lBW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49A282FBE1B
-	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 09:06:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A85EB2FD699
+	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 09:06:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761210370; cv=none; b=PhwkPffk1zjYux8Yl/RxFfueUFWHI+giMR/R0cGXyXhVwoe28U6Jffr/nBxAQ+Yiclt8YlPOZtgEQ2z775cYdCvNwT0cb7+O8kGyiG4eFUIYukCCnPWLxJKrt5sjVFv5pRVBzqwRqGoCojWNKbJqhyOoFvte5AL2a2E6BM5dnRo=
+	t=1761210395; cv=none; b=AY24rkx4bVZaj+8W3YOVkPUTgpJxrgjjp3VXf7o8ZSXPzPUBMHyKdfRQcT/YN1vySn83SyN1aETdXQHFvkxxUc0gK0C5opYp+7jfGmZ42pC4/YYRA0D3ZUMxXjNiNCG2wW3urtreVW5QQ/jMDB2LWpFwe9SpzzZy5X1Uy2HkVj0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761210370; c=relaxed/simple;
-	bh=tRuqQfKfhQL0OLPucc1EA0bgdrYWVNgWFBGmyAKu/zY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=lJlDy+VRGo6IcY+jX3xfHZKaF1fZx91Q+O7OV/xsjaubg6/tpbnNgceMAQ7CbNx+j9h2NdWAY/kCX7vB8Rx7huB3a4oGpOA5KScl2Nf81YJndixliZaygWLke6NDH42niF0Cer+VGMCxB2C5eP7H4U5Sg0TBwkRSIJNd34/C1Uk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=xcDXKkZB; arc=none smtp.client-ip=209.85.167.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-591c74fd958so610901e87.3
-        for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 02:06:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1761210366; x=1761815166; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=h1z3CDgESP91ImTgVOpRTIyiM4/M4Omf2Iv1zO187XY=;
-        b=xcDXKkZBiXJIiR70YU1SX1S+Ui+L6U/YEnwgRy/UsBlmUdmJdes/dqfS1x4fVeOJye
-         XExd+8vqaUc14p/K6LkbDs3gUAL//1rIsRrV8pvRd9fJqNc3qAS+VNvJqWHdZlIH+sDL
-         bX349AzOfQyMKsr3MrfAarWSq4iW4ToHyXmqlzI13GAkVxdv1gQqkvmeViCRIp55sOGk
-         xMC2qBhpPT8ANs2kk2/DZaX6PQvW+WTjz8pjy8Jk61Uhdv8s4CnjqwzW07lS/rM5SEGt
-         tsOJETnxy1f+YZ8H40PQlbn/qZxF2liRmh76KO09U6ZoaV+NdTV1qt9e9jam/GnZAYwg
-         85QQ==
+	s=arc-20240116; t=1761210395; c=relaxed/simple;
+	bh=xwACydKQvgDKuB0v3VRVNVKaf/7fL95Co83H8L4/8V8=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=DfFVWZ6BrRFYQ4LpykgsMoVX67eoE/0UsTBMcQlCa0IA3a0q8o9/cH5nlsIO+TXNyaYon59zogTegh9S8ypM3nyTIIQHoaHeEgg+zCWf7qoIWbX7wZ87ui4b86xOy3QaIlOHpASmAKX/1K1z1tD+krH/lkA71Hf6+9SIsqdEXa8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=B1EL2lBW; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59N76TlS029864
+	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 09:06:32 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=Tbyvd4eRGssa6Ha0ecVbsY
+	tSBYVsX1t2xVyxXt94ET0=; b=B1EL2lBWBnN34927WafsHwonB2UGuLi6pZlOPk
+	OmgCYq64xuesQ06vVKEV8RP0vsd4sSzRxd0gTT0R4Eyudf45C5sy4YP3gkPSY9UT
+	fJaLnL7Fs1C3+YIISCWROoisShsWMo2XmUJJUkX5ygH2TxPpi+nWhgLteODJW8bA
+	K2O+tvRHwr4ZT7BTjsSISqqhRpo61PrimoiemBqMBq7IOfjlYfiM8JsOqeFwyAug
+	+jgfJgEAut9gOLibsCJoPHo5a3VSq2dnDQH5Wv9boiBgPfTg6RUURWkWfmthRRrW
+	CpTCeRSotwd8MUIMId8ojRylX4dMNYWYhFA8tPbMy1+3PClQ==
+Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com [209.85.214.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49v2ge7qut-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 09:06:32 +0000 (GMT)
+Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-2697410e7f9so15579825ad.2
+        for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 02:06:32 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761210366; x=1761815166;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=h1z3CDgESP91ImTgVOpRTIyiM4/M4Omf2Iv1zO187XY=;
-        b=KV8G8fwERgpVHd56ZlGRfJ66Y4+kn7zV/I/q1iVqSBr/7JjnDQU7dRdZGzmg1jk2gk
-         lyCmH21H+mYwlxMH0yz1LjMZVtXTXJQy5ju2bnWYe5fLR7vRahZK1kBR6bd2OLXVaSw5
-         LJgGk6kBES8RkwWht+9IaIUtjTjvGr4gHavYUr/qonj/kTyN+UlMnFnSWW5Sxr4okQQ/
-         DgaqXKnaspgxjo1COq1kilIhRJQgfGEcRqccUhgnLz4bVSHiLRg7XdnnWmfXTp6qBT3p
-         O0HhuKKHlJxjVVWQ+9sb3kF+TBaWKkd4ncZVlX8lcGjVwzvUofLKeMuHA3LW7mOfjka7
-         lbgg==
-X-Forwarded-Encrypted: i=1; AJvYcCUhJozLbxvNh4LZOKOgmYNg96wi5lsJNt3d9FwaAVX324Mzf+wfsYbDDW+TirvsCkWi0IS428WhX58w@vger.kernel.org
-X-Gm-Message-State: AOJu0YwmEEcw1i9GpWJW71vYQVh4IpJ4Vbaa1Hc9HlWCLaGftdsn8PtX
-	RTarwCu/ZYrrOGrgilgm+cDbpM/MPuG1iSLBdSJY74gDI3DXlawhV0yFnE+vixCKn3SWJcQKmBT
-	k4MjvKP4o5skSX4KJK036JRketPS9kVEkjSoSYwtC6A==
-X-Gm-Gg: ASbGnctYX2K54E4LeFQzBPoHAR8UX4RsEbYSHbVskJJG347Fl4+xbEjTTr9CcLDyfBV
-	63L/l96SY9SOeHdqNYZb5t/n63+x/wtHcNpUJ4r9YIS955AVsKcE0hu1Am+pZfBgzhJhv4M5PN0
-	PYF6Bxr9Iny5v413j7BghQtkx9ojo92hgzYpN4OHrkGhZQxKu6QNR90Rf8vYhFAAQ85Gj8H+Po+
-	4EmqadpyPJE79ryFvJIkySO8qplEJv54Ytvs0EPCLXHwVp0asBccWjW5cM4t8mbwe07ZPiqSUNk
-	BZGbVaKPWta1m3be/+Ljqnx5zA==
-X-Google-Smtp-Source: AGHT+IFMDjQSxC8i27NvZvV+QPpRuhQpy2687aN6kbWKwb5pgOxSbO9NBZ//dU90tBMyoJP8nrJgvUp2Jkmlcch4XQg=
-X-Received: by 2002:a05:6512:3ca9:b0:57d:80f2:5364 with SMTP id
- 2adb3069b0e04-591d855a3e2mr7707851e87.26.1761210366122; Thu, 23 Oct 2025
- 02:06:06 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1761210391; x=1761815191;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Tbyvd4eRGssa6Ha0ecVbsYtSBYVsX1t2xVyxXt94ET0=;
+        b=obi5DPEU24U3pZqwKz2v5dhuWVGpen1qs8d5sMxnYJktUdHYLsyJVGK3gQnSeGiEjL
+         JE+RWSzMPyDKxLV55P8Y4qARqanq1W4TXAlqNc1TyOTqpJK71xVpPsjWhT57vd2vW4Z9
+         uuK/jIOJN2DyNPC7dd/IXPSl98SrY+GkJnve14hawnUuuiXDy7W7uVMx7bHk91gpo2md
+         Fo7slKM8+7T0Izj6E3CE85j2W2WKp0u8aziMHOG9eXXi3LZOlLe25Z6saKFOkRTQJaNK
+         zmM2bvjlvrcI8rdXAT08BumqNzKui9E29RsOBY4pDusGFGuYdsgkFUc84xaxWMra/pFZ
+         bs0A==
+X-Forwarded-Encrypted: i=1; AJvYcCVP1aBg9Xao4wvay79y+pT7TU3MlNYhXa1S/fKAY36NOypo7K2HVSO00RwiuOaInqQ6JVLEs63/poLq@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy4jFZOfaRsHd4vbOsVixwmkuzJ7F23OjmMeM6lF6fdxTr63Gl3
+	oqIeMgqtL+PJdejaJw8lj88bgkUZ4/puvapAuj9mMbXHK4pOjUfsLHyuAwvliDsvWbs+CuoJ+sN
+	nhiV/IP3pTcYfAPoH+r3hKSYdmjB6NIMlOBT6zGo2Fo/zs6XQ/ITdqyxSKdUyzWao
+X-Gm-Gg: ASbGnct8zCQK/x9lOMkoI4RO+sUDqnA2hmS9L4FdRYBAAzjdlx4vWMnuMXZ3d9S6ZqN
+	KdqxKocENcCEiL9wjnGFjf9YOwxscwVM2pRSuU8AhYFZEka4cGlyuqhJB+XSZvOSFutO/ViuAJK
+	TvesEmDAUgg7JjEQPL7xLe8yzecaevo58V5dqw3aSLZ6D8MKqg/vPBF8DPtLYSYhP7MDjd08611
+	CfZg1fsJMro4d6kn6iXTTRfpYkIrh0kG8FG9dcBhd9uQr6EpSPZs2o/B3GzUfFZ/lNJ4wQlq8dC
+	vqzfd6DYTFGsgA4Hm4XIDXscX0Q23IKlPc2EEAuXkKOTIWs+2MJrGqPB+ogIC4HL9dlO7M5kYJp
+	R2MMQ+v8oyuPIIAfliI/dXnKCWclToQ3hA5Jb5aqmiUc8oJ6QWHMEHw==
+X-Received: by 2002:a17:902:ec87:b0:269:82a5:fa19 with SMTP id d9443c01a7336-290cb07cbbbmr274605405ad.45.1761210390985;
+        Thu, 23 Oct 2025 02:06:30 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGXtnMJKSahTr3YrUSbYlgQcd+PhongCRbCPX3M+/vpJqbpLoH+wusz0Lz81kTeDHbmGQz8pA==
+X-Received: by 2002:a17:902:ec87:b0:269:82a5:fa19 with SMTP id d9443c01a7336-290cb07cbbbmr274605095ad.45.1761210390516;
+        Thu, 23 Oct 2025 02:06:30 -0700 (PDT)
+Received: from hu-hangxian-lv.qualcomm.com (Global_NAT1.qualcomm.com. [129.46.96.20])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2946dfc1c8asm16698685ad.71.2025.10.23.02.06.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 23 Oct 2025 02:06:30 -0700 (PDT)
+From: Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>
+Date: Thu, 23 Oct 2025 02:06:26 -0700
+Subject: [PATCH] media: camss: csiphy: Make CSIPHY status macro
+ cross-platform
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251021142407.307753-1-sander@svanheule.net>
-In-Reply-To: <20251021142407.307753-1-sander@svanheule.net>
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Thu, 23 Oct 2025 11:05:53 +0200
-X-Gm-Features: AS18NWAJjSskDq2mcYC5AbCEWxeU2SiPM7ypZymLTbwXqYM8_zLN8I4t1ZVA2j8
-Message-ID: <CAMRc=MeGehj3EHP=W3E3fJOpOAqXXg_D8XRRuv2SMxF8_UYpbQ@mail.gmail.com>
-Subject: Re: [PATCH v6 0/8] RTL8231 GPIO expander support
-To: Sander Vanheule <sander@svanheule.net>
-Cc: Michael Walle <mwalle@kernel.org>, Linus Walleij <linus.walleij@linaro.org>, 
-	linux-gpio@vger.kernel.org, Lee Jones <lee@kernel.org>, 
-	Pavel Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-leds@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20251023-make-csiphy-status-macro-cross-platform-v1-1-5746446dfdc6@oss.qualcomm.com>
+X-B4-Tracking: v=1; b=H4sIABHw+WgC/x2NQQrCQAxFr1KyNjAzpaBeRVyEaWqDtjMkoyild
+ 29w8RbvLf7fwFiFDa7dBsofMSmrSzx1kGdaH4wyukMKaYghRVzoyZhN6vxDa9Te5ilrQccM64v
+ aVHTBob+EMcd0Jmbwtao8yff/dLvv+wHpHkPYeQAAAA==
+X-Change-ID: 20251021-make-csiphy-status-macro-cross-platform-5390dc128aee
+To: Loic Poulain <loic.poulain@oss.qualcomm.com>,
+        Robert Foss <rfoss@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Todor Tomov <todor.too@gmail.com>,
+        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc: linux-i2c@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-media@vger.kernel.org,
+        Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>
+X-Mailer: b4 0.14.3
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDE4MDAyMCBTYWx0ZWRfX6CLk1zhlWD76
+ rE5cqRXxkjsaKI99fLMc/weo4TLC92ZFGbmlHrkrFmV1P9uDnxP1xheY81PUy8oX+1MF63i4mZy
+ jxEtSllLFXbtksS62d7EcD0eoGnOLduai4I3dep6AunWMqEmTGNGNPaL+vOQ4IvKMfGT/dLrKbK
+ 7umUqrD4mbiQ805F/4d5QvI7UgQStLfREgWPwZJOv8+whudP77okSZQfZu2cwNSQ1/ayy65ATDh
+ LYAtucy/rfli8kkiZIL/TbkxAYhg6KfeVm+yn0WJcYS2VRjQx1uV8J7aPKN0OO1dGYN53ehnu4T
+ m86Ua4yQCq3ydr69ZTO+eBtHcaDLhs5MQ1KtWCRyCNBk/GJkBj8cZBW0W9x0ELwYbc9TRACkUBd
+ qvPG0icl/uoGbvA3czND43YjPBr7PQ==
+X-Authority-Analysis: v=2.4 cv=KqFAGGWN c=1 sm=1 tr=0 ts=68f9f018 cx=c_pps
+ a=IZJwPbhc+fLeJZngyXXI0A==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=EUspDBNiAAAA:8 a=edmtyYkapI0WV9tsjtgA:9 a=QEXdDO2ut3YA:10
+ a=uG9DUKGECoFWVXl0Dc02:22
+X-Proofpoint-GUID: 7Q0vAVaM0FWECucewRY65qpwv0Zuubi6
+X-Proofpoint-ORIG-GUID: 7Q0vAVaM0FWECucewRY65qpwv0Zuubi6
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-10-22_08,2025-10-22_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 clxscore=1015 phishscore=0 malwarescore=0 impostorscore=0
+ lowpriorityscore=0 adultscore=0 priorityscore=1501 spamscore=0 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2510020000 definitions=main-2510180020
 
-On Tue, Oct 21, 2025 at 4:24=E2=80=AFPM Sander Vanheule <sander@svanheule.n=
-et> wrote:
->
-> The RTL8231 GPIO and LED expander can be configured for use as an MDIO
-> or SMI bus device. Currently only the MDIO mode is supported, although
-> SMI mode support should be fairly straightforward, once an SMI bus
-> driver is available.
->
-> Provided features by the RTL8231:
->   - Up to 37 GPIOs
->     - Configurable drive strength: 8mA or 4mA (currently unsupported)
->     - Input debouncing on GPIOs 31-36
->   - Up to 88 LEDs in multiple scan matrix groups
->     - On, off, or one of six toggling intervals
->     - "single-color mode": 2=C3=9736 single color LEDs + 8 bi-color LEDs
->     - "bi-color mode": (12 + 2=C3=976) bi-color LEDs + 24 single color LE=
-Ds
->   - Up to one PWM output (currently unsupported)
->     - Fixed duty cycle, 8 selectable frequencies (1.2kHz - 4.8kHz)
->
-> The patches have been in use downstream by OpenWrt for some months. As
-> the original patches are already a few years old, I would like to request
-> all patches to be reviewed again (and I've dropped all provided tags and
-> changelogs).
-> ---
-> RFC for gpio-regmap changes:
-> Link: https://lore.kernel.org/lkml/20251020115636.55417-1-sander@svanheul=
-e.net/
->
-> Patch series v5 (June 2021):
-> Link: https://lore.kernel.org/lkml/cover.1623532208.git.sander@svanheule.=
-net/
->
-> Sander Vanheule (8):
->   gpio: regmap: Force writes for aliased data regs
->   gpio: regmap: Bypass cache for aliased inputs
+The current value of '0xb0' that represents the offset to the status
+registers within the common registers of the CSIPHY has been changed on
+the newer SOCs and it requires generalizing the macro using a new
+variable 'common_status_offset'. This variable is initialized in the
+csiphy_init() function.
 
-If I'm not mistaken, nothing depends on these two at build-time, so I
-can just take them through the GPIO tree for v6.19?
+Signed-off-by: Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>
+---
+This change introduces common_status_offset to replace the hardcoded
+offset in CSIPHY_3PH_CMN_CSI_COMMON_STATUSn.
+---
+ .../media/platform/qcom/camss/camss-csiphy-3ph-1-0.c  | 19 +++++++++++++------
+ drivers/media/platform/qcom/camss/camss-csiphy.h      |  1 +
+ 2 files changed, 14 insertions(+), 6 deletions(-)
 
-Bart
+diff --git a/drivers/media/platform/qcom/camss/camss-csiphy-3ph-1-0.c b/drivers/media/platform/qcom/camss/camss-csiphy-3ph-1-0.c
+index a229ba04b158..9b6a0535cdf8 100644
+--- a/drivers/media/platform/qcom/camss/camss-csiphy-3ph-1-0.c
++++ b/drivers/media/platform/qcom/camss/camss-csiphy-3ph-1-0.c
+@@ -46,7 +46,8 @@
+ #define CSIPHY_3PH_CMN_CSI_COMMON_CTRL5_CLK_ENABLE	BIT(7)
+ #define CSIPHY_3PH_CMN_CSI_COMMON_CTRL6_COMMON_PWRDN_B	BIT(0)
+ #define CSIPHY_3PH_CMN_CSI_COMMON_CTRL6_SHOW_REV_ID	BIT(1)
+-#define CSIPHY_3PH_CMN_CSI_COMMON_STATUSn(offset, n)	((offset) + 0xb0 + 0x4 * (n))
++#define CSIPHY_3PH_CMN_CSI_COMMON_STATUSn(offset, common_status_offset, n) \
++	((offset) + (common_status_offset) + 0x4 * (n))
+ 
+ #define CSIPHY_DEFAULT_PARAMS		0
+ #define CSIPHY_LANE_ENABLE		1
+@@ -714,13 +715,17 @@ static void csiphy_hw_version_read(struct csiphy_device *csiphy,
+ 	       CSIPHY_3PH_CMN_CSI_COMMON_CTRLn(regs->offset, 6));
+ 
+ 	hw_version = readl_relaxed(csiphy->base +
+-				   CSIPHY_3PH_CMN_CSI_COMMON_STATUSn(regs->offset, 12));
++		CSIPHY_3PH_CMN_CSI_COMMON_STATUSn(regs->offset,
++						  regs->common_status_offset, 12));
+ 	hw_version |= readl_relaxed(csiphy->base +
+-				   CSIPHY_3PH_CMN_CSI_COMMON_STATUSn(regs->offset, 13)) << 8;
++		CSIPHY_3PH_CMN_CSI_COMMON_STATUSn(regs->offset,
++						  regs->common_status_offset, 13)) << 8;
+ 	hw_version |= readl_relaxed(csiphy->base +
+-				   CSIPHY_3PH_CMN_CSI_COMMON_STATUSn(regs->offset, 14)) << 16;
++		CSIPHY_3PH_CMN_CSI_COMMON_STATUSn(regs->offset,
++						  regs->common_status_offset, 14)) << 16;
+ 	hw_version |= readl_relaxed(csiphy->base +
+-				   CSIPHY_3PH_CMN_CSI_COMMON_STATUSn(regs->offset, 15)) << 24;
++		CSIPHY_3PH_CMN_CSI_COMMON_STATUSn(regs->offset,
++						  regs->common_status_offset, 15)) << 24;
+ 
+ 	dev_dbg(dev, "CSIPHY 3PH HW Version = 0x%08x\n", hw_version);
+ }
+@@ -749,7 +754,8 @@ static irqreturn_t csiphy_isr(int irq, void *dev)
+ 	for (i = 0; i < 11; i++) {
+ 		int c = i + 22;
+ 		u8 val = readl_relaxed(csiphy->base +
+-				       CSIPHY_3PH_CMN_CSI_COMMON_STATUSn(regs->offset, i));
++			CSIPHY_3PH_CMN_CSI_COMMON_STATUSn(regs->offset,
++							  regs->common_status_offset, i));
+ 
+ 		writel_relaxed(val, csiphy->base +
+ 			       CSIPHY_3PH_CMN_CSI_COMMON_CTRLn(regs->offset, c));
+@@ -989,6 +995,7 @@ static int csiphy_init(struct csiphy_device *csiphy)
+ 
+ 	csiphy->regs = regs;
+ 	regs->offset = 0x800;
++	regs->common_status_offset = 0xb0;
+ 
+ 	switch (csiphy->camss->res->version) {
+ 	case CAMSS_845:
+diff --git a/drivers/media/platform/qcom/camss/camss-csiphy.h b/drivers/media/platform/qcom/camss/camss-csiphy.h
+index 895f80003c44..2d5054819df7 100644
+--- a/drivers/media/platform/qcom/camss/camss-csiphy.h
++++ b/drivers/media/platform/qcom/camss/camss-csiphy.h
+@@ -90,6 +90,7 @@ struct csiphy_device_regs {
+ 	const struct csiphy_lane_regs *lane_regs;
+ 	int lane_array_size;
+ 	u32 offset;
++	u32 common_status_offset;
+ };
+ 
+ struct csiphy_device {
 
->   dt-bindings: leds: Binding for RTL8231 scan matrix
->   dt-bindings: mfd: Binding for RTL8231
->   mfd: Add RTL8231 core device
->   pinctrl: Add RTL8231 pin control and GPIO support
->   leds: Add support for RTL8231 LED scan matrix
->   MAINTAINERS: Add RTL8231 MFD driver
->
->  .../bindings/leds/realtek,rtl8231-leds.yaml   | 167 ++++++
->  .../bindings/mfd/realtek,rtl8231.yaml         | 189 ++++++
->  MAINTAINERS                                   |  10 +
->  drivers/gpio/gpio-regmap.c                    |  18 +-
->  drivers/leds/Kconfig                          |  10 +
->  drivers/leds/Makefile                         |   1 +
->  drivers/leds/leds-rtl8231.c                   | 285 ++++++++++
->  drivers/mfd/Kconfig                           |   9 +
->  drivers/mfd/Makefile                          |   1 +
->  drivers/mfd/rtl8231.c                         | 193 +++++++
->  drivers/pinctrl/Kconfig                       |  11 +
->  drivers/pinctrl/Makefile                      |   1 +
->  drivers/pinctrl/pinctrl-rtl8231.c             | 538 ++++++++++++++++++
->  include/linux/mfd/rtl8231.h                   |  71 +++
->  14 files changed, 1500 insertions(+), 4 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/leds/realtek,rtl823=
-1-leds.yaml
->  create mode 100644 Documentation/devicetree/bindings/mfd/realtek,rtl8231=
-.yaml
->  create mode 100644 drivers/leds/leds-rtl8231.c
->  create mode 100644 drivers/mfd/rtl8231.c
->  create mode 100644 drivers/pinctrl/pinctrl-rtl8231.c
->  create mode 100644 include/linux/mfd/rtl8231.h
->
-> --
-> 2.51.0
->
+---
+base-commit: 076fb8624c282c10aa8add9a4ae2d9354d2594cb
+change-id: 20251021-make-csiphy-status-macro-cross-platform-5390dc128aee
+
+Best regards,
+-- 
+Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>
+
 
