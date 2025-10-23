@@ -1,191 +1,156 @@
-Return-Path: <devicetree+bounces-230089-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230090-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3BF6BFFABC
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 09:43:53 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id F1BCDBFFB2B
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 09:51:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 71F104ED62D
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 07:43:52 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 9315C4FB949
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 07:51:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97A692C028A;
-	Thu, 23 Oct 2025 07:43:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27C532DE6F7;
+	Thu, 23 Oct 2025 07:50:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="KWG10gkj"
+	dkim=pass (2048-bit key) header.d=reznichenko.net header.i=@reznichenko.net header.b="DdadXaCA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f41.google.com (mail-pj1-f41.google.com [209.85.216.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B77C828725B;
-	Thu, 23 Oct 2025 07:43:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68C1B2DCF5D
+	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 07:50:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761205431; cv=none; b=g3+6ei7eygvfB1IA3b5SqKT5LQ0ApiI6ma9QhCYFzLXiKCMUfzSM921lQLa0/x0x6KKSOlOuMrPphEc1803e1lOaO/BdOzXc0cdcgoDKcZc3KgBRyzjPNFW05uEmgQsVklAkH5cwIgaWgLxPZrrnVe5V7yCTXGBXQkXPiKi0rSg=
+	t=1761205857; cv=none; b=IRvNS+STHTwmzIaoyNFtzeX3udrkbiYJ34iGAmG7jv02pZkSQB0ugPufi4yscOlI4XcrrtZ8MjdS15ExiWLt3SIoLyg0y3SAFHyc4aEonBzRD8aOi/VJd19uAQWYkM9Zg14mxv/vmu+zYTDgPxqgj63rOY592F0rdeZe166fycE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761205431; c=relaxed/simple;
-	bh=2G9Gb/m5O+QY7Ni/xV5TyiwdzRpRI/FddBgYeAgIC6o=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=tv9Ec5zmcNWZIb1txD1E+nBDAZBs/dkThQAN4VcjXhq6ZQyet2AzNmDqB52WC63U/8TXTuggW7FvO1GPYBJr8eDs6KrYkjr9Ey0TopMp+iqJx2BRrxklH3bQI5U98O4nPzARLAVXMWIcf32s9XnGnCQHdp5jGKPFMUDTvdgqwmQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=KWG10gkj; arc=none smtp.client-ip=185.246.85.4
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id C2DC34E41295;
-	Thu, 23 Oct 2025 07:43:45 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 8C6406062C;
-	Thu, 23 Oct 2025 07:43:45 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id CC5BD102F2429;
-	Thu, 23 Oct 2025 09:43:24 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1761205424; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:content-language:in-reply-to:references;
-	bh=FuwZwT+5jyvhDDTG/W4OLKYq+tnCcDl94SXGHBKrC1o=;
-	b=KWG10gkjd1CX/r8TdNuB+zDc1mBWazqjexcpaPfoy9c1Itkz/VUMaMVGIg72x4Z10Mnovj
-	Bsnrww7ShvAkm8U+6G1RSwVxRSeKSeVlXh+v95ZWtr9rV1XIYq7/nfnSF8zvMdPnlc3mrZ
-	mqhbvqZIj/h3KZwoVZePWzhm/h2sPh2iVAH8FZ+RN58qg51UiQuo3N/CjLITx+oYuzXSQz
-	uLcAREp/mbZz+YjwXbqqwl8okzC0jjXcyt3e5WjWGQezQl1LMBbKluUBgCM9euKYPfYLwf
-	mgQz5raHiaT1D1UmIPtd406mEXQX4xjKfh83tFSlIE2txwKMJf0alP9ETs03mw==
-Message-ID: <d798cbb4-74f8-47fd-98e8-0d6d6e9f8621@bootlin.com>
-Date: Thu, 23 Oct 2025 09:43:23 +0200
+	s=arc-20240116; t=1761205857; c=relaxed/simple;
+	bh=1hywAO6OmglGEJDv4dlqj7DVBEZf4btWfqp6klm/+u0=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=jefVouPEbonqJ1ah0l4IrMFQlWqhDy4zlNP/yFEc37XPh3YGADQ6KurnkKV1LEhqq8+7Y22hTwy6c5PYe2SIeEDJeA5Du2wbh8/aWzJp7RSQUSKTri1i9qeXo6HJ05lW32B5WKuMGcdN5yQHdyXZSKVlQjbkwgkfejDL2n3aUq0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=reznichenko.net; spf=none smtp.mailfrom=dpplabs.com; dkim=pass (2048-bit key) header.d=reznichenko.net header.i=@reznichenko.net header.b=DdadXaCA; arc=none smtp.client-ip=209.85.216.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=reznichenko.net
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=dpplabs.com
+Received: by mail-pj1-f41.google.com with SMTP id 98e67ed59e1d1-33f9aec69b6so727226a91.1
+        for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 00:50:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=reznichenko.net; s=google; t=1761205854; x=1761810654; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Ckf+WA/vGci5TKMGOHLvpH1kq+z/6nk6A9B9djwZ1Vk=;
+        b=DdadXaCAsxeuRsSpN+Sdnn37yPc/OkFEl63jtTq/z8UFhC8nMrDu66q7IGiP/acqFV
+         yANWLN1mFfSLl64lqnzKWdnVpSkTIcvKWSKhuiE2HIyaorhgIPuRz7Hjd+vzbjT9fqZM
+         n15WKP7SOO/BoWlphq9F/IE/x+S1tZlnyQ3Zt1vtoBxo6nOfvoTs7k4dO7hrJeII6E9I
+         6wzEFkoRCV0JA9LIfkLH5fyj4kOIBIgLQZXr12cOdRjIwJrUvyUpwHq86VJQE+czGytL
+         TXY6aLh9GDUO9THRDwGPgcylt5FfsPu9apzDEhzanJS/goOHGiO8sBft1bwWUwOifoXX
+         4O0Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761205854; x=1761810654;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Ckf+WA/vGci5TKMGOHLvpH1kq+z/6nk6A9B9djwZ1Vk=;
+        b=rmywmGoPvBqYnebVPseP3R0Is0FiBsEYnkOgVxIlEBbSqv61lpjexF9oiqJxONFlnp
+         ri9FXJtbSlR8xOKT6iQ9WEBvtKT7DXILYA5DeX31RQiI/J52NUxMSUa1fAMuw8bA06EE
+         ABSys9WXUnxk/wP5Q9R3F+1cI2NdJ52M9k2r5O/08pjdGvTYaVsFGzXveaR+yQHo/hUi
+         w3yDSAzBZ9IZ8EpTmei5LDMxGHawzacOcDIq7bMvy80pdoy18JaI3Y1DGPZZTD6Gq/GG
+         2wLo9rGCARtjHHN86TjRFIaXT/tlUrqAPn8SWHs2tnxj6mcnhnuaDQTNki9DAUd0CFj2
+         tCeA==
+X-Forwarded-Encrypted: i=1; AJvYcCWeHjPu5FIdZqVOd2+0idkJRI2wtZC0RkClLSIWNla5YF28rS6xw+TqVmRnBvs3i7eRiNl0TDsrpp5E@vger.kernel.org
+X-Gm-Message-State: AOJu0YzVt8nL4B8zoT3SSI0Ure2shPYzU+rIFnpAzGPMXZFu4yTYB6iS
+	56/HnpHzGpewVKQ+8TT+JmH0Z5pNLowgFpDNSBgD7oOKHjtO75OtldGstWT9SRZ2HAM=
+X-Gm-Gg: ASbGncufN/SFV5oAv8NHr4Yin3j+NyxtQuEnTFS0CoASex7PQGk/8RN+moQxnTK/PIZ
+	lgYM+D8G86Z5Wqn7YQTzq85W2F4iAdi/OQasgID5xNkPvSyss1+W32bRYUV0YxDAjfzvGvVI89F
+	nKBWRXYLpv6ru4hp7ZSQOJQWFMeRfvOVCPBNL+Q7KksY1h9n7n7ZoOdVc4BGjpLl+EfF+Xs0y+3
+	jE0mXc7YzgRjFTEgL+QGbojwZbFICewozdyu+ESf74KzgoOgZtEqp1ViXRFwJYURVPhw1Cl9p12
+	0s9QUrh53hsnT77ITbQj31k6GMYwIpuYXfnHtIxtkdNjtp20YGtsnw27mE/x9fzJmenPUn4n/Fa
+	wirspZCIic4jXowGw11mUT2y8pnKhPrDEBzE+ZJYKEqJ/x+4vLl5X7yeLkeFLfI6V9vgrO/8jdI
+	RYBslq9C0doUeYcLlAeg==
+X-Google-Smtp-Source: AGHT+IGxBmhQYX3R+zPm2DZoyJZbHJDy6/9CVQ6y+y0VxQf1BMG2L8qFAVrrjtQYPgaGrb29h3irDw==
+X-Received: by 2002:a17:90b:44:b0:32b:623d:ee91 with SMTP id 98e67ed59e1d1-33bcf8fd82dmr28272717a91.27.1761205854513;
+        Thu, 23 Oct 2025 00:50:54 -0700 (PDT)
+Received: from z440.. ([2601:1c0:4502:2d00:2035:6c3d:cc34:bc90])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-33dfb1dbddbsm3809280a91.0.2025.10.23.00.50.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 23 Oct 2025 00:50:53 -0700 (PDT)
+From: Igor Reznichenko <igor@reznichenko.net>
+To: linux@roeck-us.net
+Cc: conor+dt@kernel.org,
+	corbet@lwn.net,
+	david.hunter.linux@gmail.com,
+	devicetree@vger.kernel.org,
+	igor@reznichenko.net,
+	krzk+dt@kernel.org,
+	linux-doc@vger.kernel.org,
+	linux-hwmon@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	robh@kernel.org,
+	skhan@linuxfoundation.org
+Subject: Re: [PATCH 1/5] drivers/hwmon: Add TSC1641 I2C power monitor driver
+Date: Thu, 23 Oct 2025 00:50:50 -0700
+Message-ID: <20251023075050.254998-1-igor@reznichenko.net>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <be691214-bac6-43d4-be62-daa57c833fe7@roeck-us.net>
+References: <be691214-bac6-43d4-be62-daa57c833fe7@roeck-us.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v14 03/16] net: ethtool: Introduce
- ETHTOOL_LINK_MEDIUM_* values
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: davem@davemloft.net, netdev@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- thomas.petazzoni@bootlin.com, Jakub Kicinski <kuba@kernel.org>,
- Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
- Russell King <linux@armlinux.org.uk>, linux-arm-kernel@lists.infradead.org,
- Christophe Leroy <christophe.leroy@csgroup.eu>,
- Herve Codina <herve.codina@bootlin.com>,
- Florian Fainelli <f.fainelli@gmail.com>,
- Heiner Kallweit <hkallweit1@gmail.com>,
- Vladimir Oltean <vladimir.oltean@nxp.com>,
- =?UTF-8?Q?K=C3=B6ry_Maincent?= <kory.maincent@bootlin.com>,
- =?UTF-8?Q?Marek_Beh=C3=BAn?= <kabel@kernel.org>,
- Oleksij Rempel <o.rempel@pengutronix.de>,
- =?UTF-8?Q?Nicol=C3=B2_Veronese?= <nicveronese@gmail.com>,
- Simon Horman <horms@kernel.org>, mwojtas@chromium.org,
- Antoine Tenart <atenart@kernel.org>, devicetree@vger.kernel.org,
- Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
- Romain Gantois <romain.gantois@bootlin.com>,
- Daniel Golle <daniel@makrotopia.org>,
- Dimitri Fedrau <dimitri.fedrau@liebherr.com>,
- Florian Fainelli <florian.fainelli@broadcom.com>
-References: <20251013143146.364919-1-maxime.chevallier@bootlin.com>
- <20251013143146.364919-4-maxime.chevallier@bootlin.com>
- <cb217bf8-763e-4c48-9233-e577b32b14a8@lunn.ch>
-From: Maxime Chevallier <maxime.chevallier@bootlin.com>
-Content-Language: en-US
-In-Reply-To: <cb217bf8-763e-4c48-9233-e577b32b14a8@lunn.ch>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Transfer-Encoding: 8bit
 
-Hi Andrew,
+Guenter,
+Thanks for the detailed feedback. I will address it.
 
-On 22/10/2025 23:42, Andrew Lunn wrote:
-> On Mon, Oct 13, 2025 at 04:31:29PM +0200, Maxime Chevallier wrote:
->> In an effort to have a better representation of Ethernet ports,
->> introduce enumeration values representing the various ethernet Mediums.
->>
->> This is part of the 802.3 naming convention, for example :
->>
->> 1000 Base T 4
->>  |    |   | |
->>  |    |   | \_ lanes (4)
->>  |    |   \___ Medium (T == Twisted Copper Pairs)
->>  |    \_______ Baseband transmission
->>  \____________ Speed
-> 
-> Dumb question. Does 802.3 actually use the word lanes here?
+> Please send a register dump.
 
-Depending on the mode, 802.3 uses either "pair" or "lane" :
+Here's register dump after init during run: 
 
-1.4.13 1000BASE-T: IEEE 802.3 Physical Layer specification for a
-1000 Mb/s CSMA/CD LAN using four pairs of Category 5 balanced
-copper cabling.
+tsc1641 1-0040: 0x00: 0x003f
+tsc1641 1-0040: 0x01: 0x0253
+tsc1641 1-0040: 0x02: 0x0dc0
+tsc1641 1-0040: 0x03: 0x0053
+tsc1641 1-0040: 0x04: 0x0250
+tsc1641 1-0040: 0x05: 0x0033
+tsc1641 1-0040: 0x06: 0x0000
+tsc1641 1-0040: 0x07: 0x0000
+tsc1641 1-0040: 0x08: 0x01f4
+tsc1641 1-0040: 0x09: 0x0000
+tsc1641 1-0040: 0x0a: 0x0000
+tsc1641 1-0040: 0x0b: 0x0000
+tsc1641 1-0040: 0x0c: 0x0000
+tsc1641 1-0040: 0x0d: 0x0000
+tsc1641 1-0040: 0x0e: 0x0000
+tsc1641 1-0040: 0xfe: 0x0006
+tsc1641 1-0040: 0xff: 0x1000
 
-1.4.26 100GBASE-CR2: IEEE 802.3 Physical Layer specification for
-100 Gb/s using 100GBASE-R encoding over two lanes of shielded
-balanced copper cabling.
+> > +
+> > +	/*
+> > +	 * Disable alert mask first, then write the value and enable alert mask
+> Why ? 
 
-> I'm looking at the commit which added lanes:
-> 
-> commit 012ce4dd3102a0f4d80167de343e9d44b257c1b8
-> 
->     Add 'ETHTOOL_A_LINKMODES_LANES' attribute and expand 'struct
->     ethtool_link_settings' with lanes field in order to implement a new
->     lanes-selector that will enable the user to advertise a specific number
->     of lanes as well.
-> 
->     $ ethtool -s swp1 lanes 4
->     $ ethtool swp1
->       Settings for swp1:
->             Supported ports: [ FIBRE ]
->             Supported link modes:   1000baseKX/Full
->                                     10000baseKR/Full
->                                     40000baseCR4/Full
->                                     40000baseSR4/Full
->                                     40000baseLR4/Full
->                                     25000baseCR/Full
->                                     25000baseSR/Full
->                                     50000baseCR2/Full
->                                     100000baseSR4/Full
->                                     100000baseCR4/Full
->             Supported pause frame use: Symmetric Receive-only
->             Supports auto-negotiation: Yes
->             Supported FEC modes: Not reported
->             Advertised link modes:  40000baseCR4/Full
->                                     40000baseSR4/Full
->                                     40000baseLR4/Full
->                                     100000baseSR4/Full
->                                     100000baseCR4/Full
-> 
-> 
-> For these link modes we are talking about 4 PCS outputs feeding an
-> SFP module. The module when has one fibre pair, the media.
-> 
-> For baseT4 what you call a lane is a twisted pair, the media.
-> 
-> These two definitions seem to contradict each other.
-> 
-> For SGMII, 1000BaseX, we have 1 PCS lane, feeding a PHY with 4 pairs.
-> 
-> It gets more confusing at 10G, where the MAC might have 4 lanes
-> feeding 4 pairs, or 1 lane feeding 4 pairs.
-> 
-> Also, looking at the example above, if i have a MAC/PHY combination
-> which can do 10/100/1G and i did:
-> 
->     $ ethtool -s swp1 lanes 2
-> 
-> would it then only advertise 10 and 100, since 1G need four 'lanes'?
+The idea was to prevent potential previous alert from propagating when changing 
+the value, plus to only enable alert when crit/lcrit value is non-zero. 
+But given your response below this is not the right thing to do.
 
-Ah right ! Yeah so lanes isn't about the MDI directly then, so
-clearly this won't work :(
-> 
-> Is reusing lanes going to cause us problems in the future, and maybe
-> we should add a pairs member, to represent the media? And we can
-> ignore bidi fibre modules for the moment :-)
+> Disabling alerts if the limit is 0 is wrong: The limit can be set
+> to 0 on purpose. Only unmasking the limit if a limit is set is just as wrong.
+> Either limits are enabled and reported, or they are disabled and the attributes
+> must not be generated. Mis-using the ABI to declare "If the limit value is
+> 0, mask the limit. Otherwise set the limit and unmask it" is unacceptable.
 
-That's a very good point, I think this makes more sense. I've also
-seen the word "channel" around, but Pair would be more explicit.
+Thanks for clarification. So would you recommend then that all alerts should 
+be always on/unmasked for this chip or to add custom sysfs attributes to control 
+them, since it has this capability?
 
-thanks for the feedback !
+> Either report as standard voltage (in0_input) or drop entirely.
+> The shunt voltage can be calculated from the shunt resisor value and
+> the current. A non-standard attribute to report it does not add value.
 
-Maxime
-> 
->        Andrew
+I'll drop it since the shunt voltage resolution is 2.5uV and it won't give 
+accurate information to report it in mV.
 
+Thanks, Igor
 
