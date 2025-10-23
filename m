@@ -1,143 +1,130 @@
-Return-Path: <devicetree+bounces-230406-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230407-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E64FAC024E0
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 18:05:29 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DC56FC02588
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 18:13:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6BB933A1CAA
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 16:04:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 927E73A7A1C
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 16:13:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0261C26E71F;
-	Thu, 23 Oct 2025 16:04:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21834296BC9;
+	Thu, 23 Oct 2025 16:11:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XD1O3/eK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ssc1LJJh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f53.google.com (mail-pj1-f53.google.com [209.85.216.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E86D26E165
-	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 16:04:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91634295DBD;
+	Thu, 23 Oct 2025 16:11:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761235459; cv=none; b=d2hKXEeEpz0sxiRvy58zk/7TgYv231uCZNFWa5r1xrMCnE9UbMa9wfsPFGn3hufGy0xUKojGsqmKtoe4LNDmh7rwVd6Cc0Cq9CK6QUczaQ20yXy72vpB5rcmg19cy9N/Fx2rsaWHoaBAT+FbqQDdDd1be6TAE4zHmZmx8m0zyFU=
+	t=1761235882; cv=none; b=A6yJICXOucUOpkQqxWnXD0HWLBdrPjr1lEhOMCTcinAoyHSEXjlmY3zVIEYCFvwzRUIW77kVclIpyxYpoTIOeqra72bXN8cOvIWcxrOtF3uVEpeQtBPXPXnwa8Rauv61uWeuLmgfeW5SqrgG3AhVacuE3fBpdY5XjQmenNNHlKU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761235459; c=relaxed/simple;
-	bh=BZs/EKkft0iiyczp7niO50EAP/xvjEqxKm4Yz1szu7Y=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=kadq2NvfH2LhlTgFm0kVZhWAVMePguwm5DKzF15+zcsfJxjH+lG8+kitf+FYIijRuWBOpIThFmenJ47HSHJJJ2V2b4YrdqtJnkymsQ11jaJ/6vJfJmM64xgh6UpuIfHTusczmkH0qiC9smpRuKoUIOSNTNu5Qnj71t6zkz2ISAc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XD1O3/eK; arc=none smtp.client-ip=209.85.216.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f53.google.com with SMTP id 98e67ed59e1d1-33082c95fd0so1103364a91.1
-        for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 09:04:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1761235458; x=1761840258; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=qh+XTkdUsVoqfUCJ1tlaETEztr9dvLetJyhEnaoDJ2E=;
-        b=XD1O3/eKCa9gtdjCCVrb9cUSrznkvswSr8ngKuov0cBWSsv5U63026rt1l5WXuadh0
-         JW3iiUY1LroUhuv1ZZpTwQlIky47u1MX5dybUuv1Ow30/O+8JDp7SOWNhkKVMqZtX/3C
-         9D5zo/DIsXcf5g1yDjzRRZ2qSsvuOgv97EEUW5JNkWWW6DgX0vCcf7iW6DmLOvnWlxMw
-         fNzoURuBqTe/EMSn8gOS3bOjjV+B84xKZFWzNK6Rat1eq5z7JW0RjlKhGABRNuSfHVbw
-         sBMy4/4TCWGyFQ8R1bGWSucPPxGhkUI7xYycpDpKmKYCs3tAlHT8UGT5BS8FGPbMlGmk
-         d9KQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761235458; x=1761840258;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:sender:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=qh+XTkdUsVoqfUCJ1tlaETEztr9dvLetJyhEnaoDJ2E=;
-        b=ZlHrnotdB8jwnsZrHkgONeowp2kJROuPDSMoEubeWYK2I4zGjnQ9n4RCcjv7VSWzaN
-         u9kX6J+dwYLVespIM9Uu6FgkKBQcSl8umc+pqcTsQLma9i3hPwYSb+jILJd1/Y2nwJFH
-         2Rcs6tIdiOHfm1wiDSzrxYeArok3Yf8dNlseH9i4oJmZFdGhYdCSt/2tPfCegISZIxqi
-         bPZ3Jk8K2ezbXx9b0Gkjh7da9fwB64kfuCEHUQsXAEOg1f27iXv6NHFgV7T88DRVz49T
-         D7tVN03j5q2gB95mIsQsK9rl33Rsi4f998Ht51XBGHlTpEFSXsk0yzzE5yGoZH2PYbNR
-         Hj8g==
-X-Forwarded-Encrypted: i=1; AJvYcCXxNdjc1BQG3fOs0cu1zjnLCBY/KFv62DbhIO1Fj0cjFCv8QOfbkcBVyBjLW/pbiDBK0mo73Xu8cBWj@vger.kernel.org
-X-Gm-Message-State: AOJu0YxqbvugdKr9SmXA7f1RmB0ChXhsdMXzibT61grr9rG0MbTmLF18
-	/LCp2bBQlt9iXbTJUyc2jrDQSZ02alEXX3AQKCv6ljisrX8d+11qxS8c3hAKHg==
-X-Gm-Gg: ASbGncvPtb+L+jUy+TgQdQL6VNrMcX1KDerdzpxbgqB6JuBjQ5F0KW3UCeAY1x+qojM
-	v2w7QS9GS5NWVAWSXHSaH376av/UDALZHRmsUOeRpSNG+4W5nytEFaMo/a4Ydf51jjKKw8IxhNe
-	xT75yxZCW79EWPpPaxQDBXCoJMSHunIttIKUwdZDwyA/okgNH7nSBUx5P3O7DQesL71c0keutYy
-	T2FRh6iWiQaLdfVLF7p4a3/0UbQMblXuhwN+HOUnL9+bIy488MUb1zGhf/chF/eQvkdwX3BxqsY
-	UZUROjJBK1EE+2Fq7/0JZhtaMCOlRLRhc6baI6WxvV8NDunSVFU21Mex/ip0tAxgc2/c6LezZa/
-	VHBpmP9x7o+uOFlpWJSGXxmXQehGDeOeilPuzoXQmMmm59tG+Q5dp5J66MLCA08E6vl7Aroh53s
-	WAcSX2Z/lPMyLZoI1J1G4BScieu+3jEerluA==
-X-Google-Smtp-Source: AGHT+IEZI4ev2IBH4muhdtA8NDFE8NYLvVDhQkEqcYXbzc7+4M5oYKr1bimv/qoYUS2iAVBmMesOAA==
-X-Received: by 2002:a17:90b:3144:b0:335:2b86:f319 with SMTP id 98e67ed59e1d1-33bcf919094mr34693477a91.35.1761235457698;
-        Thu, 23 Oct 2025 09:04:17 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-33faff37afesm2815913a91.1.2025.10.23.09.04.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 23 Oct 2025 09:04:16 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-From: Guenter Roeck <linux@roeck-us.net>
-To: Rob Herring <robh@kernel.org>
-Cc: Saravana Kannan <saravanak@google.com>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	Guenter Roeck <linux@roeck-us.net>,
-	Han Gao <rabenda.cn@gmail.com>,
-	Paul Walmsley <pjw@kernel.org>
-Subject: [PATCH] of: Skip devicetree kunit tests when RISCV+ACPI doesn't populate root node
-Date: Thu, 23 Oct 2025 09:04:14 -0700
-Message-ID: <20251023160415.705294-1-linux@roeck-us.net>
-X-Mailer: git-send-email 2.45.2
+	s=arc-20240116; t=1761235882; c=relaxed/simple;
+	bh=vtdnEujN+5EGnXsa9gZxRMk9lx4CqDUgeqYrAsdXB3M=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=lptMi+9SlO48E//HQ2YSecjJrO8AxwsMeno9deiuBFrRakP24H0QgF8ox5+ggof11QAWVJtl+Zh7T5VSF0AV/ps5r0CH3Z16PTXlwNTfhkjcjYUnBYPktmD04lQbfmqY9qa8t/u++tj65rPM1ImnzyP9sgqnIbopV5Z2yrSSpsM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ssc1LJJh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2EDB9C4CEE7;
+	Thu, 23 Oct 2025 16:11:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761235880;
+	bh=vtdnEujN+5EGnXsa9gZxRMk9lx4CqDUgeqYrAsdXB3M=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Ssc1LJJhPTSzQlQIdEbHNwBQs+Nj+JtVa+41YYR8nUtpbe7NP2c2/L0ZHnFagoAkY
+	 fkxKK51zWvnrYitxyZVma56B8wnQoRiMS8r3H/D13rPv7bbQGWSYsTxtfb9fWmQ81/
+	 zE5SzCYZ8OK5hRrZwDBQ4GnPClgOPkpBk9XmWfT5z7BsCZ6m/ogNHVM/0YLaf0jI+R
+	 WXam7+ZXifG2u8TkCxJCPaOkHTD4Fldqj7Q43VP4wl4A7bWM58mHLWf90SFFIwzKCL
+	 tssxsFSqXD0sHvJu3hoxlyz0PAm1L1/nts8x3xb0z1psl5G9X2mHuEymyUDMfzh9op
+	 3O4Rjd3dIwa4w==
+Date: Thu, 23 Oct 2025 18:11:18 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>, 
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	Andrzej Hajda <andrzej.hajda@intel.com>, Robert Foss <rfoss@kernel.org>, Vinod Koul <vkoul@kernel.org>, 
+	Moritz Fischer <mdf@kernel.org>, Xu Yilun <yilun.xu@intel.com>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, Guenter Roeck <linux@roeck-us.net>, 
+	Andi Shyti <andi.shyti@kernel.org>, Jonathan Cameron <jic23@kernel.org>, 
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>, Georgi Djakov <djakov@kernel.org>, 
+	Thomas Gleixner <tglx@linutronix.de>, Joerg Roedel <joro@8bytes.org>, 
+	Jassi Brar <jassisinghbrar@gmail.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
+	Lee Jones <lee@kernel.org>, Miquel Raynal <miquel.raynal@bootlin.com>, 
+	Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, 
+	Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, 
+	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
+	Paolo Abeni <pabeni@redhat.com>, Johannes Berg <johannes@sipsolutions.net>, 
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>, Manivannan Sadhasivam <mani@kernel.org>, 
+	Bjorn Helgaas <bhelgaas@google.com>, Kishon Vijay Abraham I <kishon@kernel.org>, 
+	Sebastian Reichel <sre@kernel.org>, Mark Brown <broonie@kernel.org>, 
+	Mathieu Poirier <mathieu.poirier@linaro.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	Olivia Mackall <olivia@selenic.com>, Herbert Xu <herbert@gondor.apana.org.au>, 
+	Daniel Lezcano <daniel.lezcano@linaro.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, linux-fbdev@vger.kernel.org, dmaengine@vger.kernel.org, 
+	linux-fpga@vger.kernel.org, linux-gpio@vger.kernel.org, linux-hwmon@vger.kernel.org, 
+	linux-i2c@vger.kernel.org, linux-iio@vger.kernel.org, linux-input@vger.kernel.org, 
+	linux-pm@vger.kernel.org, iommu@lists.linux.dev, linux-media@vger.kernel.org, 
+	linux-mtd@lists.infradead.org, netdev@vger.kernel.org, linux-wireless@vger.kernel.org, 
+	linux-pci@vger.kernel.org, linux-phy@lists.infradead.org, linux-pwm@vger.kernel.org, 
+	linux-remoteproc@vger.kernel.org, linux-crypto@vger.kernel.org, linux-sound@vger.kernel.org, 
+	linux-usb@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: Remove extra blank lines
+Message-ID: <4iitvr64hrxoj6pwl32bvd7erc3uwfp5pcfiunpumhskzpnmph@g3xhro7zb5qa>
+References: <20251023143957.2899600-1-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="vogfejml6xdyeipj"
+Content-Disposition: inline
+In-Reply-To: <20251023143957.2899600-1-robh@kernel.org>
 
-Starting with commit 69a8b62a7aa1 ("riscv: acpi: avoid errors caused by
-probing DT devices when ACPI is used"), riscv images no longer populate
-devicetree if ACPI is enabled. This causes unit tests to fail which require
-the root node to be set.
 
-  # Subtest: of_dtb
-  # module: of_test
-  1..2
-  # of_dtb_root_node_found_by_path: EXPECTATION FAILED at drivers/of/of_test.c:21
-  Expected np is not null, but is
-  # of_dtb_root_node_found_by_path: pass:0 fail:1 skip:0 total:1
-  not ok 1 of_dtb_root_node_found_by_path
-  # of_dtb_root_node_populates_of_root: EXPECTATION FAILED at drivers/of/of_test.c:31
-  Expected of_root is not null, but is
-  # of_dtb_root_node_populates_of_root: pass:0 fail:1 skip:0 total:1
-  not ok 2 of_dtb_root_node_populates_of_root
+--vogfejml6xdyeipj
+Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH] dt-bindings: Remove extra blank lines
+MIME-Version: 1.0
 
-Skip those tests for RISCV if the root node is not populated.
+Hello Rob,
 
-Fixes: 69a8b62a7aa1 ("riscv: acpi: avoid errors caused by probing DT devices when ACPI is used")
-Cc: Han Gao <rabenda.cn@gmail.com>
-Cc: Paul Walmsley <pjw@kernel.org>
-Signed-off-by: Guenter Roeck <linux@roeck-us.net>
----
- drivers/of/of_kunit_helpers.c | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+On Thu, Oct 23, 2025 at 09:37:56AM -0500, Rob Herring (Arm) wrote:
+>  .../devicetree/bindings/pwm/allwinner,sun4i-a10-pwm.yaml     | 1 -
 
-diff --git a/drivers/of/of_kunit_helpers.c b/drivers/of/of_kunit_helpers.c
-index 7b3ed5a382aa..f6ed1af8b62a 100644
---- a/drivers/of/of_kunit_helpers.c
-+++ b/drivers/of/of_kunit_helpers.c
-@@ -18,8 +18,9 @@
-  */
- void of_root_kunit_skip(struct kunit *test)
- {
--	if (IS_ENABLED(CONFIG_ARM64) && IS_ENABLED(CONFIG_ACPI) && !of_root)
--		kunit_skip(test, "arm64+acpi doesn't populate a root node");
-+	if ((IS_ENABLED(CONFIG_ARM64) || IS_ENABLED(CONFIG_RISCV)) &&
-+	    IS_ENABLED(CONFIG_ACPI) && !of_root)
-+		kunit_skip(test, "arm64/riscv+acpi doesn't populate a root node");
- }
- EXPORT_SYMBOL_GPL(of_root_kunit_skip);
- 
--- 
-2.45.2
+I have nothing pending for this file, and even if, any conflict is
+likely trivial. So feel free to take this change via your tree.
 
+Acked-by: Uwe Kleine-K=F6nig <ukleinek@kernel.org> # for allwinner,sun4i-a1=
+0-pwm.yaml
+
+Best regards
+Uwe
+
+--vogfejml6xdyeipj
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmj6U6MACgkQj4D7WH0S
+/k4RaAf/fCWD+WfbVDOAhcR/7epkQB2tQn+JLBXBxasNnAoyAylmxOooXhE4hfhj
+SU4fMYQlp3veFvx5y8tNYc3sFcgDQf67pKLQT0G8IVx8zxkZemL6SxFJi1IwFKSA
+Q/8MhcPqloQ11C2d/hakVfGh6b/qfDRIdDpJYesPgIQF3Qt9HUGchUGWkxhugoca
+iKITZ2Yf10aMr9chCSazkIHNX2Hpv2qXMJM2tCZXcgHCMhN2AYn+qtsfpBxVz3H7
+cSqvL+mtqXvx0TwEX2G/SfX1f8Jeh3qKN82uS6IJt+tR/Dgs5uIlxJz5h+dIZ3cW
+Mtoip3h3HRFtcP+gNdXc333IYQ0g3A==
+=azcw
+-----END PGP SIGNATURE-----
+
+--vogfejml6xdyeipj--
 
