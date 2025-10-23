@@ -1,232 +1,176 @@
-Return-Path: <devicetree+bounces-230249-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230250-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF2ADC00D3B
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 13:43:23 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B7FFC00E40
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 13:50:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 43DC5347746
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 11:43:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BC56A3A367B
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 11:46:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3152730BB8F;
-	Thu, 23 Oct 2025 11:43:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08E3230E0EA;
+	Thu, 23 Oct 2025 11:46:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="ZlJc4gg8"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="AG/7kiHs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4513C30C62E;
-	Thu, 23 Oct 2025 11:43:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.19
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9313230DEDF
+	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 11:46:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761219799; cv=none; b=s8LnuFMwUPhq7V6zlU0Xve5Go1dKAPoqlrz/mHQPL4UWtZOBYi6VRyfPS8VuU0UWdmH3XFPhmJx/GTsiQdg6vvyP6pCKLioXTJ9AP0xRqNk8dDTeQp97J+Fm3Y70wzWB5KWWMYHEbbP/5/biqj6ltcvz+xkRxmi0VE5iQmuahNI=
+	t=1761219977; cv=none; b=kdczd/h9Wi4329fPsveW6GLvB5mv3q9E9RLRF877YwOFYzL0FvMYok2qr2mbCqnbnvKH+Tc7O5OncMdn/Zi5Ka0jonrSwLwKHQhAHVIbi52S2SuBLpa+uDVuiWqw141MSrt8tcL9I5TTdG1zsdzPyJLe0n8MpWf3u9vmZ5ufAsM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761219799; c=relaxed/simple;
-	bh=3FvckJYclLaFpoM7rkCjwxmr22V2jI4eOwreLOBgF1U=;
+	s=arc-20240116; t=1761219977; c=relaxed/simple;
+	bh=wktu7qOGetTfmxCdZDCA++hXkuBC8rTbnXyIqghi7Y0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Dwk2KHoA+a2RRLSyh5/qHrnlM0Ufnq18w4makbfWeH4KuOAu0U/aSqTMXubAxeAl/p+H7nSlhBl75et+a9uDWkGP9qbvq2FiI1txymLFXVuM+oKT3NZdTR9zCGfvR9EFRhVIW5xWGAbLYxiwgg1lLj/XeTcMCLuTBJDYqky+954=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=ZlJc4gg8; arc=none smtp.client-ip=192.198.163.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1761219797; x=1792755797;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=3FvckJYclLaFpoM7rkCjwxmr22V2jI4eOwreLOBgF1U=;
-  b=ZlJc4gg8xlH/AUy+QcmFceoM6dQ/CXSLgCW/+pquQeQUVqbEIx/epFCw
-   bd2tb/1yzsGoELCw8MxbuaMvZSEjjwwGv8lVkbT6EBNYVYqIX2X3efoXj
-   VUhURIUaocpByCnm7ZLNH40O/EyFD7bqgBalYvrK9BJbkLCZnhw+KBK2h
-   raTB/OMCZwJTCvbQ8IE6ZM8q9zBKnwNoIZtRe5v9glzvG3R3dFahjFGOZ
-   hJ3CKOMwvEsE4L7nM8ErlohKiO1egXwK3yj3bQxcfPjAueQUyd7XnuCuc
-   gvG6Y55eSsJWT5yKzVtUGyvlakwIuCgHXLMkqDHkS5Qdvsk7zi1cvFQuk
-   g==;
-X-CSE-ConnectionGUID: GubOxQtcSfSYaIN2kYeCqw==
-X-CSE-MsgGUID: cWloxm5BQgi9iz04eLyJ4g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="62415559"
-X-IronPort-AV: E=Sophos;i="6.19,249,1754982000"; 
-   d="scan'208";a="62415559"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
-  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Oct 2025 04:43:17 -0700
-X-CSE-ConnectionGUID: +P1tvMTYR3C8eUA2trkadA==
-X-CSE-MsgGUID: Lz7Gau+SSb+jgZGrGaJvjg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,249,1754982000"; 
-   d="scan'208";a="189269028"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO kekkonen.fi.intel.com) ([10.245.244.193])
-  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Oct 2025 04:43:14 -0700
-Received: from kekkonen.localdomain (localhost [IPv6:::1])
-	by kekkonen.fi.intel.com (Postfix) with ESMTP id EADAA1209C8;
-	Thu, 23 Oct 2025 14:43:11 +0300 (EEST)
-Date: Thu, 23 Oct 2025 14:43:11 +0300
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6 krs, Bertel Jungin Aukio 5, 02600 Espoo
-From: Sakari Ailus <sakari.ailus@linux.intel.com>
-To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Hans Verkuil <hverkuil@kernel.org>,
-	Hans de Goede <hansg@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] media: i2c: add Samsung S5KJN1 image sensor
- device driver
-Message-ID: <aPoUzwYYiECdHXSv@kekkonen.localdomain>
-References: <20251016020419.2137290-1-vladimir.zapolskiy@linaro.org>
- <20251016020419.2137290-3-vladimir.zapolskiy@linaro.org>
- <aPiZjiXp8-uuPjjX@kekkonen.localdomain>
- <9f4c0032-39c7-4d78-b24f-2d85cb93734b@linaro.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=JkYYMwUrnVR0UXTjHFXzenamaR0Xdi9vqkQKfZG3LL0Vybb0IMHj/f+iJtuzj9enK9SKduCpWBhp2UC2MsgE0Rp8kdomqvUHhRZiI4OFQiNDle1IAFWf0Gqvis4WUG+ZDrICie7LZT6lqDBcrhr5YmtsQGoN/nn49jfDLWX1S08=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=AG/7kiHs; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59N8DM4C021106
+	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 11:46:16 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=MxuIotyBL55oBcMXr+JxN4AV
+	8Gzau+khOnLw0uMLwiE=; b=AG/7kiHs7N6pOQg3k2714gtxaacwe+b11V+Qxw0I
+	Gu3nGXyQXnnl2wcGdF4vMjXMe/9qh3BGYvdzCS0MsPOsKxCTt/wzX9Rq1tl2xrbU
+	73PCUnFsHIskxPhes8UiAHznc8EZcKfCyUud6Wvtk9iD71ex9VJMS/PMvMgfMZMh
+	nHr3826/BOjI8mxOxiIhGQJZKLIdayhTdzbGifxonGp2Ot/2dcR6VAqaQ5CPKyKx
+	7OOdihE1qqqXk2t2Rtmgx0354pQ2uieNY437lT1DP0qdHgHr12jP8xDC1IfgsH+9
+	fRlKxhSQ6lyIuk8OotssUFYlf49PYcTYFgoQbXxDp03SwA==
+Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49y67qj70y-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 11:46:15 +0000 (GMT)
+Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-4e88947a773so33865871cf.2
+        for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 04:46:15 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761219974; x=1761824774;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=MxuIotyBL55oBcMXr+JxN4AV8Gzau+khOnLw0uMLwiE=;
+        b=SjAoqSBRLO9bxbrcQ0ROFVdIwJTM/+VVBP8mfZHKVNvuirErVjUVCnTlQs6yH6EB37
+         A+IDTFec6tP9+DtfgqoYIkuAYraKAaIqnlduoIptOATFe6X3yZB5soi6HtVJ2sDTYJbo
+         ViooRK/8gB8MGzV3ws5wmGZw2e6psK/HOIz8fikX7sAzAto8QCP26NcLPkWLvzn3mJmL
+         6iE5LvdLQL6q2OtKA6ac6hglMQi1higiV/YXdjJ98EveBDbJJZ1+Fwg7RUpwgDKEArXt
+         GzPpVgLpFIyAVIy4c2Dxu+2+sNWo7p0nioLtM9r5bjSf0UhocnZf6MDMPiiQTnw8fzab
+         kMTw==
+X-Forwarded-Encrypted: i=1; AJvYcCWi0IEn/3KDIYWjgoj91yYQQV0dIgKMDHCPOgOYpwALv1swWt2mxJ5RcX7uX0USZMaHJCyZFTotAYDE@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz4hTO6O+B9Q66sdUZkXLEalntFhIxhB1akEqN8/PDyh5iOphtU
+	IYK7JarA1wKhtwxARa8QiS5mhgs+v+tbmimLG+r8zV5MSUx1CrAEhhjldCjbPizoiax4SNOkcG0
+	p7Ya17Lu3juXvz+1Ww2H1P/ANVMS4Aqp+KsOQ+LFACfOwz4Ktw6aCA48+1i0QlU/J
+X-Gm-Gg: ASbGnct9SsV484xdYR44pm9E82cq+PwdAAozVhJ303WB/RBg5sraum80gqw9n20bSdl
+	WNKK5cUZnuWCJPHx1Tr7ZDVBgN5jKvJGg5laPJgBbgGAmpXhYOwGs8QnI4nGnDIrmtaUcMsXRHi
+	0rz8ycpCLOqfNDxk/LgRyRvnaWwpdsFNLdgVZsIxbDPvaZmChbwOrcVVxlucZldOjJJdhfkC3LU
+	CHL6Jz2TApXigahpBFBIkpwOs7Y+sQW4I0V+jla2IBf650446dE+U9V8SoPbDR1WtP3Z0bk58eO
+	0HkqUgwzNTvkXcXsO4FFlwkel2KHXUD37XbJnGLgesdOlOz/Y+8K0xjGNvBLYCXRql8icHIQ+6D
+	opRuK23AxpZplhEibZ27nzdFSQw+F+MGqEQ6zhSpUqHLUkCF7AiNDEluPNYGfsxXiMyVsqpZmtg
+	wYoHyZdpTuiYNX
+X-Received: by 2002:a05:622a:1a21:b0:4e8:ac66:ee44 with SMTP id d75a77b69052e-4e8ac66f4a4mr250238141cf.39.1761219974203;
+        Thu, 23 Oct 2025 04:46:14 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IE8+pCnO8ZvR8ffZYHTiXBpe8PitkiTaa+bMCiZZSPHl7XKSC3gu/++FOyxZx7Quca27fB8MQ==
+X-Received: by 2002:a05:622a:1a21:b0:4e8:ac66:ee44 with SMTP id d75a77b69052e-4e8ac66f4a4mr250237771cf.39.1761219973768;
+        Thu, 23 Oct 2025 04:46:13 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-592f4d39b96sm656447e87.110.2025.10.23.04.46.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 23 Oct 2025 04:46:12 -0700 (PDT)
+Date: Thu, 23 Oct 2025 14:46:10 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: yuanjie yang <yuanjie.yang@oss.qualcomm.com>
+Cc: robin.clark@oss.qualcomm.com, lumag@kernel.org, abhinav.kumar@linux.dev,
+        sean@poorly.run, marijn.suijten@somainline.org, airlied@gmail.com,
+        simona@ffwll.ch, maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+        tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org,
+        conor+dt@kernel.org, quic_mkrishn@quicinc.com, jonathan@marek.ca,
+        quic_khsieh@quicinc.com, neil.armstrong@linaro.org,
+        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, tingwei.zhang@oss.qualcomm.com,
+        aiqun.yu@oss.qualcomm.com, yongxing.mou@oss.qualcomm.com
+Subject: Re: [PATCH 00/12] drm/msm: Add support for Kaanapali
+Message-ID: <r6kjuxajnimaqazeimzc5gscv2qxudjzkyooxumzakjzojibbl@2jiw6duxfbtz>
+References: <20251023075401.1148-1-yuanjie.yang@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <9f4c0032-39c7-4d78-b24f-2d85cb93734b@linaro.org>
+In-Reply-To: <20251023075401.1148-1-yuanjie.yang@oss.qualcomm.com>
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDIyMDE2OCBTYWx0ZWRfX7MgLff6+ay+T
+ t+cRhkN5ItajqNJX6CDRmqKfYpWDLHm9xV6G6dfjcMC6s400ozAzsZwcvvwAlzj7JxdMjr5mSYy
+ +cza5uw/yILDfzmhCBrjB1IG6w2YlyWE45zIh7qBatCsECeCrl/4HbFOTKrHsQIvieX0iiSUt5h
+ CWx/lUGW9EKncaMIF4vru4w0GgNNSUoCai0APvampSu1d9YCH6Qp5tmXHzTVTWkWndVAfMHeKT7
+ C/1t8LLuQ3I+4UrU7rL9ZsRng7DFW6qCMONDG5Jn0iPuv8ai2Maml7jq3Oac01xFqpatmzOKOWa
+ 3fOrZrL0I5MKZEvNKen39M2l99PD6cFU2Va+wabUrBECmW7oGwh93JbFa+QZbfBOxijtPhIa4Iy
+ e0dDwKUYi9QLXLrI9yClQzP80K/NnA==
+X-Authority-Analysis: v=2.4 cv=LMRrgZW9 c=1 sm=1 tr=0 ts=68fa1587 cx=c_pps
+ a=JbAStetqSzwMeJznSMzCyw==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=x6icFKpwvdMA:10 a=VkNPw1HP01LnGYTKEx00:22 a=qC_FGOx9AAAA:8 a=EUspDBNiAAAA:8
+ a=PFSzt4Q9d-Ge22CFuaAA:9 a=CjuIK1q_8ugA:10 a=uxP6HrT_eTzRwkO_Te1X:22
+ a=fsdK_YakeE02zTmptMdW:22
+X-Proofpoint-GUID: qigvYWe7XAa-lvC1bWzF5PoqxItLFmdY
+X-Proofpoint-ORIG-GUID: qigvYWe7XAa-lvC1bWzF5PoqxItLFmdY
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-10-22_08,2025-10-22_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 clxscore=1015 priorityscore=1501 impostorscore=0 phishscore=0
+ bulkscore=0 malwarescore=0 adultscore=0 lowpriorityscore=0 spamscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2510020000 definitions=main-2510220168
 
-Hi Vladimir,
+On Thu, Oct 23, 2025 at 03:53:49PM +0800, yuanjie yang wrote:
+> From: Yuanjie Yang <yuanjie.yang@oss.qualcomm.com>
+> 
+> The Kaanapali MDSS has some differences compared to the SM8750 MDSS:
+> - DSI PHY/DSI base address have some changes.
+> - DPU 13.0:
+>   - SSPP layout has a great change.
+>   - interrupt INTF layout has some changes.
+> 
+> This patchset contains DSI PHY, DSI Controller, DPU & MDSS bindings
+> in addition to the driver changes.
+> 
+> We have already tested the display functionality using the Kaanapali-mtp
+> device on the Kaanapali branch of kernel-qcom repository.
+> Test command: "modetest -r -v"
+> kernel-qcom repository: https://git.codelinaro.org/clo/linux-kernel/kernel-qcom/-/tree/kaanapali
+> 
+> Signed-off-by: Yongxing Mou <yongxing.mou@oss.qualcomm.com>
+> Signed-off-by: Yuanjie Yang <yuanjie.yang@oss.qualcomm.com>
+> ---
+> Yuanjie Yang (12):
+>   drm/msm/dsi/phy: Add support for Kaanapali
+>   drm/msm/dpu: Add support for Kaanapali DPU
+>   drm/msm/dpu: Compatible with Kaanapali interrupt register
+>   drm/msm/mdss: Add support for Kaanapali
+>   drm/msm/dsi: Add support for Kaanapali
+>   drm/msm/dpu: Add Kaanapali SSPP sub-block support
+>   drm/panel: Set sufficient voltage for panel nt37801
+>   arm64: defconfig: Enable NT37801 DSI panel driver
+>   dt-bindings: display/msm: qcom,kaanapali-dpu: Add Kaanapali
+>   dt-bindings: display/msm: dsi-phy-7nm: Add Kaanapali DSi PHY
+>   dt-bindings: display/msm: dsi-controller-main: Add Kaanapali
+>   dt-bindings: display/msm: qcom,kaanapali-mdss: Add Kaanapali
 
-On Thu, Oct 23, 2025 at 03:13:15AM +0300, Vladimir Zapolskiy wrote:
-> Hi Sakari,
-> 
-> thank you so much for review!
-> 
-> On 10/22/25 11:45, Sakari Ailus wrote:
-> > Hi Vladimir,
-> > 
-> > On Thu, Oct 16, 2025 at 05:04:19AM +0300, Vladimir Zapolskiy wrote:
-> > > Samsung S5KJN1 is a 50MP image sensor, it produces Bayer GRBG (2x2)
-> > > frames in RAW10 output format, the maximum supported output resolution
-> > > is 8160x6144 at 10 frames per second rate.
-> > > 
-> > > Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-> 
-> <snip>
-> 
-> > > +
-> > > +#define S5KJN1_NUM_SUPPLIES	ARRAY_SIZE(s5kjn1_supply_names)
-> > 
-> > Please use ARRAY_SIZE() directly where you need this.
-> > 
-> 
-> There are 6 places of the macro usage in the driver, but will do it.
-> 
-> <snip>
-> 
-> > > +
-> > > +static u64 s5kjn1_mode_to_pixel_rate(const struct s5kjn1_mode *mode)
-> > > +{
-> > > +	u64 pixel_rate;
-> > > +
-> > > +	pixel_rate = s5kjn1_link_freq_menu[0] * 2 * S5KJN1_DATA_LANES;
-> > > +	do_div(pixel_rate, 10);			/* bits per pixel */
-> > 
-> > You could also use div_u64().
-> > 
-> 
-> Right, also it would make sense to change the argument from mode to freq,
-> that's what I notice.
+The order is wrong:
 
-Ack.
+- bindings
+- driver changes
+- DT changes
 
-...
-
-> > > +static int s5kjn1_set_pad_format(struct v4l2_subdev *sd,
-> > > +				 struct v4l2_subdev_state *state,
-> > > +				 struct v4l2_subdev_format *fmt)
-> > > +{
-> > > +	struct s5kjn1 *s5kjn1 = to_s5kjn1(sd);
-> > > +	s64 hblank, vblank, exposure_max;
-> > > +	const struct s5kjn1_mode *mode;
-> > > +
-> > > +	mode = v4l2_find_nearest_size(s5kjn1_supported_modes,
-> > > +				      ARRAY_SIZE(s5kjn1_supported_modes),
-> > > +				      width, height,
-> > > +				      fmt->format.width, fmt->format.height);
-> > > +
-> > > +	s5kjn1_update_pad_format(s5kjn1, mode, &fmt->format);
-> > > +
-> > > +	/* Format code can be updated with respect to flip controls */
-> > > +	*v4l2_subdev_state_get_format(state, 0) = fmt->format;
-> > > +
-> > > +	if (fmt->which == V4L2_SUBDEV_FORMAT_TRY)
-> > > +		return 0;
-> > > +
-> > > +	if (s5kjn1->mode == mode)
-> > > +		return 0;
-> > > +
-> > > +	s5kjn1->mode = mode;
-> > > +
-> > > +	/* Update limits and set FPS and exposure to default values */
-> > > +	hblank = mode->hts - mode->width;
-> > > +	__v4l2_ctrl_modify_range(s5kjn1->hblank, hblank, hblank, 1, hblank);
-> > > +
-> > > +	vblank = mode->vts - mode->height;
-> > > +	__v4l2_ctrl_modify_range(s5kjn1->vblank, vblank,
-> > > +				 S5KJN1_VTS_MAX - mode->height, 1, vblank);
-> > > +	__v4l2_ctrl_s_ctrl(s5kjn1->vblank, vblank);
-> > > +
-> > > +	exposure_max = mode->vts - mode->exposure_margin;
-> > > +	__v4l2_ctrl_modify_range(s5kjn1->exposure, S5KJN1_EXPOSURE_MIN,
-> > > +				 exposure_max, S5KJN1_EXPOSURE_STEP,
-> > > +				 mode->exposure);
-> > > +	__v4l2_ctrl_s_ctrl(s5kjn1->exposure, mode->exposure);
-> > 
-> > Note that these can also fail. Assigning the format to the state should
-> > thus be done as last.
-> 
-> Likely it could happen due to some obscure reasons, but it is not expected
-> to happen due to the new applied mode settings, because the settings are
-> the default ones for the selected mode. Anyway, I agree that in general
-> an error could appear, I'll add the next check before changing the state:
-> 
->         if (s5kjn1->sd.ctrl_handler->error)
->                 return s5kjn1->sd.ctrl_handler->error;
-
-The control handler's error state is set when setting up the control
-handler itself somehow fails, not when applying a value to a control fails.
-I.e. you should check the return values from the above functions only.
-
-E.g. setting the vertical blanking value typically results in an I²C write.
-
-> 
-> > > +
-> > > +	return 0;
-> > > +}
-> > > +
-> 
-> <snip>
-> 
-> > > +
-> > > +static const struct v4l2_subdev_pad_ops s5kjn1_pad_ops = {
-> > > +	.set_fmt = s5kjn1_set_pad_format,
-> > > +	.get_fmt = v4l2_subdev_get_fmt,
-> > > +	.enum_mbus_code = s5kjn1_enum_mbus_code,
-> > > +	.enum_frame_size = s5kjn1_enum_frame_size,
-> > > +	.enable_streams = s5kjn1_enable_streams,
-> > > +	.disable_streams = s5kjn1_disable_streams,
-> > 
-> > Could you also add selections support, even if they're all read-only?
-> > 
-> 
-> Will it be sufficient to set
-> 
->         sel->r.top = 0;
->         sel->r.left = 0;
->         sel->r.width = fmt->width;
->         sel->r.height = fmt->height;
-> 
-> for the crop selection targets like it's done in ov2640 case for instance?
-
-Preferrably like e.g. imx219.
 
 -- 
-Kind regards,
-
-Sakari Ailus
+With best wishes
+Dmitry
 
