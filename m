@@ -1,77 +1,79 @@
-Return-Path: <devicetree+bounces-230015-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230016-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BCB3BFEF79
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 04:59:26 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 89438BFEF7C
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 04:59:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 15D54350996
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 02:59:25 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 2C8504E1314
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 02:59:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1461A22068B;
-	Thu, 23 Oct 2025 02:59:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 588312222B4;
+	Thu, 23 Oct 2025 02:59:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ca4E9TNH"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="rR87PXYI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
+Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32EA220296C
-	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 02:59:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43BC31DF25C
+	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 02:59:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761188362; cv=none; b=US5W7pq9HcGTt1Q4x4YYsRrIIL7pwqfOtD6VbwuUq88oWl7H5uidNw3obVXwDNJwvQVbIlivTlXxn636V7PEcvLLAhc+0mzIplR9ih9kat53+ADa2Sf/ARMXPQbJS5Nq2hdm9jSj3j6ClVANncow1FUAWsacup0hVwftnbM3PNA=
+	t=1761188365; cv=none; b=CPPABdBB/JmLlyl3f0AzbE9KbvBtQfqF5UsRtVBsERVFiG1TN4YFlbo6Lye4pIqyMDPkSHjARezrmhiAsURQ06BIT5DM9Gko+xc9Co2kx2Q3QRuJx9EHws4dMbZ9Pxwxf44fY3EAF9LZANMpfa3MfWhpobOvZHJD8gmJx4Wl8cQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761188362; c=relaxed/simple;
-	bh=3G1bXwWtl6VnvZe0v7hopCxr+A2lOEL7pVN02yKzvPA=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=AUhbAfvxtwh7gNqa1EFSLWO4CMmXhPJhCaSGUFqdhuWWLkrTTX2VBF0L7HgwUErAZqsVY0116G9G9k43XbC8l+Y0qUvTiFkmMeW7MyDQaZ9/OoBUFNTdYpLaLeb4ZMU0wBvfTyxkz0nWzowmqoxhXoX9Q0qI61Axf+h1B1mIOsM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ca4E9TNH; arc=none smtp.client-ip=209.85.167.48
+	s=arc-20240116; t=1761188365; c=relaxed/simple;
+	bh=geeyM3OMTfDjPfzDBYSianuZgGUAcEsr1MJmNCZlbMI=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=LLQOFgZp3l23XUiM7XXLAoWumJPIrTW0Op6+vQblltHbvRBYgIPYJn89IVPQ7nRwEnbk5DOn+aS5eSR+TtQ6pmWm8J9DDx0qaO1fDxjQlKNkxenZiFLhHiibXHyTewcwAXJkE3Ldgy/jkemHDlm33hk826RbauFHTQVxsK6DiAQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=rR87PXYI; arc=none smtp.client-ip=209.85.167.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-57b35d221e2so81228e87.3
-        for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 19:59:19 -0700 (PDT)
+Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-591e6dea3e1so71490e87.2
+        for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 19:59:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1761188358; x=1761793158; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=pIiPd67vlVFd6R0UXLdM53svlFH/FgicZ0d5lASq/7c=;
-        b=ca4E9TNHpuGn/LOcyGqMyBnvti+wnN61GhtPSmGedqdfKpuXv9vf3wLUSGhwEz7Ze5
-         J24SZDjeLrN0QAYiihAIJmjEt0M7wP1+nicxc6GqzlGCE+M3Zt1PAEQA5NBAdxlB17eN
-         VIK7bbXieTpZYGLol/9srhEMEI3qRGVnlfs7aF9YBrWyw9BanggmjvxJ1ipebYyaUnqW
-         Q+A/nKRIapNAbJcuxoIqiS/xXYqlUXSOQpl9IRfLvwGQjF6nucQ/tj5PwfESkQ9U2PDu
-         y7qOjFH/nPXinwl3eFOzNJLXurJ2BNcvm9M9mXtlrIyO5ty8AyOijF3XaJWCDZiabupA
-         pw9A==
+        d=linaro.org; s=google; t=1761188361; x=1761793161; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=L/eXxd5HWhdyu0lw4hYwNFJCVblfs3MWehYS2hRN1AU=;
+        b=rR87PXYIfhikJChhrr44V/eY7A4tpSBYz8NftrhYLWUXzFUEEdAqMHrfYja0FMiD4i
+         ptMjY9Io93eee/azIQ+tdSdDiAB0qBkCTP8e8OmcSzPo7P9TGaslJR/ayXLlEgk36Vnp
+         819nzqsWv3fw+jR7miYO3yn3/OlKkrXIcKfWVLear515CxosXZ7SjAlGCXicgpAG/ngG
+         Cwt9P8F9fP1tEFysmyw7AWxna+vX0AGaygnnkNBuAvSOgxkYizOgc5Yutlrgk6yuX+25
+         /OhZTRYIwzODL4gwlhA431XjXDStcE6Op4mMZ1QkHLd3LQg2u+9YBa5oz/1YC4wPgSRB
+         X3TQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761188358; x=1761793158;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=pIiPd67vlVFd6R0UXLdM53svlFH/FgicZ0d5lASq/7c=;
-        b=GxHY/uYdSx+5sZZsxDW3LGlQYDfyIKtxvwTT/GxKxZc2NAAlzCIMfEbFIDYwlzrMaR
-         x7LPe3HUvg93b62jBEhhVuc2f6Fy1vzJEiMNOZ5UC8ZEAsOCwFoXN3dTuGQTQUXHRlb+
-         iHW1d5DTnbkW7ZzxZ7bWwdL5xtvj+ZZATtJkAA1bqoIdnX560aIalc/X2IXzXkuEvL/D
-         goyYr7/LVrPa+SCfpJVw4kG92yGgnJ+JEvLcUDSnGj7VOGyDXujOkmI1OE8DNQYdFdm1
-         S39RzKT2nm4+Er6qMBsXEKTB7mnyuNIQjZHFr3bYqsWg4RfJyhrh8MiGIMl6UoxAdBJ7
-         t3Fw==
-X-Forwarded-Encrypted: i=1; AJvYcCV2wvcBpBNEib3VfBxMdDs4Uadm9k8qABu47fl+uKEWsvTFzuaxe7sr/4PWIeLnrxI2/UToWGTNOYDh@vger.kernel.org
-X-Gm-Message-State: AOJu0YxwlIkeIapourVry1UYec16yfmZ2sau+hQJokGdSbk8daJco0is
-	P69Z2JSxDwWqvS0CDwMBCuc+v9wK0p5Ew0eJGToQ6PY1yZ8FuiBqpeRBgS6zhz9oIXs=
-X-Gm-Gg: ASbGncs9kfohC4w2yY2m+tAP+GPWV8/k3WS2MAhWAzOHLiAbLNxVEl88d6Uqq8Qrp2P
-	N++bo11ROGX+nOxj+qsDMAqq5ckTILTBwVQDJY3dRl9Jgb0UC9qVIK7N+ubyRjw9qi6Nd6WGXez
-	ACROtS6CtfF4GKu7PvHTUr9hJjGD9ulU+9lJ+/DZPPDW5KTdxBRWRVw9AJPZF725GZe63zw4ZjT
-	AL8lEfTrvxiSQT4mSwcO3eFOkXT3kTzGQgP5VvPeBHWFHUgagowet+BaxEswRyAA6+uEsJeAeuw
-	sy4Elw+UrbmdCRtHgnTt1bwE/bffPNXr1LqQZxttpxdCgndf/Vm6XxyS3TZn2bNNAqi4G2u7zp2
-	JZckrIk3MNcj4E6PpI4CTz8cQUbPFvlajEv281l0gLLkM9tnR3hbqDaHOGi59Yxp9nvTi6RMm3e
-	a/aCaToBetZjfR/7rQeoIzJuYZtelCJLZNngrFL8Qrm5Tu4romd2yY4Q==
-X-Google-Smtp-Source: AGHT+IGuHLoyl1PlImxHNd2Pf93RrfU/kmxL+XV4m9FVarpximyvQwOnqYbnR9lHI1XhC1sdu7AjFg==
-X-Received: by 2002:a05:6512:239a:b0:57a:8bb8:2a21 with SMTP id 2adb3069b0e04-591ea2fcdb7mr1553523e87.6.1761188358287;
-        Wed, 22 Oct 2025 19:59:18 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1761188361; x=1761793161;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=L/eXxd5HWhdyu0lw4hYwNFJCVblfs3MWehYS2hRN1AU=;
+        b=ppL/MtXXvVTrTQR2nuHY/9bjq6VEHnZSLyLd+gk19mf/BitnHinvNBy/1Q1t1+sfVg
+         FtdfOw18r2+bZ4iwiiG8omw5D38W5sZ6OlWtrEe3WxQ1guugisBYCvQYumU0wHV7ii0P
+         5tNhugS/IN1gqUIDtPGvOEViXzGE3QbOa8bhJvMxnip5kerfHMmwUQKKC/6Ybqd1sk0w
+         HZSttGMw8jibBKup2VEGAjZvoRMutK+0jDNdyQtDT4x9U3uyqUqGQhV/7SvbY5YVft23
+         jN3M+uGj8IwwEpdQTglr5XFI/jfQsNkTPsy1WgoLJDOnbj+Ayrah7w2YD07nPEHmENJt
+         uTew==
+X-Forwarded-Encrypted: i=1; AJvYcCWoFeE35iaT80Bx6kmSIw//3tektiMj09x1dbfqyIkR9ak0GWsRv5ZaADl1xUTXFz2xByWQt3dZwEDX@vger.kernel.org
+X-Gm-Message-State: AOJu0YzXTd2RqHQs8SvILbWoNIa9wis/0eHHrz1MHMiud9TPT/2CLrCg
+	+c8UQ4qyUMTKIG17x6iRL2IkfXNYHGlyu4PFgGZUHUiVkQG0k2hycNTTQqS96fLEhyM=
+X-Gm-Gg: ASbGncsC17832f28UesswykNU7xrR5bX7H2QFYVjwdwblmr9g9mi+fDO33mV2k6QomY
+	PBsBzu7N8GqeVLfZwImOL/Y7bIRu1VSy2CAMcx2siuNkQrNvR/rkAMu/JIosYnk5ekkgcC6l4Tk
+	j8P6fET0e2bki7vWT9Rx92Yz+CQcl+xn8fnDivsof9Fc0/mQCGREBVsByRWD9vbhjxdcTVEz4DP
+	jLSJ+INfa4NgZsPngrau4CtUzQEgAiqx1IPs1EgyuCXdFdfAMx0Fm7QyIJBWR/C95Sz5whOC/Uw
+	ERpPNt1fcSaEpoDvfq8CFXsXsQCFB/T9alW1AM5yMnaPCBwk1BXpfTBvemfTp1cdXedlVjSU5rh
+	4vI1qY/Jbi1WOZxkL/Z99mpMe598+z1K0RpKV7AnciqtVf6tNLcsZ7wdJeAg0gfYHBrKwXVrATV
+	YtGY/f3c8Kisj0OKyX+ZwAzGd/HGRP9p+9JG8irSkOH3pwh8LUarq98A==
+X-Google-Smtp-Source: AGHT+IHJttEdQ/IAj38B+Ud31qMScWCRKeXBQa5Q3Lty28zvVXC3xaBWyBL8GYgHtDG8IwWWYTE5CA==
+X-Received: by 2002:a05:6512:3181:b0:581:8db3:d5fe with SMTP id 2adb3069b0e04-591ea2eef26mr1767045e87.2.1761188361428;
+        Wed, 22 Oct 2025 19:59:21 -0700 (PDT)
 Received: from thyme.. (91-159-24-186.elisa-laajakaista.fi. [91.159.24.186])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-592f4d16a15sm334471e87.58.2025.10.22.19.59.16
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-592f4d16a15sm334471e87.58.2025.10.22.19.59.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 Oct 2025 19:59:17 -0700 (PDT)
+        Wed, 22 Oct 2025 19:59:19 -0700 (PDT)
 From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
 To: Bjorn Andersson <andersson@kernel.org>,
 	Konrad Dybcio <konradybcio@kernel.org>,
@@ -82,10 +84,12 @@ Cc: Rob Herring <robh@kernel.org>,
 	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
 	linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org
-Subject: [PATCH 0/3] arm64: dts: qcom: sm8650: Enable S5KJN1 image sensor
-Date: Thu, 23 Oct 2025 05:59:10 +0300
-Message-ID: <20251023025913.2421822-1-vladimir.zapolskiy@linaro.org>
+Subject: [PATCH 1/3] arm64: dts: qcom: sm8650: Add description of MCLK pins
+Date: Thu, 23 Oct 2025 05:59:11 +0300
+Message-ID: <20251023025913.2421822-2-vladimir.zapolskiy@linaro.org>
 X-Mailer: git-send-email 2.49.0
+In-Reply-To: <20251023025913.2421822-1-vladimir.zapolskiy@linaro.org>
+References: <20251023025913.2421822-1-vladimir.zapolskiy@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -94,32 +98,170 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Enable Samsung S5KJN1 image sensor on SM8650-QRD and SM8650-HDK/RCC boards.
+Add fixed MCLK pin descriptions for all pins with such supported
+function.
 
-The changeset is based and tested on v6.18-rc2 and it has two dependencies:
-1) added Qualcomm SM8650 CAMSS support:
-- https://lore.kernel.org/linux-media/20251017031131.2232687-1-vladimir.zapolskiy@linaro.org
+Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/sm8650.dtsi | 144 +++++++++++++++++++++++++++
+ 1 file changed, 144 insertions(+)
 
-2) a new Samsung S5KJN1 camera sensor driver:
-- https://lore.kernel.org/linux-media/20251023025356.2421327-1-vladimir.zapolskiy@linaro.org
-
-The SM8650 MCLK change has been reviewed in v2 of SM8650 CAMSS changeset.
-
-Thus the displayed updates to SM8650-QRD and SM8650-HDK board files can
-be used for testing these two media driver changes given above.
-
-Vladimir Zapolskiy (3):
-  arm64: dts: qcom: sm8650: Add description of MCLK pins
-  arm64: dts: qcom: sm8650-qrd: Enable CAMSS and Samsung S5KJN1 camera sensor
-  arm64: dts: qcom: sm8650-hdk: Add support for the Rear Camera Card overlay
-
- arch/arm64/boot/dts/qcom/Makefile             |   4 +
- .../dts/qcom/sm8650-hdk-rear-camera-card.dtso |  90 +++++++++++
- arch/arm64/boot/dts/qcom/sm8650-qrd.dts       |  45 ++++++
- arch/arm64/boot/dts/qcom/sm8650.dtsi          | 144 ++++++++++++++++++
- 4 files changed, 283 insertions(+)
- create mode 100644 arch/arm64/boot/dts/qcom/sm8650-hdk-rear-camera-card.dtso
-
+diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
+index 555305c1c70d..8f934d94d359 100644
+--- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
+@@ -6065,6 +6065,150 @@ tlmm: pinctrl@f100000 {
+ 
+ 			wakeup-parent = <&pdc>;
+ 
++			cam0_default: cam0-default-state {
++				mclk-pins {
++					pins = "gpio100";
++					function = "cam_mclk";
++					drive-strength = <2>;
++					bias-disable;
++				};
++			};
++
++			cam0_sleep: cam0-sleep-state {
++				mclk-pins {
++					pins = "gpio100";
++					function = "cam_mclk";
++					drive-strength = <2>;
++					bias-pull-down;
++				};
++			};
++
++			cam1_default: cam1-default-state {
++				mclk-pins {
++					pins = "gpio101";
++					function = "cam_mclk";
++					drive-strength = <2>;
++					bias-disable;
++				};
++			};
++
++			cam1_sleep: cam1-sleep-state {
++				mclk-pins {
++					pins = "gpio101";
++					function = "cam_mclk";
++					drive-strength = <2>;
++					bias-pull-down;
++				};
++			};
++
++			cam2_default: cam2-default-state {
++				mclk-pins {
++					pins = "gpio102";
++					function = "cam_aon_mclk2";
++					drive-strength = <2>;
++					bias-disable;
++				};
++			};
++
++			cam2_sleep: cam2-sleep-state {
++				mclk-pins {
++					pins = "gpio102";
++					function = "cam_aon_mclk2";
++					drive-strength = <2>;
++					bias-pull-down;
++				};
++			};
++
++			cam3_default: cam3-default-state {
++				mclk-pins {
++					pins = "gpio103";
++					function = "cam_mclk";
++					drive-strength = <2>;
++					bias-disable;
++				};
++			};
++
++			cam3_sleep: cam3-sleep-state {
++				mclk-pins {
++					pins = "gpio103";
++					function = "cam_mclk";
++					drive-strength = <2>;
++					bias-pull-down;
++				};
++			};
++
++			cam4_default: cam4-default-state {
++				mclk-pins {
++					pins = "gpio104";
++					function = "cam_aon_mclk4";
++					drive-strength = <2>;
++					bias-disable;
++				};
++			};
++
++			cam4_sleep: cam4-sleep-state {
++				mclk-pins {
++					pins = "gpio104";
++					function = "cam_aon_mclk4";
++					drive-strength = <2>;
++					bias-pull-down;
++				};
++			};
++
++			cam5_default: cam5-default-state {
++				mclk-pins {
++					pins = "gpio105";
++					function = "cam_mclk";
++					drive-strength = <2>;
++					bias-disable;
++				};
++			};
++
++			cam5_sleep: cam5-sleep-state {
++				mclk-pins {
++					pins = "gpio105";
++					function = "cam_mclk";
++					drive-strength = <2>;
++					bias-pull-down;
++				};
++			};
++
++			cam6_default: cam6-default-state {
++				mclk-pins {
++					pins = "gpio108";
++					function = "cam_mclk";
++					drive-strength = <2>;
++					bias-disable;
++				};
++			};
++
++			cam6_sleep: cam6-sleep-state {
++				mclk-pins {
++					pins = "gpio108";
++					function = "cam_mclk";
++					drive-strength = <2>;
++					bias-pull-down;
++				};
++			};
++
++			cam7_default: cam7-default-state {
++				mclk-pins {
++					pins = "gpio106";
++					function = "cam_mclk";
++					drive-strength = <2>;
++					bias-disable;
++				};
++			};
++
++			cam7_sleep: cam7-sleep-state {
++				mclk-pins {
++					pins = "gpio106";
++					function = "cam_mclk";
++					drive-strength = <2>;
++					bias-pull-down;
++				};
++			};
++
+ 			cci0_0_default: cci0-0-default-state {
+ 				sda-pins {
+ 					pins = "gpio113";
 -- 
 2.49.0
 
