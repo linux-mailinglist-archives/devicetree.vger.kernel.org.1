@@ -1,34 +1,34 @@
-Return-Path: <devicetree+bounces-230499-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230500-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CDA7C0322C
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 21:07:46 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38B96C0323B
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 21:08:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2FC761890CA2
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 19:08:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BF69A3ACEBE
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 19:08:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 579DA34B433;
-	Thu, 23 Oct 2025 19:07:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EABB34C149;
+	Thu, 23 Oct 2025 19:08:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="NY8avjKB"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="Tm1Zrbur"
 X-Original-To: devicetree@vger.kernel.org
 Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6F722773F7;
-	Thu, 23 Oct 2025 19:07:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1E1C34B433;
+	Thu, 23 Oct 2025 19:08:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761246462; cv=none; b=YfxKjlU5/tyOc3OcHjCEKh1fCVzxbiZ84QGb0WjHoNtwPBydIcZY8fOjytePFotKK9gurIRQEani2KzUsTGqPoT8jGX1mJnobD19l3FvxHzfuibL1o1f7rLe15zjxe3giScXhEKLsOTi9KjMO2VhObTjirdrawrE38LbdVM0OI8=
+	t=1761246504; cv=none; b=PBAKYxBXN6wBQzoviDanOrgEXbnwYQmXix7bbHrz++yXhGu8MyTXJJsNrBr/ZplU3XkAlY7Yz4yBCCppa8gq0x38Hyb8olyAJ5NmkycHoDGl7y+vOTsm2mxXHjH4+cCxtUD6wJRPqwvLO52V+LocHIRxVwFDp+l+tsyOpzoEoTQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761246462; c=relaxed/simple;
-	bh=3x+qJWsQ2ROHmhDi9RWoQ+itit3OVqimyz6qxumZtXU=;
+	s=arc-20240116; t=1761246504; c=relaxed/simple;
+	bh=S3Dg+nUTg8JCuATR8lD9tK3QqbksSXmt4GVjY8UM3v8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RIUFN7K3okPRhsWwiUJmnn8eqD9eXGGkPGTXPe5LS6IRuI95HWWLeLlYvteJ8cW2QF84sZfpfsBULFYr/VfYLhslKGMk+juLNM5rXKDEzfRbiDGVO4zgVlAGkFFEGyqk8k24xFkyIt9IiNjkxmFFkr2+AHRinIbUcxObrKSwqNk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=NY8avjKB; arc=none smtp.client-ip=156.67.10.101
+	 Content-Type:Content-Disposition:In-Reply-To; b=iWJKD9ESBRsbfFOuHcxHxs+E1DQMgqPMA7xSNk7P7iUhXWBLhNOoBZ+zZRI+lcZS80nIIzaVU5V95qIGjrAauE4m54o4qn7Llf9YvHbR+VEMtiUQexA76BOR/ai5G8iWoS4U+mjLY8zk8fC8Mlzv0XcH/1CCbFusATReaqdZzSE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=Tm1Zrbur; arc=none smtp.client-ip=156.67.10.101
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
@@ -36,14 +36,14 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
 	Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
 	Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
-	In-Reply-To:References; bh=0lDCHKQYR0zGU0/u6ys1g99RZCQjr8fVoXQ2lkLt7fE=; b=NY
-	8avjKB5C2MRj5p4Ye9YvXk9lvuLNmkiXGQFRa1yjvnn9v9DgIYActvJGjQvnsLRzJRJdWS4rcbqSJ
-	xxJ9IVY2sfNBhooD/ZQmUukNfc9W2Dfggk402z8wr5w0XwHOD9ui6WoAPXVVBobmIrOTM/WfuaYZT
-	qgoEK5x0NWGVl5E=;
+	In-Reply-To:References; bh=Lhn5bzMlAShhFSJmAR4GsBUbfsKVR0B5+J/foljot0Y=; b=Tm
+	1Zrbur6hxz6p84Dz+kBFPPxxgHVjhFp0tl0w6oMEu4qAnhK/JQDpRQzdjTd/nKWtaFIIbKn91SpUU
+	kCBjM3SQ/bRp4FiP8WhX+f9pSgI/IB+r22K6ntAIawn70Cz/S0m2eJ0rYC4ey0RVq70jHWDtjAcpP
+	/7sZRPyhveeKEdw=;
 Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
 	(envelope-from <andrew@lunn.ch>)
-	id 1vC0en-00Buko-UR; Thu, 23 Oct 2025 21:07:29 +0200
-Date: Thu, 23 Oct 2025 21:07:29 +0200
+	id 1vC0fW-00Bulo-91; Thu, 23 Oct 2025 21:08:14 +0200
+Date: Thu, 23 Oct 2025 21:08:14 +0200
 From: Andrew Lunn <andrew@lunn.ch>
 To: =?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>
 Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
@@ -63,11 +63,11 @@ Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
 	Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
 	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
 	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>
-Subject: Re: [PATCH net-next v3 2/5] net: macb: match skb_reserve(skb,
- NET_IP_ALIGN) with HW alignment
-Message-ID: <ef986d47-10ed-49af-9576-b0c1cda7cc5b@lunn.ch>
+Subject: Re: [PATCH net-next v3 5/5] net: macb: Add "mobileye,eyeq5-gem"
+ compatible
+Message-ID: <e688fa9d-7f3c-4b0f-882d-1cc681eaded7@lunn.ch>
 References: <20251023-macb-eyeq5-v3-0-af509422c204@bootlin.com>
- <20251023-macb-eyeq5-v3-2-af509422c204@bootlin.com>
+ <20251023-macb-eyeq5-v3-5-af509422c204@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,22 +77,29 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20251023-macb-eyeq5-v3-2-af509422c204@bootlin.com>
+In-Reply-To: <20251023-macb-eyeq5-v3-5-af509422c204@bootlin.com>
 
-On Thu, Oct 23, 2025 at 06:22:52PM +0200, Théo Lebrun wrote:
-> If HW is RSC capable, it cannot add dummy bytes at the start of IP
-> packets. Alignment (ie number of dummy bytes) is configured using the
-> RBOF field inside the NCFGR register.
+On Thu, Oct 23, 2025 at 06:22:55PM +0200, Théo Lebrun wrote:
+> Add support for the two GEM instances inside Mobileye EyeQ5 SoCs, using
+> compatible "mobileye,eyeq5-gem". With it, add a custom init sequence
+> that must grab a generic PHY and initialise it.
 > 
-> On the software side, the skb_reserve(skb, NET_IP_ALIGN) call must only
-> be done if those dummy bytes are added by the hardware; notice the
-> skb_reserve() is done AFTER writing the address to the device.
+> We use bp->phy in both RGMII and SGMII cases. Tell our mode by adding a
+> phy_set_mode_ext() during macb_open(), before phy_power_on(). We are
+> the first users of bp->phy that use it in non-SGMII cases.
 > 
-> We cannot do the skb_reserve() call BEFORE writing the address because
-> the address field ignores the low 2/3 bits. Conclusion: in some cases,
-> we risk not being able to respect the NET_IP_ALIGN value (which is
-> picked based on unaligned CPU access performance).
+> The phy_set_mode_ext() call is made unconditionally. It cannot cause
+> issues on platforms where !bp->phy or !bp->phy->ops->set_mode as, in
+> those cases, the call is a no-op (returning zero). From reading
+> upstream DTS, we can figure out that no platform has a bp->phy and a
+> PHY driver that has a .set_mode() implementation:
+>  - cdns,zynqmp-gem: no DTS upstream.
+>  - microchip,mpfs-macb: microchip/mpfs.dtsi, &mac0..1, no PHY attached.
+>  - xlnx,versal-gem: xilinx/versal-net.dtsi, &gem0..1, no PHY attached.
+>  - xlnx,zynqmp-gem: xilinx/zynqmp.dtsi, &gem0..3, PHY attached to
+>    drivers/phy/xilinx/phy-zynqmp.c which has no .set_mode().
 > 
+> Reviewed-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
 > Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
 
 Reviewed-by: Andrew Lunn <andrew@lunn.ch>
