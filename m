@@ -1,180 +1,222 @@
-Return-Path: <devicetree+bounces-230231-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230243-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A592C00C00
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 13:32:48 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 466A8C00D7A
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 13:45:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 92BDC505020
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 11:31:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 895BF3B1C54
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 11:39:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF46530F819;
-	Thu, 23 Oct 2025 11:30:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="IvhdcHew"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68ACE30DD3C;
+	Thu, 23 Oct 2025 11:38:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f177.google.com (mail-vk1-f177.google.com [209.85.221.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DBAC30C62E;
-	Thu, 23 Oct 2025 11:30:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7798630DED5
+	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 11:38:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761219008; cv=none; b=P9pZFEoG/5/nL5GGATnukkz7bIAx79tZMhTBGl0QYdB7G2JhON4umCiSWZ56qDdPJV4WznwMTlM1PwP5LZAAycQgZDDdRF/GAKtyCSypZjXBy0dLfMSQ5ExK/hNyVyuD8UZsJZLrjmgWtoNPb09soAcFjwy7oBVwuoTNXVbttME=
+	t=1761219509; cv=none; b=sNBaU+CeVrV4q1Us0ZF/clIfhfjbMTZa0xpCCzgH8OF/N6PvJZLNqmvRihjauGvF0MZ5fr+vyw7xdgmX52SKQg8bLAYOpOX9HNzk+ZcBI00AFtd2oItyoRw87EAGQALNhyiK1SZwn1FYs9YS0mtDArkamDIjQnyeIldp0VUyyX0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761219008; c=relaxed/simple;
-	bh=XLkysNfegUvwyIevl1eKm/wT3mO3tDZSFi6ARpRRGTw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=n8T0moe5bLKgtigc7+YZruE1M5Y0hh37aGkLMFdM4AWFVhMjlIGrfvpWJPQ2aaBO+hDQXff2twpt0FWxvC2rcFQ3IDfTXXWc/nTTWM4MNkXXqRBoNdn0hGzT7qfJY2mowW6Pe4vfe4A52l1ldgOrN9gWb02unNba5LeBt4i5Pzc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=IvhdcHew; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 513DEC4CEFF;
-	Thu, 23 Oct 2025 11:30:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1761219005;
-	bh=XLkysNfegUvwyIevl1eKm/wT3mO3tDZSFi6ARpRRGTw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=IvhdcHewmfHAjgrwZglSVd155WrxiM4g73D6cbuvPY3vsvdnXN/GwE22hcg1dgSUO
-	 qAme1OOliteiwXZvpnXyYvTrfNY/wdnvvQGBd00WxFrDDlL+QyLaVIqWgYWo5LujOT
-	 aHqV/8zJm7ZSt8TCRKT9z8UFhoNeAC6JKxf2hhcE=
-Date: Thu, 23 Oct 2025 13:29:58 +0200
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: Chaoyi Chen <chaoyi.chen@rock-chips.com>
-Cc: Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>, Sandy Huang <hjc@rock-chips.com>,
-	Andy Yan <andy.yan@rock-chips.com>,
-	Yubing Zhang <yubing.zhang@rock-chips.com>,
-	Frank Wang <frank.wang@rock-chips.com>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <rfoss@kernel.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Amit Sunil Dhamne <amitsd@google.com>,
-	Dragan Simic <dsimic@manjaro.org>, Johan Jonker <jbx6244@gmail.com>,
-	Diederik de Haas <didi.debian@cknow.org>,
-	Peter Robinson <pbrobinson@gmail.com>, linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-phy@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH v7 1/9] usb: typec: Add notifier functions
-Message-ID: <2025102308-glorified-greedy-e41c@gregkh>
-References: <20251023033009.90-1-kernel@airkyi.com>
- <20251023033009.90-2-kernel@airkyi.com>
- <aPni4AeDaem_rfZH@kuha.fi.intel.com>
- <aPnvoSRJefwDlpNO@kuha.fi.intel.com>
- <aPn4-S7upPOOtenr@kuha.fi.intel.com>
- <9c52db41-14f3-41a8-9423-3efe604361aa@rock-chips.com>
+	s=arc-20240116; t=1761219509; c=relaxed/simple;
+	bh=6/N3YiTLQifAY9zz3xwpfpgdh+PsNHV80wg+8+9zp1Y=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=OGdob1dE2bj2pfj2zpSDzIY+E66dsG4RqbPRPThnmOY5mFn4MOjKq7MJR7VQVi5njjC22ih5NuYmWSkK59HKk1Em4WTvd4icWW/yqqQleNshE4wNHNaGQ+cY5UK3A9xCuchlH2AfxI7QM5QSp3iF0DomJcHW7HyaiWYW/NIqbU8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f177.google.com with SMTP id 71dfb90a1353d-556706ea172so657869e0c.0
+        for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 04:38:27 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761219506; x=1761824306;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=6zsBv2UTTNDe+bvN26dCEz5bfw+/JNH9ObmAd3JmbGM=;
+        b=lxzNVofb/zuY53Mm9rc25Tp3JC42L55Gdcfo2ojQ75tht5Wr3s3bht3HVMNulIcNcL
+         1mRCkSCYc4ToCMnJ1lEUJq6fFqjVfKk3c92Jq4sbc1Fw6aqB1NSCnNaaJMmLLN9HHif4
+         1JJ1pJKSaMjaenPCAueYjmthdV3MjpacnbOR4/86aqZ9cj/7IwdOhnsQEVSa7pUtmvs1
+         jDCpn6b910y29cVt059iGzDtIGKre1TFg1mxaOExsWAqqfktBDr5s9Vvc6BZCug5VeC1
+         6sGyzfHBDSU9nIrQl7p2p5KGAuiRfmR/63db79lVaAw1zoF6XQ2aOpmzbPX9wgUFs1Nr
+         Ivlw==
+X-Forwarded-Encrypted: i=1; AJvYcCWQBAg8PxtKtEagXYfUmK21jEq1YvTOn/UyyB8ipsUBuyF7NqYWHK/3WSp3J9tCgmvJSWWZLdcqS4Ty@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy4FDlZMpwF0+MbhPkKDhHdGFxNa8Rc63bTCj36vk1vYI0NP53g
+	kjEmMtLx5ejQneiSzhrzL3T0pGPaXmAZ+CVc6BWU9ypJ6I1oYBgpofQDfdYSDnUb
+X-Gm-Gg: ASbGncuELQp4kt6s6Eol6OZ0sQ5n6K1/BKIqPwV3a2GqgoNNjPDf+ZnyY2BySdau08R
+	9jR89ObebqZMTNPKMrMntzUpvJxZoQwcN3ab/pzyuMAAX3hPvbn70SofOYte3jld3Wabf9RPHmK
+	gJtnNN+cg2hbKBQpV+0K70AN6Hz1PJ0L7mmcxsviaxm/UGvl9EAGJBvkNNQ/JLDEQiyuTGoXezT
+	t6DsCyg1MNsbyMLhyU/YhfkH1Z864A0TdzL3Fdh2NhyDWNKGEQzRukKsVfG7wAkY4JmqFAycVrm
+	CIh3ZkcvynOhyT5sf3+sPgzeEsSaeheQQAd5vmZOhRHSYYaUVG2aglNj+S+pP3EbUcClZm/iBps
+	X4ixCxlI1UD032RSb5GIPtRWbARzotigxq3WoVnSk6Um+ECOgPfBJmYZdkt8L+xSP/h2Pabfwb/
+	4YukUnFuC6yuOsRJ5QDgB8Bhkc+S4QFHA/JUVBn2Q6Y/pLYqsIRLpl
+X-Google-Smtp-Source: AGHT+IFVheNlwJXqy8hh+lwHXfQaL/69nxZ9DDkGcg2TrXPMjU2X+AMf0qbL5HRCFfSaHFKboWeKvQ==
+X-Received: by 2002:a05:6122:789:b0:556:94ae:ae32 with SMTP id 71dfb90a1353d-556964c6ed2mr2251790e0c.4.1761219505969;
+        Thu, 23 Oct 2025 04:38:25 -0700 (PDT)
+Received: from mail-vk1-f171.google.com (mail-vk1-f171.google.com. [209.85.221.171])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-557bdbbba23sm628480e0c.13.2025.10.23.04.38.25
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 23 Oct 2025 04:38:25 -0700 (PDT)
+Received: by mail-vk1-f171.google.com with SMTP id 71dfb90a1353d-556706ea172so657846e0c.0
+        for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 04:38:25 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVXTAjqDAwWBzlcjnZlX1dlJ/Vm+ulh1xwnF4rGWB348zVQvaCsKdKvxm65i5i1jxftfQ5+ZVpUtExa@vger.kernel.org
+X-Received: by 2002:a67:fd0f:0:b0:5d4:1499:99a4 with SMTP id
+ ada2fe7eead31-5db238491ffmr1515554137.13.1761219064357; Thu, 23 Oct 2025
+ 04:31:04 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <9c52db41-14f3-41a8-9423-3efe604361aa@rock-chips.com>
+References: <20251020080648.13452-1-herve.codina@bootlin.com>
+ <20251020080648.13452-8-herve.codina@bootlin.com> <CAMuHMdV03D_3b_JA2vzW4tE_QbkkT1bN1dm+zLLLX24oDHMj0Q@mail.gmail.com>
+ <20251022150339.4c48649e@bootlin.com>
+In-Reply-To: <20251022150339.4c48649e@bootlin.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 23 Oct 2025 13:30:53 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWY=FbO6YG1jrd0OWfrpPpBzrqmBVcWnw7TnnsKPGgr8A@mail.gmail.com>
+X-Gm-Features: AWmQ_bml4kcY7IJK2WvckNb7k-cRq3k2ESGBRnimvIxLnwqyhf2dlX518mVHMZI
+Message-ID: <CAMuHMdWY=FbO6YG1jrd0OWfrpPpBzrqmBVcWnw7TnnsKPGgr8A@mail.gmail.com>
+Subject: Re: [PATCH v5 7/8] soc: renesas: Add support for Renesas RZ/N1 GPIO
+ Interrupt Multiplexer
+To: Herve Codina <herve.codina@bootlin.com>
+Cc: Thomas Gleixner <tglx@linutronix.de>, Wolfram Sang <wsa+renesas@sang-engineering.com>, 
+	Hoan Tran <hoan@os.amperecomputing.com>, Linus Walleij <linus.walleij@linaro.org>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, Saravana Kannan <saravanak@google.com>, 
+	Serge Semin <fancer.lancer@gmail.com>, Phil Edworthy <phil.edworthy@renesas.com>, 
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	Pascal Eberhard <pascal.eberhard@se.com>, Miquel Raynal <miquel.raynal@bootlin.com>, 
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Oct 23, 2025 at 07:21:31PM +0800, Chaoyi Chen wrote:
-> Hi Heikki,
-> 
-> On 10/23/2025 5:44 PM, Heikki Krogerus wrote:
-> > On Thu, Oct 23, 2025 at 12:04:44PM +0300, Heikki Krogerus wrote:
-> > > On Thu, Oct 23, 2025 at 11:10:20AM +0300, Heikki Krogerus wrote:
-> > > > Hi,
-> > > > 
-> > > > > diff --git a/include/linux/usb/typec_notify.h b/include/linux/usb/typec_notify.h
-> > > > > new file mode 100644
-> > > > > index 000000000000..a3f1f3b3ae47
-> > > > > --- /dev/null
-> > > > > +++ b/include/linux/usb/typec_notify.h
-> > > > > @@ -0,0 +1,17 @@
-> > > > > +/* SPDX-License-Identifier: GPL-2.0 */
-> > > > > +
-> > > > > +#ifndef __USB_TYPEC_NOTIFY
-> > > > > +#define __USB_TYPEC_NOTIFY
-> > > > > +
-> > > > > +#include <linux/notifier.h>
-> > > > > +
-> > > > > +enum usb_typec_event {
-> > > > > +	TYPEC_ALTMODE_REGISTERED
-> > > > > +};
-> > > > Don't you need to know when the altmode is removed?
-> > > I noticed that you don't because drm_dp_hpd_bridge_register() is
-> > > always resource managed. But I think you could still send an event
-> > > also when the altmode is removed already now. That way it does not
-> > > need to be separately added if and when it is needed.
-> > Hold on! Every bus has already a notifier chain. That's the one that
-> > we should also use. Sorry for not noticing that earlier.
-> > 
-> > So let's just export the bus type in this patch - you can then use
-> > bus_register_notifier() in your driver:
-> > 
-> > diff --git a/drivers/usb/typec/bus.c b/drivers/usb/typec/bus.c
-> > index a884cec9ab7e..65ded9e3cdaa 100644
-> > --- a/drivers/usb/typec/bus.c
-> > +++ b/drivers/usb/typec/bus.c
-> > @@ -547,3 +547,4 @@ const struct bus_type typec_bus = {
-> >          .probe = typec_probe,
-> >          .remove = typec_remove,
-> >   };
-> > +EXPORT_SYMBOL_GPL(typec_bus);
-> > diff --git a/drivers/usb/typec/bus.h b/drivers/usb/typec/bus.h
-> > index 643b8c81786d..af9edb3db9d0 100644
-> > --- a/drivers/usb/typec/bus.h
-> > +++ b/drivers/usb/typec/bus.h
-> > @@ -5,7 +5,6 @@
-> >   #include <linux/usb/typec_altmode.h>
-> > -struct bus_type;
-> >   struct typec_mux;
-> >   struct typec_retimer;
-> > @@ -28,7 +27,6 @@ struct altmode {
-> >   #define to_altmode(d) container_of(d, struct altmode, adev)
-> > -extern const struct bus_type typec_bus;
-> >   extern const struct device_type typec_altmode_dev_type;
-> >   #define is_typec_altmode(_dev_) (_dev_->type == &typec_altmode_dev_type)
-> > diff --git a/include/linux/usb/typec.h b/include/linux/usb/typec.h
-> > index 309251572e2e..c6fd46902fce 100644
-> > --- a/include/linux/usb/typec.h
-> > +++ b/include/linux/usb/typec.h
-> > @@ -20,12 +20,15 @@ struct typec_port;
-> >   struct typec_altmode_ops;
-> >   struct typec_cable_ops;
-> > +struct bus_type;
-> >   struct fwnode_handle;
-> >   struct device;
-> >   struct usb_power_delivery;
-> >   struct usb_power_delivery_desc;
-> > +extern const struct bus_type typec_bus;
-> > +
-> >   enum typec_port_type {
-> >          TYPEC_PORT_SRC,
-> >          TYPEC_PORT_SNK,
-> 
-> Thank you for your detailed explanation. I noticed that there is a device_register() action in typec_register_altmode(), so we can just take advantage of this.
-> 
-> 
-> Another thing is that we need to distinguish between different devices in the notifier callback, as typec_register_altmode()/typec_register_partner()/typec_register_plug()/typec_register_cable() may all register devices. Since the data passed in bus_notify() is struct device *dev, I think we can distinguish them through `dev->type.name`? We may already have such names, "typec_alternate_mode", "typec_partner", "typec_plug" in class.c . And then extract these names as macros and put them in the typec header file.
-> 
-> 
-> Or do you have any better ideas? Thank you.
+Hi Herv=C3=A9,
 
-Check based on the type itself, NOT on the type name, as all device
-types on a bus should be unique.  If the structure for that is not
-properly exported for you to use, just export it.
+On Wed, 22 Oct 2025 at 15:03, Herve Codina <herve.codina@bootlin.com> wrote=
+:
+> On Tue, 21 Oct 2025 15:05:35 +0200
+> Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> > On Mon, 20 Oct 2025 at 10:08, Herve Codina (Schneider Electric)
+> > <herve.codina@bootlin.com> wrote:
+> > > On the Renesas RZ/N1 SoC, GPIOs can generate interruptions. Those
+> > > interruption lines are multiplexed by the GPIO Interrupt Multiplexer =
+in
+> > > order to map 32 * 3 GPIO interrupt lines to 8 GIC interrupt lines.
+> > >
+> > > The GPIO interrupt multiplexer IP does nothing but select 8 GPIO
+> > > IRQ lines out of the 96 available to wire them to the GIC input lines=
+.
+> > >
+> > > Signed-off-by: Herve Codina (Schneider Electric) <herve.codina@bootli=
+n.com>
 
-thanks,
+> > > --- /dev/null
+> > > +++ b/drivers/soc/renesas/rzn1_irqmux.c
+> > > @@ -0,0 +1,150 @@
+> > > +// SPDX-License-Identifier: GPL-2.0-only
+> > > +/*
+> > > + * RZ/N1 GPIO Interrupt Multiplexer
+> > > + *
+> > > + * Copyright 2025 Schneider Electric
+> > > + * Author: Herve Codina <herve.codina@bootlin.com>
+> > > + */
+> > > +
+> > > +#include <linux/bitops.h>
+> > > +#include <linux/build_bug.h>
+> > > +#include <linux/mod_devicetable.h>
+> > > +#include <linux/module.h>
+> > > +#include <linux/of.h>
+> > > +#include <linux/of_irq.h>
+> > > +#include <linux/platform_device.h>
+> > > +#include <dt-bindings/interrupt-controller/arm-gic.h>
+> > > +
+> > > +/*
+> > > + * The array index is the output line index, the value at the index =
+is the
+> > > + * GIC SPI interrupt number the output line is connected to.
+> > > + */
+> > > +static const u32 rzn1_irqmux_output_lines[] =3D {
+> > > +       103, 104, 105, 106, 107, 108, 109, 110
+> > > +};
+> >
+> > I did read the discussion with Wolfram, but the flexibility (and
+> > overhead) provided by this array sounds a bit overkill to me.
+> >
+> > What about just defining:
+> >
+> >     #define RZN1_IRQMUX_SPI_BASE    103
+> >     #define RZN1_IRQMUX_NUM_IRQS    8
+> >
+> > ?
+> >
+> > If/when a new SoC with a similar setup ever arrives, you can probably
+> > just replace the constants above by variables inside SoC-specific
+> > match data.  And if the new mapping would be non-contiguous, you can
+> > still revive this array ;-)
+>
+> I have in mind a use case that can lead to a non-contiguous mapping.
+>
+> The RZ/N1 SoC embeds a Cortex-M3 CPU. This CPU can use GPIOs and
+> some of them for interrupt purpose. In that case, those GPIOs have
+> to be routed to the interrupt line expected by the Cortex-M3.
+>
+> And so, we have some interrupts reserved for CPUs running Linux and
+> some others for the Cortex-M3.
+>
+> Among those reserved interrupts may some are not used.
+>
+> for instance:
+>   Interrupt 103, 102: Reserved and used by Linux
+>   Interrupt 103: Reserved for Linux but not used -> Hole in the mapping
+>   Interrupt 104: Reserved and used my Cortex-M3 (need to be routed by Lin=
+ux)
 
-greg k-h
+102 does not seem to  be correct?
+
+> I don't know if this use case is relevant but I think we should be too re=
+strictive
+> on the mapping and so accept holes.
+>
+> With that in mind, I let you confirm that you still prefer to have a mapp=
+ing
+> without any holes. A future patch to support that is always possible.
+
+While that would indeed be a non-discontiguous mapping, I do not see how
+it is related to rzn1_irqmux_output_lines[] in the driver.  That array
+would still contain the same contiguous values 103..110, right?
+
+Sorry, I haven't been following the development of this driver that
+closely (RZ/N1 is completely different from e.g. R-Car, and I never
+had access to an RZ/N1 platform), so perhaps I am missing something.
+Why does the user have to specify an interrupt-map in DT? Can't the
+driver create the mapping dynamically, based actual usage of the
+GPIOs? I.e. the first 8 GPIOs that ask for interrupt functionality
+receive it, and are mapped to an available GIC interrupt?
+I believe this is how rzg2l-irqc works, mapping up to 32 GPIO interrupts
+to 32 GIC (TINT) interrupts.
+
+Thanks!
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
