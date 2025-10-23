@@ -1,115 +1,81 @@
-Return-Path: <devicetree+bounces-230491-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230497-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBA4DC03196
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 20:57:25 +0200 (CEST)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F0E4C031C6
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 20:59:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 17DBF4EA71F
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 18:57:23 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 0C6D834FFDF
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 18:59:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80EF234C143;
-	Thu, 23 Oct 2025 18:57:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F85A34B697;
+	Thu, 23 Oct 2025 18:58:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="GgdLmWVC"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="b2ZJ0HIo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7DA3266B66;
-	Thu, 23 Oct 2025 18:57:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 722EA34AAF2;
+	Thu, 23 Oct 2025 18:57:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761245830; cv=none; b=MFdGlLT651cMjo28Waw33FNxPuMLOuwNEGNVsYq3H3/T2J1+ddWqY8LuF5etkR3ZiiGB/W8uR2Xe0A67wn+klEvKfdejzvM/5npR/Kgn8QOaQ6LHCuA5wRPKCAGT2/aoX2Q1M8Feq0WSpX0cRLUqGHLqQnZ5PgOS9JrmD97MJA0=
+	t=1761245880; cv=none; b=Eiapviq/LMh2eCIq0rIC30Rfmia8OfZgPY8X+8AJi/aJZxRWNg3i2l8LyCQrMIaFvOoqWGTkjqYSpC/t6LJFbzaEWxfcwLHtJiWOjfEQlacHVUe+JkAYasUdo7/AWLGwh8nNGYQiOVQql2t7mJtwg1lbV9zFAQcgBnJNg8zu/bQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761245830; c=relaxed/simple;
-	bh=jnOQxpsQebIH933+49osQFSRSIq0tIJzy183oPP0vn0=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ctyRgot9MU+jxguYaG65jxo8inIWTFjgR7GhCSIqukoVBHk+3k+sP2bD/SJYfAHYFg7MxVArYZm+G9QbVmRVEQa/K0qhKRa+9ys6GoUmsQpWp8fBX1WehvO8wV69Pii8BIxxUmsAJD0YqzSBfwrOYSEOhPPWeY7p1jMjMolq8gw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=GgdLmWVC; arc=none smtp.client-ip=178.238.236.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=kemnade.info; s=20220719; h=References:In-Reply-To:Cc:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=6XDs6hl23yG6z1nskZIOxrE8zy2rgT0pE2WOlQjJ7gQ=; b=GgdLmWVCZLhU384j5xMX4EArMF
-	2zlU3OIYThVaTXqqXuakDob8neqMxGwAis7LnbZxgmNQ0vB599hZ7b5xtYJ2u420EObHRjpEMWk5s
-	W5gWj+iDFgVD7J9Kp9GY1xVo5x5a2zpKGE2361dfCNndeIAF08OAQgc+l67hifSt7RD20Zz4I1RST
-	dFURq1sGOZJt5t6vZccVUy5fBIwLd+NYRW6teEpzQc36GIACzImcBqldeUPACJhOpZxjOBXwdtFUa
-	VSyxHm0UpgdNScS14O4/s6+NrJLB3qcjmNC0dH2qsLf5rqZRLIf+GgXOUeYOoOTIGzKPW7TL3N8qp
-	dQZmwlWA==;
-Date: Thu, 23 Oct 2025 20:56:53 +0200
-From: Andreas Kemnade <andreas@kemnade.info>
-To: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Tony
- Lindgren <tony@atomide.com>, Kevin Hilman <khilman@kernel.org>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-input@vger.kernel.org, linux-omap@vger.kernel.org
-Subject: Re: [PATCH 2/3] Input: add TWL603x power button
-Message-ID: <20251023205653.468e49d2@kemnade.info>
-In-Reply-To: <viq7cjqmt7guulqbuliismflq5gxtfqrxj7vzn2goctlcn5zlt@vaht6usiiedt>
-References: <20251020-twl6030-button-v1-0-93e4644ac974@kernel.org>
-	<20251020-twl6030-button-v1-2-93e4644ac974@kernel.org>
-	<aalnnbzeajxgnq33go5b2gi72yjzeeun5f2pkbdulu2hwuz663@b65xssnkse7l>
-	<20251022144422.7c17322a@kemnade.info>
-	<viq7cjqmt7guulqbuliismflq5gxtfqrxj7vzn2goctlcn5zlt@vaht6usiiedt>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; aarch64-unknown-linux-gnu)
+	s=arc-20240116; t=1761245880; c=relaxed/simple;
+	bh=XfXm6Lrj1Uo8Yci5XSs111jc6ij/M9ffOuPUTr0cKTQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=rC8LWXyLq+R2vpJ0SrcczoypkuoldVOT7SX94Wvf+HSAnHU7cwC84ZfAqOs7qe5mYdTC3aeqEwO7glY9jI/3HUAzuiQ1TBPYJXSaRJkDrAlExwCoUXEUo3Wloxwsy1L/5j+vmAEOhqwgk4917okQRMPrzL51rmo5G8xUn6FYVVY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=b2ZJ0HIo; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=X5+yCSGksFVRNRQf31YBe+wjmkAH6A3Ih7vubn4fPMA=; b=b2ZJ0HIob3ZMvZA80vttAQ1a7H
+	iiBQHcFLOAxvT5TaBjA3jDeqeQoQu4TDQEvEa0JDnfiy8/0xYdn4VZr4TpDk24qMUHybPhD+cnZaI
+	0od+bZrDEhBVqx/DANgtBZfHCjpzb9B0tS6MG+f/rzsqvuBTsFiXv0bEE+avkj7sDoKY=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1vC0VS-00BuhZ-FF; Thu, 23 Oct 2025 20:57:50 +0200
+Date: Thu, 23 Oct 2025 20:57:50 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Heiko Stuebner <heiko@sntech.de>
+Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
+	kuba@kernel.org, pabeni@redhat.com, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+	jonas@kwiboo.se
+Subject: Re: [PATCH v2 5/5] MAINTAINERS: add dwmac-rk glue driver to the main
+ Rockchip entry
+Message-ID: <35567cda-0f49-4784-b873-97e378fcee16@lunn.ch>
+References: <20251023111213.298860-1-heiko@sntech.de>
+ <20251023111213.298860-6-heiko@sntech.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251023111213.298860-6-heiko@sntech.de>
 
-On Wed, 22 Oct 2025 11:48:59 -0700
-Dmitry Torokhov <dmitry.torokhov@gmail.com> wrote:
-
-> On Wed, Oct 22, 2025 at 02:44:22PM +0200, Andreas Kemnade wrote:
-> > On Tue, 21 Oct 2025 10:58:35 -0700
-> > Dmitry Torokhov <dmitry.torokhov@gmail.com> wrote:
-> >   
-> > > On Mon, Oct 20, 2025 at 02:31:59PM +0200, akemnade@kernel.org wrote:  
-> > > > From: Andreas Kemnade <andreas@kemnade.info>
-> > > > 
-> > > > Like the TWL4030, these PMICs also have a power button feature, so add
-> > > > a driver for it.    
-> > > 
-> > > Could it be integrated into twl4030-pwrbutton.c? I think the differences
-> > > can be accounted for via a "chip" structure attached to a compatible...
-> > >   
-> > So what is different:
-> > - different register (but same bit)
-> > - some custom irq stuff for 603x (so if (is_603x) needed)  
+On Thu, Oct 23, 2025 at 01:12:12PM +0200, Heiko Stuebner wrote:
+> The dwmac-rk glue driver is currently not caught by the general maintainer
+> entry for Rockchip SoCs, so add it explicitly, similar to the i2c driver.
 > 
-> Right, why do we need to unmask the interrupt by hand for 6030? I'd
-> expect this handled in the core, when we request the interrupt, not in
-> the button driver..in the core, when we request the interrupt, not in
-> the button driver...
+> The binding document in net/rockchip-dwmac.yaml already gets caught by
+> the wildcard match.
 > 
-Short answer: irqchip ops do not provide mask/unmask for 6030.
+> Signed-off-by: Heiko Stuebner <heiko@sntech.de>
 
-Why... Interrupts are merged. There are 3 irq registers for the whole chip
-and some of these 24bits are merged to provide one interrupt per submodule.
-Apparently these custom calls are there to enable the merged interrupts
-individually or multiple together. That is at least my theory I derived
-from my archeology session.
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 
-The thing is implemented differently for the twl4030, there you have multiple
-irqs per module.
-
-But why two calls here? With one of them the interrupt pad of the pmic reacts
-to the interrupt, with the other call, the irq status register does.
-
-So can it all be implemented differently? Probably yes, but things
-need to be done carefully or with one cross-subsystem patch changing
-everything in lockstep. This somehow itches me for several reasons.
-
-Regards,
-Andreas
+    Andrew
 
