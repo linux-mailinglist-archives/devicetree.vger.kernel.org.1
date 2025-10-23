@@ -1,101 +1,103 @@
-Return-Path: <devicetree+bounces-230261-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230259-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF648C00F56
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 14:03:43 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id E9065C00F80
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 14:05:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 936D31883963
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 12:04:07 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id C3859500D10
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 12:03:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B54FC30CD88;
-	Thu, 23 Oct 2025 12:03:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74DCD30F800;
+	Thu, 23 Oct 2025 12:02:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="aFVLfFI3"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Ek4YFsd9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A37E26F28A;
-	Thu, 23 Oct 2025 12:03:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CA9C30F535
+	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 12:02:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761221010; cv=none; b=mIA1wdhpSFd/QeW2aS8NNXDyY3zjiuni5aJH1tTeKxLzoZvWyUD5CE10duX3Cn0EH6bnMkOGn6Y8Cr+iYjVvPQufP02O7j+ttcPkWwbs0tyybwaAEh6AMcH8goqXNNlWpR3r9UUDLxp08MQFc4zCdWv9dDExrqtaC9UYy9oSFMs=
+	t=1761220968; cv=none; b=dkZ7bcx0oMMEiB9Lw6TdAQ2LItDgliqQEGhiZIrY8k0irFlmx3KjMm2QNk6E1OjJpKnVZnqK6n2OucAy1BTn2F0+P/RkLThZvotnMOr1DD1Pgmm+lYzCJxGM/XzCK4BhrjPRKfgSkkulI9oUzS0xiQD19be5W0VXzvQK3EDNxvU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761221010; c=relaxed/simple;
-	bh=erXucVQ3CkO8W6iJDjYjGvHlpSCK37tkrL/+XPfgexM=;
+	s=arc-20240116; t=1761220968; c=relaxed/simple;
+	bh=J93UWrskigf/yWa/7D8kaxnKuSVyaZx4r26DdZCXwRg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UI5LSF/dfqYfvH8w2ax4zaX3lr5cId/i5rA9SqCBv4J6adQbckRjmk8C6DtUtJ+916W3s0xvmwTTbrvaRz1FbHHg0OlEwZWDxPhjm3JTxibE1BjEMC3In4f426UIDvtW1OtOtRoMc9lMrAkC5vItmc79LefQEfNQLGH8iY6dGQk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=aFVLfFI3; arc=none smtp.client-ip=192.198.163.8
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1761221008; x=1792757008;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=erXucVQ3CkO8W6iJDjYjGvHlpSCK37tkrL/+XPfgexM=;
-  b=aFVLfFI3ZdbePPH1Un1UL0a3xd5Vw2hEqQhL3ClV5DhfQ+JisxU19QzP
-   Hxc77rTLTR3mEUxhi5YVOMnLMBimW6El2qycKylPYwYlhi6osgd+xvcLe
-   yTLQ5vm0CXCZsHpv8o+3Cl+QhcqSiXW7xeY1rX0m06K/qkAqfKv8Z4HcD
-   8kO1uwbR8t5sGeO73RDls3MHFSSQC3GHPSckolChkQzGvhN0IXwp4HJUi
-   rCCAs7GNC9mnSWp39ssYW7dQTk/9GriIUx+8ckO2vCEUa+vrowGw05QN9
-   swgPf/hBnfqL2Y7xs9lyygKq0tbIMc8dPbSoGl8Xxs+U9xWQdqA6vBh3+
-   g==;
-X-CSE-ConnectionGUID: SKyZ0sx6RXqdqgGwMsv/kw==
-X-CSE-MsgGUID: 8uXUBSGXSaWt1be4SA991w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="81013293"
-X-IronPort-AV: E=Sophos;i="6.19,249,1754982000"; 
-   d="scan'208";a="81013293"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
-  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Oct 2025 05:03:28 -0700
-X-CSE-ConnectionGUID: 7DIzW9o6S2WE7ZvtBcvVQQ==
-X-CSE-MsgGUID: uCa4JL9CTiShx2sG80Yh6A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,249,1754982000"; 
-   d="scan'208";a="184033253"
-Received: from bkammerd-mobl.amr.corp.intel.com (HELO kuha.fi.intel.com) ([10.124.221.165])
-  by orviesa007.jf.intel.com with SMTP; 23 Oct 2025 05:03:17 -0700
-Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Thu, 23 Oct 2025 15:03:16 +0300
-Date: Thu, 23 Oct 2025 15:03:16 +0300
-From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-To: Chaoyi Chen <chaoyi.chen@rock-chips.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>, Sandy Huang <hjc@rock-chips.com>,
-	Andy Yan <andy.yan@rock-chips.com>,
-	Yubing Zhang <yubing.zhang@rock-chips.com>,
-	Frank Wang <frank.wang@rock-chips.com>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <rfoss@kernel.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Amit Sunil Dhamne <amitsd@google.com>,
-	Dragan Simic <dsimic@manjaro.org>, Johan Jonker <jbx6244@gmail.com>,
-	Diederik de Haas <didi.debian@cknow.org>,
-	Peter Robinson <pbrobinson@gmail.com>, linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-phy@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH v7 2/9] drm/bridge: Implement generic USB Type-C DP HPD
- bridge
-Message-ID: <aPoZhBdc1M6Qgfae@kuha.fi.intel.com>
-References: <20251023033009.90-1-kernel@airkyi.com>
- <20251023033009.90-3-kernel@airkyi.com>
- <aPnrKFWTvpuRTyhI@kuha.fi.intel.com>
- <14b8ac71-489b-4192-92d6-5f228ff3881d@rock-chips.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=DTFJmKqPZJidgwnwhhcv6HMLk1c2DRAkXa2be5PO9E+ctIWWmUmLMjfDJdUSH+yeKBdouQvt8Zz1L4sxqQ36xFQLGXFFVuY+2IfyZfa7E4JTbeOCVJM1dDiG75KuROC0gQsB1xDCpO1S8JLHmByAsNP40GIjEBFE1RX4+mxEINw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Ek4YFsd9; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59N6wGof022476
+	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 12:02:45 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=M81zeVL5vCT2BNHUGaKZfq7O
+	ZSW446AfEB/X68ESVy4=; b=Ek4YFsd9WhBLUNX1u/ZkUa1H2LUhmwgQN02YkkRd
+	DQVoXLd4/qTfR9ulGVsYZWj+fDOB2ZLUeLzmg/fFciUgkNc3dGDtmCorw3YrlCq7
+	uVTMofWObMsEhTabwKctqFnEtFzNG98Ps5wTG1Gev3hseyR82tsxPj/mkqfEfzcH
+	6PLAzLnuWE3L6u/0l8WpZ2DiG0XtSJ0r/eg6rhgvREEWwbkU8x8CYjhBIBoQD2Gu
+	RYHA8fOuEQT+Am2W2HfXNYfhe/dmAbNrTkKyWnDBQ7u9MR8x87XZOQKfsBXK6Pub
+	oEZT1B9hEL6sGHxTYH84mK7Tve4wBRgQ9qDHcVm7hKLb1w==
+Received: from mail-vk1-f200.google.com (mail-vk1-f200.google.com [209.85.221.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49v1w889un-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 12:02:45 +0000 (GMT)
+Received: by mail-vk1-f200.google.com with SMTP id 71dfb90a1353d-554e68b14cbso352470e0c.3
+        for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 05:02:45 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761220964; x=1761825764;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=M81zeVL5vCT2BNHUGaKZfq7OZSW446AfEB/X68ESVy4=;
+        b=Qx/B7AyZKatcOeims8D/iCFDxACVM3hMewLaavy01MHUtad1zSZelz7N1G+TIoUJgM
+         frL4ThgJdsQ/tt9HrAMHijtX4r0iQkPaR1jsXIJNYt0Derjrh9ZR+OHpYdI4GFJIG2t6
+         lvJpxBk4EgqxPR64Gs+/99cKapIrMf9LYljGCbHgUtXyhep2T0gH9gsYQg9+uH/7bZx+
+         k/VyXewQnmuX28x8KSbpHIrzlLkvzEPbFm4IpyVkXs65BBza80pSaz3HNbfPtK79lxDt
+         sOVj8j95DMTJbsu2pCUB+EafxPxMF4W9CKgcdXe+XrQr/HUex/OzDvDJ/T4vPw9SuWnS
+         Rbnw==
+X-Forwarded-Encrypted: i=1; AJvYcCWED/A2Hifqd6xHsVnnzaFJLVcuT+zpHZu800h99qmZAN/+1d1wQ6jZbbPTEwbZfTXOJK45nnxeqLe2@vger.kernel.org
+X-Gm-Message-State: AOJu0YyM9IN3U32qef88jxcoOTnWDqCmT9odjKOqfNCTQNwwfE8cw1rn
+	kHqlsplHfUG3fWhu2JOyDVdv3BHel5/0FuO6o3WlozRjauUW7kQRuHAHY2zrhVRwff1dHWgVrD2
+	mvdrEmLhTf1/4uQeOFqNzcik2RjFdCZVkMJWEP3j+s+ejhomqxoCUyrv04zYC6l5G
+X-Gm-Gg: ASbGncvwImM4M6GZB1Gcfk3tsCIbXwR5MWdid0gyEh3YA2cMcI2i6EzzOHyxHG2UTtO
+	xhdNMFn9EPc8M767Sdh4cmzgUo/brvz0h+hPe+vF5hmM4hxeiUc8FQkNhs6xppXGaIYX2YD9/UL
+	fMhog1bBGJ+SpwX8lW+BSW7sA+HR4VzIHG60JLp/UlvySoYp0K+UuL1AXsBfN/fOE1FHI22d4sk
+	IvPAKQXcAjV5Nm2/BnwiXC2bdO9PYCJRV6HGKRSIJ6TiW0w9CUrwaMWxQh279rBHEThzBCjs4IG
+	BYqG4xymqEhxoZmqbGfMm9CNfoj64gAE3ZXAbCtrxYalhoPtKPjtoHamSQq5JvdkoLuriX17va1
+	zMZEzXWFwRpB0KhEd6jYG/h4jHMOoIsxPx8NAY/k37+TVLi45TaijqITu3K8SCBDLzmdXOTJWtP
+	asDHfkfBVZ0eGI
+X-Received: by 2002:a05:6122:d8e:b0:544:9a46:7c85 with SMTP id 71dfb90a1353d-5564edaa58bmr7102817e0c.4.1761220943514;
+        Thu, 23 Oct 2025 05:02:23 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHeYf4cRCjfFBuC8sO6FcOxLi7vaZ8cGTF8QrhwklAMfIk2LsC1fPJF0Hqf+fYEtQZaBheqJA==
+X-Received: by 2002:a05:6122:d8e:b0:544:9a46:7c85 with SMTP id 71dfb90a1353d-5564edaa58bmr7096044e0c.4.1761220913364;
+        Thu, 23 Oct 2025 05:01:53 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-378d67097casm4150311fa.22.2025.10.23.05.01.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 23 Oct 2025 05:01:51 -0700 (PDT)
+Date: Thu, 23 Oct 2025 15:01:49 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: yuanjie yang <yuanjie.yang@oss.qualcomm.com>
+Cc: robin.clark@oss.qualcomm.com, lumag@kernel.org, abhinav.kumar@linux.dev,
+        sean@poorly.run, marijn.suijten@somainline.org, airlied@gmail.com,
+        simona@ffwll.ch, maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+        tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org,
+        conor+dt@kernel.org, quic_mkrishn@quicinc.com, jonathan@marek.ca,
+        quic_khsieh@quicinc.com, neil.armstrong@linaro.org,
+        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, tingwei.zhang@oss.qualcomm.com,
+        aiqun.yu@oss.qualcomm.com, yongxing.mou@oss.qualcomm.com
+Subject: Re: [PATCH 05/12] drm/msm/dsi: Add support for Kaanapali
+Message-ID: <trkt26sv7tpucjzgguv6ww24jsbs37ppimppyvhqvy4drtqtj6@uf3m3rcmrg46>
+References: <20251023075401.1148-1-yuanjie.yang@oss.qualcomm.com>
+ <20251023075401.1148-6-yuanjie.yang@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -104,92 +106,47 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <14b8ac71-489b-4192-92d6-5f228ff3881d@rock-chips.com>
+In-Reply-To: <20251023075401.1148-6-yuanjie.yang@oss.qualcomm.com>
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDE4MDAxNSBTYWx0ZWRfXwcsmBpGx0y0C
+ YarqOPFvDY46UHKt7D4IjZkXbQhqMX5r8QvUty4yUlNxvSBbdrRilIbdWzYPmR/IxbU4sELl1Du
+ J6CEFVKltOlRHdgGUhBDBD74SIRseetaO9GD1VcnrzOURTH2uFi+8FAlpDVRQFEMeVNBXT42IYJ
+ ivU2Q4c7rTuIE62rhMrQTAffNbnDrLksEiVcQTj2o3B0nCAldgjW7vvXtDtB2jLYgeqqUOnNA5F
+ oHRa0GMzhAq5Zo2f1DiI3OBbnSMftQ9307bM8PLJ5TkfqSaMiEFyF4nPoHCv7sSBLLS3sPMgtI1
+ L4DNZ9H28Cn/1BpIyRUt+v4s0WKE0lHmM1nyDuKJoNVIIW7rWeQhcJwfHmsZLEBcm9lhRjK31Nd
+ QhK0WQZJq/mpedi3EXX5ltwd5Z+41w==
+X-Authority-Analysis: v=2.4 cv=bNUb4f+Z c=1 sm=1 tr=0 ts=68fa1965 cx=c_pps
+ a=wuOIiItHwq1biOnFUQQHKA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=x6icFKpwvdMA:10 a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8
+ a=A-_Rx2uNxy_47QfWGsAA:9 a=CjuIK1q_8ugA:10 a=XD7yVLdPMpWraOa8Un9W:22
+X-Proofpoint-GUID: ixjVX-uhW6vB9V7sy4u-9i5doF_hiQKB
+X-Proofpoint-ORIG-GUID: ixjVX-uhW6vB9V7sy4u-9i5doF_hiQKB
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-10-22_08,2025-10-22_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 phishscore=0 malwarescore=0 lowpriorityscore=0 clxscore=1015
+ priorityscore=1501 suspectscore=0 adultscore=0 spamscore=0 impostorscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2510020000 definitions=main-2510180015
 
-> > > diff --git a/drivers/gpu/drm/bridge/Makefile b/drivers/gpu/drm/bridge/Makefile
-> > > index 245e8a27e3fc..e91736829167 100644
-> > > --- a/drivers/gpu/drm/bridge/Makefile
-> > > +++ b/drivers/gpu/drm/bridge/Makefile
-> > > @@ -1,6 +1,7 @@
-> > >   # SPDX-License-Identifier: GPL-2.0
-> > >   obj-$(CONFIG_DRM_AUX_BRIDGE) += aux-bridge.o
-> > >   obj-$(CONFIG_DRM_AUX_HPD_BRIDGE) += aux-hpd-bridge.o
-> > > +obj-$(CONFIG_DRM_AUX_TYPEC_DP_HPD_BRIDGE) += aux-hpd-typec-dp-bridge.o
-> > Instead, why not just make that a part of aux-hpd-bridge
-> > conditionally:
-> > 
-> > ifneq ($(CONFIG_TYPEC),)
-> >          aux-hpd-bridge-y        += aux-hpd-typec-dp-bridge.o
-> > endif
+On Thu, Oct 23, 2025 at 03:53:54PM +0800, yuanjie yang wrote:
+> From: Yuanjie Yang <yuanjie.yang@oss.qualcomm.com>
 > 
-> Oh, I did consider that! But I noticed that aux-hpd-bridge.c contains the
-> following statement module_auxiliary_driver(drm_aux_hpd_bridge_drv), which
-> already includes a module_init. In the newly added file, in order to call the
-> register function, another module_init was also added. If the two files are
-> each made into a module separately, would there be a problem?
+> Add DSI Controller version 2.10.0 support for DSI on Qualcomm
+> Kaanapali SoC.
+> 
+> Signed-off-by: Yongxing Mou <yongxing.mou@oss.qualcomm.com>
+> Signed-off-by: Yuanjie Yang <yuanjie.yang@oss.qualcomm.com>
+> ---
+>  drivers/gpu/drm/msm/dsi/dsi_cfg.c | 13 +++++++++++++
+>  drivers/gpu/drm/msm/dsi/dsi_cfg.h |  1 +
+>  2 files changed, 14 insertions(+)
+> 
 
-You would not call module_init() from the new file. Instead you would
-call drm_aux_hpd_typec_dp_bridge_init() and what ever directly from
-aux-hpd-bridge.c:
-
-diff --git a/drivers/gpu/drm/bridge/aux-bridge.h b/drivers/gpu/drm/bridge/aux-bridge.h
-new file mode 100644
-index 000000000000..ae689a7778fa
---- /dev/null
-+++ b/drivers/gpu/drm/bridge/aux-hpd-bridge.h
-@@ -0,0 +1,13 @@
-+/* SPDX-License-Identifier: GPL-2.0-only */
-+#ifndef AUX_HPD_BRIDGE_H
-+#define AUX_HPD_BRIDGE_H
-+
-+#if IS_ENABLED(CONFIG_TYPEC)
-+int drm_aux_hpd_typec_dp_bridge_init(void);
-+void drm_aux_hpd_typec_dp_bridge_exit(void);
-+#else
-+static inline int drm_aux_hpd_typec_dp_bridge_init(void) { return 0; }
-+static inline void drm_aux_hpd_typec_dp_bridge_exit(void) { }
-+#endif /* IS_ENABLED(CONFIG_TYPEC) */
-+
-+#endif /* AUX_HPD_BRIDGE_H */
-diff --git a/drivers/gpu/drm/bridge/aux-hpd-bridge.c b/drivers/gpu/drm/bridge/aux-hpd-bridge.c
-index 2e9c702c7087..3578df1df78a 100644
---- a/drivers/gpu/drm/bridge/aux-hpd-bridge.c
-+++ b/drivers/gpu/drm/bridge/aux-hpd-bridge.c
-@@ -12,6 +12,8 @@
- #include <drm/drm_bridge.h>
- #include <drm/bridge/aux-bridge.h>
- 
-+#include "aux-hpd-bridge.h"
-+
- static DEFINE_IDA(drm_aux_hpd_bridge_ida);
- 
- struct drm_aux_hpd_bridge_data {
-@@ -190,9 +192,16 @@ static int drm_aux_hpd_bridge_probe(struct auxiliary_device *auxdev,
- 
-        auxiliary_set_drvdata(auxdev, data);
- 
-+       drm_aux_hpd_typec_dp_bridge_init();
-+
-        return devm_drm_bridge_add(data->dev, &data->bridge);
- }
- 
-+static void drm_aux_hpd_bridge_remove(struct auxiliary_device *auxdev)
-+{
-+       drm_aux_hpd_typec_dp_bridge_exit();
-+}
-+
- static const struct auxiliary_device_id drm_aux_hpd_bridge_table[] = {
-        { .name = KBUILD_MODNAME ".dp_hpd_bridge", .driver_data = DRM_MODE_CONNECTOR_DisplayPort, },
-        {},
-@@ -203,6 +212,7 @@ static struct auxiliary_driver drm_aux_hpd_bridge_drv = {
-        .name = "aux_hpd_bridge",
-        .id_table = drm_aux_hpd_bridge_table,
-        .probe = drm_aux_hpd_bridge_probe,
-+       .remove = drm_aux_hpd_bridge_remove,
- };
- module_auxiliary_driver(drm_aux_hpd_bridge_drv);
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 
 
 -- 
-heikki
+With best wishes
+Dmitry
 
