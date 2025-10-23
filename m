@@ -1,186 +1,214 @@
-Return-Path: <devicetree+bounces-230364-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230365-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95438C01C32
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 16:29:01 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8B7EC01C08
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 16:26:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CB2093B52B5
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 14:21:31 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id C8EE8507872
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 14:23:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A58703093AB;
-	Thu, 23 Oct 2025 14:21:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF49032C93C;
+	Thu, 23 Oct 2025 14:23:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="aL/NA2Lc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f43.google.com (mail-ua1-f43.google.com [209.85.222.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D341A329C51
-	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 14:21:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1355F32A3D1
+	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 14:23:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761229289; cv=none; b=UC6wTClzuF5hbP01AbzluzsMly3k37gIHhmsfmXyBSzZv/t2aMEUe/TYuCS1p1/QYRcDifAFkEjf0vpLeVg7X+T0WShbcWfRQWeRo7XxLldOEDDMX0k9boYT7JVtZ2ua47t2cxUU/63d0ntOkfA23meCu+DlOfbjIe6bb5NtkAo=
+	t=1761229413; cv=none; b=SMFESHhlAvO9blRiRor54z9Ua7UA+DjYWxVba2Fm9mq1Zy2Cgh5C+cEOgM9LV6kLZlwa9e1ck7RtTU/nbr0zNnKBY+a8UscB3eVrg4EmBJJvlWhF/pAvoWS5KcM18kHDH9h0tXgCf+4RJE6LadDBulocicNI7GgpanCfhtaxnEc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761229289; c=relaxed/simple;
-	bh=TR7zlOg9lSlA9ANoIApwm25S9VrQTmkZ7BlIZp3yWzs=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=DEmqmZc58LL23DuXtsolo+Gp/bLCoIm5LzCSXvXud8nGJoF96lSX+nJcjIfXoKQxkxoR9OBe83rf3LLgMuKdd9omXItOXgDc/rGdTSNgC43fTAWtxTWh5v8BxR74b7T1tjeCqntlGgTB7e7V9u5m+bWvq7nvqVaRkd4rvdOvnms=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f43.google.com with SMTP id a1e0cc1a2514c-930ae1b2627so611212241.2
-        for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 07:21:27 -0700 (PDT)
+	s=arc-20240116; t=1761229413; c=relaxed/simple;
+	bh=F1cgo+7/vye/dP1rUI0JQIx0PF45Y1SGew0xi6mK2BA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=FxSHQOY1YiJdgQuXuvBY7Fh8gs2tzF8RfNfWyYkazG2ZlVTq6FCe4uG8kXoxF3490v6KObmMFRQvOgFjeQ93A9zIlqFyLo5teecnzB6DGZNe5Da9NoJ/+d5R29D4IIp3g7/U4PCIyyy/LAGqSIK51OZe5MtU05LgbHDmbo3cHW8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=aL/NA2Lc; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59NEGj3F029729
+	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 14:23:31 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	FA91y8KBUO4yhV25FdwhubQyZiPrjcasBtAmZwi3V70=; b=aL/NA2Lc3/ljPfoP
+	lLeXT+Py0a/r3/HbBV0VMnS3CLMvLjonmjRYWDLf0Vcd9U2UOYPUkXS5K6xMEGms
+	sN42I1lvQ8X8Xx48WqprCCKRSm9USeVu2q4j/klqQDCCMTvN41DW87NSb/9Zw23B
+	OjL9Md02aUJSI81b4AAp01FSI4UYyqnCm2gmMe9ZnoTGvdLy4TBZTGfFvvdpZYx4
+	/cSqn76H1KYT1apWVmu3AWhZgEIokfUlsbhXU1Yjgbn3mYp1lbUyFoW6PGWd3Qk/
+	fqFGdX6JRZVmkW3RverCKRy98guzrzmN1dxGvMaUhr+x7RhzLDOHBMOnQY4RdCQ/
+	DPxpbg==
+Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49v2ge8par-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 14:23:30 +0000 (GMT)
+Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-4e895a6ca73so7301801cf.2
+        for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 07:23:30 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761229286; x=1761834086;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=pUiJSOGezbV9/gcxRXe7vCcpv1VybDaME+fAsfjpYbw=;
-        b=omEwHniEyWidpyHt7o2cecPFfFbwTA1qhs2eUh+In8RckgdqYlWU62XfIB9cCp6vue
-         k/3tZVz0SjKoUy0m1QYNpuzOIiXVIdqhbgLRp3KpuBG0F28hRjTweA3n+8k37ECQt4wG
-         gTK9EqGjswiVgXOkiAD1sOcXmqruOD/NS0O2zlxe9zkviVNkBdRuNGo2SFqCUEHqgXY4
-         4b8fO+/9waWV5lF+yzH5RM+2o09sAgKLFGfb3sOflAcAWLMKQr5BobBX9YD9Uca3uRc4
-         6AniHnphb0A5GQtrLNBoGbJ1ondyYA5q/9Pdludo9Ao8WjivMzsbK7voYmlLRT/GI0WV
-         pUNA==
-X-Forwarded-Encrypted: i=1; AJvYcCXbCrZSOBbMmFFyIARA5EzBHzhcZj8sTKgfGsNGt1IFUTLP6a72T812eHkdSziTiepj6MG0AeB++OAK@vger.kernel.org
-X-Gm-Message-State: AOJu0YzsVaChS1hEB7zNAVKJ/a7U05Szo1ibdLnHLwhzKABFHpltpJ5P
-	b0MlrYycO5gVOcYNYav5GbDu/QtGZLFKQ/LvbEwhaWeY51QYRkfPjVNpGY1hTah7
-X-Gm-Gg: ASbGnctI5+Kl2H1na6Sy0a4B4tK7ORMq+8++th1720OJI4whZXl/k44m8TICz1+77pT
-	SYExmnUVp66Vobq0Wff4sdZVPazuBMZksRJnp6nDhVivsjhtbQwO1DnqUlMpJ2aM+hDEEXUjGlE
-	kSc3Gs996hOXl30zrd2X10mUs+pOWxXPlQTtrhe3HrPnn68yAS2FihbSuh04ThOMZCOpdxCxb3K
-	GOBJnVhMWxAEC+BsZW7Xv9TCGFpXnFNhbNNinlinY8Q2ILfVyoWzPZVQ8FNIgGxzVGzO/R9XUO3
-	5N6bG0iC+jvjkG83naUejmWdfg/hQKFN1vxVCC/RHk8UxfzYbUVt3tR/eN1vaDdcHlsd1R614i5
-	ngfnnon1hYX0VoMU0M78QglUHoisVhZRzCE33fq0Pn5b5saXl8oggiTzwvabg16Nx5RuEtgA7yk
-	3fcE/+c/nnx3lKnFU+5PYJF4H4a2kZjOymetkPGq+zo7cxZV1j
-X-Google-Smtp-Source: AGHT+IGA2sI/6aUiGhtUCsXOIuJBWbpIdo5vmpoEC6bYPEHUi5zgpF7SBG7fGftqh8HEui9Hgv/eCA==
-X-Received: by 2002:a05:6102:b02:b0:5ae:f88:23eb with SMTP id ada2fe7eead31-5d7dd5e5d6fmr7998700137.30.1761229286378;
-        Thu, 23 Oct 2025 07:21:26 -0700 (PDT)
-Received: from mail-ua1-f43.google.com (mail-ua1-f43.google.com. [209.85.222.43])
-        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-5db2c56baa7sm921950137.0.2025.10.23.07.21.24
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 23 Oct 2025 07:21:24 -0700 (PDT)
-Received: by mail-ua1-f43.google.com with SMTP id a1e0cc1a2514c-930ae1b2627so611162241.2
-        for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 07:21:24 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCV9dpErigLHVlPh/F9IIwSTNHjrkMQsxuXIxDiU20+7ur/1SuefizQ/UxJX8kWWbGRw9PHN8rpSeFXq@vger.kernel.org
-X-Received: by 2002:a05:6102:5106:b0:5a8:4256:1f14 with SMTP id
- ada2fe7eead31-5d7dd5eb057mr7937173137.35.1761229283909; Thu, 23 Oct 2025
- 07:21:23 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1761229410; x=1761834210;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=FA91y8KBUO4yhV25FdwhubQyZiPrjcasBtAmZwi3V70=;
+        b=TZFEXyZqscBTgeYJcEMM0shvGlmuXt1N9mUnaixCbOJDBFDtdsKcEIZ1uc0WPSfnT7
+         /Cb0GOTcvOVtHzywmQ/RFLl8v/0ObS1kCOGKOly/CbXHUYx02Upxh5TzvMnMbIqpfAVh
+         1GKhg0W8GdUCkctddhiod149hzHFOf3fydIEsrBD9ukbFoZwNQEfDP7uEyTGzuDL0Xh2
+         8KemVBWvMOEM4f5/Si2czQ0ugr2NJjCre47r1JpiDOSlgycpZDm4lK0ON27DG3QOhUfi
+         amgb3dFI3hbnwRa3NE0tMe3p+lH+ypaS4jJlG2vnpaNC0kY3Lc/YLsvNJ7796A07GH8/
+         MUNw==
+X-Forwarded-Encrypted: i=1; AJvYcCWrmIw6AUP3MrHOua8Y8KaUe5D7vl474YLuVQ7p03BGArf/3c+8YvvqfIzNqWLagP73m/tgABdl4Uw3@vger.kernel.org
+X-Gm-Message-State: AOJu0YxYegHdpJnp3itzPVXA/J5+4mXt8Y5uYJSCTrFGkkYDAMs0jiDQ
+	w17mrM2cZ08+WN8cJ19r4U/4qjpXhbIoWjKCUqB7zCqGKcuLfkzUNC2olcQGQ7C6gEYxIYrNjPO
+	27yLaOGKnFUqElf/1OJxOxUwQqTJ0kZbTpDJN47Y7qdklWretJ7bdN4Bne3uUrYC6OUqZM+hg
+X-Gm-Gg: ASbGncsPLpYGJDFgWKgIzYweqcP4/9ZIqpxNiBohwNQME015utIRgQliRh6QZ047I4s
+	vrUJMBA01mDSgKNxuDaKj6xIGzo6nNRsC5l69suDOYsDlwBQx32HTMxjsQW6AvlxM9x4A/hcMMr
+	zv/z/hdOU+WjcHHOcRwULu4tKxvbSAHzVRliZf/yosWGRjyo7yYDSUry6gXTUYAQ3zAb+ux/Aoo
+	uH+aDQ3MP5CzYO0e4k1T60EceKWS0g3RAuo7xaB7mNGEvpPV+tF3Nu80YaiIlP6L2CFy88ST/CW
+	a5cUSKbRLUveLI20M9oPe5KATZf7784TKxXVjRMBLcXG1k95I9i+9sakErTPCoS9yvT31EnfU3p
+	nnXp7EKEMVdeVuQBrQYLWAC6OgiJpGhoQYMNxhnhDjRCDVhh7hHVAQkGk/7Zc9xzQKu0JdKnQqx
+	xG7K2WFmPsMiPv
+X-Received: by 2002:ac8:5ccc:0:b0:4e8:a416:95e5 with SMTP id d75a77b69052e-4e8a4169b8bmr317127671cf.69.1761229409568;
+        Thu, 23 Oct 2025 07:23:29 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEiz4qw3pTudhYYiN2tAR6mmdOeBX2RP+NnhmDODFeqeER7hF+zhUWWqTSs258QYXdg5Oy39Q==
+X-Received: by 2002:ac8:5ccc:0:b0:4e8:a416:95e5 with SMTP id d75a77b69052e-4e8a4169b8bmr317126921cf.69.1761229409023;
+        Thu, 23 Oct 2025 07:23:29 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-592f4cd12e9sm770286e87.32.2025.10.23.07.23.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 23 Oct 2025 07:23:27 -0700 (PDT)
+Date: Thu, 23 Oct 2025 17:23:26 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Nickolay Goppen <setotau@mainlining.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, linux@mainlining.org
+Subject: Re: [PATCH 1/2] arm64: dts: qcom: sdm630/660: Add CDSP-related nodes
+Message-ID: <4q7rtc7kdfpy7pyqa4eztjcgpraonxlx2hxcrez46msqthjtmt@f43oyk2imi5c>
+References: <20251019-qcom-sdm660-cdsp-adsp-dts-v1-0-9ab5f2865a6e@mainlining.org>
+ <20251019-qcom-sdm660-cdsp-adsp-dts-v1-1-9ab5f2865a6e@mainlining.org>
+ <5hbc24lihvau7s2opzcxxgxkzugmbqmdtqwy23m45j4po23lnh@jyjlbgfjaddw>
+ <f8daddfd-e0ec-4acd-afc5-cf0969aebb9f@mainlining.org>
+ <0ca0bdfe-b228-49be-9ef7-71482d372e0f@mainlining.org>
+ <141450a6-4578-4823-b516-d180eaf3ccc7@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251007133657.390523-1-claudiu.beznea.uj@bp.renesas.com>
- <20251007133657.390523-3-claudiu.beznea.uj@bp.renesas.com>
- <CAMuHMdXF14x68Wk5YdOBS2D2N6LtnQjfGzrsMdSJegX-gc3faQ@mail.gmail.com>
- <6c69d2a2-5dfe-450f-8a39-2ef6e7a6dbea@tuxon.dev> <CAMuHMdXLiN0kUVJtdEYVnsmnCEbN4hSs5KEhMXJhf7p29xv=0Q@mail.gmail.com>
- <f09bf940-3d45-49b1-8d7f-9c1a96acb187@tuxon.dev>
-In-Reply-To: <f09bf940-3d45-49b1-8d7f-9c1a96acb187@tuxon.dev>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 23 Oct 2025 16:21:11 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXx=5YQSmSsw1+3otw9S_Hf+Tv+N1Y1iHiU0OOTyz4bjw@mail.gmail.com>
-X-Gm-Features: AWmQ_bntosPEVOR4ph6dmWLKdA_CbWSKXTDRFcmNnJAAp9ekneiOOs4jYqpQulM
-Message-ID: <CAMuHMdXx=5YQSmSsw1+3otw9S_Hf+Tv+N1Y1iHiU0OOTyz4bjw@mail.gmail.com>
-Subject: Re: [PATCH v5 2/6] PCI: rzg3s-host: Add Renesas RZ/G3S SoC host driver
-To: Claudiu Beznea <claudiu.beznea@tuxon.dev>
-Cc: lpieralisi@kernel.org, kwilczynski@kernel.org, mani@kernel.org, 
-	robh@kernel.org, bhelgaas@google.com, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	magnus.damm@gmail.com, p.zabel@pengutronix.de, linux-pci@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, 
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>, 
-	Wolfram Sang <wsa+renesas@sang-engineering.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <141450a6-4578-4823-b516-d180eaf3ccc7@oss.qualcomm.com>
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDE4MDAyMCBTYWx0ZWRfXzTFYbysNW2IQ
+ JgaIgOEVbYlJ8r37lNfAjx8KBOV2Gn1ImjSNvSoTzUjJxcjRuLDxt2154LNiwkvGmHMLt6GJcKb
+ t4alPnlZpJZDEbrvMHwrea9zGc7AEKdA8IXGXH+gWfcq37Ql2SuRm2od+wVL/VL0aHkP13vhhKt
+ MO075hmY4ou8y/Z7zkEwp8xxooVfLQBr3LO+470dvvQZunLDPxI2kx9USQe+2ThBOZ5hniph4tT
+ pIi6IPBYSCq+zvkxNfohG5O5zQ3WV635FsRyE2kNRaydF72d/Xt7xaiSM4dEc3lEFmKn3ifVPsw
+ zwaigHoFmggH7kYQQGboLSp5TFlwV0HVCJVR94lmcQdJY339tstiMI4sROjXCKup+3bmGFyDLik
+ guTq00gzUsyBL1l6+//acb8TUKcXpA==
+X-Authority-Analysis: v=2.4 cv=KqFAGGWN c=1 sm=1 tr=0 ts=68fa3a62 cx=c_pps
+ a=mPf7EqFMSY9/WdsSgAYMbA==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
+ a=x6icFKpwvdMA:10 a=VkNPw1HP01LnGYTKEx00:22 a=OuZLqq7tAAAA:8
+ a=hfPBaJTrTtnCdmrs9_IA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=dawVfQjAaf238kedN5IG:22 a=AKGiAy9iJ-JzxKVHQNES:22
+X-Proofpoint-GUID: x3OMpOGvQYJl7OomjECcneHXlZq7i4VK
+X-Proofpoint-ORIG-GUID: x3OMpOGvQYJl7OomjECcneHXlZq7i4VK
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-10-23_01,2025-10-22_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 clxscore=1015 phishscore=0 malwarescore=0 impostorscore=0
+ lowpriorityscore=0 adultscore=0 priorityscore=1501 spamscore=0 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2510020000 definitions=main-2510180020
 
-Hi Claudiu,
-
-On Thu, 23 Oct 2025 at 16:13, Claudiu Beznea <claudiu.beznea@tuxon.dev> wrote:
-> On 10/23/25 14:02, Geert Uytterhoeven wrote:
-> > On Thu, 23 Oct 2025 at 12:54, Claudiu Beznea <claudiu.beznea@tuxon.dev> wrote:
-> >> On 10/23/25 11:00, Geert Uytterhoeven wrote:
-> >>> On Tue, 7 Oct 2025 at 15:37, Claudiu <claudiu.beznea@tuxon.dev> wrote:
-> >>>> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> >>>>
-> >>>> The Renesas RZ/G3S features a PCIe IP that complies with the PCI Express
-> >>>> Base Specification 4.0 and supports speeds of up to 5 GT/s. It functions
-> >>>> only as a root complex, with a single-lane (x1) configuration. The
-> >>>> controller includes Type 1 configuration registers, as well as IP
-> >>>> specific registers (called AXI registers) required for various adjustments.
-> >>>>
-> >>>> Hardware manual can be downloaded from the address in the "Link" section.
-> >>>> The following steps should be followed to access the manual:
-> >>>> 1/ Click the "User Manual" button
-> >>>> 2/ Click "Confirm"; this will start downloading an archive
-> >>>> 3/ Open the downloaded archive
-> >>>> 4/ Navigate to r01uh1014ej*-rzg3s-users-manual-hardware -> Deliverables
-> >>>> 5/ Open the file r01uh1014ej*-rzg3s.pdf
-> >>>>
-> >>>> Link: https://www.renesas.com/en/products/rz-g3s?queryID=695cc067c2d89e3f271d43656ede4d12
-> >>>> Tested-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
-> >>>> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> >>>
-> >>> Thanks for your patch!
-> >>>
-> >>>> --- /dev/null
-> >>>> +++ b/drivers/pci/controller/pcie-rzg3s-host.c
-> >>>
-> >>>> +static void rzg3s_pcie_irq_compose_msi_msg(struct irq_data *data,
-> >>>> +                                          struct msi_msg *msg)
-> >>>> +{
-> >>>> +       struct rzg3s_pcie_msi *msi = irq_data_get_irq_chip_data(data);
-> >>>> +       struct rzg3s_pcie_host *host = rzg3s_msi_to_host(msi);
-> >>>> +       u32 drop_mask = RZG3S_PCI_MSIRCVWADRL_ENA |
-> >>>> +                       RZG3S_PCI_MSIRCVWADRL_MSG_DATA_ENA;
-> >>>
-> >>> This should include bit 2 (which is hardwired to zero (for now)),
-> >>> so I think you better add
-> >>>
-> >>>     #define RZG3S_PCI_MSIRCVWADRL_ADDR  GENMASK(31, 3)
-> >>>
-> >>>> +       u32 lo, hi;
-> >>>> +
-> >>>> +       /*
-> >>>> +        * Enable and msg data enable bits are part of the address lo. Drop
-> >>>> +        * them.
-> >>>> +        */
-> >>>> +       lo = readl_relaxed(host->axi + RZG3S_PCI_MSIRCVWADRL) & ~drop_mask;
-> >>>
-> >>> ... and use FIELD_GET() with the new definition here.
+On Wed, Oct 22, 2025 at 07:17:51PM +0200, Konrad Dybcio wrote:
+> On 10/20/25 5:42 PM, Nickolay Goppen wrote:
+> > 
+> > 20.10.2025 18:27, Nickolay Goppen пишет:
 > >>
-> >> Bits 31..3 of RZG3S_PCI_MSIRCVWADRL contains only bits 31..3 of the MSI
-> >> receive window address low, AFAIU. Using FIELD_GET() for bits 31..3 on the
-> >> value read from RZG3S_PCI_MSIRCVWADRL and passing this value to
-> >> msg->address_lo will lead to an NVMe device not working.
-> >
-> > Oops, yes you are right, I went a bit too far with the FIELD_GET()
-> > suggestion. But replacing drop_mask by RZG3S_PCI_MSIRCVWADRL_ADDR
-> > would still be worthwhile, IMHO.
->
-> OK, you mean updating it like:
->
-> +#define RZG3S_PCI_MSIRCVWADRL_ADDR  GENMASK(31, 3)
->
-> // ...
->
->
-> -    lo = readl_relaxed(host->axi + RZG3S_PCI_MSIRCVWADRL) & ~drop_mask;
-> +    lo = readl_relaxed(host->axi + RZG3S_PCI_MSIRCVWADRL) &
->           RZG3S_PCI_MSIRCVWADRL_ADDR;
+> >> 20.10.2025 16:14, Dmitry Baryshkov пишет:
+> >>> On Sun, Oct 19, 2025 at 07:27:06PM +0300, Nickolay Goppen wrote:
+> >>>> In order to enable CDSP support for SDM660 SoC:
+> >>>>   * add shared memory p2p nodes for CDSP
+> >>>>   * add CDSP-specific smmu node
+> >>>>   * add CDSP peripheral image loader node
+> >>>>
+> >>>> Memory region for CDSP in SDM660 occupies the same spot as
+> >>>> TZ buffer mem defined in sdm630.dtsi (which does not have CDSP).
+> >>>> In sdm660.dtsi replace buffer_mem inherited from SDM630 with
+> >>>> cdsp_region, which is also larger in size.
+> >>>>
+> >>>> SDM636 also doesn't have CDSP, so remove inherited from sdm660.dtsi
+> >>>> related nodes and add buffer_mem back.
+> >>>>
+> >>>> Signed-off-by: Nickolay Goppen <setotau@mainlining.org>
+> >>>> ---
+> >>>>   arch/arm64/boot/dts/qcom/sdm630.dtsi |   2 +-
+> >>>>   arch/arm64/boot/dts/qcom/sdm636.dtsi |  14 ++++
+> >>>>   arch/arm64/boot/dts/qcom/sdm660.dtsi | 152 +++++++++++++++++++++++++++++++++++
+> >>>>   3 files changed, 167 insertions(+), 1 deletion(-)
+> >>>>
+> >>>> diff --git a/arch/arm64/boot/dts/qcom/sdm630.dtsi b/arch/arm64/boot/dts/qcom/sdm630.dtsi
+> >>>> index 8b1a45a4e56e..a6a1933229b9 100644
+> >>>> --- a/arch/arm64/boot/dts/qcom/sdm630.dtsi
+> >>>> +++ b/arch/arm64/boot/dts/qcom/sdm630.dtsi
+> >>>> @@ -563,7 +563,7 @@ modem_smp2p_in: slave-kernel {
+> >>>>           };
+> >>>>       };
+> >>>>   -    soc@0 {
+> >>>> +    soc: soc@0 {
+> >>>>           #address-cells = <1>;
+> >>>>           #size-cells = <1>;
+> >>>>           ranges = <0 0 0 0xffffffff>;
+> >>>> diff --git a/arch/arm64/boot/dts/qcom/sdm636.dtsi b/arch/arm64/boot/dts/qcom/sdm636.dtsi
+> >>>> index ae15d81fa3f9..41e4e97f7747 100644
+> >>>> --- a/arch/arm64/boot/dts/qcom/sdm636.dtsi
+> >>>> +++ b/arch/arm64/boot/dts/qcom/sdm636.dtsi
+> >>>> @@ -16,6 +16,20 @@
+> >>>>    * be addressed when the aforementioned
+> >>>>    * peripherals will be enabled upstream.
+> >>>>    */
+> >>>> +/delete-node/ &cdsp_pil;
+> >>>> +/delete-node/ &cdsp_smmu;
+> >>>> +/delete-node/ &cdsp_region;
+> >>>> +
+> >>>> +/ {
+> >>>> +    /delete-node/ smp2p-cdsp;
+> >>>> +
+> >>>> +    reserved-memory {
+> >>>> +        buffer_mem: tzbuffer@94a00000 {
+> >>>> +            reg = <0x00 0x94a00000 0x00 0x100000>;
+> >>>> +            no-map;
+> >>>> +        };
+> >>>> +    };
+> >>>> +};
+> >>> This probably means that we need to invert things and make SDM636
+> >>> inherit SDM630 and SDM660 inherit SDM636. Would you mind doing that as a
+> >>> part of this patchset?
+> >> I'd mind
+> > Konrad decided to do the split this way for some reason initially
+> 
+> This isn't a very good argument, but I think keeping it as-is is a
+> good idea in this case, as opening sdm660.dtsi I see a need for some
+> more cleanup work on this platform.. which I don't think anyone
+> is willing to do short term, this is less invasive
 
-Exactly.
-Thanks!
-
-Gr{oetje,eeting}s,
-
-                        Geert
+Okay. It just felt weird to readd the node that we remove in the
+previous #include.
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+With best wishes
+Dmitry
 
