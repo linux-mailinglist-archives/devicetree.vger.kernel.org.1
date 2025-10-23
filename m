@@ -1,88 +1,90 @@
-Return-Path: <devicetree+bounces-230138-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230139-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68D04BFFFC7
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 10:44:54 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3962CBFFFD6
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 10:45:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8A988188866B
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 08:45:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 731C13AD807
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 08:45:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C8E73019BD;
-	Thu, 23 Oct 2025 08:44:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D060D302CB1;
+	Thu, 23 Oct 2025 08:44:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="NacakziX"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="GNu+rqYa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B62BF301707
-	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 08:44:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 450FD3019A1
+	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 08:44:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761209089; cv=none; b=oJXW9Y2jis/H2KcmkzWvTd3YUGa6Vn1t+qXRwuxNDwAYlXdgX/F5otaT/TzH5YMOp4toniP3w+8YRtroJtkbuBZNcbcMIeg03X1Y96p4n/LuZcRegm300+Xj/FUHgoqMezNZGPgc/MuwCrWKV5XaMvZyt1F1gc8Q1z8qgVqdlsE=
+	t=1761209095; cv=none; b=I/5C286U0zv0Z913Nu0mXTEZ8txGZ4r5DTBfxsTTUDW9E6gRF/OMDEDKGSe7nAEuBqNzenXjlGwDdSdesMCD1jJDv9zOmcJQdmfw2PmlQKFqTIpQHlvKg1LoihM3yWHhk4UJ0ZF7m3+zj1kJKM8SVSJggcywjr8oohcbcBYcMy0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761209089; c=relaxed/simple;
-	bh=TzxMEAEvBvay0xnUwiJ4rg2i0h0+YPV0RGQEHFd6Xsw=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=QalzZE6AG88ZARyYqqagrG3+Y3xZLKnYrcK+e9I4iUGMpkxAVvd+3/SkIhoAp8novRJJwZ0kfhP1CkAYOOPPCymqYp3Ylu8F4eVPQ2hOeKBNSp92LY3q4q8ky/yvMCdlPuSh2vLUVLavnkHlqwkLBDeta9MkoY72ikp38G0Temg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=NacakziX; arc=none smtp.client-ip=205.220.168.131
+	s=arc-20240116; t=1761209095; c=relaxed/simple;
+	bh=k+PmNoXDAXQJS7OetKj0dkK2qhIoz89vlGf8TIfy+1I=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=nBeUtx+t7nNJTsDS0rK3xU5PF2BMxnkIq8hadaxu5k6ltUa82kTXPgt90zH94HhqxGxn0id+zYEoNJM2jo6gqiLILGvRlWgVJp9Bcds1KhuJpylSkCTgQp+cWjWClrXrqdFY77wLocTN1F+59FO9DFaBDnrwnaOyMw4cA7d9f+0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=GNu+rqYa; arc=none smtp.client-ip=205.220.180.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59N85KmD019068
-	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 08:44:47 GMT
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59N6wGN0022476
+	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 08:44:53 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=eAilDezzajor08e+n9AuRt
-	0YHOook8LfrgI0jRV38Qc=; b=NacakziX6eeQ/vHN2PjYgKzwr7Dfv0bBDI2Sqj
-	yN5f3mKZdDRmf2FWbQzPCAKsKTRE8ZCqWoXtIuwBrRpfJNIhhH7kVz71wlTFO7MR
-	gfGDmt+rTYBhhEAMW/tI/TEBrlo7tekb3f/QDGCWOfHUID9WMKuMm9RFheKx8nbL
-	KmryD+bB29247LS5m0f1uagsp1Z3MLc/jqliCN8U3b2d2HJ1s17BhnxqAdbMuJeB
-	AdUOcz9+c6+a2EUtA4Orm+7/ZyYKCG08sgvJorJg/dbRszd0c6Byuuo008+J+0jo
-	yUmZokCWG/U1Aqrr9FhhO5QAAyr291fbPBJA2UEU1rwTHrqw==
-Received: from mail-pg1-f197.google.com (mail-pg1-f197.google.com [209.85.215.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49y67qhn4u-1
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	ifR645KuUyFxKA//L+5AC3NZ2Xa5Oh1zVhSgn6hJBRs=; b=GNu+rqYaSILiqoC3
+	slUnNyXTp1RfFzljugTGF5gqyfoXbblqGXcjubZ3evWaKweK233cLi79zwOnbX9g
+	uOBQqUljEBhW/dI0J0RmttlM93jMhxl1A0AtlJ3D/1t+Z6Mk0H6bLGsiEfx4qkYA
+	F8YyezBSRqG/sNHsS+5KEnWEifnJK6mUZVRQVcXa1rmn+ohLTwcor0IkEWxnuqo2
+	8u3gx7G6El8TaPJkAvPz/Tf689GJrRTQZTK22GS43oyfIvFPpjKrnmDKGxw/pJ6b
+	2kwAvsWS6YvsFEkd4YTxcf78JTTW6G45d+inTUJIkzkDETUBDtnUmFdTXl5iyPfi
+	lSd2ww==
+Received: from mail-pf1-f200.google.com (mail-pf1-f200.google.com [209.85.210.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49v1w87p3p-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 08:44:47 +0000 (GMT)
-Received: by mail-pg1-f197.google.com with SMTP id 41be03b00d2f7-b6cff817142so118659a12.1
-        for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 01:44:46 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 08:44:53 +0000 (GMT)
+Received: by mail-pf1-f200.google.com with SMTP id d2e1a72fcca58-7810e5a22f3so1383357b3a.1
+        for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 01:44:52 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761209086; x=1761813886;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=eAilDezzajor08e+n9AuRt0YHOook8LfrgI0jRV38Qc=;
-        b=cV6QdYaETowHyIBzBaHBwDUIiUKxi1RrwfOdP7yZWX1t5GPr4eu3ypoKlplkeQ6JPk
-         pitUitHHmun+YAqLTj0GhyWW8La3HnwigliuOeTBsxdMQQ8/30rAQpasdLNoxVEt7oUZ
-         5vOJ41EBlFl4eLzouffu5mUidbjgTNUX7wLSpxo9um9Uw2vdkun2y9L9W/xaRPAmxsNv
-         3b9EBB7Ejiwz6MYLGiunmgkKDGMmISqBwyMS0KozhvbSLYCvXelIAvHuL/N5ZrEKuyOr
-         wQy6cSZryyAzu7933CDA8+xar0kecso1j/Vad0YEkZxKiNFKvF1IKbccyIuIkQqzmoMx
-         3iQg==
-X-Forwarded-Encrypted: i=1; AJvYcCUQiAYGDnn+sQV6/S/YS6oNmN5vNHfgTGH9J0p55p4tBKOaubDs2fA3ZJ0ib+uRr0Q6JWlWJt8Yj/RX@vger.kernel.org
-X-Gm-Message-State: AOJu0YxJvj4QcdayF7r43JuSNmaOsWfMbtfWvMHqjh6sBmjj/0mcz8PJ
-	CLNxbAVO6f3xdZsYmNjSF2oQL4U/zgfABKMeiE+M2D2QhNlMPo3hw3ZQ5EaMDucGTlBMnmIs1OC
-	+3XY1466Tan0Cmgbh1qYJ3gHjFJPDMn463/7nDYYlb2Xmc7oVRCI/IOEqrHX81JPC2sBc/1jJ
-X-Gm-Gg: ASbGnct8T0xle806fvVBuP5I2VUm4b/w3aFHTry5dklvqff9tk/3sI5BmV7eQGXVCuO
-	THw+j6ShTQZNZg6xwzpp71k6YEwSzTIP896ONsGHwlw7SSfdfspjZdoS2u8V9/d0O2as50UWj4N
-	iaWZ0FEbbxQ6YVYiATD97L4dp357ZnRs0o7B3hoq4axTEMjRpsWbAMRxPjCIU3XQnm8VX94qFDw
-	1SUkoZfnLfoqbFCJT12YqM/tzL6J4ekmHlWohBZLcKEky5zZ9ySRYq6hFQXbt3VgI+uuaInevA7
-	Jb7DtUHl87hRmlM8JjfGfZkyXqh0PdUxKE4Q7xyNtEg8d/g+9Ay8eciVk6mlE3Rj7+bgVsniE8G
-	sPVQdjeQNcMSM0t4w+SrePHQLFnYAb1IdVg==
-X-Received: by 2002:a17:90b:1e08:b0:32e:f1c:e778 with SMTP id 98e67ed59e1d1-33fafb9755cmr2113291a91.3.1761209085825;
-        Thu, 23 Oct 2025 01:44:45 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHhmMIxVjdwZwB+RL6W4zlRgSWTS+YxPr19/elZcrqqzsvZ7foLK82FOM3+gPdgpiajIHnRSw==
-X-Received: by 2002:a17:90b:1e08:b0:32e:f1c:e778 with SMTP id 98e67ed59e1d1-33fafb9755cmr2113253a91.3.1761209085336;
-        Thu, 23 Oct 2025 01:44:45 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1761209091; x=1761813891;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ifR645KuUyFxKA//L+5AC3NZ2Xa5Oh1zVhSgn6hJBRs=;
+        b=E1h4tOcuzwPExq0m1wY6jrt6snBs+Aj4WXiAe822Xs9upKVc74biS2UGZWVInSwdBS
+         pqsOQqFhSmsSJQKs0jgWX20hgAYT/Sx3njb34expkFPGA/nqbwS8ZQoyMIqX5ckftHMS
+         FLUtIkotCEg4HfdoiN2FPZPjrpPyIz9z4d0M+GBJuVQe7Zsjlt//ez4tZVNEusEMQlGC
+         dX+JajuoSXueHRZ3Q648z5Vhwt4wq7V963ikl6U/GqJZBiXbvjouA67ZDk6gn8iz6Enz
+         FQFpjwZl1FiZgOM5ik+AY2apGR5lLscfSjNaPCLeBKz4V9xkHruPHgUT+2tdUn1l5+Pk
+         937g==
+X-Forwarded-Encrypted: i=1; AJvYcCVaCbXbf7mw2yzYZphWh5aw7BPVd0P0/dCEa6AJyWpaJevp6hvxf2KuUD47oqtRrIPfI1rNsv9V8Zn2@vger.kernel.org
+X-Gm-Message-State: AOJu0YwVisYnce59HwFZ73SMCJ47fO7gJP059skqQ4H0zECM4XaSwVNJ
+	vTjbB7TElBCO/fo6h95nwA/hm8qLMFFE5xhiwS2aoAJd2P5fZuuWpCBp/anr/A7F2rdV+x93TVn
+	yu2CZZJM4jSREppqLAWDirsJ3zfz7CVoMd3+Z1dcnLyCaERqE6o9M3fxWIvccPtv/8pwyp4oY
+X-Gm-Gg: ASbGncvd5xX9tYfu1yBI5BN61vvGSfn5o8iyw3uloseVlNYJJFPRog9RNmW6HaefE50
+	fUFbHaOiDNeYuJf2knbD9+Mf2vO4WJOu8gmsqJeAJ0sGtqvD0N1Yjco+Sz/5Js01Oni918QJTIB
+	5fD/314+Pr8vHc+r5Bo7W/1op4B8Zm2mnu9VKz1m4tE6+wDB4ez82Rb2HFTYuUz8cU6EK7uQCa/
+	NR3ZYMHw/DYWPipEPoNl7bqsEHCYTtxxR0JYwg3ResaRJh/WxZ3IjNvsiyc5MqKLqijm69av1q3
+	lj/hxrH1d0ZzfM2ZrzE1jBZ8p8BAvx02zP0fRaj8RITZ0ptncGJVS3bpWiIQYJtO57wDVPahXDB
+	WXlmI6uQz5pwksRXgKRMQ/4HNHgGrwxA87g==
+X-Received: by 2002:a05:6a21:3382:b0:319:1c54:1764 with SMTP id adf61e73a8af0-334a8650741mr33069445637.60.1761209091038;
+        Thu, 23 Oct 2025 01:44:51 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEF7/01T06H3cxa6y7Y+3Sz9xWN4jXPTvHSIbK3VQSTfvu1y6FfQKeEEaZm5mzR/UjCiLhd6Q==
+X-Received: by 2002:a05:6a21:3382:b0:319:1c54:1764 with SMTP id adf61e73a8af0-334a8650741mr33069410637.60.1761209090638;
+        Thu, 23 Oct 2025 01:44:50 -0700 (PDT)
 Received: from hu-jprakash-hyd.qualcomm.com ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b6cf4c056fbsm1391414a12.17.2025.10.23.01.44.40
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b6cf4c056fbsm1391414a12.17.2025.10.23.01.44.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 23 Oct 2025 01:44:44 -0700 (PDT)
+        Thu, 23 Oct 2025 01:44:50 -0700 (PDT)
 From: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
-Subject: [PATCH v2 0/2] Add rpmh regulator support for Kaanapali
-Date: Thu, 23 Oct 2025 14:14:35 +0530
-Message-Id: <20251023-pmr735d_regulator-v2-0-452e1b28cd38@oss.qualcomm.com>
+Date: Thu, 23 Oct 2025 14:14:36 +0530
+Subject: [PATCH v2 1/2] regulator: dt-bindings: qcom,rpmh: Add support for
+ PMR735D
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -91,12 +93,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAPTq+WgC/2WO3WrDMAxGXyX4eir+SZu4jLH3KGV4sZyYxUkqN
- 6Gl9N2nJRcb7EbwCemc7yEyUsQsjsVDEC4xx3HgoF8K0XRuaBGi5yy01HsltYEpUWX2/oOwnXt
- 3HQmC18GFSh+UCYL/JsIQbyvzdObcxcxn91WxqJ/tSpNWl/A1TPBLWhRI8LbxaJ2tXVm+jznvL
- rPrmzGlHQ9xfm4GwsvMZa+bRiTM2a1lj8XrRlc1tP09zQQ0pe6PxVNckGWGZaouG2kPVf2J5p/
- sjW3Pb0ytMOkiAQAA
-X-Change-ID: 20251023-pmr735d_regulator-fd2faf72613f
+Message-Id: <20251023-pmr735d_regulator-v2-1-452e1b28cd38@oss.qualcomm.com>
+References: <20251023-pmr735d_regulator-v2-0-452e1b28cd38@oss.qualcomm.com>
+In-Reply-To: <20251023-pmr735d_regulator-v2-0-452e1b28cd38@oss.qualcomm.com>
 To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
         Rob Herring <robh@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -110,64 +109,85 @@ Cc: Krzysztof Kozlowski <krzk@kernel.org>, linux-arm-msm@vger.kernel.org,
         dmitry.baryshkov@oss.qualcomm.com, aiqun.yu@oss.qualcomm.com,
         yijie.yang@oss.qualcomm.com
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1761209080; l=1248;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1761209080; l=1753;
  i=jishnu.prakash@oss.qualcomm.com; s=20251014; h=from:subject:message-id;
- bh=TzxMEAEvBvay0xnUwiJ4rg2i0h0+YPV0RGQEHFd6Xsw=;
- b=FMd18hiG+bzBkvhzRSFZlZ2mE3mYIpBjvVp3VRQdFwP4wrEovlSF7XYCV4RF5wR9KwBHbUjMJ
- 7gqqS8lCcRTD5k97sRZbXs55k8+QKekmE7d+8cLUjyHZ00tbXnwHbiA
+ bh=k+PmNoXDAXQJS7OetKj0dkK2qhIoz89vlGf8TIfy+1I=;
+ b=nBl4+q7agGbU116/Y/hJMgAdhOCTqaxJ9umeS7PG+LDZT5GwQmZDDun+u9hc0eZK3tEv0lXf4
+ tTdomc0YuolAprxvorr0kbUTx8SNsdwRlzE0gDo5927Sw1weP2FDyV1
 X-Developer-Key: i=jishnu.prakash@oss.qualcomm.com; a=ed25519;
  pk=g89pXdLVwRjdTeQ+uX1QzvBO346E3hQAc1N7fcTXgmk=
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDIyMDE2OCBTYWx0ZWRfXxg5XUqlO/Je9
- Juab9ZiP1Pf0Mg8bFXRQM3cUKavkeghYPPFhYJVWox4J8Y9nWFTrfwfrtDdzckkXWcvpNlvzhAe
- rQD3CPZnC3Ljrwz8w51/N/w4xWlvun82wPtd6aaVLLYc7QFBsIKPCQ3satUaYFhQBOxBghyJq4T
- VEbvz8nuLp+jEmdHFDb6EFnOQoExxAiEJFsig/e8VfIdthQTQH0kk/flsFCUoTcbytKIdYqVnOs
- TnnAqeKshniCmCQrA3rqgyIMftRzm9LjHlAVV327OkvacklMYb1Gb/rbSLkoXT3lJqZgLpENcBd
- oUzCAgROz0M5Obwze5eK757WeDOsQ+24Y+evaPiyhxk2K2rmss8DVl8n3oWOVi5Hj4143yoAoeo
- 6rNdtvdxIpP+qYL96rCILEg82PL6mw==
-X-Authority-Analysis: v=2.4 cv=LMRrgZW9 c=1 sm=1 tr=0 ts=68f9eaff cx=c_pps
- a=rz3CxIlbcmazkYymdCej/Q==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDE4MDAxNSBTYWx0ZWRfX5SfsyPzw8/Sl
+ PbZOHNRLExNer8IHsLHmZ6ejHGq9o9yLwhZu8rOrkbQq1tI5u7VQJS2TPHzJtzLPqyE8AuhlVLE
+ RJeP5TIeuegIrVkc2TSeOStHHlm/9fLe7He8aPdOpeuq1Pkb7ajJ5xY19kSUmvVH99VABXd0IR3
+ EEppPfp6MoNYM+VRrFuahRpBMSFeUG6HJLYQ+ZGif8/12dLANmEc/V/LFtuNhv+uA/0VGaoO+B9
+ 5Nef2I5DxHXolkdAw9CED0tqhycmOr7ds8gwlEdj4KdHLOC0oAUOrtn96wj3xEBUdYcvVDhOMyc
+ gGA7Sw/CoVvSNa/V3fqakWg170BTRKJfuM51uyR6JX08Rt6tpWwc2japAVuUc30IY4Mu/kkrjWB
+ bFoTTLnfbApH2nCxwYOvrZs01Pge2Q==
+X-Authority-Analysis: v=2.4 cv=bNUb4f+Z c=1 sm=1 tr=0 ts=68f9eb05 cx=c_pps
+ a=mDZGXZTwRPZaeRUbqKGCBw==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
  a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=Qzm-_OucbfTBZaCAGHUA:9 a=QEXdDO2ut3YA:10
- a=bFCP_H2QrGi7Okbo017w:22
-X-Proofpoint-GUID: FY0szJ6ZyHg7Q6SYEVIEn6VDgz_wyZSg
-X-Proofpoint-ORIG-GUID: FY0szJ6ZyHg7Q6SYEVIEn6VDgz_wyZSg
+ a=EUspDBNiAAAA:8 a=S1N0t0yXLE9zJeP-jjEA:9 a=QEXdDO2ut3YA:10
+ a=zc0IvFSfCIW2DFIPzwfm:22
+X-Proofpoint-GUID: SVxhanvzsXZnEQBqU2KFpe5SaC1cicV5
+X-Proofpoint-ORIG-GUID: SVxhanvzsXZnEQBqU2KFpe5SaC1cicV5
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
  definitions=2025-10-22_08,2025-10-22_01,2025-03-28_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 clxscore=1015 priorityscore=1501 impostorscore=0 phishscore=0
- bulkscore=0 malwarescore=0 adultscore=0 lowpriorityscore=0 spamscore=0
+ bulkscore=0 phishscore=0 malwarescore=0 lowpriorityscore=0 clxscore=1011
+ priorityscore=1501 suspectscore=0 adultscore=0 spamscore=0 impostorscore=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2510020000 definitions=main-2510220168
+ reason=mlx scancount=1 engine=8.19.0-2510020000 definitions=main-2510180015
 
-Add rpmh regulator support for Kaanapali by adding PMR735D RPMh
-regulators.
+Add support for PMR735D PMIC used on Kaanapali boards.
 
+Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
 Signed-off-by: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
 ---
-Changes in v2:
-- Rebased series and updated dependencies to fix merge conflict in v1.
-- Link to v1: https://lore.kernel.org/r/20250924-knp-regulator-v1-0-d9cde9a98a44@oss.qualcomm.com
+ .../devicetree/bindings/regulator/qcom,rpmh-regulator.yaml | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
 
----
-Jishnu Prakash (2):
-      regulator: dt-bindings: qcom,rpmh: Add support for PMR735D
-      regulator: rpmh-regulator: Add RPMH regulator support for PMR735D
+diff --git a/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml b/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml
+index 40ddc64577e7..4669095039c8 100644
+--- a/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml
++++ b/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml
+@@ -59,6 +59,7 @@ description: |
+       For PMCX0102, smps1 - smps10, ldo1 - ldo4
+       For PMR735A, smps1 - smps3, ldo1 - ldo7
+       For PMR735B, ldo1 - ldo12
++      For PMR735D, ldo1 - ldo7
+       For PMX55, smps1 - smps7, ldo1 - ldo16
+       For PMX65, smps1 - smps8, ldo1 - ldo21
+       For PMX75, smps1 - smps10, ldo1 - ldo21
+@@ -99,6 +100,7 @@ properties:
+       - qcom,pmm8654au-rpmh-regulators
+       - qcom,pmr735a-rpmh-regulators
+       - qcom,pmr735b-rpmh-regulators
++      - qcom,pmr735d-rpmh-regulators
+       - qcom,pmx55-rpmh-regulators
+       - qcom,pmx65-rpmh-regulators
+       - qcom,pmx75-rpmh-regulators
+@@ -496,6 +498,18 @@ allOf:
+       patternProperties:
+         "^vdd-l([3-6]|9|1[0-2])-supply$": true
+ 
++  - if:
++      properties:
++        compatible:
++          enum:
++            - qcom,pmr735d-rpmh-regulators
++    then:
++      properties:
++        vdd-l1-l2-l5-supply: true
++        vdd-l3-l4-supply: true
++      patternProperties:
++        "^vdd-l[6-7]-supply$": true
++
+   - if:
+       properties:
+         compatible:
 
- .../bindings/regulator/qcom,rpmh-regulator.yaml           | 14 ++++++++++++++
- drivers/regulator/qcom-rpmh-regulator.c                   | 15 +++++++++++++++
- 2 files changed, 29 insertions(+)
----
-base-commit: efb26a23ed5f5dc3554886ab398f559dcb1de96b
-change-id: 20251023-pmr735d_regulator-fd2faf72613f
-prerequisite-message-id: <20250918-glymur-rpmh-regulator-driver-v3-0-184c09678be3@oss.qualcomm.com>
-prerequisite-patch-id: 3f755a759b681ac610fab3a3ab78cc50a82996f8
-prerequisite-patch-id: 7f1f8d6f460a3032a7696290b5138da7d37bc6e0
-prerequisite-patch-id: 264b32da8d734e44e6833d3ad5e7807f5fb88b59
-prerequisite-patch-id: 0ebdc2319e0615065e1a0fe44008f2473e4bdb24
-
-Best regards,
 -- 
-Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
+2.25.1
 
 
