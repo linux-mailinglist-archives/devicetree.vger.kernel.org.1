@@ -1,83 +1,83 @@
-Return-Path: <devicetree+bounces-230240-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230241-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E92A2C00D4E
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 13:44:26 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 16DA7C00CB1
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 13:38:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EB80C3AFB04
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 11:38:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C7F011A61932
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 11:38:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E7B830E839;
-	Thu, 23 Oct 2025 11:37:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E03130E84A;
+	Thu, 23 Oct 2025 11:37:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="elvqjNP7"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="jS9nCJ6A"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
+Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6ABF927054C
-	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 11:37:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3F5330DED8
+	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 11:37:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761219476; cv=none; b=l4JvZOg7ksOptgUCz6+Db1zo+oc4abWtGVPAjJvRsZ6HiqP++IYoA9HTVob4krVf3RIFBgRSd86Ye4LdbVdaIq/aRfsXsF14PAP7ZPnbDjNklQF4QSaE8l9uBe89Ibhv4GLMH1JDaIyH7ixxhvpzQ4lMkCNxJFOYLgtpM39mW28=
+	t=1761219476; cv=none; b=rLNxcZP54FnOwjf36bhY1OMKsjvy0uEJ3KdMZSmughZ85G/X5L6hdd++ZzZAqLFLVLz06WEriF6Lah3FPjUXjC7sqyvAPEqgFYfiWs3BWaY77ION0jfrVlcDsrMmY/g8G5vUEjhk/XwDNqOMXK8xt4AdPhs/Z6QsUIvC6u4k3lA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1761219476; c=relaxed/simple;
-	bh=7oXf51m7mBPucNidESq9CXB9+ksqBJvy/yJfCr+VnSk=;
+	bh=g58KuzkktKQpB2ABG9JXwvSPtzU67rd18b8pTepHPhM=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=XjWC4BE3EwUaLTFHK37SCDIsic5p2FozIXgORlO2z1X0QSQR+PzB2RgvUqrKMTPsGiOYqW+Rmt0iM6oBp7K+SyniP6PC5tl5ovfrv9qDG0QkTcbj99sA3rM/oG4NZaSuiERhFfYT1/ick/Z/WZwTIDFWU4dr70SMiN7siqAuovA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=elvqjNP7; arc=none smtp.client-ip=209.85.218.41
+	 In-Reply-To:To:Cc; b=AZTWxQiuiarcTznsPbCsCqDWLzFjeqEZj/1ZJ6ZKnZ+VnOuwhRZith3i8rX7cKOXv5EBxwfvnUQDw7wMd5ftmlQRHGrcXgQr0fTufHfysYESYHdGLoSYx1ztseZIg6L6nWkum1sdss7cZJ9elvge0jxv2WlH/XdcM+TyA8cfkJI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=jS9nCJ6A; arc=none smtp.client-ip=209.85.208.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-b5b823b4f3dso133669266b.3
-        for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 04:37:53 -0700 (PDT)
+Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-63c4b41b38cso1471599a12.3
+        for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 04:37:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1761219472; x=1761824272; darn=vger.kernel.org;
+        d=fairphone.com; s=fair; t=1761219473; x=1761824273; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=Y8kmVxRSYUQArl5tDapoiE287uiuzt8v/x5S0PTvLP8=;
-        b=elvqjNP7Ekc3lmFjrFFuw3OK9UKWaIB0Y+0RbrgmHv1kFufut4ZcCQcfahv2U2YhNm
-         NEzXJKpo1wi1c5PqfeOWebAWRv7EGXAlOmulpGNzdYfSt4rZIDSI0Fq4DlKgtslzQ/gj
-         Sh/IwLXZWXugDnFSB/nj98VseWxwQUJXOcba6bT3nPfLJOuCL9W4N05xd10DXlu9JvTp
-         Kkw3GT6VZhrqUi4QYS2A699UoTFjig9is78ZZyObY6bZWKE4hfk4c0S/saHJWMLLkdJn
-         vPNjitSxFMPFD3khc46Kly2UsMe2FgncfNxO+AYyf/2XUKnfyy0dRil8i+Qaqdywh+Rg
-         sXIA==
+        bh=fjI2aJRLw2mG2p4ljVDPimKDlO2KaZ8by2HdaZyc1co=;
+        b=jS9nCJ6AD0UffeUVIExSuwlPjWmLq/1fiLKYn4bfbi7MLoulYC8BTwk2kuO6Qshh27
+         5aLOTDNapWPm/cqYAfM5DhNt9Qa0B2XyuHP9uxfA+Eb6BtA7nT2za/6mfyvt1MI0r9+6
+         blixPAuU+tVh7aONnEdrvp5JjEv+1J2pkrlLzJr8Gdwlg49d6j4g9qtLE/KbKhAalEU8
+         MmLDlmPc93wX71Co42U052nTQRmCq47CBtJHD0ruWqyXIrDB4iYnVo+hv8OeHZFyfUO7
+         SlKrKy2xUDx0liGqCOb6q6oESGZJgbPgDi8kd0kkhN1lK4Nu1WCfEK0+/jFwraXh9MBw
+         Z8KQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761219472; x=1761824272;
+        d=1e100.net; s=20230601; t=1761219473; x=1761824273;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=Y8kmVxRSYUQArl5tDapoiE287uiuzt8v/x5S0PTvLP8=;
-        b=Ypz0ScfbFid0LSBFDT4AZlpkKVC1SObETDmJxgSc+F7AndTEfWBKTSuONjkZcZTHGj
-         Oa3Nlw9M2f65K4U+gKh7WxSuVCOaksHsmhlnJN1tlz3AOxrk/x91xGmYgJNOTYpPL/Hf
-         QQKXsffkozoeI1XMWd9pPh9sKCMLcNb8RtiyrW882ek34z7Bdt2KBpcmH9kwRYGFDnGE
-         QbEqjvfFtVUB/QkO4GFIHHnGDvmtru5+hoJP+SKSK8HxwZi0kPStkiB2d9nfI629xQg1
-         Y04UHCBmaipAIkAnlwwdfDrofaBr+AgeM31yDYRWjWDLsGqqRlEP3RkUwFPxZmmIS+yn
-         /qlg==
-X-Forwarded-Encrypted: i=1; AJvYcCVBFqkha0diyu8pUn3tdbgXZ+zJeAaizqHxuLdwdFozan2xMDXxoUd8HDsXe/KgydYcnRdmKCBwwpnZ@vger.kernel.org
-X-Gm-Message-State: AOJu0YyOhh6wG2HJTtGsBMIyrlk67xg4c/WD12Ug1iRZxzSutJ5N66pm
-	KmyVkGbjakqMe+WaxsaQBqnofW8nVaSst7dLs5jTHZM7MNcXFelYQclbGLzoGg6E1TM=
-X-Gm-Gg: ASbGnctf/x6kT0Tu0yqEFQWmZwFR5GvtGAZq7YPogj1/HEat+XBKzc5SdUbLqk6PU9D
-	ngcKS8a4H/1B3i39NPpQL3SpsyjRayVsRK+8JW8RGmRanzx8pIe5Kr3TAHpTT5nFN+4wpTn8w7d
-	NwgR5RfF8O384IZyNx3fwSeS0jey26ngShgIGNyH/xSYZ2JV+/D+miFPZ8rw0+RkG1+dzKCC1mX
-	Wl0ZD2eNMJ/E+0het0sy1IIN9RqLIkcQekjSSX2Vwi7akKUHR+jVDyd5abnA7sGr+hx8otTVhhG
-	EB56gP3b2Hd0HhpzF2/icCXeXIWbNUM0yu6F7R32PhpPLwZvzuhwhBk2Ue/kQTokjH/mpnWnAYI
-	ubEV0vI4bz5Jo/WSnna+r8Ic/zEqSDyV1xssP+O+XuOh770RvO/gmcAXbVlrY96Ptqq/992DPwb
-	XSK8P7cD7458m8U5FFYjHRmoqHYA+2uj51s56nIckGMkrtQQ==
-X-Google-Smtp-Source: AGHT+IEzcSqbV8G27b7RK+JXHjk+tt6rrpOdAaKPcwm6vc0BDCjPnkJCoc2TFrnWl+dB/W48T0b3nw==
-X-Received: by 2002:a17:906:4fca:b0:b50:a067:2d85 with SMTP id a640c23a62f3a-b6473242850mr2602673666b.15.1761219471693;
-        Thu, 23 Oct 2025 04:37:51 -0700 (PDT)
+        bh=fjI2aJRLw2mG2p4ljVDPimKDlO2KaZ8by2HdaZyc1co=;
+        b=eWkrq3R6t5mad0dJwFb6qvJ8pQHomU9lJmce+wO+8TlRbew8COcnhfhxybEDGu4VQR
+         YNxd/EhlWbgmbcXoJ4BbrFJVQGwBfrilY67grE73mgGFykqOzM/RiKAry49yT1zsHgGg
+         5m151Zx3PRn1/H227V4lzchNnfr7B62pnoh7COhMgWzQ4C2LtURfiGIoyHA6NziNrcif
+         U0QIFvDeuK58D2vikmBW9Te6fv40JfESB6R/8be6tIOiDUwrESTLR1KFIhL/bRUwZPhT
+         pBzjuB+dAG70DURpkNExSkSCcAP2Kdfr6QqkZ7FvUvOexl+G2OYWkCcfkPfB5j/9U4DH
+         Uwkw==
+X-Forwarded-Encrypted: i=1; AJvYcCWEpZo3D1fvbPbNPLft35iY73bifEKW4Q8kEzJYNZHeai00CzqnyYSYjrw4/QuFIS9kxLmsGGe/TsvS@vger.kernel.org
+X-Gm-Message-State: AOJu0YwAGSlu3jOKvRn8DZg1aXBWaiaoVg00YXqzZIhkeyzXXh+MjR8K
+	IXx2hiYzJRqdPJcJ80+wrVQd8xYjCyRtbjefuUalcS0ILqL/hTDUj0NCdbLRL6DD1gA=
+X-Gm-Gg: ASbGncu6vQfrtZGIjvJR+PsTIvKkWhU510CnazSQWuNz1zLVfY3R8x+uCbOFMSzuyj4
+	T1wIAEInsiLhyVvT2R5SD8n74MOIPmcfMnwzydB6NvHqimrjywm8Xc7PLKmjF4e+yNIdLHTwYkz
+	g/kfAwfu6Qgpb7j1VC6XRI+a+V4Vo+DPcZJhwAQ3kDYPYJOThVOwbMq/goQdmlsYBUCzWjLVG6g
+	M+3B4PxeRfLUzL7Z7WbKhsiJPWPISh9RpEG89lSvPBz7dBLDGCI6TDbi0bIg1Y7cUGpubF8+cZ7
+	oXf/64GZgQpY8QiDtcEgnoYE3w6qRzBnGLvpWCpf5TrEmD+sr51WqGWGN2o4Iu3nt2M05vlrm7h
+	cyflqAMHm4nch1H1d5B1C7MTg4lJBHolINPQqiRcDDxl/1HgEecwt+SPzbnD85oNiGYHgelf/y0
+	sO9aZAW/wIgajonAVgqxIN7nZln0uGUsuDl0inb/FmNX++emlEqKhAo91o
+X-Google-Smtp-Source: AGHT+IFB0A7MKls2kHsI5nX6WsoE/dx/at6LNgngrYv4dSUQbhkg+Or/JWcuw9BSWnZhYzFJWcxWXA==
+X-Received: by 2002:a17:907:3f0d:b0:b49:5103:c0b4 with SMTP id a640c23a62f3a-b6d51c4bf45mr279214166b.56.1761219473297;
+        Thu, 23 Oct 2025 04:37:53 -0700 (PDT)
 Received: from [192.168.178.36] (046124199085.public.t-mobile.at. [46.124.199.85])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b6d511f8634sm194429666b.29.2025.10.23.04.37.49
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b6d511f8634sm194429666b.29.2025.10.23.04.37.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 23 Oct 2025 04:37:50 -0700 (PDT)
+        Thu, 23 Oct 2025 04:37:52 -0700 (PDT)
 From: Luca Weiss <luca.weiss@fairphone.com>
-Date: Thu, 23 Oct 2025 13:37:26 +0200
-Subject: [PATCH v2 1/3] arm64: dts: qcom: sm6350: Fix wrong order of
- freq-table-hz for UFS
+Date: Thu, 23 Oct 2025 13:37:27 +0200
+Subject: [PATCH v2 2/3] arm64: dts: qcom: sm6350: Add OPP table support to
+ UFSHC
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -86,7 +86,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20251023-sm6350-ufs-things-v2-1-799d59178713@fairphone.com>
+Message-Id: <20251023-sm6350-ufs-things-v2-2-799d59178713@fairphone.com>
 References: <20251023-sm6350-ufs-things-v2-0-799d59178713@fairphone.com>
 In-Reply-To: <20251023-sm6350-ufs-things-v2-0-799d59178713@fairphone.com>
 To: Bjorn Andersson <andersson@kernel.org>, 
@@ -96,47 +96,82 @@ To: Bjorn Andersson <andersson@kernel.org>,
 Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
  Krzysztof Kozlowski <krzk@kernel.org>, linux-arm-msm@vger.kernel.org, 
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Luca Weiss <luca.weiss@fairphone.com>, stable@vger.kernel.org
+ Luca Weiss <luca.weiss@fairphone.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1761219468; l=978;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1761219468; l=1930;
  i=luca.weiss@fairphone.com; s=20250611; h=from:subject:message-id;
- bh=7oXf51m7mBPucNidESq9CXB9+ksqBJvy/yJfCr+VnSk=;
- b=oXxHWyHCtwNqMCb25Ee7HIvzFWo/1Un9PghwgUi78155t7dSqhCLDn5o485ACX9xKDx66k5I5
- wHE14dkIjU3DFqmmpgw4UrtEb1U/qUWEiJ5KlLNG6Sm6iMSRNaPXsjd
+ bh=g58KuzkktKQpB2ABG9JXwvSPtzU67rd18b8pTepHPhM=;
+ b=GRRmF9C1XQ5OuP3yDDE7QI2w32CcMFfuWZHPb78W+IrWkSEJhyBLbS9EyNO0PXqFRB4qzp1CK
+ QU60zmIGBtND65Rzz7wMMqLRVWNpGPhED0HprkdCWDdb8pmTrwgbP51
 X-Developer-Key: i=luca.weiss@fairphone.com; a=ed25519;
  pk=O1aw+AAust5lEmgrNJ1Bs7PTY0fEsJm+mdkjExA69q8=
 
-During upstreaming the order of clocks was adjusted to match the
-upstream sort order, but mistakently freq-table-hz wasn't re-ordered
-with the new order.
+UFS host controller, when scaling gears, should choose appropriate
+performance state of RPMh power domain controller along with clock
+frequency. So let's add the OPP table support to specify both clock
+frequency and RPMh performance states replacing the old "freq-table-hz"
+property.
 
-Fix that by moving the entry for the ICE clk to the last place.
-
-Fixes: 5a814af5fc22 ("arm64: dts: qcom: sm6350: Add UFS nodes")
-Cc: <stable@vger.kernel.org>
 Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
 ---
- arch/arm64/boot/dts/qcom/sm6350.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ arch/arm64/boot/dts/qcom/sm6350.dtsi | 42 +++++++++++++++++++++++++++---------
+ 1 file changed, 32 insertions(+), 10 deletions(-)
 
 diff --git a/arch/arm64/boot/dts/qcom/sm6350.dtsi b/arch/arm64/boot/dts/qcom/sm6350.dtsi
-index 8459b27cacc7..19a7b9f9ea8b 100644
+index 19a7b9f9ea8b..30e77eca4c02 100644
 --- a/arch/arm64/boot/dts/qcom/sm6350.dtsi
 +++ b/arch/arm64/boot/dts/qcom/sm6350.dtsi
-@@ -1180,11 +1180,11 @@ ufs_mem_hc: ufshc@1d84000 {
- 				<0 0>,
- 				<0 0>,
- 				<37500000 150000000>,
--				<75000000 300000000>,
- 				<0 0>,
- 				<0 0>,
- 				<0 0>,
--				<0 0>;
-+				<0 0>,
-+				<75000000 300000000>;
+@@ -1175,18 +1175,40 @@ ufs_mem_hc: ufshc@1d84000 {
+ 				 <&gcc GCC_UFS_PHY_RX_SYMBOL_0_CLK>,
+ 				 <&gcc GCC_UFS_PHY_RX_SYMBOL_1_CLK>,
+ 				 <&gcc GCC_UFS_PHY_ICE_CORE_CLK>;
+-			freq-table-hz =
+-				<50000000 200000000>,
+-				<0 0>,
+-				<0 0>,
+-				<37500000 150000000>,
+-				<0 0>,
+-				<0 0>,
+-				<0 0>,
+-				<0 0>,
+-				<75000000 300000000>;
++
++			operating-points-v2 = <&ufs_opp_table>;
  
  			status = "disabled";
++
++			ufs_opp_table: opp-table {
++				compatible = "operating-points-v2";
++
++				opp-50000000 {
++					opp-hz = /bits/ 64 <50000000>,
++						 /bits/ 64 <0>,
++						 /bits/ 64 <0>,
++						 /bits/ 64 <37500000>,
++						 /bits/ 64 <0>,
++						 /bits/ 64 <0>,
++						 /bits/ 64 <0>,
++						 /bits/ 64 <0>,
++						 /bits/ 64 <75000000>;
++					required-opps = <&rpmhpd_opp_low_svs>;
++				};
++
++				opp-200000000 {
++					opp-hz = /bits/ 64 <200000000>,
++						 /bits/ 64 <0>,
++						 /bits/ 64 <0>,
++						 /bits/ 64 <150000000>,
++						 /bits/ 64 <0>,
++						 /bits/ 64 <0>,
++						 /bits/ 64 <0>,
++						 /bits/ 64 <0>,
++						 /bits/ 64 <300000000>;
++					required-opps = <&rpmhpd_opp_nom>;
++				};
++			};
  		};
+ 
+ 		ufs_mem_phy: phy@1d87000 {
 
 -- 
 2.51.1
