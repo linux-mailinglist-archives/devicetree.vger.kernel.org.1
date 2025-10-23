@@ -1,169 +1,177 @@
-Return-Path: <devicetree+bounces-230369-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230370-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD44CC01CF5
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 16:36:10 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 547DFC01D78
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 16:41:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id B34894F789B
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 14:33:47 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 05E78561D59
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 14:36:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3582329C44;
-	Thu, 23 Oct 2025 14:33:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 657B932E74D;
+	Thu, 23 Oct 2025 14:36:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="MjibQu7S"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="sgG7EPa4";
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="JNWcDYPf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47334314D15
-	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 14:33:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3758832E68B;
+	Thu, 23 Oct 2025 14:36:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761230025; cv=none; b=cLktDl+QWGPEgnGhG5kd4aT+g2Wxh3qzc76EhtO2YJznFVBIIt6btaS1WkycOM/94vxhBx5g6oAXL+Z9God6wRrIOIDL+jqCoaVlN4WBQy+qrd+eEacDArANgQQnkyKL+6/FOJSa4LrM812XN+DXz0fA3P2V0sSeJ4s1akiZ/Vk=
+	t=1761230199; cv=none; b=uz6yRqtLXuynpQy5nOLk+e63QzWjidRjmapa0OIoeZfm4Pe2YjtmOJ/TkkwU0E4x/SJVwqyuBj4Rn/OQnX4/iveCXRNo3Z7KOb3r9rWmX6wJ4MnvbnIb9JH5QbGD1D9Fo+D5+iaXXEp0E13r86vEgjQ5skMFBrUwnBDH6MQ0K3g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761230025; c=relaxed/simple;
-	bh=a9zQnr1U/qDAlP9ZQNBclzAJC9hezB8uCMOARh7yL1g=;
+	s=arc-20240116; t=1761230199; c=relaxed/simple;
+	bh=aP+vYEEGh9ShTCJnbPbppKibG+b122W/2Ec4bdoED1k=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=a+g68fCXG6QrhxiBLs9OqwZ1Gt8TUwGqKbCg4c7thG2xHOzwrqLDO1faCCHA1pVlSNQBnuLn0nIY9BghfcTvjlmm+IxfsOEopaNZ/VWt49/yJwt7MzHL/amEk6sakXnWLwYjt0ZCrdpxNRivVKQ+zojnZ4lLYwvd5U5Pv/eXtTE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=MjibQu7S; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59NERX0g018119
-	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 14:33:43 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	cAZU2ni0iRL+hjBDIOqvgHG1OUScWl3zzw0/P027wq8=; b=MjibQu7SnOSqIJhw
-	b2KRd7Y/1MVog5z09DjhnaEUP8Zj+3a9EBrBBfI1WLetNT+RTz/5fwuKOnoHbM9a
-	mlagnuAjHVmaQBCEcD73IfjUzRYgvdPzdgwRhHbjMu9mq47ywGlU6ra3+ATPKY51
-	RUZWEgcakb3B6K5Tw7A7kPt/P8t69jRN8BoKAk21U2VMK3e5n0rmPhFcAhCIyEM/
-	tolbQXq+ACPidfvCylBKLD2E2MnQM4cxtoaGd09BgFFNf3Tzph4BnXnyX171ejyx
-	49r+mHn1HldIhpMki8tXJM/JP0JIToEeUIOy2vG/1OKB3dpQZWlTcTP6GWnH0HMp
-	n18Onw==
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49xhe0pp3e-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 14:33:43 +0000 (GMT)
-Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4e8934ae68aso4013121cf.2
-        for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 07:33:43 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761230022; x=1761834822;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=cAZU2ni0iRL+hjBDIOqvgHG1OUScWl3zzw0/P027wq8=;
-        b=qmIIGRUWsFmyQ+sHsoMYDu5MpOc+2wjqa0iIisbaCdVeecJywVaONRTMreQvXN2E94
-         2P0VTaIvLT+EAifiYdPmjtHL93QLa7XCQpDhbCnm9Clz7EWsMUIIFCo+Uq8XTaWMzF35
-         +nZeiyEdjV71djlBUaa4UYCDuvlZaDzILWxsfkp0DrInWMggzyqys+JFCeGeFYdX9Saf
-         gVqMc7+r2A1Bj79DCJQ2D4a44Ax6lcJbX5Ln9TiotpotdAVfcQaa+U/lMXusXmthNy47
-         4gVtMVNicvaGCwkQDhIBoCLx8/FTv+PvqegDi/9xbWJHcszBQ51Vqsrma+ukN20kbFe1
-         bO+g==
-X-Forwarded-Encrypted: i=1; AJvYcCXFtE6FXWZyuFvRSEISE1J4VpgKwuIIkuutVx2rgaqzcWKJRcqWIE5zuflEEYXRdNavY8sT/g+6nXQ9@vger.kernel.org
-X-Gm-Message-State: AOJu0YzSv/hERQpgYMCh+nTwSpbwTKWPxoq8TUcolku3V9qWmtMWccgD
-	dWnCURwR8M30MiaJtO/vWrOpz7WglfQphuOj0COKqbnvYmhY4a86109GWp4IBz7MdvRDdLj/UQh
-	9+er4bljaBQKwK3jDHJSzKEWm8/ZMblBiWbQrl2w7gESzrE87CAsKFJZb9hdCTkbM
-X-Gm-Gg: ASbGnctJD2YQXFeX5zTnfJ5cVPpJvG3ki+twXbGOV5n9Gy/via7JLrwTnO0qNoyFb5J
-	pvMz9L0Z/DSFUBy5PqSVEclExY3788wblHh3o5T7qg3oX/BHfuO7HFPteZwcm1+ubPtH9s+Vw8D
-	sgC8Pm9xYRiqc7QVAP5D9hjonuXYAviTcqh/eT6+SuQxX2bGx4jTRJOYkkaHNRuCswwa6XFCNKX
-	4+xde9vWAcvoh8WP8ZnciaPFsgv5FvY5r6crFlVI8tMIiHbORK6X657sp33V2iZBw+zFzxb+quV
-	EeU1r5/AaBlaWqvUzJQramsKOOwWq9DwWlYwMDe5W5dwKl4wH23dtUYEje5HsEXPMx2aErHFEM4
-	f/IyEL0vD7JA8s4EHZ8f+CjwVBWDS1GuH41eZBIcIv6PJnZgfKjnvhV7V
-X-Received: by 2002:a05:622a:8c03:b0:4e8:a54d:cce8 with SMTP id d75a77b69052e-4e8a54dcd9fmr169633681cf.4.1761230022380;
-        Thu, 23 Oct 2025 07:33:42 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHJNFwNiX8mrBllU30A59G91vBsOifSuLRksl6K7fNrpM1xj2wDRVEAhFx96cud4Ytjso9xZQ==
-X-Received: by 2002:a05:622a:8c03:b0:4e8:a54d:cce8 with SMTP id d75a77b69052e-4e8a54dcd9fmr169633411cf.4.1761230021946;
-        Thu, 23 Oct 2025 07:33:41 -0700 (PDT)
-Received: from [192.168.119.202] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-63e3ebb3743sm1848497a12.7.2025.10.23.07.33.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 23 Oct 2025 07:33:41 -0700 (PDT)
-Message-ID: <cb166706-af7d-40e7-84d5-57c028755cdf@oss.qualcomm.com>
-Date: Thu, 23 Oct 2025 16:33:39 +0200
+	 In-Reply-To:Content-Type; b=nTb2istJoRn6ga5aEZm6b5IwyFba9nWZKQ1B+206nkBBhA/jk/sq1wSM0xSNNQi2mb6xdup2iLTOwmdn6dO11xugZJDRIynlb+kYnFkSFQJbW+Emz5rNxPYMujoMyQevbqpefdiXBipiS5Gy+ukuufLcC2nJhDFmPNHTB6D0Bpo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=sgG7EPa4; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=JNWcDYPf; arc=none smtp.client-ip=80.241.56.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp202.mailbox.org (smtp202.mailbox.org [IPv6:2001:67c:2050:b231:465::202])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4cspWH4sfRz9tfn;
+	Thu, 23 Oct 2025 16:36:27 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1761230187;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=H8+w8HPI4zoiabU0Ug8I34cyFocWr3b2BbhhREOJ+Ec=;
+	b=sgG7EPa4c0KBZXvOqwivUfWeEk9tggB5glnDp2Bsrqb/P4QG5I/GAFVe5jnmOFXbTOklTp
+	9fha814764QqQW05MFfVnkGqysKq7dtvCHN1cAQHuZAUJhVLNqCccknxtUYVGLmjj3HLki
+	BQ6sCXS4ZzuKHyb21FTbCRlaDnp2S3ZgVM2oBbHUsT8JNPP4pwIWfx7QK9N1HDlhTbFIXQ
+	qQUaB06ZcmTobUqozaP1m07zlnUhQpCO+0cKKfE6QRHW23tTyGVua39o7zvmMd8sBXAaS4
+	uK9D63V93a61R+4gjLb3wGU+dPVsMhxPPSt0vjGvMOJtJnr/0MjWb6nflVppKQ==
+Authentication-Results: outgoing_mbo_mout;
+	dkim=pass header.d=mailbox.org header.s=mail20150812 header.b=JNWcDYPf;
+	spf=pass (outgoing_mbo_mout: domain of marek.vasut@mailbox.org designates 2001:67c:2050:b231:465::202 as permitted sender) smtp.mailfrom=marek.vasut@mailbox.org
+Message-ID: <29333a24-be7a-44a4-8f12-d140ced554f0@mailbox.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1761230185;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=H8+w8HPI4zoiabU0Ug8I34cyFocWr3b2BbhhREOJ+Ec=;
+	b=JNWcDYPfSZAxZvZlcMM0fMUIeAnnDE4udrywOD1s9W9Gey2544/Xj3SYVSZ40f7woH5ojp
+	1WjgVdzl8qtJ/6GhnFVe3Ph69WQo07BHeGauDCKzlYKZZCtcmCx5wkgK0uJ1xY8x1sNxii
+	Gc0a7bN9DX+Zf96inqlnyXGHhFoRKVnfneWMlXf0nSwXZkxSYJ1QuW+mgoxPyGAizxNSx6
+	cWa7zMjwXa+tfuWj81MyiQaXeFWQO0ylM/2n3WLbX4faXSUsJH/XyBwMssXofupJGuMSZq
+	0LW3utq8vcu6Tl0c8hLidLr1ebBWG6NstHvK1QcvvJd0TljKwEtZNDcItKrthg==
+Date: Thu, 23 Oct 2025 16:36:22 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1] arm64: dts: qcom: ipq5424: add gpio regulator for cpu
- power supply
-To: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>, andersson@kernel.org,
-        konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-        conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: quic_srichara@quicinc.com, quic_varada@quicinc.com,
-        kathiravan.thirumoorthy@oss.qualcomm.com
-References: <20251023040224.1485946-1-quic_mmanikan@quicinc.com>
+Subject: Re: [PATCH 1/2] dt-bindings: firmware: arm,scmi: Document
+ arm,poll-transport property
+To: Cristian Marussi <cristian.marussi@arm.com>
+Cc: Sudeep Holla <sudeep.holla@arm.com>,
+ Marek Vasut <marek.vasut+renesas@mailbox.org>, arm-scmi@vger.kernel.org,
+ Conor Dooley <conor+dt@kernel.org>,
+ Florian Fainelli <florian.fainelli@broadcom.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-renesas-soc@vger.kernel.org
+References: <20251023123644.8730-1-marek.vasut+renesas@mailbox.org>
+ <20251023-able-fervent-tortoise-e7a6df@sudeepholla>
+ <066449c8-4bca-41f1-990e-53d7672e3c0a@mailbox.org> <aPo7-oQq6RskSZ96@pluto>
 Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20251023040224.1485946-1-quic_mmanikan@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDIxMDE2NyBTYWx0ZWRfXxTWVN7bJEti5
- SRGwVGKyESqKLrRrgXbYnIn73WeYiwTNTzJ1jQbYe+iuTmajzTV1xNkPpKEFvRXXmQhupED/0M3
- GRAdM0i4Ev0YntcEs+/2/l59CRW/iuUpPSWJeBqOt5+ESv/6DNMG+jcrO/EzXsl4QJIZ66jK5XK
- fMQCHsF/hxFL6PWmx1mfsFFiht2Fn48tMsIQg2SOSTqNyGHlpWGkq5wE3E5GyetsOcL/I7SiKNs
- 36CXwvQZLdV7uE/n3kXu2IIGv2VZgNAnz6XP1XfM3+5KNwZK7kXFT2UvV+KTbmLrR+/M1t0dpxo
- Eo6cnJhC4FEfsbrrMNLsdG1bQ0daax/uOU/FmB73HwrBpvQ0kUvsmSYVFN/+UQhjbw8sM/2+Z8F
- 2btKbZqEWyrL40IckIPPidrTKOFfxg==
-X-Proofpoint-ORIG-GUID: e7M9071vyewRnib7LXRQc470a93_Qa3e
-X-Authority-Analysis: v=2.4 cv=WYUBqkhX c=1 sm=1 tr=0 ts=68fa3cc7 cx=c_pps
- a=WeENfcodrlLV9YRTxbY/uA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=COk6AnOGAAAA:8 a=J-FVny67hWSXZtLCYe8A:9 a=QEXdDO2ut3YA:10
- a=kacYvNCVWA4VmyqE58fU:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-GUID: e7M9071vyewRnib7LXRQc470a93_Qa3e
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-10-23_01,2025-10-22_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 adultscore=0 bulkscore=0 impostorscore=0 spamscore=0
- priorityscore=1501 clxscore=1015 malwarescore=0 lowpriorityscore=0
- phishscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2510020000
- definitions=main-2510210167
+From: Marek Vasut <marek.vasut@mailbox.org>
+In-Reply-To: <aPo7-oQq6RskSZ96@pluto>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-MBO-RS-META: s34zg3rj85rky7fmwo8jweccp6u7rixr
+X-MBO-RS-ID: 08ae88a671076ec0b5a
+X-Rspamd-Queue-Id: 4cspWH4sfRz9tfn
 
-On 10/23/25 6:02 AM, Manikanta Mylavarapu wrote:
-> Add a GPIO-controlled regulator node for the CPU rail on the
-> IPQ5424 RDP466 platform. This regulator supports two voltage
-> levels 850mV and 1000mV.
-> 
-> Update CPU nodes to reference the regulator via the `cpu-supply`
-> property, and add the required pinctrl configuration for GPIO17.
-> 
-> Signed-off-by: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/ipq5424-rdp466.dts | 24 +++++++++++++++++++++
->  arch/arm64/boot/dts/qcom/ipq5424.dtsi       |  4 ++++
->  2 files changed, 28 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/ipq5424-rdp466.dts b/arch/arm64/boot/dts/qcom/ipq5424-rdp466.dts
-> index 738618551203..6d14eb2fe821 100644
-> --- a/arch/arm64/boot/dts/qcom/ipq5424-rdp466.dts
-> +++ b/arch/arm64/boot/dts/qcom/ipq5424-rdp466.dts
-> @@ -46,6 +46,23 @@ led-0 {
->  		};
->  	};
->  
-> +	vreg_apc: regulator-vreg-apc {
-> +		compatible = "regulator-gpio";
-> +		regulator-name = "vreg_apc";
-> +		regulator-min-microvolt = <850000>;
-> +		regulator-max-microvolt = <1000000>;
-> +		regulator-boot-on;
-> +		regulator-always-on;
-> +		regulator-ramp-delay = <250>;
-> +
-> +		gpios = <&tlmm 17 GPIO_ACTIVE_HIGH>;
-> +		gpios-states = <1>;
-> +		states = <850000 0>, <1000000 1>;
+On 10/23/25 4:30 PM, Cristian Marussi wrote:
 
-Atop Dmitry's comment, please make the states entries 1 a line
+Hello Cristian,
 
-Konrad
+>>>> +  arm,poll-transport:
+>>>> +    type: boolean
+>>>> +    description:
+>>>> +      An optional property which unconditionally forces polling in all transports.
+>>>> +      This is mainly mean to work around uncooperative SCP, which does not generate
+>>>> +      completion interrupts.
+>>>> +
+>>>
+>>> Could you please clarify which platform and transport this change pertains to?
+>>
+>> Renesas X5H with older SCP firmware , accessible via mailbox.
+>>
+>>> Introducing a property that enforces unconditional polling across all
+>>> platforms is not ideal - particularly if this is intended as a workaround
+>>> for a platform- or firmware- specific issue. Such implementations often get
+>>> replicated across platforms without addressing the root cause, leading to
+>>> wider inconsistencies.
+>>
+>> The root cause is being addressed already, this is meant to keep the older
+>> SCP version operable.
+>>
+> 
+> If this is the case, at first I would have tempted to say why not use the SCMI
+> Quirk framework (with needed changes/evolutions), BUT then I realized that being
+> the Quirk to be applied on the transport there is no way to gather SCMI
+> Vendor info and versions from the platform, so you would have to match on the
+> compatible, which is essentially similar approach of having a new DT
+> prop...just less flexible so I understand the need of your new-prop approach...
+
+Yes, that.
+
+> ...BUT...(maybe a weird idea)...what if we think about enabling:
+> 
+>   - one Quirk EARLY-ON based on the current potentially affected compatibles
+
+The current compatible string is "arm,scmi" . You would need a custom 
+compatible for this early quirk, and this makes it not generic again.
+
+>     with such a quirk forcing polling ONLY for the BASE Protocol SCMI queries
+>     so that the SCMI core can gather Vendor Info and versions in any case..
+>     (this would need the Quirk frmwk to be evolved to support such
+>      'early-quirks' based on compatibles only)
+> 
+>   - a second regular Quirk, filtered by the just retrieved Vendor INFO and FW
+>     version to finally decide if the system needs force-polling to be really
+>     enabled for all the following messages...
+> 
+> ... this was you dint even need to ship any new DT
+
+Maybe this is a bit too complicated and not very generic ?
+
+I also tried to do this using quirks at first, but I couldn't find a way 
+which I would like, it was always convoluted and ugly code.
+
+>>> It would be preferable to scope this behavior using the platform’s compatible
+>>> string. This approach ensures the workaround is applied only to the affected
+>>> platform and prevents it from being inadvertently enabled elsewhere, unless
+>>> another platform intentionally uses the same compatible string (which seems
+>>> unlikely).
+>>
+>> This is not platform-specific issue. SCMI provider which fails to generate
+>> interrupts can appear on any platform, using either transport, that is why I
+>> made the property generic.
+>>
+> 
+> So the deployment scenario would be to update new machines with a fully
+> working SCP FW with completion-IRQ while updating ONLY the DTBs with the
+> new force-polling property in the older machines with the older
+> poll-only SCP fw ? (to understand)
+
+Yes, correct.
+
+-- 
+Best regards,
+Marek Vasut
 
