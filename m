@@ -1,284 +1,302 @@
-Return-Path: <devicetree+bounces-230030-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230031-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8EBA3BFF0DC
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 06:03:46 +0200 (CEST)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 36BC7BFF0F1
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 06:05:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 487DE19C68B2
-	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 04:04:10 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 37FDA352753
+	for <lists+devicetree@lfdr.de>; Thu, 23 Oct 2025 04:05:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47C7B22FE15;
-	Thu, 23 Oct 2025 04:03:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 519152741D1;
+	Thu, 23 Oct 2025 04:04:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="ubsHgwDz";
-	dkim=pass (1024-bit key) header.d=mediateko365.onmicrosoft.com header.i=@mediateko365.onmicrosoft.com header.b="NNps35o9"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="OmW0jC/A"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03C207A13A;
-	Thu, 23 Oct 2025 04:03:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=60.244.123.138
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761192222; cv=fail; b=lHntwzWW/QUU2psk9Wva8hcXH00mwuE9gnzP0y1iPXzHYkWOwP+pzVbc44DaGwQSbaFF2uzHWV4ra6kQYEheEdowDj0EX5udWv9T8HzsX9C6bV5Gas/ofqXZo3YGUoEO+WzJSmBHvx2I0uE5AOPosVORxnigCi5VPbVTT3DBER4=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761192222; c=relaxed/simple;
-	bh=mxyQ13SC6F7lL/brAupGj6i7SvJF81Z3Wt9HawfyLJM=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=lthWbEgzFjZ5bjLMLl40nKimhFg5crc2UuwU9y75z5NwkYLFJQDdbE9z52uwDB4NWkxoi50TL+0pzUUlHZHlNBIzjIWcgCH9+TZhEKAtY4KVypKOg/blmhp7v3hxTNu3PeZz3CnL1WH7aHlW91xAOZxT9Wi8snRk58z81vgazgU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=ubsHgwDz; dkim=pass (1024-bit key) header.d=mediateko365.onmicrosoft.com header.i=@mediateko365.onmicrosoft.com header.b=NNps35o9; arc=fail smtp.client-ip=60.244.123.138
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: 3eaa9b3cafc511f0ae1e63ff8927bad3-20251023
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=MIME-Version:Content-Transfer-Encoding:Content-ID:Content-Type:In-Reply-To:References:Message-ID:Date:Subject:CC:To:From; bh=mxyQ13SC6F7lL/brAupGj6i7SvJF81Z3Wt9HawfyLJM=;
-	b=ubsHgwDzBP2MkvosbeYoyhHsYr7KFetrRTUr7JODiYpwB1r/9xjiSzZ3lF1mAwwAnd2Trh2hcX2W9+1ZNGa90GiBCZD1JLEATxO9q6U7ZarzlFpU2QCKmOx/Vq1OPRSEeJUCE4xn0INx7ra+KXR9iXimaB/9N8KcG4N6AyD9EZg=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.3.6,REQID:38c4cc57-d307-46b4-a415-2502a406dcd4,IP:0,UR
-	L:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:r
-	elease,TS:0
-X-CID-META: VersionHash:a9d874c,CLOUDID:86e6bc3a-b16f-49fc-bb37-560773c432f7,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:80|81|82|83|102|110|111|836|888|898,
-	TC:-5,Content:0|15|50,EDM:-3,IP:nil,URL:0,File:130,RT:nil,Bulk:nil,QS:nil,
-	BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 2,SSN|SDN
-X-CID-BAS: 2,SSN|SDN,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
-X-UUID: 3eaa9b3cafc511f0ae1e63ff8927bad3-20251023
-Received: from mtkmbs14n2.mediatek.inc [(172.21.101.76)] by mailgw01.mediatek.com
-	(envelope-from <jason-jh.lin@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 1295840001; Thu, 23 Oct 2025 12:03:34 +0800
-Received: from mtkmbs10n1.mediatek.inc (172.21.101.34) by
- MTKMBS09N1.mediatek.inc (172.21.101.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.26; Thu, 23 Oct 2025 12:03:33 +0800
-Received: from SI4PR04CU002.outbound.protection.outlook.com (172.21.101.237)
- by mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server id
- 15.2.1748.26 via Frontend Transport; Thu, 23 Oct 2025 12:03:33 +0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=AwkjtEMVpcYU32GK9mr3m1aNrz7KitiHheyfWumjbZAbdgoU+FYlM3C0FzE0ZlKQVszbAizEx9a+/pAcSNr3YmeUG+oUd1isRrCy3nPBW/uZ8gWTu8TrG8FxjDM5FuFaDS19K08CwME+GwYDIKFD995qE04qfZsbav+4dwZEBGky9djrB8TNQ+LQ84qXd9GilygdYBieairzT3v85o+8I9ZF0bkmeWzJY5zWyRlIWWywBw+6NJG5v1YzyEUmY09CmN9BLqc735QJUwbBw9rQtMCXZpvs6ANuEaM9QkqHmSmn2JUZK+qPjgNotHif2J9lkzjIxdKAfgtyYT3DsXe7KQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=mxyQ13SC6F7lL/brAupGj6i7SvJF81Z3Wt9HawfyLJM=;
- b=khAhm7+iJ+7h2R41Jh33ExzQmPgpnj8u5QsRe9zqtwMeBJMVad5ZgcnNP2uCiakvr/0lxFPMyuJgbei++kxtlHGTFyKO03W7Ajg/BmG3P+WoUiYFuYi0Ol6VGaf8s0iykXC7QnysvklI60gSchA4uIcav2VFrXMLte/OR95eBDM4CWS+cFxo0l80MxlRQEfCU4jQUZgWv9pJEf4CjgSUTDG9IZPZc2Yjzlyy6OF2yzdX4UBj80ZIZCLrzbymkho5HqgTB2ye04atReJKLOcZj7feWZqpIgGjn1QQHx5ZkvdxchjLtwc4nqdG9kYVRFf/jChrsP3wK/Cvp5z3ho2yRg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=mediatek.com; dmarc=pass action=none header.from=mediatek.com;
- dkim=pass header.d=mediatek.com; arc=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 110242472A6
+	for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 04:04:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.41
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1761192281; cv=none; b=LZnEdcZ5nGFXk+RppeBkQxNy6UgrGmcAE3chV7OqB7P9XDrZniEWXl+ngHSY+VZS/GlU+znz3dri5pw2dYouKsH0wX1QxD1tnOfc6oM1GlddGZdpojOHXCfS+bjzhOujLuRhKaYXq5EusSneQhyIzfC8zQhY7o3iAiSf/zJNIOE=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1761192281; c=relaxed/simple;
+	bh=VbiuVZ6RBebsfqyvVJ5Ds+gMyCUnbR04fiSy1wFclDM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=NuF+vFWMxW3Zf4Z68SAPlnJ7roakOdrXfOu4uzbZpFkhyzqftPqGA7Z4uLrSISkf3vJgvEDPqdOqGi0FDwEhSceKdYXWUHMl5L76tZHZT4X+huJgjBU4UAS+KtdK5N0JvcscQiNIzv5AzlZGHmzUZ5mHxSKx6noSozg3p1cZREU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=OmW0jC/A; arc=none smtp.client-ip=209.85.208.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
+Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-63c0eb94ac3so605020a12.2
+        for <devicetree@vger.kernel.org>; Wed, 22 Oct 2025 21:04:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=mediateko365.onmicrosoft.com; s=selector2-mediateko365-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=mxyQ13SC6F7lL/brAupGj6i7SvJF81Z3Wt9HawfyLJM=;
- b=NNps35o9aSZovo4X9+Zd96B2UQLWqJ8nCPiqKA/z02+6OQ2UB+mr3US+bwA9xSvjz3v644MbBc4+D3yyEseKJ9Hept+jhW06dNKqLR7lT4HIsTdE864+nAdB+ZwnNOkHdxWCR24P3UOGi4I3ksr+IKb1sDbwRr8aCks7wwGX6ME=
-Received: from SEYPR03MB7682.apcprd03.prod.outlook.com (2603:1096:101:149::11)
- by KL1PR03MB7648.apcprd03.prod.outlook.com (2603:1096:820:e1::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9253.12; Thu, 23 Oct
- 2025 04:03:30 +0000
-Received: from SEYPR03MB7682.apcprd03.prod.outlook.com
- ([fe80::c6cc:cbf7:59cf:62b6]) by SEYPR03MB7682.apcprd03.prod.outlook.com
- ([fe80::c6cc:cbf7:59cf:62b6%7]) with mapi id 15.20.9253.011; Thu, 23 Oct 2025
- 04:03:30 +0000
-From: =?utf-8?B?SmFzb24tSkggTGluICjmnpfnnb/npaUp?= <Jason-JH.Lin@mediatek.com>
-To: "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
-	<krzk+dt@kernel.org>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>, "conor+dt@kernel.org"
-	<conor+dt@kernel.org>, "mchehab@kernel.org" <mchehab@kernel.org>,
-	"chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
-	"jassisinghbrar@gmail.com" <jassisinghbrar@gmail.com>
-CC: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-	"linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-	=?utf-8?B?U2lyaXVzIFdhbmcgKOeOi+eak+aYsSk=?= <Sirius.Wang@mediatek.com>,
-	=?utf-8?B?TW91ZHkgSG8gKOS9leWul+WOnyk=?= <Moudy.Ho@mediatek.com>,
-	=?utf-8?B?TmFuY3kgTGluICjmnpfmrKPonqIp?= <Nancy.Lin@mediatek.com>,
-	=?utf-8?B?WGlhbmRvbmcgV2FuZyAo546L5YWI5YasKQ==?=
-	<Xiandong.Wang@mediatek.com>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "nicolas@ndufresne.ca"
-	<nicolas@ndufresne.ca>, =?utf-8?B?UGF1bC1wbCBDaGVuICjpmbPmn4/pnJYp?=
-	<Paul-pl.Chen@mediatek.com>, "linux-mediatek@lists.infradead.org"
-	<linux-mediatek@lists.infradead.org>, Project_Global_Chrome_Upstream_Group
-	<Project_Global_Chrome_Upstream_Group@mediatek.com>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"fshao@chromium.org" <fshao@chromium.org>,
-	=?utf-8?B?U2luZ28gQ2hhbmcgKOW8teiIiOWciyk=?= <Singo.Chang@mediatek.com>,
-	"wenst@chromium.org" <wenst@chromium.org>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "matthias.bgg@gmail.com"
-	<matthias.bgg@gmail.com>
-Subject: Re: [PATCH v8 10/20] soc: mediatek: mtk-cmdq: Extend cmdq_pkt_write
- API for SoCs without subsys ID
-Thread-Topic: [PATCH v8 10/20] soc: mediatek: mtk-cmdq: Extend cmdq_pkt_write
- API for SoCs without subsys ID
-Thread-Index: AQHcPzJqDXHrFcEr/kCiyzQk4xk0i7TK04uAgARSCoA=
-Date: Thu, 23 Oct 2025 04:03:30 +0000
-Message-ID: <1f1377ebec26f767a4af9a0c542817be7cfaeddc.camel@mediatek.com>
-References: <20251017065028.1676930-1-jason-jh.lin@mediatek.com>
-	 <20251017065028.1676930-11-jason-jh.lin@mediatek.com>
-	 <24b74989-4e31-49e3-8652-c2439f368b26@collabora.com>
-In-Reply-To: <24b74989-4e31-49e3-8652-c2439f368b26@collabora.com>
-Accept-Language: zh-TW, en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=mediatek.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SEYPR03MB7682:EE_|KL1PR03MB7648:EE_
-x-ms-office365-filtering-correlation-id: b3819e9e-a55f-4ffe-7d4d-08de11e9209a
-x-ld-processed: a7687ede-7a6b-4ef6-bace-642f677fbe31,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;ARA:13230040|1800799024|366016|7416014|376014|38070700021;
-x-microsoft-antispam-message-info: =?utf-8?B?RzZ3MTF2THFoYzZjZXJOcnpZRExqSmR6UElmT0xnY0hBL1FGRlMrOGt4MXc1?=
- =?utf-8?B?SVNSZk1odHFPTTZhcko5K21hdTNPUG5Zc3BqY1l6WlVaUVIxY29sdFFPeDJi?=
- =?utf-8?B?NGlHaUd4c0pTVDhYYVpzTE4xS1pMMS9LRElZS3JaTm9pQWpqTmozcTI5cXVB?=
- =?utf-8?B?Sm5BQkVleVU1R09IMThXc3Y0K2x1Rm5XWUtNQlgxZ3VtQnNPVEtYdFN4YUp3?=
- =?utf-8?B?Rk1FUEZSNkluYXA3UFRvWVlXNzBPWWYvWHNWS2g1N3R1M1hvUzJTU0pXQzZX?=
- =?utf-8?B?ZWx6aDQ0Tk9hVjk1UjFpckNBTStoUVpHbmtQS3kwK3paNFJ6OStncXF2azJT?=
- =?utf-8?B?aWFWSmppaFJjVTVGemZmNUZoR0VUYU1RN3RvMERabkRST3h5ZmpmWjN6Wm5U?=
- =?utf-8?B?RGtIUVZvUjhBcVJ0UkM0V2FoRXZIYXkyemJpL25QakdZV3ZjM3JsQSsrRS9T?=
- =?utf-8?B?c3VaS2NwRjErYXVTbmJsbVBQMjRvTi91a2d1NWdmbjExNUNUdXQwRHJMbmJr?=
- =?utf-8?B?WGNsbDl0ZncvZ1huL3JwdE1GQ3l2Yi9jbHpCZ2Zhb2NvRDU3dTdPS2U3LzZq?=
- =?utf-8?B?ZTBlQ20yNVRLd1FKRE9EdENxdHN0emkzY0ticmptd3NoVmpvVmlDRUthZUow?=
- =?utf-8?B?cWdNc3Zicm1pM2tlT1NwN1pVL2ZFbEx6UmFNNW9zOU1uOTV5enBkaU1Sc1FM?=
- =?utf-8?B?QUIwaUNDSzdSRE9sMk1jQW92UmJucnc2dFJJWXE1eUtBR3FWcUxPRUlJcHFL?=
- =?utf-8?B?c3kzcVpPWTd4ZlVsTFo4dHdCYW0yMXdBUUlSbWgvUmxVNGpFRWNqK2RoYkUv?=
- =?utf-8?B?WThOY1YxUmNUZklVQXJIaXVsUThQR0tGeHprUVdOVGFSM0NFN0ZjeVFJSSt3?=
- =?utf-8?B?aFd3UGRNWTU1aVp3eDl3Q3JVYjlKV1IwZ1htWlNIMUVUUVVZMzRKRFJTa0dB?=
- =?utf-8?B?U1hnanAxaVJiYXVFTkVqSUxqdHpRMElwY04ya1pncy9mUFJCUitseU9zeHNr?=
- =?utf-8?B?RlcrL3pkdVJod3VvSTNBN2FyUVJ2MXdTYkRTY01FbGs3Y0t1MGNnK096aWk0?=
- =?utf-8?B?SnltYTVFTXdlQzNCZFZlT3VPcHovMnFHUTVaSzdHekVIUG9WR1pzNkpLYk9G?=
- =?utf-8?B?czJKaGhXTGVMb1pLaXRZaVFkU1o4ZEtLbXlaa3MwbFBzWWNzRnMyaktJQ3g4?=
- =?utf-8?B?ekhZTEdBMlUvV2xjczEydW8vanBSdUxDajhtajBOVWxpZmxUYTBZdVBCMGV3?=
- =?utf-8?B?T0RCdHF6S1QzMDF6OVZGbm9CMEpZcGJzZ1E4WGhyVG9uUVpCeVU4aGcrVVJE?=
- =?utf-8?B?YTFaeWROY0NoUjVySzViQm5mZjlCTDVycTQvS1VyRHZpL1ZNK1JOcEdyN3lq?=
- =?utf-8?B?NUQzYjNQSHRsbGo4M2xVOWRqVkVQRmdJMHA1NkhLUitqeTdySDJZZ05ZVVBv?=
- =?utf-8?B?QkVvZ0J2V050NG01ZjBNMW90bXlkZE5NV2JqVXNiWjc5QUhURXFmMEVmKyt0?=
- =?utf-8?B?MENUNVl6TU44TUoxb01TeXkrbFBEd1NqOGN5WWdnTnhaSEtKRFk5bFMra3Fn?=
- =?utf-8?B?b0t4cmFwa1VXM1dyOEtpczJTbmxqQWwxZHBYdGRUZ3hmLytnVTRUeDJMWi9s?=
- =?utf-8?B?b3FLVXFEWkNpeTNGNnNwOExndnJwVjZmNnlTMFIzbmVmaU5tY2dzVlVwRWFr?=
- =?utf-8?B?M0h0V2xzWEFWUWZGK01lN2JsNVBKd3lIaHFMWlJqR2tkRWk4b0pyZXJVelJ5?=
- =?utf-8?B?Z2JVYW9kamJpU2hHTkR2YkhhZFFpWjVMZlRqa3orL2Jxc3QxWWJva0h5Z0Vr?=
- =?utf-8?B?RS9MekhVVTdhSnJ3ek9ETEJZbU43bWVDOHpjM01OUUo5U2NEeVgwZmFvU0RS?=
- =?utf-8?B?dGw4TThyak8xbGdPQWM4eGIwNHF4T0JNY2JlNzhVei9lQVd2VXZ3T1VFZjQ0?=
- =?utf-8?B?bmVYS2VjWlM4dklwNlVnTitFeUVmcTFOSzVNZHFMcTJxS0hTNmxPWGxISEx1?=
- =?utf-8?B?V3hncHNKVWtCeHFwczNtK2M2R0dNWWl5MjZaa1pNVERiaWpINklUQ2RaOTA4?=
- =?utf-8?Q?Eyf9np?=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SEYPR03MB7682.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(7416014)(376014)(38070700021);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?RnVyRmZQanV4RmJRdDBaZ0J4VFJZNXdoVG5EdmdFN3RDakM4Q1MzVlZlUGlK?=
- =?utf-8?B?Y21Tcm5kV3RwTkhXYy80LzZ0S2t2aVBvUEVmMFVvNkF5MVpkU016Rm1VNkVo?=
- =?utf-8?B?Rjh0ck4zUlJOSk05MEdXay9aOFpQNStvUmltVGNmMkRYOUN3Y080ZnYwWnhr?=
- =?utf-8?B?VzJFSlUvazc1dm1yQUUySUtCZTBnRVBnSGNuYkNVZ1Ewd1VKZkJ4QUo5bmsx?=
- =?utf-8?B?T0IxaHF3SHlPQzFNRHpJbGlVTTNOQU9VUnlkcWNxS2FETmZVdWpQY1pIem5q?=
- =?utf-8?B?UXFDbVo3bnAxd0Vza2V3NW9JWFNQZFUrZ1lQYUhRNG9lNVU4c2M5MmxxS0Jm?=
- =?utf-8?B?RmRIQWFyZmhDWTdrRE9MV1doVy9DSlFyR1RPT0kzSWpqWnVlaElFU0dZaWMy?=
- =?utf-8?B?bXNWdTNrYlFJM0Nab0lkeFMrclNya1I5UW1yaTI0VDAvZHB3OGdQTHJ1eGVO?=
- =?utf-8?B?TXBaeTBTeFQ1SkViZHd0VVdEL0VSL2ZNZGtKZFQwMXJ4N0RsVXVnVXdCckVH?=
- =?utf-8?B?QmM0SFZmc0pVRmIrdm10N0IvME50bi9rQU90VS9yVkI4Um9veHBZSGtVL0JP?=
- =?utf-8?B?Sis4aTY3Rlg0UjhCS2Nqa0tra3FiNCtQaDM2SStadkllNmtuOTNCRnZDUFFv?=
- =?utf-8?B?OGZGY0ZKeWh1dDRWQlYwNEtHMnNYOEQ4Y2IwajZmOWR1ZHUzVno1U2t6K2dw?=
- =?utf-8?B?OHFGYWpDYzlpRUZlRTR3RGFGK3pLSFl2V0p6MjBTMkZUei9wNExrdVpPSkdI?=
- =?utf-8?B?Mk1iWTJjWnFKM0E2ei9GWXFQemszelhJQTVWZ0l3UFQ0LzRRSG5KRDd5Uk40?=
- =?utf-8?B?dzFENXEzeklkb3dSVWVUc0g1TkhPZEFmRE5wWWNyV3JURmg4OHBNbCtOMDVh?=
- =?utf-8?B?YVAxSGNGeERHNWxKeTJYT3pGTytabk5sbWNuSW5qemtRWjJPeE5CNmdqY0pX?=
- =?utf-8?B?elBrRExoclgzTE0yb1NEZ1BwcnhrdnpUQWFiSHR6NXJoTWRacWdUNXViMEcy?=
- =?utf-8?B?VWdQMlFBNkt0VXF1V1RLRWY1WjVpbHNIdGkwMVhzTFpKS2o0N1UvWEhBRzUx?=
- =?utf-8?B?emUvVmYyNEhiNTlUb1RSemdGK0VENFNBaXlwRGo0dVB4ZG5lSndZZDBzdncw?=
- =?utf-8?B?VjRlNE1MNExmN3FjbDBQMllITVVieStGaDN2WVZUMUJlOFpqcGViVFJwTHQ5?=
- =?utf-8?B?NXZvZ0NpclYvUTh3QUJMSml6WVIwSkpDMk9ObWo5aVIvdU5ialJPOGRGT25i?=
- =?utf-8?B?NXNNNmtsY3JuVVppMHorSUdBYXo4UGFlTXREcUpPdWJtTUg4WHV6amEwSXRy?=
- =?utf-8?B?cEJST2ErK3hqRVBYMmw1YSt5YmdmT1RKUGsyNE80WDhzUEUxSW8wYW05QTNh?=
- =?utf-8?B?djlCRXN6elRoRWZKRU5tWlRLQlBIN3JjbzRlcURBQTZRVDFLVU1nVXU2RGRx?=
- =?utf-8?B?Q1RseWJBLzdnNUV5UHJzUndnc2g0MEoxdGdYYUk2Sk9YbnRvSWQxalZPNnpx?=
- =?utf-8?B?YzVSMDZ1TGdic3lZRElUeUhYTjhIbURYL3J2Y3dBYklUbGt6ZnN6VUtuajFq?=
- =?utf-8?B?OTh0TjBrdXpsSUtBMDdadVRiVVVwNUFoUjByRGFxRmRzZ3JuQzA0NU9OSGNa?=
- =?utf-8?B?azJ1NUtXNEpZZzhrSWdBMzZjem90ZkN3cVQwYWpNaHhkcWRoZmxXMktDMHFC?=
- =?utf-8?B?STMxbGUrMENYbUdiK3V4ZXBvc2xTZ1liSDFvTUN4cDF2N2NocVlPMnZjcDFz?=
- =?utf-8?B?OFlUVGErUHVnYytJZUEvMHU0aVpoczl2ODZHWmQ2UTN1WDExSTJyangxalh0?=
- =?utf-8?B?K0QvYW9RdWRnRG5DNm1vc2U5WUpmdEMwdlg2REF4ek5uN2gxSVRJa01CMlhh?=
- =?utf-8?B?ZzRCT3AybnpZMm1BbDFBTW1HUzNKQnpIZjkvc1pkMEJyazlHNUlKaFFrUGt4?=
- =?utf-8?B?RytnaTRGb1hPVWZxTDhrd0M3VWpOaFF4bnJnVVF4RGg2SUNQY0w3NUtsbTNy?=
- =?utf-8?B?VWlWM1I4aUNDdVVYNU5Ram9Qai95Q3g1MUlrbyt3Qlc4OGpHc3BwSGNaYWd0?=
- =?utf-8?B?c09SNjN1TXlJajdwb3Z3ZEdrL0J0eklsQkZGRkNXUEtJV1k5VWIvTlpESFZz?=
- =?utf-8?B?OVBMYXlZTk1JWkNNMWN3YkM5SjE3VEVFajlNVVlicmd2UFlqTytTTWxsT2Zx?=
- =?utf-8?B?Q1E9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <01CDF255CEB34A4892FCB26841DFDDB8@apcprd03.prod.outlook.com>
-Content-Transfer-Encoding: base64
+        d=tuxon.dev; s=google; t=1761192277; x=1761797077; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=HHSZMDPvtfAX1xsUrEgKm9tbChBih95VIvPG69sbWIA=;
+        b=OmW0jC/A2MeYOY+X11md1QEu+nxH9C3QMEqvjPZhMsD75B+NMNBbOG8wacwpZiwVcB
+         02fWGea9YivvrVZEyvx8HGKXKwFitZMeh8XkpyGtmGHmlN4jXTfkYdIfTlbdqYQGXIA5
+         4mNBsXNh3mxBt36wxXmx6rSkfBT1voaHThz4p7SnNV/vSW97yOIJxdiwiO+Goct2ae0S
+         ozBJPki4wpY8/7ie62wJCz48Y3odP6wjeLbmGCw4ey4XQHQ2X4z4s1Nf1qjWx0pWn0kR
+         CZq6SPZyZZHEsD837ZGKK5Cs9riXpgY7gv5gM6n9ODGwMAGsXVMoGLGxpTNBDt0ORuXi
+         DzvA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761192277; x=1761797077;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=HHSZMDPvtfAX1xsUrEgKm9tbChBih95VIvPG69sbWIA=;
+        b=X952g+CN03WLsL4V2Cq5nX6AWngTOxh00wcGgF/w7CIMZ/rkqcmT+lFhSWgUY82JVX
+         wFKlhkCGb5VduyGvrBgg1GjKrALUpQpim3IZX7YyS05iDgvWBf6GskvwvtktQtaymiPV
+         T+uZJHoKWflwXRZVdkT3/i2UjzZtIPTzyIYP2X4Zr2F/pgZycxwxp1w0DrDVg1QStyG3
+         lPGpDlSqmqmxEomjaZdjriRkIrBqLoYRpAG/IDy2uEOWT6yb8sq29tulibOphT85N0r5
+         yt9P5c9wqihy1crUNILya1g0ybQYOo7ZCUn0pOaMjhyaEM/rSyrTXzQJC+iUr7qApyxu
+         JVmQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVUL7DAH5TxSvrsiW03IMuNi24aJhC08gpCL0Ee8sJJiBufGP/WE3qc9ylAx8FNbzyyaJb1Rya+fX2X@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx3JHhhoryOS9vVQqs/pzyqMb1vZesBw7y5prCFrWTGy+TUAV0/
+	Cqau/asHYNq37gBmggjcLos1LC0aL8jHNgv5cLgusYQhADqIZ9XdflvFzgqkzceBbuY=
+X-Gm-Gg: ASbGncua4PIVIs6yepVrJCzOvUiL0ynuOvW7JEUJPXPLJrdnXUV93Wa+g+Z3fklY8Ir
+	qA/9/+nGLtiPnck3kEDn8eUa9Q8s30jEu8sutlt0/R5VvOATI7Io+kQ9Qal6Eogqp6QZKucmANU
+	FKKg0V28v9wG3STo3cseNn8i3AzchXGFev6bc1Vp8ZWSUYwR1TDprxyHtzdnEJhge8OTwCL342B
+	36HkATuclwxGQeWqfUn96PPYXPLJrlHSAES/uu8d2WtAlMkg5pHKoGYQz2JiuhfzpDjLl3LovaW
+	aqQJyHCp326uMLa+XRaTlV/i+Wnp94WbXIS/Ymh/GUI8lh1L7PNkTQu7BAwpRtgDyGQDNuwgTbH
+	XNE4oXue2a3gg43gOp0UPAgU+/NL9obQQfM6CLHcx6h9YZFYwaFabozk5oHtuKbvbEcR4EoWIwp
+	rJ1jDN82i7
+X-Google-Smtp-Source: AGHT+IGJiS3xjlcmck6jYeKg58UKDvZ1VJYr2SNmkONX0VTIjq/vCHDBgtScrL9mLTDQswuRHlg1UQ==
+X-Received: by 2002:a50:c949:0:b0:637:e271:8071 with SMTP id 4fb4d7f45d1cf-63c1f6d5dd8mr18546472a12.27.1761192276905;
+        Wed, 22 Oct 2025 21:04:36 -0700 (PDT)
+Received: from [192.168.50.4] ([82.78.167.151])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-63e3ebb3738sm579215a12.3.2025.10.22.21.04.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 22 Oct 2025 21:04:35 -0700 (PDT)
+Message-ID: <41dbea85-8aa1-4034-8106-e28c37e398b8@tuxon.dev>
+Date: Thu, 23 Oct 2025 07:04:33 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SEYPR03MB7682.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b3819e9e-a55f-4ffe-7d4d-08de11e9209a
-X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Oct 2025 04:03:30.4813
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: a7687ede-7a6b-4ef6-bace-642f677fbe31
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: LWD25JoYJxCO7VyYDN12tLwW2A7mcEywGI0BeWKVg3X1AAaeAKBgFg3KTLC7FiR95KdI9evQwvGCoRn9vH2aDNihjsR6PCLfo6+lzrV7TlE=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: KL1PR03MB7648
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 2/9] soc: microchip: add mfd drivers for two syscon
+ regions on PolarFire SoC
+To: Conor Dooley <conor@kernel.org>
+Cc: Conor Dooley <conor.dooley@microchip.com>,
+ Daire McNamara <daire.mcnamara@microchip.com>,
+ pierre-henry.moussay@microchip.com, valentina.fernandezalanis@microchip.com,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>, linux-riscv@lists.infradead.org,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20251013-album-bovine-faf9f5ebc5d4@spud>
+ <20251013-patient-matrimony-6162c8f92e2e@spud>
+From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
+Content-Language: en-US
+In-Reply-To: <20251013-patient-matrimony-6162c8f92e2e@spud>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-T24gTW9uLCAyMDI1LTEwLTIwIGF0IDEyOjA0ICswMjAwLCBBbmdlbG9HaW9hY2NoaW5vIERlbCBS
-ZWdubyB3cm90ZToNCj4gDQo+IEV4dGVybmFsIGVtYWlsIDogUGxlYXNlIGRvIG5vdCBjbGljayBs
-aW5rcyBvciBvcGVuIGF0dGFjaG1lbnRzIHVudGlsDQo+IHlvdSBoYXZlIHZlcmlmaWVkIHRoZSBz
-ZW5kZXIgb3IgdGhlIGNvbnRlbnQuDQo+IA0KPiANCj4gSWwgMTcvMTAvMjUgMDg6NDQsIEphc29u
-LUpIIExpbiBoYSBzY3JpdHRvOg0KPiA+IFRoaXMgcGF0Y2ggZXh0ZW5kcyB0aGUgY21kcV9wa3Rf
-d3JpdGUgQVBJIHRvIHN1cHBvcnQgU29DcyB0aGF0IGRvDQo+ID4gbm90DQo+ID4gaGF2ZSBzdWJz
-eXMgSUQgbWFwcGluZyBieSBpbnRyb2R1Y2luZyBuZXcgcmVnaXN0ZXIgd3JpdGUgQVBJczoNCj4g
-PiAtIGNtZHFfcGt0X3dyaXRlX3BhKCkgYW5kIGNtZHFfcGt0X3dyaXRlX3N1YnN5cygpIHJlcGxh
-Y2UNCj4gPiDCoMKgIGNtZHFfcGt0X3dyaXRlKCkNCj4gPiAtIGNtZHFfcGt0X3dyaXRlX21hc2tf
-cGEoKSBhbmQgY21kcV9wa3Rfd3JpdGVfbWFza19zdWJzeXMoKSByZXBsYWNlDQo+ID4gwqDCoCBj
-bWRxX3BrdF93cml0ZV9tYXNrKCkNCj4gPiANCj4gPiBUbyBlbnN1cmUgY29uc2lzdGVudCBmdW5j
-dGlvbiBwb2ludGVyIGludGVyZmFjZXMsIGJvdGgNCj4gPiBjbWRxX3BrdF93cml0ZV9wYSgpIGFu
-ZCBjbWRxX3BrdF93cml0ZV9zdWJzeXMoKSBwcm92aWRlIHN1YnN5cyBhbmQNCj4gPiBwYV9iYXNl
-IHBhcmFtZXRlcnMuIFRoaXMgdW5pZmllcyBob3cgcmVnaXN0ZXIgd3JpdGVzIGFyZSBpbnZva2Vk
-LA0KPiA+IHJlZ2FyZGxlc3Mgb2Ygd2hldGhlciBzdWJzeXMgSUQgaXMgc3VwcG9ydGVkIGJ5IHRo
-ZSBkZXZpY2UuDQo+ID4gDQo+ID4gQWxsIEdDRXMgc3VwcG9ydCB3cml0aW5nIHJlZ2lzdGVycyBi
-eSBQQSAod2l0aCBtYXNrKSB3aXRob3V0DQo+ID4gc3Vic3lzLA0KPiA+IGJ1dCB0aGlzIHJlcXVp
-cmVzIGV4dHJhIEdDRSBpbnN0cnVjdGlvbnMgdG8gY29udmVydCB0aGUgUEEgaW50byBhDQo+ID4g
-R0NFDQo+ID4gcmVhZGFibGUgZm9ybWF0LCByZWR1Y2luZyBwZXJmb3JtYW5jZSBjb21wYXJlZCB0
-byB1c2luZyBzdWJzeXMNCj4gPiBkaXJlY3RseS4NCj4gPiBUaGVyZWZvcmUsIHN1YnN5cyBpcyBw
-cmVmZXJyZWQgZm9yIHJlZ2lzdGVyIHdyaXRlcyB3aGVuIGF2YWlsYWJsZS4NCj4gPiANCj4gPiBB
-UEkgZG9jdW1lbnRhdGlvbiBhbmQgZnVuY3Rpb24gcG9pbnRlciBkZWNsYXJhdGlvbnMgaW4NCj4g
-PiBjbWRxX2NsaWVudF9yZWcNCj4gPiBoYXZlIGJlZW4gdXBkYXRlZC4gVGhlIG9yaWdpbmFsIHdy
-aXRlIEFQSXMgd2lsbCBiZSByZW1vdmVkIGFmdGVyDQo+ID4gYWxsDQo+ID4gQ01EUSB1c2VycyB0
-cmFuc2l0aW9uIHRvIHRoZSBuZXcgaW50ZXJmYWNlcy4NCj4gPiANCj4gPiBTaWduZWQtb2ZmLWJ5
-OiBKYXNvbi1KSCBMaW4gPGphc29uLWpoLmxpbkBtZWRpYXRlay5jb20+DQo+ID4gLS0tDQo+ID4g
-wqAgZHJpdmVycy9zb2MvbWVkaWF0ZWsvbXRrLWNtZHEtaGVscGVyLmMgfCA1NCArKysrKysrKysr
-KysrKysrKw0KPiA+IMKgIGluY2x1ZGUvbGludXgvc29jL21lZGlhdGVrL210ay1jbWRxLmjCoCB8
-IDgzDQo+ID4gKysrKysrKysrKysrKysrKysrKysrKysrKysNCj4gPiDCoCAyIGZpbGVzIGNoYW5n
-ZWQsIDEzNyBpbnNlcnRpb25zKCspDQo+ID4gDQo+IA0KPiA+IGRpZmYgLS1naXQgYS9pbmNsdWRl
-L2xpbnV4L3NvYy9tZWRpYXRlay9tdGstY21kcS5oDQo+ID4gYi9pbmNsdWRlL2xpbnV4L3NvYy9t
-ZWRpYXRlay9tdGstY21kcS5oDQo+ID4gaW5kZXggMTU0ZDA1MTFhMGFkLi5mNmRjNDNjMDM2YmQg
-MTAwNjQ0DQo+ID4gLS0tIGEvaW5jbHVkZS9saW51eC9zb2MvbWVkaWF0ZWsvbXRrLWNtZHEuaA0K
-PiA+ICsrKyBiL2luY2x1ZGUvbGludXgvc29jL21lZGlhdGVrL210ay1jbWRxLmgNCj4gPiBAQCAt
-NTcsNiArNTcsMTAgQEAgc3RydWN0IGNtZHFfY2xpZW50X3JlZyB7DQo+ID4gwqDCoMKgwqDCoCBw
-aHlzX2FkZHJfdCBwYV9iYXNlOw0KPiA+IMKgwqDCoMKgwqAgdTE2IG9mZnNldDsNCj4gPiDCoMKg
-wqDCoMKgIHUxNiBzaXplOw0KPiA+ICvCoMKgwqDCoCBpbnQgKCpyZWdfd3JpdGUpKHN0cnVjdCBj
-bWRxX3BrdCAqcGt0LCB1OCBzdWJzeXMsIHUzMg0KPiA+IHBhX2Jhc2UsDQo+ID4gK8KgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB1MTYgb2Zmc2V0LCB1MzIgdmFsdWUp
-Ow0KPiANCj4gKCpwa3Rfd3JpdGUpDQo+IA0KPiA+ICvCoMKgwqDCoCBpbnQgKCpyZWdfd3JpdGVf
-bWFzaykoc3RydWN0IGNtZHFfcGt0ICpwa3QsIHU4IHN1YnN5cywgdTMyDQo+ID4gcGFfYmFzZSwN
-Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oCB1MTYgb2Zmc2V0LCB1MzIgdmFsdWUsIHUzMiBtYXNrKTsNCj4gDQo+ICgqcGt0X3dyaXRlX21h
-c2spDQo+IA0KPiB0aG9zZSBuYW1lcyBtYWtlIGEgbG90IG1vcmUgc2Vuc2UuDQo+IA0KSGkgQW5n
-ZWxvLA0KDQpUaGUgcmVhc29uIHdoeSBJIHVzZSByZWdfd3JpdGUvcmVnX3dyaXRlX21hc2sgaXMg
-dG8gaW1wbHkgdGhlc2UgQVBJcw0Kb25seSBwcm92aWRlIHdyaXRpbmcgSFcgcmVnaXN0ZXIgYWRk
-cmVzcyBmdW5jdGlvbiwgbm90IHdyaXRpbmcgRFJBTQ0KYWRkcmVzcy4NClNvIHdlIGRvbid0IG5l
-ZWQgdG8gY2FyZSBhYm91dCBtbWluZnJhX29mZnNldCBpbiB0aGVzZSBBUElzLg0KDQpJIGNhbiBh
-ZGQgY29tbWVudCBmb3IgdGhpcy4NCg0KV2hhdCBkbyB5b3UgdGhpbms/DQpPciBzaG91bGQgSSBj
-aGFuZ2UgaXRzIG5hbWUgdG8gcGt0X3dyaXRlL3BrdF93cml0ZV9hbXNrPw0KDQpSZWdhcmRzLA0K
-SmFzb24tSkggTGluDQoNCj4gQWZ0ZXIgYXBwbHlpbmcgdGhlIHJlcXVlc3RlZCBjaGFuZ2VzLA0K
-PiANCj4gUmV2aWV3ZWQtYnk6IEFuZ2Vsb0dpb2FjY2hpbm8gRGVsIFJlZ25vDQo+IDxhbmdlbG9n
-aW9hY2NoaW5vLmRlbHJlZ25vQGNvbGxhYm9yYS5jb20+DQo+IA0KPiA+IMKgIH07DQoNCg==
+Hi, Conor,
+
+On 10/13/25 20:45, Conor Dooley wrote:
+> From: Conor Dooley <conor.dooley@microchip.com>
+> 
+> The control-scb and mss-top-sysreg regions on PolarFire SoC both fulfill
+> multiple purposes. The former is used for mailbox functions in addition
+> to the temperature & voltage sensor while the latter is used for clocks,
+> resets, interrupt muxing and pinctrl.
+> 
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> ---
+>  drivers/soc/microchip/Kconfig               | 13 ++++++
+>  drivers/soc/microchip/Makefile              |  1 +
+>  drivers/soc/microchip/mpfs-control-scb.c    | 45 +++++++++++++++++++
+>  drivers/soc/microchip/mpfs-mss-top-sysreg.c | 48 +++++++++++++++++++++
+>  4 files changed, 107 insertions(+)
+>  create mode 100644 drivers/soc/microchip/mpfs-control-scb.c
+>  create mode 100644 drivers/soc/microchip/mpfs-mss-top-sysreg.c
+> 
+> diff --git a/drivers/soc/microchip/Kconfig b/drivers/soc/microchip/Kconfig
+> index 19f4b576f822..31d188311e05 100644
+> --- a/drivers/soc/microchip/Kconfig
+> +++ b/drivers/soc/microchip/Kconfig
+> @@ -9,3 +9,16 @@ config POLARFIRE_SOC_SYS_CTRL
+>  	  module will be called mpfs_system_controller.
+>  
+>  	  If unsure, say N.
+> +
+> +config POLARFIRE_SOC_SYSCONS
+> +	bool "PolarFire SoC (MPFS) syscon drivers"
+> +	default y
+> +	depends on ARCH_MICROCHIP
+> +	select MFD_CORE
+> +	help
+> +	  These drivers add support for the syscons on PolarFire SoC (MPFS).
+> +	  Without these drivers core parts of the kernel such as clocks
+> +	  and resets will not function correctly.
+> +
+> +	  If unsure, and on a PolarFire SoC, say y.
+> +
+
+This empty line could be dropped.
+
+> diff --git a/drivers/soc/microchip/Makefile b/drivers/soc/microchip/Makefile
+> index 14489919fe4b..1a3a1594b089 100644
+> --- a/drivers/soc/microchip/Makefile
+> +++ b/drivers/soc/microchip/Makefile
+> @@ -1 +1,2 @@
+>  obj-$(CONFIG_POLARFIRE_SOC_SYS_CTRL)	+= mpfs-sys-controller.o
+> +obj-$(CONFIG_POLARFIRE_SOC_SYSCONS)	+= mpfs-control-scb.o mpfs-mss-top-sysreg.o
+> diff --git a/drivers/soc/microchip/mpfs-control-scb.c b/drivers/soc/microchip/mpfs-control-scb.c
+> new file mode 100644
+> index 000000000000..d1a8e79c232e
+> --- /dev/null
+> +++ b/drivers/soc/microchip/mpfs-control-scb.c
+> @@ -0,0 +1,45 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +
+> +#include <linux/array_size.h>
+
+Looks like this one can be dropped or maybe you want to use
+ARRAY_SIZE(mpfs_control_scb_devs) as 4th argument of mfd_add_devices().
+
+> +#include <linux/of.h>
+> +#include <linux/of_address.h>
+
+Looks like this one can be dropped.
+
+> +#include <linux/mfd/core.h>
+> +#include <linux/mfd/syscon.h>
+> +#include <linux/of_platform.h>
+
+Same with this one?
+
+> +#include <linux/platform_device.h>
+> +
+> +static const struct mfd_cell mpfs_control_scb_devs[] = {
+> +	{ .name = "mpfs-tvs", },
+
+I think you can use:
+
+MFD_CELL_NAME("mpfs-tvs")
+
+> +};
+> +
+> +static int mpfs_control_scb_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	int ret;
+> +
+> +	ret = mfd_add_devices(dev, PLATFORM_DEVID_NONE, mpfs_control_scb_devs,
+> +			      1, NULL, 0, NULL);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return 0;
+
+You can use directly:
+
+	return mfd_add_device(...);
+
+> +}
+> +
+> +static const struct of_device_id mpfs_control_scb_of_match[] = {
+> +	{.compatible = "microchip,mpfs-control-scb", },
+
+This looks un-documented.
+
+> +	{},
+> +};
+> +MODULE_DEVICE_TABLE(of, mpfs_control_scb_of_match);
+> +
+> +static struct platform_driver mpfs_control_scb_driver = {
+> +	.driver = {
+> +		.name = "mpfs-control-scb",
+> +		.of_match_table = mpfs_control_scb_of_match,
+> +	},
+> +	.probe = mpfs_control_scb_probe,
+> +};
+> +module_platform_driver(mpfs_control_scb_driver);
+> +
+> +MODULE_LICENSE("GPL");
+> +MODULE_AUTHOR("Conor Dooley <conor.dooley@microchip.com>");
+> +MODULE_DESCRIPTION("PolarFire SoC control scb driver");
+> diff --git a/drivers/soc/microchip/mpfs-mss-top-sysreg.c b/drivers/soc/microchip/mpfs-mss-top-sysreg.c
+> new file mode 100644
+> index 000000000000..9b2e7b84cdba
+> --- /dev/null
+> +++ b/drivers/soc/microchip/mpfs-mss-top-sysreg.c
+> @@ -0,0 +1,48 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +
+> +#include <linux/array_size.h>
+
+Looks like this one can be dropped or maybe you want to use
+ARRAY_SIZE(mpfs_mss_top_sysreg_devs) as 4th argument of mfd_add_devices()
+
+> +#include <linux/of.h>
+> +#include <linux/of_address.h>
+
+Unused?
+
+> +#include <linux/mfd/core.h>
+> +#include <linux/mfd/syscon.h>
+> +#include <linux/of_platform.h>
+
+Unused?
+
+> +#include <linux/platform_device.h>
+> +
+> +static const struct mfd_cell mpfs_mss_top_sysreg_devs[] = {
+> +	{ .name = "mpfs-reset", },
+
+MFD_CELL_NAME() ?
+
+> +};
+> +
+> +static int mpfs_mss_top_sysreg_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	int ret;
+> +
+> +	ret = mfd_add_devices(dev, PLATFORM_DEVID_NONE, mpfs_mss_top_sysreg_devs,
+> +			      1, NULL, 0, NULL);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (devm_of_platform_populate(dev))
+> +		dev_err(dev, "Error populating children\n");
+
+Is it OK return 0 above if there are failures here?
+
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct of_device_id mpfs_mss_top_sysreg_of_match[] = {
+> +	{.compatible = "microchip,mpfs-mss-top-sysreg", },
+> +	{},
+> +};
+> +MODULE_DEVICE_TABLE(of, mpfs_mss_top_sysreg_of_match);
+> +
+> +static struct platform_driver mpfs_mss_top_sysreg_driver = {
+> +	.driver = {
+> +		.name = "mpfs-mss-top-sysreg",
+> +		.of_match_table = mpfs_mss_top_sysreg_of_match,
+> +	},
+> +	.probe = mpfs_mss_top_sysreg_probe,
+> +};
+> +module_platform_driver(mpfs_mss_top_sysreg_driver);
+> +
+> +MODULE_LICENSE("GPL");
+> +MODULE_AUTHOR("Conor Dooley <conor.dooley@microchip.com>");
+> +MODULE_DESCRIPTION("PolarFire SoC mss top sysreg driver");
+
 
