@@ -1,149 +1,198 @@
-Return-Path: <devicetree+bounces-230659-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230660-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E263C04DD5
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 09:55:32 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 747BCC04E62
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 09:59:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 3D4AB4E1CFE
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 07:55:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 63A593B5200
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 07:55:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABDF62F3613;
-	Fri, 24 Oct 2025 07:55:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D9062F361F;
+	Fri, 24 Oct 2025 07:55:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="OAiC5xik"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="QFraqqxm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D50022F0C7F
-	for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 07:55:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEDBE2F1FD9
+	for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 07:55:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761292527; cv=none; b=fV139QE/ZkQCCwc/PeERS0k1d6GqkaWATe4crZ0Q3PboIJH3AC7t5WFf5tnf3caobaztMPZ5eh3g0pIoQpG6fCBQlP537qj62TuTWFP2I0iDVAW9l53g4D1dAHc6rgR8kq5YADHDNfcUe3MfaWE2rMn089DKC4lEO+J12apQeCY=
+	t=1761292537; cv=none; b=b4dc73jAYk8Xn2uAgrkWy4xkq7LcENUe5C4xZwS7yNWmUST5UGmSaT038ypaye5V7/MmfcbtIXKeCeHHBsVyEu7mdkNlruLYueL9GxN7UGWyfIu5oFPc4tHogg08HK19CrVxSHS2hyl9OuauDtRAgMOobFcfmDzLwQZBLwtqWOQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761292527; c=relaxed/simple;
-	bh=aR+JKqf2KJtx9OXnrDQ37SCTFjChvqCBpowAQpfeMaU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ol8BxicCHJ/8Ui66yot1mumQZk3RWJETjtcsfHLluLgm9rkbHvyVSyMdVhUJIBVD1asNPnYF4SBKX2DmfndsBPw762M64ORmSJmUWrIudpXImyOHYjwNdTFoeSBuZTivUI2/PUHHqW6L+T3CMdcNW1AAmCvx1kUql5xvSY9MHPw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=OAiC5xik; arc=none smtp.client-ip=185.246.84.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id 6A6081A1631;
-	Fri, 24 Oct 2025 07:55:24 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 375EE60703;
-	Fri, 24 Oct 2025 07:55:24 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id CCA2D102F23EC;
-	Fri, 24 Oct 2025 09:55:18 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1761292523; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 in-reply-to:references; bh=PFvilJoQ2eOzHbk5yIska+gVk7PLougEK5Za3LiPZTE=;
-	b=OAiC5xikTDmMr3GAaJDS7EUvNuVSTA9+zOIFxJv8psYffJRfTHpfry33/PplIuVy5JbDvY
-	JE32Mr2f3Y7no4I1K52a/Ke8wcb/fVz1Riww4xr8Ytv7sC6ty7omfiPUZIK01pjNhlA6ZU
-	7oP+gXL341FE5srAIhdd9SFCJ5yNXOm8LdS0cl0LmYHmqGzc88W/rH0dlKSkKWR4rNc9BV
-	lfsffrhOvf/JQRkjhLIjUGhLWLzkzJpukM1m3OKhFSRYzNnoLWpPN3XlDcHv0A5wzTgn1X
-	vfE0K/3EoHasRi1/ybphm60Kl6VRLdmL9NmcV5Jk0uem/QkoWKnz0m5xjlb+7A==
-From: Romain Gantois <romain.gantois@bootlin.com>
-To: Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
- David Lechner <dlechner@baylibre.com>,
- Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>,
- Andy Shevchenko <andy@kernel.org>, Hans de Goede <hansg@kernel.org>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-iio@vger.kernel.org, Herve Codina <herve.codina@bootlin.com>
-Subject:
- Re: [PATCH v2 5/5] regulator: ltm8054: Support output current limit control
-Date: Fri, 24 Oct 2025 09:55:16 +0200
-Message-ID: <12768289.O9o76ZdvQC@fw-rgant>
-In-Reply-To:
- <CAHp75VciOagW2grjYNxsBLKtwrEqaJZa-mKmUQgW8L8X3mky7A@mail.gmail.com>
-References:
- <20250925-ltm8054-driver-v2-0-bb61a401a0dc@bootlin.com>
- <3500149.e9J7NaK4W3@fw-rgant>
- <CAHp75VciOagW2grjYNxsBLKtwrEqaJZa-mKmUQgW8L8X3mky7A@mail.gmail.com>
+	s=arc-20240116; t=1761292537; c=relaxed/simple;
+	bh=UFp0rwfJ7OinZOtB8woT8V69BxcYe8f2uGbPThsPnAU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=kzuw739jEbCw43k6nr1n/hSvUWOBrI2hYX9ebN00tN8MQC8o3bf/LaGDuv/NKOv/QUE/CsMYBLqB2GvRwG6qsdF3wt1bJZi84HH6eaKGiMvIYVbDva/7ArxWypNEjoo1GWGivde0o4pgMTx9J5IZsSlqlkn10nXtx017iB6JKTI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=QFraqqxm; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59O3FdOw021113
+	for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 07:55:34 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	YXG68zxkoFTr/T5HZB5JaHrMfcPhG5bgKEnx+70f134=; b=QFraqqxmnmEMEzCA
+	eme0XSu5wVdiHBKlLLZ2ojmPaPvd3jt1tj/r58Vyjf5EUGOcXAPiQUiulVJ5AARM
+	GbdSOvhdAiF4nIV39yBQCPLgq/CDzM4vSe1/xTEgnf5oXlrC+x/INO/HknZyOgD0
+	IxYkgsRvjbGD5LuVg6WYn3HY7Jh6eIETefFtblINWHxQDDAVpBhDH3mTi/+5ZvR4
+	8k0W/ZTh0qoiL0O4acrT5XB50JVoKswnrWx40k4DN1yX4D7FQujmVU6Ye0dkYh0C
+	yQ1C74mGKBtoS1DLuDBiaqYtVXFrhoVmT42GE3/pOcjRZ4yPXPf+XJ8Obu3LayBN
+	BnFKnA==
+Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com [209.85.219.69])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49xhe0s7tn-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 07:55:34 +0000 (GMT)
+Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-87df3a8cab8so4707926d6.0
+        for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 00:55:34 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761292534; x=1761897334;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=YXG68zxkoFTr/T5HZB5JaHrMfcPhG5bgKEnx+70f134=;
+        b=im30SXwLDHnJuhL5M23u2YwQoGavVEyvym9TWV+h4vgaFHb9/6zy7BQfhRznkBntEx
+         vqU7vGoMHQr71nRg4mu6ZuqxDOBSGFtoiEAAll5lgrxx4rp2gechYUxnrAzJKPOpAMKY
+         N9PM69SKnotwOVcWVn0bnFpqylKWnIjU0uy/gJs0QJ/0vWiB3rLDz+CDE4DtmhKZq+U8
+         QLbykbAKknPIHEj7cji6jaK97Iwc8qThR4PX1nTZafjAq6x/iGq2EDGI2CRJOcYd2A5h
+         p5FHHJgI5vBWI1aO+vt32+YVaihb5ScSJjl4dwoQqmhAVdPpFipjXiCgJiMXdFPnVlTR
+         tE0Q==
+X-Forwarded-Encrypted: i=1; AJvYcCVCMnJGRb4vlx6fsIAq2cnNho0RvIAlSEx/X2tZlQTMN3zglXhbW6HmqYFdwJUyY/MqbPdXXdSyfWaT@vger.kernel.org
+X-Gm-Message-State: AOJu0YxoB+4YdHWSHrgJshzp8pM4HnyNBD/5BE5XnDCbIiPRaoq3bUOH
+	ll6xrnA5Q2i1AjpvSEgHWIca5i8A97PpV62lCgLNirG/wV0NDgkZ672+1eagrOZcZ2kpOIwbRb0
+	qbtrho0Ww8TGZlBNHXhoBPDGZs64vtb1+zHmDGpa3trDhtD9vKt8+gbT/z/od+7be
+X-Gm-Gg: ASbGncvzdHGJ7w7+lkVKilo6hdsaI+U7KO20GX8qc3YwVgXTju2nXxX2+lzR42ZVkx1
+	WLjXnVdLbmSPIFRGnGV8YgWKR9Fgo9aO+B4rPi5jJFoeXTsUP3xxbARpfrUq2VWKzCgNVBNKqo3
+	HYdQbyXVbmZ+1OXnEDHxZRtxZTPMhngembvoi5+AlXUg1mEyL/EnRFV6xu0JSVFVE+dKWYPlA6k
+	tgU5rMOPMBNW5bIjArZlm+vK6EDZauPHDWN0jdAIR9rzquVeV/uM3wnxS67cH9ZQ1L9HQ43TGqO
+	BB8uQZDZ9ytskvOvGivsr2mxCz91SeRGzChYoujLwawLHNc3QDLOsQlcahPds+qSfX5wdHPvmt3
+	qlxVP+Qyr740e06RabqSkk39EQEUoH8YYUv3huzB5G/v1JTT8JcC569q7
+X-Received: by 2002:ad4:50ac:0:b0:87f:b0f2:91f3 with SMTP id 6a1803df08f44-87fb0f29208mr17301406d6.8.1761292533848;
+        Fri, 24 Oct 2025 00:55:33 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFCB0bSo2J/IJ0DIn47T5u6kinAgTO16yEd6Im0+tOd+RYrXLjQsLNxZVU3R7LS4PIuS4fb/g==
+X-Received: by 2002:ad4:50ac:0:b0:87f:b0f2:91f3 with SMTP id 6a1803df08f44-87fb0f29208mr17301106d6.8.1761292533307;
+        Fri, 24 Oct 2025 00:55:33 -0700 (PDT)
+Received: from [192.168.119.202] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-63e3f32423esm3747494a12.32.2025.10.24.00.55.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 24 Oct 2025 00:55:32 -0700 (PDT)
+Message-ID: <5e64c246-a424-42c9-b102-e1a2af579936@oss.qualcomm.com>
+Date: Fri, 24 Oct 2025 09:55:29 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart5935577.DvuYhMxLoT";
- micalg="pgp-sha512"; protocol="application/pgp-signature"
-X-Last-TLS-Session-Version: TLSv1.3
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/6] drm/msm/a6xx: Add support for Adreno 612
+To: Akhil P Oommen <akhilpo@oss.qualcomm.com>,
+        Rob Clark <robin.clark@oss.qualcomm.com>, Sean Paul <sean@poorly.run>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Dmitry Baryshkov <lumag@kernel.org>,
+        Abhinav Kumar <abhinav.kumar@linux.dev>,
+        Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Jie Zhang <quic_jiezh@quicinc.com>
+References: <20251017-qcs615-spin-2-v1-0-0baa44f80905@oss.qualcomm.com>
+ <20251017-qcs615-spin-2-v1-1-0baa44f80905@oss.qualcomm.com>
+ <44ff81bf-8970-475c-a4f5-c03220bc8c3f@oss.qualcomm.com>
+ <97aeb6a1-fda2-440f-b14b-2f3dbc2d7e8e@oss.qualcomm.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <97aeb6a1-fda2-440f-b14b-2f3dbc2d7e8e@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDIxMDE2NyBTYWx0ZWRfXwBlJrd/G47KL
+ +vLlmHiHsRxCXsngVqxbmtAUuPIR0/JrYVckbhFRt4FWMXESSpucYTwkCIr3zJ5ahBKfRwS+qI8
+ wcauRVDJuU1v2F0xUMzHvZVg3974Tl1GsNVhvOfkZme5SX81PPpSm3VR4CXL5d5LZdQc1uhej42
+ daYe7CSem6zh8NmvaMETqCRHjrY5130K/23NTviDZYkv+g4Ndzl8GE7kzWTYQym9IC7Sk8b7X7R
+ dfjvFndXe2aPQ/EtzBz4gACdjoZ5ZXPDTbw9/NKeMPWvbv+p3ulWvss4b8x7ra6yXD2lOXEOnz8
+ 0X1zpjM9wT3mreE5zM18HsbYBYKfTFxDzRPi3TPJDJHIhpRmFmgGL4oXYq7GgUJABJWirXuZTlo
+ usCB/tNstXOEtBqpWmebIioBNYuzPA==
+X-Proofpoint-ORIG-GUID: OIHAwPokE4sT-LX7rlqFodpxobYO7oqR
+X-Authority-Analysis: v=2.4 cv=WYUBqkhX c=1 sm=1 tr=0 ts=68fb30f6 cx=c_pps
+ a=wEM5vcRIz55oU/E2lInRtA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8 a=ik8sJufeG61Tn7V1IDgA:9 a=QEXdDO2ut3YA:10
+ a=OIgjcC2v60KrkQgK7BGD:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-GUID: OIHAwPokE4sT-LX7rlqFodpxobYO7oqR
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-10-23_03,2025-10-22_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 adultscore=0 bulkscore=0 impostorscore=0 spamscore=0
+ priorityscore=1501 clxscore=1015 malwarescore=0 lowpriorityscore=0
+ phishscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2510020000
+ definitions=main-2510210167
 
---nextPart5935577.DvuYhMxLoT
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"; protected-headers="v1"
-From: Romain Gantois <romain.gantois@bootlin.com>
-To: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Fri, 24 Oct 2025 09:55:16 +0200
-Message-ID: <12768289.O9o76ZdvQC@fw-rgant>
-MIME-Version: 1.0
+On 10/24/25 12:57 AM, Akhil P Oommen wrote:
+> On 10/22/2025 8:43 PM, Konrad Dybcio wrote:
+>> On 10/17/25 7:08 PM, Akhil P Oommen wrote:
+>>> From: Jie Zhang <quic_jiezh@quicinc.com>
+>>>
+>>> Add support for Adreno 612 GPU found in SM6150/QCS615 chipsets.
+>>> A612 falls under ADRENO_6XX_GEN1 family and is a cut down version
+>>> of A615 GPU.
+>>>
+>>> A612 has a new IP called Reduced Graphics Management Unit or RGMU
+>>> which is a small state machine which helps to toggle GX GDSC
+>>> (connected to CX rail) to implement IFPC feature. It doesn't support
+>>> any other features of a full fledged GMU like clock control, resource
+>>> voting to rpmh etc. So we need linux clock driver support like other
+>>> gmu-wrapper implementations to control gpu core clock and gpu GX gdsc.
+>>> This patch skips RGMU core initialization and act more like a
+>>> gmu-wrapper case.
+>>>
+>>> Co-developed-by: Akhil P Oommen <akhilpo@oss.qualcomm.com>
+>>> Signed-off-by: Jie Zhang <quic_jiezh@quicinc.com>
+>>> Signed-off-by: Akhil P Oommen <akhilpo@oss.qualcomm.com>
+>>> ---
+>>
+>> [...]
+>>
+>>> @@ -350,12 +350,18 @@ static const struct a6xx_gmu_oob_bits a6xx_gmu_oob_bits[] = {
+>>>  /* Trigger a OOB (out of band) request to the GMU */
+>>>  int a6xx_gmu_set_oob(struct a6xx_gmu *gmu, enum a6xx_gmu_oob_state state)
+>>>  {
+>>> +	struct a6xx_gpu *a6xx_gpu = container_of(gmu, struct a6xx_gpu, gmu);
+>>> +	struct adreno_gpu *adreno_gpu = &a6xx_gpu->base;
+>>>  	int ret;
+>>>  	u32 val;
+>>>  	int request, ack;
+>>>  
+>>>  	WARN_ON_ONCE(!mutex_is_locked(&gmu->lock));
+>>>  
+>>> +	/* Skip OOB calls since RGMU is not enabled */
+>>
+>> "RGMU doesn't handle OOB calls"
+> 
+> Technically RGMU can handle OOB calls. But we are not initializing rgmu.
 
-On Wednesday, 22 October 2025 18:37:31 CEST Andy Shevchenko wrote:
-> On Wed, Oct 22, 2025 at 11:06=E2=80=AFAM Romain Gantois
-> <romain.gantois@bootlin.com> wrote:
->=20
-> ...
-> > For part 2., I'm having more trouble finding a proper solution. One
-> > potential fix would be to put the IIO channel reads/writes in a LTM8054
-> > driver work item and have them run without the regulator lock held. This
-> > would incidentally also solve part 1., however it would make the current
-> > limit operations asynchronous, and it seems like a lot of unnecessary
-> > complexity.
->=20
-> Interesting that locking a single  regulator, there is no context and
-> hence the lock class is global. Hence whoever calls a regulator will
-> have the same lockdep splat, even when false positive. Basically the
-> solution for those cases (and I don't know if yours / this one falls
-> into the category) is to enable context for the single regulator
-> locking and set up a lockdep class (so the regulator core should call
-> lockdep_set_class() at mutex initialisation).
+Oh, I glossed over that..
 
-The strange part is that this "global lock" is actually a lockdep-provided
-mutex which isn't taken when lockdep is disabled. It seems to be there to
-ensure that ww_mutex contexts are not taken recursively, but then again the
-IIO driver is calling regulator_lock_*nested*() so it sounds like
-recursively taking the ww_mutex context might be expected here...
+IIRC the reason we delayed 612 support in the past was to make sure
+that the RGMU FW is consumed, so that runtime requirements don't
+suddenly change one day.
 
-Thanks,
+If you have no interest/way in getting it wholly supported right now,
+can you at least make sure that the driver requests the firmware and
+exits if it's absent?
 
-=2D-=20
-Romain Gantois, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
---nextPart5935577.DvuYhMxLoT
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEIcCsAScRrtr7W0x0KCYAIARzeA4FAmj7MOQACgkQKCYAIARz
-eA6I7A/+PX2HOKEhaaWSZPLsA52iJ4dmaYrH43O2kGXjvFnQ0mtpI2tRMu3lp5F4
-0F7UYfgEL15RJN7mbOhZ9Bv3rceP9hFerIY3sDI0pD3+x1Om/YsINLfWEj7GNlXO
-SN/SEDyiZhXRw6k7HneqJW5tffIwM7vkEsP+jkf4lj+4qQzg9t76IrBnahbwSaXK
-S2IFbmcdyspMJD+a00RyQQJoJVxSvbJEvaT0cDlgl0Y9YaXxWgX+i7KKaZu1xM5f
-K2hJu6VE5GaT6NjRBnin9xg7XoH9Po4uq698E0FESM3Fu+nPjCRX2mRkbcjeHlCx
-HTZH6Yji8QozJgJ07ABT4V6w/0d2oPavv6qokzXw/NWwae2qsigyDadbXzdQ+KMT
-4BEz43iIa3l2+fjXyhjg4OUkZlpHffXd3oi9/McMmPkguxCHt4ZLnVMTi4ybUMao
-UOgiNWYSZNyx4xFNOf/rsDJu4G1vmegN7JWWAEC6JmBUlnJw68GoS725HPmRchTY
-ncl+L1Y+xogC+uWBFCY8sgZLoAWHS2CQBhzR6Fm88hagar5pt/JHbbwOUPv/LOxt
-06aQaoOJFS0UxYq9uXrZYNN7824Vaen0KtH0ouVlifllEF4pCFpn2bs6qAa9omSL
-e2bIAEsG4JyMsOwuBLDMYIUfjzG2EnKX0c5W/ZRdQ7F+yoe3haQ=
-=Va+8
------END PGP SIGNATURE-----
-
---nextPart5935577.DvuYhMxLoT--
-
-
-
+Konrad
 
