@@ -1,66 +1,63 @@
-Return-Path: <devicetree+bounces-230975-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230976-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0CDEC0847A
-	for <lists+devicetree@lfdr.de>; Sat, 25 Oct 2025 01:12:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C978BC08493
+	for <lists+devicetree@lfdr.de>; Sat, 25 Oct 2025 01:20:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E69D61C8700E
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 23:12:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 791D31B20B62
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 23:20:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54A2930CDA1;
-	Fri, 24 Oct 2025 23:11:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9776303A09;
+	Fri, 24 Oct 2025 23:20:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vMc8uwQa"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UcE2rYBV"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28DAE303A38;
-	Fri, 24 Oct 2025 23:11:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79A292367A2;
+	Fri, 24 Oct 2025 23:20:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761347517; cv=none; b=iqaOrbgmgYGYQ8L0QpVzqv9WvkoEOIPTy/kvs3jOm5lL9aacq4cANUzBjESHTAuOn7HnkQSgEnqo9Cb85a2EHVofHbu2CA/5KA87jl1KJXPC5ksUIM2eZaEY09Xr96Ws7r3/sfYBHn/RqsNwwZTgPPNc6ayhqxeRuAYDDR3/bfw=
+	t=1761348014; cv=none; b=Vn+5zzhabvUtnZyg7Jfm6ULNyWdNk3cd1uUw2oLOpKezinKX3bRPdh+pjQk9vfDSkXJFc4x9TlK/MqeaM2V50y12zfSxN77aXzJXWA4nMuVOr9hF+OTvgy2gipoMX+Hbdhmnr7hXm9owRt+2F2a2t/Z1SPXaRstD6gjDDH1oIPo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761347517; c=relaxed/simple;
-	bh=F1LhiwGp0x3wM8SAKbj7UnEIjjud2a8/8+rDH/aYbsk=;
+	s=arc-20240116; t=1761348014; c=relaxed/simple;
+	bh=tLA5jyid0OLGc5stZNuAdXz2e7J1KGmxNd8vsBF0Zt0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tO2DdkVCUrQuIAyOv2Vu72XvKZyy0vuc9hqzEbxWiBBnZDukWHEoV9vQx4vsXRCUSuAACC+vgiU44LRnllXP3LpcT4J7X9zlBVp/PxaHu2VzEKpPYAGwDmq4ma82JSctdh4keFexsWYNkcfOwlBXRVFGBxNnYYMgElqOa8zHGXg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vMc8uwQa; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 72E58C4CEF1;
-	Fri, 24 Oct 2025 23:11:56 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=OwA6SEPz0+vjnwBljq8rqOX6O6vOtCZO1cM8igEJsHHdb0v/Mv9RWEAEqJaX3331DAnBK7l0jMGkn7rPja1/9gBHQdzFPUlml1mw2BtXZhyNmSVhd/Me7770AH0YQS3yDguMYqsFj3D6VboJfZldQi9sSQiSWvktTwehL8jakDw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UcE2rYBV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B3F0DC4CEF1;
+	Fri, 24 Oct 2025 23:20:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761347516;
-	bh=F1LhiwGp0x3wM8SAKbj7UnEIjjud2a8/8+rDH/aYbsk=;
+	s=k20201202; t=1761348012;
+	bh=tLA5jyid0OLGc5stZNuAdXz2e7J1KGmxNd8vsBF0Zt0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=vMc8uwQa2ZrwjDbFF6Ktnl5l6b3YVFOifLfJacDlgvv45EyGN3Y6vPdMmdK2BrXsK
-	 TiBckurBINKotx8ovqoOOPI0fnqJVuVhO8YOdPW8TSaySjdDMzuWxcuc7wNk/kVPsA
-	 5N/yiuZvGf9TKL4dFHeNX0PtjsF+lZKSi+uU0JkK5LwpUGassFriVhIqO8Sp42MLdR
-	 X03nJP9dqgLarDzc4Mh3tXRP3Eb7pU2YqiYW+ig73LkP9XGIhABgXfL9+6rWojAguE
-	 OwAL6gnIeuecSfwRAT3vMeZjGTVJE5/x/RjVcBdJNTSV2vOjIDb8Xk7ILwlgo/qJdu
-	 mbg0SpRIpe76w==
-Date: Fri, 24 Oct 2025 18:11:54 -0500
+	b=UcE2rYBV+8SF+uK4Osnktu++d2o0facDxdwHWqB/PpkbZ/6KoffZKmHoup17jMVWJ
+	 WrOVrolyGlcQahOXb2e3t1Z40BETyImS4thBLvMh5WEWKfULQkXfEP5+cW0h6BN9Uw
+	 QJtSqqpDji24j/VYzoArmotAghm+EjKjE+QsVqv9LJb2/hheVFSjAXzF7IKu469lsp
+	 x67Z0fEWZX/DZYBB0qBwvMoc81eOwTOVwFYgseSS7QpMzydnrxoPUQkpwZp6xqcdsD
+	 u6ZqCtO5MV8pe0YehLfD2AKXk6ZQBs5+7/RqVgQUXQDNVwtuVp/52cJD2Lgj656O/c
+	 0iiKmxPeu8ARg==
+Date: Fri, 24 Oct 2025 18:20:10 -0500
 From: Rob Herring <robh@kernel.org>
-To: Ryan Chen <ryan_chen@aspeedtech.com>
-Cc: Thomas Gleixner <tglx@linutronix.de>,
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
-	Andrew Jeffery <andrew@codeconstruct.com.au>,
-	"jk@codeconstruct.com.au" <jk@codeconstruct.com.au>,
-	Kevin Chen <kevin_chen@aspeedtech.com>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>
-Subject: Re: [PATCH v5 1/3] dt-bindings: interrupt-controller:
- aspeed,ast2700: Add support for INTC hierarchy
-Message-ID: <20251024231154.GA2962687-robh@kernel.org>
-References: <20251022065507.1152071-1-ryan_chen@aspeedtech.com>
- <20251022065507.1152071-2-ryan_chen@aspeedtech.com>
- <20251022135101.GA3349934-robh@kernel.org>
- <TY2PPF5CB9A1BE674594566C13B8D8B2984F2F0A@TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org,
+	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH net-next] dt-bindings: net: phy: vsc8531: Convert to DT
+ schema
+Message-ID: <20251024232010.GA2992158-robh@kernel.org>
+References: <20251024201836.317324-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,85 +66,277 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <TY2PPF5CB9A1BE674594566C13B8D8B2984F2F0A@TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com>
+In-Reply-To: <20251024201836.317324-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-On Thu, Oct 23, 2025 at 06:57:01AM +0000, Ryan Chen wrote:
-> Hello Rob.
-> 	Thank you for your detailed review and comments.
+On Fri, Oct 24, 2025 at 09:18:36PM +0100, Prabhakar wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 > 
-> > Subject: Re: [PATCH v5 1/3] dt-bindings: interrupt-controller: aspeed,ast2700:
-> > Add support for INTC hierarchy
-> > 
-> > On Wed, Oct 22, 2025 at 02:55:05PM +0800, Ryan Chen wrote:
-> > > AST2700 contains two-level interrupt controllers (INTC0 and INTC1),
-> > > each with its own register space and handling different sets of
-> > > peripherals.
-> > 
-> > This is a mess!
-> > 
-> > How does this relate to the existing "aspeed,ast2700-intc-ic"? Its schema has a
-> > block diagram of connections which I can understand. This does not.
-> > 
-> > The use of child nodes here is questionable. A variable number of interrupt
-> > banks is not a reason to have child nodes. I'm only guessing that's what's
-> > happening here because you haven't explained it.
+> Convert VSC8531 Gigabit ethernet phy binding to DT schema format. While
+> at it add compatible string for VSC8541 PHY which is very much similar
+> to the VSC8531 PHY and is already supported in the kernel. VSC8541 PHY
+> is present on the Renesas RZ/T2H EVK.
 > 
-> Let me clarify the hardware structure and the purpose of these bindings.
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> ---
+> Inspired from the DT warnings seen while running dtbs check [0],
+> took an opportunity to convert this binding to DT schema format.
+> As there was no entry in the maintainers file Ive added myself
+> as the maintainer for this binding.
+> [0] https://lore.kernel.org/all/176073765433.419659.2490051913988670515.robh@kernel.org/
 > 
-> The AST2700 SoC includes two top-level interrupt controller modules,
-> INTC0 and INTC1. (aspeed,ast2700-intc0, aspeed,ast2700-intc1)
-> Each of them provides routing selection and register protection
-> features.
-> Within each INTCx block, there are multiple sub-blocks called
-> intc-ic, each handling multi-interrupt sources.
-> ("aspeed,ast2700-intc0-ic", "aspeed,ast2700-intc1-ic")
+> Note,
+> 1] dt_binding_check reports below warnings. But this looks like
+> the same for other DT bindings too which have dependencies defined.
+> ./Documentation/devicetree/bindings/net/mscc-phy-vsc8531.yaml:99:36: [warning] too few spaces after comma (commas)
+> <path>/mscc-phy-vsc8531.example.dtb: ethernet-phy@0 (ethernet-phy-id0007.0772): 'vsc8531' is a dependency of 'vsc8531,edge-slowdown'
+> 	from schema $id: http://devicetree.org/schemas/net/mscc-phy-vsc8531.yaml
+> <path>/mscc-phy-vsc8531.example.dtb: ethernet-phy@0 (ethernet-phy-id0007.0772): 'vddmac' is a dependency of 'vsc8531,edge-slowdown'
+> 2] As there is no entry in maintainers file for this binding, Ive added myself
+> as the maintainer for this binding.
+> ---
+>  .../bindings/net/mscc-phy-vsc8531.txt         |  73 ----------
+>  .../bindings/net/mscc-phy-vsc8531.yaml        | 125 ++++++++++++++++++
+>  .../devicetree/bindings/vendor-prefixes.yaml  |   2 +-
+>  3 files changed, 126 insertions(+), 74 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/net/mscc-phy-vsc8531.txt
+>  create mode 100644 Documentation/devicetree/bindings/net/mscc-phy-vsc8531.yaml
 > 
-> Cascading occurs between the child banks:
-> Level 1 : intc0-ic have multi-interrupts connect to GIC (root)
-> Level 2 : multi Intc1-ic# connect to intc0-ic
-> The parent intc0/1 nodes expose register regions for routing and
-> protection control, serving as containers for their intc-ic children.
+> diff --git a/Documentation/devicetree/bindings/net/mscc-phy-vsc8531.txt b/Documentation/devicetree/bindings/net/mscc-phy-vsc8531.txt
+> deleted file mode 100644
+> index 0a3647fe331b..000000000000
+> --- a/Documentation/devicetree/bindings/net/mscc-phy-vsc8531.txt
+> +++ /dev/null
+> @@ -1,73 +0,0 @@
+> -* Microsemi - vsc8531 Giga bit ethernet phy
+> -
+> -Optional properties:
+> -- vsc8531,vddmac	: The vddmac in mV. Allowed values is listed
+> -			  in the first row of Table 1 (below).
+> -			  This property is only used in combination
+> -			  with the 'edge-slowdown' property.
+> -			  Default value is 3300.
+> -- vsc8531,edge-slowdown	: % the edge should be slowed down relative to
+> -			  the fastest possible edge time.
+> -			  Edge rate sets the drive strength of the MAC
+> -			  interface output signals.  Changing the
+> -			  drive strength will affect the edge rate of
+> -			  the output signal.  The goal of this setting
+> -			  is to help reduce electrical emission (EMI)
+> -			  by being able to reprogram drive strength
+> -			  and in effect slow down the edge rate if
+> -			  desired.
+> -			  To adjust the edge-slowdown, the 'vddmac'
+> -			  must be specified. Table 1 lists the
+> -			  supported edge-slowdown values for a given
+> -			  'vddmac'.
+> -			  Default value is 0%.
+> -			  Ref: Table:1 - Edge rate change (below).
+> -- vsc8531,led-[N]-mode	: LED mode. Specify how the LED[N] should behave.
+> -			  N depends on the number of LEDs supported by a
+> -			  PHY.
+> -			  Allowed values are defined in
+> -			  "include/dt-bindings/net/mscc-phy-vsc8531.h".
+> -			  Default values are VSC8531_LINK_1000_ACTIVITY (1),
+> -			  VSC8531_LINK_100_ACTIVITY (2),
+> -			  VSC8531_LINK_ACTIVITY (0) and
+> -			  VSC8531_DUPLEX_COLLISION (8).
+> -- load-save-gpios	: GPIO used for the load/save operation of the PTP
+> -			  hardware clock (PHC).
+> -
+> -
+> -Table: 1 - Edge rate change
+> -----------------------------------------------------------------|
+> -| 		Edge Rate Change (VDDMAC)			|
+> -|								|
+> -| 3300 mV	2500 mV		1800 mV		1500 mV		|
+> -|---------------------------------------------------------------|
+> -| 0%		0%		0%		0%		|
+> -| (Fastest)			(recommended)	(recommended)	|
+> -|---------------------------------------------------------------|
+> -| 2%		3%		5%		6%		|
+> -|---------------------------------------------------------------|
+> -| 4%		6%		9%		14%		|
+> -|---------------------------------------------------------------|
+> -| 7%		10%		16%		21%		|
+> -|(recommended)	(recommended)					|
+> -|---------------------------------------------------------------|
+> -| 10%		14%		23%		29%		|
+> -|---------------------------------------------------------------|
+> -| 17%		23%		35%		42%		|
+> -|---------------------------------------------------------------|
+> -| 29%		37%		52%		58%		|
+> -|---------------------------------------------------------------|
+> -| 53%		63%		76%		77%		|
+> -| (slowest)							|
+> -|---------------------------------------------------------------|
+> -
+> -Example:
+> -
+> -        vsc8531_0: ethernet-phy@0 {
+> -                compatible = "ethernet-phy-id0007.0570";
+> -                vsc8531,vddmac		= <3300>;
+> -                vsc8531,edge-slowdown	= <7>;
+> -                vsc8531,led-0-mode	= <VSC8531_LINK_1000_ACTIVITY>;
+> -                vsc8531,led-1-mode	= <VSC8531_LINK_100_ACTIVITY>;
+> -		load-save-gpios		= <&gpio 10 GPIO_ACTIVE_HIGH>;
+> -        };
+> diff --git a/Documentation/devicetree/bindings/net/mscc-phy-vsc8531.yaml b/Documentation/devicetree/bindings/net/mscc-phy-vsc8531.yaml
+> new file mode 100644
+> index 000000000000..60691309b6a3
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/mscc-phy-vsc8531.yaml
+> @@ -0,0 +1,125 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/mscc-phy-vsc8531.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Microsemi VSC8531 Gigabit Ethernet PHY
+> +
+> +maintainers:
+> +  - Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> +
+> +description:
+> +  The VSC8531 is a Gigabit Ethernet PHY with configurable MAC interface
+> +  drive strength and LED modes.
+> +
+> +allOf:
+> +  - $ref: ethernet-phy.yaml#
+> +
+> +select:
+> +  properties:
+> +    compatible:
+> +      contains:
+> +        enum:
+> +          - ethernet-phy-id0007.0570 # VSC8531
+> +          - ethernet-phy-id0007.0772 # VSC8541
+> +  required:
+> +    - compatible
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - ethernet-phy-id0007.0570 # VSC8531
+> +          - ethernet-phy-id0007.0772 # VSC8541
+> +      - const: ethernet-phy-ieee802.3-c22
+> +
+> +  vsc8531,vddmac:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      The VDDMAC voltage in millivolts. This property is used in combination
+> +      with the edge-slowdown property to control the drive strength of the
+> +      MAC interface output signals.
+> +    enum: [3300, 2500, 1800, 1500]
+> +    default: 3300
+> +
+> +  vsc8531,edge-slowdown:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
 
-Being a 2nd vs. 3rd level interrupt controller is not a reason for 
-different compatibles. The programming model is obviously the same for 
-both as you essentially have 0 driver changes. Having N banks of 32 
-interrupts vs. 1 bank of 32 interrupts is not a reason to have multiple 
-intcN-ic nodes. That is a very common difference between instances of 
-the same interrupt controller such as the GIC.
+Use '>' if you have formatting.
 
-What you need to do is simply extend your driver to support N banks of 
-32 interrupts. That's what almost every other irqchip driver with more 
-than 32 interrupts does. If you are lucky, then the offset to each 
-bank's registers is just hwirq/32 * <bank stride> and the number of 
-banks can be calculated from the length of 'reg'. If you are not 
-lucky, then you could put 1 'reg' entry for each bank.
+> +      Percentage by which the edge rate should be slowed down relative to
+> +      the fastest possible edge time. This setting helps reduce electromagnetic
+> +      interference (EMI) by adjusting the drive strength of the MAC interface
+> +      output signals. Valid values depend on the vddmac voltage setting
+> +      according to the edge rate change table in the datasheet.
+> +      For vddmac=3300mV valid values are 0, 2, 4, 7, 10, 17, 29, 53. (7 recommended)
+> +      For vddmac=2500mV valid values are 0, 3, 6, 10, 14, 23, 37, 63. (10 recommended)
+> +      For vddmac=1800mV valid values are 0, 5, 9, 16, 23, 35, 52, 76. (0 recommended)
+> +      For vddmac=1500mV valid values are 0, 6, 14, 21, 29, 42, 58, 77. (0 recommended)
 
-AFAICT, the existing binding in aspeed,ast2700-intc.yaml should work for 
-you.
+Indent lists by 2 more spaces and a blank line before.
 
+> +    enum: [0, 2, 3, 4, 5, 6, 7, 9, 10, 14, 16, 17, 21, 23, 29, 35, 37, 42, 52, 53, 58, 63, 76, 77]
+> +    default: 0
+> +
+> +  vsc8531,led-0-mode:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: LED[0] behavior mode. See include/dt-bindings/net/mscc-phy-vsc8531.h
+> +      for available modes.
+> +    minimum: 0
+> +    maximum: 15
+> +    default: 1
+> +
+> +  vsc8531,led-1-mode:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: LED[1] behavior mode. See include/dt-bindings/net/mscc-phy-vsc8531.h
+> +      for available modes.
+> +    minimum: 0
+> +    maximum: 15
+> +    default: 2
+> +
+> +  vsc8531,led-2-mode:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: LED[2] behavior mode. See include/dt-bindings/net/mscc-phy-vsc8531.h
+> +      for available modes.
+> +    minimum: 0
+> +    maximum: 15
+> +    default: 0
+> +
+> +  vsc8531,led-3-mode:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: LED[3] behavior mode. See include/dt-bindings/net/mscc-phy-vsc8531.h
+> +      for available modes.
+> +    minimum: 0
+> +    maximum: 15
+> +    default: 8
+> +
+> +  load-save-gpios:
+> +    description: GPIO phandle used for the load/save operation of the PTP hardware
+> +      clock (PHC).
+> +    maxItems: 1
+> +
+> +dependencies:
+> +  vsc8531,edge-slowdown: [ vsc8531,vddmac ]
+
+You either need quotes on 'vsc8531,vddmac' or use this style:
+
+vsc8531,edge-slowdown:
+  - vsc8531,vddmac
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/net/mscc-phy-vsc8531.h>
+> +
+> +    mdio {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        ethernet-phy@0 {
+> +            compatible = "ethernet-phy-id0007.0772", "ethernet-phy-ieee802.3-c22";
+> +            reg = <0>;
+> +            vsc8531,vddmac = <3300>;
+> +            vsc8531,edge-slowdown = <7>;
+> +            vsc8531,led-0-mode = <VSC8531_LINK_1000_ACTIVITY>;
+> +            vsc8531,led-1-mode = <VSC8531_LINK_100_ACTIVITY>;
+> +            load-save-gpios = <&gpio 10 GPIO_ACTIVE_HIGH>;
+> +        };
+> +    };
+> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> index 54ba517d7e79..1af57177a747 100644
+> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> @@ -20,7 +20,7 @@ patternProperties:
+>    "^(keypad|m25p|max8952|max8997|max8998|mpmc),.*": true
+>    "^(pciclass|pinctrl-single|#pinctrl-single|PowerPC),.*": true
+>    "^(pl022|pxa-mmc|rcar_sound|rotary-encoder|s5m8767|sdhci),.*": true
+> -  "^(simple-audio-card|st-plgpio|st-spics|ts),.*": true
+> +  "^(simple-audio-card|st-plgpio|st-spics|ts|vsc8531),.*": true
+>    "^pool[0-3],.*": true
+>  
+>    # Keep list in alphabetical order.
+> -- 
+> 2.43.0
 > 
-> The following simplified diagram shows the hierarchy:
-> 
-> 
->                                  +----------+       +----------+
->                                  |  intc0   |       |  intc1   |
-> - - - - - - - - - - - - - - - - -+---- -----+- -  - +------ - -+
->   +-----------------------+      |          |       |          |
->   | +-------+ +---------+ |      |          |       |          |
->   | |       | |         | |      |          |       |          |
->   | |  PSP  +-+ GIC     | |      |          |       |          |
->   | |       | |         | |      |          |       |          |
->   | +-------+ |         | |      |          |       |          |
->   |           |         | |      +----------+       |          |
->   |           | 192~201 <-|------+          <-------+ intc1-ic |
->   |           +---------+ |      |          |       |          |
->   +-----------------------+      | intc0-ic <-------+ intc1-ic |
->                                  |          |       |          |
->                                  | 			<-------+ intc1-ic |
->                                  +----------+		  .....
-
-You already match on intc0 and handle 32 interrupts. Now you are adding 
-intc0-ic to match on and handling the same 32 interrupts?
-
-Rob
 
