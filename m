@@ -1,129 +1,149 @@
-Return-Path: <devicetree+bounces-230931-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230932-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B11A7C07905
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 19:42:29 +0200 (CEST)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id A55FDC0792F
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 19:46:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7B62D3AD133
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 17:42:13 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 24479358FB2
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 17:46:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62B0B345CB6;
-	Fri, 24 Oct 2025 17:42:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C24430DEA0;
+	Fri, 24 Oct 2025 17:46:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="f4HZhtmT"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="A2PSQDOp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
+Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5D0B3376A3
-	for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 17:42:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77D18221555
+	for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 17:46:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761327727; cv=none; b=V7kXrT/ifX+4hdth71VhR2XCeI2Nqc6LWyOXV5LubynmiRgD2Q5nlXbk24cqzVcXdQh6cYo+NLIHMmNPlISo0s/1bhxmA/OwTg5UNmv4PEpoXNE2hmn2ikjNufJ6b+ZE5W+PT1Mw9GrCjYs5Twh8M3YTKzeuIOawhZRlOxq48C0=
+	t=1761328010; cv=none; b=SWwTn9sLoUyVsGZ3e3Dcz3qL8BP5iK4RZYgIW0lVydJgdeOhRtH+iaG5zpZGQtDwTKIIMg7sQyR3C+e+3B94Z/yBGuqEU3rxiAU/UbqUCY9wlcmLhZ0rORw4G4F6C1OxMyowWTCojCCv2MOc64A5L+gRq8P6jQzDdNbTKQEPQSU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761327727; c=relaxed/simple;
-	bh=i3jJ7co8m6Rp6VhynG4AQYYabRnZVYzJAJnExjOrQWM=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=sMGbFkWFbSiIOHGAyAF6jsNr7c9HYmgNCF9TzlKQ02TUq0Ke+H5/KMFc/q7ohpOkvowSadt72BZUNkj0YtNfiAnHRfls+gceECWXuTum066DROa6BzwgZAirJ3TtflFgruoAWTQLdhXO1Wi734IHW0XAb8fa7miAmJ+RwEH48Gg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=f4HZhtmT; arc=none smtp.client-ip=209.85.218.53
+	s=arc-20240116; t=1761328010; c=relaxed/simple;
+	bh=K6zD0dyxA5X3dz6tOjR3SyTpnMhYisRl3NWIn5tca+s=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=h01ZxXYEaWF9GCzpWrmVLFbRRatRefmjcQWPeuDPUIgswO0YIwhOD0+d23sa3JXjkQb/9D5gGjyM/CoRnB4QjjTHIv9Vi9ciwoUGJIfuExn4Vyml/mdGvrHN5viMymXQtKqrW3wdUXEapfXOLAjeqd2eNMnY+78ownHucqXdmMM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=A2PSQDOp; arc=none smtp.client-ip=209.85.167.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-b6d5b756284so434824366b.1
-        for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 10:42:02 -0700 (PDT)
+Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-592ee9a16adso3833154e87.0
+        for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 10:46:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1761327721; x=1761932521; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=bzLI87gVSsw12bcRQHm4zXKzF2cdEbYasj1bN4s+jM0=;
-        b=f4HZhtmTpl3lqIq+9rAS2gJOwo66mUWkoUDstJElNtDebKt3r3jW8cuXBS6BiQ3e1s
-         Jw/w9q7pPx1O1XGhP5B7ruzMhRYP2nuyF0ikdYCbJTh3ZTkisWvUeyI/YyuM5T2W+DEY
-         eCe+i3bS/VhbTEbvbIuprBNb8HSJaBd4cf0DX5iUH/3WJdtJZj1TlQOlYL465QfrBGQ1
-         KzbjtRRMlGfx6nGTdQ7Nw24AL3CNC7lAut+Mebif+QbgLEnYw0Ct6V5X054OVyYfXLxI
-         2osW72SHSvWmAI+WP533T/q4r/boc5BdDdxDqNJupzYpYhQc3yj0F6KI4by7Rw+/dzmI
-         D3Zg==
+        d=gmail.com; s=20230601; t=1761328007; x=1761932807; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=K6zD0dyxA5X3dz6tOjR3SyTpnMhYisRl3NWIn5tca+s=;
+        b=A2PSQDOpNJJx+gPryK0V8miuxc1723Fpmx3o+U/zSdlIcTwWUtXDwgH7ZWmhmUq5I+
+         DlpVST5ir0ElBFlCd67Uuw1KeeHSQqDO7wtG2cHY/tonBJXAERUmUrGmgIxzuyrX6mFI
+         2xGgLdDsez5UBtAA6Vvpha2JLhHbZXfiSA+hRpVs5na1g5pJg5R9T1T/omVF3IIsb1A4
+         oCfHVqFwS/pDDC4QNEbV73yBSwBkD9ctbTSsgGMZtyl/BBe/mB5KTR2irML1atFuvFcs
+         ilaWNzm+StFZ7b+BevAqZcIV3pebu5SCenPbQ2wtE7tn4D9wtMkRV+zVDFQ8FkEo61Wf
+         4bUw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761327721; x=1761932521;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=bzLI87gVSsw12bcRQHm4zXKzF2cdEbYasj1bN4s+jM0=;
-        b=UBYeR6BuHCORh6jmjoxWURi1YIS9mkrgTdducJcJapjpTW7Wh3uPtLo4F3lBDS2txK
-         SEpy7tfqLokkSYINhGMyGMJfhNTJNjj9F1E6asVwamPLkzs6K+ipAv9TnIi2Iipts1xH
-         l1Y6KUoi9Fmh3puw1qtKSrNoNH3OWbguVxvLIJaBAofj9SCYz46PEsNDlK1vbL+Brnv5
-         vsdZ88zgUgOByvEu+yBpZALRhWIc3I+vTF37lso0cdVPqPtGAuMuL2MXrqjt5Syq+Sf3
-         fM5YUK9bPjT8pj96bzwfqJX0nyZI92XGT6sptippXxTuNadwYIUkZNjFNcT8P1ZymTt/
-         2JkQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWHz1Y0cDJn2cwrDVxBc3mbxQGFqm0jB9j5KkCbNFTj4+Vawg5EhPaySXR5nEeVVa0qSbcb3G47YZPP@vger.kernel.org
-X-Gm-Message-State: AOJu0YxEydU2TIHNoT/uS6uLuY4lUduRMe1WRfuDkVBToEzx+SRdS5d4
-	GBpP4gpbcEzSxIxVzvYWXnYer86HhAAzQEhNWYGTYcn122nK1aOyHiJs
-X-Gm-Gg: ASbGncvzBP8VYvoUeZKBi86WjaWtWUlxp5nlO4EJ/v1Sp69PzcEVdKmXAzSK4rGOz7r
-	xlRqRSIrgqG/K3h6Rf5YvoSC436rJkB3rNZB0p1dCQuIRGwSbZiiEuADuWWA0aw2wtMUI0uqEJf
-	zV2lhFmWB2UhN4wGoyYEutMHlTF4yrl0jElZVrahJazJe3pl6XnBaMDhGutvfKhHRuw49hodlD0
-	zOrANPwKnBHL6RQ9KgHq+MepeWF20MALryXCCN3jPt/GNIkwSsxeggXoi686XJjBsCdyKdl694m
-	NSNU//Mrsm6uwvNbZHGFqM9ynn48o422AGFW3Hl8u4YKNWATxIU5RDpbm5w6QeNsyb2U7GKPGhN
-	ZjfBPL/npLPA1kG2LMbVDFe2M0/k3GPA/kkZzdItLZsK7ECd/II4l2IipdN5aYWHoqXjj2j673d
-	ZYSPwLmTN7dvo8EgET9mzDb/Bw0o2uCJeF83Q8fpWnQr0hd58mgAX/kg8AeOQ=
-X-Google-Smtp-Source: AGHT+IGsywe6fvei+hAvPha34NkEyxNo/q2u1ZRQacwWPUUZaTx/YX5nzymYXv40loyt4fMWa8J9Eg==
-X-Received: by 2002:a17:906:fe45:b0:b60:d888:32d9 with SMTP id a640c23a62f3a-b6471d45a8cmr3700021066b.11.1761327720554;
-        Fri, 24 Oct 2025 10:42:00 -0700 (PDT)
-Received: from alina-IdeaPad-Gaming-3-15ARH05.. (pool185-5-252-158.as6723.net. [185.5.252.158])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b6d5130d517sm586822666b.3.2025.10.24.10.41.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 24 Oct 2025 10:42:00 -0700 (PDT)
-From: Mykola Kvach <xakep.amatop@gmail.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Cenk Uluisik <cenk.uluisik@googlemail.com>,
-	Johan Jonker <jbx6244@gmail.com>,
-	Michael Riesch <michael.riesch@collabora.com>
-Cc: Jimmy Hon <honyuenkwun@gmail.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: rockchip: orangepi-5: fix PCIe 3.3V regulator voltage
-Date: Fri, 24 Oct 2025 20:38:20 +0300
-Message-ID: <20251024173830.49211-1-xakep.amatop@gmail.com>
-X-Mailer: git-send-email 2.43.0
+        d=1e100.net; s=20230601; t=1761328007; x=1761932807;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=K6zD0dyxA5X3dz6tOjR3SyTpnMhYisRl3NWIn5tca+s=;
+        b=cWMAXhh1HE3YJB6o/V+B0nLqoyVky59kz+Jq5n504U7n1deIAAGNZgL7RxEahahZVR
+         eNYDQqeEZWEDX9Hc1z6j2XRD8AgBDXJJNifcORcs0f5YvyvBOUs9uLIjt9KbhS0rI1cz
+         canKn0srFODbx3hmLcUsCZR6/oL5stMVD+fZ2ljYXzYcZZOrECHM+MejVOMWo8Iq9fdG
+         o7Gi4mk/O1rnMfvbuF/FKC7h8jreancZPLeYU3Y0IAyWp2/VoUa4p+5wgDGEKbUI4RGr
+         DNYLADxmX84MNu9zgd5PlKlX3ZbIQJUKNy/E11PGRGyEVH3Ypw8FGbf5Dtkh/s+Rm0ve
+         tfkQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVYw2VIUlvS5Ohp3PQVkfaPyahVZ27fr5Ia9USMiNvMi5O312jkjc6g+A7+yfLm3eRPWRBFQctieBXI@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxd7HZSJVE0B8wZYFmtPIig9YfbZXqfxoEeU+O1EjN+yjkQtNru
+	Afs01d4rxVQumEplqwjWwGYjsuRk2EQMgPKsobol/INUNn/7PXmMwiXY/SloIV6OwUDonUc7cnH
+	1nvUYpP6RSvxp05A8oFomZ7Ws2iMpf3g=
+X-Gm-Gg: ASbGncsJWxdmX6JlIB4d5wBByhoWupA0f7Jl9CKIdzcD0peIhAv42IbvCc4GcMILNa6
+	luXLz2HGDhpUNslxHKVTFpGyfsMxZPC4Y9/wvcyp+hZ89i+qQzLa3zEtjAtZzOEglfXKwYEsZBm
+	7u/2F4z6TRGJftSpTD+OYiOlE/w/4uFoJPU8qU2G9QwAWVwCgGWdRSotgt/SBF+XXTKEcT3pfLb
+	D3KFBQnvp+TtHOXEPEAcawFsO8wSpWket5YGHiHekGVDwWqzyQFwAN3wkNl
+X-Google-Smtp-Source: AGHT+IEKMTxbFcAqJJs3pqOOQTiDsnpDKsflXjiTlx5yaR9ZYhjteOY9GsHf3z7fyVR7qJSJg+QljfP1XDamHWUqjvs=
+X-Received: by 2002:a05:6512:b84:b0:592:f9e6:a617 with SMTP id
+ 2adb3069b0e04-592f9e6a809mr1988690e87.31.1761328006209; Fri, 24 Oct 2025
+ 10:46:46 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20250803-p3450-mts-bug-v2-0-6307125408c3@gmail.com>
+ <20250803-p3450-mts-bug-v2-1-6307125408c3@gmail.com> <8ed69b4c-f656-47fa-a247-1c8d94dcc35d@nvidia.com>
+In-Reply-To: <8ed69b4c-f656-47fa-a247-1c8d94dcc35d@nvidia.com>
+From: Aaron Kling <webgeek1234@gmail.com>
+Date: Fri, 24 Oct 2025 12:46:33 -0500
+X-Gm-Features: AS18NWB0X2kanA5C8YSvXzeNGUy0EwS1NgCtJrnfR3pQ1y9nZ6F33BdAn_oIim8
+Message-ID: <CALHNRZ86NjcNJhRJd+jtD_7fRTFJ2szPFAAN3HSad_xwnVrHWQ@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] arm64: tegra: Add reserved-memory node for P3450
+To: Jon Hunter <jonathanh@nvidia.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Thierry Reding <thierry.reding@gmail.com>, 
+	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-The vcc3v3_pcie20 fixed regulator powers the PCIe device-side 3.3V
-rail for pcie2x1l2 via vpcie3v3-supply. The DTS mistakenly set its
-regulator-min/max-microvolt to 1800000. Correct both to 3300000
-to match the rail name, the PCIe/M.2 power requirement, and the
-actual hardware wiring on Orange Pi 5.
+On Fri, Oct 24, 2025 at 11:16=E2=80=AFAM Jon Hunter <jonathanh@nvidia.com> =
+wrote:
+>
+>
+> On 04/08/2025 04:14, Aaron Kling via B4 Relay wrote:
+> > From: Aaron Kling <webgeek1234@gmail.com>
+> >
+> > The Tegra210 L4T bootloader ram training will corrupt the in-ram kernel
+> > dt if no reserved-memory node exists. This prevents said bootloader fro=
+m
+> > being able to boot a kernel without this node, unless a chainloaded
+> > bootloader loads the dt. Add the node to eliminate the requirement for
+> > extra boot stages.
+>
+> I test this platform and don't see any problems. I assume that this
+> would prevent the board from booting.
+>
+> What bootloader are you using? Is this from a particular L4T release?
 
-Signed-off-by: Mykola Kvach <xakep.amatop@gmail.com>
----
- arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5.dts | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Please see the longer description of my setup on the revision v1 patch
+here [0]. I am specifically using the cboot prebuilt from L4T r32.6.1
+as it is the last version to support usb input in the fastboot menu
+[1]. The rest of the boot stack is from L4T r32.7.6. The partition
+layout xml is here [2], which requires setting odmdata bit 11 to allow
+reading bootloader partitions off the sdcard. There is no u-boot
+involved, only cboot.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5.dts b/arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5.dts
-index ad6d04793b0a..83b9b6645a1e 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5.dts
-@@ -14,8 +14,8 @@ vcc3v3_pcie20: regulator-vcc3v3-pcie20 {
- 		gpios = <&gpio0 RK_PC5 GPIO_ACTIVE_HIGH>;
- 		regulator-name = "vcc3v3_pcie20";
- 		regulator-boot-on;
--		regulator-min-microvolt = <1800000>;
--		regulator-max-microvolt = <1800000>;
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
- 		startup-delay-us = <50000>;
- 		vin-supply = <&vcc5v0_sys>;
- 	};
--- 
-2.43.0
+I've had another report of the same issue, on a pure L4T r32.7.6 boot
+stack as well. The Nvidia downstream u-boot won't copy
+external-memory-controller nodes, namely the memory-region ones, from
+the cboot dtb to the kernel dtb unless the phandles match. Nv-tegra
+gitles isn't working right now, so I can't link directly, but on
+branch l4t/l4t-r32.7.6-v2020.04, file arch/arm/mach-tegra/dt-edit.c,
+see line 31. Which means that such only works if u-boot destination
+FDT is the downstream dtb. Using a mainline dtb causes the
+memory-region dt tables to not be available, thus the emc kernel
+driver fails to probe and emc clock stays stuck at 204MHz on
+p3450/p3541. Hence the user from the report trying to cut u-boot out
+of the mix in order to get emc scaling. And then hit this issue.
 
+You were able to boot with a mainline dtb on the DTB partition and a
+kernel on LNX, without u-boot and without this change? I have not been
+able to do this. The boot flow will get past nvtboot_cpu, but falls
+apart inside cboot due to the corrupted in-ram dtb, never getting to
+kernel logs.
+
+Aaron
+
+[0] https://lore.kernel.org/all/CALHNRZ_7wChDsvpUnQHnOTT9VzT1Lgg8JYgg13AFV8=
+Jg_3itwQ@mail.gmail.com/
+[1] https://forums.developer.nvidia.com/t/cboot-xusb-support-broken-since-r=
+32-7-1/243534
+[2] https://github.com/LineageOS/android_device_nvidia_porg/blob/f52038d326=
+ef67002185dbe04e9ff1070db2be4c/flash_package/flash_android_t210_max-spi_sd_=
+p3448.xml
 
