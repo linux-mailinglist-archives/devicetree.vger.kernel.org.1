@@ -1,145 +1,100 @@
-Return-Path: <devicetree+bounces-230940-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230941-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F083C079BF
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 19:58:21 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 210A8C07A6B
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 20:09:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 722FE1B86686
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 17:58:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B6CAF3B09C5
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 18:06:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6DA4346E40;
-	Fri, 24 Oct 2025 17:57:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B9933161B3;
+	Fri, 24 Oct 2025 18:06:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="F17Xf9aS"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="m3Mk6yOh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay.smtp-ext.broadcom.com (relay.smtp-ext.broadcom.com [192.19.144.207])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD827343D7A
-	for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 17:57:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D92E5303C8A;
+	Fri, 24 Oct 2025 18:06:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.19.144.207
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761328679; cv=none; b=f/GIO8rpRjwdHnb2YM1v1WORaI0VhWmZlXQZPxMQ2COCBvIRpbLmkx5ZKu/gtAzUsaOWQU9Xj4xqDGtuzP5c30X6bgPuNdznnfG7a823U8rXl9JpbFofrnpVlFSU0xx/qdo1o/k4T4eFxZV2gLNSooVai9wiRCW7y2W44G1dHKw=
+	t=1761329200; cv=none; b=a0ByZzzbFnDhi1c/y59mlhZ34C8zGTvh9pdQCfpv+2aFCAYT0QRmU1FqPkerhbWlw0EiPlDgyhyPF2tBSvrjx54kewPlHF9rz7XgFSezl+zDsOZqiM0a/SbgOUJWQ2wPXYrwbWR1wMzpZl2iGZPdY3F6wz6Q2idLl52RJrG+KNQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761328679; c=relaxed/simple;
-	bh=raBiU2TNdnYW5GXBQGKlY34qsI95KKrr7UkG+dolrPs=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=PVwwUv2dd4fxDTY4n3TalJVX5otqpJQmAHToNunrpayFakipouAHIBiGvjjCM+/wY9XGUuriwf8DJtx7vECPbENXSiD4JoawcwSduIYieLTlso0/5gc4WHfHCLVmYoZZy8MBuubDEgngBWgyI2nG2zJVQEAP1iVAjn61SmnmDLo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=F17Xf9aS; arc=none smtp.client-ip=209.85.128.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-47114a40161so24274265e9.3
-        for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 10:57:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1761328676; x=1761933476; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=S1HvYCNLV5CI0boyLI+MOBTwgyqBxpYEqfcX5SoAEoA=;
-        b=F17Xf9aSnLvT04LtJ0LKU9uLAdbF2LPRegMpXDfFLbulXv1i3rpyAtjR9+wR+iPzsO
-         VLQgIoArQQ1MBQLcSFwrLQ7JQ8oHIaoSeR4a8A0gZOYZUuC1NBwNv0YJe8KxWFNuKGH7
-         eeWRW8KDdYNJMG8WCdyVdUzZsZveWsVRSNEs+7u22hiQtwJ+1bnEFJyIXwqQ2QNOi9k9
-         5+gKSi7jEy58w8A+QCh1pkF8uIHAMQiJ4CJlTJK8m20N3bPubqPYS1qqLtHVr6WrDYqX
-         uYMLf0SCgJaggjsSafFmfgXk+nLikBOOGbJQ1XhBzcbJe6WVfudKxBGpGX12at/EQZAt
-         eIAQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761328676; x=1761933476;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=S1HvYCNLV5CI0boyLI+MOBTwgyqBxpYEqfcX5SoAEoA=;
-        b=YYiEx9e10OMpwLQtOxt5Idx8D0OuH0uOjKQrwTDYcZvZZXV+hvlhCD+UjiJLg9u9BQ
-         H2oNDzJyuDoQfgQLm3qkAx6a1sQEA1V3IdhNusYsfxRxb5Y/1SbWtm6OboykhdaNZPqL
-         /pP6uIrhNHAeyT0IIP/EWC1vQF8l4jb/R1BfQT2y9SwTninFAGo2zZfvy3ZazTQcArUG
-         GR6HTNY9Pw4Rl9gSgg06TA4VHoPjcgD+GQljFLR73LR/1AvW+8i3eD9D+w9iD8nqRHqZ
-         gWSMuYs9K/6WNm/nAXao1M1mhPsWDDitvuQBn92DH+3esgqG9PrlcwSfXodio6OJbucq
-         rc6w==
-X-Forwarded-Encrypted: i=1; AJvYcCV41p4RlCGYadUQLCh2tx3rrl1g4LU4dv+B7lmt3Jv4sNaBDM7xDCRtJ0PTDb5uGjf80tGxOd7JESg8@vger.kernel.org
-X-Gm-Message-State: AOJu0YxbGCVzjVS1GoT7XL3YkDQkXAdUifk6EpMdggdI/YzT0rXVNt+D
-	Zl/0gVVQ5ykdT1Np4FWlx8wLM0ViF/YO6skVUTKU7ApBGfscIyiQN+ckF4Mh55c+wGI=
-X-Gm-Gg: ASbGnctiZhVHHIylntAfQNXhN6w55ZIkg6tamkv6aJ3cod2e0weZb9iUMDuv7paWM9e
-	liYtPHwIqZU0xi67gKUhuMtdCJZ67KUbtS0Hdddxj3lkxUQd6m5RnxOpHYRNVtz6RAnaVgonkHe
-	M4/XbQmHIXoKiB99+/eKDR3ifSAnDJpVBfFfP0sdsbZrqDxKNrb/DfucboKbCkXbYrTasZw1/ca
-	/PbeVZ6eoDrlnLvwm5qJnp9FpREcpiJRqbWIHAN+CcsV2oSYcDQWRqoowdgWiOKOY90FzoEeIro
-	npJH4oBIdOUx4AxWrlJr4b45lPWNUbz7yK17QiEspqY37szOEa0AGGHFIZnm69eMHZEHVoVaqaQ
-	T8WlDA21LMvxVXUg9EHCLtBg2Lucvk42J9ry88aYqTm/GMbXNOTnk8D1XGefHED0RJpLYTkBAK0
-	cMZ07oJWXm8SoPHsWtjEFKELRTsJTDDJxhWEPwpRVjAl/0lruTVa3A
-X-Google-Smtp-Source: AGHT+IE+5PmFi1We1tilKXscowMasxj24erK04eAcHqZVpBCNsemi8AXPZs34q0XanuKK/hwWTSoFQ==
-X-Received: by 2002:a05:600c:821a:b0:46f:b42e:e3a0 with SMTP id 5b1f17b1804b1-4711791dc89mr214479995e9.41.1761328676155;
-        Fri, 24 Oct 2025 10:57:56 -0700 (PDT)
-Received: from ta2.c.googlers.com (213.53.77.34.bc.googleusercontent.com. [34.77.53.213])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-475cad4c81dsm104062465e9.0.2025.10.24.10.57.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 24 Oct 2025 10:57:55 -0700 (PDT)
-From: Tudor Ambarus <tudor.ambarus@linaro.org>
-Date: Fri, 24 Oct 2025 17:57:35 +0000
-Subject: [PATCH v3 2/2] arm64: dts: exynos: gs101: add TRNG node
+	s=arc-20240116; t=1761329200; c=relaxed/simple;
+	bh=9a0TgFQiFD71k1iDK0L9UBL2o1z9+uplLaO+xSIPDhs=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=MkbZhqV9woIia6lIQ6NMKeqXSk0402iW2aJUduvNS7Iaf2OMI3whFRfbar/bGf9uYVrDrsXclYzIgpEJHkMByo2LVinXLwBXAsXurKYkBQWB9Xc9qcvpSnCICauOMIwJlk/2UlAyq7Pp0SlK5e8FZCDg9+qrGEsoDCnJV16u4Mg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=m3Mk6yOh; arc=none smtp.client-ip=192.19.144.207
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=broadcom.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
+Received: from mail-lvn-it-01.broadcom.com (mail-lvn-it-01.lvn.broadcom.net [10.36.132.253])
+	by relay.smtp-ext.broadcom.com (Postfix) with ESMTP id 9FB67C001505;
+	Fri, 24 Oct 2025 10:57:25 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 relay.smtp-ext.broadcom.com 9FB67C001505
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=broadcom.com;
+	s=dkimrelay; t=1761328645;
+	bh=9a0TgFQiFD71k1iDK0L9UBL2o1z9+uplLaO+xSIPDhs=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=m3Mk6yOh3qi21ChVnsKe2WApmt3xxy1+JYapDnA0501QkxBBkJiS+AujG0RVOkEJZ
+	 ukd9iJlyepNxhsOzy7M9i4+U6Vsd2sP4ZQgera/uIUGntT7BgrJ9JLpQCWPTlJxxOP
+	 z37W5ebdEZpz9SD1lShMK3+PaRP0abu2KPBLfjuw=
+Received: from fainelli-desktop.igp.broadcom.net (fainelli-desktop.dhcp.broadcom.net [10.67.48.245])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mail-lvn-it-01.broadcom.com (Postfix) with ESMTPSA id 2B53118000530;
+	Fri, 24 Oct 2025 10:57:25 -0700 (PDT)
+From: Florian Fainelli <florian.fainelli@broadcom.com>
+To: bcm-kernel-feedback-list@broadcom.com,
+	Andrea della Porta <andrea.porta@suse.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	devicetree@vger.kernel.org,
+	linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Stanimir Varbanov <svarbanov@suse.de>,
+	Andrew Lunn <andrew@lunn.ch>,
+	iivanov@suse.de,
+	mbrugger@suse.com,
+	Phil Elwell <phil@raspberrypi.com>
+Cc: Florian Fainelli <f.fainelli@gmail.com>
+Subject: Re: [PATCH] arm64: dts: broadcom: Assign clock rates in eth node for RPi5
+Date: Fri, 24 Oct 2025 10:57:24 -0700
+Message-ID: <20251024175724.3223588-1-florian.fainelli@broadcom.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20251021135533.5517-1-andrea.porta@suse.com>
+References: <20251021135533.5517-1-andrea.porta@suse.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251024-gs101-trng-v3-2-5d3403738f39@linaro.org>
-References: <20251024-gs101-trng-v3-0-5d3403738f39@linaro.org>
-In-Reply-To: <20251024-gs101-trng-v3-0-5d3403738f39@linaro.org>
-To: =?utf-8?q?=C5=81ukasz_Stelmach?= <l.stelmach@samsung.com>, 
- Olivia Mackall <olivia@selenic.com>, 
- Herbert Xu <herbert@gondor.apana.org.au>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
- Peter Griffin <peter.griffin@linaro.org>, 
- =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, semen.protsenko@linaro.org, 
- willmcvicker@google.com, kernel-team@android.com, 
- linux-samsung-soc@vger.kernel.org, linux-crypto@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-kernel@vger.kernel.org, Tudor Ambarus <tudor.ambarus@linaro.org>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1761328674; l=1126;
- i=tudor.ambarus@linaro.org; s=20241212; h=from:subject:message-id;
- bh=raBiU2TNdnYW5GXBQGKlY34qsI95KKrr7UkG+dolrPs=;
- b=n8ttb4+2yhuOeX73uGYQwTvsumIUfL2WsqyJ9Prm3ZBf2zclOGKO4Uu6jkQke19TJjW5R1dqp
- D/80qq4n02cBz5QO5G2fQ9BjuhqxLSHVCZtf1wEDrPzpH1pJmHwJyCA
-X-Developer-Key: i=tudor.ambarus@linaro.org; a=ed25519;
- pk=uQzE0NXo3dIjeowMTOPCpIiPHEz12IA/MbyzrZVh9WI=
+Content-Transfer-Encoding: 8bit
 
-Define the TRNG node. GS101 TRNG works well with the current
-Exynos850 TRNG support. Specify the Google specific compatible
-in front of the Exynos one.
+From: Florian Fainelli <f.fainelli@gmail.com>
 
-Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
----
- arch/arm64/boot/dts/exynos/google/gs101.dtsi | 9 +++++++++
- 1 file changed, 9 insertions(+)
+On Tue, 21 Oct 2025 15:55:33 +0200, Andrea della Porta <andrea.porta@suse.com> wrote:
+> In Raspberry Pi 5 DTS, the Ethernet clock rates must be assigned
+> as the default clock register values are not valid for the
+> Ethernet interface to function.
+> This can be done either in rp1_clocks node or in rp1_eth node.
+> 
+> Define the rates in rp1_eth node, as those clocks are 'leaf' clocks
+> used specifically by the Ethernet device only.
+> 
+> Fixes: 43456fdfc014 ("arm64: dts: broadcom: Enable RP1 ethernet for Raspberry Pi 5")
+> Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
+> ---
 
-diff --git a/arch/arm64/boot/dts/exynos/google/gs101.dtsi b/arch/arm64/boot/dts/exynos/google/gs101.dtsi
-index d06d1d05f36408137a8acd98e43d48ea7d4f4292..380f7e70910ab8bcc28690782532fff87ca7e30b 100644
---- a/arch/arm64/boot/dts/exynos/google/gs101.dtsi
-+++ b/arch/arm64/boot/dts/exynos/google/gs101.dtsi
-@@ -630,6 +630,15 @@ watchdog_cl1: watchdog@10070000 {
- 			status = "disabled";
- 		};
- 
-+		trng: rng@10141400 {
-+			compatible = "google,gs101-trng",
-+				     "samsung,exynos850-trng";
-+			reg = <0x10141400 0x100>;
-+			clocks = <&cmu_misc CLK_GOUT_MISC_SSS_I_ACLK>,
-+				 <&cmu_misc CLK_GOUT_MISC_SSS_I_PCLK>;
-+			clock-names = "secss", "pclk";
-+		};
-+
- 		gic: interrupt-controller@10400000 {
- 			compatible = "arm,gic-v3";
- 			#address-cells = <0>;
-
--- 
-2.51.1.851.g4ebd6896fd-goog
-
+Applied to https://github.com/Broadcom/stblinux/commits/devicetree-arm64/next, thanks!
+--
+Florian
 
