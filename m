@@ -1,65 +1,64 @@
-Return-Path: <devicetree+bounces-230901-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230902-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24CF9C0758F
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 18:38:11 +0200 (CEST)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 21EB7C0760D
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 18:46:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CFC4C3AAFC2
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 16:38:09 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 9A91435C754
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 16:46:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A67DA27E7DA;
-	Fri, 24 Oct 2025 16:38:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C58653375CD;
+	Fri, 24 Oct 2025 16:46:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="u6OCH6NU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NSwD/cs5"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C36C27A93C;
-	Fri, 24 Oct 2025 16:38:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 993B731D74E;
+	Fri, 24 Oct 2025 16:46:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761323886; cv=none; b=Fcbqfk70xeEt+rG86EgqKdNUmW0ed9CJ5oVi/009oG2inbi/ABlTzBWPSQpY0tS0MjfQH5UbR6BrFtp0UQkd2Ws2tlOtdmU2ITYIdQsarmNm5l8P8T21QLLabAp6utuwQFGDgJiV8TXAaR6MBVtvzM4+YybksPClqHTThwQQ4VE=
+	t=1761324370; cv=none; b=ufb4MVorgwNsM8kcP1rO+eWSN3y3uIzcyDHUFr7NLAOiTHYSawZdZnHAwAQ10s85/Th6V2PXcOzJnBwC5x671WFfdHw5t0QO4mAGGsIw1eIoGvnJ12i+AWYsNBg8Xy694T3x9KrfaoWnAXdwTOUOzfohNnGclZsZmX2haXWNvrk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761323886; c=relaxed/simple;
-	bh=zzrhl6o8RsTAafMLaghm1EM3uMYuu4ka9jAUS31RumY=;
+	s=arc-20240116; t=1761324370; c=relaxed/simple;
+	bh=oH2uo8kUvZvaWDuaKBK5Ia3tKQOcMF+N8RlJE5fLuNI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Pk5q+LROR8opxgy6ucxcQnfMXvLeGF/BfMDOJLcJv3wipcrnqAqtrd11WMD5413D2pYoQHTZL2syOKu5ssAQwZu9PLo0X8BoRwgc8rucQSge6GXuHXBs5xQQEbk5bcjhjcBfu18TgMKDTH7bSMR3XrXG5/ox+rLRfC4k+AAgk88=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=u6OCH6NU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DACC8C4CEF1;
-	Fri, 24 Oct 2025 16:38:01 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=s1eWPxKyJB85BBoquRmzFxxb5grTu+V1EcwZnrAFZvTtZwKpvn+Os0rF00cLAR2szpmNhHBV5gBp66BvlixwqW3IHlMY//lUpd/VZnU759CLvkHktw6EkE1yipJoTP58RhV36IPRcRm6bSof9E9VnZl7zK4m3fXT5E4UTuXHl7s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NSwD/cs5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E56CCC4CEF1;
+	Fri, 24 Oct 2025 16:46:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761323885;
-	bh=zzrhl6o8RsTAafMLaghm1EM3uMYuu4ka9jAUS31RumY=;
+	s=k20201202; t=1761324369;
+	bh=oH2uo8kUvZvaWDuaKBK5Ia3tKQOcMF+N8RlJE5fLuNI=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=u6OCH6NUXsJcfM/ajl56po/PgeN0xGb2xTBAVLd2hp1T9qVhKjUVZWn7xKeZpFSwY
-	 HUMl92F7Kd3DpFoCc1YTOpguUjpOD5HtG7iKZNQvf9tpHiOAk8n8acHie134419Wca
-	 n+T5VGayb/dQuVFkLfrGg9AeosDWIv9RebhqY8+d0EKmXb4zwGiMv84Lz3+qohpn3L
-	 kg5MUBsZRVKV+uXWTkp5UPP2asVWb3/K3L1okBnhy0t+7YgVJD+phL2xSa5iCGsnjB
-	 4746uzkogwP91G51zOVGStbW+9RiSsutlV/dwa+Yd1CcywtCWwURfGkBHCCjS74QM5
-	 UvxKp5V9vb/eA==
-Date: Fri, 24 Oct 2025 17:37:59 +0100
+	b=NSwD/cs5L6f5qlBmgfQodcXn4hEKJOQyLYx6LmkIVGt9zRcacVOreE4uvk+9JlYxy
+	 pI6L5HJGt8wvzSJsvZ+UvEXsT2TFskHEQdHqxw8N/C6uQc5AyusqbRW/xtFuyCMn1R
+	 Oj3GqElZImOxVsQIhDCVkwk6yHrcaae6BtwQXWVPR46rxaDM54P09G6/WNGEUSBB7Y
+	 skUG3IZ2D38fTg0Jh3ky+KQjIAx/p31peSkUJiuupbYsgq88vJxT2SDqMYr7Ig78xx
+	 02Hq7NA1FvUwDT1DXDVmyvxkbwBhuxhALAS0pFa9OAS3BSwB/bKtYGJSw1NTmJk2Jt
+	 H+lv1Je1X2+Fw==
+Date: Fri, 24 Oct 2025 17:46:03 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Ulf Hansson <ulf.hansson@linaro.org>
-Cc: hehuan1@eswincomputing.com, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, jszhang@kernel.org, adrian.hunter@intel.com,
-	p.zabel@pengutronix.de, linux-mmc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	ningyu@eswincomputing.com, linmin@eswincomputing.com,
-	pinkesh.vaghela@einfochips.com, xuxiang@eswincomputing.com,
-	luyulin@eswincomputing.com, dongxuyang@eswincomputing.com,
-	zhangsenchuan@eswincomputing.com, weishangjuan@eswincomputing.com,
-	lizhi2@eswincomputing.com, caohang@eswincomputing.com,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: Re: [PATCH v5 1/2] dt-bindings: mmc: sdhci-of-dwcmshc: Add Eswin
- EIC7700
-Message-ID: <20251024-aghast-poster-82ee7aa7fdca@spud>
-References: <20251019115133.300-1-hehuan1@eswincomputing.com>
- <20251019115238.320-1-hehuan1@eswincomputing.com>
- <CAPDyKFqGwTF2w2JfqOuxMt6m_YJOYhqoUaQXyZALRu94W3fGkQ@mail.gmail.com>
+To: Longbin Li <looong.bin@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Inochi Amaoto <inochiama@gmail.com>, Paul Walmsley <pjw@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Alexander Sverdlin <alexander.sverdlin@gmail.com>,
+	Yu Yuan <yu.yuan@sjtu.edu.cn>, Ze Huang <huangze@whut.edu.cn>,
+	devicetree@vger.kernel.org, sophgo@lists.linux.dev,
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v4 1/3] dt-bindings: soc: sophgo: add TOP syscon for
+ CV18XX/SG200X series SoC
+Message-ID: <20251024-hangout-designing-33e96c0d35fc@spud>
+References: <20251024030528.25511-1-looong.bin@gmail.com>
+ <20251024030528.25511-2-looong.bin@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,155 +66,151 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="T9okXr0D52bwp3p1"
+	protocol="application/pgp-signature"; boundary="OpamxSOV8OwCADjJ"
 Content-Disposition: inline
-In-Reply-To: <CAPDyKFqGwTF2w2JfqOuxMt6m_YJOYhqoUaQXyZALRu94W3fGkQ@mail.gmail.com>
+In-Reply-To: <20251024030528.25511-2-looong.bin@gmail.com>
 
 
---T9okXr0D52bwp3p1
+--OpamxSOV8OwCADjJ
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Oct 24, 2025 at 03:57:33PM +0200, Ulf Hansson wrote:
-> On Sun, 19 Oct 2025 at 13:52, <hehuan1@eswincomputing.com> wrote:
-> >
-> > From: Huan He <hehuan1@eswincomputing.com>
-> >
-> > EIC7700 use Synopsys dwcmshc IP for SD/eMMC controllers.
-> > Add Eswin EIC7700 support in sdhci-of-dwcmshc.yaml.
-> >
-> > Signed-off-by: Huan He <hehuan1@eswincomputing.com>
-> > Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-> > ---
-> >  .../bindings/mmc/snps,dwcmshc-sdhci.yaml      | 57 +++++++++++++++++--
-> >  1 file changed, 51 insertions(+), 6 deletions(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.y=
-aml b/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
-> > index f882219a0a26..7e7c55dc2440 100644
-> > --- a/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
-> > +++ b/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
-> > @@ -30,6 +30,7 @@ properties:
-> >            - sophgo,sg2002-dwcmshc
-> >            - sophgo,sg2042-dwcmshc
-> >            - thead,th1520-dwcmshc
-> > +          - eswin,eic7700-dwcmshc
-> >
-> >    reg:
-> >      maxItems: 1
-> > @@ -52,17 +53,30 @@ properties:
-> >      maxItems: 5
-> >
-> >    reset-names:
-> > -    items:
-> > -      - const: core
-> > -      - const: bus
-> > -      - const: axi
-> > -      - const: block
-> > -      - const: timer
-> > +    maxItems: 5
-> >
-> >    rockchip,txclk-tapnum:
-> >      description: Specify the number of delay for tx sampling.
-> >      $ref: /schemas/types.yaml#/definitions/uint8
-> >
-> > +  eswin,hsp-sp-csr:
-> > +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> > +    items:
-> > +      - items:
-> > +          - description: Phandle to HSP(High-Speed Peripheral) device
-> > +          - description: Offset of the stability status register for i=
-nternal
-> > +                         clock.
-> > +          - description: Offset of the stability register for host reg=
-ulator
-> > +                         voltage.
-> > +    description:
-> > +      HSP CSR is to control and get status of different high-speed per=
-ipherals
-> > +      (such as Ethernet, USB, SATA, etc.) via register, which can tune
-> > +      board-level's parameters of PHY, etc.
->=20
-> I would like second confirmation from DT maintainers, to make sure
-> it's reasonable to model the HW like this.
+On Fri, Oct 24, 2025 at 11:05:14AM +0800, Longbin Li wrote:
+> The Sophgo CV1800/SG2000 SoC top misc system controller provides register
 
-If by second confirmation, you mean by someone other than me, obviously
-ignore this, but I think this is "fine". It discussed on a previous
-revision that all is being done with it is setting a handful bits that
-signify that the peripheral has been configured correctly.
+Please remind me how it works, sg2000 is just a rebadge and really this
+just refers to one device?
 
-That said, I don't have a clue what's going on with the warning about
-the dwmac device. That's definitely one for Rob.
+> access to configure related modules. It includes a usb2 phy and a dma
+> multiplexer.
+>=20
+> Co-developed-by: Inochi Amaoto <inochiama@gmail.com>
+> Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
+> Signed-off-by: Longbin Li <looong.bin@gmail.com>
+> ---
+>  .../soc/sophgo/sophgo,cv1800b-top-syscon.yaml | 81 +++++++++++++++++++
+>  1 file changed, 81 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/soc/sophgo/sophgo,c=
+v1800b-top-syscon.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/soc/sophgo/sophgo,cv1800b-=
+top-syscon.yaml b/Documentation/devicetree/bindings/soc/sophgo/sophgo,cv180=
+0b-top-syscon.yaml
+> new file mode 100644
+> index 000000000000..d044ca661fa2
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/soc/sophgo/sophgo,cv1800b-top-sys=
+con.yaml
+> @@ -0,0 +1,81 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/soc/sophgo/sophgo,cv1800b-top-syscon.=
+yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Sophgo CV18XX/SG200X SoC top system controller
+> +
+> +maintainers:
+> +  - Inochi Amaoto <inochiama@outlook.com>
+> +
+> +description:
+> +  The Sophgo CV18XX/SG200X SoC top misc system controller provides
+> +  register access to configure related modules.
 
->=20
-> In principle the phandle above gets translated into a regmap via a
-> call to syscon_node_to_regmap() in the driver, to allow some registers
-> to be written that are outside the controllers address space.
->=20
-> > +
-> > +  eswin,drive-impedance-ohms:
-> > +    description: Specifies the drive impedance in Ohm.
-> > +    enum: [33, 40, 50, 66, 100]
-> > +
-> >  required:
-> >    - compatible
-> >    - reg
-> > @@ -110,6 +124,37 @@ allOf:
-> >              - const: block
-> >              - const: timer
-> >
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            const: eswin,eic7700-dwcmshc
-> > +    then:
-> > +      properties:
-> > +        resets:
-> > +          minItems: 4
-> > +          maxItems: 4
-> > +        reset-names:
-> > +          items:
-> > +            - const: axi
-> > +            - const: phy
-> > +            - const: prstn
-> > +            - const: txrx
-> > +      required:
-> > +        - eswin,hsp-sp-csr
-> > +        - eswin,drive-impedance-ohms
-> > +    else:
-> > +      properties:
-> > +        resets:
-> > +          maxItems: 5
-> > +        reset-names:
-> > +          items:
-> > +            - const: core
-> > +            - const: bus
-> > +            - const: axi
-> > +            - const: block
-> > +            - const: timer
-> > +
-> >    - if:
-> >        properties:
-> >          compatible:
-> > --
-> > 2.25.1
-> >
->=20
-> Kind regards
-> Uffe
+Here and in the title you have Xs, are those placeholder or is this
+going into cv180x.dtsi and going to be used on multiple devices?
 
---T9okXr0D52bwp3p1
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - items:
+> +          - const: sophgo,cv1800b-top-syscon
+> +          - const: syscon
+> +          - const: simple-mfd
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  "#address-cells":
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    const: 1
+> +
+> +  ranges: true
+
+Do you actually use ranges?
+
+> +patternProperties:
+> +  "dma-router@[0-9a-f]+$":
+
+Do these actually appear at variable addresses, or is it always 48 for
+the phy and 53 for the dma router?
+
+> +    $ref: /schemas/dma/sophgo,cv1800b-dmamux.yaml#
+> +    unevaluatedProperties: false
+> +
+> +  "phy@[0-9a-f]+$":
+> +    $ref: /schemas/phy/sophgo,cv1800b-usb2-phy.yaml#
+> +    unevaluatedProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - "#address-cells"
+> +  - "#size-cells"
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/sophgo,cv1800.h>
+> +
+> +    syscon@3000000 {
+> +      compatible =3D "sophgo,cv1800b-top-syscon", "syscon", "simple-mfd";
+> +      reg =3D <0x03000000 0x1000>;
+> +      #address-cells =3D <1>;
+> +      #size-cells =3D <1>;
+> +
+> +      usbphy: phy@48 {
+
+Drop the labels off of these two, since they're unused in the example.
+
+> +        compatible =3D "sophgo,cv1800b-usb2-phy";
+> +        reg =3D <0x48 0x4>;
+> +        #phy-cells =3D <0>;
+> +        clocks =3D <&clk CLK_USB_125M>,
+> +                 <&clk CLK_USB_33K>,
+> +                 <&clk CLK_USB_12M>;
+> +        clock-names =3D "app", "stb", "lpm";
+> +        resets =3D <&rst 58>;
+> +      };
+> +
+> +      dmamux: dma-router@154 {
+> +        compatible =3D "sophgo,cv1800b-dmamux";
+> +        reg =3D <0x154 0x8>, <0x298 0x4>;
+> +        #dma-cells =3D <2>;
+> +        dma-masters =3D <&dmac>;
+> +      };
+> +    };
+> +
+> +...
+> --
+> 2.51.0
+
+--OpamxSOV8OwCADjJ
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaPurZwAKCRB4tDGHoIJi
-0qKiAP0RGk+BsqOlcKKdVVbn+HknCcQ1/EQJfCUTs/iQIgM0YgEAktfz5VmfBqm1
-CzDpQLxxVGVyMeygJYWGjgbwDYuQ7AA=
-=jf3G
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaPutSwAKCRB4tDGHoIJi
+0trzAP4nfQ6/Wxgh8wcGJdVXjTM5fYSSjyHVynWRqnuELKsrCQD+NmT3Mi9bgtxf
+nLsFD4E3jkFuEsA2OafNMSd9+ubbNw8=
+=pezZ
 -----END PGP SIGNATURE-----
 
---T9okXr0D52bwp3p1--
+--OpamxSOV8OwCADjJ--
 
