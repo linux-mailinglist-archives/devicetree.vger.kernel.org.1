@@ -1,137 +1,193 @@
-Return-Path: <devicetree+bounces-230662-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230663-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6232C04E1A
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 09:57:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 34C9BC04E3E
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 09:58:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E8A081894FC3
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 07:57:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4D0331A619F4
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 07:58:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB90F2F6194;
-	Fri, 24 Oct 2025 07:56:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="v3iF3RAP"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52CBF2F6178;
+	Fri, 24 Oct 2025 07:57:14 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
+Received: from mail-vs1-f54.google.com (mail-vs1-f54.google.com [209.85.217.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF05D2F9DA2
-	for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 07:56:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 915C32F6168
+	for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 07:57:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761292583; cv=none; b=ncc6XenHXzjfOa+bPEp/M1zw+D0/wvZvxdKCg+WyA18gZXezztv5hMfrl2OweKq5eGuFGJnP7cbW7tnS/XiV8JLa0yQ9HjTRhyj6u2sTOfPGHnAW1W3xkwaYwIzTkLzc1dyyCkZNkWXTYbDY0oE8DAhBXOASfAmfmycxvaMI3zI=
+	t=1761292634; cv=none; b=d47I+g+8f5zFDZE7XNPKrI7oTqxX2RvnZdtd6ODp4Y2j8/X5d6uYC8bsrydstZWtPtFCQtBgFo58vB8CIwMmTO+kYEQtp5pmvXUeYb2OYg6aybZWByWgxMiQsWVHYOfQKOYfHXKbTY0UghI+8kcIOsa3Gm4Zfqn7S1jMf/SR72A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761292583; c=relaxed/simple;
-	bh=nxy0zWX1h247nPbsMpYtj4rqvQKsZpsdIsqOdaa3i18=;
+	s=arc-20240116; t=1761292634; c=relaxed/simple;
+	bh=uni5/q7wgu22e7PzLdPH1ONXX5dFs+/nb2vDY+DwIyE=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=NtipVm3X1HdUhS8FWlrTanSxvKDPDnjjcdKzzXH9RyQavRU3/7yx1UGtPIi0rchI9bIynQlfNARzpPTjzCGpOnwqJQ44viFlgvTTtUn3A+YgzQUrEcVGAepmQZNx6nSIZaKk4enUBHDJKCCUZlSBMzkrGVQBg7//aQjRHjK8LWw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=v3iF3RAP; arc=none smtp.client-ip=209.85.167.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-57bd482dfd2so1887514e87.2
-        for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 00:56:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1761292579; x=1761897379; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=nxy0zWX1h247nPbsMpYtj4rqvQKsZpsdIsqOdaa3i18=;
-        b=v3iF3RAPDCb1elFqO0VtoWQu+fW6ymU7UCcKEvvmYKNYTD2ooJnLd6jMbuJoUoN+Dn
-         48jC0TXcnzK7hHI8l7XLLufqE40irxcJ4vQUvDf4zdOy47noMAAYnUg6+rKFE7kuW8KB
-         USll7/Aewk1bIvHRDatF6iZ+ivUhLjYhiJEJEaA/t1MN12k63JvJ8Z2BqetAPfCPpfzc
-         bXyJLqDmaG/v2uSkzQNDFkhtLwjQdE/QsFWa4lokn+PvuaNQ6Zeenb8G29xaiiFXP0S7
-         FDqWxQyTvlalR9tZ8BC9oRxHctw1PO5qfa50RYj0lq81NdRESC/gWmdIjcg72jvCS2fV
-         wJ4Q==
+	 To:Cc:Content-Type; b=DXAnF5Qo596rdYZ8HBg12OAyL9IPCnU13uwm6kWAvBhHcGQRI6D6d4+osA5NlfYraIUfaNtSxBEkqcpMUEnjOw09xUkOXlJu32B8zqXu00Rbwe8dKJiRd0uKjBVbKC/9AWuzAIfCOdVxxl7DcWLh2dFV4fJoXslRWbj4A+VIcww=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vs1-f54.google.com with SMTP id ada2fe7eead31-5db4006eb0fso310504137.2
+        for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 00:57:12 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761292579; x=1761897379;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=nxy0zWX1h247nPbsMpYtj4rqvQKsZpsdIsqOdaa3i18=;
-        b=jaXX1VJ4hGcbibinhKmAyvTkx4HUY9WwWOICLmFUFdS0dZtMyIVnfzhVnqu/6x/8zT
-         0KHpuskjKCsps/ZgLh/PLMgMMT8peagOnG6tk9bGzj7zi2hDFKkyPnEVPePhfuYPmbSz
-         VuwA+1Te8/7GAhhFKu7Qi00s6T3drZWzyqZAfaBsmEVR9odiUBTXppfrr1DD1di14s31
-         CdmtnN5/DyB5KBxgTqW7FGQeQMvjgLZrOrw3nCE9lsIuOwWFDoWf1TsnnRvwjqRuooy4
-         dbKH4OUcPJB75K72wTaekFggoo4hcyF8SCMN5EgCJ9G0C9F7XKHX3rXF+01EOdUXqM8R
-         3JoQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUYm3yokBI8x95QVF2HGt/M/pnE4Vxb3kM/R64lhDoR5B2eUUzWhsYBwFzabyIhTtzX0oyAOKKpmV75@vger.kernel.org
-X-Gm-Message-State: AOJu0YxhtgWHtCqneotREuuyYBzN6Y0mY5eRZOn0jM0jZQwBjLPV5Rnd
-	JQhe8d0vigcHvG92zT3l2zLozN/v0EoRXQRpcCxg/V1ssIzzowjWL56o3viuCDGwGG4MA3+xDu0
-	1jJSrzkOPHoPbxGHuvaSd0DlvvWgEqj0VmsB+OlflaA==
-X-Gm-Gg: ASbGncufsIP3PVAiGSciRKzufgPHJktadFDgLRcTbiIs8Oem5d7TDdNKBPTAZOWkwi4
-	cey2hF28k3H6/arm9sn57SKR0RGtYuFUeJd+SJ08WL35i9ta/Tv3B76KR7+2J3yKRiSL1hYa1l8
-	N/SDzXCqxPp9hgoq+YMu4bEtuyP8uww6dcO/KBDVV5WvWCrhEhMiLS/BVDHSRIDnNOXi+oYPEZ1
-	l02qdEzLTK75R9nB7sbmwfJLAOsYNYsS2KBHyrql2w6ByM7CkhD0kVai80dnG9qasijGUlqi82x
-	7hlvYWl1BB+xzz8=
-X-Google-Smtp-Source: AGHT+IHSnXZ/gyOux7cXwXN4jLtleYFyXBIE1/V6t/jovl+yJ4b+HMb04wimJ5i7xVzENgmv7b2GUJ2i/5ONH7mEpKM=
-X-Received: by 2002:a05:6512:130c:b0:586:83e2:2295 with SMTP id
- 2adb3069b0e04-591d85525f5mr9376212e87.45.1761292578695; Fri, 24 Oct 2025
- 00:56:18 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1761292631; x=1761897431;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=2H0+Y+0nbHCT1nPmHP2N1suTimvZ79Q7MXGtF4XoMw0=;
+        b=vZNWuUnBAEGQFgT2Xs+KNI6m9v1U+vTUjhX0k0rmz3vcPBSGFpOgfzc0KGom8JyV0z
+         tgEeyAXI+LCSO4wCExFnFQY6aV9OTsGkK41mOkvDx9fRLlQxDl4DUfcKtZDfqfrT5g90
+         GwEBvyVFK02hrWYkeZNnyVHh9cGFTmUE5GMR8x2QblLxX2Fue9dyE1qLPoDyXGwJmTEK
+         1oSYW7FN8QcKIvdOGzDoXndvd2xYSICai3bzldDR4/uh2LrehJbtvL5NIUVa6C0Y4R/p
+         Ksblp+HWjlbbtHhTmxZFN3YFVOfwdRibrHm4NhY0i0J9K2UEusxZx9/RFTIEXD9e2mbI
+         ZYiQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVKIJBQ4Mp1FbVQFEwX4oEMoZu+Joq8QQi59ssJ5VrFMts/AWw+dV8fK4zLFLhItOUwQ54rWk043KBM@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz6m2R/xq6eQPkAIxDuGgt0cY1ZnUDHN9wVK0au8OXyCSOAfZL+
+	i+pDamHJJ6IDHw7cAsiFCRRg6FzgKOWgC8VcIZkOJ/0hBonfatIPENKLE8tTydSt
+X-Gm-Gg: ASbGncsNScHW8VAXnDJWdPJQfZuXT3haOKm2PNKcpLSGmI0AcCSfi62OTFm8gnidfVj
+	4J6wx5fXb2u9YgvX6PWEfcR5uKsYNFjOzss/0FVtKIzvkCwLBOjFk33SsMAJ7crwvLA3xUs+RHi
+	Al9VBu3SufDyVS/mbpdkqGxOeKL4NW7rYZGMd17fWi/+8PiY7+KgVjmZtKq8hK+/Kt7f1eaJw75
+	ZaQqEr8WIbWQhieF+fxrIU6pMiJ87C/c57T3aghpYltWUB1JMb4fR+E+Ro2lCV5u/3sc72wvh9R
+	ffO1Wnszw6e9PCeX9B1q1I6seUXTN+QKP0dTbmMZcsaOtPixFHekfRieuGTGuaVKal6wXRKFS2Z
+	4f8haRR3sCBfPzP+6naatVQpHIJc437xvbvOk9RyenSjzjvfwjQ0JV7tAgFpS41jTbH+Mn/ETUC
+	nkAlQEYTN2X+Z3fftatYowfqeQbiAbvD1uo+rlqtWjwcmavnwVKavlnPt2O9k=
+X-Google-Smtp-Source: AGHT+IEjgj/YYEBVHZTGTusHwkSIm5x45g1XLkCDZDZrfR1zZv49pbCD+kB3b1X1FK8uy7psXmUsIg==
+X-Received: by 2002:a05:6102:50a3:b0:5db:2f62:c15 with SMTP id ada2fe7eead31-5db2f621029mr1782624137.41.1761292631184;
+        Fri, 24 Oct 2025 00:57:11 -0700 (PDT)
+Received: from mail-vs1-f46.google.com (mail-vs1-f46.google.com. [209.85.217.46])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-934abbd2740sm1785954241.16.2025.10.24.00.57.09
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 24 Oct 2025 00:57:09 -0700 (PDT)
+Received: by mail-vs1-f46.google.com with SMTP id ada2fe7eead31-5db4006eb0fso310471137.2
+        for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 00:57:09 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCXIw+2G53K6ss2Lpegjoq7De4y4/nCz9bFfAfBpi60lIZhMtGCe9xTrjpRPSoEH+Ow5B5XCNrSw3wvp@vger.kernel.org
+X-Received: by 2002:a05:6102:50a3:b0:5db:2f62:c15 with SMTP id
+ ada2fe7eead31-5db2f621029mr1782604137.41.1761292628800; Fri, 24 Oct 2025
+ 00:57:08 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251023143957.2899600-1-robh@kernel.org>
-In-Reply-To: <20251023143957.2899600-1-robh@kernel.org>
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Fri, 24 Oct 2025 09:56:07 +0200
-X-Gm-Features: AS18NWBwXS6t25LKJEi_UKqvj6YhljrcGI4AFOhItyKPndeRwhvu3EmnTJe9vDc
-Message-ID: <CAMRc=MdE=1cPDPQwPQA6mdBkbXF2pG=oQ_oR_YuasGzaPDsKtg@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: Remove extra blank lines
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Stephen Boyd <sboyd@kernel.org>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	Andrzej Hajda <andrzej.hajda@intel.com>, Robert Foss <rfoss@kernel.org>, 
-	Vinod Koul <vkoul@kernel.org>, Moritz Fischer <mdf@kernel.org>, Xu Yilun <yilun.xu@intel.com>, 
-	Guenter Roeck <linux@roeck-us.net>, Andi Shyti <andi.shyti@kernel.org>, 
-	Jonathan Cameron <jic23@kernel.org>, Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
-	Georgi Djakov <djakov@kernel.org>, Thomas Gleixner <tglx@linutronix.de>, Joerg Roedel <joro@8bytes.org>, 
-	Jassi Brar <jassisinghbrar@gmail.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
-	Lee Jones <lee@kernel.org>, Miquel Raynal <miquel.raynal@bootlin.com>, 
-	Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, Andrew Lunn <andrew+netdev@lunn.ch>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	Johannes Berg <johannes@sipsolutions.net>, 
-	=?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
-	Manivannan Sadhasivam <mani@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
-	Kishon Vijay Abraham I <kishon@kernel.org>, Sebastian Reichel <sre@kernel.org>, 
-	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
-	Mark Brown <broonie@kernel.org>, Mathieu Poirier <mathieu.poirier@linaro.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Olivia Mackall <olivia@selenic.com>, 
-	Herbert Xu <herbert@gondor.apana.org.au>, Daniel Lezcano <daniel.lezcano@linaro.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, linux-fbdev@vger.kernel.org, 
-	dmaengine@vger.kernel.org, linux-fpga@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, linux-hwmon@vger.kernel.org, 
-	linux-i2c@vger.kernel.org, linux-iio@vger.kernel.org, 
-	linux-input@vger.kernel.org, linux-pm@vger.kernel.org, iommu@lists.linux.dev, 
-	linux-media@vger.kernel.org, linux-mtd@lists.infradead.org, 
-	netdev@vger.kernel.org, linux-wireless@vger.kernel.org, 
-	linux-pci@vger.kernel.org, linux-phy@lists.infradead.org, 
-	linux-pwm@vger.kernel.org, linux-remoteproc@vger.kernel.org, 
-	linux-crypto@vger.kernel.org, linux-sound@vger.kernel.org, 
-	linux-usb@vger.kernel.org
+References: <20251022070543.1169173-1-ryan_chen@aspeedtech.com>
+ <20251022070543.1169173-5-ryan_chen@aspeedtech.com> <b5441728-06a7-44ea-8876-3a9fc3cf55be@app.fastmail.com>
+ <TY2PPF5CB9A1BE626A2F0F6307461D8F64BF2F0A@TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com>
+ <6a97fbb4-19c2-4ffa-9c73-26aea02c27e4@app.fastmail.com>
+In-Reply-To: <6a97fbb4-19c2-4ffa-9c73-26aea02c27e4@app.fastmail.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 24 Oct 2025 09:56:57 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXTZZK-Tk0gerpARfr+jUNGPhEfRqGOtTvTTJp=SZ2ayg@mail.gmail.com>
+X-Gm-Features: AWmQ_bnSAouTBsQ6YdE-Y1_3m37NwmxEYp_NrgytrqguGhvssb4gZifd3I_f9eg
+Message-ID: <CAMuHMdXTZZK-Tk0gerpARfr+jUNGPhEfRqGOtTvTTJp=SZ2ayg@mail.gmail.com>
+Subject: Re: [PATCH v6 4/6] arm64: dts: aspeed: Add initial AST2700 SoC device tree
+To: Arnd Bergmann <arnd@arndb.de>
+Cc: Ryan Chen <ryan_chen@aspeedtech.com>, BMC-SW <BMC-SW@aspeedtech.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@codeconstruct.com.au>, 
+	Jeremy Kerr <jk@codeconstruct.com.au>, Lee Jones <lee@kernel.org>, 
+	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
+	Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>, Nishanth Menon <nm@ti.com>, 
+	=?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= <nfraprado@collabora.com>, 
+	Taniya Das <quic_tdas@quicinc.com>, 
+	"Lad, Prabhakar" <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
+	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>, Eric Biggers <ebiggers@kernel.org>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
+	"linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>, 
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-On Thu, Oct 23, 2025 at 4:40=E2=80=AFPM Rob Herring (Arm) <robh@kernel.org>=
- wrote:
+On Thu, 23 Oct 2025 at 22:11, Arnd Bergmann <arnd@arndb.de> wrote:
+> On Thu, Oct 23, 2025, at 09:37, Ryan Chen wrote:
+> >> > +  aliases {
+> >> > +          serial0 = &uart0;
+> >> > +          serial1 = &uart1;
+> >> > +          serial2 = &uart2;
+> >> > +          serial3 = &uart3;
+> >> > +          serial4 = &uart4;
+> >> > +          serial5 = &uart5;
+> >> > +          serial6 = &uart6;
+> >> > +          serial7 = &uart7;
+> >> > +          serial8 = &uart8;
+> >> > +          serial9 = &uart9;
+> >> > +          serial10 = &uart10;
+> >> > +          serial11 = &uart11;
+> >> > +          serial12 = &uart12;
+> >> > +          serial13 = &uart13;
+> >> > +          serial14 = &uart14;
+> >> > +  };
+> >>
+> >> This looks like you just list all the uarts that are present on the chip, which is
+> >> not how the aliases are meant to be used. Move this block into the board
+> >> specific file and only list the ones that are actually enabled on that particular
+> >> board.
+> >>
+> >> In particular, the alias names are meant to be local to the board and don't
+> >> usually correspond to the numbering inside of the chip. In the defconfig, we
+> >> currently set CONFIG_SERIAL_8250_NR_UARTS=8, which is enough for any
+> >> board we support so far, but that means only the first
+> >> 8 aliases in the list will actually work.
+> >
+> > Understood. I'll move the aliases block from the SoC dtsi into the
+> > EVB board dts. For the EVB, UART12 is used as the default console,
+> > and the board labels match the SoC numbering, so I plan to keep:
+> >
+> > Does that look acceptable?
+> > ast2700-evb.dts
+> >       aliases {
+> >               serial0 = &uart0;
+> >               serial1 = &uart1;
+> >               serial2 = &uart2;
+> >               serial3 = &uart3;
+> >               serial4 = &uart4;
+> >               serial5 = &uart5;
+> >               serial6 = &uart6;
+> >               serial7 = &uart7;
+> >               serial8 = &uart8;
+> >               serial9 = &uart9;
+> >               serial10 = &uart10;
+> >               serial11 = &uart11;
+> >               serial12 = &uart12;
+> >               serial13 = &uart13;
+> >               serial14 = &uart14;
+> > }
 >
-> Generally at most 1 blank line is the standard style for DT schema
-> files. Remove the few cases with more than 1 so that the yamllint check
-> for this can be enabled.
+> I think this would be broken for the defconfig if the consol is
+> on serial12. I would recommend using serial0 as the console, like
 >
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
-> ---
+> aliases {
+>        serial0 = &uart12;
+> }
+>
+> in this case. If additional uarts are enabled, add those as
+> further aliases.
 
-For GPIO:
+Indeed. Are all these serial ports exposed on the board?
+Aliases is mean to list only the ones that are exposed, and the alias
+number should match the label on the board/port ("serialN", "debugN",
+...), ideally.
 
-Acked-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Typically only a few ports are exposed, so you may end up with something like:
+
+arch/arm64/boot/dts/renesas/rzg3s-smarc.dtsi:           serial0 = &scif1;
+arch/arm64/boot/dts/renesas/rzg3s-smarc.dtsi:           serial1 = &scif3;
+arch/arm64/boot/dts/renesas/rzg3s-smarc.dtsi:           serial3 = &scif0;
+
+I deliberately picked this example, as it shows how the serialN
+numbering does not need to match the scifM (or uartM) numbering.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
