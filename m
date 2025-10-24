@@ -1,60 +1,56 @@
-Return-Path: <devicetree+bounces-230850-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230851-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 760F9C0670C
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 15:17:26 +0200 (CEST)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8AED4C06730
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 15:19:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id C71844E6F19
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 13:17:20 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 37BBD35C699
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 13:19:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6DCC314A61;
-	Fri, 24 Oct 2025 13:17:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D76D30E857;
+	Fri, 24 Oct 2025 13:19:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aZtXvucm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qusdd43/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86F25309EF0;
-	Fri, 24 Oct 2025 13:17:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24707302143;
+	Fri, 24 Oct 2025 13:19:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761311832; cv=none; b=U9xdH8s+6Y1V6EfhKv1Ph+FrWHMt/txLBVw75XuePYrwwo0sG3OnLhoDpJwwaxAOsYLV2e9Ltpx5C/Q/oBNVdaHLU4DTccPrKACCx+dSQArp3Th0eGnd4F1ybiHr6kRLvB/WseLFUDCVeSpvScIDM45J3w3aw3WKGFNt/VRcZNQ=
+	t=1761311970; cv=none; b=LMwyXfUhu0JW2knOn5a3pQ2BeC1u4PCBk8kdIxcG5Vkapw+HUESQOzb6KCfjFm/B7rh+tpF9+WCKejSsRK51baEC1j8Z0ZwG1Sd7m3EEXODmusRfcze69nbuPLv4BqDQGMJJYSYpOxnxxfcht9ZcyRNjeoql2+0uI5XIRvw4058=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761311832; c=relaxed/simple;
-	bh=A2BnR2YHSryVqsKA9P+YQyFmh/9l8BRKmmWfe/NlsaE=;
+	s=arc-20240116; t=1761311970; c=relaxed/simple;
+	bh=ijZ3YQb5RbTEBsfiDsONjnER3UzdyAjEgd6V2FItANM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ja9OWPQTNq73U6+GhlHmlNkOBA9j1Exr7yYpyIlpmMayYfx1kt4QEkOn6VnBzPXOIsfJMySpJNGt87o5SgGEJoqwJCUaoaEinebdu1QHDR/ftWYkeOwml39dchfkB2E0Y+7DuQJyB4TSYJ5zqNFPQW/5aINNh5s2yx8QFMphQZo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aZtXvucm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CA46BC4CEF1;
-	Fri, 24 Oct 2025 13:17:11 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=W+LWJvVcZ3dZa5lriuk235eEh5++73KdXRL17auKGlK/h2xhD8vVp3Jnogm1hdUhcfUyIznkCfONIBfBvEuKp5Ucucc0T6GBpYp2UoC4NoH3hARm5qrmuVxLGQ/T3+ZaayxpLwjkNy6OVYK38tLpFvnvWc5XZ68FlgMzfkzTHT4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qusdd43/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7D9A2C4CEF1;
+	Fri, 24 Oct 2025 13:19:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761311832;
-	bh=A2BnR2YHSryVqsKA9P+YQyFmh/9l8BRKmmWfe/NlsaE=;
+	s=k20201202; t=1761311969;
+	bh=ijZ3YQb5RbTEBsfiDsONjnER3UzdyAjEgd6V2FItANM=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=aZtXvucm/CfsW7ZEu9pDdtzSjZjO5nS5yODdFkvQeRrlKFUKNtzshAe7d0sflUwTy
-	 wmMAsC3Q/5aspelec9kXuFJC8WY8P1zDgKS8uNTWZFIKGPBatu1IjmhEt6oBILk1cu
-	 CR1ZubmRc6Frirymaa1FDOREXiQXlH/67KI4Iyt+UF7e6Ay0F0H1I4VOyM2kkMGCzX
-	 WIYBVY7gi5SQdBo4v/6kTn5ut0Siw6V84sdLKa6GnP9W/SF3RPT2v6d8yKkgseEn3L
-	 QUyeXJxcDbLwlwse1OvnqYF/2F5ThD7UID+ak3DWfxbhkw0G2MIh8AH6gsXb93oDLq
-	 4yeu1u+XB2H4Q==
-Date: Fri, 24 Oct 2025 08:17:10 -0500
+	b=qusdd43/3UXupZ8JoenMD3Y1vDsqvzZj7jop6k1B+5vnlLWWrFRdWv/LKvbPuFtip
+	 O6ZJSooyPHQR41CNK+/5FJoObIm4sLs/q0vNbFuXGAVJ4GbEuIfYhNxzzvmd4t+p/2
+	 O2yBN6asLYaBQXzNAtzldKcH0O/44vhsmxkJ22KuNSP+eKFssVaJtygINT+XTzX9pb
+	 Sm9y7gUl8bBeWf+6O4FwLYN+N1yBmmydtbuOH11YPWxujUTrtJrWcu6kFXvmhTtFxu
+	 KDdJ0bsfPpdyoMcBwYWGny5CGUEMX6pk9v4VCfnx7guL/3UlwYQr+U9PolNKKNhNFx
+	 4cQgHu7Cjxonw==
+Date: Fri, 24 Oct 2025 08:19:27 -0500
 From: Rob Herring <robh@kernel.org>
-To: Ariel D'Alessandro <ariel.dalessandro@collabora.com>
-Cc: andrew-ct.chen@mediatek.com, angelogioacchino.delregno@collabora.com,
-	conor+dt@kernel.org, houlong.wei@mediatek.com, krzk+dt@kernel.org,
-	matthias.bgg@gmail.com, mchehab@kernel.org,
-	minghsiu.tsai@mediatek.com, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-media@vger.kernel.org, linux-mediatek@lists.infradead.org,
-	kernel@collabora.com
-Subject: Re: [PATCH v3] dt-bindings: media: Convert MediaTek mt8173-mdp
- bindings to DT schema
-Message-ID: <20251024131710.GA1563195-robh@kernel.org>
-References: <20251001183115.83111-1-ariel.dalessandro@collabora.com>
+To: Srinivas Kandagatla <srini@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Ray Jui <rjui@broadcom.com>,
+	Scott Branden <sbranden@broadcom.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: nvmem: Convert brcm,ocotp to DT schema
+Message-ID: <20251024131927.GA1567824-robh@kernel.org>
+References: <20251014152957.3782962-1-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,24 +59,19 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251001183115.83111-1-ariel.dalessandro@collabora.com>
+In-Reply-To: <20251014152957.3782962-1-robh@kernel.org>
 
-On Wed, Oct 01, 2025 at 03:31:15PM -0300, Ariel D'Alessandro wrote:
-> Convert the existing text-based DT bindings for MediaTek MT8173 Media Data
-> Path to a DT schema.
+On Tue, Oct 14, 2025 at 10:29:56AM -0500, Rob Herring (Arm) wrote:
+> Convert the brcm,ocotp binding to DT schema format. It's a
+> straight-forward conversion.
 > 
-> Signed-off-by: Ariel D'Alessandro <ariel.dalessandro@collabora.com>
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 > ---
->  .../bindings/media/mediatek,mt8173-mdp.yaml   | 169 ++++++++++++++++++
->  .../bindings/media/mediatek-mdp.txt           |  96 ----------
->  2 files changed, 169 insertions(+), 96 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/media/mediatek,mt8173-mdp.yaml
->  delete mode 100644 Documentation/devicetree/bindings/media/mediatek-mdp.txt
+>  .../devicetree/bindings/nvmem/brcm,ocotp.txt  | 17 --------
+>  .../devicetree/bindings/nvmem/brcm,ocotp.yaml | 39 +++++++++++++++++++
+>  2 files changed, 39 insertions(+), 17 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/nvmem/brcm,ocotp.txt
+>  create mode 100644 Documentation/devicetree/bindings/nvmem/brcm,ocotp.yaml
 
-Since the media folks haven't picked this up yet, I applied it.
-
-I hope to see some more Mediatek fixes this cycle.
-
-Rob
+Applied.
 
