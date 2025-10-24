@@ -1,62 +1,109 @@
-Return-Path: <devicetree+bounces-230567-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230568-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51887C03FFE
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 03:11:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 738C2C040DA
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 03:55:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 2E4E24E5FC5
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 01:11:40 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 2E6BC4E9584
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 01:55:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D750189BB0;
-	Fri, 24 Oct 2025 01:11:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D107B1E25EB;
+	Fri, 24 Oct 2025 01:55:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aDOL5Of3"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="i7R45KQ+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f54.google.com (mail-pj1-f54.google.com [209.85.216.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 130AC8405C;
-	Fri, 24 Oct 2025 01:11:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67C741DB127
+	for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 01:55:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761268297; cv=none; b=ScBgC/KdE8s+lvHzZn1EpP84CYbg7Mke8kWMuOpeILQlgxYQ2iB4N8Up2KFJzQbzgzkaFkH31AUQPZHRJrmDwUpmqBk8Xvz3XbmwcHwjh9p5cEHTOmDby5Q3HI4mAKJdhy/XX1wzRurBkCr+bW27qGGq7J/e6kxDfiB20jdICnQ=
+	t=1761270938; cv=none; b=MOVuMdc4IUSRqL+Yw5uf7vdWBHz4OVXHL5/6+kZnf/6xzdwv+IM6YbQM4GsdXV4H6ldSO1WWsiUkknD5OJyWb4eLOhsTlMWxMQwDkkTq3tMc1+Jn1YIU/yNyt7IwzJd6xf0QT+AOb4QQBFxspP0HpeIj0PWPjv1Iy6eogzQ2Go8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761268297; c=relaxed/simple;
-	bh=sYVXJNowzbBXxfqAUDkJRSvbLsY6hEvJ0xreENX8QjA=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=GrKVCivLiLx7YM6LYtfMumucNgK++VUutIFv+pPlJgle8Z9tUYn0Ey1F/s5KTKM4HddleSUf2xbPH8pKcQRjN7CZbYG6mpcmy6TTSEt4SbHzP1kwwQzcO7wtRu/exiXfiaHtrfRugcI0vgUYVtKzHz1iXilNIQMlEzQlj8pO/3g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aDOL5Of3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6C692C4CEE7;
-	Fri, 24 Oct 2025 01:11:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761268296;
-	bh=sYVXJNowzbBXxfqAUDkJRSvbLsY6hEvJ0xreENX8QjA=;
-	h=From:To:Cc:Subject:Date:From;
-	b=aDOL5Of3SFEs05ZeCCWzGdwaQgK1mGDYDzetpmy0klLs8uy6LjtI/xQRTvtNN7/78
-	 H0QKxn5mSWURrg8GWUbWR38DaYZAGco/RdqbSJ06v1fEVaHIOkZi1b6Rou3wVphYcg
-	 YdzV3mebZe1L3yF7x2RCHE5X5AGlbj0gvZK3/d/MU20dN5jnAYvMokKrq516zOaCx0
-	 qQqCZCUeT9fR0l2hElbXxiXjs6EDkkAhcPzEHXYkIPMleyP3KWPH2faorCi/BCRFYF
-	 PzU2dUjfrFI7VjV+rD4xgCTb4RFw5qGIOOfRcyaJKF7CJgLhS8X3EA5Q6T9Z40I6QM
-	 43FMNhnV/A21A==
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
+	s=arc-20240116; t=1761270938; c=relaxed/simple;
+	bh=DFXDK1dq0hZtDmvIA9ZvRGa1Eqyq6GKOH8gUqjVv1bY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=HB9078xaG1ccdGFtQcHMyPBisNHXybvHbTz94Z1ad/51vek4cbqvbvjB0kDTnFmHsNU0oeni+uFlyWBmbN6I8+JKZUrmQr8bTJYNC06ieU78YtvW/vXmpa2IrCPyCNdjAxFTOxoD5SDGmPLyC8XaeXLRJ2tLHOPV87pU4QpFGPE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=i7R45KQ+; arc=none smtp.client-ip=209.85.216.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f54.google.com with SMTP id 98e67ed59e1d1-3327f8ed081so1980382a91.1
+        for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 18:55:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1761270936; x=1761875736; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=qM2K5UWuNXprZvBDJ5c1mMhJQmIFaH7Nb7GuoKXsnbg=;
+        b=i7R45KQ+HKIZnwZA7TEAxwgektKV+Ifjnb9xExKvyPZxNf3gzwCkB/PTQblkRmW1Hp
+         ze4seehUn71GJHErvfPjOLMsBvuVw6prEv7+JdF2BfROfS3YC5brF8UCknQc52rVdzwt
+         IJiqPiyVVyPfaVJAquL3Wkj9mOcowhJNfaIDi9S9hGVw2b8fEA6IdF9uj//BXSyKpZIP
+         qP1Vfx2t5QZwieQU8JX7u+9ailFq0S5UVIiRu/2ce5zvxxnU4l2VCYZ7eB4neBsxE/CR
+         d6emKMlJYD589frzlVMteR+v5ydbMq+nmInAPA5W7ac4x7VDnj6CH5XchEGxmkQTOpAw
+         XEaA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761270936; x=1761875736;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=qM2K5UWuNXprZvBDJ5c1mMhJQmIFaH7Nb7GuoKXsnbg=;
+        b=Q4Yhag/54gfjm0nGuho5D7jlKQfkOZpdfIeOCWVzIlDCd0HEFBSmlZaqLpE8zm0OtQ
+         yMHGKE+rwra2T7lZlxgbdIPm6zf5yMfCO+IH6GgupvX8iw0vTYdcO0gHy57ezTv0sj5H
+         95KVgdpzjBn59qgH60PRvweHa8pgnQ8G83Keirb4Prc0wGQJmzFNVl20heI2NXJxswJ6
+         avgdyLXX9P+cY3iZLlNGytQSFt7X+j8M6u31lZDQ8W3RfiiNBJN9bVcSSpm3hBVZOT15
+         gQ2Y1Lfk3RiSN2qH3PY9fQoyDn5HkavgbiPWqpmWWMrS72WJf3Jm9MBW/58IxIdb/eSr
+         AgRw==
+X-Forwarded-Encrypted: i=1; AJvYcCUR5Obht6DG309QpvbUF4ZCRJicjBODPuXNtSdglHOsVr5FEAxXd1F1wNvLYUejBq2BUGqsl6306/0F@vger.kernel.org
+X-Gm-Message-State: AOJu0YzYiZObL0tKQH9r+dtTKEytcYefy0Nm2Oy5rZY+d/ml+f0A3YlD
+	wKybnZsjnJ3AnXw8KdGeaGPVzVxk0ptHyt6c56SX+QoPSsqLtCOAE/pRM91P9Q==
+X-Gm-Gg: ASbGncu13ea10Ffka9RxB7Jr69OLo/ke9fGaorl1d2RHPnOkR5t5UEGrYUEQyS9vNtJ
+	GbWem7lih8ygUroYZkPnDRpE3iCWc6vyQSFNlv4g4AZnJJ5/LzL8joAJpP4B0ayoaVATI0G+TOx
+	ZTfYaGb673FvId8JJCCodZKzyCeda8w+uq5dEVh/b8ZnsfK9KEBHTXjsemMkqL9lh6yKAAEAiV2
+	8iJtZpY2pz8jYzvdKXQ97C1k5s208I4KHzYlosNw1OBO782hzFqmewQZniajuiKAth9p29N0y81
+	Y23Zjs5hrgFsrVJJ3lZIu+JiwuvEZKdk1cevzqu4uc4jipJDKPwP/6tKZWf9JowtSS7oI9fSivW
+	tjlTcWLH1pha+GAzciAoA994TmgCdVtXl5tj/T60C5Jgl5k3lHHgJmW0NM0Av6mMkgpiQQO7KlG
+	bkMZVGlop0vg==
+X-Google-Smtp-Source: AGHT+IFGuiuD5qMaB237ASMVYM5OY1+My1nEaULow6/U2LgSioG18/RvbKuul7ZQNTuvhLccqeac+g==
+X-Received: by 2002:a17:90b:5386:b0:32e:749d:fcb6 with SMTP id 98e67ed59e1d1-33bcf86b5c6mr38689912a91.12.1761270936488;
+        Thu, 23 Oct 2025 18:55:36 -0700 (PDT)
+Received: from localhost ([2001:19f0:ac00:4eb8:5400:5ff:fe30:7df3])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-33dff3c3a6csm4951393a91.5.2025.10.23.18.55.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 23 Oct 2025 18:55:36 -0700 (PDT)
+From: Inochi Amaoto <inochiama@gmail.com>
+To: Han Gao <rabenda.cn@gmail.com>,
+	Icenowy Zheng <uwu@icenowy.me>,
+	Vivian Wang <wangruikang@iscas.ac.cn>,
+	Yao Zi <ziyao@disroot.org>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Jingoo Han <jingoohan1@gmail.com>,
-	Gustavo Pimentel <gustavo.pimentel@synopsys.com>
-Cc: linux-pci@vger.kernel.org,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Inochi Amaoto <inochiama@gmail.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	"Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>
+Cc: netdev@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: PCI: amlogic,axg-pcie: Fix select schema
-Date: Thu, 23 Oct 2025 20:11:21 -0500
-Message-ID: <20251024011122.26001-1-robh@kernel.org>
-X-Mailer: git-send-email 2.51.0
+	sophgo@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org,
+	Yixun Lan <dlan@gentoo.org>,
+	Longbin Li <looong.bin@gmail.com>
+Subject: [PATCH v3 0/3] net: stmmac: dwmac-sophgo: Add phy interface filter
+Date: Fri, 24 Oct 2025 09:55:21 +0800
+Message-ID: <20251024015524.291013-1-inochiama@gmail.com>
+X-Mailer: git-send-email 2.51.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,103 +112,36 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The amlogic,axg-pcie binding was never enabled as the 'select' schema
-expects a single compatible value, but the binding has a fallback
-compatible. Fix the 'select' by adding a 'contains'. With this, several
-errors in the clock and reset properties are exposed. Some of the names
-aren't defined in the common DWC schema and the order of clocks entries
-doesn't match .dts files.
+As the SG2042 has an internal rx delay, the delay should be remove
+when init the mac, otherwise the phy will be misconfigurated.
 
-Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
----
- .../bindings/pci/amlogic,axg-pcie.yaml          | 17 +++++++++--------
- .../bindings/pci/snps,dw-pcie-common.yaml       |  6 +++---
- 2 files changed, 12 insertions(+), 11 deletions(-)
+Since this delay fix is common for other MACs, add a common helper
+for it. And use it to fix SG2042.
 
-diff --git a/Documentation/devicetree/bindings/pci/amlogic,axg-pcie.yaml b/Documentation/devicetree/bindings/pci/amlogic,axg-pcie.yaml
-index 79a21ba0f9fd..bee694ff45f3 100644
---- a/Documentation/devicetree/bindings/pci/amlogic,axg-pcie.yaml
-+++ b/Documentation/devicetree/bindings/pci/amlogic,axg-pcie.yaml
-@@ -20,9 +20,10 @@ allOf:
- select:
-   properties:
-     compatible:
--      enum:
--        - amlogic,axg-pcie
--        - amlogic,g12a-pcie
-+      contains:
-+        enum:
-+          - amlogic,axg-pcie
-+          - amlogic,g12a-pcie
-   required:
-     - compatible
- 
-@@ -51,15 +52,15 @@ properties:
- 
-   clocks:
-     items:
-+      - description: PCIe PHY clock
-       - description: PCIe GEN 100M PLL clock
-       - description: PCIe RC clock gate
--      - description: PCIe PHY clock
- 
-   clock-names:
-     items:
-+      - const: general
-       - const: pclk
-       - const: port
--      - const: general
- 
-   phys:
-     maxItems: 1
-@@ -88,7 +89,7 @@ required:
-   - reg
-   - reg-names
-   - interrupts
--  - clock
-+  - clocks
-   - clock-names
-   - "#address-cells"
-   - "#size-cells"
-@@ -115,8 +116,8 @@ examples:
-         reg = <0xf9800000 0x400000>, <0xff646000 0x2000>, <0xf9f00000 0x100000>;
-         reg-names = "elbi", "cfg", "config";
-         interrupts = <GIC_SPI 177 IRQ_TYPE_EDGE_RISING>;
--        clocks = <&pclk>, <&clk_port>, <&clk_phy>;
--        clock-names = "pclk", "port", "general";
-+        clocks = <&clk_phy>, <&pclk>, <&clk_port>;
-+        clock-names = "general", "pclk", "port";
-         resets = <&reset_pcie_port>, <&reset_pcie_apb>;
-         reset-names = "port", "apb";
-         phys = <&pcie_phy>;
-diff --git a/Documentation/devicetree/bindings/pci/snps,dw-pcie-common.yaml b/Documentation/devicetree/bindings/pci/snps,dw-pcie-common.yaml
-index 34594972d8db..6339a76499b2 100644
---- a/Documentation/devicetree/bindings/pci/snps,dw-pcie-common.yaml
-+++ b/Documentation/devicetree/bindings/pci/snps,dw-pcie-common.yaml
-@@ -115,11 +115,11 @@ properties:
-             above for new bindings.
-           oneOf:
-             - description: See native 'dbi' clock for details
--              enum: [ pcie, pcie_apb_sys, aclk_dbi, reg ]
-+              enum: [ pcie, pcie_apb_sys, aclk_dbi, reg, port ]
-             - description: See native 'mstr/slv' clock for details
-               enum: [ pcie_bus, pcie_inbound_axi, pcie_aclk, aclk_mst, aclk_slv ]
-             - description: See native 'pipe' clock for details
--              enum: [ pcie_phy, pcie_phy_ref, link ]
-+              enum: [ pcie_phy, pcie_phy_ref, link, general ]
-             - description: See native 'aux' clock for details
-               enum: [ pcie_aux ]
-             - description: See native 'ref' clock for details.
-@@ -176,7 +176,7 @@ properties:
-             - description: See native 'phy' reset for details
-               enum: [ pciephy, link ]
-             - description: See native 'pwr' reset for details
--              enum: [ turnoff ]
-+              enum: [ turnoff, port ]
- 
-   phys:
-     description:
--- 
-2.51.0
+Change from v2:
+- https://lore.kernel.org/all/20251020095500.1330057-1-inochiama@gmail.com
+1. patch 3: fix comment typo
+2. patch 3: add check for PHY_INTERFACE_MODE_NA.
+
+Change from v1:
+- https://lore.kernel.org/all/20251017011802.523140-1-inochiama@gmail.com
+1. Add phy-mode property to dt-bindings of sophgo,sg2044-dwmac
+2. Add common helper for fixing RGMII phy mode
+3. Use struct to hold the compatiable data.
+
+Inochi Amaoto (3):
+  dt-bindings: net: sophgo,sg2044-dwmac: add phy mode restriction
+  net: phy: Add helper for fixing RGMII PHY mode based on internal mac
+    delay
+  net: stmmac: dwmac-sophgo: Add phy interface filter
+
+ .../bindings/net/sophgo,sg2044-dwmac.yaml     | 17 ++++++++
+ .../ethernet/stmicro/stmmac/dwmac-sophgo.c    | 20 ++++++++-
+ drivers/net/phy/phy-core.c                    | 43 +++++++++++++++++++
+ include/linux/phy.h                           |  3 ++
+ 4 files changed, 82 insertions(+), 1 deletion(-)
+
+--
+2.51.1
 
 
