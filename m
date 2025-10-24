@@ -1,235 +1,200 @@
-Return-Path: <devicetree+bounces-230810-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230811-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D763CC06383
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 14:22:18 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8587AC063A0
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 14:24:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A11A81B81D30
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 12:22:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 398553BA61D
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 12:24:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 275FC315D33;
-	Fri, 24 Oct 2025 12:21:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D667C3161BA;
+	Fri, 24 Oct 2025 12:24:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="mtZfZ8Fv"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="mYoV4IHn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A365E2FF653
-	for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 12:21:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E437D315D5B
+	for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 12:24:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761308506; cv=none; b=nUH2FVL0CJ8grX5dea7CsrIDZNzo0G9AccQXobqv3iVOuEern4xZTmLTxsLfRf+TNH+p2aISo0TZHyM6eFZsz9iAyXN7UjrkLE3ayBs+XnCuakPR0uKQ8cBjb81dFvF0jOgqnY4H/DNPqK6J1opBi3XOjaUPOrFwWntfoDv1IQY=
+	t=1761308665; cv=none; b=Blknh7DbewaTEiEU+kscRQfcRLFSIb9Ry6avkHwF2vcnvDZjE7F2/JH8AmXEdE6HcI/q4tJDAGPSgyCqH8YNbcpx9Ir1Anc9C5eSPzELoGYf8wxPXpSAy/ltPtpohxyQZKO+8YnZCd2XBpEceE9U5c6mRnbbQ4J68RBnz80aQXA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761308506; c=relaxed/simple;
-	bh=4bKaFRNi5+qkhZr+99So55SPq/CL6YwIa3dD4FX4oKY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=nLpP0l/W+EHjPs/xMZuVgvy7IYCr9uIdHPK5gPtvfaUGVyZ8smURZslyqBkihr0MI8VED6GX1WXkZR8jbRbil14tYGsqIwnldnT+qPxlXsCDDnAb5xbWStiNgG+169zkjPCXye2immZDao1K/FHGqIfbNw6rJMUR3hbvVwmE4No=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=mtZfZ8Fv; arc=none smtp.client-ip=185.246.84.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id 0B6761A164C;
-	Fri, 24 Oct 2025 12:21:42 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id CAB1460703;
-	Fri, 24 Oct 2025 12:21:41 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id AD095102F2494;
-	Fri, 24 Oct 2025 14:21:31 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1761308500; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:content-language:in-reply-to:references;
-	bh=x2d7sDTl3SazQkAKLB0c39ILNZM2divz9O3bAG2KBEg=;
-	b=mtZfZ8Fvzni/ZBVlwcVTL6dB5cWoNQZIGHwiIwATXK47wnMy2rIvfgnCjdWF5PZpupmTZ2
-	2m3FtTBulY2W8MEfLcrVqoOFWO3zJbzePGU7/Yi6n9ra3iksyc2wI8BZnlD2GlYy1kKebc
-	pxQ7JzAreDI3lYpo8PTkXy1/p+kpRTa2DGulULPvXM+/mAQPpXCjemmcenVQon3OrYGxky
-	H/paFxM9jyKzushNdD6tYksHDBm0hhMzjiM8wAhXZcO4n1CR9XcJ6j6gfgcO4xfsbAohD0
-	L4G6UjT+CEIcZYXpjSdikLyjliaYqogGJKSRkbcfxUUh5aOywM4xmjTXMoelMA==
-Message-ID: <79081b06-4e34-458a-8e00-fe3a0e4e26b6@bootlin.com>
-Date: Fri, 24 Oct 2025 14:21:31 +0200
+	s=arc-20240116; t=1761308665; c=relaxed/simple;
+	bh=kWCSqyw+5B5hiollOsuNPCYTsxQeIPv9OUnrObjMnmI=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=p7joEBA3mmODGIGDbkEkAXYI8XjXhXB1YVrRDDeQQ1YgnEyAp993jxzh9BL8K4REiZsCEcWjmqDJJRZfaMQKumRLDICeBF/u0AmICbSXqPUuIBOkvoYfUKm1/d/MKsReO+rNmIJCb2a4l4QQ29vVeDuFUH/ATe5Ke34WOKlt/jg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=mYoV4IHn; arc=none smtp.client-ip=209.85.218.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
+Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-afcb7ae6ed0so447254266b.3
+        for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 05:24:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=fairphone.com; s=fair; t=1761308661; x=1761913461; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=4EnPd8CSxuEQwQl4Ho0QB8vgor65hkR0HOfZfLDA/cs=;
+        b=mYoV4IHn/iqMmMzxjPumdyspFHTtMB0b+UWyzuVZTOQ0sjzPXEOsIBhi0MSItwC2Fz
+         Fi61FE8106YgCGpUTsNZiswrMXdiTb/N45fwtV6sVps3uGN84lmDdIxzhtwkSgOjXvgx
+         Qya0fu9+KWTGJkV/X8MruCapXRZCrs8pzJgZ5DiW9aFfeGfBjJuvoPYdGchanWhhgyVq
+         te7w9shQ4H1+O0wwVMeeiLJZRELFR4tGMkPfVIqVj4MwlQMwhm4V9E9+OfW34ZtZKTFm
+         naoyIVZqLEPT6Ap9B3hG97+Yp2FSkbi5fo/oi7/lDQU9xSG2glHHaAF3RnEyaSUsr9Ti
+         1/Hw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761308661; x=1761913461;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=4EnPd8CSxuEQwQl4Ho0QB8vgor65hkR0HOfZfLDA/cs=;
+        b=KVGZasxpzCj4x9jJpvyrEIcJo55qBWo02q5kI/dbJ87K0/pLvvHz33ePdwlVdYxiK3
+         1nMLQVyJfea7dcUJJou4BzeX31EHyI49uvmwjkxA8KUH5xvJhYMirdI4Q6UJ9p/GDlC9
+         oEjVk1J+pAy7vZMr7jVKxzAKCiMgOhxMLehK8wCncNrsD20j6OTr+6qOhTl0j24ilnPl
+         H7w0bcp3WrN/HrdzcB5mGMXPnDkszhOfCSEuL+5Cx6pPmGIXP27jix7fAUuKbvzfgXVl
+         o6n0uxsoMGF+AjXIELFpJwPcOnRJLnmEHDpfWgcfgcd2Qpeieob9E98Wmogr1yvSWQg+
+         p+rQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVtwvzbK4G/smYMGzsjuvam5u8pkqcJjbO3EjNGPxh3HHLxNn/NettXktG5TefPVoSHGp09T3/T4ZNf@vger.kernel.org
+X-Gm-Message-State: AOJu0YzVTzol6pIpeRgd5gVluTAYFe3riK7CmMbTPRgMxoLoIr8zhjhO
+	uoT9Kh3UlpZmaYE/6OTGpQDpj2yiFm0hQAj1qO5m+eb3bG9KWGARvO8OLAUNynFzwok=
+X-Gm-Gg: ASbGnctFtOk0hiXKrltt2cNJJdqv5DFVyOFCsD1BCBOCC1n24YA1yJk+vWAUrY6MdEZ
+	ABiJTiDVdo32dZwlYQ0WII/E8sDpE91gOTVE2w7WcYrEvqep465vEmYZwQUWmGt3+t5VqNk2zI+
+	G1t+7cUqcosvTCCXVb7EBSecdnom3+GzHnhpwl5+ON/k7QOuy1gCXDlDbb6slkBVoxYPJO4vhrA
+	NZz5VW0hGdq5IqHIix+azZ6tbcup/d4ItBmYFmqUPhqMegZPDx20Q0Yg5eZO/BmktfEHFlSqYuV
+	RNAoyguoeJPglZbFubK7x/E1GlJQTwf5TCk++UNFPieETdCupsnmwPOu1xPhXuuJ6p+if24+nB6
+	6VFHzb4oRkWuYzoEwGVh/gXAOjg1C2iLLv7v8RY3TNHK6ScVtbpZ80vFaWPmWZsBAitUmzcufuD
+	K8G9AlQqZN7kJ3wU6XBYHu+9nAD1S5KRCc3zbyNTQknY5QKS43Wk5UM1Sl
+X-Google-Smtp-Source: AGHT+IFxGhcZW9IRg0ysaZx+dcfZbpusXNL9CAu9Q54la1WCXa7PdEoVStvQbLcNkX5XBWFi+ObSQg==
+X-Received: by 2002:a17:907:97cd:b0:b41:3c27:e3ca with SMTP id a640c23a62f3a-b6d6fe02ef8mr217607866b.7.1761308661129;
+        Fri, 24 Oct 2025 05:24:21 -0700 (PDT)
+Received: from [192.168.178.36] (213162084087.public.t-mobile.at. [213.162.84.87])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b6d513199d0sm507233366b.37.2025.10.24.05.24.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 24 Oct 2025 05:24:20 -0700 (PDT)
+From: Luca Weiss <luca.weiss@fairphone.com>
+Subject: [PATCH 0/3] Add CAMSS support for SM6350
+Date: Fri, 24 Oct 2025 14:23:58 +0200
+Message-Id: <20251024-sm6350-camss-v1-0-63d626638add@fairphone.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 02/10] net: stmmac: Use interrupt mode INTM=1 for per
- channel irq
-To: Steffen Trumtrar <s.trumtrar@pengutronix.de>,
- Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Dinh Nguyen <dinguyen@kernel.org>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Matthew Gerlach <matthew.gerlach@altera.com>
-Cc: kernel@pengutronix.de, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, Teoh Ji Sheng <ji.sheng.teoh@intel.com>
-References: <20251024-v6-12-topic-socfpga-agilex5-v5-0-4c4a51159eeb@pengutronix.de>
- <20251024-v6-12-topic-socfpga-agilex5-v5-2-4c4a51159eeb@pengutronix.de>
-From: Maxime Chevallier <maxime.chevallier@bootlin.com>
-Content-Language: en-US
-In-Reply-To: <20251024-v6-12-topic-socfpga-agilex5-v5-2-4c4a51159eeb@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Last-TLS-Session-Version: TLSv1.3
+X-B4-Tracking: v=1; b=H4sIAN5v+2gC/y3MQQrDIBCF4avIrDtgjCkkVylZGB3bWWhax5ZAy
+ N0rTZf/g/ftIFSYBCa1Q6EPC6+5RXdR4B8u3wk5tAajzdBpY1HStR80epdEcPRW2yWOPoYA7fI
+ sFHn7cbf57EKvd1PrOcLihNCvKXGdVKat4l/uYT6OLxt3tkuPAAAA
+X-Change-ID: 20251024-sm6350-camss-9c404bf9cfdd
+To: Bryan O'Donoghue <bod@kernel.org>, Robert Foss <rfoss@kernel.org>, 
+ Todor Tomov <todor.too@gmail.com>, 
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>, 
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
+ linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Luca Weiss <luca.weiss@fairphone.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1761308659; l=4216;
+ i=luca.weiss@fairphone.com; s=20250611; h=from:subject:message-id;
+ bh=kWCSqyw+5B5hiollOsuNPCYTsxQeIPv9OUnrObjMnmI=;
+ b=NHiclYXPKKz/rcgdVp4iyUmUFrcV/r1TF8ubxVaEOcwu7DLIpZXQ8et0d+HzrtsCBfndupQUf
+ ab377Y2jJi4A3uCXKnUli3kHhYR4gOignW9Kq+tisvI9wCJ4GvalPFG
+X-Developer-Key: i=luca.weiss@fairphone.com; a=ed25519;
+ pk=O1aw+AAust5lEmgrNJ1Bs7PTY0fEsJm+mdkjExA69q8=
 
-Hi Steffen,
+Add bindings, driver and dts to support the Camera Subsystem on the
+SM6350 SoC.
 
-On 24/10/2025 13:49, Steffen Trumtrar wrote:
-> From: Teoh Ji Sheng <ji.sheng.teoh@intel.com>
-> 
-> commit 6ccf12ae111e ("net: stmmac: use interrupt mode INTM=1
-> for multi-MSI") is introduced for platform that uses MSI.
-> 
-> Similar approach is taken to enable per channel interrupt
-> that uses shared peripheral interrupt (SPI), so only per channel
-> TX and RX intr (TI/RI) are handled by TX/RX ISR without calling
-> common interrupt ISR.
-> 
-> TX/RX NORMAL interrupts check is now decoupled, since NIS bit
-> is not asserted for any TI/RI events when INTM=1.
-> 
-> Signed-off-by: Teoh Ji Sheng <ji.sheng.teoh@intel.com>
-> Signed-off-by: Steffen Trumtrar <s.trumtrar@pengutronix.de>
-> ---
->  drivers/net/ethernet/stmicro/stmmac/dwxgmac2.h       |  3 +++
->  drivers/net/ethernet/stmicro/stmmac/dwxgmac2_dma.c   | 10 +++++++++-
->  .../net/ethernet/stmicro/stmmac/stmmac_platform.c    | 20 ++++++++++++++++++++
->  include/linux/stmmac.h                               |  2 ++
->  4 files changed, 34 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwxgmac2.h b/drivers/net/ethernet/stmicro/stmmac/dwxgmac2.h
-> index 0d408ee17f337..64b533207e4a6 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/dwxgmac2.h
-> +++ b/drivers/net/ethernet/stmicro/stmmac/dwxgmac2.h
-> @@ -326,6 +326,9 @@
->  /* DMA Registers */
->  #define XGMAC_DMA_MODE			0x00003000
->  #define XGMAC_SWR			BIT(0)
-> +#define DMA_MODE_INTM_MASK		GENMASK(13, 12)
-> +#define DMA_MODE_INTM_SHIFT		12
-> +#define DMA_MODE_INTM_MODE1		0x1
->  #define XGMAC_DMA_SYSBUS_MODE		0x00003004
->  #define XGMAC_WR_OSR_LMT		GENMASK(29, 24)
->  #define XGMAC_WR_OSR_LMT_SHIFT		24
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwxgmac2_dma.c b/drivers/net/ethernet/stmicro/stmmac/dwxgmac2_dma.c
-> index 4d6bb995d8d84..1e9ee1f10f0ef 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/dwxgmac2_dma.c
-> +++ b/drivers/net/ethernet/stmicro/stmmac/dwxgmac2_dma.c
-> @@ -31,6 +31,13 @@ static void dwxgmac2_dma_init(void __iomem *ioaddr,
->  		value |= XGMAC_EAME;
->  
->  	writel(value, ioaddr + XGMAC_DMA_SYSBUS_MODE);
-> +
-> +	if (dma_cfg->multi_irq_en) {
-> +		value = readl(ioaddr + XGMAC_DMA_MODE);
-> +		value &= ~DMA_MODE_INTM_MASK;
-> +		value |= (DMA_MODE_INTM_MODE1 << DMA_MODE_INTM_SHIFT);
-> +		writel(value, ioaddr + XGMAC_DMA_MODE);
-> +	}
->  }
->  
->  static void dwxgmac2_dma_init_chan(struct stmmac_priv *priv,
-> @@ -359,13 +366,14 @@ static int dwxgmac2_dma_interrupt(struct stmmac_priv *priv,
->  		}
->  	}
->  
-> -	/* TX/RX NORMAL interrupts */
-> +	/* RX NORMAL interrupts */
->  	if (likely(intr_status & XGMAC_RI)) {
->  		u64_stats_update_begin(&stats->syncp);
->  		u64_stats_inc(&stats->rx_normal_irq_n[chan]);
->  		u64_stats_update_end(&stats->syncp);
->  		ret |= handle_rx;
->  	}
-> +	/* TX NORMAL interrupts */
->  	if (likely(intr_status & (XGMAC_TI | XGMAC_TBU))) {
->  		u64_stats_update_begin(&stats->syncp);
->  		u64_stats_inc(&stats->tx_normal_irq_n[chan]);
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
-> index 27bcaae07a7f2..cfa82b8e04b94 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
-> +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
-> @@ -607,6 +607,8 @@ stmmac_probe_config_dt(struct platform_device *pdev, u8 *mac)
->  	dma_cfg->fixed_burst = of_property_read_bool(np, "snps,fixed-burst");
->  	dma_cfg->mixed_burst = of_property_read_bool(np, "snps,mixed-burst");
->  
-> +	dma_cfg->multi_irq_en = of_property_read_bool(np, "snps,multi-irq-en");
+These patches were tested on a Fairphone 4 smartphone with WIP sensor
+drivers (Sony IMX576 and IMX582), the camera pipeline works properly as
+far as I can tell.
 
-You need to document this property in the binding
+Though when stopping the camera stream, the following clock warning
+appears in dmesg. But it does not interfere with any functionality,
+starting and stopping the stream works and debugcc is showing 426.4 MHz
+while the clock is on, and 'off' while it's off.
 
-> +
->  	plat->force_thresh_dma_mode = of_property_read_bool(np, "snps,force_thresh_dma_mode");
->  	if (plat->force_thresh_dma_mode && plat->force_sf_dma_mode) {
->  		plat->force_sf_dma_mode = 0;
-> @@ -737,6 +739,8 @@ EXPORT_SYMBOL_GPL(stmmac_pltfr_find_clk);
->  int stmmac_get_platform_resources(struct platform_device *pdev,
->  				  struct stmmac_resources *stmmac_res)
->  {
-> +	char irq_name[11];
-> +	int i;
->  	memset(stmmac_res, 0, sizeof(*stmmac_res));
->  
->  	/* Get IRQ information early to have an ability to ask for deferred
-> @@ -746,6 +750,22 @@ int stmmac_get_platform_resources(struct platform_device *pdev,
->  	if (stmmac_res->irq < 0)
->  		return stmmac_res->irq;
->  
-> +	/* For RX Channel */
-> +	for (i = 0; i < MTL_MAX_RX_QUEUES; i++) {
-> +		sprintf(irq_name, "%s%d", "macirq_rx", i);
-> +		stmmac_res->rx_irq[i] = platform_get_irq_byname(pdev, irq_name);
-> +		if (stmmac_res->rx_irq[i] < 0)
-> +			break;
-> +	}
-> +
-> +	/* For TX Channel */
-> +	for (i = 0; i < MTL_MAX_TX_QUEUES; i++) {
-> +		sprintf(irq_name, "%s%d", "macirq_tx", i);
-> +		stmmac_res->tx_irq[i] = platform_get_irq_byname(pdev, irq_name);
-> +			if (stmmac_res->tx_irq[i] < 0)
-> +				break;
-> +	}
+Any suggestion how to fix this, is appreciated.
 
-Same for these irq names
+[ 5738.590980] ------------[ cut here ]------------
+[ 5738.591009] gcc_camera_axi_clk status stuck at 'on'
+[ 5738.591049] WARNING: CPU: 0 PID: 6918 at drivers/clk/qcom/clk-branch.c:87 clk_branch_toggle+0x170/0x190
+[ 5738.591081] Modules linked in:
+[ 5738.591099] CPU: 0 UID: 10000 PID: 6918 Comm: plasma-camera Tainted: G        W           6.17.0-00057-ge6b67db49622 #71 NONE 
+[ 5738.591118] Tainted: [W]=WARN
+[ 5738.591126] Hardware name: Fairphone 4 (DT)
+[ 5738.591136] pstate: 604000c5 (nZCv daIF +PAN -UAO -TCO -DIT -SSBS BTYPE=--)
+[ 5738.591150] pc : clk_branch_toggle+0x170/0x190
+[ 5738.591164] lr : clk_branch_toggle+0x170/0x190
+[ 5738.591177] sp : ffff800086ed3980
+[ 5738.591184] x29: ffff800086ed3990 x28: 0000000000000001 x27: ffff800086ed3cd8
+[ 5738.591208] x26: 0000000000000000 x25: ffffda14fcfbd250 x24: 0000000000000000
+[ 5738.591230] x23: 0000000000000000 x22: ffffda14fc38bce0 x21: 0000000000000000
+[ 5738.591252] x20: ffffda14fd33e618 x19: 0000000000000000 x18: 00000000000064c8
+[ 5738.591274] x17: 0000000000000000 x16: 00001ae003667e9e x15: ffffda14fd2a07b0
+[ 5738.591295] x14: 0000000000000000 x13: 6f27207461206b63 x12: 7574732073757461
+[ 5738.591317] x11: 0000000000000058 x10: 0000000000000018 x9 : ffffda14fd2a0838
+[ 5738.591338] x8 : 0000000000057fa8 x7 : 0000000000000a16 x6 : ffffda14fd2f8838
+[ 5738.591360] x5 : ffff0001f6f59788 x4 : 0000000000000a15 x3 : ffff25ecf9d7e000
+[ 5738.591381] x2 : 0000000000000000 x1 : 0000000000000000 x0 : ffff0000baf5c100
+[ 5738.591403] Call trace:
+[ 5738.591412]  clk_branch_toggle+0x170/0x190 (P)
+[ 5738.591429]  clk_branch2_disable+0x1c/0x30
+[ 5738.591445]  clk_core_disable+0x5c/0xb4
+[ 5738.591462]  clk_disable+0x38/0x60
+[ 5738.591478]  camss_disable_clocks+0x44/0x78
+[ 5738.591496]  vfe_put+0x7c/0xc0
+[ 5738.591512]  vfe_set_power+0x40/0x50
+[ 5738.591528]  pipeline_pm_power_one+0x14c/0x150
+[ 5738.591546]  pipeline_pm_power+0x74/0xf4
+[ 5738.591561]  v4l2_pipeline_pm_use+0x54/0x9c
+[ 5738.591577]  v4l2_pipeline_pm_put+0x14/0x40
+[ 5738.591592]  video_unprepare_streaming+0x18/0x24
+[ 5738.591608]  __vb2_queue_cancel+0x4c/0x314
+[ 5738.591626]  vb2_core_streamoff+0x24/0xc8
+[ 5738.591643]  vb2_ioctl_streamoff+0x58/0x98
+[ 5738.591657]  v4l_streamoff+0x24/0x30
+[ 5738.591672]  __video_do_ioctl+0x430/0x4a8
+[ 5738.591689]  video_usercopy+0x2ac/0x680
+[ 5738.591705]  video_ioctl2+0x18/0x40
+[ 5738.591720]  v4l2_ioctl+0x40/0x60
+[ 5738.591734]  __arm64_sys_ioctl+0x90/0xf0
+[ 5738.591750]  invoke_syscall.constprop.0+0x40/0xf0
+[ 5738.591769]  el0_svc_common.constprop.0+0x38/0xd8
+[ 5738.591785]  do_el0_svc+0x1c/0x28
+[ 5738.591801]  el0_svc+0x34/0xe8
+[ 5738.591820]  el0t_64_sync_handler+0xa0/0xe4
+[ 5738.591838]  el0t_64_sync+0x198/0x19c
+[ 5738.591854] ---[ end trace 0000000000000000 ]---
 
-> +
->  	/* On some platforms e.g. SPEAr the wake up irq differs from the mac irq
->  	 * The external wake up irq can be passed through the platform code
->  	 * named as "eth_wake_irq"
-> diff --git a/include/linux/stmmac.h b/include/linux/stmmac.h
-> index fa1318bac06c4..a8b15b4e3c370 100644
-> --- a/include/linux/stmmac.h
-> +++ b/include/linux/stmmac.h
-> @@ -102,6 +102,7 @@ struct stmmac_dma_cfg {
->  	bool aal;
->  	bool eame;
->  	bool multi_msi_en;
-> +	bool multi_irq_en;
->  	bool dche;
->  	bool atds;
->  };
-> @@ -290,6 +291,7 @@ struct plat_stmmacenet_data {
->  	u8 vlan_fail_q;
->  	struct pci_dev *pdev;
->  	int int_snapshot_num;
-> +	bool multi_irq_en;
+Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+---
+Luca Weiss (3):
+      dt-bindings: media: camss: Add qcom,sm6350-camss
+      media: qcom: camss: Add SM6350 support
+      arm64: dts: qcom: sm6350: Add CAMSS node
 
-This seems to be unused ?
+ .../bindings/media/qcom,sm6350-camss.yaml          | 349 +++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sm6350.dtsi               | 165 ++++++++++
+ .../platform/qcom/camss/camss-csiphy-3ph-1-0.c     | 125 ++++++++
+ drivers/media/platform/qcom/camss/camss-vfe.c      |   2 +
+ drivers/media/platform/qcom/camss/camss.c          | 249 +++++++++++++++
+ drivers/media/platform/qcom/camss/camss.h          |   1 +
+ 6 files changed, 891 insertions(+)
+---
+base-commit: a92c761bcac3d5042559107fa7679470727a4bcb
+change-id: 20251024-sm6350-camss-9c404bf9cfdd
 
->  	int msi_mac_vec;
->  	int msi_wol_vec;
->  	int msi_lpi_vec;
-> 
-Thanks,
+Best regards,
+-- 
+Luca Weiss <luca.weiss@fairphone.com>
 
-Maxime
 
