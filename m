@@ -1,193 +1,167 @@
-Return-Path: <devicetree+bounces-230663-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230664-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34C9BC04E3E
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 09:58:45 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 55337C04E47
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 09:58:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4D0331A619F4
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 07:58:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1713C1A61F4C
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 07:58:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52CBF2F6178;
-	Fri, 24 Oct 2025 07:57:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 027762F7AB9;
+	Fri, 24 Oct 2025 07:57:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZP5q4gcC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f54.google.com (mail-vs1-f54.google.com [209.85.217.54])
+Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 915C32F6168
-	for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 07:57:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D0952F3630
+	for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 07:57:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761292634; cv=none; b=d47I+g+8f5zFDZE7XNPKrI7oTqxX2RvnZdtd6ODp4Y2j8/X5d6uYC8bsrydstZWtPtFCQtBgFo58vB8CIwMmTO+kYEQtp5pmvXUeYb2OYg6aybZWByWgxMiQsWVHYOfQKOYfHXKbTY0UghI+8kcIOsa3Gm4Zfqn7S1jMf/SR72A=
+	t=1761292643; cv=none; b=a9T2KJgtpri+N7cGKIIbKIKMGSUJOmmzze6UT8Z27tgkgpFpV7QiliGXsvrpRgRWH128n2LUjnI5z5g8qmX8kl2XXLC6bi8p66sOWcXfFtBx/6ycZcGv21a1qp+amgUWGX/2nlGibTjuJAYNA3BXYjvXPOLoK8+jB8+oZtjsvA8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761292634; c=relaxed/simple;
-	bh=uni5/q7wgu22e7PzLdPH1ONXX5dFs+/nb2vDY+DwIyE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=DXAnF5Qo596rdYZ8HBg12OAyL9IPCnU13uwm6kWAvBhHcGQRI6D6d4+osA5NlfYraIUfaNtSxBEkqcpMUEnjOw09xUkOXlJu32B8zqXu00Rbwe8dKJiRd0uKjBVbKC/9AWuzAIfCOdVxxl7DcWLh2dFV4fJoXslRWbj4A+VIcww=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+	s=arc-20240116; t=1761292643; c=relaxed/simple;
+	bh=TJaSEjKE+CKYl2acjXXkTcFRDFXy50ypbA4mzY0NH34=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=kJFK7gFTYn/4/8ehPSK8gISeaX+ymrBEv/TiEh0XkVuooJV9/3PuKIGlpU8U9oSA1TlXCVTeKkToB5X4VUI8kiI1gWuKwx0aTRIjGdAeqDdDq9cnwltnBQVnZvTTGhBhWamoLVimKbrQhOnDiWosHoEkY8FOMIP+HyED4HpM31Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZP5q4gcC; arc=none smtp.client-ip=209.85.214.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vs1-f54.google.com with SMTP id ada2fe7eead31-5db4006eb0fso310504137.2
-        for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 00:57:12 -0700 (PDT)
+Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-290aaff555eso17453175ad.2
+        for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 00:57:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1761292640; x=1761897440; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=s87dYxMf5XJtMF4s03dPIhXUNwiwE7LkdwCFsT1npMU=;
+        b=ZP5q4gcC3LSh6fJQQ85cMsl7bxppXPLHfNYddjsG0af6n4jP0Dc3q8Nfl/2viNFiYa
+         O+Etl9RqCFto7gkF1eTpD/hgIsgqVghg5vevZWX991MuDhDI760Si2hxkDfwtUgJvaK3
+         BqQsn/4/RY9bEcHl9aM9zaU8Po00rhKhus8ElAV06Dqu1tWePZdrCFbbSf4TBJMvT2Nj
+         Rzo0IonbvFZQ/hzSXDXJmCU5aZSm/ZEcikjzIEQaELergGpW/b4LeODvZ+K7U+bLDHiw
+         K+y61wf+q1UyHyfySZY4r3mKrKv3dKDm1FxVGkx1+ogDVLH7zsaP5ivJnncNCllelIO7
+         2bIg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761292631; x=1761897431;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1761292640; x=1761897440;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=2H0+Y+0nbHCT1nPmHP2N1suTimvZ79Q7MXGtF4XoMw0=;
-        b=vZNWuUnBAEGQFgT2Xs+KNI6m9v1U+vTUjhX0k0rmz3vcPBSGFpOgfzc0KGom8JyV0z
-         tgEeyAXI+LCSO4wCExFnFQY6aV9OTsGkK41mOkvDx9fRLlQxDl4DUfcKtZDfqfrT5g90
-         GwEBvyVFK02hrWYkeZNnyVHh9cGFTmUE5GMR8x2QblLxX2Fue9dyE1qLPoDyXGwJmTEK
-         1oSYW7FN8QcKIvdOGzDoXndvd2xYSICai3bzldDR4/uh2LrehJbtvL5NIUVa6C0Y4R/p
-         Ksblp+HWjlbbtHhTmxZFN3YFVOfwdRibrHm4NhY0i0J9K2UEusxZx9/RFTIEXD9e2mbI
-         ZYiQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVKIJBQ4Mp1FbVQFEwX4oEMoZu+Joq8QQi59ssJ5VrFMts/AWw+dV8fK4zLFLhItOUwQ54rWk043KBM@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz6m2R/xq6eQPkAIxDuGgt0cY1ZnUDHN9wVK0au8OXyCSOAfZL+
-	i+pDamHJJ6IDHw7cAsiFCRRg6FzgKOWgC8VcIZkOJ/0hBonfatIPENKLE8tTydSt
-X-Gm-Gg: ASbGncsNScHW8VAXnDJWdPJQfZuXT3haOKm2PNKcpLSGmI0AcCSfi62OTFm8gnidfVj
-	4J6wx5fXb2u9YgvX6PWEfcR5uKsYNFjOzss/0FVtKIzvkCwLBOjFk33SsMAJ7crwvLA3xUs+RHi
-	Al9VBu3SufDyVS/mbpdkqGxOeKL4NW7rYZGMd17fWi/+8PiY7+KgVjmZtKq8hK+/Kt7f1eaJw75
-	ZaQqEr8WIbWQhieF+fxrIU6pMiJ87C/c57T3aghpYltWUB1JMb4fR+E+Ro2lCV5u/3sc72wvh9R
-	ffO1Wnszw6e9PCeX9B1q1I6seUXTN+QKP0dTbmMZcsaOtPixFHekfRieuGTGuaVKal6wXRKFS2Z
-	4f8haRR3sCBfPzP+6naatVQpHIJc437xvbvOk9RyenSjzjvfwjQ0JV7tAgFpS41jTbH+Mn/ETUC
-	nkAlQEYTN2X+Z3fftatYowfqeQbiAbvD1uo+rlqtWjwcmavnwVKavlnPt2O9k=
-X-Google-Smtp-Source: AGHT+IEjgj/YYEBVHZTGTusHwkSIm5x45g1XLkCDZDZrfR1zZv49pbCD+kB3b1X1FK8uy7psXmUsIg==
-X-Received: by 2002:a05:6102:50a3:b0:5db:2f62:c15 with SMTP id ada2fe7eead31-5db2f621029mr1782624137.41.1761292631184;
-        Fri, 24 Oct 2025 00:57:11 -0700 (PDT)
-Received: from mail-vs1-f46.google.com (mail-vs1-f46.google.com. [209.85.217.46])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-934abbd2740sm1785954241.16.2025.10.24.00.57.09
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 24 Oct 2025 00:57:09 -0700 (PDT)
-Received: by mail-vs1-f46.google.com with SMTP id ada2fe7eead31-5db4006eb0fso310471137.2
-        for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 00:57:09 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCXIw+2G53K6ss2Lpegjoq7De4y4/nCz9bFfAfBpi60lIZhMtGCe9xTrjpRPSoEH+Ow5B5XCNrSw3wvp@vger.kernel.org
-X-Received: by 2002:a05:6102:50a3:b0:5db:2f62:c15 with SMTP id
- ada2fe7eead31-5db2f621029mr1782604137.41.1761292628800; Fri, 24 Oct 2025
- 00:57:08 -0700 (PDT)
+        bh=s87dYxMf5XJtMF4s03dPIhXUNwiwE7LkdwCFsT1npMU=;
+        b=BHNOKBdnc52AnvFjJG9jbF0EcKMxL/5JsShz5PiHITqtp5O43WXu/LL+SrTKmx11Ci
+         Z49zRe/rdDBv5gO6t4KqfwqB2YvbdknVsqeffhT05uLjUVaRO+qVzI2rdR/ZhPeE9QHu
+         A4Ixs/D1n0SK0dZ5silacCv+8pQb+12SCCw1NhVLnOpK2J9dLmhXKBgV8Um6Gc5Qhd9p
+         fSK9DWrITEmfrCcEEVMhA38f1Joz/GkVzhW18m+nWDQowWcNKVQDVspQRFgn7C5nWDOs
+         7PhpHSRS16Yx3yEJvHEjYZ3uWmIhu26DmrnUJ5xL2vzVpC46upt+/sIwLLY6ot4FbO1K
+         WiWQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUP8dGD0IFC8B81TzkGHZmneGTKLqrDMaoAGzL3vt6aNnc5LbOf2GHYeBfkwLLu01JaXPwPsy9bCiOB@vger.kernel.org
+X-Gm-Message-State: AOJu0YyW8DZbVkyx+X3X32lb8ibopn/Q1chQRJoz/hAHK3JxDMvrPlua
+	K7IOPtq6f+xeMC4YJ3i3xv6aUSpdyB0xEm63PwxjC+EIRtPN5P7fYWOR
+X-Gm-Gg: ASbGncsm3H6GpJg/VGiegPsKSGcOEHBxKkgcFY2YdXZ8q1ZHFZPbHIVGY4bY6UfPgfM
+	eG0dSZovMu61wTA69gQJ0TrMGUfxUKLeimF7ss8AmVDtK9M16d6uEFMmFX1/xlpoXL2n3zILHrX
+	JMHYrAeyV4xPMKO3A594yION6gtUPX/28ukY0v+ClxN5y8P/n7nIg9+h5dGlVJI6eY7KtfYvoUf
+	W+a0NbyD4b/u4zUsxhx0OznvFFLeU1VxVfZbjY9cdjQ3xulsMd1Kz5eauNw+nBXn/wfgu2y7NMc
+	Ie2ht1o+9NW9HAoWLeUX1tuLqvZje9NwspV7qfnB0UqeCCoaOW2V8L6XfZPflo6mfvte6p6Y04+
+	MHER7ZOLVaKwJNbbr4JWzEnvlRuw1EK7R/028/6XNeGFE8WdUfmVwPoh/MMXP5yh0ujso4VxmvM
+	CEMfS/7X5lMIaWFo6wV/DWmXOhniJFgEA=
+X-Google-Smtp-Source: AGHT+IEdrf9PFaVdu2IVtpCx1gbcOMrajzzsslPU/SnB8ZKTCBPtAF+KqI/4qBnjQdn1ghA3PMmmeA==
+X-Received: by 2002:a17:903:8c7:b0:26b:3aab:f6bf with SMTP id d9443c01a7336-290cc2f83fcmr355173915ad.42.1761292640576;
+        Fri, 24 Oct 2025 00:57:20 -0700 (PDT)
+Received: from Black-Pearl.localdomain ([27.7.191.116])
+        by smtp.googlemail.com with ESMTPSA id d9443c01a7336-2946dfd045esm46608205ad.64.2025.10.24.00.57.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 24 Oct 2025 00:57:20 -0700 (PDT)
+From: Charan Pedumuru <charan.pedumuru@gmail.com>
+Subject: [PATCH v5 0/3] dt-bindings: mmc: ti,omap2430-sdhci: Add json
+ schema for the text binding
+Date: Fri, 24 Oct 2025 07:57:07 +0000
+Message-Id: <20251024-ti-sdhci-omap-v5-0-df5f6f033a38@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251022070543.1169173-1-ryan_chen@aspeedtech.com>
- <20251022070543.1169173-5-ryan_chen@aspeedtech.com> <b5441728-06a7-44ea-8876-3a9fc3cf55be@app.fastmail.com>
- <TY2PPF5CB9A1BE626A2F0F6307461D8F64BF2F0A@TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com>
- <6a97fbb4-19c2-4ffa-9c73-26aea02c27e4@app.fastmail.com>
-In-Reply-To: <6a97fbb4-19c2-4ffa-9c73-26aea02c27e4@app.fastmail.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 24 Oct 2025 09:56:57 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXTZZK-Tk0gerpARfr+jUNGPhEfRqGOtTvTTJp=SZ2ayg@mail.gmail.com>
-X-Gm-Features: AWmQ_bnSAouTBsQ6YdE-Y1_3m37NwmxEYp_NrgytrqguGhvssb4gZifd3I_f9eg
-Message-ID: <CAMuHMdXTZZK-Tk0gerpARfr+jUNGPhEfRqGOtTvTTJp=SZ2ayg@mail.gmail.com>
-Subject: Re: [PATCH v6 4/6] arm64: dts: aspeed: Add initial AST2700 SoC device tree
-To: Arnd Bergmann <arnd@arndb.de>
-Cc: Ryan Chen <ryan_chen@aspeedtech.com>, BMC-SW <BMC-SW@aspeedtech.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@codeconstruct.com.au>, 
-	Jeremy Kerr <jk@codeconstruct.com.au>, Lee Jones <lee@kernel.org>, 
-	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
-	Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>, Nishanth Menon <nm@ti.com>, 
-	=?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= <nfraprado@collabora.com>, 
-	Taniya Das <quic_tdas@quicinc.com>, 
-	"Lad, Prabhakar" <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
-	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>, Eric Biggers <ebiggers@kernel.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
-	"linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAFQx+2gC/13QwWoDIRDG8VcJnjtBR121p75H6MG6Y3agmw1rk
+ JSw714TShM8fgO//2FuotDKVMT77iZWqlx4ObVh33YiTfF0JOCxbYESrbQqwIWhjFNiWOZ4hiB
+ d9sZlZ7UUzZxXynx99A6fbU9cLsv688hXdb/+lVB3papAwRBsGohics5/HOfI3/u0zOJeqvjUQ
+ fpeI0hwGND5II3H3Gv9r5VUqte66WC8o4wjWRt6bV51/4Nqms5jGnSM9CW9ftXbtv0CjbTk9mQ
+ BAAA=
+X-Change-ID: 20250519-ti-sdhci-omap-907f847f7530
+To: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Paul Barker <paul.barker@sancloud.com>, 
+ Marc Murphy <marc.murphy@sancloud.com>, Tony Lindgren <tony@atomide.com>, 
+ Kishon Vijay Abraham I <kishon@kernel.org>
+Cc: linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org, 
+ Charan Pedumuru <charan.pedumuru@gmail.com>
+X-Mailer: b4 0.14.3
 
-On Thu, 23 Oct 2025 at 22:11, Arnd Bergmann <arnd@arndb.de> wrote:
-> On Thu, Oct 23, 2025, at 09:37, Ryan Chen wrote:
-> >> > +  aliases {
-> >> > +          serial0 = &uart0;
-> >> > +          serial1 = &uart1;
-> >> > +          serial2 = &uart2;
-> >> > +          serial3 = &uart3;
-> >> > +          serial4 = &uart4;
-> >> > +          serial5 = &uart5;
-> >> > +          serial6 = &uart6;
-> >> > +          serial7 = &uart7;
-> >> > +          serial8 = &uart8;
-> >> > +          serial9 = &uart9;
-> >> > +          serial10 = &uart10;
-> >> > +          serial11 = &uart11;
-> >> > +          serial12 = &uart12;
-> >> > +          serial13 = &uart13;
-> >> > +          serial14 = &uart14;
-> >> > +  };
-> >>
-> >> This looks like you just list all the uarts that are present on the chip, which is
-> >> not how the aliases are meant to be used. Move this block into the board
-> >> specific file and only list the ones that are actually enabled on that particular
-> >> board.
-> >>
-> >> In particular, the alias names are meant to be local to the board and don't
-> >> usually correspond to the numbering inside of the chip. In the defconfig, we
-> >> currently set CONFIG_SERIAL_8250_NR_UARTS=8, which is enough for any
-> >> board we support so far, but that means only the first
-> >> 8 aliases in the list will actually work.
-> >
-> > Understood. I'll move the aliases block from the SoC dtsi into the
-> > EVB board dts. For the EVB, UART12 is used as the default console,
-> > and the board labels match the SoC numbering, so I plan to keep:
-> >
-> > Does that look acceptable?
-> > ast2700-evb.dts
-> >       aliases {
-> >               serial0 = &uart0;
-> >               serial1 = &uart1;
-> >               serial2 = &uart2;
-> >               serial3 = &uart3;
-> >               serial4 = &uart4;
-> >               serial5 = &uart5;
-> >               serial6 = &uart6;
-> >               serial7 = &uart7;
-> >               serial8 = &uart8;
-> >               serial9 = &uart9;
-> >               serial10 = &uart10;
-> >               serial11 = &uart11;
-> >               serial12 = &uart12;
-> >               serial13 = &uart13;
-> >               serial14 = &uart14;
-> > }
->
-> I think this would be broken for the defconfig if the consol is
-> on serial12. I would recommend using serial0 as the console, like
->
-> aliases {
->        serial0 = &uart12;
-> }
->
-> in this case. If additional uarts are enabled, add those as
-> further aliases.
+Create a YAML binding for ti,omap2430-sdhci and fix vmmc-supply
+property typo for a DTS file.
 
-Indeed. Are all these serial ports exposed on the board?
-Aliases is mean to list only the ones that are exposed, and the alias
-number should match the label on the board/port ("serialN", "debugN",
-...), ideally.
+Signed-off-by: Charan Pedumuru <charan.pedumuru@gmail.com>
+---
+Changes in v5:
+- Removed "ti,needs-special-reset", "ti,needs-special-hs-handling" and
+  "cap-mmc-dual-data-rate" properties from sdhci node and YAML.
+- Removed if conditon for the property "ti,needs-special-reset" from YAML.
+- Link to v4: https://lore.kernel.org/r/20251019-ti-sdhci-omap-v4-0-fdc63aaeb083@gmail.com
 
-Typically only a few ports are exposed, so you may end up with something like:
+Changes in v4:
+- Removed type for the property pinctrl-names.
+- Link to v3: https://lore.kernel.org/r/20251011-ti-sdhci-omap-v3-0-9487ef2de559@gmail.com
 
-arch/arm64/boot/dts/renesas/rzg3s-smarc.dtsi:           serial0 = &scif1;
-arch/arm64/boot/dts/renesas/rzg3s-smarc.dtsi:           serial1 = &scif3;
-arch/arm64/boot/dts/renesas/rzg3s-smarc.dtsi:           serial3 = &scif0;
+Changes in v3:
+- Reverted the changes on removing ti,needs-special-reset, ti,needs-special-hs-handling
+  cap-mmc-dual-data-rate from the DTS.
+- Fixed a typo to resolve the errors identified by dtb_check.
+- Changed commit message to justify the modified changes.
+- Defined if-then statements for compatibles to add required properties.
+- Removed "ti-hwmods" property from the YAML.
+- Link to v2: https://lore.kernel.org/r/20250908-ti-sdhci-omap-v2-0-72927890482f@gmail.com
 
-I deliberately picked this example, as it shows how the serialN
-numbering does not need to match the scifM (or uartM) numbering.
+Changes in v2:
+- Changed MAINTAINERS to "Kishon Vijay Abraham".
+- Renamed the YAML file name to "ti,omap2430-sdhci.yaml" from
+  "sdhci-omap.yaml".
+- Dropped unnecessary or unused properties from DTS and made these
+  changes as a seperate commit as there is no user of it.
+- Removed previously defined properties like ti,needs-special-reset,
+  ti,needs-special-hs-handling and cap-mmc-dual-data-rate from the YAML.
+- Changed the commit message to elaborate the reasons for modifications.
+- Removed the pattern property for pinctrl and redefined it in a regular format.
+- Modified the description of the property "clock-frequency".
+- Changed the subject line for the binding patch.
+- Link to v1: https://lore.kernel.org/r/20250523-ti-sdhci-omap-v1-1-695c6eeac778@gmail.com
 
-Gr{oetje,eeting}s,
+---
+Charan Pedumuru (3):
+      arm: dts: ti: omap: am335x-pepper: Fix vmmc-supply property typo
+      arm: dts: ti: omap: Drop unnecessary properties for SDHCI node
+      dt-bindings: mmc: ti,omap2430-sdhci: convert to DT schema
 
-                        Geert
+ .../devicetree/bindings/mmc/sdhci-omap.txt         |  43 ------
+ .../devicetree/bindings/mmc/ti,omap2430-sdhci.yaml | 169 +++++++++++++++++++++
+ arch/arm/boot/dts/ti/omap/am335x-pepper.dts        |   2 +-
+ .../ti/omap/am335x-sancloud-bbe-extended-wifi.dts  |   1 -
+ arch/arm/boot/dts/ti/omap/am33xx-l4.dtsi           |   2 -
+ arch/arm/boot/dts/ti/omap/am33xx.dtsi              |   1 -
+ arch/arm/boot/dts/ti/omap/am4372.dtsi              |   1 -
+ arch/arm/boot/dts/ti/omap/am437x-l4.dtsi           |   2 -
+ arch/arm/boot/dts/ti/omap/am5729-beagleboneai.dts  |   2 -
+ arch/arm/boot/dts/ti/omap/am57xx-cl-som-am57x.dts  |   1 -
+ 10 files changed, 170 insertions(+), 54 deletions(-)
+---
+base-commit: ed61cb3d78d585209ec775933078e268544fe9a4
+change-id: 20250519-ti-sdhci-omap-907f847f7530
 
+Best regards,
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+Charan Pedumuru <charan.pedumuru@gmail.com>
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
 
