@@ -1,68 +1,66 @@
-Return-Path: <devicetree+bounces-230974-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230975-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB630C083C0
-	for <lists+devicetree@lfdr.de>; Sat, 25 Oct 2025 00:22:45 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C0CDEC0847A
+	for <lists+devicetree@lfdr.de>; Sat, 25 Oct 2025 01:12:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 8DB5B4E1A6F
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 22:22:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E69D61C8700E
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 23:12:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9146D309F14;
-	Fri, 24 Oct 2025 22:22:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54A2930CDA1;
+	Fri, 24 Oct 2025 23:11:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JbHTXBsI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vMc8uwQa"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 631552248A5;
-	Fri, 24 Oct 2025 22:22:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28DAE303A38;
+	Fri, 24 Oct 2025 23:11:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761344562; cv=none; b=EBqrlbeRKqIr67QHQ8roxjl+akztY2Yx2hxqF6iKu0HjVS1xjLdOgRJksa5nW7Xoutj+t0nJ3osnSZbOdRt90g/1/DHrd5SeNKqpZrURE8GkaErSE1miVcW7CfNaE5v5lYtohztNdEqwanCyJRHKhixRRMDj5k/FlGLQEiCl6AU=
+	t=1761347517; cv=none; b=iqaOrbgmgYGYQ8L0QpVzqv9WvkoEOIPTy/kvs3jOm5lL9aacq4cANUzBjESHTAuOn7HnkQSgEnqo9Cb85a2EHVofHbu2CA/5KA87jl1KJXPC5ksUIM2eZaEY09Xr96Ws7r3/sfYBHn/RqsNwwZTgPPNc6ayhqxeRuAYDDR3/bfw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761344562; c=relaxed/simple;
-	bh=x0eiuXrdmTl6hh6U1I+z1v6iUg7ks7RxigDFkDZWKbo=;
+	s=arc-20240116; t=1761347517; c=relaxed/simple;
+	bh=F1LhiwGp0x3wM8SAKbj7UnEIjjud2a8/8+rDH/aYbsk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iLDPU1XmqnbgoQ58iainDa0HQLKhzHMvucM/us1YmQhT2apHQt0uWdrXeHlYtWs6k6oCcBRpOheLB/h+khcdJjYl1WEbiSradq2uBVeSacpaAwJ32Pz8pg4cw91qEKuZlW6+iTTA1u9oEmXYtuodGGzrym5/OOyBkIq+dFLTKfU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JbHTXBsI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F373C4CEF1;
-	Fri, 24 Oct 2025 22:22:41 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=tO2DdkVCUrQuIAyOv2Vu72XvKZyy0vuc9hqzEbxWiBBnZDukWHEoV9vQx4vsXRCUSuAACC+vgiU44LRnllXP3LpcT4J7X9zlBVp/PxaHu2VzEKpPYAGwDmq4ma82JSctdh4keFexsWYNkcfOwlBXRVFGBxNnYYMgElqOa8zHGXg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vMc8uwQa; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 72E58C4CEF1;
+	Fri, 24 Oct 2025 23:11:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1761344561;
-	bh=x0eiuXrdmTl6hh6U1I+z1v6iUg7ks7RxigDFkDZWKbo=;
+	s=k20201202; t=1761347516;
+	bh=F1LhiwGp0x3wM8SAKbj7UnEIjjud2a8/8+rDH/aYbsk=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=JbHTXBsIXMb6emK76hDcATn+fSmBmiiQuVccYbvGBtu7/wJZuAsixrnMSPui1bXuB
-	 hvuLm1UHbXY68wuMBX94ZrI7r03On5Bj9kUyr0lXHU8azoIns2kQw+UsI1XnbbNECj
-	 1TIv3cCpoFGUF0yAJPV+LGfi0UJUBPtuMiXNZIf/aTEeFPSHr+B326vjKDpQZCAVTt
-	 s82D4TcOJ4DEVnBT/fT9IvB2svXVymb1WEFTSJLimZRJeFDqGrBqS8SwkoZX/IB2rN
-	 LH0r65oLfsfTBw+e76G4BdjGL6qUxjBC4VTsyODZ+cPA353GUBdv7d1Yc6wZu59dQ+
-	 Yr3LjJfQVu/bQ==
-Date: Fri, 24 Oct 2025 17:22:39 -0500
+	b=vMc8uwQa2ZrwjDbFF6Ktnl5l6b3YVFOifLfJacDlgvv45EyGN3Y6vPdMmdK2BrXsK
+	 TiBckurBINKotx8ovqoOOPI0fnqJVuVhO8YOdPW8TSaySjdDMzuWxcuc7wNk/kVPsA
+	 5N/yiuZvGf9TKL4dFHeNX0PtjsF+lZKSi+uU0JkK5LwpUGassFriVhIqO8Sp42MLdR
+	 X03nJP9dqgLarDzc4Mh3tXRP3Eb7pU2YqiYW+ig73LkP9XGIhABgXfL9+6rWojAguE
+	 OwAL6gnIeuecSfwRAT3vMeZjGTVJE5/x/RjVcBdJNTSV2vOjIDb8Xk7ILwlgo/qJdu
+	 mbg0SpRIpe76w==
+Date: Fri, 24 Oct 2025 18:11:54 -0500
 From: Rob Herring <robh@kernel.org>
-To: Conor Dooley <conor@kernel.org>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>, hehuan1@eswincomputing.com,
-	krzk+dt@kernel.org, conor+dt@kernel.org, jszhang@kernel.org,
-	adrian.hunter@intel.com, p.zabel@pengutronix.de,
-	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, ningyu@eswincomputing.com,
-	linmin@eswincomputing.com, pinkesh.vaghela@einfochips.com,
-	xuxiang@eswincomputing.com, luyulin@eswincomputing.com,
-	dongxuyang@eswincomputing.com, zhangsenchuan@eswincomputing.com,
-	weishangjuan@eswincomputing.com, lizhi2@eswincomputing.com,
-	caohang@eswincomputing.com,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: Re: [PATCH v5 1/2] dt-bindings: mmc: sdhci-of-dwcmshc: Add Eswin
- EIC7700
-Message-ID: <20251024222239.GA2902515-robh@kernel.org>
-References: <20251019115133.300-1-hehuan1@eswincomputing.com>
- <20251019115238.320-1-hehuan1@eswincomputing.com>
- <CAPDyKFqGwTF2w2JfqOuxMt6m_YJOYhqoUaQXyZALRu94W3fGkQ@mail.gmail.com>
- <20251024-aghast-poster-82ee7aa7fdca@spud>
- <20251024-polyester-gatherer-e7f5e4300262@spud>
+To: Ryan Chen <ryan_chen@aspeedtech.com>
+Cc: Thomas Gleixner <tglx@linutronix.de>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>,
+	"jk@codeconstruct.com.au" <jk@codeconstruct.com.au>,
+	Kevin Chen <kevin_chen@aspeedtech.com>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>
+Subject: Re: [PATCH v5 1/3] dt-bindings: interrupt-controller:
+ aspeed,ast2700: Add support for INTC hierarchy
+Message-ID: <20251024231154.GA2962687-robh@kernel.org>
+References: <20251022065507.1152071-1-ryan_chen@aspeedtech.com>
+ <20251022065507.1152071-2-ryan_chen@aspeedtech.com>
+ <20251022135101.GA3349934-robh@kernel.org>
+ <TY2PPF5CB9A1BE674594566C13B8D8B2984F2F0A@TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,113 +69,85 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251024-polyester-gatherer-e7f5e4300262@spud>
+In-Reply-To: <TY2PPF5CB9A1BE674594566C13B8D8B2984F2F0A@TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com>
 
-On Fri, Oct 24, 2025 at 10:47:34PM +0100, Conor Dooley wrote:
-> On Fri, Oct 24, 2025 at 05:37:59PM +0100, Conor Dooley wrote:
-> > On Fri, Oct 24, 2025 at 03:57:33PM +0200, Ulf Hansson wrote:
-> > > On Sun, 19 Oct 2025 at 13:52, <hehuan1@eswincomputing.com> wrote:
-> > > >
-> > > > From: Huan He <hehuan1@eswincomputing.com>
-> > > >
-> > > > EIC7700 use Synopsys dwcmshc IP for SD/eMMC controllers.
-> > > > Add Eswin EIC7700 support in sdhci-of-dwcmshc.yaml.
-> > > >
-> > > > Signed-off-by: Huan He <hehuan1@eswincomputing.com>
-> > > > Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-> > > > ---
-> > > >  .../bindings/mmc/snps,dwcmshc-sdhci.yaml      | 57 +++++++++++++++++--
-> > > >  1 file changed, 51 insertions(+), 6 deletions(-)
-> > > >
-> > > > diff --git a/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml b/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
-> > > > index f882219a0a26..7e7c55dc2440 100644
-> > > > --- a/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
-> > > > +++ b/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
-> > > > @@ -30,6 +30,7 @@ properties:
-> > > >            - sophgo,sg2002-dwcmshc
-> > > >            - sophgo,sg2042-dwcmshc
-> > > >            - thead,th1520-dwcmshc
-> > > > +          - eswin,eic7700-dwcmshc
-> > > >
-> > > >    reg:
-> > > >      maxItems: 1
-> > > > @@ -52,17 +53,30 @@ properties:
-> > > >      maxItems: 5
-> > > >
-> > > >    reset-names:
-> > > > -    items:
-> > > > -      - const: core
-> > > > -      - const: bus
-> > > > -      - const: axi
-> > > > -      - const: block
-> > > > -      - const: timer
-> > > > +    maxItems: 5
-> > > >
-> > > >    rockchip,txclk-tapnum:
-> > > >      description: Specify the number of delay for tx sampling.
-> > > >      $ref: /schemas/types.yaml#/definitions/uint8
-> > > >
-> > > > +  eswin,hsp-sp-csr:
-> > > > +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> > > > +    items:
-> > > > +      - items:
-> > > > +          - description: Phandle to HSP(High-Speed Peripheral) device
-> > > > +          - description: Offset of the stability status register for internal
-> > > > +                         clock.
-> > > > +          - description: Offset of the stability register for host regulator
-> > > > +                         voltage.
-> > > > +    description:
-> > > > +      HSP CSR is to control and get status of different high-speed peripherals
-> > > > +      (such as Ethernet, USB, SATA, etc.) via register, which can tune
-> > > > +      board-level's parameters of PHY, etc.
-> > > 
-> > > I would like second confirmation from DT maintainers, to make sure
-> > > it's reasonable to model the HW like this.
-> > 
-> > If by second confirmation, you mean by someone other than me, obviously
-> > ignore this, but I think this is "fine". It discussed on a previous
-> > revision that all is being done with it is setting a handful bits that
-> > signify that the peripheral has been configured correctly.
-> > 
-> > That said, I don't have a clue what's going on with the warning about
-> > the dwmac device. That's definitely one for Rob.
+On Thu, Oct 23, 2025 at 06:57:01AM +0000, Ryan Chen wrote:
+> Hello Rob.
+> 	Thank you for your detailed review and comments.
 > 
-> Apparently it's just as simple as there being more than one definition
-> of the same property. I had it in my head that that was okay when only
-> one binding was applied to the node, but clearly not.
+> > Subject: Re: [PATCH v5 1/3] dt-bindings: interrupt-controller: aspeed,ast2700:
+> > Add support for INTC hierarchy
+> > 
+> > On Wed, Oct 22, 2025 at 02:55:05PM +0800, Ryan Chen wrote:
+> > > AST2700 contains two-level interrupt controllers (INTC0 and INTC1),
+> > > each with its own register space and handling different sets of
+> > > peripherals.
+> > 
+> > This is a mess!
+> > 
+> > How does this relate to the existing "aspeed,ast2700-intc-ic"? Its schema has a
+> > block diagram of connections which I can understand. This does not.
+> > 
+> > The use of child nodes here is questionable. A variable number of interrupt
+> > banks is not a reason to have child nodes. I'm only guessing that's what's
+> > happening here because you haven't explained it.
 > 
-> I'll have to un-review it until that error is sorted out.
+> Let me clarify the hardware structure and the purpose of these bindings.
+> 
+> The AST2700 SoC includes two top-level interrupt controller modules,
+> INTC0 and INTC1. (aspeed,ast2700-intc0, aspeed,ast2700-intc1)
+> Each of them provides routing selection and register protection
+> features.
+> Within each INTCx block, there are multiple sub-blocks called
+> intc-ic, each handling multi-interrupt sources.
+> ("aspeed,ast2700-intc0-ic", "aspeed,ast2700-intc1-ic")
+> 
+> Cascading occurs between the child banks:
+> Level 1 : intc0-ic have multi-interrupts connect to GIC (root)
+> Level 2 : multi Intc1-ic# connect to intc0-ic
+> The parent intc0/1 nodes expose register regions for routing and
+> protection control, serving as containers for their intc-ic children.
 
-This binding is fine. The error is in the eswin,eic770-eth.yaml binding:
+Being a 2nd vs. 3rd level interrupt controller is not a reason for 
+different compatibles. The programming model is obviously the same for 
+both as you essentially have 0 driver changes. Having N banks of 32 
+interrupts vs. 1 bank of 32 interrupts is not a reason to have multiple 
+intcN-ic nodes. That is a very common difference between instances of 
+the same interrupt controller such as the GIC.
 
-  eswin,hsp-sp-csr:
-    $ref: /schemas/types.yaml#/definitions/phandle-array
-    items:
-      - description: Phandle to HSP(High-Speed Peripheral) device
-      - description: Offset of phy control register for internal
-                     or external clock selection
-      - description: Offset of AXI clock controller Low-Power request
-                     register
-      - description: Offset of register controlling TX/RX clock delay
-    description: |
-      High-Speed Peripheral device needed to configure clock selection,
-      clock low-power mode and clock delay.
+What you need to do is simply extend your driver to support N banks of 
+32 interrupts. That's what almost every other irqchip driver with more 
+than 32 interrupts does. If you are lucky, then the offset to each 
+bank's registers is just hwirq/32 * <bank stride> and the number of 
+banks can be calculated from the length of 'reg'. If you are not 
+lucky, then you could put 1 'reg' entry for each bank.
 
+AFAICT, the existing binding in aspeed,ast2700-intc.yaml should work for 
+you.
 
-The issue here is phandle-array is really a matrix and an outer 'items' 
-is needed to say there is 1 entry with 4 cells. Like this:
+> 
+> The following simplified diagram shows the hierarchy:
+> 
+> 
+>                                  +----------+       +----------+
+>                                  |  intc0   |       |  intc1   |
+> - - - - - - - - - - - - - - - - -+---- -----+- -  - +------ - -+
+>   +-----------------------+      |          |       |          |
+>   | +-------+ +---------+ |      |          |       |          |
+>   | |       | |         | |      |          |       |          |
+>   | |  PSP  +-+ GIC     | |      |          |       |          |
+>   | |       | |         | |      |          |       |          |
+>   | +-------+ |         | |      |          |       |          |
+>   |           |         | |      +----------+       |          |
+>   |           | 192~201 <-|------+          <-------+ intc1-ic |
+>   |           +---------+ |      |          |       |          |
+>   +-----------------------+      | intc0-ic <-------+ intc1-ic |
+>                                  |          |       |          |
+>                                  | 			<-------+ intc1-ic |
+>                                  +----------+		  .....
 
-items:
-  - items:
-      - description: ...
-      - description: ...
-      - description: ...
-      - description: ...
-
-Please send a fix for that.
-
-The tools could handle this case better, so I'll look into a fix for 
-them.
+You already match on intc0 and handle 32 interrupts. Now you are adding 
+intc0-ic to match on and handling the same 32 interrupts?
 
 Rob
 
