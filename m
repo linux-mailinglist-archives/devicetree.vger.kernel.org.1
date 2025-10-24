@@ -1,144 +1,168 @@
-Return-Path: <devicetree+bounces-230737-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230738-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4ECBDC0553F
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 11:28:04 +0200 (CEST)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id E60ADC054DC
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 11:21:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B55BB401BEE
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 09:18:28 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 83924359610
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 09:21:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 019063081A2;
-	Fri, 24 Oct 2025 09:18:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1C843093C1;
+	Fri, 24 Oct 2025 09:21:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=thorsis.com header.i=@thorsis.com header.b="TEU/zPnV"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jsmJtpGZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.thorsis.com (mail.thorsis.com [217.92.40.78])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD557207A22;
-	Fri, 24 Oct 2025 09:18:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.92.40.78
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF6F6307AD9
+	for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 09:21:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761297504; cv=none; b=ai1GPf5eDwb3QPP3OcyVFXPEtIL8MneLf0ykewhpO3ZitaSIwZC7LpEA7VCt9sHUmborVto+sSDo+o/aoXRZpbh3AeEbj06Zdhxlu+jdaHdc4oqtHBMaxTGFVDejZiMiGLMbHWLbmMZ7Ma7yxPJnVlhMOHEbnkHJykiCKJhlxmI=
+	t=1761297690; cv=none; b=CWrrk0jVMlvDmiwpnoFBxRLR/3cMRgDbJNVBesHIqSgUuHkg/mpgov0bQ8asIkVAZJ2zykVGXGyZ3ruYzGEhjBkv2EzxGk2bil6/zdnlqqVeuRYO8mAF0tmvv9zy4tU/R+O0lgqwulJeB/nU5jNtQd6bRtDRkS+ug+4s7JQPhyI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761297504; c=relaxed/simple;
-	bh=xm7c8Dsw8MPyPqb+dOrtvNJgMqUCK4R9KEOlRL24vJ8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qYqYKyxjVwAosZM73ryzawnR7efUpOCzKfksSJyJfjm36xREM6FuSthzCfPBcnqJ/Qz27xT+pgnG/QyakHSMaL/Yr8lOzCAW/t76QIYw9Dj824E3N/eaEjQp5I2BaO0CjfkXr/dox4x+XWVg0EmvuJifi9VdxJnhZ4IIJdoc0oE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=thorsis.com; spf=pass smtp.mailfrom=thorsis.com; dkim=pass (2048-bit key) header.d=thorsis.com header.i=@thorsis.com header.b=TEU/zPnV; arc=none smtp.client-ip=217.92.40.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=thorsis.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=thorsis.com
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 438A714894D0;
-	Fri, 24 Oct 2025 11:18:10 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=thorsis.com; s=dkim;
-	t=1761297493; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 in-reply-to:references; bh=Ckwd49jYJbZJlSP55GshI+aFNobeJwdz0Kh7cY8e4GE=;
-	b=TEU/zPnV4c8AEBQz3MYoLSoN10mHgvhAEYUSFXvLwHE8dIxLF7KDDY67si78n/UFfDcgdj
-	AALhGtb0kKPBZ6qJkiyy9loEmLvd5pgXvM1l8ZJGvsgwgLv5anadMYgvLxOcVv82VxNuFr
-	C27y5PEZucslpDMLOvSaexj9e4G7F1USgzEQNIgV2K5QkQEiUlwok7c/3UKXO78HQJiiIf
-	AGojkwl5qJuO1hvFD4N0jTSVxFT4K7+tOHMERjkLY4JDpbJibZYwetgHSA4kfu0nCl0r8n
-	AcNRZG5oc9XpPrBqeSLM9CVp7wWVXNoFx342VUCX/zgHZ3W5yMJjJGHYJzO/Ow==
-Date: Fri, 24 Oct 2025 11:18:03 +0200
-From: Alexander Dahl <ada@thorsis.com>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Shenwei Wang <shenwei.wang@nxp.com>,
-	Richard Cochran <richardcochran@gmail.com>,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	netdev@vger.kernel.org, Josua Mayer <josua@solid-run.com>
-Subject: Re: [PATCH 2/8] arm64: dts: imx8dxl-ss-conn: swap interrupts number
- of eqos
-Message-ID: <20251024-backhand-disallow-75be98bbeea3@thorsis.com>
-Mail-Followup-To: Frank Li <Frank.Li@nxp.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Shenwei Wang <shenwei.wang@nxp.com>,
-	Richard Cochran <richardcochran@gmail.com>,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	netdev@vger.kernel.org, Josua Mayer <josua@solid-run.com>
-References: <20251022-dxl_dts-v1-0-8159dfdef8c5@nxp.com>
- <20251022-dxl_dts-v1-2-8159dfdef8c5@nxp.com>
+	s=arc-20240116; t=1761297690; c=relaxed/simple;
+	bh=cgYBzSPBAN/hnDGuQioL8lgzcDFfoDLXW1qeVfhBWBQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=NgDd1lAUcd5z60UArPPpe45mBb6+TszyNL34QrhS1lhj+VBba9StCu18+EHdzp1vehrzhlQg5WY99F5pveghVOXCCxpE5NU5eHIO2Fji0SwLJSCOsmhat8F2+AhHHhsoJKPEvfSseBswkcVna7BGGUKdHP+6c/3Qoeovjer26lM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jsmJtpGZ; arc=none smtp.client-ip=209.85.128.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-47495477241so15098075e9.3
+        for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 02:21:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1761297687; x=1761902487; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=NY5PIARKbpIdf6CoFhX2UEn3hHI/O9Hdjy4EAS5mHE4=;
+        b=jsmJtpGZ9NrNjzfN0R7DqE1WJoC0OCtiAddoq0FLmAXnNG7WBGyvuFUbWBBaqUoyI8
+         McNgdYSv+xeIl1hErbxI9dOqIQnRwubOQ7wyJa6RHRNr8DdRNW8GxjuLRI5rzQkDMVNn
+         bXToADcc5ry80sORGqQzQ9kPjV3WOP1Q8b/qsVew5Fln065CFGfsYyaAb4Hl21phzuw2
+         8oBJA9Mj31pugdjfyk7yp62PvyRqG6zfm3Ck8NSIRr/AmCQ8UhaVlw8BUK7DWPnv0qtU
+         wAW855TmyO2TWYjxF1iLovwgBgEJVDF6anw61HQSYWu/i+gObG22bG45MuS3+dOd1Ssq
+         GMjA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761297687; x=1761902487;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=NY5PIARKbpIdf6CoFhX2UEn3hHI/O9Hdjy4EAS5mHE4=;
+        b=Gs+b0u+nps1xiuSFUDCZWDm1ImWNCRI6ekeOCqllb9gp4iVnvfpkOSFDGpbK/o6HoN
+         y+PGOZaaCnz4m6pKnPWec0GZT+V3Daly5IEco8IccmNnQ3IAJ9BlSBFdAHiQsSmPfGjr
+         6pU+HpKJctajy3+meVQjoAiWm0n0t/r8RQ9xif9PZ2kKfu2w6NxM0qdFTGSGzcBERZky
+         A+TOSRiMzV3HLschxWGvVorFTYo7zvc70UCxa5kGOOGsXY5QEFda+M49vg+rL64ZRZno
+         fGeYzEIboXxBY8GDNRwpRkKzV/qtZxOF5ytCCJq6n1FRtHJZ8AjW8dX9OKN7O0QwuM/1
+         2fbg==
+X-Forwarded-Encrypted: i=1; AJvYcCWrcy3jjWugU0/nouK2Dfa4rkF9Wij57XqZBh4+FKYbPM+nFgGCNWI4N7KoOUd84gnelOozxiKHp3oR@vger.kernel.org
+X-Gm-Message-State: AOJu0YybQoo85twmy0tq4RhNJuxBTXil5QroqEnxjJctggsyWLwWkhxe
+	w3DR/SCxGVRuMXvSb4es39klJPj0irb4Ts41DXCSF8NZx4qRjxV8ih5WtrKMEg==
+X-Gm-Gg: ASbGncvFUx2GLluETDGgf3OmoGX0gG2T9DgZec/W88MCO60pllJFhAVANDYSKBHxdbN
+	nPa63Tt4BZp/P1d9Hm1sNtcz41sou+TC0hZs9ATb2T6MS/60q40HBjIyLydLKClVm1BCpBQYhdD
+	WVPGQUtC4+Q1CQX3fxD8bQOznXLIxXjr01Nikcsk8Dvg3/ecRXdihiSERwHbYPLcXc5GnSEEmaM
+	S+CzK9WlrUnFZ6Zv9dqyBN88uCfPajuUGqGKFH8+06CsWAYRNi8ZVWQ+s643d6eoJogp+gKIll6
+	z6i8rQnIzX19Tp5SbLZW1/Ha2po7bs6wHO2Il9CynTIkxD73Hl0PJ7gLDCobOyk36UlCkbQlDKn
+	yVFqMf0u+T3gTkr/97shKCRJpZ2GRDtwrRE7OiLL1YeweJeJp9UPk5ro8IFGK23vK9LIE5sMSRo
+	zlPZu3TX/h5tYmCOZoNn93A8ggZzu9K+YazcvuEzZWTLiSd+nmgCUNMQzmKylGGYROwy+vLhkCe
+	fM8Kroq+QyWYV6gNa4G54l2Je7FMMmZMjiNjfOlyb0t
+X-Google-Smtp-Source: AGHT+IFN2t4M6Qoj3pIFSsEj3r77vKyY565/HfDPakReHx4yAtJAuSEBAgmRyjYHNwXMg0iJVqrMIw==
+X-Received: by 2002:a05:600c:4f08:b0:46c:e3df:529e with SMTP id 5b1f17b1804b1-475cb03021dmr42329985e9.19.1761297687076;
+        Fri, 24 Oct 2025 02:21:27 -0700 (PDT)
+Received: from ?IPV6:2a02:8440:7132:30ef:ba02:7a36:289:dc72? (2a02-8440-7132-30ef-ba02-7a36-0289-dc72.rev.sfr.net. [2a02:8440:7132:30ef:ba02:7a36:289:dc72])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47494b02475sm81213955e9.4.2025.10.24.02.21.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 24 Oct 2025 02:21:26 -0700 (PDT)
+Message-ID: <b3accac0-d02a-4b92-848c-ada62377e440@gmail.com>
+Date: Fri, 24 Oct 2025 11:21:25 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251022-dxl_dts-v1-2-8159dfdef8c5@nxp.com>
-User-Agent: Mutt/2.2.12 (2023-09-09)
-X-Last-TLS-Session-Version: TLSv1.3
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 2/7] dt-bindings: memory: introduce DDR4
+To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Julius Werner <jwerner@chromium.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org,
+ =?UTF-8?Q?Cl=C3=A9ment_Le_Goffic?= <clement.legoffic@foss.st.com>
+References: <20250930-b4-ddr-bindings-v8-0-fe4d8c015a50@gmail.com>
+ <20250930-b4-ddr-bindings-v8-2-fe4d8c015a50@gmail.com>
+ <1877f731-1599-414d-a40e-38aec05a33c0@kernel.org>
+Content-Language: en-US
+From: =?UTF-8?Q?Cl=C3=A9ment_Le_Goffic?= <legoffic.clement@gmail.com>
+In-Reply-To: <1877f731-1599-414d-a40e-38aec05a33c0@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Hello Frank,
-
-Am Wed, Oct 22, 2025 at 12:50:22PM -0400 schrieb Frank Li:
-> Swap interrupt numbers of eqos because the below commit just swap
-> interrupt-names and missed swap interrupts also.
-> 
-> The driver (drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c) use
-> interrupt-names to get irq numbers.
-
-This catched my eye, because we are using a SolidRun i.MX 8XLite
-System-on-Module on a custom baseboard which uses that SoC.
-
-I had problems with one CPU core stalling when doing network traffic
-over the 'end1' interface, which is that eqos interface here.  All I
-could see so far were an excessive number of hardware interrupts in
-/proc/interrupts for end1.  With this patch this behaviour is gone, I
-could not reproduce those lock-up anymore.  Thank you and FWIW:
-
-Tested-by: Alexander Dahl <ada@thorsis.com>
-
-Note: I applied this to v6.12.  The patch has a Fixes: tag, so I
-assume it hits stable once it got merged without further action,
-right?
-
-Adding Josua Mayer to Cc because it might affect other users of that
-SoM.  Josua, would it be possible to upstream the dts/dtsi files for
-that SoM? O:-)
-
-Greets
-Alex
-
-> 
-> Fixes: f29c19a6e488 ("arm64: dts: imx8dxl-ss-conn: Fix Ethernet interrupt-names order")
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
->  arch/arm64/boot/dts/freescale/imx8dxl-ss-conn.dtsi | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8dxl-ss-conn.dtsi b/arch/arm64/boot/dts/freescale/imx8dxl-ss-conn.dtsi
-> index a66ba6d0a8c05646320dc45e460662ab0ae2aa3b..da33a35c6d4660ebf0fa3f7afcf7f7a289c3c419 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8dxl-ss-conn.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8dxl-ss-conn.dtsi
-> @@ -29,8 +29,8 @@ eqos: ethernet@5b050000 {
->  		compatible = "nxp,imx8dxl-dwmac-eqos", "snps,dwmac-5.10a";
->  		reg = <0x5b050000 0x10000>;
->  		interrupt-parent = <&gic>;
-> -		interrupts = <GIC_SPI 163 IRQ_TYPE_LEVEL_HIGH>,
-> -			     <GIC_SPI 162 IRQ_TYPE_LEVEL_HIGH>;
-> +		interrupts = <GIC_SPI 162 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI 163 IRQ_TYPE_LEVEL_HIGH>;
->  		interrupt-names = "macirq", "eth_wake_irq";
->  		clocks = <&eqos_lpcg IMX_LPCG_CLK_4>,
->  			 <&eqos_lpcg IMX_LPCG_CLK_6>,
-> 
-> -- 
-> 2.34.1
+On 10/23/25 15:21, Krzysztof Kozlowski wrote:
+> On 30/09/2025 10:46, Clément Le Goffic wrote:
+>> From: Clément Le Goffic <clement.legoffic@foss.st.com>
+>>
+>> Introduce JEDEC compliant DDR bindings, that use new memory-props binding.
 > 
 > 
+> If there is going to be resend, then please repeat here applicable part
+> of compatible format, e.g. why it's like that.
+
+Hi Krzysztof, ok
+
+> 
+>>
+>> Signed-off-by: Clément Le Goffic <clement.legoffic@foss.st.com>
+>> Signed-off-by: Clément Le Goffic <legoffic.clement@gmail.com>
+>> ---
+>>   .../memory-controllers/ddr/jedec,ddr4.yaml         | 34 ++++++++++++++++++++++
+>>   1 file changed, 34 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,ddr4.yaml b/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,ddr4.yaml
+>> new file mode 100644
+>> index 000000000000..a2eb6f63c0ce
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,ddr4.yaml
+>> @@ -0,0 +1,34 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/memory-controllers/ddr/jedec,ddr4.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: DDR4 SDRAM compliant to JEDEC JESD79-4D
+>> +
+>> +maintainers:
+>> +  - Krzysztof Kozlowski <krzk@kernel.org>
+>> +
+>> +allOf:
+>> +  - $ref: jedec,sdram-props.yaml#
+>> +
+>> +properties:
+>> +  compatible:
+>> +    items:
+>> +      - pattern: "^ddr4-[0-9a-f]{4},[a-z]{1,20},[0-9a-f]{2}$"
+> 
+> Why double ','? I would imagine last ',' to be '-':
+> ddrX-YYYY,AAAA...-ZZ
+> 
+> Sorry if we discuss that already, but then please remind me and this
+> would need addressing in commit msg.
+
+I do not see anything against that.
+I'll wait Julius's review, if any, and I will send the next version with 
+this changes.
+
+> 
+>> +      - const: jedec,ddr4
+> 
+> 
+> Best regards,
+> Krzysztof
+
 
