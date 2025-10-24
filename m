@@ -1,220 +1,205 @@
-Return-Path: <devicetree+bounces-230643-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230644-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5EEAC04B65
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 09:27:17 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 59B11C04B7E
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 09:29:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DFD5C4006D7
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 07:24:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5A5533AEB75
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 07:28:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 071A22C3768;
-	Fri, 24 Oct 2025 07:24:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 422332D5426;
+	Fri, 24 Oct 2025 07:28:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="L1mIjjqM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f171.google.com (mail-vk1-f171.google.com [209.85.221.171])
+Received: from mail-qt1-f169.google.com (mail-qt1-f169.google.com [209.85.160.169])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C3D42BEFEF
-	for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 07:24:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91D3C2749C1
+	for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 07:28:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761290681; cv=none; b=dIQuzMk0LqlfyE3mYshZMOw9iYOhbThCT2IHjrmizvq/ZrYkIl55nDX8SIHkU41ybvB66JE5kmmbhUn+nhjKuL2fxK+KI8n6JoyPBVX17gAljoGZh4Mt+9pzQEH2N9+8ouW2skaJZ/e58ELSDr3Wm3O+Yah/gc8/p9eRIWFDG8c=
+	t=1761290930; cv=none; b=oYNY+qALcnnIC7ibV18IjKijVBdVLzNIGFsqeK5iuA7axxKu2KTWKvRiF2OW/T229PjtDfpwiTMf/+/0fKjHwvBxCApHUPKwYTM+IjhQ5Qjp5Sv4PcmqEDszshnpCYyYM2+InHbaK+XIcfc5fJRrnFr9vt1wXU8AtWV7sJCeppI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761290681; c=relaxed/simple;
-	bh=TYYDo+7DxkUKjmm+P+3sxJh+gjqzjUwg71o/dX7xBWQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=oRE1YsfewHJywjdD/seF4zpXgbG+xVXU8QNBciLKT6f73PV1GFCkIE2UjcIQlF5CD39wAi93JeEoNnhY2gnenG9ehOins/diiHVMhIzrXW2muAWbkgCArFy+43GzKgCG+aDxA2/sYbiSyObfipQpy43Orb6zUoXlr+PS5oE+kJk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+	s=arc-20240116; t=1761290930; c=relaxed/simple;
+	bh=PDOmGa80IgV5TpNTwO8LtYP/7lNrk6vcGBSxu7/+wIA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=tyS4ZAq6MAO7U5DkBX24VpwUTtMJiKIKIF++nLMq0O+OoEysE/xbB0L+QDhw9kExUwTQAd+yrLd+3IlK/7iaYNtk8qw6r/m7mUizdsj1lrKfLUL0ynkiiMNn2F+XI407CMTx2iULKbl5YFCQ5EQGebvCgtb3idCvfzEtlD8hh/A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=L1mIjjqM; arc=none smtp.client-ip=209.85.160.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f171.google.com with SMTP id 71dfb90a1353d-551b9d94603so547906e0c.1
-        for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 00:24:39 -0700 (PDT)
+Received: by mail-qt1-f169.google.com with SMTP id d75a77b69052e-4e896e91368so21711921cf.0
+        for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 00:28:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1761290927; x=1761895727; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=NLq4EMqV8KeUwDEw9NmG3B9JiKdj+/ZaWJacLQX9P6s=;
+        b=L1mIjjqMhnpalFGwZCOsQPjBL47QbgpGIynEmixgy4cFtEhrTEFf6j1imGvhmTUWSn
+         lRNlnV3WPZ26/1Yomkr69RzJA4itnFT3a1TD7DV27oWjTtN9WoscGY5DMLo3m7yfDyXa
+         M8zrf6nOmQQC0buCmYxhoseWFoC5K6RyDWwc+8y5ZxJVWJK9N7uLVunofO99JHbp4aNq
+         5vz6H7VJxm+fifLxkCkhvmoGBc87oW0tpRygoStq7VmyzIzTwsogeNCRhYJudQ36pPCY
+         GgnqkrmxHKi+i+S9GE3liSoU3I+Re9MpE8IlnScoCZrhoMiY3Rxb9IctBifbUSB1Cjj2
+         5rUw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761290679; x=1761895479;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=O3WV+VoszRFKObS+2w1jR5z8x4F6hvRxXouyKsJGXVw=;
-        b=WufmdWinE5sCaBEcLP5EUrqi4vkYBOHyVnIcCq8IrCeRlEJPJmtycwbxbGk6wc/hHS
-         ifYGUbjOQJn4x2rVDNpl1oK7lKdejRN7IE1TcU6VOoZHUvyVKA8oKUkk5UCcD1WY5gDf
-         EvBwtQWq1rEdeKS4GTGFfjtgk5QYBggHhkiXXsOnZWP3CEYxOJykAPUZo4NH7Yh3+sGv
-         ztqEZDESnrTME6fhtvgqxjd2XRkC1GBGIfGFkGLHj0Su/CJsBNAoNUZ9fRAYd5FUXR+c
-         6trd6vNuxLBvf0XjS+lEo96vUwAOEJ3wHgQtakn7jjVO/pb6U13HJaAO0gKj6DEUIZ8x
-         kiWA==
-X-Forwarded-Encrypted: i=1; AJvYcCW+ZWd0ETP2dJdw60Gf1lzi5Tg2dDN2JVJMK1OmURAerSPhoNI6KckYEL1geVzrxU2FMUqaC0JSEZyL@vger.kernel.org
-X-Gm-Message-State: AOJu0YwpzUe5LJnUzI4WpJWtSqKWfAhCS4+br13aIF6fMQc1hQNd12tl
-	ZpeOhl9kyyZSMDq98IappZQq+Bbxv/V6smSu74yenHH3vHbeUFkbCwpHirz7+j5C
-X-Gm-Gg: ASbGncs0NpVeIXmQnm5i9HvFP6GwWQ4Hw8JSQ90VUeWNJit84zPLHVep1CJGDVZcWDw
-	XxyWxsWrptqjpY+5Ur25FYjThzpKxT06KfqUlZ+M/4cofi8YWaacr2qm+5X1YuZPs1yy8ISx6tn
-	/G30ljDJtpkByvDXmb5DrldnofDZQH/+XhRSxI8vLQJ5KKuM7QEOD7YdN5AWyQAIAmj5ymIAdLS
-	OWM5su61eFxS49EQdDeqX3PnvZlOsAjf9cA8pdRUJmun0YQEhMIJrmXjFB/4iblyLBGSoqnhTRk
-	s1F8s1LvlbJJ/2D6JF6sEwSxO50tRbFgYM3qcyI/DW90olbLUuChAXgkSuCaAqXFurGnEfvSZt6
-	ndPM4AgQZn2Ns09SW/T0huAhEzJE0xrY8tDq56r6S9D5zVSuMdhuZbygsF5Vc6WewnqnGRf9zm/
-	LTkNzvxC1zY9qJ+6+owE6l+crX86OODJmUZF2Yyw==
-X-Google-Smtp-Source: AGHT+IG8w6SEZC7khXK0f4h9xnI7WyPZx5J5AYTW0A7i7mUdg98QRPNYS0qYQFIpq7+XCZz/7AwSPg==
-X-Received: by 2002:a05:6102:d94:b0:538:9b66:7655 with SMTP id ada2fe7eead31-5db3f8eaf0emr263429137.18.1761290678675;
-        Fri, 24 Oct 2025 00:24:38 -0700 (PDT)
-Received: from mail-ua1-f48.google.com (mail-ua1-f48.google.com. [209.85.222.48])
-        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-5db2cca3dc6sm1847215137.12.2025.10.24.00.24.37
-        for <devicetree@vger.kernel.org>
+        d=1e100.net; s=20230601; t=1761290927; x=1761895727;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=NLq4EMqV8KeUwDEw9NmG3B9JiKdj+/ZaWJacLQX9P6s=;
+        b=XoNvSTTTcYNGEQJVhalgmu3WLB8Z7TdslSq0/DOGAhnMe9Uxhi/Nmt3UTrIkK9tuXb
+         us8Dmd3VH0UJT/QG/brifie9a0Eea8hMqsWW8x3MLFcfK+h7DYlLZOnBpR011E7whP46
+         DyksJpURv//8bHCfHJGHIVqKT5/rOlXgqGMib2ohprxpTFjEl7+aKBrAdA3CG4B562Qy
+         dJUGzuYjbtjDw2saZ2Sd4E/soIIlOaINIj3JJMhry+uvQ0ynMSZNFEFtfyp4umtqa3Hm
+         IRzBCiMe4seh/RixaqCi4PP1DPzIrqIntYid4asdF/5sb/zsdVsmr4bTdPz5cCOXDXch
+         uK7w==
+X-Forwarded-Encrypted: i=1; AJvYcCWL3fNuJ3pffGh4/jv9n3JvsK7AnsxBXgx2Ki2oSPgUjGx8vgoRhDFDVTOiSI8K0CnFZHehL129nqmm@vger.kernel.org
+X-Gm-Message-State: AOJu0YyuVVOIVVC7VIE/Q2GI56paIoDj8G6vYV7+VqhWDxzmy5y2qzR1
+	TO2/LuPRVBm5rDDY0ITG2L+HOLF4Z2jyI9JRNwyH9Wxm6FGJ8sWYfuBb
+X-Gm-Gg: ASbGncugCl9wxQmmH9zqMbE0PzK47SzmdqD8sTg1+y9Yir6k9MTNuVDGthZQqaNjy5K
+	VLwmSRMkVzKQzhX9DaB/4GJb0FhbJlvFAvTYDQsYLynbGgx8xRRvt5P0XFWBQYu4Wg4JWKxno8W
+	Wv1hpXk/GT1G3gAH/KvCkBxKs9LU+fcnzv5Cx3gq0y7bhY/hbt9mtstkEYV44Pb9yAMGGvC7c7V
+	juzzfvb89o2h0N4xoZtBQwyJsJdeVhm1j3NYh9bAga1VzNmfJsxszB+7YxJqpKMM1rQAVyeOh9j
+	HZr2ivA5m5sUW0LLkZhfVn7bklDRqpxYF8USeCxHfmIeGeCZt24a3B8oIlRCAr0bpZyqpLlASUg
+	RdKCD9shIovosDWL0QeLEqo1rE1i9ZmasR1iUypPtcdaz+h/EGpDiENNXvz9qbOM8iY0aZJycN6
+	eqZXu4SGGwA5MxwQqFYwXhfL4QdpWVSygG3MfuUiPbGW+iVdjDZiT1Z1TjmoVMd/lFxpfL+/rpQ
+	8YgDKYcTgI=
+X-Google-Smtp-Source: AGHT+IFB/J0PxbyfsY1NyO2f1J9ko14ZR5Rtgtn2rAFKHvR5BmlJZbOSMCfUnRud8Xjevkvi+qaweQ==
+X-Received: by 2002:a05:622a:1646:b0:4e8:b19c:d5d2 with SMTP id d75a77b69052e-4eb810813d3mr61575701cf.32.1761290927436;
+        Fri, 24 Oct 2025 00:28:47 -0700 (PDT)
+Received: from [192.168.1.29] ([178.197.219.123])
+        by smtp.googlemail.com with ESMTPSA id d75a77b69052e-4eb80380104sm30138711cf.0.2025.10.24.00.28.44
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 24 Oct 2025 00:24:37 -0700 (PDT)
-Received: by mail-ua1-f48.google.com with SMTP id a1e0cc1a2514c-91bdf1a4875so597281241.1
-        for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 00:24:37 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCU9LCRNNDx+f5XI5YK+eG4goCKJrKRnKwYK+CCrfMQakn/14Yr7dNmeFhsT8I0s/od+fJpKML/yzeMh@vger.kernel.org
-X-Received: by 2002:a05:6102:3581:b0:5d7:dec5:a464 with SMTP id
- ada2fe7eead31-5db3f8bbd6dmr232329137.10.1761290676888; Fri, 24 Oct 2025
- 00:24:36 -0700 (PDT)
+        Fri, 24 Oct 2025 00:28:46 -0700 (PDT)
+Message-ID: <91288aa0-0088-4b50-8b33-661d8c0c25ae@gmail.com>
+Date: Fri, 24 Oct 2025 09:28:42 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251020080648.13452-1-herve.codina@bootlin.com>
- <20251020080648.13452-8-herve.codina@bootlin.com> <CAMuHMdV03D_3b_JA2vzW4tE_QbkkT1bN1dm+zLLLX24oDHMj0Q@mail.gmail.com>
- <20251022150339.4c48649e@bootlin.com> <CAMuHMdWY=FbO6YG1jrd0OWfrpPpBzrqmBVcWnw7TnnsKPGgr8A@mail.gmail.com>
- <20251023152048.0e70a362@bootlin.com>
-In-Reply-To: <20251023152048.0e70a362@bootlin.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 24 Oct 2025 09:24:25 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdX=_6MGgti2NEL6FaChBhefFLBdjeam5Zts3+Yf-Ps3Gg@mail.gmail.com>
-X-Gm-Features: AWmQ_bkc6C0U89yGzgj449WFrjiYqIBguZky57fXbpHAfhiWelGeFgRG-a9YogQ
-Message-ID: <CAMuHMdX=_6MGgti2NEL6FaChBhefFLBdjeam5Zts3+Yf-Ps3Gg@mail.gmail.com>
-Subject: Re: [PATCH v5 7/8] soc: renesas: Add support for Renesas RZ/N1 GPIO
- Interrupt Multiplexer
-To: Herve Codina <herve.codina@bootlin.com>
-Cc: Thomas Gleixner <tglx@linutronix.de>, Wolfram Sang <wsa+renesas@sang-engineering.com>, 
-	Hoan Tran <hoan@os.amperecomputing.com>, Linus Walleij <linus.walleij@linaro.org>, 
-	Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, Saravana Kannan <saravanak@google.com>, 
-	Serge Semin <fancer.lancer@gmail.com>, Phil Edworthy <phil.edworthy@renesas.com>, 
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	Pascal Eberhard <pascal.eberhard@se.com>, Miquel Raynal <miquel.raynal@bootlin.com>, 
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/6] dt-bindings: remoteproc: qcom,sm8550-pas: Add
+ Kaanapali CDSP
+To: Jingyi Wang <jingyi.wang@oss.qualcomm.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+ Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Manivannan Sadhasivam <mani@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
+ linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, aiqun.yu@oss.qualcomm.com,
+ tingwei.zhang@oss.qualcomm.com, trilok.soni@oss.qualcomm.com,
+ yijie.yang@oss.qualcomm.com
+References: <20250924-knp-remoteproc-v1-0-611bf7be8329@oss.qualcomm.com>
+ <20250924-knp-remoteproc-v1-2-611bf7be8329@oss.qualcomm.com>
+ <CAJKOXPc57_0pJ2ZWf2cKSKAcQMc3S_mHKQxJDzWH7t=mgim3CA@mail.gmail.com>
+ <5820a9a9-4474-4c4d-905c-0efd9442e5e1@oss.qualcomm.com>
+ <o6dzhmlicwiezmxlb5uqitx7e3pjpyuhbjqfumivbdkru42hvn@r4ksfa6m5nd2>
+ <540b1de6-c959-4911-925f-8163f5fa5147@oss.qualcomm.com>
+ <fdfzoemfxdz2p622hvixpaznh2n22hweit2e43plfu2kdd6kad@reulvi4vs5v4>
+ <cdc01b6d-370d-45dd-a3fd-9866d2a5f36d@gmail.com>
+ <7952ed3d-f019-4593-af43-b2df7f738d04@oss.qualcomm.com>
+ <c0e6b667-2e87-4419-81ad-3366ed56830e@gmail.com>
+ <1f98f83f-328f-47c8-84e7-2c77abb37a6a@oss.qualcomm.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <k.kozlowski.k@gmail.com>
+Autocrypt: addr=k.kozlowski.k@gmail.com; keydata=
+ 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
+ PN9NZAOyb771QoVr8A==
+In-Reply-To: <1f98f83f-328f-47c8-84e7-2c77abb37a6a@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Hi Herv=C3=A9,
+On 24/10/2025 04:10, Jingyi Wang wrote:
+>>>
+>>> Hi Krzysztof，
+>>>
+>>> I tested with falling back to sm8650 cdsp but it will fail with:
+>>> [    4.739615] qcom_q6v5_pas 26300000.remoteproc: unable to resolve shareable memory-region index 0
+>>>
+>>> sm8550 and kaanapali define 2 memory regions: 
+>>> "memory-region = <&cdsp_mem>, <&q6_cdsp_dtb_mem>;"
+>>>
+>>> sm8650 and sm8750 define 3 memory regions:
+>>> "memory-region = <&cdsp_mem>, <&q6_cdsp_dtb_mem>, <&global_sync_mem>;"
+>>> with the driver:
+>>>
+>>> static const struct qcom_pas_data sm8650_cdsp_resource = {
+>>>         .crash_reason_smem = 601,
+>>>         .firmware_name = "cdsp.mdt",
+>>>         .dtb_firmware_name = "cdsp_dtb.mdt",
+>>>          <...>
+>>>         .region_assign_idx = 2,
+>>>         .region_assign_count = 1,
+>>>         .region_assign_shared = true,
+>>>         .region_assign_vmid = QCOM_SCM_VMID_CDSP,
+>>> };
+>>>
+>>> When kaanapali fallback to sm8650 it cannot parse this region_assign_idx.
+>>>
+>>> So shall we still fallback to sm8550 or define a new node "kaanapali_cdsp_resource"
+>>> in the driver?
+>>
+>> And partially the point here is that you might need the third region, no?
+>> Best regards,
+>> Krzysztof
+> 
+> On kaanapali, the global_sync_mem region is not managed by kernel, so it should
+> be removed.
 
-On Thu, 23 Oct 2025 at 15:21, Herve Codina <herve.codina@bootlin.com> wrote=
-:
-> On Thu, 23 Oct 2025 13:30:53 +0200
-> Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> > > I have in mind a use case that can lead to a non-contiguous mapping.
-> > >
-> > > The RZ/N1 SoC embeds a Cortex-M3 CPU. This CPU can use GPIOs and
-> > > some of them for interrupt purpose. In that case, those GPIOs have
-> > > to be routed to the interrupt line expected by the Cortex-M3.
-> > >
-> > > And so, we have some interrupts reserved for CPUs running Linux and
-> > > some others for the Cortex-M3.
-> > >
-> > > Among those reserved interrupts may some are not used.
-> > >
-> > > for instance:
-> > >   Interrupt 103, 102: Reserved and used by Linux
-> > >   Interrupt 103: Reserved for Linux but not used -> Hole in the mappi=
-ng
-> > >   Interrupt 104: Reserved and used my Cortex-M3 (need to be routed by=
- Linux)
-> >
-> > 102 does not seem to  be correct?
->
-> My bad, my example was wrong.
->    Interrupt 103, 104: Reserved and used by Linux
->    Interrupt 105: Reserved for Linux but not used -> Hole in the mapping
->    Interrupt 106: Reserved and used my Cortex-M3 (need to be routed by Li=
-nux)
 
-OK, much better!
+OK, then please mention this in the commit msg, so it is clear why this
+is not compatible with previous generation.
 
-> > > I don't know if this use case is relevant but I think we should be to=
-o restrictive
-> > > on the mapping and so accept holes.
-> > >
-> > > With that in mind, I let you confirm that you still prefer to have a =
-mapping
-> > > without any holes. A future patch to support that is always possible.
-> >
-> > While that would indeed be a non-discontiguous mapping, I do not see ho=
-w
-> > it is related to rzn1_irqmux_output_lines[] in the driver.  That array
-> > would still contain the same contiguous values 103..110, right?
->
-> The array rzn1_irqmux_output_lines is still contiguous yes but the mappin=
-g
-> defined in irq-map property no.
->
-> Looking back again at your proposal, indeed I can remove the following lo=
-op:
->         for (i =3D 0; i < output_lines_count; i++) {
->                if (parent_args->args[1] =3D=3D output_lines[i])
->                        return i;
->         }
->
-> With just
->         if (parent_args->args[1] >=3D RZN1_IRQMUX_SPI_BASE &&
->             parent_args->args[1] < RZN1_IRQMUX_SPI_BASE + RZN1_IRQMUX_NUM=
-_IRQS) {
->                 return parent_args->args[1] - RZN1_IRQMUX_SPI_BASE;
->
->         dev_err(dev, "Invalid GIC interrupt %u\n", parent_args->args[1]);
->         return -EINVAL;
-
-Good. I like simpler code ;-)
-
-BTW, please invert the logic, i.e. bail out early in case of error.
-
-> > Sorry, I haven't been following the development of this driver that
-> > closely (RZ/N1 is completely different from e.g. R-Car, and I never
-> > had access to an RZ/N1 platform), so perhaps I am missing something.
-> > Why does the user have to specify an interrupt-map in DT? Can't the
-> > driver create the mapping dynamically, based actual usage of the
-> > GPIOs? I.e. the first 8 GPIOs that ask for interrupt functionality
-> > receive it, and are mapped to an available GIC interrupt?
-> > I believe this is how rzg2l-irqc works, mapping up to 32 GPIO interrupt=
-s
-> > to 32 GIC (TINT) interrupts.
->
-> I think the main difference with rzg2l-irqc is that the RZ/N1 irq mux is
-> clearly not an interrupt controller.
->
-> It is just a mux with 96 inputs (GPIO lines coming from several GPIO
-> controller) and 8 outputs (connected to the GIC).
->
-> It is represented as an interrupt nexus node and has an interrupt-map pro=
-perty.
-> to describe the routing.
->
-> The interrupt-map property cannot be dynamically created.
->
-> Also, the routing is necessary even if the related GPIO is not used by Li=
-nux.
-> This GPIO can be used as a GPIO input interrupt line by the Cortex M3.
->
-> If the irq mux driver performs the routing only on Linux GPIO usage, it w=
-ill
-> not route GPIOs depending on Cortex M3 internal usage.
-
-Thanks, makes sense!
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+Best regards,
+Krzysztof
 
