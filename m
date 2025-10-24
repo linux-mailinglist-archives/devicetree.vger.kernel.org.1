@@ -1,280 +1,119 @@
-Return-Path: <devicetree+bounces-230676-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230677-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02B1AC0505C
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 10:20:12 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1BEFEC04FEC
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 10:13:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A743C3AB55A
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 08:12:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 97C0519A82E9
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 08:13:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74D1B3019D0;
-	Fri, 24 Oct 2025 08:12:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B62F302148;
+	Fri, 24 Oct 2025 08:13:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="cbh7z5oM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f45.google.com (mail-ua1-f45.google.com [209.85.222.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail-m21467.qiye.163.com (mail-m21467.qiye.163.com [117.135.214.67])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C567C3019CF
-	for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 08:12:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9F123019A9;
+	Fri, 24 Oct 2025 08:12:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.214.67
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761293561; cv=none; b=oFs31xvNeb84s8dB4aQOjy13N8eSX6iFU1uFFT9vIYNbxJkRjeYN37IMgnsPf1gr8jQ/2ywzmo2sBRZsb/QXOnH8CXnDqacb2zzmmQWfqJveF1vim89P8TOea/PbxqCxlWx8nrMix/1DdJgufsBIhe9bFcgzRBy0mripwCldth0=
+	t=1761293582; cv=none; b=tQ1E5UA4dyL8WkCTWDAHgNgd9pCu5BfgGFtJtUw8p1vtL5+roHb04SbchGSMF3k2zf1u323JuOmh/Yh5QcTWQdVPeBxx3cHfTD3jyQaJZqlSDsVgPRvGhrKFAxbc8H9+SrRk9rbHx2Ux/L58YHb0D0ngFG2tdxjDOiNw/LZcGMw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761293561; c=relaxed/simple;
-	bh=hpgcKlVV2a7usVfzDLt1zVdxgZvPff7TYeBH4JVUr2I=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=AAAw59wFjMxvUS/EXazAkGM/zkXxgw+zW6qf6mrq/c9wCFStXyYZw+s/rN0Tt0QgKH7r0ivvM1bqI8AVfcziE8OIrjuJXqNaC8nQFexH/76JZyOA6IqurXT2BYZpcrjNP9FXSIuSKYYkOu9MoWIZuBoIR8XiOgs41q/qcfsMLxE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f45.google.com with SMTP id a1e0cc1a2514c-930c4cd6ccbso1354115241.3
-        for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 01:12:39 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761293558; x=1761898358;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=nY48OolfC3m/XFrWtTQOSs1xiOIwkF1W9X+4X3p3eqE=;
-        b=I2mGuS+jqmCHvhW+BBdZ0o5eGn9afwI+eDEy58oI/cpng5Wlgz7nP3d8qXjnMJtPWb
-         fL5JlvbVH+eslcSC+WNrohovpakh8F0Y0HtVtjtHETeMFmQxd3dZRpIPaZV8qt0XwhXg
-         bUdfdWpRfq3pUVXJESXgAw1Q2169A1yQCkA68Pu1GyXRihz67L6iRdiX5QFjiAZwIu+d
-         kDldvLj88xoo+qMkvRFpM4KCZn/lp58EYKrjc0vhYIe2q9YPaoVwkEP88/Pm3f2zT/5V
-         /mu8IN4PJullWPFeaNrHIGldQIqNwV1zeTJv0k2B6RCTTEwqm6elm0nWsoNX2UCyd6uc
-         sZ+g==
-X-Forwarded-Encrypted: i=1; AJvYcCWxWdfc1qvJxzF5bKQBsgVQbQASur4ufvB7sxOx2f25xLsJzLwiNAx+WngmARSG9Qp1zavskGraIHZJ@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzpn8qqX/njquvHdtebH2J25rGJpf6LJIXo8ap8WuBm3r48NMXM
-	6aGPXyo0ahiMutrFGytTvCwcssQ3ijSy0dtpDooMh2BjXqGYzY6klJHr5rPmUEfl
-X-Gm-Gg: ASbGncu0XL5Kx34cQB+TQScNo2S9muFM7MH+Hesvnm3RADFOqVcM9hZqViCGg4YJJEa
-	MxwGGqKWQVeJVpU08pS625OOPBZAST5vdOsq05h1G07QKbfPsdcrKCyZa6S/29R6JsXLwnNXJPG
-	1J+iY3kBI7UJi7RYjr2EQQnX642Yya0lYPyT3oZRwt3VRLfeKfovgKRNTyZ9BER1O5qj2Bg+tz8
-	AONFQPRjTgn4fXpvOAfBnGrtNBNjDfzq/zjHNZ04sWbIdbZlIs401NHhrN1iIhfPipczJyoYVzE
-	Px0qk9yQCXeMPwDHDPVsMka5L/8BvxqFOqDeKPmHZGHK2rG9X9B4r5iKFy0PKCMulRAVR1nBfcD
-	z4RLhB7uJqB6mm7yJ/HhG5Q0tSGQBlBXkT0Blrn8y5Vah0wjk/VSjqQ1fHri3lOrTw4yVGvXKA4
-	c/2ARWU4tld85xUU26mSwE+NjRl9NuiwksB9tpEor085Vt2gE4
-X-Google-Smtp-Source: AGHT+IEE+MfUHwgYbbyerPxOICbQra4w/BWNmWNJnCghDAm0FuVcyIEy/nj5dE7xG8hs4LcRQJmJFA==
-X-Received: by 2002:a05:6123:2e9:b0:543:8c04:43f4 with SMTP id 71dfb90a1353d-557cf0fa05cmr416479e0c.14.1761293558538;
-        Fri, 24 Oct 2025 01:12:38 -0700 (PDT)
-Received: from mail-ua1-f45.google.com (mail-ua1-f45.google.com. [209.85.222.45])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-557bdbe3bc6sm1833756e0c.18.2025.10.24.01.12.36
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 24 Oct 2025 01:12:37 -0700 (PDT)
-Received: by mail-ua1-f45.google.com with SMTP id a1e0cc1a2514c-932bf9d3deeso1669229241.2
-        for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 01:12:36 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVBH5L+1J6fIbDxhiNWiGPacoXhuI3WXh0A6ZlkXMsoV11Y9F+JBBBSMOWcRjDnTznxNx3yfsaJ5zqk@vger.kernel.org
-X-Received: by 2002:a05:6102:b0f:b0:5d5:f6ae:38ee with SMTP id
- ada2fe7eead31-5db3fa38842mr411609137.37.1761293556608; Fri, 24 Oct 2025
- 01:12:36 -0700 (PDT)
+	s=arc-20240116; t=1761293582; c=relaxed/simple;
+	bh=X8eEYQQ4MNkto2esE9lEJmHcm1ClymqxfAWV5cW50Lg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=rDuXFVO49RLl/+P6z98oy7hZ0beXFCC+d3xTlAdurUC+JKdPyVyACFvrkVO23aFsgxqIrrGF/jDg4P7PIlgb9h1vdxyGkWjKtFDdJR2A6jNuYA7RmWIu2paLjMC9kmedfh/w1eFpfItmGjtcrHre/R1pBvtgivNF8X+jE1AIqO8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=cbh7z5oM; arc=none smtp.client-ip=117.135.214.67
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from [172.16.12.149] (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 270f1f398;
+	Fri, 24 Oct 2025 16:12:48 +0800 (GMT+08:00)
+Message-ID: <9ec2189e-ec36-4cd8-9713-beb490b8297c@rock-chips.com>
+Date: Fri, 24 Oct 2025 16:12:47 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <87frb8n7kl.wl-kuninori.morimoto.gx@renesas.com> <87cy6cn7jg.wl-kuninori.morimoto.gx@renesas.com>
-In-Reply-To: <87cy6cn7jg.wl-kuninori.morimoto.gx@renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 24 Oct 2025 10:12:25 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdU4nkLesGhPp+_RqsgWv02v=egLeH_1HNLKHC5yXPbvZw@mail.gmail.com>
-X-Gm-Features: AWmQ_blHf3Lx7IusOtNYbKWAzZe9vKkY7XTZ8MHPSP2bH9Nd9dITHkmeD1XsiZs
-Message-ID: <CAMuHMdU4nkLesGhPp+_RqsgWv02v=egLeH_1HNLKHC5yXPbvZw@mail.gmail.com>
-Subject: Re: [PATCH 2/3] mailbox: renesas: Support MFIS mailbox driver
-To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Cc: Conor Dooley <conor+dt@kernel.org>, Jassi Brar <jassisinghbrar@gmail.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 2/9] drm/bridge: Implement generic USB Type-C DP HPD
+ bridge
+To: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>, Heiko Stuebner
+ <heiko@sntech.de>, Sandy Huang <hjc@rock-chips.com>,
+ Andy Yan <andy.yan@rock-chips.com>,
+ Yubing Zhang <yubing.zhang@rock-chips.com>,
+ Frank Wang <frank.wang@rock-chips.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Amit Sunil Dhamne <amitsd@google.com>, Dragan Simic <dsimic@manjaro.org>,
+ Johan Jonker <jbx6244@gmail.com>, Diederik de Haas <didi.debian@cknow.org>,
+ Peter Robinson <pbrobinson@gmail.com>, linux-usb@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-phy@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, dri-devel@lists.freedesktop.org
+References: <20251023033009.90-1-kernel@airkyi.com>
+ <20251023033009.90-3-kernel@airkyi.com> <aPnrKFWTvpuRTyhI@kuha.fi.intel.com>
+ <14b8ac71-489b-4192-92d6-5f228ff3881d@rock-chips.com>
+ <aPoZhBdc1M6Qgfae@kuha.fi.intel.com>
+ <6f769567-b383-4c79-b441-3dd84f21cdae@rock-chips.com>
+ <aPsse5qVL84XOj8w@kuha.fi.intel.com>
+Content-Language: en-US
+From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+In-Reply-To: <aPsse5qVL84XOj8w@kuha.fi.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-HM-Tid: 0a9a1547081303abkunmae71b56b2f4984
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQh9PTFYYHU8YGkNDQx0ZTx9WFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSEtNQk
+	tVSktLVUpCWQY+
+DKIM-Signature: a=rsa-sha256;
+	b=cbh7z5oMnHR/DLqyOIDZk4K7gXmeu0Z/ewCxVZLD2lfh51kbnP5gwdZNZ7a3inVN4NoC/E/hL4XmvOdj5FQ0/XmmJ78CkfSevEhzvOTjQ9VpmomjoQ1rpjyzol1iXhudUcEI++95744VHFl5SRJlcN0jA2NbRp7MwZ9xcoa3t1g=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=k9PZlmFs4+G6V09YuUs38/TEsI+fOADgB825HrzHznU=;
+	h=date:mime-version:subject:message-id:from;
 
-Hi Morimoto-san,
+On 10/24/2025 3:36 PM, Heikki Krogerus wrote:
 
-On Fri, 24 Oct 2025 at 08:22, Kuninori Morimoto
-<kuninori.morimoto.gx@renesas.com> wrote:
-> From: Masashi Ozaki <masashi.ozaki.te@renesas.com>
+>> Another thing is that CONFIG_DRM_AUX_HPD_BRIDGE originally needed to be
+>> selected by other modules. With this change, we also need to expose it in
+>> Kconfig.
+> Sorry, I don't understand the problem here? What do you need to expose
+> in Kconfig?
+
+config DRM_AUX_HPD_BRIDGE
+     tristate
+     depends on DRM_BRIDGE && OF
+     select AUXILIARY_BUS
+     help
+       Simple bridge that terminates the bridge chain and provides HPD
+       support.
+
+The tristate here is empty, so now it can only be selected by some TypeC controller drivers. I think it's not a big deal, just expose this item.
+
+
 >
-> Add Renesas MFIS mailbox driver for R8A78000 (X5H)
+> thanks,
 >
-> Signed-off-by: Masashi Ozaki <masashi.ozaki.te@renesas.com>
-> Signed-off-by: Vinh Nguyen <vinh.nguyen.xz@renesas.com>
-> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-
-Thanks for your patch!
-
-> --- /dev/null
-> +++ b/drivers/mailbox/rcar-mfis-mailbox.c
-> @@ -0,0 +1,137 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Renesas MFIS (Multifunctional Interface) Mailbox Driver
-> + *
-> + * Copyright (c) 2025, Renesas Electronics Corporation. All rights reserved.
-> + */
-> +
-> +#include <linux/device.h>
-> +#include <linux/of_address.h>
-> +#include <linux/of_irq.h>
-> +#include <linux/interrupt.h>
-> +#include <linux/mailbox_controller.h>
-> +#include <linux/module.h>
-> +#include <linux/platform_device.h>
-> +
-> +static int mfis_send_data(struct mbox_chan *link, void *data)
-> +{
-> +       void __iomem *reg = link->con_priv;
-> +
-> +       /*Trigger interrupt request to firmware(SCP)*/
-> +       iowrite32(0x1, reg);
-> +
-> +       return 0;
-> +}
-> +
-> +static irqreturn_t mfis_rx_interrupt(int irq, void *data)
-> +{
-> +       struct mbox_chan *link = data;
-> +       void __iomem *reg = link->con_priv;
-> +
-> +       mbox_chan_received_data(link, 0);
-> +
-> +       /* Clear interrupt register */
-> +       iowrite32(0x0, reg);
-> +
-> +       return IRQ_HANDLED;
-> +}
-> +
-> +static int mfis_startup(struct mbox_chan *link)
-> +{
-> +       struct mbox_controller *mbox = link->mbox;
-> +       struct device *dev = mbox->dev;
-> +       int irq;
-> +       int ret;
-> +
-> +       irq = of_irq_get(dev->of_node, 0);
-> +
-> +       ret = request_irq(irq, mfis_rx_interrupt,
-> +                         IRQF_SHARED, "mfis-mbox", link);
-> +       if (ret) {
-> +               dev_err(dev,
-> +                       "Unable to acquire IRQ %d\n", irq);
-> +               return ret;
-> +       }
-
-This looks a bit expensive to do on each and every client request ...
-
-> +       return 0;
-> +}
-> +
-> +static void mfis_shutdown(struct mbox_chan *link)
-> +{
-> +       struct mbox_controller *mbox = link->mbox;
-> +       struct device *dev = mbox->dev;
-> +       int irq;
-> +
-> +       irq = of_irq_get(dev->of_node, 0);
-
-... and release.  Just store and request the irq in .probe().
-
-> +
-> +       free_irq(irq, link);
-> +}
-> +
-> +static bool mfis_last_tx_done(struct mbox_chan *link)
-> +{
-> +       return true;
-> +}
-> +
-> +static const struct mbox_chan_ops mfis_chan_ops = {
-> +       .send_data      = mfis_send_data,
-> +       .startup        = mfis_startup,
-> +       .shutdown       = mfis_shutdown,
-> +       .last_tx_done   = mfis_last_tx_done
-> +};
-> +
-> +static int mfis_mbox_probe(struct platform_device *pdev)
-> +{
-> +       struct device *dev = &pdev->dev;
-> +       struct mbox_controller *mbox;
-> +       void __iomem *reg;
-> +       int ret, count = 2, i;
-
-unsigned int i (and count, but I doubt you need it)
-
-> +
-> +       mbox = devm_kzalloc(dev, sizeof(*mbox), GFP_KERNEL);
-> +       if (!mbox)
-> +               return -ENOMEM;
-> +
-> +       mbox->chans = devm_kcalloc(dev, count, sizeof(*mbox->chans), GFP_KERNEL);
-> +       if (!mbox->chans)
-> +               return -ENOMEM;
-
-You can combine this into a single allocation, and provide space for
-driver-specific data (e.g. irq), by using a driver-private structure:
-
-    struct mfis_priv {
-            struct mbox_controller mbox;
-            struct mbox_chan channels[2];
-            int irq;
-    };
-
-Where needed, you can convert from a struct mbox_controller pointer
-to a struct mfis_priv pointer using containter_of().
-
-> +
-> +       reg = devm_platform_ioremap_resource(pdev, i);
-> +       if (IS_ERR(reg))
-> +               return PTR_ERR(reg);
-> +
-> +       for (i = 0; i < count; i++) {
-> +               mbox->chans[i].mbox     = mbox;
-> +               mbox->chans[i].con_priv = reg + ((1 - i) * 4);
-> +       }
-> +
-> +       mbox->txdone_poll       = true;
-> +       mbox->txdone_irq        = false;
-> +       mbox->txpoll_period     = 1;
-> +       mbox->num_chans         = count;
-> +       mbox->ops               = &mfis_chan_ops;
-> +       mbox->dev               = dev;
-> +
-> +       ret = mbox_controller_register(mbox);
-> +       if (ret)
-> +               return ret;
-> +
-> +       platform_set_drvdata(pdev, mbox);
-> +       dev_info(dev, "MFIS mailbox is probed\n");
-> +
-> +       return 0;
-> +}
-> +
-> +static const struct of_device_id mfis_mbox_of_match[] = {
-> +       { .compatible = "renesas,mfis-mbox", },
-> +       {},
-
-Please no trailing comma after the sentinel.
-
-> +};
-> +MODULE_DEVICE_TABLE(of, mfis_mbox_of_match);
-> +
-> +static struct platform_driver mfis_mbox_driver = {
-> +       .driver = {
-> +               .name = "renesas-mfis-mbox",
-> +               .of_match_table = mfis_mbox_of_match,
-> +       },
-> +       .probe  = mfis_mbox_probe,
-> +};
-> +module_platform_driver(mfis_mbox_driver);
-> +MODULE_DESCRIPTION("Renesas MFIS mailbox driver");
-> +MODULE_LICENSE("GPL v2");
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+Best,
+Chaoyi
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
 
