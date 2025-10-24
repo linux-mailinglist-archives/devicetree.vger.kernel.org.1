@@ -1,286 +1,120 @@
-Return-Path: <devicetree+bounces-230771-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230772-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B2BAC05876
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 12:12:26 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id DDC4AC0589E
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 12:16:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id F017035BE2F
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 10:12:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B3A86189F91F
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 10:17:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78E8E30E84D;
-	Fri, 24 Oct 2025 10:12:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F3AE30F7ED;
+	Fri, 24 Oct 2025 10:16:54 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vs1-f45.google.com (mail-vs1-f45.google.com [209.85.217.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED6AE30EF71;
-	Fri, 24 Oct 2025 10:12:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5631307ACF
+	for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 10:16:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761300741; cv=none; b=f09v+JpsskT7BdlMmyaNUvWEr+LMVFYbk1OIXmlf/MzeFzug89UGYK7wNLe5cf/+U1lAyGKb2f2HnyJpTX0tADdamEpi2JjjQHS53/FAUpvHF5svVa3Y6LFW+N2ro4J7pKT5Fafi4SYUWysaZooslLAPh8xkCM0xrFVhl15OGdE=
+	t=1761301014; cv=none; b=TpYAO1q+7JWybQYnygeTj/gaKyppg1l40MkPhgnTu/G+MHdP25wl8mG05kKX7OIQAUbxy6Oc9ZF0Wxz46a/I3TGTr2lNwND3v0iUEK92b73njoE1hmmIC/C2HVyv2Ii170D/PhakywhbJDVgR2UWoYZhGvvGce0W6QBWwfsu/9Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761300741; c=relaxed/simple;
-	bh=465eVOWUp+N7PV0ZEpeRHSUci+OixbUnu7VD9WHOWkc=;
-	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=icDon8lprJQS39aPnaFfwlQIsNWDstEdJr9RD8HkgX2ovr/mrkYmsruRNMyTnUYH8R9aCIZgJAu2X5wxwLxWMpQOe9JZP6QhwlkoGO1pv9o5lFMqOyT5VsfLdySoL/8HDN01s/NkVhnJsmBfEltnqG5Jd00+8qvtvp1hR3vkt0M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Received: from mail.maildlp.com (unknown [172.18.186.216])
-	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4ctJZ66v9Yz6L51R;
-	Fri, 24 Oct 2025 18:10:38 +0800 (CST)
-Received: from dubpeml100005.china.huawei.com (unknown [7.214.146.113])
-	by mail.maildlp.com (Postfix) with ESMTPS id 67985140372;
-	Fri, 24 Oct 2025 18:12:09 +0800 (CST)
-Received: from localhost (10.203.177.15) by dubpeml100005.china.huawei.com
- (7.214.146.113) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.11; Fri, 24 Oct
- 2025 11:12:08 +0100
-Date: Fri, 24 Oct 2025 11:12:07 +0100
-From: Jonathan Cameron <jonathan.cameron@huawei.com>
-To: Conor Dooley <conor@kernel.org>
-CC: Nuno =?ISO-8859-1?Q?S=E1?= <nuno.sa@analog.com>, Michael Hennerich
-	<Michael.Hennerich@analog.com>, Jonathan Cameron <jic23@kernel.org>, "David
- Lechner" <dlechner@baylibre.com>, Andy Shevchenko <andy@kernel.org>, "Rob
- Herring" <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, "Conor
- Dooley" <conor+dt@kernel.org>, <linux-iio@vger.kernel.org>,
-	<devicetree@vger.kernel.org>
-Subject: Re: [PATCH v2 1/3] dt-bindings: iio: dac: Document AD5446 and
- similar devices
-Message-ID: <20251024111207.00007427@huawei.com>
-In-Reply-To: <20251023-food-say-5e396be087af@spud>
-References: <20251023-ad5446-bindings-v2-0-27fab9891e86@analog.com>
-	<20251023-ad5446-bindings-v2-1-27fab9891e86@analog.com>
-	<20251023-food-say-5e396be087af@spud>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-w64-mingw32)
+	s=arc-20240116; t=1761301014; c=relaxed/simple;
+	bh=AqiWd9FcEXBjGqvYmjKezWFbcC8LX/8ccSI0CzYf7rc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Iv4CT+qJgr/jkQIH0/opmGFdHBsmbnxjxOTjEUho3AQR3bfx9OWRa+m1lhtQ/sf1FZLVM4vmA/wI42egWrkpX1JzIPWMnOnpzJDR5douQRl9k6XRK0J2i7ULdDlh2jqY3bKcNCe9xRqhCJVRDTYEayD9JeF10QHZj/2ebb+hxMI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vs1-f45.google.com with SMTP id ada2fe7eead31-5d5f8e95d5eso1184561137.1
+        for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 03:16:52 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761301011; x=1761905811;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=bSTLk7b49rZYTSOotXXLR+fnDfbehF6NQgF/VSyM9XA=;
+        b=gSQzCSHSpL1Tuv9ZgkNDTbZWx300Q7h7NOLteMx2W8PzWlupTh/GUsIxX5JUfik1u6
+         +taO0MTpdfBzLqHDvUq+9yixYzadZZIntByD8Xv54+D0DtYDpd3X2nt585QR4hFm2VXU
+         0Emr8q/T4XzfFKNgJREiBsk8cfU+FyGd2Ed86TbkacvonRp0EW89Q4BFNNucxfIIVdFE
+         jWhGL1/BEB9j7brAC3Sbcm7/nj9fs3rs2Y2o8MPZY80UnCqv0wQQOcXbYtUXlcLKB/iG
+         Uu6WqNNx6xOnKzVTDf4zwd16nJWdS449gQ96Gj+VYtoX+IS/+9mPo86qgknKe84j9fbd
+         NxEA==
+X-Forwarded-Encrypted: i=1; AJvYcCX359hajoaqxULvzmeiC6dbJANPaq/bQjPf+iiepnZBP7hEuR3mTzjXjgg7kLEsw67dyT8/1/tm1N9y@vger.kernel.org
+X-Gm-Message-State: AOJu0YzEgny80iObO02YNEcy2MiqRUj2XqG7YLjc5H0Emc9lS0OCPYur
+	cG4EN3n+Xe353vHLTua9YV8PQW+US9ulmgFwQjFCr/9K8zTatgvTOgVxleQswsmY
+X-Gm-Gg: ASbGnct4mgMfNFgDLDaEqK339JnH0XUwP6u10r+lWQ2+hygGurJAyNLeY7Ur9RytZcb
+	XMEi3o/kOMY/cLVftebuZa5DR1tt0FRDNTNN+Hiz/Y/9K2F1luFh6Zr4D445tFhFIHKUj6mkz1g
+	cF7nrPTR05746aqRWSNHqKf1CPMWQasuGTYI/EL7DUYTBKSCr7XK7kc53aWSb9G60qVSjY60obh
+	vsu/eeFURdRbO37j2r6TFLz17xYkNwYmp2AxDk068u1E/zPBsM+ohTt+76WZcb9G0gSA6AZHNpB
+	DCIFJ3lU8zxH5q6ahLR4ipRImDhJ4DxhkqrGVg30g429euO9NGk5qIOmNGxH/mH6OnMDWScob+c
+	RGgSJOmCQBJXLTh0Wzl0vUyAPuaSrjBXPF2HwUVKOmAe2QBL4joH3N052keA59aNm+A1Qx9qxta
+	YTWgiWLyQF+3Tq+RYqBDB29oV5HeL5OqTIthXPhgLLtxQ8ACFL
+X-Google-Smtp-Source: AGHT+IFvCRLvq/pF0NN/OlKFSJneZrAsXYsNG/rl0RsLd1wyrRVH2lPqdaXzcsQrGwNFNGrDHGCviw==
+X-Received: by 2002:a05:6102:5108:b0:5db:23ed:3840 with SMTP id ada2fe7eead31-5db23ed3c6bmr3044753137.37.1761301011180;
+        Fri, 24 Oct 2025 03:16:51 -0700 (PDT)
+Received: from mail-vs1-f54.google.com (mail-vs1-f54.google.com. [209.85.217.54])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-934abbd2740sm1882351241.16.2025.10.24.03.16.50
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 24 Oct 2025 03:16:51 -0700 (PDT)
+Received: by mail-vs1-f54.google.com with SMTP id ada2fe7eead31-5d758dba570so1359511137.2
+        for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 03:16:50 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCWzjzPwPFYjXndeMkruuwdRlY7JyPiH3oWqDThw2MYL7v5uPcQSUetxBQumop4+0NPk/XVnr/av2Svz@vger.kernel.org
+X-Received: by 2002:a05:6102:5111:b0:4f7:d553:3cfa with SMTP id
+ ada2fe7eead31-5d7dd53dda7mr7539658137.12.1761301010775; Fri, 24 Oct 2025
+ 03:16:50 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="ISO-8859-1"
-Content-Transfer-Encoding: quoted-printable
-X-ClientProxiedBy: lhrpeml500012.china.huawei.com (7.191.174.4) To
- dubpeml100005.china.huawei.com (7.214.146.113)
+References: <20251023081925.2412325-1-cosmin-gabriel.tanislav.xa@renesas.com> <20251023081925.2412325-2-cosmin-gabriel.tanislav.xa@renesas.com>
+In-Reply-To: <20251023081925.2412325-2-cosmin-gabriel.tanislav.xa@renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 24 Oct 2025 12:16:39 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdU9jkZ16rw90qY-y1JwReVuh9GcoU9590Qj+fnAOBKcEA@mail.gmail.com>
+X-Gm-Features: AS18NWAl-mnooV2yE2ZHT2YePMkrfHPFCcWPI_7IIu3f_WOQ-qTqZQdZwGQjyhs
+Message-ID: <CAMuHMdU9jkZ16rw90qY-y1JwReVuh9GcoU9590Qj+fnAOBKcEA@mail.gmail.com>
+Subject: Re: [PATCH 01/10] clk: renesas: r9a09g077: add TSU module clock
+To: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
+Cc: John Madieu <john.madieu.xa@bp.renesas.com>, "Rafael J . Wysocki" <rafael@kernel.org>, 
+	Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>, 
+	Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, linux-pm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On Thu, 23 Oct 2025 19:24:17 +0100
-Conor Dooley <conor@kernel.org> wrote:
+On Thu, 23 Oct 2025 at 10:20, Cosmin Tanislav
+<cosmin-gabriel.tanislav.xa@renesas.com> wrote:
+> The Renesas RZ/T2H (R9A09G077) and RZ/N2H (R9A09G087) SoCs have a TSU
+> peripheral with controlled by a module clock.
+>
+> The TSU module clock is enabled in register MSTPCRG (0x30c), at bit 7,
+> resulting in a (0x30c - 0x300) / 4 * 100 + 7 = 307 index.
+>
+> Add it to the list of module clocks.
+>
+> Signed-off-by: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
 
-> On Thu, Oct 23, 2025 at 02:01:37PM +0300, Nuno S=E1 wrote:
-> > Add device tree binding documentation for the Analog Devices AD5446
-> > family of Digital-to-Analog Converters and compatible devices from
-> > Texas Instruments. There's both SPI and I2C interfaces and feature
-> > resolutions ranging from 8-bit to 16-bit.
-> >=20
-> > The binding covers 29 compatible devices including the AD5446 series, =
-=20
->=20
-> If they're compatible, how come there's no fallback use? Just to keep
-> things consistent with how they've always been while probing as spi
-> child devices?
-Hi Conor,
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-clk for v6.19.
 
-They aren't compatible. The 2nd patch is misleading because it doesn't
-associate data with the of_device_id.  The driver is getting that from
-matching the compatible property with manufacturer stripped off.
+Gr{oetje,eeting}s,
 
-I've requested Nuno sort that out in v3. It's a bit more than just
-adding the data as would also involve moving away from using an enum
-to using pointers to the structures that the enum indexes (currently in
-an array).
+                        Geert
 
-https://elixir.bootlin.com/linux/v6.17.4/source/drivers/iio/dac/ad5446.c#L3=
-15
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-Thanks,
-
-J
->=20
-> Conor.
->=20
-> > AD5600 series, AD5620/5640/5660 variants with different voltage ranges,
-> > and TI DAC081s101/DAC101s101/DAC121s101 devices.
-> >=20
-> > Signed-off-by: Nuno S=E1 <nuno.sa@analog.com>
-> > ---
-> >  .../devicetree/bindings/iio/dac/adi,ad5446.yaml    | 138 +++++++++++++=
-++++++++
-> >  MAINTAINERS                                        |   8 ++
-> >  2 files changed, 146 insertions(+)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/iio/dac/adi,ad5446.yaml =
-b/Documentation/devicetree/bindings/iio/dac/adi,ad5446.yaml
-> > new file mode 100644
-> > index 000000000000..90fc8ca053fe
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/iio/dac/adi,ad5446.yaml
-> > @@ -0,0 +1,138 @@
-> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/iio/dac/adi,ad5446.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Analog Devices AD5446 and similar DACs
-> > +
-> > +maintainers:
-> > +  - Michael Hennerich <michael.hennerich@analog.com>
-> > +  - Nuno S=E1 <nuno.sa@analog.com>
-> > +
-> > +description: |
-> > +  Digital to Analog Converter devices supporting both SPI and I2C inte=
-rfaces.
-> > +  These devices feature a range of resolutions from 8-bit to 16-bit.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    oneOf:
-> > +      - description: SPI DACs
-> > +        enum:
-> > +          - adi,ad5300
-> > +          - adi,ad5310
-> > +          - adi,ad5320
-> > +          - adi,ad5444
-> > +          - adi,ad5446
-> > +          - adi,ad5450
-> > +          - adi,ad5451
-> > +          - adi,ad5452
-> > +          - adi,ad5453
-> > +          - adi,ad5512a
-> > +          - adi,ad5541a
-> > +          - adi,ad5542
-> > +          - adi,ad5542a
-> > +          - adi,ad5543
-> > +          - adi,ad5553
-> > +          - adi,ad5600
-> > +          - adi,ad5601
-> > +          - adi,ad5611
-> > +          - adi,ad5621
-> > +          - adi,ad5641
-> > +          - adi,ad5620-2500
-> > +          - adi,ad5620-1250
-> > +          - adi,ad5640-2500
-> > +          - adi,ad5640-1250
-> > +          - adi,ad5660-2500
-> > +          - adi,ad5660-1250
-> > +          - adi,ad5662
-> > +          - ti,dac081s101
-> > +          - ti,dac101s101
-> > +          - ti,dac121s101
-> > +      - description: I2C DACs
-> > +        enum:
-> > +          - adi,ad5301
-> > +          - adi,ad5311
-> > +          - adi,ad5321
-> > +          - adi,ad5602
-> > +          - adi,ad5612
-> > +          - adi,ad5622
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  vcc-supply:
-> > +    description:
-> > +      Reference voltage supply. If not supplied, devices with internal
-> > +      voltage reference will use that.
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +
-> > +allOf:
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            enum:
-> > +              - adi,ad5300
-> > +              - adi,ad5310
-> > +              - adi,ad5320
-> > +              - adi,ad5444
-> > +              - adi,ad5446
-> > +              - adi,ad5450
-> > +              - adi,ad5451
-> > +              - adi,ad5452
-> > +              - adi,ad5453
-> > +              - adi,ad5512a
-> > +              - adi,ad5541a
-> > +              - adi,ad5542
-> > +              - adi,ad5542a
-> > +              - adi,ad5543
-> > +              - adi,ad5553
-> > +              - adi,ad5600
-> > +              - adi,ad5601
-> > +              - adi,ad5611
-> > +              - adi,ad5621
-> > +              - adi,ad5641
-> > +              - adi,ad5620-2500
-> > +              - adi,ad5620-1250
-> > +              - adi,ad5640-2500
-> > +              - adi,ad5640-1250
-> > +              - adi,ad5660-2500
-> > +              - adi,ad5660-1250
-> > +              - adi,ad5662
-> > +              - ti,dac081s101
-> > +              - ti,dac101s101
-> > +              - ti,dac121s101
-> > +    then:
-> > +      allOf:
-> > +        - $ref: /schemas/spi/spi-peripheral-props.yaml#
-> > +
-> > +unevaluatedProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    spi {
-> > +        #address-cells =3D <1>;
-> > +        #size-cells =3D <0>;
-> > +
-> > +        dac@0 {
-> > +            compatible =3D "adi,ad5446";
-> > +            reg =3D <0>;
-> > +            vcc-supply =3D <&dac_vref>;
-> > +        };
-> > +    };
-> > +  - |
-> > +    i2c {
-> > +        #address-cells =3D <1>;
-> > +        #size-cells =3D <0>;
-> > +
-> > +        dac@42 {
-> > +            compatible =3D "adi,ad5622";
-> > +            reg =3D <0x42>;
-> > +            vcc-supply =3D <&dac_vref>;
-> > +        };
-> > +    };
-> > +...
-> > diff --git a/MAINTAINERS b/MAINTAINERS
-> > index 940889b158eb..dae04c308975 100644
-> > --- a/MAINTAINERS
-> > +++ b/MAINTAINERS
-> > @@ -440,6 +440,14 @@ W:	http://wiki.analog.com/AD5398
-> >  W:	https://ez.analog.com/linux-software-drivers
-> >  F:	drivers/regulator/ad5398.c
-> > =20
-> > +AD5456	DAC DRIVER
-> > +M:	Michael Hennerich <michael.hennerich@analog.com>
-> > +M:	Nuno S=E1 <nuno.sa@analog.com>
-> > +L:	linux-iio@vger.kernel.org
-> > +S:	Supported
-> > +W:	https://ez.analog.com/linux-software-drivers
-> > +F:	Documentation/devicetree/bindings/iio/dac/adi,ad5446.yaml
-> > +
-> >  AD714X CAPACITANCE TOUCH SENSOR DRIVER (AD7142/3/7/8/7A)
-> >  M:	Michael Hennerich <michael.hennerich@analog.com>
-> >  S:	Supported
-> >=20
-> > --=20
-> > 2.34.1
-> >  =20
->=20
-
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
