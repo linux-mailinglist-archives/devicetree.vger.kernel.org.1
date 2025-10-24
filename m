@@ -1,136 +1,220 @@
-Return-Path: <devicetree+bounces-230656-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230657-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42D4BC04CFD
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 09:45:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D6B6FC04D81
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 09:50:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F1E5B1AA2071
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 07:45:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1E28E1AE1BD9
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 07:49:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E813C2EBDC5;
-	Fri, 24 Oct 2025 07:43:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD9F2301027;
+	Fri, 24 Oct 2025 07:45:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="MYVxx0a2"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AdIyeh+5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45A4E2EBBAD;
-	Fri, 24 Oct 2025 07:43:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3FD33009E8
+	for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 07:45:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761291834; cv=none; b=C8cJrCzn10tpfT7VX3BjQ42uXzFIKWTuLd608kdtZMZ2aqFtFekIkDzpkM29T9jkbnB1mO9Kr+sm7/O0vChs25p/K5yjf732kevclQ0fN2pJHGwh/bV66XP+l55Fm+OedlwMm58sM5ItDre0nZp8hpy8NRHmNWYE6RA9SO0GqLE=
+	t=1761291950; cv=none; b=g3oaSp+Np7w/Nt9jPlJOkYRsYwYtCa4a++NqtLZHx+yHD+JInPCtmGa8RFKOA3hFS5Fnozrr3wy0omPf1oZqjOQI2s6teocATk4bLOqZO9qWGc8ACTmvZf8hlJO5tsLihoKCbTFiwdURub5lwbXepU059aqXj7kQP5FcaUc/OIk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761291834; c=relaxed/simple;
-	bh=7zI+yHusBy8iTPtjWgljU0yIp25yZuoATyi6HBS0Rz0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tS5DtIj0Ij7Uh3SZ0wUNW5fy37E5QrmLj37seC8nXs+sEuJr4v1ZBUwnuJXX0JHV/afjAilRs0FuxgmjKMn1VyI93sipEv0+wQNOSJdPAx7x+apxaszyfBmP52clLAh+MboBMlD3PeIFOqYr1A0OKpTnil0N0zZVI6B9r8J98A8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=MYVxx0a2; arc=none smtp.client-ip=198.175.65.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1761291834; x=1792827834;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=7zI+yHusBy8iTPtjWgljU0yIp25yZuoATyi6HBS0Rz0=;
-  b=MYVxx0a2OQpZWdBgpo9e4Cef7zbGfhKHW/ahkUajssE8TrJaNZxvLMsz
-   iYFLWZBwiMCS5IQK24S9kX0fuxK4grlriS5k4oh/YvGlMfvSZeVniHfCm
-   WGBrkeGyTRFKz/iXpJCKJWbzapyEMy9Q72lb/+AvlHVJwOAeTBlpsy+E2
-   uzGo0XJNeyokcxfa3c0PEEPbSyqdGckAh3KHorzIr+zfhumOYqG474YEe
-   Qhg75s9elFXKSVjFg/jws3bCtfrtDm7yTGTNGojhuxHOT1wcDIpgqnu0e
-   8UfkqJ8W0uicwU6cj9c6F6cumcAiTvUnbOXcWpwW4r6PWOaRpw3pnuPFa
-   Q==;
-X-CSE-ConnectionGUID: 0b45EmyKSsGExL3d20I2mA==
-X-CSE-MsgGUID: x48DdNPRSxqXNJTYsegM6A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="63618993"
-X-IronPort-AV: E=Sophos;i="6.19,251,1754982000"; 
-   d="scan'208";a="63618993"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
-  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Oct 2025 00:43:53 -0700
-X-CSE-ConnectionGUID: u3ao3ZWfTCKvdTwCgNOZbQ==
-X-CSE-MsgGUID: i6w9uVJtSDy1AqasQ83mFQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,251,1754982000"; 
-   d="scan'208";a="188756837"
-Received: from mjruhl-desk.amr.corp.intel.com (HELO kuha.fi.intel.com) ([10.124.221.255])
-  by fmviesa005.fm.intel.com with SMTP; 24 Oct 2025 00:43:42 -0700
-Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Fri, 24 Oct 2025 10:43:41 +0300
-Date: Fri, 24 Oct 2025 10:43:41 +0300
-From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-To: Chaoyi Chen <chaoyi.chen@rock-chips.com>
-Cc: Chaoyi Chen <kernel@airkyi.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>, Sandy Huang <hjc@rock-chips.com>,
-	Andy Yan <andy.yan@rock-chips.com>,
-	Yubing Zhang <yubing.zhang@rock-chips.com>,
-	Frank Wang <frank.wang@rock-chips.com>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <rfoss@kernel.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Amit Sunil Dhamne <amitsd@google.com>,
-	Dragan Simic <dsimic@manjaro.org>, Johan Jonker <jbx6244@gmail.com>,
-	Diederik de Haas <didi.debian@cknow.org>,
-	Peter Robinson <pbrobinson@gmail.com>, linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-phy@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH v7 1/9] usb: typec: Add notifier functions
-Message-ID: <aPsuLREPS_FEV3DS@kuha.fi.intel.com>
-References: <20251023033009.90-1-kernel@airkyi.com>
- <20251023033009.90-2-kernel@airkyi.com>
- <aPni4AeDaem_rfZH@kuha.fi.intel.com>
- <aPnvoSRJefwDlpNO@kuha.fi.intel.com>
- <aPn4-S7upPOOtenr@kuha.fi.intel.com>
- <3a24bd7f-c247-4541-8cf5-c1e66e2af5a0@rock-chips.com>
+	s=arc-20240116; t=1761291950; c=relaxed/simple;
+	bh=vX5yRwm4ftbWjAX7FZLs+c0d/+jm7B2nEL118mfYl/o=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=HgWIzaiilysaxy6XcQI5GBdHSr4PnbnzyB7urIvNu7kpYAw2Zrlaod5yIfDNAvbbErPx3h17QG1twc1hjgk0Mf/s3OEnqRCzPjyL1jBxvDQUyvm2ZDRhen7PnfNJT6ODHCtLtvKB6pIbJx5NmW31PABPAzUCM1GmIxdD+ETVh3Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AdIyeh+5; arc=none smtp.client-ip=209.85.221.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-3ece1102998so1137323f8f.2
+        for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 00:45:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1761291947; x=1761896747; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=76x+2Uo/HbKBYMvTIwWyzfeiAti3Egen0c4fS6B0f94=;
+        b=AdIyeh+5GAg5sj8EaqoGV3NrgSlMU32fcpXNUeM79Hs9TW5fEHeffQR7nMTG0kZLoI
+         AMNqLNmWbW1BZ8J+7i0OMJqg1T3QIduZozMA7726Ua5/4/lsg/gbbzBlULjORjlMOvI/
+         ZTwPc+QW1Ya4gI7tj/gIP1N9mdYueusE1ScmpRQPFsKT3SvyAaR+N7r4GG+h4pCuSjdd
+         vFwmUocbYjn+JGKSsNPPQuujCfnaNNbcj7GFcXGL8qOOmaodeeMPlKc05wGXkgSXGqSy
+         ZYLqmYbrhTtADOWZ15v51UsT5kUN57FXQKQX4sOCnhslGCrFB3u4CAE0u7dbHKrGL92l
+         1Etg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761291947; x=1761896747;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=76x+2Uo/HbKBYMvTIwWyzfeiAti3Egen0c4fS6B0f94=;
+        b=uoaWrJ4CCYCwtAnxLxeTtB1UyMKWSnyfGBGFuz+bkEAia5VvDdZbJGF/MQEx+YeCaQ
+         y4639LegEWPwDspraFkK3nDUlCImtuXxUlnJ9YDslvfo9i814fGuUo3zdxfn5y1Va44W
+         bMfKNfOdBnZ4nhy8InmkSt+xQEOg4+67haiRNYmgxhjww8q402Fb5hCymJD5T0wkujjp
+         yqvZyifWQkcFKSQ0i7kexpZwg2rXAM0zD8YHoOVRg95CQhe3xdWHHAVPLcXKKgznVXl3
+         bYV+wSJhtAkBOEMtYBIuenFamWiSOE6QAwu/6rWtcRbAx8jXB/iK58NdfLNIrwLmrNgU
+         LDqA==
+X-Forwarded-Encrypted: i=1; AJvYcCWObNU8Xt/HdNg2YQfs0mLuGPQ8GidRVnJqq9gQXE0gPJPFHgr82Y/r8tU7DN9+78g/Va9jbks7GACL@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxdjst4F0tMc8H0WoEepvrq1961Xwvp+OBRHgvg6jogGU2ePhpM
+	4rzI96ZZ85s917ooPmDxZRdLv6OrgKDbqGwqmBeB1vUqfUSM+T7kCpAG
+X-Gm-Gg: ASbGncuKs7WrpzesKY8fppMs2N52UXZIeLdQHPXRwDZFDOGwjQqyidZMmOzcmppZ3ty
+	88M7BIiGfRTi+ThXxmAUKGu4CAtTXFWik7c7itY4v8UlPEcn7KcwR5r+m2vwCetFMbD6ihtDyOC
+	7cxVjbXPA/IxMQZJDkMljzO5xv0hCM+KiMH8R6KPyhGrv8ivysETYUz2RBsuEHLYC/Nk/SFdybu
+	dOgGMUM/VKkq/vrmzTvq6rRYM/GFycIp1ssLYJGuMTb9vNbd0/4gzwYhSltv1+yDzIC2aDciHfV
+	0xYv+VUwXRrEDe8/kWE3BvxMLIO43IwRvUxRB2ReIKVRLR+cP3hT7amCmWcwa8MhsieDO0YhkiG
+	cac8zz0zrIT3W322SBOdypqk6TQzdBNvmIwRxCqSIVvv8wjbV6FeUMy91A2xjfbYmqGyfZBiDt9
+	eYu4esCHYMAksN3EOGzs7r2hN+Jv6NEYehZO+mVfuJ1D2Rld9aNQd45cN5tlrNew7t05sM5dpEG
+	DQf2SEhutk=
+X-Google-Smtp-Source: AGHT+IGe6ga7m7ZRRmcMM4nfZdnjZB5cllJaC3HfPAXtJdQL58NqGFmpsTnEdoLSRE2c4zUMbOWrFA==
+X-Received: by 2002:a5d:5f91:0:b0:428:3d14:7385 with SMTP id ffacd0b85a97d-4298a059f15mr3287804f8f.28.1761291946952;
+        Fri, 24 Oct 2025 00:45:46 -0700 (PDT)
+Received: from [192.168.1.29] ([178.197.219.123])
+        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-4298bd78c69sm5998825f8f.4.2025.10.24.00.45.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 24 Oct 2025 00:45:46 -0700 (PDT)
+Message-ID: <d19785f7-6b1a-4f3a-841b-dc737c7b7e5c@gmail.com>
+Date: Fri, 24 Oct 2025 09:45:44 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/6] dt-bindings: remoteproc: qcom,sm8550-pas: Add
+ Kaanapali CDSP
+To: Jingyi Wang <jingyi.wang@oss.qualcomm.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+ Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Manivannan Sadhasivam <mani@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
+ linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, aiqun.yu@oss.qualcomm.com,
+ tingwei.zhang@oss.qualcomm.com, trilok.soni@oss.qualcomm.com,
+ yijie.yang@oss.qualcomm.com
+References: <20250924-knp-remoteproc-v1-0-611bf7be8329@oss.qualcomm.com>
+ <20250924-knp-remoteproc-v1-2-611bf7be8329@oss.qualcomm.com>
+ <CAJKOXPc57_0pJ2ZWf2cKSKAcQMc3S_mHKQxJDzWH7t=mgim3CA@mail.gmail.com>
+ <5820a9a9-4474-4c4d-905c-0efd9442e5e1@oss.qualcomm.com>
+ <o6dzhmlicwiezmxlb5uqitx7e3pjpyuhbjqfumivbdkru42hvn@r4ksfa6m5nd2>
+ <540b1de6-c959-4911-925f-8163f5fa5147@oss.qualcomm.com>
+ <fdfzoemfxdz2p622hvixpaznh2n22hweit2e43plfu2kdd6kad@reulvi4vs5v4>
+ <cdc01b6d-370d-45dd-a3fd-9866d2a5f36d@gmail.com>
+ <7952ed3d-f019-4593-af43-b2df7f738d04@oss.qualcomm.com>
+ <c0e6b667-2e87-4419-81ad-3366ed56830e@gmail.com>
+ <1f98f83f-328f-47c8-84e7-2c77abb37a6a@oss.qualcomm.com>
+ <91288aa0-0088-4b50-8b33-661d8c0c25ae@gmail.com>
+ <e5befb65-3d9f-4cc7-afd0-c418e8c2310a@oss.qualcomm.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <k.kozlowski.k@gmail.com>
+Autocrypt: addr=k.kozlowski.k@gmail.com; keydata=
+ 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
+ PN9NZAOyb771QoVr8A==
+In-Reply-To: <e5befb65-3d9f-4cc7-afd0-c418e8c2310a@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <3a24bd7f-c247-4541-8cf5-c1e66e2af5a0@rock-chips.com>
 
-> I noticed the following statement in typec_register_altmode():
+On 24/10/2025 09:42, Jingyi Wang wrote:
 > 
-> ```
 > 
->     /* The partners are bind to drivers */
->     if (is_typec_partner(parent))
->         alt->adev.dev.bus = &typec_bus;
+> On 10/24/2025 3:28 PM, Krzysztof Kozlowski wrote:
+>> On 24/10/2025 04:10, Jingyi Wang wrote:
+>>>>>
+>>>>> Hi Krzysztofï¼Œ
+>>>>>
+>>>>> I tested with falling back to sm8650 cdsp but it will fail with:
+>>>>> [    4.739615] qcom_q6v5_pas 26300000.remoteproc: unable to resolve shareable memory-region index 0
+>>>>>
+>>>>> sm8550 and kaanapali define 2 memory regions: 
+>>>>> "memory-region = <&cdsp_mem>, <&q6_cdsp_dtb_mem>;"
+>>>>>
+>>>>> sm8650 and sm8750 define 3 memory regions:
+>>>>> "memory-region = <&cdsp_mem>, <&q6_cdsp_dtb_mem>, <&global_sync_mem>;"
+>>>>> with the driver:
+>>>>>
+>>>>> static const struct qcom_pas_data sm8650_cdsp_resource = {
+>>>>>         .crash_reason_smem = 601,
+>>>>>         .firmware_name = "cdsp.mdt",
+>>>>>         .dtb_firmware_name = "cdsp_dtb.mdt",
+>>>>>          <...>
+>>>>>         .region_assign_idx = 2,
+>>>>>         .region_assign_count = 1,
+>>>>>         .region_assign_shared = true,
+>>>>>         .region_assign_vmid = QCOM_SCM_VMID_CDSP,
+>>>>> };
+>>>>>
+>>>>> When kaanapali fallback to sm8650 it cannot parse this region_assign_idx.
+>>>>>
+>>>>> So shall we still fallback to sm8550 or define a new node "kaanapali_cdsp_resource"
+>>>>> in the driver?
+>>>>
+>>>> And partially the point here is that you might need the third region, no?
+>>>> Best regards,
+>>>> Krzysztof
+>>>
+>>> On kaanapali, the global_sync_mem region is not managed by kernel, so it should
+>>> be removed.
+>>
+>>
+>> OK, then please mention this in the commit msg, so it is clear why this
+>> is not compatible with previous generation.
+>>
+>> Best regards,
+>> Krzysztof
 > 
-> ```
-> 
-> If the condition is not met, the bus will not be set, which means bus_notify()
-> won't be able to take effect. Did I miss something?
+> Sorry for being a bit verbose, but I would like to make it clear that we can still
+> use this fallback if we clarify it in the commit message, right?
 
-Right, that would be the condition that I was talking about. Only
-partner altmodes are used in the bus.
 
-Hold on! Do you need the port altmode instead of the partner altmode?
-If that's the case, then we can't use the bus notifier. So we'll need
-the separate notifier chain after all.
+Yes, you can.
 
-Let me take a closer look at patch 2/9. Sorry about the hassle.
-
--- 
-heikki
+Best regards,
+Krzysztof
 
