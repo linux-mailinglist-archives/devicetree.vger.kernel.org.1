@@ -1,83 +1,55 @@
-Return-Path: <devicetree+bounces-230657-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230658-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6B6FC04D81
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 09:50:40 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E852C04DB1
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 09:52:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1E28E1AE1BD9
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 07:49:38 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 5BE184E3F29
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 07:52:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD9F2301027;
-	Fri, 24 Oct 2025 07:45:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98F442EF66A;
+	Fri, 24 Oct 2025 07:52:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AdIyeh+5"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="r2dtT+ba"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3FD33009E8
-	for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 07:45:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A4072ECD34
+	for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 07:52:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761291950; cv=none; b=g3oaSp+Np7w/Nt9jPlJOkYRsYwYtCa4a++NqtLZHx+yHD+JInPCtmGa8RFKOA3hFS5Fnozrr3wy0omPf1oZqjOQI2s6teocATk4bLOqZO9qWGc8ACTmvZf8hlJO5tsLihoKCbTFiwdURub5lwbXepU059aqXj7kQP5FcaUc/OIk=
+	t=1761292365; cv=none; b=rB+KhCIXdTz21XU3keBSeehH4lGFMwU77wlG0UUWRbaNOYKdiwCsUEP6IfbTTEACtinVTkPjVwyf2uRrqIhPEsKgBkCp0M6kocSfxpiq7+S5Yg0EQHSL9Jh/0I5NjLSumZOfHkEiqexr4ZbarFrlyA81ZBNDHJRX3d1QpOqOJVY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761291950; c=relaxed/simple;
-	bh=vX5yRwm4ftbWjAX7FZLs+c0d/+jm7B2nEL118mfYl/o=;
+	s=arc-20240116; t=1761292365; c=relaxed/simple;
+	bh=wN/ZHj0gPap24mXI/QvGzzaeAUFcv8BSPPEXC6QecJU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=HgWIzaiilysaxy6XcQI5GBdHSr4PnbnzyB7urIvNu7kpYAw2Zrlaod5yIfDNAvbbErPx3h17QG1twc1hjgk0Mf/s3OEnqRCzPjyL1jBxvDQUyvm2ZDRhen7PnfNJT6ODHCtLtvKB6pIbJx5NmW31PABPAzUCM1GmIxdD+ETVh3Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AdIyeh+5; arc=none smtp.client-ip=209.85.221.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-3ece1102998so1137323f8f.2
-        for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 00:45:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1761291947; x=1761896747; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=76x+2Uo/HbKBYMvTIwWyzfeiAti3Egen0c4fS6B0f94=;
-        b=AdIyeh+5GAg5sj8EaqoGV3NrgSlMU32fcpXNUeM79Hs9TW5fEHeffQR7nMTG0kZLoI
-         AMNqLNmWbW1BZ8J+7i0OMJqg1T3QIduZozMA7726Ua5/4/lsg/gbbzBlULjORjlMOvI/
-         ZTwPc+QW1Ya4gI7tj/gIP1N9mdYueusE1ScmpRQPFsKT3SvyAaR+N7r4GG+h4pCuSjdd
-         vFwmUocbYjn+JGKSsNPPQuujCfnaNNbcj7GFcXGL8qOOmaodeeMPlKc05wGXkgSXGqSy
-         ZYLqmYbrhTtADOWZ15v51UsT5kUN57FXQKQX4sOCnhslGCrFB3u4CAE0u7dbHKrGL92l
-         1Etg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761291947; x=1761896747;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=76x+2Uo/HbKBYMvTIwWyzfeiAti3Egen0c4fS6B0f94=;
-        b=uoaWrJ4CCYCwtAnxLxeTtB1UyMKWSnyfGBGFuz+bkEAia5VvDdZbJGF/MQEx+YeCaQ
-         y4639LegEWPwDspraFkK3nDUlCImtuXxUlnJ9YDslvfo9i814fGuUo3zdxfn5y1Va44W
-         bMfKNfOdBnZ4nhy8InmkSt+xQEOg4+67haiRNYmgxhjww8q402Fb5hCymJD5T0wkujjp
-         yqvZyifWQkcFKSQ0i7kexpZwg2rXAM0zD8YHoOVRg95CQhe3xdWHHAVPLcXKKgznVXl3
-         bYV+wSJhtAkBOEMtYBIuenFamWiSOE6QAwu/6rWtcRbAx8jXB/iK58NdfLNIrwLmrNgU
-         LDqA==
-X-Forwarded-Encrypted: i=1; AJvYcCWObNU8Xt/HdNg2YQfs0mLuGPQ8GidRVnJqq9gQXE0gPJPFHgr82Y/r8tU7DN9+78g/Va9jbks7GACL@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxdjst4F0tMc8H0WoEepvrq1961Xwvp+OBRHgvg6jogGU2ePhpM
-	4rzI96ZZ85s917ooPmDxZRdLv6OrgKDbqGwqmBeB1vUqfUSM+T7kCpAG
-X-Gm-Gg: ASbGncuKs7WrpzesKY8fppMs2N52UXZIeLdQHPXRwDZFDOGwjQqyidZMmOzcmppZ3ty
-	88M7BIiGfRTi+ThXxmAUKGu4CAtTXFWik7c7itY4v8UlPEcn7KcwR5r+m2vwCetFMbD6ihtDyOC
-	7cxVjbXPA/IxMQZJDkMljzO5xv0hCM+KiMH8R6KPyhGrv8ivysETYUz2RBsuEHLYC/Nk/SFdybu
-	dOgGMUM/VKkq/vrmzTvq6rRYM/GFycIp1ssLYJGuMTb9vNbd0/4gzwYhSltv1+yDzIC2aDciHfV
-	0xYv+VUwXRrEDe8/kWE3BvxMLIO43IwRvUxRB2ReIKVRLR+cP3hT7amCmWcwa8MhsieDO0YhkiG
-	cac8zz0zrIT3W322SBOdypqk6TQzdBNvmIwRxCqSIVvv8wjbV6FeUMy91A2xjfbYmqGyfZBiDt9
-	eYu4esCHYMAksN3EOGzs7r2hN+Jv6NEYehZO+mVfuJ1D2Rld9aNQd45cN5tlrNew7t05sM5dpEG
-	DQf2SEhutk=
-X-Google-Smtp-Source: AGHT+IGe6ga7m7ZRRmcMM4nfZdnjZB5cllJaC3HfPAXtJdQL58NqGFmpsTnEdoLSRE2c4zUMbOWrFA==
-X-Received: by 2002:a5d:5f91:0:b0:428:3d14:7385 with SMTP id ffacd0b85a97d-4298a059f15mr3287804f8f.28.1761291946952;
-        Fri, 24 Oct 2025 00:45:46 -0700 (PDT)
-Received: from [192.168.1.29] ([178.197.219.123])
-        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-4298bd78c69sm5998825f8f.4.2025.10.24.00.45.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 24 Oct 2025 00:45:46 -0700 (PDT)
-Message-ID: <d19785f7-6b1a-4f3a-841b-dc737c7b7e5c@gmail.com>
-Date: Fri, 24 Oct 2025 09:45:44 +0200
+	 In-Reply-To:Content-Type; b=CmNsws8IwUWcFezO7fDwBU2rF4pJaD/P52MfnbPYEqewYmHRAzUODRU+uPZ+RmsrE7pDDT9AKof2dGEpye3fUca8eRI/vt2xK381P/3UsgnwTBun7CnnSVFGJ77F4GJ2w0lOcGLOIZDxD+hefVu7jtPypwd59Hj1pdIUWS2/vY0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=r2dtT+ba; arc=none smtp.client-ip=185.171.202.116
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-04.galae.net (Postfix) with ESMTPS id C378AC0C41B;
+	Fri, 24 Oct 2025 07:52:21 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 7B92960703;
+	Fri, 24 Oct 2025 07:52:41 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 73F97102F23EC;
+	Fri, 24 Oct 2025 09:52:28 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1761292360; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:content-language:in-reply-to:references;
+	bh=5ORYaQDkijF7os/6QWengA8q7tbB0Mw5sGUM65DCgW0=;
+	b=r2dtT+baNbNBquHdAut5IY/5GURVJRkMnkhCpDIazOsLkNOBMSg9a8XjqlTTdgK7Rao36n
+	QaiSjjcspFfgNJ3lWHkqT0lB6CPk/z4eErWvmXrcgc4PoQNWlb8klJf19n9bMVLLEpz35m
+	tvzSZMtU4MnmhRi/3KdQUuAwki+jH10HEA7wLi/+zYTZ9ENq3vj0XiN9CH8zDtJVXy40sO
+	VYZdadazMXQP96iNzcQJcjalhcNTATvJNR92ni8Hp1LMi+PrPNeZfIQguK1X78P7mLfFu5
+	LZKY22AT2zCcLdLyTJKs3XrYIcQky6Dow93q3vw3X8RN8f/4NfLEQGTudUQJ6w==
+Message-ID: <afd40022-012a-4fa5-90f1-a27f11aa9549@bootlin.com>
+Date: Fri, 24 Oct 2025 09:52:27 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,136 +57,78 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/6] dt-bindings: remoteproc: qcom,sm8550-pas: Add
- Kaanapali CDSP
-To: Jingyi Wang <jingyi.wang@oss.qualcomm.com>,
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
- Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH v3 07/15] mtd: rawnand: sunxi: introduce ecc_mode_mask in
+ sunxi_nfc_caps
+To: Miquel Raynal <miquel.raynal@bootlin.com>
+Cc: Richard Weinberger <richard@nod.at>, Vignesh Raghavendra
+ <vigneshr@ti.com>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Manivannan Sadhasivam <mani@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
- linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, aiqun.yu@oss.qualcomm.com,
- tingwei.zhang@oss.qualcomm.com, trilok.soni@oss.qualcomm.com,
- yijie.yang@oss.qualcomm.com
-References: <20250924-knp-remoteproc-v1-0-611bf7be8329@oss.qualcomm.com>
- <20250924-knp-remoteproc-v1-2-611bf7be8329@oss.qualcomm.com>
- <CAJKOXPc57_0pJ2ZWf2cKSKAcQMc3S_mHKQxJDzWH7t=mgim3CA@mail.gmail.com>
- <5820a9a9-4474-4c4d-905c-0efd9442e5e1@oss.qualcomm.com>
- <o6dzhmlicwiezmxlb5uqitx7e3pjpyuhbjqfumivbdkru42hvn@r4ksfa6m5nd2>
- <540b1de6-c959-4911-925f-8163f5fa5147@oss.qualcomm.com>
- <fdfzoemfxdz2p622hvixpaznh2n22hweit2e43plfu2kdd6kad@reulvi4vs5v4>
- <cdc01b6d-370d-45dd-a3fd-9866d2a5f36d@gmail.com>
- <7952ed3d-f019-4593-af43-b2df7f738d04@oss.qualcomm.com>
- <c0e6b667-2e87-4419-81ad-3366ed56830e@gmail.com>
- <1f98f83f-328f-47c8-84e7-2c77abb37a6a@oss.qualcomm.com>
- <91288aa0-0088-4b50-8b33-661d8c0c25ae@gmail.com>
- <e5befb65-3d9f-4cc7-afd0-c418e8c2310a@oss.qualcomm.com>
-Content-Language: en-US
-From: Krzysztof Kozlowski <k.kozlowski.k@gmail.com>
-Autocrypt: addr=k.kozlowski.k@gmail.com; keydata=
- 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
- PN9NZAOyb771QoVr8A==
-In-Reply-To: <e5befb65-3d9f-4cc7-afd0-c418e8c2310a@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
+ <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>,
+ =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>,
+ Wentao Liang <vulab@iscas.ac.cn>, Johan Hovold <johan@kernel.org>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+ linux-kernel@vger.kernel.org
+References: <20251020101311.256819-1-richard.genoud@bootlin.com>
+ <20251020101311.256819-8-richard.genoud@bootlin.com>
+ <87jz0ntigx.fsf@bootlin.com>
+From: Richard GENOUD <richard.genoud@bootlin.com>
+Content-Language: en-US, fr
+Organization: Bootlin
+In-Reply-To: <87jz0ntigx.fsf@bootlin.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-On 24/10/2025 09:42, Jingyi Wang wrote:
+Hi,
+Le 22/10/2025 à 11:05, Miquel Raynal a écrit :
+> Hi Richard,
 > 
+> On 20/10/2025 at 12:13:03 +02, Richard Genoud <richard.genoud@bootlin.com> wrote:
 > 
-> On 10/24/2025 3:28 PM, Krzysztof Kozlowski wrote:
->> On 24/10/2025 04:10, Jingyi Wang wrote:
->>>>>
->>>>> Hi Krzysztof，
->>>>>
->>>>> I tested with falling back to sm8650 cdsp but it will fail with:
->>>>> [    4.739615] qcom_q6v5_pas 26300000.remoteproc: unable to resolve shareable memory-region index 0
->>>>>
->>>>> sm8550 and kaanapali define 2 memory regions: 
->>>>> "memory-region = <&cdsp_mem>, <&q6_cdsp_dtb_mem>;"
->>>>>
->>>>> sm8650 and sm8750 define 3 memory regions:
->>>>> "memory-region = <&cdsp_mem>, <&q6_cdsp_dtb_mem>, <&global_sync_mem>;"
->>>>> with the driver:
->>>>>
->>>>> static const struct qcom_pas_data sm8650_cdsp_resource = {
->>>>>         .crash_reason_smem = 601,
->>>>>         .firmware_name = "cdsp.mdt",
->>>>>         .dtb_firmware_name = "cdsp_dtb.mdt",
->>>>>          <...>
->>>>>         .region_assign_idx = 2,
->>>>>         .region_assign_count = 1,
->>>>>         .region_assign_shared = true,
->>>>>         .region_assign_vmid = QCOM_SCM_VMID_CDSP,
->>>>> };
->>>>>
->>>>> When kaanapali fallback to sm8650 it cannot parse this region_assign_idx.
->>>>>
->>>>> So shall we still fallback to sm8550 or define a new node "kaanapali_cdsp_resource"
->>>>> in the driver?
->>>>
->>>> And partially the point here is that you might need the third region, no?
->>>> Best regards,
->>>> Krzysztof
->>>
->>> On kaanapali, the global_sync_mem region is not managed by kernel, so it should
->>> be removed.
+>> The H6/H616 ECC_MODE field is not at the same offset, and has not the
+>> same size.
+>> So move the mask into sunxi_nfc_caps.
 >>
+>> No functional change.
 >>
->> OK, then please mention this in the commit msg, so it is clear why this
->> is not compatible with previous generation.
+>> Signed-off-by: Richard Genoud <richard.genoud@bootlin.com>
+>> ---
+>>   drivers/mtd/nand/raw/sunxi_nand.c | 13 +++++++++----
+>>   1 file changed, 9 insertions(+), 4 deletions(-)
 >>
->> Best regards,
->> Krzysztof
+>> diff --git a/drivers/mtd/nand/raw/sunxi_nand.c b/drivers/mtd/nand/raw/sunxi_nand.c
+>> index 70c940840dda..4118307cac15 100644
+>> --- a/drivers/mtd/nand/raw/sunxi_nand.c
+>> +++ b/drivers/mtd/nand/raw/sunxi_nand.c
+>> @@ -29,8 +29,9 @@
+>>   #include <linux/iopoll.h>
+>>   #include <linux/reset.h>
+>>   
+>> -/* non compile-time field get */
+>> +/* non compile-time field get/prep */
+>>   #define field_get(_mask, _reg) (((_reg) & (_mask)) >> (ffs(_mask) - 1))
+>> +#define field_prep(_mask, _val) (((_val) << (ffs(_mask) - 1)) &
+>> (_mask))
 > 
-> Sorry for being a bit verbose, but I would like to make it clear that we can still
-> use this fallback if we clarify it in the commit message, right?
+> This could probably require a mention in the commit message, as for the
+> introduction of the field_get() helper.
+> 
+> No need to resend just for this either.
+Ok, will do.
 
+> 
+> Thanks,
+> Miquèl
+> 
+Thanks!
 
-Yes, you can.
-
-Best regards,
-Krzysztof
+-- 
+Richard Genoud, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
