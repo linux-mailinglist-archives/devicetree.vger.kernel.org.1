@@ -1,119 +1,166 @@
-Return-Path: <devicetree+bounces-230817-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230818-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17EA4C0642D
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 14:31:36 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 503B9C0645D
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 14:34:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 9E58C35B4DE
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 12:31:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C13011C056F3
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 12:35:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DC513191A4;
-	Fri, 24 Oct 2025 12:31:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89AA8317706;
+	Fri, 24 Oct 2025 12:34:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VgosSDAf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6749131985F
-	for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 12:31:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDCFE3016FD
+	for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 12:34:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761309070; cv=none; b=mM/kXr+AekIJVgbQFUK+iTTisCq4VOQjKA2fdFDA5Vu8YO1fAdiwRRsufH8hvu9HNzVs5KBuk2JpuyqAwZGm4Vn+NDwtX7FBEMpTBtHR9wRhTGFZGfaEIwjLSEd0pJWANkuQHehXNSh3DgoECEtLVf2mOefbuBIU3Ju9QLyinkM=
+	t=1761309286; cv=none; b=lrFnhJbulurwNkth4/Fn+fBGWjGK1hH/NUhDXYps2nn1vJUYROdniSrw8WTy5SBkaqKQMl0KUmaZ1Vs5Ra9dxRhTkgMS0LWpavAxw22eS3rVocYous/x9N0cYzIc2gw0rMspNM5l113BceU+RZ+uqRTYt6ruu9NG6e+6ZsVbezc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761309070; c=relaxed/simple;
-	bh=Q1sk4AdrzZT3+Y0gKCMUvozYWgb4PmEeF5wsEbjHQa4=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=NtgPwNFUHWVHlhxj1F62S2yt/MjfcTiylmnvb/+eRq0ROrjjX7+vJLCiBcPqeTcyk8pApY1Y8wgZBfL5YdX2isOpqdSpwoLB0XO5NWRKa7Vy1fTlyNUXrnsk+bTN+lo4mKN58uaJZ0/osNs+U190UTqjFpk0G6aokdBYCBubVls=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=ratatoskr.pengutronix.de)
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <s.trumtrar@pengutronix.de>)
-	id 1vCGwe-0002Ya-Bf; Fri, 24 Oct 2025 14:31:00 +0200
-From: Steffen Trumtrar <s.trumtrar@pengutronix.de>
-To: Maxime Chevallier <maxime.chevallier@bootlin.com>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,  "David S. Miller"
- <davem@davemloft.net>,  Eric Dumazet <edumazet@google.com>,  Jakub
- Kicinski <kuba@kernel.org>,  Paolo Abeni <pabeni@redhat.com>,  Rob Herring
- <robh@kernel.org>,  Krzysztof Kozlowski <krzk+dt@kernel.org>,  Conor
- Dooley <conor+dt@kernel.org>,  Dinh Nguyen <dinguyen@kernel.org>,  Maxime
- Coquelin <mcoquelin.stm32@gmail.com>,  Alexandre Torgue
- <alexandre.torgue@foss.st.com>,  Matthew Gerlach
- <matthew.gerlach@altera.com>,  kernel@pengutronix.de,
-  netdev@vger.kernel.org,  devicetree@vger.kernel.org,
-  linux-kernel@vger.kernel.org,  linux-stm32@st-md-mailman.stormreply.com,
-  linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v5 01/10] net: stmmac: dwmac-socfpga: don't set has_gmac
-In-Reply-To: <92e953b8-4581-4647-8173-6c7fa05a7895@bootlin.com> (Maxime
-	Chevallier's message of "Fri, 24 Oct 2025 14:11:45 +0200")
-References: <20251024-v6-12-topic-socfpga-agilex5-v5-0-4c4a51159eeb@pengutronix.de>
-	<20251024-v6-12-topic-socfpga-agilex5-v5-1-4c4a51159eeb@pengutronix.de>
-	<92e953b8-4581-4647-8173-6c7fa05a7895@bootlin.com>
-User-Agent: mu4e 1.12.13; emacs 30.2
-Date: Fri, 24 Oct 2025 14:30:57 +0200
-Message-ID: <87tszo7a7y.fsf@pengutronix.de>
+	s=arc-20240116; t=1761309286; c=relaxed/simple;
+	bh=DfsLw55qVEyWsq1GH2z7Ret4vbW8AQypWgF53KmOf9k=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=laeQvFdiYVRMr3RIWMRcE9qO1ngWe72a2TMYjj9bzKdGLBhazkNLpay3QXx1EmdQOsezkCtBtjt3FANrJrQ9SlwNK2KwgrQwgbhNomlsX1pSVKOZniii/HvjyW4wcX7m7LGjh13Fi3C7w6sOW+xHrBGR3ChP8QHHFsgUDaCjn0g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VgosSDAf; arc=none smtp.client-ip=209.85.218.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-b5e19810703so315062166b.2
+        for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 05:34:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1761309283; x=1761914083; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=vkZxhv/GZ+0mzfo95Y14AIl8zEVZ7txWfcdhXxNhCg8=;
+        b=VgosSDAfYyjz8vTC7x1I/C+69R7/Jl+HXckwDz1+Jz247EHv6F9rvOuWjqlSnFXN5i
+         vaN6iedfpk185JTXp3usquTEAJvrdMjvA+QV7v+QpnFIMzlUediM7sS5S4igqpQS8nZN
+         LhQwi7Lus+wxRALE8FFEm64+27D0/OgN3QeQu8Jju7exafiFFU+uXmXITOxHPN6XkUaJ
+         JF0tDz6kUszK/yeSYu6eb7ZwgC2YLv2m95K+7NUA/L0ndWYZF4zbhL2Qq18TxLMh+/ba
+         7bus177pagSWBkVJovnD8c5pmjeUsnuG+HOTQVpeqDzZw9YeznS+8xyumrbmi2snMwKM
+         YUWA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761309283; x=1761914083;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=vkZxhv/GZ+0mzfo95Y14AIl8zEVZ7txWfcdhXxNhCg8=;
+        b=LI6VZ086OQTUXk/vgdJqw/DPzefQgG8ujsvLYKyxM1xO/Iai581GziPQ7IjrkVrH83
+         rL4/IPMcTOsJc93RQ+DiWjEOWP2ShvuivVjyQkUimUhy+8cpoJg1lXJByqAt+Po1nII7
+         b3yPET4Juaf1nzPmipXnlLC4VlGyMz0wXBWbD95eCVfj11l47/aFSElgFvn2Gv9D/C1b
+         O+7iKZ4EDqAPiz5uYmMdUfgBKtWZMFOxox6gUoNyc3ngPNj2+7R9WALZHCvdwuSdqkJ0
+         hyAiYyBFDZHuF3YMLfZrPIarZfeTP6hhI2kcVkYn1Srdzj1y7FPWOFaESjuxkDPIzIBD
+         9REA==
+X-Forwarded-Encrypted: i=1; AJvYcCVCKFG9EFNRz6vBLqUlpI7z9kQOpjEwybtWfnkLnZIt79yhx/VPWDGKIQMmClXf5MKJCBtnHcyH5FBg@vger.kernel.org
+X-Gm-Message-State: AOJu0YwX4b2ClwR645fka2/jWvryRN2SxBpptBlddCAyHqQ1GvgUGJF3
+	P+ELTQPm90dukCVygDAyqMhX6puDrkJtIBO5ELs4WCZeaI19Ze4yFUBa
+X-Gm-Gg: ASbGnctFTeJx5aBfb1ysJIYsFCWMDP6ZgQ7easu1NF1rMRA9hkgzGIs6acOyfnY1kCj
+	DxU5+KLteFxys2IzxRqWOjox/0EKXaZRAjTSMFORTq7hnYJOkw6rwVEvcfqa80KzZecI9SiJNZ8
+	pXNBYWIcAtz+X4gERGs3Ln9c0toLmMXAQuBQ5JRyngXIlU70OsU+9ygfb0UgM+ishyQhrbmVG/c
+	3RJMlH4XCzXnzsP6TrHdzwd9dWukn8gdp6QdOC+acD2X/GNKgnaKm7imwvczvlyVmtFP3qugiRc
+	taT40M0okCoacJhIoGb1rW5kgriDrrF+wa3gkz8pzVyErwP85ry6wezMECYuK06AJDLuWnFtsPQ
+	yikOmn/Gl2XDIGclA8h8lrpMG6Uoie6sy90UZb5sRZadb5z8jJMp0VMoVYWXqBVT52maVy1aDwU
+	3p8EmBrNpt/C6XP9wJbgJiZF18JtzEJo2UDCLUA7lifFsoz7L9yNJJSg==
+X-Google-Smtp-Source: AGHT+IFSr/XYwfRfLIFaIqsUt5jHZeJv+L9cUEB6LNpHnU0h5lq97IHAgFvmzs6a4QTfDaRVom0Xrg==
+X-Received: by 2002:a17:907:25c6:b0:b2d:a873:38d with SMTP id a640c23a62f3a-b64749408dbmr3638894466b.43.1761309283008;
+        Fri, 24 Oct 2025 05:34:43 -0700 (PDT)
+Received: from [192.168.1.103] (79-100-18-255.ip.btc-net.bg. [79.100.18.255])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b6d511f8634sm518519566b.29.2025.10.24.05.34.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 24 Oct 2025 05:34:42 -0700 (PDT)
+Message-ID: <9594fa0e-22f6-4412-a967-6d5c1374da48@gmail.com>
+Date: Fri, 24 Oct 2025 15:34:41 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; format=flowed
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: s.trumtrar@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 5/5] clk: samsung: introduce exynos8890 clock driver
+Content-Language: en-US
+To: Peter Griffin <peter.griffin@linaro.org>,
+ Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Sylwester Nawrocki <s.nawrocki@samsung.com>,
+ Chanwoo Choi <cw00.choi@samsung.com>, Alim Akhtar <alim.akhtar@samsung.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-samsung-soc@vger.kernel.org,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20251017161334.1295955-1-ivo.ivanov.ivanov1@gmail.com>
+ <20251017161334.1295955-6-ivo.ivanov.ivanov1@gmail.com>
+ <20251022-savvy-sly-auk-a60073@kuoka>
+ <CADrjBPpXStuuvbaPZ+knb8fiGQja_hdX42PKfj=bTNCdXPCN9w@mail.gmail.com>
+From: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+In-Reply-To: <CADrjBPpXStuuvbaPZ+knb8fiGQja_hdX42PKfj=bTNCdXPCN9w@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-
-Hi Maxime,
-
-On 2025-10-24 at 14:11 +02, Maxime Chevallier <maxime.chevallier@bootlin.com> wrote:
-
-> Hi Steffen
-> 
-> On 24/10/2025 13:49, Steffen Trumtrar wrote:
-> > Instead of setting the has_gmac or has_xgmac fields, let
-> > stmmac_probe_config_dt()) fill these fields according to the more
-> > generic compatibles.
-> > 
-> > Without setting the has_xgmac/has_gmac field correctly, even basic
-> > functions will fail, because the register offsets are different.
-> > 
-> > Signed-off-by: Steffen Trumtrar <s.trumtrar@pengutronix.de>
-> > ---
-> >  drivers/net/ethernet/stmicro/stmmac/dwmac-socfpga.c | 1 -
-> >  1 file changed, 1 deletion(-)
-> > 
-> > diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-socfpga.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-socfpga.c
-> > index 354f01184e6cc..7ed125dcc73ea 100644
-> > --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-socfpga.c
-> > +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-socfpga.c
-> > @@ -497,7 +497,6 @@ static int socfpga_dwmac_probe(struct platform_device *pdev)
-> >  	plat_dat->pcs_init = socfpga_dwmac_pcs_init;
-> >  	plat_dat->pcs_exit = socfpga_dwmac_pcs_exit;
-> >  	plat_dat->select_pcs = socfpga_dwmac_select_pcs;
-> > -	plat_dat->has_gmac = true;
-> 
-> Note that this field is now gone as per :
-> 
->   26ab9830beab ("net: stmmac: replace has_xxxx with core_type")
-> 
-> You'll need to rebase the series :)
+On 10/24/25 15:07, Peter Griffin wrote:
+> Hi Ivaylo & Krzysztof,
 >
+> On Wed, 22 Oct 2025 at 08:56, Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>> On Fri, Oct 17, 2025 at 07:13:33PM +0300, Ivaylo Ivanov wrote:
+>>> Introduce a clocks management driver for exynos8890, providing clocks
+>>> for the peripherals of that SoC.
+>>>
+>>> As exynos8890 is the first exynos SoC to feature Hardware Auto Clock
+>>> Gating (HWACG), it differs from newer SoCs. Q-channel and Q-state bits
+>>> are separate registers, unlike the CLK_CON_GAT_* ones that feature HWACG
+>>> bits in the same register that controls manual gating. Hence, don't use
+>>> the clk-exynos-arm64 helper, but implement logic that enforces manual
+>>> gating.
+> For sure it isn't the only upstream SoC with HWACG, gs101 and e850 and
+> probably lots of Exynos SoCs have it. Whether it is the "first" in
+> terms of release date of the SoC I don't know 
 
-I see, bad timing, but luckily an easy patch :)
+Huh? Samsung hasn't released a lot of exynos chips and you're free to check
+kernel sources if curious. Exynos 7420 didn't have HWACG, 8890 and 8895
+have it. Exynos 7870 (roughly same gen as 8890, but budget lineup) doesn't
+have it.
 
+> , unless there is some comment in
+> downstream code to that effect). Your CMU registers do look like a
+> different layout though.
+
+Exactly. First implementation/gen of HWACG == lots of room to improve.
+Which they did, and this is what I implied here. I can word it differently
+though, to be more clear.
+
+> Just fyi gs101 also has Q-Channel registers that contain HWACG Enable
+> bits. The reset state of all these bits on gs101 (both for QCH_CON_XXX
+> registers, QCH_EN bit and HWACG bit in CLK_CON_GAT_* regs is off). In
+> my case I suspect the bootloader doesn't initialize any of them
+> because of the CMUs "global enable override" bits in the CMU_OPTION
+> register (which is initialized by the bootloader).
+
+Well, to be fair, without any documentations or bootloader sources there's
+so much so I can do. The vendor kernel also force disables the qchannel
+registers, hence the assumption.
+
+>> Please CC @Peter Griffin in future versions.
+>>
+>> How much of this can be shared between this and GS101?
+>> https://lore.kernel.org/all/20251013-automatic-clocks-v1-0-72851ee00300@linaro.org/
+>>
+> It seems from the commit description Ivaylo is still wanting to put
+> all the gates into manual mode, so is only initializing these
+> registers to ensure HWACG is disabled.
+
+Yeah. Not all CMU blocks seem to implement HWACG, so in my opinion it's
+best to just keep all in manual gating mode.
+
+>  Happy to help review it though.
+
+Would love you to! Thanks!
 
 Best regards,
-Steffen
-
--- 
-Pengutronix e.K.                | Dipl.-Inform. Steffen Trumtrar |
-Steuerwalder Str. 21            | https://www.pengutronix.de/    |
-31137 Hildesheim, Germany       | Phone: +49-5121-206917-0       |
-Amtsgericht Hildesheim, HRA 2686| Fax:   +49-5121-206917-5555    |
+Ivaylo
 
