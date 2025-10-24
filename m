@@ -1,226 +1,177 @@
-Return-Path: <devicetree+bounces-230604-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230605-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18816C045D5
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 07:14:16 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F91DC045FE
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 07:21:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D4D004E1268
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 05:14:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1F5731A04CC4
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 05:22:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91EC7238D52;
-	Fri, 24 Oct 2025 05:14:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D24D253F3A;
+	Fri, 24 Oct 2025 05:21:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="GU6Hef9X"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="B1Pk+GBB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDA1B228CB0;
-	Fri, 24 Oct 2025 05:14:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53FD41B4224;
+	Fri, 24 Oct 2025 05:21:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761282852; cv=none; b=fXtiVIOSC/9bp82c0R6Id8+42owY3eFw5OlCI1rmHEZo25+uw0mTvlbaMP3XJ7IiX/iS86AxavopI2xU9nd0aaZD/duo0D2ztL2MwouIwbTo4ZxfU6OksiLRmAaREUeJiK7Vl3YFmQVSRiboN9zA9rPEpZ2WL5vlgtYDUhAuIac=
+	t=1761283308; cv=none; b=GdP75eBF2R9Fv4+yyVTXU1+2is7mDziJX/C+u560mF1xXn/xnB2JQohSDrT1zqfXssGA3cA1tf/oMcvGFBCXybazV9osn0reiNln5vxa/utj9+eNQCXWUsTUIh/n4XIrutbQcKvDbjS8/DAtTP/prk00v5iKWqZxCcNE0KMRed8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761282852; c=relaxed/simple;
-	bh=5EEg/RzbwE3s+mLlYbRaS/zjJFFzYoSPj5cjZagyLH8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=sueFtfag4AtF76u+f4KHyShf4RAY0vUypHnkGIUul43XgJDFqvUH5gCINYk4NSG47APBvmJ9DBhRCBcnATQsEi9Dcwj/qZdD/B03rTgUKfjm3iHWfBOXt+T7pyZNNMWTVwm4yhPyUy4WHo+23rKQ1MNEiPOzhtDBRMafvxqmOCY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=GU6Hef9X; arc=none smtp.client-ip=198.47.23.235
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
-	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 59O5E0aN690420;
-	Fri, 24 Oct 2025 00:14:00 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1761282840;
-	bh=B/skm0UaW3KF3UHKou99L8O5DCPGnOOskv0SohMxpmU=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=GU6Hef9X2H80KkhNHfSv9NXBExe1nvzLDZFY7HHDy6IOTwXQlSuT/jfwr/Hdmd2ww
-	 BTHDvkJxJTNJhGletO8Qia0CRXPW27Z/e3fsbVauYrGHMWqQIRZ0eSR7UBDkMfplz0
-	 H+l7cvv+OOrfivw5HKRzEFA2cerTyd3xpEevDGpk=
-Received: from DLEE210.ent.ti.com (dlee210.ent.ti.com [157.170.170.112])
-	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 59O5Dx753227887
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 24 Oct 2025 00:13:59 -0500
-Received: from DLEE215.ent.ti.com (157.170.170.118) by DLEE210.ent.ti.com
- (157.170.170.112) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Fri, 24 Oct
- 2025 00:13:59 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE215.ent.ti.com
- (157.170.170.118) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Fri, 24 Oct 2025 00:13:59 -0500
-Received: from [172.24.26.46] (lt5cd2489kgj.dhcp.ti.com [172.24.26.46])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 59O5Dudq4018814;
-	Fri, 24 Oct 2025 00:13:56 -0500
-Message-ID: <9da776bc-3156-4f4b-9e64-6ada5b47fab3@ti.com>
-Date: Fri, 24 Oct 2025 10:43:55 +0530
+	s=arc-20240116; t=1761283308; c=relaxed/simple;
+	bh=vzm6mP61BU/bRw8GcH5rFHfwHA5PAU7GoOtUxNq/pgI=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=sis8T2BESp6D620MsjgUapwnxyjUV0XhOppVDY3QNdih7mPIfZlTom7FxVyPmrKGwbimSNbvs2gZX+o5aSUUTbL2pbyfmtd9e/Fm1S4/X2BjteidG2vxtL2hggmIelhhwUWIyJh2bZJAPwtFGyTHKQ2lc+iOzZ7xPA0u/YpY7nk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=B1Pk+GBB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id D8814C4CEF1;
+	Fri, 24 Oct 2025 05:21:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761283307;
+	bh=vzm6mP61BU/bRw8GcH5rFHfwHA5PAU7GoOtUxNq/pgI=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=B1Pk+GBBvN1DrMxN+3h9OTzWQtTd2snzYHeDg52D/wRQFi/KCCX0pBpfI3erKxC47
+	 b/MuCut0naJIoYnJy+qu4gqxmaLczBJ/Lc08GyBVAt417FtEP1s5k9AQ7/D2xlTYa0
+	 JptRAPip9RrhMOeB9Ep8Hh6sTNxEDzWDpGHWK+6mnzLJOFT7QmarYkPQI5993wVcJ7
+	 nzkH/ZOOsEclmKcqZTv1J0IyTzrr6gMJfJ8SF849/w34x6PDA1MPrAeFTroucQuzYe
+	 A1X4O0nPOadyVfHgqE4r6ULCmNq2ng0uCyXgYOdgj87mZx9tPRvKgkunbABjsfZLEl
+	 7ZdsFhS/iVePQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C4608CCD1BF;
+	Fri, 24 Oct 2025 05:21:47 +0000 (UTC)
+From: Xiangxu Yin via B4 Relay <devnull+xiangxu.yin.oss.qualcomm.com@kernel.org>
+Subject: [PATCH v6 0/4] Add DisplayPort support to QCS615 devicetree
+Date: Fri, 24 Oct 2025 13:21:00 +0800
+Message-Id: <20251024-add-displayport-support-to-qcs615-devicetree-v6-0-c4316975dd0e@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/3] arm64: dts: ti: Add support for Kontron
- SMARC-sAM67
-To: Michael Walle <mwalle@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Vignesh
- Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>
-CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <u-kumar1@ti.com>
-References: <20251017135116.548236-1-mwalle@kernel.org>
- <20251017135116.548236-3-mwalle@kernel.org>
-Content-Language: en-US
-From: "Kumar, Udit" <u-kumar1@ti.com>
-In-Reply-To: <20251017135116.548236-3-mwalle@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAMEM+2gC/6XSwU7DMAwG4FeZeiYocdN0nRDiPRAHJ3Eg0rp0S
+ VeBEO+OuwkYYpMYnCL78H+y49eqUI5UqtXitco0xRLThgtztajcE24eSUTPdQUSGiWVFui98LE
+ Ma3wZUh5F2Q37d0xi64pRjfAc42jMRIIcojfQogxYceSQKcTnPXf/wPVTLGPKL3t9UnN3hrQCJ
+ S+DJiWkkBCWGjtwWtu77S66uHHXLvXVTE3wEf+HOSbgeAWy86HVXit5l0q53u5wzfH9l1H/x6j
+ ZaDW5zlhcKq3PGPrYaC40NBuI4OxSt5I6f8ZojgxQFxoNGx0EGWobtOnCCePtcAuZ+JdKHA8HU
+ fVUCu4vbrW4mXHZyfoY/4RDyh8y90cuezEt5/11rXKy8QoM/HBv5xM8gShzQAbh0mbMab2m/I0
+ qPUty/iElvDeSrPW8fPq1AObsDk+O0vIo3jXkEZ1xYE9DFguJuRPH1YKCBYNQk28CL/jtHcEM4
+ J7aAwAA
+X-Change-ID: 20251014-add-displayport-support-to-qcs615-devicetree-ecaad627a0fa
+To: Rob Clark <robin.clark@oss.qualcomm.com>, 
+ Dmitry Baryshkov <lumag@kernel.org>, 
+ Abhinav Kumar <abhinav.kumar@linux.dev>, 
+ Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>, 
+ Marijn Suijten <marijn.suijten@somainline.org>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+ freedreno@lists.freedesktop.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, fange.zhang@oss.qualcomm.com, 
+ yongxing.mou@oss.qualcomm.com, li.liu@oss.qualcomm.com, 
+ Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>, 
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1761283305; l=4343;
+ i=xiangxu.yin@oss.qualcomm.com; s=20241125; h=from:subject:message-id;
+ bh=vzm6mP61BU/bRw8GcH5rFHfwHA5PAU7GoOtUxNq/pgI=;
+ b=sSIH6bHGMApeU1e+mFHDbcUUSqY4PD4rLaClW21LoHpwmGaBzpDV9syXcWhNLEU867X/miA+R
+ dm6caWTOcqiCe4ardDB1SogtZCNqQ+vr9nF0lBqkwl4al0lmGH4lzDI
+X-Developer-Key: i=xiangxu.yin@oss.qualcomm.com; a=ed25519;
+ pk=F1TwipJzpywfbt3n/RPi4l/A4AVF+QC89XzCHgZYaOc=
+X-Endpoint-Received: by B4 Relay for xiangxu.yin@oss.qualcomm.com/20241125
+ with auth_id=542
+X-Original-From: Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
+Reply-To: xiangxu.yin@oss.qualcomm.com
 
-Hi Michael
+This series enables DisplayPort functionality on QCS615 platforms.
+It introduces the required bindings, updates SM6150 dtsi for DP controller
+and QMP USB3-DP PHY, and enables DP on the QCS615 Ride board with
+connector and link configuration.
 
-On 10/17/2025 7:20 PM, Michael Walle wrote:
-> Add device tree support for the Kontron SMARC-sAM67 module, which is
-> based on a TI AM67A SoC.
->
-> The module features:
->   * Quad-core AM67A94 at 1.4GHz with 8 GiB RAM
->   * 64 GiB eMMC, 4 MiB SPI flash for failsafe booting
->   * Dedicated RTC
->   * Multiple interfaces: 4x UART, 2x USB 2.0/USB 3.2, 2x GBE, QSPI,
->          7x I2C,
->   * Display support: 2x LVDS, 1x DSI (*), 1x DP (*)
->   * Camera support: 4x CSI (*)
->   * Onboard microcontroller for boot control, failsafe booting and
->     external watchdog
->
-> (*) not yet supported by the kernel
->
-> There is a base device tree and overlays which will add optional
-> features. At the moment there is one full featured variant of that
-> board whose device tree is generated during build by merging all the
-> device tree overlays.
->
-> Signed-off-by: Michael Walle <mwalle@kernel.org>
-> ---
->   arch/arm64/boot/dts/ti/Makefile               |    7 +
->   .../dts/ti/k3-am67a-kontron-sa67-base.dts     | 1091 +++++++++++++++++
->   .../dts/ti/k3-am67a-kontron-sa67-gbe1.dtso    |   26 +
->   .../dts/ti/k3-am67a-kontron-sa67-gpios.dtso   |   61 +
->   .../ti/k3-am67a-kontron-sa67-rtc-rv8263.dtso  |   31 +
->   5 files changed, 1216 insertions(+)
->   create mode 100644 arch/arm64/boot/dts/ti/k3-am67a-kontron-sa67-base.dts
->   create mode 100644 arch/arm64/boot/dts/ti/k3-am67a-kontron-sa67-gbe1.dtso
->   create mode 100644 arch/arm64/boot/dts/ti/k3-am67a-kontron-sa67-gpios.dtso
->   create mode 100644 arch/arm64/boot/dts/ti/k3-am67a-kontron-sa67-rtc-rv8263.dtso
->
-> diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-> index 743115b849a7..d2a40ea642c4 100644
-> --- a/arch/arm64/boot/dts/ti/Makefile
-> +++ b/arch/arm64/boot/dts/ti/Makefile
-> @@ -137,7 +137,14 @@ dtb-$(CONFIG_ARCH_K3) += k3-j721s2-evm-pcie1-ep.dtbo
->   dtb-$(CONFIG_ARCH_K3) += k3-j721s2-evm-usb0-type-a.dtbo
->   
->   # Boards with J722s SoC
-> +k3-am67a-kontron-sa67-dtbs := k3-am67a-kontron-sa67-base.dtb \
-> +	k3-am67a-kontron-sa67-rtc-rv8263.dtbo k3-am67a-kontron-sa67-gbe1.dtbo
->   dtb-$(CONFIG_ARCH_K3) += k3-am67a-beagley-ai.dtb
-> +dtb-$(CONFIG_ARCH_K3) += k3-am67a-kontron-sa67.dtb
-> +dtb-$(CONFIG_ARCH_K3) += k3-am67a-kontron-sa67-base.dtb
-> +dtb-$(CONFIG_ARCH_K3) += k3-am67a-kontron-sa67-gbe1.dtbo
-> +dtb-$(CONFIG_ARCH_K3) += k3-am67a-kontron-sa67-gpios.dtbo
-> +dtb-$(CONFIG_ARCH_K3) += k3-am67a-kontron-sa67-rtc-rv8263.dtbo
->   dtb-$(CONFIG_ARCH_K3) += k3-j722s-evm.dtb
->   dtb-$(CONFIG_ARCH_K3) += k3-j722s-evm-csi2-quad-rpi-cam-imx219.dtbo
->   dtb-$(CONFIG_ARCH_K3) += k3-j722s-evm-csi2-quad-tevi-ov5640.dtbo
-> diff --git a/arch/arm64/boot/dts/ti/k3-am67a-kontron-sa67-base.dts b/arch/arm64/boot/dts/ti/k3-am67a-kontron-sa67-base.dts
-> new file mode 100644
-> index 000000000000..7169d934adac
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/ti/k3-am67a-kontron-sa67-base.dts
-> @@ -0,0 +1,1091 @@
-> +// SPDX-License-Identifier: GPL-2.0-only OR MIT
-> +/*
-> + * Kontron SMARC-sAM67 module
-> + *
-> + * Copyright (c) 2025 Kontron Europe GmbH
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/interrupt-controller/irq.h>
-> +#include <dt-bindings/phy/phy.h>
-> +#include "k3-j722s.dtsi"
-> +#include "k3-serdes.h"
-> +
-> [..]+
-> +	ospi0_pins_default: ospi0-default-pins {
-> +		pinctrl-single,pins = <
-> +			J722S_IOPAD(0x000, PIN_OUTPUT, 0)	/* (L24) OSPI0_CLK */
-> +			J722S_IOPAD(0x02c, PIN_OUTPUT, 0)	/* (K26) OSPI0_CSn0 */
-> +			J722S_IOPAD(0x030, PIN_OUTPUT, 0)	/* (K23) OSPI0_CSn1 */
-> +			J722S_IOPAD(0x034, PIN_OUTPUT, 0)	/* (K22) OSPI0_CSn2 */
+Depends-on:
+https://lore.kernel.org/all/20250903-add-display-support-for-qcs615-platform-v8-1-7971c05d1262@oss.qualcomm.com/
+https://lore.kernel.org/all/20250916-add-dp-controller-support-for-sm6150-v3-1-dd60ebbd101e@oss.qualcomm.com/
+https://lore.kernel.org/all/20250926-add-displayport-support-for-qcs615-platform-v7-1-dc5edaac6c2b@oss.qualcomm.com/
 
-I am not sure, which flash device is being used , could you check once 
-if all three CS are supported.
+Signed-off-by: Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
+---
+Changes in v6:
+- Removed useless remote-endpoint addition from previous version. [Dmitry]
+- Fix indentation and blank lines in dt-binding example.
+- Fix OPP values to correct clock rates in dt-binding example.
+- Fix blank lines between the last property and the following subnode [Konrad]
+- Link to v5: https://lore.kernel.org/r/20251021-add-displayport-support-to-qcs615-devicetree-v5-0-92f0f3bf469f@oss.qualcomm.com
 
+Changes in v5:
+- Update commit message and fix example indentation in binding
+- Update order in dtsi includes [Krzysztof]
+- Link to v4: https://lore.kernel.org/r/20251015-add-displayport-support-to-qcs615-devicetree-v4-0-aa2cb8470e9d@oss.qualcomm.com
 
-> +			J722S_IOPAD(0x00c, PIN_INPUT, 0)	/* (K27) OSPI0_D0 */
-> +			J722S_IOPAD(0x010, PIN_INPUT, 0)	/* (L27) OSPI0_D1 */
-> +			J722S_IOPAD(0x014, PIN_INPUT, 0)	/* (L26) OSPI0_D2 */
-> +			J722S_IOPAD(0x018, PIN_INPUT, 0)	/* (L25) OSPI0_D3 */
-> +		>;
-> +		bootph-all;
-> +	};
-> +
-> +	pcie0_rc_pins_default: pcie0-rc-default-pins {
-> +		pinctrl-single,pins = <
-> +			J722S_IOPAD(0x2ac, PIN_OUTPUT, 0)	/* (F25) PCIE0_CLKREQn */
-> +			J722S_IOPAD(0x1b4, PIN_OUTPUT, 7)	/* (B20) SPI0_CS0.GPIO1_15 */
-> +		>;
-> +	};
-> +
-> +	pmic_irq_pins_default: pmic-irq-default-pins {
-> +		pinctrl-single,pins = <
-> +			J722S_IOPAD(0x090, PIN_INPUT, 7)	/* (P27) GPMC0_BE0n_CLE.GPIO0_35 */
-> +		>;
-> +	};
-> +
-> [..]
-> +/* I2C_PM */
-> +&wkup_i2c0 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&wkup_i2c0_pins_default>;
-> +	clock-frequency = <100000>;
-> +	status = "okay";
+Changes in v4:
+- Update commit message to reflect data-lanes changes.
+- Link to v3: https://lore.kernel.org/r/20251014-add-displayport-support-to-qcs615-devicetree-v3-0-74ec96ba8144@oss.qualcomm.com
+
+Changes in v3:
+- Move data-lanes from board DTS to SoC DTS [Dmitry]
+- Add missing assigned-clock PIXEL1_CLK_SRC [Dmitry]
+- Update subject prefix to qcom: qcs615-ride: for DTS patch [Konrad]
+- Link to v2: https://lore.kernel.org/r/20251014-add-displayport-support-to-qcs615-devicetree-v2-0-1209df74d410@oss.qualcomm.com
+
+Changes in v2:
+- Update register padding and ordering [Dmitry]
+- Rebase the series on the latest driver
+- Link to v1: https://lore.kernel.org/all/20241210-add-displayport-support-to-qcs615-devicetree-v1-0-02f84a92c44b@quicinc.com/
+
+---
+Xiangxu Yin (4):
+      dt-bindings: display: msm: Add SM6150 DisplayPort controller
+      dt-bindings: display: msm: sm6150-mdss: Fix example indentation and OPP values
+      arm64: dts: qcom: Add DisplayPort and QMP USB3DP PHY for SM6150
+      arm64: dts: qcom: qcs615-ride: Enable DisplayPort
+
+ .../bindings/display/msm/qcom,sm6150-mdss.yaml     |  42 +++++---
+ arch/arm64/boot/dts/qcom/qcs615-ride.dts           |  30 ++++++
+ arch/arm64/boot/dts/qcom/sm6150.dtsi               | 115 ++++++++++++++++++++-
+ 3 files changed, 170 insertions(+), 17 deletions(-)
+---
+base-commit: efb26a23ed5f5dc3554886ab398f559dcb1de96b
+change-id: 20251014-add-displayport-support-to-qcs615-devicetree-ecaad627a0fa
+prerequisite-message-id: <20250903-add-display-support-for-qcs615-platform-v8-0-7971c05d1262@oss.qualcomm.com>
+prerequisite-patch-id: 58be7053007469980bd7cc9fe315b66bbe021c31
+prerequisite-patch-id: 3c2120117f72c64f69beff32c0239fbc7f808f36
+prerequisite-message-id: <20250916-add-dp-controller-support-for-sm6150-v3-1-dd60ebbd101e@oss.qualcomm.com>
+prerequisite-patch-id: eb07ea58347e77ee18fb6dade040affb0ab68954
+prerequisite-message-id: <20250926-add-displayport-support-for-qcs615-platform-v7-0-dc5edaac6c2b@oss.qualcomm.com>
+prerequisite-patch-id: 8c6c905df7ee55a92a4e52362c8fa7cd9742de04
+prerequisite-patch-id: 0dba0fafd032bbd6cd117175f61efd1e56ae9228
+prerequisite-patch-id: d954b18774cfc0cfdb23de09aab3c56cefb8e1ea
+prerequisite-patch-id: 13f2d2efbcee6337001b5f8519a6da9a41d05276
+prerequisite-patch-id: 3a7144645ede23ccc7d54420e5a32e5bfa3bb776
+prerequisite-patch-id: b3ea55e92953c1526eaf7c5c21d939a5f8502711
+prerequisite-patch-id: 977189ef7cecbe7237175a8ef611fffb814193b0
+prerequisite-patch-id: 3a12c1b4f00eb1d074e51d586f2dae3a44de0613
+prerequisite-patch-id: 7f80e93057c1fd088ac6b4b0652cdfe2ea221cd5
+prerequisite-patch-id: 8b29d292717782982e4450a509f4428fe6e895f2
+prerequisite-patch-id: 621c3ba6bcf5b5782a5264faed72fdadfd47c630
+prerequisite-patch-id: 9c63f2c5bb39527e3031b2d168e3c9419441e8df
+prerequisite-patch-id: 364f6a7d8f4e1bc79a8f236b8d5a2425ffd225fe
+prerequisite-patch-id: eb09ea48625b5c0d39ffb37babe7d8c32a4b3122
+
+Best regards,
+-- 
+Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
 
 
-This is more a question, I see all i2c controller you want to run at 
-100Kz, but most of devices are supporting 400Khz
-
-like tps652g1 over main_i2c0 ,  pca9546 over main_i2c1 , is there 
-specific reason for this
-
-
-> +};
-> +
-> +/* SER3 */
-> +&wkup_uart0 {
-> +	/* WKUP UART0 is used by Device Manager firmware */
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&wkup_uart0_pins_default>;
-> +	bootph-all;
-> +	status = "reserved";
-> +};
-[..]
 
