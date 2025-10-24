@@ -1,184 +1,168 @@
-Return-Path: <devicetree+bounces-230616-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230618-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id CECF6C0472E
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 08:10:51 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A82F1C0474C
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 08:13:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 427F74E3887
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 06:10:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 559363A60E6
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 06:13:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6FDE24BBEC;
-	Fri, 24 Oct 2025 06:10:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D8F72638BA;
+	Fri, 24 Oct 2025 06:13:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="hV/iQ0Ve"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="TutqQKVW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C6B1C141
-	for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 06:10:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0595B72631;
+	Fri, 24 Oct 2025 06:13:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761286245; cv=none; b=CnK95jgoALtYTSneBiEvBOmRirWaAAv9NJ/oMYDHXBTR3238baapZPG/1IzKPkb3vwd7fYMmFgycjV+6EAOZPzcntptNIrvmrAvcXfqMJMS5lLbn02jTXoPBLiTXnmpALjUNe0FqxpJKHo+nGwTqwOJXD6ymqJg0751bWwXsB3Q=
+	t=1761286417; cv=none; b=Pft5Wj0UYabPibG1DC33poudsskWIygwvBTbqbhWbDR+lcaeL9jEoWkg+8kiK0WA2Sow8YFpdWvO5uKBZdcoy5mjNvBnputyXqdQXbQ+LaPDlMOQjq6wchwRpTDNlj2VEVJUm7GQHsxnDd9us3fEXi4KMsSRIOWfh3uM5RSz168=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761286245; c=relaxed/simple;
-	bh=Uflu6VZJJ5Inn7mIJ0KBnxD7bYqrB+u8/dlCHjMtfto=;
+	s=arc-20240116; t=1761286417; c=relaxed/simple;
+	bh=pPg4tGMDdSKgzOhv/19H1ClKHTpBCPpph/N7jY8PuY0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HI3C09WAzoBSF2pSabA2dpdxLwnYByDXqAp7q/urchxm3BZqpcmbpZAru/WZM8W8r52TKYoLdyydqrbhaG2r895mTK/Oitj++/RaeEHxl3y5xY95sI9N1LZPkYXhY+XnBH9fAWbKwE4vICnJbFth2nE3l0oCXWXr3uhinQRjbSk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=hV/iQ0Ve; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59O3FQ7J003440
-	for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 06:10:43 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=iPDyisl44Ds/H4LrsIWE8heq
-	Yin0PT0m3dP+JNRSHeI=; b=hV/iQ0VeW4QjxbWm9Z8aa1teHm+fAYtwOBru/D+u
-	pN+54kTGbayJ6FViPbZT1uY9Yg33/T5rzquz//sIlwCumVOqXeE/MLjjCBPzwkEE
-	eXRezn091PeuNcxYpdQRZaVxzP8wNTo3hWQSJ+U4VHHqJIPxhX0QGQSrf1tRfHCy
-	3Pf+9PTcT5v1GPFtQRD7K3gR2uKIxv7crkRiDRzVdVVK3JhbWaRfMVv6WLSuOESV
-	D8kZckRAB9VIvxbhuTecApkFcDFv3pkZwZzrfFGoA4qWIpexxWBl6m5f2oYemGJ4
-	oWqZcu5Lh/In0a2ifFQfkQIr/r632CmX7xjMJb0Jxc2IhQ==
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49v27javuf-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 06:10:42 +0000 (GMT)
-Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4e8adba545aso56262411cf.1
-        for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 23:10:42 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761286242; x=1761891042;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=iPDyisl44Ds/H4LrsIWE8heqYin0PT0m3dP+JNRSHeI=;
-        b=omisuK1DhhYnIuQHcX5WnUE5+4th2njnU+266Z+GpYEkeAUeafy17qebGJf7Ruou/e
-         eIvmuCTYA3jWI9LglNr1avidZbAm5zsA80yT8aHp2rq3kXNSbl5uxM1Ln5r3Wmww5adK
-         3ecwN09LHwXthOPLCoY/2zdoXAQmaNZZ5p0/nqtCos8JpdJoVToHIRWZwsDB6Bkspmiy
-         /Lgm+zZu2APv0Z0mAEebSW3B6/ukRbyvr2wKoNDSXVXw2iKARUiB+dQkS5+iFMnP9mXA
-         Dc3fxySUpcM84hrNdI0LkWz4gE2QfuBMn+HSZaOGHXYoxKpfpve36d5xiSKECehPCYhU
-         TCxg==
-X-Forwarded-Encrypted: i=1; AJvYcCXN49+82OfXKQBxe/2t+5FlRMdWCjeFIknd5DmqnzY4hZyU2dOIiDArq6APzqLSbp5E83tNDnW42IK9@vger.kernel.org
-X-Gm-Message-State: AOJu0YwhsL3FjkDQf0Hk+l4dlMA6Nf/J8AUpOTCQ5PzxqzUj1AC4FagI
-	vGxhLyS/h/0QG1lSTEg8mQPtZXSkZ8LDnVHZb7PYIRuWwdpygXzhY/nSlQVGdtP1umCPThD2Q7Y
-	ZG1177f7z0vbUV2Wb4waFuIli7KXB2UFVAhuikdsWii//KkfnD3btiPoQrhgj3jq0
-X-Gm-Gg: ASbGncvPbLTY31P0F5WShkkqsYP1S/VQrbNyiO0KK3Tog7NZ5n8vijqTl0k9XwrnFQn
-	YmXrK+J/U1yVKVUIFPV27JBtgjzC1mX64bQ2QbtrM4agQgwSd1ID8Bv3Rq53+fyiZmjk0gZpPlo
-	s8Inhvwnm0sJjTVbK/cJFUkX7HErfjN7lKsZySQFFuXXsPdvwkDYJSWWR+W91Fa5jmbvDHoJtqL
-	e2i7riU0ZBzCaW0s94NIG0gmhlf3pqTuupbnrFV6/LVQDWmPO04XJrOLrv4AvzvLoQFnMB/qgPn
-	YaPOnQpfe93LNNWnwuI1YUY06qbdZN6Is5pCdRuvnQhWc8cTLzrLUBGB2PLp8w5i5Q47rqTBFii
-	XKEJMczjJ/nR4ORXnaMh2vfqgodulXDPoavubkLTfdNiDzEgNjhfGfXnZOkkm
-X-Received: by 2002:ac8:590a:0:b0:4b0:677d:d8e1 with SMTP id d75a77b69052e-4eb947d0b75mr10195101cf.17.1761286242099;
-        Thu, 23 Oct 2025 23:10:42 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHEtR9U1iGlrQGZPr6uA0Clma7yT4910fb9qum1J+IWWzJ2J/Ji+vn8lfUnOE0P2SRWMpyyYA==
-X-Received: by 2002:ac8:590a:0:b0:4b0:677d:d8e1 with SMTP id d75a77b69052e-4eb947d0b75mr10194911cf.17.1761286241626;
-        Thu, 23 Oct 2025 23:10:41 -0700 (PDT)
-Received: from yuanjiey.ap.qualcomm.com (Global_NAT1_IAD_FW.qualcomm.com. [129.46.232.65])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-89c120567b1sm320507385a.51.2025.10.23.23.10.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 23 Oct 2025 23:10:41 -0700 (PDT)
-Date: Fri, 24 Oct 2025 14:10:29 +0800
-From: yuanjiey <yuanjie.yang@oss.qualcomm.com>
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: robin.clark@oss.qualcomm.com, lumag@kernel.org, abhinav.kumar@linux.dev,
-        sean@poorly.run, marijn.suijten@somainline.org, airlied@gmail.com,
-        simona@ffwll.ch, maarten.lankhorst@linux.intel.com, mripard@kernel.org,
-        tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org,
-        conor+dt@kernel.org, quic_mkrishn@quicinc.com, jonathan@marek.ca,
-        quic_khsieh@quicinc.com, neil.armstrong@linaro.org,
-        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, tingwei.zhang@oss.qualcomm.com,
-        aiqun.yu@oss.qualcomm.com, yongxing.mou@oss.qualcomm.com
-Subject: Re: [PATCH 10/12] dt-bindings: display/msm: dsi-phy-7nm: Add
- Kaanapali DSi PHY
-Message-ID: <aPsYVUjyPru5FwPe@yuanjiey.ap.qualcomm.com>
-References: <20251023075401.1148-1-yuanjie.yang@oss.qualcomm.com>
- <20251023080609.1212-1-yuanjie.yang@oss.qualcomm.com>
- <20251023080609.1212-5-yuanjie.yang@oss.qualcomm.com>
- <em666johhzrluo5z4t2nu5jo4yuowegaemlrursvczx2zze5o5@uakt5j22ygwm>
+	 Content-Type:Content-Disposition:In-Reply-To; b=rNsFUrYE9H0+YqO7n5m4dCZJc334cSqyl4G8PzignbZPbovzFkJPGX9P/Td/TJtCAO1EIsuYaPViKRLxr/MWzPRIaBYoSvyaLQFxDpddy4nRYiphE1Ibef8qAQ8acsxW5WekqVahX7F/byATdC+l8jy3NhZJ7Kfv/R/HFkTaGQY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=TutqQKVW; arc=none smtp.client-ip=198.175.65.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1761286416; x=1792822416;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=pPg4tGMDdSKgzOhv/19H1ClKHTpBCPpph/N7jY8PuY0=;
+  b=TutqQKVWPcmQDxCqpClK5Je+gO2goj86pU0iUIIfxk+xzLuVfyZqkxyg
+   ywtdgfG/spmc4UudxXWFPQGTZ91dgGpIR8nf+NIX5IH4uG5ExGAuR4j4K
+   IxSPQ8RPPdDlSG/bLNjEqSncn5xg4BVOdGVXrYrrDa5nj6F2Y53lOUgHO
+   v/jasdebyZCVofgLdCTuMVhjZse8VYIuDMTRxAIKpPX3BcnP0gxI+i5Pt
+   Xw0WquOZqMNq5UwLFEWLSb5HtB7y9CECfs94bQ3+Gp/u53Q/TQZJ44gYI
+   ax52c3az27sUN37GNnIhxEQJeV1mSsw+I+OCHAMsNmpPN2aKKaIev6MUa
+   w==;
+X-CSE-ConnectionGUID: 2lSKj0jaTcGLfDoBeealyQ==
+X-CSE-MsgGUID: IvKkTY/GR+yiVQUX7z32og==
+X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="74906837"
+X-IronPort-AV: E=Sophos;i="6.19,251,1754982000"; 
+   d="scan'208";a="74906837"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Oct 2025 23:13:35 -0700
+X-CSE-ConnectionGUID: EDZuUWOTS7iZKdMy7RFhHw==
+X-CSE-MsgGUID: zgPfV1+5TsCKMukpOqL70Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,251,1754982000"; 
+   d="scan'208";a="188740617"
+Received: from opintica-mobl1 (HELO ashevche-desk.local) ([10.245.245.60])
+  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Oct 2025 23:13:31 -0700
+Received: from andy by ashevche-desk.local with local (Exim 4.98.2)
+	(envelope-from <andriy.shevchenko@intel.com>)
+	id 1vCB3H-000000024n3-3VVz;
+	Fri, 24 Oct 2025 09:13:27 +0300
+Date: Fri, 24 Oct 2025 09:13:27 +0300
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Frank Li <Frank.li@nxp.com>
+Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-i3c@lists.infradead.org,
+	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
+	linux-iio@vger.kernel.org, joshua.yeong@starfivetech.com,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v6 1/5] i3c: Add HDR API support
+Message-ID: <aPsZB44qXR77jNHF@smile.fi.intel.com>
+References: <20251014-i3c_ddr-v6-0-3afe49773107@nxp.com>
+ <20251014-i3c_ddr-v6-1-3afe49773107@nxp.com>
+ <aPnmCwwZVZ5egqkP@smile.fi.intel.com>
+ <aPpHTej/vKfiN68k@lizhi-Precision-Tower-5810>
+ <aPpyf1xPmU_koEXH@smile.fi.intel.com>
+ <aPq/6/+63sHuq/qy@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <em666johhzrluo5z4t2nu5jo4yuowegaemlrursvczx2zze5o5@uakt5j22ygwm>
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDE4MDAxOCBTYWx0ZWRfX20eorVxyLtza
- 7U65IWNi0oA2dyUamuTV7LGdEV0JR9U+AjDlTVPnsnwf6xGsICBVd5C5wOWQHcgA0f8S4/ZUuam
- 6EYt7WgQKCL0rEax8HITwvSe/TvK5vBcGnHvkyo8UGUmSFxo0q0Ndr9dN8roNeME026YpXycIdz
- RDK93O+QcG6KOt52KwBoXiDSe2hg68c3EcLTHsMtfvqe82CkdWtzWfotIiZaKH9JlfCxknI/Ctm
- FeEtSxpvQ7yO0wVV1LKcMJpVmd4UAL8Jly7ROgFxjwuKR+Wdu0Qw6r4M01GGj3z/1wtfhpu4G3e
- ZBJ/IUTGQA0l2HjkGWool08l2wDZjwvUg0XZIjVfcaEEytEJM5iZQxlhANjzkSW/ujXtiYmQj5V
- PCbNjyX0TQ40LKAXCYA1x7FxUJ1CtA==
-X-Authority-Analysis: v=2.4 cv=G4UR0tk5 c=1 sm=1 tr=0 ts=68fb1863 cx=c_pps
- a=WeENfcodrlLV9YRTxbY/uA==:117 a=C3Dk8TwHQYyIj7nOf9RCJw==:17
- a=kj9zAlcOel0A:10 a=x6icFKpwvdMA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=EUspDBNiAAAA:8 a=WIVAG7BfrJY6p4e7JxwA:9 a=CjuIK1q_8ugA:10
- a=kacYvNCVWA4VmyqE58fU:22
-X-Proofpoint-GUID: EZcyU5nGzHZ250H__XOvPW8KANZptaSa
-X-Proofpoint-ORIG-GUID: EZcyU5nGzHZ250H__XOvPW8KANZptaSa
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-10-23_03,2025-10-22_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 lowpriorityscore=0 malwarescore=0 bulkscore=0
- priorityscore=1501 spamscore=0 suspectscore=0 adultscore=0 clxscore=1015
- phishscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2510020000
- definitions=main-2510180018
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <aPq/6/+63sHuq/qy@lizhi-Precision-Tower-5810>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 
-On Thu, Oct 23, 2025 at 03:16:31PM +0300, Dmitry Baryshkov wrote:
-> On Thu, Oct 23, 2025 at 04:06:07PM +0800, yuanjie yang wrote:
-> > From: Yuanjie Yang <yuanjie.yang@oss.qualcomm.com>
+On Thu, Oct 23, 2025 at 07:53:15PM -0400, Frank Li wrote:
+> On Thu, Oct 23, 2025 at 09:22:55PM +0300, Andy Shevchenko wrote:
+> > On Thu, Oct 23, 2025 at 11:18:37AM -0400, Frank Li wrote:
+> > > On Thu, Oct 23, 2025 at 11:23:39AM +0300, Andy Shevchenko wrote:
+> > > > On Tue, Oct 14, 2025 at 12:40:00PM -0400, Frank Li wrote:
+
+...
+
+> > > > > +/* keep back compatible */
+> > > > > +#define i3c_priv_xfer i3c_xfer
+> > > >
+> > > > How many of the current users do this? Can't we just rename treewide?
+> > >
+> > > git grep -r priv_xfer drivers/
+> >
+> > `git grep -lw ...` is a better approach :-)
+> >
+> > > drivers/base/regmap/regmap-i3c.c:       struct i3c_priv_xfer xfers[] = {
+> > > drivers/base/regmap/regmap-i3c.c:       return i3c_device_do_priv_xfers(i3c, xfers, 1);
+> > > drivers/base/regmap/regmap-i3c.c:       struct i3c_priv_xfer xfers[2];
+> > > drivers/base/regmap/regmap-i3c.c:       return i3c_device_do_priv_xfers(i3c, xfers, 2);
+> > > drivers/hwmon/lm75.c:   struct i3c_priv_xfer xfers[] = {
+> > > drivers/hwmon/lm75.c:   ret = i3c_device_do_priv_xfers(i3cdev, xfers, 2);
+> > > drivers/hwmon/lm75.c:   struct i3c_priv_xfer xfers[] = {
+> > > drivers/hwmon/lm75.c:   return i3c_device_do_priv_xfers(i3cdev, xfers, 1);
+> > > drivers/i3c/device.c:int i3c_device_do_xfers(struct i3c_device *dev, struct i3c_priv_xfer *xfers,
+> > > drivers/i3c/master.c:   if (!ops->priv_xfers && !ops->i3c_xfers)
+> > > drivers/i3c/master.c:   if (!master->ops->priv_xfers)
+> > > drivers/i3c/master.c:   return master->ops->priv_xfers(dev, xfers, nxfers);
+> > > drivers/i3c/master/dw-i3c-master.c:static int dw_i3c_master_priv_xfers(struct i3c_dev_desc *dev,
+> > > drivers/i3c/master/dw-i3c-master.c:                                 struct i3c_priv_xfer *i3c_xfers,
+> > > drivers/i3c/master/dw-i3c-master.c:     .priv_xfers = dw_i3c_master_priv_xfers,
+> > > drivers/i3c/master/i3c-master-cdns.c:static int cdns_i3c_master_priv_xfers(struct i3c_dev_desc *dev,
+> > > drivers/i3c/master/i3c-master-cdns.c:                                 struct i3c_priv_xfer *xfers,
+> > > drivers/i3c/master/i3c-master-cdns.c:   .priv_xfers = cdns_i3c_master_priv_xfers,
+> > > drivers/i3c/master/mipi-i3c-hci/core.c:static int i3c_hci_priv_xfers(struct i3c_dev_desc *dev,
+> > > drivers/i3c/master/mipi-i3c-hci/core.c:                       struct i3c_priv_xfer *i3c_xfers,
+> > > drivers/i3c/master/mipi-i3c-hci/core.c: .priv_xfers             = i3c_hci_priv_xfers,
+> > > drivers/i3c/master/renesas-i3c.c:static int renesas_i3c_priv_xfers(struct i3c_dev_desc *dev, struct i3c_priv_xfer *i3c_xfers,
+> > > drivers/i3c/master/renesas-i3c.c:       .priv_xfers = renesas_i3c_priv_xfers,
+> > > drivers/i3c/master/svc-i3c-master.c:    struct i3c_priv_xfer *xfer;
+> > > drivers/i3c/master/svc-i3c-master.c:     * at svc_i3c_master_priv_xfers().
+> > > drivers/i3c/master/svc-i3c-master.c:static int svc_i3c_master_i3c_xfers(struct i3c_dev_desc *dev, struct i3c_priv_xfer *xfers,
+> > > drivers/net/mctp/mctp-i3c.c:    struct i3c_priv_xfer xfer = { .rnw = 1, .len = mi->mrl };
+> > > drivers/net/mctp/mctp-i3c.c:    rc = i3c_device_do_priv_xfers(mi->i3c, &xfer, 1);
+> > > drivers/net/mctp/mctp-i3c.c:    struct i3c_priv_xfer xfer = { .rnw = false };
+> > > drivers/net/mctp/mctp-i3c.c:    rc = i3c_device_do_priv_xfers(mi->i3c, &xfer, 1);
+> > >
+> > > After this patch merged, I can clean up it at difference subsytem. After
+> > > all cleanup done, we can safely remove this define.
+> >
+> > I counted 9. I think it's not a big deal to convert all of them at once without
+> > leaving an intermediate state. But this is a call for the I³C subsystem maintaiiner.
 > 
-> In the subject: DSI, not DSi
-OK will note.
-
- 
-> > 
-> > Add DSI PHY for Kaanapali.
+> There also are other cleanup works. The key point is that everyone agree my
+> HDR solution. Cleanup these is not big deal. I am not sure how to avoid
+> build broken at difference subsystem.
 > 
-> Why?
+> After this patch merge, cleanup will be easier and safer.
 
-DSI phy for Kaanapali have no significant diiference with previous version(SM8750).
-But some register change make it imcompatible with previous version(SM8750).
+Then leave that renaming to the cleanup series. No need to use a define, just
+use the old function name.
 
-I will give this reason in my next patch.
+-- 
+With Best Regards,
+Andy Shevchenko
 
-Thanks
-Yuanjie.
 
-> 
-> > 
-> > Signed-off-by: Yongxing Mou <yongxing.mou@oss.qualcomm.com>
-> > Signed-off-by: Yuanjie Yang <yuanjie.yang@oss.qualcomm.com>
-> > ---
-> >  Documentation/devicetree/bindings/display/msm/dsi-phy-7nm.yaml | 1 +
-> >  1 file changed, 1 insertion(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/display/msm/dsi-phy-7nm.yaml b/Documentation/devicetree/bindings/display/msm/dsi-phy-7nm.yaml
-> > index 1ca820a500b7..a6e044eed3df 100644
-> > --- a/Documentation/devicetree/bindings/display/msm/dsi-phy-7nm.yaml
-> > +++ b/Documentation/devicetree/bindings/display/msm/dsi-phy-7nm.yaml
-> > @@ -17,6 +17,7 @@ properties:
-> >      enum:
-> >        - qcom,dsi-phy-7nm
-> >        - qcom,dsi-phy-7nm-8150
-> > +      - qcom,kaanapali-dsi-phy-3nm
-> >        - qcom,sa8775p-dsi-phy-5nm
-> >        - qcom,sar2130p-dsi-phy-5nm
-> >        - qcom,sc7280-dsi-phy-7nm
-> > -- 
-> > 2.34.1
-> > 
-> 
-> -- 
-> With best wishes
-> Dmitry
 
