@@ -1,189 +1,387 @@
-Return-Path: <devicetree+bounces-230596-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230597-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC095C04470
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 05:45:18 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BBBFFC044A6
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 05:55:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 836143ADF03
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 03:45:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5DA853B614F
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 03:55:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6580261B8F;
-	Fri, 24 Oct 2025 03:45:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E9392749F1;
+	Fri, 24 Oct 2025 03:55:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iCkUJcYF"
+	dkim=pass (2048-bit key) header.d=aspeedtech.com header.i=@aspeedtech.com header.b="cj5fyM6e"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f45.google.com (mail-pj1-f45.google.com [209.85.216.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from OS8PR02CU002.outbound.protection.outlook.com (mail-japanwestazon11022123.outbound.protection.outlook.com [40.107.75.123])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65F6723C4FA
-	for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 03:45:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.45
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761277515; cv=none; b=TtuN0xeDnCApIJ1K0BbupKhgU2rXPaYaLAfWlPC0rku37jC0qcXucaYObymEnsTITXVUalKij46quR2e1i4dPpFdE7WRfUrV5aZODgflyBPj50U8XPOWfzAu/gb7ZQUHfIsSVzoa2ZUnMxPA93izlI7aBcFGgFGeT0K9jhilNPk=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761277515; c=relaxed/simple;
-	bh=KxG6mgQFTZjAbOnGJ9IZZeJ7gYYse/SVs8O9bLX6Uys=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=OXH6CJ1np27tNTOKae7tofoT34Z7U/1WSfSfXM2IRANXMvArvbp+Oeg3GGM3cECUBWV9HYNx73KbVLaN5GjaI7zAuYYtYG/9u3WrVTtdR4Q0mJ4sLRHVh0uv6fWhh1+ZI/e5+4AcSxTb+ExcGZ2FSUopaPHBkzXmJHDh85VZMrc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iCkUJcYF; arc=none smtp.client-ip=209.85.216.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f45.google.com with SMTP id 98e67ed59e1d1-339d7c403b6so1739407a91.2
-        for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 20:45:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1761277512; x=1761882312; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=HiRwwiYIxph3y0nSVQ/xh58uObGDxvKUt3Iz5/AtRps=;
-        b=iCkUJcYFy1k5nb3//9A01u2x2KfOi0SLg09HX7SE2xNboldZ6wI8vF5C+enmnR2YPu
-         tx3NQ1Ms89GYNPq1Hd41JhL+bxNP5efHdyQEQl9I/Biy+lxsZvuFX2QJKmBMN1uJaBBn
-         y24VyPhnbQw0/ar2NfbQHLukqjfRf20A+rgSjqzH4Kk/BuW+3/CudKJyQ7/N910vNri/
-         b9gn+nkj5ahvavHiqlR8rc5xbIN7W0WA7pfBK3C+oSQuemXhNt6raatZ8cpExrT4OGXp
-         NytY/GIyaDOOqF80wWis5knyHZTPG1ASzuYxUAisasRSuP3y/5dBNzfjE4Co/SbEMxTw
-         +j/Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761277512; x=1761882312;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=HiRwwiYIxph3y0nSVQ/xh58uObGDxvKUt3Iz5/AtRps=;
-        b=qE93jKKaZUoqi3NwgM9EzF2hi7D0kwJc54krMKtV3v7nXvTdx/aBrtDYsmQ2Dsk8Uh
-         0IKu/11h/a0oyzpen7dmp/+CG318hQWdxrXvO29dDzWXs42kKcWEqBoV/749xF9a4GBi
-         VGLOore6gjlpQjoZX44MMXKa7iL3W6LruMr/8pv+u5rXMNdfaV8OeeEPL5aHxufaDCSf
-         98B2LGizhOLg0dz+qrLX4AjFpxW843OMOP+RXZzrujltN0tGiVTizHwjr1l4ru/aawxn
-         VpM887E8/POtF5RpSEHQF521ILZysQtJOpO7x4KvULTEuXFu8KqvOzmu4HG5Qm/BMOE7
-         /2vA==
-X-Forwarded-Encrypted: i=1; AJvYcCVq9vZB10fcOuKEWn/KlQ1ujvV8Eoi/lQPov3ivxQZxo0VQJ54BWe1pgeCOhG1P0SpMuEzzNOaE7Esw@vger.kernel.org
-X-Gm-Message-State: AOJu0YzRqVTAywQip9h1W2nweAJeyNXpHqtlfMAQc9BvhYKUPrh+b9nK
-	FfWo9IDGliRqEi24VajSv/Fr1+LuA25MIPMg06/5/RPkWPpk7mEmKUKF
-X-Gm-Gg: ASbGncvM2xaI7N2yU6TMiZzjqjY45YuFjMtD1OrqZlvM8m+4GHafPm5xue9KOlwkPgq
-	kcAblkyQfbKd+ulnvkn6AmqcbLfkOZgg5/ssEc4thkFjpuWGD1K6r4yck8BN7HXVpi48WBe5U/i
-	dVhm2bLsRS3rKG/Khoavkb1XisyIIhGcBwtnFHJ/zkUZMl2K5KHWaAQPzjSPnDdmw/5C/N/ok/h
-	TQz+vYXwk8yvB5dHMcEfLWYnyKAVUG+7xzN825dgOSbKQMsp/dosHX+h1GQNYzDP2qa8HJREyi/
-	PRsFMOEmwEn57QLZTHy+1EAmcnivP4/xToTI9e6+BpGKBxL1Le8J+KwxiRLdcaAsse+vMBa3qDk
-	SqVMUj4kw9kVVKAbCtp6C4bbBYVwgUfNAsAfZLIX7Mhd6lkeNuyL4CZoD4UcIz/8DhoRSMaVdep
-	EX/VMFE1YopkXlsFyDSpvHE1BHZvyWWRAl+EH+TV4a3vrwD4xlP1WHxojzxkk=
-X-Google-Smtp-Source: AGHT+IHgxSHpOe7uFxBKNhzcrTuSEIHcTnYzhOUyJ6pcWKCFvMZJgvU04s6f6H/EDLJjMSUEjPtNeQ==
-X-Received: by 2002:a17:90b:5688:b0:339:a323:30fe with SMTP id 98e67ed59e1d1-33fd65fe286mr1049116a91.14.1761277512531;
-        Thu, 23 Oct 2025 20:45:12 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-33fb0172476sm4156381a91.13.2025.10.23.20.45.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 23 Oct 2025 20:45:11 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <673f8cfa-e541-4f17-bc1f-dc0c429d72b7@roeck-us.net>
-Date: Thu, 23 Oct 2025 20:45:10 -0700
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BD83202960;
+	Fri, 24 Oct 2025 03:54:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.75.123
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1761278104; cv=fail; b=BjW9P436Y/f6Si4tQ+R558wIsbQvr98KCaJkrSzn4tFu1S4qKnPpP8qGUioo5W6oH2FnWlbqMmrD0J0kg+fkJm4Tc+q22ZdB8p5ll81MtkZ5aLT2arfAP//6wsL6tcx32H3+o/AvjF7P7bT7sSDfnzgwKY4B9BPyKL3f5+W9SKU=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1761278104; c=relaxed/simple;
+	bh=kaImZjjjtbwU8c+a1Kor8fnfS325e9sEH8YrkIIBC14=;
+	h=From:To:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=EFYQse872RSoCGMD1B5zDbIJc4LWvm+bdypozp4IICGZzpIOuXb75HT9/z/UUSfemch7mXe36ugaAIARdhbcaGI3qyOhXGaLJUP+9lPOo0aUr0Zt/iMD2FuNx141aRycaouNbctS0Y9Rl3WArkNaIsyhArkp3tt8qCDDBI+bN1g=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; dkim=pass (2048-bit key) header.d=aspeedtech.com header.i=@aspeedtech.com header.b=cj5fyM6e; arc=fail smtp.client-ip=40.107.75.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=J64LXWuhS12HAgwlVmzMCOOTXOkDL3vdqQw4TUy7vYuEzSn4B67yCZR9U8XqFF3+aEghTE/vdwitsY26Z7utLQtTe4edEjrOI41H1rG4s7UrnUQwRbuuYsT7qQo6O/Mt2PIlcA+2KDWVY7cLMtznwh4gFeLxXuL9GFdLJqGeDr17dSW0HNQQsnvxxNehr36quvEwE2FtJQQNQXJl2+SWBzeSzFs8ek5rUvW5506UbmCfcZfDjsLfPRQh+7UXk2Zy70LULbis0jujpSaXU8iy9Eiv/oUSkqEHbVYnNk7y+mDyitldksYQj4mOXvzHqh2mhL9aurMT2cFi25xorBIAyQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=U30u3fnqAkWRz7sM/tFWQXrcvsFbHIwUMNYsgDz34to=;
+ b=wRDH7nShAgKrY2h7SEym/HskIqF344lEKl0jOqdJsrNMSyeYFefVq3jjVw8PsTSmaL1/IcgBfHB4K0++NYc0n5+B6bFAg/rLjlxNTH2+KIHztEJe/kVZ1TD47WXG96VSkIlr685PtIIAgANjxMY9227YZoyAtHBlk2HWqhEZmyPNFX42XYjbNuZ/8v6UrpQtjnJncd2P9OkA2/jd5Cr2v6XarVETxQiIzK349pL43Skz3c8mDCM3dWZbDSDH0cLGBucwAG8s7P9z1UnEPms5D6t6orGtetPPYsKi6wYwNgNKOYVxJxikStofKcGdNlAzr9l0BBvuTmzhNEfOuD9qqg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=aspeedtech.com; dmarc=pass action=none
+ header.from=aspeedtech.com; dkim=pass header.d=aspeedtech.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aspeedtech.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=U30u3fnqAkWRz7sM/tFWQXrcvsFbHIwUMNYsgDz34to=;
+ b=cj5fyM6e6oNWdMwSjkfVMToJutzf2AkK9xZcoXNGzpxanPM5+Y6ZuwmqgfB2sWc5GTFRiTo6iypxiJaAGwId3hZxCeXRDwBGLAv/Jw0Nahj0P1j34gPI9w7WBMk2pgXsIOuLpc/OsfIhdchSyDF4l4J4/sT3JfO2vXZExMDh/ZboB1oTC6gBgzcIeSDpeyTPkd8iXKvrJOT9QVm5cGM7C8tRBL/9V3y4S0ugWJCsWDdkaGc8ah9JDSS4ErL7A5pmE17moQCuebl4BhyUTbhDSc5a8AYj/yDD5NFIiydm8OadxQXspvzK+z9mYgh4Am2X8PhM30zFGq9Qgz14v/go5w==
+Received: from TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com (2603:1096:408::791)
+ by TYZPR06MB6463.apcprd06.prod.outlook.com (2603:1096:400:464::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9253.13; Fri, 24 Oct
+ 2025 03:54:56 +0000
+Received: from TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com
+ ([fe80::df4f:b1a1:1825:4a80]) by TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com
+ ([fe80::df4f:b1a1:1825:4a80%7]) with mapi id 15.20.9253.011; Fri, 24 Oct 2025
+ 03:54:56 +0000
+From: Ryan Chen <ryan_chen@aspeedtech.com>
+To: Arnd Bergmann <arnd@arndb.de>, BMC-SW <BMC-SW@aspeedtech.com>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, Andrew Jeffery
+	<andrew@codeconstruct.com.au>, Jeremy Kerr <jk@codeconstruct.com.au>, Lee
+ Jones <lee@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>, Will
+ Deacon <will@kernel.org>, Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>,
+	Geert Uytterhoeven <geert@linux-m68k.org>, Nishanth Menon <nm@ti.com>,
+	=?iso-8859-1?Q?N=EDcolas_F=2E_R=2E_A=2E_Prado?= <nfraprado@collabora.com>,
+	Taniya Das <quic_tdas@quicinc.com>, "Lad, Prabhakar"
+	<prabhakar.mahadev-lad.rj@bp.renesas.com>, Kuninori Morimoto
+	<kuninori.morimoto.gx@renesas.com>, Eric Biggers <ebiggers@kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "linux-aspeed@lists.ozlabs.org"
+	<linux-aspeed@lists.ozlabs.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>
+Subject: RE: [PATCH v6 4/6] arm64: dts: aspeed: Add initial AST2700 SoC device
+ tree
+Thread-Topic: [PATCH v6 4/6] arm64: dts: aspeed: Add initial AST2700 SoC
+ device tree
+Thread-Index: AQHcQyJQr8Cg3wF4TE29hMu8e6S4P7TOr5mAgACf3YCAANyZAIAAeR6A
+Date: Fri, 24 Oct 2025 03:54:55 +0000
+Message-ID:
+ <TY2PPF5CB9A1BE6CF8336D211641A18E2DEF2F1A@TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com>
+References: <20251022070543.1169173-1-ryan_chen@aspeedtech.com>
+ <20251022070543.1169173-5-ryan_chen@aspeedtech.com>
+ <b5441728-06a7-44ea-8876-3a9fc3cf55be@app.fastmail.com>
+ <TY2PPF5CB9A1BE626A2F0F6307461D8F64BF2F0A@TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com>
+ <6a97fbb4-19c2-4ffa-9c73-26aea02c27e4@app.fastmail.com>
+In-Reply-To: <6a97fbb4-19c2-4ffa-9c73-26aea02c27e4@app.fastmail.com>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=aspeedtech.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: TY2PPF5CB9A1BE6:EE_|TYZPR06MB6463:EE_
+x-ms-office365-filtering-correlation-id: 2c07fdd1-48b4-463f-3b0c-08de12b11857
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|366016|376014|7416014|1800799024|921020|38070700021;
+x-microsoft-antispam-message-info:
+ =?iso-8859-1?Q?xmYGqASTRKsk7VXyA62NVMWcXdLQdWAY4CbPGyZ9SNJIgs3iFfTlfORwHx?=
+ =?iso-8859-1?Q?6QAh7zYtOODYOaGLgC+B3Tv5Q8v+P7OSZaFD+2QpJZJY84fpYCuPB1npAh?=
+ =?iso-8859-1?Q?pN+AGXSBIYEAHLrJb2jDqE7Ewi0um/hdYe+/p6RBDafMpuodmOFEF/ylKh?=
+ =?iso-8859-1?Q?9uEECYshhMyhLJUzHTKR4b7MzyJJ4zz4F14GILNtuaH9EwXrAjpzZ6FwlB?=
+ =?iso-8859-1?Q?M2Yt80OOsGmV8hy7xqOEjFCDVBqpoO7oA/i0xltfg4VAdg9HSV0LmExnyA?=
+ =?iso-8859-1?Q?5jeAQ4QMcDIgxF14On0ZATIuqsDY6JiOyKBhoRyhXyOOmy9DHA4TKill7z?=
+ =?iso-8859-1?Q?HRmSKDZWvyCv+KuqM2rS+hL7FxInEbJRthFaVtNLdDm8bs1Eps3KNrdUXZ?=
+ =?iso-8859-1?Q?THHFyKgwMUm4+0WNDntMdZf3eULw996U91gg4hfCcifzvQntwJZoe3ryui?=
+ =?iso-8859-1?Q?KLSwin8lxGD0qMCzUjo7+0jTB8qfjaOfBim/6jCuwCi2+iohRE7swLU0iT?=
+ =?iso-8859-1?Q?QQID458mFEBdY1789WMaw3im+LKeemK89r9HdVYfXlbU5ruLnWsUXQbLbG?=
+ =?iso-8859-1?Q?TcKCHbjDfX4Ml6xP+zkTGmVpS8z5v9LzX2mcpdXaVBQ9EAbWUrREvT1bYr?=
+ =?iso-8859-1?Q?WhkrERqT67ldiRg5PJfyQImcoY1qKMU7BxpPYQX4AhmGz5/G28+hoAGt4s?=
+ =?iso-8859-1?Q?c0nJ850piwzt+VPHDPMxw3k6THXAwor8gq9ChVlsje5/ysIobnGdx0L+Oh?=
+ =?iso-8859-1?Q?vE5Zc/PpezHRbaPasxNYIshsyC+PPVY5pQoQa8Pgpp2oOzVKZFoDbo2PLV?=
+ =?iso-8859-1?Q?TYSfKNA4O+cJDG1BV1f9O9six19TIeDDpwo893+WDvN20RnuxnA5gUQ0JH?=
+ =?iso-8859-1?Q?G9HCS0itZnbsPRs1ks2olExFGMWCCaFBR8m1MsTzM8b10iSADNgJd4BCMx?=
+ =?iso-8859-1?Q?xwvs1MdyaKuYs0TKnLvbTsh7gt0u7OsG9PMpbHDlgmAZ2a6Av4MXJAdroM?=
+ =?iso-8859-1?Q?EOCJ3BwpeoPZkSeIBP9SAG5nmOOnGSkACeCaAOaJnwgNXYs9ZSzMH8gN1W?=
+ =?iso-8859-1?Q?mmaxaIy0WAENH52xHRQlT+1f59GdzkR2kq62x535vwJJeS/wohA3+8lkAw?=
+ =?iso-8859-1?Q?fbvuCNVDKkcyDduMCZE6cPDWHZVqb9shcJf5MEtuUhV3pKEJrltAEC23VB?=
+ =?iso-8859-1?Q?k+T6JWaDXjYSRYfdjaYA0o4LNK4twnMYE/7H0kaW4TFYsMleRpZA9ycQ/t?=
+ =?iso-8859-1?Q?3xj2MxcTHaH6XDuvuUifK2W0ZC95HiBvSDzzyLqRshUZP/uHTkPSkx1Hap?=
+ =?iso-8859-1?Q?JtnjS7K4YRx7NKhi+yRz5OB3SNm5M18/4NoHpNRkaYCI3aMlFT4XEB57wd?=
+ =?iso-8859-1?Q?xVM4PqGaaiOMWjyR21d2pkwBbvwViqd8tPrynhv48klI3FBTgtNiJvvYYT?=
+ =?iso-8859-1?Q?ukgBXSs04BrYL6G045FqRrhd6VJY6s1Xd1vTSiKqZmA/5t0gwfe2rPqMbH?=
+ =?iso-8859-1?Q?wUzZGPKsDJZentGtf9KjXXKngy5jdnl5y0MjpigUOwn2mwe2u1BoeCM6ES?=
+ =?iso-8859-1?Q?ZfloCJlXc2zT7wCGeqIBw1gsz5EBjzxnP+0KJNtN9KjKS9pklA=3D=3D?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:zh-tw;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(7416014)(1800799024)(921020)(38070700021);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?iso-8859-1?Q?YJZsilyEH9uNxB70TPvLpHENUktQQ4WpGl42k2QI+FNKq1pUowTSDIitHM?=
+ =?iso-8859-1?Q?b66SqFGiywZsgwHnXvFe7VbAjiXKR3+qM2h02GTU+uq6eJYwpgoCOV+gKT?=
+ =?iso-8859-1?Q?18IIZoOaCzZ+be2Y2Go/agwTWgPcU70vR/OwRcEb1AtQkvbRruIiUGvCSw?=
+ =?iso-8859-1?Q?oMRbtCJ5y5q578wurrM84Oo+qH0u6ZFaEHS/INiQaVhKpazkxlyH9S46ij?=
+ =?iso-8859-1?Q?IpWh4eL7qkZTZ8h+M70ZaC2NKZ4502uxaEBCe1nDlivA+38pcejlXzYI0Q?=
+ =?iso-8859-1?Q?NJyiT7w1H+QXjLQpWrQWHDdOasRGg7rfJDHrMyWVbuXspU1eR8vQxuds7D?=
+ =?iso-8859-1?Q?VvstHiYZfVt+OwTIJGAcTW1ZPeMKg9mYi1PleusFcrTJQOv7IaoA8/2cmX?=
+ =?iso-8859-1?Q?Ak8UoyLf0eRlcmtNqbsX32jMvo/kLcdSRq5XDRTTkCEbWoR0X2UxWTzOVg?=
+ =?iso-8859-1?Q?YPKaHRXZs1FXj3C1oXd16bf09o9rrFQTQzjPtm5CLorCkZaCRGv//pMJqW?=
+ =?iso-8859-1?Q?ilSnm097BBgVk4wmyTxhaGsfuUJhG6+47TvjXCDtqdMAKGk/R/7TEY0O8w?=
+ =?iso-8859-1?Q?La3SoOwNEpjHkDd/hpLLTvLY4JBU64Gnzwry36XSJVDy+n1RYzrYKXVYZW?=
+ =?iso-8859-1?Q?Ap/yuh10pFwG0Yd3dy25iwSPKl75E5khSXgsfIYHlXYt5SA7RMWTaifyOq?=
+ =?iso-8859-1?Q?LJS1naWwWWSOdiV+BCv4PQ7EE/kPP4r7rqLsKQeDArFwonY/WaqqF77/xv?=
+ =?iso-8859-1?Q?Nt9tW3wQm/INMJcC8n8Q37xYt+5hwHsYZXAk8mXNi5uZFp+Wv6Obl4T2NX?=
+ =?iso-8859-1?Q?m5RX+OiPc0JBB1ElO3+0w1sH+wq2F2XrR1AE+EHRvYNxLMgHeBCx327UFx?=
+ =?iso-8859-1?Q?KWMF5X5eBWph7FDsHx0OIlE6OkBtbUWujowCO8J/6SEU/iGDt47dlzBnxO?=
+ =?iso-8859-1?Q?lW1BZDkMYNoqEQg6MjTOXv8UMuyF85EjOH7qhGryQQk9awUtq1VRXD3YMZ?=
+ =?iso-8859-1?Q?C0TSeyi5IlHh1L9ASn5DIih8fRYPIbLLptUvkrVTkO4YsSDgMCeiprUMHe?=
+ =?iso-8859-1?Q?qmjKzOP0ICH6bTfMfkDithg83Et73yn6zXlvrCwITWxENIfX/1toQPPtdG?=
+ =?iso-8859-1?Q?4dM+MePs6XMmswvSF2im1BxCJ2vPYoJc7r6LYA7ennaqZp+FMJHJXai+dX?=
+ =?iso-8859-1?Q?UomodTPHnNGUnX27YFqdRMF8TUFDKRicbtT0SuOrFdw3TUCO5YVaFWuFWs?=
+ =?iso-8859-1?Q?n8eKgdouHYgCqRbHUh2dBofR/YI076Lk+QTgNMs5kSkMZ5XhkFDaJ947Kt?=
+ =?iso-8859-1?Q?GC4eGeneJ8t2SXhAppa56ViQSDtL7iHPD67VlKCA1yhUxMopX6vpRYV/oE?=
+ =?iso-8859-1?Q?/2Y5WxjoL9OVsHAgb3by4fx6LtkzDtvaTLE8Q2ZrQZpj7eMBls8pAMQDdr?=
+ =?iso-8859-1?Q?VeFanOYi3b27uYQE1b1O87XIkOI0d7mSrkFdBXCNB+kNufVrLydEA6FMkR?=
+ =?iso-8859-1?Q?14r6wbNyMh2rm0r59/Iw5cDB68MLY8lE8OB/4MP9ZbG8sa7acfRRPUH8Vo?=
+ =?iso-8859-1?Q?6sjbiYE6OAzEi+6yAg3phYhnPCMZqlwVk8BgOzm+ykm5G/LpjLKEKCX0Bq?=
+ =?iso-8859-1?Q?7Z2r0608Y4ymG+s+c4BOa2296AHEE4oNc+?=
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] of: Skip devicetree kunit tests when RISCV+ACPI doesn't
- populate root node
-To: Rob Herring <robh@kernel.org>, Paul Walmsley <pjw@kernel.org>
-Cc: Saravana Kannan <saravanak@google.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
- Han Gao <rabenda.cn@gmail.com>
-References: <20251023160415.705294-1-linux@roeck-us.net>
- <2bef32d0-2c35-c93d-08a8-71966c1212f2@kernel.org>
- <CAL_JsqJjiB3h+hzstXSbnyFy+U39GgtT=rcb4r+QDv=uL54H8g@mail.gmail.com>
-Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
-In-Reply-To: <CAL_JsqJjiB3h+hzstXSbnyFy+U39GgtT=rcb4r+QDv=uL54H8g@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+X-OriginatorOrg: aspeedtech.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TY2PPF5CB9A1BE6.apcprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2c07fdd1-48b4-463f-3b0c-08de12b11857
+X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Oct 2025 03:54:56.0013
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 43d4aa98-e35b-4575-8939-080e90d5a249
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: uCsGyAhuQSvlQZLWRUQ4Tdr/Ksqwbdb8ob3Hsz1wUebxtud0lj9m2memr1b9VQ51xYtR4KrLiTvMNydeo2/hs1XD60QewP2YeAtD3vo7jcg=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYZPR06MB6463
 
-On 10/23/25 18:00, Rob Herring wrote:
-> On Thu, Oct 23, 2025 at 11:48 AM Paul Walmsley <pjw@kernel.org> wrote:
->>
->> On Thu, 23 Oct 2025, Guenter Roeck wrote:
->>
->>> Starting with commit 69a8b62a7aa1 ("riscv: acpi: avoid errors caused by
->>> probing DT devices when ACPI is used"), riscv images no longer populate
->>> devicetree if ACPI is enabled. This causes unit tests to fail which require
->>> the root node to be set.
->>>
->>>    # Subtest: of_dtb
->>>    # module: of_test
->>>    1..2
->>>    # of_dtb_root_node_found_by_path: EXPECTATION FAILED at drivers/of/of_test.c:21
->>>    Expected np is not null, but is
->>>    # of_dtb_root_node_found_by_path: pass:0 fail:1 skip:0 total:1
->>>    not ok 1 of_dtb_root_node_found_by_path
->>>    # of_dtb_root_node_populates_of_root: EXPECTATION FAILED at drivers/of/of_test.c:31
->>>    Expected of_root is not null, but is
->>>    # of_dtb_root_node_populates_of_root: pass:0 fail:1 skip:0 total:1
->>>    not ok 2 of_dtb_root_node_populates_of_root
->>>
->>> Skip those tests for RISCV if the root node is not populated.
->>>
->>> Fixes: 69a8b62a7aa1 ("riscv: acpi: avoid errors caused by probing DT devices when ACPI is used")
->>> Cc: Han Gao <rabenda.cn@gmail.com>
->>> Cc: Paul Walmsley <pjw@kernel.org>
->>> Signed-off-by: Guenter Roeck <linux@roeck-us.net>
->>
->> Reviewed-by: Paul Walmsley <pjw@kernel.org>  # arch/riscv
-> 
-> FWIW, the fixed commit will also prevent enabling features like this
-> series[1] enables. Arm64 is still disabled ATM because of disagreement
-> with the arm64 maintainers, so that can was kicked down the road. It
-> would be better to not disable this and address the issues as they
-> happen rather than breaking people down the road.
-> 
+> Subject: Re: [PATCH v6 4/6] arm64: dts: aspeed: Add initial AST2700 SoC d=
+evice
+> tree
+>=20
+> On Thu, Oct 23, 2025, at 09:37, Ryan Chen wrote:
+> >
+> >> > +	aliases {
+> >> > +		serial0 =3D &uart0;
+> >> > +		serial1 =3D &uart1;
+> >> > +		serial2 =3D &uart2;
+> >> > +		serial3 =3D &uart3;
+> >> > +		serial4 =3D &uart4;
+> >> > +		serial5 =3D &uart5;
+> >> > +		serial6 =3D &uart6;
+> >> > +		serial7 =3D &uart7;
+> >> > +		serial8 =3D &uart8;
+> >> > +		serial9 =3D &uart9;
+> >> > +		serial10 =3D &uart10;
+> >> > +		serial11 =3D &uart11;
+> >> > +		serial12 =3D &uart12;
+> >> > +		serial13 =3D &uart13;
+> >> > +		serial14 =3D &uart14;
+> >> > +	};
+> >>
+> >> This looks like you just list all the uarts that are present on the
+> >> chip, which is not how the aliases are meant to be used. Move this
+> >> block into the board specific file and only list the ones that are
+> >> actually enabled on that particular board.
+> >>
+> >> In particular, the alias names are meant to be local to the board and
+> >> don't usually correspond to the numbering inside of the chip. In the
+> >> defconfig, we currently set CONFIG_SERIAL_8250_NR_UARTS=3D8, which is
+> >> enough for any board we support so far, but that means only the first
+> >> 8 aliases in the list will actually work.
+> >
+> > Understood. I'll move the aliases block from the SoC dtsi into the EVB
+> > board dts. For the EVB, UART12 is used as the default console, and the
+> > board labels match the SoC numbering, so I plan to keep:
+> >
+> > Does that look acceptable?
+> > ast2700-evb.dts
+> > 	aliases {
+> > 		serial0 =3D &uart0;
+> > 		serial1 =3D &uart1;
+> > 		serial2 =3D &uart2;
+> > 		serial3 =3D &uart3;
+> > 		serial4 =3D &uart4;
+> > 		serial5 =3D &uart5;
+> > 		serial6 =3D &uart6;
+> > 		serial7 =3D &uart7;
+> > 		serial8 =3D &uart8;
+> > 		serial9 =3D &uart9;
+> > 		serial10 =3D &uart10;
+> > 		serial11 =3D &uart11;
+> > 		serial12 =3D &uart12;
+> > 		serial13 =3D &uart13;
+> > 		serial14 =3D &uart14;
+> > }
+>=20
+> I think this would be broken for the defconfig if the consol is on serial=
+12. I
+> would recommend using serial0 as the console, like
+>=20
+> aliases {
+>        serial0 =3D &uart12;
+> }
+>=20
+> in this case. If additional uarts are enabled, add those as further alias=
+es.
 
-I guess that means that I'll have to disable devicetree unit tests for
-riscv targets. NP; thanks for letting me know.
+Understood, I will update.
 
-Guenter
+>=20
+> >>
+> >> > +	soc1: soc@14000000 {
+> >> > +		compatible =3D "simple-bus";
+> >> > +		#address-cells =3D <2>;
+> >> > +		#size-cells =3D <2>;
+> >> > +		ranges =3D <0x0 0x0 0x0 0x14000000 0x0 0x10000000>;
+> >>
+> >> This probably needs some explanation: why are there two 'soc@...'
+> >> devices? Is this literally two chips in the system, or are you
+> >> describing two buses inside of the same SoC?
+> >
+> > The AST2700 is two soc connection with a property bus.
+> > Sharing some decode registers. Each have it own ahb bus.
+>=20
+> I don't understand your explanation,
 
+Let me clarify more clearly:
+The AST2700 is a dual-SoC architecture, consisting of two interconnected So=
+Cs,
+referred to as SoC0 and SoC1. Each SoC has its own clock/reset domains.=20
+They are connected through an internal "property bus",=20
+which is Aspeed's internal interconnect providing shared
+address decoding and communication between the two SoCs.
+
+
+>=20
+> >>
+> >> > +
+> >> > +		mdio0: mdio@14040000 {
+> >> > +			compatible =3D "aspeed,ast2600-mdio";
+> >> > +			reg =3D <0 0x14040000 0 0x8>;
+> >> > +			resets =3D <&syscon1 SCU1_RESET_MII>;
+> >> > +			status =3D "disabled";
+> >> > +		};
+> >>
+> >> I see that you use the old compatible=3D"aspeed,ast2600-mdio" string
+> >> exclusively here. While this works, I would suggest you list both a
+> >> more specific "aspeed,ast2700-mdio" string to refer to the version in
+> >> this chip as well as the fallback "aspeed,ast2600-mdio" string as the =
+generic
+> identifier.
+> >>
+> >> The binding obviously has to describe both in that case, but the
+> >> driver does not need to be modified as long as both behave the same wa=
+y.
+> >
+> > Thanks, will submit ast2700-mdio.
+> > Question, should I add in here patch series?
+> > Or go for another patch thread?
+>=20
+> Since there is no corresponding driver change, I would keep the binding c=
+hange
+> as a patch in this series.
+
+Sorry, I am wondering, I will follow Andrew advice.=20
+Submit ast2700-mdio to net-next go out another thread.
+And put submit link in cover-letter in next version.
+Is it ok?
+
+>=20
+> >> > +
+> >> > +		syscon1: syscon@14c02000 {
+> >> > +			compatible =3D "aspeed,ast2700-scu1", "syscon",
+> "simple-mfd";
+> >> > +			reg =3D <0x0 0x14c02000 0x0 0x1000>;
+> >> > +			ranges =3D <0x0 0x0 0x14c02000 0x1000>;
+> >> > +			#address-cells =3D <1>;
+> >> > +			#size-cells =3D <1>;
+> >> > +			#clock-cells =3D <1>;
+> >> > +			#reset-cells =3D <1>;
+> >> > +
+> >> > +			scu_ic2: interrupt-controller@100 {
+> >> > +				compatible =3D "aspeed,ast2700-scu-ic2";
+> >> > +				reg =3D <0x100 0x8>;
+> >> > +				#interrupt-cells =3D <1>;
+> >> > +				interrupts-extended =3D <&intc1_5 0>;
+> >> > +				interrupt-controller;
+> >> > +			};
+> >> > +
+> >> > +			scu_ic3: interrupt-controller@108 {
+> >> > +				compatible =3D "aspeed,ast2700-scu-ic3";
+> >> > +				reg =3D <0x108 0x8>;
+> >> > +				#interrupt-cells =3D <1>;
+> >> > +				interrupts-extended =3D <&intc1_5 26>;
+> >> > +				interrupt-controller;
+> >> > +			};
+> >>
+> >> This looks a bit silly to be honest: you have two separate devices
+> >> that each have a single register and a different compatible string?
+> >
+> > Yes, it have difference register define in each scu-ic#. That is
+> > compatible with design.
+> > https://github.com/torvalds/linux/blob/master/drivers/irqchip/irq-aspe
+> > ed-scu-ic.c#L45-L48
+>=20
+> Right, if the driver already has this design, it does make sense to not c=
+hange it
+> for the new generation. For a newly added driver I would probably do it
+> differently.
+
+Thanks
+>=20
+> >> Also you claim to be compatible with "syscon" but nothing actually
+> >> refers to the syscon node in that form?
+> >
+> > There is another submit ongoing in pinctrl which will use syscon.
+> > https://lwn.net/ml/all/20250829073030.2749482-2-billy_tsai@aspeedtech.
+> > com/
+> >
+> > Could I keep it? or I should remove it?
+>=20
+> The version of the driver you are linking does not appear to use syscon, =
+maybe
+> this is an artifact from a previous version?
+>=20
+> If so, you can drop it. On the other hand, this does seem to be a classic=
+ syscon
+> device and keeping it marked that way is not harmful, just redundant if y=
+ou
+> actually use the more specific compatible string.
+
+Sorry, I may not point right link
+https://patchwork.ozlabs.org/project/linux-aspeed/patch/20250829073030.2749=
+482-4-billy_tsai@aspeedtech.com/
+aspeed_g7_soc0_pinctrl_probe -> aspeed_pinctrl_probe
+https://github.com/torvalds/linux/blob/master/drivers/pinctrl/aspeed/pinctr=
+l-aspeed.c#L456
+
+That will use syscon to regmap.
+>=20
+>=20
+>      Arnd
 
