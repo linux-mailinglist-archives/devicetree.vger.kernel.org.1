@@ -1,197 +1,144 @@
-Return-Path: <devicetree+bounces-230773-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230774-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7BB64C058B0
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 12:18:51 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F85BC058C5
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 12:20:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3567C1A05CC2
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 10:19:15 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 8F9454E05D0
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 10:20:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F68930F814;
-	Fri, 24 Oct 2025 10:18:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25B8830F80B;
+	Fri, 24 Oct 2025 10:20:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OzXSt/G7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="P+m0hwPs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CF932F7AD3
-	for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 10:18:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED2CF2F7AD3;
+	Fri, 24 Oct 2025 10:20:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761301124; cv=none; b=kt5Myv9lVzrgBhKSP2y82xggkAQhzvS4XJBP6B0CuG9fVtYqD3phlHszALzXUkPIFWXgr8+gRz1gphtdTOBZ47zsRzl/dEgzxfVaDpzFeQ/tOB8mHjp6J8p2tQc+4HQfMSTuG6BfU1NIRy1Db+NkYPjzPIkDqcmhuam6YJ6O7lg=
+	t=1761301229; cv=none; b=RJp4PbPUem4Xg8boj68Kxf8qkp405iwjfyD+tu1FAADy3cvlhw9WErSH8oXWxWs8DhqyU7MlMmBZcWoe7kCdxRD5yi4Pk5W42vGFNuVp0GN+i2E0CYzuIjHuP1Sjxb9Z1GN2FtGm/qwIGeEKx+SNC/OgXMSXqDaVbWeAEJh+vRA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761301124; c=relaxed/simple;
-	bh=rWQGCMzvzjTn6AJwK/FlgG0dNZ5UDWVZEtrKZxT8988=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NVHGoh0bMWW3Z416IdTsFeYk0syS5QokjN4OJgQi+DifiGT9HXb3gDvyU7OVhtY5HUTNI9FeVANsHKaHKtKaakBFpCqqa9CK6SXiJ9vBEATiVzWjGdRVBRccw9pBMGUSjjbp0iK4OacJcD+PiHKzYnRejRTrA/acP9yqCVzyG70=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=OzXSt/G7; arc=none smtp.client-ip=209.85.128.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-47100eae3e5so18560935e9.1
-        for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 03:18:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1761301120; x=1761905920; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:from:references:cc:to:subject:reply-to:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=JwB3t6H0X4AgP7j1wsFO2pehPyw3gdrsIRR1+liHUJU=;
-        b=OzXSt/G7s1Pd8XR/XZwH4UrD2r9AqOTs+fLRdcBCXCw0ew/eGAeA6oFCcLjDlxb8tr
-         Idzn7kTQJmfK97isIX7hwplbTxD3n7O62yzGCBh7B6jK5XkBf7D2ivEvEjJED5cN5dnQ
-         3dyRT8ow/ofeL+NZ7HisPBOOIo6j5MwQK1tYX2GPtLLve8XcEc5bML1WCNTD2gMFU1tY
-         xgIka3la4808RMk4SpO6aQZfyizDPNUPkM1xK8AgpnCEt+rJmfyLqhPqehddeGuKG0dH
-         xg5PcAC0oHHBbcexDFK8zvR6oxGJwdBZpavpBnKeoBLoLgDAdoi4Hms/6POdxHzp1TeF
-         23kA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761301120; x=1761905920;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:from:references:cc:to:subject:reply-to:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=JwB3t6H0X4AgP7j1wsFO2pehPyw3gdrsIRR1+liHUJU=;
-        b=coE8Kew5pryqSzVG60CovSERDhGBK0svevSxlQMGhuG5Y4zme3/WpDjNOWGNKdutqb
-         O3kZoD71XTEL67TvKT6qigOmEbuHnEY6nCSgykldXY1iF8duZxaiUmXmeq/32HEkZpbc
-         0gir62mMzGrMv52GH2I8DqjJyFP7vNM+wO+5RkezgXR1KzxE3ZzsMgM0odMu/4Z7oNTR
-         BeQ/J2x5debvWpQgLTyGlL15rIHCPusJLOCchcpT3tyZmlISDyFXOkruWWg2fwa5C0iP
-         xz11lcJXAOOvMHYjOF/JWfuADh/lK7BG8yRWkY7T4Vyz6t7V6imCxMSk4DGUWVem8NPA
-         EMoA==
-X-Forwarded-Encrypted: i=1; AJvYcCUztJxT47rn3cRTBsItQFi/Dszwmcm1AG0lTaRNlVrJyRc5eRd0HCj3hjgc8h1NpXQKAP14BI3NsNkW@vger.kernel.org
-X-Gm-Message-State: AOJu0YwizFsCVEYkzj0hlurPi/FBy4ZXkRlHTJx4MgoAZISPEY4xDStO
-	qiBXQGzBKmUAm9kKyjzEjEWkikkHRgyTa+vVYVe3KK5J3TY6Fr1WEQ+ebH4pNg/eAzw=
-X-Gm-Gg: ASbGncsfQ99n6GZH579v1Zu4P2MKuLTux/KDg7Z1U4YZiWBufFHcCNYCSTDgnykJyX6
-	tZKAzUPCffz//1SQz6xr0gVvRBkrezubJPKcRElPzdO5/cYSwDN1fQ2Jgp+bm4QxZJC82+0fndx
-	h8KY+w1tE8UnIBoez42bM6srxmy3mYPunLy4TpL4nGRoEaYxI/ozUST78RxBZrqR/gMXg28qh32
-	ziM40uUhck3c2u1lBi3subUhkFWJn5tn0XAYYS89NE7ffQiXy66K4sGf6fnNR95LItLuWMHC8Hp
-	/cD8bH8dxmEWBBCKNjb5sMRESDP6I/ysOviFHQhYgq874jQ9o9zKzSM3jMmnuPQFTjdLUDtT/96
-	eVhC4VXnCPMuP7XBaIj7UnZK4xjOywuwvdiScV0T0uU9/HT00DpBCyW8g/2vkvCcWSxRUXjxQmn
-	yohSrO1ZdjWFVwXYpfkHnykdewUqK0IQ3lFVZ7BZwyvxEjEu4psU5TM8CZHclUgAc=
-X-Google-Smtp-Source: AGHT+IHXeppyLMbbfZFM901/QbMMs5mlNKjTRPDgUNBA3WzjQcRIE5pgrN+y8XRnEocb/XETZ6hZpQ==
-X-Received: by 2002:a05:600c:6085:b0:471:133c:4b9a with SMTP id 5b1f17b1804b1-4711786c79emr234558875e9.6.1761301119804;
-        Fri, 24 Oct 2025 03:18:39 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:3d9:2080:b4ee:479d:354c:6970? ([2a01:e0a:3d9:2080:b4ee:479d:354c:6970])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4298d4a49ffsm4623186f8f.13.2025.10.24.03.18.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 24 Oct 2025 03:18:39 -0700 (PDT)
-Message-ID: <0cd8f4d4-d418-4634-abaf-f66b350c81eb@linaro.org>
-Date: Fri, 24 Oct 2025 12:18:38 +0200
+	s=arc-20240116; t=1761301229; c=relaxed/simple;
+	bh=FnW71TqPVzXRwI0dpG/xTBjzIyGRYlri2cV1BYifyeg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=k6VIVsgRNEneo+Xps8ZKYKyKbBfEj75gPXhpuBFDAjyfmNrrcH6nR8xGYaosUw7ltxNsEl9BoDPAbvDLnmPwZpv1ixlOZeGIVuz/2TPNS4D9+8rL4RgwsqWUptcJaz6++t3D+1fnsBhCO0PLvgoRkEz0p3Q/BYwOlUSF3XQAFxE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=P+m0hwPs; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA4A3C4CEF5;
+	Fri, 24 Oct 2025 10:20:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761301228;
+	bh=FnW71TqPVzXRwI0dpG/xTBjzIyGRYlri2cV1BYifyeg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=P+m0hwPsa1c9TUACFZRnUOkfnRR//EoynKUc2HkHZer4k0ASAdUGyETGx+4DOd4/D
+	 T3BqTR1lnp9a2tyc+UYGQKADQtoqLD6TKmNynKgNei1ThL7+S7Qk+DaJLUdwveuo5b
+	 HtBPY6ZVlCVnkqYfuwh95NS8VnGSBjY2NgGwvXRiFc/WCjF454xtDd5274z7ReMfI8
+	 tcCSlkNAa1y5lEccmQSqjwiZl+s58PvTDSo0TQ0rqZPmOpqAFZds6QPnGoU6K7Lw2e
+	 Xpfa/CwIuZtVVUObftnAU0Rf0fmDrS/VxKJiCOehPFsRC4AKWT8n8Gpl4/wPjXPcMt
+	 SXf+1m6g715zw==
+Date: Fri, 24 Oct 2025 11:20:23 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Claudiu Beznea <claudiu.beznea@tuxon.dev>
+Cc: Conor Dooley <conor.dooley@microchip.com>,
+	Daire McNamara <daire.mcnamara@microchip.com>,
+	pierre-henry.moussay@microchip.com,
+	valentina.fernandezalanis@microchip.com,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	linux-riscv@lists.infradead.org, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Brian Masney <bmasney@redhat.com>
+Subject: Re: [PATCH v5 5/9] clk: microchip: mpfs: use regmap for clocks
+Message-ID: <20251024-dimness-everyday-1c074ce1f203@spud>
+References: <20251013-album-bovine-faf9f5ebc5d4@spud>
+ <20251013-undercook-flatfoot-70dca974cd19@spud>
+ <ab443375-524d-4e6c-a640-7e580c2d0c64@tuxon.dev>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v3 3/3] spmi: spmi-pmic-arb: add support for PMIC arbiter
- v8
-To: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>,
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, David Collins <david.collins@oss.qualcomm.com>
-Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, aiqun.yu@oss.qualcomm.com,
- kamal.wadhwa@oss.qualcomm.com, jingyi.wang@oss.qualcomm.com
-References: <20251024-pmic_arb_v8-v3-0-cad8d6a2cbc0@oss.qualcomm.com>
- <20251024-pmic_arb_v8-v3-3-cad8d6a2cbc0@oss.qualcomm.com>
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20251024-pmic_arb_v8-v3-3-cad8d6a2cbc0@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="CLHXK2iYVH1gz/Qf"
+Content-Disposition: inline
+In-Reply-To: <ab443375-524d-4e6c-a640-7e580c2d0c64@tuxon.dev>
 
-Hi,
 
-On 10/24/25 11:33, Jishnu Prakash wrote:
-> From: David Collins <david.collins@oss.qualcomm.com>
-> 
-> PMIC arbiter v8 supports up to 4 SPMI buses and up to 8192 PMIC
-> peripherals.  Its register map differs from v7 as several fields
-> increased in size. Add support for PMIC arbiter version 8.
-> 
-> Signed-off-by: David Collins <david.collins@oss.qualcomm.com>
-> Signed-off-by: Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
-> Signed-off-by: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
-> ---
->   drivers/spmi/spmi-pmic-arb.c | 324 +++++++++++++++++++++++++++++++++++++++----
->   1 file changed, 294 insertions(+), 30 deletions(-)
-> 
-> diff --git a/drivers/spmi/spmi-pmic-arb.c b/drivers/spmi/spmi-pmic-arb.c
-> index 91581974ef84..612736973e4b 100644
-> --- a/drivers/spmi/spmi-pmic-arb.c
-> +++ b/drivers/spmi/spmi-pmic-arb.c
-> @@ -3,6 +3,7 @@
->    * Copyright (c) 2012-2015, 2017, 2021, The Linux Foundation. All rights reserved.
->    */
->   #include <linux/bitmap.h>
-> +#include <linux/bitfield.h>
->   #include <linux/delay.h>
->   #include <linux/err.h>
->   #include <linux/interrupt.h>
-> @@ -25,10 +26,12 @@
->   #define PMIC_ARB_VERSION_V3_MIN		0x30000000
->   #define PMIC_ARB_VERSION_V5_MIN		0x50000000
->   #define PMIC_ARB_VERSION_V7_MIN		0x70000000
-> +#define PMIC_ARB_VERSION_V8_MIN		0x80000000
->   #define PMIC_ARB_INT_EN			0x0004
->   
->   #define PMIC_ARB_FEATURES		0x0004
->   #define PMIC_ARB_FEATURES_PERIPH_MASK	GENMASK(10, 0)
-> +#define PMIC_ARB_FEATURES_V8_PERIPH_MASK	GENMASK(12, 0)
->   
->   #define PMIC_ARB_FEATURES1		0x0008
->   
-> @@ -50,9 +53,10 @@
->   #define SPMI_MAPPING_BIT_IS_1_RESULT(X)	(((X) >> 0) & 0xFF)
->   
->   #define SPMI_MAPPING_TABLE_TREE_DEPTH	16	/* Maximum of 16-bits */
-> -#define PMIC_ARB_MAX_PPID		BIT(12) /* PPID is 12bit */
-> +#define PMIC_ARB_MAX_PPID		BIT(13)
->   #define PMIC_ARB_APID_VALID		BIT(15)
->   #define PMIC_ARB_CHAN_IS_IRQ_OWNER(reg)	((reg) & BIT(24))
-> +#define PMIC_ARB_V8_CHAN_IS_IRQ_OWNER(reg)	((reg) & BIT(31))
->   #define INVALID_EE				0xFF
->   
->   /* Ownership Table */
-> @@ -96,30 +100,33 @@ enum pmic_arb_channel {
->   	PMIC_ARB_CHANNEL_OBS,
->   };
->   
-> -#define PMIC_ARB_MAX_BUSES		2
-> +#define PMIC_ARB_MAX_BUSES		4
+--CLHXK2iYVH1gz/Qf
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Why PMIC_ARB_MAX_BUSES is changed to 4 ?
+On Thu, Oct 23, 2025 at 07:06:01AM +0300, Claudiu Beznea wrote:
+> On 10/13/25 20:45, Conor Dooley wrote:
+> > From: Conor Dooley <conor.dooley@microchip.com>
+> > +static int mpfs_cfg_clk_set_rate(struct clk_hw *hw, unsigned long rate=
+, unsigned long prate)
+> > +{
+> > +	struct mpfs_cfg_hw_clock *cfg_hw =3D to_mpfs_cfg_clk(hw);
+> > +	struct mpfs_cfg_clock *cfg =3D &cfg_hw->cfg;
+> > +	unsigned long flags;
+> > +	u32 val;
+> > +	int divider_setting;
+>=20
+> This could be moved near flags to keep the reverse christmas tree order as
+> in the rest of this patch.
 
-Neil
+The driver doesn't (intentionally) use reverse christmas tree. If it
+does, that's just a byproduct of putting bigger types before smaller
+ones.
 
-<snip>
+> > +	divider_setting =3D divider_get_val(rate, prate, cfg->table, cfg->wid=
+th, 0);
+> > +
+> > +	if (divider_setting < 0)
+> > +		return divider_setting;
+> > +
+> > +	spin_lock_irqsave(&mpfs_clk_lock, flags);
+>=20
+> As spin locking is introduced in this file by this patch, you can go
+> directly w/ cleanup helpers for locking.
+>=20
+> > +
+> > +	regmap_read(cfg->map, cfg->map_offset, &val);
+> > +	val &=3D ~(clk_div_mask(cfg->width) << cfg_hw->cfg.shift);
+>=20
+> Why cfg_hw->cfg.shift here --------------------^ but cfg->shift on the ne=
+xt
+> line?
+>=20
+> > +	val |=3D divider_setting << cfg->shift;
+> > +	regmap_write(cfg->map, cfg->map_offset, val);
+>=20
+> Can't the regmap_read() + updated + regmap_write() be replaced by
+> regmap_update_bits() ?
 
+Yeah, I suppose it could. Ultimately what's here is a revert of with
+readl()/writel() replaced by regmap operations directly, so the answer
+to the above three items is that that's how they were done before the
+patch I am reverting. That's probably the answer to 90% of the things
+you've said here, this is how they were done prior to the commit I am
+reverting.
+
+
+--CLHXK2iYVH1gz/Qf
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaPtS5wAKCRB4tDGHoIJi
+0sNMAQDlxAVOoPeGx0hK7BMub2zdWhzl5Z42VCSLO0sdhyD3IAEAiM0jeYZctPm/
+LnrQTlUDFXDzYmq5VgkJDAkrhjUULgk=
+=KbJi
+-----END PGP SIGNATURE-----
+
+--CLHXK2iYVH1gz/Qf--
 
