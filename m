@@ -1,374 +1,80 @@
-Return-Path: <devicetree+bounces-230630-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230631-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D30CC04927
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 08:52:19 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BDDDEC04921
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 08:52:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D06524FD51B
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 06:51:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9F3643BAC57
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 06:51:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A66F279DC8;
-	Fri, 24 Oct 2025 06:51:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 589E726ED35;
+	Fri, 24 Oct 2025 06:51:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="czpg3CWK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cA14dYLz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBAB72798F3
-	for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 06:50:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2801924BD04;
+	Fri, 24 Oct 2025 06:51:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761288663; cv=none; b=sBMzFpGUHy13/BcRd5AI3K4lBSQHuMk3BbIujRcood63nIaRzoKruZILJqV2H7nXx5sPMBduYfadz0tINZ8Fe9suAFQrUHPnlhqIzyv2ha+n/acpcQwA+a4sA9Gth32Al1QgaMXgcIsgEfKSBxT1B06wqSuWh2+2ncDVxr8AqU4=
+	t=1761288686; cv=none; b=toqVwIAdcQkSizlWOW6ARfw63eME398bZT1cX0HNjYL7F5MUCDxE6VfeRb5E5Ifi33qnPKh5mMkUp4WbwGyJLwRgn7vEqpz+0/WaIp6Jvut7vEUkA1PWMsa/qqajXZjNEIN1plOxa7L3C8CrlXNwv1I9jo2TC/cYsb9ecn3ZAho=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761288663; c=relaxed/simple;
-	bh=voQc1iIPvaxhEWT6e6mfx3O6/9fM0/h19VXuaWD8Y4s=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Xki9RoM20coKsTK+3Op3ZfmvkqbY07fqM4cavbFL2qhTYqiwwBItvHbiOU9LMd1suTvUUfRJM6mI/arItRkaqP2lhTKwIo3p0QF/AEn8pWwWuIT+KQnSiB8fMzN+SgyMcYeQBm9Z5T/Tv9WQboB0uPnygC+PHQRAmHWC7jY2pzo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=czpg3CWK; arc=none smtp.client-ip=209.85.208.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-63c556b4e0cso3381340a12.1
-        for <devicetree@vger.kernel.org>; Thu, 23 Oct 2025 23:50:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1761288658; x=1761893458; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=8F59In/k+8ei2zkGlaL3q/q77vUHa6w27HLET6WaYE0=;
-        b=czpg3CWKVR3eICX1xFo+OFYvtfcpJ5eyn0RPVvg7OlBy0UUI0fBEhbs66SPui7lDAC
-         8NtTX9yCQEBP1l/iuTrCAU2FRY0qQqgSwwE3pezY//x3VjKnLA9lfYdaqxggVg95DZeV
-         EC8rhBfF9XeNZwxLoihrzIgZNug8VcL8lTP4wuQWWQB9AWKfRac1wYcDLqFU0iTMHL88
-         r0dj9WaFeiZwZB/ZkKyO7H/uPBMDkLU6ZDvA6cFTzt4/4nRRmbjYzdTlT4ty9ibp82fB
-         qu0E6CAszjgadyMl3ytEQSh4Bb5JJEhv11dojMXc2uXoZEIRoDjtRmr3K27g5MC5SonP
-         vbpA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761288658; x=1761893458;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=8F59In/k+8ei2zkGlaL3q/q77vUHa6w27HLET6WaYE0=;
-        b=GcXycROqSa0e+HHiAoFjdU/91YAHhIbpm1hiJ6fEkZiZs/hu1yzxAaK9iZaiZVDGGQ
-         twMGnR396gzZj49eIesUp07qBIW+HXuvzIGgYBSUauELdHjCXjGuwxdfCULe1THrqVq4
-         1IjdAh01z0fDnwYVuWq5KEEXJ7Wjo/4vCnncsw37A4wQyExWbwEJbTkYJCmN77rWk0XQ
-         XzoSr9vLiqiRg/1dpFFJ8LQ5gJoL4Ws9o74S3PG5j/jJ+0PHgJ1wy40GNHC3ATDqjdxO
-         7MD0TuER+l2wp3cZXRBuLQGfcuMN6dl7fhvqMnSJ7ShfKVnPbCPsL79ry0/4RsK/IGlQ
-         68jw==
-X-Forwarded-Encrypted: i=1; AJvYcCXtcq1BLzOAnf4y/g9wt2kkm88K9DRwT+a+4T6fRYcPQmFh/T3xgNha7xmTZglwsm3WhrmK9qIzEB5u@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywqt3bJPNRew6QLrvBm9GrOJO9kg27ofIx4ZWMP9doO89w33jsW
-	jFBsC+FQvAUpr44WXvk+4SOd3LsGEufGVGcQjWxHc8lcCJZcdzH7p8IdVCMaR9AHePVBTj+JZlz
-	nYalwunGtPp2gs6B2VGAGFIUbxVBlulWm88Zs53a3sA==
-X-Gm-Gg: ASbGnctP6Gn4FcbEyRlj7qEqxzxxXZnTHhwdPz7uD2PtGFK3oOvbxsDFUJ0nZCOtzQu
-	beUFY3XALYgbHIlaAOz/mHn6i/pZQfqhacTT+uZYYux+FojXuCj25+81xrXlY5QRSvQW+PkyJfj
-	9YEgL6gSjOX/2SZH2FGS+OXB8mMQUlcBWKLqaHQgI8baPOaIJN8uJoKdl3G5Le2Nxmh2XNVhPd7
-	3Ik6MzLMHccpkzuTo9apuFGZUSoJKohtWNa3KqtDvH7BEK1mcH/4+PsGedTC3ZghRMCWwOnJmnH
-	QTpPjPT9X7QKP8DJp4+vxhGV
-X-Google-Smtp-Source: AGHT+IFrKI0fnvSTnqzVv2eOZk8CRKDkaNQMq0DdY2GKOZNOyoOZjJbKhzPd1r3nb8BGmGeYwlT0SutndW1RdmNyVBk=
-X-Received: by 2002:a05:6402:2707:b0:63c:3c63:75ed with SMTP id
- 4fb4d7f45d1cf-63c3c6384d1mr23734442a12.22.1761288658135; Thu, 23 Oct 2025
- 23:50:58 -0700 (PDT)
+	s=arc-20240116; t=1761288686; c=relaxed/simple;
+	bh=BGXJbcgR47vbLX0csbAK9SHcXP8iwZy1HP69ARA31RY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=cjhgrw6Gjm4g8O1TRskn2jIEM0Ve85rafZbw5He5FNiyPx+nk0+xq1bVBf7vjJie5L0rrLoF+BBWHhG3Zbpns6Ojc8xngEcXygBzt0A4bbx1u6GbiqSg7cnbCb2Di8BldWnVacmC4EXKUnR7oDxi9h1jSzQKV/wTVYk3z8VO41Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cA14dYLz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4381AC4CEF1;
+	Fri, 24 Oct 2025 06:51:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761288685;
+	bh=BGXJbcgR47vbLX0csbAK9SHcXP8iwZy1HP69ARA31RY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=cA14dYLzv1WJaCBlakQu2FQXWHIL/B+3yKCN/io/0GZSHqd3q/w6tmxUKrnhHzbJa
+	 qQVNVgjjlQAhm8HgX1tMp6UNKDct2e8Yo5u4zC3BE17UzxUv7MCb3xlDGp0FJAMZj6
+	 i5xGRU7VHjSk9XKGzCK0ti4nqt/qAvH8MC2cLAlcUZiJppMpKigdc3JFMisF+gYalK
+	 p9l9L7Z+4t9uSVV3fAxDeJvBac/VnfC9EYJD2sf1IQxEumWLHQt1ME5YkNJStLOPWm
+	 LtKl1tZzrelGjMK6hEbaF0jh1KG6XBp+pvoRZyJw+7isNlvm+imRGj2Q8S88vv85Ph
+	 KcKZPMuR6nidA==
+Date: Fri, 24 Oct 2025 08:51:23 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Wesley Cheng <wesley.cheng@oss.qualcomm.com>, 
+	linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Subject: Re: [PATCH v8] dt-bindings: usb: qcom,snps-dwc3: Add the SM8750
+ compatible
+Message-ID: <20251024-nice-nonchalant-seahorse-8add5c@kuoka>
+References: <20251021050954.3462613-1-krishna.kurapati@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251022174309.1180931-4-vincent.guittot@linaro.org> <20251022190402.GA1262472@bhelgaas>
-In-Reply-To: <20251022190402.GA1262472@bhelgaas>
-From: Vincent Guittot <vincent.guittot@linaro.org>
-Date: Fri, 24 Oct 2025 08:50:46 +0200
-X-Gm-Features: AS18NWAfJSavi43CTc998m6tiNTP5liY3Ukqcpz07ZOop2D3_BEhXOC5ja0TdFY
-Message-ID: <CAKfTPtCtHquxtK=Zx2WSNm15MmqeUXO8XXi8FkS4EpuP80PP7g@mail.gmail.com>
-Subject: Re: [PATCH 3/4 v3] PCI: s32g: Add initial PCIe support (RC)
-To: Bjorn Helgaas <helgaas@kernel.org>
-Cc: chester62515@gmail.com, mbrugger@suse.com, ghennadi.procopciuc@oss.nxp.com, 
-	s32@nxp.com, bhelgaas@google.com, jingoohan1@gmail.com, lpieralisi@kernel.org, 
-	kwilczynski@kernel.org, mani@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, Ionut.Vicovan@nxp.com, larisa.grigore@nxp.com, 
-	Ghennadi.Procopciuc@nxp.com, ciprianmarian.costea@nxp.com, 
-	bogdan.hamciuc@nxp.com, Frank.li@nxp.com, 
-	linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, imx@lists.linux.dev, 
-	cassel@kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20251021050954.3462613-1-krishna.kurapati@oss.qualcomm.com>
 
-On Wed, 22 Oct 2025 at 21:04, Bjorn Helgaas <helgaas@kernel.org> wrote:
->
-> On Wed, Oct 22, 2025 at 07:43:08PM +0200, Vincent Guittot wrote:
-> > Add initial support of the PCIe controller for S32G Soc family. Only
-> > host mode is supported.
->
-> > +++ b/drivers/pci/controller/dwc/Kconfig
-> > @@ -406,6 +406,16 @@ config PCIE_UNIPHIER_EP
-> >         Say Y here if you want PCIe endpoint controller support on
-> >         UniPhier SoCs. This driver supports Pro5 SoC.
-> >
-> > +config PCIE_NXP_S32G
-> > +     tristate "NXP S32G PCIe controller (host mode)"
-> > +     depends on ARCH_S32 || COMPILE_TEST
-> > +     select PCIE_DW_HOST
-> > +     help
-> > +       Enable support for the PCIe controller in NXP S32G based boards to
-> > +       work in Host mode. The controller is based on DesignWare IP and
-> > +       can work either as RC or EP. In order to enable host-specific
-> > +       features PCIE_S32G must be selected.
->
-> Reorder this so the menu item is sorted by vendor name.
+On Tue, Oct 21, 2025 at 10:39:54AM +0530, Krishna Kurapati wrote:
+> From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> 
+> Add qcom,sm8750-dwc3 compatible to flattened implementation binding.
+> 
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> Signed-off-by: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
+> ---
 
-Okay
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
->
-> > +++ b/drivers/pci/controller/dwc/pcie-nxp-s32g-regs.h
->
-> > +/* Link Interrupt Control And Status */
-> > +#define PCIE_S32G_LINK_INT_CTRL_STS          0x40
-> > +#define LINK_REQ_RST_NOT_INT_EN                      BIT(1)
-> > +#define LINK_REQ_RST_NOT_CLR                 BIT(2)
->
-> None of these are used; remove until you need them.
+Best regards,
+Krzysztof
 
-That's a mistake and should not be in there.
-
->
-> > +/* PCIe controller 0 General Control 1 */
-> > +#define PCIE_S32G_PE0_GEN_CTRL_1             0x50
-> > +#define DEVICE_TYPE_MASK                     GENMASK(3, 0)
-> > +#define DEVICE_TYPE(x)                               FIELD_PREP(DEVICE_TYPE_MASK, x)
->
-> Not sure this adds much over just doing this:
->
->   #define DEVICE_TYPE   GENMASK(3, 0)
->
->   val |= FIELD_PREP(DEVICE_TYPE, PCI_EXP_TYPE_ROOT_PORT);
-
-fair enough
-
->
-> > +++ b/drivers/pci/controller/dwc/pcie-nxp-s32g.c
->
-> > +static void s32g_pcie_reset_mstr_ace(struct dw_pcie *pci, u64 ddr_base_addr)
-> > +{
-> > +     u32 ddr_base_low = lower_32_bits(ddr_base_addr);
-> > +     u32 ddr_base_high = upper_32_bits(ddr_base_addr);
-> > +
-> > +     dw_pcie_dbi_ro_wr_en(pci);
-> > +     dw_pcie_writel_dbi(pci, COHERENCY_CONTROL_3_OFF, 0x0);
-> > +
-> > +     /*
-> > +      * Ncore is a cache-coherent interconnect module that enables the
-> > +      * integration of heterogeneous coherent and non-coherent agents in
-> > +      * the chip. Ncore Transactions to peripheral should be non-coherent
-> > +      * or it might drop them.
-> > +      * One example where this is needed are PCIe MSIs, which use NoSnoop=0
-> > +      * and might end up routed to Ncore.
-> > +      * Define the start of DDR as seen by Linux as the boundary between
-> > +      * "memory" and "peripherals", with peripherals being below.
->
-> Add blank lines between paragraphs.
-
-okay
-
->
-> > +      */
-> > +     dw_pcie_writel_dbi(pci, COHERENCY_CONTROL_1_OFF,
-> > +                        (ddr_base_low & CFG_MEMTYPE_BOUNDARY_LOW_ADDR_MASK));
-> > +     dw_pcie_writel_dbi(pci, COHERENCY_CONTROL_2_OFF, ddr_base_high);
-> > +     dw_pcie_dbi_ro_wr_dis(pci);
-> > +}
-> > +
-> > +static void s32g_init_pcie_controller(struct s32g_pcie *s32g_pp)
-> > +{
-> > +     struct dw_pcie *pci = &s32g_pp->pci;
-> > +     u8 offset = dw_pcie_find_capability(pci, PCI_CAP_ID_EXP);
-> > +     u32 val;
-> > +
-> > +     /* Set RP mode */
-> > +     val = s32g_pcie_readl_ctrl(s32g_pp, PCIE_S32G_PE0_GEN_CTRL_1);
-> > +     val &= ~DEVICE_TYPE_MASK;
-> > +     val |= DEVICE_TYPE(PCI_EXP_TYPE_ROOT_PORT);
-> > +
-> > +     /* Use default CRNS */
-> > +     val &= ~SRIS_MODE;
-> > +
-> > +     s32g_pcie_writel_ctrl(s32g_pp, PCIE_S32G_PE0_GEN_CTRL_1, val);
-> > +
-> > +     /* Disable phase 2,3 equalization */
-> > +     s32g_pcie_disable_equalization(pci);
-> > +
-> > +     /*
-> > +      * Make sure we use the coherency defaults (just in case the settings
-> > +      * have been changed from their reset values)
-> > +      */
-> > +     s32g_pcie_reset_mstr_ace(pci, memblock_start_of_DRAM());
->
-> This seems sketchy and no other driver uses memblock_start_of_DRAM().
-> Shouldn't a physical memory address like this come from devicetree
-> somehow?
-
-I was using DT but has been asked to not use it and was proposed to
-use memblock_start_of_DRAM() instead
-
->
-> > +     dw_pcie_dbi_ro_wr_en(pci);
-> > +
-> > +     val = dw_pcie_readl_dbi(pci, PCIE_PORT_FORCE);
-> > +     val |= PORT_FORCE_DO_DESKEW_FOR_SRIS;
-> > +     dw_pcie_writel_dbi(pci, PCIE_PORT_FORCE, val);
-> > +
-> > +     /*
-> > +      * Set max payload supported, 256 bytes and
-> > +      * relaxed ordering.
-> > +      */
-> > +     val = dw_pcie_readl_dbi(pci, offset + PCI_EXP_DEVCTL);
-> > +     val &= ~(PCI_EXP_DEVCTL_RELAX_EN |
-> > +              PCI_EXP_DEVCTL_PAYLOAD |
-> > +              PCI_EXP_DEVCTL_READRQ);
-> > +     val |= PCI_EXP_DEVCTL_RELAX_EN |
-> > +            PCI_EXP_DEVCTL_PAYLOAD_256B |
-> > +            PCI_EXP_DEVCTL_READRQ_256B;
-> > +     dw_pcie_writel_dbi(pci, offset + PCI_EXP_DEVCTL, val);
->
-> MPS and relaxed ordering should be configured by the PCI core.  Is
-> there some s32g-specific restriction about these?
-
-I will check with the team why they did that
-
->
-> > +     /* Enable errors */
-> > +     val = dw_pcie_readl_dbi(pci, offset + PCI_EXP_DEVCTL);
-> > +     val |= PCI_EXP_DEVCTL_CERE |
-> > +            PCI_EXP_DEVCTL_NFERE |
-> > +            PCI_EXP_DEVCTL_FERE |
-> > +            PCI_EXP_DEVCTL_URRE;
-> > +     dw_pcie_writel_dbi(pci, offset + PCI_EXP_DEVCTL, val);
->
-> Enabling these errors doesn't really seem device-specific, and
-> pci_enable_pcie_error_reporting() would enable all these.
->
-> But that only happens with CONFIG_PCIEAER=y, and since this is
-> DWC-based, you probably don't have standard interrupts for AER and
-> CONFIG_PCIEAER isn't useful.  Someday we might have support for
-> non-standard AER interrupts, but we don't have it yet.
->
-> I guess you get platform-specific System Errors when any of these
-> errors are detected (see PCIe r7.0, sec 6.2.6)?  What is the handler
-> for these?
-
-Same has above but I suspect we can remove it
-
->
-> > +static int s32g_pcie_host_init(struct s32g_pcie *s32g_pp)
-> > +{
-> > +     struct dw_pcie *pci = &s32g_pp->pci;
-> > +     struct dw_pcie_rp *pp = &pci->pp;
-> > +     int ret;
-> > +
-> > +     pp->ops = &s32g_pcie_host_ops;
-> > +
-> > +     ret = dw_pcie_host_init(pp);
-> > +
-> > +     return ret;
->
->   return dw_pcie_host_init(pp);
-
-fair enough
-
->
-> Not sure this is really worth a wrapper.
-
-More feature will come but with init ops, i will put everything in probe for now
-
->
-> > +static int s32g_pcie_get_resources(struct platform_device *pdev,
-> > +                                struct s32g_pcie *s32g_pp)
-> > +{
-> > +     struct device *dev = &pdev->dev;
-> > +     struct dw_pcie *pci = &s32g_pp->pci;
-> > +
-> > +     s32g_pp->phy = devm_phy_get(dev, NULL);
-> > +     if (IS_ERR(s32g_pp->phy))
-> > +             return dev_err_probe(dev, PTR_ERR(s32g_pp->phy),
-> > +                             "Failed to get serdes PHY\n");
->
-> Add blank line here.
-
-yes
-
->
-> > +     s32g_pp->ctrl_base = devm_platform_ioremap_resource_byname(pdev, "ctrl");
-> > +     if (IS_ERR(s32g_pp->ctrl_base))
-> > +             return PTR_ERR(s32g_pp->ctrl_base);
->
-> This looks like the first DWC driver that uses a "ctrl" resource.  Is
-> this something unique to s32g, or do other drivers have something
-> similar but use a different name?
-
-AFAICT this seems to be s32g specific in the RM
-
->
-> > +     pci->dbi_base = devm_platform_ioremap_resource_byname(pdev, "dbi");
-> > +     if (IS_ERR(pci->dbi_base))
-> > +             return PTR_ERR(pci->dbi_base);
->
-> Isn't this already done by dw_pcie_get_resources()?
-
-We needed dbi to be mapped before dw host init but this will not be
-the case anymore with ops->init()
-
->
-> > +static int s32g_pcie_suspend_noirq(struct device *dev)
-> > +{
-> > +     struct s32g_pcie *s32g_pp = dev_get_drvdata(dev);
-> > +     struct dw_pcie *pci = &s32g_pp->pci;
-> > +
-> > +     if (!dw_pcie_link_up(pci))
-> > +             return 0;
->
-> Does something bad happen if you omit the link up check and the link
-> is not up when we get here?  The check is racy (the link could go down
-> between dw_pcie_link_up() and dw_pcie_suspend_noirq()), so it's not
-> completely reliable.
->
-> If you have to check, please add a comment about why this driver needs
-> it when no other driver does.
-
-dw_pcie_suspend_noirq returns an error and the suspend fails
-
-I will add a comment
-/*
- * If the link is not up, there is nothing to suspend and resume
- */
-
->
-> > +     return dw_pcie_suspend_noirq(pci);
-> > +}
-> > +
-> > +static int s32g_pcie_resume_noirq(struct device *dev)
-> > +{
-> > +     struct s32g_pcie *s32g_pp = dev_get_drvdata(dev);
-> > +     struct dw_pcie *pci = &s32g_pp->pci;
-> > +
-> > +     s32g_init_pcie_controller(s32g_pp);
->
-> Odd that you need this.  Other drivers really don't do anything
-> similar, probably because this could be done by the
-> pci->pp.ops->init() call in dw_pcie_resume_noirq().
-
-no reason, i misread the impact of init in dw_pcie_host_init()
-
-
-
->
-> > +     return dw_pcie_resume_noirq(pci);
-> > +}
->
-> > +static const struct of_device_id s32g_pcie_of_match[] = {
-> > +     { .compatible = "nxp,s32g2-pcie"},
->
-> Add space before "}"
->
-> > +     { /* sentinel */ },
-> > +};
 
