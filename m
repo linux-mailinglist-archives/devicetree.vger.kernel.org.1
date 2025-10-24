@@ -1,103 +1,138 @@
-Return-Path: <devicetree+bounces-230897-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230898-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20BBDC0751A
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 18:31:25 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D5FE4C074FC
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 18:29:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 32A114F94EA
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 16:29:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 49E833A514E
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 16:29:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28B3A32E73D;
-	Fri, 24 Oct 2025 16:29:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 377C0326D53;
+	Fri, 24 Oct 2025 16:29:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="M3290crd"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="jHQS4b41"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B88F326D53;
-	Fri, 24 Oct 2025 16:29:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0ED8258ED5;
+	Fri, 24 Oct 2025 16:29:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761323349; cv=none; b=N4JHjMd8+XSIf3wZTD2ohlcRwmM+FgvuBOUVwbASNJvIhw1iUX49Uv3T5HUXKDpMFjwoTlvUgqFmsonLrnwI6Ahp8izuUMeFT16NPTW4J3WG/vfsf0R2SwJsEle5TPc9O+GhBpEtlzY1aiuqK+EUvClzdoEPSP5NDQQgZbI+0mw=
+	t=1761323373; cv=none; b=pcc2nn3p3ffTIahvVXmSD7vm/FNuB9r+zS7ibO8lklfViuNiZVSK+kz8OfpZJy8ValW029kRWMn0PiCRMFUuGjDOtkCTpNILgDZQwCRW9o8lfR+cVlRMO4DV7XGXewOyCPiQ0VNQupmQvEQnAmyZ+LkZlPSBnPh7BUqwgFBqb5A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761323349; c=relaxed/simple;
-	bh=uT+YrAtnUKFxPpK6nxQRK2qpk2y5ugD7UPA8lAvrjeQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YXiWSS/+FRgB6EYz/0VEGAqArW08rmqerwLGmZnpMWdmgB8fzz2mMRwsVu7NyU2eg0UyR6lTEMpFw5XrqWamjG1jWkQ+H5RNPlbqkwe89p7dPB65CSN/Tec7WPxnvpO4z4K6qlH3bxvj7jqJXD44vaH28l6cg/4GmW1Bnd9PYAo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=M3290crd; arc=none smtp.client-ip=198.175.65.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1761323348; x=1792859348;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=uT+YrAtnUKFxPpK6nxQRK2qpk2y5ugD7UPA8lAvrjeQ=;
-  b=M3290crd0rus0eNOK3wxtk0l44LE6dwcqHvHmuuOnIi00ITvgbPH6ncD
-   x6OuN/amt7BqbpWN3UGzXMomFr+V1JlttNWNZWnu97vYoRSge3cxg6nNT
-   7b7krG1HEumjKC+nXClu0QW7L+HilB0yVBIvROQB6IVtEAbHr2gnJE25U
-   GKzvt2yG5ywIIR2E/VwBYS1RZc+Q6zXqBs9BiDrSfo000OXZDDmmYa+oY
-   VyOb23HL973YSzmiTofg0WJotTgdD8csPgQO9mw2kr7JUlmmgHAaoSzDU
-   dsyeLH9n5d8BKvB9dHVg8k3jLNMX3O9n/2nvtOfta3SdcnEal3xRxE3x0
-   Q==;
-X-CSE-ConnectionGUID: 8qZIow+iQ4+xrXJVcVv2ZA==
-X-CSE-MsgGUID: qnqCecJlRCinKzu20GIcGQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11586"; a="63210536"
-X-IronPort-AV: E=Sophos;i="6.19,252,1754982000"; 
-   d="scan'208";a="63210536"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
-  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Oct 2025 09:29:06 -0700
-X-CSE-ConnectionGUID: /yydXxvoQKakefwUifKqZA==
-X-CSE-MsgGUID: 6BHnQKAxQR2jk2PIf162GA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,252,1754982000"; 
-   d="scan'208";a="184384565"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO ashevche-desk.local) ([10.245.245.147])
-  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Oct 2025 09:29:03 -0700
-Received: from andy by ashevche-desk.local with local (Exim 4.98.2)
-	(envelope-from <andriy.shevchenko@intel.com>)
-	id 1vCKez-00000002D7O-0OIk;
-	Fri, 24 Oct 2025 19:29:01 +0300
-Date: Fri, 24 Oct 2025 19:29:00 +0300
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>
-Cc: Michael Hennerich <Michael.Hennerich@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 2/3] iio: dac: ad5456: Add missing DT compatibles
-Message-ID: <aPupTHhbvvMq4c7I@smile.fi.intel.com>
-References: <20251023-ad5446-bindings-v2-0-27fab9891e86@analog.com>
- <20251023-ad5446-bindings-v2-2-27fab9891e86@analog.com>
+	s=arc-20240116; t=1761323373; c=relaxed/simple;
+	bh=wPs5/G9qvhmja22JtkvQzQBRoNu9QbWYMhGKzjxOyMc=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=Tg22woJRxCLx9rauzsK+/HLkFzpgl85Ac1RUiNJ3ewls0mvbpn6hD984hiqGQY8NyWb9Sp/7iMTNQTruub/GwHUIouWF9Wu7iCWtQ1J3HV08l2B727AVJA7DtHFh82PGSaxN/TxXN++So5vgJ3SkPsn+nZXIKiEJWMECr0UPCzA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=jHQS4b41; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from mail01.disroot.lan (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id 13435262B0;
+	Fri, 24 Oct 2025 18:29:22 +0200 (CEST)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id PBhwxP4_ZR-I; Fri, 24 Oct 2025 18:29:20 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1761323360; bh=wPs5/G9qvhmja22JtkvQzQBRoNu9QbWYMhGKzjxOyMc=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References;
+	b=jHQS4b415h+DZoeMxiOFTRbJn29qL39r9XMPoyrVhNiAYepGWm1KRNQX+QCOHFfFP
+	 9ur2de32W2NeGX5qXeZDGRojNHDdFLtT2vCwuL7MmspkOH94UcAp8Zzj9/5uVFWJyh
+	 zeXlIpmRuzqi+g5S24R7BcKLrN7kg7lGmLtAvR8FCJU/WfALVmI8epF6FOdU4MBPCz
+	 wfvIHLk6EA+d9GOOjWOam4xvq5c+6EzVxles3SkNUZbcwI5CJdtiPJH+UVYuSe2NeY
+	 l9F41YwLVsUrFngrVk4SOA7DjXJRhxTNBJ3amzFWIBeCKY0N6f7TFVqmqd0izeYbGQ
+	 S30tZYKkE9vzw==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20251023-ad5446-bindings-v2-2-27fab9891e86@analog.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+Date: Fri, 24 Oct 2025 16:29:19 +0000
+From: Kaustabh Chakraborty <kauschluss@disroot.org>
+To: Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang
+ <quic_jesszhan@quicinc.com>, David Airlie <airlied@gmail.com>, Simona Vetter
+ <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jessica Zhang
+ <jessica.zhang@oss.qualcomm.com>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Krzysztof Kozlowski
+ <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH RESEND v5 0/2] Support for Synaptics TDDI series panels
+In-Reply-To: <20251009-panel-synaptics-tddi-v5-0-59390997644e@disroot.org>
+References: <20251009-panel-synaptics-tddi-v5-0-59390997644e@disroot.org>
+Message-ID: <f1297515c0c5e05aa7784131f557443d@disroot.org>
+X-Sender: kauschluss@disroot.org
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Thu, Oct 23, 2025 at 02:01:38PM +0300, Nuno Sá wrote:
-> Add missing of_device_id compatibles for the i2c and spi drivers.
+Hi,
 
-How does it work at all? Is there an ugly ifdeferry? No module should have two
-module_*_driver() and other stuff.
+I've been trying to get this driver accepted. If panel maintainers have
+haven't looked into it yet, this is a gentle reminder.
 
--- 
-With Best Regards,
-Andy Shevchenko
+Thank you.
 
-
+On 2025-10-09 16:22, Kaustabh Chakraborty wrote:
+> Synaptics' Touch and Display Driver Integration (TDDI) technology [1]
+> employs a single chip for both touchscreen and display capabilities.
+> Such designs reportedly help reducing costs and power consumption.
+> 
+> Although the touchscreens, which are powered by Synaptics'
+> Register-Mapped Interface 4 (RMI4) touch protocol via I2C or SPI have
+> driver support in the kernel, the MIPI DSI display panels don't.
+> 
+> This series introduces a rudimentary driver for controlling said display
+> panels, which supports TD4101 and TD4300 panels.
+> 
+> [1] https://www.synaptics.com/technology/display-integration
+> 
+> Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
+> ---
+> Changes in v5:
+> - added missing Reviewed-by tag from Krzysztof in [v3 1/2]
+> - Link to v4: https://lore.kernel.org/r/20250819-panel-synaptics-tddi-v4-0-448f466d16a6@disroot.org
+> 
+> Changes in v4:
+> - utilized drm_connector_helper_get_modes_fixed() (dmitry.baryshkov)
+> - constified backlight properties (dmitry.baryshkov)
+> - Link to v3: https://lore.kernel.org/r/20250720-panel-synaptics-tddi-v3-0-43a5957f4b24@disroot.org
+> 
+> Changes in v3:
+> - fixed various dt_binding_check errors (robh's bot)
+> - adjusted commit description of [v2 1/2] (robh)
+> - utilized devm_drm_panel_alloc() and devm_regulator_bulk_get_const()
+> - Link to v2: https://lore.kernel.org/r/20250625-panel-synaptics-tddi-v2-0-7a62ab1d13c7@disroot.org
+> 
+> Changes in v2:
+> - fixed various dt_binding_check errors (conor)
+> - did s/tddi_update_brightness/tddi_update_status
+> - added check for panel enable in tddi_update_status()
+> - used backlight_get_brightness() in appropriate places
+> - Link to v1: https://lore.kernel.org/r/20250612-panel-synaptics-tddi-v1-0-dfb8a425f76c@disroot.org
+> 
+> ---
+> Kaustabh Chakraborty (2):
+>       dt-bindings: display: panel: document Synaptics TDDI panel
+>       drm: panel: add support for Synaptics TDDI series DSI panels
+> 
+>  .../display/panel/synaptics,td4300-panel.yaml      |  89 +++++++
+>  drivers/gpu/drm/panel/Kconfig                      |  11 +
+>  drivers/gpu/drm/panel/Makefile                     |   1 +
+>  drivers/gpu/drm/panel/panel-synaptics-tddi.c       | 276 +++++++++++++++++++++
+>  4 files changed, 377 insertions(+)
+> ---
+> base-commit: 5303936d609e09665deda94eaedf26a0e5c3a087
+> change-id: 20250523-panel-synaptics-tddi-0b0b3f07f814
+> 
+> Best regards,
+> -- 
+> Kaustabh Chakraborty <kauschluss@disroot.org>
 
