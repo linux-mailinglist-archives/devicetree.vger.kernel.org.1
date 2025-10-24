@@ -1,95 +1,68 @@
-Return-Path: <devicetree+bounces-230979-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230974-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 131D4C08538
-	for <lists+devicetree@lfdr.de>; Sat, 25 Oct 2025 01:36:12 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB630C083C0
+	for <lists+devicetree@lfdr.de>; Sat, 25 Oct 2025 00:22:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 8CD47347642
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 23:36:11 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 8DB5B4E1A6F
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 22:22:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76F762E2DE6;
-	Fri, 24 Oct 2025 23:36:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9146D309F14;
+	Fri, 24 Oct 2025 22:22:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FaLJMVa2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JbHTXBsI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 937FD22FE0A
-	for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 23:36:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 631552248A5;
+	Fri, 24 Oct 2025 22:22:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761348968; cv=none; b=hdCIXKLvEAZWBGF3qHp7V+vAHezUCk5NL/A1wQg+73TJJSLvqpTAx4HxIDHyarSJTbf1PlHSa/EvZAJnl0+2xmJNUeuV3kjxDGBCij8GqkrIMRemWRKTVmu3JaYpz7DO50UJJffGUpEV6F57bTM2MsjAkCr0fylk3YehVVGHgJw=
+	t=1761344562; cv=none; b=EBqrlbeRKqIr67QHQ8roxjl+akztY2Yx2hxqF6iKu0HjVS1xjLdOgRJksa5nW7Xoutj+t0nJ3osnSZbOdRt90g/1/DHrd5SeNKqpZrURE8GkaErSE1miVcW7CfNaE5v5lYtohztNdEqwanCyJRHKhixRRMDj5k/FlGLQEiCl6AU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761348968; c=relaxed/simple;
-	bh=+NEftr7VWmliQcXUqkaO9sJG2DgzF/Yaw8WY6cHdu/c=;
+	s=arc-20240116; t=1761344562; c=relaxed/simple;
+	bh=x0eiuXrdmTl6hh6U1I+z1v6iUg7ks7RxigDFkDZWKbo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MthCegXhSezQxgavuoo6fTN1jw4KUR1hdQdigu/kLQZs5H+O9guZIEo+RjVOjb+NZVphPM8unMhs6rw0JUuoyy+iLGEqa6XQpxPod+7eYTOm3mN7sOoh32IuuYfdVUr+/M6xZWsNFmEcdGW5lC0knn0gTYHJm6xENcvHjLLbLEk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FaLJMVa2; arc=none smtp.client-ip=209.85.208.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-63c3d913b3bso4635790a12.2
-        for <devicetree@vger.kernel.org>; Fri, 24 Oct 2025 16:36:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1761348965; x=1761953765; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=4qshgmZlkIM4+vcn2er+R5ZwtdRF9Gko5Hx8ZyCDhMI=;
-        b=FaLJMVa2g39PNiAd8p4j8ZaQTqFFQllIjrDkpLnpn45XDGoJXN3zRlnQslEP1ob+Cb
-         87RkXR11VUxW/wruhNhyTGRnScH9KE8DGL4xcaNdtxnryvsq0ysnSrBB9EjP7QT16FX6
-         F4HCzsYc0Q5jG1WNVkphkpwsHd7P6QU7K1FItNnTUdPfiUsJiYP7sNzhonehCooVgfcs
-         qy8MjrBIJPtIZDB8+DgPTlEF72UiOKyx0msWoda5drC1s2DNmL5LxrMQQV8ZjT7VJHea
-         TB3wxoG+vkDdPpz4mdYwn9Taz+EwUieGDpEn220Cx+dDMZv3F7kU72IzxhikQtCXQft5
-         hjZA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761348965; x=1761953765;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=4qshgmZlkIM4+vcn2er+R5ZwtdRF9Gko5Hx8ZyCDhMI=;
-        b=ntncdxXniTAW0JHGuHbO3CH6JozrJtfL9SouDxBQRcP6nDMMy2JerEKDuZBVDWn7a1
-         euzP6x8anoUEBGGySyWR3nqdj01oJ1cNintLqLYz6kDjh/6RdvOcopsdGYXcNCQyQJGH
-         FzHHbQppFTArukTuKw3ky3U3Gq4DqQxu56LpVdKHssFFo0B65nh0N6WorqCRfkcBeU2K
-         ESvuUQ6u/HT13e8VumnxI4K93MtA9kFbxvXcmSkG7XGIcMaypIN+VXrMFosXYBXodrlj
-         Di6D3owpUqJ9zs2vy2ipo1ta7VLe/OpCpri9OKdqCVIwqU1UKoCAbSd756Sn43H49l54
-         TfUg==
-X-Forwarded-Encrypted: i=1; AJvYcCVvhnbXTjvIP7ya8LBIJbcc+r0mbWfLZdb4XKuOiqc75ZPlSy4lY5V+IqBMPVd+Y0qDCs82ydg+9Y0O@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzr0UhbL8PEuESiv/yZv/YTUcaEkTrWO9xaHpLKeKxEL17eerA1
-	mwg0sKs2ZvfMenLwROB1O0bgjM3XGtqiMfDihdjrabCIFaKqn5naV1Ic48fweA==
-X-Gm-Gg: ASbGncvI9HaVnV7NBLt3MwsTQEVj3lGAgJSGk1C0Z06QjDmnhOf8uCb8PINZIAfCAO7
-	vCz/8HDn4Tc57tiEMcBicZjs1BM2LqItx6FMlaJy6brENAqFe5q1IpN8I599Iu5KtgrGJBEdblP
-	cLSnZa27u5NM89HwRSzKngW0utwR3C96nIIVBTWR0N6bjnpWz+QWdcgdAh6iW1yuuH6LWIE3pp5
-	VK3ubisfrmL0bUZxx8h1kZOA3tTOSdd1Qxt6nLY0MFYdchx6Lhw0/EQdgdrBA9YFInIAOn97nUK
-	PqCux0tIP9UXTaIqTL1uiLtWzs/s7CKMO7nOKXp2eyZ/9NiBaWkSGhKsk38Q58OzV1cW9pAC8WF
-	47X0BBIkczTJSeShTRjK4H1uRtC1XbEoFI0TuSBaN75dvHM9JBh0Lwn+0gez3UDntwy9WKv1iT6
-	Pn5KwJmw==
-X-Google-Smtp-Source: AGHT+IEQw0TA1CC7no4fMAMA9oQRoUt9Lgbn+Uft1azRKrTnyGz7lCiyNuO6p2GHKFOC05VVJ/iKvw==
-X-Received: by 2002:a05:600c:4f89:b0:471:a98:99a6 with SMTP id 5b1f17b1804b1-475cafae164mr64272055e9.11.1761342429974;
-        Fri, 24 Oct 2025 14:47:09 -0700 (PDT)
-Received: from andrea ([31.189.53.175])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47496d4b923sm89676705e9.14.2025.10.24.14.47.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 24 Oct 2025 14:47:09 -0700 (PDT)
-Date: Fri, 24 Oct 2025 23:47:04 +0200
-From: Andrea Parri <parri.andrea@gmail.com>
-To: Xu Lu <luxu.kernel@bytedance.com>
-Cc: corbet@lwn.net, paul.walmsley@sifive.com, palmer@dabbelt.com,
-	aou@eecs.berkeley.edu, alex@ghiti.fr, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, will@kernel.org,
-	peterz@infradead.org, boqun.feng@gmail.com, mark.rutland@arm.com,
-	anup@brainfault.org, atish.patra@linux.dev, pbonzini@redhat.com,
-	shuah@kernel.org, ajones@ventanamicro.com, brs@rivosinc.com,
-	guoren@kernel.org, linux-doc@vger.kernel.org,
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, kvm@vger.kernel.org,
-	kvm-riscv@lists.infradead.org, linux-kselftest@vger.kernel.org,
-	apw@canonical.com, joe@perches.com, lukas.bulwahn@gmail.com
-Subject: Re: [PATCH v4 00/10] riscv: Add Zalasr ISA extension support
-Message-ID: <aPvz2Pb6RuWnw9Ht@andrea>
-References: <20251020042056.30283-1-luxu.kernel@bytedance.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=iLDPU1XmqnbgoQ58iainDa0HQLKhzHMvucM/us1YmQhT2apHQt0uWdrXeHlYtWs6k6oCcBRpOheLB/h+khcdJjYl1WEbiSradq2uBVeSacpaAwJ32Pz8pg4cw91qEKuZlW6+iTTA1u9oEmXYtuodGGzrym5/OOyBkIq+dFLTKfU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JbHTXBsI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F373C4CEF1;
+	Fri, 24 Oct 2025 22:22:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761344561;
+	bh=x0eiuXrdmTl6hh6U1I+z1v6iUg7ks7RxigDFkDZWKbo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=JbHTXBsIXMb6emK76hDcATn+fSmBmiiQuVccYbvGBtu7/wJZuAsixrnMSPui1bXuB
+	 hvuLm1UHbXY68wuMBX94ZrI7r03On5Bj9kUyr0lXHU8azoIns2kQw+UsI1XnbbNECj
+	 1TIv3cCpoFGUF0yAJPV+LGfi0UJUBPtuMiXNZIf/aTEeFPSHr+B326vjKDpQZCAVTt
+	 s82D4TcOJ4DEVnBT/fT9IvB2svXVymb1WEFTSJLimZRJeFDqGrBqS8SwkoZX/IB2rN
+	 LH0r65oLfsfTBw+e76G4BdjGL6qUxjBC4VTsyODZ+cPA353GUBdv7d1Yc6wZu59dQ+
+	 Yr3LjJfQVu/bQ==
+Date: Fri, 24 Oct 2025 17:22:39 -0500
+From: Rob Herring <robh@kernel.org>
+To: Conor Dooley <conor@kernel.org>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>, hehuan1@eswincomputing.com,
+	krzk+dt@kernel.org, conor+dt@kernel.org, jszhang@kernel.org,
+	adrian.hunter@intel.com, p.zabel@pengutronix.de,
+	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, ningyu@eswincomputing.com,
+	linmin@eswincomputing.com, pinkesh.vaghela@einfochips.com,
+	xuxiang@eswincomputing.com, luyulin@eswincomputing.com,
+	dongxuyang@eswincomputing.com, zhangsenchuan@eswincomputing.com,
+	weishangjuan@eswincomputing.com, lizhi2@eswincomputing.com,
+	caohang@eswincomputing.com,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH v5 1/2] dt-bindings: mmc: sdhci-of-dwcmshc: Add Eswin
+ EIC7700
+Message-ID: <20251024222239.GA2902515-robh@kernel.org>
+References: <20251019115133.300-1-hehuan1@eswincomputing.com>
+ <20251019115238.320-1-hehuan1@eswincomputing.com>
+ <CAPDyKFqGwTF2w2JfqOuxMt6m_YJOYhqoUaQXyZALRu94W3fGkQ@mail.gmail.com>
+ <20251024-aghast-poster-82ee7aa7fdca@spud>
+ <20251024-polyester-gatherer-e7f5e4300262@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -98,86 +71,113 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251020042056.30283-1-luxu.kernel@bytedance.com>
+In-Reply-To: <20251024-polyester-gatherer-e7f5e4300262@spud>
 
-On Mon, Oct 20, 2025 at 12:20:46PM +0800, Xu Lu wrote:
-> This patch adds support for the Zalasr ISA extension, which supplies the
-> real load acquire/store release instructions.
+On Fri, Oct 24, 2025 at 10:47:34PM +0100, Conor Dooley wrote:
+> On Fri, Oct 24, 2025 at 05:37:59PM +0100, Conor Dooley wrote:
+> > On Fri, Oct 24, 2025 at 03:57:33PM +0200, Ulf Hansson wrote:
+> > > On Sun, 19 Oct 2025 at 13:52, <hehuan1@eswincomputing.com> wrote:
+> > > >
+> > > > From: Huan He <hehuan1@eswincomputing.com>
+> > > >
+> > > > EIC7700 use Synopsys dwcmshc IP for SD/eMMC controllers.
+> > > > Add Eswin EIC7700 support in sdhci-of-dwcmshc.yaml.
+> > > >
+> > > > Signed-off-by: Huan He <hehuan1@eswincomputing.com>
+> > > > Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> > > > ---
+> > > >  .../bindings/mmc/snps,dwcmshc-sdhci.yaml      | 57 +++++++++++++++++--
+> > > >  1 file changed, 51 insertions(+), 6 deletions(-)
+> > > >
+> > > > diff --git a/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml b/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
+> > > > index f882219a0a26..7e7c55dc2440 100644
+> > > > --- a/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
+> > > > +++ b/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
+> > > > @@ -30,6 +30,7 @@ properties:
+> > > >            - sophgo,sg2002-dwcmshc
+> > > >            - sophgo,sg2042-dwcmshc
+> > > >            - thead,th1520-dwcmshc
+> > > > +          - eswin,eic7700-dwcmshc
+> > > >
+> > > >    reg:
+> > > >      maxItems: 1
+> > > > @@ -52,17 +53,30 @@ properties:
+> > > >      maxItems: 5
+> > > >
+> > > >    reset-names:
+> > > > -    items:
+> > > > -      - const: core
+> > > > -      - const: bus
+> > > > -      - const: axi
+> > > > -      - const: block
+> > > > -      - const: timer
+> > > > +    maxItems: 5
+> > > >
+> > > >    rockchip,txclk-tapnum:
+> > > >      description: Specify the number of delay for tx sampling.
+> > > >      $ref: /schemas/types.yaml#/definitions/uint8
+> > > >
+> > > > +  eswin,hsp-sp-csr:
+> > > > +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> > > > +    items:
+> > > > +      - items:
+> > > > +          - description: Phandle to HSP(High-Speed Peripheral) device
+> > > > +          - description: Offset of the stability status register for internal
+> > > > +                         clock.
+> > > > +          - description: Offset of the stability register for host regulator
+> > > > +                         voltage.
+> > > > +    description:
+> > > > +      HSP CSR is to control and get status of different high-speed peripherals
+> > > > +      (such as Ethernet, USB, SATA, etc.) via register, which can tune
+> > > > +      board-level's parameters of PHY, etc.
+> > > 
+> > > I would like second confirmation from DT maintainers, to make sure
+> > > it's reasonable to model the HW like this.
+> > 
+> > If by second confirmation, you mean by someone other than me, obviously
+> > ignore this, but I think this is "fine". It discussed on a previous
+> > revision that all is being done with it is setting a handful bits that
+> > signify that the peripheral has been configured correctly.
+> > 
+> > That said, I don't have a clue what's going on with the warning about
+> > the dwmac device. That's definitely one for Rob.
 > 
-> The specification can be found here:
-> https://github.com/riscv/riscv-zalasr/blob/main/chapter2.adoc
+> Apparently it's just as simple as there being more than one definition
+> of the same property. I had it in my head that that was okay when only
+> one binding was applied to the node, but clearly not.
 > 
-> This patch seires has been tested with ltp on Qemu with Brensan's zalasr
-> support patch[1].
-> 
-> Some false positive spacing error happens during patch checking. Thus I
-> CCed maintainers of checkpatch.pl as well.
-> 
-> [1] https://lore.kernel.org/all/CAGPSXwJEdtqW=nx71oufZp64nK6tK=0rytVEcz4F-gfvCOXk2w@mail.gmail.com/
-> 
-> v4:
->  - Apply acquire/release semantics to arch_atomic operations. Thanks
->  to Andrea.
+> I'll have to un-review it until that error is sorted out.
 
-Perhaps I wasn't clear enough, sorry, but I did mean my suggestion
-(specifically, the use of .aq/.rl annotations) to be conditional on
-zalasr.  Same observation for xchg/cmpxchg below.  IOW, I really
-expected this series to introduce _no changes_ to our lowerings when
-!zalasr.  If any !zalasr-changes are needed, I'd suggest isolating
-/submitting them in dedicated patches.
+This binding is fine. The error is in the eswin,eic770-eth.yaml binding:
 
-But other than that, this looks pretty good to me.  Perhaps something
-else to consider for zalasr is our lowering of smp_cond_load_acquire()
-(can't spot an actual bug now, but recall the principle "zalasr -> use
-.aq/.rl annotations ..."): riscv currently uses the "generic", fence-
-based implementation from include/asm-generic/barrier.h; compare that
-with e.g. the implementation from arch/arm64/include/asm/barrier.h .
+  eswin,hsp-sp-csr:
+    $ref: /schemas/types.yaml#/definitions/phandle-array
+    items:
+      - description: Phandle to HSP(High-Speed Peripheral) device
+      - description: Offset of phy control register for internal
+                     or external clock selection
+      - description: Offset of AXI clock controller Low-Power request
+                     register
+      - description: Offset of register controlling TX/RX clock delay
+    description: |
+      High-Speed Peripheral device needed to configure clock selection,
+      clock low-power mode and clock delay.
 
-  Andrea
 
+The issue here is phandle-array is really a matrix and an outer 'items' 
+is needed to say there is 1 entry with 4 cells. Like this:
 
-> v3:
->  - Apply acquire/release semantics to arch_xchg/arch_cmpxchg operations
->  so as to ensure FENCE.TSO ordering between operations which precede the
->  UNLOCK+LOCK sequence and operations which follow the sequence. Thanks
->  to Andrea.
->  - Support hwprobe of Zalasr.
->  - Allow Zalasr extensions for Guest/VM.
-> 
-> v2:
->  - Adjust the order of Zalasr and Zalrsc in dt-bindings. Thanks to
->  Conor.
-> 
-> Xu Lu (10):
->   riscv: Add ISA extension parsing for Zalasr
->   dt-bindings: riscv: Add Zalasr ISA extension description
->   riscv: hwprobe: Export Zalasr extension
->   riscv: Introduce Zalasr instructions
->   riscv: Apply Zalasr to smp_load_acquire/smp_store_release
->   riscv: Apply acquire/release semantics to arch_xchg/arch_cmpxchg
->     operations
->   riscv: Apply acquire/release semantics to arch_atomic operations
->   riscv: Remove arch specific __atomic_acquire/release_fence
->   RISC-V: KVM: Allow Zalasr extensions for Guest/VM
->   RISC-V: KVM: selftests: Add Zalasr extensions to get-reg-list test
-> 
->  Documentation/arch/riscv/hwprobe.rst          |   5 +-
->  .../devicetree/bindings/riscv/extensions.yaml |   5 +
->  arch/riscv/include/asm/atomic.h               |  70 ++++++++-
->  arch/riscv/include/asm/barrier.h              |  91 +++++++++--
->  arch/riscv/include/asm/cmpxchg.h              | 144 +++++++++---------
->  arch/riscv/include/asm/fence.h                |   4 -
->  arch/riscv/include/asm/hwcap.h                |   1 +
->  arch/riscv/include/asm/insn-def.h             |  79 ++++++++++
->  arch/riscv/include/uapi/asm/hwprobe.h         |   1 +
->  arch/riscv/include/uapi/asm/kvm.h             |   1 +
->  arch/riscv/kernel/cpufeature.c                |   1 +
->  arch/riscv/kernel/sys_hwprobe.c               |   1 +
->  arch/riscv/kvm/vcpu_onereg.c                  |   2 +
->  .../selftests/kvm/riscv/get-reg-list.c        |   4 +
->  14 files changed, 314 insertions(+), 95 deletions(-)
-> 
-> -- 
-> 2.20.1
-> 
+items:
+  - items:
+      - description: ...
+      - description: ...
+      - description: ...
+      - description: ...
+
+Please send a fix for that.
+
+The tools could handle this case better, so I'll look into a fix for 
+them.
+
+Rob
 
