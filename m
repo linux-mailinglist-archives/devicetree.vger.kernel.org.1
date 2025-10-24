@@ -1,94 +1,118 @@
-Return-Path: <devicetree+bounces-230591-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-230592-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0A5CC043BC
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 05:20:12 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7852CC043D1
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 05:23:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 33A743B7040
-	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 03:20:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1D9073B8605
+	for <lists+devicetree@lfdr.de>; Fri, 24 Oct 2025 03:23:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C46A2609C5;
-	Fri, 24 Oct 2025 03:20:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EA3E26D4DF;
+	Fri, 24 Oct 2025 03:23:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PAZW1d9n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from zg8tmja5ljk3lje4mi4ymjia.icoremail.net (zg8tmja5ljk3lje4mi4ymjia.icoremail.net [209.97.182.222])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8E6735B130;
-	Fri, 24 Oct 2025 03:20:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.97.182.222
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B3F2248F48;
+	Fri, 24 Oct 2025 03:23:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1761276008; cv=none; b=Vgjc8/7ZYSi7mp1qdOeabTj56gXaiiSg7/c3rYIW+SMFzOETj7zgSmPHX1sC6Ce47c2jMtpZrYf/VqCn0jduaUiS6nPiRWXUYu5c6bEajEMWdYomG7bH/K9Z0v5UIKk2/tdHf0i8wxagM1tqtTxL+tZ6MqfeE1maV6dS8z2k39Q=
+	t=1761276213; cv=none; b=krRsHLvN0c1hWxmqcNCYdZUQAo2X9xA5c3B9IpV8Vx8nfXGUn1lYyZOe0WFVFDMLcch2GS1FTykTCv/MHoNyG4Re01YNZSN3mOmKR5g3+a69kZhgPXbbDfcaQ8m4H98aJ4cEpm2CnSSKUZw73WjWBe9rijOVS8b8Wup0ve+Okys=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1761276008; c=relaxed/simple;
-	bh=SPueU73YSGLkFIRRtlw1lCypIuUFZRrmVNQv9cnSPVU=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
-	 MIME-Version:Message-ID; b=NBuL3koapcxheyW+XTUTmlMhtxUhPsn9Fk0o+yzfDdNLLKrqIHFHiWiAHVIgFk32LXc+pDqXIopGkBfa+zF7oIufyaPqVRWz67ZzboEofJyu7AsqiJGhA5SNBXz1hhzY9O/VgsJUF0Jj/xJ76eoAl1Ir8xxeIXawLJFIHZPXj0I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=209.97.182.222
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
-Received: from hehuan1$eswincomputing.com ( [10.12.96.103] ) by
- ajax-webmail-app2 (Coremail) ; Fri, 24 Oct 2025 11:19:52 +0800 (GMT+08:00)
-Date: Fri, 24 Oct 2025 11:19:52 +0800 (GMT+08:00)
-X-CM-HeaderCharset: UTF-8
-From: =?UTF-8?B?5L2V5qyi?= <hehuan1@eswincomputing.com>
-To: "Adrian Hunter" <adrian.hunter@intel.com>
-Cc: ulf.hansson@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, jszhang@kernel.org, p.zabel@pengutronix.de,
-	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, ningyu@eswincomputing.com,
-	linmin@eswincomputing.com, pinkesh.vaghela@einfochips.com,
-	xuxiang@eswincomputing.com, luyulin@eswincomputing.com,
-	dongxuyang@eswincomputing.com, zhangsenchuan@eswincomputing.com,
-	weishangjuan@eswincomputing.com, lizhi2@eswincomputing.com,
-	caohang@eswincomputing.com,
-	=?UTF-8?B?5L2V5qyi?= <hehuan1@eswincomputing.com>
-Subject: Re: Re: [PATCH v5 2/2] mmc: sdhci-of-dwcmshc: Add support for Eswin
- EIC7700
-X-Priority: 3
-X-Mailer: Coremail Webmail Server Version 2024.2-cmXT6 build
- 20241203(6b039d88) Copyright (c) 2002-2025 www.mailtech.cn
- mispb-72143050-eaf5-4703-89e0-86624513b4ce-eswincomputing.com
-In-Reply-To: <9b744e60-a0d7-48c7-b1fb-66df91b839e5@intel.com>
-References: <20251019115133.300-1-hehuan1@eswincomputing.com>
- <20251019115316.337-1-hehuan1@eswincomputing.com>
- <9b744e60-a0d7-48c7-b1fb-66df91b839e5@intel.com>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset=UTF-8
+	s=arc-20240116; t=1761276213; c=relaxed/simple;
+	bh=CNwnT8O4JG4Ottnhbl1cNUX0P6pAoK8TTMrHAWFkULg=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=gDrTUt6jnCX7UkrRjSXj/0q7adxAyMHDwx4V9yWMawSe7Fi6YoZlS1gspEkxT9Pp9o6+sm8nLmTSrNRZQI4iA8APmZ+4hd5Pw3eSLYznLKEtkEGNFYy09+5T/s1xRq4UbD87FuuhGjaQGoayDPkOTVfc/j4J8c/ibUQqVHpC6mg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PAZW1d9n; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A10ABC4CEE7;
+	Fri, 24 Oct 2025 03:23:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1761276212;
+	bh=CNwnT8O4JG4Ottnhbl1cNUX0P6pAoK8TTMrHAWFkULg=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=PAZW1d9nE4BKbSDO5YSLJIHFY7fvvq7/qb+KsjUsGRLmxi56jdxvmOARnYJv4d2ld
+	 Ic/xOGBjxwDNwmiwJ7cwI4V+apON+qMOt3p6cSvOAfiZ8jtjp0hXvhPBg0AM77I1zp
+	 g6i8gpSAFD7DosiR9Fi+RdTt41wplPyJOLqBMx3xzyWe4tOmA43TExpxPsd4IS8kb2
+	 ffQAI4FNvAT46dKsdBSkShyj3Tac9+wpugnoPlwOkCefGTwchZzYXux2HTezbtbDFb
+	 cD2F6SLTQmqfuVuj5vCgghi+8YZx5WXGvZntDmaWeqh9aFw3ZihEuSB6O7yksVD5ou
+	 igWnqilxSCITA==
+Date: Thu, 23 Oct 2025 22:23:30 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <4dddefe2.63d.19a143ad883.Coremail.hehuan1@eswincomputing.com>
-X-Coremail-Locale: zh_CN
-X-CM-TRANSID:TQJkCgDHZpVY8PpoEgUvAQ--.28428W
-X-CM-SenderInfo: 5khk3tzqr6v25zlqu0xpsx3x1qjou0bp/1tbiAQEFCmj6WH4NSwAA
-	s9
-X-Coremail-Antispam: 1Ur529EdanIXcx71UUUUU7IcSsGvfJ3iIAIbVAYjsxI4VWxJw
-	CS07vEb4IE77IF4wCS07vE1I0E4x80FVAKz4kxMIAIbVAFxVCaYxvI4VCIwcAKzIAtYxBI
-	daVFxhVjvjDU=
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Russell King <linux@armlinux.org.uk>, 
+ Alexandre Torgue <alexandre.torgue@foss.st.com>, netdev@vger.kernel.org, 
+ Jakub Kicinski <kuba@kernel.org>, Heiner Kallweit <hkallweit1@gmail.com>, 
+ "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>, 
+ Icenowy Zheng <uwu@icenowy.me>, Vivian Wang <wangruikang@iscas.ac.cn>, 
+ Yixun Lan <dlan@gentoo.org>, linux-kernel@vger.kernel.org, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+ Eric Dumazet <edumazet@google.com>, Chen Wang <unicorn_wang@outlook.com>, 
+ Yao Zi <ziyao@disroot.org>, linux-stm32@st-md-mailman.stormreply.com, 
+ Longbin Li <looong.bin@gmail.com>, linux-arm-kernel@lists.infradead.org, 
+ Andrew Lunn <andrew+netdev@lunn.ch>, Paolo Abeni <pabeni@redhat.com>, 
+ "David S. Miller" <davem@davemloft.net>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org, 
+ sophgo@lists.linux.dev, Han Gao <rabenda.cn@gmail.com>
+To: Inochi Amaoto <inochiama@gmail.com>
+In-Reply-To: <20251024015524.291013-2-inochiama@gmail.com>
+References: <20251024015524.291013-1-inochiama@gmail.com>
+ <20251024015524.291013-2-inochiama@gmail.com>
+Message-Id: <176127621096.199631.1552825919177332173.robh@kernel.org>
+Subject: Re: [PATCH v3 1/3] dt-bindings: net: sophgo,sg2044-dwmac: add phy
+ mode restriction
 
-SGkgQWRyaWFuLAoKVGhhbmsgeW91IHZlcnkgbXVjaCBmb3IgeW91ciBBY2tlZC1ieSBhbmQgdGhl
-IHJldmlldyEKCj4gT24gMTkvMTAvMjAyNSAxNDo1MywgaGVodWFuMUBlc3dpbmNvbXB1dGluZy5j
-b20gd3JvdGU6Cj4gPiBGcm9tOiBIdWFuIEhlIDxoZWh1YW4xQGVzd2luY29tcHV0aW5nLmNvbT4K
-PiA+IAo+ID4gQWRkIHN1cHBvcnQgZm9yIHRoZSBtbWMgY29udHJvbGxlciBpbiB0aGUgRXN3aW4g
-RUlDNzcwMCB3aXRoIHRoZSBuZXcKPiA+IGNvbXBhdGlibGUgImVzd2luLGVpYzc3MDAtZHdjbXNo
-YyIuIEltcGxlbWVudCBjdXN0b20gc2RoY2lfb3BzIGZvcgo+ID4gc2V0X2Nsb2NrLCByZXNldCwg
-c2V0X3Voc19zaWduYWxpbmcsIHBsYXRmb3JtX2V4ZWN1dGVfdHVuaW5nLgo+ID4gCj4gPiBTaWdu
-ZWQtb2ZmLWJ5OiBIdWFuIEhlIDxoZWh1YW4xQGVzd2luY29tcHV0aW5nLmNvbT4KPiAKPiBOb3Rp
-bmcgdGhhdCB0aGUgZHQtYmluZGluZ3MgcGF0Y2ggc3RpbGwgc2VlbXMgdG8gaGF2ZSBpc3N1ZXMs
-Cj4gZm9yIHRoaXMgcGF0Y2gsIGFueXdheToKPiAKPiBBY2tlZC1ieTogQWRyaWFuIEh1bnRlciA8
-YWRyaWFuLmh1bnRlckBpbnRlbC5jb20+CgpJIHJlY2lldmVkIGFuIGR0X2JpbmRpbmdfY2hlY2sg
-ZXJyb3IgcmVwb3J0OgpodHRwczovL2xvcmUua2VybmVsLm9yZy9hbGwvMTc2MDk2MDExMzgwLjIy
-OTE3LjE5ODg2NzkzMjEwOTYwNzY1MjIucm9iaEBrZXJuZWwub3JnLwoKSXQgc2VlbXMgdGhlIGVy
-cm9yIGhhcyBub3RoaW5nIHRvIGRvIHdpdGggTU1DLCBidXQgaXMgcmVsYXRlZCB0byB0aGUKRXRo
-ZXJuZXQgYmluZGluZyAoZXN3aW4sZWljNzcwMC1ldGgueWFtbCksIHRoYXQgd2FzIHB1c2hlZCBi
-eSB1cyBhbmQKYXBwbGllZCByZWNlbnRseSwgbGluazoKaHR0cHM6Ly9naXQua2VybmVsLm9yZy9w
-dWIvc2NtL2xpbnV4L2tlcm5lbC9naXQvbmV0ZGV2L25ldC1uZXh0LmdpdC9jb21taXQvP2lkPTg4
-OGJkMGVjYTkzYwoKV2UncmUgZml4aW5nIHRoaXMgaXNzdWUgZm9yIHRoZSBFdGhlcm5ldC4gVGhl
-IEV0aGVybmV0IHBhdGNoIHdpdGgKdGhpcyBidWcgZml4IHdpbGwgYmUgc2VudCBvdXQgbGF0ZXIu
-CgpJIHdvdWxkIGJlIGdyYXRlZnVsIGZvciB5b3VyIHJlcGx5LgoKUmVnYXJkcywKSHVhbiBIZQo=
+
+On Fri, 24 Oct 2025 09:55:22 +0800, Inochi Amaoto wrote:
+> As the ethernet controller of SG2044 and SG2042 only supports
+> RGMII phy. Add phy-mode property to restrict the value.
+> 
+> Also, since SG2042 has internal rx delay in its mac, make
+> only "rgmii-txid" and "rgmii-id" valid for phy-mode.
+> 
+> Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
+> ---
+>  .../bindings/net/sophgo,sg2044-dwmac.yaml       | 17 +++++++++++++++++
+>  1 file changed, 17 insertions(+)
+> 
+
+My bot found errors running 'make dt_binding_check' on your patch:
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/sophgo,sg2044-dwmac.yaml: allOf:1:then: 'anyOf' conditional failed, one must be fixed:
+	'phy-mode' is not one of ['$ref', 'additionalItems', 'additionalProperties', 'allOf', 'anyOf', 'const', 'contains', 'default', 'dependencies', 'dependentRequired', 'dependentSchemas', 'deprecated', 'description', 'else', 'enum', 'exclusiveMaximum', 'exclusiveMinimum', 'items', 'if', 'minItems', 'minimum', 'maxItems', 'maximum', 'multipleOf', 'not', 'oneOf', 'pattern', 'patternProperties', 'properties', 'required', 'then', 'typeSize', 'unevaluatedProperties', 'uniqueItems']
+	'type' was expected
+	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20251024015524.291013-2-inochiama@gmail.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
